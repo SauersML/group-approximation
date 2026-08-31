@@ -52,12 +52,12 @@ matrix-unit algebra spanned by the `s_d t_e`.  Since `Phi` is an
 isomorphism, conjugating this scalar copy back to `R^n` preserves
 injectivity.  Thus it is an actual finite subgroup, not a quotient or a
 coefficient specialization.  All generators of `H` lie in this scalar
-copy of `GL_(m+1)(F_2)` on `D union {star}), acting identically on
+copy of `GL_(m+1)(F_2)` on `D union {star}`, acting identically on
 coordinates `3,...,n`.
 
 Transitivity supplies the reverse inclusion.  Conjugating the first
 transvection in `(MLO6)` by `F` gives every `1+E_(d,star)`;
-conjugating the second gives every `1+E_(star,d)), for `d in D`.
+conjugating the second gives every `1+E_(star,d)`, for `d in D`.
 For distinct `d,e in D`, the elementary commutator relation gives
 
 ```text
@@ -65,7 +65,7 @@ For distinct `d,e in D`, the elementary commutator relation gives
 ```
 
 Hence `H` contains every off-diagonal scalar transvection on
-`D union {star}).  These generate `EL_(m+1)(F_2)`.  Since the only
+`D union {star}`.  These generate `EL_(m+1)(F_2)`.  Since the only
 nonzero scalar of `F_2` is `1`,
 
 ```text
