@@ -35,7 +35,17 @@ With normalized corner trace `tau_e(y)=tau(y)/tau(e)`, the map
 Theta_e(x)=e Theta(x):L(W)->eMe                          (BWC3)
 ~~~
 
-is again a trace-preserving embedding.
+is again a trace-preserving embedding.  If
+`M=product_omega M_(d_n)`, then `e` has projection lifts
+`e_n in M_(d_n)` with
+
+~~~text
+rank(e_n)/d_n -> tau(e)>0,                              (BWC3b)
+~~~
+
+and `eMe`, with its normalized corner trace, is the tracial matrix
+ultraproduct `product_omega M_(rank(e_n))`.  Thus the operation stays
+inside the hyperlinear approximation class and uses no rank ascent.
 
 Fix `x_0 in X`, let `Lambda=Stab_G(x_0)`, and choose
 `gamma in G` with `gamma x_0!=x_0`.  If `a_x` is the order-two lamp at
