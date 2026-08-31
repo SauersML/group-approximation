@@ -34,7 +34,7 @@ H=<D(F), e_(i_alpha,j_alpha)(r_alpha)> <= EL_n(R).
 Then `H` is finite.
 
 For `n>=5`, let `pi:St_n(R)->EL_n(R)` be the Steinberg projection,
-let `F_tilde` be the lifted Thompson copy of `F), and choose the
+let `F_tilde` be the lifted Thompson copy of `F`, and choose the
 standard root lifts `x_(i_alpha,j_alpha)(r_alpha)`.  Then
 
 ```text
