@@ -6,7 +6,7 @@ title: Collect the mixed st cell and close its qutrit orbit in a finite triangul
 target: qutrit-first-mixed-cycle-cell-is-finite
 requires:
   - qutrit-first-cycle-phase-flip-is-a-finite-amalgam
-  - qutrit-nonparallel-cuntz-chain-finite-proof
+  - qutrit-first-nonparallel-cuntz-return-chain-is-finite
 ---
 
 ## The cross-row Cuntz return
