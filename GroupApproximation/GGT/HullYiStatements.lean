@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.HullSCConeOffCyclicReduction
 import GroupApproximation.GGT.HullSCConeOffHeavyNonComm
-import GroupApproximation.GGT.HullYiLoxRadical
+import GroupApproximation.GGT.HullYiFiniteRadicalDetector
 import GroupApproximation.GGT.DGOCorollary66
 
 /-!
@@ -33,7 +33,9 @@ passage from `yi` to that clause**, so the row closes by instantiation the day
   product decomposition whose only consumer would be the case `K_G(S) = 1`;
   `GGT/HullYiLoxRadical.lean` already proves the triviality this rests on
   (`loxRadical_eq_bot_of_suitable`), and it does so quantified over *every*
-  loxodromic of `S`, so it needs neither `nonelsub` nor DGO 6.12.
+  loxodromic of `S`.  `exists_finite_loxodromic_family_trivial_intersection`
+  now also proves the finite-family detection step in Hull's proof, so this
+  passage needs neither `nonelsub` nor DGO 6.12.
 * **Non-commensurability carries its conjugator.**  `∀ c p q, c⁻¹fᵖc ≠ gᑫ` and
   not the weak `∀ p q, fᵖ ≠ gᑫ`: the weak form admits conjugate loxodromics,
   and `GGT/HullYiNonCommensurable.lean` proves a family containing a conjugate
@@ -169,9 +171,10 @@ That lemma's third characterisation of `E_G(h)`, `∃ k m ≠ 0, g⁻¹h^k g = h
 `GGT.elementaryClosure` **by construction**.  The equivalence with the
 `h^{±n}` form and `E⁺(h) = C_G(h^r)` are now proved in `DGOCorollary66`, modulo
 the finite-transversal conclusion of DGO Lemma 6.5.  Thus the remaining Yi
-work is the component matching and orientation argument from Lemma 4.21(b),
-together with the finite-family-to-`loxRadical` bridge recorded in
-`HullYiLoxRadical`; it is not missing elementary-closure vocabulary. -/
+work is the production of a pairwise non-commensurable, orientation-pure
+detecting family and the component matching and orientation argument from
+Lemma 4.21(b).  The finite-family-to-`loxRadical` bridge is closed in
+`HullYiFiniteRadicalDetector`; it is not part of the residue. -/
 def YiSuitablePair : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
     Suitable A.alphabet N →

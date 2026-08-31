@@ -93,12 +93,16 @@ theorem listVal_conj_of_alignedMatch_piece (hnodup : ms.Nodup)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -114,9 +118,20 @@ theorem listVal_conj_of_alignedMatch_piece (hnodup : ms.Nodup)
     exists_match_with_trivialGap hdisj hnodup hinj hsep hdeep hrho hms hpair
       hmatch hp0 hw hw' hlong hpy hpz hpy0 hpz0 hlet4 hslet hclose hqg hqside
       hsside
+  have hcompd : GGT.OsinComponents.IsComp b u d (d + 1) :=
+    isComp_prefix_rotate_relatorWord₂ hp0 hw hd hletd
+  have hletk : ((relatorWord₂ p (a false) (a true) ms).rotate c')[k - 1]?
+      = some (GGT.RelLetter.comp b x) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k - 1 < u'.length)).trans hx
+  have hcompk : GGT.OsinComponents.IsComp b u' (k - 1) k := by
+    have hc := isComp_prefix_rotate_relatorWord₂ hp0 hw' (by omega) hletk
+    convert hc using 1
+    all_goals omega
   exact listVal_conj_of_alignedMatch_found hnodup hinj hsep hpair
     hp0 hw hw' hd hk0 hk he hletd hx hh hconn hgap hpy hpz hpy0 hpz0 hlet4
-    hclose hqg (hqside b d) (hsside b k)
+    hclose hqg (fun i' => hqside b d i' hcompd)
+    (fun m => hsside b k m ⟨k - 1, by omega, hcompk⟩)
 
 include hpair hmatch in
 /-- **The mirrored aligned case, from a piece.**
@@ -159,12 +174,16 @@ theorem listVal_conj_of_mirroredAlignedMatch_piece (hnodup : ms.Nodup)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -182,9 +201,21 @@ theorem listVal_conj_of_mirroredAlignedMatch_piece (hnodup : ms.Nodup)
     exists_match_with_trivialGap_revInv hdisj hnodup hinj hsymm hsep hdeep hrho
       hms hpair hmatch hp0 hw hw' hlong hpy hpz hpy0 hpz0 hlet4 hslet hclose
       hqg hqside hsside
+  have hcompd : GGT.OsinComponents.IsComp b u d (d + 1) :=
+    isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw hd hletd
+  have hletk :
+      ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c')[k - 1]?
+        = some (GGT.RelLetter.comp b x) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k - 1 < u'.length)).trans hx
+  have hcompk : GGT.OsinComponents.IsComp b u' (k - 1) k := by
+    have hc := isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw' (by omega) hletk
+    convert hc using 1
+    all_goals omega
   exact listVal_conj_of_mirroredAlignedMatch_found hnodup hinj hsymm hsep
     hpair hp0 hw hw' hd hk0 hk he hletd hx hh hconn hgap hpy hpz hpy0 hpz0
-    hlet4 hclose hqg (hqside b d) (hsside b k)
+    hlet4 hclose hqg (fun i' => hqside b d i' hcompd)
+    (fun m => hsside b k m ⟨k - 1, by omega, hcompk⟩)
 
 include hpair hmatch in
 /-- **The first mixed case, from a piece.**  The piece is a rotation of the
@@ -244,12 +275,16 @@ theorem false_of_mixedMatch_piece (hnodup : ms.Nodup)
               (GGT.OsinComponents.vertex (1 : G) u' y) : ℕ) : ℝ))
     (hB : bb ≤ ((blockConst p cnt : ℕ) : ℝ))
     (hple : wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ epsPin)
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -295,16 +330,37 @@ theorem false_of_mixedMatch_piece (hnodup : ms.Nodup)
     hlet4 hclose hqg
   obtain ⟨k₁, hk01, hk₁, ⟨x₁, hx₁⟩, g₁, hg₁, hconn₁⟩ :=
     hmatch b₁ rho py u pz u' d₁ hrho hclose hpy hpz hpz0 hpolyq hcomp₁
-      hdeep₁ (hqside b₁ d₁)
+      hdeep₁ (fun i' => hqside b₁ d₁ i' hcomp₁)
   obtain ⟨k₂, hk02, hk₂, ⟨x₂, hx₂⟩, g₂, hg₂, hconn₂⟩ :=
     hmatch b₂ rho py u pz u' d₂ hrho hclose hpy hpz hpz0 hpolyq hcomp₂
-      hdeep₂ (hqside b₂ d₂)
+      hdeep₂ (fun i' => hqside b₂ d₂ i' hcomp₂)
+  have hletk₁ :
+      ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c')[k₁ - 1]?
+        = some (GGT.RelLetter.comp b₁ x₁) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k₁ - 1 < u'.length)).trans hx₁
+  have hletk₂ :
+      ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c')[k₂ - 1]?
+        = some (GGT.RelLetter.comp b₂ x₂) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k₂ - 1 < u'.length)).trans hx₂
+  have hcompk₁ : GGT.OsinComponents.IsComp b₁ u' (k₁ - 1) k₁ := by
+    have hc := isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw' (by omega) hletk₁
+    convert hc using 1
+    all_goals omega
+  have hcompk₂ : GGT.OsinComponents.IsComp b₂ u' (k₂ - 1) k₂ := by
+    have hc := isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw' (by omega) hletk₂
+    convert hc using 1
+    all_goals omega
   have hRlen : (relatorWord₂ p (a false) (a true) ms).length
       = p.length + ms.length := length_relatorWord₂ p (a false) (a true) ms
   exact false_of_mixedMatch_found hnodup hinj hsep hpair hp0 hw hw' hpy hpz
     hpy0 hpz0 hlet4 hclose hqg hqlet hslet hqgq hqgs hB hple he₁ he₂ hd₁ hd₂
     hk01 hk02 hk₁ hk₂ hletd₁ hletd₂ hx₁ hx₂ hg₁ hg₂ hconn₁ hconn₂
-    (hqside b₁ d₁) (hqside b₂ d₂) (hsside b₁ k₁) (hsside b₂ k₂) hsepn
+    (fun i' => hqside b₁ d₁ i' hcomp₁)
+    (fun i' => hqside b₂ d₂ i' hcomp₂)
+    (fun m => hsside b₁ k₁ m ⟨k₁ - 1, by omega, hcompk₁⟩)
+    (fun m => hsside b₂ k₂ m ⟨k₂ - 1, by omega, hcompk₂⟩) hsepn
     (by omega)
 
 include hpair hmatch in
@@ -361,12 +417,16 @@ theorem false_of_mixedMatch_piece_inv (hnodup : ms.Nodup)
               (GGT.OsinComponents.vertex (1 : G) u' y) : ℕ) : ℝ))
     (hB : bb ≤ ((blockConst p cnt : ℕ) : ℝ))
     (hple : wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ epsPin)
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -412,16 +472,37 @@ theorem false_of_mixedMatch_piece_inv (hnodup : ms.Nodup)
     hlet4 hclose hqg
   obtain ⟨k₁, hk01, hk₁, ⟨x₁, hx₁⟩, g₁, hg₁, hconn₁⟩ :=
     hmatch b₁ rho py u pz u' d₁ hrho hclose hpy hpz hpz0 hpolyq hcomp₁
-      hdeep₁ (hqside b₁ d₁)
+      hdeep₁ (fun i' => hqside b₁ d₁ i' hcomp₁)
   obtain ⟨k₂, hk02, hk₂, ⟨x₂, hx₂⟩, g₂, hg₂, hconn₂⟩ :=
     hmatch b₂ rho py u pz u' d₂ hrho hclose hpy hpz hpz0 hpolyq hcomp₂
-      hdeep₂ (hqside b₂ d₂)
+      hdeep₂ (fun i' => hqside b₂ d₂ i' hcomp₂)
+  have hletk₁ :
+      ((relatorWord₂ p (a false) (a true) ms).rotate c')[k₁ - 1]?
+        = some (GGT.RelLetter.comp b₁ x₁) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k₁ - 1 < u'.length)).trans hx₁
+  have hletk₂ :
+      ((relatorWord₂ p (a false) (a true) ms).rotate c')[k₂ - 1]?
+        = some (GGT.RelLetter.comp b₂ x₂) := by
+    rw [hw']
+    exact (List.getElem?_append_left (by omega : k₂ - 1 < u'.length)).trans hx₂
+  have hcompk₁ : GGT.OsinComponents.IsComp b₁ u' (k₁ - 1) k₁ := by
+    have hc := isComp_prefix_rotate_relatorWord₂ hp0 hw' (by omega) hletk₁
+    convert hc using 1
+    all_goals omega
+  have hcompk₂ : GGT.OsinComponents.IsComp b₂ u' (k₂ - 1) k₂ := by
+    have hc := isComp_prefix_rotate_relatorWord₂ hp0 hw' (by omega) hletk₂
+    convert hc using 1
+    all_goals omega
   have hRlen : (relatorWord₂ p (a false) (a true) ms).length
       = p.length + ms.length := length_relatorWord₂ p (a false) (a true) ms
   exact false_of_mixedMatch_found_inv hnodup hinj hsymm hsep hpair hp0 hw hw'
     hpy hpz hpy0 hpz0 hlet4 hclose hqg hqlet hslet hqgq hqgs hB hple hf₁ hf₂
     hd₁ hd₂ hk01 hk02 hk₁ hk₂ hletd₁ hletd₂ hx₁ hx₂ hg₁ hg₂ hconn₁ hconn₂
-    (hqside b₁ d₁) (hqside b₂ d₂) (hsside b₁ k₁) (hsside b₂ k₂) hsepn
+    (fun i' => hqside b₁ d₁ i' hcomp₁)
+    (fun i' => hqside b₂ d₂ i' hcomp₂)
+    (fun m => hsside b₁ k₁ m ⟨k₁ - 1, by omega, hcompk₁⟩)
+    (fun m => hsside b₂ k₂ m ⟨k₂ - 1, by omega, hcompk₂⟩) hsepn
     (by omega)
 
 end Piece

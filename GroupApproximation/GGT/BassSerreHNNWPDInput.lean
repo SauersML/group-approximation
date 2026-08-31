@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.BassSerreDoubleHNN
+import GroupApproximation.GGT.BassSerreHNNGeodesicRealisation
 import GroupApproximation.GGT.HyperbolicTreeAction
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
 
@@ -14,10 +15,12 @@ assembly is `GGT.BassSerreDoubleHNN.skeletonAH3Input_unconditional` in
 
 ## What is here
 
-Three of the four geometric fields of `AH3Data` are immediate: `isometric` and
-`hyperbolic` (`δ = 0`, through `GGT.isHyperbolicSpace_zero` on `tree_isTree`)
-and `loxodromic` (`u₂u₁⁻¹` is a one-syllable cyclically reduced word, so it
-translates by one).  The fourth, `wpd`, is Minasyan--Osin's Corollary 4.3 --- a
+On the Bass--Serre tree, isometry and `0`-hyperbolicity are immediate, and
+`u₂u₁⁻¹` is loxodromic because it is a one-syllable cyclically reduced word.
+The discrete vertex metric is not itself a real-parameter geodesic space, so
+`GGT/BassSerreHNNGeodesicRealisation.lean` replaces it by the genuine metric
+realization of the syllable-one Cayley graph, at additive distortion one.  The
+remaining tree input, `wpd`, is Minasyan--Osin's Corollary 4.3 --- a
 loxodromic whose axis carries a pair of vertices with finite pointwise
 stabiliser is a WPD element --- proved in `GGT/TreeWPDAxis.lean` as
 `GGT.isWPDAt_of_axis_pairStab_finite`.  What Corollary 4.3 *consumes* is proved
@@ -224,17 +227,37 @@ theorem pairStab_axis_finite (hj₁ : Function.Injective j₁)
 
 /-! ## The `(AH₃)` datum -/
 
-/-- **The `(AH₃)` datum of `E`**, from the WPD element. -/
+/-- **The `(AH₃)` datum of `E`**, on the genuine geodesic realization of its
+Bass--Serre orbit.  The syllable Cayley metric and the tree orbit metric differ
+by at most one, so loxodromy and WPD first pull back to the Cayley vertices and
+then push forward to their metric realization. -/
 noncomputable def ah3DataOfWPD (hj₁ : Function.Injective j₁)
     (hj₂ : Function.Injective j₂)
     (hwpd : IsWPDAt (axisElt hj₁ hj₂)
       (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)) :
-    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) :=
-  AH3Data.ofData (BassSerreHNN.Space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂)) 0
-    (BassSerreHNN.isHyperbolicSpace_zero_space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (axisElt hj₁ hj₂) (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
-    (isLoxodromic_axisElt hj₁ hj₂) hwpd
+    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) := by
+  let φ := stageTwoEquiv j₁ j₂ hj₁ hj₂
+  let A := BassSerreHNN.syllableAlphabet φ
+  let M := BassSerreHNN.geodesicModel φ
+  have hloxC : IsLoxodromic (axisElt hj₁ hj₂) (Cayley.base A) := by
+    apply isLoxodromic_of_map (C := 1) zero_le_one
+      (BassSerreHNN.cayleyToTree_additiveDistortion φ)
+      (BassSerreHNN.cayleyToTree_equivariant φ)
+    simpa [BassSerreHNN.cayleyToTree, Cayley.base, A, φ] using
+      isLoxodromic_axisElt hj₁ hj₂
+  have hwpdC : IsWPDAt (axisElt hj₁ hj₂) (Cayley.base A) := by
+    apply isWPDAt_of_map (C := 1) zero_le_one
+      (BassSerreHNN.cayleyToTree_additiveDistortion φ)
+      (BassSerreHNN.cayleyToTree_equivariant φ)
+    simpa [BassSerreHNN.cayleyToTree, Cayley.base, A, φ] using hwpd
+  letI : PseudoMetricSpace M.W := M.metric
+  letI : MulAction (Double j₁ j₂ hj₁ hj₂) M.W := M.action
+  exact AH3Data.ofData M.W M.isometric M.delta M.hyperbolic M.geodesic
+    (axisElt hj₁ hj₂) (M.iota (Cayley.base A))
+    (isLoxodromic_map M.distortion_nonneg M.hasAdditiveDistortion M.equivariant
+      hloxC)
+    (isWPDAt_map M.distortion_nonneg M.hasAdditiveDistortion M.equivariant
+      hwpdC)
 
 end BassSerreDoubleHNN
 end GGT

@@ -2,6 +2,8 @@ import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
 import GroupApproximation.GGT.HullSCUnionGeometryWitness
 import GroupApproximation.GGT.ElementaryCoarseTranslationProper
 import GroupApproximation.GGT.RelHypSuitabilityResidue
+import GroupApproximation.GGT.CayleyGeodesicRealisation
+import GroupApproximation.GGT.HyperbolicWPDTransfer
 
 /-!
 # The elementary-closure half of hyperbolic suitability
@@ -127,20 +129,28 @@ existing finite-transversal statement to that datum and then the finite
 pigeonhole theorem gives exactly `ElementaryClosureVirtuallyCyclic`; no
 classification of virtually cyclic groups is used. -/
 theorem osinTheorem68FiniteCayleyStatement_of_finiteTransversal
-    (hfin : ElementaryClosureFiniteTransversalStatement.{0}) :
+    (hfin : ElementaryClosureFiniteTransversalStatement.{0, 0}) :
     OsinTheorem68FiniteCayleyStatement := by
   intro G _instG A hAfin δ hδ g hg
+  have hδ0 : 0 ≤ δ := nonneg_of_isHyperbolicSpace hδ (Cayley.base A)
+  let M := CayleyGeodesicModel.modelQuot A hδ hδ0
+    (CayleyGeodesicModel.isGeodesicRealisationQuot A)
+  letI : PseudoMetricSpace M.W := M.metric
+  letI : MulAction G M.W := M.action
+  have hwpd : IsWPDAt g (Cayley.base A) :=
+    isWPDAt_of_isAcylindrical
+      (GGT.isAcylindrical_cayley_of_finite A hAfin) hg
   let D : AH3Data.{0, 0} G :=
-    AH3Data.ofData (Cayley A) (isIsometricAction_cayley A) δ hδ g
-      (Cayley.base A) hg
-      (isWPDAt_of_isAcylindrical
-        (GGT.isAcylindrical_cayley_of_finite A hAfin) hg)
+    AH3Data.ofData M.W M.isometric M.delta M.hyperbolic M.geodesic g
+      (M.iota (Cayley.base A))
+      (isLoxodromic_map M.distortion_nonneg M.hasAdditiveDistortion M.equivariant hg)
+      (isWPDAt_map M.distortion_nonneg M.hasAdditiveDistortion M.equivariant hwpd)
   exact exists_nonzero_zpow_mem_of_finiteTransversal (hfin G D)
 
 /-- Thus the only geometric premise still needed for the finite-Cayley leaf is
 the uniform coarse-translation conclusion of DGO Lemma 6.5. -/
 theorem osinTheorem68FiniteCayleyStatement_of_coarseTranslation
-    (hct : ElementaryClosureCoarseTranslationStatement.{0}) :
+    (hct : ElementaryClosureCoarseTranslationStatement.{0, 0}) :
     OsinTheorem68FiniteCayleyStatement :=
   osinTheorem68FiniteCayleyStatement_of_finiteTransversal
     (elementaryClosureFiniteTransversalStatement_of_coarseTranslation hct)

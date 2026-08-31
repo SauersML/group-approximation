@@ -107,12 +107,16 @@ theorem listVal_conj_of_sym_pieces (hnodup : ms.Nodup)
               (GGT.OsinComponents.vertex (1 : G) u' y) : ℕ) : ℝ))
     (hB : bb ≤ ((blockConst p cnt : ℕ) : ℝ))
     (hple : wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ epsPin)
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →

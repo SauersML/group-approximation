@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.ElementaryIndependence
 import GroupApproximation.GGT.DGOQuasiGeodesicChainAt
+import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 import GroupApproximation.GGT.HullSCFillingAlphabetReduction
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
 import GroupApproximation.GGT.HullHeGXPairOfFamily
@@ -612,70 +613,6 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_finiteYi_of_heGX
     SimultaneousAuxiliaryPeripheralSelection.{u} :=
   simultaneousAuxiliaryPeripheralSelection_of_yi_of_heGX
     (simultaneousYiSuitableFamily_of_finiteFamily hyi) hhe
-
-/-- Hull's published `ε`-piece relation with both compared subwords exposed.
-The repository's older `IsPiece` existentially hides `u'`, so its
-`pieces_small` field can only bound `u`, whereas Definition 4.3 bounds the
-maximum of both lengths. -/
-def RelWord.IsPublishedPiece {G : Type u} [Group G] {Λ : Type*}
-    (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
-    (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
-  v ∈ W ∧ (∃ s, v = u ++ s) ∧
-    ∃ v' ∈ W, ∃ s', v' = u' ++ s' ∧
-      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
-        WordMetric.wordNorm D.base z ≤ eps ∧
-        GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
-        GGT.RelLetter.listVal v' ≠
-          y * GGT.RelLetter.listVal v * y⁻¹
-
-/-- Hull's published `ε`-primepiece relation.  Here the two close subwords
-occur in the same relator, and the second may match either orientation of the
-first.  This is the extra relation controlled by `C₁`. -/
-def RelWord.IsPrimePiece {G : Type u} [Group G] {Λ : Type*}
-    (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
-    (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
-  v ∈ W ∧
-    ∃ middle tail, v = u ++ middle ++ u' ++ tail ∧
-      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
-        WordMetric.wordNorm D.base z ≤ eps ∧
-        (GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∨
-          GGT.RelLetter.listVal u' = y * (GGT.RelLetter.listVal u)⁻¹ * z)
-
-/-- **The extra hypotheses Hull's Lemma 4.4 actually consumes.**
-
-`RelWord.IsSmallCancellation` records the piece, depth, length and symmetry
-clauses, but Hull's published `C(ε,μ,λ,c,ρ)` condition also requires every
-relator path to be `(λ,c)`-quasi-geodesic and the family to be strongly
-bounded.  Theorem 7.1 uses `(λ,c) = (1/4,1)`, expressed here in the reciprocal
-constant convention of `IsQuasiGeodesicChainAt`.
-
-This is deliberately a strengthened input, not a replacement interpretation
-of `RelWord.IsSmallCancellation`: the quotient-preservation theorem is not
-soundly attributable to the weaker predicate alone. -/
-structure RelWord.IsLemma44Input {G : Type u} [Group G] {Λ : Type*}
-    (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
-    (eps : ℕ) (mu : ℝ) (rho : ℕ) : Prop extends
-    RelWord.IsSmallCancellation D W eps mu rho where
-  quasiGeodesic : ∀ v ∈ W,
-    GGT.IsQuasiGeodesicChainAt D.alphabet.carrier 4 1
-      (fun i => GGT.RelLetter.listVal (v.take i)) v.length
-  publishedPiecesSmall : ∀ u u' v,
-    RelWord.IsPublishedPiece D W eps u u' v →
-      max (u.length : ℝ) (u'.length : ℝ) < mu * v.length
-  stronglyBounded :
-    {a : GGT.RelLetter G Λ |
-      (∃ lam h, a = GGT.RelLetter.comp lam h) ∧ ∃ v ∈ W, a ∈ v}.Finite
-
-/-- **Hull Lemma 4.9's actual `C₁` input.**  No-new-torsion uses the
-primepiece clause in addition to every clause consumed by Lemma 4.4.  This
-field is absent from `RelWord.IsSmallCancellation`, so finite-order lifting
-cannot soundly be obtained from that weaker structure alone. -/
-structure RelWord.IsLemma49Input {G : Type u} [Group G] {Λ : Type*}
-    (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
-    (eps : ℕ) (mu : ℝ) (rho : ℕ) : Prop extends
-    RelWord.IsLemma44Input D W eps mu rho where
-  primePiecesSmall : ∀ u u' v, RelWord.IsPrimePiece D W eps u u' v →
-    max (u.length : ℝ) (u'.length : ℝ) < mu * v.length
 
 /-- **Hull Lemma 4.4's exact quotient output for the auxiliary family.**
 

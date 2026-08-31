@@ -38,8 +38,8 @@ intersection to the radical is additional content: one must choose the
 loxodromic `h ∈ S`.  No theorem in this file supplies that bridge.
 
 Thus the theorem below is the radical endpoint consumed once that membership
-has been established; it is not by itself a proof that the finite family
-constructed in `yi` has trivial intersection.
+has been established.  The finite-family detection step is proved separately
+and unconditionally in `HullYiFiniteRadicalDetector`.
 
 ## Where the two hypotheses come from
 

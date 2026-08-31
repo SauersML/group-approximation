@@ -141,6 +141,7 @@ theorem elementaryClosureOrbitClose_of_geodesic
     (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
     {h : G} {x : X} (hlox : IsLoxodromic h x) :
     ElementaryClosureOrbitClose h x := by
+  have hlox' : IsLoxodromic h x := hlox
   obtain ⟨l, hl, B, hB, hlin⟩ := hlox
   obtain ⟨K, R, hK, _hR, hmiddle⟩ :=
     ElementaryMorse.exists_bound_middle_chain_near_chain
@@ -148,7 +149,7 @@ theorem elementaryClosureOrbitClose_of_geodesic
   refine ⟨K, hK, ?_⟩
   intro a ha
   obtain ⟨n, hn, hpos | hneg⟩ :=
-    exists_conj_positive_zpow_eq_or_of_mem_elementaryClosure hiso hlox ha
+    exists_conj_positive_zpow_eq_or_of_mem_elementaryClosure hiso hlox' ha
   all_goals
     let E : ℝ := dist (a • x) x
     have hE : 0 ≤ E := dist_nonneg
@@ -227,7 +228,6 @@ theorem elementaryClosureOrbitClose_of_geodesic
       unfold y ElementaryMorse.orbitChain
       have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
         dsimp [N]
-        push_cast
         ring
       rw [hindex]
     have hz0 : z 0 = a • ((h ^ (-(P : ℤ))) • x) := by
@@ -236,7 +236,6 @@ theorem elementaryClosureOrbitClose_of_geodesic
       unfold z ElementaryMorse.orbitChain
       have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
         dsimp [N]
-        push_cast
         ring
       rw [hindex]
     have hclose0 : dist (z 0) (y 0) ≤ E := by
@@ -309,14 +308,13 @@ theorem elementaryClosureOrbitClose_of_geodesic
       exact ElementaryMorse.orbitChain_prog hiso hlin P hij
     have hy0 : y 0 = (h ^ (P : ℤ)) • x := by
       unfold y ElementaryMorse.orbitChain
-      have hzero : ((0 : ℤ) - (P : ℤ)) = -(P : ℤ) := by ring
-      rw [hzero, inv_zpow, zpow_neg]
-      simp
+      simp only [Nat.cast_zero, zero_sub]
+      have hinv : (h⁻¹) ^ (-(P : ℤ)) = h ^ (P : ℤ) := by group
+      rw [hinv]
     have hyN : y N = (h ^ (-(P : ℤ))) • x := by
       unfold y ElementaryMorse.orbitChain
       have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
         dsimp [N]
-        push_cast
         ring
       rw [hindex, inv_zpow, ← zpow_neg]
     have hz0 : z 0 = a • ((h ^ (-(P : ℤ))) • x) := by
@@ -325,7 +323,6 @@ theorem elementaryClosureOrbitClose_of_geodesic
       unfold z ElementaryMorse.orbitChain
       have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
         dsimp [N]
-        push_cast
         ring
       rw [hindex]
     have hclose0 : dist (z 0) (y 0) ≤ E := by
@@ -357,7 +354,8 @@ theorem exists_eventually_finite_pairStab_zpow
   refine ⟨N, ?_⟩
   intro c hc
   rcases Int.natAbs_eq c with hpos | hneg
-  · simpa only [← zpow_natCast, hpos] using hN c.natAbs hc
+  · rw [hpos, zpow_natCast]
+    exact hN c.natAbs hc
   · let m : ℕ := c.natAbs
     have hposFin : (pairStab G ε x ((h ^ m) • x)).Finite := hN m hc
     refine (hposFin.image
@@ -369,9 +367,11 @@ theorem exists_eventually_finite_pairStab_zpow
       have hm := hiso (h ^ (-(m : ℤ))) x (k • x)
       have hleft : (h ^ (-(m : ℤ))) • x = (h ^ c) • x := by rw [← hneg]
       have hright : (h ^ (-(m : ℤ))) • (k • x) = q • ((h ^ c) • x) := by
-        simp only [k, ← mul_smul]
-        rw [← hneg]
+        simp only [← mul_smul]
         congr 1
+        dsimp [k]
+        rw [hneg]
+        dsimp [m]
         group
       rw [hleft, hright] at hm
       exact hm.symm.trans_le hq.2
@@ -382,7 +382,7 @@ theorem exists_eventually_finite_pairStab_zpow
         congr 1
         group
       rw [hright, zpow_natCast]
-      exact hm.trans_le hq.1
+      simpa only [zpow_natCast] using hm.trans_le hq.1
     refine ⟨k, ?_, ?_⟩
     · rw [mem_pairStab]
       exact ⟨hk0, hkm⟩
@@ -404,6 +404,7 @@ theorem exists_finite_transversal_elementaryClosure_of_orbitClose
     (hclose : ElementaryClosureOrbitClose h x) :
     ElementaryClosureFiniteTransversal h := by
   obtain ⟨K, hK, hclose⟩ := hclose
+  have hlox' : IsLoxodromic h x := hlox
   obtain ⟨l, hl, B, _hB, hlin⟩ := hlox
   let D : ℝ := dist x (h • x)
   have h2K : 0 ≤ K + K := add_nonneg hK hK
@@ -418,7 +419,7 @@ theorem exists_finite_transversal_elementaryClosure_of_orbitClose
     dist x ((h ^ c) • x) ≤ (M : ℝ) * D + (K + K)}
   let Cfar : Set ℤ := {c : ℤ | c ∈ C ∧ N ≤ c.natAbs}
   have hCfin : C.Finite :=
-    finite_zpow_displacement hiso hlox ((M : ℝ) * D + (K + K))
+    finite_zpow_displacement hiso hlox' ((M : ℝ) * D + (K + K))
   have hCfarFin : Cfar.Finite := hCfin.subset fun _ hc => hc.1
   let S : ℤ → Set G := fun c => {f : G | f ∈ A ∧
     dist ((h ^ c) • x) ((f * h ^ M) • x) ≤ K}
@@ -458,7 +459,7 @@ theorem exists_finite_transversal_elementaryClosure_of_orbitClose
               simpa only [mul_smul] using h₁
             _ = dist (r⁻¹ • y) u := dist_comm _ _
             _ = dist y (r • u) := by
-              simpa only [inv_smul_smul] using h₂.symm
+              simpa only [smul_inv_smul] using h₂.symm
             _ = dist (r • u) y := dist_comm _ _
         exact (dist_triangle y (f • u) ((f * r⁻¹) • y)).trans
           (by rw [hmove]; exact add_le_add hfu hru)
@@ -490,7 +491,12 @@ theorem exists_finite_transversal_elementaryClosure_of_orbitClose
       have hcN' : c.natAbs < N := by omega
       have hcCast : |(c : ℝ)| ≤ (N : ℝ) := by
         have hcast : (c.natAbs : ℝ) ≤ (N : ℝ) := by exact_mod_cast hcN'.le
-        simpa only [← Int.cast_natCast, Int.natCast_natAbs, Int.cast_abs] using hcast
+        rcases Int.natAbs_eq c with hcpos | hcneg
+        · rw [hcpos, Int.cast_natCast, abs_of_nonneg (Nat.cast_nonneg _)]
+          exact hcast
+        · rw [hcneg, Int.cast_neg, Int.cast_natCast, abs_neg,
+            abs_of_nonneg (Nat.cast_nonneg _)]
+          exact hcast
       have hcUpper : dist x ((h ^ c) • x) ≤ (N : ℝ) * D :=
         (dist_zpow_le hiso h x c).trans
           (mul_le_mul_of_nonneg_right hcCast dist_nonneg)
@@ -501,6 +507,7 @@ theorem exists_finite_transversal_elementaryClosure_of_orbitClose
       rw [hfu, dist_comm (f • x) x] at htri
       have hlow := hlin M
       have hclose' : dist ((h ^ c) • x) ((f * h ^ M) • x) ≤ K := hc
+      have hfMove : dist x (f • x) ≤ K := hfA.2
       linarith
     exact Set.mem_iUnion.mpr ⟨c, Set.mem_iUnion.mpr
       ⟨⟨hfc, hcFar⟩, ⟨hfA, hc⟩⟩⟩

@@ -21,10 +21,9 @@ admissibility of the side's letters.
 
 ## What this costs
 
-Everything above it is conditional on a hypothesis nothing satisfies, so the
-chain is vacuous until the exclusion is repaired.  The endpoint
-`HullSC.hullRelatorStatement₂OfBaseLetter_of_inputs` is not wrong; it is
-empty.
+The unrestricted statement is unusable.  The active fixed-list predicate now
+requires the first index to be the supplied component anchor (and likewise for
+the oppositely oriented side), so this counterexample cannot instantiate it.
 
 ## The repair, now carried out
 

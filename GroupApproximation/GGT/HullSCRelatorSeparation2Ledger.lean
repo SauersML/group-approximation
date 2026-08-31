@@ -73,8 +73,7 @@ relator alone but of **every prefix of every rotation of it**, which is how
 Olshanskii uses it.  Open, and genuinely geometric: the four-gon material
 consumes quasi-geodesicity rather than producing it.
 
-  **The count is now the whole of the debt.**
-  `HullSC.separationNe₂_clause_of_inputs` takes `hcount` at every member of the
+  `HullSC.separationNe₂_clause_of_spelling_of_producer` takes `hcount` at every member of the
   symmetrized closure --- `j - i ≤ d(vertexᵢ, vertexⱼ) + blockConst p cnt` ---
   and produces all three clauses the polygon asks:
 
@@ -499,8 +498,9 @@ They are recorded because each closed a route that looks reasonable on paper.
 
 ## The composition, and what is above it
 
-`HullSC.separationNe₂_clause_of_inputs` is the corrected separation at one
-core: it chooses `p` by (C1), `B` by (C2) and the run by (C3), spells `y` and
+`HullSC.separationNe₂_clause_of_spelling_of_producer` is the corrected
+chosen-list separation at one core: after `p` is fixed it chooses `B` by (C2)
+and the run by (C3), spells `y` and
 `z` as padded base words with `HullSC.exists_side_spelling₂`, proves the
 four-gon's letter clause (a member of the symmetrized closure is admissible
 because the relator is, and admissibility survives rotation, formal inverse and
@@ -512,23 +512,12 @@ as the field `disjoint`, and is passed to the four-way through
 `E.rel.fam = E.H`.
 
 The exponent list comes from
-`HullSC.exists_separated_relator_exponents₂_cross` at radius
-`max rho (Cm * 4)`, which is the given `rho` enlarged to what the matching step
-asks for; `HullSC.notMem_relBall_of_le` gives the statement's own `rho` back.
-That one call discharges `hnodup`, `hsep` and the deep clause together.  The
-diagonal-excluding variant `..._diagonal` is no longer called by the chain.
-
-`HullSC.separationNe₂OfBaseLetter_of_inputs` quantifies that over every `G`,
-`A`, `N` and `E`, in the shape
-`hullRelatorStatement₂OfBaseLetter_of_separationNe₂` consumes, with the clauses
-quantified the same way and the constants inside the quantifier as
-existentials --- they belong to the core, and a chain that fixed them once for
-all cores would be claiming more than it has.  Composing the two gives
-`HullSC.hullRelatorStatement₂OfBaseLetter_of_inputs`, the relator half of
-Hull's Theorem 5.1 at a core whose base carries `t⁻¹`, conditional on exactly
-three clauses --- and the count and the exclusions are now the NARROW forms,
-asked only at the one-letter base part the construction builds, which is what
-Hull's §6 verifies:
+`HullSC.exists_exactRelatorDesign₂`, which packages depth, separation, deep
+differences, pure-run windows, and through-base windows at an exact length.
+`HullSC.separationNe₂_clause_of_exactDesign` feeds that one returned list to
+the producer route.  The remaining cyclic-word parser is isolated by
+`SideExclusionOfExactDesign₂`; `index_window_of_blockCount` already proves that
+every peripheral anchor span has one of the two required bounded orientations:
 
     hδ     item 1's residue: four-point hyperbolicity of Γ(G, X ⊔ ℋ)
     hcount item 2: the block count, at every member of the closure

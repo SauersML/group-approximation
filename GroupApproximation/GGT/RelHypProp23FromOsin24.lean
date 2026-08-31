@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.RelHypFournierFacioProp23
 import GroupApproximation.GGT.RelHypOsinTheorem24Verbatim
+import GroupApproximation.GGT.RelHypFournierFacioGeometricBoundary
 import GroupApproximation.GGT.RelHypFreeProductConedFourPoint
 import GroupApproximation.GGT.RelHypSuitabilityResidue
 import GroupApproximation.Algebra.HyperbolicFinitePresentation
@@ -124,18 +125,18 @@ theorem fournierFacioProposition23_of_osin24
       (MonoidHom.range (freeProductPartnerHom K Lam)) :=
     @isSuitableSubgroup_freeProduct_of_hyperbolicSuitability hSuit K Lam instK
       instLam hne htfLam
-  obtain ⟨Q, instQ, eta, ⟨hsurj, -, hmem, hinjOn, -, hlift⟩, hker⟩ :=
+  obtain ⟨Q, instQ, eta, hquot, hker⟩ :=
     hOsin (CoprodI (pairFamily K Lam)) inferInstance Unit
       (fun _ : Unit => freeProductPeripheral K Lam) hrh
       (MonoidHom.range (freeProductPartnerHom K Lam)) hsuit g hgfin
+  have hsourceTf : IsPowerTorsionFree (CoprodI (pairFamily K Lam)) :=
+    OsinWeightedMetric.isPowerTorsionFree_coprodI
+      (isPowerTorsionFree_pairFamily htfK htfLam)
+  have hQtf : IsPowerTorsionFree Q := hquot.isPowerTorsionFree hsourceTf
+  obtain ⟨hsurj, -, hmem, hinjOn, -, -⟩ := hquot
   refine ⟨Q, instQ, eta, hsurj, ?_, ?_, ?_, ?_⟩
   · exact Group.IsFinitelyPresented.of_surjective eta hsurj hker
-  · intro q n hn hqn
-    obtain ⟨w, ⟨m, hm, hwm⟩, hw⟩ := hlift q ⟨n, hn, hqn⟩
-    have hw1 : w = 1 :=
-      OsinWeightedMetric.isPowerTorsionFree_coprodI
-        (isPowerTorsionFree_pairFamily htfK htfLam) w m hm hwm
-    rw [← hw, hw1, map_one]
+  · exact hQtf
   · intro a b hab
     have hmemA : (freeProductSourceHom K Lam a : CoprodI (pairFamily K Lam))
         ∈ ⋃ _ : Unit,

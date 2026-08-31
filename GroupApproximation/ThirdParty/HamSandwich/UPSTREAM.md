@@ -165,3 +165,104 @@ The affine internal-swap, adjacent-sign, finite-cancellation, and
 `BarycentricBoundaryCancellation` modules complete the paired-term cancellation
 layer.  The boundary module uses the v4.32 definitional-equality compatibility
 settings and the current minimal `toSSetObjEquiv` simplifier set.
+
+`BarycentricBoundaryChainMap` normalizes categorical composites explicitly to
+nested `ModuleCat` applications, then applies the generator cancellation and
+the resulting morphism identity through `ConcreteCategory.congr_hom`.
+
+`BarycentricSubdivisionChainMap` packages those degreewise operators and their
+boundary identity as a genuine singular-chain-complex endomorphism.
+
+`BarycentricSubdivisionCone` and `BarycentricSubdivisionHomotopyOperator` are
+included unchanged apart from namespace isolation.  They define the affine
+cone on singular simplices and the recursive homotopy operator used to compare
+the identity with barycentric subdivision.
+
+For bounded incremental elaboration, the cone implementation is split across
+private dependency modules (`ConeTailFunDef`, `ConeTailFun`, `ConeTail`,
+`ConeDefs`, and `ConeGeometry`).  The public `BarycentricSubdivisionCone`
+module reassembles the exact upstream declarations and imports the chain-level
+dependencies only where they are first needed; no theorem statement is changed.
+
+The geometry layer is itself split at theorem boundaries into `Continuity`,
+`FaceZero`, `TailCoface`, and `FaceSucc` after the combined layer exceeded the
+short MSI iteration budget.  `ConeGeometry` re-exports that chain.  This is a
+pure elaboration-performance split; the declarations remain verbatim modulo the
+documented Lean v4.32 compatibility edits.
+
+The cone-on-chains layer is also split at declaration boundaries into the
+simplex definitions, three face formulas, chain definitions, and three boundary
+formulas.  The public `BarycentricSubdivisionCone` file re-exports the final
+layer.  This avoids repeating the earlier monolithic elaboration hotspot while
+preserving the upstream theorem interface.
+
+`BarycentricSubdivisionHomotopyFormula` and
+`BarycentricSubdivisionChainHomotopy` are included unchanged apart from
+namespace isolation.  They prove the degreewise homotopy identity and package
+it as a chain homotopy.
+
+`BarycentricSubdivisionIter` is included unchanged apart from namespace
+isolation; it constructs the accumulated homotopy for every iterate of
+barycentric subdivision.
+
+The small-simplices foundation (`SmallSimplices`, `SmallChains`,
+`SmallChainComplex`, and `SingularSimplexLebesgueNumber`) is included unchanged
+apart from namespace isolation.  It defines the open-cover subcomplex and the
+compact-simplex Lebesgue-number input used by the iterated-subdivision argument.
+
+The iterated-subdivision small-chain layer is included unchanged apart from
+namespace isolation.  It proves that sufficiently iterated subdivision is
+subordinate to an open cover, keeps the accumulated homotopy subordinate, and
+deduces the small-chain inclusion is a homology isomorphism.
+
+The subordinate-chain projection and Mayer--Vietoris layers are included
+unchanged apart from namespace isolation.  They construct the short exact
+sequence for a two-set cover and its induced long exact homology sequence.
+
+The sphere-homology bridge now also includes the top-homology reduction,
+reduced-to-unreduced comparison, ball-boundary long exact sequence,
+subchain/subspace comparison, and Mayer--Vietoris suspension step.  These five
+modules are copied unchanged apart from namespace isolation and form the next
+exact dependency chain toward the unconditional odd-degree theorem.
+
+The following sphere calculation layer is likewise included without theorem
+changes: singular degree-zero homology, its path-connected and componentwise
+forms, the Mayer--Vietoris calculation of `S¹`, the suspension tower, and the
+resulting positive sphere orientation.  Together these discharge the concrete
+sphere-homology orientation input later used by Borsuk--Ulam.
+
+`SphereModTwoHomologyVanishing` retains the upstream theorem statements.  Its
+single implementation-level port replaces the v4.28 project-local prism
+backport by Mathlib v4.32's
+`TopCat.Homotopy.singularChainComplexFunctorObjMap`; this avoids carrying a
+dead compatibility cone while proving the identical coefficient-general
+homotopy invariance used by the sphere calculation.
+
+The RPⁿ dimension-vanishing slice is staged in its original dependency order:
+Hausdorffness and the filtration/cofiber package, homology notation and sphere
+above-dimension vanishing, affine-chart deformations, the RPⁿ
+Mayer--Vietoris step, and the resulting homology/cohomology vanishing theorem.
+All declarations in this slice are unchanged apart from namespace isolation.
+
+The coefficient-reduction branch is staged through its unconditional endpoint:
+the canonical sphere comparison, integral-to-mod-two reduction, rank-one and
+Kronecker actions, concrete mod-two top class and Bockstein constructions, and
+`OddDegreeTheoremBranch2Discharged`.  These modules retain the exact upstream
+statements and proofs apart from namespace isolation.
+
+The transfer/Gysin base is staged through transfer naturality and
+nonvanishing, the transfer short exact sequence and surjectivity, the Gysin
+connecting map and cup formula, and the actual-α top-power and top-class
+assemblies.  These declarations are copied unchanged apart from namespace
+isolation.
+
+The final staged source slice contains the cellular cup-product comparison,
+the branch-3 generator identification, the branch-4 transfer witnesses and
+nonvanishing theorem, both unconditional final assemblies, the unconditional
+odd-degree theorem, and `BorsukUlam.borsuk_ulam`.  Apart from removing stale
+root-namespace qualifiers after isolation, their theorem statements and proofs
+are unchanged from the pinned upstream commit.
+
+`ComplexOddMapCommonZero` is the local adapter from the vendored real-coordinate
+Borsuk--Ulam theorem to finite complex coordinate spaces.  It realifies and
+zero-pads the coordinates, so it introduces no additional topological input.

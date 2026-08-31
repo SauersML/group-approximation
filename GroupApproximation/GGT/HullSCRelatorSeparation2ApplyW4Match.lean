@@ -106,12 +106,16 @@ theorem exponent_eq_of_pieceMatch
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -162,9 +166,12 @@ theorem exponent_eq_of_pieceMatch
       (GGT.OsinComponents.vertex (1 : G) u' (k - 1 + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b := by
     rw [hkk]
-    exact hsside b k
+    intro m
+    refine hsside b k m ⟨k - 1, hkk, ?_⟩
+    · rwa [hkk] at hcompu'
   obtain ⟨hxb, hx'b⟩ := hpair b py u pz u' n (k - 1) hclose hlet4 hpy hpz hpy0
-    hqg hcompu (Or.inr hpz0) hcompu' (Or.inr hpz0) hConn (hqside b n) hsside'
+    hqg hcompu (Or.inr hpz0) hcompu' (Or.inr hpz0) hConn
+      (fun i' => hqside b n i' hcompu) hsside'
   have hlu : u[n]? = some (GGT.RelLetter.comp b
       ((if b then a true else a false) ^ e)) := by
     rw [← hln, hw]
@@ -218,12 +225,16 @@ theorem exists_match_with_trivialGap
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -282,7 +293,7 @@ theorem exists_match_with_trivialGap
     have hcompu : GGT.OsinComponents.IsComp bb u n (n + 1) :=
       isComp_prefix_rotate_relatorWord₂ hp0 hw hn hln
     exact hmatch bb rho py u pz u' n hrho hclose hpy hpz hpz0 hpolyq hcompu
-      hdeepspan (hqside bb n)
+      hdeepspan (fun i' => hqside bb n i' hcompu)
   have hvalu : ∀ (n : ℕ) (bb : Bool) (ee : ℕ), n < u.length →
       ((relatorWord₂ p (a false) (a true) ms).rotate c)[n]?
         = some (GGT.RelLetter.comp bb
@@ -424,12 +435,16 @@ theorem exponent_eq_of_pieceMatch_revInv
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -485,9 +500,12 @@ theorem exponent_eq_of_pieceMatch_revInv
       (GGT.OsinComponents.vertex (1 : G) u' (k - 1 + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b := by
     rw [hkk]
-    exact hsside b k
+    intro m
+    refine hsside b k m ⟨k - 1, hkk, ?_⟩
+    · rwa [hkk] at hcompu'
   obtain ⟨hxb, hx'b⟩ := hpair b py u pz u' n (k - 1) hclose hlet4 hpy hpz hpy0
-    hqg hcompu (Or.inr hpz0) hcompu' (Or.inr hpz0) hConn (hqside b n) hsside'
+    hqg hcompu (Or.inr hpz0) hcompu' (Or.inr hpz0) hConn
+      (fun i' => hqside b n i' hcompu) hsside'
   have hlu : u[n]? = some (GGT.RelLetter.comp b
       (((if b then a true else a false) ^ e)⁻¹)) := by
     rw [← hln, hw]
@@ -548,12 +566,16 @@ theorem exists_match_with_trivialGap_revInv
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
-    (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+    (hqside : ∀ (t : Bool) (d i' : ℕ),
+      GGT.OsinComponents.IsComp t u d (d + 1) →
+      i' ≤ u.length → i' ≠ d →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
-    (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+    (hsside : ∀ (t : Bool) (k m : ℕ),
+      (∃ j : ℕ, j + 1 = k ∧ GGT.OsinComponents.IsComp t u' j k) →
+      m ≤ u'.length → m ≠ k →
       GGT.OsinComponents.IsCompStart t
           (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
           (py.length + u.length + pz.length + (u'.length - m)) →
@@ -615,7 +637,7 @@ theorem exists_match_with_trivialGap_revInv
     have hcompu : GGT.OsinComponents.IsComp bb u n (n + 1) :=
       isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw hn hln
     exact hmatch bb rho py u pz u' n hrho hclose hpy hpz hpz0 hpolyq hcompu
-      hdeepspan (hqside bb n)
+      hdeepspan (fun i' => hqside bb n i' hcompu)
   have hvalu : ∀ (n : ℕ) (bb : Bool) (ee : ℕ), n < u.length →
       ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c)[n]?
         = some (GGT.RelLetter.comp bb

@@ -56,11 +56,6 @@ non-elementarity it is proving.
 
 ## What is proved
 
-* `exists_ah3Data_of_isAcylindricallyHyperbolic` — the **converse**
-  implication `(AH₁) ⇒ (AH₃)`, in full: the Cayley graph of an acylindrically
-  hyperbolic group is a hyperbolic space on which some element is loxodromic
-  and, by `isWPDAt_of_isAcylindrical`, WPD.  So the `(AH₃)` interface is not
-  vacuous, and the named propositions above are the only debt.
 * `osinAH4ToAH1_of` — `(AH₄) ⇒ (AH₁)` from Osin's Theorem 5.4 and his
   Lemma 5.12, the last step being a definitional unpacking of the Cayley-graph
   form.
@@ -186,6 +181,9 @@ structure AH3Data (G : Type u) [Group G] where
   delta : ℝ
   /-- The space is `delta`-hyperbolic in the four-point sense. -/
   hyperbolic : IsHyperbolicSpace delta Space
+  /-- The space is geodesic, as in the convention used by Osin and
+  Dahmani--Guirardel--Osin. -/
+  geodesic : IsGeodesicSpace Space
   /-- The distinguished element. -/
   elt : G
   /-- The basepoint. -/
@@ -216,17 +214,17 @@ own universe parameter, so the universe has to be chosen where the witness is
 built; this constructor is that choice, made once, with the instances taken as
 ordinary binders rather than left to synthesis at the call site.
 
-It consumes the three conclusions of an equivariant additive-distortion
-transfer directly: given `h : IsHyperbolicSpace δ X ∧ IsLoxodromic g x ∧
-IsWPDAt g x`, the witness is `AH3Data.ofData X hiso δ h.1 g x h.2.1 h.2.2`. -/
+It consumes geodesicity and the three dynamical conclusions directly. -/
 def AH3Data.ofData {G : Type u} [Group G] (X : Type v) [PseudoMetricSpace X]
     [MulAction G X] (hiso : IsIsometricAction G X) (δ : ℝ)
-    (hδ : IsHyperbolicSpace δ X) (g : G) (x : X) (hlox : IsLoxodromic g x)
+    (hδ : IsHyperbolicSpace δ X) (hgeo : IsGeodesicSpace X)
+    (g : G) (x : X) (hlox : IsLoxodromic g x)
     (hwpd : IsWPDAt g x) : AH3Data.{u, v} G where
   Space := X
   isometric := hiso
   delta := δ
   hyperbolic := hδ
+  geodesic := hgeo
   elt := g
   base := x
   loxodromic := hlox
@@ -532,27 +530,6 @@ theorem osinTheorem12_of (h68 : DGOTheorem68.{u, v}) (h4 : OsinAH4ToAH1.{u}) :
   letI := D.mulAction
   obtain ⟨E, hmem, hne, hemb⟩ := h68 G D hnvc
   exact h4 G E hne (infinite_of_mem_of_isLoxodromic D.loxodromic hmem) hemb
-
-/-! ## The converse, proved -/
-
-/-- **`(AH₁) ⇒ (AH₃)`, proved.**  An acylindrically hyperbolic group acts on
-its Hull--Osin Cayley graph, which is hyperbolic; non-elementarity supplies a
-loxodromic element, and acylindricity makes it WPD.
-
-This is not needed by the manuscript's chain, but it certifies that the `(AH₃)`
-interface above is the right one: it is exactly what the conclusion produces. -/
-theorem exists_ah3Data_of_isAcylindricallyHyperbolic (G : Type u) [Group G]
-    [h : IsAcylindricallyHyperbolic G] : Nonempty (AH3Data.{u, u} G) := by
-  obtain ⟨A, δ, hδ, hacy, hne⟩ := h.out
-  obtain ⟨g, _, _, _, hlox, _, _⟩ := hne
-  exact ⟨{ Space := Cayley A
-           isometric := isIsometricAction_cayley A
-           delta := δ
-           hyperbolic := hδ
-           elt := g
-           base := Cayley.base A
-           loxodromic := hlox
-           wpd := isWPDAt_of_isAcylindrical hacy hlox }⟩
 
 end GGT
 end GroupApproximation

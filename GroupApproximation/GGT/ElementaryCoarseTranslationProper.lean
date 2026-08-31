@@ -211,19 +211,19 @@ end CoarseTranslation
 /-- The uniform coarse-translation part of DGO Lemma 6.5, for every `(AH₃)`
 datum on its given hyperbolic space. -/
 def ElementaryClosureCoarseTranslationStatement : Prop :=
-  ∀ (G : Type u) [Group G] (D : AH3Data.{u, u} G),
+  ∀ (G : Type u) [Group G] (D : AH3Data.{u, v} G),
     @ElementaryClosureCoarseTranslation G _ D.Space D.metricSpace D.mulAction D.base
 
 /-- The published finite-index conclusion of DGO Lemma 6.5, for every
 same-universe `(AH₃)` datum. -/
 def ElementaryClosureFiniteTransversalStatement : Prop :=
-  ∀ (G : Type u) [Group G] (D : AH3Data.{u, u} G),
+  ∀ (G : Type u) [Group G] (D : AH3Data.{u, v} G),
     ElementaryClosureFiniteTransversal D.elt
 
 /-- Coarse translation implies the published finite-index conclusion. -/
 theorem elementaryClosureFiniteTransversalStatement_of_coarseTranslation
-    (hct : ElementaryClosureCoarseTranslationStatement.{u}) :
-    ElementaryClosureFiniteTransversalStatement.{u} := by
+    (hct : ElementaryClosureCoarseTranslationStatement.{u, v}) :
+    ElementaryClosureFiniteTransversalStatement.{u, v} := by
   intro G _inst D
   letI : PseudoMetricSpace D.Space := D.metricSpace
   letI : MulAction G D.Space := D.mulAction
@@ -233,8 +233,8 @@ theorem elementaryClosureFiniteTransversalStatement_of_coarseTranslation
 /-- Properness of `E(g)` is a consequence of the uniform coarse-translation
 lemma and is not an additional DGO input. -/
 theorem elementaryClosureProper_of_coarseTranslation
-    (hct : ElementaryClosureCoarseTranslationStatement.{u}) :
-    ElementaryClosureProper.{u} := by
+    (hct : ElementaryClosureCoarseTranslationStatement.{u, v}) :
+    ElementaryClosureProper.{u, v} := by
   intro G _inst D hnvc
   letI : PseudoMetricSpace D.Space := D.metricSpace
   letI : MulAction G D.Space := D.mulAction

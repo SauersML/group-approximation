@@ -1,0 +1,61 @@
+import GroupApproximation.Analysis.STW22ActualTraceSpaces
+import GroupApproximation.Analysis.STW22AntipodalNormComparison
+import GroupApproximation.Analysis.STW22BaseUniformTracialGauge
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ComplexOddMapCommonZero
+
+/-!
+# The unconditional operator-algebraic core of the STW XXII counterexample
+
+This file closes the only geometric parameter of the antipodal block package
+with the proved complex-coordinate Borsuk--Ulam theorem, and then specializes
+the actual bounded uniform-tracial completion endpoint.  Every trace appearing
+below is a bundled `TracialState` of the displayed C-star algebra.
+-/
+
+namespace GroupApproximation
+namespace STW22
+
+open STW22ActualTraceSpaces
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+noncomputable section
+
+/-- The common-zero interface used by the antipodal blocks is a theorem, not
+an input. -/
+theorem complexOddMapCommonZero_unconditional : ComplexOddMapCommonZero := by
+  intro d κ hfinite hdim f hf
+  letI : Finite κ := hfinite
+  exact complexOddMapCommonZero d κ hdim f hf
+
+/-- The concrete antipodal family supplies the complete coordinate-state
+obstruction data with no hypotheses. -/
+def antipodalCoordinateStateBlockDataUnconditional :
+    CoordinateStateBlockData AntipodalCounterexampleBlock
+      antipodalAllTracesGauge :=
+  antipodalCoordinateStateBlockData complexOddMapCommonZero_unconditional
+
+/-- The actual completion of the actual unitized `c₀` base has a bundled
+tracial state which is not a uniform-two-continuous extension of a base trace.
+This is the literal negative answer to the trace-continuity question. -/
+theorem not_everyAntipodalCompletionTraceIsContinuousExtension :
+    ¬ EveryCompletionTraceIsContinuousExtension antipodalAllTracesGauge
+      antipodalAllTracesGauge_isCoordinateNormComparison :=
+  not_everyCompletionTraceIsContinuousExtension_of_blockData
+    antipodalAllTracesGauge
+    antipodalAllTracesGauge_isCoordinateNormComparison
+    antipodalCoordinateStateBlockDataUnconditional
+
+/-- The sequence-model gauge used above is exactly the supremum of the
+two-norms coming from all bundled tracial states of the actual base algebra. -/
+theorem antipodalBaseTracialTwoSize_eq_completionGauge
+    (x : BaseAlgebra AntipodalCounterexampleBlock) :
+    STW22BaseUniformTracialGauge.baseTracialTwoSize x =
+      UniformTracialSequenceCompletion.uniformTwoNorm
+        antipodalAllTracesGauge x.1 := by
+  simpa only [antipodalAllTracesGauge] using
+    STW22BaseUniformTracialGauge.baseTracialTwoSize_eq_uniformTwoNorm_allTraces x
+
+end
+
+end STW22
+end GroupApproximation

@@ -10,7 +10,7 @@ import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
-import GroupApproximation.GGT.HullSCRelatorSeparation2OneStep
+import GroupApproximation.GGT.HullSCRelatorSeparation2Published
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 import GroupApproximation.GGT.TreeWPDAxis
@@ -90,9 +90,9 @@ theorem, shared by the two lanes that stand on it.
   refuted outright; the row's docstring carries both readings.
   **`hullTheorem71` is not one of the debts any longer**, and neither is
   `hullTheorem51`: the first is proved through `hullOneStep`
-  (`HullSC.hullOneStep_of_quotient₂_of_baseLetter`) and
+  (`HullSC.hullOneStep_of_published₂`) and
   `HullSC.hullBallFormNG_of_oneStep`,
-  the second through `HullSC.hullQuotient₂_of_fillingData`.  What the reduction
+  the second through `HullSC.hullQuotient₂Published_of_fillingData`.  What the reduction
   contributes is the
   whole of the manuscript's own bookkeeping — the induction on `m`, the two
   clauses that mention the targets `t₁, …, t_m`, and the arithmetic of the
@@ -213,16 +213,19 @@ theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
 
 /-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
 taken out of it: for every radius and every prescribed family of suitable
-subgroups there are parameters `ε, μ, ρ` such that every `C(ε, μ, ρ)` family
+subgroups there are parameters `ε, μ, ρ` such that every published `C₁` family
 gives a separated very rotating family on the cone-off, with separation above
 `2R` and with the rotations generating the normal closure of the relator; and
 every quotient by that normal closure carries a Hull alphabet containing the
 image of `A` in which the images of the prescribed subgroups are suitable.
 
-The small cancellation condition is not an opaque predicate here:
-`HullSC.RelWord.IsSmallCancellation` has a body — symmetrized, admissible, long,
-`H`-letters outside `GGT.RelGenSet.relBall ρ`, `ε`-pieces shorter than `μ` times
-their word — so this citation and its consumer cannot drift apart.
+The premise is not the repository's weaker historical
+`HullSC.RelWord.IsSmallCancellation`.  Issue #179 records that Hull's Lemmas
+4.4 and 4.9 additionally use quasi-geodesicity, published two-sided piece
+control, strong boundedness, and the `ε`-primepiece estimate.  The live target
+therefore consumes `HullSC.RelWord.IsLemma49Input`, whose parent structure
+contains the Lemma 4.4 fields and whose final field is precisely the
+prime-piece clause used for no-new-torsion.
 
 The space carrying the family is abstract, and it has to be:
 `HullSC.rot_eq_bot_of_cayley` proves that a rotating family on a Cayley graph of
@@ -234,7 +237,7 @@ single-subgroup form cannot carry Hull's relator, which is not quasi-geodesic
 when all of its `H`-letters lie in one component.  The cone-off is asked for
 along a family, and the space is asked to be geodesic — the repaired form of
 Theorem 5.3 needs it, and `HullSC.ConeOffData₂` carries it. -/
-theorem hullConeOff : HullSC.HullConeOffStatement₂.{0} := by
+theorem hullConeOff : HullSC.HullConeOffStatement₂Published.{0} := by
   sorry
 
 /-- Hull's §5 in the form Theorem 5.1 consumes it, from the cone-off above.  The
@@ -243,11 +246,11 @@ points, its rotations are the conjugates of the cyclic groups on the relator,
 and `HullSC.isRotatingFamily_apexRotFamily` with
 `HullSC.rotationNormalClosure_apexRotFamily` proves the three axioms and the
 identification of the kernel with the normal closure of the relator. -/
-theorem hullFillingData : HullSC.HullFillingDataStatement₂.{0} :=
-  HullSC.hullFillingDataStatement₂_of_coneOff hullConeOff
+theorem hullFillingData : HullSC.HullFillingDataStatement₂Published.{0} :=
+  HullSC.hullFillingDataStatement₂Published_of_coneOff hullConeOff
 
 /-- **Hull, Theorem 5.1**, proved rather than cited: the two debts above give
-it through `HullSC.hullQuotient₂_of_fillingData`, which supplies six of the ten
+it through `HullSC.hullQuotient₂Published_of_fillingData`, which supplies six of the ten
 clauses of the filling quotient from Dahmani–Guirardel–Osin's theorem — the
 quotient group and map, surjectivity and the kernel — and two more from the
 family Hull builds: injectivity on the `R`-ball of `Γ(G,A)` through
@@ -255,11 +258,11 @@ family Hull builds: injectivity on the `R`-ball of `Γ(G,A)` through
 Those two are with the family and not with the quotient because neither is a
 conclusion of Theorem 5.3; the second was refuted in that position (issue #50).
 Only the three alphabet clauses are carried by `hullFillingData`. -/
-theorem hullTheorem51 : HullSC.HullQuotientStatement₂.{0} :=
-  HullSC.hullQuotient₂_of_fillingData dgoTheorem53 hullFillingData
+theorem hullTheorem51 : HullSC.HullQuotientStatement₂Published.{0} :=
+  HullSC.hullQuotient₂Published_of_fillingData dgoTheorem53 hullFillingData
 
 /-- **DEBT (literature).**  Hull, §6 over a pair: the relator can be chosen.
-For any parameters `ε, μ, ρ` there is `u ∈ N` and a `C(ε, μ, ρ)` family over
+For any parameters `ε, μ, ρ` there is `u ∈ N` and a published `C₁` family over
 `{H₀, H₁}` containing a word spelling `t⁻¹u` — Hull takes
 `u = h₀^{n₁} h₁^{n₂} ⋯` alternating between two independent loxodromics of `N`
 with the exponents large, which is what puts the `H`-letters outside the
@@ -276,25 +279,33 @@ that recorded them are gone with the Unit chain they belonged to, and a
 torsion-free ambient group does not rescue them, because this row quantifies
 over every acylindrically hyperbolic group.
 
-**The replacement path is visible and belongs to the separation lane.**
-`HullSC.hullRelatorStatement₂OfBaseLetter_of_inputs` derives the faithful
-base-letter statement from the narrow block-count and side-exclusion inputs.
-The one-step seam adjoins `t^{±1}` first and applies both the quotient and
-relator halves to that enlarged core.  No claim over the original relative
-metric remains in this row.
+**The replacement path is now typed at the chosen exponent list.**  Issue #180
+and `HullSC.not_relatorSideExclusionAtUnrestricted₂_one_of_two_le` refute the
+former unrestricted-anchor side-exclusion premise.  The exact-length
+finite-avoidance construction in
+`HullSC.exists_relator_exponents_window_diff_through_exact` instead chooses one
+list jointly with the deep-letter, difference, pure-tail, and through-base-tail
+exclusions.  That chosen list must feed the remaining block-count argument and
+all the extra `IsLemma49Input` fields; no projection to the weaker predicate is
+accepted by the one-step seam.
 
-What was true of the old row remains true of this one and is why the row is
-this short: the family is the symmetrized closure of one relator, so five of the
-six clauses of `C(eps, mu, rho)` are
-`HullSC.RelWord.isSmallCancellation_symmetrized`, and what is left is
-Olshanskii's separation together with a constant `B` that does not grow with the
-relator, so `mu` leaves the estimate. -/
-theorem hullSection6Relator : HullSC.HullRelatorStatement₂OfBaseLetter.{0} := by
+Two of those extra fields are already bookkeeping rather than debts.
+`RelWord.finite_componentLetters_symmetrized` proves strong boundedness, and
+`RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord` proves
+the two-sided published-piece estimate on distinct symmetrized words from the
+existing corrected piece estimate in both directions.  The remaining piece
+case is exactly two prefixes of the same word, alongside the prime-piece and
+`(1/4,1)` quasi-geodesic clauses.
+
+The seam adjoins `t^{±1}` first and applies both halves to that enlarged core,
+so no claim over the original relative metric remains in this row. -/
+theorem hullSection6Relator :
+    HullSC.HullRelatorStatement₂OfBaseLetterPublished.{0} := by
   sorry
 
 /-- **Hull's Theorem 7.1 at `m = 1`, over the pair.**
 
-`HullSC.hullOneStep_of_quotient₂_of_baseLetter` is the seam: after the target
+`HullSC.hullOneStep_of_published₂` is the seam: after the target
 `t` is known it adjoins `t^{±1}` to the core, feeds the one-letter §6 relator to
 the quotient half of Theorem 5.1 on that same core, and proves the two clauses
 that mention `t` — the
@@ -306,7 +317,7 @@ Nothing in `HullSC.HullOneStepStatement` mentions the index type, so this is the
 same statement the single-subgroup route used to produce, and everything above
 it — the tower, the ball form, and Hull's Corollary 7.4 — is unchanged. -/
 theorem hullOneStep : HullSC.HullOneStepStatement.{0} :=
-  HullSC.hullOneStep_of_quotient₂_of_baseLetter hullHypEmbeddedConeOff
+  HullSC.hullOneStep_of_published₂ hullHypEmbeddedConeOff
     hullSection6Relator hullTheorem51
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*, Theorem
