@@ -107,3 +107,21 @@ infinite-dimensional Stinespring corner, and current MF amalgam theorems
 produce existential norm embeddings rather than coordinate lifts of this
 prescribed tracial homomorphism.  The surviving gate is exactly
 finite-dimensional relative lift production.
+
+
+The finite-corner target has an exact finite-window certificate.
+\`finite-positive-definite-window-is-a-relative-corner-selector\` shows that
+a positive operator-valued Toeplitz matrix on the finite one-power quotient,
+agreeing unitarily with the core and approximating the prescribed marked
+tuple, has a finite-dimensional Stinespring representation; property
+\((T;FD)\) then completes the flexible lift.  Equivalently, one may control
+the RMS multiplication table of a complete finite quotient window.
+
+This formulation also makes the LLP/local-reflexivity gap literal.
+\`exact-core-multiplicative-domain-does-not-descend-to-normal-quotient\`
+gives a two-dimensional minimal Stinespring representation which is exactly
+multiplicative on a cyclic core but detects a conjugate of the killed core
+relation.  Thus \(\Theta(t^N)=1\) controls only the vacuum row; quotient
+descent needs all translated normal-closure rows.  Finite-dimensional core
+expectations, scalar quasidiagonal trace models, and restriction-ring
+separation do not supply those operator-valued rows.
