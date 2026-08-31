@@ -4,7 +4,7 @@ id: sl3-regular-projective-correction-is-inner-adjoint-stability
 kind: claim
 title: Canonical projective correction for SL3 is exactly inner-adjoint normalized-HS stability
 distinct_from:
-  sl3z-regular-microstates-are-congruence-correctable: that asks for correction to projective odd-congruence models and permits flexible corners; this identifies the exact same-dimension metric and the nonlinear inner-adjoint constraint, without asserting correction.
+  sl3z-regular-microstates-are-congruence-correctable: that odd-congruence correction claim is refuted; the exact same-dimension adjoint/projective metric equivalence proved here remains valid and is used in its refutation.
   character-rigidity-equals-hyperfinite-hs-stability: that corrects hyperfinite-limit almost representations through character theory; this concerns the nonamenable regular-character limit and requires corrected adjoint representations to remain inner.
   kazhdan-weak-ucp-stability-is-flexible-stability: that converts arbitrary dilation correction to finite-dimensional flexible correction for Kazhdan groups; this is the stricter inner-adjoint subvariety relevant to projective commutators.
 ---

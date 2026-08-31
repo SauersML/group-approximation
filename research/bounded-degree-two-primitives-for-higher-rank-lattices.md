@@ -7,7 +7,7 @@ refuted_by:
   - flat-calibrations-refute-bounded-degree-two-primitives
 distinct_from:
   sln-z-flexibly-hs-stable: that is the stability conclusion; this is the single cohomological input from which the normalized-HS Newton iteration of `hs-stability-from-bounded-degree-two-primitives` derives it -- a statement about 2-cocycles, not about almost-representations.
-  sl3z-regular-microstates-are-congruence-correctable: that is the rank-3 correctability hole attacked through extreme points; this is a rank-at-least-4 input living in degree-2 cohomology, where Bader--Sauer vanishing exists and SL_3 has none.
+  sl3z-regular-microstates-are-congruence-correctable: that rank-3 odd-level claim is independently refuted by a coprime congruence-tower obstruction; this rank-at-least-4 operator-norm primitive claim is also refuted, by packed flat calibrations.
 ---
 
 **REFUTED CLAIM.** Let `N >= 4`, `Gamma = SL_N(Z)`, and let `M` be a tracial

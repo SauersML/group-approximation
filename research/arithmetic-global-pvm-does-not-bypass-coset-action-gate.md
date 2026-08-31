@@ -6,7 +6,7 @@ title: A global lamp PVM turns the arithmetic enemy into the old coset-action mo
 distinct_from:
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that gives the tracial crossed-product falsifier; this identifies what a finite-stage global-PVM decoder produces.
   property-t-must-upgrade-global-augmentation-rounding: that asks for the PVM decoder itself; this describes the residual enemy even after granting that decoder.
-  sl3z-regular-microstates-are-congruence-correctable: that would eliminate the residual approximate arithmetic actions by correction; this proves that such an additional elimination theorem is still required.
+  sl3z-regular-microstates-are-congruence-correctable: that proposed odd-sector eliminator is refuted by the exact even congruence tower; this proves that a different mixed-level elimination theorem is still required.
 ---
 
 ESTABLISHED as a reduction.  Let

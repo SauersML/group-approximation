@@ -6,7 +6,7 @@ title: Punctured SL3 congruence actions stay inexact on every fixed congruence s
 distinct_from:
   infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that imports strict normalized-HS instability for every infinite hyperlinear Kazhdan group; this gives one explicit compatible arithmetic construction and records its flexible one-point correction.
   finite-index-correction-is-equivalent-for-kazhdan-groups: that concerns flexible distance to exact representations; these punctured models are literally inexact on every fixed level but flexibly exact after restoring one point.
-  sl3z-regular-microstates-are-congruence-correctable: that asks whether every regular microstate is flexibly correctable; this example is already flexibly corrected and therefore is not an enemy to that claim.
+  sl3z-regular-microstates-are-congruence-correctable: that refuted claim fails because it forces odd targets for even-level exact regular models; these punctured models instead are flexibly exact after restoring one point.
 ---
 
 Let `G=SL_3(Z)` and enumerate any nested principal congruence family

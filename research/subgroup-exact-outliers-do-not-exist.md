@@ -6,7 +6,7 @@ title: Finite-index-near-exact almost representations of a Kazhdan group are fle
 distinct_from:
   kazhdan-subgroup-weak-ucp-exactifies-microstates: that starts from weak ucp stability and makes a subgroup restriction exact; this starts with an exact finite-index restriction and corrects the whole ambient tuple by induction.
   close-normalized-characters-do-not-force-equivalence: that refutes correction by comparing normalized characters; the present proof never compares characters or irreducible multiplicities.
-  sl3z-regular-microstates-are-congruence-correctable: that asks to correct arbitrary regular microstates of SL3(Z); this removes only the sharply delimited sector already exact on one fixed finite-index subgroup.
+  sl3-z-weakly-ucp-stable: that asks for unrestricted correction of arbitrary SL3(Z) microstates; this removes only the sharply delimited sector already exact on one fixed finite-index subgroup.
 ---
 
 Let `G` be a finitely presented property-`(T)` group and let `N<=G` have

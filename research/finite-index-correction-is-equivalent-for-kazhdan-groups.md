@@ -5,7 +5,7 @@ kind: claim
 title: Correctability of Kazhdan microstates is equivalent on every fixed finite-index subgroup
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that proves the nontrivial induction direction from one near-exact subgroup restriction; this packages it with restriction and identifies the nested-congruence no-go.
-  sl3z-regular-microstates-are-congruence-correctable: that asks whether the regular microstates are correctable at all; this proves that passing to a fixed congruence subgroup neither weakens nor strengthens that question.
+  sl3-z-weakly-ucp-stable: that asks whether arbitrary lattice microstates are flexibly correctable; this proves that passing to a fixed congruence subgroup neither weakens nor strengthens that unrestricted question.
   sl3-near-exact-leaks-live-in-the-two-primary-tower: that classifies the levels of an already available exact correction; this concerns existence of a correction before any level is available.
 ---
 
