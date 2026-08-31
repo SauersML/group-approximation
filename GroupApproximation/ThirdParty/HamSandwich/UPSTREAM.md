@@ -156,3 +156,7 @@ and `smul_mul_smul_comm` arguments; all theorem statements and topological
 hypotheses retain their upstream strength.  The fundamental-loop calculation
 uses the current `PiLp` simplifier API rather than the deprecated
 `EuclideanSpace.norm_single` name.
+
+`PermSignLastFaceFinished` replaces a proof-sensitive permutation factorization
+conversion by pointwise evaluation on the last vertex and its `castPred`
+complement.  The unit- and coefficient-valued sign identities are unchanged.
