@@ -41,10 +41,11 @@ and the whole chain to lie in the small-chain submodule.
 
 open scoped BigOperators
 open CategoryTheory AlgebraicTopology Finset
-open AffineBarycentricSubdivision
-open BarycentricSubdivisionDiameter
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
+open BarycentricSubdivisionDiameter
 
 namespace AffineBarycentricSubdivision
 
@@ -84,8 +85,8 @@ theorem prefixBarycenter_val_eq_stepVertices (n : ℕ) (π : Equiv.Perm (Fin (n 
     (k : Fin (n + 1)) :
     (prefixBarycenter n π k).val = stepVertices n (stdVerts n) π k := by
   unfold prefixBarycenter stepVertices;
-  ext j; simp +decide [ stdSimplex.map, stdSimplex.barycenter, prefixVertex, stdVerts ];
-  unfold FunOnFinite.linearMap; simp +decide [ Finset.mul_sum _ _ _, mul_comm ] ;
+  ext j; simp +decide [ stdSimplex.map, stdSimplex.barycenter, stdVerts ];
+  unfold FunOnFinite.linearMap; simp +decide [ Finset.mul_sum _ _ _ ] ;
   simp +decide [ Finsupp.mapDomain, Finsupp.linearEquivFunOnFinite, Pi.single_apply ];
   simp +decide [ Finsupp.sum_fintype, prefixVertex ];
   rw [ ← Finset.sum_subset ( show Finset.image ( fun x : Fin ( k.val + 1 ) => ⟨ x, by linarith [ Fin.is_lt x, Fin.is_lt k ] ⟩ ) Finset.univ ⊆ Finset.Iic k from ?_ ) ];
@@ -103,7 +104,7 @@ barycentric vertex.
 theorem affineSubdivLinear_stdVerts (n : ℕ) (π : Equiv.Perm (Fin (n + 1)))
     (k : Fin (n + 1)) :
     affineSubdivLinear n π (stdVerts n k) = stepVertices n (stdVerts n) π k := by
-  ext j; simp +decide [ affineSubdivLinear_apply, stdVerts, Pi.single_apply, Finset.sum_ite_eq ] ;
+  ext j; simp +decide [ affineSubdivLinear_apply, stdVerts, Pi.single_apply ] ;
   exact congr_fun ( prefixBarycenter_val_eq_stepVertices n π k ) j
 
 /-! ## 2. Iterated affine subdivision composites -/
@@ -140,8 +141,10 @@ theorem affineCompLinear_stdVerts (n N : ℕ) (ρs : Fin N → Equiv.Perm (Fin (
   · aesop;
   · intro k
     rw [affineCompLinear_succ, iterVertices_succ];
-    convert congr_arg ( fun x => ( affineCompLinear n N fun i => ρs i.castSucc ) x ) ( affineSubdivLinear_stdVerts n ( ρs ( Fin.last N ) ) k ) using 1;
-    unfold stepVertices; simp +decide [ ih, Finset.mul_sum _ _ _, mul_comm ] ;
+    convert congr_arg ( fun x => ( affineCompLinear n N fun i => ρs i.castSucc ) x ) ( affineSubdivLinear_stdVerts n ( ρs ( Fin.last N ) ) k ) using 1
+    · rfl
+    · unfold stepVertices
+      simp +decide [ih]
 
 /-- The `N`-fold affine subdivision composite as a continuous self-map of `Δⁿ`. -/
 noncomputable def affineCompMap (n : ℕ) :
@@ -198,7 +201,9 @@ theorem range_affineCompMap_val (n N : ℕ) (ρs : Fin N → Equiv.Perm (Fin (n 
     · rw [ LinearMap.image_convexHull ];
       congr! 1;
       ext; simp [affineCompLinear_stdVerts];
-    · convert convexHull_rangle_single_eq_stdSimplex ℝ ( Fin ( n + 1 ) ) |> Eq.symm using 1
+    · change stdSimplex ℝ (Fin (n + 1)) =
+        convexHull ℝ (Set.range (fun k : Fin (n + 1) => Pi.single k 1))
+      exact (convexHull_rangle_single_eq_stdSimplex ℝ (Fin (n + 1))).symm
 
 /-
 The range of the composite affine map has the same diameter as the
@@ -267,8 +272,11 @@ theorem barycentricSubdivisionIterLinearMap_succ' (R : Type) [CommRing R] (X : T
       = (barycentricSubdivisionLinearMap R X n).hom
           (barycentricSubdivisionIterLinearMap R X N n c) := by
   induction' N with N ih generalizing c;
-  · aesop;
-  · convert ih ( barycentricSubdivisionLinearMap R X n |> ModuleCat.Hom.hom |> fun f => f c ) using 1
+  · rw [barycentricSubdivisionIterLinearMap_succ,
+      barycentricSubdivisionIterLinearMap_zero,
+      barycentricSubdivisionIterLinearMap_zero]
+  · rw [barycentricSubdivisionIterLinearMap_succ, ih,
+      barycentricSubdivisionIterLinearMap_succ]
 
 /-
 **Support / generator expansion.** `sdᴺ([σ])` lies in the `R`-span of the
@@ -312,7 +320,7 @@ theorem exists_iteratedSubdivision_generator_support_small
   obtain ⟨ U, hU₁, hU₂ ⟩ := heps.2 (Set.range (affineCompMap n N ρs)) (hN ρs);
   use U, hU₁;
   convert hU₂ using 1;
-  simp +decide [ Set.range_comp, Set.image_image ]
+  simp +decide [ Set.range_comp ]
 
 /-
 **Main deliverable.** Some iterated barycentric subdivision of the generator
