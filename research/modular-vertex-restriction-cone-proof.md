@@ -52,6 +52,18 @@ feasible and that its fiber is a singleton. If the same representation is
 written at two nonminimal levels, inflate both to a common level; (MVP2)
 shows that this bookkeeping creates no new endpoint type.
 
+For a nonzero vector `M`, the fraction of total representation dimension
+carried by `pi` is exactly the number `theta_pi` in (MVC3a). Conversely,
+if all `theta_pi` are rational, choose a common positive integer `L` for
+which every
+
+```text
+M_pi=L theta_pi/dim(pi)
+```
+
+is integral. This realizes the prescribed rational point. Rational points
+are dense in the standard simplex, proving the projectivized cone statement.
+
 The regular representation of `Q_m` decomposes as
 
 ```text
