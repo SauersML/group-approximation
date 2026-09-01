@@ -207,6 +207,94 @@ theorem exists_repeatedBoundaryBlocks_of_lemma49PowerArc
     hperiodPower.infix harc
   exact exists_repeatedBoundaryBlocks_of_hasPeriod hperiodPos hperiodArc hlong
 
+/-! ## Every sub-period segment is geodesic -/
+
+/-- A segment of the power boundary no longer than one period has full word
+norm.  Periodicity rotates it into one copy of the boundary word, while
+quotient-conjugacy minimality makes every cyclic rotation geodesic. -/
+theorem wordNorm_listVal_powerSegment_eq_length
+    {G : Type u} [Group G] {Lambda : Type*}
+    (D : GGT.RelGenSet G Lambda) (N : Subgroup G) [N.Normal]
+    {g : G} (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {word : List (GGT.RelLetter G Lambda)}
+    (hword : GGT.OsinComponents.IsGeodesicWord D 1 g word)
+    {n start segmentLength : ℕ} (hn : 0 < n) (hwordNe : word ≠ [])
+    (hfit : start + segmentLength ≤
+      (lemma49BoundaryPower word n).length)
+    (hshortSegment : segmentLength ≤ word.length) :
+    wordNorm D.alphabet.carrier
+        (GGT.RelLetter.listVal
+          ((lemma49BoundaryPower word n).drop start).take segmentLength) =
+      segmentLength := by
+  let segment :=
+    ((lemma49BoundaryPower word n).drop start).take segmentLength
+  have hsegmentLength : segment.length = segmentLength := by
+    dsimp [segment]
+    rw [List.length_take, List.length_drop]
+    omega
+  have hsegmentInfix : segment <:+: lemma49BoundaryPower word n := by
+    exact (List.take_prefix segmentLength
+      ((lemma49BoundaryPower word n).drop start)).isInfix.trans
+        (List.drop_suffix start (lemma49BoundaryPower word n)).isInfix
+  obtain ⟨rotation, hrotation, hprefix⟩ :=
+    exists_prefix_rotate_of_infix_lemma49BoundaryPower hn hwordNe
+      hsegmentInfix (by rw [hsegmentLength]; exact hshortSegment)
+  have hrotateLength : (word.rotate rotation).length = word.length :=
+    List.length_rotate word rotation
+  have hsegmentEq : segment = (word.rotate rotation).take segmentLength := by
+    have htake := List.prefix_iff_eq_take.mp hprefix
+    rw [hsegmentLength] at htake
+    exact htake
+  have hgeoRotate :=
+    isGeodesicWord_rotate_of_shortestModuloConjugacy D N hshort hword
+      hrotation.le
+  have hgeoSegment := GGT.OsinComponents.isGeodesicWord_segment D hgeoRotate
+    (i := 0) (j := segmentLength) (Nat.zero_le _) (by
+      rw [hrotateLength]
+      exact hshortSegment)
+  have hgeoSegment' : GGT.OsinComponents.IsGeodesicWord D 1
+      (GGT.RelLetter.listVal segment) segment := by
+    simpa only [GGT.OsinComponents.vertex_zero, List.drop_zero,
+      Nat.sub_zero, hsegmentEq,
+      GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul] using hgeoSegment
+  have hlength := hgeoSegment'.2.2
+  rw [wordDist_one_left, hsegmentLength] at hlength
+  exact hlength.symm
+
+/-- Equivalently, the vertices of a power boundary are their index distance
+apart whenever that distance is at most one period. -/
+theorem wordDist_powerVertices_eq_of_sub_le_period
+    {G : Type u} [Group G] {Lambda : Type*}
+    (D : GGT.RelGenSet G Lambda) (N : Subgroup G) [N.Normal]
+    {g : G} (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {word : List (GGT.RelLetter G Lambda)}
+    (hword : GGT.OsinComponents.IsGeodesicWord D 1 g word)
+    {n i j : ℕ} (hn : 0 < n) (hwordNe : word ≠ [])
+    (hij : i ≤ j) (hj : j ≤ (lemma49BoundaryPower word n).length)
+    (hsub : j - i ≤ word.length) :
+    wordDist D.alphabet.carrier
+        (GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) i)
+        (GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) j) =
+      j - i := by
+  have hfit : i + (j - i) ≤ (lemma49BoundaryPower word n).length := by
+    omega
+  have hnorm := wordNorm_listVal_powerSegment_eq_length D N hshort hword
+    hn hwordNe hfit hsub
+  have hvalue := GGT.OsinComponents.listVal_segment
+    (lemma49BoundaryPower word n) 1 hij
+  have hdiff :
+      (GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) i)⁻¹ *
+          GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) j =
+        GGT.RelLetter.listVal
+          ((lemma49BoundaryPower word n).drop i).take (j - i) := by
+    rw [← hvalue]
+    group
+  show wordNorm D.alphabet.carrier
+      ((GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) i)⁻¹ *
+        GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) j) = j - i
+  rw [hdiff]
+  exact hnorm
+
 /-! ## The repeated blocks clear the prime-piece cutoff -/
 
 /-- At Hull's fixed `mu = 1/1000`, a sufficiently large relator threshold
