@@ -29,6 +29,8 @@ theorem coeffBridge_hom_naturality_apply (n : ℕ) {X Y : TopCat.{0}} (φ : X �
     (z : homologyZMod2 X n) :
     ((coeffBridge n).hom.app Y).hom ((homologyPushZMod2 φ n).hom z)
       = ((singularHomologyCoeffZMod2 n).map φ).hom (((coeffBridge n).hom.app X).hom z) := by
+  change ((coeffBridge n).hom.app Y).hom (((homZMod2Fun n ⋙ resZ2).map φ).hom z)
+    = ((singularHomologyCoeffZMod2 n).map φ).hom (((coeffBridge n).hom.app X).hom z)
   have h := (coeffBridge n).hom.naturality φ
   have h2 := congrArg
     (fun (m : (homZMod2Fun n ⋙ resZ2).obj X ⟶ (singularHomologyCoeffZMod2 n).obj Y) => m.hom z) h
@@ -74,17 +76,30 @@ theorem sphereModTwoTopGenerator_action
   have hwne : w ≠ 0 := by
     intro h0
     apply reducedTopGenerator_ne_zero n hn
-    rw [← hΨw, h0, map_zero]
+    have hzero : ((coeffBridge n).hom.app (TopCat.sphere n)).hom w = 0 := by
+      rw [h0]
+      exact ((coeffBridge n).hom.app (TopCat.sphere n)).hom.map_zero
+    exact hΨw.symm.trans hzero
   -- Action on `w` in the project model over `TopCat.sphere n`.
   have hcoeff : ((singularHomologyCoeffZMod2 n).map (toTopCatSphereSelfMap f)).hom
         (reducedTopGenerator e)
       = (d : ℤ) • reducedTopGenerator e := modTwo_action_on_reduced_top_generator e f
+  let wR : (homZMod2Fun n ⋙ resZ2).obj (TopCat.sphere n) := w
+  have hscalar :
+      (d : ℤ) • ((coeffBridge n).hom.app (TopCat.sphere n)).hom w =
+        ((coeffBridge n).hom.app (TopCat.sphere n)).hom ((d : ℤ) • w) := by
+    change (d : ℤ) • ((coeffBridge n).hom.app (TopCat.sphere n)).hom wR =
+      ((coeffBridge n).hom.app (TopCat.sphere n)).hom ((d : ℤ) • wR)
+    exact (map_zsmul ((coeffBridge n).hom.app (TopCat.sphere n)).hom.toAddHom d wR).symm
   have hactionS : (homologyPushZMod2 (toTopCatSphereSelfMap f) n).hom w = (d : ZMod 2) • w := by
     have hkey : ((coeffBridge n).hom.app (TopCat.sphere n)).hom
           ((homologyPushZMod2 (toTopCatSphereSelfMap f) n).hom w)
         = ((coeffBridge n).hom.app (TopCat.sphere n)).hom ((d : ℤ) • w) := by
-      rw [coeffBridge_hom_naturality_apply n (toTopCatSphereSelfMap f) w, hΨw, hcoeff,
-        map_zsmul, hΨw]
+      rw [coeffBridge_hom_naturality_apply n (toTopCatSphereSelfMap f) w, hΨw, hcoeff]
+      calc
+        (d : ℤ) • reducedTopGenerator e =
+            (d : ℤ) • ((coeffBridge n).hom.app (TopCat.sphere n)).hom w := by rw [hΨw]
+        _ = ((coeffBridge n).hom.app (TopCat.sphere n)).hom ((d : ℤ) • w) := hscalar
     have hinj : Function.Injective ((coeffBridge n).hom.app (TopCat.sphere n)).hom :=
       (ModuleCat.mono_iff_injective _).1 inferInstance
     have hww := hinj hkey
@@ -141,4 +156,3 @@ theorem construct_ModTwoTopClassComparison_unconditional
     (construct_SphereModTwoTopData n hn)
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
