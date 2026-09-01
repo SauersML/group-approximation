@@ -31,9 +31,11 @@ By induction on `k`, using the Smith/Gysin machinery:
 
 noncomputable section
 
-open CategoryTheory Limits AlgebraicTopology AlexanderWhitney
+open CategoryTheory Limits AlgebraicTopology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AlexanderWhitney
 
 /-
 The back `1`-face of a `1`-simplex, with empty front part, is the simplex
