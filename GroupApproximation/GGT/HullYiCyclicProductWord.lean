@@ -318,6 +318,21 @@ theorem finPeripheralWord_eq_init_append_last {k : ℕ}
         omega
       rw [hleft, hright]
 
+/-- The value of the prefix followed by the distinguished last letter is the
+ordered cyclic product. -/
+theorem listVal_init_mul_last_eq_orderedFinProduct {k : ℕ}
+    (a : Fin (k + 1) → G) :
+    RelLetter.listVal
+        (indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+          (fun i : Fin k ↦ a i.castSucc)) *
+      a (Fin.last k) = orderedFinProduct a := by
+  have hsplit := congrArg RelLetter.listVal
+    (finPeripheralWord_eq_init_append_last a)
+  rw [listVal_append, listVal_finPeripheralWord,
+    OsinComponents.listVal_cons, RelLetter.listVal_nil,
+    RelLetter.val, mul_one] at hsplit
+  exact hsplit.symm
+
 /-! ## The direct DGO 4.21(b) call site -/
 
 /-- The word consisting of `n` copies of one full cyclic peripheral run. -/
@@ -334,12 +349,7 @@ corresponding natural power of Hull's ordered cyclic product. -/
     RelLetter.listVal (cyclicPeripheralPowerWord a n) =
       orderedFinProduct a ^ n := by
   rw [cyclicPeripheralPowerWord, listVal_blockWord]
-  have hsplit := congrArg RelLetter.listVal
-    (finPeripheralWord_eq_init_append_last a)
-  rw [listVal_append, listVal_finPeripheralWord,
-    OsinComponents.listVal_cons, RelLetter.listVal_nil,
-    RelLetter.val, mul_one] at hsplit
-  exact congrArg (fun x : G ↦ x ^ n) hsplit.symm
+  rw [listVal_init_mul_last_eq_orderedFinProduct]
 
 /-- Reading the entire concrete cyclic path from `v` ends at `v` times the
 corresponding power of the ordered product. -/
@@ -349,6 +359,19 @@ corresponding power of the ordered product. -/
         (cyclicPeripheralPowerWord a n).length =
       v * orderedFinProduct a ^ n := by
   rw [vertex_length, listVal_cyclicPeripheralPowerWord]
+
+/-- At a cycle boundary, the path vertex is the corresponding natural power
+of the ordered product. -/
+theorem vertex_cycleBoundary_cyclicPeripheralPowerWord {k q n : ℕ}
+    (v : G) (a : Fin (k + 1) → G) (hqn : q ≤ n) :
+    vertex v (cyclicPeripheralPowerWord a n) (q * (k + 1)) =
+      v * orderedFinProduct a ^ q := by
+  have hv := vertex_blockWordAppend_block (Fin.last k)
+    (indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+      (fun i : Fin k ↦ a i.castSucc))
+    (a (Fin.last k)) v ([] : List (RelLetter G (Fin (k + 1)))) hqn
+  rw [listVal_init_mul_last_eq_orderedFinProduct] at hv
+  simpa [cyclicPeripheralPowerWord] using hv
 
 omit [Group G] in
 @[simp] theorem length_cyclicPeripheralPowerWord {k : ℕ}
@@ -616,6 +639,7 @@ theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
       (vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
         vertex vq (cyclicPeripheralPowerWord a n) (iq t) ∈ D.fam (lam t)) :
     ∃ (r : ℕ) (c : Fin (k + 2) → G), r ≤ k + 1 ∧
+      (∀ i : Fin (k + 1), lam (r + i.val) = i) ∧
       (∀ i : Fin (k + 1), c i.castSucc ∈ D.fam i) ∧
       (∀ i : Fin (k + 1),
         c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
@@ -628,7 +652,7 @@ theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
   let c : Fin (k + 2) → G := fun j ↦
     (vertex vp (cyclicPeripheralPowerWord a n) (ip (r + j.val)))⁻¹ *
       vertex vq (cyclicPeripheralPowerWord a n) (iq (r + j.val))
-  refine ⟨r, c, hr, ?_, ?_, ?_⟩
+  refine ⟨r, c, hr, hlam, ?_, ?_, ?_⟩
   · intro i
     have hri : r + i.val < 2 * (k + 1) + 1 := by
       have hi := i.isLt
@@ -647,6 +671,95 @@ theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
     simpa [c, Nat.add_assoc] using hrec
   · intro j
     rfl
+
+/-- With the second copy of the cyclic word based at `t`, the aligned first
+connector also gives Hull's prefix equation.  The prefix is trivial here;
+the two integer exponents record the cycle boundaries at which the matched
+components begin. -/
+theorem exists_fullCycleMatchData_of_consecutiveSelfMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n : ℕ) (t : G)
+    (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcompA : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      IsComp (lam s) (cyclicPeripheralPowerWord a n) (ip s) (kp s))
+    (hcompB : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      IsComp (lam s) (cyclicPeripheralPowerWord a n) (iq s) (kq s))
+    (hstepA : ∀ s : ℕ, s + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp s) (ip (s + 1)))
+    (hstepB : ∀ s : ℕ, s + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kq s) (iq (s + 1)))
+    (hmem : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      (vertex 1 (cyclicPeripheralPowerWord a n) (ip s))⁻¹ *
+        vertex t (cyclicPeripheralPowerWord a n) (iq s) ∈ D.fam (lam s)) :
+    ∃ (l m : ℤ) (c : Fin (k + 2) → G),
+      (∀ i : Fin (k + 1), c i.castSucc ∈ D.fam i) ∧
+      (∀ i : Fin (k + 1),
+        c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
+      t = orderedFinProduct a ^ l * c 0 * orderedFinProduct a ^ (-m) := by
+  obtain ⟨r, c, hr, hlam, hcmem, hcrec, hcdef⟩ :=
+    exists_fullCycleConnectorData_of_consecutiveSelfMatches
+      D hk a n 1 t ip kp iq kq lam hcompA hcompB hstepA hstepB hmem
+  let cycleLength := k + 1
+  have hcycle : 0 < cycleLength := by simp [cycleLength]
+  have hrange : r < 2 * (k + 1) + 1 := by omega
+  have hlam0 : lam r = 0 := by
+    simpa using hlam (0 : Fin (k + 1))
+  have hindexA := componentIndex_cyclicPeripheralPowerWord a (hcompA r hrange)
+  have hindexB := componentIndex_cyclicPeripheralPowerWord a (hcompB r hrange)
+  have hmodA : ip r % cycleLength = 0 := by
+    have hval := congrArg Fin.val hindexA
+    have hz : 0 = ip r % cycleLength := by
+      simpa [hlam0, cycleLength] using hval
+    exact hz.symm
+  have hmodB : iq r % cycleLength = 0 := by
+    have hval := congrArg Fin.val hindexB
+    have hz : 0 = iq r % cycleLength := by
+      simpa [hlam0, cycleLength] using hval
+    exact hz.symm
+  have hipBoundary : ip r = (ip r / cycleLength) * cycleLength := by
+    have hdiv := Nat.div_add_mod (ip r) cycleLength
+    rw [hmodA, add_zero] at hdiv
+    exact hdiv.symm.trans (Nat.mul_comm _ _)
+  have hiqBoundary : iq r = (iq r / cycleLength) * cycleLength := by
+    have hdiv := Nat.div_add_mod (iq r) cycleLength
+    rw [hmodB, add_zero] at hdiv
+    exact hdiv.symm.trans (Nat.mul_comm _ _)
+  have hiplt : ip r < n * cycleLength := by
+    have hc := hcompA r hrange
+    simpa [cycleLength] using
+      (lt_of_lt_of_le hc.1 hc.2.1)
+  have hiqlt : iq r < n * cycleLength := by
+    have hc := hcompB r hrange
+    simpa [cycleLength] using
+      (lt_of_lt_of_le hc.1 hc.2.1)
+  have hpcycles : ip r / cycleLength < n :=
+    Nat.div_lt_of_lt_mul (by simpa [Nat.mul_comm] using hiplt)
+  have hqcycles : iq r / cycleLength < n :=
+    Nat.div_lt_of_lt_mul (by simpa [Nat.mul_comm] using hiqlt)
+  have hvA :
+      vertex 1 (cyclicPeripheralPowerWord a n) (ip r) =
+        orderedFinProduct a ^ (ip r / cycleLength) := by
+    rw [hipBoundary]
+    simpa [cycleLength] using
+      vertex_cycleBoundary_cyclicPeripheralPowerWord
+        (v := (1 : G)) a (Nat.le_of_lt hpcycles)
+  have hvB :
+      vertex t (cyclicPeripheralPowerWord a n) (iq r) =
+        t * orderedFinProduct a ^ (iq r / cycleLength) := by
+    rw [hiqBoundary]
+    simpa [cycleLength] using
+      vertex_cycleBoundary_cyclicPeripheralPowerWord
+        (v := t) a (Nat.le_of_lt hqcycles)
+  have hc0 := hcdef (0 : Fin (k + 2))
+  simp only [Fin.val_zero, Nat.add_zero] at hc0
+  rw [hvA, hvB] at hc0
+  refine ⟨(ip r / cycleLength : ℕ), (iq r / cycleLength : ℕ), c,
+    hcmem, hcrec, ?_⟩
+  rw [hc0]
+  simp only [zpow_natCast, zpow_neg]
+  group
 
 /-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
 
