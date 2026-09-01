@@ -235,6 +235,10 @@ theorem listVal_conj_of_relativeAdjacent_direct
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
   rw [hvq', hvs', ite_apply_eq a b'] at hrel'
+  have hjstep : j - 1 + 1 = j := by omega
+  have hj'step : j' - 1 + 1 = j' := by omega
+  rw [hjstep] at hrel
+  rw [hj'step] at hrel'
   have hef : e = f := exponent_eq_of_blockMatch_ball hsep he hf hx hx' hrel
   have hef' : e' = f' := exponent_eq_of_blockMatch_ball hsep he' hf' hy hy' hrel'
   have hinj' : ∀ t : Bool, Function.Injective
@@ -287,7 +291,8 @@ theorem listVal_conj_of_relativeAdjacent_direct
   exact listVal_conj_of_alignedMatch_pair hnodup hinj hsep
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
-    he hf hw hw' (by omega) (by omega) hx hx' hgap1
+    he hf hw hw' (by omega) (by omega) hx
+    (by simpa only [hjstep] using hx') hgap1
     (by rw [hvq]; simpa only [R] using hqiR)
     (by rw [hvs]; simpa only [R] using hsjR)
 
@@ -380,6 +385,10 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
   rw [hvq', hvs', ite_apply_eq a b'] at hrel'
+  have hjstep : j - 1 + 1 = j := by omega
+  have hj'step : j' - 1 + 1 = j' := by omega
+  rw [hjstep] at hrel
+  rw [hj'step] at hrel'
   have hef : e = f := exponent_eq_of_mirroredPair_ball hsymm hsep he hf hx hx' hrel
   have hef' : e' = f' :=
     exponent_eq_of_mirroredPair_ball hsymm hsep he' hf' hy hy' hrel'
@@ -437,7 +446,8 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   exact listVal_conj_of_mirroredAlignedMatch_pair hnodup hinj hsymm hsep
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
-    he' hf' hw hw' (by omega) (by omega) hy hy' hgap0'
+    he' hf' hw hw' (by omega) (by omega) hy
+    (by simpa only [hj'step] using hy') hgap0'
     (by rw [hvq']; simpa only [R] using hqiR')
     (by rw [hvs']; simpa only [R] using hsjR')
 
@@ -552,6 +562,10 @@ theorem false_of_relativeAdjacent_direct_revInv
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
   rw [hvq', hvs', ite_apply_eq a b'] at hrel'
+  have hjstep : j - 1 + 1 = j := by omega
+  have hj'step : j' - 1 + 1 = j' := by omega
+  rw [hjstep] at hrel
+  rw [hj'step] at hrel'
   have hef : e = f := exponent_eq_of_mirroredBlockMatch_ball hsep he hf hx hx' hrel
   have hef' : e' = f' :=
     exponent_eq_of_mirroredBlockMatch_ball hsep he' hf' hy hy' hrel'
@@ -578,9 +592,11 @@ theorem false_of_relativeAdjacent_direct_revInv
   have hAB : (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = a b ^ e := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
+  have hVW0 := span_eq_val_of_getElem? hsj
+  rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = (a b ^ e)⁻¹ := by
-    rw [span_eq_val_of_getElem? hsj, hvs, ite_apply_eq a b, ← hef]
+    simpa only [hjstep] using hVW0
   have hg : a b ^ e ∈ D.fam b := by
     rw [← hAB]
     exact hqlet _ (List.mem_of_getElem? hqi)
@@ -683,6 +699,10 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
   rw [hvq', hvs', ite_apply_eq a b'] at hrel'
+  have hjstep : j - 1 + 1 = j := by omega
+  have hj'step : j' - 1 + 1 = j' := by omega
+  rw [hjstep] at hrel
+  rw [hj'step] at hrel'
   have hef : e = f :=
     exponent_eq_of_reverseMirroredBlockMatch_ball hsymm hsep he hf hx hx' hrel
   have hef' : e' = f' :=
@@ -716,9 +736,11 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hAB : (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = (a b ^ e)⁻¹ := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
+  have hVW0 := span_eq_val_of_getElem? hsj
+  rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = a b ^ e := by
-    rw [span_eq_val_of_getElem? hsj, hvs, ite_apply_eq a b, ← hef]
+    simpa only [hjstep] using hVW0
   have hg : (a b ^ e)⁻¹ ∈ D.fam b := by
     rw [← hAB]
     exact hqlet _ (List.mem_of_getElem? hqi)
