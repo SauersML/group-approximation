@@ -20,10 +20,11 @@ by that run are exactly the hypotheses of
 
 This file makes that handoff literal.  `YiOrientationPureProductFamily` contains
 the source data available immediately before the consecutive-component
-argument.  `HasConsecutiveComponentMatch` is only the match output, with no
-cyclicity conclusion hidden in it.  The assembly below proves membership of
-the products in the suitable subgroup and derives `E(h) = ⟨h⟩` for both
-products from those connector equations.
+argument.  `HasConsecutiveComponentMatch` is the match output.  The selection
+interface returns both together, so the DGO depth can be chosen before the
+product exponents.  The assembly below proves membership of the products in
+the suitable subgroup and derives `E(h) = ⟨h⟩` for both products from those
+connector equations.
 -/
 
 namespace GroupApproximation
@@ -242,32 +243,38 @@ theorem exists_yiPair_of_consecutiveComponentMatch
 
 end YiOrientationPureProductFamily
 
-/-- Selection of the source data preceding the consecutive-component argument.
-This is Hull's orientation-pure detector together with his sufficiently deep
-choice of two cyclic products.  It does not assert the component match or the
-cyclicity conclusion obtained from it. -/
+/-- **Hull's product selection with its immediate component match.**
+
+The existential packages the prepared family together with the match proved at
+the same DGO depth.  This preserves Hull's order: choose the Lemma 4.21(b)
+constant, choose the powers beyond it, then apply the lemma before forgetting
+the depth witnesses. -/
 def YiOrientationPureProductFamilySelection : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {T : Subgroup G},
     Suitable A.alphabet T → ∀ F : Finset G,
-      Nonempty (YiOrientationPureProductFamily A T (Fin (F.card + 2)))
+      ∃ P : YiOrientationPureProductFamily A T (Fin (F.card + 2)),
+        P.HasConsecutiveComponentMatch
 
-/-- The remaining geometric producer, stated uniformly over exactly the
-prepared products on which Hull applies DGO Lemma 4.21(b). -/
-def YiConsecutiveComponentMatchStatement : Prop :=
-  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {T : Subgroup G}
-    {ι : Type} (P : YiOrientationPureProductFamily A T ι),
-      P.HasConsecutiveComponentMatch
+/-- An explicit prepared family and its match inhabit the combined local
+selection interface.  This is the constructor model for the repaired
+quantifier order. -/
+theorem exists_combinedProductSelection_model
+    {A : HullGeneratingSet G} {T : Subgroup G} {F : Finset G}
+    (P : YiOrientationPureProductFamily A T (Fin (F.card + 2)))
+    (hmatch : P.HasConsecutiveComponentMatch) :
+    ∃ Q : YiOrientationPureProductFamily A T (Fin (F.card + 2)),
+      Q.HasConsecutiveComponentMatch :=
+  ⟨P, hmatch⟩
 
-/-- The source-facing assembly theorem.  Once the orientation-pure products
-are selected, the exact DGO consecutive-component match is the only remaining
-input to the local Yi producer. -/
+/-- The source-facing assembly theorem.  Selection and matching use one
+existential, so the local Yi producer cannot lose the depth at which its cyclic
+letters were chosen. -/
 theorem yiSuitablePairAvoidingFiniteOneSided_of_productSelection_of_match
-    (hselect : YiOrientationPureProductFamilySelection.{u})
-    (hmatch : YiConsecutiveComponentMatchStatement.{u}) :
+    (hselect : YiOrientationPureProductFamilySelection.{u}) :
     YiSuitablePairAvoidingFiniteOneSided.{u} := by
   intro G _ A T hT F
-  obtain ⟨P⟩ := hselect A hT F
-  exact P.exists_yiPair_of_consecutiveComponentMatch F (hmatch P)
+  obtain ⟨P, hmatch⟩ := hselect A hT F
+  exact P.exists_yiPair_of_consecutiveComponentMatch F hmatch
 
 end HullSC
 end GroupApproximation
