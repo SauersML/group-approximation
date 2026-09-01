@@ -46,7 +46,7 @@ theorem exactPublishedAdjacentCapacity_singleton (g : G) (eps : ℕ) :
 /-- Two aligned adjacent matches cannot put the first far component at the
 last endpoint when the second endpoint is seam-clean. -/
 theorem farEnd_lt_of_aligned_seam {L c c' i j j' : ℕ}
-    (hL : 0 < L) (hj1 : 1 < j) (hj : j ≤ L) (hj'1 : 1 < j') (hj' : j' ≤ L)
+    (_hL : 0 < L) (hj1 : 1 < j) (hj : j ≤ L) (hj'1 : 1 < j') (hj' : j' ≤ L)
     (h₀ : (c + i) % L = (c' + (j - 1)) % L)
     (h₁ : (c + (i + 1)) % L = (c' + (j' - 1)) % L) :
     j < L := by
@@ -67,7 +67,7 @@ theorem farEnd_lt_of_aligned_seam {L c c' i j j' : ℕ}
 position-sum identities are the position statement of the two pinned
 exponents; seam-clean endpoints turn their modular relation into equality. -/
 theorem farEnd_pred_of_mirrored_seam {L c c' i j j' : ℕ}
-    (hL : 0 < L) (hj1 : 1 < j) (hj : j ≤ L) (hj'1 : 1 < j') (hj' : j' ≤ L)
+    (_hL : 0 < L) (hj1 : 1 < j) (hj : j ≤ L) (hj'1 : 1 < j') (hj' : j' ≤ L)
     (h₀ : (c + i) % L + (c' + (j - 1)) % L = L - 1)
     (h₁ : (c + (i + 1)) % L + (c' + (j' - 1)) % L = L - 1) :
     j = j' + 1 := by
@@ -87,7 +87,8 @@ theorem farEnd_pred_of_mirrored_seam {L c c' i j j' : ℕ}
     Nat.ModEq.add_left_cancel' (c + c') hsum
   have htail : j - 1 ≡ j' [MOD L] := by
     apply Nat.ModEq.add_left_cancel' i
-    convert hsum' using 1 <;> omega
+    convert hsum' using 1
+    all_goals omega
   have hmod : (j - 1) % L = j' % L := htail
   have hj'lt : j' < L := by
     by_contra hnot
@@ -157,7 +158,7 @@ exact design; no spelling restriction is imposed on either short side. -/
 theorem listVal_conj_of_relativeAdjacent_direct
     {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ} {ms : List ℕ}
     (hnodup : ms.Nodup)
-    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ⇒ a b ^ n))
+    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ↦ a b ^ n))
     (hsep : ∀ e ∈ ms, ∀ f ∈ ms, e ≠ f → ∀ b : Bool,
       ∀ x ∈ D.relBall b eps, ∀ x' ∈ D.relBall b eps,
         x * a b ^ e * x' ≠ a b ^ f ∧ x * a b ^ e * x' ≠ (a b ^ f)⁻¹)
@@ -242,7 +243,7 @@ theorem listVal_conj_of_relativeAdjacent_direct
   have hef : e = f := exponent_eq_of_blockMatch_ball hsep he hf hx hx' hrel
   have hef' : e' = f' := exponent_eq_of_blockMatch_ball hsep he' hf' hy hy' hrel'
   have hinj' : ∀ t : Bool, Function.Injective
-      (fun n : ℕ ⇒ (if t then a true else a false) ^ n) := by
+      (fun n : ℕ ↦ (if t then a true else a false) ^ n) := by
     intro t
     rw [ite_apply_eq a t]
     exact hinj t
@@ -302,7 +303,7 @@ gap of the second match, which is the gap used by the mirrored closer. -/
 theorem listVal_conj_of_relativeAdjacent_revInv
     {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ} {ms : List ℕ}
     (hnodup : ms.Nodup)
-    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ⇒ a b ^ n))
+    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ↦ a b ^ n))
     (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
     (hsep : ∀ e ∈ ms, ∀ f ∈ ms, e ≠ f → ∀ b : Bool,
       ∀ x ∈ D.relBall b eps, ∀ x' ∈ D.relBall b eps,
@@ -393,7 +394,7 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   have hef' : e' = f' :=
     exponent_eq_of_mirroredPair_ball hsymm hsep he' hf' hy hy' hrel'
   have hinj' : ∀ t : Bool, Function.Injective
-      (fun n : ℕ ⇒ (if t then a true else a false) ^ n) := by
+      (fun n : ℕ ↦ (if t then a true else a false) ^ n) := by
     intro t
     rw [ite_apply_eq a t]
     exact hinj t
@@ -438,7 +439,7 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   have hgap0' : (GGT.OsinComponents.vertex (1 : G) u' (j' - 1))⁻¹ *
       (GGT.RelLetter.listVal py *
         GGT.OsinComponents.vertex (1 : G) u (i + 1)) = 1 := by
-    have hinv := congrArg (fun g : G ⇒ g⁻¹) hgap1
+    have hinv := congrArg (fun g : G ↦ g⁻¹) hgap1
     rw [inv_one, mul_inv_rev, inv_inv] at hinv
     have hjstart : j' - 1 = j := by omega
     rw [hjstart]
@@ -470,7 +471,7 @@ theorem exponent_eq_of_reverseMirroredBlockMatch_ball
     (hx : x ∈ D.relBall b eps) (hx' : x' ∈ D.relBall b eps)
     (hrel : x * (a b ^ e)⁻¹ * x' = a b ^ f) : e = f := by
   have hinvrel : x'⁻¹ * a b ^ e * x⁻¹ = (a b ^ f)⁻¹ := by
-    have h := congrArg (fun g : G ⇒ g⁻¹) hrel
+    have h := congrArg (fun g : G ↦ g⁻¹) hrel
     simpa [mul_inv_rev, mul_assoc] using h
   exact exponent_eq_of_mirroredBlockMatch_ball hsep he hf
     (inv_mem_relBall hsymm hx') (inv_mem_relBall hsymm hx) hinvrel
@@ -482,7 +483,7 @@ as the first match's second bounded gap. -/
 theorem false_of_relativeAdjacent_direct_revInv
     {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps rho : ℕ} {ms : List ℕ}
     (hnodup : ms.Nodup)
-    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ⇒ a b ^ n))
+    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ↦ a b ^ n))
     (hsep : ∀ e ∈ ms, ∀ f ∈ ms, e ≠ f → ∀ b : Bool,
       ∀ x ∈ D.relBall b eps, ∀ x' ∈ D.relBall b eps,
         x * a b ^ e * x' ≠ a b ^ f ∧ x * a b ^ e * x' ≠ (a b ^ f)⁻¹)
@@ -570,7 +571,7 @@ theorem false_of_relativeAdjacent_direct_revInv
   have hef' : e' = f' :=
     exponent_eq_of_mirroredBlockMatch_ball hsep he' hf' hy hy' hrel'
   have hinj' : ∀ t : Bool, Function.Injective
-      (fun n : ℕ ⇒ (if t then a true else a false) ^ n) := by
+      (fun n : ℕ ↦ (if t then a true else a false) ^ n) := by
     intro t
     rw [ite_apply_eq a t]
     exact hinj t
@@ -618,7 +619,7 @@ W4 calculation.  Here the bounded second gap is the positive design power. -/
 theorem false_of_relativeAdjacent_revInv_direct
     {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps rho : ℕ} {ms : List ℕ}
     (hnodup : ms.Nodup)
-    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ⇒ a b ^ n))
+    (hinj : ∀ b : Bool, Function.Injective (fun n : ℕ ↦ a b ^ n))
     (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
     (hsep : ∀ e ∈ ms, ∀ f ∈ ms, e ≠ f → ∀ b : Bool,
       ∀ x ∈ D.relBall b eps, ∀ x' ∈ D.relBall b eps,
@@ -708,7 +709,7 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hef' : e' = f' :=
     exponent_eq_of_reverseMirroredBlockMatch_ball hsymm hsep he' hf' hy hy' hrel'
   have hinj' : ∀ t : Bool, Function.Injective
-      (fun n : ℕ ⇒ (if t then a true else a false) ^ n) := by
+      (fun n : ℕ ↦ (if t then a true else a false) ^ n) := by
     intro t
     rw [ite_apply_eq a t]
     exact hinj t
@@ -807,7 +808,7 @@ theorem listVal_conj_of_exactPublished_relativeSides
     GGT.RelLetter.listVal w' = GGT.RelLetter.listVal py *
       GGT.RelLetter.listVal w * (GGT.RelLetter.listVal py)⁻¹ := by
   have hsymm : ∀ g ∈ E.rel.base, g⁻¹ ∈ E.rel.base :=
-    fun g hg ⇒ (isSymmetricGeneratingSet_base₂ E).inv_mem g hg
+    fun g hg ↦ (isSymmetricGeneratingSet_base₂ E).inv_mem g hg
   have hdisj : ∀ x : G, x ∈ E.rel.fam false →
       x ∈ E.rel.fam true → x = 1 := by
     rw [E.fam_eq]
@@ -815,7 +816,7 @@ theorem listVal_conj_of_exactPublished_relativeSides
   have hdeep : ∀ e ∈ ms, ∀ b : Bool,
       E.lox b ^ e ∉ E.rel.relBall b designRho ∧
         (E.lox b ^ e)⁻¹ ∉ E.rel.relBall b designRho :=
-    fun e he b ⇒ hdesign.2.2.1 e he b b
+    fun e he b ↦ hdesign.2.2.1 e he b b
   refine listVal_conj_of_sym_cases hw hw' ?_ ?_ ?_ ?_
   · intro c c' hc hc'
     subst hc
