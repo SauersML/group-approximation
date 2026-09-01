@@ -39,11 +39,16 @@ element-level connecting-map formula `ShortComplex.ShortExact.δ_apply` yields t
 identity in cohomology.
 -/
 
-open CategoryTheory Limits AlgebraicTopology AlexanderWhitney
+open CategoryTheory Limits AlgebraicTopology
 
 noncomputable section
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AlexanderWhitney
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 /-! ## 1. Charts, vertex sheets and the lifted cochain -/
 
