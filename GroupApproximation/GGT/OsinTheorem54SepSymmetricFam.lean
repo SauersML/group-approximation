@@ -99,7 +99,8 @@ local finiteness moves one `λ` at a time by
 theorem exists_symmetric_base' [Finite Λ] (D : RelGenSet G Λ)
     (hemb : D.IsHyperbolicallyEmbedded) :
     ∃ D' : RelGenSet G Λ, D.base ⊆ D'.base ∧ D'.fam = D.fam ∧
-      (∀ x ∈ D'.base, x⁻¹ ∈ D'.base) ∧ D'.IsHyperbolicallyEmbedded := by
+      (∀ x ∈ D'.base, x⁻¹ ∈ D'.base) ∧ D'.IsHyperbolicallyEmbedded ∧
+        D'.alphabet = D.alphabet := by
   have hsub : D.base ∪ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
       ⊆ {x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base} ∪
         (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) := by
@@ -163,7 +164,8 @@ theorem exists_symmetric_base' [Finite Λ] (D : RelGenSet G Λ)
       exact relBall_finite_of_base_subset' D
         ⟨{x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base}, D.fam, hgen⟩ lam rfl hN hNfin
         hbase' (fun m => hemb.locallyFinite lam m) n
-  refine ⟨⟨{x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base}, D.fam, hgen⟩, ?_, rfl, ?_, hembD'⟩
+  refine ⟨⟨{x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base}, D.fam, hgen⟩,
+    ?_, rfl, ?_, hembD', halph⟩
   · intro y hy
     exact Or.inl hy
   · intro y hy

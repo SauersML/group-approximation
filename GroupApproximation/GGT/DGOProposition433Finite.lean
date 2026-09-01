@@ -101,7 +101,7 @@ theorem finite_conj_inter' [Finite Λ] (D : RelGenSet G Λ)
     (hemb : D.IsHyperbolicallyEmbedded) {lam mu : Λ} {g : G}
     (hmid : ¬ (mu = lam ∧ g ∈ D.fam lam)) :
     {x : G | x ∈ D.fam lam ∧ g⁻¹ * x * g ∈ D.fam mu}.Finite := by
-  obtain ⟨D', -, hfam, hsymm, hemb'⟩ :=
+  obtain ⟨D', -, hfam, hsymm, hemb', -⟩ :=
     OsinComponents.exists_symmetric_base' D hemb
   have hstep := finite_conj_inter D' hsymm hemb' (lam := lam) (mu := mu)
     (g := g) (by rw [hfam]; exact hmid)

@@ -23,7 +23,7 @@ universe u w
 theorem osinTheorem54Fam_unconditional : OsinTheorem54Fam.{u, w} := by
   intro G _inst Λ _finite D hemb
   letI : Fintype Λ := Fintype.ofFinite Λ
-  obtain ⟨Dsymm, hbase, hfam, hsymm, hembSymm⟩ :=
+  obtain ⟨Dsymm, hbase, hfam, hsymm, hembSymm, -⟩ :=
     exists_symmetric_base' D hemb
   obtain ⟨C, _hC, hsep⟩ :=
     exists_sepDataFam_of_hemb Dsymm hsymm hembSymm
