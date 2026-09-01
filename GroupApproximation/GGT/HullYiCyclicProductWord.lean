@@ -862,5 +862,104 @@ theorem exists_consecutiveMatches_cyclicPeripheralPowerWord_of_dgoLemma421b
   · exact hstart
   · exact hend
 
+/-- DGO 4.21(b) supplies the complete `HasConsecutiveComponentMatch` payload
+for an element which normalizes a positive power of the cyclic product without
+reversing its orientation.  The 4.21 depth constant is chosen before the
+letters, while the path-length threshold is allowed to depend on `t`, exactly
+as in Hull's proof. -/
+theorem exists_depth_hasConsecutiveComponentMatchData_of_positiveNormalizer
+    (h421b : DGOLemma421b.{u, 0}) (A : Alphabet G)
+    (f : Fin (k + 1) → G) (hk : 1 ≤ k)
+    (hhyp : ∃ δ : ℝ, IsHyperbolicSpace δ
+      (Cayley (coneOffFamily A (fun i ↦ elementaryClosure (f i))).alphabet)) :
+    ∃ C : ℕ, ∀ (a : Fin (k + 1) → G),
+      (∀ i, a i ∈ elementaryClosure (f i)) →
+      (∀ i, a i ∉
+        (coneOffFamily A (fun i ↦ elementaryClosure (f i))).relBall i C) →
+      ∀ (t : G) (q : ℕ), 0 < q →
+      t * orderedFinProduct a ^ q * t⁻¹ = orderedFinProduct a ^ q →
+      ∃ (l m : ℤ) (p : G) (c : Fin (k + 2) → G),
+        (∀ i : Fin (k + 1), c i.castSucc ∈ elementaryClosure (f i)) ∧
+        (∀ i : Fin (k + 1),
+          c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
+        t = orderedFinProduct a ^ l * p * c 0 * p⁻¹ *
+          orderedFinProduct a ^ (-m) := by
+  let D : RelGenSet G (Fin (k + 1)) :=
+    coneOffFamily A (fun i ↦ elementaryClosure (f i))
+  obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+  refine ⟨C, ?_⟩
+  intro a ha hdeep t q hq hnormalize
+  let K := 2 * (k + 1) + 1
+  let eps : ℝ := (wordDist D.alphabet.carrier 1 t : ℝ) + 1
+  have heps : 0 < eps := by
+    dsimp [eps]
+    positivity
+  have hK : 0 < K := by simp [K]
+  obtain ⟨R, hR, hmatch⟩ := hraw eps K heps hK
+  let N := q * R
+  have hcycle : 0 < k + 1 := by omega
+  have hlength : R ≤ N * (k + 1) := by
+    dsimp [N]
+    exact (Nat.le_mul_of_pos_left R hq).trans
+      (Nat.le_mul_of_pos_right (q * R) hcycle)
+  have hnormalizeN :
+      t * orderedFinProduct a ^ N * t⁻¹ = orderedFinProduct a ^ N := by
+    dsimp [N]
+    calc
+      t * orderedFinProduct a ^ (q * R) * t⁻¹ =
+          (t * orderedFinProduct a ^ q * t⁻¹) ^ R := by
+            rw [pow_mul, conj_pow]
+      _ = (orderedFinProduct a ^ q) ^ R := by rw [hnormalize]
+      _ = orderedFinProduct a ^ (q * R) := by rw [pow_mul]
+  have hcommuteN :
+      t * orderedFinProduct a ^ N = orderedFinProduct a ^ N * t := by
+    calc
+      t * orderedFinProduct a ^ N =
+          (t * orderedFinProduct a ^ N * t⁻¹) * t := by group
+      _ = orderedFinProduct a ^ N * t := by rw [hnormalizeN]
+  have hstart : (wordDist D.alphabet.carrier 1 t : ℝ) ≤ eps := by
+    dsimp [eps]
+    norm_num
+  have hend :
+      (wordDist D.alphabet.carrier
+        (vertex 1 (cyclicPeripheralPowerWord a N)
+          (cyclicPeripheralPowerWord a N).length)
+        (vertex t (cyclicPeripheralPowerWord a N)
+          (cyclicPeripheralPowerWord a N).length) : ℝ) ≤ eps := by
+    simp only [vertex_length_cyclicPeripheralPowerWord, one_mul]
+    have hdist := wordDist_left_invariant D.alphabet.carrier
+      (orderedFinProduct a ^ N)⁻¹ (orderedFinProduct a ^ N)
+      (t * orderedFinProduct a ^ N)
+    have hsimp :
+        (orderedFinProduct a ^ N)⁻¹ * (t * orderedFinProduct a ^ N) = t := by
+      rw [hcommuteN]
+      group
+    rw [inv_mul_cancel, hsimp] at hdist
+    calc
+      (wordDist D.alphabet.carrier (orderedFinProduct a ^ N)
+          (t * orderedFinProduct a ^ N) : ℝ) =
+          (wordDist D.alphabet.carrier 1 t : ℝ) := by
+            exact_mod_cast hdist.symm
+      _ ≤ eps := hstart
+  have hletter : ∀ c ∈ cyclicPeripheralPowerWord a N, D.IsLetter c := by
+    apply isLetter_of_mem_blockWord D (Fin.last k)
+    · exact isLetter_indexedPeripheralWord D
+        (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc)
+        (fun i ↦ ha i.castSucc)
+    · exact ha (Fin.last k)
+  obtain ⟨ip, kp, iq, kq, lam, hcompA, hcompB, hstepA, hstepB, hmem⟩ :=
+    hmatch 1 t (cyclicPeripheralPowerWord a N)
+      (cyclicPeripheralPowerWord a N)
+      hletter hletter
+      (isWOne_blockWord_finPeripheralWord a N)
+      (isWTwo_blockWord_finPeripheralWord D a hdeep N)
+      (isWThree_blockWord_finPeripheralWord D hk a N)
+      (isWOne_blockWord_finPeripheralWord a N)
+      (isWTwo_blockWord_finPeripheralWord D a hdeep N)
+      (isWThree_blockWord_finPeripheralWord D hk a N)
+      (by simpa using hlength) hstart hend
+  exact exists_hasConsecutiveComponentMatchData_of_consecutiveSelfMatches
+    A f a hk N t ip kp iq kq lam hcompA hcompB hstepA hstepB hmem
+
 end HullSC
 end GroupApproximation
