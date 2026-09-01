@@ -199,7 +199,7 @@ theorem exists_depth_hasPositivePowerNormalizer_cyclicProduct_of_dgoLemma421b
 The inverse-orientation call and the forward self-match may choose different
 depth thresholds.  Taking their maximum makes both applications valid.  The
 result is the connector array and prefix equation used by Hull's Lemma 5.6,
-with no cyclicity conclusion included in the statement. -/
+stopping before the later cyclicity conclusion. -/
 theorem exists_depth_hasConsecutiveComponentMatchData_of_dgoLemma421b
     (h421b : DGOLemma421b.{u, 0}) (A : Alphabet G)
     (f : Fin (k + 1) → G) (hk : 2 ≤ k)
