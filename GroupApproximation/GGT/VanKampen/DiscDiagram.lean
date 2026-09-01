@@ -198,6 +198,18 @@ def Reduced {G : Type u} [Group G] {Lambda : Type w}
       ((between.map RelatorCell.value).prod)⁻¹ * C₁.value *
         (between.map RelatorCell.value).prod * C₂.value ≠ 1
 
+/-- The empty-relator model is reduced because it contains no pair of
+relator cells. -/
+theorem reduced_of_no_rCells
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram W) (h : Delta.relatorCells = []) : Delta.Reduced := by
+  intro pre between suf C₁ C₂ hsplit
+  rw [h] at hsplit
+  have hlen := congrArg List.length hsplit
+  simp only [List.length_nil, List.length_append, List.length_cons] at hlen
+  omega
+
 /-- A diagram with no relator cells has identity boundary value. -/
 theorem boundaryValue_eq_one_of_no_rCells
     {G : Type u} [Group G] {Lambda : Type w}
