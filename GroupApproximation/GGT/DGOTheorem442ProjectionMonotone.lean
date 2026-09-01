@@ -279,6 +279,28 @@ theorem projDist_sub_bbfProjDist_le_two_mul
     P.projDist Y X Z - P.bbfProjDist Y X Z ≤ 2 * P.ξ := by
   exact P.projDist_sub_bbfRawProjDist_le_two_mul hYX hYZ
 
+/-- The strengthened Behrstock inequality for the modified distances: a
+projection larger than `2ξ` forces both endpoint projections below `ξ`. -/
+theorem bbfProjDist_endpoints_lt (P : ProjectionSystem V)
+    {Y X Z : V} (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z)
+    (hlarge : 2 * P.ξ < P.bbfProjDist Y X Z) :
+    P.bbfProjDist X Y Z < P.ξ ∧ P.bbfProjDist Z X Y < P.ξ := by
+  have horiginal : P.ξ < P.projDist Y X Z := by
+    have hle := P.bbfProjDist_le hYX hYZ
+    linarith [P.ξ_pos]
+  have hX : P.projDist X Y Z < P.ξ := by
+    have hmin := P.behrstock Y Z X hYZ hYX hXZ.symm
+    rw [P.comm Y Z X] at hmin
+    have hsmall :=
+      (min_lt_iff.mp hmin).resolve_left (not_lt_of_ge (le_of_lt horiginal))
+    rwa [P.comm] at hsmall
+  have hZ : P.projDist Z X Y < P.ξ := by
+    have hmin := P.behrstock Y X Z hYX hYZ hXZ
+    exact (min_lt_iff.mp hmin).resolve_left (not_lt_of_ge (le_of_lt horiginal))
+  exact ⟨
+    (P.bbfProjDist_le hYX.symm hXZ).trans_lt hX,
+    (P.bbfProjDist_le hXZ.symm hYZ.symm).trans_lt hZ⟩
+
 end ProjectionSystem
 
 namespace EquivariantProjectionSystem
