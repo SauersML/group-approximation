@@ -1,4 +1,7 @@
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
+import GroupApproximation.GGT.HullSCLemma44OrientedCells
+import GroupApproximation.GGT.OsinGeodesicWord
+import GroupApproximation.GGT.OsinTheorem54SepSubGeodesic
 import GroupApproximation.GroupTheory.NormalClosureReducedProduct
 
 /-!
@@ -11,10 +14,11 @@ least-area product of signed conjugates of that relator.  Flattening this
 product produces the reduced power diagram formalized here.
 
 The final geometric content of Lemma 4.9 is isolated as
-`HullLemma49ReducedDiagramStatement`: under the published `C₁` hypotheses,
-every such reduced power diagram admits the required kernel correction.  The
-last theorem proves that this exact diagram statement implies the manuscript's
-quotient-free `HullLemma49KernelPowerStatement`.
+`HullLemma49ShortestGeodesicPowerDiagramStatement`: under the published `C₁`
+hypotheses, every oriented least-area diagram with its geodesic power boundary
+admits the required kernel correction.  The last theorem proves that this
+exact diagram statement implies the manuscript's quotient-free
+`HullLemma49KernelPowerStatement`.
 -/
 
 namespace GroupApproximation
@@ -140,6 +144,9 @@ structure Lemma49ReducedPowerDiagram {G : Type u} [Group G]
   factors_cells : ∀ x ∈ factors, IsSignedConjugate R x
   reduced : ∀ (pre mid suf : List G),
     factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1
+  no_cancelling_pair : ∀ (pre between suf : List G) (x y : G),
+    factors = pre ++ x :: (between ++ y :: suf) →
+      (between.prod)⁻¹ * x * between.prod * y ≠ 1
 
 /-- A nontrivial power in a normal closure has a least-area reduced power
 diagram, with no geometric or literature input. -/
@@ -172,14 +179,244 @@ theorem exists_lemma49ReducedPowerDiagram
     factors_length := hlength
     factors_prod := hprod
     factors_cells := hcells
-    reduced := ?_ }⟩
-  exact no_trivial_subproduct_of_minimal hlength hprod hcells hminimal
+    reduced := no_trivial_subproduct_of_minimal hlength hprod hcells hminimal
+    no_cancelling_pair :=
+      no_cancelling_pair_of_minimal hlength hprod hcells hminimal }⟩
+
+/-! ## Oriented cells for the power diagram -/
+
+/-- A signed conjugate of the singleton relator can be oriented by a member of
+its symmetrized family. -/
+theorem exists_lemma49OrientedCell
+    {G : Type u} [Group G] {Λ : Type w}
+    (v : List (GGT.RelLetter G Λ)) {x : G}
+    (hx : IsSignedConjugate
+      ({GGT.RelLetter.listVal v} : Set G) x) :
+    ∃ C : Lemma44OrientedRelatorCell (RelWord.symmetrized v), C.value = x := by
+  obtain ⟨c, r, hr, hx | hx⟩ := hx
+  · have hr' : r = GGT.RelLetter.listVal v := Set.mem_singleton_iff.mp hr
+    subst r
+    exact ⟨⟨c, v, RelWord.self_mem_symmetrized v⟩, hx.symm⟩
+  · have hr' : r = GGT.RelLetter.listVal v := Set.mem_singleton_iff.mp hr
+    subst r
+    refine ⟨⟨c, RelWord.revInv v, ?_⟩, ?_⟩
+    · exact RelWord.mem_symmetrized.mpr
+        (RelWord.Sym.inv RelWord.Sym.base)
+    · rw [Lemma44OrientedRelatorCell.value, RelWord.listVal_revInv]
+      exact hx.symm
+
+/-- Orient every factor of a singleton-relator power diagram. -/
+theorem exists_lemma49OrientedCells
+    {G : Type u} [Group G] {Λ : Type w}
+    (v : List (GGT.RelLetter G Λ)) :
+    ∀ factors : List G,
+      (∀ x ∈ factors, IsSignedConjugate
+        ({GGT.RelLetter.listVal v} : Set G) x) →
+      ∃ cells : List
+          (Lemma44OrientedRelatorCell (RelWord.symmetrized v)),
+        cells.map Lemma44OrientedRelatorCell.value = factors
+  | [], _ => ⟨[], rfl⟩
+  | x :: xs, hcells => by
+      obtain ⟨C, hC⟩ := exists_lemma49OrientedCell v
+        (hcells x (by simp))
+      obtain ⟨tail, htail⟩ := exists_lemma49OrientedCells v xs
+        (fun y hy => hcells y (by simp [hy]))
+      exact ⟨C :: tail, by simp [hC, htail]⟩
+
+/-- A least-area power diagram with an oriented word attached to every cell. -/
+structure Lemma49OrientedPowerDiagram
+    {G : Type u} [Group G] {Λ : Type w}
+    (v : List (GGT.RelLetter G Λ)) (g : G) (n : ℕ)
+    extends Lemma49ReducedPowerDiagram
+      ({GGT.RelLetter.listVal v} : Set G) g n where
+  cells : List (Lemma44OrientedRelatorCell (RelWord.symmetrized v))
+  cell_values : cells.map Lemma44OrientedRelatorCell.value = factors
+
+/-- The symmetrized family orients every cell of a reduced power diagram. -/
+theorem Lemma49ReducedPowerDiagram.exists_oriented
+    {G : Type u} [Group G] {Λ : Type w}
+    {v : List (GGT.RelLetter G Λ)} {g : G} {n : ℕ}
+    (Z : Lemma49ReducedPowerDiagram
+      ({GGT.RelLetter.listVal v} : Set G) g n) :
+    Nonempty (Lemma49OrientedPowerDiagram v g n) := by
+  obtain ⟨cells, hcells⟩ :=
+    exists_lemma49OrientedCells v Z.factors Z.factors_cells
+  exact ⟨{
+    toLemma49ReducedPowerDiagram := Z
+    cells := cells
+    cell_values := hcells }⟩
+
+/-- Reducedness on oriented cells: two relator cells cannot cancel through
+the product of all cells strictly between them. -/
+theorem Lemma49OrientedPowerDiagram.noCancellingCellPair
+    {G : Type u} [Group G] {Λ : Type w}
+    {v : List (GGT.RelLetter G Λ)} {g : G} {n : ℕ}
+    (Z : Lemma49OrientedPowerDiagram v g n)
+    (pre between suf : List
+      (Lemma44OrientedRelatorCell (RelWord.symmetrized v)))
+    (C₁ C₂ : Lemma44OrientedRelatorCell (RelWord.symmetrized v))
+    (hsplit : Z.cells = pre ++ C₁ :: (between ++ C₂ :: suf)) :
+    ((between.map Lemma44OrientedRelatorCell.value).prod)⁻¹ * C₁.value *
+        (between.map Lemma44OrientedRelatorCell.value).prod * C₂.value ≠ 1 := by
+  apply Z.no_cancelling_pair
+    (pre.map Lemma44OrientedRelatorCell.value)
+    (between.map Lemma44OrientedRelatorCell.value)
+    (suf.map Lemma44OrientedRelatorCell.value) C₁.value C₂.value
+  rw [← Z.cell_values, hsplit]
+  simp only [List.map_append, List.map_cons]
+
+/-- The relator boundaries of two oriented power-diagram cells are not inverse
+conjugates through the intervening subdiagram. -/
+theorem Lemma49OrientedPowerDiagram.relators_ne_inverseConjugate
+    {G : Type u} [Group G] {Λ : Type w}
+    {v : List (GGT.RelLetter G Λ)} {g : G} {n : ℕ}
+    (Z : Lemma49OrientedPowerDiagram v g n)
+    (pre between suf : List
+      (Lemma44OrientedRelatorCell (RelWord.symmetrized v)))
+    (C₁ C₂ : Lemma44OrientedRelatorCell (RelWord.symmetrized v))
+    (hsplit : Z.cells = pre ++ C₁ :: (between ++ C₂ :: suf)) :
+    GGT.RelLetter.listVal C₂.relator ≠
+      ((C₁.conjugator⁻¹ *
+          (between.map Lemma44OrientedRelatorCell.value).prod *
+          C₂.conjugator)⁻¹ *
+        (GGT.RelLetter.listVal C₁.relator)⁻¹ *
+        (C₁.conjugator⁻¹ *
+          (between.map Lemma44OrientedRelatorCell.value).prod *
+          C₂.conjugator)) := by
+  intro hcancel
+  apply Z.noCancellingCellPair pre between suf C₁ C₂ hsplit
+  rw [Lemma44OrientedRelatorCell.value,
+    Lemma44OrientedRelatorCell.value, hcancel]
+  group
+
+/-! ## The geodesic power boundary -/
+
+/-- The word obtained by reading `w` exactly `n` times. -/
+def lemma49BoundaryPower {G : Type u} {Λ : Type w}
+    (w : List (GGT.RelLetter G Λ)) : ℕ → List (GGT.RelLetter G Λ)
+  | 0 => []
+  | n + 1 => w ++ lemma49BoundaryPower w n
+
+@[simp] theorem lemma49BoundaryPower_length
+    {G : Type u} {Λ : Type w} (w : List (GGT.RelLetter G Λ)) :
+    ∀ n : ℕ, (lemma49BoundaryPower w n).length = n * w.length
+  | 0 => by simp [lemma49BoundaryPower]
+  | n + 1 => by
+      simp [lemma49BoundaryPower, lemma49BoundaryPower_length,
+        Nat.succ_mul, Nat.add_comm]
+
+@[simp] theorem listVal_lemma49BoundaryPower
+    {G : Type u} [Group G] {Λ : Type w}
+    (w : List (GGT.RelLetter G Λ)) :
+    ∀ n : ℕ, GGT.RelLetter.listVal (lemma49BoundaryPower w n) =
+      (GGT.RelLetter.listVal w) ^ n
+  | 0 => by simp [lemma49BoundaryPower, GGT.RelLetter.listVal_nil]
+  | n + 1 => by
+      rw [lemma49BoundaryPower, RelWord.listVal_append,
+        listVal_lemma49BoundaryPower, pow_succ']
+
+/-- The oriented cell diagram together with a shortest relative word for its
+boundary element.  Its repeated boundary word literally spells the power
+filled by the cells. -/
+structure Lemma49GeodesicPowerDiagram
+    {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ)
+    (v : List (GGT.RelLetter G Λ)) (g : G) (n : ℕ)
+    extends Lemma49OrientedPowerDiagram v g n where
+  boundaryWord : List (GGT.RelLetter G Λ)
+  boundary_geodesic : GGT.OsinComponents.IsGeodesicWord D 1 g boundaryWord
+
+/-- Every oriented power diagram has a geodesic representative of `g` on its
+outer boundary. -/
+theorem Lemma49OrientedPowerDiagram.exists_geodesicBoundary
+    {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ)
+    {v : List (GGT.RelLetter G Λ)} {g : G} {n : ℕ}
+    (Z : Lemma49OrientedPowerDiagram v g n) :
+    Nonempty (Lemma49GeodesicPowerDiagram D v g n) := by
+  obtain ⟨boundaryWord, hboundary⟩ :=
+    GGT.OsinComponents.existsGeodesicWord D 1 g
+  exact ⟨{
+    toLemma49OrientedPowerDiagram := Z
+    boundaryWord := boundaryWord
+    boundary_geodesic := hboundary }⟩
+
+/-- The repeated outer word has the same value as the product of all oriented
+relator cells. -/
+theorem Lemma49GeodesicPowerDiagram.boundaryPower_value_eq_cells
+    {G : Type u} [Group G] {Λ : Type w} {D : GGT.RelGenSet G Λ}
+    {v : List (GGT.RelLetter G Λ)} {g : G} {n : ℕ}
+    (Z : Lemma49GeodesicPowerDiagram D v g n) :
+    GGT.RelLetter.listVal (lemma49BoundaryPower Z.boundaryWord n) =
+      (Z.cells.map Lemma44OrientedRelatorCell.value).prod := by
+  have hboundaryVal : GGT.RelLetter.listVal Z.boundaryWord = g := by
+    simpa using Z.boundary_geodesic.2.1
+  rw [listVal_lemma49BoundaryPower, hboundaryVal]
+  rw [Z.cell_values, Z.factors_prod]
+
+/-- A cyclic rotation of a shortest quotient-conjugacy representative is
+again geodesic.  This is the exact minimality consequence used on the repeated
+outer boundary in Hull's Lemma 4.9. -/
+theorem isGeodesicWord_rotate_of_shortestModuloConjugacy
+    {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ)
+    (N : Subgroup G) [N.Normal] {g : G}
+    (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {w : List (GGT.RelLetter G Λ)}
+    (hw : GGT.OsinComponents.IsGeodesicWord D 1 g w)
+    {m : ℕ} (hm : m ≤ w.length) :
+    GGT.OsinComponents.IsGeodesicWord D 1
+      (GGT.RelLetter.listVal (w.rotate m)) (w.rotate m) := by
+  have hletters : ∀ a ∈ w.rotate m, D.IsLetter a := by
+    intro a ha
+    exact hw.1 a (List.mem_rotate.mp ha)
+  refine ⟨hletters, by simp, ?_⟩
+  let p : G := GGT.RelLetter.listVal (w.take m)
+  have hwval : GGT.RelLetter.listVal w = g := by simpa using hw.2.1
+  have hrotate : GGT.RelLetter.listVal (w.rotate m) = p⁻¹ * g * p := by
+    rw [RelWord.listVal_rotate w hm]
+    dsimp only [p]
+    rw [hwval]
+  have hconj : ConjugateModulo N g
+      (GGT.RelLetter.listVal (w.rotate m)) := by
+    refine ⟨p⁻¹, 1, N.one_mem, ?_⟩
+    rw [hrotate]
+    simp only [inv_inv, mul_one]
+  have hlower : wordNorm D.alphabet.carrier g ≤
+      wordNorm D.alphabet.carrier
+        (GGT.RelLetter.listVal (w.rotate m)) := hshort _ hconj
+  have hupper : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (w.rotate m)) ≤ (w.rotate m).length :=
+    GGT.OsinComponents.wordNorm_listVal_le D (w.rotate m) hletters
+  have hlenLower : (w.rotate m).length ≤
+      wordNorm D.alphabet.carrier
+        (GGT.RelLetter.listVal (w.rotate m)) := by
+    rw [List.length_rotate, hw.2.2, wordDist_one_left]
+    exact hlower
+  rw [wordDist_one_left]
+  exact Nat.le_antisymm hlenLower hupper
+
+/-- Every segment of a cyclic rotation of the shortest boundary word is
+geodesic between its endpoint vertices. -/
+theorem isGeodesicWord_cyclicSegment_of_shortestModuloConjugacy
+    {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ)
+    (N : Subgroup G) [N.Normal] {g : G}
+    (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {w : List (GGT.RelLetter G Λ)}
+    (hw : GGT.OsinComponents.IsGeodesicWord D 1 g w)
+    {m i j : ℕ} (hm : m ≤ w.length) (hij : i ≤ j)
+    (hj : j ≤ (w.rotate m).length) :
+    GGT.OsinComponents.IsGeodesicWord D
+      (GGT.OsinComponents.vertex 1 (w.rotate m) i)
+      (GGT.OsinComponents.vertex 1 (w.rotate m) j)
+      (((w.rotate m).drop i).take (j - i)) := by
+  exact GGT.OsinComponents.isGeodesicWord_segment D
+    (isGeodesicWord_rotate_of_shortestModuloConjugacy D N hshort hw hm)
+    hij hj
 
 /-- The remaining geometric statement of Hull's Lemma 4.9, after quotient
-conjugacy minimization, order, normal-closure, least-area, and reducedness
-bookkeeping have been removed.  The diagram argument is required only for a
-shortest lift of its quotient conjugacy class, exactly as in Hull's proof. -/
-def HullLemma49ShortestReducedDiagramStatement : Prop :=
+conjugacy minimization, order, normal-closure, least-area, reducedness,
+orientation, and the geodesic power boundary have been constructed.  The
+diagram argument is required only for a shortest lift of its quotient
+conjugacy class, exactly as in Hull's proof. -/
+def HullLemma49ShortestGeodesicPowerDiagramStatement : Prop :=
   ∀ {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ),
     D.IsHyperbolicallyEmbedded →
       ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
@@ -190,16 +427,15 @@ def HullLemma49ShortestReducedDiagramStatement : Prop :=
               IsShortestModuloConjugacy D.alphabet.carrier
                 (Subgroup.normalClosure
                   ({GGT.RelLetter.listVal v} : Set G)) g →
-              Lemma49ReducedPowerDiagram
-                ({GGT.RelLetter.listVal v} : Set G) g n →
+              Lemma49GeodesicPowerDiagram D v g n →
                 ∃ k ∈ Subgroup.normalClosure
                     ({GGT.RelLetter.listVal v} : Set G),
                   (g * k) ^ n = 1
 
-/-- The reduced-diagram statement implies the exact quotient-free
+/-- The geodesic power-diagram statement implies the exact quotient-free
 kernel-power statement consumed by the canonical Hull filling. -/
-theorem hullLemma49KernelPowerStatement_of_reducedDiagram
-    (hdiagram : HullLemma49ShortestReducedDiagramStatement.{u, w}) :
+theorem hullLemma49KernelPowerStatement_of_geodesicPowerDiagram
+    (hdiagram : HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w}) :
     HullLemma49KernelPowerStatement.{u, w} := by
   intro G _ Λ D hemb
   obtain ⟨eps, rho, mu, hmu, hgood⟩ := hdiagram D hemb
@@ -213,8 +449,10 @@ theorem hullLemma49KernelPowerStatement_of_reducedDiagram
   have hcorr : ∃ k ∈ N, (h * k) ^ n = 1 := by
     by_cases htrivial : h ^ n = 1
     · exact ⟨1, N.one_mem, by simpa using htrivial⟩
-    · obtain ⟨P⟩ := exists_lemma49ReducedPowerDiagram hn hhpow htrivial
-      exact hgood W v hv hinput h n hshort P
+    · obtain ⟨P₀⟩ := exists_lemma49ReducedPowerDiagram hn hhpow htrivial
+      obtain ⟨P₁⟩ := P₀.exists_oriented
+      obtain ⟨P₂⟩ := P₁.exists_geodesicBoundary D
+      exact hgood W v hv hinput h n hshort P₂
   exact hgh.correction hcorr
 
 end HullSC

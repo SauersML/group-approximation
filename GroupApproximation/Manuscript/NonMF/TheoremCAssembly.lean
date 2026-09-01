@@ -17,6 +17,7 @@ import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 import GroupApproximation.GGT.HullTheorem316Assembly
 import GroupApproximation.GGT.HullYiFiniteFamilyPair
+import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
@@ -120,12 +121,19 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **Open proof.**  Hull, Corollary 5.7, in the printed finite-family
-form needed to select all cyclic peripherals before applying Lemma 4.4 once.
-Theorem 3.16 supplies the hyperbolic embedding of the resulting simultaneous
-family unconditionally. -/
-theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} := by
+/-- **Open geometric proof.**  The local form of Hull's Lemmas 5.4 and 5.6:
+inside one suitable subgroup, choose a cyclic Yi pair avoiding the finitely
+many ambient commensurability classes already selected.  The finite-family
+induction and the passage to the simultaneous peripheral family are proved. -/
+theorem hullYiSuitablePairAvoidingFiniteOneSided :
+    HullSC.YiSuitablePairAvoidingFiniteOneSided.{0} := by
   sorry
+
+/-- Hull's printed all-`m` Corollary 5.7, derived from the local finite-
+avoidance producer by the proved finite induction. -/
+theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} :=
+  HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr
+    hullYiSuitablePairAvoidingFiniteOneSided
 
 /-- **Reduction to the finite-family Yi statement.**  Hull, §5 (his
 Corollary 5.7 with Lemma 5.8, after
@@ -226,16 +234,16 @@ shortest quotient-conjugacy representative, correction transport, order,
 normal-closure, least-area, and reducedness bookkeeping have been proved
 internally.  What remains is exactly the diagram argument for a nontrivial
 power of a shortest representative. -/
-theorem hullLemma49ReducedDiagram :
-    HullSC.HullLemma49ShortestReducedDiagramStatement.{0, 0} := by
+theorem hullLemma49GeodesicPowerDiagram :
+    HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   sorry
 
 /-- Hull's quotient-free kernel-power conclusion, derived from the exact
-reduced-diagram statement above. -/
+geodesic power-diagram statement above. -/
 theorem hullLemma49KernelPower :
     HullSC.HullLemma49KernelPowerStatement.{0, 0} :=
-  HullSC.hullLemma49KernelPowerStatement_of_reducedDiagram
-    hullLemma49ReducedDiagram
+  HullSC.hullLemma49KernelPowerStatement_of_geodesicPowerDiagram
+    hullLemma49GeodesicPowerDiagram
 
 /-- Hull's torsion-free canonical filling quotient, assembled directly from
 Lemmas 4.4 and 4.9.  The quotient is literally the quotient by the normal
