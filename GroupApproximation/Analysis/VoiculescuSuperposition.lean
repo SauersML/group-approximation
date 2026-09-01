@@ -177,9 +177,12 @@ theorem norm_superposition_apply_le (P : QuasicentralPartition K d)
   have hmono : Monotone fun M ↦ ∑ j ∈ Finset.range M, ‖P.d j x‖ ^ 2 := by
     refine monotone_nat_of_le_succ fun M ↦ ?_
     rw [Finset.sum_range_succ]
-    positivity
+    have hnonneg : (0 : ℝ) ≤ ‖P.d M x‖ ^ 2 := by positivity
+    linarith
   have hsqle := hmono.ge_of_tendsto (P.tendsto_sum_norm_sq x) N
-  rw [norm_superposition_apply_sq P hiso horth N x] at hsqle
+  have hsq : ‖superposition V P.d N x‖ ^ 2 ≤ ‖x‖ ^ 2 := by
+    rw [norm_superposition_apply_sq d P hiso horth N x]
+    exact hsqle
   nlinarith [norm_nonneg (superposition V P.d N x), norm_nonneg x]
 
 /-- The operator norms of all partial superpositions are uniformly bounded by
@@ -189,7 +192,7 @@ theorem norm_superposition_le_one (P : QuasicentralPartition K d)
     (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
     (N : ℕ) : ‖superposition V P.d N‖ ≤ 1 := by
   refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x ↦ ?_
-  simpa using norm_superposition_apply_le P hiso horth N x
+  simpa using norm_superposition_apply_le d P hiso horth N x
 
 /-! ## The strong limit -/
 
@@ -204,8 +207,10 @@ theorem inner_superposition_apply_eq_zero_of_le
   have hij : i ≠ j :=
     ne_of_lt (lt_of_lt_of_le (Finset.mem_range.mp hi) hNj)
   rw [← ContinuousLinearMap.adjoint_inner_right,
-    ← ContinuousLinearMap.comp_apply, horth i j hij, zero_apply,
-    inner_zero_right]
+    ContinuousLinearMap.adjoint_comp, ContinuousLinearMap.comp_apply]
+  have happ : ContinuousLinearMap.adjoint (V i) (V j y) = 0 := by
+    rw [← ContinuousLinearMap.comp_apply, horth i j hij, zero_apply]
+  rw [happ, map_zero, inner_zero_right]
 
 /-- **Finite-interval Pythagoras.**  The square norm of a tail of the
 superposition is exactly the corresponding tail of the partition's square
@@ -284,7 +289,8 @@ theorem cauchySeq_superposition (P : QuasicentralPartition K d)
     refine monotone_nat_of_le_succ fun N ↦ ?_
     dsimp [q]
     rw [Finset.sum_range_succ]
-    positivity
+    have hnonneg : (0 : ℝ) ≤ ‖P.d N x‖ ^ 2 := by positivity
+    linarith
   have hqtend : Tendsto q atTop (𝓝 (‖x‖ ^ 2)) := P.tendsto_sum_norm_sq x
   have hqle : ∀ N, q N ≤ ‖x‖ ^ 2 := fun N ↦ hqmono.ge_of_tendsto hqtend N
   obtain ⟨N, hN⟩ :=
@@ -294,7 +300,7 @@ theorem cauchySeq_superposition (P : QuasicentralPartition K d)
       dist (superposition V P.d b x) (superposition V P.d a x) < ε := by
     intro a b ha hab
     have hnear : dist (q a) (‖x‖ ^ 2) < ε ^ 2 := hN a ha
-    have htailSq := norm_superposition_sub_apply_sq P hiso horth hab x
+    have htailSq := norm_superposition_sub_apply_sq d P hiso horth hab x
     have hqba : q b - q a < ε ^ 2 := by
       rw [Real.dist_eq, abs_of_nonpos (sub_nonpos.mpr (hqle a))] at hnear
       linarith [hqle b]
@@ -324,7 +330,7 @@ theorem exists_isometric_superposition_limit
       ContinuousLinearMap.adjoint W ∘L W = 1 := by
   classical
   have hcauchy : ∀ x : K, CauchySeq fun N ↦ superposition V P.d N x :=
-    fun x ↦ cauchySeq_superposition P hiso horth x
+    fun x ↦ cauchySeq_superposition d P hiso horth x
   let f : K → H := fun x ↦
     Classical.choose (cauchySeq_tendsto_of_complete (hcauchy x))
   have hf : ∀ x : K,
@@ -341,7 +347,7 @@ theorem exists_isometric_superposition_limit
   have hbound : ∀ x : K, ‖f x‖ ≤ 1 * ‖x‖ := by
     intro x
     refine le_of_tendsto (hf x).norm (Eventually.of_forall fun N ↦ ?_)
-    simpa using norm_superposition_apply_le P hiso horth N x
+    simpa using norm_superposition_apply_le d P hiso horth N x
   let W : K →L[ℂ] H := LinearMap.mkContinuous
     { toFun := f
       map_add' := hadd
@@ -358,7 +364,7 @@ theorem exists_isometric_superposition_limit
     have hsquare' : Tendsto (fun N ↦ ‖superposition V P.d N x‖ ^ 2)
         atTop (𝓝 (‖x‖ ^ 2)) :=
       (P.tendsto_sum_norm_sq x).congr fun N ↦
-        (norm_superposition_apply_sq P hiso horth N x).symm
+        (norm_superposition_apply_sq d P hiso horth N x).symm
     have heq : ‖W x‖ ^ 2 = ‖x‖ ^ 2 := tendsto_nhds_unique hsquare hsquare'
     nlinarith [norm_nonneg (W x), norm_nonneg x]
   have hWiso : Isometry W :=
@@ -445,7 +451,7 @@ theorem norm_superposition_defect_le
   refine le_trans (norm_sum_le _ _) ?_
   rw [← Finset.sum_add_distrib]
   refine Finset.sum_le_sum fun j _ ↦ ?_
-  exact norm_superposition_defect_term_le (hViso j) (hd j) S R
+  exact norm_superposition_defect_term_le (d := d) (j := j) (hViso j) (hd j) S R
 
 /-- **The partial defects converge in operator norm.**  The limit here is
 written as the sum of the one-piece defects.  Identifying it with the defect of
@@ -459,8 +465,8 @@ theorem tendsto_superposition_defect
     Tendsto
       (fun N ↦ S ∘L superposition V d N - superposition V d N ∘L R)
       atTop
-      (𝓝 (∑' j, (S ∘L V j - V j ∘L R) ∘L d j +
-        V j ∘L (R ∘L d j - d j ∘L R))) := by
+      (𝓝 (∑' j, ((S ∘L V j - V j ∘L R) ∘L d j +
+        V j ∘L (R ∘L d j - d j ∘L R)))) := by
   have hmajorant : Summable fun j ↦
       ‖S ∘L V j - V j ∘L R‖ + ‖d j * R - R * d j‖ :=
     hpiece.add hcomm
@@ -468,8 +474,9 @@ theorem tendsto_superposition_defect
       (S ∘L V j - V j ∘L R) ∘L d j +
         V j ∘L (R ∘L d j - d j ∘L R) :=
     Summable.of_norm_bounded hmajorant fun j ↦
-      norm_superposition_defect_term_le (hViso j) (hd j) S R
-  simpa only [superposition_defect_eq_sum] using hsum.hasSum.tendsto_sum_nat
+      norm_superposition_defect_term_le (d := d) (j := j) (hViso j) (hd j) S R
+  simp_rw [superposition_defect_eq_sum d S R]
+  exact hsum.hasSum.tendsto_sum_nat
 
 end
 
