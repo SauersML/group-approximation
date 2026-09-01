@@ -150,6 +150,18 @@ theorem map_sign_eq_one_of_isOperatorMF_target
   rw [hbot] at hmap
   exact congrArg Subtype.val (Subgroup.mem_bot.mp hmap)
 
+def PrintedMapSignEqOneOfIsOperatorMFTarget : Prop :=
+  ∀ (Γ : Type) [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
+    [Countable Γ] {a : Γ} (ha : a ∉ Set.range α)
+    (hT : HasKazhdanPropertyT.{0, 0} Γ) (M : Type v) [Group M]
+    (hM : IsOperatorMF M) (f : Ambient α hα →* M),
+    f (signAmbient α hα) = 1
+
+theorem manuscriptMapSignEqOneOfIsOperatorMFTarget :
+    PrintedMapSignEqOneOfIsOperatorMFTarget := by
+  intro Γ _ α hα _ a ha hT M _ hM f
+  exact map_sign_eq_one_of_isOperatorMF_target α hα ha hT hM f
+
 /-- The actual Clifford witness of every proper self-embedding of a countable
 Kazhdan group is not operator MF. -/
 theorem not_isOperatorMF {a : Γ} (ha : a ∉ Set.range α)
@@ -167,6 +179,17 @@ theorem not_isOperatorMF {a : Γ} (ha : a ∉ Set.range α)
       (signSubgroup_le_printedDefect α hα ha)
       ((Subgroup.nontrivial_iff_ne_bot (signSubgroup α hα)).mp inferInstance)
   exact fun hMF ↦ hnotCDE ((isCDEOperatorMF_iff_isOperatorMF _).2 hMF)
+
+def PrintedCliffordWitnessNotIsOperatorMF : Prop :=
+  ∀ (Γ : Type) [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
+    {a : Γ} (ha : a ∉ Set.range α) [Countable Γ]
+    (hT : HasKazhdanPropertyT.{0, 0} Γ),
+    ¬ IsOperatorMF (Ambient α hα)
+
+theorem manuscriptCliffordWitnessNotIsOperatorMF :
+    PrintedCliffordWitnessNotIsOperatorMF := by
+  intro Γ _ α hα a ha _ hT
+  exact not_isOperatorMF α hα ha hT
 
 end
 

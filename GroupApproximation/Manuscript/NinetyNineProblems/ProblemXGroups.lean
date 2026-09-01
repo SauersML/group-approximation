@@ -114,6 +114,16 @@ theorem canonicalMaximalTrace_not_isQuasidiagonalTrace_of_not_isOperatorMF
       (IsTracialState.of_bundled (ShulmanTrace.canonicalMaximalTracialState G))
       Quasidiagonal.ucpContractive hqd)
 
+def PrintedCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF : Prop :=
+  ∀ (G : Type*) [Group G] (hnot : ¬ IsOperatorMF G),
+    ¬ Quasidiagonal.IsQuasidiagonalTrace
+      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)
+
+theorem manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF :
+    PrintedCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF := by
+  intro G _ hnot
+  exact canonicalMaximalTrace_not_isQuasidiagonalTrace_of_not_isOperatorMF G hnot
+
 /-- **The canonical maximal trace of an amenable-trace non-operator-MF group
 is amenable and not quasidiagonal.**
 

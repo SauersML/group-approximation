@@ -114,6 +114,16 @@ theorem shiftKernelFor_isLocallyResiduallyFinite
       have hmem := level_mem_range_of_le α hα hle (elt g)
       rwa [hrepr g] at hmem
 
+def PrintedShiftKernelForIsLocallyResiduallyFinite : Prop :=
+  ∀ (Γ : Type) [Group Γ] [Group.ResiduallyFinite Γ]
+    (α : Γ →* Γ) (hα : Function.Injective α) [α.range.FiniteIndex],
+    IsLocallyResiduallyFinite (ShiftKernelFor α hα)
+
+theorem manuscriptShiftKernelForIsLocallyResiduallyFinite :
+    PrintedShiftKernelForIsLocallyResiduallyFinite := by
+  intro Γ _ _ α hα _
+  exact shiftKernelFor_isLocallyResiduallyFinite α hα
+
 /-- The general Clifford witness re-associated as its shift kernel extended
 by the integers. -/
 def ambientEquivShiftKernelForByInt {Γ : Type} [Group Γ]
@@ -121,6 +131,16 @@ def ambientEquivShiftKernelForByInt {Γ : Type} [Group Γ]
     Ambient α hα ≃* (ShiftKernelFor α hα ⋊[shiftActionFor α hα]
       Multiplicative ℤ) :=
   (SemidirectAssoc.assocEquiv (shiftHom α hα) (lampAction α hα)).symm
+
+def PrintedAmbientEquivShiftKernelForByInt : Prop :=
+  ∀ (Γ : Type) [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α),
+    Nonempty (Ambient α hα ≃*
+      (ShiftKernelFor α hα ⋊[shiftActionFor α hα] Multiplicative ℤ))
+
+theorem manuscriptAmbientEquivShiftKernelForByInt :
+    PrintedAmbientEquivShiftKernelForByInt := by
+  intro Γ _ α hα
+  exact ⟨ambientEquivShiftKernelForByInt α hα⟩
 
 open ExplicitLinearModel LiteralNonMFLinearWitness
 
