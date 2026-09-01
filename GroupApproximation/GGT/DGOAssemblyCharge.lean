@@ -935,6 +935,7 @@ theorem exists_component_connector_pair (D : RelGenSet G Λ) (lam : Λ)
     ∃ f e : List (RelLetter G Λ),
       f.length ≤ 1 ∧ e.length ≤ 1 ∧
       (∀ x ∈ f, D.IsLetter x) ∧ (∀ x ∈ e, D.IsLetter x) ∧
+      (∀ x ∈ f, x.IsCompOf lam) ∧ (∀ x ∈ e, x.IsCompOf lam) ∧
       RelLetter.listVal f = pm⁻¹ * ym ∧
       RelLetter.listVal e = pp⁻¹ * yp := by
   classical
@@ -948,7 +949,7 @@ theorem exists_component_connector_pair (D : RelGenSet G Λ) (lam : Λ)
     if pm⁻¹ * ym = 1 then [] else [RelLetter.comp lam (pm⁻¹ * ym)]
   let e : List (RelLetter G Λ) :=
     if pp⁻¹ * yp = 1 then [] else [RelLetter.comp lam (pp⁻¹ * yp)]
-  refine ⟨f, e, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨f, e, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · by_cases hf : pm⁻¹ * ym = 1 <;> simp [f, hf]
   · by_cases heq : pp⁻¹ * yp = 1 <;> simp [e, heq]
   · intro x hx
@@ -965,6 +966,20 @@ theorem exists_component_connector_pair (D : RelGenSet G Λ) (lam : Λ)
         simpa [e, heq] using hx
       subst x
       exact he
+  · intro x hx
+    by_cases hf : pm⁻¹ * ym = 1
+    · simp [f, hf] at hx
+    · have hx' : x = RelLetter.comp lam (pm⁻¹ * ym) := by
+        simpa [f, hf] using hx
+      subst x
+      simp [RelLetter.IsCompOf]
+  · intro x hx
+    by_cases heq : pp⁻¹ * yp = 1
+    · simp [e, heq] at hx
+    · have hx' : x = RelLetter.comp lam (pp⁻¹ * yp) := by
+        simpa [e, heq] using hx
+      subst x
+      simp [RelLetter.IsCompOf]
   · by_cases hf : pm⁻¹ * ym = 1
     · simp [f, hf, RelLetter.listVal_nil]
     · simp [f, hf, listVal_singleton, RelLetter.val]

@@ -35,6 +35,8 @@ structure ComponentConnectorPair (D : RelGenSet G Λ) (lam : Λ)
   end_length : endConnector.length ≤ 1
   start_letters : ∀ x ∈ startConnector, D.IsLetter x
   end_letters : ∀ x ∈ endConnector, D.IsLetter x
+  start_label : ∀ x ∈ startConnector, x.IsCompOf lam
+  end_label : ∀ x ∈ endConnector, x.IsCompOf lam
   start_value : RelLetter.listVal startConnector =
     (vertex v word source)⁻¹ * vertex v word partner
   end_value : RelLetter.listVal endConnector =
@@ -54,7 +56,8 @@ theorem exists_componentConnectorPair
   obtain ⟨partnerEnd, hpartner⟩ := partnerStart
   have hsourceSpan := span_mem_fam_of_isComp D v letters hsource
   have hpartnerSpan := span_mem_fam_of_isComp D v letters hpartner
-  obtain ⟨f, e, hf, he, hfLetters, heLetters, hfValue, heValue⟩ :=
+  obtain ⟨f, e, hf, he, hfLetters, heLetters, hfLabel, heLabel,
+      hfValue, heValue⟩ :=
     exists_component_connector_pair D lam hsourceSpan hpartnerSpan connected
   exact ⟨{
     sourceEnd := sourceEnd
@@ -67,9 +70,38 @@ theorem exists_componentConnectorPair
     end_length := he
     start_letters := hfLetters
     end_letters := heLetters
+    start_label := hfLabel
+    end_label := heLabel
     start_value := hfValue
     end_value := heValue
   }⟩
+
+namespace ComponentConnectorPair
+
+/-- The source component is the connector--partner--connector boundary
+product, with the terminal connector read in reverse. -/
+theorem sourceSpan_factorization
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    (vertex v word source)⁻¹ * vertex v word C.sourceEnd =
+      RelLetter.listVal C.startConnector *
+        ((vertex v word partner)⁻¹ * vertex v word C.partnerEnd) *
+        (RelLetter.listVal C.endConnector)⁻¹ := by
+  rw [C.start_value, C.end_value]
+  group
+
+/-- Both connectors contribute at most two child sides. -/
+theorem connector_length_sum_le
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    C.startConnector.length + C.endConnector.length ≤ 2 := by
+  have hs := C.start_length
+  have he := C.end_length
+  omega
+
+end ComponentConnectorPair
 
 namespace BalancedSplitData
 
