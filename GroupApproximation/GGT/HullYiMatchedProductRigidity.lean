@@ -85,6 +85,72 @@ theorem matchedElementaryConnectors_eq_one {k : ℕ} (hk : 0 < k)
   · exact hnext
   · exact hinter
 
+/-- Connector propagation for two cyclic products which agree through their
+first `k` letters.  The connector at the start of the final component is
+trivial because the successive common-prefix connectors also lie in the
+final peripheral subgroup.  No centralizer condition is needed for the last
+letter, where the two products are allowed to differ. -/
+theorem matchedCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
+    (E : Fin (k + 1) → Subgroup G) (a b : Fin (k + 1) → G)
+    (c : Fin (k + 2) → G)
+    (hcommon : ∀ i : Fin k, b i.castSucc = a i.castSucc)
+    (hcentral : ∀ i : Fin k, ∀ x : G,
+      x ∈ E i.castSucc → Commute x (a i.castSucc))
+    (hmem : ∀ i : Fin (k + 1), c i.castSucc ∈ E i)
+    (hnext : ∀ i : Fin (k + 1),
+      c i.succ = (a i)⁻¹ * c i.castSucc * b i)
+    (hinter : ∀ x : G, (∀ i : Fin (k + 1), x ∈ E i) → x = 1) :
+    ∀ j : Fin (k + 1), c j.castSucc = 1 := by
+  let d : Fin (k + 1) → G := fun j ↦ c j.castSucc
+  have hstep : ∀ i : Fin k, d i.succ = d i.castSucc := by
+    intro i
+    have hcomm : Commute (c i.castSucc.castSucc) (a i.castSucc) :=
+      hcentral i (c i.castSucc.castSucc) (hmem i.castSucc)
+    change c i.castSucc.succ = c i.castSucc.castSucc
+    calc
+      c i.castSucc.succ =
+          (a i.castSucc)⁻¹ * c i.castSucc.castSucc * b i.castSucc :=
+        hnext i.castSucc
+      _ = (a i.castSucc)⁻¹ * c i.castSucc.castSucc * a i.castSucc := by
+        rw [hcommon i]
+      _ = c i.castSucc.castSucc := by
+        rw [hcomm.eq]
+        group
+  have hconst : ∀ j : Fin (k + 1), d j = d 0 := by
+    intro j
+    refine Fin.induction rfl ?_ j
+    intro i hi
+    exact (hstep i).trans hi
+  have hd0 : d 0 = 1 := by
+    apply hinter
+    intro i
+    rw [← hconst i]
+    exact hmem i
+  intro j
+  exact (hconst j).trans hd0
+
+/-- The elementary-closure adapter for common-prefix propagation. -/
+theorem matchedElementaryCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
+    (f a b : Fin (k + 1) → G) (c : Fin (k + 2) → G)
+    (hcommon : ∀ i : Fin k, b i.castSucc = a i.castSucc)
+    (hcentral : ∀ i : Fin k,
+      (elementaryClosure (f i.castSucc) : Set G) =
+        {x : G | Commute x (a i.castSucc)})
+    (hmem : ∀ i : Fin (k + 1),
+      c i.castSucc ∈ elementaryClosure (f i))
+    (hnext : ∀ i : Fin (k + 1),
+      c i.succ = (a i)⁻¹ * c i.castSucc * b i)
+    (hinter : ∀ x : G,
+      (∀ i : Fin (k + 1), x ∈ elementaryClosure (f i)) → x = 1) :
+    ∀ j : Fin (k + 1), c j.castSucc = 1 := by
+  apply matchedCommonPrefixConnectors_eq_one hk
+    (fun i ↦ elementaryClosure (f i)) a b c hcommon
+  · intro i x hx
+    exact Set.mem_setOf_eq.mp ((Set.ext_iff.mp (hcentral i) x).mp hx)
+  · exact hmem
+  · exact hnext
+  · exact hinter
+
 /-- Hull's prefix calculation after the common connector has become trivial.
 The two matched component runs begin after powers `hˡ`, `hᵐ` and the same
 prefix `p`; cancelling that prefix leaves `hˡ⁻ᵐ`. -/
