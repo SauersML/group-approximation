@@ -96,6 +96,50 @@ theorem approxCosetProjectionPairDiameterLE_triangle
       exact le_trans (hBC x (Or.inr hxC) y (Or.inr hyC))
         (le_add_of_nonneg_left hr0)
 
+/-- For distinct source vertices, the union defining DGO's projection
+distance has a finite real upper bound.
+
+Lemma 4.46 bounds each of the two projection sets by the same constant `ν`.
+Choosing one point in each set then bounds a mixed pair by the distance
+between the chosen points plus `2 * ν`. -/
+theorem exists_approxCosetProjectionPairDiameterLE
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ S) (hδ0 : 0 ≤ δ) (hδpos : 0 < δ)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    {H : Subgroup G} {s : S} (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s)
+    (Y A B : G ⧸ H) (hYA : Y ≠ A) (hYB : Y ≠ B) :
+    ∃ r : ℝ, ApproxCosetProjectionPairDiameterLE H s δ Y A B r := by
+  obtain ⟨ν, hν0, hν⟩ :=
+    exists_approxCosetProjectionSet_diameter_bound
+      hδ hδ0 hgeo hiso hqc hsep
+  obtain ⟨a, ha⟩ := approxCosetProjectionSet_nonempty H s
+    (Y := Y) (Z := A) hδpos
+  obtain ⟨b, hb⟩ := approxCosetProjectionSet_nonempty H s
+    (Y := Y) (Z := B) hδpos
+  refine ⟨2 * ν + dist a b, ?_⟩
+  intro x hx y hy
+  rcases hx with hxA | hxB
+  · rcases hy with hyA | hyB
+    · have hxy : dist x y ≤ ν := hν Y A hYA x hxA y hyA
+      have hdab : 0 ≤ dist a b := dist_nonneg
+      linarith
+    · have hxa : dist x a ≤ ν := hν Y A hYA x hxA a ha
+      have hby : dist b y ≤ ν := hν Y B hYB b hb y hyB
+      calc
+        dist x y ≤ dist x a + dist a b + dist b y := dist_triangle4 x a b y
+        _ ≤ ν + dist a b + ν := by gcongr
+        _ = 2 * ν + dist a b := by ring
+  · rcases hy with hyA | hyB
+    · have hxb : dist x b ≤ ν := hν Y B hYB x hxB b hb
+      have hay : dist a y ≤ ν := hν Y A hYA a ha y hyA
+      calc
+        dist x y ≤ dist x b + dist b a + dist a y := dist_triangle4 x b a y
+        _ ≤ ν + dist b a + ν := by gcongr
+        _ = 2 * ν + dist a b := by rw [dist_comm b a]; ring
+    · have hxy : dist x y ≤ ν := hν Y B hYB x hxB y hyB
+      have hdab : 0 ≤ dist a b := dist_nonneg
+      linarith
+
 /-- Projection-diameter upper bounds are exactly equivariant under left
 translation of all three coset vertices. -/
 theorem approxCosetProjectionPairDiameterLE_smul_iff
