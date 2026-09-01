@@ -172,9 +172,9 @@ def TorsionFreeHullCanonicalQuotientStatement : Prop :=
     ∀ (A : HullGeneratingSet G) (N : Subgroup G),
       Suitable A.alphabet N →
         ∀ {k : ℕ} (S : Fin k → Subgroup G),
-          (∀ j : Fin k, Suitable A.alphabet (S j)) → ∀ R : ℕ,
+          (∀ j : Fin k, Suitable A.alphabet (S j)) → ∀ (t : G) (R : ℕ),
             ∃ (D : AuxiliaryPeripheralFamily A N S)
-              (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+              (eps rho : ℕ) (mu : ℝ), t⁻¹ ∈ D.rel.base ∧ 0 < mu ∧
                 ∀ (W : Set
                     (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
                   (v : List
@@ -193,12 +193,13 @@ theorem torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
     (h44 : HullLemma44CanonicalQuotientStatement.{u})
     (h49 : HullLemma49KernelPowerStatement.{u, 0}) :
     TorsionFreeHullCanonicalQuotientStatement.{u} := by
-  intro G _ hG A N hN k S hS R
-  obtain ⟨D⟩ := hselect A S hN hS
+  intro G _ hG A N hN k S hS t R
+  obtain ⟨D₀⟩ := hselect A S hN hS
+  let D := D₀.adjoinPair t
   obtain ⟨eps44, rho44, mu44, hmu44, hgood44⟩ := h44 D R
   obtain ⟨eps49, rho49, mu49, hmu49, hgood49⟩ := h49 D.rel D.embedded
   refine ⟨D, max eps44 eps49, max rho44 rho49, min mu44 mu49,
-    lt_min hmu44 hmu49, ?_⟩
+    D₀.mem_base_adjoinPair t, lt_min hmu44 hmu49, ?_⟩
   intro W v hv hsc
   let V := RelWord.symmetrized v
   let K : Subgroup G :=

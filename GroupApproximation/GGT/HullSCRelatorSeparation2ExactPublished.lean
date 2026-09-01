@@ -922,9 +922,13 @@ The exponent list is selected only after fixing every geometric constant and
 the final length.  Its exact count gives the `(4,1)` quasi-geodesic clause;
 the fixed-design same-word and prime-piece theorems give the two published
 piece clauses with the same strict real threshold. -/
-theorem hullRelatorStatement₂OfBaseLetterPublished_exact :
-    HullRelatorStatement₂OfBaseLetterPublished.{u} := by
-  intro G _ A N E hN t ht eps rho mu hmu
+theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
+    (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N) (t : G)
+    (ht : t⁻¹ ∈ E.rel.base) (eps rho : ℕ) (mu : ℝ) (hmu : 0 < mu) :
+    ∃ u ∈ N, ∃ R : List (GGT.RelLetter G Bool),
+      GGT.RelLetter.listVal R = t⁻¹ * u ∧
+        RelWord.IsLemma49Input E.rel (RelWord.symmetrized R) eps mu rho ∧
+          ∀ x, GGT.RelLetter.base x ∈ R → x = t⁻¹ := by
   let p : List G := [t⁻¹]
   let cw := max 1 (eps + 2)
   let sep := blockSeparation p cw eps
@@ -1087,13 +1091,30 @@ theorem hullRelatorStatement₂OfBaseLetterPublished_exact :
     rw [ite_lox_eq E b]
     exact E.lox_mem b
   refine ⟨GGT.RelLetter.listVal
-      (blockWord (E.lox false) (E.lox true) false ms), humem,
-    RelWord.symmetrized R, ⟨R, RelWord.self_mem_symmetrized R, ?_⟩, ?_⟩
+      (blockWord (E.lox false) (E.lox true) false ms), humem, R, ?_, ?_, ?_⟩
   · dsimp only [R, p]
     rw [listVal_relatorWord₂]
     simp
   · exact RelWord.isLemma49Input_symmetrized_of E.rel R eps mu rho hsc hqg
       hpublished hprime
+  · intro x hx
+    dsimp only [R, p] at hx
+    rcases mem_relatorWord₂ hx with ⟨g, hg, hgx⟩ | ⟨b, m, hm, hmx⟩
+    · have hgt : g = t⁻¹ := by simpa only [List.mem_singleton] using hg
+      have hxg : x = g := congrArg GGT.RelLetter.val hgx
+      exact hxg.trans hgt
+    · cases hmx
+
+/-- **Hull's published one-relator input from the exact finite-avoidance
+design**, packaged in the historical Bool-indexed statement. -/
+theorem hullRelatorStatement₂OfBaseLetterPublished_exact :
+    HullRelatorStatement₂OfBaseLetterPublished.{u} := by
+  intro G _ A N E hN t ht eps rho mu hmu
+  obtain ⟨u, hu, R, hval, hsc, _⟩ :=
+    exists_hullRelatorWord₂OfBaseLetterPublished_exact E hN t ht
+      eps rho mu hmu
+  exact ⟨u, hu, RelWord.symmetrized R,
+    ⟨R, RelWord.self_mem_symmetrized R, hval⟩, hsc⟩
 
 end PublishedEndpoint
 
