@@ -686,6 +686,131 @@ theorem componentIndex_cyclicPeripheralPowerWord {k n i q : ℕ}
   exact hg.1.symm
 
 omit [Group G] in
+/-- At a position of the reversed cyclic word, the peripheral index is the
+index counted backwards from the end of the original word. -/
+theorem getElem?_rev_cyclicPeripheralPowerWord {k n j : ℕ}
+    (a : Fin (k + 1) → G)
+    (hj : j < (revWord (cyclicPeripheralPowerWord a n)).length) :
+    (revWord (cyclicPeripheralPowerWord a n))[j]? =
+      some (RelLetter.comp
+        ⟨((cyclicPeripheralPowerWord a n).length - 1 - j) % (k + 1),
+          Nat.mod_lt _ (Nat.succ_pos k)⟩
+        (a ⟨((cyclicPeripheralPowerWord a n).length - 1 - j) % (k + 1),
+          Nat.mod_lt _ (Nat.succ_pos k)⟩)⁻¹) := by
+  have hr : (cyclicPeripheralPowerWord a n).length - 1 - j <
+      (cyclicPeripheralPowerWord a n).length := by
+    rw [length_revWord] at hj
+    omega
+  have hrev := getElem?_revWord_at (cyclicPeripheralPowerWord a n) hj
+  have horig := getElem?_cyclicPeripheralPowerWord a hr
+  rw [List.getElem?_eq_getElem hr] at horig
+  have helem := Option.some.inj horig
+  rw [hrev, helem]
+  rfl
+
+omit [Group G] in
+/-- Every component of the reversed cyclic word carries the peripheral index
+at its start, counted backwards from the original endpoint. -/
+theorem componentIndex_rev_cyclicPeripheralPowerWord {k n i q : ℕ}
+    (a : Fin (k + 1) → G) {lam : Fin (k + 1)}
+    (hcomp : IsComp lam (revWord (cyclicPeripheralPowerWord a n)) i q) :
+    lam =
+      ⟨((cyclicPeripheralPowerWord a n).length - 1 - i) % (k + 1),
+        Nat.mod_lt _ (Nat.succ_pos k)⟩ := by
+  obtain ⟨hiq, hq, hall, -, -⟩ := hcomp
+  have hi : i < (revWord (cyclicPeripheralPowerWord a n)).length :=
+    lt_of_lt_of_le hiq hq
+  have hof :
+      ((revWord (cyclicPeripheralPowerWord a n))[i]'hi).IsCompOf lam :=
+    hall i le_rfl hiq hi
+  obtain ⟨g, hg⟩ := getElem?_comp_of_isCompOf hi hof
+  have hexact := getElem?_rev_cyclicPeripheralPowerWord a hi
+  rw [hexact] at hg
+  simp only [Option.some.injEq, RelLetter.comp.injEq] at hg
+  exact hg.1.symm
+
+omit [Group G] in
+/-- The reversed all-peripheral word still has no base letters, so the
+separator between consecutive DGO components is trivial. -/
+theorem eq_of_baseEdgeOrTrivial_rev_cyclicPeripheralPowerWord
+    {k n q i : ℕ} (a : Fin (k + 1) → G)
+    (h : BaseEdgeOrTrivial (revWord (cyclicPeripheralPowerWord a n)) q i) :
+    i = q := by
+  rcases h with h | ⟨x, hi, hx⟩
+  · exact h
+  · have hq : q < (revWord (cyclicPeripheralPowerWord a n)).length :=
+      lt_length_of_getElem?_eq_some hx
+    have hexact := getElem?_rev_cyclicPeripheralPowerWord a hq
+    rw [hexact] at hx
+    simp at hx
+
+omit [Group G] in
+/-- Subtracting one before taking a positive modulus is cyclic predecessor. -/
+theorem mod_pred_eq {j m : ℕ} (hj : 0 < j) (hm : 0 < m) :
+    (j - 1) % m = (j % m + m - 1) % m := by
+  have hrlt : j % m < m := Nat.mod_lt _ hm
+  have hdiv := Nat.div_add_mod j m
+  by_cases hr : j % m = 0
+  · have hqpos : 0 < j / m := by
+      by_contra hq
+      have hqzero : j / m = 0 := by omega
+      rw [hqzero, hr] at hdiv
+      simp at hdiv
+      omega
+    have hleft : j - 1 = (j / m - 1) * m + (m - 1) := by
+      omega
+    rw [hleft, Nat.add_mod, Nat.mul_mod, Nat.zero_mod, zero_add,
+      Nat.mod_eq_of_lt (by omega : m - 1 < m), hr]
+    exact Nat.mod_eq_of_lt (by omega : m - 1 < m)
+  · have hrpos : 0 < j % m := Nat.pos_of_ne_zero hr
+    have hleft : j - 1 = m * (j / m) + (j % m - 1) := by
+      omega
+    have hright : j % m + m - 1 = (j % m - 1) + m := by omega
+    rw [hleft, Nat.add_mod, Nat.mul_mod, Nat.zero_mod, zero_add,
+      Nat.mod_eq_of_lt (by omega : j % m - 1 < m), hright,
+      Nat.add_mod_right, Nat.mod_eq_of_lt (by omega : j % m - 1 < m)]
+
+/-- Consecutive components on the reversed cyclic word retreat through the
+peripheral factors in cyclic order. -/
+theorem cyclicPred_componentIndex_of_consecutiveMatches_rev
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n K : ℕ)
+    (ip kp : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcomp : ∀ t : ℕ, t < K →
+      IsComp (lam t) (revWord (cyclicPeripheralPowerWord a n))
+        (ip t) (kp t))
+    (hstep : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial (revWord (cyclicPeripheralPowerWord a n))
+        (kp t) (ip (t + 1))) :
+    ∀ t : ℕ, t + 1 < K → lam (t + 1) = cyclicPred (lam t) := by
+  intro t ht
+  have hW3 : WWord.IsWThree D
+      (revWord (cyclicPeripheralPowerWord a n)) :=
+    isWThree_revWord D (isWThree_blockWord_finPeripheralWord D hk a n)
+  have hkp : kp t = ip t + 1 :=
+    isComp_succ_of_isWThree hW3 (hcomp t (by omega))
+  have hip : ip (t + 1) = kp t :=
+    eq_of_baseEdgeOrTrivial_rev_cyclicPeripheralPowerWord a (hstep t ht)
+  have hlam := componentIndex_rev_cyclicPeripheralPowerWord a
+    (hcomp t (by omega))
+  have hlam₁ := componentIndex_rev_cyclicPeripheralPowerWord a
+    (hcomp (t + 1) ht)
+  rw [hlam, hlam₁]
+  apply Fin.ext
+  simp only [cyclicPred, Fin.val_mk]
+  have hi₁ : ip t + 1 < (revWord (cyclicPeripheralPowerWord a n)).length := by
+    have hc := hcomp (t + 1) ht
+    rw [hip, hkp] at hc
+    exact lt_of_lt_of_le hc.1 hc.2.1
+  have hjpos : 0 < (cyclicPeripheralPowerWord a n).length - 1 - ip t := by
+    rw [length_revWord] at hi₁
+    omega
+  rw [hip, hkp]
+  have hsub : (cyclicPeripheralPowerWord a n).length - 1 - (ip t + 1) =
+      ((cyclicPeripheralPowerWord a n).length - 1 - ip t) - 1 := by omega
+  rw [hsub, mod_pred_eq hjpos (Nat.succ_pos k)]
+
+omit [Group G] in
 /-- Since the cyclic peripheral word contains no base letters, the separator
 between two consecutive distinguished components supplied by DGO 4.21(b)
 cannot be an `X`-edge: it is a trivial path. -/

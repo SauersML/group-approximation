@@ -37,8 +37,8 @@ structure Lemma44CellContiguity
   second_decomposition : RelWord.revInv C₂.relator = secondArc ++ secondRemainder
   leftConnector : G
   rightConnector : G
-  leftConnector_short : wordNorm E.base leftConnector ≤ eps
-  rightConnector_short : wordNorm E.base rightConnector ≤ eps
+  leftConnector_short : wordNorm E.alphabet.carrier leftConnector ≤ eps
+  rightConnector_short : wordNorm E.alphabet.carrier rightConnector ≤ eps
   arcs_value : GGT.RelLetter.listVal secondArc =
     leftConnector * GGT.RelLetter.listVal firstArc * rightConnector
   leftConnector_stem : leftConnector =

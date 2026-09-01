@@ -24,8 +24,8 @@ def RelWord.IsPublishedPiece {G : Type u} [Group G] {Λ : Type*}
     (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧ (∃ s, v = u ++ s) ∧
     ∃ v' ∈ W, ∃ s', v' = u' ++ s' ∧
-      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
-        WordMetric.wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, WordMetric.wordNorm D.alphabet.carrier y ≤ eps ∧
+        WordMetric.wordNorm D.alphabet.carrier z ≤ eps ∧
         GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
         GGT.RelLetter.listVal v' ≠
           y * GGT.RelLetter.listVal v * y⁻¹
@@ -36,8 +36,8 @@ def RelWord.IsPrimePiece {G : Type u} [Group G] {Λ : Type*}
     (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧
     ∃ middle tail, v = u ++ middle ++ u' ++ tail ∧
-      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
-        WordMetric.wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, WordMetric.wordNorm D.alphabet.carrier y ≤ eps ∧
+        WordMetric.wordNorm D.alphabet.carrier z ≤ eps ∧
         (GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∨
           GGT.RelLetter.listVal u' = y * (GGT.RelLetter.listVal u)⁻¹ * z)
 
@@ -48,8 +48,8 @@ def RelWord.IsSameWordPublishedPiece {G : Type u} [Group G] {Λ : Type*}
     (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
     (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧ (∃ s, v = u ++ s) ∧ (∃ s', v = u' ++ s') ∧
-    ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
-      WordMetric.wordNorm D.base z ≤ eps ∧
+    ∃ y z : G, WordMetric.wordNorm D.alphabet.carrier y ≤ eps ∧
+      WordMetric.wordNorm D.alphabet.carrier z ≤ eps ∧
       GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
       GGT.RelLetter.listVal v ≠
         y * GGT.RelLetter.listVal v * y⁻¹
@@ -76,29 +76,28 @@ theorem RelWord.IsPublishedPiece.toIsPiece_or_sameWord
 
 /-- In the distinct-word branch, a published piece gives old-style pieces in
 both directions.  The reverse direction uses the inverse short connectors;
-symmetry of the base preserves their word norms, and the published exclusion
+symmetry of the relative alphabet preserves their word norms, and the published exclusion
 is invariant under reversing the conjugacy equation. -/
 theorem RelWord.IsPublishedPiece.isPiece_pair_of_distinct
     {G : Type u} [Group G] {Λ : Type*}
     {D : GGT.RelGenSet G Λ} {W : Set (List (GGT.RelLetter G Λ))}
     {eps : ℕ} {u u' v v' : List (GGT.RelLetter G Λ)}
-    (hbase : IsSymmetricGeneratingSet D.base)
     (hv : v ∈ W) (hpre : ∃ s, v = u ++ s)
     (hv' : v' ∈ W) (hpre' : ∃ s', v' = u' ++ s')
     (hne : v' ≠ v) {y z : G}
-    (hy : WordMetric.wordNorm D.base y ≤ eps)
-    (hz : WordMetric.wordNorm D.base z ≤ eps)
+    (hy : WordMetric.wordNorm D.alphabet.carrier y ≤ eps)
+    (hz : WordMetric.wordNorm D.alphabet.carrier z ≤ eps)
     (huv : GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z)
     (hneq : GGT.RelLetter.listVal v' ≠
       y * GGT.RelLetter.listVal v * y⁻¹) :
     RelWord.IsPiece D W eps u v ∧ RelWord.IsPiece D W eps u' v' := by
   obtain ⟨s, hs⟩ := hpre
   obtain ⟨s', hs'⟩ := hpre'
-  have hyinv : WordMetric.wordNorm D.base y⁻¹ ≤ eps := by
-    rw [WordMetric.wordNorm_inv hbase y]
+  have hyinv : WordMetric.wordNorm D.alphabet.carrier y⁻¹ ≤ eps := by
+    rw [WordMetric.wordNorm_inv D.alphabet.symmetricGenerating y]
     exact hy
-  have hzinv : WordMetric.wordNorm D.base z⁻¹ ≤ eps := by
-    rw [WordMetric.wordNorm_inv hbase z]
+  have hzinv : WordMetric.wordNorm D.alphabet.carrier z⁻¹ ≤ eps := by
+    rw [WordMetric.wordNorm_inv D.alphabet.symmetricGenerating z]
     exact hz
   have huv' : GGT.RelLetter.listVal u =
       y⁻¹ * GGT.RelLetter.listVal u' * z⁻¹ := by
@@ -122,7 +121,6 @@ theorem RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord
     {G : Type u} [Group G] {Λ : Type*}
     {D : GGT.RelGenSet G Λ} {r : List (GGT.RelLetter G Λ)}
     {eps rho : ℕ} {mu : ℝ}
-    (hbase : IsSymmetricGeneratingSet D.base)
     (hsc : RelWord.IsSmallCancellation D (RelWord.symmetrized r) eps mu rho)
     (hsame : ∀ u u' v,
       RelWord.IsSameWordPublishedPiece D (RelWord.symmetrized r) eps u u' v →
@@ -140,7 +138,7 @@ theorem RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord
     exact hsame u u' v ⟨hv, hpre, ⟨s', hvpreSame⟩,
       y, z, hy, hz, huv, hneqSame⟩
   · obtain ⟨hu, hu'⟩ :=
-      RelWord.IsPublishedPiece.isPiece_pair_of_distinct hbase hv hpre hv'
+      RelWord.IsPublishedPiece.isPiece_pair_of_distinct hv hpre hv'
         ⟨s', hv'pre⟩ hne hy hz huv hneq
     have hlu : (u.length : ℝ) < mu * v.length := hsc.pieces_small u v hu
     have hlu' : (u'.length : ℝ) < mu * v.length := by

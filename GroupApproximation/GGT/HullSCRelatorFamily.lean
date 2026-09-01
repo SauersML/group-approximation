@@ -305,7 +305,8 @@ theorem pieces_small_of_longMatch {D : GGT.RelGenSet G Λ}
     {v : List (GGT.RelLetter G Λ)} {eps : ℕ} {mu : ℝ} {B : ℕ}
     (hmatch : ∀ w w' u u' : List (GGT.RelLetter G Λ), Sym v w → Sym v w' →
       (∃ s, w = u ++ s) → (∃ s', w' = u' ++ s') → B < u.length →
-      ∀ y z : G, wordNorm D.base y ≤ eps → wordNorm D.base z ≤ eps →
+      ∀ y z : G, wordNorm D.alphabet.carrier y ≤ eps →
+        wordNorm D.alphabet.carrier z ≤ eps →
         GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z →
           GGT.RelLetter.listVal w'
             = y * GGT.RelLetter.listVal w * y⁻¹)
@@ -409,8 +410,8 @@ def RelatorChoice : Prop :=
             ∀ w w' u₀ u₀' : List (GGT.RelLetter G Unit),
               RelWord.Sym v w → RelWord.Sym v w' →
                 (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') → B < u₀.length →
-                  ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                    wordNorm E.rel.base z ≤ eps →
+                  ∀ y z : G, wordNorm E.rel.alphabet.carrier y ≤ eps →
+                    wordNorm E.rel.alphabet.carrier z ≤ eps →
                       GGT.RelLetter.listVal u₀'
                           = y * GGT.RelLetter.listVal u₀ * z →
                         GGT.RelLetter.listVal w'

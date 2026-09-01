@@ -4,6 +4,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyShortSide
 import GroupApproximation.GGT.HullSCRelatorSeparation2Cross
 import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
 import GroupApproximation.GGT.HullSCRelatorSeparation2Inputs
+import GroupApproximation.GGT.HullSCRelatorAdmissible
 
 /-!
 # The separation, composed
@@ -78,101 +79,6 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 
-/-! ## Admissible letters -/
-
-section Letters
-
-variable {G : Type u} [Group G] {Λ : Type v}
-
-/-- **Inverting a letter keeps it admissible**, for the inversion the formal
-inverse of a relator uses. -/
-theorem isLetter_relWordInv (D : GGT.RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {a : GGT.RelLetter G Λ}
-    (hlet : D.IsLetter a) : D.IsLetter (RelWord.inv a) := by
-  cases a with
-  | base x => exact hsymm x hlet
-  | comp lam h => exact inv_mem hlet
-
-/-- **A rotation of an admissible word is admissible.** -/
-theorem isAdmissible_rotate {D : GGT.RelGenSet G Λ}
-    {v : List (GGT.RelLetter G Λ)} (h : RelWord.IsAdmissible D v) (n : ℕ) :
-    RelWord.IsAdmissible D (v.rotate n) :=
-  fun a ha => h a (List.mem_rotate.mp ha)
-
-/-- **The formal inverse of an admissible word is admissible.** -/
-theorem isAdmissible_revInv {D : GGT.RelGenSet G Λ}
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {v : List (GGT.RelLetter G Λ)}
-    (h : RelWord.IsAdmissible D v) :
-    RelWord.IsAdmissible D (RelWord.revInv v) := by
-  intro a ha
-  rw [RelWord.revInv, List.mem_reverse, List.mem_map] at ha
-  obtain ⟨b, hb, rfl⟩ := ha
-  exact isLetter_relWordInv D hsymm (h b hb)
-
-/-- **Every member of the symmetrized closure of an admissible word is
-admissible.** -/
-theorem isAdmissible_sym {D : GGT.RelGenSet G Λ}
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {v w : List (GGT.RelLetter G Λ)}
-    (hw : RelWord.Sym v w) (h : RelWord.IsAdmissible D v) :
-    RelWord.IsAdmissible D w := by
-  induction hw with
-  | base => exact h
-  | rot n _hs ih => exact isAdmissible_rotate ih n
-  | inv _hs ih => exact isAdmissible_revInv hsymm ih
-
-/-- **The reversal of an admissible word is admissible**, for the reversal the
-four-gon's fourth side uses. -/
-theorem isAdmissible_revWord {D : GGT.RelGenSet G Λ}
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {v : List (GGT.RelLetter G Λ)}
-    (h : RelWord.IsAdmissible D v) :
-    RelWord.IsAdmissible D (GGT.OsinComponents.revWord v) := by
-  intro a ha
-  rw [GGT.OsinComponents.revWord, List.mem_reverse, List.mem_map] at ha
-  obtain ⟨b, hb, rfl⟩ := ha
-  exact GGT.OsinComponents.isLetter_invLetter D hsymm (h b hb)
-
-end Letters
-
-section RelatorLetters
-
-variable {G : Type u} [Group G]
-
-/-- **The run's letters are admissible**, being powers of elements of the two
-subgroups. -/
-theorem isLetter_of_mem_blockWord {D : GGT.RelGenSet G Bool} {a : Bool → G}
-    (ha : ∀ b : Bool, a b ∈ D.fam b) :
-    ∀ (s : Bool) (ms : List ℕ), ∀ x ∈ blockWord (a false) (a true) s ms,
-      D.IsLetter x := by
-  intro s ms
-  induction ms generalizing s with
-  | nil =>
-      intro x hx
-      rw [blockWord_nil] at hx
-      cases hx
-  | cons m t ih =>
-      intro x hx
-      rw [blockWord_cons, List.mem_cons] at hx
-      rcases hx with rfl | hx
-      · show (if s then a true else a false) ^ m ∈ D.fam s
-        rw [ite_apply_eq a s]
-        exact pow_mem (ha s) m
-      · exact ih (!s) x hx
-
-/-- **The relator is admissible.** -/
-theorem isAdmissible_relatorWord₂ {D : GGT.RelGenSet G Bool} {p : List G}
-    (hp : ∀ g ∈ p, g ∈ D.base) {a : Bool → G} (ha : ∀ b : Bool, a b ∈ D.fam b)
-    (ms : List ℕ) :
-    RelWord.IsAdmissible D (relatorWord₂ p (a false) (a true) ms) := by
-  intro x hx
-  rw [relatorWord₂, List.mem_append] at hx
-  rcases hx with hx | hx
-  · rw [List.mem_map] at hx
-    obtain ⟨g, hg, rfl⟩ := hx
-    exact hp g hg
-  · exact isLetter_of_mem_blockWord ha false ms x hx
-
-end RelatorLetters
-
 /-! ## The composition -/
 
 section Compose
@@ -220,8 +126,8 @@ theorem separationNe₂_clause_of_spelling_of_producer (E : HypEmbeddedCore₂ A
             RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
               w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
                 B < u₀.length →
-                  ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                    wordNorm E.rel.base z ≤ eps →
+                  ∀ y z : G, wordNorm E.rel.alphabet.carrier y ≤ eps →
+                    wordNorm E.rel.alphabet.carrier z ≤ eps →
                       GGT.RelLetter.listVal u₀'
                           = y * GGT.RelLetter.listVal u₀ * z →
                         GGT.RelLetter.listVal w'
@@ -262,9 +168,9 @@ theorem separationNe₂_clause_of_spelling_of_producer (E : HypEmbeddedCore₂ A
   · intro w w' u₀ u₀' hw hw' _hne hpre hpre' hBu y z hy hz hcl
     obtain ⟨sfx, hsfx⟩ := hpre
     obtain ⟨sfx', hsfx'⟩ := hpre'
-    obtain ⟨py, hpy0, hpylen, hpy, hpylet, hpyval, hpynorm⟩ :=
+    obtain ⟨py, hpy0, hpylen, hpylet, hpyval, hpynorm⟩ :=
       exists_side_spelling₂ E hN hy
-    obtain ⟨pz, hpz0, hpzlen, hpz, hpzlet, hpzval, _hpznorm⟩ :=
+    obtain ⟨pz, hpz0, hpzlen, hpzlet, hpzval, _hpznorm⟩ :=
       exists_side_spelling₂ E hN hz
     have hwadm : RelWord.IsAdmissible E.rel w := isAdmissible_sym hsymm hw hadm
     have hw'adm : RelWord.IsAdmissible E.rel w' :=

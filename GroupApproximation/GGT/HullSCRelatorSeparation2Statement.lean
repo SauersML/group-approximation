@@ -92,8 +92,8 @@ theorem hullRelatorStatement₂_of_separationNe₂
                   RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
                     w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
                       B < u₀.length →
-                        ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                          wordNorm E.rel.base z ≤ eps →
+                        ∀ y z : G, wordNorm E.rel.alphabet.carrier y ≤ eps →
+                          wordNorm E.rel.alphabet.carrier z ≤ eps →
                             GGT.RelLetter.listVal u₀'
                                 = y * GGT.RelLetter.listVal u₀ * z →
                               GGT.RelLetter.listVal w'
@@ -183,8 +183,8 @@ theorem hullRelatorStatement₂OfBaseLetter_of_separationNe₂
                     RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
                       w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
                         B < u₀.length →
-                          ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                            wordNorm E.rel.base z ≤ eps →
+                          ∀ y z : G, wordNorm E.rel.alphabet.carrier y ≤ eps →
+                            wordNorm E.rel.alphabet.carrier z ≤ eps →
                               GGT.RelLetter.listVal u₀'
                                   = y * GGT.RelLetter.listVal u₀ * z →
                                 GGT.RelLetter.listVal w'

@@ -6,34 +6,91 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 189 |
-| `definition` | 43 |
-| `structural` | 31 |
+| `formalized` | 170 |
+| `unassigned` | 55 |
+| `definition` | 40 |
+| `structural` | 29 |
 | `attribution` | 14 |
 | `provenance` | 1 |
-| **total** | **278** |
+| **total** | **309** |
 
-Completely formalized or definitional: **232/278** (83.5%).
+Completely formalized or definitional: **210/309** (68.0%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
-Every sentence carries a declaration, a ledger row, or a reason no declaration applies.
+These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
+
+* **`unassigned`**, line 624 --- So a matrix $A$ over $R$ can be copied into one of the two halves, with the identity on the other half, and this compression is an injective multiplicative map that fixes the identity.
+* **`unassigned`**, line 624 --- Its restriction to the unit group is an injective group homomorphism.
+* **`unassigned`**, line 647 --- On the other hand, $\Psi(0)=qI_3\ne0$, so $\Psi$ is not additive and is not a ring endomorphism.
+* **`unassigned`**, line 647 --- Its multiplicativity and preservation of the identity show that it restricts to a group homomorphism $\GL_3(R)\to\GL_3(R)$, and the recovery identity makes that homomorphism injective.
+* **`unassigned`**, line 647 --- Put
+* **`unassigned`**, line 836 --- Write an element of $N\rtimes_\beta\mathbb Z$ as $(x,k)$ and call $k$ its height.
+* **`unassigned`**, line 836 --- Fix a finite set $F\subseteq G$ and a long cyclic level window $I_L=\{0,\ldots,L-1\}$.
+* **`unassigned`**, line 836 --- Acting by the elements of $F$ on these levels uses only finitely many normal coordinates.
+* **`unassigned`**, line 836 --- They generate a finitely generated subgroup $N_{F,L}\leq N$, hence a residually finite group.
+* **`unassigned`**, line 836 --- Choose one finite quotient
+* **`unassigned`**, line 845 --- that separates every nonidentity normal coordinate occurring in the window.
+* **`unassigned`**, line 845 --- The resulting finite coset window $S_{F,L}$ is indexed by a cyclic level and a point of $Q_{F,L}$.
+* **`unassigned`**, line 845 --- If $\lambda_{F,L}$ is the corresponding quasi-regular representation and $P_{F,L}$ is the projection onto $\ell^2(S_{F,L})$, put
+* **`unassigned`**, line 854 --- This is a unital completely positive contraction because it is a compression of a genuine unitary representation of the whole group $G$.
+* **`unassigned`**, line 857 --- Let $u_g$ denote the canonical unitary of $g$.
+* **`unassigned`**, line 857 --- For $g,h\in F$, the two operators $\phi_{F,L}(u_{gh})$ and $\phi_{F,L}(u_g)\phi_{F,L}(u_h)$ agree on the basis vector indexed by $s\in S_{F,L}$ whenever $h\cdot s$ remains in the window.
+* **`unassigned`**, line 857 --- The escaping vectors lie over the boundary levels
+* **`unassigned`**, line 866 --- The quotient coordinate contributes the same multiplicity above every level, and therefore
+* **`unassigned`**, line 873 --- For fixed $h$ the right-hand side tends to zero as $L\to\infty$.
+* **`unassigned`**, line 875 --- The normalized trace of $\phi_{F,L}(u_g)$ counts the points of the finite window fixed by $g$.
+* **`unassigned`**, line 875 --- If $k(g)\ne0$, choose $L$ larger than the heights in $F$, so the cyclic coordinate has no fixed point.
+* **`unassigned`**, line 875 --- If $k(g)=0$ and $g\ne1$, the choice of $\theta_{F,L}$ makes its visible normal coordinate nontrivial, again leaving no fixed point.
+* **`unassigned`**, line 875 --- Thus
+* **`unassigned`**, line 886 --- Take an exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ and a diagonal choice $L_n\to\infty$.
+* **`unassigned`**, line 886 --- The maps $\phi_{F_n,L_n}$ are asymptotically multiplicative in normalized Hilbert--Schmidt norm and their traces converge to $\tau_G$ on every canonical unitary.
+* **`unassigned`**, line 886 --- The linear span of these unitaries is dense in $C^*_{\max}(G)$; contractivity extends both limits to the whole algebra, which is precisely amenability of $\tau_G$.
+* **`unassigned`**, line 894 --- The next construction works for any residually finite Kazhdan group with a proper finite-index self-embedding.
+* **`unassigned`**, line 894 --- Let $\Gamma$ be such a countable group, let $\alpha\colon\Gamma\to\Gamma$ be injective with proper finite-index image, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
+* **`unassigned`**, line 894 --- Put
+* **`unassigned`**, line 904 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$.
+* **`unassigned`**, line 904 --- Put $X=V/\Gamma$.
+* **`unassigned`**, line 932 --- It centralizes the level-zero copy of $\Gamma$.
+* **`unassigned`**, line 932 --- The two cosets supporting $tct^{-1}$ and $a(tct^{-1})a^{-1}$ are distinct precisely because $a\notin\alpha(\Gamma)$, and therefore
+* **`unassigned`**, line 939 --- Here and below the copy of $\Gamma$ in $W$ is understood.
+* **`unassigned`**, line 939 --- Set
+* **`unassigned`**, line 943 --- Both $x$ and $y$ are involutions, and hence
+* **`unassigned`**, line 949 --- Since $t\in\operatorname{Comp}_W(\Gamma)$, $c\in C_W(\Gamma)$ and $a\in\Gamma$, the element $d=[tct^{-1},a]$ is one of the generators of $\mathfrak D_W(\Gamma)$.
+* **`unassigned`**, line 949 --- Thus
+* **`unassigned`**, line 955 --- The subgroup $\langle\varepsilon\rangle$ is finite, central, normal and nontrivial, so it has property~\textup{(T)}.
+* **`unassigned`**, line 955 --- The one-sided compression criterion therefore makes every homomorphism from $W$ to an MF group kill $\varepsilon$.
+* **`unassigned`**, line 955 --- In particular, $W$ is not MF.
+* **`unassigned`**, line 966 --- Every finite subset of $K$ involves finitely many Clifford generators and lies over a single telescope level $\Gamma_n\cong\Gamma$.
+* **`unassigned`**, line 966 --- The $\Gamma_n$-orbits of these generators are finite because $\alpha(\Gamma)$ has finite index.
+* **`unassigned`**, line 976 --- This semidirect product is residually finite because its kernel is finite, its quotient $\Gamma_n$ is residually finite, and the action has finite image.
+* **`unassigned`**, line 976 --- Proposition~\ref{prop:locally-rf-by-z-trace} now makes the canonical trace amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it nonquasidiagonal.
+* **`unassigned`**, line 985 --- For a concrete instance, use the following six integral affine matrices:
+* **`unassigned`**, line 1001 --- They generate
+* **`unassigned`**, line 1010 --- It is residually finite and has property~\textup{(T)}.
+* **`unassigned`**, line 1010 --- The first assertion follows directly from reduction modulo integers separating distinct integral matrices.
+* **`unassigned`**, line 1010 --- For the second, the pair $(\bar\Gamma,\mathbb Z^3)$ has relative property~\textup{(T)} and the quotient $\mathrm{SL}_3(\mathbb Z)$ has property~\textup{(T)}; the standard extension criterion therefore gives property~\textup{(T)} for $\bar\Gamma$.
+* **`unassigned`**, line 1019 --- Let
+* **`unassigned`**, line 1024 --- Equivalently, $\alpha(v,A)=(2v,A)$.
+* **`unassigned`**, line 1024 --- This is injective and its image consists exactly of the affine matrices with even translation coordinate, so $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.
+* **`unassigned`**, line 1024 --- If $a$ is translation by the first standard basis vector, then $a\notin\alpha(\bar\Gamma)$; equivalently, $D^{-1}aD$ has a $1/2$ entry.
+* **`unassigned`**, line 1024 --- Hence the preceding construction applies to this $\bar\Gamma$, $\alpha$ and $a$.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 8 | 0 |
+| (front matter) | 6 | 0 |
 | Introduction | 35 | 0 |
 | Relation to prior work | 14 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 46 | 0 |
 | From Hilbert--Schmidt to operator norm | 27 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 15 | 0 |
-| The binary Leavitt group | 48 | 0 |
-| An amenable nonquasidiagonal trace | 47 | 0 |
+| The binary Leavitt group | 50 | 5 |
+| An amenable nonquasidiagonal trace | 78 | 50 |
 | A torsion-free finitely presented example | 31 | 0 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 1 | 0 |

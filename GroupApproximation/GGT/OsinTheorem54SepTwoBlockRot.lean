@@ -90,7 +90,7 @@ different `H_λ` needs them compared against the same radius.
 The deep span stays between the two gaps and is never folded in, being unbounded
 while they are not; `block_span_conj` is what puts it there, and it is used only
 in the corollary. -/
-theorem two_block_conj_named_at (D : RelGenSet G Λ)
+theorem two_block_conj_named_of_polygonComponents_at (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ)
     (hcut : ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
@@ -105,17 +105,25 @@ theorem two_block_conj_named_at (D : RelGenSet G Λ)
         RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
             * RelLetter.listVal r →
         (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
-        (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
-        (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
-        0 < p.length →
         (∀ t : ℕ, t < 4 → ∀ x y : ℕ, fourGonCut p q r s t ≤ x → x ≤ y →
           y ≤ fourGonCut p q r s (t + 1) →
           ((y - x : ℕ) : ℝ) / mu - b
             ≤ ((wordDist D.alphabet.carrier
                 (vertex (1 : G) (p ++ q ++ r ++ revWord s) x)
                 (vertex (1 : G) (p ++ q ++ r ++ revWord s) y) : ℕ) : ℝ)) →
-        IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
-        IsComp lam s j l → (l < s.length ∨ 0 < r.length) →
+        IsComp lam q i k → IsComp lam s j l →
+        IsComp lam (p ++ q ++ r ++ revWord s)
+          (p.length + i) (p.length + k) →
+        IsComp lam (p ++ q ++ r ++ revWord s)
+          (p.length + q.length + r.length + (s.length - l))
+          (p.length + q.length + r.length + (s.length - j)) →
+        (∀ h0 : 0 < (p ++ q ++ r ++ revWord s).length,
+          p.length + q.length + r.length + (s.length - j) =
+              (p ++ q ++ r ++ revWord s).length →
+          ¬ ((p ++ q ++ r ++ revWord s)[0]'h0).IsCompOf lam) →
+        p.length + q.length <
+          p.length + q.length + r.length + (s.length - l) →
+        0 < p.length + i →
         Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
             (p.length + q.length + r.length + (s.length - l)) →
         (∀ t : ℕ, p.length + i < t →
@@ -136,8 +144,8 @@ theorem two_block_conj_named_at (D : RelGenSet G Λ)
             ∈ D.relBall lam (C * 4)) := by
   obtain ⟨C, hCpos, hC⟩ := hcut
   refine ⟨C, hCpos, ?_⟩
-  intro lam p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq
-    hconn hinner hother
+  intro lam p q r s i k j l hclose hlet hqg hcompq hcomps hbridgeq hbridges
+    hwrap hafter hbefore hconn hinner hother
   -- the polygon, and the same polygon read from the corner between `q` and `r`
   have hpoly := isQuasiGeodesicPolygon_fourGon p q r s D hlet hclose hqg
   have hpoly₂ := isQuasiGeodesicPolygon_fourGon_rot p q r s D hlet hclose hqg
@@ -150,16 +158,9 @@ theorem two_block_conj_named_at (D : RelGenSet G Λ)
   have hjl : j < l := hcomps.1
   have hls : l ≤ s.length := hcomps.2.1
   have hcW : p.length + q.length ≤ (p ++ q ++ r ++ revWord s).length := by omega
-  -- the two components, carried into the rotated word
-  have hbridgeq := isComp_fourGon_of_isComp_side p q r s lam hp hr hcompq hkq
-  have hbridges := isComp_fourGon_of_isComp_opposite p q r s lam hr hcomps hlq
-  have hwrap : ∀ h0 : 0 < (p ++ q ++ r ++ revWord s).length,
-      p.length + q.length + r.length + (s.length - j)
-        = (p ++ q ++ r ++ revWord s).length →
-      ¬ ((p ++ q ++ r ++ revWord s)[0]'h0).IsCompOf lam :=
-    fun h0 _ => notIsCompOf_fourGon_zero p q r s lam hp hp0 h0
-  have hrotS := isComp_rotWord_after lam hcW hbridges (by omega) hwrap
-  have hrotQ := isComp_rotWord_before lam hcW hbridgeq (by omega) (by omega)
+  -- the two polygon components, carried into the rotated word
+  have hrotS := isComp_rotWord_after lam hcW hbridges hafter hwrap
+  have hrotQ := isComp_rotWord_before lam hcW hbridgeq (by omega) hbefore
   -- the three vertex identifications
   have hvSw : vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
         (p.length + q.length))
@@ -277,6 +278,70 @@ theorem two_block_conj_named_at (D : RelGenSet G Λ)
   have hflip2 := connector_inv_mem_relBall D lam hsymm happ2
   rw [hvE, hvQ] at hflip2
   exact ⟨hflip2, hflip1⟩
+
+/-- The base-sided specialization used by the original single-component
+chain.  The geometric core above only needs the two components already
+embedded in the polygon and the one wrap exclusion; base spelling is one way
+to discharge exactly those three obligations. -/
+theorem two_block_conj_named_at (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ)
+    (hcut : ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v w →
+        ∀ (lam : Λ) (i k i' k' : ℕ), IsComp lam w i k → IsComp lam w i' k' →
+          i < i' → Connected D.fam lam v w i i' →
+          (∀ t : ℕ, i < t → t < i' → IsCompStart lam w t →
+            ¬ Connected D.fam lam v w i t) →
+          (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n)) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (lam : Λ) (p q r s : List (RelLetter G Λ)) (i k j l : ℕ),
+        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
+            * RelLetter.listVal r →
+        (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
+        (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
+        (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
+        0 < p.length →
+        (∀ t : ℕ, t < 4 → ∀ x y : ℕ, fourGonCut p q r s t ≤ x → x ≤ y →
+          y ≤ fourGonCut p q r s (t + 1) →
+          ((y - x : ℕ) : ℝ) / mu - b
+            ≤ ((wordDist D.alphabet.carrier
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) x)
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) y) : ℕ) : ℝ)) →
+        IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        IsComp lam s j l → (l < s.length ∨ 0 < r.length) →
+        Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
+            (p.length + q.length + r.length + (s.length - l)) →
+        (∀ t : ℕ, p.length + i < t →
+          t < p.length + q.length + r.length + (s.length - l) →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) t →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + i) t) →
+        (∀ o : ℕ,
+          (p.length + q.length + r.length + (s.length - l) < o
+              ∧ o < (p ++ q ++ r ++ revWord s).length)
+            ∨ o < p.length + i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) o →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + q.length + r.length + (s.length - l)) o) →
+        ((vertex (1 : G) s j)⁻¹ * (RelLetter.listVal p * vertex (1 : G) q i)
+            ∈ D.relBall lam (C * 4)) ∧
+          ((RelLetter.listVal p * vertex (1 : G) q k)⁻¹ * vertex (1 : G) s l
+            ∈ D.relBall lam (C * 4)) := by
+  obtain ⟨C, hC, hcore⟩ :=
+    two_block_conj_named_of_polygonComponents_at D hsymm mu b hcut
+  refine ⟨C, hC, ?_⟩
+  intro lam p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq
+    hconn hinner hother
+  have hbridgeq := isComp_fourGon_of_isComp_side p q r s lam hp hr hcompq hkq
+  have hbridges := isComp_fourGon_of_isComp_opposite p q r s lam hr hcomps hlq
+  have hwrap : ∀ h0 : 0 < (p ++ q ++ r ++ revWord s).length,
+      p.length + q.length + r.length + (s.length - j) =
+          (p ++ q ++ r ++ revWord s).length →
+      ¬ ((p ++ q ++ r ++ revWord s)[0]'h0).IsCompOf lam :=
+    fun h0 _ => notIsCompOf_fourGon_zero p q r s lam hp hp0 h0
+  exact hcore lam p q r s i k j l hclose hlet hqg hcompq hcomps
+    hbridgeq hbridges hwrap (by rcases hlq with h | h <;> omega) (by omega)
+    hconn hinner hother
 
 /-- **The same, over the connector at every pair of constants.** -/
 theorem two_block_conj_named (D : RelGenSet G Λ)

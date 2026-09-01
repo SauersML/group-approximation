@@ -145,7 +145,8 @@ theorem listVal_rotate (v : List (GGT.RelLetter G Λ)) {n : ℕ}
 
 /-- **An `ε`-piece.**  `u` is an `ε`-piece of `v` when `v` begins with `u`, some
 other member `v'` of the family begins with a `u'`, and `u'` and `u` name group
-elements differing by base words of length at most `ε` on either side — with the
+elements differing by words in the full relative alphabet of length at most
+`ε` on either side — with the
 two members not the same one translated by that base word.
 
 **The last clause is Olshanskii's, and it is not optional.**  Without it the
@@ -167,7 +168,8 @@ def IsPiece (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
     (eps : ℕ) (u v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧ (∃ s, v = u ++ s) ∧
     ∃ v' ∈ W, v' ≠ v ∧ ∃ u' s', v' = u' ++ s' ∧
-      ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, wordNorm D.alphabet.carrier y ≤ eps ∧
+        wordNorm D.alphabet.carrier z ≤ eps ∧
         GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
         GGT.RelLetter.listVal v'
           ≠ y * GGT.RelLetter.listVal v * y⁻¹
@@ -175,7 +177,7 @@ def IsPiece (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
 /-- **The witness the exclusion clause kills.**  Every clause of `IsPiece` at
 `u = v` other than the exclusion is met by the cyclic permutation of `v` by
 `n` letters, as soon as that permutation is a different word and the prefix it
-moves is base-short in both directions.
+moves is short in the relative alphabet in both directions.
 
 At `n = 1` and a first letter of the base both hypotheses hold with `ε ≥ 1`,
 the base of Hull's relative generating set being `A.alphabet.carrier`, which is
@@ -184,10 +186,13 @@ theorem exists_naive_piece_of_rotate (D : GGT.RelGenSet G Λ)
     {W : Set (List (GGT.RelLetter G Λ))} (eps : ℕ)
     {v : List (GGT.RelLetter G Λ)} (hrot : ∀ n : ℕ, v.rotate n ∈ W) {n : ℕ}
     (hn : n ≤ v.length) (hne : v.rotate n ≠ v)
-    (hy : wordNorm D.base (GGT.RelLetter.listVal (v.take n))⁻¹ ≤ eps)
-    (hz : wordNorm D.base (GGT.RelLetter.listVal (v.take n)) ≤ eps) :
+    (hy : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (v.take n))⁻¹ ≤ eps)
+    (hz : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (v.take n)) ≤ eps) :
     ∃ v' ∈ W, v' ≠ v ∧ ∃ u' s', v' = u' ++ s' ∧
-      ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, wordNorm D.alphabet.carrier y ≤ eps ∧
+        wordNorm D.alphabet.carrier z ≤ eps ∧
         GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal v * z := by
   refine ⟨v.rotate n, hrot n, hne, v.rotate n, [], ?_,
     (GGT.RelLetter.listVal (v.take n))⁻¹, GGT.RelLetter.listVal (v.take n),

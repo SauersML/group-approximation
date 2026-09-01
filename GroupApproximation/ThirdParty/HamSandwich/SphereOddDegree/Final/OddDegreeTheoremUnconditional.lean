@@ -8,10 +8,9 @@ import Mathlib
 This file proves that an odd continuous self-map of `S^n`, for `n ≥ 1`, has odd
 topological degree.
 
-The theorem is exposed under the public names
-`odd_degree_of_odd_sphere_self_map` and
-`odd_canonical_degree_of_odd_sphere_self_map`. The development-history names with
-the suffix `_unconditional` are kept as compatibility aliases.
+The theorem is exposed under the name
+`odd_degree_of_odd_sphere_self_map_unconditional`; this is the single endpoint
+used by the Borsuk--Ulam argument.
 -/
 
 noncomputable section
@@ -48,35 +47,4 @@ theorem odd_canonical_degree_of_odd_sphere_self_map_unconditional
   odd_canonical_degree_of_odd_sphere_self_map_of_rpTopVanish hn
     (rpCohomology_topPlusOne_isZero n) f hf
 
-/-! ## Compatibility aliases -/
-
-/-- An odd continuous self-map of `S^n`, for `n ≥ 1`, has odd degree. -/
-theorem odd_degree_of_odd_sphere_self_map
-    {n : ℕ} (hn : 1 ≤ n)
-    (f : C(Sphere n, Sphere n)) (hf : IsOddMap f) :
-    Odd (degreeOfIso (sphereTopHomologyIso_unconditional n hn) f) :=
-  odd_degree_of_odd_sphere_self_map_unconditional hn f hf
-
-/-- An odd continuous self-map of `S^n`, for `n ≥ 1`, has odd canonical degree. -/
-theorem odd_canonical_degree_of_odd_sphere_self_map
-    {n : ℕ} (hn : 1 ≤ n)
-    (f : C(Sphere n, Sphere n)) (hf : IsOddMap f) :
-    Odd (final_sphereOrientationPos.degree hn f) :=
-  odd_canonical_degree_of_odd_sphere_self_map_unconditional hn f hf
-
-/-- Alias of `odd_degree_of_odd_sphere_self_map_unconditional`. -/
-theorem odd_degree_of_odd_sphere_self_map_final
-    {n : ℕ} (hn : 1 ≤ n)
-    (f : C(Sphere n, Sphere n)) (hf : IsOddMap f) :
-    Odd (degreeOfIso (sphereTopHomologyIso_unconditional n hn) f) :=
-  odd_degree_of_odd_sphere_self_map_unconditional hn f hf
-
-/-- Alias of `odd_canonical_degree_of_odd_sphere_self_map_unconditional`. -/
-theorem odd_degree_of_odd_sphere_self_map_canonicalDegree
-    {n : ℕ} (hn : 1 ≤ n)
-    (f : C(Sphere n, Sphere n)) (hf : IsOddMap f) :
-    Odd (final_sphereOrientationPos.degree hn f) :=
-  odd_canonical_degree_of_odd_sphere_self_map_unconditional hn f hf
-
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-

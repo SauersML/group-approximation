@@ -56,8 +56,8 @@ structure Lemma44ThreePieceExteriorCell {G : Type u} [Group G]
     relator = exterior ++ arc₁.word ++ arc₂.word ++ arc₃.word
   leftConnector : G
   rightConnector : G
-  leftConnector_short : wordNorm E.base leftConnector ≤ eps
-  rightConnector_short : wordNorm E.base rightConnector ≤ eps
+  leftConnector_short : wordNorm E.alphabet.carrier leftConnector ≤ eps
+  rightConnector_short : wordNorm E.alphabet.carrier rightConnector ≤ eps
   exterior_value : GGT.RelLetter.listVal exterior =
     leftConnector * boundary * rightConnector
 
@@ -147,13 +147,9 @@ theorem false_of_lemma44ThreePieceExteriorCell
     apply GGT.base_subset_alphabet_carrier P.rel
     exact P.base_le ha
   have hleftRel : wordNorm P.rel.alphabet.carrier C.leftConnector ≤ eps :=
-    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
-      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.leftConnector))
-      C.leftConnector_short
+    C.leftConnector_short
   have hrightRel : wordNorm P.rel.alphabet.carrier C.rightConnector ≤ eps :=
-    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
-      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.rightConnector))
-      C.rightConnector_short
+    C.rightConnector_short
   have hboundaryRel : wordNorm P.rel.alphabet.carrier Z.boundary ≤ 2 * R :=
     le_trans (wordNorm_mono hbaseSubset
       (wordLengths_nonempty A.alphabet.symmetricGenerating Z.boundary))
@@ -200,8 +196,8 @@ structure Lemma44LargeExteriorCell {G : Type u} [Group G]
   boundaryArc : Lemma44BoundaryArc Z.toLemma44RelatorDiagramBoundary
   leftConnector : G
   rightConnector : G
-  leftConnector_short : wordNorm E.base leftConnector ≤ eps
-  rightConnector_short : wordNorm E.base rightConnector ≤ eps
+  leftConnector_short : wordNorm E.alphabet.carrier leftConnector ≤ eps
+  rightConnector_short : wordNorm E.alphabet.carrier rightConnector ≤ eps
   exterior_value : GGT.RelLetter.listVal exterior =
     leftConnector * boundaryArc.arc.prod * rightConnector
 
@@ -259,13 +255,9 @@ theorem false_of_lemma44LargeExteriorCell
     apply GGT.base_subset_alphabet_carrier P.rel
     exact P.base_le ha
   have hleftRel : wordNorm P.rel.alphabet.carrier C.leftConnector ≤ eps :=
-    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
-      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.leftConnector))
-      C.leftConnector_short
+    C.leftConnector_short
   have hrightRel : wordNorm P.rel.alphabet.carrier C.rightConnector ≤ eps :=
-    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
-      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.rightConnector))
-      C.rightConnector_short
+    C.rightConnector_short
   have harcWord : IsWord P.rel.alphabet.carrier
       C.boundaryArc.arc C.boundaryArc.arc.prod := by
     refine ⟨?_, rfl⟩

@@ -1,6 +1,5 @@
 import Mathlib
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnInclusionCohomology
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Hausdorff
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnFiltrationGeometry
 
 /-!
 # The `RPⁿ` filtration, equatorial inclusions, and the cofiber setup
@@ -51,72 +50,6 @@ noncomputable section
 open CategoryTheory
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
-/-! ### The skeleta and the inclusion morphisms -/
-
-/-- The `n`-skeleton of the real-projective filtration, as a `TopCat` object. -/
-def RPnSkeleton (n : ℕ) : TopCat := TopCat.of (RP n)
-
-@[simp]
-theorem RPnSkeleton_carrier (n : ℕ) : (RPnSkeleton n : Type) = RP n := rfl
-
-/-- The equatorial inclusion `RPⁿ ↪ RPⁿ⁺¹` is continuous. -/
-theorem rpInclusion_continuous (n : ℕ) : Continuous (rpInclusion n) :=
-  (rpInclusion n).continuous
-
-/-- The equatorial inclusion `RPⁿ ↪ RPⁿ⁺¹` packaged as a `TopCat` morphism. -/
-def rpInclusionHom (n : ℕ) : RPnSkeleton n ⟶ RPnSkeleton (n + 1) :=
-  TopCat.ofHom (rpInclusion n)
-
-@[simp]
-theorem rpInclusionHom_apply (n : ℕ) (q : RP n) :
-    (rpInclusionHom n) q = rpInclusion n q := rfl
-
-/-- The inclusion morphism is a monomorphism in `TopCat` (it is injective). -/
-theorem rpInclusionHom_mono (n : ℕ) : Mono (rpInclusionHom n) :=
-  (TopCat.mono_iff_injective _).mpr (rpInclusion_injective n)
-
-/-! ### The filtration as a functor `ℕ ⥤ TopCat` -/
-
-/-- The real-projective filtration `RP⁰ ⊂ RP¹ ⊂ ⋯`, packaged as a functor from
-the ordered category `ℕ` to `TopCat`. -/
-def rpFiltration : ℕ ⥤ TopCat := Functor.ofSequence rpInclusionHom
-
-@[simp]
-theorem rpFiltration_obj (n : ℕ) : rpFiltration.obj n = RPnSkeleton n := rfl
-
-/-- The successor step of the filtration functor is the equatorial inclusion. -/
-theorem rpFiltration_map_succ (n : ℕ) :
-    rpFiltration.map (homOfLE (Nat.le_succ n)) = rpInclusionHom n :=
-  Functor.ofSequence_map_homOfLE_succ rpInclusionHom n
-
-/-! ### The lower-dimensional projective subspace -/
-
-/-- The image of `RPⁿ` inside `RPⁿ⁺¹` under the equatorial inclusion: the
-lower-dimensional projective subspace. -/
-def rpLowerSubspace (n : ℕ) : Set (RP (n + 1)) := Set.range (rpInclusion n)
-
-/-- The lower subspace is exactly `proj (n+1)` applied to the equatorial sphere
-`Sⁿ ⊂ Sⁿ⁺¹`: the expected description of `RPⁿ ⊂ RPⁿ⁺¹`. -/
-theorem rpLowerSubspace_eq_image (n : ℕ) :
-    rpLowerSubspace n = proj (n + 1) '' Set.range (sphereInclusion n) := by
-  ext q
-  constructor
-  · rintro ⟨a, rfl⟩
-    obtain ⟨x, rfl⟩ := RP.exists_rep a
-    exact ⟨sphereInclusion n x, ⟨x, rfl⟩, (rpInclusion_proj n x)⟩
-  · rintro ⟨y, ⟨x, rfl⟩, rfl⟩
-    exact ⟨proj n x, rpInclusion_proj n x⟩
-
-/-- The lower projective subspace is compact (a continuous image of the compact
-`RPⁿ`). -/
-theorem isCompact_rpLowerSubspace (n : ℕ) : IsCompact (rpLowerSubspace n) := by
-  rw [rpLowerSubspace, ← Set.image_univ]
-  exact isCompact_univ.image (rpInclusion n).continuous
-
-/-- The lower projective subspace is closed (compact in the Hausdorff `RPⁿ⁺¹`). -/
-theorem isClosed_rpLowerSubspace (n : ℕ) : IsClosed (rpLowerSubspace n) :=
-  (isCompact_rpLowerSubspace n).isClosed
 
 /-! ### The cofiber `RPⁿ⁺¹ / RPⁿ` -/
 
@@ -177,16 +110,6 @@ The collapse map is the explicit polynomial map `F(x) = 2⟪e, x⟫ • x − e`
 last coordinate — to the south pole `−e` (`cofiberSphereMap_equator`), and is
 injective elsewhere.  As a continuous bijection from the compact cofiber to the
 Hausdorff sphere it is a homeomorphism (`rpCofiberHomeo`). -/
-
-/-- The last standard basis vector `e = (0,…,0,1)` of `ℝⁿ⁺²`. -/
-def elast (n : ℕ) : EuclideanSpace ℝ (Fin (n + 2)) :=
-  EuclideanSpace.single (Fin.last (n + 1)) 1
-
-theorem elast_norm (n : ℕ) : ‖elast n‖ = 1 := by simp [elast]
-
-theorem inner_elast (n : ℕ) (v : EuclideanSpace ℝ (Fin (n + 2))) :
-    inner ℝ (elast n) v = v (Fin.last (n + 1)) := by
-  rw [elast, EuclideanSpace.inner_single_left]; simp
 
 /-- The raw collapse map `F(x) = 2⟪e,x⟫ • x − e` on the ambient sphere. -/
 def cofiberRawMap (n : ℕ) (x : Sphere (n + 1)) : EuclideanSpace ℝ (Fin (n + 2)) :=
@@ -275,21 +198,6 @@ def cofiberToSphere (n : ℕ) : C(Quotient (rpCofiberSetoid n), Sphere (n + 1)) 
 @[simp]
 theorem cofiberToSphere_mk (n : ℕ) (q : RP (n + 1)) :
     cofiberToSphere n (Quotient.mk (rpCofiberSetoid n) q) = rpCollapseToSphere n q := rfl
-
-/-
-A sphere point whose last coordinate vanishes lies on the equator, hence its
-projective class lies in the lower subspace `RPⁿ ⊂ RPⁿ⁺¹`.
--/
-theorem proj_mem_lowerSubspace_of_last_zero (n : ℕ) (x : Sphere (n + 1))
-    (hx : (x : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) = 0) :
-    proj (n + 1) x ∈ rpLowerSubspace n := by
-  refine' ⟨ _, _ ⟩;
-  exact proj n ⟨ ( x.1 |> fun y => WithLp.equiv 2 _ |>.symm <| Fin.init <| WithLp.equiv 2 _ y ), by
-    cases x ; simp_all +decide [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ];
-    rename_i h; replace h := mem_sphere_zero_iff_norm.mp h; simp_all +decide [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ] ;
-    convert h using 1 ⟩;
-  convert rpInclusion_proj n _;
-  ext i; induction i using Fin.lastCases <;> aesop;
 
 /-
 The collapse map is injective on the cofiber: if two classes have the same

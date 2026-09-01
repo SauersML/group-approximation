@@ -34,6 +34,9 @@ structure ProjectionPerturbation {V : Type u} (P : ProjectionSystem V) where
   comm : ∀ Y A B, projDist Y A B = projDist Y B A
   close : ∀ Y A B, Y ≠ A → Y ≠ B →
     |P.projDist Y A B - projDist Y A B| ≤ 2 * P.ξ
+  endpoints_lt : ∀ Y A B, Y ≠ A → Y ≠ B → A ≠ B →
+    2 * P.ξ < projDist Y A B →
+      projDist A Y B < P.ξ ∧ projDist B A Y < P.ξ
 
 namespace ProjectionPerturbation
 
@@ -53,6 +56,7 @@ noncomputable def bbf (P : ProjectionSystem V) : ProjectionPerturbation P where
       linarith [P.ξ_pos]
     · have hle := P.projDist_sub_bbfProjDist_le_two_mul hYA hYB
       linarith
+  endpoints_lt := P.bbfProjDist_endpoints_lt
 
 /-- Third vertices obstructing the edge from `A` to `B` at threshold `K`. -/
 def blockers (Q : ProjectionPerturbation P) (K : ℝ) (A B : V) : Set V :=
