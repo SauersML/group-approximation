@@ -160,6 +160,231 @@ theorem firstTargetSide_lt
   simp [firstTargetSide]
   omega
 
+private theorem refinedPolygonCut_for_entrySides
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) :
+    IsPolygonCut (n + 2) P.word B.refinedCut :=
+  isPolygonCut_splitPair P.polygonCut B.side_order B.secondSide_lt
+    B.firstVertex_mem.1 B.firstVertex_mem.2 B.secondVertex_mem.1
+    B.secondVertex_mem.2
+
+private theorem refinedCut_before_first
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ≤ B.firstSide) :
+    B.refinedCut s = P.cut s := by
+  have horder := B.side_order
+  unfold refinedCut splitPairCut insertPointCut
+  rw [if_pos (show s ≤ B.secondSide + 1 by omega), if_pos hs]
+
+private theorem refinedCut_after_second
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : B.secondSide < s) :
+    B.refinedCut (s + 2) = P.cut s := by
+  have horder := B.side_order
+  unfold refinedCut splitPairCut insertPointCut
+  rw [if_neg (show ¬s + 2 ≤ B.secondSide + 1 by omega),
+    if_neg (show s + 2 ≠ B.secondSide + 2 by omega),
+    if_neg (show ¬s + 2 - 1 ≤ B.firstSide by omega),
+    if_neg (show s + 2 - 1 ≠ B.firstSide + 1 by omega)]
+  congr 1
+
+private theorem secondTarget_after_iff
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget) :
+    B.secondSide ≤ s ↔ B.secondVertex ≤ P.cut s := by
+  classical
+  have hsTarget := (Finset.mem_filter.mp hs).1
+  have hedge := P.target_edge s hsTarget
+  have horder := B.side_order
+  constructor
+  · intro hside
+    rcases B.outside_firstArc_cases hs with hbefore | hafter
+    · have hmono := P.polygonCut.mono_le
+        (show B.firstSide + 1 ≤ s by omega)
+      have hfirst := B.firstVertex_mem.2
+      rw [hedge] at hbefore
+      omega
+    · exact hafter
+  · intro hafter
+    by_contra hside
+    have hmono := P.polygonCut.mono_le
+      (show s + 1 ≤ B.secondSide by omega)
+    have hsecond := B.secondVertex_mem.1
+    rw [hedge] at hmono
+    omega
+
+private theorem secondTarget_before_of_not_after
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget)
+    (hside : ¬ B.secondSide ≤ s) :
+    s ≤ B.firstSide ∧ P.cut (s + 1) ≤ B.firstVertex := by
+  classical
+  have hafter : ¬ B.secondVertex ≤ P.cut s := by
+    exact fun h => hside ((B.secondTarget_after_iff hs).mpr h)
+  have hbefore := (B.outside_firstArc_cases hs).resolve_right hafter
+  have hsTarget := (Finset.mem_filter.mp hs).1
+  by_contra hnot
+  have hmono := P.polygonCut.mono_le
+    (show B.firstSide + 1 ≤ s by omega)
+  have hfirst := B.firstVertex_mem.2
+  have hedge := P.target_edge s hsTarget
+  rw [hedge] at hbefore
+  omega
+
+private theorem secondArcCut_after
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget)
+    (hside : B.secondSide ≤ s) :
+    B.secondArcCut (s - B.secondSide) = P.cut s - B.secondVertex ∧
+      B.secondArcCut (s - B.secondSide + 1) =
+        P.cut (s + 1) - B.secondVertex := by
+  classical
+  have hsTarget := (Finset.mem_filter.mp hs).1
+  have hslt := P.target_lt s hsTarget
+  have hafter := (B.secondTarget_after_iff hs).mp hside
+  have hbase : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
+    simp [refinedCut, splitPairCut_right]
+  have houterStart : s - B.secondSide ≤
+      (n + 2 - (B.secondSide + 2)) + (B.firstSide + 1) := by omega
+  have houterFinish : s - B.secondSide + 1 ≤
+      (n + 2 - (B.secondSide + 2)) + (B.firstSide + 1) := by omega
+  have hinnerStart : s - B.secondSide ≤ n + 2 - (B.secondSide + 2) := by omega
+  have hinnerFinish : s - B.secondSide + 1 ≤ n + 2 - (B.secondSide + 2) := by omega
+  simp only [secondArcCut,
+    appendCut_apply_of_le _ _ _ _ houterStart,
+    appendCut_apply_of_le _ _ _ _ houterFinish,
+    appendCut_apply_of_le _ _ _ _ hinnerStart,
+    appendCut_apply_of_le _ _ _ _ hinnerFinish]
+  constructor
+  · by_cases heq : s = B.secondSide
+    · subst s
+      have hcut : P.cut B.secondSide = B.secondVertex :=
+        le_antisymm B.secondVertex_mem.1 hafter
+      simp [hbase, hcut]
+    · have hgt : B.secondSide < s := by omega
+      rw [show B.secondSide + 2 + (s - B.secondSide) = s + 2 by omega,
+        B.refinedCut_after_second hgt, hbase]
+  · rw [show B.secondSide + 2 + (s - B.secondSide + 1) = (s + 1) + 2 by omega,
+      B.refinedCut_after_second (show B.secondSide < s + 1 by omega), hbase]
+
+private theorem secondArcCut_before
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget)
+    (hside : ¬ B.secondSide ≤ s) :
+    B.secondArcCut (n - B.secondSide + s) =
+        P.word.length - B.secondVertex + P.cut s ∧
+      B.secondArcCut (n - B.secondSide + s + 1) =
+        P.word.length - B.secondVertex + P.cut (s + 1) := by
+  classical
+  let tail := n + 2 - (B.secondSide + 2)
+  have htail : tail = n - B.secondSide := by dsimp [tail]; omega
+  have hbefore := B.secondTarget_before_of_not_after hs hside
+  have hsecond := B.secondSide_lt
+  have houterStart : tail + s ≤ tail + (B.firstSide + 1) := by omega
+  have houterFinish : tail + s + 1 ≤ tail + (B.firstSide + 1) := by omega
+  have hzero : B.refinedCut 0 = 0 := B.refinedPolygonCut_for_entrySides.start
+  have hinnerStart := appendCut_apply_add
+    (fun r => B.refinedCut (B.secondSide + 2 + r) -
+      B.refinedCut (B.secondSide + 2)) B.refinedCut tail s hzero
+  have hinnerFinish := appendCut_apply_add
+    (fun r => B.refinedCut (B.secondSide + 2 + r) -
+      B.refinedCut (B.secondSide + 2)) B.refinedCut tail (s + 1) hzero
+  have hbase : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
+    simp [refinedCut, splitPairCut_right]
+  have hend : B.refinedCut (B.secondSide + 2 + tail) = P.word.length := by
+    have hidx : B.secondSide + 2 + tail = n + 2 := by dsimp [tail]; omega
+    rw [hidx]
+    exact B.refinedPolygonCut_for_entrySides.finish
+  rw [← htail]
+  change B.secondArcCut (tail + s) =
+      P.word.length - B.secondVertex + P.cut s ∧
+    B.secondArcCut (tail + s + 1) =
+      P.word.length - B.secondVertex + P.cut (s + 1)
+  rw [secondArcCut,
+    appendCut_apply_of_le _ _ _ _ houterStart,
+    appendCut_apply_of_le _ _ _ _ houterFinish,
+    hinnerStart]
+  rw [show tail + s + 1 = tail + (s + 1) by omega, hinnerFinish, hend, hbase]
+  constructor
+  · rw [B.refinedCut_before_first hbefore.1]
+  · by_cases heq : s = B.firstSide
+    · subst s
+      have hcut : P.cut (B.firstSide + 1) = B.firstVertex :=
+        le_antisymm hbefore.2 B.firstVertex_mem.2
+      have href : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
+        simp [refinedCut, splitPairCut_left B.side_order]
+      rw [href, hcut]
+    · rw [B.refinedCut_before_first (show s + 1 ≤ B.firstSide by omega)]
+
+/-- A wrapped-half target occupies exactly its canonical inherited-arc side,
+including both sides of the cyclic seam. -/
+theorem secondArcCut_target
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget) :
+    B.secondArcCut (B.secondTargetSide s) = B.secondTargetPos s ∧
+      B.secondArcCut (B.secondTargetSide s + 1) = B.secondTargetPos s + 1 := by
+  classical
+  have hedge := P.target_edge s (Finset.mem_filter.mp hs).1
+  by_cases hside : B.secondSide ≤ s
+  · have h := B.secondArcCut_after hs hside
+    rw [hedge] at h
+    have hafter := (B.secondTarget_after_iff hs).mp hside
+    have hfinish : P.cut s + 1 - B.secondVertex =
+        P.cut s - B.secondVertex + 1 := by omega
+    rw [hfinish] at h
+    simpa [secondTargetSide, secondTargetPos, hside,
+      hafter] using h
+  · have h := B.secondArcCut_before hs hside
+    rw [hedge] at h
+    have hafter : ¬ B.secondVertex ≤ P.cut s := by
+      exact fun h' => hside ((B.secondTarget_after_iff hs).mpr h')
+    simpa [secondTargetSide, secondTargetPos, hside, hafter,
+      Nat.add_assoc] using h
+
+/-- Every wrapped-half target side lies strictly inside the inherited side
+range. -/
+theorem secondTargetSide_lt
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (hs : s ∈ B.secondTarget) :
+    B.secondTargetSide s < (n - B.secondSide) + B.firstSide + 1 := by
+  classical
+  have hsTarget := (Finset.mem_filter.mp hs).1
+  have hslt := P.target_lt s hsTarget
+  by_cases hside : B.secondSide ≤ s
+  · simp [secondTargetSide, hside]
+    omega
+  · have hbefore := B.secondTarget_before_of_not_after hs hside
+    simp [secondTargetSide, hside]
+    omega
+
 end BalancedSplitData
 
 end DGOProposition414
