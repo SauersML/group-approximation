@@ -57,6 +57,67 @@ theorem isCompOf_auxiliaryCycle_rightConnector
     List.getElem_append_right (by simp [OsinComponents.length_revWord])]
   simpa [hrevLength] using hlabel (right[r]'hr) (List.getElem_mem hr)
 
+/-- The inherited arc's literal letters retain their labels at the shifted
+positions of the auxiliary word. -/
+theorem isCompOf_auxiliaryCycle_arc_iff
+    (lam : Λ) (left arc right chord : List (RelLetter G Λ))
+    (r : ℕ) (hr : r < arc.length)
+    (hrCycle : left.length + r <
+      (auxiliaryCycleWord left arc right chord).length) :
+    ((auxiliaryCycleWord left arc right chord)[left.length + r]'hrCycle).IsCompOf lam ↔
+      (arc[r]'hr).IsCompOf lam := by
+  unfold auxiliaryCycleWord
+  rw [List.getElem_append_left (by simp [OsinComponents.length_revWord]; omega),
+    List.getElem_append_left (by simp [OsinComponents.length_revWord]; omega),
+    List.getElem_append_right (by simp [OsinComponents.length_revWord])]
+  simp [OsinComponents.length_revWord]
+
+/-- A nonempty connector of length at most one occupies the initial singleton
+component once its only nonvacuous boundary letter is excluded. -/
+theorem isComp_auxiliaryCycle_leftConnector_of_boundary
+    (lam : Λ) (left arc right chord : List (RelLetter G Λ))
+    (hzero : 0 < left.length)
+    (hlabel : ∀ x ∈ left, x.IsCompOf lam)
+    (hnext : ∀ hn : 1 < (auxiliaryCycleWord left arc right chord).length,
+      ¬ ((auxiliaryCycleWord left arc right chord)[1]'hn).IsCompOf lam) :
+    IsComp lam (auxiliaryCycleWord left arc right chord) 0 1 := by
+  have hcycle : 0 < (auxiliaryCycleWord left arc right chord).length := by
+    simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+    omega
+  apply isComp_singleton_of_boundary lam
+    (auxiliaryCycleWord left arc right chord) hcycle
+  · exact isCompOf_auxiliaryCycle_leftConnector lam left arc right chord
+      hlabel 0 hzero hcycle
+  · intro q hq
+    omega
+  · exact hnext
+
+/-- A nonempty connector of length at most one occupies its shifted singleton
+component once the two neighboring letters are excluded. -/
+theorem isComp_auxiliaryCycle_rightConnector_of_boundary
+    (lam : Λ) (left arc right chord : List (RelLetter G Λ))
+    (hzero : 0 < right.length)
+    (hlabel : ∀ x ∈ right, x.IsCompOf lam)
+    (hprev : ∀ q : ℕ, left.length + arc.length = q + 1 →
+      ∀ hq : q < (auxiliaryCycleWord left arc right chord).length,
+      ¬ ((auxiliaryCycleWord left arc right chord)[q]'hq).IsCompOf lam)
+    (hnext : ∀ hn : left.length + arc.length + 1 <
+        (auxiliaryCycleWord left arc right chord).length,
+      ¬ ((auxiliaryCycleWord left arc right chord).get
+        ⟨left.length + arc.length + 1, hn⟩).IsCompOf lam) :
+    IsComp lam (auxiliaryCycleWord left arc right chord)
+      (left.length + arc.length) (left.length + arc.length + 1) := by
+  have hp : left.length + arc.length <
+      (auxiliaryCycleWord left arc right chord).length := by
+    simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+    omega
+  apply isComp_singleton_of_boundary lam
+    (auxiliaryCycleWord left arc right chord) hp
+  · exact isCompOf_auxiliaryCycle_rightConnector lam left arc right chord
+      hlabel 0 hzero hp
+  · exact hprev
+  · exact hnext
+
 namespace BalancedSplitData
 
 /-- A first-half child's left connector is a literal component letter with
