@@ -32,7 +32,7 @@ structure ProjectionPerturbation {V : Type u} (P : ProjectionSystem V) where
   projDist : V → V → V → ℝ
   nonneg : ∀ Y A B, 0 ≤ projDist Y A B
   comm : ∀ Y A B, projDist Y A B = projDist Y B A
-  close : ∀ Y A B, Y ≠ A → Y ≠ B →
+  close : ∀ Y A B, Y ≠ A → Y ≠ B → A ≠ B →
     |P.projDist Y A B - projDist Y A B| ≤ 2 * P.ξ
   endpoints_lt : ∀ Y A B, Y ≠ A → Y ≠ B → A ≠ B →
     2 * P.ξ < projDist Y A B →
@@ -49,12 +49,12 @@ noncomputable def bbf (P : ProjectionSystem V) : ProjectionPerturbation P where
   nonneg := P.bbfProjDist_nonneg
   comm := P.bbfProjDist_comm
   close := by
-    intro Y A B hYA hYB
+    intro Y A B hYA hYB hAB
     rw [abs_le]
     constructor
-    · have hle := P.bbfProjDist_le hYA hYB
+    · have hle := P.bbfProjDist_le hYA hYB hAB
       linarith [P.ξ_pos]
-    · have hle := P.projDist_sub_bbfProjDist_le_two_mul hYA hYB
+    · have hle := P.projDist_sub_bbfProjDist_le_two_mul hYA hYB hAB
       linarith
   endpoints_lt := P.bbfProjDist_endpoints_lt
 
@@ -111,7 +111,7 @@ theorem blockers_finite (Q : ProjectionPerturbation P)
     (Q.blockers K A B).Finite := by
   refine (P.largeSet_finite hAB).subset ?_
   intro Y hY
-  have hclose := Q.close Y A B hY.1 hY.2.1
+  have hclose := Q.close Y A B hY.1 hY.2.1 hAB
   have hlower := (abs_le.mp hclose).1
   change P.ξ ≤ P.projDist Y A B
   linarith [hY.2.2]

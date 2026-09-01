@@ -24,19 +24,21 @@ variable {V : Type u}
 defined.  The inequalities are written with the strict orientation used in
 the source. -/
 def bbfAdmissible (P : ProjectionSystem V) (X Z : V) : Set (V × V) :=
-  {p | (X ≠ p.1 ∧ X ≠ p.2 ∧ Z ≠ p.1 ∧ Z ≠ p.2 ∧
+  {p | p.1 ≠ p.2 ∧
+      ((X ≠ p.1 ∧ X ≠ p.2 ∧ Z ≠ p.1 ∧ Z ≠ p.2 ∧
           2 * P.ξ < P.projDist X p.1 p.2 ∧
           2 * P.ξ < P.projDist Z p.1 p.2) ∨
         (p.1 = X ∧ Z ≠ X ∧ Z ≠ p.2 ∧
           2 * P.ξ < P.projDist Z X p.2) ∨
         (p.2 = Z ∧ X ≠ p.1 ∧ X ≠ Z ∧
           2 * P.ξ < P.projDist X p.1 Z) ∨
-        p = (X, Z)}
+        p = (X, Z))}
 
 /-- The original pair belongs to `H(X,Z)`. -/
-theorem pair_mem_bbfAdmissible (P : ProjectionSystem V) (X Z : V) :
+theorem pair_mem_bbfAdmissible (P : ProjectionSystem V) {X Z : V}
+    (hXZ : X ≠ Z) :
     (X, Z) ∈ P.bbfAdmissible X Z :=
-  Or.inr (Or.inr (Or.inr rfl))
+  ⟨hXZ, Or.inr (Or.inr (Or.inr rfl))⟩
 
 /-- Swapping both endpoints and both entries preserves BBF admissibility. -/
 theorem bbfAdmissible_swap_iff (P : ProjectionSystem V)
@@ -47,21 +49,19 @@ theorem bbfAdmissible_swap_iff (P : ProjectionSystem V)
       (a, b) ∈ P.bbfAdmissible X Z →
         (b, a) ∈ P.bbfAdmissible Z X := by
     intro X Z a b h
-    rcases h with hgeneral | hleft | hright | horiginal
+    rcases h with ⟨hab, hgeneral | hleft | hright | horiginal⟩
     · rcases hgeneral with ⟨hXa, hXb, hZa, hZb, hXab, hZab⟩
-      left
-      refine ⟨hZb, hZa, hXb, hXa, ?_, ?_⟩
+      refine ⟨hab.symm, Or.inl ⟨hZb, hZa, hXb, hXa, ?_, ?_⟩⟩
       · rwa [P.comm]
       · rwa [P.comm]
     · rcases hleft with ⟨haX, hZX, hZb, hdist⟩
-      right; right; left
-      refine ⟨haX, hZb, hZX, ?_⟩
+      refine ⟨hab.symm, Or.inr (Or.inr (Or.inl ⟨haX, hZb, hZX, ?_⟩))⟩
       rwa [P.comm]
     · rcases hright with ⟨hbZ, hXa, hXZ, hdist⟩
-      right; left
-      refine ⟨hbZ, hXZ, hXa, ?_⟩
+      refine ⟨hab.symm, Or.inr (Or.inl ⟨hbZ, hXZ, hXa, ?_⟩)⟩
       rwa [P.comm]
-    · right; right; right
+    · refine ⟨hab.symm, ?_⟩
+      right; right; right
       injection horiginal with ha hb
       subst a
       subst b
@@ -74,9 +74,9 @@ def bbfCandidatePairs (P : ProjectionSystem V) (Y X Z : V) : Set (V × V) :=
   {p | p ∈ P.bbfAdmissible X Z ∧ Y ≠ p.1 ∧ Y ≠ p.2}
 
 theorem pair_mem_bbfCandidatePairs (P : ProjectionSystem V)
-    {Y X Z : V} (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    {Y X Z : V} (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     (X, Z) ∈ P.bbfCandidatePairs Y X Z :=
-  ⟨P.pair_mem_bbfAdmissible X Z, hYX, hYZ⟩
+  ⟨P.pair_mem_bbfAdmissible hXZ, hYX, hYZ⟩
 
 /-- The set of numerical values whose infimum is the modified distance. -/
 def bbfCandidateValues (P : ProjectionSystem V) (Y X Z : V) : Set ℝ :=
@@ -84,9 +84,10 @@ def bbfCandidateValues (P : ProjectionSystem V) (Y X Z : V) : Set ℝ :=
     P.bbfCandidatePairs Y X Z
 
 theorem bbfCandidateValues_nonempty (P : ProjectionSystem V)
-    {Y X Z : V} (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    {Y X Z : V} (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     (P.bbfCandidateValues Y X Z).Nonempty :=
-  ⟨P.projDist Y X Z, ⟨(X, Z), P.pair_mem_bbfCandidatePairs hYX hYZ, rfl⟩⟩
+  ⟨P.projDist Y X Z,
+    ⟨(X, Z), P.pair_mem_bbfCandidatePairs hYX hYZ hXZ, rfl⟩⟩
 
 theorem bbfCandidateValues_bddBelow (P : ProjectionSystem V)
     (Y X Z : V) : BddBelow (P.bbfCandidateValues Y X Z) := by
@@ -108,13 +109,106 @@ theorem bbfCandidateValues_comm (P : ProjectionSystem V) (Y X Z : V) :
     · exact (P.bbfAdmissible_swap_iff Z X p.1 p.2).mp hp.1
     · exact P.comm Y p.2 p.1
 
+/-- The admissible pairs for `(X,Z)` which contain the projection vertex `Y`.
+The modified distance is zero when this set is nonempty. -/
+def bbfContainingPairs (P : ProjectionSystem V) (Y X Z : V) : Set (V × V) :=
+  {p | p ∈ P.bbfAdmissible X Z ∧ (Y = p.1 ∨ Y = p.2)}
+
+/-- Simultaneously reversing the endpoints and the admissible pair preserves
+the exceptional zero case. -/
+theorem bbfContainingPairs_nonempty_comm (P : ProjectionSystem V) (Y X Z : V) :
+    (P.bbfContainingPairs Y X Z).Nonempty ↔
+      (P.bbfContainingPairs Y Z X).Nonempty := by
+  constructor
+  · rintro ⟨p, hp, hY⟩
+    refine ⟨(p.2, p.1), (P.bbfAdmissible_swap_iff X Z p.1 p.2).mp hp, ?_⟩
+    exact hY.elim Or.inr Or.inl
+  · rintro ⟨p, hp, hY⟩
+    refine ⟨(p.2, p.1), (P.bbfAdmissible_swap_iff Z X p.1 p.2).mp hp, ?_⟩
+    exact hY.elim Or.inr Or.inl
+
+/-- If `Y` occurs in an admissible pair for `(X,Z)`, the original projection
+at `Y` is already below `2ξ`.  This is the PC2--PC3 estimate immediately
+before BBF Proposition 2.2 and justifies the exceptional value zero. -/
+theorem projDist_lt_two_mul_of_bbfContains
+    (P : ProjectionSystem V) {Y X Z : V}
+    (hYX : Y ≠ X) (hYZ : Y ≠ Z)
+    (hcontains : (P.bbfContainingPairs Y X Z).Nonempty) :
+    P.projDist Y X Z < 2 * P.ξ := by
+  obtain ⟨⟨a, b⟩, hab, hY⟩ := hcontains
+  rcases hab with ⟨habne, hgeneral | hleft | hright | horiginal⟩
+  · rcases hgeneral with ⟨hXa, hXb, hZa, hZb, hXab, hZab⟩
+    rcases hY with hYa | hYb
+    · subst a
+      have hYXb : P.projDist Y X b < P.ξ := by
+        have hmin := P.behrstock X b Y hXb hYX.symm habne.symm
+        have hlarge : P.ξ < P.projDist X b Y := by
+          rw [P.comm]
+          linarith [P.ξ_pos]
+        have hsmall := (min_lt_iff.mp hmin).resolve_left
+          (not_lt_of_ge (le_of_lt hlarge))
+        rwa [P.comm] at hsmall
+      have hYbZ : P.projDist Y b Z < P.ξ := by
+        have hmin := P.behrstock Z b Y hZb hYZ.symm habne.symm
+        have hlarge : P.ξ < P.projDist Z b Y := by
+          rw [P.comm]
+          linarith [P.ξ_pos]
+        exact (min_lt_iff.mp hmin).resolve_left
+          (not_lt_of_ge (le_of_lt hlarge))
+      have htri := P.triangle Y X b Z hYX habne hYZ
+      linarith
+    · subst b
+      have hYXa : P.projDist Y X a < P.ξ := by
+        have hmin := P.behrstock X a Y hXa hYX.symm habne
+        have hlarge : P.ξ < P.projDist X a Y := by
+          linarith [P.ξ_pos]
+        have hsmall := (min_lt_iff.mp hmin).resolve_left
+          (not_lt_of_ge (le_of_lt hlarge))
+        rwa [P.comm] at hsmall
+      have hYaZ : P.projDist Y a Z < P.ξ := by
+        have hmin := P.behrstock Z a Y hZa hYZ.symm habne
+        have hlarge : P.ξ < P.projDist Z a Y := by
+          linarith [P.ξ_pos]
+        exact (min_lt_iff.mp hmin).resolve_left
+          (not_lt_of_ge (le_of_lt hlarge))
+      have htri := P.triangle Y X a Z hYX habne.symm hYZ
+      linarith
+  · rcases hleft with ⟨haX, hZX, hZb, hZXb⟩
+    subst a
+    rcases hY with hYX' | hYb
+    · exact (hYX hYX').elim
+    · subst b
+      have hmin := P.behrstock Z X Y hZX hYZ.symm habne
+      have hlarge : P.ξ < P.projDist Z X Y := by linarith [P.ξ_pos]
+      have hsmall := (min_lt_iff.mp hmin).resolve_left
+        (not_lt_of_ge (le_of_lt hlarge))
+      exact hsmall.trans_le (by linarith [P.ξ_pos])
+  · rcases hright with ⟨hbZ, hXa, hXZ, hXaZ⟩
+    subst b
+    rcases hY with hYa | hYZ'
+    · subst a
+      have hmin := P.behrstock X Z Y hXZ hYX.symm habne.symm
+      have hlarge : P.ξ < P.projDist X Z Y := by
+        rw [P.comm]
+        linarith [P.ξ_pos]
+      have hsmall := (min_lt_iff.mp hmin).resolve_left
+        (not_lt_of_ge (le_of_lt hlarge))
+      rw [P.comm] at hsmall
+      exact hsmall.trans_le (by linarith [P.ξ_pos])
+    · exact (hYZ hYZ').elim
+  · cases horiginal
+    rcases hY with hYX' | hYZ'
+    · exact (hYX hYX').elim
+    · exact (hYZ hYZ').elim
 /-- The raw BBF infimum.  Projection distances are used only off the
 diagonal; assigning zero on the excluded diagonal makes the totalized Lean
 function nonnegative without changing any published value. -/
 noncomputable def bbfRawProjDist (P : ProjectionSystem V) (Y X Z : V) : ℝ :=
   by
     classical
-    exact if Y = X ∨ Y = Z then 0 else sInf (P.bbfCandidateValues Y X Z)
+    exact if Y = X ∨ Y = Z ∨ X = Z ∨
+        (P.bbfContainingPairs Y X Z).Nonempty then 0
+      else sInf (P.bbfCandidateValues Y X Z)
 
 theorem bbfRawProjDist_nonneg (P : ProjectionSystem V) (Y X Z : V) :
     0 ≤ P.bbfRawProjDist Y X Z := by
@@ -123,18 +217,20 @@ theorem bbfRawProjDist_nonneg (P : ProjectionSystem V) (Y X Z : V) :
   split_ifs with h
   · exact le_rfl
   · push Not at h
-    exact le_csInf (P.bbfCandidateValues_nonempty h.1 h.2) (by
+    exact le_csInf (P.bbfCandidateValues_nonempty h.1 h.2.1 h.2.2.1) (by
       rintro d ⟨p, -, rfl⟩
       exact P.nonneg Y p.1 p.2)
 
 /-- The modified distance is at most the original one. -/
 theorem bbfRawProjDist_le (P : ProjectionSystem V) {Y X Z : V}
-    (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     P.bbfRawProjDist Y X Z ≤ P.projDist Y X Z := by
   classical
-  rw [bbfRawProjDist, if_neg (not_or_intro hYX hYZ)]
-  exact csInf_le (P.bbfCandidateValues_bddBelow Y X Z)
-    ⟨(X, Z), P.pair_mem_bbfCandidatePairs hYX hYZ, rfl⟩
+  rw [bbfRawProjDist]
+  split_ifs with h
+  · exact P.nonneg Y X Z
+  · exact csInf_le (P.bbfCandidateValues_bddBelow Y X Z)
+      ⟨(X, Z), P.pair_mem_bbfCandidatePairs hYX hYZ hXZ, rfl⟩
 
 /-- The raw BBF infimum is already symmetric; no post-hoc symmetrization is
 needed. -/
@@ -142,7 +238,12 @@ theorem bbfRawProjDist_comm (P : ProjectionSystem V) (Y X Z : V) :
     P.bbfRawProjDist Y X Z = P.bbfRawProjDist Y Z X := by
   classical
   rw [bbfRawProjDist, bbfRawProjDist]
-  have hor : Y = X ∨ Y = Z ↔ Y = Z ∨ Y = X := or_comm
+  have hor : Y = X ∨ Y = Z ∨ X = Z ∨
+        (P.bbfContainingPairs Y X Z).Nonempty ↔
+      Y = Z ∨ Y = X ∨ Z = X ∨
+        (P.bbfContainingPairs Y Z X).Nonempty := by
+    rw [P.bbfContainingPairs_nonempty_comm]
+    aesop
   rw [if_congr hor rfl rfl]
   split_ifs
   · rfl
@@ -161,7 +262,7 @@ theorem projDist_sub_candidate_lt_two_mul
   · linarith [P.nonneg Y a b]
   have hbig : 2 * P.ξ ≤ P.projDist Y X Z := le_of_not_gt hsmall
   have hbigξ : P.ξ < P.projDist Y X Z := by linarith [P.ξ_pos]
-  rcases hab with hgeneral | hleft | hright | horiginal
+  rcases hab with ⟨_habne, hgeneral | hleft | hright | horiginal⟩
   · rcases hgeneral with ⟨hXa, hXb, hZa, hZb, hXab, hZab⟩
     have htriX := P.triangle X a Y b hXa hYX.symm hXb
     have hsplit : P.ξ < P.projDist X a Y ∨ P.ξ < P.projDist X Y b := by
@@ -243,18 +344,27 @@ theorem projDist_sub_candidate_lt_two_mul
 retains exactly the non-strict bound used by the perturbation structure. -/
 theorem projDist_sub_bbfRawProjDist_le_two_mul
     (P : ProjectionSystem V) {Y X Z : V}
-    (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     P.projDist Y X Z - P.bbfRawProjDist Y X Z ≤ 2 * P.ξ := by
   classical
-  rw [bbfRawProjDist, if_neg (not_or_intro hYX hYZ)]
-  have hle : P.projDist Y X Z - 2 * P.ξ ≤
-      sInf (P.bbfCandidateValues Y X Z) := by
-    apply le_csInf (P.bbfCandidateValues_nonempty hYX hYZ)
-    rintro d ⟨p, hp, rfl⟩
-    have hcandidate :=
-      P.projDist_sub_candidate_lt_two_mul hYX hYZ hp.2.1 hp.2.2 hp.1
+  rw [bbfRawProjDist]
+  split_ifs with hzero
+  · have hcontains : (P.bbfContainingPairs Y X Z).Nonempty := by
+      rcases hzero with hYX' | hYZ' | hXZ' | hcontains
+      · exact (hYX hYX').elim
+      · exact (hYZ hYZ').elim
+      · exact (hXZ hXZ').elim
+      · exact hcontains
+    have hsmall := P.projDist_lt_two_mul_of_bbfContains hYX hYZ hcontains
     linarith
-  linarith
+  · have hle : P.projDist Y X Z - 2 * P.ξ ≤
+        sInf (P.bbfCandidateValues Y X Z) := by
+      apply le_csInf (P.bbfCandidateValues_nonempty hYX hYZ hXZ)
+      rintro d ⟨p, hp, rfl⟩
+      have hcandidate :=
+        P.projDist_sub_candidate_lt_two_mul hYX hYZ hp.2.1 hp.2.2 hp.1
+      linarith
+    linarith
 
 /-- The published modified distance is the raw admissible-pair infimum. -/
 noncomputable def bbfProjDist (P : ProjectionSystem V) (Y X Z : V) : ℝ :=
@@ -269,15 +379,15 @@ theorem bbfProjDist_comm (P : ProjectionSystem V) (Y X Z : V) :
   exact P.bbfRawProjDist_comm Y X Z
 
 theorem bbfProjDist_le (P : ProjectionSystem V) {Y X Z : V}
-    (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     P.bbfProjDist Y X Z ≤ P.projDist Y X Z :=
-  P.bbfRawProjDist_le hYX hYZ
+  P.bbfRawProjDist_le hYX hYZ hXZ
 
 theorem projDist_sub_bbfProjDist_le_two_mul
     (P : ProjectionSystem V) {Y X Z : V}
-    (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
+    (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z) :
     P.projDist Y X Z - P.bbfProjDist Y X Z ≤ 2 * P.ξ := by
-  exact P.projDist_sub_bbfRawProjDist_le_two_mul hYX hYZ
+  exact P.projDist_sub_bbfRawProjDist_le_two_mul hYX hYZ hXZ
 
 /-- The strengthened Behrstock inequality for the modified distances: a
 projection larger than `2ξ` forces both endpoint projections below `ξ`. -/
@@ -286,7 +396,7 @@ theorem bbfProjDist_endpoints_lt (P : ProjectionSystem V)
     (hlarge : 2 * P.ξ < P.bbfProjDist Y X Z) :
     P.bbfProjDist X Y Z < P.ξ ∧ P.bbfProjDist Z X Y < P.ξ := by
   have horiginal : P.ξ < P.projDist Y X Z := by
-    have hle := P.bbfProjDist_le hYX hYZ
+    have hle := P.bbfProjDist_le hYX hYZ hXZ
     linarith [P.ξ_pos]
   have hX : P.projDist X Y Z < P.ξ := by
     have hmin := P.behrstock Y Z X hYZ hYX hXZ.symm
@@ -298,8 +408,8 @@ theorem bbfProjDist_endpoints_lt (P : ProjectionSystem V)
     have hmin := P.behrstock Y X Z hYX hYZ hXZ
     exact (min_lt_iff.mp hmin).resolve_left (not_lt_of_ge (le_of_lt horiginal))
   exact ⟨
-    (P.bbfProjDist_le hYX.symm hXZ).trans_lt hX,
-    (P.bbfProjDist_le hXZ.symm hYZ.symm).trans_lt hZ⟩
+    (P.bbfProjDist_le hYX.symm hXZ hYZ).trans_lt hX,
+    (P.bbfProjDist_le hXZ.symm hYZ.symm hYX.symm).trans_lt hZ⟩
 
 end ProjectionSystem
 
@@ -360,6 +470,33 @@ theorem bbfCandidateValues_smul (P : EquivariantProjectionSystem G V)
         exact hp.2.2 (smul_left_cancel g h)
     · exact P.smul_projDist g Y p.1 p.2
 
+/-- The exceptional zero case is preserved by simultaneous translation. -/
+theorem bbfContainingPairs_nonempty_smul_iff
+    (P : EquivariantProjectionSystem G V)
+    (g : G) (Y X Z : V) :
+    (P.toProjectionSystem.bbfContainingPairs (g • Y) (g • X) (g • Z)).Nonempty ↔
+      (P.toProjectionSystem.bbfContainingPairs Y X Z).Nonempty := by
+  constructor
+  · rintro ⟨⟨a, b⟩, hab, hY⟩
+    let a₀ : V := g⁻¹ • a
+    let b₀ : V := g⁻¹ • b
+    refine ⟨(a₀, b₀), ?_, ?_⟩
+    · apply (P.bbfAdmissible_smul_iff g X Z a₀ b₀).mp
+      simpa only [a₀, b₀, smul_inv_smul] using hab
+    · rcases hY with hYa | hYb
+      · left
+        apply smul_left_cancel g
+        simpa only [a₀, smul_inv_smul] using hYa
+      · right
+        apply smul_left_cancel g
+        simpa only [b₀, smul_inv_smul] using hYb
+  · rintro ⟨⟨a, b⟩, hab, hY⟩
+    refine ⟨(g • a, g • b),
+      (P.bbfAdmissible_smul_iff g X Z a b).mpr hab, ?_⟩
+    rcases hY with rfl | rfl
+    · exact Or.inl rfl
+    · exact Or.inr rfl
+
 /-- The raw BBF infimum is equivariant. -/
 theorem bbfRawProjDist_smul (P : EquivariantProjectionSystem G V)
     (g : G) (Y X Z : V) :
@@ -367,12 +504,24 @@ theorem bbfRawProjDist_smul (P : EquivariantProjectionSystem G V)
       P.toProjectionSystem.bbfRawProjDist Y X Z := by
   classical
   rw [ProjectionSystem.bbfRawProjDist, ProjectionSystem.bbfRawProjDist]
-  have hor : g • Y = g • X ∨ g • Y = g • Z ↔ Y = X ∨ Y = Z := by
+  have hor : g • Y = g • X ∨ g • Y = g • Z ∨ g • X = g • Z ∨
+        (P.toProjectionSystem.bbfContainingPairs
+          (g • Y) (g • X) (g • Z)).Nonempty ↔
+      Y = X ∨ Y = Z ∨ X = Z ∨
+        (P.toProjectionSystem.bbfContainingPairs Y X Z).Nonempty := by
     constructor
-    · rintro (h | h)
+    · rintro (h | h | h | h)
       · exact Or.inl (smul_left_cancel g h)
-      · exact Or.inr (smul_left_cancel g h)
-    · rintro (rfl | rfl) <;> simp
+      · exact Or.inr (Or.inl (smul_left_cancel g h))
+      · exact Or.inr (Or.inr (Or.inl (smul_left_cancel g h)))
+      · exact Or.inr (Or.inr (Or.inr
+          ((P.bbfContainingPairs_nonempty_smul_iff g Y X Z).mp h)))
+    · rintro (rfl | rfl | rfl | h)
+      · exact Or.inl rfl
+      · exact Or.inr (Or.inl rfl)
+      · exact Or.inr (Or.inr (Or.inl rfl))
+      · exact Or.inr (Or.inr (Or.inr
+          ((P.bbfContainingPairs_nonempty_smul_iff g Y X Z).mpr h)))
   rw [if_congr hor rfl rfl]
   split_ifs
   · rfl
