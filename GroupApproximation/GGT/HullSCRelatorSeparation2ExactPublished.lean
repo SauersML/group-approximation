@@ -419,7 +419,7 @@ theorem false_of_exactDesign_mixed_long_prefixes_rotate
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms)).rotate c' =
       u' ++ tl')
     (hlong : [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 < u.length)
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length)
     (hmslong : [baseLetter].length +
       5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
     {y z : G} (hy : wordNorm E.rel.alphabet.carrier y ≤ eps)
@@ -573,10 +573,10 @@ theorem inversePrimeSource_length_le_of_exactDesign
     (hval : GGT.RelLetter.listVal u' =
       y * (GGT.RelLetter.listVal u)⁻¹ * z) :
     u.length ≤ [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
   by_contra hnot
   have hlong : [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 < u.length := by
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length := by
     omega
   let R := relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms
   have hrevSplit : RelWord.revInv v = RelWord.revInv tail ++
@@ -635,7 +635,7 @@ theorem inversePrimeSource_length_le_of_exactDesign
       rw [RelWord.listVal_revInv]
       exact hval
     have hlong' : [baseLetter].length +
-        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 <
+        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 <
           (RelWord.revInv u).length := by
       rw [RelWord.length_revInv]
       exact hlong
@@ -668,7 +668,7 @@ theorem inversePrime_lengths_le_of_exactDesign
     (hval : GGT.RelLetter.listVal u' =
       y * (GGT.RelLetter.listVal u)⁻¹ * z) :
     max u.length u'.length ≤ [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
   have hu := inversePrimeSource_length_le_of_exactDesign E hN hbase hdesign
     hcount heven hW hCm hpair hmatch hmslong hv hsplit hy hz hval
   let shift := u.length + middle.length
@@ -710,7 +710,7 @@ theorem primePiece_lengths_le_of_exactDesign
         (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms))
       eps u u' v) :
     max u.length u'.length ≤ [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
   rcases hp with ⟨hv, middle, tail, hsplit, y, z, hy, hz, hval | hval⟩
   · have hdirect := directPrime_lengths_le_of_exactDesign E hN hbase hdesign
       hcount heven hW hgap hgapRho hgapEps
@@ -747,7 +747,7 @@ theorem listVal_conj_of_exactDesign_long_prefixes
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) w')
     (hu : w = u ++ tl) (hu' : w' = u' ++ tl')
     (hlong : [baseLetter].length +
-      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 < u.length)
+      blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length)
     (hmslong : [baseLetter].length +
       5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
     {y z : G} (hy : wordNorm E.rel.alphabet.carrier y ≤ eps)
@@ -896,24 +896,24 @@ theorem sameWordPublishedPiece_lengths_le_of_exactDesign
         (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms))
       eps u u' v) :
     max u.length u'.length ≤
-      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
   rcases hp with ⟨hv, ⟨tl, hu⟩, ⟨tl', hu'⟩,
     y, z, hy, hz, hval, hexcl⟩
   have hvSym := RelWord.mem_symmetrized.mp hv
   have hlu : u.length ≤
-      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
     by_contra hnot
     have hlong : [baseLetter].length +
-        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 < u.length := by
+        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length := by
       omega
     exact hexcl (listVal_conj_of_exactDesign_long_prefixes E hN hbase
       hdesign hcount heven hW hCm hpair hmatch hvSym hvSym hu hu' hlong
       hmslong hy hz hval)
   have hlu' : u'.length ≤
-      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 := by
+      [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
     by_contra hnot
     have hlong : [baseLetter].length +
-        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 1 < u'.length := by
+        blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u'.length := by
       omega
     have hyinv : wordNorm E.rel.alphabet.carrier y⁻¹ ≤ eps := by
       rw [wordNorm_inv E.rel.alphabet.symmetricGenerating y]
@@ -963,7 +963,7 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
   let p : List G := [t⁻¹]
   let cw := max 1 (eps + 2)
   let sep := blockSeparation p cw eps
-  let B := p.length + sep + 1
+  let B := p.length + sep + 6
   obtain ⟨delta, hdelta⟩ :=
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded E.rel E.embedded
   have hsymm := isSymmetricGeneratingSet_base₂ E

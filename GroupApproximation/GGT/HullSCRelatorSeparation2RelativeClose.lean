@@ -34,6 +34,15 @@ universe u
 
 section Arithmetic
 
+/-- At a singleton base word, the raised strict prefix threshold has exactly
+the capacity required for two relative spellings of maximal length `eps + 2`.
+The left side is the first admissible natural length above the threshold. -/
+theorem exactPublishedAdjacentCapacity_singleton (g : G) (eps : ℕ) :
+    [g].length + blockSeparation [g] (max 1 (eps + 2)) eps + 6 + 1 =
+      2 * ((eps + 2) + (eps + 2) + 3) + 2 := by
+  simp only [blockSeparation, blockConst, List.length_singleton]
+  omega
+
 /-- Two aligned adjacent matches cannot put the first far component at the
 last endpoint when the second endpoint is seam-clean. -/
 theorem farEnd_lt_of_aligned_seam {L c c' i j j' : ℕ}
