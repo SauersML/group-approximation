@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.HullYiCyclicProductWord
 import GroupApproximation.GGT.HullSCRelatorSeparationBall
+import GroupApproximation.GGT.ElementaryPositiveIndex
+import GroupApproximation.GGT.HullYiElementaryClosureFamily
 
 /-!
 # DGO component matches for Hull's cyclic products
@@ -59,6 +61,40 @@ theorem hasPositivePowerNormalizer_of_elementaryClosure_eq_zpowers {h : G}
   refine ⟨1, by norm_num, ?_⟩
   simp only [pow_one]
   group
+
+/-- The positive-power normalizer condition is exactly the orientation-purity
+conclusion Hull needs.  Apply it to `t⁻¹`: the resulting equation is the
+inverse-conjugation equation defining `E⁺(h)`. -/
+theorem elementaryClosure_eq_positive_of_hasPositivePowerNormalizer {h : G}
+    (hnormal : HasPositivePowerNormalizer h) :
+    (elementaryClosure h : Set G) = positiveElementaryClosure h := by
+  ext t
+  constructor
+  · intro ht
+    have htinv : t⁻¹ ∈ elementaryClosure h := (elementaryClosure h).inv_mem ht
+    obtain ⟨q, hq, hconj⟩ := hnormal t⁻¹ htinv
+    refine ⟨(q : ℤ), by exact_mod_cast hq.ne', ?_⟩
+    simpa only [inv_inv, zpow_natCast] using hconj
+  · intro ht
+    exact positiveElementaryClosure_le_elementaryClosure h ht
+
+/-- Orientation purity plus DGO Corollary 6.6 gives Hull's centralizer power,
+with no global coarse-translation input.  The finite transversal follows from
+the Hull generating set's hyperbolic acylindrical Cayley action. -/
+theorem exists_elementaryClosure_eq_centralizer_pow_of_hasPositivePowerNormalizer
+    (A : HullGeneratingSet G) {h : G}
+    (hlox : IsLoxodromic h (Cayley.base A.alphabet))
+    (hnormal : HasPositivePowerNormalizer h) :
+    ∃ r : ℕ, 0 < r ∧ (elementaryClosure h : Set G) =
+      {t : G | Commute t (h ^ (r : ℤ))} := by
+  have hfin : ElementaryClosureFiniteTransversal h :=
+    elementaryClosureFiniteTransversal_hullGeneratingSet A hlox
+  obtain ⟨r, hr, hcentral⟩ :=
+    exists_positiveElementaryClosure_eq_centralizer_pow
+      (isIsometricAction_cayley A.alphabet) hlox hfin
+  exact ⟨r, hr,
+    (elementaryClosure_eq_positive_of_hasPositivePowerNormalizer hnormal).trans
+      hcentral⟩
 
 /-- **Hull's inverse-orientation exclusion from DGO Lemma 4.21(b).**
 
