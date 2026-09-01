@@ -56,6 +56,11 @@ for some natural exponent `n >= 2`. -/
 def RelatorIsProperPower {Generator : Type u} (r : FreeGroup Generator) : Prop :=
   ∃ z n, 2 ≤ n ∧ r = z ^ n
 
+/-- Cubes give a direct nonempty model of the proper-power predicate. -/
+theorem relatorIsProperPower_cube {Generator : Type u} (z : FreeGroup Generator) :
+    RelatorIsProperPower (z ^ 3) :=
+  ⟨z, 3, by norm_num, rfl⟩
+
 /-- Every nonidentity element whose positive power is one forces one of a
 specified family of obstructions.  For a presentation, the obstruction will
 be that a defining relator is a proper power.
@@ -230,24 +235,22 @@ end CheckedTable
 
 /-! ## Universal geometric frontier -/
 
-/-- The remaining geometric statement for the torsion lane.  The
-`C(3)`--`T(8)` checks imply `C(3)`--`T(6)`; Huebschmann's Theorem 4 gives
-asphericity, and Theorem 3 then gives this finite-order localization.
-
-Unlike `GirthEightTorsionFree`, the conclusion identifies a defining relator
-which is a proper power whenever a specified nontrivial finite-order element
-is supplied. -/
-def GirthEightTorsionLocalization : Prop :=
-  ∀ (Generator TriangleIndex : Type) (_ : Fintype Generator)
-    (_ : DecidableEq Generator) (_ : Nonempty Generator)
-    (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
-    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) (d : ℕ),
-    GirthEightChecks T d → FiniteOrderForcesRelatorProperPower T
-
 /-- The source-localization theorem closes the repository's universal
-girth-eight torsion-freeness residual. -/
+girth-eight torsion-freeness residual.  The hypothesis is left anonymous:
+the named, model-tested geometric unit is
+`FiniteOrderForcesRelatorProperPower T` for one presentation.
+
+The `C(3)`--`T(8)` checks imply `C(3)`--`T(6)`; Huebschmann's Theorem 4 gives
+asphericity, and Theorem 3 then gives the finite-order localization consumed
+here. -/
 theorem girthEightTorsionFree_of_localization
-    (hloc : GirthEightTorsionLocalization) : GirthEightTorsionFree := by
+    (hloc :
+      ∀ (Generator TriangleIndex : Type) (_ : Fintype Generator)
+        (_ : DecidableEq Generator) (_ : Nonempty Generator)
+        (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
+        (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) (d : ℕ),
+        GirthEightChecks T d → FiniteOrderForcesRelatorProperPower T) :
+    GirthEightTorsionFree := by
   intro Generator TriangleIndex fg dg ng ft dt T d hchecks
   exact presented_isPowerTorsionFree_of_finiteOrderForcesRelatorProperPower
     hchecks (hloc Generator TriangleIndex fg dg ng ft dt T d hchecks)
