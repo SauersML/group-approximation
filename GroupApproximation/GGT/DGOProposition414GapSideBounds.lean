@@ -19,6 +19,24 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+namespace AuxiliaryIntervalOnChord
+
+/-- Passing a raw interval to the child-path interface preserves its four
+side-count summands definitionally. -/
+theorem toPathInput_sideCount
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {b : ℕ} {chordBase chordEnd : G}
+    {globalChord : List (RelLetter G Λ)}
+    {globalGeodesic : IsGeodesicWord D chordBase chordEnd globalChord}
+    (S : AuxiliaryIntervalOnChord D hsymm b chordBase chordEnd
+      globalChord globalGeodesic) :
+    S.toPathInput.sideCount =
+      S.left.length + S.arcSides + S.right.length +
+        (orientedSegment globalChord S.chordStart S.chordFinish).length := by
+  rfl
+
+end AuxiliaryIntervalOnChord
+
 namespace BalancedSplitData
 
 theorem firstGapLeft_length_le_one
@@ -234,6 +252,52 @@ theorem secondGap_raw_side_bound
   have hfinish := B.secondGapChordFinish_le j
   rw [hsegment]
   omega
+
+/-- Any raw interval with the canonical first-gap shape satisfies the first
+child-side bound. -/
+theorem firstGap_interval_side_bound
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (S : AuxiliaryIntervalOnChord D hsymm b B.firstBase
+      (vertex P.basepoint P.word B.secondVertex) B.chord B.chord_geodesic)
+    (hleft : S.left = B.firstGapLeft j)
+    (harcSides : S.arcSides =
+      B.firstGapFinishSide j - B.firstGapStartSide j)
+    (hright : S.right = B.firstGapRight j)
+    (hchordStart : S.chordStart = B.firstGapChordStart j)
+    (hchordFinish : S.chordFinish = B.firstGapChordFinish j) :
+    S.toPathInput.sideCount ≤
+      (B.secondSide - B.firstSide + 1) + B.chord.length := by
+  rw [S.toPathInput_sideCount, hleft, harcSides, hright, hchordStart,
+    hchordFinish]
+  exact B.firstGap_raw_side_bound j
+
+/-- Any raw interval with the canonical wrapped-gap shape satisfies the
+second child-side bound. -/
+theorem secondGap_interval_side_bound
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (S : AuxiliaryIntervalOnChord D hsymm b B.firstBase
+      (vertex P.basepoint P.word B.secondVertex) B.chord B.chord_geodesic)
+    (hleft : S.left = B.secondGapLeft j)
+    (harcSides : S.arcSides =
+      B.secondGapFinishSide j - B.secondGapStartSide j)
+    (hright : S.right = B.secondGapRight j)
+    (hchordStart : S.chordStart = B.secondGapChordStart j)
+    (hchordFinish : S.chordFinish = B.secondGapChordFinish j) :
+    S.toPathInput.sideCount ≤
+      (n - B.secondSide) + B.firstSide + 1 + B.chord.length := by
+  rw [S.toPathInput_sideCount, hleft, harcSides, hright, hchordStart,
+    hchordFinish]
+  exact B.secondGap_raw_side_bound j
 
 end BalancedSplitData
 
