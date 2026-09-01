@@ -197,6 +197,51 @@ theorem bbf_graph_adj_of_consecutive
       hY₀W hY₀Y₁ hWY₁ hWY₀before hbefore
     linarith [hW.2.2, hsmall, hK, P.ξ_pos]
 
+/-- The first vertex of the ordered large-projection set is adjacent to the
+left endpoint.  This supplies the initial edge of the standard path in BBF
+Proposition 3.7. -/
+theorem bbf_graph_adj_left_endpoint_of_minimal
+    (P : ProjectionSystem V) {K : ℝ} (hK : 12 * P.ξ ≤ K)
+    {X Z Y : V}
+    (hY : Y ∈ (ProjectionPerturbation.bbf P).blockers K X Z)
+    (hminimal : ∀ W,
+      W ∈ (ProjectionPerturbation.bbf P).blockers K X Z →
+      W ≠ Y → ¬ 5 * P.ξ < P.bbfProjDist W X Y) :
+    ((ProjectionPerturbation.bbf P).graph K).Adj X Y := by
+  rw [ProjectionPerturbation.graph_adj_iff_blockers_eq_empty]
+  refine ⟨hY.1.symm, Set.eq_empty_iff_forall_notMem.mpr ?_⟩
+  intro W hW
+  have hKfour : 4 * P.ξ ≤ K := by linarith [hK, P.ξ_pos]
+  have hWlarge := P.bbf_blockers_left_subset hKfour hY hW
+  have hWY : W ≠ Y := hW.2.1
+  apply hminimal W hWlarge hWY
+  linarith [hW.2.2, hK, P.ξ_pos]
+
+/-- The last vertex of the ordered large-projection set is adjacent to the
+right endpoint.  This supplies the final edge of the standard path in BBF
+Proposition 3.7. -/
+theorem bbf_graph_adj_right_endpoint_of_maximal
+    (P : ProjectionSystem V) {K : ℝ} (hK : 12 * P.ξ ≤ K)
+    {X Z Y : V}
+    (hY : Y ∈ (ProjectionPerturbation.bbf P).blockers K X Z)
+    (hmaximal : ∀ W,
+      W ∈ (ProjectionPerturbation.bbf P).blockers K X Z →
+      W ≠ Y → ¬ 5 * P.ξ < P.bbfProjDist Y X W) :
+    ((ProjectionPerturbation.bbf P).graph K).Adj Y Z := by
+  rw [ProjectionPerturbation.graph_adj_iff_blockers_eq_empty]
+  refine ⟨hY.2.1, Set.eq_empty_iff_forall_notMem.mpr ?_⟩
+  intro W hW
+  have hKfour : 4 * P.ξ ≤ K := by linarith [hK, P.ξ_pos]
+  have hWlarge := P.bbf_blockers_right_subset hKfour hY hW
+  have hWY : W ≠ Y := hW.1
+  have htotal := P.bbf_before_total_on_large hK hY.1 hY.2.1
+    hWlarge.1 hWlarge.2.1 hWY.symm hY.2.2 hWlarge.2.2
+  rcases htotal with hYWbefore | hWYbefore
+  · exact hmaximal W hWlarge hWY hYWbefore
+  · have hsmall :=
+      (P.bbf_before_consequences hK hWlarge hY hWY hWYbefore).2.2
+    linarith [hW.2.2, hsmall, hK, P.ξ_pos]
+
 end ProjectionSystem
 end GGT
 end GroupApproximation
