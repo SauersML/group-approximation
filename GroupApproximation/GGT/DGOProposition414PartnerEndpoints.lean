@@ -108,25 +108,7 @@ theorem firstBrokenConnectors_partnerEnd
     (B.firstBrokenConnectors s hs).partnerEnd =
       B.firstChordPos (B.brokenAssignment.first.partner s) + 1 := by
   let C := B.firstBrokenConnectors s hs
-  let y := B.brokenAssignment.first.partner s
-  have hy : y < B.chord.length := B.brokenAssignment.first.partner_lt s hs
-  have hrev : IsGeodesicWord D
-      (vertex P.basepoint P.word B.secondVertex)
-      (vertex P.basepoint P.word B.firstVertex) (revWord B.chord) :=
-    isGeodesicWord_revWord D hsymm B.chord_geodesic
-  have hpos : B.firstChordPos y = B.firstArc.length +
-      (B.chord.length - 1 - y) := by
-    simp [firstChordPos, B.firstArc_length]
-  have hword : B.firstWord = B.firstArc ++ revWord B.chord := by
-    rfl
-  have hend := isComp_end_eq_succ_of_geodesic_suffix D B.firstArc
-    (revWord B.chord) hrev hword hpos
-    (i := B.chord.length - 1 - y) (k := C.partnerEnd)
-    (by
-      rw [GroupApproximation.GGT.OsinComponents.length_revWord]
-      omega)
-    C.partnerComponent
-  simpa [C, y, hpos] using hend
+  simpa [C] using C.partner_end_eq
 
 /-- In the wrapped half, forward chord coordinate `y` is read forwards and its
 one-edge component terminates at global chord vertex `y + 1`. -/
@@ -141,22 +123,7 @@ theorem secondBrokenConnectors_partnerEnd
     (B.secondBrokenConnectors s hs).partnerEnd =
       B.secondChordPos (B.brokenAssignment.second.partner s) + 1 := by
   let C := B.secondBrokenConnectors s hs
-  let y := B.brokenAssignment.second.partner s
-  have hy : y < B.chord.length := B.brokenAssignment.second.partner_lt s hs
-  have hpos : B.secondChordPos y = B.secondArc.length + y := by
-    simp [secondChordPos, B.secondArc_length]
-  have hword : B.secondWord = B.secondArc ++ B.chord := by
-    have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
-      simp [refinedCut, splitPairCut_left B.side_order]
-    have hright : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
-      simp [refinedCut, splitPairCut_right]
-    unfold secondWord secondArc
-    simp only [secondHalf]
-    rw [hleft, hright]
-  have hend := isComp_end_eq_succ_of_geodesic_suffix D B.secondArc B.chord
-    B.chord_geodesic hword hpos (i := y) (k := C.partnerEnd) hy
-    C.partnerComponent
-  simpa [C, y, hpos] using hend
+  simpa [C] using C.partner_end_eq
 
 /-- The first inherited arc runs from the initial to the terminal chord
 vertex. -/

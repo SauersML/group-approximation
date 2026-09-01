@@ -30,7 +30,9 @@ structure ComponentConnectorPair (D : RelGenSet G Λ) (lam : Λ)
   partnerEnd : ℕ
   source_span_mem :
     (vertex v word source)⁻¹ * vertex v word sourceEnd ∈ D.fam lam
-  partnerComponent : IsComp lam word partner partnerEnd
+  partner_end_eq : partnerEnd = partner + 1
+  partner_span_mem :
+    (vertex v word partner)⁻¹ * vertex v word partnerEnd ∈ D.fam lam
   startConnector : List (RelLetter G Λ)
   endConnector : List (RelLetter G Λ)
   start_length : startConnector.length ≤ 1
@@ -52,23 +54,29 @@ theorem exists_componentConnectorPair
     (letters : ∀ x ∈ word, D.IsLetter x) (source partner : ℕ)
     (sourceSpan : (vertex v word source)⁻¹ *
       vertex v word (source + 1) ∈ D.fam lam)
-    (partnerStart : IsCompStart lam word partner)
+    (partnerPos : partner < word.length)
+    (partnerLetter : (word[partner]'partnerPos).IsCompOf lam)
     (connected : Connected D.fam lam v word source partner) :
     Nonempty (ComponentConnectorPair D lam v word source partner) := by
-  obtain ⟨partnerEnd, hpartner⟩ := partnerStart
-  have hpartnerSpan := span_mem_fam_of_isComp D v letters hpartner
+  have hpartnerSpan : (vertex v word partner)⁻¹ *
+      vertex v word (partner + 1) ∈ D.fam lam := by
+    rw [vertex_succ word v partner partnerPos]
+    simpa only [inv_mul_cancel_left] using
+      val_mem_fam_of_isCompOf D
+        (letters _ (List.getElem_mem partnerPos)) partnerLetter
   obtain ⟨f, e, hf, he, hfLetters, heLetters, hfLabel, heLabel,
       hfValue, heValue⟩ :=
     exists_component_connector_pair D lam
       (pm := vertex v word source) (pp := vertex v word (source + 1))
-      (ym := vertex v word partner) (yp := vertex v word partnerEnd)
+      (ym := vertex v word partner) (yp := vertex v word (partner + 1))
       sourceSpan hpartnerSpan connected
   exact ⟨{
     sourceEnd := source + 1
     source_end_eq := rfl
-    partnerEnd := partnerEnd
+    partnerEnd := partner + 1
     source_span_mem := sourceSpan
-    partnerComponent := hpartner
+    partner_end_eq := rfl
+    partner_span_mem := hpartnerSpan
     startConnector := f
     endConnector := e
     start_length := hf
@@ -244,7 +252,8 @@ noncomputable def firstBrokenConnectors
     (B.componentPlacement.firstPos s)
     (B.firstChordPos (B.brokenAssignment.first.partner s))
     (B.firstSourceSpan_mem s hsTarget)
-    (B.brokenAssignment.first.partner_start s hs)
+    (B.brokenAssignment.first.partner_pos_lt s hs)
+    (B.brokenAssignment.first.partner_letter s hs)
     (B.brokenAssignment.first.partner_connected s hs))
 
 /-- Canonical connector data for one broken source in the wrapped half. -/
@@ -265,7 +274,8 @@ noncomputable def secondBrokenConnectors
     (B.componentPlacement.secondPos s)
     (B.secondChordPos (B.brokenAssignment.second.partner s))
     (B.secondSourceSpan_mem s hsTarget)
-    (B.brokenAssignment.second.partner_start s hs)
+    (B.brokenAssignment.second.partner_pos_lt s hs)
+    (B.brokenAssignment.second.partner_letter s hs)
     (B.brokenAssignment.second.partner_connected s hs))
 
 /-- Both broken-half connector families, indexed by the exact broken sets used

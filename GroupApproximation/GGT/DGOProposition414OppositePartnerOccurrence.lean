@@ -37,14 +37,11 @@ theorem firstPartner_chordLetter_label
       (B.brokenAssignment.first.partner_lt s hs)).IsCompOf (P.label s) := by
   let y := B.brokenAssignment.first.partner s
   have hy : y < B.chord.length := B.brokenAssignment.first.partner_lt s hs
-  let C := B.firstBrokenConnectors s hs
-  have hstart : C.partnerEnd = B.firstChordPos y + 1 :=
-    B.firstBrokenConnectors_partnerEnd s hs
   have hwordLen : B.firstChordPos y < B.firstWord.length :=
-    C.partnerComponent.1.trans_le C.partnerComponent.2.1
+    B.brokenAssignment.first.partner_pos_lt s hs
   have hletter :
       (B.firstWord[B.firstChordPos y]'hwordLen).IsCompOf (P.label s) :=
-    C.partnerComponent.2.2.1 _ le_rfl C.partnerComponent.1 hwordLen
+    B.brokenAssignment.first.partner_letter s hs
   have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
     simp [refinedCut, splitPairCut_left B.side_order]
   have hright : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
@@ -96,12 +93,11 @@ theorem secondPartner_chordLetter_label
       (B.brokenAssignment.second.partner_lt s hs)).IsCompOf (P.label s) := by
   let y := B.brokenAssignment.second.partner s
   have hy : y < B.chord.length := B.brokenAssignment.second.partner_lt s hs
-  let C := B.secondBrokenConnectors s hs
   have hwordLen : B.secondChordPos y < B.secondWord.length :=
-    C.partnerComponent.1.trans_le C.partnerComponent.2.1
+    B.brokenAssignment.second.partner_pos_lt s hs
   have hletter :
       (B.secondWord[B.secondChordPos y]'hwordLen).IsCompOf (P.label s) :=
-    C.partnerComponent.2.2.1 _ le_rfl C.partnerComponent.1 hwordLen
+    B.brokenAssignment.second.partner_letter s hs
   have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
     simp [refinedCut, splitPairCut_left B.side_order]
   have hright : B.refinedCut (B.secondSide + 2) = B.secondVertex := by

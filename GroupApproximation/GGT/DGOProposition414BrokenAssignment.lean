@@ -23,6 +23,16 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+/-- A distinguished one-edge source survives a cut only when that exact edge
+is still a maximal component and the resulting component is isolated.  The
+maximality conjunct is essential at an arc/chord seam, where appending a
+same-label chord edge can merge the source without creating a second component
+start. -/
+def survivesExactly (D : RelGenSet G Λ) (lam : ℕ → Λ) (base : G)
+    (word : List (RelLetter G Λ)) (pos : ℕ → ℕ) (s : ℕ) : Prop :=
+  IsComp (lam s) word (pos s) (pos s + 1) ∧
+    IsIsolated D.fam (lam s) base word (pos s)
+
 /-- The distinguished indices whose components fail to stay isolated in one
 half. -/
 noncomputable def brokenSet (I : Finset ℕ) (survives : ℕ → Prop) : Finset ℕ :=
@@ -46,8 +56,10 @@ structure BrokenHalfAssignment (D : RelGenSet G Λ) (halfBase : G)
   partner : ℕ → ℕ
   partner_lt : ∀ s ∈ brokenSet I survives, partner s < chordLength
   partner_injective : Set.InjOn partner (↑(brokenSet I survives) : Set ℕ)
-  partner_start : ∀ s ∈ brokenSet I survives,
-    IsCompStart (lam s) half (chordPos (partner s))
+  partner_pos_lt : ∀ s ∈ brokenSet I survives,
+    chordPos (partner s) < half.length
+  partner_letter : ∀ s (hs : s ∈ brokenSet I survives),
+    (half[chordPos (partner s)]'(partner_pos_lt s hs)).IsCompOf (lam s)
   partner_connected : ∀ s ∈ brokenSet I survives,
     Connected D.fam (lam s) halfBase half (pos s) (chordPos (partner s))
   index : GreedyHalfFamilyIndex (brokenSet I survives) pos partner chordLength
@@ -65,7 +77,8 @@ theorem exists_brokenHalfAssignment
       lam s = lam t → pos s ≠ pos t →
       ¬ Connected D.fam (lam s) halfBase half (pos s) (pos t))
     (hexists : ∀ s ∈ brokenSet I survives, ∃ y : ℕ,
-      y < chordLength ∧ IsCompStart (lam s) half (chordPos y) ∧
+      y < chordLength ∧ ∃ hy : chordPos y < half.length,
+      (half[chordPos y]'hy).IsCompOf (lam s) ∧
       Connected D.fam (lam s) halfBase half (pos s) (chordPos y)) :
     Nonempty (BrokenHalfAssignment D halfBase half I survives lam pos
       chordLength chordPos) := by
@@ -81,35 +94,29 @@ theorem exists_brokenHalfAssignment
     if hs : s ∈ B then Classical.choose (hexists s hs) else 0
   have hpartner : ∀ s ∈ B,
       partner s < chordLength ∧
-      IsCompStart (lam s) half (chordPos (partner s)) ∧
+      ∃ hy : chordPos (partner s) < half.length,
+      (half[chordPos (partner s)]'hy).IsCompOf (lam s) ∧
       Connected D.fam (lam s) halfBase half (pos s)
         (chordPos (partner s)) := by
     intro s hs
     simpa [partner, hs] using Classical.choose_spec (hexists s hs)
   have hfullInj : Set.InjOn (fun s => chordPos (partner s)) (↑B : Set ℕ) := by
     intro s hs t ht heq
-    obtain ⟨ks, hcs⟩ := (hpartner s hs).2.1
-    obtain ⟨kt, hct⟩ := (hpartner t ht).2.1
-    have hslen : chordPos (partner s) < half.length :=
-      lt_of_lt_of_le hcs.1 hcs.2.1
-    have hsComp : (half[chordPos (partner s)]'hslen).IsCompOf (lam s) :=
-      hcs.2.2.1 _ le_rfl hcs.1 hslen
-    have htlen : chordPos (partner t) < half.length :=
-      lt_of_lt_of_le hct.1 hct.2.1
+    obtain ⟨hslen, hsComp, hsConn⟩ := (hpartner s hs).2
+    obtain ⟨htlen, htCompAt, htConn⟩ := (hpartner t ht).2
     have htComp : (half[chordPos (partner s)]'hslen).IsCompOf (lam t) := by
-      have h := hct.2.2.1 _ le_rfl hct.1 htlen
-      simpa [heq] using h
+      simpa [heq] using htCompAt
     have hlam : lam s = lam t := eq_of_isCompOf_of_isCompOf hsComp htComp
     have hposEq : pos s = pos t := by
       by_contra hne
       have hconnT : Connected D.fam (lam s) halfBase half
           (pos t) (chordPos (partner t)) := by
         rw [hlam]
-        exact (hpartner t ht).2.2
+        exact htConn
       have hthrough : Connected D.fam (lam s) halfBase half (pos s) (pos t) := by
         change chordPos (partner s) = chordPos (partner t) at heq
         rw [← heq] at hconnT
-        exact connected_trans (hpartner s hs).2.2 (connected_symm hconnT)
+        exact connected_trans hsConn (connected_symm hconnT)
       exact hsep s hs t ht hlam hne hthrough
     exact hposB hs ht hposEq
   have hinj : Set.InjOn partner (↑B : Set ℕ) := by
@@ -126,8 +133,9 @@ theorem exists_brokenHalfAssignment
     partner := partner
     partner_lt := hrange
     partner_injective := hinj
-    partner_start := fun s hs => (hpartner s hs).2.1
-    partner_connected := fun s hs => (hpartner s hs).2.2
+    partner_pos_lt := fun s hs => (hpartner s hs).2.choose
+    partner_letter := fun s hs => (hpartner s hs).2.choose_spec.1
+    partner_connected := fun s hs => (hpartner s hs).2.choose_spec.2
     index := index
   }⟩
 

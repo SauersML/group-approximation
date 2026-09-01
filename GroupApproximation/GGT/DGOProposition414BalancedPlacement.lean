@@ -119,30 +119,32 @@ structure BalancedSplitComponentPlacement
     IsCompStart (P.label s) B.firstWord (firstPos s)
   second_start : ∀ s ∈ secondTarget,
     IsCompStart (P.label s) B.secondWord (secondPos s)
-  first_separated : ∀ s ∈ brokenSet firstTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.firstBase B.firstWord (firstPos t)),
-    ∀ t ∈ brokenSet firstTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.firstBase B.firstWord (firstPos t)),
+  first_separated : ∀ s ∈ brokenSet firstTarget
+      (survivesExactly D P.label B.firstBase B.firstWord firstPos),
+    ∀ t ∈ brokenSet firstTarget
+      (survivesExactly D P.label B.firstBase B.firstWord firstPos),
       P.label s = P.label t → firstPos s ≠ firstPos t →
       ¬ Connected D.fam (P.label s) B.firstBase B.firstWord
         (firstPos s) (firstPos t)
-  second_separated : ∀ s ∈ brokenSet secondTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.secondBase B.secondWord (secondPos t)),
-    ∀ t ∈ brokenSet secondTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.secondBase B.secondWord (secondPos t)),
+  second_separated : ∀ s ∈ brokenSet secondTarget
+      (survivesExactly D P.label B.secondBase B.secondWord secondPos),
+    ∀ t ∈ brokenSet secondTarget
+      (survivesExactly D P.label B.secondBase B.secondWord secondPos),
       P.label s = P.label t → secondPos s ≠ secondPos t →
       ¬ Connected D.fam (P.label s) B.secondBase B.secondWord
         (secondPos s) (secondPos t)
-  first_partner : ∀ s ∈ brokenSet firstTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.firstBase B.firstWord (firstPos t)),
+  first_partner : ∀ s ∈ brokenSet firstTarget
+      (survivesExactly D P.label B.firstBase B.firstWord firstPos),
     ∃ y : ℕ, y < B.chord.length ∧
-      IsCompStart (P.label s) B.firstWord (B.firstChordPos y) ∧
+      ∃ hy : B.firstChordPos y < B.firstWord.length,
+      (B.firstWord[B.firstChordPos y]'hy).IsCompOf (P.label s) ∧
       Connected D.fam (P.label s) B.firstBase B.firstWord
         (firstPos s) (B.firstChordPos y)
-  second_partner : ∀ s ∈ brokenSet secondTarget (fun t =>
-      IsIsolated D.fam (P.label t) B.secondBase B.secondWord (secondPos t)),
+  second_partner : ∀ s ∈ brokenSet secondTarget
+      (survivesExactly D P.label B.secondBase B.secondWord secondPos),
     ∃ y : ℕ, y < B.chord.length ∧
-      IsCompStart (P.label s) B.secondWord (B.secondChordPos y) ∧
+      ∃ hy : B.secondChordPos y < B.secondWord.length,
+      (B.secondWord[B.secondChordPos y]'hy).IsCompOf (P.label s) ∧
       Connected D.fam (P.label s) B.secondBase B.secondWord
         (secondPos s) (B.secondChordPos y)
 
@@ -155,7 +157,7 @@ def firstSurvives
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     (C : BalancedSplitComponentPlacement D hsymm b hδ P B) (s : ℕ) : Prop :=
-  IsIsolated D.fam (P.label s) B.firstBase B.firstWord (C.firstPos s)
+  survivesExactly D P.label B.firstBase B.firstWord C.firstPos s
 
 def secondSurvives
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -164,7 +166,7 @@ def secondSurvives
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     (C : BalancedSplitComponentPlacement D hsymm b hδ P B) (s : ℕ) : Prop :=
-  IsIsolated D.fam (P.label s) B.secondBase B.secondWord (C.secondPos s)
+  survivesExactly D P.label B.secondBase B.secondWord C.secondPos s
 
 /-- Construct the canonical broken assignments and two-half greedy index in
 the actual balanced-half coordinate systems. -/

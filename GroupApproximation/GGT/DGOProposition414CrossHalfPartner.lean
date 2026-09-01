@@ -181,8 +181,7 @@ theorem crossHalf_partner_ne_of_label_eq
         (vertex B.firstBase B.chord (y + 1))⁻¹ *
           vertex B.firstBase B.chord y ∈ D.fam (P.label s) := by
       -- The component span itself gives the required reversed chord edge.
-      have hspan := (B.firstBrokenConnectors s hs).partnerComponent
-      have hmem := span_mem_fam_of_isComp D B.firstBase B.firstWord_letters hspan
+      have hmem := (B.firstBrokenConnectors s hs).partner_span_mem
       rw [B.firstBrokenConnectors_partnerStart_vertex s hs,
         B.firstBrokenConnectors_partnerEnd_vertex s hs] at hmem
       exact hmem
