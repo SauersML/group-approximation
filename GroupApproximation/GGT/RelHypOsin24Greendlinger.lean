@@ -197,6 +197,55 @@ theorem sum_three_groupPieces_lt {R : Set (List (CoprodI G))} {lam : ℚ}
     mul_le_mul_of_nonneg_right hlam h0
   linarith
 
+/-- **A relator cell with at most three interior piece arcs has more than half
+of its boundary on the exterior.**
+
+This is the quantitative cell-overlap step of the relative Greendlinger
+argument.  The decomposition records only lengths: the exterior arc and three
+interior arcs partition the relator boundary.  Small cancellation makes the
+three interior arcs together shorter than half the relator, so the whole
+relator is shorter than twice its exterior arc. -/
+theorem relator_length_lt_twice_exterior_of_three_groupPieces
+    {R : Set (List (CoprodI G))} {lam : ℚ}
+    (hlam : lam ≤ 1 / 6) (hmetric : LetterMetricGroupSmallCancellation R lam)
+    {exterior p₁ p₂ p₃ r : List (CoprodI G)} (hr : r ∈ R)
+    (h₁ : LetterIsGroupPiece R p₁) (hp₁ : p₁ <+: r)
+    (h₂ : LetterIsGroupPiece R p₂) (hp₂ : p₂ <+: r)
+    (h₃ : LetterIsGroupPiece R p₃) (hp₃ : p₃ <+: r)
+    (hpartition : r.length =
+      exterior.length + p₁.length + p₂.length + p₃.length) :
+    r.length < 2 * exterior.length := by
+  have hpieces := sum_three_groupPieces_lt hlam hmetric hr
+    h₁ hp₁ h₂ hp₂ h₃ hp₃
+  have hpartitionQ : (r.length : ℚ) =
+      (exterior.length : ℚ) + (p₁.length : ℚ) +
+        (p₂.length : ℚ) + (p₃.length : ℚ) := by
+    exact_mod_cast hpartition
+  have hltQ : (r.length : ℚ) < 2 * (exterior.length : ℚ) := by
+    linarith
+  exact_mod_cast hltQ
+
+/-- **There is no three-piece boundary cell on an exterior boundary of length
+at most two when relators have length at least four.**
+
+This is the arithmetic contradiction peripheral injectivity needs after the
+relative diagram theorem selects its boundary cell.  The exterior arc is a
+subpath of the whole boundary, hence has no greater length. -/
+theorem no_threeGroupPieceCell_on_relativeBoundary_two
+    {R : Set (List (CoprodI G))} {lam : ℚ}
+    (hlam : lam ≤ 1 / 6) (hmetric : LetterMetricGroupSmallCancellation R lam)
+    {boundaryLength : ℕ} (hboundary : boundaryLength ≤ 2)
+    {exterior p₁ p₂ p₃ r : List (CoprodI G)} (hr : r ∈ R)
+    (hfloor : 4 ≤ r.length) (hexterior : exterior.length ≤ boundaryLength)
+    (h₁ : LetterIsGroupPiece R p₁) (hp₁ : p₁ <+: r)
+    (h₂ : LetterIsGroupPiece R p₂) (hp₂ : p₂ <+: r)
+    (h₃ : LetterIsGroupPiece R p₃) (hp₃ : p₃ <+: r)
+    (hpartition : r.length =
+      exterior.length + p₁.length + p₂.length + p₃.length) : False := by
+  have hlt := relator_length_lt_twice_exterior_of_three_groupPieces
+    hlam hmetric hr h₁ hp₁ h₂ hp₂ h₃ hp₃ hpartition
+  omega
+
 end RelHyp
 end GGT
 end GroupApproximation
