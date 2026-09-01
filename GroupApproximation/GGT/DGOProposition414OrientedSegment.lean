@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOProposition414TwoHalfProducer
+import GroupApproximation.GGT.DGOProposition414FiniteComponentFile
 import GroupApproximation.GGT.OsinTheorem54SepCommIndex
 import GroupApproximation.GGT.OsinTheorem54SepSubGeodesic
 
@@ -196,11 +197,19 @@ structure AuxiliaryIntervalOnChord (D : RelGenSet G Λ)
   localTarget_edge : ∀ s ∈ localTarget,
     auxiliaryCycleCut left arcSides arcCut right (s + 1) =
       auxiliaryCycleCut left arcSides arcCut right s + 1
-  components : AuxiliaryCycleComponentConfiguration D
-    (vertex chordBase globalChord chordFinish)
-    left arc right (orientedSegment globalChord chordStart chordFinish)
-    arcSides arcCut
-    (localTarget ∪ auxiliaryCycleConnectorTarget left right arcSides) label
+  targetComponent : ∀ s ∈
+      localTarget ∪ auxiliaryCycleConnectorTarget left right arcSides,
+    IsComp (label s)
+      (auxiliaryCycleWord left arc right
+        (orientedSegment globalChord chordStart chordFinish))
+      (auxiliaryCycleCut left arcSides arcCut right s)
+      (auxiliaryCycleCut left arcSides arcCut right (s + 1))
+  targetIsolated : ∀ s ∈
+      localTarget ∪ auxiliaryCycleConnectorTarget left right arcSides,
+    IsIsolated D.fam (label s) (vertex chordBase globalChord chordFinish)
+      (auxiliaryCycleWord left arc right
+        (orientedSegment globalChord chordStart chordFinish))
+      (auxiliaryCycleCut left arcSides arcCut right s)
 
 namespace AuxiliaryIntervalOnChord
 
@@ -247,7 +256,7 @@ theorem closes
 /-- Populate a concrete path input from one raw surgery interval.  The chord
 word, its endpoint, its geodesicity, and closure are all derived rather than
 supplied as additional fields. -/
-def toPathInput
+noncomputable def toPathInput
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {chordBase chordEnd : G}
     {globalChord : List (RelLetter G Λ)}
@@ -273,7 +282,8 @@ def toPathInput
       label := P.label
       localTarget_lt := P.localTarget_lt
       localTarget_edge := P.localTarget_edge
-      components := P.components }
+      components := AuxiliaryCycleComponentConfiguration.ofTargetIsolated
+        P.targetComponent P.targetIsolated }
   have hsegment := isGeodesicWord_orientedSegment D hsymm globalGeodesic
     P.chordStart_le P.chordFinish_le
   have hstart :
@@ -304,7 +314,7 @@ structure TwoHalfIntervalSurgery (D : RelGenSet G Λ)
 namespace TwoHalfIntervalSurgery
 
 /-- Populate every concrete child input from the raw intervals. -/
-def toPathInput
+noncomputable def toPathInput
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {I₁ I₂ : Finset ℕ}
     {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength : ℕ}

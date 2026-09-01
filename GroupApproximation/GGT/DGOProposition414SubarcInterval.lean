@@ -68,14 +68,27 @@ def auxiliaryIntervalOnChord_of_subarc
           (s + 1) =
         auxiliaryCycleCut left (lastSide - firstSide)
           (fun r => parentCut (firstSide + r) - parentCut firstSide) right s + 1)
-    (components : AuxiliaryCycleComponentConfiguration D
-      (vertex chordBase globalChord chordFinish) left
-      (arcWord parentWord parentCut firstSide lastSide) right
-      (orientedSegment globalChord chordStart chordFinish)
-      (lastSide - firstSide)
-      (fun r => parentCut (firstSide + r) - parentCut firstSide)
-      (localTarget ∪ auxiliaryCycleConnectorTarget left right
-        (lastSide - firstSide)) label) :
+    (targetComponent : ∀ s ∈
+      localTarget ∪ auxiliaryCycleConnectorTarget left right
+        (lastSide - firstSide),
+      IsComp (label s)
+        (auxiliaryCycleWord left
+          (arcWord parentWord parentCut firstSide lastSide) right
+          (orientedSegment globalChord chordStart chordFinish))
+        (auxiliaryCycleCut left (lastSide - firstSide)
+          (fun r => parentCut (firstSide + r) - parentCut firstSide) right s)
+        (auxiliaryCycleCut left (lastSide - firstSide)
+          (fun r => parentCut (firstSide + r) - parentCut firstSide) right
+          (s + 1)))
+    (targetIsolated : ∀ s ∈
+      localTarget ∪ auxiliaryCycleConnectorTarget left right
+        (lastSide - firstSide),
+      IsIsolated D.fam (label s) (vertex chordBase globalChord chordFinish)
+        (auxiliaryCycleWord left
+          (arcWord parentWord parentCut firstSide lastSide) right
+          (orientedSegment globalChord chordStart chordFinish))
+        (auxiliaryCycleCut left (lastSide - firstSide)
+          (fun r => parentCut (firstSide + r) - parentCut firstSide) right s)) :
     AuxiliaryIntervalOnChord D hsymm b chordBase chordEnd globalChord
       globalGeodesic := by
   let restricted := IsCutPath.arcWord parentPath hside hlast
@@ -100,7 +113,8 @@ def auxiliaryIntervalOnChord_of_subarc
       arcQuasi := ?_
       localTarget_lt := localTarget_lt
       localTarget_edge := localTarget_edge
-      components := components }
+      targetComponent := targetComponent
+      targetIsolated := targetIsolated }
   intro r hr hrTarget p q hp hpq hq
   have hrestricted := IsCutPath.arcWord_quasi parentPath parentTarget
     parentQuasi hside hlast localTarget target_reflect r hr hrTarget
