@@ -632,6 +632,73 @@ def TorsionLifts (K : Subgroup (CoprodI G)) [K.Normal] : Prop :=
   ∀ (q : CoprodI G ⧸ K) (n : ℕ), 0 < n → q ^ n = 1 →
     ∃ g : CoprodI G, QuotientGroup.mk' K g = q ∧ ∃ m : ℕ, 0 < m ∧ g ^ m = 1
 
+/-- **Failure of torsion lifting produces a least-area reduced power
+diagram, oriented by actual relator words.**
+
+Choose a lift `g` of the finite-order quotient element.  Failure of the lifting
+conclusion says that this particular `g` has no positive trivial power, while
+`g ^ n` lies nontrivially in the relator subgroup.  A least relator-product
+certificate for that power then flattens and orients exactly as in the disc
+case.  This is the algebraic input of the annular diagram argument in Osin
+Theorem 2.4(5). -/
+theorem exists_reducedPowerRelatorProduct_of_not_torsionLifts
+    {R : Set (List (CoprodI G))} (hsym : LetterSymmetrized R)
+    (hnot : ¬ TorsionLifts (letterRelatorSubgroup R)) :
+    ∃ (q : CoprodI G ⧸ letterRelatorSubgroup R) (n : ℕ) (g : CoprodI G)
+      (area : ℕ) (factors : List (CoprodI G)),
+      0 < n ∧ q ^ n = 1 ∧
+      QuotientGroup.mk' (letterRelatorSubgroup R) g = q ∧
+      (∀ m : ℕ, 0 < m → g ^ m ≠ 1) ∧ 0 < area ∧
+      factors.length = area ∧ factors.prod = g ^ n ∧
+      (∀ x ∈ factors, RelatorDefectBudget.IsSignedConjugate
+        (List.prod '' R) x) ∧
+      (∀ (pre mid suf : List (CoprodI G)),
+        factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1) ∧
+      (∀ (pre between suf : List (CoprodI G)) (x y : CoprodI G),
+        factors = pre ++ x :: (between ++ y :: suf) →
+          between.prod⁻¹ * x * between.prod * y ≠ 1) ∧
+      ∃ cells : List (CoprodI G × List (CoprodI G)),
+        cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
+          ∀ cell ∈ cells, cell.2 ∈ R := by
+  classical
+  unfold TorsionLifts at hnot
+  push Not at hnot
+  obtain ⟨q, n, hn, hqn, hnoLift⟩ := hnot
+  obtain ⟨g, hgq⟩ :=
+    QuotientGroup.mk'_surjective (letterRelatorSubgroup R) q
+  have hgInfinite : ∀ m : ℕ, 0 < m → g ^ m ≠ 1 := by
+    intro m hm hgm
+    exact hnoLift g hgq m hm hgm
+  have hpow_ne : g ^ n ≠ 1 := hgInfinite n hn
+  have hpow_mem : g ^ n ∈ letterRelatorSubgroup R := by
+    rw [← QuotientGroup.eq_one_iff]
+    change (QuotientGroup.mk' (letterRelatorSubgroup R) g) ^ n = 1
+    rw [hgq, hqn]
+  have hex : ∃ area : ℕ, RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) area (g ^ n) :=
+    RelatorDefectBudget.exists_isRelatorProduct hpow_mem
+  let area := Nat.find hex
+  have harea : RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) area (g ^ n) := Nat.find_spec hex
+  have harea_pos : 0 < area := by
+    apply Nat.pos_of_ne_zero
+    intro hzero
+    have harea_zero : RelatorDefectBudget.IsRelatorProduct
+        (List.prod '' R) 0 (g ^ n) := by
+      simpa [hzero] using harea
+    exact hpow_ne harea_zero.eq_one_of_index_zero
+  obtain ⟨factors, hlength, hprod, hcells⟩ := harea.exists_flatten
+  obtain ⟨oriented, horiented, horiented_mem⟩ :=
+    exists_orientedLetterCells_of_signedConjugates hsym.2 factors hcells
+  have hminimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) m (g ^ n) → area ≤ m := fun h => Nat.find_min' hex h
+  refine ⟨q, n, g, area, factors, hn, hqn, hgq, hgInfinite, harea_pos,
+    hlength, hprod, hcells, ?_, ?_, oriented, horiented, horiented_mem⟩
+  · exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
+      hlength hprod hcells hminimal
+  · exact RelatorDefectBudget.no_cancelling_pair_of_minimal
+      hlength hprod hcells hminimal
+
 /-- **The torsion clause, spent.**  A quotient of a torsion-free group in which
 torsion lifts is torsion-free.  No factor map, no embedding clause. -/
 theorem isPowerTorsionFree_of_torsionLifts {K : Subgroup (CoprodI G)} [K.Normal]
