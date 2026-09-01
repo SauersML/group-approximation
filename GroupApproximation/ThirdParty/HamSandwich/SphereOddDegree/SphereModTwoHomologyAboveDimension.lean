@@ -1,6 +1,5 @@
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnHomologyNotation
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnLowDimensional
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -28,16 +27,21 @@ open CategoryTheory CategoryTheory.Limits AlgebraicTopology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-- **Positive mod-two homology of `S⁰` vanishes.** For `0 < k`,
 `H_k(S⁰; F₂) = 0`, since `S⁰` is totally disconnected. -/
 theorem sphereZero_modTwoHomology_isZero_pos
     (k : Nat) (hk : 0 < k) :
     IsZero (homologyZMod2 (TopCat.of (Sphere 0)) k) := by
-  convert
+  have hzero :=
     AlgebraicTopology.isZero_singularHomologyFunctor_of_totallyDisconnectedSpace
       (ModuleCat (ZMod 2)) k
       (ModuleCat.of (ZMod 2) (ZMod 2))
       (TopCat.of (Sphere 0)) hk.ne'
+  change IsZero (homologyZMod2 (TopCat.of (Sphere 0)) k) at hzero
+  exact hzero
 
 /-- **Above-dimension mod-two sphere homology vanishes.** For `n < k`,
 `H_k(Sⁿ; F₂) = 0`. -/
@@ -74,5 +78,12 @@ theorem sphereCohomology_isZero_of_gt
     homologyDualZMod2_isZero_of_homology_isZero _ _ hH
   exact IsZero.of_iso hDual (kroneckerEquiv (TopCat.of (Sphere n)) k)
 
-end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+/-- Closed audit endpoint for above-dimension mod-two sphere (co)homology vanishing. -/
+theorem sphereModTwo_above_dimension_vanishing_closed :
+    (∀ n k : ℕ, n < k → IsZero (homologyZMod2 (TopCat.of (Sphere n)) k)) ∧
+    (∀ n k : ℕ, n < k → IsZero (sphereCohomology n k)) :=
+  ⟨sphereModTwoHomology_isZero_of_gt, sphereCohomology_isZero_of_gt⟩
 
+#audit_closed_axioms sphereModTwo_above_dimension_vanishing_closed
+
+end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
