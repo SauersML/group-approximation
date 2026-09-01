@@ -26,10 +26,11 @@ The result `sphereTopHomologyIso_one : SphereTopHomologyIso 1` supplies the
 -/
 
 open CategoryTheory AlgebraicTopology Limits TopologicalSpace
-open AffineBarycentricSubdivision
 
 noncomputable section
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 /-! ## Setup for the circle cover (the `n = 0` specialization) -/
 
@@ -57,7 +58,7 @@ abbrev circF0 :
 
 /-- A point of `S⁰`. -/
 instance instNonemptySphere0 : Nonempty (Sphere 0) :=
-  ⟨⟨EuclideanSpace.single 0 1, by simp [EuclideanSpace.norm_eq]⟩⟩
+  ⟨⟨EuclideanSpace.single 0 1, by simp⟩⟩
 
 /-
 **Algebra helper.** A finite free `ℤ`-module of rank `1` is isomorphic to `ℤ`.
@@ -66,7 +67,7 @@ theorem linearEquiv_int_of_finrank_one {N : Type} [AddCommGroup N] [Module ℤ N
     [Module.Free ℤ N] [Module.Finite ℤ N] (h : Module.finrank ℤ N = 1) :
     Nonempty (N ≃ₗ[ℤ] ℤ) := by
   have := ( Module.finBasis ℤ N );
-  rw [ h ] at this; exact ⟨ this.equivFun.trans ( LinearEquiv.ofFinrankEq _ _ <| by simp +decide [ h ] ) ⟩ ;
+  rw [ h ] at this; exact ⟨ this.equivFun.trans ( LinearEquiv.ofFinrankEq _ _ <| by simp ) ⟩ ;
 
 /-- **Algebra helper.** The kernel of a surjection from a rank-`2` finite free
 `ℤ`-module onto `ℤ` is isomorphic to `ℤ`. -/
@@ -116,19 +117,26 @@ theorem h0_sphere0_free_finrank :
     Module.Free ℤ ((singularChainComplex ℤ (TopCat.of (Sphere 0))).homology 0) ∧
     Module.Finite ℤ ((singularChainComplex ℤ (TopCat.of (Sphere 0))).homology 0) ∧
     Module.finrank ℤ ((singularChainComplex ℤ (TopCat.of (Sphere 0))).homology 0) = 2 := by
-  refine' ⟨ _, _, _ ⟩;
-  · have := AlgebraicTopology.singularHomologyFunctorZeroOfTotallyDisconnectedSpace ( ModuleCat ℤ ) ( ModuleCat.of ℤ ℤ ) ( TopCat.of ( Sphere 0 ) );
-    have := this.toLinearEquiv;
-    convert Module.Free.of_equiv this.symm;
-  · have := singularHomologyFunctorZeroOfTotallyDisconnectedSpace ( ModuleCat ℤ ) ( ModuleCat.of ℤ ℤ ) ( TopCat.of ( Sphere 0 ) );
-    have := this.toLinearEquiv;
-    convert Module.Finite.of_surjective this.symm.toLinearMap this.symm.surjective;
-  · obtain ⟨ e ⟩ := sphere0_equiv_fin2;
-    have h_iso : (singularChainComplex ℤ (TopCat.of (Sphere 0))).homology 0 ≅ ModuleCat.of ℤ (DirectSum (Sphere 0) (fun _ => ℤ)) := by
-      convert singularHomologyFunctorZeroOfTotallyDisconnectedSpace ( ModuleCat ℤ ) ( ModuleCat.of ℤ ℤ ) ( TopCat.of ( Sphere 0 ) ) |> CategoryTheory.Iso.trans <| ModuleCat.coprodIsoDirectSum _;
-    convert LinearEquiv.finrank_eq ( h_iso.toLinearEquiv ) using 1;
-    simp +decide [ Module.finrank ];
-    rw [ Cardinal.mk_congr e ] ; norm_num
+  obtain ⟨e⟩ := sphere0_equiv_fin2
+  letI : Fintype (Sphere 0) := Fintype.ofEquiv (Fin 2) e.symm
+  have h_iso :
+      (singularChainComplex ℤ (TopCat.of (Sphere 0))).homology 0 ≅
+        ModuleCat.of ℤ (DirectSum (Sphere 0) (fun _ => ℤ)) :=
+    singularHomologyFunctorZeroOfTotallyDisconnectedSpace (ModuleCat ℤ)
+      (ModuleCat.of ℤ ℤ) (TopCat.of (Sphere 0)) ≪≫ ModuleCat.coprodIsoDirectSum _
+  let eFun : DirectSum (Sphere 0) (fun _ => ℤ) ≃ₗ[ℤ] (Sphere 0 → ℤ) :=
+    DFinsupp.linearEquivFunOnFintype
+  haveI : Module.Free ℤ (DirectSum (Sphere 0) (fun _ => ℤ)) :=
+    Module.Free.of_equiv eFun.symm
+  haveI : Module.Finite ℤ (DirectSum (Sphere 0) (fun _ => ℤ)) :=
+    Module.Finite.of_surjective eFun.symm.toLinearMap eFun.symm.surjective
+  refine ⟨?_, ?_, ?_⟩
+  · exact Module.Free.of_equiv h_iso.toLinearEquiv.symm
+  · exact Module.Finite.of_surjective h_iso.inv.hom
+      ((ModuleCat.epi_iff_surjective h_iso.inv).mp inferInstance)
+  · rw [LinearEquiv.finrank_eq h_iso.toLinearEquiv]
+    rw [LinearEquiv.finrank_eq eFun]
+    simp [Fintype.card_congr e]
 
 /-
 **Reduced zeroth homology of `S⁰`.** The kernel of the augmentation
@@ -165,40 +173,76 @@ theorem kerBand_iso :
 
 /-! ## The Mayer–Vietoris kernel identity -/
 
+/-- The first biproduct projection, with its source fixed to the Mayer--Vietoris
+middle term so later homology maps do not encounter a reducibility-dependent
+object unification. -/
+abbrev circProjU :
+    (mvShortComplex ℤ circU circV circUV_top).X₂ ⟶
+      subChainComplex ℤ circleTop (circU : Set circleTop) :=
+  biprod.fst
+
+/-- The second biproduct projection from the Mayer--Vietoris middle term. -/
+abbrev circProjV :
+    (mvShortComplex ℤ circU circV circUV_top).X₂ ⟶
+      subChainComplex ℤ circleTop (circV : Set circleTop) :=
+  biprod.snd
+
+/-- The first biproduct injection into the Mayer--Vietoris middle term. -/
+abbrev circInU :
+    subChainComplex ℤ circleTop (circU : Set circleTop) ⟶
+      (mvShortComplex ℤ circU circV circUV_top).X₂ :=
+  biprod.inl
+
+/-- The second biproduct injection into the Mayer--Vietoris middle term. -/
+abbrev circInV :
+    subChainComplex ℤ circleTop (circV : Set circleTop) ⟶
+      (mvShortComplex ℤ circU circV circUV_top).X₂ :=
+  biprod.inr
+
+/-- The inclusion of the equatorial band into the upper cover member, with the
+source fixed to the Mayer--Vietoris left term. -/
+abbrev circInclU :
+    (mvShortComplex ℤ circU circV circUV_top).X₁ ⟶
+      subChainComplex ℤ circleTop (circU : Set circleTop) :=
+  mvInclUV_U ℤ circU circV
+
+/-- The inclusion of the equatorial band into the lower cover member, with the
+source fixed to the Mayer--Vietoris left term. -/
+abbrev circInclV :
+    (mvShortComplex ℤ circU circV circUV_top).X₁ ⟶
+      subChainComplex ℤ circleTop (circV : Set circleTop) :=
+  mvInclUV_V ℤ circU circV
+
 /-
 The MV left map's first component is the inclusion `U ∩ V ↪ U`.
 -/
 theorem circF_comp_fst :
-    (mvShortComplex ℤ circU circV circUV_top).f ≫ biprod.fst
-      = mvInclUV_U ℤ circU circV := by
-  convert biprod.lift_fst _ _ using 1
+    (mvShortComplex ℤ circU circV circUV_top).f ≫ circProjU
+      = circInclU := by
+  exact biprod.lift_fst _ _
 
 /-
 The MV left map's second component is minus the inclusion `U ∩ V ↪ V`.
 -/
 theorem circF_comp_snd :
-    (mvShortComplex ℤ circU circV circUV_top).f ≫ biprod.snd
-      = -(mvInclUV_V ℤ circU circV) := by
-  convert biprod.lift_snd _ _
+    (mvShortComplex ℤ circU circV circUV_top).f ≫ circProjV
+      = -circInclV := by
+  exact biprod.lift_snd _ _
 
 /-- **Joint monomorphism of the homology biproduct projections.** An element of
 `H₀(X₂)` is zero iff both of its biproduct components vanish. -/
 theorem biprod_homology_zero_iff
     (y : ((mvShortComplex ℤ circU circV circUV_top).X₂).homology 0) :
     y = 0 ↔
-      (HomologicalComplex.homologyMap (biprod.fst :
-          (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0) y = 0
-        ∧ (HomologicalComplex.homologyMap (biprod.snd :
-          (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0) y = 0 := by
+      (HomologicalComplex.homologyMap circProjU 0) y = 0
+        ∧ (HomologicalComplex.homologyMap circProjV 0) y = 0 := by
   constructor
-  · rintro rfl; simp
+  · rintro rfl
+    exact ⟨map_zero _, map_zero _⟩
   · rintro ⟨h1, h2⟩
     have htot :
-        (biprod.fst : (subChainComplex ℤ circleTop (circU : Set circleTop)
-            ⊞ subChainComplex ℤ circleTop (circV : Set circleTop)) ⟶ _) ≫ biprod.inl
-          + (biprod.snd : _ ⟶ _) ≫ biprod.inr
-          = 𝟙 (subChainComplex ℤ circleTop (circU : Set circleTop)
-            ⊞ subChainComplex ℤ circleTop (circV : Set circleTop)) := biprod.total
+        circProjU ≫ circInU + circProjV ≫ circInV
+          = 𝟙 (mvShortComplex ℤ circU circV circUV_top).X₂ := biprod.total
     have hmap := congrArg (fun φ => HomologicalComplex.homologyMap φ 0) htot
     simp only [HomologicalComplex.homologyMap_add, HomologicalComplex.homologyMap_comp,
       HomologicalComplex.homologyMap_id] at hmap
@@ -221,13 +265,17 @@ theorem kerF0_iso_kerBand :
       ≫ subH0aug circleTop (circV : Set circleTop) = subH0aug circleTop circBand :=
     subH0aug_natural_inclusion circleTop circBand (circV : Set circleTop) Set.inter_subset_right
   have hfst : circF0 ≫ HomologicalComplex.homologyMap
-      (biprod.fst : (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0
-      = HomologicalComplex.homologyMap (mvInclUV_U ℤ circU circV) 0 := by
-    rw [← HomologicalComplex.homologyMap_comp, circF_comp_fst]
+      circProjU 0
+      = HomologicalComplex.homologyMap circInclU 0 := by
+    have hm := congrArg (fun φ => HomologicalComplex.homologyMap φ 0) circF_comp_fst
+    rw [HomologicalComplex.homologyMap_comp] at hm
+    exact hm
   have hsnd : circF0 ≫ HomologicalComplex.homologyMap
-      (biprod.snd : (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0
-      = -(HomologicalComplex.homologyMap (mvInclUV_V ℤ circU circV) 0) := by
-    rw [← HomologicalComplex.homologyMap_comp, circF_comp_snd, HomologicalComplex.homologyMap_neg]
+      circProjV 0
+      = -(HomologicalComplex.homologyMap circInclV 0) := by
+    have hm := congrArg (fun φ => HomologicalComplex.homologyMap φ 0) circF_comp_snd
+    rw [HomologicalComplex.homologyMap_comp, HomologicalComplex.homologyMap_neg] at hm
+    exact hm
   have hinjU : Function.Injective (ModuleCat.Hom.hom (subH0aug circleTop (circU : Set circleTop))) :=
     (ModuleCat.mono_iff_injective _).mp inferInstance
   have hinjV : Function.Injective (ModuleCat.Hom.hom (subH0aug circleTop (circV : Set circleTop))) :=
@@ -248,21 +296,17 @@ theorem kerF0_iso_kerBand :
         ≫ subH0aug circleTop (circV : Set circleTop)) z = subH0aug circleTop circBand z :=
       congrArg (fun ψ => ψ z) hVeq
     rwa [CategoryTheory.comp_apply] at h
-  have hfx : ∀ z, (HomologicalComplex.homologyMap (biprod.fst :
-      (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0)
+  have hfx : ∀ z, (HomologicalComplex.homologyMap circProjU 0)
       (circF0 z) = (HomologicalComplex.homologyMap (mvInclUV_U ℤ circU circV) 0) z := by
     intro z
-    have h : (circF0 ≫ HomologicalComplex.homologyMap (biprod.fst :
-        (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0) z
+    have h : (circF0 ≫ HomologicalComplex.homologyMap circProjU 0) z
         = (HomologicalComplex.homologyMap (mvInclUV_U ℤ circU circV) 0) z :=
       congrArg (fun ψ => ψ z) hfst
     rwa [CategoryTheory.comp_apply] at h
-  have hsx : ∀ z, (HomologicalComplex.homologyMap (biprod.snd :
-      (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0)
+  have hsx : ∀ z, (HomologicalComplex.homologyMap circProjV 0)
       (circF0 z) = -((HomologicalComplex.homologyMap (mvInclUV_V ℤ circU circV) 0) z) := by
     intro z
-    have h : (circF0 ≫ HomologicalComplex.homologyMap (biprod.snd :
-        (subChainComplex ℤ circleTop ↑circU ⊞ subChainComplex ℤ circleTop ↑circV) ⟶ _) 0) z
+    have h : (circF0 ≫ HomologicalComplex.homologyMap circProjV 0) z
         = (-(HomologicalComplex.homologyMap (mvInclUV_V ℤ circU circV) 0)) z :=
       congrArg (fun ψ => ψ z) hsnd
     rw [CategoryTheory.comp_apply] at h
@@ -299,20 +343,22 @@ kernel by exactness).
 -/
 theorem sphereH1_iso_kerF0 :
     Nonempty (sphereTopHomologyℤ 1 ≅ kernel circF0) := by
-  refine' ⟨ _ ⟩;
-  refine' ( sphereModelHomologyIso 1 1 ).trans _;
-  convert ( smallChains_homologyIso ℤ ( TopCat.of ( Sphere 1 ) ) ( twoSetCover circU circV circUV_top ) 1 ).symm.trans _ using 1;
+  let singularModelIso :
+      (singularHomologyℤ 1).obj (TopCat.of (Sphere 1)) ≅
+        (singularChainComplex ℤ (TopCat.of (Sphere 1))).homology 1 :=
+    Iso.refl _
   have hδ_mono : Mono ( (mvShortExact ℤ circU circV circUV_top).δ 1 0 (by simp [ComplexShape.down_Rel]) ) := by
     have hδ_mono : IsZero ( (mvShortComplex ℤ circU circV circUV_top).X₂.homology 1 ) := by
       apply isZero_mvX₂_homology;
       · convert isZero_subChainComplex_homology_of_contractible circleTop ( ↑circU ) 1 ( by norm_num ) using 1;
       · apply isZero_subChainComplex_homology_of_contractible circleTop (lowerOpens 0) 1 (by norm_num);
     have := ( mvShortExact ℤ circU circV circUV_top ).homology_exact₃ 1 0 ( by simp [ ComplexShape.down_Rel ] );
-    convert this.mono_g;
-    simp +decide [ hδ_mono.eq_of_src ];
-    exact Or.inl ( hδ_mono.eq_of_src _ _ );
+    exact this.mono_g (hδ_mono.eq_of_src _ _)
   have := (mvShortExact ℤ circU circV circUV_top).homology_exact₁ 1 0 (by simp [ComplexShape.down_Rel]);
-  convert this.fIsKernel.conePointUniqueUpToIso ( kernelIsKernel circF0 ) using 1
+  exact ⟨sphereModelHomologyIso 1 1 ≪≫ singularModelIso ≪≫
+    (smallChains_homologyIso ℤ (TopCat.of (Sphere 1))
+      (twoSetCover circU circV circUV_top) 1).symm ≪≫
+    this.fIsKernel.conePointUniqueUpToIso (limit.isLimit (parallelPair circF0 0))⟩
 
 /-! ## The base case -/
 
