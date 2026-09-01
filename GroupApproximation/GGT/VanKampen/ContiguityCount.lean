@@ -75,6 +75,15 @@ attribute [instance] ContiguityAccounting.contiguityEdgeFintype
 
 namespace ContiguityAccounting
 
+/-- The planar estimating map has the degree-five deletion vertex whenever
+its face cycles have degree at least three.  The geometric construction uses
+this theorem successively after deleting vertices to build `owner_fiber`. -/
+theorem exists_mapVertex_degree_le_five {mu : ℝ}
+    (A : ContiguityAccounting mu)
+    (hface : ∀ face : A.map.Face, 3 ≤ A.map.faceDegree face) :
+    ∃ vertex : A.map.Vertex, A.map.vertexDegree vertex ≤ 5 :=
+  A.map.exists_vertexDegree_le_five_of_faceDegree_ge_three A.planar hface
+
 /-- The total perimeter is positive because there is at least one cell and
 every cell perimeter is positive. -/
 theorem total_perimeter_pos {mu : ℝ} (A : ContiguityAccounting mu) :
@@ -98,7 +107,7 @@ theorem owner_weight_le {mu : ℝ} (A : ContiguityAccounting mu)
         edges := by
     ext edge
     simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-    exact hedge edge
+    exact (hedge edge).symm
   have hcharge : 0 ≤ 2 * mu * A.perimeter i := by
     exact mul_nonneg (mul_nonneg (by positivity) hmu)
       (le_of_lt (A.perimeter_pos i))

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Contiguity
+import GroupApproximation.GGT.VanKampen.ContiguityCount
 import GroupApproximation.GGT.HullSCLemma44ExteriorArc
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 import Mathlib.Tactic.Linarith
@@ -46,91 +47,6 @@ open GroupApproximation.HullSC
 open GroupApproximation.WordMetric
 
 universe u w
-
-/-! ## Osin's weighted planar-graph lemma -/
-
-/-- A planar estimating map with the five-owner orientation obtained by
-successively deleting a vertex of degree at most five. -/
-structure WeightedEstimatingGraph (mu : ℝ) where
-  map : CombMap
-  planar : map.IsPlanar
-  owner : map.Edge → map.Vertex
-  owner_fiber : ∀ vertex : map.Vertex,
-    ∃ edges : Finset map.Edge,
-      (∀ edge : map.Edge, edge ∈ edges ↔ owner edge = vertex) ∧
-      edges.card ≤ 5
-  vertexWeight : map.Vertex → ℝ
-  edgeWeight : map.Edge → ℝ
-  mu_nonneg : 0 ≤ mu
-  vertexWeight_nonneg : ∀ vertex, 0 ≤ vertexWeight vertex
-  edgeWeight_nonneg : ∀ edge, 0 ≤ edgeWeight edge
-  edgeWeight_le_owner : ∀ edge,
-    edgeWeight edge ≤ 2 * mu * vertexWeight (owner edge)
-
-namespace WeightedEstimatingGraph
-
-/-- The edges owned by one vertex have total weight at most ten times `mu`
-times the vertex weight. -/
-theorem owner_weight_le
-    {mu : ℝ} (Q : WeightedEstimatingGraph mu) (vertex : Q.map.Vertex) :
-    ∑ edge ∈ (Finset.univ.filter fun edge : Q.map.Edge =>
-        Q.owner edge = vertex), Q.edgeWeight edge
-      ≤ 10 * mu * Q.vertexWeight vertex := by
-  classical
-  obtain ⟨edges, hedge, hcard⟩ := Q.owner_fiber vertex
-  have hfilter :
-      (Finset.univ.filter fun edge : Q.map.Edge => Q.owner edge = vertex) =
-        edges := by
-    ext edge
-    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-    exact (hedge edge).symm
-  have hconst : 0 ≤ 2 * mu * Q.vertexWeight vertex := by
-    exact mul_nonneg (mul_nonneg (by norm_num) Q.mu_nonneg)
-      (Q.vertexWeight_nonneg vertex)
-  calc
-    ∑ edge ∈ (Finset.univ.filter fun edge : Q.map.Edge =>
-          Q.owner edge = vertex), Q.edgeWeight edge
-        ≤ ∑ _edge ∈ (Finset.univ.filter fun edge : Q.map.Edge =>
-          Q.owner edge = vertex), 2 * mu * Q.vertexWeight vertex := by
-      apply Finset.sum_le_sum
-      intro edge hedgeMem
-      have howner : Q.owner edge = vertex :=
-        (Finset.mem_filter.mp hedgeMem).2
-      rw [← howner]
-      exact Q.edgeWeight_le_owner edge
-    _ = ((Finset.univ.filter fun edge : Q.map.Edge =>
-          Q.owner edge = vertex).card : ℝ) *
-          (2 * mu * Q.vertexWeight vertex) := by
-      simp
-    _ ≤ 5 * (2 * mu * Q.vertexWeight vertex) := by
-      apply mul_le_mul_of_nonneg_right _ hconst
-      rw [hfilter]
-      exact_mod_cast hcard
-    _ = 10 * mu * Q.vertexWeight vertex := by ring
-
-/-- Osin's Appendix weighted planar estimate: total internal edge weight is
-at most `10 * mu` times total relator-cell weight. -/
-theorem total_edgeWeight_le
-    {mu : ℝ} (Q : WeightedEstimatingGraph mu) :
-    (∑ edge : Q.map.Edge, Q.edgeWeight edge) ≤
-      10 * mu * ∑ vertex : Q.map.Vertex, Q.vertexWeight vertex := by
-  classical
-  calc
-    (∑ edge : Q.map.Edge, Q.edgeWeight edge) =
-        ∑ vertex : Q.map.Vertex,
-          ∑ edge ∈ (Finset.univ.filter fun edge : Q.map.Edge =>
-            Q.owner edge = vertex), Q.edgeWeight edge := by
-      symm
-      exact Finset.sum_fiberwise Finset.univ Q.owner Q.edgeWeight
-    _ ≤ ∑ vertex : Q.map.Vertex,
-        10 * mu * Q.vertexWeight vertex := by
-      apply Finset.sum_le_sum
-      intro vertex _
-      exact Q.owner_weight_le vertex
-    _ = 10 * mu * ∑ vertex : Q.map.Vertex, Q.vertexWeight vertex := by
-      rw [Finset.mul_sum]
-
-end WeightedEstimatingGraph
 
 /-! ## The diagram estimating system -/
 
