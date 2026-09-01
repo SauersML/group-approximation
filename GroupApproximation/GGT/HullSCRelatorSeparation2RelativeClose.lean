@@ -201,10 +201,12 @@ theorem listVal_conj_of_relativeAdjacent_direct
           (GGT.RelLetter.listVal py)⁻¹ := by
   let R := relatorWord₂ p (a false) (a true) ms
   have huLen : u.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw
     rw [List.length_rotate, List.length_append] at hL
     omega
   have hu'Len : u'.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw'
     rw [List.length_rotate, List.length_append] at hL
     omega
@@ -232,6 +234,18 @@ theorem listVal_conj_of_relativeAdjacent_direct
   obtain ⟨e', he', hvq'⟩ := exponent_of_comp_rotate hqiR'
   obtain ⟨f, hf, hvs⟩ := exponent_of_comp_rotate hsjR
   obtain ⟨f', hf', hvs'⟩ := exponent_of_comp_rotate hsjR'
+  have hqiPow : (R.rotate c)[i]? = some (GGT.RelLetter.comp b
+      ((if b then a true else a false) ^ e)) := by
+    simpa only [hvq] using hqiR
+  have hqiPow' : (R.rotate c)[i + 1]? = some (GGT.RelLetter.comp b'
+      ((if b' then a true else a false) ^ e')) := by
+    simpa only [hvq'] using hqiR'
+  have hsjPow : (R.rotate c')[j - 1]? = some (GGT.RelLetter.comp b
+      ((if b then a true else a false) ^ f)) := by
+    simpa only [hvs] using hsjR
+  have hsjPow' : (R.rotate c')[j' - 1]? = some (GGT.RelLetter.comp b'
+      ((if b' then a true else a false) ^ f')) := by
+    simpa only [hvs'] using hsjR'
   have hrel := conj_of_matchedPair_letters (py := py) hqi hsj
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
@@ -250,11 +264,11 @@ theorem listVal_conj_of_relativeAdjacent_direct
   have hpos := position_eq_of_alignedMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
-    hef (by simpa only [R] using hqiR) (by simpa only [R] using hsjR)
+    hef (by simpa only [R] using hqiPow) (by simpa only [R] using hsjPow)
   have hpos' := position_eq_of_alignedMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
-    hef' (by simpa only [R] using hqiR') (by simpa only [R] using hsjR')
+    hef' (by simpa only [R] using hqiPow') (by simpa only [R] using hsjPow')
   have hjR : j < R.length := farEnd_lt_of_aligned_seam
     (by have := lt_of_lt_of_le hi2 huLen; omega) hj1 (le_trans hj hu'Len)
     hj'1 (le_trans hj' hu'Len) hpos hpos'
@@ -265,9 +279,9 @@ theorem listVal_conj_of_relativeAdjacent_direct
       (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
       (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
       (by omega) (by omega) hjR
-      (by simpa only [R] using hqiR) (by simpa only [R] using hqiR')
-      (by rw [← hef]; simpa only [R] using hsjR)
-      (by rw [← hef']; simpa only [R] using hsjR')
+      (by simpa only [R] using hqiPow) (by simpa only [R] using hqiPow')
+      (by rw [← hef]; simpa only [R] using hsjPow)
+      (by rw [← hef']; simpa only [R] using hsjPow')
   have halt : b' = !b := index_alternates_of_rotate hp0
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
@@ -294,8 +308,8 @@ theorem listVal_conj_of_relativeAdjacent_direct
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
     he hf hw hw' (by omega) (by omega) hx
     (by simpa only [hjstep] using hx') hgap1
-    (by rw [hvq]; simpa only [R] using hqiR)
-    (by rw [hvs]; simpa only [R] using hsjR)
+    (by simpa only [R] using hqiPow)
+    (by simpa only [R] using hsjPow)
 
 /-- The mirrored aligned branch from two adjacent published-gap matches.  W4
 makes the second gap of the first match trivial, so its inverse is the first
@@ -351,10 +365,12 @@ theorem listVal_conj_of_relativeAdjacent_revInv
           (GGT.RelLetter.listVal py)⁻¹ := by
   let R := RelWord.revInv (relatorWord₂ p (a false) (a true) ms)
   have huLen : u.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw
     rw [List.length_rotate, List.length_append] at hL
     omega
   have hu'Len : u'.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw'
     rw [List.length_rotate, List.length_append] at hL
     omega
@@ -382,6 +398,18 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   obtain ⟨e', he', hvq'⟩ := exponent_of_comp_rotate_revInv hqiR'
   obtain ⟨f, hf, hvs⟩ := exponent_of_comp_rotate_revInv hsjR
   obtain ⟨f', hf', hvs'⟩ := exponent_of_comp_rotate_revInv hsjR'
+  have hqiPow : (R.rotate c)[i]? = some (GGT.RelLetter.comp b
+      (((if b then a true else a false) ^ e)⁻¹)) := by
+    simpa only [hvq] using hqiR
+  have hqiPow' : (R.rotate c)[i + 1]? = some (GGT.RelLetter.comp b'
+      (((if b' then a true else a false) ^ e')⁻¹)) := by
+    simpa only [hvq'] using hqiR'
+  have hsjPow : (R.rotate c')[j - 1]? = some (GGT.RelLetter.comp b
+      (((if b then a true else a false) ^ f)⁻¹)) := by
+    simpa only [hvs] using hsjR
+  have hsjPow' : (R.rotate c')[j' - 1]? = some (GGT.RelLetter.comp b'
+      (((if b' then a true else a false) ^ f')⁻¹)) := by
+    simpa only [hvs'] using hsjR'
   have hrel := conj_of_matchedPair_letters (py := py) hqi hsj
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
@@ -401,11 +429,11 @@ theorem listVal_conj_of_relativeAdjacent_revInv
   have hpos := position_eq_of_alignedMatch_revInv hinj' hnodup
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
-    hef (by simpa only [R] using hqiR) (by simpa only [R] using hsjR)
+    hef (by simpa only [R] using hqiPow) (by simpa only [R] using hsjPow)
   have hpos' := position_eq_of_alignedMatch_revInv hinj' hnodup
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
-    hef' (by simpa only [R] using hqiR') (by simpa only [R] using hsjR')
+    hef' (by simpa only [R] using hqiPow') (by simpa only [R] using hsjPow')
   have hjR : j < R.length := farEnd_lt_of_aligned_seam
     (by have := lt_of_lt_of_le hi2 huLen; omega) hj1 (le_trans hj hu'Len)
     hj'1 (le_trans hj' hu'Len) hpos hpos'
@@ -416,9 +444,9 @@ theorem listVal_conj_of_relativeAdjacent_revInv
       (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
       (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
       (by omega) (by omega) hjR
-      (by simpa only [R] using hqiR) (by simpa only [R] using hqiR')
-      (by rw [← hef]; simpa only [R] using hsjR)
-      (by rw [← hef']; simpa only [R] using hsjR')
+      (by simpa only [R] using hqiPow) (by simpa only [R] using hqiPow')
+      (by rw [← hef]; simpa only [R] using hsjPow)
+      (by rw [← hef']; simpa only [R] using hsjPow')
   have halt : b' = !b := index_alternates_of_rotate_revInv hp0
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
@@ -449,8 +477,8 @@ theorem listVal_conj_of_relativeAdjacent_revInv
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
     he' hf' hw hw' (by omega) (by omega) hy
     (by simpa only [hj'step] using hy') hgap0'
-    (by rw [hvq']; simpa only [R] using hqiR')
-    (by rw [hvs']; simpa only [R] using hsjR')
+    (by simpa only [R] using hqiPow')
+    (by simpa only [R] using hsjPow')
 
 end Aligned
 
@@ -526,10 +554,12 @@ theorem false_of_relativeAdjacent_direct_revInv
     (hqlet : ∀ x ∈ u, D.IsLetter x) : False := by
   let R := relatorWord₂ p (a false) (a true) ms
   have huLen : u.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw
     rw [List.length_rotate, List.length_append] at hL
     omega
   have hu'Len : u'.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw'
     rw [List.length_rotate, RelWord.length_revInv, List.length_append] at hL
     omega
@@ -559,6 +589,18 @@ theorem false_of_relativeAdjacent_direct_revInv
   obtain ⟨e', he', hvq'⟩ := exponent_of_comp_rotate hqiR'
   obtain ⟨f, hf, hvs⟩ := exponent_of_comp_rotate_revInv hsjR
   obtain ⟨f', hf', hvs'⟩ := exponent_of_comp_rotate_revInv hsjR'
+  have hqiPow : (R.rotate c)[i]? = some (GGT.RelLetter.comp b
+      ((if b then a true else a false) ^ e)) := by
+    simpa only [hvq] using hqiR
+  have hqiPow' : (R.rotate c)[i + 1]? = some (GGT.RelLetter.comp b'
+      ((if b' then a true else a false) ^ e')) := by
+    simpa only [hvq'] using hqiR'
+  have hsjPow : ((RelWord.revInv R).rotate c')[j - 1]? =
+      some (GGT.RelLetter.comp b (((if b then a true else a false) ^ f)⁻¹)) := by
+    simpa only [hvs] using hsjR
+  have hsjPow' : ((RelWord.revInv R).rotate c')[j' - 1]? =
+      some (GGT.RelLetter.comp b' (((if b' then a true else a false) ^ f')⁻¹)) := by
+    simpa only [hvs'] using hsjR'
   have hrel := conj_of_matchedPair_letters (py := py) hqi hsj
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
@@ -578,11 +620,11 @@ theorem false_of_relativeAdjacent_direct_revInv
   have hsum := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
-    hef (by simpa only [R] using hqiR) (by simpa only [R] using hsjR)
+    hef (by simpa only [R] using hqiPow) (by simpa only [R] using hsjPow)
   have hsum' := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
-    hef' (by simpa only [R] using hqiR') (by simpa only [R] using hsjR')
+    hef' (by simpa only [R] using hqiPow') (by simpa only [R] using hsjPow')
   have hpred : j = j' + 1 := farEnd_pred_of_mirrored_seam
     (by have := lt_of_lt_of_le hi2 huLen; omega) hj1 (le_trans hj hu'Len)
     hj'1 (le_trans hj' hu'Len) hsum hsum'
@@ -663,10 +705,12 @@ theorem false_of_relativeAdjacent_revInv_direct
     (hqlet : ∀ x ∈ u, D.IsLetter x) : False := by
   let R := relatorWord₂ p (a false) (a true) ms
   have huLen : u.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw
     rw [List.length_rotate, RelWord.length_revInv, List.length_append] at hL
     omega
   have hu'Len : u'.length ≤ R.length := by
+    dsimp only [R]
     have hL := congrArg List.length hw'
     rw [List.length_rotate, List.length_append] at hL
     omega
@@ -696,6 +740,18 @@ theorem false_of_relativeAdjacent_revInv_direct
   obtain ⟨e', he', hvq'⟩ := exponent_of_comp_rotate_revInv hqiR'
   obtain ⟨f, hf, hvs⟩ := exponent_of_comp_rotate hsjR
   obtain ⟨f', hf', hvs'⟩ := exponent_of_comp_rotate hsjR'
+  have hqiPow : ((RelWord.revInv R).rotate c)[i]? =
+      some (GGT.RelLetter.comp b (((if b then a true else a false) ^ e)⁻¹)) := by
+    simpa only [hvq] using hqiR
+  have hqiPow' : ((RelWord.revInv R).rotate c)[i + 1]? =
+      some (GGT.RelLetter.comp b' (((if b' then a true else a false) ^ e')⁻¹)) := by
+    simpa only [hvq'] using hqiR'
+  have hsjPow : (R.rotate c')[j - 1]? = some (GGT.RelLetter.comp b
+      ((if b then a true else a false) ^ f)) := by
+    simpa only [hvs] using hsjR
+  have hsjPow' : (R.rotate c')[j' - 1]? = some (GGT.RelLetter.comp b'
+      ((if b' then a true else a false) ^ f')) := by
+    simpa only [hvs'] using hsjR'
   have hrel := conj_of_matchedPair_letters (py := py) hqi hsj
   have hrel' := conj_of_matchedPair_letters (py := py) hqi' hsj'
   rw [hvq, hvs, ite_apply_eq a b] at hrel
@@ -716,13 +772,13 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hsum0 := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
-    hef (by rw [← hef]; simpa only [R] using hsjR)
-      (by simpa only [R] using hqiR)
+    hef (by rw [← hef]; simpa only [R] using hsjPow)
+      (by simpa only [R] using hqiPow)
   have hsum1 := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
-    hef' (by rw [← hef']; simpa only [R] using hsjR')
-      (by simpa only [R] using hqiR')
+    hef' (by rw [← hef']; simpa only [R] using hsjPow')
+      (by simpa only [R] using hqiPow')
   have hsum : (c + i) % R.length + (c' + (j - 1)) % R.length =
       R.length - 1 := by simpa only [Nat.add_comm] using hsum0
   have hsum' : (c + (i + 1)) % R.length + (c' + (j' - 1)) % R.length =
