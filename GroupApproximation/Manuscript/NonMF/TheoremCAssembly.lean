@@ -203,7 +203,7 @@ at all — `GGT/DGORotatingQuotientResidual.lean` proves the quotient, the map,
 its surjectivity and its kernel are `G ⧸ ⟨⟨Rot⟩⟩` and nothing more.  And the
 clause this row used to carry alongside the dichotomy, that finite order lifts
 with the order preserved, is **not a consequence of Theorem 5.3 and is false as
-recorded** (issue #50): `GGT/DGORotatingQuotientRefutation.lean` refutes it at a
+recorded**: `GGT/DGORotatingQuotientRefutation.lean` refutes it at a
 one-point space, where the very rotating condition is vacuous and the clause
 asserts that `ℤ` has an element of order two, and
 `GGT/DGOFreeSplittingOnePoint.lean` shows the same model satisfies DGO's other
@@ -282,8 +282,8 @@ that recorded them are gone with the Unit chain they belonged to, and a
 torsion-free ambient group does not rescue them, because this row quantifies
 over every acylindrically hyperbolic group.
 
-**The replacement path is now typed at the chosen exponent list.**  Issue #180
-and `HullSC.not_relatorSideExclusionAtUnrestricted₂_one_of_two_le` refute the
+**The replacement path is now typed at the chosen exponent list.**
+`HullSC.not_relatorSideExclusionAtUnrestricted₂_one_of_two_le` refutes the
 former unrestricted-anchor side-exclusion premise.  The exact-length
 finite-avoidance construction in
 `HullSC.exists_relator_exponents_window_diff_through_exact` instead chooses one
