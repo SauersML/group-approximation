@@ -79,7 +79,8 @@ attribute [instance] CombMap.dartFintype
 namespace CombMap
 
 /-- The orbit type of a permutation. -/
-abbrev Orbit {D : Type u} (p : Perm D) := Quotient p.SameCycle.setoid
+abbrev Orbit {D : Type u} (p : Perm D) : Type u :=
+  Quotient (Equiv.Perm.SameCycle.setoid p)
 
 /-- The two-element setoid induced by edge reversal. -/
 def edgeSetoid (M : CombMap) : Setoid M.Dart where
@@ -87,17 +88,24 @@ def edgeSetoid (M : CombMap) : Setoid M.Dart where
   iseqv := DartPairRel.equivalence M.alpha M.alpha_involutive
 
 /-- Vertices are `sigma`-orbits. -/
-abbrev Vertex (M : CombMap) := Orbit M.sigma
+abbrev Vertex (M : CombMap) : Type u := Orbit M.sigma
 
 /-- Edges are `alpha`-pairs. -/
-abbrev Edge (M : CombMap) := Quotient M.edgeSetoid
+abbrev Edge (M : CombMap) : Type u := Quotient M.edgeSetoid
 
 /-- The face rotation.  Lean's permutation multiplication convention gives
 `facePerm d = sigma (alpha d)`. -/
 def facePerm (M : CombMap) : Perm M.Dart := M.sigma * M.alpha
 
 /-- Faces are orbits of `sigma * alpha`. -/
-abbrev Face (M : CombMap) := Orbit M.facePerm
+abbrev Face (M : CombMap) : Type u := Orbit M.facePerm
+
+noncomputable instance orbitFintype {D : Type u} [Fintype D]
+    (p : Perm D) : Fintype (Orbit p) :=
+  Fintype.ofFinite _
+
+noncomputable instance edgeFintype (M : CombMap) : Fintype M.Edge :=
+  Fintype.ofFinite _
 
 /-- The vertex containing a dart. -/
 def vertexOf (M : CombMap) (d : M.Dart) : M.Vertex := Quotient.mk'' d
@@ -144,31 +152,32 @@ theorem faceOf_facePerm (M : CombMap) (d : M.Dart) :
   exact Equiv.Perm.SameCycle.apply_left Equiv.Perm.SameCycle.rfl
 
 /-- Number of darts. -/
-def dartCount (M : CombMap) : ℕ := Nat.card M.Dart
+noncomputable def dartCount (M : CombMap) : ℕ := Nat.card M.Dart
 
 /-- Number of vertices. -/
-def vertexCount (M : CombMap) : ℕ := Nat.card M.Vertex
+noncomputable def vertexCount (M : CombMap) : ℕ := Nat.card M.Vertex
 
 /-- Number of edges. -/
-def edgeCount (M : CombMap) : ℕ := Nat.card M.Edge
+noncomputable def edgeCount (M : CombMap) : ℕ := Nat.card M.Edge
 
 /-- Number of faces. -/
-def faceCount (M : CombMap) : ℕ := Nat.card M.Face
+noncomputable def faceCount (M : CombMap) : ℕ := Nat.card M.Face
 
 /-- Cardinality of an orbit fibre. -/
-def orbitDegree {D : Type u} [Finite D] (p : Perm D) (o : Orbit p) : ℕ :=
+noncomputable def orbitDegree {D : Type u} [Finite D]
+    (p : Perm D) (o : Orbit p) : ℕ :=
   Nat.card {d : D // (Quotient.mk'' d : Orbit p) = o}
 
 /-- Degree of a vertex. -/
-def vertexDegree (M : CombMap) (v : M.Vertex) : ℕ :=
+noncomputable def vertexDegree (M : CombMap) (v : M.Vertex) : ℕ :=
   orbitDegree M.sigma v
 
 /-- Degree of an edge. -/
-def edgeDegree (M : CombMap) (e : M.Edge) : ℕ :=
+noncomputable def edgeDegree (M : CombMap) (e : M.Edge) : ℕ :=
   Nat.card {d : M.Dart // M.edgeOf d = e}
 
 /-- Degree of a face. -/
-def faceDegree (M : CombMap) (f : M.Face) : ℕ :=
+noncomputable def faceDegree (M : CombMap) (f : M.Face) : ℕ :=
   orbitDegree M.facePerm f
 
 /-- Orbit fibres partition the underlying finite type. -/
@@ -234,8 +243,7 @@ theorem dartCount_eq_two_mul_edgeCount (M : CombMap) :
       rw [Nat.card_sigma]
       rfl
     _ = 2 * M.edgeCount := by
-      simp only [M.edgeDegree_eq_two, Finset.sum_const, Finset.card_univ,
-        Nat.nsmul_eq_mul, M.edgeCount, Nat.card_eq_fintype_card, Nat.mul_comm]
+      simp [M.edgeDegree_eq_two, edgeCount, Nat.mul_comm]
 
 /-- The sum of vertex degrees equals twice the number of edges. -/
 theorem sum_vertexDegree_eq_two_mul_edgeCount (M : CombMap) :
@@ -258,12 +266,12 @@ def IsConnected (M : CombMap) : Prop :=
   ∀ d e : M.Dart, Relation.EqvGen M.Adjacent d e
 
 /-- Euler characteristic of the closed combinatorial surface. -/
-def eulerCharacteristic (M : CombMap) : ℤ :=
+noncomputable def eulerCharacteristic (M : CombMap) : ℤ :=
   (M.vertexCount : ℤ) - (M.edgeCount : ℤ) + (M.faceCount : ℤ)
 
 /-- A connected combinatorial map is planar when its Euler characteristic is
 two. -/
-def IsPlanar (M : CombMap) : Prop :=
+noncomputable def IsPlanar (M : CombMap) : Prop :=
   M.IsConnected ∧ M.eulerCharacteristic = 2
 
 /-- Planarity exposes the Euler formula in cardinal form. -/
@@ -292,8 +300,7 @@ theorem exists_vertexDegree_le_five_of_faceDegree_ge_three
   have hfaceSum : 3 * M.faceCount ≤ 2 * M.edgeCount := by
     calc
       3 * M.faceCount = ∑ _f : M.Face, 3 := by
-        simp only [Finset.sum_const, Finset.card_univ, Nat.nsmul_eq_mul,
-          M.faceCount, Nat.card_eq_fintype_card, Nat.mul_comm]
+        simp [faceCount, Nat.mul_comm]
       _ ≤ ∑ f : M.Face, M.faceDegree f := by
         apply Finset.sum_le_sum
         intro f _
@@ -309,8 +316,7 @@ theorem exists_vertexDegree_le_five_of_faceDegree_ge_three
   have hvertexSum : 6 * M.vertexCount ≤ 2 * M.edgeCount := by
     calc
       6 * M.vertexCount = ∑ _v : M.Vertex, 6 := by
-        simp only [Finset.sum_const, Finset.card_univ, Nat.nsmul_eq_mul,
-          M.vertexCount, Nat.card_eq_fintype_card, Nat.mul_comm]
+        simp [vertexCount, Nat.mul_comm]
       _ ≤ ∑ v : M.Vertex, M.vertexDegree v := by
         apply Finset.sum_le_sum
         intro v _
