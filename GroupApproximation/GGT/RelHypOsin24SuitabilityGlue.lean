@@ -58,13 +58,13 @@ theorem coe_pow_finiteNormalizerConjugation {H F : Subgroup G}
     (s : G) (hs : s ∈ H)
     (hnorm : ∀ y ∈ H, ∀ x ∈ F, y * x * y⁻¹ ∈ F)
     (n : ℕ) (x : F) :
-    ↑((finiteNormalizerConjugation s hs hnorm) ^ n x) =
+    ↑(((finiteNormalizerConjugation s hs hnorm) ^ n) x) =
       s ^ n * x * (s ^ n)⁻¹ := by
   induction n generalizing x with
   | zero => simp
   | succ n ih =>
       rw [pow_succ]
-      change ↑((finiteNormalizerConjugation s hs hnorm) ^ n
+      change ↑(((finiteNormalizerConjugation s hs hnorm) ^ n)
           (finiteNormalizerConjugation s hs hnorm x)) =
         s ^ (n + 1) * x * (s ^ (n + 1))⁻¹
       rw [ih]
@@ -86,12 +86,12 @@ theorem mem_osinElementaryClosure_of_mem_finite_normalized
   let c : F ≃* F := finiteNormalizerConjugation s hs hnorm
   obtain ⟨n, hn, hpow⟩ :=
     isOfFinOrder_iff_pow_eq_one.mp (isOfFinOrder_of_finite c)
-  have happ : c ^ n (⟨x, hx⟩ : F) = ⟨x, hx⟩ := by
+  have happ : (c ^ n) (⟨x, hx⟩ : F) = ⟨x, hx⟩ := by
     have heval := congrArg (fun e : F ≃* F => e (⟨x, hx⟩ : F)) hpow
     simpa using heval
   have hconj : s ^ n * x * (s ^ n)⁻¹ = x := by
     have hcoe := congrArg Subtype.val happ
-    change ↑((finiteNormalizerConjugation s hs hnorm) ^ n
+    change ↑(((finiteNormalizerConjugation s hs hnorm) ^ n)
       (⟨x, hx⟩ : F)) = x at hcoe
     rw [coe_pow_finiteNormalizerConjugation s hs hnorm n ⟨x, hx⟩] at hcoe
     exact hcoe

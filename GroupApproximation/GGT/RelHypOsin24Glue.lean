@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.RelHypOsin24Construction
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 import GroupApproximation.GGT.HullYiFiniteFamilyPair
+import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 
 /-!
 # Glue between Hull's quotient conclusions and Osin's Theorem 2.4
