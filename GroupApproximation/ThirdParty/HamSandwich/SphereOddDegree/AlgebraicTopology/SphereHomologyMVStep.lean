@@ -17,10 +17,11 @@ positive homology vanishes, and the Mayer–Vietoris connecting isomorphism
 -/
 
 open CategoryTheory AlgebraicTopology Limits Metric
-open AffineBarycentricSubdivision
 
 noncomputable section
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 variable (n : ℕ)
 
@@ -28,7 +29,7 @@ variable (n : ℕ)
 def northVec : EuclideanSpace ℝ (Fin (n + 2)) := EuclideanSpace.single 0 1
 
 theorem norm_northVec : ‖northVec n‖ = 1 := by
-  simp [northVec, EuclideanSpace.norm_single]
+  simp [northVec]
 
 /-- The north pole of `Sⁿ⁺¹`. -/
 def northPole : Sphere (n + 1) := ⟨northVec n, by simp [norm_northVec]⟩
@@ -74,14 +75,32 @@ def sphereBand : Set (Sphere (n + 1)) := upperPunctured n ∩ lowerPunctured n
 /-! ## Contractibility of the punctured spheres -/
 
 instance contractible_upperPunctured : ContractibleSpace (upperPunctured n) := by
-  convert Homeomorph.contractibleSpace ( ( stereographic ( norm_northVec n ) ).toHomeomorphSourceTarget ) using 1;
-  convert Homeomorph.contractibleSpace ( Homeomorph.Set.univ _ ) using 1;
-  infer_instance
+  let hnorm := norm_northVec n
+  letI : ContractibleSpace ((stereographic hnorm).target) := by
+    rw [stereographic_target]
+    exact Homeomorph.contractibleSpace (Homeomorph.Set.univ _)
+  have hsource : upperPunctured n = (stereographic hnorm).source := by
+    rw [stereographic_source]
+    ext x
+    simp only [upperPunctured, Set.mem_compl_iff, Set.mem_singleton_iff]
+    constructor <;> intro h hx <;> apply h <;> apply Subtype.ext <;>
+      exact congrArg Subtype.val hx
+  exact Homeomorph.contractibleSpace
+    ((Homeomorph.setCongr hsource).trans (stereographic hnorm).toHomeomorphSourceTarget)
 
 instance contractible_lowerPunctured : ContractibleSpace (lowerPunctured n) := by
-  convert Homeomorph.contractibleSpace ( ( stereographic ( by simp [ norm_northVec ] : ‖-northVec n‖ = 1 ) ).toHomeomorphSourceTarget ) using 1;
-  convert Homeomorph.contractibleSpace ( Homeomorph.Set.univ _ ) using 1;
-  infer_instance
+  let hnorm : ‖-northVec n‖ = 1 := by simp [norm_northVec]
+  letI : ContractibleSpace ((stereographic hnorm).target) := by
+    rw [stereographic_target]
+    exact Homeomorph.contractibleSpace (Homeomorph.Set.univ _)
+  have hsource : lowerPunctured n = (stereographic hnorm).source := by
+    rw [stereographic_source]
+    ext x
+    simp only [lowerPunctured, Set.mem_compl_iff, Set.mem_singleton_iff]
+    constructor <;> intro h hx <;> apply h <;> apply Subtype.ext <;>
+      exact congrArg Subtype.val hx
+  exact Homeomorph.contractibleSpace
+    ((Homeomorph.setCongr hsource).trans (stereographic hnorm).toHomeomorphSourceTarget)
 
 /-! ## The equatorial band is homotopy equivalent to `Sⁿ` -/
 
@@ -113,7 +132,20 @@ theorem eqNormSq_pos {x : Sphere (n + 1)} (hx : x ∈ sphereBand n) : 0 < eqNorm
         linarith [ show 0 ≤ eqNormSq n x from Finset.sum_nonneg fun _ _ => sq_nonneg _ ];
       exact sq_eq_one_iff.mp h_eq;
     exact Or.imp ( fun h => by ext i; induction i using Fin.inductionOn <;> aesop ) ( fun h => by ext i; induction i using Fin.inductionOn <;> aesop ) h_eq;
-  grind +locals
+  intro hband
+  rcases h_eq with hN | hS
+  · have heq : x = northPole n := by
+      apply Subtype.ext
+      exact hN
+    have hnot : x ≠ northPole n := by
+      simpa only [upperPunctured, Set.mem_compl_iff, Set.mem_singleton_iff] using hband.1
+    exact hnot heq
+  · have heq : x = southPole n := by
+      apply Subtype.ext
+      exact hS
+    have hnot : x ≠ southPole n := by
+      simpa only [lowerPunctured, Set.mem_compl_iff, Set.mem_singleton_iff] using hband.2
+    exact hnot heq
 
 /-- The equatorial-projection map underlying `band → Sⁿ`: drop coordinate `0` and
 normalize. -/
@@ -122,7 +154,7 @@ def fFun (x : Sphere (n + 1)) : EuclideanSpace ℝ (Fin (n + 1)) :=
 
 theorem fFun_mem {x : Sphere (n + 1)} (hx : x ∈ sphereBand n) :
     fFun n x ∈ Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1 := by
-      simp +decide [ fFun, EuclideanSpace.norm_eq, Finset.sum_div _ _ _ ];
+      simp +decide [ fFun, EuclideanSpace.norm_eq ];
       norm_num [ div_pow, Real.sq_sqrt ( show 0 ≤ eqNormSq n x from Finset.sum_nonneg fun _ _ => sq_nonneg _ ) ];
       rw [ ← Finset.sum_div _ _ _, eqNormSq ];
       exact div_self <| ne_of_gt <| eqNormSq_pos n hx
@@ -157,9 +189,9 @@ theorem gFun_mem_sphere (y : Sphere n) :
 
 theorem gFun_mem_band (y : Sphere n) :
     (⟨gFun n y, gFun_mem_sphere n y⟩ : Sphere (n + 1)) ∈ sphereBand n := by
-      constructor <;> intro h <;> simp_all +decide [ sphereBand ];
-      · injection h with h ; replace h := congr_arg ( fun z => z 0 ) h ; simp_all +decide [ gFun, northPole ];
-        exact absurd h ( by erw [ EuclideanSpace.single_apply ] ; norm_num );
+      constructor <;> intro h <;> simp_all +decide;
+      · injection h with h ; replace h := congr_arg ( fun z => z 0 ) h ;
+        simp_all +decide [gFun, northVec];
       · injection h with h ; have := congr_arg ( fun x => x 0 ) h ; norm_num [ southPole ] at this;
         simp +decide [ gFun, northVec ] at this
 
@@ -198,14 +230,14 @@ theorem bandHomotopyFun_ne_zero (p : unitInterval × ↥(sphereBand n)) :
           exact eqNormSq_pos n p.2.2;
         exact not_forall.mp fun h => h_pos.ne' <| Finset.sum_eq_zero fun i _ => by simp +decide [ h i ] ;
       intro h; have := congr_arg ( fun x => x i.succ ) h; norm_num [ hi, sphereToBand, bandToSphere, fFun, gFun ] at this;
-      by_cases h : p.1.val = 0 <;> simp_all +decide [ div_eq_mul_inv, mul_assoc, mul_comm, mul_left_comm ];
+      by_cases h : p.1.val = 0 <;> simp_all +decide [div_eq_mul_inv, mul_comm];
       · exact absurd this ( ne_of_gt ( Real.sqrt_pos.mpr ( eqNormSq_pos n p.2.2 ) ) );
       · exact hi ( by nlinarith [ show 0 < ( 1 - p.1.val ) * ( Real.sqrt ( eqNormSq n p.2.val ) ) ⁻¹ + p.1.val from by exact add_pos_of_nonneg_of_pos ( mul_nonneg ( sub_nonneg.2 <| p.1.2.2 ) <| inv_nonneg.2 <| Real.sqrt_nonneg _ ) <| lt_of_le_of_ne ( p.1.2.1 ) <| Ne.symm <| by aesop ] )
 
 theorem bandHomotopy_mem_sphere (p : unitInterval × ↥(sphereBand n)) :
     (‖bandHomotopyFun n p‖⁻¹ • bandHomotopyFun n p) ∈
       Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 2))) 1 := by
-        simp +decide [ mem_sphere_zero_iff_norm, norm_smul, bandHomotopyFun_ne_zero ]
+        simp +decide [norm_smul, bandHomotopyFun_ne_zero]
 
 theorem bandHomotopy_mem_band (p : unitInterval × ↥(sphereBand n)) :
     (⟨‖bandHomotopyFun n p‖⁻¹ • bandHomotopyFun n p, bandHomotopy_mem_sphere n p⟩ : Sphere (n + 1))
@@ -216,10 +248,11 @@ theorem bandHomotopy_mem_band (p : unitInterval × ↥(sphereBand n)) :
           simp_all +decide [ bandHomotopyFun, sphereToBand, bandToSphere, fFun, gFun ];
           field_simp;
           rw [ div_eq_iff ] <;> norm_num [ hi ];
-          · by_cases h : p.1.val = 0 <;> simp_all +decide [ div_eq_mul_inv, mul_assoc, mul_comm, mul_left_comm ];
+          · by_cases h : p.1.val = 0 <;> simp_all +decide [div_eq_mul_inv];
             · exact ne_of_gt <| Real.sqrt_pos.mpr <| eqNormSq_pos n p.2.2;
             · exact ne_of_gt ( add_pos_of_nonneg_of_pos ( mul_nonneg ( sub_nonneg.2 <| p.1.2.2 ) <| inv_nonneg.2 <| Real.sqrt_nonneg _ ) <| lt_of_le_of_ne ( p.1.2.1 ) <| Ne.symm <| by aesop );
-          · convert bandHomotopyFun_ne_zero n p using 1;
+          · change bandHomotopyFun n p ≠ 0
+            exact bandHomotopyFun_ne_zero n p;
         constructor <;> intro h <;> simp_all +decide [ sphereBand ];
         · injection h with h ; replace h := congr_arg ( fun z => z i.succ ) h ;
           simp_all +decide [ northVec ];
@@ -229,21 +262,22 @@ theorem continuous_bandHomotopy :
     Continuous (fun p : unitInterval × ↥(sphereBand n) =>
       (⟨⟨‖bandHomotopyFun n p‖⁻¹ • bandHomotopyFun n p, bandHomotopy_mem_sphere n p⟩,
         bandHomotopy_mem_band n p⟩ : ↥(sphereBand n))) := by
-          refine' Continuous.subtype_mk ( Continuous.subtype_mk _ _ ) _;
-          refine' Continuous.smul _ _;
-          · refine' Continuous.inv₀ _ _;
-            · refine' Continuous.norm _;
-              refine' Continuous.add _ _;
-              · refine' Continuous.smul _ _;
-                · exact continuous_const.sub ( continuous_subtype_val.comp continuous_fst );
-                · exact Continuous.comp ( by continuity ) ( by exact Continuous.comp ( by continuity ) ( by continuity ) );
-              · fun_prop;
-            · exact fun x => norm_ne_zero_iff.mpr ( bandHomotopyFun_ne_zero n x );
-          · apply_rules [ Continuous.add, Continuous.smul, continuous_const, continuous_subtype_val ];
-            · fun_prop;
-            · exact Continuous.comp ( continuous_subtype_val ) ( Continuous.comp ( continuous_subtype_val ) ( sphereToBand n |> ContinuousMap.continuous |> Continuous.comp <| bandToSphere n |> ContinuousMap.continuous |> Continuous.comp <| continuous_snd ) );
-            · exact continuous_subtype_val.comp continuous_fst;
-            · fun_prop
+  have ht : Continuous (fun p : unitInterval × ↥(sphereBand n) => (p.1 : ℝ)) :=
+    continuous_subtype_val.comp continuous_fst
+  have hcomp : Continuous (fun p : unitInterval × ↥(sphereBand n) =>
+      ((sphereToBand n) ((bandToSphere n) p.2)).val.val) :=
+    continuous_subtype_val.comp (continuous_subtype_val.comp
+      ((sphereToBand n).continuous.comp ((bandToSphere n).continuous.comp continuous_snd)))
+  have hp2 : Continuous (fun p : unitInterval × ↥(sphereBand n) => p.2.val.val) :=
+    continuous_subtype_val.comp (continuous_subtype_val.comp continuous_snd)
+  have hfun : Continuous (bandHomotopyFun n) := by
+    unfold bandHomotopyFun
+    exact ((continuous_const.sub ht).smul hcomp).add (ht.smul hp2)
+  have hscale : Continuous (fun p : unitInterval × ↥(sphereBand n) =>
+      ‖bandHomotopyFun n p‖⁻¹) :=
+    Continuous.inv₀ hfun.norm fun p => norm_ne_zero_iff.mpr (bandHomotopyFun_ne_zero n p)
+  exact Continuous.subtype_mk
+    (Continuous.subtype_mk (hscale.smul hfun) _) _
 
 theorem bandHomotopy_zero (x : ↥(sphereBand n)) :
     (⟨⟨‖bandHomotopyFun n (0, x)‖⁻¹ • bandHomotopyFun n (0, x), bandHomotopy_mem_sphere n (0, x)⟩,
