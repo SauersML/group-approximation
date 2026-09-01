@@ -923,41 +923,41 @@ the next connector is obtained by multiplying the current one by
 `(a i)⁻¹` on the left and `b i` on the right. -/
 theorem connector_succ_eq_of_consecutiveMatches
     (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
-    (a b : Fin (k + 1) → G) (n K : ℕ) (vp vq : G)
+    (a b : Fin (k + 1) → G) (nA nB K : ℕ) (vp vq : G)
     (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
     (hcompA : ∀ t : ℕ, t < K →
-      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+      IsComp (lam t) (cyclicPeripheralPowerWord a nA) (ip t) (kp t))
     (hcompB : ∀ t : ℕ, t < K →
-      IsComp (lam t) (cyclicPeripheralPowerWord b n) (iq t) (kq t))
+      IsComp (lam t) (cyclicPeripheralPowerWord b nB) (iq t) (kq t))
     (hstepA : ∀ t : ℕ, t + 1 < K →
-      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a nA)
         (kp t) (ip (t + 1)))
     (hstepB : ∀ t : ℕ, t + 1 < K →
-      BaseEdgeOrTrivial (cyclicPeripheralPowerWord b n)
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord b nB)
         (kq t) (iq (t + 1))) :
     ∀ t : ℕ, t + 1 < K →
-      (vertex vp (cyclicPeripheralPowerWord a n) (ip (t + 1)))⁻¹ *
-          vertex vq (cyclicPeripheralPowerWord b n) (iq (t + 1)) =
+      (vertex vp (cyclicPeripheralPowerWord a nA) (ip (t + 1)))⁻¹ *
+          vertex vq (cyclicPeripheralPowerWord b nB) (iq (t + 1)) =
         (a (lam t))⁻¹ *
-          ((vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
-            vertex vq (cyclicPeripheralPowerWord b n) (iq t)) *
+          ((vertex vp (cyclicPeripheralPowerWord a nA) (ip t))⁻¹ *
+            vertex vq (cyclicPeripheralPowerWord b nB) (iq t)) *
           b (lam t) := by
   intro t ht
   have hcA := hcompA t (by omega)
   have hcB := hcompB t (by omega)
   have hkp : kp t = ip t + 1 :=
     isComp_succ_of_isWThree
-      (isWThree_blockWord_finPeripheralWord D hk a n) hcA
+      (isWThree_blockWord_finPeripheralWord D hk a nA) hcA
   have hkq : kq t = iq t + 1 :=
     isComp_succ_of_isWThree
-      (isWThree_blockWord_finPeripheralWord D hk b n) hcB
+      (isWThree_blockWord_finPeripheralWord D hk b nB) hcB
   have hip : ip (t + 1) = ip t + 1 := by
     rw [eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord a (hstepA t ht), hkp]
   have hiq : iq (t + 1) = iq t + 1 := by
     rw [eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord b (hstepB t ht), hkq]
-  have hiplt : ip t < (cyclicPeripheralPowerWord a n).length :=
+  have hiplt : ip t < (cyclicPeripheralPowerWord a nA).length :=
     lt_of_lt_of_le hcA.1 hcA.2.1
-  have hiqlt : iq t < (cyclicPeripheralPowerWord b n).length :=
+  have hiqlt : iq t < (cyclicPeripheralPowerWord b nB).length :=
     lt_of_lt_of_le hcB.1 hcB.2.1
   have hindexA := componentIndex_cyclicPeripheralPowerWord a hcA
   have hindexB := componentIndex_cyclicPeripheralPowerWord b hcB
@@ -966,27 +966,109 @@ theorem connector_succ_eq_of_consecutiveMatches
   rw [← hindexA] at hgetA
   rw [← hindexB] at hgetB
   have hletterA :
-      (cyclicPeripheralPowerWord a n)[ip t]'hiplt =
+      (cyclicPeripheralPowerWord a nA)[ip t]'hiplt =
         RelLetter.comp (lam t) (a (lam t)) := by
     rw [List.getElem?_eq_getElem hiplt] at hgetA
     exact Option.some.inj hgetA
   have hletterB :
-      (cyclicPeripheralPowerWord b n)[iq t]'hiqlt =
+      (cyclicPeripheralPowerWord b nB)[iq t]'hiqlt =
         RelLetter.comp (lam t) (b (lam t)) := by
     rw [List.getElem?_eq_getElem hiqlt] at hgetB
     exact Option.some.inj hgetB
-  have hvA := vertex_succ (cyclicPeripheralPowerWord a n) vp (ip t) hiplt
-  have hvB := vertex_succ (cyclicPeripheralPowerWord b n) vq (iq t) hiqlt
+  have hvA := vertex_succ (cyclicPeripheralPowerWord a nA) vp (ip t) hiplt
+  have hvB := vertex_succ (cyclicPeripheralPowerWord b nB) vq (iq t) hiqlt
   rw [hletterA] at hvA
   rw [hletterB] at hvB
   rw [hip, hiq, hvA, hvB]
   simp only [RelLetter.val]
   group
 
-/-- A sufficiently long self-match of the cyclic word produces exactly the
-finite connector array consumed by Hull's post-matching algebra: the initial
-connector for factor `i` lies in that factor, and its terminal connector is
-conjugation by the `i`-th cyclic letter. -/
+/-- A sufficiently long forward match between two cyclic words produces one
+full naturally indexed connector cycle.  Besides the recurrence, the output
+retains membership of the connector after the last letter in the first
+peripheral factor.  That terminal membership is what detects a change in the
+last cyclic exponent when the two words are different. -/
+theorem exists_fullCycleConnectorData_of_consecutiveMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a b : Fin (k + 1) → G) (nA nB : ℕ) (vp vq : G)
+    (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcompA : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      IsComp (lam t) (cyclicPeripheralPowerWord a nA) (ip t) (kp t))
+    (hcompB : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      IsComp (lam t) (cyclicPeripheralPowerWord b nB) (iq t) (kq t))
+    (hstepA : ∀ t : ℕ, t + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a nA)
+        (kp t) (ip (t + 1)))
+    (hstepB : ∀ t : ℕ, t + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord b nB)
+        (kq t) (iq (t + 1)))
+    (hmem : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      (vertex vp (cyclicPeripheralPowerWord a nA) (ip t))⁻¹ *
+        vertex vq (cyclicPeripheralPowerWord b nB) (iq t) ∈ D.fam (lam t)) :
+    ∃ (r : ℕ) (c : Fin (k + 2) → G), r ≤ k + 1 ∧
+      (∀ i : Fin (k + 1), lam (r + i.val) = i) ∧
+      (∀ i : Fin (k + 1), c i.castSucc ∈ D.fam i) ∧
+      (∀ i : Fin (k + 1),
+        c i.succ = (a i)⁻¹ * c i.castSucc * b i) ∧
+      c (Fin.last (k + 1)) ∈ D.fam 0 ∧
+      ∀ j : Fin (k + 2),
+        c j =
+          (vertex vp (cyclicPeripheralPowerWord a nA) (ip (r + j.val)))⁻¹ *
+            vertex vq (cyclicPeripheralPowerWord b nB) (iq (r + j.val)) := by
+  obtain ⟨r, hr, hlam⟩ := exists_naturallyIndexedCycle_of_consecutiveMatches
+    D hk a nA ip kp lam hcompA hstepA
+  let c : Fin (k + 2) → G := fun j ↦
+    (vertex vp (cyclicPeripheralPowerWord a nA) (ip (r + j.val)))⁻¹ *
+      vertex vq (cyclicPeripheralPowerWord b nB) (iq (r + j.val))
+  refine ⟨r, c, hr, hlam, ?_, ?_, ?_, ?_⟩
+  · intro i
+    have hri : r + i.val < 2 * (k + 1) + 1 := by
+      have hi := i.isLt
+      omega
+    have hm := hmem (r + i.val) hri
+    rw [hlam i] at hm
+    exact hm
+  · intro i
+    have hri : r + i.val + 1 < 2 * (k + 1) + 1 := by
+      have hi := i.isLt
+      omega
+    have hrec := connector_succ_eq_of_consecutiveMatches
+      D hk a b nA nB (2 * (k + 1) + 1) vp vq ip kp iq kq lam
+      hcompA hcompB hstepA hstepB (r + i.val) hri
+    rw [hlam i] at hrec
+    simpa [c, Nat.add_assoc] using hrec
+  · have hrend : r + (k + 1) < 2 * (k + 1) + 1 := by omega
+    have hrange : r < 2 * (k + 1) + 1 := by omega
+    have hstartR := componentStart_eq_add_of_consecutiveMatches
+      D hk a nA (2 * (k + 1) + 1) ip kp lam hcompA hstepA r hrange
+    have hstartEnd := componentStart_eq_add_of_consecutiveMatches
+      D hk a nA (2 * (k + 1) + 1) ip kp lam hcompA hstepA
+        (r + (k + 1)) hrend
+    have hindexR := componentIndex_cyclicPeripheralPowerWord a
+      (hcompA r hrange)
+    have hindexEnd := componentIndex_cyclicPeripheralPowerWord a
+      (hcompA (r + (k + 1)) hrend)
+    have hlam0 : lam r = 0 := by
+      simpa using hlam (0 : Fin (k + 1))
+    have hmodR : ip r % (k + 1) = 0 := by
+      have hval := congrArg Fin.val hindexR
+      simpa [hlam0] using hval.symm
+    have hipEnd : ip (r + (k + 1)) = ip r + (k + 1) := by
+      rw [hstartEnd, hstartR]
+      omega
+    have hlamEnd : lam (r + (k + 1)) = 0 := by
+      rw [hindexEnd]
+      apply Fin.ext
+      simp [hipEnd, Nat.add_mod, hmodR]
+    have hm := hmem (r + (k + 1)) hrend
+    rw [hlamEnd] at hm
+    simpa [c] using hm
+  · intro j
+    rfl
+
+/-- A self-match is the equal-word specialization of the two-word connector
+cycle.  This is the exact finite array consumed by Hull's post-matching
+cyclicity calculation. -/
 theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
     (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
     (a : Fin (k + 1) → G) (n : ℕ) (vp vq : G)
@@ -1013,30 +1095,11 @@ theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
         c j =
           (vertex vp (cyclicPeripheralPowerWord a n) (ip (r + j.val)))⁻¹ *
             vertex vq (cyclicPeripheralPowerWord a n) (iq (r + j.val)) := by
-  obtain ⟨r, hr, hlam⟩ := exists_naturallyIndexedCycle_of_consecutiveMatches
-    D hk a n ip kp lam hcompA hstepA
-  let c : Fin (k + 2) → G := fun j ↦
-    (vertex vp (cyclicPeripheralPowerWord a n) (ip (r + j.val)))⁻¹ *
-      vertex vq (cyclicPeripheralPowerWord a n) (iq (r + j.val))
-  refine ⟨r, c, hr, hlam, ?_, ?_, ?_⟩
-  · intro i
-    have hri : r + i.val < 2 * (k + 1) + 1 := by
-      have hi := i.isLt
-      omega
-    have hm := hmem (r + i.val) hri
-    rw [hlam i] at hm
-    exact hm
-  · intro i
-    have hri : r + i.val + 1 < 2 * (k + 1) + 1 := by
-      have hi := i.isLt
-      omega
-    have hrec := connector_succ_eq_of_consecutiveMatches
-      D hk a a n (2 * (k + 1) + 1) vp vq ip kp iq kq lam
-      hcompA hcompB hstepA hstepB (r + i.val) hri
-    rw [hlam i] at hrec
-    simpa [c, Nat.add_assoc] using hrec
-  · intro j
-    rfl
+  obtain ⟨r, c, hr, hlam, hcmem, hcrec, _hterminal, hcdef⟩ :=
+    exists_fullCycleConnectorData_of_consecutiveMatches
+      D hk a a n n vp vq ip kp iq kq lam
+        hcompA hcompB hstepA hstepB hmem
+  exact ⟨r, c, hr, hlam, hcmem, hcrec, hcdef⟩
 
 /-- With the second copy of the cyclic word based at `t`, the aligned first
 connector also gives Hull's prefix equation.  The prefix is trivial here;
