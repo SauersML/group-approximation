@@ -1,5 +1,5 @@
 import Mathlib.Combinatorics.SimpleGraph.Basic
-import GroupApproximation.GGT.DGOTheorem442ProjectionSystem
+import GroupApproximation.GGT.DGOTheorem442ProjectionMonotone
 
 /-!
 # The first projection-complex construction layer
@@ -7,7 +7,7 @@ import GroupApproximation.GGT.DGOTheorem442ProjectionSystem
 DGO Definition 4.1 next replaces the original projection distances by a
 perturbed family `d_Y` satisfying
 
-`|dᵖ_Y(A,B) - d_Y(A,B)| < 2ξ`
+`|dᵖ_Y(A,B) - d_Y(A,B)| ≤ 2ξ`
 
 and joins `A` to `B` when every third vertex has `d_Y(A,B) ≤ K`.  This
 file formalizes exactly that construction.  It does not assume the later BBF
@@ -27,29 +27,32 @@ namespace GGT
 universe u v
 
 /-- A nonnegative symmetric perturbation of a projection system within the
-`2ξ` error allowed in DGO Definition 4.1. -/
+exact non-strict `2ξ` bound obtained from the BBF infimum construction. -/
 structure ProjectionPerturbation {V : Type u} (P : ProjectionSystem V) where
   projDist : V → V → V → ℝ
   nonneg : ∀ Y A B, 0 ≤ projDist Y A B
   comm : ∀ Y A B, projDist Y A B = projDist Y B A
   close : ∀ Y A B, Y ≠ A → Y ≠ B →
-    |P.projDist Y A B - projDist Y A B| < 2 * P.ξ
+    |P.projDist Y A B - projDist Y A B| ≤ 2 * P.ξ
 
 namespace ProjectionPerturbation
 
 variable {V : Type u} {P : ProjectionSystem V}
 
-/-- The original projection distance itself is an allowed perturbation.  This
-is the canonical construction available before imposing any of the extra BBF
-ordering properties used in the quasi-tree theorem. -/
-def identity (P : ProjectionSystem V) : ProjectionPerturbation P where
-  projDist := P.projDist
-  nonneg := P.nonneg
-  comm := P.comm
+/-- The actual BBF infimum perturbation.  Proposition 2.2 gives precisely the
+non-strict `2ξ` estimate after taking the infimum. -/
+noncomputable def bbf (P : ProjectionSystem V) : ProjectionPerturbation P where
+  projDist := P.bbfProjDist
+  nonneg := P.bbfProjDist_nonneg
+  comm := P.bbfProjDist_comm
   close := by
-    intro Y A B _ _
-    simp only [sub_self, abs_zero]
-    linarith [P.ξ_pos]
+    intro Y A B hYA hYB
+    rw [abs_le]
+    constructor
+    · have hle := P.bbfProjDist_le hYA hYB
+      linarith [P.ξ_pos]
+    · have hle := P.projDist_sub_bbfProjDist_le_two_mul hYA hYB
+      linarith
 
 /-- Third vertices obstructing the edge from `A` to `B` at threshold `K`. -/
 def blockers (Q : ProjectionPerturbation P) (K : ℝ) (A B : V) : Set V :=
@@ -105,7 +108,7 @@ theorem blockers_finite (Q : ProjectionPerturbation P)
   refine (P.largeSet_finite hAB).subset ?_
   intro Y hY
   have hclose := Q.close Y A B hY.1 hY.2.1
-  have hlower := (abs_lt.mp hclose).1
+  have hlower := (abs_le.mp hclose).1
   change P.ξ ≤ P.projDist Y A B
   linarith [hY.2.2]
 
@@ -124,17 +127,12 @@ namespace EquivariantProjectionPerturbation
 variable {G : Type u} {V : Type v} [Group G] [MulAction G V]
   {P : EquivariantProjectionSystem G V}
 
-/-- The equivariant system itself, viewed as its canonical perturbation. -/
-def identity (P : EquivariantProjectionSystem G V) :
+/-- The source-faithful BBF infimum perturbation, with equivariance inherited
+from simultaneous translation of its admissible candidate pairs. -/
+noncomputable def bbf (P : EquivariantProjectionSystem G V) :
     EquivariantProjectionPerturbation G V P where
-  projDist := P.projDist
-  nonneg := P.nonneg
-  comm := P.comm
-  close := by
-    intro Y A B _ _
-    simp only [sub_self, abs_zero]
-    linarith [P.ξ_pos]
-  smul_projDist := P.smul_projDist
+  toProjectionPerturbation := ProjectionPerturbation.bbf P.toProjectionSystem
+  smul_projDist := P.bbfProjDist_smul
 
 /-- Every group element sends an edge of the projection graph to an edge. -/
 theorem graph_adj_smul (Q : EquivariantProjectionPerturbation G V P)
@@ -184,7 +182,7 @@ variable {G : Type u} [Group G] {S : Type w} [PseudoMetricSpace S]
   [MulAction G S]
 
 /-- The first projection graph attached to the coset-orbit projection system,
-using the canonical identity perturbation. -/
+using the source-faithful BBF infimum perturbation. -/
 noncomputable def approxCosetProjectionComplex
     {δ : ℝ} (hδ : IsHyperbolicSpace δ S) (hδ0 : 0 ≤ δ) (hδpos : 0 < δ)
     (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
@@ -192,7 +190,7 @@ noncomputable def approxCosetProjectionComplex
     (hsep : GeometricallySeparatedAt H s) (K : ℝ) : SimpleGraph (G ⧸ H) :=
   let P := approxCosetEquivariantProjectionSystem
     hδ hδ0 hδpos hgeo hiso H s hqc hsep
-  (EquivariantProjectionPerturbation.identity P).toProjectionPerturbation.graph K
+  (EquivariantProjectionPerturbation.bbf P).toProjectionPerturbation.graph K
 
 /-- Simultaneous left translation preserves the adjacency relation in the
 coset-orbit projection graph. -/
@@ -207,7 +205,7 @@ theorem approxCosetProjectionComplex_adj_smul_iff
       (approxCosetProjectionComplex hδ hδ0 hδpos hgeo hiso H s hqc hsep K).Adj
         A B := by
   exact EquivariantProjectionPerturbation.graph_adj_smul_iff
-    (EquivariantProjectionPerturbation.identity
+    (EquivariantProjectionPerturbation.bbf
       (approxCosetEquivariantProjectionSystem
         hδ hδ0 hδpos hgeo hiso H s hqc hsep)) K g A B
 
@@ -221,7 +219,7 @@ theorem approxCosetProjectionComplex_blockers_finite
     let P := approxCosetEquivariantProjectionSystem
       hδ hδ0 hδpos hgeo hiso H s hqc hsep
     ∀ {K : ℝ}, 3 * P.ξ ≤ K → ∀ {A B : G ⧸ H}, A ≠ B →
-      ((EquivariantProjectionPerturbation.identity P).toProjectionPerturbation.blockers
+      ((EquivariantProjectionPerturbation.bbf P).toProjectionPerturbation.blockers
         K A B).Finite := by
   dsimp only
   intro K hK A B hAB
