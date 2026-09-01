@@ -3019,6 +3019,8 @@ import GroupApproximation.Analysis.NormMatrixCoronaGenericBridge
 import GroupApproximation.Analysis.ShulmanTailDihedralParity
 import GroupApproximation.GGT.HullEeLocalFiniteness
 import GroupApproximation.GGT.KazhdanHypGirthEightLDL
+import GroupApproximation.GGT.RelHypOsin24Construction
+import GroupApproximation.GGT.KazhdanHypFanoCalibration
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -136,8 +136,8 @@ theorem injOn_cayleyBall_of_largeExteriorCells_of_boundarySubset
     X W R q hker hnot
   obtain ⟨Z⟩ := Z₀.exists_oriented hsc.toIsSmallCancellation
   obtain ⟨C⟩ := hgreendlinger Z
-  exact false_of_lemma44LargeExteriorCell_of_boundarySubset P Z
-    hX hsc hmu hthreshold C
+  exact false_of_lemma44LargeExteriorCell_of_boundarySubset P
+    Z.toLemma44ReducedRelatorDiagram hX hsc hmu hthreshold C
 
 /-- Every element of every peripheral subgroup is in the radius-one ball of
 the relative Cayley alphabet. -/
@@ -219,10 +219,8 @@ theorem injOn_cayleyBall_and_peripheralUnion_of_largeExteriorCells
   · apply injOn_peripheralUnion_of_injOn_cayleyBall_one P q
     intro x hx y hy hxy
     apply hinjRel
-    · exact cayleyBall_subset_of_le_radius P.alphabet (Nat.le_max_right _ _)
-        (peripheralUnion_subset_cayleyBall_one P hx)
-    · exact cayleyBall_subset_of_le_radius P.alphabet (Nat.le_max_right _ _)
-        (peripheralUnion_subset_cayleyBall_one P hy)
+    · exact cayleyBall_subset_of_le_radius P.alphabet (Nat.le_max_right _ _) hx
+    · exact cayleyBall_subset_of_le_radius P.alphabet (Nat.le_max_right _ _) hy
     · exact hxy
 
 end HullSC
