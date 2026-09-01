@@ -142,7 +142,8 @@ theorem duplicate_peripheralMetricBall_subset_singleton (l : Bool) (n : ℕ) :
         ∃ m ∈ duplicateRelativeGeneratingSet.peripheralLengths l h,
           m ≤ n} ⊆ ({1} : Set DuplicateGroup) := by
   intro h hh
-  obtain ⟨_hmem, m, w, hword, hav, _hlen, _hmn⟩ := hh
+  obtain ⟨_hmem, m, hm, _hmn⟩ := hh
+  obtain ⟨w, hword, hav, _hlen⟩ := hm
   have hw : w = [] := avoidsPeripheral_duplicate_eq_nil l hav
   subst w
   simpa using hword.prod_eq.symm

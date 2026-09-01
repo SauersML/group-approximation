@@ -40,11 +40,13 @@ def finiteNormalizerConjugation {H F : Subgroup G} (s : G) (hs : s ∈ H)
   left_inv := by
     intro x
     apply Subtype.ext
-    simp
+    change s⁻¹ * (s * ↑x * s⁻¹) * (s⁻¹)⁻¹ = ↑x
+    group
   right_inv := by
     intro x
     apply Subtype.ext
-    simp
+    change s * (s⁻¹ * ↑x * (s⁻¹)⁻¹) * s⁻¹ = ↑x
+    group
   map_mul' := by
     intro x y
     apply Subtype.ext
