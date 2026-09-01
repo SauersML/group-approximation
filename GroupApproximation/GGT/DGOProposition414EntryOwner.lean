@@ -56,6 +56,23 @@ def entryChild
     (j : Fin A.sources.length) : Fin A.pieceCount :=
   ⟨j, by simp [DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount]⟩
 
+/-- The gap interval immediately after a source entry.  Together with
+`entryChild`, this is the adjacent pair containing respectively the source's
+start connector on the right and end connector on the left. -/
+def exitChild
+    {I : Finset ℕ} {pos partner : ℕ → ℕ} {L : ℕ}
+    (A : GreedyHalfFamilyIndex I pos partner L)
+    (j : Fin A.sources.length) : Fin A.pieceCount :=
+  ⟨j + 1, by simp [DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount]⟩
+
+theorem entryChild_ne_exitChild
+    {I : Finset ℕ} {pos partner : ℕ → ℕ} {L : ℕ}
+    (A : GreedyHalfFamilyIndex I pos partner L)
+    (j : Fin A.sources.length) : entryChild A j ≠ exitChild A j := by
+  intro h
+  have := congrArg Fin.val h
+  simp [entryChild, exitChild] at this
+
 end HalfEntry
 
 namespace BalancedSplitData

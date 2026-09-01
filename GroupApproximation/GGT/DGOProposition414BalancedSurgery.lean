@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.DGOProposition414SubarcInterval
-import GroupApproximation.GGT.DGOProposition414PacketCharging
+import GroupApproximation.GGT.DGOProposition414IntervalTargetSlots
 import GroupApproximation.GGT.DGOProposition414ConnectorProducer
 import GroupApproximation.GGT.DGOProposition414EntryOwner
 
@@ -35,7 +35,7 @@ structure BalancedSplitIntervalSurgery
   intervals : TwoHalfIntervalSurgery D hsymm b B.brokenAssignment.index
     B.firstBase (vertex P.basepoint P.word B.secondVertex)
     B.chord B.chord_geodesic
-  chargePlacement : TwoHalfDistributedChargePlacement D hsymm b hδ
+  factorGeometry : TwoHalfDistributedFactorPlacement D hsymm b hδ
     intervals.toPathInput.family P.target P.label P.span
   count_lower : n ≤
     (∑ j, ((intervals.toPathInput).first j).sideCount) +
@@ -83,7 +83,7 @@ noncomputable def configuration
     (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) :
     TwoHalfChargingConfiguration D hsymm b hδ
       S.intervals.toPathInput.family P.target P.label P.span :=
-  S.chargePlacement.configuration
+  S.factorGeometry.configuration
 
 /-- The general charging certificate and the exact side accounting assemble
 into the family certificate consumed by Proposition 4.14. -/
