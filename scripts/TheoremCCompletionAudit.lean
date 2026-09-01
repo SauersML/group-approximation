@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.NonMF.TheoremCDebts
+import GroupApproximation.Manuscript.NonMF.TheoremCAssembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

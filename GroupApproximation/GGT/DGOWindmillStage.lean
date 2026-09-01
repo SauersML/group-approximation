@@ -5,7 +5,7 @@ import GroupApproximation.GGT.DGOWindmillFree
 # One stage of the growth: the new apices and their reference sets
 
 Tenth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 `GGT/DGOWindmillPath.lean` proves the broken path of a reduced word is geodesic,
 but it takes the reference sets `S d` of the corner lemma as *given*, with three

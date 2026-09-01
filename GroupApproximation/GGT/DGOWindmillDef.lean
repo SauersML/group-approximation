@@ -5,7 +5,7 @@ import GroupApproximation.GGT.DGOWindmillRotationFree
 # Windmills
 
 Fourth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 Dahmani-Guirardel-Osin, Definition 5.11.  A *windmill* for a `ρ`-separated very
 rotating family is a subset `W ⊆ X` that the induction proving Theorem 5.3 can

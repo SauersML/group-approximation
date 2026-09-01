@@ -1750,7 +1750,7 @@ import GroupApproximation.Higman.TauRouteC
 import GroupApproximation.Higman.SsetBaseCase
 import GroupApproximation.Higman.CurrentOperationClosures
 import GroupApproximation.Higman.CurrentREBenign
-import GroupApproximation.Higman.OmegaDebt
+import GroupApproximation.Higman.OmegaSharedProof
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
@@ -2043,7 +2043,7 @@ import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedForms
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.Manuscript.NonMF.HullBallForm
-import GroupApproximation.Manuscript.NonMF.TheoremCDebts
+import GroupApproximation.Manuscript.NonMF.TheoremCAssembly
 import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.NonMF.HullFillKernelRefutation
@@ -2051,7 +2051,7 @@ import GroupApproximation.Manuscript.NonMF.HullFillCorrectedInputs
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
 import GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC
 import GroupApproximation.Manuscript.MFRecognition.SeedRemarkTheoremC
-import GroupApproximation.Manuscript.MFRecognition.RecognitionDebts
+import GroupApproximation.Manuscript.MFRecognition.RecognitionProofInputs
 import GroupApproximation.Manuscript.MFRecognition.CentralRopeBritton
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetup
 import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanRopeInput
@@ -2906,7 +2906,7 @@ import GroupApproximation.GGT.ElementaryCoarseTranslationQuasiconvex
 import GroupApproximation.GGT.ElementaryFiniteTransversalConsequences
 import GroupApproximation.GGT.ElementaryGeometricSeparationReduction
 import GroupApproximation.GGT.OsinTheorem54Unconditional
-import GroupApproximation.GGT.OsinTheorem12OneDebt
+import GroupApproximation.GGT.OsinTheorem12Reduction
 import GroupApproximation.GGT.HullEllipticity
 import GroupApproximation.GGT.HullSCConeOffHeavyModelPoint
 import GroupApproximation.Analysis.VoiculescuGlimmSelection

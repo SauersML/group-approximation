@@ -64,7 +64,7 @@ the `sorry`-tainted producers removed, and the difference is its own detector:
   `sorry`.
 
 The case this was written for: `TheoremC.LiteratureInputs` is inhabited by
-`TheoremCDebts.literatureInputs`, which is assembled from three `sorry`-backed
+`TheoremCAssembly.literatureInputs`, which is assembled from three unfinished
 literature theorems.  Before the split, every theorem taking `LiteratureInputs`
 read as unconditional, because the gate asked whether a producer existed and
 not whether it was honest.  `HullInputsCorrected`, by contrast, has an
@@ -717,7 +717,7 @@ SORRY_TOKEN = re.compile(r"(?<![\w.])(?:sorry|sorryAx|admit)(?![\w'])")
 # for the declarations carrying a `\leanverified` badge.  Some central results
 # (most importantly Theorem C) are assembled in this tree and are discussed in
 # the paper without a badge on every intervening sentence.  A badge-only scan
-# therefore used to print "unconditional" while `TheoremCDebts.lean` still
+# therefore used to print "unconditional" while `TheoremCAssembly.lean` still
 # contained six `sorry`s.  Scan the authoritative manuscript source tree as a
 # separate invariant so that cannot happen again.
 NON_MF_MANUSCRIPT_ROOT = Path("GroupApproximation/Manuscript/NonMF")

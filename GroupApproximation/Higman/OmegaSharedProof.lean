@@ -16,21 +16,20 @@ the tower.
 Two lanes stand on it.  The recognition lane reaches Higman's embedding theorem
 through `Higman.reBenign_of_omega`, and the Theorem C lane reaches Chiodo's
 Theorem 3.10 through
-`Manuscript.NonMF.TheoremC.chiodo_of_omega`.  Each lane used to record the debt
-for itself; this module is the statement, once, and both lanes import it.
+`Manuscript.NonMF.TheoremC.chiodo_of_omega`.  This module records the shared
+theorem once, and both lanes import it.
 
 The module sits under `Higman/` rather than under either lane's directory
-because `Manuscript.MFRecognition.SeedFromTheoremC` imports
-`Manuscript.NonMF.TheoremCDebts`: the two debt files cannot import each other,
-and this is the deepest point below both.
+because it is the deepest common point below the recognition and Theorem C
+assemblies.
 
-Since `Higman.OmegaFillLeadLinkBenign` the statement is a theorem, not a
-debt; this module remains the one place both lanes read it from.
+Since `Higman.OmegaFillLeadLinkBenign` the statement is a theorem; this module
+remains the one place both lanes read it from.
 -/
 
 namespace GroupApproximation
 namespace Higman
-namespace OmegaDebt
+namespace OmegaSharedProof
 
 /-- **Higman's ω-closure**, proved: the slim tower's Britton descent
 (`Omega.slimDescent`) and the benignness of the sheared link
@@ -48,6 +47,6 @@ finitely generated free groups are benign — through the ω-closure.  Recorded
 here so that the two lanes share the consequence as well as the statement. -/
 theorem reBenign : Higman.REBenign := Higman.reBenign_of_omega omegaInput
 
-end OmegaDebt
+end OmegaSharedProof
 end Higman
 end GroupApproximation

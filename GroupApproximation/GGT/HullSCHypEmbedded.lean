@@ -3,7 +3,7 @@ import GroupApproximation.GGT.HullSCTheorem51
 /-!
 # Hull's §5 leaf, with the bookkeeping removed
 
-**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCDebts` records
+**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCAssembly` records
 Hull's §5 leaf over a **pair** of hyperbolically embedded subgroups
 (`HullSC.ExistsHypEmbeddedConeOff₂`, in
 `GGT/HullSCRelatorSeparation2ConeOff.lean`), because the single-subgroup form

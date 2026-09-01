@@ -4,7 +4,7 @@ import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
 # Osin's Lemma 7.1 for a normal subgroup, reduced to three facts about
 elementary closures
 
-`Manuscript.NonMF.TheoremCDebts.osinLemma71` is the remaining Osin debt, in the
+`Manuscript.NonMF.TheoremCAssembly.osinLemma71` is the corresponding Osin theorem, in the
 case `lem:saturation` uses it:
 
 > `G` torsion-free with Hull's generating set `A`, `N ⊴ G` with `N ∩ gNg⁻¹`
@@ -218,7 +218,7 @@ theorem osinLemma71_of_elementaryClosure {G : Type u} [Group G]
     (nonneg_of_isHyperbolicSpace A.hyperbolic (Cayley.base A.alphabet))
     A.isometric hG hEC1 hEC2 hEC3 A.nonElementary hsn
 
-/-- **The debt `TheoremCDebts.osinLemma71`, reduced.**  What is left of Osin's
+/-- **The theorem `TheoremCAssembly.osinLemma71`, reduced.**  What is left of Osin's
 Lemma 7.1 in the case `lem:saturation` uses is exactly the three facts about
 elementary closures, uniformly in the group and its Hull generating set. -/
 theorem osinLemma71_of_elementaryClosureAll

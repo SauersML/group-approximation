@@ -4,7 +4,7 @@ import GroupApproximation.GGT.DGOWindmillCorner
 # Spoke sets: a windmill with segments attached to the new apices
 
 Seventh module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 The growth step of DGO's Proposition 5.12 enlarges a windmill `W` in two stages.
 The first is `W₁ = W ∪ ⋃_{c ∈ C₁} [c, c̄]`, the windmill together with a segment

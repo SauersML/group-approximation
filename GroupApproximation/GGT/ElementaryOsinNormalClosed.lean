@@ -26,7 +26,7 @@ the dichotomy.  It follows from the centralizer theorem and acylindricity:
 
 This module re-runs the normal-case chain with that lemma in place of the
 dichotomy and closes the manuscript's statement at Hull's Cayley graph:
-`osinLemma71_closed` has exactly the type of `TheoremCDebts.osinLemma71`.
+`osinLemma71_closed` has exactly the type of `TheoremCAssembly.osinLemma71`.
 
 ## Status
 
@@ -290,7 +290,7 @@ theorem osinNonElementary_of_torsionFree_normal_closed {G : Type u} [Group G]
     A.isometric A.acylindrical (ElementaryMorse.centralizerOrbitNearAxis_cayley A)
     (ElementaryMorse.independentOfNoCommonZpow_cayley A) htf A.nonElementary hN
 
-/-- The manuscript's debt `TheoremCDebts.osinLemma71`, as a theorem. -/
+/-- The manuscript theorem `TheoremCAssembly.osinLemma71`. -/
 theorem osinLemma71_closed :
     ∀ {G : Type} [Group G] (A : HullGeneratingSet G),
       IsPowerTorsionFree G → ∀ (N : Subgroup G) [N.Normal],

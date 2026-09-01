@@ -36,7 +36,7 @@ hyperbolic embedding of `⟨h⟩` in his Lemma 5.8 buys, and it is exactly what
 torsion-freeness makes unnecessary.
 
 `HullInputs.twoGeneratedSuitable` carries `IsPowerTorsionFree G` for exactly
-this reason, and `Manuscript.NonMF.TheoremCDebts` supplies the field from
+this reason, and `Manuscript.NonMF.TheoremCAssembly` supplies the field from
 `exists_pair_suitable_of_torsionFree`.  `Saturation.saturation` already has
 `hG : IsPowerTorsionFree G` in scope at the point of application — it passes it
 to `suitable_of_torsionFree` one line earlier — so the hypothesis costs the

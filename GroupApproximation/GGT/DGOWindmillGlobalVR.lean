@@ -4,7 +4,7 @@ import GroupApproximation.GGT.DGOWindmillRotationFree
 # The global very rotating condition
 
 Fifth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 Dahmani-Guirardel-Osin, Lemma 5.5.  `HullSC.IsVeryRotating` is a statement about
 points of the annulus `20δ ≤ d(·,c) ≤ 40δ`; everything the windmill induction

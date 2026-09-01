@@ -3,7 +3,7 @@ import GroupApproximation.GGT.HullSCDGO
 /-!
 # The finite-order clause was not DGO's, and the statement carrying it is false
 
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` records DGO's Theorem 5.3 as a
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` records DGO's Theorem 5.3 as a
 literature debt.  Until issue #50 the conclusion it recorded --
 `HullSC.RotatingQuotient` -- carried a clause saying that every element of
 finite order of the quotient lifts to an element of `G` of the same order.

@@ -7,7 +7,7 @@ Dahmani-Guirardel-Osin, *Hyperbolically embedded subgroups and rotating families
 in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245 (2017),
 no. 1156, §5.
 
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` is the debt this module is aimed
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` is the theorem this module proves
 at.  Before planning the proof it is worth asking whether the statement has a
 model, and the answer is that **`HullSC.DGOQuotientStatement` as it stands is
 false**.  The counterexample is elementary and is written out below.  So the

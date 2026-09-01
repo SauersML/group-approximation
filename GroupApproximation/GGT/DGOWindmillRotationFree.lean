@@ -5,7 +5,7 @@ import GroupApproximation.GGT.DGOWindmillBetween
 # A rotation moves everything far from its apex
 
 Third module of the windmill campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 `GGT/HullSCRotatingFamily.lean` proves `ne_of_veryRotating`: a nontrivial
 rotation about `c` fixes no point of the annulus `20δ ≤ d(·,c) ≤ 40δ`.  That is

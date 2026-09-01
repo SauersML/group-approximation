@@ -4,11 +4,11 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerProof
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
-import GroupApproximation.Higman.OmegaDebt
+import GroupApproximation.Higman.OmegaSharedProof
 import GroupApproximation.Analysis.ShulmanFillNormingRecognitionWiring
 
 /-!
-# `thm:recognition`: the remaining analytic inputs exposed
+# `thm:recognition`: explicit proof inputs
 
 `RecognitionAssembly.manuscriptRecognition_of` proves every printed clause of
 `thm:recognition` from four inputs.  The algebraic and computability inputs are
@@ -24,25 +24,25 @@ endpoint type instead of hiding it behind an admitted proof.
   `ShulmanFillDenseNorming` → `ShulmanFillWordNorming` →
   `ShulmanFillConjugatePair` proves the printed criterion from it, so
   `shulmanTheorem16` below is a proof rather than an unresolved declaration;
-* `uedaCornerMap` is no longer a debt: `HNNPermanenceUedaCornerProof` builds
+* `uedaCornerMap` is proved: `HNNPermanenceUedaCornerProof` builds
   Ueda's corner map coordinate by coordinate, around the universe gap recorded
   on `UedaCornerMapStatement`;
 * `omegaInput` — Higman's ω-closure, the last construction the benign-subgroup
   route to Higman's embedding theorem needed; it is proved in
   `Higman.OmegaFillLeadLinkBenign` and read once for the repository from
-  `Higman.OmegaDebt`, and with it Higman's theorem is the theorem `reBenign`
+  `Higman.OmegaSharedProof`, and with it Higman's theorem is the theorem `reBenign`
   below.
 
-The code of `eq:finite-rope` is not a debt either: `RopeCodes.ropeCodeFamilyOf`
+The code of `eq:finite-rope` is proved as well: `RopeCodes.ropeCodeFamilyOf`
 compiles it from the marked output of any effective Higman compiler and proves
 that it presents `R̂_e`, so `ropeCodeFamily` below is a proved term.
 
-The effective, marked form of Higman's theorem is not a separate debt: the
+The effective, marked form of Higman's theorem is already implemented: the
 compiler of `lem:mikhailova` is built from the ω-closure in
 `EffectiveCompilerOfOmega`, so `effectiveHigmanCompiler_nonempty` below is a
 proof rather than an unresolved declaration.
 
-The printed nonunital form of `thm:hnn-permanence` is not a debt: its passage
+The printed nonunital form of `thm:hnn-permanence` is proved: its passage
 from the unital form is the corner compression `p𝒬p ≅ 𝒬'`, proved in
 `HNNPermanenceNonunital`.
 -/
@@ -57,7 +57,7 @@ open GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentence
 
 noncomputable section
 
-/-! ## The analytic debts -/
+/-! ## The analytic inputs -/
 
 /-- The two analytic literature interfaces still needed by Shulman's route.
 The first is Theorem 10, whose proof uses the one-leg Theorem 4 only through
@@ -69,7 +69,7 @@ structure RecognitionAnalyticInputs : Prop where
   compatibleTargetPair :
     ShulmanSymmetricDouble.CompatibleTargetPairStatement
 
-/-- **DEBT (analysis).**  The remaining input of Shulman's Theorem 16, in the
+/-- **Open analytic input.**  The remaining input of Shulman's Theorem 16, in the
 shape the construction produces: for every word `y` in the two factor
 images and every `δ > 0`, there are discrete models `Z`, a unital compatible
 pair `(l, r)` into their corona, and a unitary `u` commuting with `l(ι_A C)`,
@@ -113,13 +113,13 @@ The transcription boundary is now split where the source splits it:
   `Analysis/CStarHilbertCountableBasis` moves the representation to `ℓ²`
   over a small index along `Analysis/CStarHilbertTransport`.
 
-So the debt rests on the two inputs in `RecognitionAnalyticInputs`.  The route
+So the proof rests on the two inputs in `RecognitionAnalyticInputs`.  The route
 itself is Shulman's own: Theorem 13 embeds the amalgam in the symmetric double
 `D *_C D`, the `symmetricDoubleMF` field supplies Theorem 10 at precisely its
 special flip-pair endpoint, and the injective
 factor map turns the MF double into the type-zero witness that
 `shulmanTheorem16_of_typeZeroWitness` consumes.  Until both interfaces are
-theorems the debt remains an explicit argument here. -/
+theorems the inputs remain explicit arguments here. -/
 theorem conjugateWordNorming (h : RecognitionAnalyticInputs) :
     ShulmanFill.ConjugateWordNormingStatement :=
   ShulmanFill.conjugateWordNorming_of_typeZeroWitness
@@ -167,18 +167,18 @@ theorem manuscriptHNNPermanence_nonunital
 
 /-! ## Higman's embedding theorem -/
 
-/-- The ω-closure, as a term.  The statement itself is `Higman.OmegaDebt`, which
+/-- The ω-closure, as a term.  The statement itself is `Higman.OmegaSharedProof`, which
 the Theorem C lane imports too, so the repository proves it once rather than
 once per lane. -/
-theorem omegaInput : Higman.Omega.OmegaInput := Higman.OmegaDebt.omegaInput
+theorem omegaInput : Higman.Omega.OmegaInput := Higman.OmegaSharedProof.omegaInput
 
 /-- **Higman's embedding theorem** (recursively enumerable normal subgroups of
 finitely generated free groups are benign), through the ω-closure. -/
-theorem reBenign : Higman.REBenign := Higman.OmegaDebt.reBenign
+theorem reBenign : Higman.REBenign := Higman.OmegaSharedProof.reBenign
 
 /-- **The effective marked form of Higman's theorem**: a computable compiler
 from recursive presentations on three generators to finite presentations with
-marked embedding words.  Not a debt: it is `EffectiveCompilerOfOmega`, one
+marked embedding words.  It is `EffectiveCompilerOfOmega`, one
 fixed marked host for the free product of every rank-three input, running off
 the ω-closure like `reBenign` above. -/
 theorem effectiveHigmanCompiler_nonempty : Nonempty EffectiveHigmanCompiler :=
@@ -194,7 +194,7 @@ def markedOutputs : ∀ e, MarkedHigmanOutput (qcodeSeed e) :=
 
 /-! ## The finite-rope codes -/
 
-/-- **The code of `eq:finite-rope` exists.**  Not a debt: the code is built
+/-- **The code of `eq:finite-rope` exists.**  The code is built
 and proved correct in `RopeCodeFamilySemantics`. -/
 theorem ropeCodeFamily_nonempty : Nonempty (RopeCodeFamily markedOutputs) :=
   ⟨RopeCodes.ropeCodeFamilyOf effectiveHigmanCompiler⟩

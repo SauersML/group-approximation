@@ -23,7 +23,7 @@ embedded subgroups Theorem 5.1 runs over:
 > `{⟨h₁⟩,…,⟨h_k⟩} ↪_h (G, 𝒜)`.
 
 `suitsubc` at `k = 2` is `ExistsHypEmbeddedConeOff₂`, the one geometric clause
-left of the Hull row of `Manuscript/NonMF/TheoremCDebts.lean`.  This module
+left of the Hull row of `Manuscript/NonMF/TheoremCAssembly.lean`.  This module
 states `nonelsub` and `yi` in the repository's vocabulary and **proves the
 passage from `yi` to that clause**, so the row closes by instantiation the day
 `yi` is proved.

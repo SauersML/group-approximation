@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.NonMF.TheoremCDebts
+import GroupApproximation.Manuscript.NonMF.TheoremCAssembly
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Sofic.CDEOperatorMF
 
@@ -14,7 +14,7 @@ import GroupApproximation.Sofic.CDEOperatorMF
 
 This module follows the printed proof literally.  `E` is the group of
 Theorem C (`TheoremC.manuscriptTorsionFreeFullMFRadical_closed`, closed on
-the recorded debts of `TheoremCDebts`); it is nontrivial because it is
+the explicit inputs of `TheoremCAssembly`); it is nontrivial because it is
 acylindrically hyperbolic; it is not MF because its MF radical is everything;
 and `seedCodeC` is one finite presentation code for it, chosen by the adequacy
 of the coding (`exists_code_mulEquiv`).

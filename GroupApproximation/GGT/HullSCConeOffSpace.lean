@@ -3,7 +3,7 @@ import GroupApproximation.GGT.HullSCFilling
 /-!
 # The rotating family of a cone-off, from one apex and one subgroup
 
-**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCDebts` records
+**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCAssembly` records
 Hull's §5 over a **family** (`HullSC.HullConeOffStatement₂`, in
 `GGT/HullSCRelatorSeparation2Quotient.lean`, with `HullSC.ConeOffData₂` for its
 geometry), because the single-subgroup form below cannot carry Hull's relator:

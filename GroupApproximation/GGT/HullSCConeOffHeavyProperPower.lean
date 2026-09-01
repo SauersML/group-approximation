@@ -9,7 +9,7 @@ import GroupApproximation.GGT.HyperbolicFreeGroupAH
 5.8, over a pair, to one geometric clause: that for **any** two independent
 loxodromic elements of `Γ(G,A)` the cone-off of `A` along the cyclic subgroups
 they generate is hyperbolically embedded.
-`Manuscript/NonMF/TheoremCDebts.lean` records that clause as all that is left of
+`Manuscript/NonMF/TheoremCAssembly.lean` records that clause as the remaining part of
 the row `hullHypEmbeddedConeOff`, and `ZpowersConeOffEmbedding` below is it,
 named.
 

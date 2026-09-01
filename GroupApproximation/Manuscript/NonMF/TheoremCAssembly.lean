@@ -1,4 +1,4 @@
-import GroupApproximation.Higman.OmegaDebt
+import GroupApproximation.Higman.OmegaSharedProof
 import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
@@ -20,7 +20,7 @@ import GroupApproximation.GGT.HullYiFiniteFamilyPair
 import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
-# Theorem C, closed: the cited inputs as recorded debts
+# Theorem C assembly
 
 Theorem C is proved from two bundles of cited results: Fournier-Facio's
 paragraph (`TheoremC.LiteratureInputs`: Chiodo, Kotowski–Ollivier–Wise,
@@ -34,11 +34,9 @@ recorded, and `Manuscript.NonMF.HullFillKernelRefutation` proves that, so
 `Saturation.saturation` and the two printed forms of Theorem C take
 `HullCorrectedInputs.HullInputsCorrected` instead.
 
-This module records what is still owed, one declaration per cited result, the
-ones still owed represented by explicit proof holes, so that the debts are visible in the kernel's
-dependency report rather than hidden in a leading binder, and closes the two printed
-statements of Theorem C on top of them.  The names say which theorem of the
-literature each proof hole stands for.
+This module assembles the two printed statements of Theorem C.  Every theorem
+used by the assembly has its own declaration, and unfinished proofs remain
+ordinary explicit proof holes until their Lean implementations are complete.
 
 ## The Chiodo field is no longer one of them
 
@@ -46,10 +44,10 @@ literature each proof hole stands for.
 ω-closure, so the first field of `LiteratureInputs` is discharged down to the
 single construction `Higman.Omega.OmegaInput`.  That construction is proved, in
 `Higman.OmegaFillLeadLinkBenign`, and read once for the whole repository from
-`Higman.OmegaDebt`, which the recognition lane's debt file imports as well: one
+`Higman.OmegaSharedProof`, which the recognition lane imports as well: one
 theorem, shared by the two lanes that stand on it.
 
-## What each remaining debt is
+## Remaining proof implementations
 
 * `kotowskiOllivier` — the density model at a parameter between `1/3` and
   `1/2`.  `Hyperbolic.SharpExistence` asks for an *infinite* finitely presented
@@ -122,7 +120,7 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **DEBT (literature).**  Hull, Corollary 5.7, in the printed finite-family
+/-- **Open proof.**  Hull, Corollary 5.7, in the printed finite-family
 form needed to select all cyclic peripherals before applying Lemma 4.4 once.
 Theorem 3.16 supplies the hyperbolic embedding of the resulting simultaneous
 family unconditionally. -/
@@ -183,12 +181,12 @@ theorem hullHypEmbeddedConeOff : HullSC.ExistsHypEmbeddedConeOff₂.{0} := by
   exact HullSC.existsHypEmbeddedConeOff₂_of_yi_theorem316
     (HullSC.yiSuitablePair_of_finiteFamily hullYiSuitableFiniteFamily)
 
-/-- **DEBT (literature).**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
+/-- **Open proof.**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
 subgroups and rotating families*, Theorem 5.3(b): for a separated very rotating
 family on a hyperbolic geodesic space, every nonidentity element of the subgroup
 the rotations generate is conjugate into a rotation subgroup or is loxodromic.
 
-**That is now the whole of the debt**, and three findings put it in this shape.
+Three findings put the remaining proof boundary in this shape.
 
 The geodesic hypothesis is not decoration: `GGT/HullSCDGO.lean` shows the
 statement without it lets an empty annulus make the very rotating condition
@@ -214,7 +212,7 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
-/-- **DEBT (literature).**  Hull, Lemma 4.4, after the simultaneous auxiliary
+/-- **Open proof.**  Hull, Lemma 4.4, after the simultaneous auxiliary
 peripheral family has been selected.  This is the exact natural-quotient
 conclusion: injectivity on the requested Cayley ball and hyperbolic embedding
 of every mapped peripheral.  No rotating-space geometry is attributed to the
@@ -223,7 +221,7 @@ theorem hullLemma44Canonical :
     HullSC.HullLemma44CanonicalQuotientStatement.{0} := by
   sorry
 
-/-- **Temporary exact geometric debt.**  This is Hull's Lemma 4.9 after the
+/-- **Open exact geometric proof.**  This is Hull's Lemma 4.9 after the
 shortest quotient-conjugacy representative, correction transport, order,
 normal-closure, least-area, and reducedness bookkeeping have been proved
 internally.  What remains is exactly the diagram argument for a nontrivial
@@ -250,7 +248,7 @@ theorem hullCanonicalQuotient :
       hullYiSuitableFiniteFamily)
     hullLemma44Canonical hullLemma49KernelPower
 
-/-- **Temporary exact interface debt.**  The historical Bool-pair quotient
+/-- **Open exact interface proof.**  The historical Bool-pair quotient
 statement is still consumed by the existing one-step reduction below.  The
 canonical quotient above uses the full selected auxiliary index family, so it
 cannot be projected to this statement without restating §6 over that same
@@ -258,7 +256,7 @@ family. -/
 theorem hullTheorem51 : HullSC.HullQuotientStatement₂Published.{0} := by
   sorry
 
-/-- **DEBT (literature).**  Hull, §6 over a pair: the relator can be chosen.
+/-- **Open proof.**  Hull, §6 over a pair: the relator can be chosen.
 For any parameters `ε, μ, ρ` there is `u ∈ N` and a published `C₁` family over
 `{H₀, H₁}` containing a word spelling `t⁻¹u` — Hull takes
 `u = h₀^{n₁} h₁^{n₂} ⋯` alternating between two independent loxodromics of `N`
@@ -287,7 +285,7 @@ exclusions.  That chosen list now feeds the every-edge geodesic-bigon count in
 the list, and must still feed the extra `IsLemma49Input` fields; no projection
 to the weaker predicate is accepted by the one-step seam.
 
-Two of those extra fields are already bookkeeping rather than debts.
+Two of those extra fields are already proved bookkeeping.
 `RelWord.finite_componentLetters_symmetrized` proves strong boundedness, and
 `RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord` proves
 the two-sided published-piece estimate on distinct symmetrized words from the
@@ -365,7 +363,7 @@ theorem osinLemma71 :
           ActsNonElementarily N (Cayley.base A.alphabet) :=
   GGT.Elementary.osinLemma71_closed
 
-/-- Hull's inputs, as a term: the two debts above, and nothing else.  Hull's
+/-- Hull's inputs, as a term: the two theorems above, and nothing else.  Hull's
 Corollary 5.7 with Lemma 5.8 is not a field of the corrected bundle — over a
 torsion-free ambient group it is
 `Manuscript.NonMF.HullInputsProved.exists_pair_suitable_of_torsionFree`, and
@@ -382,26 +380,26 @@ namespace TheoremC
 
 /-- **Chiodo, Theorem 3.10 (= Belegradek, Theorem A.1)**, on the ω-closure
 rather than on a citation of its own: `chiodo_of_omega` proves it outright from
-Higman's ω-closure, and the ω-closure is `Higman.OmegaDebt.omegaInput`, the
+Higman's ω-closure, and the ω-closure is `Higman.OmegaSharedProof.omegaInput`, the
 repository's single record of that construction. -/
 theorem chiodo : ChiodoBelegradek.Statement :=
-  chiodo_of_omega Higman.OmegaDebt.omegaInput
+  chiodo_of_omega Higman.OmegaSharedProof.omegaInput
 
 /-! ## The four citations of Fournier-Facio's paragraph that remain -/
 
-/-- **DEBT (literature).**  Kotowski–Kotowski and Ollivier–Wise: the density
+/-- **Open proof.**  Kotowski–Kotowski and Ollivier–Wise: the density
 model at a parameter between `1/3` and `1/2` gives an infinite finitely
 presented torsion-free hyperbolic group with property (T). -/
 theorem kotowskiOllivier : KotowskiOllivierStatement := by
   sorry
 
-/-- **DEBT (literature).**  Fournier-Facio et al., Proposition 2.3, with Osin,
+/-- **Open proof.**  Fournier-Facio et al., Proposition 2.3, with Osin,
 *Small cancellations over relatively hyperbolic groups and embedding theorems*,
 Theorem 2.4(5). -/
 theorem smallCancellationQuotient : FournierFacioQuotientStatement := by
   sorry
 
-/-- **DEBT (literature).**  Osin, *Acylindrically hyperbolic groups*, Theorem
+/-- **Open proof.**  Osin, *Acylindrically hyperbolic groups*, Theorem
 1.2, in the implication `(AH₃) ⇒ (AH₁)`: a group that is not virtually cyclic
 and acts on a hyperbolic space with a loxodromic WPD element is acylindrically
 hyperbolic.  This is the theorem Minasyan–Osin cite as their Theorem 3.3, and
@@ -433,7 +431,7 @@ theorem hullFreeProductUnionGeometry : HullSC.FreeProductUnionGeometryStatement 
   HullSCUnionGeometry.freeProductUnionGeometryStatement_unconditional
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*,
-Corollary 7.4, on the recorded debts**: his Theorem 7.1 in one-step form
+Corollary 7.4**: his Theorem 7.1 in one-step form
 (`TorsionFree.hullOneStep`, on that section's four §5/§6 leaves over a pair)
 applied twice over the free product, with the union-alphabet geometry the only
 further input. -/
@@ -441,8 +439,7 @@ theorem hullCommonQuotient : HullCommonQuotientStatement :=
   HullSC.hullCommonQuotient_of_oneStep_of_geometry TorsionFree.hullOneStep
     hullFreeProductUnionGeometry
 
-/-- The cited inputs, as a term.  The first field is proved; the other four are
-the debts above. -/
+/-- The cited inputs, assembled from the declarations above. -/
 theorem literatureInputs : LiteratureInputs :=
   { chiodo := chiodo
     kotowskiOllivier := kotowskiOllivier
@@ -453,12 +450,12 @@ theorem literatureInputs : LiteratureInputs :=
 /-! ## Theorem C, closed -/
 
 /-- **Theorem C (`thm:torsion-free`), in radical form, as a closed
-declaration** on the recorded debts. -/
+declaration**. -/
 theorem manuscriptTorsionFreeFullMFRadical_closed : PrintedTorsionFreeFullMFRadical :=
   manuscriptTorsionFreeFullMFRadical literatureInputs TorsionFree.hullInputs
 
 /-- **Theorem C, in the simplified printed statement, as a closed
-declaration** on the recorded debts. -/
+declaration**. -/
 theorem manuscriptTorsionFreeSimplified_closed : PrintedTorsionFreeSimplified :=
   manuscriptTorsionFreeSimplified literatureInputs TorsionFree.hullInputs
 

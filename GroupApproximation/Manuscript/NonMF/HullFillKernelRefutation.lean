@@ -71,7 +71,7 @@ only on the definitions of `HullQuotient` and `HullInputs`, while
 moves or is restated, this is the declaration that follows it.
 
 The consequence for the development is unchanged in kind and sharper in degree:
-the two bundles of `Manuscript.NonMF.TheoremCDebts` cannot both be paid, and the
+the two bundles assembled by `Manuscript.NonMF.TheoremCAssembly` are not both valid, and the
 Hull one cannot be paid at all, so the closed forms of Theorem C cannot stand on
 `TorsionFree.HullInputs`.  The clause
 to repair is the kernel one: it belongs to Hull's construction, not to its
@@ -79,7 +79,7 @@ output, so it belongs inside the quotient — as a further field of the structur
 that the small cancellation theorem produces — rather than as a statement about
 arbitrary terms of that structure.
 `Manuscript.NonMF.HullFillCorrectedInputs` carries that repair and shows it
-still proves `lem:saturation`, and `Manuscript.NonMF.TheoremCDebts` closes
+still proves `lem:saturation`, and `Manuscript.NonMF.TheoremCAssembly` closes
 Theorem C on the repaired bundle.
 -/
 
@@ -208,7 +208,7 @@ theorem false_of_minasyanOsin_of_hullInputs
     (TheoremC.Skeleton (1 : (PUnit × PUnit × PUnit) →* PUnit)
       injective_trivial_hom)
 
-/-- **The two debts of `Manuscript.NonMF.TheoremCDebts` cannot both be paid.**
+/-- **The two historical input bundles cannot both be valid.**
 `TheoremC.LiteratureInputs` carries Minasyan–Osin's statement as one of its five
 fields, and that field alone contradicts `TorsionFree.HullInputs`. -/
 theorem false_of_literatureInputs_of_hullInputs (I : TheoremC.LiteratureInputs)

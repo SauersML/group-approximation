@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.HullSuitabilityGeometry
 # Metric betweenness, and the comparison of two geodesics leaving a point
 
 Second module of the windmill campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 DGO's §5.1.2 is written in the language of chosen geodesic segments: *"consider
 `q₁ ∈ [c,x]` and `q₂ ∈ [c,y]` at distance `28δ` from `c`"*, and their induction

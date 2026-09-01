@@ -5,7 +5,7 @@ import GroupApproximation.GGT.DGOWindmillCorner
 # The broken path of a reduced word is geodesic
 
 Ninth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 This is where the word algebra of `GGT/DGOWindmillSpelling.lean` and the
 geometry of `GGT/DGOWindmillCorner.lean` meet, and it is the content of DGO's

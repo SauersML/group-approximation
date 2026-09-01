@@ -8,7 +8,7 @@ families in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245
 (2017), no. 1156, §2.1 and §5.1.2.
 
 This is the first module of the windmill campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53`.  After the reduction of
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53`.  After the reduction of
 `GGT/DGORotatingQuotientResidual.lean` the whole of that debt is DGO's Theorem
 5.3(b), the dichotomy, and DGO prove it by an induction over *windmills* --
 subsets of the space that are quasiconvex with a constant independent of the

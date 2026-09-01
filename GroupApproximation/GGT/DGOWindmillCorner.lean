@@ -5,7 +5,7 @@ import GroupApproximation.GGT.DGOWindmillQuasiconvex
 # The sharp corner
 
 Sixth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 Dahmani-Guirardel-Osin, Lemma 5.15.  This is the step where the windmill earns
 its keep.  `DGOWindmill.between_of_veryRotating` turns a *coupling* between the

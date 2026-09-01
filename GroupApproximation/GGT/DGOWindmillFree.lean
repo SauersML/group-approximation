@@ -4,7 +4,7 @@ import GroupApproximation.GGT.DGOWindmillDef
 # The windmill group acts freely on the apices outside the windmill
 
 Eighth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 Dahmani-Guirardel-Osin note in passing, during the proof of their Proposition
 5.12, that `G_W` *acts freely on `C₁`* "by Axiom 5 and Corollary 5.6", and use it

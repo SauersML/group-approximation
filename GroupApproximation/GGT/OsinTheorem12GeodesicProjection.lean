@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.OsinTheorem12OneDebt
+import GroupApproximation.GGT.OsinTheorem12Reduction
 import GroupApproximation.GGT.ElementaryCoarseTranslationQuasiconvex
 import GroupApproximation.GGT.ElementaryFiniteTransversalConsequences
 import GroupApproximation.GGT.ElementaryGeometricSeparationReduction

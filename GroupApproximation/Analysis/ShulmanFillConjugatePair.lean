@@ -80,7 +80,7 @@ for the common image of `C`, and let `y` be a word in the two factor images.
 * `exists_diagonal_unitaries_attaining_word_norm`: step 5 itself.
 
 `GroupApproximation.lean` imports this module, and so does
-`Manuscript.MFRecognition.RecognitionDebts`, so `thm:recognition` rests on it.
+`Manuscript.MFRecognition.RecognitionProofInputs`, so `thm:recognition` rests on it.
 It was authored while builds were suspended and has not been elaborated since.
 -/
 

@@ -6,7 +6,7 @@ import GroupApproximation.GGT.DGOWindmillCyclic
 # A cyclically reduced element is loxodromic
 
 Eleventh module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53` (DGO's Theorem 5.3(b)).
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` (DGO's Theorem 5.3(b)).
 
 This is the payoff of the whole construction, and the point at which the three
 strands of the campaign meet: the geometry of `GGT/DGOWindmillPath.lean`, the

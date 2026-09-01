@@ -12,7 +12,7 @@ records that reading, and it is the only place where the two meet.
 The seeds are interchangeable: `lem:switch` and both branch lemmas use only
 that the seed is finitely presented and not MF, and neither reads the code
 itself.  Keeping the printed reading here rather than in `SeedPresentation`
-keeps `Manuscript.NonMF.TheoremCDebts` out of the import closure of the
+keeps `Manuscript.NonMF.TheoremCAssembly` out of the import closure of the
 recognition chain, so that chain neither depends on Theorem C's recorded
 debts nor fails to build with them.
 -/

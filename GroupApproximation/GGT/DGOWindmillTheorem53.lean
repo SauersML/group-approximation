@@ -6,7 +6,7 @@ import GroupApproximation.GGT.DGORotatingQuotientResidual
 # From windmills to DGO's Theorem 5.3(b)
 
 Twelfth module of the campaign aimed at
-`Manuscript.NonMF.TheoremCDebts.dgoTheorem53`.
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53`.
 
 This module packages the endpoint reduction and assembles the windmill
 induction into `HullSC.DGOQuotientStatementGeodesic`, the repaired form of
