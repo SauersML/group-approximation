@@ -1,4 +1,4 @@
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnDeletedNorthDeformation
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnDeletedNorthProjectiveHomotopy
 import Mathlib
 
 /-!
@@ -82,14 +82,18 @@ noncomputable def affineForwardMap (n : Nat) :
 
 theorem rpAffineCellToEuclidean_factors (n : Nat) :
     Function.FactorsThrough (affineForwardMap n) (affineCellProj n) := by
-  intro a b hab;
-  -- By definition of `affineCellProj`, we know that `proj (n + 1) a.1 = proj (n + 1) b.1`.
-  have h_proj_eq : proj (n + 1) a.1 = proj (n + 1) b.1 := by
-    convert congr_arg Subtype.val hab using 1;
-  cases' eq_or_eq_neg_of_proj_eq h_proj_eq with h h <;> simp_all +decide [ affineForwardMap ];
-  · cases a ; cases b ; aesop;
-  · convert affineForwardFun_neg n b using 1;
-    exact congr_arg _ ( Subtype.ext h )
+  intro a b hab
+  change affineForwardFun n a = affineForwardFun n b
+  have hp : proj (n + 1) a.1 = proj (n + 1) b.1 :=
+    congrArg Subtype.val hab
+  rcases eq_or_eq_neg_of_proj_eq hp with h | h
+  · have hab' : a = b := Subtype.ext h
+    rw [hab']
+  · have ha : a = ⟨-b.1, by
+        simpa using (sphereAffineCellSet_neg_iff n b.1).2 b.2⟩ :=
+      Subtype.ext h
+    rw [ha]
+    exact affineForwardFun_neg n b
 
 /-- The descended forward chart `rpAffineCellSpace n → R^(n+1)`. -/
 noncomputable def rpAffineCellToEuclidean (n : Nat) :
@@ -124,7 +128,7 @@ theorem affineInverseSphereVec_mem (n : Nat)
     affineInverseSphereVec n a ∈
       Metric.sphere (0 : EuclideanSpace Real (Fin (n + 2))) 1 := by
   -- By definition of sphere, we need to show that the norm of `affineInverseSphereVec n a` is 1.
-  simp [affineInverseSphereVec, mem_sphere_zero_iff_norm];
+  simp [affineInverseSphereVec];
   rw [ norm_smul, Real.norm_of_nonneg ( by positivity ), EuclideanSpace.norm_eq ];
   norm_num [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ];
   rw [ Real.sq_sqrt <| by positivity, inv_mul_eq_div, div_eq_iff ] <;> ring ; positivity
@@ -186,10 +190,25 @@ Forward after inverse is the identity.
 theorem rpAffineCell_forward_inverse (n : Nat) :
     (rpAffineCellToEuclidean n).comp (euclideanToRpAffineCell n)
       = ContinuousMap.id (EuclideanSpace Real (Fin (n + 1))) := by
-  convert ContinuousMap.ext fun x => ?_ using 1;
-  convert rpAffineCellToEuclidean_proj n ⟨ affineInverseSphere n x, affineInverseSphere_mem_cell n x ⟩ using 1;
-  unfold affineForwardFun affineInverseSphere affineInverseSphereVec sphereLastCoord; simp +decide [ Fin.snoc_castSucc, Fin.snoc_last ] ;
-  ext i; simp +decide [ mul_assoc, mul_comm, mul_left_comm, ne_of_gt ( Real.sqrt_pos.mpr ( show 0 < ‖x‖ ^ 2 + 1 by positivity ) ) ] ;
+  apply ContinuousMap.ext
+  intro x
+  rw [ContinuousMap.comp_apply]
+  let y : sphereAffineCellSet n :=
+    ⟨affineInverseSphere n x, affineInverseSphere_mem_cell n x⟩
+  change rpAffineCellToEuclidean n (affineCellProj n y) = x
+  have hchart : rpAffineCellToEuclidean n (affineCellProj n y) =
+      affineForwardFun n y := by
+    change rpAffineCellToEuclidean n ⟨proj (n + 1) y.1, _⟩ =
+      affineForwardFun n y
+    exact rpAffineCellToEuclidean_proj n y
+  rw [hchart]
+  change affineForwardFun n
+      ⟨affineInverseSphere n x, affineInverseSphere_mem_cell n x⟩ = x
+  unfold affineForwardFun affineInverseSphere affineInverseSphereVec sphereLastCoord
+  simp +decide [Fin.snoc_castSucc, Fin.snoc_last]
+  ext i
+  simp +decide [mul_comm,
+    ne_of_gt (Real.sqrt_pos.mpr (show 0 < ‖x‖ ^ 2 + 1 by positivity))]
 
 /-
 The inverse of the forward chart of a representative is antipodal to it.
@@ -222,10 +241,16 @@ Inverse after forward is the identity.
 theorem rpAffineCell_inverse_forward (n : Nat) :
     (euclideanToRpAffineCell n).comp (rpAffineCellToEuclidean n)
       = ContinuousMap.id (rpAffineCellSpace n) := by
-  ext q;
-  have := Function.surjInv_eq ( affineCellProj_isQuotientMap n ).surjective q;
-  convert proj_eq_of_antipodalRel ( affineInverse_forward_antipodal n ( Function.surjInv ( affineCellProj_isQuotientMap n ).surjective q ) ) using 1;
-  exact congr_arg Subtype.val this.symm
+  apply ContinuousMap.ext
+  intro q
+  obtain ⟨x, rfl⟩ := (affineCellProj_isQuotientMap n).surjective q
+  rw [ContinuousMap.comp_apply]
+  have hforward : rpAffineCellToEuclidean n (affineCellProj n x) =
+      affineForwardFun n x :=
+    rpAffineCellToEuclidean_proj n x
+  rw [hforward]
+  apply Subtype.ext
+  exact proj_eq_of_antipodalRel (affineInverse_forward_antipodal n x)
 
 /-! ## The homeomorphism and contractibility -/
 
