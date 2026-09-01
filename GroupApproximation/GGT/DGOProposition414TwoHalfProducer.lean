@@ -215,14 +215,17 @@ noncomputable def twoHalfChargingConfiguration_of_targetEmbedding
         s
   let radius : Sum (Fin index.first.pieceCount)
       (Fin index.second.pieceCount) → ℕ → ℕ := fun q s =>
-    childRadius q (targetIndex q s)
+    if owner s = q then childRadius q (targetIndex q s) else 0
   refine
-    { owner := owner
-      radius := radius
+    { radius := radius
       original_mem := ?_
       firstCharge := ?_
       secondCharge := ?_ }
   · intro s hs
+    have hsum : (∑ q, radius q s) =
+        childRadius (owner s) (targetIndex (owner s) s) := by
+      simp [radius]
+    rw [hsum]
     have ht := htarget s hs
     have hl := hlabel s hs
     have he := hspan s hs

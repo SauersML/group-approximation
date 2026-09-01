@@ -140,7 +140,6 @@ noncomputable def auxiliaryCycleFamilyCertificate_of_twoHalf
       chordLength := 2 * L + 1
       partners := index.first.partners ++ index.second.partners
       children := fun j => child (e.symm j)
-      owner := fun s => e (C.owner s)
       originalRadius := fun j s => C.radius (e.symm j) s
       original_mem := ?_
       charge := ?_
@@ -149,7 +148,10 @@ noncomputable def auxiliaryCycleFamilyCertificate_of_twoHalf
       child_small := ?_
       traversal := twoHalf_traversal_quadratic index }
   · intro s hs
-    simpa [e] using C.original_mem s hs
+    have hsum : (∑ j, C.radius (e.symm j) s) = ∑ q, C.radius q s :=
+      Equiv.sum_comp e.symm (fun q => C.radius q s)
+    rw [hsum]
+    exact C.original_mem s hs
   · intro j
     have hj : j = e (e.symm j) := (e.apply_symm_apply j).symm
     generalize hq : e.symm j = q
@@ -158,23 +160,17 @@ noncomputable def auxiliaryCycleFamilyCertificate_of_twoHalf
         have hji : j = e (Sum.inl i) := by simpa [hq] using hj
         subst j
         change
-          (∑ s ∈ I,
-            if e (C.owner s) = e (Sum.inl i) then
-              C.radius (Sum.inl i) s else 0) ≤
+          (∑ s ∈ I, C.radius (Sum.inl i) s) ≤
             ∑ t ∈ (A.firstChildren i).target,
               (A.firstChildren i).radius D hsymm b hδ t
-        simp_rw [e.injective.eq_iff]
         exact C.firstCharge i
     | inr i =>
         have hji : j = e (Sum.inr i) := by simpa [hq] using hj
         subst j
         change
-          (∑ s ∈ I,
-            if e (C.owner s) = e (Sum.inr i) then
-              C.radius (Sum.inr i) s else 0) ≤
+          (∑ s ∈ I, C.radius (Sum.inr i) s) ≤
             ∑ t ∈ (A.secondChildren i).target,
               (A.secondChildren i).radius D hsymm b hδ t
-        simp_rw [e.injective.eq_iff]
         exact C.secondCharge i
   · rw [hsum]
     exact hcountLower

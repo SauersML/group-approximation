@@ -8,9 +8,9 @@ import GroupApproximation.GGT.DGOProposition414EntryOwner
 
 This file is the bookkeeping boundary between the two geometric halves and
 the exact Proposition 4.14 producer.  The interval geometry is indexed by the
-canonical broken-component assignment.  The charging certificate records
-both surviving sides and the three-side charges arising from broken-component
-quadrilaterals.
+canonical broken-component assignment.  The charging certificate records the
+child-by-source target packets arising from surviving sides and
+broken-component quadrilaterals.
 -/
 
 namespace GroupApproximation
@@ -35,7 +35,7 @@ structure BalancedSplitIntervalSurgery
   intervals : TwoHalfIntervalSurgery D hsymm b B.brokenAssignment.index
     B.firstBase (vertex P.basepoint P.word B.secondVertex)
     B.chord B.chord_geodesic
-  chargeGeometry : TwoHalfThreeSlotPlacement D hsymm b hδ
+  chargePlacement : TwoHalfDistributedChargePlacement D hsymm b hδ
     intervals.toPathInput.family P.target P.label P.span
   count_lower : n ≤
     (∑ j, ((intervals.toPathInput).first j).sideCount) +
@@ -72,7 +72,7 @@ theorem sideBounds
   first_small := hfirstSmall
   second_small := hsecondSmall
 
-/-- The three coherent interval slots supply the complete two-half charging
+/-- The distributed child-side packets supply the complete two-half charging
 configuration, including the quadrilateral radius and finite-sum arguments. -/
 noncomputable def configuration
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -83,7 +83,7 @@ noncomputable def configuration
     (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) :
     TwoHalfChargingConfiguration D hsymm b hδ
       S.intervals.toPathInput.family P.target P.label P.span :=
-  S.chargeGeometry.configuration
+  S.chargePlacement.configuration
 
 /-- The general charging certificate and the exact side accounting assemble
 into the family certificate consumed by Proposition 4.14. -/

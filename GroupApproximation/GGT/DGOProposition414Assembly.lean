@@ -576,15 +576,15 @@ theorem exists_twoHalfAuxiliaryCycleFamily (D : RelGenSet G Λ) (b : ℝ)
 
 /-! ## Charging across the disjoint union of the two half families -/
 
-/-- **The global owner file for two certified half families.**
+/-- **The global contribution matrix for two certified half families.**
 
-An original distinguished component is owned by exactly one child, represented
-by the disjoint union of the first- and second-half connector intervals.  The
-two charge clauses are kept separate so that each is proved in its own half's
-coordinates.  No relation between the two greedy partner orders is used.
+An original distinguished component may draw radius from adjacent children:
+its two connectors need not lie in the same gap interval.  Accordingly
+`radius q s` is a child-by-source contribution matrix.  The two charge clauses
+are kept separate so that each is proved in its own half's coordinates.
 
 `original_mem` is the survivor-or-quadrilateral conclusion for the original
-side.  `firstCharge` and `secondCharge` say that all radii owned by one child
+side.  `firstCharge` and `secondCharge` say that all radii used in one child
 are paid for by that child's actual target radii. -/
 structure TwoHalfChargingConfiguration (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
@@ -595,17 +595,16 @@ structure TwoHalfChargingConfiguration (D : RelGenSet G Λ)
       pos₁ partner₁ pos₂ partner₂ chordLength}
     (A : TwoHalfAuxiliaryCycleFamily D (b : ℝ) index)
     (I : Finset ℕ) (lam : ℕ → Λ) (span : ℕ → G) where
-  owner : ℕ → Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount)
   radius : Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount) →
     ℕ → ℕ
   original_mem : ∀ s ∈ I,
-    span s ∈ D.relBall (lam s) (radius (owner s) s)
+    span s ∈ D.relBall (lam s) (∑ q, radius q s)
   firstCharge : ∀ j : Fin index.first.pieceCount,
-    ∑ s ∈ I, (if owner s = Sum.inl j then radius (Sum.inl j) s else 0) ≤
+    ∑ s ∈ I, radius (Sum.inl j) s ≤
       ∑ t ∈ (A.firstChildren j).target,
         (A.firstChildren j).radius D hsymm b hδ t
   secondCharge : ∀ j : Fin index.second.pieceCount,
-    ∑ s ∈ I, (if owner s = Sum.inr j then radius (Sum.inr j) s else 0) ≤
+    ∑ s ∈ I, radius (Sum.inr j) s ≤
       ∑ t ∈ (A.secondChildren j).target,
         (A.secondChildren j).radius D hsymm b hδ t
 
@@ -635,15 +634,19 @@ theorem consequences_of_twoHalfChargingConfiguration (D : RelGenSet G Λ)
       (A.firstChildren j).radius D hsymm b hδ t)
     (fun j ↦ ∑ t ∈ (A.secondChildren j).target,
       (A.secondChildren j).radius D hsymm b hδ t)
-  have hcharge : ∀ q, ∑ s ∈ I,
-      (if C.owner s = q then C.radius q s else 0) ≤ bound q := by
+  have hcharge : ∀ q, ∑ s ∈ I, C.radius q s ≤ bound q := by
     intro q
     cases q with
     | inl j => simpa [bound] using C.firstCharge j
     | inr j => simpa [bound] using C.secondCharge j
-  obtain ⟨r, hrmem, hrsum⟩ := combine_relBall_witnesses_finite D I C.owner
-    lam span C.radius bound C.original_mem hcharge
-  refine ⟨r, hrmem, hrsum.trans ?_⟩
+  let r : ℕ → ℕ := fun s => ∑ q, C.radius q s
+  have hrsum : ∑ s ∈ I, r s ≤ ∑ q, bound q := by
+    calc
+      ∑ s ∈ I, r s = ∑ q, ∑ s ∈ I, C.radius q s := by
+        simp only [r]
+        rw [Finset.sum_comm]
+      _ ≤ ∑ q, bound q := Finset.sum_le_sum fun q _ => hcharge q
+  refine ⟨r, C.original_mem, hrsum.trans ?_⟩
   rw [Fintype.sum_sum_type]
   exact Nat.add_le_add
     (Finset.sum_le_sum fun j _ ↦
@@ -677,13 +680,12 @@ structure AuxiliaryCycleFamilyCertificate (D : RelGenSet G Λ)
   partners : List ℕ
   children : ∀ j : Fin k,
     AuxiliaryCycleCertificate D (b : ℝ) (childSides j)
-  owner : ℕ → Fin k
   originalRadius : Fin k → ℕ → ℕ
   original_mem : ∀ s ∈ I,
     (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) ∈
-      D.relBall (lam s) (originalRadius (owner s) s)
+      D.relBall (lam s) (∑ j, originalRadius j s)
   charge : ∀ j : Fin k,
-    ∑ s ∈ I, (if owner s = j then originalRadius j s else 0) ≤
+    ∑ s ∈ I, originalRadius j s ≤
       ∑ t ∈ (children j).target, (children j).radius D hsymm b hδ t
   count_lower : n ≤ ∑ j, childSides j
   count_upper : ChordPartnerQuadraticTraversalBound chordLength partners →
@@ -712,14 +714,17 @@ theorem consequences_of_auxiliaryCycleFamilyCertificate (D : RelGenSet G Λ)
           D.relBall (lam s) (r s)) ∧
       ∑ s ∈ I, r s ≤
         ∑ j, sumCost D hsymm b hδ (A.childSides j) := by
-  obtain ⟨r, hrmem, hrsum⟩ := combine_relBall_witnesses_finite D I A.owner lam
-    (fun s => (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)))
-    A.originalRadius
-    (fun j => ∑ t ∈ (A.children j).target,
-      (A.children j).radius D hsymm b hδ t)
-    A.original_mem A.charge
+  let r : ℕ → ℕ := fun s => ∑ j, A.originalRadius j s
+  have hrsum : ∑ s ∈ I, r s ≤
+      ∑ j, ∑ t ∈ (A.children j).target,
+        (A.children j).radius D hsymm b hδ t := by
+    calc
+      ∑ s ∈ I, r s = ∑ j, ∑ s ∈ I, A.originalRadius j s := by
+        simp only [r]
+        rw [Finset.sum_comm]
+      _ ≤ _ := Finset.sum_le_sum fun j _ => A.charge j
   refine ⟨A.count_lower, A.count_upper A.traversal, A.child_small,
-    r, hrmem, hrsum.trans ?_⟩
+    r, A.original_mem, hrsum.trans ?_⟩
   exact Finset.sum_le_sum fun j _ =>
     AuxiliaryCycleCertificate.sum_radius_le_sumCost D hsymm b hδ (A.children j)
 
