@@ -158,7 +158,8 @@ theorem exists_exact_cleanSource_publishedGap_relativeSides
     rw [hs] at hcompV
     have hcompS0 := isComp_prefix hcompV (by omega : j - 1 + 1 ≤ s.length)
     have hcompS : GGT.OsinComponents.IsComp lam s (j - 1) j := by
-      convert hcompS0 using 1 <;> omega
+      convert hcompS0 using 1
+      all_goals omega
     have hconnector := GGT.OsinComponents.exists_connector_fourGon E.rel lam
       p q r s hclose (by omega : i ≤ q.length) (by rw [← heq']; exact hnconn)
     have hqexclude : ∀ i' : ℕ, i' < q.length → i' ≠ i →
@@ -269,18 +270,20 @@ theorem exists_exactPublishedAdjacentGapOutput
   have hnotSame : ∀ (lam : Bool) (i j : ℕ),
       GGT.OsinComponents.IsComp lam q i (i + 1) →
       GGT.OsinComponents.IsComp lam q j (j + 1) →
+      j + 1 < q.length →
       0 < i → 0 < j → i ≠ j →
       ¬ GGT.OsinComponents.Connected E.rel.fam lam 1
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s)
         (p.length + i) (p.length + j) := by
-    intro lam i j hiComp hjComp hi0 hj0 hne hconn
+    intro lam i j hiComp hjComp hjend hi0 hj0 hne hconn
     have hjWhole :=
       GGT.OsinComponents.isComp_fourGon_of_isComp_side_of_interior
-        p q r s lam hj0 hjComp.2.1 hjComp
+        p q r s lam hj0 hjend hjComp
     have hjStart : GGT.OsinComponents.IsCompStart lam
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) (p.length + j) := by
       refine ⟨p.length + j + 1, ?_⟩
-      convert hjWhole using 1 <;> omega
+      convert hjWhole using 1
+      all_goals omega
     exact exactPrefix_not_connected_sameSide_relativeSides E hdesign hcount
       heven hW hv hq p r s lam i hiComp j
       (lt_of_lt_of_le hjComp.1 hjComp.2.1) hne.symm

@@ -229,6 +229,7 @@ theorem exists_adjacent_seam_clean_components_of_sym_prefix
     (hpairwise : ∀ (lam : Bool) (i j : ℕ),
       GGT.OsinComponents.IsComp lam q i (i + 1) →
       GGT.OsinComponents.IsComp lam q j (j + 1) →
+      j + 1 < q.length →
       0 < i → 0 < j → i ≠ j →
       ¬ GGT.OsinComponents.Connected E.rel.fam lam 1
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s)
@@ -400,6 +401,7 @@ theorem exists_adjacent_seam_clean_components_of_sym_prefix
     have hcb : GGT.OsinComponents.IsComp (index i) q
         (source j) (source j + 1) := by simpa only [hab] using hcb0
     exact hpairwise (index i) (source i) (source j) hca hcb
+      (by dsimp only [source, P]; omega)
       (by dsimp only [source]; omega) (by dsimp only [source]; omega)
       (fun h ↦ habne (Fin.ext (by dsimp only [source] at h ⊢; omega))) hconn
   obtain ⟨a, hva, hclean, hclean'⟩ :=
