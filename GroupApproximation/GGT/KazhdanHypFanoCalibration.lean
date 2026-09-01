@@ -6,8 +6,9 @@ import GroupApproximation.GGT.KazhdanHypGirthEight
 
 This module instantiates the deterministic triangular-property-`(T)` pipeline
 on the smallest source-defined example.  Herron, *Triangle Presentations
-Encoded by Perfect Difference Sets*, Construction 4.1, Theorem 4.2 and the
-order-two row of the examples table, starts from the perfect difference set
+Encoded by Perfect Difference Sets*, the construction and main theorem in
+§4 and the order-two row of the examples table, starts from the perfect
+difference set
 `{1,2,4}` in `Z/7Z`.  Its multiplier-two orbit gives the seven cyclic triples
 
 ```
