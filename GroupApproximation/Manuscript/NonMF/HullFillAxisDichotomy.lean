@@ -4,7 +4,7 @@ import GroupApproximation.Manuscript.NonMF.HullFillOsinNormalReduction
 /-!
 # `AxisDichotomy`, and the geodesic model `Γ(G,A)` does not have
 
-`Manuscript.NonMF.HullFillOsinNormalReduction` reduces the Osin debt to three
+`Manuscript.NonMF.HullFillOsinNormalReduction` reduces the Osin input to three
 facts about elementary closures.  This module is the third of them,
 `OsinNormalReduction.AxisDichotomy`:
 

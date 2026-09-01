@@ -108,7 +108,7 @@ structure HullInputsCorrected : Type where
   `IsPowerTorsionFree G` as a hypothesis and
   `HullGeometry.actsNonElementarily_of_normal_conjugate` carries `[S.Normal]`,
   so narrowing the citation to those two hypotheses costs the saturation lemma
-  nothing and lines the debt up with what is already proved.
+  nothing and matches the remaining proof obligation to what is already proved.
   `osinNonElementary_of_osinLemma71` checks that this is a special case of
   Osin's lemma as `HullInputs` states it. -/
   osinNonElementary : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G),

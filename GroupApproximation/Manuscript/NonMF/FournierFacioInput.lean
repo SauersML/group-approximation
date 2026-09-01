@@ -24,7 +24,7 @@ theorems that produce `E`'s acylindrical hyperbolicity and Hull's common
 quotient.  Each is stated exactly as the manuscript uses it and collected as a
 field of `LiteratureInputs`; **nothing here inhabits that structure**, and every
 result downstream of the paragraph carries it as an explicit hypothesis, so the
-literature debt is visible in the type.  Everything the paragraph *asserts on
+unproved literature input is visible in the type.  Everything the paragraph *asserts on
 the strength of those citations* is proved here, with no open leaves:
 
 * `kazhdan_of_fournierFacioQuotient` — "Consequently, `P` has property (T)."
@@ -116,7 +116,7 @@ def HullCommonQuotientStatement : Prop :=
 /-- **The five statements the Fournier-Facio paragraph cites and does not
 prove.**  Nothing in this development inhabits this structure; every result
 downstream of the paragraph carries it as an explicit hypothesis, so the
-literature debt is visible in the type of each such result. -/
+unproved literature input is visible in the type of each such result. -/
 structure LiteratureInputs where
   /-- **Chiodo**, arXiv:1107.1489v4, Theorem 3.10 (= Belegradek, Theorem A.1):
   a finitely presented torsion-free group containing a copy of every finitely
@@ -256,7 +256,7 @@ end Configuration
 
 /-- **The Fournier-Facio paragraph, assembled.**  Each field of `I` is used
 exactly once, and every other step is one of the proofs of this module.  The
-literature debt of the whole paragraph is exactly the hypothesis `I`. -/
+unproved literature input of the whole paragraph is exactly the hypothesis `I`. -/
 theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := by
   classical
   obtain ⟨U, instU, hUfp, hUtf, hUuniv⟩ := I.chiodo

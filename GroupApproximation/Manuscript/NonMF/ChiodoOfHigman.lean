@@ -57,7 +57,7 @@ from Higman's ω-closure.**
 The hypothesis is the sole remaining construction of the benign-subgroup route
 to Higman's embedding theorem.  This discharges the `chiodo` field of
 `TheoremC.LiteratureInputs` up to that one construction, which the recognition
-lane already carries as a debt of its own. -/
+lane already carries as an explicit proof obligation. -/
 theorem chiodo_of_omega (hOmega : Higman.Omega.OmegaInput) :
     ChiodoBelegradek.Statement :=
   Higman.statement_of_higman

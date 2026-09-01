@@ -375,7 +375,7 @@ def PrintedTorsionFreeFullMFRadical : Prop :=
 /-- **Theorem C, proved along the printed proof, from the paragraph's cited
 inputs.**
 
-The leading binders are the whole literature debt of the construction: the five
+The leading binders are exactly the cited inputs of the construction: the five
 statements Fournier-Facio's paragraph cites and does not prove
 (`TheoremC.LiteratureInputs`), and the two Hull cites
 (`HullCorrectedInputs.HullInputsCorrected`).  The conclusion is the printed
