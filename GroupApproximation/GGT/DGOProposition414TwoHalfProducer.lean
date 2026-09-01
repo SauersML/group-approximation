@@ -30,6 +30,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.WordMetric
 open GroupApproximation.GGT.OsinComponents
 
 universe u w
@@ -52,7 +53,7 @@ structure AuxiliaryCyclePathInput (D : RelGenSet G Λ)
   chord : List (RelLetter G Λ)
   arcSides : ℕ
   arcCut : ℕ → ℕ
-  arcPolygon : IsCutPolygon D (b : ℝ) arcSides
+  arcPolygon : IsCutPath D (b : ℝ) arcSides
     (basepoint * RelLetter.listVal (revWord left)) arc arcCut
   chordEndpoint : G
   chordGeodesic : IsGeodesicWord D
@@ -64,6 +65,12 @@ structure AuxiliaryCyclePathInput (D : RelGenSet G Λ)
     RelLetter.listVal right * RelLetter.listVal chord
   localTarget : Finset ℕ
   label : ℕ → Λ
+  arcQuasi : ∀ r : ℕ, r < arcSides → left.length + r ∉ localTarget →
+    ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+    ((q - p : ℕ) : ℝ) - b ≤
+      ((wordDist D.alphabet.carrier
+        (vertex (basepoint * RelLetter.listVal (revWord left)) arc p)
+        (vertex (basepoint * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ)
   localTarget_lt : ∀ s ∈ localTarget,
     s < left.length + arcSides + right.length + chord.length
   localTarget_edge : ∀ s ∈ localTarget,
@@ -88,7 +95,7 @@ def certificate {D : RelGenSet G Λ}
   auxiliaryCycleCertificate_of_paths_withComponentConfiguration
     D hsymm (Nat.cast_nonneg b) P.basepoint P.left P.arc P.right P.chord
     P.arcPolygon P.chordGeodesic P.leftLetters P.rightLetters P.closes
-    P.localTarget P.label P.localTarget_lt P.localTarget_edge P.components
+    P.localTarget P.label P.arcQuasi P.localTarget_lt P.localTarget_edge P.components
 
 end AuxiliaryCyclePathInput
 

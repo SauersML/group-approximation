@@ -47,6 +47,42 @@ variable {G : Type u} [Group G] {Λ : Type w}
 
 /-! ## The auxiliary cycles -/
 
+/-- An admissible polygonal path with a named side cut.
+
+Unlike `IsCutPolygon`, a path is not required to close.  This is the exact
+object inherited by an arc between two broken components; requiring that arc
+itself to spell the identity would make every nondegenerate surgery interval
+uninhabitable.  Quasigeodesicity is stored separately because inherited
+distinguished sides are exempt from it. -/
+structure IsCutPath (D : RelGenSet G Λ) (b : ℝ) (n : ℕ) (v : G)
+    (w : List (RelLetter G Λ)) (c : ℕ → ℕ) : Prop where
+  letters : ∀ a ∈ w, D.IsLetter a
+  cut : IsPolygonCut n w c
+
+namespace IsCutPath
+
+/-- Forgetting polygon closure gives the corresponding cut path. -/
+theorem ofPolygon {D : RelGenSet G Λ} {b : ℝ} {n : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+    (P : IsCutPolygon D b n v w c) : IsCutPath D b n v w c where
+  letters := P.letters
+  cut := P.cut
+
+/-- Restrict a cut path to the arc between two of its named corners. -/
+theorem arcWord {D : RelGenSet G Λ} {b : ℝ} {n : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+    (P : IsCutPath D b n v w c) {a z : ℕ} (haz : a ≤ z) (hzn : z ≤ n) :
+    IsCutPath D b (z - a) (vertex v w (c a)) (arcWord w c a z)
+      (fun s => c (a + s) - c a) := by
+  have hca : c a ≤ c z := P.cut.mono_le haz
+  refine
+    { letters := ?_
+      cut := isPolygonCut_arcWord P.cut haz hzn }
+  · intro x hx
+    exact P.letters x (List.mem_of_mem_drop (List.mem_of_mem_take hx))
+
+end IsCutPath
+
 /-- **The word of one DGO auxiliary cycle `c_j`.**
 
 For an interior cycle, `left` is `e_{j-1}`, `arc` is the polygon segment from
@@ -328,11 +364,17 @@ quasigeodesic assertion is made about a possibly trivial connector letter. -/
 theorem quasi_auxiliaryCycleWord (D : RelGenSet G Λ) {b : ℝ} (hb : 0 ≤ b)
     (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
     {arcCut : ℕ → ℕ}
-    (harc : IsCutPolygon D b nArc
+    (harc : IsCutPath D b nArc
       (v * RelLetter.listVal (revWord left)) arc arcCut)
     {g : G} (hchord : IsGeodesicWord D
       (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
     (Target : Finset ℕ)
+    (harcQuasi : ∀ r : ℕ, r < nArc → left.length + r ∉ Target →
+      ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal (revWord left)) arc p)
+          (vertex (v * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ))
     (hleft : ∀ r : ℕ, r < left.length → r ∈ Target)
     (hright : ∀ r : ℕ, r < right.length →
       left.length + nArc + r ∈ Target) :
@@ -369,8 +411,10 @@ theorem quasi_auxiliaryCycleWord (D : RelGenSet G Λ) {b : ℝ} (hb : 0 ≤ b)
     have hpEq : left.length + (p - left.length) = p := by omega
     have hqEq : left.length + (q - left.length) = q := by omega
     have hdiff : q - left.length - (p - left.length) = q - p := by omega
-    have hqa := harc.quasi r hr (p - left.length) (q - left.length)
-      hpArc hpqArc hqArc
+    have hrTarget : left.length + r ∉ Target := by
+      simpa only [hsEq] using hsTarget
+    have hqa := harcQuasi r hr hrTarget (p - left.length)
+      (q - left.length) hpArc hpqArc hqArc
     rw [hdiff] at hqa
     have hvp :
         vertex v (auxiliaryCycleWord left arc right chord) p =

@@ -26,6 +26,7 @@ namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
 open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -170,7 +171,7 @@ structure AuxiliaryIntervalOnChord (D : RelGenSet G Λ)
   right : List (RelLetter G Λ)
   arcSides : ℕ
   arcCut : ℕ → ℕ
-  arcPolygon : IsCutPolygon D (b : ℝ) arcSides
+  arcPolygon : IsCutPath D (b : ℝ) arcSides
     (vertex chordBase globalChord chordFinish *
       RelLetter.listVal (revWord left)) arc arcCut
   leftLetters : ∀ x ∈ left, D.IsLetter x
@@ -181,6 +182,14 @@ structure AuxiliaryIntervalOnChord (D : RelGenSet G Λ)
       vertex chordBase globalChord chordStart
   localTarget : Finset ℕ
   label : ℕ → Λ
+  arcQuasi : ∀ r : ℕ, r < arcSides → left.length + r ∉ localTarget →
+    ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+    ((q - p : ℕ) : ℝ) - b ≤
+      ((wordDist D.alphabet.carrier
+        (vertex (vertex chordBase globalChord chordFinish *
+          RelLetter.listVal (revWord left)) arc p)
+        (vertex (vertex chordBase globalChord chordFinish *
+          RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ)
   localTarget_lt : ∀ s ∈ localTarget,
     s < left.length + arcSides + right.length +
       (orientedSegment globalChord chordStart chordFinish).length
@@ -254,6 +263,7 @@ def toPathInput
       arcSides := P.arcSides
       arcCut := P.arcCut
       arcPolygon := P.arcPolygon
+      arcQuasi := P.arcQuasi
       chordEndpoint := vertex chordBase globalChord P.chordFinish
       chordGeodesic := ?_
       leftLetters := P.leftLetters

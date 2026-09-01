@@ -341,11 +341,11 @@ noncomputable def brokenAssignment
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R) :
-    TwoHalfBrokenAssignment B.componentPlacement.firstTarget
-      B.componentPlacement.secondTarget
+    TwoHalfBrokenAssignment D B.firstBase B.secondBase B.firstWord B.secondWord
+      B.componentPlacement.firstTarget B.componentPlacement.secondTarget
       B.componentPlacement.firstSurvives B.componentPlacement.secondSurvives
-      B.componentPlacement.firstPos B.componentPlacement.secondPos
-      B.chord.length :=
+      P.label B.componentPlacement.firstPos B.componentPlacement.secondPos
+      B.chord.length B.firstChordPos B.secondChordPos :=
   Classical.choice B.componentPlacement.exists_twoHalfBrokenAssignment
 
 end BalancedSplitData

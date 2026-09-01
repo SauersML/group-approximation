@@ -197,7 +197,7 @@ def auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
     (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
     {arcCut : ℕ → ℕ}
-    (harc : IsCutPolygon D b nArc
+    (harc : IsCutPath D b nArc
       (v * RelLetter.listVal (revWord left)) arc arcCut)
     {g : G} (hchord : IsGeodesicWord D
       (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
@@ -206,6 +206,12 @@ def auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
     (hclose : RelLetter.listVal left = RelLetter.listVal arc *
       RelLetter.listVal right * RelLetter.listVal chord)
     (Target : Finset ℕ) (label : ℕ → Λ)
+    (harcQuasi : ∀ r : ℕ, r < nArc → left.length + r ∉ Target →
+      ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal (revWord left)) arc p)
+          (vertex (v * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ))
     (hleftTarget : ∀ r : ℕ, r < left.length → r ∈ Target)
     (hrightTarget : ∀ r : ℕ, r < right.length →
       left.length + nArc + r ∈ Target)
@@ -237,7 +243,7 @@ def auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
   target_component := htarget_component
   target_isolated := htarget_isolated
   quasi := quasi_auxiliaryCycleWord D hb v left arc right chord harc hchord
-    Target hleftTarget hrightTarget
+    Target harcQuasi hleftTarget hrightTarget
 
 /-- **Construct one child while adding the connector targets canonically.**
 
@@ -253,7 +259,7 @@ def auxiliaryCycleCertificate_of_paths_withConnectorTarget
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
     (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
     {arcCut : ℕ → ℕ}
-    (harc : IsCutPolygon D b nArc
+    (harc : IsCutPath D b nArc
       (v * RelLetter.listVal (revWord left)) arc arcCut)
     {g : G} (hchord : IsGeodesicWord D
       (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
@@ -262,6 +268,12 @@ def auxiliaryCycleCertificate_of_paths_withConnectorTarget
     (hclose : RelLetter.listVal left = RelLetter.listVal arc *
       RelLetter.listVal right * RelLetter.listVal chord)
     (LocalTarget : Finset ℕ) (label : ℕ → Λ)
+    (harcQuasi : ∀ r : ℕ, r < nArc → left.length + r ∉ LocalTarget →
+      ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal (revWord left)) arc p)
+          (vertex (v * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ))
     (hlocal_lt : ∀ s ∈ LocalTarget,
       s < left.length + nArc + right.length + chord.length)
     (hlocal_edge : ∀ s ∈ LocalTarget,
@@ -281,8 +293,18 @@ def auxiliaryCycleCertificate_of_paths_withConnectorTarget
       (left.length + nArc + right.length + chord.length) := by
   let Target :=
     LocalTarget ∪ DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc
+  have hArcQuasi : ∀ r : ℕ, r < nArc → left.length + r ∉ Target →
+      ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal (revWord left)) arc p)
+          (vertex (v * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ) := by
+    intro r hr hrTarget
+    apply harcQuasi r hr
+    intro hrLocal
+    exact hrTarget (Finset.mem_union.mpr (Or.inl hrLocal))
   apply auxiliaryCycleCertificate_of_paths D hsymm hb v left arc right chord
-    harc hchord hleft hright hclose Target label
+    harc hchord hleft hright hclose Target label hArcQuasi
   · intro r hr
     change r ∈ LocalTarget ∪
       DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc
@@ -414,7 +436,7 @@ def auxiliaryCycleCertificate_of_paths_withComponentConfiguration
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
     (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
     {arcCut : ℕ → ℕ}
-    (harc : IsCutPolygon D b nArc
+    (harc : IsCutPath D b nArc
       (v * RelLetter.listVal (revWord left)) arc arcCut)
     {g : G} (hchord : IsGeodesicWord D
       (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
@@ -423,6 +445,12 @@ def auxiliaryCycleCertificate_of_paths_withComponentConfiguration
     (hclose : RelLetter.listVal left = RelLetter.listVal arc *
       RelLetter.listVal right * RelLetter.listVal chord)
     (LocalTarget : Finset ℕ) (label : ℕ → Λ)
+    (harcQuasi : ∀ r : ℕ, r < nArc → left.length + r ∉ LocalTarget →
+      ∀ p q : ℕ, arcCut r ≤ p → p ≤ q → q ≤ arcCut (r + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal (revWord left)) arc p)
+          (vertex (v * RelLetter.listVal (revWord left)) arc q) : ℕ) : ℝ))
     (hlocal_lt : ∀ s ∈ LocalTarget,
       s < left.length + nArc + right.length + chord.length)
     (hlocal_edge : ∀ s ∈ LocalTarget,
@@ -435,7 +463,7 @@ def auxiliaryCycleCertificate_of_paths_withComponentConfiguration
     AuxiliaryCycleCertificate D b
       (left.length + nArc + right.length + chord.length) :=
   auxiliaryCycleCertificate_of_paths_withConnectorTarget D hsymm hb v
-    left arc right chord harc hchord hleft hright hclose LocalTarget label
+    left arc right chord harc hchord hleft hright hclose LocalTarget label harcQuasi
     hlocal_lt hlocal_edge C.targetComponent C.targetIsolated
 
 namespace AuxiliaryCycleCertificate

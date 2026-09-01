@@ -175,9 +175,10 @@ theorem exists_twoHalfBrokenAssignment
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     (C : BalancedSplitComponentPlacement D hsymm b hδ P B) :
-    Nonempty (TwoHalfBrokenAssignment C.firstTarget C.secondTarget
-      C.firstSurvives C.secondSurvives C.firstPos C.secondPos
-      B.chord.length) := by
+    Nonempty (TwoHalfBrokenAssignment D B.firstBase B.secondBase B.firstWord
+      B.secondWord C.firstTarget C.secondTarget C.firstSurvives
+      C.secondSurvives P.label C.firstPos C.secondPos B.chord.length
+      B.firstChordPos B.secondChordPos) := by
   obtain ⟨first⟩ := exists_brokenHalfAssignment D B.firstBase B.firstWord
     C.firstTarget C.firstSurvives P.label C.firstPos B.chord.length
     B.firstChordPos C.firstPos_injective C.first_separated C.first_partner

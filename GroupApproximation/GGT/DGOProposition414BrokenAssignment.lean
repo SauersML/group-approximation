@@ -35,13 +35,21 @@ theorem mem_brokenSet_iff {I : Finset ℕ} {survives : ℕ → Prop} {s : ℕ} :
   classical
   simp [brokenSet]
 
-/-- One half's broken components, their injective chord partners, and the
-resulting greedy connector-interval index. -/
-structure BrokenHalfAssignment (I : Finset ℕ) (survives : ℕ → Prop)
-    (pos : ℕ → ℕ) (chordLength : ℕ) where
+/-- One half's broken components, their injective chord partners, the retained
+geometric incidence at every partner, and the resulting greedy interval
+index.  Keeping `partner_start` and `partner_connected` is essential: they are
+the inputs from which the two endpoint connectors are constructed. -/
+structure BrokenHalfAssignment (D : RelGenSet G Λ) (halfBase : G)
+    (half : List (RelLetter G Λ)) (I : Finset ℕ) (survives : ℕ → Prop)
+    (lam : ℕ → Λ) (pos : ℕ → ℕ) (chordLength : ℕ)
+    (chordPos : ℕ → ℕ) where
   partner : ℕ → ℕ
   partner_lt : ∀ s ∈ brokenSet I survives, partner s < chordLength
   partner_injective : Set.InjOn partner (↑(brokenSet I survives) : Set ℕ)
+  partner_start : ∀ s ∈ brokenSet I survives,
+    IsCompStart (lam s) half (chordPos (partner s))
+  partner_connected : ∀ s ∈ brokenSet I survives,
+    Connected D.fam (lam s) halfBase half (pos s) (chordPos (partner s))
   index : GreedyHalfFamilyIndex (brokenSet I survives) pos partner chordLength
 
 /-- Construct one half assignment from the exact output of the isolation
@@ -59,7 +67,8 @@ theorem exists_brokenHalfAssignment
     (hexists : ∀ s ∈ brokenSet I survives, ∃ y : ℕ,
       y < chordLength ∧ IsCompStart (lam s) half (chordPos y) ∧
       Connected D.fam (lam s) halfBase half (pos s) (chordPos y)) :
-    Nonempty (BrokenHalfAssignment I survives pos chordLength) := by
+    Nonempty (BrokenHalfAssignment D halfBase half I survives lam pos
+      chordLength chordPos) := by
   classical
   let B := brokenSet I survives
   have hposB : Set.InjOn pos (↑B : Set ℕ) := by
@@ -117,25 +126,37 @@ theorem exists_brokenHalfAssignment
     partner := partner
     partner_lt := hrange
     partner_injective := hinj
+    partner_start := fun s hs => (hpartner s hs).2.1
+    partner_connected := fun s hs => (hpartner s hs).2.2
     index := index
   }⟩
 
 /-- The two broken sets and partner assignments obtained independently from
 the two balanced halves. -/
-structure TwoHalfBrokenAssignment (firstI secondI : Finset ℕ)
+structure TwoHalfBrokenAssignment (D : RelGenSet G Λ)
+    (firstBase secondBase : G)
+    (firstHalf secondHalf : List (RelLetter G Λ))
+    (firstI secondI : Finset ℕ)
     (firstSurvives secondSurvives : ℕ → Prop)
-    (firstPos secondPos : ℕ → ℕ) (chordLength : ℕ) where
-  first : BrokenHalfAssignment firstI firstSurvives firstPos chordLength
-  second : BrokenHalfAssignment secondI secondSurvives secondPos chordLength
+    (lam : ℕ → Λ) (firstPos secondPos : ℕ → ℕ)
+    (chordLength : ℕ) (firstChordPos secondChordPos : ℕ → ℕ) where
+  first : BrokenHalfAssignment D firstBase firstHalf firstI firstSurvives lam
+    firstPos chordLength firstChordPos
+  second : BrokenHalfAssignment D secondBase secondHalf secondI secondSurvives
+    lam secondPos chordLength secondChordPos
 
 namespace TwoHalfBrokenAssignment
 
 /-- The two constructed half indices form the common two-half greedy index. -/
-def index {firstI secondI : Finset ℕ}
+def index {D : RelGenSet G Λ} {firstBase secondBase : G}
+    {firstHalf secondHalf : List (RelLetter G Λ)}
+    {firstI secondI : Finset ℕ}
     {firstSurvives secondSurvives : ℕ → Prop}
-    {firstPos secondPos : ℕ → ℕ} {chordLength : ℕ}
-    (A : TwoHalfBrokenAssignment firstI secondI firstSurvives secondSurvives
-      firstPos secondPos chordLength) :
+    {lam : ℕ → Λ} {firstPos secondPos : ℕ → ℕ}
+    {chordLength : ℕ} {firstChordPos secondChordPos : ℕ → ℕ}
+    (A : TwoHalfBrokenAssignment D firstBase secondBase firstHalf secondHalf
+      firstI secondI firstSurvives secondSurvives lam firstPos secondPos
+      chordLength firstChordPos secondChordPos) :
     TwoHalfGreedyFamilyIndex
       (brokenSet firstI firstSurvives) (brokenSet secondI secondSurvives)
       firstPos A.first.partner secondPos A.second.partner chordLength where
