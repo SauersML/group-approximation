@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.DGOProposition414TargetTransport
+import GroupApproximation.GGT.DGOProposition414HalfCutPath
 import GroupApproximation.GGT.DGOProposition414OrientedSegment
 
 /-!
@@ -40,10 +40,12 @@ structure BalancedSplitIntervalSurgery
     (intervals.first j).left.length + (intervals.first j).right.length ≤ 2
   second_connectors : ∀ j,
     (intervals.second j).left.length + (intervals.second j).right.length ≤ 2
-  first_small : ∀ j,
-    5 * ((intervals.toPathInput).first j).sideCount ≤ 4 * n
-  second_small : ∀ j,
-    5 * ((intervals.toPathInput).second j).sideCount ≤ 4 * n
+  first_side_bound : ∀ j,
+    ((intervals.toPathInput).first j).sideCount ≤
+      (B.secondSide - B.firstSide + 1) + B.chord.length
+  second_side_bound : ∀ j,
+    ((intervals.toPathInput).second j).sideCount ≤
+      (n - B.secondSide) + B.firstSide + 1 + B.chord.length
 
 namespace BalancedSplitIntervalSurgery
 
@@ -55,14 +57,18 @@ theorem sideBounds
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
-    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) :
+    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B)
+    (hfirstSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
+    (hsecondSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).second j).sideCount ≤ 4 * n) :
     TwoHalfIntervalSurgery.SideBounds S.intervals n where
   arc_partition := S.arc_partition
   first_connectors := S.first_connectors
   second_connectors := S.second_connectors
   chord_length := rfl
-  first_small := S.first_small
-  second_small := S.second_small
+  first_small := hfirstSmall
+  second_small := hsecondSmall
 
 end BalancedSplitIntervalSurgery
 
@@ -94,11 +100,16 @@ noncomputable def certificate
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitCharging D hsymm b hδ P B S) :
+    (C : BalancedSplitCharging D hsymm b hδ P B S)
+    (hfirstSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
+    (hsecondSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).second j).sideCount ≤ 4 * n) :
     AuxiliaryCycleFamilyCertificate D hsymm b hδ n P.basepoint P.word P.cut
       P.target P.label := by
   let counts := TwoHalfSideAccounting.ofPathLengthBounds
-    (TwoHalfIntervalSurgery.toPathLengthBounds S.sideBounds)
+    (TwoHalfIntervalSurgery.toPathLengthBounds
+      (S.sideBounds hfirstSmall hsecondSmall))
   exact auxiliaryCycleFamilyCertificate_of_twoHalf D hsymm b hδ
     B.brokenAssignment.index S.intervals.toPathInput.family n P.basepoint
     P.word P.cut P.target P.label C.configuration counts.count_lower
@@ -114,6 +125,10 @@ theorem exists_quadraticCostSubdivisionData
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
     (C : BalancedSplitCharging D hsymm b hδ P B S)
+    (hfirstSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
+    (hsecondSmall : ∀ j,
+      5 * ((S.intervals.toPathInput).second j).sideCount ≤ 4 * n)
     (hextremal : ∀ r : ℕ → ℕ,
       (∀ s ∈ P.target,
         P.span s ∈ D.relBall (P.label s) (r s)) →
@@ -128,7 +143,7 @@ theorem exists_quadraticCostSubdivisionData
       (∀ i, 5 * childSides i ≤ 4 * n) ∧
       ChordPartnerQuadraticTraversalBound chordLength partners :=
   exists_quadraticCostSubdivisionData_of_extremalFamily D hsymm b hδ P
-    hextremal C.certificate
+    hextremal (C.certificate hfirstSmall hsecondSmall)
 
 end BalancedSplitCharging
 

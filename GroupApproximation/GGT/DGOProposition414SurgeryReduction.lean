@@ -51,7 +51,12 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
     (split : ∀ {n k : ℕ}, 8 ≤ n → n ≤ 2 ^ k →
       ∀ P : SumBoundInput D (b : ℝ) n,
         Nonempty (BalancedSplitData D hsymm b hδ P k R))
-    {n k : ℕ} (hn : 8 ≤ n) (hk : n ≤ 2 ^ k) :
+    {n k : ℕ} (hn : 8 ≤ n) (hk : n ≤ 2 ^ k)
+    (hquarter : ∀ L a c : ℕ,
+      L ≤ 6 * (δ + 6) * (k + 1) + R → c < n →
+      n ≤ 4 * (c - a) → 4 * (c - a) ≤ 3 * n →
+      5 * ((c - a + 1) + L) ≤ 4 * n ∧
+        5 * ((n - c) + a + 1 + L) ≤ 4 * n) :
     ∃ (childCount : ℕ) (childSides : Fin childCount → ℕ)
         (chordLength : ℕ) (partners : List ℕ),
       childCount ≤ 2 * (6 * (δ + 6) * (k + 1) + R) + 2 ∧
@@ -68,7 +73,21 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
       exists_extremal_sumBoundInput_of_pos D hsymm b hδ n hpos
     let B := Classical.choice (split hn hk P)
     let realization := Classical.choice (produce P B)
-    let A := realization.charging.certificate
+    have hhalf := hquarter B.chord.length B.firstSide B.secondSide
+      B.chord_length_le B.secondSide_lt B.quarter_lower B.quarter_upper
+    have hfirstSmall : ∀ j,
+        5 * ((realization.surgery.intervals.toPathInput).first j).sideCount ≤
+          4 * n := by
+      intro j
+      exact (Nat.mul_le_mul_left 5
+        (realization.surgery.first_side_bound j)).trans hhalf.1
+    have hsecondSmall : ∀ j,
+        5 * ((realization.surgery.intervals.toPathInput).second j).sideCount ≤
+          4 * n := by
+      intro j
+      exact (Nat.mul_le_mul_left 5
+        (realization.surgery.second_side_bound j)).trans hhalf.2
+    let A := realization.charging.certificate hfirstSmall hsecondSmall
     refine ⟨A.k, A.childSides, A.chordLength, A.partners, ?_, ?_, ?_,
       A.count_lower, A.count_upper, A.child_small, A.traversal⟩
     · change B.brokenAssignment.index.first.pieceCount +
@@ -96,37 +115,6 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
     · intro i
       fin_cases i <;> simp [m] <;> omega
     · simp [ChordPartnerQuadraticTraversalBound, chordTraversalCost]
-
-/-- The exact subdivision output of balanced interval surgery, with the
-extremal polygon and raw balanced split chosen internally.
-
-The sole geometric premise is a realization for every raw split.  In
-particular, callers no longer supply a polygon, an extremality proof, a split,
-a component placement, or a broken-component assignment. -/
-theorem exists_quadraticCostSubdivisionData_of_balancedSurgery
-    (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
-    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
-    (produce : ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
-      (B : BalancedSplitData D hsymm b hδ P k R),
-        Nonempty (BalancedSplitSurgeryRealization D hsymm b hδ P B))
-    {n k : ℕ} (hn : 8 ≤ n) (hk : n ≤ 2 ^ k) :
-    ∃ (childCount : ℕ) (childSides : Fin childCount → ℕ)
-        (chordLength : ℕ) (partners : List ℕ),
-      sumCost D hsymm b hδ n ≤
-        ∑ i, sumCost D hsymm b hδ (childSides i) ∧
-      n ≤ ∑ i, childSides i ∧
-      (ChordPartnerQuadraticTraversalBound chordLength partners →
-        ∑ i, childSides i ≤ n + 6 * (chordLength * chordLength)) ∧
-      (∀ i, 5 * childSides i ≤ 4 * n) ∧
-      ChordPartnerQuadraticTraversalBound chordLength partners := by
-  obtain ⟨R, hR⟩ := exists_balancedSplitData D hsymm b hδ
-  obtain ⟨childCount, childSides, chordLength, partners, _hcount, _hchord,
-    hcost, hlower, hupper, hsmall, htraversal⟩ :=
-    exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
-      D hsymm b hδ produce R hR hn hk
-  exact ⟨childCount, childSides, chordLength, partners, hcost, hlower,
-    hupper, hsmall, htraversal⟩
 
 /-! ## Direct connection to the Proposition 4.14 reduction -/
 
@@ -288,9 +276,13 @@ theorem sumBound_linear_of_balancedSurgery
     ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
   obtain ⟨R, hsplit⟩ := exists_balancedSplitData D hsymm b hδ
   obtain ⟨M, hdecay⟩ := exists_balancedSurgery_overhead_decay δ R
+  let Cq : ℕ := 3 * (6 * (δ + 6)) + R
+  obtain ⟨Mq, hquarter⟩ := DGOPolygonCut.exists_quarter_threshold Cq
+  let N := max 7 (max Mq 2)
+  have hMqN : Mq ≤ N := by simp [N]
   apply sumBound_linear_of_quadraticCostSubdivision D hsymm b hδ
     (balancedSurgeryPieceOverhead δ R)
-    (balancedSurgerySizeOverhead δ R) 7 (4 / 5) (1 / 10) M
+    (balancedSurgerySizeOverhead δ R) N (4 / 5) (1 / 10) M
   · norm_num
   · norm_num
   · norm_num
@@ -303,10 +295,44 @@ theorem sumBound_linear_of_balancedSurgery
     have hn8 : 8 ≤ n := by omega
     have hk : n ≤ 2 ^ k := by
       exact le_of_lt (Nat.lt_pow_succ_log_self (b := 2) (by omega) n)
+    have hlogPos : 0 < Nat.log 2 n := by
+      by_contra h
+      have hlogZero : Nat.log 2 n = 0 := Nat.eq_zero_of_not_pos h
+      have hlt := Nat.lt_pow_succ_log_self (b := 2) (by omega) n
+      simp [hlogZero] at hlt
+      omega
+    have hcapLog : balancedSurgeryChordCap δ R n ≤
+        Cq * Nat.log 2 n := by
+      let a : ℕ := 6 * (δ + 6)
+      let l : ℕ := Nat.log 2 n
+      have hl : 1 ≤ l := hlogPos
+      have hsum : l + 2 ≤ 3 * l := by omega
+      calc
+        balancedSurgeryChordCap δ R n = a * (l + 2) + R := by
+          simp [balancedSurgeryChordCap, a, l]
+        _ ≤ a * (3 * l) + R := Nat.add_le_add_right
+          (Nat.mul_le_mul_left a hsum) R
+        _ ≤ a * (3 * l) + R * l := by
+          exact Nat.add_le_add_left (by nlinarith) _
+        _ = Cq * l := by dsimp [Cq, a]; ring
+        _ = Cq * Nat.log 2 n := rfl
+    have hlarge : Mq < n := hMqN.trans_lt hn
+    have hquarterAtSplit : ∀ L a c : ℕ,
+        L ≤ 6 * (δ + 6) * (k + 1) + R → c < n →
+        n ≤ 4 * (c - a) → 4 * (c - a) ≤ 3 * n →
+        5 * ((c - a + 1) + L) ≤ 4 * n ∧
+          5 * ((n - c) + a + 1 + L) ≤ 4 * n := by
+      intro L a c hL hc hlower hupper
+      apply hquarter n L a c hlarge
+      · apply hL.trans
+        simpa [balancedSurgeryChordCap, k, Nat.add_assoc] using hcapLog
+      · exact hc
+      · exact hlower
+      · exact hupper
     obtain ⟨childCount, childSides, chordLength, partners, hcount, hchord,
       hcost, hlower, hupper, hsmall, htraversal⟩ :=
       exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
-        D hsymm b hδ produce R hsplit hn8 hk
+        D hsymm b hδ produce R hsplit hn8 hk hquarterAtSplit
     refine ⟨childCount, childSides, chordLength, partners, ?_, ?_, ?_, ?_,
       ?_, ?_, htraversal⟩
     · have hcount' : childCount ≤

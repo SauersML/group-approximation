@@ -81,6 +81,49 @@ theorem arcWord {D : RelGenSet G Λ} {b : ℝ} {n : ℕ} {v : G}
   · intro x hx
     exact P.letters x (List.mem_of_mem_drop (List.mem_of_mem_take hx))
 
+/-- Off-target quasigeodesicity restricts to a named arc.  `hreflect` is the
+only target bookkeeping needed: every exempt parent side that survives in the
+arc must be recorded at its shifted side index in the child target. -/
+theorem arcWord_quasi {D : RelGenSet G Λ} {b : ℝ} {n : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+    (P : IsCutPath D b n v w c) (parentTarget : Finset ℕ)
+    (hquasi : ∀ s : ℕ, s < n → s ∉ parentTarget →
+      ∀ i j : ℕ, c s ≤ i → i ≤ j → j ≤ c (s + 1) →
+      ((j - i : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier (vertex v w i) (vertex v w j) : ℕ) : ℝ))
+    {a z leftLength : ℕ} (haz : a ≤ z) (hzn : z ≤ n)
+    (localTarget : Finset ℕ)
+    (hreflect : ∀ r : ℕ, r < z - a → a + r ∈ parentTarget →
+      leftLength + r ∈ localTarget) :
+    ∀ r : ℕ, r < z - a → leftLength + r ∉ localTarget →
+      ∀ i j : ℕ,
+      c (a + r) - c a ≤ i → i ≤ j → j ≤ c (a + (r + 1)) - c a →
+      ((j - i : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (vertex v w (c a)) (DGOPolygonCut.arcWord w c a z) i)
+          (vertex (vertex v w (c a)) (DGOPolygonCut.arcWord w c a z) j) : ℕ) : ℝ) := by
+  intro r hr hrTarget i j hi hij hj
+  have har : a + r < n := by omega
+  have hnotParent : a + r ∉ parentTarget := by
+    intro hmem
+    exact hrTarget (hreflect r hr hmem)
+  have hca : c a ≤ c (a + r) := P.cut.mono_le (by omega)
+  have hca1 : c a ≤ c (a + (r + 1)) := P.cut.mono_le (by omega)
+  have hi' : c (a + r) ≤ c a + i := by omega
+  have hj' : c a + j ≤ c ((a + r) + 1) := by
+    have heq : a + (r + 1) = (a + r) + 1 := by omega
+    rw [← heq]
+    omega
+  have hq := hquasi (a + r) har hnotParent (c a + i) (c a + j)
+    hi' (by omega) hj'
+  have hcz : c (a + (r + 1)) ≤ c z :=
+    P.cut.mono_le (by omega)
+  have hiLen : i ≤ c z - c a := by omega
+  have hjLen : j ≤ c z - c a := by omega
+  rw [vertex_arcWord w v c hiLen, vertex_arcWord w v c hjLen]
+  have hdiff : c a + j - (c a + i) = j - i := by omega
+  simpa only [hdiff] using hq
+
 end IsCutPath
 
 /-- **The word of one DGO auxiliary cycle `c_j`.**
