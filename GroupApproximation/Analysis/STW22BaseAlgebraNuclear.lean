@@ -41,6 +41,19 @@ def baseScalarStarAlgHom : BaseAlgebra D →⋆ₐ[ℂ] ℂ :=
   (unitizationScalarStarAlgHom (C0DirectSum D)).comp
     (unitizationEquivBase D).symm.toStarAlgHom
 
+/-- The canonical scalar quotient vanishes on the original `c₀` ideal. -/
+@[simp] theorem baseScalarStarAlgHom_c0ToBase (b : C0DirectSum D) :
+    baseScalarStarAlgHom D (STW22BaseAlgebraUnitization.c0ToBase D b) = 0 := by
+  change ((unitizationEquivBase D).symm
+    (STW22BaseAlgebraUnitization.c0ToBase D b)).fst = 0
+  rw [← unitizationToBase_inr]
+  change ((unitizationEquivBase D).symm
+    (unitizationEquivBase D (b : Unitization ℂ (C0DirectSum D)))).fst = 0
+  have h := congrArg (fun z : Unitization ℂ (C0DirectSum D) ↦ z.fst)
+    ((unitizationEquivBase D).symm_apply_apply
+      (b : Unitization ℂ (C0DirectSum D)))
+  exact h.trans rfl
+
 /-- The finite scalar-and-coordinate product used at truncation length `N`. -/
 abbrev BasePrefix (N : ℕ) := ℂ × (∀ i : Fin N, D i.1)
 
