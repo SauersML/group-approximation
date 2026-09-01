@@ -2933,6 +2933,7 @@ import GroupApproximation.GGT.HullYiStatements
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.HullYiCyclicProductAssembly
 import GroupApproximation.GGT.HullYiDeepProductSelection
+import GroupApproximation.GGT.HullYiCyclicProductWord
 import GroupApproximation.GGT.HullYiConeOffReduction
 import GroupApproximation.GGT.DGOWindmillCyclic
 import GroupApproximation.GGT.DGOWindmillTheorem53
