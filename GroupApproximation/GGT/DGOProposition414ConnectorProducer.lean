@@ -57,15 +57,12 @@ theorem exists_componentConnectorPair
     Nonempty (ComponentConnectorPair D lam v word source partner) := by
   obtain ⟨partnerEnd, hpartner⟩ := partnerStart
   have hpartnerSpan := span_mem_fam_of_isComp D v letters hpartner
-  have hpartnerTrivial :
-      (vertex v word partner)⁻¹ * vertex v word partnerEnd ∈ D.fam lam :=
-    hpartnerSpan
   obtain ⟨f, e, hf, he, hfLetters, heLetters, hfLabel, heLabel,
       hfValue, heValue⟩ :=
     exists_component_connector_pair D lam
       (pm := vertex v word source) (pp := vertex v word (source + 1))
       (ym := vertex v word partner) (yp := vertex v word partnerEnd)
-      sourceSpan hpartnerTrivial connected
+      sourceSpan hpartnerSpan connected
   exact ⟨{
     sourceEnd := source + 1
     source_end_eq := rfl
@@ -86,9 +83,10 @@ theorem exists_componentConnectorPair
 
 namespace ComponentConnectorPair
 
-/-- The source component is the product of the entry connector, the selected
-chord-partner component, and the reversed exit connector. -/
-theorem sourceSpan_factorization
+/-- The source component has the source-faithful three-factor quadrilateral
+decomposition.  The connector factors are charged in source-half cut cycles;
+the selected chord factor is charged in the opposite half. -/
+theorem sourceSpan_three_factorization
     {D : RelGenSet G Λ} {lam : Λ} {v : G}
     {word : List (RelLetter G Λ)} {source partner : ℕ}
     (C : ComponentConnectorPair D lam v word source partner) :
