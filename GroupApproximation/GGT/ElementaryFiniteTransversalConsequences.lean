@@ -88,6 +88,32 @@ theorem isQuasiconvexOrbitAt_elementaryClosure_of_finiteTransversal
   isQuasiconvexOrbitAt_elementaryClosure_of_orbitClose hδ hδ0 hiso hlox
     (elementaryClosureOrbitClose_of_finiteTransversal hiso hfin)
 
+/-! ## The published DGO Lemma 6.5 conclusions -/
+
+/-- **The finite-index conclusion of DGO Lemma 6.5 is unconditional.**
+
+For the geodesic hyperbolic action carried by an `AH3Data`, the Morse
+comparison gives uniform orbit closeness and eventual WPD turns that closeness
+into a finite transversal for `⟨D.elt⟩` in its elementary closure. -/
+theorem elementaryClosureFiniteTransversalStatement_unconditional :
+    ElementaryClosureFiniteTransversalStatement.{u, v} := by
+  intro G _inst D
+  letI : PseudoMetricSpace D.Space := D.metricSpace
+  letI : MulAction G D.Space := D.mulAction
+  have hδ0 : 0 ≤ D.delta :=
+    nonneg_of_isHyperbolicSpace D.hyperbolic D.base
+  exact exists_finite_transversal_elementaryClosure_of_geodesic
+    D.hyperbolic hδ0 D.geodesic D.isometric D.loxodromic D.wpd
+
+/-- **The elementary closure in an `(AH₃)` witness is proper whenever the
+ambient group is not virtually cyclic.**  This is the properness half of DGO
+Lemma 6.5, now a theorem rather than a separate geometric premise. -/
+theorem elementaryClosureProper_unconditional :
+    ElementaryClosureProper.{u, v} := by
+  intro G _inst D hnvc
+  exact elementaryClosure_ne_top_of_finiteTransversal
+    (elementaryClosureFiniteTransversalStatement_unconditional G D) hnvc
+
 end Elementary
 end GGT
 end GroupApproximation

@@ -107,12 +107,8 @@ theorem dgoTheorem68_of_geodesic_projection
   have hclose : ElementaryClosureOrbitClose D.elt D.base :=
     elementaryClosureOrbitClose_of_geodesic D.hyperbolic hδ0 D.geodesic
       D.isometric D.loxodromic
-  have heventual : IsWPDAtEventually D.elt D.base :=
-    isWPDAtEventually_of_geodesic D.hyperbolic hδ0 D.geodesic D.isometric
-      D.loxodromic D.wpd
   have hfin : ElementaryClosureFiniteTransversal D.elt :=
-    exists_finite_transversal_elementaryClosure_of_orbitClose D.isometric
-      D.loxodromic heventual hclose
+    elementaryClosureFiniteTransversalStatement_unconditional G D
   have hqc : IsQuasiconvexOrbitAt (elementaryClosure D.elt) D.base :=
     isQuasiconvexOrbitAt_elementaryClosure_of_finiteTransversal D.hyperbolic
       hδ0 D.isometric D.loxodromic hfin
@@ -127,7 +123,7 @@ theorem dgoTheorem68_of_geodesic_projection
     isHypEmbedded_of_dgo442 h442 (elementaryClosure D.elt) D.base D.delta
       D.isometric D.hyperbolic D.geodesic hqc hsep hproper
   have hne : elementaryClosure D.elt ≠ ⊤ :=
-    elementaryClosure_ne_top_of_finiteTransversal hfin hnvc
+    elementaryClosureProper_unconditional G D hnvc
   exact ⟨elementaryClosure D.elt, self_mem_elementaryClosure D.elt, hne, hemb⟩
 
 /-- Osin's `(AH₃) ⇒ (AH₁)` implication after geodesic replacement, with
