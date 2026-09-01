@@ -171,6 +171,22 @@ theorem exists_sourceWord_value_of_admissible_mapSurjective
     exists_sourceWord_of_admissible_mapSurjective D q hq word hword
   exact ⟨source, hsource, hlength, map_listVal_sourceWord q hmap⟩
 
+/-- For a bijective homomorphism, the surjective-image construction is the
+usual transport across the induced group equivalence. -/
+theorem isHyperbolicallyEmbedded_mapSurjective_of_bijective
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
+    (q : G →* Q) (hq : Function.Bijective q) :
+    (D.mapSurjective q hq.2).IsHyperbolicallyEmbedded := by
+  let e : G ≃* Q := MulEquiv.ofBijective q hq
+  have heq : D.mapSurjective q hq.2 = D.mapMulEquiv e := by
+    apply RelGenSet.ext
+    · rfl
+    · funext i
+      rfl
+  rw [heq]
+  exact hD.mapMulEquiv e
+
 end RelGenSet
 end GGT
 
