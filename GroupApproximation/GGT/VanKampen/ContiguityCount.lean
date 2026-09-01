@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CombMap
+import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Linarith
 
 /-!
