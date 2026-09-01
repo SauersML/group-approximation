@@ -6,7 +6,7 @@ import GroupApproximation.GGT.DGOTheorem442BBFStandardPath
 
 This file turns the order core of BBF Theorem 3.3(G) into the finite ordered
 list used in BBF Proposition 3.7.  At a threshold `K ≥ 12ξ`, the blocker
-set for `(X,Z)` is finite.  Its elements admit the strict order
+set for `(X,Z)` is finite.  Its elements have the strict order
 
 `W < U  ↔  5ξ < d_W(X,U)`.
 
