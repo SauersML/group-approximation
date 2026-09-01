@@ -117,13 +117,20 @@ theorem reverseAdjacent_connector_eq_one {D : GGT.RelGenSet G Bool}
   have hhEq : (Y * A)⁻¹ * W = h := by
     rw [← hc]
     group
-  have heq : h' = g⁻¹ * h * g := by
+  have hh'Eq : (Y * B)⁻¹ * V = h' := by
+    rw [← hc']
+    group
+  have hB : B = A * g := by
     calc
-      h' = (Y * B)⁻¹ * V := by rw [← hc']; group
-      _ = g⁻¹ * ((Y * A)⁻¹ * W) * g := by
-        rw [← hVW, ← hAB]
-        group
-      _ = g⁻¹ * h * g := by rw [hhEq]
+      B = A * (A⁻¹ * B) := by group
+      _ = A * g := by rw [hAB]
+  have hW : W = V * g⁻¹ := by
+    calc
+      W = V * (V⁻¹ * W) := by group
+      _ = V * g⁻¹ := by rw [hVW]
+  have heq : h' = g⁻¹ * h * g := by
+    rw [← hh'Eq, ← hhEq, hB, hW]
+    group
   have hb : h' ∈ D.fam b := by
     rw [heq]
     exact mul_mem (mul_mem (inv_mem hg) hh) hg
