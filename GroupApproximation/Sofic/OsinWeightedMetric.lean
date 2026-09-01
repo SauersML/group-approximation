@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.RelativeRouterEnvelope
 import GroupApproximation.Algebra.WordMetric
 import GroupApproximation.GroupTheory.FiniteRelatorQuotient
+import GroupApproximation.GroupTheory.NormalClosureReducedProduct
 
 /-!
 # The weighted relative metric: Osin's alphabet `X ∪ U`, and the Kazhdan
@@ -423,6 +424,70 @@ def RelativeLengthBound (L : RelativeLength G) (R : Set (List (CoprodI G))) :
     Prop :=
   ∀ g : CoprodI G, g ≠ 1 → g ∈ letterRelatorSubgroup R →
     ∃ r ∈ R, r.length < 2 * L.len g
+
+/-! ### The reduced relative diagram forced by failed peripheral injectivity -/
+
+/-- **Failure of injectivity on the relative unit ball produces a least-area
+reduced relator product with boundary of relative length at most two.**
+
+This is the algebraic first step of the relative van Kampen argument.  The
+boundary is the difference of two unit-ball elements identified in the
+quotient.  Membership in the defining normal closure gives a finite product of
+signed conjugates of defining relators; minimizing its relator count and
+flattening it gives the reduced cell list.  Reducedness is stated in the exact
+form used by the diagram surgery: no nonempty consecutive block of cells has
+trivial product. -/
+theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
+    {L : RelativeLength G} {R : Set (List (CoprodI G))}
+    (hnot : ¬ Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
+      {g : CoprodI G | L.len g ≤ 1}) :
+    ∃ (z : CoprodI G) (area : ℕ) (factors : List (CoprodI G)),
+      z ≠ 1 ∧ L.len z ≤ 2 ∧ 0 < area ∧
+      factors.length = area ∧ factors.prod = z ∧
+      (∀ x ∈ factors, RelatorDefectBudget.IsSignedConjugate
+        (List.prod '' R) x) ∧
+      ∀ (pre mid suf : List (CoprodI G)),
+        factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1 := by
+  classical
+  simp only [Set.InjOn] at hnot
+  push Not at hnot
+  obtain ⟨x, hx, y, hy, hxy, hne⟩ := hnot
+  let z := x * y⁻¹
+  have hz_ne : z ≠ 1 := by
+    intro hz
+    exact hne (mul_inv_eq_one.mp hz)
+  have hz_len : L.len z ≤ 2 := by
+    have hmul := L.len_mul_le x y⁻¹
+    rw [L.len_inv] at hmul
+    change L.len x ≤ 1 at hx
+    change L.len y ≤ 1 at hy
+    exact le_trans hmul (by omega)
+  have hz_mem : z ∈ letterRelatorSubgroup R := by
+    rw [← QuotientGroup.eq_one_iff]
+    dsimp [z]
+    change QuotientGroup.mk' (letterRelatorSubgroup R) x *
+      (QuotientGroup.mk' (letterRelatorSubgroup R) y)⁻¹ = 1
+    rw [hxy, mul_inv_cancel]
+  have hex : ∃ area : ℕ, RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) area z :=
+    RelatorDefectBudget.exists_isRelatorProduct hz_mem
+  let area := Nat.find hex
+  have harea : RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) area z := Nat.find_spec hex
+  have harea_pos : 0 < area := by
+    apply Nat.pos_of_ne_zero
+    intro hzero
+    have harea_zero : RelatorDefectBudget.IsRelatorProduct
+        (List.prod '' R) 0 z := by
+      simpa [hzero] using harea
+    exact hz_ne harea_zero.eq_one_of_index_zero
+  obtain ⟨factors, hlength, hprod, hcells⟩ := harea.exists_flatten
+  have hminimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
+      (List.prod '' R) m z → area ≤ m := fun h => Nat.find_min' hex h
+  refine ⟨z, area, factors, hz_ne, hz_len, harea_pos, hlength, hprod,
+    hcells, ?_⟩
+  exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
+    hlength hprod hcells hminimal
 
 /-- **The fragment slack**, same inequality and same numbers as the unweighted
 lane; only `|r|` has changed meaning, from syllables to letters. -/
