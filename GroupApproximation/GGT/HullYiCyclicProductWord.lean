@@ -290,6 +290,7 @@ omit [Group G] in
     (cyclicPeripheralPowerWord a n).length = n * (k + 1) := by
   simp [cyclicPeripheralPowerWord]
 
+omit [Group G] in
 /-- The peripheral index at position `j` is `j mod (k+1)`.  This is the exact
 cyclic-index bridge used to read the component sequence returned by 4.21(b). -/
 theorem getElem?_cyclicPeripheralPowerWord {k n j : ℕ}
@@ -302,25 +303,42 @@ theorem getElem?_cyclicPeripheralPowerWord {k n j : ℕ}
   have hj' : j < n * (k + 1) := by simpa using hj
   obtain ⟨t, r, rfl, htn, hr⟩ := exists_block_decomp k hj'
   by_cases hrk : r < k
-  · rw [cyclicPeripheralPowerWord,
+  · have hidx : t * (k + 1) + r =
+        t * ((indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+          (fun i : Fin k ↦ a i.castSucc)).length + 1) + r := by simp
+    rw [hidx, cyclicPeripheralPowerWord,
       getElem?_blockWord_pre (Fin.last k)
         (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
-        (a (Fin.last k)) htn hrk]
+        (a (Fin.last k)) htn (by simpa using hrk)]
     rw [getElem?_indexedPeripheralWord
       (fun i : Fin k ↦ i.castSucc) (fun i : Fin k ↦ a i.castSucc) ⟨r, hrk⟩]
+    simp only [length_indexedPeripheralWord]
     have hmod : (t * (k + 1) + r) % (k + 1) = r := by
-      omega
+      simp [Nat.add_mod, Nat.mod_eq_of_lt hr]
     simp only [hmod]
+    have hfin : (⟨r, hrk⟩ : Fin k).castSucc =
+        ⟨r, hr⟩ := Fin.ext rfl
+    rw [hfin]
   · have hrEq : r = k := by omega
     subst r
-    rw [cyclicPeripheralPowerWord,
+    have hidx : t * (k + 1) + k =
+        t * ((indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+          (fun i : Fin k ↦ a i.castSucc)).length + 1) +
+            (indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+              (fun i : Fin k ↦ a i.castSucc)).length := by simp
+    rw [hidx, cyclicPeripheralPowerWord,
       getElem?_blockWord_comp (Fin.last k)
         (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
         (a (Fin.last k)) htn]
+    simp only [length_indexedPeripheralWord]
     have hmod : (t * (k + 1) + k) % (k + 1) = k := by
-      omega
+      simp [Nat.add_mod, Nat.mod_eq_of_lt (Nat.lt_succ_self k)]
     simp only [hmod]
+    have hfin : Fin.last k =
+        ⟨k, Nat.lt_succ_self k⟩ := Fin.ext rfl
+    rw [hfin]
 
+omit [Group G] in
 /-- Every component returned by 4.21(b) on the cyclic word carries the index
 predicted by its start position modulo the cycle length. -/
 theorem componentIndex_cyclicPeripheralPowerWord {k n i q : ℕ}
