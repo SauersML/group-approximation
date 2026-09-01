@@ -150,13 +150,15 @@ noncomputable def puncturedEuclidean_homotopyEquiv_sphere (n : Nat) :
 -/
 theorem euclideanToRpAffineCell_zero_coe (n : Nat) :
     ((euclideanToRpAffineCell n 0 : rpAffineCellSpace n) : RP (n + 1)) = rpNorth n := by
-  convert euclideanToRpAffineCell_apply n 0 using 1;
-  unfold affineInverseSphere;
-  convert proj_eq_of_antipodalRel _ using 1;
-  unfold rpNorthSphere affineInverseSphereVec;
-  unfold AntipodalRel; norm_num [ elast ];
-  left; ext i; induction i using Fin.lastCases <;> simp +decide [ *, Fin.snoc ] ;
-  exact Nat.le_of_lt_succ ( Fin.is_lt _ )
+  rw [euclideanToRpAffineCell_apply]
+  unfold rpNorth
+  apply proj_eq_of_antipodalRel
+  unfold affineInverseSphere rpNorthSphere affineInverseSphereVec AntipodalRel
+  norm_num [affineElast]
+  left
+  ext i
+  induction i using Fin.lastCases <;> simp +decide [*, Fin.snoc]
+  exact Nat.le_of_lt_succ (Fin.is_lt _)
 
 /-
 **The vanishing criterion.** The affine coordinate of `x` is `0` iff `x` is the
@@ -203,18 +205,26 @@ theorem rpAffineOverlap_forward_inverse (n : Nat) :
     (rpAffineOverlapToPuncturedEuclidean n).comp
         (puncturedEuclideanToRpAffineOverlap n)
       = ContinuousMap.id (puncturedEuclidean n) := by
-  ext a;
-  convert congr_arg ( fun f => f a.1 ) ( rpAffineCell_forward_inverse n ) using 1;
-  refine' ⟨ fun h => _, fun h => _ ⟩;
-  · exact congr_arg ( fun f => f a.1 ) ( rpAffineCell_forward_inverse n );
-  · convert congr_arg ( fun x : EuclideanSpace ℝ ( Fin ( n + 1 ) ) => x ‹_› ) h using 1
+  apply ContinuousMap.ext
+  intro a
+  apply Subtype.ext
+  exact congrArg (fun f => f a.1) (rpAffineCell_forward_inverse n)
 
 theorem rpAffineOverlap_inverse_forward (n : Nat) :
     (puncturedEuclideanToRpAffineOverlap n).comp
         (rpAffineOverlapToPuncturedEuclidean n)
       = ContinuousMap.id (rpAffineOverlapSpace n) := by
-  ext x;
-  convert congr_arg Subtype.val ( congr_arg ( fun f => f ⟨ x.1, x.2.2 ⟩ ) ( rpAffineCell_inverse_forward n ) ) using 1
+  apply ContinuousMap.ext
+  intro x
+  change puncturedEuclideanToRpAffineOverlap n
+      (rpAffineOverlapToPuncturedEuclidean n x) = x
+  apply Subtype.ext
+  change ((euclideanToRpAffineCell n
+      (rpAffineCellToEuclidean n ⟨x.1, x.2.2⟩) : rpAffineCellSpace n) :
+        RP (n + 1)) = x.1
+  exact congrArg Subtype.val
+    (congrArg (fun f => f ⟨x.1, x.2.2⟩)
+      (rpAffineCell_inverse_forward n))
 
 /-- **The overlap is homeomorphic to punctured Euclidean space.** -/
 noncomputable def rpAffineOverlapHomeomorphPuncturedEuclidean (n : Nat) :
