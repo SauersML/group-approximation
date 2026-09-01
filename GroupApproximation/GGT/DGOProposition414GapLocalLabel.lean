@@ -145,10 +145,22 @@ noncomputable def firstGapLocalLabel
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.first.pieceCount) (q : ℕ) : Λ :=
-  if hq : q ∈ B.firstGapArcTarget j then
+  if q < (B.firstGapLeft j).length then
+    match HalfGap.previousEntry B.brokenAssignment.index.first j with
+    | none => P.label 0
+    | some e => P.label
+        (HalfEntry.entrySource B.brokenAssignment.index.first e)
+  else if hq : q ∈ B.firstGapArcTarget j then
     P.label (Classical.choose (Finset.mem_image.mp hq))
   else if hq : q ∈ B.firstGapChordTarget j then
     P.label (Classical.choose (Finset.mem_image.mp hq))
+  else if q < (B.firstGapLeft j).length +
+      (B.firstGapFinishSide j - B.firstGapStartSide j) +
+        (B.firstGapRight j).length then
+    match HalfGap.nextEntry B.brokenAssignment.index.first j with
+    | none => P.label 0
+    | some e => P.label
+        (HalfEntry.entrySource B.brokenAssignment.index.first e)
   else P.label 0
 
 /-- Canonical label dictionary of a wrapped-half gap. -/
@@ -159,10 +171,22 @@ noncomputable def secondGapLocalLabel
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount) (q : ℕ) : Λ :=
-  if hq : q ∈ B.secondGapArcTarget j then
+  if q < (B.secondGapLeft j).length then
+    match HalfGap.previousEntry B.brokenAssignment.index.second j with
+    | none => P.label 0
+    | some e => P.label
+        (HalfEntry.entrySource B.brokenAssignment.index.second e)
+  else if hq : q ∈ B.secondGapArcTarget j then
     P.label (Classical.choose (Finset.mem_image.mp hq))
   else if hq : q ∈ B.secondGapChordTarget j then
     P.label (Classical.choose (Finset.mem_image.mp hq))
+  else if q < (B.secondGapLeft j).length +
+      (B.secondGapFinishSide j - B.secondGapStartSide j) +
+        (B.secondGapRight j).length then
+    match HalfGap.nextEntry B.brokenAssignment.index.second j with
+    | none => P.label 0
+    | some e => P.label
+        (HalfEntry.entrySource B.brokenAssignment.index.second e)
   else P.label 0
 
 theorem firstGapLocalLabel_arc
@@ -179,8 +203,11 @@ theorem firstGapLocalLabel_arc
   let q := (B.firstGapLeft j).length +
     (B.firstTargetSide s - B.firstGapStartSide j)
   have hq : q ∈ B.firstGapArcTarget j := Finset.mem_image.mpr ⟨s, hs, rfl⟩
+  have hnotLeft : ¬ q < (B.firstGapLeft j).length := by
+    dsimp [q]
+    omega
   unfold firstGapLocalLabel
-  rw [dif_pos hq]
+  rw [if_neg hnotLeft, dif_pos hq]
   let t := Classical.choose (Finset.mem_image.mp hq)
   have ht := Classical.choose_spec (Finset.mem_image.mp hq)
   congr 1
@@ -200,8 +227,11 @@ theorem secondGapLocalLabel_arc
   let q := (B.secondGapLeft j).length +
     (B.secondTargetSide s - B.secondGapStartSide j)
   have hq : q ∈ B.secondGapArcTarget j := Finset.mem_image.mpr ⟨s, hs, rfl⟩
+  have hnotLeft : ¬ q < (B.secondGapLeft j).length := by
+    dsimp [q]
+    omega
   unfold secondGapLocalLabel
-  rw [dif_pos hq]
+  rw [if_neg hnotLeft, dif_pos hq]
   let t := Classical.choose (Finset.mem_image.mp hq)
   have ht := Classical.choose_spec (Finset.mem_image.mp hq)
   congr 1
@@ -258,8 +288,12 @@ theorem firstGapLocalLabel_chord
     Finset.mem_image.mpr ⟨s, hs, rfl⟩
   have hqArc : q ∉ B.firstGapArcTarget j := fun h =>
     Finset.disjoint_left.mp (B.firstGap_arc_chord_disjoint j) h hqChord
+  have hnotLeft : ¬ q < (B.firstGapLeft j).length := by
+    dsimp [q]
+    unfold firstGapChordTargetIndex auxiliaryChordTargetIndex
+    omega
   unfold firstGapLocalLabel
-  rw [dif_neg hqArc, dif_pos hqChord]
+  rw [if_neg hnotLeft, dif_neg hqArc, dif_pos hqChord]
   let t := Classical.choose (Finset.mem_image.mp hqChord)
   have ht := Classical.choose_spec (Finset.mem_image.mp hqChord)
   congr 1
@@ -282,12 +316,126 @@ theorem secondGapLocalLabel_chord
     Finset.mem_image.mpr ⟨s, hs, rfl⟩
   have hqArc : q ∉ B.secondGapArcTarget j := fun h =>
     Finset.disjoint_left.mp (B.secondGap_arc_chord_disjoint j) h hqChord
+  have hnotLeft : ¬ q < (B.secondGapLeft j).length := by
+    dsimp [q]
+    unfold secondGapChordTargetIndex auxiliaryChordTargetIndex
+    omega
   unfold secondGapLocalLabel
-  rw [dif_neg hqArc, dif_pos hqChord]
+  rw [if_neg hnotLeft, dif_neg hqArc, dif_pos hqChord]
   let t := Classical.choose (Finset.mem_image.mp hqChord)
   have ht := Classical.choose_spec (Finset.mem_image.mp hqChord)
   congr 1
   exact B.secondGapChordSource_injective j ht.1 hs ht.2
+
+/-- A left connector in a first-half child carries the label of the broken
+source immediately preceding that child. -/
+theorem firstGapLocalLabel_leftConnector
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (e : Fin B.brokenAssignment.index.first.sources.length)
+    (hprev : HalfGap.previousEntry B.brokenAssignment.index.first j = some e)
+    (r : ℕ) (hr : r < (B.firstGapLeft j).length) :
+    B.firstGapLocalLabel j r =
+      P.label (HalfEntry.entrySource B.brokenAssignment.index.first e) := by
+  unfold firstGapLocalLabel
+  rw [if_pos hr, hprev]
+
+/-- A left connector in a wrapped-half child carries the label of the broken
+source immediately preceding that child. -/
+theorem secondGapLocalLabel_leftConnector
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (e : Fin B.brokenAssignment.index.second.sources.length)
+    (hprev : HalfGap.previousEntry B.brokenAssignment.index.second j = some e)
+    (r : ℕ) (hr : r < (B.secondGapLeft j).length) :
+    B.secondGapLocalLabel j r =
+      P.label (HalfEntry.entrySource B.brokenAssignment.index.second e) := by
+  unfold secondGapLocalLabel
+  rw [if_pos hr, hprev]
+
+/-- A right connector in a first-half child carries the label of the broken
+source immediately following that child. -/
+theorem firstGapLocalLabel_rightConnector
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (e : Fin B.brokenAssignment.index.first.sources.length)
+    (hnext : HalfGap.nextEntry B.brokenAssignment.index.first j = some e)
+    (r : ℕ) (hr : r < (B.firstGapRight j).length) :
+    B.firstGapLocalLabel j ((B.firstGapLeft j).length +
+        (B.firstGapFinishSide j - B.firstGapStartSide j) + r) =
+      P.label (HalfEntry.entrySource B.brokenAssignment.index.first e) := by
+  classical
+  let q := (B.firstGapLeft j).length +
+    (B.firstGapFinishSide j - B.firstGapStartSide j) + r
+  have hnotLeft : ¬ q < (B.firstGapLeft j).length := by dsimp [q]; omega
+  have hnotArc : q ∉ B.firstGapArcTarget j := by
+    intro hq
+    obtain ⟨s, hs, heq⟩ := Finset.mem_image.mp hq
+    have hsRange := (Finset.mem_filter.mp hs).2
+    dsimp [q] at heq
+    omega
+  have hnotChord : q ∉ B.firstGapChordTarget j := by
+    intro hq
+    obtain ⟨s, hs, heq⟩ := Finset.mem_image.mp hq
+    dsimp [q] at heq
+    unfold firstGapChordTargetIndex auxiliaryChordTargetIndex at heq
+    omega
+  have hright : q < (B.firstGapLeft j).length +
+      (B.firstGapFinishSide j - B.firstGapStartSide j) +
+        (B.firstGapRight j).length := by dsimp [q]; omega
+  unfold firstGapLocalLabel
+  rw [if_neg hnotLeft, dif_neg hnotArc, dif_neg hnotChord,
+    if_pos hright, hnext]
+
+/-- A right connector in a wrapped-half child carries the label of the broken
+source immediately following that child. -/
+theorem secondGapLocalLabel_rightConnector
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (e : Fin B.brokenAssignment.index.second.sources.length)
+    (hnext : HalfGap.nextEntry B.brokenAssignment.index.second j = some e)
+    (r : ℕ) (hr : r < (B.secondGapRight j).length) :
+    B.secondGapLocalLabel j ((B.secondGapLeft j).length +
+        (B.secondGapFinishSide j - B.secondGapStartSide j) + r) =
+      P.label (HalfEntry.entrySource B.brokenAssignment.index.second e) := by
+  classical
+  let q := (B.secondGapLeft j).length +
+    (B.secondGapFinishSide j - B.secondGapStartSide j) + r
+  have hnotLeft : ¬ q < (B.secondGapLeft j).length := by dsimp [q]; omega
+  have hnotArc : q ∉ B.secondGapArcTarget j := by
+    intro hq
+    obtain ⟨s, hs, heq⟩ := Finset.mem_image.mp hq
+    have hsRange := (Finset.mem_filter.mp hs).2
+    dsimp [q] at heq
+    omega
+  have hnotChord : q ∉ B.secondGapChordTarget j := by
+    intro hq
+    obtain ⟨s, hs, heq⟩ := Finset.mem_image.mp hq
+    dsimp [q] at heq
+    unfold secondGapChordTargetIndex auxiliaryChordTargetIndex at heq
+    omega
+  have hright : q < (B.secondGapLeft j).length +
+      (B.secondGapFinishSide j - B.secondGapStartSide j) +
+        (B.secondGapRight j).length := by dsimp [q]; omega
+  unfold secondGapLocalLabel
+  rw [if_neg hnotLeft, dif_neg hnotArc, dif_neg hnotChord,
+    if_pos hright, hnext]
 
 /-- Every parent first-arc target lying in a gap is reflected at its shifted
 local arc coordinate. -/
