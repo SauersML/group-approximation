@@ -1,6 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnHomologyDimensionVanishing
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.KroneckerNaturality
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -44,5 +45,13 @@ theorem rpCohomology_topPlusOne_isZero_direct (n : Nat) :
     IsZero (rpCohomology n (n + 1)) :=
   rpCohomology_isZero_above_dim_direct n (n + 1) (Nat.lt_succ_self n)
 
-end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+/-- Closed audit endpoint for RP dimension vanishing in mod-two cohomology. -/
+theorem rpCohomology_dimension_vanishing_closed :
+    (∀ n k : Nat, n < k → IsZero (rpCohomology n k)) ∧
+    (∀ n : Nat, IsZero (rpCohomology n (n + 1))) :=
+  ⟨rpCohomology_isZero_above_dim_direct,
+    rpCohomology_topPlusOne_isZero_direct⟩
 
+#audit_closed_axioms rpCohomology_dimension_vanishing_closed
+
+end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
