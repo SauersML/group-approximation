@@ -4,6 +4,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2BaseCount
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyComp
 import GroupApproximation.GGT.OsinGeodesicWord
 import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
+import GroupApproximation.GGT.DGOQuasiGeodesicChainAt
 
 /-!
 # The exact relator block count
@@ -455,6 +456,46 @@ theorem ExactRelatorDesign₂.blockCountAt_one
   dsimp only [S] at hSle hcompErase
   dsimp only [m] at hrange'
   omega
+
+/-- **The uniform fixed-list count gives Hull's published `(4,1)`
+quasi-geodesicity for every member of the symmetrized relator family.**
+
+The count with the one-letter base and count constant `1` says that every
+subpath has length at most its endpoint distance plus `2`.  This is stronger
+than the required real lower bound `length / 4 - 1 ≤ distance`; the upper
+bound is the standard admissible-word estimate. -/
+theorem quasiGeodesic_sym_of_blockCountAt₂
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G} {ms : List ℕ}
+    (hbase : baseLetter ∈ E.rel.base)
+    (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1) :
+    ∀ v, RelWord.Sym
+        (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) v →
+      GGT.IsQuasiGeodesicChainAt E.rel.alphabet.carrier 4 1
+        (fun i => GGT.RelLetter.listVal (v.take i)) v.length := by
+  intro v hv i j hij hj
+  have hcountij := hcount v hv i j hij hj
+  have hletters := admissible_of_sym_exactRelator E hbase hv
+  have hupper := GGT.OsinComponents.wordDist_vertex_le E.rel hletters hij hj
+  have hvi : GGT.OsinComponents.vertex (1 : G) v i =
+      GGT.RelLetter.listVal (v.take i) := by
+    rw [GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul]
+  have hvj : GGT.OsinComponents.vertex (1 : G) v j =
+      GGT.RelLetter.listVal (v.take j) := by
+    rw [GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul]
+  rw [hvi, hvj] at hcountij hupper
+  refine ⟨?_, hupper⟩
+  simp only [blockConst, List.length_singleton] at hcountij
+  have hcountReal : ((j - i : ℕ) : ℝ) ≤
+      (wordDist E.rel.alphabet.carrier
+        (GGT.RelLetter.listVal (v.take i))
+        (GGT.RelLetter.listVal (v.take j)) : ℕ) + 2 := by
+    exact_mod_cast hcountij
+  have hdist : (0 : ℝ) ≤
+      ((wordDist E.rel.alphabet.carrier
+        (GGT.RelLetter.listVal (v.take i))
+        (GGT.RelLetter.listVal (v.take j)) : ℕ) : ℝ) := by positivity
+  norm_num
+  linarith
 
 /-- **Producer-facing exact design with a uniform count and side exclusion.**
 
