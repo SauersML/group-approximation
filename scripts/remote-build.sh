@@ -278,8 +278,10 @@ TAG="${MSI_BUILD_TAG:-$$}"
 # but not THREADS -- each lean process spawns workers for every core it
 # detects, so several concurrent sessions produce a four-digit load and
 # "failed to create thread".  Two fixes: LEAN_NUM_THREADS caps each process,
-# and an atomic mkdir mutex serializes builds across the whole fleet (stale
-# locks older than 90 min are broken; waiters give up after 60 min).
+# and a kernel-released `flock` serializes builds across the whole fleet.
+# Every warm-cache worker uses the same regular lock file, so a terminated
+# client cannot leave a stale lock behind and file/directory lock protocols
+# cannot deadlock each other.  Waiters give up after 60 min.
 #
 # The waiter prints on EVERY pass, not every fifteenth.  It used to announce
 # itself once and then sit silent for five minutes at a time, and the wrapper's
@@ -292,15 +294,13 @@ TAG="${MSI_BUILD_TAG:-$$}"
 LOCK=$REMOTE/.lake/fleet-build.lock
 echo "==> building${TARGET:+ $TARGET} on the compute node (log tag: $TAG)"
 exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=$CORES && cd $REMOTE && \
-  tries=0; until mkdir \"$LOCK\" 2>/dev/null; do \
-    age=\$(( \$(date +%s) - \$(stat -c %Y \"$LOCK\" 2>/dev/null || date +%s) )); \
-    if [ \$age -gt 5400 ]; then rmdir \"$LOCK\" 2>/dev/null; continue; fi; \
+  exec 9>\"$LOCK\"; \
+  tries=0; until flock -n 9; do \
     tries=\$((tries+1)); \
     if [ \$tries -gt 180 ]; then echo 'fleet build lock: timed out after 60m'; exit 75; fi; \
     echo \"waiting on fleet build lock (\$tries/180)\"; \
     sleep 20; \
   done; \
-  trap 'rmdir \"$LOCK\" 2>/dev/null' EXIT INT TERM; \
   LOG=$REMOTE/.lake/last-build-$TAG.log && \
   taskset -c 0-$LAST_CORE lake build $BUILD_TARGETS > \"\$LOG\" 2>&1; rc=\$? ; \
   echo '===== ERROR INDEX =====' ; \
