@@ -1,5 +1,4 @@
-import GroupApproximation.GGT.DGOProposition414HalfCutPath
-import GroupApproximation.GGT.DGOProposition414OrientedSegment
+import GroupApproximation.GGT.DGOProposition414SubarcInterval
 
 /-!
 # Exact interval surgery over a balanced split
@@ -33,13 +32,13 @@ structure BalancedSplitIntervalSurgery
   intervals : TwoHalfIntervalSurgery D hsymm b B.brokenAssignment.index
     B.firstBase (vertex P.basepoint P.word B.secondVertex)
     B.chord B.chord_geodesic
-  arc_partition :
-    (∑ j, (intervals.first j).arcSides) +
-      ∑ j, (intervals.second j).arcSides = n
-  first_connectors : ∀ j,
-    (intervals.first j).left.length + (intervals.first j).right.length ≤ 2
-  second_connectors : ∀ j,
-    (intervals.second j).left.length + (intervals.second j).right.length ≤ 2
+  count_lower : n ≤
+    (∑ j, ((intervals.toPathInput).first j).sideCount) +
+      ∑ j, ((intervals.toPathInput).second j).sideCount
+  count_upper :
+    (∑ j, ((intervals.toPathInput).first j).sideCount) +
+        ∑ j, ((intervals.toPathInput).second j).sideCount ≤
+      n + 6 * ((2 * B.chord.length + 1) * (2 * B.chord.length + 1))
   first_side_bound : ∀ j,
     ((intervals.toPathInput).first j).sideCount ≤
       (B.secondSide - B.firstSide + 1) + B.chord.length
@@ -63,10 +62,8 @@ theorem sideBounds
     (hsecondSmall : ∀ j,
       5 * ((S.intervals.toPathInput).second j).sideCount ≤ 4 * n) :
     TwoHalfIntervalSurgery.SideBounds S.intervals n where
-  arc_partition := S.arc_partition
-  first_connectors := S.first_connectors
-  second_connectors := S.second_connectors
-  chord_length := rfl
+  count_lower := S.count_lower
+  count_upper := S.count_upper
   first_small := hfirstSmall
   second_small := hsecondSmall
 

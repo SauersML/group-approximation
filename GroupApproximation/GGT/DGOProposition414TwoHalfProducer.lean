@@ -269,10 +269,9 @@ noncomputable def twoHalfChargingConfiguration_of_targetEmbedding
 
 /-- Exact side accounting for the concrete two-half path family.
 
-`baseSides` counts inherited polygon sides and `extraSides` counts connectors
-and chord segments.  The pointwise equations retain the actual path lengths;
-the two global inequalities are precisely the partition and quadratic
-traversal estimates proved by the component-surgery geometry. -/
+These bounds concern the complete child paths.  Broken parent sides disappear
+from the inherited arcs and are replaced by connector sides, so inherited arc
+counts alone do not partition the parent sides. -/
 structure TwoHalfSideAccounting
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {I₁ I₂ : Finset ℕ}
@@ -280,29 +279,17 @@ structure TwoHalfSideAccounting
     {index : TwoHalfGreedyFamilyIndex I₁ I₂
       pos₁ partner₁ pos₂ partner₂ chordLength}
     (P : TwoHalfPathInput D hsymm b index) (n : ℕ) where
-  firstBaseSides : Fin index.first.pieceCount → ℕ
-  firstExtraSides : Fin index.first.pieceCount → ℕ
-  secondBaseSides : Fin index.second.pieceCount → ℕ
-  secondExtraSides : Fin index.second.pieceCount → ℕ
-  first_count : ∀ j, (P.first j).sideCount =
-    firstBaseSides j + firstExtraSides j
-  second_count : ∀ j, (P.second j).sideCount =
-    secondBaseSides j + secondExtraSides j
-  base_partition :
-    (∑ j, firstBaseSides j) + ∑ j, secondBaseSides j = n
-  extra_upper :
-    (∑ j, firstExtraSides j) + ∑ j, secondExtraSides j ≤
-      6 * ((2 * chordLength + 1) * (2 * chordLength + 1))
+  count_lower : n ≤
+    (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount
+  count_upper :
+    (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount ≤
+      n + 6 * ((2 * chordLength + 1) * (2 * chordLength + 1))
   first_small : ∀ j, 5 * (P.first j).sideCount ≤ 4 * n
   second_small : ∀ j, 5 * (P.second j).sideCount ≤ 4 * n
 
 namespace TwoHalfSideAccounting
 
-/-- Path-length hypotheses in the form directly proved by the greedy surgery.
-
-Each interval has at most two connector edges.  The chord paths consist of the
-successive partner intervals together with the two end intervals in each
-half, giving the displayed quadratic total. -/
+/-- Complete child-side bounds in the form directly proved by greedy surgery. -/
 structure PathLengthBounds
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {I₁ I₂ : Finset ℕ}
@@ -310,135 +297,27 @@ structure PathLengthBounds
     {index : TwoHalfGreedyFamilyIndex I₁ I₂
       pos₁ partner₁ pos₂ partner₂ chordLength}
     (P : TwoHalfPathInput D hsymm b index) (n : ℕ) where
-  arc_partition :
-    (∑ j, (P.first j).arcSides) + ∑ j, (P.second j).arcSides = n
-  first_connectors : ∀ j,
-    (P.first j).left.length + (P.first j).right.length ≤ 2
-  second_connectors : ∀ j,
-    (P.second j).left.length + (P.second j).right.length ≤ 2
-  chord_total :
-    (∑ j, (P.first j).chord.length) +
-        ∑ j, (P.second j).chord.length ≤
-      2 * (chordLength * chordLength) + 4 * chordLength
+  count_lower : n ≤
+    (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount
+  count_upper :
+    (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount ≤
+      n + 6 * ((2 * chordLength + 1) * (2 * chordLength + 1))
   first_small : ∀ j, 5 * (P.first j).sideCount ≤ 4 * n
   second_small : ∀ j, 5 * (P.second j).sideCount ≤ 4 * n
 
 /-- Actual path lengths give the abstract side-accounting certificate. -/
-def ofPathLengthBounds
+theorem ofPathLengthBounds
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {I₁ I₂ : Finset ℕ}
     {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength n : ℕ}
     {index : TwoHalfGreedyFamilyIndex I₁ I₂
       pos₁ partner₁ pos₂ partner₂ chordLength}
     {P : TwoHalfPathInput D hsymm b index}
-    (H : PathLengthBounds P n) : TwoHalfSideAccounting P n := by
-  let firstExtra : Fin index.first.pieceCount → ℕ := fun j =>
-    (P.first j).left.length + (P.first j).right.length +
-      (P.first j).chord.length
-  let secondExtra : Fin index.second.pieceCount → ℕ := fun j =>
-    (P.second j).left.length + (P.second j).right.length +
-      (P.second j).chord.length
-  have hfirstConnector :
-      (∑ j, ((P.first j).left.length + (P.first j).right.length)) ≤
-        2 * index.first.pieceCount := by
-    calc
-      (∑ j, ((P.first j).left.length + (P.first j).right.length)) ≤
-          ∑ _j : Fin index.first.pieceCount, 2 :=
-        Finset.sum_le_sum fun j _ => H.first_connectors j
-      _ = 2 * index.first.pieceCount := by simp [mul_comm]
-  have hsecondConnector :
-      (∑ j, ((P.second j).left.length + (P.second j).right.length)) ≤
-        2 * index.second.pieceCount := by
-    calc
-      (∑ j, ((P.second j).left.length + (P.second j).right.length)) ≤
-          ∑ _j : Fin index.second.pieceCount, 2 :=
-        Finset.sum_le_sum fun j _ => H.second_connectors j
-      _ = 2 * index.second.pieceCount := by simp [mul_comm]
-  have hpiece := index.pieceCount_le
-  have hpieces : index.first.pieceCount + index.second.pieceCount ≤
-      2 * chordLength + 2 := by
-    simpa [TwoHalfGreedyFamilyIndex.pieceCount] using hpiece
-  have hconnectors :
-      (∑ j, ((P.first j).left.length + (P.first j).right.length)) +
-          ∑ j, ((P.second j).left.length + (P.second j).right.length) ≤
-        4 * chordLength + 4 := by
-    omega
-  simp_rw [Finset.sum_add_distrib] at hconnectors
-  have hextra :
-      (∑ j, firstExtra j) + ∑ j, secondExtra j ≤
-        6 * ((2 * chordLength + 1) * (2 * chordLength + 1)) := by
-    simp_rw [firstExtra, secondExtra, Finset.sum_add_distrib]
-    nlinarith [H.chord_total, hconnectors]
-  exact
-    { firstBaseSides := fun j => (P.first j).arcSides
-      firstExtraSides := firstExtra
-      secondBaseSides := fun j => (P.second j).arcSides
-      secondExtraSides := secondExtra
-      first_count := by
-        intro j
-        simp [AuxiliaryCyclePathInput.sideCount, firstExtra]
-        omega
-      second_count := by
-        intro j
-        simp [AuxiliaryCyclePathInput.sideCount, secondExtra]
-        omega
-      base_partition := H.arc_partition
-      extra_upper := hextra
-      first_small := H.first_small
-      second_small := H.second_small }
-
-theorem count_lower
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {b : ℕ} {I₁ I₂ : Finset ℕ}
-    {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength n : ℕ}
-    {index : TwoHalfGreedyFamilyIndex I₁ I₂
-      pos₁ partner₁ pos₂ partner₂ chordLength}
-    {P : TwoHalfPathInput D hsymm b index}
-    (C : TwoHalfSideAccounting P n) :
-    n ≤ (∑ j, (P.first j).sideCount) +
-      ∑ j, (P.second j).sideCount := by
-  have htotal :
-      (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount =
-        ((∑ j, C.firstBaseSides j) + ∑ j, C.secondBaseSides j) +
-        ((∑ j, C.firstExtraSides j) + ∑ j, C.secondExtraSides j) := by
-    simp_rw [C.first_count, C.second_count, Finset.sum_add_distrib]
-    omega
-  calc
-    n ≤ n + ((∑ j, C.firstExtraSides j) +
-        ∑ j, C.secondExtraSides j) := Nat.le_add_right _ _
-    _ = ((∑ j, C.firstBaseSides j) + ∑ j, C.secondBaseSides j) +
-        ((∑ j, C.firstExtraSides j) +
-          ∑ j, C.secondExtraSides j) := by rw [C.base_partition]
-    _ = (∑ j, (P.first j).sideCount) +
-        ∑ j, (P.second j).sideCount := htotal.symm
-
-theorem count_upper
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {b : ℕ} {I₁ I₂ : Finset ℕ}
-    {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength n : ℕ}
-    {index : TwoHalfGreedyFamilyIndex I₁ I₂
-      pos₁ partner₁ pos₂ partner₂ chordLength}
-    {P : TwoHalfPathInput D hsymm b index}
-    (C : TwoHalfSideAccounting P n) :
-    (∑ j, (P.first j).sideCount) +
-        ∑ j, (P.second j).sideCount ≤
-      n + 6 * ((2 * chordLength + 1) * (2 * chordLength + 1)) := by
-  have htotal :
-      (∑ j, (P.first j).sideCount) + ∑ j, (P.second j).sideCount =
-        ((∑ j, C.firstBaseSides j) + ∑ j, C.secondBaseSides j) +
-        ((∑ j, C.firstExtraSides j) + ∑ j, C.secondExtraSides j) := by
-    simp_rw [C.first_count, C.second_count, Finset.sum_add_distrib]
-    omega
-  calc
-    (∑ j, (P.first j).sideCount) +
-        ∑ j, (P.second j).sideCount =
-        ((∑ j, C.firstBaseSides j) + ∑ j, C.secondBaseSides j) +
-          ((∑ j, C.firstExtraSides j) +
-            ∑ j, C.secondExtraSides j) := htotal
-    _ = n + ((∑ j, C.firstExtraSides j) +
-          ∑ j, C.secondExtraSides j) := by rw [C.base_partition]
-    _ ≤ n + 6 * ((2 * chordLength + 1) *
-          (2 * chordLength + 1)) := Nat.add_le_add_left C.extra_upper n
+    (H : PathLengthBounds P n) : TwoHalfSideAccounting P n where
+  count_lower := H.count_lower
+  count_upper := H.count_upper
+  first_small := H.first_small
+  second_small := H.second_small
 
 end TwoHalfSideAccounting
 
