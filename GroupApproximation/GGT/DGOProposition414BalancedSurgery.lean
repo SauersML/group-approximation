@@ -6,9 +6,9 @@ import GroupApproximation.GGT.DGOProposition414OrientedSegment
 
 This file is the bookkeeping boundary between the two geometric halves and
 the exact Proposition 4.14 producer.  The interval geometry is indexed by the
-canonical broken-component assignment.  Target embeddings are recorded
-separately on the disjoint first and second target sets; their global owner and
-target-index maps are derived from the target cover.
+canonical broken-component assignment.  The charging certificate records
+both surviving sides and the three-side charges arising from broken-component
+quadrilaterals.
 -/
 
 namespace GroupApproximation
@@ -66,91 +66,27 @@ theorem sideBounds
 
 end BalancedSplitIntervalSurgery
 
-/-- Survivor-or-quadrilateral placement into the actual child targets.
+/-- Survivor-or-quadrilateral charging into the actual child targets.
 
-The two halves retain separate owners.  This makes the injectivity statement
-local to the corresponding target partition and prevents accidental mixing of
-the two interval coordinate systems. -/
-structure BalancedSplitTargetEmbedding
+The radius of a surviving component is paid by its corresponding child side.
+For a broken component it is instead paid by the connector--partner--connector
+quadrilateral.  Consequently this interface deliberately uses the general
+two-half charging configuration, rather than incorrectly requiring the
+original span to equal one child side. -/
+structure BalancedSplitCharging
     (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     {δ : ℕ} (b : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) where
-  firstOwner : ℕ → Fin B.brokenAssignment.index.first.pieceCount
-  secondOwner : ℕ → Fin B.brokenAssignment.index.second.pieceCount
-  firstTargetIndex : Fin B.brokenAssignment.index.first.pieceCount → ℕ → ℕ
-  secondTargetIndex : Fin B.brokenAssignment.index.second.pieceCount → ℕ → ℕ
-  first_mem : ∀ s ∈ B.componentPlacement.firstTarget,
-    firstTargetIndex (firstOwner s) s ∈
-      ((S.intervals.toPathInput.family).firstChildren (firstOwner s)).target
-  second_mem : ∀ s ∈ B.componentPlacement.secondTarget,
-    secondTargetIndex (secondOwner s) s ∈
-      ((S.intervals.toPathInput.family).secondChildren (secondOwner s)).target
-  first_label : ∀ s ∈ B.componentPlacement.firstTarget,
-    ((S.intervals.toPathInput.family).firstChildren (firstOwner s)).label
-      (firstTargetIndex (firstOwner s) s) = P.label s
-  second_label : ∀ s ∈ B.componentPlacement.secondTarget,
-    ((S.intervals.toPathInput.family).secondChildren (secondOwner s)).label
-      (secondTargetIndex (secondOwner s) s) = P.label s
-  first_span : ∀ s ∈ B.componentPlacement.firstTarget,
-    P.span s =
-      ((S.intervals.toPathInput.family).firstChildren (firstOwner s)).sideSpan
-        (firstTargetIndex (firstOwner s) s)
-  second_span : ∀ s ∈ B.componentPlacement.secondTarget,
-    P.span s =
-      ((S.intervals.toPathInput.family).secondChildren (secondOwner s)).sideSpan
-        (secondTargetIndex (secondOwner s) s)
-  first_injective : ∀ j, Set.InjOn (firstTargetIndex j)
-    (↑(B.componentPlacement.firstTarget.filter fun s => firstOwner s = j) : Set ℕ)
-  second_injective : ∀ j, Set.InjOn (secondTargetIndex j)
-    (↑(B.componentPlacement.secondTarget.filter fun s => secondOwner s = j) : Set ℕ)
+  configuration : TwoHalfChargingConfiguration D hsymm b hδ
+    S.intervals.toPathInput.family P.target P.label P.span
 
-namespace BalancedSplitTargetEmbedding
+namespace BalancedSplitCharging
 
-noncomputable def owner
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {δ b n k R : ℕ}
-    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
-    {P : SumBoundInput D (b : ℝ) n}
-    {B : BalancedSplitData D hsymm b hδ P k R}
-    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (E : BalancedSplitTargetEmbedding D hsymm b hδ P B S) (s : ℕ) :
-    Sum (Fin B.brokenAssignment.index.first.pieceCount)
-      (Fin B.brokenAssignment.index.second.pieceCount) := by
-  classical
-  exact if s ∈ B.componentPlacement.firstTarget then Sum.inl (E.firstOwner s)
-    else Sum.inr (E.secondOwner s)
-
-def targetIndex
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {δ b n k R : ℕ}
-    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
-    {P : SumBoundInput D (b : ℝ) n}
-    {B : BalancedSplitData D hsymm b hδ P k R}
-    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (E : BalancedSplitTargetEmbedding D hsymm b hδ P B S) :
-    Sum (Fin B.brokenAssignment.index.first.pieceCount)
-      (Fin B.brokenAssignment.index.second.pieceCount) →
-      ℕ → ℕ
-  | Sum.inl j => E.firstTargetIndex j
-  | Sum.inr j => E.secondTargetIndex j
-
-private theorem second_mem_of_target_not_first
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {δ b n k R : ℕ}
-    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
-    {P : SumBoundInput D (b : ℝ) n}
-    {B : BalancedSplitData D hsymm b hδ P k R}
-    {s : ℕ} (hs : s ∈ P.target)
-    (hfirst : s ∉ B.componentPlacement.firstTarget) :
-    s ∈ B.componentPlacement.secondTarget := by
-  rw [B.componentPlacement.target_cover] at hs
-  simpa [hfirst] using hs
-
-/-- The two local embeddings assemble into the precise global embedding
-hypotheses consumed by `auxiliaryCycleFamilyCertificate_of_intervalSurgery`. -/
+/-- The general charging certificate and the exact side accounting assemble
+into the family certificate consumed by Proposition 4.14. -/
 noncomputable def certificate
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R : ℕ}
@@ -158,71 +94,15 @@ noncomputable def certificate
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (E : BalancedSplitTargetEmbedding D hsymm b hδ P B S) :
+    (C : BalancedSplitCharging D hsymm b hδ P B S) :
     AuxiliaryCycleFamilyCertificate D hsymm b hδ n P.basepoint P.word P.cut
       P.target P.label := by
-  classical
-  apply TwoHalfIntervalSurgery.auxiliaryCycleFamilyCertificate_of_intervalSurgery
-    D hsymm b hδ B.brokenAssignment.index B.firstBase
-    (vertex P.basepoint P.word B.secondVertex) B.chord B.chord_geodesic
-    S.intervals n P.basepoint P.word P.cut P.target P.label
-    E.owner E.targetIndex
-  · intro s hs
-    by_cases hfirst : s ∈ B.componentPlacement.firstTarget
-    · simpa [owner, targetIndex, hfirst] using E.first_mem s hfirst
-    · have hsecond := second_mem_of_target_not_first hs hfirst
-      simpa [owner, targetIndex, hfirst] using E.second_mem s hsecond
-  · intro s hs
-    by_cases hfirst : s ∈ B.componentPlacement.firstTarget
-    · simpa [owner, targetIndex, hfirst] using E.first_label s hfirst
-    · have hsecond := second_mem_of_target_not_first hs hfirst
-      simpa [owner, targetIndex, hfirst] using E.second_label s hsecond
-  · intro s hs
-    by_cases hfirst : s ∈ B.componentPlacement.firstTarget
-    · simpa [SumBoundInput.span, owner, targetIndex, hfirst] using
-        E.first_span s hfirst
-    · have hsecond := second_mem_of_target_not_first hs hfirst
-      simpa [SumBoundInput.span, owner, targetIndex, hfirst] using
-        E.second_span s hsecond
-  · intro q
-    cases q with
-    | inl j =>
-        intro s hs t ht heq
-        have hsTarget := (Finset.mem_filter.mp hs).1
-        have htTarget := (Finset.mem_filter.mp ht).1
-        have hsOwner := (Finset.mem_filter.mp hs).2
-        have htOwner := (Finset.mem_filter.mp ht).2
-        have hsFirst : s ∈ B.componentPlacement.firstTarget := by
-          by_contra h
-          simp [owner, h] at hsOwner
-        have htFirst : t ∈ B.componentPlacement.firstTarget := by
-          by_contra h
-          simp [owner, h] at htOwner
-        apply E.first_injective j
-        · exact Finset.mem_filter.mpr ⟨hsFirst, by simpa [owner, hsFirst] using hsOwner⟩
-        · exact Finset.mem_filter.mpr ⟨htFirst, by simpa [owner, htFirst] using htOwner⟩
-        · simpa [targetIndex] using heq
-    | inr j =>
-        intro s hs t ht heq
-        have hsTarget := (Finset.mem_filter.mp hs).1
-        have htTarget := (Finset.mem_filter.mp ht).1
-        have hsOwner := (Finset.mem_filter.mp hs).2
-        have htOwner := (Finset.mem_filter.mp ht).2
-        have hsFirst : s ∉ B.componentPlacement.firstTarget := by
-          intro h
-          simp [owner, h] at hsOwner
-        have htFirst : t ∉ B.componentPlacement.firstTarget := by
-          intro h
-          simp [owner, h] at htOwner
-        have hsSecond := second_mem_of_target_not_first hsTarget hsFirst
-        have htSecond := second_mem_of_target_not_first htTarget htFirst
-        apply E.second_injective j
-        · exact Finset.mem_filter.mpr
-            ⟨hsSecond, by simpa [owner, hsFirst] using hsOwner⟩
-        · exact Finset.mem_filter.mpr
-            ⟨htSecond, by simpa [owner, htFirst] using htOwner⟩
-        · simpa [targetIndex] using heq
-  · exact S.sideBounds
+  let counts := TwoHalfSideAccounting.ofPathLengthBounds
+    (TwoHalfIntervalSurgery.toPathLengthBounds S.sideBounds)
+  exact auxiliaryCycleFamilyCertificate_of_twoHalf D hsymm b hδ
+    B.brokenAssignment.index S.intervals.toPathInput.family n P.basepoint
+    P.word P.cut P.target P.label C.configuration counts.count_lower
+    counts.count_upper counts.first_small counts.second_small
 
 /-- On an extremal polygon, the exact balanced-surgery certificate exports the
 numerical subdivision tuple used by the corrected Proposition 4.14 assembly. -/
@@ -233,7 +113,7 @@ theorem exists_quadraticCostSubdivisionData
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (E : BalancedSplitTargetEmbedding D hsymm b hδ P B S)
+    (C : BalancedSplitCharging D hsymm b hδ P B S)
     (hextremal : ∀ r : ℕ → ℕ,
       (∀ s ∈ P.target,
         P.span s ∈ D.relBall (P.label s) (r s)) →
@@ -248,9 +128,9 @@ theorem exists_quadraticCostSubdivisionData
       (∀ i, 5 * childSides i ≤ 4 * n) ∧
       ChordPartnerQuadraticTraversalBound chordLength partners :=
   exists_quadraticCostSubdivisionData_of_extremalFamily D hsymm b hδ P
-    hextremal E.certificate
+    hextremal C.certificate
 
-end BalancedSplitTargetEmbedding
+end BalancedSplitCharging
 
 end DGOProposition414
 end GGT

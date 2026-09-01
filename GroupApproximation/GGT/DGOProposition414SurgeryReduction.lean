@@ -33,7 +33,7 @@ structure BalancedSplitSurgeryRealization
     {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
     (B : BalancedSplitData D hsymm b hδ P k R) where
   surgery : BalancedSplitIntervalSurgery D hsymm b hδ P B
-  embedding : BalancedSplitTargetEmbedding D hsymm b hδ P B surgery
+  charging : BalancedSplitCharging D hsymm b hδ P B surgery
 
 /-- The exact subdivision output at a fixed uniform balanced-split radius.
 
@@ -68,7 +68,7 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
       exists_extremal_sumBoundInput_of_pos D hsymm b hδ n hpos
     let B := Classical.choice (split hn hk P)
     let realization := Classical.choice (produce P B)
-    let A := realization.embedding.certificate
+    let A := realization.charging.certificate
     refine ⟨A.k, A.childSides, A.chordLength, A.partners, ?_, ?_, ?_,
       A.count_lower, A.count_upper, A.child_small, A.traversal⟩
     · change B.brokenAssignment.index.first.pieceCount +
