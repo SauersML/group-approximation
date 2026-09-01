@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.DGOProposition414GapLocalLabel
+import GroupApproximation.GGT.DGOProposition414GapArcComponents
 
 /-!
 # Connector letters in balanced-split auxiliary cycles
@@ -119,6 +119,161 @@ theorem isComp_auxiliaryCycle_rightConnector_of_boundary
   · exact hnext
 
 namespace BalancedSplitData
+
+/-- If a first-half gap has a nonempty inherited arc, its last literal letter
+cannot have the label of the broken source immediately following the gap. -/
+theorem firstGap_arcLast_not_isCompOf
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (e : Fin B.brokenAssignment.index.first.sources.length)
+    (hnext : HalfGap.nextEntry B.brokenAssignment.index.first j = some e)
+    (harc : 0 < (arcWord B.firstArc B.firstArcCut
+      (B.firstGapStartSide j) (B.firstGapFinishSide j)).length) :
+    ¬ ((arcWord B.firstArc B.firstArcCut
+      (B.firstGapStartSide j) (B.firstGapFinishSide j)).get ⟨
+        (arcWord B.firstArc B.firstArcCut
+          (B.firstGapStartSide j) (B.firstGapFinishSide j)).length - 1,
+        by omega⟩).IsCompOf
+        (P.label (HalfEntry.entrySource B.brokenAssignment.index.first e)) := by
+  let s := HalfEntry.entrySource B.brokenAssignment.index.first e
+  have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
+  change s ∈ brokenSet B.componentPlacement.firstTarget
+    B.componentPlacement.firstSurvives at hs
+  have hsTarget := (mem_brokenSet_iff.mp hs).1
+  have hfinish : B.firstGapFinishSide j = B.firstTargetSide s := by
+    simp only [firstGapFinishSide]
+    rw [hnext]
+  have hfinishLe := B.firstGapFinishSide_le j
+  have hcutEnd := B.firstArc_isCutPath.cut.le_length hfinishLe
+  have harcLen : (arcWord B.firstArc B.firstArcCut
+      (B.firstGapStartSide j) (B.firstGapFinishSide j)).length =
+      B.firstArcCut (B.firstGapFinishSide j) -
+        B.firstArcCut (B.firstGapStartSide j) :=
+    length_arcWord B.firstArc B.firstArcCut hcutEnd
+  have htargetCut := (B.firstArcCut_target hsTarget).1
+  have hfinishCut : B.firstArcCut (B.firstGapFinishSide j) =
+      B.firstTargetPos s := by rw [hfinish, htargetCut]
+  have hstartCut : B.firstArcCut (B.firstGapStartSide j) <
+      B.firstTargetPos s := by
+    rw [← hfinishCut]
+    omega
+  intro hletter
+  let childArc := arcWord B.firstArc B.firstArcCut
+    (B.firstGapStartSide j) (B.firstGapFinishSide j)
+  have hchildLen : childArc.length =
+      B.firstArcCut (B.firstGapFinishSide j) -
+        B.firstArcCut (B.firstGapStartSide j) := by
+    simpa only [childArc] using harcLen
+  have hi : childArc.length - 1 <
+      B.firstArcCut (B.firstGapFinishSide j) -
+        B.firstArcCut (B.firstGapStartSide j) := by rw [hchildLen]; omega
+  have hidxLen : childArc.length - 1 < childArc.length := by
+    have hchildPos : 0 < childArc.length := by
+      simpa only [childArc] using harc
+    omega
+  have hletter' : (childArc[childArc.length - 1]'hidxLen).IsCompOf
+        (P.label s) := by
+    simpa only [childArc, s, List.get_eq_getElem] using hletter
+  dsimp [childArc] at hi hletter'
+  rw [getElem_arcWord B.firstArc B.firstArcCut hcutEnd hi] at hletter'
+  have hindex : B.firstArcCut (B.firstGapStartSide j) +
+      ((arcWord B.firstArc B.firstArcCut
+        (B.firstGapStartSide j) (B.firstGapFinishSide j)).length - 1) =
+      B.firstTargetPos s - 1 := by omega
+  have htargetLen : B.firstTargetPos s - 1 < B.firstArc.length := by
+    have htargetLt := B.firstTargetPos_lt hsTarget
+    omega
+  have hget : B.firstArc[B.firstArcCut (B.firstGapStartSide j) +
+      ((arcWord B.firstArc B.firstArcCut
+        (B.firstGapStartSide j) (B.firstGapFinishSide j)).length - 1)] =
+      B.firstArc[B.firstTargetPos s - 1] := getElem_congr_idx hindex
+  have hletterTarget : (B.firstArc[B.firstTargetPos s - 1]'htargetLen).IsCompOf
+      (P.label s) := by
+    rw [← hget]
+    exact hletter'
+  exact (B.firstArc_targetComponent hsTarget).2.2.2.1
+    (B.firstTargetPos s - 1) (by omega) htargetLen hletterTarget
+
+/-- Wrapped-half counterpart of `firstGap_arcLast_not_isCompOf`. -/
+theorem secondGap_arcLast_not_isCompOf
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (e : Fin B.brokenAssignment.index.second.sources.length)
+    (hnext : HalfGap.nextEntry B.brokenAssignment.index.second j = some e)
+    (harc : 0 < (arcWord B.secondArc B.secondArcCut
+      (B.secondGapStartSide j) (B.secondGapFinishSide j)).length) :
+    ¬ ((arcWord B.secondArc B.secondArcCut
+      (B.secondGapStartSide j) (B.secondGapFinishSide j)).get ⟨
+        (arcWord B.secondArc B.secondArcCut
+          (B.secondGapStartSide j) (B.secondGapFinishSide j)).length - 1,
+        by omega⟩).IsCompOf
+        (P.label (HalfEntry.entrySource B.brokenAssignment.index.second e)) := by
+  let s := HalfEntry.entrySource B.brokenAssignment.index.second e
+  have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
+  change s ∈ brokenSet B.componentPlacement.secondTarget
+    B.componentPlacement.secondSurvives at hs
+  have hsTarget := (mem_brokenSet_iff.mp hs).1
+  have hfinish : B.secondGapFinishSide j = B.secondTargetSide s := by
+    simp only [secondGapFinishSide]
+    rw [hnext]
+  have hfinishLe := B.secondGapFinishSide_le j
+  have hcutEnd := B.secondArc_isCutPath.cut.le_length hfinishLe
+  have harcLen : (arcWord B.secondArc B.secondArcCut
+      (B.secondGapStartSide j) (B.secondGapFinishSide j)).length =
+      B.secondArcCut (B.secondGapFinishSide j) -
+        B.secondArcCut (B.secondGapStartSide j) :=
+    length_arcWord B.secondArc B.secondArcCut hcutEnd
+  have htargetCut := (B.secondArcCut_target hsTarget).1
+  have hfinishCut : B.secondArcCut (B.secondGapFinishSide j) =
+      B.secondTargetPos s := by rw [hfinish, htargetCut]
+  have hstartCut : B.secondArcCut (B.secondGapStartSide j) <
+      B.secondTargetPos s := by
+    rw [← hfinishCut]
+    omega
+  intro hletter
+  let childArc := arcWord B.secondArc B.secondArcCut
+    (B.secondGapStartSide j) (B.secondGapFinishSide j)
+  have hchildLen : childArc.length =
+      B.secondArcCut (B.secondGapFinishSide j) -
+        B.secondArcCut (B.secondGapStartSide j) := by
+    simpa only [childArc] using harcLen
+  have hi : childArc.length - 1 <
+      B.secondArcCut (B.secondGapFinishSide j) -
+        B.secondArcCut (B.secondGapStartSide j) := by rw [hchildLen]; omega
+  have hidxLen : childArc.length - 1 < childArc.length := by
+    have hchildPos : 0 < childArc.length := by
+      simpa only [childArc] using harc
+    omega
+  have hletter' : (childArc[childArc.length - 1]'hidxLen).IsCompOf
+        (P.label s) := by
+    simpa only [childArc, s, List.get_eq_getElem] using hletter
+  dsimp [childArc] at hi hletter'
+  rw [getElem_arcWord B.secondArc B.secondArcCut hcutEnd hi] at hletter'
+  have hindex : B.secondArcCut (B.secondGapStartSide j) +
+      ((arcWord B.secondArc B.secondArcCut
+        (B.secondGapStartSide j) (B.secondGapFinishSide j)).length - 1) =
+      B.secondTargetPos s - 1 := by omega
+  have htargetLen : B.secondTargetPos s - 1 < B.secondArc.length := by
+    have htargetLt := B.secondTargetPos_lt hsTarget
+    omega
+  have hget : B.secondArc[B.secondArcCut (B.secondGapStartSide j) +
+      ((arcWord B.secondArc B.secondArcCut
+        (B.secondGapStartSide j) (B.secondGapFinishSide j)).length - 1)] =
+      B.secondArc[B.secondTargetPos s - 1] := getElem_congr_idx hindex
+  have hletterTarget : (B.secondArc[B.secondTargetPos s - 1]'htargetLen).IsCompOf
+      (P.label s) := by
+    rw [← hget]
+    exact hletter'
+  exact (B.secondArc_targetComponent hsTarget).2.2.2.1
+    (B.secondTargetPos s - 1) (by omega) htargetLen hletterTarget
 
 /-- A first-half child's left connector is a literal component letter with
 the exact label of its preceding broken source. -/
