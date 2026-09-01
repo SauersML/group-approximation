@@ -38,6 +38,9 @@ namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 open AffineBarycentricSubdivision
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-! ## General-coefficient homology homotopy invariance -/
 
 /-
@@ -46,11 +49,11 @@ singular chain complex with coefficients in an arbitrary module `Mod`.
 -/
 theorem homologyMap_eq_of_homotopic_module (R : Type) [CommRing R] (Mod : ModuleCat.{0} R)
     {X Y : TopCat.{0}} {f g : X ⟶ Y} (H : ContinuousMap.Homotopy f.hom g.hom) (k : ℕ) :
-    (HomologicalComplex.homologyFunctor (ModuleCat.{0} R) (ComplexShape.down ℕ) k).map
-        (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map f)
-      = (HomologicalComplex.homologyFunctor (ModuleCat.{0} R) (ComplexShape.down ℕ) k).map
-        (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map g) := by
-  convert ((show TopCat.Homotopy f g from H).singularChainComplexFunctorObjMap Mod).homologyMap_eq k using 1
+    HomologicalComplex.homologyMap
+        (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map f) k
+      = HomologicalComplex.homologyMap
+        (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map g) k :=
+  ((show TopCat.Homotopy f g from H).singularChainComplexFunctorObjMap Mod).homologyMap_eq k
 
 /-
 Homology iso from a homotopy equivalence of spaces, over general coefficients
@@ -61,12 +64,12 @@ def homologyIsoOfHomotopyEquivModule (R : Type) [CommRing R] (Mod : ModuleCat.{0
     (e : ContinuousMap.HomotopyEquiv X Y) :
     (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).obj (TopCat.of X)).homology k ≅
       (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).obj (TopCat.of Y)).homology k where
-  hom := (HomologicalComplex.homologyFunctor (ModuleCat.{0} R) (ComplexShape.down ℕ) k).map
-    (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map (TopCat.ofHom e.toFun))
-  inv := (HomologicalComplex.homologyFunctor (ModuleCat.{0} R) (ComplexShape.down ℕ) k).map
-    (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map (TopCat.ofHom e.invFun))
+  hom := HomologicalComplex.homologyMap
+    (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map (TopCat.ofHom e.toFun)) k
+  inv := HomologicalComplex.homologyMap
+    (((singularChainComplexFunctor (ModuleCat.{0} R)).obj Mod).map (TopCat.ofHom e.invFun)) k
   hom_inv_id := by
-    rw [← Functor.map_comp, ← Functor.map_comp,
+    rw [← HomologicalComplex.homologyMap_comp, ← Functor.map_comp,
       show TopCat.ofHom e.toFun ≫ TopCat.ofHom e.invFun
         = TopCat.ofHom (e.invFun.comp e.toFun) from rfl,
       homologyMap_eq_of_homotopic_module R Mod
@@ -74,7 +77,7 @@ def homologyIsoOfHomotopyEquivModule (R : Type) [CommRing R] (Mod : ModuleCat.{0
         (e.left_inv.some) k]
     simp
   inv_hom_id := by
-    rw [← Functor.map_comp, ← Functor.map_comp,
+    rw [← HomologicalComplex.homologyMap_comp, ← Functor.map_comp,
       show TopCat.ofHom e.invFun ≫ TopCat.ofHom e.toFun
         = TopCat.ofHom (e.toFun.comp e.invFun) from rfl,
       homologyMap_eq_of_homotopic_module R Mod
@@ -93,8 +96,13 @@ theorem isZero_subChainComplex_homologyZMod2_of_contractible
     IsZero ((subChainComplex (ZMod 2) X S).homology m) := by
   obtain ⟨ e ⟩ := ‹ContractibleSpace S›;
   obtain ⟨ e ⟩ := e;
-  convert IsZero.of_iso _ ( subspaceHomologyIso S m |> CategoryTheory.Iso.trans <| homologyIsoOfHomotopyEquivModule ( ZMod 2 ) ( ModuleCat.of ( ZMod 2 ) ( ZMod 2 ) ) m e ) using 1;
-  convert AlgebraicTopology.isZero_singularHomologyFunctor_of_totallyDisconnectedSpace ( ModuleCat ( ZMod 2 ) ) m ( ModuleCat.of ( ZMod 2 ) ( ZMod 2 ) ) ( TopCat.of Unit ) ( by omega ) using 1
+  have hUnit :=
+    AlgebraicTopology.isZero_singularHomologyFunctor_of_totallyDisconnectedSpace
+      (ModuleCat (ZMod 2)) m (ModuleCat.of (ZMod 2) (ZMod 2)) (TopCat.of Unit) (by omega)
+  change IsZero (homologyZMod2 (TopCat.of Unit) m) at hUnit
+  exact IsZero.of_iso hUnit
+    (subspaceHomologyIso S m ≪≫ homologyIsoOfHomotopyEquivModule
+      (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2)) m e)
 
 /-! ## The mod-two suspension isomorphism -/
 
@@ -133,8 +141,9 @@ theorem sphereBand_nonempty (m : ℕ) :
       ∩ (lowerOpens m : Set (sphereSpace m))) := by
   -- The equatorial band is nonempty because it contains the equator.
   have h_eq : Nonempty (Sphere m) := by
-    exact ⟨ EuclideanSpace.single 0 1, by simp +decide [ EuclideanSpace.norm_eq ] ⟩;
-  convert h_eq.map ( fun x : Sphere m => ( sphereBandHomotopyEquiv m ).invFun x ) using 1
+    exact ⟨ EuclideanSpace.single 0 1, by simp +decide ⟩
+  change Nonempty ↥(sphereBand m)
+  exact h_eq.map (fun x : Sphere m => (sphereBandHomotopyEquiv m).invFun x)
 
 /-
 The equatorial band of `Sⁿ⁺¹` is path-connected for `n ≥ 1` (it is homotopy
@@ -153,7 +162,7 @@ theorem sphereBand_pathConnected (m : ℕ) (hm : 1 ≤ m) :
           apply_rules [ isPathConnected_sphere ];
           · rw [ ← Module.finrank_eq_rank ];
             norm_num;
-            exact_mod_cast Nat.succ_lt_succ hm;
+            exact hm;
           · norm_num;
         convert h_path_connected;
         rw [ isPathConnected_iff_pathConnectedSpace ];
@@ -173,27 +182,54 @@ is injective.
 -/
 theorem mvF0_injective (m : ℕ) (hm : 1 ≤ m) :
     Function.Injective (mvF0 m).hom := by
-  intro x y hxy;
-  -- By definition of `mvF0`, we know that `mvF0 m` is the composition of the homology maps of `biprod.fst` and `mvInclUV_U`.
-  have h_mvF0 : (mvF0 m) ≫ (HomologicalComplex.homologyMap (biprod.fst : (subChainComplex (ZMod 2) (sphereSpace m) (upperOpens m) ⊞ subChainComplex (ZMod 2) (sphereSpace m) (lowerOpens m)) ⟶ _) 0) = (HomologicalComplex.homologyMap (mvInclUV_U (ZMod 2) (upperOpens m) (lowerOpens m)) 0) := by
-    convert circF_comp_fst using 1;
-    constructor <;> intro h <;> simp_all +decide [ mvF0, mvShortComplex ];
-    · convert biprod.lift_fst _ _ using 1;
-    · rw [ ← HomologicalComplex.homologyMap_comp ];
-      exact congr_arg ( fun f => HomologicalComplex.homologyMap f 0 ) ( biprod.lift_fst _ _ );
-  -- By definition of `mvInclUV_U`, we know that `mvInclUV_U` is the inclusion map from the band to the upper hemisphere.
-  have h_mvInclUV_U : (HomologicalComplex.homologyMap (mvInclUV_U (ZMod 2) (upperOpens m) (lowerOpens m)) 0) ≫ (H0Gen.subH0aug (ZMod 2) (sphereSpace m) (upperOpens m : Set (sphereSpace m))) = (H0Gen.subH0aug (ZMod 2) (sphereSpace m) ((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m)))) := by
-    convert H0Gen.subH0aug_natural_inclusion ( sphereSpace m ) ( ( upperOpens m : Set ( sphereSpace m ) ) ∩ ( lowerOpens m : Set ( sphereSpace m ) ) ) ( upperOpens m : Set ( sphereSpace m ) ) Set.inter_subset_left using 1;
-  apply_fun (H0Gen.subH0aug (ZMod 2) (sphereSpace m) (↑(upperOpens m) ∩ ↑(lowerOpens m))).hom at *; simp_all +decide [ funext_iff, ModuleCat.hom_ext_iff ] ;
-  · simp_all +decide [ ← h_mvInclUV_U, ← h_mvF0, LinearMap.ext_iff ];
-  · have h_subH0aug_inj : IsIso (H0Gen.subH0aug (ZMod 2) (sphereSpace m) ((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m)))) := by
-      haveI := sphereBand_pathConnected m hm;
-      apply_rules [ H0Gen.isIso_subH0aug ];
-    obtain ⟨ f, hf ⟩ := h_subH0aug_inj;
-    intro x y hxy;
-    convert congr_arg ( fun z => ( f.hom z ) ) hxy using 1;
-    · convert congr_arg ( fun z => z x ) hf.1.symm using 1;
-    · convert congr_arg ( fun z => z y ) hf.1.symm using 1
+  let projU := HomologicalComplex.homologyMap
+    (biprod.fst :
+      (subChainComplex (ZMod 2) (sphereSpace m) (upperOpens m) ⊞
+        subChainComplex (ZMod 2) (sphereSpace m) (lowerOpens m)) ⟶ _) 0
+  let inclU := HomologicalComplex.homologyMap
+    (mvInclUV_U (ZMod 2) (upperOpens m) (lowerOpens m)) 0
+  have h_mvF0 : mvF0 m ≫ projU = inclU := by
+    have hchain :
+        (mvShortComplex (ZMod 2) (upperOpens m) (lowerOpens m)
+            (upperOpens_sup_lowerOpens m)).f ≫
+            (biprod.fst :
+              (subChainComplex (ZMod 2) (sphereSpace m) (upperOpens m) ⊞
+                subChainComplex (ZMod 2) (sphereSpace m) (lowerOpens m)) ⟶ _)
+          = mvInclUV_U (ZMod 2) (upperOpens m) (lowerOpens m) :=
+      biprod.lift_fst _ _
+    have := congrArg (fun f => HomologicalComplex.homologyMap f 0) hchain
+    simpa only [mvF0, projU, inclU, HomologicalComplex.homologyMap_comp] using this
+  have h_mvInclUV_U : inclU ≫
+      H0Gen.subH0aug (ZMod 2) (sphereSpace m) (upperOpens m : Set (sphereSpace m)) =
+      H0Gen.subH0aug (ZMod 2) (sphereSpace m)
+        ((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m))) := by
+    simpa only [inclU, mvInclUV_U] using
+      H0Gen.subH0aug_natural_inclusion (R := ZMod 2) (sphereSpace m)
+        ((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m)))
+        (upperOpens m : Set (sphereSpace m)) Set.inter_subset_left
+  haveI : PathConnectedSpace
+      ↥((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m))) :=
+    sphereBand_pathConnected m hm
+  have h_aug_inj : Function.Injective
+      (H0Gen.subH0aug (ZMod 2) (sphereSpace m)
+        ((upperOpens m : Set (sphereSpace m)) ∩ (lowerOpens m : Set (sphereSpace m)))).hom :=
+    (ModuleCat.mono_iff_injective _).mp inferInstance
+  intro x y hxy
+  apply h_aug_inj
+  have hproj : projU.hom ((mvF0 m).hom x) = projU.hom ((mvF0 m).hom y) :=
+    congrArg projU.hom hxy
+  have hincl : inclU.hom x = inclU.hom y := by
+    have hx := congrArg (fun f => f.hom x) h_mvF0
+    have hy := congrArg (fun f => f.hom y) h_mvF0
+    simp only [CategoryTheory.comp_apply] at hx hy
+    exact hx.symm.trans (hproj.trans hy)
+  have hupper := congrArg
+    (H0Gen.subH0aug (ZMod 2) (sphereSpace m)
+      (upperOpens m : Set (sphereSpace m))).hom hincl
+  have hx := congrArg (fun f => f.hom x) h_mvInclUV_U
+  have hy := congrArg (fun f => f.hom y) h_mvInclUV_U
+  simp only [CategoryTheory.comp_apply] at hx hy
+  exact hx.symm.trans (hupper.trans hy)
 
 /-
 The small-chains `H₁` of the sphere cover vanishes for `n ≥ 1`: the connecting
@@ -203,28 +239,31 @@ map `δ : H₁(X₃) → H₀(X₁)` is injective (as `H₁(X₂) = 0`) and has 
 theorem mvX3_H1_isZero (m : ℕ) (hm : 1 ≤ m) :
     IsZero ((mvShortComplex (ZMod 2) (upperOpens m) (lowerOpens m)
         (upperOpens_sup_lowerOpens m)).X₃.homology 1) := by
-  have h_subsingleton : ∀ x : (mvShortComplex (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).X₃.homology 1, x = 0 := by
+  let S := mvShortComplex (ZMod 2) (upperOpens m) (lowerOpens m)
+    (upperOpens_sup_lowerOpens m)
+  let hS := mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m)
+    (upperOpens_sup_lowerOpens m)
+  let δ := hS.δ 1 0 rfl
+  have hX2 : IsZero (S.X₂.homology 1) :=
+    isZero_mvX₂_homology (ZMod 2) (upperOpens m) (lowerOpens m)
+      (upperOpens_sup_lowerOpens m) 1
+      (isZero_subChainComplex_homologyZMod2_of_contractible (sphereSpace m)
+        (upperOpens m : Set (sphereSpace m)) 1 (by norm_num))
+      (isZero_subChainComplex_homologyZMod2_of_contractible (sphereSpace m)
+        (lowerOpens m : Set (sphereSpace m)) 1 (by norm_num))
+  haveI : Mono δ := hS.homology_exact₃ 1 0 rfl |>.mono_g (hX2.eq_of_src _ _)
+  have hδ_inj : Function.Injective δ.hom := (ModuleCat.mono_iff_injective _).mp inferInstance
+  have hzero : ∀ x : S.X₃.homology 1, x = 0 := by
     intro x
-    have h_delta_zero : (mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).δ 1 0 rfl x = 0 := by
-      have h_delta_zero : (mvF0 m).hom ((mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).δ 1 0 rfl x) = 0 := by
-        convert ( mvShortExact ( ZMod 2 ) ( upperOpens m ) ( lowerOpens m ) ( upperOpens_sup_lowerOpens m ) ).homology_exact₁ 1 0 rfl |>.moduleCat_range_eq_ker ▸ LinearMap.mem_range_self _ x using 1;
-      exact Function.Injective.eq_iff ( mvF0_injective m hm ) |>.1 ( by aesop );
-    have h_delta_inj : Function.Injective ((mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).δ 1 0 rfl).hom := by
-      have h_delta_inj : LinearMap.ker ((mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).δ 1 0 rfl).hom = ⊥ := by
-        have := (mvShortExact (ZMod 2) (upperOpens m) (lowerOpens m) (upperOpens_sup_lowerOpens m)).homology_exact₃ 1 0 rfl
-        convert this.moduleCat_range_eq_ker.symm using 1;
-        have := isZero_mvX₂_homology ( ZMod 2 ) ( upperOpens m ) ( lowerOpens m ) ( upperOpens_sup_lowerOpens m ) 1 ( isZero_subChainComplex_homologyZMod2_of_contractible ( sphereSpace m ) ( upperOpens m : Set ( sphereSpace m ) ) 1 ( by norm_num ) ) ( isZero_subChainComplex_homologyZMod2_of_contractible ( sphereSpace m ) ( lowerOpens m : Set ( sphereSpace m ) ) 1 ( by norm_num ) ) ; simp_all +decide [ ModuleCat.isZero_iff_subsingleton ] ;
-        ext; simp [this];
-        constructor <;> intro h;
-        · exact ⟨ 0, by simp +decide [ h ] ⟩;
-        · obtain ⟨ y, rfl ⟩ := h;
-          convert congr_arg ( fun z => ( ModuleCat.Hom.hom ( HomologicalComplex.homologyMap ( mvShortComplex ( ZMod 2 ) ( upperOpens m ) ( lowerOpens m ) ( upperOpens_sup_lowerOpens m ) ).g 1 ) ) z ) ( Subsingleton.elim y 0 ) using 1;
-          exact Eq.symm ( map_zero _ );
-      exact LinearMap.ker_eq_bot.mp h_delta_inj;
-    exact h_delta_inj <| by aesop;
-  constructor;
-  · intro Y; exact ⟨ ⟨ 0 ⟩, fun f => by ext x; simp +decide [ h_subsingleton x ] ⟩ ;
-  · exact fun Y => ⟨ ⟨ 0 ⟩, fun f => by ext; simp +decide [ h_subsingleton ] ⟩
+    apply hδ_inj
+    rw [map_zero]
+    apply mvF0_injective m hm
+    have hmem : δ.hom x ∈ LinearMap.ker (mvF0 m).hom := by
+      rw [← hS.homology_exact₁ 1 0 rfl |>.moduleCat_range_eq_ker]
+      exact LinearMap.mem_range_self δ.hom x
+    exact (LinearMap.mem_ker.mp hmem).trans (map_zero (mvF0 m).hom).symm
+  rw [ModuleCat.isZero_iff_subsingleton]
+  exact ⟨fun x y => (hzero x).trans (hzero y).symm⟩
 
 /-- **Mod-two `H₁` of high-dimensional spheres vanishes.** For `n ≥ 2`,
 `H₁(Sⁿ; F₂) = 0`. -/
@@ -267,5 +306,8 @@ theorem sphereCohomology_isZero_of_lt (n k : ℕ) (h0 : 0 < k) (hkn : k < n) :
     rw [ ModuleCat.isZero_iff_subsingleton ] at *;
     exact Subsingleton.intro fun x y => by ext; simp +decide [ show x = 0 from LinearMap.ext fun _ => by simp +decide [ show ( ‹_› : homologyZMod2 _ _ ) = 0 from Subsingleton.elim _ _ ], show y = 0 from LinearMap.ext fun _ => by simp +decide [ show ( ‹_› : homologyZMod2 _ _ ) = 0 from Subsingleton.elim _ _ ] ] ;
   exact IsZero.of_iso h_dual ( kroneckerEquiv ( TopCat.of ( Sphere n ) ) k )
+
+#audit_closed_axioms sphereModTwoHomology_isZero_of_lt
+#audit_closed_axioms sphereCohomology_isZero_of_lt
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
