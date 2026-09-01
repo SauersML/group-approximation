@@ -41,7 +41,8 @@ theorem false_of_relativeDiagramCertificate
     (hthreshold :
       4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) <
         (3 / 4 : ℝ) * (rho : ℝ))
-    (K : RelativeDiagramCertificate D W eps mu Z) : False := by
+    (K : RelativeDiagramCertificate D W eps mu
+      (Z.toRelativeReducedDiagram D)) : False := by
   obtain ⟨i, C, _, hlarge⟩ := K.largeCell
   have hrelatorMem : K.cellLabel i ∈ W := K.cellLabel_mem i
   have hlongNat : rho ≤ (K.cellLabel i).length :=
@@ -67,8 +68,11 @@ theorem false_of_relativeDiagramCertificate
   have hexteriorLe : C.exterior.length ≤ (K.cellLabel i).length :=
     C.exterior_length_le_relator
   have htake : (K.cellLabel i).take C.exterior.length = C.exterior := by
-    rw [C.relator_decomposition]
-    simp
+    calc
+      (K.cellLabel i).take C.exterior.length =
+          (C.exterior ++ C.remainder).take C.exterior.length :=
+        congrArg (List.take C.exterior.length) C.relator_decomposition
+      _ = C.exterior := by simp only [List.take_left]
   have hqg := hsc.quasiGeodesic (K.cellLabel i) hrelatorMem
   have hlowerRaw := (hqg 0 C.exterior.length (Nat.zero_le _)
     hexteriorLe).1
@@ -94,8 +98,10 @@ theorem false_of_relativeDiagramCertificate
         C.rightSide_admissible) C.rightSide_short
   have hboundaryDecomposition : Z.boundaryWord =
       C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter := by
-    rw [← K.boundaryWord_eq]
-    exact C.boundary_decomposition
+    calc
+      Z.boundaryWord = K.boundaryWord := K.boundaryWord_eq.symm
+      _ = C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter :=
+        C.boundary_decomposition
   have harcWord : IsWord D.alphabet.carrier
       C.boundaryArc C.boundaryArc.prod := by
     refine ⟨?_, rfl⟩
@@ -183,7 +189,7 @@ theorem exists_relativeBallInjectivityParameters_of_greendlinger
   obtain ⟨Z0⟩ := exists_lemma44ReducedRelatorDiagram_of_not_injOn
     D.alphabet W R q hker hnot
   obtain ⟨Z⟩ := Z0.exists_oriented hsc.toIsSmallCancellation
-  obtain ⟨K⟩ := hgood rho hrho0 W R hsc Z
+  obtain ⟨K⟩ := hgood rho hrho0 W R hsc (Z.toRelativeReducedDiagram D)
   exact false_of_relativeDiagramCertificate D Z hsc hmuNinetyTwo
     hthreshold K
 
