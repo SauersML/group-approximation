@@ -29,6 +29,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicTopology Functor
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-! ## A generic commutation of `singularHomologyFunctor` with a functor -/
 
 section Generic
@@ -54,8 +57,8 @@ theorem sigmaConstCommComponent_naturality (M : C) {S T : Type} (h : S ⟶ T) :
     (Limits.sigmaConst.obj (G.obj M)).map h ≫ (sigmaConstCommComponent G M T).hom
       = (sigmaConstCommComponent G M S).hom ≫ (Limits.sigmaConst.obj M ⋙ G).map h := by
   dsimp [sigmaConstCommComponent]
-  ext j
-  dsimp [Limits.sigmaConst]
+  apply Sigma.hom_ext
+  intro j
   rw [← Category.assoc, Sigma.ι_comp_map', Category.id_comp, ι_comp_sigmaComparison,
     ← Category.assoc, ι_comp_sigmaComparison, ← G.map_comp, Sigma.ι_comp_map', Category.id_comp]
 
@@ -66,8 +69,8 @@ def sigmaConstCommIso (M : C) :
 
 /-- `G` commutes with the `SSet`-level singular chain complex functor. -/
 def sscf_comm (M : C) :
-    (SSet.singularChainComplexFunctor.{0} C).obj M ⋙ G.mapHomologicalComplex (ComplexShape.down ℕ)
-      ≅ (SSet.singularChainComplexFunctor.{0} D).obj (G.obj M) :=
+    (SSet.chainComplexFunctor.{0} C).obj M ⋙ G.mapHomologicalComplex (ComplexShape.down ℕ)
+      ≅ (SSet.chainComplexFunctor.{0} D).obj (G.obj M) :=
   Functor.isoWhiskerLeft ((Limits.sigmaConst ⋙ SimplicialObject.whiskering (Type) C).obj M)
       (eqToIso (map_alternatingFaceMapComplex G)) ≪≫
     Functor.isoWhiskerRight ((SimplicialObject.whiskering (Type) D).mapIso (sigmaConstCommIso G M))
@@ -87,7 +90,8 @@ theorem homBridge_naturality (n : ℕ) {K L : HomologicalComplex C (ComplexShape
         ≫ (ShortComplex.mapHomologyIso (L.sc n) G).hom
       = (ShortComplex.mapHomologyIso (K.sc n) G).hom
         ≫ (HomologicalComplex.homologyFunctor C (ComplexShape.down ℕ) n ⋙ G).map φ := by
-  convert ShortComplex.mapHomologyIso_hom_naturality (HomologicalComplex.shortComplexFunctor C (ComplexShape.down ℕ) n |>.map φ) G
+  exact ShortComplex.mapHomologyIso_hom_naturality
+    ((HomologicalComplex.shortComplexFunctor C (ComplexShape.down ℕ) n).map φ) G
 
 /-- The homology-preservation natural isomorphism:
 `G.mapHomologicalComplex ⋙ homologyFunctor ≅ homologyFunctor ⋙ G`. -/
