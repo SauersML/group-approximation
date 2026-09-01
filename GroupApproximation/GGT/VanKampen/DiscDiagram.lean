@@ -323,6 +323,30 @@ theorem cactusRealization_trivialModel
     Nonempty (CactusRealization Z) := by
   exact (Z.boundary_ne_one (Subsingleton.elim _ _)).elim
 
+/-- The empty-family branch is valid in every group: positive area makes the
+oriented cell list nonempty, while its first cell would have to label itself
+by a member of the empty family. -/
+theorem cactusRealization_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A
+      (∅ : Set (List (GGT.RelLetter G Lambda))) R) :
+    Nonempty (CactusRealization Z) := by
+  have hcellsLength : Z.cells.length = Z.area := by
+    calc
+      Z.cells.length = Z.factors.length := by
+        have h := congrArg List.length Z.cell_values
+        simpa only [List.length_map] using h
+      _ = Z.area := Z.factors_length
+  have hcellsPos : 0 < Z.cells.length := by
+    rw [hcellsLength]
+    exact Z.area_pos
+  let i : Fin Z.cells.length := ⟨0, hcellsPos⟩
+  have hfalse : (Z.cells.get i).relator ∈
+      (∅ : Set (List (GGT.RelLetter G Lambda))) :=
+    (Z.cells.get i).relator_mem
+  exact (Set.mem_empty_iff_false (Z.cells.get i).relator).mp hfalse
+
 end VanKampen
 end GGT
 end GroupApproximation
