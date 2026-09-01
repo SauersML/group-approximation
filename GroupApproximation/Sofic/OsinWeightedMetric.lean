@@ -494,7 +494,8 @@ theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
         factors = pre ++ x :: (between ++ y :: suf) →
           between.prod⁻¹ * x * between.prod * y ≠ 1) ∧
       ∃ cells : List (CoprodI G × List (CoprodI G)),
-        cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
+        cells.length = area ∧ cells ≠ [] ∧
+          cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
           ∀ cell ∈ cells, cell.2 ∈ R := by
   classical
   simp only [Set.InjOn] at hnot
@@ -532,10 +533,18 @@ theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
   obtain ⟨factors, hlength, hprod, hcells⟩ := harea.exists_flatten
   obtain ⟨oriented, horiented, horiented_mem⟩ :=
     exists_orientedLetterCells_of_signedConjugates hsym.2 factors hcells
+  have horiented_length : oriented.length = area := by
+    have h := congrArg List.length horiented
+    simpa only [List.length_map, hlength] using h
+  have horiented_ne : oriented ≠ [] := by
+    intro horiented_nil
+    rw [horiented_nil, List.length_nil] at horiented_length
+    omega
   have hminimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
       (List.prod '' R) m z → area ≤ m := fun h => Nat.find_min' hex h
   refine ⟨z, area, factors, hz_ne, hz_len, harea_pos, hlength, hprod,
-    hcells, ?_, ?_, oriented, horiented, horiented_mem⟩
+    hcells, ?_, ?_, oriented, horiented_length, horiented_ne, horiented,
+      horiented_mem⟩
   · exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
       hlength hprod hcells hminimal
   · exact RelatorDefectBudget.no_cancelling_pair_of_minimal
@@ -581,6 +590,34 @@ theorem orientedLetterCell_relators_ne_inverseConjugate
   dsimp only [value]
   rw [hcancel]
   group
+
+/-- **Every oriented cell has a nontrivial relator boundary.**  A cell whose
+relator product were `1` would itself be a nonempty consecutive trivial block
+in the flattened least-area product. -/
+theorem orientedLetterCell_relator_prod_ne_one
+    {factors : List (CoprodI G)}
+    {cells : List (CoprodI G × List (CoprodI G))}
+    (hvalues : cells.map
+      (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors)
+    (hreduced : ∀ (pre mid suf : List (CoprodI G)),
+      factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1)
+    (pre suf : List (CoprodI G × List (CoprodI G)))
+    (C : CoprodI G × List (CoprodI G))
+    (hsplit : cells = pre ++ C :: suf) : C.2.prod ≠ 1 := by
+  intro hrelator
+  let value : CoprodI G × List (CoprodI G) → CoprodI G :=
+    fun cell => cell.1 * cell.2.prod * cell.1⁻¹
+  have hsplitValues : factors = pre.map value ++ [value C] ++ suf.map value := by
+    rw [← hvalues, hsplit]
+    dsimp only [value]
+    simp only [List.map_append, List.map_cons]
+    rw [List.append_assoc]
+    rfl
+  apply hreduced (pre.map value) [value C] (suf.map value) hsplitValues
+    (by simp)
+  dsimp only [value]
+  rw [hrelator]
+  simp
 
 /-- **The fragment slack**, same inequality and same numbers as the unweighted
 lane; only `|r|` has changed meaning, from syllables to letters. -/
@@ -658,7 +695,8 @@ theorem exists_reducedPowerRelatorProduct_of_not_torsionLifts
         factors = pre ++ x :: (between ++ y :: suf) →
           between.prod⁻¹ * x * between.prod * y ≠ 1) ∧
       ∃ cells : List (CoprodI G × List (CoprodI G)),
-        cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
+        cells.length = area ∧ cells ≠ [] ∧
+          cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
           ∀ cell ∈ cells, cell.2 ∈ R := by
   classical
   unfold TorsionLifts at hnot
@@ -690,10 +728,18 @@ theorem exists_reducedPowerRelatorProduct_of_not_torsionLifts
   obtain ⟨factors, hlength, hprod, hcells⟩ := harea.exists_flatten
   obtain ⟨oriented, horiented, horiented_mem⟩ :=
     exists_orientedLetterCells_of_signedConjugates hsym.2 factors hcells
+  have horiented_length : oriented.length = area := by
+    have h := congrArg List.length horiented
+    simpa only [List.length_map, hlength] using h
+  have horiented_ne : oriented ≠ [] := by
+    intro horiented_nil
+    rw [horiented_nil, List.length_nil] at horiented_length
+    omega
   have hminimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
       (List.prod '' R) m (g ^ n) → area ≤ m := fun h => Nat.find_min' hex h
   refine ⟨q, n, g, area, factors, hn, hqn, hgq, hgInfinite, harea_pos,
-    hlength, hprod, hcells, ?_, ?_, oriented, horiented, horiented_mem⟩
+    hlength, hprod, hcells, ?_, ?_, oriented, horiented_length, horiented_ne,
+      horiented, horiented_mem⟩
   · exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
       hlength hprod hcells hminimal
   · exact RelatorDefectBudget.no_cancelling_pair_of_minimal
