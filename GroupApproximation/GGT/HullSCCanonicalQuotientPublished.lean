@@ -53,6 +53,38 @@ def adjoinPair {G : Type u} [Group G] {A : HullGeneratingSet G}
     (t : G) : t⁻¹ ∈ (D.adjoinPair t).rel.base := by
   exact Or.inr (Or.inr rfl)
 
+/-- Adjoin the target first and then apply Osin's finite-family Theorem 5.4.
+The resulting relative generating set still carries the selected auxiliary
+peripherals, contains the target and its inverse, and its relative Cayley
+action is acylindrical. This is the source order required by Hull's Lemma 4.9:
+the acylindricity constants are chosen for the same alphabet on which the
+small-cancellation constants and relator are subsequently chosen. -/
+theorem exists_acylindricalAdjoinPair {G : Type u} [Group G]
+    {A : HullGeneratingSet G} {N : Subgroup G} {k : ℕ}
+    {S : Fin k → Subgroup G} (D : AuxiliaryPeripheralFamily A N S)
+    (t : G) :
+    ∃ E : AuxiliaryPeripheralFamily A N S,
+      t⁻¹ ∈ E.rel.base ∧ IsAcylindrical G (Cayley E.rel.alphabet) := by
+  let D₁ := D.adjoinPair t
+  obtain ⟨E₀, hbase₀, hfam₀, hemb₀, hacy₀⟩ :=
+    GGT.OsinEnlargement.osinTheorem54Fam_unconditional
+      G (AuxiliaryPeripheralIndex k) D₁.rel D₁.embedded
+  obtain ⟨E₁, hbase₁, hfam₁, hinv₁, hemb₁, halphabet⟩ :=
+    GGT.OsinComponents.exists_symmetric_base' E₀ hemb₀
+  let E : AuxiliaryPeripheralFamily A N S :=
+    { cores := D.cores
+      rel := E₁
+      base_le := D₁.base_le.trans (hbase₀.trans hbase₁)
+      base_inv := hinv₁
+      fam_eq := by
+        intro i
+        rw [hfam₁, hfam₀]
+        exact D₁.fam_eq i
+      embedded := hemb₁ }
+  refine ⟨E, ?_, ?_⟩
+  · exact hbase₁ (hbase₀ (D.mem_base_adjoinPair t))
+  · exact isAcylindrical_of_alphabet_eq halphabet hacy₀
+
 end AuxiliaryPeripheralFamily
 
 namespace RelWord
@@ -115,7 +147,7 @@ def HullLemma44CanonicalQuotientStatement : Prop :=
 arbitrary hyperbolically embedded source family. -/
 def HullLemma49KernelPowerStatement : Prop :=
   ∀ {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ),
-    D.IsHyperbolicallyEmbedded →
+    D.IsHyperbolicallyEmbedded → IsAcylindrical G (Cayley D.alphabet) →
       ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
         ∀ (W : Set (List (GGT.RelLetter G Λ)))
           (v : List (GGT.RelLetter G Λ)), v ∈ W →
@@ -195,11 +227,12 @@ theorem torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
     TorsionFreeHullCanonicalQuotientStatement.{u} := by
   intro G _ hG A N hN k S hS t R
   obtain ⟨D₀⟩ := hselect A S hN hS
-  let D := D₀.adjoinPair t
+  obtain ⟨D, ht, hacy⟩ := D₀.exists_acylindricalAdjoinPair t
   obtain ⟨eps44, rho44, mu44, hmu44, hgood44⟩ := h44 D R
-  obtain ⟨eps49, rho49, mu49, hmu49, hgood49⟩ := h49 D.rel D.embedded
+  obtain ⟨eps49, rho49, mu49, hmu49, hgood49⟩ :=
+    h49 D.rel D.embedded hacy
   refine ⟨D, max eps44 eps49, max rho44 rho49, min mu44 mu49,
-    D₀.mem_base_adjoinPair t, lt_min hmu44 hmu49, ?_⟩
+    ht, lt_min hmu44 hmu49, ?_⟩
   intro W v hv hsc
   let V := RelWord.symmetrized v
   let K : Subgroup G :=

@@ -26,6 +26,8 @@ namespace HullSC
 
 open RelatorDefectBudget
 open GroupApproximation.WordMetric
+open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
@@ -418,7 +420,7 @@ diagram argument is required only for a shortest lift of its quotient
 conjugacy class, exactly as in Hull's proof. -/
 def HullLemma49ShortestGeodesicPowerDiagramStatement : Prop :=
   ∀ {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ),
-    D.IsHyperbolicallyEmbedded →
+    D.IsHyperbolicallyEmbedded → IsAcylindrical G (Cayley D.alphabet) →
       ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
         ∀ (W : Set (List (GGT.RelLetter G Λ)))
           (v : List (GGT.RelLetter G Λ)), v ∈ W →
@@ -437,8 +439,8 @@ kernel-power statement consumed by the canonical Hull filling. -/
 theorem hullLemma49KernelPowerStatement_of_geodesicPowerDiagram
     (hdiagram : HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w}) :
     HullLemma49KernelPowerStatement.{u, w} := by
-  intro G _ Λ D hemb
-  obtain ⟨eps, rho, mu, hmu, hgood⟩ := hdiagram D hemb
+  intro G _ Λ D hemb hacy
+  obtain ⟨eps, rho, mu, hmu, hgood⟩ := hdiagram D hemb hacy
   refine ⟨eps, rho, mu, hmu, ?_⟩
   intro W v hv hinput g n hn hpow
   let N : Subgroup G :=
