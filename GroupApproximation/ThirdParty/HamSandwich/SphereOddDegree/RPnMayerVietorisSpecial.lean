@@ -21,9 +21,10 @@ the two cover pieces, this is exactly the bridge required by the induction
 -/
 
 open CategoryTheory Limits
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 /-! ## Raw Mayer–Vietoris isomorphism -/
 
