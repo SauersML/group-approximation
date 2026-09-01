@@ -1,0 +1,152 @@
+import GroupApproximation.GGT.DGOTheorem442ProjectionSeparation
+
+/-!
+# DGO Theorem 4.42: the first two projection axioms
+
+Dahmani--Guirardel--Osin define
+
+`d^π_Y(A,B) = diam(proj_Y(A) ∪ proj_Y(B))`.
+
+Using a real-valued infimum at this stage would hide the only facts used in
+axioms (A1) and (A2).  We instead record the equivalent upper-bound relation:
+every pair of points in the displayed union is at distance at most `r`.
+Symmetry is then literal, and the triangle inequality follows by choosing one
+approximate projection of the middle orbit.  Approximate projections are
+nonempty for every positive error, so no nearest-point existence assumption is
+being smuggled into the argument.
+
+The last theorem proves equivariance of the bound under the group action.  This
+is the precise fact used later to make the action on the projection complex
+isometric.
+-/
+
+namespace GroupApproximation
+namespace GGT
+namespace Elementary
+
+open GroupApproximation.HullGeometry
+
+universe u v
+
+variable {G : Type u} [Group G] {S : Type v} [PseudoMetricSpace S]
+  [MulAction G S]
+
+/-- `r` is an upper bound for DGO's projection distance
+`d^π_Y(A,B)`: every two points in
+`proj_Y(A) ∪ proj_Y(B)` are at distance at most `r`. -/
+def ApproxCosetProjectionPairDiameterLE
+    (H : Subgroup G) (s : S) (κ : ℝ)
+    (Y A B : G ⧸ H) (r : ℝ) : Prop :=
+  ∀ x : S,
+    (x ∈ approxCosetProjectionSet H s κ Y A ∨
+      x ∈ approxCosetProjectionSet H s κ Y B) →
+    ∀ y : S,
+      (y ∈ approxCosetProjectionSet H s κ Y A ∨
+        y ∈ approxCosetProjectionSet H s κ Y B) →
+      dist x y ≤ r
+
+/-- **Projection axiom (A1), in upper-bound form.**  Interchanging the two
+source vertices does not change the union whose diameter is being bounded. -/
+theorem approxCosetProjectionPairDiameterLE_comm
+    (H : Subgroup G) (s : S) (κ : ℝ) (Y A B : G ⧸ H) (r : ℝ) :
+    ApproxCosetProjectionPairDiameterLE H s κ Y A B r ↔
+      ApproxCosetProjectionPairDiameterLE H s κ Y B A r := by
+  constructor <;> intro h x hx y hy
+  · exact h x (hx.elim Or.inr Or.inl) y (hy.elim Or.inr Or.inl)
+  · exact h x (hx.elim Or.inr Or.inl) y (hy.elim Or.inr Or.inl)
+
+/-- **Projection axiom (A2), in upper-bound form.**  If `r` bounds
+`d^π_Y(A,B)` and `t` bounds `d^π_Y(B,C)`, then `r+t` bounds
+`d^π_Y(A,C)`.
+
+The proof chooses a single point in `proj_Y(B)`.  Its existence follows from
+positive-error approximate projection, and the four membership cases are the
+ordinary metric triangle inequality. -/
+theorem approxCosetProjectionPairDiameterLE_triangle
+    (H : Subgroup G) (s : S) {κ : ℝ} (hκ : 0 < κ)
+    (Y A B C : G ⧸ H) {r t : ℝ}
+    (hAB : ApproxCosetProjectionPairDiameterLE H s κ Y A B r)
+    (hBC : ApproxCosetProjectionPairDiameterLE H s κ Y B C t) :
+    ApproxCosetProjectionPairDiameterLE H s κ Y A C (r + t) := by
+  obtain ⟨z, hz⟩ := approxCosetProjectionSet_nonempty H s
+    (Y := Y) (Z := B) hκ
+  intro x hx y hy
+  rcases hx with hxA | hxC
+  · rcases hy with hyA | hyC
+    · have ht0 : 0 ≤ t := by
+        have hzz := hBC z (Or.inl hz) z (Or.inl hz)
+        simpa using hzz
+      exact le_trans (hAB x (Or.inl hxA) y (Or.inl hyA))
+        (le_add_of_nonneg_right ht0)
+    · calc
+        dist x y ≤ dist x z + dist z y := dist_triangle x z y
+        _ ≤ r + t := add_le_add
+          (hAB x (Or.inl hxA) z (Or.inr hz))
+          (hBC z (Or.inl hz) y (Or.inr hyC))
+  · rcases hy with hyA | hyC
+    · calc
+        dist x y ≤ dist x z + dist z y := dist_triangle x z y
+        _ ≤ t + r := add_le_add
+          (hBC x (Or.inr hxC) z (Or.inl hz))
+          (hAB z (Or.inr hz) y (Or.inl hyA))
+        _ = r + t := add_comm t r
+    · have hr0 : 0 ≤ r := by
+        have hzz := hAB z (Or.inr hz) z (Or.inr hz)
+        simpa using hzz
+      exact le_trans (hBC x (Or.inr hxC) y (Or.inr hyC))
+        (le_add_of_nonneg_left hr0)
+
+/-- Projection-diameter upper bounds are exactly equivariant under left
+translation of all three coset vertices. -/
+theorem approxCosetProjectionPairDiameterLE_smul_iff
+    (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (g : G) (κ : ℝ)
+    (Y A B : G ⧸ H) (r : ℝ) :
+    ApproxCosetProjectionPairDiameterLE H s κ (g • Y) (g • A) (g • B) r ↔
+      ApproxCosetProjectionPairDiameterLE H s κ Y A B r := by
+  constructor
+  · intro h x hx y hy
+    have hx' : g • x ∈ approxCosetProjectionSet H s κ (g • Y) (g • A) ∨
+        g • x ∈ approxCosetProjectionSet H s κ (g • Y) (g • B) := by
+      rcases hx with hx | hx
+      · exact Or.inl (by
+          rw [approxCosetProjectionSet_smul hiso H s g κ Y A]
+          exact ⟨x, hx, rfl⟩)
+      · exact Or.inr (by
+          rw [approxCosetProjectionSet_smul hiso H s g κ Y B]
+          exact ⟨x, hx, rfl⟩)
+    have hy' : g • y ∈ approxCosetProjectionSet H s κ (g • Y) (g • A) ∨
+        g • y ∈ approxCosetProjectionSet H s κ (g • Y) (g • B) := by
+      rcases hy with hy | hy
+      · exact Or.inl (by
+          rw [approxCosetProjectionSet_smul hiso H s g κ Y A]
+          exact ⟨y, hy, rfl⟩)
+      · exact Or.inr (by
+          rw [approxCosetProjectionSet_smul hiso H s g κ Y B]
+          exact ⟨y, hy, rfl⟩)
+    calc
+      dist x y = dist (g • x) (g • y) := (hiso g x y).symm
+      _ ≤ r := h (g • x) hx' (g • y) hy'
+  · intro h x hx y hy
+    have pullback_mem {Z : G ⧸ H} {w : S}
+        (hw : w ∈ approxCosetProjectionSet H s κ (g • Y) (g • Z)) :
+        g⁻¹ • w ∈ approxCosetProjectionSet H s κ Y Z := by
+      rw [approxCosetProjectionSet_smul hiso H s g κ Y Z] at hw
+      obtain ⟨w₀, hw₀, rfl⟩ := hw
+      simpa using hw₀
+    have hx' : g⁻¹ • x ∈ approxCosetProjectionSet H s κ Y A ∨
+        g⁻¹ • x ∈ approxCosetProjectionSet H s κ Y B :=
+      hx.elim (fun hxA => Or.inl (pullback_mem hxA))
+        (fun hxB => Or.inr (pullback_mem hxB))
+    have hy' : g⁻¹ • y ∈ approxCosetProjectionSet H s κ Y A ∨
+        g⁻¹ • y ∈ approxCosetProjectionSet H s κ Y B :=
+      hy.elim (fun hyA => Or.inl (pullback_mem hyA))
+        (fun hyB => Or.inr (pullback_mem hyB))
+    have hxy := h (g⁻¹ • x) hx' (g⁻¹ • y) hy'
+    calc
+      dist x y = dist (g⁻¹ • x) (g⁻¹ • y) := (hiso g⁻¹ x y).symm
+      _ ≤ r := hxy
+
+end Elementary
+end GGT
+end GroupApproximation

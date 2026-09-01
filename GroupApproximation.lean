@@ -2961,6 +2961,7 @@ import GroupApproximation.GGT.DGOProposition414TwoHalfProducer
 import GroupApproximation.GGT.DGOProposition414OrientedSegment
 import GroupApproximation.GGT.DGOTheorem442ProjectionDiameter
 import GroupApproximation.GGT.DGOTheorem442CosetProjections
+import GroupApproximation.GGT.DGOTheorem442ProjectionAxioms
 import GroupApproximation.GGT.HullHeGXFamily
 import GroupApproximation.GGT.DGOWindmillLoxodromic
 import GroupApproximation.GGT.DGOWindmillExhaust
