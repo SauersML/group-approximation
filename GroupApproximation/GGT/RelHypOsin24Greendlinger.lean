@@ -207,20 +207,35 @@ three interior arcs together shorter than half the relator, so the whole
 relator is shorter than twice its exterior arc. -/
 theorem relator_length_lt_twice_exterior_of_three_groupPieces
     {R : Set (List (CoprodI G))} {lam : ℚ}
-    (hlam : lam ≤ 1 / 6) (hmetric : LetterMetricGroupSmallCancellation R lam)
+    (hlam_pos : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hmetric : LetterMetricGroupSmallCancellation R lam)
     {exterior p₁ p₂ p₃ r : List (CoprodI G)} (hr : r ∈ R)
-    (h₁ : LetterIsGroupPiece R p₁) (hp₁ : p₁ <+: r)
-    (h₂ : LetterIsGroupPiece R p₂) (hp₂ : p₂ <+: r)
-    (h₃ : LetterIsGroupPiece R p₃) (hp₃ : p₃ <+: r)
+    (hr_pos : 0 < r.length)
+    (h₁ : p₁ = [] ∨ (LetterIsGroupPiece R p₁ ∧ p₁ <+: r))
+    (h₂ : p₂ = [] ∨ (LetterIsGroupPiece R p₂ ∧ p₂ <+: r))
+    (h₃ : p₃ = [] ∨ (LetterIsGroupPiece R p₃ ∧ p₃ <+: r))
     (hpartition : r.length =
       exterior.length + p₁.length + p₂.length + p₃.length) :
     r.length < 2 * exterior.length := by
-  have hpieces := sum_three_groupPieces_lt hlam hmetric hr
-    h₁ hp₁ h₂ hp₂ h₃ hp₃
+  have hr_posQ : (0 : ℚ) < (r.length : ℚ) := by exact_mod_cast hr_pos
+  have arc_small (p : List (CoprodI G))
+      (hp : p = [] ∨ (LetterIsGroupPiece R p ∧ p <+: r)) :
+      (p.length : ℚ) < lam * (r.length : ℚ) := by
+    rcases hp with rfl | ⟨hpiece, hprefix⟩
+    · simp only [List.length_nil, Nat.cast_zero]
+      exact mul_pos hlam_pos hr_posQ
+    · exact hmetric p hpiece r hr hprefix
+  have hp₁ := arc_small p₁ h₁
+  have hp₂ := arc_small p₂ h₂
+  have hp₃ := arc_small p₃ h₃
   have hpartitionQ : (r.length : ℚ) =
       (exterior.length : ℚ) + (p₁.length : ℚ) +
         (p₂.length : ℚ) + (p₃.length : ℚ) := by
     exact_mod_cast hpartition
+  have hnonneg : (0 : ℚ) ≤ (r.length : ℚ) := Nat.cast_nonneg _
+  have hscale : lam * (r.length : ℚ) ≤
+      (1 / 6 : ℚ) * (r.length : ℚ) :=
+    mul_le_mul_of_nonneg_right hlam hnonneg
   have hltQ : (r.length : ℚ) < 2 * (exterior.length : ℚ) := by
     linarith
   exact_mod_cast hltQ
@@ -233,17 +248,19 @@ relative diagram theorem selects its boundary cell.  The exterior arc is a
 subpath of the whole boundary, hence has no greater length. -/
 theorem no_threeGroupPieceCell_on_relativeBoundary_two
     {R : Set (List (CoprodI G))} {lam : ℚ}
-    (hlam : lam ≤ 1 / 6) (hmetric : LetterMetricGroupSmallCancellation R lam)
+    (hlam_pos : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hmetric : LetterMetricGroupSmallCancellation R lam)
     {boundaryLength : ℕ} (hboundary : boundaryLength ≤ 2)
     {exterior p₁ p₂ p₃ r : List (CoprodI G)} (hr : r ∈ R)
     (hfloor : 4 ≤ r.length) (hexterior : exterior.length ≤ boundaryLength)
-    (h₁ : LetterIsGroupPiece R p₁) (hp₁ : p₁ <+: r)
-    (h₂ : LetterIsGroupPiece R p₂) (hp₂ : p₂ <+: r)
-    (h₃ : LetterIsGroupPiece R p₃) (hp₃ : p₃ <+: r)
+    (h₁ : p₁ = [] ∨ (LetterIsGroupPiece R p₁ ∧ p₁ <+: r))
+    (h₂ : p₂ = [] ∨ (LetterIsGroupPiece R p₂ ∧ p₂ <+: r))
+    (h₃ : p₃ = [] ∨ (LetterIsGroupPiece R p₃ ∧ p₃ <+: r))
     (hpartition : r.length =
       exterior.length + p₁.length + p₂.length + p₃.length) : False := by
   have hlt := relator_length_lt_twice_exterior_of_three_groupPieces
-    hlam hmetric hr h₁ hp₁ h₂ hp₂ h₃ hp₃ hpartition
+    hlam_pos hlam hmetric hr (lt_of_lt_of_le (by omega) hfloor)
+      h₁ h₂ h₃ hpartition
   omega
 
 end RelHyp
