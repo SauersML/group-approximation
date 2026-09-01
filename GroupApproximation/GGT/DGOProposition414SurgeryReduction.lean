@@ -33,7 +33,7 @@ structure BalancedSplitSurgeryRealization
     {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
     (B : BalancedSplitData D hsymm b hδ P k R) where
   surgery : BalancedSplitIntervalSurgery D hsymm b hδ P B
-  charging : BalancedSplitCharging D hsymm b hδ P B surgery
+  chargePlacement : BalancedSplitChargePlacement D hsymm b hδ P B surgery
 
 /-- The exact subdivision output at a fixed uniform balanced-split radius.
 
@@ -87,7 +87,7 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
       intro j
       exact (Nat.mul_le_mul_left 5
         (realization.surgery.second_side_bound j)).trans hhalf.2
-    let A := realization.charging.certificate hfirstSmall hsecondSmall
+    let A := realization.chargePlacement.certificate hfirstSmall hsecondSmall
     refine ⟨A.k, A.childSides, A.chordLength, A.partners, ?_, ?_, ?_,
       A.count_lower, A.count_upper, A.child_small, A.traversal⟩
     · change B.brokenAssignment.index.first.pieceCount +

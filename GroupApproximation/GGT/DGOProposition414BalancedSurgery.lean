@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOProposition414SubarcInterval
+import GroupApproximation.GGT.DGOProposition414PacketCharging
 
 /-!
 # Exact interval surgery over a balanced split
@@ -76,17 +77,31 @@ For a broken component it is instead paid by the connector--partner--connector
 quadrilateral.  Consequently this interface deliberately uses the general
 two-half charging configuration, rather than incorrectly requiring the
 original span to equal one child side. -/
-structure BalancedSplitCharging
+structure BalancedSplitChargePlacement
     (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     {δ : ℕ} (b : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) where
-  configuration : TwoHalfChargingConfiguration D hsymm b hδ
+  packets : TwoHalfChargePacketEmbedding D hsymm b hδ
     S.intervals.toPathInput.family P.target P.label P.span
 
-namespace BalancedSplitCharging
+namespace BalancedSplitChargePlacement
+
+/-- The geometric survivor-or-quadrilateral packets supply the complete
+two-half charging configuration, including both finite-sum inequalities. -/
+noncomputable def configuration
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
+    (C : BalancedSplitChargePlacement D hsymm b hδ P B S) :
+    TwoHalfChargingConfiguration D hsymm b hδ
+      S.intervals.toPathInput.family P.target P.label P.span :=
+  C.packets.configuration
 
 /-- The general charging certificate and the exact side accounting assemble
 into the family certificate consumed by Proposition 4.14. -/
@@ -97,7 +112,7 @@ noncomputable def certificate
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitCharging D hsymm b hδ P B S)
+    (C : BalancedSplitChargePlacement D hsymm b hδ P B S)
     (hfirstSmall : ∀ j,
       5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
     (hsecondSmall : ∀ j,
@@ -121,7 +136,7 @@ theorem exists_quadraticCostSubdivisionData
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
     {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitCharging D hsymm b hδ P B S)
+    (C : BalancedSplitChargePlacement D hsymm b hδ P B S)
     (hfirstSmall : ∀ j,
       5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
     (hsecondSmall : ∀ j,
@@ -142,7 +157,7 @@ theorem exists_quadraticCostSubdivisionData
   exists_quadraticCostSubdivisionData_of_extremalFamily D hsymm b hδ P
     hextremal (C.certificate hfirstSmall hsecondSmall)
 
-end BalancedSplitCharging
+end BalancedSplitChargePlacement
 
 end DGOProposition414
 end GGT
