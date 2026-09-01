@@ -1,6 +1,8 @@
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.GroupTheory.Perm.Cycle.Basic
 import Mathlib.SetTheory.Cardinal.Finite
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Omega
 
 /-!
 # Finite combinatorial maps
@@ -272,6 +274,49 @@ theorem euler_eq_two (M : CombMap) (hM : M.IsPlanar) :
 /-- Planarity includes connectedness. -/
 theorem connected_of_planar (M : CombMap) (hM : M.IsPlanar) : M.IsConnected :=
   hM.1
+
+/-- Euler's curvature consequence: if every face of a planar map has degree
+at least three, some vertex has degree at most five.  This is the local
+deletion step behind Osin's five-owner orientation of the estimating graph. -/
+theorem exists_vertexDegree_le_five_of_faceDegree_ge_three
+    (M : CombMap) (hM : M.IsPlanar)
+    (hface : ∀ f : M.Face, 3 ≤ M.faceDegree f) :
+    ∃ v : M.Vertex, M.vertexDegree v ≤ 5 := by
+  classical
+  have hEulerInt : (M.vertexCount : ℤ) + (M.faceCount : ℤ) =
+      (M.edgeCount : ℤ) + 2 := by
+    have h := M.euler_eq_two hM
+    linarith
+  have hEuler : M.vertexCount + M.faceCount = M.edgeCount + 2 := by
+    exact_mod_cast hEulerInt
+  have hfaceSum : 3 * M.faceCount ≤ 2 * M.edgeCount := by
+    calc
+      3 * M.faceCount = ∑ _f : M.Face, 3 := by
+        simp only [Finset.sum_const, Finset.card_univ, Nat.nsmul_eq_mul,
+          M.faceCount, Nat.card_eq_fintype_card, Nat.mul_comm]
+      _ ≤ ∑ f : M.Face, M.faceDegree f := by
+        apply Finset.sum_le_sum
+        intro f _
+        exact hface f
+      _ = 2 * M.edgeCount := M.sum_faceDegree_eq_two_mul_edgeCount
+  by_contra hsmall
+  have hvertex : ∀ v : M.Vertex, 6 ≤ M.vertexDegree v := by
+    intro v
+    have hnot : ¬ M.vertexDegree v ≤ 5 := by
+      intro hv
+      exact hsmall ⟨v, hv⟩
+    omega
+  have hvertexSum : 6 * M.vertexCount ≤ 2 * M.edgeCount := by
+    calc
+      6 * M.vertexCount = ∑ _v : M.Vertex, 6 := by
+        simp only [Finset.sum_const, Finset.card_univ, Nat.nsmul_eq_mul,
+          M.vertexCount, Nat.card_eq_fintype_card, Nat.mul_comm]
+      _ ≤ ∑ v : M.Vertex, M.vertexDegree v := by
+        apply Finset.sum_le_sum
+        intro v _
+        exact hvertex v
+      _ = 2 * M.edgeCount := M.sum_vertexDegree_eq_two_mul_edgeCount
+  omega
 
 end CombMap
 
