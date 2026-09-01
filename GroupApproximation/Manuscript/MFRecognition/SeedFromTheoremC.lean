@@ -77,8 +77,8 @@ theorem E_spec :
       manuscriptCoronaMFResidual E = ⊤ ∧
       (∀ (L : Type) (_ : Group L) (r : E →* L), Function.Surjective r →
         Nontrivial L → manuscriptCoronaMFResidual L = ⊤) ∧
-      (∀ (L : Type) (_ : Group L) (_ : Countable L) (r : E →* L),
-        Function.Surjective r → Nontrivial L → ¬ IsCDEOperatorMF L) :=
+      (∀ (L : Type) (_ : Group L) (r : E →* L),
+        Function.Surjective r → Nontrivial L → ¬ IsOperatorMF L) :=
   manuscriptTorsionFreeFullMFRadical_closed.choose_spec.choose_spec
 
 instance instFinitelyPresentedE : Group.IsFinitelyPresented E := E_spec.2.1
@@ -94,8 +94,8 @@ instance instNontrivialE : Nontrivial E :=
 /-- "a nontrivial group equal to its own MF radical is not MF": `E` is not MF. -/
 theorem E_not_isOperatorMF : ¬ IsOperatorMF E := by
   intro h
-  exact E_spec.2.2.2.2.2.2.2 E inferInstance inferInstance (MonoidHom.id E)
-    Function.surjective_id inferInstance ((isCDEOperatorMF_iff_isOperatorMF E).2 h)
+  exact E_spec.2.2.2.2.2.2.2 E inferInstance (MonoidHom.id E)
+    Function.surjective_id inferInstance h
 
 /-- **"Fix one finite presentation code `P₋` for this group."** -/
 def seedCodeC : PresentationCode := (exists_code_mulEquiv E).choose
