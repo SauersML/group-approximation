@@ -394,7 +394,7 @@ theorem firstGap_arcFinish
         simp only [firstGapRight]
         rw [hnext]
       have hchordStart : B.firstGapChordStart j =
-          B.brokenAssignment.first.partner s := by
+          B.brokenAssignment.first.partner s + 1 := by
         simp only [firstGapChordStart]
         rw [hnext]
       rw [hfinish, hright, hchordStart]
@@ -528,7 +528,7 @@ theorem secondGap_arcFinish
         simp only [secondGapRight]
         rw [hnext]
       have hchordStart : B.secondGapChordStart j =
-          B.brokenAssignment.second.partner s + 1 := by
+          B.brokenAssignment.second.partner s := by
         simp only [secondGapChordStart]
         rw [hnext]
       rw [hfinish, hright, hchordStart, ← harc, hstart]

@@ -275,6 +275,66 @@ theorem secondBrokenConnectors_partnerEnd_vertex
       (B.secondArc.length + (y + 1)) = _
   rw [vertex_append_add, B.secondArc_endpoint]
 
+/-- The first-half chord partner starts at global forward-chord vertex
+`y + 1`, because the first half reads the chord backwards. -/
+theorem firstBrokenConnectors_partnerStart_vertex
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    vertex B.firstBase B.firstWord
+        (B.firstChordPos (B.brokenAssignment.first.partner s)) =
+      vertex B.firstBase B.chord
+        (B.brokenAssignment.first.partner s + 1) := by
+  let y := B.brokenAssignment.first.partner s
+  have hy : y < B.chord.length := B.brokenAssignment.first.partner_lt s hs
+  have hpos : B.firstChordPos y = B.firstArc.length +
+      (B.chord.length - (y + 1)) := by
+    simp [firstChordPos, B.firstArc_length]
+    omega
+  rw [show B.brokenAssignment.first.partner s = y from rfl, hpos]
+  change vertex B.firstBase (B.firstArc ++ revWord B.chord)
+      (B.firstArc.length + (B.chord.length - (y + 1))) = _
+  rw [vertex_append_add, B.firstArc_endpoint]
+  have hchord := B.chord_geodesic.2.1
+  change B.firstBase * RelLetter.listVal B.chord = B.secondBase at hchord
+  rw [← hchord]
+  exact vertex_revWord_of_end B.chord B.firstBase (y + 1)
+
+/-- The wrapped-half chord partner starts at its global forward coordinate
+`y`. -/
+theorem secondBrokenConnectors_partnerStart_vertex
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (_hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    vertex B.secondBase B.secondWord
+        (B.secondChordPos (B.brokenAssignment.second.partner s)) =
+      vertex B.firstBase B.chord
+        (B.brokenAssignment.second.partner s) := by
+  let y := B.brokenAssignment.second.partner s
+  have hpos : B.secondChordPos y = B.secondArc.length + y := by
+    simp [secondChordPos, B.secondArc_length]
+  rw [show B.brokenAssignment.second.partner s = y from rfl, hpos]
+  have hword : B.secondWord = B.secondArc ++ B.chord := by
+    have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
+      simp [refinedCut, splitPairCut_left B.side_order]
+    have hright : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
+      simp [refinedCut, splitPairCut_right]
+    unfold secondWord secondArc
+    simp only [secondHalf]
+    rw [hleft, hright]
+  rw [hword]
+  change vertex B.secondBase (B.secondArc ++ B.chord)
+      (B.secondArc.length + y) = _
+  rw [vertex_append_add, B.secondArc_endpoint]
+
 /-- The first-half entry connector runs from the broken source start to its
 exact global-chord terminal coordinate. -/
 theorem firstBrokenConnectors_start_value_global
@@ -287,9 +347,10 @@ theorem firstBrokenConnectors_start_value_global
       B.componentPlacement.firstSurvives) :
     RelLetter.listVal (B.firstBrokenConnectors s hs).startConnector =
       (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos s))⁻¹ *
-        vertex B.firstBase B.chord (B.brokenAssignment.first.partner s) := by
+        vertex B.firstBase B.chord
+          (B.brokenAssignment.first.partner s + 1) := by
   rw [(B.firstBrokenConnectors s hs).start_value,
-    B.firstBrokenConnectors_partnerEnd_vertex s hs]
+    B.firstBrokenConnectors_partnerStart_vertex s hs]
 
 /-- The first-half exit connector runs from the broken source end to the same
 global-chord terminal coordinate. -/
@@ -321,9 +382,9 @@ theorem secondBrokenConnectors_start_value_global
     RelLetter.listVal (B.secondBrokenConnectors s hs).startConnector =
       (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos s))⁻¹ *
         vertex B.firstBase B.chord
-          (B.brokenAssignment.second.partner s + 1) := by
+          (B.brokenAssignment.second.partner s) := by
   rw [(B.secondBrokenConnectors s hs).start_value,
-    B.secondBrokenConnectors_partnerEnd_vertex s hs]
+    B.secondBrokenConnectors_partnerStart_vertex s hs]
 
 /-- The wrapped-half exit connector runs from the broken source end to the
 same global chord vertex `y + 1`. -/

@@ -143,7 +143,7 @@ noncomputable def firstGapChordStart
   match HalfGap.nextEntry B.brokenAssignment.index.first j with
   | none => B.chord.length
   | some e => B.brokenAssignment.first.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.first e)
+      (HalfEntry.entrySource B.brokenAssignment.index.first e) + 1
 
 /-- First inherited side of a wrapped-half gap. -/
 noncomputable def secondGapStartSide
@@ -217,8 +217,8 @@ noncomputable def secondGapChordFinish
   | some e => B.brokenAssignment.second.partner
       (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1
 
-/-- Wrapped gaps reach the terminal vertex `y+1` of the following forward
-chord component, or the initial chord endpoint for the terminal gap. -/
+/-- Wrapped gaps reach the initial vertex `y` of the following forward chord
+component, or the initial chord endpoint for the terminal gap. -/
 noncomputable def secondGapChordStart
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R : ℕ}
@@ -229,7 +229,7 @@ noncomputable def secondGapChordStart
   match HalfGap.nextEntry B.brokenAssignment.index.second j with
   | none => 0
   | some e => B.brokenAssignment.second.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1
+      (HalfEntry.entrySource B.brokenAssignment.index.second e)
 
 end BalancedSplitData
 

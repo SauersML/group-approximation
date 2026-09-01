@@ -242,11 +242,9 @@ private theorem targetSlotPacket_subset
 /-- Three factor slots distributed across their actual children.
 
 For a surviving source only the middle slot is present.  For a broken source
-two slots are its canonical entry-to-partner-end and source-end-to-partner-end
-connectors; no separate chord-partner charge remains.  Each slot is read with
-the orientation it actually has in its child cycle (in particular a left
-connector is already reversed), so the factorization is the direct product of
-the three optional child-side spans. -/
+the three slots are its entry connector, selected chord-partner component, and
+reversed exit connector.  The slots may lie in different children, so the
+factorization records the direct product of their actual child-side spans. -/
 structure TwoHalfDistributedFactorPlacement
     (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
