@@ -1,6 +1,5 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnFiltrationCofiber
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Hausdorff
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnFiltrationGeometry
 import Mathlib
 
 /-!
@@ -94,9 +93,9 @@ theorem rpLastCoordSq_proj (n : Nat) (x : Sphere (n + 1)) :
 
 /-- The north pole of the sphere: the last standard basis vector. -/
 def rpNorthSphere (n : Nat) : Sphere (n + 1) :=
-  ⟨elast n, by
+  ⟨affineElast n, by
     rw [mem_sphere_zero_iff_norm]
-    exact elast_norm n⟩
+    exact affineElast_norm n⟩
 
 /-- The north projective point: the class of the north pole. -/
 noncomputable def rpNorth (n : Nat) : RP (n + 1) :=
@@ -104,7 +103,7 @@ noncomputable def rpNorth (n : Nat) : RP (n + 1) :=
 
 theorem rpNorthSphere_last (n : Nat) :
     sphereLastCoord n (rpNorthSphere n) = 1 := by
-  simp [sphereLastCoord, rpNorthSphere, elast]
+  simp [sphereLastCoord, rpNorthSphere, affineElast]
 
 theorem rpLastCoordSq_rpNorth (n : Nat) :
     rpLastCoordSq n (rpNorth n) = 1 := by
@@ -159,14 +158,14 @@ theorem sphereInclusion_last_zero (n : Nat) (y : Sphere n) :
   simp [sphereLastCoord, sphereInclusion_apply_coe, inclIso_apply, inclLin_apply_last]
 
 theorem rpAffineCellSet_eq_compl_lower (n : Nat) :
-    rpAffineCellSet n = (rpLowerSubspace n)ᶜ := by
+    rpAffineCellSet n = (affineRpLowerSubspace n)ᶜ := by
   ext q
   obtain ⟨x, rfl⟩ := RP.exists_rep q
   rw [Set.mem_compl_iff, rpAffineCellSet, Set.mem_setOf_eq, rpLastCoordSq_proj,
     pow_ne_zero_iff (by norm_num)]
   constructor
   · intro hx hmem
-    rw [rpLowerSubspace_eq_image] at hmem
+    rw [affineRpLowerSubspace_eq_image] at hmem
     obtain ⟨w, ⟨y, rfl⟩, hyx⟩ := hmem
     rcases eq_or_eq_neg_of_proj_eq hyx with h | h
     · apply hx
@@ -175,11 +174,11 @@ theorem rpAffineCellSet_eq_compl_lower (n : Nat) :
       rw [show x = -(sphereInclusion n y) by rw [h, neg_neg],
         sphereLastCoord_neg, sphereInclusion_last_zero, neg_zero]
   · intro hx h0
-    exact hx (proj_mem_lowerSubspace_of_last_zero n x h0)
+    exact hx (proj_mem_affineLowerSubspace_of_last_zero n x h0)
 
 /-- The affine cell open set as the complement of the lower subspace. -/
 noncomputable def rpAffineCellOpen_alt (n : Nat) : Opens (TopCat.of (RP (n + 1))) :=
-  ⟨(rpLowerSubspace n)ᶜ, (isClosed_rpLowerSubspace n).isOpen_compl⟩
+  ⟨(affineRpLowerSubspace n)ᶜ, (isClosed_affineRpLowerSubspace n).isOpen_compl⟩
 
 theorem rpAffineCellOpen_eq_alt (n : Nat) :
     rpAffineCellOpen n = rpAffineCellOpen_alt n := by
@@ -282,4 +281,3 @@ theorem proj_restrict_overlap_isQuotientMap (n : Nat) :
     (preimage_rpAffineOverlapSet n)
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
