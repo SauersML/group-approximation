@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.RelativeRouterEnvelope
 import GroupApproximation.Algebra.WordMetric
+import GroupApproximation.GroupTheory.FiniteRelatorQuotient
 
 /-!
 # The weighted relative metric: Osin's alphabet `X ∪ U`, and the Kazhdan
@@ -785,8 +786,11 @@ theorem ambient_torsionFree (hU : IsPowerTorsionFree U) (hB : IsPowerTorsionFree
 
 /-- The relator subgroup is the normal closure of a finite set. -/
 theorem letterRelatorSubgroup_finitelyNormallyGenerated :
-    (letterRelatorSubgroup D.relators).IsFinitelyNormallyGenerated :=
-  ⟨List.prod '' D.relators, D.relators_finite.image _, rfl⟩
+    (letterRelatorSubgroup D.relators).IsFinitelyNormallyGenerated := by
+  have h := FiniteRelatorQuotient.quotientMap_ker_isFinitelyNormallyGenerated
+    (D.relators_finite.image List.prod)
+  simpa only [FiniteRelatorQuotient.quotientMap, QuotientGroup.ker_mk',
+    letterRelatorSubgroup] using h
 
 /-- **Finite presentation of the routed quotient, derived**, spending no leaf. -/
 theorem finitelyPresented [Group.IsFinitelyPresented U]
