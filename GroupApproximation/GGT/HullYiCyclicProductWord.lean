@@ -276,6 +276,48 @@ theorem isWThree_blockWord_finPeripheralWord (D : RelGenSet G (Fin (k + 1)))
     simp at hval
     omega
 
+omit [Group G] in
+/-- Splitting the finite cyclic word immediately before its last letter gives
+the prefix used by `blockWord` followed by the distinguished closing letter. -/
+theorem finPeripheralWord_eq_init_append_last {k : ℕ}
+    (a : Fin (k + 1) → G) :
+    finPeripheralWord a =
+      indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+          (fun i : Fin k ↦ a i.castSucc) ++
+        [RelLetter.comp (Fin.last k) (a (Fin.last k))] := by
+  apply List.ext_getElem?
+  intro q
+  by_cases hq : q < k
+  · have hfull := getElem?_indexedPeripheralWord id a
+      ⟨q, lt_trans hq (Nat.lt_succ_self k)⟩
+    have hpre := getElem?_indexedPeripheralWord
+      (fun i : Fin k ↦ i.castSucc) (fun i : Fin k ↦ a i.castSucc) ⟨q, hq⟩
+    rw [finPeripheralWord, hfull,
+      List.getElem?_append_left (by simpa using hq), hpre]
+    rfl
+  · by_cases hqk : q = k
+    · subst q
+      have hfull := getElem?_indexedPeripheralWord id a
+        ⟨k, Nat.lt_succ_self k⟩
+      rw [finPeripheralWord, hfull,
+        List.getElem?_append_right (by simp), length_indexedPeripheralWord]
+      have heq : (⟨k, Nat.lt_succ_self k⟩ : Fin (k + 1)) = Fin.last k :=
+        Fin.ext rfl
+      simp [heq]
+    · have hqbig : k + 1 ≤ q := by omega
+      have hleft : (finPeripheralWord a)[q]? = none := by
+        apply List.getElem?_eq_none
+        simp
+        omega
+      have hright :
+          (indexedPeripheralWord (fun i : Fin k ↦ i.castSucc)
+              (fun i : Fin k ↦ a i.castSucc) ++
+            [RelLetter.comp (Fin.last k) (a (Fin.last k))])[q]? = none := by
+        apply List.getElem?_eq_none
+        simp
+        omega
+      rw [hleft, hright]
+
 /-! ## The direct DGO 4.21(b) call site -/
 
 /-- The word consisting of `n` copies of one full cyclic peripheral run. -/
@@ -284,6 +326,29 @@ def cyclicPeripheralPowerWord {k : ℕ} (a : Fin (k + 1) → G) (n : ℕ) :
   OsinComponents.blockWord (Fin.last k)
     (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
     (a (Fin.last k)) n
+
+/-- The concrete relative word used at the 4.21(b) call site spells the
+corresponding natural power of Hull's ordered cyclic product. -/
+@[simp] theorem listVal_cyclicPeripheralPowerWord {k : ℕ}
+    (a : Fin (k + 1) → G) (n : ℕ) :
+    RelLetter.listVal (cyclicPeripheralPowerWord a n) =
+      orderedFinProduct a ^ n := by
+  rw [cyclicPeripheralPowerWord, listVal_blockWord]
+  have hsplit := congrArg RelLetter.listVal
+    (finPeripheralWord_eq_init_append_last a)
+  rw [listVal_append, listVal_finPeripheralWord,
+    OsinComponents.listVal_cons, RelLetter.listVal_nil,
+    RelLetter.val, mul_one] at hsplit
+  exact congrArg (fun x : G ↦ x ^ n) hsplit.symm
+
+/-- Reading the entire concrete cyclic path from `v` ends at `v` times the
+corresponding power of the ordered product. -/
+@[simp] theorem vertex_length_cyclicPeripheralPowerWord {k : ℕ}
+    (v : G) (a : Fin (k + 1) → G) (n : ℕ) :
+    vertex v (cyclicPeripheralPowerWord a n)
+        (cyclicPeripheralPowerWord a n).length =
+      v * orderedFinProduct a ^ n := by
+  rw [vertex_length, listVal_cyclicPeripheralPowerWord]
 
 omit [Group G] in
 @[simp] theorem length_cyclicPeripheralPowerWord {k : ℕ}
@@ -397,6 +462,71 @@ theorem cyclicSucc_componentIndex_of_consecutiveMatches
   rw [hlam, hlam1]
   apply Fin.ext
   simp [cyclicSucc, hip, hkp, Nat.add_mod]
+
+/-- The starts of a consecutive matched run on the all-peripheral cyclic word
+are consecutive natural positions, not merely strictly increasing positions. -/
+theorem componentStart_eq_add_of_consecutiveMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n K : ℕ)
+    (ip kp : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcomp : ∀ t : ℕ, t < K →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+    (hstep : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp t) (ip (t + 1))) :
+    ∀ t : ℕ, t < K → ip t = ip 0 + t := by
+  intro t ht
+  induction t with
+  | zero => simp
+  | succ t ih =>
+      have hprev : t < K := by omega
+      have hkp : kp t = ip t + 1 :=
+        isComp_succ_of_isWThree
+          (isWThree_blockWord_finPeripheralWord D hk a n)
+          (hcomp t hprev)
+      rw [eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord a
+        (hstep t (by omega)), hkp, ih hprev]
+      omega
+
+/-- A run of twice the cycle length contains a full naturally indexed cycle.
+The offset is read directly from the first component's position, so no choice
+or cyclic reindexing hypothesis is hidden in the statement. -/
+theorem exists_naturallyIndexedCycle_of_consecutiveMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n : ℕ)
+    (ip kp : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcomp : ∀ t : ℕ, t < 2 * (k + 1) →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+    (hstep : ∀ t : ℕ, t + 1 < 2 * (k + 1) →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp t) (ip (t + 1))) :
+    ∃ r : ℕ, r ≤ k + 1 ∧
+      ∀ i : Fin (k + 1), lam (r + i.val) = i := by
+  let m := k + 1
+  let r := m - ip 0 % m
+  have hm : 0 < m := by simp [m]
+  have hr : r ≤ m := Nat.sub_le _ _
+  refine ⟨r, by simpa [m] using hr, ?_⟩
+  intro i
+  have hri : r + i.val < 2 * (k + 1) := by
+    have hi := i.isLt
+    simp only [m] at hr
+    omega
+  have hstart := componentStart_eq_add_of_consecutiveMatches
+    D hk a n (2 * (k + 1)) ip kp lam hcomp hstep (r + i.val) hri
+  have hindex := componentIndex_cyclicPeripheralPowerWord a (hcomp (r + i.val) hri)
+  rw [hindex]
+  apply Fin.ext
+  change ip (r + i.val) % m = i.val
+  rw [hstart]
+  have hmod : ip 0 % m < m := Nat.mod_lt _ hm
+  have hdiv : m * (ip 0 / m) + ip 0 % m = ip 0 := Nat.div_add_mod _ _
+  have hsum : ip 0 + (r + i.val) = m * (ip 0 / m) + m + i.val := by
+    dsimp [r]
+    omega
+  rw [hsum]
+  have hi : i.val < m := by simpa [m] using i.isLt
+  simpa [Nat.add_mod] using Nat.mod_eq_of_lt hi
 
 /-- The connector labels at two consecutive matched components satisfy the
 literal endpoint recurrence.  For two cyclic words with letters `a` and `b`,
