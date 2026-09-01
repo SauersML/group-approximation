@@ -249,3 +249,4 @@
 33400729195	2026-08-31T14:07:32Z	GroupApproximation/Analysis/UniformTracialGNSTwoGauge.lean	obstruction_mem_twoNullIdeal_allTraces
 33434484203	2026-08-31T20:10:10Z	GroupApproximation/Analysis/UniformTracialTwoNullIdeal.lean	obstruction_mem_twoNullIdeal_not_mem_nullIdeal
 33452571643	2026-08-31T23:54:27Z	GroupApproximation/Sofic/CliffordLampGraphFreeSubgroup.lean	ReducedWord.of_cons
+33472958314	2026-09-01T05:17:09Z	GroupApproximation/Sofic/CliffordLampGraphLocalFiniteness.lean	twoLamp_left
