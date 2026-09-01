@@ -94,7 +94,7 @@ theorem coneLE_finiteMeasureConePoint_iff [Nonempty K]
     obtain ⟨δ, rfl⟩ := (mem_coneOver_probSimplex_iff c).1 hc
     have hfirst := congrArg Prod.fst heq
     change ν = μ + δ at hfirst
-    rw [← hfirst]
+    rw [hfirst, FiniteMeasure.toMeasure_add]
     exact Measure.le_add_right le_rfl
   · intro hμν
     let δ := finiteMeasureDifference μ ν
@@ -108,7 +108,7 @@ theorem coneLE_finiteMeasureConePoint_iff [Nonempty K]
     apply Prod.ext
     · exact hsum.symm
     · change ν.mass = μ.mass + δ.mass
-      exact congrArg FiniteMeasure.mass hsum |>.symm
+      rw [← hsum, mass_add_eq]
 
 /-- **Unconditional Choquet theorem.**  The probability measures on a nonempty
 measurable space form a Choquet simplex in the lattice-cone sense used by the
