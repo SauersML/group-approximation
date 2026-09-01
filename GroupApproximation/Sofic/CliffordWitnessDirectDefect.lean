@@ -152,9 +152,9 @@ theorem map_sign_eq_one_of_isOperatorMF_target
 
 def PrintedMapSignEqOneOfIsOperatorMFTarget : Prop :=
   ∀ (Γ : Type) [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
-    [Countable Γ] {a : Γ} (ha : a ∉ Set.range α)
-    (hT : HasKazhdanPropertyT.{0, 0} Γ) (M : Type v) [Group M]
-    (hM : IsOperatorMF M) (f : Ambient α hα →* M),
+    [Countable Γ] {a : Γ} (_ : a ∉ Set.range α)
+    (_ : HasKazhdanPropertyT.{0, 0} Γ) (M : Type v) [Group M]
+    (_ : IsOperatorMF M) (f : Ambient α hα →* M),
     f (signAmbient α hα) = 1
 
 theorem manuscriptMapSignEqOneOfIsOperatorMFTarget :
@@ -182,8 +182,8 @@ theorem not_isOperatorMF {a : Γ} (ha : a ∉ Set.range α)
 
 def PrintedCliffordWitnessNotIsOperatorMF : Prop :=
   ∀ (Γ : Type) [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
-    {a : Γ} (ha : a ∉ Set.range α) [Countable Γ]
-    (hT : HasKazhdanPropertyT.{0, 0} Γ),
+    {a : Γ} (_ : a ∉ Set.range α) [Countable Γ]
+    (_ : HasKazhdanPropertyT.{0, 0} Γ),
     ¬ IsOperatorMF (Ambient α hα)
 
 theorem manuscriptCliffordWitnessNotIsOperatorMF :
