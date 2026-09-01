@@ -253,3 +253,4 @@
 33496346505	2026-09-01T10:14:49Z	GroupApproximation/Sofic/CliffordLampGroup.lean	sign_sq
 33522766043	2026-09-01T14:58:28Z	GroupApproximation/Sofic/CliffordLampPermanence.lean	applies
 33544526360	2026-09-01T18:36:11Z	GroupApproximation/Sofic/CliffordPhaseExtraction.lean	doubleCliffordWord_add_one_factorization
+33560926063	2026-09-01T21:25:34Z	GroupApproximation/Sofic/CliffordWitnessDirectDefect.lean	stable_mem_compressionSet
