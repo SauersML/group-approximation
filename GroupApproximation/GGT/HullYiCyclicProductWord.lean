@@ -2,6 +2,7 @@ import GroupApproximation.GGT.HullYiCyclicProductAssembly
 import GroupApproximation.GGT.HullYiCyclicOrientation
 import GroupApproximation.GGT.DGOLemma421Statement
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
+import GroupApproximation.GGT.OsinTheorem54SepCommIndex
 
 /-!
 # The relative word for Hull's cyclic `yi` products
@@ -34,6 +35,244 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 universe u w
 
 variable {G : Type u} [Group G]
+
+/-! ## Reversal preserves the DGO word conditions -/
+
+/-- The optional letter at a reversed position is the inverse of the
+corresponding letter counted from the end. -/
+theorem getElem?_revWord_at {Λ : Type w} (word : List (RelLetter G Λ))
+    {i : ℕ} (hi : i < (revWord word).length) :
+    (revWord word)[i]? = some
+      (invLetter (word[word.length - 1 - i]'(by
+        rw [length_revWord] at hi
+        omega))) := by
+  rw [List.getElem?_eq_getElem hi]
+  exact congrArg some (getElem_revWord word hi (by
+    rw [length_revWord] at hi
+    omega))
+
+/-- Reversing a word preserves (W1). -/
+theorem isWOne_revWord {Λ : Type w} {word : List (RelLetter G Λ)}
+    (hW1 : WWord.IsWOne word) : WWord.IsWOne (revWord word) := by
+  intro i x y hx hy
+  have hi1 : i + 1 < (revWord word).length :=
+    lt_length_of_getElem?_eq_some hy
+  have hi : i < (revWord word).length := by omega
+  have hrevI := getElem?_revWord_at word hi
+  have hrevI1 := getElem?_revWord_at word hi1
+  rw [hrevI] at hx
+  rw [hrevI1] at hy
+  let r := word.length - 2 - i
+  have hr : r < word.length := by
+    rw [length_revWord] at hi1
+    dsimp [r]
+    omega
+  have hr1 : r + 1 < word.length := by
+    rw [length_revWord] at hi1
+    dsimp [r]
+    omega
+  have hidx : word.length - 1 - i = r + 1 := by
+    rw [length_revWord] at hi1
+    dsimp [r]
+    omega
+  have hidx1 : word.length - 1 - (i + 1) = r := by
+    rw [length_revWord] at hi1
+    dsimp [r]
+    omega
+  cases hci : word[word.length - 1 - i]'(by
+      rw [length_revWord] at hi
+      omega) with
+  | base z =>
+      cases hci1 : word[word.length - 1 - (i + 1)]'(by
+          rw [length_revWord] at hi1
+          omega) with
+      | base z1 =>
+          have hz : z⁻¹ = x := by simpa [hci, invLetter] using hx
+          have hz1 : z1⁻¹ = y := by simpa [hci1, invLetter] using hy
+          have hopt : word[r]? = some (RelLetter.base z1) := by
+            rw [List.getElem?_eq_getElem hr]
+            apply congrArg some
+            exact (getElem_congr_idx hidx1.symm).trans hci1
+          have hopt1 : word[r + 1]? = some (RelLetter.base z) := by
+            rw [List.getElem?_eq_getElem hr1]
+            apply congrArg some
+            exact (getElem_congr_idx hidx.symm).trans hci
+          exact hW1 r z1 z hopt hopt1
+      | comp mu g => simp [hci1, invLetter] at hy
+  | comp lam g => simp [hci, invLetter] at hx
+
+/-- Reversing a word preserves (W2) when the relative base is symmetric. -/
+theorem isWTwo_revWord {Λ : Type w} (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {C : ℕ}
+    {word : List (RelLetter G Λ)} (hW2 : WWord.IsWTwo D C word) :
+    WWord.IsWTwo D C (revWord word) := by
+  intro i lam h hi
+  have hir : i < (revWord word).length := lt_length_of_getElem?_eq_some hi
+  have hrev := getElem?_revWord_at word hir
+  rw [hrev] at hi
+  let r := word.length - 1 - i
+  have hr : r < word.length := by
+    rw [length_revWord] at hir
+    dsimp [r]
+    omega
+  cases hc : word[word.length - 1 - i]'(by
+      rw [length_revWord] at hir
+      omega) with
+  | base x => simp [hc, invLetter] at hi
+  | comp mu g =>
+      simp [hc, invLetter] at hi
+      obtain ⟨hmu, hg⟩ := hi
+      have hopt : word[r]? = some (RelLetter.comp mu g) := by
+        rw [List.getElem?_eq_getElem hr]
+        apply congrArg some
+        exact (getElem_congr_idx (show r = word.length - 1 - i from rfl)).trans hc
+      have hdeep := hW2 r mu g hopt
+      rw [← hmu, ← hg]
+      intro hinv
+      exact hdeep (by
+        simpa using relBall_inv D mu hsymm hinv)
+
+/-- Reversing a word preserves (W3).  In the three-letter clause the
+separator is inverted and the two peripheral indices are exchanged; subgroup
+closure under inversion transports the exceptional membership clause. -/
+theorem isWThree_revWord {Λ : Type w} (D : RelGenSet G Λ)
+    {word : List (RelLetter G Λ)} (hW3 : WWord.IsWThree D word) :
+    WWord.IsWThree D (revWord word) := by
+  constructor
+  · intro i lam mu h₁ h₂ hi hi₁
+    have hi₁lt : i + 1 < (revWord word).length :=
+      lt_length_of_getElem?_eq_some hi₁
+    have hilt : i < (revWord word).length := by omega
+    have hrev := getElem?_revWord_at word hilt
+    have hrev₁ := getElem?_revWord_at word hi₁lt
+    rw [hrev] at hi
+    rw [hrev₁] at hi₁
+    let r := word.length - 2 - i
+    have hr : r < word.length := by
+      rw [length_revWord] at hi₁lt
+      dsimp [r]
+      omega
+    have hr₁ : r + 1 < word.length := by
+      rw [length_revWord] at hi₁lt
+      dsimp [r]
+      omega
+    have hidx : word.length - 1 - i = r + 1 := by
+      rw [length_revWord] at hi₁lt
+      dsimp [r]
+      omega
+    have hidx₁ : word.length - 1 - (i + 1) = r := by
+      rw [length_revWord] at hi₁lt
+      dsimp [r]
+      omega
+    cases hc : word[word.length - 1 - i]'(by
+        rw [length_revWord] at hilt
+        omega) with
+    | base x => simp [hc, invLetter] at hi
+    | comp lam' g₁ =>
+        cases hc₁ : word[word.length - 1 - (i + 1)]'(by
+            rw [length_revWord] at hi₁lt
+            omega) with
+        | base x => simp [hc₁, invLetter] at hi₁
+        | comp mu' g₂ =>
+            have hopt : word[r]? = some (RelLetter.comp mu' g₂) := by
+              rw [List.getElem?_eq_getElem hr]
+              apply congrArg some
+              exact (getElem_congr_idx hidx₁.symm).trans hc₁
+            have hopt₁ : word[r + 1]? = some (RelLetter.comp lam' g₁) := by
+              rw [List.getElem?_eq_getElem hr₁]
+              apply congrArg some
+              exact (getElem_congr_idx hidx.symm).trans hc
+            have hne := hW3.1 r mu' lam' g₂ g₁ hopt hopt₁
+            simp [hc, hc₁, invLetter] at hi hi₁
+            rw [← hi.1, ← hi₁.1]
+            exact fun h => hne h.symm
+  · intro i lam mu h₁ h₂ x hi hi₁ hi₂
+    have hi₂lt : i + 2 < (revWord word).length :=
+      lt_length_of_getElem?_eq_some hi₂
+    have hi₁lt : i + 1 < (revWord word).length := by omega
+    have hilt : i < (revWord word).length := by omega
+    have hrev := getElem?_revWord_at word hilt
+    have hrev₁ := getElem?_revWord_at word hi₁lt
+    have hrev₂ := getElem?_revWord_at word hi₂lt
+    rw [hrev] at hi
+    rw [hrev₁] at hi₁
+    rw [hrev₂] at hi₂
+    let r := word.length - 3 - i
+    have hr : r < word.length := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    have hr₁ : r + 1 < word.length := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    have hr₂ : r + 2 < word.length := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    have hidx : word.length - 1 - i = r + 2 := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    have hidx₁ : word.length - 1 - (i + 1) = r + 1 := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    have hidx₂ : word.length - 1 - (i + 2) = r := by
+      rw [length_revWord] at hi₂lt
+      dsimp [r]
+      omega
+    cases hc : word[word.length - 1 - i]'(by
+        rw [length_revWord] at hilt
+        omega) with
+    | base y => simp [hc, invLetter] at hi
+    | comp lam' g₁ =>
+        cases hc₁ : word[word.length - 1 - (i + 1)]'(by
+            rw [length_revWord] at hi₁lt
+            omega) with
+        | comp nu g => simp [hc₁, invLetter] at hi₁
+        | base y =>
+            cases hc₂ : word[word.length - 1 - (i + 2)]'(by
+                rw [length_revWord] at hi₂lt
+                omega) with
+            | base z => simp [hc₂, invLetter] at hi₂
+            | comp mu' g₂ =>
+                have hopt : word[r]? = some (RelLetter.comp mu' g₂) := by
+                  rw [List.getElem?_eq_getElem hr]
+                  apply congrArg some
+                  exact (getElem_congr_idx hidx₂.symm).trans hc₂
+                have hopt₁ : word[r + 1]? = some (RelLetter.base y) := by
+                  rw [List.getElem?_eq_getElem hr₁]
+                  apply congrArg some
+                  exact (getElem_congr_idx hidx₁.symm).trans hc₁
+                have hopt₂ : word[r + 2]? = some (RelLetter.comp lam' g₁) := by
+                  rw [List.getElem?_eq_getElem hr₂]
+                  apply congrArg some
+                  exact (getElem_congr_idx hidx.symm).trans hc
+                have hout := hW3.2 r mu' lam' g₂ g₁ y hopt hopt₁ hopt₂
+                simp [hc, hc₁, hc₂, invLetter] at hi hi₁ hi₂
+                rcases hout with hne | hnot
+                · left
+                  intro hlm
+                  apply hne
+                  calc
+                    mu' = mu := hi₂.1
+                    _ = lam := hlm.symm
+                    _ = lam' := hi.1.symm
+                · by_cases hlm : lam = mu
+                  · right
+                    intro hx
+                    have hx' : x ∈ D.fam mu' := by
+                      rw [hi₂.1, ← hlm]
+                      exact hx
+                    have hinv := (D.fam mu').inv_mem hx'
+                    have hyEq : y = x⁻¹ := by
+                      calc
+                        y = (y⁻¹)⁻¹ := (inv_inv y).symm
+                        _ = x⁻¹ := congrArg Inv.inv hi₁
+                    apply hnot
+                    rwa [hyEq]
+                  · exact Or.inl hlm
 
 /-- A finite relative word whose `i`-th letter is placed in the peripheral
 subgroup `index i`. -/
