@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullYiCyclicProductAssembly
+import GroupApproximation.GGT.HullYiCyclicOrientation
 import GroupApproximation.GGT.DGOLemma421Statement
 
 /-!
@@ -354,6 +355,48 @@ theorem componentIndex_cyclicPeripheralPowerWord {k n i q : ℕ}
   rw [hexact] at hg
   simp only [Option.some.injEq, RelLetter.comp.injEq] at hg
   exact hg.1.symm
+
+omit [Group G] in
+/-- Since the cyclic peripheral word contains no base letters, the separator
+between two consecutive distinguished components supplied by DGO 4.21(b)
+cannot be an `X`-edge: it is a trivial path. -/
+theorem eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord {k n q i : ℕ}
+    (a : Fin (k + 1) → G)
+    (h : BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n) q i) :
+    i = q := by
+  rcases h with h | ⟨x, hi, hx⟩
+  · exact h
+  · exact False.elim
+      (getElem?_blockWord_ne_base (Fin.last k)
+        (getElem?_indexedPeripheralWord_ne_base
+          (fun r : Fin k ↦ r.castSucc) (fun r : Fin k ↦ a r.castSucc))
+        (a (Fin.last k)) n q x (by
+          simpa [cyclicPeripheralPowerWord] using hx))
+
+/-- Consecutive components supplied by DGO 4.21(b) on the cyclic peripheral
+word advance through the peripheral factors in their natural cyclic order. -/
+theorem cyclicSucc_componentIndex_of_consecutiveMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n K : ℕ)
+    (ip kp : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcomp : ∀ t : ℕ, t < K →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+    (hstep : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp t) (ip (t + 1))) :
+    ∀ t : ℕ, t + 1 < K → lam (t + 1) = cyclicSucc (lam t) := by
+  intro t ht
+  have hkp : kp t = ip t + 1 :=
+    isComp_succ_of_isWThree
+      (isWThree_blockWord_finPeripheralWord D hk a n)
+      (hcomp t (by omega))
+  have hip : ip (t + 1) = kp t :=
+    eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord a (hstep t ht)
+  have hlam := componentIndex_cyclicPeripheralPowerWord a (hcomp t (by omega))
+  have hlam1 := componentIndex_cyclicPeripheralPowerWord a (hcomp (t + 1) ht)
+  rw [hlam, hlam1]
+  apply Fin.ext
+  simp [cyclicSucc, hip, hkp, Nat.add_mod]
 
 /-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
 
