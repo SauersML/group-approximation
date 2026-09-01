@@ -10,7 +10,7 @@ import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
-import GroupApproximation.GGT.HullSCRelatorSeparation2Published
+import GroupApproximation.GGT.HullSCRelatorSeparation2ExactPublished
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 import GroupApproximation.GGT.HullSCLemma49PowerDiagram
 import GroupApproximation.GGT.HullSCFreeProductFactor
@@ -264,7 +264,7 @@ family. -/
 theorem hullTheorem51 : HullSC.HullQuotientStatement₂Published.{0} := by
   sorry
 
-/-- **Open proof.**  Hull, §6 over a pair: the relator can be chosen.
+/-- **Hull, §6 over a pair: the relator can be chosen.**
 For any parameters `ε, μ, ρ` there is `u ∈ N` and a published `C₁` family over
 `{H₀, H₁}` containing a word spelling `t⁻¹u` — Hull takes
 `u = h₀^{n₁} h₁^{n₂} ⋯` alternating between two independent loxodromics of `N`
@@ -290,22 +290,16 @@ finite-avoidance construction in
 list jointly with the deep-letter, difference, pure-tail, and through-base-tail
 exclusions.  That chosen list now feeds the every-edge geodesic-bigon count in
 `ExactRelatorDesign₂.blockCountAt_one`, whose fixed constant is independent of
-the list, and must still feed the extra `IsLemma49Input` fields; no projection
-to the weaker predicate is accepted by the one-step seam.
-
-Two of those extra fields are already proved bookkeeping.
-`RelWord.finite_componentLetters_symmetrized` proves strong boundedness, and
-`RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord` proves
-the two-sided published-piece estimate on distinct symmetrized words from the
-existing corrected piece estimate in both directions.  The remaining piece
-case is exactly two prefixes of the same word, alongside the prime-piece and
-`(1/4,1)` quasi-geodesic clauses.
+the list.  `HullSC.hullRelatorStatement₂OfBaseLetterPublished_exact` then
+proves the `(1/4,1)` quasi-geodesic, same-word published-piece, distinct-word
+published-piece, prime-piece, and strong-boundedness clauses and assembles the
+full published `IsLemma49Input`; no projection to the weaker predicate is used.
 
 The seam adjoins `t^{±1}` first and applies both halves to that enlarged core,
 so no claim over the original relative metric remains in this row. -/
 theorem hullSection6Relator :
     HullSC.HullRelatorStatement₂OfBaseLetterPublished.{0} := by
-  sorry
+  exact HullSC.hullRelatorStatement₂OfBaseLetterPublished_exact
 
 /-- **Hull's Theorem 7.1 at `m = 1`, over the pair.**
 
