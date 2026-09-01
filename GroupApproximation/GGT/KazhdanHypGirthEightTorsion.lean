@@ -13,7 +13,8 @@ lies in a group with an aspherical presentation, then some relator has the
 form `z ^ q`, with `s` dividing `q`, and the element is conjugate to
 `z ^ (q / s)`.  The statements are reproduced before Theorem A in Karol
 Duda, *Torsion subgroups of small cancellation groups*, arXiv:2112.01912,
-Section 9 (`all3.tex`, lines 1234--1249 in the fetched source).
+section `Proof of Theorem A` (`all3.tex`, lines 1234--1249 in the fetched
+source).
 
 This file proves the algebraic part needed for a positive triangular
 presentation:
