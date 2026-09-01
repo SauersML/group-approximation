@@ -48,6 +48,60 @@ theorem quotient_isFinitelyPresented [Group.IsFinitelyPresented G]
   Group.IsFinitelyPresented.of_surjective (quotientMap R)
     (quotientMap_surjective R) (quotientMap_ker_isFinitelyNormallyGenerated hR)
 
+/-! ## Finite tied-relator quotients -/
+
+section TiedRelators
+
+variable (H : Subgroup G) (t : Finset G)
+
+/-- For each prescribed element, choose the element of `H` to which it is to
+be tied.  Using the subtype of `t` makes the family finite by construction;
+using the subtype `H` makes membership of every chosen target definitional. -/
+abbrev TieChoice := {x : G // x ∈ t} → H
+
+/-- The literal relators `x hₓ⁻¹`, one for each prescribed `x`. -/
+def tiedRelators (route : TieChoice H t) : Set G :=
+  Set.range fun x : {x : G // x ∈ t} =>
+    (x : G) * ((route x : H) : G)⁻¹
+
+/-- The tied relator family is finite, without any finiteness assumption on
+the ambient group or on `H`. -/
+theorem tiedRelators_finite (route : TieChoice H t) :
+    (tiedRelators H t route).Finite := by
+  classical
+  exact Set.finite_range _
+
+/-- The canonical quotient identifies every prescribed element with its
+chosen target in `H`. -/
+theorem quotientMap_tied_eq (route : TieChoice H t) (x : {x : G // x ∈ t}) :
+    quotientMap (tiedRelators H t route) (x : G) =
+      quotientMap (tiedRelators H t route) ((route x : H) : G) := by
+  have hrel : (x : G) * ((route x : H) : G)⁻¹ ∈
+      Subgroup.normalClosure (tiedRelators H t route) :=
+    Subgroup.subset_normalClosure (Set.mem_range_self x)
+  have hone : quotientMap (tiedRelators H t route)
+      ((x : G) * ((route x : H) : G)⁻¹) = 1 :=
+    (QuotientGroup.eq_one_iff _).mpr hrel
+  simpa only [map_mul, map_inv, mul_inv_eq_one] using hone
+
+/-- Hence every prescribed element lands in the image of `H`.  This is the
+algebraic clause of Osin 2.4(2); all geometry is isolated in proving that the
+same finite relators also preserve the peripheral family and suitability. -/
+theorem quotientMap_tied_mem_map (route : TieChoice H t)
+    (x : {x : G // x ∈ t}) :
+    quotientMap (tiedRelators H t route) (x : G) ∈
+      H.map (quotientMap (tiedRelators H t route)) := by
+  refine ⟨((route x : H) : G), (route x).property, ?_⟩
+  exact (quotientMap_tied_eq H t route x).symm
+
+/-- The tied quotient has the finite-kernel clause used by the finite-
+presentation addendum. -/
+theorem tiedQuotient_ker_isFinitelyNormallyGenerated (route : TieChoice H t) :
+    (quotientMap (tiedRelators H t route)).ker.IsFinitelyNormallyGenerated :=
+  quotientMap_ker_isFinitelyNormallyGenerated (tiedRelators_finite H t route)
+
+end TiedRelators
+
 /-- Avoiding the relator normal closure is the concrete protected-pair
 certificate for the finite-relator quotient. -/
 theorem protectedPair_injective {R : Set G} {s : G}
