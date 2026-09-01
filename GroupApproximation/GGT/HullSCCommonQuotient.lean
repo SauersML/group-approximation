@@ -170,7 +170,8 @@ theorem hullCommonQuotient_of_tower (htower : HullTowerStatement.{0})
   -- a finite generating family of `Γ`
   obtain ⟨m, t, htop⟩ := exists_finite_generating_family I.Gamma
   -- **First application**: absorb all of `Γ` into the image of `E`.
-  obtain ⟨D₁⟩ := htower (S := fun _ : Fin 1 => I.emb'.range) I.alphabet
+  obtain ⟨D₁⟩ := htower (S := fun _ : Fin 1 => I.emb'.range)
+    I.torsionFree I.alphabet
     I.suitable (fun _ => I.suitable') t R₁
   have hq₁top : I.emb.range.map D₁.step.q = ⊤ :=
     map_eq_top_of_generators_mem D₁.step.q D₁.step.surjective htop D₁.mem_map
@@ -189,7 +190,7 @@ theorem hullCommonQuotient_of_tower (htower : HullTowerStatement.{0})
   -- a finite generating family of `Q₁`
   obtain ⟨m₂, t₂, htop₂⟩ := exists_finite_generating_family D₁.step.Q
   -- **Second application**: absorb all of `Q₁` into the image of `H₀`.
-  obtain ⟨D₂⟩ := htower (S := fun j : Fin 0 => Fin.elim0 j) D₁.step.hullSet
+  obtain ⟨D₂⟩ := htower (S := fun j : Fin 0 => Fin.elim0 j) hQ₁tf D₁.step.hullSet
     (D₁.step.suitable_map_family 0) (fun j : Fin 0 => Fin.elim0 j) t₂ R₂
   have hq₂top : (I.emb'.range.map D₁.step.q).map D₂.step.q = ⊤ :=
     map_eq_top_of_generators_mem D₂.step.q D₂.step.surjective htop₂ D₂.mem_map
@@ -312,7 +313,8 @@ theorem hullCommonQuotient_of_tower_corrected (htower : HullTowerStatement.{0})
   -- a finite generating family of `Γ`
   obtain ⟨m, t, htop⟩ := exists_finite_generating_family I.Gamma
   -- **First application**: absorb all of `Γ` into the image of `E`.
-  obtain ⟨D₁⟩ := htower (S := fun _ : Fin 1 => I.emb'.range) I.alphabet
+  obtain ⟨D₁⟩ := htower (S := fun _ : Fin 1 => I.emb'.range)
+    I.torsionFree I.alphabet
     I.suitable (fun _ => I.suitable') t R₁
   have hq₁top : I.emb.range.map D₁.step.q = ⊤ :=
     map_eq_top_of_generators_mem D₁.step.q D₁.step.surjective htop D₁.mem_map
@@ -331,7 +333,7 @@ theorem hullCommonQuotient_of_tower_corrected (htower : HullTowerStatement.{0})
   -- a finite generating family of `Q₁`
   obtain ⟨m₂, t₂, htop₂⟩ := exists_finite_generating_family D₁.step.Q
   -- **Second application**: absorb all of `Q₁` into the image of `H₀`.
-  obtain ⟨D₂⟩ := htower (S := fun j : Fin 0 => Fin.elim0 j) D₁.step.hullSet
+  obtain ⟨D₂⟩ := htower (S := fun j : Fin 0 => Fin.elim0 j) hQ₁tf D₁.step.hullSet
     (D₁.step.suitable_map_family 0) (fun j : Fin 0 => Fin.elim0 j) t₂ R₂
   have hq₂top : (I.emb'.range.map D₁.step.q).map D₂.step.q = ⊤ :=
     map_eq_top_of_generators_mem D₂.step.q D₂.step.surjective htop₂ D₂.mem_map

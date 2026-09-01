@@ -55,7 +55,7 @@ theorem hullOneStep_of_quotient₂_of_baseLetter
     (hEmb : ExistsHypEmbeddedConeOff₂.{u})
     (hrelator : HullRelatorStatement₂OfBaseLetter.{u})
     (hquot : HullQuotientStatement₂.{u}) : HullOneStepStatement.{u} := by
-  intro G _ A N hN k S hS t R
+  intro G _ _hG A N hN k S hS t R
   obtain ⟨E⟩ := nonempty_hypEmbeddedCore₂_of_coneOff hEmb A hN
   let E' : HypEmbeddedCore₂ A N := E.adjoinPair t
   have ht : t⁻¹ ∈ E'.rel.base := mem_base_adjoinPair E t

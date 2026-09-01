@@ -310,7 +310,7 @@ theorem saturation {G : Type u} [Group G] [Group.IsFinitelyPresented G]
   -- "Apply Theorem `thm:hull` to `N₀` with `t₁, …, t_m` a finite generating set
   -- of `G` and with the set `F`."
   obtain ⟨m, t, htop⟩ := exists_finite_generating_family G
-  obtain ⟨⟨H, hkerNG⟩⟩ := hHull.smallCancellation A hsuit₀ t hF
+  obtain ⟨⟨H, hkerNG⟩⟩ := hHull.smallCancellation hG A hsuit₀ t hF
   -- The display `Q = ⟨q(t₁), …, q(t_m)⟩ ≤ q(N₀) ≤ q(N) ≤ Q`.
   have hN₀top : (Subgroup.closure ({h₁, h₂} : Set G)).map H.q = ⊤ :=
     map_eq_top_of_generators_mem H.q H.surjective htop H.mem_map

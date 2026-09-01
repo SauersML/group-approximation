@@ -61,7 +61,7 @@ theorem hullOneStep_of_published₂
     (hrelator : HullRelatorStatement₂OfBaseLetterPublished.{u})
     (hquot : HullQuotientStatement₂Published.{u}) :
     HullOneStepStatement.{u} := by
-  intro G _ A N hN k S hS t R
+  intro G _ _hG A N hN k S hS t R
   obtain ⟨E⟩ := nonempty_hypEmbeddedCore₂_of_coneOff hEmb A hN
   let E' : HypEmbeddedCore₂ A N := E.adjoinPair t
   have ht : t⁻¹ ∈ E'.rel.base := mem_base_adjoinPair E t

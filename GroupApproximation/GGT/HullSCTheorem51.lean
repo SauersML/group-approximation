@@ -298,7 +298,7 @@ every `m`, and with `HullSC.hullCommonQuotient_of_tower_corrected` it closes
 Hull's Corollary 7.4. -/
 theorem hullOneStep_of_theorem51 (hEmb : ExistsHypEmbeddedInSuitable.{u})
     (h51 : HullTheorem51Statement.{u}) : HullOneStepStatement.{u} := by
-  intro G _ A N hN k S hS t R
+  intro G _ _hG A N hN k S hS t R
   obtain ⟨E⟩ := hEmb A hN
   obtain ⟨u, huN, ⟨D⟩⟩ := h51 A N E hN S hS t R
   have hrel : D.q (t⁻¹ * u) = 1 := by

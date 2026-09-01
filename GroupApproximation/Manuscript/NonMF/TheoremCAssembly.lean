@@ -339,12 +339,13 @@ and this statement is proved in `GGT/HullSC*.lean`:
   injectivity-radius form turned into the finite-set form. -/
 theorem hullTheorem71 :
     ∀ {G : Type} [Group G] [IsAcylindricallyHyperbolic G]
-      (A : HullGeneratingSet G) {N : Subgroup G}, Suitable A.alphabet N →
+      (_hG : IsPowerTorsionFree G) (A : HullGeneratingSet G) {N : Subgroup G},
+        Suitable A.alphabet N →
         ∀ {m : ℕ} (t : Fin m → G) {F : Set G}, F.Finite →
           Nonempty (HullCorrectedInputs.HullQuotientNG N t F) := by
-  intro G _ _ A N hN m t F hF
+  intro G _ _ hG A N hN m t F hF
   exact HullCorrectedInputs.smallCancellation_of_ballFormNG
-    (HullSC.hullBallFormNG_of_oneStep hullOneStep) A hN t hF
+    (HullSC.hullBallFormNG_of_oneStep hullOneStep) hG A hN t hF
 
 /-- **Osin, *Acylindrically hyperbolic groups*, Lemma 7.1, proved**
 (`GGT.Elementary.osinLemma71_closed`: the Morse theorem, the common-power

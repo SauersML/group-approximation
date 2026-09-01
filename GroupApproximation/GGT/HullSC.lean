@@ -459,14 +459,16 @@ cone-off of `Γ(G,A)` along the cosets of `E(h₁)`.  Then `q(t) = q(u) ∈ q(N)
 and `ker q = ⟨⟨W⟩⟩` are true by construction, and the remaining clauses are
 the conclusions of Theorem 5.1. -/
 def HullOneStepStatement : Prop :=
-  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
+  ∀ {G : Type u} [Group G], IsPowerTorsionFree G →
+    ∀ (A : HullGeneratingSet G) {N : Subgroup G},
     Suitable A.alphabet N → ∀ {k : ℕ} {S : Fin k → Subgroup G},
       (∀ j : Fin k, Suitable A.alphabet (S j)) → ∀ (t : G) (R : ℕ),
         Nonempty (HullTower A N S (fun _ : Fin 1 => t) R)
 
 /-- **Hull, Theorem 7.1 for every `m`.** -/
 def HullTowerStatement : Prop :=
-  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
+  ∀ {G : Type u} [Group G], IsPowerTorsionFree G →
+    ∀ (A : HullGeneratingSet G) {N : Subgroup G},
     Suitable A.alphabet N → ∀ {k : ℕ} {S : Fin k → Subgroup G},
       (∀ j : Fin k, Suitable A.alphabet (S j)) → ∀ {m : ℕ} (t : Fin m → G)
         (R : ℕ), Nonempty (HullTower A N S t R)
@@ -484,13 +486,14 @@ in the `R`-ball of the quotient's Cayley graph at the same radius.  The kernels
 compose by `ker_comp_eq`, one new normal generator per step. -/
 theorem hullTower_of_oneStep (h : HullOneStepStatement.{u}) :
     ∀ (m : ℕ) {G : Type u} [Group G] (A : HullGeneratingSet G)
-      {N : Subgroup G}, Suitable A.alphabet N → ∀ {k : ℕ}
+      (_hG : IsPowerTorsionFree G) {N : Subgroup G},
+        Suitable A.alphabet N → ∀ {k : ℕ}
         {S : Fin k → Subgroup G}, (∀ j : Fin k, Suitable A.alphabet (S j)) →
           ∀ (t : Fin m → G) (R : ℕ), Nonempty (HullTower A N S t R) := by
   intro m
   induction m with
   | zero =>
-      intro G _ A N hN k S hS t R
+      intro G _ A _hG N hN k S hS t R
       have hbot : Subgroup.normalClosure ((∅ : Finset G) : Set G) = ⊥ := by
         rw [Finset.coe_empty]
         exact le_antisymm
@@ -520,12 +523,14 @@ theorem hullTower_of_oneStep (h : HullOneStepStatement.{u}) :
             = Subgroup.normalClosure ((∅ : Finset G) : Set G)
           rw [hker, hbot] }⟩
   | succ m ih =>
-      intro G _ A N hN k S hS t R
+      intro G _ A hG N hN k S hS t R
       classical
-      obtain ⟨s₁⟩ := h A hN hS (t 0) R
+      obtain ⟨s₁⟩ := h hG A hN hS (t 0) R
+      have hQ₁ : IsPowerTorsionFree s₁.step.Q :=
+        torsionFree_of_finiteOrder_lift hG s₁.step.q s₁.step.finiteOrder_lift
       obtain ⟨s₂⟩ := ih (N := N.map s₁.step.q)
         (S := fun j => (S j).map s₁.step.q) s₁.step.hullSet
-        s₁.step.suitable_map s₁.step.suitable_map_family
+        hQ₁ s₁.step.suitable_map s₁.step.suitable_map_family
         (fun i : Fin m => s₁.step.q (t i.succ)) R
       -- the composite quotient
       have hmapmap : (N.map s₁.step.q).map s₂.step.q
@@ -584,8 +589,8 @@ theorem hullTower_of_oneStep (h : HullOneStepStatement.{u}) :
 /-- **Hull's Theorem 7.1 for every `m`, from the one-relator case.** -/
 theorem hullTowerStatement_of_oneStep (h : HullOneStepStatement.{u}) :
     HullTowerStatement.{u} := by
-  intro G _ A N hN k S hS m t R
-  exact hullTower_of_oneStep h m A hN hS t R
+  intro G _ hG A N hN k S hS m t R
+  exact hullTower_of_oneStep h m A hG hN hS t R
 
 /-! ## The published ball form -/
 
@@ -599,8 +604,8 @@ finite-set form `HullInputsCorrected.smallCancellation` records, and
 here. -/
 theorem hullBallFormNG_of_tower (h : HullTowerStatement.{u}) :
     Manuscript.NonMF.HullCorrectedInputs.HullBallFormStatementNG.{u} := by
-  intro G _ _ A N hN m t R
-  obtain ⟨D⟩ := h (k := 0) (S := fun j : Fin 0 => Fin.elim0 j) A hN
+  intro G _ _ hG A N hN m t R
+  obtain ⟨D⟩ := h (k := 0) (S := fun j : Fin 0 => Fin.elim0 j) hG A hN
     (fun j : Fin 0 => Fin.elim0 j) t R
   obtain ⟨T, hTcard, hTker⟩ := D.kerNormallyGenerated
   exact ⟨{ quotient :=
