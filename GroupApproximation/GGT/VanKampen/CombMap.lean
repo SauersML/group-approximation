@@ -184,6 +184,8 @@ noncomputable def faceDegree (M : CombMap) (f : M.Face) : ℕ :=
 theorem sum_orbitDegree {D : Type u} [Fintype D] (p : Perm D) :
     ∑ o : Orbit p, orbitDegree p o = Nat.card D := by
   classical
+  change (∑ o : Orbit p,
+    Nat.card {d : D // (Quotient.mk'' d : Orbit p) = o}) = Nat.card D
   rw [← Nat.card_sigma]
   exact Nat.card_congr (Equiv.sigmaFiberEquiv
     (fun d : D => (Quotient.mk'' d : Orbit p)))
