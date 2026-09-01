@@ -60,6 +60,43 @@ end HalfGap
 
 namespace BalancedSplitData
 
+/-- A first-half child traverses the retained chord forwards exactly when it
+is an interior child whose next partner lies before its previous partner.
+Boundary children traverse back toward the corresponding chord endpoint. -/
+noncomputable def firstGapRunsForward
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount) : Prop :=
+  match HalfGap.previousEntry B.brokenAssignment.index.first j,
+      HalfGap.nextEntry B.brokenAssignment.index.first j with
+  | some e, some f =>
+      B.brokenAssignment.first.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.first f) <
+        B.brokenAssignment.first.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.first e)
+  | _, _ => False
+
+/-- Wrapped-half boundary children have the opposite orientation.  Interior
+orientation is governed by the same adjacent-partner comparison. -/
+noncomputable def secondGapRunsForward
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount) : Prop :=
+  match HalfGap.previousEntry B.brokenAssignment.index.second j,
+      HalfGap.nextEntry B.brokenAssignment.index.second j with
+  | some e, some f =>
+      B.brokenAssignment.second.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.second f) <
+        B.brokenAssignment.second.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.second e)
+  | _, _ => True
+
 /-- First inherited side of a first-half gap. -/
 noncomputable def firstGapStartSide
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -94,13 +131,17 @@ noncomputable def firstGapLeft
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
-    List (RelLetter G Λ) :=
+    List (RelLetter G Λ) := by
+  classical
+  exact
   match _h : HalfGap.previousEntry B.brokenAssignment.index.first j with
   | none => []
   | some e =>
-      (B.firstBrokenConnectors
+      let C := B.firstBrokenConnectors
         (HalfEntry.entrySource B.brokenAssignment.index.first e)
-        (HalfEntry.entrySource_mem B.brokenAssignment.index.first e)).endConnector
+        (HalfEntry.entrySource_mem B.brokenAssignment.index.first e)
+      if B.firstGapRunsForward j then C.endConnector
+      else C.endThroughPartner
 
 /-- Right connector of a first-half gap. -/
 noncomputable def firstGapRight
@@ -110,13 +151,17 @@ noncomputable def firstGapRight
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
-    List (RelLetter G Λ) :=
+    List (RelLetter G Λ) := by
+  classical
+  exact
   match _h : HalfGap.nextEntry B.brokenAssignment.index.first j with
   | none => []
   | some e =>
-      (B.firstBrokenConnectors
+      let C := B.firstBrokenConnectors
         (HalfEntry.entrySource B.brokenAssignment.index.first e)
-        (HalfEntry.entrySource_mem B.brokenAssignment.index.first e)).startConnector
+        (HalfEntry.entrySource_mem B.brokenAssignment.index.first e)
+      if B.firstGapRunsForward j then C.startConnector
+      else C.startThroughPartner
 
 /-- Chord vertex at which a first-half gap begins before reading its reversed
 left connector. -/
@@ -126,11 +171,15 @@ noncomputable def firstGapChordFinish
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (j : Fin B.brokenAssignment.index.first.pieceCount) : ℕ :=
+    (j : Fin B.brokenAssignment.index.first.pieceCount) : ℕ := by
+  classical
+  exact
   match HalfGap.previousEntry B.brokenAssignment.index.first j with
   | none => 0
-  | some e => B.brokenAssignment.first.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.first e)
+  | some e =>
+      let y := B.brokenAssignment.first.partner
+        (HalfEntry.entrySource B.brokenAssignment.index.first e)
+      if B.firstGapRunsForward j then y else y + 1
 
 /-- Chord vertex reached after the right connector of a first-half gap. -/
 noncomputable def firstGapChordStart
@@ -139,11 +188,15 @@ noncomputable def firstGapChordStart
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (j : Fin B.brokenAssignment.index.first.pieceCount) : ℕ :=
+    (j : Fin B.brokenAssignment.index.first.pieceCount) : ℕ := by
+  classical
+  exact
   match HalfGap.nextEntry B.brokenAssignment.index.first j with
   | none => B.chord.length
-  | some e => B.brokenAssignment.first.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.first e) + 1
+  | some e =>
+      let y := B.brokenAssignment.first.partner
+        (HalfEntry.entrySource B.brokenAssignment.index.first e)
+      if B.firstGapRunsForward j then y + 1 else y
 
 /-- First inherited side of a wrapped-half gap. -/
 noncomputable def secondGapStartSide
@@ -179,13 +232,17 @@ noncomputable def secondGapLeft
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
-    List (RelLetter G Λ) :=
+    List (RelLetter G Λ) := by
+  classical
+  exact
   match HalfGap.previousEntry B.brokenAssignment.index.second j with
   | none => []
   | some e =>
-      (B.secondBrokenConnectors
+      let C := B.secondBrokenConnectors
         (HalfEntry.entrySource B.brokenAssignment.index.second e)
-        (HalfEntry.entrySource_mem B.brokenAssignment.index.second e)).endConnector
+        (HalfEntry.entrySource_mem B.brokenAssignment.index.second e)
+      if B.secondGapRunsForward j then C.endThroughPartner
+      else C.endConnector
 
 /-- Right connector of a wrapped-half gap. -/
 noncomputable def secondGapRight
@@ -195,13 +252,17 @@ noncomputable def secondGapRight
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
-    List (RelLetter G Λ) :=
+    List (RelLetter G Λ) := by
+  classical
+  exact
   match HalfGap.nextEntry B.brokenAssignment.index.second j with
   | none => []
   | some e =>
-      (B.secondBrokenConnectors
+      let C := B.secondBrokenConnectors
         (HalfEntry.entrySource B.brokenAssignment.index.second e)
-        (HalfEntry.entrySource_mem B.brokenAssignment.index.second e)).startConnector
+        (HalfEntry.entrySource_mem B.brokenAssignment.index.second e)
+      if B.secondGapRunsForward j then C.startThroughPartner
+      else C.startConnector
 
 /-- Wrapped gaps begin at the terminal vertex `y+1` of the preceding forward
 chord component, or at the terminal chord endpoint for the initial gap. -/
@@ -211,11 +272,15 @@ noncomputable def secondGapChordFinish
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (j : Fin B.brokenAssignment.index.second.pieceCount) : ℕ :=
+    (j : Fin B.brokenAssignment.index.second.pieceCount) : ℕ := by
+  classical
+  exact
   match HalfGap.previousEntry B.brokenAssignment.index.second j with
   | none => B.chord.length
-  | some e => B.brokenAssignment.second.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1
+  | some e =>
+      let y := B.brokenAssignment.second.partner
+        (HalfEntry.entrySource B.brokenAssignment.index.second e)
+      if B.secondGapRunsForward j then y else y + 1
 
 /-- Wrapped gaps reach the initial vertex `y` of the following forward chord
 component, or the initial chord endpoint for the terminal gap. -/
@@ -225,11 +290,15 @@ noncomputable def secondGapChordStart
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (j : Fin B.brokenAssignment.index.second.pieceCount) : ℕ :=
+    (j : Fin B.brokenAssignment.index.second.pieceCount) : ℕ := by
+  classical
+  exact
   match HalfGap.nextEntry B.brokenAssignment.index.second j with
   | none => 0
-  | some e => B.brokenAssignment.second.partner
-      (HalfEntry.entrySource B.brokenAssignment.index.second e)
+  | some e =>
+      let y := B.brokenAssignment.second.partner
+        (HalfEntry.entrySource B.brokenAssignment.index.second e)
+      if B.secondGapRunsForward j then y + 1 else y
 
 end BalancedSplitData
 
