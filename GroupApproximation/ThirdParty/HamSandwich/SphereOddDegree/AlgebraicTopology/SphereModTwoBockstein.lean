@@ -81,19 +81,13 @@ instance constDiscrete_additive (J : Type) :
     (Functor.const (Discrete J) : ModuleCat.{0} ℤ ⥤ _).Additive := by
   constructor
   intro X Y f g
-  ext j
-  simp
+  ext j x
+  exact LinearMap.add_apply f.hom g.hom x
 
 instance Fc_additive (S : TopCat.{0}) : (Fc S).Additive := by
-  constructor
-  intro X Y f g
-  apply HomologicalComplex.hom_ext
-  intro k
-  have key : ∀ φ : X ⟶ Y, ((Fc S).map φ).f k
-      = (Fc S ⋙ HomologicalComplex.eval (ModuleCat.{0} ℤ) (ComplexShape.down ℕ) k).map φ :=
-    fun _ => rfl
-  rw [HomologicalComplex.add_f_apply, key, key, key]
-  exact (inferInstanceAs ((Functor.const (Discrete _) ⋙ colim).Additive)).map_add
+  change ((singularChainComplexFunctor (ModuleCat.{0} ℤ)) ⋙
+    (evaluation TopCat.{0} (ChainComplex (ModuleCat.{0} ℤ) ℕ)).obj S).Additive
+  infer_instance
 
 /-- Degreewise, `Fc S` preserves finite limits. -/
 instance Fc_eval_preservesFiniteLimits (S : TopCat.{0}) (k : ℕ) :
@@ -133,9 +127,9 @@ theorem homologyMap_two_smul_id (K : ChainComplex (ModuleCat.{0} ℤ) ℕ) (n : 
 theorem reducedTopGenerator_ne_zero (n : ℕ) (hn : 1 ≤ n) :
     reducedTopGenerator (sphereTopHomologyIso_unconditional n hn) ≠ 0 := by
   intro hzero
-  set e := sphereTopHomologyIso_unconditional n hn with he
-  set S : TopCat.{0} := TopCat.sphere.{0} n with hS
-  set Sc := bocksteinSES.map (Fc S) with hSc
+  let e := sphereTopHomologyIso_unconditional n hn
+  let S : TopCat.{0} := TopCat.sphere.{0} n
+  let Sc := bocksteinSES.map (Fc S)
   have hSE : Sc.ShortExact := chainSES_shortExact S
   -- exactness of the homology sequence at degree n
   have hex := hSE.homology_exact₂ n
@@ -153,6 +147,7 @@ theorem reducedTopGenerator_ne_zero (n : ℕ) (hn : 1 ≤ n) :
   have hmem : gZ ∈ LinearMap.range (HomologicalComplex.homologyMap Sc.f n).hom := by
     rw [hex]; exact hg_ker
   obtain ⟨v, hv⟩ := hmem
+  change ↑(sphereTopHomologyℤ n) at v
   -- the multiplication-by-2 chain map induces multiplication by 2 on homology
   have hfeq : Sc.f = (2 : ℤ) • 𝟙 Sc.X₂ := by
     have h : (Fc S).map bk_f = (2 : ℤ) • 𝟙 ((Fc S).obj (ModuleCat.of ℤ ℤ)) := by
@@ -169,4 +164,3 @@ theorem reducedTopGenerator_ne_zero (n : ℕ) (hn : 1 ≤ n) :
   rw [h1, map_zsmul, smul_eq_mul] at step
   have hdvd : (2 : ℤ) ∣ 1 := ⟨e.hom.hom v, step⟩
   norm_num at hdvd
-
