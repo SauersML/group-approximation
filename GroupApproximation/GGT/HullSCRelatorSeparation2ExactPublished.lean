@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCRelatorSeparation2PublishedGap
+import GroupApproximation.GGT.HullSCRelatorSeparation2RelativeClose
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyFourWay
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQG
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyShortSide
@@ -34,18 +34,6 @@ universe u
 section FixedDesign
 
 variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
-
-/-- Enlarging the relative-ball radius preserves the matched-pair output. -/
-theorem matchedPairOutput_mono {D : GGT.RelGenSet G Bool} {eps eps' bn : ℕ}
-    (hle : eps ≤ eps')
-    (h : GGT.OsinComponents.MatchedPairOutput D eps bn) :
-    GGT.OsinComponents.MatchedPairOutput D eps' bn := by
-  intro lam P Q R S i j hclose hlet hP hR hP0 hqg hcompQ hQend hcompS
-    hSend hconn hqside hsside
-  obtain ⟨hx, hx'⟩ := h lam P Q R S i j hclose hlet hP hR hP0 hqg
-    hcompQ hQend hcompS hSend hconn hqside hsside
-  exact ⟨GGT.OsinComponents.relBall_mono_radius D lam hle hx,
-    GGT.OsinComponents.relBall_mono_radius D lam hle hx'⟩
 
 omit [Group G] in
 /-- Rotating a four-part cyclic decomposition to the third part. -/
@@ -400,18 +388,18 @@ theorem directPrime_lengths_le_of_exactDesign
 /-- **A long direct prefix cannot match a prefix of the opposite orientation.** -/
 theorem false_of_exactDesign_mixed_long_prefixes_rotate
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm designRho diffRadius W target : ℕ}
+    {epsD adjacentC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     {c c' : ℕ} {u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms).rotate c =
       u ++ tl)
@@ -420,8 +408,6 @@ theorem false_of_exactDesign_mixed_long_prefixes_rotate
       u' ++ tl')
     (hlong : [baseLetter].length +
       blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length)
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
     {y z : G} (hy : wordNorm E.rel.alphabet.carrier y ≤ eps)
     (hz : wordNorm E.rel.alphabet.carrier z ≤ eps)
     (hval : GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z) :
@@ -432,6 +418,10 @@ theorem false_of_exactDesign_mixed_long_prefixes_rotate
   change (RelWord.revInv R).rotate c' = u' ++ tl' at hw'
   have hsymm : ∀ g ∈ E.rel.base, g⁻¹ ∈ E.rel.base :=
     fun g hg => (isSymmetricGeneratingSet_base₂ E).inv_mem g hg
+  have hdisj : ∀ x : G, x ∈ E.rel.fam false →
+      x ∈ E.rel.fam true → x = 1 := by
+    rw [E.fam_eq]
+    exact E.disjoint
   have hloxfam : ∀ b : Bool, E.lox b ∈ E.rel.fam b := by
     intro b
     rw [E.fam_eq]
@@ -442,7 +432,7 @@ theorem false_of_exactDesign_mixed_long_prefixes_rotate
     omega
   have hadm : RelWord.IsAdmissible E.rel R := by
     exact isAdmissible_relatorWord₂ (by simpa using hbase) hloxfam ms
-  obtain ⟨py, hpy0, hpylen, hpylet, hpyval, hpynorm⟩ :=
+  obtain ⟨py, _hpy0, hpylen, hpylet, hpyval, _hpynorm⟩ :=
     exists_side_spelling₂ E hN hy
   obtain ⟨pz, hpz0, hpzlen, hpzlet, hpzval, _hpznorm⟩ :=
     exists_side_spelling₂ E hN hz
@@ -523,47 +513,37 @@ theorem false_of_exactDesign_mixed_long_prefixes_rotate
     omega
   have hqg := fourGonQG_of_sides E.rel (le_trans hpylen hshort)
     (le_trans hpzlen hshort) hcu hcu'
-  have hqgq : ∀ i j : ℕ, i ≤ j → j ≤ u.length →
-      ((j - i : ℕ) : ℝ) / 1 - ((blockConst [baseLetter] cw : ℕ) : ℝ) ≤
-        ((wordDist E.rel.alphabet.carrier
-          (GGT.OsinComponents.vertex (1 : G) u i)
-          (GGT.OsinComponents.vertex (1 : G) u j) : ℕ) : ℝ) :=
-    fun i j hij hj => qgClause_of_le (hcu i j hij hj)
-  have hqgs : ∀ i j : ℕ, i ≤ j → j ≤ u'.length →
-      ((j - i : ℕ) : ℝ) / 1 - ((blockConst [baseLetter] cw : ℕ) : ℝ) ≤
-        ((wordDist E.rel.alphabet.carrier
-          (GGT.OsinComponents.vertex (1 : G) u' i)
-          (GGT.OsinComponents.vertex (1 : G) u' j) : ℕ) : ℝ) :=
-    fun i j hij hj => qgClause_of_le (hcu' i j hij hj)
-  have hside := hdesign.sideExclusionAt E heven hcount hW
-  obtain ⟨hqside, hsside⟩ := hside py pz u u'
-    ⟨R.rotate c, tl, RelWord.Sym.rot c RelWord.Sym.base, hw⟩
-    ⟨(RelWord.revInv R).rotate c', tl',
-      RelWord.Sym.rot c' (RelWord.Sym.inv RelWord.Sym.base), hw'⟩
-    hpy hpz hpy0 hpz0
-  exact false_of_mixedMatch_piece hpair hmatch hdesign.2.1
+  have hcapacity : 2 * (py.length + pz.length + 3) + 2 ≤ u.length := by
+    have hbaseCapacity := exactPublishedAdjacentCapacity_singleton baseLetter eps
+    omega
+  obtain ⟨b, b', i, j, j', hi0, hi2, hcomp, hcomp', hj1, hj,
+      hcompS, hj'1, hj', hcompS', ⟨h, hh, hconn⟩, ⟨h', hh', hconn'⟩,
+      hx, hx', hy', hy''⟩ :=
+    hadj hdesign hcount heven hW
+      (RelWord.Sym.rot c RelWord.Sym.base) hw
+      (RelWord.Sym.rot c' (RelWord.Sym.inv RelWord.Sym.base)) hw'
+      py pz hclose hpz0 hlet4 hqg hadjRho hadjEps hcapacity
+  exact false_of_relativeAdjacent_direct_revInv hdesign.2.1
     (injective_pow_lox₂ E) hdesign.2.2.2.1
-    (fun m hm b => hdesign.2.2.1 m hm b b) hCm (by simp) hw hw'
-    hlong hmslong hpy hpz hpy0 hpz0 hlet4 hclose hqg hqlet hslet
-    hqgq hqgs (le_refl _) hpynorm hqside hsside
+    (fun m hm b => hdesign.2.2.1 m hm b b) hepsRho hdisj (by simp)
+    hw hw' hi0 hi2 hcomp hcomp' hj1 hj hcompS hj'1 hj' hcompS'
+    hh hh' hconn hconn' hx hx' hy' hy'' hqlet
 
 /-- **The first occurrence in an inverse prime match is uniformly short.** -/
 theorem inversePrimeSource_length_le_of_exactDesign
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm designRho diffRadius W target : ℕ}
+    {epsD adjacentC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     {u middle u' tail v : List (GGT.RelLetter G Bool)}
     (hv : RelWord.Sym
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) v)
@@ -611,7 +591,7 @@ theorem inversePrimeSource_length_le_of_exactDesign
       rw [RelWord.listVal_revInv, hval]
       group
     exact false_of_exactDesign_mixed_long_prefixes_rotate E hN hbase hdesign
-      hcount heven hW hCm hpair hmatch hfirst hsecond hlong hmslong
+      hcount heven hW hadj hadjRho hadjEps hepsRho hfirst hsecond hlong
       hzinv hyinv hvalInv
   · let shift := u.length + middle.length
     have hsecond : (RelWord.revInv R).rotate (c + shift) =
@@ -640,25 +620,24 @@ theorem inversePrimeSource_length_le_of_exactDesign
       rw [RelWord.length_revInv]
       exact hlong
     exact false_of_exactDesign_mixed_long_prefixes_rotate E hN hbase hdesign
-      hcount heven hW hCm hpair hmatch hfirst hsecond hlong' hmslong hy hz hval'
+      hcount heven hW hadj hadjRho hadjEps hepsRho hfirst hsecond hlong'
+      hy hz hval'
 
 /-- **Both occurrences in an inverse prime match are uniformly short.** -/
 theorem inversePrime_lengths_le_of_exactDesign
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm designRho diffRadius W target : ℕ}
+    {epsD adjacentC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     {u middle u' tail v : List (GGT.RelLetter G Bool)}
     (hv : RelWord.Sym
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) v)
@@ -670,7 +649,7 @@ theorem inversePrime_lengths_le_of_exactDesign
     max u.length u'.length ≤ [baseLetter].length +
       blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
   have hu := inversePrimeSource_length_le_of_exactDesign E hN hbase hdesign
-    hcount heven hW hCm hpair hmatch hmslong hv hsplit hy hz hval
+    hcount heven hW hadj hadjRho hadjEps hepsRho hv hsplit hy hz hval
   let shift := u.length + middle.length
   have hsplit' : v.rotate shift = u' ++ tail ++ u ++ middle := by
     rw [hsplit]
@@ -680,30 +659,28 @@ theorem inversePrime_lengths_le_of_exactDesign
     rw [hval]
     group
   have hu' := inversePrimeSource_length_le_of_exactDesign E hN hbase hdesign
-    hcount heven hW hCm hpair hmatch hmslong
+    hcount heven hW hadj hadjRho hadjEps hepsRho
       (RelWord.Sym.rot shift hv) hsplit' hz hy hval'
   exact max_le hu hu'
 
 /-- **Every published primepiece of the exact relator is uniformly short.** -/
 theorem primePiece_lengths_le_of_exactDesign
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm gapC designRho diffRadius W target : ℕ}
+    {epsD adjacentC gapC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     (hgap : ExactPublishedGapOutput E gapC
       (blockConst [baseLetter] (max 1 (eps + 2))))
     (hgapRho : gapC * 4 ≤ designRho) (hgapEps : gapC * 4 ≤ epsD)
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
     {u u' v : List (GGT.RelLetter G Bool)}
     (hp : RelWord.IsPrimePiece E.rel
       (RelWord.symmetrized
@@ -718,8 +695,8 @@ theorem primePiece_lengths_le_of_exactDesign
     simp only [blockConst, blockSeparation, List.length_singleton] at hdirect ⊢
     omega
   · exact inversePrime_lengths_le_of_exactDesign E hN hbase hdesign
-      hcount heven hW hCm hpair hmatch hmslong (RelWord.mem_symmetrized.mp hv)
-      hsplit hy hz hval
+      hcount heven hW hadj hadjRho hadjEps hepsRho
+      (RelWord.mem_symmetrized.mp hv) hsplit hy hz hval
 
 /-- **The long-prefix conclusion at one exact relator design.**
 
@@ -728,18 +705,18 @@ and its exact avoidance certificates exposed and with no `w' ≠ w` premise.
 That omission is essential for Hull's same-word published pieces. -/
 theorem listVal_conj_of_exactDesign_long_prefixes
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm designRho diffRadius W target : ℕ}
+    {epsD adjacentC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     {w w' u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : RelWord.Sym
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) w)
@@ -748,8 +725,6 @@ theorem listVal_conj_of_exactDesign_long_prefixes
     (hu : w = u ++ tl) (hu' : w' = u' ++ tl')
     (hlong : [baseLetter].length +
       blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length)
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
     {y z : G} (hy : wordNorm E.rel.alphabet.carrier y ≤ eps)
     (hz : wordNorm E.rel.alphabet.carrier z ≤ eps)
     (hval : GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z) :
@@ -762,13 +737,6 @@ theorem listVal_conj_of_exactDesign_long_prefixes
     intro b
     rw [E.fam_eq]
     exact E.lox_mem b
-  have hdisj : ∀ x : G, x ∈ E.rel.fam false → x ∈ E.rel.fam true → x = 1 := by
-    rw [E.fam_eq]
-    exact E.disjoint
-  have hmono : blockConst [baseLetter] 1 ≤ blockConst [baseLetter] cw := by
-    show [baseLetter].length + 1 ≤ [baseLetter].length + cw
-    dsimp only [cw]
-    omega
   have hshort : eps + 2 ≤ blockConst [baseLetter] cw := by
     show eps + 2 ≤ [baseLetter].length + cw
     dsimp only [cw]
@@ -776,7 +744,7 @@ theorem listVal_conj_of_exactDesign_long_prefixes
   have hadm : RelWord.IsAdmissible E.rel
       (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms) :=
     isAdmissible_relatorWord₂ (by simpa using hbase) hloxfam ms
-  obtain ⟨py, hpy0, hpylen, hpylet, hpyval, hpynorm⟩ :=
+  obtain ⟨py, _hpy0, hpylen, hpylet, hpyval, _hpynorm⟩ :=
     exists_side_spelling₂ E hN hy
   obtain ⟨pz, hpz0, hpzlen, hpzlet, hpzval, _hpznorm⟩ :=
     exists_side_spelling₂ E hN hz
@@ -844,27 +812,12 @@ theorem listVal_conj_of_exactDesign_long_prefixes
     omega
   have hqg := fourGonQG_of_sides E.rel (le_trans hpylen hshort)
     (le_trans hpzlen hshort) hcu hcu'
-  have hqgq : ∀ i j : ℕ, i ≤ j → j ≤ u.length →
-      ((j - i : ℕ) : ℝ) / 1 - ((blockConst [baseLetter] cw : ℕ) : ℝ) ≤
-        ((wordDist E.rel.alphabet.carrier
-          (GGT.OsinComponents.vertex (1 : G) u i)
-          (GGT.OsinComponents.vertex (1 : G) u j) : ℕ) : ℝ) :=
-    fun i j hij hj => qgClause_of_le (hcu i j hij hj)
-  have hqgs : ∀ i j : ℕ, i ≤ j → j ≤ u'.length →
-      ((j - i : ℕ) : ℝ) / 1 - ((blockConst [baseLetter] cw : ℕ) : ℝ) ≤
-        ((wordDist E.rel.alphabet.carrier
-          (GGT.OsinComponents.vertex (1 : G) u' i)
-          (GGT.OsinComponents.vertex (1 : G) u' j) : ℕ) : ℝ) :=
-    fun i j hij hj => qgClause_of_le (hcu' i j hij hj)
-  have hside := hdesign.sideExclusionAt E heven hcount hW
-  obtain ⟨hqside, hsside⟩ :=
-    hside py pz u u' ⟨w, tl, hw, hu⟩ ⟨w', tl', hw', hu'⟩
-      hpy hpz hpy0 hpz0
-  have hconj := listVal_conj_of_sym_pieces hpair hmatch hdesign.2.1
-    (injective_pow_lox₂ E) hsymm hdesign.2.2.2.1 hdisj
-    (fun m hm b => hdesign.2.2.1 m hm b b) hCm (by simp)
-    hw hw' hu hu' hlong hmslong hpy hpz hpy0 hpz0 hlet4 hclose hqg
-    hqlet hslet hqgq hqgs (le_refl _) hpynorm hqside hsside
+  have hcapacity : 2 * (py.length + pz.length + 3) + 2 ≤ u.length := by
+    have hbaseCapacity := exactPublishedAdjacentCapacity_singleton baseLetter eps
+    omega
+  have hconj := listVal_conj_of_exactPublished_relativeSides E hdesign hcount
+    heven hW hadj hadjRho hadjEps hepsRho hw hw' hu hu' hclose hpz0
+    hlet4 hqg hcapacity hqlet hslet
   rw [hpyval] at hconj
   exact hconj
 
@@ -876,20 +829,18 @@ definition.  Reversing the short connector equation gives the same bound for
 the second prefix. -/
 theorem sameWordPublishedPiece_lengths_le_of_exactDesign
     (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N)
-    {epsD Cm designRho diffRadius W target : ℕ}
+    {epsD adjacentC designRho diffRadius W target : ℕ}
     {baseLetter : G} (hbase : baseLetter ∈ E.rel.base) {eps : ℕ}
     {ms : List ℕ}
     (hdesign : ExactRelatorDesign₂ E baseLetter designRho epsD diffRadius W target ms)
     (hcount : RelatorBlockCountAt₂ E [baseLetter] ms 1)
     (heven : Even ms.length)
     (hW : 1 + blockConst [baseLetter] 1 ≤ W)
-    (hCm : Cm * 4 ≤ designRho)
-    (hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
+    (hadj : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmatch : GGT.OsinComponents.DeepMatchOutput E.rel Cm
-      (blockConst [baseLetter] (max 1 (eps + 2))))
-    (hmslong : [baseLetter].length +
-      5 * blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 2 < ms.length)
+    (hadjRho : adjacentC * 4 ≤ designRho)
+    (hadjEps : adjacentC * 4 ≤ epsD)
+    (hepsRho : epsD ≤ designRho)
     {u u' v : List (GGT.RelLetter G Bool)}
     (hp : RelWord.IsSameWordPublishedPiece E.rel
       (RelWord.symmetrized
@@ -907,8 +858,8 @@ theorem sameWordPublishedPiece_lengths_le_of_exactDesign
         blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 < u.length := by
       omega
     exact hexcl (listVal_conj_of_exactDesign_long_prefixes E hN hbase
-      hdesign hcount heven hW hCm hpair hmatch hvSym hvSym hu hu' hlong
-      hmslong hy hz hval)
+      hdesign hcount heven hW hadj hadjRho hadjEps hepsRho
+      hvSym hvSym hu hu' hlong hy hz hval)
   have hlu' : u'.length ≤
       [baseLetter].length + blockSeparation [baseLetter] (max 1 (eps + 2)) eps + 6 := by
     by_contra hnot
@@ -926,8 +877,8 @@ theorem sameWordPublishedPiece_lengths_le_of_exactDesign
       rw [hval]
       group
     have hconj := listVal_conj_of_exactDesign_long_prefixes E hN hbase
-      hdesign hcount heven hW hCm hpair hmatch hvSym hvSym hu' hu hlong
-      hmslong hyinv hzinv hval'
+      hdesign hcount heven hW hadj hadjRho hadjEps hepsRho
+      hvSym hvSym hu' hu hlong hyinv hzinv hval'
     have hconj' : GGT.RelLetter.listVal v =
         y⁻¹ * GGT.RelLetter.listVal v * y := by simpa using hconj
     have hcomm : y * GGT.RelLetter.listVal v = GGT.RelLetter.listVal v * y := by
@@ -966,23 +917,16 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
   let B := p.length + sep + 6
   obtain ⟨delta, hdelta⟩ :=
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded E.rel E.embedded
-  have hsymm := isSymmetricGeneratingSet_base₂ E
   obtain ⟨gapC, _hgapC, hgap⟩ :=
     exists_exactPublishedGapOutput E E.base_inv
       (bn := blockConst p cw) hdelta
-  obtain ⟨eps0, _heps0, hpair0⟩ :=
-    GGT.OsinComponents.exists_eps_matchedPair_hyp E.rel E.base_inv
-      (blockConst p cw) hdelta
-  let epsD := max eps0 (gapC * 4)
-  have hpair : GGT.OsinComponents.MatchedPairOutput E.rel epsD
-      (blockConst p cw) :=
-    matchedPairOutput_mono (Nat.le_max_left eps0 (gapC * 4)) hpair0
-  obtain ⟨Cm, _hCm, hmatch⟩ :=
-    GGT.OsinComponents.exists_deep_match_hyp E.rel E.base_inv
-      (blockConst p cw) hdelta
+  obtain ⟨adjacentC, _hadjacentC, hadj⟩ :=
+    exists_exactPublishedAdjacentGapOutput E E.base_inv
+      (bn := blockConst p cw) hdelta
+  let epsD := max (gapC * 4) (adjacentC * 4)
   obtain ⟨n, hn⟩ := exists_nat_gt ((B : ℝ) / mu)
-  let requestedRho := max rho (max (Cm * 4) (gapC * 4))
-  let target := 2 * max (max requestedRho n) (p.length + 5 * sep + 3)
+  let requestedRho := max rho epsD
+  let target := 2 * max (max requestedRho n) 1
   have htarget : 2 ≤ target := by
     dsimp only [target]
     omega
@@ -990,12 +934,12 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
     exact even_two_mul _
   obtain ⟨ms, hdesign, hcount, -⟩ :=
     exists_exactRelatorDesign₂_with_count_one E t⁻¹ ht hdelta
-      requestedRho epsD (Cm * 4) target htarget hevenTarget
+      requestedRho epsD epsD target htarget hevenTarget
   let designRho := max requestedRho
     (GGT.OsinComponents.everyEdgeIsolationRadius delta (2 * (target + 1)))
   let R := relatorWord₂ p (E.lox false) (E.lox true) ms
   have hp : p = [t⁻¹] := rfl
-  have hdesign' : ExactRelatorDesign₂ E t⁻¹ designRho epsD (Cm * 4)
+  have hdesign' : ExactRelatorDesign₂ E t⁻¹ designRho epsD epsD
       (target + 1) target ms := by
     simpa only [designRho, requestedRho] using hdesign
   have heven : Even ms.length := by
@@ -1004,20 +948,17 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
   have hW : 1 + blockConst [t⁻¹] 1 ≤ target + 1 := by
     simp only [blockConst, List.length_singleton]
     omega
-  have hCmDesign : Cm * 4 ≤ designRho := by
-    exact le_trans (le_trans (Nat.le_max_left (Cm * 4) (gapC * 4))
-      (Nat.le_max_right rho (max (Cm * 4) (gapC * 4))))
-      (Nat.le_max_left requestedRho _)
   have hgapRho : gapC * 4 ≤ designRho := by
-    exact le_trans (le_trans (Nat.le_max_right (Cm * 4) (gapC * 4))
-      (Nat.le_max_right rho (max (Cm * 4) (gapC * 4))))
+    exact le_trans (le_trans (Nat.le_max_left (gapC * 4) (adjacentC * 4))
+      (Nat.le_max_right rho epsD))
       (Nat.le_max_left requestedRho _)
-  have hgapEps : gapC * 4 ≤ epsD := Nat.le_max_right _ _
-  have hmslong : [t⁻¹].length +
-      5 * blockSeparation [t⁻¹] (max 1 (eps + 2)) eps + 2 < ms.length := by
-    rw [hdesign'.1]
-    dsimp only [target, requestedRho, p, sep, cw]
-    omega
+  have hgapEps : gapC * 4 ≤ epsD := Nat.le_max_left _ _
+  have hadjRho : adjacentC * 4 ≤ designRho := by
+    exact le_trans (le_trans (Nat.le_max_right (gapC * 4) (adjacentC * 4))
+      (Nat.le_max_right rho epsD)) (Nat.le_max_left requestedRho _)
+  have hadjEps : adjacentC * 4 ≤ epsD := Nat.le_max_right _ _
+  have hepsRho : epsD ≤ designRho :=
+    le_trans (Nat.le_max_right rho epsD) (Nat.le_max_left requestedRho _)
   have hBreal : (B : ℝ) < mu * (R.length : ℝ) := by
     have h1 : (B : ℝ) < (n : ℝ) * mu := by
       rw [div_lt_iff₀ hmu] at hn
@@ -1055,12 +996,10 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       rw [← hbl]
       rw [ite_lox_eq E b]
       exact ⟨notMem_relBall_of_le
-          (le_trans (Nat.le_max_left rho (max (Cm * 4) (gapC * 4)))
-            (Nat.le_max_left requestedRho _))
+          (le_trans (Nat.le_max_left rho epsD) (Nat.le_max_left requestedRho _))
           (hdesign'.2.2.1 m hm b b).1,
         notMem_relBall_of_le
-          (le_trans (Nat.le_max_left rho (max (Cm * 4) (gapC * 4)))
-            (Nat.le_max_left requestedRho _))
+          (le_trans (Nat.le_max_left rho epsD) (Nat.le_max_left requestedRho _))
           (hdesign'.2.2.1 m hm b b).2⟩
   have hlongMatch : ∀ w w' u u' : List (GGT.RelLetter G Bool),
       RelWord.Sym R w → RelWord.Sym R w' → w' ≠ w →
@@ -1071,15 +1010,16 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       GGT.RelLetter.listVal w' = y * GGT.RelLetter.listVal w * y⁻¹ := by
     intro w w' u u' hw hw' _hne ⟨tl, htl⟩ ⟨tl', htl'⟩ hu y z hy hz hval
     apply listVal_conj_of_exactDesign_long_prefixes E hN ht hdesign' hcount
-      heven hW hCmDesign
-    · simpa only [p, cw] using hpair
-    · simpa only [p, cw] using hmatch
+      heven hW
+    · simpa only [p, cw] using hadj
+    · exact hadjRho
+    · exact hadjEps
+    · exact hepsRho
     · simpa only [R, p] using hw
     · simpa only [R, p] using hw'
     · exact htl
     · exact htl'
     · simpa only [B, sep, p, cw] using hu
-    · exact hmslong
     · exact hy
     · exact hz
     · exact hval
@@ -1098,9 +1038,8 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
         max (u.length : ℝ) (u'.length : ℝ) < mu * v.length := by
     intro u u' v hv
     have hnat := sameWordPublishedPiece_lengths_le_of_exactDesign E hN ht
-      hdesign' hcount heven hW hCmDesign
-      (by simpa only [p, cw] using hpair)
-      (by simpa only [p, cw] using hmatch) hmslong
+      hdesign' hcount heven hW
+      (by simpa only [p, cw] using hadj) hadjRho hadjEps hepsRho
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
       exact_mod_cast hnat
@@ -1122,10 +1061,8 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
         (blockConst [t⁻¹] (max 1 (eps + 2))) at hgap
       exact hgap
     have hnat := primePiece_lengths_le_of_exactDesign E hN ht hdesign'
-      hcount heven hW hCmDesign
-      (by simpa only [p, cw] using hpair)
-      (by simpa only [p, cw] using hmatch)
-      hgap' hgapRho hgapEps hmslong
+      hcount heven hW (by simpa only [p, cw] using hadj)
+      hadjRho hadjEps hepsRho hgap' hgapRho hgapEps
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
       exact_mod_cast hnat
