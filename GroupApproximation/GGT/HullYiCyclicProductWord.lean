@@ -24,6 +24,9 @@ namespace HullSC
 
 open GroupApproximation.GGT
 open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
@@ -118,6 +121,15 @@ theorem isLetter_finPeripheralWord (D : RelGenSet G (Fin k)) (a : Fin k → G)
     ∀ c ∈ finPeripheralWord a, D.IsLetter c := by
   intro c hc
   obtain ⟨i, rfl⟩ := exists_eq_comp_of_mem_finPeripheralWord a hc
+  exact ha i
+
+/-- Admissibility for the ambient-index form. -/
+theorem isLetter_indexedPeripheralWord {k : ℕ} {Λ : Type w}
+    (D : RelGenSet G Λ) (index : Fin k → Λ) (a : Fin k → G)
+    (ha : ∀ i, a i ∈ D.fam (index i)) :
+    ∀ c ∈ indexedPeripheralWord index a, D.IsLetter c := by
+  intro c hc
+  obtain ⟨i, rfl⟩ := exists_eq_comp_of_mem_indexedPeripheralWord index a hc
   exact ha i
 
 omit [Group G] in
@@ -262,6 +274,132 @@ theorem isWThree_blockWord_finPeripheralWord (D : RelGenSet G (Fin (k + 1)))
     have hval := congrArg Fin.val heq
     simp at hval
     omega
+
+/-! ## The direct DGO 4.21(b) call site -/
+
+/-- The word consisting of `n` copies of one full cyclic peripheral run. -/
+def cyclicPeripheralPowerWord {k : ℕ} (a : Fin (k + 1) → G) (n : ℕ) :
+    List (RelLetter G (Fin (k + 1))) :=
+  OsinComponents.blockWord (Fin.last k)
+    (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
+    (a (Fin.last k)) n
+
+omit [Group G] in
+@[simp] theorem length_cyclicPeripheralPowerWord {k : ℕ}
+    (a : Fin (k + 1) → G) (n : ℕ) :
+    (cyclicPeripheralPowerWord a n).length = n * (k + 1) := by
+  simp [cyclicPeripheralPowerWord]
+
+/-- The peripheral index at position `j` is `j mod (k+1)`.  This is the exact
+cyclic-index bridge used to read the component sequence returned by 4.21(b). -/
+theorem getElem?_cyclicPeripheralPowerWord {k n j : ℕ}
+    (a : Fin (k + 1) → G)
+    (hj : j < (cyclicPeripheralPowerWord a n).length) :
+    (cyclicPeripheralPowerWord a n)[j]? =
+      some (RelLetter.comp
+        ⟨j % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩
+        (a ⟨j % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩)) := by
+  have hj' : j < n * (k + 1) := by simpa using hj
+  obtain ⟨t, r, rfl, htn, hr⟩ := exists_block_decomp k hj'
+  by_cases hrk : r < k
+  · rw [cyclicPeripheralPowerWord,
+      getElem?_blockWord_pre (Fin.last k)
+        (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
+        (a (Fin.last k)) htn hrk]
+    rw [getElem?_indexedPeripheralWord
+      (fun i : Fin k ↦ i.castSucc) (fun i : Fin k ↦ a i.castSucc) ⟨r, hrk⟩]
+    have hmod : (t * (k + 1) + r) % (k + 1) = r := by
+      omega
+    simp only [hmod]
+  · have hrEq : r = k := by omega
+    subst r
+    rw [cyclicPeripheralPowerWord,
+      getElem?_blockWord_comp (Fin.last k)
+        (indexedPeripheralWord (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc))
+        (a (Fin.last k)) htn]
+    have hmod : (t * (k + 1) + k) % (k + 1) = k := by
+      omega
+    simp only [hmod]
+
+/-- Every component returned by 4.21(b) on the cyclic word carries the index
+predicted by its start position modulo the cycle length. -/
+theorem componentIndex_cyclicPeripheralPowerWord {k n i q : ℕ}
+    (a : Fin (k + 1) → G) {lam : Fin (k + 1)}
+    (hcomp : IsComp lam (cyclicPeripheralPowerWord a n) i q) :
+    lam = ⟨i % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩ := by
+  obtain ⟨hiq, hq, hall, -, -⟩ := hcomp
+  have hi : i < (cyclicPeripheralPowerWord a n).length := lt_of_lt_of_le hiq hq
+  have hof : ((cyclicPeripheralPowerWord a n)[i]'hi).IsCompOf lam :=
+    hall i le_rfl hiq hi
+  obtain ⟨g, hg⟩ := getElem?_comp_of_isCompOf hi hof
+  have hexact := getElem?_cyclicPeripheralPowerWord a hi
+  rw [hexact] at hg
+  simp only [Option.some.injEq, RelLetter.comp.injEq] at hg
+  exact hg.1.symm
+
+/-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
+
+The constants `C,R` are chosen in exactly the order of the printed lemma.
+After that, any two sufficiently long powers of deep cyclic peripheral words
+whose endpoints are oriented `eps`-close have `K` consecutive component
+matches.  All admissibility and (W1)--(W3) premises are discharged here from
+the concrete word; the conclusion is DGO's raw component-index output, with no
+connector or non-commensurability conclusion inserted. -/
+theorem exists_consecutiveMatches_cyclicPeripheralPowerWord_of_dgoLemma421b
+    (h421b : DGOLemma421b.{u, 0}) {k : ℕ}
+    (D : RelGenSet G (Fin (k + 1)))
+    (hhyp : ∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet))
+    (hk : 1 ≤ k) (eps : ℝ) (K : ℕ) (heps : 0 < eps) (hK : 0 < K) :
+    ∃ C R : ℕ, 0 < R ∧
+      ∀ (a b : Fin (k + 1) → G),
+        (∀ i, a i ∈ D.fam i) → (∀ i, b i ∈ D.fam i) →
+        (∀ i, a i ∉ D.relBall i C) →
+        (∀ i, b i ∉ D.relBall i C) →
+        ∀ n : ℕ, R ≤ n * (k + 1) → ∀ vp vq : G,
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier
+          (vertex vp (cyclicPeripheralPowerWord a n)
+            (cyclicPeripheralPowerWord a n).length)
+          (vertex vq (cyclicPeripheralPowerWord b n)
+            (cyclicPeripheralPowerWord b n).length) : ℝ) ≤ eps →
+        ∃ (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1)),
+          (∀ t : ℕ, t < K →
+            IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t)) ∧
+          (∀ t : ℕ, t < K →
+            IsComp (lam t) (cyclicPeripheralPowerWord b n) (iq t) (kq t)) ∧
+          (∀ t : ℕ, t + 1 < K →
+            BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+              (kp t) (ip (t + 1))) ∧
+          (∀ t : ℕ, t + 1 < K →
+            BaseEdgeOrTrivial (cyclicPeripheralPowerWord b n)
+              (kq t) (iq (t + 1))) ∧
+          ∀ t : ℕ, t < K →
+            (vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
+              vertex vq (cyclicPeripheralPowerWord b n) (iq t)
+                ∈ D.fam (lam t) := by
+  obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+  obtain ⟨R, hR, hmatch⟩ := hraw eps K heps hK
+  refine ⟨C, R, hR, ?_⟩
+  intro a b ha hb hdeepA hdeepB n hn vp vq hstart hend
+  apply hmatch vp vq (cyclicPeripheralPowerWord a n)
+    (cyclicPeripheralPowerWord b n)
+  · apply isLetter_of_mem_blockWord D (Fin.last k)
+    · exact isLetter_indexedPeripheralWord D
+        (fun i ↦ i.castSucc) (fun i ↦ a i.castSucc) (fun i ↦ ha i.castSucc)
+    · exact ha (Fin.last k)
+  · apply isLetter_of_mem_blockWord D (Fin.last k)
+    · exact isLetter_indexedPeripheralWord D
+        (fun i ↦ i.castSucc) (fun i ↦ b i.castSucc) (fun i ↦ hb i.castSucc)
+    · exact hb (Fin.last k)
+  · exact isWOne_blockWord_finPeripheralWord a n
+  · exact isWTwo_blockWord_finPeripheralWord D a hdeepA n
+  · exact isWThree_blockWord_finPeripheralWord D hk a n
+  · exact isWOne_blockWord_finPeripheralWord b n
+  · exact isWTwo_blockWord_finPeripheralWord D b hdeepB n
+  · exact isWThree_blockWord_finPeripheralWord D hk b n
+  · simpa using hn
+  · exact hstart
+  · exact hend
 
 end HullSC
 end GroupApproximation
