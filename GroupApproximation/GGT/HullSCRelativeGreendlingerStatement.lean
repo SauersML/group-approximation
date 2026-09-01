@@ -80,9 +80,75 @@ theorem boundaryArc_length_le_boundaryWord
 
 end RelativeBoundaryContiguity
 
+/-- The common reduced-diagram input to relative Greendlinger.  Both Hull
+Lemma 4.4 and Hull Lemma 4.9 provide these fields: a nontrivial designated
+boundary word, a positive list of oriented relator cells whose product is the
+boundary value, and the cell-level reducedness condition inherited from least
+area.  No geodesicity condition is imposed on the whole boundary word; each
+application supplies its own boundary geometry separately. -/
+structure RelativeReducedDiagram
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ) where
+  boundaryWord : List G
+  boundary : G
+  boundary_ne_one : boundary ≠ 1
+  boundaryWord_isWord : IsWord D.alphabet.carrier boundaryWord boundary
+  boundary_length_le : boundaryWord.length ≤ 2 * R
+  area : ℕ
+  area_pos : 0 < area
+  cells : List (Lemma44OrientedRelatorCell W)
+  cells_length : cells.length = area
+  cell_values_prod :
+    (cells.map Lemma44OrientedRelatorCell.value).prod = boundary
+  no_cancelling_pair : ∀
+      (pre between suf : List (Lemma44OrientedRelatorCell W))
+      (C₁ C₂ : Lemma44OrientedRelatorCell W),
+    cells = pre ++ C₁ :: (between ++ C₂ :: suf) →
+      ((between.map Lemma44OrientedRelatorCell.value).prod)⁻¹ * C₁.value *
+        (between.map Lemma44OrientedRelatorCell.value).prod * C₂.value ≠ 1
+
+/-- A least-area diagram used by Hull's Lemma 4.4 supplies the common reduced
+diagram interface with its stored geodesic boundary word. -/
+def Lemma44OrientedRelatorDiagram.toRelativeReducedDiagram
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : Lemma44OrientedRelatorDiagram D.alphabet W R) :
+    RelativeReducedDiagram D W R where
+  boundaryWord := Z.boundaryWord
+  boundary := Z.boundary
+  boundary_ne_one := Z.boundary_ne_one
+  boundaryWord_isWord := Z.boundaryWord_isWord
+  boundary_length_le := by
+    rw [Z.boundaryWord_geodesic]
+    exact Z.boundary_length_le
+  area := Z.area
+  area_pos := Z.area_pos
+  cells := Z.cells
+  cells_length := by
+    calc
+      Z.cells.length = Z.factors.length := by
+        have h := congrArg List.length Z.cell_values
+        simpa only [List.length_map] using h
+      _ = Z.area := Z.factors_length
+  cell_values_prod := by rw [Z.cell_values, Z.factors_prod]
+  no_cancelling_pair := Z.noCancellingCellPair
+
+/-- Lemma 4.4 diagrams coerce to the common reduced-diagram input, so its
+quotient application and the power-diagram application consume the same
+Greendlinger proposition. -/
+instance lemma44OrientedRelatorDiagramCoeRelativeReducedDiagram
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ} :
+    Coe (Lemma44OrientedRelatorDiagram D.alphabet W R)
+      (RelativeReducedDiagram D W R) where
+  coe Z := Z.toRelativeReducedDiagram D
+
 /-- The finite output of Osin's relative Greendlinger lemma.  The cell index
 is `Fin Z.cells.length`, so the labels cover exactly the relator cells of the
-oriented least-area input.  Each cell may have a chosen boundary contiguity;
+oriented reduced input.  Each cell may have a chosen boundary contiguity;
 `largeCell` selects one whose exterior arc has degree at least
 `1 - 23 * mu`. -/
 structure RelativeDiagramCertificate
@@ -90,7 +156,7 @@ structure RelativeDiagramCertificate
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps : ℕ) (mu : ℝ) {R : ℕ}
-    (Z : Lemma44OrientedRelatorDiagram D.alphabet W R) where
+    (Z : RelativeReducedDiagram D W R) where
   boundaryWord : List G
   boundaryWord_eq : boundaryWord = Z.boundaryWord
   cellLabel : Fin Z.cells.length → List (GGT.RelLetter G Lambda)
@@ -116,28 +182,22 @@ def RelativeGreendlingerStatement : Prop :=
         ∃ eps rho0 : ℕ, ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ),
             RelWord.IsLemma44Input D W eps mu rho →
-              ∀ Z : Lemma44OrientedRelatorDiagram D.alphabet W R,
+              ∀ Z : RelativeReducedDiagram D W R,
                 Nonempty (RelativeDiagramCertificate D W eps mu Z)
 
 /-! ## Model checks -/
 
-/-- No oriented least-area diagram exists over the empty relator family.  Its
-positive area makes the cell list nonempty, while every oriented cell would
-have to label itself by a member of the empty family. -/
-theorem no_lemma44OrientedRelatorDiagram_emptyFamily
+/-- No reduced diagram exists over the empty relator family.  Its positive
+area makes the cell list nonempty, while every oriented cell must label itself
+by a member of the family. -/
+theorem no_relativeReducedDiagram_emptyFamily
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (R : ℕ) :
-    IsEmpty (Lemma44OrientedRelatorDiagram D.alphabet
+    IsEmpty (RelativeReducedDiagram D
       (∅ : Set (List (GGT.RelLetter G Lambda))) R) := by
   refine ⟨fun Z => ?_⟩
-  have hlength : Z.cells.length = Z.area := by
-    calc
-      Z.cells.length = Z.factors.length := by
-        have h := congrArg List.length Z.cell_values
-        simpa only [List.length_map] using h
-      _ = Z.area := Z.factors_length
   have hcellsPos : 0 < Z.cells.length := by
-    rw [hlength]
+    rw [Z.cells_length]
     exact Z.area_pos
   obtain ⟨C, cells, hcells⟩ := List.exists_cons_of_length_pos hcellsPos
   have hCmem : C ∈ Z.cells := by
@@ -153,11 +213,11 @@ group because its diagram hypothesis is empty. -/
 theorem relativeGreendlinger_emptyFamilyModel
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) {eps : ℕ} {mu : ℝ} (R : ℕ) :
-    ∀ Z : Lemma44OrientedRelatorDiagram D.alphabet
+    ∀ Z : RelativeReducedDiagram D
         (∅ : Set (List (GGT.RelLetter G Lambda))) R,
       Nonempty (RelativeDiagramCertificate D ∅ eps mu Z) := by
   intro Z
-  exact (no_lemma44OrientedRelatorDiagram_emptyFamily D R).false Z
+  exact (no_relativeReducedDiagram_emptyFamily D R).false Z
 
 /-- A positive length threshold excludes the empty relator word from every
 family satisfying the published Lemma 4.4 input. -/
@@ -184,9 +244,9 @@ theorem relativeGreendlingerStatement_trivialModel
         ∃ eps rho0 : ℕ, ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (GGT.RelLetter PUnit Lambda))) (R : ℕ),
             RelWord.IsLemma44Input D W eps mu rho →
-              ∀ Z : Lemma44OrientedRelatorDiagram D.alphabet W R,
+              ∀ Z : RelativeReducedDiagram D W R,
                 Nonempty (RelativeDiagramCertificate D W eps mu Z) := by
-  intro _ mu hmu hmuBound
+  intro _ mu _ _
   refine ⟨0, 0, ?_⟩
   intro rho hrho W R hsc Z
   have hboundary : Z.boundary = 1 := Subsingleton.elim _ _
@@ -197,7 +257,7 @@ theorem relativeGreendlingerStatement_twoPointEmptyModel
     {Lambda : Type w}
     (D : GGT.RelGenSet (Multiplicative (ZMod 2)) Lambda)
     {eps : ℕ} {mu : ℝ} (R : ℕ) :
-    ∀ Z : Lemma44OrientedRelatorDiagram D.alphabet
+    ∀ Z : RelativeReducedDiagram D
         (∅ : Set (List (GGT.RelLetter (Multiplicative (ZMod 2)) Lambda))) R,
       Nonempty (RelativeDiagramCertificate D ∅ eps mu Z) :=
   relativeGreendlinger_emptyFamilyModel D R
@@ -206,7 +266,7 @@ theorem relativeGreendlingerStatement_twoPointEmptyModel
 theorem relativeGreendlingerStatement_freeGroupOneGeneratorEmptyModel
     {Lambda : Type w} (D : GGT.RelGenSet (FreeGroup Unit) Lambda)
     {eps : ℕ} {mu : ℝ} (R : ℕ) :
-    ∀ Z : Lemma44OrientedRelatorDiagram D.alphabet
+    ∀ Z : RelativeReducedDiagram D
         (∅ : Set (List (GGT.RelLetter (FreeGroup Unit) Lambda))) R,
       Nonempty (RelativeDiagramCertificate D ∅ eps mu Z) :=
   relativeGreendlinger_emptyFamilyModel D R
