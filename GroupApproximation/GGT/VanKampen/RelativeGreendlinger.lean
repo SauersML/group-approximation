@@ -295,9 +295,12 @@ def RelativeDiscRealizationStatement : Prop :=
     (Z : HullSC.RelativeReducedDiagram D W R),
     Nonempty (RelativeDiscRealization Z)
 
-/-- The hyperbolic-geometry part of Osin's Appendix chooses `eps` and the
-initial relator threshold, then constructs the maximal estimating system on
-each planar realization. -/
+/-- The remaining hyperbolic-geometry construction.  Osin's `Gr0` chooses
+`eps` and the initial relator threshold and then constructs the maximal
+estimating system.  The source assumes that the outer boundary is
+quasi-geodesic; the shared `RelativeReducedDiagram` interface does not expose
+that field, so proving this exact shared form also requires recovering the
+boundary hypothesis supplied separately by its applications. -/
 def EstimatingSystemSelectionStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda),
