@@ -1,7 +1,7 @@
 import GroupApproximation.GGT.DGOProposition414SubarcInterval
 import GroupApproximation.GGT.DGOProposition414IntervalTargetSlots
 import GroupApproximation.GGT.DGOProposition414EntryOwner
-import GroupApproximation.GGT.DGOProposition414GapLocalTarget
+import GroupApproximation.GGT.DGOProposition414GapLocalLabel
 
 /-!
 # Exact interval surgery over a balanced split
