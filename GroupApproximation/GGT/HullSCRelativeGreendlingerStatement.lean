@@ -24,6 +24,7 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -63,9 +64,9 @@ theorem exterior_length_le_relator
     {relator : List (GGT.RelLetter G Lambda)}
     (C : RelativeBoundaryContiguity D eps boundaryWord relator) :
     C.exterior.length ≤ relator.length := by
-  rw [C.relator_decomposition]
-  simp only [List.length_append]
-  exact Nat.le_add_right _ _
+  have hlength := congrArg List.length C.relator_decomposition
+  simp only [List.length_append] at hlength
+  omega
 
 /-- The opposite boundary arc is no longer than the designated outer word. -/
 theorem boundaryArc_length_le_boundaryWord
@@ -206,7 +207,7 @@ theorem no_relativeReducedDiagram_emptyFamily
   have hfalse : C.relator ∈
       (∅ : Set (List (GGT.RelLetter G Lambda))) := by
     exact C.relator_mem
-  simpa only [Set.not_mem_empty] using hfalse
+  exact (Set.mem_empty_iff_false C.relator).mp hfalse
 
 /-- The empty family branch of the certificate conclusion is valid in every
 group because its diagram hypothesis is empty. -/
@@ -217,7 +218,7 @@ theorem relativeGreendlinger_emptyFamilyModel
         (∅ : Set (List (GGT.RelLetter G Lambda))) R,
       Nonempty (RelativeDiagramCertificate D ∅ eps mu Z) := by
   intro Z
-  exact (no_relativeReducedDiagram_emptyFamily D R).false Z
+  exact False.elim ((no_relativeReducedDiagram_emptyFamily D R).false Z)
 
 /-- A positive length threshold excludes the empty relator word from every
 family satisfying the published Lemma 4.4 input. -/
