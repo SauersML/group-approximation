@@ -1,4 +1,5 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.BorsukUlam
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ComplexOddMapRealification
 
 /-!
 # Complex-coordinate Borsuk--Ulam
@@ -23,22 +24,12 @@ theorem complexOddMapCommonZero
   let m := Nat.card κ
   let e : Fin m ≃ κ := (Finite.equivFin κ).symm
   by_cases hm : m = 0
-  · refine ⟨northPole d, ?_⟩
+  · refine ⟨⟨EuclideanSpace.single 0 1, by simp⟩, ?_⟩
     funext k
     exact Fin.elim0 (hm ▸ e.symm k)
   · have hd : 0 < d := by omega
     obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hd)
-    let g : C(Sphere (n + 1), EuclideanSpace ℝ (Fin (n + 1))) where
-      toFun x i :=
-        if hi : (i : ℕ) < m then
-          (f x (e ⟨i, hi⟩)).re
-        else if hi' : (i : ℕ) < 2 * m then
-          (f x (e ⟨(i : ℕ) - m, by omega⟩)).im
-        else 0
-      continuous_toFun := by
-        apply continuous_pi
-        intro i
-        split_ifs <;> fun_prop
+    let g := complexOddMapRealification (n + 1) κ f
     obtain ⟨x, hx⟩ := borsuk_ulam g
     refine ⟨x, ?_⟩
     funext k
@@ -46,19 +37,25 @@ theorem complexOddMapCommonZero
     let ir : Fin (n + 1) := ⟨j, by omega⟩
     let ii : Fin (n + 1) := ⟨m + j, by omega⟩
     have hre : (f x k).re = (f (-x) k).re := by
-      have h := congrFun hx ir
-      simpa [g, ir, j, e] using h
+      have h := congrArg (fun z : EuclideanSpace ℝ (Fin (n + 1)) => z ir) hx
+      dsimp [g, ir] at h
+      rw [complexOddMapRealification_real (n + 1) κ hdim f x j,
+        complexOddMapRealification_real (n + 1) κ hdim f (-x) j] at h
+      simpa [j, e] using h
     have him : (f x k).im = (f (-x) k).im := by
-      have h := congrFun hx ii
-      simpa [g, ii, j, e] using h
+      have h := congrArg (fun z : EuclideanSpace ℝ (Fin (n + 1)) => z ii) hx
+      dsimp [g, ii, m] at h
+      rw [complexOddMapRealification_imag (n + 1) κ hdim f x j,
+        complexOddMapRealification_imag (n + 1) κ hdim f (-x) j] at h
+      simpa [j, e] using h
     have hre_odd : (f (-x) k).re = -(f x k).re := by
       simpa using congrArg Complex.re (congrFun (hf x) k)
     have him_odd : (f (-x) k).im = -(f x k).im := by
       simpa using congrArg Complex.im (congrFun (hf x) k)
     apply Complex.ext
-    · simp only [Complex.zero_re]
+    · change (f x k).re = 0
       linarith
-    · simp only [Complex.zero_im]
+    · change (f x k).im = 0
       linarith
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree

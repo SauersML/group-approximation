@@ -44,8 +44,15 @@ stereographic projection centred at `p`.
 -/
 theorem contractibleSpace_sphere_compl_point (n : ℕ) (p : Sphere n) :
     ContractibleSpace ({p}ᶜ : Set (Sphere n)) := by
-  convert Homeomorph.contractibleSpace ( ( stereographic ( by simp [ norm_eq_of_mem_sphere p ] : ‖( p.val : EuclideanSpace ℝ ( Fin ( n + 1 ) ) )‖ = 1 ) ).toHomeomorphSourceTarget ) using 1 ; simp +decide;
-  convert Homeomorph.contractibleSpace ( Homeomorph.Set.univ ( ℝ ∙ p.val ) ᗮ ) using 1
+  let hnorm : ‖(p.val : EuclideanSpace ℝ (Fin (n + 1)))‖ = 1 := by
+    simp [norm_eq_of_mem_sphere p]
+  letI : ContractibleSpace ((stereographic hnorm).target) := by
+    rw [stereographic_target]
+    exact Homeomorph.contractibleSpace (Homeomorph.Set.univ _)
+  have hsource : ({p}ᶜ : Set (Sphere n)) = (stereographic hnorm).source := by
+    rw [stereographic_source]
+  exact Homeomorph.contractibleSpace
+    ((Homeomorph.setCongr hsource).trans (stereographic hnorm).toHomeomorphSourceTarget)
 
 /-! ## A non-surjective self-map has degree zero -/
 
@@ -62,20 +69,19 @@ theorem degreeOfIso_eq_zero_of_not_surjective {n : ℕ} (hn : n ≠ 0)
   obtain ⟨p, hp⟩ : ∃ p : Sphere n, ∀ x, f x ≠ p := by
     simp_all +decide [ Function.Surjective ];
   -- Let `S := ({p}ᶜ : Set (Sphere n))`. By `contractibleSpace_sphere_compl_point n p`, `S` is a `ContractibleSpace` (add it as a `haveI`).
-  have hS_contractible : ContractibleSpace ({p}ᶜ : Set (Sphere n)) := by
-    convert contractibleSpace_sphere_compl_point n p using 1
-  haveI := hS_contractible;
+  letI : ContractibleSpace {x : Sphere n | x ≠ p} := by
+    change ContractibleSpace ({p}ᶜ : Set (Sphere n))
+    exact contractibleSpace_sphere_compl_point n p
   -- Define the corestriction `f' : C(Sphere n, {p}ᶜ)` by `f' x = ⟨f x, hx⟩` where `hx : f x ∈ {p}ᶜ`.
   set f' : C(Sphere n, {x : Sphere n | x ≠ p}) := ⟨fun x => ⟨f x, hp x⟩, by
     exact Continuous.subtype_mk f.continuous _⟩
   generalize_proofs at *;
   -- Because `S` is contractible, `ContinuousMap.id S` is nullhomotopic: `id_nullhomotopic S` gives `y : S` with `ContinuousMap.Homotopic (ContinuousMap.id S) (ContinuousMap.const S y)`.
   obtain ⟨y, hy⟩ : ∃ y : {x : Sphere n | x ≠ p}, ContinuousMap.Homotopic (ContinuousMap.id {x : Sphere n | x ≠ p}) (ContinuousMap.const {x : Sphere n | x ≠ p} y) := by
-    convert id_nullhomotopic _;
-    convert hS_contractible using 1;
+    exact id_nullhomotopic _
   -- Right-compose this homotopy with `f'` (using `ContinuousMap.Homotopic.hcomp`/`ContinuousMap.Homotopic.comp`) to get `Homotopic ((ContinuousMap.id S).comp f') ((ContinuousMap.const S y).comp f')`, i.e. `Homotopic f' (ContinuousMap.const (Sphere n) y)` after simplifying `id.comp f' = f'` and `(const _ y).comp f' = const _ y`.
   have h_homotopic : ContinuousMap.Homotopic f' (ContinuousMap.const (Sphere n) y) := by
-    convert hy.comp ( ContinuousMap.Homotopic.refl f' ) using 1;
+    simpa using hy.comp (ContinuousMap.Homotopic.refl f')
   -- Left-compose with `incl` to get `Homotopic (incl.comp f') (incl.comp (const _ y))`, and `incl.comp (const _ y) = ContinuousMap.const (Sphere n) (incl y)`.
   have h_homotopic_incl : ContinuousMap.Homotopic f (ContinuousMap.const (Sphere n) y.val) := by
     obtain ⟨ H, hH ⟩ := h_homotopic;
@@ -109,7 +115,7 @@ The north pole is not in the image of the equatorial inclusion.
 -/
 theorem northPole_not_mem_range_equatorIncl (n : ℕ) (y : Sphere n) :
     equatorIncl n y ≠ northPole n := by
-  convert Set.notMem_of_mem_compl ( gFun_mem_band n y |> And.left ) using 1
+  simpa [equatorIncl, sphereBand, upperPunctured] using (gFun_mem_band n y).1
 
 /-! ## No odd map `Sⁿ⁺¹ → Sⁿ` -/
 
