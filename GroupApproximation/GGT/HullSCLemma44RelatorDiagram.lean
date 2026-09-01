@@ -30,6 +30,12 @@ structure Lemma44RelatorDiagramBoundary {G : Type u} [Group G]
     (W : Set (List (GGT.RelLetter G Λ))) (R : ℕ) where
   boundary : G
   boundary_ne_one : boundary ≠ 1
+  /-- A shortest word on the original alphabet spelling the exterior
+  boundary.  Keeping the word (rather than only its value) is essential for
+  the contiguity arc on the exterior face. -/
+  boundaryWord : List G
+  boundaryWord_isWord : IsWord A.carrier boundaryWord boundary
+  boundaryWord_geodesic : boundaryWord.length = wordNorm A.carrier boundary
   boundary_length_le : wordNorm A.carrier boundary ≤ 2 * R
   area : ℕ
   area_pos : 0 < area
@@ -37,6 +43,53 @@ structure Lemma44RelatorDiagramBoundary {G : Type u} [Group G]
     (GGT.RelLetter.listVal '' W) area boundary
   area_minimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
     (GGT.RelLetter.listVal '' W) m boundary → area ≤ m
+
+/-- An oriented subpath of the actual geodesic exterior boundary word.  This
+is the boundary-side arc of an ε-contiguity subdiagram in Osin's Appendix,
+with its position retained so its length is bounded by the whole boundary. -/
+structure Lemma44BoundaryArc {G : Type u} [Group G]
+    {Λ : Type w} {A : Alphabet G}
+    {W : Set (List (GGT.RelLetter G Λ))} {R : ℕ}
+    (Z : Lemma44RelatorDiagramBoundary A W R) where
+  before : List G
+  arc : List G
+  after : List G
+  decomposition : Z.boundaryWord = before ++ arc ++ after
+
+namespace Lemma44BoundaryArc
+
+theorem arc_isWord {G : Type u} [Group G]
+    {Λ : Type w} {A : Alphabet G}
+    {W : Set (List (GGT.RelLetter G Λ))} {R : ℕ}
+    {Z : Lemma44RelatorDiagramBoundary A W R}
+    (B : Lemma44BoundaryArc Z) : IsWord A.carrier B.arc B.arc.prod := by
+  refine ⟨?_, rfl⟩
+  intro x hx
+  apply Z.boundaryWord_isWord.letters x
+  rw [B.decomposition]
+  simp only [List.mem_append]
+  exact Or.inl (Or.inr hx)
+
+theorem arc_length_le_boundaryWord {G : Type u} [Group G]
+    {Λ : Type w} {A : Alphabet G}
+    {W : Set (List (GGT.RelLetter G Λ))} {R : ℕ}
+    {Z : Lemma44RelatorDiagramBoundary A W R}
+    (B : Lemma44BoundaryArc Z) : B.arc.length ≤ Z.boundaryWord.length := by
+  have h := congrArg List.length B.decomposition
+  simp only [List.length_append] at h
+  omega
+
+theorem arc_length_le_two_mul_radius {G : Type u} [Group G]
+    {Λ : Type w} {A : Alphabet G}
+    {W : Set (List (GGT.RelLetter G Λ))} {R : ℕ}
+    {Z : Lemma44RelatorDiagramBoundary A W R}
+    (B : Lemma44BoundaryArc Z) : B.arc.length ≤ 2 * R := by
+  calc
+    B.arc.length ≤ Z.boundaryWord.length := B.arc_length_le_boundaryWord
+    _ = wordNorm A.carrier Z.boundary := Z.boundaryWord_geodesic
+    _ ≤ 2 * R := Z.boundary_length_le
+
+end Lemma44BoundaryArc
 
 /-- Failure of injectivity on the radius-`R` ball produces the short
 nontrivial relator diagram with which the proof of Hull's Lemma 4.4 begins. -/
@@ -71,6 +124,8 @@ theorem exists_lemma44RelatorDiagramBoundary_of_not_injOn
     rw [wordNorm_inv A.symmetricGenerating x] at hmul
     dsimp [z]
     omega
+  obtain ⟨boundaryWord, hboundaryWord, hboundaryWordLength⟩ :=
+    exists_isWord_length_eq A.symmetricGenerating z
   have hz_normal : z ∈
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W) := by
     rw [← hker]
@@ -91,6 +146,9 @@ theorem exists_lemma44RelatorDiagramBoundary_of_not_injOn
   exact ⟨{
     boundary := z
     boundary_ne_one := hz_ne
+    boundaryWord := boundaryWord
+    boundaryWord_isWord := hboundaryWord
+    boundaryWord_geodesic := hboundaryWordLength
     boundary_length_le := hz_len
     area := area
     area_pos := harea_pos

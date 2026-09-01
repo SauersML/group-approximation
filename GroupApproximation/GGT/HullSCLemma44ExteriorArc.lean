@@ -182,5 +182,120 @@ theorem false_of_lemma44ThreePieceExteriorCell
     linarith
   linarith
 
+/-- The source-faithful output of Osin's Lemma 9.7 in the one-section case.
+The exterior arc is a prefix after orienting the selected relator cell; its
+complement is not artificially split into three pieces.  The opposite arc is
+an actual subpath of the stored geodesic exterior boundary word. -/
+structure Lemma44LargeExteriorCell {G : Type u} [Group G]
+    {Λ : Type w} (E : GGT.RelGenSet G Λ)
+    (W : Set (List (GGT.RelLetter G Λ))) (eps : ℕ) (mu : ℝ)
+    {A : Alphabet G} {R : ℕ} (Z : Lemma44ReducedRelatorDiagram A W R) where
+  relator : List (GGT.RelLetter G Λ)
+  relator_mem : relator ∈ W
+  exterior : List (GGT.RelLetter G Λ)
+  remainder : List (GGT.RelLetter G Λ)
+  relator_decomposition : relator = exterior ++ remainder
+  exterior_large :
+    (1 - 13 * mu) * (relator.length : ℝ) < (exterior.length : ℝ)
+  boundaryArc : Lemma44BoundaryArc Z.toLemma44RelatorDiagramBoundary
+  leftConnector : G
+  rightConnector : G
+  leftConnector_short : wordNorm E.base leftConnector ≤ eps
+  rightConnector_short : wordNorm E.base rightConnector ≤ eps
+  exterior_value : GGT.RelLetter.listVal exterior =
+    leftConnector * boundaryArc.arc.prod * rightConnector
+
+/-- The large exterior contiguity arc contradicts a sufficiently long
+relator.  This is the numerical last step of Osin Lemma 5.1(2), now stated on
+the actual boundary subpath supplied by Lemma 9.7. -/
+theorem false_of_lemma44LargeExteriorCell
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G} (P : AuxiliaryPeripheralFamily A N S)
+    {W : Set (List
+      (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {R eps rho : ℕ} {mu : ℝ}
+    (Z : Lemma44ReducedRelatorDiagram A.alphabet W R)
+    (hsc : RelWord.IsLemma44Input P.rel W eps mu rho)
+    (hmu : mu ≤ 1 / 52)
+    (hthreshold :
+      4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ))
+    (C : Lemma44LargeExteriorCell P.rel W eps mu Z) : False := by
+  have hlongNat : rho ≤ C.relator.length := hsc.long C.relator C.relator_mem
+  have hcoeff : (3 / 4 : ℝ) ≤ 1 - 13 * mu := by linarith
+  have hrelator_nonneg : (0 : ℝ) ≤ C.relator.length := Nat.cast_nonneg _
+  have hexterior_fraction :
+      (3 / 4 : ℝ) * C.relator.length < C.exterior.length :=
+    lt_of_le_of_lt (mul_le_mul_of_nonneg_right hcoeff hrelator_nonneg)
+      C.exterior_large
+  have hlong : (rho : ℝ) ≤ C.relator.length := by exact_mod_cast hlongNat
+  have hexterior_long :
+      4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) < C.exterior.length := by
+    have hscale : (3 / 4 : ℝ) * (rho : ℝ) ≤
+        (3 / 4 : ℝ) * C.relator.length :=
+      mul_le_mul_of_nonneg_left hlong (by norm_num)
+    exact lt_trans hthreshold (lt_of_le_of_lt hscale hexterior_fraction)
+  have hexterior_le : C.exterior.length ≤ C.relator.length := by
+    rw [C.relator_decomposition]
+    simp only [List.length_append]
+    omega
+  have htake : C.relator.take C.exterior.length = C.exterior := by
+    rw [C.relator_decomposition]
+    simp
+  have hqg := hsc.quasiGeodesic C.relator C.relator_mem
+  have hlowerRaw := (hqg 0 C.exterior.length (Nat.zero_le _)
+    hexterior_le).1
+  have hzero : GGT.RelLetter.listVal (C.relator.take 0) = 1 := by
+    simp [GGT.RelLetter.listVal]
+  dsimp only at hlowerRaw
+  rw [hzero, htake, wordDist_one_left] at hlowerRaw
+  have hlower : (C.exterior.length : ℝ) / 4 - 1 ≤
+      (wordNorm P.rel.alphabet.carrier
+        (GGT.RelLetter.listVal C.exterior) : ℝ) := by
+    norm_num at hlowerRaw ⊢
+    exact hlowerRaw
+  have hbaseSubset : A.alphabet.carrier ⊆ P.rel.alphabet.carrier := by
+    intro a ha
+    apply GGT.base_subset_alphabet_carrier P.rel
+    exact P.base_le ha
+  have hleftRel : wordNorm P.rel.alphabet.carrier C.leftConnector ≤ eps :=
+    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
+      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.leftConnector))
+      C.leftConnector_short
+  have hrightRel : wordNorm P.rel.alphabet.carrier C.rightConnector ≤ eps :=
+    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
+      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.rightConnector))
+      C.rightConnector_short
+  have harcWord : IsWord P.rel.alphabet.carrier
+      C.boundaryArc.arc C.boundaryArc.arc.prod := by
+    refine ⟨?_, rfl⟩
+    intro x hx
+    exact hbaseSubset (C.boundaryArc.arc_isWord.letters x hx)
+  have harcRel : wordNorm P.rel.alphabet.carrier C.boundaryArc.arc.prod ≤ 2 * R :=
+    le_trans (wordNorm_le_length harcWord)
+      C.boundaryArc.arc_length_le_two_mul_radius
+  have hmul₁ := wordNorm_mul_le P.rel.alphabet.symmetricGenerating
+    C.leftConnector C.boundaryArc.arc.prod
+  have hmul₂ := wordNorm_mul_le P.rel.alphabet.symmetricGenerating
+    (C.leftConnector * C.boundaryArc.arc.prod) C.rightConnector
+  have hupper : wordNorm P.rel.alphabet.carrier
+      (GGT.RelLetter.listVal C.exterior) ≤ 2 * R + 2 * eps := by
+    rw [C.exterior_value]
+    omega
+  have hupperReal :
+      (wordNorm P.rel.alphabet.carrier
+        (GGT.RelLetter.listVal C.exterior) : ℝ) ≤
+          ((2 * R + 2 * eps : ℕ) : ℝ) := by
+    exact_mod_cast hupper
+  have hlowerStrict :
+      ((2 * R + 2 * eps : ℕ) : ℝ) < C.exterior.length / 4 - 1 := by
+    have hcast : ((2 * R + 2 * eps + 1 : ℕ) : ℝ) =
+        ((2 * R + 2 * eps : ℕ) : ℝ) + 1 := by
+      push_cast
+      ring
+    rw [hcast] at hexterior_long
+    linarith
+  linarith
+
 end HullSC
 end GroupApproximation
