@@ -1,5 +1,6 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnMayerVietorisSpecial
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnLowDimensional
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -20,17 +21,22 @@ open CategoryTheory Limits
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-- **Base case.** For `0 < k`, the mod-2 homology of `RP⁰` vanishes.  Since
 `RP⁰` is a point (a `Subsingleton`, hence totally disconnected), its mod-2
 singular homology vanishes in positive degrees. -/
 theorem rpHomologyZMod2_zero_isZero_pos
     (k : Nat) (hk : 0 < k) :
     IsZero (homologyZMod2 (TopCat.of (RP 0)) k) := by
-  convert
+  have hzero :=
     AlgebraicTopology.isZero_singularHomologyFunctor_of_totallyDisconnectedSpace
       (ModuleCat (ZMod 2)) k
       (ModuleCat.of (ZMod 2) (ZMod 2))
       (TopCat.of (RP 0)) hk.ne'
+  change IsZero (homologyZMod2 (TopCat.of (RP 0)) k) at hzero
+  exact hzero
 
 /-- **Above-dimension vanishing for `RPⁿ`.** For `n < k`, `H_k(RPⁿ; F₂) = 0`. -/
 theorem rpHomologyZMod2_isZero_above_dim
@@ -68,5 +74,14 @@ theorem rpHomologyZMod2_topPlusOne_isZero (n : Nat) :
     IsZero (homologyZMod2 (TopCat.of (RP n)) (n + 1)) :=
   rpHomologyZMod2_isZero_above_dim n (n + 1) (Nat.lt_succ_self n)
 
-end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+/-- Closed audit endpoint for RP dimension vanishing in mod-two homology. -/
+theorem rpHomology_dimension_vanishing_closed :
+    (∀ n k : Nat, n < k →
+      IsZero (homologyZMod2 (TopCat.of (RP n)) k)) ∧
+    (∀ n : Nat,
+      IsZero (homologyZMod2 (TopCat.of (RP n)) (n + 1))) :=
+  ⟨rpHomologyZMod2_isZero_above_dim, rpHomologyZMod2_topPlusOne_isZero⟩
 
+#audit_closed_axioms rpHomology_dimension_vanishing_closed
+
+end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
