@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.STW22AntipodalBoundaryMeasureTrace
 import GroupApproximation.Analysis.STW22AntipodalBlockTraceAffineEquiv
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The trace--boundary-measure round trip
@@ -410,6 +411,14 @@ theorem boundaryProbabilityMeasureTracialState_baseTraceBoundaryProbabilityMeasu
     exact tendsto_nhds_unique
       (hrho.congr' (Eventually.of_forall fun N ↦ htrunc x N)) hsigma
   exact tracialState_ext hpoint
+
+/-- Binder-free statement of the trace-to-measure-to-trace inverse law. -/
+theorem traceMeasureRoundTrip_unconditional :
+    Function.LeftInverse boundaryProbabilityMeasureTracialState
+      baseTraceBoundaryProbabilityMeasure :=
+  boundaryProbabilityMeasureTracialState_baseTraceBoundaryProbabilityMeasure
+
+#audit_closed_axioms traceMeasureRoundTrip_unconditional
 
 end
 
