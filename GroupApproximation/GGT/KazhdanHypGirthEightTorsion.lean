@@ -223,6 +223,28 @@ def FiniteOrderForcesRelatorProperPower
   FiniteOrderForces (TriangularHodgeLayer.Presented T) TriangleIndex
     (fun j ↦ RelatorIsProperPower (TriangularHodgeLayer.relator (T j)))
 
+/-- The one-generator triangle whose three letters are the same positive
+generator. -/
+def oneCubeTriangle : TriangularHodgeLayer.Triangle (Fin 1) :=
+  fun _ ↦ (0, true)
+
+/-- A one-row table containing the positive cube relator. -/
+def oneCubeTable : Fin 1 → TriangularHodgeLayer.Triangle (Fin 1) :=
+  fun _ ↦ oneCubeTriangle
+
+/-- Direct model of the specialized localization predicate.  Its sole
+relator is already a proper power, so every finite-order input localizes at
+the sole row.  This table is only a model test; it does not pass the simple
+link clause of `GirthEightChecks`. -/
+theorem finiteOrderForcesRelatorProperPower_oneCubeModel :
+    FiniteOrderForcesRelatorProperPower oneCubeTable := by
+  intro g n hn hpow hne
+  refine ⟨(0 : Fin 1), ?_⟩
+  have hcube := relatorIsProperPower_cube (FreeGroup.of (0 : Fin 1))
+  simpa [oneCubeTable, oneCubeTriangle, TriangularHodgeLayer.relator,
+    TriangularHodgeLayer.letters_eq_three, word, FreeGroup.of,
+    FreeGroup.pow_mk] using hcube
+
 /-- Finite-order localization and the girth-eight checks prove
 torsion-freeness of the presented group. -/
 theorem presented_isPowerTorsionFree_of_finiteOrderForcesRelatorProperPower
