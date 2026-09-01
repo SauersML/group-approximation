@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCLemma49Correction
+import GroupApproximation.GGT.VanKampen.ContiguityCount
 
 /-!
 # Hull's Lemma 4.9 from the shared relative Greendlinger certificate
@@ -153,11 +154,8 @@ theorem Lemma49RelativeGreendlingerCell.remainder_small
       23 * mu * (C.relator.length : ℝ) := by
   have hlength := congrArg List.length C.contiguity.relator_decomposition
   simp only [List.length_append] at hlength
-  have hcast : (C.relator.length : ℝ) =
-      (C.contiguity.exterior.length : ℝ) +
-        (C.contiguity.remainder.length : ℝ) := by
-    exact_mod_cast hlength
-  linarith [C.exterior_large]
+  exact GGT.VanKampen.complement_le_of_exterior_fraction hlength
+    C.exterior_large
 
 /-- The relator's `(4,1)` quasi-geodesicity and the two short connectors give
 the lower bound on the opposite power-boundary arc used as equation (19) in
