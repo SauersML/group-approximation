@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCRelatorSeparation2Published
+import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 import GroupApproximation.GGT.HullSCRelatorSeparation2ExactCount
 
 /-!

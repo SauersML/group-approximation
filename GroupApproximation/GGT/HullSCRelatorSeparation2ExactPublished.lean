@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
 import GroupApproximation.GGT.HullSCRelatorSeparation2ExactCount
-import GroupApproximation.GGT.HullSCRelatorSeparation2Published
+import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 import GroupApproximation.GGT.CayleyFourPointConverse
 
 /-!
@@ -1104,17 +1104,6 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       have hxg : x = g := congrArg GGT.RelLetter.val hgx
       exact hxg.trans hgt
     · cases hmx
-
-/-- **Hull's published one-relator input from the exact finite-avoidance
-design**, packaged in the historical Bool-indexed statement. -/
-theorem hullRelatorStatement₂OfBaseLetterPublished_exact :
-    HullRelatorStatement₂OfBaseLetterPublished.{u} := by
-  intro G _ A N E hN t ht eps rho mu hmu
-  obtain ⟨u, hu, R, hval, hsc, _⟩ :=
-    exists_hullRelatorWord₂OfBaseLetterPublished_exact E hN t ht
-      eps rho mu hmu
-  exact ⟨u, hu, RelWord.symmetrized R,
-    ⟨R, RelWord.self_mem_symmetrized R, hval⟩, hsc⟩
 
 end PublishedEndpoint
 
