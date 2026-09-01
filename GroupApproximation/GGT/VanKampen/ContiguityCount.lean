@@ -160,9 +160,8 @@ theorem total_partition {mu : ℝ} (A : ContiguityAccounting mu) :
       (∑ i : Fin A.cellCount, A.uncoveredWeight i) := by
   calc
     (∑ i : Fin A.cellCount, A.perimeter i) =
-        ∑ i : Fin A.cellCount,
-          (A.exteriorWeight i + A.interiorWeight i) +
-            A.uncoveredWeight i := by
+        ∑ i : Fin A.cellCount, ((A.exteriorWeight i + A.interiorWeight i) +
+          A.uncoveredWeight i) := by
       apply Finset.sum_congr rfl
       intro i _
       exact A.partition i

@@ -119,8 +119,8 @@ theorem total_partition
       (∑ i : Fin Delta.rCellCount, S.uncoveredWeight i) := by
   calc
     (∑ i : Fin Delta.rCellCount, Delta.cellWeight i) =
-        ∑ i : Fin Delta.rCellCount,
-          (S.outerWeight i + S.interiorWeight i) + S.uncoveredWeight i := by
+        ∑ i : Fin Delta.rCellCount, ((S.outerWeight i +
+          S.interiorWeight i) + S.uncoveredWeight i) := by
       apply Finset.sum_congr rfl
       intro i _
       exact S.partition i
