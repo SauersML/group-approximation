@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullYiCyclicProductAssembly
 import GroupApproximation.GGT.HullYiCyclicOrientation
 import GroupApproximation.GGT.DGOLemma421Statement
+import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
 
 /-!
 # The relative word for Hull's cyclic `yi` products
@@ -24,6 +25,7 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.GGT
+open GroupApproximation.GGT.Elementary
 open GroupApproximation.GGT.OsinComponents
 open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
@@ -760,6 +762,41 @@ theorem exists_fullCycleMatchData_of_consecutiveSelfMatches
   rw [hc0]
   simp only [zpow_natCast, zpow_neg]
   group
+
+/-- The same endpoint in the literal `HasConsecutiveComponentMatch` shape for
+the cone-off by the detector elementary closures.  The prefix is `1`; unlike
+the downstream definition, no arbitrary prefix datum is needed at this
+basepoint choice. -/
+theorem exists_hasConsecutiveComponentMatchData_of_consecutiveSelfMatches
+    (A : Alphabet G) (f a : Fin (k + 1) → G) (hk : 1 ≤ k)
+    (n : ℕ) (t : G)
+    (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcompA : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      IsComp (lam s) (cyclicPeripheralPowerWord a n) (ip s) (kp s))
+    (hcompB : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      IsComp (lam s) (cyclicPeripheralPowerWord a n) (iq s) (kq s))
+    (hstepA : ∀ s : ℕ, s + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp s) (ip (s + 1)))
+    (hstepB : ∀ s : ℕ, s + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kq s) (iq (s + 1)))
+    (hmem : ∀ s : ℕ, s < 2 * (k + 1) + 1 →
+      (vertex 1 (cyclicPeripheralPowerWord a n) (ip s))⁻¹ *
+          vertex t (cyclicPeripheralPowerWord a n) (iq s) ∈
+        elementaryClosure (f (lam s))) :
+    ∃ (l m : ℤ) (p : G) (c : Fin (k + 2) → G),
+      (∀ i : Fin (k + 1), c i.castSucc ∈ elementaryClosure (f i)) ∧
+      (∀ i : Fin (k + 1),
+        c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
+      t = orderedFinProduct a ^ l * p * c 0 * p⁻¹ *
+        orderedFinProduct a ^ (-m) := by
+  obtain ⟨l, m, c, hcmem, hcrec, ht⟩ :=
+    exists_fullCycleMatchData_of_consecutiveSelfMatches
+      (coneOffFamily A (fun i ↦ elementaryClosure (f i))) hk
+      a n t ip kp iq kq lam hcompA hcompB hstepA hstepB hmem
+  refine ⟨l, m, 1, c, hcmem, hcrec, ?_⟩
+  simpa using ht
 
 /-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
 
