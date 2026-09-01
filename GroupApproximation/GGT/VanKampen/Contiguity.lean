@@ -8,8 +8,10 @@ import Mathlib.Tactic.Group
 This file formalizes the local part of Osin, Lemma 4.4 (`O52`).  A
 contiguity region is a disc diagram with no relator cells.  Its exterior word
 is split into a source arc, a short right side, the inverse of a target arc,
-and a short left side.  The empty-relator boundary theorem then gives the
-usual connector equation between the two arc labels.
+and a short left side.  The sides record both the literal length bound used by
+the shared finite certificate and the relative word-norm bound used by Osin's
+piece definition.  The empty-relator boundary theorem then gives the usual
+connector equation between the two arc labels.
 
 A cell-to-cell contiguity subdiagram also remembers the positions of the two
 cells in the ordered relator-cell list.  The left side transports the base of
@@ -48,6 +50,8 @@ structure ContiguityRegion
     firstArc ++ rightSide ++ RelWord.revInv secondArc ++ leftSide
   leftSide_admissible : RelWord.IsAdmissible D leftSide
   rightSide_admissible : RelWord.IsAdmissible D rightSide
+  leftSide_length_le : leftSide.length ≤ eps
+  rightSide_length_le : rightSide.length ≤ eps
   leftSide_short : wordNorm D.alphabet.carrier
     (GGT.RelLetter.listVal leftSide) ≤ eps
   rightSide_short : wordNorm D.alphabet.carrier
@@ -277,11 +281,11 @@ structure BoundaryContiguity
   source_mem : source ∈ Delta.relatorCells
   region : ContiguityRegion D eps
   sourceRemainder : List (GGT.RelLetter G Lambda)
-  source_decomposition : source.word = region.firstArc ++ sourceRemainder
+  source_decomposition : source.word = region.secondArc ++ sourceRemainder
   boundaryBefore : List (GGT.RelLetter G Lambda)
   boundaryAfter : List (GGT.RelLetter G Lambda)
   boundary_decomposition : Delta.boundaryWord =
-    boundaryBefore ++ region.secondArc ++ boundaryAfter
+    boundaryBefore ++ region.firstArc ++ boundaryAfter
 
 namespace BoundaryContiguity
 
@@ -293,7 +297,7 @@ def degree
     {Delta : DiscDiagram W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
     (Gamma : BoundaryContiguity source) : ℝ :=
-  (Gamma.region.firstArc.length : ℝ) / source.word.length
+  (Gamma.region.secondArc.length : ℝ) / source.word.length
 
 /-- The exterior arc has no more letters than its source relator. -/
 theorem sourceArc_length_le
@@ -303,7 +307,7 @@ theorem sourceArc_length_le
     {Delta : DiscDiagram W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
     (Gamma : BoundaryContiguity source) :
-    Gamma.region.firstArc.length ≤ source.word.length := by
+    Gamma.region.secondArc.length ≤ source.word.length := by
   rw [Gamma.source_decomposition]
   simp only [List.length_append]
   omega
