@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.DGOProposition414SubarcInterval
 import GroupApproximation.GGT.DGOProposition414PacketCharging
 import GroupApproximation.GGT.DGOProposition414ConnectorProducer
+import GroupApproximation.GGT.DGOProposition414EntryOwner
 
 /-!
 # Exact interval surgery over a balanced split
