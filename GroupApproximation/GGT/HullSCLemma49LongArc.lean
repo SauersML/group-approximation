@@ -207,6 +207,52 @@ theorem exists_repeatedBoundaryBlocks_of_lemma49PowerArc
     hperiodPower.infix harc
   exact exists_repeatedBoundaryBlocks_of_hasPeriod hperiodPos hperiodArc hlong
 
+/-! ## The repeated blocks clear the prime-piece cutoff -/
+
+/-- At Hull's fixed `mu = 1/1000`, a sufficiently large relator threshold
+makes each repeated block longer than `mu` times the selected relator.
+
+This is the numerical end of equation (19) in Osin's proof.  The exterior
+occupies at least `977/1000` of the relator, its `(4,1)` lower bound loses only
+the two `eps`-connectors, and division by `100` loses fewer than one hundred
+letters.  The deliberately generous scale below absorbs all three losses. -/
+theorem Lemma49RepeatedBoundaryBlocks.large_relative_to_relator
+    {G : Type u} [Group G] {Lambda : Type*}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps rho : ℕ}
+    {Z : Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
+    (B : Lemma49RepeatedBoundaryBlocks
+      (GGT.RelLetter G Lambda) C.boundaryArc)
+    (hinput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
+      eps (1 / 1000) rho)
+    (hscale : 1000 * (2 * eps + 100) ≤ rho) :
+    (1 / 1000 : ℝ) * (C.relator.length : ℝ) ≤
+      (B.block.length : ℝ) := by
+  have hrelatorScaleNat :
+      1000 * (2 * eps + 100) ≤ C.relator.length :=
+    le_trans hscale (hinput.long C.relator C.relator_mem)
+  have hrelatorScale :
+      (1000 : ℝ) * (2 * (eps : ℝ) + 100) ≤
+        (C.relator.length : ℝ) := by
+    exact_mod_cast hrelatorScaleNat
+  have hexterior := C.exterior_large
+  have harc := C.boundaryArc_lower hinput
+  have hdivisionNat : C.boundaryArc.length <
+      100 * (C.boundaryArc.length / 100 + 1) := by
+    have hmod : C.boundaryArc.length % 100 < 100 := by omega
+    have hdecomp := Nat.div_add_mod C.boundaryArc.length 100
+    omega
+  have hdivision : (C.boundaryArc.length : ℝ) <
+      100 * ((C.boundaryArc.length / 100 : ℕ) + 1) := by
+    exact_mod_cast hdivisionNat
+  have hblock : (B.block.length : ℝ) =
+      (C.boundaryArc.length / 100 : ℕ) := by
+    exact_mod_cast B.block_length
+  norm_num at hexterior
+  rw [hblock]
+  linarith
+
 /-! ## Model checks -/
 
 /-- The concrete word `ababab` exhibits the non-vacuous repeated-block data
