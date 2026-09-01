@@ -115,7 +115,7 @@ theorem canonicalMaximalTrace_not_isQuasidiagonalTrace_of_not_isOperatorMF
       Quasidiagonal.ucpContractive hqd)
 
 def PrintedCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF : Prop :=
-  ∀ (G : Type*) [Group G] (hnot : ¬ IsOperatorMF G),
+  ∀ (G : Type*) [Group G], ¬ IsOperatorMF G →
     ¬ Quasidiagonal.IsQuasidiagonalTrace
       (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)
 
