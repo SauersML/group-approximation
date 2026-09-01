@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 import GroupApproximation.GGT.HullSCLemma49PowerDiagram
+import Mathlib.Data.List.PeriodicityLemma
 
 /-!
 # The correction step in Hull's Lemma 4.9
@@ -27,6 +28,113 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
 universe u w
+
+/-! ## Periodic boundary bookkeeping -/
+
+/-- The recursive power word agrees with the standard flattened list of
+replicated blocks. -/
+theorem lemma49BoundaryPower_eq_flatten_replicate
+    {Alpha : Type*} (word : List Alpha) : ∀ n : ℕ,
+    lemma49BoundaryPower word n = (List.replicate n word).flatten
+  | 0 => by simp [lemma49BoundaryPower]
+  | n + 1 => by
+      rw [lemma49BoundaryPower, lemma49BoundaryPower_eq_flatten_replicate,
+        List.replicate_succ, List.flatten_cons]
+
+/-- A positive boundary power has the length of one period as a list period. -/
+theorem hasPeriod_lemma49BoundaryPower
+    {Alpha : Type*} (word : List Alpha) {n : ℕ} (hn : 0 < n) :
+    List.HasPeriod (lemma49BoundaryPower word n) word.length := by
+  rw [lemma49BoundaryPower_eq_flatten_replicate]
+  show (List.replicate n word).flatten <+:
+    List.take word.length (List.replicate n word).flatten ++
+      (List.replicate n word).flatten
+  obtain ⟨j, rfl⟩ : ∃ j, n = j + 1 := ⟨n - 1, by omega⟩
+  have hfront : (List.replicate (j + 1) word).flatten =
+      word ++ (List.replicate j word).flatten := by
+    rw [List.replicate_succ, List.flatten_cons]
+  have hback : (List.replicate (j + 1) word).flatten =
+      (List.replicate j word).flatten ++ word := by
+    rw [List.replicate_succ', List.flatten_append, List.flatten_cons,
+      List.flatten_nil, List.append_nil]
+  rw [hfront, List.take_left, ← hfront, hback]
+  exact List.prefix_append _ _
+
+/-- A factor no longer than one period of a positive boundary power is a
+prefix of a cyclic rotation of the period.  This is the exact rotation
+bookkeeping used in Hull's short-arc case. -/
+theorem exists_prefix_rotate_of_infix_lemma49BoundaryPower
+    {Alpha : Type*} {word arc : List Alpha} {n : ℕ}
+    (hn : 0 < n) (hword : word ≠ [])
+    (harc : arc <:+: lemma49BoundaryPower word n)
+    (hlen : arc.length ≤ word.length) :
+    ∃ m, m < word.length ∧ arc <+: word.rotate m := by
+  have hperiod := hasPeriod_lemma49BoundaryPower word hn
+  have hwordLength : 0 < word.length := List.length_pos_of_ne_nil hword
+  have hpowerLength : (lemma49BoundaryPower word n).length = n * word.length :=
+    lemma49BoundaryPower_length word n
+  have hperiodLe : word.length ≤ (lemma49BoundaryPower word n).length := by
+    rw [hpowerLength]
+    exact Nat.le_mul_of_pos_left _ hn
+  obtain ⟨before, after, hsplit⟩ := harc
+  have hfit : before.length + arc.length ≤
+      (lemma49BoundaryPower word n).length := by
+    have h := congrArg List.length hsplit
+    simp only [List.length_append] at h
+    omega
+  refine ⟨before.length % word.length,
+    Nat.mod_lt _ hwordLength, ?_⟩
+  rw [List.prefix_iff_getElem?]
+  intro i hi
+  have hiPeriod : i < word.length := lt_of_lt_of_le hi hlen
+  have hiPower : before.length + i <
+      (lemma49BoundaryPower word n).length := by omega
+  have hleft : arc[i]? =
+      (lemma49BoundaryPower word n)[before.length + i]? := by
+    rw [← hsplit, List.getElem?_append_left (by simp; omega),
+      List.getElem?_append_right (by omega)]
+    simp
+  have hmod : (i + before.length % word.length) % word.length =
+      (before.length + i) % word.length := by
+    rw [Nat.add_comm before.length i]
+    conv_rhs => rw [Nat.add_mod]
+    conv_lhs => rw [Nat.add_mod]
+    simp
+  have hright : (word.rotate (before.length % word.length))[i]? =
+      (lemma49BoundaryPower word n)[(before.length + i) % word.length]? := by
+    rw [List.getElem?_rotate (by omega), hmod]
+    have htake : (lemma49BoundaryPower word n).take word.length = word := by
+      rw [lemma49BoundaryPower]
+      exact List.take_left
+    rw [← htake, List.getElem?_take_of_lt (Nat.mod_lt _ hwordLength)]
+  rw [hright,
+    ← List.hasPeriod_iff_forall_getElem?_mod.mp hperiod _ hiPower, ← hleft]
+  exact List.getElem?_eq_getElem hi
+
+/-- A factor at least one period long begins with a full cyclic rotation of
+the period.  Its remaining letters are exposed as an explicit tail. -/
+theorem exists_rotate_append_of_infix_lemma49BoundaryPower
+    {Alpha : Type*} {word arc : List Alpha} {n : ℕ}
+    (hn : 0 < n) (hword : word ≠ [])
+    (harc : arc <:+: lemma49BoundaryPower word n)
+    (hlen : word.length ≤ arc.length) :
+    ∃ m tail, m < word.length ∧ arc = word.rotate m ++ tail ∧
+      tail.length = arc.length - word.length := by
+  have htakeInfix : arc.take word.length <:+:
+      lemma49BoundaryPower word n :=
+    (List.take_prefix word.length arc).isInfix.trans harc
+  have htakeLength : (arc.take word.length).length = word.length :=
+    List.length_take_of_le hlen
+  obtain ⟨m, hm, hprefix⟩ :=
+    exists_prefix_rotate_of_infix_lemma49BoundaryPower hn hword htakeInfix
+      (by rw [htakeLength])
+  have hrotateLength : (word.rotate m).length = word.length :=
+    List.length_rotate word m
+  have heq : arc.take word.length = word.rotate m := by
+    exact hprefix.eq_of_length (by rw [htakeLength, hrotateLength])
+  refine ⟨m, arc.drop word.length, hm, ?_, by simp⟩
+  conv_lhs => rw [← List.take_append_drop word.length arc]
+  rw [heq]
 
 /-! ## Splitting a relative word under its value map -/
 
