@@ -117,6 +117,7 @@ theorem exists_exact_cleanSource_publishedGap_relativeSides
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) (p.length + i))⁻¹ *
       GGT.OsinComponents.vertex (1 : G)
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) n ∈ E.rel.fam lam
+    simp only [one_mul]
     rw [GGT.OsinComponents.vertex_fourGon_side p q r s 1 (by omega), ← heq]
     have hcancel :
         (GGT.RelLetter.listVal p * GGT.OsinComponents.vertex (1 : G) q i)⁻¹ *
