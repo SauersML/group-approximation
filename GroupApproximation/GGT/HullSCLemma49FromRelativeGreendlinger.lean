@@ -219,6 +219,87 @@ theorem Lemma49RelativeGreendlingerCell.boundaryArc_lower
   push_cast at hupperReal
   linarith
 
+/-! ## The two shortening cases at Hull's fixed constant -/
+
+/-- At `mu = 1/1000`, taking the relator threshold one hundred times larger
+than the connector scale makes the cell detour less than one third of the
+opposite boundary arc.  The generous numeral keeps all later arithmetic
+integral. -/
+theorem Lemma49RelativeGreendlingerCell.three_mul_detourLength_lt_boundaryArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps rho : ℕ}
+    {Z : Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
+    (hinput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
+      eps (1 / 1000) rho)
+    (hscale : 100 * (2 * eps + 1) ≤ rho) :
+    3 * (2 * eps + C.contiguity.remainder.length) < C.boundaryArc.length := by
+  have hrho := hinput.long C.relator C.relator_mem
+  have hrelatorScaleNat : 100 * (2 * eps + 1) ≤ C.relator.length :=
+    le_trans hscale hrho
+  have hrelatorScale :
+      (100 : ℝ) * (2 * (eps : ℝ) + 1) ≤ (C.relator.length : ℝ) := by
+    exact_mod_cast hrelatorScaleNat
+  have hremainder := C.remainder_small
+  have harcLower := C.boundaryArc_lower hinput
+  have hexterior := C.exterior_large
+  have htargetReal :
+      (3 : ℝ) *
+          (2 * (eps : ℝ) + (C.contiguity.remainder.length : ℝ)) <
+        (C.boundaryArc.length : ℝ) := by
+    norm_num at hremainder hexterior
+    linarith
+  exact_mod_cast htargetReal
+
+/-- Consequently, unless the selected power arc is at least four thirds of
+one period, one of the two correction lemmas contradicts quotient-conjugacy
+minimality.  This packages Cases 2 and 3 of Osin's Lemma 6.3; the returned
+inequality is exactly the entrance condition for the remaining prime-piece
+case. -/
+theorem four_mul_period_le_three_mul_arc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps rho : ℕ}
+    {Z : Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
+    (hinput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
+      eps (1 / 1000) rho)
+    (hscale : 100 * (2 * eps + 1) ≤ rho)
+    (hshort : IsShortestModuloConjugacy D.alphabet.carrier
+      (Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)) g) :
+    4 * Z.boundaryWord.length ≤ 3 * C.boundaryArc.length := by
+  let N : Subgroup G :=
+    Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
+  have hwordNe : Z.boundaryWord ≠ [] := by
+    intro hnil
+    have hg : g = 1 := by
+      have hvalue : GGT.RelLetter.listVal Z.boundaryWord = g := by
+        simpa using Z.boundary_geodesic.2.1
+      rw [hnil] at hvalue
+      simpa using hvalue.symm
+    exact Z.power_ne_one (by simp [hg])
+  have harcInfix : C.boundaryArc <:+:
+      lemma49BoundaryPower Z.boundaryWord n :=
+    ⟨C.boundaryBefore, C.boundaryAfter, C.boundary_decomposition.symm⟩
+  have hrelatorAdmissible : RelWord.IsAdmissible D C.relator :=
+    hinput.admissible C.relator C.relator_mem
+  have hrelatorMem : GGT.RelLetter.listVal C.relator ∈ N :=
+    listVal_mem_normalClosure_of_mem_symmetrized C.relator_mem
+  have hdetourThird :=
+    C.three_mul_detourLength_lt_boundaryArc hinput hscale
+  by_contra hlong
+  have harcFour : 3 * C.boundaryArc.length < 4 * Z.boundaryWord.length := by
+    omega
+  rcases le_total C.boundaryArc.length Z.boundaryWord.length with hshortArc | hperiod
+  · exact false_of_contiguity_arc_le_period D N hshort Z.boundary_geodesic
+      Z.exponent_pos harcInfix hshortArc C.contiguity hrelatorAdmissible
+      hrelatorMem C.boundaryArc_value (by omega)
+  · apply false_of_contiguity_period_le_arc D N hshort Z.boundary_geodesic
+      Z.exponent_pos hwordNe harcInfix hperiod C.contiguity
+      hrelatorAdmissible hrelatorMem C.boundaryArc_value
+    omega
+
 /-! ## Applying the one shared Greendlinger proposition -/
 
 /-- The shared relative Greendlinger proposition supplies a large literal
