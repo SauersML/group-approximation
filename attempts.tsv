@@ -251,3 +251,4 @@
 33452571643	2026-08-31T23:54:27Z	GroupApproximation/Sofic/CliffordLampGraphFreeSubgroup.lean	ReducedWord.of_cons
 33472958314	2026-09-01T05:17:09Z	GroupApproximation/Sofic/CliffordLampGraphLocalFiniteness.lean	twoLamp_left
 33496346505	2026-09-01T10:14:49Z	GroupApproximation/Sofic/CliffordLampGroup.lean	sign_sq
+33522766043	2026-09-01T14:58:28Z	GroupApproximation/Sofic/CliffordLampPermanence.lean	applies
