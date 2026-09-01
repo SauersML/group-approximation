@@ -1,5 +1,4 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCupProductGenerator
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualAlphaPowerNonvanishing
 
 /-!
 # The exact target of the `RPnGeneratorIdentification` branch, and its minimal inputs
