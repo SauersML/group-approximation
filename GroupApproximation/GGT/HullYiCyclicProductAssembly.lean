@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.HullYiMatchedProductRigidity
+import GroupApproximation.GGT.HullYiAlphabetTransfer
 
 /-!
 # Algebraic assembly of Hull's cyclic-product `yi` witnesses
@@ -17,7 +18,7 @@ one full cyclic run of matched components.  The connector equations returned
 by that run are exactly the hypotheses of
 `elementaryClosure_eq_zpowers_of_matchedProduct`.
 
-This file makes that handoff literal.  `YiOrientationPureProductPair` contains
+This file makes that handoff literal.  `YiOrientationPureProductFamily` contains
 the source data available immediately before the consecutive-component
 argument.  `HasConsecutiveComponentMatch` is only the match output, with no
 cyclicity conclusion hidden in it.  The assembly below proves membership of
@@ -88,12 +89,12 @@ component lemma.
 
 The detector `f` is orientation-pure through the centralizer equalities and
 detects the trivial radical through `intersection_eq_one`.  Each letter of each
-product is a nonzero power of the corresponding detector.  The product-level
-loxodromy, non-commensurability, and finite avoidance are precisely the output
-of the preceding DGO Corollary 6.12 / Hull Lemma 3.9 selection; cyclicity is
-deliberately absent. -/
-structure YiOrientationPureProductPair
-    (A : HullGeneratingSet G) (T : Subgroup G) (F : Finset G) where
+product is a nonzero power of the corresponding detector.  Product-level
+loxodromy and pairwise non-commensurability are precisely the output of the
+preceding DGO Corollary 6.12 / Hull Lemma 3.9 selection.  Finite avoidance is
+derived below by counting, and cyclicity is deliberately absent. -/
+structure YiOrientationPureProductFamily
+    (A : HullGeneratingSet G) (T : Subgroup G) (ι : Type*) where
   k : ℕ
   three_le : 3 ≤ k
   detector : Fin k → G
@@ -106,56 +107,63 @@ structure YiOrientationPureProductPair
   base_centralizer : ∀ i,
     (elementaryClosure (detector i) : Set G) =
       {x : G | Commute x (detector i ^ exponent i)}
-  multiplier : Bool → Fin k → ℤ
-  multiplier_ne_zero : ∀ b i, multiplier b i ≠ 0
-  letter : Bool → Fin k → G
-  letter_eq : ∀ b i,
-    letter b i = (detector i ^ exponent i) ^ multiplier b i
+  multiplier : ι → Fin k → ℤ
+  multiplier_ne_zero : ∀ j i, multiplier j i ≠ 0
+  letter : ι → Fin k → G
+  letter_eq : ∀ j i,
+    letter j i = (detector i ^ exponent i) ^ multiplier j i
   intersection_eq_one : ∀ x : G,
     (∀ i, x ∈ elementaryClosure (detector i)) → x = 1
-  product_loxodromic : ∀ b,
-    IsLoxodromic (orderedFinProduct (letter b))
-      (Cayley.base A.alphabet)
+  productAlphabet : Alphabet G
+  base_subset_productAlphabet :
+    A.alphabet.carrier ⊆ productAlphabet.carrier
+  product_loxodromic_enlarged : ∀ j,
+    IsLoxodromic (orderedFinProduct (letter j))
+      (Cayley.base productAlphabet)
   product_nonCommensurable :
-    PairwiseNonCommensurable (fun b => orderedFinProduct (letter b))
-  product_avoids : ∀ b,
-    AvoidsFiniteCommensurabilityOneSided F
-      (orderedFinProduct (letter b))
+    PairwiseNonCommensurable (fun j => orderedFinProduct (letter j))
 
-namespace YiOrientationPureProductPair
+namespace YiOrientationPureProductFamily
 
-variable {A : HullGeneratingSet G} {T : Subgroup G} {F : Finset G}
+variable {A : HullGeneratingSet G} {T : Subgroup G} {ι : Type*}
 
 /-- The cyclic product represented by the prepared pair. -/
-def product (P : YiOrientationPureProductPair A T F) (b : Bool) : G :=
-  orderedFinProduct (P.letter b)
+def product (P : YiOrientationPureProductFamily A T ι) (j : ι) : G :=
+  orderedFinProduct (P.letter j)
 
 /-- Every product letter is a nonzero power of its detector. -/
-theorem letter_is_nonzero_power (P : YiOrientationPureProductPair A T F)
-    (b : Bool) (i : Fin P.k) :
-    ∃ n : ℤ, n ≠ 0 ∧ P.letter b i = P.detector i ^ n := by
-  refine ⟨P.exponent i * P.multiplier b i,
-    mul_ne_zero (P.exponent_ne_zero i) (P.multiplier_ne_zero b i), ?_⟩
+theorem letter_is_nonzero_power (P : YiOrientationPureProductFamily A T ι)
+    (j : ι) (i : Fin P.k) :
+    ∃ n : ℤ, n ≠ 0 ∧ P.letter j i = P.detector i ^ n := by
+  refine ⟨P.exponent i * P.multiplier j i,
+    mul_ne_zero (P.exponent_ne_zero i) (P.multiplier_ne_zero j i), ?_⟩
   rw [P.letter_eq, ← zpow_mul]
 
 /-- The base centralizer equality remains valid for every selected product
 letter. -/
-theorem centralizer_letter (P : YiOrientationPureProductPair A T F)
-    (b : Bool) (i : Fin P.k) :
+theorem centralizer_letter (P : YiOrientationPureProductFamily A T ι)
+    (j : ι) (i : Fin P.k) :
     (elementaryClosure (P.detector i) : Set G) =
-      {x : G | Commute x (P.letter b i)} := by
+      {x : G | Commute x (P.letter j i)} := by
   rw [P.letter_eq]
   exact elementaryClosure_eq_centralizer_zpow_mul
     (P.exponent_ne_zero i) (P.base_centralizer i)
-      (P.multiplier_ne_zero b i)
+      (P.multiplier_ne_zero j i)
+
+/-- Hull's Lemma A.1 brings the selected products back from the enlarged
+cone-off alphabet to the manuscript's prescribed alphabet. -/
+theorem product_loxodromic (P : YiOrientationPureProductFamily A T ι) (j : ι) :
+    IsLoxodromic (P.product j) (Cayley.base A.alphabet) :=
+  isLoxodromic_base_of_subset P.base_subset_productAlphabet
+    (P.product_loxodromic_enlarged j)
 
 /-- Every prepared product lies in the suitable subgroup.  This is derived,
 not stored: each letter is a power of a detector already in the subgroup. -/
-theorem product_mem (P : YiOrientationPureProductPair A T F) (b : Bool) :
-    P.product b ∈ T := by
+theorem product_mem (P : YiOrientationPureProductFamily A T ι) (j : ι) :
+    P.product j ∈ T := by
   apply orderedFinProduct_mem T
   intro i
-  obtain ⟨n, _hn, hletter⟩ := P.letter_is_nonzero_power b i
+  obtain ⟨n, _hn, hletter⟩ := P.letter_is_nonzero_power j i
   rw [hletter]
   exact Subgroup.zpow_mem T (P.detector_mem i) n
 
@@ -168,72 +176,98 @@ For `t ∈ E(h)`, the `k` matched components give connector labels
 `E(fᵢ)`, and the terminal connector is conjugation by the matched letter
 `aᵢ`.  The final equation is Hull's prefix calculation. -/
 def HasConsecutiveComponentMatch
-    (P : YiOrientationPureProductPair A T F) : Prop :=
-  ∀ b (t : G), t ∈ elementaryClosure (P.product b) →
+    (P : YiOrientationPureProductFamily A T ι) : Prop :=
+  ∀ j (t : G), t ∈ elementaryClosure (P.product j) →
     ∃ (l m : ℤ) (p : G) (c : Fin (P.k + 1) → G),
       (∀ i : Fin P.k,
         c i.castSucc ∈ elementaryClosure (P.detector i)) ∧
       (∀ i : Fin P.k,
-        c i.succ = (P.letter b i)⁻¹ * c i.castSucc * P.letter b i) ∧
-      t = P.product b ^ l * p * c 0 * p⁻¹ * P.product b ^ (-m)
+        c i.succ = (P.letter j i)⁻¹ * c i.castSucc * P.letter j i) ∧
+      t = P.product j ^ l * p * c 0 * p⁻¹ * P.product j ^ (-m)
 
 /-- The consecutive-component match forces a prepared product to have cyclic
 elementary closure.  All geometry has disappeared at this point: this is the
 connector propagation and prefix cancellation formalized in
 `HullYiMatchedProductRigidity`. -/
 theorem elementaryClosure_product_eq_zpowers
-    (P : YiOrientationPureProductPair A T F)
-    (hmatch : P.HasConsecutiveComponentMatch) (b : Bool) :
-    elementaryClosure (P.product b) = Subgroup.zpowers (P.product b) := by
+    (P : YiOrientationPureProductFamily A T ι)
+    (hmatch : P.HasConsecutiveComponentMatch) (j : ι) :
+    elementaryClosure (P.product j) = Subgroup.zpowers (P.product j) := by
   exact elementaryClosure_eq_zpowers_of_matchedProduct
     (lt_of_lt_of_le (by decide : 0 < 3) P.three_le)
-      P.detector (P.letter b) (P.product b)
-      (P.centralizer_letter b) P.intersection_eq_one (hmatch b)
+      P.detector (P.letter j) (P.product j)
+      (P.centralizer_letter j) P.intersection_eq_one (hmatch j)
 
-/-- A prepared orientation-pure product pair plus the literal consecutive
-match is the local one-sided Yi witness. -/
+/-- From `|F| + 2` prepared products, finite commensurability counting selects
+two products outside every class represented by `F`.  Thus finite avoidance is
+derived from Hull's actual large candidate family rather than assumed of an
+already selected pair. -/
 theorem exists_yiPair_of_consecutiveComponentMatch
-    (P : YiOrientationPureProductPair A T F)
+    (F : Finset G)
+    (P : YiOrientationPureProductFamily A T (Fin (F.card + 2)))
     (hmatch : P.HasConsecutiveComponentMatch) :
     ∃ g : Bool → G, (∀ b, g b ∈ T) ∧
       (∀ b, IsLoxodromic (g b) (Cayley.base A.alphabet)) ∧
       PairwiseNonCommensurable g ∧
       (∀ b, elementaryClosure (g b) = Subgroup.zpowers (g b)) ∧
       ∀ b, AvoidsFiniteCommensurabilityOneSided F (g b) := by
-  refine ⟨P.product, P.product_mem, ?_, ?_, ?_, ?_⟩
-  · exact P.product_loxodromic
-  · exact P.product_nonCommensurable
-  · exact P.elementaryClosure_product_eq_zpowers hmatch
-  · exact P.product_avoids
+  obtain ⟨i, j, hij, hiF, hjF⟩ :=
+    finiteCommensurabilityAvoidance F P.product P.product_nonCommensurable
+  let g : Bool → G := fun b => bif b then P.product j else P.product i
+  refine ⟨g, ?_, ?_, ?_, ?_, ?_⟩
+  · intro b
+    cases b
+    · exact P.product_mem i
+    · exact P.product_mem j
+  · intro b
+    cases b
+    · exact P.product_loxodromic i
+    · exact P.product_loxodromic j
+  · intro b c hbc p q hp hq t
+    cases b <;> cases c
+    · exact (hbc rfl).elim
+    · change t * P.product i ^ p * t⁻¹ ≠ P.product j ^ q
+      exact P.product_nonCommensurable i j hij p q hp hq t
+    · change t * P.product j ^ p * t⁻¹ ≠ P.product i ^ q
+      exact P.product_nonCommensurable j i hij.symm p q hp hq t
+    · exact (hbc rfl).elim
+  · intro b
+    cases b
+    · exact P.elementaryClosure_product_eq_zpowers hmatch i
+    · exact P.elementaryClosure_product_eq_zpowers hmatch j
+  · intro b
+    cases b
+    · exact avoidsFiniteCommensurability_iff_oneSided.mp hiF
+    · exact avoidsFiniteCommensurability_iff_oneSided.mp hjF
 
-end YiOrientationPureProductPair
+end YiOrientationPureProductFamily
 
 /-- Selection of the source data preceding the consecutive-component argument.
 This is Hull's orientation-pure detector together with his sufficiently deep
 choice of two cyclic products.  It does not assert the component match or the
 cyclicity conclusion obtained from it. -/
-def YiOrientationPureProductPairSelection : Prop :=
+def YiOrientationPureProductFamilySelection : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {T : Subgroup G},
     Suitable A.alphabet T → ∀ F : Finset G,
-      Nonempty (YiOrientationPureProductPair A T F)
+      Nonempty (YiOrientationPureProductFamily A T (Fin (F.card + 2)))
 
 /-- The remaining geometric producer, stated uniformly over exactly the
 prepared products on which Hull applies DGO Lemma 4.21(b). -/
 def YiConsecutiveComponentMatchStatement : Prop :=
   ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {T : Subgroup G}
-    {F : Finset G} (P : YiOrientationPureProductPair A T F),
+    {ι : Type} (P : YiOrientationPureProductFamily A T ι),
       P.HasConsecutiveComponentMatch
 
 /-- The source-facing assembly theorem.  Once the orientation-pure products
 are selected, the exact DGO consecutive-component match is the only remaining
 input to the local Yi producer. -/
 theorem yiSuitablePairAvoidingFiniteOneSided_of_productSelection_of_match
-    (hselect : YiOrientationPureProductPairSelection.{u})
+    (hselect : YiOrientationPureProductFamilySelection.{u})
     (hmatch : YiConsecutiveComponentMatchStatement.{u}) :
     YiSuitablePairAvoidingFiniteOneSided.{u} := by
   intro G _ A T hT F
   obtain ⟨P⟩ := hselect A hT F
-  exact P.exists_yiPair_of_consecutiveComponentMatch (hmatch P)
+  exact P.exists_yiPair_of_consecutiveComponentMatch F (hmatch P)
 
 end HullSC
 end GroupApproximation
