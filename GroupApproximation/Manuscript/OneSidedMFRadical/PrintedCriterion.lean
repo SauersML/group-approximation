@@ -74,6 +74,30 @@ theorem manuscriptFullRadicalKillsMFTargets : FullRadicalKillsMFTargets := by
   rw [hMbot] at this
   simpa using this
 
+/-- A full radical kills homomorphisms into arbitrary operator-MF groups;
+the target itself need not carry a countability instance.  Only the image of
+the homomorphism is used, and that image is countable because the source is. -/
+def FullRadicalKillsOperatorMFTargets : Prop :=
+  ∀ (G : Type) [Group G] [Countable G] (M : Type) [Group M],
+    manuscriptCoronaMFResidual G = ⊤ → IsOperatorMF M →
+      ∀ (f : G →* M) (x : G), f x = 1
+
+theorem manuscriptFullRadicalKillsOperatorMFTargets :
+    FullRadicalKillsOperatorMFTargets := by
+  intro G _ _ M _ hG hM f x
+  letI : Countable f.range :=
+    Function.Surjective.countable f.rangeRestrict_surjective
+  have hRangeMF : IsOperatorMF f.range := by
+    obtain ⟨X, hX, ρ, hρ⟩ := hM
+    exact ⟨X, hX, ρ.comp f.range.subtype,
+      hρ.comp (fun _ _ h ↦ Subtype.ext h)⟩
+  have hRangeCDE : IsCDEOperatorMF f.range :=
+    (isCDEOperatorMF_iff_isOperatorMF f.range).mpr hRangeMF
+  have hkilled : f.rangeRestrict x = 1 :=
+    manuscriptFullRadicalKillsMFTargets
+      (G := G) (M := f.range) hG hRangeCDE f.rangeRestrict x
+  exact congrArg Subtype.val hkilled
+
 end OneSidedMFRadical
 end Manuscript
 end GroupApproximation

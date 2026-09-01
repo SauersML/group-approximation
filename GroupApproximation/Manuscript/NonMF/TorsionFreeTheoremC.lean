@@ -359,9 +359,9 @@ hyperbolic group `Q` with property (T) and `Rad_MF(Q) = Q`; every nontrivial
 quotient of `Q` also equals its own MF radical; in particular no nontrivial
 quotient of `Q` is MF.
 
-Countability is a binder in the last clause because `IsCDEOperatorMF` consumes
-it as an instance.  It is not a restriction: every quotient of `Q` is countable,
-`Q` being finitely presented. -/
+The last clause uses the countability-free operator-MF predicate.  Every
+nontrivial quotient is obstructed without adding a countability binder to the
+statement. -/
 def PrintedTorsionFreeFullMFRadical : Prop :=
   ∃ (Q : Type) (_ : Group Q),
     IsTwoGenerated Q ∧ Group.IsFinitelyPresented Q ∧ IsPowerTorsionFree Q ∧
@@ -369,8 +369,8 @@ def PrintedTorsionFreeFullMFRadical : Prop :=
       manuscriptCoronaMFResidual Q = ⊤ ∧
       (∀ (L : Type) (_ : Group L) (r : Q →* L), Function.Surjective r →
         Nontrivial L → manuscriptCoronaMFResidual L = ⊤) ∧
-      (∀ (L : Type) (_ : Group L) (_ : Countable L) (r : Q →* L),
-        Function.Surjective r → Nontrivial L → ¬ IsCDEOperatorMF L)
+      (∀ (L : Type) (_ : Group L) (r : Q →* L),
+        Function.Surjective r → Nontrivial L → ¬ IsOperatorMF L)
 
 /-- **Theorem C, proved along the printed proof, from the paragraph's cited
 inputs.**
@@ -432,13 +432,14 @@ theorem manuscriptTorsionFreeFullMFRadical (I : LiteratureInputs)
     exact hmain SQ.Q inferInstance (MonoidHom.id SQ.Q) Function.surjective_id
       inferInstance
   · -- "a nontrivial group equal to its own MF radical is not MF"
-    intro L instL instCount r hr hLne hMF
+    intro L instL r hr hLne hMF
     letI := instL
-    haveI := instCount
     haveI := hLne
+    haveI : Countable L := hr.countable
     have htop := hmain L instL r hr hLne
     have hbot : manuscriptCoronaMFResidual L = ⊥ :=
-      isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot.mp hMF
+      isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot.mp
+        ((isCDEOperatorMF_iff_isOperatorMF L).mpr hMF)
     obtain ⟨x, hx⟩ := exists_ne (1 : L)
     apply hx
     have hmem : x ∈ manuscriptCoronaMFResidual L := by
