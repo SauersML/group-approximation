@@ -226,6 +226,26 @@ theorem approxCosetProjectionDistance_triangle
         Metric.dist_le_diam_of_mem hUBC (Or.inr hxC) (Or.inr hyC)
       exact hxy.trans (le_add_of_nonneg_left Metric.diam_nonneg)
 
+/-- The set defining the projection distance is carried exactly to the
+translated projection set. -/
+theorem approxCosetProjectionPairSet_smul
+    (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (g : G) (κ : ℝ) (Y A B : G ⧸ H) :
+    approxCosetProjectionPairSet H s κ (g • Y) (g • A) (g • B) =
+      (fun x : S ↦ g • x) '' approxCosetProjectionPairSet H s κ Y A B := by
+  simp only [approxCosetProjectionPairSet,
+    approxCosetProjectionSet_smul hiso, Set.image_union]
+
+/-- Simultaneous left translation preserves DGO's real-valued projection
+distance. -/
+theorem approxCosetProjectionDistance_smul
+    (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (g : G) (κ : ℝ) (Y A B : G ⧸ H) :
+    approxCosetProjectionDistance H s κ (g • Y) (g • A) (g • B) =
+      approxCosetProjectionDistance H s κ Y A B := by
+  rw [approxCosetProjectionDistance, approxCosetProjectionPairSet_smul hiso]
+  exact (Isometry.of_dist_eq (hiso g)).diam_image _
+
 /-- Projection-diameter upper bounds are exactly equivariant under left
 translation of all three coset vertices. -/
 theorem approxCosetProjectionPairDiameterLE_smul_iff
