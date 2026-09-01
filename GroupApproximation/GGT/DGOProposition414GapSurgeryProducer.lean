@@ -87,6 +87,21 @@ theorem nonempty_realization
 
 end BalancedSplitGapCompletion
 
+/-- The uniform Proposition 4.14 conclusion now needs only the exact residual
+gap completion on each balanced split. -/
+theorem sumBound_linear_of_gapCompletion
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (produce : ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
+      (B : BalancedSplitData D hsymm b hδ P k R),
+        Nonempty (BalancedSplitGapCompletion D hsymm b hδ P B)) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
+  apply sumBound_linear_of_balancedSurgery D hsymm b hδ
+  intro n k R P B
+  obtain ⟨S⟩ := produce P B
+  exact S.nonempty_realization
+
 end DGOProposition414
 end GGT
 end GroupApproximation
