@@ -117,8 +117,7 @@ theorem exists_exact_cleanSource_publishedGap_relativeSides
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) (p.length + i))⁻¹ *
       GGT.OsinComponents.vertex (1 : G)
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) n ∈ E.rel.fam lam
-    simp only [one_mul]
-    rw [GGT.OsinComponents.vertex_fourGon_side p q r s 1 (by omega), ← heq]
+    rw [GGT.OsinComponents.vertex_fourGon_side p q r s 1 (by omega), one_mul, ← heq]
     have hcancel :
         (GGT.RelLetter.listVal p * GGT.OsinComponents.vertex (1 : G) q i)⁻¹ *
           (GGT.RelLetter.listVal p * GGT.OsinComponents.vertex (1 : G) q i * h) = h := by
@@ -277,7 +276,7 @@ theorem exists_exactPublishedAdjacentGapOutput
     intro lam i j hiComp hjComp hi0 hj0 hne hconn
     have hjWhole :=
       GGT.OsinComponents.isComp_fourGon_of_isComp_side_of_interior
-        p q r s lam hj0 (by omega) hjComp
+        p q r s lam hj0 hjComp.2.1 hjComp
     have hjStart : GGT.OsinComponents.IsCompStart lam
         (p ++ q ++ r ++ GGT.OsinComponents.revWord s) (p.length + j) := by
       refine ⟨p.length + j + 1, ?_⟩
