@@ -140,6 +140,92 @@ theorem exists_approxCosetProjectionPairDiameterLE
       have hdab : 0 ≤ dist a b := dist_nonneg
       linarith
 
+/-- The union of the two approximate projection sets occurring in DGO's
+definition of `d^π_Y(A,B)`. -/
+def approxCosetProjectionPairSet
+    (H : Subgroup G) (s : S) (κ : ℝ) (Y A B : G ⧸ H) : Set S :=
+  approxCosetProjectionSet H s κ Y A ∪
+    approxCosetProjectionSet H s κ Y B
+
+/-- For three distinct projection-complex vertices, the set whose diameter
+defines `d^π_Y(A,B)` is bounded. -/
+theorem approxCosetProjectionPairSet_isBounded
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ S) (hδ0 : 0 ≤ δ) (hδpos : 0 < δ)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    {H : Subgroup G} {s : S} (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s)
+    (Y A B : G ⧸ H) (hYA : Y ≠ A) (hYB : Y ≠ B) :
+    Bornology.IsBounded (approxCosetProjectionPairSet H s δ Y A B) := by
+  obtain ⟨r, hr⟩ := exists_approxCosetProjectionPairDiameterLE
+    hδ hδ0 hδpos hgeo hiso hqc hsep Y A B hYA hYB
+  rw [Metric.isBounded_iff]
+  refine ⟨r, ?_⟩
+  intro x hx y hy
+  exact hr x (by simpa [approxCosetProjectionPairSet] using hx)
+    y (by simpa [approxCosetProjectionPairSet] using hy)
+
+/-- DGO's approximate projection distance
+`d^π_Y(A,B) = diam(proj_Y(A) ∪ proj_Y(B))`. -/
+noncomputable def approxCosetProjectionDistance
+    (H : Subgroup G) (s : S) (κ : ℝ) (Y A B : G ⧸ H) : ℝ :=
+  Metric.diam (approxCosetProjectionPairSet H s κ Y A B)
+
+/-- **Projection axiom (A1).** -/
+theorem approxCosetProjectionDistance_comm
+    (H : Subgroup G) (s : S) (κ : ℝ) (Y A B : G ⧸ H) :
+    approxCosetProjectionDistance H s κ Y A B =
+      approxCosetProjectionDistance H s κ Y B A := by
+  simp only [approxCosetProjectionDistance, approxCosetProjectionPairSet,
+    Set.union_comm]
+
+/-- **Projection axiom (A2).**  This is the triangle inequality for the
+real-valued diameter, not merely for a chosen upper bound. -/
+theorem approxCosetProjectionDistance_triangle
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ S) (hδ0 : 0 ≤ δ) (hδpos : 0 < δ)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    {H : Subgroup G} {s : S} (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s)
+    (Y A B C : G ⧸ H) (hYA : Y ≠ A) (hYB : Y ≠ B) (hYC : Y ≠ C) :
+    approxCosetProjectionDistance H s δ Y A C ≤
+      approxCosetProjectionDistance H s δ Y A B +
+        approxCosetProjectionDistance H s δ Y B C := by
+  let UAB := approxCosetProjectionPairSet H s δ Y A B
+  let UBC := approxCosetProjectionPairSet H s δ Y B C
+  have hUAB : Bornology.IsBounded UAB :=
+    approxCosetProjectionPairSet_isBounded hδ hδ0 hδpos hgeo hiso hqc hsep
+      Y A B hYA hYB
+  have hUBC : Bornology.IsBounded UBC :=
+    approxCosetProjectionPairSet_isBounded hδ hδ0 hδpos hgeo hiso hqc hsep
+      Y B C hYB hYC
+  obtain ⟨z, hz⟩ := approxCosetProjectionSet_nonempty H s
+    (Y := Y) (Z := B) hδpos
+  apply Metric.diam_le_of_forall_dist_le
+    (add_nonneg Metric.diam_nonneg Metric.diam_nonneg)
+  intro x hx y hy
+  change x ∈ approxCosetProjectionPairSet H s δ Y A C at hx
+  change y ∈ approxCosetProjectionPairSet H s δ Y A C at hy
+  change dist x y ≤ Metric.diam UAB + Metric.diam UBC
+  rcases hx with hxA | hxC
+  · rcases hy with hyA | hyC
+    · have hxy : dist x y ≤ Metric.diam UAB :=
+        Metric.dist_le_diam_of_mem hUAB (Or.inl hxA) (Or.inl hyA)
+      exact hxy.trans (le_add_of_nonneg_right Metric.diam_nonneg)
+    · calc
+        dist x y ≤ dist x z + dist z y := dist_triangle x z y
+        _ ≤ Metric.diam UAB + Metric.diam UBC := add_le_add
+          (Metric.dist_le_diam_of_mem hUAB (Or.inl hxA) (Or.inr hz))
+          (Metric.dist_le_diam_of_mem hUBC (Or.inl hz) (Or.inr hyC))
+  · rcases hy with hyA | hyC
+    · calc
+        dist x y ≤ dist x z + dist z y := dist_triangle x z y
+        _ ≤ Metric.diam UBC + Metric.diam UAB := add_le_add
+          (Metric.dist_le_diam_of_mem hUBC (Or.inr hxC) (Or.inl hz))
+          (Metric.dist_le_diam_of_mem hUAB (Or.inr hz) (Or.inl hyA))
+        _ = Metric.diam UAB + Metric.diam UBC := add_comm _ _
+    · have hxy : dist x y ≤ Metric.diam UBC :=
+        Metric.dist_le_diam_of_mem hUBC (Or.inr hxC) (Or.inr hyC)
+      exact hxy.trans (le_add_of_nonneg_left Metric.diam_nonneg)
+
 /-- Projection-diameter upper bounds are exactly equivariant under left
 translation of all three coset vertices. -/
 theorem approxCosetProjectionPairDiameterLE_smul_iff
