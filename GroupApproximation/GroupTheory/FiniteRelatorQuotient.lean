@@ -29,13 +29,24 @@ theorem quotientMap_surjective (R : Set G) :
     Function.Surjective (quotientMap R) :=
   QuotientGroup.mk'_surjective _
 
+/-- The canonical map of a finite-relator quotient has finitely normally
+generated kernel.  This is the exact finite-presentation addendum carried by
+Osin's construction: the kernel is the normal closure of the relators that
+were adjoined. -/
+theorem quotientMap_ker_isFinitelyNormallyGenerated {R : Set G}
+    (hR : R.Finite) :
+    (quotientMap R).ker.IsFinitelyNormallyGenerated := by
+  change (QuotientGroup.mk' (Subgroup.normalClosure R)).ker.IsFinitelyNormallyGenerated
+  rw [QuotientGroup.ker_mk']
+  exact ⟨R, hR, rfl⟩
+
 /-- Adjoining finitely many relators to a finitely presented group again gives
 a finitely presented group. -/
 theorem quotient_isFinitelyPresented [Group.IsFinitelyPresented G]
     {R : Set G} (hR : R.Finite) :
     Group.IsFinitelyPresented (Quotient R) :=
-  Group.IsFinitelyPresented.quotient (Subgroup.normalClosure R)
-    ⟨R, hR, rfl⟩
+  Group.IsFinitelyPresented.of_surjective (quotientMap R)
+    (quotientMap_surjective R) (quotientMap_ker_isFinitelyNormallyGenerated hR)
 
 /-- Avoiding the relator normal closure is the concrete protected-pair
 certificate for the finite-relator quotient. -/
