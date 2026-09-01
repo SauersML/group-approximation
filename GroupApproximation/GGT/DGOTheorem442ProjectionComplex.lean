@@ -56,7 +56,9 @@ noncomputable def bbf (P : ProjectionSystem V) : ProjectionPerturbation P where
       linarith [P.ξ_pos]
     · have hle := P.projDist_sub_bbfProjDist_le_two_mul hYA hYB hAB
       linarith
-  endpoints_lt := P.bbfProjDist_endpoints_lt
+  endpoints_lt := by
+    intro Y A B hYA hYB hAB hlarge
+    exact P.bbfProjDist_endpoints_lt hYA hYB hAB hlarge
 
 /-- Third vertices obstructing the edge from `A` to `B` at threshold `K`. -/
 def blockers (Q : ProjectionPerturbation P) (K : ℝ) (A B : V) : Set V :=
