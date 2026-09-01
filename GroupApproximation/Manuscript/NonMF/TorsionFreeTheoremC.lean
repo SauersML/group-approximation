@@ -323,11 +323,13 @@ onto `L`:
 * `thm:compression-criterion` with the subgroup `ρ(Γ)` and `K = L` gives
   `Rad_MF(L) = L`. -/
 theorem coronaMFResidual_eq_top_of_normallyGenerating
-    {L : Type} [Group L] [Countable L] [Nontrivial L]
+    {L : Type} [Group L] [Nontrivial L]
     (rho : C.Ambient →* L) (hrho : Function.Surjective rho)
     (hgen : (Subgroup.normalClosure
       (↑((commutator C.Witness).map C.witness) : Set C.Ambient)).map rho
       = ⊤) : manuscriptCoronaMFResidual L = ⊤ := by
+  letI : Countable C.Ambient := C.countableAmbient
+  letI : Countable L := hrho.countable
   have hTtop := printedDefect_eq_top_of_normallyGenerating C rho hgen
   have hGammaT := kazhdan_map_coreRange C rho
   have hLT : HasKazhdanPropertyT.{0, 0} L :=
