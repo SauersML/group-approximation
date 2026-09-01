@@ -2619,7 +2619,6 @@ import GroupApproximation.GGT.OsinTheorem54SepGapY
 import GroupApproximation.GGT.HullSCRelatorSeparation2Assemble
 import GroupApproximation.GGT.DGOPolygonGeodesicChain
 import GroupApproximation.GGT.HullSCRelatorSeparation2NoCommute
-import GroupApproximation.GGT.HullSCRelatorSeparation2Ledger
 import GroupApproximation.GGT.OsinTheorem54SepInhabit
 import GroupApproximation.GGT.DGOShortIsolatingCycle
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftDouble
