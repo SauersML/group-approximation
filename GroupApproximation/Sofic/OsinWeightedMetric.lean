@@ -541,6 +541,47 @@ theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
   · exact RelatorDefectBudget.no_cancelling_pair_of_minimal
       hlength hprod hcells hminimal
 
+/-- **Whole oriented cells cannot cancel across the intervening subdiagram.**
+
+The product between two cells transports the second stem to the first.  If the
+second relator boundary were the transported inverse of the first, then the two
+complete signed-conjugate factors would cancel across that intervening product,
+contradicting least-area reducedness.  This is the distinct-cell fact used when
+a proper common boundary run is promoted to a group piece. -/
+theorem orientedLetterCell_relators_ne_inverseConjugate
+    {factors : List (CoprodI G)}
+    {cells : List (CoprodI G × List (CoprodI G))}
+    (hvalues : cells.map
+      (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors)
+    (hnoCancel :
+      ∀ (pre between suf : List (CoprodI G)) (x y : CoprodI G),
+        factors = pre ++ x :: (between ++ y :: suf) →
+          between.prod⁻¹ * x * between.prod * y ≠ 1)
+    (pre between suf : List (CoprodI G × List (CoprodI G)))
+    (C₁ C₂ : CoprodI G × List (CoprodI G))
+    (hsplit : cells = pre ++ C₁ :: (between ++ C₂ :: suf)) :
+    C₂.2.prod ≠
+      ((C₁.1⁻¹ *
+          (between.map
+            (fun cell => cell.1 * cell.2.prod * cell.1⁻¹)).prod * C₂.1)⁻¹ *
+        C₁.2.prod⁻¹ *
+        (C₁.1⁻¹ *
+          (between.map
+            (fun cell => cell.1 * cell.2.prod * cell.1⁻¹)).prod * C₂.1)) := by
+  intro hcancel
+  let value : CoprodI G × List (CoprodI G) → CoprodI G :=
+    fun cell => cell.1 * cell.2.prod * cell.1⁻¹
+  have hsplitValues : factors =
+      pre.map value ++ value C₁ :: (between.map value ++ value C₂ :: suf.map value) := by
+    rw [← hvalues, hsplit]
+    simp only [List.map_append, List.map_cons]
+    rfl
+  apply hnoCancel (pre.map value) (between.map value) (suf.map value)
+    (value C₁) (value C₂) hsplitValues
+  dsimp only [value]
+  rw [hcancel]
+  group
+
 /-- **The fragment slack**, same inequality and same numbers as the unweighted
 lane; only `|r|` has changed meaning, from syllables to letters. -/
 def LetterFragmentSlack (R : Set (List (CoprodI G))) (lam : ℚ) : Prop :=
