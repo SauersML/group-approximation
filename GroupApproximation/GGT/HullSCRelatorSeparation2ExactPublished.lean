@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
 import GroupApproximation.GGT.HullSCRelatorSeparation2ExactCount
-import GroupApproximation.GGT.HullSCPublishedSmallCancellation
+import GroupApproximation.GGT.HullSCRelatorSeparation2Published
+import GroupApproximation.GGT.CayleyFourPointConverse
 
 /-!
 # Published piece estimates for one exact Hull relator
@@ -909,6 +910,192 @@ theorem sameWordPublishedPiece_lengths_le_of_exactDesign
   omega
 
 end FixedDesign
+
+section PublishedEndpoint
+
+variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+
+/-- **Hull's published one-relator input from the exact finite-avoidance
+design.**
+
+The exponent list is selected only after fixing every geometric constant and
+the final length.  Its exact count gives the `(4,1)` quasi-geodesic clause;
+the fixed-design same-word and prime-piece theorems give the two published
+piece clauses with the same strict real threshold. -/
+theorem hullRelatorStatement₂OfBaseLetterPublished_exact :
+    HullRelatorStatement₂OfBaseLetterPublished.{u} := by
+  intro G _ A N E hN t ht eps rho mu hmu
+  let p : List G := [t⁻¹]
+  let cw := max 1 (eps + 2)
+  let sep := blockSeparation p cw eps
+  let B := p.length + sep + 1
+  obtain ⟨delta, hdelta⟩ :=
+    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded E.rel E.embedded
+  have hsymm := isSymmetricGeneratingSet_base₂ E
+  obtain ⟨epsD, _hepsD, hpair⟩ :=
+    GGT.OsinComponents.exists_eps_matchedPair_hyp E.rel E.base_inv
+      (blockConst p cw) hdelta
+  obtain ⟨Cm, _hCm, hmatch⟩ :=
+    GGT.OsinComponents.exists_deep_match_hyp E.rel E.base_inv
+      (blockConst p cw) hdelta
+  obtain ⟨n, hn⟩ := exists_nat_gt ((B : ℝ) / mu)
+  let requestedRho := max rho (Cm * 4)
+  let target := 2 * max (max requestedRho n) (p.length + 5 * sep + 3)
+  have htarget : 2 ≤ target := by
+    dsimp only [target]
+    omega
+  have hevenTarget : Even target := by
+    exact even_two_mul _
+  obtain ⟨ms, hdesign, hcount, -⟩ :=
+    exists_exactRelatorDesign₂_with_count_one E t⁻¹ ht hdelta
+      requestedRho epsD (Cm * 4) target htarget hevenTarget
+  let designRho := max requestedRho
+    (GGT.OsinComponents.everyEdgeIsolationRadius delta (2 * (target + 1)))
+  let R := relatorWord₂ p (E.lox false) (E.lox true) ms
+  have hp : p = [t⁻¹] := rfl
+  have hdesign' : ExactRelatorDesign₂ E t⁻¹ designRho epsD (Cm * 4)
+      (target + 1) target ms := by
+    simpa only [designRho, requestedRho] using hdesign
+  have heven : Even ms.length := by
+    rw [hdesign'.1]
+    exact hevenTarget
+  have hW : 1 + blockConst [t⁻¹] 1 ≤ target + 1 := by
+    simp only [blockConst, List.length_singleton]
+    omega
+  have hCmDesign : Cm * 4 ≤ designRho := by
+    exact le_trans (Nat.le_max_right rho (Cm * 4))
+      (Nat.le_max_left requestedRho _)
+  have hmslong : [t⁻¹].length +
+      5 * blockSeparation [t⁻¹] (max 1 (eps + 2)) eps + 2 < ms.length := by
+    rw [hdesign'.1]
+    dsimp only [target, requestedRho, p, sep, cw]
+    omega
+  have hBreal : (B : ℝ) < mu * (R.length : ℝ) := by
+    have h1 : (B : ℝ) < (n : ℝ) * mu := by
+      rw [div_lt_iff₀ hmu] at hn
+      exact hn
+    have hnTarget : n ≤ target := by
+      dsimp only [target]
+      omega
+    have hnR : n ≤ R.length := by
+      dsimp only [R]
+      rw [length_relatorWord₂, hdesign'.1]
+      omega
+    have hnR' : (n : ℝ) ≤ (R.length : ℝ) := by exact_mod_cast hnR
+    have hmul : (n : ℝ) * mu ≤ (R.length : ℝ) * mu :=
+      mul_le_mul_of_nonneg_right hnR' (le_of_lt hmu)
+    calc
+      (B : ℝ) < (n : ℝ) * mu := h1
+      _ ≤ (R.length : ℝ) * mu := hmul
+      _ = mu * (R.length : ℝ) := mul_comm _ _
+  have hadm : RelWord.IsAdmissible E.rel R := by
+    dsimp only [R, p]
+    exact isAdmissible_relatorWord₂ (by simpa using ht)
+      (fun b => by rw [E.fam_eq]; exact E.lox_mem b) ms
+  have hlongrho : rho ≤ R.length := by
+    dsimp only [R, p]
+    rw [length_relatorWord₂, hdesign'.1]
+    dsimp only [target, requestedRho]
+    omega
+  have hdeep : ∀ a ∈ R, ∀ lam : Bool, GGT.RelLetter.IsCompOf lam a →
+      a.val ∉ E.rel.relBall lam rho ∧ (a.val)⁻¹ ∉ E.rel.relBall lam rho := by
+    intro a ha lam hcomp
+    dsimp only [R, p] at ha
+    rcases mem_relatorWord₂ ha with ⟨g, _hg, rfl⟩ | ⟨b, m, hm, rfl⟩
+    · exact False.elim hcomp
+    · have hbl : b = lam := hcomp
+      rw [← hbl]
+      rw [ite_lox_eq E b]
+      exact ⟨notMem_relBall_of_le
+          (le_trans (Nat.le_max_left rho (Cm * 4))
+            (Nat.le_max_left requestedRho _))
+          (hdesign'.2.2.1 m hm b b).1,
+        notMem_relBall_of_le
+          (le_trans (Nat.le_max_left rho (Cm * 4))
+            (Nat.le_max_left requestedRho _))
+          (hdesign'.2.2.1 m hm b b).2⟩
+  have hlongMatch : ∀ w w' u u' : List (GGT.RelLetter G Bool),
+      RelWord.Sym R w → RelWord.Sym R w' → w' ≠ w →
+      (∃ tl, w = u ++ tl) → (∃ tl', w' = u' ++ tl') →
+      B < u.length → ∀ y z : G,
+      wordNorm E.rel.base y ≤ eps → wordNorm E.rel.base z ≤ eps →
+      GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z →
+      GGT.RelLetter.listVal w' = y * GGT.RelLetter.listVal w * y⁻¹ := by
+    intro w w' u u' hw hw' _hne ⟨tl, htl⟩ ⟨tl', htl'⟩ hu y z hy hz hval
+    apply listVal_conj_of_exactDesign_long_prefixes E hN ht hdesign' hcount
+      heven hW hCmDesign
+    · simpa only [p, cw] using hpair
+    · simpa only [p, cw] using hmatch
+    · simpa only [R, p] using hw
+    · simpa only [R, p] using hw'
+    · exact htl
+    · exact htl'
+    · simpa only [B, sep, p, cw] using hu
+    · exact hmslong
+    · exact hy
+    · exact hz
+    · exact hval
+  have hsc : RelWord.IsSmallCancellation E.rel (RelWord.symmetrized R)
+      eps mu rho :=
+    RelWord.isSmallCancellation_symmetrized_of_longMatch_ne E.base_inv hadm
+      hlongrho hdeep hlongMatch hBreal
+  have hqg : ∀ v ∈ RelWord.symmetrized R,
+      GGT.IsQuasiGeodesicChainAt E.rel.alphabet.carrier 4 1
+        (fun i => GGT.RelLetter.listVal (v.take i)) v.length := by
+    intro v hv
+    apply quasiGeodesic_sym_of_blockCountAt₂ E ht hcount v
+    simpa only [R, p] using RelWord.mem_symmetrized.mp hv
+  have hsame : ∀ u u' v,
+      RelWord.IsSameWordPublishedPiece E.rel (RelWord.symmetrized R) eps u u' v →
+        max (u.length : ℝ) (u'.length : ℝ) < mu * v.length := by
+    intro u u' v hv
+    have hnat := sameWordPublishedPiece_lengths_le_of_exactDesign E hN ht
+      hdesign' hcount heven hW hCmDesign
+      (by simpa only [p, cw] using hpair)
+      (by simpa only [p, cw] using hmatch) hmslong
+      (by simpa only [R, p] using hv)
+    have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
+      exact_mod_cast hnat
+    have hvlen : v.length = R.length :=
+      RelWord.Sym.length_eq (RelWord.mem_symmetrized.mp hv.1)
+    rw [hvlen]
+    exact lt_of_le_of_lt hle hBreal
+  have hpublished : ∀ u u' v,
+      RelWord.IsPublishedPiece E.rel (RelWord.symmetrized R) eps u u' v →
+        max (u.length : ℝ) (u'.length : ℝ) < mu * v.length :=
+    RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord
+      hsymm hsc hsame
+  have hprime : ∀ u u' v,
+      RelWord.IsPrimePiece E.rel (RelWord.symmetrized R) eps u u' v →
+        max (u.length : ℝ) (u'.length : ℝ) < mu * v.length := by
+    intro u u' v hv
+    have hnat := primePiece_lengths_le_of_exactDesign E hN ht hdesign'
+      hcount heven hW hCmDesign
+      (by simpa only [p, cw] using hpair)
+      (by simpa only [p, cw] using hmatch) hmslong
+      (by simpa only [R, p] using hv)
+    have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
+      exact_mod_cast hnat
+    have hvlen : v.length = R.length :=
+      RelWord.Sym.length_eq (RelWord.mem_symmetrized.mp hv.1)
+    rw [hvlen]
+    exact lt_of_le_of_lt hle hBreal
+  have humem : GGT.RelLetter.listVal
+      (blockWord (E.lox false) (E.lox true) false ms) ∈ N := by
+    refine listVal_blockWord_mem E.le ?_ false ms
+    intro b
+    rw [ite_lox_eq E b]
+    exact E.lox_mem b
+  refine ⟨GGT.RelLetter.listVal
+      (blockWord (E.lox false) (E.lox true) false ms), humem,
+    RelWord.symmetrized R, ⟨R, RelWord.self_mem_symmetrized R, ?_⟩, ?_⟩
+  · dsimp only [R, p]
+    rw [listVal_relatorWord₂]
+    simp
+  · exact RelWord.isLemma49Input_symmetrized_of E.rel R eps mu rho hsc hqg
+      hpublished hprime
+
+end PublishedEndpoint
 
 end HullSC
 end GroupApproximation
