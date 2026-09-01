@@ -60,30 +60,11 @@ theorem manuscriptOneSidedCompressionCriterion : OneSidedCompressionCriterion :=
 sentence following Theorem~A's displayed conclusion, and the last clause of
 `thm:headline`. -/
 def FullRadicalKillsMFTargets : Prop :=
-  ∀ (G : Type) [Group G] [Countable G] (M : Type) [Group M] [Countable M],
-    manuscriptCoronaMFResidual G = ⊤ → IsCDEOperatorMF M →
-      ∀ (f : G →* M) (x : G), f x = 1
-
-theorem manuscriptFullRadicalKillsMFTargets : FullRadicalKillsMFTargets := by
-  intro G _ _ M _ _ hG hM f x
-  have hMbot : manuscriptCoronaMFResidual M = ⊥ :=
-    (isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot).mp hM
-  have hmem : f x ∈ (manuscriptCoronaMFResidual G).map f :=
-    Subgroup.mem_map_of_mem _ (by rw [hG]; exact Subgroup.mem_top x)
-  have := map_manuscriptCoronaMFResidual_le f hmem
-  rw [hMbot] at this
-  simpa using this
-
-/-- A full radical kills homomorphisms into arbitrary operator-MF groups;
-the target itself need not carry a countability instance.  Only the image of
-the homomorphism is used, and that image is countable because the source is. -/
-def FullRadicalKillsOperatorMFTargets : Prop :=
   ∀ (G : Type) [Group G] [Countable G] (M : Type) [Group M],
     manuscriptCoronaMFResidual G = ⊤ → IsOperatorMF M →
       ∀ (f : G →* M) (x : G), f x = 1
 
-theorem manuscriptFullRadicalKillsOperatorMFTargets :
-    FullRadicalKillsOperatorMFTargets := by
+theorem manuscriptFullRadicalKillsMFTargets : FullRadicalKillsMFTargets := by
   intro G _ _ M _ hG hM f x
   letI : Countable f.range :=
     Function.Surjective.countable f.rangeRestrict_surjective
@@ -93,10 +74,17 @@ theorem manuscriptFullRadicalKillsOperatorMFTargets :
       hρ.comp (fun _ _ h ↦ Subtype.ext h)⟩
   have hRangeCDE : IsCDEOperatorMF f.range :=
     (isCDEOperatorMF_iff_isOperatorMF f.range).mpr hRangeMF
-  have hkilled : f.rangeRestrict x = 1 :=
-    manuscriptFullRadicalKillsMFTargets
-      (G := G) (M := f.range) hG hRangeCDE f.rangeRestrict x
-  exact congrArg Subtype.val hkilled
+  have hkilled : f.rangeRestrict x = 1 := by
+    have hRangeBot : manuscriptCoronaMFResidual f.range = ⊥ :=
+      (isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot).mp hRangeCDE
+    have hmem : f.rangeRestrict x ∈
+        (manuscriptCoronaMFResidual G).map f.rangeRestrict :=
+      Subgroup.mem_map_of_mem _ (by rw [hG]; exact Subgroup.mem_top x)
+    have hle := map_manuscriptCoronaMFResidual_le f.rangeRestrict hmem
+    rw [hRangeBot] at hle
+    simpa using hle
+  have hval := congrArg Subtype.val hkilled
+  simpa using hval
 
 end OneSidedMFRadical
 end Manuscript

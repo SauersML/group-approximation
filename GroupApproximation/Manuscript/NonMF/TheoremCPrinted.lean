@@ -72,7 +72,7 @@ theorem manuscriptTorsionFreeSimplified (I : LiteratureInputs)
   have hkills : KillsAllMFTargets Q := by
     intro M instM hM f x
     letI := instM
-    exact OneSidedMFRadical.manuscriptFullRadicalKillsOperatorMFTargets
+    exact OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets
       Q M hrad hM f x
   refine ⟨Q, instQ, h2, hfp, htf, hah, hT, hkills, ?_⟩
   intro L instL r hr hL

@@ -62,8 +62,8 @@ theorem manuscriptSentence18_MF_iff_radical_bot
     IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥ :=
   (manuscriptMFResidualCalculusLiteral G).2.2.2
 
-/-- **Sentence 19.**  Full MF radical kills every homomorphism into every
-countable MF target. -/
+/-- **Sentence 19.**  Full MF radical kills every homomorphism into every MF
+target, with no countability hypothesis on the target. -/
 theorem manuscriptSentence19_fullRadical_kills_MFTargets :
     FullRadicalKillsMFTargets :=
   manuscriptFullRadicalKillsMFTargets

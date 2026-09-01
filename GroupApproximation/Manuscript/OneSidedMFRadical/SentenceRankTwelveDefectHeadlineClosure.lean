@@ -111,7 +111,8 @@ theorem manuscriptSentence267_homToMF_eq_one
     rw [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual]
     exact rankTwelve_actualCoronaMFResidual_eq_top
   exact manuscriptFullRadicalKillsMFTargets
-    (G := H) (M := M) hfull hM f x
+    (G := H) (M := M) hfull
+    ((isCDEOperatorMF_iff_isOperatorMF M).mp hM) f x
 
 /-- **Sentence 268.**  Applying the preceding radical obstruction to the
 identity map rules out MF-ness of the exact group. -/

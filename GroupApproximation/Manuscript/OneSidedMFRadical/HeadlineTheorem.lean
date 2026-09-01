@@ -97,7 +97,8 @@ theorem manuscriptBinaryLeavittFullRadical : BinaryLeavittFullRadical := by
   refine ⟨RankTwelveEndpoint.countable, RankTwelveEndpoint.nontrivial,
     RankTwelveEndpoint.hasKazhdanPropertyT, hmanuscript, hactual, ?_, ?_⟩
   · intro M _ _ hM f x
-    exact manuscriptFullRadicalKillsMFTargets (G := H) (M := M) hmanuscript hM f x
+    exact manuscriptFullRadicalKillsMFTargets (G := H) (M := M) hmanuscript
+      ((isCDEOperatorMF_iff_isOperatorMF M).mp hM) f x
   · exact not_isCDEOperatorMF_of_actualCoronaMFResidual_eq_top hactual
 
 /-! ## The complete headline -/

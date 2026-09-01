@@ -79,7 +79,8 @@ theorem manuscriptEveryMapToMF_is_trivial
     f x = 1 :=
   manuscriptFullRadicalKillsMFTargets
     (G := H) (M := M)
-    manuscriptRadical_eq_top_from_criterion_with_K_eq_H hM f x
+    manuscriptRadical_eq_top_from_criterion_with_K_eq_H
+    ((isCDEOperatorMF_iff_isOperatorMF M).mp hM) f x
 
 /-- Applying the preceding statement to the identity map rules out MF-ness of
 `H`. -/
