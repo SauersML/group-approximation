@@ -2,7 +2,7 @@ import Mathlib.Data.Fintype.BigOperators
 import Mathlib.GroupTheory.Perm.Cycle.Basic
 import Mathlib.SetTheory.Cardinal.Finite
 import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Omega
+import Mathlib.Tactic.Order
 
 /-!
 # Finite combinatorial maps
