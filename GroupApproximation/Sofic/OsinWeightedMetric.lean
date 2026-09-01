@@ -427,6 +427,47 @@ def RelativeLengthBound (L : RelativeLength G) (R : Set (List (CoprodI G))) :
 
 /-! ### The reduced relative diagram forced by failed peripheral injectivity -/
 
+/-- Orient every signed conjugate factor by an actual relator word.  In the
+negative-sign case, inversion closure replaces `r⁻¹` by the reversed word of
+pointwise inverses, whose product is `r.prod⁻¹`. -/
+private theorem exists_orientedLetterCells_of_signedConjugates
+    {R : Set (List (CoprodI G))}
+    (hinv : ∀ r ∈ R, (r.map fun a => a⁻¹).reverse ∈ R) :
+    ∀ factors : List (CoprodI G),
+      (∀ x ∈ factors, RelatorDefectBudget.IsSignedConjugate
+        (List.prod '' R) x) →
+      ∃ cells : List (CoprodI G × List (CoprodI G)),
+        cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
+          ∀ cell ∈ cells, cell.2 ∈ R
+  | [], _ => ⟨[], rfl, by simp⟩
+  | x :: xs, hcells => by
+      have hx := hcells x (by simp)
+      have hxs : ∀ y ∈ xs, RelatorDefectBudget.IsSignedConjugate
+          (List.prod '' R) y := fun y hy => hcells y (by simp [hy])
+      obtain ⟨tail, htail, htail_mem⟩ :=
+        exists_orientedLetterCells_of_signedConjugates hinv xs hxs
+      obtain ⟨c, _, ⟨r, hr, rfl⟩, hvalue | hvalue⟩ := hx
+      · refine ⟨(c, r) :: tail, ?_, ?_⟩
+        · change (c * r.prod * c⁻¹) ::
+            tail.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = x :: xs
+          rw [← hvalue, htail]
+        · intro cell hcell
+          rcases List.mem_cons.mp hcell with rfl | hcell
+          · exact hr
+          · exact htail_mem cell hcell
+      · let rinv := (r.map fun a => a⁻¹).reverse
+        have hrinv : rinv ∈ R := hinv r hr
+        have hprod : rinv.prod = r.prod⁻¹ := by
+          exact (List.prod_inv_reverse r).symm
+        refine ⟨(c, rinv) :: tail, ?_, ?_⟩
+        · change (c * rinv.prod * c⁻¹) ::
+            tail.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = x :: xs
+          rw [hprod, ← hvalue, htail]
+        · intro cell hcell
+          rcases List.mem_cons.mp hcell with rfl | hcell
+          · exact hrinv
+          · exact htail_mem cell hcell
+
 /-- **Failure of injectivity on the relative unit ball produces a least-area
 reduced relator product with boundary of relative length at most two.**
 
@@ -439,6 +480,7 @@ form used by the diagram surgery: no nonempty consecutive block of cells has
 trivial product. -/
 theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
     {L : RelativeLength G} {R : Set (List (CoprodI G))}
+    (hsym : LetterSymmetrized R)
     (hnot : ¬ Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
       {g : CoprodI G | L.len g ≤ 1}) :
     ∃ (z : CoprodI G) (area : ℕ) (factors : List (CoprodI G)),
@@ -446,8 +488,14 @@ theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
       factors.length = area ∧ factors.prod = z ∧
       (∀ x ∈ factors, RelatorDefectBudget.IsSignedConjugate
         (List.prod '' R) x) ∧
-      ∀ (pre mid suf : List (CoprodI G)),
-        factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1 := by
+      (∀ (pre mid suf : List (CoprodI G)),
+        factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1) ∧
+      (∀ (pre between suf : List (CoprodI G)) (x y : CoprodI G),
+        factors = pre ++ x :: (between ++ y :: suf) →
+          between.prod⁻¹ * x * between.prod * y ≠ 1) ∧
+      ∃ cells : List (CoprodI G × List (CoprodI G)),
+        cells.map (fun cell => cell.1 * cell.2.prod * cell.1⁻¹) = factors ∧
+          ∀ cell ∈ cells, cell.2 ∈ R := by
   classical
   simp only [Set.InjOn] at hnot
   push Not at hnot
@@ -482,12 +530,16 @@ theorem exists_reducedRelativeUnitBallRelatorProduct_of_not_injOn
       simpa [hzero] using harea
     exact hz_ne harea_zero.eq_one_of_index_zero
   obtain ⟨factors, hlength, hprod, hcells⟩ := harea.exists_flatten
+  obtain ⟨oriented, horiented, horiented_mem⟩ :=
+    exists_orientedLetterCells_of_signedConjugates hsym.2 factors hcells
   have hminimal : ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct
       (List.prod '' R) m z → area ≤ m := fun h => Nat.find_min' hex h
   refine ⟨z, area, factors, hz_ne, hz_len, harea_pos, hlength, hprod,
-    hcells, ?_⟩
-  exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
-    hlength hprod hcells hminimal
+    hcells, ?_, ?_, oriented, horiented, horiented_mem⟩
+  · exact RelatorDefectBudget.no_trivial_subproduct_of_minimal
+      hlength hprod hcells hminimal
+  · exact RelatorDefectBudget.no_cancelling_pair_of_minimal
+      hlength hprod hcells hminimal
 
 /-- **The fragment slack**, same inequality and same numbers as the unweighted
 lane; only `|r|` has changed meaning, from syllables to letters. -/
