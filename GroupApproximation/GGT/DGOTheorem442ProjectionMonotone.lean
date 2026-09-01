@@ -136,9 +136,21 @@ theorem projDist_lt_two_mul_of_bbfContains
     (hcontains : (P.bbfContainingPairs Y X Z).Nonempty) :
     P.projDist Y X Z < 2 * P.ξ := by
   obtain ⟨⟨a, b⟩, hab, hY⟩ := hcontains
-  rcases hab with ⟨habne, hgeneral | hleft | hright | horiginal⟩
+  have hab' : a ≠ b ∧
+      ((X ≠ a ∧ X ≠ b ∧ Z ≠ a ∧ Z ≠ b ∧
+          2 * P.ξ < P.projDist X a b ∧
+          2 * P.ξ < P.projDist Z a b) ∨
+        (a = X ∧ Z ≠ X ∧ Z ≠ b ∧
+          2 * P.ξ < P.projDist Z X b) ∨
+        (b = Z ∧ X ≠ a ∧ X ≠ Z ∧
+          2 * P.ξ < P.projDist X a Z) ∨
+        (a, b) = (X, Z)) := by
+    simpa only [bbfAdmissible, Set.mem_setOf_eq] using hab
+  have hY' : Y = a ∨ Y = b := by
+    simpa only using hY
+  rcases hab' with ⟨habne, hgeneral | hleft | hright | horiginal⟩
   · rcases hgeneral with ⟨hXa, hXb, hZa, hZb, hXab, hZab⟩
-    rcases hY with hYa | hYb
+    rcases hY' with hYa | hYb
     · subst a
       have hYXb : P.projDist Y X b < P.ξ := by
         have hmin := P.behrstock X b Y hXb hYX.symm habne.symm
@@ -175,7 +187,7 @@ theorem projDist_lt_two_mul_of_bbfContains
       linarith
   · rcases hleft with ⟨haX, hZX, hZb, hZXb⟩
     subst a
-    rcases hY with hYX' | hYb
+    rcases hY' with hYX' | hYb
     · exact (hYX hYX').elim
     · subst b
       have hmin := P.behrstock Z X Y hZX hYZ.symm habne
@@ -185,7 +197,7 @@ theorem projDist_lt_two_mul_of_bbfContains
       exact hsmall.trans_le (by linarith [P.ξ_pos])
   · rcases hright with ⟨hbZ, hXa, hXZ, hXaZ⟩
     subst b
-    rcases hY with hYa | hYZ'
+    rcases hY' with hYa | hYZ'
     · subst a
       have hmin := P.behrstock X Z Y hXZ hYX.symm habne.symm
       have hlarge : P.ξ < P.projDist X Z Y := by
@@ -197,7 +209,7 @@ theorem projDist_lt_two_mul_of_bbfContains
       exact hsmall.trans_le (by linarith [P.ξ_pos])
     · exact (hYZ hYZ').elim
   · cases horiginal
-    rcases hY with hYX' | hYZ'
+    rcases hY' with hYX' | hYZ'
     · exact (hYX hYX').elim
     · exact (hYZ hYZ').elim
 /-- The raw BBF infimum.  Projection distances are used only off the
