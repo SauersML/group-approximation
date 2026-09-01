@@ -25,10 +25,11 @@ equivalence) of subspaces into the Mayer–Vietoris vanishing hypotheses.
 -/
 
 open CategoryTheory AlgebraicTopology Limits
-open AffineBarycentricSubdivision
 
 noncomputable section
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
 
@@ -60,9 +61,9 @@ theorem pushSimplex_sInclusion_injective (S : Set X) (n : ℕ) :
       intro τ₁ τ₂ h_eq;
       apply_fun fun x => singularSimplexAsContinuousMap X n x at h_eq;
       rw [ pushSimplex_continuousMap, pushSimplex_continuousMap ] at h_eq;
-      simp_all +decide [ funext_iff, sInclusion ];
+      simp_all +decide [ sInclusion ];
       convert h_eq using 1;
-      simp +decide [ funext_iff, ContinuousMap.ext_iff, singularSimplexAsContinuousMap ]
+      simp +decide [ singularSimplexAsContinuousMap ]
 
 /-
 Every simplex of `X` subordinate to `S` is the pushforward of a (unique)
@@ -77,7 +78,10 @@ theorem exists_pushSimplex_of_subordinate (S : Set X) (n : ℕ)
         exact ⟨ ContinuousMap.mk fun x => ⟨ singularSimplexAsContinuousMap X n σ x, h_range <| Set.mem_range_self x ⟩, by ext; rfl ⟩;
       use continuousMapAsSingularSimplex (TopCat.of S) n g;
       apply_fun singularSimplexAsContinuousMap X n at *;
-      convert hg using 1
+      convert hg using 1;
+      rw [pushSimplex_continuousMap]
+      simp only [singularSimplexAsContinuousMap, continuousMapAsSingularSimplex,
+        Equiv.apply_symm_apply]
 
 /-
 The chain map induced by the inclusion sends any chain of the subspace into
@@ -126,8 +130,20 @@ noncomputable def reindexChainMap (R : Type) [CommRing R] {Y : TopCat.{0}} (n : 
 @[simp] theorem reindexChainMap_generator {Y : TopCat.{0}} (n : ℕ)
     (g : singularSimplices Y n → singularSimplices X n) (σ : singularSimplices Y n) :
     (reindexChainMap R n g).hom (chainGenerator R Y n σ) = chainGenerator R X n (g σ) := by
-      convert DFunLike.congr_fun ( congrArg ModuleCat.Hom.hom ( show ( Limits.Sigma.ι ( fun _ : singularSimplices Y n => ModuleCat.of R R ) σ ) ≫ ( Limits.Sigma.desc ( fun s => Limits.Sigma.ι ( fun _ : singularSimplices X n => ModuleCat.of R R ) ( g s ) ) ) = Limits.Sigma.ι ( fun _ : singularSimplices X n => ModuleCat.of R R ) ( g σ ) from ?_ ) ) 1 using 1;
-      aesop
+  have h :
+      Limits.Sigma.ι (fun _ : singularSimplices Y n => ModuleCat.of R R) σ ≫
+          Limits.Sigma.desc (fun s =>
+            Limits.Sigma.ι (fun _ : singularSimplices X n => ModuleCat.of R R) (g s)) =
+        Limits.Sigma.ι (fun _ : singularSimplices X n => ModuleCat.of R R) (g σ) :=
+    Limits.Sigma.ι_desc _ _
+  have h1 := congrArg
+    (fun f : ModuleCat.of R R ⟶ singularChainGroup R X n => f.hom (1 : R)) h
+  change
+    (ModuleCat.Hom.hom
+      (Limits.Sigma.ι (fun _ : singularSimplices Y n => ModuleCat.of R R) σ ≫
+        Limits.Sigma.desc (fun s =>
+          Limits.Sigma.ι (fun _ : singularSimplices X n => ModuleCat.of R R) (g s)))) 1 = _
+  exact h1
 
 /-
 If `g` is a set-level left inverse of `pushSimplex f n`, then `reindexChainMap R n g`
@@ -138,14 +154,14 @@ theorem reindexChainMap_comp_singularChainMap {Y : TopCat.{0}}
     (hg : Function.LeftInverse g (pushSimplex f n)) :
     singularChainMap R f n ≫ reindexChainMap R n g = 𝟙 _ := by
       ext τ
-      simp [singularChainMap_generator, reindexChainMap_generator, hg];
+      simp;
       obtain ⟨μ, c', hc⟩ : ∃ (μ : Finset (singularSimplices X n)) (c' : singularSimplices X n →₀ R),
           τ = μ.sum (fun (σ : singularSimplices X n) => c' σ • chainGenerator R X n σ) := by
             have h_span : Submodule.span R (Set.range (fun σ : singularSimplices X n => chainGenerator R X n σ)) = ⊤ := by
               grind +suggestions;
             have := h_span.ge ( Submodule.mem_top : τ ∈ ⊤ );
             rw [ Finsupp.mem_span_range_iff_exists_finsupp ] at this; obtain ⟨ c', hc' ⟩ := this; use c'.support, c'; simp_all +decide [ Finsupp.sum ] ;
-      simp +decide [ hc, singularChainMap_generator, reindexChainMap_generator, hg ];
+      simp +decide [ hc, singularChainMap_generator, reindexChainMap_generator ];
       exact Finset.sum_congr rfl fun x hx => by rw [ hg x ] ;
 
 /-
@@ -179,20 +195,38 @@ theorem subChainCorestrict_bijective (S : Set X) (n : ℕ) :
     Function.Bijective ((subChainCorestrict R X S).f n).hom := by
       constructor;
       · intro x y hxy;
-        apply_fun (singularChainMap R (sInclusion S) n).hom at * ; simp_all +decide [ subChainCorestrict ];
-        · convert congr_arg Subtype.val hxy using 1;
-        · grind +suggestions;
+        apply singularChainMap_injective_of_pushSimplex_injective
+          (f := sInclusion S) n (pushSimplex_sInclusion_injective S n);
+        have hv := congrArg Subtype.val hxy;
+        change (singularChainMap R (sInclusion S) n).hom x =
+          (singularChainMap R (sInclusion S) n).hom y at hv;
+        exact hv;
       · intro x;
         rcases x with ⟨ x, hx ⟩;
         induction hx using Submodule.span_induction;
         · obtain ⟨ σ, hσ, rfl ⟩ := ‹_›;
           obtain ⟨ τ, hτ ⟩ := exists_pushSimplex_of_subordinate S n hσ;
           use chainGenerator R (TopCat.of S) n τ;
-          exact Subtype.ext ( by simpa [ hτ ] using singularChainMap_generator R ( sInclusion S ) n τ );
-        · exact ⟨ 0, by aesop ⟩;
+          apply Subtype.ext;
+          change (singularChainMap R (sInclusion S) n).hom
+              (chainGenerator R (TopCat.of S) n τ) = _;
+          simpa only [hτ] using singularChainMap_generator R (sInclusion S) n τ;
+        · refine ⟨0, ?_⟩;
+          apply Subtype.ext;
+          exact map_zero _;
         · rename_i hx hy;
-          exact ⟨ hx.choose + hy.choose, by simpa using congr_arg₂ ( · + · ) hx.choose_spec hy.choose_spec ⟩;
-        · obtain ⟨ a, ha ⟩ := ‹_›; use ‹R› • a; aesop;
+          refine ⟨hx.choose + hy.choose, ?_⟩;
+          calc
+            ((subChainCorestrict R X S).f n).hom (hx.choose + hy.choose) =
+                ((subChainCorestrict R X S).f n).hom hx.choose +
+                  ((subChainCorestrict R X S).f n).hom hy.choose := map_add _ _ _
+            _ = _ := congrArg₂ (· + ·) hx.choose_spec hy.choose_spec;
+        · obtain ⟨pre, hpre⟩ := ‹∃ pre, _›;
+          refine ⟨(‹R›) • pre, ?_⟩;
+          calc
+            ((subChainCorestrict R X S).f n).hom ((‹R›) • pre) =
+                (‹R›) • ((subChainCorestrict R X S).f n).hom pre := map_smul _ _ _
+            _ = _ := congrArg ((‹R›) • ·) hpre;
 
 instance subChainCorestrict_component_isIso (S : Set X) (n : ℕ) :
     IsIso ((subChainCorestrict R X S).f n) :=
