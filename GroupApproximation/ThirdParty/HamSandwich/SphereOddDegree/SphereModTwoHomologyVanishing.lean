@@ -6,6 +6,7 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.MayerVietoris
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularH0General
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SphereHomologyS1BaseMV
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -307,7 +308,13 @@ theorem sphereCohomology_isZero_of_lt (n k : ℕ) (h0 : 0 < k) (hkn : k < n) :
     exact Subsingleton.intro fun x y => by ext; simp +decide [ show x = 0 from LinearMap.ext fun _ => by simp +decide [ show ( ‹_› : homologyZMod2 _ _ ) = 0 from Subsingleton.elim _ _ ], show y = 0 from LinearMap.ext fun _ => by simp +decide [ show ( ‹_› : homologyZMod2 _ _ ) = 0 from Subsingleton.elim _ _ ] ] ;
   exact IsZero.of_iso h_dual ( kroneckerEquiv ( TopCat.of ( Sphere n ) ) k )
 
-#audit_closed_axioms sphereModTwoHomology_isZero_of_lt
-#audit_closed_axioms sphereCohomology_isZero_of_lt
+/-- Closed audit endpoint for intermediate mod-two sphere (co)homology vanishing. -/
+theorem sphereModTwo_intermediate_vanishing_closed :
+    (∀ n k : ℕ, 0 < k → k < n →
+      IsZero (homologyZMod2 (TopCat.of (Sphere n)) k)) ∧
+    (∀ n k : ℕ, 0 < k → k < n → IsZero (sphereCohomology n k)) :=
+  ⟨sphereModTwoHomology_isZero_of_lt, sphereCohomology_isZero_of_lt⟩
+
+#audit_closed_axioms sphereModTwo_intermediate_vanishing_closed
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
