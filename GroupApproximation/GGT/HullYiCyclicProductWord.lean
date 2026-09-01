@@ -495,9 +495,9 @@ theorem exists_naturallyIndexedCycle_of_consecutiveMatches
     (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
     (a : Fin (k + 1) → G) (n : ℕ)
     (ip kp : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
-    (hcomp : ∀ t : ℕ, t < 2 * (k + 1) →
+    (hcomp : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
       IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
-    (hstep : ∀ t : ℕ, t + 1 < 2 * (k + 1) →
+    (hstep : ∀ t : ℕ, t + 1 < 2 * (k + 1) + 1 →
       BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
         (kp t) (ip (t + 1))) :
     ∃ r : ℕ, r ≤ k + 1 ∧
@@ -508,12 +508,12 @@ theorem exists_naturallyIndexedCycle_of_consecutiveMatches
   have hr : r ≤ m := Nat.sub_le _ _
   refine ⟨r, by simpa [m] using hr, ?_⟩
   intro i
-  have hri : r + i.val < 2 * (k + 1) := by
+  have hri : r + i.val < 2 * (k + 1) + 1 := by
     have hi := i.isLt
     simp only [m] at hr
     omega
   have hstart := componentStart_eq_add_of_consecutiveMatches
-    D hk a n (2 * (k + 1)) ip kp lam hcomp hstep (r + i.val) hri
+    D hk a n (2 * (k + 1) + 1) ip kp lam hcomp hstep (r + i.val) hri
   have hindex := componentIndex_cyclicPeripheralPowerWord a (hcomp (r + i.val) hri)
   rw [hindex]
   apply Fin.ext
@@ -593,6 +593,60 @@ theorem connector_succ_eq_of_consecutiveMatches
   rw [hip, hiq, hvA, hvB]
   simp only [RelLetter.val]
   group
+
+/-- A sufficiently long self-match of the cyclic word produces exactly the
+finite connector array consumed by Hull's post-matching algebra: the initial
+connector for factor `i` lies in that factor, and its terminal connector is
+conjugation by the `i`-th cyclic letter. -/
+theorem exists_fullCycleConnectorData_of_consecutiveSelfMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a : Fin (k + 1) → G) (n : ℕ) (vp vq : G)
+    (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcompA : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+    (hcompB : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (iq t) (kq t))
+    (hstepA : ∀ t : ℕ, t + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp t) (ip (t + 1)))
+    (hstepB : ∀ t : ℕ, t + 1 < 2 * (k + 1) + 1 →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kq t) (iq (t + 1)))
+    (hmem : ∀ t : ℕ, t < 2 * (k + 1) + 1 →
+      (vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
+        vertex vq (cyclicPeripheralPowerWord a n) (iq t) ∈ D.fam (lam t)) :
+    ∃ (r : ℕ) (c : Fin (k + 2) → G), r ≤ k + 1 ∧
+      (∀ i : Fin (k + 1), c i.castSucc ∈ D.fam i) ∧
+      (∀ i : Fin (k + 1),
+        c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
+      ∀ j : Fin (k + 2),
+        c j =
+          (vertex vp (cyclicPeripheralPowerWord a n) (ip (r + j.val)))⁻¹ *
+            vertex vq (cyclicPeripheralPowerWord a n) (iq (r + j.val)) := by
+  obtain ⟨r, hr, hlam⟩ := exists_naturallyIndexedCycle_of_consecutiveMatches
+    D hk a n ip kp lam hcompA hstepA
+  let c : Fin (k + 2) → G := fun j ↦
+    (vertex vp (cyclicPeripheralPowerWord a n) (ip (r + j.val)))⁻¹ *
+      vertex vq (cyclicPeripheralPowerWord a n) (iq (r + j.val))
+  refine ⟨r, c, hr, ?_, ?_, ?_⟩
+  · intro i
+    have hri : r + i.val < 2 * (k + 1) + 1 := by
+      have hi := i.isLt
+      omega
+    have hm := hmem (r + i.val) hri
+    rw [hlam i] at hm
+    exact hm
+  · intro i
+    have hri : r + i.val + 1 < 2 * (k + 1) + 1 := by
+      have hi := i.isLt
+      omega
+    have hrec := connector_succ_eq_of_consecutiveMatches
+      D hk a a n (2 * (k + 1) + 1) vp vq ip kp iq kq lam
+      hcompA hcompB hstepA hstepB (r + i.val) hri
+    rw [hlam i] at hrec
+    simpa [c, Nat.add_assoc] using hrec
+  · intro j
+    rfl
 
 /-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
 
