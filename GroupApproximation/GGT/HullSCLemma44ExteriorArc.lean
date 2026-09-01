@@ -145,16 +145,15 @@ theorem false_of_lemma44ThreePieceExteriorCell
   have hbaseSubset : A.alphabet.carrier ⊆ P.rel.alphabet.carrier := by
     intro a ha
     apply GGT.base_subset_alphabet_carrier P.rel
-    rw [P.base_eq]
-    exact ha
+    exact P.base_le ha
   have hleftRel : wordNorm P.rel.alphabet.carrier C.leftConnector ≤ eps :=
-    le_trans (wordNorm_mono hbaseSubset
-      (wordLengths_nonempty A.alphabet.symmetricGenerating C.leftConnector))
-      (by rw [← P.base_eq]; exact C.leftConnector_short)
+    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
+      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.leftConnector))
+      C.leftConnector_short
   have hrightRel : wordNorm P.rel.alphabet.carrier C.rightConnector ≤ eps :=
-    le_trans (wordNorm_mono hbaseSubset
-      (wordLengths_nonempty A.alphabet.symmetricGenerating C.rightConnector))
-      (by rw [← P.base_eq]; exact C.rightConnector_short)
+    le_trans (wordNorm_mono (GGT.base_subset_alphabet_carrier P.rel)
+      (wordLengths_nonempty P.isSymmetricGeneratingSet_base C.rightConnector))
+      C.rightConnector_short
   have hboundaryRel : wordNorm P.rel.alphabet.carrier Z.boundary ≤ 2 * R :=
     le_trans (wordNorm_mono hbaseSubset
       (wordLengths_nonempty A.alphabet.symmetricGenerating Z.boundary))

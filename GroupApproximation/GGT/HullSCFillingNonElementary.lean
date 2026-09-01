@@ -42,6 +42,7 @@ namespace HullSC
 
 open GroupApproximation.GGT
 open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u
@@ -103,10 +104,27 @@ structure AuxiliaryPeripheralFamily
     {k : ℕ} (S : Fin k → Subgroup G) where
   cores : AuxiliaryNonElementaryCores A N S
   rel : GGT.RelGenSet G (AuxiliaryPeripheralIndex k)
-  base_eq : rel.base = A.alphabet.carrier
+  /-- The relative base contains Hull's alphabet and may additionally contain
+  the finitely many target letters adjoined before the relator is chosen. -/
+  base_le : A.alphabet.carrier ⊆ rel.base
+  /-- The possibly enlarged relative base is closed under inversion. -/
+  base_inv : ∀ x ∈ rel.base, x⁻¹ ∈ rel.base
   fam_eq : ∀ i : AuxiliaryPeripheralIndex k,
     rel.fam i = cores.peripheral i
   embedded : rel.IsHyperbolicallyEmbedded
+
+/-- The enlarged base is still a symmetric generating set: inversion closure
+is recorded explicitly, and it contains Hull's original generating set. -/
+theorem AuxiliaryPeripheralFamily.isSymmetricGeneratingSet_base
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S) :
+    IsSymmetricGeneratingSet D.rel.base := by
+  refine ⟨D.base_inv, ?_⟩
+  have hmono : Subgroup.closure A.alphabet.carrier ≤
+      Subgroup.closure D.rel.base := Subgroup.closure_mono D.base_le
+  rw [A.alphabet.symmetricGenerating.closure_eq] at hmono
+  exact eq_top_iff.mpr hmono
 
 /-- **The simultaneous source witness-selection premise.**
 
@@ -600,7 +618,7 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_yi_of_heGX
         fun i => Subgroup.zpowers (g i) := funext hcyc
     rwa [heq] at he
   refine ⟨⟨C, coneOffFamily A.alphabet (fun i => Subgroup.zpowers (g i)),
-    rfl, ?_, hembAll⟩⟩
+    Set.Subset.rfl, A.alphabet.symmetricGenerating.inv_mem, ?_, hembAll⟩⟩
   rintro ⟨i, b⟩
   cases i <;> rfl
 

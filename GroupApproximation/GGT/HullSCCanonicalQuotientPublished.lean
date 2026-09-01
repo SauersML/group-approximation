@@ -22,6 +22,39 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
+namespace AuxiliaryPeripheralFamily
+
+/-- Finite enlargement by a target and its inverse preserves the selected
+auxiliary family.  This is Hull's `\mathcal A_1`: the peripheral subgroups do
+not change, while the target becomes a single base letter. -/
+def adjoinPair {G : Type u} [Group G] {A : HullGeneratingSet G}
+    {N : Subgroup G} {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S) (t : G) :
+    AuxiliaryPeripheralFamily A N S where
+  cores := D.cores
+  rel := D.rel.adjoinPair t
+  base_le := D.base_le.trans (GGT.RelGenSet.base_subset_adjoinPair D.rel t)
+  base_inv := by
+    intro x hx
+    simp only [GGT.RelGenSet.adjoinPair_base, Set.mem_union,
+      Set.mem_insert_iff, Set.mem_singleton_iff] at hx ⊢
+    rcases hx with hx | rfl | rfl
+    · exact Or.inl (D.base_inv x hx)
+    · exact Or.inr (Or.inr rfl)
+    · exact Or.inr (Or.inl (inv_inv t))
+  fam_eq := D.fam_eq
+  embedded :=
+    GGT.RelGenSet.isHyperbolicallyEmbedded_adjoinPair_of_localFiniteness
+      GGT.RelGenSet.pairLocalFiniteness D.rel D.embedded t
+
+@[simp] theorem mem_base_adjoinPair {G : Type u} [Group G]
+    {A : HullGeneratingSet G} {N : Subgroup G} {k : ℕ}
+    {S : Fin k → Subgroup G} (D : AuxiliaryPeripheralFamily A N S)
+    (t : G) : t⁻¹ ∈ (D.adjoinPair t).rel.base := by
+  exact Or.inr (Or.inr rfl)
+
+end AuxiliaryPeripheralFamily
+
 namespace RelWord
 
 /-- The values of a one-relator symmetrized family normally generate exactly
@@ -107,7 +140,7 @@ theorem quotientPeripheralPreservation_of_bijective
              injOn_peripheralUnion := hq.1.injOn }⟩
   · intro a ha
     change q a ∈ q '' D.rel.base
-    exact ⟨a, D.base_eq ▸ ha, rfl⟩
+    exact ⟨a, D.base_le ha, rfl⟩
   · intro i
     change (D.rel.fam i).map q = (D.cores.peripheral i).map q
     rw [D.fam_eq i]

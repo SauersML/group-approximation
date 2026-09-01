@@ -95,7 +95,7 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
     isHyperbolicallyEmbedded_zpowers_of_elementaryClosure_eq_unconditional
       A g hnc hlox hcyc
   refine ⟨⟨C, coneOffFamily A.alphabet (fun i => Subgroup.zpowers (g i)),
-    rfl, ?_, hembAll⟩⟩
+    Set.Subset.rfl, A.alphabet.symmetricGenerating.inv_mem, ?_, hembAll⟩⟩
   rintro ⟨i, b⟩
   cases i <;> rfl
 
