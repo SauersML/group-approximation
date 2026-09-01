@@ -42,10 +42,8 @@ theorem actualRPAlpha_topPower_fixed_no_cellular {n : ℕ}
   have hfix1 :
       (cohPullback (TopCat.ofHom (inducedOnRP f hf)) 1).hom (actualRPAlpha n)
         = actualRPAlpha n := by
-    simpa [inducedOnRPPullback] using
-      (inducedOnRPPullback_actualRPAlpha (n := n) f hf)
-  simpa [inducedOnRPPullback] using
-    (inducedOnRP_cohPullback_cupPow_fixed f hf (actualRPAlpha n) hfix1 n)
+    convert inducedOnRPPullback_actualRPAlpha (n := n) f hf using 1 <;> rfl
+  convert inducedOnRP_cohPullback_cupPow_fixed f hf (actualRPAlpha n) hfix1 n using 1 <;> rfl
 
 /-- Minimal actual-top-power datum.  This is the concrete version of the
 `RPnActualTopPowerData` interface suggested by Prompt 01.  It depends only on the
@@ -58,7 +56,7 @@ structure RPnActualTopPowerData (n : ℕ) where
 
 /-- Construct the minimal top-power datum from the already-established no-cup
 Gysin nonvanishing theorem and cup-power naturality. -/
-def construct_RPnActualTopPowerData (n : ℕ) (hn : 1 ≤ n) :
+theorem construct_RPnActualTopPowerData (n : ℕ) (hn : 1 ≤ n) :
     RPnActualTopPowerData n where
   topPower_ne_zero := actualRPAlpha_topPower_ne_zero_no_cup n hn
   topPower_fixed := fun f hf => actualRPAlpha_topPower_fixed_no_cellular f hf
@@ -94,4 +92,3 @@ theorem odd_degree_of_odd_sphere_self_map_from_transfer {n : ℕ}
     (oddMapFixesTopClass_of_actualTopPower_and_transfer hn htr) f hf
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
