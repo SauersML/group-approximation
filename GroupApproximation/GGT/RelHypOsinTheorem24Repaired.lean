@@ -206,7 +206,7 @@ theorem exists_smallCancellationQuotient_repaired
     hDesign U H inferInstance inferInstance hUfp hUtf hHinf hHfp hHtf hHne hrh
   obtain ⟨hleafG, hleafT⟩ :=
     hOsin (pairFamily U H) inferInstance D.relLength D.relators (1 / 7)
-  have hfloor : ∀ r ∈ D.relators, 2 ≤ r.length := by
+  have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr
     have h := D.relators_long r hr
     omega

@@ -221,7 +221,7 @@ theorem exists_smallCancellationQuotient_final
   obtain ⟨D, hLeq, hlong, hgeo, hgp⟩ := hfam rho
   obtain ⟨hleafG, hleafT⟩ := hleaf D.relators
   rw [← hLeq] at hleafG hleafT
-  have hfloor : ∀ r ∈ D.relators, 2 ≤ r.length := by
+  have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr
     have h := D.relators_long r hr
     omega

@@ -623,6 +623,31 @@ theorem injOn_mk'_of_relativeLengthBound {L : RelativeLength G}
   have hs := hshort r hr x hx y hy
   omega
 
+/-- **The relative unit ball survives a Greendlinger length bound.**
+
+This is the exact local conclusion needed for peripheral injectivity.  If two
+elements of relative length at most one became equal, their difference would
+have relative length at most two.  The Greendlinger conclusion would then
+produce a relator of length below four, contradicting the displayed floor.
+
+Stating this intermediate conclusion explicitly isolates the target of the
+relative van Kampen argument: embedding the peripheral factor does not require
+the full global `RelativeLengthBound` after this point. -/
+theorem injOn_mk'_relativeUnitBall_of_relativeLengthBound
+    {L : RelativeLength G} {R : Set (List (CoprodI G))}
+    (hbound : RelativeLengthBound L R)
+    (hfloor : ∀ r ∈ R, 4 ≤ r.length) :
+    Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
+      {g : CoprodI G | L.len g ≤ 1} := by
+  apply injOn_mk'_of_relativeLengthBound hbound
+  intro r hr x hx y hy
+  change L.len x ≤ 1 at hx
+  change L.len y ≤ 1 at hy
+  have hmul := L.len_mul_le x y⁻¹
+  rw [L.len_inv] at hmul
+  have hlong := hfloor r hr
+  omega
+
 /-- **The source factor stays embedded**, unconditionally on the length function
 beyond its peripheral clause.
 
@@ -638,25 +663,13 @@ and `RelativeRouterEnvelope.exists_injective_to_partner` shows that if it did no
 evaporate the source would embed in the partner. -/
 theorem factorMap_source_injective {L : RelativeLength G}
     {R : Set (List (CoprodI G))} (hbound : RelativeLengthBound L R)
-    (hfloor : ∀ r ∈ R, 2 ≤ r.length) :
+    (hfloor : ∀ r ∈ R, 4 ≤ r.length) :
     Function.Injective (factorMap (letterRelatorSubgroup R) false) := by
-  have hinj : Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
-      (Set.range (CoprodI.of : G false → CoprodI G)) := by
-    apply injOn_mk'_of_relativeLengthBound hbound
-    intro r hr x hx y hy
-    obtain ⟨x₀, hx₀⟩ := hx
-    obtain ⟨y₀, hy₀⟩ := hy
-    rw [← hx₀, ← hy₀]
-    have hlen := L.len_source_le_one (x₀ * y₀⁻¹)
-    have hlong := hfloor r hr
-    have heq : CoprodI.of x₀ * (CoprodI.of y₀)⁻¹ =
-        (CoprodI.of (x₀ * y₀⁻¹) : CoprodI G) := by
-      rw [map_mul, map_inv]
-    rw [heq]
-    omega
+  have hinj :=
+    injOn_mk'_relativeUnitBall_of_relativeLengthBound hbound hfloor
   intro x y hxy
   apply CoprodI.of_injective false
-  exact hinj (Set.mem_range_self x) (Set.mem_range_self y) hxy
+  exact hinj (L.len_source_le_one x) (L.len_source_le_one y) hxy
 
 end Embedding
 
@@ -866,7 +879,7 @@ theorem lengthBound
 theorem emb_injective
     (hleafG : WeightedGreendlingerLeaf D.relLength D.relators (1 / 7)) :
     Function.Injective D.emb := by
-  have hfloor : ∀ r ∈ D.relators, 2 ≤ r.length := by
+  have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr
     have h := D.relators_long r hr
     omega

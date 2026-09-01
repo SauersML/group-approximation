@@ -113,7 +113,7 @@ theorem exists_smallCancellationQuotient_cayley
     refine mem_alphabet_of_relLengthOf_le_one X ?_
     rw [← hLeq]
     exact D.relators_letters r hr a ha
-  have hfloor : ∀ r ∈ D.relators, 2 ≤ r.length := by
+  have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr
     have h := D.relators_long r hr
     omega
