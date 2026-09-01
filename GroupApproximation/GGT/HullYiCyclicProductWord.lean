@@ -398,6 +398,72 @@ theorem cyclicSucc_componentIndex_of_consecutiveMatches
   apply Fin.ext
   simp [cyclicSucc, hip, hkp, Nat.add_mod]
 
+/-- The connector labels at two consecutive matched components satisfy the
+literal endpoint recurrence.  For two cyclic words with letters `a` and `b`,
+the next connector is obtained by multiplying the current one by
+`(a i)⁻¹` on the left and `b i` on the right. -/
+theorem connector_succ_eq_of_consecutiveMatches
+    (D : RelGenSet G (Fin (k + 1))) (hk : 1 ≤ k)
+    (a b : Fin (k + 1) → G) (n K : ℕ) (vp vq : G)
+    (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Fin (k + 1))
+    (hcompA : ∀ t : ℕ, t < K →
+      IsComp (lam t) (cyclicPeripheralPowerWord a n) (ip t) (kp t))
+    (hcompB : ∀ t : ℕ, t < K →
+      IsComp (lam t) (cyclicPeripheralPowerWord b n) (iq t) (kq t))
+    (hstepA : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord a n)
+        (kp t) (ip (t + 1)))
+    (hstepB : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial (cyclicPeripheralPowerWord b n)
+        (kq t) (iq (t + 1))) :
+    ∀ t : ℕ, t + 1 < K →
+      (vertex vp (cyclicPeripheralPowerWord a n) (ip (t + 1)))⁻¹ *
+          vertex vq (cyclicPeripheralPowerWord b n) (iq (t + 1)) =
+        (a (lam t))⁻¹ *
+          ((vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
+            vertex vq (cyclicPeripheralPowerWord b n) (iq t)) *
+          b (lam t) := by
+  intro t ht
+  have hcA := hcompA t (by omega)
+  have hcB := hcompB t (by omega)
+  have hkp : kp t = ip t + 1 :=
+    isComp_succ_of_isWThree
+      (isWThree_blockWord_finPeripheralWord D hk a n) hcA
+  have hkq : kq t = iq t + 1 :=
+    isComp_succ_of_isWThree
+      (isWThree_blockWord_finPeripheralWord D hk b n) hcB
+  have hip : ip (t + 1) = ip t + 1 := by
+    rw [eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord a (hstepA t ht), hkp]
+  have hiq : iq (t + 1) = iq t + 1 := by
+    rw [eq_of_baseEdgeOrTrivial_cyclicPeripheralPowerWord b (hstepB t ht), hkq]
+  have hiplt : ip t < (cyclicPeripheralPowerWord a n).length :=
+    lt_of_lt_of_le hcA.1 hcA.2.1
+  have hiqlt : iq t < (cyclicPeripheralPowerWord b n).length :=
+    lt_of_lt_of_le hcB.1 hcB.2.1
+  have hindexA := componentIndex_cyclicPeripheralPowerWord a hcA
+  have hindexB := componentIndex_cyclicPeripheralPowerWord b hcB
+  have hgetA := getElem?_cyclicPeripheralPowerWord a hiplt
+  have hgetB := getElem?_cyclicPeripheralPowerWord b hiqlt
+  rw [← hindexA] at hgetA
+  rw [← hindexB] at hgetB
+  have hletterA :
+      (cyclicPeripheralPowerWord a n)[ip t]'hiplt =
+        RelLetter.comp (lam t) (a (lam t)) := by
+    rw [List.getElem?_eq_getElem hiplt] at hgetA
+    exact Option.some.inj hgetA
+  have hletterB :
+      (cyclicPeripheralPowerWord b n)[iq t]'hiqlt =
+        RelLetter.comp (lam t) (b (lam t)) := by
+    rw [List.getElem?_eq_getElem hiqlt] at hgetB
+    exact Option.some.inj hgetB
+  have hvA := vertex_succ (cyclicPeripheralPowerWord a n) vp (ip t) hiplt
+  have hvB := vertex_succ (cyclicPeripheralPowerWord b n) vq (iq t) hiqlt
+  rw [hletterA] at hvA
+  rw [hletterB] at hvB
+  rw [hip, hiq, hvA, hvB]
+  simp only [RelLetter.val]
+  group
+
 /-- **The literal cyclic-product specialization of DGO Lemma 4.21(b).**
 
 The constants `C,R` are chosen in exactly the order of the printed lemma.
