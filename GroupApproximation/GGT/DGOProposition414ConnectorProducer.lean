@@ -38,7 +38,7 @@ structure ComponentConnectorPair (D : RelGenSet G Λ) (lam : Λ)
   start_label : ∀ x ∈ startConnector, x.IsCompOf lam
   end_label : ∀ x ∈ endConnector, x.IsCompOf lam
   start_value : RelLetter.listVal startConnector =
-    (vertex v word source)⁻¹ * vertex v word partner
+    (vertex v word source)⁻¹ * vertex v word partnerEnd
   end_value : RelLetter.listVal endConnector =
     (vertex v word sourceEnd)⁻¹ * vertex v word partnerEnd
 
@@ -56,9 +56,21 @@ theorem exists_componentConnectorPair
   obtain ⟨partnerEnd, hpartner⟩ := partnerStart
   have hsourceSpan := span_mem_fam_of_isComp D v letters hsource
   have hpartnerSpan := span_mem_fam_of_isComp D v letters hpartner
+  have hstartEnd :
+      (vertex v word source)⁻¹ * vertex v word partnerEnd ∈ D.fam lam := by
+    rw [show (vertex v word source)⁻¹ * vertex v word partnerEnd =
+      ((vertex v word source)⁻¹ * vertex v word partner) *
+        ((vertex v word partner)⁻¹ * vertex v word partnerEnd) by group]
+    exact mul_mem connected hpartnerSpan
+  have hpartnerTrivial :
+      (vertex v word partnerEnd)⁻¹ * vertex v word partnerEnd ∈ D.fam lam := by
+    simp
   obtain ⟨f, e, hf, he, hfLetters, heLetters, hfLabel, heLabel,
       hfValue, heValue⟩ :=
-    exists_component_connector_pair D lam hsourceSpan hpartnerSpan connected
+    exists_component_connector_pair D lam
+      (pm := vertex v word source) (pp := vertex v word sourceEnd)
+      (ym := vertex v word partnerEnd) (yp := vertex v word partnerEnd)
+      hsourceSpan hpartnerTrivial hstartEnd
   exact ⟨{
     sourceEnd := sourceEnd
     partnerEnd := partnerEnd
@@ -78,15 +90,16 @@ theorem exists_componentConnectorPair
 
 namespace ComponentConnectorPair
 
-/-- The source component is the connector--partner--connector boundary
-product, with the terminal connector read in reverse. -/
+/-- The source component is the product of the entry connector and the
+reversed exit connector.  The entry connector already runs to the terminal
+vertex of the chord partner, so the partner itself is omitted from every
+auxiliary cycle without leaving an uncharged factor. -/
 theorem sourceSpan_factorization
     {D : RelGenSet G Λ} {lam : Λ} {v : G}
     {word : List (RelLetter G Λ)} {source partner : ℕ}
     (C : ComponentConnectorPair D lam v word source partner) :
     (vertex v word source)⁻¹ * vertex v word C.sourceEnd =
       RelLetter.listVal C.startConnector *
-        ((vertex v word partner)⁻¹ * vertex v word C.partnerEnd) *
         (RelLetter.listVal C.endConnector)⁻¹ := by
   rw [C.start_value, C.end_value]
   group
