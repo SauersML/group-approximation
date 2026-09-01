@@ -371,6 +371,76 @@ theorem secondBrokenConnectors_end_value_global
   rw [(B.secondBrokenConnectors s hs).end_value,
     B.secondBrokenConnectors_partnerEnd_vertex s hs]
 
+/-- Compressing the first-half entry connector together with its adjacent
+partner edge moves the endpoint from `y + 1` to `y`. -/
+theorem firstBrokenConnectors_startThroughPartner_value_global
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    RelLetter.listVal (B.firstBrokenConnectors s hs).startThroughPartner =
+      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos s))⁻¹ *
+        vertex B.firstBase B.chord
+          (B.brokenAssignment.first.partner s) := by
+  rw [(B.firstBrokenConnectors s hs).startThroughPartner_value,
+    B.firstBrokenConnectors_partnerEnd_vertex s hs]
+
+/-- Compressing the first-half exit connector together with the reversed
+partner edge moves the endpoint from `y` to `y + 1`. -/
+theorem firstBrokenConnectors_endThroughPartner_value_global
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    RelLetter.listVal (B.firstBrokenConnectors s hs).endThroughPartner =
+      (vertex B.firstBase B.firstWord
+        (B.firstBrokenConnectors s hs).sourceEnd)⁻¹ *
+        vertex B.firstBase B.chord
+          (B.brokenAssignment.first.partner s + 1) := by
+  rw [(B.firstBrokenConnectors s hs).endThroughPartner_value,
+    B.firstBrokenConnectors_partnerStart_vertex s hs]
+
+/-- Compressing the wrapped-half entry connector with its forward partner
+edge moves the endpoint from `y` to `y + 1`. -/
+theorem secondBrokenConnectors_startThroughPartner_value_global
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    RelLetter.listVal (B.secondBrokenConnectors s hs).startThroughPartner =
+      (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos s))⁻¹ *
+        vertex B.firstBase B.chord
+          (B.brokenAssignment.second.partner s + 1) := by
+  rw [(B.secondBrokenConnectors s hs).startThroughPartner_value,
+    B.secondBrokenConnectors_partnerEnd_vertex s hs]
+
+/-- Compressing the wrapped-half exit connector with the reversed partner
+edge moves the endpoint from `y + 1` to `y`. -/
+theorem secondBrokenConnectors_endThroughPartner_value_global
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    RelLetter.listVal (B.secondBrokenConnectors s hs).endThroughPartner =
+      (vertex B.secondBase B.secondWord
+        (B.secondBrokenConnectors s hs).sourceEnd)⁻¹ *
+        vertex B.firstBase B.chord
+          (B.brokenAssignment.second.partner s) := by
+  rw [(B.secondBrokenConnectors s hs).endThroughPartner_value,
+    B.secondBrokenConnectors_partnerStart_vertex s hs]
+
 end BalancedSplitData
 
 end DGOProposition414
