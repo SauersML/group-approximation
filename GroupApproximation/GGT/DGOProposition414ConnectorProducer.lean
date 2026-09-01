@@ -21,6 +21,69 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+/-- The canonical word for a single peripheral displacement.  The identity
+displacement is represented by the empty path, so the construction never
+introduces a spurious identity side. -/
+noncomputable def compressedPeripheralWord (lam : Λ) (g : G) :
+    List (RelLetter G Λ) := by
+  classical
+  exact if g = 1 then [] else [RelLetter.comp lam g]
+
+namespace compressedPeripheralWord
+
+theorem length_le_one (lam : Λ) (g : G) :
+    (compressedPeripheralWord lam g).length ≤ 1 := by
+  classical
+  by_cases hg : g = 1 <;> simp [compressedPeripheralWord, hg]
+
+theorem letters (D : RelGenSet G Λ) (lam : Λ) (g : G)
+    (hg : g ∈ D.fam lam) :
+    ∀ x ∈ compressedPeripheralWord lam g, D.IsLetter x := by
+  classical
+  intro x hx
+  by_cases hone : g = 1
+  · simp [compressedPeripheralWord, hone] at hx
+  · have hx' : x = RelLetter.comp lam g := by
+      simpa [compressedPeripheralWord, hone] using hx
+    subst x
+    exact hg
+
+theorem label (lam : Λ) (g : G) :
+    ∀ x ∈ compressedPeripheralWord lam g, x.IsCompOf lam := by
+  classical
+  intro x hx
+  by_cases hone : g = 1
+  · simp [compressedPeripheralWord, hone] at hx
+  · have hx' : x = RelLetter.comp lam g := by
+      simpa [compressedPeripheralWord, hone] using hx
+    subst x
+    simp [RelLetter.IsCompOf]
+
+theorem listVal (lam : Λ) (g : G) :
+    RelLetter.listVal (compressedPeripheralWord lam g) = g := by
+  classical
+  by_cases hg : g = 1
+  · simp [compressedPeripheralWord, hg, RelLetter.listVal_nil]
+  · simp [compressedPeripheralWord, hg, listVal_singleton, RelLetter.val]
+
+end compressedPeripheralWord
+
+/-- A word consisting entirely of admissible `lam`-letters has its value in
+the peripheral subgroup `D.fam lam`. -/
+theorem listVal_mem_fam_of_isCompOf (D : RelGenSet G Λ) (lam : Λ)
+    (word : List (RelLetter G Λ))
+    (letters : ∀ x ∈ word, D.IsLetter x)
+    (label : ∀ x ∈ word, x.IsCompOf lam) :
+    RelLetter.listVal word ∈ D.fam lam := by
+  induction word with
+  | nil => exact one_mem (D.fam lam)
+  | cons x xs ih =>
+      rw [listVal_cons]
+      exact mul_mem
+        (val_mem_fam_of_isCompOf D (letters x (by simp)) (label x (by simp)))
+        (ih (fun y hy => letters y (by simp [hy]))
+          (fun y hy => label y (by simp [hy])))
+
 /-- The two connector words between a source component and its selected
 partner component in one common half word. -/
 structure ComponentConnectorPair (D : RelGenSet G Λ) (lam : Λ)
@@ -90,6 +153,118 @@ theorem exists_componentConnectorPair
   }⟩
 
 namespace ComponentConnectorPair
+
+/-- The source start joined directly to the far endpoint of the partner
+component.  This is the source-faithful compression of `f * y` used when the
+child chord must omit the partner edge adjacent to `f`. -/
+noncomputable def startThroughPartner
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    List (RelLetter G Λ) :=
+  compressedPeripheralWord lam
+    ((vertex v word source)⁻¹ * vertex v word C.partnerEnd)
+
+/-- The source end joined directly to the near endpoint of the partner
+component.  This is the source-faithful compression of `e * y⁻¹` used when
+the child chord must omit the partner edge adjacent to `e`. -/
+noncomputable def endThroughPartner
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    List (RelLetter G Λ) :=
+  compressedPeripheralWord lam
+    ((vertex v word C.sourceEnd)⁻¹ * vertex v word partner)
+
+theorem startThroughPartner_mem
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    (vertex v word source)⁻¹ * vertex v word C.partnerEnd ∈ D.fam lam := by
+  have hfactor : (vertex v word source)⁻¹ * vertex v word C.partnerEnd =
+      ((vertex v word source)⁻¹ * vertex v word partner) *
+        ((vertex v word partner)⁻¹ * vertex v word C.partnerEnd) := by
+    group
+  rw [hfactor, ← C.start_value]
+  exact mul_mem
+    (listVal_mem_fam_of_isCompOf D lam C.startConnector
+      C.start_letters C.start_label)
+    C.partner_span_mem
+
+theorem endThroughPartner_mem
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    (vertex v word C.sourceEnd)⁻¹ * vertex v word partner ∈ D.fam lam := by
+  have hfactor : (vertex v word C.sourceEnd)⁻¹ * vertex v word partner =
+      ((vertex v word C.sourceEnd)⁻¹ * vertex v word C.partnerEnd) *
+        ((vertex v word partner)⁻¹ * vertex v word C.partnerEnd)⁻¹ := by
+    group
+  rw [hfactor]
+  have hend := listVal_mem_fam_of_isCompOf D lam C.endConnector
+    C.end_letters C.end_label
+  rw [C.end_value] at hend
+  exact mul_mem
+    hend
+    (inv_mem C.partner_span_mem)
+
+theorem startThroughPartner_length
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    C.startThroughPartner.length ≤ 1 :=
+  compressedPeripheralWord.length_le_one _ _
+
+theorem endThroughPartner_length
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    C.endThroughPartner.length ≤ 1 :=
+  compressedPeripheralWord.length_le_one _ _
+
+theorem startThroughPartner_letters
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    ∀ x ∈ C.startThroughPartner, D.IsLetter x :=
+  compressedPeripheralWord.letters D lam _ C.startThroughPartner_mem
+
+theorem endThroughPartner_letters
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    ∀ x ∈ C.endThroughPartner, D.IsLetter x :=
+  compressedPeripheralWord.letters D lam _ C.endThroughPartner_mem
+
+theorem startThroughPartner_label
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    ∀ x ∈ C.startThroughPartner, x.IsCompOf lam :=
+  compressedPeripheralWord.label lam _
+
+theorem endThroughPartner_label
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    ∀ x ∈ C.endThroughPartner, x.IsCompOf lam :=
+  compressedPeripheralWord.label lam _
+
+theorem startThroughPartner_value
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    RelLetter.listVal C.startThroughPartner =
+      (vertex v word source)⁻¹ * vertex v word C.partnerEnd :=
+  compressedPeripheralWord.listVal _ _
+
+theorem endThroughPartner_value
+    {D : RelGenSet G Λ} {lam : Λ} {v : G}
+    {word : List (RelLetter G Λ)} {source partner : ℕ}
+    (C : ComponentConnectorPair D lam v word source partner) :
+    RelLetter.listVal C.endThroughPartner =
+      (vertex v word C.sourceEnd)⁻¹ * vertex v word partner :=
+  compressedPeripheralWord.listVal _ _
 
 /-- The source component has the source-faithful three-factor quadrilateral
 decomposition.  The connector factors are charged in source-half cut cycles;
