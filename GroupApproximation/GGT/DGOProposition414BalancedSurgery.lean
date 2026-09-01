@@ -33,6 +33,8 @@ structure BalancedSplitIntervalSurgery
   intervals : TwoHalfIntervalSurgery D hsymm b B.brokenAssignment.index
     B.firstBase (vertex P.basepoint P.word B.secondVertex)
     B.chord B.chord_geodesic
+  chargeGeometry : TwoHalfThreeSlotPlacement D hsymm b hδ
+    intervals.toPathInput.family P.target P.label P.span
   count_lower : n ≤
     (∑ j, ((intervals.toPathInput).first j).sideCount) +
       ∑ j, ((intervals.toPathInput).second j).sideCount
@@ -68,40 +70,18 @@ theorem sideBounds
   first_small := hfirstSmall
   second_small := hsecondSmall
 
-end BalancedSplitIntervalSurgery
-
-/-- Survivor-or-quadrilateral charging into the actual child targets.
-
-The radius of a surviving component is paid by its corresponding child side.
-For a broken component it is instead paid by the connector--partner--connector
-quadrilateral.  Consequently this interface deliberately uses the general
-two-half charging configuration, rather than incorrectly requiring the
-original span to equal one child side. -/
-structure BalancedSplitChargePlacement
-    (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
-    {δ : ℕ} (b : ℕ)
-    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
-    {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
-    (B : BalancedSplitData D hsymm b hδ P k R)
-    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) where
-  packets : TwoHalfChargePacketEmbedding D hsymm b hδ
-    S.intervals.toPathInput.family P.target P.label P.span
-
-namespace BalancedSplitChargePlacement
-
-/-- The geometric survivor-or-quadrilateral packets supply the complete
-two-half charging configuration, including both finite-sum inequalities. -/
+/-- The three coherent interval slots supply the complete two-half charging
+configuration, including the quadrilateral radius and finite-sum arguments. -/
 noncomputable def configuration
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R : ℕ}
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
-    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitChargePlacement D hsymm b hδ P B S) :
+    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B) :
     TwoHalfChargingConfiguration D hsymm b hδ
       S.intervals.toPathInput.family P.target P.label P.span :=
-  C.packets.configuration
+  S.chargeGeometry.configuration
 
 /-- The general charging certificate and the exact side accounting assemble
 into the family certificate consumed by Proposition 4.14. -/
@@ -111,8 +91,7 @@ noncomputable def certificate
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
-    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitChargePlacement D hsymm b hδ P B S)
+    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B)
     (hfirstSmall : ∀ j,
       5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
     (hsecondSmall : ∀ j,
@@ -124,7 +103,7 @@ noncomputable def certificate
       (S.sideBounds hfirstSmall hsecondSmall))
   exact auxiliaryCycleFamilyCertificate_of_twoHalf D hsymm b hδ
     B.brokenAssignment.index S.intervals.toPathInput.family n P.basepoint
-    P.word P.cut P.target P.label C.configuration counts.count_lower
+    P.word P.cut P.target P.label S.configuration counts.count_lower
     counts.count_upper counts.first_small counts.second_small
 
 /-- On an extremal polygon, the exact balanced-surgery certificate exports the
@@ -135,8 +114,7 @@ theorem exists_quadraticCostSubdivisionData
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     {B : BalancedSplitData D hsymm b hδ P k R}
-    {S : BalancedSplitIntervalSurgery D hsymm b hδ P B}
-    (C : BalancedSplitChargePlacement D hsymm b hδ P B S)
+    (S : BalancedSplitIntervalSurgery D hsymm b hδ P B)
     (hfirstSmall : ∀ j,
       5 * ((S.intervals.toPathInput).first j).sideCount ≤ 4 * n)
     (hsecondSmall : ∀ j,
@@ -155,9 +133,9 @@ theorem exists_quadraticCostSubdivisionData
       (∀ i, 5 * childSides i ≤ 4 * n) ∧
       ChordPartnerQuadraticTraversalBound chordLength partners :=
   exists_quadraticCostSubdivisionData_of_extremalFamily D hsymm b hδ P
-    hextremal (C.certificate hfirstSmall hsecondSmall)
+    hextremal (S.certificate hfirstSmall hsecondSmall)
 
-end BalancedSplitChargePlacement
+end BalancedSplitIntervalSurgery
 
 end DGOProposition414
 end GGT

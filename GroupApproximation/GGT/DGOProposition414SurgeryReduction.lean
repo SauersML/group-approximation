@@ -24,8 +24,8 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- The two dependent objects which remain to be constructed by interval
-surgery on a fixed raw balanced split. -/
+/-- The coherent interval surgery which remains to be constructed on a fixed
+raw balanced split.  Its three-slot geometry now derives all charging data. -/
 structure BalancedSplitSurgeryRealization
     (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     {δ : ℕ} (b : ℕ)
@@ -33,7 +33,6 @@ structure BalancedSplitSurgeryRealization
     {n : ℕ} (P : SumBoundInput D (b : ℝ) n) {k R : ℕ}
     (B : BalancedSplitData D hsymm b hδ P k R) where
   surgery : BalancedSplitIntervalSurgery D hsymm b hδ P B
-  chargePlacement : BalancedSplitChargePlacement D hsymm b hδ P B surgery
 
 /-- The exact subdivision output at a fixed uniform balanced-split radius.
 
@@ -87,7 +86,7 @@ theorem exists_quadraticCostSubdivisionData_of_balancedSurgeryAtRadius
       intro j
       exact (Nat.mul_le_mul_left 5
         (realization.surgery.second_side_bound j)).trans hhalf.2
-    let A := realization.chargePlacement.certificate hfirstSmall hsecondSmall
+    let A := realization.surgery.certificate hfirstSmall hsecondSmall
     refine ⟨A.k, A.childSides, A.chordLength, A.partners, ?_, ?_, ?_,
       A.count_lower, A.count_upper, A.child_small, A.traversal⟩
     · change B.brokenAssignment.index.first.pieceCount +
