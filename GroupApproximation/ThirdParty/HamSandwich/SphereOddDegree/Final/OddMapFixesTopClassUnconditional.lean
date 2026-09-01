@@ -2,6 +2,9 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualTopPow
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualAlphaPowerNoCup
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferSurjective
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferNaturality
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCohomologyDimensionVanishing
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SphereTopCohomologyRankOne
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -36,9 +39,8 @@ IsZero (rpCohomology n (n+1))    -- i.e. Hⁿ⁺¹(RPⁿ; F₂) = 0
 * `oddMapFixesTopClass_of_topVanish` — the payoff, `OddMapFixesTopClass n`, from
   `hn` and the single vanishing fact.
 
-The remaining input `hvanish : IsZero (rpCohomology n (n+1))` is the genuine
-Mathlib-absent RPⁿ dimension/excision computation.  It is *not* re-introduced as
-`htop : OddMapFixesTopClass n`.
+The direct projective-space dimension computation supplies this vanishing
+unconditionally, so the final theorem in this file has no topological input.
 
 No `axiom`, `sorry`, `opaque`, `admit`, `constant`, or `unsafe` is used.
 -/
@@ -83,16 +85,18 @@ theorem rpCohomology_top_finrank_one_of_vanish (n : ℕ) (hn : 1 ≤ n)
     have h_finrank_le_one : Module.finrank (ZMod 2) (rpCohomology n n) ≤ Module.finrank (ZMod 2) (sphereCohomology n n) := by
       have hsurj := cohTransferZMod2_top_surjective_of_vanish n hvanish;
       have hfinrank_le : FiniteDimensional (ZMod 2) (sphereCohomology n n) := by
-        exact FiniteDimensional.of_finrank_eq_succ ( sphere_top_cohomology_finrank_one n hn );
+        exact FiniteDimensional.of_finrank_eq_succ
+          (sphere_top_cohomology_finrank_one_direct n hn)
       have := LinearMap.finrank_range_add_finrank_ker T;
       rw [ ← this, LinearMap.range_eq_top.mpr hsurj ] ; norm_num;
-    exact h_finrank_le_one.trans ( by rw [ sphere_top_cohomology_finrank_one n hn ] );
+    exact h_finrank_le_one.trans (by rw [sphere_top_cohomology_finrank_one_direct n hn])
   refine' le_antisymm h_finrank_le_one ( Nat.pos_of_ne_zero _ );
   have h_nontrivial : Nontrivial (rpCohomology n n) := by
     exact ⟨ _, _, actualRPAlpha_topPower_ne_zero_no_cup n hn ⟩;
   apply_rules [ Module.finrank_pos.ne' ];
   have h_finite : Module.Finite (ZMod 2) (sphereCohomology n n) := by
-    exact Module.finite_of_finrank_pos ( by linarith [ sphere_top_cohomology_finrank_one n hn ] );
+    exact Module.finite_of_finrank_pos
+      (by linarith [sphere_top_cohomology_finrank_one_direct n hn])
   exact Module.Finite.of_surjective T ( cohTransferZMod2_top_surjective_of_vanish n hvanish )
 
 /-- **Top-degree injectivity of the cohomology transfer, from the single
@@ -102,7 +106,7 @@ theorem cohTransferZMod2_top_injective_of_vanish (n : ℕ) (hn : 1 ≤ n)
     (hvanish : IsZero (rpCohomology n (n + 1))) :
     Function.Injective (cohTransferZMod2 n n).hom := by
   have hsph : Module.finrank (ZMod 2) (sphereCohomology n n) = 1 :=
-    sphere_top_cohomology_finrank_one n hn
+    sphere_top_cohomology_finrank_one_direct n hn
   have hrp : Module.finrank (ZMod 2) (rpCohomology n n) = 1 :=
     rpCohomology_top_finrank_one_of_vanish n hn hvanish
   haveI : FiniteDimensional (ZMod 2) (sphereCohomology n n) :=
@@ -141,5 +145,21 @@ theorem oddMapFixesTopClass_of_topVanish (n : ℕ) (hn : 1 ≤ n)
     OddMapFixesTopClass n :=
   oddMapFixesTopClass_of_actualTopPower_and_transfer hn
     (construct_RPnTopClassTransfer_of_topVanish n hn hvanish)
+
+/-- **Unconditional top-class fixedness.** Every odd self-map of `Sⁿ`, for
+`n ≥ 1`, fixes a nonzero top mod-two cohomology class. -/
+theorem oddMapFixesTopClass_unconditional (n : ℕ) (hn : 1 ≤ n) :
+    OddMapFixesTopClass n :=
+  oddMapFixesTopClass_of_topVanish n hn
+    (rpCohomology_topPlusOne_isZero_direct n)
+
+/-- Closed endpoint for unconditional odd-map top-class fixedness. -/
+theorem oddMapFixesTopClass_unconditional_closed :
+    (∀ n : ℕ, 1 ≤ n → OddMapFixesTopClass n) ∧
+    (∀ n : ℕ, IsZero (rpCohomology n (n + 1))) :=
+  ⟨oddMapFixesTopClass_unconditional,
+    rpCohomology_topPlusOne_isZero_direct⟩
+
+#audit_closed_axioms oddMapFixesTopClass_unconditional_closed
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
