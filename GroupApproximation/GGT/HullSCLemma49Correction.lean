@@ -31,6 +31,19 @@ universe u w
 
 /-! ## Periodic boundary bookkeeping -/
 
+/-- Repetition preserves admissibility of the period word. -/
+theorem isAdmissible_lemma49BoundaryPower
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {word : List (GGT.RelLetter G Lambda)}
+    (hword : RelWord.IsAdmissible D word) :
+    ∀ n : ℕ, RelWord.IsAdmissible D (lemma49BoundaryPower word n)
+  | 0 => by simp [lemma49BoundaryPower, RelWord.IsAdmissible]
+  | n + 1 => by
+      intro a ha
+      rw [lemma49BoundaryPower, List.mem_append] at ha
+      exact ha.elim (hword a) (isAdmissible_lemma49BoundaryPower hword n a)
+
 /-- The recursive power word agrees with the standard flattened list of
 replicated blocks. -/
 theorem lemma49BoundaryPower_eq_flatten_replicate
@@ -469,6 +482,128 @@ theorem false_of_contiguity_one_period
   exact false_of_short_cyclic_replacement D N hshort hword m hm
     [] (word.rotate m) [] (by simp) replacement hperiodDefect
     (by simpa using hreplacementShort)
+
+/-! ## Routing a literal power arc into the shortening cases -/
+
+/-- A certificate arc no longer than one period is automatically located in
+one cyclic rotation, so the short-arc correction applies without any further
+position hypothesis. -/
+theorem false_of_contiguity_arc_le_period
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (N : Subgroup G) [N.Normal]
+    {g : G} (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {word relator arc : List (GGT.RelLetter G Lambda)}
+    (hword : GGT.OsinComponents.IsGeodesicWord D 1 g word)
+    {n eps : ℕ} (hn : 0 < n)
+    (harcInfix : arc <:+: lemma49BoundaryPower word n)
+    (harcLength : arc.length ≤ word.length)
+    {boundaryWord : List G}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator)
+    (hrelatorAdmissible : RelWord.IsAdmissible D relator)
+    (hrelatorMem : GGT.RelLetter.listVal relator ∈ N)
+    (harcValue : GGT.RelLetter.listVal arc = C.boundaryArc.prod)
+    (hdetourShort : 2 * eps + C.remainder.length < arc.length) : False := by
+  have hwordNe : word ≠ [] := by
+    intro hnil
+    rw [hnil, List.length_nil] at harcLength
+    omega
+  obtain ⟨m, hm, hprefix⟩ :=
+    exists_prefix_rotate_of_infix_lemma49BoundaryPower hn hwordNe
+      harcInfix harcLength
+  obtain ⟨suf, hsuf⟩ := hprefix
+  apply false_of_contiguity_short_arc D N hshort hword C
+    hrelatorAdmissible hrelatorMem arc harcValue m (le_of_lt hm) [] suf
+  · simpa only [List.nil_append] using hsuf
+  · exact hdetourShort
+
+/-- A certificate arc at least one period long automatically begins with a
+cyclic rotation of the period.  If the detour plus the remaining tail is
+shorter than the period, the one-period correction applies. -/
+theorem false_of_contiguity_period_le_arc
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (N : Subgroup G) [N.Normal]
+    {g : G} (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    {word relator arc : List (GGT.RelLetter G Lambda)}
+    (hword : GGT.OsinComponents.IsGeodesicWord D 1 g word)
+    {n eps : ℕ} (hn : 0 < n) (hwordNe : word ≠ [])
+    (harcInfix : arc <:+: lemma49BoundaryPower word n)
+    (harcLength : word.length ≤ arc.length)
+    {boundaryWord : List G}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator)
+    (hrelatorAdmissible : RelWord.IsAdmissible D relator)
+    (hrelatorMem : GGT.RelLetter.listVal relator ∈ N)
+    (harcValue : GGT.RelLetter.listVal arc = C.boundaryArc.prod)
+    (hdetourTailShort :
+      2 * eps + C.remainder.length + (arc.length - word.length) <
+        word.length) : False := by
+  obtain ⟨m, tail, hm, hsplit, htailLength⟩ :=
+    exists_rotate_append_of_infix_lemma49BoundaryPower hn hwordNe
+      harcInfix harcLength
+  have htailAdmissible : RelWord.IsAdmissible D tail := by
+    intro a ha
+    apply isAdmissible_lemma49BoundaryPower hword.1 n a
+    obtain ⟨before, after, hpower⟩ := harcInfix
+    rw [← hpower, hsplit]
+    simp only [List.mem_append]
+    tauto
+  apply false_of_contiguity_one_period D N hshort hword C
+    hrelatorAdmissible hrelatorMem m (le_of_lt hm) tail
+  · rw [← harcValue, hsplit]
+  · exact htailAdmissible
+  · rwa [htailLength]
+
+/-! ## Turning two close relator subwords into a prime piece -/
+
+/-- Two disjoint subwords of one relator whose values differ by short
+connectors are exactly a published prime piece.  The orientation may agree or
+be reversed, matching the two alternatives in Hull's definition. -/
+theorem isPrimePiece_of_disjoint_close_subwords
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {relator first middle second tail :
+      List (GGT.RelLetter G Lambda)}
+    (hrelator : relator ∈ W)
+    (hsplit : relator = first ++ middle ++ second ++ tail)
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (hvalue : GGT.RelLetter.listVal second =
+        left * GGT.RelLetter.listVal first * right ∨
+      GGT.RelLetter.listVal second =
+        left * (GGT.RelLetter.listVal first)⁻¹ * right) :
+    RelWord.IsPrimePiece D W eps first second relator := by
+  exact ⟨hrelator, middle, tail, hsplit, left, right,
+    hleft, hright, hvalue⟩
+
+/-- Under Hull's `C₁` input, two such subwords cannot both have length at
+least `mu` times the relator perimeter. -/
+theorem false_of_two_large_close_relator_subwords
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hinput : RelWord.IsLemma49Input D W eps mu rho)
+    {relator first middle second tail :
+      List (GGT.RelLetter G Lambda)}
+    (hrelator : relator ∈ W)
+    (hsplit : relator = first ++ middle ++ second ++ tail)
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (hvalue : GGT.RelLetter.listVal second =
+        left * GGT.RelLetter.listVal first * right ∨
+      GGT.RelLetter.listVal second =
+        left * (GGT.RelLetter.listVal first)⁻¹ * right)
+    (hfirst : mu * (relator.length : ℝ) ≤ (first.length : ℝ))
+    (hsecond : mu * (relator.length : ℝ) ≤ (second.length : ℝ)) : False := by
+  have hpiece := isPrimePiece_of_disjoint_close_subwords hrelator hsplit
+    hleft hright hvalue
+  have hsmall := hinput.primePiecesSmall first second relator hpiece
+  have hmax : mu * (relator.length : ℝ) ≤
+      max (first.length : ℝ) (second.length : ℝ) :=
+    le_trans hfirst (le_max_left _ _)
+  linarith
 
 /-! ## Model checks -/
 

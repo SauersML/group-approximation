@@ -26,19 +26,6 @@ universe u w
 
 /-! ## A power diagram is a common reduced diagram -/
 
-/-- Repetition preserves admissibility of the period word. -/
-theorem isAdmissible_lemma49BoundaryPower
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {word : List (GGT.RelLetter G Lambda)}
-    (hword : RelWord.IsAdmissible D word) :
-    ∀ n : ℕ, RelWord.IsAdmissible D (lemma49BoundaryPower word n)
-  | 0 => by simp [lemma49BoundaryPower, RelWord.IsAdmissible]
-  | n + 1 => by
-      intro a ha
-      rw [lemma49BoundaryPower, List.mem_append] at ha
-      exact ha.elim (hword a) (isAdmissible_lemma49BoundaryPower hword n a)
-
 /-- A geodesic power diagram supplies the exact common reduced-diagram input
 used by the relative Greendlinger statement.  Its radius parameter is chosen
 to be the literal boundary length, so the interface's harmless `2 * R` bound
