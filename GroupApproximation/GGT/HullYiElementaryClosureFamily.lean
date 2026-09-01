@@ -93,6 +93,30 @@ theorem exists_uniform_closureNearPowers_of_finiteTransversal
   obtain ⟨c, hc⟩ := hrho i x hx
   exact ⟨c, hc.trans (Finset.le_sup (f := rho) (Finset.mem_univ i))⟩
 
+/-- Cone-off hyperbolicity for a finite elementary-closure family needs no
+separation hypothesis.  Each elementary closure is uniformly close to the
+cyclic subgroup of its loxodromic generator, and electrifying a finite
+uniformly quasiconvex family preserves hyperbolicity.  Pairwise
+non-commensurability enters only later, when proving local finiteness of the
+relative metrics. -/
+theorem exists_hyperbolic_coneOffFamily_elementaryClosure_family
+    {Lambda : Type w} [Fintype Lambda]
+    (A : HullGeneratingSet G) (g : Lambda -> G)
+    (hlox : forall i, IsLoxodromic (g i) (Cayley.base A.alphabet)) :
+    exists delta' : Real, IsHyperbolicSpace delta'
+      (Cayley (coneOffFamily A.alphabet
+        (fun i => elementaryClosure (g i))).alphabet) := by
+  have hfin : forall i, ElementaryClosureFiniteTransversal (g i) :=
+    fun i => elementaryClosureFiniteTransversal_hullGeneratingSet A (hlox i)
+  obtain ⟨rho, hclose⟩ :=
+    exists_uniform_closureNearPowers_of_finiteTransversal A.alphabet g hfin
+  exact exists_hyperbolic_coneOffFamily_of_close A g hlox
+    (fun i => elementaryClosure (g i))
+    (fun i => zpowers_le_elementaryClosure (g i)) rho
+    (fun i b hb => by
+      obtain ⟨c, hc⟩ := hclose i b hb
+      exact ⟨g i ^ c, Subgroup.mem_zpowers_iff.mpr ⟨c, rfl⟩, hc⟩)
+
 /-- Finite-transversal quasiconvexity, translated to arbitrary left cosets in
 the prescribed-alphabet geodesic model. -/
 theorem exists_elementaryClosure_coset_projection_pointQuot
@@ -345,12 +369,8 @@ theorem isHyperbolicallyEmbedded_elementaryClosure_family
     fun i => elementaryClosureFiniteTransversal_hullGeneratingSet A (hlox i)
   obtain ⟨rho, hclose⟩ :=
     exists_uniform_closureNearPowers_of_finiteTransversal A.alphabet g hfin
-  have hhyp := exists_hyperbolic_coneOffFamily_of_close A g hlox
-    (fun i => elementaryClosure (g i))
-    (fun i => zpowers_le_elementaryClosure (g i)) rho
-    (fun i b hb => by
-      obtain ⟨c, hc⟩ := hclose i b hb
-      exact ⟨g i ^ c, Subgroup.mem_zpowers_iff.mpr ⟨c, rfl⟩, hc⟩)
+  have hhyp :=
+    exists_hyperbolic_coneOffFamily_elementaryClosure_family A g hlox
   have hdelta0 : 0 <= A.delta :=
     nonneg_of_isHyperbolicSpace A.hyperbolic (Cayley.base A.alphabet)
   have hgeo : IsGeodesicSpace (CayleyGeodesicModel.PointQuot A.alphabet) :=
