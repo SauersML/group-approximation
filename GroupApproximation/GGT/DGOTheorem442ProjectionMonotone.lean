@@ -38,6 +38,36 @@ theorem pair_mem_bbfAdmissible (P : ProjectionSystem V) (X Z : V) :
     (X, Z) ∈ P.bbfAdmissible X Z :=
   Or.inr (Or.inr (Or.inr rfl))
 
+/-- Swapping both endpoints and both entries preserves BBF admissibility. -/
+theorem bbfAdmissible_swap_iff (P : ProjectionSystem V)
+    (X Z a b : V) :
+    (a, b) ∈ P.bbfAdmissible X Z ↔
+      (b, a) ∈ P.bbfAdmissible Z X := by
+  have hswap : ∀ {X Z a b : V},
+      (a, b) ∈ P.bbfAdmissible X Z →
+        (b, a) ∈ P.bbfAdmissible Z X := by
+    intro X Z a b h
+    rcases h with hgeneral | hleft | hright | horiginal
+    · rcases hgeneral with ⟨hXa, hXb, hZa, hZb, hXab, hZab⟩
+      left
+      refine ⟨hZb, hZa, hXb, hXa, ?_, ?_⟩
+      · rwa [P.comm]
+      · rwa [P.comm]
+    · rcases hleft with ⟨haX, hZX, hZb, hdist⟩
+      right; right; left
+      refine ⟨haX, hZb, hZX, ?_⟩
+      rwa [P.comm]
+    · rcases hright with ⟨hbZ, hXa, hXZ, hdist⟩
+      right; left
+      refine ⟨hbZ, hXZ, hXa, ?_⟩
+      rwa [P.comm]
+    · right; right; right
+      injection horiginal with ha hb
+      subst a
+      subst b
+      rfl
+  exact ⟨hswap, hswap⟩
+
 /-- Candidates for the projection at `Y` must avoid `Y`, exactly as in the
 domain `(𝒴 \ {Y})²` of the published projection distances. -/
 def bbfCandidatePairs (P : ProjectionSystem V) (Y X Z : V) : Set (V × V) :=
@@ -63,6 +93,20 @@ theorem bbfCandidateValues_bddBelow (P : ProjectionSystem V)
   refine ⟨0, ?_⟩
   rintro d ⟨p, -, rfl⟩
   exact P.nonneg Y p.1 p.2
+
+/-- The candidate-value set is symmetric in the two projected endpoints. -/
+theorem bbfCandidateValues_comm (P : ProjectionSystem V) (Y X Z : V) :
+    P.bbfCandidateValues Y X Z = P.bbfCandidateValues Y Z X := by
+  ext d
+  constructor
+  · rintro ⟨p, hp, rfl⟩
+    refine ⟨(p.2, p.1), ⟨?_, hp.2.2, hp.2.1⟩, ?_⟩
+    · exact (P.bbfAdmissible_swap_iff X Z p.1 p.2).mp hp.1
+    · exact P.comm Y p.2 p.1
+  · rintro ⟨p, hp, rfl⟩
+    refine ⟨(p.2, p.1), ⟨?_, hp.2.2, hp.2.1⟩, ?_⟩
+    · exact (P.bbfAdmissible_swap_iff Z X p.1 p.2).mp hp.1
+    · exact P.comm Y p.2 p.1
 
 /-- The raw BBF infimum.  Projection distances are used only off the
 diagonal; assigning zero on the excluded diagonal makes the totalized Lean
@@ -91,6 +135,18 @@ theorem bbfRawProjDist_le (P : ProjectionSystem V) {Y X Z : V}
   rw [bbfRawProjDist, if_neg (not_or_intro hYX hYZ)]
   exact csInf_le (P.bbfCandidateValues_bddBelow Y X Z)
     ⟨(X, Z), P.pair_mem_bbfCandidatePairs hYX hYZ, rfl⟩
+
+/-- The raw BBF infimum is already symmetric; no post-hoc symmetrization is
+needed. -/
+theorem bbfRawProjDist_comm (P : ProjectionSystem V) (Y X Z : V) :
+    P.bbfRawProjDist Y X Z = P.bbfRawProjDist Y Z X := by
+  classical
+  rw [bbfRawProjDist, bbfRawProjDist]
+  have hor : Y = X ∨ Y = Z ↔ Y = Z ∨ Y = X := or_comm
+  rw [if_congr hor rfl rfl]
+  split_ifs
+  · rfl
+  · rw [P.bbfCandidateValues_comm]
 
 /-- Every admissible candidate lies less than `2ξ` below the original
 projection value (BBF Proposition 2.2). -/
@@ -200,38 +256,28 @@ theorem projDist_sub_bbfRawProjDist_le_two_mul
     linarith
   linarith
 
-/-- Symmetrizing the two raw infima produces the published symmetric modified
-distance while retaining the strict `2ξ` error. -/
+/-- The published modified distance is the raw admissible-pair infimum. -/
 noncomputable def bbfProjDist (P : ProjectionSystem V) (Y X Z : V) : ℝ :=
-  min (P.bbfRawProjDist Y X Z) (P.bbfRawProjDist Y Z X)
+  P.bbfRawProjDist Y X Z
 
 theorem bbfProjDist_nonneg (P : ProjectionSystem V) (Y X Z : V) :
     0 ≤ P.bbfProjDist Y X Z :=
-  le_min (P.bbfRawProjDist_nonneg Y X Z) (P.bbfRawProjDist_nonneg Y Z X)
+  P.bbfRawProjDist_nonneg Y X Z
 
 theorem bbfProjDist_comm (P : ProjectionSystem V) (Y X Z : V) :
     P.bbfProjDist Y X Z = P.bbfProjDist Y Z X := by
-  simp only [bbfProjDist, min_comm]
+  exact P.bbfRawProjDist_comm Y X Z
 
 theorem bbfProjDist_le (P : ProjectionSystem V) {Y X Z : V}
     (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
     P.bbfProjDist Y X Z ≤ P.projDist Y X Z :=
-  (min_le_left _ _).trans (P.bbfRawProjDist_le hYX hYZ)
+  P.bbfRawProjDist_le hYX hYZ
 
 theorem projDist_sub_bbfProjDist_le_two_mul
     (P : ProjectionSystem V) {Y X Z : V}
     (hYX : Y ≠ X) (hYZ : Y ≠ Z) :
     P.projDist Y X Z - P.bbfProjDist Y X Z ≤ 2 * P.ξ := by
-  have h₁ := P.projDist_sub_bbfRawProjDist_le_two_mul hYX hYZ
-  have h₂ := P.projDist_sub_bbfRawProjDist_le_two_mul hYZ hYX
-  rw [P.comm Y Z X] at h₂
-  rw [bbfProjDist]
-  have hlower₁ : P.projDist Y X Z - 2 * P.ξ ≤
-      P.bbfRawProjDist Y X Z := by linarith
-  have hlower₂ : P.projDist Y X Z - 2 * P.ξ ≤
-      P.bbfRawProjDist Y Z X := by linarith
-  have := le_min hlower₁ hlower₂
-  linarith
+  exact P.projDist_sub_bbfRawProjDist_le_two_mul hYX hYZ
 
 end ProjectionSystem
 
