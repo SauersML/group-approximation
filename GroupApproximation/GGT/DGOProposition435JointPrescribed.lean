@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.DGOProposition435InclusionFinite
 import GroupApproximation.GGT.HullSCConeOffHeavyQuasiconvex
 import GroupApproximation.GGT.HullYiAlphabetTransfer
+import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 
 /-!
 # The joint family at a prescribed relative base
@@ -137,4 +138,73 @@ theorem isLoxodromic_relative_of_isLoxodromic_hull {I : Type}
 
 end RelHyp
 end GGT
+
+namespace HullSC
+
+open GroupApproximation.GGT
+open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
+
+/-! ## The filling lane's instance -/
+
+/-- The loxodromic generator attached to each auxiliary core. -/
+def AuxiliaryNonElementaryCores.lox {G : Type u} [Group G]
+    {A : HullGeneratingSet G} {N : Subgroup G} {k : ℕ} {S : Fin k → Subgroup G}
+    (C : AuxiliaryNonElementaryCores A N S) : AuxiliaryPeripheralIndex k → G
+  | (none, b) => C.coreN.lox b
+  | (some j, b) => (C.coreS j).lox b
+
+/-- Each auxiliary peripheral is the cyclic subgroup of its generator. -/
+theorem AuxiliaryNonElementaryCores.peripheral_eq_zpowers {G : Type u}
+    [Group G] {A : HullGeneratingSet G} {N : Subgroup G} {k : ℕ}
+    {S : Fin k → Subgroup G} (C : AuxiliaryNonElementaryCores A N S)
+    (i : AuxiliaryPeripheralIndex k) :
+    C.peripheral i = Subgroup.zpowers (C.lox i) := by
+  rcases i with ⟨j, b⟩
+  cases j with
+  | none => exact C.cyclicN b
+  | some j => exact C.cyclicS j b
+
+/-- Each generator is loxodromic on Hull's Cayley graph. -/
+theorem AuxiliaryNonElementaryCores.isLoxodromic_lox {G : Type u} [Group G]
+    {A : HullGeneratingSet G} {N : Subgroup G} {k : ℕ}
+    {S : Fin k → Subgroup G} (C : AuxiliaryNonElementaryCores A N S)
+    (i : AuxiliaryPeripheralIndex k) :
+    IsLoxodromic (C.lox i) (Cayley.base A.alphabet) := by
+  rcases i with ⟨j, b⟩
+  cases j with
+  | none => exact C.coreN.lox_isLoxodromic b
+  | some j => exact (C.coreS j).lox_isLoxodromic b
+
+/-- **The joint-family selection input, from Proposition 4.14 alone.**
+
+The selected auxiliary peripherals are the cyclic subgroups of elements
+loxodromic on Hull's alphabet, hence loxodromic on the smaller original
+relative alphabet, so the joint relative Cayley graph is a cone-off of a
+hyperbolic graph along quasiconvex cyclic orbits and is hyperbolic.  With that,
+the only remaining input of the joint family is Proposition 4.14. -/
+theorem jointAuxiliaryPeripheralEmbedding_of_proposition414Uniform
+    (h414 : GGT.OsinComponents.DGOProposition414Uniform.{u, 0}) :
+    JointAuxiliaryPeripheralEmbedding.{u, w} := by
+  intro G _ A N k S selected Lambda original hA horig
+  have hfam : ∀ i : AuxiliaryPeripheralIndex k,
+      selected.rel.fam i = Subgroup.zpowers (selected.cores.lox i) := by
+    intro i
+    rw [selected.fam_eq i, selected.cores.peripheral_eq_zpowers i]
+  have hlox : ∀ i : AuxiliaryPeripheralIndex k,
+      IsLoxodromic (selected.cores.lox i) (Cayley.base original.alphabet) :=
+    fun i => isLoxodromic_base_of_subset hA (selected.cores.isLoxodromic_lox i)
+  have hbase : original.alphabet.carrier ⊆ selected.rel.base :=
+    hA.trans selected.base_le
+  refine ⟨GGT.RelHyp.jointRelGenSet original selected.rel,
+    GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
+    fun _ => rfl, fun i => selected.fam_eq i,
+    GGT.RelHyp.isHyperbolicallyEmbedded_jointRelGenSet_of_isLoxodromic_relative
+      h414 original selected.rel selected.cores.lox hfam hlox hbase
+      selected.base_inv horig selected.embedded,
+    ∅, Set.finite_empty, ?_⟩
+  intro x hx
+  exact Or.inl (GGT.RelHyp.properBase_subset_base original hx)
+
+end HullSC
 end GroupApproximation
