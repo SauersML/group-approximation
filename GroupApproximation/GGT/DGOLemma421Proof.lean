@@ -2083,6 +2083,46 @@ theorem quasiGeodesic_segment_of_quasiGeodesic
   rw [hsub] at hmain
   exact hmain
 
+/-- **The connecting edge of the minimality polygon.**  Dahmani--Guirardel--Osin
+write "*let `f` be an edge (or an empty path) connecting `(p_{i+a})_-` to
+`(q_{j+b})_-` and labelled by a letter from `H_μ`*" (HE.tex:765).  Both cases
+occur: the path is empty exactly when the two endpoints coincide.  The word
+produced here is geodesic, has length at most one, and carries only `μ`-letters,
+which is everything the polygon and the exclusion arguments read off it. -/
+theorem exists_isGeodesicWord_peripheralConnector
+    (D : RelGenSet G Λ) (lam : Λ) (f h : G) (hh : h ∈ D.fam lam) :
+    ∃ e : List (RelLetter G Λ),
+      IsGeodesicWord D f (f * h) e ∧ e.length ≤ 1 ∧
+      ∀ a ∈ e, a.IsCompOf lam := by
+  classical
+  have hcarrier : h ∈ D.alphabet.carrier :=
+    Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hh⟩)
+  by_cases hone : h = 1
+  · refine ⟨[], ⟨by simp, ?_, ?_⟩, by simp, by simp⟩
+    · rw [RelLetter.listVal_nil, mul_one, hone, mul_one]
+    · rw [List.length_nil, hone, mul_one]
+      exact ((wordDist_eq_zero_iff D.alphabet.symmetricGenerating f f).mpr rfl).symm
+  · refine ⟨[RelLetter.comp lam h], ⟨?_, ?_, ?_⟩, by simp, ?_⟩
+    · intro a ha
+      rw [List.eq_of_mem_singleton ha]
+      exact hh
+    · rw [listVal_singleton]
+      rfl
+    · rw [List.length_singleton]
+      have hle : wordDist D.alphabet.carrier f (f * h) ≤ 1 := by
+        have hnorm : wordNorm D.alphabet.carrier (f⁻¹ * (f * h)) ≤ 1 := by
+          rw [inv_mul_cancel_left]
+          exact wordNorm_le_one_of_mem hcarrier
+        exact hnorm
+      have hne : wordDist D.alphabet.carrier f (f * h) ≠ 0 := by
+        intro hz
+        have := (wordDist_eq_zero_iff D.alphabet.symmetricGenerating f (f * h)).mp hz
+        exact hone (by simpa using this.symm)
+      omega
+    · intro a ha
+      rw [List.eq_of_mem_singleton ha]
+      exact rfl
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
