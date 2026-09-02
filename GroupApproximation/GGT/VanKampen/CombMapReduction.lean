@@ -243,6 +243,21 @@ theorem MirrorPairDeletion.area_drop
     Delta.relatorCells.length at hcount
   omega
 
+/-- In the two-cell model, the concrete cut has zero relator cells left. -/
+theorem MirrorPairDeletion.area_zero_of_twoCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta)
+    (htwo : Delta.relatorCells.length = 2) :
+    C.replacement.diagram.rCellCount = 0 := by
+  have hdrop := C.area_drop
+  change C.replacement.diagram.relatorCells.length + 2 =
+    Delta.relatorCells.length at hdrop
+  rw [htwo] at hdrop
+  change C.replacement.diagram.relatorCells.length = 0
+  omega
+
 /-- The concrete two-cell cut supplies the abstract mirror-pair certificate.
 Reducedness is transported from the old diagram and the boundary word is
 preserved by the reclosure. -/

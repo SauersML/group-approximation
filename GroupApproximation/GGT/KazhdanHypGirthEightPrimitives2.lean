@@ -1126,6 +1126,30 @@ theorem PowerDiscMirrorPairDeletion.area_drop
   rw [C.result_diagram_eq]
   exact C.topological.area_drop
 
+/-- The two-cell power-disc model leaves no relator cells after the cut. -/
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem PowerDiscMirrorPairDeletion.area_zero_of_twoCell
+    (D : PowerDiscCandidate T g n)
+    (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T))
+    (hsplit : D.diagram.relatorCells =
+      pre ++ C₁ :: (between ++ C₂ :: suf))
+    (hcancel :
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1)
+    (C : PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel)
+    (htwo : D.diagram.relatorCells.length = 2) :
+    C.result.diagram.rCellCount = 0 := by
+  have hdrop := C.area_drop D pre between suf C₁ C₂ hsplit hcancel
+  change C.result.diagram.relatorCells.length + 2 =
+    D.diagram.relatorCells.length at hdrop
+  rw [htwo] at hdrop
+  change C.result.diagram.relatorCells.length = 0
+  omega
+
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Once the concrete `SurgeryMap` cut is supplied for each ordered mirror
 pair, it proves the cancellation premise consumed by least-area reduction. -/
