@@ -149,11 +149,11 @@ def CactusRelatorRetypingAvailability : Prop :=
     (triangleRelatorWords T)),
     Delta.Reduced → Nonempty (CleanCactusRelatorRetyping (T := T) Delta)
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A diagram already carrying relator-only coverage is a degenerate cactus
 retyping: the identity diagram preserves its boundary, area, reducedness, and
 planarity. -/
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cleanCactusRelatorRetyping_of_relatorOnly
     (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T))
@@ -168,6 +168,8 @@ theorem cleanCactusRelatorRetyping_of_relatorOnly
     reduced := hred
     planar := hplanar }⟩
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusRelatorRetypingAvailability_of_relatorOnly
     (hcover : ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T)),
