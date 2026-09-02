@@ -58,31 +58,50 @@ theorem rightConnector_sideSpan
     (hpos : 0 < Q.right.length) (hone : Q.right.length ≤ 1) :
     Q.certificate.sideSpan (Q.left.length + Q.arcSides) =
       RelLetter.listVal Q.right := by
-  have ht : Q.left.length + Q.arcSides ∈ Q.certificate.target := by
-    change Q.left.length + Q.arcSides ∈ Q.localTarget ∪
-      DGOPolygonCut.auxiliaryCycleConnectorTarget
-        Q.left Q.right Q.arcSides
-    exact Finset.mem_union.mpr (Or.inr
-      (DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_right
-        Q.left Q.right Q.arcSides 0 hpos))
-  have hspan := Q.certificate.sideSpan_eq_targetLetter ht
-  have hcut := auxiliaryCycleCut_right Q.left Q.right
+  have hlen : Q.right.length = 1 := by omega
+  have hcut0 := auxiliaryCycleCut_right Q.left Q.right
     Q.arcPolygon.cut (r := 0) (by omega)
-  change Q.certificate.sideSpan (Q.left.length + Q.arcSides) =
-    ((auxiliaryCycleWord Q.left Q.arc Q.right Q.chord)[
-      auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
-        (Q.left.length + Q.arcSides)]'_).val at hspan
-  rw [hcut] at hspan
-  rcases hright : Q.right with _ | ⟨a, t⟩
-  · simp at hpos
-  · have ht : t = [] := by
-      apply List.length_eq_zero_iff.mp
-      have hlen := hone
-      simp only [hright, List.length_cons] at hlen
-      omega
-    subst t
-    simpa [hright, auxiliaryCycleWord, OsinComponents.length_revWord,
-      listVal_singleton, RelLetter.val] using hspan
+  have hcut1 := auxiliaryCycleCut_right Q.left Q.right
+    Q.arcPolygon.cut (r := 1) (by omega)
+  have hcut1' : auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+      (Q.left.length + Q.arcSides + 1) =
+      Q.left.length + Q.arc.length + 1 := by
+    simpa only [Nat.add_zero] using hcut1
+  let word := auxiliaryCycleWord Q.left Q.arc Q.right Q.chord
+  let off := Q.left.length + Q.arc.length
+  have hoff : off < word.length := by
+    dsimp [off, word]
+    simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+    omega
+  change (vertex Q.basepoint word
+      (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+        (Q.left.length + Q.arcSides)))⁻¹ *
+      vertex Q.basepoint word
+        (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+          (Q.left.length + Q.arcSides + 1)) = RelLetter.listVal Q.right
+  calc
+    _ = (vertex Q.basepoint word off)⁻¹ *
+        vertex Q.basepoint word (off + 1) := by
+          exact congrArg₂ (fun x y : G => x⁻¹ * y)
+            (congrArg (vertex Q.basepoint word) (by
+              simpa only [Nat.add_zero, off] using hcut0))
+            (congrArg (vertex Q.basepoint word) (by
+              simpa only [off] using hcut1'))
+    _ = (word[off]'hoff).val := by
+      rw [vertex_succ word Q.basepoint off hoff]
+      group
+    _ = RelLetter.listVal Q.right := by
+      dsimp [word, off]
+      rcases hright : Q.right with _ | ⟨a, t⟩
+      · simp at hpos
+      · have ht : t = [] := by
+          apply List.length_eq_zero_iff.mp
+          have hlen' := hlen
+          simp only [hright, List.length_cons] at hlen'
+          omega
+        subst t
+        simp [hright, auxiliaryCycleWord, OsinComponents.length_revWord,
+          listVal_singleton, RelLetter.val]
 
 /-- A nonempty one-letter left connector is read backwards at the beginning
 of the auxiliary cycle, so its side span is the inverse connector value. -/
@@ -91,30 +110,42 @@ theorem leftConnector_sideSpan
     {b : ℕ} (Q : AuxiliaryCyclePathInput D hsymm b)
     (hpos : 0 < Q.left.length) (hone : Q.left.length ≤ 1) :
     Q.certificate.sideSpan 0 = (RelLetter.listVal Q.left)⁻¹ := by
-  have ht : 0 ∈ Q.certificate.target := by
-    change 0 ∈ Q.localTarget ∪
-      DGOPolygonCut.auxiliaryCycleConnectorTarget
-        Q.left Q.right Q.arcSides
-    exact Finset.mem_union.mpr (Or.inr
-      (DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_left
-        Q.left Q.right Q.arcSides 0 hpos))
-  have hspan := Q.certificate.sideSpan_eq_targetLetter ht
-  have hcut := auxiliaryCycleCut_left Q.left Q.right Q.arcSides Q.arcCut
+  have hlen : Q.left.length = 1 := by omega
+  have hcut0 := auxiliaryCycleCut_left Q.left Q.right Q.arcSides Q.arcCut
     (r := 0) (by omega)
-  change Q.certificate.sideSpan 0 =
-    ((auxiliaryCycleWord Q.left Q.arc Q.right Q.chord)[
-      auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right 0]'_).val at hspan
-  rw [hcut] at hspan
-  rcases hleft : Q.left with _ | ⟨a, t⟩
-  · simp at hpos
-  · have ht : t = [] := by
-      apply List.length_eq_zero_iff.mp
-      have hlen := hone
-      simp only [hleft, List.length_cons] at hlen
-      omega
-    subst t
-    simpa [hleft, auxiliaryCycleWord, revWord, invLetter,
-      listVal_singleton, RelLetter.val] using hspan
+  have hcut1 := auxiliaryCycleCut_left Q.left Q.right Q.arcSides Q.arcCut
+    (r := 1) (by omega)
+  let word := auxiliaryCycleWord Q.left Q.arc Q.right Q.chord
+  have hzero : 0 < word.length := by
+    dsimp [word]
+    simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+    omega
+  change (vertex Q.basepoint word
+      (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right 0))⁻¹ *
+      vertex Q.basepoint word
+        (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right 1) =
+      (RelLetter.listVal Q.left)⁻¹
+  calc
+    _ = (vertex Q.basepoint word 0)⁻¹ *
+        vertex Q.basepoint word 1 := by
+          exact congrArg₂ (fun x y : G => x⁻¹ * y)
+            (congrArg (vertex Q.basepoint word) hcut0)
+            (congrArg (vertex Q.basepoint word) hcut1)
+    _ = (word[0]'hzero).val := by
+      rw [vertex_succ word Q.basepoint 0 hzero]
+      group
+    _ = (RelLetter.listVal Q.left)⁻¹ := by
+      dsimp [word]
+      rcases hleft : Q.left with _ | ⟨a, t⟩
+      · simp at hpos
+      · have ht : t = [] := by
+          apply List.length_eq_zero_iff.mp
+          have hlen' := hlen
+          simp only [hleft, List.length_cons] at hlen'
+          omega
+        subst t
+        simp [hleft, auxiliaryCycleWord, revWord, invLetter,
+          listVal_singleton, RelLetter.val]
 
 end AuxiliaryCyclePathInput
 
