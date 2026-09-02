@@ -27,10 +27,6 @@ theorem sumBound_zero
     (D : RelGenSet G Λ) (b : ℝ) (K : ℕ) :
     SumBound D b 0 K := by
   intro v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
-  have hword : word.length = 0 := by
-    have hstart := hcut.start
-    have hfinish := hcut.finish
-    omega
   refine ⟨fun _ => 0, ?_, ?_⟩
   · intro s hs
     have hs0 := hI s hs
@@ -49,10 +45,17 @@ theorem exists_dgoUniformSumBound_of_linearSumBound
   intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
   by_cases hn : n = 0
   · subst n
-    apply sumBound_zero D (b : ℝ) (L + 1) v word cut I lam hlet hclosed
-      hcut hI hedge hcomp hiso
-    intro s hs
-    omega
+    obtain ⟨r, hr, hsum⟩ := sumBound_zero D (b : ℝ) (L + 1) v word cut I lam
+      hlet hclosed hcut hI hedge hcomp hiso (by
+        intro s hs
+        omega)
+    refine ⟨r, hr, ?_⟩
+    have hIempty : I = ∅ := by
+      ext s
+      simp only [Finset.mem_empty, iff_false]
+      intro hs
+      exact (by omega : False)
+    simp [hIempty]
   · have hnpos : 1 ≤ n := by omega
     have hsum := hL n hnpos
     obtain ⟨r, hr, htotal⟩ := hsum v word cut I lam hlet hclosed hcut hI
