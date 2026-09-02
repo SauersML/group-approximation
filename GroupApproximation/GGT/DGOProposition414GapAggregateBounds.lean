@@ -166,8 +166,12 @@ theorem sum_firstGapRight_length_le
   have hlast :
       (B.firstGapRight
         (Fin.last B.brokenAssignment.index.first.sources.length)).length = 0 := by
-    simp [GreedyHalfFamilyIndex.pieceCount, firstGapRight,
-      HalfGap.nextEntry]
+    have hnone : HalfGap.nextEntry B.brokenAssignment.index.first
+        (Fin.last B.brokenAssignment.index.first.sources.length) = none :=
+      (HalfGap.nextEntry_eq_none_iff _ _).2 rfl
+    simp only [firstGapRight]
+    rw [hnone]
+    rfl
   rw [hlast, Nat.add_zero]
   simpa using hinit
 
@@ -223,8 +227,12 @@ theorem sum_secondGapRight_length_le
   have hlast :
       (B.secondGapRight
         (Fin.last B.brokenAssignment.index.second.sources.length)).length = 0 := by
-    simp [GreedyHalfFamilyIndex.pieceCount, secondGapRight,
-      HalfGap.nextEntry]
+    have hnone : HalfGap.nextEntry B.brokenAssignment.index.second
+        (Fin.last B.brokenAssignment.index.second.sources.length) = none :=
+      (HalfGap.nextEntry_eq_none_iff _ _).2 rfl
+    simp only [secondGapRight]
+    rw [hnone]
+    rfl
   rw [hlast, Nat.add_zero]
   simpa using hinit
 
