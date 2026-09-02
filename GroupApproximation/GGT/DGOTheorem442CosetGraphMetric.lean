@@ -132,6 +132,44 @@ theorem wordDist_graph_dist_bounds
   ⟨graph_dist_le_wordDist H Gamma hinv hconn a b,
     wordDist_le_graph_dist_add_one H Gamma hinv hconn a b⟩
 
+/-- Any two vertices in the support of a walk are at distance at most the
+length of the whole walk. -/
+theorem dist_le_walk_length_of_mem_support
+    {V : Type*} {Gamma : SimpleGraph V} (hconn : Gamma.Connected)
+    {A B U W : V} (p : Gamma.Walk A B)
+    (hU : U ∈ p.support) (hW : W ∈ p.support) :
+    Gamma.dist U W ≤ p.length := by
+  induction p with
+  | nil =>
+      simp only [SimpleGraph.Walk.support_nil, List.mem_singleton] at hU hW
+      subst U
+      subst W
+      simp
+  | @cons A C B hAC p ih =>
+      rw [SimpleGraph.Walk.support_cons] at hU hW
+      rcases List.mem_cons.mp hU with hUA | hUtail
+      · subst U
+        rcases List.mem_cons.mp hW with hWA | hWtail
+        · subst W
+          simp
+        · have hACdist : Gamma.dist A C = 1 :=
+            SimpleGraph.dist_eq_one_iff_adj.mpr hAC
+          have hCW := ih p.start_mem_support hWtail
+          have htriangle := hconn.dist_triangle (u := A) (v := C) (w := W)
+          simp only [SimpleGraph.Walk.length_cons]
+          omega
+      · rcases List.mem_cons.mp hW with hWA | hWtail
+        · subst W
+          have hCA : Gamma.dist C A = 1 :=
+            SimpleGraph.dist_eq_one_iff_adj.mpr hAC.symm
+          have hUC := ih hUtail p.start_mem_support
+          have htriangle := hconn.dist_triangle (u := U) (v := C) (w := A)
+          simp only [SimpleGraph.Walk.length_cons]
+          omega
+        · have hUW := ih hUtail hWtail
+          simp only [SimpleGraph.Walk.length_cons]
+          omega
+
 end CosetGraph
 end GGT
 end GroupApproximation
