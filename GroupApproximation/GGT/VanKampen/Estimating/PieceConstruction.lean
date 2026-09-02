@@ -58,6 +58,20 @@ theorem estimatingPieceConstruction_of_ear
   estimatingPieceConstruction_of_earStatement hear
     estimatingPieceNonCancellationStatement
 
+/-- **The Piece construction, with no hypothesis.**  Every input is now a field
+of the region itself: `pasting` gives the boundary-dart equation and
+`o52Certificate` with `target_ne_source` gives the non-cancellation clause.
+This closes `EstimatingPieceConstructionStatement` outright. -/
+theorem estimatingPieceConstructionStatement :
+    EstimatingPieceConstructionStatement.{u, w, v} := by
+  intro G _ Lambda D eps W Delta scaffold hred
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  exact Embedded.cellPieceEquations_of_contiguity edge.candidate.contiguity
+    edge.target_eq
+    (estimatingPieceNonCancellationStatement D eps Delta
+      scaffold.selected.family hred edge edge.target edge.target_eq)
+
 /-- **The Piece construction from the region shelling statement.**  This is the
 form to prefer over `estimatingPieceConstruction_of_ear`:
 `GGT.VanKampen.RegionShellingStatement` is strictly weaker than

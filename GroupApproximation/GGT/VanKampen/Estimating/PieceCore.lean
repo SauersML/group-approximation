@@ -146,9 +146,43 @@ def cellPieceEquations_of_pasting
   CellPieceEquations.of_boundary_equation Gamma htarget
     (Gamma.targetBoundary_value_of_pasting pasting) hne
 
+/-- **The region's own pasting.**  `Contiguity.pasting` carries a shelling of
+the boundary cycle, and `faceSetWordHomotopy_of_shelling` turns it into the
+homotopy.  So no producer, no ear and no shelling statement is needed: the
+region supplies its own. -/
+theorem contiguity_pasting
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) :
+    FaceSetWordHomotopy Delta faces Gamma.boundary.cycle [] := by
+  obtain ⟨l, shelling⟩ := Gamma.pasting
+  exact faceSetWordHomotopy_of_shelling shelling
+
+/-- **The two-arc certificate with no hypothesis at all.**  The boundary-dart
+equation comes from the region's own `pasting` field; the non-cancellation
+clause comes from its `o52Certificate` field and `Delta.Reduced`. -/
+def cellPieceEquations_of_contiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    {target : Fin Delta.rCellCount}
+    (htarget : Gamma.target = some target)
+    (hne : GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)) :
+    CellPieceEquations Gamma :=
+  cellPieceEquations_of_pasting Gamma (contiguity_pasting Gamma) htarget hne
+
 /-- The same certificate from the ear statement, which produces the pasting via
-a face-deletion schedule.  Kept as a corollary; `RegionShellingStatement` is a
-strictly weaker source of the same pasting. -/
+a face-deletion schedule.  Kept as a corollary; both it and
+`RegionShellingStatement` are now superseded by the `pasting` field. -/
 def cellPieceEquations_of_earStatement
     (hear : FaceSetEarStatement.{u, w, v})
     {G : Type u} [Group G] {Lambda : Type w}
