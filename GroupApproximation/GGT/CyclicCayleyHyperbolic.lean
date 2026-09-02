@@ -77,9 +77,10 @@ theorem isSymmetricGeneratingSet_pairSet (y : E)
     IsSymmetricGeneratingSet (pairSet y) := by
   constructor
   · intro x hx
-    rcases mem_pairSet_iff.mp hx with rfl | rfl
-    · exact inv_mem_pairSet y
-    · rw [inv_inv]
+    rcases mem_pairSet_iff.mp hx with h | h
+    · rw [h]
+      exact inv_mem_pairSet y
+    · rw [h, inv_inv]
       exact mem_pairSet_self y
   · rw [eq_top_iff]
     intro x _
@@ -282,9 +283,12 @@ theorem exists_isHyperbolicSpace_cayley_of_zpowers {y : E}
     ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley A) := by
   by_cases hinj : Function.Injective fun m : ℤ => y ^ m
   · exact ⟨0, isHyperbolicSpace_zero_of_injective hinj hgen A hA⟩
-  · have hinj' : ¬ ∀ a b : ℤ, y ^ a = y ^ b → a = b := hinj
-    push_neg at hinj'
-    obtain ⟨a, b, hab, hne⟩ := hinj'
+  · obtain ⟨a, b, hab, hne⟩ : ∃ a b : ℤ, y ^ a = y ^ b ∧ a ≠ b := by
+      by_contra hcon
+      apply hinj
+      intro u v huv
+      by_contra hne
+      exact hcon ⟨u, v, huv, hne⟩
     have hone : y ^ (a - b) = 1 := by
       rw [zpow_sub, hab, mul_inv_cancel]
     have hpos : 0 < (a - b).natAbs := Int.natAbs_pos.mpr (sub_ne_zero.mpr hne)
@@ -297,7 +301,7 @@ theorem exists_isHyperbolicSpace_cayley_of_zpowers {y : E}
 theorem mem_zpowers_ofAdd_one (x : Multiplicative ℤ) :
     x ∈ Subgroup.zpowers (Multiplicative.ofAdd (1 : ℤ)) := by
   refine Subgroup.mem_zpowers_iff.mpr ⟨Multiplicative.toAdd x, ?_⟩
-  rw [← ofAdd_zsmul, zsmul_eq_mul, mul_one, Multiplicative.ofAdd_toAdd]
+  rw [← ofAdd_zsmul, zsmul_eq_mul, mul_one, Int.cast_id]
 
 /-- **The unbounded model.**  The infinite cyclic group over one generator: the
 injective branch applies and the Cayley graph is the line. -/
