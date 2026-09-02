@@ -100,6 +100,21 @@ theorem oneFace
   simpa only [List.nil_append, List.append_nil] using
     (FaceSetDeletionSchedule.step face hface hne [] [] htail)
 
+/-- A singleton `SurgeryMap` disc whose boundary is the face boundary gives the
+one-face schedule.  This is the map-level bridge used by a planar peel
+producer. -/
+theorem oneFace_of_discRegion
+    {face : Delta.toCombMap.Face}
+    (region : Surgery.MapCollapse.IsDiscRegion
+      Delta.toCombMap ({face} : Finset Delta.toCombMap.Face))
+    (boundary_eq : region.toBoundaryCycle.cycle =
+      (Delta.faceBoundary face).darts)
+    (hne : face ≠ Delta.outerFace) :
+    FaceSetDeletionSchedule (Delta := Delta) {face}
+      region.toBoundaryCycle.cycle := by
+  rw [boundary_eq]
+  exact oneFace face hne
+
 /-- The zero-face schedule is the empty-word model. -/
 theorem emptyModel :
     FaceSetDeletionSchedule (Delta := Delta) (∅ : Finset Delta.toCombMap.Face) [] :=
