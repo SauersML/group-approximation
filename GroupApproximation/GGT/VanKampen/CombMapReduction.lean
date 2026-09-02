@@ -1,15 +1,12 @@
-import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives
+import GroupApproximation.GGT.VanKampen.DiscDiagram
 
 /-!
 # Relator-cell coverage and identity reduction
 
-For an ordinary triangular presentation, the local curvature input
-`TriangularDiagramLocalData` already excludes free-group base cells: its
-`innerFaceCell` field says that every non-outer face is one of the stored
-relator cells.  This module proves the cheapest sufficient form of base-cell
-elimination.  Under that coverage hypothesis the original diagram itself is a
-`RelatorOnlyReduction`, so its boundary word, relator area, and reducedness are
-preserved by equality.
+This module isolates the presentation-independent part of base-cell
+elimination.  Under explicit coverage of every inner face by a stored relator
+cell, the original diagram is already relator-only, so its boundary word,
+relator area, and reducedness are preserved by equality.
 
 The face-count theorem also proves that free-group cells contribute zero to the
 curvature count under the same hypothesis: `rCellCount = innerFaceCount`.
@@ -20,9 +17,6 @@ This is the base-cell step required before the triangular Euler estimate in
 namespace GroupApproximation
 namespace GGT
 namespace VanKampen
-
-open GroupApproximation.KazhdanHyp
-open GirthEightVKInterface
 
 universe u w v
 
@@ -91,95 +85,46 @@ theorem innerFaceCount_le_rCellCount (R : RelatorCellCover Delta) :
 
 end RelatorCellCover
 
-/-! ## Triangular presentations -/
+/-! ## Presentation-independent identity reduction -/
 
-section Triangle
+/-- A covered diagram needs no topological change: it is the required
+relator-only output with literal boundary and area preserved by equality. -/
+structure IdentityRelatorOnlyReduction
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  /-- The output diagram. -/
+  diagram : DiscDiagram.{u, w, v} W
+  /-- Its boundary word is literally unchanged. -/
+  boundaryWord_eq : diagram.boundaryWord = Delta.boundaryWord
+  /-- Its ordered relator area is literally unchanged. -/
+  rCellCount_eq : diagram.rCellCount = Delta.rCellCount
+  /-- Diagram reducedness is preserved. -/
+  reduced : diagram.Reduced
+  /-- Every output inner face is a stored relator cell. -/
+  cover : RelatorCellCover diagram
 
-variable {Generator TriangleIndex : Type}
-  [Fintype Generator] [DecidableEq Generator]
-  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
-  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
-  {Delta : DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
-
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
-/-- The relator-only interface implies generic stored-cell coverage. -/
-theorem RelatorCellCover.ofRelatorOnly (R : RelatorOnly T Delta) :
-    RelatorCellCover Delta where
-  cell := R.cell
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
-/-- Local triangular diagram data implies generic stored-cell coverage. -/
-theorem RelatorCellCover.ofLocalData (L : TriangularDiagramLocalData T Delta) :
-    RelatorCellCover Delta where
-  cell := L.innerFaceCell
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
-/-- Local triangular diagram data already excludes all free-group base cells. -/
-theorem relatorOnlyOfLocalData (L : TriangularDiagramLocalData T Delta) :
-    RelatorOnly T Delta where
-  cell := L.innerFaceCell
-
-/-- Under local triangular data, the identity diagram is the required
-relator-only reduction.  Boundary and area preservation are reflexive. -/
-def identityRelatorOnlyReduction (L : TriangularDiagramLocalData T Delta)
-    (hred : Delta.Reduced) : RelatorOnlyReduction T Delta where
+/-- Explicit relator-cell coverage constructs the identity reduction. -/
+def identityRelatorOnlyReduction
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (R : RelatorCellCover Delta)
+    (hred : Delta.Reduced) : IdentityRelatorOnlyReduction Delta where
   diagram := Delta
   boundaryWord_eq := rfl
-  rCellCount_le := le_rfl
+  rCellCount_eq := rfl
   reduced := hred
-  relatorOnly := relatorOnlyOfLocalData L
+  cover := R
 
-/-- Under an explicit relator-only hypothesis, the identity diagram is the
-required reduction. -/
-def identityRelatorOnlyReductionOfRelatorOnly (R : RelatorOnly T Delta)
-    (hred : Delta.Reduced) : RelatorOnlyReduction T Delta where
-  diagram := Delta
-  boundaryWord_eq := rfl
-  rCellCount_le := le_rfl
-  reduced := hred
-  relatorOnly := R
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
-/-- The triangular local-data hypothesis makes relator area equal the number
-of inner faces used by the Euler estimate. -/
-theorem rCellCount_eq_innerFaceCount_ofLocalData
-    (L : TriangularDiagramLocalData T Delta) :
-    Delta.rCellCount = Delta.innerFaceCount :=
-  (RelatorCellCover.ofLocalData L).rCellCount_eq_innerFaceCount
-
-/-- Consequently the sharp curvature estimate can be stated directly for
-relator-cell area without deleting any face. -/
-theorem rCellCount_add_eight_le_three_mul_boundaryLength
-    {d : ℕ} (hchecks : GirthEightChecks T d)
-    (L : TriangularDiagramLocalData T Delta) :
-    Delta.rCellCount + 8 ≤ 3 * Delta.combinatorialBoundaryLength := by
-  rw [rCellCount_eq_innerFaceCount_ofLocalData L]
-  exact L.innerFaceCount_add_eight_le_three_mul_boundaryLength hchecks
-
-end Triangle
-
-/-! ## Model tests -/
-
-/-- The outer-only one-edge disc from the primitive module has relator-cell
-coverage vacuously. -/
-theorem oneEdgeRelatorCellCover : RelatorCellCover GirthEightPrimitives.oneEdgeDiagram where
-  cell f hf := (hf (GirthEightPrimitives.oneEdge_face_eq f)).elim
-
-/-- The model has both relator area and inner-face count equal to zero. -/
-theorem oneEdge_rCellCount_eq_innerFaceCount :
-    GirthEightPrimitives.oneEdgeDiagram.rCellCount =
-      GirthEightPrimitives.oneEdgeDiagram.innerFaceCount :=
-  oneEdgeRelatorCellCover.rCellCount_eq_innerFaceCount
-
-/-- The identity reduction has exactly the original model boundary word. -/
-theorem oneEdge_identity_boundaryWord :
-    (identityRelatorOnlyReductionOfRelatorOnly
-      (T := GirthEightPrimitives.emptyTriangleTable)
-      { cell := oneEdgeRelatorCellCover.cell }
-      GirthEightPrimitives.oneEdgeDiagram_reduced).diagram.boundaryWord =
-      GirthEightPrimitives.oneEdgeDiagram.boundaryWord :=
-  rfl
+/-- The identity reduction preserves the sharp relator/inner-face count. -/
+theorem identityRelatorOnlyReduction_count
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} (R : RelatorCellCover Delta)
+    (hred : Delta.Reduced) :
+    (identityRelatorOnlyReduction Delta R hred).diagram.rCellCount =
+      (identityRelatorOnlyReduction Delta R hred).diagram.innerFaceCount :=
+  R.rCellCount_eq_innerFaceCount
 
 end VanKampen
 end GGT
