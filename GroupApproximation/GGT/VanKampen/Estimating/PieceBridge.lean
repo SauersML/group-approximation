@@ -231,6 +231,18 @@ noncomputable def Contiguity.targetArcAtSome
       targetDarts Delta (some target) := by rw [htarget]
   exact cast (congrArg CyclicArc hcycle) Gamma.targetArc
 
+theorem targetBoundaryDarts_cast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {first second : Option (Fin Delta.rCellCount)}
+    (h : first = second) (arc : CyclicArc (targetDarts Delta first)) :
+    targetBoundaryDarts Delta first arc =
+      targetBoundaryDarts Delta second
+        (cast (congrArg CyclicArc (congrArg (targetDarts Delta) h)) arc) := by
+  cases h
+  rfl
+
 /-- The exact equation obtained from a cellular face-pasting certificate in
 the orientation used by `Embedded.Contiguity.boundary_decomposition`. -/
 theorem Contiguity.targetBoundary_value_of_pasting
@@ -306,9 +318,11 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
         targetBoundaryDarts Delta (some target)
           (Gamma.targetArcAtSome target htarget) := by
-    unfold Contiguity.targetArcAtSome
-    cases htarget
-    rfl
+    change targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
+      targetBoundaryDarts Delta (some target)
+        (cast (congrArg CyclicArc (congrArg (targetDarts Delta) htarget))
+          Gamma.targetArc)
+    exact targetBoundaryDarts_cast htarget Gamma.targetArc
   rw [hboundary]
   simpa [Contiguity.targetInverseCarrier, targetBoundaryDarts,
     CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord] using hsuffix
@@ -434,7 +448,7 @@ theorem Contiguity.arcLengths_le_two_mu_source
     simp only [dartWord, List.length_map, Gamma.sourceArc.rotated_length]
     have hlength := congrArg List.length
       (dartWord_cellDarts Delta Gamma.source)
-    simpa only [dartWord, List.length_map] using hlength
+    simpa only [dartWord, List.length_map, targetDarts] using hlength
   rw [hcarrier] at hsource htarget
   have htargetArcLength :
       (Gamma.cellTargetArc equations.target equations.target_eq).length =
