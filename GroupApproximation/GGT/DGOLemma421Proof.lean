@@ -2424,6 +2424,65 @@ theorem connected_source_of_connected_nearConnector
       = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a') := by group
   rwa [hrw2] at hprod
 
+/-- **Two positions of the `p`-segment of `Q''` are connected in the polygon
+exactly when the corresponding positions of `p` are connected.**
+
+This settles two of Dahmani--Guirardel--Osin's three exclusions at once.  Taking
+the second position inside the segment is the case "*connected to a component of
+`p`*", excluded because all components of `p` are isolated; taking it at the end
+of the segment is the case "*connected to `f`*", excluded against `p_{i+a}` --- 
+the start of the far connector is the end of the segment, so no separate vertex
+identity is needed for it.
+
+Both sides of the connection sit in the second block, so the translation by
+`listVal e` cancels and only the segment coordinates survive. -/
+theorem connected_source_of_connected_pSegment
+    {D : RelGenSet G Λ} {P e f Qseg : List (RelLetter G Λ)}
+    {nu : Λ} {ip1 m a' b' : ℕ}
+    (hm : ip1 + m ≤ P.length) (ha' : a' ≤ m) (hb' : b' ≤ m)
+    (hconn : Connected D.fam nu (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg)
+      (e.length + a') (e.length + b')) :
+    Connected D.fam nu (1 : G) P (ip1 + a') (ip1 + b') := by
+  have hlen : ((P.drop ip1).take m).length = m := length_segment P ip1 m hm
+  have hia : a' ≤ ((P.drop ip1).take m).length := by rw [hlen]; exact ha'
+  have hib : b' ≤ ((P.drop ip1).take m).length := by rw [hlen]; exact hb'
+  have hseg1 : vertex (1 : G) ((P.drop ip1).take m) a'
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a') :=
+    vertex_segment_one P ip1 m a' ha'
+  have hseg2 : vertex (1 : G) ((P.drop ip1).take m) b'
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + b') :=
+    vertex_segment_one P ip1 m b' hb'
+  have h : (vertex (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) (e.length + a'))⁻¹ *
+      vertex (1 : G)
+        (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) (e.length + b')
+      ∈ D.fam nu := hconn
+  rw [vertex_fourGon_side e ((P.drop ip1).take m) f Qseg (1 : G) hia,
+    vertex_fourGon_side e ((P.drop ip1).take m) f Qseg (1 : G) hib,
+    hseg1, hseg2] at h
+  have hrw : ((1 : G) * RelLetter.listVal e *
+      ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a')))⁻¹ *
+      ((1 : G) * RelLetter.listVal e *
+        ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + b')))
+      = (vertex (1 : G) P (ip1 + a'))⁻¹ * vertex (1 : G) P (ip1 + b') := by
+    group
+  rwa [hrw] at h
+
+/-- The far-connector case, as an instance: the start of `f` is the end of the
+`p`-segment, so a connection to it is a connection to `p_{i+a}`. -/
+theorem connected_far_of_connected_farConnector
+    {D : RelGenSet G Λ} {P e f Qseg : List (RelLetter G Λ)}
+    {nu : Λ} {ip1 m a' : ℕ}
+    (hm : ip1 + m ≤ P.length) (ha' : a' ≤ m)
+    (hconn : Connected D.fam nu (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg)
+      (e.length + a') (e.length + ((P.drop ip1).take m).length)) :
+    Connected D.fam nu (1 : G) P (ip1 + a') (ip1 + m) := by
+  have hlen : ((P.drop ip1).take m).length = m := length_segment P ip1 m hm
+  rw [hlen] at hconn
+  exact connected_source_of_connected_pSegment hm ha' le_rfl hconn
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
