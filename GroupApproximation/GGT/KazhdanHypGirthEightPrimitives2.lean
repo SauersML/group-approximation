@@ -1153,7 +1153,7 @@ omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A concrete planar mirror reclosure produces the power-disc cut consumed by
 the least-area argument.  The source reducedness and planarity fields are
 exactly the hypotheses needed by the generic surgery certificate. -/
-theorem powerDiscMirrorPairCut_of_planarDisc
+def powerDiscMirrorPairCut_of_planarDisc
     (D : PowerDiscCandidate T g n)
     (C : VanKampen.MirrorPairDeletion D.diagram)
     (hred : D.diagram.Reduced)
