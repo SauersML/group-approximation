@@ -2403,7 +2403,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               exact heq
   let short : Fin N → Fin M := fun i =>
     if hi : Matched i then ⟨0, by omega⟩
-    else Classical.choose (hclassBase i)
+    else Classical.choose ((hclassBase i).resolve_left hi)
   have hshortSpec : ∀ i, ¬ Matched i →
       (if h : targetN i < pc.length then targetN i
         else targetN i - P.length) = (short i).val := by
