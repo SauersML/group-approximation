@@ -1150,6 +1150,33 @@ theorem cancellationReducesArea_of_concreteMirrorPairDeletion
   omega
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
+/-- A concrete planar mirror reclosure produces the power-disc cut consumed by
+the least-area argument.  The source reducedness and planarity fields are
+exactly the hypotheses needed by the generic surgery certificate. -/
+theorem powerDiscMirrorPairCut_of_planarDisc
+    (D : PowerDiscCandidate T g n)
+    (C : VanKampen.MirrorPairDeletion D.diagram)
+    (hred : D.diagram.Reduced)
+    (hplanar : D.diagram.toCombMap.IsPlanar) :
+    PowerDiscMirrorPairCut D := by
+  let R := C.toMirrorPairCut hred hplanar
+  have hrelatorOnly : RelatorOnly T R.result := by
+    constructor
+    intro f hf
+    exact R.relatorOnly.cell f hf
+  let D' : PowerDiscCandidate T g n :=
+    { word := D.word
+      represents := D.represents
+      diagram := R.result
+      boundary_eq := R.boundaryWord_eq.trans D.boundary_eq
+      relatorOnly := hrelatorOnly }
+  refine { result := D'
+    boundaryWord_eq := ?_
+    area_eq := ?_ }
+  · exact R.boundaryWord_eq
+  · exact R.area_eq
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A supplied mirror-pair cut proves the cancellation premise by arithmetic. -/
 theorem cancellationReducesArea_of_mirrorPairCut
     (D : PowerDiscCandidate T g n)
