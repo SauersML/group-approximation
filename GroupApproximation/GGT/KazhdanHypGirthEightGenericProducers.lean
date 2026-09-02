@@ -48,10 +48,8 @@ def CactusPowerFoldStepSource : Prop :=
         ∃ C : CactusBaseCellFoldData Delta,
           C.powerWord = word.map signedFreeRelLetter ∧
           C.exponent = n ∧
-          C.before_power =
-              (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
-          C.after_power =
-              (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
+          C.before_power ∧
+          C.after_power ∧
           C.replacement.diagram.innerFaceCount + 1 =
               Delta.innerFaceCount
 
@@ -81,7 +79,7 @@ def CactusPowerFoldChainSource : Prop :=
       ∃ Delta Next : DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
         Delta.toCombMap.IsPlanar ∧ Delta.Reduced ∧
         ∃ k : ℕ, ∃ chain : CactusFoldChain Delta Next k,
-          Next.innerFaceCount + k = Delta.innerFaceCount ∧
+          chain.innerFaceCount_eq_add_length ∧
           Delta.boundaryWord =
             (List.replicate n (word.map signedFreeRelLetter)).flatten
 
@@ -107,7 +105,9 @@ theorem cactusRelatorRetypingForPower_of_foldChainSource
   exact hterminal
 
 /-! A one-cell model test records the exact drop, rather than weakening it
-to an inequality. -/
+   to an inequality. -/
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusPowerFoldStep_oneCell_model
     {Delta : DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
     (C : CactusBaseCellFoldData Delta)
@@ -117,7 +117,7 @@ theorem cactusPowerFoldStep_oneCell_model
 
 /-! ## Exposed pairing and Euler counts -/
 
-abbrev PlanarDiscExposedPairingEulerProducer : Prop :=
+abbrev PlanarDiscExposedPairingEulerProducer :=
   ∀ (Generator TriangleIndex : Type)
     (_ : Fintype Generator) (_ : DecidableEq Generator)
     (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
@@ -170,8 +170,8 @@ produce the count package consumed by the generic seam theorem. -/
 theorem doubleEulerCountData_of_incidence
     {g : Presented T} {D : PowerDisc T g 2}
     {B : ExposedPairing D.diagram 2}
-    (C : DoubleIncidenceEquivalences B.toPairing)
-    (K : DoubleConnectivityData B.toPairing) :
+    (C : SeamGluing.Pairing.DoubleIncidenceEquivalences B.toPairing)
+    (K : SeamGluing.Pairing.DoubleConnectivityData B.toPairing) :
     Pairing.EulerTwoCountData B.toPairing := by
   have hD := C.toEulerCountData K
   refine {
