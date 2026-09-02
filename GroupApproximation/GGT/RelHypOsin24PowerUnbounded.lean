@@ -24,6 +24,8 @@ namespace GroupApproximation
 namespace GGT
 namespace RelHyp
 
+open GroupApproximation.HullGeometry
+
 universe u v
 
 /-! ## Failure of escape produces a bounded subsequence -/
