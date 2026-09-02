@@ -428,6 +428,28 @@ theorem embeddedEstimatingSystemConstruction_emptyFamilyModel
   rw [DiscDiagram.rCellCount, hnil, List.length_nil] at hcells
   omega
 
+/-! The source-faithful statement has the expected empty-family model. -/
+
+/-- In the empty relator family, the positive-cell branch of the
+quasi-geodesic Gr0 conclusion is impossible. -/
+theorem relativeGreendlingerQuasiGeodesic_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (lambda c mu : ℝ)
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda))))
+    (_hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
+    (_hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
+    ∃ Delta' : DiscDiagram.{u, w, v}
+        (∅ : Set (List (GGT.RelLetter G Lambda))),
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        ∃ (faces : Finset Delta'.toCombMap.Face)
+          (Gamma : Embedded.Contiguity D eps Delta' faces),
+          Gamma.target = none ∧
+            (1 - 13 * mu) *
+                ((Embedded.cell Delta' Gamma.source).word.length : ℝ) <
+              (Gamma.sourceArc.length : ℝ) := by
+  exact (embeddedEstimatingSystemConstruction_emptyFamilyModel D Delta hcells).elim
+
 /-! ## Legacy consumer alias -/
 
 /-- The old Hull statement omits the quasi-geodesic boundary hypothesis.  It
