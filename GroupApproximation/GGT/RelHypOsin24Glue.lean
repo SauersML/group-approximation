@@ -11,9 +11,9 @@ normal closure of one relator.  The first section turns that statement into
 Osin's finite-order lifting clause, both for a fixed quotient and directly
 from `HullLemma49KernelPowerStatement`.
 
-The second section checks the proposed DGO Proposition 4.28 bridge against the
-two relative-metric definitions currently in the repository.  They are not
-equivalent.  `RelHyp.RelativeGeneratingSet.AvoidsPeripheral` forgets the label
+The second section records why the former endpoint-only definition was
+replaced by the labelled DGO Proposition 4.28 bridge in
+`RelHypDefinition`.  `RelHyp.RelativeGeneratingSet.AvoidsPeripheral` forgets the label
 of an edge and excludes every step whose endpoints lie in the selected
 peripheral.  `GGT.AvoidsFrom` retains labels and excludes only a component
 letter carrying that peripheral's index.  Two equal infinite peripherals give
@@ -21,10 +21,9 @@ a smallest counterexample: the first metric has only the identity at finite
 distance, while the second has the whole group in its radius-one ball by using
 the other component label.
 
-Thus the finite-order part of the Hull-to-Osin route composes now.  The
-relative-hyperbolicity part cannot be obtained by identifying the two current
-definitions; its repair must make Osin's relative paths label-sensitive, or
-state relative hyperbolicity directly through `GGT.RelGenSet`.
+Thus the finite-order part of the Hull-to-Osin route composes now, and the
+relative-hyperbolicity part uses `GGT.RelGenSet` directly.  The old predicate
+is reproduced locally below only to make the countermodel a checked theorem.
 -/
 
 namespace GroupApproximation
@@ -32,6 +31,7 @@ namespace GGT
 namespace RelHyp
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
@@ -61,13 +61,14 @@ theorem isOsin24TorsionConclusion_of_kernelPowerCorrection
     (hcorrect : HullSC.KernelPowerCorrection eta.ker) :
     IsOsin24TorsionConclusion eta := by
   intro q hq
+  have hqFinite : IsOfFinOrder q := isOfFinOrder_iff_pow_eq_one.mpr hq
   have hlift :=
     (HullSC.kernelPowerCorrection_iff_finiteOrderLift eta hsurj).mp hcorrect
-  obtain ⟨g, hmap, horder⟩ := hlift q hq
+  obtain ⟨g, hmap, horder⟩ := hlift q hqFinite
   have hg : IsOfFinOrder g := by
     rw [← orderOf_pos_iff, horder]
-    exact hq.orderOf_pos
-  exact ⟨g, hg, hmap⟩
+    exact hqFinite.orderOf_pos
+  exact ⟨g, isOfFinOrder_iff_pow_eq_one.mp hg, hmap⟩
 
 /-- Hull's Lemma 4.9, applied to the one-relator quotient, supplies Osin's
 finite-order lifting conclusion.  The constants retain Hull's source order:
@@ -102,12 +103,20 @@ theorem exists_isOsin24TorsionConclusion_of_lemma49
 
 namespace RelativeMetricCountermodel
 
+/-- The retired endpoint-only predicate, retained locally so the reason for
+the breaking definition repair remains machine checked. -/
+def EndpointRelativelyHyperbolic (G : Type u) [Group G] {ι : Type w}
+    (H : ι → Subgroup G) : Prop :=
+  ∃ (X : RelativeGeneratingSet G H) (delta : ℝ),
+    HullGeometry.IsHyperbolicSpace delta (Cayley X.alphabet) ∧
+      PeripheralMetricLocallyFinite X
+
 /-- An infinite group used to separate the endpoint and labelled relative
 metrics. -/
 abbrev DuplicateGroup : Type := Multiplicative ℤ
 
 /-- The peripheral family with two different indices naming the whole group. -/
-abbrev duplicateFamily : Bool → Subgroup DuplicateGroup := fun _ ⇒ ⊤
+abbrev duplicateFamily : Bool → Subgroup DuplicateGroup := fun _ => ⊤
 
 /-- The empty finite relative base generates relative to the duplicate top
 family. -/
@@ -175,10 +184,10 @@ theorem duplicateRelative_dist_le_one
   rw [Cayley.dist_eq]
   exact_mod_cast hdist
 
-/-- In the repository's current endpoint-only definition, an infinite group
-is relatively hyperbolic with respect to two identical copies of itself. -/
-theorem duplicate_isRelativelyHyperbolic :
-    IsRelativelyHyperbolic DuplicateGroup duplicateFamily := by
+/-- The retired endpoint-only definition incorrectly accepts an infinite
+group relative to two identical copies of itself. -/
+theorem duplicate_endpointRelativelyHyperbolic :
+    EndpointRelativelyHyperbolic DuplicateGroup duplicateFamily := by
   refine ⟨duplicateRelativeGeneratingSet, 1, ?_,
     duplicate_peripheralMetricLocallyFinite⟩
   exact isHyperbolicSpace_of_bounded duplicateRelative_dist_le_one
