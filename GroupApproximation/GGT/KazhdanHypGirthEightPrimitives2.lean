@@ -1367,6 +1367,33 @@ noncomputable def powerDiscSphereGluing_of_planarDisc
       B hcounts hplanar)
     certificate hcellular
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+/-- The double-copy seam constructor builds the exposed mate by swapping the
+two copies, then uses the boundary-corrected Euler equations to obtain the
+spherical power-disc certificate. -/
+noncomputable def powerDiscSphereGluing_of_doubleCopyMate
+    (D : PowerDisc T g 2)
+    {I : Type}
+    (index : VanKampen.SeamGluing.ExposedCopiedDart D.diagram 2 ≃
+      Fin 2 × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
+    (hcounts : VanKampen.SeamGluing.Pairing.DoubleEulerCountData
+      (VanKampen.SeamGluing.ExposedPairing.of_doubleCopyMate
+        index index_copy).toPairing)
+    (certificate : ∀ v, VertexCornerCertificate T
+      (cornerCycleOfCombMap
+        (VanKampen.SeamGluing.ExposedPairing.of_doubleCopyMate
+          index index_copy).toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (certificate v))
+    (hplanar : D.diagram.toCombMap.IsPlanar) :
+    PowerDiscSphereGluing D := by
+  let B := VanKampen.SeamGluing.ExposedPairing.of_doubleCopyMate
+    index index_copy
+  exact powerDiscSphereGluing_of_seam D B.toPairing
+    (VanKampen.SeamGluing.Pairing.spherical_of_doubleEulerCountData
+      hcounts hplanar)
+    certificate hcellular
+
 /-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
 consumed by `presented_isPowerTorsionFree_of_sphericalExtraction`. -/
 noncomputable def triangularRelatorSphericalMap_of_powerDiscGluing
