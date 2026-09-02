@@ -18,6 +18,7 @@ import GroupApproximation.GGT.HullYiCyclicProductClosure
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.RelHypProp23FromHullOsin24
 import GroupApproximation.GGT.DGOProposition435HullJoint
+import GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents
 
 /-!
 # Theorem C assembly
@@ -248,17 +249,50 @@ theorem hullLemma44Canonical :
   HullSC.hullLemma44CanonicalQuotientStatement_of_familyInclusion
     hullLemma44FamilyInclusion
 
-/-- **Open exact geometric proof.**  This is Hull's Lemma 4.9 after the
-shortest quotient-conjugacy representative, correction transport, order,
-normal-closure, least-area, and reducedness bookkeeping have been proved
-internally.  What remains is exactly the diagram argument for a nontrivial
-power of a shortest representative. -/
-theorem hullLemma49GeodesicPowerDiagram :
-    HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
+/-- **Open input.**  Osin's Lemma 6.5(a) selection: an `O`-equivalent
+reduced diagram with a finite Definition-`M` scaffold whose estimating graph
+satisfies the hereditary certificates, together with the choice of `rho`
+against `mu` (`GGT/VanKampen/Estimating/Assembly.lean`). -/
+theorem estimatingSelectionConstruction :
+    GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
 
-/-- Hull's quotient-free kernel-power conclusion, derived from the exact
-geodesic power-diagram statement above. -/
+/-- **Open input.**  Osin's Lemmas 61 and 62: after passing to an
+`O`-equivalent diagram, the unbound arc partition satisfies the strict
+square-root budget and its numerical threshold
+(`GGT/VanKampen/Estimating/UnboundRepaired.lean`; Lemma 61's arc count is
+proved, the residue is the component decomposition). -/
+theorem estimatingUnboundOutput :
+    GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
+  sorry
+
+/-- **Open input.**  Realization of a relative reduced diagram at a supplied
+admissible spelling of its boundary
+(`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
+theorem relativeDiscRealizationSpelling :
+    HullSC.RelativeDiscRealizationSpellingStatement.{0, 0} := by
+  sorry
+
+/-- **Open input.**  Conversion of a planar exterior arc into the algebraic
+boundary contiguity at a supplied word
+(`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
+theorem relativeExteriorArcConversionAtWord :
+    HullSC.RelativeExteriorArcConversionAtWordStatement.{0, 0} := by
+  sorry
+
+/-- Hull's Lemma 4.9 for a nontrivial power of a shortest representative,
+from Osin's three estimating propositions (the piece construction is the
+theorem `GGT.VanKampen.estimatingPieceConstructionStatement`) and the two
+realization inputs above
+(`GGT/HullSCLemma49PowerDiagramFromComponents.lean`). -/
+theorem hullLemma49GeodesicPowerDiagram :
+    HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
+  HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
+    estimatingSelectionConstruction
+    GGT.VanKampen.estimatingPieceConstructionStatement
+    estimatingUnboundOutput relativeDiscRealizationSpelling
+    relativeExteriorArcConversionAtWord
+
 theorem hullLemma49KernelPower :
     HullSC.HullLemma49KernelPowerStatement.{0, 0} :=
   HullSC.hullLemma49KernelPowerStatement_of_geodesicPowerDiagram
