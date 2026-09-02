@@ -141,7 +141,7 @@ theorem osin24SingletonStep_of_hull_of_actionBridges
   let W := HullSC.RelWord.symmetrized v
   let K : Subgroup G :=
     Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
-  let Q : Type := G ⨸ K
+  let Q : Type 0 := HasQuotient.Quotient G K
   let eta : G →* Q := QuotientGroup.mk' K
   have hsurj : Function.Surjective eta := QuotientGroup.mk'_surjective K
   have hker : eta.ker = K := QuotientGroup.ker_mk' K
@@ -169,7 +169,12 @@ theorem osin24SingletonStep_of_hull_of_actionBridges
       funext i
       rw [Poriginal.fam_map i, B.fam_eq]
     · intro x hx y hy hxy
-      apply Poriginal.injOn_peripheralUnion hx hy hxy
+      apply Poriginal.injOn_peripheralUnion
+      · rw [B.fam_eq]
+        exact hx
+      · rw [B.fam_eq]
+        exact hy
+      · exact hxy
   let C := D.cores.coreN
   let i₀ : HullSC.AuxiliaryPeripheralIndex 0 := (none, false)
   let i₁ : HullSC.AuxiliaryPeripheralIndex 0 := (none, true)
@@ -179,10 +184,12 @@ theorem osin24SingletonStep_of_hull_of_actionBridges
     C.lox_mem true
   have hf₀Infinite : ¬ IsOfFinOrder (eta (C.lox false)) :=
     Pselected.not_isOfFinOrder_map i₀ hf₀Peripheral
-      (not_isOfFinOrder_of_isLoxodromic (C.lox_isLoxodromic false))
+      (HullGeometry.not_isOfFinOrder_of_isLoxodromic
+        (C.lox_isLoxodromic false))
   have hf₁Infinite : ¬ IsOfFinOrder (eta (C.lox true)) :=
     Pselected.not_isOfFinOrder_map i₁ hf₁Peripheral
-      (not_isOfFinOrder_of_isLoxodromic (C.lox_isLoxodromic true))
+      (HullGeometry.not_isOfFinOrder_of_isLoxodromic
+        (C.lox_isLoxodromic true))
   have hord₀ : ∀ n : ℕ, 0 < n → eta (C.lox false) ^ n ≠ 1 := by
     intro n hn hpow
     exact hf₀Infinite (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hpow⟩)
@@ -199,12 +206,12 @@ theorem osin24SingletonStep_of_hull_of_actionBridges
       (fun i => Pjoint.rel.fam (Sum.inl i)) (eta (C.lox false)) :=
     isHyperbolicElement_of_mem_distinct_jointPeripheral Pjoint.rel
       Pjoint.base_inv Pjoint.embedded Sum.inl Sum.inr
-      (fun _ _ h => Sum.noConfusion h) hf₀Joint hord₀
+      (fun _ _ => Sum.inl_ne_inr) hf₀Joint hord₀
   have hhyper₁Joint : IsHyperbolicElement
       (fun i => Pjoint.rel.fam (Sum.inl i)) (eta (C.lox true)) :=
     isHyperbolicElement_of_mem_distinct_jointPeripheral Pjoint.rel
       Pjoint.base_inv Pjoint.embedded Sum.inl Sum.inr
-      (fun _ _ h => Sum.noConfusion h) hf₁Joint hord₁
+      (fun _ _ => Sum.inl_ne_inr) hf₁Joint hord₁
   have hjointOriginal : (fun i => Pjoint.rel.fam (Sum.inl i)) =
       (fun i => (Hfam i).map eta) := by
     funext i
@@ -269,6 +276,22 @@ theorem osinTheorem24FinitePresentationAddendum_of_hull_of_actionBridges
   osinTheorem24FinitePresentationAddendum_of_singletonStep
     (osin24SingletonStep_of_hull_of_actionBridges h44family h49 hyi
       hacyBridge hloxBridge)
+
+/-- The exact current source frontier: finite-base relative Cayley
+acylindricity and escape of infinite-order non-parabolic elements.  The latter
+is converted to loxodromy by the proved Bowditch half before the quotient
+assembly is invoked. -/
+theorem osinTheorem24FinitePresentationAddendum_of_hull_of_relativeCayley
+    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (hacy : RelHypFiniteBaseAcylindricityStatement.{0, 0})
+    (hescape : RelHypHyperbolicElementEscapingStatement.{0, 0}) :
+    OsinTheorem24FinitePresentationAddendum :=
+  osinTheorem24FinitePresentationAddendum_of_hull_of_actionBridges
+    h44family h49 hyi hacy
+      (relHypHyperbolicElementLoxodromicStatement_of_acylindricity_of_escaping
+        hacy hescape)
 
 end RelHyp
 end GGT
