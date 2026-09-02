@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
-import GroupApproximation.GGT.VanKampen.Surgery
+import GroupApproximation.GGT.VanKampen.SurgeryMap
 
 /-!
 # Face-set deletion schedules
