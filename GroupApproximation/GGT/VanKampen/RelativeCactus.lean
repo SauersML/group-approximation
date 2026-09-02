@@ -115,9 +115,13 @@ theorem outerForward_word
     (Z : HullSC.RelativeReducedDiagram D W R) :
     List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
       Z.label (.outerForward j)) = Z.outerFaceWord := by
-  simpa [label, outerIndex] using
-    (HullSC.Lemma44OrientedRelatorDiagram.ofFn_get_cast Z.outerFaceWord
-      (by rw [outerFaceWord, RelWord.length_revInv, List.length_map]))
+  unfold label
+  apply List.ext_getElem
+    (by rw [List.length_ofFn, outerFaceWord, RelWord.length_revInv,
+      List.length_map])
+  intro k hk₁ hk₂
+  simp only [List.getElem_ofFn]
+  rfl
 
 theorem relatorForward_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -192,7 +196,10 @@ theorem outerBackward_word
     _ = RelWord.revInv
         (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
           Z.label (.outerForward j))) := by
-      rw [RelWord.revInv, ← hforward, ← List.ofFn_comp']
+      rw [RelWord.revInv]
+      congr 1
+      rw [List.map_ofFn]
+      rfl
     _ = RelWord.revInv Z.outerFaceWord := congrArg RelWord.revInv hforward
 
 theorem relatorBackward_word
@@ -216,7 +223,10 @@ theorem relatorBackward_word
         (fun j : Fin (Z.cactusShape.relatorLength i) ↦
           RelWord.inv (Z.label (.relatorForward i j)))
     _ = RelWord.revInv (Z.geometricCell i).relator := by
-      rw [RelWord.revInv, ← hforward, ← List.ofFn_comp']
+      rw [RelWord.revInv]
+      congr 1
+      rw [List.map_ofFn]
+      rfl
 
 theorem cellSegment_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -241,12 +251,9 @@ theorem cellSegment_value
     (i : Fin Z.cells.length) :
     GGT.RelLetter.listVal ((Z.cellSegment i).map Z.label) =
       (Z.geometricCell i).value⁻¹ := by
-  rw [Z.cellSegment_word i, RelWord.listVal_append,
-    RelWord.listVal_append, RelWord.listVal_singleton,
-    RelWord.listVal_singleton, RelWord.listVal_singleton,
-    RelWord.listVal_revInv,
-    HullSC.val_base, HullSC.val_base,
-    HullSC.Lemma44OrientedRelatorCell.value]
+  simp only [Z.cellSegment_word i, RelWord.listVal_append,
+    RelWord.listVal_singleton, RelWord.listVal_revInv,
+    HullSC.val_base, HullSC.Lemma44OrientedRelatorCell.value]
   group
 
 theorem geometricCellValues_inv_prod
@@ -317,7 +324,7 @@ theorem bigDarts_value
     (Z : HullSC.RelativeReducedDiagram D W R) :
     GGT.RelLetter.listVal (Z.bigDarts.map Z.label) = 1 := by
   rw [bigDarts, List.map_append, RelWord.listVal_append,
-    Z.outerBackward_word, Z.cellSegments_value, Z.cell_values_prod,
+    Z.outerBackward_word, Z.cellSegments_value,
     outerFaceWord, RelWord.revInv_revInv, HullSC.listVal_map_base,
     Z.boundaryWord_isWord.prod_eq, mul_inv_cancel]
 
