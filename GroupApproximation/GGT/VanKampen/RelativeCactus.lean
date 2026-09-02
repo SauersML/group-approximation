@@ -791,9 +791,61 @@ theorem mem_bigDarts_iff
     d ∈ Z.bigDarts ↔ Z.cactusShape.toCombMap.faceOf d =
       Z.cactusShape.bigFace := by
   rw [faceOf_eq_bigFace_iff]
-  cases d <;>
-    simp [bigDarts, outerBackwardDarts, cellSegments, cellSegment,
-      relatorBackwardDarts, List.mem_flatten, List.mem_ofFn]
+  cases d with
+  | outerForward j => simp [bigDarts, outerBackwardDarts, cellSegments,
+      cellSegment, relatorBackwardDarts, List.mem_flatten, List.mem_ofFn,
+      CactusShape.faceClass]
+  | outerBackward j =>
+      constructor
+      · intro _
+        rfl
+      · intro _
+        rw [bigDarts, List.mem_append]
+        left
+        rw [outerBackwardDarts, List.mem_ofFn]
+        exact ⟨j.rev, by simp⟩
+  | relatorForward i j => simp [bigDarts, outerBackwardDarts, cellSegments,
+      cellSegment, relatorBackwardDarts, List.mem_flatten, List.mem_ofFn,
+      CactusShape.faceClass]
+  | relatorBackward i j =>
+      constructor
+      · intro _
+        rfl
+      · intro _
+        rw [bigDarts, List.mem_append]
+        right
+        rw [cellSegments, List.mem_flatten]
+        refine ⟨Z.cellSegment i, ?_, ?_⟩
+        · rw [List.mem_ofFn]
+          exact ⟨i, rfl⟩
+        · rw [cellSegment, List.mem_append]
+          right
+          rw [relatorBackwardDarts, List.mem_ofFn]
+          exact ⟨j.rev, by simp⟩
+  | stemOut i =>
+      constructor
+      · intro _
+        rfl
+      · intro _
+        rw [bigDarts, List.mem_append]
+        right
+        rw [cellSegments, List.mem_flatten]
+        refine ⟨Z.cellSegment i, ?_, ?_⟩
+        · rw [List.mem_ofFn]
+          exact ⟨i, rfl⟩
+        · simp [cellSegment]
+  | stemIn i =>
+      constructor
+      · intro _
+        rfl
+      · intro _
+        rw [bigDarts, List.mem_append]
+        right
+        rw [cellSegments, List.mem_flatten]
+        refine ⟨Z.cellSegment i, ?_, ?_⟩
+        · rw [List.mem_ofFn]
+          exact ⟨i, rfl⟩
+        · simp [cellSegment]
 
 theorem bigDarts_ne_nil
     {G : Type u} [Group G] {Lambda : Type w}
@@ -801,7 +853,9 @@ theorem bigDarts_ne_nil
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.RelativeReducedDiagram D W R) : Z.bigDarts ≠ [] := by
   rw [bigDarts]
-  exact List.append_ne_nil_left.mpr Z.outerBackwardDarts_ne_nil
+  intro h
+  exact Z.outerBackwardDarts_ne_nil
+    (List.eq_nil_of_append_eq_nil h).1
 
 theorem facePerm_stemIn_prev_zero (S : CactusShape) (hpos : 0 < S.cellCount) :
     S.toCombMap.facePerm
