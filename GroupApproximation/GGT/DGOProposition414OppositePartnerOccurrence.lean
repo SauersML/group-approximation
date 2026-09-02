@@ -185,6 +185,13 @@ theorem secondPartner_not_mem_firstPartners
     simpa only [heq] using B.secondPartner_chordLetter_label s hs
   exact B.crossHalf_partner_ne_of_label_eq t s ht hs hlabel heq
 
+/-- Select an endpoint according to a possibly noncomputable orientation
+predicate. -/
+noncomputable def endpointByOrientation (forward : Prop)
+    (whenForward whenBackward : ℕ) : ℕ := by
+  classical
+  exact if forward then whenForward else whenBackward
+
 /-- Trimming the selected endpoint of each chord-walk segment according to an
 arbitrary orientation preserves every edge absent from the partner list. -/
 theorem exists_edgeBetween_orientedTrimmedChordWalk
@@ -194,11 +201,11 @@ theorem exists_edgeBetween_orientedTrimmedChordWalk
     ∃ j : Fin (xs.length + 1),
       EdgeBetween
         (if h : j.val < xs.length then
-          if forward j then xs[j.val] + 1 else xs[j.val]
+          endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          if forward j then xs[j.val - 1]'(by omega)
-          else xs[j.val - 1]'(by omega) + 1
+          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+            (xs[j.val - 1]'(by omega) + 1)
         else initial) y := by
   classical
   obtain ⟨j, hj⟩ := exists_edgeBetween_chordWalk xs initial terminal y houter
@@ -211,8 +218,10 @@ theorem exists_edgeBetween_orientedTrimmedChordWalk
       have hstart : chordWalkStart terminal xs j = xs[j.val] := by
         simp [chordWalkStart, hn]
       rw [hstart] at hj
-      simpa [hf, hn, chordWalkFinish] using edgeBetween_succ_left hj hne
-    · simpa [hf, hn, chordWalkStart, chordWalkFinish] using hj
+      simpa [endpointByOrientation, hf, hn, chordWalkFinish] using
+        edgeBetween_succ_left hj hne
+    · simpa [endpointByOrientation, hf, hn, chordWalkStart,
+        chordWalkFinish] using hj
   · by_cases hp : 0 < j.val
     · have hne : y ≠ xs[j.val - 1]'(by omega) := by
         intro heq
@@ -221,8 +230,10 @@ theorem exists_edgeBetween_orientedTrimmedChordWalk
           xs[j.val - 1]'(by omega) := by
         simp [chordWalkFinish, hp]
       rw [hfinish] at hj
-      simpa [hf, hp, chordWalkStart] using edgeBetween_succ_right hj hne
-    · simpa [hf, hp, chordWalkStart, chordWalkFinish] using hj
+      simpa [endpointByOrientation, hf, hp, chordWalkStart] using
+        edgeBetween_succ_right hj hne
+    · simpa [endpointByOrientation, hf, hp, chordWalkStart,
+        chordWalkFinish] using hj
 
 /-! ## Specialization of the trimmed walk to the canonical gap coordinates -/
 
@@ -235,9 +246,9 @@ theorem firstGapChordStart_eq_trimmedWalk
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
     B.firstGapChordStart j =
       if h : j.val < B.brokenAssignment.index.first.partners.length then
-        if B.firstGapRunsForward j then
-          B.brokenAssignment.index.first.partners[j.val] + 1
-        else B.brokenAssignment.index.first.partners[j.val]
+        endpointByOrientation (B.firstGapRunsForward j)
+          (B.brokenAssignment.index.first.partners[j.val] + 1)
+          B.brokenAssignment.index.first.partners[j.val]
       else B.chord.length := by
   classical
   let A := B.brokenAssignment.index.first
@@ -269,17 +280,17 @@ theorem firstGapChordFinish_eq_walk
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
     B.firstGapChordFinish j =
       if h : 0 < j.val then
-        if B.firstGapRunsForward j then
+        endpointByOrientation (B.firstGapRunsForward j)
           B.brokenAssignment.index.first.partners[j.val - 1]'(by
             rw [B.brokenAssignment.index.first.partner_length]
             have hj := j.isLt
             simp only [GreedyHalfFamilyIndex.pieceCount] at hj
             omega)
-        else B.brokenAssignment.index.first.partners[j.val - 1]'(by
-          rw [B.brokenAssignment.index.first.partner_length]
-          have hj := j.isLt
-          simp only [GreedyHalfFamilyIndex.pieceCount] at hj
-          omega) + 1
+          (B.brokenAssignment.index.first.partners[j.val - 1]'(by
+            rw [B.brokenAssignment.index.first.partner_length]
+            have hj := j.isLt
+            simp only [GreedyHalfFamilyIndex.pieceCount] at hj
+            omega) + 1)
       else 0 := by
   classical
   let A := B.brokenAssignment.index.first
@@ -314,9 +325,9 @@ theorem secondGapChordStart_eq_walk
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
     B.secondGapChordStart j =
       if h : j.val < B.brokenAssignment.index.second.partners.length then
-        if B.secondGapRunsForward j then
-          B.brokenAssignment.index.second.partners[j.val] + 1
-        else B.brokenAssignment.index.second.partners[j.val]
+        endpointByOrientation (B.secondGapRunsForward j)
+          (B.brokenAssignment.index.second.partners[j.val] + 1)
+          B.brokenAssignment.index.second.partners[j.val]
       else 0 := by
   classical
   let A := B.brokenAssignment.index.second
@@ -348,17 +359,17 @@ theorem secondGapChordFinish_eq_trimmedWalk
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
     B.secondGapChordFinish j =
       if h : 0 < j.val then
-        if B.secondGapRunsForward j then
+        endpointByOrientation (B.secondGapRunsForward j)
           B.brokenAssignment.index.second.partners[j.val - 1]'(by
             have hj := j.isLt
             rw [B.brokenAssignment.index.second.partner_length]
             simp only [GreedyHalfFamilyIndex.pieceCount] at hj
             omega)
-        else B.brokenAssignment.index.second.partners[j.val - 1]'(by
-          have hj := j.isLt
-          rw [B.brokenAssignment.index.second.partner_length]
-          simp only [GreedyHalfFamilyIndex.pieceCount] at hj
-          omega) + 1
+          (B.brokenAssignment.index.second.partners[j.val - 1]'(by
+            have hj := j.isLt
+            rw [B.brokenAssignment.index.second.partner_length]
+            simp only [GreedyHalfFamilyIndex.pieceCount] at hj
+            omega) + 1)
       else B.chord.length := by
   classical
   let A := B.brokenAssignment.index.second
@@ -397,6 +408,7 @@ theorem exists_secondGap_containing_firstPartner
     ∃ j : Fin B.brokenAssignment.index.second.pieceCount,
       EdgeBetween (B.secondGapChordStart j) (B.secondGapChordFinish j)
         (B.brokenAssignment.first.partner s) := by
+  classical
   let y := B.brokenAssignment.first.partner s
   let toGap :
       Fin (B.brokenAssignment.index.second.partners.length + 1) →
@@ -427,6 +439,7 @@ theorem exists_firstGap_containing_secondPartner
     ∃ j : Fin B.brokenAssignment.index.first.pieceCount,
       EdgeBetween (B.firstGapChordStart j) (B.firstGapChordFinish j)
         (B.brokenAssignment.second.partner s) := by
+  classical
   let y := B.brokenAssignment.second.partner s
   let toGap :
       Fin (B.brokenAssignment.index.first.partners.length + 1) →
