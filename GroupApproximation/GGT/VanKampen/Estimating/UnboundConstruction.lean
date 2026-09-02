@@ -110,7 +110,7 @@ theorem unboundLengthBudgetStatement : UnboundLengthBudgetStatement := by
 /-- The cardinality estimate has the exact empty-partition model: the piece
 sum and its budget are both zero. -/
 theorem finset_piece_sum_empty_model (bound : ℝ) (hbound : 0 ≤ bound) :
-    (∑ i ∈ (Finset.univ : Finset (Fin 0)), (0 : ℝ)) ≤
+    (∑ _i ∈ (Finset.univ : Finset (Fin 0)), (0 : ℝ)) ≤
       ((0 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
     (piece := fun _ : Fin 0 => (0 : ℝ)) (bound := bound) (N := 0) ?_ ?_ hbound
@@ -121,7 +121,7 @@ theorem finset_piece_sum_empty_model (bound : ℝ) (hbound : 0 ≤ bound) :
 /-- The cardinality estimate has the exact one-piece model: one piece of
 length `bound` has budget `bound`. -/
 theorem finset_piece_sum_oneCell_model (bound : ℝ) (hbound : 0 ≤ bound) :
-    (∑ i ∈ (Finset.univ : Finset (Fin 1)), bound) ≤
+    (∑ _i ∈ (Finset.univ : Finset (Fin 1)), bound) ≤
       ((1 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
     (piece := fun _ : Fin 1 => bound) (bound := bound) (N := 1) ?_ ?_ hbound
