@@ -69,6 +69,7 @@ def OrientedCactusBoundarySource : Prop :=
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem orientedCactusBoundaryProducer_of_source
     (hsource : OrientedCactusBoundarySource (T := T)) :
     OrientedCactusBoundaryProducer (T := T) := by
@@ -96,6 +97,7 @@ def CactusDiscDiagramProducer : Prop :=
         (triangleRelatorWords T),
       Delta.boundaryWord = relativeWord w ∧ Delta.Reduced
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem cactusDiscDiagramProducer_of_oriented
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusDiscDiagramProducer (T := T) := by
