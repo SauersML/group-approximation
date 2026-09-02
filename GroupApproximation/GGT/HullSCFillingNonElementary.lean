@@ -672,7 +672,12 @@ structure QuotientPeripheralPreservation
     {k : ℕ} {S : Fin k → Subgroup G} {Q : Type u} [Group Q] (q : G →* Q)
     (D : AuxiliaryPeripheralFamily A N S) where
   rel : GGT.RelGenSet Q (AuxiliaryPeripheralIndex k)
-  base_image : ∀ a ∈ A.alphabet.carrier, q a ∈ rel.base
+  /-- **Osin's Theorem 2.4 base clause.**  The quotient is produced with
+  relative generating set the image of the WHOLE source relative generating
+  set, whatever that set is, so this holds for the entire enlarged base and
+  not merely for Hull's alphabet.  It is an image, not a finiteness claim, so
+  the enlargement costs nothing here. -/
+  base_image : ∀ a ∈ D.rel.base, q a ∈ rel.base
   fam_map : ∀ i : AuxiliaryPeripheralIndex k,
     rel.fam i = (D.cores.peripheral i).map q
   embedded : rel.IsHyperbolicallyEmbedded
@@ -810,17 +815,17 @@ def HullLemma58SuitableFamily : Prop :=
     (D : AuxiliaryPeripheralFamily A N S),
     QuotientPeripheralPreservation q D →
       ∃ B : QuotientHullAlphabet A q,
-        (∀ i : AuxiliaryPeripheralIndex k, ∀ x ∈ D.cores.peripheral i,
-          q x ∈ B.hullSet.alphabet.carrier) ∧
+        (∀ x ∈ D.rel.alphabet.carrier, q x ∈ B.hullSet.alphabet.carrier) ∧
         ActsNonElementarily (N.map q) (Cayley.base B.hullSet.alphabet) ∧
           ∀ j : Fin k,
             ActsNonElementarily ((S j).map q) (Cayley.base B.hullSet.alphabet)
 
 /-- The simultaneous Lemma 5.8 interface follows from one application of
-finite-family Osin 5.4.  The quotient alphabet also contains the images of the
-source auxiliary peripherals, since it cones them off; that clause is what the
-Osin 2.4 continuation needs when the preserved original base is only known up
-to a finite enlargement.  The common enlarged alphabet keeps every auxiliary
+finite-family Osin 5.4.  The quotient alphabet also contains the image of the
+whole source relative alphabet: its base by Osin's Theorem 2.4 base clause, and
+its peripherals because the quotient alphabet cones them off.  That clause is
+what the Osin 2.4 continuation needs when the preserved original base is only
+known up to a finite enlargement.  The common enlarged alphabet keeps every auxiliary
 cyclic peripheral, and each distinguished subgroup obtains a loxodromic
 product from its two peripheral directions without any further enlargement. -/
 theorem hullLemma58SuitableFamily_unconditional :
@@ -950,13 +955,15 @@ theorem hullLemma58SuitableFamily_unconditional :
       alphabet_image := by
         intro a ha
         exact Set.mem_union_left _ (hbase (P.base_image a ha)) }
-  have hperiph : ∀ i : AuxiliaryPeripheralIndex k,
-      ∀ x ∈ D.cores.peripheral i, q x ∈ B.hullSet.alphabet.carrier := by
-    intro i x hx
-    refine Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨i, ?_⟩)
-    show q x ∈ D'.fam i
-    rw [hfam, P.fam_map i]
-    exact Subgroup.mem_map_of_mem q hx
+  have hperiph : ∀ x ∈ D.rel.alphabet.carrier,
+      q x ∈ B.hullSet.alphabet.carrier := by
+    rintro x (hx | hx)
+    · exact Set.mem_union_left _ (hbase (P.base_image x hx))
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
+      refine Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨i, ?_⟩)
+      show q x ∈ D'.fam i
+      rw [hfam, P.fam_map i, D.fam_eq i]
+      exact Subgroup.mem_map_of_mem q hi
   exact ⟨B, hperiph, hN, hS⟩
 
 /-- Lemma 5.8's common-alphabet conclusion, together with torsion-freeness,
