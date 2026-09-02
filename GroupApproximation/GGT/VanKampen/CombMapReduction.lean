@@ -204,10 +204,10 @@ noncomputable def CactusFoldChain.toRetyping
     (chain : CactusFoldChain Delta Next k)
     (hplanar : Delta.toCombMap.IsPlanar)
     (hred : Delta.Reduced) : CactusRelatorRetyping Delta := by
-  induction chain generalizing hplanar hred with
-  | done cover =>
+  induction chain with
+  | @done D cover =>
       exact {
-        diagram := Delta
+        diagram := D
         boundaryWord_eq := rfl
         relatorOnly := cover
         rCellCount_le := le_rfl
