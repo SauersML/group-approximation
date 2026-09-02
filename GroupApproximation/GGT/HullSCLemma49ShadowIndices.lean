@@ -51,13 +51,18 @@ theorem Lemma49ContiguityShadow.index_upper
       (C.exteriorVertex 0) (C.exteriorVertex (Sh.index i)) ≤
       eps + i + K := by
     omega
+  have hdistReal :
+      (wordDist D.alphabet.carrier
+        (C.exteriorVertex 0) (C.exteriorVertex (Sh.index i)) : ℝ) ≤
+        (eps : ℝ) + (i : ℝ) + (K : ℝ) := by
+    exact_mod_cast hdist
   have hrelLower :=
     (hRel 0 (Sh.index i) (Nat.zero_le _) (Sh.index_le i hi)).1
   have hreal : (Sh.index i : ℝ) ≤
       ((4 * (i + eps + K + 1) : ℕ) : ℝ) := by
     push_cast
     norm_num at hrelLower
-    linarith
+    linarith [hdistReal]
   exact_mod_cast hreal
 
 /-- If two power parameters are farther apart than all endpoint and
@@ -104,12 +109,17 @@ theorem Lemma49ContiguityShadow.index_strictMono_of_far
       (C.powerArcVertex x) (C.powerArcVertex y) ≤
       2 * K + Sh.index x := by
     omega
+  have hdistUpperReal :
+      (wordDist D.alphabet.carrier
+        (C.powerArcVertex x) (C.powerArcVertex y) : ℝ) ≤
+        2 * (K : ℝ) + (Sh.index x : ℝ) := by
+    exact_mod_cast hdistUpper
   have hpowLower := (hPow x y hxy hy).1
   have hboundReal : ((y - x : ℕ) : ℝ) ≤
       ((4 * (2 * K + Sh.index x + b) : ℕ) : ℝ) := by
     push_cast
     norm_num at hpowLower
-    linarith
+    linarith [hdistUpperReal]
   have hbound : y - x ≤ 4 * (2 * K + Sh.index x + b) := by
     exact_mod_cast hboundReal
   have hindex := Sh.index_upper hRel hPow hx
@@ -143,12 +153,17 @@ theorem Lemma49ContiguityShadow.index_ne_of_far
   have hdist : wordDist D.alphabet.carrier
       (C.powerArcVertex x) (C.powerArcVertex y) ≤ 2 * K := by
     omega
+  have hdistReal :
+      (wordDist D.alphabet.carrier
+        (C.powerArcVertex x) (C.powerArcVertex y) : ℝ) ≤
+        2 * (K : ℝ) := by
+    exact_mod_cast hdist
   have hpowLower := (hPow x y hxy hy).1
   have hboundReal : ((y - x : ℕ) : ℝ) ≤
       ((4 * (2 * K + b) : ℕ) : ℝ) := by
     push_cast
     norm_num at hpowLower
-    linarith
+    linarith [hdistReal]
   have hbound : y - x ≤ 4 * (2 * K + b) := by
     exact_mod_cast hboundReal
   omega
