@@ -575,9 +575,12 @@ theorem concurrentOther_card (L : Line) :
   have hflags : Fintype.card (LinePointOtherFlag L) =
       Fintype.card (ConcurrentOther L) :=
     Fintype.card_congr (linePointOtherEquiv L)
+  have hpoints : Fintype.card (LinePoint L) = 9 := incident_point_card L
   rw [Fintype.card_sigma] at hflags
   simp_rw [otherLineAt_card] at hflags
-  norm_num [Finset.sum_const, incident_point_card] at hflags
+  simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul] at hflags
+  rw [hpoints] at hflags
+  norm_num at hflags
   exact hflags.symm
 
 /-- The line-concurrency indicator is the indicator of membership in
