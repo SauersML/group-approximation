@@ -211,7 +211,8 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
-    hselection hpieces hunbound hpasting hinjective
+    (hselection := hselection) (hpieces := hpieces) (hunbound := hunbound)
+    (hpasting := hpasting) (hinjective := hinjective)
 
 /-- The same input leaf using the currently landed vk shape.  vk's named
 `faceSetBoundaryPeeling_of_faceSetBoundary` consumes the displayed local
@@ -242,7 +243,8 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs_of_vkOracle
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
-    hselection hpieces hunbound hpasting hinjective
+    (hselection := hselection) (hpieces := hpieces) (hunbound := hunbound)
+    (hpasting := hpasting) (hinjective := hinjective)
 
 /-! ## Model check -/
 
