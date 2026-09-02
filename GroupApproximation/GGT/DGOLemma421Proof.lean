@@ -808,7 +808,7 @@ theorem appendCut_oneSide_last (word tail : List (RelLetter G Λ)) :
 /-- Peripheral occurrences whose singleton components end strictly before the
 end of the W-word.  These components stay maximal after a closing word is
 appended. -/
-def internalPeripheralOccurrences (word : List (RelLetter G Λ)) :
+noncomputable def internalPeripheralOccurrences (word : List (RelLetter G Λ)) :
     Finset (Fin (peripheralPositions word).card) :=
   Finset.univ.filter fun t =>
     (peripheralOccurrence word t).pos + 1 < word.length
@@ -855,12 +855,27 @@ theorem peripheralCount_le_internal_card_add_one
   have hpartition := Finset.card_filter_add_card_filter_not
     (s := (Finset.univ : Finset (Fin (peripheralPositions word).card)))
     (p := fun t => (peripheralOccurrence word t).pos + 1 < word.length)
-  rw [Finset.card_univ, Fintype.card_fin, card_peripheralPositions] at hpartition
+  have huniv :
+      (Finset.univ : Finset (Fin (peripheralPositions word).card)).card =
+        peripheralCount word := by
+    calc
+      (Finset.univ : Finset (Fin (peripheralPositions word).card)).card =
+          Fintype.card (Fin (peripheralPositions word).card) :=
+        Finset.card_univ
+      _ = (peripheralPositions word).card := Fintype.card_fin _
+      _ = peripheralCount word := card_peripheralPositions word
+  have htotal :
+      (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
+        (peripheralOccurrence word t).pos + 1 < word.length).card +
+      (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
+        ¬ ((peripheralOccurrence word t).pos + 1 < word.length)).card =
+        peripheralCount word :=
+    hpartition.trans huniv
   have hEeq :
       (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
         ¬ ((peripheralOccurrence word t).pos + 1 < word.length)).card = E.card :=
     rfl
-  rw [hEeq] at hpartition
+  rw [hEeq] at htotal
   change peripheralCount word ≤
     (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
       (peripheralOccurrence word t).pos + 1 < word.length).card + 1
@@ -899,6 +914,323 @@ theorem isCompStart_label_unique_421 {lam mu : Λ}
   | comp nu x =>
       rw [hletter] at hli hmi
       exact hne (hli.symm.trans hmi)
+
+/-! ## The W-word quasi-geodesic estimate -/
+
+/-- **The counting paragraph of DGO Lemma 4.21(a), for a whole W-word.**
+
+Close the word by a geodesic.  Proposition 4.14 bounds the number of internal
+W-components which remain isolated in the resulting polygon.  Every other
+internal component connects injectively to a component of the closing
+geodesic, because distinct W-components do not connect to each other.  The
+alternation estimate from (W1) then gives the printed `(4,1)` bound. -/
+theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
+    {D : RelGenSet G Λ} [Nonempty Λ] {C : ℕ} (hC : 0 < C)
+    (hbound : DGOUniformSumBound D 1 1 C)
+    {word : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hW1 : WWord.IsWOne word)
+    (hW2 : WWord.IsWTwo D (50 * C) word)
+    (hW3 : WWord.IsWThree D word) (v : G) :
+    word.length ≤ 4 * wordDist D.alphabet.carrier v
+      (vertex v word word.length) + 4 := by
+  classical
+  obtain ⟨close, hclose⟩ :=
+    existsGeodesicWord D (vertex v word word.length) v
+  let cycle := word ++ close
+  have hcycleLet : ∀ a ∈ cycle, D.IsLetter a := by
+    intro a ha
+    rw [show cycle = word ++ close from rfl, List.mem_append] at ha
+    exact ha.elim (hlet a) (hclose.1 a)
+  have hcycleClosed : RelLetter.listVal cycle = 1 := by
+    have hend : v * RelLetter.listVal word = vertex v word word.length := by
+      exact (vertex_length v word).symm
+    apply mul_left_cancel (a := v)
+    rw [show cycle = word ++ close from rfl, listVal_append, mul_one,
+      ← mul_assoc, hend, hclose.2.1]
+  let cut := appendCut (fun s => s) word.length (oneSideCut close)
+  have hcut : IsPolygonCut (word.length + 1) cycle cut := by
+    exact isPolygonCut_append (isPolygonCut_id word)
+      (isPolygonCut_oneSide close)
+  let Internal := internalPeripheralOccurrences word
+  let Iso : Finset (Fin (peripheralPositions word).card) :=
+    Internal.filter fun t =>
+      IsIsolated D.fam (peripheralOccurrence word t).label v cycle
+        (peripheralOccurrence word t).pos
+  let Noniso : Finset (Fin (peripheralPositions word).card) :=
+    Internal.filter fun t =>
+      ¬ IsIsolated D.fam (peripheralOccurrence word t).label v cycle
+        (peripheralOccurrence word t).pos
+  have hpartition : Iso.card + Noniso.card = Internal.card := by
+    dsimp [Iso, Noniso]
+    exact Finset.card_filter_add_card_filter_not
+      (s := Internal)
+      (p := fun t => IsIsolated D.fam
+        (peripheralOccurrence word t).label v cycle
+        (peripheralOccurrence word t).pos)
+  let pos : Fin (peripheralPositions word).card → ℕ := fun t =>
+    (peripheralOccurrence word t).pos
+  let I : Finset ℕ := Iso.image pos
+  have hposInj : Function.Injective pos := by
+    exact peripheralOccurrence_pos_injective word
+  have hcardI : I.card = Iso.card := by
+    exact Finset.card_image_iff.mpr hposInj.injOn
+  have howner : ∀ s : ℕ, s ∈ I →
+      ∃ t ∈ Iso, pos t = s := by
+    intro s hs
+    simpa [I] using Finset.mem_image.mp hs
+  let owner : ∀ s : ℕ, s ∈ I → Fin (peripheralPositions word).card :=
+    fun s hs => Classical.choose (howner s hs)
+  have hownerMem : ∀ s : ℕ, ∀ hs : s ∈ I, owner s hs ∈ Iso := by
+    intro s hs
+    exact (Classical.choose_spec (howner s hs)).1
+  have hownerPos : ∀ s : ℕ, ∀ hs : s ∈ I, pos (owner s hs) = s := by
+    intro s hs
+    exact (Classical.choose_spec (howner s hs)).2
+  let lamSide : ℕ → Λ := fun s =>
+    if hs : s ∈ I then (peripheralOccurrence word (owner s hs)).label
+    else Classical.choice inferInstance
+  have hIrange : ∀ s ∈ I, s < word.length + 1 := by
+    intro s hs
+    have hposEq := hownerPos s hs
+    have hread := (peripheralOccurrence word (owner s hs)).read
+    have hlt := (List.getElem?_eq_some_iff.mp hread).1
+    dsimp [pos] at hposEq
+    omega
+  have hedge : ∀ s ∈ I, cut (s + 1) = cut s + 1 := by
+    intro s hs
+    have hposEq := hownerPos s hs
+    have htIso := hownerMem s hs
+    have htInternal : owner s hs ∈ Internal := by
+      exact (Finset.mem_filter.mp htIso).1
+    have hend :
+        (peripheralOccurrence word (owner s hs)).pos + 1 < word.length := by
+      simpa [Internal] using htInternal
+    dsimp [pos] at hposEq
+    rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl,
+      appendCut_oneSide_left word close (by omega),
+      appendCut_oneSide_left word close (by omega)]
+  have hcomp : ∀ s ∈ I, IsComp (lamSide s) cycle (cut s) (cut (s + 1)) := by
+    intro s hs
+    have hposEq := hownerPos s hs
+    have htIso := hownerMem s hs
+    have htInternal : owner s hs ∈ Internal :=
+      (Finset.mem_filter.mp htIso).1
+    have hend :
+        (peripheralOccurrence word (owner s hs)).pos + 1 < word.length := by
+      simpa [Internal] using htInternal
+    have horiginal := PeripheralOccurrence.isComp hW3 (owner s hs)
+    have happended := isComp_append_of_lt_421 horiginal hend
+    dsimp [pos] at hposEq
+    dsimp [lamSide]
+    rw [dif_pos hs, show cycle = word ++ close from rfl,
+      appendCut_oneSide_left word close (by omega),
+      appendCut_oneSide_left word close (by omega), hposEq]
+    exact happended
+  have hiso : ∀ s ∈ I,
+      IsIsolated D.fam (lamSide s) v cycle (cut s) := by
+    intro s hs
+    have hposEq := hownerPos s hs
+    have htIso := hownerMem s hs
+    have htIsolation :
+        IsIsolated D.fam (peripheralOccurrence word (owner s hs)).label v cycle
+          (peripheralOccurrence word (owner s hs)).pos :=
+      Finset.mem_filter.mp htIso |>.2
+    have htInternal : owner s hs ∈ Internal :=
+      (Finset.mem_filter.mp htIso).1
+    have hend :
+        (peripheralOccurrence word (owner s hs)).pos + 1 < word.length := by
+      simpa [Internal] using htInternal
+    dsimp [pos] at hposEq
+    dsimp [lamSide]
+    rw [dif_pos hs,
+      appendCut_oneSide_left word close (by omega), hposEq]
+    exact htIsolation
+  have hquasi : ∀ s : ℕ, s < word.length + 1 → s ∉ I → ∀ p q : ℕ,
+      cut s ≤ p → p ≤ q → q ≤ cut (s + 1) →
+      ((q - p : ℕ) : ℝ) / (1 : ℝ) - 1 ≤
+        ((wordDist D.alphabet.carrier
+          (vertex v cycle p) (vertex v cycle q) : ℕ) : ℝ) := by
+    intro s hs hsI p q hp hpq hq
+    by_cases hsWord : s < word.length
+    · have hcutS : cut s = s := by
+        exact appendCut_oneSide_left word close (by omega)
+      have hcutSucc : cut (s + 1) = s + 1 := by
+        exact appendCut_oneSide_left word close (by omega)
+      rw [hcutS] at hp
+      rw [hcutSucc] at hq
+      have hgap : q - p ≤ 1 := by omega
+      have hgapReal : ((q - p : ℕ) : ℝ) ≤ 1 := by
+        exact_mod_cast hgap
+      have hnonneg : (0 : ℝ) ≤
+          ((wordDist D.alphabet.carrier
+            (vertex v cycle p) (vertex v cycle q) : ℕ) : ℝ) :=
+        Nat.cast_nonneg _
+      norm_num only [div_one]
+      linarith
+    · have hsLast : s = word.length := by omega
+      subst s
+      have hcutStart : cut word.length = word.length :=
+        appendCut_oneSide_left word close le_rfl
+      have hcutEnd : cut (word.length + 1) = word.length + close.length :=
+        appendCut_oneSide_last word close
+      rw [hcutStart, hcutEnd] at hp hq
+      let p' := p - word.length
+      let q' := q - word.length
+      have hpEq : p = word.length + p' := by
+        dsimp [p']
+        omega
+      have hqEq : q = word.length + q' := by
+        dsimp [q']
+        omega
+      have hpq' : p' ≤ q' := by
+        dsimp [p', q']
+        omega
+      have hq' : q' ≤ close.length := by
+        dsimp [q']
+        omega
+      have hgeo := sub_le_wordDist_vertex D hclose p' q' hpq' hq'
+      have hgapEq : q - p = q' - p' := by
+        dsimp [p', q']
+        omega
+      rw [show cycle = word ++ close from rfl, hpEq, hqEq,
+        vertex_append_add word close v p', vertex_append_add word close v q',
+        hgapEq]
+      norm_num only [div_one]
+      exact_mod_cast (show q' - p' ≤
+        wordDist D.alphabet.carrier
+          (vertex (vertex v word word.length) close p')
+          (vertex (vertex v word word.length) close q') + 1 by omega)
+  have hdeep : ∀ s ∈ I,
+      (vertex v cycle (cut s))⁻¹ * vertex v cycle (cut (s + 1))
+        ∉ D.relBall (lamSide s) (50 * C) := by
+    intro s hs
+    have hposEq := hownerPos s hs
+    have htIso := hownerMem s hs
+    have htInternal : owner s hs ∈ Internal :=
+      (Finset.mem_filter.mp htIso).1
+    have hend :
+        (peripheralOccurrence word (owner s hs)).pos + 1 < word.length := by
+      simpa [Internal] using htInternal
+    have hread := (peripheralOccurrence word (owner s hs)).read
+    have hreadLt := (List.getElem?_eq_some_iff.mp hread).1
+    dsimp [lamSide]
+    rw [dif_pos hs, show cycle = word ++ close from rfl,
+      appendCut_oneSide_left word close (by omega),
+      appendCut_oneSide_left word close (by omega),
+      vertex_append_of_le word close v _ (by omega),
+      vertex_append_of_le word close v _ (by omega)]
+    dsimp [pos] at hposEq
+    rw [← hposEq, vertex_succ word v _ hreadLt, inv_mul_cancel_left,
+      (List.getElem?_eq_some_iff.mp hread).2]
+    exact hW2 _ _ _ hread
+  have hcount := deepIsolated_card_bound hbound hcycleLet hcycleClosed hcut
+    I lamSide hIrange hedge hcomp hiso hquasi hdeep
+  rw [hcardI] at hcount
+  have hscaled : C * (50 * Iso.card) ≤ C * (word.length + 1) := by
+    calc
+      C * (50 * Iso.card) = (50 * C) * Iso.card := by ring
+      _ ≤ (50 * C + 1) * Iso.card := by omega
+      _ ≤ C * (word.length + 1) := hcount
+  have hIsoBound : 50 * Iso.card ≤ word.length + 1 :=
+    Nat.le_of_mul_le_mul_left hscaled hC
+  have hother : ∀ t : ↑Noniso, ∃ j : ℕ,
+      j ≠ (peripheralOccurrence word t.1).pos ∧
+      IsCompStart (peripheralOccurrence word t.1).label cycle j ∧
+      Connected D.fam (peripheralOccurrence word t.1).label v cycle
+        (peripheralOccurrence word t.1).pos j := by
+    intro t
+    have htNoniso := Finset.mem_filter.mp t.2
+    have htInternal : t.1 ∈ Internal := htNoniso.1
+    have htEnd : (peripheralOccurrence word t.1).pos + 1 < word.length := by
+      simpa [Internal] using htInternal
+    have htStart : IsCompStart (peripheralOccurrence word t.1).label cycle
+        (peripheralOccurrence word t.1).pos :=
+      ⟨(peripheralOccurrence word t.1).pos + 1,
+        isComp_append_of_lt_421 (PeripheralOccurrence.isComp hW3 t.1) htEnd⟩
+    have hnotAll : ¬ ∀ j : ℕ,
+        j ≠ (peripheralOccurrence word t.1).pos →
+        IsCompStart (peripheralOccurrence word t.1).label cycle j →
+        ¬ Connected D.fam (peripheralOccurrence word t.1).label v cycle
+          (peripheralOccurrence word t.1).pos j := by
+      intro hall
+      exact htNoniso.2 ⟨htStart, hall⟩
+    push_neg at hnotAll
+    exact hnotAll
+  let other : ∀ t : ↑Noniso, ℕ := fun t => Classical.choose (hother t)
+  have hotherSpec : ∀ t : ↑Noniso,
+      other t ≠ (peripheralOccurrence word t.1).pos ∧
+      IsCompStart (peripheralOccurrence word t.1).label cycle (other t) ∧
+      Connected D.fam (peripheralOccurrence word t.1).label v cycle
+        (peripheralOccurrence word t.1).pos (other t) := by
+    intro t
+    exact Classical.choose_spec (hother t)
+  have hotherFar : ∀ t : ↑Noniso, word.length ≤ other t := by
+    intro t
+    by_contra hlt
+    have hjWord : other t < word.length := by omega
+    obtain ⟨a, haPos, haLabel⟩ :=
+      append_isCompStart_left_occurrence hW3 hjWord (hotherSpec t).2.1
+    have hta : t.1 ≠ a := by
+      intro hEq
+      subst a
+      exact (hotherSpec t).1 haPos.symm
+    have hconnWord : Connected D.fam (peripheralOccurrence word t.1).label v word
+        (peripheralOccurrence word t.1).pos
+        (peripheralOccurrence word a).pos := by
+      have hconn := (connected_append_left_iff_421 D.fam
+        (peripheralOccurrence word t.1).label v word close
+        (by omega) (by omega)).mp (hotherSpec t).2.2
+      rwa [haPos] at hconn
+    exact peripheralOccurrence_not_connected_of_uniformBound hC hbound hlet
+      hW1 hW2 hW3 v hta haLabel hconnWord
+  have hotherLt : ∀ t : ↑Noniso, other t < cycle.length := by
+    intro t
+    obtain ⟨k, hk⟩ := (hotherSpec t).2.1
+    exact hk.1.trans_le hk.2.1
+  let matchFin : ↑Noniso → Fin close.length := fun t =>
+    ⟨other t - word.length, by
+      have hlt := hotherLt t
+      rw [show cycle = word ++ close from rfl, List.length_append] at hlt
+      omega⟩
+  have hmatchInj : Function.Injective matchFin := by
+    intro a b hab
+    have hotherEq : other a = other b := by
+      have hval := congrArg Fin.val hab
+      dsimp [matchFin] at hval
+      have haFar := hotherFar a
+      have hbFar := hotherFar b
+      omega
+    have hlabelEq : (peripheralOccurrence word a.1).label =
+        (peripheralOccurrence word b.1).label := by
+      exact isCompStart_label_unique_421 (hotherSpec a).2.1
+        (by rw [hotherEq]; exact (hotherSpec b).2.1)
+    apply Subtype.ext
+    by_contra habUnderlying
+    have hconnB : Connected D.fam (peripheralOccurrence word a.1).label v cycle
+        (peripheralOccurrence word b.1).pos (other a) := by
+      rw [hlabelEq, hotherEq]
+      exact (hotherSpec b).2.2
+    have hconnCycle : Connected D.fam (peripheralOccurrence word a.1).label v cycle
+        (peripheralOccurrence word a.1).pos
+        (peripheralOccurrence word b.1).pos :=
+      connected_trans (hotherSpec a).2.2 (connected_symm hconnB)
+    have hconnWord := (connected_append_left_iff_421 D.fam
+      (peripheralOccurrence word a.1).label v word close
+      (by omega) (by omega)).mp hconnCycle
+    exact peripheralOccurrence_not_connected_of_uniformBound hC hbound hlet
+      hW1 hW2 hW3 v habUnderlying hlabelEq.symm hconnWord
+  have hNonisoBound : Noniso.card ≤ close.length := by
+    have hcard := Fintype.card_le_of_injective matchFin hmatchInj
+    simpa using hcard
+  have hperipheral := peripheralCount_le_internal_card_add_one word
+  have hlength := length_le_two_mul_peripheralCount_add_one word hW1
+  have hcloseLength : close.length =
+      wordDist D.alphabet.carrier v (vertex v word word.length) := by
+    rw [hclose.2.2, wordDist_symmetric]
+  rw [← hpartition] at hperipheral
+  rw [hcloseLength] at hNonisoBound
+  omega
 
 end OsinComponents
 end GGT
