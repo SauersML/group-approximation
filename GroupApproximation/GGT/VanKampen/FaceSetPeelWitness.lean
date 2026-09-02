@@ -155,6 +155,20 @@ theorem twoFace_planarCertificate
     rw [hfaceserase]
     exact ⟨boundary₂, hboundary₂⟩
 
+/-- The four-face model used for a `2 × 2` block.  The certificate family is
+allowed to choose any extremal leaf at each stage; the card induction then
+peels three leaves and the final face, so a non-extremal choice is never
+needed. -/
+theorem fourFace_planarPeeling_model
+    {f₁ f₂ f₃ f₄ : Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta
+      ({f₁, f₂, f₃, f₄} : Finset Delta.toCombMap.Face))
+    (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
+      (boundary : FaceSetBoundary Delta faces),
+      PlanarFacePeelCertificate boundary) :
+    FaceSetBoundaryPeeling boundary := by
+  exact faceSetBoundaryPeeling_of_planarCertificates boundary certificates
+
 end Embedded
 end VanKampen
 end GGT
