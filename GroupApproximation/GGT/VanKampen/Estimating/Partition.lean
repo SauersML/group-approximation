@@ -52,6 +52,43 @@ inductive CellIncidence
 
 namespace CellIncidence
 
+/-- A finite code distinguishing the source and target occurrence of a
+selected candidate. -/
+def code
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) : Candidate D eps Delta × Bool :=
+  match incidence with
+  | .source candidate _ _ => (candidate, false)
+  | .target candidate _ _ => (candidate, true)
+
+/-- The candidate and source/target tag determine an incidence. -/
+theorem code_injective
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount} :
+    Function.Injective (code : CellIncidence selected i →
+      Candidate D eps Delta × Bool) := by
+  intro first second heq
+  cases first <;> cases second <;> simp_all [code]
+
+noncomputable instance incidenceFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount} : Fintype (CellIncidence selected i) := by
+  classical
+  exact Fintype.ofInjective code code_injective
+
 /-- The cyclic cell arc carried by an incidence. -/
 noncomputable def arc
     {G : Type u} [Group G] {Lambda : Type w}
