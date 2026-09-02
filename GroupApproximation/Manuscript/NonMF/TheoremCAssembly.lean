@@ -13,6 +13,7 @@ import GroupApproximation.GGT.HullTheorem316Assembly
 import GroupApproximation.GGT.HullYiFiniteFamilyPair
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.TreeWPDAxis
+import GroupApproximation.GGT.DGOTheorem442Proof
 
 /-!
 # Theorem C assembly
@@ -298,8 +299,8 @@ hyperbolic.  This is the theorem Minasyan–Osin cite as their Theorem 3.3, and
 after `GGT/TreeWPDAxis.lean` it is all that is left of their tree criterion at
 `E`.  `GGT.osinTheorem12_of` splits it into Dahmani–Guirardel–Osin's Theorem
 6.8 and Osin's `(AH₄) ⇒ (AH₁)`. -/
-theorem osinTheorem12 : GGT.OsinTheorem12.{0, 0} := by
-  sorry
+theorem osinTheorem12 : GGT.OsinTheorem12.{0, 0} :=
+  GGT.Elementary.osinTheorem12_unconditional
 
 /-- **Minasyan–Osin at `E`, no longer a citation of its own.**  The tree half is
 proved: `E` acts on the Bass–Serre tree of its second HNN splitting, `u₂u₁⁻¹` is
