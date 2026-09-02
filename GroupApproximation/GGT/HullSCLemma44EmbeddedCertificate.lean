@@ -40,6 +40,7 @@ structure EmbeddedBoundaryPosition
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
+    {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
   boundaryBefore : List G
   boundaryArc : List G
@@ -57,6 +58,7 @@ structure EmbeddedBoundaryCertificateData
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
+    {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
   position : EmbeddedBoundaryPosition Z contiguity
   leftSide_admissible : RelWord.IsAdmissible D
@@ -85,7 +87,10 @@ theorem RelativeBoundaryContiguity.of_embeddedData
     RelativeBoundaryContiguity D eps Z.boundaryWord
       (Z.cells.get j).relator := by
   let sourceArc := C.region.sourceArc
-  obtain ⟨remainder, hsource⟩ := sourceArc.exists_dartWord_suffix
+  let remainder := Classical.choose sourceArc.exists_dartWord_suffix
+  have hsource : Embedded.dartWord hreal.diagram sourceArc.rotated =
+      Embedded.dartWord hreal.diagram sourceArc.darts ++ remainder :=
+    Classical.choose_spec sourceArc.exists_dartWord_suffix
   have hcell : (Z.cells.get j).relator =
       Embedded.dartWord hreal.diagram sourceArc.rotated := by
     have hword := hreal.cellWord_eq j
