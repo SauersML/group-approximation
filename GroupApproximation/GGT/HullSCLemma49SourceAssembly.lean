@@ -184,7 +184,8 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
         RelWord.normalClosure_listVal_image_symmetrized]
     have hinjBall : Set.InjOn quotientMap
         (cayleyBall D.alphabet (8 * delta + 1)) := by
-      have h := hinjAll (W := RelWord.symmetrized v) quotientMap
+      have h := hinjAll (W := RelWord.symmetrized v) (Q := G ⧸ N)
+        quotientMap
         hinjectiveInput hker
       exact h
     exact (false_of_powerDiagram_of_not_isLoxodromic_of_ballInjective
