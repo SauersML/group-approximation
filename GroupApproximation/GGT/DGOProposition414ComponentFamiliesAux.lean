@@ -1066,9 +1066,9 @@ theorem firstGapArcBoundaryExclusion_start_of_source
         (B.firstGapChordFinish j)) (i - 1) htArc hrCycle).mp (by
       change ((auxiliaryCycleWord (B.firstGapLeft j)
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (B.firstGapFinishSide j)) (B.firstGapRight j)
         (orientedSegment B.chord (B.firstGapChordStart j)
-          (B.firstGapChordFinish j))[
+          (B.firstGapChordFinish j)))[
             (B.firstGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
         (P.label s)
       simpa only [hteq'] using hcycleLetter)
@@ -1164,7 +1164,8 @@ theorem firstGapArcBoundaryExclusion_start_of_source
           exact (B.firstArcCut_target hsData.1).1.trans hcuts
         rw [hcur, ← hprevPos]
         omega
-      apply hparent.2.2.2.1
+      rw [hidx] at hprevLabel
+      exact hparent.2.2.2.1
         (B.firstArcCut (B.firstTargetSide s) - 1) (by omega) _ hprevLabel
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
