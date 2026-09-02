@@ -1100,8 +1100,7 @@ theorem relatorCells_values
       funext i
       exact Z.relatorCell_value i
     _ = (List.ofFn Z.cells.get).map Lemma44OrientedRelatorCell.value := by
-      apply congrArg List.ofFn
-      funext i
+      rw [List.map_ofFn]
       rfl
     _ = Z.cells.map Lemma44OrientedRelatorCell.value := by
       rw [List.ofFn_get]
@@ -1188,21 +1187,21 @@ theorem cactusDiscDiagram_reduced
         Lemma44OrientedRelatorCell W := fun C =>
     ⟨C.conjugator, C.word, C.word_mem⟩
   have horiented : Z.cells = Z.relatorCells.map orientedOfCell := by
-    rw [relatorCells, ← List.ofFn_comp']
-    calc
-      Z.cells = List.ofFn Z.cells.get := (List.ofFn_get Z.cells).symm
-      _ = List.ofFn (fun i => orientedOfCell (Z.relatorCell i)) := by
-        apply congrArg List.ofFn
-        funext i
-        rfl
-      _ = (List.ofFn Z.relatorCell).map orientedOfCell := by
-        rw [List.map_ofFn]
-        rfl
-      _ = Z.relatorCells.map orientedOfCell := rfl
+    have h0 : Z.cells = (List.ofFn Z.relatorCell).map orientedOfCell := by
+      calc
+        Z.cells = List.ofFn Z.cells.get := (List.ofFn_get Z.cells).symm
+        _ = List.ofFn (fun i => orientedOfCell (Z.relatorCell i)) := by
+          apply congrArg List.ofFn
+          funext i
+          rfl
+        _ = (List.ofFn Z.relatorCell).map orientedOfCell := by
+          rw [List.map_ofFn]
+          rfl
+    simpa [relatorCells] using h0
   intro pre between suf C₁ C₂ hsplit
   change Z.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) at hsplit
   have hsplit' := congrArg (List.map orientedOfCell) hsplit
-  rw [horiented] at hsplit'
+  rw [← horiented] at hsplit'
   have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
     (between.map orientedOfCell)
