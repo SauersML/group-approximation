@@ -73,17 +73,14 @@ structure EstimatingGraphData
     {W : Set (List (GGT.RelLetter G Lambda))}
     (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W)
     (scaffold : EstimatingScaffold D eps Delta) where
-  outerWeight_eq : ∀ i : Fin Delta.rCellCount,
-    (match Embedded.selectedOuter scaffold.selected.family i with
-      | none => 0
-      | some contiguity => contiguity.weight) =
-        scaffold.partition.kindWeight Embedded.CellArcKind.exterior i
   planarEdgeBound :
     HasHereditaryPlanarEdgeBound
       (Embedded.InteriorEdge.Incident
         (selected := scaffold.selected.family))
   selfIncidenceSeparated :
     Embedded.SelfIncidenceSeparated scaffold.selected.family
+  exteriorRegionsUnique :
+    Embedded.ExteriorRegionsUnique scaffold.selected.family
 
 /-- The G-cell boundary equation and reducedness exclusion needed to apply
 Lemma O52 to every selected cell-to-cell region. -/
@@ -178,7 +175,8 @@ noncomputable def ofScaffold
   selected := scaffold.selected
   partition := scaffold.partition
   outer := Embedded.selectedOuter scaffold.selected.family
-  outerWeight_eq := graph.outerWeight_eq
+  outerWeight_eq := Embedded.selectedOuter_weight_eq_canonicalExterior
+    scaffold.selected graph.selfIncidenceSeparated graph.exteriorRegionsUnique
   InteriorEdge := Embedded.InteriorEdge scaffold.selected.family
   interiorEdgeFintype := inferInstance
   interiorEdgeDecidableEq := inferInstance
