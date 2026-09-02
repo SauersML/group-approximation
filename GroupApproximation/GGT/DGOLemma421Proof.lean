@@ -2033,6 +2033,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     (hbase : ∀ (G : Type u) [Group G] (Λ : Type w)
       (D : RelGenSet G Λ), ∀ x ∈ D.base, x⁻¹ ∈ D.base) :
     DGOLemma421b.{u, w} := by
+  classical
   intro G _ Λ D hhyp
   obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
     h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
