@@ -534,6 +534,44 @@ peripheral letters are not letters of the original family, so re-spelling them
 changes the length of every relator and therefore all three
 small-cancellation parameters.  It is named next. -/
 
+/-- **The joint half of `HullRelatorRespellingStatement`, as a statement.**
+
+The three structural hypotheses say the joint family and the selected family are
+two peripheral structures on one relative alphabet; the side condition on `W`
+says the relators' base letters are already base letters of the joint family.
+Under them the joint re-spelling holds at the prescribed thresholds, with no
+constraint on `mu` and with the source thresholds equal to the target ones,
+since the relabelling changes no parameter.  Proved directly below. -/
+def JointRelatorRespellingStatement : Prop :=
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w}
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    joint.base ⊆ selected.rel.base →
+    (∀ (lam : Lambda) (x : G),
+      x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base) →
+    (∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.rel.fam i) →
+    joint.alphabet.carrier = selected.rel.alphabet.carrier →
+    ∀ (mu : ℝ) (eps0 rho0 : ℕ),
+      ∃ eps rho : ℕ,
+        ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
+          (∀ v ∈ W, ∀ x : G, GGT.RelLetter.base x ∈ v → x ∈ joint.base) →
+          RelWord.IsLemma44Input selected.rel W eps mu rho →
+            RelatorRespellingAt joint W eps0 rho0 mu
+
+/-- **The joint half, discharged.**  Nothing is assumed beyond the structural
+hypotheses: the source thresholds are the target ones. -/
+theorem jointRelatorRespellingStatement_proved :
+    JointRelatorRespellingStatement.{u, w} := by
+  intro G _ A N k S selected Lambda joint hbaseSub hfamInl hfamInr halphabet
+    mu eps0 rho0
+  refine ⟨eps0, max rho0 (20 * (eps0 + 1)), ?_⟩
+  intro W hWbase hsc
+  exact relatorRespellingAt_joint selected joint hbaseSub hfamInl hfamInr
+    halphabet le_rfl (Nat.le_max_left _ _) (Nat.le_max_right _ _) hWbase hsc
+
 /-- **The residual re-spelling, over the original peripheral family alone.**
 
 Hull's relators, presented over the selected auxiliary alphabet, have a
