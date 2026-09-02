@@ -459,8 +459,7 @@ theorem CellIncidence.target_arc_length
     (target_eq : candidate.contiguity.target = some i) :
     (CellIncidence.target candidate mem_selected target_eq).arc.length =
       candidate.contiguity.targetArc.length := by
-  unfold CellIncidence.arc
-  rfl
+  simp [CellIncidence.arc]
 
 /-! ## Exterior regions -/
 
