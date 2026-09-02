@@ -710,6 +710,70 @@ theorem peripheralOccurrence_isIsolated_of_uniformBound
   apply hnot
   rwa [huPos]
 
+/-! ## Appending the geodesic closing side -/
+
+omit [Group G] in
+/-- A component ending strictly inside the first word stays maximal after an
+arbitrary closing word is appended. -/
+theorem isComp_append_of_lt_421
+    {word tail : List (RelLetter G Λ)} {lam : Λ} {i k : ℕ}
+    (hcomp : IsComp lam word i k) (hk : k < word.length) :
+    IsComp lam (word ++ tail) i k := by
+  obtain ⟨hik, hkw, hrange, hprev, hnext⟩ := hcomp
+  refine ⟨hik, by simp; omega, ?_, ?_, ?_⟩
+  · intro j hij hjk hjall
+    have hjword : j < word.length := by omega
+    rw [List.getElem_append_left hjword]
+    exact hrange j hij hjk hjword
+  · intro j hij hjall
+    have hjword : j < word.length := by omega
+    rw [List.getElem_append_left hjword]
+    exact hprev j hij hjword
+  · intro hkall
+    rw [List.getElem_append_left hk]
+    exact hnext hk
+
+/-- Connectedness between two vertices of the first word is unchanged after a
+closing word is appended. -/
+theorem connected_append_left_iff_421 (H : Λ → Subgroup G) (lam : Λ)
+    (v : G) (word tail : List (RelLetter G Λ)) {i j : ℕ}
+    (hi : i ≤ word.length) (hj : j ≤ word.length) :
+    Connected H lam v (word ++ tail) i j ↔ Connected H lam v word i j := by
+  show (vertex v (word ++ tail) i)⁻¹ * vertex v (word ++ tail) j ∈ H lam ↔
+    (vertex v word i)⁻¹ * vertex v word j ∈ H lam
+  rw [vertex_append_of_le word tail v i hi,
+    vertex_append_of_le word tail v j hj]
+
+omit [Group G] in
+/-- A component start lying in the first block of an appended W-word is one of
+the original word's canonical peripheral occurrences. -/
+theorem append_isCompStart_left_occurrence
+    {D : RelGenSet G Λ} {word tail : List (RelLetter G Λ)}
+    (hW3 : WWord.IsWThree D word) {lam : Λ} {j : ℕ}
+    (hjWord : j < word.length)
+    (hj : IsCompStart lam (word ++ tail) j) :
+    ∃ t : Fin (peripheralPositions word).card,
+      (peripheralOccurrence word t).pos = j ∧
+        (peripheralOccurrence word t).label = lam := by
+  obtain ⟨k, hcomp⟩ := hj
+  have hjAll : j < (word ++ tail).length := by simp; omega
+  have hcompOf : ((word ++ tail)[j]'hjAll).IsCompOf lam :=
+    hcomp.2.2.1 j le_rfl hcomp.1 hjAll
+  rw [List.getElem_append_left hjWord] at hcompOf
+  cases hread : word[j]'hjWord with
+  | base x =>
+      rw [hread] at hcompOf
+      exact False.elim hcompOf
+  | comp mu x =>
+      rw [hread] at hcompOf
+      have hmulam : mu = lam := hcompOf
+      have hreadOpt : word[j]? = some (RelLetter.comp lam x) := by
+        rw [← hmulam]
+        simpa [List.getElem?_eq_getElem hjWord] using hread
+      have hstartOriginal : IsCompStart lam word j :=
+        ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hreadOpt⟩
+      exact exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
+
 end OsinComponents
 end GGT
 end GroupApproximation
