@@ -152,6 +152,8 @@ def CactusRelatorRetypingAvailability : Prop :=
 /-- A diagram already carrying relator-only coverage is a degenerate cactus
 retyping: the identity diagram preserves its boundary, area, reducedness, and
 planarity. -/
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cleanCactusRelatorRetyping_of_relatorOnly
     (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T))
