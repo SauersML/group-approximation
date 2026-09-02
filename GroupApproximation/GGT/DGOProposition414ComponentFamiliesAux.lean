@@ -1178,9 +1178,184 @@ theorem firstGapArcBoundaryExclusion_start_of_source
       exact hparent.2.2.2.1
         (B.firstArcCut (B.firstTargetSide s) - 1) hparentEq (by omega) hprevLabel
 
-/-
-      exact hlocalComp.2.2.2.2 _ (by omega) (by omega) hnextLetter
--/
+
+/-- The predecessor-side exclusion for an inherited wrapped-gap arc source.
+This is the first conjunct of `SecondGapArcBoundaryExclusion`; interior
+positions use the parent component, while the zero-offset case uses the
+preceding connector and parent target. -/
+theorem secondGapArcBoundaryExclusion_start_of_source
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j) :
+    ∀ t : ℕ,
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) = t + 1 →
+      ∀ ht : t < (B.secondGapCycle j).length,
+      ¬ ((B.secondGapCycle j)[t]'ht).IsCompOf (P.label s) := by
+  have hsData := Finset.mem_filter.mp hs
+  let i := B.secondArcCut (B.secondTargetSide s) -
+    B.secondArcCut (B.secondGapStartSide j)
+  let cycle := auxiliaryCycleWord (B.secondGapLeft j)
+    (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+      (B.secondGapFinishSide j)) (B.secondGapRight j)
+    (orientedSegment B.chord (B.secondGapChordStart j)
+      (B.secondGapChordFinish j))
+  have hcycleLen : cycle.length =
+      (B.secondGapLeft j).length +
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)).length +
+        (B.secondGapRight j).length +
+        (orientedSegment B.chord (B.secondGapChordStart j)
+          (B.secondGapChordFinish j)).length := by
+    simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
+      Nat.add_assoc]
+  have hlocalComp : IsComp (P.label s)
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)) i (i + 1) := by
+    simpa only [i] using B.secondGapArcSource_component j s hs
+  intro t hteq ht hcycleComp
+  by_cases hi : 0 < i
+  · have hteq' : (B.secondGapLeft j).length + (i - 1) = t := by
+      dsimp [i] at hteq ⊢
+      omega
+    have htArc : i - 1 <
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)).length := by
+      have hlocalLen := hlocalComp.2.1
+      omega
+    have hrCycle : (B.secondGapLeft j).length + (i - 1) < cycle.length := by
+      rw [hteq']
+      exact ht
+    have hcycleLetter := hcycleComp
+    change ((auxiliaryCycleWord (B.secondGapLeft j)
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)) (B.secondGapRight j)
+      (orientedSegment B.chord (B.secondGapChordStart j)
+        (B.secondGapChordFinish j)))[t]'ht).IsCompOf (P.label s) at hcycleLetter
+    have hletter := (isCompOf_auxiliaryCycle_arc_iff (P.label s)
+      (B.secondGapLeft j)
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)) (B.secondGapRight j)
+      (orientedSegment B.chord (B.secondGapChordStart j)
+        (B.secondGapChordFinish j)) (i - 1) htArc hrCycle).mp (by
+      simpa only [hteq'] using hcycleLetter)
+    exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
+  · have hi0 : i = 0 := by omega
+    have hdiff0 : B.secondArcCut (B.secondTargetSide s) -
+        B.secondArcCut (B.secondGapStartSide j) = 0 := by
+      simpa only [i] using hi0
+    subst i
+    by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.second j = none
+    · have hleft0 : (B.secondGapLeft j).length = 0 := by
+        classical
+        simp only [secondGapLeft]
+        rw [hp]
+        simp
+      omega
+    · obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hp
+      have heq : HalfGap.previousEntry B.brokenAssignment.index.second j = some e := by
+        simpa using he
+      have htleft : t < (B.secondGapLeft j).length := by omega
+      have hconn := B.secondGap_leftConnector_isCompOf j e heq t htleft (by
+        simpa [cycle, secondGapCycle, auxiliaryCycleWord,
+          OsinComponents.length_revWord] using ht)
+      have hconnLabel := B.secondGapLocalLabel_leftConnector j e heq t htleft
+      have hconn' :
+          (cycle[t]'ht).IsCompOf
+            (P.label (HalfEntry.entrySource B.brokenAssignment.index.second e)) := by
+        rw [← hconnLabel]
+        exact hconn
+      have hEqLabel : P.label s =
+          P.label (HalfEntry.entrySource B.brokenAssignment.index.second e) :=
+        eq_of_isCompOf_of_isCompOf hcycleComp hconn'
+      have heSrc := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
+      have heTarget := (mem_brokenSet_iff.mp heSrc).1
+      have hprevComp := B.secondArc_targetComponent heTarget
+      have hprevSide : B.secondGapStartSide j =
+          B.secondTargetSide (HalfEntry.entrySource
+            B.brokenAssignment.index.second e) + 1 := by
+        simp only [secondGapStartSide]
+        rw [heq]
+      have hprevPos : B.secondArcCut
+          (B.secondTargetSide (HalfEntry.entrySource
+            B.brokenAssignment.index.second e)) + 1 =
+          B.secondArcCut (B.secondGapStartSide j) := by
+        calc
+          B.secondArcCut (B.secondTargetSide
+              (HalfEntry.entrySource B.brokenAssignment.index.second e)) + 1 =
+              B.secondTargetPos (HalfEntry.entrySource
+                B.brokenAssignment.index.second e) + 1 := by
+            rw [(B.secondArcCut_target heTarget).1]
+          _ = B.secondArcCut (B.secondTargetSide
+                (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1) :=
+            (B.secondArcCut_target heTarget).2.symm
+          _ = B.secondArcCut (B.secondGapStartSide j) := by rw [hprevSide]
+      have hprevCutLt : B.secondArcCut (B.secondTargetSide
+          (HalfEntry.entrySource B.brokenAssignment.index.second e)) <
+          B.secondArc.length := by
+        rw [(B.secondArcCut_target heTarget).1]
+        have hcompLen := hprevComp.2.1
+        omega
+      have hprevLetter :
+          (B.secondArc[B.secondArcCut (B.secondTargetSide
+            (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
+              exact hprevCutLt)).IsCompOf
+            (P.label (HalfEntry.entrySource
+              B.brokenAssignment.index.second e)) := by
+        have hposLt : B.secondTargetPos
+            (HalfEntry.entrySource B.brokenAssignment.index.second e) <
+            B.secondArc.length := by
+          have hcompLen := hprevComp.2.1
+          omega
+        have hletter0 := hprevComp.2.2.1
+          (B.secondTargetPos (HalfEntry.entrySource
+            B.brokenAssignment.index.second e)) le_rfl (by omega) hposLt
+        rw [getElem_congr_idx (B.secondArcCut_target heTarget).1]
+        exact hletter0
+      have hprevLabel :
+          (B.secondArc[B.secondArcCut (B.secondTargetSide
+            (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
+              exact hprevCutLt)).IsCompOf (P.label s) := by
+        simpa only [hEqLabel] using hprevLetter
+      have hparent := B.secondArc_targetComponent hsData.1
+      have hidx : B.secondArcCut (B.secondTargetSide
+            (HalfEntry.entrySource B.brokenAssignment.index.second e)) =
+          B.secondArcCut (B.secondTargetSide s) - 1 := by
+        have hcur : B.secondArcCut (B.secondTargetSide s) =
+            B.secondArcCut (B.secondGapStartSide j) := by
+          have hcuts : B.secondArcCut (B.secondTargetSide s) =
+              B.secondArcCut (B.secondGapStartSide j) := by
+            apply Nat.le_antisymm
+            · exact Nat.sub_eq_zero_iff_le.mp hdiff0
+            · exact B.secondArc_isCutPath.cut.mono_le hsData.2.1
+          exact hcuts
+        rw [hcur, ← hprevPos]
+        omega
+      have hget : B.secondArc[B.secondArcCut (B.secondTargetSide
+          (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
+            exact hprevCutLt) =
+          B.secondArc[B.secondArcCut (B.secondTargetSide s) - 1]'(by omega) :=
+        getElem_congr_idx hidx
+      rw [hget] at hprevLabel
+      have hcurEq : B.secondArcCut (B.secondTargetSide s) =
+          B.secondArcCut (B.secondGapStartSide j) := by
+        apply Nat.le_antisymm
+        · exact Nat.sub_eq_zero_iff_le.mp hdiff0
+        · exact B.secondArc_isCutPath.cut.mono_le hsData.2.1
+      have hpositive : 0 < B.secondArcCut (B.secondTargetSide s) := by
+        rw [hcurEq, ← hprevPos]
+        omega
+      have hparentEq : B.secondTargetPos s =
+          B.secondArcCut (B.secondTargetSide s) - 1 + 1 := by
+        rw [← (B.secondArcCut_target hsData.1).1]
+        omega
+      exact hparent.2.2.2.1
+        (B.secondArcCut (B.secondTargetSide s) - 1) hparentEq (by omega) hprevLabel
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
