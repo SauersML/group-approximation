@@ -410,11 +410,14 @@ structure ReducedCellPieceBridge
     (Gamma : Contiguity D eps Delta faces) where
   target : Fin Delta.rCellCount
   target_eq : Gamma.target = some target
-  pre between suf : List
-    (RelatorCell Delta.toCombMap Delta.outerFace W)
-  sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W
+  pre : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  between : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  sourceCell : RelatorCell Delta.toCombMap Delta.outerFace W
+  targetCell : RelatorCell Delta.toCombMap Delta.outerFace W
   cellContiguity : CellContiguity (D := D) (eps := eps)
-    pre between suf sourceCell targetCell
+    (pre := pre) (between := between) (suf := suf)
+    (source := sourceCell) (target := targetCell)
   targetCarrier_value_eq : GGT.RelLetter.listVal
       (Gamma.targetInverseCarrier target target_eq) =
       GGT.RelLetter.listVal (RelWord.revInv targetCell.word)
@@ -462,7 +465,7 @@ end ReducedCellPieceBridge
 
 /-- Every pasted embedded region equipped with the reducedness bridge yields
 its exact `CellPieceEquations` certificate. -/
-theorem cellPieceEquations_of_pasting_reduced
+def cellPieceEquations_of_pasting_reduced
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
