@@ -183,6 +183,21 @@ def targetBoundaryDarts
   | none => arc.darts
   | some _ => arc.reverseDarts
 
+/-- On a relator-cell target, every oppositely oriented target-arc dart lies
+on the face-set boundary traversal. -/
+theorem mem_targetBoundaryDarts_of_ne_none
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (target : Option (Fin Delta.rCellCount))
+    (arc : CyclicArc (targetDarts Delta target))
+    (htarget : target ≠ none) (d : Delta.toCombMap.Dart)
+    (hd : d ∈ arc.reverseDarts) :
+    d ∈ targetBoundaryDarts Delta target arc := by
+  cases target with
+  | none => exact (htarget rfl).elim
+  | some _ => exact hd
+
 /-! ## Boundaries of face sets -/
 
 /-- A dart lies on the boundary of a face set when it is based in a selected
@@ -322,9 +337,11 @@ theorem faceOf_alpha_mem_of_mem_targetArc
     exact ⟨d, hd, rfl⟩
   have htargetBoundary : Delta.toCombMap.alpha d ∈
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc := by
-    rw [targetBoundaryDarts.eq_def]
-    rw [htarget]
-    exact hreverse
+    apply mem_targetBoundaryDarts_of_ne_none Delta Gamma.target
+      Gamma.targetArc
+    · rw [htarget]
+      simp
+    · exact hreverse
   have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
     rw [Gamma.boundary_decomposition]
     simp only [List.mem_append]
