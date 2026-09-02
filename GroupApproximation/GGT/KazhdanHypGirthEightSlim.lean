@@ -119,6 +119,7 @@ theorem exists_isBetween_after {S : Set G} (hS : IsSymmetricGeneratingSet S)
 theorem far_from_side_of_wordDist_le {S : Set G}
     (hS : IsSymmetricGeneratingSet S) {p p' a b : G} {R r : ℕ}
     (hfar : ∀ q : G, Hyperbolic.IsBetween S a q b → R < wordDist S p q)
+    (hr : r <= R)
     (hclose : wordDist S p p' <= r) :
     ∀ q : G, Hyperbolic.IsBetween S a q b → R - r < wordDist S p' q := by
   intro q hq
@@ -150,7 +151,8 @@ both opposite sides. -/
 theorem exists_centered_far_window {S : Set G}
     (hS : IsSymmetricGeneratingSet S) {x p y z : G} {R r : ℕ}
     (hp : Hyperbolic.IsBetween S x p y)
-    (hrLeft : r <= wordDist S x p) (hrRight : r <= wordDist S p y)
+    (hr : r <= R) (hrLeft : r <= wordDist S x p)
+    (hrRight : r <= wordDist S p y)
     (hfarXZ : ∀ q : G,
       Hyperbolic.IsBetween S x q z → R < wordDist S p q)
     (hfarZY : ∀ q : G,
@@ -175,10 +177,10 @@ theorem exists_centered_far_window {S : Set G}
   have hpu : wordDist S p u = r := by
     rw [wordDist_comm hS]
     exact hup
-  have hfarUXZ := far_from_side_of_wordDist_le hS hfarXZ (le_of_eq hpu)
-  have hfarUZY := far_from_side_of_wordDist_le hS hfarZY (le_of_eq hpu)
-  have hfarVXZ := far_from_side_of_wordDist_le hS hfarXZ (le_of_eq hpv)
-  have hfarVZY := far_from_side_of_wordDist_le hS hfarZY (le_of_eq hpv)
+  have hfarUXZ := far_from_side_of_wordDist_le hS hfarXZ hr (le_of_eq hpu)
+  have hfarUZY := far_from_side_of_wordDist_le hS hfarZY hr (le_of_eq hpu)
+  have hfarVXZ := far_from_side_of_wordDist_le hS hfarXZ hr (le_of_eq hpv)
+  have hfarVZY := far_from_side_of_wordDist_le hS hfarZY hr (le_of_eq hpv)
   have huvUpper := wordDist_triangle hS u p v
   have hxuv := wordDist_triangle hS x u v
   have hp' : wordDist S x p + wordDist S p y = wordDist S x y := hp
@@ -215,6 +217,7 @@ theorem exists_half_radius_far_window {S : Set G}
         R - R / 2 < wordDist S v q) := by
   obtain ⟨hx, hy⟩ := endpoint_margins_of_far_from_other_sides hS hfarXZ hfarZY
   apply exists_centered_far_window hS hp
+  · omega
   · omega
   · omega
   · exact hfarXZ
@@ -304,7 +307,7 @@ theorem isSlimTriangles_of_girthEight_layer_construction
       (∀ q : G, Hyperbolic.IsBetween S z q y →
         delta < wordDist S p q) →
       ∃ (Delta : VanKampen.DiscDiagram W)
-        (C : VanKampen.TriangularGirthEightDiagram Delta)
+        (_C : VanKampen.TriangularGirthEightDiagram Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
         Delta.combinatorialBoundaryLength <= 6 * ell ∧
         (∑ i, layer i) <= Delta.innerFaceCount ∧
