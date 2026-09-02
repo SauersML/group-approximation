@@ -141,6 +141,14 @@ theorem FaceSetBoundaryPeeling.to_homotopy
     FaceSetWordHomotopy Delta faces boundary.cycle [] :=
   FaceSetDeletionSchedule.to_homotopy peeling.schedule
 
+/-- Named boundary-level form of the face-set homotopy conclusion. -/
+theorem faceSetWordHomotopy_of_faceSetBoundary
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (peeling : FaceSetBoundaryPeeling boundary) :
+    FaceSetWordHomotopy Delta faces boundary.cycle [] :=
+  peeling.to_homotopy
+
 /-- The value-one theorem consumes the homotopy produced by a planar peel. -/
 theorem FaceSetBoundaryPeeling.cycle_value_eq_one
     {faces : Finset Delta.toCombMap.Face}
