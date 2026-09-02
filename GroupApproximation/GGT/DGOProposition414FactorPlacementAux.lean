@@ -576,7 +576,6 @@ theorem firstBroken_slots_disjoint
           targetSlotPacket q (B.firstBrokenMiddleSlot C hs))
         (targetSlotPacket q (B.firstBrokenEndSlot C hs)) := by
   classical
-  let Q := (B.gapIntervalsOfConfigurations C).toPathInput
   let e := B.firstSourceEntry s hs
   let j₀ := HalfEntry.entryChild B.brokenAssignment.index.first e
   let j₁ := HalfEntry.exitChild B.brokenAssignment.index.first e
@@ -1105,6 +1104,7 @@ theorem firstBrokenStartSlot_origin
       (B.firstBrokenStartSlot C hs)) :
     ∃ K : FirstChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
   classical
+  let Q := (B.gapIntervalsOfConfigurations C).toPathInput
   let e := B.firstSourceEntry s hs
   unfold firstBrokenStartSlot at hx
   simp only at hx
@@ -1113,7 +1113,7 @@ theorem firstBrokenStartSlot_origin
     rcases (mem_targetSlotPacket_iff (Sum.inl j) _ x).mp hx with
       ⟨X, hX, hchild, hindex⟩
     have hXeq : X =
-        Q.firstEntryStartConnectorSlot e 0 hpresent (P.label s) _ :=
+        (Q.firstEntryStartConnectorSlot e 0 hpresent (P.label s) _) :=
       Option.some.inj hX.symm
     subst X
     refine ⟨.startConnector hs hpresent, ?_, ?_⟩
@@ -1145,7 +1145,7 @@ theorem firstBrokenEndSlot_origin
     rcases (mem_targetSlotPacket_iff (Sum.inl j) _ x).mp hx with
       ⟨X, hX, hchild, hindex⟩
     have hXeq : X =
-        Q.firstEntryEndConnectorSlot e 0 hpresent (P.label s) _ :=
+        (Q.firstEntryEndConnectorSlot e 0 hpresent (P.label s) _) :=
       Option.some.inj hX.symm
     subst X
     refine ⟨.endConnector hs hpresent, ?_, ?_⟩
@@ -1179,6 +1179,122 @@ theorem firstChordSlot_origin
     refine ⟨.chord hs, ?_, ?_⟩
     · exact Sum.inl.inj ((B.secondBrokenPartnerSlot_child C hs).trans hchild)
     · exact (B.secondBrokenPartnerSlot_targetIndex C hs).symm.trans hindex
+  next hmissing =>
+    simp [targetSlotPacket] at hx
+
+theorem secondSurvivorSlot_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ B.componentPlacement.secondTarget)
+    (hsurvives : B.componentPlacement.secondSurvives s)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (hx : x ∈ targetSlotPacket (Sum.inr j)
+      (some (B.secondSurvivorSlot C hs hsurvives))) :
+    ∃ K : SecondChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  rcases (mem_targetSlotPacket_iff (Sum.inr j)
+    (some (B.secondSurvivorSlot C hs hsurvives)) x).mp hx with
+    ⟨X, hX, hchild, hindex⟩
+  have hXeq : X = B.secondSurvivorSlot C hs hsurvives :=
+    Option.some.inj hX.symm
+  subst X
+  refine ⟨.survivor hs hsurvives, ?_, ?_⟩
+  · exact Sum.inr.inj ((B.secondSurvivorSlot_child C hs hsurvives).trans
+      hchild)
+  · exact (B.secondSurvivorSlot_targetIndex C hs hsurvives).symm.trans hindex
+
+theorem secondBrokenStartSlot_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (hx : x ∈ targetSlotPacket (Sum.inr j)
+      (B.secondBrokenStartSlot C hs)) :
+    ∃ K : SecondChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  classical
+  let Q := (B.gapIntervalsOfConfigurations C).toPathInput
+  let e := B.secondSourceEntry s hs
+  unfold secondBrokenStartSlot at hx
+  simp only at hx
+  split at hx
+  next hpresent =>
+    rcases (mem_targetSlotPacket_iff (Sum.inr j) _ x).mp hx with
+      ⟨X, hX, hchild, hindex⟩
+    have hXeq : X =
+        (Q.secondEntryStartConnectorSlot e 0 hpresent (P.label s) _) :=
+      Option.some.inj hX.symm
+    subst X
+    refine ⟨.startConnector hs hpresent, ?_, ?_⟩
+    · exact Sum.inr.inj hchild
+    · exact hindex
+  next hmissing =>
+    simp [targetSlotPacket] at hx
+
+theorem secondBrokenEndSlot_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (hx : x ∈ targetSlotPacket (Sum.inr j)
+      (B.secondBrokenEndSlot C hs)) :
+    ∃ K : SecondChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  classical
+  let Q := (B.gapIntervalsOfConfigurations C).toPathInput
+  let e := B.secondSourceEntry s hs
+  unfold secondBrokenEndSlot at hx
+  simp only at hx
+  split at hx
+  next hpresent =>
+    rcases (mem_targetSlotPacket_iff (Sum.inr j) _ x).mp hx with
+      ⟨X, hX, hchild, hindex⟩
+    have hXeq : X =
+        (Q.secondEntryEndConnectorSlot e 0 hpresent (P.label s) _) :=
+      Option.some.inj hX.symm
+    subst X
+    refine ⟨.endConnector hs hpresent, ?_, ?_⟩
+    · exact Sum.inr.inj hchild
+    · exact hindex
+  next hmissing =>
+    simp [targetSlotPacket] at hx
+
+theorem secondChordSlot_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (hx : x ∈ targetSlotPacket (Sum.inr j)
+      (B.firstBrokenMiddleSlot C hs)) :
+    ∃ K : SecondChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  classical
+  unfold firstBrokenMiddleSlot at hx
+  split at hx
+  next hpresent =>
+    rcases (mem_targetSlotPacket_iff (Sum.inr j) _ x).mp hx with
+      ⟨X, hX, hchild, hindex⟩
+    have hXeq : X = B.firstBrokenPartnerSlot C hs :=
+      Option.some.inj hX.symm
+    subst X
+    refine ⟨.chord hs, ?_, ?_⟩
+    · exact Sum.inr.inj ((B.firstBrokenPartnerSlot_child C hs).trans hchild)
+    · exact (B.firstBrokenPartnerSlot_targetIndex C hs).symm.trans hindex
   next hmissing =>
     simp [targetSlotPacket] at hx
 
