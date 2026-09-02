@@ -267,9 +267,8 @@ theorem EmbeddedBoundaryCertificateData.cellLabel_eq
     (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
     (data : EmbeddedBoundaryCertificateData Z hreal C) :
     Embedded.dartWord hreal.diagram C.region.sourceArc.rotated =
-      (Z.cells.get (hreal.cellIndex.symm i)).relator := by
-  cases C.source_eq
-  exact data.cell_label_transport
+      (Z.cells.get (hreal.cellIndex.symm C.region.source)).relator :=
+  data.cell_label_transport
 
 end HullSC
 end GroupApproximation
