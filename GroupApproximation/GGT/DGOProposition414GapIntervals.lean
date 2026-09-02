@@ -39,17 +39,25 @@ theorem firstGapLeft_letters
   intro x hx
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.first j with
   | none =>
-      simp [firstGapLeft, hprev] at hx
+      simp only [firstGapLeft] at hx
+      rw [hprev] at hx
+      simp at hx
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
       let C := B.firstBrokenConnectors s hs
       by_cases hforward : B.firstGapRunsForward j
       · have hx' : x ∈ C.endConnector := by
-          simpa only [firstGapLeft, hprev, hforward, ↓reduceIte] using hx
+          simp only [firstGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.end_letters x hx'
       · have hx' : x ∈ C.endThroughPartner := by
-          simpa only [firstGapLeft, hprev, hforward, ↓reduceIte] using hx
+          simp only [firstGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.endThroughPartner_letters x hx'
 
 /-- Every canonical first-gap right connector is an admissible relative
@@ -66,17 +74,25 @@ theorem firstGapRight_letters
   intro x hx
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.first j with
   | none =>
-      simp [firstGapRight, hnext] at hx
+      simp only [firstGapRight] at hx
+      rw [hnext] at hx
+      simp at hx
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
       let C := B.firstBrokenConnectors s hs
       by_cases hforward : B.firstGapRunsForward j
       · have hx' : x ∈ C.startConnector := by
-          simpa only [firstGapRight, hnext, hforward, ↓reduceIte] using hx
+          simp only [firstGapRight] at hx
+          rw [hnext] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.start_letters x hx'
       · have hx' : x ∈ C.startThroughPartner := by
-          simpa only [firstGapRight, hnext, hforward, ↓reduceIte] using hx
+          simp only [firstGapRight] at hx
+          rw [hnext] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.startThroughPartner_letters x hx'
 
 /-- Every canonical wrapped-gap left connector is an admissible relative
@@ -93,17 +109,25 @@ theorem secondGapLeft_letters
   intro x hx
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.second j with
   | none =>
-      simp [secondGapLeft, hprev] at hx
+      simp only [secondGapLeft] at hx
+      rw [hprev] at hx
+      simp at hx
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
       let C := B.secondBrokenConnectors s hs
       by_cases hforward : B.secondGapRunsForward j
       · have hx' : x ∈ C.endThroughPartner := by
-          simpa only [secondGapLeft, hprev, hforward, ↓reduceIte] using hx
+          simp only [secondGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.endThroughPartner_letters x hx'
       · have hx' : x ∈ C.endConnector := by
-          simpa only [secondGapLeft, hprev, hforward, ↓reduceIte] using hx
+          simp only [secondGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.end_letters x hx'
 
 /-- Every canonical wrapped-gap right connector is an admissible relative
@@ -120,17 +144,25 @@ theorem secondGapRight_letters
   intro x hx
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.second j with
   | none =>
-      simp [secondGapRight, hnext] at hx
+      simp only [secondGapRight] at hx
+      rw [hnext] at hx
+      simp at hx
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
       let C := B.secondBrokenConnectors s hs
       by_cases hforward : B.secondGapRunsForward j
       · have hx' : x ∈ C.startThroughPartner := by
-          simpa only [secondGapRight, hnext, hforward, ↓reduceIte] using hx
+          simp only [secondGapRight] at hx
+          rw [hnext] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.startThroughPartner_letters x hx'
       · have hx' : x ∈ C.startConnector := by
-          simpa only [secondGapRight, hnext, hforward, ↓reduceIte] using hx
+          simp only [secondGapRight] at hx
+          rw [hnext] at hx
+          simp only [hforward, ↓reduceIte] at hx
+          simpa only [C, s] using hx
         exact C.start_letters x hx'
 
 /-- Assemble one first-half gap into its raw auxiliary interval. -/
