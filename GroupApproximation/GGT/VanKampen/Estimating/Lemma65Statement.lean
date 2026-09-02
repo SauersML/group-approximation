@@ -281,15 +281,17 @@ operation from `SurgeryMap.replaceGRegion`, which collapses a face set rather
 than cutting along a four-arc closed walk. -/
 def Lemma65CutStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ}
+    {D : GGT.RelGenSet G Lambda} {eps rho : ℕ} {mu lambda c : ℝ}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W}
-    (selected : Finset (Candidate D eps Delta))
-    (e₁ e₂ : InteriorEdge selected),
-    e₁ ≠ e₂ →
-      e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
-        e₁.target = e₂.target →
-          Nonempty (Lemma65CutData D lambda c Delta)
+    {Delta : DiscDiagram.{u, w, v} W},
+    OsinCCondition D W eps mu lambda c rho →
+    Delta.Reduced →
+    ∀ (selected : Finset (Candidate D eps Delta))
+      (e₁ e₂ : InteriorEdge selected),
+      e₁ ≠ e₂ →
+        e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
+          e₁.target = e₂.target →
+            Nonempty (Lemma65CutData D lambda c Delta)
 
 /-! ## Model checks -/
 
