@@ -54,6 +54,7 @@ theorem bbfProjDist_le_four_mul_of_adj_of_not_adj
   obtain ⟨Y, hY⟩ :
       ((ProjectionPerturbation.bbf P).blockers K X₀ W).Nonempty :=
     Set.nonempty_iff_ne_empty.mpr hblockers
+  change Y ≠ X₀ ∧ Y ≠ W ∧ K < P.bbfProjDist Y X₀ W at hY
   have hend := P.bbfProjDist_endpoints_lt hWX₀ hWX₁ h01.ne (by
     linarith [hlarge, P.ξ_pos])
   have hYX₁ : Y ≠ X₁ := by
