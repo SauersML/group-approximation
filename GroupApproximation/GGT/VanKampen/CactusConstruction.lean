@@ -162,6 +162,7 @@ def cactusShape
 natural-number value, before the wrap-around step. -/
 theorem finRotate_pow_zero {n : ℕ} (hn : 0 < n) (k : ℕ) (hk : k < n) :
     ((finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
+  letI : NeZero n := ⟨Nat.ne_of_gt hn⟩
   rw [← Equiv.Perm.iterate_eq_pow,
     ← finCycle_eq_finRotate_iterate (k := (⟨k, hk⟩ : Fin n))]
   exact Fin.zero_add ⟨k, hk⟩
