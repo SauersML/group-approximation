@@ -308,7 +308,7 @@ theorem lineCommonNeighbor_iff_incident_intersection
     have hab : a = b := has.trans hbs.symm
     have hpaEq : p = a := by
       apply commonPoint_unique hLM hpL hpM haL
-      rw [← hab]
+      rw [hab]
       exact hbM
     exact hpN (by simpa [hpaEq] using haN)
   · rintro ⟨hpN, hNL, hNM⟩
@@ -359,6 +359,22 @@ def pointOnLineToCommonLine (L M : Line)
       simpa [h] using hpN
     exact ⟨N, hNL, ⟨p.1, p.2, hpN⟩, hNM, ⟨q, hqM, hqN⟩⟩
 
+/-- The common-line map sends a point of `L` to a line through that point. -/
+theorem pointOnLineToCommonLine_left_incident (L M : Line)
+    (hnon : ¬ ∃ p, Incident p L ∧ Incident p M) (p : LinePoint L) :
+    Incident p.1 (pointOnLineToCommonLine L M hnon p) := by
+  let hpOut : ¬ Incident p.1 M := fun hpM ↦ hnon ⟨p.1, p.2, hpM⟩
+  let q := projectedPoint p.1 M hpOut
+  have hpqOrth : form p.1.rep q.rep = 0 :=
+    projectedPoint_orthogonal p.1 M hpOut
+  have hpq : p.1 ≠ q := by
+    intro hpq
+    exact hpOut (by
+      rw [hpq]
+      exact projectedPoint_incident p.1 M hpOut)
+  change Incident p.1 (lineThrough p.1 q hpq hpqOrth)
+  exact left_incident_lineThrough p.1 q hpq hpqOrth
+
 /-- Distinct points of `L` produce distinct common concurrent lines. -/
 theorem pointOnLineToCommonLine_injective (L M : Line)
     (hnon : ¬ ∃ p, Incident p L ∧ Incident p M) :
@@ -371,10 +387,10 @@ theorem pointOnLineToCommonLine_injective (L M : Line)
     Ne.symm (pointOnLineToCommonLine L M hnon p).2.1
   apply Subtype.ext
   apply commonPoint_unique hother p.2
-  · exact (pointOnLineToCommonLine L M hnon p).2.2.1.choose_spec.2
+  · exact pointOnLineToCommonLine_left_incident L M hnon p
   · exact q.2
   · rw [hN]
-    exact (pointOnLineToCommonLine L M hnon q).2.2.1.choose_spec.2
+    exact pointOnLineToCommonLine_left_incident L M hnon q
 
 /-- Every common concurrency neighbour of nonconcurrent lines is obtained
 from its intersection point with the first line. -/
@@ -388,7 +404,7 @@ theorem pointOnLineToCommonLine_surjective (L M : Line)
   have hab : a ≠ b := by
     intro hab
     apply hnon
-    exact ⟨a, haL, by simpa [hab] using hbM⟩
+    exact ⟨a, haL, by rw [hab]; exact hbM⟩
   have habOrth : form a.rep b.rep = 0 := orthogonal_of_incident haN hbN
   have hbProj : b = projectedPoint a M haOut := by
     apply Projectivization.submodule_injective
@@ -399,19 +415,22 @@ theorem pointOnLineToCommonLine_surjective (L M : Line)
   let flagged : LinePoint L := ⟨a, haL⟩
   refine ⟨flagged, ?_⟩
   apply Subtype.ext
-  change lineThrough a (projectedPoint a M haOut) _ _ = N.1
-  apply line_unique
-    (by
-      intro h
-      apply haOut
-      rw [← h]
-      exact projectedPoint_incident a M haOut)
-  · exact left_incident_lineThrough a (projectedPoint a M haOut) _ _
-  · rw [← hbProj]
-    exact haN
-  · exact right_incident_lineThrough a (projectedPoint a M haOut) _ _
-  · rw [← hbProj]
+  have haProj : a ≠ projectedPoint a M haOut := by
+    intro h
+    apply haOut
+    rw [h]
+    exact projectedPoint_incident a M haOut
+  have haProjOrth : form a.rep (projectedPoint a M haOut).rep = 0 :=
+    projectedPoint_orthogonal a M haOut
+  have hProjN : Incident (projectedPoint a M haOut) N.1 := by
+    rw [← hbProj]
     exact hbN
+  change lineThrough a (projectedPoint a M haOut) haProj haProjOrth = N.1
+  apply line_unique haProj
+  · exact left_incident_lineThrough a (projectedPoint a M haOut) haProj haProjOrth
+  · exact right_incident_lineThrough a (projectedPoint a M haOut) haProj haProjOrth
+  · exact haN
+  · exact hProjN
 
 /-- Nonconcurrent lines have exactly nine common concurrency neighbours. -/
 theorem lineCommonNeighbor_card_of_nonconcurrent (L M : Line)
@@ -475,9 +494,10 @@ theorem line_col_square_count (L M : Line) :
     simp [lineConcurrencyWeight]
   · by_cases hex : ∃ p, Incident p L ∧ Incident p M
     · obtain ⟨p, hpL, hpM⟩ := hex
+      have hcon : ∃ p, Incident p L ∧ Incident p M := ⟨p, hpL, hpM⟩
       rw [lineCommonNeighbor_card_of_concurrent hLM hpL hpM]
       have hex' : ∃ p, Incident p M ∧ Incident p L := ⟨p, hpM, hpL⟩
-      simp [lineConcurrencyWeight, hLM, hex, hex']
+      simp [lineConcurrencyWeight, hLM, hcon, hex']
     · rw [lineCommonNeighbor_card_of_nonconcurrent L M hex]
       have hnex' : ¬ ∃ p, Incident p M ∧ Incident p L := by
         rintro ⟨p, hpM, hpL⟩
