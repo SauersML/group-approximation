@@ -254,6 +254,17 @@ noncomputable def Occurrence
   Σ incidence : OfKind (selected := selected) (i := i) kind,
     incidence.1.Position
 
+noncomputable instance occurrenceFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount} {kind : CellArcKind} :
+    Fintype (Occurrence (selected := selected) (i := i) kind) := by
+  unfold Occurrence
+  infer_instance
+
 /-- Counting occurrences fibrewise sums the stored lengths of all incidences
 of the chosen kind. -/
 theorem card_occurrence_eq_sum_arcLength
@@ -268,7 +279,10 @@ theorem card_occurrence_eq_sum_arcLength
       ∑ incidence : OfKind (selected := selected) (i := i) kind,
         incidence.1.arc.length := by
   classical
-  rw [Occurrence, Fintype.card_sigma]
+  change Fintype.card
+      (Σ incidence : OfKind (selected := selected) (i := i) kind,
+        incidence.1.Position) = _
+  rw [Fintype.card_sigma]
   apply Finset.sum_congr rfl
   intro incidence _
   exact incidence.1.card_position
