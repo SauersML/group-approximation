@@ -111,6 +111,57 @@ theorem dgoProposition414Uniform_trivialModel (mu c : ℝ)
     ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound trivialUniformRelGenSet mu c C := by
   exact ⟨1, Nat.zero_lt_one, dgoUniformSumBound_trivialModel mu c 1⟩
 
+/-! ## Counting deep isolated components in an every-edge polygon -/
+
+/-- **The counting consequence of Proposition 4.14 used in Lemma 4.21.**
+
+Cut a closed word at every letter.  Every non-distinguished side is
+`(1,1)`-quasi-geodesic, including a possible identity-labelled edge.  If every
+distinguished singleton component lies outside the relative ball of radius
+`B`, the radius witnesses supplied by Proposition 4.14 are all larger than
+`B`, so `(B+1)|I| ≤ C · length`. -/
+theorem deepIsolated_card_bound_everyEdge
+    {D : RelGenSet G Λ} {C B : ℕ}
+    (hbound : DGOUniformSumBound D 1 1 C)
+    {v : G} {word : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hclosed : RelLetter.listVal word = 1)
+    (I : Finset ℕ) (lam : ℕ → Λ)
+    (hI : ∀ s ∈ I, s < word.length)
+    (hcomp : ∀ s ∈ I, IsComp (lam s) word s (s + 1))
+    (hiso : ∀ s ∈ I, IsIsolated D.fam (lam s) v word s)
+    (hdeep : ∀ s ∈ I,
+      (vertex v word s)⁻¹ * vertex v word (s + 1)
+        ∉ D.relBall (lam s) B) :
+    (B + 1) * I.card ≤ C * word.length := by
+  have hcut : IsPolygonCut word.length word (fun s => s) :=
+    ⟨rfl, rfl, fun s => Nat.le_succ s⟩
+  obtain ⟨r, hrmem, hrsum⟩ :=
+    hbound word.length v word (fun s => s) I lam hlet hclosed hcut hI
+      (fun _ _ => rfl) hcomp hiso (by
+        intro s hs hsI p q hp hpq hq
+        have hpqOne : q - p ≤ 1 := by omega
+        have hnonneg : (0 : ℝ) ≤
+            ((wordDist D.alphabet.carrier
+              (vertex v word p) (vertex v word q) : ℕ) : ℝ) :=
+          Nat.cast_nonneg _
+        norm_num
+        exact le_trans (by exact_mod_cast hpqOne) (by linarith))
+  have hrLarge : ∀ s ∈ I, B + 1 ≤ r s := by
+    intro s hs
+    by_contra hnot
+    have hrle : r s ≤ B := by omega
+    have hmono : D.relBall (lam s) (r s) ⊆ D.relBall (lam s) B :=
+      RelGenSet.relBall_mono_radius D hrle
+    exact hdeep s hs (hmono (hrmem s hs))
+  calc
+    (B + 1) * I.card = ∑ _s ∈ I, (B + 1) := by
+      rw [Finset.sum_const_nat]
+      exact Nat.mul_comm _ _
+    _ ≤ ∑ s ∈ I, r s := by
+      exact Finset.sum_le_sum fun s hs => hrLarge s hs
+    _ ≤ C * word.length := hrsum
+
 end OsinComponents
 end GGT
 end GroupApproximation
