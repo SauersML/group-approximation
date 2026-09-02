@@ -163,6 +163,29 @@ theorem DGO421FiniteAbsorptionCertificate.blockTarget_cosetMatch
   rw [hv, hval]
   exact hmem
 
+/-- The start of the matched component of `q`.  The certificate's target index
+is where the connection is read, and by (W3) that is the component's end, so
+the component begins one step earlier. -/
+noncomputable def DGO421FiniteAbsorptionCertificate.blockStart
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) : ℕ :=
+  cert.blockTarget t - 1
+
+theorem DGO421FiniteAbsorptionCertificate.blockStart_isComp
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K)
+    (hW3 : WWord.IsWThree D q) (t : Fin K) :
+    IsComp (cert.label (cert.blockIndex t)) q
+      (cert.blockStart t) (cert.blockTarget t) :=
+  cert.isComp_pred_blockTarget hW3 t
+
+theorem DGO421FiniteAbsorptionCertificate.blockStart_isCompStart
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K)
+    (hW3 : WWord.IsWThree D q) (t : Fin K) :
+    IsCompStart (cert.label (cert.blockIndex t)) q (cert.blockStart t) :=
+  ⟨cert.blockTarget t, cert.blockStart_isComp hW3 t⟩
+
 /-- The order data still missing after the finite-absorption certificate has
 been constructed.  It supplies the end of the matched target component, its
 maximality, and the target separator.  No polygon or counting hypotheses occur
@@ -174,9 +197,9 @@ structure DGO421FiniteAbsorptionOrderData
   qEnd : ℕ → ℕ
   qComponent : ∀ (t : ℕ) (ht : t < K),
     IsComp (cert.label (cert.blockIndex ⟨t, ht⟩)) q
-      (cert.blockTarget ⟨t, ht⟩) (qEnd t)
+      (cert.blockStart ⟨t, ht⟩) (qEnd t)
   qSeparator : ∀ (t : ℕ) (ht : t + 1 < K),
-    BaseEdgeOrTrivial q (qEnd t) (cert.blockTarget ⟨t + 1, ht⟩)
+    BaseEdgeOrTrivial q (qEnd t) (cert.blockStart ⟨t + 1, ht⟩)
 
 /-! ## The target side reduces to the minimality step
 
@@ -213,7 +236,7 @@ structure DGO421TargetRankData
     (cert : DGO421FiniteAbsorptionCertificate D p q N M K) where
   targetRank : Fin K → Fin (peripheralPositions q).card
   targetRank_pos : ∀ t : Fin K,
-    (peripheralOccurrence q (targetRank t)).pos = cert.blockTarget t
+    (peripheralOccurrence q (targetRank t)).pos = cert.blockStart t
   targetRank_label : ∀ t : Fin K,
     (peripheralOccurrence q (targetRank t)).label =
       cert.label (cert.blockIndex t)
@@ -240,7 +263,7 @@ noncomputable def DGO421TargetRankData.ofNoIntermediate
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
     (rank : Fin K → Fin (peripheralPositions q).card)
     (hpos : ∀ t : Fin K,
-      (peripheralOccurrence q (rank t)).pos = cert.blockTarget t)
+      (peripheralOccurrence q (rank t)).pos = cert.blockStart t)
     (hlabel : ∀ t : Fin K,
       (peripheralOccurrence q (rank t)).label = cert.label (cert.blockIndex t))
     (hstrict : ∀ (t : ℕ) (ht : t + 1 < K),
@@ -323,6 +346,21 @@ theorem cosetMatch_end_of_cosetMatch_start
   rw [hkey]
   exact mul_mem hmatch hspan
 
+/-- **The connection read at the start of the matched component.**  The
+certificate states it at the component's end, where Dahmani--Guirardel--Osin
+put their connecting edge; the printed conclusion of clause (b) is at the
+start, and the two agree because the component's endpoints differ by its own
+label. -/
+theorem DGO421FiniteAbsorptionCertificate.blockStart_cosetMatch
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K)
+    (hletQ : ∀ a ∈ q, D.IsLetter a) (hW3 : WWord.IsWThree D q) (t : Fin K) :
+    (vertex (1 : G) p (cert.source (cert.blockIndex t)))⁻¹ *
+        vertex cert.pre⁻¹ q (cert.blockStart t) ∈
+      D.fam (cert.label (cert.blockIndex t)) :=
+  cosetMatch_start_of_cosetMatch_end hletQ (cert.blockStart_isComp hW3 t)
+    (cert.blockTarget_cosetMatch t)
+
 /-- **The minimality step stated where the geometry lives: on positions in `q`.**
 
 Dahmani--Guirardel--Osin's targets are components of `q`, and their minimality
@@ -340,22 +378,24 @@ noncomputable def DGO421TargetRankData.ofCompStart
     {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
     {N M K : ℕ}
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
-    (hstart : ∀ t : Fin K,
-      IsCompStart (cert.label (cert.blockIndex t)) q (cert.blockTarget t))
+    (hW3 : WWord.IsWThree D q)
     (hmono : ∀ (t : ℕ) (ht : t + 1 < K),
-      cert.blockTarget ⟨t, Nat.lt_of_succ_lt ht⟩ <
-        cert.blockTarget ⟨t + 1, ht⟩)
+      cert.blockStart ⟨t, Nat.lt_of_succ_lt ht⟩ <
+        cert.blockStart ⟨t + 1, ht⟩)
     (hgap : ∀ (t : ℕ) (ht : t + 1 < K) (z : ℕ),
-      cert.blockTarget ⟨t, Nat.lt_of_succ_lt ht⟩ < z →
-        z < cert.blockTarget ⟨t + 1, ht⟩ →
+      cert.blockStart ⟨t, Nat.lt_of_succ_lt ht⟩ < z →
+        z < cert.blockStart ⟨t + 1, ht⟩ →
           z ∉ peripheralPositions q)
     (hK : 0 < K) :
     DGO421TargetRankData cert := by
   classical
+  have hstart : ∀ t : Fin K,
+      IsCompStart (cert.label (cert.blockIndex t)) q (cert.blockStart t) :=
+    fun t => cert.blockStart_isCompStart hW3 t
   let rank : Fin K → Fin (peripheralPositions q).card := fun t =>
     Classical.choose (exists_peripheralOccurrence_eq_of_isCompStart (hstart t))
   have hspec : ∀ t : Fin K,
-      (peripheralOccurrence q (rank t)).pos = cert.blockTarget t ∧
+      (peripheralOccurrence q (rank t)).pos = cert.blockStart t ∧
         (peripheralOccurrence q (rank t)).label =
           cert.label (cert.blockIndex t) := fun t =>
     Classical.choose_spec
@@ -405,8 +445,8 @@ noncomputable def DGO421TargetRankData.toOrderData
     DGO421FiniteAbsorptionOrderData cert := by
   let first : Fin K := ⟨0, hK⟩
   let idx : ℕ → Fin K := fun s => if h : s < K then ⟨s, h⟩ else first
-  let iqAt : ℕ → ℕ := fun s => cert.blockTarget (idx s)
-  let kqAt : ℕ → ℕ := fun s => cert.blockTarget (idx s) + 1
+  let iqAt : ℕ → ℕ := fun s => cert.blockStart (idx s)
+  let kqAt : ℕ → ℕ := fun s => cert.blockStart (idx s) + 1
   let lamAt : ℕ → Λ := fun s => cert.label (cert.blockIndex (idx s))
   have hcomp : ∀ s : ℕ, s < K → IsComp (lamAt s) q (iqAt s) (kqAt s) := by
     intro s _hs
@@ -444,6 +484,7 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
     {N M K : ℕ}
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
     (hW1 : WWord.IsWOne p) (hW3 : WWord.IsWThree D p)
+    (hletQ : ∀ a ∈ q, D.IsLetter a) (hW3Q : WWord.IsWThree D q)
     (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
     DGO421OrderedBlockPayload D (1 : G) cert.pre⁻¹ p q K := by
   let first : Fin K := ⟨0, hK⟩
@@ -452,7 +493,7 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
   let ipAt : ℕ → ℕ := fun t => cert.source (blockAt t)
   let kpAt : ℕ → ℕ := fun t => cert.source (blockAt t) + 1
   let lamAt : ℕ → Λ := fun t => cert.label (blockAt t)
-  let iqAt : ℕ → ℕ := fun t => cert.blockTarget (idx t)
+  let iqAt : ℕ → ℕ := fun t => cert.blockStart (idx t)
   let kqAt : ℕ → ℕ := fun t => if _ : t < K then O.qEnd t else O.qEnd 0
   have hrank : ∀ s : ℕ, s + 1 < K →
       (cert.rank (blockAt (s + 1))).val = (cert.rank (blockAt s)).val + 1 := by
@@ -501,7 +542,7 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
     have ht0 : t < K := by omega
     simpa [kqAt, iqAt, idx, ht0, ht] using O.qSeparator t ht
   · intro t _ht
-    exact cert.blockTarget_cosetMatch (idx t)
+    exact cert.blockStart_cosetMatch hletQ hW3Q (idx t)
 
 /-- **Left translation of an ordered block payload.**  None of the component
 or separator clauses mentions a basepoint, and the start-coset clause is
@@ -550,12 +591,13 @@ noncomputable def orderedBlockPayload_of_certificate
     {N M K : ℕ} (hW1 : WWord.IsWOne p) (hW3 : WWord.IsWThree D p)
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
     (hpre : cert.pre = vq⁻¹ * vp)
+    (hletQ : ∀ a ∈ q, D.IsLetter a) (hW3Q : WWord.IsWThree D q)
     (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
     DGO421OrderedBlockPayload D vp vq p q K :=
   DGO421OrderedBlockPayload.ofBasepointOne
     (vp := vp) (vq := vq)
     (by rw [hpre]; group)
-    (O.toPayload hW1 hW3 hK)
+    (O.toPayload hW1 hW3 hletQ hW3Q hK)
 
 /-- **Everything in DGO Lemma 4.21(b) except the minimality step.**  From the
 counting certificate, its connector identity, and the target ranks, the ordered
@@ -567,10 +609,11 @@ noncomputable def orderedBlockPayload_of_certificate_of_targetRank
     (hW1P : WWord.IsWOne p) (hW3P : WWord.IsWThree D p)
     (hW1Q : WWord.IsWOne q) (hW3Q : WWord.IsWThree D q)
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hletQ : ∀ a ∈ q, D.IsLetter a)
     (hpre : cert.pre = vq⁻¹ * vp)
     (T : DGO421TargetRankData cert) (hK : 0 < K) :
     DGO421OrderedBlockPayload D vp vq p q K :=
-  orderedBlockPayload_of_certificate hW1P hW3P hpre
+  orderedBlockPayload_of_certificate hW1P hW3P hpre hletQ hW3Q
     (T.toOrderData hW1Q hW3Q hK) hK
 
 /-! ## The ordered-block form of the lemma -/
