@@ -432,6 +432,18 @@ noncomputable def interiorIncidenceEquiv
   left_inv := taggedToInteriorIncidence_leftInverse selected
   right_inv := taggedToInteriorIncidence_rightInverse selected
 
+/-- The inverse of the endpoint equivalence is the explicit tagged-endpoint
+map. -/
+theorem interiorIncidenceEquiv_symm_apply
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (tagged : InteriorEdge selected × Bool) :
+    (interiorIncidenceEquiv selected).symm tagged =
+      taggedToInteriorIncidence selected tagged := rfl
+
 /-- Transporting a cyclic arc between equal carrier types preserves its stored
 length. -/
 theorem CyclicArc.cast_length
@@ -518,7 +530,7 @@ theorem sum_interiorIncidence_arcLength_eq_sum_weight
     (∑ occurrence : InteriorIncidence selected, occurrence.2.1.arc.length) =
         ∑ tagged : InteriorEdge selected × Bool,
           (taggedToInteriorIncidence selected tagged).2.1.arc.length := by
-      simpa only [interiorIncidenceEquiv] using
+      simpa only [interiorIncidenceEquiv_symm_apply] using
         (Equiv.sum_comp (interiorIncidenceEquiv selected).symm
           (fun occurrence : InteriorIncidence selected =>
             occurrence.2.1.arc.length)).symm
