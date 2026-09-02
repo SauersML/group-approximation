@@ -456,8 +456,9 @@ theorem estimatingPieceConstruction_emptyFamilyModel
   have hmem : edge.candidate ∈ scaffold.selected.family :=
     edge.candidate_mem
   have hmem' : edge.candidate ∈
-      (∅ : Finset (Candidate D eps Delta)) := hempty ▸ hmem
-  exact (Finset.not_mem_empty _ hmem').elim
+      (∅ : Finset (Embedded.Candidate D eps Delta)) := hempty ▸ hmem
+  have hfalse : False := by simpa using hmem'
+  exact hfalse.elim
 
 /-- The selection component is vacuous on the empty family whenever the
 positive-cell diagram hypothesis is supplied. -/
