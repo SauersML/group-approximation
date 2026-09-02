@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.Estimating.Incidence
+import GroupApproximation.GGT.VanKampen.Estimating.Assembly
 
 /-!
 # Loop separation is now unconditional
@@ -43,6 +43,28 @@ theorem selfIncidenceSeparated_of_target_ne_source
     candidate.contiguity.source hself rfl
 
 end Embedded
+
+/-! ## The estimating graph now needs only two certificates -/
+
+/-- **Graph data from the two remaining certificates.**  Loop separation is
+free, so `EstimatingGraphData` needs only the hereditary planar edge bound and
+the admissible exterior merge.  Those are the two genuinely geometric halves of
+Osin's Lemma `65(a)`: realizing the incidence graph as a planar map, and
+merging two exterior regions at a cell. -/
+theorem estimatingGraphData_of_planar_and_merge
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hplanar : HasHereditaryPlanarEdgeBound
+      (Embedded.InteriorEdge.Incident
+        (selected := scaffold.selected.family)))
+    (hmerge : Embedded.ExteriorMergeAvailable scaffold.selected.family) :
+    Nonempty (EstimatingGraphData D eps Delta scaffold) :=
+  estimatingGraphData_of_certificates scaffold hplanar
+    (Embedded.selfIncidenceSeparated_of_target_ne_source _) hmerge
+
 end VanKampen
 end GGT
 end GroupApproximation
