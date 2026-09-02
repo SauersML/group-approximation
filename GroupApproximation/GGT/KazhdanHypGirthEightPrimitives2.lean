@@ -58,21 +58,35 @@ nonbacktracking assumption. -/
 structure VertexCornerCertificate
     {M : VanKampen.CombMap.{0}} {v : M.Vertex}
     (C : CyclicCornerEnumeration M v) where
-  /-- Presentation-link vertex at each cyclic corner. -/
-  linkVertex : ℕ → TriangularHodgeLayer.SignedGenerator Generator
+  /-- Presentation-link label on each map dart. -/
+  dartLabel : M.Dart → TriangularHodgeLayer.SignedGenerator Generator
   /-- Triangle supplying the corner step. -/
   triangle : ℕ → TriangleIndex
   /-- Literal position supplying the corner step. -/
   position : ℕ → Fin 3
   /-- The initial endpoint is the literal signed generator. -/
-  source_eq : ∀ i, linkVertex i = T (triangle i) (position i)
+  source_eq : ∀ i, dartLabel (C.dart i) = T (triangle i) (position i)
   /-- The terminal endpoint is the inverse of the next literal generator. -/
-  target_eq : ∀ i, linkVertex (i + 1) =
+  target_eq : ∀ i, dartLabel (C.dart (i + 1)) =
     TriangularHodgeLayer.inverseSigned
       (T (triangle i) (TriangularHodgeLayer.nextCorner (position i)))
-  /-- Labels repeat when the map corner cycle repeats. -/
-  periodic : ∀ i,
-    linkVertex (i + M.vertexDegree v) = linkVertex i
+
+namespace VertexCornerCertificate
+
+variable {M : VanKampen.CombMap.{0}} {v : M.Vertex}
+  {C : CyclicCornerEnumeration M v}
+
+/-- Presentation-link vertex at a cyclic corner. -/
+def linkVertex (K : VertexCornerCertificate C) (i : ℕ) :
+    TriangularHodgeLayer.SignedGenerator Generator :=
+  K.dartLabel (C.dart i)
+
+/-- Link labels inherit periodicity from the cyclic dart enumeration. -/
+theorem periodic (K : VertexCornerCertificate C) (i : ℕ) :
+    K.linkVertex (i + M.vertexDegree v) = K.linkVertex i := by
+  exact congrArg K.dartLabel (C.periodic i)
+
+end VertexCornerCertificate
 
 /-- Cellular reducedness at a vertex: the two relator corners on the two
 sides of any intervening edge do not carry mirror link labels.  Equivalently,
