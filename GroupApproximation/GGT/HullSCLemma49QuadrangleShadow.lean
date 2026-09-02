@@ -79,6 +79,7 @@ theorem exists_quasiChain_quadrangleShadow
     refine ⟨j, hj, ?_⟩
     have htri₁ := wordDist_triangle hS (qPow i) p q
     have htri₂ := wordDist_triangle hS (qPow i) q (qRel j)
+    have hcomm := wordDist_comm hS q (qRel j)
     omega
   · obtain ⟨q, hq, hpq⟩ := hconnLeft
     refine ⟨0, Nat.zero_le _, ?_⟩
@@ -170,11 +171,19 @@ theorem Lemma49RelativeGreendlingerCell.exterior_isQuasiGeodesicChainAt
     hprefix
   intro i hi j hj
   have hiTake : C.relator.take i = C.contiguity.exterior.take i := by
-    rw [C.contiguity.relator_decomposition,
-      List.take_append_of_le_length hi]
+    calc
+      C.relator.take i =
+          (C.contiguity.exterior ++ C.contiguity.remainder).take i :=
+        congrArg (List.take i) C.contiguity.relator_decomposition
+      _ = C.contiguity.exterior.take i := by
+        rw [List.take_append_of_le_length hi]
   have hjTake : C.relator.take j = C.contiguity.exterior.take j := by
-    rw [C.contiguity.relator_decomposition,
-      List.take_append_of_le_length hj]
+    calc
+      C.relator.take j =
+          (C.contiguity.exterior ++ C.contiguity.remainder).take j :=
+        congrArg (List.take j) C.contiguity.relator_decomposition
+      _ = C.contiguity.exterior.take j := by
+        rw [List.take_append_of_le_length hj]
   simp only [Nat.zero_add, Lemma49RelativeGreendlingerCell.exteriorVertex,
     hiTake, hjTake]
 
@@ -314,11 +323,17 @@ theorem exists_lemma49ContiguityShadow_constant
     C.powerArcVertex C.contiguity.exterior.length C.boundaryArc.length
     D.alphabet.symmetricGenerating hdelta hRel hPower
     C.leftEndpoint_close C.rightEndpoint_close
-  choose index hindex hclose using hnear
+  choose nearest hnearestLe hnearestClose using hnear
   exact ⟨{
-    index := index
-    index_le := hindex
-    close := hclose }⟩
+    index := fun i => if hi : i ≤ C.boundaryArc.length then nearest i hi else 0
+    index_le := by
+      intro i hi
+      rw [dif_pos hi]
+      exact hnearestLe i hi
+    close := by
+      intro i hi
+      rw [dif_pos hi]
+      exact hnearestClose i hi }⟩
 
 /-! ## Model check -/
 
