@@ -141,7 +141,7 @@ theorem twoFace_planarCertificate
     simp [hfaces, hneq]
   have hmoves : FaceSetMoveSequence (faces := faces) boundary.cycle next := by
     simpa [hcycle] using moves
-  refine ⟨PlanarFacePeelCertificate.mk boundary f₁ hmem h₁ next cycle ?_
+  refine ⟨PlanarFacePeelCertificate.mk f₁ hmem h₁ next cycle ?_
     ⟨[], [], by simpa using hcycle⟩ hmoves ?_⟩
   · intro hnil
     apply boundary.cycle_nonempty
