@@ -367,6 +367,15 @@ theorem exists_generator_of_eq_zpowers {H : Subgroup Q} {a : Q}
   rw [SubgroupClass.coe_zpow]
   exact hm
 
+/-- **Model test: a cyclic member is droppable.**  A subgroup that is the set of
+powers of one element is a finitely generated hyperbolic group, by
+`CyclicCayley.isHyperbolicGroup_of_zpowers`.  These are the members the drop
+lemma is applied to. -/
+theorem isHyperbolicGroup_of_eq_zpowers {H : Subgroup Q} {a : Q}
+    (h : H = Subgroup.zpowers a) : Hyperbolic.IsHyperbolicGroup H := by
+  obtain ⟨z, hz⟩ := exists_generator_of_eq_zpowers h
+  exact CyclicCayley.isHyperbolicGroup_of_zpowers hz
+
 /-- The quotient image of a selected auxiliary peripheral is the set of powers
 of the image of that loxodromic element.  The source cyclicity is
 `HullSC.AuxiliaryNonElementaryCores.peripheral_eq_zpowers`. -/
@@ -408,6 +417,60 @@ theorem isRelativelyHyperbolic_original_of_jointPreservation_of_cyclic
   choose Y hY hYfin hYemb using hE
   exact isRelativelyHyperbolic_original_of_jointPreservation h435 P hfinite
     (fun i => emptySubfamilyRelGenSet (Y i) (hY i)) hYemb hYfin
+
+/-! ### The relative-hyperbolicity half, at an arbitrary index
+
+Osin's drop lemma puts no finiteness on the family that is kept, so this half
+runs at an arbitrary `Lambda`.  Nothing about the re-spelling of the relator
+over the original letters is used: the whole input is the joint image family,
+which the relator sees through the selected letters alone. -/
+
+/-- The image of a selected auxiliary peripheral is a finitely generated
+hyperbolic group, since it is cyclic. -/
+theorem isHyperbolicGroup_map_peripheral
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S) (q : G →* Q)
+    (i : AuxiliaryPeripheralIndex k) :
+    Hyperbolic.IsHyperbolicGroup ((selected.cores.peripheral i).map q) :=
+  isHyperbolicGroup_of_eq_zpowers (by
+    rw [selected.cores.peripheral_eq_zpowers i, MonoidHom.map_zpowers])
+
+/-- The joint image family is a relative structure on the quotient with a finite
+relative generating set, which is what the drop lemma consumes. -/
+theorem isRelativelyHyperbolic_joint
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    {selected : AuxiliaryPeripheralFamily A N S}
+    {original : RelGenSet G Lambda} {q : G →* Q}
+    (P : QuotientJointPeripheralPreservation q selected original)
+    (hfinite : original.base.Finite) :
+    IsRelativelyHyperbolic Q
+      (Sum.elim (fun l : Lambda => (original.fam l).map q)
+        (fun i : AuxiliaryPeripheralIndex k =>
+          (selected.cores.peripheral i).map q)) := by
+  refine ⟨P.rel, P.base_finite hfinite, ?_, P.embedded⟩
+  funext s
+  cases s with
+  | inl l => exact P.fam_original l
+  | inr i => exact P.fam_selected i
+
+/-- **The images of the original peripheral family are relatively hyperbolic in
+the filling quotient, at an arbitrary index.**
+
+This is Osin's own step at `embed-final.tex:1956-1959`, through his Lemma
+`exhyp` rather than through the printed Proposition 4.35: the joint image family
+is relatively hyperbolic, and the images of the selected elementary closures are
+cyclic, so finitely generated and hyperbolic, and drop out.  No finiteness of
+`Lambda` and no record about the resulting base are involved. -/
+theorem isRelativelyHyperbolic_original_of_jointPreservation_of_exhyp
+    (hexhyp : OsinLemmaExhypStatement.{u, 0, w})
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    {selected : AuxiliaryPeripheralFamily A N S}
+    {original : RelGenSet G Lambda} {q : G →* Q}
+    (P : QuotientJointPeripheralPreservation q selected original)
+    (hfinite : original.base.Finite) :
+    IsRelativelyHyperbolic Q (fun l : Lambda => (original.fam l).map q) :=
+  hexhyp _ _ (isRelativelyHyperbolic_joint P hfinite)
+    (fun i => isHyperbolicGroup_map_peripheral selected q i)
 
 /-! ### The canonical original-family record -/
 
