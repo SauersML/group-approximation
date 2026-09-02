@@ -202,6 +202,10 @@ This keeps the remaining forty-nine row-pair cases in ordinary arithmetic. -/
 theorem fanoZMod_eq_iff_val_eq (a b : ZMod 7) : a = b ↔ a.val = b.val :=
   (ZMod.val_injective 7).eq_iff.symm
 
+/-- The canonical constructor of `Z/7Z` has its displayed representative. -/
+@[simp] theorem fanoZMod_val_mk (n : ℕ) (h : n < 7) :
+    ZMod.val (show ZMod 7 from ⟨n, h⟩) = n := rfl
+
 /-- Two distinct points lie on one common line; a point has three incident
 lines.  This is the row identity `N Nᵀ = 2I + J`. -/
 theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
@@ -213,8 +217,8 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
   simp only [add_mul, mul_add, Finset.sum_add_distrib,
     fanoCorner_productSum]
   fin_cases x <;> fin_cases x' <;>
-    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, ZMod.val, ZMod,
-      Fin.add, Fin.val_add, Fin.coe_ofNat_eq_mod, Fin.coe_natCast_eq_mod]
+    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, fanoZMod_val_mk,
+      ZMod.val_zero, ZMod.val_one_eq_one_mod, ZMod.val_ofNat]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
