@@ -10,13 +10,14 @@ It deliberately does not import `KazhdanHypGirthEightPrimitives2`: the
 interface below is the part needed by that module, while its larger import
 closure is currently under repair.
 
-For a centered boundary window, `CenteredWindowFirstLayerIncidence` records
-the first inner face reached at each surviving position and the fact that the
-position occurs on that face.  `firstLayerIncidenceIndex` reads the position
-back from the duplicate-free face boundary, and `firstLayerIncidenceSlot`
-places that index in the uniform perimeter range.  The resulting
-`LayerIncidenceInjection` gives the exact numerical consequence consumed by
-the successive-star estimate.
+For a centered boundary window, `CenteredWindowLayerCover` records the
+surviving positions and the fact that the successive-star layers cover them.
+The first face is selected from that cover, so
+`CenteredWindowFirstLayerIncidence` is constructed rather than assumed.
+`firstLayerIncidenceIndex` reads the position back from the duplicate-free
+face boundary, and `firstLayerIncidenceSlot` places that index in the uniform
+perimeter range.  The resulting `LayerIncidenceInjection` gives the exact
+numerical consequence consumed by the successive-star estimate.
 
 The face families are defined directly from `CombMap.faceStarLayer`; their
 pairwise disjointness is proved from the named `CombMap.faceStarLayer_disjoint`
@@ -156,6 +157,49 @@ structure CenteredWindowFirstLayerIncidence
   /-- Every selected face has at most the prescribed perimeter. -/
   faceDegree_le : ∀ (i : Fin depth) (q : Fin (scale - loss)),
     Delta.toCombMap.faceDegree (face i q) ≤ perimeter
+
+/-! ## The centered first-face certificate -/
+
+/-- The set-cover statement needed to select the first face at every
+surviving centered-window position.  The `firstFace` field is the covering
+fact for successive star layers: it puts the boundary dart on an inner face
+in the designated layer. -/
+structure CenteredWindowLayerCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) where
+  /-- The surviving boundary occurrence at each layer and position. -/
+  position : ∀ _i : Fin depth, Fin (scale - loss) → Fin P.darts.length
+  /-- Distinct positions give distinct boundary occurrences. -/
+  position_injective : ∀ i : Fin depth, Function.Injective (position i)
+  /-- The designated layer covers the boundary dart at the position. -/
+  firstFace : ∀ (i : Fin depth) (q : Fin (scale - loss)),
+    ∃ f : Delta.toCombMap.Face,
+      f ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ) ∧
+      P.darts.get (position i q) ∈ (Delta.faceBoundary f).darts
+  /-- Every face offered by the cover has the prescribed perimeter bound. -/
+  faceDegree_le : ∀ (i : Fin depth) (q : Fin (scale - loss))
+    (f : Delta.toCombMap.Face),
+    f ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ) →
+      Delta.toCombMap.faceDegree f ≤ perimeter
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- A centered layer cover supplies the first-face incidence data by choice. -/
+noncomputable def centeredWindowFirstLayerIncidence_of_layerCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (K : CenteredWindowLayerCover Delta P depth scale loss perimeter) :
+    CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter := by
+  classical
+  exact {
+    position := K.position
+    position_injective := K.position_injective
+    face := fun i q => Classical.choose (K.firstFace i q)
+    face_mem := fun i q => (Classical.choose_spec (K.firstFace i q)).1
+    on_face := fun i q => (Classical.choose_spec (K.firstFace i q)).2
+    faceDegree_le := fun i q => K.faceDegree_le i q
+      (Classical.choose (K.firstFace i q))
+      (Classical.choose_spec (K.firstFace i q)).1 }
 
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
@@ -308,6 +352,32 @@ theorem layerCoversWindow_of_firstLayer
   layer_covers_of_incidenceInjection
     (layerIncidenceInjection_of_firstLayer Delta P depth scale loss perimeter C)
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- The centered layer cover produces the incidence injection. -/
+theorem layerIncidenceInjection_of_layerCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (K : CenteredWindowLayerCover Delta P depth scale loss perimeter) :
+    LayerIncidenceInjection
+      (fun i : Fin depth ↦ innerBoundaryFaceStarLayer Delta P (i : ℕ))
+      scale loss perimeter :=
+  layerIncidenceInjection_of_firstLayer Delta P depth scale loss perimeter
+    (centeredWindowFirstLayerIncidence_of_layerCover
+      Delta P depth scale loss perimeter K)
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- The centered layer cover produces the numerical covering inequality. -/
+theorem layerCoversWindow_of_layerCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (K : CenteredWindowLayerCover Delta P depth scale loss perimeter) :
+    LayerCoversWindow Delta P depth scale loss perimeter :=
+  layerCoversWindow_of_firstLayer Delta P depth scale loss perimeter
+    (centeredWindowFirstLayerIncidence_of_layerCover
+      Delta P depth scale loss perimeter K)
+
 /-! ## One-triangle model -/
 
 /-- The six-dart one-triangle layer has a nonempty zero layer. -/
@@ -334,6 +404,17 @@ noncomputable def oneTriangle_unitIncidenceInjection :
   · intro _i x y _hxy
     apply Fin.ext
     omega
+
+/-- The one-triangle zero layer covers the single unit-window position. -/
+theorem oneTriangle_unit_firstFace_cover_model :
+    ∀ _i : Fin 1, ∀ _q : Fin 1,
+      ∃ f : VanKampen.oneTriangleCombMap.Face,
+        f ∈ VanKampen.oneTriangleCombMap.faceStarLayer
+          (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0 := by
+  intro _i _q
+  refine ⟨VanKampen.oneTriangleCombMap.faceOf (0, false), ?_⟩
+  rw [VanKampen.CombMap.faceStarLayer, if_pos rfl]
+  exact Finset.mem_univ _
 
 /-- The incidence theorem recovers the unit covering inequality in the
 one-triangle model. -/
