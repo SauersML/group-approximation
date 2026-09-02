@@ -439,6 +439,28 @@ theorem estimatingPieceConstruction_of_pasting_reduced
   intro edge
   exact (hcertificate edge).equations hred
 
+/-- Boundary peeling schedules and reduced cell bridges construct the complete
+piece certificate for every selected interior edge.  The schedule's
+`BoundaryStep` moves account for each boundary dart, while
+`CellPieceEquations.of_boundaryPeeling` performs the resulting word-value
+calculation. -/
+theorem estimatingPieceConstruction_of_boundaryPeelings
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hred : Delta.Reduced)
+    (hbridge : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
+    (hpeeling : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      Embedded.FaceSetBoundaryPeeling edge.candidate.contiguity.boundary) :
+    Nonempty (CellPieceData D eps Delta scaffold) := by
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  exact Embedded.CellPieceEquations.of_boundaryPeeling
+    (hbridge edge) (hpeeling edge) hred
+
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
