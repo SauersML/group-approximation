@@ -1312,8 +1312,26 @@ theorem firstBrokenMiddlePacket_empty
   classical
   by_cases hmiddle : B.firstBrokenEntryForward hs ↔
       B.firstBrokenExitForward hs
-  · simp [firstBrokenMiddleSlot, hmiddle]
-  · simp [firstBrokenMiddleSlot, hmiddle]
+  · rw [show B.firstBrokenMiddleSlot C hs =
+        some (B.firstBrokenPartnerSlot C hs) by
+          simp [firstBrokenMiddleSlot, hmiddle]]
+    apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    constructor
+    · rintro ⟨X, hX, hchild, hindex⟩
+      have hEq : B.firstBrokenPartnerSlot C hs = X :=
+        Option.some.inj hX
+      subst X
+      have hne : (B.firstBrokenPartnerSlot C hs).child ≠ Sum.inl j := by
+        simp
+      exact (hne hchild).elim
+    · intro hx
+      simp at hx
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [firstBrokenMiddleSlot, hmiddle]
 
 theorem secondBrokenStartPacket_empty_first
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -1331,11 +1349,17 @@ theorem secondBrokenStartPacket_empty_first
       (B.secondGapRight
         (HalfEntry.entryChild B.brokenAssignment.index.second
           (B.secondSourceEntry s hs))).length
-  · simp [secondBrokenStartSlot, hstart,
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenStartSlot, hstart,
       TwoHalfPathInput.secondEntryStartConnectorSlot,
       TwoHalfPathInput.secondRightConnectorSlot,
       TwoHalfPathInput.secondTargetSlot]
-  · simp [secondBrokenStartSlot, hstart]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenStartSlot, hstart]
 
 theorem secondBrokenEndPacket_empty_first
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -1353,11 +1377,17 @@ theorem secondBrokenEndPacket_empty_first
       (B.secondGapLeft
         (HalfEntry.exitChild B.brokenAssignment.index.second
           (B.secondSourceEntry s hs))).length
-  · simp [secondBrokenEndSlot, hend,
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenEndSlot, hend,
       TwoHalfPathInput.secondEntryEndConnectorSlot,
       TwoHalfPathInput.secondLeftConnectorSlot,
       TwoHalfPathInput.secondTargetSlot]
-  · simp [secondBrokenEndSlot, hend]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenEndSlot, hend]
 
 theorem firstBrokenStartPacket_empty_second
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -1375,11 +1405,17 @@ theorem firstBrokenStartPacket_empty_second
       (B.firstGapRight
         (HalfEntry.entryChild B.brokenAssignment.index.first
           (B.firstSourceEntry s hs))).length
-  · simp [firstBrokenStartSlot, hstart,
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [firstBrokenStartSlot, hstart,
       TwoHalfPathInput.firstEntryStartConnectorSlot,
       TwoHalfPathInput.firstRightConnectorSlot,
       TwoHalfPathInput.firstTargetSlot]
-  · simp [firstBrokenStartSlot, hstart]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [firstBrokenStartSlot, hstart]
 
 theorem firstBrokenEndPacket_empty_second
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -1397,11 +1433,17 @@ theorem firstBrokenEndPacket_empty_second
       (B.firstGapLeft
         (HalfEntry.exitChild B.brokenAssignment.index.first
           (B.firstSourceEntry s hs))).length
-  · simp [firstBrokenEndSlot, hend,
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [firstBrokenEndSlot, hend,
       TwoHalfPathInput.firstEntryEndConnectorSlot,
       TwoHalfPathInput.firstLeftConnectorSlot,
       TwoHalfPathInput.firstTargetSlot]
-  · simp [firstBrokenEndSlot, hend]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [firstBrokenEndSlot, hend]
 
 theorem secondBrokenMiddlePacket_empty_second
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -1417,8 +1459,14 @@ theorem secondBrokenMiddlePacket_empty_second
   classical
   by_cases hmiddle : B.secondBrokenEntryForward hs ↔
       B.secondBrokenExitForward hs
-  · simp [secondBrokenMiddleSlot, hmiddle]
-  · simp [secondBrokenMiddleSlot, hmiddle]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenMiddleSlot, hmiddle, secondBrokenPartnerSlot_child]
+  · apply Finset.ext
+    intro x
+    rw [mem_targetSlotPacket_iff]
+    simp [secondBrokenMiddleSlot, hmiddle]
 
 /-- A packet in a first-family child determines a first-family origin kind. -/
 theorem distributedPacket_first_origin
@@ -1455,7 +1503,7 @@ theorem distributedPacket_first_origin
       · rcases Finset.mem_union.mp hxSE with hxStart | hxMiddle
         · exact B.firstBrokenStartSlot_origin C hbroken j hxStart
         · rw [B.firstBrokenMiddlePacket_empty C j hbroken] at hxMiddle
-          exact (Finset.not_mem_empty x hxMiddle).elim
+          simp at hxMiddle
       · exact B.firstBrokenEndSlot_origin C hbroken j hxEnd
   · have hnotFirst : s ∉ B.componentPlacement.firstTarget := by
       intro hsFirst
@@ -1477,10 +1525,10 @@ theorem distributedPacket_first_origin
       rcases Finset.mem_union.mp hx' with hxSE | hxEnd
       · rcases Finset.mem_union.mp hxSE with hxStart | hxMiddle
         · rw [B.secondBrokenStartPacket_empty_first C j hbroken] at hxStart
-          exact (Finset.not_mem_empty x hxStart).elim
+          simp at hxStart
         · exact B.firstChordSlot_origin C hbroken j hxMiddle
       · rw [B.secondBrokenEndPacket_empty_first C j hbroken] at hxEnd
-        exact (Finset.not_mem_empty x hxEnd).elim
+        simp at hxEnd
 
 /-- A packet in a wrapped-family child determines a wrapped-family origin
 kind. -/
@@ -1514,10 +1562,10 @@ theorem distributedPacket_second_origin
       rcases Finset.mem_union.mp hx' with hxSE | hxEnd
       · rcases Finset.mem_union.mp hxSE with hxStart | hxMiddle
         · rw [B.firstBrokenStartPacket_empty_second C j hbroken] at hxStart
-          exact (Finset.not_mem_empty x hxStart).elim
+          simp at hxStart
         · exact B.secondChordSlot_origin C hbroken j hxMiddle
       · rw [B.firstBrokenEndPacket_empty_second C j hbroken] at hxEnd
-        exact (Finset.not_mem_empty x hxEnd).elim
+        simp at hxEnd
   · have hnotFirst : s ∉ B.componentPlacement.firstTarget := by
       intro hsFirst
       exact (Finset.disjoint_left.mp B.componentPlacement.target_disjoint)
@@ -1542,7 +1590,7 @@ theorem distributedPacket_second_origin
       · rcases Finset.mem_union.mp hxSE with hxStart | hxMiddle
         · exact B.secondBrokenStartSlot_origin C hbroken j hxStart
         · rw [B.secondBrokenMiddlePacket_empty_second C j hbroken] at hxMiddle
-          exact (Finset.not_mem_empty x hxMiddle).elim
+          simp at hxMiddle
       · exact B.secondBrokenEndSlot_origin C hbroken j hxEnd
 
 end BalancedSplitData
