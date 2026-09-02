@@ -139,7 +139,7 @@ theorem dist_le_walk_length_of_mem_support
     {A B U W : V} (p : Gamma.Walk A B)
     (hU : U ∈ p.support) (hW : W ∈ p.support) :
     Gamma.dist U W ≤ p.length := by
-  induction p with
+  induction p generalizing U W with
   | nil =>
       simp only [SimpleGraph.Walk.support_nil, List.mem_singleton] at hU hW
       subst U
@@ -154,7 +154,7 @@ theorem dist_le_walk_length_of_mem_support
           simp
         · have hACdist : Gamma.dist A C = 1 :=
             SimpleGraph.dist_eq_one_iff_adj.mpr hAC
-          have hCW := ih p.start_mem_support hWtail
+          have hCW := ih (U := C) (W := W) p.start_mem_support hWtail
           have htriangle := hconn.dist_triangle (u := A) (v := C) (w := W)
           simp only [SimpleGraph.Walk.length_cons]
           omega
@@ -162,11 +162,11 @@ theorem dist_le_walk_length_of_mem_support
         · subst W
           have hCA : Gamma.dist C A = 1 :=
             SimpleGraph.dist_eq_one_iff_adj.mpr hAC.symm
-          have hUC := ih hUtail p.start_mem_support
+          have hUC := ih (U := U) (W := C) hUtail p.start_mem_support
           have htriangle := hconn.dist_triangle (u := U) (v := C) (w := A)
           simp only [SimpleGraph.Walk.length_cons]
           omega
-        · have hUW := ih hUtail hWtail
+        · have hUW := ih (U := U) (W := W) hUtail hWtail
           simp only [SimpleGraph.Walk.length_cons]
           omega
 
