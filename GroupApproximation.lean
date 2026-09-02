@@ -3205,6 +3205,10 @@ import GroupApproximation.GGT.HullSCLemma49TransferModels
 import GroupApproximation.GGT.KazhdanHypPolarityOrbitReduction
 import GroupApproximation.GGT.KazhdanHypSymplecticPolarity
 import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
+import GroupApproximation.GGT.HullSCLemma44PrefixKernelBallInduction
+import GroupApproximation.GGT.KazhdanHypSharpExistenceAssembly
+import GroupApproximation.GGT.VanKampen.BoundaryFarthestPoint
+import GroupApproximation.GGT.VanKampen.SingletonFaceBoundary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
