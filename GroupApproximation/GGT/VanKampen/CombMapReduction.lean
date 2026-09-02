@@ -172,7 +172,7 @@ inductive CactusFoldChain
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))} :
     DiscDiagram.{u, w, v} W → DiscDiagram.{u, w, v} W → ℕ →
-      Type (max u w v)
+      Type (max (max (u + 1) (v + 2)) (w + 1))
   | done {Delta : DiscDiagram.{u, w, v} W}
       (cover : RelatorCellCover Delta) :
       CactusFoldChain Delta Delta 0
