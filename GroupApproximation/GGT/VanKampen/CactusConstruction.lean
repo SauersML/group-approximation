@@ -313,8 +313,7 @@ def cactusOuterIndex
     (j : Fin Z.cactusShape.boundaryLength) :
     Fin (Z.cactusOuterFaceWord (Lambda := Lambda)).length :=
   Fin.cast (by
-    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map]
-    exact Z.cactusShape_boundaryLength.symm) j
+    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map]) j
 
 /-- Labels on forward polygon darts are the prescribed words.  Backward
 darts receive the inverse letter, and a stem is labelled by the conjugator of
@@ -378,8 +377,7 @@ theorem cactus_outerFaceWord
   rw [Z.cactusShape.faceBoundary_outerFace_darts,
     cactus_outerBoundary_darts Z.cactusShape, ← List.ofFn_comp']
   exact ofFn_get_cast Z.cactusOuterFaceWord (by
-    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map]
-    exact Z.cactusShape_boundaryLength.symm)
+    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map])
 
 /-- The labels on a geometric relator face are the corresponding geometric
 cell word. -/
