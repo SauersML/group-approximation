@@ -2492,7 +2492,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             refine ⟨Q.length, le_rfl, ?_, ?_⟩
             · have hrczero : rc.length = 0 := by omega
               rw [hrczero, Nat.sub_self]
-              rw [← hni, hieq]
+              have htargetEq : targetN i = pc.length + P.length := by omega
+              rw [← htargetEq]
+              exact (htargetSpec i).2.1
             · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
               refine ⟨hh, hmem, ?_⟩
               rw [hni, hieq]
