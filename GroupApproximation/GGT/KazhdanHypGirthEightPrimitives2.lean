@@ -485,6 +485,8 @@ abbrev RootedPathsFaceComplete
     (p q : DartPath Delta.toCombMap R.root v),
     InnerFaceWordHomotopy Delta p.darts q.darts
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A peeling witness gives `RootedPathsFaceComplete` for every chosen rooted
 path system. -/
 theorem rootedPathsFaceComplete_of_peeling
