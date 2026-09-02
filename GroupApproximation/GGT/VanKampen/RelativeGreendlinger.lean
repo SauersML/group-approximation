@@ -56,10 +56,18 @@ theorem isLambdaCQuasiGeodesicWord_nil
   have hi0 : i = 0 := by omega
   subst i
   subst j
+  change lambda * (0 : ℝ) - c ≤
+    ((wordDist D.alphabet.carrier
+      (GGT.OsinComponents.vertex 1
+        ([] : List (GGT.RelLetter G Lambda)) 0)
+      (GGT.OsinComponents.vertex 1
+        ([] : List (GGT.RelLetter G Lambda)) 0) : ℕ) : ℝ)
   have hdist : (0 : ℝ) ≤
       ((wordDist D.alphabet.carrier
-        (GGT.OsinComponents.vertex 1 [] 0)
-        (GGT.OsinComponents.vertex 1 [] 0) : ℕ) : ℝ) := by positivity
+        (GGT.OsinComponents.vertex 1
+          ([] : List (GGT.RelLetter G Lambda)) 0)
+        (GGT.OsinComponents.vertex 1
+          ([] : List (GGT.RelLetter G Lambda)) 0) : ℕ) : ℝ) := by positivity
   linarith
 
 /-- Osin's `C(epsilon,mu,lambda,c,rho)` condition. -/
@@ -379,7 +387,7 @@ theorem relativeGreendlingerQuasiGeodesic
 there is no positive-cell diagram to which it could apply. -/
 theorem embeddedEstimatingSystemConstruction_emptyFamilyModel
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
+    (_D : GGT.RelGenSet G Lambda)
     (Delta : DiscDiagram.{u, w, v}
       (∅ : Set (List (GGT.RelLetter G Lambda))))
     (hcells : 0 < Delta.rCellCount) : False := by
