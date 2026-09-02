@@ -46,6 +46,8 @@ theorem quasiGeodesicComparison_of_one
     {c b : ℝ} (hc : 0 ≤ c) (hcb : c ≤ b) :
     QuasiGeodesicComparison 1 c b := by
   intro hmu _ t d ht hd hdist
+  have hc' : 0 ≤ c := hc
+  have hcb' : c ≤ b := hcb
   norm_num at hmu hdist ⊢
   linarith
 
