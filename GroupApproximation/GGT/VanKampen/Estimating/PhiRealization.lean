@@ -91,7 +91,8 @@ noncomputable def phiEdgeEquiv (E : Type v) [Fintype E]
     rintro ⟨e₁, b₁⟩ ⟨e₂, b₂⟩ (h | h)
     · exact congrArg Prod.fst h
     · have h' : ((e₁, !b₁) : E × Bool) = (e₂, b₂) := h
-      exact congrArg Prod.fst h')
+      have hfst : e₁ = e₂ := congrArg Prod.fst h'
+      exact hfst)
   invFun e := Quotient.mk'' (e, false)
   left_inv := by
     refine Quotient.ind ?_
