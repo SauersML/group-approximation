@@ -239,7 +239,7 @@ theorem CactusFoldChain.toRetyping_diagram_eq
     (hplanar : Delta.toCombMap.IsPlanar)
     (hred : Delta.Reduced) :
     (chain.toRetyping hplanar hred).diagram = Next := by
-  induction chain generalizing hplanar hred with
+  induction chain with
   | @done D cover => rfl
   | @step D Next k C tail area_drop ih =>
       dsimp [CactusFoldChain.toRetyping]
