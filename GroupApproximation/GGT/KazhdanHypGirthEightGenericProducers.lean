@@ -182,5 +182,36 @@ theorem doubleEulerCountData_of_incidence
   · have hf := hD.face_count_eq
     omega
 
+/-- The concrete double-seam construction.  `K` supplies the same-copy
+interior paths and the single cross-seam path; `C` supplies the vertex,
+edge, and face incidence bijections.  The resulting geometry discharges the
+connectedness and exact count fields instead of treating them as hypotheses.
+-/
+theorem planarDiscGeometry_of_double
+    {g : Presented T} {D : PowerDisc T g 2}
+    {I : Type}
+    (index : ExposedCopiedDart D.diagram 2 ≃ Fin 2 × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
+    (K : SeamGluing.Pairing.DoubleConnectivityData
+      (ExposedPairing.of_doubleCopyMate index index_copy).toPairing)
+    (C : SeamGluing.Pairing.DoubleIncidenceEquivalences
+      (ExposedPairing.of_doubleCopyMate index index_copy).toPairing)
+    (hcorner : ∀ v, VertexCornerCertificate T
+      (cornerCycleOfCombMap
+        (ExposedPairing.of_doubleCopyMate index index_copy).toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
+    PlanarDiscExposedPairingGeometry T D := by
+  refine {
+    indexType := I
+    index := index
+    index_copy := index_copy
+    copyMate := ExposedPairing.doubleCopyMate
+    hinvol := ExposedPairing.doubleCopyMate_involutive
+    hfree := ExposedPairing.doubleCopyMate_fixedPointFree
+    connected := connected_of_doubleConnectivityData K
+    incidence := doubleEulerCountData_of_incidence C K
+    corner := hcorner
+    cellular := hcellular }
+
 end GGT
 end GroupApproximation
