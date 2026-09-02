@@ -298,20 +298,23 @@ theorem innerFace_presentedValue_eq_one
       presentedLetterValue T d).prod = 1 := by
   obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
   rw [hj, triangleRelatorWord, List.map_map]
-  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty →
+  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty.{0} →
       TriangularHodgeLayer.Presented T :=
     presentedLetterValue (Generator := Generator) T
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
-    eval (signedFreeRelLetter (Generator := Generator) u)).prod = 1
+    eval (signedFreeRelLetter (Generator := Generator) u :
+      GGT.RelLetter (FreeGroup Generator) PEmpty.{0})).prod = 1
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
       eval
-        (signedFreeRelLetter (Generator := Generator) u) =
+        (signedFreeRelLetter (Generator := Generator) u :
+          GGT.RelLetter (FreeGroup Generator) PEmpty.{0}) =
         FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
     intro u
     simpa [eval] using
       (presentedLetterValue_signedFreeRelLetter (T := T) u)
   have hmap : (TriangularHodgeLayer.letters (T j)).map
-      (fun u ↦ eval (signedFreeRelLetter (Generator := Generator) u)) =
+      (fun u ↦ eval (signedFreeRelLetter (Generator := Generator) u :
+        GGT.RelLetter (FreeGroup Generator) PEmpty.{0})) =
       (TriangularHodgeLayer.letters (T j)).map
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
@@ -716,7 +719,7 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
-  unfold firstLayerIncidenceSlot at hslot
+  dsimp [firstLayerIncidenceSlot] at hslot
   rw [hface] at hslot
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
