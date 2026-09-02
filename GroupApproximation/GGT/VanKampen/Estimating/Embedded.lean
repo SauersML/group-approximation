@@ -379,6 +379,7 @@ noncomputable def candidateFaceUnion
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (first second : Candidate D eps Delta) : Finset Delta.toCombMap.Face := by
+  letI : DecidableEq Delta.toCombMap.Face := Classical.decEq _
   exact first.1 ∪ second.1
 
 /-- The surgery which merges two embedded regions.  Its old carrier is the
@@ -390,8 +391,9 @@ structure MergeSurgery
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (first second merged : Candidate D eps Delta) where
-  mergedFaces : merged.1 = candidateFaceUnion first second
   replacement : GCellReplacement Delta (candidateFaceUnion first second) merged.1
+  mergedFace_mem : ∀ face : Delta.toCombMap.Face,
+    face ∈ merged.1 ↔ face ∈ first.1 ∨ face ∈ second.1
 
 /-- Compatibility of embedded regions is symmetric. -/
 theorem compatible_symm
@@ -418,14 +420,11 @@ theorem compatible_merge
   change Disjoint first.1 other.1 at hfirst
   change Disjoint second.1 other.1 at hsecond
   change Disjoint merged.1 other.1
-  rw [surgery.mergedFaces]
   apply Finset.disjoint_left.mpr
   intro face hface hother
   have hfirst' := Finset.disjoint_left.mp hfirst
   have hsecond' := Finset.disjoint_left.mp hsecond
-  simp only [candidateFaceUnion] at hface
-  change face ∈ first.1 ∪ second.1 at hface
-  rcases Finset.mem_union.mp hface with hface | hface
+  rcases (surgery.mergedFace_mem face).mp hface with hface | hface
   · exact hfirst' hface hother
   · exact hsecond' hface hother
 
@@ -495,8 +494,7 @@ theorem merged_not_mem_rest
     hmergedFirst.2 hmergedFirst.1.symm
   obtain ⟨face, hface⟩ := first.contiguity.boundary.faces_nonempty
   have hfaceMerged : face ∈ merged.1 := by
-    rw [surgery.mergedFaces]
-    simpa only [candidateFaceUnion] using Finset.mem_union_left second.1 hface
+    exact (surgery.mergedFace_mem face).mpr (Or.inl hface)
   exact (Finset.disjoint_left.mp hdisjoint) hface hfaceMerged
 
 /-- **Lemma 65(a), two-gon consequence.**  Two selected regions cannot admit
@@ -518,11 +516,49 @@ theorem lemma65a_no_mergeable_twoGon
     (hne : first ≠ second)
     (surgery : MergeSurgery first second merged)
     (hweight : first.weight + second.weight ≤ merged.weight) : False := by
-  exact GroupApproximation.GGT.VanKampen.EstimatingSelection.no_two_for_one_replacement
-    selected first second merged
-    hfirst hsecond hne (merged_not_mem_rest selected first second merged hfirst surgery)
+  classical
+  let rest := (selected.family.erase first).erase second
+  let replacement := insert merged rest
+  have hsecondRest : second ∈ selected.family.erase first :=
+    Finset.mem_erase.mpr ⟨hne.symm, hsecond⟩
+  have hfirstWeight :
+      EstimatingSelection.familyWeight Candidate.weight
+          (selected.family.erase first) + first.weight =
+        EstimatingSelection.familyWeight Candidate.weight selected.family := by
+    unfold EstimatingSelection.familyWeight
+    exact Finset.sum_erase_add selected.family Candidate.weight hfirst
+  have hsecondWeight :
+      EstimatingSelection.familyWeight Candidate.weight rest + second.weight =
+        EstimatingSelection.familyWeight Candidate.weight
+          (selected.family.erase first) := by
+    dsimp [rest]
+    unfold EstimatingSelection.familyWeight
+    exact Finset.sum_erase_add (selected.family.erase first) Candidate.weight hsecondRest
+  have hmergedRest := merged_not_mem_rest selected first second merged hfirst surgery
+  have hreplacementWeight :
+      EstimatingSelection.familyWeight Candidate.weight replacement =
+        merged.weight + EstimatingSelection.familyWeight Candidate.weight rest := by
+    dsimp [replacement]
+    unfold EstimatingSelection.familyWeight
+    rw [Finset.sum_insert hmergedRest]
+  have htotal :
+      EstimatingSelection.familyWeight Candidate.weight selected.family ≤
+        EstimatingSelection.familyWeight Candidate.weight replacement := by
+    rw [hreplacementWeight]
+    omega
+  have hcardFirst : (selected.family.erase first).card + 1 =
+      selected.family.card := Finset.card_erase_add_one hfirst
+  have hcardSecond : rest.card + 1 =
+      (selected.family.erase first).card := by
+    dsimp [rest]
+    exact Finset.card_erase_add_one hsecondRest
+  have hcardReplacement : replacement.card = rest.card + 1 := by
+    dsimp [replacement]
+    rw [Finset.card_insert_of_notMem hmergedRest]
+  have hcard : replacement.card < selected.family.card := by omega
+  exact EstimatingSelection.not_weight_ge_and_card_lt selected replacement
     (merge_replacement_pairwise selected first second merged hfirst hsecond surgery)
-    hweight
+    ⟨htotal, hcard⟩
 
 end Embedded
 
