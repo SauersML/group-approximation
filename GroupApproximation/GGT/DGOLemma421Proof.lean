@@ -2330,7 +2330,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         refine ⟨⟨targetN i, htargetM⟩, hmatched, ?_⟩
         exact dif_pos hpcase
       · rcases hrest with hqcase | hrest
-        · exfalso
+        ·
           rcases hqcase with ⟨i', hi', hni⟩
           by_cases hilt : i' < P.length
           · have hne : i' ≠ source i := by
@@ -2359,8 +2359,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                     by group]
                 exact hmem
               simpa only [one_mul] using hmem'
-            exact (hsourceNoSame i i' hilt hne (by rw [← hni]; exact
-              (htargetSpec i).2.1)) hconn
+            exact False.elim ((hsourceNoSame i i' hilt hne (by rw [← hni]; exact
+              (htargetSpec i).2.1)) hconn)
           · right
             refine ⟨⟨pc.length, by dsimp [M]; omega⟩, hmatched, ?_⟩
             have hieq : i' = P.length := by omega
