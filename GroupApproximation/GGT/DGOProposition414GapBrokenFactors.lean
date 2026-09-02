@@ -206,9 +206,8 @@ theorem firstBroken_sourceSpan_eq
     (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     P.span s =
-      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos
-        (HalfEntry.entrySource B.brokenAssignment.index.first
-          (B.firstSourceEntry s hs))))⁻¹ *
+      (vertex B.firstBase B.firstWord
+        (B.componentPlacement.firstPos s))⁻¹ *
         vertex B.firstBase B.firstWord
           (B.firstBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
@@ -515,7 +514,9 @@ theorem firstBrokenEntry_sourceSpan_eq
     (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     P.span s =
-      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos s))⁻¹ *
+      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos
+        (HalfEntry.entrySource B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs))))⁻¹ *
         vertex B.firstBase B.firstWord
           (B.firstBrokenEntryConnectors hs).sourceEnd := by
   let t := HalfEntry.entrySource B.brokenAssignment.index.first
