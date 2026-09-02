@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CactusConstruction
+import Mathlib.Data.List.ChainOfFn
 import GroupApproximation.GGT.HullSCRelatorWord
 
 /-!
@@ -431,25 +432,33 @@ theorem cactusBigDarts_ne_nil
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
     Z.cactusBigDarts ≠ [] := by
-  rw [cactusBigDarts, List.append_ne_nil_iff]
-  left
-  rw [cactusOuterBackwardDarts, List.ofFn_eq_nil_iff]
-  exact Nat.ne_of_gt Z.cactusShape.boundary_pos
+  intro hnil
+  have hlength := congrArg List.length hnil
+  simp only [cactusBigDarts, cactusOuterBackwardDarts,
+    List.length_append, List.length_ofFn, List.length_nil] at hlength
+  omega
 
 /-- A dart belongs to the complementary face exactly when its explicit face
 classifier is `big`. -/
 theorem faceOf_eq_bigFace_iff (S : CactusShape) (d : CactusDart S) :
     S.toCombMap.faceOf d = S.bigFace ↔ S.faceClass d = .big := by
+  change S.toCombMap.faceOf d =
+      S.toCombMap.faceOf (S.faceRepresentative .big) ↔ _
   constructor
   · intro h
-    have hi := congrArg S.faceEquiv h
-    simpa [CactusShape.bigFace, CactusShape.indexedFace,
-      S.faceEquiv_indexedFace] using hi
+    have hcycle : S.toCombMap.facePerm.SameCycle d
+        (S.faceRepresentative .big) :=
+      (S.toCombMap.faceOf_eq_iff d (S.faceRepresentative .big)).mp h
+    calc
+      S.faceClass d = S.faceClass (S.faceRepresentative .big) :=
+        OrbitClassifier.eq_of_sameCycle S.toCombMap.facePerm S.faceClass
+          S.faceClass_facePerm hcycle
+      _ = .big := S.faceClass_representative .big
   · intro h
-    apply S.faceEquiv.injective
-    change S.faceClass d = S.faceEquiv S.bigFace
-    rw [S.faceEquiv_indexedFace]
-    exact h
+    rw [S.toCombMap.faceOf_eq_iff]
+    have hcycle := S.faceRepresentative_sameCycle d
+    rw [h] at hcycle
+    exact hcycle.symm
 
 /-- Membership in the explicit list is exactly membership in the
 complementary face. -/
@@ -465,6 +474,76 @@ theorem mem_cactusBigDarts_iff
   cases d <;>
     simp [cactusBigDarts, cactusOuterBackwardDarts, cactusCellSegments,
       cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn]
+
+/-! ## Successive darts in the complementary traversal -/
+
+/-- Reversed finite indices turn an ordinary successor into a cyclic
+predecessor. -/
+theorem prevFin_rev_succ {n k : ℕ} (hk : k + 1 < n) :
+    CactusShape.prevFin n
+        (Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n)) =
+      Fin.rev (⟨k + 1, hk⟩ : Fin n) := by
+  apply (finRotate n).injective
+  rw [CactusShape.nextFin_prevFin]
+  have hmod : n - (k + 1 + 1) + 1 < n := by omega
+  apply Fin.ext
+  simp only [CactusShape.nextFin, finRotate_apply, Fin.val_add,
+    Fin.val_rev, Fin.val_mk, Fin.add_def]
+  rw [Nat.mod_eq_of_lt hmod]
+  omega
+
+/-- The cyclic predecessor of zero is the reverse of the zero index. -/
+theorem prevFin_zero_eq_rev_zero {n : ℕ} (hn : 0 < n) :
+    CactusShape.prevFin n (⟨0, hn⟩ : Fin n) =
+      Fin.rev (⟨0, hn⟩ : Fin n) := by
+  apply (finRotate n).injective
+  rw [CactusShape.nextFin_prevFin]
+  apply Fin.ext
+  simp [CactusShape.nextFin, finRotate_apply, Fin.add_def,
+    Nat.mod_eq_of_lt hn]
+
+/-- Backward outer darts follow the complementary face permutation. -/
+theorem cactusOuterBackwardDarts_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusOuterBackwardDarts.IsChain
+      (fun d e ↦ Z.cactusShape.toCombMap.facePerm d = e) := by
+  rw [cactusOuterBackwardDarts, List.isChain_ofFn]
+  intro k hk
+  have hne : Fin.rev
+      (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin Z.cactusShape.boundaryLength) ≠
+      Z.cactusShape.boundaryZero := by
+    intro hzero
+    have hval := congrArg Fin.val hzero
+    simp [CactusShape.boundaryZero] at hval
+    omega
+  rw [Z.cactusShape.facePerm_outerBackward_of_ne _ hne]
+  exact congrArg CactusDart.outerBackward (prevFin_rev_succ hk)
+
+/-- Backward darts around one relator polygon follow the complementary face
+permutation. -/
+theorem cactusRelatorBackwardDarts_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusRelatorBackwardDarts i).IsChain
+      (fun d e ↦ Z.cactusShape.toCombMap.facePerm d = e) := by
+  rw [cactusRelatorBackwardDarts, List.isChain_ofFn]
+  intro k hk
+  have hne : Fin.rev
+      (⟨k, Nat.lt_of_succ_lt hk⟩ :
+        Fin (Z.cactusShape.relatorLength i)) ≠
+      Z.cactusShape.relatorZero i := by
+    intro hzero
+    have hval := congrArg Fin.val hzero
+    simp [CactusShape.relatorZero] at hval
+    omega
+  rw [Z.cactusShape.facePerm_relatorBackward_of_ne i _ hne]
+  exact congrArg (CactusDart.relatorBackward i) (prevFin_rev_succ hk)
 
 end Lemma44OrientedRelatorDiagram
 end HullSC
