@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma49EmbeddedArc
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopy
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerCertificate
 
 /-!
@@ -102,6 +103,22 @@ theorem lemma49EmbeddedExteriorArc_of_sourceCertificate
   exact HullSC.exists_lemma49EmbeddedExteriorArc Z hinput
     C.contiguity htarget hboundary hmu
     hlarge harcs'
+
+/-- A source certificate whose selected region admits a planar face-deletion
+schedule produces the same cyclic exterior-arc object. -/
+theorem lemma49EmbeddedExteriorArc_of_sourceCertificate_of_peeling
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps rho : ℕ} {mu : ℝ}
+    {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n}
+    (hinput : RelWord.IsLemma49Input D
+      (RelWord.symmetrized v) eps mu rho)
+    (C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z)
+    (hmu : 0 ≤ mu)
+    (peeling : Embedded.FaceSetBoundaryPeeling C.contiguity.boundary) :
+    Nonempty (HullSC.Lemma49EmbeddedExteriorArc D v g n eps mu Z) := by
+  apply lemma49EmbeddedExteriorArc_of_sourceCertificate hinput C hmu
+  exact peeling.to_homotopy
 
 end VanKampen
 end GGT
