@@ -472,7 +472,8 @@ theorem innerFace_presentedValue_eq_one
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
     | nil => rfl
-    | cons u us ih => simp only [List.map_cons, hletter u, ih]
+    | cons u us ih =>
+        rw [List.map_cons, List.map_cons, hletter u, ih]
   calc
     (List.map ((fun d ↦ presentedLetterValue T d) ∘ signedFreeRelLetter)
         (TriangularHodgeLayer.letters (T j))).prod =
@@ -483,7 +484,10 @@ theorem innerFace_presentedValue_eq_one
       apply congrArg List.prod
       induction TriangularHodgeLayer.letters (T j) with
       | nil => rfl
-      | cons u us ih => simp only [List.map_cons, Function.comp_apply, ih]
+      | cons u us ih =>
+          simp only [List.map_cons, Function.comp_apply]
+          exact congrArg (List.cons
+            (presentedLetterValue T (signedFreeRelLetter u))) ih
     _ = ((TriangularHodgeLayer.letters (T j)).map
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T))).prod := by
       rw [hmap]
@@ -503,6 +507,7 @@ theorem pathValue_erase_innerFace
     have hmap : (Delta.faceBoundary f).darts.map
         (fun d ↦ presentedLetterValue T (Delta.label d)) =
         (Delta.faceWord f).map (presentedLetterValue T) := by
+      rw [DiscDiagram.faceWord]
       induction (Delta.faceBoundary f).darts with
       | nil => rfl
       | cons d ds ih => simp only [List.map_cons, ih]
