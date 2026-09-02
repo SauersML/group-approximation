@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerAdapter
 
 /-!
@@ -34,36 +35,26 @@ def HullLemma49SourceFacePastingStatement : Prop :=
     Nonempty (GGT.VanKampen.Embedded.FaceSetBoundaryPeeling
       C.contiguity.boundary)
 
-/-- The vk peeling callback is exactly the certificate needed by the source-face
-pasting step.  Keeping this adapter at the certificate boundary lets the
-relative disc realization supply the callback without exposing its schedule
-construction here. -/
-theorem hullLemma49SourceFacePastingStatement_of_faceSetBoundaryPeeling
-    (hpeeling :
+/-- The planar one-step certificate is exactly the geometric input needed by
+the source-face pasting step.  The vk conversion
+`faceSetBoundaryPeelWitness_of_planar` supplies the oracle witness, and the
+finite face-count induction supplies the complete peeling. -/
+theorem hullLemma49SourceFacePastingStatement_of_planar
+    (hplanar :
       ∀ {G : Type u} [Group G] {Lambda : Type w}
         {W : Set (List (GGT.RelLetter G Lambda))}
         {Delta : GGT.VanKampen.DiscDiagram.{u, w, 0} W}
         {faces : Finset Delta.toCombMap.Face}
         (boundary : GGT.VanKampen.Embedded.FaceSetBoundary Delta faces),
-        GGT.VanKampen.Embedded.FaceSetBoundaryPeeling boundary) :
+        GGT.VanKampen.Embedded.PlanarFacePeelCertificate boundary) :
     HullLemma49SourceFacePastingStatement.{u, w} := by
   intro G _ Lambda D v g n eps mu Z C
-  exact ⟨hpeeling C.contiguity.boundary⟩
-
-/-- The currently landed vk theorem has an explicit one-step oracle.  This
-bridge keeps that oracle visible and applies
-`faceSetBoundaryPeeling_of_faceSetBoundary` at the selected certificate. -/
-theorem hullLemma49SourceFacePastingStatement_of_vkFaceSetBoundaryPeeling
-    (horacle :
-      ∀ {G : Type u} [Group G] {Lambda : Type w}
-        {W : Set (List (GGT.RelLetter G Lambda))}
-        {Delta : GGT.VanKampen.DiscDiagram.{u, w, 0} W},
-        GGT.VanKampen.Embedded.FaceSetBoundaryPeelOracle
-          (Delta := Delta)) :
-    HullLemma49SourceFacePastingStatement.{u, w} := by
-  intro G _ Lambda D v g n eps mu Z C
-  exact ⟨GGT.VanKampen.Embedded.faceSetBoundaryPeeling_of_faceSetBoundary
-    C.contiguity.boundary (horacle (Delta := C.diagram))⟩
+  refine ⟨?_⟩
+  apply GGT.VanKampen.Embedded.faceSetBoundaryPeeling_of_faceSetBoundary_of_oracle
+    C.contiguity.boundary
+  intro faces boundary
+  exact GGT.VanKampen.Embedded.faceSetBoundaryPeelWitness_of_planar boundary
+    (hplanar boundary)
 
 /-- The source face-pasting certificate gives the embedded exterior arc used
 by the cyclic correction lemmas. -/
