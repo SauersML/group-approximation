@@ -99,9 +99,9 @@ def KernelConeLocalFinitenessStatement : Prop :=
 
 /-! ## Canonical quotient assembly -/
 
+set_option maxHeartbeats 600000 in
 /-- Greendlinger certificates together with the two exact kernel-cone
 estimates imply Hull's canonical quotient statement. -/
-set_option maxHeartbeats 600000 in
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
     (hgeom : RelativeGreendlingerStatement.{u, 0})
     (hkernel : KernelGeodesicEstimateStatement.{u})
