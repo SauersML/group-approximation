@@ -432,6 +432,36 @@ noncomputable def interiorIncidenceEquiv
   left_inv := taggedToInteriorIncidence_leftInverse selected
   right_inv := taggedToInteriorIncidence_rightInverse selected
 
+/-- A source incidence has the length of the candidate's source arc. -/
+theorem CellIncidence.source_arc_length
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i) :
+    (CellIncidence.source candidate mem_selected source_eq).arc.length =
+      candidate.contiguity.sourceArc.length := by
+  cases source_eq
+  rfl
+
+/-- A target incidence has the length of the candidate's target arc. -/
+theorem CellIncidence.target_arc_length
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (target_eq : candidate.contiguity.target = some i) :
+    (CellIncidence.target candidate mem_selected target_eq).arc.length =
+      candidate.contiguity.targetArc.length := by
+  unfold CellIncidence.arc
+  rfl
+
 /-! ## Exterior regions -/
 
 /-- A selected region from one fixed relator cell to the outer boundary. -/
