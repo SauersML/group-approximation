@@ -433,7 +433,7 @@ theorem no_positive_rCells_emptyFamily
     ¬ 0 < Delta.rCellCount := by
   intro hpos
   rw [DiscDiagram.rCellCount, List.length_pos_iff] at hpos
-  obtain ⟨C, cells, hsplit⟩ := List.exists_cons_of_length_pos hpos
+  obtain ⟨C, cells, hsplit⟩ := List.exists_cons_of_ne_nil hpos
   have hmem : C ∈ Delta.relatorCells := by
     rw [hsplit]
     exact List.mem_cons_self
@@ -455,8 +455,9 @@ theorem estimatingPieceConstruction_emptyFamilyModel
   intro edge
   have hmem : edge.candidate ∈ scaffold.selected.family :=
     edge.candidate_mem
-  rw [hempty] at hmem
-  exact (Finset.not_mem_empty _ hmem).elim
+  have hmem' : edge.candidate ∈
+      (∅ : Finset (Candidate D eps Delta)) := hempty ▸ hmem
+  exact (Finset.not_mem_empty _ hmem').elim
 
 /-- The selection component is vacuous on the empty family whenever the
 positive-cell diagram hypothesis is supplied. -/
