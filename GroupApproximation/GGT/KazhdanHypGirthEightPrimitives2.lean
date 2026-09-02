@@ -72,6 +72,7 @@ by one literal position of one defining triangle.  This is precisely the
 bookkeeping extracted from `TriangleFacePositions`; it contains no
 nonbacktracking assumption. -/
 structure VertexCornerCertificate
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     {M : VanKampen.CombMap.{0}} {v : M.Vertex}
     (C : CyclicCornerEnumeration M v) where
   /-- Presentation-link label on each map dart. -/
@@ -93,12 +94,12 @@ variable {M : VanKampen.CombMap.{0}} {v : M.Vertex}
   {C : CyclicCornerEnumeration M v}
 
 /-- Presentation-link vertex at a cyclic corner. -/
-def linkVertex (K : VertexCornerCertificate C) (i : ℕ) :
+def linkVertex (K : VertexCornerCertificate T C) (i : ℕ) :
     TriangularHodgeLayer.SignedGenerator Generator :=
   K.dartLabel (C.dart i)
 
 /-- Link labels inherit periodicity from the cyclic dart enumeration. -/
-theorem periodic (K : VertexCornerCertificate C) (i : ℕ) :
+theorem periodic (K : VertexCornerCertificate T C) (i : ℕ) :
     K.linkVertex (i + M.vertexDegree v) = K.linkVertex i := by
   exact congrArg K.dartLabel (C.periodic i)
 
@@ -110,7 +111,7 @@ the cyclic link walk never immediately traverses an edge and its reverse. -/
 abbrev CellularReducedAt
     {M : VanKampen.CombMap.{0}} {v : M.Vertex}
     {C : CyclicCornerEnumeration M v}
-    (K : VertexCornerCertificate C) : Prop :=
+    (K : VertexCornerCertificate T C) : Prop :=
   ∀ i, K.linkVertex i ≠ K.linkVertex (i + 2)
 
 /-- A positive period and the no-mirror condition force at least three
@@ -139,7 +140,7 @@ the exact `PresentationLinkWalk` consumed by
 noncomputable def presentationLinkWalk_of_cellularReduced
     {M : VanKampen.CombMap.{0}} {v : M.Vertex}
     (C : CyclicCornerEnumeration M v)
-    (K : VertexCornerCertificate C) (hred : CellularReducedAt K) :
+    (K : VertexCornerCertificate T C) (hred : CellularReducedAt K) :
     PresentationLinkWalk T (M.vertexDegree v) where
   vertex := K.linkVertex
   periodic := K.periodic
@@ -166,7 +167,7 @@ noncomputable def localData_of_cellularReduced
       2 ≤ Delta.toCombMap.vertexDegree v)
     (corner : ∀ v, CyclicCornerEnumeration Delta.toCombMap v)
     (certificate : ∀ v, v ∉ discOuterBoundaryVertices Delta →
-      VertexCornerCertificate (corner v))
+      VertexCornerCertificate T (corner v))
     (cellularReduced : ∀ v (hv : v ∉ discOuterBoundaryVertices Delta),
       CellularReducedAt (certificate v hv)) :
     TriangularDiagramLocalData T Delta where
@@ -1007,7 +1008,7 @@ structure PowerDiscSphereGluing (D : PowerDisc T g n) where
   /-- Cyclic corners of the glued map. -/
   cornerCycle : ∀ v, CyclicCornerEnumeration sphere.toCombMap v
   /-- Literal presentation-link labels at glued corners. -/
-  cornerCertificate : ∀ v, VertexCornerCertificate (cornerCycle v)
+  cornerCertificate : ∀ v, VertexCornerCertificate T (cornerCycle v)
   /-- Least-area seam reduction rules out mirror corner pairs. -/
   cellularReduced : ∀ v, CellularReducedAt (cornerCertificate v)
 
@@ -1020,7 +1021,7 @@ noncomputable def powerDiscSphereGluing_of_seam
     (S : VanKampen.SeamGluing.Pairing D.diagram n)
     (hS : S.Spherical)
     (certificate : ∀ v,
-      VertexCornerCertificate (cornerCycleOfCombMap S.closedMap v))
+      VertexCornerCertificate T (cornerCycleOfCombMap S.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (certificate v)) :
     PowerDiscSphereGluing D where
   sphere := S.sphericalCombMap hS
