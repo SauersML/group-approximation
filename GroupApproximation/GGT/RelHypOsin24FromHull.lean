@@ -75,9 +75,8 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
   obtain ⟨D, eps, rho, mu, ht, hmu, hgood⟩ :=
     hquot hG A N hN S hS t R
   obtain ⟨u, hu, v, hval, hsc⟩ :=
-    HullSC.AuxiliaryPeripheralFamily.
-      exists_auxiliaryRelatorOfBaseLetterPublished_exact
-        D hN t ht eps rho mu hmu
+    HullSC.AuxiliaryPeripheralFamily.exists_auxiliaryRelatorOfBaseLetterPublished_exact
+      D hN t ht eps rho mu hmu
   obtain ⟨Q⟩ := hgood (HullSC.RelWord.symmetrized v) v
     (HullSC.RelWord.self_mem_symmetrized v) hsc
   have hrel : Q.q (t⁻¹ * u) = 1 := by
