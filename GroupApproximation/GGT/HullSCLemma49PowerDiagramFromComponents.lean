@@ -29,6 +29,8 @@ introduced here.
 namespace GroupApproximation
 namespace HullSC
 
+open GroupApproximation.Manuscript.NonMF.TorsionFree
+
 universe u w
 
 /-! ## The injectivity callback at the restricted statement -/
