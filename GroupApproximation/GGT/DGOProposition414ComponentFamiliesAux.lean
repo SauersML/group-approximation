@@ -319,7 +319,9 @@ theorem firstGapArcSource_fullComponent
         omega
       have htArc : i - 1 <
           (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-            (B.firstGapFinishSide j)).length := by omega
+            (B.firstGapFinishSide j)).length := by
+        have hlocalLen := hlocalComp.2.1
+        omega
       have hrCycle : (B.firstGapLeft j).length + (i - 1) < cycle.length := by
         rw [hteq']
         exact ht
@@ -336,8 +338,15 @@ theorem firstGapArcSource_fullComponent
         (orientedSegment B.chord (B.firstGapChordStart j)
           (B.firstGapChordFinish j)) (i - 1)
         htArc hrCycle).mp (by
+          change ((auxiliaryCycleWord (B.firstGapLeft j)
+            (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+              (B.firstGapFinishSide j)) (B.firstGapRight j)
+            (orientedSegment B.chord (B.firstGapChordStart j)
+              (B.firstGapChordFinish j))[
+                (B.firstGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
+            (P.label s)
           simpa only [hteq'] using hcycleLetter)
-      exact hlocalComp.2.2.2.1 (i - 1) (by omega) hletter
+      exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
     · have hi0 : i = 0 := by omega
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.first j = none
@@ -375,7 +384,6 @@ theorem firstGapArcSource_fullComponent
             (B.firstTargetSide (HalfEntry.entrySource
               B.brokenAssignment.index.first e)) + 1 =
             B.firstArcCut (B.firstGapStartSide j) := by
-          rw [hprevSide]
           rw [← hprevSide, (B.firstArcCut_target heTarget).2]
         have hprevLetter :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
@@ -584,7 +592,9 @@ theorem secondGapArcSource_fullComponent
         omega
       have htArc : i - 1 <
           (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
-            (B.secondGapFinishSide j)).length := by omega
+            (B.secondGapFinishSide j)).length := by
+        have hlocalLen := hlocalComp.2.1
+        omega
       have hrCycle : (B.secondGapLeft j).length + (i - 1) < cycle.length := by
         rw [hteq']
         exact ht
@@ -601,8 +611,15 @@ theorem secondGapArcSource_fullComponent
         (orientedSegment B.chord (B.secondGapChordStart j)
           (B.secondGapChordFinish j)) (i - 1)
         htArc hrCycle).mp (by
+          change ((auxiliaryCycleWord (B.secondGapLeft j)
+            (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+              (B.secondGapFinishSide j)) (B.secondGapRight j)
+            (orientedSegment B.chord (B.secondGapChordStart j)
+              (B.secondGapChordFinish j))[
+                (B.secondGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
+            (P.label s)
           simpa only [hteq'] using hcycleLetter)
-      exact hlocalComp.2.2.2.1 (i - 1) (by omega) hletter
+      exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
     · have hi0 : i = 0 := by omega
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.second j = none
@@ -640,7 +657,6 @@ theorem secondGapArcSource_fullComponent
             (B.secondTargetSide (HalfEntry.entrySource
               B.brokenAssignment.index.second e)) + 1 =
             B.secondArcCut (B.secondGapStartSide j) := by
-          rw [hprevSide]
           rw [← hprevSide, (B.secondArcCut_target heTarget).2]
         have hprevLetter :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
