@@ -432,12 +432,14 @@ theorem secondArc_offTarget_source_or_trivial
               rw [hsource]
               omega)
           have hedge := P.target_edge (B.secondArcSource s) hparent
+          have hright := B.secondVertex_mem.2
           omega
         subst s
+        simp only [secondArcSource,
+          if_pos (show 0 < n - B.secondSide by omega), Nat.add_zero] at hinside
         have hvertex : B.secondVertex = P.cut (B.secondSide + 1) := by
           have hright := B.secondVertex_mem.2
-          simpa only [secondArcSource, if_pos (show 0 < n - B.secondSide by
-            omega), Nat.add_zero] using le_antisymm hright hinside.2
+          exact le_antisymm hright hinside.2
         rw [B.secondArcCut_zero,
           B.secondArcCut_of_pos_le_tail (by omega) (by omega), hvertex,
           Nat.sub_self]
@@ -452,9 +454,9 @@ theorem secondArc_offTarget_source_or_trivial
           have hmono := P.polygonCut.mono_le
             (show B.secondArcSource s + 1 ≤ B.firstSide by omega)
           have hedge := P.target_edge (B.secondArcSource s) hparent
+          have hleft := B.firstVertex_mem.1
           omega
         have hsLast : s = (n - B.secondSide) + B.firstSide := by
-          rw [hsource, hsourceEq]
           omega
         have hvertex : B.firstVertex = P.cut B.firstSide := by
           have hleft := B.firstVertex_mem.1
@@ -547,7 +549,8 @@ theorem secondArc_quasi
             omega), Nat.add_zero]
           have hvertex := B.secondVertex_mem.1
           omega
-        · have hcut := B.secondArcCut_of_pos_le_tail hs0 (by omega)
+        · have hcut := B.secondArcCut_of_pos_le_tail (s := s)
+            (by omega) (by omega)
           rw [hcut] at hp
           have hvertex := B.secondVertex_mem.2.trans
             (P.polygonCut.mono_le (show B.secondSide + 1 ≤
@@ -607,6 +610,7 @@ theorem secondArc_quasi
         · have hsLast : s =
               (n - B.secondSide) + B.firstSide := by omega
           rw [hsLast, B.secondArcCut_finish] at hq
+          rw [hlast]
           have hvertex := B.firstVertex_mem.2
           dsimp [suffix]
           omega
