@@ -262,6 +262,73 @@ theorem wordDist_mul_map_boundaryArc_prefixQuotient_le
       wordDist_one_left _ _
     _ ≤ 2 * eps + 1 := hbound
 
+/-! ## Certificate-selected prefix shortcuts -/
+
+/-- A Greendlinger certificate selects an exterior arc that is strictly
+longer than its cut replacement and whose image has uniformly bounded norm in
+the prefix quotient.  This combines the geometric conclusion used in the
+Dehn induction with the bounded shortcut used in Osin Lemma 5.1. -/
+theorem exists_short_prefixQuotient_arc_of_certificate
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps rho : ℕ} {mu : ℝ}
+    {Z : RelativeReducedDiagram D W R}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (K : RelativeDiagramCertificate D W eps mu Z)
+    (q : G →* Q) (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
+    ∃ (i : Fin Z.cells.length)
+      (C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)),
+      K.contiguity i = some C ∧
+        C.replacementWord.length < C.boundaryArc.length ∧
+          wordNorm (D.prefixQuotient W hsc.toIsSmallCancellation q hq).alphabet.carrier
+            (q C.boundaryArc.prod) ≤ 2 * eps + 1 := by
+  obtain ⟨i, C, hcontiguity, hshort⟩ :=
+    replacementWord_length_lt_boundaryArc_of_certificate D hsc hmu hrho K
+  have hkill : q (GGT.RelLetter.listVal (K.cellLabel i)) = 1 := by
+    apply MonoidHom.mem_ker.mp
+    rw [hker]
+    exact Subgroup.subset_normalClosure
+      ⟨K.cellLabel i, K.cellLabel_mem i, rfl⟩
+  refine ⟨i, C, hcontiguity, hshort, ?_⟩
+  exact C.wordNorm_map_boundaryArc_prefixQuotient_le hsc.toIsSmallCancellation
+    (K.cellLabel_mem i) q hq hkill
+
+/-- The selected prefix shortcut remains uniformly bounded after translating
+its endpoints by an arbitrary quotient element. -/
+theorem exists_short_prefixQuotient_arc_distance_of_certificate
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps rho : ℕ} {mu : ℝ}
+    {Z : RelativeReducedDiagram D W R}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (K : RelativeDiagramCertificate D W eps mu Z)
+    (q : G →* Q) (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) (x : Q) :
+    ∃ (i : Fin Z.cells.length)
+      (C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)),
+      K.contiguity i = some C ∧
+        C.replacementWord.length < C.boundaryArc.length ∧
+          wordDist (D.prefixQuotient W hsc.toIsSmallCancellation q hq).alphabet.carrier x
+            (x * q C.boundaryArc.prod) ≤ 2 * eps + 1 := by
+  obtain ⟨i, C, hcontiguity, hshort, _⟩ :=
+    exists_short_prefixQuotient_arc_of_certificate D hsc hmu hrho K q hq hker
+  have hkill : q (GGT.RelLetter.listVal (K.cellLabel i)) = 1 := by
+    apply MonoidHom.mem_ker.mp
+    rw [hker]
+    exact Subgroup.subset_normalClosure
+      ⟨K.cellLabel i, K.cellLabel_mem i, rfl⟩
+  refine ⟨i, C, hcontiguity, hshort, ?_⟩
+  exact C.wordDist_mul_map_boundaryArc_prefixQuotient_le
+    hsc.toIsSmallCancellation
+    (K.cellLabel_mem i) q hq hkill x
+
 end RelativeBoundaryContiguity
 end HullSC
 end GroupApproximation
