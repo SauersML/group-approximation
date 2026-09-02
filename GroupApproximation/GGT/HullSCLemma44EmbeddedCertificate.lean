@@ -56,6 +56,15 @@ private theorem dartWord_reverse_alpha_for_arc
   intro d hd
   exact Delta.label_alpha d
 
+private theorem dartWord_append_for_arc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, 0} W}
+    (first second : List Delta.toCombMap.Dart) :
+    Embedded.dartWord Delta (first ++ second) =
+      Embedded.dartWord Delta first ++ Embedded.dartWord Delta second := by
+  simp only [Embedded.dartWord, List.map_append]
+
 private theorem targetBoundaryDarts_eq_darts_for_none
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -85,14 +94,18 @@ private theorem arcs_value_of_cycle_value_one
             (Embedded.targetBoundaryDarts Delta C.target C.targetArc)) *
         GGT.RelLetter.listVal (Embedded.dartWord Delta C.leftSide) := by
   rw [C.boundary_decomposition] at hcycle
-  simp only [Embedded.dartWord, List.map_append,
-    RelWord.listVal_append, RelWord.listVal_append,
-    RelWord.listVal_append] at hcycle
+  rw [dartWord_append_for_arc, dartWord_append_for_arc,
+    dartWord_append_for_arc, RelWord.listVal_append,
+    RelWord.listVal_append, RelWord.listVal_append] at hcycle
   have hreverse :
       GGT.RelLetter.listVal
           (Embedded.dartWord Delta C.sourceArc.reverseDarts) =
         (GGT.RelLetter.listVal
           (Embedded.dartWord Delta C.sourceArc.darts))⁻¹ := by
+    change GGT.RelLetter.listVal
+        (Embedded.dartWord Delta
+          (C.sourceArc.darts.reverse.map Delta.toCombMap.alpha)) =
+      _
     rw [dartWord_reverse_alpha_for_arc, RelWord.listVal_revInv]
   rw [hreverse] at hcycle
   calc
@@ -215,101 +228,6 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
         C.region.leftSide_length_le
     exterior_value := hsourceValue' }
   exact B0
-
-/-! ## Certificate assembly -/
-
-/-- A single embedded boundary contiguity becomes a certificate at the
-corresponding algebraic cell. -/
-noncomputable def RelativeDiagramCertificate.of_embeddedData_at_zero
-    {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {mu : ℝ}
-    {R : ℕ} (Z : RelativeReducedDiagram D W R)
-    (hreal : RelativeDiscRealization D W Z)
-    {i : Fin hreal.diagram.rCellCount}
-    (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
-    (data : EmbeddedBoundaryCertificateData Z C)
-    (j : Fin Z.cells.length)
-    (hji : hreal.cellIndex j = C.region.source)
-    (hstart : C.region.sourceArc.start.1 = 0)
-    (hmu : 0 ≤ mu)
-    (hlarge : (1 - 13 * mu) *
-        ((Embedded.cell hreal.diagram i).word.length : ℝ) <
-        (C.region.sourceArc.length : ℝ)) :
-    RelativeDiagramCertificate D W eps mu Z := by
-  have hword : (Embedded.cell hreal.diagram C.region.source).word =
-      (Z.cells.get j).relator := by
-    have hword' : (Embedded.cell hreal.diagram (hreal.cellIndex j)).word =
-        (Z.cells.get j).relator := hreal.cellWord_eq j
-    rw [hji] at hword'
-    exact hword'
-  have hrot : C.region.sourceArc.rotated =
-      Embedded.cellDarts hreal.diagram C.region.source := by
-    simp only [Embedded.CyclicArc.rotated, hstart, List.drop_zero,
-      List.take_zero, List.nil_append, List.append_nil]
-  have hrelatorEq :
-      Embedded.dartWord hreal.diagram C.region.sourceArc.rotated =
-        (Z.cells.get j).relator := by
-    rw [hrot, Embedded.dartWord_cellDarts hreal.diagram C.region.source]
-    exact hword
-  let Brot : RelativeBoundaryContiguity D eps Z.boundaryWord
-      (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated) :=
-    RelativeBoundaryContiguity.of_embeddedData Z hreal C data
-  let B : RelativeBoundaryContiguity D eps Z.boundaryWord
-      (Z.cells.get j).relator := hrelatorEq ▸ Brot
-  have hcellLength : (Z.cells.get j).relator.length =
-      C.region.sourceArc.length := by
-    have hcycleLength :
-        (Embedded.cellDarts hreal.diagram C.region.source).length =
-          C.region.sourceArc.length := by
-      have h := C.region.sourceArc.rotated_length
-      rw [hrot] at h
-      exact h
-    have hsourceLength :
-        (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated).length =
-          C.region.sourceArc.length := by
-      simpa only [Embedded.dartWord, List.length_map] using hcycleLength
-    exact (congrArg List.length hrelatorEq).symm.trans hsourceLength
-  have hlarge' : (1 - 23 * mu) *
-      ((Z.cells.get j).relator.length : ℝ) ≤
-      (B.exterior.length : ℝ) := by
-    have hsourceLength' : B.exterior.length =
-        C.region.sourceArc.length := by
-      dsimp [B]
-      cases hrelatorEq
-      simp only [Embedded.dartWord, List.length_map,
-        C.region.sourceArc.darts_length]
-    rw [hsourceLength', hcellLength]
-    have hcoeff : 1 - 23 * mu ≤ 1 - 13 * mu := by linarith
-    have hnonneg : (0 : ℝ) ≤ (Z.cells.get j).relator.length := by
-      positivity
-    have hcoeffMul := mul_le_mul_of_nonneg_right hcoeff hnonneg
-    have hlargeSource : (1 - 13 * mu) *
-        ((Embedded.cell hreal.diagram C.region.source).word.length : ℝ) <
-        (C.region.sourceArc.length : ℝ) := by
-      simpa only [C.source_eq] using hlarge
-    have hlengthSource : (Embedded.cell hreal.diagram C.region.source).word.length =
-        (Z.cells.get j).relator.length := by
-      exact congrArg List.length hword
-    rw [hlengthSource] at hlargeSource
-    linarith
-  let labels : Fin Z.cells.length → List (GGT.RelLetter G Lambda) :=
-    fun l => (Z.cells.get l).relator
-  let options : ∀ l : Fin Z.cells.length,
-      Option (RelativeBoundaryContiguity D eps Z.boundaryWord (labels l)) :=
-    fun l => if hl : l = j then some (hl ▸ B) else none
-  refine {
-    boundaryWord := Z.boundaryWord
-    boundaryWord_eq := rfl
-    cellLabel := labels
-    cellLabel_eq := fun l => rfl
-    cellLabel_mem := fun l => (Z.cells.get l).relator_mem
-    contiguity := options
-    largeCell := ?_ }
-  refine ⟨j, B, ?_, ?_⟩
-  · dsimp [options]
-    simp
-  · simpa only [labels] using hlarge'
 
 end HullSC
 end GroupApproximation
