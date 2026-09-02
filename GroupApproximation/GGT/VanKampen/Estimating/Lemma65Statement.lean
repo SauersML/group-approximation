@@ -48,6 +48,7 @@ namespace GGT
 namespace VanKampen
 namespace Embedded
 
+open GroupApproximation.HullSC
 open scoped BigOperators
 
 universe u w v
