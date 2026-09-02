@@ -436,8 +436,8 @@ noncomputable def interiorIncidenceEquiv
 length. -/
 theorem CyclicArc.cast_length
     {Dart : Type v} {first second : List Dart}
-    (h : CyclicArc first = CyclicArc second) (arc : CyclicArc first) :
-    (cast h arc).length = arc.length := by
+    (h : first = second) (arc : CyclicArc first) :
+    (cast (congrArg CyclicArc h) arc).length = arc.length := by
   cases h
   rfl
 
@@ -468,8 +468,12 @@ theorem CellIncidence.target_arc_length
     (target_eq : candidate.contiguity.target = some i) :
     (CellIncidence.target candidate mem_selected target_eq).arc.length =
       candidate.contiguity.targetArc.length := by
+  have hcarrier : targetDarts Delta candidate.contiguity.target =
+      cellDarts Delta i := by
+    rw [target_eq]
+    rfl
   simp only [CellIncidence.arc]
-  exact CyclicArc.cast_length _ _
+  exact CyclicArc.cast_length hcarrier candidate.contiguity.targetArc
 
 /-! ## Exterior regions -/
 
