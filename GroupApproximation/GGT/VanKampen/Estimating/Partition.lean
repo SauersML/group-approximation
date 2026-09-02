@@ -559,6 +559,64 @@ noncomputable def kindLength
     (partition : CellBoundaryPartition selected i) (kind : CellArcKind) : ℕ :=
   (Finset.univ.filter fun position => (partition.classify position).kind = kind).card
 
+/-- The cardinality of the classified-position subtype is the corresponding
+filtered length. -/
+theorem card_classifiedPosition_eq_kindLength
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (partition : CellBoundaryPartition selected i) (kind : CellArcKind) :
+    Fintype.card (ClassifiedPosition partition kind) =
+      partition.kindLength kind := by
+  classical
+  let classifiedFinset := Finset.univ.filter fun position =>
+    (partition.classify position).kind = kind
+  let positionEquiv : ClassifiedPosition partition kind ≃
+      {position : Fin (cellDarts Delta i).length //
+        position ∈ classifiedFinset} :=
+    (Equiv.refl _).subtypeEquiv fun position => by
+      simp only [ClassifiedPosition, classifiedFinset, Finset.mem_filter,
+        Finset.mem_univ, true_and]
+  calc
+    Fintype.card (ClassifiedPosition partition kind) =
+        Fintype.card {position : Fin (cellDarts Delta i).length //
+          position ∈ classifiedFinset} :=
+      Fintype.card_congr positionEquiv
+    _ = classifiedFinset.card := Fintype.card_coe classifiedFinset
+    _ = partition.kindLength kind := by rfl
+
+/-- With unique positioned incidences, the canonical length of every
+non-unbound kind is the sum of the stored cyclic arc lengths of its
+incidences. -/
+theorem canonical_kindLength_eq_sum_arcLength
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (hunique : IncidencePositionUnique selected)
+    (i : Fin Delta.rCellCount) (kind : CellArcKind)
+    (hkind : kind ≠ CellArcKind.unbound) :
+    (canonical selected i).kindLength kind =
+      ∑ incidence : CellIncidence.OfKind
+          (selected := selected) (i := i) kind,
+        incidence.1.arc.length := by
+  calc
+    (canonical selected i).kindLength kind =
+        Fintype.card (ClassifiedPosition (canonical selected i) kind) :=
+      (card_classifiedPosition_eq_kindLength (canonical selected i) kind).symm
+    _ = Fintype.card
+        (CellIncidence.Occurrence (selected := selected) (i := i) kind) :=
+      (Fintype.card_congr
+        (occurrenceEquivClassifiedPosition selected hunique i kind hkind)).symm
+    _ = ∑ incidence : CellIncidence.OfKind
+          (selected := selected) (i := i) kind,
+        incidence.1.arc.length :=
+      CellIncidence.card_occurrence_eq_sum_arcLength kind
+
 /-- The three classifications partition the number of actual dart positions. -/
 theorem cellDarts_length_eq_kindLengths
     {G : Type u} [Group G] {Lambda : Type w}
