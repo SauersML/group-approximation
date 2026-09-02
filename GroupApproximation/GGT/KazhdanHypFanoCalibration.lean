@@ -21,11 +21,11 @@ adds the three edges `(x,y^-1)`, `(y,z^-1)`, `(z,x^-1)`.  For the triples
 above, the three directed differences are `1`, `2` and `4`, so the link is the
 incidence graph of the order-two cyclic projective plane, the Heawood graph.
 
-The file proves all finite incidence and link identities by kernel evaluation,
-then feeds the resulting `ProjectivePlaneData` to the rational Gram certificate
-of `GGT/KazhdanHypLinkGap.lean`.  The certified rational gap is `19/36`, which
-is strictly above Zuk's `1/2` threshold, so the presented group has the exact
-repository predicate `HasKazhdanPropertyT.{0,0}`.
+The file proves all finite incidence and link identities by exact finite-sum
+identities, then feeds the resulting `ProjectivePlaneData` to the rational
+Gram certificate of `GGT/KazhdanHypLinkGap.lean`.  The certified rational gap
+is `19/36`, which is strictly above Zuk's `1/2` threshold, so the presented
+group has the exact repository predicate `HasKazhdanPropertyT.{0,0}`.
 
 This is a calibration object rather than the hyperbolic witness sought by
 `Hyperbolic.SharpExistence`.  Its Heawood link has girth six: the final section
@@ -87,33 +87,154 @@ in the perfect difference set `{1,2,4}`. -/
 def fanoIncidence (x y : ZMod 7) : ℚ :=
   if y - x ∈ fanoDifferenceSet then 1 else 0
 
+/-- The three offsets in the order-two difference set are pairwise distinct. -/
+@[simp] theorem fano_one_ne_two : (1 : ZMod 7) ≠ 2 := by decide
+
+@[simp] theorem fano_two_ne_one : (2 : ZMod 7) ≠ 1 := Ne.symm fano_one_ne_two
+
+@[simp] theorem fano_one_ne_four : (1 : ZMod 7) ≠ 4 := by decide
+
+@[simp] theorem fano_four_ne_one : (4 : ZMod 7) ≠ 1 := Ne.symm fano_one_ne_four
+
+@[simp] theorem fano_two_ne_four : (2 : ZMod 7) ≠ 4 := by decide
+
+@[simp] theorem fano_four_ne_two : (4 : ZMod 7) ≠ 2 := Ne.symm fano_two_ne_four
+
+/-- Incidence is the sum of the three Kronecker entries with cyclic offsets
+`1`, `2`, and `4`.  This form lets the finite sums below use the ordinary
+one-point sum lemmas instead of evaluating a `ZMod` enumeration. -/
+theorem fanoIncidence_cornerExpansion (x y : ZMod 7) :
+    fanoIncidence x y =
+      (if y = x + 1 then 1 else 0) +
+        (if y = x + 2 then 1 else 0) +
+          (if y = x + 4 then 1 else 0) := by
+  by_cases h1 : y = x + 1
+  · subst y
+    simp [fanoIncidence, fanoDifferenceSet]
+  · by_cases h2 : y = x + 2
+    · subst y
+      simp [fanoIncidence, fanoDifferenceSet] at h1 ⊢
+    · by_cases h4 : y = x + 4
+      · subst y
+        simp [fanoIncidence, fanoDifferenceSet] at h1 h2 ⊢
+      · have hy1 : y - x ≠ (1 : ZMod 7) := by
+          intro h
+          apply h1
+          calc
+            y = (y - x) + x := (sub_add_cancel y x).symm
+            _ = 1 + x := by rw [h]
+            _ = x + 1 := add_comm _ _
+        have hy2 : y - x ≠ (2 : ZMod 7) := by
+          intro h
+          apply h2
+          calc
+            y = (y - x) + x := (sub_add_cancel y x).symm
+            _ = 2 + x := by rw [h]
+            _ = x + 2 := add_comm _ _
+        have hy4 : y - x ≠ (4 : ZMod 7) := by
+          intro h
+          apply h4
+          calc
+            y = (y - x) + x := (sub_add_cancel y x).symm
+            _ = 4 + x := by rw [h]
+            _ = x + 4 := add_comm _ _
+        simp [fanoIncidence, fanoDifferenceSet, h1, h2, h4, hy1, hy2, hy4]
+
+/-- A Kronecker function on the finite cyclic group has total mass one. -/
+theorem fanoCorner_sum (a : ZMod 7) :
+    (∑ y : ZMod 7, if y = a then (1 : ℚ) else 0) = 1 := by
+  classical
+  simp
+
 /-- Every point is incident to three lines. -/
 theorem fanoIncidence_rowSum :
     ∀ x : ZMod 7, ∑ y, fanoIncidence x y = 3 := by
+  classical
   intro x
-  fin_cases x <;> decide
+  simp_rw [fanoIncidence_cornerExpansion]
+  simp only [Finset.sum_add_distrib, fanoCorner_sum]
+  norm_num
+
+/-- Negating and exchanging the point and line indices preserves the cyclic
+incidence relation. -/
+theorem fanoIncidence_reflect (x y : ZMod 7) :
+    fanoIncidence x y = fanoIncidence (-y) (-x) := by
+  unfold fanoIncidence
+  have h : -x - -y = y - x := by abel
+  rw [h]
 
 /-- Every line contains three points. -/
 theorem fanoIncidence_colSum :
     ∀ y : ZMod 7, ∑ x, fanoIncidence x y = 3 := by
+  classical
   intro y
-  fin_cases y <;> decide
+  calc
+    (∑ x, fanoIncidence x y) = ∑ x, fanoIncidence (-y) (-x) := by
+      apply Finset.sum_congr rfl
+      intro x _
+      exact fanoIncidence_reflect x y
+    _ = ∑ z, fanoIncidence (-y) z :=
+      Equiv.sum_comp (Equiv.neg (ZMod 7)) (fun z ↦ fanoIncidence (-y) z)
+    _ = 3 := fanoIncidence_rowSum (-y)
+
+/-- The sum of the products of two one-point Kronecker functions is their
+Kronecker delta. -/
+theorem fanoCorner_productSum (a b : ZMod 7) :
+    (∑ y : ZMod 7,
+      (if y = a then (1 : ℚ) else 0) * (if y = b then 1 else 0)) =
+        if a = b then 1 else 0 := by
+  classical
+  by_cases hab : a = b
+  · subst b
+    simp
+  · have hzero : ∀ y : ZMod 7,
+        (if y = a then (1 : ℚ) else 0) * (if y = b then 1 else 0) = 0 := by
+      intro y
+      by_cases hya : y = a
+      · subst y
+        simp [hab]
+      · simp [hya]
+    rw [Finset.sum_congr rfl (fun y _ ↦ hzero y)]
+    simp [hab]
+
+/-- Equality in `Z/7Z` can be checked on canonical natural representatives.
+This keeps the remaining forty-nine row-pair cases in ordinary arithmetic. -/
+theorem fanoZMod_eq_iff_val_eq (a b : ZMod 7) : a = b ↔ a.val = b.val :=
+  (ZMod.val_injective 7).eq_iff
 
 /-- Two distinct points lie on one common line; a point has three incident
 lines.  This is the row identity `N Nᵀ = 2I + J`. -/
 theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
     ∑ y, fanoIncidence x y * fanoIncidence x' y =
       2 * (if x = x' then 1 else 0) + 1 := by
+  classical
   intro x x'
-  fin_cases x <;> fin_cases x' <;> decide
+  simp_rw [fanoIncidence_cornerExpansion]
+  simp only [add_mul, mul_add, Finset.sum_add_distrib,
+    fanoCorner_productSum]
+  fin_cases x <;> fin_cases x' <;>
+    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
 theorem fanoIncidence_colPair : ∀ y y' : ZMod 7,
     ∑ x, fanoIncidence x y * fanoIncidence x y' =
       2 * (if y = y' then 1 else 0) + 1 := by
+  classical
   intro y y'
-  fin_cases y <;> fin_cases y' <;> decide
+  calc
+    (∑ x, fanoIncidence x y * fanoIncidence x y') =
+        ∑ x, fanoIncidence (-y) (-x) * fanoIncidence (-y') (-x) := by
+      apply Finset.sum_congr rfl
+      intro x _
+      rw [← fanoIncidence_reflect x y, ← fanoIncidence_reflect x y']
+    _ = ∑ z, fanoIncidence (-y) z * fanoIncidence (-y') z :=
+      Equiv.sum_comp (Equiv.neg (ZMod 7))
+        (fun z ↦ fanoIncidence (-y) z * fanoIncidence (-y') z)
+    _ = 2 * (if -y = -y' then 1 else 0) + 1 :=
+      fanoIncidence_rowPair (-y) (-y')
+    _ = 2 * (if y = y' then 1 else 0) + 1 := by
+      rw [neg_inj]
 
 /-- The cyclic incidence matrix is a projective plane of order two in the
 exact rational interface consumed by the link certificate. -/
