@@ -2285,8 +2285,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       exists_side_occurrence_of_fourGon_start_421 hW3P
         hi' hstart'
     have hsource_le : source i ≤ P.length := by
-      exact Nat.le_of_lt (lt_of_lt_of_le (hsourceComp i).2.1
-        (hsourceEnd i))
+      omega
     have hi'_le : i' ≤ P.length := Nat.le_of_lt hi'
     have hconnP : Connected D.fam (peripheralOccurrence P (occ i)).label
         1 P (source i) (peripheralOccurrence P u).pos := by
@@ -2306,9 +2305,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       hletP hW1P
       (fun z lam x hz hmem => hW2P z lam x hz
         (relBall_mono_radius D lam (by
-          dsimp [C]
-          exact le_trans (Nat.le_max_left _ _)
-            (Nat.le_max_left _ _)) hmem))
+          have h50 : 50 * C11 ≤ C := by
+            dsimp [C]
+            exact Nat.le_max_left _ _
+          exact h50) hmem))
       hW3P 1 hoccne huLabel
     exact hconnP
   have hclassBase : ∀ i : Fin N,
@@ -2318,7 +2318,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     intro i
     rcases (htargetSpec i).2.2.1 with hpcase | hrest
     · right
-      refine ⟨⟨targetN i, by dsimp [M]; omega⟩, ?_, ?_⟩
+      have htargetM : targetN i < M := by
+        dsimp [M]
+        omega
+      refine ⟨⟨targetN i, htargetM⟩, ?_, ?_⟩
       intro hm
       exact (htargetSpec i).1 (by omega)
       exact dif_pos hpcase
@@ -2337,6 +2340,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
                 D.fam (peripheralOccurrence P (occ i)).label
             obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+            rw [hni] at heq
             rw [← heq]
             rw [vertex_fourGon_side pc P rc Q 1 hsource_le,
               vertex_fourGon_side pc P rc Q 1 hi'_le]
