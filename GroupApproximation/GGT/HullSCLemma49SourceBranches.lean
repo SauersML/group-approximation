@@ -2,6 +2,7 @@ import GroupApproximation.GGT.HullSCLemma49LongPeriod
 import GroupApproximation.GGT.HullSCLemma49Rebase
 import GroupApproximation.GGT.HullSCLemma49ShortLoxodromic
 import GroupApproximation.GGT.HullSCLemma49SourceGreendlinger
+import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerCertificate
 
 /-!
@@ -37,23 +38,13 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
-    (harcs : ∀
+    (hpasting : ∀
       {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
       {Z : Lemma49GeodesicPowerDiagram D v g n},
       ∀ C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
           D v g n eps mu Z,
-        GGT.RelLetter.listVal
-            (GGT.VanKampen.Embedded.dartWord C.diagram
-              C.contiguity.sourceArc.darts) =
-          GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                C.contiguity.rightSide) *
-            GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                (C.contiguity.outerTargetArc C.target_eq).darts) *
-            GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                C.contiguity.leftSide)) :
+        GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
+          C.contiguity.boundary.cycle []) :
     ∃ (eps rho : ℕ),
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
         (v : List (GGT.RelLetter G Lambda)), v ∈ W →
@@ -108,10 +99,26 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
         Z.exponent_pos hdelta hlongPeriod
   obtain ⟨sourceCertificate⟩ :=
     hcertificate v g n Z hcondition hboundary
+  have harcs : GGT.RelLetter.listVal
+      (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+        sourceCertificate.contiguity.sourceArc.darts) =
+      GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            sourceCertificate.contiguity.rightSide) *
+        GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            (sourceCertificate.contiguity.outerTargetArc
+              sourceCertificate.target_eq).darts) *
+        GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            sourceCertificate.contiguity.leftSide) := by
+    have h := sourceCertificate.contiguity.arcs_value_of_pasting
+      (hpasting sourceCertificate)
+    simpa [sourceCertificate.target_eq] using h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
     sourceCertificate.contiguity sourceCertificate.target_eq
       sourceCertificate.boundaryWord_eq hmuCertPos.le
-      sourceCertificate.exterior_large (harcs sourceCertificate)
+      sourceCertificate.exterior_large harcs
   obtain ⟨rotated, Zrot, _conjugator, _hconjugate, _hconj, hword,
       hshortRot, C⟩ := E.exists_rebasedGreendlingerCell hshort
   obtain ⟨C⟩ := C
@@ -150,23 +157,13 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
     (D : GGT.RelGenSet G Lambda) {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet)
-    (harcs : ∀
+    (hpasting : ∀
       {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
       {Z : Lemma49GeodesicPowerDiagram D v g n},
       ∀ C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
           D v g n eps mu Z,
-        GGT.RelLetter.listVal
-            (GGT.VanKampen.Embedded.dartWord C.diagram
-              C.contiguity.sourceArc.darts) =
-          GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                C.contiguity.rightSide) *
-            GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                (C.contiguity.outerTargetArc C.target_eq).darts) *
-            GGT.RelLetter.listVal
-              (GGT.VanKampen.Embedded.dartWord C.diagram
-                C.contiguity.leftSide)) :
+        GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
+          C.contiguity.boundary.cycle []) :
     ∃ (eps rho : ℕ) (mu : ℝ),
       0 < mu ∧ mu ≤ 1 / 1000 ∧
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
@@ -286,10 +283,26 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
         Z.boundary_geodesic hperiodPos hlength hM hd hdStable hdL hLM
   obtain ⟨sourceCertificate⟩ :=
     hcertificate v g n Z hcondition hsourceBoundary
+  have harcs : GGT.RelLetter.listVal
+      (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+        sourceCertificate.contiguity.sourceArc.darts) =
+      GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            sourceCertificate.contiguity.rightSide) *
+        GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            (sourceCertificate.contiguity.outerTargetArc
+              sourceCertificate.target_eq).darts) *
+        GGT.RelLetter.listVal
+          (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
+            sourceCertificate.contiguity.leftSide) := by
+    have h := sourceCertificate.contiguity.arcs_value_of_pasting
+      (hpasting sourceCertificate)
+    simpa [sourceCertificate.target_eq] using h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
     sourceCertificate.contiguity sourceCertificate.target_eq
       sourceCertificate.boundaryWord_eq hmuCertPos.le
-      sourceCertificate.exterior_large (harcs sourceCertificate)
+      sourceCertificate.exterior_large harcs
   obtain ⟨rotated, Zrot, conjugator, hconjugate, _hconj, hword,
       hshortRot, C⟩ := E.exists_rebasedGreendlingerCell hshort
   obtain ⟨C⟩ := C
