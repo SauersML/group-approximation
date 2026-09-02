@@ -89,6 +89,7 @@ def CactusBaseCellDeletionForPower
           (PresentedGroupRelatorReplay.word word) = g →
       ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0}
           (triangleRelatorWords T),
+        Delta.toCombMap.IsPlanar ∧
         ∃ C : VanKampen.CactusBaseCellDeletion Delta,
           C.replacement.diagram.boundaryWord =
             (List.replicate n (word.map signedFreeRelLetter)).flatten
@@ -147,6 +148,19 @@ structure ExposedPairingEulerInput
 /-- The landed copy-involution constructor supplies the exposed pairing.  The
 remaining fields are the Euler and local certificates attached to that
 pairing; `pairUnique` is the table-side no-shared-pair certificate. -/
+noncomputable def exposedPairing_of_copyMate
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    {I : Type}
+    (D : PowerDisc T g n)
+    (index : ExposedCopiedDart D.diagram n ≃ Fin n × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
+    (copyMate : Equiv.Perm (Fin n))
+    (hinvol : Function.Involutive copyMate)
+    (hfree : ∀ i, copyMate i ≠ i) :
+    VanKampen.SeamGluing.ExposedPairing D.diagram n :=
+  VanKampen.SeamGluing.ExposedPairing.of_copyMate
+    index index_copy copyMate hinvol hfree
+
 noncomputable def exposedPairingEulerInput_of_copyMate
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     {I : Type}
@@ -158,16 +172,13 @@ noncomputable def exposedPairingEulerInput_of_copyMate
     (hfree : ∀ i, copyMate i ≠ i)
     (hpairUnique : TrianglePairUnique T)
     (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
-      (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-        index index_copy copyMate hinvol hfree).toPairing)
+      (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing)
     (hcorner : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap
-        (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-          index index_copy copyMate hinvol hfree).toPairing.closedMap v))
+        (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
     ExposedPairingEulerInput T D := by
-  let B := VanKampen.SeamGluing.ExposedPairing.of_copyMate
-    index index_copy copyMate hinvol hfree
+  let B := exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree
   exact {
     pairing := B
     pairUnique := hpairUnique
@@ -211,8 +222,8 @@ theorem cactusPowerBoundaryFilling_of_baseCellDeletion
     CactusPowerBoundaryFilling T := by
   apply cactusPowerBoundaryFilling_of_cactusRelatorRetyping
   intro g n hn hpow hne word hword
-  obtain ⟨Delta, C, hboundary⟩ := h g n hn hpow hne word hword
-  refine ⟨Delta, C.toRetyping, ?_⟩
+  obtain ⟨Delta, hplanar, C, hboundary⟩ := h g n hn hpow hne word hword
+  refine ⟨Delta, C.toRetyping hplanar, ?_⟩
   exact hboundary
 
 /-- The exact candidate consumed by least-area selection is obtained from a
@@ -251,7 +262,7 @@ def MirrorPairCutSupply
 /-- The landed SurgeryMap deletion is retyped as the power-disc mirror cut.
 The boundary equality comes from the reclosed replacement and the exact two
 cell area equation is `PowerDiscMirrorPairDeletion.area_drop`. -/
-theorem powerDiscMirrorPairCut_of_surgeryDeletion
+noncomputable def powerDiscMirrorPairCut_of_surgeryDeletion
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDiscCandidate T g n)
     (pre between suf : List
@@ -366,12 +377,10 @@ theorem exposedPairingEulerCertificate_of_wEight_copyMate
     (hinvol : Function.Involutive copyMate)
     (hfree : ∀ i, copyMate i ≠ i)
     (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
-      (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-        index index_copy copyMate hinvol hfree).toPairing)
+      (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing)
     (hcorner : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap
-        (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-          index index_copy copyMate hinvol hfree).toPairing.closedMap v))
+        (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
     ExposedPairingEulerCertificate T D := by
   have hinput := exposedPairingEulerInput_of_copyMate D index index_copy copyMate
@@ -416,8 +425,9 @@ theorem sphericalExtraction_of_combMapOperations
         word hword hn hpow hne)
     (fun candidate ↦
       cancellationReducesArea_of_mirrorPairCut candidate
-        ((mirrorPairCutSupply_of_surgeryDeletion H.mirrorDeletion)
-          g n candidate))
+        (fun pre between suf C₁ C₂ hsplit hcancel ↦
+          Classical.choice ((mirrorPairCutSupply_of_surgeryDeletion H.mirrorDeletion)
+            g n candidate pre between suf C₁ C₂ hsplit hcancel)))
   have hD : PowerDisc T g n := D
   obtain ⟨hinput⟩ := exposedPairingEulerCertificate_of_input hD
     (H.seam g n hD) hnoProper
@@ -494,7 +504,7 @@ theorem exposedPairingEulerCertificate_model
 /-- The complete exposed-input record has a concrete small-map model whenever
 the copied pairing, Euler counts, corner labels, and no-shared-pair table
 certificate are supplied. -/
-theorem exposedPairingEulerInput_model
+def exposedPairingEulerInput_model
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n)
     (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
@@ -569,13 +579,13 @@ theorem exposedPairingEulerInput_gqTwo_27Model
       (cornerCycleOfCombMap B.toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (certificate v)) :
     GQTwo27RepresentativeRows ∧
-      ExposedPairingEulerInput GQTwoTable.triangles D := by
+      Nonempty (ExposedPairingEulerInput GQTwoTable.triangles D) := by
   have hpairUnique : TrianglePairUnique GQTwoTable.triangles := by
     intro p p' hfirst hnext
     exact corner_unique_of_linkSimple GQTwoTable.triangles
       GQTwoTable.link_simple hfirst hnext
   exact ⟨gqTwo27RepresentativeRows,
-    exposedPairingEulerInput_model D B hpairUnique hcounts certificate hcellular⟩
+    ⟨exposedPairingEulerInput_model D B hpairUnique hcounts certificate hcellular⟩⟩
 
 /-- The two-point torsion model refutes localization at an empty obstruction
 family, so the no-proper-power branch in the extraction theorem cannot be
