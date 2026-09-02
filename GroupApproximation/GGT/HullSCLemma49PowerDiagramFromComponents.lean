@@ -89,5 +89,61 @@ theorem hullLemma49KernelPowerStatement_of_components
     (hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
       hselection hpieces hunbound hreal hconv)
 
+/-! ## The composite with the realization discharged -/
+
+/-- **Hull's Lemma 4.9 power-diagram leaf, from four named inputs.**
+
+`RelativeDiscRealizationSpellingStatement` is no longer a hypothesis: it is
+proved, as `relativeDiscRealizationSpellingStatement`, from the cactus
+parameterized by the outer spelling.  So the leaf now rests on est's three
+construction propositions and the one-cell exterior-arc conversion. -/
+theorem hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
+    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
+  hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
+    hselection hpieces hunbound relativeDiscRealizationSpellingStatement hconv
+
+/-- The kernel-power form, from the same four inputs. -/
+theorem hullLemma49KernelPowerStatement_of_estimating
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
+    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    HullLemma49KernelPowerStatement.{0, 0} :=
+  hullLemma49KernelPowerStatement_of_components
+    hselection hpieces hunbound relativeDiscRealizationSpellingStatement hconv
+
+/-- Relative-ball injectivity, the Lemma 4.4 side, from the same four. -/
+theorem exists_relativeBallInjectivityParameters_of_estimating
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
+    (hconv : RelativeExteriorArcConversionAtWordStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (R : ℕ) :
+    ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+        {Q : Type*} [Group Q] (q : G →* Q),
+        RelWord.IsLemma44Input D W eps mu rho →
+        q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+          Set.InjOn q (cayleyBall D.alphabet R) :=
+  exists_relativeBallInjectivityParameters_of_components
+    hselection hpieces hunbound relativeDiscRealizationSpellingStatement hconv
+    D hemb R
+
+
 end HullSC
 end GroupApproximation
