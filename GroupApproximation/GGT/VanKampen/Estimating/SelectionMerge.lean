@@ -29,6 +29,8 @@ namespace GGT
 namespace VanKampen
 namespace Embedded
 
+open GroupApproximation.WordMetric
+
 universe u w v
 
 variable {G : Type u} [Group G] {Lambda : Type w}
@@ -79,8 +81,12 @@ def boundaryContiguity
   leftSide_length_le := hleftLength
   rightSide_norm_le := hrightNorm
   leftSide_norm_le := hleftNorm
-  target_ne_source := fun i h => Option.noConfusion h
-  o52Certificate := fun i h => Option.noConfusion h
+  target_ne_source := by
+    intro i h
+    simp at h
+  o52Certificate := by
+    intro i h
+    simp at h
   pasting := shelling
 
 /-- The union of two carriers is a candidate as soon as the merged exterior
