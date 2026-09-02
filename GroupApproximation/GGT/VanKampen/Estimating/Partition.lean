@@ -104,6 +104,17 @@ noncomputable def Position
   {position : Fin (cellDarts Delta i).length //
     (cellDarts Delta i).get position ∈ incidence.arc.darts}
 
+noncomputable instance positionFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) : Fintype incidence.Position := by
+  classical
+  exact Fintype.ofFinite _
+
 /-- The arc of an incidence has no repeated darts. -/
 theorem arc_darts_nodup
     {G : Type u} [Group G] {Lambda : Type w}
@@ -138,12 +149,12 @@ noncomputable def positionEquivArcDarts
   let forgetCarrier :
       {d : {d : Delta.toCombMap.Dart // d ∈ cellDarts Delta i} //
           d.1 ∈ incidence.arc.darts} ≃
-        {d : Delta.toCombMap.Dart // d ∈ incidence.arc.darts} where
-    toFun d := ⟨d.1.1, d.2⟩
-    invFun d :=
-      ⟨⟨d.1, incidence.arc.mem_cycle_of_mem_darts d.2⟩, d.2⟩
-    left_inv _ := rfl
-    right_inv _ := rfl
+        {d : Delta.toCombMap.Dart // d ∈ incidence.arc.darts} :=
+    { toFun := fun d => ⟨d.1.1, d.2⟩
+      invFun := fun d =>
+        ⟨⟨d.1, incidence.arc.mem_cycle_of_mem_darts d.2⟩, d.2⟩
+      left_inv := fun _ => rfl
+      right_inv := fun _ => rfl }
   exact restricted.trans forgetCarrier
 
 /-- The number of occupied positions of an incidence is exactly its stored
