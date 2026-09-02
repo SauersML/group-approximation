@@ -2204,8 +2204,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     have hv : i.val = j.val :=
       congrArg (fun x : Fin S.card => x.val) hfin
     exact hv
-  have hoccSucc : ∀ (i : Fin N), i.val + 1 < N →
-      (occ ⟨i.val + 1, by omega⟩).val = (occ i).val + 1 := by
+  have hoccSucc : ∀ (i : Fin N) (hiN : i.val + 1 < N),
+      (occ ⟨i.val + 1, hiN⟩).val = (occ i).val + 1 := by
     intro i hiN
     let i1 : Fin N := ⟨i.val + 1, hiN⟩
     by_contra hne
@@ -2240,8 +2240,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       omega
     have hleft' := Eord.symm.strictMono hleft
     have hright' := Eord.symm.strictMono hright
-    have hleftVal : i.val < (Eord.symm ez).val := hleft'
-    have hrightVal : (Eord.symm ez).val < i.val + 1 := hright'
+    have hleftVal : i.val < (Eord.symm ez).val := congrArg Fin.val hleft'
+    have hrightVal : (Eord.symm ez).val < i.val + 1 := congrArg Fin.val hright'
     omega
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
