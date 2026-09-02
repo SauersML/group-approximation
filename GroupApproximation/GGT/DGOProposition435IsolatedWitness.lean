@@ -188,6 +188,144 @@ theorem avoidsFrom_spliceAux {J : RelGenSet G (Sum Λ I)} {lam : Λ}
     rw [mul_inv_cancel_left]
     exact OsinComponents.avoidsFrom_drop J.fam (Sum.inl lam) 1 w (q + 1) hav
 
+/-! ## Minimal spellings -/
+
+/-- A joint spelling of `h` that avoids `Γ_{H_lam}`: admissible letters, the
+right value, and no edge of the original peripheral graph. -/
+def IsSpelling (J : RelGenSet G (Sum Λ I)) (lam : Λ) (h : G)
+    (w : List (RelLetter G (Sum Λ I))) : Prop :=
+  (∀ a ∈ w, J.IsLetter a) ∧ RelLetter.listVal w = h ∧
+    AvoidsFrom J.fam (Sum.inl lam) w 1
+
+/-- The splice of a spelling is a spelling once the replaced stretch spells an
+element of the auxiliary subgroup. -/
+theorem isSpelling_spliceAux {J : RelGenSet G (Sum Λ I)} {lam : Λ} {h : G}
+    {w : List (RelLetter G (Sum Λ I))} (hw : IsSpelling J lam h w) (i : I)
+    {p q : ℕ} (hq : q < w.length)
+    (hg : ((OsinComponents.vertex (1 : G) w p)⁻¹ *
+      OsinComponents.vertex (1 : G) w (q + 1)) ∈ J.fam (Sum.inr i)) :
+    IsSpelling J lam h (spliceAux w i p q) := by
+  refine ⟨isLetter_spliceAux hw.1 hg, ?_, avoidsFrom_spliceAux hw.2.2 i p q⟩
+  rw [listVal_spliceAux w i hq]
+  exact hw.2.1
+
+/-- **A repeated auxiliary index contradicts minimality.**  If position `q`
+carries an `i`-letter and the vertices at `p < q` and at `q` lie in one left
+coset of `E i`, the splice from `p` to `q` is a strictly shorter spelling. -/
+theorem false_of_minimal_of_connected {J : RelGenSet G (Sum Λ I)} {lam : Λ}
+    {h : G} {w : List (RelLetter G (Sum Λ I))} (hw : IsSpelling J lam h w)
+    (hmin : ∀ w' : List (RelLetter G (Sum Λ I)), IsSpelling J lam h w' →
+      w.length ≤ w'.length)
+    {p q : ℕ} (hpq : p < q) (hq : q < w.length) {i : I} {e : G}
+    (hqe : w[q]'hq = RelLetter.comp (Sum.inr i) e)
+    (hconn : ((OsinComponents.vertex (1 : G) w p)⁻¹ *
+      OsinComponents.vertex (1 : G) w q) ∈ J.fam (Sum.inr i)) : False := by
+  have he : e ∈ J.fam (Sum.inr i) := by
+    have hl := hw.1 (w[q]'hq) (List.getElem_mem hq)
+    rw [hqe] at hl
+    exact hl
+  have hsucc := OsinComponents.vertex_succ w (1 : G) q hq
+  rw [hqe] at hsucc
+  have hg : ((OsinComponents.vertex (1 : G) w p)⁻¹ *
+      OsinComponents.vertex (1 : G) w (q + 1)) ∈ J.fam (Sum.inr i) := by
+    rw [hsucc, ← mul_assoc]
+    exact mul_mem hconn he
+  have hshort := spliceAux_shorter w i hpq hq
+  have hle := hmin (spliceAux w i p q) (isSpelling_spliceAux hw i hq hg)
+  omega
+
+/-- **The isolated witness** (`DGOProposition435IsolatedWitnessStatement`).
+A joint spelling of minimal length has every auxiliary letter a maximal
+isolated component of the auxiliary cycle: a second `i`-letter in the same
+left coset of `E i`, adjacent or not, would allow the splice, which is
+strictly shorter. -/
+theorem dgoProposition435IsolatedWitness :
+    DGOProposition435IsolatedWitnessStatement.{u, v, w} := by
+  intro G _ Λ I J D E _hJE _hinl hinr _hDE _hD _hE lam n h hmem
+  classical
+  rw [RelGenSet.mem_relBall] at hmem
+  obtain ⟨_, w₀, hlet₀, hval₀, hav₀, hlen₀⟩ := hmem
+  have hex : ∃ m : ℕ, ∃ w : List (RelLetter G (Sum Λ I)),
+      IsSpelling J lam h w ∧ w.length = m :=
+    ⟨w₀.length, w₀, ⟨hlet₀, hval₀, hav₀⟩, rfl⟩
+  obtain ⟨w, hw, hwm⟩ := Nat.find_spec hex
+  have hmin : ∀ w' : List (RelLetter G (Sum Λ I)), IsSpelling J lam h w' →
+      w.length ≤ w'.length := by
+    intro w' hw'
+    rw [hwm]
+    exact Nat.find_min' hex ⟨w', hw', rfl⟩
+  have hlen : w.length ≤ n := le_trans (hmin w₀ ⟨hlet₀, hval₀, hav₀⟩) hlen₀
+  refine ⟨w, hw.1, hw.2.1, hw.2.2, hlen, ?_⟩
+  intro p hp i e hpe
+  have he : e ∈ J.fam (Sum.inr i) := by
+    have hl := hw.1 (w[p]'hp) (List.getElem_mem hp)
+    rw [hpe] at hl
+    exact hl
+  have hpc : p < (auxCycle w h).length := by
+    rw [auxCycle_length]
+    omega
+  have hcomp_p : ((auxCycle w h)[p]'hpc).IsCompOf i := by
+    have hget := getElem_auxCycle_of_lt w h hp hpc
+    rw [hpe] at hget
+    rw [hget]
+    exact (rfl : i = i)
+  have hcomp : OsinComponents.IsComp i (auxCycle w h) p (p + 1) := by
+    refine ⟨Nat.lt_succ_self p, ?_, ?_, ?_, ?_⟩
+    · rw [auxCycle_length]
+      omega
+    · intro j hpj hjp hj
+      have hjp' : j = p := by omega
+      subst hjp'
+      exact hcomp_p
+    · intro j hpj hj hcj
+      obtain ⟨hjw, e', hje'⟩ := exists_comp_of_isCompOf_auxCycle hj hcj
+      have he' : e' ∈ J.fam (Sum.inr i) := by
+        have hl := hw.1 (w[j]'hjw) (List.getElem_mem hjw)
+        rw [hje'] at hl
+        exact hl
+      have hsucc := OsinComponents.vertex_succ w (1 : G) j hjw
+      rw [hje'] at hsucc
+      have hconn : ((OsinComponents.vertex (1 : G) w j)⁻¹ *
+          OsinComponents.vertex (1 : G) w p) ∈ J.fam (Sum.inr i) := by
+        rw [hpj, hsucc, inv_mul_cancel_left]
+        exact he'
+      exact false_of_minimal_of_connected hw hmin (p := j) (q := p)
+        (by omega) hp hpe hconn
+    · intro hk hck
+      obtain ⟨hkw, e'', hke''⟩ := exists_comp_of_isCompOf_auxCycle hk hck
+      have hsucc := OsinComponents.vertex_succ w (1 : G) p hp
+      rw [hpe] at hsucc
+      have hconn : ((OsinComponents.vertex (1 : G) w p)⁻¹ *
+          OsinComponents.vertex (1 : G) w (p + 1)) ∈ J.fam (Sum.inr i) := by
+        rw [hsucc, inv_mul_cancel_left]
+        exact he
+      exact false_of_minimal_of_connected hw hmin (p := p) (q := p + 1)
+        (Nat.lt_succ_self p) hkw hke'' hconn
+  refine ⟨hcomp, ⟨p + 1, hcomp⟩, ?_⟩
+  intro j hjp hjs hconn
+  obtain ⟨k, hk⟩ := hjs
+  have hjc : j < (auxCycle w h).length := lt_of_lt_of_le hk.1 hk.2.1
+  have hcj : ((auxCycle w h)[j]'hjc).IsCompOf i := hk.2.2.1 j le_rfl hk.1 hjc
+  obtain ⟨hjw, ej, hjej⟩ := exists_comp_of_isCompOf_auxCycle hjc hcj
+  have hjle : j ≤ w.length := le_of_lt hjw
+  have hple : p ≤ w.length := le_of_lt hp
+  have hconn' : ((OsinComponents.vertex (1 : G) w p)⁻¹ *
+      OsinComponents.vertex (1 : G) w j) ∈ J.fam (Sum.inr i) := by
+    have hc : ((OsinComponents.vertex (1 : G) (auxCycle w h) p)⁻¹ *
+        OsinComponents.vertex (1 : G) (auxCycle w h) j) ∈ E.fam i := hconn
+    rw [vertex_auxCycle w h hple, vertex_auxCycle w h hjle, ← hinr i] at hc
+    exact hc
+  rcases lt_or_gt_of_ne hjp with hlt | hgt
+  · have hconn'' : ((OsinComponents.vertex (1 : G) w j)⁻¹ *
+        OsinComponents.vertex (1 : G) w p) ∈ J.fam (Sum.inr i) := by
+      have hinv := inv_mem hconn'
+      rw [mul_inv_rev, inv_inv] at hinv
+      exact hinv
+    exact false_of_minimal_of_connected hw hmin (p := j) (q := p) hlt hp hpe
+      hconn''
+  · exact false_of_minimal_of_connected hw hmin (p := p) (q := j) hgt hjw hjej
+      hconn'
+
 end RelHyp
 end GGT
 end GroupApproximation
