@@ -1,8 +1,9 @@
 import GroupApproximation.GGT.RelHypOsin24SuitabilityGlue
 import GroupApproximation.GGT.RelHypOsin24Action
+import GroupApproximation.GGT.RelHypOsin24ContinuationData
 import GroupApproximation.GGT.RelHypOsin24Iteration
 import GroupApproximation.GGT.HullSCAuxiliaryRelatorPublished
-import GroupApproximation.GGT.HullSCLemma44FamilyStatement
+import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 
 /-!
@@ -43,10 +44,11 @@ universe u
 interface used by the earlier filling assembly; its additional conclusion is
 injectivity on the requested Cayley ball. -/
 theorem hullLemma44PreservedPeripheralFamily_of_family
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{u, 0}) :
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, 0}) :
     HullSC.HullLemma44PreservedPeripheralFamily.{u} := by
   have h44 : HullSC.HullLemma44CanonicalQuotientStatement.{u} :=
-    HullSC.hullLemma44CanonicalQuotientStatement_of_family h44family
+    HullSC.hullLemma44CanonicalQuotientStatement_of_familyInclusion h44family
   intro G _ A N k S D
   obtain ⟨eps, rho, mu, hmu, hgood⟩ := h44 D 0
   refine ⟨eps, rho, mu, hmu, ?_⟩
@@ -61,7 +63,8 @@ form of Lemma 4.4 specializes to the current canonical quotient theorem.
 Lemma 4.9 and the published relator theorem then complete the literal
 one-relator quotient. -/
 theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{u, 0})
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{u, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{u}) :
     HullSC.HullOneStepStatement.{u} := by
@@ -71,7 +74,7 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
     HullSC.simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
       hfiniteYi
   have h44 : HullSC.HullLemma44CanonicalQuotientStatement.{u} :=
-    HullSC.hullLemma44CanonicalQuotientStatement_of_family h44family
+    HullSC.hullLemma44CanonicalQuotientStatement_of_familyInclusion h44family
   have hquot : HullSC.TorsionFreeHullCanonicalQuotientStatement.{u} :=
     HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
       hselect h44 h49
@@ -110,7 +113,8 @@ def Osin24HullStepConclusion
   ∃ (Q : Type) (_ : Group Q) (eta : G →* Q),
     IsOsin24Quotient Hfam H ({t} : Set G) Q eta ∧
       eta.ker.IsFinitelyNormallyGenerated ∧
-        Nonempty (RelativeHullData (fun i => (Hfam i).map eta) (H.map eta))
+        Nonempty (RelativeHullContinuationData
+          (fun i => (Hfam i).map eta) (H.map eta))
 
 /-- The arbitrary-family Lemma 4.4, Lemma 4.9, and Yi selection give the
 one-target Osin quotient from compatible relative Hull data.  The quotient is
@@ -119,11 +123,12 @@ is part of the construction.  Hull Lemma 5.8 supplies a quotient Hull alphabet,
 and Osin suitability supplies its finite-normalizer clause, so the output can
 be iterated. -/
 theorem osin24HullStep_of_data
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
     {G : Type} [Group G] {I : Type} {Hfam : I → Subgroup G}
-    {H : Subgroup G} (B : RelativeHullData Hfam H) (t : G) :
+    {H : Subgroup G} (B : RelativeHullContinuationData Hfam H) (t : G) :
     Osin24HullStepConclusion Hfam H t := by
   have hfiniteYi : HullSC.YiSuitableFiniteFamily.{0} :=
     HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr hyi
@@ -280,10 +285,11 @@ theorem osin24HullStep_of_data
     ⟨hactsMap, hnormalMap⟩
   have hnextAlphabet : Poriginal.rel.alphabet.carrier ⊆
       BQ.hullSet.alphabet.carrier := by
-    rw [Poriginal.alphabet_carrier_eq_image]
+    rw [canonicalPreserved_alphabet_carrier_eq_image Poriginal]
     rintro y ⟨x, hx, rfl⟩
     exact BQ.alphabet_image x (B.rel_alphabet_subset hx)
-  let Bnext : RelativeHullData (fun i => (Hfam i).map eta) (H.map eta) :=
+  let Bnext : RelativeHullContinuationData
+      (fun i => (Hfam i).map eta) (H.map eta) :=
     { rel := Poriginal.rel
       base_finite := Poriginal.base_finite B.base_finite
       fam_eq := by
@@ -298,7 +304,8 @@ theorem osin24HullStep_of_data
 /-- A compatible-action producer specializes the reusable Hull-data step to
 the singleton statement used by the general finite induction. -/
 theorem osin24SingletonStep_of_hull_of_compatibleAction
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
     (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
@@ -307,13 +314,14 @@ theorem osin24SingletonStep_of_hull_of_compatibleAction
   letI : Group G := instG
   obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
   obtain ⟨Q, instQ, eta, hquotient, hkernel, _hnext⟩ :=
-    osin24HullStep_of_data h44family h49 hyi B t
+    osin24HullStep_of_data h44family h49 hyi B.toContinuation t
   exact ⟨Q, instQ, eta, hquotient, hkernel⟩
 
 /-- Finite iteration turns the conditional one-target specialization into the
 full finite-presentation addendum. -/
 theorem osinTheorem24FinitePresentationAddendum_of_hull_of_compatibleAction
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
     (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
