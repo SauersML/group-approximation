@@ -121,7 +121,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     exists_parameters_false_of_shortLoxodromic_powerDiagram_source
       hgeom D hdelta hgap hpasting
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
-      hinj⟩ := hinjective delta hdelta
+      hinjAll⟩ := hinjective delta hdelta
   let eps : ℕ := max epsLong (max epsShort epsInjective)
   let rho : ℕ := max rhoLong (max rhoShort rhoInjective)
   let mu : ℝ := min (1 / 100000 : ℝ) (min muShort muInjective)
@@ -178,13 +178,13 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
       dsimp [quotientMap]
       rw [QuotientGroup.ker_mk',
         RelWord.normalClosure_listVal_image_symmetrized]
-    have hinj : Set.InjOn quotientMap
+    have hinjBall : Set.InjOn quotientMap
         (cayleyBall D.alphabet (8 * delta + 1)) := by
-      have h := hinj (W := RelWord.symmetrized v) quotientMap
+      have h := hinjAll (W := RelWord.symmetrized v) quotientMap
         hinjectiveInput hker
       exact h
     exact (false_of_powerDiagram_of_not_isLoxodromic_of_ballInjective
-      D Z hdelta hlox hinj).elim
+      D Z hdelta hlox hinjBall).elim
 
 /-! ## Model check -/
 
