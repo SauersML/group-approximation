@@ -318,6 +318,262 @@ theorem edgeCount_eq (S : CactusShape) :
   rw [CombMap.edgeCount, Nat.card_congr S.edgeEquiv]
   simp [EdgeIndex]
 
+/-! ## Face orbits -/
+
+/-- The outer face, one relator face per cell, and the complementary face. -/
+inductive FaceIndex (S : CactusShape)
+  | outer
+  | relator : Fin S.cellCount → FaceIndex S
+  | big
+  deriving DecidableEq, Fintype
+
+/-- The explicit face containing a cactus dart. -/
+def faceClass (S : CactusShape) : CactusDart S → S.FaceIndex
+  | .outerForward _ => .outer
+  | .relatorForward i _ => .relator i
+  | .outerBackward _ => .big
+  | .relatorBackward _ _ => .big
+  | .stemOut _ => .big
+  | .stemIn _ => .big
+
+/-- One canonical dart in every cactus face. -/
+def faceRepresentative (S : CactusShape) : S.FaceIndex → CactusDart S
+  | .outer => .outerForward S.boundaryZero
+  | .relator i => .relatorForward i (S.relatorZero i)
+  | .big => .outerBackward S.boundaryZero
+
+theorem faceClass_representative (S : CactusShape) (f : S.FaceIndex) :
+    S.faceClass (S.faceRepresentative f) = f := by
+  cases f <;> rfl
+
+@[simp] theorem facePerm_outerForward (S : CactusShape)
+    (j : Fin S.boundaryLength) :
+    S.toCombMap.facePerm (.outerForward j) =
+      .outerForward (nextFin S.boundaryLength j) := rfl
+
+@[simp] theorem facePerm_relatorForward (S : CactusShape)
+    (i : Fin S.cellCount) (j : Fin (S.relatorLength i)) :
+    S.toCombMap.facePerm (.relatorForward i j) =
+      .relatorForward i (nextFin (S.relatorLength i) j) := rfl
+
+/-- Face rotation preserves the explicit face classifier. -/
+theorem faceClass_facePerm (S : CactusShape) (d : CactusDart S) :
+    S.faceClass (S.toCombMap.facePerm d) = S.faceClass d := by
+  cases d with
+  | outerForward j => rfl
+  | relatorForward i j => rfl
+  | outerBackward j =>
+      change S.faceClass (S.sigmaFun (S.alphaFun (.outerBackward j))) =
+        S.faceClass (.outerBackward j)
+      by_cases hj : j = S.boundaryZero
+      · subst j
+        by_cases hn : 0 < S.cellCount
+        · simp [alphaFun, sigmaFun, faceClass, hn]
+        · simp [alphaFun, sigmaFun, faceClass, hn]
+      · simp [alphaFun, sigmaFun, faceClass, hj]
+  | relatorBackward i j =>
+      change S.faceClass (S.sigmaFun (S.alphaFun (.relatorBackward i j))) =
+        S.faceClass (.relatorBackward i j)
+      by_cases hj : j = S.relatorZero i
+      · subst j
+        simp [alphaFun, sigmaFun, faceClass]
+      · simp [alphaFun, sigmaFun, faceClass, hj]
+  | stemOut i => rfl
+  | stemIn i =>
+      change S.faceClass (S.sigmaFun (S.alphaFun (.stemIn i))) =
+        S.faceClass (.stemIn i)
+      by_cases hi : nextFin S.cellCount i =
+          S.cellZero (Nat.zero_lt_of_lt i.isLt)
+      · simp [alphaFun, sigmaFun, faceClass, hi]
+      · simp [alphaFun, sigmaFun, faceClass, hi]
+
+/-- Backward outer darts lie in the complementary face without using the
+wrap step at the distinguished vertex. -/
+theorem outerBackward_sameCycle (S : CactusShape)
+    (j : Fin S.boundaryLength) :
+    S.toCombMap.facePerm.SameCycle (.outerBackward S.boundaryZero)
+      (.outerBackward j) := by
+  obtain ⟨k, hk⟩ := j
+  induction k with
+  | zero =>
+      have heq : (⟨0, hk⟩ : Fin S.boundaryLength) = S.boundaryZero := by
+        apply Fin.ext
+        rfl
+      rw [heq]
+  | succ k ih =>
+      have hk' : k < S.boundaryLength := lt_trans (Nat.lt_succ_self k) hk
+      have hprevious := ih hk'
+      let previous : Fin S.boundaryLength := ⟨k, hk'⟩
+      let current : Fin S.boundaryLength := ⟨k + 1, hk⟩
+      haveI : NeZero S.boundaryLength := ⟨Nat.ne_of_gt S.boundary_pos⟩
+      have hnext : nextFin S.boundaryLength previous = current := by
+        apply Fin.ext
+        simp [nextFin, previous, current, finRotate_apply,
+          Fin.add_def, Nat.mod_eq_of_lt hk]
+      have hprev : prevFin S.boundaryLength current = previous := by
+        rw [← hnext]
+        exact prevFin_nextFin S.boundaryLength previous
+      have hne : current ≠ S.boundaryZero := by
+        intro hzero
+        have hval := congrArg Fin.val hzero
+        simp [current, boundaryZero] at hval
+      have hface : S.toCombMap.facePerm (.outerBackward current) =
+          .outerBackward previous := by
+        simp [CombMap.facePerm, toCombMap, alpha, alphaFun, sigma,
+          sigmaFun, hne, hprev]
+      have hstep : S.toCombMap.facePerm.SameCycle
+          (.outerBackward previous) (.outerBackward current) := by
+        have h := sameCycle_apply S.toCombMap.facePerm (.outerBackward current)
+        rw [hface] at h
+        exact h.symm
+      exact hprevious.trans hstep
+
+/-- Backward darts of one relator polygon lie in one segment of the
+complementary face. -/
+theorem relatorBackward_sameCycle (S : CactusShape) (i : Fin S.cellCount)
+    (j : Fin (S.relatorLength i)) :
+    S.toCombMap.facePerm.SameCycle
+      (.relatorBackward i (S.relatorZero i)) (.relatorBackward i j) := by
+  obtain ⟨k, hk⟩ := j
+  induction k with
+  | zero =>
+      have heq : (⟨0, hk⟩ : Fin (S.relatorLength i)) = S.relatorZero i := by
+        apply Fin.ext
+        rfl
+      rw [heq]
+  | succ k ih =>
+      have hk' : k < S.relatorLength i := lt_trans (Nat.lt_succ_self k) hk
+      have hprevious := ih hk'
+      let previous : Fin (S.relatorLength i) := ⟨k, hk'⟩
+      let current : Fin (S.relatorLength i) := ⟨k + 1, hk⟩
+      haveI : NeZero (S.relatorLength i) := ⟨Nat.ne_of_gt (S.relator_pos i)⟩
+      have hnext : nextFin (S.relatorLength i) previous = current := by
+        apply Fin.ext
+        simp [nextFin, previous, current, finRotate_apply,
+          Fin.add_def, Nat.mod_eq_of_lt hk]
+      have hprev : prevFin (S.relatorLength i) current = previous := by
+        rw [← hnext]
+        exact prevFin_nextFin (S.relatorLength i) previous
+      have hne : current ≠ S.relatorZero i := by
+        intro hzero
+        have hval := congrArg Fin.val hzero
+        simp [current, relatorZero] at hval
+      have hface : S.toCombMap.facePerm (.relatorBackward i current) =
+          .relatorBackward i previous := by
+        simp [CombMap.facePerm, toCombMap, alpha, alphaFun, sigma,
+          sigmaFun, hne, hprev]
+      have hstep : S.toCombMap.facePerm.SameCycle
+          (.relatorBackward i previous) (.relatorBackward i current) := by
+        have h := sameCycle_apply S.toCombMap.facePerm
+          (.relatorBackward i current)
+        rw [hface] at h
+        exact h.symm
+      exact hprevious.trans hstep
+
+/-- Traversing a stem and the adjacent relator loop reaches the incoming
+orientation of that stem. -/
+theorem stemOut_sameCycle_stemIn (S : CactusShape) (i : Fin S.cellCount) :
+    S.toCombMap.facePerm.SameCycle (.stemOut i) (.stemIn i) := by
+  let last := prevFin (S.relatorLength i) (S.relatorZero i)
+  have hout : S.toCombMap.facePerm (.stemOut i) =
+      .relatorBackward i last := by rfl
+  have h₁ := sameCycle_apply S.toCombMap.facePerm (.stemOut i)
+  rw [hout] at h₁
+  have hsegment := S.relatorBackward_sameCycle i last
+  have hzero : S.toCombMap.facePerm
+      (.relatorBackward i (S.relatorZero i)) = .stemIn i := by
+    simp [CombMap.facePerm, toCombMap, alpha, alphaFun, sigma, sigmaFun]
+  have h₂ := sameCycle_apply S.toCombMap.facePerm
+    (.relatorBackward i (S.relatorZero i))
+  rw [hzero] at h₂
+  exact h₁.trans (hsegment.symm.trans h₂)
+
+/-- The complementary face reaches every outgoing stem in increasing cell
+order. -/
+theorem big_sameCycle_stemOut (S : CactusShape) (i : Fin S.cellCount) :
+    S.toCombMap.facePerm.SameCycle (.outerBackward S.boundaryZero)
+      (.stemOut i) := by
+  let hpos : 0 < S.cellCount := Nat.zero_lt_of_lt i.isLt
+  obtain ⟨k, hk⟩ := i
+  induction k with
+  | zero =>
+      have heq : (⟨0, hk⟩ : Fin S.cellCount) = S.cellZero hpos := by
+        apply Fin.ext
+        rfl
+      rw [heq]
+      have hface : S.toCombMap.facePerm (.outerBackward S.boundaryZero) =
+          .stemOut (S.cellZero hpos) := by
+        simp [CombMap.facePerm, toCombMap, alpha, alphaFun, sigma,
+          sigmaFun, hpos]
+      simpa [hface] using sameCycle_apply S.toCombMap.facePerm
+        (.outerBackward S.boundaryZero)
+  | succ k ih =>
+      have hk' : k < S.cellCount := lt_trans (Nat.lt_succ_self k) hk
+      have hprevious := ih hk'
+      let previous : Fin S.cellCount := ⟨k, hk'⟩
+      let current : Fin S.cellCount := ⟨k + 1, hk⟩
+      haveI : NeZero S.cellCount := ⟨Nat.ne_of_gt hpos⟩
+      have hnext : nextFin S.cellCount previous = current := by
+        apply Fin.ext
+        simp [nextFin, previous, current, finRotate_apply,
+          Fin.add_def, Nat.mod_eq_of_lt hk]
+      have hnot : nextFin S.cellCount previous ≠
+          S.cellZero (Nat.zero_lt_of_lt previous.isLt) := by
+        rw [hnext]
+        intro hzero
+        have hval := congrArg Fin.val hzero
+        simp [current, cellZero] at hval
+      have hin : S.toCombMap.facePerm (.stemIn previous) = .stemOut current := by
+        simp [CombMap.facePerm, toCombMap, alpha, alphaFun, sigma,
+          sigmaFun, hnot, hnext]
+      have hstep := sameCycle_apply S.toCombMap.facePerm (.stemIn previous)
+      rw [hin] at hstep
+      exact hprevious.trans ((S.stemOut_sameCycle_stemIn previous).trans hstep)
+
+/-- Every dart lies in the face cycle of its canonical representative. -/
+theorem faceRepresentative_sameCycle (S : CactusShape) (d : CactusDart S) :
+    S.toCombMap.facePerm.SameCycle
+      (S.faceRepresentative (S.faceClass d)) d := by
+  cases d with
+  | outerForward j =>
+      apply OrbitClassifier.sameCycle_map (finRotate S.boundaryLength)
+        S.toCombMap.facePerm CactusDart.outerForward
+      · exact S.facePerm_outerForward
+      · exact finRotate_sameCycle S.boundary_pos S.boundaryZero j
+  | relatorForward i j =>
+      apply OrbitClassifier.sameCycle_map (finRotate (S.relatorLength i))
+        S.toCombMap.facePerm (CactusDart.relatorForward i)
+      · exact S.facePerm_relatorForward i
+      · exact finRotate_sameCycle (S.relator_pos i) (S.relatorZero i) j
+  | outerBackward j => exact S.outerBackward_sameCycle j
+  | stemOut i => exact S.big_sameCycle_stemOut i
+  | stemIn i =>
+      exact (S.big_sameCycle_stemOut i).trans (S.stemOut_sameCycle_stemIn i)
+  | relatorBackward i j =>
+      let last := prevFin (S.relatorLength i) (S.relatorZero i)
+      have hout : S.toCombMap.facePerm (.stemOut i) =
+          .relatorBackward i last := by rfl
+      have hstep := sameCycle_apply S.toCombMap.facePerm (.stemOut i)
+      rw [hout] at hstep
+      exact (S.big_sameCycle_stemOut i).trans
+        (hstep.trans ((S.relatorBackward_sameCycle i last).symm.trans
+          (S.relatorBackward_sameCycle i j)))
+
+/-- Face orbits are exactly the outer, relator, and complementary faces. -/
+noncomputable def faceEquiv (S : CactusShape) :
+    S.toCombMap.Face ≃ S.FaceIndex :=
+  OrbitClassifier.orbitEquiv S.toCombMap.facePerm S.faceClass
+    S.faceRepresentative S.faceClass_facePerm S.faceClass_representative
+    S.faceRepresentative_sameCycle
+
+/-- The cactus has one outer face, one face per cell, and one complementary
+face. -/
+theorem faceCount_eq (S : CactusShape) :
+    S.toCombMap.faceCount = S.cellCount + 2 := by
+  rw [CombMap.faceCount, Nat.card_congr S.faceEquiv,
+    Nat.card_eq_fintype_card]
+  simp [FaceIndex]
+
 end CactusShape
 
 end VanKampen
