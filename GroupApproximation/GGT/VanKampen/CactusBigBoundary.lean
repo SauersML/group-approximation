@@ -489,12 +489,10 @@ theorem mem_cactusBigDarts_iff
 theorem rev_mk_ne_zero {n k : ℕ} (hk : k + 1 < n) :
     Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n) ≠
       (⟨0, by omega⟩ : Fin n) := by
-  haveI : NeZero n := ⟨by omega⟩
-  rw [Fin.rev_ne_iff, Fin.rev_zero]
-  intro hlast
-  have hval := congrArg Fin.val hlast
-  simp at hval
-  omega
+  intro hzero
+  have hval := congrArg Fin.val hzero
+  simp only [Fin.val_rev, Fin.val_mk] at hval
+  exact (Nat.sub_pos_iff_lt.mpr hk).ne' hval
 
 /-- Reversed finite indices turn an ordinary successor into a cyclic
 predecessor. -/
@@ -510,7 +508,7 @@ theorem prevFin_rev_succ {n k : ℕ} (hk : k + 1 < n) :
   rw [finRotate_symm_apply]
   apply Fin.ext
   rw [Fin.val_sub_one_of_ne_zero hne]
-  simp only [Fin.val_rev, Fin.val_mk]
+  simp only [Fin.val_rev]
   omega
 
 /-- The cyclic predecessor of zero is the reverse of the zero index. -/
