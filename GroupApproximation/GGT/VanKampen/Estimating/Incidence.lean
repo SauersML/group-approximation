@@ -432,6 +432,15 @@ noncomputable def interiorIncidenceEquiv
   left_inv := taggedToInteriorIncidence_leftInverse selected
   right_inv := taggedToInteriorIncidence_rightInverse selected
 
+/-- Transporting a cyclic arc between equal carrier types preserves its stored
+length. -/
+theorem CyclicArc.cast_length
+    {Dart : Type v} {first second : List Dart}
+    (h : CyclicArc first = CyclicArc second) (arc : CyclicArc first) :
+    (cast h arc).length = arc.length := by
+  cases h
+  rfl
+
 /-- A source incidence has the length of the candidate's source arc. -/
 theorem CellIncidence.source_arc_length
     {G : Type u} [Group G] {Lambda : Type w}
@@ -459,7 +468,8 @@ theorem CellIncidence.target_arc_length
     (target_eq : candidate.contiguity.target = some i) :
     (CellIncidence.target candidate mem_selected target_eq).arc.length =
       candidate.contiguity.targetArc.length := by
-  simp [CellIncidence.arc]
+  simp only [CellIncidence.arc]
+  exact CyclicArc.cast_length _ _
 
 /-! ## Exterior regions -/
 
