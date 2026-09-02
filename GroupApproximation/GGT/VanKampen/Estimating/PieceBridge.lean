@@ -1056,9 +1056,10 @@ theorem Candidate.weight_le_two_mu_target_of_planarPeelCertificates
   let equations : CellPieceEquations candidate.contiguity :=
     CellPieceEquations.of_planarPeelCertificates bridge certificates hred
   have hbound := candidate.weight_le_two_mu_target equations hsc hpieces
-  simpa [equations, CellPieceEquations.of_planarPeelCertificates,
-    PastingReducedCellPieceCertificate.of_planarPeelCertificates,
-    PastingReducedCellPieceCertificate.equations] using hbound
+  have htarget : equations.target = bridge.target := by
+    rfl
+  rw [htarget] at hbound
+  exact hbound
 
 end Embedded
 
