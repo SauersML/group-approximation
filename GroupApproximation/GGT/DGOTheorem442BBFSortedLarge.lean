@@ -155,7 +155,7 @@ theorem bbf_no_between_of_large_projection_list
       hWY₀before) hbetween.1
   · exact hWY₀ hWY₀'
   · exact hWY₁ hWY₁'
-    · have hpair' :
+  · have hpair' :
         ((L₀ ++ [Y₀, Y₁]) ++ L₁).Pairwise (fun A B =>
           5 * P.ξ < P.bbfProjDist A X B) := by
       rw [List.append_assoc]
