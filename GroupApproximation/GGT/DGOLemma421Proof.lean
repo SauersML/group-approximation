@@ -1920,7 +1920,7 @@ theorem revWord_revWord_421 (word : List (RelLetter G Λ)) :
   | nil => rfl
   | cons a t ih =>
       rw [revWord_cons, revWord_append]
-      simpa [revWord, hinvAll a, hmapAll t]
+      simp [revWord, hinvAll a, hmapAll t]
 
 theorem exists_component_of_opposite_start_421
     {lam : Λ}
