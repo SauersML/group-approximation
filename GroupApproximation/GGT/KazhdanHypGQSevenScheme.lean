@@ -301,16 +301,18 @@ theorem exists_incident_line_iff_orthogonal {p q : Point} (hpq : p ≠ q) :
     obtain ⟨L, hL, _⟩ := existsUnique_incident_line hpq horth
     exact ⟨L, hL⟩
 
-/-- The number of common lines of two points is seven on the diagonal, one
+/-- The number of common lines of two points is eight on the diagonal, one
 for distinct orthogonal points, and zero otherwise. -/
 theorem commonLine_card (p q : Point) :
     Fintype.card {L : Line // Incident p L ∧ Incident q L} =
-      if p = q then 7 else if form p.rep q.rep = 0 then 1 else 0 := by
+      if p = q then 8 else if form p.rep q.rep = 0 then 1 else 0 := by
   classical
   by_cases hpq : p = q
   · subst q
     rw [if_pos rfl]
-    exact (Fintype.card_congr (Equiv.subtypeEquivProp (by simp))).trans
+    let e : {L : Line // Incident p L ∧ Incident p L} ≃
+        {L : Line // Incident p L} := Equiv.subtypeEquivProp (by simp)
+    exact (Fintype.card_congr e).trans
       (incident_line_card p)
   · rw [if_neg hpq]
     by_cases horth : form p.rep q.rep = 0
@@ -375,7 +377,7 @@ theorem incidence_product_sum_point (p q : Point) :
 /-- The point-side two-step incidence identity. -/
 theorem common_lines_count (p q : Point) :
     ∑ L, incidenceWeight Incident p L * incidenceWeight Incident q L =
-      7 * (if p = q then 1 else 0) + pointCollinearityWeight Incident p q := by
+      8 * (if p = q then 1 else 0) + pointCollinearityWeight Incident p q := by
   rw [incidence_product_sum_point, commonLine_card]
   unfold pointCollinearityWeight
   by_cases hpq : p = q
@@ -739,11 +741,11 @@ theorem lineThroughPointToCommonNeighbor_surjective (p q : Point)
   rw [Projectivization.submodule_mk'']
   exact (submodule_eq_projectionSubmodule hqOut hrL r.2.2.2.2).symm
 
-/-- Nonadjacent points have one common neighbour on each of the seven lines
+/-- Nonadjacent points have one common neighbour on each of the eight lines
 through the first point. -/
 theorem pointCommonNeighbor_card_of_nonorthogonal (p q : Point)
     (hnon : form p.rep q.rep ≠ 0) :
-    Fintype.card (PointCommonNeighbor p q) = 7 := by
+    Fintype.card (PointCommonNeighbor p q) = 8 := by
   exact (Fintype.card_congr
     (Equiv.ofBijective (lineThroughPointToCommonNeighbor p q hnon)
       ⟨lineThroughPointToCommonNeighbor_injective p q hnon,
@@ -925,7 +927,7 @@ theorem pointOnLineToCommonLine_left_incident (L M : Line)
   have hpq : p.1 ≠ q := by
     intro hpq
     exact hpOut (by
-      rw [← hpq]
+      rw [hpq]
       exact projectedPoint_incident p.1 M hpOut)
   change Incident p.1 (lineThrough p.1 q hpq hpqOrth)
   exact left_incident_lineThrough p.1 q hpq hpqOrth
@@ -973,19 +975,19 @@ theorem pointOnLineToCommonLine_surjective (L M : Line)
   have haProj : a ≠ projectedPoint a M haOut := by
     intro h
     apply haOut
-    rw [← h]
+    rw [h]
     exact projectedPoint_incident a M haOut
   have haProjOrth : form a.rep (projectedPoint a M haOut).rep = 0 :=
     projectedPoint_orthogonal a M haOut
   have hProjN : Incident (projectedPoint a M haOut) N.1 := by
-    rw [hbProj]
+    rw [← hbProj]
     exact hbN
   change lineThrough a (projectedPoint a M haOut) haProj haProjOrth = N.1
   apply line_unique haProj
   · exact left_incident_lineThrough a (projectedPoint a M haOut) haProj haProjOrth
-  · exact hProjN
+  · exact right_incident_lineThrough a (projectedPoint a M haOut) haProj haProjOrth
   · exact haN
-  · exact hbN
+  · exact hProjN
 
 /-- Nonconcurrent lines have one common concurrency neighbour for each of the
 eight points on the first line. -/
