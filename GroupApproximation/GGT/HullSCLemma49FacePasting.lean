@@ -34,6 +34,22 @@ def HullLemma49SourceFacePastingStatement : Prop :=
     Nonempty (GGT.VanKampen.Embedded.FaceSetBoundaryPeeling
       C.contiguity.boundary)
 
+/-- The vk peeling callback is exactly the certificate needed by the source-face
+pasting step.  Keeping this adapter at the certificate boundary lets the
+relative disc realization supply the callback without exposing its schedule
+construction here. -/
+theorem hullLemma49SourceFacePastingStatement_of_faceSetBoundaryPeeling
+    (hpeeling :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : GGT.VanKampen.DiscDiagram.{u, w, 0} W}
+        {faces : Finset Delta.toCombMap.Face}
+        (boundary : GGT.VanKampen.Embedded.FaceSetBoundary Delta faces),
+        GGT.VanKampen.Embedded.FaceSetBoundaryPeeling boundary) :
+    HullLemma49SourceFacePastingStatement.{u, w} := by
+  intro G _ Lambda D v g n eps mu Z C
+  exact ⟨hpeeling C.contiguity.boundary⟩
+
 /-- The source face-pasting certificate gives the embedded exterior arc used
 by the cyclic correction lemmas. -/
 theorem exists_lemma49EmbeddedExteriorArc_of_sourceFacePasting
