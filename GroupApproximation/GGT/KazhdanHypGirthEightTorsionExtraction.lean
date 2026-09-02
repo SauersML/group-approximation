@@ -18,15 +18,16 @@ used by `PowerDiscCandidate` and the landed `CactusRelatorRetyping`; the
 cancellation operation is supplied by `PowerDiscMirrorPairCut` and consumed
 by `cancellationReducesArea_of_mirrorPairCut`; and the seam operation is
 stated at the `CombMap` level with
-`SeamGluing.ExposedPairing`, `Pairing.toPairing`, and its spherical planar
-certificate.  Existing constructions
-`nonempty_powerDiscCandidate_of_literalFilling`,
+`SeamGluing.ExposedPairing`, `Pairing.toPairing`, and its Euler-certified
+spherical planar certificate.  Existing constructions
+`nonempty_powerDiscCandidate_of_cactusRetyping`,
 `leastPowerDisc_of_filling`,
-`powerDiscSphereGluing_of_seam`, and
+`cancellationReducesArea_of_mirrorPairCut`,
+`powerDiscSphereGluing_of_eulerCounts`, and
 `triangularRelatorSphericalMap_of_powerDiscGluing` are consumed by name.
 
 The source proof is complete once those cellular operations are proved.  The
-model lemmas below test the contracts on the trivial-group, empty-word,
+model lemmas below test the contracts on the trivial-group, empty-cell,
 two-point, and rank-one-free-group boundary cases, so the contracts do not
 silently rely on a nonempty boundary or on a nontrivial torsion input.
 -/
@@ -88,18 +89,18 @@ def MirrorPairCutSupply
     PowerDiscMirrorPairCut D
 
 /-- The remaining seam certificate uses the landed exposed-boundary pairing.
-`ExposedPairing.toPairing` supplies the closed-map edge involution; only its
-spherical certificate and the literal corner/no-mirror certificates remain.
-The no-proper-power branch is retained because it is the exact hypothesis in
-Huebschmann's mirror-seam step. -/
-def ExposedPairingSphericalCertificate
+`ExposedPairing.toPairing` supplies the closed-map edge involution, and the
+landed `powerDiscSphereGluing_of_eulerCounts` supplies sphericality from the
+explicit Euler data and the already-planar disc.  Only the Euler, literal
+corner, and no-mirror certificates remain. -/
+def ExposedPairingEulerCertificate
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n) : Prop :=
   (∀ j, ¬ RelatorIsProperPower (TriangularHodgeLayer.relator (T j))) →
     ∃ B : VanKampen.SeamGluing.ExposedPairing D.diagram n,
       let S : VanKampen.SeamGluing.Pairing D.diagram n := B.toPairing
-      S.Spherical ∧
+      VanKampen.SeamGluing.Pairing.EulerTwoCountData S ∧
         (∀ v, VertexCornerCertificate T
           (cornerCycleOfCombMap S.closedMap v)) ∧
         (∀ v, CellularReducedAt
@@ -115,7 +116,7 @@ structure ExtractionInputs
   mirrorCut : MirrorPairCutSupply T
   /-- Exposed seam pairing and its remaining local certificates. -/
   seam : ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
-    (D : PowerDisc T g n), ExposedPairingSphericalCertificate T D
+    (D : PowerDisc T g n), ExposedPairingEulerCertificate T D
 
 /-! ## The least-area disc and cyclic sphere -/
 
@@ -123,7 +124,7 @@ structure ExtractionInputs
 every finite-order input whose defining relators are not proper powers.  The
 least-area choice is made by `leastPowerDisc_of_filling`; its reduced field is
 supplied by `cancellationReducesArea_of_mirrorPairCut`, and the cyclic seam is
-converted by the landed `powerDiscSphereGluing_of_seam`. -/
+converted by the landed `powerDiscSphereGluing_of_eulerCounts`. -/
 theorem sphericalExtraction_of_combMapOperations
     (H : ExtractionInputs T) :
     ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
@@ -145,9 +146,10 @@ theorem sphericalExtraction_of_combMapOperations
   have hD : PowerDisc T g n := D
   obtain ⟨B, hB⟩ := H.seam g n hD hnoProper
   dsimp at hB
-  obtain ⟨hS, hcertificate, hcellular⟩ := hB
+  obtain ⟨hcounts, hcertificate, hcellular⟩ := hB
   have hglue : PowerDiscSphereGluing hD :=
-    powerDiscSphereGluing_of_seam hD B.toPairing hS hcertificate hcellular
+    powerDiscSphereGluing_of_eulerCounts hD B.toPairing hcounts
+      hD.diagram.planar hcertificate hcellular
   exact exists_labelledSphere_of_powerDiscGluing hD hglue
 
 /-- The extraction theorem is exactly the input expected by
@@ -193,24 +195,24 @@ theorem mirrorPairCutSupply_emptyModel
   omega
 
 /-- Supplying the seam certificate itself gives a nonvacuous model of the
-`ExposedPairingSphericalCertificate` contract.  The conclusion retains the
+`ExposedPairingEulerCertificate` contract.  The conclusion retains the
 full exposed pairing and planar map data, so it is not a proposition about an
 arbitrary empty map. -/
-theorem exposedPairingSphericalCertificate_model
+theorem exposedPairingEulerCertificate_model
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n)
     (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
-    (hS : B.toPairing.Spherical)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData B.toPairing)
     (certificate : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap B.toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt
       (VertexCornerCertificate T
         (cornerCycleOfCombMap B.toPairing.closedMap v))) :
-    ExposedPairingSphericalCertificate T D := by
+    ExposedPairingEulerCertificate T D := by
   intro _hnoProper
   refine ⟨B, ?_⟩
   dsimp
-  exact ⟨hS, certificate, hcellular⟩
+  exact ⟨hcounts, certificate, hcellular⟩
 
 /-- The two-point torsion model refutes localization at an empty obstruction
 family, so the no-proper-power branch in the extraction theorem cannot be
