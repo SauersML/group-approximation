@@ -246,7 +246,7 @@ theorem isEscaping_of_boundedPenetration_extraction
   classical
   by_contra hnot
   obtain ⟨R, hSraw⟩ := boundedPowerSubsequence_proved
-    G inferInstance (Cayley.base D.alphabet) inferInstance inferInstance g
+    G inferInstance (Cayley D.alphabet) inferInstance inferInstance g
       (Cayley.base D.alphabet) hnot
   let S : Set ℕ :=
     {q : ℕ | dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R}
