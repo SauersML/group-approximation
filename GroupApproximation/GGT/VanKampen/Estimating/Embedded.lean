@@ -122,6 +122,12 @@ def rotated {Dart : Type v} {cycle : List Dart} (arc : CyclicArc cycle) :
     List Dart :=
   cycle.drop arc.start.1 ++ cycle.take arc.start.1
 
+/-- The explicit drop-take rotation agrees with `List.rotate`. -/
+theorem rotated_eq_rotate {Dart : Type v} {cycle : List Dart}
+    (arc : CyclicArc cycle) : arc.rotated = cycle.rotate arc.start.1 := by
+  have hstart : arc.start.1 ≤ cycle.length := by omega
+  exact (List.rotate_eq_drop_append_take hstart).symm
+
 /-- Darts in the chosen cyclic subarc. -/
 def darts {Dart : Type v} {cycle : List Dart} (arc : CyclicArc cycle) :
     List Dart :=
@@ -140,6 +146,12 @@ theorem darts_length {Dart : Type v} {cycle : List Dart}
   rw [darts, List.length_take, arc.rotated_length]
   exact Nat.min_eq_left arc.length_le
 
+/-- A cyclic subarc of a duplicate-free carrier has no repeated darts. -/
+theorem darts_nodup {Dart : Type v} {cycle : List Dart}
+    (arc : CyclicArc cycle) (hcycle : cycle.Nodup) : arc.darts.Nodup := by
+  rw [darts, arc.rotated_eq_rotate]
+  exact (List.nodup_rotate.mpr hcycle).sublist (List.take_sublist _ _)
+
 /-- Reversing every dart and reversing the order gives the opposite
 orientation of an arc. -/
 def reverseDarts {M : CombMap} {cycle : List M.Dart}
@@ -147,6 +159,14 @@ def reverseDarts {M : CombMap} {cycle : List M.Dart}
   arc.darts.reverse.map M.alpha
 
 end CyclicArc
+
+/-- The cyclic carrier of a relator cell has no repeated darts. -/
+theorem cellDarts_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (i : Fin Delta.rCellCount) :
+    (cellDarts Delta i).Nodup :=
+  (Delta.faceBoundary (cell Delta i).face).nodup
 
 /-- The target arc as it occurs on the boundary of the selected G-cell face
 set.  `outerDarts` is already oriented from the diagram side of the outer
