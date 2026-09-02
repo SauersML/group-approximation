@@ -744,7 +744,6 @@ theorem connected_append_left_iff_421 (H : Λ → Subgroup G) (lam : Λ)
   rw [vertex_append_of_le word tail v i hi,
     vertex_append_of_le word tail v j hj]
 
-omit [Group G] in
 /-- A component start lying in the first block of an appended W-word is one of
 the original word's canonical peripheral occurrences. -/
 theorem append_isCompStart_left_occurrence
