@@ -123,7 +123,7 @@ def geometricCell
   rw [geometricCell, Fin.rev_rev]
 
 /-- The positive polygon shape underlying the cactus realization. -/
-def cactusShape
+abbrev cactusShape
     {G : Type u} [Group G] {Lambda : Type w}
     {A : Manuscript.NonMF.TorsionFree.Alphabet G}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
