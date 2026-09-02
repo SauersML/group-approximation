@@ -602,6 +602,20 @@ theorem MirrorPairDeletion.area_zero_of_twoCell
   change C.replacement.diagram.relatorCells.length = 0
   omega
 
+theorem MirrorPairDeletion.area_one_of_threeCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta)
+    (hthree : Delta.relatorCells.length = 3) :
+    C.replacement.diagram.rCellCount = 1 := by
+  have hdrop := C.area_drop
+  change C.replacement.diagram.relatorCells.length + 2 =
+    Delta.relatorCells.length at hdrop
+  rw [hthree] at hdrop
+  change C.replacement.diagram.relatorCells.length = 1
+  omega
+
 /-- The concrete two-cell cut supplies the abstract mirror-pair certificate.
 Reducedness is transported from the old diagram and the boundary word is
 preserved by the reclosure. -/
