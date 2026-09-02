@@ -80,33 +80,33 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
       (reversePrefixTarget Delta arc =
         reverseDartsWord Delta arc ++ suffix)
   := by
-  let carrier := arc.rotated
-  let prefix := carrier.take arc.length
-  let suffixDarts := carrier.drop arc.length
-  have hsplit : carrier = prefix ++ suffixDarts := by
-    exact (List.take_append_drop arc.length carrier).symm
-  have hword : dartWord Delta carrier =
-      dartWord Delta prefix ++ dartWord Delta suffixDarts := by
+  have hsplit : arc.rotated = arc.rotated.take arc.length ++
+      arc.rotated.drop arc.length := by
+    exact (List.take_append_drop arc.length arc.rotated).symm
+  have hword : dartWord Delta arc.rotated =
+      dartWord Delta (arc.rotated.take arc.length) ++
+        dartWord Delta (arc.rotated.drop arc.length) := by
     rw [hsplit, dartWord_append]
-  have hinv : RelWord.revInv (dartWord Delta carrier) =
-      RelWord.revInv (dartWord Delta suffixDarts) ++
-        RelWord.revInv (dartWord Delta prefix) := by
+  have hinv : RelWord.revInv (dartWord Delta arc.rotated) =
+      RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length)) ++
+        RelWord.revInv (dartWord Delta (arc.rotated.take arc.length)) := by
     rw [hword, RelWord.revInv_append]
   have hslen :
-      (RelWord.revInv (dartWord Delta suffixDarts)).length =
-        suffixDarts.length := by
+      (RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length))).length =
+        (arc.rotated.drop arc.length).length := by
     rw [RelWord.length_revInv]
     simp only [dartWord, List.length_map]
   have hrotate :
-      (RelWord.revInv (dartWord Delta carrier)).rotate suffixDarts.length =
-        (RelWord.revInv (dartWord Delta prefix)) ++
-          RelWord.revInv (dartWord Delta suffixDarts) := by
+      (RelWord.revInv (dartWord Delta arc.rotated)).rotate
+          (arc.rotated.drop arc.length).length =
+        (RelWord.revInv (dartWord Delta (arc.rotated.take arc.length))) ++
+          RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length)) := by
     rw [hinv, ← hslen, List.rotate_append_length_eq]
   have hreverse :
       reverseDartsWord Delta arc =
-        RelWord.revInv (dartWord Delta prefix) := by
+        RelWord.revInv (dartWord Delta (arc.rotated.take arc.length)) := by
     exact (dartWord_reverse_alpha Delta arc.darts).trans (by rfl)
-  refine ⟨RelWord.revInv (dartWord Delta suffixDarts), ?_⟩
+  refine ⟨RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length)), ?_⟩
   unfold reversePrefixTarget
   rw [hrotate, hreverse]
 
