@@ -341,20 +341,24 @@ theorem firstGap_arcBase
       · have hend := B.firstBrokenConnectors_end_value_global s hs
         have hfinish : B.firstGapChordFinish j =
             B.brokenAssignment.first.partner s := by
-          simp [firstGapChordFinish, hprev, hf]
+          simp only [firstGapChordFinish]
+          rw [hprev, if_pos hf]
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endConnector := by
-          simp [firstGapLeft, hprev, hf]
+          simp only [firstGapLeft]
+          rw [hprev, if_pos hf]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
       · have hend :=
           B.firstBrokenConnectors_endThroughPartner_value_global s hs
         have hfinish : B.firstGapChordFinish j =
             B.brokenAssignment.first.partner s + 1 := by
-          simp [firstGapChordFinish, hprev, hf]
+          simp only [firstGapChordFinish]
+          rw [hprev, if_neg hf]
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endThroughPartner := by
-          simp [firstGapLeft, hprev, hf]
+          simp only [firstGapLeft]
+          rw [hprev, if_neg hf]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
 
@@ -400,20 +404,24 @@ theorem firstGap_arcFinish
       · have hstart := B.firstBrokenConnectors_start_value_global s hs
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startConnector := by
-          simp [firstGapRight, hnext, hf]
+          simp only [firstGapRight]
+          rw [hnext, if_pos hf]
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s + 1 := by
-          simp [firstGapChordStart, hnext, hf]
+          simp only [firstGapChordStart]
+          rw [hnext, if_pos hf]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
       · have hstart :=
           B.firstBrokenConnectors_startThroughPartner_value_global s hs
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startThroughPartner := by
-          simp [firstGapRight, hnext, hf]
+          simp only [firstGapRight]
+          rw [hnext, if_neg hf]
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s := by
-          simp [firstGapChordStart, hnext, hf]
+          simp only [firstGapChordStart]
+          rw [hnext, if_neg hf]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
 
@@ -494,19 +502,23 @@ theorem secondGap_arcBase
           B.secondBrokenConnectors_endThroughPartner_value_global s hs
         have hfinish : B.secondGapChordFinish j =
             B.brokenAssignment.second.partner s := by
-          simp [secondGapChordFinish, hprev, hf]
+          simp only [secondGapChordFinish]
+          rw [hprev, if_pos hf]
         have hleft : B.secondGapLeft j =
             (B.secondBrokenConnectors s hs).endThroughPartner := by
-          simp [secondGapLeft, hprev, hf]
+          simp only [secondGapLeft]
+          rw [hprev, if_pos hf]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
       · have hend := B.secondBrokenConnectors_end_value_global s hs
         have hfinish : B.secondGapChordFinish j =
             B.brokenAssignment.second.partner s + 1 := by
-          simp [secondGapChordFinish, hprev, hf]
+          simp only [secondGapChordFinish]
+          rw [hprev, if_neg hf]
         have hleft : B.secondGapLeft j =
             (B.secondBrokenConnectors s hs).endConnector := by
-          simp [secondGapLeft, hprev, hf]
+          simp only [secondGapLeft]
+          rw [hprev, if_neg hf]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
 
@@ -552,19 +564,23 @@ theorem secondGap_arcFinish
           B.secondBrokenConnectors_startThroughPartner_value_global s hs
         have hright : B.secondGapRight j =
             (B.secondBrokenConnectors s hs).startThroughPartner := by
-          simp [secondGapRight, hnext, hf]
+          simp only [secondGapRight]
+          rw [hnext, if_pos hf]
         have hchordStart : B.secondGapChordStart j =
             B.brokenAssignment.second.partner s + 1 := by
-          simp [secondGapChordStart, hnext, hf]
+          simp only [secondGapChordStart]
+          rw [hnext, if_pos hf]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
       · have hstart := B.secondBrokenConnectors_start_value_global s hs
         have hright : B.secondGapRight j =
             (B.secondBrokenConnectors s hs).startConnector := by
-          simp [secondGapRight, hnext, hf]
+          simp only [secondGapRight]
+          rw [hnext, if_neg hf]
         have hchordStart : B.secondGapChordStart j =
             B.brokenAssignment.second.partner s := by
-          simp [secondGapChordStart, hnext, hf]
+          simp only [secondGapChordStart]
+          rw [hnext, if_neg hf]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
 
