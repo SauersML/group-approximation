@@ -22,6 +22,7 @@ namespace HullSC
 
 open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -62,6 +63,7 @@ theorem quotientJointPeripheralPreservation_of_control
       joint.fam (Sum.inr i) = selected.cores.peripheral i)
     {Q : Type u} [Group Q] (q : G →* Q)
     (hq : Function.Surjective q)
+    (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
     (control : RelativeIsoperimetricControl joint q hq) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   refine ⟨{
@@ -80,7 +82,7 @@ theorem quotientJointPeripheralPreservation_of_control
     change (joint.fam (Sum.inr i)).map q =
       (selected.cores.peripheral i).map q
     rw [hselected i]
-  · exact control
+  · exact control.embedded hjointEmbedded
 
 /-! ## Complete fixed-parameter family output -/
 
@@ -109,6 +111,7 @@ theorem familyPreservation_of_controls
     (selectedControl : PrefixRelativeIsoperimetricControl selected.rel W
       hsc.toIsSmallCancellation q hq)
     (originalControl : RelativeIsoperimetricControl original q hq)
+    (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
     (jointControl : RelativeIsoperimetricControl joint q hq)
     (hinjA : Set.InjOn q (cayleyBall A.alphabet 1))
     (hinjSelected : Set.InjOn q
@@ -146,7 +149,7 @@ theorem familyPreservation_of_controls
   have hjointPreserved :
       Nonempty (QuotientJointPeripheralPreservation q selected original) :=
     quotientJointPeripheralPreservation_of_control selected original joint
-      hbaseInv horiginal hselected q hq jointControl
+      hbaseInv horiginal hselected q hq hjointEmbedded jointControl
   exact ⟨hinjA, hselectedPreserved, horiginalPreserved, hjointPreserved⟩
 
 /-! ## A direct local model -/
