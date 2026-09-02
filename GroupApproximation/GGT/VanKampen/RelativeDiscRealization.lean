@@ -128,9 +128,9 @@ theorem cactusCellIndexEquiv_word
     (i : Fin Z.cells.length) :
     (Z.cactusDiscDiagram.relatorCells.get
       (Z.cactusCellIndexEquiv i)).word = (Z.cells.get i).relator := by
-  change (Z.cactusRelatorCells.get (Z.cactusCellIndexEquiv i)).word = _
-  rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
-    List.get_ofFn]
+  change ((List.ofFn fun j : Fin Z.cells.length ↦
+    Z.cactusRelatorCell j).get (Z.cactusCellIndexEquiv i)).word = _
+  rw [List.get_ofFn]
   change (Z.cellAt _).relator = (Z.cellAt i).relator
   apply congrArg HullSC.Lemma44OrientedRelatorCell.relator
   apply congrArg Z.cellAt
