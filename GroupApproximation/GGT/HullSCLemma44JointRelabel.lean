@@ -133,13 +133,27 @@ theorem unrelabelJoint_isCompOf {G : Type u} {Lambda : Type w} {k : ℕ}
   | comp s h =>
       cases s with
       | inl lam =>
-          exact ⟨fun hfalse => (hfalse : False).elim,
-            fun hcontra =>
-              Sum.noConfusion
-                (hcontra : (Sum.inl lam : Sum Lambda (AuxiliaryPeripheralIndex k))
-                  = Sum.inr i)⟩
+          constructor
+          · intro hfalse
+            exact (hfalse : False).elim
+          · intro hcontra
+            have hEq :
+                (Sum.inl lam : Sum Lambda (AuxiliaryPeripheralIndex k)) =
+                  Sum.inr i := hcontra
+            exact Sum.noConfusion hEq
       | inr j =>
-          exact ⟨fun hj => congrArg Sum.inr hj, fun hj => Sum.inr.inj hj⟩
+          constructor
+          · intro hj
+            have hji : j = i := hj
+            show (Sum.inr j : Sum Lambda (AuxiliaryPeripheralIndex k)) =
+              Sum.inr i
+            rw [hji]
+          · intro hj
+            have hji :
+                (Sum.inr j : Sum Lambda (AuxiliaryPeripheralIndex k)) =
+                  Sum.inr i := hj
+            show j = i
+            exact Sum.inr.inj hji
 
 /-! ## Commutation with the two closure operations
 
@@ -204,6 +218,7 @@ theorem mem_jointRelabelWords_iff
               (Sum.inr : AuxiliaryPeripheralIndex k →
                 Sum Lambda (AuxiliaryPeripheralIndex k))) = v := Iff.rfl
 
+omit [Group G] in
 theorem mem_jointRelabelWords_source
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {v : List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))}
@@ -213,6 +228,7 @@ theorem mem_jointRelabelWords_source
   rw [← hmap, map_unrelabelJoint_map_relabelLetter]
   exact hv₀
 
+omit [Group G] in
 theorem map_relabelLetter_map_unrelabelJoint
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {v : List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))}
@@ -224,6 +240,7 @@ theorem map_relabelLetter_map_unrelabelJoint
   obtain ⟨v₀, _hv₀, hmap⟩ := mem_jointRelabelWords_iff.mp hv
   rw [← hmap, map_unrelabelJoint_map_relabelLetter]
 
+omit [Group G] in
 /-- The reading is injective on the relabelled family. -/
 theorem map_unrelabelJoint_injOn
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
