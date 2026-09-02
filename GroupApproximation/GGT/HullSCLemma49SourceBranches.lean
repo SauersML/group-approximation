@@ -42,7 +42,7 @@ theorem targetBoundaryDarts_eq_outerTargetArc
     GGT.VanKampen.Embedded.targetBoundaryDarts Delta Gamma.target
         Gamma.targetArc = (Gamma.outerTargetArc htarget).darts := by
   cases Gamma with
-  | mk _ _ target _ targetArc _ _ _ _ _ _ _ =>
+  | mk _ _ target _ targetArc _ _ _ _ _ _ _ _ =>
       cases htarget
       rfl
 

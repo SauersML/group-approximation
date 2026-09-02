@@ -304,6 +304,14 @@ structure Contiguity
     (GGT.RelLetter.listVal (dartWord Delta rightSide)) ≤ eps
   leftSide_norm_le : wordNorm D.alphabet.carrier
     (GGT.RelLetter.listVal (dartWord Delta leftSide)) ≤ eps
+  /-- A relator-cell target is a *different* relator cell.  Osin states
+  Lemma `O52` only "for every `e`-contiguity subdiagram `Gamma` of a cell `Pi`
+  to another cell `Sigma`" (arXiv math/0411039, `embed-final.tex`, Lemma
+  `O52`), and its proof cuts the subdiagram bounded by
+  `s_1 q_1 a s_1^{-1} b q_2` to remove *two* `R`-cells, which presupposes two
+  distinct cells.  A boundary target carries no constraint, so this clause is
+  vacuous when `target = none`. -/
+  target_ne_source : ∀ i, target = some i → source ≠ i
 
 namespace Contiguity
 
