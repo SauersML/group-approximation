@@ -290,9 +290,8 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
     (Gamma.cellTargetArc target htarget)
   refine ⟨suffix, ?_⟩
-  rw [Contiguity.targetInverseCarrier]
-  rw [← hsuffix]
-  rfl
+  simpa [Contiguity.targetInverseCarrier, reverseDartsWord,
+    targetBoundaryDarts, htarget] using hsuffix
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
@@ -305,11 +304,17 @@ theorem Contiguity.targetBoundaryDarts_length
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     (targetBoundaryDarts Delta Gamma.target Gamma.targetArc).length =
       Gamma.targetArc.length := by
-  cases h : Gamma.target with
-  | none => simp_all [targetBoundaryDarts]
-  | some t =>
-      simp only [h, targetBoundaryDarts, CyclicArc.reverseDarts,
-        List.length_map, List.length_reverse, CyclicArc.darts_length]
+  let motive : ∀ target : Option (Fin Delta.rCellCount),
+      ∀ arc : CyclicArc (targetDarts Delta target),
+        (targetBoundaryDarts Delta target arc).length = arc.length := by
+    intro target
+    cases target with
+    | none => intro arc; rfl
+    | some i =>
+        intro arc
+        simp only [targetBoundaryDarts, CyclicArc.reverseDarts,
+          List.length_map, List.length_reverse, CyclicArc.darts_length]
+  exact motive Gamma.target Gamma.targetArc
 
 /-- The two face-set equations needed to transfer O52. -/
 structure CellPieceEquations
@@ -366,7 +371,8 @@ theorem Contiguity.isPublishedPiece_of_equations
     htargetMem, targetSuffix, htarget,
     (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹,
     (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹,
-    hright, hleft, equations.arcs_value, equations.whole_ne⟩
+    hright, hleft, equations.arcs_value,
+    (by simpa only [inv_inv] using equations.whole_ne)⟩
 
 /-- O52 in the exact source-incidence charge form used by assembly. -/
 theorem Contiguity.arcLengths_le_two_mu_source
@@ -396,9 +402,13 @@ theorem Contiguity.arcLengths_le_two_mu_source
   have htarget : (Gamma.targetArc.length : ℝ) <
       mu * (dartWord Delta Gamma.sourceArc.rotated).length := by
     have htarget' := lt_of_le_of_lt (le_max_right _ _) hbound
-    rw [Gamma.targetBoundaryDarts_length equations.target equations.target_eq]
-      at htarget'
-    simpa only [dartWord, List.length_map] using htarget'
+    have hlenBoundary :
+        (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc)).length =
+          Gamma.targetArc.length := by
+      simp only [dartWord, List.length_map]
+      exact Gamma.targetBoundaryDarts_length equations.target equations.target_eq
+    rw [hlenBoundary] at htarget'
+    exact htarget'
   have hcarrier : (dartWord Delta Gamma.sourceArc.rotated).length =
       (cell Delta Gamma.source).word.length := by
     simp only [dartWord, List.length_map, Gamma.sourceArc.rotated_length]
@@ -451,7 +461,8 @@ theorem Contiguity.arcLengths_le_two_mu_target
       apply equations.whole_ne
       rw [hsame]
       group
-    exact ⟨htargetMem, ⟨targetSuffix, htarget⟩, hsourceMem, sourceSuffix,
+    exact ⟨htargetMem, ⟨targetSuffix, htarget⟩,
+      dartWord Delta Gamma.sourceArc.rotated, hsourceMem, sourceSuffix,
       hsource, GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide),
       GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide),
       Gamma.rightSide_norm_le, Gamma.leftSide_norm_le, harcs, hwhole⟩
@@ -462,9 +473,13 @@ theorem Contiguity.arcLengths_le_two_mu_target
   have htarget : (Gamma.targetArc.length : ℝ) <
       mu * (Gamma.targetInverseCarrier equations.target equations.target_eq).length := by
     have htarget' := lt_of_le_of_lt (le_max_left _ _) hbound
-    rw [Gamma.targetBoundaryDarts_length equations.target equations.target_eq]
-      at htarget'
-    simpa only [dartWord, List.length_map] using htarget'
+    have hlenBoundary :
+        (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc)).length =
+          Gamma.targetArc.length := by
+      simp only [dartWord, List.length_map]
+      exact Gamma.targetBoundaryDarts_length equations.target equations.target_eq
+    rw [hlenBoundary] at htarget'
+    exact htarget'
   have hsource : (Gamma.sourceArc.length : ℝ) <
       mu * (Gamma.targetInverseCarrier equations.target equations.target_eq).length := by
     simpa only [dartWord, List.length_map, Gamma.sourceArc.darts_length] using
