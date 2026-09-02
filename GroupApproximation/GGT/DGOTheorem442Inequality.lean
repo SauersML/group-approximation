@@ -189,6 +189,114 @@ theorem dist_chosenProjection_word_le
       simp only [List.length_cons, Nat.cast_add, Nat.cast_one]
       linarith
 
+/-! ## The relative generating set and inequality (41) -/
+
+/-- The final relative generating set used in the unbounded-orbit branch of
+DGO Theorem 4.42. -/
+noncomputable def dgo442NearMinimalRelGenSet
+    {delta : ℝ} (hdelta : IsHyperbolicSpace delta S)
+    (hdelta0 : 0 ≤ delta) (hdeltapos : 0 < delta)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s) : RelGenSet G Unit :=
+  let P := approxCosetEquivariantProjectionSystem
+    hdelta hdelta0 hdeltapos hgeo hiso H s hqc hsep
+  nearMinimalRelGenSet hiso H s hdeltapos P.dgo442Graph
+    P.dgo442Graph_adj_smul_iff P.dgo442Graph_preconnected
+
+@[simp] theorem dgo442NearMinimalRelGenSet_fam
+    {delta : ℝ} (hdelta : IsHyperbolicSpace delta S)
+    (hdelta0 : 0 ≤ delta) (hdeltapos : 0 < delta)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s) :
+    (dgo442NearMinimalRelGenSet hdelta hdelta0 hdeltapos hgeo hiso
+      H s hqc hsep).fam = fun _ ↦ H :=
+  rfl
+
+@[simp] theorem dgo442NearMinimalRelGenSet_base
+    {delta : ℝ} (hdelta : IsHyperbolicSpace delta S)
+    (hdelta0 : 0 ≤ delta) (hdeltapos : 0 < delta)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s) :
+    (dgo442NearMinimalRelGenSet hdelta hdelta0 hdeltapos hgeo hiso
+      H s hqc hsep).base =
+      nearMinimalBase H s delta
+        (approxCosetEquivariantProjectionSystem
+          hdelta hdelta0 hdeltapos hgeo hiso H s hqc hsep).dgo442Graph :=
+  rfl
+
+/-- **DGO inequality (41).**  The near-minimal relative generating set admits
+a positive coefficient `alpha` for which relative radius bounds orbit
+displacement. -/
+theorem exists_dgo442NearMinimalRelGenSet_orbitLowerBound
+    {delta : ℝ} (hdelta : IsHyperbolicSpace delta S)
+    (hdelta0 : 0 ≤ delta) (hdeltapos : 0 < delta)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    (H : Subgroup G) (s : S) (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s) :
+    let D := dgo442NearMinimalRelGenSet hdelta hdelta0 hdeltapos hgeo hiso
+      H s hqc hsep
+    ∃ alpha : ℝ, 0 < alpha ∧
+      ∀ (n : ℕ) (h : G), h ∈ D.relBall () n →
+        alpha * dist s (h • s) ≤ (n : ℝ) := by
+  dsimp only
+  let P := approxCosetEquivariantProjectionSystem
+    hdelta hdelta0 hdeltapos hgeo hiso H s hqc hsep
+  let D := dgo442NearMinimalRelGenSet hdelta hdelta0 hdeltapos hgeo hiso
+    H s hqc hsep
+  obtain ⟨C, hC, hbase, hperipheral⟩ :=
+    exists_dgo442_letter_projection_bound
+      hdelta hdelta0 hdeltapos hgeo hiso H s hqc hsep
+  refine ⟨1 / C, one_div_pos.mpr hC, ?_⟩
+  intro n h hh
+  obtain ⟨hhFam, w, hlet, hval, hav, hlen⟩ :=
+    (RelGenSet.mem_relBall.mp hh)
+  have hhH : h ∈ H := by
+    change h ∈ D.fam () at hhFam
+    rw [dgo442NearMinimalRelGenSet_fam] at hhFam
+    exact hhFam
+  have hletters : ∀ a ∈ w, match a with
+      | RelLetter.base x => x ∈ nearMinimalBase H s delta P.dgo442Graph
+      | RelLetter.comp _ x => x ∈ H := by
+    intro a ha
+    have ha' := hlet a ha
+    cases a with
+    | base x =>
+        change x ∈ D.base at ha'
+        rw [dgo442NearMinimalRelGenSet_base] at ha'
+        exact ha'
+    | comp lam x =>
+        change x ∈ D.fam lam at ha'
+        rw [dgo442NearMinimalRelGenSet_fam] at ha'
+        exact ha'
+  have hav' : AvoidsFrom (fun _ : Unit ↦ H) () w 1 := by
+    change AvoidsFrom D.fam () w 1 at hav
+    rw [dgo442NearMinimalRelGenSet_fam] at hav
+    exact hav
+  have hpath := dist_chosenProjection_word_le hdeltapos hiso H s
+    (nearMinimalBase H s delta P.dgo442Graph) hbase hperipheral w 1 hletters hav'
+  have hsOrbit : s ∈ subgroupOrbitAt H s := ⟨1, H.one_mem, by simp⟩
+  have hhOrbit : h • s ∈ subgroupOrbitAt H s := ⟨h, hhH, rfl⟩
+  have hstart : chosenSubgroupProjection H s delta hdeltapos ((1 : G) • s) = s := by
+    simpa only [one_smul] using
+      chosenSubgroupProjection_eq_self H s hdeltapos hsOrbit
+  have hend : chosenSubgroupProjection H s delta hdeltapos
+      (((1 : G) * RelLetter.listVal w) • s) = h • s := by
+    rw [one_mul, hval]
+    exact chosenSubgroupProjection_eq_self H s hdeltapos hhOrbit
+  rw [hstart, hend] at hpath
+  have hlenR : (w.length : ℝ) ≤ (n : ℝ) := by exact_mod_cast hlen
+  have hdist : dist s (h • s) ≤ C * (n : ℝ) := by
+    exact hpath.trans (mul_le_mul_of_nonneg_left hlenR hC.le)
+  calc
+    (1 / C) * dist s (h • s) = C⁻¹ * dist s (h • s) := by rw [one_div]
+    _ ≤ C⁻¹ * (C * (n : ℝ)) :=
+      mul_le_mul_of_nonneg_left hdist (inv_nonneg.mpr hC.le)
+    _ = (n : ℝ) := by
+      rw [← mul_assoc, inv_mul_cancel₀ hC.ne', one_mul]
+
 end Elementary
 end GGT
 end GroupApproximation
