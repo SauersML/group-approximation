@@ -76,7 +76,7 @@ the relative structure and its acylindrical action are fixed before the
 small-cancellation parameters and relator family are chosen. -/
 theorem exists_isOsin24TorsionConclusion_of_lemma49
     (h49 : HullSC.HullLemma49KernelPowerStatement.{u, w})
-    {G : Type u} [Group G] {Lambda : Type w}
+    {G : Type u} [Group G] {Lambda : Type w} [Finite Lambda]
     (D : RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
     (hacy : IsAcylindrical G (Cayley D.alphabet)) :
     ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
