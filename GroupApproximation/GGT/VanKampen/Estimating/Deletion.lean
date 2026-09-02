@@ -113,7 +113,7 @@ theorem toOwnerOrientation
       · intro e he
         by_cases hxe : incident x e
         · simp only [owner, hxe, ↓reduceIte]
-          exact ⟨hx, hxe⟩
+          exact ⟨hx, trivial⟩
         · have hnonincident : e ∈ nonincidentEdges incident x edges := by
             simp only [nonincidentEdges, Finset.mem_filter, he, true_and]
             exact hxe
@@ -134,24 +134,31 @@ theorem toOwnerOrientation
                 incidentEdges incident x edges := by
             ext e
             by_cases hxe : incident x e
-            · simp [incidentEdges, owner, hxe]
-            · simp only [incidentEdges, Finset.mem_filter, hxe, false_and,
-                owner, ↓reduceIte]
-              constructor
+            · constructor
               · intro h
-                have hnonincident : e ∈ nonincidentEdges incident x edges := by
-                  simp only [nonincidentEdges, Finset.mem_filter, h.1,
-                    true_and]
-                  exact hxe
+                exact (Finset.mem_filter.mp h).1
+              · intro h
+                have hmem : e ∈ edges ∧ incident x e :=
+                  Finset.mem_filter.mp h
+                simp only [owner, hxe, ↓reduceIte]
+                exact ⟨hmem.1, rfl⟩
+            · constructor
+              · intro h
+                have hnonincident : e ∈ nonincidentEdges incident x edges :=
+                  Finset.mem_filter.mpr ⟨h.1, hxe⟩
                 have howner := tailOrientation.owner_mem e hnonincident
                 have hne : tailOrientation.owner e ≠ x := by
                   intro heq
                   have hmem := howner.1
                   rw [heq] at hmem
                   exact (Finset.mem_erase.mp hmem).1 rfl
-                exact (hne h.2).elim
+                have hownerEq : tailOrientation.owner e = x := by
+                  simpa only [owner, hxe, ↓reduceIte] using h.2
+                exact (hne hownerEq).elim
               · intro h
-                exact h.elim
+                have hinc : incident x e :=
+                  (Finset.mem_filter.mp h).2
+                exact (hxe hinc).elim
           rw [hfilter]
           exact hdegree
         · have hyRemaining : y ∈ remainingVertices x vertices := by
@@ -170,6 +177,13 @@ theorem toOwnerOrientation
                 simp [owner, nonincidentEdges, he, hxe, hxyeq]
               · simp [owner, nonincidentEdges, he, hxe]
             · simp only [Finset.mem_filter, he, false_and]
+              constructor
+              · intro h
+                exact h.elim
+              · intro h
+                have hmem : e ∈ edges :=
+                  (Finset.mem_filter.mp h).1
+                exact (he hmem).elim
           rw [hfilter]
           exact htail
 
