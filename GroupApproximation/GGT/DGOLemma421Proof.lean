@@ -63,25 +63,58 @@ def DGOUniformSumBound (D : RelGenSet G Λ) (mu c : ℝ) (C : ℕ) : Prop :=
 The quantifier order is the one printed in Proposition 4.14: after the group,
 relative structure, and weak-hyperbolicity hypothesis are fixed, arbitrary
 `μ ≥ 1` and `c ≥ 0` determine one positive constant `C(μ,c)` which works for
-every `n`-gon. -/
+every `n`-gon.  The last line is the radius form of the printed total-length
+bound: every isolated component has relative length at most `C n`.
+
+The arbitrary component span is essential here.  A singleton-cut specialization
+is recovered below for the counting lemmas used in clause (a). -/
 def DGOProposition414Uniform : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet)) →
     ∀ mu c : ℝ, 1 ≤ mu → 0 ≤ c →
-      ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound D mu c C
+      ∃ C : ℕ, 0 < C ∧
+        ∀ (n : ℕ) (v : G) (word : List (RelLetter G Λ)),
+          IsQuasiGeodesicPolygon D mu c n v word →
+          ∀ (lam : Λ) (i k : ℕ), IsComp lam word i k →
+            IsIsolated D.fam lam v word i →
+              (vertex v word i)⁻¹ * vertex v word k ∈
+                D.relBall lam (C * n)
 
-/-- The uniform Proposition 4.14 statement specializes to the landed
-`(1,0)` sum-bound interface. -/
-theorem exists_sumBound_zero_of_uniform414
+/-! ## The singleton-cut projection used by the earlier counting paragraphs -/
+
+theorem dgoUniformSumBound_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) (D : RelGenSet G Λ)
-    (hhyp : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet)) :
-    ∃ C : ℕ, 0 < C ∧ ∀ n : ℕ, SumBound D 0 n (C * n) := by
-  obtain ⟨C, hC, hbound⟩ := h G Λ D hhyp 1 0 le_rfl le_rfl
+    (hhyp : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet))
+    (mu c : ℝ) (hmu : 1 ≤ mu) (hc : 0 ≤ c) (hc1 : 1 ≤ c) :
+    ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound D mu c C := by
+  obtain ⟨C, hC, hbound⟩ := h G Λ D hhyp mu c hmu hc
   refine ⟨C, hC, ?_⟩
   intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
-  apply hbound n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso
-  intro s hs hsI p q hp hpq hq
-  simpa using hquasi s hs hsI p q hp hpq hq
+  obtain ⟨cutStart, cutFinish, cutMono⟩ := hcut
+  have hpoly : IsQuasiGeodesicPolygon D mu c n v word := by
+    refine ⟨hlet, hclosed, cut, cutStart, cutFinish, cutMono, ?_⟩
+    intro s hs p q hp hpq hq
+    by_cases hsI : s ∈ I
+    · rw [hedge s hsI] at hq
+      have hstep : q - p ≤ 1 := by omega
+      have hstepReal : ((q - p : ℕ) : ℝ) ≤ 1 := by
+        exact_mod_cast hstep
+      have hnonneg : (0 : ℝ) ≤
+          ((wordDist D.alphabet.carrier (vertex v word p)
+            (vertex v word q) : ℕ) : ℝ) := Nat.cast_nonneg _
+      have hmu0 : (0 : ℝ) < mu := lt_of_lt_of_le zero_lt_one hmu
+      have hdiv : ((q - p : ℕ) : ℝ) / mu ≤ 1 := by
+        calc
+          ((q - p : ℕ) : ℝ) / mu ≤ 1 / mu := by
+            exact div_le_div_of_nonneg_right hstepReal (le_of_lt hmu0)
+          _ ≤ 1 := by
+            exact (div_le_iff₀ hmu0).2 (by linarith)
+      linarith
+    · exact hquasi s hs hsI p q hp hpq hq
+  intro s hs
+  have hspan := hbound n v word hpoly (lam s) (cut s) (cut (s + 1))
+    (hcomp s hs) (hiso s hs)
+  exact hspan
 
 /-! ## Model test for the uniform-bound payload -/
 
@@ -96,24 +129,22 @@ private def trivialUniformRelGenSet : RelGenSet PUnit Unit where
     simpa only [Set.univ_union] using h
 
 /-- In the one-point model every distinguished span is the identity, so the
-uniform sum bound holds with radius zero for every parameter and constant. -/
-theorem dgoUniformSumBound_trivialModel (mu c : ℝ) (C : ℕ) :
-    DGOUniformSumBound trivialUniformRelGenSet mu c C := by
-  intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
-  refine ⟨fun _ => 0, ?_, by simp⟩
-  intro s hs
-  have hspan :
-      (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) = 1 :=
-    Subsingleton.elim _ _
-  rw [hspan]
-  exact one_mem_relBall trivialUniformRelGenSet (lam s) 0
-
-/-- The positive uniform constant required by Proposition 4.14 exists in the
-nonempty-peripheral trivial model. -/
+uniform component bound holds with radius zero for every parameter and polygon. -/
 theorem dgoProposition414Uniform_trivialModel (mu c : ℝ)
     (_hmu : 1 ≤ mu) (_hc : 0 ≤ c) :
-    ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound trivialUniformRelGenSet mu c C := by
-  exact ⟨1, Nat.zero_lt_one, dgoUniformSumBound_trivialModel mu c 1⟩
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ) (v : PUnit) (word : List (RelLetter PUnit Unit)),
+        IsQuasiGeodesicPolygon trivialUniformRelGenSet mu c n v word →
+        ∀ (lam : Unit) (i k : ℕ), IsComp lam word i k →
+          IsIsolated trivialUniformRelGenSet.fam lam v word i →
+            (vertex v word i)⁻¹ * vertex v word k ∈
+              trivialUniformRelGenSet.relBall lam (C * n) := by
+  refine ⟨1, Nat.zero_lt_one, ?_⟩
+  intro n v word hpoly lam i k hcomp hiso
+  have hspan : (vertex v word i)⁻¹ * vertex v word k = 1 :=
+    Subsingleton.elim _ _
+  rw [hspan]
+  exact one_mem_relBall trivialUniformRelGenSet lam (1 * n)
 
 /-! ## Counting deep isolated singleton sides -/
 
@@ -1375,7 +1406,8 @@ theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
 theorem dgoLemma421a_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
   intro G _ Λ D hhyp
-  obtain ⟨C, hC, hbound⟩ := h G Λ D hhyp 1 1 le_rfl (by norm_num)
+  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp 1 1
+    le_rfl (by norm_num) (by norm_num)
   refine ⟨50 * C, ?_⟩
   intro v word hlet hW1 hW2 hW3 i j hij hj
   let segment := (word.drop i).take (j - i)
