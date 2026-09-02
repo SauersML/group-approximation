@@ -179,7 +179,15 @@ theorem to_homotopy
   induction moves with
   | refl word => exact .refl word
   | cons head tail ih =>
-      exact (head.to_elementary_homotopy).trans ih
+      cases head with
+      | eraseFace face hface before after =>
+          exact (FaceSetWordHomotopy.eraseFace face hface before after).trans ih
+      | insertFace face hface before after =>
+          exact (FaceSetWordHomotopy.eraseFace face hface before after).symm.trans ih
+      | eraseAlphaPair dart before after =>
+          exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).trans ih
+      | insertAlphaPair dart before after =>
+          exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).symm.trans ih
 
 end FaceSetMoveSequence
 
