@@ -1,4 +1,6 @@
 import GroupApproximation.GGT.RelHypOsin24SuitabilityGlue
+import GroupApproximation.GGT.RelHypOsin24Action
+import GroupApproximation.GGT.RelHypOsin24Iteration
 import GroupApproximation.GGT.HullSCAuxiliaryRelatorPublished
 import GroupApproximation.GGT.HullSCLemma44FamilyStatement
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
@@ -95,6 +97,178 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
   · show Q.q.ker =
       Subgroup.normalClosure ((({t⁻¹ * u} : Finset G)) : Set G)
     rw [Q.ker_eq, hval, Finset.coe_singleton]
+
+/-! ## The relatively hyperbolic one-target specialization -/
+
+/-- The arbitrary-family Lemma 4.4, Lemma 4.9, and Yi selection give the
+one-target Osin quotient once the two relative-Cayley classification facts are
+available.  The quotient is the literal quotient by Hull's one relator
+`t⁻¹u`, so finite normal generation is part of the construction. -/
+theorem osin24SingletonStep_of_hull_of_actionBridges
+    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (hacyBridge : RelHypFiniteBaseAcylindricityStatement.{0, 0})
+    (hloxBridge : RelHypHyperbolicElementLoxodromicStatement.{0, 0}) :
+    Osin24SingletonStepStatement := by
+  intro G instG I Hfam hrel H hsuit t
+  letI : Group G := instG
+  obtain ⟨B⟩ := exists_relativeHullData_of_actionBridges
+    hacyBridge hloxBridge hrel H hsuit
+  have hfiniteYi : HullSC.YiSuitableFiniteFamily.{0} :=
+    HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr hyi
+  have hselect : HullSC.SimultaneousAuxiliaryPeripheralSelection.{0} :=
+    HullSC.simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
+      hfiniteYi
+  let emptyFamily : Fin 0 → Subgroup G := Fin.elim0
+  obtain ⟨D₀⟩ := hselect B.hull emptyFamily B.suitable (by
+    intro j
+    exact Fin.elim0 j)
+  obtain ⟨D, htBase, hacyD⟩ := D₀.exists_acylindricalAdjoinPair t
+  have hOriginalAlphabet : B.rel.alphabet = B.hull.alphabet :=
+    B.hull_alphabet.symm
+  obtain ⟨eps₄₄, rho₄₄, mu₄₄, hmu₄₄, hgood₄₄⟩ :=
+    h44family D B.rel hOriginalAlphabet B.embedded 1
+  obtain ⟨eps₄₉, rho₄₉, mu₄₉, hmu₄₉, hgood₄₉⟩ :=
+    h49 D.rel D.embedded hacyD
+  let eps := max eps₄₄ eps₄₉
+  let rho := max rho₄₄ rho₄₉
+  let mu := min mu₄₄ mu₄₉
+  have hmu : 0 < mu := lt_min hmu₄₄ hmu₄₉
+  obtain ⟨u, hu, v, hval, hsc⟩ :=
+    HullSC.AuxiliaryPeripheralFamily.exists_auxiliaryRelatorOfBaseLetterPublished_exact
+      D B.suitable t htBase eps rho mu hmu
+  let W := HullSC.RelWord.symmetrized v
+  let K : Subgroup G :=
+    Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
+  let Q : Type := G ⨸ K
+  let eta : G →* Q := QuotientGroup.mk' K
+  have hsurj : Function.Surjective eta := QuotientGroup.mk'_surjective K
+  have hker : eta.ker = K := QuotientGroup.ker_mk' K
+  have hvW : v ∈ W := HullSC.RelWord.self_mem_symmetrized v
+  have hsc₄₄ : HullSC.RelWord.IsLemma44Input D.rel W eps₄₄ mu₄₄ rho₄₄ :=
+    hsc.toIsLemma44Input.mono_parameters
+      (Nat.le_max_left _ _) (min_le_left _ _) (Nat.le_max_left _ _)
+  have hsc₄₉ : HullSC.RelWord.IsLemma49Input D.rel W eps₄₉ mu₄₉ rho₄₉ :=
+    hsc.mono_parameters
+      (Nat.le_max_right _ _) (min_le_right _ _) (Nat.le_max_right _ _)
+  have hkerW : eta.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W) := by
+    rw [hker, HullSC.RelWord.normalClosure_listVal_image_symmetrized]
+  obtain ⟨_hball, ⟨Pselected⟩, ⟨Poriginal⟩, ⟨Pjoint⟩⟩ :=
+    hgood₄₄ W eta hsc₄₄ hsurj hkerW
+  have hpower : HullSC.KernelPowerCorrection K :=
+    hgood₄₉ W v hvW hsc₄₉
+  have htorsion : IsOsin24TorsionConclusion eta := by
+    apply isOsin24TorsionConclusion_of_kernelPowerCorrection eta hsurj
+    rwa [hker]
+  have hrelative : IsOsin24RelativeQuotientConclusion Hfam eta := by
+    refine ⟨?_, ?_⟩
+    · refine ⟨Poriginal.rel, Poriginal.base_finite B.base_finite, ?_,
+        Poriginal.embedded⟩
+      funext i
+      rw [Poriginal.fam_map i, B.fam_eq]
+    · intro x hx y hy hxy
+      apply Poriginal.injOn_peripheralUnion hx hy hxy
+  let C := D.cores.coreN
+  let i₀ : HullSC.AuxiliaryPeripheralIndex 0 := (none, false)
+  let i₁ : HullSC.AuxiliaryPeripheralIndex 0 := (none, true)
+  have hf₀Peripheral : C.lox false ∈ D.cores.peripheral i₀ :=
+    C.lox_mem false
+  have hf₁Peripheral : C.lox true ∈ D.cores.peripheral i₁ :=
+    C.lox_mem true
+  have hf₀Infinite : ¬ IsOfFinOrder (eta (C.lox false)) :=
+    Pselected.not_isOfFinOrder_map i₀ hf₀Peripheral
+      (not_isOfFinOrder_of_isLoxodromic (C.lox_isLoxodromic false))
+  have hf₁Infinite : ¬ IsOfFinOrder (eta (C.lox true)) :=
+    Pselected.not_isOfFinOrder_map i₁ hf₁Peripheral
+      (not_isOfFinOrder_of_isLoxodromic (C.lox_isLoxodromic true))
+  have hord₀ : ∀ n : ℕ, 0 < n → eta (C.lox false) ^ n ≠ 1 := by
+    intro n hn hpow
+    exact hf₀Infinite (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hpow⟩)
+  have hord₁ : ∀ n : ℕ, 0 < n → eta (C.lox true) ^ n ≠ 1 := by
+    intro n hn hpow
+    exact hf₁Infinite (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hpow⟩)
+  have hf₀Joint : eta (C.lox false) ∈ Pjoint.rel.fam (Sum.inr i₀) := by
+    rw [Pjoint.fam_selected i₀]
+    exact Subgroup.mem_map_of_mem eta hf₀Peripheral
+  have hf₁Joint : eta (C.lox true) ∈ Pjoint.rel.fam (Sum.inr i₁) := by
+    rw [Pjoint.fam_selected i₁]
+    exact Subgroup.mem_map_of_mem eta hf₁Peripheral
+  have hhyper₀Joint : IsHyperbolicElement
+      (fun i => Pjoint.rel.fam (Sum.inl i)) (eta (C.lox false)) :=
+    isHyperbolicElement_of_mem_distinct_jointPeripheral Pjoint.rel
+      Pjoint.base_inv Pjoint.embedded Sum.inl Sum.inr
+      (fun _ _ h => Sum.noConfusion h) hf₀Joint hord₀
+  have hhyper₁Joint : IsHyperbolicElement
+      (fun i => Pjoint.rel.fam (Sum.inl i)) (eta (C.lox true)) :=
+    isHyperbolicElement_of_mem_distinct_jointPeripheral Pjoint.rel
+      Pjoint.base_inv Pjoint.embedded Sum.inl Sum.inr
+      (fun _ _ h => Sum.noConfusion h) hf₁Joint hord₁
+  have hjointOriginal : (fun i => Pjoint.rel.fam (Sum.inl i)) =
+      (fun i => (Hfam i).map eta) := by
+    funext i
+    rw [Pjoint.fam_original i, B.fam_eq]
+  rw [hjointOriginal] at hhyper₀Joint hhyper₁Joint
+  have hnc : ¬ OsinCommensurable (eta (C.lox false)) (eta (C.lox true)) :=
+    not_osinCommensurable_of_mem_distinct_jointPeripherals Pjoint.rel
+      Pjoint.base_inv Pjoint.embedded (by simp [i₀, i₁])
+      hf₀Joint hf₁Joint hord₀
+  have hinjPair : Set.InjOn eta
+      ((D.cores.peripheral i₀ : Set G) ∪ (D.cores.peripheral i₁ : Set G)) := by
+    intro x hx y hy hxy
+    apply Pselected.injOn_peripheralUnion
+    · rcases hx with hx | hx
+      · exact Set.mem_iUnion.mpr ⟨i₀, hx⟩
+      · exact Set.mem_iUnion.mpr ⟨i₁, hx⟩
+    · rcases hy with hy | hy
+      · exact Set.mem_iUnion.mpr ⟨i₀, hy⟩
+      · exact Set.mem_iUnion.mpr ⟨i₁, hy⟩
+    · exact hxy
+  have hinter : ∀ q, q ∈ osinElementaryClosure (eta (C.lox false)) →
+      q ∈ osinElementaryClosure (eta (C.lox true)) → q = 1 := by
+    intro q hq₀ hq₁
+    exact eq_one_of_preserved_osinElementaryClosures eta Pjoint.rel
+      Pjoint.base_inv Pjoint.embedded (Sum.inr i₀) (Sum.inr i₁)
+      (D.cores.peripheral i₀) (D.cores.peripheral i₁)
+      (Pjoint.fam_selected i₀) (Pjoint.fam_selected i₁) hinjPair
+      hf₀Peripheral hf₁Peripheral hord₀ hord₁
+      (fun x hx₀ hx₁ => C.disjoint x hx₀ hx₁) hq₀ hq₁
+  have hsuitable : IsOsin24SuitabilityConclusion Hfam H eta :=
+    isOsin24SuitabilityConclusion_of_mapWitnesses eta
+      (C.le false (C.lox_mem false)) (C.le true (C.lox_mem true))
+      hhyper₀Joint hhyper₁Joint hord₀ hord₁ hnc hinter
+  have htarget : ∀ x ∈ ({t} : Set G), eta x ∈ H.map eta := by
+    intro x hx
+    have hxt : x = t := Set.mem_singleton_iff.mp hx
+    subst x
+    have hrelator : eta (t⁻¹ * u) = 1 := by
+      rw [← hval, ← MonoidHom.mem_ker, hker]
+      exact Subgroup.subset_normalClosure rfl
+    have hetau : eta t = eta u := by
+      rw [map_mul, map_inv] at hrelator
+      exact inv_mul_eq_one.mp hrelator
+    rw [hetau]
+    exact Subgroup.mem_map_of_mem eta hu
+  have hquotient : IsOsin24Quotient Hfam H ({t} : Set G) Q eta :=
+    ⟨hsurj, hrelative.1, htarget, hrelative.2, hsuitable, htorsion⟩
+  have hkernelFinite : eta.ker.IsFinitelyNormallyGenerated := by
+    refine ⟨{GGT.RelLetter.listVal v}, Set.finite_singleton _, ?_⟩
+    exact hker.symm
+  exact ⟨Q, inferInstance, eta, hquotient, hkernelFinite⟩
+
+/-- Finite iteration turns the conditional one-target specialization into the
+full finite-presentation addendum. -/
+theorem osinTheorem24FinitePresentationAddendum_of_hull_of_actionBridges
+    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (hacyBridge : RelHypFiniteBaseAcylindricityStatement.{0, 0})
+    (hloxBridge : RelHypHyperbolicElementLoxodromicStatement.{0, 0}) :
+    OsinTheorem24FinitePresentationAddendum :=
+  osinTheorem24FinitePresentationAddendum_of_singletonStep
+    (osin24SingletonStep_of_hull_of_actionBridges h44family h49 hyi
+      hacyBridge hloxBridge)
 
 end RelHyp
 end GGT
