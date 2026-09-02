@@ -54,6 +54,28 @@ def RelHypHyperbolicElementLoxodromicStatement : Prop :=
         (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
           IsLoxodromic g (Cayley.base D.alphabet)
 
+/-- The strictly smaller element-classification frontier: a non-parabolic
+infinite-order element escapes every bounded set in the finite-base relative
+Cayley graph. -/
+def RelHypHyperbolicElementEscapingStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
+    D.base.Finite → D.IsHyperbolicallyEmbedded →
+      ∀ g : G, IsHyperbolicElement D.fam g →
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+          IsEscaping g (Cayley.base D.alphabet)
+
+/-- Acylindricity plus escape gives the loxodromic classification by the
+proved Bowditch half at a bare Cayley alphabet. -/
+theorem relHypHyperbolicElementLoxodromicStatement_of_acylindricity_of_escaping
+    (hacy : RelHypFiniteBaseAcylindricityStatement.{u, v})
+    (hescape : RelHypHyperbolicElementEscapingStatement.{u, v}) :
+    RelHypHyperbolicElementLoxodromicStatement.{u, v} := by
+  intro G _ I D hfinite hemb g hhyper hord
+  obtain ⟨delta, hdelta⟩ := hemb.hyperbolic
+  exact HullSCUnionGeometry.escapingIsLoxodromic_cayley_of_acylindrical
+    D.alphabet hdelta (hacy G inferInstance I D hfinite hemb) g
+      (hescape G inferInstance I D hfinite hemb g hhyper hord)
+
 /-! ## Empty-family model tests -/
 
 /-- With no peripheral indices the full relative alphabet is the finite base. -/
@@ -93,6 +115,19 @@ theorem relHypHyperbolicElementLoxodromic_emptyModel
   exact HullSCUnionGeometry.isLoxodromic_cayley_of_not_isOfFinOrder
     D.alphabet (relGenSet_alphabet_finite_of_isEmpty D hfinite)
       hdelta hnot
+
+/-- Escape itself has the same empty-family finite-Cayley model. -/
+theorem relHypHyperbolicElementEscaping_emptyModel
+    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
+    (D : RelGenSet G I) (hfinite : D.base.Finite) (g : G)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  have hnot : ¬ IsOfFinOrder g := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    exact hord n hn hpow
+  exact HullSCUnionGeometry.isEscaping_cayley_of_not_isOfFinOrder
+    D.alphabet (relGenSet_alphabet_finite_of_isEmpty D hfinite) hnot
 
 /-! ## Assembly of Hull's action and suitability -/
 
