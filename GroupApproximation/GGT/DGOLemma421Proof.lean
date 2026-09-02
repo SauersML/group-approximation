@@ -2366,14 +2366,26 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               dsimp [M]
               omega
             have hpcM : pc.length < M := lt_of_le_of_lt hpcLen hEMlt
-            refine ⟨⟨pc.length, hpcM⟩, hmatched, ?_⟩
             have hieq : i' = P.length := by omega
-            have hnotTarget : ¬ targetN i < pc.length := by
-              intro hlt
-              have hlt' : pc.length + i' < pc.length := hni ▸ hlt
-              omega
-            rw [dif_neg hnotTarget, hni, hieq]
-            exact Nat.add_sub_cancel _ _
+            by_cases hrcpos : 0 < rc.length
+            · refine ⟨⟨pc.length, hpcM⟩, hmatched, ?_⟩
+              have hnotTarget : ¬ targetN i < pc.length := by
+                intro hlt
+                have hlt' : pc.length + i' < pc.length := hni ▸ hlt
+                omega
+              rw [dif_neg hnotTarget, hni, hieq]
+              exact Nat.add_sub_cancel _ _
+            · have hrczero : rc.length = 0 := by omega
+              exfalso
+              apply hmatched
+              refine ⟨Q.length, le_rfl, ?_, ?_⟩
+              · rw [← hni, hieq, hrczero]
+                simp
+              · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+                refine ⟨hh, hmem, ?_⟩
+                rw [hni, hieq, hrczero]
+                rw [vertex_fourGon_opposite_closed pc P rc Q hclose Q.length]
+                exact heq
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
             have hmE : m < E := lt_of_lt_of_le hm hrcLen
