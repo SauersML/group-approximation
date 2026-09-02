@@ -1202,13 +1202,51 @@ theorem cactusDiscDiagram_reduced
   change Z.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) at hsplit
   have hsplit' := congrArg (List.map orientedOfCell) hsplit
   rw [← horiented] at hsplit'
+  have hsplit'' : Z.cells =
+      pre.map orientedOfCell ++ orientedOfCell C₁ ::
+        (between.map orientedOfCell ++ orientedOfCell C₂ ::
+          suf.map orientedOfCell) := by
+    simpa only [List.map_append, List.map_cons] using hsplit'
   have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
     (between.map orientedOfCell)
     (suf.map orientedOfCell)
-    (orientedOfCell C₁) (orientedOfCell C₂) hsplit'
-  simpa [orientedOfCell, Lemma44OrientedRelatorCell.value,
-    RelatorCell.value] using hno
+    (orientedOfCell C₁) (orientedOfCell C₂) hsplit''
+  have hrev : ∀ C ∈ Z.relatorCells, C.reversed = false := by
+    intro C hC
+    rw [relatorCells, List.mem_ofFn] at hC
+    obtain ⟨i, rfl⟩ := hC
+    rfl
+  have hmem : ∀ C ∈ between, C ∈ Z.relatorCells := by
+    intro C hC
+    rw [hsplit]
+    simp only [List.mem_append, List.mem_cons]
+    exact Or.inr (Or.inl (Or.inr hC))
+  have hbetween : (between.map orientedOfCell).map
+      Lemma44OrientedRelatorCell.value =
+      between.map RelatorCell.value := by
+    rw [List.map_map]
+    apply List.map_congr_left
+    intro C hC
+    have hfalse : C.reversed = false := hrev C (hmem C hC)
+    simp [orientedOfCell, Lemma44OrientedRelatorCell.value,
+      RelatorCell.value, hfalse]
+  have hfirst : (orientedOfCell C₁).value = C₁.value := by
+    have hC : C₁ ∈ Z.relatorCells := by
+      rw [hsplit]
+      simp
+    have hfalse : C₁.reversed = false := hrev C₁ hC
+    simp [orientedOfCell, Lemma44OrientedRelatorCell.value,
+      RelatorCell.value, hfalse]
+  have hsecond : (orientedOfCell C₂).value = C₂.value := by
+    have hC : C₂ ∈ Z.relatorCells := by
+      rw [hsplit]
+      simp
+    have hfalse : C₂.reversed = false := hrev C₂ hC
+    simp [orientedOfCell, Lemma44OrientedRelatorCell.value,
+      RelatorCell.value, hfalse]
+  rw [hbetween, hfirst, hsecond] at hno
+  exact hno
 
 def cellIndexEquiv
     {G : Type u} [Group G] {Lambda : Type w}
