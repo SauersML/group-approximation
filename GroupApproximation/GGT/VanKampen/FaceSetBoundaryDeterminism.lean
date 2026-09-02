@@ -94,7 +94,7 @@ element at the head. -/
 private theorem rotate_append_cons
     {α : Type*} (pre : List α) (a : α) (suf : List α) :
     (pre ++ a :: suf).rotate pre.length = a :: (suf ++ pre) := by
-  rw [List.rotate_append_length_eq]
+  rw [List.rotate_append_length_eq, List.cons_append]
 
 /-- Reading the head of a list presented as a cons. -/
 private theorem head_eq_of_eq_cons
