@@ -107,13 +107,16 @@ structure QuotientJointPeripheralPreservation
   fam_selected : ∀ i : AuxiliaryPeripheralIndex k,
     rel.fam (Sum.inr i) = (selected.cores.peripheral i).map q
   embedded : rel.IsHyperbolicallyEmbedded
-  /-- The joint relative base comes from the original one.  Relative
-  hyperbolicity of the quotient with respect to the original family asks for a
-  finite relative generating set, and Proposition 4.35 in its printed direction
-  builds one from this base by adjoining finitely many generators of the
-  members it drops; so this base has to be finite, and it is, because the
-  original base is. -/
-  base_subset : ∃ T : Set G, T.Finite ∧ rel.base ⊆ q '' (original.base ∪ T)
+  /-- The joint relative base comes from the original one, enlarged by finitely
+  many letters of the selected relative alphabet.  Relative hyperbolicity of the
+  quotient with respect to the original family asks for a finite relative
+  generating set, and Proposition 4.35 in its printed direction builds one from
+  this base by adjoining finitely many generators of the members it drops; so
+  this base has to be finite, and it is, because the original base is.  The
+  enlargement is confined to the selected relative alphabet, which is what
+  `CanonicalQuotientFamilyPreservation.base_map` asks of its own enlargement. -/
+  base_subset : ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
+    rel.base ⊆ q '' (original.base ∪ T)
 
 namespace QuotientJointPeripheralPreservation
 
@@ -126,10 +129,36 @@ theorem base_finite {G : Type u} [Group G] {A : HullGeneratingSet G}
     {original : GGT.RelGenSet G Lambda}
     (P : QuotientJointPeripheralPreservation q selected original)
     (hfinite : original.base.Finite) : P.rel.base.Finite := by
-  obtain ⟨T, hT, hsub⟩ := P.base_subset
+  obtain ⟨T, hT, -, hsub⟩ := P.base_subset
   exact (((hfinite.union hT).image q)).subset hsub
 
 end QuotientJointPeripheralPreservation
+
+/-- The enlargement clause is automatic once the joint relative base lies in
+the selected one: intersecting a finite enlargement with the joint base keeps
+it finite, confines it to the selected relative alphabet, and still covers the
+joint base. -/
+theorem exists_finite_adjoin_within_alphabet
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} {original : GGT.RelGenSet G Lambda}
+    {joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))}
+    (hwithin : joint.base ⊆ selected.rel.base)
+    (hsub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T) :
+    ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
+      joint.base ⊆ original.base ∪ T := by
+  obtain ⟨T, hT, hTsub⟩ := hsub
+  refine ⟨T ∩ joint.base, hT.inter_of_left _, ?_, ?_⟩
+  · intro x hx
+    show x ∈ selected.rel.base ∪
+      ⋃ i : AuxiliaryPeripheralIndex k,
+        ((selected.rel.fam i : Subgroup G) : Set G)
+    exact Set.mem_union_left _ (hwithin hx.2)
+  · intro x hx
+    rcases hTsub hx with h | h
+    · exact Set.mem_union_left _ h
+    · exact Set.mem_union_right _ ⟨h, hx⟩
 
 /-! ## The arbitrary-family statement -/
 
@@ -190,7 +219,8 @@ theorem quotientJointPeripheralPreservation_of_bijective
     (horiginal : ∀ lam, joint.fam (Sum.inl lam) = original.fam lam)
     (hselected : ∀ i, joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (hjoint : joint.IsHyperbolicallyEmbedded)
-    (hbaseSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
+    (hbaseSub : ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
+      joint.base ⊆ original.base ∪ T)
     {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   refine ⟨{
@@ -201,8 +231,8 @@ theorem quotientJointPeripheralPreservation_of_bijective
     embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
       joint hjoint q hq
     base_subset := by
-      obtain ⟨T, hT, hsub⟩ := hbaseSub
-      exact ⟨T, hT, Set.image_mono hsub⟩ }⟩
+      obtain ⟨T, hT, hTY, hsub⟩ := hbaseSub
+      exact ⟨T, hT, hTY, Set.image_mono hsub⟩ }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
