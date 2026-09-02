@@ -211,18 +211,6 @@ theorem estimatingPieceNonCancellationStatement :
 
 /-! ## Model tests -/
 
-/-- Model test at exactly one relator cell: there are no interior edges at all,
-because `target_ne_source` and a single cell index are incompatible. -/
-theorem no_interiorEdge_of_rCellCount_one
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W}
-    {selected : Finset (Embedded.Candidate D eps Delta)}
-    (hone : Delta.rCellCount = 1)
-    (edge : Embedded.InteriorEdge selected) : False :=
-  edge.candidate.contiguity.target_ne_source edge.target edge.target_eq
-    (interiorEdge_source_eq_target_of_rCellCount_one hone edge)
 
 /-- A diagram with at most one relator cell is reduced: the no-cancelling-pair
 condition quantifies over a split exhibiting two listed cells. -/
@@ -277,6 +265,19 @@ theorem estimatingPieceNonCancellation_holds_of_rCellCount_zero
         GGT.RelLetter.listVal (Embedded.dartWord Delta
           edge.candidate.contiguity.rightSide) :=
   absurd target.isLt (by omega)
+
+/-- Model test at exactly one relator cell: there are no interior edges at all,
+because `target_ne_source` and a single cell index are incompatible. -/
+theorem no_interiorEdge_of_rCellCount_one
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Embedded.Candidate D eps Delta)}
+    (hone : Delta.rCellCount = 1)
+    (edge : Embedded.InteriorEdge selected) : False :=
+  edge.candidate.contiguity.target_ne_source edge.target edge.target_eq
+    (interiorEdge_source_eq_target_of_rCellCount_one hone edge)
 
 end VanKampen
 end GGT
