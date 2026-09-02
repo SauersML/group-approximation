@@ -92,7 +92,7 @@ theorem isQuasiGeodesicPolygon_yiConnectorQuadWord
   intro t _ p q' hp hpq hq'
   have hp' : t ≤ p := hp
   have hq'' : q' ≤ t + 1 := hq'
-  rw [div_one, sub_zero]
+  simp only [div_one, Nat.cast_zero, sub_zero]
   have key : q' - p ≤ wordDist D.alphabet.carrier
       (vertex (1 : G) q p) (vertex (1 : G) q q') := by
     rcases Nat.eq_or_lt_of_le hpq with heq | hlt
@@ -345,9 +345,10 @@ theorem exists_successivelySeparatedPowers
             exact hmInvDeep (Or.inr hc)
         · intro i
           simpa [a, Fin.snoc_castSucc] using holdExtra i
-      · intro i j hij
+      · intro i j
         refine Fin.lastCases ?_ ?_ j
-        · let i0 : Fin N := ⟨i.val, by
+        · intro hij
+          let i0 : Fin N := ⟨i.val, by
             have hilast : i < Fin.last N := hij
             change i.val < N at hilast
             exact hilast⟩
@@ -366,7 +367,7 @@ theorem exists_successivelySeparatedPowers
             apply hmInvDeep
             exact Or.inl (relBall_mono_radius D lam hile
               (by simpa [a, fresh] using hf))
-        · intro j0
+        · intro j0 hij
           have hijVal : i.val < j0.val := hij
           let i0 : Fin N := ⟨i.val, lt_trans hijVal j0.isLt⟩
           have hi0 : i0.castSucc = i := Fin.ext rfl
@@ -391,7 +392,7 @@ theorem componentData_blockWord_singleBase
   have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
   have hlen : w.length = 2 * n := by
     dsimp [w]
-    rw [length_blockWord, List.length_singleton]
+    rw [OsinComponents.length_blockWord, List.length_singleton]
     ring
   have hof := hc.2.2.1 i le_rfl hc.1 hiw
   have himod : i % 2 = 1 := by
@@ -423,16 +424,18 @@ theorem separatorData_blockWord_singleBase
   let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   obtain ⟨hk, -⟩ := componentData_blockWord_singleBase D lam hg (v := v) hc
   rcases hstep with htrivial | ⟨x, hi', hx⟩
-  · exfalso
-    have hkw : k < w.length := by rw [← htrivial]; exact lt_of_lt_of_le hc'.1 hc'.2.1
+  · subst i'
+    exfalso
+    have hkw : k < w.length := lt_of_lt_of_le hc'.1 hc'.2.1
     have hnot := hc.2.2.2.2 hkw
-    have hyes := hc'.2.2.1 i' le_rfl hc'.1 (by rw [htrivial]; exact hkw)
-    rw [htrivial] at hyes
+    have hyes := hc'.2.2.1 k le_rfl hc'.1 hkw
     exact hnot hyes
-  · have hkw : k < w.length := by omega
+  · have hi'w : i' < w.length := lt_of_lt_of_le hc'.1 hc'.2.1
+    have hki' : k < i' := by omega
+    have hkw : k < w.length := lt_trans hki' hi'w
     have hlen : w.length = 2 * n := by
       dsimp [w]
-      rw [length_blockWord, List.length_singleton]
+      rw [OsinComponents.length_blockWord, List.length_singleton]
       ring
     have himod : i % 2 = 1 := by
       have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
@@ -462,7 +465,7 @@ theorem getElem?_rev_blockWord_singleBase_even (lam : Lambda) (g h : G)
   let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   have hlen : w.length = 2 * n := by
     dsimp [w]
-    rw [length_blockWord, List.length_singleton]
+    rw [OsinComponents.length_blockWord, List.length_singleton]
     ring
   have hjrev : j < (revWord w).length := by simpa [length_revWord, hlen] using hj
   rw [getElem?_revWord_at w hjrev]
@@ -482,7 +485,7 @@ theorem getElem?_rev_blockWord_singleBase_odd (lam : Lambda) (g h : G)
   let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   have hlen : w.length = 2 * n := by
     dsimp [w]
-    rw [length_blockWord, List.length_singleton]
+    rw [OsinComponents.length_blockWord, List.length_singleton]
     ring
   have hjrev : j < (revWord w).length := by simpa [length_revWord, hlen] using hj
   rw [getElem?_revWord_at w hjrev]
@@ -509,7 +512,7 @@ theorem componentData_rev_blockWord_singleBase
   have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
   have hlen : w.length = 2 * n := by
     dsimp [w]
-    rw [length_revWord, length_blockWord, List.length_singleton]
+    rw [length_revWord, OsinComponents.length_blockWord, List.length_singleton]
     ring
   have hof := hc.2.2.1 i le_rfl hc.1 hiw
   have himod : i % 2 = 0 := by
@@ -547,16 +550,19 @@ theorem separatorData_rev_blockWord_singleBase
   let w := revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)
   obtain ⟨hk, -⟩ := componentData_rev_blockWord_singleBase D lam hg (v := v) hc
   rcases hstep with htrivial | ⟨x, hi', hx⟩
-  · exfalso
-    have hkw : k < w.length := by rw [← htrivial]; exact lt_of_lt_of_le hc'.1 hc'.2.1
+  · subst i'
+    exfalso
+    have hkw : k < w.length := lt_of_lt_of_le hc'.1 hc'.2.1
     have hnot := hc.2.2.2.2 hkw
-    have hyes := hc'.2.2.1 i' le_rfl hc'.1 (by rw [htrivial]; exact hkw)
-    rw [htrivial] at hyes
+    have hyes := hc'.2.2.1 k le_rfl hc'.1 hkw
     exact hnot hyes
-  · have hkw : k < w.length := by omega
+  · have hi'w : i' < w.length := lt_of_lt_of_le hc'.1 hc'.2.1
+    have hki' : k < i' := by omega
+    have hkw : k < w.length := lt_trans hki' hi'w
     have hlen : w.length = 2 * n := by
       dsimp [w]
-      rw [length_revWord, length_blockWord, List.length_singleton]
+      rw [length_revWord, OsinComponents.length_blockWord,
+        List.length_singleton]
       ring
     have himod : i % 2 = 0 := by
       have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
@@ -764,7 +770,7 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       let wj := OsinComponents.blockWord () [RelLetter.base g] (a j) Nj
       have hlength : R ≤ wj.length := by
         dsimp [wj, Nj]
-        rw [length_blockWord, List.length_singleton]
+        rw [OsinComponents.length_blockWord, List.length_singleton]
         have hR : R ≤ m * R := Nat.le_mul_of_pos_left R hm
         omega
       have hsameR : t * (g * a i) ^ Ni * t⁻¹ = (g * a j) ^ Nj := by
@@ -790,7 +796,7 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       have hendDist :
           (wordDist D.alphabet.carrier (vertex 1 wj wj.length)
             (vertex t wi wi.length) : ℝ) ≤ eps := by
-        simp only [wj, wi, vertex_length, listVal_blockWord,
+        simp only [wj, wi, vertex_length, OsinComponents.listVal_blockWord,
           RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons,
           List.prod_nil, RelLetter.val, one_mul]
         rw [hcommuteR]
@@ -850,7 +856,7 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       let wj := OsinComponents.blockWord () [RelLetter.base g] (a j) Nj
       have hlength : R ≤ wj.length := by
         dsimp [wj, Nj]
-        rw [length_blockWord, List.length_singleton]
+        rw [OsinComponents.length_blockWord, List.length_singleton]
         have hR : R ≤ m * R := Nat.le_mul_of_pos_left R hm
         omega
       have hoppR : t * (g * a i) ^ Ni * t⁻¹ = ((g * a j) ^ Nj)⁻¹ := by
@@ -884,7 +890,8 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       have hendDist :
           (wordDist D.alphabet.carrier (vertex 1 wj wj.length)
             (vertex t (revWord wi) (revWord wi).length) : ℝ) ≤ eps := by
-        simp only [wj, wi, vertex_length, listVal_blockWord, listVal_revWord,
+        simp only [wj, wi, vertex_length, OsinComponents.listVal_blockWord,
+          listVal_revWord,
           RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons,
           List.prod_nil, RelLetter.val, one_mul]
         rw [hinverseR]
