@@ -1064,13 +1064,6 @@ theorem firstGapArcBoundaryExclusion_start_of_source
         (B.firstGapFinishSide j)) (B.firstGapRight j)
       (orientedSegment B.chord (B.firstGapChordStart j)
         (B.firstGapChordFinish j)) (i - 1) htArc hrCycle).mp (by
-      change ((auxiliaryCycleWord (B.firstGapLeft j)
-        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-        (B.firstGapFinishSide j)) (B.firstGapRight j)
-        (orientedSegment B.chord (B.firstGapChordStart j)
-          (B.firstGapChordFinish j)))[
-            (B.firstGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
-        (P.label s)
       simpa only [hteq'] using hcycleLetter)
     exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
   · have hi0 : i = 0 := by omega
