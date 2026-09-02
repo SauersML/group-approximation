@@ -51,7 +51,9 @@ namespace GroupApproximation
 namespace GGT
 namespace RelHyp
 
+open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v w
 
@@ -160,6 +162,7 @@ def emptySubfamilyRelGenSet {E : Type u} [Group E] (Y : Set E)
 theorem emptySubfamilyRelGenSet_alphabet_carrier {E : Type u} [Group E]
     (Y : Set E) (hY : IsSymmetricGeneratingSet Y) :
     (emptySubfamilyRelGenSet Y hY).alphabet.carrier = Y := by
+  show Y ∪ (⋃ e : Empty, ((Empty.elim e : Subgroup E) : Set E)) = Y
   rw [Set.iUnion_of_empty, Set.union_empty]
 
 /-- **Dropping a member.**  The empty subfamily is hyperbolically embedded in a
