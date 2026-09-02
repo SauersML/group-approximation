@@ -735,6 +735,7 @@ not detached from the diagram hypotheses. -/
 def EstimatingUnboundConstructionStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    (_hrho : 0 < rho)
     {W : Set (List (GGT.RelLetter G Lambda))}
     (_hcondition : OsinCCondition D W eps mu lambda c rho)
     (Delta : DiscDiagram.{u, w, v} W)
@@ -761,7 +762,7 @@ theorem estimatingDataConstruction_of_components
   obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold hred'
   have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord :=
     equiv.boundary_quasiGeodesic hboundary
-  obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hcondition Delta'
+  obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hrho hcondition Delta'
     scaffold hboundary'
   exact ⟨Delta', ⟨equiv⟩,
     EstimatingData.nonempty_of_certificates scaffold graph pieces unbound
