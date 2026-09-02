@@ -441,6 +441,30 @@ theorem arcLengths_le_two_mu_cellWeight_source_of_cellContiguity
       rw [hsource]
       rfl
 
+/-- The source-incidence estimate with the arc sum cast from `Nat`, matching
+the representation used by `Embedded.Candidate.weight`. -/
+theorem arcWeight_le_two_mu_cellWeight_source_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (hsource : sourceCell = cell Delta Gamma.source)
+    (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
+    (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    ((Gamma.sourceArc.length + Gamma.targetArc.length : ℕ) : ℝ) ≤
+      2 * mu * Delta.cellWeight Gamma.source := by
+  simpa only [Nat.cast_add] using
+    Gamma.arcLengths_le_two_mu_cellWeight_source_of_cellContiguity
+      cellGamma hsource hsourceArc htargetArc hsc hred
+
 /-- The corresponding transfer at the target incidence has exactly the same
 `2 * mu * cellWeight` conclusion. -/
 theorem arcLengths_le_two_mu_cellWeight_target_of_cellContiguity
@@ -471,6 +495,30 @@ theorem arcLengths_le_two_mu_cellWeight_target_of_cellContiguity
     _ = 2 * mu * Delta.cellWeight target := by
       rw [htarget]
       rfl
+
+/-- The target-incidence estimate with the arc sum cast from `Nat`, matching
+the representation used by `Embedded.Candidate.weight`. -/
+theorem arcWeight_le_two_mu_cellWeight_target_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (htarget : targetCell = cell Delta target)
+    (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
+    (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    ((Gamma.sourceArc.length + Gamma.targetArc.length : ℕ) : ℝ) ≤
+      2 * mu * Delta.cellWeight target := by
+  simpa only [Nat.cast_add] using
+    Gamma.arcLengths_le_two_mu_cellWeight_target_of_cellContiguity target
+      cellGamma htarget hsourceArc htargetArc hsc hred
 
 end Contiguity
 end Embedded
