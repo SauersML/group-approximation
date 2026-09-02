@@ -17,6 +17,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.GGT.DGOPolygonCut
 
 universe u w
 
