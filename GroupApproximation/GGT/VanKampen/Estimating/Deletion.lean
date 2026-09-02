@@ -126,6 +126,63 @@ theorem exists_fiveDeletionOrder_of_lowDegree
 
 /-! ## The hereditary Euler input -/
 
+/-- Every active edge has at most two distinct incident vertices. -/
+def HasAtMostTwoEndpoints
+    {V : Type u} {E : Type v} [DecidableEq V]
+    (incident : V → E → Prop) [DecidableRel incident] : Prop :=
+  ∀ (vertices : Finset V) (edge : E),
+    (vertices.filter fun x => incident x edge).card ≤ 2
+
+/-- The empty-edge one-vertex incidence relation has at most two endpoints
+per edge. -/
+theorem atMostTwoEndpoints_oneVertexNoEdgesModel
+    (incident : PUnit → PEmpty → Prop) [DecidableRel incident] :
+    HasAtMostTwoEndpoints incident := by
+  intro _ edge
+  exact edge.elim
+
+/-- Double-counting vertex-edge incidences bounds the active degree sum by
+twice the number of active edges. -/
+theorem sum_incidentEdges_card_le_two_mul
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    (htwo : HasAtMostTwoEndpoints incident)
+    (vertices : Finset V) (edges : Finset E) :
+    (∑ x ∈ vertices, (incidentEdges incident x edges).card) ≤
+      2 * edges.card := by
+  classical
+  have hreindex :
+      (∑ x ∈ vertices, (incidentEdges incident x edges).card) =
+        ∑ edge ∈ edges, (vertices.filter fun x => incident x edge).card := by
+    simp_rw [incidentEdges, Finset.card_filter]
+    rw [Finset.sum_comm]
+  rw [hreindex]
+  calc
+    (∑ edge ∈ edges, (vertices.filter fun x => incident x edge).card) ≤
+        ∑ _edge ∈ edges, 2 := by
+      exact Finset.sum_le_sum fun edge _ => htwo vertices edge
+    _ = 2 * edges.card := by simp [Nat.mul_comm]
+
+/-- The edge inequality for every nonempty covered deletion state.  For the
+simple planar estimating graph this is Euler's inequality
+`|E| ≤ 3 * (|V| - 1)`, applied componentwise when the state is disconnected. -/
+def HasHereditaryPlanarEdgeBound
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident] : Prop :=
+  ∀ (vertices : Finset V) (edges : Finset E),
+    EdgesCovered incident vertices edges → vertices.Nonempty →
+      edges.card ≤ 3 * (vertices.card - 1)
+
+/-- The one-vertex graph with no edges satisfies the hereditary planar edge
+bound at equality. -/
+theorem hereditaryPlanarEdgeBound_oneVertexNoEdgesModel
+    (incident : PUnit → PEmpty → Prop) [DecidableRel incident] :
+    HasHereditaryPlanarEdgeBound incident := by
+  intro vertices edges _ hvertices
+  have hedges : edges = ∅ := Subsingleton.elim _ _
+  rw [hedges]
+  simp
+
 /-- Every nonempty covered deletion state has average active degree below
 six.  For a simple planar graph this is the hereditary Euler inequality
 obtained by deleting vertices and treating connected components separately. -/
@@ -149,6 +206,20 @@ theorem hereditaryAverageDegree_oneVertexNoEdgesModel
   have hcardPos : 0 < vertices.card := Finset.card_pos.mpr hvertices
   simp only [incidentEdges, Finset.filter_empty, Finset.card_empty,
     Finset.sum_const_zero]
+  omega
+
+/-- Euler's hereditary edge bound and the two-endpoint property imply the
+hereditary average-degree estimate used by the deletion induction. -/
+theorem hereditaryAverageDegree_of_planarEdgeBound
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    (htwo : HasAtMostTwoEndpoints incident)
+    (hplanar : HasHereditaryPlanarEdgeBound incident) :
+    HasHereditaryAverageDegreeLtSix incident := by
+  intro vertices edges hcovered hvertices
+  have hdegree := sum_incidentEdges_card_le_two_mul incident htwo vertices edges
+  have hedge := hplanar vertices edges hcovered hvertices
+  have hcard : 0 < vertices.card := Finset.card_pos.mpr hvertices
   omega
 
 /-- Average degree below six supplies a vertex of active degree at most five. -/
@@ -282,6 +353,33 @@ theorem edgesCovered_univ (M : CombMap) :
   intro d
   exact ⟨M.vertexOf d, Finset.mem_univ _, d, rfl, rfl⟩
 
+/-- An edge of a combinatorial map has at most the vertices of its two
+representing darts as endpoints. -/
+theorem hasAtMostTwoEndpoints (M : CombMap) :
+    HasAtMostTwoEndpoints M.Incident := by
+  classical
+  intro vertices edge
+  refine Quotient.inductionOn' edge ?_
+  intro d
+  have hsubset :
+      (vertices.filter fun x => M.Incident x (M.edgeOf d)) ⊆
+        {M.vertexOf d, M.vertexOf (M.alpha d)} := by
+    intro x hx
+    have hincident : M.Incident x (M.edgeOf d) := (Finset.mem_filter.mp hx).2
+    obtain ⟨q, hqx, hqe⟩ := hincident
+    have hpair : DartPairRel M.alpha q d :=
+      (M.edgeOf_eq_iff q d).mp hqe
+    rcases hpair with hqd | halpha
+    · subst q
+      simp [hqx]
+    · have hq : q = M.alpha d := by
+        have h := congrArg M.alpha halpha
+        rw [M.alpha_involutive q] at h
+        exact h
+      subst q
+      simp [hqx]
+  exact le_trans (Finset.card_le_card hsubset) (by simp)
+
 /-- The low-degree theorem for every remaining incidence state gives the
 five-deletion order used by the estimating graph. -/
 theorem exists_fiveDeletionOrder
@@ -302,6 +400,15 @@ theorem exists_fiveDeletionOrder_of_hereditaryAverageDegree
     Nonempty (FiveDeletionOrder M.Incident Finset.univ Finset.univ) := by
   exact _root_.GroupApproximation.GGT.VanKampen.exists_fiveDeletionOrder_of_hereditaryAverageDegree
     M.Incident haverage Finset.univ Finset.univ M.edgesCovered_univ
+
+/-- The componentwise planar edge inequality gives the full five-deletion
+order for a combinatorial map. -/
+theorem exists_fiveDeletionOrder_of_planarEdgeBound
+    (M : CombMap) (hplanar : HasHereditaryPlanarEdgeBound M.Incident) :
+    Nonempty (FiveDeletionOrder M.Incident Finset.univ Finset.univ) := by
+  exact M.exists_fiveDeletionOrder_of_hereditaryAverageDegree
+    (hereditaryAverageDegree_of_planarEdgeBound M.Incident
+      M.hasAtMostTwoEndpoints hplanar)
 
 /-- Osin's weighted Euler estimate once the planar deletion construction has
 provided a five-deletion order. -/
