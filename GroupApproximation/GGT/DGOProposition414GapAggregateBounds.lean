@@ -53,7 +53,7 @@ theorem sum_firstGap_chord_length_le
           else B.chord.length)
           (if h : 0 < q.val then
             endpointByOrientation (B.firstGapRunsForward (e.symm q))
-              A.partners[q.val - 1]'(by omega)
+              (A.partners[q.val - 1]'(by omega))
               (A.partners[q.val - 1]'(by omega) + 1)
           else 0) := by
             exact Fintype.sum_equiv e _ _ fun j => by
@@ -97,7 +97,7 @@ theorem sum_secondGap_chord_length_le
           else 0)
           (if h : 0 < q.val then
             endpointByOrientation (B.secondGapRunsForward (e.symm q))
-              A.partners[q.val - 1]'(by omega)
+              (A.partners[q.val - 1]'(by omega))
               (A.partners[q.val - 1]'(by omega) + 1)
           else B.chord.length) := by
             exact Fintype.sum_equiv e _ _ fun j => by
@@ -124,6 +124,10 @@ theorem sum_firstGapLeft_length_le
       (B.firstGapLeft j).length) ≤
         B.brokenAssignment.index.first.sources.length := by
   classical
+  change (∑ j : Fin
+      (B.brokenAssignment.index.first.sources.length + 1),
+        (B.firstGapLeft j).length) ≤
+    B.brokenAssignment.index.first.sources.length
   rw [Fin.sum_univ_succ]
   have htail :
       (∑ j : Fin B.brokenAssignment.index.first.sources.length,
@@ -147,6 +151,10 @@ theorem sum_firstGapRight_length_le
       (B.firstGapRight j).length) ≤
         B.brokenAssignment.index.first.sources.length := by
   classical
+  change (∑ j : Fin
+      (B.brokenAssignment.index.first.sources.length + 1),
+        (B.firstGapRight j).length) ≤
+    B.brokenAssignment.index.first.sources.length
   rw [Fin.sum_univ_castSucc]
   have hinit :
       (∑ j : Fin B.brokenAssignment.index.first.sources.length,
@@ -169,6 +177,10 @@ theorem sum_secondGapLeft_length_le
       (B.secondGapLeft j).length) ≤
         B.brokenAssignment.index.second.sources.length := by
   classical
+  change (∑ j : Fin
+      (B.brokenAssignment.index.second.sources.length + 1),
+        (B.secondGapLeft j).length) ≤
+    B.brokenAssignment.index.second.sources.length
   rw [Fin.sum_univ_succ]
   have htail :
       (∑ j : Fin B.brokenAssignment.index.second.sources.length,
@@ -191,6 +203,10 @@ theorem sum_secondGapRight_length_le
       (B.secondGapRight j).length) ≤
         B.brokenAssignment.index.second.sources.length := by
   classical
+  change (∑ j : Fin
+      (B.brokenAssignment.index.second.sources.length + 1),
+        (B.secondGapRight j).length) ≤
+    B.brokenAssignment.index.second.sources.length
   rw [Fin.sum_univ_castSucc]
   have hinit :
       (∑ j : Fin B.brokenAssignment.index.second.sources.length,
@@ -231,10 +247,12 @@ theorem sum_gapChord_length_le
     (fun x hx => le_of_lt (A₂.partner_lt x hx))
   have hi₁ := A₁.traversal
   have hi₂ := A₂.traversal
-  have hm₁ := A₁.source_count_le
-  have hm₂ := A₂.source_count_le
-  rw [← A₁.partner_length] at hm₁
-  rw [← A₂.partner_length] at hm₂
+  have hm₁ : A₁.partners.length ≤ B.chord.length := by
+    rw [A₁.partner_length, A₁.source_length]
+    exact A₁.source_count_le
+  have hm₂ : A₂.partners.length ≤ B.chord.length := by
+    rw [A₂.partner_length, A₂.source_length]
+    exact A₂.source_count_le
   unfold ChordPartnerQuadraticTraversalBound at hi₁ hi₂
   omega
 
@@ -321,8 +339,36 @@ theorem gapIntervalsOfConfigurations_count_upper
         ∑ j, (((B.gapIntervalsOfConfigurations C).toPathInput).second j).sideCount ≤
       n + 6 * ((2 * B.chord.length + 1) *
         (2 * B.chord.length + 1)) := by
-  simpa only [AuxiliaryIntervalOnChord.toPathInput_sideCount] using
-    B.sum_rawGap_sideCount_upper
+  have hfirst :
+      (∑ j, (((B.gapIntervalsOfConfigurations C).toPathInput).first j).sideCount) =
+        ∑ j : Fin B.brokenAssignment.index.first.pieceCount,
+          ((B.firstGapLeft j).length +
+            (B.firstGapFinishSide j - B.firstGapStartSide j) +
+            (B.firstGapRight j).length +
+            (orientedSegment B.chord (B.firstGapChordStart j)
+              (B.firstGapChordFinish j)).length) := by
+    apply Finset.sum_congr rfl
+    intro j _hj
+    rw [AuxiliaryIntervalOnChord.toPathInput_sideCount]
+    rcases B.gapIntervalsOfConfigurations_first_shape C j with
+      ⟨hleft, harc, hright, hstart, hfinish⟩
+    rw [hleft, harc, hright, hstart, hfinish]
+  have hsecond :
+      (∑ j, (((B.gapIntervalsOfConfigurations C).toPathInput).second j).sideCount) =
+        ∑ j : Fin B.brokenAssignment.index.second.pieceCount,
+          ((B.secondGapLeft j).length +
+            (B.secondGapFinishSide j - B.secondGapStartSide j) +
+            (B.secondGapRight j).length +
+            (orientedSegment B.chord (B.secondGapChordStart j)
+              (B.secondGapChordFinish j)).length) := by
+    apply Finset.sum_congr rfl
+    intro j _hj
+    rw [AuxiliaryIntervalOnChord.toPathInput_sideCount]
+    rcases B.gapIntervalsOfConfigurations_second_shape C j with
+      ⟨hleft, harc, hright, hstart, hfinish⟩
+    rw [hleft, harc, hright, hstart, hfinish]
+  rw [hfirst, hsecond]
+  exact B.sum_rawGap_sideCount_upper
 
 end BalancedSplitData
 
