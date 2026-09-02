@@ -400,6 +400,7 @@ def EstimatingSelectionConstructionStatement : Prop :=
         0 < lambda → lambda ≤ 1 → 0 ≤ c →
         0 < mu → mu ≤ 1 / 16 →
           ∃ eps rho : ℕ, 0 < rho ∧
+            1 ≤ 2 * mu * Real.sqrt (rho : ℝ) ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               OsinCCondition D W eps mu lambda c rho →
                 ∀ Delta : DiscDiagram.{u, w, v} W,
@@ -593,14 +594,15 @@ theorem estimatingSelectionConstruction_of_faceDropOracles
           0 < lambda → lambda ≤ 1 → 0 ≤ c →
           0 < mu → mu ≤ 1 / 16 →
           ∃ eps rho : ℕ, 0 < rho ∧
+            1 ≤ 2 * mu * Real.sqrt (rho : ℝ) ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               ∀ hcondition : OsinCCondition D W eps mu lambda c rho,
                 SelectionFaceDropOracle.{u, w, v} D eps rho mu lambda c hcondition) :
     EstimatingSelectionConstructionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  obtain ⟨eps, rho, hrho, horacle⟩ := hparameter D hhyper lambda c mu
+  obtain ⟨eps, rho, hrho, hthreshold, horacle⟩ := hparameter D hhyper lambda c mu
     hlambda hlambdaUpper hc hmu hmuUpper
-  refine ⟨eps, rho, hrho, ?_⟩
+  refine ⟨eps, rho, hrho, hthreshold, ?_⟩
   intro W hcondition Delta hred hcells hboundary
   exact selection_output_of_faceDropOracle D eps rho mu lambda c hcondition
     (horacle W hcondition) Delta hred hcells hboundary
@@ -729,30 +731,43 @@ theorem estimatingPieceConstruction_of_planarPeelOracle
   exact edge.candidate.contiguity.targetBoundary_value_of_pasting
     peeling.to_homotopy
 
-/-- The local Lemmas `61` and `62` input: after selection, the unbound arc
-partition satisfies the strict square-root budget and its numerical threshold.
-The boundary quasi-geodesic is included so the source's unbound estimate is
-not detached from the diagram hypotheses. -/
-def EstimatingUnboundConstructionStatement : Prop :=
+/-- The local Lemmas `61` and `62` input, at the hypotheses the source states.
+Osin runs Lemma 62 on a reduced diagram with at least one relator cell, under
+the graph condition `(*)`, and with `rho` chosen after `mu`; the closing line
+of Lemma 63 reads `rho > mu^{-2}`.  The conclusion is the one the source
+proves, "up to passing to an `O`-equivalent diagram", so the strict budget is
+asserted on an `O`-equivalent diagram with its own scaffold and graph data.
+
+The earlier form of this statement, which dropped the cell count and the
+parameter choice, is refuted in `Estimating.UnboundEmptyDisc`. -/
+def EstimatingUnboundOutputStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
-    (_hrho : 0 < rho)
+    (_hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ))
     {W : Set (List (GGT.RelLetter G Lambda))}
     (_hcondition : OsinCCondition D W eps mu lambda c rho)
     (Delta : DiscDiagram.{u, w, v} W)
-    (scaffold : EstimatingScaffold D eps Delta),
+    (_hred : Delta.Reduced)
+    (_hcells : 0 < Delta.rCellCount)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (_graph : EstimatingGraphData D eps Delta scaffold),
     IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
-      Nonempty (Lemma62Data D eps mu rho Delta scaffold)
+      ∃ Delta' : DiscDiagram.{u, w, v} W,
+        Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+          Delta'.Reduced ∧
+          ∃ scaffold' : EstimatingScaffold D eps Delta',
+            Nonempty (EstimatingGraphData D eps Delta' scaffold') ∧
+              Nonempty (Lemma62Data D eps mu rho Delta' scaffold')
 
 /-- The three source-level certificates assemble into the complete geometric
 construction used by the strict Gr0 count. -/
 theorem estimatingDataConstruction_of_components
     (hselection : EstimatingSelectionConstructionStatement.{u, w, v})
     (hpieces : EstimatingPieceConstructionStatement.{u, w, v})
-    (hunbound : EstimatingUnboundConstructionStatement.{u, w, v}) :
+    (hunbound : EstimatingUnboundOutputStatement.{u, w, v}) :
     EstimatingDataConstructionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  obtain ⟨eps, rho, hrho, hselect⟩ := hselection D hhyper lambda c mu
+  obtain ⟨eps, rho, hrho, hthreshold, hselect⟩ := hselection D hhyper lambda c mu
     hlambda hlambdaUpper hc hmu hmuUpper
   refine ⟨eps, rho, hrho, ?_⟩
   intro W hcondition Delta hred hcells hboundary
@@ -760,13 +775,20 @@ theorem estimatingDataConstruction_of_components
     hred hcells hboundary
   obtain ⟨equiv⟩ := hequiv
   obtain ⟨graph⟩ := graph
-  obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold hred'
   have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord :=
     equiv.boundary_quasiGeodesic hboundary
-  obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hrho hcondition Delta'
-    scaffold hboundary'
-  exact ⟨Delta', ⟨equiv⟩,
-    EstimatingData.nonempty_of_certificates scaffold graph pieces unbound
+  have hcells' : 0 < Delta'.rCellCount := by
+    have hcount : Delta'.rCellCount = Delta.rCellCount := equiv.rCellCount_eq
+    omega
+  obtain ⟨Delta'', hequiv', hred'', scaffold', graph', unbound⟩ :=
+    hunbound D eps rho mu lambda c hthreshold hcondition Delta' hred' hcells'
+      scaffold graph hboundary'
+  obtain ⟨equiv'⟩ := hequiv'
+  obtain ⟨graph'⟩ := graph'
+  obtain ⟨unbound⟩ := unbound
+  obtain ⟨pieces⟩ := hpieces D eps Delta'' scaffold' hred''
+  exact ⟨Delta'', ⟨equiv.trans equiv'⟩,
+    EstimatingData.nonempty_of_certificates scaffold' graph' pieces unbound
       hcondition⟩
 
 /-! ## Component model checks -/
@@ -932,7 +954,7 @@ source-faithful quasi-geodesic Gr0 statement directly. -/
 theorem relativeGreendlingerQuasiGeodesic_of_components
     (hselection : EstimatingSelectionConstructionStatement.{u, w, v})
     (hpieces : EstimatingPieceConstructionStatement.{u, w, v})
-    (hunbound : EstimatingUnboundConstructionStatement.{u, w, v}) :
+    (hunbound : EstimatingUnboundOutputStatement.{u, w, v}) :
     RelativeGreendlingerQuasiGeodesicStatement.{u, w, v} :=
   relativeGreendlingerQuasiGeodesic_of_data
     (estimatingDataConstruction_of_components hselection hpieces hunbound)
