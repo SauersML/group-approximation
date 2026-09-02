@@ -2,6 +2,9 @@ import GroupApproximation.GGT.HullSCLemma49BowditchGap
 import GroupApproximation.GGT.HullSCLemma49FixedDelta
 import GroupApproximation.GGT.HullSCLemma49ShortPower
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
+import GroupApproximation.GGT.HullSCLemma49SourceAssembly
+import GroupApproximation.GGT.HullSCLemma49InjectivityBridge
+import GroupApproximation.GGT.VanKampen.Estimating.Assembly
 
 /-!
 # Assembly of Hull's Lemma 4.9 power-diagram statement
@@ -146,6 +149,31 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger
       false_of_powerDiagram_of_not_isLoxodromic_of_ballInjective
         D Z hdelta hlox (by simpa only [radius] using hinj)
     exact hfalse.elim
+
+/-! ## Source-faithful assembly -/
+
+/-- The vk source certificate and the estimating-system construction assemble
+the three cases of Hull's Lemma 4.9.  The face-pasting certificate is the
+exact cellular callback consumed by the source power-diagram certificate, and
+the injectivity callback is the exact hull44 output needed by the
+non-loxodromic case. -/
+theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
+    (hpasting : HullLemma49SourceFacePastingStatement.{0, 0})
+    (hinjective : HullLemma49InjectivityCallback.{0, 0}) :
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
+  have hgeom :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
+    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound
+  exact hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+    hgeom (fun {G} {Lambda} {D} {v} {g} {n} {eps} {mu} {Z} C =>
+      hpasting C) hinjective
 
 /-! ## Model check -/
 
