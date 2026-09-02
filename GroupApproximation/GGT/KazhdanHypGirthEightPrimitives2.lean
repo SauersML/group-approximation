@@ -1126,8 +1126,8 @@ theorem PowerDiscMirrorPairDeletion.area_drop
   rw [C.result_diagram_eq]
   exact C.topological.area_drop
 
-/-- The two-cell power-disc model leaves no relator cells after the cut. -/
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
+/-- The two-cell power-disc model leaves no relator cells after the cut. -/
 theorem PowerDiscMirrorPairDeletion.area_zero_of_twoCell
     (D : PowerDiscCandidate T g n)
     (pre between suf : List
