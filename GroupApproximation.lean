@@ -3265,6 +3265,8 @@ import GroupApproximation.GGT.VanKampen.Estimating.SelectionMerge
 import GroupApproximation.GGT.VanKampen.PermOrbitTransport
 import GroupApproximation.GGT.DGOProposition414GapRightConnector
 import GroupApproximation.GGT.HullSCRelativeGreendlingerFromComponents
+import GroupApproximation.GGT.DGOProposition414GapRightConnectorWrapped
+import GroupApproximation.GGT.VanKampen.Estimating.PhiRealization
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
