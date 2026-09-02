@@ -505,9 +505,9 @@ theorem embeddedEstimatingSystemConstruction_of_data
     hconstruction W hcondition Delta hred hcells hboundary
   obtain ⟨data⟩ := data
   have hcells' : 0 < Delta'.rCellCount := by
-    let equiv := Classical.choice hequiv
-    have hcount : Delta.rCellCount = Delta'.rCellCount := by
-      simpa only [Fintype.card_fin] using Fintype.card_congr equiv.cellIndex
+    obtain ⟨equiv⟩ := hequiv
+    have hcount : Delta'.rCellCount = Delta.rCellCount :=
+      equiv.rCellCount_eq
     omega
   exact ⟨Delta', hequiv,
     ⟨data.toEmbeddedEstimatingSystem hcondition hrho hcells' (le_of_lt hmu)⟩⟩
