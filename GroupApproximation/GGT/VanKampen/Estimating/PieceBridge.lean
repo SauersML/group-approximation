@@ -413,7 +413,7 @@ structure ReducedCellPieceBridge
   targetWord : List (GGT.RelLetter G Lambda)
   sourceWord : List (GGT.RelLetter G Lambda)
   connector : G
-  whole_relators_ne : ∀ hred : Delta.Reduced,
+  whole_relators_ne : ∀ hred : Delta.Reduced, hred = hred →
       GGT.RelLetter.listVal (RelWord.revInv targetWord) ≠
         connector * GGT.RelLetter.listVal sourceWord * connector⁻¹
   targetCarrier_value_eq : GGT.RelLetter.listVal
@@ -444,7 +444,7 @@ theorem whole_ne
         GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
         GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
   intro hbad
-  apply bridge.whole_relators_ne hred
+  apply bridge.whole_relators_ne hred rfl
   calc
     GGT.RelLetter.listVal (RelWord.revInv bridge.targetWord) =
         GGT.RelLetter.listVal
