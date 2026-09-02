@@ -653,7 +653,7 @@ theorem middleMatchedLetter_mem_relBall
     group
   rw [huEq]
   convert hprod using 1
-  · group
+  · exact mul_assoc _ _ _
   · ring
 
 /-! ## DGO Corollary 6.12, finite-family form -/
@@ -978,7 +978,8 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
     apply hnotCommLt j i hjilt q p hq hp t⁻¹
     calc
       t⁻¹ * (g * a j) ^ q * (t⁻¹)⁻¹ =
-          t⁻¹ * (t * (g * a i) ^ p * t⁻¹) * t := by rw [hbad]
+          t⁻¹ * (t * (g * a i) ^ p * t⁻¹) * t := by
+            rw [hbad, inv_inv]
       _ = (g * a i) ^ p := by group
 
 end HullSC
