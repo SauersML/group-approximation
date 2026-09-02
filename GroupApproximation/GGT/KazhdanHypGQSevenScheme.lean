@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypSymplecticQuadrangleSeven
+import GroupApproximation.GGT.KazhdanHypGirthEight
 
 /-!
 # The rational link scheme of the symplectic quadrangle `W(7)`
@@ -1125,6 +1126,111 @@ theorem wSevenQuadrangleLinkData_parameters :
     GeneralizedQuadrangleCounts.toQuadrangleLinkData,
     QuadrangleLinkData.deg, QuadrangleLinkData.gapValue,
     QuadrangleLinkData.contraction, wSevenCounts]
+
+/-! ## The three-corner divisibility obstruction -/
+
+/-- The total number of literal generator occurrences is three times the
+number of triangles.  This is the counting identity behind the fact that a
+one-vertex triangle presentation cannot have an arbitrary regular link. -/
+theorem generatorOccurrenceCount_sum_three
+    {Generator TriangleIndex : Type} [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) :
+    ∑ i, TriangularHodgeLayer.generatorOccurrenceCount T i =
+      3 * Fintype.card TriangleIndex := by
+  classical
+  rw [show (∑ i, TriangularHodgeLayer.generatorOccurrenceCount T i) =
+      ∑ i, ∑ j, ∑ k : Fin 3, if (T j k).1 = i then 1 else 0 by
+        apply Finset.sum_congr rfl
+        intro i hi
+        exact TriangularHodgeLayer.generatorOccurrenceCount_eq_sum T i]
+  calc
+    (∑ i, ∑ j, ∑ k : Fin 3, if (T j k).1 = i then 1 else 0) =
+        ∑ j, ∑ i, ∑ k : Fin 3, if (T j k).1 = i then 1 else 0 := by
+      rw [Finset.sum_comm]
+    _ = ∑ j, ∑ k : Fin 3, ∑ i, if (T j k).1 = i then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro j hj
+      rw [Finset.sum_comm]
+    _ = ∑ j, ∑ k : Fin 3, 1 := by
+      apply Finset.sum_congr rfl
+      intro j hj
+      apply Finset.sum_congr rfl
+      intro k hk
+      simp
+    _ = 3 * Fintype.card TriangleIndex := by
+      simp [Nat.mul_comm]
+
+/-- A regular link arising from a one-vertex triangle presentation has a
+multiple of three generator-degree incidences.  Equivalently, its number of
+positive-to-negative directed compatible pairs is divisible by three. -/
+theorem girthEightChecks_three_dvd_card_mul_degree
+    {Generator TriangleIndex : Type} [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator} {d : ℕ}
+    (h : GirthEightChecks T d) : 3 ∣ Fintype.card Generator * d := by
+  have hdegree (i : Generator) :
+      TriangularHodgeLayer.generatorOccurrenceCount T i = d := by
+    calc
+      TriangularHodgeLayer.generatorOccurrenceCount T i =
+          TriangularHodgeLayer.degree T (i, true) :=
+        (TriangularHodgeLayer.degree_eq_generatorOccurrenceCount T i true).symm
+      _ = d := h.regular (i, true)
+  have hsum :
+      (∑ i, TriangularHodgeLayer.generatorOccurrenceCount T i) =
+        Fintype.card Generator * d := by
+    calc
+      (∑ i, TriangularHodgeLayer.generatorOccurrenceCount T i) =
+          ∑ _i : Generator, d := by
+        apply Finset.sum_congr rfl
+        intro i hi
+        exact hdegree i
+      _ = Fintype.card Generator * d := by
+        simp
+  refine ⟨Fintype.card TriangleIndex, ?_⟩
+  calc
+    Fintype.card Generator * d =
+        ∑ i, TriangularHodgeLayer.generatorOccurrenceCount T i := hsum.symm
+    _ = 3 * Fintype.card TriangleIndex := generatorOccurrenceCount_sum_three T
+
+/-- The W(7) link would have `400 * 8 = 3200` directed compatible pairs. -/
+theorem wSeven_directedCompatiblePairCount :
+    Fintype.card (Fin 400) * 8 = 3200 := by
+  norm_num
+
+/-- The W(7) pair count is not divisible by the three cyclic corners. -/
+theorem not_three_dvd_wSeven_directedCompatiblePairCount :
+    ¬ 3 ∣ Fintype.card (Fin 400) * 8 := by
+  norm_num
+
+/-- No one-vertex triangle table can have the W(7) link degree and generator
+count.  This is the exact divisibility obstruction, before any search. -/
+theorem no_wSeven_girthEightChecks
+    {TriangleIndex : Type} [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle (Fin 400))
+    (h : GirthEightChecks T 8) : False := by
+  exact not_three_dvd_wSeven_directedCompatiblePairCount
+    (girthEightChecks_three_dvd_card_mul_degree h)
+
+/-- The first admissible q after the q = 7 obstruction has
+`585 * 9 / 3 = 1755` triangles. -/
+theorem wEight_triangleCount :
+    Fintype.card (Fin 585) * 9 = 3 * 1755 := by
+  norm_num
+
+/-- The next admissible example mentioned by the divisibility test is
+q = 11, with `1464 * 12 / 3 = 5856` triangles. -/
+theorem wEleven_triangleCount :
+    Fintype.card (Fin 1464) * 12 = 3 * 5856 := by
+  norm_num
+
+/-- At q = 5 the quadratic Gram-shift inequality has no real (hence no
+rational) solution; its discriminant is negative. -/
+theorem qFive_gap_threshold_fails :
+    ¬ ∃ μ : ℚ, μ ^ 2 - μ * 6 + 10 < 0 := by
+  intro h
+  obtain ⟨μ, hμ⟩ := h
+  nlinarith [sq_nonneg (μ - 3)]
 
 end SymplecticQuadrangleSeven
 end KazhdanHyp
