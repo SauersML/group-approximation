@@ -82,7 +82,7 @@ theorem exists_boundaryDart_dualConnected
       Relation.EqvGen (DualAdjacency Delta faces) f
         (Delta.toCombMap.faceOf q) := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have halpha : ∀ x : Delta.toCombMap.Dart,
       DualComponent Delta faces f (Delta.toCombMap.faceOf x) →
         DualComponent Delta faces f
