@@ -68,7 +68,8 @@ theorem isLambdaCQuasiGeodesicWord_nil
           ([] : List (GGT.RelLetter G Lambda)) 0)
         (GGT.OsinComponents.vertex 1
           ([] : List (GGT.RelLetter G Lambda)) 0) : ℕ) : ℝ) := by positivity
-  linarith
+  rw [show (((0 - 0 : ℕ) : ℝ)) = 0 by norm_num, mul_zero]
+  exact le_trans (neg_nonpos.mpr hc) hdist
 
 /-- Osin's `C(epsilon,mu,lambda,c,rho)` condition. -/
 structure OsinCCondition
