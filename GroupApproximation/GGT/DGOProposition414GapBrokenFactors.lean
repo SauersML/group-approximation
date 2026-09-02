@@ -273,6 +273,140 @@ theorem secondBroken_sourceSpan_eq
         (B.componentPlacement.secondPos s) hposLt]
       group
 
+/-! ## Values of the three actual broken-source slots -/
+
+/-- The first-half entry slot is the plain entry connector in the forward
+case and the entry-through-partner connector in the reverse case. -/
+theorem firstBrokenStartSlot_span_cases
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    optionalTargetSlotSpan (B.firstBrokenStartSlot C hs) =
+      if B.firstBrokenEntryForward hs then
+        RelLetter.listVal (B.firstBrokenConnectors s hs).startConnector
+      else RelLetter.listVal
+        (B.firstBrokenConnectors s hs).startThroughPartner := by
+  rw [B.firstBrokenStartSlot_span C hs]
+  unfold firstBrokenOwner firstBrokenEntryForward firstGapRight
+  rw [HalfGap.nextEntry_entryChild]
+  rw [B.firstSourceEntry_source s hs]
+
+/-- The first-half exit slot is the inverse plain exit connector in the
+forward case and the inverse exit-through-partner connector in reverse. -/
+theorem firstBrokenEndSlot_span_cases
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    optionalTargetSlotSpan (B.firstBrokenEndSlot C hs) =
+      if B.firstBrokenExitForward hs then
+        (RelLetter.listVal (B.firstBrokenConnectors s hs).endConnector)⁻¹
+      else (RelLetter.listVal
+        (B.firstBrokenConnectors s hs).endThroughPartner)⁻¹ := by
+  rw [B.firstBrokenEndSlot_span C hs]
+  unfold firstBrokenExitForward firstGapLeft
+  rw [HalfGap.previousEntry_exitChild]
+  rw [B.firstSourceEntry_source s hs]
+
+/-- The wrapped entry convention is opposite: forward gaps use the
+entry-through-partner connector. -/
+theorem secondBrokenStartSlot_span_cases
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    optionalTargetSlotSpan (B.secondBrokenStartSlot C hs) =
+      if B.secondBrokenEntryForward hs then
+        RelLetter.listVal
+          (B.secondBrokenConnectors s hs).startThroughPartner
+      else RelLetter.listVal
+        (B.secondBrokenConnectors s hs).startConnector := by
+  rw [B.secondBrokenStartSlot_span C hs]
+  unfold secondBrokenOwner secondBrokenEntryForward secondGapRight
+  rw [HalfGap.nextEntry_entryChild]
+  rw [B.secondSourceEntry_source s hs]
+
+/-- Forward wrapped exit gaps use the inverse exit-through-partner
+connector; reverse gaps use the inverse plain connector. -/
+theorem secondBrokenEndSlot_span_cases
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    optionalTargetSlotSpan (B.secondBrokenEndSlot C hs) =
+      if B.secondBrokenExitForward hs then
+        (RelLetter.listVal
+          (B.secondBrokenConnectors s hs).endThroughPartner)⁻¹
+      else (RelLetter.listVal
+        (B.secondBrokenConnectors s hs).endConnector)⁻¹ := by
+  rw [B.secondBrokenEndSlot_span C hs]
+  unfold secondBrokenExitForward secondGapLeft
+  rw [HalfGap.previousEntry_exitChild]
+  rw [B.secondSourceEntry_source s hs]
+
+/-- The selected first-half partner span is the inverse forward global-chord
+edge value. -/
+theorem firstBroken_partnerSpan_eq_chordInv
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    (vertex B.firstBase B.firstWord
+        (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+      vertex B.firstBase B.firstWord
+        (B.firstBrokenConnectors s hs).partnerEnd =
+      (B.chord[B.brokenAssignment.first.partner s]'
+        (B.brokenAssignment.first.partner_lt s hs)).val⁻¹ := by
+  rw [B.firstBrokenConnectors_partnerStart_vertex s hs,
+    B.firstBrokenConnectors_partnerEnd_vertex s hs,
+    vertex_succ B.chord B.firstBase
+      (B.brokenAssignment.first.partner s)
+      (B.brokenAssignment.first.partner_lt s hs)]
+  group
+
+/-- The selected wrapped-half partner span is the forward global-chord edge
+value. -/
+theorem secondBroken_partnerSpan_eq_chord
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    (vertex B.secondBase B.secondWord
+        (B.secondChordPos (B.brokenAssignment.second.partner s)))⁻¹ *
+      vertex B.secondBase B.secondWord
+        (B.secondBrokenConnectors s hs).partnerEnd =
+      (B.chord[B.brokenAssignment.second.partner s]'
+        (B.brokenAssignment.second.partner_lt s hs)).val := by
+  rw [B.secondBrokenConnectors_partnerStart_vertex s hs,
+    B.secondBrokenConnectors_partnerEnd_vertex s hs,
+    vertex_succ B.chord B.firstBase
+      (B.brokenAssignment.second.partner s)
+      (B.brokenAssignment.second.partner_lt s hs)]
+  group
+
 end BalancedSplitData
 
 end DGOProposition414
