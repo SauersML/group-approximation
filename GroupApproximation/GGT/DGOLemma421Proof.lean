@@ -2499,10 +2499,17 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               exact (htargetSpec i).2.1
             · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
               refine ⟨hh, hmem, ?_⟩
-              rw [hni, hieq]
               have hrczero : rc.length = 0 := by omega
-              rw [hrczero, vertex_fourGon_opposite_closed pc P rc Q hclose Q.length]
-              exact heq
+              have htargetEq : targetN i =
+                  pc.length + P.length + rc.length + (Q.length - Q.length) := by
+                rw [hni, hieq]
+                simp
+              calc
+                RelLetter.listVal pc * vertex (1 : G) P (source i) * hh =
+                    vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := heq
+                _ = vertex (1 : G) Q Q.length := by
+                  rw [htargetEq, hrczero, Nat.sub_self]
+                  exact vertex_fourGon_opposite_closed pc P rc Q hclose Q.length
       · rcases hrest with hrcase | hscase
         · exact Or.inr (Or.inr hrcase)
         · exfalso
