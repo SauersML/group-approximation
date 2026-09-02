@@ -14,6 +14,8 @@ namespace GroupApproximation
 namespace GGT
 namespace DGOProposition414
 
+open GroupApproximation.GGT.DGOPolygonCut
+
 /-- Successive chord-walk segments have the traversal cost of the partner
 list with its two boundary vertices. -/
 theorem sum_chordWalk_dist (xs : List ℕ) (initial terminal : ℕ) :
@@ -52,7 +54,7 @@ theorem sum_orientedTrimmedChordWalk_dist_le
           endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+          endpointByOrientation (forward j) (xs[j.val - 1]'(by omega))
             (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       chordTraversalCost (initial :: xs ++ [terminal]) +
@@ -65,7 +67,7 @@ theorem sum_orientedTrimmedChordWalk_dist_le
           endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+          endpointByOrientation (forward j) (xs[j.val - 1]'(by omega))
             (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       ∑ j : Fin (xs.length + 1),
@@ -120,7 +122,7 @@ theorem sum_orientedTrimmedChordWalk_dist_le_four_length
           endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+          endpointByOrientation (forward j) (xs[j.val - 1]'(by omega))
             (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       chordTraversalCost (initial :: xs ++ [terminal]) + 4 * xs.length := by
