@@ -14,7 +14,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
-open GroupApproximation.WordMetric
+open GroupApproximation.GGT.OsinComponents
 
 universe u w
 
@@ -219,6 +219,7 @@ theorem firstGapFinishSide_add_right_length_le
       have hlen := B.firstGapRight_length_le_one j
       have hfinish : B.firstGapFinishSide j = B.firstTargetSide s := by
         simp only [firstGapFinishSide, hnext]
+        rfl
       omega
 
 theorem secondGapFinishSide_add_right_length_le
@@ -244,6 +245,7 @@ theorem secondGapFinishSide_add_right_length_le
       have hlen := B.secondGapRight_length_le_one j
       have hfinish : B.secondGapFinishSide j = B.secondTargetSide s := by
         simp only [secondGapFinishSide, hnext]
+        rfl
       omega
 
 /-- A first-half child has at most the first-half side count plus one chord
@@ -268,6 +270,10 @@ theorem firstGap_raw_side_bound
     (B.firstGapChordStart_le j) (B.firstGapChordFinish_le j)
   have hstart := B.firstGapChordStart_le j
   have hfinish := B.firstGapChordFinish_le j
+  have hdist : Nat.dist (B.firstGapChordStart j)
+      (B.firstGapChordFinish j) ≤ B.chord.length := by
+    unfold Nat.dist
+    omega
   rw [hsegment]
   omega
 
@@ -293,6 +299,10 @@ theorem secondGap_raw_side_bound
     (B.secondGapChordStart_le j) (B.secondGapChordFinish_le j)
   have hstart := B.secondGapChordStart_le j
   have hfinish := B.secondGapChordFinish_le j
+  have hdist : Nat.dist (B.secondGapChordStart j)
+      (B.secondGapChordFinish j) ≤ B.chord.length := by
+    unfold Nat.dist
+    omega
   rw [hsegment]
   omega
 
