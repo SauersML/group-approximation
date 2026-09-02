@@ -18,6 +18,8 @@ namespace DGOProposition414
 namespace General
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.WordMetric
 
 universe u w
 
