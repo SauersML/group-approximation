@@ -218,6 +218,85 @@ theorem Contiguity.arcLengths_le_two_mu_target
     hleft hright harcs hwhole
   linarith
 
+/-- Transporting the dependent target carrier does not change the stored arc
+length.  This is the identification between O52's cell-target arc and
+`Candidate.weight`. -/
+theorem Contiguity.cellTargetArc_length
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    (htarget : Gamma.target = some target) :
+    (Gamma.cellTargetArc target htarget).length = Gamma.targetArc.length := by
+  cases htarget
+  rfl
+
+/-- A candidate's natural-number weight is the real sum of the two arcs used
+by the source and target O52 estimates. -/
+theorem Candidate.weight_eq_cellPieceArcLengths
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    (candidate : Candidate D eps Delta)
+    (equations : CellPieceEquations candidate.contiguity) :
+    (candidate.weight : ℝ) =
+      (candidate.contiguity.sourceArc.length : ℝ) +
+        ((candidate.contiguity.cellTargetArc equations.target
+          equations.target_eq).length : ℝ) := by
+  rw [Candidate.weight, Nat.cast_add,
+    candidate.contiguity.cellTargetArc_length equations.target
+      equations.target_eq]
+
+/-- Osin O52 fills the source incidence of
+`EstimatingData.edgeWeight_le_incident` for a selected candidate. -/
+theorem Candidate.weight_le_two_mu_source
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
+    {mu lambda c : ℝ}
+    (candidate : Candidate D eps Delta)
+    (equations : CellPieceEquations candidate.contiguity)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (candidate.weight : ℝ) ≤
+      2 * mu *
+        ((cell Delta candidate.contiguity.source).word.length : ℝ) := by
+  rw [candidate.weight_eq_cellPieceArcLengths equations]
+  exact candidate.contiguity.arcLengths_le_two_mu_source equations hcondition
+
+/-- Osin O52 fills the target incidence of
+`EstimatingData.edgeWeight_le_incident` for a selected candidate. -/
+theorem Candidate.weight_le_two_mu_target
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
+    {mu lambda c : ℝ}
+    (candidate : Candidate D eps Delta)
+    (equations : CellPieceEquations candidate.contiguity)
+    {reverseLeft reverseRight : G}
+    (hleft : wordNorm D.alphabet.carrier reverseLeft ≤ eps)
+    (hright : wordNorm D.alphabet.carrier reverseRight ≤ eps)
+    (harcs : GGT.RelLetter.listVal
+        (dartWord Delta candidate.contiguity.sourceArc.darts) =
+      reverseLeft * GGT.RelLetter.listVal
+        (dartWord Delta (candidate.contiguity.cellTargetArc equations.target
+          equations.target_eq).darts) * reverseRight)
+    (hwhole : GGT.RelLetter.listVal
+        (dartWord Delta candidate.contiguity.sourceArc.rotated) ≠
+      reverseLeft * GGT.RelLetter.listVal
+        (dartWord Delta (candidate.contiguity.cellTargetArc equations.target
+          equations.target_eq).rotated) * reverseLeft⁻¹)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (candidate.weight : ℝ) ≤
+      2 * mu * ((cell Delta equations.target).word.length : ℝ) := by
+  rw [candidate.weight_eq_cellPieceArcLengths equations]
+  exact candidate.contiguity.arcLengths_le_two_mu_target equations
+    hleft hright harcs hwhole hcondition
+
 end Embedded
 
 end VanKampen
