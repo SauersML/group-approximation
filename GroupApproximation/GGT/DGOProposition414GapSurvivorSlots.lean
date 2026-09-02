@@ -24,7 +24,7 @@ variable {G : Type u} [Group G] {Λ : Type w}
 namespace BalancedSplitData
 
 /-- Local side coordinate of a surviving first-half target in its gap. -/
-def firstSurvivorLocalIndex
+noncomputable def firstSurvivorLocalIndex
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R s : ℕ}
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
@@ -37,7 +37,7 @@ def firstSurvivorLocalIndex
       B.firstGapStartSide (B.firstSurvivorGapOwner hs hsurvives))
 
 /-- Local side coordinate of a surviving wrapped-half target in its gap. -/
-def secondSurvivorLocalIndex
+noncomputable def secondSurvivorLocalIndex
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R s : ℕ}
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
