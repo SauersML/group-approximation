@@ -2163,8 +2163,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           wordDist D.alphabet.carrier endP endQ := by
         have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
         rw [inv_mul_cancel] at hdist'
-        exact (wordDist_comm D.alphabet.symmetricGenerating
-          (1 : G) (endP⁻¹ * endQ)).trans hdist'
+        exact hdist'
       rw [hdist]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
@@ -2205,8 +2204,12 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         (S.orderIsoOfFin rfl) ⟨i.val, by omega⟩ =
           (S.orderIsoOfFin rfl) ⟨j.val, by omega⟩ :=
       Subtype.ext hocceq
+    have hfin :
+        (⟨i.val, by omega⟩ : Fin S.card) =
+          (⟨j.val, by omega⟩ : Fin S.card) :=
+      (S.orderIsoOfFin rfl).injective hsub
     have hv : i.val = j.val :=
-      congrArg Fin.val ((S.orderIsoOfFin rfl).injective hsub)
+      congrArg (fun x : Fin S.card => x.val) hfin
     exact hv
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
@@ -2231,7 +2234,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         IsIsolated D.fam nu v u i →
           (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
     intro n hn v u hquasi nu i k hcomp hiso
-    exact relBall_mono_radius D nu (by dsimp [C]; omega)
+    have hC414le : C414 ≤ C := by
+      dsimp [C]
+      omega
+    exact relBall_mono_radius D nu (Nat.mul_le_mul_right n hC414le)
       (hproj414 n v u hquasi nu i k hcomp hiso)
   have htargetRaw : ∀ i : Fin N, ∃ n : ℕ, n ≠ pc.length + source i ∧
       IsCompStart (peripheralOccurrence P (occ i)).label
@@ -2276,7 +2282,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       ∃ h : G, h ∈ D.fam (peripheralOccurrence P (occ i)).label ∧
         RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
           vertex (1 : G) Q j
-  have hsourceNoSame : ∀ (i : Fin N) (i' : ℕ), i' ≤ P.length →
+  have hsourceNoSame : ∀ (i : Fin N) (i' : ℕ), i' < P.length →
       i' ≠ source i →
       IsCompStart (peripheralOccurrence P (occ i)).label
         (pc ++ P ++ rc ++ revWord Q) (pc.length + i') →
@@ -2286,7 +2292,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     intro hconn
     obtain ⟨u, huPos, huLabel⟩ :=
       exists_side_occurrence_of_fourGon_start_421 hW3P
-        (by omega : i' < P.length) hstart'
+        hi' hstart'
     have hconnP : Connected D.fam (peripheralOccurrence P (occ i)).label
         1 P (source i) (peripheralOccurrence P u).pos := by
       have hs := connected_fourGon_side_iff D
@@ -2341,10 +2347,11 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           refine ⟨⟨pc.length, by dsimp [M]; omega⟩, ?_, ?_⟩
           · intro hm
             exact (htargetSpec i).1 (by rw [hni]; omega)
-          · rw [hni]
-            simp only [if_neg]
-            · omega
-            · omega
+          · have hieq : i' = P.length := by omega
+            rw [hni, hieq]
+            have hnot : ¬ pc.length + P.length < pc.length := by omega
+            simp only [hnot, ↓reduceIte]
+            omega
       · rcases hrest with hrcase | hscase
         · right
           rcases hrcase with ⟨m, hm, hmn⟩
