@@ -301,12 +301,14 @@ theorem innerFace_presentedValue_eq_one
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
     presentedLetterValue T (signedFreeRelLetter u)).prod = 1
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
-      presentedLetterValue T (signedFreeRelLetter u) =
+      presentedLetterValue (Generator := Generator) T
+        (signedFreeRelLetter (Generator := Generator) u) =
         FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
     intro u
     exact presentedLetterValue_signedFreeRelLetter (T := T) u
   have hmap : (TriangularHodgeLayer.letters (T j)).map
-      (fun u ↦ presentedLetterValue T (signedFreeRelLetter u)) =
+      (fun u ↦ presentedLetterValue (Generator := Generator) T
+        (signedFreeRelLetter (Generator := Generator) u)) =
       (TriangularHodgeLayer.letters (T j)).map
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
@@ -340,6 +342,7 @@ theorem cayleyDartListValue_erase_innerFace
     simpa [List.map_map, Function.comp_def] using hface
   simp only [cayleyDartListValue, List.map_append, List.prod_append]
   rw [hface']
+  simp
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Reversing an oriented diagram letter inverts its value in the presented
@@ -569,15 +572,19 @@ theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
       by_cases hi0 : i = 0
       · subst i
         exact hfi
-      · have hfi' : f ∈ M.faceStarBall seed i \ M.faceStarBall seed (i - 1) := by
-          simpa only [VanKampen.CombMap.faceStarLayer, if_neg hi0,
-            Finset.mem_sdiff] using hfi
+      · have hEq : M.faceStarLayer seed i =
+            M.faceStarBall seed i \ M.faceStarBall seed (i - 1) := by
+          rw [VanKampen.CombMap.faceStarLayer, if_neg hi0]
+        rw [hEq] at hfi
+        have hfi' := Finset.mem_sdiff.mp hfi
         exact hfi'.1
     have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
       hballMono (by omega) hfiBall
-    have hfj' : f ∈ M.faceStarBall seed j \ M.faceStarBall seed (j - 1) := by
-      simpa only [VanKampen.CombMap.faceStarLayer, if_neg hjpos,
-        Finset.mem_sdiff] using hfj
+    have hEq : M.faceStarLayer seed j =
+          M.faceStarBall seed j \ M.faceStarBall seed (j - 1) := by
+      rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos]
+    rw [hEq] at hfj
+    have hfj' := Finset.mem_sdiff.mp hfj
     exact hfj'.2 hfpred
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
       (fun i ↦ M.faceStarLayer seed i ∩ Delta.innerFaces) := by
@@ -704,13 +711,11 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
-  change firstLayerIncidenceSlot Delta P depth scale loss perimeter C i x =
-    firstLayerIncidenceSlot Delta P depth scale loss perimeter C i y at hslot
-  rw [hface] at hslot
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
-    Fin.castLE_injective _ hslot
+    Fin.castLE_injective _ (by
+      simpa [firstLayerIncidenceSlot, hface] using hslot)
   have hdart : P.darts.get (C.position i x) =
       P.darts.get (C.position i y) := by
     rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
@@ -1001,6 +1006,7 @@ abbrev CancellationReducesArea (D : PowerDiscCandidate T g n) : Prop :=
     ∃ D' : PowerDiscCandidate T g n,
       D'.diagram.rCellCount < D.diagram.rCellCount
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Least area gives diagram reducedness exactly when cancelling pairs admit
 the area-decreasing surgery above. -/
 theorem leastPowerDiscCandidate_reduced
