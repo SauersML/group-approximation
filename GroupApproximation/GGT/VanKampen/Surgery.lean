@@ -1,5 +1,5 @@
-import GroupApproximation.GGT.VanKampen.CactusTopology
-import GroupApproximation.GGT.VanKampen.Estimating.Embedded
+import GroupApproximation.GGT.VanKampen.SurgeryMap
+import GroupApproximation.GGT.VanKampen.Estimating.Incidence
 
 /-!
 # Surgery interfaces for relative disc diagrams
@@ -25,6 +25,28 @@ namespace VanKampen
 universe u w v v'
 
 namespace Surgery
+
+/-! ## Embedded boundary adapter -/
+
+namespace MapCollapse.BoundaryCycle
+
+/-- Est's embedded boundary supplies the topological boundary cycle used by
+the pure combinatorial-map collapse. -/
+def ofEmbedded
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (faces : Finset Delta.toCombMap.Face)
+    (boundary : Embedded.FaceSetBoundary Delta faces) :
+    MapCollapse.BoundaryCycle Delta.toCombMap faces where
+  cycle := boundary.cycle
+  cycle_nonempty := boundary.cycle_nonempty
+  cycle_nodup := boundary.cycle_nodup
+  cycle_mem_iff d := by
+    rw [boundary.cycle_mem_iff]
+    rfl
+
+end MapCollapse.BoundaryCycle
 
 /-! ## Relator-cell transport -/
 
@@ -239,7 +261,7 @@ theorem reduced
   replacement.cells.reduced hred
 
 /-- The replacement operation returns the constructed planar diagram. -/
-def replaceGRegion
+def resultDiagram
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
@@ -256,7 +278,7 @@ theorem replaceGRegion_refl_cellWords
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W) :
-    (GRegionReplacement.refl Delta).replaceGRegion.relatorCells.map
+    (GRegionReplacement.refl Delta).resultDiagram.relatorCells.map
         RelatorCell.word = Delta.relatorCells.map RelatorCell.word := by
   rfl
 
@@ -266,7 +288,7 @@ theorem replaceGRegion_refl_reduced
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W) (hred : Delta.Reduced) :
-    (GRegionReplacement.refl Delta).replaceGRegion.Reduced :=
+    (GRegionReplacement.refl Delta).resultDiagram.Reduced :=
   (GRegionReplacement.refl Delta).reduced hred
 
 /-! ## Finite incidence surgery -/
@@ -423,6 +445,7 @@ end Embedded.InteriorEdge
 /-- Removing one edge from the one-polygon cactus model leaves two edges. -/
 theorem removeLoop_zeroCellModel_card :
     let M := CactusShape.zeroCellModel.toCombMap
+    letI : DecidableEq M.Edge := Classical.decEq _
     let edge := M.edgeOf
       (CactusDart.outerForward (CactusShape.zeroCellModel.boundaryZero))
     (Incidence.removeLoop (Finset.univ : Finset M.Edge) edge).card = 2 := by
@@ -436,6 +459,7 @@ theorem removeLoop_zeroCellModel_card :
 edges. -/
 theorem mergeParallelEdges_oneCellModel_card :
     let M := CactusShape.oneCellModel.toCombMap
+    letI : DecidableEq M.Edge := Classical.decEq _
     let retained := M.edgeOf
       (CactusDart.outerForward (CactusShape.oneCellModel.boundaryZero))
     let redundant := M.edgeOf
