@@ -2204,6 +2204,45 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     have hv : i.val = j.val :=
       congrArg (fun x : Fin S.card => x.val) hfin
     exact hv
+  have hoccSucc : ∀ (i : Fin N), i.val + 1 < N →
+      (occ ⟨i.val + 1, by omega⟩).val = (occ i).val + 1 := by
+    intro i hiN
+    let i1 : Fin N := ⟨i.val + 1, hiN⟩
+    by_contra hne
+    have hgap : (occ i).val + 1 < (occ i1).val := by omega
+    let c : Fin (peripheralPositions P).card :=
+      ⟨(occ i).val + 1, by omega⟩
+    have hposAC : (peripheralOccurrence P (occ i)).pos <
+        (peripheralOccurrence P c).pos := by
+      apply peripheralOccurrence_pos_lt
+      dsimp [c]
+      omega
+    have hposCB : (peripheralOccurrence P c).pos <
+        (peripheralOccurrence P (occ i1)).pos := by
+      apply peripheralOccurrence_pos_lt
+      exact by omega
+    have hcPos : 0 < (peripheralOccurrence P c).pos := by
+      omega
+    have hcEnd : (peripheralOccurrence P c).pos + 1 < P.length := by
+      have hj := hsourceEnd i1
+      dsimp [source] at hj
+      omega
+    have hcS : c ∈ S := mem_strictInteriorOccurrences.mpr ⟨hcPos, hcEnd⟩
+    let Eord := S.orderIsoOfFin rfl
+    let ez : S := ⟨c, hcS⟩
+    have hleft : Eord ⟨i.val, by omega⟩ < ez := by
+      show (Eord ⟨i.val, by omega⟩).val < ez.val
+      dsimp [Eord, ez, occ]
+      omega
+    have hright : ez < Eord ⟨i.val + 1, by omega⟩ := by
+      show ez.val < (Eord ⟨i.val + 1, by omega⟩).val
+      dsimp [Eord, ez, occ]
+      omega
+    have hleft' := Eord.symm.strictMono hleft
+    have hright' := Eord.symm.strictMono hright
+    have hleftVal : i.val < (Eord.symm ez).val := hleft'
+    have hrightVal : (Eord.symm ez).val < i.val + 1 := hright'
+    omega
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
           vertex (1 : G) P (source i + 1) ∉
