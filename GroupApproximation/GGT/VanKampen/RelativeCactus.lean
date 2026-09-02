@@ -778,6 +778,135 @@ theorem cellSegments_getLast
   exact congrArg (fun i ↦ CactusDart.stemIn (S := Z.cactusShape) i)
     (lastIndex_eq_prevFin_zero Z.cells_length_pos)
 
+theorem faceOf_eq_bigFace_iff (S : CactusShape) (d : CactusDart S) :
+    S.toCombMap.faceOf d = S.bigFace ↔ S.faceClass d = .big :=
+  HullSC.Lemma44OrientedRelatorDiagram.faceOf_eq_bigFace_iff S d
+
+theorem mem_bigDarts_iff
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (d : CactusDart Z.cactusShape) :
+    d ∈ Z.bigDarts ↔ Z.cactusShape.toCombMap.faceOf d =
+      Z.cactusShape.bigFace := by
+  rw [faceOf_eq_bigFace_iff]
+  cases d <;>
+    simp [bigDarts, outerBackwardDarts, cellSegments, cellSegment,
+      relatorBackwardDarts, List.mem_flatten, List.mem_ofFn]
+
+theorem bigDarts_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) : Z.bigDarts ≠ [] := by
+  rw [bigDarts]
+  exact List.append_ne_nil_left.mpr Z.outerBackwardDarts_ne_nil
+
+theorem facePerm_stemIn_prev_zero (S : CactusShape) (hpos : 0 < S.cellCount) :
+    S.toCombMap.facePerm
+        (.stemIn (CactusShape.prevFin S.cellCount (S.cellZero hpos))) =
+      .outerBackward (CactusShape.prevFin S.boundaryLength S.boundaryZero) :=
+  HullSC.Lemma44OrientedRelatorDiagram.facePerm_stemIn_prev_zero S hpos
+
+theorem bigDarts_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.bigDarts.IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+  rw [bigDarts]
+  apply Z.outerBackwardDarts_chain.append Z.cellSegments_chain
+  intro x hx y hy
+  rw [List.getLast?_eq_some_getLast Z.outerBackwardDarts_ne_nil] at hx
+  rw [List.head?_eq_some_head Z.cellSegments_ne_nil] at hy
+  simp only [Option.mem_some_iff] at hx hy
+  subst x
+  subst y
+  rw [Z.outerBackwardDarts_getLast, Z.cellSegments_head]
+  exact Z.cactusShape.facePerm_outerBackward_zero Z.cells_length_pos
+
+theorem bigDarts_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (h : Z.bigDarts ≠ []) :
+    Z.bigDarts.head h = CactusDart.outerBackward
+      (CactusShape.prevFin Z.cactusShape.boundaryLength
+        Z.cactusShape.boundaryZero) := by
+  change (Z.outerBackwardDarts ++ Z.cellSegments).head _ = _
+  rw [List.head_append_of_ne_nil Z.outerBackwardDarts_ne_nil]
+  exact Z.outerBackwardDarts_head _
+
+theorem bigDarts_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (h : Z.bigDarts ≠ []) :
+    Z.bigDarts.getLast h = CactusDart.stemIn
+      (CactusShape.prevFin Z.cells.length
+        (Z.cactusShape.cellZero Z.cells_length_pos)) := by
+  change (Z.outerBackwardDarts ++ Z.cellSegments).getLast _ = _
+  rw [List.getLast_append_of_ne_nil _ Z.cellSegments_ne_nil]
+  exact Z.cellSegments_getLast _
+
+theorem bigDarts_closes
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.cactusShape.toCombMap.facePerm
+        (Z.bigDarts.getLast Z.bigDarts_ne_nil) =
+      Z.bigDarts.head Z.bigDarts_ne_nil := by
+  rw [Z.bigDarts_getLast, Z.bigDarts_head]
+  exact facePerm_stemIn_prev_zero Z.cactusShape Z.cells_length_pos
+
+noncomputable def bigFaceBoundary
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    FaceBoundary Z.cactusShape.toCombMap Z.cactusShape.bigFace := by
+  classical
+  let l := Z.bigDarts
+  have hn : l.Nodup := Z.bigDarts_nodup
+  let e₁ : Fin l.length ≃ {x : CactusDart Z.cactusShape // x ∈ l} :=
+    hn.getEquiv l
+  have hpred : (fun x : CactusDart Z.cactusShape ↦ x ∈ l) =
+      (fun x : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace) := by
+    funext x
+    apply propext
+    exact Z.mem_bigDarts_iff x
+  let e₂ : {x : CactusDart Z.cactusShape // x ∈ l} ≃
+      {x : CactusDart Z.cactusShape //
+        Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace} :=
+    Equiv.subtypeEquivProp hpred
+  exact
+    { darts := l
+      nonempty := Z.bigDarts_ne_nil
+      nodup := hn
+      mem_iff := Z.mem_bigDarts_iff
+      chain := Z.bigDarts_chain
+      closes := Z.bigDarts_closes
+      length_eq_degree := by
+        change l.length = Nat.card
+          {x : CactusDart Z.cactusShape //
+            Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace}
+        rw [← Nat.card_fin l.length]
+        exact Nat.card_congr (e₁.trans e₂) }
+
+theorem bigFaceBoundary_darts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.bigFaceBoundary.darts = Z.bigDarts := rfl
+
 end RelativeReducedDiagram
 end HullSC
 end GroupApproximation
