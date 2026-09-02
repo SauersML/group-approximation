@@ -287,6 +287,9 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
   have hmuNinetyTwo : mu ≤ 1 / 92 := by
     dsimp [mu]
     norm_num
+  have hmuThousand : mu ≤ 1 / 1000 := by
+    dsimp [mu]
+    norm_num
   obtain ⟨eps, rho₀, hcertificate⟩ :=
     hgeom D.rel D.embedded mu hmuPos hmuSixteen
   let fullRadius : ℕ := max R 1
