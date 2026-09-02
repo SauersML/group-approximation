@@ -2437,6 +2437,167 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     · right
       refine ⟨short i, hi, ?_⟩
       rfl
+  have htarget_not_interior : ∀ (i : Fin N), ¬ Matched i →
+      ∀ i' : ℕ, i' < P.length → targetN i ≠ pc.length + i' := by
+    intro i hi i' hi'
+    intro hni
+    have hsource_le : source i ≤ P.length := by
+      exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
+    have hne : i' ≠ source i := by
+      intro heq
+      exact (htargetSpec i).1 (by rw [hni, heq])
+    have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
+        (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
+        (pc.length + i') := by
+      show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+          (pc.length + source i))⁻¹ *
+        vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
+          D.fam (peripheralOccurrence P (occ i)).label
+      obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+      rw [hni] at heq
+      rw [vertex_fourGon_side pc P rc Q 1 hsource_le]
+      rw [← heq]
+      have hmem' :
+          (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+              (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) ∈
+            D.fam (peripheralOccurrence P (occ i)).label := by
+        rw [show
+          (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+              (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) = hh
+            by group]
+        exact hmem
+      simpa only [one_mul] using hmem'
+    exact (hsourceNoSame i i' hi' hne (by rw [← hni]; exact
+      (htargetSpec i).2.1)) hconn
+  have htargetLoc : ∀ (i : Fin N), ¬ Matched i →
+      targetN i < pc.length ∨ targetN i = pc.length + P.length ∨
+        ∃ m : ℕ, m < rc.length ∧
+          targetN i = pc.length + P.length + m := by
+    intro i hi
+    rcases (htargetSpec i).2.2.1 with hpcase | hrest
+    · exact Or.inl hpcase
+    · rcases hrest with hqcase | hrest
+      · rcases hqcase with ⟨i', hi', hni⟩
+        by_cases hilt : i' < P.length
+        · exact False.elim (htarget_not_interior i hi i' hilt hni)
+        · have hieq : i' = P.length := by omega
+          by_cases hrcpos : 0 < rc.length
+          · exact Or.inr (Or.inl (by omega))
+          · exfalso
+            apply (hi : ¬ Matched i)
+            refine ⟨Q.length, le_rfl, ?_, ?_⟩
+            · rw [← hni, hieq]
+              have hrczero : rc.length = 0 := by omega
+              simp [hrczero]
+            · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+              refine ⟨hh, hmem, ?_⟩
+              rw [hni, hieq]
+              have hrczero : rc.length = 0 := by omega
+              rw [hrczero, vertex_fourGon_opposite_closed pc P rc Q hclose Q.length]
+              exact heq
+      · rcases hrest with hrcase | hscase
+        · exact Or.inr (Or.inr hrcase)
+        · exfalso
+          apply hi
+          rcases hscase with ⟨j, hj, hjn⟩
+          refine ⟨j, hj, ?_, ?_⟩
+          · rw [← hjn]
+            exact (htargetSpec i).2.1
+          · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+            refine ⟨hh, hmem, ?_⟩
+            rw [hjn, vertex_fourGon_opposite_closed pc P rc Q hclose j] at heq
+            exact heq
+  have hsource_of_target_eq : ∀ (i j : Fin N), ¬ Matched i →
+      ¬ Matched j → targetN i = targetN j → source i = source j := by
+    intro i j hi hj htargetEq
+    have hlabelEq : (peripheralOccurrence P (occ i)).label =
+        (peripheralOccurrence P (occ j)).label := by
+      exact isCompStart_label_unique_421 (htargetSpec i).2.1
+        (by rw [htargetEq]; exact (htargetSpec j).2.1)
+    obtain ⟨hhi, hmi, hei⟩ := (htargetSpec i).2.2.2
+    obtain ⟨hhj, hmj, hej⟩ := (htargetSpec j).2.2.2
+    have hmemA :
+        (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+            (RelLetter.listVal pc * vertex (1 : G) P (source j)) ∈
+          D.fam (peripheralOccurrence P (occ i)).label := by
+      have hmul := (D.fam (peripheralOccurrence P (occ i)).label).mul_mem
+        hmi ((D.fam (peripheralOccurrence P (occ i)).label).inv_mem
+          (hlabelEq ▸ hmj))
+      have halg :
+          (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+              (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
+            hhi * hhj⁻¹ := by
+        rw [← hei, ← hej]
+        group
+      rw [halg]
+      exact hmul
+    have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
+        (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
+        (pc.length + source j) := by
+      show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+          (pc.length + source i))⁻¹ *
+        vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+          (pc.length + source j) ∈
+          D.fam (peripheralOccurrence P (occ i)).label
+      rw [vertex_fourGon_side pc P rc Q 1
+        (by exact le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i)))]
+      exact hmemA
+    by_contra hne
+    have hstartj : IsCompStart (peripheralOccurrence P (occ i)).label
+        (pc ++ P ++ rc ++ revWord Q) (pc.length + source j) := by
+      rw [hlabelEq]
+      exact (htargetSpec j).2.1
+    exact (hsourceNoSame i (source j) (by omega) hne hstartj) hconn
+  have hshortInj : ∀ i j, ¬ Matched i → ¬ Matched j →
+      short i = short j → i = j := by
+    intro i j hi hj hshortEq
+    have hcoord :
+        (if h : targetN i < pc.length then targetN i
+          else E + (targetN i - (pc.length + P.length))) =
+          (if h : targetN j < pc.length then targetN j
+          else E + (targetN j - (pc.length + P.length))) := by
+      rw [hshortSpec i hi, hshortSpec j hj]
+      exact congrArg Fin.val hshortEq
+    rcases htargetLoc i hi with hipc | hiend | ⟨mi, hmi, hni⟩
+    · rcases htargetLoc j hj with hjpc | hjend | ⟨mj, hmj, hnj⟩
+      · have hteq : targetN i = targetN j := by simpa [hipc, hjpc] using hcoord
+        exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
+      · exfalso
+        simp [hipc, hjend] at hcoord
+        omega
+      · exfalso
+        simp [hipc, hnj] at hcoord
+        omega
+    · rcases htargetLoc j hj with hjpc | hjend | ⟨mj, hmj, hnj⟩
+      · exfalso
+        simp [hiend, hjpc] at hcoord
+        omega
+      · have hteq : targetN i = targetN j := by simpa [hiend, hjend] using hcoord
+        exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
+      · have hmj0 : mj = 0 := by
+          simp [hiend, hnj] at hcoord
+          omega
+        subst mj
+        have hteq : targetN i = targetN j := by omega
+        exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
+    · rcases htargetLoc j hj with hjpc | hjend | ⟨mj, hmj, hnj⟩
+      · exfalso
+        simp [hni, hjpc] at hcoord
+        omega
+      · have hmi0 : mi = 0 := by
+          simp [hni, hjend] at hcoord
+          omega
+        subst mi
+        have hteq : targetN i = targetN j := by omega
+        exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
+      · have hmeq : mi = mj := by
+          simp [hni, hnj] at hcoord
+          omega
+        subst mj
+        have hteq : targetN i = targetN j := by omega
+        exact hsource_of_target_eq i j hi hj hteq ▸ rfl
+  obtain ⟨block, hblock⟩ := exists_consecutive_block_of_short_absorption
+    (K := K) (M := M) hK Matched short hclass hshortInj
 
 end OsinComponents
 end GGT
