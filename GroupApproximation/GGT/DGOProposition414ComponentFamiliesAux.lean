@@ -1459,6 +1459,49 @@ theorem secondGapArcSource_fullComponent_of_boundaryAndCutAlignment
   simpa only [secondGapCycle, secondGapCut, halign.1, halign.2,
     B.secondGapLocalLabel_arc j s hs] using hraw
 
+/-- The cut alignment is automatic for an inherited source, so only the two
+endpoint exclusions remain as input to the first-gap transfer. -/
+theorem firstGapArcSource_fullComponent_of_boundaryExclusion_auto
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (hboundary : FirstGapArcBoundaryExclusion B j s) :
+    IsComp (B.firstGapLocalLabel j
+        ((B.firstGapLeft j).length +
+          (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCycle j)
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1)) := by
+  exact firstGapArcSource_fullComponent_of_boundaryAndCutAlignment B j s hs
+    hboundary (firstGapArcCutAlignment_of_source B j s hs)
+
+/-- The wrapped counterpart with automatic cut alignment. -/
+theorem secondGapArcSource_fullComponent_of_boundaryExclusion_auto
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (hboundary : SecondGapArcBoundaryExclusion B j s) :
+    IsComp (B.secondGapLocalLabel j
+        ((B.secondGapLeft j).length +
+          (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCycle j)
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1)) := by
+  exact secondGapArcSource_fullComponent_of_boundaryAndCutAlignment B j s hs
+    hboundary (secondGapArcCutAlignment_of_source B j s hs)
+
 /-! ## Exact certificate assembly -/
 
 /-- Assemble a first-gap component family and its separation input into the
