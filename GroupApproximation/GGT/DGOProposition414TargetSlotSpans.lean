@@ -50,6 +50,100 @@ end AuxiliaryCycleCertificate
 
 namespace AuxiliaryCyclePathInput
 
+/-- A side on the final chord block has the span of the corresponding chord
+letter. -/
+theorem chord_sideSpan_eq_letter
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {b : ℕ} (Q : AuxiliaryCyclePathInput D hsymm b)
+    (r : ℕ) (hr : r < Q.chord.length) :
+    Q.certificate.sideSpan
+      (Q.left.length + Q.arcSides + Q.right.length + r) =
+        (Q.chord[r]'hr).val := by
+  let word := auxiliaryCycleWord Q.left Q.arc Q.right Q.chord
+  let off := Q.left.length + Q.arc.length + Q.right.length
+  let t := Q.left.length + Q.arcSides + Q.right.length + r
+  have hcut0 := auxiliaryCycleCut_chord Q.left Q.right Q.arcPolygon.cut
+    (r := r)
+  have hcut1 := auxiliaryCycleCut_chord Q.left Q.right Q.arcPolygon.cut
+    (r := r + 1)
+  have hcut1' : auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+      (t + 1) = off + (r + 1) := by
+    dsimp [t, off]
+    convert hcut1 using 1 <;> omega
+  change (vertex Q.basepoint word
+      (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right t))⁻¹ *
+      vertex Q.basepoint word
+        (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right (t + 1)) =
+      (Q.chord[r]'hr).val
+  calc
+    _ = (vertex Q.basepoint word (off + r))⁻¹ *
+        vertex Q.basepoint word (off + (r + 1)) := by
+          exact congrArg₂ (fun x y : G => x⁻¹ * y)
+            (congrArg (vertex Q.basepoint word) (by
+              dsimp [t, off]
+              exact hcut0))
+            (congrArg (vertex Q.basepoint word) hcut1')
+    _ = (vertex
+          (Q.basepoint * RelLetter.listVal
+            ((revWord Q.left ++ Q.arc) ++ Q.right)) Q.chord r)⁻¹ *
+        vertex
+          (Q.basepoint * RelLetter.listVal
+            ((revWord Q.left ++ Q.arc) ++ Q.right)) Q.chord (r + 1) := by
+          rw [show off + r = Q.left.length + Q.arc.length +
+              Q.right.length + r by rfl,
+            show off + (r + 1) = Q.left.length + Q.arc.length +
+              Q.right.length + (r + 1) by rfl,
+            vertex_auxiliaryCycle_chord, vertex_auxiliaryCycle_chord]
+    _ = (Q.chord[r]'hr).val := by
+      rw [vertex_succ Q.chord
+        (Q.basepoint * RelLetter.listVal
+          ((revWord Q.left ++ Q.arc) ++ Q.right)) r hr]
+      group
+
+/-- The local edge of an oriented segment is the forward chord edge when the
+segment runs forward and its inverse when it runs backwards. -/
+theorem orientedEdgeIndex_val
+    (word : List (RelLetter G Λ)) {a b y : ℕ}
+    (ha : a ≤ word.length) (hb : b ≤ word.length)
+    (hy : y < word.length) (hedge : EdgeBetween a b y) :
+    ((orientedSegment word a b)[orientedEdgeIndex a b y]'
+      (orientedEdgeIndex_lt word ha hb hedge)).val =
+      if a ≤ b then (word[y]'hy).val else (word[y]'hy).val⁻¹ := by
+  have hor := hedge
+  unfold EdgeBetween at hor
+  by_cases hab : a ≤ b
+  · have hforward : a ≤ y ∧ y + 1 ≤ b := by omega
+    simp only [orientedSegment, if_pos hab, orientedEdgeIndex]
+    simpa only [List.getElem_take, List.getElem_drop,
+      Nat.add_sub_of_le hforward.1, if_pos hab]
+  · have hba : b ≤ a := by omega
+    have hreverse : b ≤ y ∧ y + 1 ≤ a := by omega
+    let segment := (word.drop b).take (a - b)
+    have hsegmentLen : segment.length = a - b := by
+      dsimp [segment]
+      rw [List.length_take, List.length_drop]
+      omega
+    have hlocal : a - (y + 1) < segment.length := by
+      rw [hsegmentLen]
+      omega
+    have hforwardIndex : y - b < segment.length := by
+      rw [hsegmentLen]
+      omega
+    have hsegmentLetter : segment[y - b]'hforwardIndex = word[y]'hy := by
+      dsimp [segment]
+      simp only [List.getElem_take, List.getElem_drop,
+        Nat.add_sub_of_le hreverse.1]
+    have hrev := getElem_revWord segment
+      (m := a - (y + 1)) (by
+        rw [OsinComponents.length_revWord]
+        exact hlocal) hforwardIndex
+    have hindex : segment.length - 1 - (a - (y + 1)) = y - b := by
+      rw [hsegmentLen]
+      omega
+    rw [getElem_congr_idx hindex, hsegmentLetter] at hrev
+    simp only [orientedSegment, if_neg hab, orientedEdgeIndex]
+    rw [hrev, val_invLetter, if_neg hab]
+
 /-- A nonempty one-letter right connector has side span equal to the value of
 the whole connector word. -/
 theorem rightConnector_sideSpan
