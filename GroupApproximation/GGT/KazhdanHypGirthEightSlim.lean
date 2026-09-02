@@ -334,6 +334,31 @@ theorem isSlimTriangles_of_girthEight_layer_construction
     build x y z p hp hfarXZ hfarZY
   exact not_girthEight_layers_of_depth_gt C layer hperimeter hsum hlayer hdepth
 
+/-- A finite symmetric alphabet and the successive-star construction give the
+repository's four-point definition of a hyperbolic group.  This is the final
+metric step in Bridson--Haefliger III.H.2.9 after the topological layer
+construction has supplied `build`. -/
+theorem isHyperbolicGroup_of_girthEight_layer_construction
+    {S : Finset G} {delta : ℕ}
+    {Lambda : Type w} {W : Set (List (GGT.RelLetter G Lambda))}
+    (hS : IsSymmetricGeneratingSet (S : Set G))
+    (build : ∀ x y z p : G,
+      Hyperbolic.IsBetween (S : Set G) x p y →
+      (∀ q : G, Hyperbolic.IsBetween (S : Set G) x q z →
+        delta < wordDist (S : Set G) p q) →
+      (∀ q : G, Hyperbolic.IsBetween (S : Set G) z q y →
+        delta < wordDist (S : Set G) p q) →
+      ∃ (Delta : VanKampen.DiscDiagram W)
+        (_C : VanKampen.TriangularGirthEightDiagram Delta)
+        (m ell loss rho : ℕ) (layer : Fin m → ℕ),
+        Delta.combinatorialBoundaryLength <= 6 * ell ∧
+        (∑ i, layer i) <= Delta.innerFaceCount ∧
+        (∀ i, ell - loss <= rho * layer i) ∧
+        18 * rho * ell < m * (ell - loss)) :
+    Hyperbolic.IsHyperbolicGroup G :=
+  Hyperbolic.isHyperbolicGroup_of_isSlimTriangles hS
+    (isSlimTriangles_of_girthEight_layer_construction build)
+
 end GirthEightSlim
 end GGT
 end GroupApproximation
