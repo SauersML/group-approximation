@@ -80,9 +80,7 @@ structure Lemma49RelativeGreendlingerCell
     (v : List (GGT.RelLetter G Lambda))
     (g : G) (n eps : ℕ) (mu : ℝ)
     (Z : Lemma49GeodesicPowerDiagram D v g n) where
-  index : Fin Z.cells.length
   relator : List (GGT.RelLetter G Lambda)
-  relator_eq : relator = (Z.cells.get index).relator
   relator_mem : relator ∈ RelWord.symmetrized v
   contiguity : RelativeBoundaryContiguity D eps
     ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val) relator
@@ -139,9 +137,7 @@ theorem exists_lemma49RelativeGreendlingerCell
   obtain ⟨pre, arc, suf, hsplit, _, _, _, harcValue⟩ :=
     exists_boundaryArc_source Cpower
   exact ⟨{
-    index := i
     relator := K.cellLabel i
-    relator_eq := K.cellLabel_eq i
     relator_mem := K.cellLabel_mem i
     contiguity := Cpower
     boundaryBefore := pre
