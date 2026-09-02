@@ -1212,7 +1212,7 @@ theorem cactusDiscDiagram_reduced
       pre.map orientedOfCell ++ orientedOfCell C₁ ::
         (between.map orientedOfCell ++ orientedOfCell C₂ ::
           suf.map orientedOfCell) := by
-    exact hsplit'
+    simpa only [List.map_append, List.map_cons] using hsplit'
   have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
     (between.map orientedOfCell)
