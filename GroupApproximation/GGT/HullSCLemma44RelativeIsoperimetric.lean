@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.CayleyFourPointBridge
 import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
-import GroupApproximation.GGT.HullSCLemma44RelativeBoundary
+import GroupApproximation.GGT.HullSCLemma44RelativeArea
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 
 /-!
@@ -121,6 +121,38 @@ def RelativeDehnTransferStatement : Prop :=
     (D : GGT.RelGenSet G Lambda),
     D.IsHyperbolicallyEmbedded → RelativeDehnTransferAt.{u, v, w} D
 
+/-- Pointwise form of the relative-presentation theorem after the diagram
+induction has produced a linear relative Dehn function. -/
+def RelativeLinearAreaTransferAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+    {a : GGT.RelLetter G Lambda |
+      (∃ lam h, a = GGT.RelLetter.comp lam h) ∧
+        ∃ relator ∈ W, a ∈ relator}.Finite →
+      RelativeLinearKernelArea D W q →
+        Nonempty (RelativeIsoperimetricControl D q hq)
+
+/-- Uniform linear-area transfer over hyperbolically embedded source
+families.  This is the remaining relative-presentation input: Osin Theorem
+1.7 supplies quotient hyperbolicity, while the proof of Theorem 4.1 bounds
+the transported peripheral metrics using the finite component support. -/
+def RelativeLinearAreaTransferStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    D.IsHyperbolicallyEmbedded → RelativeLinearAreaTransferAt.{u, v, w} D
+
+/-- Linear area follows from the local cuts, so the relative-presentation
+transfer implies the local Dehn transfer. -/
+theorem relativeDehnTransferStatement_of_linearAreaTransfer
+    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w}) :
+    RelativeDehnTransferStatement.{u, v, w} := by
+  intro G _ Lambda D hD W eps Q _ q hq hsupport hcuts
+  apply htransfer D hD W q hq hsupport
+  exact relativeLinearKernelArea_of_dehnCuts D W eps q hcuts
+
 /-- Osin Lemma 5.1, phrased as the bridge consumed by Hull Lemma 4.4.
 
 The certificate hypothesis is available for every boundary radius and every
@@ -162,6 +194,14 @@ theorem relativeIsoperimetricBridgeStatement_of_dehnTransfer
   intro boundaryWord hword hne hmap
   exact exists_relativeDehnCut_of_kernelWord D hsc hmuUpper hrho q hker
     hcert boundaryWord hword hne hmap
+
+/-- The linear relative-area transfer consumes the full certificate bridge
+through the proved boundary-length induction. -/
+theorem relativeIsoperimetricBridgeStatement_of_linearAreaTransfer
+    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w}) :
+    RelativeIsoperimetricBridgeStatement.{u, v, w} :=
+  relativeIsoperimetricBridgeStatement_of_dehnTransfer
+    (relativeDehnTransferStatement_of_linearAreaTransfer htransfer)
 
 /-- The bridge statement, followed by its elementary consumer, proves
 hyperbolic embeddedness of the concrete quotient image family. -/
@@ -277,6 +317,24 @@ theorem relativeDehnTransferAt_trivialSourceModel
     {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
     RelativeDehnTransferAt.{0, v, w} D := by
   intro W eps Q _ q hq hsupport hcuts
+  haveI : Subsingleton Q :=
+    ⟨fun x y => by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  refine ⟨⟨0, ?_, fun _ => 0, ?_⟩⟩
+  · intro a b c d
+    rw [Subsingleton.elim a b, Subsingleton.elim c b,
+      Subsingleton.elim d b]
+    simp only [WordMetric.wordDist_self, zero_add, max_self, mul_zero,
+      le_refl]
+  · exact peripheralPullbackBound_trivialSource D q hq
+
+/-- The pointwise linear-area transfer has the one-point source model. -/
+theorem relativeLinearAreaTransferAt_trivialSourceModel
+    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
+    RelativeLinearAreaTransferAt.{0, v, w} D := by
+  intro W Q _ q hq hsupport harea
   haveI : Subsingleton Q :=
     ⟨fun x y => by
       obtain ⟨a, rfl⟩ := hq x
