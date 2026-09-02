@@ -371,6 +371,17 @@ structure GCellReplacement
   boundaryWord_eq :
     dartWord Delta oldBoundary.cycle = dartWord Delta newBoundary.cycle
 
+/-- Union of two candidate face carriers.  It is noncomputable only because
+the quotient face type does not carry a global decidable-equality instance. -/
+noncomputable def candidateFaceUnion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (first second : Candidate D eps Delta) : Finset Delta.toCombMap.Face := by
+  letI : DecidableEq Delta.toCombMap.Face := Classical.decEq _
+  exact Finset.union first.1 second.1
+
 /-- The surgery which merges two embedded regions.  Its old carrier is the
 union of their face sets and its new carrier is the candidate chosen to
 replace them. -/
@@ -380,8 +391,8 @@ structure MergeSurgery
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (first second merged : Candidate D eps Delta) where
-  mergedFaces : merged.1 = first.1 ∪ second.1
-  replacement : GCellReplacement Delta (first.1 ∪ second.1) merged.1
+  mergedFaces : merged.1 = candidateFaceUnion first second
+  replacement : GCellReplacement Delta (candidateFaceUnion first second) merged.1
 
 /-- Compatibility of embedded regions is symmetric. -/
 theorem compatible_symm
@@ -404,12 +415,19 @@ theorem compatible_merge
     (surgery : MergeSurgery first second merged)
     (hfirst : Compatible first other)
     (hsecond : Compatible second other) : Compatible merged other := by
-  rw [Compatible, surgery.mergedFaces]
-  rw [Finset.disjoint_left] at hfirst hsecond ⊢
+  classical
+  change Disjoint first.1 other.1 at hfirst
+  change Disjoint second.1 other.1 at hsecond
+  change Disjoint merged.1 other.1
+  rw [surgery.mergedFaces]
+  apply Finset.disjoint_left.mpr
   intro face hface hother
+  have hfirst' := Finset.disjoint_left.mp hfirst
+  have hsecond' := Finset.disjoint_left.mp hsecond
+  change face ∈ Finset.union first.1 second.1 at hface
   rcases Finset.mem_union.mp hface with hface | hface
-  · exact hfirst hface hother
-  · exact hsecond hface hother
+  · exact hfirst' hface hother
+  · exact hsecond' hface hother
 
 /-- Replacing two selected embedded regions by their merged surgery preserves
 pairwise face-disjointness of the distinguished family. -/
@@ -429,26 +447,30 @@ theorem merge_replacement_pairwise
       (Compatible (D := D) (eps := eps) (Delta := Delta))
       (insert merged ((selected.family.erase first).erase second)) := by
   classical
+  have member_cases : ∀ candidate : Candidate D eps Delta,
+      candidate ∈ insert merged ((selected.family.erase first).erase second) →
+        candidate = merged ∨
+          (candidate ∈ selected.family ∧ candidate ≠ first ∧ candidate ≠ second) := by
+    intro candidate hcandidate
+    rcases Finset.mem_insert.mp hcandidate with hmerged | hrest
+    · exact Or.inl hmerged
+    · have hsecondData := Finset.mem_erase.mp hrest
+      have hfirstData := Finset.mem_erase.mp hsecondData.2
+      exact Or.inr ⟨hfirstData.2, hfirstData.1, hsecondData.1⟩
   intro a ha b hb hab
-  rcases Finset.mem_insert.mp ha with rfl | ha
-  · rcases Finset.mem_insert.mp hb with rfl | hb
-    · exact (hab rfl).elim
-    · have hbData := Finset.mem_erase.mp hb
-      have hbFirst := Finset.mem_erase.mp hbData.2
-      have hfirstb := selected.pairwise first hfirst b hbFirst.2 hbFirst.1.symm
-      have hsecondb := selected.pairwise second hsecond b hbData.2 hbData.1.symm
+  rcases member_cases a ha with haMerged | haOld
+  · rcases member_cases b hb with hbMerged | hbOld
+    · exact (hab (haMerged.trans hbMerged.symm)).elim
+    · subst a
+      have hfirstb := selected.pairwise first hfirst b hbOld.1 hbOld.2.1.symm
+      have hsecondb := selected.pairwise second hsecond b hbOld.1 hbOld.2.2.symm
       exact compatible_merge surgery hfirstb hsecondb
-  · rcases Finset.mem_insert.mp hb with rfl | hb
-    · have haData := Finset.mem_erase.mp ha
-      have haFirst := Finset.mem_erase.mp haData.2
-      have hfirsta := selected.pairwise first hfirst a haFirst.2 haFirst.1.symm
-      have hseconda := selected.pairwise second hsecond a haData.2 haData.1.symm
+  · rcases member_cases b hb with hbMerged | hbOld
+    · subst b
+      have hfirsta := selected.pairwise first hfirst a haOld.1 haOld.2.1.symm
+      have hseconda := selected.pairwise second hsecond a haOld.1 haOld.2.2.symm
       exact compatible_symm (compatible_merge surgery hfirsta hseconda)
-    · have haSelected : a ∈ selected.family :=
-        (Finset.mem_erase.mp (Finset.mem_erase.mp ha).2).2
-      have hbSelected : b ∈ selected.family :=
-        (Finset.mem_erase.mp (Finset.mem_erase.mp hb).2).2
-      exact selected.pairwise a haSelected b hbSelected hab
+    · exact selected.pairwise a haOld.1 b hbOld.1 hab
 
 /-- A genuine union merge cannot already be one of the untouched selected
 regions: it contains every face of the nonempty first region, whereas the
@@ -465,6 +487,7 @@ theorem merged_not_mem_rest
     (hfirst : first ∈ selected.family)
     (surgery : MergeSurgery first second merged) :
     merged ∉ (selected.family.erase first).erase second := by
+  classical
   intro hmerged
   have hmergedData := Finset.mem_erase.mp hmerged
   have hmergedFirst := Finset.mem_erase.mp hmergedData.2
@@ -473,7 +496,7 @@ theorem merged_not_mem_rest
   obtain ⟨face, hface⟩ := first.contiguity.boundary.faces_nonempty
   have hfaceMerged : face ∈ merged.1 := by
     rw [surgery.mergedFaces]
-    exact Finset.mem_union_left second.1 hface
+    simpa only [candidateFaceUnion] using Finset.mem_union_left second.1 hface
   exact (Finset.disjoint_left.mp hdisjoint) hface hfaceMerged
 
 /-- **Lemma 65(a), two-gon consequence.**  Two selected regions cannot admit
