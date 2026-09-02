@@ -59,17 +59,20 @@ theorem false_of_longPeriod_powerDiagram_of_cell
     lemma49_shorteningScale_le_of_primePieceScale hscale
   have hlongArc : 4 * Z.boundaryWord.length ≤
       3 * C.boundaryArc.length :=
-    C.four_mul_period_le_three_mul_arc hcertificateInput hshortScale hshort
+    four_mul_period_le_three_mul_arc C hcertificateInput hshortScale hshort
   have hwordNe : Z.boundaryWord ≠ [] := by
     intro hnil
     have hg : g = 1 := by
       have hvalue : GGT.RelLetter.listVal Z.boundaryWord = g := by
         simpa using Z.boundary_geodesic.2.1
       rw [hnil] at hvalue
-      simpa using hvalue.symm
+      calc
+        g = GGT.RelLetter.listVal
+            ([] : List (GGT.RelLetter G Lambda)) := hvalue.symm
+        _ = 1 := GGT.RelLetter.listVal_nil
     exact Z.power_ne_one (by simp [hg])
   have hperiodPos : 0 < Z.boundaryWord.length :=
-    List.length_pos.mpr hwordNe
+    List.length_pos_iff.mpr hwordNe
   have harcInfix : C.boundaryArc <:+:
       lemma49BoundaryPower Z.boundaryWord n :=
     ⟨C.boundaryBefore, C.boundaryAfter, C.boundary_decomposition.symm⟩
@@ -107,7 +110,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
     exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
       hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
   obtain ⟨K, hshadow⟩ :=
-    exists_lemma49ContiguityShadow_constant (u := u) delta epsCert
+    exists_lemma49ContiguityShadow_constant delta epsCert
   let b := 8 * delta + 2
   let eps := max epsCert (2 * K)
   let scale := 1000 * (4 * b + 24 * K + 18 * epsCert + 18)
