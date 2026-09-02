@@ -237,5 +237,22 @@ theorem hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
     hgeom htransfer
 
+/-- Form using the proved linear-area induction and the relative-presentation
+transfer. -/
+theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (htransfer : RelativeLinearAreaTransferStatement.{u, u, 0}) :
+    HullLemma44CanonicalQuotientStatement.{u} :=
+  hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
+    hgeom (relativeDehnTransferStatement_of_linearAreaTransfer htransfer)
+
+/-- Universe-zero form at the final two source interfaces. -/
+theorem hullLemma44CanonicalQuotientStatement_zero_of_linearAreaTransfer
+    (hgeom : RelativeGreendlingerStatement.{0, 0})
+    (htransfer : RelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
+    hgeom htransfer
+
 end HullSC
 end GroupApproximation
