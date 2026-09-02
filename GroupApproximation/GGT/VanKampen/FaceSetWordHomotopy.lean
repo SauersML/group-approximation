@@ -155,8 +155,12 @@ inductive FaceSetMoveSequence
 
 namespace FaceSetMoveSequence
 
+end FaceSetMoveSequence
+
+namespace FaceSetElementaryMove
+
 /-- Elementary moves are exactly the generators of the existing homotopy. -/
-theorem to_elementary_homotopy
+theorem to_homotopy
     {faces : Finset Delta.toCombMap.Face}
     {first second : List Delta.toCombMap.Dart}
     (move : FaceSetElementaryMove (faces := faces) first second) :
@@ -171,6 +175,10 @@ theorem to_elementary_homotopy
   | insertAlphaPair dart before after =>
       exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).symm
 
+end FaceSetElementaryMove
+
+namespace FaceSetMoveSequence
+
 /-- A finite factorisation gives a `FaceSetWordHomotopy`. -/
 theorem to_homotopy
     {faces : Finset Delta.toCombMap.Face}
@@ -180,15 +188,7 @@ theorem to_homotopy
   induction moves with
   | refl word => exact .refl word
   | cons head tail ih =>
-      cases head with
-      | eraseFace face hface before after =>
-          exact (FaceSetWordHomotopy.eraseFace face hface before after).trans ih
-      | insertFace face hface before after =>
-          exact (FaceSetWordHomotopy.eraseFace face hface before after).symm.trans ih
-      | eraseAlphaPair dart before after =>
-          exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).trans ih
-      | insertAlphaPair dart before after =>
-          exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).symm.trans ih
+      exact (FaceSetElementaryMove.to_homotopy head).trans ih
 
 end FaceSetMoveSequence
 
