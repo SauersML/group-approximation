@@ -47,7 +47,9 @@ theorem firstTarget_rotated_isolated
     rw [← hedge]
     exact P.target_component s hsTarget
   have hiso := P.target_isolated s hsTarget
-  have hJle := B.secondVertex_le_length
+  have hJle : B.secondVertex ≤ P.word.length :=
+    B.secondVertex_mem.2.trans
+      (P.polygonCut.le_length (Nat.succ_le_iff.mpr B.secondSide_lt))
   have hbefore : P.cut s + 1 ≤ B.secondVertex := by
     rw [hedge] at hhigh
     exact hhigh
