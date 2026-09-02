@@ -218,7 +218,9 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
   have hx'lt : x'.val < 7 := ZMod.val_lt x'
   interval_cases hxval : x.val using hxzero, hxlt <;>
     interval_cases hx'val : x'.val using hx'zero, hx'lt <;>
-      norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, hxval, hx'val]
+      norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add,
+        ZMod.val_one_eq_one_mod, ZMod.val_natCast, ZMod.val_ofNat,
+        hxval, hx'val]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
