@@ -637,7 +637,7 @@ theorem estimatingPieceConstruction_of_boundaryEquations
   intro edge
   let bridge := hbridge D eps Delta scaffold hred edge
   exact Embedded.CellPieceEquations.of_boundary_equation_reduced
-    edge.candidate.contiguity bridge (harcs edge) hred
+    edge.candidate.contiguity bridge (harcs scaffold edge) hred
 
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
