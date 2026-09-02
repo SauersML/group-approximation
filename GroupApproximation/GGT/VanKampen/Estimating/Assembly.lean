@@ -33,7 +33,21 @@ structure EstimatingScaffold
   selected : EstimatingSelection.DistinguishedFamily
     (Embedded.Compatible (D := D) (eps := eps) (Delta := Delta))
     (Embedded.Candidate.weight (D := D) (eps := eps) (Delta := Delta))
-  partition : Embedded.DiagramBoundaryPartition selected.family
+
+namespace EstimatingScaffold
+
+/-- The positioned boundary partition attached to a scaffold is the canonical
+classifier of its distinguished family. -/
+noncomputable def partition
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta) :
+    Embedded.DiagramBoundaryPartition scaffold.selected.family :=
+  Embedded.canonicalDiagramPartition scaffold.selected.family
+
+end EstimatingScaffold
 
 /-- Finite maximization and canonical dart classification construct the
 estimating scaffold for every finite disc diagram. -/
@@ -45,16 +59,14 @@ theorem exists_estimatingScaffold
     Nonempty (EstimatingScaffold D eps Delta) := by
   obtain ⟨selected⟩ := Embedded.exists_distinguishedFamily D eps Delta
   exact ⟨{
-    selected := selected
-    partition := fun i =>
-      Embedded.CellBoundaryPartition.canonical selected.family i }⟩
+    selected := selected }⟩
 
 /-! ## Geometric certificates on the finite scaffold -/
 
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
-The selected interior regions form a hereditary simple planar graph, their
-edge weights count exactly the positioned interior darts, and the two-gon
-condition leaves at most one exterior region at each cell. -/
+The selected interior regions form a hereditary simple planar graph, no
+position belongs to two incidences, and the two-gon condition leaves at most
+one exterior region at each cell. -/
 structure EstimatingGraphData
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -70,10 +82,8 @@ structure EstimatingGraphData
     HasHereditaryPlanarEdgeBound
       (Embedded.InteriorEdge.Incident
         (selected := scaffold.selected.family))
-  interiorWeight_sum :
-    (∑ i : Fin Delta.rCellCount,
-        scaffold.partition.kindWeight Embedded.CellArcKind.interior i) =
-      ∑ edge : Embedded.InteriorEdge scaffold.selected.family, edge.weight
+  incidenceUnique :
+    Embedded.IncidencePositionUnique scaffold.selected.family
 
 /-- The G-cell boundary equation and reducedness exclusion needed to apply
 Lemma O52 to every selected cell-to-cell region. -/
@@ -183,7 +193,13 @@ noncomputable def ofScaffold
     change Embedded.InteriorEdge.Incident i edge at hincident
     exact Embedded.InteriorEdge.weight_le_incident pieces.equations
       hcondition i edge hincident
-  interiorWeight_sum := graph.interiorWeight_sum
+  interiorWeight_sum := by
+    change (∑ i : Fin Delta.rCellCount,
+        (Embedded.canonicalDiagramPartition scaffold.selected.family).kindWeight
+          Embedded.CellArcKind.interior i) =
+      ∑ edge : Embedded.InteriorEdge scaffold.selected.family, edge.weight
+    exact Embedded.sum_canonical_interiorWeight_eq_sum_edgeWeight
+      scaffold.selected.family graph.incidenceUnique
   uncovered_total_le := by
     apply scaffold.partition.unbound_total_le_two_mu mu rho
     · intro i
