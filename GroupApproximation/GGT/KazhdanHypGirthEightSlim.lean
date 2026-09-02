@@ -466,6 +466,9 @@ theorem presented_isHyperbolicGroup_of_girthEight_layer_construction
     Hyperbolic.IsHyperbolicGroup
       (TriangularHodgeLayer.Presented T) := by
   apply isHyperbolicGroup_of_girthEight_layer_construction
+    (S := presentedGeneratorFinset T) (delta := delta)
+    (Base := FreeGroup Generator) (Lambda := PEmpty)
+    (W := KazhdanHyp.triangleRelatorWords T)
     (presentedGeneratorFinset_isSymmetricGeneratingSet T)
   intro x y z p hp hfarXZ hfarZY
   obtain ⟨Delta, L, m, ell, loss, rho, layer,
