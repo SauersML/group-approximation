@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCLemma49SourceBranches
+import GroupApproximation.GGT.HullSCLemma49BowditchGap
 import GroupApproximation.GGT.HullSCLemma49ShortPower
 
 /-!
@@ -108,6 +109,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
           q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
           Set.InjOn q (cayleyBall D.alphabet (8 * delta + 1))) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
+  intro G _ Lambda D hemb hacylindrical
   obtain ⟨delta, hdelta⟩ :=
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   have hgap : CayleyUniformLoxodromicTranslationGap D.alphabet :=
