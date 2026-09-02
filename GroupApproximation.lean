@@ -3262,6 +3262,7 @@ import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 import GroupApproximation.GGT.DGOProposition435Printed
 import GroupApproximation.GGT.DGOProposition414GapChordHead
 import GroupApproximation.GGT.VanKampen.Estimating.SelectionMerge
+import GroupApproximation.GGT.VanKampen.PermOrbitTransport
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
