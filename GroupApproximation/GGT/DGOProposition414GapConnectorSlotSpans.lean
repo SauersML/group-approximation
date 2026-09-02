@@ -57,6 +57,7 @@ theorem firstBrokenStartSlot_span
     have hzero : (B.firstGapRight j).length = 0 := by omega
     have hempty : B.firstGapRight j = [] := List.length_eq_zero_iff.mp hzero
     rw [hempty, RelLetter.listVal_nil]
+    rfl
 
 /-- The first-half end slot is the inverse value of the left connector in the
 exit child. -/
@@ -93,6 +94,7 @@ theorem firstBrokenEndSlot_span
     have hzero : (B.firstGapLeft j).length = 0 := by omega
     have hempty : B.firstGapLeft j = [] := List.length_eq_zero_iff.mp hzero
     rw [hempty, RelLetter.listVal_nil, inv_one]
+    rfl
 
 /-- Wrapped-half counterpart for the start slot. -/
 theorem secondBrokenStartSlot_span
@@ -129,6 +131,7 @@ theorem secondBrokenStartSlot_span
     have hzero : (B.secondGapRight j).length = 0 := by omega
     have hempty : B.secondGapRight j = [] := List.length_eq_zero_iff.mp hzero
     rw [hempty, RelLetter.listVal_nil]
+    rfl
 
 /-- Wrapped-half counterpart for the reversed end slot. -/
 theorem secondBrokenEndSlot_span
@@ -164,6 +167,7 @@ theorem secondBrokenEndSlot_span
     have hzero : (B.secondGapLeft j).length = 0 := by omega
     have hempty : B.secondGapLeft j = [] := List.length_eq_zero_iff.mp hzero
     rw [hempty, RelLetter.listVal_nil, inv_one]
+    rfl
 
 end BalancedSplitData
 
