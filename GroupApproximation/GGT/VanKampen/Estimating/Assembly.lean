@@ -423,6 +423,74 @@ theorem estimatingDataConstruction_of_components
     EstimatingData.nonempty_of_certificates scaffold graph pieces unbound
       hcondition⟩
 
+/-! ## Component model checks -/
+
+/-- No positive relator-cell diagram exists over the empty word family. -/
+theorem no_positive_rCells_emptyFamily
+    {G : Type u} [Group G] {Lambda : Type w}
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda)))) :
+    ¬ 0 < Delta.rCellCount := by
+  intro hpos
+  rw [DiscDiagram.rCellCount, List.length_pos_iff] at hpos
+  obtain ⟨C, cells, hsplit⟩ := List.exists_cons_of_length_pos hpos
+  have hmem : C ∈ Delta.relatorCells := by
+    rw [hsplit]
+    exact List.mem_cons_self
+  have hempty : C.word ∈
+      (∅ : Set (List (GGT.RelLetter G Lambda))) := C.word_mem
+  exact (Set.mem_empty_iff_false C.word).mp hempty
+
+/-- The local O52 component is inhabited in the empty selected-family model:
+the edge equation field is vacuous. -/
+theorem estimatingPieceConstruction_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hempty : scaffold.selected.family = ∅) :
+    Nonempty (CellPieceData D eps Delta scaffold) := by
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  have hmem : edge.candidate ∈ scaffold.selected.family :=
+    edge.candidate_mem
+  rw [hempty] at hmem
+  exact (Finset.not_mem_empty _ hmem).elim
+
+/-- The selection component is vacuous on the empty family whenever the
+positive-cell diagram hypothesis is supplied. -/
+theorem estimatingSelectionConstruction_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda))))
+    (_hcondition : OsinCCondition D (∅ : Set (List (GGT.RelLetter G Lambda)))
+      eps mu lambda c rho)
+    (_hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
+    (_hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
+    ∃ Delta' : DiscDiagram.{u, w, v}
+        (∅ : Set (List (GGT.RelLetter G Lambda))),
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        ∃ scaffold : EstimatingScaffold D eps Delta',
+          Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
+  exact (no_positive_rCells_emptyFamily Delta hcells).elim
+
+/-- The unbound component is vacuous on the empty family whenever the
+positive-cell diagram hypothesis is supplied. -/
+theorem estimatingUnboundConstruction_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda))))
+    (_hcondition : OsinCCondition D (∅ : Set (List (GGT.RelLetter G Lambda)))
+      eps mu lambda c rho)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (_hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord)
+    (hcells : 0 < Delta.rCellCount) :
+    Nonempty (Lemma62Data D eps mu rho Delta scaffold) := by
+  exact (no_positive_rCells_emptyFamily Delta hcells).elim
+
 /-- `EstimatingData` proves the embedded construction statement. -/
 theorem embeddedEstimatingSystemConstruction_of_data
     (hdata : EstimatingDataConstructionStatement.{u, w, v}) :
