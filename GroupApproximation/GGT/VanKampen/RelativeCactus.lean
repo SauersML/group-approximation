@@ -1417,6 +1417,263 @@ theorem labelAt_base
   cases d <;> rfl
 
 
+/-! ### The realization at a supplied spelling
+
+Only the outer labels change, so the shape, the face boundaries, the relator
+cells and reducedness are shared with the base-reading development; the two
+value computations are the ones that consume the supplied
+`GGT.RelLetter.listVal outer = Z.boundary`.
+-/
+
+theorem outerForward_wordAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length) :
+    List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+      Z.labelAt outer houter (.outerForward j)) = Z.outerFaceWordAt outer := by
+  unfold labelAt
+  apply List.ext_getElem
+    (by rw [List.length_ofFn, Z.length_outerFaceWordAt outer houter])
+  intro k hk₁ hk₂
+  simp only [List.getElem_ofFn]
+  congr 1
+
+theorem outerBackward_wordAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length) :
+    Z.outerBackwardDarts.map (Z.labelAt outer houter) =
+      RelWord.revInv (Z.outerFaceWordAt outer) := by
+  have hforward := outerForward_wordAt Z outer houter
+  calc
+    Z.outerBackwardDarts.map (Z.labelAt outer houter) =
+        List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+          RelWord.inv (Z.labelAt outer houter (.outerForward j.rev))) := by
+      rw [outerBackwardDarts, ← List.ofFn_comp']
+      rfl
+    _ = (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+          RelWord.inv (Z.labelAt outer houter (.outerForward j)))).reverse := by
+      exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev
+        (fun j : Fin Z.cactusShape.boundaryLength ↦
+          RelWord.inv (Z.labelAt outer houter (.outerForward j)))
+    _ = RelWord.revInv
+        (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+          Z.labelAt outer houter (.outerForward j))) := by
+      rw [RelWord.revInv]
+      congr 1
+      rw [List.map_ofFn]
+      rfl
+    _ = RelWord.revInv (Z.outerFaceWordAt outer) :=
+        congrArg RelWord.revInv hforward
+
+/-- The supplied spelling changes no label off the outer boundary, so the cell
+segments read the same word. -/
+theorem cellSegments_labelAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length) :
+    Z.cellSegments.map (Z.labelAt outer houter) =
+      Z.cellSegments.map Z.label := by
+  rw [cellSegments, List.map_flatten, List.map_flatten]
+  congr 1
+  rw [List.map_ofFn, List.map_ofFn]
+  congr 1
+  funext i
+  simp only [Function.comp_apply, cellSegment, List.map_cons, List.map_append,
+    List.map_singleton, relatorBackwardDarts, List.map_ofFn]
+  rfl
+
+theorem bigDarts_valueAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary) :
+    GGT.RelLetter.listVal (Z.bigDarts.map (Z.labelAt outer houter)) = 1 := by
+  rw [bigDarts, List.map_append, RelWord.listVal_append,
+    Z.outerBackward_wordAt outer houter, Z.cellSegments_labelAt outer houter,
+    Z.cellSegments_value, outerFaceWordAt, RelWord.revInv_revInv, hval,
+    mul_inv_cancel]
+
+theorem outerFaceWordAt_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length) :
+    (Z.faceBoundary Z.cactusShape.outerFace).darts.map
+        (Z.labelAt outer houter) = Z.outerFaceWordAt outer := by
+  rw [Z.faceBoundary_of_ne_big Z.cactusShape.bigFace_ne_outerFace.symm,
+    Z.cactusShape.faceBoundary_outerFace_darts,
+    cactus_outerBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact outerForward_wordAt Z outer houter
+
+theorem relatorFaceWordAt_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (i : Fin Z.cells.length) :
+    (Z.faceBoundary (Z.cactusShape.relatorFace i)).darts.map
+        (Z.labelAt outer houter) = (Z.geometricCell i).relator := by
+  rw [Z.faceBoundary_of_ne_big
+    (Z.cactusShape.bigFace_ne_relatorFace i).symm,
+    Z.cactusShape.faceBoundary_relatorFace_darts,
+    cactus_relatorBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact relatorForward_word Z i
+
+theorem relatorCells_wordAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (C : RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W)
+    (hC : C ∈ Z.relatorCells) :
+    C.word = (Z.faceBoundary C.face).darts.map (Z.labelAt outer houter) := by
+  rw [relatorCells, List.mem_ofFn] at hC
+  obtain ⟨i, rfl⟩ := hC
+  change (Z.cellAt i).relator =
+    (Z.faceBoundary (Z.cactusShape.relatorFace i.rev)).darts.map
+      (Z.labelAt outer houter)
+  rw [Z.relatorFaceWordAt_eq outer houter, geometricCell, Fin.rev_rev]
+
+theorem inner_faceAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary)
+    (f : Z.cactusShape.toCombMap.Face)
+    (hf : f ≠ Z.cactusShape.outerFace) :
+    (∃ C ∈ Z.relatorCells, C.face = f) ∨
+      GGT.RelLetter.listVal
+        ((Z.faceBoundary f).darts.map (Z.labelAt outer houter)) = 1 := by
+  cases hi : Z.cactusShape.faceEquiv f with
+  | outer =>
+      have hface : f = Z.cactusShape.outerFace :=
+        face_eq_indexedFace_of_faceEquiv_eq Z.cactusShape f .outer hi
+      exact (hf hface).elim
+  | relator i =>
+      left
+      let j : Fin Z.cells.length := i.rev
+      refine ⟨Z.relatorCell j, ?_, ?_⟩
+      · rw [relatorCells, List.mem_ofFn]
+        exact ⟨j, rfl⟩
+      · change Z.cactusShape.relatorFace j.rev = f
+        simp only [j, Fin.rev_rev]
+        exact (face_eq_indexedFace_of_faceEquiv_eq
+          Z.cactusShape f (.relator i) hi).symm
+  | big =>
+      right
+      have hface : f = Z.cactusShape.bigFace :=
+        face_eq_indexedFace_of_faceEquiv_eq Z.cactusShape f .big hi
+      subst f
+      rw [Z.faceBoundary_big, Z.bigFaceBoundary_darts]
+      exact Z.bigDarts_valueAt outer houter hval
+
+/-- **The cactus realization at a supplied spelling of the designated boundary
+word.**  Its outer word is that spelling. -/
+noncomputable def cactusDiscDiagramAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary) :
+    DiscDiagram.{u, w, 0} W where
+  toCombMap := Z.cactusShape.toCombMap
+  planar := Z.cactusShape.planar
+  label := Z.labelAt outer houter
+  label_alpha := Z.labelAt_alpha outer houter
+  outerFace := Z.cactusShape.outerFace
+  faceBoundary := Z.faceBoundary
+  relatorCells := Z.relatorCells
+  relatorCell_faces_nodup := Z.relatorCells_faces_nodup
+  relatorCell_word := Z.relatorCells_wordAt outer houter
+  inner_face := Z.inner_faceAt outer houter hval
+  boundary_product := by
+    rw [Z.relatorCells_values, Z.cell_values_prod]
+    change Z.boundary = GGT.RelLetter.listVal
+      (RelWord.revInv ((Z.faceBoundary Z.cactusShape.outerFace).darts.map
+        (Z.labelAt outer houter)))
+    rw [Z.outerFaceWordAt_eq outer houter, outerFaceWordAt,
+      RelWord.revInv_revInv, hval]
+
+theorem cactusDiscDiagramAt_boundaryWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary) :
+    (Z.cactusDiscDiagramAt outer houter hval).boundaryWord = outer := by
+  change RelWord.revInv
+      ((Z.faceBoundary Z.cactusShape.outerFace).darts.map
+        (Z.labelAt outer houter)) = _
+  rw [Z.outerFaceWordAt_eq outer houter, outerFaceWordAt,
+    RelWord.revInv_revInv]
+
+/-- Reducedness reads only the relator cells, which the supplied spelling
+leaves alone, so it is the same proposition as for the base reading. -/
+theorem cactusDiscDiagramAt_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary) :
+    (Z.cactusDiscDiagramAt outer houter hval).Reduced :=
+  Z.cactusDiscDiagram_reduced
+
+/-- The cell index equivalence is the same, the relator cells being shared. -/
+noncomputable def cellIndexEquivAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary) :
+    Fin Z.cells.length ≃
+      Fin (Z.cactusDiscDiagramAt outer houter hval).rCellCount :=
+  Z.cellIndexEquiv
+
+theorem cellIndexEquivAt_word
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (outer : List (GGT.RelLetter G Lambda))
+    (houter : outer.length = Z.boundaryWord.length)
+    (hval : GGT.RelLetter.listVal outer = Z.boundary)
+    (i : Fin Z.cells.length) :
+    ((Z.cactusDiscDiagramAt outer houter hval).relatorCells.get
+        (Z.cellIndexEquivAt outer houter hval i)).word =
+      (Z.cells.get i).relator :=
+  Z.cellIndexEquiv_word i
+
+
 end RelativeReducedDiagram
 end HullSC
 end GroupApproximation
