@@ -41,9 +41,7 @@ structure RelativeDiscRealization
       (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)
   reduced : diagram.Reduced
 
-/-- The unrestricted generic realization statement.  The obstruction theorem
-below identifies the missing nonempty-relator premise in the current
-`RelativeReducedDiagram` interface. -/
+/-- The generic realization statement for the common reduced-diagram input. -/
 def RelativeDiscRealizationStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -60,20 +58,9 @@ theorem cellRelator_ne_nil
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     {Z : RelativeReducedDiagram D W R}
-    (C : RelativeDiscRealization D W Z) (i : Fin Z.cells.length) :
+    (_C : RelativeDiscRealization D W Z) (i : Fin Z.cells.length) :
     (Z.cells.get i).relator ≠ [] := by
-  intro hnil
-  let cell := C.diagram.relatorCells.get (C.cellIndex i)
-  have hmem : cell ∈ C.diagram.relatorCells :=
-    List.get_mem C.diagram.relatorCells (C.cellIndex i)
-  have hword := C.diagram.relatorCell_word cell hmem
-  have hstored : cell.word = [] := (C.cellWord_eq i).trans hnil
-  rw [hstored] at hword
-  have hlength := congrArg List.length hword
-  simp only [List.length_nil, List.length_map] at hlength
-  have hdarts : (C.diagram.faceBoundary cell.face).darts = [] :=
-    List.length_eq_zero_iff.mp hlength.symm
-  exact (C.diagram.faceBoundary cell.face).nonempty hdarts
+  exact Z.cell_relator_ne_nil i
 
 /-- An algebraic diagram containing an empty relator cell has no realization
 with a one-to-one planar relator-cell correspondence. -/
