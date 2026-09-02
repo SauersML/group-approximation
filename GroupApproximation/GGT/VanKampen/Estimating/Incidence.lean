@@ -736,7 +736,7 @@ theorem incidencePositionUnique_of_selfIncidenceSeparated
               exact first_target
             exact (hseparated first first_mem hloop d hsecondArc hfirstArc).elim
           · have hcompatible := selected.pairwise second second_mem first
-              first_mem heq.symm
+              first_mem (fun h => heq h.symm)
             exact (sourceTargetArc_disjoint_of_compatible hcompatible i
               first_target d hsecondArc hfirstArc).elim
       | target second second_mem second_target =>
