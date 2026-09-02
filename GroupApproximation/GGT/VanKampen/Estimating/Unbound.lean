@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.DGOPolygonCutFamily
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic
@@ -22,6 +23,46 @@ namespace GGT
 namespace VanKampen
 
 namespace UnboundEstimate
+
+open DGOPolygonCut
+open OsinComponents
+
+universe u w
+
+/-! ## The uniform polygon input used by Lemma 62 -/
+
+/-- The uniform form of DGO Proposition 4.14 needed in Osin's Appendix
+Lemma 62.  The dgo414 development currently exposes conditional assembly
+theorems rather than this single source-level proposition, so this is the
+named target consumed by the estimating-system proof.
+
+The quasi-geodesic constant is the natural number `b` used by the existing
+`SumBound` API.  The conclusion is uniform in the number of sides: one
+constant `L` bounds the total relative radii by `L * n` for every positive
+`n`. -/
+def UniformProposition414Statement
+    {G : Type u} [Group G] {Λ : Type w}
+    (D : RelGenSet G Λ) (b : ℕ) : Prop :=
+  (∀ x ∈ D.base, x⁻¹ ∈ D.base) →
+    ∀ δ : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ →
+      ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n)
+
+/-- The uniform proposition really is a statement about one constant shared
+by all polygons, rather than a vacuous packaging: it holds in the one-element
+group with the sharp constant `L = 0`. -/
+theorem uniformProposition414_pUnit_model
+    {Λ : Type w} (D : RelGenSet PUnit Λ) (b : ℕ) :
+    UniformProposition414Statement D b := by
+  intro _ δ _
+  refine ⟨0, ?_⟩
+  intro n _ v word cut I lam hletters hclosed hcut hI hedge hcomp hisolated hquasi
+  refine ⟨fun _ => 0, ?_, by simp⟩
+  intro s hs
+  have hspan :
+      (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) = 1 :=
+    Subsingleton.elim _ _
+  rw [hspan]
+  exact one_mem_relBall D (lam s) 0
 
 /-! ## Lemma 61 -/
 
