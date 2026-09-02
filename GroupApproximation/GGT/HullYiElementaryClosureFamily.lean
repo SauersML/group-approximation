@@ -74,7 +74,7 @@ theorem exists_closureNearPowers_of_finiteTransversal
   have hsimp : (h ^ c)⁻¹ * (h ^ c * f) = f := by group
   have hsimp' : (h ^ c)⁻¹ * h ^ c = 1 := by group
   rw [hsimp, hsimp'] at hdist
-  rw [hdist]
+  rw [← hdist]
   exact hrho ⟨f, hf, rfl⟩
 
 /-- Finite choice makes the power-neighborhood constant uniform over a finite
@@ -131,7 +131,7 @@ theorem exists_elementaryClosure_coset_projection_pointQuot
         f 0 = iotaG A.alphabet (v * a) ->
         f (dist (iotaG A.alphabet (v * a))
           (iotaG A.alphabet (v * b))) = iotaG A.alphabet (v * b) ->
-        forall t ∈ Set.Icc (0 : Real)
+        ∀ t ∈ Set.Icc (0 : Real)
             (dist (iotaG A.alphabet (v * a)) (iotaG A.alphabet (v * b))),
           exists c : G, c ∈ elementaryClosure h ∧
             dist (f t) (iotaG A.alphabet (v * c)) <= sigma := by
@@ -181,7 +181,7 @@ theorem orbitBound_family_of_geometricSeparation_of_projection
         f 0 = iotaG A.alphabet (v * a) ->
         f (dist (iotaG A.alphabet (v * a))
           (iotaG A.alphabet (v * b))) = iotaG A.alphabet (v * b) ->
-        forall t ∈ Set.Icc (0 : Real)
+        ∀ t ∈ Set.Icc (0 : Real)
             (dist (iotaG A.alphabet (v * a)) (iotaG A.alphabet (v * b))),
           exists c : G, c ∈ K mu ∧
             dist (f t) (iotaG A.alphabet (v * c)) <= sigma) :
@@ -204,8 +204,12 @@ theorem orbitBound_family_of_geometricSeparation_of_projection
     A.alphabet K hsep E
   let beta : Real := (Rsep : Real) + 2 * S + 2
   have hbeta0 : 0 < beta := by
+    have hS0 : 0 ≤ S := by
+      dsimp [S]
+      exact Finset.sum_nonneg (fun i _ ↦ hsigma0 i)
+    have hRsep0 : 0 ≤ (Rsep : Real) := Nat.cast_nonneg Rsep
     dsimp [beta]
-    positivity
+    linarith
   let theta : Real := (n : Real) * (beta + 4 * D) + 2 * (n : Real) + 1
   refine ⟨theta + 1, ?_⟩
   intro h hh
@@ -405,7 +409,7 @@ theorem isHyperbolicallyEmbedded_elementaryClosure_family
         f 0 = iotaG A.alphabet (v * a) ->
         f (dist (iotaG A.alphabet (v * a))
           (iotaG A.alphabet (v * b))) = iotaG A.alphabet (v * b) ->
-        forall t ∈ Set.Icc (0 : Real)
+        ∀ t ∈ Set.Icc (0 : Real)
             (dist (iotaG A.alphabet (v * a)) (iotaG A.alphabet (v * b))),
           exists c : G, c ∈ elementaryClosure (g i) ∧
             dist (f t) (iotaG A.alphabet (v * c)) <= sigma :=
