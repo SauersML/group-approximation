@@ -302,7 +302,11 @@ its reciprocal is no larger than the fixed relator coefficient `1/4`. -/
 theorem exists_lemma49StablePowerConstant_four_le
     {d : ℝ} (hd : 0 < d) (L : ℕ) :
     ∃ M : ℕ, 4 ≤ M ∧ (L : ℝ) ≤ d * M := by
-  obtain ⟨M, _hM, hLM⟩ := exists_lemma49StablePowerConstant hd L
+  obtain ⟨M, hM⟩ := exists_nat_gt ((L : ℝ) / d)
+  have hLM : (L : ℝ) ≤ d * M := by
+    have hLM' : (L : ℝ) ≤ (M : ℝ) * d :=
+      (div_le_iff₀ hd).mp hM.le
+    simpa only [mul_comm] using hLM'
   let M' := M + 4
   have hMM' : M ≤ M' := by
     dsimp [M']
