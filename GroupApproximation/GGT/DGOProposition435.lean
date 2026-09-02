@@ -1090,6 +1090,29 @@ theorem jointRelGenSetAdjoin_relBall_inr_subset (D : RelGenSet G Λ)
       hbase (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩)))
     (fun _ => rfl) i n
 
+/-- **The joint alphabet is contained in the auxiliary alphabet.**
+
+Enough for an index relabelling of joint words into auxiliary words; the
+reverse inclusion is what fails after the relative generating set is
+enlarged. -/
+theorem jointRelGenSetAdjoin_alphabet_subset (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hT : symmClosure T ⊆ E.base) :
+    (jointRelGenSetAdjoin D E T).alphabet.carrier ⊆ E.alphabet.carrier := by
+  rw [jointRelGenSetAdjoin_alphabet_carrier D E T]
+  rintro y ((hy | hy) | hy)
+  · exact Or.inl (hbase hy)
+  · exact Or.inl (hT hy)
+  · exact Or.inr hy
+
+/-- **The joint base is finite** when the original relative base is and only
+finitely many letters are adjoined.  This is what makes the quotient of the
+joint family a relatively hyperbolic structure, whose base must be finite. -/
+theorem jointRelGenSetAdjoin_base_finite (D : RelGenSet G Λ)
+    (E : RelGenSet G I) {T : Set G} (hDfin : D.base.Finite) (hTfin : T.Finite) :
+    ((jointRelGenSetAdjoin D E T).base).Finite :=
+  (hDfin.union (symmClosure_finite hTfin)).subset (jointBaseAdjoin_subset D T)
+
 /-- **The adjoined form keeps the reducible residue.**
 
 Its base exceeds the proper part of the original base by a finite set, so the
