@@ -432,7 +432,7 @@ structure Lemma65Inputs : Prop where
     OsinCCondition D W eps mu lambda c rho →
     Delta.Reduced → 0 < Delta.rCellCount →
     Lemma65aConclusion scaffold →
-    Lemma65Below D eps lambda c mu W Delta.rCellCount →
+    Lemma65Below.{u, w, v} D eps lambda c mu W Delta.rCellCount →
       Lemma65Conclusion D eps lambda c mu Delta
 
 /-- **Lemma 65, from the cut and the four obligations.**  The induction is on
