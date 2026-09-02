@@ -398,7 +398,8 @@ theorem firstGapArcSource_fullComponent
             (HalfEntry.entrySource B.brokenAssignment.index.first e)) <
             B.firstArc.length := by
           rw [(B.firstArcCut_target heTarget).1]
-          exact B.firstTargetPos_lt_firstArc_length heTarget
+          have hcompLen := hprevComp.2.1
+          omega
         have hprevLetter :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
@@ -437,7 +438,7 @@ theorem firstGapArcSource_fullComponent
           (B.firstGapChordFinish j)) (i + 1) hiend
           (by simpa only [cycle, Nat.add_assoc] using hn)).mp (by
             simpa only [cycle, Nat.add_assoc] using hletter)
-      exact hlocalComp.2.2.2.2 _ (by omega) hco
+      exact hlocalComp.2.2.2.2 (by omega) hco
     · have hiEq : i + 1 =
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
           (B.firstGapFinishSide j)).length := by
@@ -450,18 +451,19 @@ theorem firstGapArcSource_fullComponent
       · have hsurv := B.firstGapArcSource_survives j s hs
         have hwordComp := hsurv.1
         have hwordPost := hwordComp.2.2.2.2
+        have hEnd : B.refinedCut (B.secondSide + 2) ≤ P.word.length := by
+          rw [show B.refinedCut (B.secondSide + 2) = B.secondVertex by
+            simp [BalancedSplitData.refinedCut, splitPairCut_right]]
+          exact B.secondVertex_mem.2.trans
+            (P.polygonCut.le_length (Nat.succ_le_iff.mpr B.secondSide_lt))
         have hArcLen : B.firstArc.length = B.firstArcLength := by
-          rw [firstArc, length_arcWord P.word B.refinedCut]
-          · simp [firstArcLength, refinedCut,
-              splitPairCut_left B.side_order, splitPairCut_right]
-          · simp [refinedCut, splitPairCut_right]
+          change (arcWord P.word B.refinedCut (B.firstSide + 1)
+            (B.secondSide + 2)).length = B.firstArcLength
+          rw [length_arcWord P.word B.refinedCut hEnd]
+          simp [firstArcLength, refinedCut,
+            splitPairCut_left B.side_order, splitPairCut_right]
         have hwordLength : B.firstWord.length =
             B.firstArcLength + B.chord.length := by
-          have hEnd : B.refinedCut (B.secondSide + 2) ≤ P.word.length := by
-            rw [show B.refinedCut (B.secondSide + 2) = B.secondVertex by
-              simp [BalancedSplitData.refinedCut, splitPairCut_right]]
-            exact B.secondVertex_mem.2.trans
-              (P.polygonCut.le_length (Nat.succ_le_iff.mpr B.secondSide_lt))
           rw [BalancedSplitData.firstWord,
             length_firstHalf P.word B.refinedCut hEnd]
           rw [show B.refinedCut (B.firstSide + 1) = B.firstVertex by
@@ -482,7 +484,7 @@ theorem firstGapArcSource_fullComponent
             hwordComp, hwordLen, hiEq]
           omega
         rw [hauxEq] at hletter
-        exact hwordPost _ (by omega) hletter
+        exact hwordPost (by omega) hletter
       · obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hnxt
         have heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e := by
           simpa using he
@@ -693,7 +695,8 @@ theorem secondGapArcSource_fullComponent
             (HalfEntry.entrySource B.brokenAssignment.index.second e)) <
             B.secondArc.length := by
           rw [(B.secondArcCut_target heTarget).1]
-          exact B.secondTargetPos_lt_secondArc_length heTarget
+          have hcompLen := hprevComp.2.1
+          omega
         have hprevLetter :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
@@ -732,7 +735,7 @@ theorem secondGapArcSource_fullComponent
           (B.secondGapChordFinish j)) (i + 1) hiend
           (by simpa only [cycle, Nat.add_assoc] using hn)).mp (by
             simpa only [cycle, Nat.add_assoc] using hletter)
-      exact hlocalComp.2.2.2.2 _ (by omega) hco
+      exact hlocalComp.2.2.2.2 (by omega) hco
     · have hiEq : i + 1 =
         (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
           (B.secondGapFinishSide j)).length := by
@@ -775,7 +778,7 @@ theorem secondGapArcSource_fullComponent
             hwordComp, hwordLen, hiEq]
           omega
         rw [hauxEq] at hletter
-        exact hwordPost _ (by omega) hletter
+        exact hwordPost (by omega) hletter
       · obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hnxt
         have heq : HalfGap.nextEntry B.brokenAssignment.index.second j = some e := by
           simpa using he
