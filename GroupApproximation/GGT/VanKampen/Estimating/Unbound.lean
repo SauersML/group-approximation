@@ -161,6 +161,42 @@ theorem total_lt_of_component_lt_sixty
     nlinarith
   exact lt_of_lt_of_le hsumStrict (le_trans hscaled (le_of_lt hmargin))
 
+/-- The finite numerical certificate used by Appendix Lemma `62`: component
+arc counts are bounded by `53 * n`, and every component has unbound length
+below its `1/60` density threshold. -/
+structure Lemma62AveragingCertificate (n d : ℕ) (t : ℝ) where
+  n_pos : 0 < n
+  t_pos : 0 < t
+  arcCount : Fin d → ℕ
+  unboundLength : Fin d → ℝ
+  arc_count_le : (∑ i : Fin d, arcCount i) ≤ 53 * n
+  component_lt : ∀ i : Fin d,
+    unboundLength i < (arcCount i : ℝ) * t / 60
+
+/-- A Lemma 62 averaging certificate forces the total unbound length below
+`n * t`, with the strict margin `53 < 60`. -/
+theorem Lemma62AveragingCertificate.total_lt
+    {n d : ℕ} {t : ℝ}
+    (certificate : Lemma62AveragingCertificate n d t) :
+    (∑ i : Fin d, certificate.unboundLength i) < (n : ℝ) * t := by
+  exact total_lt_of_component_lt_sixty n certificate.n_pos t certificate.t_pos
+    certificate.arcCount certificate.unboundLength certificate.arc_count_le
+    certificate.component_lt
+
+/-- The empty-component certificate is valid at the smallest positive values,
+so the averaging leaf has a nonvacuous positive target. -/
+theorem lemma62AveragingCertificate_emptyModel :
+    Lemma62AveragingCertificate 1 0 1 := by
+  refine {
+    n_pos := by norm_num
+    t_pos := by norm_num
+    arcCount := fun i => i.elim
+    unboundLength := fun i => i.elim
+    arc_count_le := by simp
+    component_lt := ?_ }
+  intro i
+  exact i.elim
+
 /-- Osin Appendix Lemma 62, averaging form: a total of at least `n * t`
 forces one component to meet the `1/60` density threshold. -/
 theorem exists_component_ge_sixty
