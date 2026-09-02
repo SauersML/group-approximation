@@ -1,3 +1,4 @@
+import Mathlib.Combinatorics.SimpleGraph.Metric
 import GroupApproximation.GGT.DGOTheorem442BBFNestedGuards
 
 /-!
@@ -85,7 +86,7 @@ theorem initial_guard_is_barrier_along_isChain
             A ≠ W' ∧
               ¬ ((ProjectionPerturbation.bbf P).graph K).Adj A W' := by
         intro A hA
-        exact hfar A (by simp only [List.mem_cons]; exact Or.inr hA)
+        exact hfar A (List.mem_cons_of_mem X hA)
       by_cases hWnext :
           W ∈ (ProjectionPerturbation.bbf P).blockers (K / 2) X₁ Z
       · have htailBarrier := ih htail hfarTail hguard hWnext hrel
@@ -136,8 +137,14 @@ theorem exists_bbf_barrier_for_walk
     P.exists_isBBFGuard_mem_half_blockers_of_not_adj hK
       hfarX.1 hfarX.2.1
   refine ⟨W, ?_⟩
-  exact P.initial_guard_is_barrier_along_isChain hK
-    p.isChain_adj_support hfar hguard hWhalf (Or.inl rfl)
+  cases p with
+  | nil =>
+      exact P.initial_guard_is_barrier_along_isChain hK
+        (List.isChain_singleton X) hfar hguard hWhalf (Or.inl rfl)
+  | cons h p =>
+      exact P.initial_guard_is_barrier_along_isChain hK
+        (SimpleGraph.Walk.cons h p).isChain_adj_support hfar
+          hguard hWhalf (Or.inl rfl)
 
 /-- **BBF distance-two bottleneck theorem.**  There is a standard walk from
 `X` to `Z` such that every competing walk from `X` to `Z` passes within graph
@@ -160,13 +167,18 @@ theorem exists_bbf_standard_walk_within_two
   refine ⟨standard, ?_⟩
   intro competing Y hY
   rw [hsupport] at hY
-  simp only [List.mem_cons, List.mem_append, List.mem_singleton] at hY
-  rcases hY with hYX | hYL | hYZ
+  have hcases : Y = X ∨ Y ∈ L ∨ Y = Z := by
+    rcases List.mem_cons.mp hY with hYX | hrest
+    · exact Or.inl hYX
+    · rcases List.mem_append.mp hrest with hYL | hYZ
+      · exact Or.inr (Or.inl hYL)
+      · exact Or.inr (Or.inr (List.mem_singleton.mp hYZ))
+  rcases hcases with hYX | hYL | hYZ
   · subst Y
     exact ⟨X, competing.start_mem_support, by simp⟩
   · have hYlarge := (hmem Y).mp hYL
     by_contra hnone
-    push_neg at hnone
+    push Not at hnone
     have hfar : ∀ A, A ∈ competing.support →
         A ≠ Y ∧
         ¬ ((ProjectionPerturbation.bbf P).graph K).Adj A Y ∧
