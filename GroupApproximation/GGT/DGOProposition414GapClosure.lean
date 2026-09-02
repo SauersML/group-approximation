@@ -333,22 +333,30 @@ theorem firstGap_arcBase
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       let hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
-      have hend := B.firstBrokenConnectors_end_value_global s hs
       have harc := B.firstBroken_sourceEnd_vertex_arc s hs
-      have hfinish : B.firstGapChordFinish j =
-          B.brokenAssignment.first.partner s := by
-        simp only [firstGapChordFinish]
-        rw [hprev]
-      have hleft : B.firstGapLeft j =
-          (B.firstBrokenConnectors s hs).endConnector := by
-        simp only [firstGapLeft]
-        rw [hprev]
       have hside : B.firstGapStartSide j = B.firstTargetSide s + 1 := by
         simp only [firstGapStartSide]
         rw [hprev]
-      rw [hfinish, hleft, hside]
-      rw [listVal_revWord, hend, harc]
-      group
+      by_cases hf : B.firstGapRunsForward j
+      · have hend := B.firstBrokenConnectors_end_value_global s hs
+        have hfinish : B.firstGapChordFinish j =
+            B.brokenAssignment.first.partner s := by
+          simp [firstGapChordFinish, hprev, hf]
+        have hleft : B.firstGapLeft j =
+            (B.firstBrokenConnectors s hs).endConnector := by
+          simp [firstGapLeft, hprev, hf]
+        rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
+        group
+      · have hend :=
+          B.firstBrokenConnectors_endThroughPartner_value_global s hs
+        have hfinish : B.firstGapChordFinish j =
+            B.brokenAssignment.first.partner s + 1 := by
+          simp [firstGapChordFinish, hprev, hf]
+        have hleft : B.firstGapLeft j =
+            (B.firstBrokenConnectors s hs).endThroughPartner := by
+          simp [firstGapLeft, hprev, hf]
+        rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
+        group
 
 /-- The right connector of a first-half gap reaches its named chord vertex. -/
 theorem firstGap_arcFinish
@@ -384,22 +392,30 @@ theorem firstGap_arcFinish
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       let hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
-      have hstart := B.firstBrokenConnectors_start_value_global s hs
       have harc := B.firstBroken_sourceStart_vertex_arc s hs
       have hfinish : B.firstGapFinishSide j = B.firstTargetSide s := by
         simp only [firstGapFinishSide]
         rw [hnext]
-      have hright : B.firstGapRight j =
-          (B.firstBrokenConnectors s hs).startConnector := by
-        simp only [firstGapRight]
-        rw [hnext]
-      have hchordStart : B.firstGapChordStart j =
-          B.brokenAssignment.first.partner s + 1 := by
-        simp only [firstGapChordStart]
-        rw [hnext]
-      rw [hfinish, hright, hchordStart]
-      rw [← harc, hstart]
-      group
+      by_cases hf : B.firstGapRunsForward j
+      · have hstart := B.firstBrokenConnectors_start_value_global s hs
+        have hright : B.firstGapRight j =
+            (B.firstBrokenConnectors s hs).startConnector := by
+          simp [firstGapRight, hnext, hf]
+        have hchordStart : B.firstGapChordStart j =
+            B.brokenAssignment.first.partner s + 1 := by
+          simp [firstGapChordStart, hnext, hf]
+        rw [hfinish, hright, hchordStart, ← harc, hstart]
+        group
+      · have hstart :=
+          B.firstBrokenConnectors_startThroughPartner_value_global s hs
+        have hright : B.firstGapRight j =
+            (B.firstBrokenConnectors s hs).startThroughPartner := by
+          simp [firstGapRight, hnext, hf]
+        have hchordStart : B.firstGapChordStart j =
+            B.brokenAssignment.first.partner s := by
+          simp [firstGapChordStart, hnext, hf]
+        rw [hfinish, hright, hchordStart, ← harc, hstart]
+        group
 
 /-- The complete first-half prefix (left connector, inherited subarc, right
 connector) has exactly the endpoints required by `AuxiliaryIntervalOnChord`. -/
@@ -469,21 +485,30 @@ theorem secondGap_arcBase
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       let hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
-      have hend := B.secondBrokenConnectors_end_value_global s hs
       have harc := B.secondBroken_sourceEnd_vertex_arc s hs
-      have hfinish : B.secondGapChordFinish j =
-          B.brokenAssignment.second.partner s + 1 := by
-        simp only [secondGapChordFinish]
-        rw [hprev]
-      have hleft : B.secondGapLeft j =
-          (B.secondBrokenConnectors s hs).endConnector := by
-        simp only [secondGapLeft]
-        rw [hprev]
       have hside : B.secondGapStartSide j = B.secondTargetSide s + 1 := by
         simp only [secondGapStartSide]
         rw [hprev]
-      rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
-      group
+      by_cases hf : B.secondGapRunsForward j
+      · have hend :=
+          B.secondBrokenConnectors_endThroughPartner_value_global s hs
+        have hfinish : B.secondGapChordFinish j =
+            B.brokenAssignment.second.partner s := by
+          simp [secondGapChordFinish, hprev, hf]
+        have hleft : B.secondGapLeft j =
+            (B.secondBrokenConnectors s hs).endThroughPartner := by
+          simp [secondGapLeft, hprev, hf]
+        rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
+        group
+      · have hend := B.secondBrokenConnectors_end_value_global s hs
+        have hfinish : B.secondGapChordFinish j =
+            B.brokenAssignment.second.partner s + 1 := by
+          simp [secondGapChordFinish, hprev, hf]
+        have hleft : B.secondGapLeft j =
+            (B.secondBrokenConnectors s hs).endConnector := by
+          simp [secondGapLeft, hprev, hf]
+        rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
+        group
 
 /-- The right connector of a wrapped-half gap reaches its named chord
 vertex. -/
@@ -518,21 +543,30 @@ theorem secondGap_arcFinish
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       let hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
-      have hstart := B.secondBrokenConnectors_start_value_global s hs
       have harc := B.secondBroken_sourceStart_vertex_arc s hs
       have hfinish : B.secondGapFinishSide j = B.secondTargetSide s := by
         simp only [secondGapFinishSide]
         rw [hnext]
-      have hright : B.secondGapRight j =
-          (B.secondBrokenConnectors s hs).startConnector := by
-        simp only [secondGapRight]
-        rw [hnext]
-      have hchordStart : B.secondGapChordStart j =
-          B.brokenAssignment.second.partner s := by
-        simp only [secondGapChordStart]
-        rw [hnext]
-      rw [hfinish, hright, hchordStart, ← harc, hstart]
-      group
+      by_cases hf : B.secondGapRunsForward j
+      · have hstart :=
+          B.secondBrokenConnectors_startThroughPartner_value_global s hs
+        have hright : B.secondGapRight j =
+            (B.secondBrokenConnectors s hs).startThroughPartner := by
+          simp [secondGapRight, hnext, hf]
+        have hchordStart : B.secondGapChordStart j =
+            B.brokenAssignment.second.partner s + 1 := by
+          simp [secondGapChordStart, hnext, hf]
+        rw [hfinish, hright, hchordStart, ← harc, hstart]
+        group
+      · have hstart := B.secondBrokenConnectors_start_value_global s hs
+        have hright : B.secondGapRight j =
+            (B.secondBrokenConnectors s hs).startConnector := by
+          simp [secondGapRight, hnext, hf]
+        have hchordStart : B.secondGapChordStart j =
+            B.brokenAssignment.second.partner s := by
+          simp [secondGapChordStart, hnext, hf]
+        rw [hfinish, hright, hchordStart, ← harc, hstart]
+        group
 
 /-- The complete wrapped-half prefix has exactly the endpoints required by
 `AuxiliaryIntervalOnChord`. -/
