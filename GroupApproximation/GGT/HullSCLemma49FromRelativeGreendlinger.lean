@@ -67,6 +67,9 @@ def Lemma49GeodesicPowerDiagram.toRelativeReducedDiagram
   cell_values_prod := by
     rw [Z.cell_values, Z.factors_prod]
   no_cancelling_pair := Z.noCancellingCellPair
+  cell_relator_ne_nil := fun i =>
+    Lemma44OrientedRelatorCell.relator_ne_nil_of_reduced Z.cell_values
+      Z.reduced i
 
 /-! ## The selected cell, with its boundary arc lifted to relative letters -/
 

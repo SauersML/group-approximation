@@ -87,6 +87,35 @@ boundary word, a positive list of oriented relator cells whose product is the
 boundary value, and the cell-level reducedness condition inherited from least
 area.  No geodesicity condition is imposed on the whole boundary word; each
 application supplies its own boundary geometry separately. -/
+/-- In a reduced diagram no oriented cell reads the empty relator: such a
+cell would contribute the value `1`, a trivial subproduct of the factor
+list. -/
+theorem Lemma44OrientedRelatorCell.relator_ne_nil_of_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {cells : List (Lemma44OrientedRelatorCell W)} {factors : List G}
+    (hcells : cells.map Lemma44OrientedRelatorCell.value = factors)
+    (hreduced : ∀ pre mid suf : List G,
+      factors = pre ++ mid ++ suf → mid ≠ [] → mid.prod ≠ 1)
+    (i : Fin cells.length) : (cells.get i).relator ≠ [] := by
+  intro hnil
+  subst hcells
+  have hval : (cells.get i).value = 1 := by
+    unfold Lemma44OrientedRelatorCell.value
+    rw [hnil, GGT.RelLetter.listVal_nil, mul_one, mul_inv_cancel]
+  have hi : (i : ℕ) < (cells.map Lemma44OrientedRelatorCell.value).length := by
+    rw [List.length_map]
+    exact i.isLt
+  have hfac : (cells.map Lemma44OrientedRelatorCell.value)[(i : ℕ)] = 1 := by
+    rw [List.getElem_map]
+    rw [List.get_eq_getElem] at hval
+    exact hval
+  have hsplit : cells.map Lemma44OrientedRelatorCell.value =
+      (cells.map Lemma44OrientedRelatorCell.value).take i ++ [1] ++
+        (cells.map Lemma44OrientedRelatorCell.value).drop (i + 1) := by
+    rw [← hfac, List.take_append_getElem hi, List.take_append_drop]
+  exact hreduced _ _ _ hsplit (List.cons_ne_nil _ _) (by simp)
+
 structure RelativeReducedDiagram
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -108,6 +137,7 @@ structure RelativeReducedDiagram
     cells = pre ++ C₁ :: (between ++ C₂ :: suf) →
       ((between.map Lemma44OrientedRelatorCell.value).prod)⁻¹ * C₁.value *
         (between.map Lemma44OrientedRelatorCell.value).prod * C₂.value ≠ 1
+  cell_relator_ne_nil : ∀ i : Fin cells.length, (cells.get i).relator ≠ []
 
 /-- A least-area diagram used by Hull's Lemma 4.4 supplies the common reduced
 diagram interface with its stored geodesic boundary word. -/
@@ -135,6 +165,9 @@ def Lemma44OrientedRelatorDiagram.toRelativeReducedDiagram
       _ = Z.area := Z.factors_length
   cell_values_prod := by rw [Z.cell_values, Z.factors_prod]
   no_cancelling_pair := Z.noCancellingCellPair
+  cell_relator_ne_nil := fun i =>
+    Lemma44OrientedRelatorCell.relator_ne_nil_of_reduced Z.cell_values
+      Z.reduced i
 
 /-- Lemma 4.4 diagrams coerce to the common reduced-diagram input, so its
 quotient application and the power-diagram application consume the same
