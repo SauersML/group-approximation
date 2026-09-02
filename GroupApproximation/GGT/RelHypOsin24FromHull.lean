@@ -71,8 +71,31 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
   have hquot : HullSC.TorsionFreeHullCanonicalQuotientStatement.{u} :=
     HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
       hselect h44 h49
-  exact HullSC.AuxiliaryPeripheralFamily.hullOneStep_of_canonicalQuotient
-    (u := u) hquot
+  intro G _ hG A N hN k S hS t R
+  obtain ⟨D, eps, rho, mu, ht, hmu, hgood⟩ :=
+    hquot hG A N hN S hS t R
+  obtain ⟨u, hu, v, hval, hsc⟩ :=
+    HullSC.AuxiliaryPeripheralFamily.
+      exists_auxiliaryRelatorOfBaseLetterPublished_exact
+        D hN t ht eps rho mu hmu
+  obtain ⟨Q⟩ := hgood (HullSC.RelWord.symmetrized v) v
+    (HullSC.RelWord.self_mem_symmetrized v) hsc
+  have hrel : Q.q (t⁻¹ * u) = 1 := by
+    rw [← hval, ← MonoidHom.mem_ker, Q.ker_eq]
+    exact Subgroup.subset_normalClosure rfl
+  have hqt : Q.q t = Q.q u := by
+    rw [map_mul, map_inv] at hrel
+    exact inv_mul_eq_one.mp hrel
+  refine ⟨{ step := Q.toHullStep
+            mem_map := ?_
+            kerNormallyGenerated := ⟨{t⁻¹ * u}, by simp, ?_⟩ }⟩
+  · intro _
+    show Q.q t ∈ N.map Q.q
+    rw [hqt]
+    exact Subgroup.mem_map_of_mem _ hu
+  · show Q.q.ker =
+      Subgroup.normalClosure ((({t⁻¹ * u} : Finset G)) : Set G)
+    rw [Q.ker_eq, hval, Finset.coe_singleton]
 
 end RelHyp
 end GGT
