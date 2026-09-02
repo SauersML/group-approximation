@@ -239,14 +239,16 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
       wordDist D.alphabet.carrier
         (GGT.OsinComponents.vertex 1 power i)
         (GGT.OsinComponents.vertex 1 power chunkEnd) := by
-    have hcast : (((2 * delta + 1) * chunks : ℕ) : ℝ) ≤
-        ((wordDist D.alphabet.carrier (y 0).val (y chunks).val : ℕ) : ℝ) := by
-      dsimp [blockLength] at hprogressReal
-      push_cast at hprogressReal
-      convert hprogressReal using 1 <;> ring
+    dsimp [blockLength] at hprogressReal
+    have hcoefficient :
+        4 * (delta : ℝ) + 1 - 2 * (0 + (delta : ℝ)) =
+          (((2 * delta + 1 : ℕ) : ℝ)) := by
+      push_cast
+      ring
+    rw [hcoefficient] at hprogressReal
     have hnat : (2 * delta + 1) * chunks ≤
         wordDist D.alphabet.carrier (y 0).val (y chunks).val := by
-      exact_mod_cast hcast
+      exact_mod_cast hprogressReal
     simpa only [y, Nat.zero_mul, Nat.add_zero, chunkEnd,
       Cayley.val_of] using hnat
   have htail : wordDist D.alphabet.carrier
@@ -276,10 +278,33 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
       (wordDist D.alphabet.carrier
           (GGT.OsinComponents.vertex 1 power i)
           (GGT.OsinComponents.vertex 1 power j) + error) := by
-    dsimp [blockLength, error] at hdivision hremainder ⊢
-    omega
+    have hblockCompare : blockLength ≤ 2 * (2 * delta + 1) := by
+      dsimp [blockLength]
+      omega
+    have hchunkCompare : chunks * blockLength ≤
+        2 * ((2 * delta + 1) * chunks) := by
+      calc
+        chunks * blockLength ≤ chunks * (2 * (2 * delta + 1)) :=
+          Nat.mul_le_mul_left chunks hblockCompare
+        _ = 2 * ((2 * delta + 1) * chunks) := by ring
+    have hremainderLe : remainder ≤ 4 * delta := by
+      dsimp [blockLength] at hremainder
+      omega
+    calc
+      gap = chunks * blockLength + remainder := hdivision.symm
+      _ ≤ 2 * ((2 * delta + 1) * chunks) + remainder :=
+        Nat.add_le_add_right hchunkCompare remainder
+      _ ≤ 2 * (wordDist D.alphabet.carrier
+            (GGT.OsinComponents.vertex 1 power i)
+            (GGT.OsinComponents.vertex 1 power j) + remainder) + remainder :=
+        Nat.add_le_add_right (Nat.mul_le_mul_left 2 hlowerNat) remainder
+      _ ≤ 4 * (wordDist D.alphabet.carrier
+            (GGT.OsinComponents.vertex 1 power i)
+            (GGT.OsinComponents.vertex 1 power j) + error) := by
+        dsimp [error]
+        omega
   have hfourReal : (gap : ℝ) ≤ 4 *
-      ((wordDist D.alphabet.carrier
+      (((wordDist D.alphabet.carrier
           (GGT.OsinComponents.vertex 1 power i)
           (GGT.OsinComponents.vertex 1 power j) : ℕ) : ℝ) +
         (error : ℝ)) := by
