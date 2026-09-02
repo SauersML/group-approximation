@@ -24,6 +24,8 @@ later theorem would have to assume.
 namespace GroupApproximation
 namespace HullSC
 
+open GroupApproximation.WordMetric
+
 universe u
 
 /-! ## Equal blocks at a multiple of a period -/
@@ -32,7 +34,6 @@ universe u
 multiple of a period, are equal whenever both blocks fit in the word. -/
 theorem take_eq_drop_take_of_hasPeriod_of_dvd
     {Alpha : Type u} {word : List Alpha} {period offset blockLength : ℕ}
-    (hperiodPos : 0 < period)
     (hperiod : List.HasPeriod word period)
     (hoffset : period ∣ offset)
     (hfit : offset + blockLength ≤ word.length) :
@@ -93,8 +94,7 @@ theorem exists_periodic_block_offset
       omega
     · dsimp [lower] at hlower
       omega
-    · dsimp [blockLength]
-      omega
+    · omega
   · have hperiodLower : period < lower := by omega
     let quotient := lower / period
     let offset := (quotient + 1) * period
@@ -102,9 +102,7 @@ theorem exists_periodic_block_offset
     have hdivision : period * quotient + lower % period = lower := by
       simpa [quotient] using Nat.div_add_mod lower period
     have hoffsetForm : offset = period * quotient + period := by
-      dsimp [offset]
-      rw [Nat.add_mul]
-      omega
+      simp only [offset, Nat.add_mul, one_mul, Nat.mul_comm]
     have hlowerOffset : lower ≤ offset := by omega
     have hoffsetUpper : offset ≤ lower + period := by omega
     have htwoLower : offset ≤ 2 * lower := by omega
@@ -161,7 +159,7 @@ theorem exists_repeatedBoundaryBlocks_of_hasPeriod
     omega
   have hsecond : second = block := by
     dsimp [second, block]
-    exact (take_eq_drop_take_of_hasPeriod_of_dvd hperiodPos hperiod
+    exact (take_eq_drop_take_of_hasPeriod_of_dvd hperiod
       hoffsetPeriod hfit).symm
   have htakeOffset : arc.take offset = block ++ middle := by
     dsimp [block, middle]
@@ -252,11 +250,17 @@ theorem wordNorm_listVal_powerSegment_eq_length
     (i := 0) (j := segmentLength) (Nat.zero_le _) (by
       rw [hrotateLength]
       exact hshortSegment)
+  have hend : GGT.OsinComponents.vertex 1 (word.rotate rotation)
+      segmentLength = GGT.RelLetter.listVal segment := by
+    rw [GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul,
+      ← hsegmentEq]
+  have hsegmentWord :
+      ((word.rotate rotation).drop 0).take (segmentLength - 0) = segment := by
+    rw [List.drop_zero, Nat.sub_zero, ← hsegmentEq]
   have hgeoSegment' : GGT.OsinComponents.IsGeodesicWord D 1
       (GGT.RelLetter.listVal segment) segment := by
-    simpa only [GGT.OsinComponents.vertex_zero, List.drop_zero,
-      Nat.sub_zero, hsegmentEq,
-      GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul] using hgeoSegment
+    rw [GGT.OsinComponents.vertex_zero, hend, hsegmentWord] at hgeoSegment
+    exact hgeoSegment
   have hlength := hgeoSegment'.2.2
   rw [wordDist_one_left, hsegmentLength] at hlength
   exact hlength.symm
@@ -350,12 +354,15 @@ theorem repeatedBoundaryBlocks_replicate_model
     {Alpha : Type u} (a : Alpha) :
     Nonempty (Lemma49RepeatedBoundaryBlocks Alpha (List.replicate 400 a)) := by
   have hperiod : List.HasPeriod (List.replicate 400 a) 1 := by
-    show List.replicate 400 a <+:
-      List.take 1 (List.replicate 400 a) ++ List.replicate 400 a
-    simp
+    rw [List.hasPeriod_iff_forall_getElem?_mod]
+    intro i hi
+    rw [List.getElem?_replicate_of_lt hi]
+    have hmod : i % 1 < 400 := by omega
+    rw [List.getElem?_replicate_of_lt hmod]
   apply exists_repeatedBoundaryBlocks_of_hasPeriod (period := 1) (by omega)
     hperiod
-  simp
+  rw [List.length_replicate]
+  norm_num
 
 end HullSC
 end GroupApproximation
