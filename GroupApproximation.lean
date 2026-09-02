@@ -3196,6 +3196,9 @@ import GroupApproximation.GGT.HullSCLemma44FamilyAssembly
 import GroupApproximation.GGT.HullSCLemma44RelativeGreendlingerAdapter
 import GroupApproximation.GGT.KazhdanHypGQLinkIdentification
 import GroupApproximation.GGT.KazhdanHypSingerOrbitCounts
+import GroupApproximation.GGT.HullSCLemma44EmbeddedCertificate
+import GroupApproximation.GGT.RelHypOsin24BoundedPenetration
+import GroupApproximation.GGT.RelHypOsin24PowerUnbounded
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
