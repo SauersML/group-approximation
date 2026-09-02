@@ -214,35 +214,30 @@ theorem Contiguity.targetArc_value_of_pasting
       GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
         (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
-  have hboundary := Gamma.targetBoundary_value_of_pasting pasting
-  have htargetBoundary :
-      targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
-        Gamma.targetArc.reverseDarts := by
-    cases htargetValue : Gamma.target with
-    | none => exact (htarget (by simpa [htargetValue])).elim
-    | some target => rfl
-  rw [htargetBoundary] at hboundary
-  change GGT.RelLetter.listVal
-      (dartWord Delta
-        (Gamma.targetArc.darts.reverse.map
-          Delta.toCombMap.alpha)) = _ at hboundary
-  have hinverse := listVal_dartWord_reverse_alpha Delta
-    Gamma.targetArc.darts
-  rw [hinverse] at hboundary
-  calc
-    GGT.RelLetter.listVal
-        (dartWord Delta Gamma.targetArc.darts) =
-        ((GGT.RelLetter.listVal
-          (dartWord Delta Gamma.targetArc.darts))⁻¹)⁻¹ := by
-            rw [inv_inv]
-    _ = ((GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
-        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
-        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)⁻¹ := by
-          rw [hboundary]
-    _ = GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
-        (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
-        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
-          group
+  cases htargetValue : Gamma.target with
+  | none => exact (htarget htargetValue).elim
+  | some target =>
+      have hboundary := Gamma.targetBoundary_value_of_pasting pasting
+      change GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.targetArc.darts.reverse.map
+            Delta.toCombMap.alpha)) = _ at hboundary
+      have hinverse := listVal_dartWord_reverse_alpha Delta
+        Gamma.targetArc.darts
+      rw [hinverse] at hboundary
+      calc
+        GGT.RelLetter.listVal
+            (dartWord Delta Gamma.targetArc.darts) =
+            ((GGT.RelLetter.listVal
+              (dartWord Delta Gamma.targetArc.darts))⁻¹)⁻¹ := by
+                rw [inv_inv]
+        _ = ((GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+            GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+            (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)⁻¹ := by
+              rw [hboundary]
+        _ = GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+            (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
+            GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+              group
 
 /-- O52 in the exact source-incidence charge form used by assembly. -/
 theorem Contiguity.arcLengths_le_two_mu_source
