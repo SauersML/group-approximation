@@ -61,6 +61,22 @@ theorem exists_estimatingScaffold
   exact ⟨{
     selected := selected }⟩
 
+/-- The neutral surgery transports an already-certified scaffold to the
+selection-output shape. This is the base case for the Lemma 65(a) surgery
+induction. -/
+theorem selectionOutput_of_graphData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    (graph : Nonempty (EstimatingGraphData D eps Delta scaffold)) :
+    ∃ Delta' : DiscDiagram.{u, w, v} W,
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        ∃ scaffold' : EstimatingScaffold D eps Delta',
+          Nonempty (EstimatingGraphData D eps Delta' scaffold') := by
+  refine ⟨Delta, ⟨OEquivalentDiscDiagram.refl Delta⟩, scaffold, graph⟩
+
 /-! ## Geometric certificates on the finite scaffold -/
 
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
