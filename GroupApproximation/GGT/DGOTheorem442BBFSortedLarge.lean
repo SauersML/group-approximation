@@ -64,11 +64,11 @@ theorem exists_bbf_large_projection_list
     rcases hUT with hUT | hUT
     · subst T
       exact Or.inr hWU
-    by_cases hWT : W = T
-    · exact Or.inl hWT
+    by_cases hWT : (W : V) = (T : V)
+    · exact Or.inl (Subtype.ext hWT)
     · right
-      have hWU' : W ≠ U := P.ne_of_bbf_before hWU
-      have hUT' : U ≠ T := P.ne_of_bbf_before hUT
+      have hWU' : (W : V) ≠ (U : V) := P.ne_of_bbf_before hWU
+      have hUT' : (U : V) ≠ (T : V) := P.ne_of_bbf_before hUT
       exact P.bbf_before_trans W.property.1 hWU' hWT
         U.property.1 hUT' T.property.1 hWU hUT⟩
   letI : Std.Antisymm r := ⟨by
@@ -77,14 +77,17 @@ theorem exists_bbf_large_projection_list
     · exact hWU
     rcases hUW with hUW | hUW
     · exact hUW.symm
-    have hWU' : W ≠ U := P.ne_of_bbf_before hWU
+    have hWU' : (W : V) ≠ (U : V) := P.ne_of_bbf_before hWU
     exact (P.bbf_before_asymm W.property.1 hWU' U.property.1 hWU hUW).elim⟩
   letI : Std.Total r := ⟨by
     intro W U
     by_cases hWU : W = U
     · exact Or.inl (Or.inl hWU)
-    · have htotal := P.bbf_before_total_on_large hK
-        W.property.1 W.property.2.1 U.property.1 U.property.2.1 hWU
+    · have hWU' : (W : V) ≠ (U : V) := by
+        intro hcoe
+        exact hWU (Subtype.ext hcoe)
+      have htotal := P.bbf_before_total_on_large hK
+        W.property.1 W.property.2.1 U.property.1 U.property.2.1 hWU'
         W.property.2.2 U.property.2.2
       rcases htotal with hbefore | hbefore
       · exact Or.inl (Or.inr hbefore)
@@ -114,7 +117,7 @@ theorem exists_bbf_large_projection_list
     have hstrict :
         L₀.Pairwise (fun W U : B =>
           5 * P.ξ < P.bbfProjDist W X U) := by
-      exact (hpair.and hne).imp fun W U h => h.1.resolve_left h.2
+      exact (hpair.and hne).imp fun h => h.1.resolve_left h.2
     dsimp [L]
     rw [List.pairwise_map]
     exact hstrict
@@ -152,10 +155,11 @@ theorem bbf_no_between_of_large_projection_list
       hWY₀before) hbetween.1
   · exact hWY₀ hWY₀'
   · exact hWY₁ hWY₁'
-  · have hpair' :
+    · have hpair' :
         ((L₀ ++ [Y₀, Y₁]) ++ L₁).Pairwise (fun A B =>
           5 * P.ξ < P.bbfProjDist A X B) := by
-      simpa only [List.append_assoc, List.append_cons, List.append_nil] using hpair
+      rw [List.append_assoc]
+      exact hpair
     have hcross := (List.pairwise_append.mp hpair').2.2
     have hY₁Wbefore : 5 * P.ξ < P.bbfProjDist Y₁ X W :=
       hcross Y₁ (by simp) W hWL₁
