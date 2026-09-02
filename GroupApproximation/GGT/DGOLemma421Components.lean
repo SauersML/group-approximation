@@ -263,6 +263,25 @@ theorem peripheralPos_succ_le_add_two {word : List (RelLetter G Λ)}
   exact hW1 (i + 1) x y hx (by simpa [Nat.add_assoc] using hy)
 
 omit [Group G] in
+/-- Ordered peripheral positions in a W1 word advance by at most twice their
+rank difference. -/
+theorem peripheralPos_le_add_two_mul {word : List (RelLetter G Λ)}
+    (hW1 : WWord.IsWOne word) {s t : ℕ}
+    (ht : t < (peripheralPositions word).card) (hst : s ≤ t) :
+    peripheralPos word t ≤ peripheralPos word s + 2 * (t - s) := by
+  obtain ⟨d, rfl⟩ : ∃ d : ℕ, t = s + d := ⟨t - s, by omega⟩
+  induction d with
+  | zero => simp
+  | succ d ih =>
+      have hrange : s + d + 1 < (peripheralPositions word).card := by omega
+      have hstep := peripheralPos_succ_le_add_two hW1
+        (t := s + d) (by omega : s + d + 1 < (peripheralPositions word).card)
+      have hprev : peripheralPos word (s + d)
+          ≤ peripheralPos word s + 2 * ((s + d) - s) :=
+        ih (by omega)
+      omega
+
+omit [Group G] in
 /-- Successive peripheral positions have the separator printed in Lemma
 4.21(b). -/
 theorem baseEdgeOrTrivial_peripheralPos_succ {word : List (RelLetter G Λ)}
