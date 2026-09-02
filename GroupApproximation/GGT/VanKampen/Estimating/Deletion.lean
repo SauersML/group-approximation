@@ -139,11 +139,11 @@ theorem toOwnerOrientation
             by_cases hxe : incident x e
             · constructor
               · intro h
-                exact h.1
+                exact ⟨h.1, hxe⟩
               · intro h
                 have hmem : e ∈ edges ∧ incident x e := h
                 simp only [owner, hxe, ↓reduceIte]
-                exact ⟨hmem.1, rfl⟩
+                exact ⟨hmem.1, trivial⟩
             · constructor
               · intro h
                 have hnonincident : e ∈ nonincidentEdges incident x edges :=
@@ -181,11 +181,6 @@ theorem toOwnerOrientation
                 simp [owner, nonincidentEdges, he, hxe, hxyeq]
               · simp [owner, nonincidentEdges, he, hxe]
             · simp only [he, false_and]
-              constructor
-              · intro h
-                exact h.elim
-              · intro h
-                exact (he h.1.1).elim
           rw [hfilter]
           exact htail
 
