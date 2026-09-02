@@ -2382,12 +2382,17 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               exfalso
               apply hmatched
               refine ⟨Q.length, le_rfl, ?_, ?_⟩
-              · rw [← hni, hieq, hrczero]
+              have hidx : targetN i =
+                  pc.length + P.length + rc.length +
+                    (Q.length - Q.length) := by
+                rw [hni, hieq, hrczero]
                 simp
+              · rw [← hidx]
+                exact (htargetSpec i).2.1
               · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
                 refine ⟨hh, hmem, ?_⟩
-                rw [hni, hieq, hrczero]
-                rw [vertex_fourGon_opposite_closed pc P rc Q hclose Q.length]
+                rw [hidx, hrczero, Nat.sub_self,
+                  vertex_fourGon_opposite_closed pc P rc Q hclose Q.length] at heq
                 exact heq
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
