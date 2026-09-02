@@ -28,6 +28,9 @@ open scoped BigOperators LinearAlgebra.Projectivization
 
 set_option linter.unusedSimpArgs false
 
+noncomputable instance fieldEightDecidableEqCounts : DecidableEq FieldEight :=
+  Classical.decEq FieldEight
+
 /-! ## The projective orthogonal hyperplane -/
 
 /-- The hyperplane orthogonal to a projective point representative. -/
@@ -302,6 +305,177 @@ theorem incidenceRegularModel :
       (∀ p, ∑ L, incidenceWeight Incident p L = 9) ∧
       (∀ L, ∑ p, incidenceWeight Incident p L = 9) :=
   ⟨point_card, line_card, incident_point_degree, incident_line_degree⟩
+
+/-! ## One- and two-step incidence counts -/
+
+/-- For distinct points, having a common isotropic line is equivalent to the
+symplectic orthogonality equation. -/
+theorem exists_incident_line_iff_orthogonal {p q : Point} (hpq : p ≠ q) :
+    (∃ L, Incident p L ∧ Incident q L) ↔ form p.rep q.rep = 0 := by
+  constructor
+  · rintro ⟨L, hpL, hqL⟩
+    exact orthogonal_of_incident hpL hqL
+  · intro horth
+    obtain ⟨L, hL, _⟩ := existsUnique_incident_line hpq horth
+    exact ⟨L, hL⟩
+
+/-- The number of common lines of two points is nine on the diagonal, one
+for distinct orthogonal points, and zero otherwise. -/
+theorem commonLine_card (p q : Point) :
+    Fintype.card {L : Line // Incident p L ∧ Incident q L} =
+      if p = q then 9 else if form p.rep q.rep = 0 then 1 else 0 := by
+  classical
+  by_cases hpq : p = q
+  · subst q
+    rw [if_pos rfl]
+    exact (Fintype.card_congr (Equiv.subtypeEquivProp (by simp))).trans
+      (incident_line_card p)
+  · rw [if_neg hpq]
+    by_cases horth : form p.rep q.rep = 0
+    · rw [if_pos horth]
+      obtain ⟨L, hL, hunique⟩ := existsUnique_incident_line hpq horth
+      apply Fintype.card_eq_one_iff.mpr
+      refine ⟨⟨L, hL⟩, ?_⟩
+      intro M
+      exact Subtype.ext (hunique M.1 M.2)
+    · rw [if_neg horth, Fintype.card_eq_zero_iff]
+      exact ⟨fun L ↦ horth
+        ((exists_incident_line_iff_orthogonal hpq).mp ⟨L.1, L.2⟩)⟩
+
+/-- Two distinct isotropic lines have at most one common point. -/
+theorem commonPoint_unique {L M : Line} (hLM : L ≠ M)
+    {p q : Point} (hpL : Incident p L) (hpM : Incident p M)
+    (hqL : Incident q L) (hqM : Incident q M) : p = q := by
+  by_contra hpq
+  exact hLM (line_unique hpq hpL hqL hpM hqM)
+
+/-- The number of common points of two lines is nine on the diagonal, one
+when they are concurrent, and zero otherwise. -/
+theorem commonPoint_card (L M : Line) :
+    Fintype.card {p : Point // Incident p L ∧ Incident p M} =
+      if L = M then 9 else if ∃ p, Incident p L ∧ Incident p M then 1 else 0 := by
+  classical
+  by_cases hLM : L = M
+  · subst M
+    rw [if_pos rfl]
+    exact (Fintype.card_congr (Equiv.subtypeEquivProp (by simp))).trans
+      (incident_point_card L)
+  · rw [if_neg hLM]
+    by_cases hex : ∃ p, Incident p L ∧ Incident p M
+    · rw [if_pos hex]
+      obtain ⟨p, hp⟩ := hex
+      apply Fintype.card_eq_one_iff.mpr
+      refine ⟨⟨p, hp⟩, ?_⟩
+      intro q
+      exact Subtype.ext
+        (commonPoint_unique hLM q.2.1 q.2.2 hp.1 hp.2)
+    · rw [if_neg hex, Fintype.card_eq_zero_iff]
+      exact ⟨fun p ↦ hex ⟨p.1, p.2⟩⟩
+
+/-- A sum of incidence-indicator products is the cardinality of the common
+incidence subtype. -/
+theorem incidence_product_sum_point (p q : Point) :
+    ∑ L, incidenceWeight Incident p L * incidenceWeight Incident q L =
+      Fintype.card {L : Line // Incident p L ∧ Incident q L} := by
+  classical
+  calc
+    (∑ L, incidenceWeight Incident p L * incidenceWeight Incident q L) =
+        ∑ L, if Incident p L ∧ Incident q L then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro L _
+      by_cases hp : Incident p L <;> by_cases hq : Incident q L <;>
+        simp [incidenceWeight, hp, hq]
+    _ = (Finset.univ.filter fun L ↦ Incident p L ∧ Incident q L).card := by
+      simp
+    _ = Fintype.card {L : Line // Incident p L ∧ Incident q L} :=
+      (Fintype.card_subtype _).symm
+
+/-- The point-side two-step incidence identity required by
+`GeneralizedQuadrangleCounts`. -/
+theorem common_lines_count (p q : Point) :
+    ∑ L, incidenceWeight Incident p L * incidenceWeight Incident q L =
+      9 * (if p = q then 1 else 0) + pointCollinearityWeight Incident p q := by
+  rw [incidence_product_sum_point, commonLine_card]
+  unfold pointCollinearityWeight
+  by_cases hpq : p = q
+  · subst q
+    simp
+  · rw [if_neg hpq]
+    have hiff := exists_incident_line_iff_orthogonal hpq
+    by_cases horth : form p.rep q.rep = 0
+    · have hex : ∃ L, Incident p L ∧ Incident q L := hiff.mpr horth
+      simp [hpq, horth, hex]
+    · have hnex : ¬ ∃ L, Incident p L ∧ Incident q L :=
+        fun h ↦ horth (hiff.mp h)
+      simp [hpq, horth, hnex]
+
+/-- The line-side incidence-indicator product sum is the common-point
+cardinality. -/
+theorem incidence_product_sum_line (L M : Line) :
+    ∑ p, incidenceWeight Incident p L * incidenceWeight Incident p M =
+      Fintype.card {p : Point // Incident p L ∧ Incident p M} := by
+  classical
+  calc
+    (∑ p, incidenceWeight Incident p L * incidenceWeight Incident p M) =
+        ∑ p, if Incident p L ∧ Incident p M then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro p _
+      by_cases hL : Incident p L <;> by_cases hM : Incident p M <;>
+        simp [incidenceWeight, hL, hM]
+    _ = (Finset.univ.filter fun p ↦ Incident p L ∧ Incident p M).card := by
+      simp
+    _ = Fintype.card {p : Point // Incident p L ∧ Incident p M} :=
+      (Fintype.card_subtype _).symm
+
+/-- The line-side two-step incidence identity required by
+`GeneralizedQuadrangleCounts`. -/
+theorem common_points_count (L M : Line) :
+    ∑ p, incidenceWeight Incident p L * incidenceWeight Incident p M =
+      9 * (if L = M then 1 else 0) + lineConcurrencyWeight Incident L M := by
+  rw [incidence_product_sum_line, commonPoint_card]
+  unfold lineConcurrencyWeight
+  by_cases hLM : L = M
+  · subst M
+    simp
+  · by_cases hex : ∃ p, Incident p L ∧ Incident p M
+    · simp [hLM, hex]
+    · simp [hLM, hex]
+
+/-! ## The two collinearity degrees -/
+
+/-- The point-collinearity indicator is the indicator of being a distinct
+orthogonal point. -/
+theorem pointCollinearityWeight_eq (q p : Point) :
+    pointCollinearityWeight Incident q p =
+      if q ≠ p ∧ form p.rep q.rep = 0 then 1 else 0 := by
+  unfold pointCollinearityWeight
+  by_cases hqp : q = p
+  · subst q
+    simp
+  · rw [if_neg hqp]
+    have hpq : p ≠ q := Ne.symm hqp
+    have hiff := exists_incident_line_iff_orthogonal hpq
+    by_cases horth : form p.rep q.rep = 0
+    · obtain ⟨L, hpL, hqL⟩ := hiff.mpr horth
+      have hex : ∃ L, Incident q L ∧ Incident p L := ⟨L, hqL, hpL⟩
+      simp [hqp, horth, hex]
+    · have hnex : ¬ ∃ L, Incident q L ∧ Incident p L := by
+        rintro ⟨L, hqL, hpL⟩
+        exact horth (hiff.mp ⟨L, hpL, hqL⟩)
+      simp [hqp, horth, hnex]
+
+/-- The point-collinearity graph is 72-regular. -/
+theorem point_col_degree_count (p : Point) :
+    ∑ q, pointCollinearityWeight Incident q p = 72 := by
+  classical
+  simp_rw [pointCollinearityWeight_eq]
+  calc
+    (∑ q, if q ≠ p ∧ form p.rep q.rep = 0 then 1 else 0) =
+        (Finset.univ.filter fun q ↦ q ≠ p ∧ form p.rep q.rep = 0).card := by
+      simp
+    _ = Fintype.card (OrthogonalOther p) :=
+      (Fintype.card_subtype _).symm
+    _ = 72 := orthogonalOther_card p
 
 end SymplecticQuadrangle
 end KazhdanHyp
