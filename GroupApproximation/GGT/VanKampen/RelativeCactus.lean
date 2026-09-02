@@ -1489,7 +1489,7 @@ theorem cellSegments_labelAt
   congr 1
   funext i
   simp only [Function.comp_apply, cellSegment, List.map_cons, List.map_append,
-    List.map_singleton, relatorBackwardDarts, List.map_ofFn]
+    relatorBackwardDarts, List.map_ofFn]
   rfl
 
 theorem bigDarts_valueAt
