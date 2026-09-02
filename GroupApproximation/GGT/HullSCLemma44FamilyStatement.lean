@@ -174,7 +174,10 @@ theorem emptyPreservedRelGenSet_alphabet {G : Type u} [Group G]
     (A : HullGeneratingSet G) :
     (emptyPreservedRelGenSet A).alphabet = A.alphabet := by
   apply GGT.OsinComponents.alphabet_eq_of_carrier_eq
-  simp [emptyPreservedRelGenSet]
+  show A.alphabet.carrier ∪
+      ⋃ lam : Empty, ((Empty.elim lam : Subgroup G) : Set G) =
+        A.alphabet.carrier
+  rw [Set.iUnion_of_empty, Set.union_empty]
 
 /-- The empty family is hyperbolically embedded precisely using the
 hyperbolicity already bundled in Hull's generating set. -/
