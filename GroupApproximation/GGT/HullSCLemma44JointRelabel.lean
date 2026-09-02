@@ -481,7 +481,7 @@ theorem isLemma44Input_jointRelabelWords
               (GGT.RelLetter.listVal (v₀.take j)) :=
         WordMetric.wordNorm_mono halphabet
           (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating _)
-      rw [hchain i, hchain j]
+      simp only [hchain]
       exact le_trans hlow (by exact_mod_cast hmono)
     · have hupper := GGT.OsinComponents.wordDist_vertex_le' joint
         (hadm v hv) 1 hij hjv
@@ -576,7 +576,7 @@ def JointRelatorRespellingStatement : Prop :=
       x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base) →
     (∀ i : AuxiliaryPeripheralIndex k,
       joint.fam (Sum.inr i) = selected.rel.fam i) →
-    joint.alphabet.carrier = selected.rel.alphabet.carrier →
+    joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier →
     ∀ (mu : ℝ) (eps0 rho0 : ℕ),
       ∃ eps rho : ℕ,
         ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
