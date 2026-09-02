@@ -3293,6 +3293,7 @@ import GroupApproximation.GGT.HullSCRelativeGreendlingerBoundaryArc
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonCut
 import GroupApproximation.GGT.VanKampen.SurgeryFaceKept
 import GroupApproximation.GGT.VanKampen.SurgeryFaceNew
+import GroupApproximation.GGT.CyclicCayleyHyperbolic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
