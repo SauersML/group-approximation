@@ -241,7 +241,7 @@ theorem fanoIncidence_colPair : ∀ y y' : ZMod 7,
     _ = 2 * (if -y = -y' then 1 else 0) + 1 :=
       fanoIncidence_rowPair (-y) (-y')
     _ = 2 * (if y = y' then 1 else 0) + 1 := by
-      rw [neg_inj]
+      simp only [neg_inj]
 
 /-- The cyclic incidence matrix is a projective plane of order two in the
 exact rational interface consumed by the link certificate. -/
@@ -251,10 +251,10 @@ def fanoPlane : ProjectivePlaneData (ZMod 7) where
   order_gt_one := by norm_num
   rowSum := by
     intro x
-    simpa using fanoIncidence_rowSum x
+    exact (fanoIncidence_rowSum x).trans (by norm_num)
   colSum := by
     intro y
-    simpa using fanoIncidence_colSum y
+    exact (fanoIncidence_colSum y).trans (by norm_num)
   rowPair := fanoIncidence_rowPair
   colPair := fanoIncidence_colPair
 
@@ -304,6 +304,11 @@ theorem fanoCertificate_gap_gt_half :
   rw [fanoCertificate_gap]
   norm_num
 
+/-- The rational degree stored in the projective-plane link data is three. -/
+theorem fanoLinkData_degree : (3 : ℚ) = (fanoPlane.linkData).deg := by
+  rw [fanoPlane.linkData_deg]
+  norm_num [fanoPlane]
+
 /-- The literal `LinkCertificateChecks` object for the cyclic Fano table.
 Its rows are the rational Gram rows constructed by completing the square for
 the Fano incidence matrix. -/
@@ -311,7 +316,7 @@ noncomputable def fanoLinkCertificate :
     TriangularHodgeLayer.LinkCertificateChecks fanoTriangles 3
       (fanoPlane.linkData).gapValue (fanoPlane.linkData).gramRow :=
   linkCertificateChecks_of_linkData fanoTriangles fanoPlane.linkData 3
-    fanoLink_regular (by norm_num [fanoPlane]) fanoLink_eq
+    fanoLink_regular fanoLinkData_degree fanoLink_eq
 
 /-- The seven-generator cyclic Fano presentation has Kazhdan's property
 `(T)`, in the exact universe used by `Hyperbolic.SharpExistence`. -/
