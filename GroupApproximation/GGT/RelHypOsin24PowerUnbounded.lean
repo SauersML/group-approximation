@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.RelHypOsin24BoundedPenetration
 import GroupApproximation.GGT.DGOProposition433Finite
+import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
 
 /-!
 # The power-pigeonhole step

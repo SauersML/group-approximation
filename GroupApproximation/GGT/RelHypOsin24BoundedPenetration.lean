@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.RelHypDefinition
+import GroupApproximation.GGT.RelHypOsinTheorem24Verbatim
 
 /-!
 # Finite bounded-penetration slices
