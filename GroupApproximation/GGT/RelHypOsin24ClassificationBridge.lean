@@ -94,6 +94,37 @@ theorem isLoxodromic_of_relativePowerEscape_of_acylindrical
   exact HullSCUnionGeometry.escapingIsLoxodromic_cayley_of_acylindrical
     D.alphabet hdelta hacy g hesc
 
+/-- **Relative escaping-to-loxodromic bridge.**  This is the action-theoretic
+half of the element theorem, isolated as a strictly smaller named Prop: it
+assumes the orbit already escapes and asks only for the loxodromic conclusion
+under an acylindrical hyperbolic relative Cayley action. -/
+def RelativeEscapingLoxodromicBridgeStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
+    D.IsHyperbolicallyEmbedded →
+      IsAcylindrical G (Cayley D.alphabet) → ∀ g : G,
+        IsEscaping g (Cayley.base D.alphabet) →
+          IsLoxodromic g (Cayley.base D.alphabet)
+
+/-- The relative escaping-to-loxodromic bridge is Bowditch's theorem for the
+hyperbolic Cayley graph supplied by the hyperbolically embedded structure. -/
+theorem relativeEscapingLoxodromicBridge_proved :
+    RelativeEscapingLoxodromicBridgeStatement.{u, v} := by
+  intro G instG I D hD hacy g hesc
+  letI : Group G := instG
+  exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hD hacy hesc
+
+/-- Model test for the bridge: the finite empty-family action is acylindrical,
+and its infinite-order powers escape by finite properness. -/
+theorem relativeEscapingLoxodromicBridge_emptyModel
+    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
+    (D : RelGenSet G I) (hfinite : D.base.Finite)
+    (hemb : D.IsHyperbolicallyEmbedded) (g : G)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsLoxodromic g (Cayley.base D.alphabet) := by
+  apply relativeEscapingLoxodromicBridge_proved G inferInstance I D hemb
+    (relHypFiniteBaseAcylindricity_empty D hfinite) g
+  exact relativePowerEscape_emptyModel D hfinite hemb g hord
+
 /-- The classification theorem restricted to an already acylindrical relative
 alphabet.  It is a strictly smaller target than the arbitrary-alphabet
 `HyperbolicElementLoxodromicStatement`, so the only new input is the relative
