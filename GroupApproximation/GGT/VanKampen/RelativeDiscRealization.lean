@@ -89,7 +89,13 @@ theorem not_nonempty_of_empty_cell
 
 end RelativeDiscRealization
 
-namespace HullSC.Lemma44OrientedRelatorDiagram
+end VanKampen
+end GGT
+
+namespace HullSC
+namespace Lemma44OrientedRelatorDiagram
+
+open GGT.VanKampen
 
 /-- The cell indices of an oriented algebraic diagram and its cactus relator
 cells are canonically equivalent by their common finite index. -/
@@ -145,7 +151,11 @@ noncomputable def relativeDiscRealization
   outerWord_eq := Z.cactusDiscDiagram_boundaryWord
   reduced := Z.cactusRealization.reduced
 
-end HullSC.Lemma44OrientedRelatorDiagram
+end Lemma44OrientedRelatorDiagram
+end HullSC
+
+namespace GGT
+namespace VanKampen
 
 /-- Every common relative diagram produced by Hull's oriented least-area
 construction has the required planar realization. -/
