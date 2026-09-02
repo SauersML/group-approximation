@@ -262,7 +262,9 @@ theorem firstGapChordStart_eq_trimmedWalk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    simpa [endpointByOrientation, A, e] using hpEq.symm
+    simpa [A, e] using congrArg
+      (fun z => endpointByOrientation (B.firstGapRunsForward j) (z + 1) z)
+      hpEq.symm
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -310,7 +312,9 @@ theorem firstGapChordFinish_eq_walk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    simpa [endpointByOrientation, A, e] using hpEq.symm
+    simpa [A, e] using congrArg
+      (fun z => endpointByOrientation (B.firstGapRunsForward j) z (z + 1))
+      hpEq.symm
   · unfold firstGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
@@ -341,7 +345,9 @@ theorem secondGapChordStart_eq_walk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    simpa [endpointByOrientation, A, e] using hpEq.symm
+    simpa [A, e] using congrArg
+      (fun z => endpointByOrientation (B.secondGapRunsForward j) (z + 1) z)
+      hpEq.symm
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -389,7 +395,9 @@ theorem secondGapChordFinish_eq_trimmedWalk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    simpa [endpointByOrientation, A, e] using hpEq.symm
+    simpa [A, e] using congrArg
+      (fun z => endpointByOrientation (B.secondGapRunsForward j) z (z + 1))
+      hpEq.symm
   · unfold secondGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
