@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCLemma44KernelAssembly
+import GroupApproximation.GGT.HullSCLemma49FacePasting
 import GroupApproximation.GGT.HullSCLemma49SourceGreendlinger
 
 /-!
@@ -12,11 +13,6 @@ the power-diagram statement is quantified over an arbitrary hyperbolically
 embedded relative generating set, so the callback retains the latter
 embeddedness witness explicitly.
 
-The source Greendlinger certificate also needs a cellular face-pasting
-certificate.  `HullLemma49SourceFacePastingStatement` is precisely the
-strictly smaller certificate consumed by the two cyclic-arc branches: the
-selected G-cell faces paste to the empty boundary word.  Its PUnit model is
-vacuous because a nontrivial power diagram cannot exist there.
 -/
 
 namespace GroupApproximation
@@ -101,22 +97,7 @@ theorem hullLemma44InjectivityOutput_of_relativeGreendlinger_of_kernelGeodesic_o
         hgeom hkernel htransfer)
     D R
 
-/-! ## The face-pasting certificate -/
-
-/-- Every source Greendlinger power certificate has a cellular homotopy from
-the designated selected-face boundary to the empty word.  This is the exact
-certificate required by `Embedded.Contiguity.arcs_value_of_pasting`. -/
-def HullLemma49SourceFacePastingStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
-    {Z : Lemma49GeodesicPowerDiagram D v g n}
-    (C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
-      D v g n eps mu Z),
-    Nonempty (GGT.VanKampen.Embedded.FaceSetWordHomotopy
-      C.diagram C.faces C.contiguity.boundary.cycle [])
-
-/-! ## Model checks -/
+/-! ## Model check -/
 
 /-- A map out of the PUnit source is injective, so the callback is inhabited in
 the trivial source model. -/
@@ -134,19 +115,6 @@ theorem hullLemma49InjectivityCallback_trivialModel
   refine ⟨0, 0, 1, by norm_num, ?_⟩
   intro W Q _ q _hinput _hker x _hx y _hy _hxy
   exact Subsingleton.elim x y
-
-/-- The face-pasting statement is vacuous for a PUnit source: its power
-diagram field contradicts the fact that every PUnit element is one. -/
-theorem hullLemma49SourceFacePastingStatement_trivialModel
-    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
-    ∀ {v : List (GGT.RelLetter PUnit Lambda)} {g : PUnit} {n eps : ℕ}
-      {mu : ℝ} {Z : Lemma49GeodesicPowerDiagram D v g n},
-      (C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
-        D v g n eps mu Z) →
-      Nonempty (GGT.VanKampen.Embedded.FaceSetWordHomotopy
-        C.diagram C.faces C.contiguity.boundary.cycle []) := by
-  intro v g n eps mu Z C
-  exact (Z.power_ne_one (Subsingleton.elim _ _)).elim
 
 end HullSC
 end GroupApproximation
