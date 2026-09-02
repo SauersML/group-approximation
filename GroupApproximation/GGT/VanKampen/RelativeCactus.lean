@@ -1091,9 +1091,18 @@ theorem relatorCells_values
     Z.relatorCells.map RelatorCell.value =
       Z.cells.map Lemma44OrientedRelatorCell.value := by
   rw [relatorCells, ← List.ofFn_comp']
-  apply congrArg List.ofFn
-  funext i
-  exact Z.relatorCell_value i
+  calc
+    List.ofFn (fun i : Fin Z.cells.length =>
+        (Z.relatorCell i).value) =
+        List.ofFn (fun i : Fin Z.cells.length =>
+          (Z.cellAt i).value) := by
+      apply congrArg List.ofFn
+      funext i
+      exact Z.relatorCell_value i
+    _ = (List.ofFn Z.cells.get).map Lemma44OrientedRelatorCell.value := by
+      rw [← List.ofFn_comp']
+    _ = Z.cells.map Lemma44OrientedRelatorCell.value := by
+      rw [List.ofFn_get]
 
 theorem face_eq_indexedFace_of_faceEquiv_eq (S : CactusShape)
     (f : S.toCombMap.Face) (i : S.FaceIndex) (h : S.faceEquiv f = i) :
@@ -1170,15 +1179,34 @@ theorem cactusDiscDiagram_reduced
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
-    (Z : HullSC.RelativeReducedDiagram D W R) :
+  (Z : HullSC.RelativeReducedDiagram D W R) :
     Z.cactusDiscDiagram.Reduced := by
+  let orientedOfCell :
+      RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W →
+        Lemma44OrientedRelatorCell W := fun C =>
+    ⟨C.conjugator, C.word, C.word_mem⟩
+  have horiented : Z.cells = Z.relatorCells.map orientedOfCell := by
+    rw [relatorCells, ← List.ofFn_comp']
+    calc
+      Z.cells = List.ofFn Z.cells.get := (List.ofFn_get Z.cells).symm
+      _ = List.ofFn (fun i => orientedOfCell (Z.relatorCell i)) := by
+        apply congrArg List.ofFn
+        funext i
+        rfl
+      _ = (List.ofFn Z.relatorCell).map orientedOfCell := by
+        rw [List.map_ofFn]
+      _ = Z.relatorCells.map orientedOfCell := rfl
   intro pre between suf C₁ C₂ hsplit
+  have hsplit' := congrArg (List.map orientedOfCell) hsplit
+  rw [horiented] at hsplit'
   apply Z.no_cancelling_pair
-    (pre.map RelatorCell.value)
-    (between.map RelatorCell.value)
-    (suf.map RelatorCell.value) C₁.value C₂.value
-  rw [← Z.relatorCells_values, hsplit]
-  simp only [List.map_append, List.map_cons]
+    (pre.map orientedOfCell)
+    (between.map orientedOfCell)
+    (suf.map orientedOfCell)
+    (orientedOfCell C₁) (orientedOfCell C₂) hsplit'
+  simp only [orientedOfCell, Lemma44OrientedRelatorCell.value,
+    RelatorCell.value]
+  rfl
 
 def cellIndexEquiv
     {G : Type u} [Group G] {Lambda : Type w}
