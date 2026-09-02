@@ -693,6 +693,45 @@ def CellPieceEquations.twoCell_mirror_model
     { schedule := hschedule' }
   exact CellPieceEquations.of_boundaryPeeling bridge peeling hred
 
+/-- The singleton model is inhabited as a complete piece certificate. -/
+theorem cellPieceEquations_oneCell_model_nonempty
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    {face : Delta.toCombMap.Face}
+    (hfaces : faces = {face})
+    (hcycle : Gamma.boundary.cycle = (Delta.faceBoundary face).darts)
+    (hface : face ≠ Delta.outerFace)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced) :
+    Nonempty (CellPieceEquations Gamma) :=
+  ⟨CellPieceEquations.oneCell_model hfaces hcycle hface bridge hred⟩
+
+/-- The two-cell mirror model is inhabited as a complete piece certificate. -/
+theorem cellPieceEquations_twoCell_mirror_model_nonempty
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    {f₁ f₂ : Delta.toCombMap.Face}
+    (hfaces : faces = {f₁, f₂})
+    (hneq : f₁ ≠ f₂)
+    (h₁ : f₁ ≠ Delta.outerFace) (h₂ : f₂ ≠ Delta.outerFace)
+    (cycle next : List Delta.toCombMap.Dart)
+    (hcycle : Gamma.boundary.cycle = cycle)
+    (moves : FaceSetMoveSequence (faces := faces) cycle next)
+    (hnext : next = (Delta.faceBoundary f₂).darts)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced) :
+    Nonempty (CellPieceEquations Gamma) :=
+  ⟨CellPieceEquations.twoCell_mirror_model hfaces hneq h₁ h₂ cycle next
+      hcycle moves hnext bridge hred⟩
+
 /-- A pasted embedded region and its reducedness exclusion form the published
 piece used by both endpoint estimates. -/
 theorem Contiguity.isPublishedPiece_of_equations
