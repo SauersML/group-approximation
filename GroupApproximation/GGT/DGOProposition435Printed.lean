@@ -265,7 +265,7 @@ theorem isRelativelyHyperbolic_original_of_jointPreservation
     relGenSetReindex_isHyperbolicallyEmbedded Z dropEquiv hZemb⟩
   funext l
   show Z.fam (dropEquiv l) = (original.fam l).map q
-  rw [hZfam ⟨Sum.inl l, ()⟩]
+  rw [hZfam (dropEquiv l)]
   show ((⊤ : Subgroup (P.rel.fam (Sum.inl l))).map
     (P.rel.fam (Sum.inl l)).subtype) = (original.fam l).map q
   rw [← MonoidHom.range_eq_map, Subgroup.range_subtype, P.fam_original l]
