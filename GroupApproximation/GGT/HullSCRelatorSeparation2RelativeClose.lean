@@ -818,7 +818,8 @@ theorem false_of_relativeAdjacent_revInv_direct
         GGT.OsinComponents.vertex (1 : G) u (i + 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = a b ^ e := by
     have h := secondGap_eq_of_reverseAdjacent
-      (by simpa only [hjstart] using hc') hmiddle hVW
+      (g := (a b ^ e)⁻¹) (by simpa only [hjstart] using hc') hmiddle
+      (by simpa only [inv_inv] using hVW)
     simpa only [inv_inv] using h
   have hball : a b ^ e ∈ D.relBall b rho := by
     rw [← hgapPower]
