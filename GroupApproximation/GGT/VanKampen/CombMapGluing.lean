@@ -100,6 +100,102 @@ structure Pairing (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) where
   changes_copy : ∀ d, IsExposed Delta d.2 →
     (seamAlpha d).1 ≠ d.1
 
+/-- The finite type of exposed darts in all copies. -/
+abbrev ExposedCopiedDart (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) :=
+  {d : CopiedInnerDart Delta n // IsExposed Delta d.2}
+
+noncomputable instance exposedCopiedDartFintype
+    (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) :
+    Fintype (ExposedCopiedDart Delta n) :=
+  Fintype.ofFinite _
+
+/-- It is enough to pair the exposed boundary darts.  Internal darts will be
+paired by the original edge reversal. -/
+structure ExposedPairing (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) where
+  /-- Pairing of the copied boundary occurrences. -/
+  mate : Perm (ExposedCopiedDart Delta n)
+  /-- Boundary pairing reverses twice to the original occurrence. -/
+  involutive : Function.Involutive mate
+  /-- No oriented boundary occurrence is paired with itself. -/
+  fixedPointFree : ∀ d, mate d ≠ d
+  /-- Paired boundary occurrences belong to different copies. -/
+  changes_copy : ∀ d, (mate d).1.1 ≠ d.1.1
+
+namespace ExposedPairing
+
+variable {Delta : DiscDiagram.{u, w, v} W} {n : ℕ}
+
+/-- Reversing an internal retained dart gives another internal retained dart. -/
+theorem reverseInnerDart_not_exposed (d : InnerDart Delta)
+    (h : ¬ IsExposed Delta d) :
+    ¬ IsExposed Delta (reverseInnerDart Delta d h) := by
+  intro hexposed
+  apply d.2
+  rw [IsExposed, reverseInnerDart, Delta.toCombMap.alpha_involutive] at hexposed
+  exact hexposed
+
+/-- Extend an exposed seam pairing by the old reversal on internal edges. -/
+def alphaFun (B : ExposedPairing Delta n) (d : CopiedInnerDart Delta n) :
+    CopiedInnerDart Delta n :=
+  if h : IsExposed Delta d.2 then (B.mate ⟨d, h⟩).1
+  else (d.1, reverseInnerDart Delta d.2 h)
+
+/-- The extended edge reversal is involutive. -/
+theorem alphaFun_involutive (B : ExposedPairing Delta n) :
+    Function.Involutive B.alphaFun := by
+  intro d
+  by_cases h : IsExposed Delta d.2
+  · have hmate : IsExposed Delta (B.mate ⟨d, h⟩).1.2 :=
+      (B.mate ⟨d, h⟩).2
+    rw [alphaFun, dif_pos h, alphaFun, dif_pos hmate]
+    exact congrArg Subtype.val (B.involutive ⟨d, h⟩)
+  · have hreverse : ¬ IsExposed Delta (reverseInnerDart Delta d.2 h) :=
+      reverseInnerDart_not_exposed d.2 h
+    rw [alphaFun, dif_neg h, alphaFun, dif_neg hreverse]
+    apply Prod.ext
+    · rfl
+    · apply Subtype.ext
+      exact Delta.toCombMap.alpha_involutive d.2.1
+
+/-- The extended edge reversal has no fixed dart. -/
+theorem alphaFun_fixedPointFree (B : ExposedPairing Delta n)
+    (d : CopiedInnerDart Delta n) : B.alphaFun d ≠ d := by
+  by_cases h : IsExposed Delta d.2
+  · rw [alphaFun, dif_pos h]
+    intro hfixed
+    apply B.fixedPointFree ⟨d, h⟩
+    apply Subtype.ext
+    exact hfixed
+  · rw [alphaFun, dif_neg h]
+    intro hfixed
+    apply Delta.toCombMap.alpha_fixedPointFree d.2.1
+    have hsecond := congrArg (fun q ↦ q.2.1) hfixed
+    exact hsecond
+
+/-- The extended edge reversal as a permutation. -/
+def seamAlpha (B : ExposedPairing Delta n) :
+    Perm (CopiedInnerDart Delta n) where
+  toFun := B.alphaFun
+  invFun := B.alphaFun
+  left_inv := B.alphaFun_involutive
+  right_inv := B.alphaFun_involutive
+
+/-- An exposed pairing canonically gives all seam data. -/
+def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
+  seamAlpha := B.seamAlpha
+  involutive := B.alphaFun_involutive
+  fixedPointFree := B.alphaFun_fixedPointFree
+  agrees_internal copy d h := by
+    rw [seamAlpha, alphaFun, dif_neg h]
+  exposed d hd := by
+    rw [seamAlpha, alphaFun, dif_pos hd]
+    exact (B.mate ⟨d, hd⟩).2
+  changes_copy d hd := by
+    rw [seamAlpha, alphaFun, dif_pos hd]
+    exact B.changes_copy ⟨d, hd⟩
+
+end ExposedPairing
+
 namespace Pairing
 
 variable {Delta : DiscDiagram.{u, w, v} W} {n : ℕ}
@@ -113,8 +209,11 @@ noncomputable def closedMap (S : Pairing Delta n) : CombMap.{v} :=
 /-- The glued map has exactly the copied inner-face permutation. -/
 theorem closedMap_facePerm (S : Pairing Delta n) :
     S.closedMap.facePerm = copiedFacePerm Delta n :=
-  Surgery.MapCollapse.ofAlphaFacePerm_facePerm S.seamAlpha
-    (copiedFacePerm Delta n) S.involutive S.fixedPointFree
+  by
+    change (Surgery.MapCollapse.ofAlphaFacePerm S.seamAlpha
+      (copiedFacePerm Delta n) S.involutive S.fixedPointFree).facePerm = _
+    exact Surgery.MapCollapse.ofAlphaFacePerm_facePerm S.seamAlpha
+      (copiedFacePerm Delta n) S.involutive S.fixedPointFree
 
 /-- Copy number attached to a retained dart. -/
 def dartCopy (d : CopiedInnerDart Delta n) : Fin n := d.1
@@ -174,8 +273,8 @@ theorem sourceFace_faceOf (S : Pairing Delta n)
 /-- Restricting the old face permutation does not change its iterates on
 underlying darts. -/
 theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
-    ((innerFacePerm Delta) ^ m d).1 =
-      (Delta.toCombMap.facePerm ^ m) d.1 := by
+    (((innerFacePerm Delta) ^ m) d).1 =
+      ((Delta.toCombMap.facePerm ^ m) d.1) := by
   induction m with
   | zero => rfl
   | succ m ih =>
@@ -202,13 +301,12 @@ theorem sameCycle_of_source_sameCycle (S : Pairing Delta n)
   rw [S.closedMap_facePerm]
   exact hcopied
 
-/-- The dart orbit of a glued face is equivalent to the dart orbit of its
-source inner face. -/
-noncomputable def faceDartEquiv (S : Pairing Delta n)
+/-- Seam gluing preserves the degree of every copied inner face. -/
+theorem faceDegree_eq_source (S : Pairing Delta n)
     (f : S.closedMap.Face) :
-    {d : S.closedMap.Dart // S.closedMap.faceOf d = f} ≃
-      {d : Delta.toCombMap.Dart //
-        Delta.toCombMap.faceOf d = S.sourceFace f} := by
+    S.closedMap.faceDegree f =
+      Delta.toCombMap.faceDegree (S.sourceFace f) := by
+  classical
   refine Quotient.inductionOn' f ?_
   intro representative
   let toSource :
@@ -216,25 +314,29 @@ noncomputable def faceDartEquiv (S : Pairing Delta n)
           S.closedMap.faceOf d = S.closedMap.faceOf representative} →
         {d : Delta.toCombMap.Dart //
           Delta.toCombMap.faceOf d =
-            S.sourceFace (S.closedMap.faceOf representative)} :=
+            Delta.toCombMap.faceOf representative} :=
     fun d ↦ ⟨d.1.2.1, by
       have h := congrArg S.sourceFace d.2
       simpa only [S.sourceFace_faceOf] using h⟩
   let fromSource :
       {d : Delta.toCombMap.Dart //
           Delta.toCombMap.faceOf d =
-            S.sourceFace (S.closedMap.faceOf representative)} →
+            Delta.toCombMap.faceOf representative} →
         {d : S.closedMap.Dart //
           S.closedMap.faceOf d = S.closedMap.faceOf representative} :=
     fun d ↦ ⟨(representative.1,
       ⟨d.1, by
-        rw [d.2, S.sourceFace_faceOf]
+        rw [d.2]
         exact representative.2.2⟩), by
       apply Quotient.sound
       apply S.sameCycle_of_source_sameCycle
       rw [← Delta.toCombMap.faceOf_eq_iff]
-      simpa only [S.sourceFace_faceOf] using d.2.symm⟩
-  exact {
+      exact d.2.symm⟩
+  let E :
+      {d : S.closedMap.Dart //
+          S.closedMap.faceOf d = S.closedMap.faceOf representative} ≃
+        {d : Delta.toCombMap.Dart //
+          Delta.toCombMap.faceOf d = Delta.toCombMap.faceOf representative} := {
     toFun := toSource
     invFun := fromSource
     left_inv := fun d ↦ by
@@ -247,13 +349,11 @@ noncomputable def faceDartEquiv (S : Pairing Delta n)
     right_inv := fun d ↦ by
       apply Subtype.ext
       rfl }
-
-/-- Seam gluing preserves the degree of every copied inner face. -/
-theorem faceDegree_eq_source (S : Pairing Delta n)
-    (f : S.closedMap.Face) :
-    S.closedMap.faceDegree f =
-      Delta.toCombMap.faceDegree (S.sourceFace f) := by
-  exact Nat.card_congr (S.faceDartEquiv f)
+  change Nat.card {d : S.closedMap.Dart //
+      S.closedMap.faceOf d = S.closedMap.faceOf representative} =
+    Nat.card {d : Delta.toCombMap.Dart //
+      Delta.toCombMap.faceOf d = Delta.toCombMap.faceOf representative}
+  exact Nat.card_congr E
 
 /-- A seam pairing whose closed map satisfies Euler's planar-sphere
 condition. -/
