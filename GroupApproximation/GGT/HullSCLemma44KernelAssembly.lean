@@ -81,7 +81,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
       (hker : q.ker =
         Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
       (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-        Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+        Nonempty (RelativeDiagramCertificate D W eps mu Z)),
       KernelGeodesicEstimateAt D W eps rho mu hsc q)
     (hloc : ∀ {G : Type u} [Group G]
       {Lambda : Type u} (D : GGT.RelGenSet G Lambda)
@@ -93,7 +93,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
       (hker : q.ker =
         Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
       (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-        Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+        Nonempty (RelativeDiagramCertificate D W eps mu Z)),
       KernelConeLocalFinitenessAt D W eps rho mu hsc q) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
@@ -204,7 +204,8 @@ theorem kernelGeodesicEstimateAt_trivialModel
     exact hlength
   have hi0 : i = 0 := by omega
   subst hi0
-  subst hlen
+  have hwordnil : word = [] := List.length_eq_zero.mp hlen
+  subst word
   simp only [List.take_zero, List.prod_nil, wordDist_self]
 
 /-- If the source is one-point, every kernel-cone relative ball is finite. -/
