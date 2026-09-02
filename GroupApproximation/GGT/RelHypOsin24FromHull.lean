@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.RelHypOsin24SuitabilityGlue
 import GroupApproximation.GGT.RelHypOsin24Action
 import GroupApproximation.GGT.RelHypOsin24ContinuationData
+import GroupApproximation.GGT.RelHypOsin24PairRefinement
 import GroupApproximation.GGT.RelHypOsin24Iteration
 import GroupApproximation.GGT.HullSCAuxiliaryRelatorPublished
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
@@ -301,21 +302,32 @@ theorem osin24HullStep_of_data
       suitable := hHullSuitableMap }
   exact ⟨Q, inferInstance, eta, hquotient, hkernelFinite, ⟨Bnext⟩⟩
 
-/-- A compatible-action producer specializes the reusable Hull-data step to
+/-- A continuation-data producer specializes the reusable Hull-data step to
 the singleton statement used by the general finite induction. -/
+theorem osin24SingletonStep_of_hull_of_compatibleContinuation
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (haction : CompatibleRelativeHullContinuationStatement.{0, 0}) :
+    Osin24SingletonStepStatement := by
+  intro G instG I Hfam hrel H hsuit t
+  letI : Group G := instG
+  obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
+  obtain ⟨Q, instQ, eta, hquotient, hkernel, _hnext⟩ :=
+    osin24HullStep_of_data h44family h49 hyi B t
+  exact ⟨Q, instQ, eta, hquotient, hkernel⟩
+
+/-- A same-alphabet compatible action is a special case of continuation data. -/
 theorem osin24SingletonStep_of_hull_of_compatibleAction
     (h44family :
       HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
     (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
-    Osin24SingletonStepStatement := by
-  intro G instG I Hfam hrel H hsuit t
-  letI : Group G := instG
-  obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
-  obtain ⟨Q, instQ, eta, hquotient, hkernel, _hnext⟩ :=
-    osin24HullStep_of_data h44family h49 hyi B.toContinuation t
-  exact ⟨Q, instQ, eta, hquotient, hkernel⟩
+    Osin24SingletonStepStatement :=
+  osin24SingletonStep_of_hull_of_compatibleContinuation h44family h49 hyi
+    (compatibleRelativeHullContinuationStatement_of_compatibleAction haction)
 
 /-- Finite iteration turns the conditional one-target specialization into the
 full finite-presentation addendum. -/
@@ -328,6 +340,19 @@ theorem osinTheorem24FinitePresentationAddendum_of_hull_of_compatibleAction
     OsinTheorem24FinitePresentationAddendum :=
   osinTheorem24FinitePresentationAddendum_of_singletonStep
     (osin24SingletonStep_of_hull_of_compatibleAction h44family h49 hyi haction)
+
+/-- The complete Osin addendum follows from the three Hull inputs once the
+source hyperbolic pair survives an acylindrical relative refinement. -/
+theorem osinTheorem24FinitePresentationAddendum_of_hull_of_pairRefinement
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (hrefine : HyperbolicPairAcylindricalRefinementStatement.{0, 0}) :
+    OsinTheorem24FinitePresentationAddendum :=
+  osinTheorem24FinitePresentationAddendum_of_singletonStep
+    (osin24SingletonStep_of_hull_of_compatibleContinuation h44family h49 hyi
+      (compatibleRelativeHullContinuationStatement_of_pairRefinement hrefine))
 
 end RelHyp
 end GGT
