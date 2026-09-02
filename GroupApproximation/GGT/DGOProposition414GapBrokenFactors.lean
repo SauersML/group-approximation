@@ -179,7 +179,9 @@ theorem firstBroken_sourceSpan_eq
           (B.firstBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
   let C := B.firstBrokenConnectors s hs
-  have hposLt := B.componentPlacement.first_pos_lt s hsTarget
+  have hposLt : B.componentPlacement.firstPos s < B.firstWord.length := by
+    obtain ⟨t, ht⟩ := B.componentPlacement.first_start s hsTarget
+    exact ht.1.trans_le ht.2.1
   have hsourceEnd := C.source_end_eq
   have hletter :
       B.firstWord[B.componentPlacement.firstPos s]'hposLt =
@@ -220,7 +222,9 @@ theorem secondBroken_sourceSpan_eq
           (B.secondBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
   let C := B.secondBrokenConnectors s hs
-  have hposLt := B.componentPlacement.second_pos_lt s hsTarget
+  have hposLt : B.componentPlacement.secondPos s < B.secondWord.length := by
+    obtain ⟨t, ht⟩ := B.componentPlacement.second_start s hsTarget
+    exact ht.1.trans_le ht.2.1
   have hsourceEnd := C.source_end_eq
   have hword : B.secondWord = B.secondArc ++ B.chord := by
     have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
