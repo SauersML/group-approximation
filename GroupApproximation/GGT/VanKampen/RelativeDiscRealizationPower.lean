@@ -320,8 +320,6 @@ noncomputable def lemma49VKDesignatedBoundaryCycle
     rw [List.head_ofFn
       (List.ofFn_eq_nil_iff.not.mpr (Nat.ne_of_gt Z.cactusShape.boundary_pos))]
     congr 1
-    apply Fin.ext
-    rfl
   traversal_from_base := by
     rfl
   faceWord_eq := by
