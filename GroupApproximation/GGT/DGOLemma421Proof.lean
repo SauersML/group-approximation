@@ -300,11 +300,14 @@ theorem cutWord_isCompStart_cases
   obtain ⟨k, hcomp⟩ := hj
   have hlen : (cutWord word closeLam start m z).length = m + 1 :=
     length_cutWord word closeLam start m z hm
-  have hjle : j ≤ m := by omega
+  have hjCycle : j < (cutWord word closeLam start m z).length :=
+    hcomp.1.trans_le hcomp.2.1
+  have hjle : j ≤ m := by
+    rw [hlen] at hjCycle
+    omega
   rcases eq_or_lt_of_le hjle with rfl | hjlt
   · exact Or.inl rfl
   · apply Or.inr
-    have hjCycle : j < (cutWord word closeLam start m z).length := by omega
     have hcompOf :
         ((cutWord word closeLam start m z)[j]'hjCycle).IsCompOf lam :=
       hcomp.2.2.1 j le_rfl hcomp.1 hjCycle
