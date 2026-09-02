@@ -1,6 +1,5 @@
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealization
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
-import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopy
 
 /-!
 # Embedded-to-relative certificates for Hull Lemma 4.4
@@ -42,6 +41,69 @@ private theorem exists_dartWord_suffix_for_arc
   simp only [Embedded.dartWord, List.map_append, List.map_take,
     List.map_drop]
 
+private theorem dartWord_reverse_alpha_for_arc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, 0} W}
+    (darts : List Delta.toCombMap.Dart) :
+    Embedded.dartWord Delta
+        (darts.reverse.map Delta.toCombMap.alpha) =
+      RelWord.revInv (Embedded.dartWord Delta darts) := by
+  simp only [Embedded.dartWord, List.map_map, List.map_reverse,
+    RelWord.revInv]
+  apply congrArg List.reverse
+  apply List.map_congr_left
+  intro d hd
+  exact Delta.label_alpha d
+
+private theorem arcs_value_of_cycle_value_one
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, 0} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (C : Embedded.Contiguity D eps Delta faces)
+    (hcycle : GGT.RelLetter.listVal
+      (Embedded.dartWord Delta C.boundary.cycle) = 1) :
+    GGT.RelLetter.listVal
+        (Embedded.dartWord Delta C.sourceArc.darts) =
+      GGT.RelLetter.listVal (Embedded.dartWord Delta C.rightSide) *
+        GGT.RelLetter.listVal
+          (Embedded.dartWord Delta
+            (Embedded.targetBoundaryDarts Delta C.target C.targetArc)) *
+        GGT.RelLetter.listVal (Embedded.dartWord Delta C.leftSide) := by
+  rw [C.boundary_decomposition, Embedded.dartWord_append,
+    Embedded.dartWord_append, Embedded.dartWord_append,
+    RelWord.listVal_append, RelWord.listVal_append,
+    RelWord.listVal_append] at hcycle
+  have hreverse :
+      GGT.RelLetter.listVal
+          (Embedded.dartWord Delta C.sourceArc.reverseDarts) =
+        (GGT.RelLetter.listVal
+          (Embedded.dartWord Delta C.sourceArc.darts))⁻¹ := by
+    rw [dartWord_reverse_alpha_for_arc, RelWord.listVal_revInv]
+  rw [hreverse] at hcycle
+  calc
+    GGT.RelLetter.listVal (Embedded.dartWord Delta C.sourceArc.darts) =
+        GGT.RelLetter.listVal (Embedded.dartWord Delta C.sourceArc.darts) * 1 := by
+      group
+    _ = GGT.RelLetter.listVal (Embedded.dartWord Delta C.sourceArc.darts) *
+        ((GGT.RelLetter.listVal
+            (Embedded.dartWord Delta C.sourceArc.darts))⁻¹ *
+          GGT.RelLetter.listVal (Embedded.dartWord Delta C.rightSide) *
+          GGT.RelLetter.listVal
+            (Embedded.dartWord Delta
+              (Embedded.targetBoundaryDarts Delta C.target C.targetArc)) *
+          GGT.RelLetter.listVal
+            (Embedded.dartWord Delta C.leftSide)) := by
+      rw [hcycle]
+    _ = GGT.RelLetter.listVal (Embedded.dartWord Delta C.rightSide) *
+        GGT.RelLetter.listVal
+          (Embedded.dartWord Delta
+            (Embedded.targetBoundaryDarts Delta C.target C.targetArc)) *
+        GGT.RelLetter.listVal (Embedded.dartWord Delta C.leftSide) := by
+      group
+
 /-! ## The missing positioning and typing data -/
 
 /-- A cyclic outer arc is identified with a based subword of the algebraic
@@ -79,7 +141,8 @@ structure EmbeddedBoundaryCertificateData
     (Embedded.dartWord Delta contiguity.region.rightSide)
   rightSide_admissible : RelWord.IsAdmissible D
     (Embedded.dartWord Delta contiguity.region.leftSide)
-  peeling : Embedded.FaceSetBoundaryPeeling contiguity.region.boundary
+  cycle_value_one : GGT.RelLetter.listVal
+    (Embedded.dartWord Delta contiguity.region.boundary.cycle) = 1
 
 /-! ## A positioned outer region gives a based contiguity -/
 
@@ -104,8 +167,8 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
   have hsource : Embedded.dartWord hreal.diagram sourceArc.rotated =
       Embedded.dartWord hreal.diagram sourceArc.darts ++ remainder :=
     Classical.choose_spec (exists_dartWord_suffix_for_arc sourceArc)
-  have hsourceValue := C.region.arcs_value_of_pasting
-    data.peeling.to_homotopy
+  have hsourceValue := arcs_value_of_cycle_value_one C.region
+    data.cycle_value_one
   have htarget : C.region.target = none := C.target_eq
   have htargetBoundary :
       Embedded.targetBoundaryDarts hreal.diagram C.region.target
