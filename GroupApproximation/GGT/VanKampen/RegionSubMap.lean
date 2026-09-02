@@ -100,25 +100,25 @@ theorem not_mem_regionDarts_alpha_of_mem_regionBoundaryDarts
 
 /-- The darts of a region, counted one face at a time. -/
 theorem card_regionDarts_eq_sum (faces : Finset M.Face) :
-    (M.regionDarts faces).card =
-      ∑ f ∈ faces, (Finset.univ.filter fun d => M.faceOf d = f).card := by
+    (M.regionDarts faces).card = ∑ f ∈ faces, (M.regionDarts {f}).card := by
   classical
   rw [Finset.card_eq_sum_card_fiberwise
     (f := fun d => M.faceOf d) (t := faces)
     (fun d hd => (M.mem_regionDarts_iff faces d).1 hd)]
   refine Finset.sum_congr rfl ?_
   intro f hf
-  congr 1
-  ext d
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and,
-    M.mem_regionDarts_iff]
-  constructor
-  · intro h
-    exact h.2
-  · intro h
-    refine ⟨?_, h⟩
-    rw [h]
-    exact hf
+  have hset : (M.regionDarts faces).filter (fun d => M.faceOf d = f)
+      = M.regionDarts {f} := by
+    ext d
+    simp only [Finset.mem_filter, M.mem_regionDarts_iff, Finset.mem_singleton]
+    constructor
+    · intro h
+      exact h.2
+    · intro h
+      refine ⟨?_, h⟩
+      rw [h]
+      exact hf
+  rw [hset]
 
 end CombMap
 
