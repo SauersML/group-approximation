@@ -453,6 +453,14 @@ theorem CyclicArc.cast_length
   cases h
   rfl
 
+/-- Transporting a cyclic arc between equal carriers preserves its dart list. -/
+theorem CyclicArc.cast_darts
+    {Dart : Type v} {first second : List Dart}
+    (h : first = second) (arc : CyclicArc first) :
+    (cast (congrArg CyclicArc h) arc).darts = arc.darts := by
+  cases h
+  rfl
+
 /-- A source incidence has the length of the candidate's source arc. -/
 theorem CellIncidence.source_arc_length
     {G : Type u} [Group G] {Lambda : Type w}
@@ -465,6 +473,21 @@ theorem CellIncidence.source_arc_length
     (source_eq : candidate.contiguity.source = i) :
     (CellIncidence.source candidate mem_selected source_eq).arc.length =
       candidate.contiguity.sourceArc.length := by
+  cases source_eq
+  rfl
+
+/-- A source incidence uses the candidate's source-arc darts. -/
+theorem CellIncidence.source_arc_darts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i) :
+    (CellIncidence.source candidate mem_selected source_eq).arc.darts =
+      candidate.contiguity.sourceArc.darts := by
   cases source_eq
   rfl
 
@@ -486,6 +509,25 @@ theorem CellIncidence.target_arc_length
     rfl
   simp only [CellIncidence.arc]
   exact CyclicArc.cast_length hcarrier candidate.contiguity.targetArc
+
+/-- A target incidence uses the candidate's target-arc darts. -/
+theorem CellIncidence.target_arc_darts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (target_eq : candidate.contiguity.target = some i) :
+    (CellIncidence.target candidate mem_selected target_eq).arc.darts =
+      candidate.contiguity.targetArc.darts := by
+  have hcarrier : targetDarts Delta candidate.contiguity.target =
+      cellDarts Delta i := by
+    rw [target_eq]
+    rfl
+  simp only [CellIncidence.arc]
+  exact CyclicArc.cast_darts hcarrier candidate.contiguity.targetArc
 
 /-- The false tagged endpoint contributes the source-arc length. -/
 theorem taggedToInteriorIncidence_false_arcLength
@@ -602,6 +644,112 @@ theorem sum_canonical_interiorWeight_eq_sum_edgeWeight
   simp only [canonicalDiagramPartition, DiagramBoundaryPartition.kindWeight,
     InteriorEdge.weight]
   exact_mod_cast sum_canonical_interiorLength_eq_sum_weight selected hunique
+
+/-! ## Positioned incidence uniqueness from loop separation -/
+
+/-- No selected cell-to-cell candidate whose target is its source uses the
+same ambient dart in both cell arcs.  This is the local loop-removal conclusion
+of Appendix Lemma 65(a). -/
+def SelfIncidenceSeparated
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) : Prop :=
+  ∀ candidate ∈ selected,
+    candidate.contiguity.target = some candidate.contiguity.source →
+      ∀ d : Delta.toCombMap.Dart,
+        d ∈ candidate.contiguity.sourceArc.darts →
+          d ∈ candidate.contiguity.targetArc.darts → False
+
+/-- The empty family satisfies the loop-separation conclusion. -/
+theorem selfIncidenceSeparated_emptyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
+    SelfIncidenceSeparated (∅ : Finset (Candidate D eps Delta)) := by
+  intro candidate mem_selected
+  simp at mem_selected
+
+/-- Pairwise face-disjointness handles distinct candidates, while loop
+separation handles the source and target occurrences of one candidate.  Thus
+every cell position belongs to at most one selected incidence. -/
+theorem incidencePositionUnique_of_selfIncidenceSeparated
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (hseparated : SelfIncidenceSeparated selected.family) :
+    IncidencePositionUnique selected.family := by
+  intro i position first second hfirst hsecond
+  let d := (cellDarts Delta i).get position
+  cases first with
+  | source first first_mem first_source =>
+      have hfirstArc : d ∈ first.contiguity.sourceArc.darts := by
+        rw [← CellIncidence.source_arc_darts first first_mem first_source]
+        exact hfirst
+      cases second with
+      | source second second_mem second_source =>
+          by_cases heq : first = second
+          · apply CellIncidence.code_injective
+            simp only [CellIncidence.code, heq]
+          · have hcompatible := selected.pairwise first first_mem second
+              second_mem heq
+            have hsecondArc : d ∈ second.contiguity.sourceArc.darts := by
+              rw [← CellIncidence.source_arc_darts second second_mem second_source]
+              exact hsecond
+            exact (sourceArc_disjoint_of_compatible hcompatible d hfirstArc
+              hsecondArc).elim
+      | target second second_mem second_target =>
+          have hsecondArc : d ∈ second.contiguity.targetArc.darts := by
+            rw [← CellIncidence.target_arc_darts second second_mem second_target]
+            exact hsecond
+          by_cases heq : first = second
+          · subst second
+            have hloop : first.contiguity.target =
+                some first.contiguity.source := by
+              rw [first_source]
+              exact second_target
+            exact (hseparated first first_mem hloop d hfirstArc hsecondArc).elim
+          · have hcompatible := selected.pairwise first first_mem second
+              second_mem heq
+            exact (sourceTargetArc_disjoint_of_compatible hcompatible i
+              second_target d hfirstArc hsecondArc).elim
+  | target first first_mem first_target =>
+      have hfirstArc : d ∈ first.contiguity.targetArc.darts := by
+        rw [← CellIncidence.target_arc_darts first first_mem first_target]
+        exact hfirst
+      cases second with
+      | source second second_mem second_source =>
+          have hsecondArc : d ∈ second.contiguity.sourceArc.darts := by
+            rw [← CellIncidence.source_arc_darts second second_mem second_source]
+            exact hsecond
+          by_cases heq : first = second
+          · subst second
+            have hloop : first.contiguity.target =
+                some first.contiguity.source := by
+              rw [second_source]
+              exact first_target
+            exact (hseparated first first_mem hloop d hsecondArc hfirstArc).elim
+          · have hcompatible := selected.pairwise second second_mem first
+              first_mem heq.symm
+            exact (sourceTargetArc_disjoint_of_compatible hcompatible i
+              first_target d hsecondArc hfirstArc).elim
+      | target second second_mem second_target =>
+          by_cases heq : first = second
+          · apply CellIncidence.code_injective
+            simp only [CellIncidence.code, heq]
+          · have hcompatible := selected.pairwise first first_mem second
+              second_mem heq
+            have hsecondArc : d ∈ second.contiguity.targetArc.darts := by
+              rw [← CellIncidence.target_arc_darts second second_mem second_target]
+              exact hsecond
+            exact (targetArc_disjoint_of_compatible hcompatible i i first_target
+              second_target d hfirstArc hsecondArc).elim
 
 /-! ## Exterior regions -/
 
