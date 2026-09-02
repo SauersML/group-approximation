@@ -439,7 +439,7 @@ theorem quotientPeripheralPreservation_of_prefixIsoperimetricControl
     embedded := C.embedded D.embedded
     injOn_peripheralUnion := hinj }⟩
   · intro a ha
-    exact D.rel.map_mem_prefixQuotient_base W hsc q hq (D.base_le ha)
+    exact D.rel.map_mem_prefixQuotient_base W hsc q hq ha
   · intro i
     rw [GGT.RelGenSet.fam_prefixQuotient, D.fam_eq i]
 
