@@ -101,12 +101,14 @@ def cactusCellIndexEquiv
     Fin Z.cells.length ≃ Fin Z.cactusDiscDiagram.rCellCount where
   toFun i := ⟨i, by
     change i.val < Z.cactusRelatorCells.length
-    rw [cactusRelatorCells, List.length_ofFn]
+    rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
+      List.length_ofFn]
     exact i.isLt⟩
   invFun j := ⟨j, by
-    change j.val < Z.cactusRelatorCells.length at j
-    rw [cactusRelatorCells, List.length_ofFn] at j
-    exact j.isLt⟩
+    have hj : j.val < Z.cactusRelatorCells.length := j.isLt
+    rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
+      List.length_ofFn] at hj
+    exact hj⟩
   left_inv i := by apply Fin.ext; rfl
   right_inv j := by apply Fin.ext; rfl
 
@@ -121,7 +123,8 @@ theorem cactusCellIndexEquiv_word
     (Z.cactusDiscDiagram.relatorCells.get
       (Z.cactusCellIndexEquiv i)).word = (Z.cells.get i).relator := by
   change (Z.cactusRelatorCells.get (Z.cactusCellIndexEquiv i)).word = _
-  rw [cactusRelatorCells, List.get_ofFn]
+  rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
+    List.get_ofFn]
   change (Z.cellAt _).relator = (Z.cellAt i).relator
   apply congrArg HullSC.Lemma44OrientedRelatorCell.relator
   apply congrArg Z.cellAt
