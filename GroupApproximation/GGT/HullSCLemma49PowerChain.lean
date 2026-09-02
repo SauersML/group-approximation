@@ -199,16 +199,34 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
           (i + (t + a) * blockLength) = (b - a) * blockLength := by
         rw [Nat.add_sub_add_left, Nat.add_mul, Nat.add_mul,
           Nat.add_sub_add_left, Nat.sub_mul]
-      apply wordDist_powerVertices_eq_of_sub_le_period D N hshort hword
-        hn hwordNe hleft hright
-      rw [hsub]
-      exact le_trans (Nat.mul_le_mul_right blockLength (by omega : b - a ≤ 2))
-        htwoBlocks
+      have hperiodBound : i + (t + b) * blockLength -
+          (i + (t + a) * blockLength) ≤ word.length := by
+        rw [hsub]
+        exact le_trans
+          (Nat.mul_le_mul_right blockLength (by omega : b - a ≤ 2))
+          htwoBlocks
+      have hdist := wordDist_powerVertices_eq_of_sub_le_period D N hshort
+        hword hn hwordNe hleft hright hperiodBound
+      rw [hsub] at hdist
+      exact hdist
     have h01 := hindex 0 1 (by omega) (by omega)
     have h12 := hindex 1 2 (by omega) (by omega)
     have h02 := hindex 0 2 (by omega) (by omega)
+    norm_num at h01 h12 h02
+    have h21 : wordDist D.alphabet.carrier
+        (GGT.OsinComponents.vertex 1 power (i + (t + 2) * blockLength))
+        (GGT.OsinComponents.vertex 1 power (i + (t + 1) * blockLength)) =
+        blockLength := by
+      calc
+        _ = wordDist D.alphabet.carrier
+            (GGT.OsinComponents.vertex 1 power
+              (i + (t + 1) * blockLength))
+            (GGT.OsinComponents.vertex 1 power
+              (i + (t + 2) * blockLength)) :=
+          wordDist_comm D.alphabet.symmetricGenerating _ _
+        _ = blockLength := h12
     simp only [gromovProduct, y, Cayley.dist_eq, Cayley.val_of]
-    rw [h01, h12, h02]
+    rw [h01, h21, h02]
     norm_num
   have hprogressReal :=
     (finite_chain_backtracking_and_progress hhyperbolic
