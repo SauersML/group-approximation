@@ -959,6 +959,7 @@ theorem nonempty_powerDiscCandidate_of_literalFilling
     boundary_eq := hboundary
     relatorOnly := hrelatorOnly }⟩
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The exact-boundary cactus retyping bridge.  Once the free-group-trivial
 complementary cell has been removed, the resulting diagram has the literal
 power boundary and the relator-only field required by the power-disc
@@ -968,20 +969,23 @@ theorem nonempty_powerDiscCandidate_of_cactusRetyping
     (hword : PresentedGroup.mk
         (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
         (PresentedGroupRelatorReplay.word word) = g)
-    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1)
+    (_hn : 0 < n) (_hpow : g ^ n = 1) (_hne : g ≠ 1)
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (C : VanKampen.CactusRelatorRetyping Delta)
     (hboundary : C.diagram.boundaryWord =
       (List.replicate n (word.map signedFreeRelLetter)).flatten) :
     Nonempty (PowerDiscCandidate T g n) := by
-  have hrelatorOnly : RelatorOnly T C.diagram where
-    cell := C.relatorOnly.cell
-  exact ⟨{
-    word := word
-    represents := hword
-    diagram := C.diagram
-    boundary_eq := hboundary
-    relatorOnly := hrelatorOnly }⟩
+  have hrelatorOnly : RelatorOnly T C.diagram := by
+    constructor
+    intro f hf
+    exact C.relatorOnly.cell f hf
+  let candidate : PowerDiscCandidate T g n :=
+    { word := word
+      represents := hword
+      diagram := C.diagram
+      boundary_eq := hboundary
+      relatorOnly := hrelatorOnly }
+  exact ⟨candidate⟩
 
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
@@ -1059,6 +1063,7 @@ structure PowerDiscMirrorPairCut (D : PowerDiscCandidate T g n) where
   boundaryWord_eq : result.diagram.boundaryWord = D.diagram.boundaryWord
   area_eq : result.diagram.rCellCount + 2 = D.diagram.rCellCount
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A supplied mirror-pair cut proves the cancellation premise by arithmetic. -/
 theorem cancellationReducesArea_of_mirrorPairCut
     (D : PowerDiscCandidate T g n)
@@ -1073,12 +1078,12 @@ theorem cancellationReducesArea_of_mirrorPairCut
       PowerDiscMirrorPairCut D) :
     CancellationReducesArea D := by
   intro pre between suf C₁ C₂ hsplit hcancel
-  obtain ⟨cut, _hboundary, harea⟩ := cut pre between suf C₁ C₂ hsplit hcancel
-  refine ⟨cut.result, ?_⟩
+  obtain ⟨result, _hboundary, harea⟩ :=
+    cut pre between suf C₁ C₂ hsplit hcancel
+  refine ⟨result, ?_⟩
   have harea' := harea
   omega
 
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Least area gives diagram reducedness exactly when cancelling pairs admit
 the area-decreasing surgery above. -/
