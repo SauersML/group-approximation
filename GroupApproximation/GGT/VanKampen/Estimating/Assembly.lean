@@ -79,8 +79,8 @@ structure EstimatingGraphData
         (selected := scaffold.selected.family))
   selfIncidenceSeparated :
     Embedded.SelfIncidenceSeparated scaffold.selected.family
-  exteriorRegionsUnique :
-    Embedded.ExteriorRegionsUnique scaffold.selected.family
+  exteriorMergeAvailable :
+    Embedded.ExteriorMergeAvailable scaffold.selected.family
 
 /-- The G-cell boundary equation and reducedness exclusion needed to apply
 Lemma O52 to every selected cell-to-cell region. -/
@@ -176,7 +176,9 @@ noncomputable def ofScaffold
   partition := scaffold.partition
   outer := Embedded.selectedOuter scaffold.selected.family
   outerWeight_eq := Embedded.selectedOuter_weight_eq_canonicalExterior
-    scaffold.selected graph.selfIncidenceSeparated graph.exteriorRegionsUnique
+    scaffold.selected graph.selfIncidenceSeparated
+      (Embedded.exteriorRegionsUnique_of_mergeAvailable scaffold.selected
+        graph.exteriorMergeAvailable)
   InteriorEdge := Embedded.InteriorEdge scaffold.selected.family
   interiorEdgeFintype := inferInstance
   interiorEdgeDecidableEq := inferInstance
