@@ -594,5 +594,49 @@ def OriginalRelatorRespellingStatement : Prop :=
             RelWord.IsLemma44Input selected.rel W eps mu rho →
               RelatorRespellingAt original W eps0 rho0 mu
 
+/-- **Both re-spellings, from the original half alone.**
+
+This is `HullRelatorRespellingStatement`'s conclusion with the joint half
+discharged, so the only input left is the original one.  The two source
+thresholds are merged by parameter monotonicity, exactly as the family form
+merges its own.  Adopting it needs three structural hypotheses on the joint
+family and one side condition on the relators, both listed in the section
+above; they are what the joint-family selection input has to supply. -/
+theorem relatorRespellings_of_original
+    (horiginalRespelling : OriginalRelatorRespellingStatement.{u, w})
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k)))
+    (horiginalEmbedded : original.IsHyperbolicallyEmbedded)
+    (hA : original.alphabet.carrier ⊆ A.alphabet.carrier)
+    (hbaseSub : joint.base ⊆ selected.rel.base)
+    (hfamInl : ∀ (lam : Lambda) (x : G),
+      x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base)
+    (hfamInr : ∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.rel.fam i)
+    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000) (eps0 rho0 : ℕ) :
+    ∃ eps rho : ℕ,
+      ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
+        (∀ v ∈ W, ∀ x : G, GGT.RelLetter.base x ∈ v → x ∈ joint.base) →
+        RelWord.IsLemma44Input selected.rel W eps mu rho →
+          RelatorRespellingAt original W eps0 rho0 mu ∧
+            RelatorRespellingAt joint W eps0 rho0 mu := by
+  obtain ⟨epsO, rhoO, hO⟩ :=
+    horiginalRespelling selected original horiginalEmbedded hA mu hmu hmuUpper
+      eps0 rho0
+  obtain ⟨epsJ, rhoJ, hJ⟩ :=
+    jointRelatorRespellingStatement_proved selected joint hbaseSub hfamInl
+      hfamInr halphabet mu eps0 rho0
+  refine ⟨max epsO epsJ, max rhoO rhoJ, ?_⟩
+  intro W hWbase hsc
+  refine ⟨hO W ?_, hJ W hWbase ?_⟩
+  · exact hsc.mono_parameters (Nat.le_max_left _ _) le_rfl
+      (Nat.le_max_left _ _)
+  · exact hsc.mono_parameters (Nat.le_max_right _ _) le_rfl
+      (Nat.le_max_right _ _)
+
 end HullSC
 end GroupApproximation
