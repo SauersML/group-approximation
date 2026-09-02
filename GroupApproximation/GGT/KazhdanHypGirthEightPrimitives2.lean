@@ -149,6 +149,8 @@ noncomputable def localData_of_cellularReduced
       (certificate v hv) (cellularReduced v hv)
   boundaryVertexDegree := hboundary
 
+end Table
+
 /-! ## Cayley labels from path integration -/
 
 /-- A directed edge path in the one-skeleton of a combinatorial map. -/
@@ -201,6 +203,12 @@ structure RootedPathSystem (M : VanKampen.CombMap.{u}) where
   /-- Chosen path from the base to a vertex. -/
   pathTo : ∀ v, DartPath M root v
 
+section Cayley
+
+variable {Generator TriangleIndex : Type}
+  [DecidableEq Generator] [Fintype TriangleIndex]
+  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+
 /-- Evaluate a diagram path in its triangularly presented Cayley group. -/
 def cayleyPathValue
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
@@ -208,7 +216,6 @@ def cayleyPathValue
     TriangularHodgeLayer.Presented T :=
   (p.darts.map fun d ↦ presentedLetterValue T (Delta.label d)).prod
 
-@[simp]
 theorem cayleyPathValue_append
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     {x y z : Delta.toCombMap.Vertex}
@@ -217,7 +224,6 @@ theorem cayleyPathValue_append
       cayleyPathValue Delta p * cayleyPathValue Delta q := by
   simp [cayleyPathValue, List.map_append, List.prod_append]
 
-@[simp]
 theorem cayleyPathValue_single
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (d : Delta.toCombMap.Dart) :
@@ -256,13 +262,189 @@ noncomputable def cayleyVertexLabelling_of_pathIntegral
       _ = cayleyPathValue Delta
             (R.pathTo (Delta.toCombMap.vertexOf d)) *
           presentedLetterValue T (Delta.label d) := by
-        simp [extended]
+        change cayleyPathValue Delta
+          ((R.pathTo (Delta.toCombMap.vertexOf d)).append
+            (DartPath.single d)) = _
+        rw [cayleyPathValue_append, cayleyPathValue_single]
 
 /-- The one-triangle model has a genuine one-edge path whose dart list is the
 chosen dart. -/
 theorem oneTriangle_single_path_darts (d : VanKampen.OneTriangleDart) :
     (DartPath.single (M := VanKampen.oneTriangleCombMap) d).darts = [d] :=
   rfl
+
+end Cayley
+
+/-! ## The four successive-star inequalities -/
+
+section Table
+
+variable {Generator TriangleIndex : Type}
+  [Fintype Generator] [DecidableEq Generator]
+  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- If the truncated boundary is a concatenation of six pieces of length at
+most `scale`, its total combinatorial length is at most `6 * scale`.  This is
+the first inequality consumed by
+`GirthEightSlim.girthEight_layer_depth_bound`. -/
+theorem boundaryLength_le_six_mul_of_six_pieces
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (scale : ℕ) (a b c d e f : List Delta.toCombMap.Dart)
+    (hsplit : (Delta.faceBoundary Delta.outerFace).darts =
+      a ++ b ++ c ++ d ++ e ++ f)
+    (ha : a.length ≤ scale) (hb : b.length ≤ scale)
+    (hc : c.length ≤ scale) (hd : d.length ≤ scale)
+    (he : e.length ≤ scale) (hf : f.length ≤ scale) :
+    Delta.combinatorialBoundaryLength ≤ 6 * scale := by
+  calc
+    Delta.combinatorialBoundaryLength =
+        (Delta.faceBoundary Delta.outerFace).darts.length :=
+      (Delta.faceBoundary Delta.outerFace).length_eq_degree.symm
+    _ = (a ++ b ++ c ++ d ++ e ++ f).length := congrArg List.length hsplit
+    _ ≤ 6 * scale := by
+      simp only [List.length_append]
+      omega
+
+/-- Actual face-star layers are pairwise disjoint; if the selected layers are
+inner faces, their total cardinality is at most `innerFaceCount`.  This proves
+the second inequality consumed by `girthEight_layer_depth_bound`. -/
+theorem boundaryFaceStarLayer_sum_le_innerFaceCount
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth : ℕ)
+    (hinner : ∀ i : Fin depth,
+      GirthEightPrimitives.boundaryFaceStarLayer Delta P i ⊆
+        Delta.innerFaces) :
+    (∑ i : Fin depth,
+      (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card) ≤
+        Delta.innerFaceCount := by
+  classical
+  let M := Delta.toCombMap
+  let seed := GirthEightPrimitives.boundaryFaceSeed Delta P
+  have hballMono : ∀ {i j : ℕ}, i ≤ j →
+      M.faceStarBall seed i ⊆ M.faceStarBall seed j := by
+    intro i j hij
+    induction j, hij using Nat.le_induction with
+    | base => exact fun _ h ↦ h
+    | succ j _ ih => exact ih.trans (M.faceStarBall_mono_succ seed j)
+  have hlayerSubset : ∀ n : ℕ,
+      M.faceStarLayer seed n ⊆ M.faceStarBall seed n := by
+    intro n
+    by_cases hn : n = 0
+    · subst n
+      simp [VanKampen.CombMap.faceStarLayer]
+    · rw [VanKampen.CombMap.faceStarLayer, if_neg hn]
+      exact Finset.sdiff_subset
+  have hlayerDisjoint : ∀ {i j : ℕ}, i ≠ j →
+      Disjoint (M.faceStarLayer seed i) (M.faceStarLayer seed j) := by
+    intro i j hij
+    wlog hlt : i < j generalizing i j with H
+    · exact (H hij.symm (by omega)).symm
+    have hjpos : j ≠ 0 := by omega
+    rw [Finset.disjoint_left]
+    intro f hfi hfj
+    have hfiBall : f ∈ M.faceStarBall seed i := hlayerSubset i hfi
+    have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
+      hballMono (by omega) hfiBall
+    rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
+    exact hfj.2 hfpred
+  have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
+      (fun i ↦ M.faceStarLayer seed i) := by
+    intro i _hi j _hj hij
+    exact hlayerDisjoint (by
+      intro hval
+      apply hij
+      exact Fin.ext hval)
+  change (∑ i : Fin depth, (M.faceStarLayer seed i).card) ≤ Delta.innerFaces.card
+  rw [← Finset.card_biUnion hpairwise]
+  apply Finset.card_le_card
+  intro f hf
+  obtain ⟨i, _hi, hfi⟩ := Finset.mem_biUnion.mp hf
+  exact hinner i hfi
+
+/-- The genuinely geometric local estimate for a star layer: after losing the
+two endpoint neighborhoods, its triangular faces cover the surviving window.
+It is deliberately separate from disjointness, which is proved above. -/
+abbrev LayerCoversWindow
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) : Prop :=
+  ∀ i : Fin depth, scale - loss ≤ perimeter *
+    (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- The third layer inequality is exactly the per-layer geometric covering
+estimate, with the actual star-layer cardinality exposed. -/
+theorem boundaryFaceStarLayer_covers
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (hcover : LayerCoversWindow Delta P depth scale loss perimeter) :
+    ∀ i : Fin depth, scale - loss ≤ perimeter *
+      (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card :=
+  hcover
+
+/-- When the surviving window has positive length, there is an arithmetic
+depth strictly beyond the curvature bound.  Geometry must show that the star
+construction remains disjoint and covering up to this depth.  This is the
+fourth inequality in the slimness consumer. -/
+theorem exists_depth_too_large
+    (scale loss perimeter : ℕ) (hloss : loss < scale) :
+    ∃ depth : ℕ,
+      18 * perimeter * scale < depth * (scale - loss) := by
+  refine ⟨18 * perimeter * scale + 1, ?_⟩
+  have hpos : 1 ≤ scale - loss := by omega
+  calc
+    18 * perimeter * scale < 18 * perimeter * scale + 1 := by omega
+    _ ≤ (18 * perimeter * scale + 1) * (scale - loss) := by
+      simpa only [mul_one] using
+        Nat.mul_le_mul_left (18 * perimeter * scale + 1) hpos
+
+/-- Package the four proved/named estimates into the exact layer record used
+by `GirthEightDiagramPrimitives.isHyperbolicGroup`. -/
+noncomputable def successiveStarLayers_of_geometricData
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (L : TriangularDiagramLocalData T Delta)
+    (cayley : CayleyVertexLabelling T Delta) (side : BoundarySubpath T Delta)
+    (depth scale loss perimeter : ℕ)
+    (hboundary : Delta.combinatorialBoundaryLength ≤ 6 * scale)
+    (hinner : ∀ i : Fin depth,
+      GirthEightPrimitives.boundaryFaceStarLayer Delta side i ⊆
+        Delta.innerFaces)
+    (hcover : LayerCoversWindow Delta side depth scale loss perimeter)
+    (hdepth : 18 * perimeter * scale < depth * (scale - loss)) :
+    SuccessiveStarLayers T where
+  diagram := Delta
+  localData := L
+  cayley := cayley
+  side := side
+  depth := depth
+  scale := scale
+  loss := loss
+  perimeter := perimeter
+  layer i := (GirthEightPrimitives.boundaryFaceStarLayer Delta side i).card
+  boundary_bound := hboundary
+  layer_disjoint := boundaryFaceStarLayer_sum_le_innerFaceCount
+    Delta side depth hinner
+  layer_covers := hcover
+  depth_too_large := hdepth
+
+/-- The zero-th star layer of the one-triangle model, seeded by all faces, is
+nonempty.  Thus the covering inequality has a nonvacuous finite model. -/
+theorem oneTriangle_zeroLayer_nonempty :
+    (VanKampen.oneTriangleCombMap.faceStarLayer
+      (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0).Nonempty := by
+  classical
+  rw [VanKampen.CombMap.faceStarLayer, if_pos rfl]
+  exact ⟨VanKampen.oneTriangleCombMap.faceOf (0, false), Finset.mem_univ _⟩
+
+/-- With unit scale and perimeter, that nonempty zero-th layer satisfies the
+model covering inequality. -/
+theorem oneTriangle_zeroLayer_unit_cover :
+    1 ≤ (VanKampen.oneTriangleCombMap.faceStarLayer
+      (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0).card :=
+  Finset.card_pos.mpr oneTriangle_zeroLayer_nonempty
 
 end Table
 
