@@ -298,17 +298,20 @@ theorem innerFace_presentedValue_eq_one
       presentedLetterValue T d).prod = 1 := by
   obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
   rw [hj, triangleRelatorWord, List.map_map]
+  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty →
+      TriangularHodgeLayer.Presented T :=
+    presentedLetterValue (Generator := Generator) T
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
-    presentedLetterValue T (signedFreeRelLetter u)).prod = 1
+    eval (signedFreeRelLetter (Generator := Generator) u)).prod = 1
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
-      presentedLetterValue (Generator := Generator) T
+      eval
         (signedFreeRelLetter (Generator := Generator) u) =
         FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
     intro u
-    exact presentedLetterValue_signedFreeRelLetter (T := T) u
+    simpa [eval] using
+      (presentedLetterValue_signedFreeRelLetter (T := T) u)
   have hmap : (TriangularHodgeLayer.letters (T j)).map
-      (fun u ↦ presentedLetterValue (Generator := Generator) T
-        (signedFreeRelLetter (Generator := Generator) u)) =
+      (fun u ↦ eval (signedFreeRelLetter (Generator := Generator) u)) =
       (TriangularHodgeLayer.letters (T j)).map
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
@@ -542,6 +545,8 @@ noncomputable def innerBoundaryFaceStarLayer
     classical
     exact boundaryFaceStarLayer Delta P i ∩ Delta.innerFaces
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Inner face-star layers are pairwise disjoint, so their total cardinality
 is at most `innerFaceCount`.  This proves the second inequality consumed by
 `girthEight_layer_depth_bound`. -/
@@ -623,11 +628,11 @@ structure CenteredWindowFirstLayerIncidence
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) where
   /-- Occurrence of each surviving position in the centered boundary path. -/
-  position : ∀ i : Fin depth, Fin (scale - loss) → Fin P.darts.length
+  position : ∀ _i : Fin depth, Fin (scale - loss) → Fin P.darts.length
   /-- Different surviving positions have different path occurrences. -/
   position_injective : ∀ (i : Fin depth), Function.Injective (position i)
   /-- First inner star-layer face met by the position. -/
-  face : ∀ i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
+  face : ∀ _i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
   /-- The selected face belongs to the required inner layer. -/
   face_mem : ∀ (i : Fin depth) q,
     face i q ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ)
@@ -711,16 +716,20 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
+  unfold firstLayerIncidenceSlot at hslot
+  rw [hface] at hslot
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
-    Fin.castLE_injective _ (by
-      simpa [firstLayerIncidenceSlot, hface] using hslot)
+    by
+      apply Fin.ext
+      exact congrArg Fin.val hslot
+  have hgety := firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y
+  rw [hface] at hgety
   have hdart : P.darts.get (C.position i x) =
       P.darts.get (C.position i y) := by
     rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
-      ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
-      hindex]
+      ← hgety, hindex]
   exact C.position_injective i
     ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
 
@@ -1006,6 +1015,7 @@ abbrev CancellationReducesArea (D : PowerDiscCandidate T g n) : Prop :=
     ∃ D' : PowerDiscCandidate T g n,
       D'.diagram.rCellCount < D.diagram.rCellCount
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Least area gives diagram reducedness exactly when cancelling pairs admit
 the area-decreasing surgery above. -/
