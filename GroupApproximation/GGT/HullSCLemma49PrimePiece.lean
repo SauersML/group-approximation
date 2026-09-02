@@ -76,8 +76,11 @@ theorem Lemma49RepeatedBoundaryBlocks.first_powerArc_span
     (C.powerArcVertex 0)⁻¹ * C.powerArcVertex B.block.length =
       GGT.RelLetter.listVal B.block := by
   have htake : C.boundaryArc.take B.block.length = B.block := by
-    rw [B.decomposition]
-    exact List.take_left
+    calc
+      C.boundaryArc.take B.block.length =
+          (B.block ++ B.middle ++ B.block ++ B.tail).take B.block.length :=
+        congrArg (List.take B.block.length) B.decomposition
+      _ = B.block := List.take_left
   simp only [Lemma49RelativeGreendlingerCell.powerArcVertex, List.take_zero,
     GGT.RelLetter.listVal_nil, mul_one, htake]
   group
@@ -97,20 +100,34 @@ theorem Lemma49RepeatedBoundaryBlocks.second_powerArc_span
       GGT.RelLetter.listVal B.block := by
   have htake₂ : C.boundaryArc.take (B.block.length + B.middle.length) =
       B.block ++ B.middle := by
-    rw [B.decomposition]
-    simpa only [List.length_append, List.append_assoc] using
-      (List.take_left :
-        ((B.block ++ B.middle) ++ (B.block ++ B.tail)).take
-            (B.block ++ B.middle).length = B.block ++ B.middle)
+    calc
+      C.boundaryArc.take (B.block.length + B.middle.length) =
+          (B.block ++ B.middle ++ B.block ++ B.tail).take
+            (B.block.length + B.middle.length) :=
+        congrArg (List.take (B.block.length + B.middle.length))
+          B.decomposition
+      _ = B.block ++ B.middle := by
+        simpa only [List.length_append, List.append_assoc] using
+          (List.take_left :
+            ((B.block ++ B.middle) ++ (B.block ++ B.tail)).take
+                (B.block ++ B.middle).length = B.block ++ B.middle)
   have htake₃ : C.boundaryArc.take
       (B.block.length + B.middle.length + B.block.length) =
       B.block ++ B.middle ++ B.block := by
-    rw [B.decomposition]
-    simpa only [List.length_append, List.append_assoc] using
-      (List.take_left :
-        ((B.block ++ B.middle ++ B.block) ++ B.tail).take
-            (B.block ++ B.middle ++ B.block).length =
-          B.block ++ B.middle ++ B.block)
+    calc
+      C.boundaryArc.take
+          (B.block.length + B.middle.length + B.block.length) =
+          (B.block ++ B.middle ++ B.block ++ B.tail).take
+            (B.block.length + B.middle.length + B.block.length) :=
+        congrArg
+          (List.take (B.block.length + B.middle.length + B.block.length))
+          B.decomposition
+      _ = B.block ++ B.middle ++ B.block := by
+        simpa only [List.length_append, List.append_assoc] using
+          (List.take_left :
+            ((B.block ++ B.middle ++ B.block) ++ B.tail).take
+                (B.block ++ B.middle ++ B.block).length =
+              B.block ++ B.middle ++ B.block)
   simp only [Lemma49RelativeGreendlingerCell.powerArcVertex, htake₂, htake₃,
     RelWord.listVal_append]
   group
@@ -171,11 +188,19 @@ theorem Lemma49RelativeGreendlingerCell.listVal_relatorInterval
       (C.exteriorVertex i)⁻¹ * C.exteriorVertex j := by
   have hi : i ≤ C.contiguity.exterior.length := le_trans hij hj
   have hiTake : C.relator.take i = C.contiguity.exterior.take i := by
-    rw [C.contiguity.relator_decomposition,
-      List.take_append_of_le_length hi]
+    calc
+      C.relator.take i =
+          (C.contiguity.exterior ++ C.contiguity.remainder).take i :=
+        congrArg (List.take i) C.contiguity.relator_decomposition
+      _ = C.contiguity.exterior.take i := by
+        rw [List.take_append_of_le_length hi]
   have hjTake : C.relator.take j = C.contiguity.exterior.take j := by
-    rw [C.contiguity.relator_decomposition,
-      List.take_append_of_le_length hj]
+    calc
+      C.relator.take j =
+          (C.contiguity.exterior ++ C.contiguity.remainder).take j :=
+        congrArg (List.take j) C.contiguity.relator_decomposition
+      _ = C.contiguity.exterior.take j := by
+        rw [List.take_append_of_le_length hj]
   have hspan := GGT.OsinComponents.listVal_segment C.relator 1 hij
   rw [
     GGT.OsinComponents.vertex_eq_mul_listVal_take,
@@ -230,9 +255,15 @@ theorem Lemma49ContiguityShadow.indexSpan_lower
       2 * K +
         (max (Sh.index x) (Sh.index y) - min (Sh.index x) (Sh.index y)) := by
     omega
+  have hdistUpperReal :
+      (wordDist D.alphabet.carrier
+        (C.powerArcVertex x) (C.powerArcVertex y) : ℝ) ≤
+        2 * (K : ℝ) +
+          (max (Sh.index x) (Sh.index y) - min (Sh.index x) (Sh.index y) : ℕ) := by
+    exact_mod_cast hdistUpper
   have hpowLower := (hPow x y hxy hy).1
   push_cast
-  linarith
+  linarith [hdistUpperReal]
 
 /-- Every shadow interval corresponding to one repeated block is longer than
 `1/100000` of the selected relator. -/
