@@ -204,7 +204,7 @@ noncomputable def CactusFoldChain.toRetyping
     (chain : CactusFoldChain Delta Next k)
     (hplanar : Delta.toCombMap.IsPlanar)
     (hred : Delta.Reduced) : CactusRelatorRetyping Delta := by
-  induction chain with
+  induction chain generalizing hplanar hred with
   | done cover =>
       exact {
         diagram := Delta
@@ -228,7 +228,7 @@ noncomputable def CactusFoldChain.toRetyping
         rCellCount_le := ?_
         reduced := R.reduced
         planar := R.planar }
-      exact R.rCellCount_le.trans_eq C.replacement.rCellCount_eq.symm
+      exact R.rCellCount_le.trans_eq C.replacement.rCellCount_eq
 
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
