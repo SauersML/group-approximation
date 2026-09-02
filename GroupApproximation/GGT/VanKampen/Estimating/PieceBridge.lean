@@ -290,11 +290,12 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   refine ⟨suffix, ?_⟩
   unfold Contiguity.targetInverseCarrier
   unfold targetBoundaryDarts
-  split <;> simp_all [CyclicArc.reversePrefixTarget,
-    CyclicArc.reverseDartsWord] <;> subst_vars
-  all_goals
-    exact congrArg (fun arc => dartWord Delta arc.reverseDarts)
-      (eq_of_heq (by assumption))
+  split
+  · simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord]
+  · rename_i targetOpt arcNone val arc htargetEq heqArc
+    have harc : Gamma.targetArc = arc := eq_of_heq heqArc
+    simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord,
+      harc]
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
