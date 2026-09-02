@@ -213,6 +213,52 @@ noncomputable def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
 
 end ExposedPairing
 
+namespace ExposedPairing
+
+variable {Delta : DiscDiagram.{u, w, v} W} {n : ℕ}
+
+/-- Pair exposed boundary occurrences by a fixed-point-free involution on the
+copy index.  The indexing equivalence is the landed boundary-order
+bookkeeping; no presentation-specific relator data enters this constructor. -/
+noncomputable def of_copyMate
+    {I : Type v} (index : ExposedCopiedDart Delta n ≃ Fin n × I)
+    (copyMate : Perm (Fin n))
+    (hinvol : Function.Involutive copyMate)
+    (hfree : ∀ i, copyMate i ≠ i) : ExposedPairing Delta n where
+  mate := {
+    toFun := fun d => index.symm (copyMate (index d).1, (index d).2)
+    invFun := fun d => index.symm (copyMate (index d).1, (index d).2)
+    left_inv := by
+      intro d
+      apply index.injective
+      apply Prod.ext
+      · exact hinvol (index d).1
+      · rfl
+    right_inv := by
+      intro d
+      apply index.injective
+      apply Prod.ext
+      · exact hinvol (index d).1
+      · rfl }
+  involutive := by
+    intro d
+    apply index.injective
+    apply Prod.ext
+    · exact hinvol (index d).1
+    · rfl
+  fixedPointFree := by
+    intro d hd
+    apply hfree (index d).1
+    have h := congrArg index hd
+    exact congrArg Prod.fst h
+  changes_copy := by
+    intro d hd
+    apply hfree (index d).1
+    change copyMate (index d).1 = (index d).1 at hd
+    exact hd
+
+end ExposedPairing
+
 namespace Pairing
 
 variable {Delta : DiscDiagram.{u, w, v} W} {n : ℕ}
