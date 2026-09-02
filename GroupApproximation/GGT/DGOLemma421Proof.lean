@@ -2391,8 +2391,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                 exact (htargetSpec i).2.1
               · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
                 refine ⟨hh, hmem, ?_⟩
-                rw [hidx, hrczero, Nat.sub_self,
+                rw [hidx,
                   vertex_fourGon_opposite_closed pc P rc Q hclose Q.length] at heq
+                rw [hrczero, Nat.sub_self] at heq
                 exact heq
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
