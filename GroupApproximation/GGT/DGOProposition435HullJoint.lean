@@ -69,6 +69,49 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
     fun _ => rfl, fun i => selected.fam_eq i,
     h435 original selected.rel hbase horig selected.embedded⟩
 
+/-- **The joint-family selection input, from the auxiliary-alphabet form.**
+
+The same conclusion from the form whose joint alphabet is the auxiliary
+alphabet.  The base-symmetry clause comes from
+`AuxiliaryPeripheralFamily.base_inv`. -/
+theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Full
+    (h435 : GGT.RelHyp.DGOProposition435FullStatement.{u, w, 0}) :
+    JointAuxiliaryPeripheralEmbedding.{u, w} := by
+  intro G _ A N k S selected Lambda original hA horig
+  have hbase : original.alphabet.carrier ⊆ selected.rel.base :=
+    hA.trans selected.base_le
+  exact ⟨GGT.RelHyp.jointRelGenSetFull original selected.rel,
+    GGT.RelHyp.jointRelGenSetFull_base_inv original selected.rel
+      selected.base_inv,
+    fun _ => rfl, fun i => selected.fam_eq i,
+    h435 original selected.rel hbase horig selected.embedded⟩
+
+/-- **The three conditions the relator re-spelling puts on the joint family**,
+all met by the auxiliary-alphabet form.
+
+The re-spelling is an index relabelling of one relative alphabet, so it needs
+the joint base inside the selected base, the two alphabets equal, and the
+adjoined filling target among the joint base letters.  The last one needs the
+target to avoid every original peripheral, since a peripheral element cannot be
+a base letter of a hyperbolically embedded family. -/
+theorem jointRelGenSetFull_respelling_inputs
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (hA : original.alphabet.carrier ⊆ A.alphabet.carrier)
+    {t : G} (ht : t⁻¹ ∈ selected.rel.base)
+    (htn : ∀ lam : Lambda, t⁻¹ ∉ original.fam lam) :
+    (GGT.RelHyp.jointRelGenSetFull original selected.rel).base ⊆
+        selected.rel.base ∧
+      (GGT.RelHyp.jointRelGenSetFull original selected.rel).alphabet.carrier =
+          selected.rel.alphabet.carrier ∧
+        t⁻¹ ∈ (GGT.RelHyp.jointRelGenSetFull original selected.rel).base :=
+  ⟨GGT.RelHyp.jointRelGenSetFull_base_subset original selected.rel,
+    GGT.RelHyp.jointRelGenSetFull_alphabet_carrier original selected.rel
+      (hA.trans selected.base_le),
+    GGT.RelHyp.jointRelGenSetFull_mem_base original selected.rel ht htn⟩
+
 /-! ## The leaf flip -/
 
 /-- **The unrepaired family-inclusion leaf, from the repaired joint leaf.**
