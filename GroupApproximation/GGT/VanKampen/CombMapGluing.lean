@@ -494,9 +494,10 @@ theorem connected_of_doubleConnectivityData
   have toZero : ∀ x : CopiedInnerDart Delta 2,
       Relation.EqvGen S.closedMap.Adjacent x (0, C.base.2) := by
     intro x
-    have hsame := C.sameCopy x.1 x.2
-    fin_cases hx : x.1
-    · simpa [hx] using hsame
+    rcases x with ⟨copy, d⟩
+    have hsame := C.sameCopy copy d
+    fin_cases copy
+    · simpa using hsame
     · have hcross : Relation.EqvGen S.closedMap.Adjacent
           (1, C.base.2) (0, C.base.2) :=
         Relation.EqvGen.symm _ _ _ C.crossCopy
