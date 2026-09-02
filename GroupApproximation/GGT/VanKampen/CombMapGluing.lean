@@ -158,6 +158,103 @@ theorem sourceFace_ne_outer (S : Pairing Delta n)
   intro d
   exact d.2.2
 
+/-- The source copy of a face represented by `d` is the copy of `d`. -/
+theorem sourceCopy_faceOf (S : Pairing Delta n)
+    (d : S.closedMap.Dart) :
+    S.sourceCopy (S.closedMap.faceOf d) = d.1 :=
+  rfl
+
+/-- The source face of a face represented by `d` is the old face of `d`. -/
+theorem sourceFace_faceOf (S : Pairing Delta n)
+    (d : S.closedMap.Dart) :
+    S.sourceFace (S.closedMap.faceOf d) =
+      Delta.toCombMap.faceOf d.2.1 :=
+  rfl
+
+/-- Restricting the old face permutation does not change its iterates on
+underlying darts. -/
+theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
+    ((innerFacePerm Delta) ^ m d).1 =
+      (Delta.toCombMap.facePerm ^ m) d.1 := by
+  induction m with
+  | zero => rfl
+  | succ m ih =>
+      rw [pow_succ', pow_succ', Perm.mul_apply, Perm.mul_apply]
+      change ((innerFacePerm Delta) ^ m (innerFacePerm Delta d)).1 = _
+      rw [ih]
+      rfl
+
+/-- Two darts in one old inner-face orbit remain in the same copied face
+orbit. -/
+theorem sameCycle_of_source_sameCycle (S : Pairing Delta n)
+    (copy : Fin n) (a b : InnerDart Delta)
+    (h : Delta.toCombMap.facePerm.SameCycle a.1 b.1) :
+    S.closedMap.facePerm.SameCycle (copy, a) (copy, b) := by
+  have hinner : (innerFacePerm Delta).SameCycle a b := by
+    obtain ⟨m, hm⟩ := h.exists_nat_pow_eq
+    refine ⟨m, ?_⟩
+    apply Subtype.ext
+    rw [innerFacePerm_pow_val]
+    exact hm
+  have hcopied : (copiedFacePerm Delta n).SameCycle (copy, a) (copy, b) :=
+    OrbitClassifier.sameCycle_map (innerFacePerm Delta)
+      (copiedFacePerm Delta n) (fun d ↦ (copy, d)) (fun _ ↦ rfl) hinner
+  rw [S.closedMap_facePerm]
+  exact hcopied
+
+/-- The dart orbit of a glued face is equivalent to the dart orbit of its
+source inner face. -/
+noncomputable def faceDartEquiv (S : Pairing Delta n)
+    (f : S.closedMap.Face) :
+    {d : S.closedMap.Dart // S.closedMap.faceOf d = f} ≃
+      {d : Delta.toCombMap.Dart //
+        Delta.toCombMap.faceOf d = S.sourceFace f} := by
+  refine Quotient.inductionOn' f ?_
+  intro representative
+  let toSource :
+      {d : S.closedMap.Dart //
+          S.closedMap.faceOf d = S.closedMap.faceOf representative} →
+        {d : Delta.toCombMap.Dart //
+          Delta.toCombMap.faceOf d =
+            S.sourceFace (S.closedMap.faceOf representative)} :=
+    fun d ↦ ⟨d.1.2.1, by
+      have h := congrArg S.sourceFace d.2
+      simpa only [S.sourceFace_faceOf] using h⟩
+  let fromSource :
+      {d : Delta.toCombMap.Dart //
+          Delta.toCombMap.faceOf d =
+            S.sourceFace (S.closedMap.faceOf representative)} →
+        {d : S.closedMap.Dart //
+          S.closedMap.faceOf d = S.closedMap.faceOf representative} :=
+    fun d ↦ ⟨(representative.1,
+      ⟨d.1, by
+        rw [d.2, S.sourceFace_faceOf]
+        exact representative.2.2⟩), by
+      apply Quotient.sound
+      apply S.sameCycle_of_source_sameCycle
+      rw [← Delta.toCombMap.faceOf_eq_iff]
+      simpa only [S.sourceFace_faceOf] using d.2.symm⟩
+  exact {
+    toFun := toSource
+    invFun := fromSource
+    left_inv := fun d ↦ by
+      apply Subtype.ext
+      apply Prod.ext
+      · have hcopy := congrArg S.sourceCopy d.2
+        simpa only [S.sourceCopy_faceOf] using hcopy
+      · apply Subtype.ext
+        rfl
+    right_inv := fun d ↦ by
+      apply Subtype.ext
+      rfl }
+
+/-- Seam gluing preserves the degree of every copied inner face. -/
+theorem faceDegree_eq_source (S : Pairing Delta n)
+    (f : S.closedMap.Face) :
+    S.closedMap.faceDegree f =
+      Delta.toCombMap.faceDegree (S.sourceFace f) := by
+  exact Nat.card_congr (S.faceDartEquiv f)
+
 /-- A seam pairing whose closed map satisfies Euler's planar-sphere
 condition. -/
 structure Spherical (S : Pairing Delta n) : Prop where
