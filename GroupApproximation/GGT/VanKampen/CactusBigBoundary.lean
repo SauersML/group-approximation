@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.CactusConstruction
 import Mathlib.Data.List.ChainOfFn
+import Mathlib.Data.List.Flatten
 import GroupApproximation.GGT.HullSCRelatorWord
 
 /-!
@@ -748,6 +749,217 @@ theorem cactusCellSegments_chain
       have hval := congrArg Fin.val hzero
       simp [j, CactusShape.cellZero] at hval
     rw [Z.cactusShape.facePerm_stemIn_of_ne i hne, hnext]
+
+/-! ## The full complementary cycle -/
+
+/-- The backward outer-polygon list is nonempty. -/
+theorem cactusOuterBackwardDarts_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusOuterBackwardDarts ≠ [] := by
+  change (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+    CactusDart.outerBackward (S := Z.cactusShape) j.rev)) ≠ []
+  intro hnil
+  have hlength := congrArg List.length hnil
+  simp only [List.length_ofFn, List.length_nil] at hlength
+  exact (Nat.ne_of_gt Z.cactusShape.boundary_pos) hlength
+
+/-- The backward outer-polygon list begins at the predecessor of zero. -/
+theorem cactusOuterBackwardDarts_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusOuterBackwardDarts ≠ []) :
+    Z.cactusOuterBackwardDarts.head h =
+      CactusDart.outerBackward
+        (CactusShape.prevFin Z.cactusShape.boundaryLength
+          Z.cactusShape.boundaryZero) := by
+  change (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+    CactusDart.outerBackward (S := Z.cactusShape) j.rev)).head _ = _
+  rw [List.head_ofFn]
+  exact congrArg
+    (fun j ↦ CactusDart.outerBackward (S := Z.cactusShape) j)
+    (prevFin_zero_eq_rev_zero Z.cactusShape.boundary_pos).symm
+
+/-- The backward outer-polygon list ends at zero. -/
+theorem cactusOuterBackwardDarts_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusOuterBackwardDarts ≠ []) :
+    Z.cactusOuterBackwardDarts.getLast h =
+      CactusDart.outerBackward Z.cactusShape.boundaryZero := by
+  change (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
+    CactusDart.outerBackward (S := Z.cactusShape) j.rev)).getLast _ = _
+  rw [List.getLast_ofFn]
+  apply congrArg
+    (fun j ↦ CactusDart.outerBackward (S := Z.cactusShape) j)
+  apply Fin.ext
+  simp only [Fin.val_rev, CactusShape.boundaryZero, Fin.val_mk]
+  omega
+
+/-- The last ordinary finite index is the cyclic predecessor of zero. -/
+theorem lastIndex_eq_prevFin_zero {n : ℕ} (hn : 0 < n) :
+    (⟨n - 1, Nat.sub_one_lt (Nat.ne_of_gt hn)⟩ : Fin n) =
+      CactusShape.prevFin n (⟨0, hn⟩ : Fin n) := by
+  rw [prevFin_zero_eq_rev_zero hn]
+  apply Fin.ext
+  simp only [Fin.val_rev, Fin.val_mk]
+  omega
+
+/-- The flattened cell-block list is nonempty. -/
+theorem cactusCellSegments_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusCellSegments ≠ [] := by
+  rw [cactusCellSegments, List.flatten_ne_nil_iff]
+  let i := Z.cactusShape.cellZero Z.cells_length_pos
+  exact ⟨Z.cactusCellSegment i, by
+    constructor
+    · rw [List.mem_ofFn]
+      exact ⟨i, rfl⟩
+    · exact Z.cactusCellSegment_ne_nil i⟩
+
+/-- The flattened cell-block list begins with the first outgoing stem. -/
+theorem cactusCellSegments_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusCellSegments ≠ []) :
+    Z.cactusCellSegments.head h =
+      CactusDart.stemOut
+        (Z.cactusShape.cellZero Z.cells_length_pos) := by
+  let blocks := List.ofFn fun i : Fin Z.cells.length ↦ Z.cactusCellSegment i
+  have hblocks : blocks ≠ [] := by
+    intro hnil
+    have hlength := congrArg List.length hnil
+    simp only [blocks, List.length_ofFn, List.length_nil] at hlength
+    exact (Nat.ne_of_gt Z.cells_length_pos) hlength
+  have hfirst : blocks.head hblocks ≠ [] := by
+    rw [blocks, List.head_ofFn]
+    exact Z.cactusCellSegment_ne_nil
+      (Z.cactusShape.cellZero Z.cells_length_pos)
+  change blocks.flatten.head h = _
+  rw [List.head_flatten_eq_head_head h hfirst, blocks, List.head_ofFn]
+  exact Z.cactusCellSegment_head
+    (Z.cactusShape.cellZero Z.cells_length_pos) _
+
+/-- The flattened cell-block list ends with the incoming stem of the cyclic
+predecessor cell. -/
+theorem cactusCellSegments_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusCellSegments ≠ []) :
+    Z.cactusCellSegments.getLast h =
+      CactusDart.stemIn
+        (CactusShape.prevFin Z.cells.length
+          (Z.cactusShape.cellZero Z.cells_length_pos)) := by
+  let blocks := List.ofFn fun i : Fin Z.cells.length ↦ Z.cactusCellSegment i
+  have hblocks : blocks ≠ [] := by
+    intro hnil
+    have hlength := congrArg List.length hnil
+    simp only [blocks, List.length_ofFn, List.length_nil] at hlength
+    exact (Nat.ne_of_gt Z.cells_length_pos) hlength
+  have hlast : blocks.getLast hblocks ≠ [] := by
+    rw [blocks, List.getLast_ofFn]
+    exact Z.cactusCellSegment_ne_nil _
+  change blocks.flatten.getLast h = _
+  rw [List.getLast_flatten_eq_getLast_getLast h hlast,
+    blocks, List.getLast_ofFn, Z.cactusCellSegment_getLast]
+  exact congrArg (fun i ↦ CactusDart.stemIn (S := Z.cactusShape) i)
+    (lastIndex_eq_prevFin_zero Z.cells_length_pos)
+
+/-- The full explicit complementary list follows the face permutation. -/
+theorem cactusBigDarts_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusBigDarts.IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+  rw [cactusBigDarts]
+  apply Z.cactusOuterBackwardDarts_chain.append Z.cactusCellSegments_chain
+  intro x hx y hy
+  rw [List.getLast?_eq_some_getLast Z.cactusOuterBackwardDarts_ne_nil] at hx
+  rw [List.head?_eq_some_head Z.cactusCellSegments_ne_nil] at hy
+  simp only [Option.mem_some_iff] at hx hy
+  subst x
+  subst y
+  rw [Z.cactusOuterBackwardDarts_getLast,
+    Z.cactusCellSegments_head]
+  exact Z.cactusShape.facePerm_outerBackward_zero Z.cells_length_pos
+
+/-- The full complementary list begins at the predecessor outer dart. -/
+theorem cactusBigDarts_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusBigDarts ≠ []) :
+    Z.cactusBigDarts.head h = CactusDart.outerBackward
+      (CactusShape.prevFin Z.cactusShape.boundaryLength
+        Z.cactusShape.boundaryZero) := by
+  rw [cactusBigDarts, List.head_append_of_ne_nil _
+    Z.cactusOuterBackwardDarts_ne_nil]
+  exact Z.cactusOuterBackwardDarts_head _
+
+/-- The full complementary list ends at the final incoming stem. -/
+theorem cactusBigDarts_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (h : Z.cactusBigDarts ≠ []) :
+    Z.cactusBigDarts.getLast h = CactusDart.stemIn
+      (CactusShape.prevFin Z.cells.length
+        (Z.cactusShape.cellZero Z.cells_length_pos)) := by
+  rw [cactusBigDarts, List.getLast_append_of_ne_nil _
+    Z.cactusCellSegments_ne_nil]
+  exact Z.cactusCellSegments_getLast _
+
+/-- The incoming stem of the predecessor cell returns to the predecessor
+outer dart. -/
+theorem facePerm_stemIn_prev_zero (S : CactusShape)
+    (hpos : 0 < S.cellCount) :
+    S.toCombMap.facePerm
+        (.stemIn (CactusShape.prevFin S.cellCount (S.cellZero hpos))) =
+      .outerBackward
+        (CactusShape.prevFin S.boundaryLength S.boundaryZero) := by
+  change S.sigmaFun
+      (.stemOut (CactusShape.prevFin S.cellCount (S.cellZero hpos))) = _
+  have hnext : CactusShape.nextFin S.cellCount
+      (CactusShape.prevFin S.cellCount (S.cellZero hpos)) = S.cellZero hpos :=
+    CactusShape.nextFin_prevFin S.cellCount (S.cellZero hpos)
+  have htest : CactusShape.nextFin S.cellCount
+      (CactusShape.prevFin S.cellCount (S.cellZero hpos)) =
+        S.cellZero (Nat.zero_lt_of_lt
+          (CactusShape.prevFin S.cellCount (S.cellZero hpos)).isLt) := by
+    rw [hnext]
+    apply Fin.ext
+    rfl
+  rw [CactusShape.sigmaFun, dif_pos htest]
+
+/-- The full complementary list closes cyclically. -/
+theorem cactusBigDarts_closes
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusShape.toCombMap.facePerm
+        (Z.cactusBigDarts.getLast Z.cactusBigDarts_ne_nil) =
+      Z.cactusBigDarts.head Z.cactusBigDarts_ne_nil := by
+  rw [Z.cactusBigDarts_getLast, Z.cactusBigDarts_head]
+  exact facePerm_stemIn_prev_zero Z.cactusShape Z.cells_length_pos
 
 end Lemma44OrientedRelatorDiagram
 end HullSC
