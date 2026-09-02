@@ -23,6 +23,7 @@ namespace GroupApproximation
 namespace GGT
 namespace RelHyp
 
+open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
