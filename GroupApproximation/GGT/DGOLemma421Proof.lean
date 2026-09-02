@@ -2042,13 +2042,12 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     group
   have hpolyLet : ∀ a ∈ pc ++ P ++ rc ++ revWord Q, D.IsLetter a := by
     intro a ha
-    rcases List.mem_append.mp ha with ha | ha
-    · rcases List.mem_append.mp ha with hpcmem | hPmem
-      · exact hpc.1 a hpcmem
-      · exact hletP a hPmem
-    · rcases List.mem_append.mp ha with hrcmem | hQmem
-      · exact hrc.1 a hrcmem
-      · exact isLetter_of_mem_revWord D hbaseD hletQ a hQmem
+    simp only [List.mem_append] at ha
+    rcases ha with hpcmem | hPmem | hrcmem | hQmem
+    · exact hpc.1 a hpcmem
+    · exact hletP a hPmem
+    · exact hrc.1 a hrcmem
+    · exact isLetter_of_mem_revWord D hbaseD hletQ a hQmem
   have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
       ((j - i : ℕ) : ℝ) / 4 - 1 ≤
         ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
@@ -2094,18 +2093,26 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     hpc' hrc' hqgP hqgQ hpolyLet hclose
   have hpcLen : pc.length ≤ E := by
     have hh : ((pc.length : ℕ) : ℝ) ≤ eps := by
-      rw [hpc.2.2, hpcVal]
-      have hdist : wordNorm D.alphabet.carrier (vq⁻¹ * vp) =
+      rw [hpc.2.2]
+      have hdist : wordDist D.alphabet.carrier (1 : G) (vq⁻¹ * vp) =
           wordDist D.alphabet.carrier vp vq := by
-        rw [← wordDist_one_left D.alphabet.carrier]
-        exact wordDist_comm D.alphabet.symmetricGenerating vq vp
+        have hdist' := wordDist_left_invariant D.alphabet.carrier vq⁻¹ vp vq
+        rw [inv_mul_cancel] at hdist'
+        rw [wordDist_comm D.alphabet.symmetricGenerating] at hdist'
+        exact hdist'
       rw [hdist]
       exact_mod_cast hstart
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   have hrcLen : rc.length ≤ E := by
     have hh : ((rc.length : ℕ) : ℝ) ≤ eps := by
-      rw [hrc.2.2, hrcVal]
-      rw [← wordDist_one_left D.alphabet.carrier]
+      rw [hrc.2.2]
+      have hdist : wordDist D.alphabet.carrier (1 : G) (endP⁻¹ * endQ) =
+          wordDist D.alphabet.carrier endP endQ := by
+        have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
+        rw [inv_mul_cancel] at hdist'
+        rw [wordDist_comm D.alphabet.symmetricGenerating] at hdist'
+        exact hdist'
+      rw [hdist]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   let S := strictInteriorOccurrences P
