@@ -3304,6 +3304,7 @@ import GroupApproximation.GGT.VanKampen.SurgeryCutRecord
 import GroupApproximation.GGT.DGOProposition414FirstSeparationTargets
 import GroupApproximation.GGT.DGOProposition414SecondSeparationTransport
 import GroupApproximation.GGT.VanKampen.SurgeryCutProduct
+import GroupApproximation.GGT.VanKampen.SurgeryCutDiagram
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
