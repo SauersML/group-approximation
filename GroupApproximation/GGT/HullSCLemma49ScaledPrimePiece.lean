@@ -26,7 +26,7 @@ universe u
 
 /-- The final `C₁` coefficient used by a power-side constant `M` and block
 divisor `Q`. -/
-def lemma49ScaledFinalMu (powerMu divisor : ℕ) : ℝ :=
+noncomputable def lemma49ScaledFinalMu (powerMu divisor : ℕ) : ℝ :=
   1 / (100000 * powerMu * divisor : ℕ)
 
 /-- The scaled coefficient is positive when both natural parameters are
@@ -127,8 +127,11 @@ theorem Lemma49RelativeGreendlingerCell.boundaryArc_scaled_scale
     (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
     (hinput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
       eps (1 / 1000) rho)
+    (hdivisor : 0 < divisor)
     (hscale : 1000 * divisor * (target + 2 * eps + 2) ≤ rho) :
     divisor * target ≤ C.boundaryArc.length := by
+  rcases Nat.eq_zero_or_pos target with rfl | htargetPos
+  · simp
   have hrelatorScaleNat :
       1000 * divisor * (target + 2 * eps + 2) ≤ C.relator.length :=
     le_trans hscale (hinput.long C.relator C.relator_mem)
@@ -142,8 +145,8 @@ theorem Lemma49RelativeGreendlingerCell.boundaryArc_scaled_scale
   have htarget : (divisor : ℝ) * (target : ℝ) ≤
       (C.boundaryArc.length : ℝ) := by
     norm_num at hexterior
-    have hdivisorNonneg : (0 : ℝ) ≤ (divisor : ℝ) := by positivity
-    have htargetNonneg : (0 : ℝ) ≤ (target : ℝ) := by positivity
+    have hdivisorReal : (1 : ℝ) ≤ (divisor : ℝ) := by exact_mod_cast hdivisor
+    have htargetReal : (1 : ℝ) ≤ (target : ℝ) := by exact_mod_cast htargetPos
     have hepsNonneg : (0 : ℝ) ≤ (eps : ℝ) := by positivity
     nlinarith
   exact_mod_cast htarget
@@ -273,14 +276,25 @@ theorem Lemma49ContiguityShadow.scaledRepeatedBlock_indexSpan_large
   have hsmallProgress :
       ((B.block.length : ℝ) + 1) / (1000 * (powerMu : ℝ)) ≤
         (B.block.length : ℝ) / (powerMu : ℝ) - (b : ℝ) - 2 * (K : ℝ) := by
-    rw [div_le_iff₀ hpowerMuReal]
     have hthousand : (0 : ℝ) < 1000 := by norm_num
     have haux : ((B.block.length : ℝ) + 1) / 1000 ≤
         (B.block.length : ℝ) -
           (powerMu : ℝ) * ((b : ℝ) + 2 * (K : ℝ)) := by
       rw [div_le_iff₀ hthousand]
       nlinarith
-    nlinarith
+    have hdivided := (div_le_div_iff_of_pos_right hpowerMuReal).2 haux
+    calc
+      ((B.block.length : ℝ) + 1) / (1000 * (powerMu : ℝ)) =
+          (((B.block.length : ℝ) + 1) / 1000) / (powerMu : ℝ) := by
+        field_simp
+        ring
+      _ ≤ ((B.block.length : ℝ) -
+          (powerMu : ℝ) * ((b : ℝ) + 2 * (K : ℝ))) /
+            (powerMu : ℝ) := hdivided
+      _ = (B.block.length : ℝ) / (powerMu : ℝ) -
+          (b : ℝ) - 2 * (K : ℝ) := by
+        field_simp
+        ring
   rw [hgap] at hspan
   exact le_trans hsmall (le_trans hsmallProgress hspan)
 
