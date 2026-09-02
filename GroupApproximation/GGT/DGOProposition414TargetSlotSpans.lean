@@ -73,7 +73,6 @@ theorem chord_sideSpan_eq_letter
       dsimp [t]
       omega
     rw [ht, hcut1]
-    rfl
   change (vertex Q.basepoint word
       (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right t))⁻¹ *
       vertex Q.basepoint word
@@ -119,7 +118,7 @@ theorem orientedEdgeIndex_val
   · have hforward : a ≤ y ∧ y + 1 ≤ b := by omega
     simp only [orientedSegment, if_pos hab, orientedEdgeIndex]
     simp only [List.getElem_take, List.getElem_drop,
-      Nat.add_sub_of_le hforward.1, if_pos hab]
+      Nat.add_sub_of_le hforward.1]
   · have hba : b ≤ a := by omega
     have hreverse : b ≤ y ∧ y + 1 ≤ a := by omega
     let segment := (word.drop b).take (a - b)
