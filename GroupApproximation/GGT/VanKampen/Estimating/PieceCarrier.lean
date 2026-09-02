@@ -136,6 +136,75 @@ theorem whole_relators_ne_of_split
   rw [htarget]
   group
 
+/-! ## The O52 inequality from the certificate -/
+
+/-- **The non-cancellation inequality from the algebraic certificate.**  Given
+the stored-order split at the two cells, both read forwards, the two arc
+alignments, and the connector identity, reducedness rules out the cancellation
+that `CellPieceEquations.whole_ne` excludes.
+
+The connector identity is stated as "along the target arc, then back along the
+right side", which is where the rotation of `targetInverseCarrier` lands; see
+`listVal_targetInverseCarrier`. -/
+theorem whole_ne_of_certificate
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    (hred : Delta.Reduced)
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    (hsplit : Delta.relatorCells =
+      pre ++ cell Delta Gamma.source :: (between ++ cell Delta target :: suf))
+    (hsf : (cell Delta Gamma.source).reversed = false)
+    (htf : (cell Delta target).reversed = false)
+    (hsource : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (cell Delta Gamma.source).word)
+    (htargetword : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (cell Delta target).word)
+    (hconn : GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.targetArcAtSome target htarget).darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ =
+      ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator)⁻¹) :
+    GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+  intro hbad
+  rw [listVal_targetInverseCarrier Gamma target htarget] at hbad
+  have ht : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (dartWord Delta
+          (Gamma.targetArcAtSome target htarget).darts) *
+        GGT.RelLetter.listVal (dartWord Delta
+          ((Gamma.targetArcAtSome target htarget).rotated.drop
+            (Gamma.targetArcAtSome target htarget).length)) := by
+    have harc : (Gamma.targetArcAtSome target htarget).darts =
+        (Gamma.targetArcAtSome target htarget).rotated.take
+          (Gamma.targetArcAtSome target htarget).length := rfl
+    rw [harc, ← RelWord.listVal_append, ← dartWord_append,
+      List.take_append_drop]
+  have hX : ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator) =
+      (GGT.RelLetter.listVal (dartWord Delta
+            (Gamma.targetArcAtSome target htarget).darts) *
+          (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹)⁻¹ := by
+    rw [hconn, inv_inv]
+  have hs : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) *
+        (GGT.RelLetter.listVal (dartWord Delta
+            ((Gamma.targetArcAtSome target htarget).rotated.drop
+              (Gamma.targetArcAtSome target htarget).length)) *
+          GGT.RelLetter.listVal (dartWord Delta
+            (Gamma.targetArcAtSome target htarget).darts))⁻¹ *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ := by
+    rw [hbad]
+    group
+  apply whole_relators_ne_of_split hred hsplit hsf htf
+  rw [RelWord.listVal_revInv, ← htargetword, ← hsource, hX, ht, hs]
+  group
+
 end Embedded
 end VanKampen
 end GGT
