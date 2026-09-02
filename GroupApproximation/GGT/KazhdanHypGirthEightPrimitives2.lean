@@ -402,6 +402,62 @@ inductive InnerFaceWordHomotopy
   | trans {a b c} : InnerFaceWordHomotopy Delta a b →
       InnerFaceWordHomotopy Delta b c → InnerFaceWordHomotopy Delta a c
 
+/-! ## Planar path peeling -/
+
+/-- A common-face peeling schedule.  The rank is the number of enclosed
+interior faces used by the planar induction; one peel lowers that rank on both
+branches. -/
+structure RootedPathPeelingWitness
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)) where
+  rank : List Delta.toCombMap.Dart → ℕ
+  peel : ∀ {a b : List Delta.toCombMap.Dart}, a ≠ b →
+    ∃ c : List Delta.toCombMap.Dart,
+      InnerFaceWordHomotopy Delta a c ∧
+      InnerFaceWordHomotopy Delta b c ∧
+      rank c < rank a ∧ rank c < rank b
+
+/-- The common-face peeling induction produces the full word homotopy between
+two rooted paths.  This is the planar disc induction step consumed by
+`RootedPathsFaceComplete`; the two branches are recursively peeled until they
+are identical. -/
+theorem innerFaceWordHomotopy_of_peeling
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (W : RootedPathPeelingWitness Delta)
+    (a b : List Delta.toCombMap.Dart) :
+    InnerFaceWordHomotopy Delta a b := by
+  let total := W.rank a + W.rank b
+  induction total using Nat.strong_induction_on generalizing a b with
+  | h total ih =>
+      by_cases hab : a = b
+      · subst b
+        exact InnerFaceWordHomotopy.refl a
+      · obtain ⟨c, hac, hbc, hca, hcb⟩ := W.peel hab
+        have hac_lt : W.rank a + W.rank c < total := by
+          dsimp [total]
+          omega
+        have hbc_lt : W.rank b + W.rank c < total := by
+          dsimp [total]
+          omega
+        have hac' := ih (W.rank a + W.rank c) hac_lt a c
+        have hbc' := ih (W.rank b + W.rank c) hbc_lt b c
+        exact hac'.trans hbc'.symm
+
+/-- A peeling witness gives `RootedPathsFaceComplete` for every chosen rooted
+path system. -/
+theorem rootedPathsFaceComplete_of_peeling
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (R : RootedPathSystem Delta.toCombMap)
+    (W : RootedPathPeelingWitness Delta) :
+    RootedPathsFaceComplete Delta R := by
+  intro v p q
+  exact innerFaceWordHomotopy_of_peeling Delta W p.darts q.darts
+
+/-- The empty word is the one-face model of the peeling induction. -/
+theorem innerFaceWordHomotopy_empty_model
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)) :
+    InnerFaceWordHomotopy Delta [] [] :=
+  InnerFaceWordHomotopy.refl []
+
 /-- Inner-face word homotopy preserves presented value. -/
 theorem cayleyDartListValue_eq_of_innerFaceWordHomotopy
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
