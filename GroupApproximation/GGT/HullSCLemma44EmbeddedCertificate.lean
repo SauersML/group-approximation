@@ -84,7 +84,7 @@ private theorem arcs_value_of_cycle_value_one
           (Embedded.dartWord Delta
             (Embedded.targetBoundaryDarts Delta C.target C.targetArc)) *
         GGT.RelLetter.listVal (Embedded.dartWord Delta C.leftSide) := by
-  rw [C.boundary_decomposition]
+  rw [C.boundary_decomposition] at hcycle
   simp only [Embedded.dartWord, List.map_append,
     RelWord.listVal_append, RelWord.listVal_append,
     RelWord.listVal_append] at hcycle
@@ -232,6 +232,7 @@ noncomputable def RelativeDiagramCertificate.of_embeddedData_at_zero
     (j : Fin Z.cells.length)
     (hji : hreal.cellIndex j = C.region.source)
     (hstart : C.region.sourceArc.start.1 = 0)
+    (hmu : 0 ≤ mu)
     (hlarge : (1 - 13 * mu) *
         ((Embedded.cell hreal.diagram i).word.length : ℝ) <
         (C.region.sourceArc.length : ℝ)) :
@@ -258,19 +259,24 @@ noncomputable def RelativeDiagramCertificate.of_embeddedData_at_zero
       (Z.cells.get j).relator := hrelatorEq ▸ Brot
   have hcellLength : (Z.cells.get j).relator.length =
       C.region.sourceArc.length := by
+    have hcycleLength :
+        (Embedded.cellDarts hreal.diagram C.region.source).length =
+          C.region.sourceArc.length := by
+      have h := C.region.sourceArc.rotated_length
+      rw [hrot] at h
+      exact h
     have hsourceLength :
         (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated).length =
           C.region.sourceArc.length := by
-      simp only [Embedded.dartWord, List.length_map,
-        C.region.sourceArc.rotated_length]
+      simpa only [Embedded.dartWord, List.length_map] using hcycleLength
     exact (congrArg List.length hrelatorEq).symm.trans hsourceLength
   have hlarge' : (1 - 23 * mu) *
       ((Z.cells.get j).relator.length : ℝ) ≤
       (B.exterior.length : ℝ) := by
     have hsourceLength' : B.exterior.length =
         C.region.sourceArc.length := by
-      change (Embedded.dartWord hreal.diagram
-        C.region.sourceArc.darts).length = C.region.sourceArc.length
+      dsimp [B]
+      cases hrelatorEq
       simp only [Embedded.dartWord, List.length_map,
         C.region.sourceArc.darts_length]
     rw [hsourceLength', hcellLength]
@@ -291,7 +297,7 @@ noncomputable def RelativeDiagramCertificate.of_embeddedData_at_zero
     fun l => (Z.cells.get l).relator
   let options : ∀ l : Fin Z.cells.length,
       Option (RelativeBoundaryContiguity D eps Z.boundaryWord (labels l)) :=
-    fun l => if hl : l = j then some (hji ▸ B) else none
+    fun l => if hl : l = j then some (hl ▸ B) else none
   refine {
     boundaryWord := Z.boundaryWord
     boundaryWord_eq := rfl
@@ -300,7 +306,7 @@ noncomputable def RelativeDiagramCertificate.of_embeddedData_at_zero
     cellLabel_mem := fun l => (Z.cells.get l).relator_mem
     contiguity := options
     largeCell := ?_ }
-  refine ⟨j, hji ▸ B, ?_, ?_⟩
+  refine ⟨j, B, ?_, ?_⟩
   · dsimp [options]
     simp
   · simpa only [labels] using hlarge'
