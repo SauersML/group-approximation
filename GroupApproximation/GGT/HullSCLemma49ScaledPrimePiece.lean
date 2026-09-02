@@ -287,7 +287,6 @@ theorem Lemma49ContiguityShadow.scaledRepeatedBlock_indexSpan_large
       ((B.block.length : ℝ) + 1) / (1000 * (powerMu : ℝ)) =
           (((B.block.length : ℝ) + 1) / 1000) / (powerMu : ℝ) := by
         field_simp
-        ring
       _ ≤ ((B.block.length : ℝ) -
           (powerMu : ℝ) * ((b : ℝ) + 2 * (K : ℝ))) /
             (powerMu : ℝ) := hdivided
