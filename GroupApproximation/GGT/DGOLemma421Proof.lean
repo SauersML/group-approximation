@@ -2398,7 +2398,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               exact (htargetSpec i).2.1
             · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
               refine ⟨hh, hmem, ?_⟩
-              rw [← heq, vertex_fourGon_opposite_closed pc P rc Q hclose j]
+              rw [hjn, vertex_fourGon_opposite_closed pc P rc Q hclose j] at heq
+              exact heq
   let short : Fin N → Fin M := fun i =>
     if hi : Matched i then ⟨0, by omega⟩
     else Classical.choose (hclassBase i)
