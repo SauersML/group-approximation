@@ -250,7 +250,9 @@ noncomputable def of_copyMate
     simpa [matePerm, mateFun, Equiv.apply_symm_apply] using congrArg Prod.fst h
   · intro d hd
     apply hfree (index d).1
-    simpa [matePerm, mateFun, Equiv.apply_symm_apply] using hd
+    have hsub : matePerm d = d := Subtype.ext hd
+    have h := congrArg index hsub
+    simpa [matePerm, mateFun, Equiv.apply_symm_apply] using congrArg Prod.fst h
 
 end ExposedPairing
 
