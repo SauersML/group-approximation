@@ -2210,7 +2210,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     let i1 : Fin N := ⟨i.val + 1, hiN⟩
     have hoccLt : occ i < occ i1 := by
       dsimp [occ, i1]
-      exact (S.orderIsoOfFin rfl).strictMono (by omega)
+      apply (S.orderIsoOfFin rfl).strictMono
+      exact Fin.mk_lt_mk.mpr (by omega)
     by_contra hne
     have hgap : (occ i).val + 1 < (occ i1).val := by
       have hval := congrArg Fin.val hoccLt
@@ -2222,7 +2223,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     have hposAC : (peripheralOccurrence P (occ i)).pos <
         (peripheralOccurrence P c).pos := by
       apply peripheralOccurrence_pos_lt
-      change (occ i).val < c.val
+      dsimp [c]
       omega
     have hposCB : (peripheralOccurrence P c).pos <
         (peripheralOccurrence P (occ i1)).pos := by
@@ -2239,9 +2240,11 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     let ez : S := ⟨c, hcS⟩
     have hleft : Eord ⟨i.val, by omega⟩ < ez := by
       change (occ i).val < c.val
+      dsimp [c]
       omega
     have hright : ez < Eord ⟨i.val + 1, by omega⟩ := by
       change c.val < (occ i1).val
+      dsimp [c]
       omega
     have hleft' := Eord.symm.strictMono hleft
     have hright' := Eord.symm.strictMono hright
