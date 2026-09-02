@@ -117,11 +117,13 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
       D hemb hacylindrical
   obtain ⟨epsLong, rhoLong, hlong⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_source
-      hgeom D hdelta hpasting
+      hgeom D hdelta
+      (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
   obtain ⟨epsShort, rhoShort, muShort, hmuShort, _hmuShortUpper,
       hshortLox⟩ :=
     exists_parameters_false_of_shortLoxodromic_powerDiagram_source
-      hgeom D hdelta hgap hpasting
+      hgeom D hdelta hgap
+      (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
       hinjAll⟩ := hinjective delta hdelta
   let eps : ℕ := max epsLong (max epsShort epsInjective)
