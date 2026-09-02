@@ -432,7 +432,8 @@ back as peripheral letters.  So clause (a) needs no transport and no finiteness
 hypothesis, at any distance between the two bases.
 
 The auxiliary family may be taken before its relative generating set was
-enlarged, since only its family and base enter. -/
+enlarged, since only its family and base enter.  Its consumers are in
+`GGT/DGOProposition435HullBase.lean`. -/
 theorem jointHyperbolic_originalOverAux (D : RelGenSet G Λ)
     (E E' : RelGenSet G I) (hfam : E'.fam = E.fam)
     (hbase : D.alphabet.carrier ⊆ E'.base)
