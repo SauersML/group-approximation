@@ -225,7 +225,7 @@ theorem cellDarts_length_eq_kindLengths
       ∑ _position : Fin (cellDarts Delta i).length, 1 by simp]
   apply Finset.sum_congr rfl
   intro position _
-  cases hkind : (partition.classify position).kind <;> simp [hkind]
+  cases (partition.classify position).kind <;> simp
 
 /-- The dart cycle of an indexed cell has the length of its relator word. -/
 theorem cellDarts_length_eq_word_length
