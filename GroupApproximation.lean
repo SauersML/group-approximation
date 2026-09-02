@@ -3231,6 +3231,12 @@ import GroupApproximation.GGT.RelHypOsin24BoundedWordPattern
 import GroupApproximation.GGT.RelHypOsin24PowerGrowth
 import GroupApproximation.GGT.VanKampen.FaceSetDualConnectivity
 import GroupApproximation.GGT.HullSCLemma49BoundaryPartition
+import GroupApproximation.GGT.DGOProposition414CompleteTargetFamily
+import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
+import GroupApproximation.GGT.KazhdanHypGirthEightReducedSeam
+import GroupApproximation.GGT.RelHypOsin24PatternPigeonhole
+import GroupApproximation.GGT.RelHypOsin24PatternSlice
+import GroupApproximation.GGT.RelHypOsin24RelativeWordSpelling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
