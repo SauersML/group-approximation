@@ -179,7 +179,8 @@ theorem whole_relators_ne
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} (D := D) (eps := eps)
+      pre between suf source target) :
     GGT.RelLetter.listVal (RelWord.revInv target.word) ≠
       Gamma.region.leftConnector * GGT.RelLetter.listVal source.word *
         Gamma.region.leftConnector⁻¹ := by
@@ -204,7 +205,8 @@ theorem isPublishedPiece
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} (D := D) (eps := eps)
+      pre between suf source target) :
     RelWord.IsPublishedPiece D W eps Gamma.region.firstArc
       Gamma.region.secondArc source.word := by
   exact ⟨source.word_mem, ⟨Gamma.sourceRemainder,
@@ -227,7 +229,8 @@ theorem sourceArc_lt_mu_mul
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} (D := D) (eps := eps)
+      pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) <
       mu * (source.word.length : ℝ) := by
   have hpublished := Gamma.isPublishedPiece hsc.toIsSmallCancellation hred
@@ -244,7 +247,8 @@ noncomputable def degree
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : CellContiguity.{u, w, v} pre between suf source target) : ℝ :=
+    (Gamma : CellContiguity.{u, w, v} (D := D) (eps := eps)
+      pre between suf source target) : ℝ :=
   (Gamma.region.firstArc.length : ℝ) / source.word.length
 
 /-- Osin Lemma 4.4 (`O52`): an interior contiguity degree is less than
@@ -260,7 +264,8 @@ theorem degree_lt_mu
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hrho : 0 < rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} (D := D) (eps := eps)
+      pre between suf source target) :
     Gamma.degree < mu := by
   have hlenNat : 0 < source.word.length :=
     lt_of_lt_of_le hrho (hsc.long source.word source.word_mem)
@@ -297,7 +302,7 @@ noncomputable def degree
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : BoundaryContiguity.{u, w, v} source) : ℝ :=
+    (Gamma : BoundaryContiguity.{u, w, v} (D := D) (eps := eps) source) : ℝ :=
   (Gamma.region.secondArc.length : ℝ) / source.word.length
 
 /-- The exterior arc has no more letters than its source relator. -/
@@ -307,7 +312,7 @@ theorem sourceArc_length_le
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : BoundaryContiguity.{u, w, v} source) :
+    (Gamma : BoundaryContiguity.{u, w, v} (D := D) (eps := eps) source) :
     Gamma.region.secondArc.length ≤ source.word.length := by
   rw [Gamma.source_decomposition]
   simp only [List.length_append]
