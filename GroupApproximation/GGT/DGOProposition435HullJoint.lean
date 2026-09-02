@@ -54,8 +54,7 @@ form.**
 
 The joint family is the labelled sum of the original family and the selected
 auxiliary family over the proper part of the original relative base.  Its base
-is
-inversion-closed, it restricts to the original family on the left and to the
+is inversion-closed, it restricts to the original family on the left and to the
 selected auxiliary peripherals on the right, and the nested form of
 Proposition 4.35 makes it hyperbolically embedded. -/
 theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
@@ -67,8 +66,7 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
   exact ⟨GGT.RelHyp.jointRelGenSet original selected.rel,
     GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
     fun _ => rfl, fun i => selected.fam_eq i,
-    h435 original selected.rel hbase selected.base_inv horig
-      selected.embedded⟩
+    h435 original selected.rel hbase horig selected.embedded⟩
 
 /-- **The joint-family selection input, from the auxiliary-alphabet form.**
 
