@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.CyclicCayleyHyperbolic
 import GroupApproximation.GGT.WPDElementaryEmbedding
 import GroupApproximation.GGT.HullSCLemma44JointRelabel
 
@@ -175,6 +176,22 @@ theorem emptySubfamilyRelGenSet_isHyperbolicallyEmbedded {E : Type u} [Group E]
       IsHyperbolicSpace delta (Cayley (emptySubfamilyRelGenSet Y hY).alphabet)) :
     (emptySubfamilyRelGenSet Y hY).IsHyperbolicallyEmbedded :=
   ⟨hhyp, fun e => Empty.elim e⟩
+
+/-- **A cyclic member is droppable.**  Over the two letters of a generator the
+Cayley graph of a cyclic group is hyperbolic, by
+`CyclicCayley.exists_isHyperbolicSpace_cayley_of_zpowers`, so the empty
+subfamily is hyperbolically embedded in it and its base is finite.  These are
+the members Osin drops at `embed-final.tex:1956-1959`. -/
+theorem exists_emptySubfamily_of_zpowers {C : Type u} [Group C] (y : C)
+    (hgen : ∀ x : C, x ∈ Subgroup.zpowers y) :
+    ∃ (Y : Set C) (hY : IsSymmetricGeneratingSet Y),
+      Y.Finite ∧ (emptySubfamilyRelGenSet Y hY).IsHyperbolicallyEmbedded := by
+  refine ⟨CyclicCayley.pairSet y,
+    CyclicCayley.isSymmetricGeneratingSet_pairSet y hgen,
+    CyclicCayley.finite_pairSet y, ?_⟩
+  refine emptySubfamilyRelGenSet_isHyperbolicallyEmbedded _ _ ?_
+  exact CyclicCayley.exists_isHyperbolicSpace_cayley_of_zpowers hgen _
+    (emptySubfamilyRelGenSet_alphabet_carrier _ _)
 
 
 /-! ## Dropping the elementary members of a filling quotient

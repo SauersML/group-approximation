@@ -279,7 +279,7 @@ theorem osin24HullStep_of_data
   have hkernelFinite : eta.ker.IsFinitelyNormallyGenerated := by
     refine ⟨{GGT.RelLetter.listVal v}, Set.finite_singleton _, ?_⟩
     exact hker.symm
-  obtain ⟨BQ, _hperiphMap, hactsMap, _hactsFamily⟩ :=
+  obtain ⟨BQ, hperiphMap, hactsMap, _hactsFamily⟩ :=
     HullSC.hullLemma58SuitableFamily_unconditional eta D Pselected
   have hnormalMap : HullSuitable.NormalizesNoNontrivialFinite (H.map eta) :=
     IsSuitableSubgroup.normalizesNoNontrivialFinite hsuitable
@@ -287,9 +287,12 @@ theorem osin24HullStep_of_data
     ⟨hactsMap, hnormalMap⟩
   have hnextAlphabet : Poriginal.rel.alphabet.carrier ⊆
       BQ.hullSet.alphabet.carrier := by
-    rw [canonicalPreserved_alphabet_carrier_eq_image Poriginal]
-    rintro y ⟨x, hx, rfl⟩
-    exact BQ.alphabet_image x (B.rel_alphabet_subset hx)
+    intro y hy
+    obtain ⟨x, hx, rfl⟩ :=
+      canonicalPreserved_alphabet_carrier_subset_image Poriginal hy
+    rcases hx with hx | hx
+    · exact BQ.alphabet_image x (B.rel_alphabet_subset hx)
+    · exact hperiphMap x hx
   let Bnext : RelativeHullContinuationData
       (fun i => (Hfam i).map eta) (H.map eta) :=
     { rel := Poriginal.rel
