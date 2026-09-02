@@ -75,6 +75,19 @@ theorem innerBoundaryFaceStarLayer_disjoint
   have hdisjoint :
       Disjoint (Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) i)
         (Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) j) := by
+    have hballMono : ∀ {a b : ℕ}, a ≤ b →
+        Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) a ⊆
+          Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) b := by
+      intro a b hab
+      induction b, hab using Nat.le_induction with
+      | base => exact fun _ h => h
+      | succ b _ ih =>
+          exact ih.trans (by
+            change Delta.toCombMap.faceStarBall
+              (boundaryFaceSeed Delta P) b ⊆
+              Delta.toCombMap.faceStarSet
+                (Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) b)
+            exact VanKampen.CombMap.subset_faceStarSet _)
     wlog hlt : i < j generalizing i j with H
     · exact (H hij.symm (by omega)).symm
     have hjpos : j ≠ 0 := by omega
@@ -82,15 +95,25 @@ theorem innerBoundaryFaceStarLayer_disjoint
     intro face hfi hfj
     have hfiBall : face ∈
         Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) i :=
-      Delta.toCombMap.faceStarLayer_subset_ball _ _ hfi
+      by
+        by_cases hi : i = 0
+        · subst i
+          simpa only [VanKampen.CombMap.faceStarLayer, if_pos rfl] using hfi
+        · simpa only [VanKampen.CombMap.faceStarLayer, if_neg hi] using
+            (Finset.mem_sdiff.mp hfi).1
     have hijpred : i ≤ j - 1 := by omega
     have hfpred : face ∈
         Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) (j - 1) :=
-      Delta.toCombMap.faceStarBall_mono _ hijpred hfiBall
-    rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
-    exact hfj.2 hfpred
-  exact hdisjoint.mono Finset.inter_subset_left Finset.inter_subset_left
-    Finset.inter_subset_left Finset.inter_subset_left
+      hballMono hijpred hfiBall
+    change face ∈
+      (Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) j \
+        Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) (j - 1)) at hfj
+    exact (Finset.mem_sdiff.mp hfj).2 hfpred
+  apply hdisjoint.mono
+  · intro face hface
+    exact (Finset.mem_inter.mp hface).1
+  · intro face hface
+    exact (Finset.mem_inter.mp hface).1
 
 /-! ## Face positions and incidence slots -/
 
@@ -204,8 +227,8 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hslot := congrArg (fun p ↦ p.2) hxy
   dsimp at hslot
   unfold firstLayerIncidenceSlot at hslot
-  rw [hface] at hslot
   clear hxy
+  cases hface
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y := by
