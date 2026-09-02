@@ -134,7 +134,8 @@ theorem RelWord.IsLemma44Input.relator_isLambdaCQuasiGeodesicWord
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 word := by
   have hresult := isLambdaCQuasiGeodesicWord_of_prefixChainAt D
     (hinput.admissible word hword) (hinput.quasiGeodesic word hword)
-  convert hresult using 1 <;> norm_num
+  convert hresult using 1
+  norm_num
 
 /-- Every Hull Lemma 4.4 input supplies Osin's exact
 `C(epsilon,mu,1/4,1,rho)` condition. -/
@@ -178,12 +179,12 @@ theorem isQuasiGeodesicChainAt_one_zero_of_isGeodesicWord
   have hupper := GGT.OsinComponents.wordDist_vertex_le'
     D hword.1 first hij hj
   constructor
-  · change ((j - i : ℕ) : ℝ) / 1 - (0 : ℝ) ≤
-        ((wordDist D.alphabet.carrier
-          (GGT.OsinComponents.vertex first word i)
-          (GGT.OsinComponents.vertex first word j) : ℕ) : ℝ)
-    rw [div_one, sub_zero]
-    exact Nat.cast_le.mpr hlower
+  · simpa only [div_one, Nat.cast_zero, sub_zero] using
+      (Nat.cast_le.mpr hlower :
+        ((j - i : ℕ) : ℝ) ≤
+          ((wordDist D.alphabet.carrier
+            (GGT.OsinComponents.vertex first word i)
+            (GGT.OsinComponents.vertex first word j) : ℕ) : ℝ))
   · exact hupper
 
 /-- A geodesic word is an Osin `(1,0)` quasi-geodesic word when read from
@@ -197,7 +198,7 @@ theorem isLambdaCQuasiGeodesicWord_one_zero_of_isGeodesicWord
   have hresult := isLambdaCQuasiGeodesicWord_of_chainAt
     (M := (1 : ℝ)) (b := 0) D hword.1
       (isQuasiGeodesicChainAt_one_zero_of_isGeodesicWord D hword)
-  simpa only [one_div, Nat.cast_zero] using hresult
+  simpa only [one_div, inv_one, Nat.cast_zero] using hresult
 
 /-- A geodesic word also satisfies the weaker fixed source convention used
 for Hull relators. -/
