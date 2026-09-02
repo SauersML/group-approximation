@@ -22,7 +22,7 @@ universe u w
 
 namespace RelativeReducedDiagram
 
-def cactusShape
+abbrev cactusShape
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
@@ -115,8 +115,9 @@ theorem outerForward_word
     (Z : HullSC.RelativeReducedDiagram D W R) :
     List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
       Z.label (.outerForward j)) = Z.outerFaceWord := by
-  exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_get_cast Z.outerFaceWord
-    (by rw [outerFaceWord, RelWord.length_revInv, List.length_map])
+  simpa [label, outerIndex] using
+    (HullSC.Lemma44OrientedRelatorDiagram.ofFn_get_cast Z.outerFaceWord
+      (by rw [outerFaceWord, RelWord.length_revInv, List.length_map]))
 
 theorem relatorForward_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -185,11 +186,13 @@ theorem outerBackward_word
       rfl
     _ = (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
           RelWord.inv (Z.label (.outerForward j)))).reverse := by
-      exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev _
+      exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev
+        (fun j : Fin Z.cactusShape.boundaryLength ↦
+          RelWord.inv (Z.label (.outerForward j)))
     _ = RelWord.revInv
         (List.ofFn (fun j : Fin Z.cactusShape.boundaryLength ↦
           Z.label (.outerForward j))) := by
-      rw [RelWord.revInv, ← List.ofFn_comp']
+      rw [RelWord.revInv, ← hforward, ← List.ofFn_comp']
     _ = RelWord.revInv Z.outerFaceWord := congrArg RelWord.revInv hforward
 
 theorem relatorBackward_word
@@ -209,9 +212,11 @@ theorem relatorBackward_word
       rfl
     _ = (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
           RelWord.inv (Z.label (.relatorForward i j)))).reverse := by
-      exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev _
+      exact HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev
+        (fun j : Fin (Z.cactusShape.relatorLength i) ↦
+          RelWord.inv (Z.label (.relatorForward i j)))
     _ = RelWord.revInv (Z.geometricCell i).relator := by
-      rw [RelWord.revInv, ← List.ofFn_comp', hforward]
+      rw [RelWord.revInv, ← hforward, ← List.ofFn_comp']
 
 theorem cellSegment_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -239,6 +244,7 @@ theorem cellSegment_value
   rw [Z.cellSegment_word i, RelWord.listVal_append,
     RelWord.listVal_append, RelWord.listVal_singleton,
     RelWord.listVal_singleton, RelWord.listVal_singleton,
+    RelWord.listVal_revInv,
     HullSC.val_base, HullSC.val_base,
     HullSC.Lemma44OrientedRelatorCell.value]
   group
@@ -263,12 +269,15 @@ theorem geometricCellValues_inv_prod
       _ = (Z.cells.map Lemma44OrientedRelatorCell.value).map
           fun x ↦ x⁻¹ := by
         rw [List.ofFn_get, List.map_map]
+        rfl
   calc
     (List.ofFn fun i : Fin Z.cells.length ↦
         (Z.geometricCell i).value⁻¹).prod =
         (List.ofFn fun i : Fin Z.cells.length ↦
           (Z.cellAt i).value⁻¹).reverse.prod := by
-      exact congrArg List.prod (ofFn_comp_rev _)
+      exact congrArg List.prod
+        (HullSC.Lemma44OrientedRelatorDiagram.ofFn_comp_rev
+          (fun i : Fin Z.cells.length ↦ (Z.cellAt i).value⁻¹))
     _ = ((Z.cells.map Lemma44OrientedRelatorCell.value).map
           fun x ↦ x⁻¹).reverse.prod := by rw [hcells]
     _ = (Z.cells.map Lemma44OrientedRelatorCell.value).prod⁻¹ :=
@@ -308,8 +317,9 @@ theorem bigDarts_value
     (Z : HullSC.RelativeReducedDiagram D W R) :
     GGT.RelLetter.listVal (Z.bigDarts.map Z.label) = 1 := by
   rw [bigDarts, List.map_append, RelWord.listVal_append,
-    Z.outerBackward_word, Z.cellSegments_value, Z.boundaryWord_isWord.prod_eq,
-    Z.cell_values_prod, mul_inv_cancel]
+    Z.outerBackward_word, Z.cellSegments_value, Z.cell_values_prod,
+    outerFaceWord, RelWord.revInv_revInv, HullSC.listVal_map_base,
+    Z.boundaryWord_isWord.prod_eq, mul_inv_cancel]
 
 end RelativeReducedDiagram
 end HullSC
