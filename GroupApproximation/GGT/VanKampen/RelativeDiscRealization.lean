@@ -11,11 +11,9 @@ algebraic cells and the relator cells of a planar diagram, equality of every
 cell word, equality of the outer word, and diagram reducedness.
 
 For the reduced diagrams coming from Hull's oriented least-area construction,
-the explicit cactus proves all four fields.  The generic structure currently
-allows an empty relator word.  Such a word cannot label a relator face because
-`FaceBoundary.nonempty` forces every face word to be nonempty; the obstruction
-is proved below.  Thus the unrestricted generic statement requires either a
-nonempty-relator field on `RelativeReducedDiagram` or a weaker cell interface.
+the explicit cactus proves all four fields.  The common input now includes the
+nonempty-relator field forced by `FaceBoundary.nonempty`, so the same cactus
+also proves the unrestricted generic statement.
 -/
 
 namespace GroupApproximation
