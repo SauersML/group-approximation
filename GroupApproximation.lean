@@ -3253,6 +3253,7 @@ import GroupApproximation.GGT.VanKampen.RegionSubMap
 import GroupApproximation.GGT.VanKampen.BasedDiscDiagram
 import GroupApproximation.GGT.HullSCLemma44OriginalExpansion
 import GroupApproximation.GGT.VanKampen.Estimating.PieceCarrier
+import GroupApproximation.GGT.DGOProposition414ArcTerminalSeam
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
