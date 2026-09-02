@@ -647,11 +647,21 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
         have hstep := peripheralPos_succ_le_add_two hW1
           (t := s.val + d)
           (by omega : s.val + d + 1 < (peripheralPositions word).card)
-        omega
+        rw [show s.val + (d + 1) = s.val + d + 1 from by omega]
+        calc
+          peripheralPos word (s.val + d + 1) ≤
+              peripheralPos word (s.val + d) + 2 := hstep
+          _ ≤ peripheralPos word s.val + 2 * (d + 1) := by omega
   have hspacing := hwalk (r.val - s.val) (by
     convert r.isLt using 1 <;> omega)
+  have hspacing' : peripheralPos word r.val ≤
+      peripheralPos word s.val + 2 * (r.val - s.val) := by
+    convert hspacing using 1 <;> omega
+  have hgapEq : gap = r.val - s.val := by
+    dsimp [gap]
+    omega
   have hwidthBound : width + 1 ≤ 2 * gap := by
-    rw [← hgap]
+    rw [hgapEq]
     dsimp [width, start, A, B]
     rw [peripheralOccurrence_pos, peripheralOccurrence_pos]
     omega
