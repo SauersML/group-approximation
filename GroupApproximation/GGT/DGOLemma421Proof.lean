@@ -2289,6 +2289,35 @@ theorem exists_minimalityFourGon
     hipP hiqQ hqgP hqgQ
     (listVal_minimalityFourGon_closes hip hiq hev hfv)
 
+/-- **A deep component of a quasi-geodesic polygon is connected to another
+component of it.**
+
+This is Dahmani--Guirardel--Osin's counting sentence read at a single
+component: "*by (W2) and Proposition 4.14 every set `I` of isolated components
+of `v` satisfies `|I| ≤ 6ℓ(p)/50 < ℓ(p)/8` and therefore not all components of
+`v` are isolated in `Q'`*" (HE.tex:766).  Isolation of a component would put
+its span inside the relative ball of radius `C·n`, which (W2)-depth forbids, so
+the component fails to be isolated --- and failing to be isolated is exactly
+being connected to a component at a different position.
+
+Applied to `Q''` this is the step that produces the intermediate component the
+minimality argument then contradicts. -/
+theorem exists_connected_of_deep_component
+    {D : RelGenSet G Λ} {C414 : ℕ}
+    (hproj : ∀ (n : ℕ) (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 4 1 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C414 * n))
+    {u : List (RelLetter G Λ)} {v : G} {n : ℕ}
+    (hpoly : IsQuasiGeodesicPolygon D 4 1 n v u)
+    {nu : Λ} {i k : ℕ} (hcomp : IsComp nu u i k)
+    (hdeep : (vertex v u i)⁻¹ * vertex v u k ∉ D.relBall nu (C414 * n)) :
+    ∃ j : ℕ, j ≠ i ∧ IsCompStart nu u j ∧ Connected D.fam nu v u i j := by
+  by_contra hcon
+  refine hdeep (hproj n v u hpoly nu i k hcomp ⟨⟨k, hcomp⟩, ?_⟩)
+  intro j hj hstart hconn
+  exact hcon ⟨j, hj, hstart, hconn⟩
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
