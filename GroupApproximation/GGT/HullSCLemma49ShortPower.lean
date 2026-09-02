@@ -122,6 +122,7 @@ theorem isLoxodromic_of_long_shortestModuloConjugacy
   intro m
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · simp [slope, error]
+    positivity
   · have hchain := isQuasiGeodesicChainAt_power_of_long_period
       D (⊥ : Subgroup G) hshort hword hm hdelta hlong
     have hlower := (hchain 0 (lemma49BoundaryPower word m).length
@@ -134,6 +135,7 @@ theorem isLoxodromic_of_long_shortestModuloConjugacy
       have hvalue : GGT.RelLetter.listVal word = g := by
         simpa using hword.2.1
       rw [hvalue]
+    dsimp only at hlower
     rw [GGT.OsinComponents.vertex_zero, hend, wordDist_one_left,
       lemma49BoundaryPower_length] at hlower
     have hdist :
@@ -176,7 +178,7 @@ theorem exists_short_conjugate_power_of_not_isLoxodromic
   obtain ⟨word, hword⟩ := GGT.OsinComponents.existsGeodesicWord D 1 h
   have hlength : word.length = wordNorm D.alphabet.carrier h := by
     have h := hword.2.2
-    simpa only [wordDist_one_left] using h.symm
+    simpa only [wordDist_one_left] using h
   have hlongWord : 8 * delta + 2 ≤ word.length := by
     rw [hlength]
     exact hlongNorm
@@ -229,7 +231,9 @@ theorem false_of_powerDiagram_of_not_isLoxodromic_of_ballInjective
     rw [mem_cayleyBall_iff, wordDist_self]
     omega
   have himages : QuotientGroup.mk' N h = QuotientGroup.mk' N 1 := by
-    rw [(QuotientGroup.eq_one_iff h).mpr hhMem, map_one]
+    have himageOne : QuotientGroup.mk' N h = 1 :=
+      (QuotientGroup.eq_one_iff h).mpr hhMem
+    simpa only [map_one] using himageOne
   exact hhNe (hinj hhBall hOneBall himages)
 
 /-! ## Model check -/
