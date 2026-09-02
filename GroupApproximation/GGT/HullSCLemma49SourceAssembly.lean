@@ -88,18 +88,18 @@ a shortest conjugate of the non-loxodromic power lies in the protected ball. -/
 theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     (hgeom :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0})
-    {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    (hemb : D.IsHyperbolicallyEmbedded)
-    (hacylindrical : IsAcylindrical G (Cayley D.alphabet))
     (hpasting : ∀
+      {G : Type u} [Group G] {Lambda : Type w}
+      {D : GGT.RelGenSet G Lambda}
       {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
       {Z : Lemma49GeodesicPowerDiagram D v g n},
       ∀ C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
           D v g n eps mu Z,
         GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
           C.contiguity.boundary.cycle [])
-    (hinjective : ∀ (delta : ℕ),
+    (hinjective : ∀
+      {G : Type u} [Group G] {Lambda : Type w}
+      (D : GGT.RelGenSet G Lambda) (delta : ℕ),
       Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta →
       ∃ (epsInjective rhoInjective : ℕ) (muInjective : ℝ),
         0 < muInjective ∧
@@ -125,7 +125,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
       hgeom D hdelta hgap
       (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
-      hinjAll⟩ := hinjective delta hdelta
+      hinjAll⟩ := hinjective D delta hdelta
   let eps : ℕ := max epsLong (max epsShort epsInjective)
   let rho : ℕ := max rhoLong (max rhoShort rhoInjective)
   let mu : ℝ := min (1 / 100000 : ℝ) (min muShort muInjective)
@@ -175,7 +175,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     have hinjectiveInput : RelWord.IsLemma49Input D
         (RelWord.symmetrized v) epsInjective muInjective rhoInjective :=
       (hsymInput.mono_parameters hepsInjective hmuInjective'
-        hrhoInjective).toIsLemma44Input
+        hrhoInjective)
     have hker : quotientMap.ker =
         Subgroup.normalClosure
           (GGT.RelLetter.listVal '' RelWord.symmetrized v) := by
