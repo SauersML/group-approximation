@@ -211,6 +211,23 @@ noncomputable def firstLayerIncidenceSlot
     exact C.faceDegree_le i q)
     (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i q)
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Transport a face-boundary lookup across an equality of faces when the
+underlying incidence indices have the same natural-number value. -/
+theorem faceBoundary_get_of_eq
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    {f g : Delta.toCombMap.Face} (hfg : f = g)
+    (ix : Fin (Delta.faceBoundary f).darts.length)
+    (iy : Fin (Delta.faceBoundary g).darts.length)
+    (hval : ix.val = iy.val) :
+    (Delta.faceBoundary f).darts.get ix =
+      (Delta.faceBoundary g).darts.get iy := by
+  cases hfg
+  have hxy : ix = iy := Fin.ext hval
+  subst iy
+  rfl
+
 /-! ## The injection and its numerical consequence -/
 
 /-- The first-face assignment produces the exact layer injection. -/
@@ -239,22 +256,17 @@ noncomputable def layerIncidenceInjection_of_firstLayer
     simpa [firstLayerIncidenceSlot] using congrArg Fin.val hslot
   clear hslot
   clear hxy
-  cases hface
-  have hindex :
-      firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
-        firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y := by
-    apply Fin.ext
-    change
-      (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val =
-        (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val
-    exact hslot_val
   have hgetx := firstLayerIncidenceIndex_get
     Delta P depth scale loss perimeter C i x
   have hgety := firstLayerIncidenceIndex_get
     Delta P depth scale loss perimeter C i y
+  have hboundary := faceBoundary_get_of_eq Delta hface
+    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x)
+    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y)
+    hslot_val
   have hdart : P.darts.get (C.position i x) =
       P.darts.get (C.position i y) := by
-    rw [← hgetx, ← hgety, hindex]
+    exact hgetx.symm.trans (hboundary.trans hgety)
   exact C.position_injective i
     ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
 
