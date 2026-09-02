@@ -755,6 +755,20 @@ theorem exists_labelledSphere_of_powerDiscGluing
   ⟨G.sphere.toCombMap,
     ⟨triangularRelatorSphericalMap_of_powerDiscGluing D G⟩⟩
 
+/-- Constructor in the exact shape of
+`GirthEightDiagramPrimitives.gluePowerDisc`: the topological rotated-copy
+operation supplies `PowerDiscSphereGluing`, and the local theorem above
+supplies the labelled reduced sphere. -/
+theorem gluePowerDisc_of_rotationGluing
+    (D : PowerDisc T g n)
+    (glue : (∀ j, ¬ RelatorIsProperPower
+      (TriangularHodgeLayer.relator (T j))) → PowerDiscSphereGluing D)
+    (hnoProper : ∀ j, ¬ RelatorIsProperPower
+      (TriangularHodgeLayer.relator (T j))) :
+    ∃ M : VanKampen.CombMap.{0},
+      Nonempty (VanKampen.TriangularRelatorSphericalMap T M) :=
+  exists_labelledSphere_of_powerDiscGluing D (glue hnoProper)
+
 end PowerDisc
 
 /-! ## One-triangle model test -/
