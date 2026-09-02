@@ -122,7 +122,6 @@ theorem isLoxodromic_of_long_shortestModuloConjugacy
   intro m
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · simp [slope, error]
-    positivity
   · have hchain := isQuasiGeodesicChainAt_power_of_long_period
       D (⊥ : Subgroup G) hshort hword hm hdelta hlong
     have hlower := (hchain 0 (lemma49BoundaryPower word m).length
@@ -143,9 +142,12 @@ theorem isLoxodromic_of_long_shortestModuloConjugacy
           (wordNorm D.alphabet.carrier (g ^ m) : ℝ) := by
       simp [Cayley.dist_eq, Cayley.base, wordDist_one_left]
     rw [hdist]
+    have hmulCast : (((m * word.length - 0 : ℕ) : ℝ)) =
+        (m : ℝ) * (word.length : ℝ) := by
+      rw [Nat.sub_zero, Nat.cast_mul]
     dsimp [slope, error]
-    push_cast at hlower ⊢
-    linarith
+    rw [hmulCast] at hlower
+    convert hlower using 1 <;> ring
 
 /-! ## Conjugating a non-loxodromic power into the protected ball -/
 
