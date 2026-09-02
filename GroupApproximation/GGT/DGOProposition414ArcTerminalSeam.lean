@@ -952,6 +952,59 @@ theorem secondPartner_chord_isComp
     (B.brokenAssignment.second.partner_lt s hs)
     (B.secondPartner_chordLetter_label s hs)
 
+/-! ## The exact residue of the arc component field -/
+
+/-- Everything in `FirstGapArcChordSeam` except one case is now proved: a gap
+with no following broken source is the last cycle of the half, and a gap with
+a nonempty right connector never reaches the chord at that seam.  What is left
+is an interior gap whose right connector degenerates to the empty path, which
+is where DGO invoke "`p_i ∈ I₁ \ J₁` can not be connected to a component of
+`t`". -/
+theorem firstGapArcChordSeam_of_degenerateSeam
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (hres : ∀ e : Fin B.brokenAssignment.index.first.sources.length,
+      HalfGap.nextEntry B.brokenAssignment.index.first j = some e →
+      (B.firstGapRight j).length = 0 → FirstGapArcChordSeam B j s) :
+    FirstGapArcChordSeam B j s := by
+  classical
+  by_cases hnone : HalfGap.nextEntry B.brokenAssignment.index.first j = none
+  · exact firstGapArcChordSeam_of_lastGap B j s hs hnone
+  · obtain ⟨e, he'⟩ := Option.ne_none_iff_exists'.mp hnone
+    have he : HalfGap.nextEntry B.brokenAssignment.index.first j = some e := by
+      simpa using he'
+    by_cases hright : 0 < (B.firstGapRight j).length
+    · exact firstGapArcChordSeam_of_rightConnector B j s hright
+    · exact hres e he (by omega)
+
+/-- Wrapped counterpart of `firstGapArcChordSeam_of_degenerateSeam`. -/
+theorem secondGapArcChordSeam_of_degenerateSeam
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (hres : ∀ e : Fin B.brokenAssignment.index.second.sources.length,
+      HalfGap.nextEntry B.brokenAssignment.index.second j = some e →
+      (B.secondGapRight j).length = 0 → SecondGapArcChordSeam B j s) :
+    SecondGapArcChordSeam B j s := by
+  classical
+  by_cases hnone : HalfGap.nextEntry B.brokenAssignment.index.second j = none
+  · exact secondGapArcChordSeam_of_lastGap B j s hs hnone
+  · obtain ⟨e, he'⟩ := Option.ne_none_iff_exists'.mp hnone
+    have he : HalfGap.nextEntry B.brokenAssignment.index.second j = some e := by
+      simpa using he'
+    by_cases hright : 0 < (B.secondGapRight j).length
+    · exact secondGapArcChordSeam_of_rightConnector B j s hright
+    · exact hres e he (by omega)
+
 end BalancedSplitData
 
 end DGOProposition414
