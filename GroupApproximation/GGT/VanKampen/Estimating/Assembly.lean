@@ -414,9 +414,8 @@ theorem estimatingDataConstruction_of_components
   obtain ⟨equiv⟩ := hequiv
   obtain ⟨graph⟩ := graph
   obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold
-  have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord := by
-    rw [equiv.boundaryWord_eq]
-    exact hboundary
+  have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord :=
+    equiv.boundary_quasiGeodesic hboundary
   obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hcondition Delta'
     scaffold hboundary'
   exact ⟨Delta', ⟨equiv⟩,
