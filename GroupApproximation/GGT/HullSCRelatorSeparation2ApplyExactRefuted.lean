@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyExact
 import GroupApproximation.GGT.HullSCRelatorSeparation2Component
+import GroupApproximation.GGT.HullSCRelatorSeparation2Inputs
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 
 /-!
 # The exact-design side-exclusion interface is still over-quantified
