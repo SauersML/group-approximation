@@ -107,7 +107,7 @@ open GirthEightTorsionExtraction
 
 /-- Kohyp's five van Kampen producers, in the universal form consumed by
 `girthEightHyperbolicity_of_diagramPrimitives`. -/
-abbrev DiagramPrimitivesProducer : Prop :=
+abbrev DiagramPrimitivesProducer :=
   ∀ (Generator TriangleIndex : Type)
     (_ : Fintype Generator) (_ : DecidableEq Generator)
     (_ : Nonempty Generator) (_ : Fintype TriangleIndex)
@@ -135,7 +135,7 @@ abbrev PowerDiscMirrorPairDeletionProducer : Prop :=
 
 /-- The exact exposed-pairing/Euler producer required by the final seam step
 of `presented_isPowerTorsionFree_of_combMapOperations`. -/
-abbrev ExposedPairingEulerProducer : Prop :=
+abbrev ExposedPairingEulerProducer :=
   ∀ (Generator TriangleIndex : Type)
     (_ : Fintype Generator) (_ : DecidableEq Generator)
     (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
@@ -179,7 +179,7 @@ once the table-side pair-uniqueness certificate is supplied.  The pairing is
 constructed by the landed `ExposedPairing.of_copyMate` API, and all three
 local fields are passed through the landed `exposedPairingEulerInput_of_copyMate`
 adapter. -/
-theorem exposedPairingEulerProducer_of_planarDisc
+noncomputable def exposedPairingEulerProducer_of_planarDisc
     (hdata : PlanarDiscExposedPairingEulerData)
     (pairUnique : ∀ (Generator TriangleIndex : Type)
       (_ : Fintype Generator) (_ : DecidableEq Generator)
@@ -188,8 +188,7 @@ theorem exposedPairingEulerProducer_of_planarDisc
       TrianglePairUnique T) :
     ExposedPairingEulerProducer := by
   intro Generator TriangleIndex fg dg ft dt T g n D
-  obtain ⟨I, index, index_copy, copyMate, hinvol, hfree,
-    hcounts, hcorner, hcellular⟩ :=
+  choose I index index_copy copyMate hinvol hfree hcounts hcorner hcellular using
     hdata Generator TriangleIndex fg dg ft dt T g n D
   exact exposedPairingEulerInput_of_copyMate D index index_copy copyMate
     hinvol hfree (pairUnique Generator TriangleIndex fg dg ft dt T)
@@ -200,7 +199,7 @@ theorem exposedPairingEulerProducer_of_planarDisc
 corner-incidence data is consumed by
 `exposedPairingEulerCertificate_of_wEight_linkData`.  Thus no table-wide
 enumeration or second cellular argument is introduced here. -/
-theorem wEightExposedPairingEulerProducer_of_planarDisc
+noncomputable def wEightExposedPairingEulerProducer_of_planarDisc
     (hdata : PlanarDiscExposedPairingEulerData)
     {TriangleIndex : Type}
     [Fintype TriangleIndex] [DecidableEq TriangleIndex]
@@ -212,8 +211,7 @@ theorem wEightExposedPairingEulerProducer_of_planarDisc
     ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
       (D : PowerDisc T g n), ExposedPairingEulerInput T D := by
   intro g n D
-  obtain ⟨I, index, index_copy, copyMate, hinvol, hfree,
-    hcounts, hcorner, hcellular⟩ :=
+  choose I index index_copy copyMate hinvol hfree hcounts hcorner hcellular using
     hdata SymplecticQuadrangle.Point TriangleIndex inferInstance inferInstance
       inferInstance inferInstance T g n D
   let hinput : ExposedPairingEulerInput T D :=
