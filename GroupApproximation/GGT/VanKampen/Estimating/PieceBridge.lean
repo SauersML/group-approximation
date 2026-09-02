@@ -213,42 +213,6 @@ theorem arcLengths_le_two_mu_target
       2 * mu * (target.word.length : ℝ) :=
   le_of_lt (Gamma.arcLengths_lt_two_mu_target hsc hred)
 
-/-- A Lemma 4.9 input supplies the same O52 charge through its Lemma 4.4
-projection. -/
-theorem arcLengths_le_two_mu_source_of_lemma49
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
-    {pre between suf : List
-      (RelatorCell Delta.toCombMap Delta.outerFace W)}
-    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (hsc : RelWord.IsLemma49Input D W eps mu rho)
-    (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
-    (Gamma.region.firstArc.length : ℝ) +
-        (Gamma.region.secondArc.length : ℝ) ≤
-      2 * mu * (source.word.length : ℝ) :=
-  Gamma.arcLengths_le_two_mu_source hsc.toIsLemma44Input hred
-
-/-- A Lemma 4.9 input gives the target-endpoint O52 charge through its
-Lemma 4.4 projection as well. -/
-theorem arcLengths_le_two_mu_target_of_lemma49
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
-    {pre between suf : List
-      (RelatorCell Delta.toCombMap Delta.outerFace W)}
-    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (hsc : RelWord.IsLemma49Input D W eps mu rho)
-    (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
-    (Gamma.region.firstArc.length : ℝ) +
-        (Gamma.region.secondArc.length : ℝ) ≤
-      2 * mu * (target.word.length : ℝ) :=
-  Gamma.arcLengths_le_two_mu_target hsc.toIsLemma44Input hred
-
 end CellContiguity
 
 namespace Embedded
@@ -364,65 +328,6 @@ theorem isPublishedPiece_of_cyclicCellArcs
   exact ⟨sourceArc.cell_rotated_mem hsc, ⟨sourceSuffix, hsource⟩,
     dartWord Delta targetArc.rotated, targetArc.cell_rotated_mem hsc,
     targetSuffix, htarget, left, right, hleft, hright, harcs, hwhole⟩
-
-/-- The positioned-arc published piece splits into the ordinary distinct-word
-piece and the same-word branch with its nontrivial connector exclusion. -/
-theorem isPiece_or_sameWord_of_cyclicCellArcs
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
-    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
-    {source target : Fin Delta.rCellCount}
-    (sourceArc : CyclicArc (cellDarts Delta source))
-    (targetArc : CyclicArc (cellDarts Delta target))
-    {left right : G}
-    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
-    (hright : wordNorm D.alphabet.carrier right ≤ eps)
-    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
-      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
-    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
-      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
-    RelWord.IsPiece D W eps (dartWord Delta sourceArc.darts)
-        (dartWord Delta sourceArc.rotated) ∨
-      RelWord.IsSameWordPublishedPiece D W eps
-        (dartWord Delta sourceArc.darts) (dartWord Delta targetArc.darts)
-        (dartWord Delta sourceArc.rotated) := by
-  exact (isPublishedPiece_of_cyclicCellArcs hsc sourceArc targetArc
-    hleft hright harcs hwhole).toIsPiece_or_sameWord
-
-/-- The published `C₁` clause bounds a positioned source arc by the source
-cell perimeter. -/
-theorem cyclicSourceArc_lt_mu_mul
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
-    (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {source target : Fin Delta.rCellCount}
-    (sourceArc : CyclicArc (cellDarts Delta source))
-    (targetArc : CyclicArc (cellDarts Delta target))
-    {left right : G}
-    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
-    (hright : wordNorm D.alphabet.carrier right ≤ eps)
-    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
-      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
-    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
-      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
-    (sourceArc.length : ℝ) < mu * ((cell Delta source).word.length : ℝ) := by
-  have hpublished := isPublishedPiece_of_cyclicCellArcs
-    hsc.toIsSmallCancellation sourceArc targetArc hleft hright harcs hwhole
-  have hbound := hsc.publishedPiecesSmall (dartWord Delta sourceArc.darts)
-    (dartWord Delta targetArc.darts) (dartWord Delta sourceArc.rotated)
-    hpublished
-  have harc : ((dartWord Delta sourceArc.darts).length : ℝ) <
-      mu * (dartWord Delta sourceArc.rotated).length :=
-    lt_of_le_of_lt (le_max_left _ _) hbound
-  have hcellLength := congrArg List.length (dartWord_cellDarts Delta source)
-  simp only [dartWord, List.length_map, sourceArc.darts_length,
-    sourceArc.rotated_length] at harc hcellLength
-  rw [hcellLength] at harc
-  exact harc
 
 /-- Both positioned cell arcs satisfy the local `2 * mu` charge at the
 source carrier directly from the published `C₁` maximum bound. -/
