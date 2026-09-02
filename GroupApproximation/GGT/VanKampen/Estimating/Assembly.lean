@@ -383,6 +383,25 @@ def EstimatingPieceConstructionStatement : Prop :=
     (scaffold : EstimatingScaffold D eps Delta),
     Nonempty (CellPieceData D eps Delta scaffold)
 
+/-! ## Local piece-construction bridge -/
+
+/-- Pasted face-set homotopies and reducedness bridges construct all local
+O52 equations on a fixed scaffold. This exposes the finite per-edge
+certificates required by the topological peeling proof. -/
+theorem estimatingPieceConstruction_of_pasting_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hred : Delta.Reduced)
+    (hcertificate : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      Embedded.PastingReducedCellPieceCertificate edge.candidate.contiguity) :
+    Nonempty (CellPieceData D eps Delta scaffold) := by
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  exact (hcertificate edge).equations hred
+
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
