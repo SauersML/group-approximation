@@ -30,7 +30,7 @@ of constructing such a certificate is kept outside this arithmetic
 statement. -/
 def UnboundLengthBudgetStatement : Prop :=
   ∀ {n d : ℕ} {t total : ℝ}
-    (certificate : PartitionUnboundCertificate n d t total),
+    (_certificate : PartitionUnboundCertificate n d t total),
       total < (n : ℝ) * t
 
 /-! ## Finite partition counting -/
@@ -111,9 +111,9 @@ theorem unboundLengthBudgetStatement : UnboundLengthBudgetStatement := by
 sum and its budget are both zero. -/
 theorem finset_piece_sum_empty_model (bound : ℝ) (hbound : 0 ≤ bound) :
     (∑ i ∈ (Finset.univ : Finset (Fin 0)), (0 : ℝ)) ≤
-      (0 : ℝ) * bound := by
+      ((0 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
-    (piece := fun _ : Fin 0 => (0 : ℝ)) (bound := bound) ?_ ?_ hbound
+    (piece := fun _ : Fin 0 => (0 : ℝ)) (bound := bound) (N := 0) ?_ ?_ hbound
   · intro i hi
     norm_num
   · simp
@@ -122,9 +122,9 @@ theorem finset_piece_sum_empty_model (bound : ℝ) (hbound : 0 ≤ bound) :
 length `bound` has budget `bound`. -/
 theorem finset_piece_sum_oneCell_model (bound : ℝ) (hbound : 0 ≤ bound) :
     (∑ i ∈ (Finset.univ : Finset (Fin 1)), bound) ≤
-      (1 : ℝ) * bound := by
+      ((1 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
-    (piece := fun _ : Fin 1 => bound) (bound := bound) ?_ ?_ hbound
+    (piece := fun _ : Fin 1 => bound) (bound := bound) (N := 1) ?_ ?_ hbound
   · intro i hi
     exact le_rfl
   · simp
@@ -141,7 +141,7 @@ theorem unboundLengthBudget_emptyFamily_equality_model :
 the strict conclusion supplied by the positive parameter field of its
 certificate. -/
 theorem unboundLengthBudget_oneCell_model (t : ℝ) :
-    ∀ {total : ℝ} (certificate : PartitionUnboundCertificate 1 1 t total),
+    ∀ {total : ℝ} (_certificate : PartitionUnboundCertificate 1 1 t total),
       total < (1 : ℝ) * t := by
   intro total certificate
   simpa using unboundLengthBudgetStatement certificate
@@ -216,7 +216,7 @@ theorem lemma62Data_oneCell_zeroUnbound_model
   refine ⟨{ unbound_lt := ?_, threshold := hthreshold }⟩
   rw [hunbound, hrcell, Nat.cast_one, one_mul]
   have hrhoReal : (0 : ℝ) < (rho : ℝ) := by exact_mod_cast hrho
-  exact Real.sqrt_pos.2 hrhoReal
+  exact_mod_cast Real.sqrt_pos.2 hrhoReal
 
 /-- The threshold field rules out `rho = 0` for every fixed diagram and
 scaffold.  The universal estimating statement quantifies `rho` without a
@@ -231,7 +231,8 @@ theorem no_lemma62Data_at_rho_zero
     {scaffold : EstimatingScaffold D eps Delta} :
     ¬ Nonempty (Lemma62Data D eps mu 0 Delta scaffold) := by
   rintro ⟨data⟩
-  norm_num at data.threshold
+  have hthreshold := data.threshold
+  norm_num at hthreshold
 
 /-- The averaging certificate has the exact empty-component model used by the
 partition producer, and its numerical output is strict at the smallest
