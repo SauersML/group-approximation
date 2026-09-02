@@ -955,11 +955,11 @@ def FirstGapArcBoundaryExclusion
           (B.firstArcCut (B.firstTargetSide s) -
             B.firstArcCut (B.firstGapStartSide j)) + 1 <
         (B.firstGapCycle j).length,
-      ¬ (((B.firstGapCycle j)[
+      ¬ ((B.firstGapCycle j)[
           (B.firstGapLeft j).length +
             (B.firstArcCut (B.firstTargetSide s) -
               B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
-        (P.label s))
+        (P.label s)
 
 /-- The wrapped endpoint exclusions required for the corresponding second-gap
 auxiliary cycle. -/
@@ -982,11 +982,11 @@ def SecondGapArcBoundaryExclusion
           (B.secondArcCut (B.secondTargetSide s) -
             B.secondArcCut (B.secondGapStartSide j)) + 1 <
         (B.secondGapCycle j).length,
-      ¬ (((B.secondGapCycle j)[
+      ¬ ((B.secondGapCycle j)[
           (B.secondGapLeft j).length +
             (B.secondArcCut (B.secondTargetSide s) -
               B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
-        (P.label s))
+        (P.label s)
 
 /-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
 theorem firstGapArcSource_fullComponent_of_boundaryExclusion
@@ -1006,7 +1006,7 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
         (B.firstTargetSide s - B.firstGapStartSide j)))
       (B.firstGapCut j ((B.firstGapLeft j).length +
         (B.firstTargetSide s - B.firstGapStartSide j) + 1)) := by
-  exact firstGapArcSource_cycleComponent_of_boundary B j s h.1 h.2
+  exact firstGapArcSource_cycleComponent_of_boundary B j s hs h.1 h.2
 
 /-- Wrapped counterpart of `firstGapArcSource_fullComponent_of_boundaryExclusion`. -/
 theorem secondGapArcSource_fullComponent_of_boundaryExclusion
@@ -1026,7 +1026,7 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
         (B.secondTargetSide s - B.secondGapStartSide j)))
       (B.secondGapCut j ((B.secondGapLeft j).length +
         (B.secondTargetSide s - B.secondGapStartSide j) + 1)) := by
-  exact secondGapArcSource_cycleComponent_of_boundary B j s h.1 h.2
+  exact secondGapArcSource_cycleComponent_of_boundary B j s hs h.1 h.2
 
 /-! ## Exact certificate assembly -/
 
