@@ -230,7 +230,6 @@ theorem Contiguity.cellTargetArc_length
     (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
     (htarget : Gamma.target = some target) :
     (Gamma.cellTargetArc target htarget).length = Gamma.targetArc.length := by
-  cases htarget
   rfl
 
 /-- A candidate's natural-number weight is the real sum of the two arcs used
