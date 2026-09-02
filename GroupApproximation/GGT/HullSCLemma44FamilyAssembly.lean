@@ -72,6 +72,7 @@ theorem quotientJointPeripheralPreservation_of_control
     {Q : Type u} [Group Q] (q : G →* Q)
     (hq : Function.Surjective q)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
+    (hjointFinite : joint.base.Finite)
     (control : RelativeIsoperimetricControl joint q hq) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   have hjointQ : (joint.mapSurjective q hq).IsHyperbolicallyEmbedded :=
@@ -81,7 +82,8 @@ theorem quotientJointPeripheralPreservation_of_control
     base_inv := ?_
     fam_original := ?_
     fam_selected := ?_
-    embedded := hjointQ }⟩
+    embedded := hjointQ
+    base_finite := hjointFinite.image q }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
@@ -138,6 +140,7 @@ theorem familyPreservation_of_controls
       hsc.toIsSmallCancellation q hq)
     (originalControl : RelativeIsoperimetricControl original q hq)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
+    (hjointFinite : joint.base.Finite)
     (jointControl : RelativeIsoperimetricControl joint q hq)
     (hinjA : Set.InjOn q (cayleyBall A.alphabet 1))
     (hinjSelected : Set.InjOn q
@@ -162,7 +165,8 @@ theorem familyPreservation_of_controls
   have hjointPreserved :
       Nonempty (QuotientJointPeripheralPreservation q selected original) :=
     quotientJointPeripheralPreservation_of_control selected original joint
-      hbaseInv horiginal hselected q hq hjointEmbedded jointControl
+      hbaseInv horiginal hselected q hq hjointEmbedded hjointFinite
+      jointControl
   exact ⟨hinjA, hselectedPreserved, horiginalPreserved, hjointPreserved⟩
 
 /-! ## Certificate-driven family output -/
@@ -201,6 +205,7 @@ theorem familyInclusionConclusion_of_relativeControls
       hsc.toIsSmallCancellation q hq)
     (originalControl : RelativeIsoperimetricControl original q hq)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
+    (hjointFinite : joint.base.Finite)
     (jointControl : RelativeIsoperimetricControl joint q hq) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q selected) ∧
@@ -267,7 +272,8 @@ theorem familyInclusionConclusion_of_relativeControls
   obtain ⟨_, hselectedPreserved, horiginalPreserved, hjointPreserved⟩ :=
     familyPreservation_of_controls selected original joint hbaseInv
       horiginal hselected q hq hA horiginalEmbedded hsc selectedControl
-      originalControl hjointEmbedded jointControl hinjAOne hselectedUnion
+      originalControl hjointEmbedded hjointFinite jointControl hinjAOne
+      hselectedUnion
   exact ⟨hinjAR, hselectedPreserved, horiginalPreserved, hjointPreserved⟩
 
 /-! ## A direct local model -/
@@ -287,6 +293,7 @@ theorem familyPreservation_identityModel
       joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (horiginalEmbedded : original.IsHyperbolicallyEmbedded)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
+    (hjointFinite : joint.base.Finite)
     (R : ℕ) :
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
       Nonempty (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original) ∧
@@ -298,7 +305,8 @@ theorem familyPreservation_identityModel
     canonicalQuotientFamilyPreservation_of_bijective original horiginalEmbedded
       (MonoidHom.id G) hid,
     quotientJointPeripheralPreservation_of_bijective selected original joint
-      hbaseInv horiginal hselected hjointEmbedded (MonoidHom.id G) hid⟩
+      hbaseInv horiginal hselected hjointEmbedded hjointFinite
+      (MonoidHom.id G) hid⟩
 
 /-- The selected-family component of the identity model is the existing
 quotient-preservation constructor, independently of the arbitrary original
@@ -585,7 +593,7 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
     (hcontrols : FamilyInclusionRelativeControlStatement.{u, w}) :
     HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} := by
   intro G _ A N k S selected Lambda original hA horiginal joint hbaseInv
-    hjointOriginal hjointSelected hjointEmbedded R
+    hjointOriginal hjointSelected hjointEmbedded hjointFinite R
   obtain ⟨epsP, rhoP, muP, hmuP, hgood⟩ := h44 selected (max R 1)
   obtain ⟨epsC, rhoC, muC, hmuC, hcontrol⟩ :=
     hcontrols selected original joint horiginal hjointEmbedded hjointOriginal
@@ -618,7 +626,7 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
       originalControl horiginalUnion,
     quotientJointPeripheralPreservation_of_control selected original joint
       hbaseInv hjointOriginal hjointSelected q hsurj hjointEmbedded
-      jointControl⟩
+      hjointFinite jointControl⟩
 
 /-- **Leaf B, repaired form, from three named inputs.**  Osin's certificate
 theorem and his relative-isoperimetric bridge carry the selected half and, once

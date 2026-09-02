@@ -112,6 +112,12 @@ structure QuotientJointPeripheralPreservation
   fam_selected : ∀ i : AuxiliaryPeripheralIndex k,
     rel.fam (Sum.inr i) = (selected.cores.peripheral i).map q
   embedded : rel.IsHyperbolicallyEmbedded
+  /-- The joint relative base stays finite.  Dahmani--Guirardel--Osin's
+  Proposition 4.35 enlarges it by finitely many generators of the members it
+  drops, so relative hyperbolicity of the quotient with respect to the original
+  family, which asks for a finite relative generating set, is read off this
+  field. -/
+  base_finite : rel.base.Finite
 
 /-! ## The arbitrary-family statement -/
 
@@ -167,6 +173,7 @@ theorem quotientJointPeripheralPreservation_of_bijective
     (horiginal : ∀ lam, joint.fam (Sum.inl lam) = original.fam lam)
     (hselected : ∀ i, joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (hjoint : joint.IsHyperbolicallyEmbedded)
+    (hbaseFinite : joint.base.Finite)
     {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   refine ⟨{
@@ -175,7 +182,8 @@ theorem quotientJointPeripheralPreservation_of_bijective
     fam_original := ?_
     fam_selected := ?_
     embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
-      joint hjoint q hq }⟩
+      joint hjoint q hq
+    base_finite := hbaseFinite.image q }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩

@@ -101,6 +101,7 @@ def HullLemma44CanonicalQuotientFamilyInclusionJointStatement : Prop :=
         (∀ i : AuxiliaryPeripheralIndex k,
           joint.fam (Sum.inr i) = selected.cores.peripheral i) →
         joint.IsHyperbolicallyEmbedded →
+        joint.base.Finite →
       ∀ R : ℕ,
         ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
           ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
@@ -139,7 +140,7 @@ def JointAuxiliaryPeripheralEmbedding : Prop :=
             (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) ∧
               (∀ i : AuxiliaryPeripheralIndex k,
                 joint.fam (Sum.inr i) = selected.cores.peripheral i) ∧
-                joint.IsHyperbolicallyEmbedded
+                joint.IsHyperbolicallyEmbedded ∧ joint.base.Finite
 
 /-! ## The empty relator family -/
 
@@ -205,7 +206,7 @@ theorem jointAuxiliaryPeripheralEmbedding_of_familyInclusion
   intro G _ A N k S selected Lambda original hA horiginal
   obtain ⟨P⟩ := quotientJointPeripheralPreservation_id_of_familyInclusion h44
     selected original hA horiginal
-  refine ⟨P.rel, P.base_inv, ?_, ?_, P.embedded⟩
+  refine ⟨P.rel, P.base_inv, ?_, ?_, P.embedded, P.base_finite⟩
   · intro lam
     rw [P.fam_original lam, Subgroup.map_id]
   · intro i
@@ -216,7 +217,7 @@ hypotheses. -/
 theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_familyInclusion
     (h44 : HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w}) :
     HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} := by
-  intro G _ A N k S selected Lambda original hA horiginal _ _ _ _ _ R
+  intro G _ A N k S selected Lambda original hA horiginal _ _ _ _ _ _ R
   exact h44 selected original hA horiginal R
 
 /-- **The exact difference between the two forms.**  Together with
@@ -229,10 +230,10 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
     (h44 : HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w}) :
     HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} := by
   intro G _ A N k S selected Lambda original hA horiginal R
-  obtain ⟨joint, hbaseInv, hjointOriginal, hjointSelected, hjointEmbedded⟩ :=
-    hsel selected original hA horiginal
+  obtain ⟨joint, hbaseInv, hjointOriginal, hjointSelected, hjointEmbedded,
+    hjointFinite⟩ := hsel selected original hA horiginal
   exact h44 selected original hA horiginal joint hbaseInv hjointOriginal
-    hjointSelected hjointEmbedded R
+    hjointSelected hjointEmbedded hjointFinite R
 
 /-- The inclusion form specializes directly to the established canonical
 selected-family statement by preserving the empty original family. -/
@@ -277,7 +278,8 @@ theorem familyInclusionConclusion_identityModel
       joint.fam (Sum.inl lam) = original.fam lam)
     (hjointSelected : ∀ i,
       joint.fam (Sum.inr i) = selected.cores.peripheral i)
-    (hjoint : joint.IsHyperbolicallyEmbedded) (R : ℕ) :
+    (hjoint : joint.IsHyperbolicallyEmbedded)
+    (hjointFinite : joint.base.Finite) (R : ℕ) :
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) ∧
       Nonempty
@@ -292,7 +294,8 @@ theorem familyInclusionConclusion_identityModel
     canonicalQuotientFamilyPreservation_of_bijective original horiginal
       (MonoidHom.id G) hid,
     quotientJointPeripheralPreservation_of_bijective selected original joint
-      hbaseInv hjointOriginal hjointSelected hjoint (MonoidHom.id G) hid⟩
+      hbaseInv hjointOriginal hjointSelected hjoint hjointFinite
+      (MonoidHom.id G) hid⟩
 
 end HullSC
 end GroupApproximation
