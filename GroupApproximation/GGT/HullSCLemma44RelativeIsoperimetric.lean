@@ -2,6 +2,7 @@ import GroupApproximation.GGT.CayleyFourPointBridge
 import GroupApproximation.GGT.HullSCLemma44PrefixRelGenSet
 import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
 import GroupApproximation.GGT.HullSCLemma44RelativeArea
+import GroupApproximation.GGT.HullSCLemma44WeightedArea
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 
 /-!
@@ -237,6 +238,48 @@ def PrefixRelativeLinearAreaTransferStatement : Prop :=
     (D : GGT.RelGenSet G Lambda),
     D.IsHyperbolicallyEmbedded →
       PrefixRelativeLinearAreaTransferAt.{u, v, w} D
+
+/-- Pointwise relative-presentation transfer using the total relator-length
+budget needed to expand long filling cells into bounded prefix triangles. -/
+def PrefixRelativeWeightedAreaTransferAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+      RelativeWeightedKernelArea D W q →
+        Nonempty (PrefixRelativeIsoperimetricControl D W
+          hsc.toIsSmallCancellation q hq)
+
+/-- Uniform relative-presentation theorem for the weighted prefix area
+produced by the quantitative Greendlinger induction. -/
+def PrefixRelativeWeightedAreaTransferStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    D.IsHyperbolicallyEmbedded →
+      PrefixRelativeWeightedAreaTransferAt.{u, v, w} D
+
+/-- The weighted transfer consumes the proved certificate induction at the
+stronger length threshold. -/
+theorem prefixRelativeIsoperimetricControl_of_weightedAreaTransfer
+    (htransfer : PrefixRelativeWeightedAreaTransferStatement.{u, v, w})
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 100 * (eps + 1) ≤ rho)
+    (q : G →* Q) (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    Nonempty (PrefixRelativeIsoperimetricControl D W
+      hsc.toIsSmallCancellation q hq) := by
+  apply htransfer D hD W eps rho mu hsc q hq
+  exact relativeWeightedKernelArea_of_certificates D hsc hmu hrho q hker hcert
 
 /-- Linear area follows from the local cuts, so the relative-presentation
 transfer implies the local Dehn transfer. -/
@@ -535,6 +578,44 @@ theorem relativeLinearAreaTransferAt_trivialSourceModel
     simp only [WordMetric.wordDist_self, zero_add, max_self, mul_zero,
       le_refl]
   · exact peripheralPullbackBound_trivialSource D q hq
+
+/-- The prefix pullback assertion has radius zero at a one-point source. -/
+theorem prefixPeripheralPullbackBound_trivialSource
+    {Q : Type v} [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet PUnit Lambda)
+    (W : Set (List (GGT.RelLetter PUnit Lambda)))
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : PUnit →* Q) (hq : Function.Surjective q) :
+    PrefixPeripheralPullbackBound D W hsc q hq (fun _ => 0) := by
+  haveI : Subsingleton Q :=
+    ⟨fun x y => by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  intro lam n y hy
+  refine ⟨1, ?_, Subsingleton.elim _ _⟩
+  rw [GGT.RelGenSet.relBall_zero]
+  exact Set.mem_singleton_iff.mpr rfl
+
+/-- The weighted prefix transfer has its intended one-point source model. -/
+theorem prefixRelativeWeightedAreaTransferAt_trivialSourceModel
+    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
+    PrefixRelativeWeightedAreaTransferAt.{0, v, w} D := by
+  intro W eps rho mu hsc Q _ q hq harea
+  haveI : Subsingleton Q :=
+    ⟨fun x y => by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  refine ⟨⟨0, ?_, fun _ => 0, ?_⟩⟩
+  · intro a b c d
+    rw [Subsingleton.elim a b, Subsingleton.elim c b,
+      Subsingleton.elim d b]
+    simp only [WordMetric.wordDist_self, zero_add, max_self, mul_zero,
+      le_refl]
+  · exact prefixPeripheralPullbackBound_trivialSource D W
+      hsc.toIsSmallCancellation q hq
 
 /-- In a one-point source group every surjective quotient is a one-point
 group.  Its image relative Cayley graph has zero word distance and every
