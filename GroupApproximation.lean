@@ -3298,6 +3298,7 @@ import GroupApproximation.GGT.VanKampen.SurgeryCutReduced
 import GroupApproximation.GGT.VanKampen.SurgeryFaceDiagram
 import GroupApproximation.GGT.VanKampen.SurgeryCutCells
 import GroupApproximation.GGT.VanKampen.FaceShellingValue
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonBaseCase
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
