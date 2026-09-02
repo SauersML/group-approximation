@@ -1724,7 +1724,7 @@ chosen by a uniform Proposition 4.14 witness visible to the final counting
 argument. -/
 theorem target_of_fixed_uniformBound
     (D : RelGenSet G Λ) (lam : Λ) {mu b : ℝ} {C : ℕ}
-    (hC : 0 < C)
+    (_hC : 0 < C)
     (hdeepBound : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G)
       (u : List (RelLetter G Λ)),
       IsQuasiGeodesicPolygon D mu b n v u →
@@ -1766,7 +1766,6 @@ theorem target_of_fixed_uniformBound
   rw [span_fourGon_side p q r s hiq (by omega)] at hspan
   exact hdeep (relBall_mono_radius D lam hrho hspan)
 
-omit [Group G] in
 /-! ## The finite consecutive-run extraction -/
 
 /-- If every source in a finite run either has an opposite-side match or is
@@ -2164,7 +2163,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           wordDist D.alphabet.carrier endP endQ := by
         have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
         rw [inv_mul_cancel] at hdist'
-        exact hdist'
+        exact (wordDist_comm D.alphabet.symmetricGenerating
+          (1 : G) (endP⁻¹ * endQ)).trans hdist'
       rw [hdist]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
@@ -2172,6 +2172,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
   have hS : N ≤ S.card := by
     have hlen := length_le_two_mul_peripheralCount_add_one hW1P
     have hpcnt := peripheralCount_le_strictInterior_card_add_two P
+    change N ≤ (strictInteriorOccurrences P).card
     dsimp [R, N] at hRlen ⊢
     omega
   let occ : Fin N → Fin (peripheralPositions P).card := fun i =>
@@ -2204,7 +2205,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         (S.orderIsoOfFin rfl) ⟨i.val, by omega⟩ =
           (S.orderIsoOfFin rfl) ⟨j.val, by omega⟩ :=
       Subtype.ext hocceq
-    exact congrArg Fin.val ((S.orderIsoOfFin rfl).injective hsub)
+    have hv : i.val = j.val :=
+      congrArg Fin.val ((S.orderIsoOfFin rfl).injective hsub)
+    exact hv
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
           vertex (1 : G) P (source i + 1) ∉
@@ -2221,6 +2224,15 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
+  have hfixed : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G)
+      (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 4 1 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
+        IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
+    intro n hn v u hquasi nu i k hcomp hiso
+    exact relBall_mono_radius D nu (by dsimp [C]; omega)
+      (hproj414 n v u hquasi nu i k hcomp hiso)
   have htargetRaw : ∀ i : Fin N, ∃ n : ℕ, n ≠ pc.length + source i ∧
       IsCompStart (peripheralOccurrence P (occ i)).label
         (pc ++ P ++ rc ++ revWord Q) n ∧
@@ -2234,9 +2246,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
           vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) n := by
     intro i
-    have htar := target_of_fixed_uniformBound
+    have htar := target_of_fixed_uniformBound (mu := 4) (b := 1) (C := C)
       D (peripheralOccurrence P (occ i)).label (by dsimp [C]; omega)
-      hproj414 4 C pc P rc Q (by norm_num) hclose hpoly
+      hfixed 4 C pc P rc Q (by norm_num) hclose hpoly
       (source i) (source i + 1) (hsourcePos i) (hsourceEnd i)
       (hsourceComp i) (by dsimp [C]; omega) (hsourceDeep i)
     exact htar
