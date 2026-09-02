@@ -282,8 +282,10 @@ theorem hyperbolicElementLoxodromic_of_finiteFamily
     exact hbase.union hunion
   have hacy : IsAcylindrical G (Cayley D.alphabet) :=
     isAcylindrical_cayley_of_finite D.alphabet halphabet
-  exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hemb hacy
-    (finiteFamilyRelativePowerEscape_proved G inferInstance I D hbase hfam g hord)
+  obtain ⟨delta, hdelta⟩ := hemb.hyperbolic
+  exact HullSCUnionGeometry.escapingIsLoxodromic_cayley_of_acylindrical
+    D.alphabet hdelta hacy g
+      (finiteFamilyRelativePowerEscape_proved G inferInstance I D hbase hfam g hord)
 
 /-! ### The missing finite-base binder is load-bearing
 
