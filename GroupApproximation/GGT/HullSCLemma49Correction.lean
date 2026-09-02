@@ -70,8 +70,16 @@ theorem hasPeriod_lemma49BoundaryPower
       (List.replicate j word).flatten ++ word := by
     rw [List.replicate_succ', List.flatten_append, List.flatten_cons,
       List.flatten_nil, List.append_nil]
+  have hcomm : (List.replicate j word).flatten ++ word =
+      word ++ (List.replicate j word).flatten := hback.symm.trans hfront
   rw [hfront, List.take_left, ← hfront, hback]
-  exact List.prefix_append _ _
+  refine ⟨word, ?_⟩
+  calc
+    ((List.replicate j word).flatten ++ word) ++ word =
+        (word ++ (List.replicate j word).flatten) ++ word :=
+      congrArg (fun z => z ++ word) hcomm
+    _ = word ++ ((List.replicate j word).flatten ++ word) := by
+      rw [List.append_assoc]
 
 /-- A factor no longer than one period of a positive boundary power is a
 prefix of a cyclic rotation of the period.  This is the exact rotation
@@ -84,11 +92,6 @@ theorem exists_prefix_rotate_of_infix_lemma49BoundaryPower
     ∃ m, m < word.length ∧ arc <+: word.rotate m := by
   have hperiod := hasPeriod_lemma49BoundaryPower word hn
   have hwordLength : 0 < word.length := List.length_pos_of_ne_nil hword
-  have hpowerLength : (lemma49BoundaryPower word n).length = n * word.length :=
-    lemma49BoundaryPower_length word n
-  have hperiodLe : word.length ≤ (lemma49BoundaryPower word n).length := by
-    rw [hpowerLength]
-    exact Nat.le_mul_of_pos_left _ hn
   obtain ⟨before, after, hsplit⟩ := harc
   have hfit : before.length + arc.length ≤
       (lemma49BoundaryPower word n).length := by
@@ -99,7 +102,6 @@ theorem exists_prefix_rotate_of_infix_lemma49BoundaryPower
     Nat.mod_lt _ hwordLength, ?_⟩
   rw [List.prefix_iff_getElem?]
   intro i hi
-  have hiPeriod : i < word.length := lt_of_lt_of_le hi hlen
   have hiPower : before.length + i <
       (lemma49BoundaryPower word n).length := by omega
   have hleft : arc[i]? =
@@ -117,9 +119,16 @@ theorem exists_prefix_rotate_of_infix_lemma49BoundaryPower
       (lemma49BoundaryPower word n)[(before.length + i) % word.length]? := by
     rw [List.getElem?_rotate (by omega), hmod]
     have htake : (lemma49BoundaryPower word n).take word.length = word := by
+      obtain ⟨j, rfl⟩ : ∃ j, n = j + 1 := ⟨n - 1, by omega⟩
       rw [lemma49BoundaryPower]
       exact List.take_left
-    rw [← htake, List.getElem?_take_of_lt (Nat.mod_lt _ hwordLength)]
+    let k := (before.length + i) % word.length
+    have hk : k < word.length := Nat.mod_lt _ hwordLength
+    calc
+      word[k]? = ((lemma49BoundaryPower word n).take word.length)[k]? :=
+        congrArg (fun z : List Alpha => z[k]?) htake.symm
+      _ = (lemma49BoundaryPower word n)[k]? := by
+        rw [List.getElem?_take_of_lt hk]
   rw [hright,
     ← List.hasPeriod_iff_forall_getElem?_mod.mp hperiod _ hiPower, ← hleft]
   exact List.getElem?_eq_getElem hi
@@ -377,12 +386,14 @@ theorem false_of_short_cyclic_replacement
     intro x hx
     apply hrotLetters x
     rw [hsplit]
-    exact List.mem_append_left _ hx
+    simp only [List.mem_append]
+    exact Or.inl (Or.inl hx)
   have hsuf : RelWord.IsAdmissible D suf := by
     intro x hx
     apply hrotLetters x
     rw [hsplit]
-    exact List.mem_append_right _ (List.mem_append_right _ hx)
+    simp only [List.mem_append]
+    exact Or.inr hx
   have hpreNorm : wordNorm D.alphabet.carrier
       (GGT.RelLetter.listVal pre) ≤ pre.length :=
     GGT.OsinComponents.wordNorm_listVal_le D pre hpre
@@ -513,7 +524,7 @@ theorem false_of_contiguity_arc_le_period
   obtain ⟨suf, hsuf⟩ := hprefix
   apply false_of_contiguity_short_arc D N hshort hword C
     hrelatorAdmissible hrelatorMem arc harcValue m (le_of_lt hm) [] suf
-  · simpa only [List.nil_append] using hsuf
+  · simpa only [List.nil_append] using hsuf.symm
   · exact hdetourShort
 
 /-- A certificate arc at least one period long automatically begins with a
@@ -596,14 +607,17 @@ theorem false_of_two_large_close_relator_subwords
       GGT.RelLetter.listVal second =
         left * (GGT.RelLetter.listVal first)⁻¹ * right)
     (hfirst : mu * (relator.length : ℝ) ≤ (first.length : ℝ))
-    (hsecond : mu * (relator.length : ℝ) ≤ (second.length : ℝ)) : False := by
+    (_hsecond : mu * (relator.length : ℝ) ≤ (second.length : ℝ)) : False := by
   have hpiece := isPrimePiece_of_disjoint_close_subwords hrelator hsplit
     hleft hright hvalue
   have hsmall := hinput.primePiecesSmall first second relator hpiece
   have hmax : mu * (relator.length : ℝ) ≤
       max (first.length : ℝ) (second.length : ℝ) :=
     le_trans hfirst (le_max_left _ _)
-  linarith
+  have hmaxSecond : mu * (relator.length : ℝ) ≤
+      max (first.length : ℝ) (second.length : ℝ) :=
+    le_trans _hsecond (le_max_right _ _)
+  linarith [hmax, hmaxSecond]
 
 /-! ## Model checks -/
 
@@ -614,9 +628,8 @@ theorem no_short_cyclic_replacement_trivialModel
     (N : Subgroup PUnit)
     {word : List (GGT.RelLetter PUnit Lambda)}
     (hword : GGT.OsinComponents.IsGeodesicWord D 1 1 word) : word = [] := by
-  have hzero : word.length = 0 := by
-    have h := hword.2.2
-    simpa [wordDist_one_left] using h
+  have hzero : word.length = 0 :=
+    hword.2.2.trans (wordDist_self D.alphabet.carrier (1 : PUnit))
   exact List.length_eq_zero_iff.mp hzero
 
 end HullSC
