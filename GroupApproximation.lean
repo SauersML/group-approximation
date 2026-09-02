@@ -3301,6 +3301,8 @@ import GroupApproximation.GGT.VanKampen.FaceShellingValue
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonBaseCase
 import GroupApproximation.GGT.DGOProposition414ChordArcSeamProofWrapped
 import GroupApproximation.GGT.VanKampen.SurgeryCutRecord
+import GroupApproximation.GGT.DGOProposition414FirstSeparationTargets
+import GroupApproximation.GGT.DGOProposition414SecondSeparationTransport
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
