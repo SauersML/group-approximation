@@ -40,7 +40,7 @@ theorem quasiGeodesicComparison_zeroModel :
 
 /-- A zero-side polygon contributes no distinguished radius. -/
 theorem zeroSideRadiusWitness
-    (D : RelGenSet G Λ) (mu c : ℝ) (n : ℕ)
+    (D : RelGenSet G Λ) (_mu _c : ℝ) (n : ℕ)
     (hzero : n = 0) (v : G) (word : List (RelLetter G Λ))
     (cut : ℕ → ℕ) (I : Finset ℕ) (lam : ℕ → Λ)
     (hI : ∀ s ∈ I, s < n) :
@@ -89,7 +89,10 @@ theorem exists_general_radius_bound_of_linearSumBound
   refine ⟨L + 1, Nat.zero_lt_succ L, ?_⟩
   intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
   by_cases hn : n = 0
-  · exact zeroSideRadiusWitness D mu c n hn v word cut I lam hI
+  · subst n
+    obtain ⟨r, hr, hsum⟩ := zeroSideRadiusWitness D mu c 0 rfl v word cut I lam hI
+    refine ⟨r, hr, ?_⟩
+    simpa using hsum
   · have hnpos : 1 ≤ n := by omega
     have hsum := hL n hnpos
     have hquasiOne : ∀ s : ℕ, s < n → s ∉ I → ∀ p q : ℕ,
