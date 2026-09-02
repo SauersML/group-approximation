@@ -109,6 +109,30 @@ theorem sum_orientedTrimmedChordWalk_dist_le
       rw [Finset.sum_add_distrib, sum_chordWalk_dist]
       simp
 
+/-- The orientation correction vanishes for an empty partner list and is at
+most four times the number of partners otherwise. -/
+theorem sum_orientedTrimmedChordWalk_dist_le_four_length
+    (xs : List ℕ) (initial terminal : ℕ)
+    (forward : Fin (xs.length + 1) → Prop) :
+    (∑ j : Fin (xs.length + 1),
+      Nat.dist
+        (if h : j.val < xs.length then
+          if forward j then xs[j.val] + 1 else xs[j.val]
+        else terminal)
+        (if h : 0 < j.val then
+          if forward j then xs[j.val - 1]'(by omega)
+          else xs[j.val - 1]'(by omega) + 1
+        else initial)) ≤
+      chordTraversalCost (initial :: xs ++ [terminal]) + 4 * xs.length := by
+  cases xs with
+  | nil =>
+      simp [Fin.sum_univ_one, chordTraversalCost, Nat.dist_comm]
+  | cons x xs =>
+      have h := sum_orientedTrimmedChordWalk_dist_le
+        (x :: xs) initial terminal forward
+      simp only [List.length_cons] at h ⊢
+      omega
+
 /-- Appending one boundary vertex in `[0,L]` costs at most `L`. -/
 theorem chordTraversalCost_append_bounded_endpoint_le
     {xs : List ℕ} {terminal L : ℕ} (ht : terminal ≤ L)
