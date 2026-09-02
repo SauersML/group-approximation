@@ -80,7 +80,7 @@ theorem letters_expandWord
   induction v with
   | nil =>
       intro b hb
-      exact absurd hb (List.not_mem_nil b)
+      simp [expandWord] at hb
   | cons a t ih =>
       intro b hb
       rcases List.mem_append.mp hb with hb | hb
@@ -89,6 +89,7 @@ theorem letters_expandWord
 
 /-- The expansion is at least as long as the source word, provided no letter is
 spelled by the empty word. -/
+omit [Group G] in
 theorem length_le_length_expandWord
     (spell : GGT.RelLetter G (AuxiliaryPeripheralIndex k) →
       List (GGT.RelLetter G Lambda))
@@ -205,12 +206,12 @@ def originalRelatorExpansion_nil {G : Type u} [Group G] {Lambda : Type w}
   base_inv := hbase
   letters := by
     intro b hb
-    exact absurd hb (List.not_mem_nil b)
+    simp at hb
   value := rfl
   long := by simp
   deep := by
     intro b hb
-    exact absurd hb (List.not_mem_nil b)
+    simp at hb
   pieces := by
     intro u w hp
     obtain ⟨hw, -, w', hw', hne, -⟩ := hp
