@@ -3278,6 +3278,8 @@ import GroupApproximation.GGT.DGOProposition414HalfWordChord
 import GroupApproximation.GGT.DGOProposition414ArcChordSeamProof
 import GroupApproximation.GGT.VanKampen.Estimating.Lemma65Statement
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundRepaired
+import GroupApproximation.GGT.HullSCRelativeGreendlingerQuasiGeodesicSpelling
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundComponentSplit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
