@@ -143,6 +143,27 @@ structure Lemma62Data
     (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
   threshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)
 
+/-- The partition certificate from Appendix Lemma 62 supplies the strict
+unbound estimate required by `Lemma62Data`; only the independent numerical
+threshold remains to be supplied. -/
+theorem lemma62Data_of_partitionCertificate
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    {d : ℕ}
+    (certificate : PartitionUnboundCertificate
+      Delta.rCellCount d (Real.sqrt (rho : ℝ))
+      (scaffold.partition.unboundTotal : ℝ))
+    (hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)) :
+    Nonempty (Lemma62Data D eps mu rho Delta scaffold) := by
+  refine ⟨{
+    unbound_lt := ?_
+    threshold := hthreshold }⟩
+  simpa using certificate.total_lt
+
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
     {G : Type u} [Group G] {Lambda : Type w}
