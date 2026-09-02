@@ -24,9 +24,11 @@ already constructed unconditionally by
 `HullSCAuxiliaryRelatorPublished`.
 
 The family Lemma 4.4 interface is the slot for Osin's arbitrary original
-peripheral family.  `RelHypDefinition` now supplies that family as a labelled
-finite-base `RelGenSet`, so the remaining assembly work is to combine it with
-the selected elementary closures and iterate the tied one-step quotient.
+peripheral family.  Once `CompatibleRelativeHullActionStatement` supplies the
+pre-quotient action on that same labelled relative alphabet, this module proves
+the literal one-relator step and `RelHypOsin24Iteration` handles every finite
+target set.  Thus the compatible action is the only additional input below;
+all quotient conclusions and finite normal generation are proved here.
 -/
 
 namespace GroupApproximation
