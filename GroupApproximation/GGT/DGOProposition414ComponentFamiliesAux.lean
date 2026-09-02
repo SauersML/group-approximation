@@ -406,7 +406,8 @@ theorem firstGapArcSource_fullComponent
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.first e)) :=
-          hprevComp.2.2.1 _ le_rfl (by omega) _
+          have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
+          simpa only [(B.firstArcCut_target heTarget).1] using hletter0
         have hprevLabel :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
@@ -442,8 +443,9 @@ theorem firstGapArcSource_fullComponent
     · have hiEq : i + 1 =
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
           (B.firstGapFinishSide j)).length := by
-        have hlenArc := length_arcWord B.firstArc B.firstArcCut
+        have hcutEnd := B.firstArc_isCutPath.cut.le_length
           (B.firstGapFinishSide_le j)
+        have hlenArc := length_arcWord B.firstArc B.firstArcCut hcutEnd
         rw [hlenArc]
         dsimp [i]
         omega
@@ -480,8 +482,14 @@ theorem firstGapArcSource_fullComponent
             B.firstWord[B.firstTargetPos s + 1]'(by
               rw [← (B.firstArcCut_target hsData.1).2]
               omega) := by
+          have hcutCur := (B.firstArcCut_target hsData.1).1
+          have hcutNext := (B.firstArcCut_target hsData.1).2
+          have hrightNil : B.firstGapRight j = [] := by
+            simp only [firstGapRight]
+            rw [hnxt]
+            simp
           simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
-            hwordComp, hwordLen, hiEq]
+            hwordComp, hwordLen, hiEq, hcutCur, hcutNext, hrightNil]
           omega
         rw [hauxEq] at hletter
         exact hwordPost (by omega) hletter
@@ -703,7 +711,8 @@ theorem secondGapArcSource_fullComponent
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.second e)) :=
-          hprevComp.2.2.1 _ le_rfl (by omega) _
+          have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
+          simpa only [(B.secondArcCut_target heTarget).1] using hletter0
         have hprevLabel :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
@@ -774,8 +783,14 @@ theorem secondGapArcSource_fullComponent
             B.secondWord[B.secondTargetPos s + 1]'(by
               rw [← (B.secondArcCut_target hsData.1).2]
               omega) := by
+          have hcutCur := (B.secondArcCut_target hsData.1).1
+          have hcutNext := (B.secondArcCut_target hsData.1).2
+          have hrightNil : B.secondGapRight j = [] := by
+            simp only [secondGapRight]
+            rw [hnxt]
+            simp
           simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
-            hwordComp, hwordLen, hiEq]
+            hwordComp, hwordLen, hiEq, hcutCur, hcutNext, hrightNil]
           omega
         rw [hauxEq] at hletter
         exact hwordPost (by omega) hletter
