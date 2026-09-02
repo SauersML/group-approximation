@@ -95,24 +95,35 @@ theorem exists_side_gt_of_sum_gt {r : ℕ} {a : ℝ} (s : Finset ℕ)
 /-! ## Termination of Ol'shanskii's bisection recursion -/
 
 /-- The balanced cut of `Olshanskii.exists_balanced_cut` leaves two pieces
-with strictly fewer sides than the polygon it cut, and neither piece
-degenerates below two sides.  A cut between side `a` and side `b` with
-`k = b - a` gives pieces of `k + 1` and `n - k + 1` sides, and the
-quarter-separation `n <= 4 * k <= 3 * n` is exactly what makes both counts
-drop.  This is the descent that lets the recursion stop at eight sides. -/
-theorem bisection_side_counts_lt {n k : ℕ} (hn : 8 ≤ n)
-    (hlow : n ≤ 4 * k) (hhigh : 4 * k ≤ 3 * n) :
-    k + 1 < n ∧ n - k + 1 < n ∧ 2 ≤ k + 1 ∧ 2 ≤ n - k + 1 := by
+with strictly fewer sides than the polygon it cut.  The cut runs between a
+point on side `a` and a point on side `a + m`, so it splits both of those
+sides and appears once in each piece: the pieces have `m + 2` and
+`n - m + 2` sides, as `exists_innerCut_polygon` and `exists_outerCut_polygon`
+produce them, and the two counts sum to `n + 4` rather than to `n`.
+
+The quarter-separation `n <= 4 * m <= 3 * n` is what makes both counts drop,
+and it does so only from nine sides up; `bisection_side_counts_eightGon_stalls`
+shows the eight-gon is a genuine fixed point, which is why the recursion's
+base case has to cover `n <= 8`. -/
+theorem bisection_side_counts_lt {n m : ℕ} (hn : 9 ≤ n)
+    (hlow : n ≤ 4 * m) (hhigh : 4 * m ≤ 3 * n) :
+    m + 2 < n ∧ n - m + 2 < n ∧ 2 ≤ m + 2 ∧ 2 ≤ n - m + 2 := by
   refine ⟨by omega, by omega, by omega, by omega⟩
 
 /-! ## Model checks -/
 
-/-- The descent is tight at the smallest polygon the bisection accepts: an
-eight-gon cut in half gives two five-gons. -/
+/-- The descent at the smallest polygon it accepts: a nine-gon cut at
+`m = 3` leaves a five-gon and an eight-gon. -/
 theorem bisection_side_counts_oneStep_model :
-    (2 : ℕ) + 1 < 8 ∧ 8 - 2 + 1 < 8 ∧ 2 ≤ 2 + 1 ∧ 2 ≤ 8 - 2 + 1 :=
-  bisection_side_counts_lt (n := 8) (k := 2) (by norm_num) (by norm_num)
+    (3 : ℕ) + 2 < 9 ∧ 9 - 3 + 2 < 9 ∧ 2 ≤ 3 + 2 ∧ 2 ≤ 9 - 3 + 2 :=
+  bisection_side_counts_lt (n := 9) (m := 3) (by norm_num) (by norm_num)
     (by norm_num)
+
+/-- The eight-gon is a fixed point of the cut, not a case the descent covers:
+cutting it at `m = 2` leaves a piece with eight sides again.  So the base case
+of the recursion must reach `n = 8`, which is what
+`exists_long_close_pair_small_polygon` does. -/
+theorem bisection_side_counts_eightGon_stalls : ¬ (8 - 2 + 2 < 8) := by omega
 
 /-- The pigeonhole is exact at one side: a single side of length above `a`
 is the only way to beat the total `1 * a`. -/
