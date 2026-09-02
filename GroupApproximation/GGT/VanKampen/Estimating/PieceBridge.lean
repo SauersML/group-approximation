@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
+import GroupApproximation.GGT.VanKampen.FaceShelling
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
 import GroupApproximation.GGT.VanKampen.Contiguity
 import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
@@ -608,6 +609,22 @@ def PastingReducedCellPieceCertificate.of_boundaryPeeling
     PastingReducedCellPieceCertificate Gamma where
   bridge := bridge
   pasting := peeling.to_homotopy
+
+/-- The region's own `pasting` field supplies the homotopy, so the pasted
+certificate needs only the reducedness bridge and no peeling. -/
+def PastingReducedCellPieceCertificate.of_bridge
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma) :
+    PastingReducedCellPieceCertificate Gamma where
+  bridge := bridge
+  pasting := by
+    obtain ⟨l, shelling⟩ := Gamma.pasting
+    exact faceSetWordHomotopy_of_shelling shelling
 
 /-- Boundary dart counting through `FaceSetBoundaryPeeling` gives the source,
 target, right-side, and left-side equation used by both O52 charges. -/

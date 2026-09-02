@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCLemma44EmbeddedCertificate
 import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
 import GroupApproximation.GGT.VanKampen.SurgeryMap
+import GroupApproximation.GGT.VanKampen.FaceShelling
 
 /-!
 # vk payloads for the relative Greendlinger certificate
@@ -30,7 +31,8 @@ universe u w
 
 /-- All vk fields needed to turn one embedded boundary contiguity into a
 `RelativeBoundaryContiguity`.  `position` is the linear before/arc/after
-decomposition.  `peeling` supplies the value-one equation.  `surgery` names
+decomposition.  The value-one equation now comes from the region's own
+`Embedded.Contiguity.pasting` field, so no peeling is owed.  `surgery` names
 the `SurgeryMap` disc collapse and `surgery_cycle` identifies its boundary
 cycle with the selected contiguity cycle. -/
 structure VkBoundaryCertificateData
@@ -46,7 +48,6 @@ structure VkBoundaryCertificateData
     (Embedded.dartWord hreal.diagram C.region.rightSide)
   rightSide_admissible : RelWord.IsAdmissible D
     (Embedded.dartWord hreal.diagram C.region.leftSide)
-  peeling : Embedded.FaceSetBoundaryPeeling C.region.boundary
   surgery : Surgery.MapCollapse.IsDiscRegion hreal.diagram.toCombMap C.faces
   surgery_cycle : surgery.toBoundaryCycle.cycle = C.region.boundary.cycle
   cell_label_transport :
@@ -84,8 +85,9 @@ def VkBoundaryCertificateData.toEmbeddedData
   rightSide_admissible := data.rightSide_admissible
   cell_label_transport := data.cell_label_transport
   cycle_value_one := by
-    have hpeel := Embedded.FaceSetBoundaryPeeling.cycle_value_eq_one
-      C.region.boundary data.peeling
+    obtain ⟨l, shelling⟩ := C.region.pasting
+    have hpeel := Embedded.cycle_value_eq_one_of_shelling
+      C.region.boundary shelling
     have hsurgery : GGT.RelLetter.listVal
         (Embedded.dartWord hreal.diagram data.surgery.toBoundaryCycle.cycle) = 1 := by
       rw [data.surgery_cycle]
