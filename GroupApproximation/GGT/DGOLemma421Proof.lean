@@ -2381,12 +2381,12 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             · have hrczero : rc.length = 0 := by omega
               exfalso
               apply hmatched
-              refine ⟨Q.length, le_rfl, ?_, ?_⟩
               have hidx : targetN i =
                   pc.length + P.length + rc.length +
                     (Q.length - Q.length) := by
                 rw [hni, hieq, hrczero]
                 simp
+              refine ⟨Q.length, le_rfl, ?_, ?_⟩
               · rw [← hidx]
                 exact (htargetSpec i).2.1
               · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
