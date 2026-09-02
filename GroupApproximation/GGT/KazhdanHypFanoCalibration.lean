@@ -339,12 +339,123 @@ theorem fano_isFinitelyPresented :
 
 /-! ## The checked girth-six obstruction -/
 
+/-- The equally indexed point and line are nonincident in the projective-plane
+link.  This is the zero-offset case of the three-corner expansion. -/
+theorem fanoPlane_zero_nonedge :
+    fanoPlane.linkAdj ((0, true) : ZMod 7 × Bool)
+      ((0, false) : ZMod 7 × Bool) = 0 := by
+  change fanoIncidence 0 0 = 0
+  rw [fanoIncidence_cornerExpansion]
+  norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add,
+    ZMod.val_one_eq_one_mod, ZMod.val_natCast, ZMod.val_ofNat]
+
 /-- A point and its equally labelled line are not adjacent in the cyclic Fano
 incidence graph. -/
 theorem fano_zero_nonedge :
     TriangularHodgeLayer.adjacencyCount fanoTriangles
       ((0, true) : ZMod 7 × Bool) ((0, false) : ZMod 7 × Bool) = 0 := by
-  decide
+  have hlink := fanoLink_eq ((0, true) : ZMod 7 × Bool)
+    ((0, false) : ZMod 7 × Bool)
+  rw [fanoPlane_zero_nonedge] at hlink
+  exact_mod_cast hlink
+
+/-- The rational incidence-graph adjacency matrix has three length-three
+walks from point zero to line zero.  The inner two steps are evaluated by
+`ProjectivePlaneData.linkAdj_square`; the outer step uses the degree and sign
+column identities. -/
+theorem fanoPlane_zero_threePaths :
+    (∑ a, ∑ b,
+      fanoPlane.linkAdj ((0, true) : ZMod 7 × Bool) a *
+      fanoPlane.linkAdj a b *
+      fanoPlane.linkAdj b ((0, false) : ZMod 7 × Bool)) = 3 := by
+  classical
+  let p : ZMod 7 × Bool := (0, true)
+  let l : ZMod 7 × Bool := (0, false)
+  have hpSign : fanoPlane.linkSign p = 1 := by
+    rfl
+  have hlSign : fanoPlane.linkSign l = -1 := by
+    rfl
+  have hnonedge : fanoPlane.linkAdj p l = 0 := by
+    simpa only [p, l] using fanoPlane_zero_nonedge
+  have hdegree : (∑ a, fanoPlane.linkAdj p a) = 3 := by
+    calc
+      (∑ a, fanoPlane.linkAdj p a) = ∑ a, fanoPlane.linkAdj a p := by
+        apply Finset.sum_congr rfl
+        intro a _
+        exact fanoPlane.linkAdj_symm p a
+      _ = fanoPlane.order + 1 := fanoPlane.linkAdj_col_sum p
+      _ = 3 := by norm_num [fanoPlane]
+  have hsign :
+      (∑ a, fanoPlane.linkAdj p a * fanoPlane.linkSign a) = -3 := by
+    calc
+      (∑ a, fanoPlane.linkAdj p a * fanoPlane.linkSign a) =
+          ∑ a, fanoPlane.linkAdj a p * fanoPlane.linkSign a := by
+        apply Finset.sum_congr rfl
+        intro a _
+        rw [fanoPlane.linkAdj_symm p a]
+      _ = -((fanoPlane.order + 1) * fanoPlane.linkSign p) :=
+        fanoPlane.linkAdj_sign_col p
+      _ = -3 := by rw [hpSign]; norm_num [fanoPlane]
+  have hdelta :
+      (∑ a, fanoPlane.linkAdj p a *
+        (if a = l then (1 : ℚ) else 0)) = 0 := by
+    calc
+      (∑ a, fanoPlane.linkAdj p a *
+          (if a = l then (1 : ℚ) else 0)) = fanoPlane.linkAdj p l := by
+        simp
+      _ = 0 := hnonedge
+  have hinner : ∀ a,
+      (∑ b, fanoPlane.linkAdj p a * fanoPlane.linkAdj a b *
+        fanoPlane.linkAdj b l) =
+      fanoPlane.linkAdj p a *
+        (fanoPlane.order * (if a = l then (1 : ℚ) else 0) +
+          (1 + fanoPlane.linkSign a * fanoPlane.linkSign l) / 2) := by
+    intro a
+    calc
+      (∑ b, fanoPlane.linkAdj p a * fanoPlane.linkAdj a b *
+          fanoPlane.linkAdj b l) =
+          fanoPlane.linkAdj p a *
+            (∑ b, fanoPlane.linkAdj b a * fanoPlane.linkAdj b l) := by
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro b _
+        rw [fanoPlane.linkAdj_symm a b]
+        ring
+      _ = fanoPlane.linkAdj p a *
+          (fanoPlane.order * (if a = l then (1 : ℚ) else 0) +
+            (1 + fanoPlane.linkSign a * fanoPlane.linkSign l) / 2) := by
+        rw [fanoPlane.linkAdj_square a l]
+  change (∑ a, ∑ b, fanoPlane.linkAdj p a * fanoPlane.linkAdj a b *
+    fanoPlane.linkAdj b l) = 3
+  calc
+    (∑ a, ∑ b, fanoPlane.linkAdj p a * fanoPlane.linkAdj a b *
+        fanoPlane.linkAdj b l) =
+        ∑ a, fanoPlane.linkAdj p a *
+          (fanoPlane.order * (if a = l then (1 : ℚ) else 0) +
+            (1 + fanoPlane.linkSign a * fanoPlane.linkSign l) / 2) := by
+      apply Finset.sum_congr rfl
+      intro a _
+      exact hinner a
+    _ = ∑ a,
+        (fanoPlane.order *
+            (fanoPlane.linkAdj p a * (if a = l then (1 : ℚ) else 0)) +
+          (1 / 2 : ℚ) * fanoPlane.linkAdj p a) +
+          (fanoPlane.linkSign l / 2) *
+            (fanoPlane.linkAdj p a * fanoPlane.linkSign a) := by
+      apply Finset.sum_congr rfl
+      intro a _
+      ring
+    _ = fanoPlane.order *
+          (∑ a, fanoPlane.linkAdj p a *
+            (if a = l then (1 : ℚ) else 0)) +
+        (1 / 2 : ℚ) * (∑ a, fanoPlane.linkAdj p a) +
+        (fanoPlane.linkSign l / 2) *
+          (∑ a, fanoPlane.linkAdj p a * fanoPlane.linkSign a) := by
+      rw [Finset.sum_add_distrib, Finset.sum_add_distrib,
+        ← Finset.mul_sum, ← Finset.mul_sum, ← Finset.mul_sum]
+    _ = 3 := by
+      rw [hdelta, hdegree, hsign, hlSign]
+      norm_num
 
 /-- There are three length-three link paths from point zero to the nonincident
 line zero.  In particular the link contains six-cycles. -/
@@ -354,7 +465,16 @@ theorem fano_zero_threePaths :
       TriangularHodgeLayer.adjacencyCount fanoTriangles a b *
       TriangularHodgeLayer.adjacencyCount fanoTriangles b ((0, false) : ZMod 7 × Bool))
       = 3 := by
-  decide
+  have hrat :
+      (∑ a, ∑ b,
+        (TriangularHodgeLayer.adjacencyCount fanoTriangles
+          ((0, true) : ZMod 7 × Bool) a : ℚ) *
+        (TriangularHodgeLayer.adjacencyCount fanoTriangles a b : ℚ) *
+        (TriangularHodgeLayer.adjacencyCount fanoTriangles b
+          ((0, false) : ZMod 7 × Bool) : ℚ)) = 3 := by
+    simp_rw [fanoLink_eq]
+    exact fanoPlane_zero_threePaths
+  exact_mod_cast hrat
 
 /-- The Fano calibration table is outside the girth-eight geometric pipeline.
 This is a concrete refutation rather than an appeal to the Euclidean building:
