@@ -97,6 +97,20 @@ structure Lemma49RelativeGreendlingerCell
     (1 - 23 * mu) * (relator.length : ℝ) ≤
       (contiguity.exterior.length : ℝ)
 
+/-- Transporting a contiguity object along equality of its boundary word does
+not change its exterior relator arc. -/
+theorem RelativeBoundaryContiguity.exterior_eq_boundaryCast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {boundary boundary' : List G}
+    {relator : List (GGT.RelLetter G Lambda)}
+    (h : boundary = boundary')
+    (C : RelativeBoundaryContiguity D eps boundary relator) :
+    (h ▸ C : RelativeBoundaryContiguity D eps boundary' relator).exterior =
+      C.exterior := by
+  subst boundary'
+  rfl
+
 /-- A certificate on the common reduced diagram yields the preceding literal
 power-word cell data. -/
 theorem exists_lemma49RelativeGreendlingerCell
@@ -108,24 +122,34 @@ theorem exists_lemma49RelativeGreendlingerCell
       Z.toRelativeReducedDiagram) :
     Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
   obtain ⟨i, C, _, hlarge⟩ := K.largeCell
-  rw [K.boundaryWord_eq] at C hlarge
-  change RelativeBoundaryContiguity D eps
-    ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
-    (K.cellLabel i) at C
+  let Cpower : RelativeBoundaryContiguity D eps
+      ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
+      (K.cellLabel i) := by
+    change RelativeBoundaryContiguity D eps
+      Z.toRelativeReducedDiagram.boundaryWord (K.cellLabel i)
+    exact K.boundaryWord_eq ▸ C
+  have hlargePower :
+      (1 - 23 * mu) * ((K.cellLabel i).length : ℝ) ≤
+        (Cpower.exterior.length : ℝ) := by
+    have hexterior : Cpower.exterior = C.exterior := by
+      exact RelativeBoundaryContiguity.exterior_eq_boundaryCast
+        K.boundaryWord_eq C
+    rw [hexterior]
+    exact hlarge
   obtain ⟨pre, arc, suf, hsplit, _, _, _, harcValue⟩ :=
-    exists_boundaryArc_source C
+    exists_boundaryArc_source Cpower
   exact ⟨{
     index := i
     relator := K.cellLabel i
     relator_eq := K.cellLabel_eq i
     relator_mem := K.cellLabel_mem i
-    contiguity := C
+    contiguity := Cpower
     boundaryBefore := pre
     boundaryArc := arc
     boundaryAfter := suf
     boundary_decomposition := hsplit
     boundaryArc_value := harcValue
-    exterior_large := hlarge }⟩
+    exterior_large := hlargePower }⟩
 
 /-! ## Quantitative consequences of the large exterior arc -/
 
