@@ -371,6 +371,29 @@ structure CellPieceEquations
       GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
       GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)
 
+/-- A face-set pasting and its transported reducedness exclusion produce the
+single certificate consumed by both O52 endpoint estimates. -/
+theorem CellPieceEquations.of_pasting
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    {target : Fin Delta.rCellCount}
+    (htarget : Gamma.target = some target)
+    (pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle [])
+    (hwhole : GGT.RelLetter.listVal
+        (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)) :
+    CellPieceEquations Gamma :=
+  { target := target
+    target_eq := htarget
+    arcs_value := Gamma.targetBoundary_value_of_pasting pasting
+    whole_ne := hwhole }
+
 /-- A pasted embedded region and its reducedness exclusion form the published
 piece used by both endpoint estimates. -/
 theorem Contiguity.isPublishedPiece_of_equations
