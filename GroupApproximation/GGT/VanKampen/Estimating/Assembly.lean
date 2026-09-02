@@ -256,8 +256,29 @@ theorem interior_total_le
         5 * (2 * mu) * ∑ i : Fin Delta.rCellCount,
           ((Embedded.cell Delta i).word.length : ℝ) := by
       simpa using hedge
-    _ = 10 * mu * ∑ i : Fin Delta.rCellCount,
+      _ = 10 * mu * ∑ i : Fin Delta.rCellCount,
           ((Embedded.cell Delta i).word.length : ℝ) := by ring
+
+/-- The hereditary planar incidence certificate yields the explicit
+five-owner orientation of Osin's Appendix Lemma `Eul`. -/
+theorem fiveOwnerOrientation
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    (data : EstimatingData D eps mu Delta)
+    (hcells : 0 < Delta.rCellCount) :
+    Nonempty (FiveOwnerOrientation data.incident
+      (Finset.univ : Finset (Fin Delta.rCellCount))
+      (Finset.univ : Finset data.InteriorEdge)) := by
+  have haverage : HasHereditaryAverageDegreeLtSix data.incident :=
+    hereditaryAverageDegree_of_planarEdgeBound data.incident
+      data.atMostTwoEndpoints data.planarEdgeBound
+  obtain ⟨order⟩ := exists_fiveDeletionOrder_of_hereditaryAverageDegree
+    data.incident haverage Finset.univ Finset.univ data.edgesCovered
+  letI : Nonempty (Fin Delta.rCellCount) :=
+    Fin.pos_iff_nonempty.mp hcells
+  exact FiveDeletionOrder.toOwnerOrientation data.incident order
 
 /-- Positive cell count and the positive source threshold make total relator
 perimeter positive. -/
