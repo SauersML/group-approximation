@@ -1,5 +1,5 @@
 import GroupApproximation.Algebra.HyperbolicSlimFourPoint
-import GroupApproximation.GGT.KazhdanHypGirthEightDiagram
+import GroupApproximation.GGT.KazhdanHypGirthEightFromDiagram
 
 /-!
 # The metric window in the linear-isoperimetric hyperbolicity argument
@@ -403,6 +403,78 @@ theorem isHyperbolicGroup_of_girthEight_layer_construction
     Hyperbolic.IsHyperbolicGroup G :=
   Hyperbolic.isHyperbolicGroup_of_isSlimTriangles hS
     (isSlimTriangles_of_girthEight_layer_construction build)
+
+/-! ## The specialization to a checked triangle table -/
+
+section Presented
+
+variable {Generator TriangleIndex : Type}
+  [Fintype Generator] [DecidableEq Generator]
+  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+
+/-- The canonical finite symmetric alphabet of a triangularly presented
+group. -/
+noncomputable def presentedGeneratorFinset
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) :
+    Finset (TriangularHodgeLayer.Presented T) :=
+  symmetrizedGeneratorFinset (TriangularHodgeLayer.generator T)
+
+/-- The canonical finite alphabet generates the triangularly presented
+group. -/
+theorem presentedGeneratorFinset_isSymmetricGeneratingSet
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) :
+    IsSymmetricGeneratingSet
+      ((presentedGeneratorFinset T :
+        Finset (TriangularHodgeLayer.Presented T)) : Set _) :=
+  symmetrizedGeneratorFinset_isSymmetricGeneratingSet
+    (TriangularHodgeLayer.generator T)
+    (TriangularHodgeLayer.closure_range_generator T)
+
+/-- For one checked triangle table, a successive-star construction expressed
+with the local reduced-diagram data proves hyperbolicity of the presented
+group.  The conversion from `TriangularDiagramLocalData` to the curvature
+package uses the link-girth theorem in
+`KazhdanHypGirthEightFromDiagram.lean`. -/
+theorem presented_isHyperbolicGroup_of_girthEight_layer_construction
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
+    (build : ∀ x y z p : TriangularHodgeLayer.Presented T,
+      Hyperbolic.IsBetween
+        ((presentedGeneratorFinset T :
+          Finset (TriangularHodgeLayer.Presented T)) : Set _) x p y →
+      (∀ q : TriangularHodgeLayer.Presented T,
+        Hyperbolic.IsBetween
+          ((presentedGeneratorFinset T :
+            Finset (TriangularHodgeLayer.Presented T)) : Set _) x q z →
+        delta < wordDist
+          ((presentedGeneratorFinset T :
+            Finset (TriangularHodgeLayer.Presented T)) : Set _) p q) →
+      (∀ q : TriangularHodgeLayer.Presented T,
+        Hyperbolic.IsBetween
+          ((presentedGeneratorFinset T :
+            Finset (TriangularHodgeLayer.Presented T)) : Set _) z q y →
+        delta < wordDist
+          ((presentedGeneratorFinset T :
+            Finset (TriangularHodgeLayer.Presented T)) : Set _) p q) →
+      ∃ (Delta : VanKampen.DiscDiagram (KazhdanHyp.triangleRelatorWords T))
+        (L : KazhdanHyp.TriangularDiagramLocalData T Delta)
+        (m ell loss rho : ℕ) (layer : Fin m → ℕ),
+        Delta.combinatorialBoundaryLength <= 6 * ell ∧
+        (∑ i, layer i) <= Delta.innerFaceCount ∧
+        (∀ i, ell - loss <= rho * layer i) ∧
+        18 * rho * ell < m * (ell - loss)) :
+    Hyperbolic.IsHyperbolicGroup
+      (TriangularHodgeLayer.Presented T) := by
+  apply isHyperbolicGroup_of_girthEight_layer_construction
+    (presentedGeneratorFinset_isSymmetricGeneratingSet T)
+  intro x y z p hp hfarXZ hfarZY
+  obtain ⟨Delta, L, m, ell, loss, rho, layer,
+    hperimeter, hsum, hlayer, hdepth⟩ :=
+    build x y z p hp hfarXZ hfarZY
+  exact ⟨Delta, L.toTriangularGirthEightDiagram hchecks,
+    m, ell, loss, rho, layer, hperimeter, hsum, hlayer, hdepth⟩
+
+end Presented
 
 end GirthEightSlim
 end GGT
