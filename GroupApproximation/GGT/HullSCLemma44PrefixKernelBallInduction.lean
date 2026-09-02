@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCLemma44KernelGeodesic
+import GroupApproximation.GGT.HullSCLemma44KernelAssembly
 
 /-!
 # Relative-ball induction for the prefix kernel cone
