@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma49EmbeddedArc
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryPeeling
 import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopy
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerCertificate
 
@@ -155,6 +156,29 @@ theorem sourceHpasting_of_nonemptyFaceSetPeeling
           C.contiguity.boundary.cycle [] := by
   intro v g n eps mu Z C
   obtain ⟨peeling⟩ := hpeeling C
+  exact peeling.to_homotopy
+
+/-! The finite-cardinality producer can be inserted directly once a geometric
+one-step oracle is available.  This is the adapter form with no global
+`FaceSetBoundaryPeeling` premise. -/
+
+theorem sourceHpasting_of_faceSetBoundaryPeelOracle
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (horacle : ∀ {v : List (GGT.RelLetter G Lambda)} {g : G}
+      {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Embedded.FaceSetBoundaryPeelOracle (Delta := C.diagram)) :
+    ∀ {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Embedded.FaceSetWordHomotopy C.diagram C.faces
+          C.contiguity.boundary.cycle [] := by
+  intro v g n eps mu Z C
+  have peeling : Embedded.FaceSetBoundaryPeeling C.contiguity.boundary :=
+    Embedded.faceSetBoundaryPeeling_of_faceSetBoundary_of_oracle
+      C.contiguity.boundary (horacle C)
   exact peeling.to_homotopy
 
 end VanKampen
