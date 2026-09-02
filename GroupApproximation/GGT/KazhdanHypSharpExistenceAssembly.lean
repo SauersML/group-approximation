@@ -30,6 +30,7 @@ namespace KazhdanHypSharpExistenceAssembly
 
 open GroupApproximation.KazhdanHyp
 open GirthEightVKInterface
+open GirthEightPrimitives2
 open GirthEightTorsionExtraction
 
 /-! ## The exact producer hypotheses -/
@@ -72,6 +73,109 @@ abbrev ExposedPairingEulerProducer : Prop :=
     (g : TriangularHodgeLayer.Presented T) (n : ℕ)
     (D : PowerDisc T g n),
     ExposedPairingEulerInput T D
+
+/-- The one generic CombMap operation not yet exported by the seam files.
+
+The output is deliberately stated in the raw copy-mate form consumed by the
+landed `ExposedPairing.of_copyMate` constructor.  In particular, this is
+strictly smaller than `ExposedPairingEulerProducer`: it does not assert the
+table-side `TrianglePairUnique` field.  The latter is supplied by the W(8)
+`GirthEightChecks` disjointness clause below.  A sep2fix implementation of
+this proposition can therefore be consumed without changing any of the
+W(8)-specific code in this module. -/
+abbrev PlanarDiscExposedPairingEulerData : Prop :=
+  ∀ (Generator TriangleIndex : Type)
+    (_ : Fintype Generator) (_ : DecidableEq Generator)
+    (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (g : TriangularHodgeLayer.Presented T) (n : ℕ)
+    (D : PowerDisc T g n),
+    ∃ (I : Type)
+      (index : VanKampen.SeamGluing.ExposedCopiedDart D.diagram n ≃
+        Fin n × I)
+      (index_copy : ∀ d, (index d).1 = d.1.1)
+      (copyMate : Equiv.Perm (Fin n))
+      (hinvol : Function.Involutive copyMate)
+      (hfree : ∀ i, copyMate i ≠ i),
+      ∃ hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
+          (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing,
+        ∃ hcorner : ∀ v, VertexCornerCertificate T
+          (cornerCycleOfCombMap
+            (exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree).toPairing.closedMap v),
+          ∀ v, CellularReducedAt (hcorner v)
+
+/-- A generic planar-disc seam package becomes the exposed-pairing producer
+once the table-side pair-uniqueness certificate is supplied.  The pairing is
+constructed by the landed `ExposedPairing.of_copyMate` API, and all three
+local fields are passed through the landed `exposedPairingEulerInput_of_copyMate`
+adapter. -/
+theorem exposedPairingEulerProducer_of_planarDisc
+    (hdata : PlanarDiscExposedPairingEulerData)
+    (pairUnique : ∀ (Generator TriangleIndex : Type)
+      (_ : Fintype Generator) (_ : DecidableEq Generator)
+      (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
+      (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator),
+      TrianglePairUnique T) :
+    ExposedPairingEulerProducer := by
+  intro Generator TriangleIndex fg dg ft dt T g n D
+  obtain ⟨I, index, index_copy, copyMate, hinvol, hfree,
+    hcounts, hcorner, hcellular⟩ :=
+    hdata Generator TriangleIndex fg dg ft dt T g n D
+  exact exposedPairingEulerInput_of_copyMate D index index_copy copyMate
+    hinvol hfree (pairUnique Generator TriangleIndex fg dg ft dt T)
+    hcounts hcorner hcellular
+
+/-- W(8)'s actual remainder of the preceding generic seam operation.  The
+`GirthEightChecks` simple-link clause supplies `TrianglePairUnique`; the
+corner-incidence data is consumed by
+`exposedPairingEulerCertificate_of_wEight_linkData`.  Thus no table-wide
+enumeration or second cellular argument is introduced here. -/
+theorem wEightExposedPairingEulerProducer_of_planarDisc
+    (hdata : PlanarDiscExposedPairingEulerData)
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (hlink : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap) :
+    ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
+      (D : PowerDisc T g n), ExposedPairingEulerInput T D := by
+  intro g n D
+  obtain ⟨I, index, index_copy, copyMate, hinvol, hfree,
+    hcounts, hcorner, hcellular⟩ :=
+    hdata SymplecticQuadrangle.Point TriangleIndex inferInstance inferInstance
+      inferInstance inferInstance T g n D
+  let hinput : ExposedPairingEulerInput T D :=
+    exposedPairingEulerInput_of_copyMate D index index_copy copyMate hinvol hfree
+      (trianglePairUnique_of_girthEightChecks hgeom) hcounts hcorner hcellular
+  have _hcertificate := exposedPairingEulerCertificate_of_wEight_linkData
+    hgeom lineMap hlink D hinput
+  exact hinput
+
+/-- The same generic seam data also reaches the landed spherical-map adapter.
+This is the concrete use of `ExposedPairing.spherical_of_planarDisc`: the
+adapter packages the Euler-two conclusion, source planarity, and the W(8)
+corner/cellular certificates into the labelled spherical map consumed by the
+Huebschmann extraction. -/
+theorem labelledSphere_of_planarDiscSeamData
+    (hdata : PlanarDiscExposedPairingEulerData)
+    {Generator TriangleIndex : Type}
+    [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n) :
+    ∃ M : VanKampen.CombMap.{0},
+      Nonempty (VanKampen.TriangularRelatorSphericalMap T M) := by
+  obtain ⟨I, index, index_copy, copyMate, hinvol, hfree,
+    hcounts, hcorner, hcellular⟩ :=
+    hdata Generator TriangleIndex inferInstance inferInstance
+      inferInstance inferInstance T g n D
+  let B := exposedPairing_of_copyMate D index index_copy copyMate hinvol hfree
+  let G := powerDiscSphereGluing_of_planarDisc D B hcounts D.diagram.planar
+    hcorner hcellular
+  exact exists_labelledSphere_of_powerDiscGluing D G
 
 /-! ## Universal geometric consequences -/
 
