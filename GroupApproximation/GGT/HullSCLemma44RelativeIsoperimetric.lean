@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.CayleyFourPointBridge
 import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
-import GroupApproximation.GGT.HullSCLemma44RelativeDehn
+import GroupApproximation.GGT.HullSCLemma44RelativeBoundary
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 
 /-!
@@ -92,6 +92,34 @@ theorem embedded
 
 end RelativeIsoperimetricControl
 
+/-! ## The relative Dehn transfer -/
+
+/-- Pointwise form of Osin Lemma 5.1 after the diagram argument has been
+reduced to local one-cell cuts.  Strong boundedness is retained as the finite
+component-letter support used for the quotient peripheral metrics. -/
+def RelativeDehnTransferAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (W : Set (List (GGT.RelLetter G Lambda))) (eps : ℕ)
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+    {a : GGT.RelLetter G Lambda |
+      (∃ lam h, a = GGT.RelLetter.comp lam h) ∧
+        ∃ relator ∈ W, a ∈ relator}.Finite →
+      (∀ boundaryWord : List G,
+        IsWord D.alphabet.carrier boundaryWord boundaryWord.prod →
+        boundaryWord.prod ≠ 1 → q boundaryWord.prod = 1 →
+          Nonempty (RelativeDehnCut D W eps q boundaryWord)) →
+            Nonempty (RelativeIsoperimetricControl D q hq)
+
+/-- Uniform relative Dehn transfer over every hyperbolically embedded source
+family.  This is Osin Lemma 5.1 followed by the relative-presentation
+characterization of hyperbolicity used in Theorem 1.7. -/
+def RelativeDehnTransferStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    D.IsHyperbolicallyEmbedded → RelativeDehnTransferAt.{u, v, w} D
+
 /-- Osin Lemma 5.1, phrased as the bridge consumed by Hull Lemma 4.4.
 
 The certificate hypothesis is available for every boundary radius and every
@@ -120,6 +148,19 @@ def RelativeIsoperimetricBridgeStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda),
     D.IsHyperbolicallyEmbedded → RelativeIsoperimetricBridgeAt.{u, v, w} D
+
+/-- The local Dehn transfer proves the certificate-form isoperimetric bridge.
+The only diagram use is the prescribed-boundary construction and certificate
+cut; all quotient geometry is delegated to Osin Lemma 5.1's exact transfer. -/
+theorem relativeIsoperimetricBridgeStatement_of_dehnTransfer
+    (htransfer : RelativeDehnTransferStatement.{u, v, w}) :
+    RelativeIsoperimetricBridgeStatement.{u, v, w} := by
+  intro G _ Lambda D hD eps rho mu W Q _ q hq hmu hmuUpper hrho
+    hsc hker hcert
+  apply htransfer D hD W eps q hq hsc.stronglyBounded
+  intro boundaryWord hword hne hmap
+  exact exists_relativeDehnCut_of_kernelWord D hsc hmuUpper hrho q hker
+    hcert boundaryWord hword hne hmap
 
 /-- The bridge statement, followed by its elementary consumer, proves
 hyperbolic embeddedness of the concrete quotient image family. -/
@@ -215,6 +256,26 @@ theorem relativeIsoperimetricBridgeAt_trivialSourceModel
     {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
     RelativeIsoperimetricBridgeAt.{0, v, w} D := by
   intro eps rho mu W Q _ q hq hmu hmuUpper hrho hsc hker hcert
+  haveI : Subsingleton Q :=
+    ⟨fun x y ⇒ by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  refine ⟨⟨0, ?_, fun _ ⇒ 0, ?_⟩⟩
+  · intro a b c d
+    rw [Subsingleton.elim a b, Subsingleton.elim c b,
+      Subsingleton.elim d b]
+    simp only [WordMetric.wordDist_self, zero_add, max_self, mul_zero,
+      le_refl]
+  · exact peripheralPullbackBound_trivialSource D q hq
+
+/-- The pointwise Dehn transfer has the one-point source model.  Every
+surjective target is a one-point group, so its four-point constant and
+peripheral pullback radius are both zero. -/
+theorem relativeDehnTransferAt_trivialSourceModel
+    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
+    RelativeDehnTransferAt.{0, v, w} D := by
+  intro W eps Q _ q hq hsupport hcuts
   haveI : Subsingleton Q :=
     ⟨fun x y ⇒ by
       obtain ⟨a, rfl⟩ := hq x
