@@ -130,7 +130,7 @@ theorem kernelGeodesicEstimateAt_of_cutInduction
         have hnil : current = [] := List.length_eq_zero_iff.mp hzero
         subst current
         simp only [List.take_zero, List.prod_nil, wordDist_self]
-        exact le_rfl
+        exact Nat.zero_le _
       · obtain ⟨C⟩ := hM area k hk current hcurrentLetters
           hcurrentProd hcurrentGeodesic hcurrentLength hone
         have hnextLength : C.nextWord.length = C.next_area :=
@@ -201,7 +201,7 @@ theorem kernelGeodesicEstimateAt_trivialModel_zero
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     {Q : Type v} [Group Q] (q : PUnit →* Q)
-    (hq : Function.Surjective q) :
+    (_hq : Function.Surjective q) :
     ∃ M : ℕ, M = 0 ∧
       ∀ k ∈ q.ker, ∀ word : List PUnit,
         (∀ x ∈ word,
