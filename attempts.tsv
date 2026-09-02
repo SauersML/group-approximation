@@ -259,3 +259,4 @@
 33598894628	2026-09-02T06:27:46Z	GroupApproximation/Sofic/CoefficientAlternatingReynolds.lean	coefficientAlternatingReynolds_diagonalization
 33626238680	2026-09-02T12:09:48Z	GroupApproximation/Sofic/CollapseJointCorner.lean	cornerCompression_involutionCut
 33648037450	2026-09-02T15:22:19Z	GroupApproximation/Sofic/CollapseJointCornerRefinement.lean	at
+33670437722	2026-09-02T18:58:42Z	GroupApproximation/Sofic/CollapsePrintedDiagonalization.lean	exists_uniform_agreement_threshold
