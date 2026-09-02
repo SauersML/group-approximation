@@ -231,6 +231,24 @@ theorem arcLengths_le_two_mu_source_of_lemma49
       2 * mu * (source.word.length : ℝ) :=
   Gamma.arcLengths_le_two_mu_source hsc.toIsLemma44Input hred
 
+/-- A Lemma 4.9 input gives the target-endpoint O52 charge through its
+Lemma 4.4 projection as well. -/
+theorem arcLengths_le_two_mu_target_of_lemma49
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (hsc : RelWord.IsLemma49Input D W eps mu rho)
+    (hred : Delta.Reduced)
+    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma.region.firstArc.length : ℝ) +
+        (Gamma.region.secondArc.length : ℝ) ≤
+      2 * mu * (target.word.length : ℝ) :=
+  Gamma.arcLengths_le_two_mu_target hsc.toIsLemma44Input hred
+
 end CellContiguity
 
 namespace Embedded
@@ -521,6 +539,61 @@ theorem arcWeight_le_two_mu_cellWeight_target_of_cellContiguity
       cellGamma htarget hsourceArc htargetArc hsc hred
 
 end Contiguity
+
+namespace Candidate
+
+/-- A certified O52 region fills the source endpoint of
+`EstimatingData.edgeWeight_le_incident` with `Candidate.weight`. -/
+theorem weight_le_two_mu_cellWeight_source_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (candidate : Candidate D eps Delta)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (hsource : sourceCell = cell Delta candidate.contiguity.source)
+    (hsourceArc : candidate.contiguity.sourceArc.length =
+      cellGamma.region.firstArc.length)
+    (htargetArc : candidate.contiguity.targetArc.length =
+      cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    (candidate.weight : ℝ) ≤
+      2 * mu * Delta.cellWeight candidate.contiguity.source := by
+  change ((candidate.contiguity.sourceArc.length +
+    candidate.contiguity.targetArc.length : ℕ) : ℝ) ≤ _
+  exact candidate.contiguity.arcWeight_le_two_mu_cellWeight_source_of_cellContiguity
+    cellGamma hsource hsourceArc htargetArc hsc hred
+
+/-- A certified O52 region fills the target endpoint of
+`EstimatingData.edgeWeight_le_incident` with `Candidate.weight`. -/
+theorem weight_le_two_mu_cellWeight_target_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (candidate : Candidate D eps Delta) (target : Fin Delta.rCellCount)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (htarget : targetCell = cell Delta target)
+    (hsourceArc : candidate.contiguity.sourceArc.length =
+      cellGamma.region.firstArc.length)
+    (htargetArc : candidate.contiguity.targetArc.length =
+      cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    (candidate.weight : ℝ) ≤ 2 * mu * Delta.cellWeight target := by
+  change ((candidate.contiguity.sourceArc.length +
+    candidate.contiguity.targetArc.length : ℕ) : ℝ) ≤ _
+  exact candidate.contiguity.arcWeight_le_two_mu_cellWeight_target_of_cellContiguity
+    target cellGamma htarget hsourceArc htargetArc hsc hred
+
+end Candidate
 end Embedded
 
 end VanKampen
