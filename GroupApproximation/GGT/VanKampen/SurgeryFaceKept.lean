@@ -148,7 +148,7 @@ theorem faceOf_val_eq_of_eq_keptFace (M : CombMap.{v}) (faces : Finset M.Face)
       (Sum.inl ⟨f, hf⟩)
   by_cases hd : M.faceOf d.1 ∈ faces
   · rw [replaceGRegionFaceEquiv_faceOf_mem M faces region d hd] at happly
-    exact Sum.noConfusion happly
+    simp at happly
   · rw [replaceGRegionFaceEquiv_faceOf_notMem M faces region d hd] at happly
     have hinl := Sum.inl_injective happly
     exact congrArg (fun z : {g : M.Face // g ∉ faces} => z.1) hinl
