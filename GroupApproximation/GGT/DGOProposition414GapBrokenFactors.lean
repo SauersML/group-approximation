@@ -291,6 +291,7 @@ theorem firstBrokenStartSlot_span_cases
         RelLetter.listVal (B.firstBrokenConnectors s hs).startConnector
       else RelLetter.listVal
         (B.firstBrokenConnectors s hs).startThroughPartner := by
+  classical
   rw [B.firstBrokenStartSlot_span C hs]
   unfold firstBrokenOwner firstBrokenEntryForward firstGapRight
   rw [HalfGap.nextEntry_entryChild]
@@ -312,6 +313,7 @@ theorem firstBrokenEndSlot_span_cases
         (RelLetter.listVal (B.firstBrokenConnectors s hs).endConnector)⁻¹
       else (RelLetter.listVal
         (B.firstBrokenConnectors s hs).endThroughPartner)⁻¹ := by
+  classical
   rw [B.firstBrokenEndSlot_span C hs]
   unfold firstBrokenExitForward firstGapLeft
   rw [HalfGap.previousEntry_exitChild]
@@ -334,6 +336,7 @@ theorem secondBrokenStartSlot_span_cases
           (B.secondBrokenConnectors s hs).startThroughPartner
       else RelLetter.listVal
         (B.secondBrokenConnectors s hs).startConnector := by
+  classical
   rw [B.secondBrokenStartSlot_span C hs]
   unfold secondBrokenOwner secondBrokenEntryForward secondGapRight
   rw [HalfGap.nextEntry_entryChild]
@@ -356,6 +359,7 @@ theorem secondBrokenEndSlot_span_cases
           (B.secondBrokenConnectors s hs).endThroughPartner)⁻¹
       else (RelLetter.listVal
         (B.secondBrokenConnectors s hs).endConnector)⁻¹ := by
+  classical
   rw [B.secondBrokenEndSlot_span C hs]
   unfold secondBrokenExitForward secondGapLeft
   rw [HalfGap.previousEntry_exitChild]
