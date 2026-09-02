@@ -277,6 +277,60 @@ theorem not_girthEight_layers_of_depth_gt
   have hbound := girthEight_layer_depth_bound C layer hperimeter hsum hlayer
   omega
 
+/-! ## The exact successive-star input for slimness -/
+
+/-- **The linear filling inequality gives slim triangles once successive
+stars are constructed.**
+
+The `build` hypothesis is precisely the topological step in the
+Bridson--Haefliger/Papasoglu proof.  From a point on one side farther than
+`delta` from both other sides, it supplies a disc diagram and disjoint
+successive-star layer cardinalities.  The four final fields are exactly the
+hypotheses of `not_girthEight_layers_of_depth_gt`, so the already proved
+linear area bound rules out the far point.
+
+For a triangular presentation, `build` is obtained by taking a centered
+window from `exists_half_radius_far_window`, filling its boundary word, and
+iterating face stars until one reaches an opposite side.  This construction
+requires the boundary-subpath, Cayley-vertex-label, and face-star operations
+not yet exposed by `VanKampen.DiscDiagram`. -/
+theorem isSlimTriangles_of_girthEight_layer_construction
+    {S : Set G} {delta : ℕ}
+    {Lambda : Type w} {W : Set (List (GGT.RelLetter G Lambda))}
+    (build : ∀ x y z p : G,
+      Hyperbolic.IsBetween S x p y →
+      (∀ q : G, Hyperbolic.IsBetween S x q z →
+        delta < wordDist S p q) →
+      (∀ q : G, Hyperbolic.IsBetween S z q y →
+        delta < wordDist S p q) →
+      ∃ (Delta : VanKampen.DiscDiagram W)
+        (C : VanKampen.TriangularGirthEightDiagram Delta)
+        (m ell loss rho : ℕ) (layer : Fin m → ℕ),
+        Delta.combinatorialBoundaryLength <= 6 * ell ∧
+        (∑ i, layer i) <= Delta.innerFaceCount ∧
+        (∀ i, ell - loss <= rho * layer i) ∧
+        18 * rho * ell < m * (ell - loss)) :
+    Hyperbolic.IsSlimTriangles S delta := by
+  classical
+  intro x y z p hp
+  by_contra hnear
+  have hfarXZ : ∀ q : G, Hyperbolic.IsBetween S x q z →
+      delta < wordDist S p q := by
+    intro q hq
+    by_contra hnot
+    apply hnear
+    exact Or.inl ⟨q, hq, by omega⟩
+  have hfarZY : ∀ q : G, Hyperbolic.IsBetween S z q y →
+      delta < wordDist S p q := by
+    intro q hq
+    by_contra hnot
+    apply hnear
+    exact Or.inr ⟨q, hq, by omega⟩
+  obtain ⟨Delta, C, m, ell, loss, rho, layer,
+    hperimeter, hsum, hlayer, hdepth⟩ :=
+    build x y z p hp hfarXZ hfarZY
+  exact not_girthEight_layers_of_depth_gt C layer hperimeter hsum hlayer hdepth
+
 end GirthEightSlim
 end GGT
 end GroupApproximation
