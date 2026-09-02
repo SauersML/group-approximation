@@ -90,12 +90,13 @@ theorem false_of_longPeriod_powerDiagram_of_cell
 
 /-- The single shared Greendlinger proposition rules out every long-period
 nontrivial power diagram. -/
-theorem exists_parameters_false_of_longPeriod_powerDiagram
+theorem exists_parameters_false_of_longPeriod_powerDiagram_at
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded) :
-    ∃ (eps rho delta : ℕ),
-      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    {delta : ℕ}
+    (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) :
+    ∃ (eps rho : ℕ),
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
         (v : List (GGT.RelLetter G Lambda)), v ∈ W →
         RelWord.IsLemma49Input D W eps (1 / 100000) rho →
@@ -105,8 +106,6 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
                 ({GGT.RelLetter.listVal v} : Set G)) g →
             ∀ Z : Lemma49GeodesicPowerDiagram D v g n,
               8 * delta + 2 ≤ Z.boundaryWord.length → False := by
-  obtain ⟨delta, hdelta⟩ :=
-    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   have hmuCertPos : (0 : ℝ) < 1 / 1000 := by norm_num
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
@@ -122,7 +121,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
   have hconnectors : 2 * K ≤ eps := Nat.le_max_right _ _
   have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
   have hrhoScale : scale ≤ rho := Nat.le_max_right _ _
-  refine ⟨eps, rho, delta, hdelta, ?_⟩
+  refine ⟨eps, rho, ?_⟩
   intro W v hv hinput g n hshort Z hlongPeriod
   let N : Subgroup G :=
     Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
@@ -141,6 +140,30 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
   · simpa only [b, scale] using hrhoScale
   · exact hconnectors
   · exact hlongPeriod
+
+/-- The caller-independent form chooses a four-point constant from the
+hyperbolically embedded relative Cayley graph. -/
+theorem exists_parameters_false_of_longPeriod_powerDiagram
+    (hgeom : RelativeGreendlingerStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded) :
+    ∃ (eps rho delta : ℕ),
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+        (v : List (GGT.RelLetter G Lambda)), v ∈ W →
+        RelWord.IsLemma49Input D W eps (1 / 100000) rho →
+          ∀ (g : G) (n : ℕ),
+            IsShortestModuloConjugacy D.alphabet.carrier
+              (Subgroup.normalClosure
+                ({GGT.RelLetter.listVal v} : Set G)) g →
+            ∀ Z : Lemma49GeodesicPowerDiagram D v g n,
+              8 * delta + 2 ≤ Z.boundaryWord.length → False := by
+  obtain ⟨delta, hdelta⟩ :=
+    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
+  obtain ⟨eps, rho, hgood⟩ :=
+    exists_parameters_false_of_longPeriod_powerDiagram_at
+      hgeom D hemb hdelta
+  exact ⟨eps, rho, delta, hdelta, hgood⟩
 
 /-! ## Model check -/
 
