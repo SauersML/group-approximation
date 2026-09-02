@@ -160,7 +160,7 @@ theorem no_mirror_pair_of_empty_relatorCells
   intro h
   obtain ⟨C, hC⟩ := h
   rw [hzero] at hC
-  simpa using hC
+  simp at hC
 
 /-! ## Presentation-independent identity reduction -/
 
