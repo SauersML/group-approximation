@@ -125,6 +125,59 @@ structure CactusBaseCellDeletion
   relatorOnly : RelatorCellCover replacement.diagram
   reduced : Delta.Reduced
 
+/-! The following input is the genuine landed fold data.  It is deliberately
+smaller than a `CactusRelatorRetyping`: the selected base region is reclosed
+by `replaceGRegion`, while the endpoint-trimmed replacement diagram and its
+ordered relator cells are supplied by the surgery. -/
+
+structure CactusBaseCellFoldData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  bigFace : Delta.toCombMap.Face
+  faces : Finset Delta.toCombMap.Face
+  bigFace_mem : bigFace ∈ faces
+  baseWord_one : ∀ f, f ∈ faces →
+    GGT.RelLetter.listVal (Delta.faceWord f) = 1
+  region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
+  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  replacement_map_eq : replacement.diagram.toCombMap =
+    Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+  relatorOnly : RelatorCellCover replacement.diagram
+  reduced : Delta.Reduced
+  powerWord : List (GGT.RelLetter G Lambda)
+  exponent : ℕ
+  before_power : Delta.boundaryWord =
+    (List.replicate exponent powerWord).flatten
+  after_power : replacement.diagram.boundaryWord =
+    (List.replicate exponent powerWord).flatten
+  innerFaceCount_drop : replacement.diagram.innerFaceCount + 1 =
+    Delta.innerFaceCount
+
+def CactusBaseCellFoldData.toDeletion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellFoldData Delta) : CactusBaseCellDeletion Delta :=
+  { bigFace := C.bigFace
+    faces := C.faces
+    bigFace_mem := C.bigFace_mem
+    baseWord_one := C.baseWord_one
+    region := C.region
+    replacement := C.replacement
+    replacement_map_eq := C.replacement_map_eq
+    relatorOnly := C.relatorOnly
+    reduced := C.reduced }
+
+theorem CactusBaseCellFoldData.boundary_power_preserved
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellFoldData Delta) :
+    C.toDeletion.replacement.diagram.boundaryWord =
+      (List.replicate C.exponent C.powerWord).flatten :=
+  C.after_power
+
 /-- The explicit combinatorial map obtained by deleting the selected cactus
 region and re-closing its trimmed boundary cycle. -/
 noncomputable def CactusBaseCellDeletion.surgeryMap
@@ -133,6 +186,15 @@ noncomputable def CactusBaseCellDeletion.surgeryMap
     {Delta : DiscDiagram.{u, w, v} W}
     (C : CactusBaseCellDeletion Delta) : CombMap.{v} :=
   Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region
+
+theorem CactusBaseCellFoldData.surgeryMap_eq_reclosed
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellFoldData Delta) :
+    C.toDeletion.surgeryMap =
+      Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region := by
+  rfl
 
 /-- The explicit map is the map stored by the landed diagram replacement. -/
 theorem CactusBaseCellDeletion.surgeryMap_eq_replacement
@@ -352,6 +414,96 @@ structure MirrorPairDeletion
   region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+
+/-! A mirror reclosure input records the two incident face positions and the
+landed endpoint-trimmed replacement.  Unlike the old abstract cut, this
+constructor exposes the actual `replaceGRegion` map and derives the deletion
+certificate in one step. -/
+
+structure MirrorPairReclosureData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  pre : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  between : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  first : RelatorCell Delta.toCombMap Delta.outerFace W
+  second : RelatorCell Delta.toCombMap Delta.outerFace W
+  shared : Delta.toCombMap.Dart
+  shared_first : Delta.toCombMap.faceOf shared = first.face
+  shared_second : Delta.toCombMap.faceOf (Delta.toCombMap.alpha shared) =
+    second.face
+  mirror_word : second.word = HullSC.RelWord.revInv first.word
+  old_cells : Delta.relatorCells =
+    pre ++ first :: (between ++ second :: suf)
+  faces : Finset Delta.toCombMap.Face
+  region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
+  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  replacement_map_eq : replacement.diagram.toCombMap =
+    Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+  new_cells : replacement.diagram.relatorCells =
+    pre.map replacement.cells.cellEquiv ++
+      between.map replacement.cells.cellEquiv ++
+      suf.map replacement.cells.cellEquiv
+  relatorOnly : RelatorCellCover replacement.diagram
+  mirror : (between.map RelatorCell.value).prod⁻¹ * first.value *
+      (between.map RelatorCell.value).prod * second.value = 1
+
+def MirrorPairReclosureData.toDeletion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairReclosureData Delta) : MirrorPairDeletion Delta :=
+  { pre := C.pre
+    between := C.between
+    suf := C.suf
+    first := C.first
+    second := C.second
+    shared := C.shared
+    shared_first := C.shared_first
+    shared_second := C.shared_second
+    mirror_word := C.mirror_word
+    old_cells := C.old_cells
+    replacement := C.replacement
+    new_cells := C.new_cells
+    relatorOnly := C.relatorOnly
+    mirror := C.mirror
+    faces := C.faces
+    region := C.region
+    replacement_map_eq := C.replacement_map_eq }
+
+theorem MirrorPairReclosureData.surgeryMap_eq_reclosed
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairReclosureData Delta) :
+    C.toDeletion.surgeryMap =
+      Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region := by
+  rfl
+
+theorem MirrorPairReclosureData.boundaryWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairReclosureData Delta) :
+    C.toDeletion.replacement.diagram.boundaryWord = Delta.boundaryWord :=
+  C.replacement.outerWord_eq
+
+theorem MirrorPairReclosureData.area_drop
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairReclosureData Delta) :
+    C.toDeletion.replacement.diagram.rCellCount + 2 = Delta.rCellCount := by
+  change C.toDeletion.replacement.diagram.relatorCells.length + 2 =
+    Delta.relatorCells.length
+  have hOld := congrArg List.length C.old_cells
+  have hNew := congrArg List.length C.new_cells
+  simp only [List.length_append, List.length_cons, List.length_map] at hOld hNew
+  have hcount := C.replacement.rCellCount_eq
+  change C.toDeletion.replacement.diagram.relatorCells.length =
+    Delta.relatorCells.length at hcount
+  omega
 
 /-- The common dart has inverse labels on its two orientations. -/
 theorem MirrorPairDeletion.shared_label_inverse
