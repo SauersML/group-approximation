@@ -600,6 +600,45 @@ theorem estimatingPieceConstruction_of_planarPeelOracle
   exact Embedded.faceSetBoundaryPeeling_of_planarCertificates
     edge.candidate.contiguity.boundary (fun boundary => hplanar boundary)
 
+/-- The direct boundary-counting form of the Piece construction.  This is the
+exact callback produced by counting boundary darts of each selected region;
+the reduced bridge contributes only the non-cancellation inequality. -/
+theorem estimatingPieceConstruction_of_boundaryEquations
+    (hbridge :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        (Delta : DiscDiagram.{u, w, v} W)
+        (scaffold : EstimatingScaffold D eps Delta)
+        (_hred : Delta.Reduced)
+        (edge : Embedded.InteriorEdge scaffold.selected.family),
+        Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
+    (harcs :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : DiscDiagram.{u, w, v} W}
+        {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+        (scaffold : EstimatingScaffold D eps Delta)
+        (edge : Embedded.InteriorEdge scaffold.selected.family),
+        GGT.RelLetter.listVal
+            (Embedded.dartWord Delta
+              (Embedded.targetBoundaryDarts Delta
+                edge.candidate.contiguity.target
+                edge.candidate.contiguity.targetArc)) =
+          (GGT.RelLetter.listVal
+              (Embedded.dartWord Delta edge.candidate.contiguity.rightSide))⁻¹ *
+            GGT.RelLetter.listVal
+              (Embedded.dartWord Delta edge.candidate.contiguity.sourceArc.darts) *
+            (GGT.RelLetter.listVal
+              (Embedded.dartWord Delta edge.candidate.contiguity.leftSide))⁻¹) :
+    EstimatingPieceConstructionStatement.{u, w, v} := by
+  intro G _ Lambda D eps W Delta scaffold hred
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  let bridge := hbridge D eps Delta scaffold hred edge
+  exact Embedded.CellPieceEquations.of_boundary_equation_reduced
+    edge.candidate.contiguity bridge (harcs edge) hred
+
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
