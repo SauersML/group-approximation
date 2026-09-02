@@ -64,6 +64,18 @@ theorem uniformProposition414_pUnit_model
   rw [hspan]
   exact one_mem_relBall D (lam s) 0
 
+/-- The uniform DGO proposition specializes to the single constant required
+throughout the polygon cuts in Lemma 62.  In particular, `L` is chosen before
+the number `n` of sides of a complementary component. -/
+theorem lemma62_uniformPolygonBound
+    {G : Type u} [Group G] {Λ : Type w}
+    (D : RelGenSet G Λ) (b : ℕ)
+    (h414 : UniformProposition414Statement D b)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (δ : ℕ) (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) :=
+  h414 hsymm δ hδ
+
 /-! ## Lemma 61 -/
 
 /-- Osin Appendix Lemma 61, numerical count.  The hypotheses are the Euler
