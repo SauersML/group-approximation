@@ -296,7 +296,7 @@ theorem cutWord_isCompStart_cases
     (hj : IsCompStart lam (cutWord word closeLam start m z) j) :
     (j = m ∧ closeLam = lam) ∨
       ∃ t : Fin (peripheralPositions word).card,
-      (peripheralOccurrence word t).pos = start + j ∧
+      j < m ∧ (peripheralOccurrence word t).pos = start + j ∧
         (peripheralOccurrence word t).label = lam := by
   obtain ⟨k, hcomp⟩ := hj
   have hlen : (cutWord word closeLam start m z).length = m + 1 :=
@@ -336,7 +336,9 @@ theorem cutWord_isCompStart_cases
         have hstartOriginal : IsCompStart lam word (start + j) :=
           ⟨start + j + 1,
             isComp_singleton_of_isWThree_read hW3 hreadOpt⟩
-        exact exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
+        obtain ⟨t, hpos, hlabel⟩ :=
+          exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
+        exact ⟨t, hjlt, hpos, hlabel⟩
 
 end OsinComponents
 end GGT
