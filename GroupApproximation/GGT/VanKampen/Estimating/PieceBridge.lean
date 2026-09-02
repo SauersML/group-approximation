@@ -140,9 +140,16 @@ def Contiguity.cellTargetArc
     (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
     (htarget : Gamma.target = some target) :
     CyclicArc (cellDarts Delta target) := by
-  change CyclicArc (targetDarts Delta (some target))
-  rw [← htarget]
-  exact Gamma.targetArc
+  have hcycle : targetDarts Delta Gamma.target = cellDarts Delta target := by
+    rw [htarget]
+    rfl
+  exact {
+    start := Fin.cast
+      (congrArg (fun cycle => cycle.length + 1) hcycle) Gamma.targetArc.start
+    length := Gamma.targetArc.length
+    length_le := by
+      rw [← hcycle]
+      exact Gamma.targetArc.length_le }
 
 /-- The two face-set equations needed to transfer O52. -/
 structure CellPieceEquations
