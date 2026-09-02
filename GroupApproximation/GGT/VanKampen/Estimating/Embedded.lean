@@ -418,6 +418,61 @@ def Compatible
     (first second : Candidate D eps Delta) : Prop :=
   Disjoint first.1 second.1
 
+/-- Face-disjoint candidates cannot use the same source-arc dart. -/
+theorem sourceArc_disjoint_of_compatible
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {first second : Candidate D eps Delta}
+    (hcompatible : Compatible first second)
+    (d : Delta.toCombMap.Dart)
+    (hfirst : d ∈ first.contiguity.sourceArc.darts)
+    (hsecond : d ∈ second.contiguity.sourceArc.darts) : False := by
+  have hfirstFace := first.contiguity.faceOf_alpha_mem_of_mem_sourceArc d hfirst
+  have hsecondFace := second.contiguity.faceOf_alpha_mem_of_mem_sourceArc d hsecond
+  exact (Finset.disjoint_left.mp hcompatible) hfirstFace hsecondFace
+
+/-- A source arc of one face-disjoint candidate and a cell-target arc of the
+other cannot share an ambient dart. -/
+theorem sourceTargetArc_disjoint_of_compatible
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {first second : Candidate D eps Delta}
+    (hcompatible : Compatible first second)
+    (target : Fin Delta.rCellCount)
+    (htarget : second.contiguity.target = some target)
+    (d : Delta.toCombMap.Dart)
+    (hfirst : d ∈ first.contiguity.sourceArc.darts)
+    (hsecond : d ∈ second.contiguity.targetArc.darts) : False := by
+  have hfirstFace := first.contiguity.faceOf_alpha_mem_of_mem_sourceArc d hfirst
+  have hsecondFace := second.contiguity.faceOf_alpha_mem_of_mem_targetArc
+    target htarget d hsecond
+  exact (Finset.disjoint_left.mp hcompatible) hfirstFace hsecondFace
+
+/-- Cell-target arcs of two face-disjoint candidates cannot share an ambient
+dart. -/
+theorem targetArc_disjoint_of_compatible
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {first second : Candidate D eps Delta}
+    (hcompatible : Compatible first second)
+    (firstTarget secondTarget : Fin Delta.rCellCount)
+    (hfirstTarget : first.contiguity.target = some firstTarget)
+    (hsecondTarget : second.contiguity.target = some secondTarget)
+    (d : Delta.toCombMap.Dart)
+    (hfirst : d ∈ first.contiguity.targetArc.darts)
+    (hsecond : d ∈ second.contiguity.targetArc.darts) : False := by
+  have hfirstFace := first.contiguity.faceOf_alpha_mem_of_mem_targetArc
+    firstTarget hfirstTarget d hfirst
+  have hsecondFace := second.contiguity.faceOf_alpha_mem_of_mem_targetArc
+    secondTarget hsecondTarget d hsecond
+  exact (Finset.disjoint_left.mp hcompatible) hfirstFace hsecondFace
+
 /-- Definition M maximizes the total lengths of both contiguity arcs. -/
 noncomputable def Candidate.weight
     {G : Type u} [Group G] {Lambda : Type w}
