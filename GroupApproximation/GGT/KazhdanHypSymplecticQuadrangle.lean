@@ -320,6 +320,84 @@ theorem existsUnique_incident_orthogonal (p : Point) (L : Line)
   exact (Projectivization.submodule_mk'' (projectionSubmodule p L)
     (projectionSubmodule_finrank hout)).symm
 
+/-! ## The nine points on each isotropic line -/
+
+/-- Embed the projectivization of a submodule into the ambient projective
+space. -/
+def submodulePoint (L : Submodule FieldEight Vec)
+    (p : Projectivization FieldEight L) : Point :=
+  Projectivization.map L.subtype L.injective_subtype p
+
+/-- A projective point of a submodule belongs to the corresponding ambient
+projective subspace. -/
+theorem submodulePoint_mem (L : Submodule FieldEight Vec)
+    (p : Projectivization FieldEight L) :
+    submodulePoint L p ∈ L.projectivization := by
+  induction p using Projectivization.ind with
+  | h v hv =>
+      rw [submodulePoint, Projectivization.map_mk,
+        Submodule.mk_mem_projectivization_iff]
+      exact v.2
+
+/-- Projectivizing a submodule is equivalent to taking the subtype of
+ambient projective points which lie in it. -/
+def submodulePointEquiv (L : Submodule FieldEight Vec) :
+    Projectivization FieldEight L ≃ {p : Point // p ∈ L.projectivization} := by
+  let f : Projectivization FieldEight L →
+      {p : Point // p ∈ L.projectivization} :=
+    fun p => ⟨submodulePoint L p, submodulePoint_mem L p⟩
+  apply Equiv.ofBijective f
+  constructor
+  · intro p q hpq
+    apply Projectivization.map_injective L.subtype L.injective_subtype
+    exact congrArg Subtype.val hpq
+  · intro q
+    have hrep : q.1.rep ∈ L := by
+      have hle : q.1.submodule ≤ L :=
+        (Submodule.mem_projectivization_iff_submodule_le L q.1).mp q.2
+      apply hle
+      rw [q.1.submodule_eq]
+      exact Submodule.mem_span_singleton_self _
+    let v : L := ⟨q.1.rep, hrep⟩
+    have hv : v ≠ 0 := by
+      intro hz
+      exact q.1.rep_nonzero (congrArg Subtype.val hz)
+    refine ⟨Projectivization.mk FieldEight v hv, ?_⟩
+    apply Subtype.ext
+    change Projectivization.map L.subtype L.injective_subtype
+      (Projectivization.mk FieldEight v hv) = q.1
+    rw [Projectivization.map_mk]
+    exact q.1.mk_rep
+
+/-- Every isotropic line contains exactly `8+1=9` projective points. -/
+theorem incident_point_card (L : Line) :
+    Fintype.card {p : Point // Incident p L} = 9 := by
+  classical
+  letI : Fintype (Projectivization FieldEight L.1) := Fintype.ofFinite _
+  calc
+    Fintype.card {p : Point // Incident p L} =
+        Fintype.card (Projectivization FieldEight L.1) := by
+      exact Fintype.card_congr (submodulePointEquiv L.1).symm
+    _ = 9 := by
+      rw [← Nat.card_eq_fintype_card]
+      have h := Projectivization.card_of_finrank FieldEight L.1 L.2.1
+      rw [show Nat.card FieldEight = 8 by
+        simpa only [Nat.card_eq_fintype_card] using fieldEight_card] at h
+      norm_num at h ⊢
+      exact h
+
+/-- The natural incidence row sum on the line side is nine. -/
+theorem incident_line_degree (L : Line) :
+    ∑ p, incidenceWeight Incident p L = 9 := by
+  classical
+  calc
+    (∑ p, incidenceWeight Incident p L) =
+        (Finset.univ.filter fun p => Incident p L).card := by
+      simp [incidenceWeight]
+    _ = Fintype.card {p : Point // Incident p L} :=
+      (Fintype.card_subtype _).symm
+    _ = 9 := incident_point_card L
+
 /-! ## A concrete incident flag -/
 
 private theorem basisVector_ne_zero (i : Fin 4) : basisVector i ≠ 0 := by
