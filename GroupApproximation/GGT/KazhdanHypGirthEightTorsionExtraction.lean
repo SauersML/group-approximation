@@ -14,13 +14,14 @@ link estimate then gives the triangular spherical curvature contradiction.
 
 This file proves the extraction after the three genuinely cellular operations
 are supplied.  The filling operation is stated with the literal signed word
-used by `PowerDiscCandidate`; the cancellation operation is exactly the
-`CancellationReducesArea` input of `leastPowerDisc_of_literalFilling`; and the
-seam operation is stated at the `CombMap` level with
+used by `PowerDiscCandidate` and the landed `CactusRelatorRetyping`; the
+cancellation operation is supplied by `PowerDiscMirrorPairCut` and consumed
+by `cancellationReducesArea_of_mirrorPairCut`; and the seam operation is
+stated at the `CombMap` level with
 `SeamGluing.ExposedPairing`, `Pairing.toPairing`, and its spherical planar
 certificate.  Existing constructions
 `nonempty_powerDiscCandidate_of_literalFilling`,
-`leastPowerDisc_of_literalFilling`,
+`leastPowerDisc_of_filling`,
 `powerDiscSphereGluing_of_seam`, and
 `triangularRelatorSphericalMap_of_powerDiscGluing` are consumed by name.
 
@@ -50,12 +51,11 @@ variable {Generator TriangleIndex : Type}
 
 /-! ## The three residual cellular operations -/
 
-/-- A literal van Kampen filling for the exact repeated boundary used by
-`PowerDiscCandidate`.  This is the filling step in Huebschmann's least-area
-disc argument, with the representative word fixed before the disc is chosen.
-The conclusion is strictly smaller than a spherical extraction: it contains
-one planar disc and no cyclic gluing or spherical local data. -/
-def LiteralPowerBoundaryFilling
+/-- The remaining filling contract, now expressed through the landed
+`CactusRelatorRetyping` construction.  A supplied cactus complement must
+produce an exact repeated boundary; the imported constructor then turns it
+into the candidate consumed by the least-area theorem. -/
+def CactusPowerBoundaryFilling
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
   ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
     0 < n → g ^ n = 1 → g ≠ 1 →
@@ -65,30 +65,34 @@ def LiteralPowerBoundaryFilling
           (PresentedGroupRelatorReplay.word word) = g →
       ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0}
           (triangleRelatorWords T),
-        Delta.boundaryWord =
-          (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
-        RelatorOnly T Delta
+        ∃ C : VanKampen.CactusRelatorRetyping Delta,
+          C.diagram.boundaryWord =
+            (List.replicate n (word.map signedFreeRelLetter)).flatten
 
-/-- The exact least-area cancellation operation needed by
-`leastPowerDiscCandidate_reduced`: every cancelling ordered pair of stored
-relator cells is removed by a same-boundary candidate of strictly smaller
-relator area.  The output is deliberately the candidate expected by the
-existing least-area theorem, so no unproved map surgery is hidden in this
-contract. -/
-def CombMapCancellationSurgery
+/-- The remaining cancellation contract is the concrete mirror-pair output
+`PowerDiscMirrorPairCut`.  The imported `cancellationReducesArea_of_mirrorPairCut`
+theorem performs the area argument, so this module no longer asks callers to
+re-prove its abstract `CancellationReducesArea` conclusion. -/
+def MirrorPairCutSupply
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
   ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
     (D : PowerDiscCandidate T g n),
-    CancellationReducesArea D
+    ∀ (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T)),
+    D.diagram.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
+    (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+      (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
+    PowerDiscMirrorPairCut D
 
-/-- The exact `CombMap` seam operation for cyclically gluing copies of a least
-power disc.  `B` pairs exposed boundary darts, `B.toPairing` installs the
-closed-map edge involution, and the supplied planar, corner-label, and
-no-mirror fields are precisely what
-`powerDiscSphereGluing_of_seam` consumes.  The no-proper-power hypothesis is
-available at the seam stage because it is the branch in which mirror seams
-are excluded. -/
-def CombMapSphericalSeam
+/-- The remaining seam certificate uses the landed exposed-boundary pairing.
+`ExposedPairing.toPairing` supplies the closed-map edge involution; only its
+spherical certificate and the literal corner/no-mirror certificates remain.
+The no-proper-power branch is retained because it is the exact hypothesis in
+Huebschmann's mirror-seam step. -/
+def ExposedPairingSphericalCertificate
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n) : Prop :=
@@ -101,41 +105,25 @@ def CombMapSphericalSeam
         (∀ v, CellularReducedAt
           (VertexCornerCertificate T (cornerCycleOfCombMap S.closedMap v)))
 
-/-- A residual-input package keeps the filling, cancellation, and seam
-operations aligned to the same triangular presentation. -/
+/-- A residual-input package keeps the three still-missing constructions
+aligned to the same triangular presentation. -/
 structure ExtractionInputs
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) where
-  /-- Literal repeated-boundary fillings. -/
-  filling : LiteralPowerBoundaryFilling T
-  /-- Strict area-decreasing cancellation surgery. -/
-  cancellation : CombMapCancellationSurgery T
-  /-- Spherical cyclic seam gluing for least power discs. -/
+  /-- Exact repeated-boundary cactus retyping. -/
+  filling : CactusPowerBoundaryFilling T
+  /-- Concrete output for every cancelling mirror pair. -/
+  mirrorCut : MirrorPairCutSupply T
+  /-- Exposed seam pairing and its remaining local certificates. -/
   seam : ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
-    (D : PowerDisc T g n), CombMapSphericalSeam T D
+    (D : PowerDisc T g n), ExposedPairingSphericalCertificate T D
 
-/-! ## Connecting the seam operation to the existing sphere certificate -/
-
-/-- A `CombMapSphericalSeam` supplies the exact fields of the existing
-`PowerDiscSphereGluing` record. -/
-theorem powerDiscSphereGluing_of_combMapSphericalSeam
-    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
-    (D : PowerDisc T g n)
-    (hseam : CombMapSphericalSeam T D)
-    (hnoProper : ∀ j, ¬ RelatorIsProperPower
-      (TriangularHodgeLayer.relator (T j))) :
-    PowerDiscSphereGluing D := by
-  obtain ⟨B, hS, hcertificate, hcellular⟩ := hseam hnoProper
-  exact powerDiscSphereGluing_of_seam D B.toPairing hS hcertificate hcellular
-
-/-- Literal filling gives the nonempty candidate required by
-`leastPowerDisc_of_literalFilling`. -/
 /-! ## The least-area disc and cyclic sphere -/
 
 /-- The three cellular operations produce a labelled reduced spherical map for
 every finite-order input whose defining relators are not proper powers.  The
-least-area choice is made by `leastPowerDisc_of_literalFilling`; its reduced
-field is supplied by the cancellation surgery, and the cyclic seam is
-converted by `powerDiscSphereGluing_of_combMapSphericalSeam`. -/
+least-area choice is made by `leastPowerDisc_of_filling`; its reduced field is
+supplied by `cancellationReducesArea_of_mirrorPairCut`, and the cyclic seam is
+converted by the landed `powerDiscSphereGluing_of_seam`. -/
 theorem sphericalExtraction_of_combMapOperations
     (H : ExtractionInputs T) :
     ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
@@ -145,14 +133,21 @@ theorem sphericalExtraction_of_combMapOperations
       ∃ M : VanKampen.CombMap.{0},
         Nonempty (VanKampen.TriangularRelatorSphericalMap T M) := by
   intro g n hn hpow hne hnoProper
-  let D : PowerDisc T g n := leastPowerDisc_of_literalFilling hn hpow hne
-    (fun word hword _hn _hpow _hne ↦ by
-      exact H.filling g n hn hpow hne word hword)
-    (fun candidate ↦ H.cancellation g n candidate)
+  let D : PowerDisc T g n := leastPowerDisc_of_filling hn hpow hne
+    (fun _hn _hpow _hne ↦ by
+      obtain ⟨word, hword⟩ := exists_signedWord_represents g
+      obtain ⟨Delta, C, hboundary⟩ := H.filling g n hn hpow hne word hword
+      exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
+        hn hpow hne Delta C hboundary)
+    (fun candidate ↦
+      cancellationReducesArea_of_mirrorPairCut candidate
+        (H.mirrorCut g n candidate))
   have hD : PowerDisc T g n := D
-  have hseam : CombMapSphericalSeam T hD := H.seam g n hD
+  obtain ⟨B, hB⟩ := H.seam g n hD hnoProper
+  dsimp at hB
+  obtain ⟨hS, hcertificate, hcellular⟩ := hB
   have hglue : PowerDiscSphereGluing hD :=
-    powerDiscSphereGluing_of_combMapSphericalSeam hD hseam hnoProper
+    powerDiscSphereGluing_of_seam hD B.toPairing hS hcertificate hcellular
   exact exists_labelledSphere_of_powerDiscGluing hD hglue
 
 /-- The extraction theorem is exactly the input expected by
@@ -162,43 +157,46 @@ theorem presented_isPowerTorsionFree_of_combMapOperations
     (H : ExtractionInputs T) :
     IsPowerTorsionFree (TriangularHodgeLayer.Presented T) :=
   presented_isPowerTorsionFree_of_sphericalExtraction hchecks
-    H.sphericalExtraction_of_combMapOperations
+    (sphericalExtraction_of_combMapOperations H)
 
 /-! ## Model tests for the residual contracts -/
 
-/-- The literal filling contract holds for a trivial presented group because
+/-- The cactus filling contract holds for a trivial presented group because
 the nonidentity branch is impossible. -/
-theorem literalPowerBoundaryFilling_trivialModel
+theorem cactusPowerBoundaryFilling_trivialModel
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (htrivial : ∀ g : TriangularHodgeLayer.Presented T, g = 1) :
-    LiteralPowerBoundaryFilling T := by
+    CactusPowerBoundaryFilling T := by
   intro g n hn hpow hne word hword
   exact (hne (htrivial g)).elim
 
 /-- The same contract is true in every power-torsion-free presented group;
 this is the rank-one-free-group model after identifying its empty-relator
 presentation with `FreeGroup (Fin 1)`. -/
-theorem literalPowerBoundaryFilling_freeGroupOneModel
+theorem cactusPowerBoundaryFilling_freeGroupOneModel
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (hfree : IsPowerTorsionFree (TriangularHodgeLayer.Presented T)) :
-    LiteralPowerBoundaryFilling T := by
+    CactusPowerBoundaryFilling T := by
   intro g n hn hpow hne word hword
   exact (hne (hfree g n hn hpow)).elim
 
-/-- An empty relator-cell list is the zero-area empty-word model of the
-cancellation contract.  The imported theorem is the exact minimality proof
-used by the least-area construction. -/
-theorem combMapCancellationSurgery_emptyWordModel
-    (D : PowerDiscCandidate T g n) (hword : D.word = [])
-    (hcells : D.diagram.relatorCells = []) :
-    CancellationReducesArea D := by
-  exact cancellationReducesArea_of_noCells D hcells
+/-- An everywhere empty relator-cell family is a model of the concrete
+mirror-cut supply: the ordered mirror-pair premise is impossible. -/
+theorem mirrorPairCutSupply_emptyModel
+    (hempty : ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
+      (D : PowerDiscCandidate T g n), D.diagram.relatorCells = []) :
+    MirrorPairCutSupply T := by
+  intro g n D pre between suf C₁ C₂ hsplit _hcancel
+  rw [hempty g n D] at hsplit
+  have hlength := congrArg List.length hsplit
+  simp only [List.length_nil, List.length_append, List.length_cons] at hlength
+  omega
 
 /-- Supplying the seam certificate itself gives a nonvacuous model of the
-`CombMapSphericalSeam` contract.  The conclusion retains the full exposed
-pairing and planar map data, so it is not a proposition about an arbitrary
-empty map. -/
-theorem combMapSphericalSeam_certificateModel
+`ExposedPairingSphericalCertificate` contract.  The conclusion retains the
+full exposed pairing and planar map data, so it is not a proposition about an
+arbitrary empty map. -/
+theorem exposedPairingSphericalCertificate_model
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n)
     (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
@@ -208,9 +206,11 @@ theorem combMapSphericalSeam_certificateModel
     (hcellular : ∀ v, CellularReducedAt
       (VertexCornerCertificate T
         (cornerCycleOfCombMap B.toPairing.closedMap v))) :
-    CombMapSphericalSeam T D := by
-  intro hnoProper
-  exact ⟨B, hS, certificate, hcellular⟩
+    ExposedPairingSphericalCertificate T D := by
+  intro _hnoProper
+  refine ⟨B, ?_⟩
+  dsimp
+  exact ⟨hS, certificate, hcellular⟩
 
 /-- The two-point torsion model refutes localization at an empty obstruction
 family, so the no-proper-power branch in the extraction theorem cannot be
