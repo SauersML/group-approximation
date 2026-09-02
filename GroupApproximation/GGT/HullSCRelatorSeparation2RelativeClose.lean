@@ -641,10 +641,12 @@ theorem false_of_relativeAdjacent_direct_revInv
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = (a b ^ e)⁻¹ := by
-    simpa only [hjstep] using hVW0
+    simpa only [hjstep, GGT.RelLetter.val] using hVW0
   have hg : a b ^ e ∈ D.fam b := by
-    rw [← hAB]
-    exact hqlet _ (List.mem_of_getElem? hqi)
+    have hletter := hqlet _ (List.mem_of_getElem? hqi)
+    change vq ∈ D.fam b at hletter
+    rw [hvq, ite_apply_eq a b] at hletter
+    exact hletter
   have hjstart : j' = j - 1 := by omega
   have hmiddle : h' = 1 := reverseAdjacent_connector_eq_one hdisj halt hg hh hh'
     hAB hVW hc (by simpa only [hjstart] using hc')
@@ -775,12 +777,12 @@ theorem false_of_relativeAdjacent_revInv_direct
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     hef (by rw [hef]; simpa only [R] using hsjPow)
-      (by simpa only [R] using hqiPow)
+      (by rw [← hef]; simpa only [R] using hqiPow)
   have hsum1 := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
     hef' (by rw [hef']; simpa only [R] using hsjPow')
-      (by simpa only [R] using hqiPow')
+      (by rw [← hef']; simpa only [R] using hqiPow')
   have hsum : (c + i) % R.length + (c' + (j - 1)) % R.length =
       R.length - 1 := by simpa only [Nat.add_comm] using hsum0
   have hsum' : (c + (i + 1)) % R.length + (c' + (j' - 1)) % R.length =
@@ -800,10 +802,12 @@ theorem false_of_relativeAdjacent_revInv_direct
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = a b ^ e := by
-    simpa only [hjstep] using hVW0
+    simpa only [hjstep, GGT.RelLetter.val] using hVW0
   have hg : (a b ^ e)⁻¹ ∈ D.fam b := by
-    rw [← hAB]
-    exact hqlet _ (List.mem_of_getElem? hqi)
+    have hletter := hqlet _ (List.mem_of_getElem? hqi)
+    change vq ∈ D.fam b at hletter
+    rw [hvq, ite_apply_eq a b] at hletter
+    exact hletter
   have hjstart : j' = j - 1 := by omega
   have hmiddle : h' = 1 := reverseAdjacent_connector_eq_one hdisj halt hg hh hh'
     hAB hVW hc (by simpa only [hjstart] using hc')
