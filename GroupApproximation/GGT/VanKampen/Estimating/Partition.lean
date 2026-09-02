@@ -289,6 +289,37 @@ theorem card_occurrence_eq_sum_arcLength
 
 end CellIncidence
 
+/-- No positioned cell dart belongs to two distinct selected incidences.  The
+face-disjointness lemmas in `Embedded.lean` prove this once Lemma 65(a) has
+excluded loop regions. -/
+def IncidencePositionUnique
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) : Prop :=
+  ∀ (i : Fin Delta.rCellCount)
+    (position : Fin (cellDarts Delta i).length)
+    (first second : CellIncidence selected i),
+      (cellDarts Delta i).get position ∈ first.arc.darts →
+      (cellDarts Delta i).get position ∈ second.arc.darts →
+      first = second
+
+/-- The empty selected family has unique incidence at every position. -/
+theorem incidencePositionUnique_emptyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
+    IncidencePositionUnique
+      (∅ : Finset (Candidate D eps Delta)) := by
+  intro i position first
+  cases first with
+  | source candidate mem_selected source_eq =>
+      simp at mem_selected
+  | target candidate mem_selected target_eq =>
+      simp at mem_selected
+
 /-- The singleton cyclic arc at one actual dart position. -/
 def singletonArc
     {G : Type u} [Group G] {Lambda : Type w}
