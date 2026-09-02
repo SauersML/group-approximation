@@ -136,6 +136,25 @@ theorem boundaryCycle_face_mem
     Delta.toCombMap.faceOf d ∈ faces :=
   (boundary.cycle_mem_iff d).mp hd |>.1
 
+/-- The selected-face dual is connected on the whole selected carrier, not
+just on boundary occurrences.  Every selected face has a boundary dart by
+the ambient dart-connectivity argument, and `boundaryCycle_faces_connected`
+then joins any two such occurrences. -/
+theorem selectedFaces_connected
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    {f g : Delta.toCombMap.Face}
+    (hf : f ∈ faces) (hg : g ∈ faces) :
+    Relation.EqvGen (SelectedFaceAdjacency faces) f g := by
+  obtain ⟨df, hdf_cycle, hdf⟩ :=
+    exists_boundary_cycle_dart_of_face_mem boundary hf
+  obtain ⟨dg, hdg_cycle, hdg⟩ :=
+    exists_boundary_cycle_dart_of_face_mem boundary hg
+  have hff : Delta.toCombMap.faceOf df = f := hdf.1
+  have hgg : Delta.toCombMap.faceOf dg = g := hdg.1
+  rw [← hff, ← hgg]
+  exact boundaryCycle_faces_connected boundary hdf_cycle hdg_cycle
+
 end Embedded
 end VanKampen
 end GGT
