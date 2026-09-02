@@ -791,8 +791,10 @@ theorem false_of_relativeAdjacent_revInv_direct
     (by have := lt_of_lt_of_le hi2 huLen; omega) hj1 (le_trans hj hu'Len)
     hj'1 (le_trans hj' hu'Len) hsum hsum'
   have halt : b' = !b := index_alternates_of_rotate_revInv hp0
-    (lt_of_lt_of_le (by omega : i < u.length) huLen)
-    (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
+    (by simpa only [R, RelWord.length_revInv] using
+      (lt_of_lt_of_le (by omega : i < u.length) huLen))
+    (by simpa only [R, RelWord.length_revInv] using
+      (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen))
     (by simpa only [R] using hqiR) (by simpa only [R] using hqiR')
   have hAB : (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = (a b ^ e)⁻¹ := by
@@ -810,7 +812,8 @@ theorem false_of_relativeAdjacent_revInv_direct
     exact hletter
   have hjstart : j' = j - 1 := by omega
   have hmiddle : h' = 1 := reverseAdjacent_connector_eq_one hdisj halt hg hh hh'
-    hAB hVW hc (by simpa only [hjstart] using hc')
+    hAB (by simpa only [inv_inv] using hVW) hc
+    (by simpa only [hjstart] using hc')
   have hgapPower : (GGT.RelLetter.listVal py *
         GGT.OsinComponents.vertex (1 : G) u (i + 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = a b ^ e := by
