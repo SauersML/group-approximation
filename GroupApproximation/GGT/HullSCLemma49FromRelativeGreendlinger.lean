@@ -108,18 +108,17 @@ theorem exists_lemma49RelativeGreendlingerCell
       Z.toRelativeReducedDiagram) :
     Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
   obtain ⟨i, C, _, hlarge⟩ := K.largeCell
-  let Cpower : RelativeBoundaryContiguity D eps
-      ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
-      (K.cellLabel i) := by
-    simpa only [K.boundaryWord_eq] using C
+  change RelativeBoundaryContiguity D eps
+    ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
+    (K.cellLabel i) at C
   obtain ⟨pre, arc, suf, hsplit, _, _, _, harcValue⟩ :=
-    exists_boundaryArc_source Cpower
+    exists_boundaryArc_source C
   exact ⟨{
     index := i
     relator := K.cellLabel i
     relator_eq := K.cellLabel_eq i
     relator_mem := K.cellLabel_mem i
-    contiguity := Cpower
+    contiguity := C
     boundaryBefore := pre
     boundaryArc := arc
     boundaryAfter := suf
@@ -167,8 +166,13 @@ theorem Lemma49RelativeGreendlingerCell.boundaryArc_lower
   have hexteriorLe := C.contiguity.exterior_length_le_relator
   have htake : C.relator.take C.contiguity.exterior.length =
       C.contiguity.exterior := by
-    rw [C.contiguity.relator_decomposition]
-    exact List.take_left
+    calc
+      C.relator.take C.contiguity.exterior.length =
+          (C.contiguity.exterior ++ C.contiguity.remainder).take
+            C.contiguity.exterior.length :=
+        congrArg (List.take C.contiguity.exterior.length)
+          C.contiguity.relator_decomposition
+      _ = C.contiguity.exterior := List.take_left
   have hqg := hinput.quasiGeodesic C.relator C.relator_mem
   have hlowerRaw :=
     (hqg 0 C.contiguity.exterior.length (Nat.zero_le _) hexteriorLe).1
@@ -193,7 +197,8 @@ theorem Lemma49RelativeGreendlingerCell.boundaryArc_lower
     intro a ha
     apply isAdmissible_lemma49BoundaryPower Z.boundary_geodesic.1 n a
     rw [C.boundary_decomposition]
-    exact List.mem_append_right _ (List.mem_append_left _ ha)
+    simp only [List.mem_append]
+    exact Or.inl (Or.inr ha)
   have harc : wordNorm D.alphabet.carrier
       C.contiguity.boundaryArc.prod ≤ C.boundaryArc.length := by
     rw [← C.boundaryArc_value]
@@ -277,7 +282,10 @@ theorem four_mul_period_le_three_mul_arc
       have hvalue : GGT.RelLetter.listVal Z.boundaryWord = g := by
         simpa using Z.boundary_geodesic.2.1
       rw [hnil] at hvalue
-      simpa using hvalue.symm
+      calc
+        g = GGT.RelLetter.listVal
+            ([] : List (GGT.RelLetter G Lambda)) := hvalue.symm
+        _ = 1 := GGT.RelLetter.listVal_nil
     exact Z.power_ne_one (by simp [hg])
   have harcInfix : C.boundaryArc <:+:
       lemma49BoundaryPower Z.boundaryWord n :=
