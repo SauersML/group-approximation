@@ -379,8 +379,11 @@ theorem oneTriangle_vertexDegree_two_le
   rw [← VanKampen.closedOrbitList.length_eq_orbitDegree]
   have hne : VanKampen.oneTriangleCombMap.sigma d ≠ d := by
     rcases d with ⟨i, b⟩
-    cases b <;> simp [VanKampen.oneTriangleCombMap,
-      VanKampen.oneTriangleSigma]
+    cases b
+    · change (i - 1, true) ≠ (i, false)
+      simp
+    · change (i + 1, false) ≠ (i, true)
+      simp
   rw [VanKampen.closedOrbitList, if_neg hne]
   exact Equiv.Perm.two_le_length_toList_iff_mem_support.mpr
     (by simpa [Equiv.Perm.mem_support] using hne)
@@ -396,7 +399,7 @@ Huebschmann's cohomological theorem. -/
 structure GirthEightDiagramPrimitives
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) where
   /-- Conditioned projections from cellular local diagram data. -/
-  local : LocalDiagramProjections T
+  localProjection : LocalDiagramProjections T
   /-- Enumerate the corners at every map vertex. -/
   cornerCycle : ∀
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
@@ -453,7 +456,7 @@ def localData (P : GirthEightDiagramPrimitives T)
     {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
     (L : TriangularDiagramLocalData T Delta) :
     TriangularDiagramLocalData T Delta :=
-  P.local.rebuild L
+  P.localProjection.rebuild L
 
 /-- The successive-star field has exactly the type consumed by the existing
 slim-triangle theorem. -/

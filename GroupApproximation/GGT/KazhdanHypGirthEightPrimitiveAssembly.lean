@@ -109,7 +109,7 @@ cancellation surgery.  The spherical field is
 `gluePowerDisc_of_rotationGluing`. -/
 noncomputable def ConstructionInputs.toPrimitives
     (H : ConstructionInputs T) : GirthEightDiagramPrimitives T where
-  local := LocalDiagramProjections.canonical
+  localProjection := LocalDiagramProjections.canonical
   cornerCycle := GirthEightPrimitives.cornerCycle
   facePositions := GirthEightPrimitives.facePositions
   removeBaseCells := fun Delta hred ↦
