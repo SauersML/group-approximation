@@ -72,15 +72,43 @@ of them boundary contiguities where the clause is vacuous.  Both are real
 costs, so the exclusion is left as part of the named Prop rather than imposed
 on the shared types.
 
-**The one further gap in deriving the Prop from `DiscDiagram.Reduced`.**
+**How the Prop is to be discharged.**
+`VanKampen.CellContiguity.whole_relators_ne` concludes exactly this
+inequality, for the cells' stored words, from `DiscDiagram.Reduced` plus a
+`CellContiguity` certificate, and
+`Embedded.ReducedCellPieceBridge.of_cellContiguity` converts such a
+certificate into the bridge consumed above.  So the certificate is the data to
+carry, and it is precisely the data Osin's `O52` argument uses: the stored-order
+`split` at the two cells and the connector identity `leftConnector_transport`.
+
+Carrying it on `Embedded.Contiguity` is possible without new imports.  All six
+components are expressible there: the split and the two `reversed = false`
+flags from `DiscDiagram`; the source alignment
+`listVal (dartWord Delta sourceArc.rotated) = listVal (cell Delta source).word`;
+the target alignment
+`listVal (dartWord Delta targetArc.rotated) = listVal (cell Delta i).word`,
+which needs no cast because `CyclicArc.rotated` returns a plain dart list; and
+the connector identity
+`listVal (dartWord Delta rightSide) =
+  (cell Delta source).conjugator⁻¹ * (between.map RelatorCell.value).prod *
+    (cell Delta i).conjugator`.
+The burden then moves to whoever builds candidates, that is est's Lemma 65(a)
+construction behind `EstimatingSelectionConstructionStatement`, which must
+supply those six components when it produces a region.
+
+**The one piece of algebra that remains.**  `Contiguity.targetInverseCarrier`
+is a *rotation* of `RelWord.revInv` of the target arc word, and a rotation
+changes `listVal` by conjugation, so the target alignment above does not
+immediately give the carrier identification `of_cellContiguity` wants.  Closing
+that is bookkeeping about the rotation prefix, not new geometry.
+
+**The gap this replaces.**
 `Reduced` constrains `RelatorCell.value` products across the stored cell order,
 while the inequality is about `GGT.RelLetter.listVal` of *dart* words on the
 region's arcs.  `Embedded.Contiguity` bounds `rightSide` only in length and
-norm; nothing ties `listVal (dartWord Delta rightSide)` to the cells'
-conjugators and the intervening value product.  That identity is precisely the
-`hconnector` input of `Embedded.ReducedCellPieceBridge.of_cellContiguity`, and
-it is not proved anywhere.  So a producer of the named Prop needs the
-self-contiguity exclusion *and* that connector transport.
+norm, so nothing currently ties `listVal (dartWord Delta rightSide)` to the
+cells' conjugators and the intervening value product.  That is the
+`leftConnector_transport` component listed above.
 -/
 
 set_option linter.unusedVariables false

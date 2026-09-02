@@ -43,6 +43,20 @@ between the same two cells differ by exactly the cells they enclose.
 
 So this module lands the basing half, which is self-contained, and leaves the
 reading law to follow the `FaceAssembly` refactor.
+
+## Superseded route
+
+The connector transport does not in fact have to be derived from a reading
+law.  `VanKampen.CellContiguity.whole_relators_ne` already concludes the
+required inequality from `DiscDiagram.Reduced` together with a
+`CellContiguity` certificate, whose `split` and `leftConnector_transport`
+fields are exactly the two missing facts, and
+`Embedded.ReducedCellPieceBridge.of_cellContiguity` converts such a
+certificate into the embedded bridge.  Carrying that certificate on
+`Embedded.Contiguity` therefore closes the estimating Piece construction with
+no new van Kampen lemma, and this module is kept only for the basing half,
+which remains the honest reading of `RelatorCell.conjugator` and is worth
+having on its own.
 -/
 
 set_option linter.unusedVariables false
