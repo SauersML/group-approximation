@@ -2231,6 +2231,64 @@ theorem isQuasiGeodesicPolygon_minimalityFourGon
     (quasiGeodesic_segment_of_quasiGeodesic D hiqQ hqgQ)
     hlet hclose
 
+/-- **The minimality polygon exists as soon as the two ends are connected.**
+
+This is the whole of Dahmani--Guirardel--Osin's construction of `Q''`.  The two
+hypotheses are the connections at the near and far ends --- `p_i` to `q_j` and
+`p_{i+a}` to `q_{j+b}` --- and out of them come the two edges `e` and `f`
+("*an edge (or an empty path) ... labelled by a letter from `H_μ`*") and the
+quadrilateral they close with the two path segments.
+
+The connectors are returned with their length bound and their labels, since the
+exclusion step reads both: a component connected to `e` or `f` would be
+connected to `p_i` or `p_{i+a}`, which the isolation of the components of `p`
+forbids. -/
+theorem exists_minimalityFourGon
+    (D : RelGenSet G Λ) (hbase : DGO421BaseSymmetric D)
+    {P Q : List (RelLetter G Λ)} {lam mu : Λ} {ip1 ip2 iq1 iq2 : ℕ}
+    (hletP : ∀ a ∈ P, D.IsLetter a) (hletQ : ∀ a ∈ Q, D.IsLetter a)
+    (hm1 : (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) Q iq1 ∈ D.fam lam)
+    (hm2 : (vertex (1 : G) P ip2)⁻¹ * vertex (1 : G) Q iq2 ∈ D.fam mu)
+    (hip : ip1 ≤ ip2) (hiq : iq1 ≤ iq2)
+    (hipP : ip1 + (ip2 - ip1) ≤ P.length)
+    (hiqQ : iq1 + (iq2 - iq1) ≤ Q.length)
+    (hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
+          (vertex (1 : G) P j) : ℕ) : ℝ))
+    (hqgQ : ∀ i j : ℕ, i ≤ j → j ≤ Q.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
+          (vertex (1 : G) Q j) : ℕ) : ℝ)) :
+    ∃ e f : List (RelLetter G Λ),
+      e.length ≤ 1 ∧ f.length ≤ 1 ∧
+      (∀ a ∈ e, a.IsCompOf lam) ∧ (∀ a ∈ f, a.IsCompOf mu) ∧
+      IsQuasiGeodesicPolygon D 4 1 4 (1 : G)
+        (e ++ (P.drop ip1).take (ip2 - ip1) ++ f ++
+          revWord ((Q.drop iq1).take (iq2 - iq1))) := by
+  have hnear : (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1 ∈ D.fam lam := by
+    have hi := inv_mem hm1
+    have hrw : ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) Q iq1)⁻¹
+        = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1 := by group
+    rwa [hrw] at hi
+  obtain ⟨e, hge, hlene, hcompe⟩ :=
+    exists_isGeodesicWord_peripheralConnector D lam (vertex (1 : G) Q iq1) _ hnear
+  obtain ⟨f, hgf, hlenf, hcompf⟩ :=
+    exists_isGeodesicWord_peripheralConnector D mu (vertex (1 : G) P ip2) _ hm2
+  have hev : RelLetter.listVal e
+      = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1 :=
+    mul_left_cancel hge.2.1
+  have hfv : RelLetter.listVal f
+      = (vertex (1 : G) P ip2)⁻¹ * vertex (1 : G) Q iq2 :=
+    mul_left_cancel hgf.2.1
+  refine ⟨e, f, hlene, hlenf, hcompe, hcompf, ?_⟩
+  exact isQuasiGeodesicPolygon_minimalityFourGon D hbase hletP hletQ
+    hge.1 hgf.1
+    (isGeodesicWord_one_of_isGeodesicWord hge)
+    (isGeodesicWord_one_of_isGeodesicWord hgf)
+    hipP hiqQ hqgP hqgQ
+    (listVal_minimalityFourGon_closes hip hiq hev hfv)
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
