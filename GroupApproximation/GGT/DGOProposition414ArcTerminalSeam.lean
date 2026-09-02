@@ -43,6 +43,63 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+/-! ## Letters of the chord block of an auxiliary cycle -/
+
+/-- The chord letters of an auxiliary cycle keep their labels at the shifted
+positions.  This is the type-(4)/(5) analogue of
+`isCompOf_auxiliaryCycle_arc_iff`. -/
+theorem isCompOf_auxiliaryCycle_chord_iff
+    (lam : Λ) (left arc right chord : List (RelLetter G Λ))
+    (r : ℕ) (hr : r < chord.length)
+    (hrCycle : left.length + arc.length + right.length + r <
+      (auxiliaryCycleWord left arc right chord).length) :
+    ((auxiliaryCycleWord left arc right chord)[
+        left.length + arc.length + right.length + r]'hrCycle).IsCompOf lam ↔
+      (chord[r]'hr).IsCompOf lam := by
+  have hrevLength : (revWord left).length = left.length :=
+    OsinComponents.length_revWord left
+  have hprefix : ((revWord left ++ arc) ++ right).length ≤
+      left.length + arc.length + right.length + r := by
+    simp only [List.length_append, hrevLength]
+    omega
+  have hidx : left.length + arc.length + right.length + r -
+      ((revWord left ++ arc) ++ right).length = r := by
+    simp only [List.length_append, hrevLength]
+    omega
+  unfold auxiliaryCycleWord
+  rw [List.getElem_append_right hprefix]
+  exact iff_of_eq
+    (congrArg (RelLetter.IsCompOf lam) (getElem_congr_idx (c := chord) hidx))
+
+/-- A child chord read backwards from the far endpoint of the parent chord
+opens with the same letter as the reversed parent chord. -/
+theorem isCompOf_head_orientedSegment_fromEnd
+    (lam : Λ) (word : List (RelLetter G Λ)) {cs cf : ℕ}
+    (hcs : cs = word.length) (hcf : cf < word.length)
+    (hseg : 0 < (orientedSegment word cs cf).length)
+    (hrev : 0 < (revWord word).length) :
+    ((orientedSegment word cs cf)[0]'hseg).IsCompOf lam ↔
+      ((revWord word)[0]'hrev).IsCompOf lam := by
+  subst hcs
+  have hdrop : (word.drop cf).length = word.length - cf := List.length_drop
+  have heq : orientedSegment word word.length cf = revWord (word.drop cf) := by
+    rw [orientedSegment, if_neg (by omega)]
+    congr 1
+    exact List.take_of_length_le (by omega)
+  have hlast : word.length - 1 < word.length := by omega
+  have hleft : ((orientedSegment word word.length cf)[0]'hseg).IsCompOf lam ↔
+      ((word.drop cf)[(word.drop cf).length - 1]'(by omega)).IsCompOf lam := by
+    rw [List.getElem_of_eq heq hseg]
+    exact isCompOf_getElem_revWord' (word.drop cf) lam _ _ rfl
+  have hright : ((revWord word)[0]'hrev).IsCompOf lam ↔
+      (word[word.length - 1]'hlast).IsCompOf lam :=
+    isCompOf_getElem_revWord' word lam _ _ rfl
+  have hmid : (word.drop cf)[(word.drop cf).length - 1]'(by omega) =
+      word[word.length - 1]'hlast := by
+    rw [List.getElem_drop]
+    exact getElem_congr_idx (by omega)
+  rw [hleft, hright, hmid]
+
 namespace BalancedSplitData
 
 /-! ## The residual chord seam -/
@@ -507,6 +564,142 @@ theorem secondGapArcSource_fullComponent_of_chordSeam
         (B.secondTargetSide s - B.secondGapStartSide j) + 1)) :=
   secondGapArcSource_fullComponent_of_boundaryExclusion_auto B j s hs
     (secondGapArcBoundaryExclusion_of_source B j s hs hseam)
+
+/-! ## The chord seam of the final gap of a half -/
+
+/-- DGO's terminal cycle `c_l` in the first half: a gap with no following
+broken source runs to the end of the half arc, so the letter following the
+retained target in the auxiliary cycle is the first letter of the reversed
+chord, which is exactly the letter excluded by the half-word maximality clause
+of a surviving source.  This discharges `FirstGapArcChordSeam` whenever the
+gap is the last one. -/
+theorem firstGapArcChordSeam_of_lastGap
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (hnone : HalfGap.nextEntry B.brokenAssignment.index.first j = none) :
+    FirstGapArcChordSeam B j s := by
+  classical
+  intro hright0 hterminal hn hletter
+  have hsData := Finset.mem_filter.mp hs
+  have hfinish : B.firstGapFinishSide j = B.secondSide - B.firstSide + 1 := by
+    simp only [firstGapFinishSide]
+    rw [hnone]
+  have hcutFull : B.firstArcCut (B.firstGapFinishSide j) =
+      B.firstArc.length := by
+    rw [hfinish]
+    exact B.firstArc_isCutPath.cut.finish
+  have harcLen : (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+      (B.firstGapFinishSide j)).length =
+      B.firstArcCut (B.firstGapFinishSide j) -
+        B.firstArcCut (B.firstGapStartSide j) :=
+    length_arcWord B.firstArc B.firstArcCut (le_of_eq hcutFull)
+  have hposS : B.firstArcCut (B.firstTargetSide s) = B.firstTargetPos s :=
+    (B.firstArcCut_target hsData.1).1
+  have hstartLe : B.firstArcCut (B.firstGapStartSide j) ≤
+      B.firstArcCut (B.firstTargetSide s) :=
+    B.firstArc_isCutPath.cut.mono_le hsData.2.1
+  have hend : B.firstTargetPos s + 1 = B.firstArc.length := by
+    rw [← hposS]
+    omega
+  have hcycleLen : (B.firstGapCycle j).length =
+      (B.firstGapLeft j).length +
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length +
+        (B.firstGapRight j).length +
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)).length := by
+    simp only [firstGapCycle, auxiliaryCycleWord, List.length_append,
+      OsinComponents.length_revWord]
+  have hsegPos : 0 < (orientedSegment B.chord (B.firstGapChordStart j)
+      (B.firstGapChordFinish j)).length := by omega
+  have hchordStart : B.firstGapChordStart j = B.chord.length := by
+    simp only [firstGapChordStart]
+    rw [hnone]
+  have hcfLe : B.firstGapChordFinish j ≤ B.chord.length :=
+    B.firstGapChordFinish_le j
+  have hcf : B.firstGapChordFinish j < B.chord.length := by
+    rcases Nat.lt_or_ge (B.firstGapChordFinish j) B.chord.length with hlt | hge
+    · exact hlt
+    · exfalso
+      have heq : B.firstGapChordFinish j = B.chord.length :=
+        le_antisymm hcfLe hge
+      rw [hchordStart, heq] at hsegPos
+      simp [orientedSegment] at hsegPos
+  have hn' : (B.firstGapLeft j).length +
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j)).length +
+      (B.firstGapRight j).length + 0 < (B.firstGapCycle j).length := by omega
+  have hgetEq : (B.firstGapCycle j)[(B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)) + 1]'hn =
+      (B.firstGapCycle j)[(B.firstGapLeft j).length +
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length +
+        (B.firstGapRight j).length + 0]'hn' :=
+    getElem_congr_idx (by omega)
+  rw [hgetEq] at hletter
+  have hchordLetter := (isCompOf_auxiliaryCycle_chord_iff (P.label s)
+    (B.firstGapLeft j)
+    (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+      (B.firstGapFinishSide j)) (B.firstGapRight j)
+    (orientedSegment B.chord (B.firstGapChordStart j)
+      (B.firstGapChordFinish j)) 0 hsegPos hn').mp hletter
+  have hrevPos : 0 < (revWord B.chord).length := by
+    rw [OsinComponents.length_revWord]
+    omega
+  have hchordLetterRev : ((revWord B.chord)[0]'hrevPos).IsCompOf
+      (P.label s) :=
+    (isCompOf_head_orientedSegment_fromEnd (P.label s) B.chord hchordStart hcf
+      hsegPos hrevPos).mp hchordLetter
+  have hEnd : B.refinedCut (B.secondSide + 2) ≤ P.word.length := by
+    rw [show B.refinedCut (B.secondSide + 2) = B.secondVertex by
+      simp [refinedCut, splitPairCut_right]]
+    exact B.secondVertex_mem.2.trans
+      (P.polygonCut.le_length (Nat.succ_le_iff.mpr B.secondSide_lt))
+  have hArcLen : B.firstArc.length =
+      B.refinedCut (B.secondSide + 2) - B.refinedCut (B.firstSide + 1) := by
+    show (arcWord P.word B.refinedCut (B.firstSide + 1)
+      (B.secondSide + 2)).length = _
+    exact length_arcWord P.word B.refinedCut hEnd
+  have hwordLen : B.firstWord.length =
+      (B.refinedCut (B.secondSide + 2) - B.refinedCut (B.firstSide + 1)) +
+        B.chord.length := by
+    show (firstHalf P.word B.refinedCut (B.firstSide + 1) (B.secondSide + 2)
+      B.chord).length = _
+    exact length_firstHalf P.word B.refinedCut hEnd B.chord
+  have hwordLt : (B.refinedCut (B.secondSide + 2) -
+      B.refinedCut (B.firstSide + 1)) + 0 <
+      (firstHalf P.word B.refinedCut (B.firstSide + 1) (B.secondSide + 2)
+        B.chord).length := by
+    rw [length_firstHalf P.word B.refinedCut hEnd]
+    omega
+  have hhalf := getElem_firstHalf_chord P.word B.refinedCut hEnd B.chord
+    (j := 0) (by omega) hwordLt
+  have hltWord : B.firstTargetPos s + 1 < B.firstWord.length := by
+    rw [hwordLen]
+    omega
+  have hidxWord : B.firstTargetPos s + 1 =
+      (B.refinedCut (B.secondSide + 2) - B.refinedCut (B.firstSide + 1)) + 0 := by
+    omega
+  have hfinal : B.firstWord[B.firstTargetPos s + 1]'hltWord =
+      (revWord B.chord)[0]'hrevPos := by
+    have h1 : B.firstWord[B.firstTargetPos s + 1]'hltWord =
+        B.firstWord[(B.refinedCut (B.secondSide + 2) -
+          B.refinedCut (B.firstSide + 1)) + 0]'(by rw [hwordLen]; omega) :=
+      getElem_congr_idx hidxWord
+    rw [h1]
+    exact hhalf
+  obtain ⟨hwordComp, -⟩ := B.firstGapArcSource_survives j s hs
+  have hbad : (B.firstWord[B.firstTargetPos s + 1]'hltWord).IsCompOf
+      (P.label s) := by
+    rw [hfinal]
+    exact hchordLetterRev
+  exact hwordComp.2.2.2.2 hltWord hbad
 
 end BalancedSplitData
 
