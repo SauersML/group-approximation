@@ -141,8 +141,8 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
       Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
-    (hkernel : KernelGeodesicEstimateStatement.{u, w})
-    (hloc : KernelConeLocalFinitenessStatement.{u, w}) :
+    (hkernel : KernelGeodesicEstimateStatement)
+    (hloc : KernelConeLocalFinitenessStatement) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q D) := by
   have hAlphabet : A.alphabet.carrier ⊆ D.rel.alphabet.carrier := by
