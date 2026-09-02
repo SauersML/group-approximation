@@ -405,7 +405,7 @@ theorem firstGapArcSource_fullComponent
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
-                B.brokenAssignment.index.first e)) :=
+                B.brokenAssignment.index.first e)) := by
           have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
           simpa only [(B.firstArcCut_target heTarget).1] using hletter0
         have hprevLabel :
@@ -710,7 +710,7 @@ theorem secondGapArcSource_fullComponent
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
-                B.brokenAssignment.index.second e)) :=
+                B.brokenAssignment.index.second e)) := by
           have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
           simpa only [(B.secondArcCut_target heTarget).1] using hletter0
         have hprevLabel :
