@@ -229,7 +229,7 @@ namespace ExteriorRegion
 
 /-- Forget the selected-family membership while retaining the embedded
 boundary-contiguity witness. -/
-def toBoundaryContiguity
+noncomputable def toBoundaryContiguity
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -274,10 +274,12 @@ theorem selectedOuter_eq_none_iff
   classical
   rw [selectedOuter]
   split_ifs with h
-  · simp only [Option.some_ne_none, false_iff]
-    exact not_isEmpty_of_nonempty h
+  · simp only [false_iff]
+    intro hEmpty
+    letI : IsEmpty (ExteriorRegion selected i) := hEmpty
+    exact isEmptyElim (Classical.choice h)
   · simp only [true_iff]
-    exact not_nonempty_iff.mp h
+    exact ⟨fun region => h ⟨region⟩⟩
 
 end Embedded
 
