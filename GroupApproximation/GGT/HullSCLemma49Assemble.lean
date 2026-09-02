@@ -210,9 +210,14 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
       hfaceSetBoundaryPeeling
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
-  exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
-    (hselection := hselection) (hpieces := hpieces) (hunbound := hunbound)
-    (hpasting := hpasting) (hinjective := hinjective)
+  have hquasi :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
+    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound
+  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+  · exact hquasi
+  · exact hpasting
+  · exact hinjective
 
 /-- The same input leaf using the currently landed vk shape.  vk's named
 `faceSetBoundaryPeeling_of_faceSetBoundary` consumes the displayed local
@@ -242,9 +247,14 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs_of_vkOracle
     hullLemma49SourceFacePastingStatement_of_vkFaceSetBoundaryPeeling horacle
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
-  exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
-    (hselection := hselection) (hpieces := hpieces) (hunbound := hunbound)
-    (hpasting := hpasting) (hinjective := hinjective)
+  have hquasi :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
+    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound
+  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+  · exact hquasi
+  · exact hpasting
+  · exact hinjective
 
 /-! ## Model check -/
 
