@@ -224,8 +224,8 @@ noncomputable def Contiguity.targetArcAtSome
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {faces : Finset Delta.toCombMap.Face}
-    (Gamma : Contiguity D eps Delta faces)
-    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+  (Gamma : Contiguity D eps Delta faces)
+  (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     CyclicArc (targetDarts Delta (some target)) := by
   have hcycle : targetDarts Delta Gamma.target =
       targetDarts Delta (some target) := by rw [htarget]
@@ -265,10 +265,10 @@ noncomputable def Contiguity.targetInverseCarrier
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     List (GGT.RelLetter G Lambda) :=
   (RelWord.revInv (dartWord Delta
-      (Gamma.cellTargetArc target htarget).rotated)).rotate
+      (Gamma.targetArcAtSome target htarget).rotated)).rotate
     (dartWord Delta
-      ((Gamma.cellTargetArc target htarget).rotated.drop
-        (Gamma.cellTargetArc target htarget).length)).length
+      ((Gamma.targetArcAtSome target htarget).rotated.drop
+        (Gamma.targetArcAtSome target htarget).length)).length
 
 /-- The transported inverse carrier is a member of the relator family. -/
 theorem Contiguity.targetInverseCarrier_mem
@@ -281,7 +281,7 @@ theorem Contiguity.targetInverseCarrier_mem
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
     (hsc : RelWord.IsSmallCancellation D W eps mu rho) :
     Gamma.targetInverseCarrier target htarget ∈ W := by
-  have hcarrier := (Gamma.cellTargetArc target htarget).cell_rotated_mem hsc
+  have hcarrier := (Gamma.targetArcAtSome target htarget).cell_rotated_mem hsc
   have hinv := hsc.inv_mem _ hcarrier
   unfold Contiguity.targetInverseCarrier
   exact hsc.rotate_mem _ hinv _
@@ -300,11 +300,18 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
       Gamma.targetInverseCarrier target htarget =
         dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc) ++ suffix := by
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
-    Gamma.targetArc
+    (Gamma.targetArcAtSome target htarget)
   refine ⟨suffix, ?_⟩
+  have hboundary :
+      targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
+        targetBoundaryDarts Delta (some target)
+          (Gamma.targetArcAtSome target htarget) := by
+    unfold Contiguity.targetArcAtSome
+    cases htarget
+    rfl
+  rw [hboundary]
   simpa [Contiguity.targetInverseCarrier, targetBoundaryDarts,
-    CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord, htarget,
-    Contiguity.cellTargetArc] using hsuffix
+    CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord] using hsuffix
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
