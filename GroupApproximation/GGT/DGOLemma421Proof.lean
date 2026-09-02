@@ -2410,8 +2410,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     intro i hi
     dsimp [short]
     rw [dif_neg hi]
-    have hchoice := (hclassBase i).resolve_left hi
-    exact (Classical.choose_spec (Classical.choose hchoice)).2
+    exact (Classical.choose_spec ((hclassBase i).resolve_left hi)).2
   have hclass : ∀ i, Matched i ∨ ∃ z : Fin M,
       ¬ Matched i ∧ short i = z := by
     intro i
