@@ -962,6 +962,254 @@ theorem bigFaceBoundary_darts
     (Z : HullSC.RelativeReducedDiagram D W R) :
     Z.bigFaceBoundary.darts = Z.bigDarts := rfl
 
+noncomputable def faceBoundary
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (f : Z.cactusShape.toCombMap.Face) :
+    FaceBoundary Z.cactusShape.toCombMap f := by
+  classical
+  exact if h : f = Z.cactusShape.bigFace then
+      h.symm ▸ Z.bigFaceBoundary
+    else Z.cactusShape.faceBoundary f
+
+theorem faceBoundary_of_ne_big
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    {f : Z.cactusShape.toCombMap.Face} (h : f ≠ Z.cactusShape.bigFace) :
+    Z.faceBoundary f = Z.cactusShape.faceBoundary f := by
+  rw [faceBoundary, dif_neg h]
+
+theorem faceBoundary_big
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.faceBoundary Z.cactusShape.bigFace = Z.bigFaceBoundary := by
+  rw [faceBoundary, dif_pos rfl]
+
+theorem outerFaceWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    (Z.faceBoundary Z.cactusShape.outerFace).darts.map Z.label =
+      Z.outerFaceWord := by
+  rw [Z.faceBoundary_of_ne_big Z.cactusShape.bigFace_ne_outerFace.symm,
+    Z.cactusShape.faceBoundary_outerFace_darts,
+    cactus_outerBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact outerForward_word Z
+
+theorem relatorFaceWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (i : Fin Z.cells.length) :
+    (Z.faceBoundary (Z.cactusShape.relatorFace i)).darts.map Z.label =
+      (Z.geometricCell i).relator := by
+  rw [Z.faceBoundary_of_ne_big
+    (Z.cactusShape.bigFace_ne_relatorFace i).symm,
+    Z.cactusShape.faceBoundary_relatorFace_darts,
+    cactus_relatorBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact relatorForward_word Z i
+
+def relatorCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (i : Fin Z.cells.length) :
+    RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W where
+  face := Z.cactusShape.relatorFace i.rev
+  face_ne_outer := Z.cactusShape.relatorFace_ne_outerFace i.rev
+  word := (Z.cellAt i).relator
+  word_mem := (Z.cellAt i).relator_mem
+  conjugator := (Z.cellAt i).conjugator
+  reversed := false
+
+def relatorCells
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    List (RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W) :=
+  List.ofFn Z.relatorCell
+
+theorem relatorCell_face_injective
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Function.Injective (fun i : Fin Z.cells.length ↦
+      (Z.relatorCell i).face) := by
+  intro i j hij
+  have hrev : i.rev = j.rev := Z.cactusShape.relatorFace_injective hij
+  exact Fin.rev_injective hrev
+
+theorem relatorCells_faces_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    (Z.relatorCells.map RelatorCell.face).Nodup := by
+  rw [relatorCells, ← List.ofFn_comp']
+  exact List.nodup_ofFn_ofInjective Z.relatorCell_face_injective
+
+theorem relatorCells_word
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (C : RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W)
+    (hC : C ∈ Z.relatorCells) :
+    C.word = (Z.faceBoundary C.face).darts.map Z.label := by
+  rw [relatorCells, List.mem_ofFn] at hC
+  obtain ⟨i, rfl⟩ := hC
+  change (Z.cellAt i).relator =
+    (Z.faceBoundary (Z.cactusShape.relatorFace i.rev)).darts.map Z.label
+  rw [Z.relatorFaceWord_eq, geometricCell, Fin.rev_rev]
+
+theorem relatorCell_value
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (i : Fin Z.cells.length) :
+    (Z.relatorCell i).value = (Z.cellAt i).value := by
+  simp [relatorCell, RelatorCell.value,
+    HullSC.Lemma44OrientedRelatorCell.value]
+
+theorem relatorCells_values
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.relatorCells.map RelatorCell.value =
+      Z.cells.map Lemma44OrientedRelatorCell.value := by
+  rw [relatorCells, ← List.ofFn_comp']
+  apply congrArg List.ofFn
+  funext i
+  exact Z.relatorCell_value i
+
+theorem face_eq_indexedFace_of_faceEquiv_eq (S : CactusShape)
+    (f : S.toCombMap.Face) (i : S.FaceIndex) (h : S.faceEquiv f = i) :
+    f = S.indexedFace i := by
+  rw [← S.indexedFace_faceEquiv f, h]
+
+theorem inner_face
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (f : Z.cactusShape.toCombMap.Face)
+    (hf : f ≠ Z.cactusShape.outerFace) :
+    (∃ C ∈ Z.relatorCells, C.face = f) ∨
+      GGT.RelLetter.listVal ((Z.faceBoundary f).darts.map Z.label) = 1 := by
+  cases hi : Z.cactusShape.faceEquiv f with
+  | outer =>
+      have hface : f = Z.cactusShape.outerFace :=
+        face_eq_indexedFace_of_faceEquiv_eq Z.cactusShape f .outer hi
+      exact (hf hface).elim
+  | relator i =>
+      left
+      let j : Fin Z.cells.length := i.rev
+      refine ⟨Z.relatorCell j, ?_, ?_⟩
+      · rw [relatorCells, List.mem_ofFn]
+        exact ⟨j, rfl⟩
+      · change Z.cactusShape.relatorFace j.rev = f
+        simp only [j, Fin.rev_rev]
+        exact (face_eq_indexedFace_of_faceEquiv_eq
+          Z.cactusShape f (.relator i) hi).symm
+  | big =>
+      right
+      have hface : f = Z.cactusShape.bigFace :=
+        face_eq_indexedFace_of_faceEquiv_eq Z.cactusShape f .big hi
+      subst f
+      rw [Z.faceBoundary_big, Z.bigFaceBoundary_darts]
+      exact Z.bigDarts_value
+
+noncomputable def cactusDiscDiagram
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    DiscDiagram.{u, w, 0} W where
+  toCombMap := Z.cactusShape.toCombMap
+  planar := Z.cactusShape.planar
+  label := Z.label
+  label_alpha := Z.label_alpha
+  outerFace := Z.cactusShape.outerFace
+  faceBoundary := Z.faceBoundary
+  relatorCells := Z.relatorCells
+  relatorCell_faces_nodup := Z.relatorCells_faces_nodup
+  relatorCell_word := Z.relatorCells_word
+  inner_face := Z.inner_face
+  boundary_product := by
+    rw [Z.relatorCells_values, Z.cell_values_prod]
+    change Z.boundary = GGT.RelLetter.listVal
+      (RelWord.revInv ((Z.faceBoundary Z.cactusShape.outerFace).darts.map Z.label))
+    rw [Z.outerFaceWord_eq, outerFaceWord, RelWord.revInv_revInv,
+      HullSC.listVal_map_base, Z.boundaryWord_isWord.prod_eq]
+
+theorem cactusDiscDiagram_boundaryWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.cactusDiscDiagram.boundaryWord =
+      Z.boundaryWord.map (GGT.RelLetter.base : G → GGT.RelLetter G Lambda) := by
+  change RelWord.revInv
+      ((Z.faceBoundary Z.cactusShape.outerFace).darts.map Z.label) = _
+  rw [Z.outerFaceWord_eq, outerFaceWord, RelWord.revInv_revInv]
+
+theorem cactusDiscDiagram_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Z.cactusDiscDiagram.Reduced := by
+  intro pre between suf C₁ C₂ hsplit
+  apply Z.no_cancelling_pair
+    (pre.map RelatorCell.value)
+    (between.map RelatorCell.value)
+    (suf.map RelatorCell.value) C₁.value C₂.value
+  rw [← Z.relatorCells_values, hsplit]
+  simp only [List.map_append, List.map_cons]
+
+def cellIndexEquiv
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R) :
+    Fin Z.cells.length ≃ Fin Z.cactusDiscDiagram.rCellCount where
+  toFun i := ⟨i, by
+    change i.val < Z.relatorCells.length
+    rw [relatorCells, List.length_ofFn]
+    exact i.isLt⟩
+  invFun j := ⟨j, by
+    have hj : j.val < Z.relatorCells.length := j.isLt
+    rw [relatorCells, List.length_ofFn] at hj
+    exact hj⟩
+  left_inv i := by apply Fin.ext; rfl
+  right_inv j := by apply Fin.ext; rfl
+
+theorem cellIndexEquiv_word
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.RelativeReducedDiagram D W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusDiscDiagram.relatorCells.get (Z.cellIndexEquiv i)).word =
+      (Z.cells.get i).relator := by
+  change ((List.ofFn fun j : Fin Z.cells.length ↦ Z.relatorCell j).get
+      (Z.cellIndexEquiv i)).word = _
+  rw [List.get_ofFn]
+  rfl
+
 end RelativeReducedDiagram
 end HullSC
 end GroupApproximation
