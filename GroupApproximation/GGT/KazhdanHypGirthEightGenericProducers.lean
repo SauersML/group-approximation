@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.KazhdanHypSharpExistenceAssembly
+import GroupApproximation.GGT.KazhdanHypGirthEightTorsionExtraction
 import GroupApproximation.GGT.VanKampen.CombMapReduction
 import GroupApproximation.GGT.VanKampen.CombMapGluing
 
@@ -141,7 +141,7 @@ theorem planarDiscExposedPairingEulerData_of_planarDisc
       (T : TriangleIndex → Triangle Generator)
       (g : Presented T) (n : ℕ) (D : PowerDisc T g n),
       PlanarDiscExposedPairingGeometry T D) :
-    PlanarDiscExposedPairingEulerData := by
+    ExposedPairingEulerProducer := by
   intro Generator TriangleIndex fg dg ft dt T g n D
   let G := hsource Generator TriangleIndex fg dg ft dt T g n D
   let B := ExposedPairing.of_copyMate G.index G.index_copy G.copyMate
