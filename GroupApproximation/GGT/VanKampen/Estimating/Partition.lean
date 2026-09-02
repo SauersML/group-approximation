@@ -5,14 +5,17 @@ import Mathlib.Tactic
 /-!
 # Positioned boundary partitions for embedded contiguity systems
 
-This file records the cell-boundary partition from Appendix Definition M.
-Every bound piece points to an actual selected embedded region and remembers
-whether the cell is its source or its cell target.  Every piece, including an
-unbound piece, carries a cyclic base position through `Embedded.CyclicArc`.
+This file constructs the cell-boundary partition from Appendix Definition M.
+Every dart of a relator-cell boundary is indexed by its cyclic `Fin` position.
+A bound dart points to an actual selected embedded region and remembers whether
+the cell is its source or target.  A dart which occurs on no selected region is
+unbound.  The classifier is defined by finite classical choice, so it exists
+for every selected family and the exterior/interior/unbound perimeter identity
+is automatic.
 
-The final section isolates the numerical conversion used after Lemma 62:
-the strict `n * sqrt rho` bound on all unbound arcs becomes the `2 * mu`
-uncovered budget once all `n` relator perimeters are at least `rho` and
+The final theorem isolates the numerical conversion used after Lemma 62: the
+strict `n * sqrt rho` bound on unbound darts becomes the `2 * mu` uncovered
+budget once every relator perimeter is at least `rho` and
 `2 * mu * sqrt rho >= 1`.
 -/
 
@@ -24,7 +27,7 @@ universe u w v
 
 namespace Embedded
 
-/-- Classification of one positioned arc on a relator-cell boundary. -/
+/-- Classification of one positioned dart on a relator-cell boundary. -/
 inductive CellArcKind
   | exterior
   | interior
@@ -90,33 +93,49 @@ noncomputable def kind
 
 end CellIncidence
 
-/-- One part of the cyclic perimeter partition. -/
-inductive CellPiece
+/-- The singleton cyclic arc at one actual dart position. -/
+def singletonArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {i : Fin Delta.rCellCount}
+    (position : Fin (cellDarts Delta i).length) :
+    CyclicArc (cellDarts Delta i) where
+  start := ⟨position.1, lt_trans position.2 (Nat.lt_succ_self _)⟩
+  length := 1
+  length_le := Nat.one_le_iff_ne_zero.mpr fun hzero => by
+    rw [hzero] at position
+    exact Fin.elim0 position
+
+/-- Classification of the dart at one cyclic position.  A bound classifier
+includes the selected incidence whose stored cyclic arc contains that dart. -/
+inductive CellDartClass
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (selected : Finset (Candidate D eps Delta))
-    (i : Fin Delta.rCellCount) : Type (max u w v)
+    (i : Fin Delta.rCellCount)
+    (position : Fin (cellDarts Delta i).length) : Type (max u w v)
   | bound (incidence : CellIncidence selected i)
-  | unbound (arc : CyclicArc (cellDarts Delta i))
+      (dart_mem : (cellDarts Delta i).get position ∈ incidence.arc.darts)
+  | unbound
 
-namespace CellPiece
+namespace CellDartClass
 
-/-- The positioned cyclic arc underlying a cell piece. -/
-noncomputable def arc
+/-- The cyclic base position of a classified singleton dart. -/
+def arc
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     {selected : Finset (Candidate D eps Delta)}
     {i : Fin Delta.rCellCount}
-    (piece : CellPiece selected i) : CyclicArc (cellDarts Delta i) :=
-  match piece with
-  | .bound incidence => incidence.arc
-  | .unbound arc => arc
+    {position : Fin (cellDarts Delta i).length}
+    (_classification : CellDartClass selected i position) :
+    CyclicArc (cellDarts Delta i) := singletonArc position
 
-/-- Classification of a cell piece. -/
+/-- Kind of a classified positioned dart. -/
 noncomputable def kind
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -124,16 +143,15 @@ noncomputable def kind
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     {selected : Finset (Candidate D eps Delta)}
     {i : Fin Delta.rCellCount}
-    (piece : CellPiece selected i) : CellArcKind :=
-  match piece with
-  | .bound incidence => incidence.kind
-  | .unbound _ => CellArcKind.unbound
+    {position : Fin (cellDarts Delta i).length}
+    (classification : CellDartClass selected i position) : CellArcKind :=
+  match classification with
+  | .bound incidence _ => incidence.kind
+  | .unbound => CellArcKind.unbound
 
-end CellPiece
+end CellDartClass
 
-/-- A complete cyclic partition of one relator-cell boundary.  The base
-position names the rotation at which the displayed linear decomposition
-starts; every individual piece also retains its own cyclic start position. -/
+/-- A complete cyclic classification of one relator-cell boundary. -/
 structure CellBoundaryPartition
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -141,38 +159,29 @@ structure CellBoundaryPartition
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (selected : Finset (Candidate D eps Delta))
     (i : Fin Delta.rCellCount) where
-  base : Fin ((cellDarts Delta i).length + 1)
-  pieces : List (CellPiece selected i)
-  decomposition :
-    (cellDarts Delta i).drop base.1 ++ (cellDarts Delta i).take base.1 =
-      pieces.flatMap fun piece => piece.arc.darts
+  classify : ∀ position : Fin (cellDarts Delta i).length,
+    CellDartClass selected i position
 
 namespace CellBoundaryPartition
 
-private theorem pieceLength_sum_aux
+/-- Classify a dart as bound exactly when some selected incidence contains it.
+The candidate and side are chosen from a finite type, but no ordering choice
+affects any of the three resulting length totals. -/
+noncomputable def canonical
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
-    {selected : Finset (Candidate D eps Delta)}
-    {i : Fin Delta.rCellCount}
-    (pieces : List (CellPiece selected i)) :
-    (pieces.map fun piece => piece.arc.length).sum =
-      ((pieces.filter fun piece => piece.kind = CellArcKind.exterior).map
-          fun piece => piece.arc.length).sum +
-      ((pieces.filter fun piece => piece.kind = CellArcKind.interior).map
-          fun piece => piece.arc.length).sum +
-      ((pieces.filter fun piece => piece.kind = CellArcKind.unbound).map
-          fun piece => piece.arc.length).sum := by
-  induction pieces with
-  | nil => simp
-  | cons piece pieces ih =>
-      cases hkind : piece.kind with
-      | exterior => simp [hkind, ih]; omega
-      | interior => simp [hkind, ih]; omega
-      | unbound => simp [hkind, ih]; omega
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) : CellBoundaryPartition selected i where
+  classify := fun position => by
+    by_cases hbound : ∃ incidence : CellIncidence selected i,
+        (cellDarts Delta i).get position ∈ incidence.arc.darts
+    · exact CellDartClass.bound (Classical.choose hbound)
+        (Classical.choose_spec hbound)
+    · exact CellDartClass.unbound
 
-/-- Total length of pieces of one kind. -/
+/-- Number of boundary darts of one kind. -/
 noncomputable def kindLength
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -181,11 +190,10 @@ noncomputable def kindLength
     {selected : Finset (Candidate D eps Delta)}
     {i : Fin Delta.rCellCount}
     (partition : CellBoundaryPartition selected i) (kind : CellArcKind) : ℕ :=
-  ((partition.pieces.filter fun piece => piece.kind = kind).map
-    fun piece => piece.arc.length).sum
+  (Finset.univ.filter fun position => (partition.classify position).kind = kind).card
 
-/-- The three classifications partition the sum of all piece lengths. -/
-theorem pieceLength_sum
+/-- The three classifications partition the number of actual dart positions. -/
+theorem cellDarts_length_eq_kindLengths
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -193,11 +201,17 @@ theorem pieceLength_sum
     {selected : Finset (Candidate D eps Delta)}
     {i : Fin Delta.rCellCount}
     (partition : CellBoundaryPartition selected i) :
-    (partition.pieces.map fun piece => piece.arc.length).sum =
+    (cellDarts Delta i).length =
       partition.kindLength CellArcKind.exterior +
       partition.kindLength CellArcKind.interior +
       partition.kindLength CellArcKind.unbound := by
-  exact pieceLength_sum_aux partition.pieces
+  classical
+  rw [← Fintype.card_fin (cellDarts Delta i).length]
+  simp only [kindLength, Finset.card_eq_sum_ones]
+  rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro position _
+  cases hkind : (partition.classify position).kind <;> simp [hkind]
 
 /-- The dart cycle of an indexed cell has the length of its relator word. -/
 theorem cellDarts_length_eq_word_length
@@ -208,7 +222,7 @@ theorem cellDarts_length_eq_word_length
   have hlength := congrArg List.length (dartWord_cellDarts Delta i)
   simpa only [dartWord, List.length_map] using hlength
 
-/-- Exterior, interior, and unbound positioned arcs partition the cell
+/-- Exterior, interior, and unbound positioned darts partition the cell
 perimeter exactly. -/
 theorem perimeter_eq_kindLengths
     {G : Type u} [Group G] {Lambda : Type w}
@@ -222,32 +236,34 @@ theorem perimeter_eq_kindLengths
       partition.kindLength CellArcKind.exterior +
       partition.kindLength CellArcKind.interior +
       partition.kindLength CellArcKind.unbound := by
-  have hlength := congrArg List.length partition.decomposition
-  have hbase : partition.base.1 ≤ (cellDarts Delta i).length := by omega
-  have hpieces :
-      (partition.pieces.flatMap fun piece => piece.arc.darts).length =
-        (partition.pieces.map fun piece => piece.arc.length).sum := by
-    simp only [List.length_flatMap, CyclicArc.darts_length]
-  rw [List.length_append, List.length_drop, List.length_take, Nat.min_eq_left hbase,
-    hpieces, partition.pieceLength_sum] at hlength
   rw [← cellDarts_length_eq_word_length Delta i]
-  omega
+  exact partition.cellDarts_length_eq_kindLengths
 
 end CellBoundaryPartition
 
-/-- Positioned boundary partitions for every relator cell of one selected
-embedded family. -/
-structure DiagramBoundaryPartition
+/-- Canonical positioned boundary partitions for all relator cells of one
+selected embedded family. -/
+noncomputable def DiagramBoundaryPartition
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
-    (selected : Finset (Candidate D eps Delta)) where
-  cell : ∀ i : Fin Delta.rCellCount, CellBoundaryPartition selected i
+    (selected : Finset (Candidate D eps Delta)) :=
+  ∀ i : Fin Delta.rCellCount, CellBoundaryPartition selected i
+
+/-- The canonical diagram partition exists for every selected family. -/
+noncomputable def canonicalDiagramPartition
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    DiagramBoundaryPartition selected :=
+  fun i => CellBoundaryPartition.canonical selected i
 
 namespace DiagramBoundaryPartition
 
-/-- Real weight of one class of positioned cell arcs. -/
+/-- Real weight of one class of positioned cell darts. -/
 noncomputable def kindWeight
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -256,7 +272,7 @@ noncomputable def kindWeight
     {selected : Finset (Candidate D eps Delta)}
     (partition : DiagramBoundaryPartition selected)
     (kind : CellArcKind) (i : Fin Delta.rCellCount) : ℝ :=
-  (partition.cell i).kindLength kind
+  (partition i).kindLength kind
 
 /-- The real-valued partition used by the contiguity count. -/
 theorem cellWeight_partition
@@ -272,7 +288,7 @@ theorem cellWeight_partition
       partition.kindWeight CellArcKind.interior i +
       partition.kindWeight CellArcKind.unbound i := by
   simp only [kindWeight]
-  exact_mod_cast (partition.cell i).perimeter_eq_kindLengths
+  exact_mod_cast (partition i).perimeter_eq_kindLengths
 
 /-- Total number of unbound cell-boundary darts. -/
 noncomputable def unboundTotal
@@ -283,7 +299,7 @@ noncomputable def unboundTotal
     {selected : Finset (Candidate D eps Delta)}
     (partition : DiagramBoundaryPartition selected) : ℕ :=
   ∑ i : Fin Delta.rCellCount,
-    (partition.cell i).kindLength CellArcKind.unbound
+    (partition i).kindLength CellArcKind.unbound
 
 /-- Lemma 62's strict `n * sqrt rho` estimate implies the `2 * mu`
 uncovered budget used by the final count. -/
