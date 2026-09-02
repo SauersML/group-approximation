@@ -408,6 +408,64 @@ theorem cactusBigDarts_nodup
     Z.cactusCellSegments_nodup
     Z.cactusOuterBackwardDarts_disjoint_cellSegments
 
+/-! ## The complementary face orbit -/
+
+/-- The oriented algebraic cell list is positive. -/
+theorem cells_length_pos
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    0 < Z.cells.length := by
+  have hcells : Z.cells.length = Z.factors.length := by
+    have h := congrArg List.length Z.cell_values
+    simpa only [List.length_map] using h
+  rw [hcells, Z.factors_length]
+  exact Z.area_pos
+
+/-- The explicit complementary traversal is nonempty because its outer
+polygon is positive. -/
+theorem cactusBigDarts_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusBigDarts ≠ [] := by
+  rw [cactusBigDarts, List.append_ne_nil_iff]
+  left
+  rw [cactusOuterBackwardDarts, List.ofFn_eq_nil_iff]
+  exact Nat.ne_of_gt Z.cactusShape.boundary_pos
+
+/-- A dart belongs to the complementary face exactly when its explicit face
+classifier is `big`. -/
+theorem faceOf_eq_bigFace_iff (S : CactusShape) (d : CactusDart S) :
+    S.toCombMap.faceOf d = S.bigFace ↔ S.faceClass d = .big := by
+  constructor
+  · intro h
+    have hi := congrArg S.faceEquiv h
+    simpa [CactusShape.bigFace, CactusShape.indexedFace,
+      S.faceEquiv_indexedFace] using hi
+  · intro h
+    apply S.faceEquiv.injective
+    change S.faceClass d = S.faceEquiv S.bigFace
+    rw [S.faceEquiv_indexedFace]
+    exact h
+
+/-- Membership in the explicit list is exactly membership in the
+complementary face. -/
+theorem mem_cactusBigDarts_iff
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (d : CactusDart Z.cactusShape) :
+    d ∈ Z.cactusBigDarts ↔
+      Z.cactusShape.toCombMap.faceOf d = Z.cactusShape.bigFace := by
+  rw [Z.cactusShape.faceOf_eq_bigFace_iff]
+  cases d <;>
+    simp [cactusBigDarts, cactusOuterBackwardDarts, cactusCellSegments,
+      cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn]
+
 end Lemma44OrientedRelatorDiagram
 end HullSC
 end GroupApproximation
