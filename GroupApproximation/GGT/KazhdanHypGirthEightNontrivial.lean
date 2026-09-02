@@ -32,10 +32,17 @@ def cyclicThreeGenerator : Multiplicative (ZMod 3) :=
   Multiplicative.ofAdd (1 : ZMod 3)
 
 theorem cyclicThreeGenerator_ne_one : cyclicThreeGenerator ≠ 1 := by
-  native_decide
+  intro h
+  have h' : (1 : ZMod 3) = 0 := by
+    have := congrArg Multiplicative.toAdd h
+    simpa [cyclicThreeGenerator] using this
+  exact absurd h' (by decide)
 
 theorem cyclicThreeGenerator_cube : cyclicThreeGenerator ^ 3 = 1 := by
-  native_decide
+  show Multiplicative.ofAdd (1 : ZMod 3) ^ 3 = 1
+  rw [← ofAdd_nsmul, ← ofAdd_zero]
+  congr 1
+  decide
 
 omit [Nonempty Generator] [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A positive triangular relator evaluates to one when every generator is
