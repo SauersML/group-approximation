@@ -541,7 +541,7 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
         have hconnTU : Connected D.fam (peripheralOccurrence word t).label v word
             (peripheralOccurrence word t).pos
             (peripheralOccurrence word u).pos := by
-          rw [hsideCoord, huPos]
+          rw [hsideCoord, ← huPos] at hconnOriginal
           exact hconnOriginal
         have hsu : s < u := by
           have hAu : A.pos < (peripheralOccurrence word u).pos := by
@@ -552,8 +552,8 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
           · exact hlt
           · subst u
             exact False.elim (hAu.ne rfl)
-          · exact False.elim
-              ((peripheralOccurrence_pos_lt word hgt).not_le (le_of_lt hAu))
+          · have hus := peripheralOccurrence_pos_lt word hgt
+            omega
         have hur : u < r := by
           have huB : (peripheralOccurrence word u).pos < B.pos := by
             rw [huPos, ← hwidthEnd]
@@ -562,8 +562,8 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
           · exact hlt
           · subst u
             exact False.elim (huB.ne rfl)
-          · exact False.elim
-              ((peripheralOccurrence_pos_lt word hgt).not_le (le_of_lt huB))
+          · have hru := peripheralOccurrence_pos_lt word hgt
+            omega
         by_cases hut : u = t
         · subst u
           apply hjne
@@ -594,6 +594,8 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
         vertex_succ word v (peripheralOccurrence word t).pos
           (List.getElem?_eq_some_iff.mp (peripheralOccurrence word t).read).1,
         inv_mul_cancel_left]
+      rw [(List.getElem?_eq_some_iff.mp
+        (peripheralOccurrence word t).read).2]
       exact hW2 (peripheralOccurrence word t).pos
         (peripheralOccurrence word t).label
         (peripheralOccurrence word t).value
@@ -629,7 +631,9 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     I lamSide hIrange (fun q hq => (hlamSpec q hq).1)
     (fun q hq => (hlamSpec q hq).2.1)
     (fun q hq => (hlamSpec q hq).2.2)
-  have hspacing := peripheralPos_le_add_two_mul hW1 r.isLt (le_of_lt hsr)
+  have hspacing :=
+    GroupApproximation.GGT.OsinComponents.peripheralPos_le_add_two_mul
+      hW1 r.isLt (le_of_lt hsr)
   have hwidthBound : width + 1 ≤ 2 * gap := by
     rw [← hgap]
     dsimp [width, start, A, B]
