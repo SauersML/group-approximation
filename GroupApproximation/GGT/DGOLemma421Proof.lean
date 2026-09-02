@@ -2291,14 +2291,15 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         1 P (source i) (peripheralOccurrence P u).pos := by
       have hs := connected_fourGon_side_iff D
         (peripheralOccurrence P (occ i)).label pc P rc Q
-        (by omega) (by omega)
+        (i := source i) (i' := i') (by omega) (by omega)
       have hmem := hs.mp hconn
       rw [← huPos] at hmem
       exact hmem
     have hoccne : occ i ≠ u := by
       intro heq
       subst u
-      exact hne (by rw [huPos])
+      apply hne
+      simpa [source] using huPos.symm
     apply peripheralOccurrence_not_connected_of_uniformBound hC11 hsum11
       hletP hW1P
       (fun z lam x hz => hW2P z lam x hz
@@ -2318,23 +2319,32 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     · rcases hrest with hqcase | hrest
       · exfalso
         rcases hqcase with ⟨i', hi', hni⟩
-        have hne : i' ≠ source i := by
-          intro heq
-          exact (htargetSpec i).1 (by rw [hni, heq])
-        have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
-            (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
-            (pc.length + i') := by
-          show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
-              (pc.length + source i))⁻¹ *
-            vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
-              D.fam (peripheralOccurrence P (occ i)).label
-          rw [vertex_fourGon_side pc P rc Q 1 (by omega),
-            vertex_fourGon_side pc P rc Q 1 hi']
-          obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
-          rw [← heq]
-          group
-        exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
-          (htargetSpec i).2.1)) hconn
+        by_cases hilt : i' < P.length
+        · have hne : i' ≠ source i := by
+            intro heq
+            exact (htargetSpec i).1 (by rw [hni, heq])
+          have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
+              (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
+              (pc.length + i') := by
+            show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+                (pc.length + source i))⁻¹ *
+              vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
+                D.fam (peripheralOccurrence P (occ i)).label
+            rw [vertex_fourGon_side pc P rc Q 1 (by omega),
+              vertex_fourGon_side pc P rc Q 1 hi']
+            obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+            rw [← heq]
+            group
+          exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
+            (htargetSpec i).2.1)) hconn
+        · right
+          refine ⟨⟨pc.length, by dsimp [M]; omega⟩, ?_, ?_⟩
+          · intro hm
+            exact (htargetSpec i).1 (by rw [hni]; omega)
+          · rw [hni]
+            simp only [if_neg]
+            · omega
+            · omega
       · rcases hrest with hrcase | hscase
         · right
           rcases hrcase with ⟨m, hm, hmn⟩
