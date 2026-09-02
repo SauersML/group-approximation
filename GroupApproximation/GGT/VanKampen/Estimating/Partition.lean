@@ -113,7 +113,8 @@ noncomputable instance positionFintype
     {i : Fin Delta.rCellCount}
     (incidence : CellIncidence selected i) : Fintype incidence.Position := by
   classical
-  exact Fintype.ofFinite _
+  exact Fintype.ofInjective (fun position : incidence.Position => position.1)
+    Subtype.val_injective
 
 /-- The arc of an incidence has no repeated darts. -/
 theorem arc_darts_nodup
