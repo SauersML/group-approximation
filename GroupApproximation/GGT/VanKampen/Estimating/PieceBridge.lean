@@ -206,34 +206,34 @@ theorem Contiguity.targetArc_value_of_pasting
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
-    (target : Fin Delta.rCellCount)
-    (htarget : Gamma.target = some target)
+    (htarget : Gamma.target ≠ none)
     (pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle []) :
     GGT.RelLetter.listVal
         (dartWord Delta
-          (Gamma.cellTargetArc target htarget).darts) =
+          Gamma.targetArc.darts) =
       GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
         (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
-  cases htarget
   have hboundary := Gamma.targetBoundary_value_of_pasting pasting
   have htargetBoundary :
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
-        (Gamma.cellTargetArc target htarget).reverseDarts := by
-    simpa only [targetBoundaryDarts, htarget]
+        Gamma.targetArc.reverseDarts := by
+    cases htargetValue : Gamma.target with
+    | none => exact (htarget (by simpa [htargetValue])).elim
+    | some target => rfl
   rw [htargetBoundary] at hboundary
   change GGT.RelLetter.listVal
       (dartWord Delta
-        ((Gamma.cellTargetArc target htarget).darts.reverse.map
+        (Gamma.targetArc.darts.reverse.map
           Delta.toCombMap.alpha)) = _ at hboundary
   have hinverse := listVal_dartWord_reverse_alpha Delta
-    (Gamma.cellTargetArc target htarget).darts
+    Gamma.targetArc.darts
   rw [hinverse] at hboundary
   calc
     GGT.RelLetter.listVal
-        (dartWord Delta (Gamma.cellTargetArc target htarget).darts) =
+        (dartWord Delta Gamma.targetArc.darts) =
         ((GGT.RelLetter.listVal
-          (dartWord Delta (Gamma.cellTargetArc target htarget).darts))⁻¹)⁻¹ := by
+          (dartWord Delta Gamma.targetArc.darts))⁻¹)⁻¹ := by
             rw [inv_inv]
     _ = ((GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
