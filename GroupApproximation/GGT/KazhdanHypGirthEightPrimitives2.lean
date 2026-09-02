@@ -298,23 +298,23 @@ theorem innerFace_presentedValue_eq_one
       presentedLetterValue T d).prod = 1 := by
   obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
   rw [hj, triangleRelatorWord, List.map_map]
-  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty.{0} →
+  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty.{1} →
       TriangularHodgeLayer.Presented T :=
     presentedLetterValue (Generator := Generator) T
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
     eval (signedFreeRelLetter (Generator := Generator) u :
-      GGT.RelLetter (FreeGroup Generator) PEmpty.{0})).prod = 1
+      GGT.RelLetter (FreeGroup Generator) PEmpty.{1})).prod = 1
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
       eval
         (signedFreeRelLetter (Generator := Generator) u :
-          GGT.RelLetter (FreeGroup Generator) PEmpty.{0}) =
+          GGT.RelLetter (FreeGroup Generator) PEmpty.{1}) =
         FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
     intro u
     simpa [eval] using
       (presentedLetterValue_signedFreeRelLetter (T := T) u)
   have hmap : (TriangularHodgeLayer.letters (T j)).map
       (fun u ↦ eval (signedFreeRelLetter (Generator := Generator) u :
-        GGT.RelLetter (FreeGroup Generator) PEmpty.{0})) =
+        GGT.RelLetter (FreeGroup Generator) PEmpty.{1})) =
       (TriangularHodgeLayer.letters (T j)).map
         (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
@@ -720,19 +720,20 @@ noncomputable def layerIncidenceInjection_of_firstLayer
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
   dsimp [firstLayerIncidenceSlot] at hslot
-  rw [hface] at hslot
+  have hval := congrArg Fin.val hslot
+  clear hslot
+  cases hface
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
     by
       apply Fin.ext
-      exact congrArg Fin.val hslot
-  have hgety := firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y
-  rw [hface] at hgety
+      exact hval
   have hdart : P.darts.get (C.position i x) =
       P.darts.get (C.position i y) := by
     rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
-      ← hgety, hindex]
+      ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
+      hindex]
   exact C.position_injective i
     ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
 
