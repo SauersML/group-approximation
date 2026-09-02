@@ -140,7 +140,7 @@ private theorem exists_append_of_getElem_eq
         have hi := h (i + 1) (by simpa using h₁) (by simpa using h₂)
         simpa using hi
       obtain ⟨rest, hrest⟩ := exists_append_of_getElem_eq t₁ t₂ hlen' h'
-      exact ⟨rest, by rw [hab, hrest]⟩
+      exact ⟨rest, by rw [hab, hrest, List.cons_append]⟩
 
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
