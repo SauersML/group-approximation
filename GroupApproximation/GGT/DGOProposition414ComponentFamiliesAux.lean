@@ -1244,6 +1244,7 @@ theorem firstGapArcBoundaryExclusion_terminal_of_source_of_nonempty_right
         (B.firstGapFinishSide_le j)
       have hlenArc := length_arcWord B.firstArc B.firstArcCut
         (a := B.firstGapStartSide j) (b := B.firstGapFinishSide j) hcutEnd
+      have hstartCut := B.firstArc_isCutPath.cut.mono_le hsData.2.1
       rw [hlenArc]
       dsimp [i]
       omega
@@ -1254,37 +1255,37 @@ theorem firstGapArcBoundaryExclusion_terminal_of_source_of_nonempty_right
         rw [hnone]
       simp [hrightNil] at hrightPos
     obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hnxt
-      have heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e := by
-        simpa using he
-      have heSrc := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
-      have heTarget := (mem_brokenSet_iff.mp heSrc).1
-      have hright : B.firstGapFinishSide j =
-          B.firstTargetSide (HalfEntry.entrySource
-            B.brokenAssignment.index.first e) := by
-        simp only [firstGapFinishSide]
-        rw [heq]
-      have hnextComp := B.firstGap_rightConnector_isCompOf j e heq 0 (by
-        exact hrightPos) (by
-        simpa [cycle, firstGapCycle, auxiliaryCycleWord,
-          OsinComponents.length_revWord] using hn)
-      have hnextLabel := B.firstGapLocalLabel_rightConnector j e heq 0 hrightPos
-      have hnextComp' :
-          (cycle[(B.firstGapLeft j).length + i + 1]'hn).IsCompOf
-            (P.label (HalfEntry.entrySource B.brokenAssignment.index.first e)) := by
-        rw [← hnextLabel] at hnextComp
-        simpa only [Nat.add_zero] using hnextComp
-      have hnextEq : P.label s = P.label
-          (HalfEntry.entrySource B.brokenAssignment.index.first e) :=
-        eq_of_isCompOf_of_isCompOf hletter hnextComp'
-      have hparent := B.firstArc_targetComponent hsData.1
-      have hnextLetter : (B.firstArc[B.firstArcCut
-          (B.firstTargetSide (HalfEntry.entrySource
-            B.brokenAssignment.index.first e))]'(by
-              exact B.firstArc_isCutPath.cut.le_length
-                (B.firstTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
-        have hh := hparent.2.2.1 _ le_rfl (by omega) _
-        simpa only [hnextEq] using hh
-      exact hlocalComp.2.2.2.2 _ (by omega) (by omega) hnextLetter
+    have heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e := by
+      simpa using he
+    have heSrc := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
+    have heTarget := (mem_brokenSet_iff.mp heSrc).1
+    have hright : B.firstGapFinishSide j =
+        B.firstTargetSide (HalfEntry.entrySource
+          B.brokenAssignment.index.first e) := by
+      simp only [firstGapFinishSide]
+      rw [heq]
+    have hnextComp := B.firstGap_rightConnector_isCompOf j e heq 0 (by
+      exact hrightPos) (by
+      simpa [cycle, firstGapCycle, auxiliaryCycleWord,
+        OsinComponents.length_revWord] using hn)
+    have hnextLabel := B.firstGapLocalLabel_rightConnector j e heq 0 hrightPos
+    have hnextComp' :
+        (cycle[(B.firstGapLeft j).length + i + 1]'hn).IsCompOf
+          (P.label (HalfEntry.entrySource B.brokenAssignment.index.first e)) := by
+      rw [← hnextLabel] at hnextComp
+      simpa only [Nat.add_zero] using hnextComp
+    have hnextEq : P.label s = P.label
+        (HalfEntry.entrySource B.brokenAssignment.index.first e) :=
+      eq_of_isCompOf_of_isCompOf hletter hnextComp'
+    have hparent := B.firstArc_targetComponent hsData.1
+    have hnextLetter : (B.firstArc[B.firstArcCut
+        (B.firstTargetSide (HalfEntry.entrySource
+          B.brokenAssignment.index.first e))]'(by
+            exact B.firstArc_isCutPath.cut.le_length
+              (B.firstTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
+      have hh := hparent.2.2.1 _ le_rfl (by omega) _
+      simpa only [hnextEq] using hh
+    exact hlocalComp.2.2.2.2 _ (by omega) (by omega) hnextLetter
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
