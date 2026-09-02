@@ -537,6 +537,47 @@ structure PowerDiscCandidate
   /-- Every inner face is a defining relator face. -/
   relatorOnly : RelatorOnly T diagram
 
+/-- Every element of a triangularly presented group has a literal signed-word
+representative. -/
+theorem exists_signedWord_represents
+    (g : TriangularHodgeLayer.Presented T) :
+    ∃ word : List (TriangularHodgeLayer.SignedGenerator Generator),
+      PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (PresentedGroupRelatorReplay.word word) = g := by
+  classical
+  obtain ⟨x, hx⟩ := PresentedGroup.mk_surjective
+    (TriangularHodgeLayer.relators T : Set (FreeGroup Generator)) g
+  refine ⟨x.toWord, ?_⟩
+  rw [PresentedGroupRelatorReplay.word, FreeGroup.mk_toWord]
+  exact hx
+
+/-- The remaining van Kampen input for a literal power is only the existence
+of a relator-only diagram with that exact exterior word.  Once supplied, it
+gives a `PowerDiscCandidate`; word representation is proved above. -/
+theorem nonempty_powerDiscCandidate_of_literalFilling
+    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1)
+    (fill : ∀
+      (word : List (TriangularHodgeLayer.SignedGenerator Generator)),
+      PresentedGroup.mk
+          (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+          (PresentedGroupRelatorReplay.word word) = g →
+      0 < n → g ^ n = 1 → g ≠ 1 →
+      ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
+        Delta.boundaryWord =
+          (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
+        RelatorOnly T Delta) :
+    Nonempty (PowerDiscCandidate T g n) := by
+  obtain ⟨word, hword⟩ := exists_signedWord_represents g
+  obtain ⟨Delta, hboundary, hrelatorOnly⟩ :=
+    fill word hword hn hpow hne
+  exact ⟨{
+    word := word
+    represents := hword
+    diagram := Delta
+    boundary_eq := hboundary
+    relatorOnly := hrelatorOnly }⟩
+
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
     (hred : D.diagram.Reduced) : PowerDisc T g n where
@@ -620,6 +661,29 @@ noncomputable def leastPowerDisc_of_filling
     (surgery : ∀ D : PowerDiscCandidate T g n,
       CancellationReducesArea D) : PowerDisc T g n := by
   let hfill := fill hn hpow hne
+  exact (leastPowerDiscCandidate hfill).toPowerDisc
+    (leastPowerDiscCandidate_reduced hfill
+      (surgery (leastPowerDiscCandidate hfill)))
+
+/-- Version of the least-power constructor whose filling hypothesis mentions
+only the exact diagram supplied by van Kampen's lemma, rather than a packaged
+candidate. -/
+noncomputable def leastPowerDisc_of_literalFilling
+    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1)
+    (fill : ∀
+      (word : List (TriangularHodgeLayer.SignedGenerator Generator)),
+      PresentedGroup.mk
+          (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+          (PresentedGroupRelatorReplay.word word) = g →
+      0 < n → g ^ n = 1 → g ≠ 1 →
+      ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
+        Delta.boundaryWord =
+          (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
+        RelatorOnly T Delta)
+    (surgery : ∀ D : PowerDiscCandidate T g n,
+      CancellationReducesArea D) : PowerDisc T g n := by
+  let hfill : Nonempty (PowerDiscCandidate T g n) :=
+    nonempty_powerDiscCandidate_of_literalFilling hn hpow hne fill
   exact (leastPowerDiscCandidate hfill).toPowerDisc
     (leastPowerDiscCandidate_reduced hfill
       (surgery (leastPowerDiscCandidate hfill)))
