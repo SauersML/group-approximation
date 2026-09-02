@@ -239,5 +239,64 @@ theorem isAdmissible_map_inv_of_baseSymmetric
   obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
   exact isLetter_inv_of_baseSymmetric hbase (hv b hb)
 
+/-! ## Admissible side words without base symmetry -/
+
+/-- **A short element has a short admissible spelling.**  If the relative word
+norm of `g` is at most `eps`, then `g` is the value of an admissible relative
+word of length at most `eps`.  This is `exists_word_of_relGenSet` read as a
+bound rather than an equality. -/
+theorem exists_admissible_short_of_wordNorm_le
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) {g : G} {eps : ℕ}
+    (h : WordMetric.wordNorm D.alphabet.carrier g ≤ eps) :
+    ∃ v : List (GGT.RelLetter G Lambda),
+      RelWord.IsAdmissible D v ∧
+        GGT.RelLetter.listVal v = g ∧ v.length ≤ eps := by
+  obtain ⟨v, hadm, hval, hlen⟩ := exists_word_of_relGenSet D g
+  refine ⟨v, hadm, hval, ?_⟩
+  rw [hlen]
+  exact h
+
+/-- **The side words of a planar contiguity re-spell admissibly, and base
+symmetry is not needed for it.**
+
+`RelativeBoundaryContiguity` asks its two sides to be admissible and short.  A
+planar `Embedded.Contiguity` carries `leftSide_norm_le` and
+`rightSide_norm_le`: the *relative word norm of the side's value* is at most
+`eps`.  That is exactly the hypothesis of
+`exists_admissible_short_of_wordNorm_le`, so each side re-spells to an
+admissible relative word of length at most `eps` with the **same value** --
+and `RelativeBoundaryContiguity.exterior_value` mentions the sides only
+through their values.
+
+So the conversion never has to read a dart label, and in particular never has
+to invert one.  The base-symmetry hypothesis that `GGT.VanKampen.DiscDiagram.label_alpha`
+would otherwise force -- see `isLetter_inv_of_baseSymmetric` above -- is not
+required anywhere in the exterior-arc conversion.
+
+The two outputs are returned in the certificate's orientation: the first is
+the certificate's `leftSide`, which by `Contiguity.arcs_value_of_pasting`
+carries the value of the region's *right* side, and symmetrically. -/
+theorem exists_admissible_sides_of_contiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Embedded.Contiguity D eps Delta faces) :
+    ∃ left right : List (GGT.RelLetter G Lambda),
+      (RelWord.IsAdmissible D left ∧ left.length ≤ eps ∧
+        GGT.RelLetter.listVal left =
+          GGT.RelLetter.listVal (Embedded.dartWord Delta Gamma.rightSide)) ∧
+      (RelWord.IsAdmissible D right ∧ right.length ≤ eps ∧
+        GGT.RelLetter.listVal right =
+          GGT.RelLetter.listVal (Embedded.dartWord Delta Gamma.leftSide)) := by
+  obtain ⟨left, hleftAdm, hleftVal, hleftLen⟩ :=
+    exists_admissible_short_of_wordNorm_le D Gamma.rightSide_norm_le
+  obtain ⟨right, hrightAdm, hrightVal, hrightLen⟩ :=
+    exists_admissible_short_of_wordNorm_le D Gamma.leftSide_norm_le
+  exact ⟨left, right, ⟨hleftAdm, hleftLen, hleftVal⟩,
+    ⟨hrightAdm, hrightLen, hrightVal⟩⟩
+
 end HullSC
 end GroupApproximation
