@@ -124,6 +124,76 @@ theorem exists_fiveDeletionOrder_of_lowDegree
         rw [hverticesEmpty, hedgesEmpty]
         exact ⟨FiveDeletionOrder.empty⟩
 
+/-! ## The hereditary Euler input -/
+
+/-- Every nonempty covered deletion state has average active degree below
+six.  For a simple planar graph this is the hereditary Euler inequality
+obtained by deleting vertices and treating connected components separately. -/
+def HasHereditaryAverageDegreeLtSix
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident] : Prop :=
+  ∀ (vertices : Finset V) (edges : Finset E),
+    EdgesCovered incident vertices edges → vertices.Nonempty →
+      (∑ x ∈ vertices, (incidentEdges incident x edges).card) <
+        6 * vertices.card
+
+/-- The hereditary average-degree condition holds for the one-vertex graph
+with no edges, so it does not obtain its conclusion from an empty vertex
+set. -/
+theorem hereditaryAverageDegree_oneVertexNoEdgesModel
+    (incident : PUnit → PEmpty → Prop) [DecidableRel incident] :
+    HasHereditaryAverageDegreeLtSix incident := by
+  intro vertices edges _ hvertices
+  have hedges : edges = ∅ := Subsingleton.elim _ _
+  rw [hedges]
+  have hcardPos : 0 < vertices.card := Finset.card_pos.mpr hvertices
+  simp only [incidentEdges, Finset.filter_empty, Finset.card_empty]
+  omega
+
+/-- Average degree below six supplies a vertex of active degree at most five. -/
+theorem exists_lowDegree_of_hereditaryAverageDegree
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    (haverage : HasHereditaryAverageDegreeLtSix incident)
+    (vertices : Finset V) (edges : Finset E)
+    (hcovered : EdgesCovered incident vertices edges)
+    (hvertices : vertices.Nonempty) :
+    ∃ x ∈ vertices, (incidentEdges incident x edges).card ≤ 5 := by
+  by_contra hnone
+  have hdegree : ∀ x ∈ vertices,
+      6 ≤ (incidentEdges incident x edges).card := by
+    intro x hx
+    have hnot : ¬ (incidentEdges incident x edges).card ≤ 5 := by
+      intro hle
+      exact hnone ⟨x, hx, hle⟩
+    omega
+  have hlower : 6 * vertices.card ≤
+      ∑ x ∈ vertices, (incidentEdges incident x edges).card := by
+    calc
+      6 * vertices.card = ∑ _x ∈ vertices, 6 := by
+        simp [Nat.mul_comm]
+      _ ≤ ∑ x ∈ vertices, (incidentEdges incident x edges).card := by
+        apply Finset.sum_le_sum
+        intro x hx
+        exact hdegree x hx
+  have hstrict := haverage vertices edges hcovered hvertices
+  omega
+
+/-- The hereditary Euler inequality gives a five-deletion order by finite
+induction. -/
+theorem exists_fiveDeletionOrder_of_hereditaryAverageDegree
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    (haverage : HasHereditaryAverageDegreeLtSix incident)
+    (vertices : Finset V) (edges : Finset E)
+    (hcovered : EdgesCovered incident vertices edges) :
+    Nonempty (FiveDeletionOrder incident vertices edges) := by
+  apply exists_fiveDeletionOrder_of_lowDegree incident
+  · intro remainingVertices remainingEdges hremaining hnonempty
+    exact exists_lowDegree_of_hereditaryAverageDegree incident haverage
+      remainingVertices remainingEdges hremaining hnonempty
+  · exact hcovered
+
 /-- The weighted conclusion of Osin's Appendix Lemma `Eul` along a
 five-deletion order. -/
 theorem edgeWeight_sum_le_of_fiveDeletionOrder
@@ -223,6 +293,14 @@ theorem exists_fiveDeletionOrder
   classical
   exact exists_fiveDeletionOrder_of_lowDegree M.Incident hlow
     Finset.univ Finset.univ M.edgesCovered_univ
+
+/-- A hereditary average-degree estimate for the deleted planar states gives
+the map's five-deletion order. -/
+theorem exists_fiveDeletionOrder_of_hereditaryAverageDegree
+    (M : CombMap) (haverage : HasHereditaryAverageDegreeLtSix M.Incident) :
+    Nonempty (FiveDeletionOrder M.Incident Finset.univ Finset.univ) := by
+  exact _root_.GroupApproximation.GGT.VanKampen.exists_fiveDeletionOrder_of_hereditaryAverageDegree
+    M.Incident haverage Finset.univ Finset.univ M.edgesCovered_univ
 
 /-- Osin's weighted Euler estimate once the planar deletion construction has
 provided a five-deletion order. -/
