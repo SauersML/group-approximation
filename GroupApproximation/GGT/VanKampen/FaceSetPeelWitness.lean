@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.FaceSetBoundaryPeeling
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryExit
 
 /-!
 # Planar face-peel certificates
@@ -33,6 +33,23 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 
 noncomputable local instance faceDecidableEqPeelWitness :
     DecidableEq Delta.toCombMap.Face := Classical.decEq _
+
+/-! ## Boundary-facing selected faces -/
+
+/-- A nonempty selected face set has a selected face touched by its supplied
+boundary cycle.  The selected face is non-exterior because every selected face
+in `FaceSetBoundary.all_gCells` is non-exterior. -/
+theorem exists_boundary_face_of_faceSetBoundary
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces) :
+    ∃ face d,
+      face ∈ faces ∧ face ≠ Delta.outerFace ∧
+        d ∈ boundary.cycle ∧ Delta.toCombMap.faceOf d = face := by
+  obtain ⟨d, hdcycle, hd⟩ :=
+    exists_boundary_cycle_dart_of_face_mem boundary
+      boundary.faces_nonempty.choose_spec
+  refine ⟨Delta.toCombMap.faceOf d, d, hd.1, ?_, hdcycle, rfl⟩
+  exact (boundary.all_gCells _ hd.1).1
 
 /-- The one-step planar information needed to peel a selected face.  The
 `moves` field is where a face boundary is inserted and all internal paired
