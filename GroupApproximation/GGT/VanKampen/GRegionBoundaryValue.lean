@@ -163,6 +163,18 @@ theorem FaceSetBoundary.cycle_value_eq_one_of_pasting
     Delta faces boundary.all_gCells pasting
   simpa [dartWord, GGT.RelLetter.listVal] using hvalue
 
+/-- A single-cycle `G`-region has boundary value one after its face-boundary
+cycles and internal `alpha`-pairs are pasted away. -/
+theorem FaceSetBoundary.cycle_value_eq_one
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (pasting : FaceSetWordHomotopy Delta faces boundary.cycle []) :
+    GGT.RelLetter.listVal (dartWord Delta boundary.cycle) = 1 :=
+  boundary.cycle_value_eq_one_of_pasting pasting
+
 /-! ## The contiguity-region arc equation -/
 
 /-- Identity of the cyclic G-region boundary gives the exact arc equation
