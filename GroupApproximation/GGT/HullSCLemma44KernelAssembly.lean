@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesic
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
+import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 
 /-!
 # Canonical Hull assembly from the kernel-cone estimates
