@@ -195,6 +195,24 @@ theorem arcLengths_le_two_mu_source
       2 * mu * (source.word.length : ℝ) :=
   le_of_lt (Gamma.arcLengths_lt_two_mu_source hsc hred)
 
+/-- The non-strict target-endpoint form has the other incidence of
+`EstimatingData.edgeWeight_le_incident`. -/
+theorem arcLengths_le_two_mu_target
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced)
+    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma.region.firstArc.length : ℝ) +
+        (Gamma.region.secondArc.length : ℝ) ≤
+      2 * mu * (target.word.length : ℝ) :=
+  le_of_lt (Gamma.arcLengths_lt_two_mu_target hsc hred)
+
 /-- A Lemma 4.9 input supplies the same O52 charge through its Lemma 4.4
 projection. -/
 theorem arcLengths_le_two_mu_source_of_lemma49
@@ -247,6 +265,30 @@ theorem exists_dartWord_suffix
   conv_lhs => rw [← List.take_append_drop arc.length arc.rotated]
   simp only [dartWord, List.map_append, List.map_take, List.map_drop]
 
+/-- The word of a positioned cell carrier belongs to the relator family when
+the family is closed under cyclic shifts. -/
+theorem cell_rotated_mem
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    {i : Fin Delta.rCellCount} (arc : CyclicArc (cellDarts Delta i)) :
+    dartWord Delta arc.rotated ∈ W := by
+  rw [arc.dartWord_rotated, dartWord_cellDarts Delta i]
+  exact hsc.rotate_mem (cell Delta i).word (cell Delta i).word_mem arc.start.1
+
+/-- A positioned cell arc and its remainder expose a prefix of a cyclic shift
+of the cell relator. -/
+theorem cell_prefix
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {i : Fin Delta.rCellCount} (arc : CyclicArc (cellDarts Delta i)) :
+    ∃ suffix : List (GGT.RelLetter G Lambda),
+      dartWord Delta arc.rotated = dartWord Delta arc.darts ++ suffix :=
+  arc.exists_dartWord_suffix
+
 /-- An exterior positioned arc is a prefix of a cyclic permutation of the
 diagram boundary word.  This is the boundary-subword identification used in
 the exterior perimeter sum. -/
@@ -277,6 +319,160 @@ theorem length_le_boundary
   exact arc.length_le
 
 end CyclicArc
+
+/-- Two positioned cell arcs, the two relative-short connectors, and the
+reducedness exclusion are exactly the data of Hull's published piece.  The
+cyclic-shift memberships and both prefix decompositions are derived here. -/
+theorem isPublishedPiece_of_cyclicCellArcs
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    {source target : Fin Delta.rCellCount}
+    (sourceArc : CyclicArc (cellDarts Delta source))
+    (targetArc : CyclicArc (cellDarts Delta target))
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
+    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
+    RelWord.IsPublishedPiece D W eps (dartWord Delta sourceArc.darts)
+      (dartWord Delta targetArc.darts) (dartWord Delta sourceArc.rotated) := by
+  obtain ⟨sourceSuffix, hsource⟩ := sourceArc.cell_prefix
+  obtain ⟨targetSuffix, htarget⟩ := targetArc.cell_prefix
+  exact ⟨sourceArc.cell_rotated_mem hsc, ⟨sourceSuffix, hsource⟩,
+    dartWord Delta targetArc.rotated, targetArc.cell_rotated_mem hsc,
+    targetSuffix, htarget, left, right, hleft, hright, harcs, hwhole⟩
+
+/-- The positioned-arc published piece splits into the ordinary distinct-word
+piece and the same-word branch with its nontrivial connector exclusion. -/
+theorem isPiece_or_sameWord_of_cyclicCellArcs
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    {source target : Fin Delta.rCellCount}
+    (sourceArc : CyclicArc (cellDarts Delta source))
+    (targetArc : CyclicArc (cellDarts Delta target))
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
+    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
+    RelWord.IsPiece D W eps (dartWord Delta sourceArc.darts)
+        (dartWord Delta sourceArc.rotated) ∨
+      RelWord.IsSameWordPublishedPiece D W eps
+        (dartWord Delta sourceArc.darts) (dartWord Delta targetArc.darts)
+        (dartWord Delta sourceArc.rotated) := by
+  exact (isPublishedPiece_of_cyclicCellArcs hsc sourceArc targetArc
+    hleft hright harcs hwhole).toIsPiece_or_sameWord
+
+/-- The published `C₁` clause bounds a positioned source arc by the source
+cell perimeter. -/
+theorem cyclicSourceArc_lt_mu_mul
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {source target : Fin Delta.rCellCount}
+    (sourceArc : CyclicArc (cellDarts Delta source))
+    (targetArc : CyclicArc (cellDarts Delta target))
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
+    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
+    (sourceArc.length : ℝ) < mu * ((cell Delta source).word.length : ℝ) := by
+  have hpublished := isPublishedPiece_of_cyclicCellArcs
+    hsc.toIsSmallCancellation sourceArc targetArc hleft hright harcs hwhole
+  have hbound := hsc.publishedPiecesSmall (dartWord Delta sourceArc.darts)
+    (dartWord Delta targetArc.darts) (dartWord Delta sourceArc.rotated)
+    hpublished
+  have harc : ((dartWord Delta sourceArc.darts).length : ℝ) <
+      mu * (dartWord Delta sourceArc.rotated).length :=
+    lt_of_le_of_lt (le_max_left _ _) hbound
+  have hcellLength := congrArg List.length (dartWord_cellDarts Delta source)
+  simp only [dartWord, List.length_map, sourceArc.darts_length,
+    sourceArc.rotated_length] at harc hcellLength
+  rw [hcellLength] at harc
+  exact harc
+
+namespace Contiguity
+
+/-- Transfer the stable `CellContiguity` O52 charge to the two positioned arcs
+of an embedded region at its source incidence.  The equalities are the
+geometric identification supplied when the embedded face set is converted to
+the relator-free four-sided region. -/
+theorem arcLengths_le_two_mu_cellWeight_source_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (hsource : sourceCell = cell Delta Gamma.source)
+    (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
+    (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    (Gamma.sourceArc.length : ℝ) + (Gamma.targetArc.length : ℝ) ≤
+      2 * mu * Delta.cellWeight Gamma.source := by
+  calc
+    (Gamma.sourceArc.length : ℝ) + (Gamma.targetArc.length : ℝ) =
+        (cellGamma.region.firstArc.length : ℝ) +
+          (cellGamma.region.secondArc.length : ℝ) := by
+      rw [hsourceArc, htargetArc]
+    _ ≤ 2 * mu * (sourceCell.word.length : ℝ) :=
+      cellGamma.arcLengths_le_two_mu_source hsc hred
+    _ = 2 * mu * Delta.cellWeight Gamma.source := by
+      rw [hsource]
+      rfl
+
+/-- The corresponding transfer at the target incidence has exactly the same
+`2 * mu * cellWeight` conclusion. -/
+theorem arcLengths_le_two_mu_cellWeight_target_of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (htarget : targetCell = cell Delta target)
+    (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
+    (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hred : Delta.Reduced) :
+    (Gamma.sourceArc.length : ℝ) + (Gamma.targetArc.length : ℝ) ≤
+      2 * mu * Delta.cellWeight target := by
+  calc
+    (Gamma.sourceArc.length : ℝ) + (Gamma.targetArc.length : ℝ) =
+        (cellGamma.region.firstArc.length : ℝ) +
+          (cellGamma.region.secondArc.length : ℝ) := by
+      rw [hsourceArc, htargetArc]
+    _ ≤ 2 * mu * (targetCell.word.length : ℝ) :=
+      cellGamma.arcLengths_le_two_mu_target hsc hred
+    _ = 2 * mu * Delta.cellWeight target := by
+      rw [htarget]
+      rfl
+
+end Contiguity
 end Embedded
 
 end VanKampen
