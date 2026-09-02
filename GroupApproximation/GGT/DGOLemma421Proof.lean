@@ -2316,78 +2316,73 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         ((if h : targetN i < pc.length then targetN i
           else targetN i - P.length) = z.val) := by
     intro i
-    rcases (htargetSpec i).2.2.1 with hpcase | hrest
+    by_cases hmatched : Matched i
+    · exact Or.inl hmatched
     · right
-      have htargetM : targetN i < M := by
-        have htE : targetN i < E := lt_of_lt_of_le hpcase hpcLen
-        have hEM : E ≤ M := by
-          dsimp [M]
-          omega
-        exact lt_of_lt_of_le htE hEM
-      refine ⟨⟨targetN i, htargetM⟩, ?_, ?_⟩
-      intro hm
-      exact (htargetSpec i).1 (by omega)
-      exact dif_pos hpcase
-    · rcases hrest with hqcase | hrest
-      · exfalso
-        rcases hqcase with ⟨i', hi', hni⟩
-        by_cases hilt : i' < P.length
-        · have hne : i' ≠ source i := by
-            intro heq
-            exact (htargetSpec i).1 (by rw [hni, heq])
-          have hsource_le : source i ≤ P.length := by
-            exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
-          have hi'_le : i' ≤ P.length := Nat.le_of_lt hilt
-          have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
-              (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
-              (pc.length + i') := by
-            show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
-                (pc.length + source i))⁻¹ *
-              vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
-                D.fam (peripheralOccurrence P (occ i)).label
-            obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
-            rw [hni] at heq
-            rw [vertex_fourGon_side pc P rc Q 1 hsource_le]
-            rw [← heq]
-            have hmem' :
-                (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-                  (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) ∈
-                    D.fam (peripheralOccurrence P (occ i)).label := by
-              rw [show
-                (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-                    (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) = hh
-                  by group]
-              exact hmem
-            simpa only [one_mul] using hmem'
-          exact (hsourceNoSame i i' hilt hne (by rw [← hni]; exact
-            (htargetSpec i).2.1)) hconn
-        · right
-          refine ⟨⟨pc.length, by dsimp [M]; omega⟩, ?_, ?_⟩
-          · intro hm
-            exact (htargetSpec i).1 (by rw [hni]; omega)
-          · have hieq : i' = P.length := by omega
+      rcases (htargetSpec i).2.2.1 with hpcase | hrest
+      ·
+        have htargetM : targetN i < M := by
+          have htE : targetN i < E := lt_of_lt_of_le hpcase hpcLen
+          have hEM : E ≤ M := by
+            dsimp [M]
+            omega
+          exact lt_of_lt_of_le htE hEM
+        refine ⟨⟨targetN i, htargetM⟩, hmatched, ?_⟩
+        exact dif_pos hpcase
+      · rcases hrest with hqcase | hrest
+        · exfalso
+          rcases hqcase with ⟨i', hi', hni⟩
+          by_cases hilt : i' < P.length
+          · have hne : i' ≠ source i := by
+              intro heq
+              exact (htargetSpec i).1 (by rw [hni, heq])
+            have hsource_le : source i ≤ P.length := by
+              exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
+            have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
+                (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
+                (pc.length + i') := by
+              show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+                  (pc.length + source i))⁻¹ *
+                vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
+                  D.fam (peripheralOccurrence P (occ i)).label
+              obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+              rw [hni] at heq
+              rw [vertex_fourGon_side pc P rc Q 1 hsource_le]
+              rw [← heq]
+              have hmem' :
+                  (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                    (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) ∈
+                      D.fam (peripheralOccurrence P (occ i)).label := by
+                rw [show
+                  (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                      (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) = hh
+                    by group]
+                exact hmem
+              simpa only [one_mul] using hmem'
+            exact (hsourceNoSame i i' hilt hne (by rw [← hni]; exact
+              (htargetSpec i).2.1)) hconn
+          · right
+            refine ⟨⟨pc.length, by dsimp [M]; omega⟩, hmatched, ?_⟩
+            have hieq : i' = P.length := by omega
             rw [hni, hieq]
             have hnot : ¬ pc.length + P.length < pc.length := by omega
             simp only [hnot, ↓reduceIte]
             omega
-      · rcases hrest with hrcase | hscase
-        · right
-          rcases hrcase with ⟨m, hm, hmn⟩
-          refine ⟨⟨pc.length + m, by dsimp [M]; omega⟩, ?_, ?_⟩
-          · intro hmch
-            rcases hmch with ⟨j, hj, hjs, hh⟩
-            exact (htargetSpec i).1 (by omega)
-          · dsimp
+        · rcases hrest with hrcase | hscase
+          · right
+            rcases hrcase with ⟨m, hm, hmn⟩
+            refine ⟨⟨pc.length + m, by dsimp [M]; omega⟩, hmatched, ?_⟩
+            dsimp
             rw [hmn]
             omega
-        · left
-          rcases hscase with ⟨j, hj, hjn⟩
-          refine ⟨j, hj, ?_, ?_⟩
-          · rw [← hjn]
-            exact (htargetSpec i).2.1
-          · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
-            refine ⟨hh, hmem, ?_⟩
-            rw [← heq, vertex_fourGon_opposite_closed pc P rc Q hclose j]
+          · left
+            rcases hscase with ⟨j, hj, hjn⟩
+            refine ⟨j, hj, ?_, ?_⟩
+            · rw [← hjn]
+              exact (htargetSpec i).2.1
+            · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+              refine ⟨hh, hmem, ?_⟩
+              rw [← heq, vertex_fourGon_opposite_closed pc P rc Q hclose j]
   let short : Fin N → Fin M := fun i =>
     if hi : Matched i then ⟨0, by omega⟩
     else Classical.choose (hclassBase i)
