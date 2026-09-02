@@ -215,6 +215,29 @@ def RelativeLinearAreaTransferStatement : Prop :=
     (D : GGT.RelGenSet G Lambda),
     D.IsHyperbolicallyEmbedded → RelativeLinearAreaTransferAt.{u, v, w} D
 
+/-- Pointwise relative-presentation transfer for the prefix-enlarged quotient
+base.  All small-cancellation data are retained because they specify the
+prefix set and its finite peripheral-letter support. -/
+def PrefixRelativeLinearAreaTransferAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+      RelativeLinearKernelArea D W q →
+        Nonempty (PrefixRelativeIsoperimetricControl D W
+          hsc.toIsSmallCancellation q hq)
+
+/-- Uniform DGO relative-presentation transfer for the triangular prefix
+presentation. -/
+def PrefixRelativeLinearAreaTransferStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    D.IsHyperbolicallyEmbedded →
+      PrefixRelativeLinearAreaTransferAt.{u, v, w} D
+
 /-- Linear area follows from the local cuts, so the relative-presentation
 transfer implies the local Dehn transfer. -/
 theorem relativeDehnTransferStatement_of_linearAreaTransfer
@@ -223,6 +246,44 @@ theorem relativeDehnTransferStatement_of_linearAreaTransfer
   intro G _ Lambda D hD W eps Q _ q hq hsupport hcuts
   apply htransfer D hD W q hq hsupport
   exact relativeLinearKernelArea_of_dehnCuts D W eps q hcuts
+
+/-! ## Certificate bridge for the prefix presentation -/
+
+/-- Pointwise bridge from all reduced-diagram certificates to geometric
+control of the prefix quotient relative generating set. -/
+def PrefixRelativeIsoperimetricBridgeAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (eps rho : ℕ) (mu : ℝ)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+    0 < mu → mu ≤ 1 / 1000 →
+      20 * (eps + 1) ≤ rho →
+      ∀ hsc : RelWord.IsLemma44Input D W eps mu rho,
+      q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+        (∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+          Nonempty (RelativeDiagramCertificate D W eps mu Z)) →
+            Nonempty (PrefixRelativeIsoperimetricControl D W
+              hsc.toIsSmallCancellation q hq)
+
+/-- Uniform certificate bridge for prefix quotient presentations. -/
+def PrefixRelativeIsoperimetricBridgeStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    D.IsHyperbolicallyEmbedded →
+      PrefixRelativeIsoperimetricBridgeAt.{u, v, w} D
+
+/-- The proved certificate-to-linear-area induction reduces the prefix bridge
+to the DGO relative-presentation transfer. -/
+theorem prefixRelativeIsoperimetricBridgeStatement_of_linearAreaTransfer
+    (htransfer : PrefixRelativeLinearAreaTransferStatement.{u, v, w}) :
+    PrefixRelativeIsoperimetricBridgeStatement.{u, v, w} := by
+  intro G _ Lambda D hD eps rho mu W Q _ q hq hmu hmuUpper hrho
+    hsc hker hcert
+  apply htransfer D hD W eps rho mu hsc q hq
+  exact relativeLinearKernelArea_of_certificates D hsc hmuUpper hrho q hker
+    hcert
 
 /-- Osin Lemma 5.1, phrased as the bridge consumed by Hull Lemma 4.4.
 
