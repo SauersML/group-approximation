@@ -99,11 +99,9 @@ theorem toOwnerOrientation
         owner_mem := ?_
         owner_card := ?_ }⟩
       · intro e he
-        have hfalse : False := by simpa using he
-        exact hfalse.elim
+        simp at he
       · intro x hx
-        have hfalse : False := by simpa using hx
-        exact hfalse.elim
+        simp at hx
   | @step vertices edges x hx hdegree tail ih =>
       obtain ⟨tailOrientation⟩ := ih
       let owner : E → V := fun e =>
@@ -114,7 +112,7 @@ theorem toOwnerOrientation
         owner_card := ?_ }⟩
       · intro e he
         by_cases hxe : incident x e
-        · change x ∈ vertices ∧ incident x e
+        · simp only [owner, hxe, ↓reduceIte]
           exact ⟨hx, hxe⟩
         · have hnonincident : e ∈ nonincidentEdges incident x edges := by
             simp only [nonincidentEdges, Finset.mem_filter, he, true_and]
@@ -136,10 +134,9 @@ theorem toOwnerOrientation
                 incidentEdges incident x edges := by
             ext e
             by_cases hxe : incident x e
-            · simp only [Finset.mem_filter, hxe, true_and, owner, hxe,
-                ↓reduceIte, incidentEdges]
-            · simp only [Finset.mem_filter, hxe, false_and, owner, hxe,
-                ↓reduceIte, incidentEdges]
+            · simp [incidentEdges, owner, hxe]
+            · simp only [incidentEdges, Finset.mem_filter, hxe, false_and,
+                owner, ↓reduceIte]
               constructor
               · intro h
                 have hnonincident : e ∈ nonincidentEdges incident x edges := by
@@ -154,7 +151,7 @@ theorem toOwnerOrientation
                   exact (Finset.mem_erase.mp hmem).1 rfl
                 exact (hne h.2).elim
               · intro h
-                exact (hxe h).elim
+                exact h.elim
           rw [hfilter]
           exact hdegree
         · have hyRemaining : y ∈ remainingVertices x vertices := by
@@ -167,10 +164,11 @@ theorem toOwnerOrientation
             ext e
             by_cases he : e ∈ edges
             · by_cases hxe : incident x e
-              · simp only [Finset.mem_filter, he, true_and, owner, hxe,
-                  ↓reduceIte, nonincidentEdges, hyx]
-              · simp only [Finset.mem_filter, he, hxe, true_and, owner,
-                  hxe, ↓reduceIte, nonincidentEdges]
+              · have hxyeq : x ≠ y := by
+                  intro hxy
+                  exact hyx hxy.symm
+                simp [owner, nonincidentEdges, he, hxe, hxyeq]
+              · simp [owner, nonincidentEdges, he, hxe]
             · simp only [Finset.mem_filter, he, false_and]
           rw [hfilter]
           exact htail
