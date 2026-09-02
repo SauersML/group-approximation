@@ -1298,6 +1298,121 @@ theorem secondChordSlot_origin
   next hmissing =>
     simp [targetSlotPacket] at hx
 
+/-- A packet in a first-family child determines a first-family origin kind. -/
+theorem distributedPacket_first_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ P.target)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (hx : x ∈ B.distributedPacket C (Sum.inl j) s) :
+    ∃ K : FirstChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  classical
+  have hcover := B.componentPlacement.target_cover
+  rw [hcover] at hs
+  rcases Finset.mem_union.mp hs with hsFirst | hsSecond
+  · by_cases hsurvives : B.componentPlacement.firstSurvives s
+    · have hx' : x ∈ targetSlotPacket (Sum.inl j)
+          (some (B.firstSurvivorSlot C hsFirst hsurvives)) := by
+        simpa [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+          distributedRightSlot, hsFirst, hsurvives, targetSlotPacket] using hx
+      exact B.firstSurvivorSlot_origin C hsFirst hsurvives j hx'
+    · let hbroken : s ∈ brokenSet B.componentPlacement.firstTarget
+          B.componentPlacement.firstSurvives :=
+        mem_brokenSet_iff.mpr ⟨hsFirst, hsurvives⟩
+      simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hsFirst, hsurvives, firstBrokenMiddleSlot,
+        targetSlotPacket] at hx
+      rcases hx with hxStart | hxEnd
+      · exact B.firstBrokenStartSlot_origin C _ j hxStart
+      · rcases hxEnd with hxMiddle | hxEnd
+        · unfold firstBrokenMiddleSlot at hxMiddle
+          split at hxMiddle <;> simp [targetSlotPacket] at hxMiddle
+        · exact B.firstBrokenEndSlot_origin C _ j hxEnd
+  · have hnotFirst : s ∉ B.componentPlacement.firstTarget := by
+      intro hsFirst
+      exact (Finset.disjoint_left.mp B.componentPlacement.target_disjoint)
+        hsFirst hsSecond
+    by_cases hsurvives : B.componentPlacement.secondSurvives s
+    · simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hnotFirst, hsSecond, hsurvives,
+        targetSlotPacket] at hx
+    · let hbroken : s ∈ brokenSet B.componentPlacement.secondTarget
+          B.componentPlacement.secondSurvives :=
+        mem_brokenSet_iff.mpr ⟨hsSecond, hsurvives⟩
+      simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hnotFirst, hsSecond, hsurvives,
+        secondBrokenStartSlot, secondBrokenEndSlot, targetSlotPacket] at hx
+      rcases hx with hxStart | hxMiddle | hxEnd
+      · unfold secondBrokenStartSlot at hxStart
+        simp only at hxStart
+        split at hxStart <;> simp [targetSlotPacket] at hxStart
+      · exact B.firstChordSlot_origin C _ j hxMiddle
+      · unfold secondBrokenEndSlot at hxEnd
+        simp only at hxEnd
+        split at hxEnd <;> simp [targetSlotPacket] at hxEnd
+
+/-- A packet in a wrapped-family child determines a wrapped-family origin
+kind. -/
+theorem distributedPacket_second_origin
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s x : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (hs : s ∈ P.target)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (hx : x ∈ B.distributedPacket C (Sum.inr j) s) :
+    ∃ K : SecondChildSlotKind B s, K.child = j ∧ K.targetIndex = x := by
+  classical
+  have hcover := B.componentPlacement.target_cover
+  rw [hcover] at hs
+  rcases Finset.mem_union.mp hs with hsFirst | hsSecond
+  · by_cases hsurvives : B.componentPlacement.firstSurvives s
+    · simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hsFirst, hsurvives, targetSlotPacket] at hx
+    · let hbroken : s ∈ brokenSet B.componentPlacement.firstTarget
+          B.componentPlacement.firstSurvives :=
+        mem_brokenSet_iff.mpr ⟨hsFirst, hsurvives⟩
+      simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hsFirst, hsurvives,
+        firstBrokenStartSlot, firstBrokenEndSlot, targetSlotPacket] at hx
+      rcases hx with hxStart | hxMiddle | hxEnd
+      · unfold firstBrokenStartSlot at hxStart
+        simp only at hxStart
+        split at hxStart <;> simp [targetSlotPacket] at hxStart
+      · exact B.secondChordSlot_origin C _ j hxMiddle
+      · unfold firstBrokenEndSlot at hxEnd
+        simp only at hxEnd
+        split at hxEnd <;> simp [targetSlotPacket] at hxEnd
+  · have hnotFirst : s ∉ B.componentPlacement.firstTarget := by
+      intro hsFirst
+      exact (Finset.disjoint_left.mp B.componentPlacement.target_disjoint)
+        hsFirst hsSecond
+    by_cases hsurvives : B.componentPlacement.secondSurvives s
+    · have hx' : x ∈ targetSlotPacket (Sum.inr j)
+          (some (B.secondSurvivorSlot C hsSecond hsurvives)) := by
+        simpa [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+          distributedRightSlot, hnotFirst, hsSecond, hsurvives,
+          targetSlotPacket] using hx
+      exact B.secondSurvivorSlot_origin C hsSecond hsurvives j hx'
+    · let hbroken : s ∈ brokenSet B.componentPlacement.secondTarget
+          B.componentPlacement.secondSurvives :=
+        mem_brokenSet_iff.mpr ⟨hsSecond, hsurvives⟩
+      simp [distributedPacket, distributedLeftSlot, distributedMiddleSlot,
+        distributedRightSlot, hnotFirst, hsSecond, hsurvives,
+        secondBrokenMiddleSlot, targetSlotPacket] at hx
+      rcases hx with hxStart | hxEnd
+      · exact B.secondBrokenStartSlot_origin C _ j hxStart
+      · rcases hxEnd with hxMiddle | hxEnd
+        · unfold secondBrokenMiddleSlot at hxMiddle
+          split at hxMiddle <;> simp [targetSlotPacket] at hxMiddle
+        · exact B.secondBrokenEndSlot_origin C _ j hxEnd
+
 end BalancedSplitData
 
 end DGOProposition414
