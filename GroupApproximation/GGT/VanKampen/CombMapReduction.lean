@@ -156,6 +156,21 @@ def cactusRelatorRetyping_of_planarDisc
     (C : CactusBaseCellDeletion Delta) : CactusRelatorRetyping Delta :=
   C.toRetyping hplanar
 
+/-- The planar cactus constructor preserves a repeated boundary power. -/
+theorem cactusRelatorRetyping_of_planarDiscPower
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (hplanar : Delta.toCombMap.IsPlanar)
+    (C : CactusBaseCellDeletion Delta)
+    (word : List (GGT.RelLetter G Lambda)) (n : ℕ)
+    (hpower : Delta.boundaryWord = (List.replicate n word).flatten) :
+    ∃ R : CactusRelatorRetyping Delta,
+      R.diagram.boundaryWord = (List.replicate n word).flatten := by
+  let R := cactusRelatorRetyping_of_planarDisc hplanar C
+  refine ⟨R, ?_⟩
+  exact R.boundaryWord_eq.trans hpower
+
 /-- The retyped cactus is an exact-boundary relator-only disc. -/
 theorem exactBoundaryRelatorOnly_of_cactusRetyping
     {G : Type u} [Group G] {Lambda : Type w}
