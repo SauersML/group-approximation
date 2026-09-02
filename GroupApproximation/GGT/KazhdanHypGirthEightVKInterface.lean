@@ -449,6 +449,42 @@ theorem consumerModel
 
 end GirthEightDiagramPrimitives
 
+/-! ## Assembly of the two universal geometric obligations -/
+
+/-- A vk primitive package for every finite triangular table proves the
+universal girth-eight hyperbolicity statement.  The `delta = 1` specialization
+is only a witness for the existential hyperbolicity constant; the primitive
+package constructs successive stars for every natural `delta`. -/
+theorem girthEightHyperbolicity_of_diagramPrimitives
+    (primitives : ∀ (Generator TriangleIndex : Type)
+      (_ : Fintype Generator) (_ : DecidableEq Generator)
+      (_ : Nonempty Generator) (_ : Fintype TriangleIndex)
+      (_ : DecidableEq TriangleIndex)
+      (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator),
+      GirthEightDiagramPrimitives T) :
+    GirthEightHyperbolicity := by
+  intro Generator TriangleIndex fg dg ng ft dt T d hchecks
+  let P : GirthEightDiagramPrimitives T :=
+    primitives Generator TriangleIndex fg dg ng ft dt T
+  exact P.isHyperbolicGroup (delta := 1) hchecks
+
+/-- A vk primitive package for every finite triangular table proves the
+universal girth-eight torsion-freeness statement.  The power-disc and gluing
+fields give the reduced sphere, and `GirthEightChecks.noCube` supplies the
+no-proper-power hypothesis used by spherical curvature. -/
+theorem girthEightTorsionFree_of_diagramPrimitives
+    (primitives : ∀ (Generator TriangleIndex : Type)
+      (_ : Fintype Generator) (_ : DecidableEq Generator)
+      (_ : Nonempty Generator) (_ : Fintype TriangleIndex)
+      (_ : DecidableEq TriangleIndex)
+      (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator),
+      GirthEightDiagramPrimitives T) :
+    GirthEightTorsionFree := by
+  intro Generator TriangleIndex fg dg ng ft dt T d hchecks
+  let P : GirthEightDiagramPrimitives T :=
+    primitives Generator TriangleIndex fg dg ng ft dt T
+  exact P.isPowerTorsionFree hchecks
+
 end Table
 end GirthEightVKInterface
 end GGT
