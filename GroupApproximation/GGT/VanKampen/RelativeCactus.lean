@@ -121,6 +121,8 @@ theorem outerForward_word
       List.length_map])
   intro k hk₁ hk₂
   simp only [List.getElem_ofFn]
+  congr 1
+  apply Fin.ext
   rfl
 
 theorem relatorForward_word
@@ -224,6 +226,7 @@ theorem relatorBackward_word
           RelWord.inv (Z.label (.relatorForward i j)))
     _ = RelWord.revInv (Z.geometricCell i).relator := by
       rw [RelWord.revInv]
+      rw [← hforward]
       congr 1
       rw [List.map_ofFn]
       rfl
