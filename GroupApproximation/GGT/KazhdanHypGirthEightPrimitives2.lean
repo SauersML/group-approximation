@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
 import GroupApproximation.GGT.VanKampen.CombMapGluing
 import GroupApproximation.GGT.VanKampen.CombMapReduction
+import Mathlib.Data.Finset.Lattice.Basic
 
 /-!
 # Reduced links, Cayley potentials, star estimates, and power discs
@@ -44,8 +45,7 @@ noncomputable def cornerCycleOfCombMap
   covers := M.exists_vertexOrbitDart v
   unique := M.vertexOrbitDart_injective v
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+omit [Fintype Generator] in
 /-- One literal triangle corner contributes a positive directed edge to the
 presentation link. -/
 theorem adjacencyCount_pos_of_literalCorner (j : TriangleIndex) (k : Fin 3) :
@@ -100,6 +100,9 @@ def linkVertex (K : VertexCornerCertificate T C) (i : ℕ) :
   K.dartLabel (C.dart i)
 
 /-- Link labels inherit periodicity from the cyclic dart enumeration. -/
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Link labels inherit periodicity from the cyclic dart enumeration. -/
 theorem periodic (K : VertexCornerCertificate T C) (i : ℕ) :
     K.linkVertex (i + M.vertexDegree v) = K.linkVertex i := by
   exact congrArg K.dartLabel (C.periodic i)
@@ -149,7 +152,7 @@ noncomputable def presentationLinkWalk_of_cellularReduced
     change 0 < TriangularHodgeLayer.adjacencyCount T
       (K.dartLabel (C.dart i)) (K.dartLabel (C.dart (i + 1)))
     rw [K.source_eq i, K.target_eq i]
-    exact adjacencyCount_pos_of_literalCorner (T := T) (K.triangle i) (K.position i)
+    exact adjacencyCount_pos_of_literalCorner (K.triangle i) (K.position i)
   noBacktrack := hred
   three_le := three_le_of_periodic_noMirror
     (by
@@ -238,6 +241,7 @@ section Cayley
 
 variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator] [Fintype TriangleIndex]
+  [DecidableEq TriangleIndex]
   {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
 
 /-- Evaluate a diagram path in its triangularly presented Cayley group. -/
@@ -247,14 +251,16 @@ def cayleyPathValue
     TriangularHodgeLayer.Presented T :=
   (p.darts.map fun d ↦ presentedLetterValue T (Delta.label d)).prod
 
+omit [Fintype Generator] in
 theorem cayleyPathValue_append
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     {x y z : Delta.toCombMap.Vertex}
     (p : DartPath Delta.toCombMap x y) (q : DartPath Delta.toCombMap y z) :
     cayleyPathValue Delta (p.append q) =
-      cayleyPathValue Delta p * cayleyPathValue Delta q := by
+    cayleyPathValue Delta p * cayleyPathValue Delta q := by
   simp [cayleyPathValue, List.map_append, List.prod_append]
 
+omit [Fintype Generator] in
 theorem cayleyPathValue_single
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (d : Delta.toCombMap.Dart) :
@@ -269,9 +275,15 @@ theorem presentedLetterValue_signedFreeRelLetter
     presentedLetterValue T (signedFreeRelLetter u) =
       FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
   rcases u with ⟨generator, positive⟩
-  cases positive <;>
-    simp [presentedLetterValue, signedFreeRelLetter, FoxBoundary.letterValue,
-      TriangularHodgeLayer.generator]
+  cases positive with
+  | false =>
+      simp [presentedLetterValue, signedFreeRelLetter, FoxBoundary.letterValue,
+        TriangularHodgeLayer.generator]
+  | true =>
+      change PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (FreeGroup.of generator) = PresentedGroup.of generator
+      rfl
 
 /-- Every relator-only inner face has identity value in the presented group. -/
 theorem innerFace_presentedValue_eq_one
@@ -305,11 +317,16 @@ theorem cayleyDartListValue_erase_innerFace
   have hface : (((Delta.faceBoundary f).darts.map Delta.label).map fun d ↦
       presentedLetterValue T d).prod = 1 := by
     exact innerFace_presentedValue_eq_one Delta R f hf
-  rw [cayleyDartListValue, List.map_append, List.prod_append, hface]
+  have hface' : ((Delta.faceBoundary f).darts.map
+      (fun d ↦ presentedLetterValue T (Delta.label d))).prod = 1 := by
+    simpa only [List.map_map, Function.comp_apply] using hface
+  simp only [cayleyDartListValue, List.map_append, List.prod_append]
+  rw [hface']
   simp [mul_assoc]
 
 /-- Reversing an oriented diagram letter inverts its value in the presented
 group. -/
+omit [Fintype Generator] in
 theorem presentedLetterValue_inv
     (a : GGT.RelLetter (FreeGroup Generator) PEmpty) :
     presentedLetterValue T (HullSC.RelWord.inv a) =
@@ -333,8 +350,9 @@ theorem cayleyDartListValue_erase_backtrack
         (presentedLetterValue T (Delta.label d))⁻¹ := by
     rw [Delta.label_alpha]
     exact presentedLetterValue_inv (T := T) (Delta.label d)
-  rw [cayleyDartListValue, List.map_append, List.map_cons,
-    List.prod_append, List.prod_cons, halpha]
+  simp only [cayleyDartListValue, List.map_append, List.map_cons,
+    List.prod_append, List.prod_cons]
+  rw [halpha]
   simp [mul_assoc]
 
 /-- Word homotopy generated by insertion or erasure of complete inner-face
@@ -499,7 +517,7 @@ zero-th boundary star. -/
 noncomputable def innerBoundaryFaceStarLayer
   (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (i : ℕ) : Finset Delta.toCombMap.Face :=
-  Finset.inter (boundaryFaceStarLayer Delta P i) Delta.innerFaces
+  boundaryFaceStarLayer Delta P i ∩ Delta.innerFaces
 
 /-- Inner face-star layers are pairwise disjoint, so their total cardinality
 is at most `innerFaceCount`.  This proves the second inequality consumed by
@@ -513,42 +531,23 @@ theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
   classical
   let M := Delta.toCombMap
   let seed := boundaryFaceSeed Delta P
-  have hballMono : ∀ {i j : ℕ}, i ≤ j →
-      M.faceStarBall seed i ⊆ M.faceStarBall seed j := by
-    intro i j hij
-    induction j, hij using Nat.le_induction with
-    | base => exact fun _ h ↦ h
-    | succ j _ ih => exact ih.trans (M.faceStarBall_mono_succ seed j)
   have hlayerSubset : ∀ n : ℕ,
       M.faceStarLayer seed n ⊆ M.faceStarBall seed n := by
     intro n
-    by_cases hn : n = 0
-    · subst n
-      simp [VanKampen.CombMap.faceStarLayer]
-    · rw [VanKampen.CombMap.faceStarLayer, if_neg hn]
-      exact Finset.sdiff_subset
+    exact M.faceStarLayer_subset_ball seed n
   have hlayerDisjoint : ∀ {i j : ℕ}, i ≠ j →
       Disjoint (M.faceStarLayer seed i) (M.faceStarLayer seed j) := by
     intro i j hij
-    wlog hlt : i < j generalizing i j with H
-    · exact (H hij.symm (by omega)).symm
-    have hjpos : j ≠ 0 := by omega
-    rw [Finset.disjoint_left]
-    intro f hfi hfj
-    have hfiBall : f ∈ M.faceStarBall seed i := hlayerSubset i hfi
-    have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
-      hballMono (by omega) hfiBall
-    rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
-    exact hfj.2 hfpred
+    exact M.faceStarLayer_disjoint seed hij
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
-      (fun i ↦ Finset.inter (M.faceStarLayer seed i) Delta.innerFaces) := by
+      (fun i ↦ M.faceStarLayer seed i ∩ Delta.innerFaces) := by
     intro i _hi j _hj hij
     exact (hlayerDisjoint (by
       intro hval
       apply hij
       exact Fin.ext hval)).mono Finset.inter_subset_left Finset.inter_subset_left
   change (∑ i : Fin depth,
-    (Finset.inter (M.faceStarLayer seed i) Delta.innerFaces).card) ≤ Delta.innerFaces.card
+    (M.faceStarLayer seed i ∩ Delta.innerFaces).card) ≤ Delta.innerFaces.card
   rw [← Finset.card_biUnion hpairwise]
   apply Finset.card_le_card
   intro f hf
@@ -581,7 +580,7 @@ structure CenteredWindowFirstLayerIncidence
   /-- First inner star-layer face met by the position. -/
   face : ∀ i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
   /-- The selected face belongs to the required inner layer. -/
-  face_mem : ∀ i q, face i q ∈ innerBoundaryFaceStarLayer Delta P i
+  face_mem : ∀ i q, face i q ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ)
   /-- The boundary dart at the position occurs on the selected face. -/
   on_face : ∀ i q, P.darts.get (position i q) ∈
     (Delta.faceBoundary (face i q)).darts
