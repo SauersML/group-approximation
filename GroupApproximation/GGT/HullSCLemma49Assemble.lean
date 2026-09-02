@@ -213,6 +213,37 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
   exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
     hselection hpieces hunbound hpasting hinjective
 
+/-- The same input leaf using the currently landed vk shape.  vk's named
+`faceSetBoundaryPeeling_of_faceSetBoundary` consumes the displayed local
+`FaceSetBoundaryPeelOracle`; the Hull49 bridge applies it to each selected
+source certificate. -/
+theorem hullLemma49GeodesicPowerDiagram_of_inputs_of_vkOracle
+    (hgeom : GGT.VanKampen.RelativeGreendlingerStatement.{0, 0})
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
+    (horacle :
+      ∀ {G : Type} [Group G] {Lambda : Type}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : GGT.VanKampen.DiscDiagram.{0, 0, 0} W},
+        GGT.VanKampen.Embedded.FaceSetBoundaryPeelOracle
+          (Delta := Delta)) :
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
+  have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
+    hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
+      hgeom hkernel htransfer
+  have hpasting : HullLemma49SourceFacePastingStatement.{0, 0} :=
+    hullLemma49SourceFacePastingStatement_of_vkFaceSetBoundaryPeeling horacle
+  have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
+    hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
+  exact hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
+    hselection hpieces hunbound hpasting hinjective
+
 /-! ## Model check -/
 
 /-- In the one-point group the exact power-diagram conclusion holds because
