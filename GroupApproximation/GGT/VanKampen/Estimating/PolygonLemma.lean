@@ -59,6 +59,20 @@ inductive CutDiscSideSource (D : RelGenSet G Lambda) (epsilon : Nat)
 
 namespace CutDiscSideSource
 
+/-- The vertex sequence of a geodesic word is a geodesic chain.  This is the
+word-to-chain conversion used for every replacement path in the cut disc. -/
+theorem isGeodesicChain_of_isGeodesicWord (D : RelGenSet G Lambda)
+    {first last : G} {replacement : List (RelLetter G Lambda)}
+    (hword : IsGeodesicWord D first last replacement) :
+    IsGeodesicChain D.alphabet.carrier
+      (fun i => vertex first replacement i) replacement.length := by
+  intro i j hij hj
+  have hsegment := isGeodesicWord_segment D hword hij hj
+  have hlength : ((replacement.drop i).take (j - i)).length = j - i := by
+    rw [List.length_take, List.length_drop]
+    omega
+  exact hsegment.2.2.symm.trans hlength
+
 /-- A side coming from a geodesic replacement satisfies the source
 classification with no additive loss. -/
 theorem of_geodesicChain (D : RelGenSet G Lambda) (epsilon : Nat)
@@ -69,6 +83,41 @@ theorem of_geodesicChain (D : RelGenSet G Lambda) (epsilon : Nat)
       (cut (side + 1) - cut side)) :
     CutDiscSideSource D epsilon basepoint word cut side :=
   .geodesicReplacement chain
+
+/-- An `IsGeodesicWord` on the exact side segment gives the geodesic
+replacement constructor.  `vertex_segment` identifies its local vertices
+with the corresponding vertices of the full cut-disc boundary word. -/
+theorem of_geodesicWord (D : RelGenSet G Lambda) (epsilon : Nat)
+    (basepoint : G) (word : List (RelLetter G Lambda))
+    (cut : Nat -> Nat) (side : Nat)
+    (hmono : cut side <= cut (side + 1))
+    (hend : cut (side + 1) <= word.length)
+    (replacementGeodesic : IsGeodesicWord D
+      (vertex basepoint word (cut side))
+      (vertex basepoint word (cut (side + 1)))
+      ((word.drop (cut side)).take (cut (side + 1) - cut side))) :
+    CutDiscSideSource D epsilon basepoint word cut side := by
+  apply CutDiscSideSource.geodesicReplacement
+  have hchain := isGeodesicChain_of_isGeodesicWord D replacementGeodesic
+  intro i j hij hj
+  have hlength :
+      ((word.drop (cut side)).take (cut (side + 1) - cut side)).length =
+        cut (side + 1) - cut side := by
+    rw [List.length_take, List.length_drop]
+    omega
+  have hjReplacement : j <=
+      ((word.drop (cut side)).take (cut (side + 1) - cut side)).length := by
+    rw [hlength]
+    exact hj
+  have hiReplacement : i <=
+      ((word.drop (cut side)).take (cut (side + 1) - cut side)).length :=
+    hij.trans hjReplacement
+  have hlocal := hchain i j hij hjReplacement
+  rw [vertex_segment word basepoint (cut side)
+      (cut (side + 1) - cut side) i hiReplacement,
+    vertex_segment word basepoint (cut side)
+      (cut (side + 1) - cut side) j hjReplacement] at hlocal
+  exact hlocal
 
 /-- An `epsilon`-contiguity side satisfies the source classification using
 only its length bound. -/
