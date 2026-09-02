@@ -717,6 +717,56 @@ theorem dgoProposition435JointLocalFiniteness_of_finiteAuxiliaryLetters
     (fun _ hx => Or.inl (properBase_subset_base D hx)) (fun _ => rfl) F
     (fun _ hx => Or.inr (Or.inl hx)) lam n hwit
 
+/-- **The joint Cayley graph is hyperbolic when some hyperbolically embedded
+auxiliary family sits over an alphabet exceeding the original relative alphabet
+by only finitely much.**
+
+The joint alphabet is the original relative alphabet together with the
+auxiliary peripherals, so it does not depend on the auxiliary *base* at all.
+Any auxiliary relative generating set with the same family therefore serves,
+and if its base exceeds the original relative alphabet finitely, its alphabet
+differs from the joint one by a finite set.  Finite changes of a symmetric
+generating set are bi-Lipschitz, and hyperbolicity crosses them.
+
+This is what discharges the residue whenever the auxiliary family is available
+before its relative generating set has been enlarged, and it tolerates the
+finitely many filling targets adjoined on the way. -/
+theorem jointHyperbolic_of_finite_base_excess (D : RelGenSet G Λ)
+    (E E' : RelGenSet G I) (hfam : E'.fam = E.fam)
+    (hbase : D.alphabet.carrier ⊆ E'.base)
+    (hfin : (E'.base \ D.alphabet.carrier).Finite)
+    (hE' : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley E'.alphabet)) :
+    ∃ delta : ℝ,
+      IsHyperbolicSpace delta (Cayley (jointRelGenSet D E).alphabet) := by
+  have hcarrier : (jointRelGenSet D E).alphabet.carrier =
+      D.alphabet.carrier ∪ (⋃ i : I, ((E.fam i : Subgroup G) : Set G)) :=
+    jointRelGenSet_alphabet_carrier D E
+  have hEcarrier : E'.alphabet.carrier =
+      E'.base ∪ (⋃ i : I, ((E.fam i : Subgroup G) : Set G)) := by
+    show E'.base ∪ (⋃ i : I, ((E'.fam i : Subgroup G) : Set G)) = _
+    rw [hfam]
+  have hjointSub :
+      ((jointRelGenSet D E).alphabet.carrier \ E'.alphabet.carrier).Finite := by
+    refine Set.finite_empty.subset ?_
+    rw [hcarrier, hEcarrier]
+    rintro x ⟨hx | hx, hxn⟩
+    · exact absurd (Or.inl (hbase hx)) hxn
+    · exact absurd (Or.inr hx) hxn
+  have hauxSub :
+      (E'.alphabet.carrier \ (jointRelGenSet D E).alphabet.carrier).Finite := by
+    refine hfin.subset ?_
+    rw [hcarrier, hEcarrier]
+    rintro x ⟨hx | hx, hxn⟩
+    · exact ⟨hx, fun hxD => hxn (Or.inl hxD)⟩
+    · exact absurd (Or.inr hx) hxn
+  obtain ⟨K, hK, hcomp⟩ := FiniteChange.exists_bilipschitz_of_finite_diff
+    E'.alphabet.symmetricGenerating
+    (jointRelGenSet D E).alphabet.symmetricGenerating hauxSub hjointSub
+  obtain ⟨d, hd⟩ := hE'
+  exact FiniteChange.exists_hyperbolic_of_bilipschitz E'.alphabet
+    (jointRelGenSet D E).alphabet hK (fun x y => (hcomp x y).1)
+    (fun x y => (hcomp x y).2) hd
+
 /-! ## Model tests -/
 
 /-- **No original subgroups.**  The labelled sum is the auxiliary family, and
