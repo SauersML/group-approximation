@@ -359,11 +359,7 @@ theorem false_of_lemma49ScaledLongArc_contiguityShadow
   have hj₁₃ : Sh.index p₁ < Sh.index p₃ := by
     apply Sh.index_strictMono_of_far_powerMu hpowerMu hRel hPow hp₁₃ hp₃
     dsimp [p₁, p₃]
-    have hgap : B.middle.length < B.middle.length + B.block.length := by
-      have hblockPos : 0 < B.block.length := by
-        exact lt_of_le_of_lt (Nat.zero_le _) hblockFar
-      omega
-    exact lt_trans hmiddleFar hgap
+    omega
   have hneFar : powerMu * (2 * K + b) < B.block.length := by
     have hinside : 2 * K + b ≤ 2 * K + b + 4 * (eps + K + 1) := by omega
     have hmul := Nat.mul_le_mul_left powerMu hinside
