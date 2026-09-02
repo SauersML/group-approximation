@@ -227,7 +227,7 @@ theorem quotientPeripheralPreservation_of_mapSurjective
     embedded := hemb
     injOn_peripheralUnion := hinj }⟩
   · intro a ha
-    exact ⟨a, D.base_le ha, rfl⟩
+    exact ⟨a, ha, rfl⟩
   · intro i
     rw [GGT.RelGenSet.fam_mapSurjective, D.fam_eq i]
 
