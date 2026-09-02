@@ -31,6 +31,7 @@ theorem ne_of_mem_bbf_blockers
     (P : ProjectionSystem V) {K : ℝ} (hK : 0 ≤ K) {X Z Y : V}
     (hY : Y ∈ (ProjectionPerturbation.bbf P).blockers K X Z) :
     X ≠ Z := by
+  change Y ≠ X ∧ Y ≠ Z ∧ K < P.bbfProjDist Y X Z at hY
   intro hXZ
   subst Z
   have hzero : P.bbfProjDist Y X X = 0 := by
@@ -53,6 +54,8 @@ theorem bbf_before_consequences
     P.bbfProjDist U X W < P.ξ ∧
       K - 5 * P.ξ < P.bbfProjDist U W Z ∧
       P.bbfProjDist W U Z < P.ξ := by
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hW
+  change U ≠ X ∧ U ≠ Z ∧ K < P.bbfProjDist U X Z at hU
   have hXZ : X ≠ Z := P.ne_of_mem_bbf_blockers (by
     linarith [hK, P.ξ_pos]) hW
   have hendXU := P.bbfProjDist_endpoints_lt hW.1 hWU hU.1.symm (by
@@ -80,6 +83,9 @@ theorem bbf_before_before_projDist_lt
     (hWY₀before : 5 * P.ξ < P.bbfProjDist W X Y₀)
     (hY₀Y₁before : 5 * P.ξ < P.bbfProjDist Y₀ X Y₁) :
     P.bbfProjDist W Y₀ Y₁ < P.ξ := by
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hW
+  change Y₀ ≠ X ∧ Y₀ ≠ Z ∧ K < P.bbfProjDist Y₀ X Z at hY₀
+  change Y₁ ≠ X ∧ Y₁ ≠ Z ∧ K < P.bbfProjDist Y₁ X Z at hY₁
   have hfirst := P.bbf_before_consequences hK hW hY₀ hWY₀ hWY₀before
   have hsecond :=
     P.bbf_before_consequences hK hY₀ hY₁ hY₀Y₁ hY₀Y₁before
@@ -103,6 +109,9 @@ theorem bbf_projDist_lt_of_before_before
     (hY₀Y₁before : 5 * P.ξ < P.bbfProjDist Y₀ X Y₁)
     (hY₁Wbefore : 5 * P.ξ < P.bbfProjDist Y₁ X W) :
     P.bbfProjDist W Y₀ Y₁ < P.ξ := by
+  change Y₀ ≠ X ∧ Y₀ ≠ Z ∧ K < P.bbfProjDist Y₀ X Z at hY₀
+  change Y₁ ≠ X ∧ Y₁ ≠ Z ∧ K < P.bbfProjDist Y₁ X Z at hY₁
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hW
   have hfirst :=
     P.bbf_before_consequences hK hY₀ hY₁ hY₀Y₁ hY₀Y₁before
   have hsecond := P.bbf_before_consequences hK hY₁ hW hY₁W hY₁Wbefore
@@ -131,6 +140,10 @@ theorem bbf_blocker_of_ordered_pair_mem
     (hbefore : 5 * P.ξ < P.bbfProjDist Y₀ X Y₁)
     (hW : W ∈ (ProjectionPerturbation.bbf P).blockers K Y₀ Y₁) :
     W ∈ (ProjectionPerturbation.bbf P).blockers K X Z := by
+  change Y₀ ≠ X ∧ Y₀ ≠ Z ∧ K < P.bbfProjDist Y₀ X Z at hY₀
+  change Y₁ ≠ X ∧ Y₁ ≠ Z ∧ K < P.bbfProjDist Y₁ X Z at hY₁
+  change W ≠ Y₀ ∧ W ≠ Y₁ ∧ K < P.bbfProjDist W Y₀ Y₁ at hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z
   have hXZ : X ≠ Z := P.ne_of_mem_bbf_blockers (by
     linarith [hK, P.ξ_pos]) hY₀
   have hendXY := P.bbfProjDist_endpoints_lt hY₀.1 hY₀Y₁ hY₁.1.symm (by
@@ -144,7 +157,7 @@ theorem bbf_blocker_of_ordered_pair_mem
   have hY₁large : 4 * P.ξ < P.bbfProjDist Y₁ Y₀ Z := by
     linarith [hY₁YZ, hK, P.ξ_pos]
   have hendYZ := P.bbfProjDist_endpoints_lt hY₀Y₁.symm hY₁.2.1
-    hY₀.2.1 hY₁large
+    hY₀.2.1 (by linarith [hY₁large, P.ξ_pos])
   have hWneZ : W ≠ Z := by
     intro hWZ
     subst W
@@ -175,11 +188,15 @@ theorem bbf_graph_adj_of_consecutive
       ¬ (5 * P.ξ < P.bbfProjDist Y₀ X W ∧
         5 * P.ξ < P.bbfProjDist W X Y₁)) :
     ((ProjectionPerturbation.bbf P).graph K).Adj Y₀ Y₁ := by
+  change Y₀ ≠ X ∧ Y₀ ≠ Z ∧ K < P.bbfProjDist Y₀ X Z at hY₀
+  change Y₁ ≠ X ∧ Y₁ ≠ Z ∧ K < P.bbfProjDist Y₁ X Z at hY₁
   rw [ProjectionPerturbation.graph_adj_iff_blockers_eq_empty]
   refine ⟨hY₀Y₁, Set.eq_empty_iff_forall_notMem.mpr ?_⟩
   intro W hW
+  change W ≠ Y₀ ∧ W ≠ Y₁ ∧ K < P.bbfProjDist W Y₀ Y₁ at hW
   have hWlarge := P.bbf_blocker_of_ordered_pair_mem hK hY₀ hY₁
     hY₀Y₁ hbefore hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hWlarge
   have hY₀W : Y₀ ≠ W := hW.1.symm
   have hWY₁ : W ≠ Y₁ := hW.2.1
   have hleft := P.bbf_before_total_on_large hK hY₀.1 hY₀.2.1
@@ -188,10 +205,10 @@ theorem bbf_graph_adj_of_consecutive
     hY₁.1 hY₁.2.1 hWY₁ hWlarge.2.2 hY₁.2.2
   rcases hleft with hY₀Wbefore | hWY₀before
   · rcases hright with hWY₁before | hY₁Wbefore
-    · exact hconsecutive W hWlarge hY₀W hWY₁
+    · exact hconsecutive W hWlarge hY₀W.symm hWY₁
         ⟨hY₀Wbefore, hWY₁before⟩
     · have hsmall := P.bbf_projDist_lt_of_before_before hK hY₀ hY₁
-        hWlarge hY₀Y₁ hWY₁ hY₀W hbefore hY₁Wbefore
+        hWlarge hY₀Y₁ hWY₁.symm hY₀W hbefore hY₁Wbefore
       linarith [hW.2.2, hsmall, hK, P.ξ_pos]
   · have hsmall := P.bbf_before_before_projDist_lt hK hWlarge hY₀ hY₁
       hY₀W hY₀Y₁ hWY₁ hWY₀before hbefore
@@ -208,11 +225,14 @@ theorem bbf_graph_adj_left_endpoint_of_minimal
       W ∈ (ProjectionPerturbation.bbf P).blockers K X Z →
       W ≠ Y → ¬ 5 * P.ξ < P.bbfProjDist W X Y) :
     ((ProjectionPerturbation.bbf P).graph K).Adj X Y := by
+  change Y ≠ X ∧ Y ≠ Z ∧ K < P.bbfProjDist Y X Z at hY
   rw [ProjectionPerturbation.graph_adj_iff_blockers_eq_empty]
   refine ⟨hY.1.symm, Set.eq_empty_iff_forall_notMem.mpr ?_⟩
   intro W hW
+  change W ≠ X ∧ W ≠ Y ∧ K < P.bbfProjDist W X Y at hW
   have hKfour : 4 * P.ξ ≤ K := by linarith [hK, P.ξ_pos]
   have hWlarge := P.bbf_blockers_left_subset hKfour hY hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hWlarge
   have hWY : W ≠ Y := hW.2.1
   apply hminimal W hWlarge hWY
   linarith [hW.2.2, hK, P.ξ_pos]
@@ -228,11 +248,14 @@ theorem bbf_graph_adj_right_endpoint_of_maximal
       W ∈ (ProjectionPerturbation.bbf P).blockers K X Z →
       W ≠ Y → ¬ 5 * P.ξ < P.bbfProjDist Y X W) :
     ((ProjectionPerturbation.bbf P).graph K).Adj Y Z := by
+  change Y ≠ X ∧ Y ≠ Z ∧ K < P.bbfProjDist Y X Z at hY
   rw [ProjectionPerturbation.graph_adj_iff_blockers_eq_empty]
   refine ⟨hY.2.1, Set.eq_empty_iff_forall_notMem.mpr ?_⟩
   intro W hW
+  change W ≠ Y ∧ W ≠ Z ∧ K < P.bbfProjDist W Y Z at hW
   have hKfour : 4 * P.ξ ≤ K := by linarith [hK, P.ξ_pos]
   have hWlarge := P.bbf_blockers_right_subset hKfour hY hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z at hWlarge
   have hWY : W ≠ Y := hW.1
   have htotal := P.bbf_before_total_on_large hK hY.1 hY.2.1
     hWlarge.1 hWlarge.2.1 hWY.symm hY.2.2 hWlarge.2.2
