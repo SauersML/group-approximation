@@ -29,7 +29,7 @@ does not alter the quantifier order of the small-cancellation constants.
 
 `hullLemma44CanonicalQuotientStatement_of_family` proves that this is a genuine
 generalisation of the existing interface by specializing `Λ` to
-`AuxiliaryPeripheralIndex k`.  The conversion of the preservation records is
+`AuxiliaryPeripheralIndex k`.  The conversion of the preservation structures is
 literal, using `AuxiliaryPeripheralFamily.fam_eq` only to change the displayed
 name of each subgroup.
 
@@ -195,7 +195,7 @@ def CanonicalQuotientFamilyPreservation.toAuxiliary
     · exact hxy
 
 /-- The arbitrary-family Lemma 4.4 implies the existing canonical auxiliary
-statement by literal specialization.  Downstream Hull modules therefore need
+statement by literal specialization, so downstream Hull modules need
 no compatibility layer and can continue consuming their current named Prop. -/
 theorem hullLemma44CanonicalQuotientStatement_of_family
     (h44 : HullLemma44CanonicalQuotientFamilyStatement.{u, 0}) :
