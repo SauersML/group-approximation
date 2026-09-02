@@ -126,6 +126,57 @@ theorem cactusDiscDiagramProducer_of_oriented
         GGT.RelLetter (FreeGroup Generator) PEmpty)) hboundary
     _ = relativeWord w := hrelative w
 
+/-! ## Clean retyping interface -/
+
+/-- The retyping fields needed by the Build module, expressed on the clean
+vk closure.  It is intentionally separate from the landed
+`VanKampen.CactusRelatorRetyping`, whose current module also imports the
+repairing generic surgery file. -/
+structure CleanCactusRelatorRetyping
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0}
+      (triangleRelatorWords T)) where
+  diagram : VanKampen.DiscDiagram.{0, 0, 0}
+    (triangleRelatorWords T)
+  boundaryWord_eq : diagram.boundaryWord = Delta.boundaryWord
+  relatorOnly : RelatorOnly T diagram
+  rCellCount_le : diagram.rCellCount ≤ Delta.rCellCount
+  reduced : diagram.Reduced
+  planar : diagram.toCombMap.IsPlanar
+
+/-- The clean availability shape for the base-cell retyping step. -/
+def CactusRelatorRetypingAvailability : Prop :=
+  ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
+    (triangleRelatorWords T)),
+    Delta.Reduced → Nonempty (CleanCactusRelatorRetyping (T := T) Delta)
+
+/-- A diagram already carrying relator-only coverage is a degenerate cactus
+retyping: the identity diagram preserves its boundary, area, reducedness, and
+planarity. -/
+def cleanCactusRelatorRetyping_of_relatorOnly
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0}
+      (triangleRelatorWords T))
+    (hcover : RelatorOnly T Delta) (hred : Delta.Reduced)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    Nonempty (CleanCactusRelatorRetyping (T := T) Delta) := by
+  exact ⟨{
+    diagram := Delta
+    boundaryWord_eq := rfl
+    relatorOnly := hcover
+    rCellCount_le := le_rfl
+    reduced := hred
+    planar := hplanar }⟩
+
+theorem cactusRelatorRetypingAvailability_of_relatorOnly
+    (hcover : ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
+      (triangleRelatorWords T)),
+      RelatorOnly T Delta)
+    (hplanar : ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
+      (triangleRelatorWords T)), Delta.toCombMap.IsPlanar) :
+    CactusRelatorRetypingAvailability (T := T) := by
+  intro Delta hred
+  exact cleanCactusRelatorRetyping_of_relatorOnly (T := T) Delta
+    (hcover Delta) hred (hplanar Delta)
+
 /-! ## Empty free-group model tests -/
 
 def emptyTriangleTable : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
