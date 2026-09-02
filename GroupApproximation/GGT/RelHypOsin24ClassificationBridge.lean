@@ -55,7 +55,7 @@ finite Cayley graph, followed by no relative-component argument. -/
 theorem relativePowerEscape_emptyModel
     {G : Type u} [Group G] {I : Type v} [IsEmpty I]
     (D : RelGenSet G I) (hfinite : D.base.Finite)
-    (hemb : D.IsHyperbolicallyEmbedded) (g : G)
+    (_hemb : D.IsHyperbolicallyEmbedded) (g : G)
     (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
     IsEscaping g (Cayley.base D.alphabet) := by
   have hnot : ¬ IsOfFinOrder g := by
