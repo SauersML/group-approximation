@@ -20,6 +20,32 @@ open GroupApproximation.HullSC
 
 universe u w v
 
+/-- The unconditional part of Appendix Definition M: a distinguished finite
+family together with the canonical cyclic classification of every relator-cell
+boundary dart. -/
+structure EstimatingScaffold
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W) where
+  selected : EstimatingSelection.DistinguishedFamily
+    (Embedded.Compatible (D := D) (eps := eps) (Delta := Delta))
+    (Embedded.Candidate.weight (D := D) (eps := eps) (Delta := Delta))
+  partition : Embedded.DiagramBoundaryPartition selected.family
+
+/-- Finite maximization and canonical dart classification construct the
+estimating scaffold for every finite disc diagram. -/
+theorem exists_estimatingScaffold
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W) :
+    Nonempty (EstimatingScaffold D eps Delta) := by
+  obtain ⟨selected⟩ := Embedded.exists_distinguishedFamily D eps Delta
+  exact ⟨{
+    selected := selected
+    partition := Embedded.canonicalDiagramPartition selected.family }⟩
+
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
     {G : Type u} [Group G] {Lambda : Type w}
@@ -200,6 +226,21 @@ theorem relativeGreendlingerQuasiGeodesic_of_data
     RelativeGreendlingerQuasiGeodesicStatement.{u, w, v} :=
   relativeGreendlingerQuasiGeodesic
     (embeddedEstimatingSystemConstruction_of_data hdata)
+
+/-- The `EstimatingData` construction conclusion over the empty relator
+family is valid because its positive-cell hypothesis is impossible. -/
+theorem estimatingDataConstruction_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ) (mu _lambda _c : ℝ)
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda))))
+    (hcells : 0 < Delta.rCellCount) :
+    ∃ Delta' : DiscDiagram.{u, w, v}
+        (∅ : Set (List (GGT.RelLetter G Lambda))),
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        Nonempty (EstimatingData D eps mu Delta') := by
+  exact False.elim
+    (embeddedEstimatingSystemConstruction_emptyFamilyModel D Delta hcells)
 
 end VanKampen
 end GGT
