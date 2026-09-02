@@ -2361,11 +2361,18 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               simpa only [one_mul] using hmem'
             exact False.elim ((hsourceNoSame i i' hilt hne (by rw [← hni]; exact
               (htargetSpec i).2.1)) hconn)
-          · refine ⟨⟨pc.length, by dsimp [M]; omega⟩, hmatched, ?_⟩
+          · have hEMlt : E < M := by
+              dsimp [M]
+              omega
+            have hpcM : pc.length < M := lt_of_le_of_lt hpcLen hEMlt
+            refine ⟨⟨pc.length, hpcM⟩, hmatched, ?_⟩
             have hieq : i' = P.length := by omega
-            rw [hni, hieq]
-            have hnot : ¬ pc.length + P.length < pc.length := by omega
-            simp only [hnot, ↓reduceIte]
+            have hnotTarget : ¬ targetN i < pc.length := by
+              intro hlt
+              have hlt' : pc.length + i' < pc.length := by
+                simpa [hni] using hlt
+              omega
+            rw [dif_neg hnotTarget, hni, hieq]
             omega
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
