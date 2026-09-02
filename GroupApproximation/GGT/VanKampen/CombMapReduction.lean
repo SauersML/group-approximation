@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.DiscDiagram
+import GroupApproximation.GGT.KazhdanHypGirthEightDiagram
 
 /-!
 # Relator-cell coverage and identity reduction
