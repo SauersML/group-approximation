@@ -69,6 +69,28 @@ theorem listVal_orientedSegment (word : List (RelLetter G Λ)) (v : G)
     rw [← hsegment]
     group
 
+/-- **The oriented segment of a geodesic word is geodesic**, given only that
+the word reverses admissibly.  The backwards case reverses a subword, and
+`isLetter_of_mem_revWord_of_subset` carries the hypothesis to it, so base
+symmetry is not needed. -/
+theorem isGeodesicWord_orientedSegment_of_revLetters (D : RelGenSet G Λ)
+    {v z : G} {word : List (RelLetter G Λ)}
+    (hrev : ∀ x ∈ revWord word, D.IsLetter x)
+    (hword : IsGeodesicWord D v z word)
+    {i j : ℕ} (hi : i ≤ word.length) (hj : j ≤ word.length) :
+    IsGeodesicWord D (vertex v word i) (vertex v word j)
+      (orientedSegment word i j) := by
+  by_cases hij : i ≤ j
+  · rw [orientedSegment, if_pos hij]
+    exact isGeodesicWord_segment D hword hij hj
+  · have hji : j ≤ i := by omega
+    rw [orientedSegment, if_neg hij]
+    refine isGeodesicWord_revWord_of_revLetters D ?_
+      (isGeodesicWord_segment D hword hji hi)
+    refine isLetter_of_mem_revWord_of_subset D ?_ hrev
+    intro x hx
+    exact List.mem_of_mem_drop (List.mem_of_mem_take hx)
+
 /-- A segment of a geodesic chord remains geodesic in either orientation. -/
 theorem isGeodesicWord_orientedSegment (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {v z : G}
