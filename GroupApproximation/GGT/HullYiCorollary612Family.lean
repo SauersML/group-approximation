@@ -272,10 +272,12 @@ power lies beyond the depth of every earlier one. -/
 theorem exists_successivelySeparatedPowers
     (D : RelGenSet G Lambda) (lam : Lambda) (hbase : IsSymmetricGeneratingSet D.base)
     (hloc : ∀ n, (D.relBall lam n).Finite) {h : G}
-    (hinj : Function.Injective (fun n : ℕ ↦ h ^ n)) (C R N : ℕ) :
+    (hinj : Function.Injective (fun n : ℕ ↦ h ^ n))
+    (extra : Set G) (hextra : extra.Finite) (C R N : ℕ) :
     ∃ a : Fin N → G,
       (∀ j, ∃ m : ℕ, 0 < m ∧ a j = h ^ m) ∧
       (∀ j, a j ∉ D.relBall lam C ∧ (a j)⁻¹ ∉ D.relBall lam C) ∧
+      (∀ j, a j ∉ extra ∧ (a j)⁻¹ ∉ extra) ∧
       ∀ i j, i < j →
         a j ∉ D.relBall lam (wordNorm D.base (a i) + 2 * R) ∧
         (a j)⁻¹ ∉ D.relBall lam (wordNorm D.base (a i) + 2 * R) := by
@@ -283,16 +285,16 @@ theorem exists_successivelySeparatedPowers
   induction N with
   | zero =>
       exact ⟨Fin.elim0, fun j ↦ Fin.elim0 j,
-        fun j ↦ Fin.elim0 j, fun i ↦ Fin.elim0 i⟩
+        fun j ↦ Fin.elim0 j, fun j ↦ Fin.elim0 j, fun i ↦ Fin.elim0 i⟩
   | succ N ih =>
-      obtain ⟨old, holdPow, holdDeep, holdSep⟩ := ih
+      obtain ⟨old, holdPow, holdDeep, holdExtra, holdSep⟩ := ih
       let depth := max C
         (Finset.univ.sup (fun i : Fin N ↦ wordNorm D.base (old i) + 2 * R))
       obtain ⟨m, hm, hmDeep, hmInvDeep⟩ :=
-        exists_deep_pow hinj (hloc depth) 1
+        exists_deep_pow hinj ((hloc depth).union hextra) 1
       let fresh := h ^ m
       let a : Fin (N + 1) → G := Fin.snoc old fresh
-      refine ⟨a, ?_, ?_, ?_⟩
+      refine ⟨a, ?_, ?_, ?_, ?_⟩
       · intro j
         refine Fin.lastCases ?_ ?_ j
         · exact ⟨m, hm, by simp [a, fresh, Fin.snoc_last]⟩
@@ -302,12 +304,18 @@ theorem exists_successivelySeparatedPowers
       · intro j
         refine Fin.lastCases ?_ ?_ j
         · constructor
-          · exact fun hc ↦ hmDeep (relBall_mono_radius D lam
-              (le_trans (le_max_left _ _) le_rfl) hc)
-          · exact fun hc ↦ hmInvDeep (relBall_mono_radius D lam
-              (le_trans (le_max_left _ _) le_rfl) hc)
+          · exact fun hc ↦ hmDeep (Or.inl (relBall_mono_radius D lam
+              (le_trans (le_max_left _ _) le_rfl) hc))
+          · exact fun hc ↦ hmInvDeep (Or.inl (relBall_mono_radius D lam
+              (le_trans (le_max_left _ _) le_rfl) hc))
         · intro i
           simpa [a, Fin.snoc_castSucc] using holdDeep i
+      · intro j
+        refine Fin.lastCases ?_ ?_ j
+        · exact ⟨fun hc ↦ hmDeep (Or.inr hc),
+            fun hc ↦ hmInvDeep (Or.inr hc)⟩
+        · intro i
+          simpa [a, Fin.snoc_castSucc] using holdExtra i
       · intro i j hij
         refine Fin.lastCases ?_ ?_ j
         · have hi : i ≠ Fin.last N := by omega
@@ -323,10 +331,12 @@ theorem exists_successivelySeparatedPowers
           constructor
           · intro hf
             apply hmDeep
-            exact relBall_mono_radius D lam hile (by simpa [a, fresh] using hf)
+            exact Or.inl (relBall_mono_radius D lam hile
+              (by simpa [a, fresh] using hf))
           · intro hf
             apply hmInvDeep
-            exact relBall_mono_radius D lam hile (by simpa [a, fresh] using hf)
+            exact Or.inl (relBall_mono_radius D lam hile
+              (by simpa [a, fresh] using hf))
         · intro j0
           let i0 : Fin N := ⟨i.val, by
             have hilast : i.val < N := lt_of_lt_of_le hij j0.isLt
@@ -610,9 +620,11 @@ loxodromy threshold and all fixed-side polygon bounds are already theorems.
 theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
     (h421b : DGOLemma421b.{u, 0}) (A : HullGeneratingSet G)
     {h g : G} (hlox : IsLoxodromic h (Cayley.base A.alphabet))
-    (hgE : g ∉ elementaryClosure h) (N : ℕ) :
+    (hgE : g ∉ elementaryClosure h) (extra : Set G) (hextra : extra.Finite)
+    (N : ℕ) :
     ∃ a : Fin N → G,
       (∀ j, ∃ m : ℕ, 0 < m ∧ a j = h ^ m) ∧
+      (∀ j, a j ∉ extra ∧ (a j)⁻¹ ∉ extra) ∧
       (∀ j, IsLoxodromic (g * a j) (Cayley.base A.alphabet)) ∧
       PairwiseNonCommensurable (fun j ↦ g * a j) := by
   let E : Unit → Subgroup G := fun _ ↦ elementaryClosure h
@@ -675,9 +687,9 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
     D hbaseD hfour
   have hinj : Function.Injective (fun n : ℕ ↦ h ^ n) :=
     injective_pow_of_not_isOfFinOrder (not_isOfFinOrder_of_isLoxodromic hlox)
-  obtain ⟨a, haPow, haDeep, haSep⟩ := exists_successivelySeparatedPowers
+  obtain ⟨a, haPow, haDeep, haExtra, haSep⟩ := exists_successivelySeparatedPowers
     D () hbaseD (hemb.locallyFinite ()) hinj
-      (max Clox Cmatch) Rrect N
+      extra hextra (max Clox Cmatch) Rrect N
   have haMem : ∀ j, a j ∈ D.fam () := by
     intro j
     obtain ⟨m, -, hm⟩ := haPow j
@@ -698,7 +710,7 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
     intro x hx
     apply base_subset_alphabet_carrier D
     exact Or.inl hx
-  refine ⟨a, haPow,
+  refine ⟨a, haPow, haExtra,
     isLoxodromic_base_of_subset_family hbaseSubset hloxEnlarged, ?_⟩
   have hnotCommLt : ∀ i j : Fin N, i < j →
       ∀ (p q : ℤ), p ≠ 0 → q ≠ 0 → ∀ t : G,
