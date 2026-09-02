@@ -4,6 +4,7 @@ import GroupApproximation.GGT.DGOLemma421Components
 import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOAssemblyCuts
 import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
+import GroupApproximation.GGT.OsinTheorem54SepGeodesicSides
 import GroupApproximation.GGT.HullSCRelatorSeparation2RelativeSides
 
 /-!
@@ -1428,6 +1429,103 @@ theorem dgoLemma421a_of_uniform414
           _ = vertex v word j := by rw [show i + (j - i) = j by omega]
       rw [hend] at hwhole
       omega
+
+/-! ## The mixed quadrilateral used in clause (b) -/
+
+/-- A quadrilateral whose two short sides are geodesic and whose two long
+sides satisfy the same quasi-geodesic inequality is a quasi-geodesic
+quadrilateral.  This is the bookkeeping bridge from the two applications of
+Lemma 4.21(a) to Proposition 4.14. -/
+theorem isQuasiGeodesicPolygon_fourGon_of_mixed
+    (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (p q r s : List (RelLetter G Λ))
+    (hgp : IsGeodesicWord D 1 (RelLetter.listVal p) p)
+    (hgr : IsGeodesicWord D 1 (RelLetter.listVal r) r)
+    (hqg : ∀ i j : ℕ, i ≤ j → j ≤ q.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) q i)
+          (vertex (1 : G) q j) : ℕ) : ℝ))
+    (hsg : ∀ i j : ℕ, i ≤ j → j ≤ s.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) s i)
+          (vertex (1 : G) s j) : ℕ) : ℝ))
+    (hlet : ∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a)
+    (hclose : RelLetter.listVal s =
+      RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r) :
+    IsQuasiGeodesicPolygon D 4 1 4 1
+      (p ++ q ++ r ++ revWord s) := by
+  refine isQuasiGeodesicPolygon_fourGon p q r s D hlet hclose ?_
+  intro t ht x y hx hxy hy
+  by_cases h0 : t = 0
+  · subst t
+    have hy' : y ≤ p.length := by
+      simpa [fourGonCut_one] using hy
+    rw [vertex_fourGon_first p q r s 1 (by omega),
+      vertex_fourGon_first p q r s 1 hy']
+    have h := geodesic_side_clause D p 1 hgp hxy hy'
+    rw [one_mul, one_mul] at h
+    have h' : ((y - x : ℕ) : ℝ) ≤
+        (wordDist D.alphabet.carrier (vertex (1 : G) p x)
+          (vertex (1 : G) p y) : ℝ) := by
+      simpa using h
+    norm_num
+    linarith
+  · by_cases h1 : t = 1
+    · subst t
+      have hx' : p.length ≤ x := hx
+      have hy' : y ≤ p.length + q.length := hy
+      obtain ⟨x', rfl⟩ : ∃ x', x = p.length + x' := ⟨x - p.length, by omega⟩
+      obtain ⟨y', rfl⟩ : ∃ y', y = p.length + y' := ⟨y - p.length, by omega⟩
+      rw [vertex_fourGon_side p q r s 1 (by omega : x' ≤ q.length),
+        vertex_fourGon_side p q r s 1 (by omega : y' ≤ q.length), one_mul,
+        wordDist_left_invariant,
+        show p.length + y' - (p.length + x') = y' - x' from by omega]
+      exact hqg x' y' (by omega) (by omega)
+    · by_cases h2 : t = 2
+      · subst t
+        rw [fourGonCut_two, fourGonCut_three] at hx hy
+        have hx' : p.length + q.length ≤ x := hx
+        have hy' : y ≤ p.length + q.length + r.length := hy
+        obtain ⟨x', rfl⟩ : ∃ x', x = p.length + q.length + x' :=
+          ⟨x - (p.length + q.length), by omega⟩
+        obtain ⟨y', rfl⟩ : ∃ y', y = p.length + q.length + y' :=
+          ⟨y - (p.length + q.length), by omega⟩
+        rw [vertex_fourGon_third p q r s 1 (m := x')
+          (by omega : x' ≤ r.length),
+          vertex_fourGon_third p q r s 1 (m := y')
+          (by omega : y' ≤ r.length), wordDist_left_invariant,
+          show p.length + q.length + y' -
+              (p.length + q.length + x') = y' - x' from by omega]
+        have h := geodesic_side_clause D r (RelLetter.listVal p *
+          RelLetter.listVal q) hgr (a := x') (c := y') (by omega) (by omega)
+        rw [wordDist_left_invariant] at h
+        have h' : ((y' - x' : ℕ) : ℝ) ≤
+            (wordDist D.alphabet.carrier (vertex (1 : G) r x')
+              (vertex (1 : G) r y') : ℝ) := by
+          simpa using h
+        norm_num
+        linarith
+      · have ht3 : t = 3 := by omega
+        subst ht3
+        have hx' : p.length + q.length + r.length ≤ x := hx
+        have hy' : y ≤ p.length + q.length + r.length + s.length := hy
+        obtain ⟨a, rfl⟩ : ∃ a, x = p.length + q.length + r.length + a :=
+          ⟨x - (p.length + q.length + r.length), by omega⟩
+        obtain ⟨c, rfl⟩ : ∃ c, y = p.length + q.length + r.length + c :=
+          ⟨y - (p.length + q.length + r.length), by omega⟩
+        rw [show p.length + q.length + r.length + a =
+              p.length + q.length + r.length + (s.length - (s.length - a))
+              from by omega,
+          vertex_fourGon_opposite_closed p q r s hclose (s.length - a),
+          show p.length + q.length + r.length + c =
+              p.length + q.length + r.length + (s.length - (s.length - c))
+              from by omega,
+          vertex_fourGon_opposite_closed p q r s hclose (s.length - c),
+          wordDist_comm D.alphabet.symmetricGenerating,
+          show p.length + q.length + r.length + (s.length - (s.length - c)) -
+              (p.length + q.length + r.length + (s.length - (s.length - a)))
+              = s.length - a - (s.length - c) from by omega]
+        exact hsg (s.length - c) (s.length - a) (by omega) (by omega)
 
 /-! ## One opposite-side match from a deep run -/
 
