@@ -3,6 +3,8 @@ import GroupApproximation.GGT.KazhdanHypGQLinkTransfer
 import GroupApproximation.GGT.KazhdanHypSymplecticQuadrangleStrongRegular
 import GroupApproximation.GGT.KazhdanHypGQTwoTable
 
+set_option maxHeartbeats 800000
+
 /-!
 # Compact finite verification of an unstructured triangle table
 
@@ -284,6 +286,35 @@ structure W8Table (m : ℕ) extends Table 585 m where
     toTable.incident p l =
       decide (SymplecticQuadrangle.Incident (pointEquiv p) (lineEquiv l))
 
+noncomputable def coordinateIncident
+    (pointEquiv : Fin 585 ≃ SymplecticQuadrangle.Point)
+    (lineEquiv : Fin 585 ≃ SymplecticQuadrangle.Line) :
+    Fin 585 → Fin 585 → Bool :=
+  fun p l => decide
+    (SymplecticQuadrangle.Incident (pointEquiv p) (lineEquiv l))
+
+theorem coordinateIncident_spec
+    (pointEquiv : Fin 585 ≃ SymplecticQuadrangle.Point)
+    (lineEquiv : Fin 585 ≃ SymplecticQuadrangle.Line) (p l) :
+    coordinateIncident pointEquiv lineEquiv p l =
+      decide (SymplecticQuadrangle.Incident (pointEquiv p) (lineEquiv l)) := by
+  rfl
+
+noncomputable def W8Table.ofCoordinate {m : ℕ}
+    (pointEquiv : Fin 585 ≃ SymplecticQuadrangle.Point)
+    (lineEquiv : Fin 585 ≃ SymplecticQuadrangle.Line)
+    (lambda : Fin 585 → Fin 585)
+    (rows : Fin m → Triple 585) : W8Table m := {
+  toTable := {
+    incident := coordinateIncident pointEquiv lineEquiv
+    lambda := lambda
+    rows := rows }
+  pointEquiv := pointEquiv
+  lineEquiv := lineEquiv
+  incident_spec := by
+    intro p l
+    exact coordinateIncident_spec pointEquiv lineEquiv p l }
+
 noncomputable def lambdaEquiv {m : ℕ} (T : W8Table m)
     (h : Function.Bijective T.toTable.lambda) : Fin 585 ≃ Fin 585 :=
   Equiv.ofBijective T.toTable.lambda h
@@ -365,10 +396,16 @@ noncomputable def checkW8Table_true_link {m : ℕ} (T : W8Table m)
 
 /-! ## q=2 end-to-end calibration -/
 
-def qTwoRows : Fin 15 → Triple 15 := fun j => {
-  x := (GQTwoTable.triangles j 0).1
-  y := (GQTwoTable.triangles j 1).1
-  z := (GQTwoTable.triangles j 2).1 }
+def qTwoRows : Fin 15 → Triple 15 :=
+  ![
+    {x := (0 : Fin 15), y := 1, z := 6},
+    {x := 0, y := 7, z := 10}, {x := 0, y := 13, z := 4},
+    {x := 1, y := 3, z := 12}, {x := 11, y := 3, z := 1},
+    {x := 3, y := 8, z := 2}, {x := 5, y := 7, z := 2},
+    {x := 13, y := 5, z := 2}, {x := 11, y := 9, z := 4},
+    {x := 12, y := 14, z := 4}, {x := 11, y := 8, z := 5},
+    {x := 10, y := 9, z := 6}, {x := 13, y := 12, z := 6},
+    {x := 8, y := 14, z := 7}, {x := 10, y := 14, z := 9}]
 
 def qTwoData : Table 15 15 := {
   incident := fun p l => decide (GQTwoTable.incidence l p = 1)
@@ -382,23 +419,22 @@ theorem qTwoData_lambda_bijective :
 theorem qTwoTriangles_eq :
     triangles qTwoData = GQTwoTable.triangles := by
   funext j k
-  fin_cases k
-  · change ((GQTwoTable.triangles j 0).1, true) = GQTwoTable.triangles j 0
-    rcases h : GQTwoTable.triangles j 0 with ⟨g, s⟩
-    have hs : s = true := by simpa [h] using GQTwoTable.positive j 0
-    simp [hs]
-  · change ((GQTwoTable.triangles j 1).1, true) = GQTwoTable.triangles j 1
-    rcases h : GQTwoTable.triangles j 1 with ⟨g, s⟩
-    have hs : s = true := by simpa [h] using GQTwoTable.positive j 1
-    simp [hs]
-  · change ((GQTwoTable.triangles j 2).1, true) = GQTwoTable.triangles j 2
-    rcases h : GQTwoTable.triangles j 2 with ⟨g, s⟩
-    have hs : s = true := by simpa [h] using GQTwoTable.positive j 2
-    simp [hs]
+  fin_cases j <;> fin_cases k <;> rfl
 
 theorem qTwoData_checkTableAt :
     checkTableAt qTwoData 3 = true := by
-  decide
+  rw [checkTableAt, Bool.and_eq_true]
+  constructor
+  · have hp : positiveCardinalityCheck qTwoData = true := by decide
+    have hl : lambdaCheck qTwoData = true := by decide
+    have hr : rowCompatibilityCheck qTwoData = true := by decide
+    have hc : pairCoverCheck qTwoData = true := by decide
+    have hn : noCubeCheck qTwoData = true := by decide
+    rw [localCheck, hp, hl, hr, hc, hn]
+    rfl
+  · apply (girthCheckAt_eq_true_iff qTwoData).mpr
+    rw [qTwoTriangles_eq]
+    exact GQTwoTable.girthEightChecks
 
 theorem qTwoData_girth :
     GirthEightChecks (triangles qTwoData) 3 :=
