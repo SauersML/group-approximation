@@ -78,7 +78,8 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
     {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
     ∃ suffix : List (GGT.RelLetter G Lambda),
       (reversePrefixTarget Delta arc =
-        reverseDartsWord Delta arc ++ suffix) := by
+        reverseDartsWord Delta arc ++ suffix)
+  := by
   let carrier := arc.rotated
   let prefix := carrier.take arc.length
   let suffixDarts := carrier.drop arc.length
