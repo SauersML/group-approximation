@@ -308,9 +308,17 @@ theorem firstGap_leftConnector_isCompOf
     (orientedSegment B.chord (B.firstGapChordStart j)
       (B.firstGapChordFinish j)) (by
         intro x hx
-        simp only [firstGapLeft] at hx
-        rw [hprev] at hx
-        exact (B.firstBrokenConnectors s hs).end_label x hx) r hr hrCycle
+        by_cases hf : B.firstGapRunsForward j
+        · simp only [firstGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.firstBrokenConnectors s hs).end_label x
+            (by simpa only [s] using hx)
+        · simp only [firstGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.firstBrokenConnectors s hs).endThroughPartner_label x
+            (by simpa only [s] using hx)) r hr hrCycle
 
 /-- A wrapped-half child's left connector is a literal component letter with
 the exact label of its preceding broken source. -/
@@ -345,9 +353,17 @@ theorem secondGap_leftConnector_isCompOf
     (orientedSegment B.chord (B.secondGapChordStart j)
       (B.secondGapChordFinish j)) (by
         intro x hx
-        simp only [secondGapLeft] at hx
-        rw [hprev] at hx
-        exact (B.secondBrokenConnectors s hs).end_label x hx) r hr hrCycle
+        by_cases hf : B.secondGapRunsForward j
+        · simp only [secondGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.secondBrokenConnectors s hs).endThroughPartner_label x
+            (by simpa only [s] using hx)
+        · simp only [secondGapLeft] at hx
+          rw [hprev] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.secondBrokenConnectors s hs).end_label x
+            (by simpa only [s] using hx)) r hr hrCycle
 
 /-- A first-half child's right connector is a literal component letter with
 the exact label of its following broken source. -/
@@ -390,9 +406,17 @@ theorem firstGap_rightConnector_isCompOf
     (orientedSegment B.chord (B.firstGapChordStart j)
       (B.firstGapChordFinish j)) (by
         intro x hx
-        simp only [firstGapRight] at hx
-        rw [hnext] at hx
-        exact (B.firstBrokenConnectors s hs).start_label x hx) r hr hrCycle
+        by_cases hf : B.firstGapRunsForward j
+        · simp only [firstGapRight] at hx
+          rw [hnext] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.firstBrokenConnectors s hs).start_label x
+            (by simpa only [s] using hx)
+        · simp only [firstGapRight] at hx
+          rw [hnext] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.firstBrokenConnectors s hs).startThroughPartner_label x
+            (by simpa only [s] using hx)) r hr hrCycle
 
 /-- A wrapped-half child's right connector is a literal component letter with
 the exact label of its following broken source. -/
@@ -435,9 +459,17 @@ theorem secondGap_rightConnector_isCompOf
     (orientedSegment B.chord (B.secondGapChordStart j)
       (B.secondGapChordFinish j)) (by
         intro x hx
-        simp only [secondGapRight] at hx
-        rw [hnext] at hx
-        exact (B.secondBrokenConnectors s hs).start_label x hx) r hr hrCycle
+        by_cases hf : B.secondGapRunsForward j
+        · simp only [secondGapRight] at hx
+          rw [hnext] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.secondBrokenConnectors s hs).startThroughPartner_label x
+            (by simpa only [s] using hx)
+        · simp only [secondGapRight] at hx
+          rw [hnext] at hx
+          simp only [hf, ↓reduceIte] at hx
+          exact (B.secondBrokenConnectors s hs).start_label x
+            (by simpa only [s] using hx)) r hr hrCycle
 
 end BalancedSplitData
 
