@@ -156,6 +156,25 @@ def BaseCellElimination : Prop :=
 
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Explicit relator-cell coverage gives base-cell elimination by the named
+identity reduction. -/
+theorem baseCellEliminationAt_of_relatorCellCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (cover : VanKampen.RelatorCellCover Delta) :
+    BaseCellEliminationAt (T := T) Delta := by
+  intro hred
+  let I := VanKampen.identityRelatorOnlyReduction Delta cover hred
+  refine ⟨{
+    diagram := I.diagram
+    boundaryWord_eq := I.boundaryWord_eq
+    rCellCount_le := ?_
+    reduced := I.reduced
+    relatorOnly := { cell := I.cover.cell }
+  }⟩
+  rw [I.rCellCount_eq]
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A diagram with only its exterior face is eliminated by the named identity
 reduction `VanKampen.identityRelatorOnlyReduction`. -/
 theorem baseCellEliminationAt_of_noInnerFaces
