@@ -1100,7 +1100,9 @@ theorem relatorCells_values
       funext i
       exact Z.relatorCell_value i
     _ = (List.ofFn Z.cells.get).map Lemma44OrientedRelatorCell.value := by
-      rw [← List.ofFn_comp']
+      apply congrArg List.ofFn
+      funext i
+      rfl
     _ = Z.cells.map Lemma44OrientedRelatorCell.value := by
       rw [List.ofFn_get]
 
@@ -1195,18 +1197,19 @@ theorem cactusDiscDiagram_reduced
         rfl
       _ = (List.ofFn Z.relatorCell).map orientedOfCell := by
         rw [List.map_ofFn]
+        rfl
       _ = Z.relatorCells.map orientedOfCell := rfl
   intro pre between suf C₁ C₂ hsplit
+  change Z.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) at hsplit
   have hsplit' := congrArg (List.map orientedOfCell) hsplit
   rw [horiented] at hsplit'
-  apply Z.no_cancelling_pair
+  have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
     (between.map orientedOfCell)
     (suf.map orientedOfCell)
     (orientedOfCell C₁) (orientedOfCell C₂) hsplit'
-  simp only [orientedOfCell, Lemma44OrientedRelatorCell.value,
-    RelatorCell.value]
-  rfl
+  simpa [orientedOfCell, Lemma44OrientedRelatorCell.value,
+    RelatorCell.value] using hno
 
 def cellIndexEquiv
     {G : Type u} [Group G] {Lambda : Type w}
