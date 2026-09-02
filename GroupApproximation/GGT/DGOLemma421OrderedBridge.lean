@@ -57,6 +57,80 @@ theorem DGO421OrderedBlockPayload.toStartCosetWitness
   exact ⟨W.ip, W.kp, W.iq, W.kq, W.lam,
     W.pcomp, W.qcomp, W.psep, W.qsep, W.cosetMatch⟩
 
+/-- The order data still missing after the finite-absorption certificate has
+been constructed.  It supplies the target component starts and ends, both
+separator clauses, and the start-coset identity on the certificate's whole
+matched block.  No polygon or counting hypotheses occur in this local record.
+-/
+structure DGO421FiniteAbsorptionOrderData
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) where
+  qIndex : ℕ → ℕ
+  qEnd : ℕ → ℕ
+  qComponent : ∀ t : ℕ, t < K →
+    IsComp (cert.label (cert.blockIndex ⟨t, by omega⟩)) q
+      (qIndex t) (qEnd t)
+  pSeparator : ∀ t : ℕ, t + 1 < K →
+    BaseEdgeOrTrivial p
+      (cert.source (cert.blockIndex ⟨t, by omega⟩) + 1)
+      (cert.source (cert.blockIndex ⟨t + 1, by omega⟩))
+  qSeparator : ∀ t : ℕ, t + 1 < K →
+    BaseEdgeOrTrivial q (qEnd t) (qIndex (t + 1))
+  cosetMatch : ∀ t : ℕ, t < K →
+    (vertex (1 : G) p (cert.source (cert.blockIndex ⟨t, by omega⟩)))⁻¹ *
+        vertex (1 : G) q (qIndex t) ∈
+      D.fam (cert.label (cert.blockIndex ⟨t, by omega⟩))
+
+/-- The finite certificate and its order data assemble into the ordered-block
+payload.  This is the precise local reduction of the DGO minimality argument:
+only `DGO421FiniteAbsorptionOrderData` remains to be constructed. -/
+noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
+    DGO421OrderedBlockPayload D p q K := by
+  let first : Fin K := ⟨0, hK⟩
+  let blockAt : ℕ → Fin N := fun t =>
+    if ht : t < K then cert.blockIndex ⟨t, ht⟩ else cert.blockIndex first
+  let indexAt : ℕ → ℕ := fun t =>
+    if ht : t < K then O.qIndex t else O.qIndex 0
+  let endAt : ℕ → ℕ := fun t =>
+    if ht : t < K then O.qEnd t else O.qEnd 0
+  let ipAt : ℕ → ℕ := fun t => cert.source (blockAt t)
+  let kpAt : ℕ → ℕ := fun t => cert.source (blockAt t) + 1
+  let lamAt : ℕ → Λ := fun t => cert.label (blockAt t)
+  refine
+    { ip := ipAt
+      kp := kpAt
+      iq := indexAt
+      kq := endAt
+      lam := lamAt
+      pcomp := ?_
+      qcomp := ?_
+      psep := ?_
+      qsep := ?_
+      cosetMatch := ?_ }
+  · intro t ht
+    exact cert.source_comp (blockAt t)
+  · intro t ht
+    dsimp [lamAt, indexAt, endAt, blockAt]
+    rw [dif_pos ht, dif_pos ht]
+    exact O.qComponent t ht
+  · intro t ht
+    dsimp [kpAt, ipAt, blockAt]
+    rw [dif_pos (by omega), dif_pos (by omega), dif_pos (by omega)]
+    exact O.pSeparator t ht
+  · intro t ht
+    dsimp [endAt, indexAt, blockAt]
+    rw [dif_pos (by omega), dif_pos (by omega)]
+    exact O.qSeparator t ht
+  · intro t ht
+    dsimp [ipAt, indexAt, lamAt, blockAt]
+    rw [dif_pos ht, dif_pos ht, dif_pos ht]
+    exact O.cosetMatch t ht
+
 /-! ## Trivial-group model -/
 
 private def orderedBridgeTrivialRelGenSet : RelGenSet PUnit Unit where
