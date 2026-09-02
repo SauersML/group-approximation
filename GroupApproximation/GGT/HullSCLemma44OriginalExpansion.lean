@@ -168,6 +168,44 @@ theorem isLemma44Input (E : OriginalRelatorExpansion original v eps rho mu) :
       E.deep E.pieces)
     E.quasiGeodesic E.published
 
+/-- **Only the metric clauses remain.**  A spelling of the selected letters
+supplies the expanded relator, its legality, the element it spells, and its
+length; what has to be proved about it is depth, the two piece bounds and the
+quasi-geodesic chain. -/
+def ofSpelling
+    (spell : GGT.RelLetter G (AuxiliaryPeripheralIndex k) →
+      List (GGT.RelLetter G Lambda))
+    (hspell : ∀ a, GGT.RelLetter.listVal (spell a) = a.val)
+    (hletters : ∀ a b, b ∈ spell a → original.IsLetter b)
+    (hne : ∀ a, 1 ≤ (spell a).length)
+    (hbase : ∀ g ∈ original.base, g⁻¹ ∈ original.base)
+    (hlong : rho ≤ v.length)
+    (hdeep : ∀ b ∈ expandWord spell v, ∀ lam : Lambda,
+      GGT.RelLetter.IsCompOf lam b →
+        b.val ∉ original.relBall lam rho ∧
+          (b.val)⁻¹ ∉ original.relBall lam rho)
+    (hpieces : ∀ u w : List (GGT.RelLetter G Lambda),
+      RelWord.IsPiece original
+        (RelWord.symmetrized (expandWord spell v)) eps u w →
+        (u.length : ℝ) < mu * w.length)
+    (hpublished : ∀ u u' w : List (GGT.RelLetter G Lambda),
+      RelWord.IsPublishedPiece original
+        (RelWord.symmetrized (expandWord spell v)) eps u u' w →
+        max (u.length : ℝ) (u'.length : ℝ) < mu * w.length)
+    (hqg : ∀ w ∈ RelWord.symmetrized (expandWord spell v),
+      GGT.IsQuasiGeodesicChainAt original.alphabet.carrier 4 1
+        (fun i => GGT.RelLetter.listVal (w.take i)) w.length) :
+    OriginalRelatorExpansion original v eps rho mu where
+  word := expandWord spell v
+  base_inv := hbase
+  letters := letters_expandWord spell hletters v
+  value := listVal_expandWord spell hspell v
+  long := le_trans hlong (length_le_length_expandWord spell hne v)
+  deep := hdeep
+  pieces := hpieces
+  published := hpublished
+  quasiGeodesic := hqg
+
 /-- The two families normally generate the same subgroup, because the expansion
 spells the same element. -/
 theorem normalClosure_eq (E : OriginalRelatorExpansion original v eps rho mu) :
