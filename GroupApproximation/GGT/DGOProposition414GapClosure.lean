@@ -341,26 +341,28 @@ theorem firstGap_arcBase
       · have hend := B.firstBrokenConnectors_end_value_global s hs
         have hfinish : B.firstGapChordFinish j =
             B.brokenAssignment.first.partner s := by
-          simp only [firstGapChordFinish, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [firstGapChordFinish]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endConnector := by
-          simp only [firstGapLeft, hf, ↓reduceIte]
-          rfl
+          simp only [firstGapLeft]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
       · have hend :=
           B.firstBrokenConnectors_endThroughPartner_value_global s hs
         have hfinish : B.firstGapChordFinish j =
             B.brokenAssignment.first.partner s + 1 := by
-          simp only [firstGapChordFinish, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [firstGapChordFinish]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endThroughPartner := by
-          simp only [firstGapLeft, hf, ↓reduceIte]
-          rfl
+          simp only [firstGapLeft]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
 
@@ -406,26 +408,28 @@ theorem firstGap_arcFinish
       · have hstart := B.firstBrokenConnectors_start_value_global s hs
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startConnector := by
-          simp only [firstGapRight, hf, ↓reduceIte]
-          rfl
+          simp only [firstGapRight]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s + 1 := by
-          simp only [firstGapChordStart, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [firstGapChordStart]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
       · have hstart :=
           B.firstBrokenConnectors_startThroughPartner_value_global s hs
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startThroughPartner := by
-          simp only [firstGapRight, hf, ↓reduceIte]
-          rfl
+          simp only [firstGapRight]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s := by
-          simp only [firstGapChordStart, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [firstGapChordStart]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
 
@@ -506,27 +510,27 @@ theorem secondGap_arcBase
           B.secondBrokenConnectors_endThroughPartner_value_global s hs
         have hfinish : B.secondGapChordFinish j =
             B.brokenAssignment.second.partner s := by
-          simp only [secondGapChordFinish, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [secondGapChordFinish]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         have hleft : B.secondGapLeft j =
             (B.secondBrokenConnectors s hs).endThroughPartner := by
-          simp only [secondGapLeft, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [secondGapLeft]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
       · have hend := B.secondBrokenConnectors_end_value_global s hs
         have hfinish : B.secondGapChordFinish j =
             B.brokenAssignment.second.partner s + 1 := by
-          simp only [secondGapChordFinish, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [secondGapChordFinish]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         have hleft : B.secondGapLeft j =
             (B.secondBrokenConnectors s hs).endConnector := by
-          simp only [secondGapLeft, hf, ↓reduceIte]
-          simp only [hprev]
-          rfl
+          simp only [secondGapLeft]
+          rw [hprev]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
 
@@ -572,27 +576,27 @@ theorem secondGap_arcFinish
           B.secondBrokenConnectors_startThroughPartner_value_global s hs
         have hright : B.secondGapRight j =
             (B.secondBrokenConnectors s hs).startThroughPartner := by
-          simp only [secondGapRight, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [secondGapRight]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         have hchordStart : B.secondGapChordStart j =
             B.brokenAssignment.second.partner s + 1 := by
-          simp only [secondGapChordStart, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [secondGapChordStart]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
       · have hstart := B.secondBrokenConnectors_start_value_global s hs
         have hright : B.secondGapRight j =
             (B.secondBrokenConnectors s hs).startConnector := by
-          simp only [secondGapRight, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [secondGapRight]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         have hchordStart : B.secondGapChordStart j =
             B.brokenAssignment.second.partner s := by
-          simp only [secondGapChordStart, hf, ↓reduceIte]
-          simp only [hnext]
-          rfl
+          simp only [secondGapChordStart]
+          rw [hnext]
+          simpa only [hf, ↓reduceIte]
         rw [hfinish, hright, hchordStart, ← harc, hstart]
         group
 
