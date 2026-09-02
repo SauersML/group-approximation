@@ -180,6 +180,7 @@ noncomputable def ofScaffold
   edgeWeight := Embedded.InteriorEdge.weight
   edgeWeight_le_incident := by
     intro i edge hincident
+    change Embedded.InteriorEdge.Incident i edge at hincident
     exact Embedded.InteriorEdge.weight_le_incident pieces.equations
       hcondition i edge hincident
   interiorWeight_sum := graph.interiorWeight_sum
