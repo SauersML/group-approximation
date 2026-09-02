@@ -208,13 +208,13 @@ theorem jointAuxiliaryPeripheralEmbedding_of_familyInclusion
   obtain ⟨P⟩ := quotientJointPeripheralPreservation_id_of_familyInclusion h44
     selected original hA horiginal
   refine ⟨P.rel, P.base_inv, ?_, ?_, P.embedded, ?_⟩
-  · intro x hx
-    have hmem := P.base_subset hx
-    rwa [Set.image_id] at hmem
   · intro lam
     rw [P.fam_original lam, Subgroup.map_id]
   · intro i
     rw [P.fam_selected i, Subgroup.map_id]
+  · intro x hx
+    have hmem := P.base_subset hx
+    simpa using hmem
 
 /-- The repaired form is weaker: it is the same conclusion under strictly more
 hypotheses. -/
