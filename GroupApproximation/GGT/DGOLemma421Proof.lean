@@ -1218,6 +1218,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
   let matchFin : ↑Noniso → Fin close.length := fun t =>
     ⟨other t - word.length, by
       have hlt := hotherLt t
+      have hfar := hotherFar t
       rw [show cycle = word ++ close from rfl, List.length_append] at hlt
       omega⟩
   have hmatchInj : Function.Injective matchFin := by
@@ -1242,6 +1243,10 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
         (peripheralOccurrence word a.1).pos
         (peripheralOccurrence word b.1).pos :=
       connected_trans (hotherSpec a).2.2 (connected_symm hconnB)
+    have haPos : (peripheralOccurrence word a.1).pos < word.length :=
+      (List.getElem?_eq_some_iff.mp (peripheralOccurrence word a.1).read).1
+    have hbPos : (peripheralOccurrence word b.1).pos < word.length :=
+      (List.getElem?_eq_some_iff.mp (peripheralOccurrence word b.1).read).1
     have hconnWord := (connected_append_left_iff_421 D.fam
       (peripheralOccurrence word a.1).label v word close
       (by omega) (by omega)).mp hconnCycle
@@ -1251,7 +1256,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     have hcard := Fintype.card_le_of_injective matchFin hmatchInj
     simpa using hcard
   have hperipheral := peripheralCount_le_internal_card_add_one word
-  have hlength := length_le_two_mul_peripheralCount_add_one word hW1
+  have hlength := length_le_two_mul_peripheralCount_add_one hW1
   have hcloseLength : close.length =
       wordDist D.alphabet.carrier v (vertex v word word.length) := by
     rw [hclose.2.2, wordDist_symmetric]
