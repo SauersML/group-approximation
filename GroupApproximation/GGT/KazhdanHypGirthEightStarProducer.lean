@@ -138,7 +138,6 @@ def StarLayerConstructionCertificateInput : Prop :=
       ∃ L : TriangularDiagramLocalData T Delta,
         Nonempty (StarLayerConstructionCertificate Delta L)
 
-omit [DecidableEq TriangleIndex] in
 /-- The source package constructs a `SuccessiveStarLayers` record for every
 geodesic configuration. -/
 theorem successiveStarLayers_of_certificateInput
