@@ -67,13 +67,17 @@ theorem hullLemma44InjectivityOutput_of_canonicalStatement
     {k : ℕ} {S : Fin k → Subgroup G}
     (D : AuxiliaryPeripheralFamily A N S) (R : ℕ) :
     ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
-      ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
+    ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
         {Q : Type} [Group Q] (q : G →* Q),
         RelWord.IsLemma44Input D.rel W eps mu rho →
         Function.Surjective q →
         q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
           Set.InjOn q (cayleyBall A.alphabet R) := by
-  exact h44 D R
+  let hraw := h44 D R
+  rcases hraw with ⟨eps, rho, mu, hmu, hgood⟩
+  refine ⟨eps, rho, mu, hmu, ?_⟩
+  intro W Q _ q hinput hsurj hker
+  exact (hgood W q hinput hsurj hker).1
 
 /-- The named hull44 kernel-assembly theorem supplies the same injectivity
 projection for an auxiliary peripheral family. -/
