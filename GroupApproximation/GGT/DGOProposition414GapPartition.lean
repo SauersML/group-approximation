@@ -77,6 +77,7 @@ theorem sum_orderedGap_width_add_length (lo hi : ℕ) (xs : List ℕ)
         exact hhi y (by simp [hy])
       have htail := ih (x + 1) htailLo htailHi htailOrdered
       rw [Fin.sum_univ_succ]
+      simp only [Fin.val_zero]
       have hzero :
           orderedGapFinish hi (x :: xs) 0 -
               orderedGapStart lo (x :: xs) 0 = x - lo := by
