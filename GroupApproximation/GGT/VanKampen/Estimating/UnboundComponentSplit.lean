@@ -193,6 +193,14 @@ theorem estimatingUnboundRepaired_of_decomposition
   estimatingUnboundRepaired_of_componentPartition
     (lemma62ComponentPartition_of_decomposition hdecomposition)
 
+/-- The decomposition producer discharges the statement that
+`estimatingDataConstruction_of_components` consumes. -/
+theorem estimatingUnboundOutput_of_decomposition
+    (hdecomposition : Lemma62ComponentDecompositionStatement.{u, w, v}) :
+    EstimatingUnboundOutputStatement.{u, w, v} :=
+  estimatingUnboundOutput_of_repaired
+    (estimatingUnboundRepaired_of_decomposition hdecomposition)
+
 /-! ## Model checks -/
 
 /-- The one-cell decomposition with no complementary component: one graph
