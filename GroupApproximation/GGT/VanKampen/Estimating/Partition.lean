@@ -408,6 +408,32 @@ noncomputable def canonical
         (Classical.choose_spec hbound)
     · exact CellDartClass.unbound
 
+/-- Under incidence uniqueness, the canonical classifier has the kind of any
+incidence occupying the position. -/
+theorem canonical_kind_of_mem
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (hunique : IncidencePositionUnique selected)
+    (i : Fin Delta.rCellCount)
+    (position : Fin (cellDarts Delta i).length)
+    (incidence : CellIncidence selected i)
+    (hmem : (cellDarts Delta i).get position ∈ incidence.arc.darts) :
+    ((canonical selected i).classify position).kind = incidence.kind := by
+  unfold canonical
+  dsimp only
+  split
+  next hbound =>
+    have heq : Classical.choose hbound = incidence :=
+      hunique i position (Classical.choose hbound) incidence
+        (Classical.choose_spec hbound) hmem
+    cases heq
+    rfl
+  next hbound =>
+    exact (hbound ⟨incidence, hmem⟩).elim
+
 /-- The canonical classifier makes every cell boundary partition inhabited. -/
 theorem nonempty
     {G : Type u} [Group G] {Lambda : Type w}
