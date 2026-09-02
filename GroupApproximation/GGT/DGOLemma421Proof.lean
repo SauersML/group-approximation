@@ -2318,6 +2318,46 @@ theorem exists_connected_of_deep_component
   intro j hj hstart hconn
   exact hcon ⟨j, hj, hstart, hconn⟩
 
+/-- **The branch point of the minimality argument.**  A deep component of `Q''`
+is connected to a component start on one of the four sides, and this says which
+four cases the argument then has to settle: the connector `e`, the `p`-segment,
+the connector `f`, or the reversed `q`-segment.
+
+Dahmani--Guirardel--Osin settle the first three and keep the fourth: "*`p_{i+a}`
+can not be connected to `e` as otherwise it is connected to `p_i` as well, which
+contradicts the fact that all components of `p` are isolated ... Again by
+(\ref{sctl-2}) and (\ref{lui}), `p_{i+a}` can not be connected to a component of
+`u_2`.  Hence `p_{i+a}` is connected to an `H_μ`-component `q_{j+b}` of `q`*"
+(HE.tex:764). -/
+theorem exists_connected_side_of_deep_minimalityFourGon
+    {D : RelGenSet G Λ} {C414 : ℕ}
+    (hproj : ∀ (n : ℕ) (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 4 1 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C414 * n))
+    {e Pseg f Qseg : List (RelLetter G Λ)}
+    (hpoly : IsQuasiGeodesicPolygon D 4 1 4 (1 : G)
+      (e ++ Pseg ++ f ++ revWord Qseg))
+    {nu : Λ} {i k : ℕ}
+    (hcomp : IsComp nu (e ++ Pseg ++ f ++ revWord Qseg) i k)
+    (hdeep : (vertex (1 : G) (e ++ Pseg ++ f ++ revWord Qseg) i)⁻¹ *
+        vertex (1 : G) (e ++ Pseg ++ f ++ revWord Qseg) k ∉
+      D.relBall nu (C414 * 4)) :
+    ∃ j : ℕ, j ≠ i ∧
+      IsCompStart nu (e ++ Pseg ++ f ++ revWord Qseg) j ∧
+      Connected D.fam nu (1 : G) (e ++ Pseg ++ f ++ revWord Qseg) i j ∧
+      (j < e.length ∨
+        (∃ a : ℕ, a ≤ Pseg.length ∧ j = e.length + a) ∨
+        (∃ m : ℕ, m < f.length ∧ j = e.length + Pseg.length + m) ∨
+        (∃ b : ℕ, b ≤ Qseg.length ∧
+          j = e.length + Pseg.length + f.length + (Qseg.length - b))) := by
+  obtain ⟨j, hji, hstart, hconn⟩ :=
+    exists_connected_of_deep_component hproj hpoly hcomp hdeep
+  refine ⟨j, hji, hstart, hconn, ?_⟩
+  obtain ⟨kk, hcompj⟩ := hstart
+  exact fourGon_index_cases e Pseg f Qseg
+    (le_of_lt (lt_of_lt_of_le hcompj.1 hcompj.2.1))
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
