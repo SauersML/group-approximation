@@ -119,7 +119,7 @@ theorem isPowerTorsionFree_of_finiteOrderForces
 
 section ExponentSums
 
-variable {Generator : Type u} [DecidableEq Generator]
+variable {Generator : Type} [DecidableEq Generator]
 
 /-- The total exponent-sum homomorphism sends every free generator to `1` in
 the additive infinite cyclic group. -/
@@ -136,8 +136,12 @@ theorem totalExponentHom_relator
     (t : TriangularHodgeLayer.Triangle Generator)
     (hpositive : ∀ k, (t k).2 = true) :
     Multiplicative.toAdd (totalExponentHom (TriangularHodgeLayer.relator t)) = 3 := by
+  have hzero : (t 0).2 = true := hpositive 0
+  have hone : (t 1).2 = true := hpositive 1
+  have htwo : (t 2).2 = true := hpositive 2
   simp [totalExponentHom, TriangularHodgeLayer.relator,
-    TriangularHodgeLayer.letters_eq_three, word, FreeGroup.lift_mk, hpositive]
+    TriangularHodgeLayer.letters_eq_three, word, FreeGroup.lift_mk,
+    hzero, hone, htwo]
 
 /-- The exponent sum in coordinate `a` is the number of the three positive
 letters whose generator component equals `a`. -/
@@ -149,8 +153,12 @@ theorem generatorExponentHom_relator
       (if (t 0).1 = a then 1 else 0) +
         (if (t 1).1 = a then 1 else 0) +
           (if (t 2).1 = a then 1 else 0) := by
+  have hzero : (t 0).2 = true := hpositive 0
+  have hone : (t 1).2 = true := hpositive 1
+  have htwo : (t 2).2 = true := hpositive 2
   simp [generatorExponentHom, TriangularHodgeLayer.relator,
-    TriangularHodgeLayer.letters_eq_three, word, FreeGroup.lift_mk, hpositive]
+    TriangularHodgeLayer.letters_eq_three, word, FreeGroup.lift_mk,
+    hzero, hone, htwo]
 
 /-- A positive length-three relator which is a proper power in the free group
 is a cube of one signed generator.  First the total exponent sum shows that
@@ -172,7 +180,7 @@ theorem positive_triangle_cube_of_relatorIsProperPower
     simpa [mul_comm] using htotal
   have hdivNat : n ∣ 3 := Int.natCast_dvd_natCast.mp hdivInt
   have hn_three : n = 3 :=
-    ((by norm_num : Nat.Prime 3).dvd_prime_two_le hn).mp hdivNat
+    (Nat.dvd_prime_two_le (by norm_num : Nat.Prime 3) hn).mp hdivNat
   have hcoordinate := congrArg
     (fun r : FreeGroup Generator ↦
       Multiplicative.toAdd (generatorExponentHom (t 0).1 r)) hrel
