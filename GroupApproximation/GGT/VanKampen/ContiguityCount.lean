@@ -17,7 +17,7 @@ weight.  The argument here is purely finite:
 * the replacement/merging stage bounds uncovered weight by `2 * mu` times
   total perimeter;
 * after summing the cellwise partitions, some cell has exterior degree
-  strictly greater than `1 - 13 * mu`, hence at least `1 - 23 * mu`.
+  strictly greater than `1 - 13 * mu`, so it is at least `1 - 23 * mu`.
 
 No group, path, or diagram label occurs in the proof.  The fields below are
 exactly the output the contiguity-system construction has to provide.
