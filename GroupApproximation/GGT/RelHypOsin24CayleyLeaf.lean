@@ -261,35 +261,23 @@ def WeightedTorsionLeafCayley
 
 /-! ## 4.  The relatively hyperbolic hypothesis, and the universal closure -/
 
-/-- **`(G, {U})` is relatively hyperbolic, certified at this very `X`.**  Both
-clauses of `IsRelativelyHyperbolic` at the generating set the metric uses, which
-is what Osin's theorem needs: `IsRelativelyHyperbolic` produces *some* relative
-generating set, and transporting hyperbolicity from that one to another is
-Osin's independence theorem, which this repository does not have. -/
+/-- **`(G, {U})` is relatively hyperbolic, certified at this very `X`.**
+The certificate uses the labelled DGO relative metric on `X.toRelGenSet`; the
+legacy endpoint metric is deliberately absent. -/
 def IsRelHypAt
     (X : RelativeGeneratingSet (CoprodI G) (fun _ : Unit => sourceFactor G)) :
     Prop :=
-  ∃ delta : ℝ, HullGeometry.IsHyperbolicSpace delta (Cayley X.alphabet) ∧
-    PeripheralMetricLocallyFinite X
+  X.toRelGenSet.IsHyperbolicallyEmbedded
 
-/-- **The hypothesis is the repo's `IsRelativelyHyperbolic`, unbundled.**  So the
-leaf below claims nothing about pairs that are not relatively hyperbolic, and a
-consumer holding `IsRelativelyHyperbolic` has an `X` to feed it. -/
-theorem isRelativelyHyperbolic_iff_exists_relHypAt :
-    IsRelativelyHyperbolic (CoprodI G) (fun _ : Unit => sourceFactor G) ↔
-      ∃ X : RelativeGeneratingSet (CoprodI G) (fun _ : Unit => sourceFactor G),
-        IsRelHypAt X := by
-  constructor
-  · rintro ⟨X, delta, h1, h2⟩
-    exact ⟨X, delta, h1, h2⟩
-  · rintro ⟨X, delta, h1, h2⟩
-    exact ⟨X, delta, h1, h2⟩
-
+/-- A labelled certificate at an old-style symmetric finite base gives the
+repository's DGO relative-hyperbolicity predicate.  The converse would require
+the finite-base symmetrisation invariance theorem and is not used here. -/
 theorem isRelativelyHyperbolic_of_relHypAt
     {X : RelativeGeneratingSet (CoprodI G) (fun _ : Unit => sourceFactor G)}
-    (h : IsRelHypAt X) :
-    IsRelativelyHyperbolic (CoprodI G) (fun _ : Unit => sourceFactor G) :=
-  isRelativelyHyperbolic_iff_exists_relHypAt.mpr ⟨X, h⟩
+    (h : X.toRelGenSet.IsHyperbolicallyEmbedded) :
+    IsRelativelyHyperbolic (CoprodI G) (fun _ : Unit => sourceFactor G) := by
+  refine ⟨(X.toRelGenSet : RelGenSet (CoprodI G) Unit), X.finite, ?_, h⟩
+  exact RelativeGeneratingSet.toRelGenSet_fam X
 
 /-- **Osin, "Small cancellations over relatively hyperbolic groups", Theorem 2.4,
 clauses (1) and (5), at the relative Cayley graph.**
