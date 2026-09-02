@@ -89,6 +89,20 @@ private theorem eq_of_isChain_right_unique
   List.ext_getElem hlen
     (getElem_eq_of_isChain_right_unique huniq hfirst hsecond hhead)
 
+/-- Rotating a list to the position of a distinguished element puts that
+element at the head. -/
+private theorem rotate_append_cons
+    {α : Type*} (pre : List α) (a : α) (suf : List α) :
+    (pre ++ a :: suf).rotate pre.length = a :: (suf ++ pre) := by
+  rw [List.rotate_append_length_eq]
+
+/-- Reading the head of a list presented as a cons. -/
+private theorem head_eq_of_eq_cons
+    {α : Type*} {l : List α} {a : α} {t : List α} (h : l = a :: t)
+    (hne : l ≠ []) : l.head hne = a := by
+  subst h
+  rfl
+
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
   {Delta : DiscDiagram.{u, w, v} W}
@@ -168,16 +182,18 @@ theorem FaceSetBoundary.exists_cycle_eq_rotate
   have hd : IsBoundaryDart Delta faces
       (first.cycle.head first.cycle_nonempty) :=
     (first.cycle_mem_iff _).1 (List.head_mem first.cycle_nonempty)
-  have hhead : first.cycle.head first.cycle_nonempty =
-      (second.ofDart (first.cycle.head first.cycle_nonempty) hd).cycle.head
-        (second.ofDart (first.cycle.head first.cycle_nonempty)
-          hd).cycle_nonempty :=
-    (FaceSetBoundary.ofDart_head second
-      (first.cycle.head first.cycle_nonempty) hd).symm
+  have hmem : first.cycle.head first.cycle_nonempty ∈ second.cycle :=
+    (second.cycle_mem_iff _).2 hd
+  obtain ⟨pre, suf, hsplit⟩ := List.append_of_mem hmem
+  refine ⟨pre.length, ?_⟩
+  have hrot : (second.rotate pre.length).cycle =
+      first.cycle.head first.cycle_nonempty :: (suf ++ pre) := by
+    rw [FaceSetBoundary.rotate_cycle, hsplit, rotate_append_cons]
+  have hhead := head_eq_of_eq_cons hrot
+    (second.rotate pre.length).cycle_nonempty
   have hcycle := FaceSetBoundary.cycle_eq_of_head_eq first
-    (second.ofDart (first.cycle.head first.cycle_nonempty) hd) hhead
-  rw [FaceSetBoundary.ofDart_cycle_eq] at hcycle
-  exact ⟨_, hcycle⟩
+    (second.rotate pre.length) hhead.symm
+  exact hcycle.trans (FaceSetBoundary.rotate_cycle second pre.length)
 
 end Embedded
 end VanKampen
