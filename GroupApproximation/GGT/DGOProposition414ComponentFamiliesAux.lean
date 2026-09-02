@@ -387,23 +387,29 @@ theorem firstGapArcSource_fullComponent
           calc
             B.firstArcCut (B.firstTargetSide
                 (HalfEntry.entrySource B.brokenAssignment.index.first e)) + 1 =
-                B.firstArcCut (B.firstTargetSide
-                  (HalfEntry.entrySource B.brokenAssignment.index.first e) + 1) :=
+                B.firstTargetPos (HalfEntry.entrySource
+                  B.brokenAssignment.index.first e) + 1 := by
+              rw [(B.firstArcCut_target heTarget).1]
+            _ = B.firstArcCut (B.firstTargetSide
+                (HalfEntry.entrySource B.brokenAssignment.index.first e) + 1) :=
               (B.firstArcCut_target heTarget).2.symm
             _ = B.firstArcCut (B.firstGapStartSide j) := by rw [hprevSide]
+        have hprevCutLt : B.firstArcCut (B.firstTargetSide
+            (HalfEntry.entrySource B.brokenAssignment.index.first e)) <
+            B.firstArc.length := by
+          rw [(B.firstArcCut_target heTarget).1]
+          exact B.firstTargetPos_lt_firstArc_length heTarget
         have hprevLetter :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
-                exact B.firstArc_isCutPath.cut.le_length
-                  (B.firstTargetSide_lt heTarget).le)).IsCompOf
+                exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.first e)) :=
           hprevComp.2.2.1 _ le_rfl (by omega) _
         have hprevLabel :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
-                exact B.firstArc_isCutPath.cut.le_length
-                  (B.firstTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
+                exact hprevCutLt)).IsCompOf (P.label s) := by
           simpa only [hEqLabel] using hprevLetter
         have hparent := B.firstArc_targetComponent hsData.1
         have hidx : B.firstArcCut (B.firstTargetSide
@@ -429,12 +435,17 @@ theorem firstGapArcSource_fullComponent
           (B.firstGapFinishSide j)) (B.firstGapRight j)
         (orientedSegment B.chord (B.firstGapChordStart j)
           (B.firstGapChordFinish j)) (i + 1) hiend
-          (by simpa only [cycle] using hn)).mp (by
-            simpa [cycle] using hletter)
-      exact hlocalComp.2.2.2.2 _ (by omega) hiend hco
+          (by simpa only [cycle, Nat.add_assoc] using hn)).mp (by
+            simpa only [cycle, Nat.add_assoc] using hletter)
+      exact hlocalComp.2.2.2.2 _ (by omega) hco
     · have hiEq : i + 1 =
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-          (B.firstGapFinishSide j)).length := by omega
+          (B.firstGapFinishSide j)).length := by
+        have hlenArc := length_arcWord B.firstArc B.firstArcCut
+          (B.firstGapFinishSide_le j)
+        rw [hlenArc]
+        dsimp [i]
+        omega
       by_cases hnxt : HalfGap.nextEntry B.brokenAssignment.index.first j = none
       · have hsurv := B.firstGapArcSource_survives j s hs
         have hwordComp := hsurv.1
@@ -446,8 +457,13 @@ theorem firstGapArcSource_fullComponent
           · simp [refinedCut, splitPairCut_right]
         have hwordLength : B.firstWord.length =
             B.firstArcLength + B.chord.length := by
+          have hEnd : B.refinedCut (B.secondSide + 2) ≤ P.word.length := by
+            rw [show B.refinedCut (B.secondSide + 2) = B.secondVertex by
+              simp [BalancedSplitData.refinedCut, splitPairCut_right]]
+            exact B.secondVertex_mem.2.trans
+              (P.polygonCut.le_length (Nat.succ_le_iff.mpr B.secondSide_lt))
           rw [BalancedSplitData.firstWord,
-            length_firstHalf P.word B.refinedCut first_endpoint_le]
+            length_firstHalf P.word B.refinedCut hEnd]
           rw [show B.refinedCut (B.firstSide + 1) = B.firstVertex by
             simp [BalancedSplitData.refinedCut,
               splitPairCut_left B.side_order],
@@ -666,23 +682,29 @@ theorem secondGapArcSource_fullComponent
           calc
             B.secondArcCut (B.secondTargetSide
                 (HalfEntry.entrySource B.brokenAssignment.index.second e)) + 1 =
-                B.secondArcCut (B.secondTargetSide
-                  (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1) :=
+                B.secondTargetPos (HalfEntry.entrySource
+                  B.brokenAssignment.index.second e) + 1 := by
+              rw [(B.secondArcCut_target heTarget).1]
+            _ = B.secondArcCut (B.secondTargetSide
+                (HalfEntry.entrySource B.brokenAssignment.index.second e) + 1) :=
               (B.secondArcCut_target heTarget).2.symm
             _ = B.secondArcCut (B.secondGapStartSide j) := by rw [hprevSide]
+        have hprevCutLt : B.secondArcCut (B.secondTargetSide
+            (HalfEntry.entrySource B.brokenAssignment.index.second e)) <
+            B.secondArc.length := by
+          rw [(B.secondArcCut_target heTarget).1]
+          exact B.secondTargetPos_lt_secondArc_length heTarget
         have hprevLetter :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
-                exact B.secondArc_isCutPath.cut.le_length
-                  (B.secondTargetSide_lt heTarget).le)).IsCompOf
+                exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.second e)) :=
           hprevComp.2.2.1 _ le_rfl (by omega) _
         have hprevLabel :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
-                exact B.secondArc_isCutPath.cut.le_length
-                  (B.secondTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
+                exact hprevCutLt)).IsCompOf (P.label s) := by
           simpa only [hEqLabel] using hprevLetter
         have hparent := B.secondArc_targetComponent hsData.1
         have hidx : B.secondArcCut (B.secondTargetSide
@@ -708,12 +730,17 @@ theorem secondGapArcSource_fullComponent
           (B.secondGapFinishSide j)) (B.secondGapRight j)
         (orientedSegment B.chord (B.secondGapChordStart j)
           (B.secondGapChordFinish j)) (i + 1) hiend
-          (by simpa only [cycle] using hn)).mp (by
-            simpa [cycle] using hletter)
-      exact hlocalComp.2.2.2.2 _ (by omega) hiend hco
+          (by simpa only [cycle, Nat.add_assoc] using hn)).mp (by
+            simpa only [cycle, Nat.add_assoc] using hletter)
+      exact hlocalComp.2.2.2.2 _ (by omega) hco
     · have hiEq : i + 1 =
         (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
-          (B.secondGapFinishSide j)).length := by omega
+          (B.secondGapFinishSide j)).length := by
+        have hlenArc := length_arcWord B.secondArc B.secondArcCut
+          (B.secondGapFinishSide_le j)
+        rw [hlenArc]
+        dsimp [i]
+        omega
       by_cases hnxt : HalfGap.nextEntry B.brokenAssignment.index.second j = none
       · have hsurv := B.secondGapArcSource_survives j s hs
         have hwordComp := hsurv.1
