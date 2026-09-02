@@ -50,8 +50,10 @@ theorem boundedPowerSubsequence_proved :
   letI : PseudoMetricSpace X := instX
   letI : MulAction G X := instAct
   rw [IsEscaping, Filter.tendsto_atTop] at hnot
-  push_neg at hnot
+  push Not at hnot
   obtain ⟨R, hR⟩ := hnot
+  rw [Filter.eventually_atTop] at hR
+  push Not at hR
   refine ⟨R, ?_⟩
   intro hfinite
   obtain ⟨N, hN⟩ := hfinite.bddAbove
