@@ -136,6 +136,84 @@ structure DGO421FiniteAbsorptionOrderData
   qSeparator : ∀ (t : ℕ) (ht : t + 1 < K),
     BaseEdgeOrTrivial q (qEnd t) (cert.blockTarget ⟨t + 1, ht⟩)
 
+/-! ## The target side reduces to the minimality step
+
+Dahmani--Guirardel--Osin write the two paths as
+`p = r₀p₁r₁…p_mr_m` and `q = s₀q₁s₁…q_ns_n`, the `pᵢ`, `qⱼ` peripheral edges
+and the `rᵢ`, `sⱼ` either `X`-edges or trivial paths --- which is exactly
+`peripheralOccurrence` together with `BaseEdgeOrTrivial`.  Their minimality
+argument runs the polygon `Q''` built from the two connecting edges and the
+segments of `p` and `q` between them, and concludes "*Hence `a = 1` and
+similarly `b = 1`*": the matched targets are **consecutive** peripheral
+occurrences of `q`, carrying the label of their partners.
+
+That single conclusion is `DGO421TargetRankData` below, and it is all the
+target side needs: the component clause is then the (W3) singleton lemma and
+the separator clause is the same successive-rank lemma that already discharges
+the source side. -/
+
+/-- The output of the minimality step of Dahmani--Guirardel--Osin's Lemma
+4.21(b) on the target side: the certificate's matched targets are consecutive
+peripheral occurrences of `q`, and each carries the label of its partner on
+`p`.  No polygon, counting or isolation hypothesis occurs here. -/
+structure DGO421TargetRankData
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) where
+  targetRank : Fin K → Fin (peripheralPositions q).card
+  targetRank_pos : ∀ t : Fin K,
+    (peripheralOccurrence q (targetRank t)).pos = cert.blockTarget t
+  targetRank_label : ∀ t : Fin K,
+    (peripheralOccurrence q (targetRank t)).label =
+      cert.label (cert.blockIndex t)
+  targetRank_succ : ∀ (t : ℕ) (ht : t + 1 < K),
+    (targetRank ⟨t + 1, ht⟩).val =
+      (targetRank ⟨t, Nat.lt_of_succ_lt ht⟩).val + 1
+
+/-- **Both remaining clauses of the ordered block follow from the minimality
+step.**  The component clause is the (W3) singleton lemma at the target rank;
+the separator clause is `oppositeContiguity_of_rankSuccessor` on `q`, the same
+lemma that discharges the source side from the certificate's own ranks. -/
+noncomputable def DGO421TargetRankData.toOrderData
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hW1 : WWord.IsWOne q) (hW3 : WWord.IsWThree D q)
+    (T : DGO421TargetRankData cert) (hK : 0 < K) :
+    DGO421FiniteAbsorptionOrderData cert := by
+  let first : Fin K := ⟨0, hK⟩
+  let idx : ℕ → Fin K := fun s => if h : s < K then ⟨s, h⟩ else first
+  let iqAt : ℕ → ℕ := fun s => cert.blockTarget (idx s)
+  let kqAt : ℕ → ℕ := fun s => cert.blockTarget (idx s) + 1
+  let lamAt : ℕ → Λ := fun s => cert.label (cert.blockIndex (idx s))
+  have hcomp : ∀ s : ℕ, s < K → IsComp (lamAt s) q (iqAt s) (kqAt s) := by
+    intro s _hs
+    have hc := PeripheralOccurrence.isComp hW3 (T.targetRank (idx s))
+    rw [T.targetRank_label (idx s), T.targetRank_pos (idx s)] at hc
+    exact hc
+  have hrank : ∀ s : ℕ, s + 1 < K →
+      (T.targetRank (idx (s + 1))).val = (T.targetRank (idx s)).val + 1 := by
+    intro s hs
+    have hs0 : s < K := by omega
+    have h1 : idx s = (⟨s, hs0⟩ : Fin K) := dif_pos hs0
+    have h2 : idx (s + 1) = (⟨s + 1, hs⟩ : Fin K) := dif_pos hs
+    rw [h1, h2]
+    exact T.targetRank_succ s hs
+  have hsep := oppositeContiguity_of_rankSuccessor hW1 hW3
+    (iq := iqAt) (kq := kqAt) (lam := lamAt) hcomp
+    (fun s => T.targetRank (idx s))
+    (fun s _hs => T.targetRank_pos (idx s))
+    hrank
+  refine
+    { qEnd := kqAt
+      qComponent := ?_
+      qSeparator := ?_ }
+  · intro t ht
+    simpa [kqAt, iqAt, lamAt, idx, ht] using hcomp t ht
+  · intro t ht
+    have ht0 : t < K := by omega
+    simpa [kqAt, iqAt, idx, ht0, ht] using hsep t ht
+
 /-- The finite certificate and its order data assemble into the ordered-block
 payload.  This is the precise local reduction of the DGO minimality argument:
 only `DGO421FiniteAbsorptionOrderData` remains to be constructed. -/
