@@ -1170,7 +1170,8 @@ theorem powerDiscMirrorPairCut_of_planarDisc
       diagram := R.result
       boundary_eq := R.boundaryWord_eq.trans D.boundary_eq
       relatorOnly := hrelatorOnly }
-  refine { result := D'
+  refine {
+    result := D'
     boundaryWord_eq := ?_
     area_eq := ?_ }
   · exact R.boundaryWord_eq
