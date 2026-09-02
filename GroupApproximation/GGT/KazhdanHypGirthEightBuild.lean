@@ -621,6 +621,23 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_certificates
     (cactusBoundaryInput_of_orientedCactusBoundaryProducer hproducer)
     hbase hstar
 
+/-! The fully composed clean consumer has only the four genuine producers:
+the far-point extraction, the algebraic oriented cactus certificate, the
+cactus retyping family, and the rooted/centered star certificate. -/
+
+theorem presented_isHyperbolicGroup_of_cactus_star_build_of_all_certificates
+    {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
+    (hword : FarPointBoundaryWord (T := T))
+    (hproducer : OrientedCactusBoundaryProducer (T := T))
+    (hretyping : CactusRelatorRetypingAvailability (T := T))
+    (hstar : StarLayerConstructionCertificateInput (T := T)) :
+    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
+  exact presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
+    hchecks hword
+    (cactusBoundaryInput_of_orientedCactusBoundaryProducer hproducer)
+    (baseCellElimination_of_cactusRelatorRetypingAvailability hretyping)
+    hstar
+
 /-! ## Model tests for the named residuals -/
 
 def emptyTriangleTableBuild : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
