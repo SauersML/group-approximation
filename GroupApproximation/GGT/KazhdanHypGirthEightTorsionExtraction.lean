@@ -146,6 +146,56 @@ structure ExposedPairingEulerInput
     (cornerCycleOfCombMap pairing.toPairing.closedMap v)
   cellular : ∀ v, CellularReducedAt (corner v)
 
+/-! ## The concrete W(8) numerical part -/
+
+/-- The committed W(8) link data has `1170` signed vertices and degree nine;
+the algebraic incidence model has `585` points and lines, `5265` incident
+flags, and the triangle divisibility count `1755`.  These are the numerical
+parts of the exposed-pairing Euler calculation. -/
+theorem wEightLinkNumerics :
+    Fintype.card
+        (_root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightCounts.Vertex) =
+        1170 ∧
+      _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData.deg =
+        9 ∧
+      _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData.gapValue =
+        5 / 9 ∧
+      Fintype.card
+          _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Point * 9 =
+        5265 ∧
+      Fintype.card
+          _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Point * 9 =
+        3 * 1755 := by
+  have hp : Fintype.card
+      _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Point = 585 :=
+    _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.point_card
+  have hl : Fintype.card
+      _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Line = 585 :=
+    _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.line_card
+  have hvertex : Fintype.card
+      (_root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightCounts.Vertex) =
+      1170 := by
+    change Fintype.card
+      (_root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Point ⊕
+        _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Line) = 1170
+    rw [Fintype.card_sum, hp, hl]
+  have hparameters :=
+    _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData_parameters
+  norm_num [hp] at hparameters ⊢
+  exact ⟨hvertex, hparameters.1, hparameters.2, by omega, by omega⟩
+
+/-- The `GirthEightChecks` disjointness clause gives the no-two-triples-sharing
+a consecutive pair fact used by cellular reducedness in every W(8) table. -/
+theorem trianglePairUnique_of_wEightGirthChecks
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle
+        _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9) :
+    TrianglePairUnique T :=
+  trianglePairUnique_of_girthEightChecks hgeom
+
 /-- The landed copy-involution constructor supplies the exposed pairing.  The
 remaining fields are the Euler and local certificates attached to that
 pairing; `pairUnique` is the table-side no-shared-pair certificate. -/
