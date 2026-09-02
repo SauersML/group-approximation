@@ -15,6 +15,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.GGT.OsinComponents
 
 universe u w
 
@@ -72,6 +73,7 @@ theorem firstTarget_arcLetter_val_eq_span
     (hs : s ∈ B.firstTarget) :
     (B.firstArc[B.firstTargetPos s]'
       (B.firstTargetPos_lt_firstArc_length hs)).val = P.span s := by
+  classical
   have hsP : s ∈ P.target := (Finset.mem_filter.mp hs).1
   have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
     simp [refinedCut, splitPairCut_left B.side_order]
@@ -120,6 +122,7 @@ theorem secondTarget_arcLetter_val_eq_span
     (hs : s ∈ B.secondTarget) :
     (B.secondArc[B.secondTargetPos s]'
       (B.secondTargetPos_lt_secondArc_length hs)).val = P.span s := by
+  classical
   have hsP : s ∈ P.target := (Finset.mem_filter.mp hs).1
   have hcutLt : P.cut s < P.word.length := by
     have hc := P.target_component s hsP
@@ -177,11 +180,15 @@ theorem firstSurvivorSlot_span
     (hsurvives : B.componentPlacement.firstSurvives s) :
     optionalTargetSlotSpan (some (B.firstSurvivorSlot C hs hsurvives)) =
       P.span s := by
+  classical
   let Q := (B.gapIntervalsOfConfigurations C).toPathInput
   let j := B.firstSurvivorGapOwner hs hsurvives
   let r := B.firstTargetSide s - B.firstGapStartSide j
   have hsGap := Finset.mem_filter.mp
     (B.firstSurvivorGapOwner_mem hs hsurvives)
+  change s ∈ B.firstTarget ∧
+    B.firstGapStartSide j ≤ B.firstTargetSide s ∧
+      B.firstTargetSide s < B.firstGapFinishSide j at hsGap
   have hr : r < B.firstGapFinishSide j - B.firstGapStartSide j := by
     dsimp [r]
     omega
@@ -201,7 +208,7 @@ theorem firstSurvivorSlot_span
     have hbase := B.firstArc_isCutPath.cut.mono_le hsGap.2.1
     omega
   change (Q.first j).certificate.sideSpan
-      ((B.firstGapLeft j).length + r) = P.span s
+      ((Q.first j).left.length + r) = P.span s
   rw [(Q.first j).arc_sideSpan_eq_letter r hr hedge]
   have hfinishLe := B.firstGapFinishSide_le j
   have hcutEnd := B.firstArc_isCutPath.cut.le_length hfinishLe
@@ -212,7 +219,9 @@ theorem firstSurvivorSlot_span
         B.firstArcCut (B.firstGapStartSide j) < _
     have hmono := B.firstArc_isCutPath.cut.mono_le hsGap.2.1
     rw [hrStart, htargetCut.1]
-    have hfinishMono := B.firstArc_isCutPath.cut.mono_le hsGap.2.2.le
+    have hfinishMono := B.firstArc_isCutPath.cut.mono_le
+      (Nat.succ_le_iff.mpr hsGap.2.2)
+    rw [htargetCut.2] at hfinishMono
     omega
   rw [getElem_arcWord B.firstArc B.firstArcCut hcutEnd hlocal]
   have hindex : B.firstArcCut (B.firstGapStartSide j) +
@@ -238,11 +247,15 @@ theorem secondSurvivorSlot_span
     (hsurvives : B.componentPlacement.secondSurvives s) :
     optionalTargetSlotSpan (some (B.secondSurvivorSlot C hs hsurvives)) =
       P.span s := by
+  classical
   let Q := (B.gapIntervalsOfConfigurations C).toPathInput
   let j := B.secondSurvivorGapOwner hs hsurvives
   let r := B.secondTargetSide s - B.secondGapStartSide j
   have hsGap := Finset.mem_filter.mp
     (B.secondSurvivorGapOwner_mem hs hsurvives)
+  change s ∈ B.secondTarget ∧
+    B.secondGapStartSide j ≤ B.secondTargetSide s ∧
+      B.secondTargetSide s < B.secondGapFinishSide j at hsGap
   have hr : r < B.secondGapFinishSide j - B.secondGapStartSide j := by
     dsimp [r]
     omega
@@ -262,7 +275,7 @@ theorem secondSurvivorSlot_span
     have hbase := B.secondArc_isCutPath.cut.mono_le hsGap.2.1
     omega
   change (Q.second j).certificate.sideSpan
-      ((B.secondGapLeft j).length + r) = P.span s
+      ((Q.second j).left.length + r) = P.span s
   rw [(Q.second j).arc_sideSpan_eq_letter r hr hedge]
   have hfinishLe := B.secondGapFinishSide_le j
   have hcutEnd := B.secondArc_isCutPath.cut.le_length hfinishLe
@@ -273,7 +286,9 @@ theorem secondSurvivorSlot_span
         B.secondArcCut (B.secondGapStartSide j) < _
     have hmono := B.secondArc_isCutPath.cut.mono_le hsGap.2.1
     rw [hrStart, htargetCut.1]
-    have hfinishMono := B.secondArc_isCutPath.cut.mono_le hsGap.2.2.le
+    have hfinishMono := B.secondArc_isCutPath.cut.mono_le
+      (Nat.succ_le_iff.mpr hsGap.2.2)
+    rw [htargetCut.2] at hfinishMono
     omega
   rw [getElem_arcWord B.secondArc B.secondArcCut hcutEnd hlocal]
   have hindex : B.secondArcCut (B.secondGapStartSide j) +
