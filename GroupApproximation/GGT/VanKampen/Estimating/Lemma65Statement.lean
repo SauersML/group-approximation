@@ -163,6 +163,46 @@ def Lemma65Statement : Prop :=
             Lemma65aConclusion scaffold ∧
               Lemma65bConclusion mu sections' eps
 
+/-- **Osin's `mu`, per region.**  Sharper than `degree_le_two_mu`, and the one
+the multiple-edge step needs: Osin writes "(Pi, Gamma_2, t_1) + (Pi, Gamma_4,
+t_2) < 2 mu by Lemma O52", which is `mu` for each of the two regions, not `2 mu`
+for their sum.  The published-piece bound already bounds the *source arc alone*
+by `mu` times the carrier length; the `2 mu` statement bounds the sum of a
+single region's two arcs, which is too weak here -- two regions at `2 mu` each
+would give `5 mu` against `1 - 13 mu`, and that does not contradict
+`mu <= 1/16`. -/
+theorem Contiguity.degree_lt_mu
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (hred : Delta.Reduced)
+    {target : Fin Delta.rCellCount} (htarget : Gamma.target = some target)
+    {rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length)
+    (hlen : 0 < ((cell Delta Gamma.source).word.length : ℝ)) :
+    Gamma.degree < mu := by
+  have equations := Gamma.cellPieceEquations_of_reduced hred htarget
+  have hpublished := Gamma.isPublishedPiece_of_equations equations hsc
+  have hbound := hpieces
+    (dartWord Delta Gamma.sourceArc.darts)
+    (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc))
+    (dartWord Delta Gamma.sourceArc.rotated) hpublished
+  have hsource : (Gamma.sourceArc.length : ℝ) <
+      mu * (dartWord Delta Gamma.sourceArc.rotated).length := by
+    simpa only [dartWord, List.length_map, Gamma.sourceArc.darts_length] using
+      lt_of_le_of_lt (le_max_left _ _) hbound
+  have hcarrier : (dartWord Delta Gamma.sourceArc.rotated).length =
+      (cell Delta Gamma.source).word.length := by
+    simp only [dartWord, List.length_map, Gamma.sourceArc.rotated_length]
+    have hlength := congrArg List.length
+      (dartWord_cellDarts Delta Gamma.source)
+    simpa only [dartWord, List.length_map, targetDarts] using hlength
+  rw [hcarrier] at hsource
+  rw [Contiguity.degree, div_lt_iff₀ hlen]
+  linarith
+
 /-! ## The arithmetic of the multiple-edge step -/
 
 /-- **Osin's numeric contradiction, exactly.**  In the multiple-edge step the
