@@ -3,7 +3,7 @@ import GroupApproximation.GGT.HullYiCyclicProductProducer
 import GroupApproximation.GGT.HullYiCorollary612Family
 
 /-!
-# Selecting Hull's matched cyclic-product family
+# Closing Hull's matched cyclic-product family
 
 This module proves the combined product-selection interface from
 `DGOLemma421b`.  The orientation-pure radical detector is first reduced to an
@@ -232,6 +232,17 @@ theorem yiOrientationPureProductFamilySelection_of_dgoLemma421b
     rw [heq]
     exact hlastLox j
   exact hproduct multiplier hmultiplierNe hcommon hdistinct hdeep hproductLox
+
+/-- **Hull's suitable cyclic pair with finite one-sided avoidance.**
+
+The combined product selection above discharges the sole hypothesis of the
+algebraic assembly theorem.  Thus DGO Lemma 4.21(b) is the only surviving
+literature input. -/
+theorem yiSuitablePairAvoidingFiniteOneSided_of_dgoLemma421b
+    (h : DGOLemma421b.{0, 0}) :
+    YiSuitablePairAvoidingFiniteOneSided.{0} :=
+  yiSuitablePairAvoidingFiniteOneSided_of_productSelection_of_match
+    (yiOrientationPureProductFamilySelection_of_dgoLemma421b h)
 
 end HullSC
 end GroupApproximation
