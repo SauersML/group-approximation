@@ -1,3 +1,5 @@
+import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives
+import GroupApproximation.GGT.VanKampen.CombMapGluing
 import GroupApproximation.GGT.VanKampen.CombMapReduction
 
 /-!
@@ -27,6 +29,20 @@ variable {Generator TriangleIndex : Type}
   {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
 
 /-! ## Cellular reducedness and the presentation link -/
+
+/-- The canonical cyclic corner enumeration works for every closed
+combinatorial map, including a seam-glued sphere. -/
+noncomputable def cornerCycleOfCombMap
+    (M : VanKampen.CombMap.{0}) (v : M.Vertex) :
+    CyclicCornerEnumeration M v where
+  dart := M.vertexOrbitDart v
+  zero_at := by
+    simpa only [VanKampen.CombMap.vertexOrbitDart, pow_zero,
+      Equiv.Perm.one_apply] using M.vertexOf_vertexRepresentative v
+  rotates := M.vertexOrbitDart_succ v
+  periodic := M.vertexOrbitDart_periodic v
+  covers := M.exists_vertexOrbitDart v
+  unique := M.vertexOrbitDart_injective v
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- One literal triangle corner contributes a positive directed edge to the
@@ -980,6 +996,27 @@ structure PowerDiscSphereGluing (D : PowerDisc T g n) where
   cornerCertificate : ∀ v, VertexCornerCertificate (cornerCycle v)
   /-- Least-area seam reduction rules out mirror corner pairs. -/
   cellularReduced : ∀ v, CellularReducedAt (cornerCertificate v)
+
+/-- The copied-interior seam constructor supplies the map, source-copy,
+source-face, and face-degree fields of the power-disc gluing certificate.
+Only the literal corner labels and the no-mirror seam check remain as local
+input. -/
+noncomputable def powerDiscSphereGluing_of_seam
+    (D : PowerDisc T g n)
+    (S : VanKampen.SeamGluing.Pairing D.diagram n)
+    (hS : S.Spherical)
+    (certificate : ∀ v,
+      VertexCornerCertificate (cornerCycleOfCombMap S.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (certificate v)) :
+    PowerDiscSphereGluing D where
+  sphere := S.sphericalCombMap hS
+  sourceCopy := S.sourceCopy
+  sourceFace := S.sourceFace
+  sourceFace_ne_outer := S.sourceFace_ne_outer
+  faceDegree_eq := S.faceDegree_eq_source
+  cornerCycle := cornerCycleOfCombMap S.closedMap
+  cornerCertificate := certificate
+  cellularReduced := hcellular
 
 /-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
 consumed by `presented_isPowerTorsionFree_of_sphericalExtraction`. -/
