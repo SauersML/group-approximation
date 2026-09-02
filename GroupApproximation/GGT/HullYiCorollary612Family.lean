@@ -1,7 +1,9 @@
 import GroupApproximation.GGT.HullYiCyclicProductNonCommensurable
 import GroupApproximation.GGT.DGOCorollary612Threshold
+import GroupApproximation.GGT.DGOCorollary427Full
 import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOPolygonSideCountAll
+import GroupApproximation.GGT.DGOWWordConditions
 import GroupApproximation.GGT.HullSCRelatorSeparationBall
 import GroupApproximation.GGT.HullSCRelatorWord
 
@@ -282,7 +284,8 @@ theorem exists_deep_pow_finite_family {I : Type*} [Fintype I]
 /-- Powers may be chosen in order so that each new positive and negative
 power lies beyond the depth of every earlier one. -/
 theorem exists_successivelySeparatedPowers
-    (D : RelGenSet G Lambda) (lam : Lambda) (hbase : IsSymmetricGeneratingSet D.base)
+    (D : RelGenSet G Lambda) (lam : Lambda)
+    (_hbase : IsSymmetricGeneratingSet D.base)
     (hloc : ∀ n, (D.relBall lam n).Finite) {h : G}
     (hinj : Function.Injective (fun n : ℕ ↦ h ^ n))
     (extra : Set G) (hextra : extra.Finite) (C R N : ℕ) :
@@ -473,8 +476,8 @@ theorem getElem?_rev_blockWord_singleBase_even (lam : Lambda) (g h : G)
   have hr : r < 2 * n := by dsimp [r]; omega
   have hrmod : r % 2 = 1 := by dsimp [r]; omega
   have hrw : r < w.length := by omega
-  rw [show w.length - 1 - j = r from rfl,
-    getElem_singleBase_odd lam g h n r hr hrmod hrw]
+  change some (invLetter (w[r]'hrw)) = some (RelLetter.comp lam h⁻¹)
+  rw [getElem_singleBase_odd lam g h n r hr hrmod hrw]
   rfl
 
 /-- In the reversed word, odd positions are the inverse base letter. -/
@@ -493,8 +496,8 @@ theorem getElem?_rev_blockWord_singleBase_odd (lam : Lambda) (g h : G)
   have hr : r < 2 * n := by dsimp [r]; omega
   have hrmod : r % 2 = 0 := by dsimp [r]; omega
   have hrw : r < w.length := by omega
-  rw [show w.length - 1 - j = r from rfl,
-    getElem_singleBase_even lam g h n r hr hrmod hrw]
+  change some (invLetter (w[r]'hrw)) = some (RelLetter.base g⁻¹)
+  rw [getElem_singleBase_even lam g h n r hr hrmod hrw]
   rfl
 
 /-- A component in the reversed `(g h)^n` word is the single `h⁻¹`-letter. -/
@@ -626,7 +629,7 @@ theorem middleMatchedLetter_mem_relBall
   have hc : ∀ t : ℕ, t < 3 → c t ∈ D.fam lam := hstart
   have he : ∀ t : ℕ, t < 3 → e t ∈ D.fam lam := by
     intro t ht
-    exact endConnector_mem_fam D hletterP hletterQ
+    exact WWord.endConnector_mem_fam D hletterP hletterQ
       (hcompP t ht) (hcompQ t ht) (hstart t ht)
   have hclose0 : e 0 * s = r * c 1 := by
     dsimp [e, c]
@@ -651,7 +654,7 @@ theorem middleMatchedLetter_mem_relBall
   rw [huEq]
   convert hprod using 1
   · group
-  · omega
+  · ring
 
 /-! ## DGO Corollary 6.12, finite-family form -/
 
@@ -712,7 +715,8 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
     have hc' : c = RelLetter.base g := by simpa [wg] using hc
     subst c
     exact hgBase
-  have hwgValue : RelLetter.listVal wg = g := by simp [wg, RelLetter.listVal]
+  have hwgValue : RelLetter.listVal wg = g := by
+    simp [wg, RelLetter.listVal, RelLetter.val]
   have hwgNo : ∀ c ∈ wg, ¬ c.IsCompOf () := by
     intro c hc
     have hc' : c = RelLetter.base g := by simpa [wg] using hc
@@ -786,19 +790,27 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
           _ = (g * a j) ^ Nj * t := by rw [hsameR]
       have hletterI : ∀ c ∈ wi, D.IsLetter c := by
         dsimp [wi]
-        exact isLetter_of_mem_blockWord D () hgLetter (haMem i)
+        exact isLetter_of_mem_blockWord D () hgLetter (haMem i) Ni
       have hletterJ : ∀ c ∈ wj, D.IsLetter c := by
         dsimp [wj]
-        exact isLetter_of_mem_blockWord D () hgLetter (haMem j)
+        exact isLetter_of_mem_blockWord D () hgLetter (haMem j) Nj
+      have hvalI : RelLetter.listVal wi = (g * a i) ^ Ni := by
+        dsimp [wi]
+        rw [OsinComponents.listVal_blockWord,
+          OsinComponents.listVal_singleton]
+        rfl
+      have hvalJ : RelLetter.listVal wj = (g * a j) ^ Nj := by
+        dsimp [wj]
+        rw [OsinComponents.listVal_blockWord,
+          OsinComponents.listVal_singleton]
+        rfl
       have hstartDist : (wordDist D.alphabet.carrier 1 t : ℝ) ≤ eps := by
         dsimp [eps]
         norm_num
       have hendDist :
           (wordDist D.alphabet.carrier (vertex 1 wj wj.length)
             (vertex t wi wi.length) : ℝ) ≤ eps := by
-        simp only [wj, wi, vertex_length, OsinComponents.listVal_blockWord,
-          RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons,
-          List.prod_nil, RelLetter.val, one_mul]
+        simp only [vertex_length, hvalJ, hvalI, one_mul]
         rw [hcommuteR]
         have hd := wordDist_left_invariant D.alphabet.carrier
           ((g * a j) ^ Nj)⁻¹ ((g * a j) ^ Nj) ((g * a j) ^ Nj * t)
@@ -879,21 +891,31 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
           _ = (g * a j) ^ Nj * t := by rw [hc]
       have hletterJ : ∀ c ∈ wj, D.IsLetter c := by
         dsimp [wj]
-        exact isLetter_of_mem_blockWord D () hgLetter (haMem j)
+        exact isLetter_of_mem_blockWord D () hgLetter (haMem j) Nj
       have hletterRevI : ∀ c ∈ revWord wi, D.IsLetter c :=
         isLetter_of_mem_revWord D hbaseD.inv_mem (by
           dsimp [wi]
-          exact isLetter_of_mem_blockWord D () hgLetter (haMem i))
+          exact isLetter_of_mem_blockWord D () hgLetter (haMem i) Ni)
+      have hvalI : RelLetter.listVal wi = (g * a i) ^ Ni := by
+        dsimp [wi]
+        rw [OsinComponents.listVal_blockWord,
+          OsinComponents.listVal_singleton]
+        rfl
+      have hvalJ : RelLetter.listVal wj = (g * a j) ^ Nj := by
+        dsimp [wj]
+        rw [OsinComponents.listVal_blockWord,
+          OsinComponents.listVal_singleton]
+        rfl
+      have hvalRevI : RelLetter.listVal (revWord wi) =
+          ((g * a i) ^ Ni)⁻¹ := by
+        rw [listVal_revWord, hvalI]
       have hstartDist : (wordDist D.alphabet.carrier 1 t : ℝ) ≤ eps := by
         dsimp [eps]
         norm_num
       have hendDist :
           (wordDist D.alphabet.carrier (vertex 1 wj wj.length)
             (vertex t (revWord wi) (revWord wi).length) : ℝ) ≤ eps := by
-        simp only [wj, wi, vertex_length, OsinComponents.listVal_blockWord,
-          listVal_revWord,
-          RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons,
-          List.prod_nil, RelLetter.val, one_mul]
+        simp only [vertex_length, hvalJ, hvalRevI, one_mul]
         rw [hinverseR]
         have hd := wordDist_left_invariant D.alphabet.carrier
           ((g * a j) ^ Nj)⁻¹ ((g * a j) ^ Nj) ((g * a j) ^ Nj * t)
