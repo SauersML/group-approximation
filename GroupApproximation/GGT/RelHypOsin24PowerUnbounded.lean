@@ -26,6 +26,52 @@ namespace RelHyp
 
 universe u v
 
+/-! ## Failure of escape produces a bounded subsequence -/
+
+/-- **Bounded subsequence form of non-escape.**  If a power orbit does not
+escape a metric space, one fixed radius contains infinitely many positive
+powers.  This is the filter-theoretic first half of Osin's bounded-relative-
+length argument, with no relative geometry in the statement. -/
+def BoundedPowerSubsequenceStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (X : Type v) (_ : PseudoMetricSpace X)
+    (_ : MulAction G X) (g : G) (x : X),
+    ¬ IsEscaping g x →
+      ∃ R : ℝ, {n : ℕ | dist x ((g ^ n) • x) ≤ R}.Infinite
+
+/-- A non-escaping orbit has a bounded subsequence, by negating the
+`Filter.tendsto_atTop` definition and using finite sets of natural numbers
+to contradict arbitrarily large witnesses. -/
+theorem boundedPowerSubsequence_proved :
+    BoundedPowerSubsequenceStatement.{u, v} := by
+  intro G instG X instX instAct g x hnot
+  letI : Group G := instG
+  letI : PseudoMetricSpace X := instX
+  letI : MulAction G X := instAct
+  rw [IsEscaping, Filter.tendsto_atTop] at hnot
+  push_neg at hnot
+  obtain ⟨R, hR⟩ := hnot
+  refine ⟨R, ?_⟩
+  intro hfinite
+  obtain ⟨N, hN⟩ := hfinite.bddAbove
+  obtain ⟨n, hnN, hnR⟩ := hR (N + 1)
+  have hnmem : n ∈ {n : ℕ | dist x ((g ^ n) • x) ≤ R} := by
+    exact le_of_not_ge hnR
+  have hnle : n ≤ N := hN hnmem
+  omega
+
+/-- Model test for the bounded-subsequence statement: the one-point orbit is
+bounded by radius zero, so its whole power-index set is infinite. -/
+theorem boundedPowerSubsequence_trivialModel :
+    ∃ R : ℝ, {n : ℕ | dist (1 : PUnit) (((1 : PUnit) ^ n) • (1 : PUnit)) ≤ R}.Infinite := by
+  refine ⟨0, ?_⟩
+  have hset :
+      {n : ℕ | dist (1 : PUnit) (((1 : PUnit) ^ n) • (1 : PUnit)) ≤ (0 : ℝ)} =
+        Set.univ := by
+    ext n
+    simp
+  rw [hset]
+  exact Set.infinite_univ
+
 /-! ## A fixed double-coset witness forces a peripheral power -/
 
 /-- **Fixed-double-coset power witness.**  If infinitely many positive powers
