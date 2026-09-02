@@ -410,21 +410,19 @@ structure ReducedCellPieceBridge
     (Gamma : Contiguity D eps Delta faces) where
   target : Fin Delta.rCellCount
   target_eq : Gamma.target = some target
-  pre : List (RelatorCell Delta.toCombMap Delta.outerFace W)
-  between : List (RelatorCell Delta.toCombMap Delta.outerFace W)
-  suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)
-  sourceCell : RelatorCell Delta.toCombMap Delta.outerFace W
-  targetCell : RelatorCell Delta.toCombMap Delta.outerFace W
-  cellContiguity : CellContiguity (D := D) (eps := eps)
-    (pre := pre) (between := between) (suf := suf)
-    (source := sourceCell) (target := targetCell)
+  targetWord : List (GGT.RelLetter G Lambda)
+  sourceWord : List (GGT.RelLetter G Lambda)
+  connector : G
+  whole_relators_ne : ∀ hred : Delta.Reduced,
+      GGT.RelLetter.listVal (RelWord.revInv targetWord) ≠
+        connector * GGT.RelLetter.listVal sourceWord * connector⁻¹
   targetCarrier_value_eq : GGT.RelLetter.listVal
       (Gamma.targetInverseCarrier target target_eq) =
-      GGT.RelLetter.listVal (RelWord.revInv targetCell.word)
+      GGT.RelLetter.listVal (RelWord.revInv targetWord)
   sourceRotated_value_eq : GGT.RelLetter.listVal
       (dartWord Delta Gamma.sourceArc.rotated) =
-      GGT.RelLetter.listVal sourceCell.word
-  connector_value_eq : cellContiguity.region.leftConnector =
+      GGT.RelLetter.listVal sourceWord
+  connector_value_eq : connector =
       (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹
 
 namespace ReducedCellPieceBridge
@@ -446,18 +444,17 @@ theorem whole_ne
         GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
         GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
   intro hbad
-  apply bridge.cellContiguity.whole_relators_ne hred
+  apply bridge.whole_relators_ne hred
   calc
-    GGT.RelLetter.listVal (RelWord.revInv bridge.targetCell.word) =
+    GGT.RelLetter.listVal (RelWord.revInv bridge.targetWord) =
         GGT.RelLetter.listVal
           (Gamma.targetInverseCarrier bridge.target bridge.target_eq) :=
       bridge.targetCarrier_value_eq.symm
     _ = (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
           GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
           GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := hbad
-    _ = bridge.cellContiguity.region.leftConnector *
-          GGT.RelLetter.listVal bridge.sourceCell.word *
-          bridge.cellContiguity.region.leftConnector⁻¹ := by
+    _ = bridge.connector * GGT.RelLetter.listVal bridge.sourceWord *
+          bridge.connector⁻¹ := by
       rw [bridge.connector_value_eq, bridge.sourceRotated_value_eq]
       simp only [inv_inv]
 
