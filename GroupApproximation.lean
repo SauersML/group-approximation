@@ -3268,6 +3268,8 @@ import GroupApproximation.GGT.HullSCRelativeGreendlingerFromComponents
 import GroupApproximation.GGT.DGOProposition414GapRightConnectorWrapped
 import GroupApproximation.GGT.VanKampen.Estimating.PhiRealization
 import GroupApproximation.GGT.DGOProposition414GapLeftConnector
+import GroupApproximation.GGT.DGOProposition414GapLeftConnectorWrapped
+import GroupApproximation.GGT.HullSCRelativeGreendlingerSpelling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
