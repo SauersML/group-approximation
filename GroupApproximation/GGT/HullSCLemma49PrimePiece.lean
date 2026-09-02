@@ -452,6 +452,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
     rw [C.listVal_relatorInterval hj₀₁'.le
       (le_trans hj₁c.le (le_trans hcd.le hdExterior)), he₀, he₁]
     rw [← hpower₀₁]
+    dsimp [p₀, p₁]
     group
   by_cases hforward : j₂ ≤ j₃
   · have hcEq : c = j₂ := by exact Nat.min_eq_left hforward
@@ -463,6 +464,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
       rw [C.listVal_relatorInterval hforward
         (by simpa [j₃] using Sh.index_le p₃ hp₃)]
       rw [he₂, he₃, ← hpower₂₃]
+      dsimp [p₂, p₃]
       group
     let left := e₂⁻¹ * e₀
     let right := e₁⁻¹ * e₃
@@ -489,6 +491,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
       rw [C.listVal_relatorInterval hreverse
         (by simpa [j₂] using Sh.index_le p₂ hp₂)]
       rw [he₃, he₂, ← hpower₂₃]
+      dsimp [p₂, p₃]
       group
     let left := e₃⁻¹ * e₁
     let right := e₀⁻¹ * e₂
