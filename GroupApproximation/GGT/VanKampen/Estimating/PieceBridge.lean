@@ -290,8 +290,8 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
     (Gamma.cellTargetArc target htarget)
   refine ⟨suffix, ?_⟩
-  simpa [Contiguity.targetInverseCarrier, CyclicArc.reverseDartsWord,
-    targetBoundaryDarts, htarget] using hsuffix
+  simpa [Contiguity.targetInverseCarrier, CyclicArc.reversePrefixTarget,
+    CyclicArc.reverseDartsWord, targetBoundaryDarts, htarget] using hsuffix
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
@@ -301,7 +301,7 @@ theorem Contiguity.targetBoundaryDarts_length
     {Delta : DiscDiagram.{u, w, v} W}
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
-    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (target : Fin Delta.rCellCount) (_htarget : Gamma.target = some target) :
     (targetBoundaryDarts Delta Gamma.target Gamma.targetArc).length =
       Gamma.targetArc.length := by
   let motive : ∀ target : Option (Fin Delta.rCellCount),
@@ -416,7 +416,10 @@ theorem Contiguity.arcLengths_le_two_mu_source
       (dartWord_cellDarts Delta Gamma.source)
     simpa only [dartWord, List.length_map] using hlength
   rw [hcarrier] at hsource htarget
-  rw [Gamma.cellTargetArc_length equations.target equations.target_eq]
+  have htargetArcLength :
+      (Gamma.cellTargetArc equations.target equations.target_eq).length =
+        Gamma.targetArc.length := by rfl
+  rw [htargetArcLength]
   linarith
 
 /-- The same certificate gives the target charge: invert both connectors and
@@ -495,7 +498,10 @@ theorem Contiguity.arcLengths_le_two_mu_target
       (dartWord_cellDarts Delta equations.target)
     simpa only [dartWord, List.length_map] using hlength
   rw [hcarrier] at hsource htarget
-  rw [Gamma.cellTargetArc_length equations.target equations.target_eq]
+  have htargetArcLength :
+      (Gamma.cellTargetArc equations.target equations.target_eq).length =
+        Gamma.targetArc.length := by rfl
+  rw [htargetArcLength]
   linarith
 
 /-- Transporting the dependent target carrier does not change the stored arc
