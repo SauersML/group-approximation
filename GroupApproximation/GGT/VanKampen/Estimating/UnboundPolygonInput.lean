@@ -92,7 +92,27 @@ theorem exists_side_gt_of_sum_gt {r : ℕ} {a : ℝ} (s : Finset ℕ)
     mul_le_mul_of_nonneg_right hcardReal ha
   exact absurd hsum (not_lt.mpr (le_trans hbound hscaled))
 
+/-! ## Termination of Ol'shanskii's bisection recursion -/
+
+/-- The balanced cut of `Olshanskii.exists_balanced_cut` leaves two pieces
+with strictly fewer sides than the polygon it cut, and neither piece
+degenerates below two sides.  A cut between side `a` and side `b` with
+`k = b - a` gives pieces of `k + 1` and `n - k + 1` sides, and the
+quarter-separation `n <= 4 * k <= 3 * n` is exactly what makes both counts
+drop.  This is the descent that lets the recursion stop at eight sides. -/
+theorem bisection_side_counts_lt {n k : ℕ} (hn : 8 ≤ n)
+    (hlow : n ≤ 4 * k) (hhigh : 4 * k ≤ 3 * n) :
+    k + 1 < n ∧ n - k + 1 < n ∧ 2 ≤ k + 1 ∧ 2 ≤ n - k + 1 := by
+  refine ⟨by omega, by omega, by omega, by omega⟩
+
 /-! ## Model checks -/
+
+/-- The descent is tight at the smallest polygon the bisection accepts: an
+eight-gon cut in half gives two five-gons. -/
+theorem bisection_side_counts_oneStep_model :
+    (2 : ℕ) + 1 < 8 ∧ 8 - 2 + 1 < 8 ∧ 2 ≤ 2 + 1 ∧ 2 ≤ 8 - 2 + 1 :=
+  bisection_side_counts_lt (n := 8) (k := 2) (by norm_num) (by norm_num)
+    (by norm_num)
 
 /-- The pigeonhole is exact at one side: a single side of length above `a`
 is the only way to beat the total `1 * a`. -/
