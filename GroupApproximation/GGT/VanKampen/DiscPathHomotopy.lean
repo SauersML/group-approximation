@@ -173,6 +173,8 @@ theorem rootedPathsFaceComplete_of_faceDeletion
 
 /-! ## One-triangle model checks -/
 
+noncomputable section OneTriangleModel
+
 local instance oneTriangleDartDecidableEq : DecidableEq OneTriangleDart :=
   Classical.decEq _
 
@@ -196,6 +198,8 @@ theorem oneTriangle_faceMove_model
       (before ++ (Delta.faceBoundary face).darts ++ after)
       (before ++ after) :=
   .erase face hface before after
+
+end OneTriangleModel
 
 end GirthEightPrimitives2
 end GGT
