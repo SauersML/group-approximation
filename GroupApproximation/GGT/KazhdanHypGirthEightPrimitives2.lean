@@ -720,22 +720,26 @@ noncomputable def layerIncidenceInjection_of_firstLayer
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
   dsimp [firstLayerIncidenceSlot] at hslot
-  have hval := congrArg Fin.val hslot
-  clear hslot
-  cases hface
-  have hindex :
-      firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
-        firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
-    by
+  have finish : ∀ (hface : C.face i x = C.face i y),
+      (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val =
+        (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val →
+      x = y := by
+    intro hface
+    cases hface
+    intro hval
+    have hindex :
+        firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
+          firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y := by
       apply Fin.ext
       exact hval
-  have hdart : P.darts.get (C.position i x) =
-      P.darts.get (C.position i y) := by
-    rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
-      ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
-      hindex]
-  exact C.position_injective i
-    ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
+    have hdart : P.darts.get (C.position i x) =
+        P.darts.get (C.position i y) := by
+      rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
+        ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
+        hindex]
+    exact C.position_injective i
+      ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
+  exact finish hface (congrArg Fin.val hslot)
 
 /-- An incidence injection proves the numerical covering inequality. -/
 theorem layer_covers_of_incidenceInjection
