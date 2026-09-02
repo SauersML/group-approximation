@@ -29,7 +29,7 @@ namespace VanKampen
 namespace Estimating
 
 open UnboundEstimate
-open GGT.DGOPolygonCut
+open DGOPolygonCut
 
 universe u w v
 
@@ -61,8 +61,8 @@ theorem uniformProposition414Statement_of_dgo414
   intro v word cut I lam hletters hclosed hcut hI hedge hcomp hisolated hquasi
   refine hsum n v word cut I lam hletters hclosed hcut hI hedge hcomp
     hisolated ?_
-  intro s hs p q hsp hpq hqs
-  have hstep := hquasi s hs p q hsp hpq hqs
+  intro s hsn hsI p q hsp hpq hqs
+  have hstep := hquasi s hsn hsI p q hsp hpq hqs
   rw [div_one]
   exact hstep
 
