@@ -85,7 +85,7 @@ structure EstimatingGraphData
 /-- Construct graph data from the three independent geometric certificates.
 The certificates are exactly the hereditary planar inequality, the separated
 incidence positions, and the admissible exterior merge supplied by the
-estimating-graph surgery. */
+estimating-graph surgery. -/
 theorem estimatingGraphData_of_certificates
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
