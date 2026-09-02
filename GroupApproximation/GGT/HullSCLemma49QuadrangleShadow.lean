@@ -32,6 +32,76 @@ universe u
 
 /-! ## Uniform vertex shadowing -/
 
+/-- A chain whose real multiplicative constant is a positive natural number
+has the corresponding natural-valued Morse quasi-geodesic constant. -/
+theorem isQuasiGeodesicChainAt_toQuasiGeodesic_nat
+    {G : Type u} [Group G] {S : Set G} {powerMu b : ℕ}
+    {q : ℕ → G} {n : ℕ} (hpowerMu : 0 < powerMu)
+    (h : GGT.IsQuasiGeodesicChainAt S powerMu b q n) :
+    Hyperbolic.IsQuasiGeodesic S powerMu b n q := by
+  have hpowerMuReal : (0 : ℝ) < (powerMu : ℝ) := by
+    exact_mod_cast hpowerMu
+  have hq := h.toQuasiGeodesic hpowerMuReal
+  have hceil : ⌈((powerMu : ℕ) : ℝ)⌉₊ = powerMu := by
+    rw [Nat.ceil_natCast]
+  rwa [hceil] at hq
+
+/-- Two endpoint-close chains shadow one another when the power-side
+multiplicative constant is an arbitrary positive natural number.  The relator
+side keeps Hull's published `(4,1)` constants. -/
+theorem exists_quasiChain_quadrangleShadow_nat
+    (delta eps powerMu b : ℕ) (hpowerMu : 0 < powerMu) :
+    ∃ K : ℕ, ∀
+      (G : Type u) (_ : Group G) (S : Set G)
+      (qRel qPow : ℕ → G) (nRel nPow : ℕ),
+      IsSymmetricGeneratingSet S →
+      Hyperbolic.IsFourPointHyperbolic S delta →
+      GGT.IsQuasiGeodesicChainAt S 4 1 qRel nRel →
+      GGT.IsQuasiGeodesicChainAt S powerMu b qPow nPow →
+      wordDist S (qRel 0) (qPow 0) ≤ eps →
+      wordDist S (qPow nPow) (qRel nRel) ≤ eps →
+      ∀ i ≤ nPow, ∃ j ≤ nRel, wordDist S (qPow i) (qRel j) ≤ K := by
+  obtain ⟨Rp, hp⟩ := Hyperbolic.morseLemma_univ.{u} powerMu b delta
+  obtain ⟨Rr, hr⟩ :=
+    exists_index_wordDist_le_of_isBetween_of_fourPoint 4 1 delta
+  refine ⟨Rp + Rr + 8 * delta + eps, ?_⟩
+  intro G _ S qRel qPow nRel nPow hS hdelta hRel hPow hleft hright i hi
+  have hPowQ : Hyperbolic.IsQuasiGeodesic S powerMu b nPow qPow :=
+    isQuasiGeodesicChainAt_toQuasiGeodesic_nat hpowerMu hPow
+  have hpActual := hp G inferInstance S hS hdelta nPow qPow hPowQ i hi
+  obtain ⟨p, hpBetween, hip⟩ := hpActual
+  rcases GGT.exists_isBetween_of_quadrangle hS hdelta hpBetween
+      (x₃ := qRel nRel) (x₄ := qRel 0) with hconnRight | hrelChord | hconnLeft
+  · obtain ⟨q, hq, hpq⟩ := hconnRight
+    refine ⟨nRel, le_rfl, ?_⟩
+    have hqend : wordDist S q (qRel nRel) ≤ eps := by
+      have hdist : wordDist S (qPow nPow) q + wordDist S q (qRel nRel) =
+          wordDist S (qPow nPow) (qRel nRel) := hq
+      omega
+    have htri₁ := wordDist_triangle hS (qPow i) p q
+    have htri₂ := wordDist_triangle hS (qPow i) q (qRel nRel)
+    omega
+  · obtain ⟨q, hq, hpq⟩ := hrelChord
+    have hq' : Hyperbolic.IsBetween S (qRel 0) q (qRel nRel) :=
+      Hyperbolic.IsBetween.symm hS hq
+    obtain ⟨j, hj, hqj⟩ := hr G inferInstance S hS hdelta nRel qRel
+      hRel.toQuasiGeodesic_four q hq'
+    refine ⟨j, hj, ?_⟩
+    have htri₁ := wordDist_triangle hS (qPow i) p q
+    have htri₂ := wordDist_triangle hS (qPow i) q (qRel j)
+    have hcomm := wordDist_comm hS q (qRel j)
+    omega
+  · obtain ⟨q, hq, hpq⟩ := hconnLeft
+    refine ⟨0, Nat.zero_le _, ?_⟩
+    have hqstart : wordDist S q (qRel 0) ≤ eps := by
+      have hdist : wordDist S (qRel 0) q + wordDist S q (qPow 0) =
+          wordDist S (qRel 0) (qPow 0) := hq
+      have hcomm := wordDist_comm hS q (qRel 0)
+      omega
+    have htri₁ := wordDist_triangle hS (qPow i) p q
+    have htri₂ := wordDist_triangle hS (qPow i) q (qRel 0)
+    omega
+
 /-- Two endpoint-close `(4,b)` chains shadow one another at vertices.  The
 first chain uses additive constant `1`, as relator words in Hull's `C₁`
 condition do; the second uses an arbitrary additive constant `b`, allowing the
@@ -194,13 +264,13 @@ theorem Lemma49RelativeGreendlingerCell.powerArc_isQuasiGeodesicChainAt
     {D : GGT.RelGenSet G Lambda}
     {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
     {Z : Lemma49GeodesicPowerDiagram D v g n}
-    {b : ℕ}
+    {powerMu : ℝ} {b : ℕ}
     (C : Lemma49RelativeGreendlingerCell D v g n eps mu Z)
-    (hpower : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier 4 b
+    (hpower : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier powerMu b
       (fun i => GGT.OsinComponents.vertex 1
         (lemma49BoundaryPower Z.boundaryWord n) i)
       (lemma49BoundaryPower Z.boundaryWord n).length) :
-    GGT.IsQuasiGeodesicChainAt D.alphabet.carrier 4 b C.powerArcVertex
+    GGT.IsQuasiGeodesicChainAt D.alphabet.carrier powerMu b C.powerArcVertex
       C.boundaryArc.length := by
   let start := C.boundaryBefore.length
   have hfit : start + C.boundaryArc.length ≤
@@ -318,6 +388,46 @@ theorem exists_lemma49ContiguityShadow_constant
   have hRel := C.exterior_isQuasiGeodesicChainAt hinput
   have hPowerGlobal := isQuasiGeodesicChainAt_power_of_long_period
     D N hshort Z.boundary_geodesic Z.exponent_pos hdelta hlong
+  have hPower := C.powerArc_isQuasiGeodesicChainAt hPowerGlobal
+  have hnear := hK G inferInstance D.alphabet.carrier C.exteriorVertex
+    C.powerArcVertex C.contiguity.exterior.length C.boundaryArc.length
+    D.alphabet.symmetricGenerating hdelta hRel hPower
+    C.leftEndpoint_close C.rightEndpoint_close
+  choose nearest hnearestLe hnearestClose using hnear
+  exact ⟨{
+    index := fun i => if hi : i ≤ C.boundaryArc.length then nearest i hi else 0
+    index_le := by
+      intro i hi
+      rw [dif_pos hi]
+      exact hnearestLe i hi
+    close := by
+      intro i hi
+      rw [dif_pos hi]
+      exact hnearestClose i hi }⟩
+
+/-- Shadow data obtained from any positive natural multiplicative constant
+for the geodesic-power boundary.  This is the common entry point for the short
+loxodromic branch, where Bowditch's translation gap chooses `powerMu`. -/
+theorem exists_lemma49ContiguityShadow_constant_of_powerChain
+    (delta eps powerMu b : ℕ) (hpowerMu : 0 < powerMu) :
+    ∃ K : ℕ, ∀
+      (G : Type u) (_ : Group G) (Lambda : Type*)
+      (D : GGT.RelGenSet G Lambda)
+      (v : List (GGT.RelLetter G Lambda)) (g : G) (n rho : ℕ)
+      (Z : Lemma49GeodesicPowerDiagram D v g n)
+      (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z),
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta →
+      RelWord.IsLemma49Input D (RelWord.symmetrized v) eps (1 / 1000) rho →
+      GGT.IsQuasiGeodesicChainAt D.alphabet.carrier powerMu b
+        (fun i => GGT.OsinComponents.vertex 1
+          (lemma49BoundaryPower Z.boundaryWord n) i)
+        (lemma49BoundaryPower Z.boundaryWord n).length →
+      Nonempty (Lemma49ContiguityShadow C K) := by
+  obtain ⟨K, hK⟩ := exists_quasiChain_quadrangleShadow_nat
+    delta eps powerMu b hpowerMu
+  refine ⟨K, ?_⟩
+  intro G _ Lambda D v g n rho Z C hdelta hinput hPowerGlobal
+  have hRel := C.exterior_isQuasiGeodesicChainAt hinput
   have hPower := C.powerArc_isQuasiGeodesicChainAt hPowerGlobal
   have hnear := hK G inferInstance D.alphabet.carrier C.exteriorVertex
     C.powerArcVertex C.contiguity.exterior.length C.boundaryArc.length
