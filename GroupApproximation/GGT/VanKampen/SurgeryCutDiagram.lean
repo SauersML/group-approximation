@@ -1,4 +1,3 @@
-import GroupApproximation.GGT.VanKampen.Estimating.Lemma65Statement
 import GroupApproximation.GGT.VanKampen.SurgeryCutProduct
 
 /-!
@@ -16,6 +15,9 @@ drops because the cut leaves at least one cell outside.  So a cut of a reduced
 diagram supplies Osin's Lemma 6.5 cut data, whose remaining field is the one
 that comes from the definition of the distinguished family rather than from the
 surgery.
+
+The adapter to Osin's landed cut record lives in `SurgeryCutLemma65`, so that
+this file does not depend on the statement file.
 -/
 
 namespace GroupApproximation
@@ -108,17 +110,6 @@ theorem diagram_reduced (cut : RegionCutData Delta) (hred : Delta.Reduced) :
     (keptRelatorCell Delta cut.outside cut.region cut.basepoint)
     (fun C => keptRelatorCell_value Delta cut.outside cut.region cut.basepoint C)
     cut.cells cut.before cut.after cut.cells_infix rfl hred
-
-/-- **Osin's Lemma 6.5 cut, as data.**  Everything except the positivity of the
-piece's cell count, which comes from the definition of the distinguished family
-rather than from the surgery. -/
-noncomputable def toLemma65CutData (cut : RegionCutData Delta)
-    (hred : Delta.Reduced) (hpos : 0 < cut.diagram.rCellCount) :
-    Embedded.Lemma65CutData Delta where
-  enclosed := cut.diagram
-  rCellCount_lt := cut.diagram_rCellCount_lt
-  rCellCount_pos := hpos
-  reduced := cut.diagram_reduced hred
 
 end RegionCutData
 end MapCollapse
