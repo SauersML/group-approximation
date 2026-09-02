@@ -300,13 +300,8 @@ theorem innerFace_presentedValue_eq_one
   rw [hj, triangleRelatorWord, List.map_map]
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
     presentedLetterValue T (signedFreeRelLetter u)).prod = 1
-  have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
-      presentedLetterValue T (signedFreeRelLetter u) =
-        FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
-    intro u
-    exact presentedLetterValue_signedFreeRelLetter (T := T) u
-  simp_rw [hletter]
-  exact TriangularHodgeLayer.wordValue_triangle_eq_one T j
+  simpa only [FoxBoundary.wordValue] using
+    TriangularHodgeLayer.wordValue_triangle_eq_one T j
 
 /-- Evaluate an arbitrary list of oriented diagram darts. -/
 def cayleyDartListValue
@@ -345,6 +340,7 @@ theorem presentedLetterValue_inv
       simp [presentedLetterValue, HullSC.RelWord.inv]
   | comp i _ => exact PEmpty.elim i
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Erasing an edge followed immediately by its reverse does not change
 presented value. -/
 theorem cayleyDartListValue_erase_backtrack
@@ -561,9 +557,11 @@ theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
       · subst i
         exact hfi
       · rw [VanKampen.CombMap.faceStarLayer, if_neg hi0] at hfi
+        change f ∈ M.faceStarBall seed i \ M.faceStarBall seed (i - 1) at hfi
         exact hfi.1
     have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
       hballMono (by omega) hfiBall
+    rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
     change f ∈ M.faceStarBall seed j \ M.faceStarBall seed (j - 1) at hfj
     exact hfj.2 hfpred
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
@@ -718,7 +716,7 @@ theorem layer_covers_of_incidenceInjection
     calc
       Fintype.card {f // f ∈ (layer i : Set Face)} =
           Nat.card {f // f ∈ (layer i : Set Face)} :=
-        (Nat.card_eq_fintype_card _).symm
+        (Nat.card_eq_fintype_card).symm
       _ = (layer i : Set Face).ncard := rfl
       _ = (layer i).card := Set.ncard_coe_finset _
   simpa only [Fintype.card_fin, Fintype.card_prod, hsetcard,
@@ -950,6 +948,7 @@ noncomputable def leastPowerDiscCandidate
   classical
   exact Classical.choose (Nat.find_spec (exists_powerDiscCandidate_area hfill))
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The selected candidate has the declared least area. -/
 theorem leastPowerDiscCandidate_area_eq
     (hfill : Nonempty (PowerDiscCandidate T g n)) :
