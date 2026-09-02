@@ -227,7 +227,8 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
         _ = blockLength := h12
     simp only [gromovProduct, y, Cayley.dist_eq, Cayley.val_of]
     rw [h01, h21, h02]
-    norm_num
+    push_cast
+    linarith
   have hprogressReal :=
     (finite_chain_backtracking_and_progress hhyperbolic
       (C := 0) (L := (blockLength : ℝ)) (by positivity) (by
@@ -239,12 +240,15 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
         (GGT.OsinComponents.vertex 1 power i)
         (GGT.OsinComponents.vertex 1 power chunkEnd) := by
     have hcast : (((2 * delta + 1) * chunks : ℕ) : ℝ) ≤
-        dist (y 0) (y chunks) := by
+        ((wordDist D.alphabet.carrier (y 0).val (y chunks).val : ℕ) : ℝ) := by
       dsimp [blockLength] at hprogressReal
-      push_cast at hprogressReal ⊢
+      push_cast at hprogressReal
       convert hprogressReal using 1 <;> ring
-    simpa only [y, Nat.zero_mul, Nat.add_zero, chunkEnd, Cayley.dist_eq,
-      Cayley.val_of] using hcast
+    have hnat : (2 * delta + 1) * chunks ≤
+        wordDist D.alphabet.carrier (y 0).val (y chunks).val := by
+      exact_mod_cast hcast
+    simpa only [y, Nat.zero_mul, Nat.add_zero, chunkEnd,
+      Cayley.val_of] using hnat
   have htail : wordDist D.alphabet.carrier
       (GGT.OsinComponents.vertex 1 power chunkEnd)
       (GGT.OsinComponents.vertex 1 power j) ≤ remainder := by
@@ -258,10 +262,15 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
       wordDist D.alphabet.carrier
           (GGT.OsinComponents.vertex 1 power i)
           (GGT.OsinComponents.vertex 1 power j) + remainder := by
+    have htail' : wordDist D.alphabet.carrier
+        (GGT.OsinComponents.vertex 1 power j)
+        (GGT.OsinComponents.vertex 1 power chunkEnd) ≤ remainder := by
+      rw [wordDist_comm D.alphabet.symmetricGenerating]
+      exact htail
     have htri := wordDist_triangle D.alphabet.symmetricGenerating
       (GGT.OsinComponents.vertex 1 power i)
-      (GGT.OsinComponents.vertex 1 power chunkEnd)
       (GGT.OsinComponents.vertex 1 power j)
+      (GGT.OsinComponents.vertex 1 power chunkEnd)
     omega
   have hfour : gap ≤ 4 *
       (wordDist D.alphabet.carrier
