@@ -63,11 +63,11 @@ def triangleRelatorWords
 
 /-- Every literal triangle relator has length three. -/
 theorem triangleRelatorWord_length
+    [Fintype Generator] [DecidableEq Generator]
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (j : TriangleIndex) : (triangleRelatorWord T j).length = 3 := by
-  rw [triangleRelatorWord, List.length_map,
-    TriangularHodgeLayer.letters_eq_three]
-  rfl
+  simp only [triangleRelatorWord, List.length_map,
+    TriangularHodgeLayer.letters, List.length_ofFn]
 
 /-! ## Periodic nonbacktracking walks -/
 
@@ -181,11 +181,9 @@ private theorem no_four_cycle
   have hterm1 : term v1 = 1 := by
     dsimp only [term]
     rw [TriangularHodgeLayer.adjacencyCount_comm T v1 v0, h01, h12]
-    norm_num
   have hterm3 : term v3 = 1 := by
     dsimp only [term]
     rw [h30, TriangularHodgeLayer.adjacencyCount_comm T v3 v2, h23]
-    norm_num
   have hpair : term v1 + term v3 ≤ ∑ u, term u := by
     rw [← Finset.sum_pair h13]
     exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _)
@@ -308,7 +306,6 @@ private theorem not_length_six (hchecks : GirthEightChecks T d)
   have hterm12 : term (W.vertex 1) (W.vertex 2) = 1 := by
     dsimp only [term]
     rw [h01, h12, h23]
-    norm_num
   have h05 : TriangularHodgeLayer.adjacencyCount T
       (W.vertex 0) (W.vertex 5) = 1 := by
     rw [TriangularHodgeLayer.adjacencyCount_comm T (W.vertex 0) (W.vertex 5)]
@@ -324,7 +321,6 @@ private theorem not_length_six (hchecks : GirthEightChecks T d)
   have hterm54 : term (W.vertex 5) (W.vertex 4) = 1 := by
     dsimp only [term]
     rw [h05, h54, h43]
-    norm_num
   let subtotal := fun a : TriangularHodgeLayer.SignedGenerator Generator ↦
     ∑ b, term a b
   have hsub1 : 1 ≤ subtotal (W.vertex 1) := by
@@ -371,6 +367,7 @@ theorem eight_le_length (hchecks : GirthEightChecks T d)
     (W : PresentationLinkWalk T n) : 8 ≤ n := by
   by_contra hnot
   have hlt : n < 8 := by omega
+  have hthree := W.three_le
   have hcases : n = 3 ∨ n = 4 ∨ n = 5 ∨ n = 6 ∨ n = 7 := by
     omega
   rcases hcases with h3 | h4 | h5 | h6 | h7
@@ -391,8 +388,9 @@ omit [Fintype Generator] [DecidableEq Generator]
 /-- Vertices visited by the chosen outer face traversal. -/
 noncomputable def discOuterBoundaryVertices
     {W : Set (List (GGT.RelLetter (FreeGroup Generator) PEmpty))}
-    (Delta : DiscDiagram W) : Finset Delta.toCombMap.Vertex :=
-  ((Delta.faceBoundary Delta.outerFace).darts.map
+    (Delta : DiscDiagram W) : Finset Delta.toCombMap.Vertex := by
+  classical
+  exact ((Delta.faceBoundary Delta.outerFace).darts.map
     Delta.toCombMap.vertexOf).toFinset
 
 omit [Fintype Generator] [DecidableEq Generator]
@@ -405,12 +403,15 @@ theorem discOuterBoundaryVertices_card_le
     (discOuterBoundaryVertices Delta).card ≤
       Delta.combinatorialBoundaryLength := by
   classical
+  rw [discOuterBoundaryVertices]
   calc
-    (discOuterBoundaryVertices Delta).card ≤
+    (((Delta.faceBoundary Delta.outerFace).darts.map
+        Delta.toCombMap.vertexOf).toFinset).card ≤
         ((Delta.faceBoundary Delta.outerFace).darts.map
           Delta.toCombMap.vertexOf).length :=
       List.toFinset_card_le _
-    _ = (Delta.faceBoundary Delta.outerFace).darts.length := List.length_map
+    _ = (Delta.faceBoundary Delta.outerFace).darts.length := by
+      rw [List.length_map]
     _ = Delta.toCombMap.faceDegree Delta.outerFace :=
       (Delta.faceBoundary Delta.outerFace).length_eq_degree
     _ = Delta.combinatorialBoundaryLength := rfl
@@ -457,6 +458,7 @@ namespace TriangularDiagramLocalData
 variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
   {d : ℕ} {Delta : DiscDiagram (triangleRelatorWords T)}
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Relator-cell coverage makes every inner face triangular. -/
 theorem innerFaceDegree (L : TriangularDiagramLocalData T Delta)
     (f : Delta.toCombMap.Face) (hf : f ∈ Delta.innerFaces) :
@@ -501,16 +503,16 @@ theorem innerFaceCount_add_eight_le_three_mul_boundaryLength
     (hchecks : GirthEightChecks T d)
     (L : TriangularDiagramLocalData T Delta) :
     Delta.innerFaceCount + 8 ≤ 3 * Delta.combinatorialBoundaryLength :=
-  (L.toTriangularGirthEightDiagram hchecks).
-    innerFaceCount_add_eight_le_three_mul_boundaryLength
+  TriangularGirthEightDiagram.innerFaceCount_add_eight_le_three_mul_boundaryLength
+    (L.toTriangularGirthEightDiagram hchecks)
 
 /-- The relator-cell area is at most three times the exterior word length. -/
 theorem rCellCount_le_three_mul_boundaryWord_length
     (hchecks : GirthEightChecks T d)
     (L : TriangularDiagramLocalData T Delta) :
     Delta.rCellCount ≤ 3 * Delta.boundaryWord.length :=
-  (L.toTriangularGirthEightDiagram hchecks).
-    rCellCount_le_three_mul_boundaryWord_length
+  TriangularGirthEightDiagram.rCellCount_le_three_mul_boundaryWord_length
+    (L.toTriangularGirthEightDiagram hchecks)
 
 end TriangularDiagramLocalData
 
