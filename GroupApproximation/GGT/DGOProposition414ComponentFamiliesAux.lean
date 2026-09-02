@@ -998,6 +998,7 @@ def SecondGapArcBoundaryExclusion
               B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
         (P.label s))
 
+/-
 /-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
 theorem firstGapArcSource_fullComponent_of_boundaryExclusion
     {D : RelGenSet G Λ}
@@ -1195,6 +1196,104 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
         omega
   rw [hcut1'] at ⊢
   simpa only [i, B.secondGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
+
+-/
+
+/-! ## Conditional cut-alignment bridges -/
+
+/-- The two cut equalities needed to transport a component from the raw
+auxiliary-cycle coordinates to the balanced-gap coordinates.  This is a
+strictly smaller input than a full component-family assertion. -/
+def FirstGapArcCutAlignment
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) : Prop :=
+  B.firstGapCut j ((B.firstGapLeft j).length +
+      (B.firstTargetSide s - B.firstGapStartSide j)) =
+      (B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)) ∧
+  B.firstGapCut j ((B.firstGapLeft j).length +
+      (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
+      (B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)) + 1
+
+/-- The wrapped version of `FirstGapArcCutAlignment`. -/
+def SecondGapArcCutAlignment
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) : Prop :=
+  B.secondGapCut j ((B.secondGapLeft j).length +
+      (B.secondTargetSide s - B.secondGapStartSide j)) =
+      (B.secondGapLeft j).length +
+        (B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j)) ∧
+  B.secondGapCut j ((B.secondGapLeft j).length +
+      (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
+      (B.secondGapLeft j).length +
+        (B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j)) + 1
+
+/-- Transport an inherited first-gap component under the endpoint and cut
+alignment inputs.  This is the component-family seam in DGO Proposition 4.14. -/
+theorem firstGapArcSource_fullComponent_of_boundaryAndCutAlignment
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (hboundary : FirstGapArcBoundaryExclusion B j s)
+    (halign : FirstGapArcCutAlignment B j s) :
+    IsComp (B.firstGapLocalLabel j
+        ((B.firstGapLeft j).length +
+          (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCycle j)
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1)) := by
+  have hraw := firstGapArcSource_cycleComponent_of_boundary B j s hs
+    hboundary.1 hboundary.2
+  simpa only [firstGapCycle, firstGapCut, halign.1, halign.2,
+    B.firstGapLocalLabel_arc j s hs] using hraw
+
+/-- Wrapped counterpart of
+`firstGapArcSource_fullComponent_of_boundaryAndCutAlignment`. -/
+theorem secondGapArcSource_fullComponent_of_boundaryAndCutAlignment
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (hboundary : SecondGapArcBoundaryExclusion B j s)
+    (halign : SecondGapArcCutAlignment B j s) :
+    IsComp (B.secondGapLocalLabel j
+        ((B.secondGapLeft j).length +
+          (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCycle j)
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1)) := by
+  have hraw := secondGapArcSource_cycleComponent_of_boundary B j s hs
+    hboundary.1 hboundary.2
+  simpa only [secondGapCycle, secondGapCut, halign.1, halign.2,
+    B.secondGapLocalLabel_arc j s hs] using hraw
 
 /-! ## Exact certificate assembly -/
 
