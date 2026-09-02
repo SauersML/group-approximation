@@ -256,7 +256,7 @@ theorem interior_total_le
         5 * (2 * mu) * ∑ i : Fin Delta.rCellCount,
           ((Embedded.cell Delta i).word.length : ℝ) := by
       simpa using hedge
-      _ = 10 * mu * ∑ i : Fin Delta.rCellCount,
+    _ = 10 * mu * ∑ i : Fin Delta.rCellCount,
           ((Embedded.cell Delta i).word.length : ℝ) := by ring
 
 /-- The hereditary planar incidence certificate yields the explicit
