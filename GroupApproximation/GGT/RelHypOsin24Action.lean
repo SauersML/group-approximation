@@ -6,25 +6,22 @@ import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
 # The Hull action attached to a relatively hyperbolic suitable subgroup
 
 The one-step Hull construction needs a `HullGeneratingSet` on which the given
-subgroup is suitable.  For a relatively hyperbolic pair the intended alphabet
-is the labelled relative alphabet `X ⊔ ⨆ H_lambda` itself.
+subgroup is suitable, while its arbitrary original peripheral family must be
+preserved on the same alphabet.  `RelativeHullData` is that compatibility
+object.
 
-Two standard relative-Cayley facts are isolated below:
+`CompatibleRelativeHullActionStatement` is the precise pre-quotient frontier.
+It is strictly smaller than Osin's quotient theorem: it mentions no quotient,
+target, relator, kernel, peripheral image, torsion lift, or suitability
+preservation.  For a genuine Osin relative presentation it is the action form
+of the element classification together with Lemma 2.3.
 
-* finite relative base plus hyperbolic embeddedness makes the relative Cayley
-  action acylindrical; and
-* a non-parabolic element of infinite order is loxodromic on that graph.
-
-They are the action and element forms of Osin's relative-hyperbolic
-classification.  Once supplied, the rest is proved here.  Osin suitability
-gives two non-commensurable infinite-order non-parabolic elements.  The second
-fact makes them loxodromic, and the proved acylindrical common-power theorem
-turns non-commensurability into independence.  The finite-normalizer clause is
-`IsSuitableSubgroup.normalizesNoNontrivialFinite`.
-
-The empty-peripheral theorems are model tests: then the relative alphabet is a
-finite ordinary alphabet, so both action facts reduce to existing proper-Cayley
-theorems.
+The finite-base hyperbolically embedded predicate alone does not justify
+acylindricity of its raw relative Cayley graph at an arbitrary index type.
+DGO Proposition 4.28(b) assumes a finite family, and Osin Theorem 5.4 enlarges
+the base before asserting acylindricity.  The empty-peripheral theorem below is
+the positive model: the alphabet is finite, so the compatible Hull action is
+constructed entirely from existing finite-Cayley results.
 -/
 
 namespace GroupApproximation
@@ -36,48 +33,7 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 
-/-! ## The two relative-Cayley facts -/
-
-/-- The relative Cayley action of a strongly relatively hyperbolic structure
-with finite relative base is acylindrical. -/
-def RelHypFiniteBaseAcylindricityStatement : Prop :=
-  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
-    D.base.Finite → D.IsHyperbolicallyEmbedded →
-      IsAcylindrical G (Cayley D.alphabet)
-
-/-- An infinite-order non-parabolic element is loxodromic on the finite-base
-relative Cayley graph. -/
-def RelHypHyperbolicElementLoxodromicStatement : Prop :=
-  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
-    D.base.Finite → D.IsHyperbolicallyEmbedded →
-      ∀ g : G, IsHyperbolicElement D.fam g →
-        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
-          IsLoxodromic g (Cayley.base D.alphabet)
-
-/-- The strictly smaller element-classification frontier: a non-parabolic
-infinite-order element escapes every bounded set in the finite-base relative
-Cayley graph.  This is the escape half of Osin's classification of elements
-for the action on the relative Cayley graph. -/
-def RelHypHyperbolicElementEscapingStatement : Prop :=
-  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
-    D.base.Finite → D.IsHyperbolicallyEmbedded →
-      ∀ g : G, IsHyperbolicElement D.fam g →
-        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
-          IsEscaping g (Cayley.base D.alphabet)
-
-/-- Acylindricity plus escape gives the loxodromic classification by the
-proved Bowditch half at a bare Cayley alphabet. -/
-theorem relHypHyperbolicElementLoxodromicStatement_of_acylindricity_of_escaping
-    (hacy : RelHypFiniteBaseAcylindricityStatement.{u, v})
-    (hescape : RelHypHyperbolicElementEscapingStatement.{u, v}) :
-    RelHypHyperbolicElementLoxodromicStatement.{u, v} := by
-  intro G _ I D hfinite hemb g hhyper hord
-  obtain ⟨delta, hdelta⟩ := hemb.hyperbolic
-  exact HullSCUnionGeometry.escapingIsLoxodromic_cayley_of_acylindrical
-    D.alphabet hdelta (hacy G inferInstance I D hfinite hemb) g
-      (hescape G inferInstance I D hfinite hemb g hhyper hord)
-
-/-! ## Empty-family model tests -/
+/-! ## Empty-family finite-Cayley facts -/
 
 /-- With no peripheral indices the full relative alphabet is the finite base. -/
 theorem relGenSet_alphabet_finite_of_isEmpty
@@ -91,18 +47,17 @@ theorem relGenSet_alphabet_finite_of_isEmpty
     hempty, Set.union_empty]
   exact hfinite
 
-/-- The acylindricity statement has the ordinary finite-Cayley model when the
-peripheral family is empty. -/
-theorem relHypFiniteBaseAcylindricity_emptyModel
+/-- The ordinary finite-Cayley action is acylindrical when the peripheral
+family is empty. -/
+theorem relHypFiniteBaseAcylindricity_empty
     {G : Type u} [Group G] {I : Type v} [IsEmpty I]
     (D : RelGenSet G I) (hfinite : D.base.Finite) :
     IsAcylindrical G (Cayley D.alphabet) :=
   isAcylindrical_cayley_of_finite D.alphabet
     (relGenSet_alphabet_finite_of_isEmpty D hfinite)
 
-/-- The loxodromic classification statement likewise reduces to the proved
-finite-Cayley infinite-order theorem for the empty family. -/
-theorem relHypHyperbolicElementLoxodromic_emptyModel
+/-- Infinite-order elements are loxodromic in the empty-family model. -/
+theorem relHypHyperbolicElementLoxodromic_empty
     {G : Type u} [Group G] {I : Type v} [IsEmpty I]
     (D : RelGenSet G I) (hfinite : D.base.Finite)
     (hemb : D.IsHyperbolicallyEmbedded) (g : G)
@@ -116,19 +71,6 @@ theorem relHypHyperbolicElementLoxodromic_emptyModel
   exact HullSCUnionGeometry.isLoxodromic_cayley_of_not_isOfFinOrder
     D.alphabet (relGenSet_alphabet_finite_of_isEmpty D hfinite)
       hdelta hnot
-
-/-- Escape itself has the same empty-family finite-Cayley model. -/
-theorem relHypHyperbolicElementEscaping_emptyModel
-    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
-    (D : RelGenSet G I) (hfinite : D.base.Finite) (g : G)
-    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
-    IsEscaping g (Cayley.base D.alphabet) := by
-  have hnot : ¬ IsOfFinOrder g := by
-    intro hfin
-    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
-    exact hord n hn hpow
-  exact HullSCUnionGeometry.isEscaping_cayley_of_not_isOfFinOrder
-    D.alphabet (relGenSet_alphabet_finite_of_isEmpty D hfinite) hnot
 
 /-! ## Assembly of Hull's action and suitability -/
 
@@ -152,33 +94,38 @@ structure RelativeHullData
   /-- The subgroup is suitable for Hull's action. -/
   suitable : Suitable hull.alphabet H
 
-/-- The two relative-Cayley facts turn Osin suitability into Hull suitability
-on the original labelled relative Cayley graph. -/
-theorem exists_relativeHullData_of_actionBridges
-    (hacyBridge : RelHypFiniteBaseAcylindricityStatement.{u, v})
-    (hloxBridge : RelHypHyperbolicElementLoxodromicStatement.{u, v})
-    {G : Type u} [Group G] {I : Type v} {Hfam : I → Subgroup G}
-    (hrel : IsRelativelyHyperbolic G Hfam) (H : Subgroup G)
-    (hsuit : IsSuitableSubgroup Hfam H) :
+/-- **The compatible action form of Osin Lemma 2.3.**
+
+The output keeps the original labelled relative structure and equips its same
+alphabet with Hull's hyperbolic, acylindrical, non-elementary data so that the
+given subgroup is suitable.  This is the sole pre-quotient geometric input of
+the Hull specialization. -/
+def CompatibleRelativeHullActionStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v)
+    (Hfam : I → Subgroup G), IsRelativelyHyperbolic G Hfam →
+      ∀ H : Subgroup G, IsSuitableSubgroup Hfam H →
+        Nonempty (RelativeHullData Hfam H)
+
+/-- The compatible-action statement has its ordinary hyperbolic-group model:
+with no peripherals, the finite relative base is a finite Cayley alphabet,
+and Osin suitability itself supplies the independent loxodromic pair. -/
+theorem nonempty_relativeHullData_emptyModel
+    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
+    {Hfam : I → Subgroup G} (hrel : IsRelativelyHyperbolic G Hfam)
+    (H : Subgroup G) (hsuit : IsSuitableSubgroup Hfam H) :
     Nonempty (RelativeHullData Hfam H) := by
   obtain ⟨D, hfinite, hfam, hemb⟩ := hrel
   obtain ⟨delta, hdelta⟩ := hemb.hyperbolic
   have hacy : IsAcylindrical G (Cayley D.alphabet) :=
-    hacyBridge G inferInstance I D hfinite hemb
+    relHypFiniteBaseAcylindricity_empty D hfinite
   have hnormal : HullSuitable.NormalizesNoNontrivialFinite H :=
     hsuit.normalizesNoNontrivialFinite
-  obtain ⟨f₁, hf₁, f₂, hf₂, hhyper₁, hhyper₂,
+  obtain ⟨f₁, hf₁, f₂, hf₂, _hhyper₁, _hhyper₂,
     hord₁, hord₂, hnc, _hinter⟩ := hsuit
-  have hhyper₁D : IsHyperbolicElement D.fam f₁ := by
-    rw [hfam]
-    exact hhyper₁
-  have hhyper₂D : IsHyperbolicElement D.fam f₂ := by
-    rw [hfam]
-    exact hhyper₂
   have hlox₁ : IsLoxodromic f₁ (Cayley.base D.alphabet) :=
-    hloxBridge G inferInstance I D hfinite hemb f₁ hhyper₁D hord₁
+    relHypHyperbolicElementLoxodromic_empty D hfinite hemb f₁ hord₁
   have hlox₂ : IsLoxodromic f₂ (Cayley.base D.alphabet) :=
-    hloxBridge G inferInstance I D hfinite hemb f₂ hhyper₂D hord₂
+    relHypHyperbolicElementLoxodromic_empty D hfinite hemb f₂ hord₂
   have hnoPower : ∀ p q : ℤ, p ≠ 0 → q ≠ 0 → f₁ ^ p ≠ f₂ ^ q := by
     intro p q hp hq heq
     apply hnc
