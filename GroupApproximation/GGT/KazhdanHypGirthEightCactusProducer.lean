@@ -60,7 +60,8 @@ def OrientedCactusBoundaryProducer : Prop :=
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (Z : Lemma44OrientedRelatorDiagram A (triangleRelatorWords T) R),
+      (Z : Lemma44OrientedRelatorDiagram.{0, 0} A
+        (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
 def OrientedCactusBoundarySource : Prop :=
@@ -68,9 +69,10 @@ def OrientedCactusBoundarySource : Prop :=
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (D : Lemma44RelatorDiagramBoundary A (triangleRelatorWords T) R),
+      (D : Lemma44RelatorDiagramBoundary.{0, 0} A
+        (triangleRelatorWords T) R),
       D.boundaryWord = w.map freeLetter ∧
-      ∃ (E : GGT.RelGenSet (FreeGroup Generator) PEmpty)
+      ∃ (E : GGT.RelGenSet.{0, 0} (FreeGroup Generator) PEmpty)
         (eps : ℕ) (mu : ℝ) (rho : ℕ),
         RelWord.IsSmallCancellation E (triangleRelatorWords T) eps mu rho
 
@@ -82,13 +84,17 @@ theorem orientedCactusBoundaryProducer_of_source
     hsource w hw hfree
   obtain ⟨Dred⟩ := D.exists_reduced
   obtain ⟨Z⟩ := Dred.exists_oriented hsc
-  exact ⟨A, R, Z, hboundary⟩
+  exact ⟨A, R, Z, (show Z.boundaryWord = D.boundaryWord from rfl).trans
+    hboundary⟩
 
 /-! ## Cactus realization and literal boundary spelling -/
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusRealization_of_oriented
     {A : Alphabet (FreeGroup Generator)} {R : ℕ}
-    (Z : Lemma44OrientedRelatorDiagram A (triangleRelatorWords T) R) :
+    (Z : Lemma44OrientedRelatorDiagram.{0, 0} A
+      (triangleRelatorWords T) R) :
     Nonempty (VanKampen.CactusRealization Z) :=
   VanKampen.cactusRealizationStatement Z
 
@@ -106,10 +112,11 @@ theorem cactusDiscDiagramProducer_of_oriented
   intro w hw hfree
   obtain ⟨A, R, Z, hboundary⟩ := hproducer w hw hfree
   obtain ⟨C⟩ := cactusRealization_of_oriented Z
-  have hrelative :
+  have hrelative : ∀ w : List (TriangularHodgeLayer.SignedGenerator Generator),
       (w.map freeLetter).map
           (GGT.RelLetter.base : FreeGroup Generator →
             GGT.RelLetter (FreeGroup Generator) PEmpty) = relativeWord w := by
+    intro w
     induction w with
     | nil => rfl
     | cons u us ih =>
