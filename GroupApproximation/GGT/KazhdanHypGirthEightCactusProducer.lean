@@ -84,8 +84,10 @@ theorem orientedCactusBoundaryProducer_of_source
     hsource w hw hfree
   obtain ⟨Dred⟩ := D.exists_reduced
   obtain ⟨Z⟩ := Dred.exists_oriented hsc
-  exact ⟨A, R, Z, (show Z.boundaryWord = D.boundaryWord from rfl).trans
-    hboundary⟩
+  have hZD : Z.boundaryWord = D.boundaryWord := by
+    change Dred.boundaryWord = D.boundaryWord
+    rfl
+  exact ⟨A, R, Z, hZD.trans hboundary⟩
 
 /-! ## Cactus realization and literal boundary spelling -/
 
@@ -132,7 +134,7 @@ theorem cactusDiscDiagramProducer_of_oriented
           GGT.RelLetter (FreeGroup Generator) PEmpty) :=
       congrArg (List.map (GGT.RelLetter.base : FreeGroup Generator →
         GGT.RelLetter (FreeGroup Generator) PEmpty)) hboundary
-    _ = relativeWord w := hrelative
+    _ = relativeWord w := hrelative w
 
 /-! ## Empty free-group model tests -/
 
