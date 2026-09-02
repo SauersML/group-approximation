@@ -1,42 +1,23 @@
-import GroupApproximation.GGT.VanKampen.Contiguity
-import GroupApproximation.GGT.VanKampen.ContiguityCount
-import GroupApproximation.GGT.HullSCLemma44ExteriorArc
+import GroupApproximation.GGT.VanKampen.Estimating.Partition
+import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
-import Mathlib.Tactic.Linarith
+import GroupApproximation.GGT.OsinTheorem54SepPolygon
+import Mathlib.Tactic
 
 /-!
-# The relative Greendlinger estimate
+# Relative Greendlinger with the source boundary hypothesis
 
-This file formalizes the counting output of Osin's Appendix Lemma 9.7
-(`Gr0`).  The estimating graph is represented by a planar combinatorial map.
-A five-owner certificate assigns every edge to an incident vertex so that at
-most five edges are assigned to each vertex.  This is the inductive form of
-the fact that every simple planar graph has a vertex of degree at most five.
-If an edge has weight at most `2 * mu` times its owner's weight, fibrewise
-summation proves Osin's weighted bound
+This file states Osin Lemma Gr0 with its `(lambda,c)`-quasi-geodesic outer
+boundary and proves its strict `> 1 - 13 * mu` conclusion from embedded
+estimating-system data.  Embedded contiguity regions are finite G-cell face
+sets in the ambient disc diagram, so this module does not import the separate
+`ContiguityRegion` development.
 
-`sum edgeWeight <= 10 * mu * sum vertexWeight`.
-
-An estimating system for a relative disc diagram partitions every relator
-boundary into one chosen exterior contiguity arc, interior contiguity arcs,
-and uncovered arcs.  The weighted graph controls the interior total by
-`10 * mu`; the Appendix replacement and merging steps control the uncovered
-total by `2 * mu`.  Summing the partitions and using `mu > 0` gives a cell
-whose chosen exterior arc is longer than
-`(1 - 13 * mu) * |boundary Pi|`.  This proves the weaker
-`1 - 23 * mu` formulation requested by the common interface as well.
-
-The remaining geometric inputs are named explicitly.  The specialized
-`EstimatingSystemStatement` constructs the distinguished maximal contiguity
-system on a short-boundary diagram.  The shared downstream interface is split
-more finely into `RelativeDiscRealizationStatement` (the cactus construction)
-and `EstimatingSystemSelectionStatement` (Osin's hyperbolicity-dependent
-choice of constants and Appendix replacement/merging construction).  The
-theorem `relativeGreendlinger` proves the exact proposition declared in
-`HullSCRelativeGreendlingerStatement.lean` from those two constructions; all
-subsequent weighted counting and certificate transfer is proved here.  The
-final section also transfers the stronger `1 - 13 * mu` output to the older
-`Lemma44LargeExteriorCell` structure.
+The construction statement at the end is the geometric output of Appendix
+Definition M, Lemmas 61, 62, 65(a), and Lemma Eul.  All weighted summation and
+selection of the large exterior cell are proved here.  The old Hull statement
+is retained only as a named alias; its consumers must supply a quasi-geodesic
+boundary and a bridge from a cyclic embedded arc to their based certificate.
 -/
 
 namespace GroupApproximation
@@ -46,486 +27,376 @@ namespace VanKampen
 open GroupApproximation.HullSC
 open GroupApproximation.WordMetric
 
-universe u w
+universe u w v
 
-/-! ## The diagram estimating system -/
+/-! ## Exact source hypotheses -/
 
-/-- The `i`-th relator cell in the stored boundary order. -/
-def DiscDiagram.indexedCell
+/-- A word labels a `(lambda,c)`-quasi-geodesic path in the relative Cayley
+graph.  This is Osin's convention with `0 < lambda <= 1`. -/
+def IsLambdaCQuasiGeodesicWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (lambda c : ℝ)
+    (word : List (GGT.RelLetter G Lambda)) : Prop :=
+  RelWord.IsAdmissible D word ∧
+    ∀ i j : ℕ, i ≤ j → j ≤ word.length →
+      lambda * ((j - i : ℕ) : ℝ) - c ≤
+        ((wordDist D.alphabet.carrier
+          (GGT.OsinComponents.vertex 1 word i)
+          (GGT.OsinComponents.vertex 1 word j) : ℕ) : ℝ)
+
+/-- The empty path is `(lambda,c)`-quasi-geodesic for every nonnegative
+additive constant. -/
+theorem isLambdaCQuasiGeodesicWord_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (lambda c : ℝ) (hc : 0 ≤ c) :
+    IsLambdaCQuasiGeodesicWord D lambda c [] := by
+  refine ⟨by simp [RelWord.IsAdmissible], ?_⟩
+  intro i j hij hj
+  have hj0 : j = 0 := by simpa using hj
+  have hi0 : i = 0 := by omega
+  subst i
+  subst j
+  simp only [Nat.cast_zero, zero_sub, mul_zero]
+  have hdist : (0 : ℝ) ≤
+      ((wordDist D.alphabet.carrier
+        (GGT.OsinComponents.vertex 1 [] 0)
+        (GGT.OsinComponents.vertex 1 [] 0) : ℕ) : ℝ) := by positivity
+  linarith
+
+/-- Osin's `C(epsilon,mu,lambda,c,rho)` condition. -/
+structure OsinCCondition
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps : ℕ) (mu lambda c : ℝ) (rho : ℕ) : Prop extends
+    RelWord.IsSmallCancellation D W eps mu rho where
+  quasiGeodesic : ∀ word ∈ W,
+    IsLambdaCQuasiGeodesicWord D lambda c word
+  publishedPiecesSmall : ∀ first second word,
+    RelWord.IsPublishedPiece D W eps first second word →
+      max (first.length : ℝ) (second.length : ℝ) < mu * word.length
+
+/-- The empty symmetrized family satisfies the exact Osin condition. -/
+theorem osinCCondition_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ) :
+    OsinCCondition D (∅ : Set (List (GGT.RelLetter G Lambda)))
+      eps mu lambda c rho := by
+  refine {
+    admissible := ?_
+    inv_mem := ?_
+    rotate_mem := ?_
+    long := ?_
+    deep := ?_
+    pieces_small := ?_
+    quasiGeodesic := ?_
+    publishedPiecesSmall := ?_ }
+  · intro word hword
+    exact hword.elim
+  · intro word hword
+    exact hword.elim
+  · intro word hword
+    exact hword.elim
+  · intro word hword
+    exact hword.elim
+  · intro word hword
+    exact hword.elim
+  · intro first word hpiece
+    exact hpiece.1.elim
+  · intro word hword
+    exact hword.elim
+  · intro first second word hpiece
+    exact hpiece.1.elim
+
+/-! ## Embedded `O`-equivalence and exterior witnesses -/
+
+/-- A G-cell-only replacement keeps the outer word and gives a bijection of
+relator cells preserving their labels. -/
+structure OEquivalentDiscDiagram
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram W) (i : Fin Delta.rCellCount) :
-    RelatorCell Delta.toCombMap Delta.outerFace W :=
-  Delta.relatorCells.get i
+    (Delta Delta' : DiscDiagram.{u, w, v} W) where
+  boundaryWord_eq : Delta'.boundaryWord = Delta.boundaryWord
+  cellIndex : Fin Delta.rCellCount ≃ Fin Delta'.rCellCount
+  cellWord_eq : ∀ i : Fin Delta.rCellCount,
+    (Embedded.cell Delta' (cellIndex i)).word = (Embedded.cell Delta i).word
 
-/-- The perimeter of an indexed relator cell. -/
-def DiscDiagram.cellWeight
+/-- `O`-equivalence is reflexive. -/
+def OEquivalentDiscDiagram.refl
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram W) (i : Fin Delta.rCellCount) : ℝ :=
-  ((Delta.indexedCell i).word.length : ℝ)
+    (Delta : DiscDiagram.{u, w, v} W) : OEquivalentDiscDiagram Delta Delta where
+  boundaryWord_eq := rfl
+  cellIndex := Equiv.refl _
+  cellWord_eq := fun _ => rfl
 
-/-- Osin's distinguished contiguity system after the Appendix replacement
-and merging operations.  There is at most one chosen exterior contiguity
-region per cell; absent regions have weight zero. -/
-structure EstimatingSystem
+/-- One selected embedded region from cell `i` to the outer boundary. -/
+structure EmbeddedBoundaryContiguity
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (eps : ℕ) (mu : ℝ) (Delta : DiscDiagram W) where
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W)
+    (i : Fin Delta.rCellCount) where
+  faces : Finset Delta.toCombMap.Face
+  region : Embedded.Contiguity D eps Delta faces
+  source_eq : region.source = i
+  target_eq : region.target = none
+
+namespace EmbeddedBoundaryContiguity
+
+/-- Length of the relator-cell contiguity arc. -/
+def weight
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {i : Fin Delta.rCellCount}
+    (contiguity : EmbeddedBoundaryContiguity D eps Delta i) : ℝ :=
+  contiguity.region.sourceArc.length
+
+end EmbeddedBoundaryContiguity
+
+/-! ## The embedded estimating-system count -/
+
+/-- Geometric output of the distinguished embedded family after Lemma 65(a).
+The canonical partition supplies the three cellwise weights.  The construction
+also identifies the complete exterior class at each cell with at most one
+boundary region, as established in Lemma 65(b). -/
+structure EmbeddedEstimatingSystem
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (mu : ℝ) (Delta : DiscDiagram.{u, w, v} W) where
+  selected : EstimatingSelection.DistinguishedFamily
+    (Embedded.Compatible (D := D) (eps := eps) (Delta := Delta))
+    (Embedded.Candidate.weight (D := D) (eps := eps) (Delta := Delta))
+  partition : Embedded.DiagramBoundaryPartition selected.family
   outer : ∀ i : Fin Delta.rCellCount,
-    Option (BoundaryContiguity (D := D) (eps := eps) (Delta.indexedCell i))
-  interiorWeight : Fin Delta.rCellCount → ℝ
-  uncoveredWeight : Fin Delta.rCellCount → ℝ
-  interiorWeight_nonneg : ∀ i, 0 ≤ interiorWeight i
-  uncoveredWeight_nonneg : ∀ i, 0 ≤ uncoveredWeight i
-  partition : ∀ i,
-    Delta.cellWeight i =
-      (match outer i with
-        | none => 0
-        | some Gamma => (Gamma.region.secondArc.length : ℝ)) +
-      interiorWeight i + uncoveredWeight i
-  totalWeight_pos : 0 < ∑ i : Fin Delta.rCellCount, Delta.cellWeight i
+    Option (EmbeddedBoundaryContiguity D eps Delta i)
+  outerWeight_eq : ∀ i : Fin Delta.rCellCount,
+    (match outer i with
+      | none => 0
+      | some contiguity => contiguity.weight) =
+        partition.kindWeight Embedded.CellArcKind.exterior i
+  totalWeight_pos :
+    0 < ∑ i : Fin Delta.rCellCount,
+      ((Embedded.cell Delta i).word.length : ℝ)
   interior_total_le :
-    (∑ i : Fin Delta.rCellCount, interiorWeight i) ≤
-      10 * mu * ∑ i : Fin Delta.rCellCount, Delta.cellWeight i
+    (∑ i : Fin Delta.rCellCount,
+        partition.kindWeight Embedded.CellArcKind.interior i) ≤
+      10 * mu * ∑ i : Fin Delta.rCellCount,
+        ((Embedded.cell Delta i).word.length : ℝ)
   uncovered_total_le :
-    (∑ i : Fin Delta.rCellCount, uncoveredWeight i) ≤
-      2 * mu * ∑ i : Fin Delta.rCellCount, Delta.cellWeight i
+    (∑ i : Fin Delta.rCellCount,
+        partition.kindWeight Embedded.CellArcKind.unbound i) ≤
+      2 * mu * ∑ i : Fin Delta.rCellCount,
+        ((Embedded.cell Delta i).word.length : ℝ)
 
-namespace EstimatingSystem
+namespace EmbeddedEstimatingSystem
 
-/-- Length of the chosen exterior contiguity arc, or zero if it is absent. -/
+/-- Exterior weight selected at one relator cell. -/
 def outerWeight
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram W}
-    (S : EstimatingSystem D eps mu Delta) (i : Fin Delta.rCellCount) : ℝ :=
-  match S.outer i with
+    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    (system : EmbeddedEstimatingSystem D eps mu Delta)
+    (i : Fin Delta.rCellCount) : ℝ :=
+  match system.outer i with
   | none => 0
-  | some Gamma => (Gamma.region.secondArc.length : ℝ)
+  | some contiguity => contiguity.weight
 
-/-- Summing the cellwise partitions partitions the total perimeter. -/
+/-- The positioned classification partitions total relator perimeter. -/
 theorem total_partition
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram W}
-    (S : EstimatingSystem D eps mu Delta) :
-    (∑ i : Fin Delta.rCellCount, Delta.cellWeight i) =
-      (∑ i : Fin Delta.rCellCount, S.outerWeight i) +
-      (∑ i : Fin Delta.rCellCount, S.interiorWeight i) +
-      (∑ i : Fin Delta.rCellCount, S.uncoveredWeight i) := by
+    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    (system : EmbeddedEstimatingSystem D eps mu Delta) :
+    (∑ i : Fin Delta.rCellCount,
+        ((Embedded.cell Delta i).word.length : ℝ)) =
+      (∑ i : Fin Delta.rCellCount, system.outerWeight i) +
+      (∑ i : Fin Delta.rCellCount,
+        system.partition.kindWeight Embedded.CellArcKind.interior i) +
+      (∑ i : Fin Delta.rCellCount,
+        system.partition.kindWeight Embedded.CellArcKind.unbound i) := by
   calc
-    (∑ i : Fin Delta.rCellCount, Delta.cellWeight i) =
-        ∑ i : Fin Delta.rCellCount, ((S.outerWeight i +
-          S.interiorWeight i) + S.uncoveredWeight i) := by
+    (∑ i : Fin Delta.rCellCount,
+        ((Embedded.cell Delta i).word.length : ℝ)) =
+        ∑ i : Fin Delta.rCellCount,
+          (system.partition.kindWeight Embedded.CellArcKind.exterior i +
+            system.partition.kindWeight Embedded.CellArcKind.interior i +
+            system.partition.kindWeight Embedded.CellArcKind.unbound i) := by
       apply Finset.sum_congr rfl
       intro i _
-      exact S.partition i
-    _ = _ := by
+      exact system.partition.cellWeight_partition i
+    _ = (∑ i : Fin Delta.rCellCount,
+          system.partition.kindWeight Embedded.CellArcKind.exterior i) +
+        (∑ i : Fin Delta.rCellCount,
+          system.partition.kindWeight Embedded.CellArcKind.interior i) +
+        (∑ i : Fin Delta.rCellCount,
+          system.partition.kindWeight Embedded.CellArcKind.unbound i) := by
       rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
+    _ = _ := by
+      apply congrArg₂ (fun exterior interior : ℝ => exterior + interior +
+        ∑ i : Fin Delta.rCellCount,
+          system.partition.kindWeight Embedded.CellArcKind.unbound i)
+      · apply Finset.sum_congr rfl
+        intro i _
+        exact system.outerWeight_eq i |>.symm
+      · rfl
 
-/-- The global budgets leave more than `1 - 13 * mu` of the total perimeter
-on chosen exterior arcs. -/
+/-- The two global budgets leave strictly more than `1 - 13 * mu` on
+exterior arcs. -/
 theorem total_exterior_gt
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram W}
-    (hmu : 0 < mu) (S : EstimatingSystem D eps mu Delta) :
+    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    (hmu : 0 < mu) (system : EmbeddedEstimatingSystem D eps mu Delta) :
     (1 - 13 * mu) *
-        (∑ i : Fin Delta.rCellCount, Delta.cellWeight i) <
-      ∑ i : Fin Delta.rCellCount, S.outerWeight i := by
-  have hpartition := S.total_partition
-  have hmupos : 0 < mu *
-      (∑ i : Fin Delta.rCellCount, Delta.cellWeight i) :=
-    mul_pos hmu S.totalWeight_pos
-  linarith [S.interior_total_le, S.uncovered_total_le]
+        (∑ i : Fin Delta.rCellCount,
+          ((Embedded.cell Delta i).word.length : ℝ)) <
+      ∑ i : Fin Delta.rCellCount, system.outerWeight i := by
+  have hpartition := system.total_partition
+  have hslack : 0 < mu *
+      (∑ i : Fin Delta.rCellCount,
+        ((Embedded.cell Delta i).word.length : ℝ)) :=
+    mul_pos hmu system.totalWeight_pos
+  linarith [system.interior_total_le, system.uncovered_total_le]
 
-/-- Some cell has one exterior contiguity arc longer than
-`(1 - 13 * mu)` times its perimeter. -/
+/-- Some cell has one embedded exterior region of strict degree greater than
+`1 - 13 * mu`. -/
 theorem exists_large_exterior
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram W}
-    (hmu : 0 < mu) (hmu_upper : mu ≤ 1 / 16)
-    (S : EstimatingSystem D eps mu Delta) :
+    {eps : ℕ} {mu : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16)
+    (system : EmbeddedEstimatingSystem D eps mu Delta) :
     ∃ (i : Fin Delta.rCellCount)
-      (Gamma : BoundaryContiguity (D := D) (eps := eps) (Delta.indexedCell i)),
-      S.outer i = some Gamma ∧
-      (1 - 13 * mu) * Delta.cellWeight i <
-        (Gamma.region.secondArc.length : ℝ) := by
-  have htotal := S.total_exterior_gt hmu
+      (contiguity : EmbeddedBoundaryContiguity D eps Delta i),
+      system.outer i = some contiguity ∧
+        (1 - 13 * mu) *
+            ((Embedded.cell Delta i).word.length : ℝ) < contiguity.weight := by
+  have htotal := system.total_exterior_gt hmu
   have hindex : ∃ i : Fin Delta.rCellCount,
-      (1 - 13 * mu) * Delta.cellWeight i < S.outerWeight i := by
+      (1 - 13 * mu) * ((Embedded.cell Delta i).word.length : ℝ) <
+        system.outerWeight i := by
     by_contra hnone
     have hall : ∀ i : Fin Delta.rCellCount,
-        S.outerWeight i ≤ (1 - 13 * mu) * Delta.cellWeight i := by
+        system.outerWeight i ≤
+          (1 - 13 * mu) * ((Embedded.cell Delta i).word.length : ℝ) := by
       intro i
       exact le_of_not_gt (fun hi => hnone ⟨i, hi⟩)
-    have hsum : (∑ i : Fin Delta.rCellCount, S.outerWeight i) ≤
-        ∑ i : Fin Delta.rCellCount,
-          (1 - 13 * mu) * Delta.cellWeight i := by
-      apply Finset.sum_le_sum
-      intro i _
-      exact hall i
-    have hfactor : (∑ i : Fin Delta.rCellCount,
-        (1 - 13 * mu) * Delta.cellWeight i) =
-        (1 - 13 * mu) *
-          ∑ i : Fin Delta.rCellCount, Delta.cellWeight i := by
-      rw [Finset.mul_sum]
-    rw [hfactor] at hsum
+    have hsum := Finset.sum_le_sum fun i (_ : i ∈ Finset.univ) => hall i
+    rw [← Finset.mul_sum] at hsum
     linarith
   obtain ⟨i, hi⟩ := hindex
-  have hcoeff : 0 ≤ 1 - 13 * mu := by linarith
-  cases houter : S.outer i with
+  have hcoefficient : 0 ≤ 1 - 13 * mu := by linarith
+  cases houter : system.outer i with
   | none =>
       rw [outerWeight, houter] at hi
-      have hcell : 0 ≤ Delta.cellWeight i := by positivity
-      have : 0 ≤ (1 - 13 * mu) * Delta.cellWeight i :=
-        mul_nonneg hcoeff hcell
+      have hperimeter : 0 ≤ ((Embedded.cell Delta i).word.length : ℝ) := by positivity
+      have := mul_nonneg hcoefficient hperimeter
       linarith
-  | some Gamma =>
-      refine ⟨i, Gamma, houter, ?_⟩
+  | some contiguity =>
+      refine ⟨i, contiguity, houter, ?_⟩
       rwa [outerWeight, houter] at hi
 
-end EstimatingSystem
+end EmbeddedEstimatingSystem
 
-/-! ## The named Greendlinger statements -/
+/-! ## Source statement and its geometric construction frontier -/
 
-/-- The single geometric estimate left after local piece control: every
-eligible reduced diagram admits the Appendix estimating system. -/
-def EstimatingSystemStatement : Prop :=
+/-- Source-faithful Osin Lemma Gr0. -/
+def RelativeGreendlingerQuasiGeodesicStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    (W : Set (List (GGT.RelLetter G Lambda)))
-    (eps rho : ℕ) (mu : ℝ) (Delta : DiscDiagram W),
-    RelWord.IsLemma44Input D W eps mu rho →
-    0 < mu → mu ≤ 1 / 52 → 0 < rho →
-    Delta.Reduced → 0 < Delta.rCellCount →
-    Delta.boundaryWord.length < rho →
-    Nonempty (EstimatingSystem D eps mu Delta)
+    (D : GGT.RelGenSet G Lambda),
+    (∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+      ∀ lambda c mu : ℝ,
+        0 < lambda → lambda ≤ 1 → 0 ≤ c →
+        0 < mu → mu ≤ 1 / 16 →
+          ∃ eps rho : ℕ, 0 < rho ∧
+            ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+              OsinCCondition D W eps mu lambda c rho →
+                ∀ Delta : DiscDiagram.{u, w, v} W,
+                  Delta.Reduced → 0 < Delta.rCellCount →
+                  IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+                    ∃ Delta' : DiscDiagram.{u, w, v} W,
+                      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                        ∃ (faces : Finset Delta'.toCombMap.Face)
+                          (Gamma : Embedded.Contiguity D eps Delta' faces),
+                          Gamma.target = none ∧
+                            (1 - 13 * mu) *
+                                ((Embedded.cell Delta' Gamma.source).word.length : ℝ) <
+                              (Gamma.sourceArc.length : ℝ)
 
-/-- Osin's relative Greendlinger conclusion in the common diagram interface.
-The strict source estimate implies the stated weak degree bound. -/
-def DiagramRelativeGreendlingerStatement : Prop :=
+/-- The strictly smaller geometric construction used by the numerical Gr0
+count: produce an embedded estimating system after an `O`-equivalent
+G-cell-only replacement. -/
+def EmbeddedEstimatingSystemConstructionStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    (W : Set (List (GGT.RelLetter G Lambda)))
-    (eps rho : ℕ) (mu : ℝ) (Delta : DiscDiagram W),
-    RelWord.IsLemma44Input D W eps mu rho →
-    0 < mu → mu ≤ 1 / 52 → 0 < rho →
-    Delta.Reduced → 0 < Delta.rCellCount →
-    Delta.boundaryWord.length < rho →
-    ∃ (i : Fin Delta.rCellCount)
-      (Gamma : BoundaryContiguity (D := D) (eps := eps) (Delta.indexedCell i)),
-      1 - 23 * mu ≤ Gamma.degree
+    (D : GGT.RelGenSet G Lambda),
+    (∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+      ∀ lambda c mu : ℝ,
+        0 < lambda → lambda ≤ 1 → 0 ≤ c →
+        0 < mu → mu ≤ 1 / 16 →
+          ∃ eps rho : ℕ, 0 < rho ∧
+            ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+              OsinCCondition D W eps mu lambda c rho →
+                ∀ Delta : DiscDiagram.{u, w, v} W,
+                  Delta.Reduced → 0 < Delta.rCellCount →
+                  IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+                    ∃ Delta' : DiscDiagram.{u, w, v} W,
+                      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                        Nonempty (EmbeddedEstimatingSystem D eps mu Delta')
 
-/-- Osin Lemma 9.7 (`Gr0`), from the distinguished estimating-system
-construction. -/
-theorem diagramRelativeGreendlinger
-    (hestimate : EstimatingSystemStatement.{u, w}) :
-    DiagramRelativeGreendlingerStatement.{u, w} := by
-  intro G _ Lambda D W eps rho mu Delta hsc hmu hmuUpper hrho hred hcells hshort
-  obtain ⟨S⟩ := hestimate D W eps rho mu Delta hsc hmu hmuUpper hrho
-    hred hcells hshort
-  have hmuSixteen : mu ≤ 1 / 16 := le_trans hmuUpper (by norm_num)
-  obtain ⟨i, Gamma, _, hlarge⟩ := S.exists_large_exterior hmu hmuSixteen
-  refine ⟨i, Gamma, ?_⟩
-  have hlenNat : 0 < (Delta.indexedCell i).word.length :=
-    lt_of_lt_of_le hrho
-      (hsc.long (Delta.indexedCell i).word (Delta.indexedCell i).word_mem)
-  have hlen : (0 : ℝ) < ((Delta.indexedCell i).word.length : ℝ) := by
-    exact_mod_cast hlenNat
-  have hcoeff : 1 - 23 * mu ≤ 1 - 13 * mu := by linarith
-  have hscaled : (1 - 23 * mu) * Delta.cellWeight i ≤
-      (1 - 13 * mu) * Delta.cellWeight i :=
-    mul_le_mul_of_nonneg_right hcoeff (by positivity)
-  have hstrict : (1 - 23 * mu) * Delta.cellWeight i <
-      (Gamma.region.secondArc.length : ℝ) :=
-    lt_of_le_of_lt hscaled hlarge
-  rw [BoundaryContiguity.degree, le_div_iff₀ hlen]
-  exact le_of_lt hstrict
+/-- The embedded construction implies the exact strict source conclusion. -/
+theorem relativeGreendlingerQuasiGeodesic
+    (hconstruction : EmbeddedEstimatingSystemConstructionStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicStatement.{u, w, v} := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
+  obtain ⟨eps, rho, hrho, hsystems⟩ := hconstruction D hhyper lambda c mu
+    hlambda hlambdaUpper hc hmu hmuUpper
+  refine ⟨eps, rho, hrho, ?_⟩
+  intro W hcondition Delta hred hcells hboundary
+  obtain ⟨Delta', hequiv, system⟩ :=
+    hsystems W hcondition Delta hred hcells hboundary
+  obtain ⟨system⟩ := system
+  obtain ⟨i, contiguity, _, hlarge⟩ :=
+    system.exists_large_exterior hmu hmuUpper
+  refine ⟨Delta', hequiv, contiguity.faces, contiguity.region,
+    contiguity.target_eq, ?_⟩
+  rw [contiguity.source_eq]
+  exact hlarge
 
-/-- With an empty relator family, the estimating-system input has no positive
-cell-count case.  This model test checks that the named geometric estimate is
-not asserting the existence of cells. -/
-theorem estimatingSystem_emptyFamilyModel
+/-- The construction frontier is correctly vacuous over the empty family:
+there is no positive-cell diagram to which it could apply. -/
+theorem embeddedEstimatingSystemConstruction_emptyFamilyModel
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu : ℝ)
-    (Delta : DiscDiagram (∅ : Set (List (GGT.RelLetter G Lambda))))
-    (hcells : 0 < Delta.rCellCount) :
-    Nonempty (EstimatingSystem D eps mu Delta) := by
+    (D : GGT.RelGenSet G Lambda)
+    (Delta : DiscDiagram.{u, w, v}
+      (∅ : Set (List (GGT.RelLetter G Lambda))))
+    (hcells : 0 < Delta.rCellCount) : False := by
   have hnil : Delta.relatorCells = [] := by
     cases hcellsList : Delta.relatorCells with
     | nil => exact hcellsList
-    | cons C cells =>
-        have hmem : C ∈ Delta.relatorCells := by rw [hcellsList]; simp
-        exact (C.word_mem.elim)
+    | cons cell cells =>
+        have hmem : cell ∈ Delta.relatorCells := by rw [hcellsList]; simp
+        exact cell.word_mem.elim
   rw [DiscDiagram.rCellCount, hnil, List.length_nil] at hcells
   omega
 
-/-! ## The common certificate interface -/
+/-! ## Legacy consumer alias -/
 
-/-- A planar realization of the common reduced-diagram input used by the
-Lemma 4.4 and Lemma 4.9 lanes.  The equivalence identifies every algebraic
-cell with its actual planar face, including its oriented boundary word. -/
-structure RelativeDiscRealization
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
-    (Z : HullSC.RelativeReducedDiagram D W R) where
-  diagram : DiscDiagram W
-  cellIndex : Fin Z.cells.length ≃ Fin diagram.rCellCount
-  boundaryWord_eq : diagram.boundaryWord =
-    Z.boundaryWord.map (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)
-  cellWord_eq : ∀ i : Fin Z.cells.length,
-    (diagram.indexedCell (cellIndex i)).word = (Z.cells.get i).relator
-  reduced : diagram.Reduced
-
-/-- The explicit cactus construction required before the estimating-graph
-argument: every common algebraic reduced diagram has a planar realization. -/
-def RelativeDiscRealizationStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ)
-    (Z : HullSC.RelativeReducedDiagram D W R),
-    Nonempty (RelativeDiscRealization Z)
-
-/-- The remaining hyperbolic-geometry construction.  Osin's `Gr0` chooses
-`eps` and the initial relator threshold and then constructs the maximal
-estimating system.  The source assumes that the outer boundary is
-quasi-geodesic; the shared `RelativeReducedDiagram` interface does not expose
-that field, so proving this exact shared form also requires recovering the
-boundary hypothesis supplied separately by its applications. -/
-def EstimatingSystemSelectionStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda),
-    D.IsHyperbolicallyEmbedded →
-      ∀ mu : ℝ, 0 < mu → mu ≤ 1 / 16 →
-        ∃ eps rho0 : ℕ, ∀ rho : ℕ, rho0 ≤ rho →
-          ∀ (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ),
-            RelWord.IsLemma44Input D W eps mu rho →
-              ∀ (Z : HullSC.RelativeReducedDiagram D W R)
-                (C : RelativeDiscRealization Z),
-                Nonempty (EstimatingSystem D eps mu C.diagram)
-
-/-- Convert a genuine planar boundary-contiguity subdiagram to the finite
-certificate format shared by the downstream lanes. -/
-theorem relativeBoundaryContiguity_of_disc
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))} {R eps : ℕ}
-    {Z : HullSC.RelativeReducedDiagram D W R}
-    (C : RelativeDiscRealization Z) (i : Fin Z.cells.length)
-    (Gamma : BoundaryContiguity (D := D) (eps := eps)
-      (C.diagram.indexedCell (C.cellIndex i))) :
-    HullSC.RelativeBoundaryContiguity D eps Z.boundaryWord
-      (Z.cells.get i).relator := by
-  have hrelative :
-      Z.boundaryWord.map
-          (GGT.RelLetter.base : G → GGT.RelLetter G Lambda) =
-        Gamma.boundaryBefore ++ Gamma.region.firstArc ++
-          Gamma.boundaryAfter :=
-    C.boundaryWord_eq.symm.trans Gamma.boundary_decomposition
-  have hgroup : Z.boundaryWord =
-      Gamma.boundaryBefore.map GGT.RelLetter.val ++
-        Gamma.region.firstArc.map GGT.RelLetter.val ++
-        Gamma.boundaryAfter.map GGT.RelLetter.val := by
-    have hmap := congrArg (List.map GGT.RelLetter.val) hrelative
-    simpa only [List.map_append, List.map_map, Function.comp_apply,
-      HullSC.val_base] using hmap
-  exact
-    { exterior := Gamma.region.secondArc
-      remainder := Gamma.sourceRemainder
-      relator_decomposition :=
-        (C.cellWord_eq i).symm.trans Gamma.source_decomposition
-      boundaryBefore := Gamma.boundaryBefore.map GGT.RelLetter.val
-      boundaryArc := Gamma.region.firstArc.map GGT.RelLetter.val
-      boundaryAfter := Gamma.boundaryAfter.map GGT.RelLetter.val
-      boundary_decomposition := hgroup
-      leftSide := Gamma.region.leftSide
-      rightSide := Gamma.region.rightSide
-      leftSide_admissible := Gamma.region.leftSide_admissible
-      rightSide_admissible := Gamma.region.rightSide_admissible
-      leftSide_short := Gamma.region.leftSide_length_le
-      rightSide_short := Gamma.region.rightSide_length_le
-      exterior_value := by
-        change GGT.RelLetter.listVal Gamma.region.secondArc =
-          Gamma.region.leftConnector *
-            (Gamma.region.firstArc.map GGT.RelLetter.val).prod *
-            Gamma.region.rightConnector
-        exact Gamma.region.arcs_value }
-
-/-- The numerical estimating-system theorem packages directly into the
-common finite relative Greendlinger certificate. -/
-theorem relativeDiagramCertificate_of_estimatingSystem
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))} {R eps : ℕ} {mu : ℝ}
-    {Z : HullSC.RelativeReducedDiagram D W R}
-    (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16)
-    (C : RelativeDiscRealization Z)
-    (S : EstimatingSystem D eps mu C.diagram) :
-    Nonempty (HullSC.RelativeDiagramCertificate D W eps mu Z) := by
-  obtain ⟨j, Gamma, houter, hlarge⟩ :=
-    S.exists_large_exterior hmu hmuUpper
-  let i : Fin Z.cells.length := C.cellIndex.symm j
-  have hij : C.cellIndex i = j := C.cellIndex.apply_symm_apply j
-  cases hij
-  let B : HullSC.RelativeBoundaryContiguity D eps Z.boundaryWord
-      (Z.cells.get i).relator :=
-    relativeBoundaryContiguity_of_disc C i Gamma
-  refine ⟨{
-      boundaryWord := Z.boundaryWord
-      boundaryWord_eq := rfl
-      cellLabel := fun k => (Z.cells.get k).relator
-      cellLabel_eq := fun _ => rfl
-      cellLabel_mem := fun k => (Z.cells.get k).relator_mem
-      contiguity := fun k =>
-        (S.outer (C.cellIndex k)).map
-          (relativeBoundaryContiguity_of_disc C k)
-      largeCell := ⟨i, B, ?_, ?_⟩ }⟩
-  · dsimp [B]
-    rw [houter]
-    rfl
-  · have hwordLength : C.diagram.cellWeight (C.cellIndex i) =
-        ((Z.cells.get i).relator.length : ℝ) := by
-      rw [DiscDiagram.cellWeight, C.cellWord_eq i]
-    have hcoeff : 1 - 23 * mu ≤ 1 - 13 * mu := by linarith
-    have hscaled :
-        (1 - 23 * mu) * ((Z.cells.get i).relator.length : ℝ) ≤
-          (1 - 13 * mu) * ((Z.cells.get i).relator.length : ℝ) :=
-      mul_le_mul_of_nonneg_right hcoeff (by positivity)
-    rw [hwordLength] at hlarge
-    exact le_trans hscaled (le_of_lt hlarge)
-
-/-- This module's public statement is definitionally the exact proposition
-declared by the shared Hull interface. -/
+/-- The old Hull statement omits the quasi-geodesic boundary hypothesis.  It
+is retained as a type alias only; a consumer can derive it after choosing
+quasi-geodesic representatives and bridging cyclic embedded arcs to its based
+certificate. -/
 def RelativeGreendlingerStatement : Prop :=
   HullSC.RelativeGreendlingerStatement.{u, w}
-
-/-- Osin's relative Greendlinger lemma, reduced to the two explicit geometric
-constructions and with all numerical counting completed in this file. -/
-theorem relativeGreendlinger
-    (hrealize : RelativeDiscRealizationStatement.{u, w})
-    (hestimate : EstimatingSystemSelectionStatement.{u, w}) :
-    RelativeGreendlingerStatement.{u, w} := by
-  intro G _ Lambda D hemb mu hmu hmuUpper
-  obtain ⟨eps, rho0, hsystem⟩ := hestimate D hemb mu hmu hmuUpper
-  refine ⟨eps, rho0, ?_⟩
-  intro rho hrho W R hsc Z
-  obtain ⟨C⟩ := hrealize D W R Z
-  obtain ⟨S⟩ := hsystem rho hrho W R hsc Z C
-  exact relativeDiagramCertificate_of_estimatingSystem hmu hmuUpper C S
-
-/-- The common realization frontier is vacuous over the empty family in
-every group, matching the two-point and free-group model tests in the shared
-interface. -/
-theorem relativeDiscRealization_emptyFamilyModel
-    {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (R : ℕ)
-    (Z : HullSC.RelativeReducedDiagram D
-      (∅ : Set (List (GGT.RelLetter G Lambda))) R) :
-    Nonempty (RelativeDiscRealization Z) := by
-  exact False.elim ((HullSC.no_relativeReducedDiagram_emptyFamily D R).false Z)
-
-/-! ## Transfer to Hull's exact exterior-cell interface -/
-
-/-- A boundary contiguity arc on a cactus realization produces the exact
-`Lemma44LargeExteriorCell` consumed by Hull's Lemma 4.4. -/
-theorem largeExteriorCell_of_boundaryContiguity
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {R eps : ℕ} {mu : ℝ}
-    {Z : HullSC.Lemma44OrientedRelatorDiagram A W R}
-    (C : CactusRealization Z)
-    {i : Fin C.diagram.rCellCount}
-    (Gamma : BoundaryContiguity (D := D) (eps := eps)
-      (C.diagram.indexedCell i))
-    (hlarge : (1 - 13 * mu) *
-      ((C.diagram.indexedCell i).word.length : ℝ) <
-        (Gamma.region.secondArc.length : ℝ)) :
-    HullSC.Lemma44LargeExteriorCell D W eps mu
-      Z.toLemma44ReducedRelatorDiagram := by
-  have hrelative :
-      Z.boundaryWord.map
-          (GGT.RelLetter.base : G → GGT.RelLetter G Lambda) =
-        Gamma.boundaryBefore ++ Gamma.region.firstArc ++
-          Gamma.boundaryAfter :=
-    C.boundaryWord_eq.symm.trans Gamma.boundary_decomposition
-  have hgroup : Z.boundaryWord =
-      Gamma.boundaryBefore.map GGT.RelLetter.val ++
-        Gamma.region.firstArc.map GGT.RelLetter.val ++
-        Gamma.boundaryAfter.map GGT.RelLetter.val := by
-    have hmap := congrArg (List.map GGT.RelLetter.val) hrelative
-    simpa only [List.map_append, List.map_map, Function.comp_apply,
-      HullSC.val_base] using hmap
-  let boundaryArc : HullSC.Lemma44BoundaryArc
-      Z.toLemma44RelatorDiagramBoundary :=
-    { before := Gamma.boundaryBefore.map GGT.RelLetter.val
-      arc := Gamma.region.firstArc.map GGT.RelLetter.val
-      after := Gamma.boundaryAfter.map GGT.RelLetter.val
-      decomposition := hgroup }
-  exact
-    { relator := (C.diagram.indexedCell i).word
-      relator_mem := (C.diagram.indexedCell i).word_mem
-      exterior := Gamma.region.secondArc
-      remainder := Gamma.sourceRemainder
-      relator_decomposition := Gamma.source_decomposition
-      exterior_large := hlarge
-      boundaryArc := boundaryArc
-      leftConnector := Gamma.region.leftConnector
-      rightConnector := Gamma.region.rightConnector
-      leftConnector_short := Gamma.region.leftConnector_short
-      rightConnector_short := Gamma.region.rightConnector_short
-      exterior_value := by
-        change GGT.RelLetter.listVal Gamma.region.secondArc =
-          Gamma.region.leftConnector *
-            (Gamma.region.firstArc.map GGT.RelLetter.val).prod *
-            Gamma.region.rightConnector
-        exact Gamma.region.arcs_value }
-
-/-- The exact theorem consumed by the Hull 4.4 lane. -/
-def HullRelativeGreendlingerStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
-    (W : Set (List (GGT.RelLetter G Lambda)))
-    (R eps rho : ℕ) (mu : ℝ),
-    RelWord.IsLemma44Input D W eps mu rho →
-    0 < mu → mu ≤ 1 / 52 → 0 < rho → 2 * R < rho →
-    ∀ Z : HullSC.Lemma44OrientedRelatorDiagram A W R,
-      Nonempty (HullSC.Lemma44LargeExteriorCell D W eps mu
-        Z.toLemma44ReducedRelatorDiagram)
-
-/-- The cactus construction and estimating-system construction prove the
-exact Hull exterior-cell statement. -/
-theorem hullRelativeGreendlinger
-    (hcactus : CactusRealizationStatement.{u, w})
-    (hestimate : EstimatingSystemStatement.{u, w}) :
-    HullRelativeGreendlingerStatement.{u, w} := by
-  intro G _ Lambda D A W R eps rho mu hsc hmu hmuUpper hrho hR Z
-  obtain ⟨C⟩ := hcactus Z
-  have hred : C.diagram.Reduced := C.reduced
-  have hcells : 0 < C.diagram.rCellCount := by
-    rw [C.rCellCount_eq_area]
-    exact Z.area_pos
-  have hboundaryLength : C.diagram.boundaryWord.length = Z.boundaryWord.length := by
-    rw [C.boundaryWord_eq, List.length_map]
-  have hshort : C.diagram.boundaryWord.length < rho := by
-    rw [hboundaryLength, Z.boundaryWord_geodesic]
-    exact lt_of_le_of_lt Z.boundary_length_le hR
-  obtain ⟨S⟩ := hestimate D W eps rho mu C.diagram hsc hmu hmuUpper hrho
-    hred hcells hshort
-  have hmuSixteen : mu ≤ 1 / 16 := le_trans hmuUpper (by norm_num)
-  obtain ⟨i, Gamma, _, hlarge⟩ := S.exists_large_exterior hmu hmuSixteen
-  exact ⟨largeExteriorCell_of_boundaryContiguity C Gamma hlarge⟩
 
 end VanKampen
 end GGT
