@@ -32,7 +32,7 @@ strictly smaller than cellular reducedness: it only describes how a proposed
 mirror in one cyclic corner enumeration is represented in the ordered cell
 list. -/
 structure ReducedMirrorIncidence
-    (Delta : DiscDiagram.{u, w, v} W)
+    (Delta : DiscDiagram.{u, w, 0} W)
     {vtx : Delta.toCombMap.Vertex}
     (C : CyclicCornerEnumeration Delta.toCombMap vtx)
     (K : VertexCornerCertificate (T := T)
@@ -49,7 +49,7 @@ structure ReducedMirrorIncidence
 /-- Diagram-level reducedness excludes every mirror corner supplied by the
 incidence certificate, so the cyclic seam walk is non-backtracking. -/
 theorem cellularReducedAt_of_reduced
-    (Delta : DiscDiagram.{u, w, v} W)
+    (Delta : DiscDiagram.{u, w, 0} W)
     {vtx : Delta.toCombMap.Vertex}
     (C : CyclicCornerEnumeration Delta.toCombMap vtx)
     (K : VertexCornerCertificate (T := T) (C := C))
@@ -65,7 +65,7 @@ theorem cellularReducedAt_of_reduced
 predicate is immediate and the preceding constructor is vacuous whenever its
 incidence certificate is present. -/
 theorem cellularReducedAt_of_oneCell_empty
-    (Delta : DiscDiagram.{u, w, v} W)
+    (Delta : DiscDiagram.{u, w, 0} W)
     (hzero : Delta.relatorCells = [])
     {vtx : Delta.toCombMap.Vertex}
     (C : CyclicCornerEnumeration Delta.toCombMap vtx)
