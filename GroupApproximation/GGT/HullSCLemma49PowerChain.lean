@@ -240,6 +240,7 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
         (GGT.OsinComponents.vertex 1 power i)
         (GGT.OsinComponents.vertex 1 power chunkEnd) := by
     dsimp [blockLength] at hprogressReal
+    push_cast at hprogressReal
     have hcoefficient :
         4 * (delta : ℝ) + 1 - 2 * (0 + (delta : ℝ)) =
           (((2 * delta + 1 : ℕ) : ℝ)) := by
@@ -310,7 +311,8 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
         (error : ℝ)) := by
     exact_mod_cast hfour
   dsimp [gap, error] at hfourReal ⊢
-  norm_num
+  push_cast at hfourReal ⊢
+  norm_num at hfourReal ⊢
   linarith
 
 /-! ## Model check -/
@@ -324,9 +326,9 @@ theorem no_long_geodesic_period_trivialModel
     (delta : ℕ) : ¬ 8 * delta + 2 ≤ word.length := by
   intro hlong
   have hempty : word = [] := by
-    apply List.eq_nil_of_length_eq_zero
-    have hlen := hword.2.2
-    simpa [wordDist_one_left] using hlen
+    have hlenZero : word.length = 0 := by
+      rw [hword.2.2, wordDist_self]
+    exact List.eq_nil_of_length_eq_zero hlenZero
   rw [hempty, List.length_nil] at hlong
   omega
 
