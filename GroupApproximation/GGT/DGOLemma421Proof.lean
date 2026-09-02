@@ -1720,6 +1720,54 @@ theorem exists_target_of_deep_component_of_uniformBound
   exact hdeep (relBall_mono_radius D lam hrho hspan)
 
 omit [Group G] in
+/-- The fixed-radius form of the preceding target lemma.  It keeps the radius
+chosen by a uniform Proposition 4.14 witness visible to the final counting
+argument. -/
+theorem target_of_fixed_uniformBound
+    (D : RelGenSet G Λ) (lam : Λ) {mu b : ℝ} {C : ℕ}
+    (hC : 0 < C)
+    (hdeepBound : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G)
+      (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D mu b n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
+        IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
+    ∀ (n : ℕ) (rho : ℕ) (p q r s : List (RelLetter G Λ)),
+      n ≤ 6 →
+      RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
+        RelLetter.listVal r →
+      IsQuasiGeodesicPolygon D mu b n 1
+        (p ++ q ++ r ++ revWord s) →
+      ∀ (i k : ℕ), 0 < i → k < q.length → IsComp lam q i k →
+        C * n ≤ rho →
+        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉
+          D.relBall lam rho →
+        ∃ n' : ℕ, n' ≠ p.length + i ∧
+          IsCompStart lam (p ++ q ++ r ++ revWord s) n' ∧
+          (n' < p.length ∨
+            (∃ i' : ℕ, i' ≤ q.length ∧ n' = p.length + i') ∨
+            (∃ m : ℕ, m < r.length ∧
+              n' = p.length + q.length + m) ∨
+            (∃ j : ℕ, j ≤ s.length ∧
+              n' = p.length + q.length + r.length + (s.length - j))) ∧
+          ∃ h : G, h ∈ D.fam lam ∧
+            RelLetter.listVal p * vertex (1 : G) q i * h =
+              vertex (1 : G) (p ++ q ++ r ++ revWord s) n' := by
+  intro n rho p q r s hn hclose hpoly i k hi hk hcomp hrho hdeep
+  have hbridge := isComp_fourGon_of_isComp_side_of_interior
+    p q r s lam hi hk hcomp
+  have hiq : i ≤ q.length :=
+    le_trans (Nat.le_of_lt hcomp.1) hcomp.2.1
+  have hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
+      (p.length + i) := ⟨p.length + k, hbridge⟩
+  apply exists_other_component_fourGon_general D lam p q r s hiq hstart
+  intro hisolated
+  have hspan := hdeepBound n hn 1 (p ++ q ++ r ++ revWord s) hpoly
+    lam (p.length + i) (p.length + k) hbridge hisolated
+  rw [span_fourGon_side p q r s hiq (by omega)] at hspan
+  exact hdeep (relBall_mono_radius D lam hrho hspan)
+
+omit [Group G] in
 /-! ## The finite consecutive-run extraction -/
 
 /-- If every source in a finite run either has an opposite-side match or is
@@ -2042,11 +2090,18 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     group
   have hpolyLet : ∀ a ∈ pc ++ P ++ rc ++ revWord Q, D.IsLetter a := by
     intro a ha
-    simp only [List.mem_append] at ha
-    rcases ha with hpcmem | hPmem | hrcmem | hQmem
-    · exact hpc.1 a hpcmem
-    · exact hletP a hPmem
-    · exact hrc.1 a hrcmem
+    have ha' : a ∈ ((pc ++ P) ++ rc) ∨ a ∈ revWord Q := by
+      exact List.mem_append.mp ha
+    rcases ha' with hleft | hQmem
+    · have hleft' : a ∈ pc ++ P ∨ a ∈ rc := by
+        exact List.mem_append.mp hleft
+      rcases hleft' with hpcP | hrcmem
+      · have hpcP' : a ∈ pc ∨ a ∈ P := by
+          exact List.mem_append.mp hpcP
+        rcases hpcP' with hpcmem | hPmem
+        · exact hpc.1 a hpcmem
+        · exact hletP a hPmem
+      · exact hrc.1 a hrcmem
     · exact isLetter_of_mem_revWord D hbaseD hletQ a hQmem
   have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
       ((j - i : ℕ) : ℝ) / 4 - 1 ≤
@@ -2108,10 +2163,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       rw [hrc.2.2]
       have hdist : wordDist D.alphabet.carrier (1 : G) (endP⁻¹ * endQ) =
           wordDist D.alphabet.carrier endP endQ := by
-        have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
+      have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
         rw [inv_mul_cancel] at hdist'
         rw [wordDist_comm D.alphabet.symmetricGenerating] at hdist'
-        exact hdist'
+        exact hdist'.symm
       rw [hdist]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
@@ -2119,7 +2174,6 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
   have hS : N ≤ S.card := by
     have hlen := length_le_two_mul_peripheralCount_add_one hW1P
     have hpcnt := peripheralCount_le_strictInterior_card_add_two P
-    dsimp [S] at hpcnt
     dsimp [R, N] at hRlen ⊢
     omega
   let occ : Fin N → Fin (peripheralPositions P).card := fun i =>
@@ -2143,14 +2197,28 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     exact PeripheralOccurrence.isComp hW3P (occ i)
   have hsourceInj : Function.Injective source := by
     intro i j hij
-    dsimp [source] at hij
-    exact peripheralOccurrence_pos_injective P hij
+    have hocceq : occ i = occ j := by
+      apply peripheralOccurrence_pos_injective P
+      dsimp [source] at hij
+      exact hij
+    apply Fin.ext
+    have hsub :
+        (S.orderIsoOfFin rfl) ⟨i.val, by omega⟩ =
+          (S.orderIsoOfFin rfl) ⟨j.val, by omega⟩ :=
+      Subtype.ext hocceq
+    exact congrArg Fin.val ((S.orderIsoOfFin rfl).injective hsub)
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
           vertex (1 : G) P (source i + 1) ∉
         D.relBall (peripheralOccurrence P (occ i)).label C := by
     intro i
     dsimp [source, C]
+    rw [vertex_succ P (1 : G) (peripheralOccurrence P (occ i)).pos
+      (List.getElem?_eq_some_iff.mp
+        (peripheralOccurrence P (occ i)).read).1,
+      inv_mul_cancel_left]
+    rw [(List.getElem?_eq_some_iff.mp
+      (peripheralOccurrence P (occ i)).read).2]
     exact hW2P (peripheralOccurrence P (occ i)).pos
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
@@ -2168,11 +2236,11 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
           vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) n := by
     intro i
-    have htar := exists_target_of_deep_component_of_uniformBound
-      D (peripheralOccurrence P (occ i)).label hpoint 4 C pc P rc Q
-      (by norm_num) hclose hpoly (source i) (source i + 1)
-      (hsourcePos i) (hsourceEnd i) (hsourceComp i)
-      (by dsimp [C]; omega) (hsourceDeep i)
+    have htar := target_of_fixed_uniformBound
+      D (peripheralOccurrence P (occ i)).label (by dsimp [C]; omega)
+      hproj414 4 C pc P rc Q (by norm_num) hclose hpoly
+      (source i) (source i + 1) (hsourcePos i) (hsourceEnd i)
+      (hsourceComp i) (by dsimp [C]; omega) (hsourceDeep i)
     exact htar
   let targetN : Fin N → ℕ := fun i => Classical.choose (htargetRaw i)
   have htargetSpec : ∀ i : Fin N,
