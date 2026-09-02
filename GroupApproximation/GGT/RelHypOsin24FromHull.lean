@@ -101,20 +101,18 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
 /-! ## The relatively hyperbolic one-target specialization -/
 
 /-- The arbitrary-family Lemma 4.4, Lemma 4.9, and Yi selection give the
-one-target Osin quotient once the two relative-Cayley classification facts are
+one-target Osin quotient once the compatible relative Hull action is
 available.  The quotient is the literal quotient by Hull's one relator
 `t⁻¹u`, so finite normal generation is part of the construction. -/
-theorem osin24SingletonStep_of_hull_of_actionBridges
+theorem osin24SingletonStep_of_hull_of_compatibleAction
     (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
-    (hacyBridge : RelHypFiniteBaseAcylindricityStatement.{0, 0})
-    (hloxBridge : RelHypHyperbolicElementLoxodromicStatement.{0, 0}) :
+    (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
     Osin24SingletonStepStatement := by
   intro G instG I Hfam hrel H hsuit t
   letI : Group G := instG
-  obtain ⟨B⟩ := exists_relativeHullData_of_actionBridges
-    hacyBridge hloxBridge hrel H hsuit
+  obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
   have hfiniteYi : HullSC.YiSuitableFiniteFamily.{0} :=
     HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr hyi
   have hselect : HullSC.SimultaneousAuxiliaryPeripheralSelection.{0} :=
@@ -266,32 +264,14 @@ theorem osin24SingletonStep_of_hull_of_actionBridges
 
 /-- Finite iteration turns the conditional one-target specialization into the
 full finite-presentation addendum. -/
-theorem osinTheorem24FinitePresentationAddendum_of_hull_of_actionBridges
+theorem osinTheorem24FinitePresentationAddendum_of_hull_of_compatibleAction
     (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
-    (hacyBridge : RelHypFiniteBaseAcylindricityStatement.{0, 0})
-    (hloxBridge : RelHypHyperbolicElementLoxodromicStatement.{0, 0}) :
+    (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
     OsinTheorem24FinitePresentationAddendum :=
   osinTheorem24FinitePresentationAddendum_of_singletonStep
-    (osin24SingletonStep_of_hull_of_actionBridges h44family h49 hyi
-      hacyBridge hloxBridge)
-
-/-- The exact current source frontier: finite-base relative Cayley
-acylindricity and escape of infinite-order non-parabolic elements.  The latter
-is converted to loxodromy by the proved Bowditch half before the quotient
-assembly is invoked. -/
-theorem osinTheorem24FinitePresentationAddendum_of_hull_of_relativeCayley
-    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
-    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
-    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
-    (hacy : RelHypFiniteBaseAcylindricityStatement.{0, 0})
-    (hescape : RelHypHyperbolicElementEscapingStatement.{0, 0}) :
-    OsinTheorem24FinitePresentationAddendum :=
-  osinTheorem24FinitePresentationAddendum_of_hull_of_actionBridges
-    h44family h49 hyi hacy
-      (relHypHyperbolicElementLoxodromicStatement_of_acylindricity_of_escaping
-        hacy hescape)
+    (osin24SingletonStep_of_hull_of_compatibleAction h44family h49 hyi haction)
 
 end RelHyp
 end GGT
