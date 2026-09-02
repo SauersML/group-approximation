@@ -171,6 +171,7 @@ structure FaceDeletionStep
         Delta.toCombMap faces)
       (common : DartPath Delta.toCombMap R.root vertex),
       (∀ f, f ∈ faces → f ≠ Delta.outerFace) ∧
+      region.toBoundaryCycle.cycle ≠ [] ∧
       InnerFaceWordHomotopy Delta p.darts common.darts ∧
       InnerFaceWordHomotopy Delta q.darts common.darts ∧
       rank vertex common < rank vertex p ∧
@@ -193,7 +194,7 @@ theorem replacement_planar
         Delta.toCombMap faces),
       (VanKampen.Surgery.MapCollapse.replaceGRegion
         Delta.toCombMap faces region).IsPlanar := by
-  obtain ⟨faces, region, common, _hinner, _hp, _hq, _hrp, _hrq⟩ :=
+  obtain ⟨faces, region, common, _hinner, _hcycle, _hp, _hq, _hrp, _hrq⟩ :=
     S.delete vertex p q hpq
   exact ⟨faces, region,
     VanKampen.Surgery.MapCollapse.replaceGRegion_planar
@@ -226,7 +227,7 @@ theorem rootedPathsFaceComplete_of_faceDeletionStep
       by_cases hpq : p = q
       · subst q
         exact InnerFaceWordHomotopy.refl p.darts
-      · obtain ⟨_faces, _region, common, _hinner, hp, hq, hpc, hqc⟩ :=
+      · obtain ⟨_faces, _region, common, _hinner, _hcycle, hp, hq, hpc, hqc⟩ :=
           S.delete vertex p q hpq
         have hpc_lt : S.rank vertex p + S.rank vertex common < total := by
           rw [← htotal]
