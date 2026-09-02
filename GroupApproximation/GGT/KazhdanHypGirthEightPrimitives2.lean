@@ -1324,6 +1324,24 @@ noncomputable def powerDiscSphereGluing_of_eulerCounts
       S hcounts hdisc)
     certificate hcellular
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+/-- A copy-index mate and the disc's Euler counts give the complete
+power-disc sphere certificate.  The corner labels and cellular reducedness
+remain the local triangular inputs. -/
+noncomputable def powerDiscSphereGluing_of_planarDisc
+    (D : PowerDisc T g n)
+    (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData B.toPairing)
+    (hplanar : D.diagram.toCombMap.IsPlanar)
+    (certificate : ∀ v,
+      VertexCornerCertificate T
+        (cornerCycleOfCombMap B.toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (certificate v)) :
+    PowerDiscSphereGluing D :=
+  powerDiscSphereGluing_of_seam D B.toPairing
+    (B.spherical_of_planarDisc hcounts hplanar)
+    certificate hcellular
+
 /-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
 consumed by `presented_isPowerTorsionFree_of_sphericalExtraction`. -/
 noncomputable def triangularRelatorSphericalMap_of_powerDiscGluing
