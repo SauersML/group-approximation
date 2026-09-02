@@ -168,7 +168,7 @@ theorem familyPreservation_of_controls
       Nonempty (CanonicalQuotientFamilyPreservation q original
         selected.rel.alphabet.carrier) :=
     canonicalQuotientFamilyPreservation_of_control original horiginalEmbedded q hq
-      originalControl horiginalUnion
+      originalControl horiginalUnion selected.rel.alphabet.carrier
   have hjointPreserved :
       Nonempty (QuotientJointPeripheralPreservation q selected original) :=
     quotientJointPeripheralPreservation_of_control selected original joint
@@ -632,7 +632,7 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
       (originalPeripheralUnion_subset_cayleyBall_one original hA hy) hxy
   exact ⟨hinjR, hselectedPreserved,
     canonicalQuotientFamilyPreservation_of_control original horiginal q hsurj
-      originalControl horiginalUnion,
+      originalControl horiginalUnion selected.rel.alphabet.carrier,
     quotientJointPeripheralPreservation_of_control selected original joint
       hbaseInv hjointOriginal hjointSelected q hsurj hjointEmbedded
       hjointSub jointControl⟩
