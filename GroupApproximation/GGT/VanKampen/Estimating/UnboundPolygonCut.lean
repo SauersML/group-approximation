@@ -181,14 +181,16 @@ theorem exists_innerCut_polygon
   obtain ⟨hgeoA, hzeroA, hendA⟩ := hsa
   obtain ⟨hgeoB, hzeroB, _hendB⟩ := hsb
   -- the length of the tail of side `a`
+  have htail0 : dist (sides a s) (sides a (dist (vs a) (vs (a + 1)))) =
+      dist (vs a) (vs (a + 1)) - s := dist_cutPoint_endpoint hgeoA hs0 hsM
+  rw [hendA] at htail0
   have htail : dist (sides a s) (vs (a + 1)) =
-      dist (vs a) (vs (a + 1)) - s := by
-    rw [← hendA]
-    exact dist_cutPoint_endpoint hgeoA hs0 hsM
+      dist (vs a) (vs (a + 1)) - s := htail0
   -- the length of the head of side `a + m`
-  have hhead : dist (vs (a + m)) (sides (a + m) s') = s' := by
-    rw [← hzeroB]
-    exact dist_startPoint_cutPoint hgeoB hs0' hsM'
+  have hhead0 : dist (sides (a + m) 0) (sides (a + m) s') = s' :=
+    dist_startPoint_cutPoint hgeoB hs0' hsM'
+  rw [hzeroB] at hhead0
+  have hhead : dist (vs (a + m)) (sides (a + m) s') = s' := hhead0
   -- the four vertex values used below
   have hv0 : innerVertex vs sides a m s s' 0 = sides a s :=
     innerVertex_zero vs sides a m s s'
@@ -207,8 +209,7 @@ theorem exists_innerCut_polygon
     rcases Nat.lt_or_ge i 1 with hlow | hlow
     · -- the tail of side `a`
       have hi0 : i = 0 := by omega
-      subst hi0
-      rw [innerSide_zero, hv0, hv1, htail]
+      rw [hi0, innerSide_zero, hv0, hv1, htail]
       refine ⟨?_, ?_, ?_⟩
       · have hshift := isGeodesicSegment_shift (f := sides a)
           (M := dist (vs a) (vs (a + 1))) (u := s)
@@ -232,16 +233,14 @@ theorem exists_innerCut_polygon
     rcases Nat.lt_or_ge i (m + 1) with hend | hend
     · -- the head of side `a + m`
       have him' : i = m := by omega
-      subst him'
-      rw [innerSide_end sides a m s cut hm, hvm, hvm1, hhead]
+      rw [him', innerSide_end sides a m s cut hm, hvm, hvm1, hhead]
       refine ⟨?_, ?_, ?_⟩
       · exact isGeodesicSegment_restrict hgeoB hsM'
       · exact hzeroB
       · rfl
     · -- the cut
       have him' : i = m + 1 := by omega
-      subst him'
-      rw [innerSide_cut, hvm1, hvm2]
+      rw [him', innerSide_cut, hvm1, hvm2]
       exact ⟨hcut, hcut0, hcut1⟩
   · -- the polygon closes
     show innerVertex vs sides a m s s' (0 + (m + 2)) =
