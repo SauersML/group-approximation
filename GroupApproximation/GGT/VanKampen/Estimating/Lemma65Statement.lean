@@ -163,6 +163,22 @@ def Lemma65Statement : Prop :=
             Lemma65aConclusion scaffold ∧
               Lemma65bConclusion mu sections' eps
 
+/-! ## The arithmetic of the multiple-edge step -/
+
+/-- **Osin's numeric contradiction, exactly.**  In the multiple-edge step the
+inductive instance of clause (b) gives a degree sum above `1 - 13 mu` for the
+four arcs `s_1, t_1, s_2, t_2`; Lemma `O52` bounds the two cell-to-cell terms by
+`2 mu` and the two side-arc terms by `mu / 2` each, so the sum is below `3 mu`.
+"We obtain a contradiction since `1 - 13 mu > 3 mu` for `mu < 1/16`."
+
+This is where `mu <= 1/16` is actually spent, and it is the only place. -/
+theorem multipleEdge_contradiction {mu d₁ d₂ d₃ d₄ : ℝ}
+    (hmu : mu ≤ 1 / 16)
+    (hsum : 1 - 13 * mu < d₁ + d₂ + d₃ + d₄)
+    (hinner : d₂ + d₄ ≤ 2 * mu)
+    (hside₁ : d₁ < mu / 2) (hside₃ : d₃ < mu / 2) : False := by
+  linarith
+
 /-! ## Model checks -/
 
 /-- Model check at one relator cell: clause (a)'s multiple-edge half is
