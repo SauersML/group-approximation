@@ -794,10 +794,11 @@ theorem source_target_eq_none_of_kind_exterior
       CellArcKind.exterior) :
     candidate.contiguity.target = none := by
   cases htarget : candidate.contiguity.target with
-  | none => exact htarget
+  | none => rfl
   | some target =>
       have hfalse : CellArcKind.interior = CellArcKind.exterior := by
-        simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+        simpa only [CellIncidence.kind, Option.some_ne_none, ↓reduceIte] using
+          hkind
       cases hfalse
 
 /-- Convert an exterior-kind incidence into its selected outer region. -/
@@ -876,7 +877,8 @@ theorem exteriorRegionsUnique_emptyModel
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
     ExteriorRegionsUnique (∅ : Finset (Candidate D eps Delta)) := by
   intro i first
-  exact (Finset.not_mem_empty first.1 first.2.1).elim
+  have hfalse : False := by simpa using first.2.1
+  exact hfalse.elim
 
 /-- If outer regions are unique, then all exterior-kind incidences at a cell
 are equal. -/
@@ -935,7 +937,7 @@ theorem canonical_exteriorLength_eq
   · intro other _ hne
     exact (hne (exteriorIncidence_unique houter i other distinguished)).elim
   · intro hnot
-    exact hnot (Finset.mem_univ distinguished)
+    exact (hnot (Finset.mem_univ distinguished)).elim
 
 /-- Choose one selected exterior region at a cell when such a region exists.
 Lemma 65(a)'s two-gon condition later shows that this one region accounts for
