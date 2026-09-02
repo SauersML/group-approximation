@@ -2393,7 +2393,6 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                 refine ⟨hh, hmem, ?_⟩
                 rw [hidx,
                   vertex_fourGon_opposite_closed pc P rc Q hclose Q.length] at heq
-                rw [hrczero, Nat.sub_self] at heq
                 exact heq
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
