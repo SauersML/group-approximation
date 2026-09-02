@@ -194,7 +194,24 @@ structure RelativeDiagramCertificate
   boundaryWord : List G
   boundaryWord_eq : boundaryWord = Z.boundaryWord
   cellLabel : Fin Z.cells.length → List (GGT.RelLetter G Lambda)
-  cellLabel_eq : ∀ i, cellLabel i = (Z.cells.get i).relator
+  /-- **The label of a cell is a cyclic permutation of its relator.**
+
+  This used to be literal equality.  It is weakened because the planar side of
+  Osin's argument produces a *cyclic* arc of the cell's dart cycle
+  (`GGT.VanKampen.Embedded.Contiguity.sourceArc` is a
+  `CyclicArc (cellDarts Delta source)`), while
+  `RelativeBoundaryContiguity.relator_decomposition` asks the exterior to be a
+  **prefix**.  Rotating the label turns a cyclic subword into a prefix, which
+  is exactly Osin's own convention: `RelWord.IsSmallCancellation` requires the
+  family to be closed under cyclic permutation (`rotate_mem`), and the file's
+  own remark records that "every cyclic subword of a cyclic permutation is a
+  prefix of a cyclic permutation".
+
+  Nothing downstream reads this field -- consumers use `cellLabel` and
+  `cellLabel_mem` only -- so the weakening costs no consumer and buys the
+  planar-to-algebraic conversion its rotation. -/
+  cellLabel_rotate : ∀ i, ∃ n : ℕ,
+    cellLabel i = ((Z.cells.get i).relator).rotate n
   cellLabel_mem : ∀ i, cellLabel i ∈ W
   contiguity : ∀ i : Fin Z.cells.length,
     Option (RelativeBoundaryContiguity D eps boundaryWord (cellLabel i))

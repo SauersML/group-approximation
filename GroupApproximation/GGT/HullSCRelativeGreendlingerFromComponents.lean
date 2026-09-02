@@ -212,7 +212,7 @@ def RelativeDiagramCertificate.ofLargeCell
   boundaryWord := Z.boundaryWord
   boundaryWord_eq := rfl
   cellLabel := fun k => (Z.cells.get k).relator
-  cellLabel_eq := fun _ => rfl
+  cellLabel_rotate := fun _ => ⟨0, by simp⟩
   cellLabel_mem := fun k => (Z.cells.get k).relator_mem
   contiguity := fun k => if h : i = k then some (h ▸ C) else none
   largeCell := by

@@ -161,7 +161,7 @@ noncomputable def relativeDiagramCertificate_of_vkData
   boundaryWord := Z.boundaryWord
   boundaryWord_eq := rfl
   cellLabel := fun i => (Z.cells.get i).relator
-  cellLabel_eq := fun i => rfl
+  cellLabel_rotate := fun i => ⟨0, by simp⟩
   cellLabel_mem := fun i => (Z.cells.get i).relator_mem
   contiguity := payload.relativeContiguity
   largeCell := by
