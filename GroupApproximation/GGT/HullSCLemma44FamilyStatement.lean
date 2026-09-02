@@ -90,16 +90,19 @@ structure QuotientJointPeripheralPreservation
 
 /-- **Hull Lemma 4.4, arbitrary preserved-family canonical form.**
 
-The original relative Cayley alphabet is Hull's fixed alphabet.  The relators
-remain words over the selected auxiliary family.  The conclusion preserves the
-selected family, the canonical original finite-base structure, and their joint
-labelled family in the same quotient. -/
+The original relative Cayley alphabet is contained in Hull's fixed alphabet.
+The relators remain words over the selected auxiliary family.  The conclusion
+preserves the selected family, the canonical original finite-base structure,
+and their joint labelled family in the same quotient.  Inclusion is the form
+used by Hull's proof: the filling estimates run in the larger alphabet, while
+the original finite base must remain unchanged so its quotient image stays
+finite. -/
 def HullLemma44CanonicalQuotientFamilyStatement : Prop :=
   ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
     (selected : AuxiliaryPeripheralFamily A N S)
     {Lambda : Type w} (original : GGT.RelGenSet G Lambda),
-      original.alphabet = A.alphabet →
+      original.alphabet.carrier ⊆ A.alphabet.carrier →
       original.IsHyperbolicallyEmbedded →
       ∀ R : ℕ,
         ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
@@ -195,7 +198,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_family
   intro G _ A N k S selected R
   obtain ⟨eps, rho, mu, hmu, hgood⟩ :=
     h44 selected (emptyPreservedRelGenSet A)
-      (emptyPreservedRelGenSet_alphabet A)
+      (by rw [emptyPreservedRelGenSet_alphabet A])
       (emptyPreservedRelGenSet_embedded A) R
   refine ⟨eps, rho, mu, hmu, ?_⟩
   intro W Q _ q hinput hsurj hker
