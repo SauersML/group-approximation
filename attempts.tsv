@@ -260,3 +260,4 @@
 33626238680	2026-09-02T12:09:48Z	GroupApproximation/Sofic/CollapseJointCorner.lean	cornerCompression_involutionCut
 33648037450	2026-09-02T15:22:19Z	GroupApproximation/Sofic/CollapseJointCornerRefinement.lean	at
 33670437722	2026-09-02T18:58:42Z	GroupApproximation/Sofic/CollapsePrintedDiagonalization.lean	exists_uniform_agreement_threshold
+33687417772	2026-09-02T21:52:27Z	GroupApproximation/Sofic/CollapsePrintedProfile.lean	isBoundedSeq_printed
