@@ -803,6 +803,103 @@ theorem appendCut_oneSide_last (word tail : List (RelLetter G Λ)) :
       (word.length + 1) = word.length + tail.length := by
   simp [appendCut, oneSideCut]
 
+/-! ## The internal peripheral occurrences -/
+
+/-- Peripheral occurrences whose singleton components end strictly before the
+end of the W-word.  These components stay maximal after a closing word is
+appended. -/
+def internalPeripheralOccurrences (word : List (RelLetter G Λ)) :
+    Finset (Fin (peripheralPositions word).card) :=
+  Finset.univ.filter fun t =>
+    (peripheralOccurrence word t).pos + 1 < word.length
+
+omit [Group G] in
+@[simp] theorem mem_internalPeripheralOccurrences
+    {word : List (RelLetter G Λ)}
+    {t : Fin (peripheralPositions word).card} :
+    t ∈ internalPeripheralOccurrences word ↔
+      (peripheralOccurrence word t).pos + 1 < word.length := by
+  simp [internalPeripheralOccurrences]
+
+omit [Group G] in
+/-- At most the final peripheral occurrence is lost by requiring its component
+to end strictly inside the word. -/
+theorem peripheralCount_le_internal_card_add_one
+    (word : List (RelLetter G Λ)) :
+    peripheralCount word ≤ (internalPeripheralOccurrences word).card + 1 := by
+  classical
+  let E : Finset (Fin (peripheralPositions word).card) :=
+    Finset.univ.filter fun t =>
+      ¬ ((peripheralOccurrence word t).pos + 1 < word.length)
+  have hE : E.card ≤ 1 := by
+    rw [Finset.card_le_one]
+    intro a ha b hb
+    have ha' : ¬ ((peripheralOccurrence word a).pos + 1 < word.length) := by
+      simpa [E] using ha
+    have hb' : ¬ ((peripheralOccurrence word b).pos + 1 < word.length) := by
+      simpa [E] using hb
+    have haPos : (peripheralOccurrence word a).pos + 1 = word.length := by
+      have hlt := (List.getElem?_eq_some_iff.mp
+        (peripheralOccurrence word a).read).1
+      omega
+    have hbPos : (peripheralOccurrence word b).pos + 1 = word.length := by
+      have hlt := (List.getElem?_eq_some_iff.mp
+        (peripheralOccurrence word b).read).1
+      omega
+    rcases lt_trichotomy a b with hab | hab | hba
+    · have hpos := peripheralOccurrence_pos_lt word hab
+      omega
+    · exact hab
+    · have hpos := peripheralOccurrence_pos_lt word hba
+      omega
+  have hpartition := Finset.card_filter_add_card_filter_not
+    (s := (Finset.univ : Finset (Fin (peripheralPositions word).card)))
+    (p := fun t => (peripheralOccurrence word t).pos + 1 < word.length)
+  rw [Finset.card_univ, Fintype.card_fin, card_peripheralPositions] at hpartition
+  have hEeq :
+      (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
+        ¬ ((peripheralOccurrence word t).pos + 1 < word.length)).card = E.card :=
+    rfl
+  rw [hEeq] at hpartition
+  change peripheralCount word ≤
+    (Finset.univ.filter fun t : Fin (peripheralPositions word).card =>
+      (peripheralOccurrence word t).pos + 1 < word.length).card + 1
+  omega
+
+omit [Group G] in
+/-- Distinct canonical peripheral occurrences have distinct word positions. -/
+theorem peripheralOccurrence_pos_injective
+    (word : List (RelLetter G Λ)) :
+    Function.Injective fun t : Fin (peripheralPositions word).card =>
+      (peripheralOccurrence word t).pos := by
+  intro a b hab
+  rcases lt_trichotomy a b with hlt | heq | hgt
+  · exact False.elim ((peripheralOccurrence_pos_lt word hlt).ne hab)
+  · exact heq
+  · exact False.elim ((peripheralOccurrence_pos_lt word hgt).ne hab.symm)
+
+omit [Group G] in
+/-- A component start has only one peripheral family index. -/
+theorem isCompStart_label_unique_421 {lam mu : Λ}
+    {word : List (RelLetter G Λ)} {i : ℕ}
+    (hlam : IsCompStart lam word i) (hmu : IsCompStart mu word i) :
+    lam = mu := by
+  by_contra hne
+  obtain ⟨k, hk⟩ := hlam
+  obtain ⟨m, hm⟩ := hmu
+  have hi : i < word.length := hk.1.trans_le hk.2.1
+  have hli : (word[i]'hi).IsCompOf lam :=
+    hk.2.2.1 i le_rfl hk.1 hi
+  have hmi : (word[i]'hi).IsCompOf mu :=
+    hm.2.2.1 i le_rfl hm.1 hi
+  cases hletter : word[i]'hi with
+  | base x =>
+      rw [hletter] at hli
+      exact hli
+  | comp nu x =>
+      rw [hletter] at hli hmi
+      exact hne (hli.symm.trans hmi)
+
 end OsinComponents
 end GGT
 end GroupApproximation
