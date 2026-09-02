@@ -212,6 +212,78 @@ theorem hullLemma44PreservedPeripheralFamily_of_greendlinger_of_isoperimetric
   intro W Q _ q hsc hsurj hker
   exact (hgood W q hsc hsurj hker).2
 
+/-- The Greendlinger certificate and the prefix-presentation isoperimetric
+bridge imply Hull's canonical quotient statement. -/
+theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixIsoperimetric
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hbridge : PrefixRelativeIsoperimetricBridgeStatement.{u, u, 0}) :
+    HullLemma44CanonicalQuotientStatement.{u} := by
+  intro G _ A N k S D R
+  let mu : ℝ := 1 / 1000
+  have hmuPos : 0 < mu := by
+    dsimp [mu]
+    norm_num
+  have hmuSixteen : mu ≤ 1 / 16 := by
+    dsimp [mu]
+    norm_num
+  have hmuNinetyTwo : mu ≤ 1 / 92 := by
+    dsimp [mu]
+    norm_num
+  have hmuThousand : mu ≤ 1 / 1000 := le_rfl
+  obtain ⟨eps, rho₀, hcertificate⟩ :=
+    hgeom D.rel D.embedded mu hmuPos hmuSixteen
+  let fullRadius : ℕ := max R 1
+  let boundaryScale : ℕ := 2 * fullRadius + 2 * eps + 1
+  let rho : ℕ := max rho₀ (max (8 * boundaryScale) (20 * (eps + 1)))
+  have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
+  have hrhoScale : 8 * boundaryScale ≤ rho :=
+    le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
+  have hrhoDehn : 20 * (eps + 1) ≤ rho :=
+    le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
+  have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
+    dsimp [boundaryScale, fullRadius]
+    positivity
+  have hrhoScaleReal :
+      (8 : ℝ) * (boundaryScale : ℝ) ≤ (rho : ℝ) := by
+    exact_mod_cast hrhoScale
+  have hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ) := by
+    change 4 * (boundaryScale : ℝ) < (3 / 4 : ℝ) * (rho : ℝ)
+    nlinarith
+  refine ⟨eps, rho, mu, hmuPos, ?_⟩
+  intro W Q _ q hsc hsurj hker
+  have hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z) := by
+    intro r Z
+    exact hcertificate rho hrho₀ W r hsc Z
+  have hAlphabet : A.alphabet.carrier ⊆ D.rel.alphabet.carrier := by
+    intro x hx
+    exact Set.mem_union_left _ (D.base_le hx)
+  have hinject :=
+    injOn_ball_and_peripheralUnion_of_relativeDiagramCertificates
+      D.rel A.alphabet hAlphabet hsc hmuNinetyTwo hthreshold q hker
+        (hcert (max R 1))
+  have hinjectCores : Set.InjOn q
+      (⋃ i : AuxiliaryPeripheralIndex k,
+        (D.cores.peripheral i : Set G)) := by
+    intro x hx y hy hxy
+    apply hinject.2
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
+      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
+      rw [D.fam_eq i]
+      exact hi
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
+      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
+      rw [D.fam_eq i]
+      exact hi
+    · exact hxy
+  refine ⟨hinject.1, ?_⟩
+  exact
+    _root_.GroupApproximation.HullSC.quotientPeripheralPreservation_of_prefixRelativeDiagramCertificates
+      hbridge D q hsurj hmuPos hmuThousand hrhoDehn hsc hker hcert
+        hinjectCores
+
 /-- Universe-zero specialization used by the manuscript's
 `hullLemma44Canonical` declaration. -/
 theorem hullLemma44CanonicalQuotientStatement_zero
@@ -219,6 +291,14 @@ theorem hullLemma44CanonicalQuotientStatement_zero
     (hbridge : RelativeIsoperimetricBridgeStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
+    hgeom hbridge
+
+/-- Universe-zero prefix-presentation specialization. -/
+theorem hullLemma44CanonicalQuotientStatement_zero_of_prefixIsoperimetric
+    (hgeom : RelativeGreendlingerStatement.{0, 0})
+    (hbridge : PrefixRelativeIsoperimetricBridgeStatement.{0, 0, 0}) :
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixIsoperimetric
     hgeom hbridge
 
 /-- Form using Osin Lemma 5.1's local Dehn transfer directly. -/
@@ -253,6 +333,16 @@ theorem hullLemma44CanonicalQuotientStatement_zero_of_linearAreaTransfer
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
     hgeom htransfer
+
+/-- Universe-zero endpoint using the triangular-prefix relative-presentation
+transfer. -/
+theorem hullLemma44CanonicalQuotientStatement_zero_of_prefixLinearAreaTransfer
+    (hgeom : RelativeGreendlingerStatement.{0, 0})
+    (htransfer : PrefixRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  hullLemma44CanonicalQuotientStatement_zero_of_prefixIsoperimetric hgeom
+    (prefixRelativeIsoperimetricBridgeStatement_of_linearAreaTransfer
+      htransfer)
 
 end HullSC
 end GroupApproximation
