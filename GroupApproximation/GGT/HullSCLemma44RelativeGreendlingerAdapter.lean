@@ -178,5 +178,57 @@ theorem exists_realized_relativeGreendlingerWitness_of_geodesicBoundary
   obtain ⟨C, Delta', hequiv, _⟩ := hgood W hcondition R Z hqg
   exact ⟨C, Delta', hequiv⟩
 
+/-! ## Boundary-contiguity packaging -/
+
+/-- The corrected theorem's exterior witness packages directly as the
+boundary-contiguity object exposed to a certificate adapter.  The package
+retains the relator-cell index and the outer-target equation while keeping
+the planar darts below this interface. -/
+theorem exists_realized_embeddedBoundaryContiguity_of_geodesicBoundary
+    (hgeom : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0})
+    (hreal : GGT.VanKampen.RelativeDiscRealizationStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (hhyper : ∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
+    {lambda c mu : ℝ}
+    (hlambda : 0 < lambda) (hlambdaUpper : lambda ≤ 1)
+    (hc : 0 ≤ c) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) :
+    ∃ eps rho : ℕ, 0 < rho ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+        GGT.VanKampen.OsinCCondition D W eps mu lambda c rho →
+          ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+            GGT.OsinComponents.IsGeodesicWord D 1 Z.boundary
+              (Z.boundaryWord.map
+                (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)) →
+              ∃ (C : RelativeDiscRealization D W Z)
+                (Delta' : DiscDiagram.{u, w, 0} W)
+                (i : Fin Delta'.rCellCount)
+                (Gamma : EmbeddedBoundaryContiguity D eps Delta' i),
+                Nonempty (GGT.VanKampen.OEquivalentDiscDiagram C.diagram Delta') ∧
+                  Gamma.region.source = i ∧
+                  Gamma.region.target = none ∧
+                  (1 - 13 * mu) *
+                      ((GGT.VanKampen.Embedded.cell Delta' i).word.length : ℝ) <
+                    (Gamma.region.sourceArc.length : ℝ) := by
+  obtain ⟨eps, rho, hrho, hgood⟩ :=
+    exists_realized_relativeGreendlingerWitness hgeom hreal D hhyper
+      hlambda hlambdaUpper hc hmu hmuUpper
+  refine ⟨eps, rho, hrho, ?_⟩
+  intro W hcondition R Z hgeo
+  have hqg : IsLambdaCQuasiGeodesicWord D lambda c
+      (Z.boundaryWord.map
+        (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)) :=
+    isLambdaCQuasiGeodesicWord_of_isGeodesicWord D hgeo
+      hlambdaUpper hc
+  obtain ⟨C, Delta', hequiv, faces, Gamma, htarget, hlarge⟩ :=
+    hgood W hcondition R Z hqg
+  let packaged : EmbeddedBoundaryContiguity D eps Delta' Gamma.source := {
+    faces := faces
+    region := Gamma
+    source_eq := rfl
+    target_eq := htarget }
+  exact ⟨C, Delta', Gamma.source, packaged, hequiv, rfl, htarget, hlarge⟩
+
 end HullSC
 end GroupApproximation
