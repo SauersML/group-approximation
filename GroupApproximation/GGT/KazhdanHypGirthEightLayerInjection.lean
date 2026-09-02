@@ -72,8 +72,24 @@ theorem innerBoundaryFaceStarLayer_disjoint
     Disjoint (innerBoundaryFaceStarLayer Delta P i)
       (innerBoundaryFaceStarLayer Delta P j) := by
   classical
-  exact (VanKampen.CombMap.faceStarLayer_disjoint Delta.toCombMap
-    (boundaryFaceSeed Delta P) hij).mono
+  have hdisjoint :
+      Disjoint (Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) i)
+        (Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) j) := by
+    wlog hlt : i < j generalizing i j with H
+    · exact (H hij.symm (by omega)).symm
+    have hjpos : j ≠ 0 := by omega
+    rw [Finset.disjoint_left]
+    intro face hfi hfj
+    have hfiBall : face ∈
+        Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) i :=
+      Delta.toCombMap.faceStarLayer_subset_ball _ _ hfi
+    have hijpred : i ≤ j - 1 := by omega
+    have hfpred : face ∈
+        Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) (j - 1) :=
+      Delta.toCombMap.faceStarBall_mono _ hijpred hfiBall
+    rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
+    exact hfj.2 hfpred
+  exact hdisjoint.mono Finset.inter_subset_left Finset.inter_subset_left
     Finset.inter_subset_left Finset.inter_subset_left
 
 /-! ## Face positions and incidence slots -/
@@ -185,10 +201,11 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   intro i x y hxy
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
-  have hslot := congrArg Prod.snd hxy
-  have hslot_val := congrArg Fin.val hslot
+  have hslot := congrArg (fun p ↦ p.2) hxy
+  dsimp at hslot
+  unfold firstLayerIncidenceSlot at hslot
+  rw [hface] at hslot
   clear hxy
-  cases hface
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y := by
@@ -196,7 +213,7 @@ noncomputable def layerIncidenceInjection_of_firstLayer
     change
       (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val =
         (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val
-    exact hslot_val
+    exact congrArg Fin.val hslot
   have hgetx := firstLayerIncidenceIndex_get
     Delta P depth scale loss perimeter C i x
   have hgety := firstLayerIncidenceIndex_get
