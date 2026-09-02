@@ -229,9 +229,34 @@ def RelativeDiscRealizationSpellingStatement : Prop :=
     (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ)
     (Z : RelativeReducedDiagram D W R)
     (outer : List (GGT.RelLetter G Lambda)),
-    RelWord.IsAdmissible D outer →
-    GGT.RelLetter.listVal outer = Z.boundary →
+    outer.map GGT.RelLetter.val = Z.boundaryWord →
       Nonempty (RelativeDiscRealizationAtWord D W Z outer)
+
+/-- **The realization at a supplied spelling, proved.**  The cactus of
+`GGT/VanKampen/RelativeCactus.lean` is parameterized by the outer spelling:
+`cactusDiscDiagramAt` builds the planar diagram, `cellIndexEquivAt` and
+`cellIndexEquivAt_word` its cell correspondence,
+`cactusDiscDiagramAt_boundaryWord` its outer word, and
+`cactusDiscDiagramAt_reduced` its reducedness.  The letterwise hypothesis
+supplies both the length, which fixes the cactus shape, and the value.
+
+This retires the residue: `RelativeDiscRealizationSpellingStatement` is a
+theorem, not an assumption. -/
+theorem relativeDiscRealizationSpellingStatement :
+    RelativeDiscRealizationSpellingStatement.{u, w} := by
+  intro G _ Lambda D W R Z outer hmap
+  have houter : outer.length = Z.boundaryWord.length := by
+    rw [← hmap, List.length_map]
+  have hval : GGT.RelLetter.listVal outer = Z.boundary := by
+    unfold GGT.RelLetter.listVal
+    rw [hmap]
+    exact Z.boundaryWord_isWord.prod_eq
+  exact ⟨{
+    diagram := Z.cactusDiscDiagramAt outer houter hval
+    cellIndex := Z.cellIndexEquivAt outer houter hval
+    cellWord_eq := Z.cellIndexEquivAt_word outer houter hval
+    outerWord_eq := Z.cactusDiscDiagramAt_boundaryWord outer houter hval
+    reduced := Z.cactusDiscDiagramAt_reduced outer houter hval }⟩
 
 /-- **Model check for the vk residue.**  At the base reading it is the landed
 statement, so the generalization is consistent and strictly extends what is
@@ -355,7 +380,7 @@ theorem relativeGreendlingerGeodesicLengthStatement_of_components
     exists_geodesicSpelling_of_hasGeodesicBoundaryLength Z hgeo
   have houterVal : GGT.RelLetter.listVal outer = Z.boundary := by
     simpa using houter.2.1
-  obtain ⟨Creal⟩ := hreal D W R Z outer houter.1 houterVal
+  obtain ⟨Creal⟩ := hreal D W R Z outer hmap
   have hqg : IsLambdaCQuasiGeodesicWord D (1 / 4) 1 Creal.diagram.boundaryWord := by
     rw [Creal.outerWord_eq]
     exact isLambdaCQuasiGeodesicWord_of_isGeodesicWord D houter

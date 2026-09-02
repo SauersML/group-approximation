@@ -46,11 +46,14 @@ theorem canonicalQuotientFamilyPreservation_of_control
     (hq : Function.Surjective q)
     (control : RelativeIsoperimetricControl original q hq)
     (hinj : Set.InjOn q
-      (⋃ lam : Lambda, (original.fam lam : Set G))) :
-    Nonempty (CanonicalQuotientFamilyPreservation q original) := by
+      (⋃ lam : Lambda, (original.fam lam : Set G))) (Y : Set G) :
+    Nonempty (CanonicalQuotientFamilyPreservation q original Y) := by
   refine ⟨{
     rel := original.mapSurjective q hq
-    base_map := rfl
+    base_map := ⟨∅, Set.finite_empty, Set.empty_subset Y, by
+      intro y hy
+      rw [Set.union_empty]
+      exact hy⟩
     fam_map := fun _ => rfl
     embedded := control.embedded horiginal
     injOn_peripheralUnion := hinj }⟩
@@ -150,7 +153,8 @@ theorem familyPreservation_of_controls
         (selected.cores.peripheral i : Set G))) :
     Set.InjOn q (cayleyBall A.alphabet 1) ∧
       Nonempty (QuotientPeripheralPreservation q selected) ∧
-      Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+      Nonempty (CanonicalQuotientFamilyPreservation q original
+        selected.rel.alphabet.carrier) ∧
       Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   have hselectedPreserved : Nonempty (QuotientPeripheralPreservation q selected) :=
     quotientPeripheralPreservation_of_prefixIsoperimetricControl selected
@@ -161,7 +165,8 @@ theorem familyPreservation_of_controls
     exact hinjA (originalPeripheralUnion_subset_cayleyBall_one original hA hx)
       (originalPeripheralUnion_subset_cayleyBall_one original hA hy) hxy
   have horiginalPreserved :
-      Nonempty (CanonicalQuotientFamilyPreservation q original) :=
+      Nonempty (CanonicalQuotientFamilyPreservation q original
+        selected.rel.alphabet.carrier) :=
     canonicalQuotientFamilyPreservation_of_control original horiginalEmbedded q hq
       originalControl horiginalUnion
   have hjointPreserved :
@@ -211,7 +216,8 @@ theorem familyInclusionConclusion_of_relativeControls
     (jointControl : RelativeIsoperimetricControl joint q hq) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q selected) ∧
-      Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+      Nonempty (CanonicalQuotientFamilyPreservation q original
+        selected.rel.alphabet.carrier) ∧
       Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   have hinjRelative : Set.InjOn q
       (cayleyBall selected.rel.alphabet (max R 1)) :=
@@ -298,14 +304,15 @@ theorem familyPreservation_identityModel
     (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     (R : ℕ) :
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
-      Nonempty (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original) ∧
+      Nonempty (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original
+        selected.rel.alphabet.carrier) ∧
       Nonempty (QuotientJointPeripheralPreservation (MonoidHom.id G)
         selected original) := by
   have hid : Function.Bijective (MonoidHom.id G) :=
     ⟨Function.injective_id, Function.surjective_id⟩
   exact ⟨Function.injective_id.injOn,
     canonicalQuotientFamilyPreservation_of_bijective original horiginalEmbedded
-      (MonoidHom.id G) hid,
+      (MonoidHom.id G) hid selected.rel.alphabet.carrier,
     quotientJointPeripheralPreservation_of_bijective selected original joint
       hbaseInv horiginal hselected hjointEmbedded hjointSub
       (MonoidHom.id G) hid⟩

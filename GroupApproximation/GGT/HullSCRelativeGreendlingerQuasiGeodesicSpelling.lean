@@ -134,7 +134,7 @@ theorem relativeGreendlingerQuasiGeodesicSpellingStatement_of_components
       GGT.VanKampen.OsinCCondition D W eps mu (1 / 4) 1 rho :=
     hinput0.toOsinCCondition
   obtain ⟨outer, hmap, houterVal, hqgOuter⟩ := hspell
-  obtain ⟨Creal⟩ := hreal D W R Z outer hqgOuter.1 houterVal
+  obtain ⟨Creal⟩ := hreal D W R Z outer hmap
   have hqg : IsLambdaCQuasiGeodesicWord D (1 / 4) 1
       Creal.diagram.boundaryWord := by
     rw [Creal.outerWord_eq]

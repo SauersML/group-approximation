@@ -67,7 +67,8 @@ def HullLemma44CanonicalQuotientFamilyInclusionStatement : Prop :=
             q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
               Set.InjOn q (cayleyBall A.alphabet R) ∧
                 Nonempty (QuotientPeripheralPreservation q selected) ∧
-                Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+                Nonempty (CanonicalQuotientFamilyPreservation q original
+                  selected.rel.alphabet.carrier) ∧
                 Nonempty (QuotientJointPeripheralPreservation q selected original)
 
 /-! ## The repaired joint form -/
@@ -111,7 +112,8 @@ def HullLemma44CanonicalQuotientFamilyInclusionJointStatement : Prop :=
             q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
               Set.InjOn q (cayleyBall A.alphabet R) ∧
                 Nonempty (QuotientPeripheralPreservation q selected) ∧
-                Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+                Nonempty (CanonicalQuotientFamilyPreservation q original
+                  selected.rel.alphabet.carrier) ∧
                 Nonempty (QuotientJointPeripheralPreservation q selected original)
 
 /-- **The joint-family selection input.**
@@ -290,7 +292,8 @@ theorem familyInclusionConclusion_identityModel
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) ∧
       Nonempty
-        (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original) ∧
+        (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original
+          selected.rel.alphabet.carrier) ∧
       Nonempty
         (QuotientJointPeripheralPreservation (MonoidHom.id G) selected
           original) := by
@@ -299,7 +302,7 @@ theorem familyInclusionConclusion_identityModel
   exact ⟨Function.injective_id.injOn,
     quotientPeripheralPreservation_of_bijective selected (MonoidHom.id G) hid,
     canonicalQuotientFamilyPreservation_of_bijective original horiginal
-      (MonoidHom.id G) hid,
+      (MonoidHom.id G) hid selected.rel.alphabet.carrier,
     quotientJointPeripheralPreservation_of_bijective selected original joint
       hbaseInv hjointOriginal hjointSelected hjoint hjointSub
       (MonoidHom.id G) hid⟩
