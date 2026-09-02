@@ -1,24 +1,31 @@
-import GroupApproximation.GGT.KazhdanHypGirthEightBuild
+import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
+import GroupApproximation.GGT.VanKampen.CactusRealization
 
 /-!
-# Cactus producer adapters
+# Clean cactus boundary producers
 
-The landed cactus realization theorem starts with an oriented algebraic
-`Lemma44OrientedRelatorDiagram`; it does not manufacture that diagram from a
-word.  Likewise, `CactusRelatorRetyping` is a certificate and not an
-availability theorem.  This file records the exact smaller inputs which the
-landed constructors consume, and proves both adapter implications by name.
+This module stays on the clean cactus closure.  In particular it does not
+import the high-level Build file, whose reduction dependency currently goes
+through sep2fix's repairing `Estimating.PieceBridge`.
 
-The orientation adapter uses
-`Lemma44RelatorDiagramBoundary.exists_reduced` followed by
-`Lemma44ReducedRelatorDiagram.exists_oriented`.  The retyping adapter uses
-`CactusFoldChain.toRetyping`.  Thus a future producer can discharge the two
-named source predicates without changing the Build consumer.
+The landed `VanKampen.cactusRealizationStatement` starts with an oriented
+least-area algebraic diagram.  The source predicate below supplies precisely
+that missing algebraic object and the small-cancellation datum needed by
+`Lemma44RelatorDiagramBoundary.exists_reduced` and
+`Lemma44ReducedRelatorDiagram.exists_oriented`.  The resulting theorem has the
+same word spelling as the Build-level oriented-cactus producer.  A second
+adapter turns it into the literal reduced disc diagram by the named cactus
+realization theorem.
+
+The separate retyping availability theorem is not repeated here: its landed
+type lives in `CombMapReduction.lean`, whose current import path includes
+`PieceBridge`.  The exact residual is recorded in the clean Build module and
+can be connected once that imported API is green.
 -/
 
 namespace GroupApproximation
 namespace GGT
-namespace KazhdanHypGirthEightBuild
+namespace KazhdanHypGirthEightCactusProducer
 
 open GroupApproximation.HullSC
 open GroupApproximation.KazhdanHyp
@@ -31,17 +38,37 @@ variable {Generator TriangleIndex : Type}
   [Fintype TriangleIndex] [DecidableEq TriangleIndex]
   {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
 
-/-! ## The algebraic source for an oriented cactus boundary -/
+def freeLetter (u : TriangularHodgeLayer.SignedGenerator Generator) :
+    FreeGroup Generator :=
+  FoxBoundary.letterValue FreeGroup.of u
 
-/-- A least-area boundary source together with the small-cancellation datum
-needed to orient its reduced factor list. -/
+def relativeWord
+    (w : List (TriangularHodgeLayer.SignedGenerator Generator)) :
+    List (GGT.RelLetter (FreeGroup Generator) PEmpty) :=
+  w.map (fun u => GGT.RelLetter.base (freeLetter u))
+
+def PresentedWordIsTrivial
+    (w : List (TriangularHodgeLayer.SignedGenerator Generator)) : Prop :=
+  PresentedGroup.mk
+      (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+      (PresentedGroupRelatorReplay.word w) = 1
+
+/-! ## Oriented algebraic source -/
+
+def OrientedCactusBoundaryProducer : Prop :=
+  ∀ (w : List (TriangularHodgeLayer.SignedGenerator Generator)),
+    PresentedWordIsTrivial (T := T) w →
+    (w.map freeLetter).prod ≠ 1 →
+    ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
+      (Z : Lemma44OrientedRelatorDiagram A (triangleRelatorWords T) R),
+      Z.boundaryWord = w.map freeLetter
+
 def OrientedCactusBoundarySource : Prop :=
   ∀ (w : List (TriangularHodgeLayer.SignedGenerator Generator)),
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (D : Lemma44RelatorDiagramBoundary A
-        (triangleRelatorWords T) R),
+      (D : Lemma44RelatorDiagramBoundary A (triangleRelatorWords T) R),
       D.boundaryWord = w.map freeLetter ∧
       ∃ (E : GGT.RelGenSet (FreeGroup Generator) PEmpty)
         (eps : ℕ) (mu : ℝ) (rho : ℕ),
@@ -57,129 +84,67 @@ theorem orientedCactusBoundaryProducer_of_source
   obtain ⟨Z⟩ := Dred.exists_oriented hsc
   exact ⟨A, R, Z, hboundary⟩
 
-theorem cactusBoundaryInput_of_source
-    (hsource : OrientedCactusBoundarySource (T := T)) :
-    CactusBoundaryInput (T := T) :=
-  cactusBoundaryInput_of_orientedCactusBoundaryProducer
-    (orientedCactusBoundaryProducer_of_source hsource)
+/-! ## Cactus realization and literal boundary spelling -/
 
-/-- The source predicate already supplies exactly the boundary spelling needed
-by the Build-level producer.  Its model is vacuous for the empty free group. -/
+theorem cactusRealization_of_oriented
+    {A : Alphabet (FreeGroup Generator)} {R : ℕ}
+    (Z : Lemma44OrientedRelatorDiagram A (triangleRelatorWords T) R) :
+    Nonempty (VanKampen.CactusRealization Z) :=
+  VanKampen.cactusRealizationStatement Z
+
+def CactusDiscDiagramProducer : Prop :=
+  ∀ (w : List (TriangularHodgeLayer.SignedGenerator Generator)),
+    PresentedWordIsTrivial (T := T) w →
+    (w.map freeLetter).prod ≠ 1 →
+    ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0}
+        (triangleRelatorWords T),
+      Delta.boundaryWord = relativeWord w ∧ Delta.Reduced
+
+theorem cactusDiscDiagramProducer_of_oriented
+    (hproducer : OrientedCactusBoundaryProducer (T := T)) :
+    CactusDiscDiagramProducer (T := T) := by
+  intro w hw hfree
+  obtain ⟨A, R, Z, hboundary⟩ := hproducer w hw hfree
+  obtain ⟨C⟩ := cactusRealization_of_oriented Z
+  have hrelative :
+      (w.map freeLetter).map
+          (GGT.RelLetter.base : FreeGroup Generator →
+            GGT.RelLetter (FreeGroup Generator) PEmpty) = relativeWord w := by
+    induction w with
+    | nil => rfl
+    | cons u us ih =>
+        simp only [List.map_cons]
+        exact congrArg (List.cons (GGT.RelLetter.base (freeLetter u))) ih
+  refine ⟨C.diagram, ?_, C.reduced⟩
+  calc
+    C.diagram.boundaryWord = Z.boundaryWord.map
+        (GGT.RelLetter.base : FreeGroup Generator →
+          GGT.RelLetter (FreeGroup Generator) PEmpty) := C.boundaryWord_eq
+    _ = (w.map freeLetter).map
+        (GGT.RelLetter.base : FreeGroup Generator →
+          GGT.RelLetter (FreeGroup Generator) PEmpty) :=
+      congrArg (List.map (GGT.RelLetter.base : FreeGroup Generator →
+        GGT.RelLetter (FreeGroup Generator) PEmpty)) hboundary
+    _ = relativeWord w := hrelative
+
+/-! ## Empty free-group model tests -/
+
+def emptyTriangleTable : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
+  PEmpty.elim
+
 theorem orientedCactusBoundaryProducer_empty_model :
-    OrientedCactusBoundaryProducer (T := emptyTriangleTableBuild) :=
-  orientedCactusBoundaryProducer_trivialGroup_model
+    OrientedCactusBoundaryProducer (T := emptyTriangleTable) := by
+  intro w _ hfree
+  have hfreeOne : (w.map freeLetter).prod = (1 : FreeGroup PEmpty) :=
+    Subsingleton.elim _ _
+  exact (hfree hfreeOne).elim
 
-/-! ## The topological source for cactus retyping -/
-
-/-- A landed fold-chain source: every reduced diagram admits a finite chain of
-concrete cactus base-cell deletions ending in relator-cell coverage. -/
-def CactusFoldChainAvailability : Prop :=
-  ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
-      (triangleRelatorWords T)),
-    Delta.Reduced →
-      ∃ k, Nonempty (VanKampen.CactusFoldChain Delta k)
-
-theorem cactusRelatorRetypingAvailability_of_foldChainAvailability
-    (hfold : CactusFoldChainAvailability (T := T)) :
-    CactusRelatorRetypingAvailability (T := T) := by
-  intro Delta hred
-  obtain ⟨k, chain⟩ := hfold Delta hred
-  exact ⟨chain.toRetyping Delta.planar hred⟩
-
-theorem baseCellElimination_of_foldChainAvailability
-    (hfold : CactusFoldChainAvailability (T := T)) :
-    BaseCellElimination (T := T) :=
-  baseCellElimination_of_cactusRelatorRetypingAvailability
-    (cactusRelatorRetypingAvailability_of_foldChainAvailability hfold)
-
-/-! ## The one-step covered-diagram source -/
-
-/-- A relator-cell cover is the terminal object of the landed fold chain.  The
-constructor below is useful when a future planar deletion proof gives the
-cover directly rather than an explicit list of intermediate folds. -/
-def RelatorCellCoverAvailability : Prop :=
-  ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
-      (triangleRelatorWords T)),
-    Delta.Reduced → Nonempty (VanKampen.RelatorCellCover Delta)
-
-theorem cactusFoldChainAvailability_of_relatorCellCoverAvailability
-    (hcover : RelatorCellCoverAvailability (T := T)) :
-    CactusFoldChainAvailability (T := T) := by
-  intro Delta hred
-  obtain ⟨cover⟩ := hcover Delta hred
-  exact ⟨0, ⟨VanKampen.CactusFoldChain.done cover⟩⟩
-
-theorem cactusRelatorRetypingAvailability_of_relatorCellCoverAvailability
-    (hcover : RelatorCellCoverAvailability (T := T)) :
-    CactusRelatorRetypingAvailability (T := T) :=
-  cactusRelatorRetypingAvailability_of_foldChainAvailability
-    (cactusFoldChainAvailability_of_relatorCellCoverAvailability hcover)
-
-theorem baseCellElimination_of_relatorCellCoverAvailability
-    (hcover : RelatorCellCoverAvailability (T := T)) :
-    BaseCellElimination (T := T) :=
-  baseCellElimination_of_foldChainAvailability
-    (cactusFoldChainAvailability_of_relatorCellCoverAvailability hcover)
-
-/-! ## Direct model checks for the landed fold endpoint -/
-
-/-- The terminal `done` constructor is inhabited whenever coverage is given;
-this checks the exact zero-fold endpoint used by the adapter. -/
-theorem cactusFoldChain_done_model
-    {Delta : VanKampen.DiscDiagram.{0, 0, 0}
-      (triangleRelatorWords T)}
-    (cover : VanKampen.RelatorCellCover Delta) :
-    Nonempty (VanKampen.CactusFoldChain Delta 0) := by
-  exact ⟨VanKampen.CactusFoldChain.done cover⟩
-
-theorem cactusRetyping_of_covered_model
-    {Delta : VanKampen.DiscDiagram.{0, 0, 0}
-      (triangleRelatorWords T)}
-    (cover : VanKampen.RelatorCellCover Delta) (hred : Delta.Reduced) :
-    Nonempty (VanKampen.CactusRelatorRetyping Delta) := by
-  exact ⟨(VanKampen.CactusFoldChain.done cover).toRetyping
-    Delta.planar hred⟩
-
-/-! ## The composed source-level consumer -/
-
-/-! ## The composed consumer -/
-
-/-- The exact Build consumer after replacing the two opaque named producers by
-their landed algebraic and topological source certificates. -/
-theorem presented_isHyperbolicGroup_of_source_certificates
-    {d delta : ℕ} (hchecks : GirthEightChecks T d)
-    (hword : FarPointBoundaryWord (T := T))
-    (hsource : OrientedCactusBoundarySource (T := T))
-    (hfold : CactusFoldChainAvailability (T := T))
-    (hstar : StarLayerConstructionCertificateInput (T := T)) :
-    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
-  exact presented_isHyperbolicGroup_of_cactus_star_build_of_all_certificates
-    (delta := delta) hchecks hword
-    (orientedCactusBoundaryProducer_of_source hsource)
-    (cactusRelatorRetypingAvailability_of_foldChainAvailability hfold)
-    hstar
-
-theorem presented_isHyperbolicGroup_of_source_cover_and_star
-    {d delta : ℕ} (hchecks : GirthEightChecks T d)
-    (hword : FarPointBoundaryWord (T := T))
-    (hsource : OrientedCactusBoundarySource (T := T))
-    (hcover : RelatorCellCoverAvailability (T := T))
-    (hstar : StarLayerConstructionCertificateInput (T := T)) :
-    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
-  exact presented_isHyperbolicGroup_of_cactus_star_build
-    (delta := delta) hchecks hword (cactusBoundaryInput_of_source hsource)
-    (baseCellElimination_of_relatorCellCoverAvailability hcover)
-    (starLayerConstruction_of_certificate hstar)
-
-theorem orientedCactusBoundaryProducer_empty_table_model :
-    OrientedCactusBoundaryProducer (T := emptyTriangleTableBuild) :=
-  orientedCactusBoundaryProducer_trivialGroup_model
-
-theorem cactusBoundaryInput_empty_table_model :
-    CactusBoundaryInput (T := emptyTriangleTableBuild) :=
-  cactusBoundaryInput_trivialGroup_model
+theorem cactusDiscDiagramProducer_empty_model :
+    CactusDiscDiagramProducer (T := emptyTriangleTable) := by
+  intro w hw hfree
+  exact (hfree (Subsingleton.elim _ _)).elim
 
 end Table
-end KazhdanHypGirthEightBuild
+end KazhdanHypGirthEightCactusProducer
 end GGT
 end GroupApproximation
