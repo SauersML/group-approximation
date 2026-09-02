@@ -780,7 +780,63 @@ noncomputable instance exteriorRegionFintype
       Subtype.val_injective
   exact Fintype.ofFinite _
 
+/-- A source incidence of exterior kind has outer boundary as its target. -/
+theorem source_target_eq_none_of_kind_exterior
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.exterior) :
+    candidate.contiguity.target = none := by
+  cases htarget : candidate.contiguity.target with
+  | none => exact htarget
+  | some target =>
+      have hfalse : CellArcKind.interior = CellArcKind.exterior := by
+        simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+      cases hfalse
+
+/-- Convert an exterior-kind incidence into its selected outer region. -/
+noncomputable def exteriorRegionOfKind
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence.OfKind
+      (selected := selected) (i := i) CellArcKind.exterior) :
+    ExteriorRegion selected i := by
+  obtain ⟨incidence, hkind⟩ := incidence
+  cases incidence with
+  | source candidate mem_selected source_eq =>
+      exact ⟨candidate, mem_selected, source_eq,
+        source_target_eq_none_of_kind_exterior candidate mem_selected source_eq
+          hkind⟩
+  | target candidate mem_selected target_eq =>
+      have hfalse : CellArcKind.interior = CellArcKind.exterior := by
+        simpa only [CellIncidence.kind] using hkind
+      cases hfalse
+
 namespace ExteriorRegion
+
+/-- Regard a selected outer region as an exterior-kind cell incidence. -/
+noncomputable def toExteriorIncidence
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (region : ExteriorRegion selected i) :
+    CellIncidence.OfKind (selected := selected) (i := i)
+      CellArcKind.exterior :=
+  ⟨CellIncidence.source region.1 region.2.1 region.2.2.1,
+    by simp [CellIncidence.kind, region.2.2.2]⟩
 
 /-- Forget the selected-family membership while retaining the embedded
 boundary-contiguity witness. -/
@@ -799,6 +855,87 @@ noncomputable def toBoundaryContiguity
   target_eq := region.2.2.2
 
 end ExteriorRegion
+
+/-- At each cell there is at most one selected embedded region to the outer
+boundary.  This is the local boundary two-gon conclusion of Appendix Lemma
+65(a). -/
+def ExteriorRegionsUnique
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) : Prop :=
+  ∀ i : Fin Delta.rCellCount,
+    ∀ first second : ExteriorRegion selected i, first = second
+
+/-- The empty selected family has unique outer regions. -/
+theorem exteriorRegionsUnique_emptyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
+    ExteriorRegionsUnique (∅ : Finset (Candidate D eps Delta)) := by
+  intro i first
+  exact (Finset.not_mem_empty first.1 first.2.1).elim
+
+/-- If outer regions are unique, then all exterior-kind incidences at a cell
+are equal. -/
+theorem exteriorIncidence_unique
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    (hunique : ExteriorRegionsUnique selected)
+    (i : Fin Delta.rCellCount)
+    (first second : CellIncidence.OfKind
+      (selected := selected) (i := i) CellArcKind.exterior) :
+    first = second := by
+  have hregions : exteriorRegionOfKind first = exteriorRegionOfKind second :=
+    hunique i (exteriorRegionOfKind first) (exteriorRegionOfKind second)
+  obtain ⟨firstIncidence, firstKind⟩ := first
+  obtain ⟨secondIncidence, secondKind⟩ := second
+  apply Subtype.ext
+  apply CellIncidence.code_injective
+  cases firstIncidence with
+  | source first first_mem first_source =>
+      cases secondIncidence with
+      | source second second_mem second_source =>
+          have hcandidates : first = second := by
+            exact congrArg Subtype.val hregions
+          simp only [CellIncidence.code, hcandidates]
+      | target second second_mem second_target =>
+          have hfalse : CellArcKind.interior = CellArcKind.exterior := by
+            simpa only [CellIncidence.kind] using secondKind
+          cases hfalse
+  | target first first_mem first_target =>
+      have hfalse : CellArcKind.interior = CellArcKind.exterior := by
+        simpa only [CellIncidence.kind] using firstKind
+      cases hfalse
+
+/-- With positioned incidence uniqueness and a chosen outer region, the
+canonical exterior length is exactly that region's source-arc length. -/
+theorem canonical_exteriorLength_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    (hincidence : IncidencePositionUnique selected)
+    (houter : ExteriorRegionsUnique selected)
+    (i : Fin Delta.rCellCount) (region : ExteriorRegion selected i) :
+    (CellBoundaryPartition.canonical selected i).kindLength
+        CellArcKind.exterior =
+      region.1.contiguity.sourceArc.length := by
+  rw [CellBoundaryPartition.canonical_kindLength_eq_sum_arcLength selected
+    hincidence i CellArcKind.exterior (by decide)]
+  let distinguished := region.toExteriorIncidence
+  rw [Finset.sum_eq_single distinguished]
+  · exact CellIncidence.source_arc_length region.1 region.2.1 region.2.2.1
+  · intro other _ hne
+    exact (hne (exteriorIncidence_unique houter i other distinguished)).elim
+  · intro hnot
+    exact hnot (Finset.mem_univ distinguished)
 
 /-- Choose one selected exterior region at a cell when such a region exists.
 Lemma 65(a)'s two-gon condition later shows that this one region accounts for
@@ -835,6 +972,45 @@ theorem selectedOuter_eq_none_iff
     exact isEmptyElim (Classical.choice h)
   · simp only [true_iff]
     exact ⟨fun region => h ⟨region⟩⟩
+
+/-- Loop separation and outer-region uniqueness identify the chosen exterior
+region with the complete canonical exterior class at every cell. -/
+theorem selectedOuter_weight_eq_canonicalExterior
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (hseparated : SelfIncidenceSeparated selected.family)
+    (houter : ExteriorRegionsUnique selected.family)
+    (i : Fin Delta.rCellCount) :
+    (match selectedOuter selected.family i with
+      | none => 0
+      | some contiguity => contiguity.weight) =
+        (canonicalDiagramPartition selected.family).kindWeight
+          CellArcKind.exterior i := by
+  classical
+  have hincidence : IncidencePositionUnique selected.family :=
+    incidencePositionUnique_of_selfIncidenceSeparated selected hseparated
+  unfold selectedOuter
+  split_ifs with hexists
+  · simp only [EmbeddedBoundaryContiguity.weight,
+      ExteriorRegion.toBoundaryContiguity,
+      DiagramBoundaryPartition.kindWeight, canonicalDiagramPartition]
+    exact_mod_cast (canonical_exteriorLength_eq hincidence houter i
+      (Classical.choice hexists)).symm
+  · have hzero :
+        (CellBoundaryPartition.canonical selected.family i).kindLength
+          CellArcKind.exterior = 0 := by
+      rw [CellBoundaryPartition.canonical_kindLength_eq_sum_arcLength
+        selected.family hincidence i CellArcKind.exterior (by decide)]
+      apply Finset.sum_eq_zero
+      intro incidence _
+      exact (hexists ⟨exteriorRegionOfKind incidence⟩).elim
+    simp only [DiagramBoundaryPartition.kindWeight,
+      canonicalDiagramPartition, hzero, Nat.cast_zero]
 
 end Embedded
 
