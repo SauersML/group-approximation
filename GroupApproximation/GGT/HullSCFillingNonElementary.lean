@@ -157,7 +157,7 @@ def SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet : Prop :=
           D.rel.base = A.alphabet.carrier
 
 /-- Forgetting the base equality recovers the established selection premise. -/
-theorem SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.toSelection
+theorem simultaneousAuxiliaryPeripheralSelection_of_atHullAlphabet
     (h : SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.{u}) :
     SimultaneousAuxiliaryPeripheralSelection.{u} := by
   intro G _ A N k S hN hS

@@ -104,8 +104,8 @@ established selection premise. -/
 theorem simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
     (hyi : SimultaneousYiSuitableFamily.{u}) :
     SimultaneousAuxiliaryPeripheralSelection.{u} :=
-  (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316
-    hyi).toSelection
+  simultaneousAuxiliaryPeripheralSelection_of_atHullAlphabet
+    (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316 hyi)
 
 /-- Hull's printed all-`m` `yi` statement is now the only selection premise:
 finite avoidance performs the simultaneous choice, and Theorem 3.16 supplies
@@ -120,8 +120,9 @@ theorem simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_finiteYi_theor
 theorem simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
     (hyi : YiSuitableFiniteFamily.{u}) :
     SimultaneousAuxiliaryPeripheralSelection.{u} :=
-  (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_finiteYi_theorem316
-    hyi).toSelection
+  simultaneousAuxiliaryPeripheralSelection_of_atHullAlphabet
+    (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_finiteYi_theorem316
+      hyi)
 
 end HullSC
 end GroupApproximation
