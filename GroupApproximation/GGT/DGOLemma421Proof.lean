@@ -2285,7 +2285,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       exists_side_occurrence_of_fourGon_start_421 hW3P
         hi' hstart'
     have hsource_le : source i ≤ P.length := by
-      omega
+      exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
     have hi'_le : i' ≤ P.length := Nat.le_of_lt hi'
     have hconnP : Connected D.fam (peripheralOccurrence P (occ i)).label
         1 P (source i) (peripheralOccurrence P u).pos := by
@@ -2319,8 +2319,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     rcases (htargetSpec i).2.2.1 with hpcase | hrest
     · right
       have htargetM : targetN i < M := by
-        dsimp [M]
-        omega
+        have hpcM : pc.length ≤ M := by
+          dsimp [M]
+          omega
+        exact lt_of_lt_of_le hpcase hpcM
       refine ⟨⟨targetN i, htargetM⟩, ?_, ?_⟩
       intro hm
       exact (htargetSpec i).1 (by omega)
@@ -2332,6 +2334,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         · have hne : i' ≠ source i := by
             intro heq
             exact (htargetSpec i).1 (by rw [hni, heq])
+          have hsource_le : source i ≤ P.length := by
+            exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
+          have hi'_le : i' ≤ P.length := Nat.le_of_lt hilt
           have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
               (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
               (pc.length + i') := by
@@ -2345,7 +2350,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             rw [vertex_fourGon_side pc P rc Q 1 hsource_le,
               vertex_fourGon_side pc P rc Q 1 hi'_le]
             group
-          exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
+          exact (hsourceNoSame i i' hilt hne (by rw [← hni]; exact
             (htargetSpec i).2.1)) hconn
         · right
           refine ⟨⟨pc.length, by dsimp [M]; omega⟩, ?_, ?_⟩
