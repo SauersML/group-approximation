@@ -1,7 +1,6 @@
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealization
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
 import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopy
-import GroupApproximation.GGT.VanKampen.Estimating.PieceBridge
 
 /-!
 # Embedded-to-relative certificates for Hull Lemma 4.4
@@ -27,6 +26,21 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
 universe u w
+
+private theorem exists_dartWord_suffix_for_arc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, 0} W}
+    {cycle : List Delta.toCombMap.Dart}
+    (arc : Embedded.CyclicArc cycle) :
+    ∃ suffix : List (GGT.RelLetter G Lambda),
+      Embedded.dartWord Delta arc.rotated =
+        Embedded.dartWord Delta arc.darts ++ suffix := by
+  refine ⟨Embedded.dartWord Delta (arc.rotated.drop arc.length), ?_⟩
+  rw [Embedded.CyclicArc.darts]
+  conv_lhs => rw [← List.take_append_drop arc.length arc.rotated]
+  simp only [Embedded.dartWord, List.map_append, List.map_take,
+    List.map_drop]
 
 /-! ## The missing positioning and typing data -/
 
@@ -85,10 +99,11 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
     RelativeBoundaryContiguity D eps Z.boundaryWord
       (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated) := by
   let sourceArc := C.region.sourceArc
-  let remainder := Classical.choose sourceArc.exists_dartWord_suffix
+  let remainder := Classical.choose
+    (exists_dartWord_suffix_for_arc sourceArc)
   have hsource : Embedded.dartWord hreal.diagram sourceArc.rotated =
       Embedded.dartWord hreal.diagram sourceArc.darts ++ remainder :=
-    Classical.choose_spec sourceArc.exists_dartWord_suffix
+    Classical.choose_spec (exists_dartWord_suffix_for_arc sourceArc)
   have hsourceValue := C.region.arcs_value_of_pasting
     data.peeling.to_homotopy
   have htarget : C.region.target = none := C.target_eq
