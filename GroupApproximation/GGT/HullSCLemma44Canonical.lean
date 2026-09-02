@@ -101,7 +101,7 @@ certificate into Hull's peripheral-preservation object.  The union-injectivity
 hypothesis is supplied independently by the radius-one part of the short
 kernel argument. -/
 theorem quotientPeripheralPreservation_of_relativeDiagramCertificates
-    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, w})
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, 0})
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
     (D : AuxiliaryPeripheralFamily A N S)
@@ -128,8 +128,8 @@ theorem quotientPeripheralPreservation_of_relativeDiagramCertificates
 /-- The certificate theorem and Osin's relative-isoperimetric bridge imply
 Hull's exact canonical quotient statement. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
-    (hgeom : RelativeGreendlingerStatement.{u, w})
-    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, w}) :
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
   let mu : ℝ := 1 / 1000
@@ -200,8 +200,8 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
 /-- The same two geometric inputs also imply the older
 peripheral-preservation-only formulation of Hull Lemma 4.4. -/
 theorem hullLemma44PreservedPeripheralFamily_of_greendlinger_of_isoperimetric
-    (hgeom : RelativeGreendlingerStatement.{u, w})
-    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, w}) :
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, 0}) :
     HullLemma44PreservedPeripheralFamily.{u} := by
   have hcanonical : HullLemma44CanonicalQuotientStatement.{u} :=
     hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
@@ -223,8 +223,8 @@ theorem hullLemma44CanonicalQuotientStatement_zero
 
 /-- Form using Osin Lemma 5.1's local Dehn transfer directly. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
-    (hgeom : RelativeGreendlingerStatement.{u, w})
-    (htransfer : RelativeDehnTransferStatement.{u, u, w}) :
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (htransfer : RelativeDehnTransferStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
     hgeom (relativeIsoperimetricBridgeStatement_of_dehnTransfer htransfer)
