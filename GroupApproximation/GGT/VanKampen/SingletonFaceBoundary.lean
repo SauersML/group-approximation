@@ -120,7 +120,7 @@ theorem singleton_discRegion_boundary_eq
 boundary is the stored face cycle.  This is the topological producer needed by
 the one-face path-deletion step. -/
 def RelatorFaceSingletonProducer : Prop :=
-  ∀ (Delta : DiscDiagram.{u, w, v} W)
+  ∀ (Delta : DiscDiagram.{u, w, 0} W)
     (C : RelatorCell Delta.toCombMap Delta.outerFace W),
     C ∈ Delta.relatorCells →
     ∃ region : IsDiscRegion Delta.toCombMap {C.face},
@@ -131,13 +131,13 @@ two topological fields of `IsDiscRegion` are supplied for each relator face.
 The two fields are deliberately quantified here: neither is present in the
 bare `DiscDiagram` record. -/
 theorem relatorFaceSingletonProducer_of_topology
-    (hdata : ∀ (Delta : DiscDiagram.{u, w, v} W)
+    (hdata : ∀ (Delta : DiscDiagram.{u, w, 0} W)
       (C : RelatorCell Delta.toCombMap Delta.outerFace W),
       C ∈ Delta.relatorCells →
       ∃ hno : NoInternalFaceDart Delta.toCombMap C.face,
         Nonempty (SingletonDiscRegionData (Delta := Delta) C.face hno)) :
     RelatorFaceSingletonProducer (W := W) := by
-  change ∀ (Delta : DiscDiagram.{u, w, v} W)
+  change ∀ (Delta : DiscDiagram.{u, w, 0} W)
     (C : RelatorCell Delta.toCombMap Delta.outerFace W),
     C ∈ Delta.relatorCells →
     ∃ region : IsDiscRegion Delta.toCombMap {C.face},
