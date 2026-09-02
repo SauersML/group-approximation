@@ -106,25 +106,6 @@ structure Lemma62Data
     (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
   threshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)
 
-/-- A finite complementary-component averaging certificate yields the strict
-unbound budget and, with the numerical threshold, the `Lemma62Data` required
-by the assembly. -/
-theorem lemma62Data_of_partitionCertificate
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {mu : ℝ} {rho : ℕ}
-    {Delta : DiscDiagram.{u, w, v} W}
-    {scaffold : EstimatingScaffold D eps Delta}
-    {d : ℕ}
-    (certificate : UnboundEstimate.PartitionUnboundCertificate
-      Delta.rCellCount d (Real.sqrt (rho : ℝ))
-      (scaffold.partition.unboundTotal : ℝ))
-    (hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)) :
-    Nonempty (Lemma62Data D eps mu rho Delta scaffold) := by
-  refine ⟨{ unbound_lt := ?_, threshold := hthreshold }⟩
-  simpa using certificate.total_lt
-
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
     {G : Type u} [Group G] {Lambda : Type w}
@@ -402,26 +383,6 @@ def EstimatingPieceConstructionStatement : Prop :=
     (scaffold : EstimatingScaffold D eps Delta),
     Nonempty (CellPieceData D eps Delta scaffold)
 
-/-! ## Local piece-construction bridge -/
-
-/-- Pasted face-set homotopies and the reducedness bridges from
-`PieceBridge` construct all local O52 equations on a fixed scaffold. This is
-strictly smaller than the global piece construction statement because it
-exposes the finite per-edge certificates that the topological peeling proof
-must provide. -/
-theorem estimatingPieceConstruction_of_pasting_reduced
-    {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
-    (scaffold : EstimatingScaffold D eps Delta)
-    (hred : Delta.Reduced)
-    (hcertificate : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
-      Embedded.PastingReducedCellPieceCertificate edge.candidate.contiguity) :
-    Nonempty (CellPieceData D eps Delta scaffold) := by
-  refine ⟨{ equations := ?_ }⟩
-  intro edge
-  exact (hcertificate edge).equations hred
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
