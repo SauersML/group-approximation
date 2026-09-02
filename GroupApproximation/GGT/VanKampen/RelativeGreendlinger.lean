@@ -434,7 +434,7 @@ theorem embeddedEstimatingSystemConstruction_emptyFamilyModel
 quasi-geodesic Gr0 conclusion is impossible. -/
 theorem relativeGreendlingerQuasiGeodesic_emptyFamilyModel
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (lambda c mu : ℝ)
+    (D : GGT.RelGenSet G Lambda) (eps _rho : ℕ) (lambda c mu : ℝ)
     (Delta : DiscDiagram.{u, w, v}
       (∅ : Set (List (GGT.RelLetter G Lambda))))
     (_hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
