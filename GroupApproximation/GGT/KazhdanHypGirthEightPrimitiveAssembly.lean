@@ -21,6 +21,7 @@ namespace GGT
 namespace GirthEightPrimitiveAssembly
 
 open GroupApproximation.KazhdanHyp
+open GroupApproximation.WordMetric
 open GirthEightVKInterface
 open GirthEightPrimitives2
 
@@ -98,7 +99,7 @@ def relatorOnlyReduction_of_localData
     RelatorOnlyReduction T Delta where
   diagram := Delta
   boundaryWord_eq := rfl
-  rCellCount_le := Delta.rCellCount_le_innerFaceCount
+  rCellCount_le := le_refl _
   reduced := hred
   relatorOnly := { cell := L.innerFaceCell }
 
@@ -108,7 +109,7 @@ construction contract.  The least-area theorem is
 cancellation surgery.  The spherical field is
 `gluePowerDisc_of_rotationGluing`. -/
 noncomputable def ConstructionInputs.toPrimitives
-    (H : ConstructionInputs T) : GirthEightDiagramPrimitives T where
+    (H : ConstructionInputs (T := T)) : GirthEightDiagramPrimitives T where
   localProjection := LocalDiagramProjections.canonical
   cornerCycle := GirthEightPrimitives.cornerCycle
   facePositions := GirthEightPrimitives.facePositions
