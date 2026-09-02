@@ -254,6 +254,13 @@ theorem combined_relBall_inr_subset (D : RelGenSet G Λ) (E : RelGenSet G I)
       exact fun x hx => Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩))
     (fun _ => rfl) i n
 
+/-- Clause (a) of `↪_h` depends on the alphabet only. -/
+theorem exists_isHyperbolicSpace_of_alphabet_eq {P Q : Alphabet G} (h : P = Q)
+    (hQ : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley Q)) :
+    ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley P) := by
+  subst h
+  exact hQ
+
 /-- **Clause (a) for the labelled sum.**  The base equation makes the joint
 alphabet equal to the auxiliary alphabet, so its Cayley graph is the auxiliary
 one. -/
@@ -261,14 +268,9 @@ theorem combinedRelGenSet_hyperbolic (D : RelGenSet G Λ) (E : RelGenSet G I)
     (hbase : E.base = D.alphabet.carrier)
     (hE : E.IsHyperbolicallyEmbedded) :
     ∃ delta : ℝ,
-      IsHyperbolicSpace delta (Cayley (combinedRelGenSet D E).alphabet) := by
-  have htransport : ∀ P Q : Alphabet G, P = Q →
-      (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley Q)) →
-        ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley P) := by
-    intro P Q hPQ hQ
-    subst hPQ
-    exact hQ
-  exact htransport _ _ (combined_alphabet_eq D E hbase) hE.hyperbolic
+      IsHyperbolicSpace delta (Cayley (combinedRelGenSet D E).alphabet) :=
+  exists_isHyperbolicSpace_of_alphabet_eq (combined_alphabet_eq D E hbase)
+    hE.hyperbolic
 
 /-- **The joint-family direction of hyperbolic-embeddedness transitivity, at
 equal alphabets.**
@@ -496,15 +498,8 @@ theorem dgoProposition435JointHyperbolic_of_base_eq (D : RelGenSet G Λ)
   have hcarrier : (jointRelGenSet D E).alphabet.carrier = E.alphabet.carrier := by
     rw [jointRelGenSet_alphabet_carrier D E, ← hbase]
     rfl
-  have halph : (jointRelGenSet D E).alphabet = E.alphabet :=
-    OsinComponents.alphabet_eq_of_carrier_eq hcarrier
-  have htransport : ∀ P Q : Alphabet G, P = Q →
-      (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley Q)) →
-        ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley P) := by
-    intro P Q hPQ hQ
-    subst hPQ
-    exact hQ
-  exact htransport _ _ halph hE.hyperbolic
+  exact exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hE.hyperbolic
 
 /-! ## Model tests -/
 
@@ -520,18 +515,6 @@ theorem isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_left
   · exact isEmptyElim lam
   · exact (hE.locallyFinite i n).subset
       (combined_relBall_inr_subset D E hbase i n)
-
-/-- With no auxiliary subgroups a joint letter is an original letter. -/
-theorem isLetter_origOfJoint_of_isEmpty [IsEmpty I] (D : RelGenSet G Λ)
-    (E : RelGenSet G I) {a : RelLetter G (Sum Λ I)}
-    (ha : (combinedRelGenSet D E).IsLetter a) :
-    D.IsLetter (RelLetter.origOfJoint a) := by
-  cases a with
-  | base _ => exact ha
-  | comp s _ =>
-      cases s with
-      | inl _ => exact ha
-      | inr i => exact isEmptyElim i
 
 /-- Avoidance of `Γ_{H_lam}` survives reading a joint word as an original
 word. -/
@@ -554,22 +537,42 @@ theorem avoidsFrom_map_origOfJoint {F : Sum Λ I → Subgroup G}
       · rw [RelLetter.origOfJoint_val]
         exact ih (p * a.val) htail
 
+/-- **Clause (b) at an original index when there are no auxiliary
+subgroups**, for any joint relative generating set whose base letters are
+original base letters. -/
+theorem relBall_inl_subset_of_letters_of_isEmpty [IsEmpty I]
+    (J : RelGenSet G (Sum Λ I)) (D : RelGenSet G Λ) (hbase : J.base ⊆ D.base)
+    (hinl : ∀ lam : Λ, J.fam (Sum.inl lam) = D.fam lam) (lam : Λ) (n : ℕ) :
+    J.relBall (Sum.inl lam) n ⊆ D.relBall lam n := by
+  rintro h ⟨hmem, u, hlet, hval, hav, hlen⟩
+  refine ⟨?_, u.map RelLetter.origOfJoint, ?_, ?_, ?_, ?_⟩
+  · rw [← hinl lam]
+    exact hmem
+  · intro a ha
+    obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
+    have hb' := hlet b hb
+    cases b with
+    | base _ => exact hbase hb'
+    | comp s _ =>
+        cases s with
+        | inl mu =>
+            show _ ∈ D.fam mu
+            rw [← hinl mu]
+            exact hb'
+        | inr i => exact isEmptyElim i
+  · rw [RelLetter.listVal_map_origOfJoint]
+    exact hval
+  · exact avoidsFrom_map_origOfJoint hinl lam u 1 hav
+  · rw [List.length_map]
+    exact hlen
+
 /-- **No auxiliary subgroups.**  The joint relative balls at an original index
 are contained in the original ones. -/
 theorem combined_relBall_inl_subset_of_isEmpty [IsEmpty I]
     (D : RelGenSet G Λ) (E : RelGenSet G I) (lam : Λ) (n : ℕ) :
-    (combinedRelGenSet D E).relBall (Sum.inl lam) n ⊆ D.relBall lam n := by
-  rintro h ⟨hmem, u, hlet, hval, hav, hlen⟩
-  refine ⟨hmem, u.map RelLetter.origOfJoint, ?_, ?_, ?_, ?_⟩
-  · intro a ha
-    obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
-    exact isLetter_origOfJoint_of_isEmpty D E (hlet b hb)
-  · rw [RelLetter.listVal_map_origOfJoint]
-    exact hval
-  · exact avoidsFrom_map_origOfJoint (F := (combinedRelGenSet D E).fam)
-      (Df := D.fam) (fun _ => rfl) lam u 1 hav
-  · rw [List.length_map]
-    exact hlen
+    (combinedRelGenSet D E).relBall (Sum.inl lam) n ⊆ D.relBall lam n :=
+  relBall_inl_subset_of_letters_of_isEmpty _ D (fun _ hx => hx)
+    (fun _ => rfl) lam n
 
 /-- **No auxiliary subgroups.**  The statement reduces to its first
 hypothesis. -/
@@ -582,6 +585,55 @@ theorem isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_right
   rintro (lam | i) n
   · exact (hD.locallyFinite lam n).subset
       (combined_relBall_inl_subset_of_isEmpty D E lam n)
+  · exact isEmptyElim i
+
+/-! ### The same two tests for the nested form -/
+
+/-- **No original subgroups, nested form.**  The joint family is the auxiliary
+family, and the statement reduces to its second hypothesis. -/
+theorem isHyperbolicallyEmbedded_jointRelGenSet_of_isEmpty_left
+    [IsEmpty Λ] (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (hbase : E.base = D.alphabet.carrier)
+    (hE : E.IsHyperbolicallyEmbedded) :
+    (jointRelGenSet D E).IsHyperbolicallyEmbedded := by
+  refine ⟨dgoProposition435JointHyperbolic_of_base_eq D E hbase hE, ?_⟩
+  rintro (lam | i) n
+  · exact isEmptyElim lam
+  · exact (hE.locallyFinite i n).subset
+      (jointRelGenSet_relBall_inr_subset D E hbase.symm.subset i n)
+
+/-- The symmetrisation does nothing to a base that is already inversion-closed.
+-/
+theorem symBase_eq_of_base_inv (D : RelGenSet G Λ)
+    (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base) : symBase D = D.base := by
+  refine Set.Subset.antisymm ?_ (subset_symBase D)
+  rintro x (hx | hx)
+  · exact hx
+  · have h := hinv _ hx
+    rwa [inv_inv] at h
+
+/-- **No auxiliary subgroups, nested form**, at an inversion-closed original
+base.  The joint alphabet is then the original one, so both clauses come from
+the first hypothesis alone. -/
+theorem isHyperbolicallyEmbedded_jointRelGenSet_of_isEmpty_right
+    [IsEmpty I] (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hD : D.IsHyperbolicallyEmbedded) :
+    (jointRelGenSet D E).IsHyperbolicallyEmbedded := by
+  have hcarrier :
+      (jointRelGenSet D E).alphabet.carrier = D.alphabet.carrier := by
+    rw [jointRelGenSet_alphabet_carrier D E]
+    refine Set.union_eq_self_of_subset_right ?_
+    intro y hy
+    obtain ⟨i, -⟩ := Set.mem_iUnion.mp hy
+    exact isEmptyElim i
+  refine ⟨exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hD.hyperbolic, ?_⟩
+  rintro (lam | i) n
+  · have hb : (jointRelGenSet D E).base ⊆ D.base :=
+      (symBase_eq_of_base_inv D hinv).subset
+    exact (hD.locallyFinite lam n).subset
+      (relBall_inl_subset_of_letters_of_isEmpty _ D hb (fun _ => rfl) lam n)
   · exact isEmptyElim i
 
 /-! ## Why the joint base has to be the original one -/
