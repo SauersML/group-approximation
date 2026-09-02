@@ -411,14 +411,15 @@ theorem estimatingDataConstruction_of_components
   intro W hcondition Delta hred hcells hboundary
   obtain ⟨Delta', hequiv, scaffold, graph⟩ := hselect W hcondition Delta
     hred hcells hboundary
+  obtain ⟨equiv⟩ := hequiv
   obtain ⟨graph⟩ := graph
   obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold
   have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord := by
-    rw [hequiv.boundaryWord_eq]
+    rw [equiv.boundaryWord_eq]
     exact hboundary
   obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hcondition Delta'
     scaffold hboundary'
-  exact ⟨Delta', hequiv,
+  exact ⟨Delta', ⟨equiv⟩,
     EstimatingData.nonempty_of_certificates scaffold graph pieces unbound
       hcondition⟩
 
