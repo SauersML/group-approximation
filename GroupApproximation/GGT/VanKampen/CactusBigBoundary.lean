@@ -277,6 +277,137 @@ theorem cactusBigDarts_value
   rw [cactusBigDarts, List.map_append, RelWord.listVal_append,
     Z.cactusOuterBackward_value, Z.cactusCellSegments_value, mul_inv_cancel]
 
+/-! ## No repetitions in the complementary traversal -/
+
+/-- Backward outer darts occur once. -/
+theorem cactusOuterBackwardDarts_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusOuterBackwardDarts.Nodup := by
+  rw [cactusOuterBackwardDarts]
+  apply List.nodup_ofFn_ofInjective
+  intro i j hij
+  have hrev : i.rev = j.rev := CactusDart.outerBackward.inj hij
+  exact Fin.rev_injective hrev
+
+/-- Backward darts of one relator polygon occur once. -/
+theorem cactusRelatorBackwardDarts_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusRelatorBackwardDarts i).Nodup := by
+  rw [cactusRelatorBackwardDarts]
+  apply List.nodup_ofFn_ofInjective
+  intro j k hjk
+  have hrev : j.rev = k.rev := eq_of_heq (CactusDart.relatorBackward.inj hjk).2
+  exact Fin.rev_injective hrev
+
+/-- One cell segment contains no repeated dart. -/
+theorem cactusCellSegment_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) : (Z.cactusCellSegment i).Nodup := by
+  have hout : CactusDart.stemOut i ∉
+      Z.cactusRelatorBackwardDarts i ++ [CactusDart.stemIn i] := by
+    simp [cactusRelatorBackwardDarts, List.mem_ofFn]
+  have hin : CactusDart.stemIn i ∉ Z.cactusRelatorBackwardDarts i := by
+    simp [cactusRelatorBackwardDarts, List.mem_ofFn]
+  unfold cactusCellSegment
+  exact List.Nodup.cons hout
+    ((Z.cactusRelatorBackwardDarts_nodup i).append (by simp)
+      (by simpa [List.disjoint_left] using hin))
+
+/-- A dart lying in two cell segments determines the same cell index. -/
+theorem eq_of_mem_cactusCellSegment
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    {i j : Fin Z.cells.length} {d : CactusDart Z.cactusShape}
+    (hi : d ∈ Z.cactusCellSegment i) (hj : d ∈ Z.cactusCellSegment j) :
+    i = j := by
+  cases d <;>
+    simp_all [cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn]
+
+/-- Distinct cell segments are disjoint. -/
+theorem cactusCellSegment_disjoint
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    {i j : Fin Z.cells.length} (hij : i ≠ j) :
+    List.Disjoint (Z.cactusCellSegment i) (Z.cactusCellSegment j) := by
+  rw [List.disjoint_left]
+  intro d hi hj
+  exact hij (Z.eq_of_mem_cactusCellSegment hi hj)
+
+/-- All flattened cell segments contain no repeated dart. -/
+theorem cactusCellSegments_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusCellSegments.Nodup := by
+  rw [cactusCellSegments, List.nodup_flatten]
+  constructor
+  · intro l hl
+    rw [List.mem_ofFn] at hl
+    obtain ⟨i, rfl⟩ := hl
+    exact Z.cactusCellSegment_nodup i
+  · rw [List.pairwise_ofFn]
+    intro i j hij
+    exact Z.cactusCellSegment_disjoint hij.ne
+
+/-- Backward outer darts do not occur in a cell segment. -/
+theorem cactusOuterBackwardDarts_disjoint_cellSegment
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    List.Disjoint Z.cactusOuterBackwardDarts (Z.cactusCellSegment i) := by
+  rw [List.disjoint_left]
+  intro d hdouter hdcell
+  rw [cactusOuterBackwardDarts, List.mem_ofFn] at hdouter
+  obtain ⟨j, rfl⟩ := hdouter
+  simp [cactusCellSegment, cactusRelatorBackwardDarts,
+    List.mem_ofFn] at hdcell
+
+/-- The outer part and the flattened cell part are disjoint. -/
+theorem cactusOuterBackwardDarts_disjoint_cellSegments
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    List.Disjoint Z.cactusOuterBackwardDarts Z.cactusCellSegments := by
+  rw [List.disjoint_left]
+  intro d hdouter hdsegments
+  rw [cactusCellSegments, List.mem_flatten] at hdsegments
+  obtain ⟨l, hl, hdl⟩ := hdsegments
+  rw [List.mem_ofFn] at hl
+  obtain ⟨i, rfl⟩ := hl
+  exact (List.disjoint_left.mp
+    (Z.cactusOuterBackwardDarts_disjoint_cellSegment i)) hdouter hdl
+
+/-- The full explicit complementary traversal contains every one of its
+darts exactly once. -/
+theorem cactusBigDarts_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusBigDarts.Nodup := by
+  rw [cactusBigDarts]
+  exact Z.cactusOuterBackwardDarts_nodup.append
+    Z.cactusCellSegments_nodup
+    Z.cactusOuterBackwardDarts_disjoint_cellSegments
+
 end Lemma44OrientedRelatorDiagram
 end HullSC
 end GroupApproximation
