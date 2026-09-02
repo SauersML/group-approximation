@@ -943,6 +943,9 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
     (GGT.OsinComponents.everyEdgeIsolationRadius delta (2 * (target + 1)))
   let R := relatorWord₂ p (E.lox false) (E.lox true) ms
   have hp : p = [t⁻¹] := rfl
+  have hadj' : ExactPublishedAdjacentGapOutput E adjacentC
+      (blockConst [t⁻¹] (max 1 (eps + 2))) := by
+    simpa only [p, cw] using hadj
   have hdesign' : ExactRelatorDesign₂ E t⁻¹ designRho epsD epsD
       (target + 1) target ms := by
     simpa only [designRho, requestedRho] using hdesign
@@ -1014,9 +1017,7 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       GGT.RelLetter.listVal w' = y * GGT.RelLetter.listVal w * y⁻¹ := by
     intro w w' u u' hw hw' _hne ⟨tl, htl⟩ ⟨tl', htl'⟩ hu y z hy hz hval
     apply listVal_conj_of_exactDesign_long_prefixes (eps := eps)
-      E hN ht hdesign' hcount
-      heven hW
-    · simpa only [p, cw] using hadj
+      E hN ht hdesign' hcount heven hW hadj'
     · exact hadjRho
     · exact hadjEps
     · exact hepsRho
@@ -1044,7 +1045,7 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
     intro u u' v hv
     have hnat := sameWordPublishedPiece_lengths_le_of_exactDesign (eps := eps)
       E hN ht hdesign' hcount heven hW
-      (by simpa only [p, cw] using hadj) hadjRho hadjEps hepsRho
+      hadj' hadjRho hadjEps hepsRho
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
       exact_mod_cast hnat
@@ -1066,7 +1067,7 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
         (blockConst [t⁻¹] (max 1 (eps + 2))) at hgap
       exact hgap
     have hnat := primePiece_lengths_le_of_exactDesign (eps := eps)
-      E hN ht hdesign' hcount heven hW (by simpa only [p, cw] using hadj)
+      E hN ht hdesign' hcount heven hW hadj'
       hadjRho hadjEps hepsRho hgap' hgapRho hgapEps
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
