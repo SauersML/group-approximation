@@ -1951,6 +1951,35 @@ theorem exists_component_of_opposite_start_421
   rw [hidx] at hdouble'
   exact hdouble'
 
+theorem exists_side_occurrence_of_fourGon_start_421
+    {D : RelGenSet G Λ} {lam : Λ}
+    {p q r s : List (RelLetter G Λ)}
+    (hW3 : WWord.IsWThree D q) {j : ℕ} (hj : j < q.length)
+    (hstart : IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + j)) :
+    ∃ t : Fin (peripheralPositions q).card,
+      (peripheralOccurrence q t).pos = j ∧
+        (peripheralOccurrence q t).label = lam := by
+  obtain ⟨k, hcomp⟩ := hstart
+  have hglobal : p.length + j < (p ++ q ++ r ++ revWord s).length := by
+    rw [length_fourGon]
+    omega
+  have hcompOf := hcomp.2.2.1 (p.length + j) le_rfl hcomp.1 hglobal
+  have hqOf : (q[j]'hj).IsCompOf lam := by
+    simpa [List.getElem_append_left, List.length_append] using hcompOf
+  cases hq : q[j]'hj with
+  | base x =>
+      rw [hq] at hqOf
+      exact False.elim hqOf
+  | comp mu x =>
+      rw [hq] at hqOf
+      have hmulam : mu = lam := hqOf
+      have hread : q[j]? = some (RelLetter.comp lam x) := by
+        rw [← hmulam]
+        simpa [List.getElem?_eq_getElem hj, hq]
+      have hstartQ : IsCompStart lam q j :=
+        ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
+      exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
+
 end OsinComponents
 end GGT
 end GroupApproximation
