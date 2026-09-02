@@ -280,6 +280,26 @@ theorem replaceGRegion_connected (M : CombMap) (faces : Finset M.Face)
     (replaceGRegion M faces region).IsConnected :=
   (replaceGRegion_planar M faces region hplanar).1
 
+/-! ## Small-map constructor checks -/
+
+/-- Rebuilding the one-polygon, two-face cactus model from its edge reversal
+and face permutation returns the same face permutation. -/
+theorem zeroCellModel_rebuild_facePerm :
+    let M := CactusShape.zeroCellModel.toCombMap
+    (ofAlphaFacePerm M.alpha M.facePerm M.alpha_involutive
+      M.alpha_fixedPointFree).facePerm = M.facePerm := by
+  dsimp only
+  exact ofAlphaFacePerm_facePerm _ _ _ _
+
+/-- Rebuilding the one-relator-cell, three-face cactus model from its edge
+reversal and face permutation returns the same face permutation. -/
+theorem oneCellModel_rebuild_facePerm :
+    let M := CactusShape.oneCellModel.toCombMap
+    (ofAlphaFacePerm M.alpha M.facePerm M.alpha_involutive
+      M.alpha_fixedPointFree).facePerm = M.facePerm := by
+  dsimp only
+  exact ofAlphaFacePerm_facePerm _ _ _ _
+
 end MapCollapse
 end Surgery
 end VanKampen
