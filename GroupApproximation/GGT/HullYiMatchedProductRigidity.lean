@@ -234,10 +234,15 @@ theorem finiteOrder_mem_detectorIntersection_of_matchedProduct
   have hdfinite : IsOfFinOrder d := hintersectionFiniteOrder d hdinter
   let n : ℤ := l - m
   have htform : t = h ^ n * d := by
+    change Commute (c 0) h at hdcomm
     rw [ht]
-    dsimp [n, d]
-    rw [(hdcomm.zpow_right (-m)).eq, zpow_sub, zpow_neg]
-    group
+    dsimp only [n, d]
+    calc
+      h ^ l * c 0 * h ^ (-m) = h ^ l * (c 0 * h ^ (-m)) := by group
+      _ = h ^ l * (h ^ (-m) * c 0) := by
+        rw [(hdcomm.zpow_right (-m)).eq]
+      _ = h ^ (l - m) * c 0 := by
+        rw [zpow_sub, zpow_neg]
   have htcomm : Commute t d := by
     rw [htform]
     exact (hdcomm.zpow_right n).symm.mul_left (Commute.refl d)
