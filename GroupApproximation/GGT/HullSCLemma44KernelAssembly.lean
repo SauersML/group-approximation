@@ -301,6 +301,61 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
   exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuNinetyTwo
     hthreshold q hsurj hker hcert hkernel hloc
 
+/-- The kernel-geodesic estimate and the existing prefix-kernel transfer are
+enough to supply the local-finiteness input pointwise. -/
+theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
+    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0}) :
+    HullLemma44CanonicalQuotientStatement.{u} := by
+  intro G _ A N k S D R
+  let mu : ℝ := 1 / 1000
+  have hmuPos : 0 < mu := by
+    dsimp [mu]
+    norm_num
+  have hmuSixteen : mu ≤ 1 / 16 := by
+    dsimp [mu]
+    norm_num
+  have hmuNinetyTwo : mu ≤ 1 / 92 := by
+    dsimp [mu]
+    norm_num
+  have hmuThousand : mu ≤ 1 / 1000 := le_rfl
+  obtain ⟨eps, rho₀, hcertificate⟩ :=
+    hgeom D.rel D.embedded mu hmuPos hmuSixteen
+  let fullRadius : ℕ := max R 1
+  let boundaryScale : ℕ := 2 * fullRadius + 2 * eps + 1
+  let rho : ℕ := max rho₀ (max (8 * boundaryScale) (20 * (eps + 1)))
+  have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
+  have hrhoScale : 8 * boundaryScale ≤ rho :=
+    le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
+  have hrhoDehn : 20 * (eps + 1) ≤ rho :=
+    le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
+  have hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ) := by
+    have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
+      dsimp [boundaryScale, fullRadius]
+      positivity
+    have hrhoScaleReal :
+        (8 : ℝ) * (boundaryScale : ℝ) ≤ (rho : ℝ) := by
+      exact_mod_cast hrhoScale
+    change 4 * (boundaryScale : ℝ) <
+      (3 / 4 : ℝ) * (rho : ℝ)
+    nlinarith
+  refine ⟨eps, rho, mu, hmuPos, ?_⟩
+  intro W Q _ q hsc hsurj hker
+  have hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z) := by
+    intro r Z
+    exact hcertificate rho hrho₀ W r hsc Z
+  have hkernelAt : KernelGeodesicEstimateAt D.rel W eps rho mu hsc q :=
+    hkernel.bound D.rel W eps rho mu hsc q hsurj hker hcert
+  have hlocAt : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q :=
+    kernelConeLocalFinitenessAt_of_prefixKernelTransfer htransfer D.rel
+      D.embedded W eps rho mu hsc q hsurj hmuThousand hrhoDehn hker hcert
+  exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
+    hmuNinetyTwo hthreshold q hsurj hker hcert hkernelAt hlocAt
+
 /-! ## Empty-family model of the two estimate interfaces -/
 
 /-- If the source and quotient are one-point groups, the kernel-geodesic
