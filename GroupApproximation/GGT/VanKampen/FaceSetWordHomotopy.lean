@@ -55,10 +55,11 @@ theorem FaceSetWordHomotopy.mono
 
 /-! ## The explicit peel schedule -/
 
-/-- A schedule deletes every face of a finite set by exposing one complete
-face boundary at each step.  The empty schedule is the empty word.  A step
-does not assert that a face is geometrically peelable; that assertion is the
-topological input supplied by a planar region deletion lemma. -/
+/-- A schedule deletes every face of a finite set by exposing one face at each
+step.  The empty schedule is the empty word.  A step carries the word move
+which removes the exposed face from the current boundary; that move can be a
+single contiguous erasure or a finite insertion/cancellation factorisation.
+The geometric existence of the step is supplied separately. -/
 inductive FaceSetDeletionSchedule :
     Finset Delta.toCombMap.Face → List Delta.toCombMap.Dart → Prop
   | empty : FaceSetDeletionSchedule ∅ []
