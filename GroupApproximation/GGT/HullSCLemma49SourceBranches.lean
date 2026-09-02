@@ -120,8 +120,12 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
             sourceCertificate.contiguity.targetArc =
           (sourceCertificate.contiguity.outerTargetArc
             sourceCertificate.target_eq).darts := by
-      rw [sourceCertificate.target_eq]
-      rfl
+      cases htarget : sourceCertificate.contiguity.target with
+      | none => rfl
+      | some target =>
+          have hfalse : some target = none :=
+            sourceCertificate.target_eq.trans htarget.symm
+          cases hfalse
     rw [htargetDarts] at h
     exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
@@ -313,8 +317,12 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
             sourceCertificate.contiguity.targetArc =
           (sourceCertificate.contiguity.outerTargetArc
             sourceCertificate.target_eq).darts := by
-      rw [sourceCertificate.target_eq]
-      rfl
+      cases htarget : sourceCertificate.contiguity.target with
+      | none => rfl
+      | some target =>
+          have hfalse : some target = none :=
+            sourceCertificate.target_eq.trans htarget.symm
+          cases hfalse
     rw [htargetDarts] at h
     exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
