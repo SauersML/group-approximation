@@ -45,8 +45,9 @@ theorem card_chordEdgeInterval (a b : ℕ) :
   · simp [chordEdgeInterval, min_eq_left hab, max_eq_right hab,
       Nat.dist_eq_sub_of_le hab]
   · have hba : b ≤ a := le_of_not_ge hab
-    simp [chordEdgeInterval, min_eq_right hba, max_eq_left hba,
-      Nat.dist_comm, Nat.dist_eq_sub_of_le hba]
+    simp only [chordEdgeInterval, min_eq_right hba, max_eq_left hba,
+      Nat.card_Ico]
+    rw [Nat.dist_comm, Nat.dist_eq_sub_of_le hba]
 
 namespace BalancedSplitData
 
