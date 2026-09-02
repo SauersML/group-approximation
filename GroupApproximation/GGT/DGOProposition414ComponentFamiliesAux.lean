@@ -1411,7 +1411,7 @@ theorem secondGapArcBoundaryExclusion_terminal_of_parent_successor
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount)
-    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (s : ℕ)
     (hn :
       (B.secondGapLeft j).length +
           (B.secondArcCut (B.secondTargetSide s) -
@@ -1445,6 +1445,76 @@ theorem secondGapArcBoundaryExclusion_terminal_of_parent_successor
     rw [← hget, ← hadj]
     exact hcycle
   exact hparent.2.2.2.2 htargetNext hparentLetter
+
+/-- A terminal cycle letter carrying a different peripheral label cannot extend
+the inherited source component.  The label inequality is the reduced
+right-connector/chord separation input. -/
+theorem firstGapArcBoundaryExclusion_terminal_of_distinct_label
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ)
+    (hn :
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1 <
+        (B.firstGapCycle j).length)
+    (hlabel : P.label s ≠ B.firstGapLocalLabel j
+      ((B.firstGapLeft j).length +
+        (B.firstGapFinishSide j - B.firstGapStartSide j)))
+    (hcomp :
+      ((B.firstGapCycle j)[
+        (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+        (B.firstGapLocalLabel j
+          ((B.firstGapLeft j).length +
+            (B.firstGapFinishSide j - B.firstGapStartSide j)))) :
+    ¬ ((B.firstGapCycle j)[
+        (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+      (P.label s) := by
+  intro hsource
+  apply hlabel
+  exact eq_of_isCompOf_of_isCompOf hsource hcomp
+
+/-- The wrapped distinct-label terminal bridge. -/
+theorem secondGapArcBoundaryExclusion_terminal_of_distinct_label
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ)
+    (hn :
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 <
+        (B.secondGapCycle j).length)
+    (hlabel : P.label s ≠ B.secondGapLocalLabel j
+      ((B.secondGapLeft j).length +
+        (B.secondGapFinishSide j - B.secondGapStartSide j)))
+    (hcomp :
+      ((B.secondGapCycle j)[
+        (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+        (B.secondGapLocalLabel j
+          ((B.secondGapLeft j).length +
+            (B.secondGapFinishSide j - B.secondGapStartSide j)))) :
+    ¬ ((B.secondGapCycle j)[
+        (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+      (P.label s) := by
+  intro hsource
+  apply hlabel
+  exact eq_of_isCompOf_of_isCompOf hsource hcomp
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
