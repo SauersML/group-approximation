@@ -426,6 +426,83 @@ def EstimatingSelectionConstructionStatement : Prop :=
                         ∃ scaffold : EstimatingScaffold D eps Delta',
                           Nonempty (EstimatingGraphData D eps Delta' scaffold)
 
+/-- A local Lemma 65(a) face-drop oracle either already supplies the simple
+estimating graph or gives an O-equivalent reduced diagram with strictly fewer
+ambient faces.  The measure is the area of the planar face decomposition. -/
+def SelectionFaceDropOracle
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (hcondition : OsinCCondition D W eps mu lambda c rho) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W),
+    Delta.Reduced → 0 < Delta.rCellCount →
+      IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+      (∃ scaffold : EstimatingScaffold D eps Delta,
+        Nonempty (EstimatingGraphData D eps Delta scaffold)) ∨
+      ∃ Delta' : DiscDiagram.{u, w, v} W,
+        Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+          Delta'.toCombMap.faceCount < Delta.toCombMap.faceCount ∧
+          Delta'.Reduced ∧ 0 < Delta'.rCellCount ∧
+            IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord
+
+/-- O-equivalence composes, so successive face-drop surgeries retain the
+boundary word and ordered relator-cell words. -/
+def OEquivalentDiscDiagram.trans
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta₁ Delta₂ Delta₃ : DiscDiagram.{u, w, v} W}
+    (first : OEquivalentDiscDiagram Delta₁ Delta₂)
+    (second : OEquivalentDiscDiagram Delta₂ Delta₃) :
+    OEquivalentDiscDiagram Delta₁ Delta₃ where
+  boundaryWord_eq := second.boundaryWord_eq.trans first.boundaryWord_eq
+  cellIndex := first.cellIndex.trans second.cellIndex
+  cellWord_eq := by
+    intro i
+    calc
+      (Embedded.cell Delta₃ (first.cellIndex.trans second.cellIndex i)).word =
+          (Embedded.cell Delta₂ (second.cellIndex (first.cellIndex i))).word :=
+        second.cellWord_eq (first.cellIndex i)
+      _ = (Embedded.cell Delta₁ i).word := first.cellWord_eq i
+
+/-- Strong induction on ambient face count turns the local face-drop oracle
+into the fixed-diagram output required by Lemma 65(a). -/
+theorem selection_output_of_faceDropOracle
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (oracle : SelectionFaceDropOracle D eps rho mu lambda c hcondition)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
+    (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
+    ∃ Delta' : DiscDiagram.{u, w, v} W,
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        ∃ scaffold : EstimatingScaffold D eps Delta',
+          Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
+  have aux : ∀ n : ℕ, ∀ (Delta : DiscDiagram.{u, w, v} W),
+      Delta.toCombMap.faceCount = n → Delta.Reduced →
+        0 < Delta.rCellCount →
+          IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+            ∃ Delta' : DiscDiagram.{u, w, v} W,
+              Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                ∃ scaffold : EstimatingScaffold D eps Delta',
+                  Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+        intro Delta hface hred' hcells' hboundary'
+        rcases oracle Delta hred' hcells' hboundary' with hterminal | hdrop
+        · exact hterminal
+        · obtain ⟨Delta₂, hequiv, hdropFace, hred₂, hcells₂, hboundary₂⟩ := hdrop
+          obtain ⟨equiv₁⟩ := hequiv
+          have hlt : Delta₂.toCombMap.faceCount < n := by
+            omega
+          obtain ⟨Delta₃, hequiv₂, scaffold, graph⟩ :=
+            ih Delta₂ hlt hred₂ hcells₂ hboundary₂
+          obtain ⟨equiv₂⟩ := hequiv₂
+          refine ⟨Delta₃, ⟨equiv₁.trans equiv₂⟩, scaffold, graph⟩
+  exact aux Delta.toCombMap.faceCount Delta rfl hred hcells hboundary
+
 /-- The local O52 input: every selected face-set candidate has the two-cell
 arc equations required by `PieceBridge`.  It is independent of the global
 selection and unbound estimates. -/
@@ -535,6 +612,28 @@ theorem no_positive_rCells_emptyFamily
   have hempty : C.word ∈
       (∅ : Set (List (GGT.RelLetter G Lambda))) := C.word_mem
   exact (Set.mem_empty_iff_false C.word).mp hempty
+
+/-- The face-drop oracle has a vacuous empty-family model: its positive-cell
+branch cannot occur, so the oracle conclusion follows by elimination. -/
+theorem selectionFaceDropOracle_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (hWempty : W = ∅)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    SelectionFaceDropOracle D eps rho mu lambda c hcondition := by
+  intro Delta hred hcells hboundary
+  have hrelators : Delta.relatorCells = [] := by
+    apply List.eq_nil_iff_forall_not_mem.mpr
+    intro cell _hmem
+    have hword : cell.word ∈ (∅ : Set (List (GGT.RelLetter G Lambda))) := by
+      rw [← hWempty]
+      exact cell.word_mem
+    exact (Set.mem_empty_iff_false cell.word).mp hword
+  have hcount : Delta.rCellCount = 0 := by
+    rw [DiscDiagram.rCellCount, hrelators]
+    rfl
+  omega
 
 /-- The local O52 component is inhabited in the empty selected-family model:
 the edge equation field is vacuous. -/
