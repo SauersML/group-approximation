@@ -67,7 +67,8 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
   exact ⟨GGT.RelHyp.jointRelGenSet original selected.rel,
     GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
     fun _ => rfl, fun i => selected.fam_eq i,
-    h435 original selected.rel hbase horig selected.embedded⟩
+    h435 original selected.rel hbase selected.base_inv horig
+      selected.embedded⟩
 
 /-- **The joint-family selection input, from the auxiliary-alphabet form.**
 
@@ -84,7 +85,8 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Full
     GGT.RelHyp.jointRelGenSetFull_base_inv original selected.rel
       selected.base_inv,
     fun _ => rfl, fun i => selected.fam_eq i,
-    h435 original selected.rel hbase horig selected.embedded⟩
+    h435 original selected.rel hbase selected.base_inv horig
+      selected.embedded⟩
 
 /-- **The three conditions the relator re-spelling puts on the joint family**,
 all met by the auxiliary-alphabet form.

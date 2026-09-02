@@ -362,8 +362,8 @@ theorem dgoProposition435Statement_of_localFiniteness
 theorem dgoProposition435LocalFiniteness_of_statement
     (h : DGOProposition435Statement.{u, v, w}) :
     DGOProposition435LocalFinitenessStatement.{u, v, w} := by
-  intro G _ Lambda I D E hbase hD hE lam n
-  exact (h D E hbase hD hE).locallyFinite (Sum.inl lam) n
+  intro G _ Lambda I _ D E hbase hEinv hD hE lam n
+  exact (h D E hbase hEinv hD hE).locallyFinite (Sum.inl lam) n
 
 /-- **The residue is exactly the gap.** -/
 theorem dgoProposition435Statement_iff_localFiniteness :
@@ -1277,20 +1277,28 @@ theorem jointRelGenSetFull_relBall_inr_subset (D : RelGenSet G Λ)
 The form the relator re-spelling consumes.  Its joint family lives on the
 auxiliary relative alphabet, so it is a second peripheral structure on the same
 alphabet.  Of the three forms in this file it is the strongest, and it is the
-only one whose clause (a) is free without a matched alphabet. -/
+only one whose clause (a) is free without a matched alphabet.
+
+The auxiliary index type is finite and the auxiliary base is inversion-closed;
+both hold in the filling lane, where the index type is
+`HullSC.AuxiliaryPeripheralIndex k` and the symmetry is
+`HullSC.AuxiliaryPeripheralFamily.base_inv`, and both are needed to reduce the
+residue. -/
 def DGOProposition435FullStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w} [Finite I]
     (D : RelGenSet G Lambda) (E : RelGenSet G I),
       D.alphabet.carrier ⊆ E.base →
+      (∀ x ∈ E.base, x⁻¹ ∈ E.base) →
       D.IsHyperbolicallyEmbedded →
       E.IsHyperbolicallyEmbedded →
         (jointRelGenSetFull D E).IsHyperbolicallyEmbedded
 
 /-- **The single residue of the auxiliary-alphabet form.** -/
 def DGOProposition435FullLocalFinitenessStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w} [Finite I]
     (D : RelGenSet G Lambda) (E : RelGenSet G I),
       D.alphabet.carrier ⊆ E.base →
+      (∀ x ∈ E.base, x⁻¹ ∈ E.base) →
       D.IsHyperbolicallyEmbedded →
       E.IsHyperbolicallyEmbedded →
         ∀ (lam : Lambda) (n : ℕ),
@@ -1299,10 +1307,10 @@ def DGOProposition435FullLocalFinitenessStatement : Prop :=
 theorem dgoProposition435FullStatement_of_localFiniteness
     (h : DGOProposition435FullLocalFinitenessStatement.{u, v, w}) :
     DGOProposition435FullStatement.{u, v, w} := by
-  intro G _ Lambda I D E hbase hD hE
+  intro G _ Lambda I _ D E hbase hEinv hD hE
   refine ⟨jointRelGenSetFull_hyperbolic D E hbase hE, ?_⟩
   rintro (lam | i) n
-  · exact h D E hbase hD hE lam n
+  · exact h D E hbase hEinv hD hE lam n
   · exact (hE.locallyFinite i n).subset
       (jointRelGenSetFull_relBall_inr_subset D E hbase i n)
 
