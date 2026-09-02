@@ -386,12 +386,13 @@ theorem oneEdge_false_mem_outerBoundary :
   refine ⟨false, ?_, rfl⟩
   exact ((oneEdgeDiagram.faceBoundary oneEdgeDiagram.outerFace).mem_iff false).mpr rfl
 
-/-- The current bundle has no instance even for the empty triangular table:
-its boundary-degree field contradicts the reduced one-edge disc. -/
-theorem not_nonempty_girthEightDiagramPrimitives_emptyTable :
-    ¬ Nonempty (GirthEightDiagramPrimitives emptyTriangleTable) := by
-  rintro ⟨P⟩
-  have hdegree := P.boundaryDegree oneEdgeDiagram oneEdgeDiagram_reduced
+/-- The repaired local-data interface has no witness for the empty triangular
+table on the one-edge disc: its boundary-degree field contradicts the
+degree-one outer vertex. -/
+theorem not_nonempty_triangularLocalData_emptyTable :
+    ¬ Nonempty (TriangularDiagramLocalData emptyTriangleTable oneEdgeDiagram) := by
+  rintro ⟨L⟩
+  have hdegree := L.boundaryVertexDegree
     (oneEdgeDiagram.toCombMap.vertexOf false) oneEdge_false_mem_outerBoundary
   rw [oneEdgeDiagram_vertexDegree_false] at hdegree
   omega
