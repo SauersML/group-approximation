@@ -111,6 +111,25 @@ theorem phiMap_edgeCount (E : Type v) [Fintype E]
     (phiMap E sigma).edgeCount = Nat.card E :=
   Nat.card_eq_of_bijective _ (phiEdgeEquiv E sigma).bijective
 
+/-! ## Model tests -/
+
+/-- Model test at one relator cell.  `no_interiorEdge_of_rCellCount_one` shows
+there are no interior edges there, so the edge type is empty and `Phi_M` has no
+edges, whatever cyclic order is chosen. -/
+theorem phiMap_edgeCount_of_isEmpty (E : Type v) [Fintype E] [IsEmpty E]
+    (sigma : Equiv.Perm (E × Bool)) :
+    (phiMap E sigma).edgeCount = 0 := by
+  rw [phiMap_edgeCount]
+  simp
+
+/-- Model test at two relator cells joined by one selected region: `Phi_M` has
+exactly one edge. -/
+theorem phiMap_edgeCount_of_unique (E : Type v) [Fintype E] [Unique E]
+    (sigma : Equiv.Perm (E × Bool)) :
+    (phiMap E sigma).edgeCount = 1 := by
+  rw [phiMap_edgeCount]
+  simp
+
 /-! ## What remains: the cyclic order at each cell -/
 
 /-- **The geometric input to the realization.**  A vertex rotation on the
