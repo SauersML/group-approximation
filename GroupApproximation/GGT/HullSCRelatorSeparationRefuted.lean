@@ -98,13 +98,14 @@ and with no geometry involved.
 `pieces_small_of_longMatch` discards. -/
 theorem not_longMatch_of_not_commute {D : GGT.RelGenSet G Λ}
     {v : List (GGT.RelLetter G Λ)} {eps B : ℕ} (y z : G)
-    (hB : B < v.length) (hy : wordNorm D.base y ≤ eps)
-    (hz : wordNorm D.base z ≤ eps)
+    (hB : B < v.length) (hy : wordNorm D.alphabet.carrier y ≤ eps)
+    (hz : wordNorm D.alphabet.carrier z ≤ eps)
     (hfix : y * GGT.RelLetter.listVal v * z = GGT.RelLetter.listVal v)
     (hmove : y * GGT.RelLetter.listVal v * y⁻¹ ≠ GGT.RelLetter.listVal v) :
     ¬ (∀ w w' u u' : List (GGT.RelLetter G Λ), Sym v w → Sym v w' →
         (∃ s, w = u ++ s) → (∃ s', w' = u' ++ s') → B < u.length →
-          ∀ y' z' : G, wordNorm D.base y' ≤ eps → wordNorm D.base z' ≤ eps →
+          ∀ y' z' : G, wordNorm D.alphabet.carrier y' ≤ eps →
+            wordNorm D.alphabet.carrier z' ≤ eps →
             GGT.RelLetter.listVal u' = y' * GGT.RelLetter.listVal u * z' →
               GGT.RelLetter.listVal w'
                 = y' * GGT.RelLetter.listVal w * y'⁻¹) := by
@@ -186,7 +187,8 @@ theorem not_relatorSeparation_of_inverted {G : Type u} [Group G]
     (hN : Suitable A.alphabet N) (t : G) {y : G} (hc : Commute E.lox y)
     (hinv : t * y * t⁻¹ = y⁻¹) (hne : y ≠ y⁻¹) : ¬ RelatorSeparation.{u} := by
   intro hsep
-  obtain ⟨B, hB⟩ := hsep A N E hN t (wordNorm E.rel.base y) 0
+  obtain ⟨B, hB⟩ := hsep A N E hN t
+    (wordNorm E.rel.alphabet.carrier y) 0
   obtain ⟨p, ms, -, hpprod, hlen, -, hmatch⟩ := hB (B + 1)
   have hval : GGT.RelLetter.listVal (relatorWord p E.lox ms)
       = t⁻¹ * E.lox ^ ms.sum := by
@@ -195,7 +197,8 @@ theorem not_relatorSeparation_of_inverted {G : Type u} [Group G]
     rw [length_relatorWord]
     omega
   refine RelWord.not_longMatch_of_not_commute (D := E.rel)
-    (v := relatorWord p E.lox ms) (eps := wordNorm E.rel.base y) (B := B)
+    (v := relatorWord p E.lox ms)
+    (eps := wordNorm E.rel.alphabet.carrier y) (B := B)
     y y hlong le_rfl le_rfl ?_ ?_ hmatch
   · rw [hval]
     exact mul_relatorValue_self hc hinv ms.sum
