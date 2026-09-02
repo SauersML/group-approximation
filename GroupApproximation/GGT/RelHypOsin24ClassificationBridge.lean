@@ -40,17 +40,75 @@ universe u v
 
 /-! ## Osin's strictly smaller escape estimate -/
 
-/-- **Relative power escape.**  This is the weak conclusion of Osin's linear
-power estimate: a hyperbolic element of infinite order eventually leaves every
-bounded subset of the relative Cayley graph.  It is strictly weaker than
-`HyperbolicElementLoxodromicStatement`, since every loxodromic orbit escapes by
-`IsLoxodromic.isEscaping` but no converse is asserted here. -/
+/-- **Relative power escape with a finite relative base.**  This is the weak
+conclusion of Osin's linear power estimate: a hyperbolic element of infinite
+order eventually leaves every bounded subset of the relative Cayley graph.  A
+finite base is part of the statement because Osin's Theorem 1.10 assumes a
+finite relative generating set; without it, the complete base alphabet gives
+an immediate counterexample below. -/
 def RelativePowerEscapeStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
+    D.base.Finite → D.IsHyperbolicallyEmbedded → ∀ g : G,
+      IsHyperbolicElement D.fam g →
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+          IsEscaping g (Cayley.base D.alphabet)
+
+/-- The unrestricted variant is retained only for the executable
+countermodel.  It is not a relative-hyperbolicity hypothesis and is not used
+by any quotient theorem. -/
+def UnrestrictedRelativePowerEscapeStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
     D.IsHyperbolicallyEmbedded → ∀ g : G,
       IsHyperbolicElement D.fam g →
         (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
           IsEscaping g (Cayley.base D.alphabet)
+
+/-- **Linear lower bounds imply escape.**  This is the purely filter-theoretic
+part of Osin's estimate, with the group action and all relative-geometric
+hypotheses removed.  It is a strictly smaller named statement than relative
+power escape and is proved here so the remaining source input is isolated in
+the geometric production of the constants. -/
+def LinearLowerBoundEscapeStatement : Prop :=
+  ∀ (f : ℕ → ℝ) (l B : ℝ), 0 < l → 0 ≤ B →
+    (∀ n : ℕ, l * n - B ≤ f n) →
+      Filter.Tendsto f Filter.atTop Filter.atTop
+
+/-- The linear lower-bound implication is an elementary Archimedean estimate.
+The proof is the quantitative step used to pass from Osin's constants
+`λ,c` to `IsEscaping`. -/
+theorem linearLowerBoundEscape_proved : LinearLowerBoundEscapeStatement := by
+  intro f l B hl hB hlin
+  rw [Filter.tendsto_atTop]
+  intro A
+  obtain ⟨N, hN⟩ := exists_nat_gt ((A + B) / l)
+  rw [Filter.eventually_atTop]
+  refine ⟨N, fun n hn => ?_⟩
+  have hcast : (N : ℝ) ≤ n := by exact_mod_cast hn
+  have hdiv : (A + B) / l < (n : ℝ) := lt_of_lt_of_le hN hcast
+  have hlin' : A + B < l * (n : ℝ) := by
+    rw [div_lt_iff₀ hl] at hdiv
+    linarith
+  exact le_trans (by linarith) (hlin n)
+
+/-- Model test for the filter lemma: the sequence `f n = n` has the linear
+lower bound with `l = 1` and `B = 0`, so it escapes to infinity. -/
+theorem linearLowerBoundEscape_standardModel :
+    Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
+  apply linearLowerBoundEscape_proved (fun n : ℕ => (n : ℝ)) 1 0
+  · norm_num
+  · norm_num
+  · intro n
+    norm_num
+
+/-- A linear lower bound on an orbit gives the weak escape conclusion. -/
+theorem isEscaping_of_linear_lower_bound
+    {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
+    [MulAction G X] {g : G} {x : X} {l B : ℝ}
+    (hl : 0 < l) (hB : 0 ≤ B)
+    (hlin : ∀ n : ℕ, l * n - B ≤ dist x ((g ^ n) • x)) :
+    IsEscaping g x := by
+  exact linearLowerBoundEscape_proved
+    (fun n : ℕ => dist x ((g ^ n) • x)) l B hl hB hlin
 
 /-! ### The missing finite-base binder is load-bearing
 
@@ -129,8 +187,8 @@ theorem not_isEscaping_of_infiniteBaseEmptyRelGenSet (g : Multiplicative ℤ) :
   have hbound := infiniteBaseEmptyRelGenSet_all_powers_bounded g N
   linarith
 
-theorem not_relativePowerEscapeStatement :
-    ¬ RelativePowerEscapeStatement.{0, 0} := by
+theorem not_unrestrictedRelativePowerEscapeStatement :
+    ¬ UnrestrictedRelativePowerEscapeStatement.{0, 0} := by
   intro hEscape
   let g : Multiplicative ℤ := Multiplicative.ofAdd 1
   have hpow : ∀ n : ℕ, 0 < n → g ^ n ≠ 1 := by
@@ -233,7 +291,7 @@ def HyperbolicElementLoxodromicAcylindricalStatement : Prop :=
 /-- The relative escape estimate proves the acylindrical classification by the
 one action-theoretic bridge above. -/
 theorem hyperbolicElementLoxodromicAcylindrical_of_relativePowerEscape
-    (hEscape : RelativePowerEscapeStatement.{u, v}) :
+    (hEscape : UnrestrictedRelativePowerEscapeStatement.{u, v}) :
     HyperbolicElementLoxodromicAcylindricalStatement.{u, v} := by
   intro G instG I D hemb hacy g hhyper hord
   letI : Group G := instG
@@ -311,7 +369,7 @@ estimate: enlarge to the empty family by Theorem 5.4, use the acylindrical
 escape-to-loxodromy bridge there, and transfer loxodromy down to the original
 alphabet by Hull's Lemma A.1. -/
 theorem hyperbolicElementLoxodromic_of_relativePowerEscape
-    (hEscape : RelativePowerEscapeStatement.{u, v}) :
+    (hEscape : UnrestrictedRelativePowerEscapeStatement.{u, v}) :
     ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
       D.IsHyperbolicallyEmbedded → ∀ g : G,
         IsHyperbolicElement D.fam g →
