@@ -280,8 +280,8 @@ theorem exists_depth_pairwiseNonCommensurable_cyclicProducts_of_dgoLemma421b
         (wordDist D.alphabet.carrier
           (vertex 1 wl wl.length)
           (vertex t (revWord wj) (revWord wj).length) : ℝ) ≤ eps := by
-      simp only [wl, wj, vertex_length_cyclicPeripheralPowerWord,
-        vertex_length, listVal_revWord, one_mul]
+      simp only [wl, wj, vertex_length, listVal_revWord,
+        listVal_cyclicPeripheralPowerWord, one_mul]
       rw [hinverseR]
       have hd := wordDist_left_invariant D.alphabet.carrier
         (orderedFinProduct (a l) ^ M)⁻¹
