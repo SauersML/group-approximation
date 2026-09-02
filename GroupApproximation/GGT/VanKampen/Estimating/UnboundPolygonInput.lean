@@ -152,7 +152,10 @@ theorem exists_leaf_dense {L r : ℕ} {a : ℝ} (size : Fin L → ℕ)
     (htotal : 5 * a * (r : ℝ) < ∑ i : Fin L, sigma i) :
     ∃ i : Fin L, a * (size i : ℝ) < sigma i := by
   by_contra hnone
-  push_neg at hnone
+  have hnone' : ∀ i : Fin L, sigma i ≤ a * (size i : ℝ) := by
+    intro i
+    by_contra hlt
+    exact hnone ⟨i, lt_of_not_ge hlt⟩
   have hcast : ((∑ i : Fin L, size i : ℕ) : ℝ) = ∑ i : Fin L, (size i : ℝ) := by
     simp
   have hbound : ((∑ i : Fin L, size i : ℕ) : ℝ) + 20 ≤ 5 * (r : ℝ) := by
@@ -162,7 +165,7 @@ theorem exists_leaf_dense {L r : ℕ} {a : ℝ} (size : Fin L → ℕ)
     linarith
   have hkey : (∑ i : Fin L, sigma i) ≤ a * (5 * (r : ℝ)) := by
     calc (∑ i : Fin L, sigma i) ≤ ∑ i : Fin L, a * (size i : ℝ) :=
-          Finset.sum_le_sum fun i _ => hnone i
+          Finset.sum_le_sum fun i _ => hnone' i
       _ = a * ∑ i : Fin L, (size i : ℝ) := by rw [Finset.mul_sum]
       _ ≤ a * (5 * (r : ℝ)) := mul_le_mul_of_nonneg_left hsize' ha
   have heq : (5 : ℝ) * a * (r : ℝ) = a * (5 * (r : ℝ)) := by ring
