@@ -2508,9 +2508,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                 RelLetter.listVal pc * vertex (1 : G) P (source i) * hh =
                     vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := heq
                 _ = vertex (1 : G) Q Q.length := by
-                  rw [htargetEq, hrczero, Nat.sub_self]
-                  have hv := vertex_fourGon_opposite_closed pc P rc Q hclose Q.length
-                  convert hv using 1 <;> omega
+                  rw [htargetEq]
+                  exact vertex_fourGon_opposite_closed pc P rc Q hclose Q.length
       · rcases hrest with hrcase | hscase
         · exact Or.inr (Or.inr hrcase)
         · exfalso
@@ -2539,11 +2538,16 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       have hmul := (D.fam (peripheralOccurrence P (occ i)).label).mul_mem
         hmi ((D.fam (peripheralOccurrence P (occ i)).label).inv_mem
           (hlabelEq ▸ hmj))
+      have hej' :
+          RelLetter.listVal pc * vertex (1 : G) P (source j) * hhj =
+            vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := by
+        rw [htargetEq]
+        exact hej
       have halg :
           (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-              (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
+            (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
             hhi * hhj⁻¹ := by
-        rw [← hei, ← hej]
+        rw [← hei, ← hej']
         group
       rw [halg]
       exact hmul
