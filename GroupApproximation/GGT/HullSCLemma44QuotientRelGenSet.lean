@@ -25,6 +25,18 @@ universe u v w
 
 namespace RelGenSet
 
+/-- Two relative generating sets with equal bases and equal labelled families
+are equal. -/
+theorem eq_of_base_eq_fam_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D E : RelGenSet G Lambda) (hbase : D.base = E.base)
+    (hfam : D.fam = E.fam) : D = E := by
+  cases D
+  cases E
+  cases hbase
+  cases hfam
+  rfl
+
 /-- The image relative generating set under a surjective homomorphism. -/
 noncomputable def mapSurjective
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
@@ -180,9 +192,9 @@ theorem isHyperbolicallyEmbedded_mapSurjective_of_bijective
     (D.mapSurjective q hq.2).IsHyperbolicallyEmbedded := by
   let e : G ≃* Q := MulEquiv.ofBijective q hq
   have heq : D.mapSurjective q hq.2 = D.mapMulEquiv e := by
-    apply RelGenSet.ext
+    apply eq_of_base_eq_fam_eq
     · rfl
-    · funext i
+    · funext _
       rfl
   rw [heq]
   exact hD.mapMulEquiv e
