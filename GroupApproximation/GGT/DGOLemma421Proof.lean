@@ -2026,13 +2026,55 @@ theorem exists_side_occurrence_of_fourGon_start_421
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
 
+/-- The finite absorption payload obtained before the DGO order argument.  It
+contains distinguished source components, their target coset matches, source
+injectivity, and one whole block of matched sources. -/
+structure DGO421FiniteAbsorptionCertificate
+    (D : RelGenSet G Λ) (p q : List (RelLetter G Λ))
+    (N M K : ℕ) where
+  prefix : G
+  source : Fin N → ℕ
+  offset : Fin N → ℕ
+  target : Fin N → ℕ
+  label : Fin N → Λ
+  matched : Fin N → Prop
+  source_comp : ∀ i, IsComp (label i) p (source i) (source i + 1)
+  source_injective : Function.Injective source
+  target_ne_offset : ∀ i, target i ≠ offset i
+  block : Fin (M + 1)
+  blockIndex : Fin K → Fin N
+  blockIndex_formula : ∀ j, (blockIndex j).val = block.val * K + j.val
+  block_matched : ∀ j, matched (blockIndex j)
+  matched_spec : ∀ i, matched i →
+    ∃ j : ℕ, j ≤ q.length ∧
+      ∃ h : G, h ∈ D.fam (label i) ∧
+        prefix * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
+
+/-- The strict finite-absorption conclusion supplied by the counting part of
+DGO Lemma 4.21(b), before the iterative consecutive-target step. -/
+def DGO421FiniteAbsorptionConclusion : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
+      0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
+      ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
+        (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
+        WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
+        WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
+        R ≤ p.length →
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) : ℝ) ≤ eps →
+        ∃ cert : DGO421FiniteAbsorptionCertificate D p q
+          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K, True
+
 /-! ## Assembly of Lemma 4.21(b) -/
 
-theorem dgoLemma421b_of_uniform414_of_baseSymm
+theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
     (h : DGOProposition414Uniform.{u, w})
     (hbase : ∀ (G : Type u) [Group G] (Λ : Type w)
       (D : RelGenSet G Λ), ∀ x ∈ D.base, x⁻¹ ∈ D.base) :
-    DGOLemma421b.{u, w} := by
+    DGO421FiniteAbsorptionConclusion.{u, w} := by
   classical
   intro G _ Λ D hhyp
   obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
@@ -2707,6 +2749,46 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
   obtain ⟨block, hblock⟩ := exists_consecutive_block_of_short_absorption
     (K := K) (M := M) hK Matched short hclass hshortInj
+  let blockIndex : Fin K → Fin N := fun t =>
+    ⟨block.val * K + t.val, by
+      have hbM : block.val ≤ M := Nat.le_of_lt_succ block.isLt
+      have hblockLen : block.val * K + K ≤ (M + 1) * K := by
+        calc
+          block.val * K + K ≤ M * K + K :=
+            Nat.add_le_add_right (Nat.mul_le_mul_right K hbM) K
+          _ = (M + 1) * K := by rw [Nat.succ_mul]
+      rw [Nat.mul_comm K (M + 1)]
+      exact lt_of_lt_of_le (Nat.add_lt_add_left t.isLt _) hblockLen⟩
+  have hblockIndex_formula : ∀ t : Fin K,
+      (blockIndex t).val = block.val * K + t.val := by
+    intro t
+    rfl
+  have hblockMatched : ∀ t : Fin K, Matched (blockIndex t) := by
+    intro t
+    simpa [blockIndex] using hblock t
+  have hcert : DGO421FiniteAbsorptionCertificate D P Q N M K := {
+    prefix := RelLetter.listVal pc
+    source := source
+    offset := fun i => pc.length + source i
+    target := targetN
+    label := fun i => (peripheralOccurrence P (occ i)).label
+    matched := Matched
+    source_comp := by
+      intro i
+      exact hsourceComp i
+    source_injective := hsourceInj
+    target_ne_offset := by
+      intro i
+      exact (htargetSpec i).1
+    block := block
+    blockIndex := blockIndex
+    blockIndex_formula := hblockIndex_formula
+    block_matched := hblockMatched
+    matched_spec := by
+      intro i hi
+      rcases hi with ⟨j, hj, -, ⟨hh, hmem, heq⟩⟩
+      exact ⟨j, hj, hh, hmem, heq⟩ }
+  exact ⟨hcert, trivial⟩
 
 end OsinComponents
 end GGT
