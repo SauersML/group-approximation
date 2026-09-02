@@ -30,6 +30,22 @@ accounts for all three at one embedded region.
 constructor; `Estimating/PieceConstruction.lean` specializes it along a
 scaffold to close `EstimatingPieceConstructionStatement`.
 
+**Source check (Osin, arXiv math/0411039, `embed-final.tex`).**  Lemma `O52`
+is stated only for a contiguity of one cell to *another* cell: "for every
+`e`-contiguity subdiagram `Gamma` of a cell `Pi` to another cell `Sigma`".  So
+the self-contiguous case is excluded in the source, not handled by it.  The
+non-cancellation step of Osin's proof is "If the third condition is not, then
+`phi(s_1) phi(dPi) phi(s_1)^{-1} = phi(dSigma)` ... Hence we can cut the
+subdiagram ... and fill the obtained hole with a diagram over (ZP) without
+`R`-cells reducing the number of `R`-cells by 2.  This contradicts the
+assumption that `Delta` is reduced."  Two things follow.  First, the excluded
+identity is exactly `whole_ne` after unfolding the carrier words, so the
+algebraic shape of `DiscDiagram.Reduced` is the right one.  Second, Osin's
+"reduced" is *minimality of the `R`-cell count* among diagrams with the same
+boundary label, whereas `DiscDiagram.Reduced` is the pairwise no-cancellation
+condition; the two agree on what this argument needs, since removing a
+cancelling pair drops the count by two.
+
 **Why the named Prop is not a consequence of `Delta.Reduced` alone.**
 `Embedded.InteriorEdge` does not require the source cell to differ from the
 target cell, and `DiscDiagram.Reduced` only constrains *pairs* of relator cells
@@ -42,6 +58,29 @@ producer of the named Prop must either exclude self-contiguous candidates or
 derive the inequality from something other than `Delta.Reduced`.  This is
 recorded as a model test, not as a refutation: it locates the remaining
 content.
+
+**Where the exclusion cannot go.**  Adding a `source_ne_target` conjunct to
+`Embedded.InteriorEdge` would cut that type down, but `InteriorEdge` is the
+codomain of `Embedded.interiorIncidenceEquiv :
+InteriorIncidence selected ≃ InteriorEdge selected × Bool`, and a
+self-contiguous candidate still contributes two incidences, so the equivalence
+and the counting lemmas `InteriorEdge.edgesCovered_univ` and
+`InteriorEdge.hasAtMostTwoEndpoints` that `Assembly.lean` consumes for the
+`10 * mu` interior budget would break.  Adding a field to `Embedded.Contiguity`
+instead reaches seven construction sites in the hull44 and hull49 lanes, most
+of them boundary contiguities where the clause is vacuous.  Both are real
+costs, so the exclusion is left as part of the named Prop rather than imposed
+on the shared types.
+
+**The one further gap in deriving the Prop from `DiscDiagram.Reduced`.**
+`Reduced` constrains `RelatorCell.value` products across the stored cell order,
+while the inequality is about `GGT.RelLetter.listVal` of *dart* words on the
+region's arcs.  `Embedded.Contiguity` bounds `rightSide` only in length and
+norm; nothing ties `listVal (dartWord Delta rightSide)` to the cells'
+conjugators and the intervening value product.  That identity is precisely the
+`hconnector` input of `Embedded.ReducedCellPieceBridge.of_cellContiguity`, and
+it is not proved anywhere.  So a producer of the named Prop needs the
+self-contiguity exclusion *and* that connector transport.
 -/
 
 set_option linter.unusedVariables false
