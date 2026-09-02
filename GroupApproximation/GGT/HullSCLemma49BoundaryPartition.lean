@@ -87,6 +87,27 @@ theorem HullLemma49BoundaryLengthPartition.exteriorArcs_mem_cycle
 
 /-! ## The list and finite-sum identity -/
 
+/-- The finite-list boundary accounting statement needed by the
+complementary-component producer. -/
+def HullLemma49BoundaryLengthStatement : Prop :=
+  ∀ {alpha : Type u} {componentCount exteriorCount : ℕ}
+    (cycle : List alpha)
+    (components : Fin componentCount → List alpha)
+    (exteriorArcs : Fin exteriorCount → List alpha),
+    cycle.length =
+      (∑ i : Fin componentCount, (components i).length) +
+        ∑ i : Fin exteriorCount, (exteriorArcs i).length →
+    (∑ i : Fin componentCount, (components i).length) =
+      cycle.length - ∑ i : Fin exteriorCount, (exteriorArcs i).length
+
+/-- The finite-list boundary accounting statement follows from natural-number
+subtraction after the length partition. -/
+theorem hullLemma49BoundaryLengthStatement :
+    HullLemma49BoundaryLengthStatement := by
+  intro alpha componentCount exteriorCount cycle components exteriorArcs
+    hpartition
+  omega
+
 /-- If a cycle length is the sum of component and exterior-arc lengths, the
 component sum is the cycle length minus the exterior-arc sum. -/
 theorem hullLemma49ListLength_component_sum_eq_sub
@@ -100,7 +121,8 @@ theorem hullLemma49ListLength_component_sum_eq_sub
           ∑ i : Fin exteriorCount, (exteriorArcs i).length) :
     (∑ i : Fin componentCount, (components i).length) =
       cycle.length - ∑ i : Fin exteriorCount, (exteriorArcs i).length := by
-  omega
+  exact hullLemma49BoundaryLengthStatement cycle components exteriorArcs
+    hpartition
 
 /-- The boundary-cycle version of the finite-list identity.  This is the
 single counting statement for which the complementary-component producer
