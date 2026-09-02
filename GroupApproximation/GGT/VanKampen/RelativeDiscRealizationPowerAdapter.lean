@@ -138,6 +138,25 @@ theorem sourceHpasting_of_faceSetPeeling
   intro v g n eps mu Z C
   exact (hpeeling C).to_homotopy
 
+/-- The same bridge with the existential shape used by Hull49's source
+face-pasting statement. -/
+theorem sourceHpasting_of_nonemptyFaceSetPeeling
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (hpeeling : ∀ {v : List (GGT.RelLetter G Lambda)} {g : G}
+      {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Nonempty (Embedded.FaceSetBoundaryPeeling C.contiguity.boundary)) :
+    ∀ {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Embedded.FaceSetWordHomotopy C.diagram C.faces
+          C.contiguity.boundary.cycle [] := by
+  intro v g n eps mu Z C
+  obtain ⟨peeling⟩ := hpeeling C
+  exact peeling.to_homotopy
+
 end VanKampen
 end GGT
 end GroupApproximation
