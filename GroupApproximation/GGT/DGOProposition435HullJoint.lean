@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.DGOProposition435
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.HullSCFillingSelectionTheorem316
+import GroupApproximation.GGT.DGOProposition435InclusionFinite
 
 /-!
 # The joint peripheral family of Hull's Lemma 4.4, from Proposition 4.35
@@ -69,6 +70,21 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
     h435 original selected.rel hbase horig selected.embedded,
     GGT.RelHyp.properBase_subset_base original⟩
 
+/-- **The joint-family selection input, from the finite nested form.**  The
+selected auxiliary family is indexed by a finite type and its relative base is
+closed under inversion, which is what the finite form asks. -/
+theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435InclusionFinite
+    (h435 : GGT.RelHyp.DGOProposition435InclusionFiniteStatement.{u, w, 0}) :
+    JointAuxiliaryPeripheralEmbedding.{u, w} := by
+  intro G _ A N k S selected Lambda original hA horig
+  have hbase : original.alphabet.carrier ⊆ selected.rel.base :=
+    hA.trans selected.base_le
+  exact ⟨GGT.RelHyp.jointRelGenSet original selected.rel,
+    GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
+    fun _ => rfl, fun i => selected.fam_eq i,
+    h435 original selected.rel hbase selected.base_inv horig selected.embedded,
+    GGT.RelHyp.properBase_subset_base original⟩
+
 /-- **The three conditions the relator re-spelling puts on the joint family**,
 all met by the auxiliary-alphabet form.
 
@@ -109,6 +125,15 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
     HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
   hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
     (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion h435) h44
+
+/-- **The unrepaired family-inclusion leaf, from the finite nested form.** -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435Finite
+    (h435 : GGT.RelHyp.DGOProposition435InclusionFiniteStatement.{u, w, 0})
+    (h44 : HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
+  hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
+    (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435InclusionFinite h435)
+    h44
 
 /-! ## Discharging the hyperbolicity residue at a matched alphabet -/
 

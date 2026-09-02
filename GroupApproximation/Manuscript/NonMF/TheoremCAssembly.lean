@@ -184,20 +184,34 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
-/-- **Open input.**  The joint hyperbolic embedding of an original
-hyperbolically embedded family together with the simultaneously selected
-auxiliary elementary closures, over the proper part of the original relative
-base (`GGT/DGOProposition435.lean`, the nested form; its residues are the
-hyperbolicity of the joint relative Cayley graph and the isolated-witness
-word surgery `DGOProposition435IsolatedWitnessStatement`, the local finiteness
-half being discharged from Proposition 4.14).  This is the transitivity input that Osin's
-Theorem 2.4 takes for granted in its relatively hyperbolic setting; it is not
-Dahmani--Guirardel--Osin Proposition 4.35, which removes the original family
-from the conclusion.  Its residues are the joint hyperbolicity and the joint
-local finiteness statements named in that module. -/
-theorem dgoProposition435Inclusion :
-    GGT.RelHyp.DGOProposition435InclusionStatement.{0, 0, 0} := by
+/-- **Open input.**  Dahmani--Guirardel--Osin Proposition 4.14 with the
+constant uniform in the number of sides (`GGT/DGOLemma421Proof.lean`): in a
+weakly relatively hyperbolic group, an isolated component of a quasi-geodesic
+polygon has relative length bounded by a constant times the number of sides.
+It is the geometric input of Lemma 4.21(b) and of the local finiteness half
+of the joint embedding below. -/
+theorem dgoProposition414Uniform :
+    GGT.OsinComponents.DGOProposition414Uniform.{0, 0} := by
   sorry
+
+/-- **Open input.**  The joint relative Cayley graph of an original
+hyperbolically embedded family and a simultaneously selected auxiliary family,
+coned off over the proper part of the original relative base, is hyperbolic
+(`GGT/DGOProposition435.lean`, `DGOProposition435JointHyperbolicStatement`).
+This is the transitivity input that Osin's Theorem 2.4 takes for granted in
+its relatively hyperbolic setting; it is not Dahmani--Guirardel--Osin
+Proposition 4.35, which removes the original family from the conclusion. -/
+theorem dgoProposition435JointHyperbolic :
+    GGT.RelHyp.DGOProposition435JointHyperbolicStatement.{0, 0, 0} := by
+  sorry
+
+/-- The nested form of Proposition 4.35 over a finite auxiliary family, from
+the two inputs above; its isolated-witness half is the theorem
+`GGT.RelHyp.dgoProposition435IsolatedWitness`. -/
+theorem dgoProposition435InclusionFinite :
+    GGT.RelHyp.DGOProposition435InclusionFiniteStatement.{0, 0, 0} :=
+  GGT.RelHyp.dgoProposition435InclusionFiniteStatement_of_jointHyperbolic
+    dgoProposition435JointHyperbolic dgoProposition414Uniform
 
 /-- **Open exact geometric proof.**  Hull's Lemma 4.4 in its family form with
 the source joint family bound explicitly
@@ -223,8 +237,8 @@ Theorem 7.1 is its special case.  No rotating-space geometry is attributed to
 the lemma. -/
 theorem hullLemma44FamilyInclusion :
     HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0} :=
-  HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
-    dgoProposition435Inclusion hullLemma44FamilyInclusionJoint
+  HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435Finite
+    dgoProposition435InclusionFinite hullLemma44FamilyInclusionJoint
 
 /-- Hull's Lemma 4.4 for the selected family alone, the special case of the
 family-inclusion form in which the original hyperbolically embedded family is
