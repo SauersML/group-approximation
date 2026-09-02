@@ -3243,6 +3243,10 @@ import GroupApproximation.GGT.VanKampen.FaceSetSingletonPeel
 import GroupApproximation.GGT.DGOProposition435
 import GroupApproximation.GGT.VanKampen.Estimating.PieceConstruction
 import GroupApproximation.GGT.VanKampen.Estimating.PieceCore
+import GroupApproximation.GGT.DGOProposition435HullJoint
+import GroupApproximation.GGT.VanKampen.FaceSetArcRotation
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryWalk
+import GroupApproximation.GGT.VanKampen.FaceSetPeeledCycle
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
