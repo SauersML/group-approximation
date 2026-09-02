@@ -381,8 +381,7 @@ structure StarLayerConstructionCertificate
   boundary_bound : Delta.combinatorialBoundaryLength ≤ 6 * scale
   depth_too_large : 18 * perimeter * scale < depth * (scale - loss)
 
-omit [Fintype Generator] [Fintype TriangleIndex]
-    [DecidableEq TriangleIndex] in
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
 theorem starLayerInput_of_faceComplete_and_layerCover
@@ -485,6 +484,7 @@ end StarLayerInput
 
 /-! ## The exact build theorem -/
 
+omit [DecidableEq TriangleIndex] in
 /-- The cactus, base-cell, local-data, and star inputs produce a diagram with
 the requested literal boundary and all four inequalities. -/
 theorem build_with_boundary
