@@ -2375,7 +2375,15 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             exact Nat.add_sub_cancel _ _
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
-            refine ⟨⟨pc.length + m, by dsimp [M]; omega⟩, hmatched, ?_⟩
+            have hmE : m < E := lt_of_lt_of_le hm hrcLen
+            have hsum : pc.length + m < E + E := by omega
+            have hMadd : E + E = M := by
+              dsimp [M]
+              omega
+            have hslot : pc.length + m < M := by
+              rw [← hMadd]
+              exact hsum
+            refine ⟨⟨pc.length + m, hslot⟩, hmatched, ?_⟩
             dsimp
             rw [hmn]
             rw [show pc.length + P.length + m =
