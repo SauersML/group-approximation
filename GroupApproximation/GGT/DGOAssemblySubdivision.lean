@@ -217,7 +217,7 @@ This is the combinatorial content of the interior-point move in DGO Lemma
 4.20.  Its caller still has to select `i,j` with `hdist` bounded logarithmically;
 no uniform bound on the lengths `cut (s+1)-cut s` occurs here. -/
 theorem exists_interior_half_polygon_data (D : RelGenSet G Lambda)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {n : ℕ} {q : ℝ}
+    {n : ℕ} {q : ℝ}
     (v : G) (word : List (RelLetter G Lambda)) (cut : ℕ → ℕ)
     (hpolygon : IsCutPolygon D q n v word cut)
     {a b i j L : ℕ} (hab : a < b) (hbn : b < n)
@@ -256,8 +256,8 @@ theorem exists_interior_half_polygon_data (D : RelGenSet G Lambda)
   have hsecondCount : (n + 2 - B) + A = (n - b) + a + 1 := by
     dsimp [A, B]
     omega
-  obtain ⟨chord, hchord⟩ :=
-    existsGeodesicWord D (vertex v word i) (vertex v word j)
+  obtain ⟨chord, hchord, hchordRev⟩ :=
+    exists_reversibleGeodesicWord D (vertex v word i) (vertex v word j)
   let cut1 : ℕ → ℕ :=
     appendCut (fun s => refined (A + s) - refined A) (B - A) (fun s => s)
   let cut2 : ℕ → ℕ :=
@@ -297,7 +297,7 @@ theorem exists_interior_half_polygon_data (D : RelGenSet G Lambda)
   · simpa [refined, A, B] using hfirst_closed
   · simpa [refined, A, B] using hsecond_closed
   · simpa [refined, A, B] using
-      (isLetter_firstHalf D hsymm hpolygon.letters hchord.1 refined A B)
+      (isLetter_firstHalf_of_revChord D hpolygon.letters hchordRev refined A B)
   · simpa [refined, A, B] using
       (isLetter_secondHalf D hpolygon.letters hchord.1 refined A B)
   · rw [hchord.2.2]

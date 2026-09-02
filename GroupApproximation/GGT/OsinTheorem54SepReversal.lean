@@ -254,6 +254,32 @@ theorem exists_reversibleSubstitute (D : RelGenSet G Λ) :
             rw [vertex_cons_succ, vertex_cons_succ, hbVal]
             exact hvert' (v * a.val) j
 
+/-- **A geodesic word whose reversal is admissible.**  Substituting letter by
+letter changes neither the length of a word nor its value, so the substitute of
+a geodesic word is again geodesic between the same two points; what it gains is
+an admissible reversal, over an arbitrary relative generating set.
+
+This is what a construction that closes a polygon with a chord needs.  The
+chord is chosen, not given, so it may be chosen reversible, and the convention
+`X = X⁻¹` is not required of `D`. -/
+theorem exists_reversibleGeodesicWord (D : RelGenSet G Λ) (f g : G) :
+    ∃ w : List (RelLetter G Λ), IsGeodesicWord D f g w ∧
+      ∀ x ∈ revWord w, D.IsLetter x := by
+  obtain ⟨w, hlet, hval, hlength⟩ := existsGeodesicWord D f g
+  obtain ⟨w', hlen, hlet', hrev', hvert⟩ := exists_reversibleSubstitute D w hlet
+  have hlistVal : RelLetter.listVal w' = RelLetter.listVal w := by
+    have h1 := vertex_length (1 : G) w'
+    have h2 := vertex_length (1 : G) w
+    have h3 := hvert (1 : G) w.length
+    rw [hlen] at h1
+    rw [h1, h2] at h3
+    simpa using h3
+  refine ⟨w', ⟨hlet', ?_, ?_⟩, hrev'⟩
+  · rw [hlistVal]
+    exact hval
+  · rw [hlen]
+    exact hlength
+
 /-! ## Avoiding `Γ_{H lam}` is a property of the edge, not its orientation -/
 
 /-- **The reversed path avoids `Γ_{H lam}` from the far end exactly when the

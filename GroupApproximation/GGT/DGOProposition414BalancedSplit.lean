@@ -102,7 +102,7 @@ theorem exists_balancedSplitData (D : RelGenSet G Λ)
     hdist⟩ := hR hn hk P.basepoint P.word P.cut polygon
   obtain ⟨chord, cut₁, cut₂, hchord, hcut₁, hcut₂, hclosed₁,
     hclosed₂, hletters₁, hletters₂, hlength, hcounts⟩ :=
-    exists_interior_half_polygon_data D hsymm P.basepoint P.word P.cut
+    exists_interior_half_polygon_data D P.basepoint P.word P.cut
       polygon hac hcn hlower hupper hai hia hcj hjc hdist
   exact ⟨{
     firstSide := a
