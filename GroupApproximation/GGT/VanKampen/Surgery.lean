@@ -298,18 +298,16 @@ namespace Incidence
 /-- Remove a loop edge from the active edge set.  The loop hypothesis belongs
 to the application: deletion itself is the finite edge-set operation used by
 the contracted estimating graph. -/
-noncomputable def removeLoop {E : Type*}
-    (edges : Finset E) (loop : E) : Finset E := by
-  classical
-  exact edges.erase loop
+def removeLoop {E : Type*} [DecidableEq E]
+    (edges : Finset E) (loop : E) : Finset E :=
+  edges.erase loop
 
 /-- Merge a parallel pair by retaining the first edge and erasing the second.
 The parallel and weight hypotheses belong to the geometric two-gon
 certificate below. -/
-noncomputable def mergeParallelEdges {E : Type*}
-    (edges : Finset E) (_retained redundant : E) : Finset E := by
-  classical
-  exact edges.erase redundant
+def mergeParallelEdges {E : Type*} [DecidableEq E]
+    (edges : Finset E) (_retained redundant : E) : Finset E :=
+  edges.erase redundant
 
 /-- A removed loop is absent from the resulting edge set. -/
 theorem loop_not_mem_removeLoop {E : Type*} [DecidableEq E]
@@ -446,6 +444,8 @@ end Embedded.InteriorEdge
 
 /-- Removing one edge from the one-polygon cactus model leaves two edges. -/
 theorem removeLoop_zeroCellModel_card :
+    letI : DecidableEq CactusShape.zeroCellModel.toCombMap.Edge :=
+      Classical.decEq _
     let edge : CactusShape.zeroCellModel.toCombMap.Edge :=
       Quotient.mk''
         (CactusDart.outerForward CactusShape.zeroCellModel.boundaryZero)
@@ -458,11 +458,13 @@ theorem removeLoop_zeroCellModel_card :
     Finset.card_erase_of_mem (Finset.mem_univ _)]
   have hcount := CactusShape.zeroCellModel_counts.2.1
   change Nat.card CactusShape.zeroCellModel.toCombMap.Edge = 3 at hcount
-  simpa only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
+  simp only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
 
 /-- Merging away one edge in the one-relator-cell cactus model leaves five
 edges. -/
 theorem mergeParallelEdges_oneCellModel_card :
+    letI : DecidableEq CactusShape.oneCellModel.toCombMap.Edge :=
+      Classical.decEq _
     let retained : CactusShape.oneCellModel.toCombMap.Edge :=
       Quotient.mk''
         (CactusDart.outerForward CactusShape.oneCellModel.boundaryZero)
@@ -479,7 +481,7 @@ theorem mergeParallelEdges_oneCellModel_card :
     Finset.card_erase_of_mem (Finset.mem_univ _)]
   have hcount := CactusShape.oneCellModel_counts.2.1
   change Nat.card CactusShape.oneCellModel.toCombMap.Edge = 6 at hcount
-  simpa only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
+  simp only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
 
 end Surgery
 
