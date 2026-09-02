@@ -215,6 +215,9 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
   have hmuSixteen : mu ≤ 1 / 16 := by
     dsimp [mu]
     norm_num
+  have hmuNinetyTwo : mu ≤ 1 / 92 := by
+    dsimp [mu]
+    norm_num
   obtain ⟨eps, rho₀, hcertificate⟩ :=
     hgeom D.rel D.embedded mu hmuPos hmuSixteen
   let fullRadius : ℕ := max R 1
@@ -241,7 +244,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
       Nonempty (RelativeDiagramCertificate D.rel W eps mu Z) := by
     intro r Z
     exact hcertificate rho hrho₀ W r hsc Z
-  exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuPos
+  exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuNinetyTwo
     hthreshold q hsurj hker hcert hkernel hloc
 
 /-! ## Empty-family model of the two estimate interfaces -/
