@@ -187,7 +187,7 @@ theorem firstGapFinishSide_eq_orderedGapFinish
       simp only [GreedyHalfFamilyIndex.pieceCount] at hj
       omega
     simp [firstGapFinishSide, HalfGap.nextEntry, orderedGapFinish,
-      firstBrokenSides, h, hjlen]
+      firstBrokenSides, hjlen]
 
 theorem secondGapStartSide_eq_orderedGapStart
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -226,7 +226,7 @@ theorem secondGapFinishSide_eq_orderedGapFinish
       simp only [GreedyHalfFamilyIndex.pieceCount] at hj
       omega
     simp [secondGapFinishSide, HalfGap.nextEntry, orderedGapFinish,
-      secondBrokenSides, h, hjlen]
+      secondBrokenSides, hjlen]
 
 /-- First-half inherited child arcs omit exactly the broken first-half sides. -/
 theorem sum_firstGap_arcSides_add_broken
@@ -236,7 +236,7 @@ theorem sum_firstGap_arcSides_add_broken
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R) :
     (∑ j : Fin B.brokenAssignment.index.first.pieceCount,
-        B.firstGapFinishSide j - B.firstGapStartSide j) +
+        (B.firstGapFinishSide j - B.firstGapStartSide j)) +
       (brokenSet B.componentPlacement.firstTarget
         B.componentPlacement.firstSurvives).card =
       B.secondSide - B.firstSide + 1 := by
@@ -246,13 +246,13 @@ theorem sum_firstGap_arcSides_add_broken
     B.firstBrokenSides_lt B.firstBrokenSides_pairwise
   calc
     (∑ j : Fin B.brokenAssignment.index.first.pieceCount,
-        B.firstGapFinishSide j - B.firstGapStartSide j) +
+        (B.firstGapFinishSide j - B.firstGapStartSide j)) +
         (brokenSet B.componentPlacement.firstTarget
           B.componentPlacement.firstSurvives).card =
       (∑ j : Fin (B.firstBrokenSides.length + 1),
-        orderedGapFinish (B.secondSide - B.firstSide + 1)
+        (orderedGapFinish (B.secondSide - B.firstSide + 1)
             B.firstBrokenSides j.val -
-          orderedGapStart 0 B.firstBrokenSides j.val) +
+          orderedGapStart 0 B.firstBrokenSides j.val)) +
         B.firstBrokenSides.length := by
           apply congrArg₂ (· + ·)
           · let e : Fin B.brokenAssignment.index.first.pieceCount ≃
@@ -274,7 +274,7 @@ theorem sum_secondGap_arcSides_add_broken
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R) :
     (∑ j : Fin B.brokenAssignment.index.second.pieceCount,
-        B.secondGapFinishSide j - B.secondGapStartSide j) +
+        (B.secondGapFinishSide j - B.secondGapStartSide j)) +
       (brokenSet B.componentPlacement.secondTarget
         B.componentPlacement.secondSurvives).card =
       (n - B.secondSide) + B.firstSide + 1 := by
@@ -284,13 +284,13 @@ theorem sum_secondGap_arcSides_add_broken
     B.secondBrokenSides_lt B.secondBrokenSides_pairwise
   calc
     (∑ j : Fin B.brokenAssignment.index.second.pieceCount,
-        B.secondGapFinishSide j - B.secondGapStartSide j) +
+        (B.secondGapFinishSide j - B.secondGapStartSide j)) +
         (brokenSet B.componentPlacement.secondTarget
           B.componentPlacement.secondSurvives).card =
       (∑ j : Fin (B.secondBrokenSides.length + 1),
-        orderedGapFinish ((n - B.secondSide) + B.firstSide + 1)
+        (orderedGapFinish ((n - B.secondSide) + B.firstSide + 1)
             B.secondBrokenSides j.val -
-          orderedGapStart 0 B.secondBrokenSides j.val) +
+          orderedGapStart 0 B.secondBrokenSides j.val)) +
         B.secondBrokenSides.length := by
           apply congrArg₂ (· + ·)
           · let e : Fin B.brokenAssignment.index.second.pieceCount ≃
