@@ -68,8 +68,12 @@ theorem chord_sideSpan_eq_letter
     (r := r + 1)
   have hcut1' : auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
       (t + 1) = off + (r + 1) := by
-    dsimp [t, off]
-    convert hcut1 using 1 <;> omega
+    have ht : t + 1 =
+        Q.left.length + Q.arcSides + Q.right.length + (r + 1) := by
+      dsimp [t]
+      omega
+    rw [ht, hcut1]
+    rfl
   change (vertex Q.basepoint word
       (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right t))⁻¹ *
       vertex Q.basepoint word
@@ -114,7 +118,7 @@ theorem orientedEdgeIndex_val
   by_cases hab : a ≤ b
   · have hforward : a ≤ y ∧ y + 1 ≤ b := by omega
     simp only [orientedSegment, if_pos hab, orientedEdgeIndex]
-    simpa only [List.getElem_take, List.getElem_drop,
+    simp only [List.getElem_take, List.getElem_drop,
       Nat.add_sub_of_le hforward.1, if_pos hab]
   · have hba : b ≤ a := by omega
     have hreverse : b ≤ y ∧ y + 1 ≤ a := by omega
@@ -133,16 +137,16 @@ theorem orientedEdgeIndex_val
       dsimp [segment]
       simp only [List.getElem_take, List.getElem_drop,
         Nat.add_sub_of_le hreverse.1]
-    have hrev := getElem_revWord segment
-      (m := a - (y + 1)) (by
-        rw [OsinComponents.length_revWord]
-        exact hlocal) hforwardIndex
     have hindex : segment.length - 1 - (a - (y + 1)) = y - b := by
       rw [hsegmentLen]
       omega
+    have hrev := getElem_revWord segment
+      (m := a - (y + 1)) (by
+        rw [OsinComponents.length_revWord]
+        exact hlocal) (by rw [hindex]; exact hforwardIndex)
     rw [getElem_congr_idx hindex, hsegmentLetter] at hrev
     simp only [orientedSegment, if_neg hab, orientedEdgeIndex]
-    rw [hrev, val_invLetter, if_neg hab]
+    rw [hrev, val_invLetter]
 
 /-- A nonempty one-letter right connector has side span equal to the value of
 the whole connector word. -/
