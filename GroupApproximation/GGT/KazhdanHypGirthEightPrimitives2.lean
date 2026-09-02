@@ -300,8 +300,12 @@ theorem innerFace_presentedValue_eq_one
   rw [hj, triangleRelatorWord, List.map_map]
   change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
     presentedLetterValue T (signedFreeRelLetter u)).prod = 1
-  simp_rw [presentedLetterValue_signedFreeRelLetter
-    (Generator := Generator) (T := T)]
+  have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
+      presentedLetterValue T (signedFreeRelLetter u) =
+        FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
+    intro u
+    exact presentedLetterValue_signedFreeRelLetter (T := T) u
+  simp_rw [hletter]
   exact TriangularHodgeLayer.wordValue_triangle_eq_one T j
 
 /-- Evaluate an arbitrary list of oriented diagram darts. -/
@@ -538,10 +542,30 @@ theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
   classical
   let M := Delta.toCombMap
   let seed := boundaryFaceSeed Delta P
+  have hballMono : ∀ {i j : ℕ}, i ≤ j →
+      M.faceStarBall seed i ⊆ M.faceStarBall seed j := by
+    intro i j hij
+    induction j, hij using Nat.le_induction with
+    | base => exact fun _ h ↦ h
+    | succ j _ ih => exact ih.trans (M.faceStarBall_mono_succ seed j)
   have hlayerDisjoint : ∀ {i j : ℕ}, i ≠ j →
       Disjoint (M.faceStarLayer seed i) (M.faceStarLayer seed j) := by
     intro i j hij
-    exact VanKampen.CombMap.faceStarLayer_disjoint M seed hij
+    wlog hlt : i < j generalizing i j with H
+    · exact (H hij.symm (by omega)).symm
+    have hjpos : j ≠ 0 := by omega
+    rw [Finset.disjoint_left]
+    intro f hfi hfj
+    have hfiBall : f ∈ M.faceStarBall seed i := by
+      by_cases hi0 : i = 0
+      · subst i
+        exact hfi
+      · rw [VanKampen.CombMap.faceStarLayer, if_neg hi0] at hfi
+        exact hfi.1
+    have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
+      hballMono (by omega) hfiBall
+    change f ∈ M.faceStarBall seed j \ M.faceStarBall seed (j - 1) at hfj
+    exact hfj.2 hfpred
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
       (fun i ↦ M.faceStarLayer seed i ∩ Delta.innerFaces) := by
     intro i _hi j _hj hij
@@ -666,8 +690,8 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   intro i x y hxy
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
-  cases hface
   have hslot := congrArg Prod.snd hxy
+  rw [hface] at hslot
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
         firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
@@ -689,7 +713,15 @@ theorem layer_covers_of_incidenceInjection
   classical
   intro i
   have hcard := Fintype.card_le_of_injective (C.encode i) (C.injective i)
-  simpa only [Fintype.card_fin, Fintype.card_prod, Fintype.card_coe,
+  have hsetcard : Fintype.card {f // f ∈ (layer i : Set Face)} =
+      (layer i).card := by
+    calc
+      Fintype.card {f // f ∈ (layer i : Set Face)} =
+          Nat.card {f // f ∈ (layer i : Set Face)} :=
+        (Nat.card_eq_fintype_card _).symm
+      _ = (layer i : Set Face).ncard := rfl
+      _ = (layer i).card := Set.ncard_coe_finset _
+  simpa only [Fintype.card_fin, Fintype.card_prod, hsetcard,
     Nat.mul_comm] using hcard
 
 /-- The genuinely geometric local estimate for a star layer: after losing the
@@ -701,6 +733,8 @@ abbrev LayerCoversWindow
   ∀ i : Fin depth, scale - loss ≤ perimeter *
     (innerBoundaryFaceStarLayer Delta P i).card
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Explicit boundary-position incidences prove `LayerCoversWindow`. -/
 theorem layerCoversWindow_of_incidenceInjection
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
@@ -709,7 +743,9 @@ theorem layerCoversWindow_of_incidenceInjection
       (fun i : Fin depth ↦ innerBoundaryFaceStarLayer Delta P i)
       scale loss perimeter) :
     LayerCoversWindow Delta P depth scale loss perimeter :=
-  layer_covers_of_incidenceInjection C
+  by
+    classical
+    exact layer_covers_of_incidenceInjection C
 
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
@@ -795,8 +831,9 @@ noncomputable def oneTriangle_unitIncidenceInjection :
     injective := ?_ }
   · rw [VanKampen.CombMap.faceStarLayer, if_pos rfl]
     exact Finset.mem_univ _
-  · intro i x y _hxy
-    exact Subsingleton.elim x y
+  · intro _i x y _hxy
+    apply Fin.ext
+    omega
 
 /-- The incidence-count theorem recovers the unit covering inequality in the
 one-triangle model. -/
@@ -853,6 +890,7 @@ theorem exists_signedWord_represents
   rw [PresentedGroupRelatorReplay.word, FreeGroup.mk_toWord]
   exact hx
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The remaining van Kampen input for a literal power is only the existence
 of a relator-only diagram with that exact exterior word.  Once supplied, it
 gives a `PowerDiscCandidate`; word representation is proved above. -/
@@ -889,6 +927,7 @@ def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
   reduced := hred
   relatorOnly := D.relatorOnly
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Candidate areas form a nonempty subset of the natural numbers. -/
 theorem exists_powerDiscCandidate_area
     (hfill : Nonempty (PowerDiscCandidate T g n)) :
@@ -900,21 +939,24 @@ theorem exists_powerDiscCandidate_area
 /-- Least relator area among candidates with the fixed literal power
 boundary. -/
 noncomputable def leastPowerDiscArea
-    (hfill : Nonempty (PowerDiscCandidate T g n)) : ℕ :=
-  Nat.find (exists_powerDiscCandidate_area hfill)
+    (hfill : Nonempty (PowerDiscCandidate T g n)) : ℕ := by
+  classical
+  exact Nat.find (exists_powerDiscCandidate_area hfill)
 
 /-- A candidate attaining the least relator area. -/
 noncomputable def leastPowerDiscCandidate
     (hfill : Nonempty (PowerDiscCandidate T g n)) :
-    PowerDiscCandidate T g n :=
-  Classical.choose (Nat.find_spec (exists_powerDiscCandidate_area hfill))
+    PowerDiscCandidate T g n := by
+  classical
+  exact Classical.choose (Nat.find_spec (exists_powerDiscCandidate_area hfill))
 
 /-- The selected candidate has the declared least area. -/
 theorem leastPowerDiscCandidate_area_eq
     (hfill : Nonempty (PowerDiscCandidate T g n)) :
     (leastPowerDiscCandidate hfill).diagram.rCellCount =
-      leastPowerDiscArea hfill :=
-  Classical.choose_spec (Nat.find_spec (exists_powerDiscCandidate_area hfill))
+      leastPowerDiscArea hfill := by
+  classical
+  exact Classical.choose_spec (Nat.find_spec (exists_powerDiscCandidate_area hfill))
 
 /-- No candidate with the same literal boundary has smaller relator area. -/
 theorem leastPowerDiscCandidate_area_le
@@ -922,6 +964,7 @@ theorem leastPowerDiscCandidate_area_le
     (D : PowerDiscCandidate T g n) :
     (leastPowerDiscCandidate hfill).diagram.rCellCount ≤
       D.diagram.rCellCount := by
+  classical
   rw [leastPowerDiscCandidate_area_eq]
   exact Nat.find_min' (exists_powerDiscCandidate_area hfill) ⟨D, rfl⟩
 
@@ -989,6 +1032,7 @@ noncomputable def leastPowerDisc_of_literalFilling
     (leastPowerDiscCandidate_reduced hfill
       (surgery (leastPowerDiscCandidate hfill)))
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A candidate with no stored relator cells satisfies the cancellation
 surgery premise vacuously.  This is the zero-area model test for the new local
 property. -/
