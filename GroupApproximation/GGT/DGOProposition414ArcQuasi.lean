@@ -555,6 +555,7 @@ theorem secondArc_quasi
           have hvertex := B.secondVertex_mem.2.trans
             (P.polygonCut.mono_le (show B.secondSide + 1 ≤
               B.secondArcSource s by rw [hsource]; omega))
+          rw [hsource] at hvertex ⊢
           omega
       have hright : B.secondVertex + q ≤
           P.cut (B.secondArcSource s + 1) := by
