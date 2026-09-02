@@ -1008,8 +1008,7 @@ theorem firstGapArcBoundaryExclusion_emptyModel
     (j : Fin B.brokenAssignment.index.first.pieceCount) (s : ℕ)
     (hcycle : B.firstGapCycle j = []) :
     FirstGapArcBoundaryExclusion B j s := by
-  rw [hcycle]
-  simp [FirstGapArcBoundaryExclusion]
+  simp [FirstGapArcBoundaryExclusion, hcycle]
 
 /-- The wrapped empty-cycle model for the endpoint exclusion proposition. -/
 theorem secondGapArcBoundaryExclusion_emptyModel
@@ -1021,8 +1020,7 @@ theorem secondGapArcBoundaryExclusion_emptyModel
     (j : Fin B.brokenAssignment.index.second.pieceCount) (s : ℕ)
     (hcycle : B.secondGapCycle j = []) :
     SecondGapArcBoundaryExclusion B j s := by
-  rw [hcycle]
-  simp [SecondGapArcBoundaryExclusion]
+  simp [SecondGapArcBoundaryExclusion, hcycle]
 
 /-
 /-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
