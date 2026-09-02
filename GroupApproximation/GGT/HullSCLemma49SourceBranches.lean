@@ -28,6 +28,23 @@ open GroupApproximation.WordMetric
 
 universe u w
 
+/-- The dependent target carrier of an outer contiguity is definitionally the
+outer dart cycle after its target option is identified with `none`. -/
+theorem targetBoundaryDarts_eq_outerTargetArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : GGT.VanKampen.DiscDiagram.{u, w, 0} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : GGT.VanKampen.Embedded.Contiguity D eps Delta faces)
+    (htarget : Gamma.target = none) :
+    GGT.VanKampen.Embedded.targetBoundaryDarts Delta Gamma.target
+        Gamma.targetArc = (Gamma.outerTargetArc htarget).darts := by
+  cases Gamma with
+  | mk _ _ target _ targetArc _ _ _ _ _ _ _ =>
+      cases htarget
+      rfl
+
 /-! ## The long-period source branch -/
 
 /-- Source Gr0 and the boundary equation of its embedded G-region rule out a
@@ -114,14 +131,8 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
             sourceCertificate.contiguity.leftSide) := by
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
       (hpasting sourceCertificate)
-    have htargetDarts :
-        GGT.VanKampen.Embedded.targetBoundaryDarts
-            sourceCertificate.diagram sourceCertificate.contiguity.target
-            sourceCertificate.contiguity.targetArc =
-          (sourceCertificate.contiguity.outerTargetArc
-            sourceCertificate.target_eq).darts := by
-      cases sourceCertificate.target_eq
-      rfl
+    have htargetDarts := targetBoundaryDarts_eq_outerTargetArc
+      sourceCertificate.contiguity sourceCertificate.target_eq
     rw [htargetDarts] at h
     exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
@@ -307,14 +318,8 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
             sourceCertificate.contiguity.leftSide) := by
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
       (hpasting sourceCertificate)
-    have htargetDarts :
-        GGT.VanKampen.Embedded.targetBoundaryDarts
-            sourceCertificate.diagram sourceCertificate.contiguity.target
-            sourceCertificate.contiguity.targetArc =
-          (sourceCertificate.contiguity.outerTargetArc
-            sourceCertificate.target_eq).darts := by
-      cases sourceCertificate.target_eq
-      rfl
+    have htargetDarts := targetBoundaryDarts_eq_outerTargetArc
+      sourceCertificate.contiguity sourceCertificate.target_eq
     rw [htargetDarts] at h
     exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
