@@ -210,6 +210,7 @@ variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator]
   [Fintype TriangleIndex] [DecidableEq TriangleIndex]
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The reduced-sphere extraction step and spherical curvature give the
 finite-order relator localization needed for torsion-freeness.
 
