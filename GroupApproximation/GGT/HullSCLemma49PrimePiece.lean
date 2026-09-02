@@ -478,6 +478,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
       hsplit hleft hright
     · left
       rw [hsecondValue, hfirstValue]
+      dsimp [left, right]
       group
     · exact hfirstLarge
     · exact hsecondLarge
@@ -505,6 +506,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
       hsplit hleft hright
     · right
       rw [hsecondValue, hfirstValue]
+      dsimp [left, right]
       group
     · exact hfirstLarge
     · exact hsecondLarge
