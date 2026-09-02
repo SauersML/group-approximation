@@ -185,6 +185,45 @@ theorem secondPartner_not_mem_firstPartners
     simpa only [heq] using B.secondPartner_chordLetter_label s hs
   exact B.crossHalf_partner_ne_of_label_eq t s ht hs hlabel heq
 
+/-- Trimming the selected endpoint of each chord-walk segment according to an
+arbitrary orientation preserves every edge absent from the partner list. -/
+theorem exists_edgeBetween_orientedTrimmedChordWalk
+    (xs : List ℕ) (initial terminal y : ℕ)
+    (houter : EdgeBetween initial terminal y) (hnot : y ∉ xs)
+    (forward : Fin (xs.length + 1) → Prop) :
+    ∃ j : Fin (xs.length + 1),
+      EdgeBetween
+        (if h : j.val < xs.length then
+          if forward j then xs[j.val] + 1 else xs[j.val]
+        else terminal)
+        (if h : 0 < j.val then
+          if forward j then xs[j.val - 1]'(by omega)
+          else xs[j.val - 1]'(by omega) + 1
+        else initial) y := by
+  classical
+  obtain ⟨j, hj⟩ := exists_edgeBetween_chordWalk xs initial terminal y houter
+  refine ⟨j, ?_⟩
+  by_cases hf : forward j
+  · by_cases hn : j.val < xs.length
+    · have hne : y ≠ xs[j.val] := by
+        intro heq
+        exact hnot (heq ▸ List.getElem_mem hn)
+      have hstart : chordWalkStart terminal xs j = xs[j.val] := by
+        simp [chordWalkStart, hn]
+      rw [hstart] at hj
+      simpa [hf, hn, chordWalkFinish] using edgeBetween_succ_left hj hne
+    · simpa [hf, hn, chordWalkStart, chordWalkFinish] using hj
+  · by_cases hp : 0 < j.val
+    · have hne : y ≠ xs[j.val - 1]'(by omega) := by
+        intro heq
+        exact hnot (heq ▸ List.getElem_mem (by omega))
+      have hfinish : chordWalkFinish initial xs j =
+          xs[j.val - 1]'(by omega) := by
+        simp [chordWalkFinish, hp]
+      rw [hfinish] at hj
+      simpa [hf, hp, chordWalkStart] using edgeBetween_succ_right hj hne
+    · simpa [hf, hp, chordWalkStart, chordWalkFinish] using hj
+
 /-! ## Specialization of the trimmed walk to the canonical gap coordinates -/
 
 theorem firstGapChordStart_eq_trimmedWalk
@@ -196,7 +235,9 @@ theorem firstGapChordStart_eq_trimmedWalk
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
     B.firstGapChordStart j =
       if h : j.val < B.brokenAssignment.index.first.partners.length then
-        B.brokenAssignment.index.first.partners[j.val] + 1
+        if B.firstGapRunsForward j then
+          B.brokenAssignment.index.first.partners[j.val] + 1
+        else B.brokenAssignment.index.first.partners[j.val]
       else B.chord.length := by
   classical
   let A := B.brokenAssignment.index.first
@@ -227,10 +268,19 @@ theorem firstGapChordFinish_eq_walk
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.first.pieceCount) :
     B.firstGapChordFinish j =
-      chordWalkFinish 0 B.brokenAssignment.index.first.partners
-        ⟨j.val, by
-          simpa [GreedyHalfFamilyIndex.pieceCount,
-            B.brokenAssignment.index.first.partner_length] using j.isLt⟩ := by
+      if h : 0 < j.val then
+        if B.firstGapRunsForward j then
+          B.brokenAssignment.index.first.partners[j.val - 1]'(by
+            rw [B.brokenAssignment.index.first.partner_length]
+            have hj := j.isLt
+            simp only [GreedyHalfFamilyIndex.pieceCount] at hj
+            omega)
+        else B.brokenAssignment.index.first.partners[j.val - 1]'(by
+          rw [B.brokenAssignment.index.first.partner_length]
+          have hj := j.isLt
+          simp only [GreedyHalfFamilyIndex.pieceCount] at hj
+          omega) + 1
+      else 0 := by
   classical
   let A := B.brokenAssignment.index.first
   by_cases h : 0 < j.val
@@ -245,12 +295,12 @@ theorem firstGapChordFinish_eq_walk
     have hp := HalfEntry.partner_getElem_eq_partner_entrySource A e
     rw [List.getElem?_eq_getElem hpLen] at hp
     have hpEq := Option.some.inj hp
-    unfold firstGapChordFinish chordWalkFinish
+    unfold firstGapChordFinish
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
     simpa [A, e] using hpEq.symm
-  · unfold firstGapChordFinish chordWalkFinish
+  · unfold firstGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
     rw [dif_neg h]
@@ -263,10 +313,11 @@ theorem secondGapChordStart_eq_walk
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
     B.secondGapChordStart j =
-      chordWalkStart 0 B.brokenAssignment.index.second.partners
-        ⟨j.val, by
-          simpa [GreedyHalfFamilyIndex.pieceCount,
-            B.brokenAssignment.index.second.partner_length] using j.isLt⟩ := by
+      if h : j.val < B.brokenAssignment.index.second.partners.length then
+        if B.secondGapRunsForward j then
+          B.brokenAssignment.index.second.partners[j.val] + 1
+        else B.brokenAssignment.index.second.partners[j.val]
+      else 0 := by
   classical
   let A := B.brokenAssignment.index.second
   by_cases h : j.val < A.sources.length
@@ -275,7 +326,7 @@ theorem secondGapChordStart_eq_walk
     have hp := HalfEntry.partner_getElem_eq_partner_entrySource A e
     rw [List.getElem?_eq_getElem hpLen] at hp
     have hpEq := Option.some.inj hp
-    unfold secondGapChordStart chordWalkStart
+    unfold secondGapChordStart
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
@@ -283,7 +334,7 @@ theorem secondGapChordStart_eq_walk
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
-    unfold secondGapChordStart chordWalkStart
+    unfold secondGapChordStart
     rw [show HalfGap.nextEntry A j = none by
       simp [HalfGap.nextEntry, A, h]]
     rw [dif_neg hpLen]
@@ -297,7 +348,13 @@ theorem secondGapChordFinish_eq_trimmedWalk
     (j : Fin B.brokenAssignment.index.second.pieceCount) :
     B.secondGapChordFinish j =
       if h : 0 < j.val then
-        B.brokenAssignment.index.second.partners[j.val - 1]'(by
+        if B.secondGapRunsForward j then
+          B.brokenAssignment.index.second.partners[j.val - 1]'(by
+            have hj := j.isLt
+            rw [B.brokenAssignment.index.second.partner_length]
+            simp only [GreedyHalfFamilyIndex.pieceCount] at hj
+            omega)
+        else B.brokenAssignment.index.second.partners[j.val - 1]'(by
           have hj := j.isLt
           rw [B.brokenAssignment.index.second.partner_length]
           simp only [GreedyHalfFamilyIndex.pieceCount] at hj
@@ -341,16 +398,21 @@ theorem exists_secondGap_containing_firstPartner
       EdgeBetween (B.secondGapChordStart j) (B.secondGapChordFinish j)
         (B.brokenAssignment.first.partner s) := by
   let y := B.brokenAssignment.first.partner s
-  obtain ⟨j, hj⟩ := exists_edgeBetween_secondTrimmedChordWalk
-    B.brokenAssignment.index.second.partners B.chord.length y
-    (B.brokenAssignment.first.partner_lt s hs)
+  let toGap :
+      Fin (B.brokenAssignment.index.second.partners.length + 1) →
+        Fin B.brokenAssignment.index.second.pieceCount := fun j =>
+    ⟨j.val, by
+      simpa [GreedyHalfFamilyIndex.pieceCount,
+        B.brokenAssignment.index.second.partner_length] using j.isLt⟩
+  obtain ⟨j, hj⟩ := exists_edgeBetween_orientedTrimmedChordWalk
+    B.brokenAssignment.index.second.partners B.chord.length 0 y
+    (by simp [EdgeBetween, y, B.brokenAssignment.first.partner_lt s hs])
     (B.firstPartner_not_mem_secondPartners s hs)
-  refine ⟨⟨j.val, by
-    simpa [GreedyHalfFamilyIndex.pieceCount,
-      B.brokenAssignment.index.second.partner_length] using j.isLt⟩, ?_⟩
+    (fun j => B.secondGapRunsForward (toGap j))
+  refine ⟨toGap j, ?_⟩
   rw [B.secondGapChordStart_eq_walk,
     B.secondGapChordFinish_eq_trimmedWalk]
-  exact hj
+  simpa [toGap] using hj
 
 /-- Every wrapped-half broken partner occurs on the chord of a concrete
 first-half child. -/
@@ -366,16 +428,21 @@ theorem exists_firstGap_containing_secondPartner
       EdgeBetween (B.firstGapChordStart j) (B.firstGapChordFinish j)
         (B.brokenAssignment.second.partner s) := by
   let y := B.brokenAssignment.second.partner s
-  obtain ⟨j, hj⟩ := exists_edgeBetween_firstTrimmedChordWalk
-    B.brokenAssignment.index.first.partners B.chord.length y
-    (B.brokenAssignment.second.partner_lt s hs)
-    (B.secondPartner_not_mem_firstPartners s hs)
-  refine ⟨⟨j.val, by
+  let toGap :
+      Fin (B.brokenAssignment.index.first.partners.length + 1) →
+        Fin B.brokenAssignment.index.first.pieceCount := fun j =>
+    ⟨j.val, by
     simpa [GreedyHalfFamilyIndex.pieceCount,
-      B.brokenAssignment.index.first.partner_length] using j.isLt⟩, ?_⟩
+      B.brokenAssignment.index.first.partner_length] using j.isLt⟩
+  obtain ⟨j, hj⟩ := exists_edgeBetween_orientedTrimmedChordWalk
+    B.brokenAssignment.index.first.partners 0 B.chord.length y
+    (by simp [EdgeBetween, y, B.brokenAssignment.second.partner_lt s hs])
+    (B.secondPartner_not_mem_firstPartners s hs)
+    (fun j => B.firstGapRunsForward (toGap j))
+  refine ⟨toGap j, ?_⟩
   rw [B.firstGapChordStart_eq_trimmedWalk,
     B.firstGapChordFinish_eq_walk]
-  exact hj
+  simpa [toGap] using hj
 
 end BalancedSplitData
 
