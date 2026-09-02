@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Deletion
+import GroupApproximation.GGT.VanKampen.Estimating.Partition
 import GroupApproximation.GGT.VanKampen.Estimating.Unbound
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
 
