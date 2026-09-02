@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CactusFaceBoundary
+import Mathlib.Data.Fin.Rev
 import Mathlib.Data.List.FinRange
 
 /-!
@@ -102,6 +103,25 @@ theorem boundaryWord_ne_nil
   rw [← Z.boundaryWord_isWord.prod_eq, hnil]
   rfl
 
+/-- Geometric cells are attached in reverse algebraic order.  The
+complementary face encounters their inverse values in forward geometric
+order, which is the inverse of the complete algebraic product. -/
+def geometricCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) : HullSC.Lemma44OrientedRelatorCell W :=
+  Z.cellAt i.rev
+
+@[simp] theorem geometricCell_rev
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) : Z.geometricCell i.rev = Z.cellAt i := by
+  rw [geometricCell, Fin.rev_rev]
+
 /-- The positive polygon shape underlying the cactus realization. -/
 def cactusShape
     {G : Type u} [Group G] {Lambda : Type w}
@@ -111,8 +131,8 @@ def cactusShape
   boundaryLength := Z.boundaryWord.length
   boundary_pos := List.length_pos_iff.mpr Z.boundaryWord_ne_nil
   cellCount := Z.cells.length
-  relatorLength i := (Z.cellAt i).relator.length
-  relator_pos i := List.length_pos_iff.mpr (Z.cellAt_relator_ne_nil i)
+  relatorLength i := (Z.geometricCell i).relator.length
+  relator_pos i := List.length_pos_iff.mpr (Z.cellAt_relator_ne_nil i.rev)
 
 @[simp] theorem cactusShape_boundaryLength
     {G : Type u} [Group G] {Lambda : Type w}
@@ -134,24 +154,17 @@ def cactusShape
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (i : Fin Z.cells.length) :
-    Z.cactusShape.relatorLength i = (Z.cellAt i).relator.length := rfl
+    Z.cactusShape.relatorLength i = (Z.geometricCell i).relator.length := rfl
 
 /-! ## Ordered polygon boundaries -/
 
 /-- Iterating finite rotation from zero visits the index with the same
 natural-number value, before the wrap-around step. -/
 theorem finRotate_pow_zero {n : ℕ} (hn : 0 < n) (k : ℕ) (hk : k < n) :
-    ((Equiv.finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
-  apply Fin.ext
-  induction k with
-  | zero => rfl
-  | succ k ih =>
-      rw [pow_succ', Equiv.Perm.mul_apply,
-        Equiv.coe_finRotate_of_ne_last,
-        ih (lt_trans (Nat.lt_succ_self k) hk)]
-      rw [Ne, Fin.ext_iff,
-        ih (lt_trans (Nat.lt_succ_self k) hk), Fin.val_last]
-      exact ne_of_lt (Nat.lt_of_succ_lt_succ hk)
+    ((finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
+  rw [← iterate_eq_pow,
+    ← finCycle_eq_finRotate_iterate (k := (⟨k, hk⟩ : Fin n))]
+  simp
 
 /-- A permutation orbit which is an explicitly parametrized finite rotation
 has its closed orbit list in that parameter order. -/
@@ -159,12 +172,13 @@ theorem closedOrbitList_eq_of_finRotate
     {D : Type*} [Fintype D] [DecidableEq D]
     {n : ℕ} (hn : 0 < n) (p : Equiv.Perm D) (f : Fin n → D)
     (hf : Function.Injective f)
-    (hstep : ∀ i, p (f i) = f (Equiv.finRotate n i))
+    (hstep : ∀ i, p (f i) = f (finRotate n i))
     (hcomplete : ∀ d, p.SameCycle (f ⟨0, hn⟩) d ↔ ∃ i, f i = d) :
     closedOrbitList p (f ⟨0, hn⟩) = List.ofFn f := by
   have hrightNodup : (List.ofFn f).Nodup :=
     List.nodup_ofFn_ofInjective hf
-  have hperm : closedOrbitList p (f ⟨0, hn⟩) ~ List.ofFn f := by
+  have hperm : List.Perm (closedOrbitList p (f ⟨0, hn⟩))
+      (List.ofFn f) := by
     apply (List.perm_ext_iff_of_nodup
       (closedOrbitList.nodup p (f ⟨0, hn⟩)) hrightNodup).mpr
     intro d
@@ -173,13 +187,13 @@ theorem closedOrbitList_eq_of_finRotate
   have hlength : (closedOrbitList p (f ⟨0, hn⟩)).length = n := by
     rw [hperm.length_eq, List.length_ofFn]
   by_cases hfixed : p (f ⟨0, hn⟩) = f ⟨0, hn⟩
-  · have hsingleton : [f ⟨0, hn⟩] ~ List.ofFn f := by
+  · have hsingleton : List.Perm [f ⟨0, hn⟩] (List.ofFn f) := by
       simpa only [closedOrbitList, if_pos hfixed] using hperm
     have heq : List.ofFn f = [f ⟨0, hn⟩] :=
       List.perm_singleton.mp hsingleton.symm
     simpa only [closedOrbitList, if_pos hfixed] using heq.symm
   · have hpow : ∀ k i, (p ^ k) (f i) =
-        f (((Equiv.finRotate n : Equiv.Perm (Fin n)) ^ k) i) := by
+        f (((finRotate n : Equiv.Perm (Fin n)) ^ k) i) := by
       intro k
       induction k with
       | zero => intro i; rfl
@@ -187,12 +201,16 @@ theorem closedOrbitList_eq_of_finRotate
           intro i
           rw [pow_succ, Equiv.Perm.mul_apply, pow_succ,
             Equiv.Perm.mul_apply, hstep, ih]
-    apply List.ext_getElem hlength
+    apply List.ext_getElem (by simpa only [List.length_ofFn] using hlength)
     intro k hkleft hkright
     rw [closedOrbitList, if_neg hfixed,
       Equiv.Perm.getElem_toList]
     rw [hpow, finRotate_pow_zero hn k hkright]
     simp only [List.getElem_ofFn]
+
+noncomputable local instance cactusShapeDartDecidableEq (S : CactusShape) :
+    DecidableEq S.toCombMap.Dart :=
+  Classical.decEq _
 
 /-- The outer face orbit is exactly the forward outer darts. -/
 theorem cactus_outer_sameCycle_iff (S : CactusShape)
@@ -223,9 +241,10 @@ theorem cactus_outerBoundary_darts (S : CactusShape) :
   change closedOrbitList S.toCombMap.facePerm
       (.outerForward S.boundaryZero) = _
   apply closedOrbitList_eq_of_finRotate S.boundary_pos
-  · exact CactusDart.outerForward.inj
+  · intro a b h
+    exact CactusDart.outerForward.inj h
   · exact S.facePerm_outerForward
-  · exact S.cactus_outer_sameCycle_iff
+  · exact cactus_outer_sameCycle_iff S
 
 /-- A relator face orbit is exactly the forward darts of that relator
 polygon. -/
@@ -263,9 +282,229 @@ theorem cactus_relatorBoundary_darts (S : CactusShape)
   change closedOrbitList S.toCombMap.facePerm
       (.relatorForward i (S.relatorZero i)) = _
   apply closedOrbitList_eq_of_finRotate (S.relator_pos i)
-  · exact CactusDart.relatorForward.inj i
+  · intro a b h
+    injection h
   · exact S.facePerm_relatorForward i
-  · exact S.cactus_relator_sameCycle_iff i
+  · exact cactus_relator_sameCycle_iff S i
+
+/-! ## Edge labels and polygon words -/
+
+/-- The closed-map traversal of the outer polygon is opposite to the desired
+disc boundary orientation. -/
+def cactusOuterFaceWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    List (GGT.RelLetter G Lambda) :=
+  RelWord.revInv
+    (Z.boundaryWord.map (GGT.RelLetter.base : G → GGT.RelLetter G Lambda))
+
+/-- The positive outer index transported to the equal length of the formal
+reverse-inverse word. -/
+def cactusOuterIndex
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (j : Fin Z.cactusShape.boundaryLength) :
+    Fin (Z.cactusOuterFaceWord (Lambda := Lambda)).length :=
+  Fin.cast (by
+    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map]
+    exact Z.cactusShape_boundaryLength.symm) j
+
+/-- Labels on forward polygon darts are the prescribed words.  Backward
+darts receive the inverse letter, and a stem is labelled by the conjugator of
+its geometric cell. -/
+def cactusLabel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    CactusDart Z.cactusShape → GGT.RelLetter G Lambda
+  | .outerForward j => Z.cactusOuterFaceWord.get (Z.cactusOuterIndex j)
+  | .outerBackward j =>
+      RelWord.inv (Z.cactusOuterFaceWord.get (Z.cactusOuterIndex j))
+  | .relatorForward i j => (Z.geometricCell i).relator.get j
+  | .relatorBackward i j => RelWord.inv ((Z.geometricCell i).relator.get j)
+  | .stemOut i => GGT.RelLetter.base (Z.geometricCell i).conjugator
+  | .stemIn i => GGT.RelLetter.base (Z.geometricCell i).conjugator⁻¹
+
+/-- Edge reversal formally inverts every cactus label. -/
+theorem cactusLabel_alpha
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (d : CactusDart Z.cactusShape) :
+    Z.cactusLabel (Z.cactusShape.alpha d) = RelWord.inv (Z.cactusLabel d) := by
+  cases d with
+  | outerForward j => rfl
+  | outerBackward j =>
+      change Z.cactusOuterFaceWord.get (Z.cactusOuterIndex j) =
+        RelWord.inv (RelWord.inv
+          (Z.cactusOuterFaceWord.get (Z.cactusOuterIndex j)))
+      exact (RelWord.inv_inv_letter _).symm
+  | relatorForward i j => rfl
+  | relatorBackward i j =>
+      change (Z.geometricCell i).relator.get j =
+        RelWord.inv (RelWord.inv ((Z.geometricCell i).relator.get j))
+      exact (RelWord.inv_inv_letter _).symm
+  | stemOut i => rfl
+  | stemIn i =>
+      change GGT.RelLetter.base (Z.geometricCell i).conjugator =
+        RelWord.inv (GGT.RelLetter.base (Z.geometricCell i).conjugator⁻¹)
+      rw [RelWord.inv, inv_inv]
+
+/-- Reindexing a list by an equality of lengths and reading all its entries
+returns the original list. -/
+theorem ofFn_get_cast {X : Type*} (l : List X) {n : ℕ}
+    (h : n = l.length) :
+    List.ofFn (fun i : Fin n ↦ l.get (Fin.cast h i)) = l := by
+  subst n
+  exact List.ofFn_get l
+
+/-- The labels on the canonical outer face are its reverse-inverse word. -/
+theorem cactus_outerFaceWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    (Z.cactusShape.faceBoundary Z.cactusShape.outerFace).darts.map
+        Z.cactusLabel = Z.cactusOuterFaceWord := by
+  rw [Z.cactusShape.faceBoundary_outerFace_darts,
+    cactus_outerBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact ofFn_get_cast Z.cactusOuterFaceWord (by
+    rw [cactusOuterFaceWord, RelWord.length_revInv, List.length_map]
+    exact Z.cactusShape_boundaryLength.symm)
+
+/-- The labels on a geometric relator face are the corresponding geometric
+cell word. -/
+theorem cactus_relatorFaceWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusShape.faceBoundary (Z.cactusShape.relatorFace i)).darts.map
+        Z.cactusLabel = (Z.geometricCell i).relator := by
+  rw [Z.cactusShape.faceBoundary_relatorFace_darts,
+    cactus_relatorBoundary_darts Z.cactusShape, ← List.ofFn_comp']
+  exact List.ofFn_get (Z.geometricCell i).relator
+
+/-- The disc boundary obtained by reverse-inverting the outer face is exactly
+the prescribed base-letter word. -/
+theorem cactus_boundaryWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    RelWord.revInv
+        ((Z.cactusShape.faceBoundary Z.cactusShape.outerFace).darts.map
+          Z.cactusLabel) =
+      Z.boundaryWord.map
+        (GGT.RelLetter.base : G → GGT.RelLetter G Lambda) := by
+  rw [Z.cactus_outerFaceWord, cactusOuterFaceWord,
+    RelWord.revInv_revInv]
+
+/-! ## The ordered relator cells -/
+
+/-- The planar relator cell corresponding to algebraic cell `i`.  Its
+geometric polygon has reversed index so complementary-face traversal sees
+the inverse factors in reverse algebraic order. -/
+def cactusRelatorCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W where
+  face := Z.cactusShape.relatorFace i.rev
+  face_ne_outer := Z.cactusShape.relatorFace_ne_outerFace i.rev
+  word := (Z.cellAt i).relator
+  word_mem := (Z.cellAt i).relator_mem
+  conjugator := (Z.cellAt i).conjugator
+  reversed := false
+
+/-- The relator cells in algebraic order. -/
+def cactusRelatorCells
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    List (RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W) :=
+  List.ofFn Z.cactusRelatorCell
+
+/-- Distinct algebraic cells use distinct relator faces. -/
+theorem cactusRelatorCell_face_injective
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Function.Injective (fun i : Fin Z.cells.length ↦
+      (Z.cactusRelatorCell i).face) := by
+  intro i j hij
+  have hrev : i.rev = j.rev :=
+    Z.cactusShape.relatorFace_injective hij
+  exact Fin.rev_injective hrev
+
+/-- The ordered planar relator faces have no repetitions. -/
+theorem cactusRelatorCells_faces_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    (Z.cactusRelatorCells.map RelatorCell.face).Nodup := by
+  rw [cactusRelatorCells, ← List.ofFn_comp']
+  exact List.nodup_ofFn_ofInjective Z.cactusRelatorCell_face_injective
+
+/-- The stored word of every ordered relator cell is the word read on its
+actual planar face. -/
+theorem cactusRelatorCells_word
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (C : RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W)
+    (hC : C ∈ Z.cactusRelatorCells) :
+    C.word = (Z.cactusShape.faceBoundary C.face).darts.map Z.cactusLabel := by
+  rw [cactusRelatorCells, List.mem_ofFn] at hC
+  obtain ⟨i, rfl⟩ := hC
+  change (Z.cellAt i).relator =
+    (Z.cactusShape.faceBoundary
+      (Z.cactusShape.relatorFace i.rev)).darts.map Z.cactusLabel
+  rw [Z.cactus_relatorFaceWord, Z.geometricCell_rev]
+
+/-- Each planar relator-cell value is the corresponding algebraic oriented
+cell value. -/
+theorem cactusRelatorCell_value
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusRelatorCell i).value = (Z.cellAt i).value := by
+  simp [cactusRelatorCell, RelatorCell.value,
+    HullSC.Lemma44OrientedRelatorCell.value]
+
+/-- The planar relator-cell values are the original algebraic factor list. -/
+theorem cactusRelatorCells_values
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusRelatorCells.map RelatorCell.value = Z.factors := by
+  rw [cactusRelatorCells, ← List.ofFn_comp']
+  have hcells : List.ofFn (fun i : Fin Z.cells.length ↦
+      (Z.cellAt i).value) =
+      Z.cells.map HullSC.Lemma44OrientedRelatorCell.value := by
+    exact List.ofFn_getElem_eq_map Z.cells
+      HullSC.Lemma44OrientedRelatorCell.value
+  rw [show (fun i : Fin Z.cells.length ↦ (Z.cactusRelatorCell i).value) =
+      (fun i : Fin Z.cells.length ↦ (Z.cellAt i).value) by
+        funext i
+        exact Z.cactusRelatorCell_value i]
+  exact hcells.trans Z.cell_values
 
 end Lemma44OrientedRelatorDiagram
 
