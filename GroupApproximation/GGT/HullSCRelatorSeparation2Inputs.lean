@@ -12,9 +12,9 @@ of its formal counterexample; no active construction consumes it.
 
 The active side exclusion requires certificates for both component anchors.
 This is exactly what the polygon machinery supplies and rules out the adjacent
-non-anchor counterexample.  `HullSC.separationNe₂_clause_of_spelling_of_producer`
-consumes the fixed-list predicate, while `HullSC.ExactRelatorDesign₂` packages
-the jointly chosen list.
+non-anchor counterexample.  `HullSC.ExactRelatorDesign₂` packages the jointly
+chosen list, while the relative-side published-gap chain consumes its fixed
+block count directly.
 -/
 
 namespace GroupApproximation
