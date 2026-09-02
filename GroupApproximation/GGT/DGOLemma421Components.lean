@@ -408,6 +408,59 @@ theorem PeripheralOccurrence.baseEdgeOrTrivial_succ
   simpa only [peripheralOccurrence_pos] using
     baseEdgeOrTrivial_peripheralPos_succ hW1 ht
 
+/-- Successive peripheral occurrences cannot be connected as components of
+one family.  This is the direct (W3) base case in the proof of Lemma 4.21. -/
+theorem not_connected_peripheralOccurrence_succ
+    {D : RelGenSet G Λ} {word : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hW1 : WWord.IsWOne word) (hW3 : WWord.IsWThree D word)
+    (v : G) (t : Fin (peripheralPositions word).card)
+    (ht : t.val + 1 < (peripheralPositions word).card)
+    (hlabel : (peripheralOccurrence word
+      ⟨t.val + 1, ht⟩).label = (peripheralOccurrence word t).label) :
+    ¬ Connected D.fam (peripheralOccurrence word t).label v word
+      (peripheralOccurrence word t).pos
+      (peripheralOccurrence word ⟨t.val + 1, ht⟩).pos := by
+  let A := peripheralOccurrence word t
+  let B := peripheralOccurrence word ⟨t.val + 1, ht⟩
+  have hsep : BaseEdgeOrTrivial word (A.pos + 1) B.pos := by
+    exact PeripheralOccurrence.baseEdgeOrTrivial_succ hW1 t ht
+  intro hconn
+  rcases hsep with htriv | ⟨x, hpos, hxread⟩
+  · have hnext : B.pos = A.pos + 1 := htriv
+    have hne := hW3.1 A.pos A.label B.label A.value B.value
+      A.read (by simpa [hnext] using B.read)
+    exact hne hlabel.symm
+  · have hnext : B.pos = A.pos + 2 := by omega
+    have hout := hW3.2 A.pos A.label B.label A.value B.value x A.read
+      (by simpa using hxread) (by simpa [hnext] using B.read)
+    have hxNot : x ∉ D.fam A.label := by
+      rcases hout with hne | hout
+      · exact False.elim (hne hlabel.symm)
+      · exact hout
+    have hcompA : IsComp A.label word A.pos (A.pos + 1) := A.isComp hW3 t
+    have hspan : (vertex v word A.pos)⁻¹ * vertex v word (A.pos + 1)
+        ∈ D.fam A.label := span_mem_fam_of_isComp D v hlet hcompA
+    have hmidLt : A.pos + 1 < word.length := by
+      have hBlt : B.pos < word.length :=
+        (List.getElem?_eq_some_iff.mp B.read).1
+      omega
+    have hstep : vertex v word (A.pos + 2) =
+        vertex v word (A.pos + 1) * x := by
+      rw [vertex_succ word v (A.pos + 1) hmidLt]
+      have hget : word[A.pos + 1]'hmidLt = RelLetter.base x :=
+        (List.getElem?_eq_some_iff.mp (by simpa using hxread)).2
+      rw [hget]
+      rfl
+    have hprod := mul_mem (inv_mem hspan) hconn
+    have heq :
+        ((vertex v word A.pos)⁻¹ * vertex v word (A.pos + 1))⁻¹ *
+          ((vertex v word A.pos)⁻¹ * vertex v word B.pos) = x := by
+      rw [hnext, hstep]
+      group
+    rw [heq] at hprod
+    exact hxNot hprod
+
 end OsinComponents
 end GGT
 end GroupApproximation
