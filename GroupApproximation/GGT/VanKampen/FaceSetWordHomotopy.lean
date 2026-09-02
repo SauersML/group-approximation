@@ -93,7 +93,7 @@ theorem oneFace
     FaceSetDeletionSchedule (Delta := Delta) {face}
       (Delta.faceBoundary face).darts := by
   have hface : face ∈ ({face} : Finset Delta.toCombMap.Face) := by simp
-  simpa only [Finset.erase_self, List.nil_append] using
+  simpa only [Finset.erase_singleton, List.nil_append] using
     (FaceSetDeletionSchedule.step face hface hne [] []
       (FaceSetDeletionSchedule.empty (Delta := Delta)))
 
