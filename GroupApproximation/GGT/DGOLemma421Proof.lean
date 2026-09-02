@@ -1438,7 +1438,7 @@ sides satisfy the same quasi-geodesic inequality is a quasi-geodesic
 quadrilateral.  This is the bookkeeping bridge from the two applications of
 Lemma 4.21(a) to Proposition 4.14. -/
 theorem isQuasiGeodesicPolygon_fourGon_of_mixed
-    (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (D : RelGenSet G Λ)
     (p q r s : List (RelLetter G Λ))
     (hgp : IsGeodesicWord D 1 (RelLetter.listVal p) p)
     (hgr : IsGeodesicWord D 1 (RelLetter.listVal r) r)
@@ -1909,7 +1909,10 @@ theorem revWord_revWord_421 (word : List (RelLetter G Λ)) :
   induction word with
   | nil => rfl
   | cons a t ih =>
-      cases a <;> simp [revWord, ih]
+      rw [revWord_cons, revWord_append]
+      have hinv : invLetter (invLetter a) = a := by
+        cases a <;> simp [invLetter]
+      simp [revWord, hinv, ih]
 
 theorem exists_component_of_opposite_start_421
     {D : RelGenSet G Λ} {lam : Λ}
@@ -1922,14 +1925,22 @@ theorem exists_component_of_opposite_start_421
   obtain ⟨k, hcomp⟩ := hstart
   have hpolyLen : (p ++ q ++ r ++ revWord s).length =
       p.length + q.length + r.length + s.length := length_fourGon p q r s
+  have hkglobal : k ≤ p.length + q.length + r.length + s.length := by
+    rw [← hpolyLen]
+    exact hcomp.2.1
+  have hstartglobal : p.length + q.length + r.length +
+      (s.length - j) ≤ p.length + q.length + r.length + s.length := by
+    omega
   have hrev := isComp_side_revs_of_isComp_fourGon p q r s lam hcomp
-    (by omega) (by omega)
+    hstartglobal hkglobal
   have hdouble := isComp_revWord lam (revWord s) hrev
   refine ⟨s.length - (k - (p.length + q.length + r.length)), ?_⟩
-  have hidx : s.length -
-      ((p.length + q.length + r.length + (s.length - j)) -
-        (p.length + q.length + r.length)) = j := by omega
-  simpa [revWord_revWord_421, length_revWord, hidx] using hdouble
+  have hdouble' : IsComp lam s
+      (s.length - (k - (p.length + q.length + r.length)))
+      (s.length - (s.length - j)) := by
+    simpa [revWord_revWord_421, length_revWord] using hdouble
+  rw [Nat.sub_sub_cancel hj] at hdouble'
+  exact hdouble'
 
 end OsinComponents
 end GGT
