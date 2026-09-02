@@ -13,10 +13,10 @@ spelled explicitly so its value is one.
 -/
 
 namespace GroupApproximation
-namespace GGT
-namespace VanKampen
+namespace HullSC
 
 open GroupApproximation.HullSC
+open GroupApproximation.GGT.VanKampen
 
 universe u w
 
@@ -294,6 +294,5 @@ theorem bigDarts_value
     Z.cell_values_prod, mul_inv_cancel]
 
 end RelativeReducedDiagram
-end VanKampen
-end GGT
+end HullSC
 end GroupApproximation
