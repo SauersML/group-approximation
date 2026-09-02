@@ -253,53 +253,6 @@ theorem FaceSetBoundary.rotate_mem_iff
     d ∈ (boundary.rotate k).cycle ↔ d ∈ boundary.cycle := by
   rw [FaceSetBoundary.rotate_cycle, List.mem_rotate]
 
-/-! ## Basepoint exposure -/
-
-/-- Rotate a boundary so that the first occurrence of a chosen boundary dart
-is the head.  The finite `idxOf` is well-defined because the cycle is
-duplicate-free and the dart is on the boundary. -/
-noncomputable def FaceSetBoundary.ofDart
-    {faces : Finset Delta.toCombMap.Face}
-    (boundary : FaceSetBoundary Delta faces)
-    (d : Delta.toCombMap.Dart)
-    (hd : IsBoundaryDart Delta faces d) :
-    FaceSetBoundary Delta faces :=
-  boundary.rotate (boundary.cycle.idxOf d)
-
-theorem FaceSetBoundary.ofDart_head
-    {faces : Finset Delta.toCombMap.Face}
-    (boundary : FaceSetBoundary Delta faces)
-    (d : Delta.toCombMap.Dart)
-    (hd : IsBoundaryDart Delta faces d) :
-    (boundary.ofDart d hd).cycle.head
-        (boundary.ofDart d hd).cycle_nonempty = d := by
-  have hmem : d ∈ boundary.cycle :=
-    (boundary.cycle_mem_iff d).2 hd
-  have hidx : boundary.cycle.idxOf d < boundary.cycle.length :=
-    List.idxOf_lt_length_iff.mpr hmem
-  apply (List.head_eq_iff_head?_eq_some
-    (boundary.ofDart d hd).cycle_nonempty).2
-  rw [FaceSetBoundary.ofDart, FaceSetBoundary.rotate_cycle,
-    List.head?_rotate hidx, List.getElem?_idxOf hmem]
-
-theorem FaceSetBoundary.ofDart_mem_iff
-    {faces : Finset Delta.toCombMap.Face}
-    (boundary : FaceSetBoundary Delta faces)
-    (d : Delta.toCombMap.Dart)
-    (hd : IsBoundaryDart Delta faces d) :
-    ∀ e, e ∈ (boundary.ofDart d hd).cycle ↔ e ∈ boundary.cycle := by
-  intro e
-  exact boundary.rotate_mem_iff (boundary.cycle.idxOf d) e
-
-theorem FaceSetBoundary.ofDart_cycle_eq
-    {faces : Finset Delta.toCombMap.Face}
-    (boundary : FaceSetBoundary Delta faces)
-    (d : Delta.toCombMap.Dart)
-    (hd : IsBoundaryDart Delta faces d) :
-    (boundary.ofDart d hd).cycle =
-      boundary.cycle.rotate (boundary.cycle.idxOf d) := by
-  rfl
-
 /-! ## Small model checks -/
 
 theorem rotate_one_face_model
