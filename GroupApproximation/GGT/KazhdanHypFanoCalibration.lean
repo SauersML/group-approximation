@@ -213,7 +213,8 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
   simp only [add_mul, mul_add, Finset.sum_add_distrib,
     fanoCorner_productSum]
   fin_cases x <;> fin_cases x' <;>
-    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, ZMod.val]
+    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, ZMod.val,
+      Fin.val_add, Fin.coe_ofNat_eq_mod, Fin.coe_natCast_eq_mod]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
