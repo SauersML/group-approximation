@@ -191,9 +191,8 @@ theorem Contiguity.arcLengths_le_two_mu_source
     Gamma.leftSide_norm_le Gamma.rightSide_norm_le
     equations.arcs_value equations.whole_ne
 
-/-- The same charge at the target follows by supplying the reversed piece
-equations, which are explicit because both short connector norms are
-invariant under inversion. -/
+/-- The same certificate gives the target charge: invert both connectors and
+reverse its arc equation and non-cancellation clause. -/
 theorem Contiguity.arcLengths_le_two_mu_target
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -203,23 +202,35 @@ theorem Contiguity.arcLengths_le_two_mu_target
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
     (equations : CellPieceEquations Gamma)
-    {reverseLeft reverseRight : G}
-    (hleft : wordNorm D.alphabet.carrier reverseLeft ≤ eps)
-    (hright : wordNorm D.alphabet.carrier reverseRight ≤ eps)
-    (harcs : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) =
-      reverseLeft * GGT.RelLetter.listVal
-        (dartWord Delta
-          (Gamma.cellTargetArc equations.target equations.target_eq).darts) *
-        reverseRight)
-    (hwhole : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) ≠
-      reverseLeft * GGT.RelLetter.listVal
-        (dartWord Delta
-          (Gamma.cellTargetArc equations.target equations.target_eq).rotated) *
-        reverseLeft⁻¹)
     (hcondition : OsinCCondition D W eps mu lambda c rho) :
     (Gamma.sourceArc.length : ℝ) +
         ((Gamma.cellTargetArc equations.target equations.target_eq).length : ℝ) ≤
       2 * mu * ((cell Delta equations.target).word.length : ℝ) := by
+  have hleft : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹ ≤ eps := by
+    rw [wordNorm_inv D.alphabet.symmetricGenerating]
+    exact Gamma.leftSide_norm_le
+  have hright : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ ≤ eps := by
+    rw [wordNorm_inv D.alphabet.symmetricGenerating]
+    exact Gamma.rightSide_norm_le
+  have harcs : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta
+          (Gamma.cellTargetArc equations.target equations.target_eq).darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ := by
+    rw [equations.arcs_value]
+    group
+  have hwhole :
+      GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) ≠
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹ *
+          GGT.RelLetter.listVal (dartWord Delta
+            (Gamma.cellTargetArc equations.target equations.target_eq).rotated) *
+          ((GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)⁻¹ := by
+    intro hsame
+    apply equations.whole_ne
+    rw [hsame]
+    group
   have hbound := cyclicArcLengths_le_two_mu_source hcondition
     (Gamma.cellTargetArc equations.target equations.target_eq) Gamma.sourceArc
     hleft hright harcs hwhole
@@ -283,25 +294,12 @@ theorem Candidate.weight_le_two_mu_target
     {mu lambda c : ℝ}
     (candidate : Candidate D eps Delta)
     (equations : CellPieceEquations candidate.contiguity)
-    {reverseLeft reverseRight : G}
-    (hleft : wordNorm D.alphabet.carrier reverseLeft ≤ eps)
-    (hright : wordNorm D.alphabet.carrier reverseRight ≤ eps)
-    (harcs : GGT.RelLetter.listVal
-        (dartWord Delta candidate.contiguity.sourceArc.darts) =
-      reverseLeft * GGT.RelLetter.listVal
-        (dartWord Delta (candidate.contiguity.cellTargetArc equations.target
-          equations.target_eq).darts) * reverseRight)
-    (hwhole : GGT.RelLetter.listVal
-        (dartWord Delta candidate.contiguity.sourceArc.rotated) ≠
-      reverseLeft * GGT.RelLetter.listVal
-        (dartWord Delta (candidate.contiguity.cellTargetArc equations.target
-          equations.target_eq).rotated) * reverseLeft⁻¹)
     (hcondition : OsinCCondition D W eps mu lambda c rho) :
     (candidate.weight : ℝ) ≤
       2 * mu * ((cell Delta equations.target).word.length : ℝ) := by
   rw [candidate.weight_eq_cellPieceArcLengths equations]
   exact candidate.contiguity.arcLengths_le_two_mu_target equations
-    hleft hright harcs hwhole hcondition
+    hcondition
 
 end Embedded
 
