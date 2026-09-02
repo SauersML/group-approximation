@@ -251,13 +251,6 @@ theorem estimatingUnboundOutput :
     GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
   sorry
 
-/-- **Open input.**  Realization of a relative reduced diagram at a supplied
-admissible spelling of its boundary
-(`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
-theorem relativeDiscRealizationSpelling :
-    HullSC.RelativeDiscRealizationSpellingStatement.{0, 0} := by
-  sorry
-
 /-- **Open input.**  Conversion of a planar exterior arc into the algebraic
 boundary contiguity at a supplied word
 (`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
@@ -267,16 +260,17 @@ theorem relativeExteriorArcConversionAtWord :
 
 /-- Hull's Lemma 4.9 for a nontrivial power of a shortest representative,
 from Osin's three estimating propositions (the piece construction is the
-theorem `GGT.VanKampen.estimatingPieceConstructionStatement`) and the two
-realization inputs above
+theorem `GGT.VanKampen.estimatingPieceConstructionStatement`, the realization
+at a supplied spelling is the theorem
+`HullSC.relativeDiscRealizationSpellingStatement`) and the arc-conversion
+input above
 (`GGT/HullSCLemma49PowerDiagramFromComponents.lean`). -/
 theorem hullLemma49GeodesicPowerDiagram :
     HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
-  HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
+  HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating
     estimatingSelectionConstruction
     GGT.VanKampen.estimatingPieceConstructionStatement
-    estimatingUnboundOutput relativeDiscRealizationSpelling
-    relativeExteriorArcConversionAtWord
+    estimatingUnboundOutput relativeExteriorArcConversionAtWord
 
 theorem hullLemma49KernelPower :
     HullSC.HullLemma49KernelPowerStatement.{0, 0} :=
