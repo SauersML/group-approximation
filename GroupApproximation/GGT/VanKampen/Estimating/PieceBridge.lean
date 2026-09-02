@@ -54,15 +54,31 @@ theorem exists_dartWord_suffix
 /-- Reverse-alpha of a positioned arc is a prefix of a suitable rotation of
 the inverse carrier word.  The moved prefix is the carrier suffix, so this
 is the target-carrier orientation used by the pasted boundary equation. -/
+def reversePrefixTarget
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
+    List (GGT.RelLetter G Lambda) :=
+  (RelWord.revInv (dartWord Delta arc.rotated)).rotate
+    (dartWord Delta (arc.rotated.drop arc.length)).length
+
+def reverseDartsWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
+    List (GGT.RelLetter G Lambda) :=
+  dartWord Delta (CyclicArc.reverseDarts arc)
+
 theorem exists_reverseDarts_prefix_of_rotated_revInv
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W)
     {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
     ∃ suffix : List (GGT.RelLetter G Lambda),
-      (RelWord.revInv (dartWord Delta arc.rotated)).rotate
-          (dartWord Delta (arc.rotated.drop arc.length)).length =
-        dartWord Delta arc.reverseDarts ++ suffix := by
+      reversePrefixTarget Delta arc =
+        reverseDartsWord Delta arc ++ suffix := by
   let carrier := arc.rotated
   let prefix := carrier.take arc.length
   let suffixDarts := carrier.drop arc.length
@@ -82,14 +98,15 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
     simp only [dartWord, List.length_map]
   have hrotate :
       (RelWord.revInv (dartWord Delta carrier)).rotate suffixDarts.length =
-        RelWord.revInv (dartWord Delta prefix) ++
+        (RelWord.revInv (dartWord Delta prefix)) ++
           RelWord.revInv (dartWord Delta suffixDarts) := by
     rw [hinv, ← hslen, List.rotate_append_length_eq]
   have hreverse :
-      dartWord Delta arc.reverseDarts =
+      reverseDartsWord Delta arc =
         RelWord.revInv (dartWord Delta prefix) := by
     exact (dartWord_reverse_alpha Delta arc.darts).trans (by rfl)
   refine ⟨RelWord.revInv (dartWord Delta suffixDarts), ?_⟩
+  unfold reversePrefixTarget
   rw [hrotate, hreverse]
 
 /-- The rotated carrier of a cell arc remains in a symmetrized family. -/
@@ -196,27 +213,6 @@ def Contiguity.cellTargetArc
       rw [← hcycle]
       exact Gamma.targetArc.length_le }
 
-/-- The two face-set equations needed to transfer O52. -/
-structure CellPieceEquations
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    (Gamma : Contiguity D eps Delta faces) where
-  target : Fin Delta.rCellCount
-  target_eq : Gamma.target = some target
-  arcs_value : GGT.RelLetter.listVal
-      (dartWord Delta (Gamma.cellTargetArc target target_eq).darts) =
-    GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
-      GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
-      GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)
-  whole_ne : GGT.RelLetter.listVal
-      (dartWord Delta (Gamma.cellTargetArc target target_eq).rotated) ≠
-    GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
-      GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
-      (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹
-
 /-- The exact equation obtained from a cellular face-pasting certificate in
 the orientation used by `Embedded.Contiguity.boundary_decomposition`. -/
 theorem Contiguity.targetBoundary_value_of_pasting
@@ -236,6 +232,97 @@ theorem Contiguity.targetBoundary_value_of_pasting
   have hsource := Gamma.arcs_value_of_pasting pasting
   rw [hsource]
   group
+
+/-! ## Inverse target carriers -/
+
+/-- The transported target carrier is the inverse relator rotation whose
+prefix is the oppositely oriented target boundary arc. -/
+noncomputable def Contiguity.targetInverseCarrier
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    List (GGT.RelLetter G Lambda) :=
+  (RelWord.revInv (dartWord Delta
+      (Gamma.cellTargetArc target htarget).rotated)).rotate
+    (dartWord Delta
+      ((Gamma.cellTargetArc target htarget).rotated.drop
+        (Gamma.cellTargetArc target htarget).length)).length
+
+/-- The transported inverse carrier is a member of the relator family. -/
+theorem Contiguity.targetInverseCarrier_mem
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps rho : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho) :
+    Gamma.targetInverseCarrier target htarget ∈ W := by
+  have hcarrier := (Gamma.cellTargetArc target htarget).cell_rotated_mem hsc
+  have hinv := hsc.inv_mem _ hcarrier
+  unfold Contiguity.targetInverseCarrier
+  exact hsc.rotate_mem _ hinv _
+
+/-- The inverse target carrier has the oppositely oriented target boundary as
+a prefix. -/
+theorem Contiguity.exists_targetInverseCarrier_suffix
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    ∃ suffix : List (GGT.RelLetter G Lambda),
+      Gamma.targetInverseCarrier target htarget =
+        dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc) ++ suffix := by
+  obtain ⟨suffix, hsuffix⟩ := exists_reverseDarts_prefix_of_rotated_revInv Delta
+    (Gamma.cellTargetArc target htarget)
+  refine ⟨suffix, ?_⟩
+  rw [Contiguity.targetInverseCarrier]
+  rw [← hsuffix]
+  rfl
+
+/-- The transported inverse carrier has the target arc length. -/
+theorem Contiguity.targetBoundaryDarts_length
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (targetBoundaryDarts Delta Gamma.target Gamma.targetArc).length =
+      Gamma.targetArc.length := by
+  rw [htarget]
+  simp only [targetBoundaryDarts, CyclicArc.reverseDarts,
+    List.length_map, List.length_reverse, CyclicArc.darts_length]
+
+/-- The two face-set equations needed to transfer O52. -/
+structure CellPieceEquations
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) where
+  target : Fin Delta.rCellCount
+  target_eq : Gamma.target = some target
+  arcs_value : GGT.RelLetter.listVal
+      (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc)) =
+    (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+      GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹
+  whole_ne : GGT.RelLetter.listVal
+      (Gamma.targetInverseCarrier target target_eq) ≠
+    (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+      GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+      GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)
 
 /-- O52 in the exact source-incidence charge form used by assembly. -/
 theorem Contiguity.arcLengths_le_two_mu_source
