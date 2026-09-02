@@ -234,16 +234,20 @@ def lineThrough (p q : Point) (hpq : p ≠ q)
 theorem left_incident_lineThrough (p q : Point) (hpq : p ≠ q)
     (horth : form p.rep q.rep = 0) :
     Incident p (lineThrough p q hpq horth) := by
-  rw [← p.mk_rep]
-  rw [Incident, Submodule.mk_mem_projectivization_iff]
-  exact Submodule.mem_span_of_mem (Set.mem_insert _ _)
+  change p ∈
+    (Submodule.span FieldEight {p.rep, q.rep}).projectivization
+  rw [Submodule.mem_projectivization_iff_submodule_le, p.submodule_eq]
+  exact Submodule.span_mono (Set.singleton_subset_iff.mpr
+    (Set.mem_insert p.rep {q.rep}))
 
 theorem right_incident_lineThrough (p q : Point) (hpq : p ≠ q)
     (horth : form p.rep q.rep = 0) :
     Incident q (lineThrough p q hpq horth) := by
-  rw [← q.mk_rep]
-  rw [Incident, Submodule.mk_mem_projectivization_iff]
-  exact Submodule.mem_span_of_mem (Set.mem_insert_of_mem _ (Set.mem_singleton _))
+  change q ∈
+    (Submodule.span FieldEight {p.rep, q.rep}).projectivization
+  rw [Submodule.mem_projectivization_iff_submodule_le, q.submodule_eq]
+  exact Submodule.span_mono (Set.singleton_subset_iff.mpr
+    (Set.mem_insert_of_mem p.rep (Set.mem_singleton q.rep)))
 
 /-- **The collinear-pair axiom for `W(8)`.**  Distinct orthogonal points lie
 on exactly one totally isotropic line. -/
@@ -255,6 +259,8 @@ theorem existsUnique_incident_line {p q : Point} (hpq : p ≠ q)
       right_incident_lineThrough p q hpq horth⟩, ?_⟩
   intro L hL
   exact line_unique hpq hL.1 hL.2
+    (left_incident_lineThrough p q hpq horth)
+    (right_incident_lineThrough p q hpq horth)
 
 /-! ## Unique projection to an isotropic line -/
 
