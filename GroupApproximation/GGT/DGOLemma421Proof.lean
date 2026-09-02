@@ -1125,6 +1125,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
       simpa [Internal] using htInternal
     have hread := (peripheralOccurrence word (owner s hs)).read
     have hreadLt := (List.getElem?_eq_some_iff.mp hread).1
+    dsimp [pos] at hposEq
     dsimp [lamSide]
     rw [dif_pos hs]
     have hcutS : cut s = s := by
@@ -1145,7 +1146,6 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
         vertex_succ word v _ hreadLt, inv_mul_cancel_left,
         (List.getElem?_eq_some_iff.mp hread).2]
       exact hW2 _ _ _ hread
-    dsimp [pos] at hposEq
     simpa only [hposEq] using hdeepOccurrence
   have hcount := deepIsolated_card_bound hbound hcycleLet hcycleClosed hcut
     I lamSide hIrange hedge hcomp hiso hquasi hdeep
@@ -1153,7 +1153,8 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
   have hscaled : C * (50 * Iso.card) ≤ C * (word.length + 1) := by
     calc
       C * (50 * Iso.card) = (50 * C) * Iso.card := by ring
-      _ ≤ (50 * C + 1) * Iso.card := by omega
+      _ ≤ (50 * C + 1) * Iso.card :=
+        Nat.mul_le_mul_right Iso.card (Nat.le_succ (50 * C))
       _ ≤ C * (word.length + 1) := hcount
   have hIsoBound : 50 * Iso.card ≤ word.length + 1 :=
     Nat.le_of_mul_le_mul_left hscaled hC
@@ -1170,7 +1171,8 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     have htStart : IsCompStart (peripheralOccurrence word t.1).label cycle
         (peripheralOccurrence word t.1).pos :=
       ⟨(peripheralOccurrence word t.1).pos + 1,
-        isComp_append_of_lt_421 (PeripheralOccurrence.isComp hW3 t.1) htEnd⟩
+        isComp_append_of_lt_421 (tail := close)
+          (PeripheralOccurrence.isComp hW3 t.1) htEnd⟩
     have hnotAll : ¬ ∀ j : ℕ,
         j ≠ (peripheralOccurrence word t.1).pos →
         IsCompStart (peripheralOccurrence word t.1).label cycle j →
@@ -1178,7 +1180,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
           (peripheralOccurrence word t.1).pos j := by
       intro hall
       exact htNoniso.2 ⟨htStart, hall⟩
-    push_neg at hnotAll
+    push Not at hnotAll
     exact hnotAll
   let other : ∀ t : ↑Noniso, ℕ := fun t => Classical.choose (hother t)
   have hotherSpec : ∀ t : ↑Noniso,
@@ -1192,6 +1194,8 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     intro t
     by_contra hlt
     have hjWord : other t < word.length := by omega
+    have htPos : (peripheralOccurrence word t.1).pos < word.length :=
+      (List.getElem?_eq_some_iff.mp (peripheralOccurrence word t.1).read).1
     obtain ⟨a, haPos, haLabel⟩ :=
       append_isCompStart_left_occurrence hW3 hjWord (hotherSpec t).2.1
     have hta : t.1 ≠ a := by
@@ -1204,7 +1208,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
       have hconn := (connected_append_left_iff_421 D.fam
         (peripheralOccurrence word t.1).label v word close
         (by omega) (by omega)).mp (hotherSpec t).2.2
-      rwa [haPos] at hconn
+      rwa [← haPos] at hconn
     exact peripheralOccurrence_not_connected_of_uniformBound hC hbound hlet
       hW1 hW2 hW3 v hta haLabel hconnWord
   have hotherLt : ∀ t : ↑Noniso, other t < cycle.length := by
