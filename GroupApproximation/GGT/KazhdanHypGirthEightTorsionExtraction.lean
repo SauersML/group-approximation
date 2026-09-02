@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives2
+import GroupApproximation.GGT.KazhdanHypGQLinkIdentification
 
 /-!
 # Huebschmann finite-order extraction for girth-eight triangle tables
@@ -52,6 +53,78 @@ variable {Generator TriangleIndex : Type}
 
 /-! ## The three residual cellular operations -/
 
+/- The following two propositions are deliberately map-level interfaces.  The
+   generic Cactus and Surgery files provide their *retyping* and *cut output*
+   constructors, but do not select the regions in an arbitrary least-area
+   power disc. -/
+
+/-- Exact missing input for the cactus step: for every chosen representative
+word, a CombMap-level cactus complement is retyped to a reduced relator-only
+disc with the literal repeated boundary.  This is the precise producer needed
+before `nonempty_powerDiscCandidate_of_cactusRetyping` can be applied. -/
+def CactusRelatorRetypingForPower
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
+  ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
+    0 < n → g ^ n = 1 → g ≠ 1 →
+    ∀ (word : List (TriangularHodgeLayer.SignedGenerator Generator)),
+      PresentedGroup.mk
+          (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+          (PresentedGroupRelatorReplay.word word) = g →
+      ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0}
+          (triangleRelatorWords T),
+        ∃ C : VanKampen.CactusRelatorRetyping Delta,
+          C.diagram.boundaryWord =
+            (List.replicate n (word.map signedFreeRelLetter)).flatten
+
+/-- A source certificate expressed with the landed free-base-cell deletion
+constructor.  This is the concrete input from which the retyping producer is
+assembled below. -/
+def CactusBaseCellDeletionForPower
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
+  ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
+    0 < n → g ^ n = 1 → g ≠ 1 →
+    ∀ (word : List (TriangularHodgeLayer.SignedGenerator Generator)),
+      PresentedGroup.mk
+          (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+          (PresentedGroupRelatorReplay.word word) = g →
+      ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0}
+          (triangleRelatorWords T),
+        ∃ C : VanKampen.CactusBaseCellDeletion Delta,
+          C.replacement.diagram.boundaryWord =
+            (List.replicate n (word.map signedFreeRelLetter)).flatten
+
+/-- Exact missing input for the mirror step: the selected two-cell
+`CombMap` surgery returns a power-disc candidate.  The list and cancellation
+hypotheses are the ordered boundary/seam data used by `SurgeryMap`. -/
+def PowerDiscMirrorPairDeletionSupply
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
+  ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
+    (D : PowerDiscCandidate T g n),
+    ∀ (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T)),
+    (hsplit : D.diagram.relatorCells =
+      pre ++ C₁ :: (between ++ C₂ :: suf)) →
+    (hcancel :
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1) →
+    PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel
+
+/-- The exact seam output still absent from the generic CombMap API.  Its
+fields separate the global exposed pairing/count construction from the local
+triangle-corner and cellular-reducedness certificates. -/
+structure ExposedPairingEulerInput
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n) where
+  pairing : VanKampen.SeamGluing.ExposedPairing D.diagram n
+  counts : VanKampen.SeamGluing.Pairing.EulerTwoCountData pairing.toPairing
+  corner : ∀ v, VertexCornerCertificate T
+    (cornerCycleOfCombMap pairing.toPairing.closedMap v)
+  cellular : ∀ v, CellularReducedAt (corner v)
+
 /-- The remaining filling contract, now expressed through the landed
 `CactusRelatorRetyping` construction.  A supplied cactus complement must
 produce an exact repeated boundary; the imported constructor then turns it
@@ -70,6 +143,43 @@ def CactusPowerBoundaryFilling
           C.diagram.boundaryWord =
             (List.replicate n (word.map signedFreeRelLetter)).flatten
 
+/-- The landed Cactus retyping constructor is exactly the filling contract.
+After the named CombMap-level producer is supplied, this theorem packages its
+output with `nonempty_powerDiscCandidate_of_cactusRetyping`; no new filling
+axiom is introduced here. -/
+theorem cactusPowerBoundaryFilling_of_cactusRelatorRetyping
+    (h : CactusRelatorRetypingForPower T) :
+    CactusPowerBoundaryFilling T := by
+  intro g n hn hpow hne word hword
+  exact h g n hn hpow hne word hword
+
+/-- The landed `CactusBaseCellDeletion.toRetyping` constructor turns the
+free-base-cell version of the missing producer into the exact retyping
+producer, after which the previous filling theorem applies. -/
+theorem cactusPowerBoundaryFilling_of_baseCellDeletion
+    (h : CactusBaseCellDeletionForPower T) :
+    CactusPowerBoundaryFilling T := by
+  apply cactusPowerBoundaryFilling_of_cactusRelatorRetyping
+  intro g n hn hpow hne word hword
+  obtain ⟨Delta, C, hboundary⟩ := h g n hn hpow hne word hword
+  refine ⟨Delta, C.toRetyping, ?_⟩
+  exact hboundary
+
+/-- The exact candidate consumed by least-area selection is obtained from a
+filling certificate by the landed Primitives2 theorem. -/
+theorem powerDiscCandidate_of_cactusPowerBoundaryFilling
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (hfill : CactusPowerBoundaryFilling T)
+    (word : List (TriangularHodgeLayer.SignedGenerator Generator))
+    (hword : PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (PresentedGroupRelatorReplay.word word) = g)
+    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1) :
+    Nonempty (PowerDiscCandidate T g n) := by
+  obtain ⟨Delta, C, hboundary⟩ := hfill g n hn hpow hne word hword
+  exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
+    hn hpow hne Delta C hboundary
+
 /-- The remaining cancellation contract is the concrete mirror-pair output
 `PowerDiscMirrorPairCut`.  The imported `cancellationReducesArea_of_mirrorPairCut`
 theorem performs the area argument, so this module no longer asks callers to
@@ -86,7 +196,40 @@ def MirrorPairCutSupply
     D.diagram.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
     (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
       (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
-    PowerDiscMirrorPairCut D
+      PowerDiscMirrorPairCut D
+
+/-- The landed SurgeryMap deletion is retyped as the power-disc mirror cut.
+The boundary equality comes from the reclosed replacement and the exact two
+cell area equation is `PowerDiscMirrorPairDeletion.area_drop`. -/
+theorem powerDiscMirrorPairCut_of_surgeryDeletion
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDiscCandidate T g n)
+    (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T))
+    (hsplit : D.diagram.relatorCells =
+      pre ++ C₁ :: (between ++ C₂ :: suf))
+    (hcancel :
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1)
+    (C : PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel) :
+    PowerDiscMirrorPairCut D := by
+  refine ⟨C.result, ?_, ?_⟩
+  · rw [C.result_diagram_eq]
+    exact C.topological.replacement.outerWord_eq
+  · exact PowerDiscMirrorPairDeletion.area_drop D pre between suf C₁ C₂
+      hsplit hcancel C
+
+/-- A family of landed two-cell surgeries supplies the cancellation contract
+used by the least-area constructor. -/
+theorem mirrorPairCutSupply_of_surgeryDeletion
+    (h : PowerDiscMirrorPairDeletionSupply T) :
+    MirrorPairCutSupply T := by
+  intro g n D pre between suf C₁ C₂ hsplit hcancel
+  exact powerDiscMirrorPairCut_of_surgeryDeletion D pre between suf C₁ C₂
+    hsplit hcancel (h g n D pre between suf C₁ C₂ hsplit hcancel)
 
 /-- The remaining seam certificate uses the landed exposed-boundary pairing.
 `ExposedPairing.toPairing` supplies the closed-map edge involution, and the
@@ -106,17 +249,69 @@ def ExposedPairingEulerCertificate
         (∀ v, CellularReducedAt
           (VertexCornerCertificate T (cornerCycleOfCombMap S.closedMap v)))
 
+/-- The landed seam constructor, once its three observable fields are
+provided, is exactly the exposed-pairing contract. -/
+theorem exposedPairingEulerCertificate_of_input
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n) (h : ExposedPairingEulerInput T D) :
+    ExposedPairingEulerCertificate T D := by
+  intro _hnoProper
+  refine ⟨h.pairing, ?_⟩
+  exact ⟨h.counts, h.corner, h.cellular⟩
+
+/-- The W(8) link data and a supplied seam input can be consumed together:
+the first conjunct is the extraction seam certificate and the second is the
+symbolic gap-`5/9` transfer. -/
+theorem exposedPairingEulerCertificate_and_wEightSDP_of_input
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (hlink : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap)
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n)
+    (hinput : ExposedPairingEulerInput T D) :
+    ExposedPairingEulerCertificate T D ∧
+      GirthEightSDPChecks T 9 (5 / 9)
+        (QuadrangleLinkData.reindex
+          _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData
+          (signedVertexEquiv lineMap)).gramRow := by
+  exact ⟨exposedPairingEulerCertificate_of_input D hinput,
+    girthEightSDPChecks_of_wEight_link_identification hgeom lineMap hlink⟩
+
+/-- W(8) supplies the presentation-link identification and its gap without
+enumerating the signed link.  The genuinely CombMap-level part is isolated in
+`ExposedPairingEulerInput`: the current generic seam API has no constructor
+that turns link incidence alone into a boundary pairing, Euler counts, and
+corner certificates. -/
+theorem exposedPairingEulerCertificate_of_wEight_linkData
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (hlink : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap)
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n)
+    (hinput : ExposedPairingEulerInput T D) :
+    ExposedPairingEulerCertificate T D := by
+  exact (exposedPairingEulerCertificate_and_wEightSDP_of_input
+    hgeom lineMap hlink D hinput).1
+
 /-- A residual-input package keeps the three still-missing constructions
 aligned to the same triangular presentation. -/
 structure ExtractionInputs
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) where
-  /-- Exact repeated-boundary cactus retyping. -/
-  filling : CactusPowerBoundaryFilling T
-  /-- Concrete output for every cancelling mirror pair. -/
-  mirrorCut : MirrorPairCutSupply T
-  /-- Exposed seam pairing and its remaining local certificates. -/
+  /-- Exact repeated-boundary cactus free-base-cell deletion producer. -/
+  filling : CactusBaseCellDeletionForPower T
+  /-- Concrete SurgeryMap output for every cancelling mirror pair. -/
+  mirrorDeletion : PowerDiscMirrorPairDeletionSupply T
+  /-- Exposed seam pairing, Euler counts, and local certificates. -/
   seam : ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ)
-    (D : PowerDisc T g n), ExposedPairingEulerCertificate T D
+    (D : PowerDisc T g n), ExposedPairingEulerInput T D
 
 /-! ## The least-area disc and cyclic sphere -/
 
@@ -137,14 +332,17 @@ theorem sphericalExtraction_of_combMapOperations
   let D : PowerDisc T g n := leastPowerDisc_of_filling hn hpow hne
     (fun _hn _hpow _hne ↦ by
       obtain ⟨word, hword⟩ := exists_signedWord_represents g
-      obtain ⟨Delta, C, hboundary⟩ := H.filling g n hn hpow hne word hword
-      exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
-        hn hpow hne Delta C hboundary)
+      exact powerDiscCandidate_of_cactusPowerBoundaryFilling
+        (cactusPowerBoundaryFilling_of_baseCellDeletion H.filling)
+        word hword hn hpow hne)
     (fun candidate ↦
       cancellationReducesArea_of_mirrorPairCut candidate
-        (H.mirrorCut g n candidate))
+        ((mirrorPairCutSupply_of_surgeryDeletion H.mirrorDeletion)
+          g n candidate))
   have hD : PowerDisc T g n := D
-  obtain ⟨B, hB⟩ := H.seam g n hD hnoProper
+  obtain ⟨B, hB⟩ := exposedPairingEulerCertificate_of_input hD
+    (H.seam g n hD)
+      hnoProper
   dsimp at hB
   obtain ⟨hcounts, hcertificate, hcellular⟩ := hB
   have hglue : PowerDiscSphereGluing hD :=
@@ -213,6 +411,51 @@ theorem exposedPairingEulerCertificate_model
   refine ⟨B, ?_⟩
   dsimp
   exact ⟨hcounts, certificate, hcellular⟩
+
+/-! ## The GQ(2,2) 27-row shape -/
+
+/-- The abstract 27-representative indexing used by the small GQ(2,2) model.
+The fifteen source rows are repeated modulo fifteen, exactly as in the
+Singer-row hypothesis-shape test in the link-identification module. -/
+def gqTwo27RepresentativeRoot (r : Fin 27) : Fin 15 :=
+  ⟨r.val % 15, Nat.mod_lt _ (by decide)⟩
+
+def GQTwo27RepresentativeRows : Prop :=
+  ∀ (r : Fin 27) (k : Fin 3),
+    (GQTwoTable.triangles (gqTwo27RepresentativeRoot r) k).2 = true
+
+theorem gqTwo27RepresentativeRows : GQTwo27RepresentativeRows := by
+  intro r k
+  exact GQTwoTable.positive (gqTwo27RepresentativeRoot r) k
+
+/-- The cactus bridge is model-tested on the transcribed GQ(2,2) table with
+the same 27-row representative shape. -/
+theorem cactusPowerBoundaryFilling_gqTwo_27Model
+    (hsource : CactusBaseCellDeletionForPower GQTwoTable.triangles) :
+    GQTwo27RepresentativeRows ∧
+      CactusPowerBoundaryFilling GQTwoTable.triangles := by
+  exact ⟨gqTwo27RepresentativeRows,
+    cactusPowerBoundaryFilling_of_baseCellDeletion hsource⟩
+
+/-- The landed two-cell SurgeryMap bridge is model-tested on the same
+GQ(2,2) 27-row shape. -/
+theorem mirrorPairCutSupply_gqTwo_27Model
+    (hsource : PowerDiscMirrorPairDeletionSupply GQTwoTable.triangles) :
+    GQTwo27RepresentativeRows ∧
+      MirrorPairCutSupply GQTwoTable.triangles := by
+  exact ⟨gqTwo27RepresentativeRows,
+    mirrorPairCutSupply_of_surgeryDeletion hsource⟩
+
+/-- The seam bridge is model-tested on a GQ(2,2) power disc while retaining
+the explicit 27-representative row certificate. -/
+theorem exposedPairingEulerCertificate_gqTwo_27Model
+    {g : TriangularHodgeLayer.Presented GQTwoTable.triangles} {n : ℕ}
+    (D : PowerDisc GQTwoTable.triangles g n)
+    (hinput : ExposedPairingEulerInput GQTwoTable.triangles D) :
+    GQTwo27RepresentativeRows ∧
+      ExposedPairingEulerCertificate GQTwoTable.triangles D := by
+  exact ⟨gqTwo27RepresentativeRows,
+    exposedPairingEulerCertificate_of_input D hinput⟩
 
 /-- The two-point torsion model refutes localization at an empty obstruction
 family, so the no-proper-power branch in the extraction theorem cannot be
