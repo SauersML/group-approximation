@@ -3247,6 +3247,9 @@ import GroupApproximation.GGT.VanKampen.FaceSetBoundaryWalk
 import GroupApproximation.GGT.VanKampen.FaceSetPeeledCycle
 import GroupApproximation.GGT.VanKampen.FaceSetEar
 import GroupApproximation.GGT.VanKampen.FaceSetDualLeaf
+import GroupApproximation.GGT.HullSCLemma44JointRelabel
+import GroupApproximation.GGT.VanKampen.FaceSetDualErase
+import GroupApproximation.GGT.VanKampen.FaceSetDualWalk
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
