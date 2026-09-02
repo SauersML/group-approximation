@@ -63,7 +63,7 @@ theorem fixedPeripheralPowerWitness_proved :
 /-- Model test for the pigeonhole calculation: in the one-point group the
 peripheral subgroup is `⊤`, so the conclusion is immediate for `S = univ`. -/
 theorem fixedPeripheralPowerWitness_trivialModel
-    (S : Set ℕ) (hS : S.Infinite) :
+    (S : Set ℕ) (_hS : S.Infinite) :
     ∃ m : ℕ, 0 < m ∧ (1 : PUnit) ^ m ∈ (⊤ : Subgroup PUnit) := by
   exact ⟨1, by omega, Subgroup.mem_top _⟩
 
@@ -85,7 +85,7 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
     obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
     exact hord n hn hpow
   have hinj : Function.Injective (fun n : ℕ => g ^ n) :=
-    injective_pow_of_not_isOfFinOrder hnotfin
+    HullSCUnionGeometry.injective_pow_of_not_isOfFinOrder hnotfin
   intro lam m hm hmem
   have hgH : g ∈ D.fam lam := by
     by_contra hgnot
@@ -95,7 +95,7 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
     have hmul_inj : Function.Injective (fun n : ℕ => g ^ (m * n)) := by
       intro a b hab
       have hmul : m * a = m * b := hinj hab
-      omega
+      exact Nat.mul_left_cancel hmul
     have hpow_range : (Set.range (fun n : ℕ => g ^ (m * n))).Infinite :=
       Set.infinite_range_of_injective hmul_inj
     have hsubset :
@@ -103,14 +103,18 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
           {x : G | x ∈ D.fam lam ∧ g⁻¹ * x * g ∈ D.fam lam} := by
       rintro x ⟨n, rfl⟩
       constructor
-      · rw [← pow_mul]
+      · change g ^ (m * n) ∈ D.fam lam
+        rw [← pow_mul]
         exact (D.fam lam).pow_mem hmem n
       · have hcomm : Commute g (g ^ (m * n)) :=
           (Commute.refl g).pow_right _
-        calc
-          g⁻¹ * g ^ (m * n) * g = g⁻¹ * (g * g ^ (m * n)) := by
-            rw [hcomm.eq]
-          _ = g ^ (m * n) := by group
+        have hconj : g⁻¹ * g ^ (m * n) * g = g ^ (m * n) := by
+          calc
+            g⁻¹ * g ^ (m * n) * g = g⁻¹ * (g * g ^ (m * n)) := by
+              rw [hcomm.eq]
+            _ = g ^ (m * n) := by group
+        rw [hconj]
+        exact (D.fam lam).pow_mem hmem n
     have hfiniteRange :
         (Set.range (fun n : ℕ => g ^ (m * n))).Finite :=
       hfin.subset hsubset
@@ -121,8 +125,8 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
 hypothesis is impossible, so the theorem closes by contradiction. -/
 theorem no_peripheral_power_of_hyperbolic_trivialModel
     {I : Type v} [Finite I] (D : RelGenSet PUnit I)
-    (hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
-    (hhyper : IsHyperbolicElement D.fam g)
+    (_hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (_hhyper : IsHyperbolicElement D.fam g)
     (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
     ∀ (lam : I) (m : ℕ), 0 < m → g ^ m ∉ D.fam lam := by
   intro lam m hm
@@ -157,8 +161,8 @@ theorem not_fixed_boundedPenetration_power_slice
 impossible in `PUnit`, so every putative bounded slice is contradictory. -/
 theorem not_fixed_boundedPenetration_power_slice_trivialModel
     {I : Type v} [Finite I] (D : RelGenSet PUnit I)
-    (hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
-    (hhyper : IsHyperbolicElement D.fam g)
+    (_hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (_hhyper : IsHyperbolicElement D.fam g)
     (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
     False := by
   exact hord 1 (by omega) (Subsingleton.elim _ _)
