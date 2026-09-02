@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOProposition414GapCompletionProducer
+import GroupApproximation.GGT.DGOProposition414ComponentFamiliesAux
 
 /-!
 # Uniform Proposition 4.14 from classwise gap certificates
@@ -37,6 +38,24 @@ theorem uniformSumBound_of_gapCertificates
   obtain ⟨first⟩ := first
   obtain ⟨second⟩ := second
   exact ⟨B.gapCompletion_of_certificates first second⟩
+
+/-- The component-family and target-separation inputs are a smaller producer
+for the classwise certificates, so they imply the same linear sum bound. -/
+theorem uniformSumBound_of_componentFamilies
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (produce : ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
+      (B : DGOProposition414.BalancedSplitData D hsymm b hδ P k R),
+      Nonempty (DGOProposition414.BalancedSplitData.FirstGapComponentFamily B) ∧
+      Nonempty (DGOProposition414.BalancedSplitData.SecondGapComponentFamily B) ∧
+      DGOProposition414.BalancedSplitData.FirstGapTargetSeparation B ∧
+      DGOProposition414.BalancedSplitData.SecondGapTargetSeparation B) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
+  apply uniformSumBound_of_gapCertificates D hsymm b hδ
+  intro n k R P B
+  exact BalancedSplitData.exists_gapTargetCertificates_of_componentFamilies
+    hsymm b hδ produce P B
 
 end DGOProposition414
 end GGT
