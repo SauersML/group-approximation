@@ -1212,9 +1212,8 @@ theorem cactusDiscDiagram_reduced
       pre.map orientedOfCell ++ orientedOfCell C₁ ::
         (between.map orientedOfCell ++ orientedOfCell C₂ ::
           suf.map orientedOfCell) := by
-    change Z.cells = pre.map orientedOfCell ++ orientedOfCell C₁ ::
-      (between.map orientedOfCell ++ orientedOfCell C₂ :: suf.map orientedOfCell)
-      at hsplit'
+    rw [List.map_append, List.map_cons, List.map_append,
+      List.map_cons, List.map_append, List.map_cons] at hsplit'
     exact hsplit'
   have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
@@ -1230,7 +1229,7 @@ theorem cactusDiscDiagram_reduced
     intro C hC
     rw [hsplit]
     simp only [List.mem_append, List.mem_cons]
-    exact Or.inr (Or.inl (Or.inr hC))
+    exact Or.inr (Or.inr (Or.inl hC))
   have hbetween : (between.map orientedOfCell).map
       Lemma44OrientedRelatorCell.value =
       between.map RelatorCell.value := by
