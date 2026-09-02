@@ -321,7 +321,7 @@ theorem relBall_inr_subset
 family.  Both relative alphabets are the same set, so the two `eps`-bounds are
 the same statement. -/
 theorem isPiece_map_unrelabelJoint
-    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (halphabet : joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier)
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {eps : ℕ}
     {u v : List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))}
@@ -339,10 +339,10 @@ theorem isPiece_map_unrelabelJoint
   · intro hcontra
     exact hne (map_unrelabelJoint_injOn hv' hv hcontra)
   · rw [hv'split, List.map_append]
-  · rw [← halphabet]
-    exact hy
-  · rw [← halphabet]
-    exact hz
+  · exact le_trans (WordMetric.wordNorm_mono halphabet
+      (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating y)) hy
+  · exact le_trans (WordMetric.wordNorm_mono halphabet
+      (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating z)) hz
   · rw [listVal_map_unrelabelJoint, listVal_map_unrelabelJoint]
     exact hval
   · rw [listVal_map_unrelabelJoint, listVal_map_unrelabelJoint]
@@ -350,7 +350,7 @@ theorem isPiece_map_unrelabelJoint
 
 /-- The published piece relation reads back in the same way. -/
 theorem isPublishedPiece_map_unrelabelJoint
-    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (halphabet : joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier)
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {eps : ℕ}
     {u u' v : List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))}
@@ -365,10 +365,10 @@ theorem isPublishedPiece_map_unrelabelJoint
     s'.map unrelabelJoint, ?_, y, z, ?_, ?_, ?_, ?_⟩
   · rw [hs, List.map_append]
   · rw [hv'split, List.map_append]
-  · rw [← halphabet]
-    exact hy
-  · rw [← halphabet]
-    exact hz
+  · exact le_trans (WordMetric.wordNorm_mono halphabet
+      (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating y)) hy
+  · exact le_trans (WordMetric.wordNorm_mono halphabet
+      (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating z)) hz
   · rw [listVal_map_unrelabelJoint, listVal_map_unrelabelJoint]
     exact hval
   · rw [listVal_map_unrelabelJoint, listVal_map_unrelabelJoint]
@@ -393,24 +393,16 @@ theorem isLemma44Input_jointRelabelWords
       x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base)
     (hfamInr : ∀ i : AuxiliaryPeripheralIndex k,
       joint.fam (Sum.inr i) = selected.rel.fam i)
-    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (halphabet : joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier)
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {eps rho : ℕ} {mu : ℝ}
     (hWbase : ∀ v ∈ W, ∀ x : G, GGT.RelLetter.base x ∈ v → x ∈ joint.base)
     (hsc : RelWord.IsLemma44Input selected.rel W eps mu rho) :
     RelWord.IsLemma44Input joint (jointRelabelWords (Lambda := Lambda) W)
       eps mu rho := by
-  refine
-    { admissible := ?_
-      inv_mem := ?_
-      rotate_mem := ?_
-      long := ?_
-      deep := ?_
-      pieces_small := ?_
-      quasiGeodesic := ?_
-      publishedPiecesSmall := ?_
-      stronglyBounded := ?_ }
-  · intro v hv a ha
+  have hadm : ∀ v ∈ jointRelabelWords (Lambda := Lambda) W,
+      ∀ a ∈ v, joint.IsLetter a := by
+    intro v hv a ha
     obtain ⟨v₀, hv₀, hmap⟩ := mem_jointRelabelWords_iff.mp hv
     rw [← hmap] at ha
     obtain ⟨a₀, ha₀, hab⟩ := List.mem_map.mp ha
@@ -423,6 +415,16 @@ theorem isLemma44Input_jointRelabelWords
         show g ∈ joint.fam (Sum.inr i)
         rw [hfamInr i]
         exact hsc.admissible v₀ hv₀ (GGT.RelLetter.comp i g) ha₀
+  refine
+    { admissible := hadm
+      inv_mem := ?_
+      rotate_mem := ?_
+      long := ?_
+      deep := ?_
+      pieces_small := ?_
+      quasiGeodesic := ?_
+      publishedPiecesSmall := ?_
+      stronglyBounded := ?_ }
   · intro v hv
     obtain ⟨v₀, hv₀, hmap⟩ := mem_jointRelabelWords_iff.mp hv
     refine mem_jointRelabelWords_iff.mpr
@@ -460,12 +462,33 @@ theorem isLemma44Input_jointRelabelWords
   · intro v hv
     obtain ⟨v₀, hv₀, hmap⟩ := mem_jointRelabelWords_iff.mp hv
     have hqg := hsc.quasiGeodesic v₀ hv₀
-    have hchain : (fun i => GGT.RelLetter.listVal (v.take i)) =
-        fun i => GGT.RelLetter.listVal (v₀.take i) := by
-      funext i
+    have hchain : ∀ i : ℕ, GGT.RelLetter.listVal (v.take i) =
+        GGT.RelLetter.listVal (v₀.take i) := by
+      intro i
       rw [← hmap, take_map_relabelLetter, listVal_map_relabelLetter]
-    rw [halphabet, hchain, ← hmap, List.length_map]
-    exact hqg
+    have hlen : v.length = v₀.length := by
+      rw [← hmap, List.length_map]
+    intro i j hij hj
+    have hjv : j ≤ v.length := hj
+    rw [hlen] at hj
+    obtain ⟨hlow, -⟩ := hqg i j hij hj
+    refine ⟨?_, ?_⟩
+    · have hmono : WordMetric.wordDist selected.rel.alphabet.carrier
+          (GGT.RelLetter.listVal (v₀.take i))
+          (GGT.RelLetter.listVal (v₀.take j)) ≤
+            WordMetric.wordDist joint.alphabet.carrier
+              (GGT.RelLetter.listVal (v₀.take i))
+              (GGT.RelLetter.listVal (v₀.take j)) :=
+        WordMetric.wordNorm_mono halphabet
+          (WordMetric.wordLengths_nonempty joint.alphabet.symmetricGenerating _)
+      rw [hchain i, hchain j]
+      exact le_trans hlow (by exact_mod_cast hmono)
+    · have hupper := GGT.OsinComponents.wordDist_vertex_le' joint
+        (hadm v hv) 1 hij hjv
+      rw [GGT.OsinComponents.vertex_eq_mul_listVal_take v 1 i,
+        GGT.OsinComponents.vertex_eq_mul_listVal_take v 1 j,
+        one_mul, one_mul] at hupper
+      exact hupper
   · intro u u' v hpiece
     have hsel := hsc.publishedPiecesSmall (u.map unrelabelJoint)
       (u'.map unrelabelJoint) (v.map unrelabelJoint)
@@ -495,7 +518,7 @@ theorem relatorRespellingAt_joint
       x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base)
     (hfamInr : ∀ i : AuxiliaryPeripheralIndex k,
       joint.fam (Sum.inr i) = selected.rel.fam i)
-    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (halphabet : joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier)
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {eps0 rho0 eps rho : ℕ} {mu : ℝ}
     (heps : eps0 ≤ eps) (hrho : rho0 ≤ rho) (h20 : 20 * (eps + 1) ≤ rho)
@@ -616,7 +639,7 @@ theorem relatorRespellings_of_original
       x ∈ joint.fam (Sum.inl lam) → x ∈ selected.rel.base)
     (hfamInr : ∀ i : AuxiliaryPeripheralIndex k,
       joint.fam (Sum.inr i) = selected.rel.fam i)
-    (halphabet : joint.alphabet.carrier = selected.rel.alphabet.carrier)
+    (halphabet : joint.alphabet.carrier ⊆ selected.rel.alphabet.carrier)
     (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000) (eps0 rho0 : ℕ) :
     ∃ eps rho : ℕ,
       ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
