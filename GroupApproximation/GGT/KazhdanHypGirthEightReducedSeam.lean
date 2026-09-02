@@ -24,7 +24,8 @@ universe u w v
 
 variable {Generator TriangleIndex : Type}
   {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
-  {W : Set (List (RelLetter (FreeGroup Generator) PEmpty))}
+  {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (RelLetter G Lambda))}
 
 /-- A mirror corner pair is witnessed by two ordered relator cells and the
 transported cancellation equation used by `DiscDiagram.Reduced`.  This is
