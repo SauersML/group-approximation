@@ -136,7 +136,12 @@ theorem relatorFaceSingletonProducer_of_topology
       C ∈ Delta.relatorCells →
       ∃ hno : NoInternalFaceDart Delta.toCombMap C.face,
         Nonempty (SingletonDiscRegionData (Delta := Delta) C.face hno)) :
-    RelatorFaceSingletonProducer (u := u) (w := w) (v := v) (W := W) := by
+    RelatorFaceSingletonProducer (W := W) := by
+  change ∀ (Delta : DiscDiagram.{u, w, v} W)
+    (C : RelatorCell Delta.toCombMap Delta.outerFace W),
+    C ∈ Delta.relatorCells →
+    ∃ region : IsDiscRegion Delta.toCombMap {C.face},
+      region.toBoundaryCycle.cycle = (Delta.faceBoundary C.face).darts
   intro Delta C hC
   obtain ⟨hno, ⟨data⟩⟩ := hdata Delta C hC
   exact ⟨data.toIsDiscRegion, singleton_discRegion_boundary_eq data⟩
