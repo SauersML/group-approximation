@@ -122,38 +122,44 @@ theorem exists_relLetter_of_mem_alphabet (D : GGT.RelGenSet G Lambda) {x : G}
   · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hx
     exact ⟨GGT.RelLetter.comp lam x, hlam, rfl⟩
 
-/-- A word over the relative alphabet becomes a word of legal letters spelling
-the same element. -/
+/-- A word over the relative alphabet becomes a word of legal letters of the
+same length spelling the same element. -/
 theorem exists_word_of_alphabetList (D : GGT.RelGenSet G Lambda)
     (l : List G) (hl : ∀ x ∈ l, x ∈ D.alphabet.carrier) :
     ∃ word : List (GGT.RelLetter G Lambda),
-      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = l.prod := by
+      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = l.prod ∧
+        word.length = l.length := by
   induction l with
   | nil =>
-      refine ⟨[], ?_, rfl⟩
+      refine ⟨[], ?_, rfl, rfl⟩
       intro a ha
       simp at ha
   | cons x t ih =>
       obtain ⟨a, ha, hav⟩ := exists_relLetter_of_mem_alphabet D (hl x (by simp))
-      obtain ⟨word, hword, hval⟩ :=
+      obtain ⟨word, hword, hval, hlen⟩ :=
         ih (fun y hy => hl y (List.mem_cons_of_mem _ hy))
-      refine ⟨a :: word, ?_, ?_⟩
+      refine ⟨a :: word, ?_, ?_, ?_⟩
       · intro b hb
         rcases List.mem_cons.mp hb with hb | hb
         · rw [hb]
           exact ha
         · exact hword b hb
       · rw [GGT.OsinComponents.listVal_cons, hav, hval, List.prod_cons]
+      · rw [List.length_cons, List.length_cons, hlen]
 
-/-- **Every group element is spelled by a word of legal letters**, because the
-relative alphabet generates. -/
+/-- **Every group element is spelled by a geodesic word of legal letters**,
+because the relative alphabet generates.  The length is the relative word norm,
+which is the blow-up factor of one letter under the expansion. -/
 theorem exists_word_of_relGenSet (D : GGT.RelGenSet G Lambda) (g : G) :
     ∃ word : List (GGT.RelLetter G Lambda),
-      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = g := by
+      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = g ∧
+        word.length = wordNorm D.alphabet.carrier g := by
   obtain ⟨l, hl⟩ := exists_isGeodesicWord D.alphabet.symmetricGenerating g
-  obtain ⟨word, hword, hval⟩ :=
+  obtain ⟨word, hword, hval, hlen⟩ :=
     exists_word_of_alphabetList D l hl.isWord.letters
-  exact ⟨word, hword, by rw [hval, hl.isWord.prod_eq]⟩
+  refine ⟨word, hword, ?_, ?_⟩
+  · rw [hval, hl.isWord.prod_eq]
+  · rw [hlen, hl.length_eq]
 
 variable {k : ℕ}
 
@@ -173,7 +179,14 @@ theorem canonicalSpelling_letters (original : GGT.RelGenSet G Lambda)
 theorem canonicalSpelling_value (original : GGT.RelGenSet G Lambda)
     (a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)) :
     GGT.RelLetter.listVal (canonicalSpelling original a) = a.val :=
-  (Classical.choose_spec (exists_word_of_relGenSet original a.val)).2
+  (Classical.choose_spec (exists_word_of_relGenSet original a.val)).2.1
+
+/-- The blow-up of one letter is its relative word norm. -/
+theorem canonicalSpelling_length_eq (original : GGT.RelGenSet G Lambda)
+    (a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)) :
+    (canonicalSpelling original a).length =
+      wordNorm original.alphabet.carrier a.val :=
+  (Classical.choose_spec (exists_word_of_relGenSet original a.val)).2.2
 
 /-- Only the identity is spelled by the empty word, so every letter with a
 nontrivial value has a nonempty spelling. -/
