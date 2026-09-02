@@ -491,7 +491,7 @@ theorem rev_mk_ne_zero {n k : ℕ} (hk : k + 1 < n) :
       (⟨0, by omega⟩ : Fin n) := by
   intro hzero
   have hval := congrArg Fin.val hzero
-  simp only [Fin.val_rev, Fin.val_mk] at hval
+  simp only [Fin.val_rev] at hval
   exact (Nat.sub_pos_iff_lt.mpr hk).ne' hval
 
 /-- Reversed finite indices turn an ordinary successor into a cyclic
