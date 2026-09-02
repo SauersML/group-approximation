@@ -430,6 +430,68 @@ def SelectionFaceDropOracle
           Delta'.Reduced ∧ 0 < Delta'.rCellCount ∧
             IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord
 
+/-! ## Retyping the map-level region replacement -/
+
+/-- The relator-cell equivalence carried by a `GRegionReplacement` is the
+`O`-equivalence required by the estimating selection statement.  Its index
+map is the finite cast supplied by the ordered relator-cell equivalence, and
+the word field follows by taking the corresponding entry of the transported
+cell list. -/
+def OEquivalentDiscDiagram.ofGRegionReplacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (replacement : Surgery.GRegionReplacement Delta) :
+    OEquivalentDiscDiagram Delta replacement.diagram := by
+  let cells := replacement.cells
+  refine {
+    boundaryWord_eq := replacement.outerWord_eq
+    cellIndex := cells.indexEquiv
+    cellWord_eq := ?_ }
+  intro i
+  have hlist : replacement.diagram.relatorCells =
+      Delta.relatorCells.map cells.cellEquiv := cells.cells_eq
+  have hindex : (cells.indexEquiv i).val = i.val := by
+    rfl
+  change (replacement.diagram.relatorCells.get (cells.indexEquiv i)).word =
+    (Delta.relatorCells.get i).word
+  rw [hlist]
+  rw [hindex]
+  exact List.getElem_map_rev RelatorCell.word
+
+/-- A map-level region replacement with a strict face-count drop supplies the
+drop branch of the Lemma 65(a) face-drop oracle.  The relator count, reducedness,
+and boundary quasi-geodesicity are transported by the replacement certificate. -/
+theorem selection_drop_of_gRegionReplacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (hred : Delta.Reduced)
+    (hcells : 0 < Delta.rCellCount)
+    (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord)
+    (replacement : Surgery.GRegionReplacement Delta)
+    (hdrop : replacement.diagram.toCombMap.faceCount <
+      Delta.toCombMap.faceCount) :
+    ∃ Delta' : DiscDiagram.{u, w, v} W,
+      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        Delta'.toCombMap.faceCount < Delta.toCombMap.faceCount ∧
+        Delta'.Reduced ∧ 0 < Delta'.rCellCount ∧
+          IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord := by
+  let Delta' := replacement.diagram
+  let equiv : OEquivalentDiscDiagram Delta Delta' :=
+    OEquivalentDiscDiagram.ofGRegionReplacement replacement
+  have hred' : Delta'.Reduced := replacement.reduced hred
+  have hcount' : Delta'.rCellCount = Delta.rCellCount :=
+    replacement.rCellCount_eq
+  have hcells' : 0 < Delta'.rCellCount := by
+    rw [hcount']
+    exact hcells
+  have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord :=
+    equiv.boundary_quasiGeodesic hboundary
+  exact ⟨Delta', ⟨equiv⟩, hdrop, hred', hcells', hboundary'⟩
+
 /-- O-equivalence composes, so successive face-drop surgeries retain the
 boundary word and ordered relator-cell words. -/
 def OEquivalentDiscDiagram.trans
