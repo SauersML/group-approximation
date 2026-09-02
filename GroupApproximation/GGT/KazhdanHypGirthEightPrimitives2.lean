@@ -1125,6 +1125,7 @@ theorem PowerDiscMirrorPairDeletion.area_drop
   rw [C.result_diagram_eq]
   exact C.topological.area_drop
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Once the concrete `SurgeryMap` cut is supplied for each ordered mirror
 pair, it proves the cancellation premise consumed by least-area reduction. -/
 theorem cancellationReducesArea_of_concreteMirrorPairDeletion
