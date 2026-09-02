@@ -2509,7 +2509,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                     vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := heq
                 _ = vertex (1 : G) Q Q.length := by
                   rw [htargetEq, hrczero, Nat.sub_self]
-                  simpa using vertex_fourGon_opposite_closed pc P rc Q hclose Q.length
+                  have hv := vertex_fourGon_opposite_closed pc P rc Q hclose Q.length
+                  convert hv using 1 <;> omega
       · rcases hrest with hrcase | hscase
         · exact Or.inr (Or.inr hrcase)
         · exfalso
