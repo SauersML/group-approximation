@@ -61,10 +61,8 @@ structure EstimatingGraphData
     {W : Set (List (GGT.RelLetter G Lambda))}
     (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W)
     (scaffold : EstimatingScaffold D eps Delta) where
-  outer : ∀ i : Fin Delta.rCellCount,
-    Option (EmbeddedBoundaryContiguity D eps Delta i)
   outerWeight_eq : ∀ i : Fin Delta.rCellCount,
-    (match outer i with
+    (match Embedded.selectedOuter scaffold.selected.family i with
       | none => 0
       | some contiguity => contiguity.weight) =
         scaffold.partition.kindWeight Embedded.CellArcKind.exterior i
@@ -169,7 +167,7 @@ noncomputable def ofScaffold
     EstimatingData D eps mu Delta where
   selected := scaffold.selected
   partition := scaffold.partition
-  outer := graph.outer
+  outer := Embedded.selectedOuter scaffold.selected.family
   outerWeight_eq := graph.outerWeight_eq
   InteriorEdge := Embedded.InteriorEdge scaffold.selected.family
   interiorEdgeFintype := inferInstance
