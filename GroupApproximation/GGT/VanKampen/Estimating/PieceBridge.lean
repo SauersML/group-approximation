@@ -425,6 +425,41 @@ structure ReducedCellPieceBridge
   connector_value_eq : connector =
       (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹
 
+/-- A cell-to-cell contiguity witness supplies the reducedness field of the
+embedded bridge after the three carrier/value identifications are checked. -/
+def ReducedCellPieceBridge.of_cellContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    {targetIndex : Fin Delta.rCellCount}
+    (htarget : Gamma.target = some targetIndex)
+    {pre between suf : List
+      (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (cellGamma : CellContiguity (D := D) (eps := eps)
+      pre between suf sourceCell targetCell)
+    (hcarrier : GGT.RelLetter.listVal
+        (Gamma.targetInverseCarrier targetIndex htarget) =
+      GGT.RelLetter.listVal (RelWord.revInv targetCell.word))
+    (hsource : GGT.RelLetter.listVal
+        (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal sourceCell.word)
+    (hconnector : cellGamma.region.leftConnector =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹) :
+    ReducedCellPieceBridge Gamma where
+  target := targetIndex
+  target_eq := htarget
+  targetWord := targetCell.word
+  sourceWord := sourceCell.word
+  connector := cellGamma.region.leftConnector
+  whole_relators_ne := fun hred _ => cellGamma.whole_relators_ne hred
+  targetCarrier_value_eq := hcarrier
+  sourceRotated_value_eq := hsource
+  connector_value_eq := hconnector
+
 namespace ReducedCellPieceBridge
 
 /-- Diagram reducedness transfers through a `ReducedCellPieceBridge` to the
