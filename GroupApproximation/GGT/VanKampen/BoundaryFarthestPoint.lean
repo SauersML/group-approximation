@@ -35,12 +35,14 @@ noncomputable local instance boundaryVertexDecidableEq :
 /-- The finite set of vertices visited by a stored face boundary. -/
 noncomputable def faceBoundaryVertices
     {M : CombMap} {f : M.Face} (B : FaceBoundary M f) : Finset M.Vertex :=
-  (B.darts.map M.vertexOf).toFinset
+  by
+    classical
+    exact (B.darts.map M.vertexOf).toFinset
 
 theorem faceBoundaryVertices_nonempty
     {M : CombMap} {f : M.Face} (B : FaceBoundary M f) :
     (faceBoundaryVertices B).Nonempty := by
-  obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil B.nonempty
+  obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil B.darts B.nonempty
   refine ⟨M.vertexOf d, ?_⟩
   rw [faceBoundaryVertices, List.mem_toFinset]
   exact List.mem_map.mpr ⟨d, hd, rfl⟩
@@ -93,10 +95,21 @@ theorem farthestBoundaryPoint_of_faceBoundary
   classical
   let vertices := faceBoundaryVertices B
   let hvertices : vertices.Nonempty := faceBoundaryVertices_nonempty B
-  let vertex := vertices.max' hvertices
-  have hvertex : vertex ∈ vertices := Finset.max'_mem vertices hvertices
-  rw [faceBoundaryVertices, List.mem_toFinset] at hvertex
-  obtain ⟨dart, hdart, hdart_vertex⟩ := List.mem_map.mp hvertex
+  let weights : Finset ℕ := vertices.image weight
+  have hweights : weights.Nonempty := Finset.image_nonempty.mpr hvertices
+  let maxWeight := weights.max' hweights
+  have hmaxWeight : maxWeight ∈ weights := Finset.max'_mem weights hweights
+  obtain ⟨vertex, hvertex, hvertex_weight⟩ :=
+    Finset.mem_image.mp hmaxWeight
+  have hmax : ∀ u ∈ vertices, weight u ≤ weight vertex := by
+    intro u hu
+    have huweights : weight u ∈ weights := Finset.mem_image.mpr ⟨u, hu, rfl⟩
+    have hle : weight u ≤ maxWeight := Finset.le_max' weights (weight u)
+      huweights
+    exact hvertex_weight ▸ hle
+  have hvertex' : vertex ∈ faceBoundaryVertices B := hvertex
+  rw [faceBoundaryVertices, List.mem_toFinset] at hvertex'
+  obtain ⟨dart, hdart, hdart_vertex⟩ := List.mem_map.mp hvertex'
   obtain ⟨before, after, hsplit⟩ := exists_append_cons_of_mem dart hdart
   refine ⟨{
     dart := dart
@@ -108,7 +121,7 @@ theorem farthestBoundaryPoint_of_faceBoundary
     after := after
     split := hsplit }⟩
   intro u hu
-  exact Finset.le_max' vertices u hu
+  exact hmax u hu
 
 theorem farthestBoundaryPoint_vertex_mem
     {M : CombMap} {f : M.Face} (B : FaceBoundary M f)
