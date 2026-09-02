@@ -383,7 +383,58 @@ theorem relativeGreendlingerBaseGeodesicStatement_of_components
   rw [hlengthEq]
   exact le_trans hstep (le_trans (le_of_lt hlarge) hCreal)
 
+/-- **The unrestricted statement from the estimating components and the two
+named residues.**  This is the composite the manuscript lane asked for: the
+three est construction propositions, the one-cell arc conversion, and the
+boundary universality.  The vk realization statement does not appear, being
+proved. -/
+theorem hullSC_relativeGreendlingerStatement_of_components
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+    (hconv : RelativeExteriorArcConversionStatement.{u, w})
+    (hall : AllReducedDiagramsHaveBaseGeodesicBoundary.{u, w}) :
+    RelativeGreendlingerStatement.{u, w} :=
+  relativeGreendlingerStatement_of_baseGeodesicStatement
+    (relativeGreendlingerBaseGeodesicStatement_of_components
+      hselection hpieces hunbound hconv)
+    hall
+
 /-! ## Consumers reached by the restricted statement -/
+
+/-- **The added clause is exactly about peripheral letters on the boundary.**
+If the relative alphabet adds nothing to the base then every geodesic
+designated boundary word satisfies the clause, so the restriction bites only
+on diagrams whose boundary word reads a letter of a peripheral subgroup that
+is not already a base letter. -/
+theorem hasBaseGeodesicBoundary_of_alphabet_carrier_subset_base
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (hsub : D.alphabet.carrier ⊆ D.base)
+    (Z : RelativeReducedDiagram D W R)
+    (hgeo : Z.boundaryWord.length
+      = WordMetric.wordNorm D.alphabet.carrier Z.boundary) :
+    Z.HasBaseGeodesicBoundary := by
+  show GGT.OsinComponents.IsGeodesicWord D 1 Z.boundary
+    (Z.boundaryWord.map (GGT.RelLetter.base : G → GGT.RelLetter G Lambda))
+  refine ⟨?_, ?_, ?_⟩
+  · intro a ha
+    obtain ⟨x, hx, rfl⟩ := List.mem_map.mp ha
+    exact hsub (Z.boundaryWord_isWord.letters x hx)
+  · rw [listVal_map_base, one_mul]
+    exact Z.boundaryWord_isWord.prod_eq
+  · have hlen : (Z.boundaryWord.map
+        (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)).length
+          = Z.boundaryWord.length := by simp
+    have hdist : WordMetric.wordDist D.alphabet.carrier 1 Z.boundary
+        = WordMetric.wordNorm D.alphabet.carrier Z.boundary :=
+      WordMetric.wordDist_one_left _ _
+    rw [hlen, hdist]
+    exact hgeo
 
 /-- The base reading of a word of group elements spells its product; this is
 `HullSC.listVal_map_base` of `GGT/HullSCRelatorWord.lean`. -/
