@@ -301,7 +301,7 @@ theorem firstBrokenStartSlot_span_cases
     unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases B.firstSourceEntry_source s hs
+    cases (B.firstSourceEntry_source s hs).symm
     rfl
   · rw [B.firstBrokenStartSlot_span C hs]
     have hf' : ¬ B.firstGapRunsForward
@@ -310,7 +310,7 @@ theorem firstBrokenStartSlot_span_cases
     unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases B.firstSourceEntry_source s hs
+    cases (B.firstSourceEntry_source s hs).symm
     rfl
 
 /-- The first-half exit slot is the inverse plain exit connector in the
@@ -340,7 +340,7 @@ theorem firstBrokenEndSlot_span_cases
     unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases B.firstSourceEntry_source s hs
+    cases (B.firstSourceEntry_source s hs).symm
     rfl
   · rw [B.firstBrokenEndSlot_span C hs]
     have hf' : ¬ B.firstGapRunsForward
@@ -349,7 +349,7 @@ theorem firstBrokenEndSlot_span_cases
     unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases B.firstSourceEntry_source s hs
+    cases (B.firstSourceEntry_source s hs).symm
     rfl
 
 /-- The wrapped entry convention is opposite: forward gaps use the
@@ -379,7 +379,7 @@ theorem secondBrokenStartSlot_span_cases
     unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases B.secondSourceEntry_source s hs
+    cases (B.secondSourceEntry_source s hs).symm
     rfl
   · rw [B.secondBrokenStartSlot_span C hs]
     have hf' : ¬ B.secondGapRunsForward
@@ -388,7 +388,7 @@ theorem secondBrokenStartSlot_span_cases
     unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases B.secondSourceEntry_source s hs
+    cases (B.secondSourceEntry_source s hs).symm
     rfl
 
 /-- Forward wrapped exit gaps use the inverse exit-through-partner
@@ -418,7 +418,7 @@ theorem secondBrokenEndSlot_span_cases
     unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases B.secondSourceEntry_source s hs
+    cases (B.secondSourceEntry_source s hs).symm
     rfl
   · rw [B.secondBrokenEndSlot_span C hs]
     have hf' : ¬ B.secondGapRunsForward
@@ -427,7 +427,7 @@ theorem secondBrokenEndSlot_span_cases
     unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases B.secondSourceEntry_source s hs
+    cases (B.secondSourceEntry_source s hs).symm
     rfl
 
 /-- The selected first-half partner span is the inverse forward global-chord
