@@ -197,7 +197,7 @@ theorem firstArc_quasi
       · subst s
         simpa only [Nat.add_zero] using
           B.firstVertex_mem.1.trans (Nat.le_add_right B.firstVertex p)
-      · have hcut := B.firstArcCut_of_pos (by omega) (by omega)
+      · have hcut := B.firstArcCut_of_pos (s := s) (by omega) (by omega)
         rw [hcut] at hp
         have hvertex := B.firstVertex_mem.2.trans
           (P.polygonCut.mono_le (show B.firstSide + 1 ≤
@@ -206,11 +206,14 @@ theorem firstArc_quasi
     have hright : B.firstVertex + q ≤ P.cut (B.firstSide + s + 1) := by
       have hvertices := B.split_vertices_ordered
       by_cases hlast : s = B.secondSide - B.firstSide
-      · rw [hlast, B.firstArcCut_last_succ] at hq
+      · subst s
+        rw [B.firstArcCut_last_succ] at hq
+        rw [show B.firstSide + (B.secondSide - B.firstSide) + 1 =
+          B.secondSide + 1 by omega]
         have hvertex := B.secondVertex_mem.2
         omega
       · have hslt : s < B.secondSide - B.firstSide := by omega
-        have hcut := B.firstArcCut_succ_of_lt hslt
+        have hcut := B.firstArcCut_succ_of_lt (s := s) hslt
         rw [hcut] at hq
         have hvertex := B.firstVertex_mem.2.trans
           (P.polygonCut.mono_le (show B.firstSide + 1 ≤
@@ -231,11 +234,17 @@ theorem firstArc_quasi
           B.secondSide + 2 by omega] using hqEnd
     have hpArc : p ≤ B.refinedCut (B.secondSide + 2) -
         B.refinedCut (B.firstSide + 1) := hpq.trans hqArc
-    have hvp := vertex_arcWord P.word P.basepoint B.refinedCut hpArc
-    have hvq := vertex_arcWord P.word P.basepoint B.refinedCut hqArc
+    have hvp : vertex B.firstBase B.firstArc p =
+        vertex P.basepoint P.word (B.firstVertex + p) := by
+      simpa only [firstBase, firstArc, hbase] using
+        vertex_arcWord P.word P.basepoint B.refinedCut hpArc
+    have hvq : vertex B.firstBase B.firstArc q =
+        vertex P.basepoint P.word (B.firstVertex + q) := by
+      simpa only [firstBase, firstArc, hbase] using
+        vertex_arcWord P.word P.basepoint B.refinedCut hqArc
     have hdiff : B.firstVertex + q - (B.firstVertex + p) = q - p := by
       omega
-    simpa only [firstBase, firstArc, hbase, hvp, hvq, hdiff] using
+    simpa only [hvp, hvq, hdiff] using
       hparentQuasi
   · have hpqEq : p = q := by omega
     subst q
@@ -263,7 +272,7 @@ theorem refinedCut_secondArc_of_pos
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (hs0 : 0 < s) (hs : s ≤ n - B.secondSide) :
+    (hs0 : 0 < s) :
     B.refinedCut (B.secondSide + 2 + s) =
       P.cut (B.secondSide + s) := by
   have horder := B.side_order
@@ -319,7 +328,7 @@ theorem secondArcCut_of_pos_le_tail
   simp only [secondArcCut,
     appendCut_apply_of_le _ _ _ _ houter,
     appendCut_apply_of_le _ _ _ _ hinner]
-  rw [B.refinedCut_secondArc_of_pos hs0 (by omega), hbase]
+  rw [B.refinedCut_secondArc_of_pos hs0, hbase]
 
 /-- After crossing the old word seam, the wrapped cut is the suffix length
 plus the corresponding original prefix corner. -/
@@ -339,19 +348,17 @@ theorem secondArcCut_tail_add
   have houter : tail + r ≤ tail + (B.firstSide + 1) := by omega
   have hzero : B.refinedCut 0 = 0 := by
     rw [B.refinedCut_before_first (Nat.zero_le _), P.polygonCut.start]
-  have hinner := appendCut_apply_add
-    (fun s => B.refinedCut (B.secondSide + 2 + s) -
-      B.refinedCut (B.secondSide + 2)) B.refinedCut tail r hzero
   have hbase : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
     simp [refinedCut, splitPairCut_right]
   have hend : B.refinedCut (B.secondSide + 2 + tail) =
       P.word.length := by
-    rw [B.refinedCut_secondArc_of_pos htail0 (by dsimp [tail]; omega)]
+    rw [B.refinedCut_secondArc_of_pos htail0]
     have hindex : B.secondSide + tail = n := by dsimp [tail]; omega
     rw [hindex, P.polygonCut.finish]
   rw [← htail]
-  simp only [secondArcCut,
-    appendCut_apply_of_le _ _ _ _ houter, hinner, hend, hbase,
+  unfold secondArcCut
+  rw [appendCut_apply_of_le _ _ _ _ houter,
+    appendCut_apply_add _ _ _ _ hzero, hend, hbase,
     B.refinedCut_before_first hr]
 
 /-- The final wrapped side ends at the first inserted chord endpoint. -/
