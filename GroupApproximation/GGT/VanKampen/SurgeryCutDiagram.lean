@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.SurgeryCutProduct
+import GroupApproximation.GGT.VanKampen.SurgeryCutReduced
 
 /-!
 # The subdiagram cut out by a closed walk
