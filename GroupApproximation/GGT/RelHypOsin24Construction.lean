@@ -91,7 +91,18 @@ omit [Group Q] in
 theorem isOsin24SuitabilityConclusion_id (Hfam : ι → Subgroup G)
     (H : Subgroup G) (h : IsSuitableSubgroup Hfam H) :
     IsOsin24SuitabilityConclusion Hfam H (MonoidHom.id G) := by
-  simpa only [Subgroup.map_id] using h
+  have map_id (K : Subgroup G) : K.map (MonoidHom.id G) = K := by
+    ext x
+    constructor
+    · rintro ⟨y, hy, rfl⟩
+      exact hy
+    · intro hx
+      exact ⟨x, hx, rfl⟩
+  unfold IsOsin24SuitabilityConclusion
+  rw [map_id H, show (fun l => (Hfam l).map (MonoidHom.id G)) = Hfam by
+    funext l
+    exact map_id (Hfam l)]
+  exact h
 
 omit [Group Q] in
 /-- The torsion conclusion has the identity-map model. -/
