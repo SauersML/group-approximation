@@ -988,6 +988,23 @@ theorem nonempty_powerDiscCandidate_of_cactusRetyping
       relatorOnly := hrelatorOnly }
   exact ⟨candidate⟩
 
+/-- The actual `SurgeryMap` cactus deletion supplies the literal power-disc
+candidate once its replacement diagram has the prescribed boundary. -/
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem nonempty_powerDiscCandidate_of_cactusDeletion
+    (word : List (TriangularHodgeLayer.SignedGenerator Generator))
+    (hword : PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (PresentedGroupRelatorReplay.word word) = g)
+    (_hn : 0 < n) (_hpow : g ^ n = 1) (_hne : g ≠ 1)
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (C : VanKampen.CactusBaseCellDeletion Delta)
+    (hboundary : C.replacement.diagram.boundaryWord =
+      (List.replicate n (word.map signedFreeRelLetter)).flatten) :
+    Nonempty (PowerDiscCandidate T g n) := by
+  exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
+    _hn _hpow _hne Delta C.toRetyping hboundary
+
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
     (hred : D.diagram.Reduced) : PowerDisc T g n where
@@ -1063,6 +1080,71 @@ structure PowerDiscMirrorPairCut (D : PowerDiscCandidate T g n) where
   result : PowerDiscCandidate T g n
   boundaryWord_eq : result.diagram.boundaryWord = D.diagram.boundaryWord
   area_eq : result.diagram.rCellCount + 2 = D.diagram.rCellCount
+
+/-- A power-disc mirror cut whose topological output is the concrete
+`SurgeryMap` reclosure.  The matching equations identify its two deleted
+cells with the ordered pair supplied by `CancellationReducesArea`. -/
+structure PowerDiscMirrorPairDeletion
+    (D : PowerDiscCandidate T g n)
+    (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T))
+    (hsplit : D.diagram.relatorCells =
+      pre ++ C₁ :: (between ++ C₂ :: suf))
+    (hcancel :
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1) where
+  topological : VanKampen.MirrorPairDeletion D.diagram
+  pre_eq : topological.pre = pre
+  between_eq : topological.between = between
+  suf_eq : topological.suf = suf
+  first_eq : topological.first = C₁
+  second_eq : topological.second = C₂
+  result : PowerDiscCandidate T g n
+  result_diagram_eq : result.diagram = topological.replacement.diagram
+
+/-- The concrete topological mirror cut drops exactly two relator cells in a
+power-disc candidate. -/
+theorem PowerDiscMirrorPairDeletion.area_drop
+    (D : PowerDiscCandidate T g n)
+    (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T))
+    (hsplit : D.diagram.relatorCells =
+      pre ++ C₁ :: (between ++ C₂ :: suf))
+    (hcancel :
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1)
+    (C : PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel) :
+    C.result.diagram.rCellCount + 2 = D.diagram.rCellCount := by
+  rw [C.result_diagram_eq]
+  exact C.topological.area_drop
+
+/-- Once the concrete `SurgeryMap` cut is supplied for each ordered mirror
+pair, it proves the cancellation premise consumed by least-area reduction. -/
+theorem cancellationReducesArea_of_concreteMirrorPairDeletion
+    (D : PowerDiscCandidate T g n)
+    (cut : ∀ (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+      (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)),
+      (hsplit : D.diagram.relatorCells =
+        pre ++ C₁ :: (between ++ C₂ :: suf)) →
+      (hcancel :
+        (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+          (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1) →
+      PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel) :
+    CancellationReducesArea D := by
+  intro pre between suf C₁ C₂ hsplit hcancel
+  let C := cut pre between suf C₁ C₂ hsplit hcancel
+  refine ⟨C.result, ?_⟩
+  have harea := C.area_drop D pre between suf C₁ C₂ hsplit hcancel
+  omega
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A supplied mirror-pair cut proves the cancellation premise by arithmetic. -/
