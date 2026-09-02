@@ -999,11 +999,12 @@ theorem nonempty_powerDiscCandidate_of_cactusDeletion
     (_hn : 0 < n) (_hpow : g ^ n = 1) (_hne : g ≠ 1)
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (C : VanKampen.CactusBaseCellDeletion Delta)
+    (hplanar : Delta.toCombMap.IsPlanar)
     (hboundary : C.replacement.diagram.boundaryWord =
       (List.replicate n (word.map signedFreeRelLetter)).flatten) :
     Nonempty (PowerDiscCandidate T g n) := by
   exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
-    _hn _hpow _hne Delta C.toRetyping hboundary
+    _hn _hpow _hne Delta (C.toRetyping hplanar) hboundary
 
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
