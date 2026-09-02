@@ -91,6 +91,10 @@ theorem exists_relativeReducedDiagram_of_boundaryWord
   have hcellsProd :
       (cells.map Lemma44OrientedRelatorCell.value).prod = boundary := by
     rw [hcellValues, hfactorsProd]
+  have hred : ∀ pre mid suf : List G, factors = pre ++ mid ++ suf →
+      mid ≠ [] → mid.prod ≠ 1 :=
+    RelatorDefectBudget.no_trivial_subproduct_of_minimal
+      hfactorsLength hfactorsProd hfactorsSigned hminimal
   refine ⟨{
     boundaryWord := boundaryWord
     boundary := boundary
@@ -102,6 +106,9 @@ theorem exists_relativeReducedDiagram_of_boundaryWord
     cells := cells
     cells_length := hcellsLength
     cell_values_prod := hcellsProd
+    cell_relator_ne_nil := fun i =>
+      Lemma44OrientedRelatorCell.relator_ne_nil_of_reduced
+        hcellValues hred i
     no_cancelling_pair := ?_ }, rfl⟩
   intro pre between suf C₁ C₂ hsplit
   apply RelatorDefectBudget.no_cancelling_pair_of_minimal
