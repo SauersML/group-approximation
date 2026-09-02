@@ -318,6 +318,29 @@ theorem SecondGapComponentFamily.toCertificate
           (B.secondGapFinishSide j - B.secondGapStartSide j) r hr))
     exact hsep j q htarget t hne ht hconn
 
+/-- A producer for the two smaller component-family records and their
+separation propositions is exactly a producer for the two dgo target
+certificates. -/
+theorem exists_gapTargetCertificates_of_componentFamilies
+    {D : RelGenSet G Λ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (produce : ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
+      (B : BalancedSplitData D hsymm b hδ P k R),
+      Nonempty (FirstGapComponentFamily B) ∧
+      Nonempty (SecondGapComponentFamily B) ∧
+      FirstGapTargetSeparation B ∧ SecondGapTargetSeparation B) :
+    ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
+      (B : BalancedSplitData D hsymm b hδ P k R),
+      Nonempty (FirstGapTargetCertificate B) ∧
+      Nonempty (SecondGapTargetCertificate B) := by
+  intro n k R P B
+  obtain ⟨first, second, hfirstSep, hsecondSep⟩ := produce P B
+  obtain ⟨first⟩ := first
+  obtain ⟨second⟩ := second
+  exact ⟨⟨first.toCertificate hfirstSep⟩,
+    ⟨second.toCertificate hsecondSep⟩⟩
+
 /-! ## Model tests for the smaller propositions -/
 
 /-- Empty target sets satisfy first-gap separation by vacuity. -/
