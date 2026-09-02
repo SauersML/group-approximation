@@ -206,5 +206,18 @@ theorem jointAuxiliaryPeripheralEmbedding_of_proposition414Uniform
   intro x hx
   exact Or.inl (GGT.RelHyp.properBase_subset_base original hx)
 
+/-- **The unrepaired family-inclusion leaf, from Proposition 4.14 and the
+repaired joint leaf.**
+
+This is the whole of Proposition 4.35's contribution to the assembly, in one
+step: the joint-selection input is a theorem, so the only inputs left are
+Proposition 4.14 and Hull's Lemma 4.4 in its repaired joint form. -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_proposition414Uniform
+    (h414 : GGT.OsinComponents.DGOProposition414Uniform.{u, 0})
+    (h44 : HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
+  hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
+    (jointAuxiliaryPeripheralEmbedding_of_proposition414Uniform h414) h44
+
 end HullSC
 end GroupApproximation
