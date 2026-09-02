@@ -149,6 +149,121 @@ noncomputable def localData_of_cellularReduced
       (certificate v hv) (cellularReduced v hv)
   boundaryVertexDegree := hboundary
 
+/-! ## Cayley labels from path integration -/
+
+/-- A directed edge path in the one-skeleton of a combinatorial map. -/
+inductive DartPath (M : VanKampen.CombMap.{u}) : M.Vertex → M.Vertex → Type u
+  | nil (v : M.Vertex) : DartPath M v v
+  | cons (d : M.Dart) {finish : M.Vertex}
+      (rest : DartPath M (M.vertexOf (M.alpha d)) finish) :
+      DartPath M (M.vertexOf d) finish
+
+namespace DartPath
+
+variable {M : VanKampen.CombMap.{u}}
+
+/-- Concatenate two directed dart paths. -/
+def append {x y z : M.Vertex} :
+    DartPath M x y → DartPath M y z → DartPath M x z
+  | .nil _, q => q
+  | .cons d rest, q => .cons d (rest.append q)
+
+/-- The path consisting of one oriented dart. -/
+def single (d : M.Dart) :
+    DartPath M (M.vertexOf d) (M.vertexOf (M.alpha d)) :=
+  .cons d (.nil _)
+
+/-- The oriented darts traversed by a path. -/
+def darts {x y : M.Vertex} : DartPath M x y → List M.Dart
+  | .nil _ => []
+  | .cons d rest => d :: rest.darts
+
+@[simp]
+theorem darts_append {x y z : M.Vertex}
+    (p : DartPath M x y) (q : DartPath M y z) :
+    (p.append q).darts = p.darts ++ q.darts := by
+  induction p with
+  | nil => rfl
+  | cons d rest ih => simp [append, darts, ih]
+
+@[simp]
+theorem darts_single (d : M.Dart) : (single d).darts = [d] :=
+  rfl
+
+end DartPath
+
+/-- A chosen path from one base vertex to every map vertex.  Connectivity of
+the one-skeleton supplies this data; keeping it explicit avoids a second,
+noncomputable graph-path implementation. -/
+structure RootedPathSystem (M : VanKampen.CombMap.{u}) where
+  /-- Base vertex. -/
+  root : M.Vertex
+  /-- Chosen path from the base to a vertex. -/
+  pathTo : ∀ v, DartPath M root v
+
+/-- Evaluate a diagram path in its triangularly presented Cayley group. -/
+def cayleyPathValue
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    {x y : Delta.toCombMap.Vertex} (p : DartPath Delta.toCombMap x y) :
+    TriangularHodgeLayer.Presented T :=
+  (p.darts.map fun d ↦ presentedLetterValue T (Delta.label d)).prod
+
+@[simp]
+theorem cayleyPathValue_append
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    {x y z : Delta.toCombMap.Vertex}
+    (p : DartPath Delta.toCombMap x y) (q : DartPath Delta.toCombMap y z) :
+    cayleyPathValue Delta (p.append q) =
+      cayleyPathValue Delta p * cayleyPathValue Delta q := by
+  simp [cayleyPathValue, List.map_append, List.prod_append]
+
+@[simp]
+theorem cayleyPathValue_single
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (d : Delta.toCombMap.Dart) :
+    cayleyPathValue Delta (DartPath.single d) =
+      presentedLetterValue T (Delta.label d) := by
+  simp [cayleyPathValue]
+
+/-- Path integration is well-defined from a fixed base vertex.  For a disc
+diagram this follows from the elementary face-move theorem once every inner
+face word is a relator or a trivial base word; that face-homotopy theorem is
+not part of the current `CombMap` API, so this is its exact, strictly local
+statement. -/
+abbrev PathIntegralWellDefined
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (R : RootedPathSystem Delta.toCombMap) : Prop :=
+  ∀ (v : Delta.toCombMap.Vertex)
+    (p q : DartPath Delta.toCombMap R.root v),
+    cayleyPathValue Delta p = cayleyPathValue Delta q
+
+/-- Path-independent integration gives the exact Cayley vertex labelling used
+by `SuccessiveStarLayers.cayley`. -/
+noncomputable def cayleyVertexLabelling_of_pathIntegral
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (R : RootedPathSystem Delta.toCombMap)
+    (hwell : PathIntegralWellDefined Delta R) :
+    CayleyVertexLabelling T Delta where
+  value v := cayleyPathValue Delta (R.pathTo v)
+  edge d := by
+    let extended := (R.pathTo (Delta.toCombMap.vertexOf d)).append
+      (DartPath.single d)
+    calc
+      cayleyPathValue Delta
+          (R.pathTo (Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d))) =
+          cayleyPathValue Delta extended :=
+        (hwell _ extended (R.pathTo _)).symm
+      _ = cayleyPathValue Delta
+            (R.pathTo (Delta.toCombMap.vertexOf d)) *
+          presentedLetterValue T (Delta.label d) := by
+        simp [extended]
+
+/-- The one-triangle model has a genuine one-edge path whose dart list is the
+chosen dart. -/
+theorem oneTriangle_single_path_darts (d : VanKampen.OneTriangleDart) :
+    (DartPath.single (M := VanKampen.oneTriangleCombMap) d).darts = [d] :=
+  rfl
+
 end Table
 
 /-! ## One-triangle model test -/
