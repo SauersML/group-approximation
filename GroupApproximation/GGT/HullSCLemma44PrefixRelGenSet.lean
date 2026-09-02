@@ -164,10 +164,17 @@ theorem RelWord.inv_mem_prefixValues
   · intro hg
     exact hg.elim
 
+end HullSC
+
+namespace GGT
+namespace RelGenSet
+
+open HullSC
+
 /-! ## Source and quotient prefix relative generating sets -/
 
 /-- Enlarge the source relative base by every relator-prefix value. -/
-def GGT.RelGenSet.adjoinRelatorPrefixes
+def adjoinRelatorPrefixes
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -177,7 +184,7 @@ def GGT.RelGenSet.adjoinRelatorPrefixes
   D.adjoinSymmetricBase (RelWord.prefixValues W)
     (fun _ hg => RelWord.inv_mem_prefixValues hsc hg)
 
-@[simp] theorem GGT.RelGenSet.base_adjoinRelatorPrefixes
+@[simp] theorem base_adjoinRelatorPrefixes
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -186,7 +193,7 @@ def GGT.RelGenSet.adjoinRelatorPrefixes
     (D.adjoinRelatorPrefixes W hsc).base =
       D.base ∪ RelWord.prefixValues W := rfl
 
-@[simp] theorem GGT.RelGenSet.fam_adjoinRelatorPrefixes
+@[simp] theorem fam_adjoinRelatorPrefixes
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -195,7 +202,7 @@ def GGT.RelGenSet.adjoinRelatorPrefixes
     (D.adjoinRelatorPrefixes W hsc).fam lam = D.fam lam := rfl
 
 /-- Map the prefix-enlarged relative generating set to a quotient. -/
-noncomputable def GGT.RelGenSet.prefixQuotient
+noncomputable def prefixQuotient
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -206,7 +213,7 @@ noncomputable def GGT.RelGenSet.prefixQuotient
   (D.adjoinRelatorPrefixes W hsc).mapSurjective q hq
 
 /-- Every old base letter maps into the quotient prefix base. -/
-theorem GGT.RelGenSet.map_mem_prefixQuotient_base
+theorem map_mem_prefixQuotient_base
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -218,7 +225,7 @@ theorem GGT.RelGenSet.map_mem_prefixQuotient_base
   exact ⟨x, Set.mem_union_left _ hx, rfl⟩
 
 /-- Quotient prefix peripherals are exactly the subgroup images. -/
-@[simp] theorem GGT.RelGenSet.fam_prefixQuotient
+@[simp] theorem fam_prefixQuotient
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -228,7 +235,7 @@ theorem GGT.RelGenSet.map_mem_prefixQuotient_base
     (D.prefixQuotient W hsc q hq).fam lam = (D.fam lam).map q := rfl
 
 /-- Every relator-prefix value maps into the quotient prefix base. -/
-theorem GGT.RelGenSet.map_prefixValue_mem_prefixQuotient_base
+theorem map_prefixValue_mem_prefixQuotient_base
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
@@ -239,5 +246,6 @@ theorem GGT.RelGenSet.map_prefixValue_mem_prefixQuotient_base
     q x ∈ (D.prefixQuotient W hsc q hq).base := by
   exact ⟨x, Set.mem_union_right _ hx, rfl⟩
 
-end HullSC
+end RelGenSet
+end GGT
 end GroupApproximation
