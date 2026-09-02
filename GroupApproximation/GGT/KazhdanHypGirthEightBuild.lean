@@ -123,12 +123,10 @@ def OrientedCactusBoundaryProducer : Prop :=
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (Z : HullSC.Lemma44OrientedRelatorDiagram (u := 0) (w := 0) A
+      (Z : HullSC.Lemma44OrientedRelatorDiagram.{0, 0} A
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusBoundaryInput (T := T) := by
@@ -158,6 +156,19 @@ theorem reducedRelatorOnly_of_cactusBoundary
   obtain ⟨C⟩ := VanKampen.cactusRealizationStatement I.algebraic
   obtain ⟨R⟩ := hbase C.diagram C.reduced
   refine ⟨R.diagram, ?_, R.reduced, R.relatorOnly⟩
+  have hrelativeWord : ∀ w : List (TriangularHodgeLayer.SignedGenerator Generator),
+      (w.map freeLetter).map
+          (GGT.RelLetter.base : FreeGroup Generator →
+            GGT.RelLetter (FreeGroup Generator) PEmpty) = relativeWord w := by
+    intro w
+    induction w with
+    | nil => rfl
+    | cons u us ih =>
+        simp only [List.map_cons]
+        congr 1
+        · rcases u with ⟨g, positive⟩
+          cases positive <;> rfl
+        · exact ih
   calc
     R.diagram.boundaryWord = C.diagram.boundaryWord := R.boundaryWord_eq
     _ = I.algebraic.boundaryWord.map
@@ -168,15 +179,7 @@ theorem reducedRelatorOnly_of_cactusBoundary
           GGT.RelLetter (FreeGroup Generator) PEmpty) :=
       congrArg (List.map (GGT.RelLetter.base : FreeGroup Generator →
         GGT.RelLetter (FreeGroup Generator) PEmpty)) I.boundaryWord_eq
-    _ = relativeWord w := by
-      induction w with
-      | nil => rfl
-      | cons u us ih =>
-          simp only [List.map_cons]
-          congr 1
-          · rcases u with ⟨g, positive⟩
-            cases positive <;> rfl
-          · exact ih
+    _ = relativeWord w := hrelativeWord w
 
 /-! ## Relative base-cell elimination -/
 
@@ -209,11 +212,11 @@ theorem baseCellEliminationAt_of_relatorCellCover
   }⟩
   rw [I.rCellCount_eq]
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A landed cactus retyping certificate becomes the required reduction by
 first invoking the exact-boundary bridge and then the named identity
 reduction on its relator-only output. -/
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem baseCellEliminationAt_of_cactusRelatorRetyping
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (C : VanKampen.CactusRelatorRetyping Delta) :
@@ -238,6 +241,8 @@ def CactusRelatorRetypingAvailability : Prop :=
   ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
     Delta.Reduced → Nonempty (VanKampen.CactusRelatorRetyping Delta)
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem baseCellElimination_of_cactusRelatorRetypingAvailability
     (hcertificate : CactusRelatorRetypingAvailability (T := T)) :
     BaseCellElimination (T := T) := by
@@ -266,6 +271,8 @@ theorem baseCellEliminationAt_of_noInnerFaces
   }⟩
   rw [I.rCellCount_eq]
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- The no-inner-face model is also the empty-boundary model for the
 base-cell interface. -/
 theorem baseCellEliminationAt_emptyBoundary_model
@@ -313,7 +320,7 @@ This copy lives in the clean build closure so the build module does not need
 the repairing `KazhdanHypGirthEightPrimitives2` import. -/
 noncomputable def successiveStarLayers_of_geometricData
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
-    (L : TriangularDiagramLocalData T Delta)
+        (_L : TriangularDiagramLocalData T Delta)
     (cayley : CayleyVertexLabelling T Delta) (side : BoundarySubpath T Delta)
     (depth scale loss perimeter : ℕ)
     (hboundary : Delta.combinatorialBoundaryLength ≤ 6 * scale)
@@ -379,8 +386,7 @@ omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
-@[reducible]
-noncomputable def starLayerInput_of_faceComplete_and_layerCover
+noncomputable theorem starLayerInput_of_faceComplete_and_layerCover
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (L : TriangularDiagramLocalData T Delta)
     (C : StarLayerConstructionCertificate Delta L) (_hred : Delta.Reduced) :
@@ -507,7 +513,7 @@ theorem build_with_boundary
             Set (TriangularHodgeLayer.Presented T)) p q) →
       ∃ (w : List (TriangularHodgeLayer.SignedGenerator Generator))
         (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-        (L : TriangularDiagramLocalData T Delta)
+        (_L : TriangularDiagramLocalData T Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
         PresentedWordIsTrivial (T := T) w ∧
         Delta.boundaryWord = relativeWord w ∧
@@ -591,7 +597,8 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_retyping
     (hcertificate : CactusRelatorRetypingAvailability (T := T))
     (hstar : StarLayerConstruction (T := T)) :
     Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
-  exact presented_isHyperbolicGroup_of_cactus_star_build hchecks hword hcactus
+  exact presented_isHyperbolicGroup_of_cactus_star_build (delta := delta)
+    hchecks hword hcactus
     (baseCellElimination_of_cactusRelatorRetypingAvailability hcertificate) hstar
 
 /-- Re-export the consumer with the star construction expressed by its
@@ -603,7 +610,8 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
     (hbase : BaseCellElimination (T := T))
     (hcertificate : StarLayerConstructionCertificateInput (T := T)) :
     Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
-  exact presented_isHyperbolicGroup_of_cactus_star_build hchecks hword hcactus hbase
+  exact presented_isHyperbolicGroup_of_cactus_star_build (delta := delta)
+    hchecks hword hcactus hbase
     (starLayerConstruction_of_certificate hcertificate)
 
 /-- The clean build consumer after both certificate interfaces have been
@@ -617,7 +625,7 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_certificates
     (hstar : StarLayerConstructionCertificateInput (T := T)) :
     Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
   exact presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
-    hchecks hword
+    (delta := delta) hchecks hword
     (cactusBoundaryInput_of_orientedCactusBoundaryProducer hproducer)
     hbase hstar
 
@@ -633,7 +641,7 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_all_certificates
     (hstar : StarLayerConstructionCertificateInput (T := T)) :
     Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
   exact presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
-    hchecks hword
+    (delta := delta) hchecks hword
     (cactusBoundaryInput_of_orientedCactusBoundaryProducer hproducer)
     (baseCellElimination_of_cactusRelatorRetypingAvailability hretyping)
     hstar
