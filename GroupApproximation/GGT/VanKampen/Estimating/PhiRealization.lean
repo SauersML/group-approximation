@@ -90,7 +90,8 @@ noncomputable def phiEdgeEquiv (E : Type v) [Fintype E]
   toFun := Quotient.lift (fun d : E × Bool => d.1) (by
     rintro ⟨e₁, b₁⟩ ⟨e₂, b₂⟩ (h | h)
     · exact congrArg Prod.fst h
-    · exact congrArg Prod.fst h)
+    · have h' : ((e₁, !b₁) : E × Bool) = (e₂, b₂) := h
+      exact congrArg Prod.fst h')
   invFun e := Quotient.mk'' (e, false)
   left_inv := by
     refine Quotient.ind ?_
@@ -146,7 +147,7 @@ theorem interiorIncidencePlanarRealization_of_vertexRotation
   refine ⟨phiMap {e : InteriorEdge selected // e ∈ edges} sigma,
     hplanar, hface, hvertex, ?_⟩
   rw [phiMap_edgeCount]
-  simpa using (Nat.card_eq_finsetCard edges)
+  simp
 
 end Embedded
 end VanKampen
