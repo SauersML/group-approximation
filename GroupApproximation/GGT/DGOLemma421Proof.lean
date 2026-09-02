@@ -1020,7 +1020,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
         (peripheralOccurrence word (owner s hs)).pos + 1 < word.length := by
       simpa [Internal] using htInternal
     have horiginal := PeripheralOccurrence.isComp hW3 (owner s hs)
-    have happended := isComp_append_of_lt_421 horiginal hend
+    have happended := isComp_append_of_lt_421 (tail := close) horiginal hend
     dsimp [pos] at hposEq
     dsimp [lamSide]
     rw [dif_pos hs, show cycle = word ++ close from rfl,
@@ -1043,8 +1043,11 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
       simpa [Internal] using htInternal
     dsimp [pos] at hposEq
     dsimp [lamSide]
-    rw [dif_pos hs,
-      appendCut_oneSide_left word close (by omega), hposEq]
+    rw [dif_pos hs]
+    have hcutS : cut s = s := by
+      rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
+      exact appendCut_oneSide_left word close (by omega)
+    rw [hcutS, ← hposEq]
     exact htIsolation
   have hquasi : ∀ s : ℕ, s < word.length + 1 → s ∉ I → ∀ p q : ℕ,
       cut s ≤ p → p ≤ q → q ≤ cut (s + 1) →
@@ -1074,7 +1077,8 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
         appendCut_oneSide_left word close le_rfl
       have hcutEnd : cut (word.length + 1) = word.length + close.length :=
         appendCut_oneSide_last word close
-      rw [hcutStart, hcutEnd] at hp hq
+      rw [hcutStart] at hp
+      rw [hcutEnd] at hq
       let p' := p - word.length
       let q' := q - word.length
       have hpEq : p = word.length + p' := by
