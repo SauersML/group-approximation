@@ -2503,7 +2503,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               have htargetEq : targetN i =
                   pc.length + P.length + rc.length + (Q.length - Q.length) := by
                 rw [hni, hieq]
-                simp
+                simp [hrczero]
               calc
                 RelLetter.listVal pc * vertex (1 : G) P (source i) * hh =
                     vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := heq
