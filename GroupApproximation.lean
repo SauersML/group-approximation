@@ -3284,6 +3284,8 @@ import GroupApproximation.GGT.DGOProposition414ArcChordSeamProofWrapped
 import GroupApproximation.GGT.DGOProposition414LeftChordSeamProof
 import GroupApproximation.GGT.DGOProposition435HullBase
 import GroupApproximation.GGT.VanKampen.PermOrbitRestrict
+import GroupApproximation.GGT.DGOProposition414ComponentFamilyAssembly
+import GroupApproximation.GGT.HullSCRelativeGreendlingerPowerBoundary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
