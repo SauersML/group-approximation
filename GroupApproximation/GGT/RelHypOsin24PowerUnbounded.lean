@@ -26,6 +26,7 @@ namespace RelHyp
 
 open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 
