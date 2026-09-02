@@ -143,6 +143,20 @@ theorem mk_vertex_revWord_eq (D : RelGenSet G Λ) (lam : Λ) (f : G)
 
 /-! ## The reversal of a geodesic word -/
 
+/-- **The reverse of a geodesic word is geodesic**, given only that this word
+reverses admissibly.  Base symmetry is what the original hypothesis supplied,
+and it supplies nothing else. -/
+theorem isGeodesicWord_revWord_of_revLetters (D : RelGenSet G Λ)
+    {f g : G} {w : List (RelLetter G Λ)}
+    (hrev : ∀ x ∈ revWord w, D.IsLetter x)
+    (hw : IsGeodesicWord D f g w) :
+    IsGeodesicWord D g f (revWord w) := by
+  obtain ⟨-, hprod, hlen⟩ := hw
+  refine ⟨hrev, ?_, ?_⟩
+  · rw [listVal_revWord, ← hprod]
+    group
+  · rw [length_revWord, hlen, wordDist_comm D.alphabet.symmetricGenerating f g]
+
 /-- **The reversal of a geodesic word is a geodesic word**, on a symmetric
 base.
 
@@ -157,12 +171,9 @@ The symmetry of the base is not a restriction imposed here: it is free by
 theorem isGeodesicWord_revWord (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {f g : G}
     {w : List (RelLetter G Λ)} (hw : IsGeodesicWord D f g w) :
-    IsGeodesicWord D g f (revWord w) := by
-  obtain ⟨hlet, hprod, hlen⟩ := hw
-  refine ⟨isLetter_of_mem_revWord D hsymm hlet, ?_, ?_⟩
-  · rw [listVal_revWord, ← hprod]
-    group
-  · rw [length_revWord, hlen, wordDist_comm D.alphabet.symmetricGenerating f g]
+    IsGeodesicWord D g f (revWord w) :=
+  isGeodesicWord_revWord_of_revLetters D
+    (isLetter_of_mem_revWord D hsymm hw.1) hw
 
 end OsinComponents
 end GGT

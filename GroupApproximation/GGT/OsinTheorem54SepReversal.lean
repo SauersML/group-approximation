@@ -254,6 +254,19 @@ theorem exists_reversibleSubstitute (D : RelGenSet G Λ) :
             rw [vertex_cons_succ, vertex_cons_succ, hbVal]
             exact hvert' (v * a.val) j
 
+/-- Reversal admissibility passes to sublists: the reversal of a subword uses
+only letters the reversal of the whole word uses. -/
+theorem isLetter_of_mem_revWord_of_subset (D : RelGenSet G Λ)
+    {w u : List (RelLetter G Λ)} (hsub : ∀ x ∈ u, x ∈ w)
+    (hrev : ∀ x ∈ revWord w, D.IsLetter x) :
+    ∀ x ∈ revWord u, D.IsLetter x := by
+  intro x hx
+  have hx' : x ∈ (u.map invLetter).reverse := hx
+  obtain ⟨c, hc, rfl⟩ := List.mem_map.mp (List.mem_reverse.mp hx')
+  have hmem : invLetter c ∈ (w.map invLetter).reverse :=
+    List.mem_reverse.mpr (List.mem_map.mpr ⟨c, hsub c hc, rfl⟩)
+  exact hrev _ hmem
+
 /-- **A geodesic word whose reversal is admissible.**  Substituting letter by
 letter changes neither the length of a word nor its value, so the substitute of
 a geodesic word is again geodesic between the same two points; what it gains is
