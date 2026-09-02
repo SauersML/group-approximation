@@ -50,6 +50,21 @@ theorem hullLemma49SourceFacePastingStatement_of_faceSetBoundaryPeeling
   intro G _ Lambda D v g n eps mu Z C
   exact ⟨hpeeling C.contiguity.boundary⟩
 
+/-- The currently landed vk theorem has an explicit one-step oracle.  This
+bridge keeps that oracle visible and applies
+`faceSetBoundaryPeeling_of_faceSetBoundary` at the selected certificate. -/
+theorem hullLemma49SourceFacePastingStatement_of_vkFaceSetBoundaryPeeling
+    (horacle :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : GGT.VanKampen.DiscDiagram.{u, w, 0} W},
+        GGT.VanKampen.Embedded.FaceSetBoundaryPeelOracle
+          (Delta := Delta)) :
+    HullLemma49SourceFacePastingStatement.{u, w} := by
+  intro G _ Lambda D v g n eps mu Z C
+  exact ⟨GGT.VanKampen.Embedded.faceSetBoundaryPeeling_of_faceSetBoundary
+    C.contiguity.boundary (horacle (Delta := C.diagram))⟩
+
 /-- The source face-pasting certificate gives the embedded exterior arc used
 by the cyclic correction lemmas. -/
 theorem exists_lemma49EmbeddedExteriorArc_of_sourceFacePasting
