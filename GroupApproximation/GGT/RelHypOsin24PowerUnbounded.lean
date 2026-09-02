@@ -258,6 +258,23 @@ theorem isEscaping_of_boundedPenetration_extraction
   exact not_fixed_boundedPenetration_power_slice D hemb hhyper hord lam n k h S hS
     hdecomp
 
+/-- The named extraction frontier feeds the bounded-penetration contradiction.
+This is the source-facing finite-index form of Osin's Lemma 4.2-type argument:
+once the `cyc1`/`qc1` geometry supplies `RelativeBoundedPowerExtractionStatement`,
+the powers of every hyperbolic infinite-order element escape in the original
+finite-base relative Cayley graph. -/
+theorem isEscaping_of_relativeBoundedPowerExtraction
+    {G : Type u} [Group G] {I : Type v} [Finite I] [Nonempty I]
+    (D : RelGenSet G I) (hbase : D.base.Finite)
+    (hemb : D.IsHyperbolicallyEmbedded) {g : G}
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
+    (hExtract : RelativeBoundedPowerExtractionStatement.{u, v}) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  apply isEscaping_of_boundedPenetration_extraction D hbase hemb hhyper hord
+  intro R S hS hbounded
+  exact hExtract G inferInstance I D hbase hemb g R S hS hbounded
+
 /-/ Model test for the extraction assembly: the order premise is impossible in
 `PUnit`, so the conclusion closes regardless of the supplied extraction map. -/
 theorem isEscaping_of_boundedPenetration_extraction_trivialModel
