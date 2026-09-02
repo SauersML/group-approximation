@@ -65,6 +65,12 @@ structure ComplementaryComponents
   arcCount : Fin count → ℕ
   /-- The total length `S_i` of the type (A1) arcs of the `i`-th component. -/
   unboundLength : Fin count → ℝ
+  /-- Osin's `k_i`: the sides of the disc obtained by cutting the `i`-th
+  component along the minimal paths. -/
+  sideCount : Fin count → ℕ
+  /-- Cutting a component into a disc at most quadruples its arc count.  This
+  is Osin's inequality (622). -/
+  sideCount_le : ∀ i : Fin count, sideCount i ≤ 4 * arcCount i
   /-- The component totals add up to the diagram's unbound dart count. -/
   unbound_total : (∑ i : Fin count, unboundLength i) =
     (scaffold.partition.unboundTotal : ℝ)
@@ -124,6 +130,28 @@ theorem arcCount_le_of_components
     components.typeA12_le components.typeA3_le
 
 end ComplementaryComponents
+
+/-- The entry point to Osin's contradiction: if the components carry the whole
+`n * sqrt rho` of unbound length, then one of their discs is above the
+`1/240` density threshold.  Lemma 61's arc count and the fourfold cost of
+cutting a component into a disc are both spent here. -/
+theorem exists_dense_disc_component_of_components
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {scaffold : EstimatingScaffold D eps Delta}
+    (components : ComplementaryComponents scaffold)
+    (hcells : 0 < Delta.rCellCount)
+    (hsqrt : 0 < Real.sqrt (rho : ℝ))
+    (htotal : (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ) ≤
+      ∑ i : Fin components.count, components.unboundLength i) :
+    ∃ i : Fin components.count,
+      (components.sideCount i : ℝ) * Real.sqrt (rho : ℝ) / 240 ≤
+        components.unboundLength i :=
+  exists_component_ge_twoForty Delta.rCellCount hcells
+    (Real.sqrt (rho : ℝ)) hsqrt components.arcCount components.sideCount
+    components.unboundLength (components.arcCount_le_of_components hcells)
+    components.sideCount_le htotal
 
 /-! ## The certificate from a decomposition and the density estimate -/
 
@@ -217,6 +245,8 @@ theorem complementaryComponents_oneCell_model
     count := 0
     arcCount := fun i => Fin.elim0 i
     unboundLength := fun i => Fin.elim0 i
+    sideCount := fun i => Fin.elim0 i
+    sideCount_le := fun i => Fin.elim0 i
     unbound_total := ?_
     sections := 0
     sections_le := Nat.zero_le 4
