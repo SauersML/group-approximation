@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Deletion
+import GroupApproximation.GGT.VanKampen.Estimating.Incidence
 import GroupApproximation.GGT.VanKampen.Estimating.Partition
 import GroupApproximation.GGT.VanKampen.Estimating.Unbound
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
@@ -48,6 +49,58 @@ theorem exists_estimatingScaffold
     partition := fun i =>
       Embedded.CellBoundaryPartition.canonical selected.family i }⟩
 
+/-! ## Geometric certificates on the finite scaffold -/
+
+/-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
+The selected interior regions form a hereditary simple planar graph, their
+edge weights count exactly the positioned interior darts, and the two-gon
+condition leaves at most one exterior region at each cell. -/
+structure EstimatingGraphData
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta) where
+  outer : ∀ i : Fin Delta.rCellCount,
+    Option (EmbeddedBoundaryContiguity D eps Delta i)
+  outerWeight_eq : ∀ i : Fin Delta.rCellCount,
+    (match outer i with
+      | none => 0
+      | some contiguity => contiguity.weight) =
+        scaffold.partition.kindWeight Embedded.CellArcKind.exterior i
+  planarEdgeBound :
+    HasHereditaryPlanarEdgeBound
+      (Embedded.InteriorEdge.Incident
+        (selected := scaffold.selected.family))
+  interiorWeight_sum :
+    (∑ i : Fin Delta.rCellCount,
+        scaffold.partition.kindWeight Embedded.CellArcKind.interior i) =
+      ∑ edge : Embedded.InteriorEdge scaffold.selected.family, edge.weight
+
+/-- The G-cell boundary equation and reducedness exclusion needed to apply
+Lemma O52 to every selected cell-to-cell region. -/
+structure CellPieceData
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta) where
+  equations : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+    Embedded.CellPieceEquations edge.candidate.contiguity
+
+/-- The strict conclusion of Appendix Lemma 62 together with the final
+large-`rho` numerical threshold. -/
+structure Lemma62Data
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (mu : ℝ) (rho : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta) where
+  unbound_lt : (scaffold.partition.unboundTotal : ℝ) <
+    (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
+  threshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)
+
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
     {G : Type u} [Group G] {Lambda : Type w}
@@ -65,7 +118,7 @@ structure EstimatingData
       | none => 0
       | some contiguity => contiguity.weight) =
         partition.kindWeight Embedded.CellArcKind.exterior i
-  InteriorEdge : Type v
+  InteriorEdge : Type (max u w v)
   interiorEdgeFintype : Fintype InteriorEdge
   interiorEdgeDecidableEq : DecidableEq InteriorEdge
   incident : Fin Delta.rCellCount → InteriorEdge → Prop
@@ -98,6 +151,46 @@ attribute [instance] EstimatingData.interiorEdgeDecidableEq
 attribute [instance] EstimatingData.incidentDecidable
 
 namespace EstimatingData
+
+/-- Assemble `EstimatingData` from the exact geometric conclusions of Lemma
+65(a), O52, and Lemma 62.  Coverage, endpoint count, and both endpoint charges
+are supplied by the canonical interior-incidence graph. -/
+noncomputable def ofScaffold
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    (graph : EstimatingGraphData D eps Delta scaffold)
+    (pieces : CellPieceData D eps Delta scaffold)
+    (unbound : Lemma62Data D eps mu rho Delta scaffold)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    EstimatingData D eps mu Delta where
+  selected := scaffold.selected
+  partition := scaffold.partition
+  outer := graph.outer
+  outerWeight_eq := graph.outerWeight_eq
+  InteriorEdge := Embedded.InteriorEdge scaffold.selected.family
+  interiorEdgeFintype := inferInstance
+  interiorEdgeDecidableEq := inferInstance
+  incident := Embedded.InteriorEdge.Incident
+  incidentDecidable := inferInstance
+  edgesCovered := Embedded.InteriorEdge.edgesCovered_univ
+  atMostTwoEndpoints := Embedded.InteriorEdge.hasAtMostTwoEndpoints
+  planarEdgeBound := graph.planarEdgeBound
+  edgeWeight := Embedded.InteriorEdge.weight
+  edgeWeight_le_incident := by
+    intro i edge hincident
+    exact edge.weight_le_incident pieces.equations hcondition i edge hincident
+  interiorWeight_sum := graph.interiorWeight_sum
+  uncovered_total_le := by
+    apply scaffold.partition.unbound_total_le_two_mu mu rho
+    · intro i
+      exact hcondition.long (Embedded.cell Delta i).word
+        (Embedded.cell Delta i).word_mem
+    · exact unbound.unbound_lt
+    · exact unbound.threshold
 
 /-- Lemma Eul gives the `10 * mu` total interior-contiguity budget. -/
 theorem interior_total_le
