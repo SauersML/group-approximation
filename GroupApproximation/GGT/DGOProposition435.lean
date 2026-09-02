@@ -629,22 +629,22 @@ length whose auxiliary letters all lie in `F`, and `F` already sits in the
 enlarged base `D'`, then reading each auxiliary letter as a base letter of `D'`
 sends the joint ball into a relative ball of `D'`.  A base letter is never an
 edge of `Γ_{H_lam}`, so the avoidance condition survives the reading. -/
-theorem relBall_inl_subset_of_auxLetters (D : RelGenSet G Λ)
-    (E : RelGenSet G I) (D' : RelGenSet G Λ)
-    (hbase : properBase D ⊆ D'.base) (hfam : D'.fam = D.fam) (F : Set G)
+theorem relBall_inl_subset_of_auxLetters (J : RelGenSet G (Sum Λ I))
+    (D' : RelGenSet G Λ) (hbase : J.base ⊆ D'.base)
+    (hfam : ∀ mu : Λ, J.fam (Sum.inl mu) = D'.fam mu) (F : Set G)
     (hFbase : F ⊆ D'.base) (lam : Λ) (n : ℕ)
-    (hwit : ∀ h ∈ (jointRelGenSet D E).relBall (Sum.inl lam) n,
+    (hwit : ∀ h ∈ J.relBall (Sum.inl lam) n,
       ∃ w : List (RelLetter G (Sum Λ I)),
-        (∀ a ∈ w, (jointRelGenSet D E).IsLetter a) ∧
+        (∀ a ∈ w, J.IsLetter a) ∧
           RelLetter.listVal w = h ∧
-            AvoidsFrom (jointRelGenSet D E).fam (Sum.inl lam) w 1 ∧
+            AvoidsFrom J.fam (Sum.inl lam) w 1 ∧
               w.length ≤ n ∧
                 ∀ (i : I) (e : G), RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F) :
-    (jointRelGenSet D E).relBall (Sum.inl lam) n ⊆ D'.relBall lam n := by
+    J.relBall (Sum.inl lam) n ⊆ D'.relBall lam n := by
   intro h hh
   obtain ⟨w, hlet, hval, hav, hlen, haux⟩ := hwit h hh
   refine ⟨?_, w.map RelLetter.origOfJoint, ?_, ?_, ?_, ?_⟩
-  · rw [hfam]
+  · rw [← hfam lam]
     exact hh.1
   · intro a ha
     obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
@@ -655,15 +655,12 @@ theorem relBall_inl_subset_of_auxLetters (D : RelGenSet G Λ)
         cases s with
         | inl mu =>
             show e ∈ D'.fam mu
-            rw [hfam]
+            rw [← hfam mu]
             exact hb'
         | inr i => exact hFbase (haux i e hb)
   · rw [RelLetter.listVal_map_origOfJoint]
     exact hval
-  · refine avoidsFrom_map_origOfJoint ?_ lam w 1 hav
-    intro mu
-    show D.fam mu = D'.fam mu
-    rw [hfam]
+  · exact avoidsFrom_map_origOfJoint hfam lam w 1 hav
   · rw [List.length_map]
     exact hlen
 
@@ -711,8 +708,8 @@ theorem dgoProposition435JointLocalFiniteness_of_finiteAuxiliaryLetters
     · exact Or.inr (by simpa using hx)
     · exact Or.inl (by simpa using hx)
   refine (relBall_finite_adjoinBase D (F ∪ F⁻¹) hF'inv hF'fin hD lam n).subset ?_
-  refine relBall_inl_subset_of_auxLetters D E (adjoinBase D (F ∪ F⁻¹) hF'inv)
-    (fun _ hx => Or.inl (properBase_subset_base D hx)) rfl F
+  refine relBall_inl_subset_of_auxLetters _ (adjoinBase D (F ∪ F⁻¹) hF'inv)
+    (fun _ hx => Or.inl (properBase_subset_base D hx)) (fun _ => rfl) F
     (fun _ hx => Or.inr (Or.inl hx)) lam n hwit
 
 /-! ## Model tests -/
@@ -884,6 +881,246 @@ theorem not_isHyperbolicallyEmbedded_of_base_splits
     exact hxy
   · exact ⟨fun hc => hc.1, fun hc => hc.1, trivial⟩
   · simp
+
+/-! ## The joint family with adjoined base letters -/
+
+/-- The symmetric closure of a set of letters. -/
+def symmClosure (T : Set G) : Set G := T ∪ T⁻¹
+
+theorem subset_symmClosure (T : Set G) : T ⊆ symmClosure T :=
+  fun _ hx => Or.inl hx
+
+theorem symmClosure_inv {T : Set G} {x : G} (hx : x ∈ symmClosure T) :
+    x⁻¹ ∈ symmClosure T := by
+  rcases hx with hx | hx
+  · exact Or.inr (by simpa using hx)
+  · exact Or.inl (by simpa using hx)
+
+theorem symmClosure_finite {T : Set G} (hT : T.Finite) :
+    (symmClosure T).Finite := hT.union hT.inv
+
+theorem inv_mem_symmClosure {T : Set G} {x : G} (hx : x ∈ T) :
+    x⁻¹ ∈ symmClosure T := symmClosure_inv (subset_symmClosure T hx)
+
+/-- **The joint base with extra letters adjoined.**
+
+The proper part of the original base together with the symmetric closure of
+`T`, minus the original peripherals.  Removing the peripherals keeps the
+hygiene invariant, and taking the symmetric closure makes the base
+inversion-closed with no hypothesis on `T`. -/
+def jointBaseAdjoin (D : RelGenSet G Λ) (T : Set G) : Set G :=
+  properBase D ∪
+    (symmClosure T \ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)))
+
+theorem jointBaseAdjoin_inv (D : RelGenSet G Λ) (T : Set G) {x : G}
+    (hx : x ∈ jointBaseAdjoin D T) : x⁻¹ ∈ jointBaseAdjoin D T := by
+  rcases hx with hx | ⟨hxT, hxn⟩
+  · exact Or.inl (properBase_inv D hx)
+  · refine Or.inr ⟨symmClosure_inv hxT, ?_⟩
+    intro hf
+    obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+    have hlam' : x⁻¹ ∈ D.fam lam := hlam
+    exact hxn (Set.mem_iUnion.mpr ⟨lam, by simpa using inv_mem hlam'⟩)
+
+theorem jointBaseAdjoin_subset (D : RelGenSet G Λ) (T : Set G) :
+    jointBaseAdjoin D T ⊆ D.base ∪ symmClosure T := by
+  rintro x (hx | ⟨hxT, -⟩)
+  · exact Or.inl (properBase_subset_base D hx)
+  · exact Or.inr hxT
+
+theorem base_subset_jointBaseAdjoin_union (D : RelGenSet G Λ) (T : Set G) :
+    D.base ⊆
+      jointBaseAdjoin D T ∪ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) := by
+  intro x hx
+  rcases base_subset_properBase_union D hx with hp | hf
+  · exact Or.inl (Or.inl hp)
+  · exact Or.inr hf
+
+/-- **The joint relative generating set with extra base letters.**
+
+`jointRelGenSet` is the case `T = ∅`, up to the union with the empty set. -/
+def jointRelGenSetAdjoin (D : RelGenSet G Λ) (E : RelGenSet G I) (T : Set G) :
+    RelGenSet G (Sum Λ I) where
+  base := jointBaseAdjoin D T
+  fam
+    | Sum.inl lam => D.fam lam
+    | Sum.inr i => E.fam i
+  symmetricGenerating := by
+    refine ⟨?_, ?_⟩
+    · rintro y (hy | hy)
+      · exact Or.inl (jointBaseAdjoin_inv D T hy)
+      · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+        cases s with
+        | inl lam =>
+            exact Or.inr (Set.mem_iUnion.mpr
+              ⟨Sum.inl lam, (D.fam lam).inv_mem hs⟩)
+        | inr i =>
+            exact Or.inr (Set.mem_iUnion.mpr
+              ⟨Sum.inr i, (E.fam i).inv_mem hs⟩)
+    · refine eq_top_iff.mpr ?_
+      rw [← D.symmetricGenerating.closure_eq]
+      apply Subgroup.closure_mono
+      rintro y (hy | hy)
+      · rcases base_subset_jointBaseAdjoin_union D T hy with hp | hf
+        · exact Or.inl hp
+        · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+
+@[simp] theorem jointRelGenSetAdjoin_base (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) :
+    (jointRelGenSetAdjoin D E T).base = jointBaseAdjoin D T := rfl
+
+@[simp] theorem jointRelGenSetAdjoin_fam_inl (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (lam : Λ) :
+    (jointRelGenSetAdjoin D E T).fam (Sum.inl lam) = D.fam lam := rfl
+
+@[simp] theorem jointRelGenSetAdjoin_fam_inr (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (i : I) :
+    (jointRelGenSetAdjoin D E T).fam (Sum.inr i) = E.fam i := rfl
+
+/-- **(i)** The joint base is an auxiliary base. -/
+theorem jointRelGenSetAdjoin_base_subset (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hT : symmClosure T ⊆ E.base) :
+    (jointRelGenSetAdjoin D E T).base ⊆ E.base := by
+  intro x hx
+  rcases jointBaseAdjoin_subset D T hx with hb | hs
+  · exact hbase (Set.mem_union_left _ hb)
+  · exact hT hs
+
+/-- The joint base is closed under inversion, with no hypothesis. -/
+theorem jointRelGenSetAdjoin_base_inv (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (T : Set G) : ∀ x ∈ (jointRelGenSetAdjoin D E T).base,
+      x⁻¹ ∈ (jointRelGenSetAdjoin D E T).base :=
+  fun _ hx => jointBaseAdjoin_inv D T hx
+
+/-- **(iii)** An adjoined letter outside every original peripheral is a joint
+base letter, and so is its inverse. -/
+theorem jointRelGenSetAdjoin_inv_mem_base (D : RelGenSet G Λ)
+    (E : RelGenSet G I) {T : Set G} {t : G} (ht : t ∈ T)
+    (htn : ∀ lam : Λ, t⁻¹ ∉ D.fam lam) :
+    t⁻¹ ∈ (jointRelGenSetAdjoin D E T).base := by
+  refine Or.inr ⟨inv_mem_symmClosure ht, ?_⟩
+  intro hf
+  obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+  exact htn lam hlam
+
+/-- The joint alphabet is the original relative alphabet, the adjoined
+letters, and the auxiliary peripherals. -/
+theorem jointRelGenSetAdjoin_alphabet_carrier (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) :
+    (jointRelGenSetAdjoin D E T).alphabet.carrier =
+      D.alphabet.carrier ∪ symmClosure T ∪
+        (⋃ i : I, ((E.fam i : Subgroup G) : Set G)) := by
+  classical
+  refine Set.Subset.antisymm ?_ ?_
+  · rintro y (hy | hy)
+    · rcases jointBaseAdjoin_subset D T hy with hb | hs
+      · exact Or.inl (Or.inl (Set.mem_union_left _ hb))
+      · exact Or.inl (Or.inr hs)
+    · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+      cases s with
+      | inl lam =>
+          exact Or.inl (Or.inl (Set.mem_union_right _
+            (Set.mem_iUnion.mpr ⟨lam, hs⟩)))
+      | inr i => exact Or.inr (Set.mem_iUnion.mpr ⟨i, hs⟩)
+  · rintro y ((hy | hy) | hy)
+    · rcases hy with hy | hy
+      · rcases base_subset_jointBaseAdjoin_union D T hy with hp | hf
+        · exact Or.inl hp
+        · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+    · by_cases hH : y ∈ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hH
+        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+      · exact Or.inl (Or.inr ⟨hy, hH⟩)
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
+      exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inr i, hi⟩)
+
+/-- **(ii)** The joint alphabet is the auxiliary alphabet exactly when the
+auxiliary base is covered by the original relative alphabet, the adjoined
+letters, and the auxiliary peripherals. -/
+theorem jointRelGenSetAdjoin_alphabet_carrier_eq (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hT : symmClosure T ⊆ E.base)
+    (hcover : E.base ⊆ D.alphabet.carrier ∪ symmClosure T ∪
+      (⋃ i : I, ((E.fam i : Subgroup G) : Set G))) :
+    (jointRelGenSetAdjoin D E T).alphabet.carrier = E.alphabet.carrier := by
+  rw [jointRelGenSetAdjoin_alphabet_carrier D E T]
+  refine Set.Subset.antisymm ?_ ?_
+  · rintro y ((hy | hy) | hy)
+    · exact Or.inl (hbase hy)
+    · exact Or.inl (hT hy)
+    · exact Or.inr hy
+  · rintro y (hy | hy)
+    · exact hcover hy
+    · exact Or.inr hy
+
+/-- Clause (a) for the adjoined form, under the covering condition. -/
+theorem jointRelGenSetAdjoin_hyperbolic (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hT : symmClosure T ⊆ E.base)
+    (hcover : E.base ⊆ D.alphabet.carrier ∪ symmClosure T ∪
+      (⋃ i : I, ((E.fam i : Subgroup G) : Set G)))
+    (hE : E.IsHyperbolicallyEmbedded) :
+    ∃ delta : ℝ, IsHyperbolicSpace delta
+      (Cayley (jointRelGenSetAdjoin D E T).alphabet) :=
+  exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq
+      (jointRelGenSetAdjoin_alphabet_carrier_eq D E T hbase hT hcover))
+    hE.hyperbolic
+
+/-- Clause (b) at an auxiliary index, for the adjoined form. -/
+theorem jointRelGenSetAdjoin_relBall_inr_subset (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (T : Set G) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hT : symmClosure T ⊆ E.base) (i : I) (n : ℕ) :
+    (jointRelGenSetAdjoin D E T).relBall (Sum.inr i) n ⊆ E.relBall i n :=
+  relBall_inr_subset_of_letters _ E
+    (jointRelGenSetAdjoin_base_subset D E T hbase hT)
+    (fun lam _ hx =>
+      hbase (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩)))
+    (fun _ => rfl) i n
+
+/-- **The adjoined form keeps the reducible residue.**
+
+Its base exceeds the proper part of the original base by a finite set, so the
+local-finiteness residue is still absorbed by
+`relBall_finite_adjoinBase` once the auxiliary letters are confined.  This is
+what distinguishes it from the auxiliary-alphabet form, whose base excess is
+the whole enlargement of the relative generating set. -/
+theorem jointRelGenSetAdjoin_relBall_inl_finite (D : RelGenSet G Λ)
+    (E : RelGenSet G I) {T : Set G} (hTfin : T.Finite)
+    (hD : D.IsHyperbolicallyEmbedded) {F : Set G} (hFfin : F.Finite)
+    (lam : Λ) (n : ℕ)
+    (hwit : ∀ h ∈ (jointRelGenSetAdjoin D E T).relBall (Sum.inl lam) n,
+      ∃ w : List (RelLetter G (Sum Λ I)),
+        (∀ a ∈ w, (jointRelGenSetAdjoin D E T).IsLetter a) ∧
+          RelLetter.listVal w = h ∧
+            AvoidsFrom (jointRelGenSetAdjoin D E T).fam (Sum.inl lam) w 1 ∧
+              w.length ≤ n ∧
+                ∀ (i : I) (e : G), RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F) :
+    ((jointRelGenSetAdjoin D E T).relBall (Sum.inl lam) n).Finite := by
+  have hUfin : (symmClosure T ∪ symmClosure F).Finite :=
+    (symmClosure_finite hTfin).union (symmClosure_finite hFfin)
+  have hUinv : ∀ x ∈ symmClosure T ∪ symmClosure F,
+      x⁻¹ ∈ symmClosure T ∪ symmClosure F := by
+    rintro x (hx | hx)
+    · exact Or.inl (symmClosure_inv hx)
+    · exact Or.inr (symmClosure_inv hx)
+  refine (relBall_finite_adjoinBase D (symmClosure T ∪ symmClosure F) hUinv
+    hUfin hD lam n).subset ?_
+  refine relBall_inl_subset_of_auxLetters _
+    (adjoinBase D (symmClosure T ∪ symmClosure F) hUinv) ?_ (fun _ => rfl) F ?_
+    lam n hwit
+  · intro x hx
+    rcases jointBaseAdjoin_subset D T hx with hb | hs
+    · exact Or.inl hb
+    · exact Or.inr (Or.inl hs)
+  · exact fun x hx => Or.inr (Or.inr (subset_symmClosure F hx))
 
 /-! ## The joint family on the auxiliary alphabet -/
 
