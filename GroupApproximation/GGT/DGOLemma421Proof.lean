@@ -1965,7 +1965,7 @@ theorem exists_side_occurrence_of_fourGon_start_421
     omega
   have hcompOf := hcomp.2.2.1 (p.length + j) le_rfl hcomp.1 hglobal
   have hqOf : (q[j]'hj).IsCompOf lam := by
-    simpa [List.getElem_append_left, List.length_append] using hcompOf
+    simpa [List.getElem_append_left, List.length_append, hj] using hcompOf
   cases hq : q[j]'hj with
   | base x =>
       rw [hq] at hqOf
@@ -1975,10 +1975,165 @@ theorem exists_side_occurrence_of_fourGon_start_421
       have hmulam : mu = lam := hqOf
       have hread : q[j]? = some (RelLetter.comp lam x) := by
         rw [← hmulam]
-        simpa [List.getElem?_eq_getElem hj, hq]
+        simp [List.getElem?_eq_getElem hj, hq]
       have hstartQ : IsCompStart lam q j :=
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
+
+/-! ## Assembly of Lemma 4.21(b) -/
+
+theorem dgoLemma421b_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421b.{u, w} := by
+  intro G _ Λ D hhyp
+  obtain ⟨C414, hC414, hsum414, hproj414⟩ :=
+    h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
+  have hpoint : ∃ C : ℕ, 0 < C ∧
+      ∀ n, n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 4 1 n v u →
+        ∀ nu i k, IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
+    refine ⟨C414, hC414, ?_⟩
+    intro n hn v u hpoly nu i k hcomp hiso
+    exact hproj414 n v u hpoly nu i k hcomp hiso
+  have hAall := dgoLemma421a_of_uniform414 h
+  obtain ⟨CA, hA⟩ := hAall G Λ D hhyp
+  let C := max (50 * C414) (50 * CA)
+  refine ⟨C, ?_⟩
+  intro eps K heps hK
+  let E : ℕ := ⌈eps⌉₊
+  let M : ℕ := 2 * E
+  let N : ℕ := K * (M + 1)
+  let R : ℕ := 2 * N + 5
+  have hE : 0 < E := by
+    dsimp [E]
+    exact Nat.ceil_pos.mpr heps
+  have hM : 0 < M := by dsimp [M]; omega
+  have hR : 0 < R := by dsimp [R, N]; omega
+  refine ⟨R, hR, ?_⟩
+  intro vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
+  obtain ⟨pc, hpc⟩ := existsGeodesicWord D (1 : G) (vq⁻¹ * vp)
+  let endP := vertex vp P P.length
+  let endQ := vertex vq Q Q.length
+  obtain ⟨rc, hrc⟩ := existsGeodesicWord D (1 : G) (endP⁻¹ * endQ)
+  have hpcVal : RelLetter.listVal pc = vq⁻¹ * vp := by
+    simpa using hpc.2.1
+  have hrcVal : RelLetter.listVal rc = endP⁻¹ * endQ := by
+    simpa using hrc.2.1
+  have hPVal : RelLetter.listVal P = vp⁻¹ * endP := by
+    have hv : vp * RelLetter.listVal P = endP := by
+      simpa [endP] using (vertex_length vp P)
+    rw [← hv]
+    group
+  have hQVal : RelLetter.listVal Q = vq⁻¹ * endQ := by
+    have hv : vq * RelLetter.listVal Q = endQ := by
+      simpa [endQ] using (vertex_length vq Q)
+    rw [← hv]
+    group
+  have hclose : RelLetter.listVal Q =
+      RelLetter.listVal pc * RelLetter.listVal P * RelLetter.listVal rc := by
+    rw [hpcVal, hPVal, hrcVal, hQVal]
+    dsimp [endP, endQ]
+    group
+  have hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base := by
+    intro x hx
+    exact D.symmetricGenerating.inv_mem x (Set.mem_union_left _ hx)
+  have hpolyLet : ∀ a ∈ pc ++ P ++ rc ++ revWord Q, D.IsLetter a := by
+    intro a ha
+    rcases List.mem_append.mp ha with ha | ha
+    · rcases List.mem_append.mp ha with ha | ha
+      · exact hpc.1 a ha
+      · exact hletP a ha
+    · rcases List.mem_append.mp ha with ha | ha
+      · exact hrc.1 a ha
+      · exact isLetter_of_mem_revWord D hsymm hletQ a ha
+  have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
+          (vertex (1 : G) P j) : ℕ) : ℝ) := by
+    intro i j hij hj
+    have hW2A : WWord.IsWTwo D (50 * CA) P := by
+      intro z lam x hz
+      intro hmem
+      exact hW2P z lam x hz
+        (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
+    have hz := hA (1 : G) P hletP hW1P
+      hW2A hW3P i j hij hj
+    have hz' : ((j - i : ℕ) : ℝ) ≤
+        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
+          (vertex (1 : G) P j) : ℕ) : ℝ) + 4 := by
+      exact_mod_cast hz
+    norm_num
+    linarith
+  have hqgQ : ∀ i j : ℕ, i ≤ j → j ≤ Q.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
+          (vertex (1 : G) Q j) : ℕ) : ℝ) := by
+    intro i j hij hj
+    have hW2A : WWord.IsWTwo D (50 * CA) Q := by
+      intro z lam x hz
+      intro hmem
+      exact hW2Q z lam x hz
+        (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
+    have hz := hA (1 : G) Q hletQ hW1Q hW2Q hW3Q i j hij hj
+    have hz' : ((j - i : ℕ) : ℝ) ≤
+        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
+          (vertex (1 : G) Q j) : ℕ) : ℝ) + 4 := by
+      exact_mod_cast hz
+    norm_num
+    linarith
+  have hpoly := isQuasiGeodesicPolygon_fourGon_of_mixed D pc P rc Q
+    hpc hrc hqgP hqgQ hpolyLet hclose
+  have hpcLen : pc.length ≤ E := by
+    have hh : ((pc.length : ℕ) : ℝ) ≤ eps := by
+      rw [hpc.2.2]
+      exact_mod_cast hstart
+    exact_mod_cast hh.trans (Nat.le_ceil eps)
+  have hrcLen : rc.length ≤ E := by
+    have hh : ((rc.length : ℕ) : ℝ) ≤ eps := by
+      rw [hrc.2.2]
+      exact_mod_cast hend
+    exact_mod_cast hh.trans (Nat.le_ceil eps)
+  let S := strictInteriorOccurrences P
+  have hS : N ≤ S.card := by
+    have hlen := length_le_two_mul_peripheralCount_add_one hW1P
+    have hpcnt := peripheralCount_le_strictInterior_card_add_two P
+    dsimp [R, N] at hRlen ⊢
+    omega
+  let occ : Fin N → Fin (peripheralPositions P).card := fun i =>
+    (S.orderIsoOfFin rfl) ⟨i.val, by omega⟩ |>.1
+  have hoccMem : ∀ i : Fin N, occ i ∈ S := by
+    intro i
+    dsimp [occ]
+    exact (S.orderIsoOfFin rfl ⟨i.val, by omega⟩).2
+  let source : Fin N → ℕ := fun i =>
+    (peripheralOccurrence P (occ i)).pos
+  have hsourcePos : ∀ i : Fin N, 0 < source i := by
+    intro i
+    exact (mem_strictInteriorOccurrences.mp (hoccMem i)).1
+  have hsourceEnd : ∀ i : Fin N, source i + 1 < P.length := by
+    intro i
+    exact (mem_strictInteriorOccurrences.mp (hoccMem i)).2
+  have hsourceComp : ∀ i : Fin N,
+      IsComp (peripheralOccurrence P (occ i)).label P
+        (source i) (source i + 1) := by
+    intro i
+    exact PeripheralOccurrence.isComp hW3P (occ i)
+  have hsourceInj : Function.Injective source := by
+    intro i j hij
+    apply Fin.ext
+    apply peripheralOccurrence_pos_injective P
+    dsimp [source] at hij
+    exact hij
+  have hsourceDeep : ∀ i : Fin N,
+      (vertex (1 : G) P (source i))⁻¹ *
+          vertex (1 : G) P (source i + 1) ∉
+        D.relBall (peripheralOccurrence P (occ i)).label C := by
+    intro i
+    dsimp [source, C]
+    exact hW2P (peripheralOccurrence P (occ i)).pos
+      (peripheralOccurrence P (occ i)).label
+      (peripheralOccurrence P (occ i)).value
+      (peripheralOccurrence P (occ i)).read
 
 end OsinComponents
 end GGT
