@@ -192,11 +192,19 @@ theorem exists_nested_isBBFGuard
     calc
       12 * P.ξ ≤ 32 * P.ξ := by linarith [P.ξ_pos]
       _ ≤ K / 2 := by linarith [hK]
+  have hK12 : 12 * P.ξ ≤ K := by
+    calc
+      12 * P.ξ ≤ 64 * P.ξ := by linarith [P.ξ_pos]
+      _ ≤ K := hK
+  have hK24 : 24 * P.ξ ≤ K := by
+    calc
+      24 * P.ξ ≤ 64 * P.ξ := by linarith [P.ξ_pos]
+      _ ≤ K := hK
   have hX₀Z : X₀ ≠ Z := P.ne_of_mem_bbf_blockers (by
     linarith [hhalf, P.ξ_pos]) hW₀
   change W ≠ X₀ ∧ W ≠ Z ∧ K / 2 < P.bbfProjDist W X₀ Z at hW₀
   have hmove := P.abs_bbfProjDist_sub_le_eight_mul_of_adj_of_not_adj
-    (by linarith [hK]) h01 hW₀.1.symm h0Wnot hW₀.2.1
+    hK12 h01 hW₀.1.symm h0Wnot hW₀.2.1
       hX₀Z hX₁Z
   have hW₁strong : K / 2 - 8 * P.ξ < P.bbfProjDist W X₁ Z := by
     have hupper := (abs_le.mp hmove).2
@@ -228,7 +236,7 @@ theorem exists_nested_isBBFGuard
       exact (hW₁not hU₀half).elim
     · exact hbefore
   obtain ⟨W', hW'half, hW'before, hmax⟩ :=
-    P.exists_maximal_half_blocker_before (by linarith [hK]) hW₁12
+    P.exists_maximal_half_blocker_before hK24 hW₁12
       ⟨U₀, hU₀half, hU₀before⟩
   have hW'W : W' ≠ W := P.ne_of_bbf_before hW'before
   have hend := P.bbfProjDist_endpoints_lt hW'half.1 hW'W
@@ -270,13 +278,13 @@ theorem exists_nested_isBBFGuard
       ⟨hWA, hW₀.2.1, hWW'.2.2.trans_le hmono⟩
     have hV₀A12 : V₀ ∈
         (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) A Z :=
-      ⟨hV₀.1, hV₀.2.1, lt_of_le_of_lt (by linarith [hK]) hV₀.2.2⟩
+      ⟨hV₀.1, hV₀.2.1, lt_of_le_of_lt hK12 hV₀.2.2⟩
     have htotal := P.bbf_before_total_on_large (le_refl (12 * P.ξ))
       hW'A.1 hW'A.2.1 hV₀A12.1 hV₀A12.2.1
       (Ne.symm hV₀W') hW'A.2.2 hV₀A12.2.2
     rcases htotal with hW'V₀ | hV₀W'
     · have hV₀halfW' := P.mem_half_blockers_of_bbf_before
-        (by linarith [hK]) (by
+        (K := K) hK12 (by
           exact ⟨hW'A.1, hW'A.2.1, hW'A.2.2⟩) (by
           exact ⟨hV₀.1, hV₀.2.1, hV₀.2.2⟩) (Ne.symm hV₀W') hW'V₀
       have hV₀half := P.bbf_blocker_transfer_of_large
