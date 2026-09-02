@@ -553,7 +553,10 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
           · subst u
             exact False.elim (hAu.ne rfl)
           · have hus := peripheralOccurrence_pos_lt word hgt
-            omega
+            have hAu' : (peripheralOccurrence word s).pos <
+                (peripheralOccurrence word u).pos := by
+              simpa only [A] using hAu
+            exact False.elim (Nat.lt_asymm hus hAu')
         have hur : u < r := by
           have huB : (peripheralOccurrence word u).pos < B.pos := by
             rw [huPos, ← hwidthEnd]
@@ -563,7 +566,10 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
           · subst u
             exact False.elim (huB.ne rfl)
           · have hru := peripheralOccurrence_pos_lt word hgt
-            omega
+            have huB' : (peripheralOccurrence word u).pos <
+                (peripheralOccurrence word r).pos := by
+              simpa only [B] using huB
+            exact False.elim (Nat.lt_asymm hru huB')
         by_cases hut : u = t
         · subst u
           apply hjne
@@ -631,9 +637,19 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     I lamSide hIrange (fun q hq => (hlamSpec q hq).1)
     (fun q hq => (hlamSpec q hq).2.1)
     (fun q hq => (hlamSpec q hq).2.2)
-  have hspacing :=
-    GroupApproximation.GGT.OsinComponents.peripheralPos_le_add_two_mul
-      hW1 r.isLt (le_of_lt hsr)
+  have hwalk : ∀ d : ℕ, s.val + d < (peripheralPositions word).card →
+      peripheralPos word (s.val + d) ≤ peripheralPos word s.val + 2 * d := by
+    intro d hd
+    induction d with
+    | zero => simp
+    | succ d ih =>
+        have hprev := ih (by omega)
+        have hstep := peripheralPos_succ_le_add_two hW1
+          (t := s.val + d)
+          (by omega : s.val + d + 1 < (peripheralPositions word).card)
+        omega
+  have hspacing := hwalk (r.val - s.val) (by
+    convert r.isLt using 1 <;> omega)
   have hwidthBound : width + 1 ≤ 2 * gap := by
     rw [← hgap]
     dsimp [width, start, A, B]
