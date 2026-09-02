@@ -473,94 +473,6 @@ structure PastingReducedCellPieceCertificate
   bridge : ReducedCellPieceBridge Gamma
   pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle []
 
-/-- A complete boundary peeling supplies the pasting field for a selected
-region, so the reduced cell bridge immediately gives the piece equations. -/
-def PastingReducedCellPieceCertificate.of_boundaryPeeling
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    {Gamma : Contiguity D eps Delta faces}
-    (bridge : ReducedCellPieceBridge Gamma)
-    (peeling : FaceSetBoundaryPeeling Gamma.boundary) :
-    PastingReducedCellPieceCertificate Gamma where
-  bridge := bridge
-  pasting := peeling.to_homotopy
-
-/-- Boundary dart counting through `FaceSetBoundaryPeeling` gives the source,
-target, right-side, and left-side equation used by both O52 charges. -/
-def CellPieceEquations.of_boundaryPeeling
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    {Gamma : Contiguity D eps Delta faces}
-    (bridge : ReducedCellPieceBridge Gamma)
-    (peeling : FaceSetBoundaryPeeling Gamma.boundary)
-    (hred : Delta.Reduced) :
-    CellPieceEquations Gamma :=
-  (PastingReducedCellPieceCertificate.of_boundaryPeeling bridge peeling).equations hred
-
-/-! ## One-cell and two-cell boundary models -/
-
-/-- The one-cell disc model uses the direct face-boundary deletion schedule,
-so its boundary-counting equation is available without a global peel oracle. -/
-theorem CellPieceEquations.oneCell_model
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    {Gamma : Contiguity D eps Delta faces}
-    {face : Delta.toCombMap.Face}
-    (hfaces : faces = {face})
-    (hcycle : Gamma.boundary.cycle = (Delta.faceBoundary face).darts)
-    (hface : face ≠ Delta.outerFace)
-    (bridge : ReducedCellPieceBridge Gamma)
-    (hred : Delta.Reduced) :
-    CellPieceEquations Gamma := by
-  have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces
-      Gamma.boundary.cycle := by
-    rw [hfaces, hcycle]
-    exact oneFace face hface
-  let peeling : FaceSetBoundaryPeeling Gamma.boundary :=
-    { schedule := hschedule }
-  exact CellPieceEquations.of_boundaryPeeling bridge peeling hred
-
-/-- The two-cell mirror model uses the explicit adjacent-face schedule; the
-same boundary-dart equation then feeds the reduced piece bridge. -/
-theorem CellPieceEquations.twoCell_mirror_model
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    {Gamma : Contiguity D eps Delta faces}
-    {f₁ f₂ : Delta.toCombMap.Face}
-    (hfaces : faces = {f₁, f₂})
-    (hneq : f₁ ≠ f₂)
-    (h₁ : f₁ ≠ Delta.outerFace) (h₂ : f₂ ≠ Delta.outerFace)
-    (cycle next : List Delta.toCombMap.Dart)
-    (hcycle : Gamma.boundary.cycle = cycle)
-    (moves : FaceSetMoveSequence (faces := faces) cycle next)
-    (hnext : next = (Delta.faceBoundary f₂).darts)
-    (bridge : ReducedCellPieceBridge Gamma)
-    (hred : Delta.Reduced) :
-    CellPieceEquations Gamma := by
-  have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces cycle :=
-    FaceSetBoundaryPeeling.twoFacePeeling hfaces hneq h₁ h₂
-      (by simp [hfaces, hneq]) (by simp [hfaces, hneq])
-      cycle next moves hnext
-  have hschedule' : FaceSetDeletionSchedule (Delta := Delta) faces
-      Gamma.boundary.cycle := by
-    rw [hcycle]
-    exact hschedule
-  let peeling : FaceSetBoundaryPeeling Gamma.boundary :=
-    { schedule := hschedule' }
-  exact CellPieceEquations.of_boundaryPeeling bridge peeling hred
-
 namespace ReducedCellPieceBridge
 
 /-- Diagram reducedness transfers through a `ReducedCellPieceBridge` to the
@@ -624,6 +536,100 @@ def cellPieceEquations_of_pasting_reduced
     CellPieceEquations Gamma := by
   exact CellPieceEquations.of_pasting Gamma bridge.target_eq pasting
     (bridge.whole_ne hred)
+
+/-- A complete boundary peeling supplies the pasting field for a selected
+region, so the reduced cell bridge immediately gives the piece equations. -/
+def PastingReducedCellPieceCertificate.of_boundaryPeeling
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma)
+    (peeling : FaceSetBoundaryPeeling Gamma.boundary) :
+    PastingReducedCellPieceCertificate Gamma where
+  bridge := bridge
+  pasting := peeling.to_homotopy
+
+/-- Boundary dart counting through `FaceSetBoundaryPeeling` gives the source,
+target, right-side, and left-side equation used by both O52 charges. -/
+def CellPieceEquations.of_boundaryPeeling
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma)
+    (peeling : FaceSetBoundaryPeeling Gamma.boundary)
+    (hred : Delta.Reduced) :
+    CellPieceEquations Gamma :=
+  (PastingReducedCellPieceCertificate.of_boundaryPeeling bridge peeling).equations hred
+
+/-! ## One-cell and two-cell boundary models -/
+
+/-- The one-cell disc model uses the direct face-boundary deletion schedule,
+so its boundary-counting equation is available without a global peel oracle. -/
+theorem CellPieceEquations.oneCell_model
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    {face : Delta.toCombMap.Face}
+    (hfaces : faces = {face})
+    (hcycle : Gamma.boundary.cycle = (Delta.faceBoundary face).darts)
+    (hface : face ≠ Delta.outerFace)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced) :
+    CellPieceEquations Gamma := by
+  have hscheduleSingleton : FaceSetDeletionSchedule (Delta := Delta)
+      ({face} : Finset Delta.toCombMap.Face)
+      (Delta.faceBoundary face).darts :=
+    oneFace face hface
+  have hscheduleSingleton' : FaceSetDeletionSchedule (Delta := Delta)
+      ({face} : Finset Delta.toCombMap.Face) Gamma.boundary.cycle := by
+    rw [hcycle]
+    exact hscheduleSingleton
+  have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces
+      Gamma.boundary.cycle := by
+    simpa only [hfaces] using hscheduleSingleton'
+  let peeling : FaceSetBoundaryPeeling Gamma.boundary :=
+    { schedule := hschedule }
+  exact CellPieceEquations.of_boundaryPeeling bridge peeling hred
+
+/-- The two-cell mirror model uses the explicit adjacent-face schedule; the
+same boundary-dart equation then feeds the reduced piece bridge. -/
+theorem CellPieceEquations.twoCell_mirror_model
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    {f₁ f₂ : Delta.toCombMap.Face}
+    (hfaces : faces = {f₁, f₂})
+    (hneq : f₁ ≠ f₂)
+    (h₁ : f₁ ≠ Delta.outerFace) (h₂ : f₂ ≠ Delta.outerFace)
+    (cycle next : List Delta.toCombMap.Dart)
+    (hcycle : Gamma.boundary.cycle = cycle)
+    (moves : FaceSetMoveSequence (faces := faces) cycle next)
+    (hnext : next = (Delta.faceBoundary f₂).darts)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced) :
+    CellPieceEquations Gamma := by
+  have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces cycle :=
+    twoFacePeeling hfaces hneq h₁ h₂
+      (by simp [hneq]) (by simp [hneq]) cycle next moves hnext
+  have hschedule' : FaceSetDeletionSchedule (Delta := Delta) faces
+      Gamma.boundary.cycle := by
+    rw [hcycle]
+    exact hschedule
+  let peeling : FaceSetBoundaryPeeling Gamma.boundary :=
+    { schedule := hschedule' }
+  exact CellPieceEquations.of_boundaryPeeling bridge peeling hred
 
 /-- A pasted embedded region and its reducedness exclusion form the published
 piece used by both endpoint estimates. -/
