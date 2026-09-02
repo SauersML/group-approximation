@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerAdapter
 import GroupApproximation.GGT.VanKampen.ClosedWalkValue
+import GroupApproximation.GGT.VanKampen.FaceShelling
 
 /-!
 # The source face-pasting certificate for Hull's Lemma 4.9
@@ -63,6 +64,16 @@ theorem hullLemma49SourceFacePastingStatement_of_planar
     exact GGT.VanKampen.Embedded.faceSetBoundaryPeelWitness_of_planar boundary
       (hplanar boundary)
   exact hpeeling.to_homotopy
+
+/-- **The source face-pasting statement holds.**  The contiguity region carries
+a shelling of its own boundary cycle as a producer-supplied field, and a
+shelling gives the face-pasting homotopy, so this needs no hypothesis at all.
+The planar content has moved to whoever builds the region. -/
+theorem hullLemma49SourceFacePastingStatement_holds :
+    HullLemma49SourceFacePastingStatement.{u, w} := by
+  intro G _ Lambda D v g n eps mu Z C
+  obtain ⟨l, shelling⟩ := C.contiguity.pasting
+  exact GGT.VanKampen.Embedded.faceSetWordHomotopy_of_shelling shelling
 
 /-- The closed-walk route.  An assembly of every selected boundary cycle from
 its own faces discharges the pasting statement, with no ear, no unpinched face
