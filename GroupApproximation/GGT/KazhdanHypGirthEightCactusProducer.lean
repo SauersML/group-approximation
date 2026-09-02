@@ -138,7 +138,7 @@ structure CleanCactusRelatorRetyping
   diagram : VanKampen.DiscDiagram.{0, 0, 0}
     (triangleRelatorWords T)
   boundaryWord_eq : diagram.boundaryWord = Delta.boundaryWord
-  relatorOnly : RelatorOnly T diagram
+  relatorOnly : GirthEightVKInterface.RelatorOnly T diagram
   rCellCount_le : diagram.rCellCount ≤ Delta.rCellCount
   reduced : diagram.Reduced
   planar : diagram.toCombMap.IsPlanar
@@ -152,10 +152,10 @@ def CactusRelatorRetypingAvailability : Prop :=
 /-- A diagram already carrying relator-only coverage is a degenerate cactus
 retyping: the identity diagram preserves its boundary, area, reducedness, and
 planarity. -/
-def cleanCactusRelatorRetyping_of_relatorOnly
+theorem cleanCactusRelatorRetyping_of_relatorOnly
     (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T))
-    (hcover : RelatorOnly T Delta) (hred : Delta.Reduced)
+    (hcover : GirthEightVKInterface.RelatorOnly T Delta) (hred : Delta.Reduced)
     (hplanar : Delta.toCombMap.IsPlanar) :
     Nonempty (CleanCactusRelatorRetyping (T := T) Delta) := by
   exact ⟨{
@@ -169,7 +169,7 @@ def cleanCactusRelatorRetyping_of_relatorOnly
 theorem cactusRelatorRetypingAvailability_of_relatorOnly
     (hcover : ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T)),
-      RelatorOnly T Delta)
+      GirthEightVKInterface.RelatorOnly T Delta)
     (hplanar : ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0}
       (triangleRelatorWords T)), Delta.toCombMap.IsPlanar) :
     CactusRelatorRetypingAvailability (T := T) := by
