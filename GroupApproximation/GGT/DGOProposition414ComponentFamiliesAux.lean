@@ -342,7 +342,7 @@ theorem firstGapArcSource_fullComponent
             (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
               (B.firstGapFinishSide j)) (B.firstGapRight j)
             (orientedSegment B.chord (B.firstGapChordStart j)
-              (B.firstGapChordFinish j))[
+              (B.firstGapChordFinish j)))[
                 (B.firstGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
             (P.label s)
           simpa only [hteq'] using hcycleLetter)
@@ -615,7 +615,7 @@ theorem secondGapArcSource_fullComponent
             (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
               (B.secondGapFinishSide j)) (B.secondGapRight j)
             (orientedSegment B.chord (B.secondGapChordStart j)
-              (B.secondGapChordFinish j))[
+              (B.secondGapChordFinish j)))[
                 (B.secondGapLeft j).length + (i - 1)]'hrCycle).IsCompOf
             (P.label s)
           simpa only [hteq'] using hcycleLetter)
