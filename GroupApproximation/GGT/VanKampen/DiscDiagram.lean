@@ -318,7 +318,7 @@ theorem exists_reduced_discDiagram_of_cactusRealization
     {A : Manuscript.NonMF.TorsionFree.Alphabet G}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
-    ∃ Delta : DiscDiagram W,
+    ∃ Delta : DiscDiagram.{u, w, 0} W,
       Delta.boundaryValue = Z.boundary ∧
       Delta.rCellCount = Z.area ∧ Delta.Reduced := by
   obtain ⟨C⟩ := hcactus Z
@@ -357,7 +357,7 @@ theorem cactusRealization_emptyFamilyModel
   have hfalse : (Z.cells.get i).relator ∈
       (∅ : Set (List (GGT.RelLetter G Lambda))) :=
     (Z.cells.get i).relator_mem
-  exact (Set.mem_empty_iff_false (Z.cells.get i).relator).mp hfalse
+  exact ((Set.mem_empty_iff_false (Z.cells.get i).relator).mp hfalse).elim
 
 end VanKampen
 end GGT
