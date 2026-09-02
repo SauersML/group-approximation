@@ -336,6 +336,144 @@ theorem secondGapChordSource_cycleComponent_of_interior
       (B.secondGapChordFinish j))
     (B.secondGapChordSource_segmentComponent j s hs) hstart hfinish
 
+/-! ## Boundary-aware adapters
+
+The next four lemmas expose the only hypotheses left when a selected edge is
+at an end of its retained path.  They are the exact boundary clauses of the
+general component-transfer theorem; later gap-family constructions discharge
+them from the adjacent broken source or the surviving half component.
+-/
+
+theorem firstGapArcSource_cycleComponent_of_boundary
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (hstart : ∀ t : ℕ,
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) = t + 1 →
+      ∀ ht : t <
+        (auxiliaryCycleWord (B.firstGapLeft j)
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)) (B.firstGapRight j)
+          (orientedSegment B.chord (B.firstGapChordStart j)
+            (B.firstGapChordFinish j))).length,
+      ¬ ((auxiliaryCycleWord (B.firstGapLeft j)
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)) (B.firstGapRight j)
+          (orientedSegment B.chord (B.firstGapChordStart j)
+            (B.firstGapChordFinish j)))[t]'ht).IsCompOf (P.label s))
+    (hend : ∀ hn :
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1 <
+        (auxiliaryCycleWord (B.firstGapLeft j)
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)) (B.firstGapRight j)
+          (orientedSegment B.chord (B.firstGapChordStart j)
+            (B.firstGapChordFinish j))).length,
+      ¬ ((auxiliaryCycleWord (B.firstGapLeft j)
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)) (B.firstGapRight j)
+          (orientedSegment B.chord (B.firstGapChordStart j)
+            (B.firstGapChordFinish j)))[
+          (B.firstGapLeft j).length +
+            (B.firstArcCut (B.firstTargetSide s) -
+              B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s)) :
+    IsComp (P.label s)
+      (auxiliaryCycleWord (B.firstGapLeft j)
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)))
+      ((B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)))
+      ((B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)) + 1) := by
+  have hcomp := B.firstGapArcSource_component j s hs
+  have hsegment := isComp_of_isComp_segment_general (P.label s)
+    (auxiliaryCycleWord (B.firstGapLeft j)
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j)) (B.firstGapRight j)
+      (orientedSegment B.chord (B.firstGapChordStart j)
+        (B.firstGapChordFinish j))) hcomp hstart hend (by
+          simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+          omega)
+  simpa only [B.firstGapLocalLabel_arc j s hs,
+    B.firstGapArcSource_auxiliaryCut j s hs] using hsegment
+
+theorem secondGapArcSource_cycleComponent_of_boundary
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (hstart : ∀ t : ℕ,
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) = t + 1 →
+      ∀ ht : t <
+        (auxiliaryCycleWord (B.secondGapLeft j)
+          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+            (B.secondGapFinishSide j)) (B.secondGapRight j)
+          (orientedSegment B.chord (B.secondGapChordStart j)
+            (B.secondGapChordFinish j))).length,
+      ¬ ((auxiliaryCycleWord (B.secondGapLeft j)
+          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+            (B.secondGapFinishSide j)) (B.secondGapRight j)
+          (orientedSegment B.chord (B.secondGapChordStart j)
+            (B.secondGapChordFinish j)))[t]'ht).IsCompOf (P.label s))
+    (hend : ∀ hn :
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 <
+        (auxiliaryCycleWord (B.secondGapLeft j)
+          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+            (B.secondGapFinishSide j)) (B.secondGapRight j)
+          (orientedSegment B.chord (B.secondGapChordStart j)
+            (B.secondGapChordFinish j))).length,
+      ¬ ((auxiliaryCycleWord (B.secondGapLeft j)
+          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+            (B.secondGapFinishSide j)) (B.secondGapRight j)
+          (orientedSegment B.chord (B.secondGapChordStart j)
+            (B.secondGapChordFinish j)))[
+          (B.secondGapLeft j).length +
+            (B.secondArcCut (B.secondTargetSide s) -
+              B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s)) :
+    IsComp (P.label s)
+      (auxiliaryCycleWord (B.secondGapLeft j)
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)) (B.secondGapRight j)
+        (orientedSegment B.chord (B.secondGapChordStart j)
+          (B.secondGapChordFinish j)))
+      ((B.secondGapLeft j).length +
+        (B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j)))
+      ((B.secondGapLeft j).length +
+        (B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j)) + 1) := by
+  have hcomp := B.secondGapArcSource_component j s hs
+  have hsegment := isComp_of_isComp_segment_general (P.label s)
+    (auxiliaryCycleWord (B.secondGapLeft j)
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)) (B.secondGapRight j)
+      (orientedSegment B.chord (B.secondGapChordStart j)
+        (B.secondGapChordFinish j))) hcomp hstart hend (by
+          simp [auxiliaryCycleWord, OsinComponents.length_revWord]
+          omega)
+  simpa only [B.secondGapLocalLabel_arc j s hs,
+    B.secondGapArcSource_auxiliaryCut j s hs] using hsegment
+
 end BalancedSplitData
 
 end DGOProposition414
