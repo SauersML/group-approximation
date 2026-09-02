@@ -1757,9 +1757,9 @@ omit [Group G] in
     apply Finset.mem_filter.mpr
     exact ⟨mem_internalPeripheralOccurrences.mpr ht.2, ht.1⟩
 
+omit [Group G] in
 /-- At most one peripheral occurrence can start at the first position, so the
 strictly interior occurrences lose at most two positions in total. -/
-omit [Group G] in
 theorem peripheralCount_le_strictInterior_card_add_two
     (word : List (RelLetter G Λ)) :
     peripheralCount word ≤ (strictInteriorOccurrences word).card + 2 := by
