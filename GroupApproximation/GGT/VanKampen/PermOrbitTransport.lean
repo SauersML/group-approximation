@@ -10,8 +10,8 @@ equivalence conjugating a sum of two permutations, one of which is a single
 cycle.
 
 `orbitPermCongr` transports orbits along an equivalence of the underlying
-types, and `uniqueOrbit_of_sameCycle` says a permutation whose points all lie
-in one cycle has exactly one orbit.
+types, and `orbitEquivPUnit` says a permutation whose points all lie in one
+cycle has exactly one orbit.
 
 Nothing here mentions maps, darts or faces.
 -/
@@ -52,15 +52,20 @@ noncomputable def orbitPermCongr {α β : Type u} (e : α ≃ β) (p : Equiv.Per
 /-! ## A single cycle has a single orbit -/
 
 /-- A permutation whose points all lie in one cycle has exactly one orbit. -/
-noncomputable def uniqueOrbit_of_sameCycle {α : Type u} [Nonempty α]
+noncomputable def orbitEquivPUnit {α : Type u} [Nonempty α]
     (p : Equiv.Perm α) (h : ∀ x y : α, Equiv.Perm.SameCycle p x y) :
-    Unique (CombMap.Orbit p) where
-  default := Quotient.mk'' (Classical.arbitrary α)
-  uniq := by
+    CombMap.Orbit p ≃ PUnit.{u + 1} where
+  toFun _ := PUnit.unit
+  invFun _ := Quotient.mk'' (Classical.arbitrary α)
+  left_inv := by
     intro q
     refine Quotient.inductionOn q ?_
     intro x
-    exact Quotient.sound (h x (Classical.arbitrary α))
+    exact Quotient.sound (h (Classical.arbitrary α) x)
+  right_inv := by
+    intro u
+    cases u
+    rfl
 
 end VanKampen
 end GGT
