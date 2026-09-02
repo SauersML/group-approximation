@@ -127,7 +127,8 @@ theorem twoFacePeeling
       (Delta.faceBoundary f₂).darts :=
     oneFace f₂ h₂
   have htail' : FaceSetDeletionSchedule (Delta := Delta)
-      ({f₁, f₂}.erase f₁) (Delta.faceBoundary f₂).darts := by
+      (({f₁, f₂} : Finset Delta.toCombMap.Face).erase f₁)
+        (Delta.faceBoundary f₂).darts := by
     simpa [hneq] using htail
   rw [hnext] at moves
   have hstep := FaceSetDeletionSchedule.step f₁
