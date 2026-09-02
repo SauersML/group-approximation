@@ -458,7 +458,7 @@ namespace TriangularDiagramLocalData
 variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
   {d : ℕ} {Delta : DiscDiagram (triangleRelatorWords T)}
 
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
+omit [DecidableEq TriangleIndex] in
 /-- Relator-cell coverage makes every inner face triangular. -/
 theorem innerFaceDegree (L : TriangularDiagramLocalData T Delta)
     (f : Delta.toCombMap.Face) (hf : f ∈ Delta.innerFaces) :
