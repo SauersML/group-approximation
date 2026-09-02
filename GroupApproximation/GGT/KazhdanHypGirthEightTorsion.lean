@@ -144,7 +144,7 @@ theorem totalExponentHom_relator
   simp only [totalExponentHom, TriangularHodgeLayer.relator, word,
     FreeGroup.lift_mk]
   rw [hletters]
-  simp [hzero, hone, htwo] <;> ring
+  simp [hzero, hone, htwo]
 
 /-- The exponent sum in coordinate `a` is the number of the three positive
 letters whose generator component equals `a`. -/
@@ -164,7 +164,8 @@ theorem generatorExponentHom_relator
   simp only [generatorExponentHom, TriangularHodgeLayer.relator, word,
     FreeGroup.lift_mk]
   rw [hletters]
-  simp [hzero, hone, htwo] <;> ring
+  simp [hzero, hone, htwo]
+  ring
 
 /-- A positive length-three relator which is a proper power in the free group
 is a cube of one signed generator.  First the total exponent sum shows that
