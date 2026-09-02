@@ -19,26 +19,29 @@ variable {Generator TriangleIndex : Type}
 
 /-- The W(8) association scheme transported to the signed-generator type. -/
 noncomputable def wEightReindexed
-    {V : Type} [Fintype V] [DecidableEq V]
     {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
-    (I : TriangleLinkIdentification T wEightQuadrangleLinkData) :
+    (I : TriangleLinkIdentification T
+      SymplecticQuadrangle.wEightQuadrangleLinkData) :
     QuadrangleLinkData (Generator × Bool) :=
-  QuadrangleLinkData.reindex wEightQuadrangleLinkData I.vertexEquiv
+  QuadrangleLinkData.reindex SymplecticQuadrangle.wEightQuadrangleLinkData
+    I.vertexEquiv
 
 /-- A degree-nine triangle table identified with the algebraic W(8) link has
 the exact rational SDP certificate with gap `5/9`. -/
 theorem girthEightSDPChecks_of_wEightLinkIdentification
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (hgeom : GirthEightChecks T 9)
-    (I : TriangleLinkIdentification T wEightQuadrangleLinkData) :
+    (I : TriangleLinkIdentification T
+      SymplecticQuadrangle.wEightQuadrangleLinkData) :
     GirthEightSDPChecks T 9 (5 / 9 : ℚ)
       ((wEightReindexed I).gramRow :
         QuadRow (Generator × Bool) → Generator × Bool → ℚ) := by
-  have hparams := wEightQuadrangleLinkData_parameters
-  have hdeg : (9 : ℚ) = wEightQuadrangleLinkData.deg := by
+  have hparams := SymplecticQuadrangle.wEightQuadrangleLinkData_parameters
+  have hdeg : (9 : ℚ) =
+      SymplecticQuadrangle.wEightQuadrangleLinkData.deg := by
     exact_mod_cast hparams.1.symm
   have h := girthEightSDPChecks_of_linkIdentification T hgeom
-    wEightQuadrangleLinkData I hdeg
+    SymplecticQuadrangle.wEightQuadrangleLinkData I hdeg
   simpa only [hparams.2, wEightReindexed] using h
 
 end KazhdanHyp
