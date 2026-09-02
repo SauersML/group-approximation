@@ -66,6 +66,33 @@ theorem base_finite (P : CanonicalQuotientFamilyPreservation q D)
   rw [P.base_map]
   exact hfinite.image q
 
+/-- The preserved relative alphabet is exactly the image of the source
+relative alphabet. -/
+theorem alphabet_carrier_eq_image
+    (P : CanonicalQuotientFamilyPreservation q D) :
+    P.rel.alphabet.carrier = q '' D.alphabet.carrier := by
+  ext y
+  constructor
+  · intro hy
+    rcases hy with hy | hy
+    · rw [P.base_map] at hy
+      obtain ⟨x, hx, rfl⟩ := hy
+      exact ⟨x, Set.mem_union_left _ hx, rfl⟩
+    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+      rw [P.fam_map lam] at hlam
+      obtain ⟨x, hx, rfl⟩ := hlam
+      exact ⟨x, Set.mem_union_right _
+        (Set.mem_iUnion.mpr ⟨lam, hx⟩), rfl⟩
+  · rintro ⟨x, hx, rfl⟩
+    rcases hx with hx | hx
+    · exact Set.mem_union_left _ (by
+        rw [P.base_map]
+        exact ⟨x, hx, rfl⟩)
+    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hx
+      exact Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, by
+        rw [P.fam_map lam]
+        exact Subgroup.mem_map_of_mem q hlam⟩)
+
 end CanonicalQuotientFamilyPreservation
 
 /-! ## Joint original-and-selected preservation -/
