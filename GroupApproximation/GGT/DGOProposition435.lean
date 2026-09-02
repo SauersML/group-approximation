@@ -769,6 +769,172 @@ theorem jointHyperbolic_of_finite_base_excess (D : RelGenSet G Λ)
     (jointRelGenSet D E).alphabet hK (fun x y => (hcomp x y).1)
     (fun x y => (hcomp x y).2) hd
 
+/-! ## Moving a coned subfamily into the base -/
+
+/-- **The auxiliary half of a joint family, demoted into the base.**
+
+Dahmani--Guirardel--Osin's Remark 4.26 in family form: a coned-off subfamily
+may be read as base letters instead, and the remaining family stays
+hyperbolically embedded.  The alphabet does not change, only which of its
+letters are called peripheral. -/
+def demoteAuxiliary (J : RelGenSet G (Sum Λ I)) : RelGenSet G Λ where
+  base := J.base ∪ (⋃ i : I, ((J.fam (Sum.inr i) : Subgroup G) : Set G))
+  fam := fun lam => J.fam (Sum.inl lam)
+  symmetricGenerating := by
+    have hcarrier :
+        (J.base ∪ (⋃ i : I, ((J.fam (Sum.inr i) : Subgroup G) : Set G))) ∪
+            (⋃ lam : Λ, ((J.fam (Sum.inl lam) : Subgroup G) : Set G))
+          = J.base ∪ (⋃ s : Sum Λ I, ((J.fam s : Subgroup G) : Set G)) := by
+      refine Set.Subset.antisymm ?_ ?_
+      · rintro y ((hy | hy) | hy)
+        · exact Or.inl hy
+        · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inr i, hi⟩)
+        · obtain ⟨lam, hl⟩ := Set.mem_iUnion.mp hy
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hl⟩)
+      · rintro y (hy | hy)
+        · exact Or.inl (Or.inl hy)
+        · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+          cases s with
+          | inl lam => exact Or.inr (Set.mem_iUnion.mpr ⟨lam, hs⟩)
+          | inr i => exact Or.inl (Or.inr (Set.mem_iUnion.mpr ⟨i, hs⟩))
+    rw [hcarrier]
+    exact J.symmetricGenerating
+
+@[simp] theorem demoteAuxiliary_base (J : RelGenSet G (Sum Λ I)) :
+    (demoteAuxiliary J).base =
+      J.base ∪ (⋃ i : I, ((J.fam (Sum.inr i) : Subgroup G) : Set G)) := rfl
+
+@[simp] theorem demoteAuxiliary_fam (J : RelGenSet G (Sum Λ I)) (lam : Λ) :
+    (demoteAuxiliary J).fam lam = J.fam (Sum.inl lam) := rfl
+
+/-- **Demoting does not change the alphabet.** -/
+theorem demoteAuxiliary_alphabet_carrier (J : RelGenSet G (Sum Λ I)) :
+    (demoteAuxiliary J).alphabet.carrier = J.alphabet.carrier := by
+  refine Set.Subset.antisymm ?_ ?_
+  · rintro y ((hy | hy) | hy)
+    · exact Or.inl hy
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
+      exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inr i, hi⟩)
+    · obtain ⟨lam, hl⟩ := Set.mem_iUnion.mp hy
+      exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hl⟩)
+  · rintro y (hy | hy)
+    · exact Or.inl (Or.inl hy)
+    · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+      cases s with
+      | inl lam => exact Or.inr (Set.mem_iUnion.mpr ⟨lam, hs⟩)
+      | inr i => exact Or.inl (Or.inr (Set.mem_iUnion.mpr ⟨i, hs⟩))
+
+section Demote
+
+open scoped Classical
+
+/-- Reading a demoted letter back as a joint letter: a base letter that is an
+auxiliary peripheral element is promoted to an auxiliary peripheral letter. -/
+noncomputable def RelLetter.jointOfDemoted (J : RelGenSet G (Sum Λ I)) :
+    RelLetter G Λ → RelLetter G (Sum Λ I)
+  | RelLetter.base x =>
+      if h : ∃ i : I, x ∈ J.fam (Sum.inr i) then
+        RelLetter.comp (Sum.inr h.choose) x
+      else RelLetter.base x
+  | RelLetter.comp lam h => RelLetter.comp (Sum.inl lam) h
+
+@[simp] theorem RelLetter.jointOfDemoted_val (J : RelGenSet G (Sum Λ I))
+    (a : RelLetter G Λ) : (RelLetter.jointOfDemoted J a).val = a.val := by
+  cases a with
+  | base _ =>
+      simp only [RelLetter.jointOfDemoted]
+      split <;> rfl
+  | comp _ _ => rfl
+
+theorem listVal_map_jointOfDemoted (J : RelGenSet G (Sum Λ I))
+    (w : List (RelLetter G Λ)) :
+    RelLetter.listVal (w.map (RelLetter.jointOfDemoted J))
+      = RelLetter.listVal w := by
+  induction w with
+  | nil => rfl
+  | cons a t ih =>
+      show (RelLetter.jointOfDemoted J a).val *
+          RelLetter.listVal (t.map (RelLetter.jointOfDemoted J))
+        = a.val * RelLetter.listVal t
+      rw [RelLetter.jointOfDemoted_val, ih]
+
+theorem isCompOf_jointOfDemoted (J : RelGenSet G (Sum Λ I)) {lam : Λ}
+    {a : RelLetter G Λ}
+    (h : (RelLetter.jointOfDemoted J a).IsCompOf (Sum.inl lam)) :
+    a.IsCompOf lam := by
+  cases a with
+  | base _ =>
+      simp only [RelLetter.jointOfDemoted] at h
+      split at h
+      · exact absurd h (fun hcc => Sum.inr_ne_inl hcc)
+      · exact h.elim
+  | comp _ _ => exact Sum.inl_injective h
+
+theorem isLetter_jointOfDemoted (J : RelGenSet G (Sum Λ I))
+    {a : RelLetter G Λ} (ha : (demoteAuxiliary J).IsLetter a) :
+    J.IsLetter (RelLetter.jointOfDemoted J a) := by
+  cases a with
+  | base _ =>
+      simp only [RelLetter.jointOfDemoted]
+      split
+      · next h => exact h.choose_spec
+      · next h =>
+          rcases ha with hb | hf
+          · exact hb
+          · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hf
+            exact absurd ⟨i, hi⟩ h
+  | comp _ _ => exact ha
+
+theorem avoidsFrom_map_jointOfDemoted (J : RelGenSet G (Sum Λ I)) (lam : Λ) :
+    ∀ (u : List (RelLetter G Λ)) (p : G),
+      AvoidsFrom (demoteAuxiliary J).fam lam u p →
+        AvoidsFrom J.fam (Sum.inl lam)
+          (u.map (RelLetter.jointOfDemoted J)) p := by
+  intro u
+  induction u with
+  | nil => intro _ _; exact trivial
+  | cons a t ih =>
+      intro p hp
+      obtain ⟨hhead, htail⟩ := hp
+      refine ⟨?_, ?_⟩
+      · rintro ⟨hc, hmem⟩
+        exact hhead ⟨isCompOf_jointOfDemoted J hc, hmem⟩
+      · rw [RelLetter.jointOfDemoted_val]
+        exact ih (p * a.val) htail
+
+/-- **The relative balls of the demoted family are the joint ones.** -/
+theorem demoteAuxiliary_relBall_subset (J : RelGenSet G (Sum Λ I)) (lam : Λ)
+    (n : ℕ) : (demoteAuxiliary J).relBall lam n ⊆ J.relBall (Sum.inl lam) n := by
+  rintro h ⟨hmem, u, hlet, hval, hav, hlen⟩
+  refine ⟨hmem, u.map (RelLetter.jointOfDemoted J), ?_, ?_, ?_, ?_⟩
+  · intro a ha
+    obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
+    exact isLetter_jointOfDemoted J (hlet b hb)
+  · rw [listVal_map_jointOfDemoted]
+    exact hval
+  · exact avoidsFrom_map_jointOfDemoted J lam u 1 hav
+  · rw [List.length_map]
+    exact hlen
+
+/-- **Moving a coned subfamily into the base preserves hyperbolic embedding of
+the remaining family.**
+
+The alphabet is unchanged, so clause (a) is literally the same statement, and
+every demoted relative ball is a joint relative ball, so clause (b) transfers
+one index at a time. -/
+theorem isHyperbolicallyEmbedded_demoteAuxiliary (J : RelGenSet G (Sum Λ I))
+    (hJ : J.IsHyperbolicallyEmbedded) :
+    (demoteAuxiliary J).IsHyperbolicallyEmbedded := by
+  refine ⟨exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq
+      (demoteAuxiliary_alphabet_carrier J)) hJ.hyperbolic, ?_⟩
+  intro lam n
+  exact (hJ.locallyFinite (Sum.inl lam) n).subset
+    (demoteAuxiliary_relBall_subset J lam n)
+
+end Demote
+
 /-! ## Model tests -/
 
 /-- **No original subgroups.**  The labelled sum is the auxiliary family, and
