@@ -143,7 +143,7 @@ theorem exists_relativeDehnCut_of_kernelBoundary
     (boundaryWord : List G) (boundary : G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundary)
     (hne : boundary ≠ 1) (hmap : q boundary = 1) :
-    Nonempty (RelativeDehnCut D q boundaryWord) := by
+    Nonempty (RelativeDehnCut D W eps q boundaryWord) := by
   have hnormal : boundary ∈
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W) :=
     mem_normalClosure_of_map_eq_one q hker hmap
@@ -170,7 +170,7 @@ theorem exists_relativeDehnCut_of_kernelWord
     (boundaryWord : List G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
     (hne : boundaryWord.prod ≠ 1) (hmap : q boundaryWord.prod = 1) :
-    Nonempty (RelativeDehnCut D q boundaryWord) :=
+    Nonempty (RelativeDehnCut D W eps q boundaryWord) :=
   exists_relativeDehnCut_of_kernelBoundary D hsc hmu hrho q hker hcert
     boundaryWord boundaryWord.prod hword hne hmap
 
@@ -179,9 +179,11 @@ theorem exists_relativeDehnCut_of_kernelWord
 /-- Existence of a strict cut forces the old boundary word to be nonempty. -/
 theorem boundaryWord_length_pos_of_relativeDehnCut
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda} {q : G →* Q} {boundaryWord : List G}
-    (C : RelativeDehnCut D q boundaryWord) : 0 < boundaryWord.length := by
-  have hnonneg : 0 ≤ C.shortenedWord.length := Nat.zero_le _
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {eps : ℕ}
+    {q : G →* Q} {boundaryWord : List G}
+    (C : RelativeDehnCut D W eps q boundaryWord) : 0 < boundaryWord.length := by
+  have hnonneg : 0 ≤ C.contiguity.shortenedBoundaryWord.length := Nat.zero_le _
   omega
 
 /-- A one-point source has no nontrivial boundary to which the construction

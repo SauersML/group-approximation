@@ -346,15 +346,36 @@ theorem replacementWord_length_lt_boundaryArc_of_certificate
 
 /-! ## Packaged induction step -/
 
-/-- A strictly shorter source word with the same image in the quotient. -/
+/-- A one-relator local cut with the same quotient boundary value.  Retaining
+the relator and its contiguity data prevents the shortening premise from
+collapsing to an arbitrary choice of a shorter null word. -/
 structure RelativeDehnCut
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (q : G →* Q) (boundaryWord : List G) where
-  shortenedWord : List G
-  shortenedWord_isWord : IsWord D.alphabet.carrier shortenedWord
-    shortenedWord.prod
-  quotient_value : q shortenedWord.prod = q boundaryWord.prod
-  length_lt : shortenedWord.length < boundaryWord.length
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) (eps : ℕ)
+    (q : G →* Q) (boundaryWord : List G) where
+  relator : List (GGT.RelLetter G Lambda)
+  relator_mem : relator ∈ W
+  contiguity : RelativeBoundaryContiguity D eps boundaryWord relator
+  shortenedWord_isWord : IsWord D.alphabet.carrier
+    contiguity.shortenedBoundaryWord contiguity.shortenedBoundaryWord.prod
+  quotient_value : q contiguity.shortenedBoundaryWord.prod = q boundaryWord.prod
+  replacement_length_lt :
+    contiguity.replacementWord.length < contiguity.boundaryArc.length
+
+namespace RelativeDehnCut
+
+/-- Strict shortening of the local arc strictly shortens the whole word. -/
+theorem length_lt
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {eps : ℕ}
+    {q : G →* Q} {boundaryWord : List G}
+    (C : RelativeDehnCut D W eps q boundaryWord) :
+    C.contiguity.shortenedBoundaryWord.length < boundaryWord.length :=
+  C.contiguity.shortenedBoundaryWord_length_lt C.replacement_length_lt
+
+end RelativeDehnCut
 
 /-- Every certificate supplies the strict one-cell cut used by Osin's
 boundary-length induction, provided the quotient kills every relator. -/
@@ -369,7 +390,7 @@ theorem exists_relativeDehnCut_of_certificate
     (K : RelativeDiagramCertificate D W eps mu Z)
     (q : G →* Q)
     (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1) :
-    Nonempty (RelativeDehnCut D q K.boundaryWord) := by
+    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
   obtain ⟨i, C, _, hshort⟩ :=
     replacementWord_length_lt_boundaryArc_of_certificate D hsc hmu hrho K
   have hboundary : IsWord D.alphabet.carrier K.boundaryWord
@@ -383,12 +404,14 @@ theorem exists_relativeDehnCut_of_certificate
   have hrelatorAdmissible : RelWord.IsAdmissible D (K.cellLabel i) :=
     hsc.admissible (K.cellLabel i) (K.cellLabel_mem i)
   refine ⟨{
-    shortenedWord := C.shortenedBoundaryWord
+    relator := K.cellLabel i
+    relator_mem := K.cellLabel_mem i
+    contiguity := C
     shortenedWord_isWord := C.shortenedBoundaryWord_isWord hboundary
       hrelatorAdmissible
     quotient_value := C.map_shortenedBoundaryWord_prod_eq q
       (hkill (K.cellLabel i) (K.cellLabel_mem i))
-    length_lt := C.shortenedBoundaryWord_length_lt hshort }⟩
+    replacement_length_lt := hshort }⟩
 
 /-- The normal-closure kernel equation supplies the relator-killing premise
 of the packaged cut. -/
@@ -404,7 +427,7 @@ theorem exists_relativeDehnCut_of_kernel
     (q : G →* Q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
-    Nonempty (RelativeDehnCut D q K.boundaryWord) := by
+    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
   apply exists_relativeDehnCut_of_certificate D hsc hmu hrho K q
   intro relator hrelator
   apply MonoidHom.mem_ker.mp
