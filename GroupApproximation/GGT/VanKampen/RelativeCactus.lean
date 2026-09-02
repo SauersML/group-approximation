@@ -1198,6 +1198,12 @@ theorem cactusDiscDiagram_reduced
           rw [List.map_ofFn]
           rfl
     simpa [relatorCells] using h0
+  change ∀ (pre between suf :
+      List (RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W))
+      (C₁ C₂ : RelatorCell Z.cactusShape.toCombMap Z.cactusShape.outerFace W),
+      Z.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
+        ((between.map RelatorCell.value).prod)⁻¹ * C₁.value *
+          (between.map RelatorCell.value).prod * C₂.value ≠ 1
   intro pre between suf C₁ C₂ hsplit
   change Z.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) at hsplit
   have hsplit' := congrArg (List.map orientedOfCell) hsplit
@@ -1206,7 +1212,10 @@ theorem cactusDiscDiagram_reduced
       pre.map orientedOfCell ++ orientedOfCell C₁ ::
         (between.map orientedOfCell ++ orientedOfCell C₂ ::
           suf.map orientedOfCell) := by
-    simpa only [List.map_append, List.map_cons] using hsplit'
+    change Z.cells = pre.map orientedOfCell ++ orientedOfCell C₁ ::
+      (between.map orientedOfCell ++ orientedOfCell C₂ :: suf.map orientedOfCell)
+      at hsplit'
+    exact hsplit'
   have hno := Z.no_cancelling_pair
     (pre.map orientedOfCell)
     (between.map orientedOfCell)
