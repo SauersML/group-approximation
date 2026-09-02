@@ -204,7 +204,7 @@ theorem exists_edgeBetween_orientedTrimmedChordWalk
           endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+          endpointByOrientation (forward j) (xs[j.val - 1]'(by omega))
             (xs[j.val - 1]'(by omega) + 1)
         else initial) y := by
   classical
@@ -262,7 +262,7 @@ theorem firstGapChordStart_eq_trimmedWalk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    simpa [A, e] using hpEq.symm
+    simpa [endpointByOrientation, A, e] using hpEq.symm
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -281,11 +281,11 @@ theorem firstGapChordFinish_eq_walk
     B.firstGapChordFinish j =
       if h : 0 < j.val then
         endpointByOrientation (B.firstGapRunsForward j)
-          B.brokenAssignment.index.first.partners[j.val - 1]'(by
+          (B.brokenAssignment.index.first.partners[j.val - 1]'(by
             rw [B.brokenAssignment.index.first.partner_length]
             have hj := j.isLt
             simp only [GreedyHalfFamilyIndex.pieceCount] at hj
-            omega)
+            omega))
           (B.brokenAssignment.index.first.partners[j.val - 1]'(by
             rw [B.brokenAssignment.index.first.partner_length]
             have hj := j.isLt
@@ -310,7 +310,7 @@ theorem firstGapChordFinish_eq_walk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    simpa [A, e] using hpEq.symm
+    simpa [endpointByOrientation, A, e] using hpEq.symm
   · unfold firstGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
@@ -341,7 +341,7 @@ theorem secondGapChordStart_eq_walk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    simpa [A, e] using hpEq.symm
+    simpa [endpointByOrientation, A, e] using hpEq.symm
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -360,11 +360,11 @@ theorem secondGapChordFinish_eq_trimmedWalk
     B.secondGapChordFinish j =
       if h : 0 < j.val then
         endpointByOrientation (B.secondGapRunsForward j)
-          B.brokenAssignment.index.second.partners[j.val - 1]'(by
+          (B.brokenAssignment.index.second.partners[j.val - 1]'(by
             have hj := j.isLt
             rw [B.brokenAssignment.index.second.partner_length]
             simp only [GreedyHalfFamilyIndex.pieceCount] at hj
-            omega)
+            omega))
           (B.brokenAssignment.index.second.partners[j.val - 1]'(by
             have hj := j.isLt
             rw [B.brokenAssignment.index.second.partner_length]
@@ -389,7 +389,7 @@ theorem secondGapChordFinish_eq_trimmedWalk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    simpa [A, e] using hpEq.symm
+    simpa [endpointByOrientation, A, e] using hpEq.symm
   · unfold secondGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
