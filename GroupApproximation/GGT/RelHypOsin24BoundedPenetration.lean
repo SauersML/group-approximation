@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.RelHypOsin24ClassificationBridge
+import GroupApproximation.GGT.RelHypDefinition
 
 /-!
 # Finite bounded-penetration slices
@@ -25,6 +25,8 @@ namespace GroupApproximation
 namespace GGT
 namespace RelHyp
 
+open GroupApproximation.Manuscript.NonMF.TorsionFree
+
 universe u v
 
 /-! ## The finite slice supplied by local finiteness -/
@@ -48,6 +50,50 @@ theorem relativeBoundedPenetrationSlice_proved :
   letI : Group G := instG
   exact Set.Finite.image2 (fun k z : G => k * h * z) hK
     (hemb.locallyFinite lam n)
+
+/-! ## The source extraction frontier -/
+
+/-- **Bounded-power extraction.**  This is the geometric step in the proof of
+Osin's Memoirs Theorem 1.10 (the `cyc1`/`qc1` argument before the theorem): a
+bounded infinite subsequence of powers is placed in one fixed labelled
+peripheral slice.  The index is finite, as in the finite peripheral family
+version of the source theorem, and `Nonempty I` excludes the separate empty
+family model, where properness of the finite base proves escape directly.
+
+The conclusion is strictly smaller than power escape: it has no conclusion
+about an element being loxodromic, only the fixed-index, fixed-factor
+decomposition consumed by `RelHypOsin24PowerUnbounded`. -/
+def RelativeBoundedPowerExtractionStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I] [Nonempty I]
+    (D : RelGenSet G I),
+    D.base.Finite → D.IsHyperbolicallyEmbedded → ∀ g : G,
+      ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
+        (∀ q : ℕ, q ∈ S →
+          dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+        ∃ (lam : I) (n : ℕ) (k h : G),
+          ∀ q : ℕ, q ∈ S →
+            ∃ z : G, z ∈ D.relBall lam n ∧ g ^ q = k * h * z
+
+/-- The one-point model satisfies bounded-power extraction: every group
+element and every power is the identity, so a zero-radius slice witnesses the
+required decomposition for any chosen peripheral label. -/
+theorem relativeBoundedPowerExtraction_trivialModel
+    {I : Type v} [Finite I] [Nonempty I] (D : RelGenSet PUnit I)
+    (_hbase : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded) :
+    ∀ g : PUnit, ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
+      (∀ q : ℕ, q ∈ S →
+        dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+      ∃ (lam : I) (n : ℕ) (k h : PUnit),
+        ∀ q : ℕ, q ∈ S →
+          ∃ z : PUnit, z ∈ D.relBall lam n ∧ g ^ q = k * h * z := by
+  intro g R S _hS _hbound
+  let lam : I := Classical.choice (inferInstance : Nonempty I)
+  refine ⟨lam, 0, 1, 1, ?_⟩
+  intro q _hq
+  refine ⟨1, ?_, ?_⟩
+  · rw [RelGenSet.relBall_zero]
+    exact Set.mem_singleton 1
+  · exact Subsingleton.elim _ _
 
 /-- A conjugated bounded peripheral ball is finite.  This is the form used
 when a bounded-penetration diagram is based at a conjugate of the identity. -/
