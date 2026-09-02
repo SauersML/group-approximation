@@ -379,7 +379,6 @@ noncomputable def candidateFaceUnion
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (first second : Candidate D eps Delta) : Finset Delta.toCombMap.Face := by
-  letI : DecidableEq Delta.toCombMap.Face := Classical.decEq _
   exact first.1 ∪ second.1
 
 /-- The surgery which merges two embedded regions.  Its old carrier is the
@@ -424,6 +423,7 @@ theorem compatible_merge
   intro face hface hother
   have hfirst' := Finset.disjoint_left.mp hfirst
   have hsecond' := Finset.disjoint_left.mp hsecond
+  simp only [candidateFaceUnion] at hface
   change face ∈ first.1 ∪ second.1 at hface
   rcases Finset.mem_union.mp hface with hface | hface
   · exact hfirst' hface hother
@@ -518,7 +518,8 @@ theorem lemma65a_no_mergeable_twoGon
     (hne : first ≠ second)
     (surgery : MergeSurgery first second merged)
     (hweight : first.weight + second.weight ≤ merged.weight) : False := by
-  exact EstimatingSelection.no_two_for_one_replacement selected first second merged
+  exact GroupApproximation.GGT.VanKampen.EstimatingSelection.no_two_for_one_replacement
+    selected first second merged
     hfirst hsecond hne (merged_not_mem_rest selected first second merged hfirst surgery)
     (merge_replacement_pairwise selected first second merged hfirst hsecond surgery)
     hweight
