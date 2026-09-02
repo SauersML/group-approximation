@@ -51,7 +51,9 @@ theorem invDarts_invDarts (darts : List Delta.toCombMap.Dart) :
   | nil => simp [invDarts]
   | cons dart darts ih =>
       rw [invDarts_cons, invDarts_append, ih]
-      simp [invDarts, Delta.toCombMap.alpha_involutive]
+      have hinv : Delta.toCombMap.alpha (Delta.toCombMap.alpha dart) = dart :=
+        Delta.toCombMap.alpha_involutive dart
+      simp [invDarts, hinv]
 
 /-! ## The shelling step -/
 
@@ -123,6 +125,78 @@ theorem cycle_value_eq_one_of_shelling
     (shelling : FaceShelling Delta faces l boundary.cycle) :
     GGT.RelLetter.listVal (dartWord Delta boundary.cycle) = 1 :=
   boundary.cycle_value_eq_one_of_pasting (faceSetWordHomotopy_of_shelling shelling)
+
+/-! ## Model checks -/
+
+/-- One face is shellable from any base dart. -/
+theorem shelling_oneFace
+    {faces : Finset Delta.toCombMap.Face}
+    {face : Delta.toCombMap.Face} (hface : face ∈ faces) (k : ℕ) :
+    FaceShelling Delta faces [face]
+      ((Delta.faceBoundary face).darts.rotate k) := by
+  have hrot : (Delta.faceBoundary face).darts.rotate k =
+      (Delta.faceBoundary face).darts.rotate k ++
+        invDarts Delta ([] : List Delta.toCombMap.Dart) := by
+    rw [invDarts_nil]
+    simp
+  have hempty : FaceShelling Delta faces []
+      (([] : List Delta.toCombMap.Dart) ++ ([] : List Delta.toCombMap.Dart) ++
+        ([] : List Delta.toCombMap.Dart)) := by
+    simpa using FaceShelling.empty
+  have hstep := FaceShelling.step (l := [])
+    (before := ([] : List Delta.toCombMap.Dart))
+    (arc := ([] : List Delta.toCombMap.Dart))
+    (after := ([] : List Delta.toCombMap.Dart))
+    (exposed := (Delta.faceBoundary face).darts.rotate k)
+    face hface k hrot hempty
+  simpa using hstep
+
+/-- Two faces meeting along an arc are shellable. -/
+theorem shelling_twoFace
+    {faces : Finset Delta.toCombMap.Face}
+    {first second : Delta.toCombMap.Face}
+    (hfirst : first ∈ faces) (hsecond : second ∈ faces)
+    (kfirst ksecond : ℕ)
+    (before arc after exposed : List Delta.toCombMap.Dart)
+    (hrotFirst : (Delta.faceBoundary first).darts.rotate kfirst =
+      before ++ arc ++ after)
+    (hrotSecond : (Delta.faceBoundary second).darts.rotate ksecond =
+      exposed ++ invDarts Delta arc) :
+    FaceShelling Delta faces [second, first] (before ++ exposed ++ after) := by
+  have hfirstShell : FaceShelling Delta faces [first]
+      (before ++ arc ++ after) := by
+    have hone := shelling_oneFace hfirst kfirst
+    rw [hrotFirst] at hone
+    exact hone
+  exact FaceShelling.step second hsecond ksecond hrotSecond hfirstShell
+
+/-- Two faces meeting only at a vertex are shellable: the second attaches along
+the empty arc, and its insertion cancels nothing. -/
+theorem shelling_pinch
+    {faces : Finset Delta.toCombMap.Face}
+    {first second : Delta.toCombMap.Face}
+    (hfirst : first ∈ faces) (hsecond : second ∈ faces)
+    (kfirst ksecond : ℕ) :
+    FaceShelling Delta faces [second, first]
+      ((Delta.faceBoundary first).darts.rotate kfirst ++
+        (Delta.faceBoundary second).darts.rotate ksecond) := by
+  have hrot : (Delta.faceBoundary second).darts.rotate ksecond =
+      (Delta.faceBoundary second).darts.rotate ksecond ++
+        invDarts Delta ([] : List Delta.toCombMap.Dart) := by
+    rw [invDarts_nil]
+    simp
+  have hfirstShell : FaceShelling Delta faces [first]
+      ((Delta.faceBoundary first).darts.rotate kfirst ++
+        ([] : List Delta.toCombMap.Dart) ++
+        ([] : List Delta.toCombMap.Dart)) := by
+    simpa using shelling_oneFace hfirst kfirst
+  have hstep := FaceShelling.step (l := [first])
+    (before := (Delta.faceBoundary first).darts.rotate kfirst)
+    (arc := ([] : List Delta.toCombMap.Dart))
+    (after := ([] : List Delta.toCombMap.Dart))
+    (exposed := (Delta.faceBoundary second).darts.rotate ksecond)
+    second hsecond ksecond hrot hfirstShell
+  simpa using hstep
 
 end Embedded
 
