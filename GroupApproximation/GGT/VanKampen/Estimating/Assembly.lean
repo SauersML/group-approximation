@@ -383,6 +383,31 @@ def EstimatingPieceConstructionStatement : Prop :=
     (scaffold : EstimatingScaffold D eps Delta),
     Nonempty (CellPieceData D eps Delta scaffold)
 
+/-! ## Local piece-construction bridge -/
+
+/-- Pasted face-set homotopies and the reducedness bridges from
+`PieceBridge` construct all local O52 equations on a fixed scaffold. This is
+strictly smaller than the global piece construction statement because it
+exposes the finite per-edge certificates that the topological peeling proof
+must provide. -/
+theorem estimatingPieceConstruction_of_pasting_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hred : Delta.Reduced)
+    (hbridge : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
+    (hpasting : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      FaceSetWordHomotopy Delta edge.candidate.1
+        edge.candidate.contiguity.boundary.cycle []) :
+    Nonempty (CellPieceData D eps Delta scaffold) := by
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  exact Embedded.cellPieceEquations_of_pasting_reduced
+    edge.candidate.contiguity (hbridge edge) hred (hpasting edge)
+
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
 The boundary quasi-geodesic is included so the source's unbound estimate is
