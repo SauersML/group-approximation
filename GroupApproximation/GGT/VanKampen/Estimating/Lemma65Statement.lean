@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.PhiRealization
+import GroupApproximation.GGT.VanKampen.Estimating.PieceCore
 
 /-!
 # Osin's Lemma 65, stated verbatim
@@ -92,6 +93,32 @@ def Contiguity.TargetsSection
     (Gamma : Contiguity D eps Delta faces)
     (q : List Delta.toCombMap.Dart) : Prop :=
   Gamma.target = none ∧ ∀ d ∈ Gamma.targetArc.darts, d ∈ q
+
+/-- **Osin's `2 mu`, embedded, with no equations hypothesis.**  In the
+multiple-edge step Osin writes "(Pi, Gamma_2, t_1) + (Pi, Gamma_4, t_2) < 2 mu
+by Lemma O52".  Here the region supplies its own `CellPieceEquations` from its
+`pasting` and `o52Certificate` fields, so the estimate needs only reducedness
+and the small-cancellation data.  This is the input to step (2) of the joint
+induction. -/
+theorem Contiguity.degree_le_two_mu
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (hred : Delta.Reduced)
+    {target : Fin Delta.rCellCount} (htarget : Gamma.target = some target)
+    {rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length)
+    (hlen : 0 < ((cell Delta Gamma.source).word.length : ℝ)) :
+    Gamma.degree ≤ 2 * mu := by
+  have equations := Gamma.cellPieceEquations_of_reduced hred htarget
+  have hbound := Gamma.arcLengths_le_two_mu_source equations hsc hpieces
+  have hnn : (0 : ℝ) ≤
+      ((Gamma.cellTargetArc equations.target equations.target_eq).length : ℝ) :=
+    Nat.cast_nonneg _
+  rw [Contiguity.degree, div_le_iff₀ hlen]
+  linarith
 
 /-! ## The two clauses -/
 
