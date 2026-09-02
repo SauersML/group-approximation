@@ -167,7 +167,11 @@ theorem osinTheorem21QuotientClosureStatement :
       rintro x ⟨k, rfl⟩
       refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
       change c⁻¹ * (g ^ n) ^ k * c ∈ D.fam lam
-      rw [← conj_pow, hsame]
+      have hconj : (c⁻¹ * g ^ n * c) ^ k =
+          c⁻¹ * (g ^ n) ^ k * c := by
+        simpa only [inv_inv] using
+          (@conj_pow Q _ k (c⁻¹) (g ^ n))
+      rw [← hconj, hsame]
       exact pow_mem (pow_mem hg n) k
     exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
   · have hpowInfinite : ¬ IsOfFinOrder (g ^ n) := by
@@ -181,7 +185,11 @@ theorem osinTheorem21QuotientClosureStatement :
       rintro x ⟨k, rfl⟩
       refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
       change c⁻¹ * (g ^ n) ^ k * c ∈ D.fam lam
-      rw [← conj_pow, hinverse]
+      have hconj : (c⁻¹ * g ^ n * c) ^ k =
+          c⁻¹ * (g ^ n) ^ k * c := by
+        simpa only [inv_inv] using
+          (@conj_pow Q _ k (c⁻¹) (g ^ n))
+      rw [← hconj, hinverse]
       exact pow_mem (inv_mem (pow_mem hg n)) k
     exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
 
