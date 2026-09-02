@@ -423,6 +423,17 @@ theorem spherical_of_eulerTwoCountData
             (Delta.toCombMap.faceCount : ℤ) - 2) + 2 := by ring
       _ = 2 := by rw [hzero]; ring
 
+/-- A boundary mate permutation with the copied incidence equations gives the
+spherical seam certificate for a planar source disc.  The mate, connectedness,
+and three count equations are the explicit residual inputs; planarity closes
+the Euler-two conclusion. -/
+theorem ExposedPairing.spherical_of_planarDisc
+    (B : ExposedPairing Delta n)
+    (C : EulerTwoCountData B.toPairing)
+    (hdisc : Delta.toCombMap.IsPlanar) :
+    Spherical B.toPairing :=
+  Pairing.spherical_of_eulerTwoCountData B.toPairing C hdisc
+
 /-- A spherical seam gives a closed planar combinatorial map. -/
 noncomputable def sphericalCombMap (S : Pairing Delta n) (hS : S.Spherical) :
     SphericalCombMap.{v} where
