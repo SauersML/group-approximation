@@ -63,7 +63,7 @@ consume either the source inequality or the extracted slice. -/
 theorem relativeBoundedPowerExtraction_of_linearGrowth
     (hGrowth : FiniteFamilyRelativePowerLinearGrowthStatement.{u, v}) :
     RelativeBoundedPowerExtractionStatement.{u, v} := by
-  intro G instG I _ D hbase hemb g hhyper hord R S hS hbounded
+  intro G instG I _ _ D hbase hemb g hhyper hord R S hS hbounded
   letI : Group G := instG
   have hesc : IsEscaping g (Cayley.base D.alphabet) := by
     exact finiteFamilyRelativePowerEscape_of_linearGrowth hGrowth
@@ -142,10 +142,17 @@ theorem relativeBoundedPowerExtraction_linearGrowth_standardModel
             ∀ q : ℕ, q ∈ S →
               ∃ z : G, z ∈ D.relBall lam n ∧ g ^ q = k * h * z := by
   intro g hhyper hord R S hS hbounded
-  exact relativeBoundedPowerExtraction_of_linearGrowth
-    (fun G _ I _ D hbase hemb g hhyper hord ↦
-      finiteFamilyRelativePowerLinearGrowth_emptyModel D hbase hemb g hord)
-    G inferInstance I D hbase hemb g hhyper hord R S hS hbounded
+  have hgrowth := finiteFamilyRelativePowerLinearGrowth_emptyModel D hbase hemb g hord
+  obtain ⟨l, B, hl, hB, hlin⟩ := hgrowth
+  have hesc := isEscaping_of_strict_linear_lower_bound hl hB hlin
+  have hev := hesc.eventually_gt_atTop (R + 1)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨N, hN⟩ := hev
+  obtain ⟨q, hqS, hqN⟩ := Set.Infinite.exists_gt hS N
+  have hsmall := hbounded q hqS
+  have hlarge := hN q hqN
+  exfalso
+  linarith
 
 end RelHyp
 end GGT
