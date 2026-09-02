@@ -293,8 +293,11 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   split
   · simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord]
   · rename_i targetOpt arcNone val arc htargetEq heqArc
+    have htarget' : Gamma.target = some val :=
+      htarget.trans (congrArg some htargetEq)
+    rw [htarget'] at heqArc
     have harc : Gamma.targetArc = arc := by
-      simpa [htarget] using heqArc
+      exact eq_of_heq heqArc
     simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord,
       harc]
 
