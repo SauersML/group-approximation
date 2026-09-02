@@ -28,8 +28,8 @@ def rowUsesPoint {n m : ℕ} (T : Table n m) (j : Fin m) (x : Fin n) : Bool :=
 
 /-- Exact-cover and cyclic-row checks attached to one point. -/
 def pointPairCheck {n m : ℕ} (T : Table n m) (x : Fin n) : Bool :=
-  allFinN n (fun y => decide
-    (pairCoverCount T x y = if member T x y = true then 1 else 0))
+  allFinN n (fun y =>
+    if member T x y = true then decide (pairCoverCount T x y = 1) else true)
 
 def pointRowsCheck {n m : ℕ} (T : Table n m) (x : Fin n) : Bool :=
   allFinN m (fun j =>
@@ -55,14 +55,20 @@ theorem rowUsesPoint_spec {n m : ℕ} (T : Table n m) (j : Fin m) (x : Fin n) :
 
 theorem pointPairCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
     pointPairCheck T x = true ↔
-      ∀ y, pairCoverCount T x y = if member T x y = true then 1 else 0 := by
+      ∀ y, member T x y = true → pairCoverCount T x y = 1 := by
   unfold pointPairCheck
   rw [allFinN_eq_true_iff]
   constructor
   · intro h y
-    exact decide_eq_true_eq.mp (h y)
+    by_cases hy : member T x y = true
+    · have hh := h y
+      simp [hy] at hh
+      exact decide_eq_true_eq.mp hh
+    · simp [hy]
   · intro h y
-    exact decide_eq_true_eq.mpr (h y)
+    by_cases hy : member T x y = true
+    · exact decide_eq_true_eq.mpr (h y hy)
+    · simp [hy]
 
 theorem pointRowsCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
     pointRowsCheck T x = true ↔
@@ -82,24 +88,13 @@ theorem pointRowsCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
 
 theorem checkPoint_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
     checkPoint T x = true ↔
-      (∀ y, pairCoverCount T x y = if member T x y = true then 1 else 0) ∧
+      (∀ y, member T x y = true → pairCoverCount T x y = 1) ∧
       (∀ j, rowUsesPoint T j x = true →
         rowCompatible T (T.rows j) = true) := by
   unfold checkPoint
   rw [Bool.and_eq_true, pointPairCheck_spec, pointRowsCheck_spec]
 
 /-! ## Assembly of the local checks -/
-
-theorem pairCoverCheck_of_checkPoints {n m : ℕ} (T : Table n m)
-    (hpoints : ∀ x, checkPoint T x = true) :
-    pairCoverCheck T = true := by
-  unfold pairCoverCheck
-  apply (allFinN_eq_true_iff _ _).mpr
-  intro x
-  apply (allFinN_eq_true_iff _ _).mpr
-  intro y
-  have hx := (checkPoint_spec T x).mp (hpoints x)
-  exact decide_eq_true_eq.mpr (hx.1 y)
 
 theorem rowCompatibilityCheck_of_checkPoints {n m : ℕ} (T : Table n m)
     (hpoints : ∀ x, checkPoint T x = true) :
@@ -111,6 +106,52 @@ theorem rowCompatibilityCheck_of_checkPoints {n m : ℕ} (T : Table n m)
   have huse : rowUsesPoint T j (T.rows j).x = true := by
     simp [rowUsesPoint]
   exact (hx.2 j huse)
+
+theorem rowContainsPair_member_of_compat {n m : ℕ} (T : Table n m)
+    (r : Triple n) (x y : Fin n)
+    (hrow : rowCompatible T r = true)
+    (hpair : rowContainsPair r x y = true) :
+    member T x y = true := by
+  rw [rowCompatible, Bool.and_eq_true] at hrow
+  have hcases := decide_eq_true_eq.mp hpair
+  rcases hcases with hxy | hyz | hzx
+  · simpa [hxy.1, hxy.2] using hrow.1
+  · simpa [hyz.1, hyz.2] using hrow.2.1
+  · simpa [hzx.1, hzx.2] using hrow.2.2
+
+theorem pairCoverCount_eq_zero_of_nonmember {n m : ℕ} (T : Table n m)
+    (hrows : ∀ j, rowCompatible T (T.rows j) = true)
+    (x y : Fin n) (hne : member T x y ≠ true) :
+    pairCoverCount T x y = 0 := by
+  classical
+  unfold pairCoverCount
+  apply Finset.sum_eq_zero
+  intro j hj
+  by_cases hpair : rowContainsPair (T.rows j) x y = true
+  · have hmem := rowContainsPair_member_of_compat T (T.rows j) x y
+        (hrows j) hpair
+    exact False.elim (hne hmem)
+  · simp [hpair]
+
+theorem pairCoverCheck_of_checkPoints {n m : ℕ} (T : Table n m)
+    (hpoints : ∀ x, checkPoint T x = true) :
+    pairCoverCheck T = true := by
+  have hrowsCheck : rowCompatibilityCheck T = true :=
+    rowCompatibilityCheck_of_checkPoints T hpoints
+  have hrows : ∀ j, rowCompatible T (T.rows j) = true := by
+    unfold rowCompatibilityCheck at hrowsCheck
+    exact (allFinN_eq_true_iff _ _).mp hrowsCheck
+  unfold pairCoverCheck
+  apply (allFinN_eq_true_iff _ _).mpr
+  intro x
+  apply (allFinN_eq_true_iff _ _).mpr
+  intro y
+  have hx := (checkPoint_spec T x).mp (hpoints x)
+  by_cases hm : member T x y = true
+  · have hcount := hx.1 y hm
+    simp [hm, hcount]
+  · have hzero := pairCoverCount_eq_zero_of_nonmember T hrows x y hm
+    simp [hm, hzero]
 
 /-! ## Degree-nine W(8) assembly -/
 
