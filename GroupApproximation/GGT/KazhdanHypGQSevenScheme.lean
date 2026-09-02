@@ -1224,8 +1224,8 @@ theorem wEleven_triangleCount :
     Fintype.card (Fin 1464) * 12 = 3 * 5856 := by
   norm_num
 
-/-- At q = 5 the quadratic Gram-shift inequality has no real (hence no
-rational) solution; its discriminant is negative. -/
+/-- At q = 5 the quadratic Gram-shift inequality has no real solution, so it
+has no rational solution; its discriminant is negative. -/
 theorem qFive_gap_threshold_fails :
     ¬ ∃ μ : ℚ, μ ^ 2 - μ * 6 + 10 < 0 := by
   intro h
