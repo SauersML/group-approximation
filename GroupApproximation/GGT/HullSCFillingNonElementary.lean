@@ -962,7 +962,8 @@ theorem hullLemma58SuitableFamily_unconditional :
     · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
       refine Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨i, ?_⟩)
       show q x ∈ D'.fam i
-      rw [hfam, P.fam_map i, D.fam_eq i]
+      rw [hfam, P.fam_map i]
+      rw [D.fam_eq i] at hi
       exact Subgroup.mem_map_of_mem q hi
   exact ⟨B, hperiph, hN, hS⟩
 
