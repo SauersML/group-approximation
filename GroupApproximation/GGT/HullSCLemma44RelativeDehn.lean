@@ -104,9 +104,15 @@ theorem map_replacementWord_prod_eq_boundaryArc_prod
   have hrelatorValue : GGT.RelLetter.listVal relator =
       GGT.RelLetter.listVal C.exterior *
         GGT.RelLetter.listVal C.remainder := by
-    rw [C.relator_decomposition, RelWord.listVal_append]
+    calc
+      GGT.RelLetter.listVal relator =
+          GGT.RelLetter.listVal (C.exterior ++ C.remainder) :=
+        congrArg GGT.RelLetter.listVal C.relator_decomposition
+      _ = GGT.RelLetter.listVal C.exterior *
+          GGT.RelLetter.listVal C.remainder := by
+        rw [RelWord.listVal_append]
   rw [hrelatorValue, C.exterior_value, map_mul, map_mul, map_mul] at hrelator
-  apply_fun (fun x : Q ⇒
+  apply_fun (fun x : Q =>
     (q (GGT.RelLetter.listVal C.leftSide))⁻¹ * x *
       (q (GGT.RelLetter.listVal C.remainder))⁻¹ *
         (q (GGT.RelLetter.listVal C.rightSide))⁻¹) at hrelator
@@ -124,9 +130,22 @@ theorem map_shortenedBoundaryWord_prod_eq
     (q : G →* Q) (hrelator : q (GGT.RelLetter.listVal relator) = 1) :
     q C.shortenedBoundaryWord.prod = q boundaryWord.prod := by
   have harc := C.map_replacementWord_prod_eq_boundaryArc_prod q hrelator
-  rw [shortenedBoundaryWord, List.prod_append, List.prod_append,
-    C.boundary_decomposition, List.prod_append, List.prod_append,
-    map_mul, map_mul, map_mul, map_mul, harc]
+  have hshortenedValue : C.shortenedBoundaryWord.prod =
+      C.boundaryBefore.prod * C.replacementWord.prod *
+        C.boundaryAfter.prod := by
+    rw [shortenedBoundaryWord, List.prod_append, List.prod_append]
+  have hboundaryValue : boundaryWord.prod =
+      C.boundaryBefore.prod * C.boundaryArc.prod *
+        C.boundaryAfter.prod := by
+    calc
+      boundaryWord.prod =
+          (C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter).prod :=
+        congrArg List.prod C.boundary_decomposition
+      _ = C.boundaryBefore.prod * C.boundaryArc.prod *
+          C.boundaryAfter.prod := by
+        rw [List.prod_append, List.prod_append]
+  rw [hshortenedValue, hboundaryValue, map_mul, map_mul, map_mul, map_mul,
+    harc]
 
 /-- Formal inversion preserves length. -/
 theorem length_revInv
@@ -225,11 +244,12 @@ theorem shortenedBoundaryWord_isWord
   rcases hx with (hx | hx) | hx
   · apply hboundary.letters x
     rw [C.boundary_decomposition]
-    exact List.mem_append_left _ hx
+    exact List.mem_append_left C.boundaryAfter
+      (List.mem_append_left C.boundaryArc hx)
   · exact hreplacement.letters x hx
   · apply hboundary.letters x
     rw [C.boundary_decomposition]
-    exact List.mem_append_right _ (List.mem_append_right _ hx)
+    exact List.mem_append_right (C.boundaryBefore ++ C.boundaryArc) hx
 
 end RelativeBoundaryContiguity
 
@@ -399,8 +419,7 @@ theorem exists_relativeDehnCut_of_certificate
     · intro x hx
       apply Z.boundaryWord_isWord.letters x
       rwa [← K.boundaryWord_eq]
-    · rw [K.boundaryWord_eq]
-      exact Z.boundaryWord_isWord.prod_eq
+    · exact rfl
   have hrelatorAdmissible : RelWord.IsAdmissible D (K.cellLabel i) :=
     hsc.admissible (K.cellLabel i) (K.cellLabel_mem i)
   refine ⟨{
