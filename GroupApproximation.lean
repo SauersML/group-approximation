@@ -3290,6 +3290,8 @@ import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonInput
 import GroupApproximation.GGT.DGOProposition435JointPrescribed
 import GroupApproximation.GGT.VanKampen.SurgeryFacePartition
 import GroupApproximation.GGT.HullSCRelativeGreendlingerBoundaryArc
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonCut
+import GroupApproximation.GGT.VanKampen.SurgeryFaceKept
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
