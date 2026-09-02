@@ -1275,6 +1275,24 @@ noncomputable def powerDiscSphereGluing_of_seam
   cornerCertificate := certificate
   cellularReduced := hcellular
 
+/-- The explicit copied-incidence count proves the spherical hypothesis used by
+the seam constructor.  This is the Euler-characteristic-two branch of the
+rotated-copy gluing argument. -/
+noncomputable def powerDiscSphereGluing_of_eulerCounts
+    (D : PowerDisc T g n)
+    (S : VanKampen.SeamGluing.Pairing D.diagram n)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData S)
+    (hdisc : D.diagram.toCombMap.IsPlanar)
+    (certificate : ∀ v,
+      VertexCornerCertificate T
+        (cornerCycleOfCombMap S.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (certificate v)) :
+    PowerDiscSphereGluing D :=
+  powerDiscSphereGluing_of_seam D S
+    (VanKampen.SeamGluing.Pairing.spherical_of_eulerTwoCountData
+      S hcounts hdisc)
+    certificate hcellular
+
 /-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
 consumed by `presented_isPowerTorsionFree_of_sphericalExtraction`. -/
 noncomputable def triangularRelatorSphericalMap_of_powerDiscGluing
