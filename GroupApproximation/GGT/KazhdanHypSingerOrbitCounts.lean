@@ -28,6 +28,7 @@ open scoped BigOperators
 
 abbrev SingerPeriod := Fin 65
 abbrev SingerPointOrbitRep := Fin 9
+abbrev SingerLineOrbitRep := Fin 9
 abbrev SingerPairOrbitRep := Fin 81
 abbrev SingerTriangleOrbitRep := Fin 27
 
@@ -122,7 +123,7 @@ theorem point_card_of_nine_singer_orbits
 theorem line_card_of_nine_singer_orbits
     {Line : Type*} [Fintype Line]
     {sigma : Equiv.Perm Line}
-    (D : SingerOrbitEnumeration (Rep := SingerPointOrbitRep) sigma) :
+    (D : SingerOrbitEnumeration (Rep := SingerLineOrbitRep) sigma) :
     Fintype.card Line = 585 := by
   have h := card_of_singerOrbitEnumeration D
   norm_num at h ⊢
@@ -166,12 +167,12 @@ theorem wEightPointOrbitCheck_eq_true_iff
 /-- The line orbit map emitted by the q = 8 search has nine roots. -/
 def wEightLineOrbitCheck
     {Line : Type*} [Fintype Line] [DecidableEq Line]
-    (orbit : SingerPointOrbitRep × SingerPeriod → Line) : Bool :=
+    (orbit : SingerLineOrbitRep × SingerPeriod → Line) : Bool :=
   singerOrbitBijectionCheck orbit
 
 theorem wEightLineOrbitCheck_eq_true_iff
     {Line : Type*} [Fintype Line] [DecidableEq Line]
-    (orbit : SingerPointOrbitRep × SingerPeriod → Line) :
+    (orbit : SingerLineOrbitRep × SingerPeriod → Line) :
     wEightLineOrbitCheck orbit = true ↔ Function.Bijective orbit := by
   simp [wEightLineOrbitCheck, singerOrbitBijectionCheck]
 
