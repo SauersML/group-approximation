@@ -2610,7 +2610,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           omega
         subst mj
         have hteq : targetN i = targetN j := by omega
-        exact hsource_of_target_eq i j hi hj hteq ▸ rfl
+        exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
   obtain ⟨block, hblock⟩ := exists_consecutive_block_of_short_absorption
     (K := K) (M := M) hK Matched short hclass hshortInj
 
