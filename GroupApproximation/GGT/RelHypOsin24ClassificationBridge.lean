@@ -366,7 +366,7 @@ alphabet.  It is a strictly smaller target than the arbitrary-alphabet
 power escape estimate. -/
 def HyperbolicElementLoxodromicAcylindricalStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
-    D.IsHyperbolicallyEmbedded →
+    D.base.Finite → D.IsHyperbolicallyEmbedded →
       IsAcylindrical G (Cayley D.alphabet) → ∀ g : G,
         IsHyperbolicElement D.fam g →
           (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
@@ -375,12 +375,12 @@ def HyperbolicElementLoxodromicAcylindricalStatement : Prop :=
 /-- The relative escape estimate proves the acylindrical classification by the
 one action-theoretic bridge above. -/
 theorem hyperbolicElementLoxodromicAcylindrical_of_relativePowerEscape
-    (hEscape : UnrestrictedRelativePowerEscapeStatement.{u, v}) :
+    (hEscape : RelativePowerEscapeStatement.{u, v}) :
     HyperbolicElementLoxodromicAcylindricalStatement.{u, v} := by
-  intro G instG I D hemb hacy g hhyper hord
+  intro G instG I D hfinite hemb hacy g hhyper hord
   letI : Group G := instG
   exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hemb hacy
-    (hEscape G instG I D hemb g hhyper hord)
+    (hEscape G instG I D hfinite hemb g hhyper hord)
 
 /-- Model test for the acylindrical classification: in the finite empty-family
 case the action is acylindrical by finite properness, and the preceding escape
@@ -394,8 +394,6 @@ theorem hyperbolicElementLoxodromicAcylindrical_emptyModel
   exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hemb
     (relHypFiniteBaseAcylindricity_empty D hfinite)
     (relativePowerEscape_emptyModel D hfinite hemb g hord)
-
-/-! ## Theorem 5.4 reduction of the arbitrary-alphabet target -/
 
 /-- The empty labelled family whose base is the complete original relative
 alphabet.  Its only purpose here is to feed Osin's Theorem 5.4, so the output
@@ -447,28 +445,6 @@ theorem exists_classificationAcylindricalOutput
     intro x hx
     exact Or.inl (hbase hx)
   exact ⟨E, hcontain, hE, hacy⟩
-
-/-- The full one-element loxodromic conclusion follows from the smaller escape
-estimate: enlarge to the empty family by Theorem 5.4, use the acylindrical
-escape-to-loxodromy bridge there, and transfer loxodromy down to the original
-alphabet by Hull's Lemma A.1. -/
-theorem hyperbolicElementLoxodromic_of_relativePowerEscape
-    (hEscape : UnrestrictedRelativePowerEscapeStatement.{u, v}) :
-    ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
-      D.IsHyperbolicallyEmbedded → ∀ g : G,
-        IsHyperbolicElement D.fam g →
-          (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
-            IsLoxodromic g (Cayley.base D.alphabet) := by
-  intro G instG I D hD g hhyper hord
-  letI : Group G := instG
-  obtain ⟨E, hcontain, hE, hacy⟩ := exists_classificationAcylindricalOutput D hD
-  have hhyperE : IsHyperbolicElement E.fam g :=
-    isHyperbolicElement_of_isEmpty E.fam g
-  have hescE : IsEscaping g (Cayley.base E.alphabet) :=
-    hEscape G instG (ULift.{v} Empty) E hE g hhyperE hord
-  have hloxE : IsLoxodromic g (Cayley.base E.alphabet) :=
-    isLoxodromic_of_relativePowerEscape_of_acylindrical E hE hacy hescE
-  exact HullSC.isLoxodromic_base_of_subset hcontain hloxE
 
 end RelHyp
 end GGT
