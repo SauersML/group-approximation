@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.RelHypOsin24PairRefinement
 import GroupApproximation.GGT.RelHypOsin24AcylindricalRefinement
+import GroupApproximation.GGT.RelHypOsin24ClassificationBridge
 
 /-!
 # Hyperbolic elements on labelled relative Cayley graphs
@@ -31,6 +32,15 @@ def HyperbolicElementLoxodromicStatement : Prop :=
       IsHyperbolicElement D.fam g →
         (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
           IsLoxodromic g (Cayley.base D.alphabet)
+
+/-- Osin's one-element classification is reduced to the strictly smaller
+relative power escape estimate.  The reduction first applies Theorem 5.4 to
+the empty labelled family, then uses the acylindrical Bowditch bridge and
+finally descends loxodromy along the alphabet inclusion. -/
+theorem hyperbolicElementLoxodromicStatement_of_relativePowerEscape
+    (hEscape : RelativePowerEscapeStatement.{u, v}) :
+    HyperbolicElementLoxodromicStatement.{u, v} := by
+  exact hyperbolicElementLoxodromic_of_relativePowerEscape hEscape
 
 /-- The classification statement holds in its finite-Cayley empty-family
 model. -/

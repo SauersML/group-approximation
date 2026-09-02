@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.RelHypOsin24Action
 import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
+import GroupApproximation.GGT.HullYiAlphabetTransfer
+import GroupApproximation.GGT.OsinTheorem54Unconditional
 
 /-!
 # The escape-to-loxodromy bridge for Osin's element classification
@@ -125,6 +127,80 @@ theorem hyperbolicElementLoxodromicAcylindrical_emptyModel
   exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hemb
     (relHypFiniteBaseAcylindricity_empty D hfinite)
     (relativePowerEscape_emptyModel D hfinite hemb g hord)
+
+/-! ## Theorem 5.4 reduction of the arbitrary-alphabet target -/
+
+/-- The empty labelled family whose base is the complete original relative
+alphabet.  Its only purpose here is to feed Osin's Theorem 5.4, so the output
+alphabet contains every original labelled letter. -/
+def classificationEmptyFamilyRelGenSet {G : Type u} [Group G] {I : Type v}
+    (D : RelGenSet G I) : RelGenSet G Empty where
+  base := D.alphabet.carrier
+  fam := Empty.elim
+  symmetricGenerating := by
+    change IsSymmetricGeneratingSet
+      (D.alphabet.carrier ∪
+        ⋃ e : Empty, ((Empty.elim e : Subgroup G) : Set G))
+    rw [Set.iUnion_of_empty, Set.union_empty]
+    exact D.alphabet.symmetricGenerating
+
+theorem classificationEmptyFamilyRelGenSet_alphabet
+    {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I) :
+    (classificationEmptyFamilyRelGenSet D).alphabet = D.alphabet := by
+  apply OsinComponents.alphabet_eq_of_carrier_eq
+  change D.alphabet.carrier ∪
+      ⋃ e : Empty, ((Empty.elim e : Subgroup G) : Set G) = D.alphabet.carrier
+  rw [Set.iUnion_of_empty, Set.union_empty]
+
+theorem classificationEmptyFamilyRelGenSet_embedded
+    {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I)
+    (hD : D.IsHyperbolicallyEmbedded) :
+    (classificationEmptyFamilyRelGenSet D).IsHyperbolicallyEmbedded := by
+  refine ⟨?_, ?_⟩
+  · rw [classificationEmptyFamilyRelGenSet_alphabet D]
+    exact hD.hyperbolic
+  · intro e
+    exact Empty.elim e
+
+/-- Theorem 5.4 supplies an acylindrical empty-family alphabet containing the
+original relative alphabet. -/
+theorem exists_classificationAcylindricalOutput
+    {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I)
+    (hD : D.IsHyperbolicallyEmbedded) :
+    ∃ (E : RelGenSet G Empty),
+      D.alphabet.carrier ⊆ E.alphabet.carrier ∧
+        E.IsHyperbolicallyEmbedded ∧
+          IsAcylindrical G (Cayley E.alphabet) := by
+  obtain ⟨E, hbase, _hfam, hE, hacy⟩ :=
+    OsinEnlargement.osinTheorem54Fam_unconditional G Empty
+      (classificationEmptyFamilyRelGenSet D)
+      (classificationEmptyFamilyRelGenSet_embedded D hD)
+  have hcontain : D.alphabet.carrier ⊆ E.alphabet.carrier := by
+    intro x hx
+    exact Or.inl (hbase hx)
+  exact ⟨E, hcontain, hE, hacy⟩
+
+/-- The full one-element loxodromic conclusion follows from the smaller escape
+estimate: enlarge to the empty family by Theorem 5.4, use the acylindrical
+escape-to-loxodromy bridge there, and transfer loxodromy down to the original
+alphabet by Hull's Lemma A.1. -/
+theorem hyperbolicElementLoxodromic_of_relativePowerEscape
+    (hEscape : RelativePowerEscapeStatement.{u, v}) :
+    ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
+      D.IsHyperbolicallyEmbedded → ∀ g : G,
+        IsHyperbolicElement D.fam g →
+          (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+            IsLoxodromic g (Cayley.base D.alphabet) := by
+  intro G instG I D hD g hhyper hord
+  letI : Group G := instG
+  obtain ⟨E, hcontain, hE, hacy⟩ := exists_classificationAcylindricalOutput D hD
+  have hhyperE : IsHyperbolicElement E.fam g :=
+    isHyperbolicElement_of_isEmpty E.fam g
+  have hescE : IsEscaping g (Cayley.base E.alphabet) :=
+    hEscape G instG Empty E hE g hhyperE hord
+  have hloxE : IsLoxodromic g (Cayley.base E.alphabet) :=
+    isLoxodromic_of_relativePowerEscape_of_acylindrical E hE hacy hescE
+  exact HullSC.isLoxodromic_base_of_subset hcontain hloxE
 
 end RelHyp
 end GGT
