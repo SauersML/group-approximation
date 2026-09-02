@@ -22,40 +22,40 @@ universe u
 
 /-- Walks concatenate. -/
 theorem ReachIn.trans {α : Type u} {s : Finset α} {r : α → α → Prop}
-    {a b c : α} {n : ℕ} (hab : ReachIn s r n a b) :
-    ∀ m : ℕ, ReachIn s r m b c → ReachIn s r (n + m) a c := by
+    {a b : α} {n : ℕ} (hab : ReachIn s r n a b) :
+    ∀ (m : ℕ) (c : α), ReachIn s r m b c → ReachIn s r (n + m) a c := by
   intro m
   induction m with
   | zero =>
-      intro h
+      intro c h
       have hbc : b = c := reachIn_zero_iff.mp h
       rw [← hbc]
       exact hab
   | succ m ih =>
-      intro h
+      intro c h
       rcases reachIn_succ_iff.mp h with h | h
-      · exact (ih h).mono (n + (m + 1)) (by omega)
+      · exact (ih c h).mono (n + (m + 1)) (by omega)
       · obtain ⟨d, hd, hbd, hdc⟩ := h
-        exact reachIn_succ_iff.mpr (Or.inr ⟨d, hd, ih hbd, hdc⟩)
+        exact reachIn_succ_iff.mpr (Or.inr ⟨d, hd, ih d hbd, hdc⟩)
 
 /-- A step prepends to a walk. -/
 theorem ReachIn.head {α : Type u} {s : Finset α} {r : α → α → Prop}
-    {a c b : α} (ha : a ∈ s) (hac : r a c) :
-    ∀ n : ℕ, ReachIn s r n c b → ReachIn s r (n + 1) a b := by
+    {a c : α} (ha : a ∈ s) (hac : r a c) :
+    ∀ (n : ℕ) (b : α), ReachIn s r n c b → ReachIn s r (n + 1) a b := by
   intro n
   induction n with
   | zero =>
-      intro h
+      intro b h
       have hcb : c = b := reachIn_zero_iff.mp h
       refine reachIn_succ_iff.mpr (Or.inr ⟨a, ha, reachIn_refl s r a, ?_⟩)
       rw [← hcb]
       exact hac
   | succ n ih =>
-      intro h
+      intro b h
       rcases reachIn_succ_iff.mp h with h | h
-      · exact (ih h).mono (n + 1 + 1) (by omega)
+      · exact (ih b h).mono (n + 1 + 1) (by omega)
       · obtain ⟨d, hd, hcd, hdb⟩ := h
-        exact reachIn_succ_iff.mpr (Or.inr ⟨d, hd, ih hcd, hdb⟩)
+        exact reachIn_succ_iff.mpr (Or.inr ⟨d, hd, ih d hcd, hdb⟩)
 
 /-- Walks reverse when the relation is symmetric. -/
 theorem ReachIn.reverse {α : Type u} {s : Finset α} {r : α → α → Prop}
@@ -73,7 +73,7 @@ theorem ReachIn.reverse {α : Type u} {s : Finset α} {r : α → α → Prop}
       · exact ih b hb h
       · obtain ⟨c, hc, hac, hcb⟩ := h
         obtain ⟨m, hm⟩ := ih c hc hac
-        exact ⟨m + 1, ReachIn.head hb (hsymm c b hcb) m hm⟩
+        exact ⟨m + 1, ReachIn.head hb (hsymm c b hcb) m a hm⟩
 
 /-- A nontrivial equivalence-closure connection has both endpoints in the
 carrier. -/
@@ -128,7 +128,7 @@ theorem reachIn_of_eqvGen {α : Type u} {s : Finset α} {r : α → α → Prop}
           exact hx
         · exact hmem.2
       obtain ⟨m, hm⟩ := ihyz hy
-      exact ⟨n + m, hn.trans m hm⟩
+      exact ⟨n + m, hn.trans m z hm⟩
 
 /-- The removable-point theorem, stated for a symmetric relation given by an
 equivalence closure.  This is the form the selected-face dual supplies. -/
