@@ -1025,8 +1025,14 @@ theorem nonempty_powerDiscCandidate_of_cactusFoldChain
     Nonempty (PowerDiscCandidate T g n) := by
   let C : VanKampen.CactusRelatorRetyping Delta :=
     chain.toRetyping hplanar hred
+  have hdiagram : C.diagram = Next :=
+    chain.toRetyping_diagram_eq hplanar hred
+  have hboundary' : C.diagram.boundaryWord =
+      (List.replicate n (word.map signedFreeRelLetter)).flatten := by
+    rw [hdiagram]
+    exact hboundary
   exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
-    _hn _hpow _hne Delta C hboundary
+    _hn _hpow _hne Delta C hboundary'
 
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)

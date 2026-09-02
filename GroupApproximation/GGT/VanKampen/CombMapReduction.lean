@@ -230,6 +230,24 @@ noncomputable def CactusFoldChain.toRetyping
         planar := R.planar }
       exact R.rCellCount_le.trans_eq C.replacement.rCellCount_eq
 
+/-- The diagram produced by a fold chain is its indexed terminal diagram. -/
+theorem CactusFoldChain.toRetyping_diagram_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta Next : DiscDiagram.{u, w, v} W} {k : ℕ}
+    (chain : CactusFoldChain Delta Next k)
+    (hplanar : Delta.toCombMap.IsPlanar)
+    (hred : Delta.Reduced) :
+    (chain.toRetyping hplanar hred).diagram = Next := by
+  induction chain generalizing hplanar hred with
+  | @done D cover => rfl
+  | @step D Next k C tail area_drop ih =>
+      dsimp [CactusFoldChain.toRetyping]
+      exact ih (by
+        rw [← C.surgeryMap_eq_replacement]
+        exact C.surgeryMap_planar hplanar)
+        (C.replacement.reduced C.reduced)
+
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
 area is unchanged by the ordered cell equivalence, and reducedness transports
