@@ -2208,15 +2208,12 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       (occ ⟨i.val + 1, hiN⟩).val = (occ i).val + 1 := by
     intro i hiN
     let i1 : Fin N := ⟨i.val + 1, hiN⟩
+    change (occ i1).val = (occ i).val + 1
     have hoccLt : occ i < occ i1 := by
       dsimp [occ, i1]
       apply (S.orderIsoOfFin rfl).strictMono
       exact Fin.mk_lt_mk.mpr (by omega)
     by_contra hne
-    have hne' : (occ i).val + 1 ≠ (occ i1).val := by
-      intro heq
-      apply hne
-      exact heq.symm
     have hgap : (occ i).val + 1 < (occ i1).val := by
       have hval : (occ i).val < (occ i1).val := hoccLt
       omega
@@ -2258,10 +2255,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       exact hgap
     have hleft' := Eord.symm.strictMono hleft
     have hright' := Eord.symm.strictMono hright
-    have hleftVal : i.val < (Eord.symm ez).val := by
-      simpa using hleft'
-    have hrightVal : (Eord.symm ez).val < i.val + 1 := by
-      simpa using hright'
+    rw [Eord.symm_apply_apply] at hleft'
+    rw [Eord.symm_apply_apply] at hright'
+    have hleftVal : i.val < (Eord.symm ez).val := hleft'
+    have hrightVal : (Eord.symm ez).val < i.val + 1 := hright'
     omega
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
