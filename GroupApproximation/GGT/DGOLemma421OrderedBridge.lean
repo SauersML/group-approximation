@@ -27,7 +27,8 @@ variable {G : Type u} [Group G] {Λ : Type w}
 `t < K` and `t + 1 < K` match the natural-indexed conclusion in the statement
 of DGO Lemma 4.21(b). -/
 structure DGO421OrderedBlockPayload
-    (D : RelGenSet G Λ) (p q : List (RelLetter G Λ)) (K : ℕ) where
+    (D : RelGenSet G Λ) (vp vq : G)
+    (p q : List (RelLetter G Λ)) (K : ℕ) where
   ip : ℕ → ℕ
   kp : ℕ → ℕ
   iq : ℕ → ℕ
@@ -40,20 +41,20 @@ structure DGO421OrderedBlockPayload
   qsep : ∀ t : ℕ, t + 1 < K →
     BaseEdgeOrTrivial q (kq t) (iq (t + 1))
   cosetMatch : ∀ t : ℕ, t < K →
-    (vertex (1 : G) p (ip t))⁻¹ * vertex (1 : G) q (iq t) ∈ D.fam (lam t)
+    (vertex vp p (ip t))⁻¹ * vertex vq q (iq t) ∈ D.fam (lam t)
 
 /-- An ordered block payload is exactly the final witness package required by
 the natural-indexed form of Lemma 4.21(b). -/
 theorem DGO421OrderedBlockPayload.toStartCosetWitness
-    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {K : ℕ}
-    (W : DGO421OrderedBlockPayload D p q K) :
+    {D : RelGenSet G Λ} {vp vq : G} {p q : List (RelLetter G Λ)} {K : ℕ}
+    (W : DGO421OrderedBlockPayload D vp vq p q K) :
     ∃ (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Λ),
       (∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t)) ∧
       (∀ t : ℕ, t < K → IsComp (lam t) q (iq t) (kq t)) ∧
       (∀ t : ℕ, t + 1 < K → BaseEdgeOrTrivial p (kp t) (ip (t + 1))) ∧
       (∀ t : ℕ, t + 1 < K → BaseEdgeOrTrivial q (kq t) (iq (t + 1))) ∧
       (∀ t : ℕ, t < K →
-        (vertex (1 : G) p (ip t))⁻¹ * vertex (1 : G) q (iq t) ∈ D.fam (lam t)) := by
+        (vertex vp p (ip t))⁻¹ * vertex vq q (iq t) ∈ D.fam (lam t)) := by
   exact ⟨W.ip, W.kp, W.iq, W.kq, W.lam,
     W.pcomp, W.qcomp, W.psep, W.qsep, W.cosetMatch⟩
 
@@ -91,7 +92,7 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
     {N M K : ℕ}
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
     (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
-    DGO421OrderedBlockPayload D p q K := by
+    DGO421OrderedBlockPayload D (1 : G) (1 : G) p q K := by
   let first : Fin K := ⟨0, hK⟩
   let blockAt : ℕ → Fin N := fun t =>
     if ht : t < K then cert.blockIndex ⟨t, ht⟩ else cert.blockIndex first
@@ -144,6 +145,7 @@ private def orderedBridgeTrivialWord : List (RelLetter PUnit Unit) :=
 identity element of the top peripheral subgroup. -/
 theorem DGO421OrderedBlockPayload.trivialModel :
     Nonempty (DGO421OrderedBlockPayload orderedBridgeTrivialRelGenSet
+      (1 : PUnit) (1 : PUnit)
       orderedBridgeTrivialWord orderedBridgeTrivialWord 1) := by
   let hcomp : IsComp () orderedBridgeTrivialWord 0 1 := by
     refine ⟨by omega, by simp [orderedBridgeTrivialWord], ?_, ?_, ?_⟩
@@ -156,6 +158,7 @@ theorem DGO421OrderedBlockPayload.trivialModel :
     · intro ht
       simp [orderedBridgeTrivialWord] at ht
   let W : DGO421OrderedBlockPayload orderedBridgeTrivialRelGenSet
+      (1 : PUnit) (1 : PUnit)
       orderedBridgeTrivialWord orderedBridgeTrivialWord 1 :=
     { ip := fun _ => 0
       kp := fun _ => 1
