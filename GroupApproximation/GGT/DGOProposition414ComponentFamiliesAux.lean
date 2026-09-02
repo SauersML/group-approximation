@@ -1115,6 +1115,7 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
             B.firstTargetSide s + 1 := by omega
         have hcutTarget := (B.firstArcCut_target hsData.1).2
         have hcutTarget0 := (B.firstArcCut_target hsData.1).1
+        have hmono := B.firstArc_isCutPath.cut.mono_le hsData.2.1
         rw [harg1, hcutTarget]
         rw [← hcutTarget0]
         dsimp [i]
@@ -1214,6 +1215,7 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
             B.secondTargetSide s + 1 := by omega
         have hcutTarget := (B.secondArcCut_target hsData.1).2
         have hcutTarget0 := (B.secondArcCut_target hsData.1).1
+        have hmono := B.secondArc_isCutPath.cut.mono_le hsData.2.1
         rw [harg1, hcutTarget]
         rw [← hcutTarget0]
         dsimp [i]
@@ -1318,7 +1320,7 @@ theorem firstGapArcCutAlignment_of_source
             B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
           ((B.firstGapLeft j).length +
             (B.firstTargetSide s - B.firstGapStartSide j + 1)) := by
-        simpa only [Nat.add_assoc]
+        simp only [Nat.add_assoc]
       _ = (B.firstGapLeft j).length +
           (B.firstArcCut (B.firstGapStartSide j +
             (B.firstTargetSide s - B.firstGapStartSide j + 1)) -
@@ -1331,6 +1333,7 @@ theorem firstGapArcCutAlignment_of_source
             B.firstTargetSide s + 1 := by omega
         have hcutTarget := (B.firstArcCut_target hsData.1).2
         have hcutTarget0 := (B.firstArcCut_target hsData.1).1
+        have hmono := B.firstArc_isCutPath.cut.mono_le hsData.2.1
         rw [harg1, hcutTarget, ← hcutTarget0]
         omega
   refine ⟨?_, ?_⟩
@@ -1386,7 +1389,7 @@ theorem secondGapArcCutAlignment_of_source
             B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
           ((B.secondGapLeft j).length +
             (B.secondTargetSide s - B.secondGapStartSide j + 1)) := by
-        simpa only [Nat.add_assoc]
+        simp only [Nat.add_assoc]
       _ = (B.secondGapLeft j).length +
           (B.secondArcCut (B.secondGapStartSide j +
             (B.secondTargetSide s - B.secondGapStartSide j + 1)) -
@@ -1399,6 +1402,7 @@ theorem secondGapArcCutAlignment_of_source
             B.secondTargetSide s + 1 := by omega
         have hcutTarget := (B.secondArcCut_target hsData.1).2
         have hcutTarget0 := (B.secondArcCut_target hsData.1).1
+        have hmono := B.secondArc_isCutPath.cut.mono_le hsData.2.1
         rw [harg1, hcutTarget, ← hcutTarget0]
         omega
   refine ⟨?_, ?_⟩
