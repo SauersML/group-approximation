@@ -552,7 +552,12 @@ theorem spherical_of_doubleEulerCountData
   have hv := C.vertex_count_eq
   have he := C.edge_count_eq
   have hf := C.face_count_eq
-  have hsource := Delta.toCombMap.euler_eq_two hplanar
+  have hinterior := disc_interiorEuler_eq_one_of_planar Delta hplanar
+  have hsource :
+      (Delta.toCombMap.vertexCount : ℤ) -
+          (Delta.toCombMap.edgeCount : ℤ) +
+          (Delta.toCombMap.faceCount : ℤ) = 2 := by
+    linarith
   linarith
 
 /-- The copied-incidence count gives the Euler-characteristic-two spherical
