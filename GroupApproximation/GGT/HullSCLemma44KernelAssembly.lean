@@ -147,8 +147,9 @@ theorem relativeBallInjectivity_of_certificate
   obtain ⟨K⟩ := hcert (Z.toRelativeReducedDiagram D)
   exact false_of_relativeDiagramCertificate D Z hsc hmu hthreshold K
 
-/-- The nontrivial fixed-parameter assembly. -/
-theorem quotientPeripheralPreservation_of_kernelBounds_at
+/-- Pointwise kernel-geodesic and local-finiteness bounds give the two
+quotient conclusions at fixed parameters. -/
+theorem quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
     (D : AuxiliaryPeripheralFamily A N S)
@@ -165,8 +166,8 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
       Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
-    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
-    (hloc : KernelConeLocalFinitenessStatement.{u, u, 0}) :
+    (hkernel : KernelGeodesicEstimateAt D.rel W eps rho mu hsc q)
+    (hloc : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q D) := by
   have hAlphabet : A.alphabet.carrier ⊆ D.rel.alphabet.carrier := by
@@ -175,12 +176,12 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
   have hinject :=
     relativeBallInjectivity_of_certificate D.rel hsc hmu hthreshold q hker
       (hcert (max R 1))
-  obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hq hker hcert
+  obtain ⟨M, hM⟩ := hkernel
   have hcone :
       (D.rel.adjoinRelatorPrefixes W
         hsc.toIsSmallCancellation).adjoinKernel q |>.IsHyperbolicallyEmbedded :=
     isHyperbolicallyEmbedded_prefixKernelCone_of_bounds D.rel D.embedded W
-      hsc q M hM (hloc.finite D.rel W eps rho mu hsc q hq hker hcert)
+      hsc q M hM hloc
   have hinjectPeripheral : Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k,
         (D.cores.peripheral i : Set G)) := by
@@ -219,6 +220,36 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
     exact quotientPeripheralPreservation_of_prefixKernelCone D hsc q hq
       hcone hinjectPeripheral
   exact ⟨hinjectA, hpres⟩
+
+/-- The nontrivial fixed-parameter assembly. -/
+theorem quotientPeripheralPreservation_of_kernelBounds_at
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S)
+    {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {R eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
+    (hmu : mu ≤ 1 / 92)
+    (hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ))
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
+    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
+    (hloc : KernelConeLocalFinitenessStatement.{u, u, 0}) :
+    Set.InjOn q (cayleyBall A.alphabet R) ∧
+      Nonempty (QuotientPeripheralPreservation q D) := by
+  obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hq hker hcert
+  have hkernelAt : KernelGeodesicEstimateAt D.rel W eps rho mu hsc q :=
+    ⟨M, hM⟩
+  have hlocAt : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q :=
+    hloc.finite D.rel W eps rho mu hsc q hq hker hcert
+  exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
+    hmu hthreshold q hq hker hcert hkernelAt hlocAt
 
 /-! ## Parameter assembly from the relative certificate -/
 
