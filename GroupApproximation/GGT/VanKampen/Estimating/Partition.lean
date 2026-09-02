@@ -497,26 +497,43 @@ noncomputable def occurrenceEquivClassifiedPosition
     (i : Fin Delta.rCellCount) (kind : CellArcKind)
     (hkind : kind ≠ CellArcKind.unbound) :
     CellIncidence.Occurrence (selected := selected) (i := i) kind ≃
-      ClassifiedPosition (canonical selected i) kind where
-  toFun occurrence :=
-    ⟨occurrence.2.1, canonical_kind_of_mem selected hunique i occurrence.2.1
-      occurrence.1.1 occurrence.2.2 |>.trans occurrence.1.2⟩
-  invFun position := by
-    let witness := Classical.choose
-      (exists_incidence_of_canonical_kind selected i kind hkind position)
-    have hwitness := Classical.choose_spec
-      (exists_incidence_of_canonical_kind selected i kind hkind position)
-    exact ⟨⟨witness, hwitness.1⟩, ⟨position.1, hwitness.2⟩⟩
-  left_inv occurrence := by
-    let hdata := exists_incidence_of_canonical_kind selected i kind hkind
+      ClassifiedPosition (canonical selected i) kind := by
+  let toClassified :
+      CellIncidence.Occurrence (selected := selected) (i := i) kind →
+        ClassifiedPosition (canonical selected i) kind :=
+    fun occurrence =>
       ⟨occurrence.2.1, canonical_kind_of_mem selected hunique i occurrence.2.1
         occurrence.1.1 occurrence.2.2 |>.trans occurrence.1.2⟩
-    have heq : Classical.choose hdata = occurrence.1.1 :=
-      hunique i occurrence.2.1 (Classical.choose hdata) occurrence.1.1
-        (Classical.choose_spec hdata).2 occurrence.2.2
-    cases heq
-    rfl
-  right_inv position := by
+  apply Equiv.ofBijective toClassified
+  constructor
+  · intro first second heq
+    have hposition : first.2.1 = second.2.1 :=
+      congrArg Subtype.val heq
+    have hsecondMem :
+        (cellDarts Delta i).get first.2.1 ∈ second.1.1.arc.darts := by
+      rw [hposition]
+      exact second.2.2
+    have hincidence : first.1.1 = second.1.1 :=
+      hunique i first.2.1 first.1.1 second.1.1 first.2.2 hsecondMem
+    cases first with
+    | mk firstIncidence firstPosition =>
+      cases second with
+      | mk secondIncidence secondPosition =>
+        dsimp only at hposition hincidence ⊢
+        have hincidence' : firstIncidence = secondIncidence :=
+          Subtype.ext hincidence
+        subst secondIncidence
+        have hposition' : firstPosition = secondPosition :=
+          Subtype.ext hposition
+        subst secondPosition
+        rfl
+  · intro position
+    obtain ⟨incidence, hincidenceKind, hmem⟩ :=
+      exists_incidence_of_canonical_kind selected i kind hkind position
+    let occurrence :
+        CellIncidence.Occurrence (selected := selected) (i := i) kind :=
+      ⟨⟨incidence, hincidenceKind⟩, ⟨position.1, hmem⟩⟩
+    refine ⟨occurrence, ?_⟩
     apply Subtype.ext
     rfl
 
