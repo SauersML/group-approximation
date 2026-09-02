@@ -317,14 +317,23 @@ noncomputable def lemma49VKDesignatedBoundaryCycle
   traversal_nonempty :=
     (List.ofFn_eq_nil_iff.not.mpr (Nat.ne_of_gt Z.cactusShape.boundary_pos))
   traversal_starts_at_base := by
-    rw [List.head_ofFn traversal_nonempty]
+    rw [List.head_ofFn
+      (List.ofFn_eq_nil_iff.not.mpr (Nat.ne_of_gt Z.cactusShape.boundary_pos))]
     congr 1
     apply Fin.ext
     rfl
   traversal_from_base := by
     rfl
   faceWord_eq := by
-    rw [traversal_eq]
+    have htr :
+        List.ofFn (CactusDart.outerForward :
+          Fin Z.cactusShape.boundaryLength → CactusDart Z.cactusShape) =
+          (Z.cactusFaceBoundary Z.cactusShape.outerFace).darts := by
+      rw [Z.cactusFaceBoundary_of_ne_big
+        Z.cactusShape.bigFace_ne_outerFace.symm,
+        Z.cactusShape.faceBoundary_outerFace_darts,
+        HullSC.Lemma49GeodesicPowerDiagram.cactus_outerBoundary_darts]
+    rw [htr]
     exact Z.cactus_customOuterFaceWord
   boundaryCopies := List.replicate n Z.boundaryWord
   boundaryCopies_eq := rfl
