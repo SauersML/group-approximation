@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullYiCyclicProductNonCommensurable
 import GroupApproximation.GGT.DGOCorollary612Threshold
+import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOPolygonSideCountAll
 import GroupApproximation.GGT.HullSCRelatorSeparationBall
 import GroupApproximation.GGT.HullSCRelatorWord
@@ -45,12 +46,14 @@ theorem listVal_yiConnectorQuadWord {lam : Lambda} {x y r s : G}
     RelLetter.listVal (yiConnectorQuadWord lam x y r s) = 1 := by
   simp only [yiConnectorQuadWord, RelLetter.listVal, List.map_cons, List.map_nil,
     List.prod_cons, List.prod_nil, RelLetter.val]
-  rw [hclose]
-  group
+  calc
+    x * (s * (y⁻¹ * (r⁻¹ * 1))) = (x * s) * y⁻¹ * r⁻¹ := by group
+    _ = (r * y) * y⁻¹ * r⁻¹ := by rw [hclose]
+    _ = 1 := by group
 
 theorem isLetter_yiConnectorQuadWord (D : RelGenSet G Lambda) {lam : Lambda}
     {x y r s : G} (hx : x ∈ D.fam lam) (hy : y ∈ D.fam lam)
-    (hr : r ∈ D.base) (hs : s ∈ D.base)
+    (_hr : r ∈ D.base) (hs : s ∈ D.base)
     (hrinv : r⁻¹ ∈ D.base) :
     ∀ c ∈ yiConnectorQuadWord lam x y r s, D.IsLetter c := by
   intro c hc
@@ -71,7 +74,7 @@ theorem isQuasiGeodesicPolygon_yiConnectorQuadWord
     (hr : r ∈ D.base) (hs : s ∈ D.base) (hrinv : r⁻¹ ∈ D.base)
     (hclose : x * s = r * y) (hx1 : x ≠ 1) (hy1 : y ≠ 1)
     (hr1 : r ≠ 1) (hs1 : s ≠ 1) :
-    IsQuasiGeodesicPolygon D 1 0 4 1
+    IsQuasiGeodesicPolygon D 1 ((0 : ℕ) : ℝ) 4 1
       (yiConnectorQuadWord lam x y r s) := by
   let q := yiConnectorQuadWord lam x y r s
   have hlen : q.length = 4 := by simp [q]
@@ -87,6 +90,8 @@ theorem isQuasiGeodesicPolygon_yiConnectorQuadWord
     listVal_yiConnectorQuadWord hclose, fun t ↦ t, rfl, hlen.symm,
     fun t ↦ Nat.le_succ t, ?_⟩
   intro t _ p q' hp hpq hq'
+  have hp' : t ≤ p := hp
+  have hq'' : q' ≤ t + 1 := hq'
   rw [div_one, sub_zero]
   have key : q' - p ≤ wordDist D.alphabet.carrier
       (vertex (1 : G) q p) (vertex (1 : G) q q') := by
@@ -137,18 +142,17 @@ theorem isIsolated_yiConnectorQuadWord_zero_two
       (yiConnectorQuadWord lam x y r s) 0 2 := by
     intro hc
     have hc' : x * s ∈ D.fam lam := by
-      simpa [Connected, yiConnectorQuadWord] using hc
+      simpa [Connected, yiConnectorQuadWord, RelLetter.val] using hc
     apply hsnot
     have hm := mul_mem (inv_mem hx) hc'
     simpa only [inv_mul_cancel_left] using hm
   have hstarts : ∀ j : ℕ,
       IsCompStart lam (yiConnectorQuadWord lam x y r s) j → j = 0 ∨ j = 2 := by
     rintro j ⟨k, hj⟩
-    have hj4 : j < 4 := by
-      have := hj.1
-      have := hj.2.1
-      omega
-    have hletter := hj.2.2.1 j le_rfl hj.1 (by simp; omega)
+    have hj4 : j < (yiConnectorQuadWord lam x y r s).length :=
+      lt_of_lt_of_le hj.1 hj.2.1
+    have hletter := hj.2.2.1 j le_rfl hj.1 hj4
+    rw [length_yiConnectorQuadWord] at hj4
     interval_cases j
     · exact Or.inl rfl
     · exact False.elim hletter
@@ -183,8 +187,14 @@ theorem exists_radius_connectors_of_base_rectangle
   refine ⟨max R0 2, ?_⟩
   intro lam x y r s hx hy hr hs hrnot hsnot hclose
   have hrinv := hbase.inv_mem r hr
-  have hs1 : s ≠ 1 := fun hs1 ↦ hsnot (by simpa [hs1] using one_mem (D.fam lam))
-  have hr1 : r ≠ 1 := fun hr1 ↦ hrnot (by simpa [hr1] using one_mem (D.fam lam))
+  have hs1 : s ≠ 1 := by
+    intro hsEq
+    subst s
+    exact hsnot (one_mem (D.fam lam))
+  have hr1 : r ≠ 1 := by
+    intro hrEq
+    subst r
+    exact hrnot (one_mem (D.fam lam))
   rcases eq_or_ne x 1 with rfl | hx1
   · have hyEq : y = r⁻¹ * s := by
       calc
@@ -217,8 +227,10 @@ theorem exists_radius_connectors_of_base_rectangle
         omega
       exact ⟨relBall_mono_radius D lam (le_max_right _ _) hxr,
         one_mem_relBall D lam _⟩
-    · have hpoly := isQuasiGeodesicPolygon_yiConnectorQuadWord D
-        hx hy hr hs hrinv hclose hx1 hy1 hr1 hs1
+    · have hpoly : IsQuasiGeodesicPolygon D 1 ((0 : ℕ) : ℝ) 4 1
+          (yiConnectorQuadWord lam x y r s) :=
+        isQuasiGeodesicPolygon_yiConnectorQuadWord D
+          hx hy hr hs hrinv hclose hx1 hy1 hr1 hs1
       obtain ⟨hiso0, hiso2⟩ :=
         isIsolated_yiConnectorQuadWord_zero_two D hx hsnot
       have hxR := hR0 1 (yiConnectorQuadWord lam x y r s) hpoly lam 0 1
@@ -227,10 +239,10 @@ theorem exists_radius_connectors_of_base_rectangle
         (isComp_yiConnectorQuadWord_two x y r s) hiso2
       have hxSpan : (vertex (1 : G) (yiConnectorQuadWord lam x y r s) 0)⁻¹ *
           vertex (1 : G) (yiConnectorQuadWord lam x y r s) 1 = x := by
-        simp [yiConnectorQuadWord]
+        simp [yiConnectorQuadWord, RelLetter.val]
       have hySpan : (vertex (1 : G) (yiConnectorQuadWord lam x y r s) 2)⁻¹ *
           vertex (1 : G) (yiConnectorQuadWord lam x y r s) 3 = y⁻¹ := by
-        simp [yiConnectorQuadWord]
+        simp [yiConnectorQuadWord, RelLetter.val]
         group
       rw [hxSpan] at hxR
       rw [hySpan] at hyInvR
@@ -304,24 +316,41 @@ theorem exists_successivelySeparatedPowers
       · intro j
         refine Fin.lastCases ?_ ?_ j
         · constructor
-          · exact fun hc ↦ hmDeep (Or.inl (relBall_mono_radius D lam
-              (le_trans (le_max_left _ _) le_rfl) hc))
-          · exact fun hc ↦ hmInvDeep (Or.inl (relBall_mono_radius D lam
-              (le_trans (le_max_left _ _) le_rfl) hc))
+          · intro hc
+            have hlast : a (Fin.last N) = h ^ m := by
+              simp [a, fresh, Fin.snoc_last]
+            rw [hlast] at hc
+            exact hmDeep (Or.inl (relBall_mono_radius D lam
+              (le_max_left _ _) hc))
+          · intro hc
+            have hlast : (a (Fin.last N))⁻¹ = (h ^ m)⁻¹ := by
+              simp [a, fresh, Fin.snoc_last]
+            rw [hlast] at hc
+            exact hmInvDeep (Or.inl (relBall_mono_radius D lam
+              (le_max_left _ _) hc))
         · intro i
           simpa [a, Fin.snoc_castSucc] using holdDeep i
       · intro j
         refine Fin.lastCases ?_ ?_ j
-        · exact ⟨fun hc ↦ hmDeep (Or.inr hc),
-            fun hc ↦ hmInvDeep (Or.inr hc)⟩
+        · constructor
+          · intro hc
+            have hlast : a (Fin.last N) = h ^ m := by
+              simp [a, fresh, Fin.snoc_last]
+            rw [hlast] at hc
+            exact hmDeep (Or.inr hc)
+          · intro hc
+            have hlast : (a (Fin.last N))⁻¹ = (h ^ m)⁻¹ := by
+              simp [a, fresh, Fin.snoc_last]
+            rw [hlast] at hc
+            exact hmInvDeep (Or.inr hc)
         · intro i
           simpa [a, Fin.snoc_castSucc] using holdExtra i
       · intro i j hij
         refine Fin.lastCases ?_ ?_ j
-        · have hi : i ≠ Fin.last N := by omega
-          let i0 : Fin N := ⟨i.val, by
-            have hilast : i < Fin.last N := lt_of_le_of_ne (Fin.le_last i) hi
-            simpa using hilast⟩
+        · let i0 : Fin N := ⟨i.val, by
+            have hilast : i < Fin.last N := hij
+            change i.val < N at hilast
+            exact hilast⟩
           have hi0 : i0.castSucc = i := Fin.ext rfl
           rw [← hi0]
           have hile : wordNorm D.base (old i0) + 2 * R ≤ depth := by
@@ -338,12 +367,11 @@ theorem exists_successivelySeparatedPowers
             exact Or.inl (relBall_mono_radius D lam hile
               (by simpa [a, fresh] using hf))
         · intro j0
-          let i0 : Fin N := ⟨i.val, by
-            have hilast : i.val < N := lt_of_lt_of_le hij j0.isLt
-            exact hilast⟩
+          have hijVal : i.val < j0.val := hij
+          let i0 : Fin N := ⟨i.val, lt_trans hijVal j0.isLt⟩
           have hi0 : i0.castSucc = i := Fin.ext rfl
-          rw [← hi0] at hij ⊢
-          have hij0 : i0 < j0 := hij
+          rw [← hi0]
+          have hij0 : i0 < j0 := hijVal
           simpa [a, Fin.snoc_castSucc] using holdSep i0 j0 hij0
 
 /-! ## The three matched components of a single-base block word -/
@@ -352,11 +380,12 @@ theorem exists_successivelySeparatedPowers
 theorem componentData_blockWord_singleBase
     (D : RelGenSet G Lambda) (lam : Lambda) {g h v : G} {n i k : ℕ}
     (hg : g ∉ D.fam lam)
-    (hc : IsComp lam (blockWord lam [RelLetter.base g] h n) i k) :
+    (hc : IsComp lam
+      (OsinComponents.blockWord lam [RelLetter.base g] h n) i k) :
     k = i + 1 ∧
-      vertex v (blockWord lam [RelLetter.base g] h n) k =
-        vertex v (blockWord lam [RelLetter.base g] h n) i * h := by
-  let w := blockWord lam [RelLetter.base g] h n
+      vertex v (OsinComponents.blockWord lam [RelLetter.base g] h n) k =
+        vertex v (OsinComponents.blockWord lam [RelLetter.base g] h n) i * h := by
+  let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   have hk : k = i + 1 :=
     isComp_succ_of_isWThree (isWThree_blockWord_singleBase D lam hg n) hc
   have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
@@ -382,13 +411,16 @@ letter `g`. -/
 theorem separatorData_blockWord_singleBase
     (D : RelGenSet G Lambda) (lam : Lambda) {g h v : G} {n i k i' k' : ℕ}
     (hg : g ∉ D.fam lam)
-    (hc : IsComp lam (blockWord lam [RelLetter.base g] h n) i k)
-    (hc' : IsComp lam (blockWord lam [RelLetter.base g] h n) i' k')
-    (hstep : BaseEdgeOrTrivial (blockWord lam [RelLetter.base g] h n) k i') :
+    (hc : IsComp lam
+      (OsinComponents.blockWord lam [RelLetter.base g] h n) i k)
+    (hc' : IsComp lam
+      (OsinComponents.blockWord lam [RelLetter.base g] h n) i' k')
+    (hstep : BaseEdgeOrTrivial
+      (OsinComponents.blockWord lam [RelLetter.base g] h n) k i') :
     i' = k + 1 ∧
-      vertex v (blockWord lam [RelLetter.base g] h n) i' =
-        vertex v (blockWord lam [RelLetter.base g] h n) k * g := by
-  let w := blockWord lam [RelLetter.base g] h n
+      vertex v (OsinComponents.blockWord lam [RelLetter.base g] h n) i' =
+        vertex v (OsinComponents.blockWord lam [RelLetter.base g] h n) k * g := by
+  let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   obtain ⟨hk, -⟩ := componentData_blockWord_singleBase D lam hg (v := v) hc
   rcases hstep with htrivial | ⟨x, hi', hx⟩
   · exfalso
@@ -425,9 +457,9 @@ theorem separatorData_blockWord_singleBase
 /-- In the reversed word, even positions are the inverse peripheral letter. -/
 theorem getElem?_rev_blockWord_singleBase_even (lam : Lambda) (g h : G)
     (n j : ℕ) (hj : j < 2 * n) (hmod : j % 2 = 0) :
-    (revWord (blockWord lam [RelLetter.base g] h n))[j]? =
+    (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n))[j]? =
       some (RelLetter.comp lam h⁻¹) := by
-  let w := blockWord lam [RelLetter.base g] h n
+  let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   have hlen : w.length = 2 * n := by
     dsimp [w]
     rw [length_blockWord, List.length_singleton]
@@ -445,9 +477,9 @@ theorem getElem?_rev_blockWord_singleBase_even (lam : Lambda) (g h : G)
 /-- In the reversed word, odd positions are the inverse base letter. -/
 theorem getElem?_rev_blockWord_singleBase_odd (lam : Lambda) (g h : G)
     (n j : ℕ) (hj : j < 2 * n) (hmod : j % 2 = 1) :
-    (revWord (blockWord lam [RelLetter.base g] h n))[j]? =
+    (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n))[j]? =
       some (RelLetter.base g⁻¹) := by
-  let w := blockWord lam [RelLetter.base g] h n
+  let w := OsinComponents.blockWord lam [RelLetter.base g] h n
   have hlen : w.length = 2 * n := by
     dsimp [w]
     rw [length_blockWord, List.length_singleton]
@@ -466,11 +498,12 @@ theorem getElem?_rev_blockWord_singleBase_odd (lam : Lambda) (g h : G)
 theorem componentData_rev_blockWord_singleBase
     (D : RelGenSet G Lambda) (lam : Lambda) {g h v : G} {n i k : ℕ}
     (hg : g ∉ D.fam lam)
-    (hc : IsComp lam (revWord (blockWord lam [RelLetter.base g] h n)) i k) :
+    (hc : IsComp lam
+      (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) i k) :
     k = i + 1 ∧
-      vertex v (revWord (blockWord lam [RelLetter.base g] h n)) k =
-        vertex v (revWord (blockWord lam [RelLetter.base g] h n)) i * h⁻¹ := by
-  let w := revWord (blockWord lam [RelLetter.base g] h n)
+      vertex v (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) k =
+        vertex v (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) i * h⁻¹ := by
+  let w := revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)
   have hk : k = i + 1 := isComp_succ_of_isWThree
     (isWThree_revWord D (isWThree_blockWord_singleBase D lam hg n)) hc
   have hiw : i < w.length := lt_of_lt_of_le hc.1 hc.2.1
@@ -501,14 +534,17 @@ theorem componentData_rev_blockWord_singleBase
 theorem separatorData_rev_blockWord_singleBase
     (D : RelGenSet G Lambda) (lam : Lambda) {g h v : G} {n i k i' k' : ℕ}
     (hg : g ∉ D.fam lam)
-    (hc : IsComp lam (revWord (blockWord lam [RelLetter.base g] h n)) i k)
-    (hc' : IsComp lam (revWord (blockWord lam [RelLetter.base g] h n)) i' k')
-    (hstep : BaseEdgeOrTrivial (revWord (blockWord lam [RelLetter.base g] h n))
+    (hc : IsComp lam
+      (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) i k)
+    (hc' : IsComp lam
+      (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) i' k')
+    (hstep : BaseEdgeOrTrivial
+      (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n))
       k i') :
     i' = k + 1 ∧
-      vertex v (revWord (blockWord lam [RelLetter.base g] h n)) i' =
-        vertex v (revWord (blockWord lam [RelLetter.base g] h n)) k * g⁻¹ := by
-  let w := revWord (blockWord lam [RelLetter.base g] h n)
+      vertex v (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) i' =
+        vertex v (revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)) k * g⁻¹ := by
+  let w := revWord (OsinComponents.blockWord lam [RelLetter.base g] h n)
   obtain ⟨hk, -⟩ := componentData_rev_blockWord_singleBase D lam hg (v := v) hc
   rcases hstep with htrivial | ⟨x, hi', hx⟩
   · exfalso
@@ -724,8 +760,8 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       obtain ⟨R, -, hmatch⟩ := hraw eps K heps (by simp [K])
       let Ni := n * R
       let Nj := m * R
-      let wi := blockWord () [RelLetter.base g] (a i) Ni
-      let wj := blockWord () [RelLetter.base g] (a j) Nj
+      let wi := OsinComponents.blockWord () [RelLetter.base g] (a i) Ni
+      let wj := OsinComponents.blockWord () [RelLetter.base g] (a j) Nj
       have hlength : R ≤ wj.length := by
         dsimp [wj, Nj]
         rw [length_blockWord, List.length_singleton]
@@ -810,8 +846,8 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
       obtain ⟨R, -, hmatch⟩ := hraw eps K heps (by simp [K])
       let Ni := n * R
       let Nj := m * R
-      let wi := blockWord () [RelLetter.base g] (a i) Ni
-      let wj := blockWord () [RelLetter.base g] (a j) Nj
+      let wi := OsinComponents.blockWord () [RelLetter.base g] (a i) Ni
+      let wj := OsinComponents.blockWord () [RelLetter.base g] (a j) Nj
       have hlength : R ≤ wj.length := by
         dsimp [wj, Nj]
         rw [length_blockWord, List.length_singleton]
