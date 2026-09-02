@@ -29,6 +29,9 @@ variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
   {Delta : DiscDiagram.{u, w, v} W}
 
+noncomputable local instance faceDecidableEq :
+    DecidableEq Delta.toCombMap.Face := Classical.decEq _
+
 /-! ## Monotonicity in the selected face set -/
 
 /-- A face-set word homotopy remains valid after enlarging the selected face
@@ -46,8 +49,8 @@ theorem FaceSetWordHomotopy.mono
       exact .eraseFace face (hfaces hface) before after
   | eraseAlphaPair dart before after =>
       exact .eraseAlphaPair dart before after
-  | symm first second ih => exact .symm ih
-  | trans first second ihFirst ihSecond => exact .trans ihFirst ihSecond
+  | symm _ ih => exact .symm ih
+  | trans _ _ ihFirst ihSecond => exact .trans ihFirst ihSecond
 
 /-! ## The explicit peel schedule -/
 
