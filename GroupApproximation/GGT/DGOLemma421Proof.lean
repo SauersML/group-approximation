@@ -1990,6 +1990,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
   intro G _ Λ D hhyp
   obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
     h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
+  obtain ⟨C11, hC11, hsum11, _hproj11⟩ :=
+    h G Λ D hhyp 1 1 (by norm_num) (by norm_num)
   have hpoint : ∃ C : ℕ, 0 < C ∧
       ∀ n, n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
         IsQuasiGeodesicPolygon D 4 1 n v u →
@@ -2000,7 +2002,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     exact hproj414 n v u hpoly nu i k hcomp hiso
   have hAall := dgoLemma421a_of_uniform414 h
   obtain ⟨CA, hA⟩ := hAall G Λ D hhyp
-  let C := max (50 * C414) (50 * CA)
+  let C := max (50 * C11) (max (50 * C414) (50 * CA))
   refine ⟨C, ?_⟩
   intro eps K heps hK
   let E : ℕ := ⌈eps⌉₊
@@ -2041,18 +2043,18 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
   have hpolyLet : ∀ a ∈ pc ++ P ++ rc ++ revWord Q, D.IsLetter a := by
     intro a ha
     rcases List.mem_append.mp ha with ha | ha
-    · rcases List.mem_append.mp ha with ha | ha
-      · exact hpc.1 a ha
-      · exact hletP a ha
-    · rcases List.mem_append.mp ha with ha | ha
-      · exact hrc.1 a ha
-      · exact isLetter_of_mem_revWord D hbaseD hletQ a ha
+    · rcases List.mem_append.mp ha with hpcmem | hPmem
+      · exact hpc.1 a hpcmem
+      · exact hletP a hPmem
+    · rcases List.mem_append.mp ha with hrcmem | hQmem
+      · exact hrc.1 a hrcmem
+      · exact isLetter_of_mem_revWord D hbaseD hletQ a hQmem
   have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
       ((j - i : ℕ) : ℝ) / 4 - 1 ≤
         ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
           (vertex (1 : G) P j) : ℕ) : ℝ) := by
     intro i j hij hj
-    have hW2A : WWord.IsWTwo D (50 * CA) P := by
+    have hW2A : WWord.IsWTwo D CA P := by
       intro z lam x hz
       intro hmem
       exact hW2P z lam x hz
@@ -2070,34 +2072,47 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
           (vertex (1 : G) Q j) : ℕ) : ℝ) := by
     intro i j hij hj
-    have hW2A : WWord.IsWTwo D (50 * CA) Q := by
+    have hW2A : WWord.IsWTwo D CA Q := by
       intro z lam x hz
       intro hmem
       exact hW2Q z lam x hz
         (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
-    have hz := hA (1 : G) Q hletQ hW1Q hW2Q hW3Q i j hij hj
+    have hz := hA (1 : G) Q hletQ hW1Q hW2A hW3Q i j hij hj
     have hz' : ((j - i : ℕ) : ℝ) ≤
         4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
           (vertex (1 : G) Q j) : ℕ) : ℝ) + 4 := by
       exact_mod_cast hz
     norm_num
     linarith
+  have hpc' : IsGeodesicWord D (1 : G) (RelLetter.listVal pc) pc := by
+    rw [hpcVal]
+    exact hpc
+  have hrc' : IsGeodesicWord D (1 : G) (RelLetter.listVal rc) rc := by
+    rw [hrcVal]
+    exact hrc
   have hpoly := isQuasiGeodesicPolygon_fourGon_of_mixed D pc P rc Q
-    hpc hrc hqgP hqgQ hpolyLet hclose
+    hpc' hrc' hqgP hqgQ hpolyLet hclose
   have hpcLen : pc.length ≤ E := by
     have hh : ((pc.length : ℕ) : ℝ) ≤ eps := by
-      rw [hpc.2.2]
+      rw [hpc.2.2, hpcVal]
+      have hdist : wordNorm D.alphabet.carrier (vq⁻¹ * vp) =
+          wordDist D.alphabet.carrier vp vq := by
+        rw [← wordDist_one_left D.alphabet.carrier]
+        exact wordDist_comm D.alphabet.symmetricGenerating vq vp
+      rw [hdist]
       exact_mod_cast hstart
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   have hrcLen : rc.length ≤ E := by
     have hh : ((rc.length : ℕ) : ℝ) ≤ eps := by
-      rw [hrc.2.2]
+      rw [hrc.2.2, hrcVal]
+      rw [← wordDist_one_left D.alphabet.carrier]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   let S := strictInteriorOccurrences P
   have hS : N ≤ S.card := by
     have hlen := length_le_two_mul_peripheralCount_add_one hW1P
     have hpcnt := peripheralCount_le_strictInterior_card_add_two P
+    dsimp [S] at hpcnt
     dsimp [R, N] at hRlen ⊢
     omega
   let occ : Fin N → Fin (peripheralPositions P).card := fun i =>
@@ -2121,10 +2136,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     exact PeripheralOccurrence.isComp hW3P (occ i)
   have hsourceInj : Function.Injective source := by
     intro i j hij
-    apply Fin.ext
-    apply peripheralOccurrence_pos_injective P
     dsimp [source] at hij
-    exact hij
+    exact peripheralOccurrence_pos_injective P hij
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
           vertex (1 : G) P (source i + 1) ∉
@@ -2135,6 +2148,144 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
+  have htargetRaw : ∀ i : Fin N, ∃ n : ℕ, n ≠ pc.length + source i ∧
+      IsCompStart (peripheralOccurrence P (occ i)).label
+        (pc ++ P ++ rc ++ revWord Q) n ∧
+      (n < pc.length ∨
+        (∃ i' : ℕ, i' ≤ P.length ∧ n = pc.length + i') ∨
+        (∃ m : ℕ, m < rc.length ∧
+          n = pc.length + P.length + m) ∨
+        (∃ j : ℕ, j ≤ Q.length ∧
+          n = pc.length + P.length + rc.length + (Q.length - j))) ∧
+      ∃ h : G, h ∈ D.fam (peripheralOccurrence P (occ i)).label ∧
+        RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
+          vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) n := by
+    intro i
+    have htar := exists_target_of_deep_component_of_uniformBound
+      D (peripheralOccurrence P (occ i)).label hpoint 4 C pc P rc Q
+      (by norm_num) hclose hpoly (source i) (source i + 1)
+      (hsourcePos i) (hsourceEnd i) (hsourceComp i)
+      (by dsimp [C]; omega) (hsourceDeep i)
+    exact htar
+  let targetN : Fin N → ℕ := fun i => Classical.choose (htargetRaw i)
+  have htargetSpec : ∀ i : Fin N,
+      targetN i ≠ pc.length + source i ∧
+      IsCompStart (peripheralOccurrence P (occ i)).label
+        (pc ++ P ++ rc ++ revWord Q) (targetN i) ∧
+      (targetN i < pc.length ∨
+        (∃ i' : ℕ, i' ≤ P.length ∧ targetN i = pc.length + i') ∨
+        (∃ m : ℕ, m < rc.length ∧
+          targetN i = pc.length + P.length + m) ∨
+        (∃ j : ℕ, j ≤ Q.length ∧
+          targetN i = pc.length + P.length + rc.length + (Q.length - j))) ∧
+      ∃ h : G, h ∈ D.fam (peripheralOccurrence P (occ i)).label ∧
+        RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
+          vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := by
+    intro i
+    exact Classical.choose_spec (htargetRaw i)
+  let Matched : Fin N → Prop := fun i =>
+    ∃ j : ℕ, j ≤ Q.length ∧
+      IsCompStart (peripheralOccurrence P (occ i)).label
+        (pc ++ P ++ rc ++ revWord Q)
+          (pc.length + P.length + rc.length + (Q.length - j)) ∧
+      ∃ h : G, h ∈ D.fam (peripheralOccurrence P (occ i)).label ∧
+        RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
+          vertex (1 : G) Q j
+  have hsourceNoSame : ∀ (i : Fin N) (i' : ℕ), i' ≤ P.length →
+      i' ≠ source i →
+      IsCompStart (peripheralOccurrence P (occ i)).label
+        (pc ++ P ++ rc ++ revWord Q) (pc.length + i') →
+      ¬ Connected D.fam (peripheralOccurrence P (occ i)).label 1
+        (pc ++ P ++ rc ++ revWord Q) (pc.length + source i) (pc.length + i') := by
+    intro i i' hi' hne hstart'
+    intro hconn
+    obtain ⟨u, huPos, huLabel⟩ :=
+      exists_side_occurrence_of_fourGon_start_421 hW3P
+        (by omega : i' < P.length) hstart'
+    have hconnP : Connected D.fam (peripheralOccurrence P (occ i)).label
+        1 P (source i) (peripheralOccurrence P u).pos := by
+      have hs := connected_fourGon_side_iff D
+        (peripheralOccurrence P (occ i)).label pc P rc Q
+        (by omega) (by omega)
+      have hmem := hs.mp hconn
+      rw [← huPos] at hmem
+      exact hmem
+    have hoccne : occ i ≠ u := by
+      intro heq
+      subst u
+      exact hne (by rw [huPos])
+    apply peripheralOccurrence_not_connected_of_uniformBound hC11 hsum11
+      hletP hW1P
+      (fun z lam x hz => hW2P z lam x hz
+        (relBall_mono_radius D lam (by dsimp [C]; omega)))
+      hW3P 1 hoccne huLabel
+    exact hconnP
+  have hclassBase : ∀ i : Fin N,
+      Matched i ∨ ∃ z : Fin M, ¬ Matched i ∧
+        ((if h : targetN i < pc.length then targetN i
+          else targetN i - P.length) = z.val) := by
+    intro i
+    rcases (htargetSpec i).2.2.1 with hpcase | hrest
+    · right
+      refine ⟨⟨targetN i, by dsimp [M]; omega⟩, ?_, rfl⟩
+      intro hm
+      exact (htargetSpec i).1 (by omega)
+    · rcases hrest with hqcase | hrest
+      · exfalso
+        rcases hqcase with ⟨i', hi', hni⟩
+        have hne : i' ≠ source i := by
+          intro heq
+          exact (htargetSpec i).1 (by rw [hni, heq])
+        have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
+            (pc ++ P ++ rc ++ revWord Q) (pc.length + source i)
+            (pc.length + i') := by
+          show (vertex (1 : G) (pc ++ P ++ rc ++ revWord Q)
+              (pc.length + source i))⁻¹ *
+            vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
+              D.fam (peripheralOccurrence P (occ i)).label
+          rw [vertex_fourGon_side pc P rc Q 1 (by omega),
+            vertex_fourGon_side pc P rc Q 1 hi']
+          obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+          rw [← heq]
+          group
+        exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
+          (htargetSpec i).2.1)) hconn
+      · rcases hrest with hrcase | hscase
+        · right
+          rcases hrcase with ⟨m, hm, hmn⟩
+          refine ⟨⟨pc.length + m, by dsimp [M]; omega⟩, ?_, ?_⟩
+          · intro hmch
+            rcases hmch with ⟨j, hj, hjs, hh⟩
+            exact (htargetSpec i).1 (by omega)
+          · dsimp
+            rw [hmn]
+            omega
+        · left
+          rcases hscase with ⟨j, hj, hjn⟩
+          refine ⟨j, hj, ?_, ?_⟩
+          · rw [← hjn]
+            exact (htargetSpec i).2.1
+          · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
+            refine ⟨hh, hmem, ?_⟩
+            rw [← heq, vertex_fourGon_opposite_closed pc P rc Q hclose j]
+  let short : Fin N → Fin M := fun i =>
+    if hi : Matched i then ⟨0, by omega⟩
+    else Classical.choose (hclassBase i)
+  have hshortSpec : ∀ i, ¬ Matched i →
+      (if h : targetN i < pc.length then targetN i
+        else targetN i - P.length) = (short i).val := by
+    intro i hi
+    dsimp [short]
+    rw [dif_neg hi]
+    exact (Classical.choose_spec (hclassBase i |>.resolve_left hi)).2
+  have hclass : ∀ i, Matched i ∨ ∃ z : Fin M,
+      ¬ Matched i ∧ short i = z := by
+    intro i
+    by_cases hi : Matched i
+    · exact Or.inl hi
+    · right
+      refine ⟨short i, hi, ?_⟩
+      rfl
 
 end OsinComponents
 end GGT
