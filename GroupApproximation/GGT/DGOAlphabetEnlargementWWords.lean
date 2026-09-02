@@ -75,13 +75,10 @@ theorem exists_threshold_isLoxodromic_mul_adjoinPair
       (RelGenSet.finite_base_symmDiff_adjoinPair D t)).mp hemb
   have hbase' : DGO421BaseSymmetric (D.adjoinPair t) := by
     intro x hx
-    rcases hx with (hx | hx) | hx
-    · exact Or.inl (Or.inl (hbase x hx))
-    · rw [hx]
-      exact Or.inr (Or.inr rfl)
-    · rw [Set.mem_singleton_iff] at hx
-      rw [hx, inv_inv]
-      exact Or.inr (Or.inl rfl)
+    rcases hx with h | h | h
+    · exact Or.inl (hbase x h)
+    · exact Or.inr (Or.inr (by rw [h]; rfl))
+    · exact Or.inr (Or.inl (by rw [h, inv_inv]))
   obtain ⟨C, hC⟩ :=
     exists_threshold_isLoxodromic_mul_of_dgoLemma421a h421a (D.adjoinPair t)
       hemb' hbase'
