@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.DGOTheorem442BoundedOrbit
 import GroupApproximation.GGT.DGOTheorem442Inequality
+import GroupApproximation.GGT.OsinTheorem12PowerOverlap
 
 /-!
 # Proof of DGO Theorem 4.42
@@ -90,6 +91,12 @@ theorem dgoTheorem442_unconditional : DGOTheorem442.{0, 0} := by
       linarith [le_max_right delta 0]
     exact exists_dgoTheorem442Output_of_positive G S H s delta' hiso hdelta'
       hdelta'0 hdeltapos hgeo hqc hsep
+
+/-- Osin's Theorem 1.2 follows from the proved DGO projection theorem and the
+already proved power-overlap form of DGO Lemma 6.7. -/
+theorem osinTheorem12_unconditional : OsinTheorem12.{0, 0} :=
+  osinTheorem12_of_geodesic_projection_unconditional
+    dgoTheorem442_unconditional
 
 end Elementary
 end GGT
