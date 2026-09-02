@@ -810,12 +810,17 @@ def HullLemma58SuitableFamily : Prop :=
     (D : AuxiliaryPeripheralFamily A N S),
     QuotientPeripheralPreservation q D →
       ∃ B : QuotientHullAlphabet A q,
+        (∀ i : AuxiliaryPeripheralIndex k, ∀ x ∈ D.cores.peripheral i,
+          q x ∈ B.hullSet.alphabet.carrier) ∧
         ActsNonElementarily (N.map q) (Cayley.base B.hullSet.alphabet) ∧
           ∀ j : Fin k,
             ActsNonElementarily ((S j).map q) (Cayley.base B.hullSet.alphabet)
 
 /-- The simultaneous Lemma 5.8 interface follows from one application of
-finite-family Osin 5.4.  The common enlarged alphabet keeps every auxiliary
+finite-family Osin 5.4.  The quotient alphabet also contains the images of the
+source auxiliary peripherals, since it cones them off; that clause is what the
+Osin 2.4 continuation needs when the preserved original base is only known up
+to a finite enlargement.  The common enlarged alphabet keeps every auxiliary
 cyclic peripheral, and each distinguished subgroup obtains a loxodromic
 product from its two peripheral directions without any further enlargement. -/
 theorem hullLemma58SuitableFamily_unconditional :
@@ -945,7 +950,14 @@ theorem hullLemma58SuitableFamily_unconditional :
       alphabet_image := by
         intro a ha
         exact Set.mem_union_left _ (hbase (P.base_image a ha)) }
-  exact ⟨B, hN, hS⟩
+  have hperiph : ∀ i : AuxiliaryPeripheralIndex k,
+      ∀ x ∈ D.cores.peripheral i, q x ∈ B.hullSet.alphabet.carrier := by
+    intro i x hx
+    refine Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨i, ?_⟩)
+    show q x ∈ D'.fam i
+    rw [hfam, P.fam_map i]
+    exact Subgroup.mem_map_of_mem q hx
+  exact ⟨B, hperiph, hN, hS⟩
 
 /-- Lemma 5.8's common-alphabet conclusion, together with torsion-freeness,
 reassembles the full filling alphabet. -/
@@ -955,7 +967,7 @@ theorem nonempty_fillingAlphabetData_of_peripheralPreservation
     (hQ : IsPowerTorsionFree Q) (D : AuxiliaryPeripheralFamily A N S)
     (P : QuotientPeripheralPreservation q D) :
     Nonempty (FillingAlphabetData A N S q) := by
-  obtain ⟨B, hN, hS⟩ := hullLemma58SuitableFamily_unconditional q D P
+  obtain ⟨B, -, hN, hS⟩ := hullLemma58SuitableFamily_unconditional q D P
   exact ⟨FillingAlphabetData.ofQuotientHullAlphabet B
     (suitableImagesInQuotient_of_torsionFree B hQ hN hS)⟩
 
