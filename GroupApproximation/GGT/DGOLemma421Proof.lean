@@ -2251,8 +2251,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       exact hgap
     have hleft' := Eord.symm.strictMono hleft
     have hright' := Eord.symm.strictMono hright
-    have hleftVal : i.val < (Eord.symm ez).val := congrArg Fin.val hleft'
-    have hrightVal : (Eord.symm ez).val < i.val + 1 := congrArg Fin.val hright'
+    have hleftVal : i.val < (Eord.symm ez).val := hleft'
+    have hrightVal : (Eord.symm ez).val < i.val + 1 := hright'
     omega
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
