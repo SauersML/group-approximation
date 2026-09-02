@@ -174,6 +174,67 @@ theorem card_le_of_weight_le {C : Type u} [Fintype C]
   exact not_weight_ge_and_card_lt selected replacement hreplacement
     ⟨hweight, hcard⟩
 
+/-- Erasing a selected candidate subtracts exactly its weight. -/
+theorem familyWeight_erase_add {C : Type u} [DecidableEq C]
+    (weight : C → ℕ) (family : Finset C) {candidate : C}
+    (hcandidate : candidate ∈ family) :
+    familyWeight weight (family.erase candidate) + weight candidate =
+      familyWeight weight family := by
+  simp only [familyWeight]
+  exact Finset.sum_erase_add family weight hcandidate
+
+/-- The abstract two-for-one contradiction behind the surgery in Lemma 65(a).
+If two distinct selected regions can be replaced by one region compatible
+with the untouched family and carrying at least their combined weight, then
+Definition M is contradicted.  Diagram-specific code supplies the compatibility
+of the replacement after performing the G-cell surgery. -/
+theorem no_two_for_one_replacement {C : Type u} [Fintype C] [DecidableEq C]
+    {compatible : C → C → Prop} {weight : C → ℕ}
+    (selected : DistinguishedFamily compatible weight)
+    (first second merged : C)
+    (hfirst : first ∈ selected.family)
+    (hsecond : second ∈ selected.family)
+    (hne : first ≠ second)
+    (hmerged : merged ∉ (selected.family.erase first).erase second)
+    (hreplacement : PairwiseCompatible compatible
+      (insert merged ((selected.family.erase first).erase second)))
+    (hweight : weight first + weight second ≤ weight merged) : False := by
+  classical
+  let rest := (selected.family.erase first).erase second
+  let replacement := insert merged rest
+  have hsecondRest : second ∈ selected.family.erase first := by
+    exact Finset.mem_erase.mpr ⟨hne.symm, hsecond⟩
+  have hfirstWeight := familyWeight_erase_add weight selected.family hfirst
+  have hsecondWeight := familyWeight_erase_add weight
+    (selected.family.erase first) hsecondRest
+  have hrestWeight :
+      familyWeight weight selected.family =
+        weight first + weight second + familyWeight weight rest := by
+    dsimp [rest]
+    omega
+  have hreplacementWeight :
+      familyWeight weight replacement =
+        weight merged + familyWeight weight rest := by
+    dsimp [replacement]
+    unfold familyWeight
+    rw [Finset.sum_insert hmerged]
+  have htotal : familyWeight weight selected.family ≤
+      familyWeight weight replacement := by
+    rw [hrestWeight, hreplacementWeight]
+    omega
+  have hcardFirst : (selected.family.erase first).card + 1 =
+      selected.family.card := Finset.card_erase_add_one hfirst
+  have hcardSecond : rest.card + 1 =
+      (selected.family.erase first).card := by
+    dsimp [rest]
+    exact Finset.card_erase_add_one hsecondRest
+  have hcardReplacement : replacement.card = rest.card + 1 := by
+    dsimp [replacement]
+    rw [Finset.card_insert_of_notMem hmerged]
+  have hcard : replacement.card < selected.family.card := by omega
+  exact EstimatingSelection.not_weight_ge_and_card_lt selected replacement
+    hreplacement ⟨htotal, hcard⟩
+
 /-! ## Model checks -/
 
 /-- With one candidate of positive weight and universal compatibility, the
