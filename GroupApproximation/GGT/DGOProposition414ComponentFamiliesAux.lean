@@ -1090,8 +1090,8 @@ theorem firstGapArcBoundaryExclusion_start_of_source
         simpa using he
       have htleft : t < (B.firstGapLeft j).length := by omega
       have hconn := B.firstGap_leftConnector_isCompOf j e heq t htleft (by
-        simp only [cycle] at ht
-        simpa [auxiliaryCycleWord, OsinComponents.length_revWord] using ht)
+        simpa [cycle, firstGapCycle, auxiliaryCycleWord,
+          OsinComponents.length_revWord] using ht)
       have hconnLabel := B.firstGapLocalLabel_leftConnector j e heq t htleft
       have hconn' :
           (cycle[t]'ht).IsCompOf
@@ -1161,10 +1161,15 @@ theorem firstGapArcBoundaryExclusion_start_of_source
             apply Nat.le_antisymm
             · exact Nat.sub_eq_zero_iff_le.mp hdiff0
             · exact B.firstArc_isCutPath.cut.mono_le hsData.2.1
-          exact (B.firstArcCut_target hsData.1).1.trans hcuts
+          exact hcuts
         rw [hcur, ← hprevPos]
         omega
-      rw [hidx] at hprevLabel
+      have hget : B.firstArc[B.firstArcCut (B.firstTargetSide
+          (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
+            exact hprevCutLt) =
+          B.firstArc[B.firstArcCut (B.firstTargetSide s) - 1]'(by omega) :=
+        getElem_congr_idx hidx
+      rw [hget] at hprevLabel
       exact hparent.2.2.2.1
         (B.firstArcCut (B.firstTargetSide s) - 1) (by omega) _ hprevLabel
 
