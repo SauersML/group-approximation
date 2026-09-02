@@ -170,16 +170,35 @@ theorem listVal_secondHalf (w : List (RelLetter G Λ)) (v : G) (c : ℕ → ℕ)
 
 /-! ## The halves are admissible -/
 
-/-- **Every letter of the first half is admissible.** -/
-theorem isLetter_firstHalf (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {w : List (RelLetter G Λ)}
-    (hlet : ∀ x ∈ w, D.IsLetter x) {t : List (RelLetter G Λ)}
-    (htlet : ∀ x ∈ t, D.IsLetter x) (c : ℕ → ℕ) (a b : ℕ) :
+/-- **Every letter of the first half is admissible**, given only that the
+chord reverses admissibly.
+
+Base symmetry enters the first half at exactly one point, the fourth side
+`revWord t`, and what that side needs is not `X = X⁻¹` but the admissibility of
+the reversed *chord*.  The chord is chosen by the construction, so
+`OsinComponents.exists_reversibleSubstitute` supplies a chord reading the same
+path for which this hypothesis holds over an arbitrary relative generating
+set. -/
+theorem isLetter_firstHalf_of_revChord (D : RelGenSet G Λ)
+    {w : List (RelLetter G Λ)} (hlet : ∀ x ∈ w, D.IsLetter x)
+    {t : List (RelLetter G Λ)}
+    (htrev : ∀ x ∈ revWord t, D.IsLetter x) (c : ℕ → ℕ) (a b : ℕ) :
     ∀ x ∈ firstHalf w c a b t, D.IsLetter x := by
   intro x hx
   rcases List.mem_append.mp hx with harc | hrev
   · exact hlet x (List.mem_of_mem_drop (List.mem_of_mem_take harc))
-  · exact isLetter_of_mem_revWord D hsymm htlet x hrev
+  · exact htrev x hrev
+
+/-- **Every letter of the first half is admissible.**  The base-symmetry
+corollary of `isLetter_firstHalf_of_revChord`, kept for the callers that work
+under Dahmani--Guirardel--Osin's standing convention `X = X⁻¹`. -/
+theorem isLetter_firstHalf (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {w : List (RelLetter G Λ)}
+    (hlet : ∀ x ∈ w, D.IsLetter x) {t : List (RelLetter G Λ)}
+    (htlet : ∀ x ∈ t, D.IsLetter x) (c : ℕ → ℕ) (a b : ℕ) :
+    ∀ x ∈ firstHalf w c a b t, D.IsLetter x :=
+  isLetter_firstHalf_of_revChord D hlet
+    (isLetter_of_mem_revWord D hsymm htlet) c a b
 
 /-- **Every letter of the second half is admissible.** -/
 theorem isLetter_secondHalf (D : RelGenSet G Λ) {w : List (RelLetter G Λ)}
