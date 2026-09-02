@@ -338,7 +338,11 @@ theorem member_iff_incident {m : ℕ} (T : W8Table m) (x y : Fin 585) :
         (T.lineEquiv (T.toTable.lambda x)) := by
   unfold member
   rw [T.incident_spec]
-  exact ⟨of_decide_eq_true, decide_eq_true⟩
+  constructor
+  · intro hd
+    exact of_decide_eq_true hd
+  · intro hd
+    exact decide_eq_true hd
 
 /-- **The presentation link of a checked `W8Table` is the `W(8)` incidence
 graph.**  Both bipartite classes and both cross terms are computed; nothing is
