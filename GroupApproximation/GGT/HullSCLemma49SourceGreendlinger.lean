@@ -22,6 +22,7 @@ namespace HullSC
 
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
+open GroupApproximation.HullGeometry
 
 universe u w
 
@@ -68,7 +69,14 @@ theorem isLambdaCQuasiGeodesicWord_of_chainAt
   refine ⟨hadmissible, ?_⟩
   intro i j hij hj
   have hlower := (hchain i j hij hj).1
-  simpa only [one_div, div_eq_mul_inv, mul_comm] using hlower
+  change (1 / M) * ((j - i : ℕ) : ℝ) - (b : ℝ) ≤
+    ((wordDist D.alphabet.carrier
+      (GGT.OsinComponents.vertex 1 word i)
+      (GGT.OsinComponents.vertex 1 word j) : ℕ) : ℝ)
+  calc
+    (1 / M) * ((j - i : ℕ) : ℝ) - (b : ℝ) =
+        ((j - i : ℕ) : ℝ) / M - (b : ℝ) := by ring
+    _ ≤ _ := hlower
 
 /-- The same conversion when the chain is stored using values of prefixes,
 as in Hull's `IsLemma44Input`. -/
@@ -85,7 +93,7 @@ theorem isLambdaCQuasiGeodesicWord_of_prefixChainAt
   exact isQuasiGeodesicChainAt_vertex_one_iff.mpr hchain
 
 /-- Weakening the additive error preserves Osin quasi-geodesicity. -/
-theorem GGT.VanKampen.IsLambdaCQuasiGeodesicWord.mono_error
+theorem isLambdaCQuasiGeodesicWord_mono_error
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {word : List (GGT.RelLetter G Lambda)}
     {lambda c c' : ℝ}
@@ -99,12 +107,12 @@ theorem GGT.VanKampen.IsLambdaCQuasiGeodesicWord.mono_error
 
 /-- Decreasing the multiplicative coefficient preserves Osin
 quasi-geodesicity. -/
-theorem GGT.VanKampen.IsLambdaCQuasiGeodesicWord.mono_slope
+theorem isLambdaCQuasiGeodesicWord_mono_slope
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {word : List (GGT.RelLetter G Lambda)}
     {lambda lambda' c : ℝ}
     (hword : GGT.VanKampen.IsLambdaCQuasiGeodesicWord D lambda c word)
-    (hlambda : 0 ≤ lambda') (hle : lambda' ≤ lambda) :
+    (hle : lambda' ≤ lambda) :
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D lambda' c word := by
   refine ⟨hword.1, ?_⟩
   intro i j hij hj
@@ -124,8 +132,9 @@ theorem RelWord.IsLemma44Input.relator_isLambdaCQuasiGeodesicWord
     (hinput : RelWord.IsLemma44Input D W eps mu rho)
     {word : List (GGT.RelLetter G Lambda)} (hword : word ∈ W) :
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 word := by
-  exact isLambdaCQuasiGeodesicWord_of_prefixChainAt D
+  have hresult := isLambdaCQuasiGeodesicWord_of_prefixChainAt D
     (hinput.admissible word hword) (hinput.quasiGeodesic word hword)
+  convert hresult using 1 <;> norm_num
 
 /-- Every Hull Lemma 4.4 input supplies Osin's exact
 `C(epsilon,mu,1/4,1,rho)` condition. -/
@@ -137,7 +146,7 @@ theorem RelWord.IsLemma44Input.toOsinCCondition
     (hinput : RelWord.IsLemma44Input D W eps mu rho) :
     GGT.VanKampen.OsinCCondition D W eps mu (1 / 4) 1 rho where
   toIsSmallCancellation := hinput.toIsSmallCancellation
-  quasiGeodesic word hword :=
+  quasiGeodesic _ hword :=
     hinput.relator_isLambdaCQuasiGeodesicWord hword
   publishedPiecesSmall := hinput.publishedPiecesSmall
 
@@ -169,8 +178,12 @@ theorem isQuasiGeodesicChainAt_one_zero_of_isGeodesicWord
   have hupper := GGT.OsinComponents.wordDist_vertex_le'
     D hword.1 first hij hj
   constructor
-  · norm_num
-    exact_mod_cast hlower
+  · change ((j - i : ℕ) : ℝ) / 1 - (0 : ℝ) ≤
+        ((wordDist D.alphabet.carrier
+          (GGT.OsinComponents.vertex first word i)
+          (GGT.OsinComponents.vertex first word j) : ℕ) : ℝ)
+    rw [div_one, sub_zero]
+    exact Nat.cast_le.mpr hlower
   · exact hupper
 
 /-- A geodesic word is an Osin `(1,0)` quasi-geodesic word when read from
@@ -181,8 +194,10 @@ theorem isLambdaCQuasiGeodesicWord_one_zero_of_isGeodesicWord
     {word : List (GGT.RelLetter G Lambda)}
     (hword : GGT.OsinComponents.IsGeodesicWord D 1 last word) :
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D 1 0 word := by
-  apply isLambdaCQuasiGeodesicWord_of_chainAt D hword.1
-  exact isQuasiGeodesicChainAt_one_zero_of_isGeodesicWord D hword
+  have hresult := isLambdaCQuasiGeodesicWord_of_chainAt
+    (M := (1 : ℝ)) (b := 0) D hword.1
+      (isQuasiGeodesicChainAt_one_zero_of_isGeodesicWord D hword)
+  simpa only [one_div, Nat.cast_zero] using hresult
 
 /-- A geodesic word also satisfies the weaker fixed source convention used
 for Hull relators. -/
@@ -193,9 +208,10 @@ theorem isLambdaCQuasiGeodesicWord_quarter_one_of_isGeodesicWord
     (hword : GGT.OsinComponents.IsGeodesicWord D 1 last word) :
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 word := by
   have hone := isLambdaCQuasiGeodesicWord_one_zero_of_isGeodesicWord D hword
-  have hquarter : (0 : ℝ) ≤ 1 / 4 := by norm_num
   have hquarterOne : (1 / 4 : ℝ) ≤ 1 := by norm_num
-  exact (hone.mono_slope hquarter hquarterOne).mono_error (by norm_num)
+  have hslope := isLambdaCQuasiGeodesicWord_mono_slope
+    hone hquarterOne
+  exact isLambdaCQuasiGeodesicWord_mono_error hslope (by norm_num)
 
 /-- Any previously established power-chain bound is precisely the outer-word
 hypothesis of source Gr0. -/
@@ -226,11 +242,11 @@ theorem isLambdaCQuasiGeodesicWord_power_of_long_period
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hlong : 8 * delta + 2 ≤ word.length) :
     GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4)
-      (8 * delta + 2) (lemma49BoundaryPower word n) := by
-  apply isLambdaCQuasiGeodesicWord_lemma49BoundaryPower_of_chainAt
-    D hword.1
-  exact isQuasiGeodesicChainAt_power_of_long_period
-    D N hshort hword hn hdelta hlong
+      ((8 * delta + 2 : ℕ) : ℝ) (lemma49BoundaryPower word n) := by
+  exact isLambdaCQuasiGeodesicWord_lemma49BoundaryPower_of_chainAt
+    (n := n) (b := 8 * delta + 2) (M := (4 : ℝ)) D hword.1
+      (isQuasiGeodesicChainAt_power_of_long_period
+        D N hshort hword hn hdelta hlong)
 
 /-- The stable-translation estimate supplies a `(1/M,4*L)` source boundary
 for every bounded loxodromic period. -/
@@ -244,12 +260,13 @@ theorem isLambdaCQuasiGeodesicWord_power_of_stableTranslation
     {d : ℝ} (hd : 0 < d)
     (hdStable : d ≤ stableTranslation g (Cayley.base D.alphabet))
     (hdL : d ≤ L) (hLM : (L : ℝ) ≤ d * M) :
-    GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / M) (4 * L)
+    GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / (M : ℝ))
+      ((4 * L : ℕ) : ℝ)
       (lemma49BoundaryPower word n) := by
-  apply isLambdaCQuasiGeodesicWord_lemma49BoundaryPower_of_chainAt
-    D hword.1
-  exact isQuasiGeodesicChainAt_power_of_stableTranslation D hword
-    hwordPos hlength hM hd hdStable hdL hLM
+  exact isLambdaCQuasiGeodesicWord_lemma49BoundaryPower_of_chainAt
+    (n := n) (b := 4 * L) (M := (M : ℝ)) D hword.1
+      (isQuasiGeodesicChainAt_power_of_stableTranslation D hword
+        hwordPos hlength hM hd hdStable hdL hLM)
 
 /-! ## Numerical source parameters -/
 
