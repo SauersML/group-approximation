@@ -166,6 +166,70 @@ theorem CactusBaseCellDeletion.surgeryMap_boundaryWord_eq
     C.replacement.diagram.boundaryWord = Delta.boundaryWord :=
   C.replacement.outerWord_eq
 
+/-- A finite sequence of landed cactus folds.  Each step is a concrete
+`replaceGRegion` surgery and records the one-face inner-area drop. -/
+inductive CactusFoldChain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))} :
+    DiscDiagram.{u, w, v} W → DiscDiagram.{u, w, v} W → ℕ →
+      Type (max u w v)
+  | done {Delta : DiscDiagram.{u, w, v} W}
+      (cover : RelatorCellCover Delta) :
+      CactusFoldChain Delta Delta 0
+  | step {Delta Next : DiscDiagram.{u, w, v} W} {k : ℕ}
+      (C : CactusBaseCellDeletion Delta)
+      (tail : CactusFoldChain C.replacement.diagram Next k)
+      (area_drop : C.replacement.diagram.innerFaceCount + 1 =
+        Delta.innerFaceCount) :
+      CactusFoldChain Delta Next (k + 1)
+
+/-- The recorded one-face drops add exactly along a cactus fold chain. -/
+theorem CactusFoldChain.innerFaceCount_eq_add_length
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta Next : DiscDiagram.{u, w, v} W} {k : ℕ}
+    (chain : CactusFoldChain Delta Next k) :
+    Next.innerFaceCount + k = Delta.innerFaceCount := by
+  induction chain with
+  | done cover => simp
+  | @step Delta Next k C tail area_drop ih =>
+      omega
+
+/-- Induction over the landed cactus folds composes their boundary, reducedness,
+planarity, and relator-only fields into one `CactusRelatorRetyping`. -/
+noncomputable def CactusFoldChain.toRetyping
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta Next : DiscDiagram.{u, w, v} W} {k : ℕ}
+    (chain : CactusFoldChain Delta Next k)
+    (hplanar : Delta.toCombMap.IsPlanar)
+    (hred : Delta.Reduced) : CactusRelatorRetyping Delta := by
+  induction chain with
+  | done cover =>
+      exact {
+        diagram := Delta
+        boundaryWord_eq := rfl
+        relatorOnly := cover
+        rCellCount_le := le_rfl
+        reduced := hred
+        planar := hplanar }
+  | @step Delta Next k C tail area_drop ih =>
+      have hnextPlanar : C.replacement.diagram.toCombMap.IsPlanar := by
+        rw [← C.surgeryMap_eq_replacement]
+        exact C.surgeryMap_planar hplanar
+      have hnextRed : C.replacement.diagram.Reduced :=
+        C.replacement.reduced C.reduced
+      let R := ih hnextPlanar hnextRed
+      refine {
+        diagram := R.diagram
+        boundaryWord_eq := R.boundaryWord_eq.trans
+          C.surgeryMap_boundaryWord_eq
+        relatorOnly := R.relatorOnly
+        rCellCount_le := ?_
+        reduced := R.reduced
+        planar := R.planar }
+      exact R.rCellCount_le.trans_eq C.replacement.rCellCount_eq.symm
+
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
 area is unchanged by the ordered cell equivalence, and reducedness transports
