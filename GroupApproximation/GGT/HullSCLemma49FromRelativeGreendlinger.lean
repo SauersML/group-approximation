@@ -108,6 +108,7 @@ theorem exists_lemma49RelativeGreendlingerCell
       Z.toRelativeReducedDiagram) :
     Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
   obtain ⟨i, C, _, hlarge⟩ := K.largeCell
+  rw [K.boundaryWord_eq] at C hlarge
   change RelativeBoundaryContiguity D eps
     ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
     (K.cellLabel i) at C
