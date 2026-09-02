@@ -2486,9 +2486,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           · exfalso
             apply (hi : ¬ Matched i)
             refine ⟨Q.length, le_rfl, ?_, ?_⟩
-            · rw [← hni, hieq]
-              have hrczero : rc.length = 0 := by omega
-              simp [hrczero]
+            · have hrczero : rc.length = 0 := by omega
+              rw [hrczero, Nat.sub_self]
+              rw [← hni, hieq]
             · obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
               refine ⟨hh, hmem, ?_⟩
               rw [hni, hieq]
