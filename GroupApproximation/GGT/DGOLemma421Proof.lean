@@ -2032,7 +2032,7 @@ injectivity, and one whole block of matched sources. -/
 structure DGO421FiniteAbsorptionCertificate
     (D : RelGenSet G Λ) (p q : List (RelLetter G Λ))
     (N M K : ℕ) where
-  prefix : G
+  pre : G
   source : Fin N → ℕ
   offset : Fin N → ℕ
   target : Fin N → ℕ
@@ -2048,7 +2048,7 @@ structure DGO421FiniteAbsorptionCertificate
   matched_spec : ∀ i, matched i →
     ∃ j : ℕ, j ≤ q.length ∧
       ∃ h : G, h ∈ D.fam (label i) ∧
-        prefix * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
+        pre * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
 
 /-- The strict finite-absorption conclusion supplied by the counting part of
 DGO Lemma 4.21(b), before the iterative consecutive-target step. -/
@@ -2065,8 +2065,8 @@ def DGO421FiniteAbsorptionConclusion : Prop :=
         (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
         (wordDist D.alphabet.carrier (vertex vp p p.length)
           (vertex vq q q.length) : ℝ) ≤ eps →
-        ∃ cert : DGO421FiniteAbsorptionCertificate D p q
-          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K, True
+        Nonempty (DGO421FiniteAbsorptionCertificate D p q
+          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K)
 
 /-! ## Assembly of Lemma 4.21(b) -/
 
@@ -2757,6 +2757,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
           block.val * K + K ≤ M * K + K :=
             Nat.add_le_add_right (Nat.mul_le_mul_right K hbM) K
           _ = (M + 1) * K := by rw [Nat.succ_mul]
+      dsimp [N]
       rw [Nat.mul_comm K (M + 1)]
       exact lt_of_lt_of_le (Nat.add_lt_add_left t.isLt _) hblockLen⟩
   have hblockIndex_formula : ∀ t : Fin K,
@@ -2767,7 +2768,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
     intro t
     simpa [blockIndex] using hblock t
   have hcert : DGO421FiniteAbsorptionCertificate D P Q N M K := {
-    prefix := RelLetter.listVal pc
+    pre := RelLetter.listVal pc
     source := source
     offset := fun i => pc.length + source i
     target := targetN
@@ -2788,7 +2789,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
       intro i hi
       rcases hi with ⟨j, hj, -, ⟨hh, hmem, heq⟩⟩
       exact ⟨j, hj, hh, hmem, heq⟩ }
-  exact ⟨hcert, trivial⟩
+  exact ⟨hcert⟩
 
 end OsinComponents
 end GGT
