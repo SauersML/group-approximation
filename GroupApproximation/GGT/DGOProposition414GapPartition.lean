@@ -59,7 +59,7 @@ theorem sum_orderedGap_width_add_length (lo hi : ℕ) (xs : List ℕ)
     (hlo : ∀ x ∈ xs, lo ≤ x)
     (hhi : ∀ x ∈ xs, x < hi) (hordered : xs.Pairwise (fun x y => x < y)) :
     (∑ j : Fin (xs.length + 1),
-        orderedGapFinish hi xs j - orderedGapStart lo xs j) +
+        (orderedGapFinish hi xs j - orderedGapStart lo xs j)) +
       xs.length = hi - lo := by
   induction xs generalizing lo with
   | nil =>
