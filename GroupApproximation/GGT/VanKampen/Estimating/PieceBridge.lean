@@ -1024,7 +1024,7 @@ theorem Candidate.weight_le_two_mu_source_of_planarPeelCertificates
     (hred : Delta.Reduced)
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hpieces : ∀ first second word,
-      RelWord.IsPublishedPiece D W eps first second →
+      RelWord.IsPublishedPiece D W eps first second word →
         max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (candidate.weight : ℝ) ≤
       2 * mu *
@@ -1049,7 +1049,7 @@ theorem Candidate.weight_le_two_mu_target_of_planarPeelCertificates
     (hred : Delta.Reduced)
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hpieces : ∀ first second word,
-      RelWord.IsPublishedPiece D W eps first second →
+      RelWord.IsPublishedPiece D W eps first second word →
         max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (candidate.weight : ℝ) ≤
       2 * mu * ((cell Delta bridge.target).word.length : ℝ) := by
