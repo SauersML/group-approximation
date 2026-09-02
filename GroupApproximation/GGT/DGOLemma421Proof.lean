@@ -2585,7 +2585,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           (peripheralOccurrence P (occ j)).label
           (hsourcePos j) (hsourceEnd j) (hsourceComp j)⟩
     exact (hsourceNoSame i (source j)
-      (Nat.lt_of_succ_lt (hsourceEnd j)) hne.symm hstartj) hconn
+      (Nat.lt_of_succ_lt (hsourceEnd j)) (by
+        intro heq
+        exact hne heq.symm) hstartj) hconn
   have hshortInj : ∀ i j, ¬ Matched i → ¬ Matched j →
       short i = short j → i = j := by
     intro i j hi hj hshortEq
