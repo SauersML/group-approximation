@@ -127,6 +127,7 @@ def OrientedCactusBoundaryProducer : Prop :=
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusBoundaryInput (T := T) := by
@@ -165,10 +166,7 @@ theorem reducedRelatorOnly_of_cactusBoundary
     | nil => rfl
     | cons u us ih =>
         simp only [List.map_cons]
-        congr 1
-        · rcases u with ⟨g, positive⟩
-          cases positive <;> rfl
-        · exact ih
+        exact congrArg (List.cons (GGT.RelLetter.base (freeLetter u))) ih
   calc
     R.diagram.boundaryWord = C.diagram.boundaryWord := R.boundaryWord_eq
     _ = I.algebraic.boundaryWord.map
@@ -320,7 +318,7 @@ This copy lives in the clean build closure so the build module does not need
 the repairing `KazhdanHypGirthEightPrimitives2` import. -/
 noncomputable def successiveStarLayers_of_geometricData
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
-        (_L : TriangularDiagramLocalData T Delta)
+    (L : TriangularDiagramLocalData T Delta)
     (cayley : CayleyVertexLabelling T Delta) (side : BoundarySubpath T Delta)
     (depth scale loss perimeter : ℕ)
     (hboundary : Delta.combinatorialBoundaryLength ≤ 6 * scale)
@@ -386,7 +384,7 @@ omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
-noncomputable theorem starLayerInput_of_faceComplete_and_layerCover
+theorem starLayerInput_of_faceComplete_and_layerCover
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (L : TriangularDiagramLocalData T Delta)
     (C : StarLayerConstructionCertificate Delta L) (_hred : Delta.Reduced) :
@@ -651,10 +649,15 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build_of_all_certificates
 def emptyTriangleTableBuild : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
   PEmpty.elim
 
-theorem presentedWordIsTrivial_emptyWord_model
-    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) :
-    PresentedWordIsTrivial (T := T) [] := by
-  simp [PresentedWordIsTrivial, PresentedGroupRelatorReplay.word]
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+theorem presented_empty_subsingleton :
+    Subsingleton (TriangularHodgeLayer.Presented emptyTriangleTableBuild) := by
+  constructor
+  intro a b
+  obtain ⟨a, rfl⟩ := PresentedGroup.mk_surjective _ a
+  obtain ⟨b, rfl⟩ := PresentedGroup.mk_surjective _ b
+  exact congrArg (PresentedGroup.mk _) (Subsingleton.elim _ _)
 
 theorem cactusBoundaryInput_trivialGroup_model :
     CactusBoundaryInput (T := emptyTriangleTableBuild) := by
@@ -672,6 +675,8 @@ theorem orientedCactusBoundaryProducer_trivialGroup_model :
 
 theorem farPointBoundaryWord_trivialGroup_model :
     FarPointBoundaryWord (T := emptyTriangleTableBuild) := by
+  letI : Subsingleton (TriangularHodgeLayer.Presented emptyTriangleTableBuild) :=
+    presented_empty_subsingleton
   intro delta x y z p hp hfarXZ hfarZY
   have hfar := hfarXZ x (Hyperbolic.isBetween_left _ x z)
   have hdist : wordDist
@@ -684,6 +689,8 @@ theorem farPointBoundaryWord_trivialGroup_model :
 
 theorem starLayerConstruction_trivialGroup_model :
     StarLayerConstruction (T := emptyTriangleTableBuild) := by
+  letI : Subsingleton (TriangularHodgeLayer.Presented emptyTriangleTableBuild) :=
+    presented_empty_subsingleton
   intro delta x y z p hp hfarXZ hfarZY
   have hfar := hfarXZ x (Hyperbolic.isBetween_left _ x z)
   have hdist : wordDist
@@ -696,6 +703,8 @@ theorem starLayerConstruction_trivialGroup_model :
 
 theorem starLayerConstructionCertificateInput_trivialGroup_model :
     StarLayerConstructionCertificateInput (T := emptyTriangleTableBuild) := by
+  letI : Subsingleton (TriangularHodgeLayer.Presented emptyTriangleTableBuild) :=
+    presented_empty_subsingleton
   intro delta x y z p hp hfarXZ hfarZY Delta hred
   have hfar := hfarXZ x (Hyperbolic.isBetween_left _ x z)
   have hdist : wordDist
