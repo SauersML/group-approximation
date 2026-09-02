@@ -195,11 +195,11 @@ noncomputable def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
   exposed d hd := by
     classical
     change IsExposed Delta (B.alphaFun d).2
-    simp [alphaFun, hd]
+    simpa [alphaFun, hd] using (B.mate ⟨d, hd⟩).2
   changes_copy d hd := by
     classical
     change (B.alphaFun d).1 ≠ d.1
-    simp [alphaFun, hd]
+    simpa [alphaFun, hd] using B.changes_copy ⟨d, hd⟩
 
 end ExposedPairing
 
@@ -286,7 +286,8 @@ theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
   | zero => rfl
   | succ m ih =>
       rw [pow_succ', pow_succ', Perm.mul_apply, Perm.mul_apply]
-      change ((innerFacePerm Delta) (((innerFacePerm Delta) ^ m) d)).1 = _
+      change Delta.toCombMap.facePerm
+          ((((innerFacePerm Delta) ^ m) d).1) = _
       rw [ih]
       rfl
 
