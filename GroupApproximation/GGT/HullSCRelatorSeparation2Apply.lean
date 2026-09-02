@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2OtherArc
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 import GroupApproximation.GGT.OsinTheorem54SepTwoBlockRot
 
 /-!

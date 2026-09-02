@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2AdjacentGap
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Adjacent
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyClose
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 
 /-!
 # Closing exact published matches with relative short sides

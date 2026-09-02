@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMatch
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyTwoBlock
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Adjacent
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 
 /-!
 # A match whose second gap is trivial

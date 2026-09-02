@@ -3,6 +3,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMixedInv
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrowPair
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyTwoBlock
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Match
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 
 /-!
 # From a piece to a closed case

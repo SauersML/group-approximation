@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2RelativeSides
 import GroupApproximation.GGT.HullSCRelatorSeparation2ExactCount
+import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 
 /-!
 # Counting interior components for relative short sides
