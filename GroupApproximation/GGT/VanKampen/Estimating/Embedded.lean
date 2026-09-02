@@ -312,6 +312,31 @@ structure Contiguity
   distinct cells.  A boundary target carries no constraint, so this clause is
   vacuous when `target = none`. -/
   target_ne_source : ∀ i, target = some i → source ≠ i
+  /-- **Osin's `O52` certificate.**  When the target is a relator cell, the
+  region carries the algebraic data that Osin's Lemma `O52` argument uses: the
+  two cells occur in the stored order with the intervening cells between them,
+  both are read forwards, each arc reads its cell's relator word, and the
+  connector -- along the target arc and back along the right side -- is the
+  transport across the intervening cells.  Together with
+  `DiscDiagram.Reduced` these give the non-cancellation clause of
+  `CellPieceEquations`; see
+  `Estimating/PieceCarrier.lean`, `whole_ne_of_certificate`.  The clause is
+  vacuous when `target = none`. -/
+  o52Certificate : ∀ i, target = some i →
+    ∃ pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W),
+      Delta.relatorCells =
+          pre ++ cell Delta source :: (between ++ cell Delta i :: suf) ∧
+        (cell Delta source).reversed = false ∧
+        (cell Delta i).reversed = false ∧
+        GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) =
+          GGT.RelLetter.listVal (cell Delta source).word ∧
+        GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) =
+          GGT.RelLetter.listVal (cell Delta i).word ∧
+        GGT.RelLetter.listVal (dartWord Delta targetArc.darts) *
+            (GGT.RelLetter.listVal (dartWord Delta rightSide))⁻¹ =
+          ((cell Delta source).conjugator⁻¹ *
+            (between.map RelatorCell.value).prod *
+            (cell Delta i).conjugator)⁻¹
 
 namespace Contiguity
 
