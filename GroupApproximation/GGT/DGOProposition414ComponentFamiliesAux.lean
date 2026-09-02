@@ -158,6 +158,113 @@ structure SecondGapComponentFamily
         (B.secondGapCut j ((B.secondGapLeft j).length +
           (B.secondGapFinishSide j - B.secondGapStartSide j) + r + 1))
 
+/-! ## Packaging the all-target component family -/
+
+/-- Package an all-target component family into the four first-gap component
+fields.  The target memberships are proved by the canonical decomposition of
+`firstGapTarget` into arc, chord, and connector blocks. -/
+theorem FirstGapComponentFamily.ofTargetComponents
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (htarget : ∀ j, ∀ s ∈ B.firstGapTarget j,
+      IsComp (B.firstGapLocalLabel j s) (B.firstGapCycle j)
+        (B.firstGapCut j s) (B.firstGapCut j (s + 1))) :
+    FirstGapComponentFamily B := by
+  refine
+    { arcComponent := ?_
+      chordComponent := ?_
+      leftComponent := ?_
+      rightComponent := ?_ }
+  · intro j s hs
+    let q := (B.firstGapLeft j).length +
+      (B.firstTargetSide s - B.firstGapStartSide j)
+    have hq : q ∈ B.firstGapTarget j := by
+      simp only [firstGapTarget, firstGapLocalTarget]
+      exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+        (Or.inl (Finset.mem_image.mpr ⟨s, hs, rfl⟩))))
+    simpa only [q] using htarget j q hq
+  · intro j s hs
+    let q := B.firstGapChordTargetIndex j
+      (B.brokenAssignment.second.partner s)
+    have hq : q ∈ B.firstGapTarget j := by
+      simp only [firstGapTarget, firstGapLocalTarget]
+      exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+        (Or.inr (Finset.mem_image.mpr ⟨s, hs, rfl⟩))))
+    simpa only [q] using htarget j q hq
+  · intro j r hr
+    have hq : r ∈ B.firstGapTarget j := by
+      simp only [firstGapTarget]
+      exact Finset.mem_union.mpr (Or.inr
+        (mem_auxiliaryCycleConnectorTarget_left
+          (B.firstGapLeft j) (B.firstGapRight j)
+          (B.firstGapFinishSide j - B.firstGapStartSide j) r hr))
+    exact htarget j r hq
+  · intro j r hr
+    let q := (B.firstGapLeft j).length +
+      (B.firstGapFinishSide j - B.firstGapStartSide j) + r
+    have hq : q ∈ B.firstGapTarget j := by
+      simp only [firstGapTarget]
+      exact Finset.mem_union.mpr (Or.inr
+        (mem_auxiliaryCycleConnectorTarget_right
+          (B.firstGapLeft j) (B.firstGapRight j)
+          (B.firstGapFinishSide j - B.firstGapStartSide j) r hr))
+    simpa only [q] using htarget j q hq
+
+/-- Package an all-target component family into the four wrapped-gap
+component fields. -/
+theorem SecondGapComponentFamily.ofTargetComponents
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (htarget : ∀ j, ∀ s ∈ B.secondGapTarget j,
+      IsComp (B.secondGapLocalLabel j s) (B.secondGapCycle j)
+        (B.secondGapCut j s) (B.secondGapCut j (s + 1))) :
+    SecondGapComponentFamily B := by
+  refine
+    { arcComponent := ?_
+      chordComponent := ?_
+      leftComponent := ?_
+      rightComponent := ?_ }
+  · intro j s hs
+    let q := (B.secondGapLeft j).length +
+      (B.secondTargetSide s - B.secondGapStartSide j)
+    have hq : q ∈ B.secondGapTarget j := by
+      simp only [secondGapTarget, secondGapLocalTarget]
+      exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+        (Or.inl (Finset.mem_image.mpr ⟨s, hs, rfl⟩))))
+    simpa only [q] using htarget j q hq
+  · intro j s hs
+    let q := B.secondGapChordTargetIndex j
+      (B.brokenAssignment.first.partner s)
+    have hq : q ∈ B.secondGapTarget j := by
+      simp only [secondGapTarget, secondGapLocalTarget]
+      exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+        (Or.inr (Finset.mem_image.mpr ⟨s, hs, rfl⟩))))
+    simpa only [q] using htarget j q hq
+  · intro j r hr
+    have hq : r ∈ B.secondGapTarget j := by
+      simp only [secondGapTarget]
+      exact Finset.mem_union.mpr (Or.inr
+        (mem_auxiliaryCycleConnectorTarget_left
+          (B.secondGapLeft j) (B.secondGapRight j)
+          (B.secondGapFinishSide j - B.secondGapStartSide j) r hr))
+    exact htarget j r hq
+  · intro j r hr
+    let q := (B.secondGapLeft j).length +
+      (B.secondGapFinishSide j - B.secondGapStartSide j) + r
+    have hq : q ∈ B.secondGapTarget j := by
+      simp only [secondGapTarget]
+      exact Finset.mem_union.mpr (Or.inr
+        (mem_auxiliaryCycleConnectorTarget_right
+          (B.secondGapLeft j) (B.secondGapRight j)
+          (B.secondGapFinishSide j - B.secondGapStartSide j) r hr))
+    simpa only [q] using htarget j q hq
+
 /-! ## Exact certificate assembly -/
 
 /-- Assemble a first-gap component family and its separation input into the
