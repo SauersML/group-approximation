@@ -123,7 +123,7 @@ theorem outerForward_word
   simp only [List.getElem_ofFn]
   congr 1
   apply Fin.ext
-  rfl
+  simp [outerIndex]
 
 theorem relatorForward_word
     {G : Type u} [Group G] {Lambda : Type w}
