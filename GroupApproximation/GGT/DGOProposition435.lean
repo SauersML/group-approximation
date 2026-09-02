@@ -628,7 +628,10 @@ If every element of the joint ball is spelled by a joint word of the same
 length whose auxiliary letters all lie in `F`, and `F` already sits in the
 enlarged base `D'`, then reading each auxiliary letter as a base letter of `D'`
 sends the joint ball into a relative ball of `D'`.  A base letter is never an
-edge of `Γ_{H_lam}`, so the avoidance condition survives the reading. -/
+edge of `Γ_{H_lam}`, so the avoidance condition survives the reading.
+
+The joint relative generating set is left arbitrary, so the lemma serves all
+three joint forms of this file. -/
 theorem relBall_inl_subset_of_auxLetters (J : RelGenSet G (Sum Λ I))
     (D' : RelGenSet G Λ) (hbase : J.base ⊆ D'.base)
     (hfam : ∀ mu : Λ, J.fam (Sum.inl mu) = D'.fam mu) (F : Set G)
