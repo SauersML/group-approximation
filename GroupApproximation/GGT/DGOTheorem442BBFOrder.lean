@@ -75,7 +75,7 @@ theorem bbf_before_total_on_large
     have htriW := P.bbfProjDist_triangle hWX hWU hWZ hUX.symm hUZ hXZ
     have hWUZ : 2 * P.ξ < P.bbfProjDist W U Z := by
       linarith [hWlarge, P.ξ_pos]
-    have hend := P.bbfProjDist_endpoints_lt hWU hWZ hUZ.symm hWUZ
+    have hend := P.bbfProjDist_endpoints_lt hWU hWZ hUZ hWUZ
     have hUWZ : P.bbfProjDist U W Z < P.ξ := hend.1
     by_contra hnot
     have hUXW : P.bbfProjDist U X W ≤ 5 * P.ξ := le_of_not_gt hnot
@@ -103,7 +103,7 @@ projection at most the original projection of `(X,Z)`.  This is the upper
 inequality in BBF Theorem 3.3(G). -/
 theorem bbf_between_projDist_le
     (P : ProjectionSystem V) {X Z W U T : V}
-    (hWX : W ≠ X) (hWU : W ≠ U) (hWT : W ≠ T) (hWZ : W ≠ Z)
+    (hWX : W ≠ X) (hWU : W ≠ U) (hWT : W ≠ T) (_hWZ : W ≠ Z)
     (hUX : U ≠ X) (hUT : U ≠ T) (hUZ : U ≠ Z)
     (hTX : T ≠ X) (hTZ : T ≠ Z)
     (hXZ : X ≠ Z)
