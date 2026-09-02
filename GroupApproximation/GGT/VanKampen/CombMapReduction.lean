@@ -178,6 +178,17 @@ theorem CactusBaseCellFoldData.boundary_power_preserved
       (List.replicate C.exponent C.powerWord).flatten :=
   C.after_power
 
+theorem CactusBaseCellFoldData.area_zero_of_oneCell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellFoldData Delta)
+    (hone : Delta.innerFaceCount = 1) :
+    C.replacement.diagram.innerFaceCount = 0 := by
+  have hdrop := C.innerFaceCount_drop
+  rw [hone] at hdrop
+  omega
+
 /-- The explicit combinatorial map obtained by deleting the selected cactus
 region and re-closing its trimmed boundary cycle. -/
 noncomputable def CactusBaseCellDeletion.surgeryMap
