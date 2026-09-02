@@ -40,13 +40,13 @@ theorem false_of_longPeriod_powerDiagram_of_cell
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     {v : List (GGT.RelLetter G Lambda)} {g : G} {n : ℕ}
-    (N : Subgroup G) [N.Normal]
     {eps epsFinal rho delta K : ℕ}
     (Z : Lemma49GeodesicPowerDiagram D v g n)
     (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
     (Sh : Lemma49ContiguityShadow C K)
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
-    (hshort : IsShortestModuloConjugacy D.alphabet.carrier N g)
+    (hshort : IsShortestModuloConjugacy D.alphabet.carrier
+      (Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)) g)
     (hcertificateInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
       eps (1 / 1000) rho)
     (hfinalInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
@@ -55,6 +55,9 @@ theorem false_of_longPeriod_powerDiagram_of_cell
       1000 * (4 * (8 * delta + 2) + 24 * K + 18 * eps + 18) ≤ rho)
     (hconnectors : 2 * K ≤ epsFinal)
     (hlongPeriod : 8 * delta + 2 ≤ Z.boundaryWord.length) : False := by
+  let N : Subgroup G :=
+    Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
+  letI : N.Normal := Subgroup.normalClosure_normal
   have hshortScale : 100 * (2 * eps + 1) ≤ rho :=
     lemma49_shorteningScale_le_of_primePieceScale hscale
   have hlongArc : 4 * Z.boundaryWord.length ≤
@@ -133,7 +136,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
   obtain ⟨C⟩ := hcertificate rho hrho₀ v g n hcertInput Z
   obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v g n rho Z C N
     inferInstance hdelta hcertInput hshort hlongPeriod
-  apply false_of_longPeriod_powerDiagram_of_cell D N Z C Sh hdelta hshort
+  apply false_of_longPeriod_powerDiagram_of_cell D Z C Sh hdelta hshort
     hcertInput hfinalSym
   · simpa only [b, scale] using hrhoScale
   · exact hconnectors
