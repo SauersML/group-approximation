@@ -141,14 +141,15 @@ proposition rule out every nontrivial power diagram whose loxodromic period
 has length at most `8 * delta + 1`.  This is the short-word case of Hull's
 auxiliary assertion `aaqg`, followed by the two-piece argument in Osin
 Lemma 6.3 used in Hull Lemma 4.9. -/
-theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
+theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_at
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    {delta : ℕ}
+    (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
-    ∃ (eps rho delta : ℕ) (mu : ℝ),
+    ∃ (eps rho : ℕ) (mu : ℝ),
       0 < mu ∧ mu ≤ 1 / 1000 ∧
-      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
         (v : List (GGT.RelLetter G Lambda)), v ∈ W →
         RelWord.IsLemma49Input D W eps mu rho →
@@ -159,8 +160,6 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
             IsLoxodromic g (Cayley.base D.alphabet) →
             ∀ Z : Lemma49GeodesicPowerDiagram D v g n,
               Z.boundaryWord.length ≤ 8 * delta + 1 → False := by
-  obtain ⟨delta, hdelta⟩ :=
-    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨d₀, hd₀, hgapAll⟩ := hgap
   let d : ℝ := min d₀ 1
   have hd : 0 < d := by
@@ -220,7 +219,7 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
     le_trans hscales.1 hrhoScale
   have hRelatorScale : 1000 * (2 * epsCert + 2) ≤ rho :=
     le_trans hscales.2 hrhoScale
-  refine ⟨eps, rho, delta, mu, hmuPos, hmuCert, hdelta, ?_⟩
+  refine ⟨eps, rho, mu, hmuPos, hmuCert, ?_⟩
   intro W v hv hinput g n hshort hlox Z hshortPeriod
   let N : Subgroup G :=
     Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)
@@ -278,6 +277,33 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
   exact false_of_lemma49ScaledLongArc_contiguityShadow C B Sh hcertInput
     hfinalInput hRel hPow hM hdivisorPos hdivisorMu hdivisorEight
     hArcScale' hRelatorScale hconnectors
+
+/-- The caller-independent form chooses a four-point constant from the
+hyperbolically embedded relative Cayley graph. -/
+theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
+    (hgeom : RelativeGreendlingerStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
+    ∃ (eps rho delta : ℕ) (mu : ℝ),
+      0 < mu ∧ mu ≤ 1 / 1000 ∧
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda)))
+        (v : List (GGT.RelLetter G Lambda)), v ∈ W →
+        RelWord.IsLemma49Input D W eps mu rho →
+          ∀ (g : G) (n : ℕ),
+            IsShortestModuloConjugacy D.alphabet.carrier
+              (Subgroup.normalClosure
+                ({GGT.RelLetter.listVal v} : Set G)) g →
+            IsLoxodromic g (Cayley.base D.alphabet) →
+            ∀ Z : Lemma49GeodesicPowerDiagram D v g n,
+              Z.boundaryWord.length ≤ 8 * delta + 1 → False := by
+  obtain ⟨delta, hdelta⟩ :=
+    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
+  obtain ⟨eps, rho, mu, hmu, hmuUpper, hgood⟩ :=
+    exists_parameters_false_of_shortLoxodromic_powerDiagram_at
+      hgeom D hemb hdelta hgap
+  exact ⟨eps, rho, delta, mu, hmu, hmuUpper, hdelta, hgood⟩
 
 /-! ## Model checks for the numerical choices -/
 
