@@ -97,7 +97,7 @@ theorem oneFace
       (({face} : Finset Delta.toCombMap.Face).erase face) ([] ++ []) := by
     rw [Finset.erase_singleton]
     exact FaceSetDeletionSchedule.empty
-  simpa only [List.nil_append] using
+  simpa only [List.nil_append, List.append_nil] using
     (FaceSetDeletionSchedule.step face hface hne [] [] htail)
 
 /-- The zero-face schedule is the empty-word model. -/
