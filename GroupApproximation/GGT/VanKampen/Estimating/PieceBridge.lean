@@ -631,7 +631,7 @@ def CellPieceEquations.twoCell_mirror_model
     simp [hneq]
   have h₂mem : f₂ ∈ faces := by
     rw [hfaces]
-    simp [hneq]
+    simp
   have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces cycle :=
     twoFacePeeling hfaces hneq h₁ h₂ h₁mem h₂mem cycle next moves hnext
   have hschedule' : FaceSetDeletionSchedule (Delta := Delta) faces
