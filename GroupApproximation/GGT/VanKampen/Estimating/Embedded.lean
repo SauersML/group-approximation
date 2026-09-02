@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.DiscDiagram
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 import GroupApproximation.GGT.VanKampen.Estimating.Selection
 
 /-!
@@ -337,6 +338,23 @@ structure Contiguity
           ((cell Delta source).conjugator⁻¹ *
             (between.map RelatorCell.value).prod *
             (cell Delta i).conjugator)⁻¹
+  /-- **Producer obligation.**  The region's boundary cycle is the last walk of
+  a shelling of the region's own faces: supply the shelling in the order the
+  region was assembled.
+
+  A construction that attaches faces one at a time has this structurally, which
+  is why it is a field rather than a theorem.  Each step needs only that the
+  new face meets the current walk along one arc, and the arc may be empty, so a
+  region pinched at a vertex is fine; no ear, no unpinched face and no
+  single-cycle remainder is required.  See `VanKampen/FaceShelling.lean` for
+  the step lemma and the one-face, two-face and pinch model checks.
+
+  Consumers should not unpack this.  `Embedded.faceSetWordHomotopy_of_shelling`
+  turns it into the face-pasting homotopy and
+  `Embedded.cycle_value_eq_one_of_shelling` into the boundary value identity,
+  which is all any consumer of a face-set peeling ever used. -/
+  pasting : ∃ l : List Delta.toCombMap.Face,
+    FaceShelling Delta faces l boundary.cycle
 
 namespace Contiguity
 
