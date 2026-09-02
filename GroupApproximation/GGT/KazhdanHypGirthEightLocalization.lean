@@ -212,7 +212,7 @@ structure TriangularRelatorSphericalMap
   planar : M.IsPlanar
   /-- Every face is assigned a literal defining relator. -/
   faceRelator : ∀ f : M.Face, ∃ j : TriangleIndex,
-    M.faceDegree f = (KazhdanHyp.triangleRelatorWord T j).length
+    M.faceDegree f = (TriangularHodgeLayer.letters (T j)).length
   /-- Reduced corners around a vertex give a nonbacktracking link circuit. -/
   vertexLink : ∀ v : M.Vertex,
     KazhdanHyp.PresentationLinkWalk T (M.vertexDegree v)
@@ -232,7 +232,8 @@ def toTriangularSphericalMap
   faceDegree := by
     intro f
     obtain ⟨j, hj⟩ := C.faceRelator f
-    rw [hj, KazhdanHyp.triangleRelatorWord_length T j]
+    simpa only [TriangularHodgeLayer.letters_eq_three, List.length_cons,
+      List.length_nil, Nat.reduceAdd] using hj
   vertexDegree := by
     intro v
     exact (C.vertexLink v).eight_le_length hchecks
