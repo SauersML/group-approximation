@@ -152,7 +152,17 @@ theorem keptFaceWord (cut : RegionCutData Delta) (g : Delta.toCombMap.Face)
       (fun d => Delta.label d.1) = Delta.faceWord g := by
   have hmap := replaceGRegionFaceBoundary_keptFace_map_val Delta.toCombMap
     cut.outside cut.region Delta.faceBoundary g hg
-  rw [DiscDiagram.faceWord, ← hmap, List.map_map]
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+          Delta.faceBoundary
+          (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+            Delta.faceBoundary
+            (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
+          Subtype.val).map Delta.label := (List.map_map _ _ _).symm
+    _ = ((Delta.faceBoundary g).darts).map Delta.label :=
+        congrArg (fun l => l.map Delta.label) hmap
+    _ = Delta.faceWord g := rfl
 
 /-- The new face of the piece reads the enclosing walk. -/
 theorem newFaceWord (cut : RegionCutData Delta) :
@@ -163,7 +173,17 @@ theorem newFaceWord (cut : RegionCutData Delta) :
       Embedded.dartWord Delta cut.region.toBoundaryCycle.cycle := by
   have hmap := replaceGRegionFaceBoundary_newFace_map_val Delta.toCombMap
     cut.outside cut.region Delta.faceBoundary
-  rw [Embedded.dartWord, ← hmap, List.map_map]
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+          Delta.faceBoundary
+          (newFace Delta.toCombMap cut.outside cut.region)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+            Delta.faceBoundary
+            (newFace Delta.toCombMap cut.outside cut.region)).darts).map
+          Subtype.val).map Delta.label := (List.map_map _ _ _).symm
+    _ = (cut.region.toBoundaryCycle.cycle).map Delta.label :=
+        congrArg (fun l => l.map Delta.label) hmap
+    _ = Embedded.dartWord Delta cut.region.toBoundaryCycle.cycle := rfl
 
 /-- A kept cell's word is the word of its face in the piece. -/
 theorem keptCells_word (cut : RegionCutData Delta)
@@ -177,8 +197,7 @@ theorem keptCells_word (cut : RegionCutData Delta)
   have hword : C.1.word = Delta.faceWord C.1.face :=
     Delta.relatorCell_word C.1 (cut.cells_mem C hC)
   have hface := cut.keptFaceWord C.1.face C.2
-  rw [hface]
-  exact hword
+  exact hword.trans hface.symm
 
 /-- The source word of a kept cell is the word of its old face. -/
 theorem cells_word (cut : RegionCutData Delta)
