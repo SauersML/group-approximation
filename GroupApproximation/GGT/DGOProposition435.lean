@@ -962,26 +962,24 @@ theorem inv_mem_symmClosure {T : Set G} {x : G} (hx : x ∈ T) :
 /-- **The joint base with extra letters adjoined.**
 
 The proper part of the original base together with the symmetric closure of
-`T`, minus the original peripherals.  Removing the peripherals keeps the
-hygiene invariant, and taking the symmetric closure makes the base
-inversion-closed with no hypothesis on `T`. -/
+`T`.  Taking the symmetric closure makes the base inversion-closed with no
+hypothesis on `T`, and the adjoined letters are not filtered against the
+peripherals: a single peripheral element in the base refutes nothing, since
+`RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base` needs the whole
+subgroup, and `T` is finite in every use, so the enlargement is absorbed by
+`relBall_finite_adjoinBase`. -/
 def jointBaseAdjoin (D : RelGenSet G Λ) (T : Set G) : Set G :=
-  properBase D ∪
-    (symmClosure T \ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)))
+  properBase D ∪ symmClosure T
 
 theorem jointBaseAdjoin_inv (D : RelGenSet G Λ) (T : Set G) {x : G}
     (hx : x ∈ jointBaseAdjoin D T) : x⁻¹ ∈ jointBaseAdjoin D T := by
-  rcases hx with hx | ⟨hxT, hxn⟩
+  rcases hx with hx | hxT
   · exact Or.inl (properBase_inv D hx)
-  · refine Or.inr ⟨symmClosure_inv hxT, ?_⟩
-    intro hf
-    obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
-    have hlam' : x⁻¹ ∈ D.fam lam := hlam
-    exact hxn (Set.mem_iUnion.mpr ⟨lam, by simpa using inv_mem hlam'⟩)
+  · exact Or.inr (symmClosure_inv hxT)
 
 theorem jointBaseAdjoin_subset (D : RelGenSet G Λ) (T : Set G) :
     jointBaseAdjoin D T ⊆ D.base ∪ symmClosure T := by
-  rintro x (hx | ⟨hxT, -⟩)
+  rintro x (hx | hxT)
   · exact Or.inl (properBase_subset_base D hx)
   · exact Or.inr hxT
 
@@ -1053,16 +1051,12 @@ theorem jointRelGenSetAdjoin_base_inv (D : RelGenSet G Λ) (E : RelGenSet G I)
       x⁻¹ ∈ (jointRelGenSetAdjoin D E T).base :=
   fun _ hx => jointBaseAdjoin_inv D T hx
 
-/-- **(iii)** An adjoined letter outside every original peripheral is a joint
-base letter, and so is its inverse. -/
+/-- **(iii)** The inverse of an adjoined letter is a joint base letter, with
+no condition on the letter. -/
 theorem jointRelGenSetAdjoin_inv_mem_base (D : RelGenSet G Λ)
-    (E : RelGenSet G I) {T : Set G} {t : G} (ht : t ∈ T)
-    (htn : ∀ lam : Λ, t⁻¹ ∉ D.fam lam) :
-    t⁻¹ ∈ (jointRelGenSetAdjoin D E T).base := by
-  refine Or.inr ⟨inv_mem_symmClosure ht, ?_⟩
-  intro hf
-  obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
-  exact htn lam hlam
+    (E : RelGenSet G I) {T : Set G} {t : G} (ht : t ∈ T) :
+    t⁻¹ ∈ (jointRelGenSetAdjoin D E T).base :=
+  Or.inr (inv_mem_symmClosure ht)
 
 /-- The joint alphabet is the original relative alphabet, the adjoined
 letters, and the auxiliary peripherals. -/
@@ -1091,10 +1085,7 @@ theorem jointRelGenSetAdjoin_alphabet_carrier (D : RelGenSet G Λ)
           exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
       · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
         exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
-    · by_cases hH : y ∈ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
-      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hH
-        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
-      · exact Or.inl (Or.inr ⟨hy, hH⟩)
+    · exact Or.inl (Or.inr hy)
     · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
       exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inr i, hi⟩)
 
