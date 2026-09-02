@@ -222,6 +222,36 @@ theorem hereditaryAverageDegree_of_planarEdgeBound
   have hcard : 0 < vertices.card := Finset.card_pos.mpr hvertices
   omega
 
+/-- Componentwise edge bounds combine to the same bound for a disconnected
+deletion state.  Isolated active vertices may be omitted from the component
+sum because only `sum vertexCount ≤ totalVertices` is required. -/
+theorem edgeBound_of_components
+    {componentCount totalVertices totalEdges : ℕ}
+    (hcomponents : 0 < componentCount)
+    (vertexCount edgeCount : Fin componentCount → ℕ)
+    (hvertexPos : ∀ i, 0 < vertexCount i)
+    (hedges : totalEdges = ∑ i : Fin componentCount, edgeCount i)
+    (hvertices : (∑ i : Fin componentCount, vertexCount i) ≤ totalVertices)
+    (hcomponent : ∀ i, edgeCount i ≤ 3 * (vertexCount i - 1)) :
+    totalEdges ≤ 3 * (totalVertices - 1) := by
+  have hlocal : ∀ i : Fin componentCount,
+      edgeCount i + 3 ≤ 3 * vertexCount i := by
+    intro i
+    have hpos := hvertexPos i
+    have hbound := hcomponent i
+    omega
+  have hsum :
+      (∑ i : Fin componentCount, edgeCount i) + 3 * componentCount ≤
+        3 * ∑ i : Fin componentCount, vertexCount i := by
+    have h := Finset.sum_le_sum fun i (_hi : i ∈ Finset.univ) => hlocal i
+    simpa [Finset.sum_add_distrib, Finset.mul_sum, Nat.mul_comm,
+      Nat.mul_left_comm] using h
+  omega
+
+/-- The component combination has equality at its smallest numerical base. -/
+theorem edgeBound_of_components_base : 3 ≤ 3 * (2 - 1) := by
+  norm_num
+
 /-- Average degree below six supplies a vertex of active degree at most five. -/
 theorem exists_lowDegree_of_hereditaryAverageDegree
     {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
