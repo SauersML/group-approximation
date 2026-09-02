@@ -406,8 +406,16 @@ theorem firstGapArcSource_fullComponent
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.first e)) := by
-          have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
-          simpa only [(B.firstArcCut_target heTarget).1] using hletter0
+          have hposLt : B.firstTargetPos
+              (HalfEntry.entrySource B.brokenAssignment.index.first e) <
+              B.firstArc.length := by
+            have hcompLen := hprevComp.2.1
+            omega
+          have hletter0 := hprevComp.2.2.1
+            (B.firstTargetPos (HalfEntry.entrySource
+              B.brokenAssignment.index.first e)) le_rfl (by omega) hposLt
+          rw [getElem_congr_idx (B.firstArcCut_target heTarget).1]
+          exact hletter0
         have hprevLabel :
             (B.firstArc[B.firstArcCut (B.firstTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
@@ -419,7 +427,9 @@ theorem firstGapArcSource_fullComponent
             B.firstArcCut (B.firstTargetSide s) - 1 := by
           have hcur : B.firstArcCut (B.firstTargetSide s) =
               B.firstArcCut (B.firstGapStartSide j) := by
-            exact (B.firstArcCut_target hsData.1).1.trans (by simp [hi0])
+            dsimp [i] at hi0
+            rw [(B.firstArcCut_target hsData.1).1]
+            omega
           rw [hcur, ← hprevPos]
           omega
         apply hparent.2.2.2.1
@@ -478,18 +488,31 @@ theorem firstGapArcSource_fullComponent
             B.firstArc.length + B.chord.length := by
           rw [hArcLen]
           exact hwordLength
+        have htargetLt : B.firstTargetPos s + 1 < B.firstWord.length := by
+          rw [hwordLen]
+          have hparentEnd := (B.firstArc_targetComponent hsData.1).2.1
+          have hsegLen := length_arcWord B.firstArc B.firstArcCut
+            (B.firstArc_isCutPath.cut.le_length (B.firstGapFinishSide_le j))
+          have hchordPos : 0 < B.chord.length := by
+            have hn' := hn
+            rw [hcycleLen] at hn'
+            have hrightNil : B.firstGapRight j = [] := by
+              simp only [firstGapRight]
+              rw [hnxt]
+            simp only [hrightNil, List.length_nil, Nat.add_zero] at hn'
+            rw [hsegLen] at hiEq
+            omega
+          omega
         have hauxEq : (cycle[(B.firstGapLeft j).length + i + 1]'hn) =
             B.firstWord[B.firstTargetPos s + 1]'(by
-              rw [← (B.firstArcCut_target hsData.1).2]
-              omega) := by
+              exact htargetLt) := by
           have hcutCur := (B.firstArcCut_target hsData.1).1
           have hcutNext := (B.firstArcCut_target hsData.1).2
           have hrightNil : B.firstGapRight j = [] := by
             simp only [firstGapRight]
             rw [hnxt]
-            simp
           simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
-            hwordComp, hwordLen, hiEq, hcutCur, hcutNext, hrightNil]
+            hwordComp, hwordLen, hArcLen, hiEq, hcutCur, hcutNext, hrightNil]
           omega
         rw [hauxEq] at hletter
         exact hwordPost (by omega) hletter
@@ -711,8 +734,16 @@ theorem secondGapArcSource_fullComponent
                 exact hprevCutLt)).IsCompOf
               (P.label (HalfEntry.entrySource
                 B.brokenAssignment.index.second e)) := by
-          have hletter0 := hprevComp.2.2.1 _ le_rfl (by omega) _
-          simpa only [(B.secondArcCut_target heTarget).1] using hletter0
+          have hposLt : B.secondTargetPos
+              (HalfEntry.entrySource B.brokenAssignment.index.second e) <
+              B.secondArc.length := by
+            have hcompLen := hprevComp.2.1
+            omega
+          have hletter0 := hprevComp.2.2.1
+            (B.secondTargetPos (HalfEntry.entrySource
+              B.brokenAssignment.index.second e)) le_rfl (by omega) hposLt
+          rw [getElem_congr_idx (B.secondArcCut_target heTarget).1]
+          exact hletter0
         have hprevLabel :
             (B.secondArc[B.secondArcCut (B.secondTargetSide
               (HalfEntry.entrySource B.brokenAssignment.index.second e))]'(by
@@ -724,7 +755,9 @@ theorem secondGapArcSource_fullComponent
             B.secondArcCut (B.secondTargetSide s) - 1 := by
           have hcur : B.secondArcCut (B.secondTargetSide s) =
               B.secondArcCut (B.secondGapStartSide j) := by
-            exact (B.secondArcCut_target hsData.1).1.trans (by simp [hi0])
+            dsimp [i] at hi0
+            rw [(B.secondArcCut_target hsData.1).1]
+            omega
           rw [hcur, ← hprevPos]
           omega
         apply hparent.2.2.2.1
@@ -779,18 +812,31 @@ theorem secondGapArcSource_fullComponent
             B.secondArc.length + B.chord.length := by
           rw [hArcLen]
           exact hwordLength
+        have htargetLt : B.secondTargetPos s + 1 < B.secondWord.length := by
+          rw [hwordLen]
+          have hparentEnd := (B.secondArc_targetComponent hsData.1).2.1
+          have hsegLen := length_arcWord B.secondArc B.secondArcCut
+            (B.secondArc_isCutPath.cut.le_length (B.secondGapFinishSide_le j))
+          have hchordPos : 0 < B.chord.length := by
+            have hn' := hn
+            rw [hcycleLen] at hn'
+            have hrightNil : B.secondGapRight j = [] := by
+              simp only [secondGapRight]
+              rw [hnxt]
+            simp only [hrightNil, List.length_nil, Nat.add_zero] at hn'
+            rw [hsegLen] at hiEq
+            omega
+          omega
         have hauxEq : (cycle[(B.secondGapLeft j).length + i + 1]'hn) =
             B.secondWord[B.secondTargetPos s + 1]'(by
-              rw [← (B.secondArcCut_target hsData.1).2]
-              omega) := by
+              exact htargetLt) := by
           have hcutCur := (B.secondArcCut_target hsData.1).1
           have hcutNext := (B.secondArcCut_target hsData.1).2
           have hrightNil : B.secondGapRight j = [] := by
             simp only [secondGapRight]
             rw [hnxt]
-            simp
           simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
-            hwordComp, hwordLen, hiEq, hcutCur, hcutNext, hrightNil]
+            hwordComp, hwordLen, hArcLen, hiEq, hcutCur, hcutNext, hrightNil]
           omega
         rw [hauxEq] at hletter
         exact hwordPost (by omega) hletter
