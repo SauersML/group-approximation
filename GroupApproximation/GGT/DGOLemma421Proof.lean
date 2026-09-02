@@ -1980,13 +1980,15 @@ theorem exists_side_occurrence_of_fourGon_start_421
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
 
-/-
 /-! ## Assembly of Lemma 4.21(b) -/
 
-theorem dgoLemma421b_of_uniform414
-    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421b.{u, w} := by
+theorem dgoLemma421b_of_uniform414_of_baseSymm
+    (h : DGOProposition414Uniform.{u, w})
+    (hbase : ∀ (G : Type u) [Group G] (Λ : Type w)
+      (D : RelGenSet G Λ), ∀ x ∈ D.base, x⁻¹ ∈ D.base) :
+    DGOLemma421b.{u, w} := by
   intro G _ Λ D hhyp
-  obtain ⟨C414, hC414, hsum414, hproj414⟩ :=
+  obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
     h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
   have hpoint : ∃ C : ℕ, 0 < C ∧
       ∀ n, n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
@@ -2012,6 +2014,7 @@ theorem dgoLemma421b_of_uniform414
   have hR : 0 < R := by dsimp [R, N]; omega
   refine ⟨R, hR, ?_⟩
   intro vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
+  have hbaseD : ∀ x ∈ D.base, x⁻¹ ∈ D.base := hbase G Λ D
   obtain ⟨pc, hpc⟩ := existsGeodesicWord D (1 : G) (vq⁻¹ * vp)
   let endP := vertex vp P P.length
   let endQ := vertex vq Q Q.length
@@ -2022,12 +2025,12 @@ theorem dgoLemma421b_of_uniform414
     simpa using hrc.2.1
   have hPVal : RelLetter.listVal P = vp⁻¹ * endP := by
     have hv : vp * RelLetter.listVal P = endP := by
-      simpa [endP] using (vertex_length vp P)
+      simpa [endP] using (vertex_length vp P).symm
     rw [← hv]
     group
   have hQVal : RelLetter.listVal Q = vq⁻¹ * endQ := by
     have hv : vq * RelLetter.listVal Q = endQ := by
-      simpa [endQ] using (vertex_length vq Q)
+      simpa [endQ] using (vertex_length vq Q).symm
     rw [← hv]
     group
   have hclose : RelLetter.listVal Q =
@@ -2035,9 +2038,6 @@ theorem dgoLemma421b_of_uniform414
     rw [hpcVal, hPVal, hrcVal, hQVal]
     dsimp [endP, endQ]
     group
-  have hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base := by
-    intro x hx
-    exact D.symmetricGenerating.inv_mem x (Set.mem_union_left _ hx)
   have hpolyLet : ∀ a ∈ pc ++ P ++ rc ++ revWord Q, D.IsLetter a := by
     intro a ha
     rcases List.mem_append.mp ha with ha | ha
@@ -2046,7 +2046,7 @@ theorem dgoLemma421b_of_uniform414
       · exact hletP a ha
     · rcases List.mem_append.mp ha with ha | ha
       · exact hrc.1 a ha
-      · exact isLetter_of_mem_revWord D hsymm hletQ a ha
+      · exact isLetter_of_mem_revWord D hbaseD hletQ a ha
   have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
       ((j - i : ℕ) : ℝ) / 4 - 1 ≤
         ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
@@ -2135,7 +2135,6 @@ theorem dgoLemma421b_of_uniform414
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
--/
 
 end OsinComponents
 end GGT
