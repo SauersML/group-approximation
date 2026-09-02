@@ -187,5 +187,16 @@ theorem familyPreservation_identityModel
     quotientJointPeripheralPreservation_of_bijective selected original joint
       hbaseInv horiginal hselected hjointEmbedded (MonoidHom.id G) hid⟩
 
+/-- The selected-family component of the identity model is the existing
+quotient-preservation constructor, independently of the arbitrary original
+family. -/
+theorem selectedPreservation_identityModel
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S) :
+    Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) := by
+  exact quotientPeripheralPreservation_of_bijective selected (MonoidHom.id G)
+    ⟨Function.injective_id, Function.surjective_id⟩
+
 end HullSC
 end GroupApproximation
