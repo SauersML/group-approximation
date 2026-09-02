@@ -3300,6 +3300,7 @@ import GroupApproximation.GGT.VanKampen.SurgeryCutCells
 import GroupApproximation.GGT.VanKampen.FaceShellingValue
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonBaseCase
 import GroupApproximation.GGT.DGOProposition414ChordArcSeamProofWrapped
+import GroupApproximation.GGT.VanKampen.SurgeryCutRecord
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
