@@ -125,8 +125,12 @@ theorem Lemma49ContiguityShadow.index_strictMono_of_far_powerMu
   have hboundReal : ((y - x : ℕ) : ℝ) ≤
       (powerMu : ℝ) *
         (2 * (K : ℝ) + (Sh.index x : ℝ) + (b : ℝ)) := by
-    rw [div_le_iff₀ hpowerMuReal] at hpowLower
-    nlinarith [hdistUpperReal]
+    have hdiv : ((y - x : ℕ) : ℝ) / (powerMu : ℝ) ≤
+        (wordDist D.alphabet.carrier
+          (C.powerArcVertex x) (C.powerArcVertex y) : ℝ) + (b : ℝ) := by
+      linarith
+    have hcleared := (div_le_iff₀ hpowerMuReal).mp hdiv
+    nlinarith [hcleared, hdistUpperReal]
   have hbound : y - x ≤ powerMu * (2 * K + Sh.index x + b) := by
     exact_mod_cast hboundReal
   have hindex := Sh.index_upper_of_powerMu hRel hPow hx
@@ -175,8 +179,12 @@ theorem Lemma49ContiguityShadow.index_ne_of_far_powerMu
     exact_mod_cast hpowerMu
   have hboundReal : ((y - x : ℕ) : ℝ) ≤
       (powerMu : ℝ) * (2 * (K : ℝ) + (b : ℝ)) := by
-    rw [div_le_iff₀ hpowerMuReal] at hpowLower
-    nlinarith [hdistReal]
+    have hdiv : ((y - x : ℕ) : ℝ) / (powerMu : ℝ) ≤
+        (wordDist D.alphabet.carrier
+          (C.powerArcVertex x) (C.powerArcVertex y) : ℝ) + (b : ℝ) := by
+      linarith
+    have hcleared := (div_le_iff₀ hpowerMuReal).mp hdiv
+    nlinarith [hcleared, hdistReal]
   have hbound : y - x ≤ powerMu * (2 * K + b) := by
     exact_mod_cast hboundReal
   omega
@@ -287,7 +295,23 @@ theorem Lemma49ScaledRepeatedBoundaryBlocks.middle_shadow_far
   have hquarterBudget :
       4 * (lemma49PowerShadowError powerMu b K eps +
         4 * powerMu * B.block.length + 1) ≤ arc.length := by
-    omega
+    have hmuBlock' : 8 * (4 * powerMu * B.block.length) ≤ arc.length := by
+      calc
+        8 * (4 * powerMu * B.block.length) =
+            32 * powerMu * B.block.length := by ring
+        _ ≤ arc.length := hmuBlock
+    have htwice : 2 *
+        (4 * (lemma49PowerShadowError powerMu b K eps +
+          4 * powerMu * B.block.length + 1)) ≤ 2 * arc.length := by
+      calc
+        2 * (4 * (lemma49PowerShadowError powerMu b K eps +
+            4 * powerMu * B.block.length + 1)) =
+            8 * (lemma49PowerShadowError powerMu b K eps + 1) +
+              8 * (4 * powerMu * B.block.length) := by ring
+        _ ≤ arc.length + arc.length :=
+          Nat.add_le_add herrorBudget hmuBlock'
+        _ = 2 * arc.length := by ring
+    exact Nat.le_of_mul_le_mul_left htwice (by omega)
   have hquarter : lemma49PowerShadowError powerMu b K eps +
       4 * powerMu * B.block.length + 1 ≤ arc.length / 4 := by
     apply (Nat.le_div_iff_mul_le (by omega : 0 < 4)).2
