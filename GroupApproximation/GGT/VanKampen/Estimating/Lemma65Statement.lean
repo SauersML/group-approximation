@@ -144,7 +144,13 @@ theorem phiSimple_of_rCellCount_one
     (selected : Finset (Candidate D eps Delta)) :
     PhiSimple selected := by
   intro e₁ e₂ _ _
-  exact absurd rfl (fun _ => no_interiorEdge_of_rCellCount_one hone e₁)
+  exfalso
+  have hsrc : e₁.candidate.contiguity.source = e₁.target := by
+    apply Fin.ext
+    have h1 := e₁.candidate.contiguity.source.isLt
+    have h2 := e₁.target.isLt
+    omega
+  exact interiorEdge_source_ne_target e₁ hsrc
 
 /-- Model check: a region targeting a section does target the outer boundary,
 so both `O52` fields are vacuous on it.  This is why the sections of clause (b)
