@@ -3230,6 +3230,7 @@ import GroupApproximation.GGT.KazhdanHypGirthEightUnconditional
 import GroupApproximation.GGT.RelHypOsin24BoundedWordPattern
 import GroupApproximation.GGT.RelHypOsin24PowerGrowth
 import GroupApproximation.GGT.VanKampen.FaceSetDualConnectivity
+import GroupApproximation.GGT.HullSCLemma49BoundaryPartition
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
