@@ -517,7 +517,9 @@ theorem headsPartner_listVal_of_avoidsFrom [∀ b, DecidableEq (G b)]
             obtain ⟨s, hs, rfl⟩ := ha
             by_cases hs1 : s = 1
             · subst s
-              simpa using hg₀
+              change HeadsPartner (g₀ * (CoprodI.of (1 : G true)))
+              rw [map_one, mul_one]
+              exact hg₀
             · have hnot : (CoprodI.of s : CoprodI G) ∉ pairPeripheral G := by
                 intro hmem
                 have hone : (CoprodI.of s : CoprodI G) = 1 :=
