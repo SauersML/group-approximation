@@ -110,6 +110,57 @@ theorem isEscaping_of_linear_lower_bound
   exact linearLowerBoundEscape_proved
     (fun n : ℕ => dist x ((g ^ n) • x)) l B hl hB hlin
 
+/-! ### The strict form used in Osin's statement -/
+
+/-- **Strict linear lower bounds imply escape.**  Osin's Memoirs Theorem 1.10
+states `d̂(1,g^n) > λ n - c`, with a strict inequality.  This is the exact
+sequence-level form of that conclusion, separated from the relative metric so
+the source constants can be inserted without changing the filter argument. -/
+def StrictLinearLowerBoundEscapeStatement : Prop :=
+  ∀ (f : ℕ → ℝ) (l B : ℝ), 0 < l → 0 ≤ B →
+    (∀ n : ℕ, l * n - B < f n) →
+      Filter.Tendsto f Filter.atTop Filter.atTop
+
+/-- The strict form follows by choosing a natural number strictly beyond the
+Archimedean threshold and weakening the resulting strict inequality to the
+closed eventual bound. -/
+theorem strictLinearLowerBoundEscape_proved :
+    StrictLinearLowerBoundEscapeStatement := by
+  intro f l B hl hB hlin
+  rw [Filter.tendsto_atTop]
+  intro A
+  obtain ⟨N, hN⟩ := exists_nat_gt ((A + B) / l)
+  rw [Filter.eventually_atTop]
+  refine ⟨N, fun n hn => ?_⟩
+  have hcast : (N : ℝ) ≤ n := by exact_mod_cast hn
+  have hdiv : (A + B) / l < (n : ℝ) := lt_of_lt_of_le hN hcast
+  have hlin' : A + B < l * (n : ℝ) := by
+    rw [div_lt_iff₀ hl] at hdiv
+    linarith
+  have hstrict : A < l * (n : ℝ) - B := by linarith
+  exact le_trans (le_of_lt hstrict) (le_of_lt (hlin n))
+
+/-- A strict linear lower bound on an orbit gives the weak escape conclusion.
+This is the strict-inequality form of `isEscaping_of_linear_lower_bound`. -/
+theorem isEscaping_of_strict_linear_lower_bound
+    {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
+    [MulAction G X] {g : G} {x : X} {l B : ℝ}
+    (hl : 0 < l) (hB : 0 ≤ B)
+    (hlin : ∀ n : ℕ, l * n - B < dist x ((g ^ n) • x)) :
+    IsEscaping g x := by
+  exact strictLinearLowerBoundEscape_proved
+    (fun n : ℕ => dist x ((g ^ n) • x)) l B hl hB hlin
+
+/-- Model test for Osin's strict convention: the sequence `n` is strictly above
+`n - 1`, so it escapes by the preceding theorem. -/
+theorem strictLinearLowerBoundEscape_standardModel :
+    Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
+  apply strictLinearLowerBoundEscape_proved (fun n : ℕ => (n : ℝ)) 1 1
+  · norm_num
+  · norm_num
+  · intro n
+    norm_num
+
 /-- **Finite-alphabet power escape.**  This is a strictly smaller geometric
 specialisation of `RelativePowerEscapeStatement`: when the entire labelled
 alphabet is finite, ordinary properness proves escape for every infinite-order
