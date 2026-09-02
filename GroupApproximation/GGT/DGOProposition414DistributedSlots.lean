@@ -135,6 +135,21 @@ def optionalTargetSlotSpan
   | none => 1
   | some X => twoHalfChildSpan A X.child X.targetIndex
 
+/-- A geometric factor may be read in the direction opposite to its child
+side.  DGO's relative metric is symmetric, so the same target-side charge
+bounds either orientation. -/
+noncomputable def signedOptionalTargetSlotSpan
+    {D : RelGenSet G Λ} {b : ℝ}
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    {index : TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength}
+    {A : TwoHalfAuxiliaryCycleFamily D b index} {lam : Λ}
+    (inverted : Prop) (o : Option (TwoHalfTargetSlot A lam)) : G := by
+  classical
+  exact if inverted then (optionalTargetSlotSpan o)⁻¹
+    else optionalTargetSlotSpan o
+
 /-- An absent geometric factor contributes radius zero. -/
 noncomputable def optionalTargetSlotRadius
     (D : RelGenSet G Λ)
@@ -165,6 +180,26 @@ private theorem optionalTargetSlotSpan_mem
   | none => simpa [optionalTargetSlotSpan, optionalTargetSlotRadius] using
       one_mem_relBall D lam 0
   | some X => exact X.span_mem_radius D hsymm b hδ
+
+private theorem signedOptionalTargetSlotSpan_mem
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    {index : TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength}
+    {A : TwoHalfAuxiliaryCycleFamily D (b : ℝ) index} {lam : Λ}
+    (inverted : Prop) (o : Option (TwoHalfTargetSlot A lam)) :
+    signedOptionalTargetSlotSpan inverted o ∈
+      D.relBall lam (optionalTargetSlotRadius D hsymm b hδ o) := by
+  classical
+  by_cases hinv : inverted
+  · simp only [signedOptionalTargetSlotSpan, hinv, ↓reduceIte]
+    exact relBall_inv D lam hsymm
+      (optionalTargetSlotSpan_mem D hsymm b hδ o)
+  · simpa only [signedOptionalTargetSlotSpan, hinv, ↓reduceIte] using
+      optionalTargetSlotSpan_mem D hsymm b hδ o
 
 private theorem sum_targetSlotPacket_radius
     (D : RelGenSet G Λ)
@@ -258,10 +293,13 @@ structure TwoHalfDistributedFactorPlacement
   leftSlot : ∀ s, Option (TwoHalfTargetSlot A (lam s))
   middleSlot : ∀ s, Option (TwoHalfTargetSlot A (lam s))
   rightSlot : ∀ s, Option (TwoHalfTargetSlot A (lam s))
+  leftInverted : ℕ → Prop
+  middleInverted : ℕ → Prop
+  rightInverted : ℕ → Prop
   factorization : ∀ s ∈ I,
-    span s = optionalTargetSlotSpan (leftSlot s) *
-      optionalTargetSlotSpan (middleSlot s) *
-      optionalTargetSlotSpan (rightSlot s)
+    span s = signedOptionalTargetSlotSpan (leftInverted s) (leftSlot s) *
+      signedOptionalTargetSlotSpan (middleInverted s) (middleSlot s) *
+      signedOptionalTargetSlotSpan (rightInverted s) (rightSlot s)
   slots_disjoint
     (q : Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount))
     (s : ℕ) : s ∈ I →
@@ -315,9 +353,12 @@ noncomputable def packets
       · exact targetSlotPacket_subset q (E.middleSlot s)
     · exact targetSlotPacket_subset q (E.rightSlot s)
   · intro s hs
-    have hleft := optionalTargetSlotSpan_mem D hsymm b hδ (E.leftSlot s)
-    have hmiddle := optionalTargetSlotSpan_mem D hsymm b hδ (E.middleSlot s)
-    have hright := optionalTargetSlotSpan_mem D hsymm b hδ (E.rightSlot s)
+    have hleft := signedOptionalTargetSlotSpan_mem D hsymm b hδ
+      (E.leftInverted s) (E.leftSlot s)
+    have hmiddle := signedOptionalTargetSlotSpan_mem D hsymm b hδ
+      (E.middleInverted s) (E.middleSlot s)
+    have hright := signedOptionalTargetSlotSpan_mem D hsymm b hδ
+      (E.rightInverted s) (E.rightSlot s)
     have hproduct := relBall_mul D (lam s) hleft
       (relBall_mul D (lam s) hmiddle hright)
     rw [E.factorization s hs]
