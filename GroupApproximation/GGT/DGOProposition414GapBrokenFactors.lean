@@ -295,13 +295,19 @@ theorem firstBrokenStartSlot_span_cases
           (B.firstBrokenConnectors s hs).startThroughPartner) := by
   constructor <;> intro hf
   · rw [B.firstBrokenStartSlot_span C hs]
-    unfold firstBrokenOwner firstBrokenEntryForward firstGapRight
+    have hf' : B.firstGapRunsForward
+        (HalfEntry.entryChild B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs)) := hf
+    unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild, B.firstSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
   · rw [B.firstBrokenStartSlot_span C hs]
-    unfold firstBrokenOwner firstBrokenEntryForward firstGapRight
+    have hf' : ¬ B.firstGapRunsForward
+        (HalfEntry.entryChild B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs)) := hf
+    unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild, B.firstSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
 
 /-- The first-half exit slot is the inverse plain exit connector in the
 forward case and the inverse exit-through-partner connector in reverse. -/
@@ -324,13 +330,19 @@ theorem firstBrokenEndSlot_span_cases
           (B.firstBrokenConnectors s hs).endThroughPartner)⁻¹) := by
   constructor <;> intro hf
   · rw [B.firstBrokenEndSlot_span C hs]
-    unfold firstBrokenExitForward firstGapLeft
+    have hf' : B.firstGapRunsForward
+        (HalfEntry.exitChild B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs)) := hf
+    unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild, B.firstSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
   · rw [B.firstBrokenEndSlot_span C hs]
-    unfold firstBrokenExitForward firstGapLeft
+    have hf' : ¬ B.firstGapRunsForward
+        (HalfEntry.exitChild B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs)) := hf
+    unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild, B.firstSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
 
 /-- The wrapped entry convention is opposite: forward gaps use the
 entry-through-partner connector. -/
@@ -353,13 +365,19 @@ theorem secondBrokenStartSlot_span_cases
           (B.secondBrokenConnectors s hs).startConnector) := by
   constructor <;> intro hf
   · rw [B.secondBrokenStartSlot_span C hs]
-    unfold secondBrokenOwner secondBrokenEntryForward secondGapRight
+    have hf' : B.secondGapRunsForward
+        (HalfEntry.entryChild B.brokenAssignment.index.second
+          (B.secondSourceEntry s hs)) := hf
+    unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild, B.secondSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
   · rw [B.secondBrokenStartSlot_span C hs]
-    unfold secondBrokenOwner secondBrokenEntryForward secondGapRight
+    have hf' : ¬ B.secondGapRunsForward
+        (HalfEntry.entryChild B.brokenAssignment.index.second
+          (B.secondSourceEntry s hs)) := hf
+    unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild, B.secondSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
 
 /-- Forward wrapped exit gaps use the inverse exit-through-partner
 connector; reverse gaps use the inverse plain connector. -/
@@ -382,13 +400,19 @@ theorem secondBrokenEndSlot_span_cases
           (B.secondBrokenConnectors s hs).endConnector)⁻¹) := by
   constructor <;> intro hf
   · rw [B.secondBrokenEndSlot_span C hs]
-    unfold secondBrokenExitForward secondGapLeft
+    have hf' : B.secondGapRunsForward
+        (HalfEntry.exitChild B.brokenAssignment.index.second
+          (B.secondSourceEntry s hs)) := hf
+    unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild, B.secondSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
   · rw [B.secondBrokenEndSlot_span C hs]
-    unfold secondBrokenExitForward secondGapLeft
+    have hf' : ¬ B.secondGapRunsForward
+        (HalfEntry.exitChild B.brokenAssignment.index.second
+          (B.secondSourceEntry s hs)) := hf
+    unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild, B.secondSourceEntry_source s hs]
-    simp only [hf, ↓reduceIte]
+    simp only [hf', ↓reduceIte]
 
 /-- The selected first-half partner span is the inverse forward global-chord
 edge value. -/
