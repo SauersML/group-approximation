@@ -967,6 +967,54 @@ theorem cactusBigDarts_closes
   rw [Z.cactusBigDarts_getLast, Z.cactusBigDarts_head]
   exact facePerm_stemIn_prev_zero Z.cactusShape Z.cells_length_pos
 
+/-! ## The complementary face boundary -/
+
+/-- The explicit complementary traversal, packaged as the based boundary of
+the big cactus face. -/
+noncomputable def cactusBigFaceBoundary
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    FaceBoundary Z.cactusShape.toCombMap Z.cactusShape.bigFace := by
+  classical
+  let l := Z.cactusBigDarts
+  have hn : l.Nodup := Z.cactusBigDarts_nodup
+  let e₁ : Fin l.length ≃ {x : CactusDart Z.cactusShape // x ∈ l} :=
+    hn.getEquiv l
+  have hpred : (fun x : CactusDart Z.cactusShape ↦ x ∈ l) =
+      (fun x : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace) := by
+    funext x
+    apply propext
+    exact Z.mem_cactusBigDarts_iff x
+  let e₂ : {x : CactusDart Z.cactusShape // x ∈ l} ≃
+      {x : CactusDart Z.cactusShape //
+        Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace} :=
+    Equiv.subtypeEquivProp hpred
+  exact
+    { darts := l
+      nonempty := Z.cactusBigDarts_ne_nil
+      nodup := hn
+      mem_iff := Z.mem_cactusBigDarts_iff
+      chain := Z.cactusBigDarts_chain
+      closes := Z.cactusBigDarts_closes
+      length_eq_degree := by
+        change l.length = Nat.card
+          {x : CactusDart Z.cactusShape //
+            Z.cactusShape.toCombMap.faceOf x = Z.cactusShape.bigFace}
+        rw [← Nat.card_fin l.length]
+        exact Nat.card_congr (e₁.trans e₂) }
+
+/-- The chosen complementary face boundary is exactly the explicit dart
+list. -/
+theorem cactusBigFaceBoundary_darts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusBigFaceBoundary.darts = Z.cactusBigDarts := rfl
+
 end Lemma44OrientedRelatorDiagram
 end HullSC
 end GroupApproximation
