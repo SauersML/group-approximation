@@ -998,6 +998,32 @@ def SecondGapArcBoundaryExclusion
               B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
         (P.label s))
 
+/-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
+theorem firstGapArcBoundaryExclusion_emptyModel
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount) (s : ℕ)
+    (hcycle : B.firstGapCycle j = []) :
+    FirstGapArcBoundaryExclusion B j s := by
+  rw [hcycle]
+  simp [FirstGapArcBoundaryExclusion]
+
+/-- The wrapped empty-cycle model for the endpoint exclusion proposition. -/
+theorem secondGapArcBoundaryExclusion_emptyModel
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount) (s : ℕ)
+    (hcycle : B.secondGapCycle j = []) :
+    SecondGapArcBoundaryExclusion B j s := by
+  rw [hcycle]
+  simp [SecondGapArcBoundaryExclusion]
+
 /-
 /-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
 theorem firstGapArcSource_fullComponent_of_boundaryExclusion
