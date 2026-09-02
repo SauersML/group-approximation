@@ -1049,7 +1049,11 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
       (B.firstGapLeft j).length + i + 1 := by
     have hcutTarget := (B.firstArcCut_target hsData.1).2
     dsimp [firstGapCut, i]
-    rw [haux]
+    have hidx1 : (B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1 =
+        (B.firstGapLeft j).length +
+          (B.firstTargetSide s - B.firstGapStartSide j + 1) := by omega
+    rw [hidx1, haux]
     have harg : B.firstGapStartSide j +
         (B.firstTargetSide s - B.firstGapStartSide j + 1) =
         B.firstTargetSide s + 1 := by omega
@@ -1076,14 +1080,19 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
             B.firstTargetSide s + 1 := by omega
         have hcutTarget := (B.firstArcCut_target hsData.1).2
         have hcutTarget0 := (B.firstArcCut_target hsData.1).1
-        rw [harg1, hcutTarget, hcutTarget0]
+        rw [harg1, hcutTarget]
+        rw [← hcutTarget0]
         dsimp [i]
         omega
-  have hindexAssoc : (B.firstGapLeft j).length +
-      (B.firstTargetSide s - B.firstGapStartSide j) + 1 =
-      (B.firstGapLeft j).length +
-        (B.firstTargetSide s - B.firstGapStartSide j + 1) := by omega
-  rw [hindexAssoc, hcut1'] at ⊢
+  have hcut1'' : auxiliaryCycleCut (B.firstGapLeft j)
+      (B.firstGapFinishSide j - B.firstGapStartSide j)
+      (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
+      ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
+      (B.firstGapLeft j).length + i + 1 := by
+    simpa only [Nat.add_assoc] using hcut1'
+  rw [hcut1''] at ⊢
   simpa only [i, B.firstGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
 
 /-- Wrapped counterpart of `firstGapArcSource_fullComponent_of_boundaryExclusion`. -/
@@ -1137,7 +1146,11 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
       (B.secondGapLeft j).length + i + 1 := by
     have hcutTarget := (B.secondArcCut_target hsData.1).2
     dsimp [secondGapCut, i]
-    rw [haux]
+    have hidx1 : (B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1 =
+        (B.secondGapLeft j).length +
+          (B.secondTargetSide s - B.secondGapStartSide j + 1) := by omega
+    rw [hidx1, haux]
     have harg : B.secondGapStartSide j +
         (B.secondTargetSide s - B.secondGapStartSide j + 1) =
         B.secondTargetSide s + 1 := by omega
@@ -1164,14 +1177,19 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
             B.secondTargetSide s + 1 := by omega
         have hcutTarget := (B.secondArcCut_target hsData.1).2
         have hcutTarget0 := (B.secondArcCut_target hsData.1).1
-        rw [harg1, hcutTarget, hcutTarget0]
+        rw [harg1, hcutTarget]
+        rw [← hcutTarget0]
         dsimp [i]
         omega
-  have hindexAssoc : (B.secondGapLeft j).length +
-      (B.secondTargetSide s - B.secondGapStartSide j) + 1 =
-      (B.secondGapLeft j).length +
-        (B.secondTargetSide s - B.secondGapStartSide j + 1) := by omega
-  rw [hindexAssoc, hcut1'] at ⊢
+  have hcut1'' : auxiliaryCycleCut (B.secondGapLeft j)
+      (B.secondGapFinishSide j - B.secondGapStartSide j)
+      (fun r => B.secondArcCut (B.secondGapStartSide j + r) -
+        B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
+      ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
+      (B.secondGapLeft j).length + i + 1 := by
+    simpa only [Nat.add_assoc] using hcut1'
+  rw [hcut1''] at ⊢
   simpa only [i, B.secondGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
 
 /-! ## Exact certificate assembly -/
