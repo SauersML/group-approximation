@@ -61,6 +61,7 @@ theorem arc_sideSpan_eq_letter
       (Q.arc[Q.arcCut r]'(by
         have hle := Q.arcPolygon.cut.le_length
           (Nat.succ_le_iff.mpr hr)
+        rw [hedge] at hle
         omega)).val := by
   let word := auxiliaryCycleWord Q.left Q.arc Q.right Q.chord
   have hcut0 := auxiliaryCycleCut_arc Q.left Q.right
@@ -72,6 +73,7 @@ theorem arc_sideSpan_eq_letter
   have hcutSuccLe : Q.arcCut r + 1 ≤ Q.arc.length := by
     have hle := Q.arcPolygon.cut.le_length
       (Nat.succ_le_iff.mpr hr)
+    rw [hedge] at hle
     omega
   have hcutLt : Q.arcCut r < Q.arc.length := by omega
   change (vertex Q.basepoint word
