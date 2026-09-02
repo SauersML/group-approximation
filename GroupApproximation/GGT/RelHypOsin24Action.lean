@@ -56,7 +56,8 @@ def RelHypHyperbolicElementLoxodromicStatement : Prop :=
 
 /-- The strictly smaller element-classification frontier: a non-parabolic
 infinite-order element escapes every bounded set in the finite-base relative
-Cayley graph. -/
+Cayley graph.  This is the escape half of Osin's classification of elements
+for the action on the relative Cayley graph. -/
 def RelHypHyperbolicElementEscapingStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
     D.base.Finite → D.IsHyperbolicallyEmbedded →
