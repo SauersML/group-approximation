@@ -73,7 +73,7 @@ theorem relativeBoundedPowerExtraction_of_linearGrowth
   obtain ⟨N, hN⟩ := hev
   obtain ⟨q, hqS, hqN⟩ := Set.Infinite.exists_gt hS N
   have hsmall := hbounded q hqS
-  have hlarge := hN q hqN
+  have hlarge := hN q (le_of_lt hqN)
   exfalso
   linarith
 
@@ -150,7 +150,7 @@ theorem relativeBoundedPowerExtraction_linearGrowth_standardModel
   obtain ⟨N, hN⟩ := hev
   obtain ⟨q, hqS, hqN⟩ := Set.Infinite.exists_gt hS N
   have hsmall := hbounded q hqS
-  have hlarge := hN q hqN
+  have hlarge := hN q (le_of_lt hqN)
   exfalso
   linarith
 
