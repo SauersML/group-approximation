@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOPolygonCutFamily
+import GroupApproximation.GGT.DGOProposition414Uniform
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic
@@ -75,6 +76,21 @@ theorem lemma62_uniformPolygonBound
     (δ : ℕ) (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
     ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) :=
   h414 hsymm δ hδ
+
+/-- The named DGO Proposition 4.14 bridge supplies the fixed-hyperbolicity
+linear sum bound from the two gap-target certificates. -/
+theorem uniformSumBound_of_gapCertificates
+    {G : Type u} [Group G] {Λ : Type w}
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (produce : ∀ {n k R : ℕ} (P : DGOProposition414.SumBoundInput D (b : ℝ) n)
+      (B : DGOProposition414.BalancedSplitData D hsymm b hδ P k R),
+      Nonempty (DGOProposition414.BalancedSplitData.FirstGapTargetCertificate B) ∧
+      Nonempty (DGOProposition414.BalancedSplitData.SecondGapTargetCertificate B)) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n →
+      SumBound D (b : ℝ) n (L * n) :=
+  DGOProposition414.uniformSumBound_of_gapCertificates D hsymm b hδ produce
 
 /-! ## Lemma 61 -/
 
@@ -182,15 +198,6 @@ structure PartitionUnboundCertificate
   averaging : Lemma62AveragingCertificate n d t
   total_eq : (∑ i : Fin d, averaging.unboundLength i) = total
 
-/-- The strict square-root estimate follows from the component averaging
-certificate and its total-length identification. -/
-theorem PartitionUnboundCertificate.total_lt
-    {n d : ℕ} {t total : ℝ}
-    (certificate : PartitionUnboundCertificate n d t total) :
-    total < (n : ℝ) * t := by
-  rw [← certificate.total_eq]
-  exact certificate.averaging.total_lt
-
 /-- A Lemma 62 averaging certificate forces the total unbound length below
 `n * t`, with the strict margin `53 < 60`. -/
 theorem Lemma62AveragingCertificate.total_lt
@@ -200,6 +207,15 @@ theorem Lemma62AveragingCertificate.total_lt
   exact total_lt_of_component_lt_sixty n certificate.n_pos t certificate.t_pos
     certificate.arcCount certificate.unboundLength certificate.arc_count_le
     certificate.component_lt
+
+/-- The strict square-root estimate follows from the component averaging
+certificate and its total-length identification. -/
+theorem PartitionUnboundCertificate.total_lt
+    {n d : ℕ} {t total : ℝ}
+    (certificate : PartitionUnboundCertificate n d t total) :
+    total < (n : ℝ) * t := by
+  rw [← certificate.total_eq]
+  exact Lemma62AveragingCertificate.total_lt certificate.averaging
 
 /-- The empty-component certificate is valid at the smallest positive values,
 so the averaging leaf has a nonvacuous positive target. -/
