@@ -637,7 +637,7 @@ structure CenteredWindowFirstLayerIncidence
   /-- First inner star-layer face met by the position. -/
   face : ∀ _i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
   /-- Incidence slot of the selected face. -/
-  slot : ∀ (i : Fin depth), Fin (scale - loss) → Fin perimeter
+  slot : ∀ _i : Fin depth, Fin (scale - loss) → Fin perimeter
   /-- The face-slot pair separates positions in each layer. -/
   slot_injective : ∀ (i : Fin depth), Function.Injective
     (fun q ↦ (face i q, slot i q))
@@ -680,8 +680,10 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   intro i x y hxy
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
+  have hslot : C.slot i x = C.slot i y :=
+    congrArg (fun p ↦ p.2) hxy
   apply C.slot_injective i
-  exact Prod.ext hface (congrArg Prod.snd hxy)
+  exact Prod.ext hface hslot
 
 /-- An incidence injection proves the numerical covering inequality. -/
 theorem layer_covers_of_incidenceInjection
