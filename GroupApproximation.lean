@@ -3252,6 +3252,7 @@ import GroupApproximation.GGT.VanKampen.FaceSetDualErase
 import GroupApproximation.GGT.VanKampen.FaceSetDualWalk
 import GroupApproximation.GGT.VanKampen.ClosedWalkValue
 import GroupApproximation.GGT.VanKampen.RegionSubMap
+import GroupApproximation.GGT.VanKampen.BasedDiscDiagram
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
