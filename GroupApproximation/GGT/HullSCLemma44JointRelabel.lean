@@ -533,6 +533,104 @@ theorem relatorRespellingAt_joint
 
 end Transport
 
+
+/-! ## Reindexing along an equivalence of index types
+
+Proposition 4.35 in its printed direction returns a family indexed by a sigma
+type, while the consumer wants the original index.  The two are equivalent but
+not definitionally equal, so the family has to be read along the equivalence.
+Only one direction of the relative-ball comparison is needed, since local
+finiteness is inherited by subsets. -/
+
+section Reindex
+
+variable {G : Type u} [Group G] {Lambda : Type w} {Lambda' : Type v}
+
+/-- A relative generating set read along an equivalence of index types. -/
+def relGenSetReindex (D : GGT.RelGenSet G Lambda) (e : Lambda' ≃ Lambda) :
+    GGT.RelGenSet G Lambda' where
+  base := D.base
+  fam := fun l => D.fam (e l)
+  symmetricGenerating := by
+    have hcarrier :
+        (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
+          ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G) :=
+      Set.iUnion_comp e.surjective _
+    rw [hcarrier]
+    exact D.symmetricGenerating
+
+theorem relGenSetReindex_alphabet_carrier (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) :
+    (relGenSetReindex D e).alphabet.carrier = D.alphabet.carrier := by
+  show D.base ∪ (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
+    D.base ∪ ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G)
+  rw [Set.iUnion_comp e.surjective]
+
+theorem relGenSetReindex_alphabet (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) :
+    (relGenSetReindex D e).alphabet = D.alphabet :=
+  GGT.OsinComponents.alphabet_eq_of_carrier_eq
+    (relGenSetReindex_alphabet_carrier D e)
+
+theorem isLetter_relabelLetter_reindex (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) {a : GGT.RelLetter G Lambda'}
+    (ha : (relGenSetReindex D e).IsLetter a) :
+    D.IsLetter (relabelLetter (⇑e) a) := by
+  cases a with
+  | base x => exact ha
+  | comp l y => exact ha
+
+theorem isCompOf_relabelLetter_reindex (e : Lambda' ≃ Lambda) (l : Lambda')
+    (a : GGT.RelLetter G Lambda') :
+    (relabelLetter (⇑e) a).IsCompOf (e l) ↔ a.IsCompOf l := by
+  cases a with
+  | base x => exact Iff.rfl
+  | comp l' y =>
+      constructor
+      · intro h
+        exact e.injective h
+      · intro h
+        exact congrArg (⇑e) h
+
+theorem avoidsFrom_map_relabelLetter_reindex (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) (l : Lambda')
+    (word : List (GGT.RelLetter G Lambda')) :
+    ∀ v : G,
+      GGT.AvoidsFrom (relGenSetReindex D e).fam l word v →
+        GGT.AvoidsFrom D.fam (e l) (word.map (relabelLetter (⇑e))) v := by
+  induction word with
+  | nil => simp [GGT.AvoidsFrom]
+  | cons a t ih =>
+      intro v hv
+      constructor
+      · rintro ⟨hcomp, hmem⟩
+        exact hv.1 ⟨(isCompOf_relabelLetter_reindex e l a).mp hcomp, hmem⟩
+      · simpa [relabelLetter_val a] using ih (v * a.val) hv.2
+
+theorem relGenSetReindex_relBall_subset (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) (l : Lambda') (n : ℕ) :
+    (relGenSetReindex D e).relBall l n ⊆ D.relBall (e l) n := by
+  rintro x ⟨hmem, word, hletters, hval, havoid, hlen⟩
+  refine ⟨hmem, word.map (relabelLetter (⇑e)), ?_, ?_, ?_, by simpa using hlen⟩
+  · intro b hb
+    obtain ⟨c, hc, rfl⟩ := List.mem_map.mp hb
+    exact isLetter_relabelLetter_reindex D e (hletters c hc)
+  · rw [listVal_map_relabelLetter, hval]
+  · exact avoidsFrom_map_relabelLetter_reindex D e l word 1 havoid
+
+/-- **Hyperbolic embeddedness is read along an index equivalence.** -/
+theorem relGenSetReindex_isHyperbolicallyEmbedded (D : GGT.RelGenSet G Lambda)
+    (e : Lambda' ≃ Lambda) (hD : D.IsHyperbolicallyEmbedded) :
+    (relGenSetReindex D e).IsHyperbolicallyEmbedded := by
+  refine ⟨?_, ?_⟩
+  · rw [relGenSetReindex_alphabet D e]
+    exact hD.hyperbolic
+  · intro l n
+    exact (hD.locallyFinite (e l) n).subset
+      (relGenSetReindex_relBall_subset D e l n)
+
+end Reindex
+
 /-! ## What is left
 
 `HullRelatorRespellingStatement` asks for a re-spelling over the original
