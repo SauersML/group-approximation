@@ -107,10 +107,10 @@ theorem isCompOf_getElem_orientedSegment_of_not_le (lam : Λ)
     rw [List.length_take, List.length_drop]
     omega
   have hrlt : r < cs - cf := by
-    rw [hseg, length_revWord, hulen] at hrseg
+    rw [hseg, OsinComponents.length_revWord, hulen] at hrseg
     exact hrseg
   have hrlen : r < (revWord ((word.drop cf).take (cs - cf))).length := by
-    rw [length_revWord, hulen]
+    rw [OsinComponents.length_revWord, hulen]
     exact hrlt
   have hrsub : cs - cf - 1 - r < ((word.drop cf).take (cs - cf)).length := by
     rw [hulen]
@@ -233,6 +233,7 @@ theorem secondSeparation_vertex_arc
       vertex B.secondBase B.secondWord
         (B.secondArcCut (B.secondGapStartSide j) + r) := by
   have hfin := B.secondSeparation_arcCut_finish_le j
+  have hmono := B.secondSeparation_arcCut_mono j
   have hblock := B.secondSeparation_arcBlock_length j
   have hrle : r ≤ (arcWord B.secondArc B.secondArcCut
       (B.secondGapStartSide j) (B.secondGapFinishSide j)).length := by
