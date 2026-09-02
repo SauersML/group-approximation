@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.CayleyFourPointBridge
+import GroupApproximation.GGT.HullSCLemma44PrefixRelGenSet
 import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
 import GroupApproximation.GGT.HullSCLemma44RelativeArea
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
@@ -92,6 +93,76 @@ theorem embedded
       C.peripheralRadius C.peripheralPullback
 
 end RelativeIsoperimetricControl
+
+/-! ## Control for the prefix-enlarged quotient base -/
+
+/-- A uniform source bound for relative balls computed with the quotient
+prefix base.  This is the properness output associated to the triangular
+prefix presentation. -/
+def PrefixPeripheralPullbackBound
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q)
+    (radius : ℕ → ℕ) : Prop :=
+  ∀ (lam : Lambda) (n : ℕ),
+    (D.prefixQuotient W hsc q hq).relBall lam n ⊆
+      q '' D.relBall lam (radius n)
+
+/-- Prefix-base pullback transfers finiteness from each source relative
+metric to its quotient relative metric. -/
+theorem locallyFinite_prefixQuotient_of_pullbackBound
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q) (radius : ℕ → ℕ)
+    (hpull : PrefixPeripheralPullbackBound D W hsc q hq radius) :
+    ∀ (lam : Lambda) (n : ℕ),
+      ((D.prefixQuotient W hsc q hq).relBall lam n).Finite := by
+  intro lam n
+  exact ((hD.locallyFinite lam (radius n)).image q).subset (hpull lam n)
+
+/-- The geometric output of the linear relative-area argument for the
+prefix-enlarged quotient base. -/
+structure PrefixRelativeIsoperimetricControl
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q) where
+  delta : ℕ
+  fourPoint : Hyperbolic.IsFourPointHyperbolic
+    (D.prefixQuotient W hsc q hq).alphabet.carrier delta
+  peripheralRadius : ℕ → ℕ
+  peripheralPullback :
+    PrefixPeripheralPullbackBound D W hsc q hq peripheralRadius
+
+namespace PrefixRelativeIsoperimetricControl
+
+/-- Prefix isoperimetric control gives hyperbolic embeddedness for the exact
+relative generating set chosen by the triangular presentation. -/
+theorem embedded
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    {hsc : RelWord.IsSmallCancellation D W eps mu rho}
+    (hD : D.IsHyperbolicallyEmbedded)
+    {q : G →* Q} {hq : Function.Surjective q}
+    (C : PrefixRelativeIsoperimetricControl D W hsc q hq) :
+    (D.prefixQuotient W hsc q hq).IsHyperbolicallyEmbedded := by
+  refine ⟨⟨(C.delta : ℝ), ?_⟩, ?_⟩
+  · exact GGT.isHyperbolicSpace_cayley_of_fourPoint
+      (D.prefixQuotient W hsc q hq).alphabet C.fourPoint
+  · exact locallyFinite_prefixQuotient_of_pullbackBound D hD W hsc q hq
+      C.peripheralRadius C.peripheralPullback
+
+end PrefixRelativeIsoperimetricControl
 
 /-! ## The relative Dehn transfer -/
 
