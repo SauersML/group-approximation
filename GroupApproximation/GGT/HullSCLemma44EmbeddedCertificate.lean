@@ -159,9 +159,9 @@ structure EmbeddedBoundaryCertificateData
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
     (hreal : RelativeDiscRealization D W Z)
-    {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
-    {i : Fin Delta.rCellCount}
-    (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
+    {eps : ℕ}
+    {i : Fin hreal.diagram.rCellCount}
+    (contiguity : EmbeddedBoundaryContiguity D eps hreal.diagram i) where
   /-- The outer dart cycle is read from a linear position in the designated
   boundary word, with the displayed three-piece decomposition. -/
   position : EmbeddedBoundaryPosition Z contiguity
@@ -169,9 +169,9 @@ structure EmbeddedBoundaryCertificateData
   planar right side is the based left connector and the planar left side is
   the based right connector. -/
   leftSide_admissible : RelWord.IsAdmissible D
-    (Embedded.dartWord Delta contiguity.region.rightSide)
+    (Embedded.dartWord hreal.diagram contiguity.region.rightSide)
   rightSide_admissible : RelWord.IsAdmissible D
-    (Embedded.dartWord Delta contiguity.region.leftSide)
+    (Embedded.dartWord hreal.diagram contiguity.region.leftSide)
   /-- The positioned cyclic source arc has the algebraic relator label at the
   corresponding source-cell index. -/
   cell_label_transport :
@@ -179,7 +179,7 @@ structure EmbeddedBoundaryCertificateData
       (Z.cells.get (hreal.cellIndex.symm contiguity.region.source)).relator
   /-- The pasted boundary cycle has value one. -/
   cycle_value_one : GGT.RelLetter.listVal
-    (Embedded.dartWord Delta contiguity.region.boundary.cycle) = 1
+    (Embedded.dartWord hreal.diagram contiguity.region.boundary.cycle) = 1
 
 /-! ## A positioned outer region gives a based contiguity -/
 
