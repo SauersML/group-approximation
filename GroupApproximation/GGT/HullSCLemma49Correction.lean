@@ -625,7 +625,7 @@ theorem false_of_two_large_close_relator_subwords
 the geodesic word for the identity is empty. -/
 theorem no_short_cyclic_replacement_trivialModel
     {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda)
-    (N : Subgroup PUnit)
+    (_N : Subgroup PUnit)
     {word : List (GGT.RelLetter PUnit Lambda)}
     (hword : GGT.OsinComponents.IsGeodesicWord D 1 1 word) : word = [] := by
   have hzero : word.length = 0 :=
