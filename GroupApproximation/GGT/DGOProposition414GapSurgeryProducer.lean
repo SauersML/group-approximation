@@ -21,7 +21,19 @@ universe u w
 variable {G : Type u} [Group G] {Λ : Type w}
 
 /-- The exact geometric residue after constructing the canonical gap interval
-family. -/
+family.
+
+**This route is not being pursued.**  It and the component-family route reach
+the same linear `SumBound`, and the component-family route is the smaller of
+the two: `FirstGapComponentFamily.ofTargetComponents` already reduces all four
+of its fields to a single all-target component family, and
+`gapComponentConfigurations_of_targetIsolated` and
+`exists_gapComponentConfigurations_of_targetIsolated` are landed against it.
+This route additionally owes `TwoHalfDistributedFactorPlacement`, whose
+`leftSlot`, `middleSlot`, `rightSlot`, `factorization`, `slots_disjoint` and
+`sources_disjoint` are all unbuilt, and the two aggregate counts.  The code is
+kept because `intervalSurgery`, `realization` and `sumBound_linear_of_gapCompletion`
+are correct and would be wanted again if the component-family route stalled. -/
 structure BalancedSplitGapCompletion
     (D : RelGenSet G Λ) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     {δ : ℕ} (b : ℕ)

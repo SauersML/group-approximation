@@ -179,6 +179,65 @@ structure DGO421TargetRankData
     (targetRank ⟨t + 1, ht⟩).val =
       (targetRank ⟨t, Nat.lt_of_succ_lt ht⟩).val + 1
 
+/-- **The minimality output of DGO §4.3 in the form the argument produces it.**
+
+Dahmani--Guirardel--Osin do not exhibit the successor relation directly.  They
+choose the matched target of least index and then rule out anything strictly
+between: "*if `a > 1`, then there is a component `p_{i+a'}` of `p`,
+`0 < a' < a`, which is not isolated in `Q''` ... Hence it is connected to
+`q_{j+b'}` for some `b' > 0`.  However this contradicts minimality of `a`.
+Hence `a = 1` and similarly `b = 1`*".
+
+So what the polygon argument delivers is the strictness and the emptiness of
+the open interval of ranks, and the successor relation is the finite-order
+consequence.  This theorem is that last step, so a construction may aim at the
+no-intermediate form and never mention successors. -/
+noncomputable def DGO421TargetRankData.ofNoIntermediate
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (rank : Fin K → Fin (peripheralPositions q).card)
+    (hpos : ∀ t : Fin K,
+      (peripheralOccurrence q (rank t)).pos = cert.blockTarget t)
+    (hlabel : ∀ t : Fin K,
+      (peripheralOccurrence q (rank t)).label = cert.label (cert.blockIndex t))
+    (hstrict : ∀ (t : ℕ) (ht : t + 1 < K),
+      (rank ⟨t, Nat.lt_of_succ_lt ht⟩).val < (rank ⟨t + 1, ht⟩).val)
+    (hno : ∀ (t : ℕ) (ht : t + 1 < K),
+      ∀ z : Fin (peripheralPositions q).card,
+        (rank ⟨t, Nat.lt_of_succ_lt ht⟩).val < z.val →
+          z.val < (rank ⟨t + 1, ht⟩).val → False)
+    (hK : 0 < K) :
+    DGO421TargetRankData cert := by
+  let first : Fin K := ⟨0, hK⟩
+  let idx : ℕ → Fin K := fun s => if h : s < K then ⟨s, h⟩ else first
+  let occ : ℕ → Fin (peripheralPositions q).card := fun s => rank (idx s)
+  have hidx : ∀ (s : ℕ) (hs : s < K), idx s = (⟨s, hs⟩ : Fin K) :=
+    fun s hs => dif_pos hs
+  have hstrict' : ∀ s : ℕ, s + 1 < K → (occ s).val < (occ (s + 1)).val := by
+    intro s hs
+    have hs0 : s < K := by omega
+    simp only [occ, hidx s hs0, hidx (s + 1) hs]
+    exact hstrict s hs
+  have hno' : ∀ s : ℕ, s + 1 < K →
+      ∀ z : Fin (peripheralPositions q).card,
+        (occ s).val < z.val → z.val < (occ (s + 1)).val → False := by
+    intro s hs z hz1 hz2
+    have hs0 : s < K := by omega
+    simp only [occ, hidx s hs0, hidx (s + 1) hs] at hz1 hz2
+    exact hno s hs z hz1 hz2
+  have hsucc := rankSuccessor_of_noIntermediate (K := K) occ hstrict' hno'
+  refine
+    { targetRank := rank
+      targetRank_pos := hpos
+      targetRank_label := hlabel
+      targetRank_succ := ?_ }
+  intro t ht
+  have ht0 : t < K := by omega
+  have h := hsucc t ht
+  simp only [occ, hidx t ht0, hidx (t + 1) ht] at h
+  exact h
+
 /-- **Both remaining clauses of the ordered block follow from the minimality
 step.**  The component clause is the (W3) singleton lemma at the target rank;
 the separator clause is `oppositeContiguity_of_rankSuccessor` on `q`, the same
