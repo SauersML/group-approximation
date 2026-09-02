@@ -297,6 +297,212 @@ theorem Lemma49ContiguityShadow.scaledRepeatedBlock_indexSpan_large
   rw [hgap] at hspan
   exact le_trans hsmall (le_trans hsmallProgress hspan)
 
+/-! ## The scaled prime-piece contradiction -/
+
+/-- Two scaled repeated boundary blocks contradict the final prime-piece
+clause.  This is the non-Greendlinger content of Osin Lemma 6.3 at an
+arbitrary positive natural power-side constant. -/
+theorem false_of_lemma49ScaledLongArc_contiguityShadow
+    {G : Type u} [Group G] {Lambda : Type*}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G}
+    {n eps epsFinal rho b K powerMu divisor : ℕ}
+    {Z : Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49RelativeGreendlingerCell D v g n eps (1 / 1000) Z)
+    (B : Lemma49ScaledRepeatedBoundaryBlocks
+      (GGT.RelLetter G Lambda) C.boundaryArc divisor)
+    (Sh : Lemma49ContiguityShadow C K)
+    (hcertificateInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
+      eps (1 / 1000) rho)
+    (hfinalInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
+      epsFinal (lemma49ScaledFinalMu powerMu divisor) rho)
+    (hRel : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier 4 1
+      C.exteriorVertex C.contiguity.exterior.length)
+    (hPow : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier powerMu b
+      C.powerArcVertex C.boundaryArc.length)
+    (hpowerMu : 0 < powerMu) (hdivisor : 0 < divisor)
+    (hdivisorMu : 32 * powerMu ≤ divisor) (hdivisorEight : 8 ≤ divisor)
+    (hArcScale : divisor *
+      (2 * lemma49PowerShadowError powerMu b K eps + 2) ≤
+        C.boundaryArc.length)
+    (hRelatorScale : 1000 * (2 * eps + 2) ≤ rho)
+    (hconnectors : 2 * K ≤ epsFinal) : False := by
+  let p₀ := 0
+  let p₁ := B.block.length
+  let p₂ := B.block.length + B.middle.length
+  let p₃ := B.block.length + B.middle.length + B.block.length
+  have hp₀₁ : p₀ ≤ p₁ := by dsimp [p₀, p₁]; omega
+  have hp₁₂ : p₁ ≤ p₂ := by dsimp [p₁, p₂]; omega
+  have hp₁₃ : p₁ ≤ p₃ := by dsimp [p₁, p₃]; omega
+  have hp₂₃ : p₂ ≤ p₃ := by dsimp [p₂, p₃]; omega
+  have hp₀ : p₀ ≤ C.boundaryArc.length := Nat.zero_le _
+  have hp₁ : p₁ ≤ C.boundaryArc.length := B.firstEnd_le
+  have hp₂ : p₂ ≤ C.boundaryArc.length := B.secondStart_le
+  have hp₃ : p₃ ≤ C.boundaryArc.length := B.secondEnd_le
+  have hbasicScale : divisor *
+      (lemma49PowerShadowError powerMu b K eps + 1) ≤
+        C.boundaryArc.length := by
+    have hinside : lemma49PowerShadowError powerMu b K eps + 1 ≤
+        2 * lemma49PowerShadowError powerMu b K eps + 2 := by omega
+    exact le_trans (Nat.mul_le_mul_left divisor hinside) hArcScale
+  have hblockFar := B.block_shadow_far hdivisor hbasicScale
+  have hmiddleFar := B.middle_shadow_far hdivisorMu hdivisorEight hbasicScale
+  have hj₀₁ : Sh.index p₀ < Sh.index p₁ := by
+    apply Sh.index_strictMono_of_far_powerMu hpowerMu hRel hPow hp₀₁ hp₁
+    dsimp [p₀, p₁]
+    simpa only [Nat.zero_add, lemma49PowerShadowError] using hblockFar
+  have hj₁₂ : Sh.index p₁ < Sh.index p₂ := by
+    apply Sh.index_strictMono_of_far_powerMu hpowerMu hRel hPow hp₁₂ hp₂
+    dsimp [p₁, p₂]
+    rw [Nat.add_sub_cancel_left]
+    exact hmiddleFar
+  have hj₁₃ : Sh.index p₁ < Sh.index p₃ := by
+    apply Sh.index_strictMono_of_far_powerMu hpowerMu hRel hPow hp₁₃ hp₃
+    dsimp [p₁, p₃]
+    have hgap : B.middle.length < B.middle.length + B.block.length := by
+      have hblockPos : 0 < B.block.length := by
+        exact lt_of_le_of_lt (Nat.zero_le _) hblockFar
+      omega
+    exact lt_trans hmiddleFar hgap
+  have hneFar : powerMu * (2 * K + b) < B.block.length := by
+    have hinside : 2 * K + b ≤ 2 * K + b + 4 * (eps + K + 1) := by omega
+    have hmul := Nat.mul_le_mul_left powerMu hinside
+    exact lt_of_le_of_lt hmul hblockFar
+  have hj₂₃ne : Sh.index p₂ ≠ Sh.index p₃ := by
+    apply Sh.index_ne_of_far_powerMu hpowerMu hPow hp₂₃ hp₃
+    dsimp [p₂, p₃]
+    simpa only [Nat.add_sub_cancel_left] using hneFar
+  let j₀ := Sh.index p₀
+  let j₁ := Sh.index p₁
+  let j₂ := Sh.index p₂
+  let j₃ := Sh.index p₃
+  let c := min j₂ j₃
+  let d := max j₂ j₃
+  have hj₀₁' : j₀ < j₁ := hj₀₁
+  have hj₁c : j₁ < c := by
+    dsimp [c, j₁, j₂, j₃]
+    rw [lt_min_iff]
+    exact ⟨hj₁₂, hj₁₃⟩
+  have hcd : c < d := by
+    dsimp [c, d, j₂, j₃]
+    exact min_lt_max.mpr hj₂₃ne
+  have hdExterior : d ≤ C.contiguity.exterior.length := by
+    dsimp [d, j₂, j₃]
+    rw [max_le_iff]
+    exact ⟨Sh.index_le p₂ hp₂, Sh.index_le p₃ hp₃⟩
+  have hdRelator : d ≤ C.relator.length :=
+    le_trans hdExterior C.contiguity.exterior_length_le_relator
+  let first := listInterval C.relator j₀ j₁
+  let middle := listInterval C.relator j₁ c
+  let second := listInterval C.relator c d
+  let tail := C.relator.drop d ++ C.relator.take j₀
+  let rotated := C.relator.rotate j₀
+  have hsplit : rotated = first ++ middle ++ second ++ tail := by
+    exact rotate_eq_four_listIntervals C.relator hj₀₁'.le hj₁c.le
+      hcd.le hdRelator
+  have hrotatedMem : rotated ∈ RelWord.symmetrized v :=
+    hfinalInput.rotate_mem C.relator C.relator_mem j₀
+  have hfirstLength : first.length = j₁ - j₀ :=
+    length_listInterval C.relator hj₀₁'.le
+      (le_trans hj₁c.le (le_trans hcd.le hdRelator))
+  have hsecondLength : second.length = d - c :=
+    length_listInterval C.relator hcd.le hdRelator
+  have hfirstLargeRaw := Sh.scaledRepeatedBlock_indexSpan_large B
+    hcertificateInput hRel hPow hpowerMu hdivisor hArcScale hRelatorScale
+    hp₀₁ hp₁ (by dsimp [p₀, p₁])
+  rw [Nat.max_eq_right hj₀₁.le, Nat.min_eq_left hj₀₁.le] at hfirstLargeRaw
+  have hfirstLarge : lemma49ScaledFinalMu powerMu divisor *
+      (rotated.length : ℝ) ≤ (first.length : ℝ) := by
+    rw [List.length_rotate, hfirstLength]
+    dsimp [j₀, j₁]
+    exact hfirstLargeRaw
+  have hsecondLargeRaw := Sh.scaledRepeatedBlock_indexSpan_large B
+    hcertificateInput hRel hPow hpowerMu hdivisor hArcScale hRelatorScale
+    hp₂₃ hp₃ (by dsimp [p₂, p₃]; omega)
+  have hsecondLarge : lemma49ScaledFinalMu powerMu divisor *
+      (rotated.length : ℝ) ≤ (second.length : ℝ) := by
+    rw [List.length_rotate, hsecondLength]
+    dsimp [c, d, j₂, j₃]
+    exact hsecondLargeRaw
+  let e₀ := Sh.defect p₀
+  let e₁ := Sh.defect p₁
+  let e₂ := Sh.defect p₂
+  let e₃ := Sh.defect p₃
+  have he₀ : C.exteriorVertex j₀ = C.powerArcVertex p₀ * e₀ := by
+    dsimp [e₀, j₀, Lemma49ContiguityShadow.defect]
+    group
+  have he₁ : C.exteriorVertex j₁ = C.powerArcVertex p₁ * e₁ := by
+    dsimp [e₁, j₁, Lemma49ContiguityShadow.defect]
+    group
+  have he₂ : C.exteriorVertex j₂ = C.powerArcVertex p₂ * e₂ := by
+    dsimp [e₂, j₂, Lemma49ContiguityShadow.defect]
+    group
+  have he₃ : C.exteriorVertex j₃ = C.powerArcVertex p₃ * e₃ := by
+    dsimp [e₃, j₃, Lemma49ContiguityShadow.defect]
+    group
+  have hpower₀₁ := B.first_powerArc_span C
+  have hpower₂₃ := B.second_powerArc_span C
+  have hfirstValue : GGT.RelLetter.listVal first =
+      e₀⁻¹ * GGT.RelLetter.listVal B.block * e₁ := by
+    dsimp [first]
+    rw [C.listVal_relatorInterval hj₀₁'.le
+      (le_trans hj₁c.le (le_trans hcd.le hdExterior)), he₀, he₁]
+    rw [← hpower₀₁]
+    dsimp [p₀, p₁]
+    group
+  by_cases hforward : j₂ ≤ j₃
+  · have hcEq : c = j₂ := Nat.min_eq_left hforward
+    have hdEq : d = j₃ := Nat.max_eq_right hforward
+    have hsecondValue : GGT.RelLetter.listVal second =
+        e₂⁻¹ * GGT.RelLetter.listVal B.block * e₃ := by
+      dsimp [second]
+      rw [hcEq, hdEq]
+      rw [C.listVal_relatorInterval hforward
+        (by simpa [j₃] using Sh.index_le p₃ hp₃)]
+      rw [he₂, he₃, ← hpower₂₃]
+      dsimp [p₂, p₃]
+      group
+    let left := e₂⁻¹ * e₀
+    let right := e₁⁻¹ * e₃
+    have hleft : wordNorm D.alphabet.carrier left ≤ epsFinal :=
+      le_trans (Sh.wordNorm_defect_inv_mul_defect_le hp₂ hp₀) hconnectors
+    have hright : wordNorm D.alphabet.carrier right ≤ epsFinal :=
+      le_trans (Sh.wordNorm_defect_inv_mul_defect_le hp₁ hp₃) hconnectors
+    apply false_of_two_large_close_relator_subwords hfinalInput hrotatedMem
+      hsplit hleft hright
+    · left
+      rw [hsecondValue, hfirstValue]
+      dsimp [left, right]
+      group
+    · exact hfirstLarge
+    · exact hsecondLarge
+  · have hreverse : j₃ ≤ j₂ := by omega
+    have hcEq : c = j₃ := Nat.min_eq_right hreverse
+    have hdEq : d = j₂ := Nat.max_eq_left hreverse
+    have hsecondValue : GGT.RelLetter.listVal second =
+        e₃⁻¹ * (GGT.RelLetter.listVal B.block)⁻¹ * e₂ := by
+      dsimp [second]
+      rw [hcEq, hdEq]
+      rw [C.listVal_relatorInterval hreverse
+        (by simpa [j₂] using Sh.index_le p₂ hp₂)]
+      rw [he₃, he₂, ← hpower₂₃]
+      dsimp [p₂, p₃]
+      group
+    let left := e₃⁻¹ * e₁
+    let right := e₀⁻¹ * e₂
+    have hleft : wordNorm D.alphabet.carrier left ≤ epsFinal :=
+      le_trans (Sh.wordNorm_defect_inv_mul_defect_le hp₃ hp₁) hconnectors
+    have hright : wordNorm D.alphabet.carrier right ≤ epsFinal :=
+      le_trans (Sh.wordNorm_defect_inv_mul_defect_le hp₀ hp₂) hconnectors
+    apply false_of_two_large_close_relator_subwords hfinalInput hrotatedMem
+      hsplit hleft hright
+    · right
+      rw [hsecondValue, hfirstValue]
+      dsimp [left, right]
+      group
+    · exact hfirstLarge
+    · exact hsecondLarge
+
 /-! ## Model check -/
 
 /-- The scaled coefficient is nonzero in a concrete short-power model. -/
