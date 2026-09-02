@@ -476,6 +476,41 @@ theorem estimatingSelectionConstruction_emptyFamilyModel
           Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
   exact (no_positive_rCells_emptyFamily Delta hcells).elim
 
+/-! The graph certificate itself has a concrete degenerate model. -/
+
+/-- The estimating graph fields are inhabited when the selected family is
+empty: there are no interior edges, no loop incidences, and no exterior
+two-region pairs. -/
+theorem estimatingGraphData_emptyFamilyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hempty : scaffold.selected.family = ∅) :
+    Nonempty (EstimatingGraphData D eps Delta scaffold) := by
+  have hedge_empty : ∀ edges : Finset
+      (Embedded.InteriorEdge scaffold.selected.family), edges = ∅ := by
+    intro edges
+    apply Finset.eq_empty_iff_forall_not_mem.mpr
+    intro edge hedge
+    have hcandidate : edge.candidate ∈ scaffold.selected.family :=
+      edge.candidate_mem
+    rw [hempty] at hcandidate
+    exact hcandidate.elim
+  refine ⟨{
+    planarEdgeBound := ?_
+    selfIncidenceSeparated := ?_
+    exteriorMergeAvailable := ?_ }⟩
+  · intro vertices edges _hcovered _hvertices
+    have hedge : edges = ∅ := hedge_empty edges
+    rw [hedge]
+    simp
+  · rw [hempty]
+    exact Embedded.selfIncidenceSeparated_emptyModel
+  · rw [hempty]
+    exact Embedded.exteriorMergeAvailable_emptyModel
+
 /-- The unbound component is vacuous on the empty family whenever the
 positive-cell diagram hypothesis is supplied. -/
 theorem estimatingUnboundConstruction_emptyFamilyModel
