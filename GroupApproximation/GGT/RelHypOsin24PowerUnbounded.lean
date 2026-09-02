@@ -102,10 +102,11 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
         Set.range (fun n : ℕ => g ^ (m * n)) ⊆
           {x : G | x ∈ D.fam lam ∧ g⁻¹ * x * g ∈ D.fam lam} := by
       rintro x ⟨n, rfl⟩
-      constructor
-      · change g ^ (m * n) ∈ D.fam lam
+      have hpown : g ^ (m * n) ∈ D.fam lam := by
         rw [pow_mul g m n]
         exact (D.fam lam).pow_mem hmem n
+      constructor
+      · exact hpown
       · have hcomm : Commute g (g ^ (m * n)) :=
           (Commute.refl g).pow_right _
         have hconj : g⁻¹ * g ^ (m * n) * g = g ^ (m * n) := by
@@ -116,7 +117,7 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
               rw [hcomm.eq]
             _ = g ^ (m * n) := by group
         rw [hconj]
-        exact (D.fam lam).pow_mem hmem n
+        exact hpown
     have hfiniteRange :
         (Set.range (fun n : ℕ => g ^ (m * n))).Finite :=
       hfin.subset hsubset
