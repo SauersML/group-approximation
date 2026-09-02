@@ -556,8 +556,18 @@ theorem firstBrokenEntry_partnerSpan_eq_chordInv
     vertex B.firstBase B.firstWord E.partnerEnd =
       (B.chord[B.brokenAssignment.first.partner t]'_).val⁻¹ at h
   have hsource : t = s := B.firstSourceEntry_source s hs
-  rw [hsource] at h
-  exact h
+  have hpartner : B.brokenAssignment.first.partner t =
+      B.brokenAssignment.first.partner s := congrArg _ hsource
+  change (vertex B.firstBase B.firstWord
+      (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+    vertex B.firstBase B.firstWord E.partnerEnd = _
+  calc
+    _ = (vertex B.firstBase B.firstWord
+          (B.firstChordPos (B.brokenAssignment.first.partner t)))⁻¹ *
+        vertex B.firstBase B.firstWord E.partnerEnd := by rw [hpartner]
+    _ = (B.chord[B.brokenAssignment.first.partner t]'_).val⁻¹ := h
+    _ = (B.chord[B.brokenAssignment.first.partner s]'_).val⁻¹ := by
+      rw [getElem_congr_idx hpartner]
 
 /-- The connector pair selected through the greedy entry has the original
 wrapped-half source span. -/
@@ -613,8 +623,18 @@ theorem secondBrokenEntry_partnerSpan_eq_chord
     vertex B.secondBase B.secondWord E.partnerEnd =
       (B.chord[B.brokenAssignment.second.partner t]'_).val at h
   have hsource : t = s := B.secondSourceEntry_source s hs
-  rw [hsource] at h
-  exact h
+  have hpartner : B.brokenAssignment.second.partner t =
+      B.brokenAssignment.second.partner s := congrArg _ hsource
+  change (vertex B.secondBase B.secondWord
+      (B.secondChordPos (B.brokenAssignment.second.partner s)))⁻¹ *
+    vertex B.secondBase B.secondWord E.partnerEnd = _
+  calc
+    _ = (vertex B.secondBase B.secondWord
+          (B.secondChordPos (B.brokenAssignment.second.partner t)))⁻¹ *
+        vertex B.secondBase B.secondWord E.partnerEnd := by rw [hpartner]
+    _ = (B.chord[B.brokenAssignment.second.partner t]'_).val := h
+    _ = (B.chord[B.brokenAssignment.second.partner s]'_).val := by
+      rw [getElem_congr_idx hpartner]
 
 end BalancedSplitData
 
