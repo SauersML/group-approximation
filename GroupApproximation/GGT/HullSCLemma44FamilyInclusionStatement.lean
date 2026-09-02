@@ -58,5 +58,40 @@ theorem hullLemma44CanonicalQuotientStatement_of_familyInclusion
     hgood W q hinput hsurj hker
   exact ⟨hinj, hselected⟩
 
+/-! ## Identity model -/
+
+/-- The four conclusions of the inclusion interface are simultaneously
+satisfied by the identity quotient whenever the source joint family is
+hyperbolically embedded.  This tests the arbitrary-family output independently
+of the small-cancellation threshold quantifiers. -/
+theorem familyInclusionConclusion_identityModel
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (horiginal : original.IsHyperbolicallyEmbedded)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k)))
+    (hbaseInv : ∀ x ∈ joint.base, x⁻¹ ∈ joint.base)
+    (hjointOriginal : ∀ lam,
+      joint.fam (Sum.inl lam) = original.fam lam)
+    (hjointSelected : ∀ i,
+      joint.fam (Sum.inr i) = selected.cores.peripheral i)
+    (hjoint : joint.IsHyperbolicallyEmbedded) (R : ℕ) :
+    Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
+      Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) ∧
+      Nonempty
+        (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original) ∧
+      Nonempty
+        (QuotientJointPeripheralPreservation (MonoidHom.id G) selected
+          original) := by
+  have hid : Function.Bijective (MonoidHom.id G) :=
+    ⟨Function.injective_id, Function.surjective_id⟩
+  exact ⟨Function.injective_id.injOn,
+    quotientPeripheralPreservation_of_bijective selected (MonoidHom.id G) hid,
+    canonicalQuotientFamilyPreservation_of_bijective original horiginal
+      (MonoidHom.id G) hid,
+    quotientJointPeripheralPreservation_of_bijective selected original joint
+      hbaseInv hjointOriginal hjointSelected hjoint (MonoidHom.id G) hid⟩
+
 end HullSC
 end GroupApproximation
