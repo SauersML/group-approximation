@@ -2028,6 +2028,61 @@ theorem exists_side_occurrence_of_fourGon_start_421
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
 
+/-! ## Segments of a quasi-geodesic side
+
+Dahmani--Guirardel--Osin's minimality polygon `Q''` has "*edges of `p`
+(respectively, `q`) between `(p_i)_+` and `(p_{i+a})_-` (respectively,
+`(q_j)_+` and `(q_{j+b})_-`)*" as two of its sides.  Those sides are segments
+of the two `W`-paths, and what the polygon predicate wants of them is the
+`(4,1)` estimate read from the basepoint `1`.  Both facts pass from the whole
+path to the segment, the segment's vertices being the path's vertices shifted
+and translated.
+-/
+
+/-- **The `(4,1)` estimate passes to a segment**, read from the basepoint `1`
+as the polygon predicate wants it. -/
+theorem quasiGeodesic_segment_of_quasiGeodesic
+    (D : RelGenSet G Λ) {w : List (RelLetter G Λ)} {v : G} {k m : ℕ}
+    (hkm : k + m ≤ w.length)
+    (hqg : ∀ i j : ℕ, i ≤ j → j ≤ w.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex v w i)
+          (vertex v w j) : ℕ) : ℝ)) :
+    ∀ i j : ℕ, i ≤ j → j ≤ ((w.drop k).take m).length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier
+            (vertex (1 : G) ((w.drop k).take m) i)
+            (vertex (1 : G) ((w.drop k).take m) j) : ℕ) : ℝ) := by
+  intro i j hij hj
+  have hlen : ((w.drop k).take m).length = m := length_segment w k m hkm
+  rw [hlen] at hj
+  have hshift : ∀ a : ℕ,
+      vertex (vertex v w k) ((w.drop k).take m) a
+        = vertex v w k * vertex (1 : G) ((w.drop k).take m) a := by
+    intro a
+    have h := vertex_smul (vertex v w k) (1 : G) ((w.drop k).take m) a
+    rwa [mul_one] at h
+  have hpoint : ∀ a : ℕ, a ≤ m →
+      vertex (1 : G) ((w.drop k).take m) a
+        = (vertex v w k)⁻¹ * vertex v w (k + a) := by
+    intro a ha
+    have hs := vertex_segment w v k m a ha
+    rw [hshift a] at hs
+    rw [← hs]
+    group
+  have hdist : wordDist D.alphabet.carrier
+      (vertex (1 : G) ((w.drop k).take m) i)
+      (vertex (1 : G) ((w.drop k).take m) j)
+      = wordDist D.alphabet.carrier (vertex v w (k + i)) (vertex v w (k + j)) := by
+    rw [hpoint i (by omega), hpoint j hj]
+    exact wordDist_left_invariant D.alphabet.carrier (vertex v w k)⁻¹
+      (vertex v w (k + i)) (vertex v w (k + j))
+  rw [hdist]
+  have hmain := hqg (k + i) (k + j) (by omega) (by omega)
+  have hsub : k + j - (k + i) = j - i := by omega
+  rw [hsub] at hmain
+  exact hmain
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
