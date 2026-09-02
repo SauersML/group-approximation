@@ -249,5 +249,67 @@ theorem relativePrefixCellFilling_of_weightedKernelArea
   rw [← hlength]
   omega
 
+/-! ## Fillings from the canonical quotient kernel -/
+
+/-- The canonical kernel equation kills the value of every member of the
+relator family. -/
+theorem relator_value_map_eq_one_of_kernel
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))} (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    {word : List (GGT.RelLetter G Lambda)} (hword : word ∈ W) :
+    q (GGT.RelLetter.listVal word) = 1 := by
+  apply MonoidHom.mem_ker.mp
+  rw [hker]
+  exact Subgroup.subset_normalClosure ⟨word, hword, rfl⟩
+
+/-- Weighted kernel area and the canonical kernel equation give a bounded
+prefix-cell filling without a separate relator-killing premise. -/
+theorem relativePrefixCellFilling_of_weightedKernelArea_of_kernel
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (harea : RelativeWeightedKernelArea D W q)
+    {boundary : List (GGT.RelLetter G Lambda)}
+    (hboundary : RelWord.IsAdmissible D boundary)
+    (hboundaryKill : q (GGT.RelLetter.listVal boundary) = 1) :
+    Nonempty (RelativePrefixCellFilling D W q boundary) := by
+  apply relativePrefixCellFilling_of_weightedKernelArea D q
+    hsc.admissible
+  · intro word hword
+    exact relator_value_map_eq_one_of_kernel q hker hword
+  · exact harea
+  · exact hboundary
+  · exact hboundaryKill
+
+/-- Greendlinger certificates for every prescribed reduced boundary produce
+the bounded mixed filling used by the prefix relative presentation. -/
+theorem relativePrefixCellFilling_of_certificates
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 100 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    {boundary : List (GGT.RelLetter G Lambda)}
+    (hboundary : RelWord.IsAdmissible D boundary)
+    (hboundaryKill : q (GGT.RelLetter.listVal boundary) = 1) :
+    Nonempty (RelativePrefixCellFilling D W q boundary) := by
+  have harea : RelativeWeightedKernelArea D W q :=
+    relativeWeightedKernelArea_of_certificates D hsc hmu hrho q hker hcert
+  exact relativePrefixCellFilling_of_weightedKernelArea_of_kernel
+    D hsc q hker harea hboundary hboundaryKill
+
 end HullSC
 end GroupApproximation
