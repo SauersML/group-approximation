@@ -530,9 +530,10 @@ theorem Contiguity.arcLengths_le_two_mu_target
       List.length_map, CyclicArc.rotated_length]
     have hlength := congrArg List.length
       (dartWord_cellDarts Delta equations.target)
-    change (dartWord Delta (cellDarts Delta equations.target)).length =
-      (cell Delta equations.target).word.length
-    exact hlength
+    have htargetDarts : targetDarts Delta (some equations.target) =
+        cellDarts Delta equations.target := by rfl
+    rw [htargetDarts]
+    simpa only [dartWord, List.length_map] using hlength
   rw [hcarrier] at hsource htarget
   have htargetArcLength :
       (Gamma.cellTargetArc equations.target equations.target_eq).length =
