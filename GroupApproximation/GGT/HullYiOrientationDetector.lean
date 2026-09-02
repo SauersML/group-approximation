@@ -33,6 +33,7 @@ def yiTriple (a b c : G) : Fin 3 → G := ![a, b, c]
 @[simp] theorem orderedFinProduct_yiTriple (a b c : G) :
     orderedFinProduct (yiTriple a b c) = a * b * c := by
   simp [yiTriple, orderedFinProduct]
+  exact (mul_assoc a b c).symm
 
 /-- Independent loxodromics cannot put the second one in the elementary
 closure of the first. -/
@@ -53,8 +54,7 @@ theorem not_mem_elementaryClosure_of_independent
     intro hq0
     subst q
     simp only [zpow_zero] at hq
-    have ha1 := zpow_ne_one_of_isLoxodromic
-      (isIsometricAction_cayley A.alphabet) ha hp
+    have ha1 := zpow_ne_one_of_isLoxodromic ha hp
     exact ha1 hq.symm
   exact not_independent_of_common_zpow
     (isIsometricAction_cayley A.alphabet) ha hp hq0 hq.symm hind
@@ -149,6 +149,7 @@ theorem exists_orientationPure_family_of_dgoLemma421b
       (by decide)
     rw [hab]
     exact inv_mem hbMem
+    exact haMem
   have habNot : a * b ∉ D.fam 2 :=
     hsep 0 1 2 a b (by decide) (by decide) haMem hbMem hb1 hab1 haDeepSep
   let extra : Set G := D.relBall 2 Corient
