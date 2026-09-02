@@ -102,7 +102,8 @@ theorem exists_periodic_block_offset
     have hdivision : period * quotient + lower % period = lower := by
       simpa [quotient] using Nat.div_add_mod lower period
     have hoffsetForm : offset = period * quotient + period := by
-      simp only [offset, Nat.add_mul, one_mul, Nat.mul_comm]
+      dsimp only [offset]
+      rw [Nat.add_mul, one_mul, Nat.mul_comm quotient period]
     have hlowerOffset : lower ≤ offset := by omega
     have hoffsetUpper : offset ≤ lower + period := by omega
     have htwoLower : offset ≤ 2 * lower := by omega
@@ -222,7 +223,7 @@ theorem wordNorm_listVal_powerSegment_eq_length
     (hshortSegment : segmentLength ≤ word.length) :
     wordNorm D.alphabet.carrier
         (GGT.RelLetter.listVal
-          ((lemma49BoundaryPower word n).drop start).take segmentLength) =
+          (((lemma49BoundaryPower word n).drop start).take segmentLength)) =
       segmentLength := by
   let segment :=
     ((lemma49BoundaryPower word n).drop start).take segmentLength
@@ -290,7 +291,7 @@ theorem wordDist_powerVertices_eq_of_sub_le_period
       (GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) i)⁻¹ *
           GGT.OsinComponents.vertex 1 (lemma49BoundaryPower word n) j =
         GGT.RelLetter.listVal
-          ((lemma49BoundaryPower word n).drop i).take (j - i) := by
+          (((lemma49BoundaryPower word n).drop i).take (j - i)) := by
     rw [← hvalue]
     group
   show wordNorm D.alphabet.carrier
@@ -356,9 +357,11 @@ theorem repeatedBoundaryBlocks_replicate_model
   have hperiod : List.HasPeriod (List.replicate 400 a) 1 := by
     rw [List.hasPeriod_iff_forall_getElem?_mod]
     intro i hi
-    rw [List.getElem?_replicate_of_lt hi]
+    have hi400 : i < 400 := by
+      simpa only [List.length_replicate] using hi
     have hmod : i % 1 < 400 := by omega
-    rw [List.getElem?_replicate_of_lt hmod]
+    rw [List.getElem?_replicate_of_lt hi400,
+      List.getElem?_replicate_of_lt hmod]
   apply exists_repeatedBoundaryBlocks_of_hasPeriod (period := 1) (by omega)
     hperiod
   rw [List.length_replicate]
