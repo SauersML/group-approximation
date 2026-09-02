@@ -424,6 +424,94 @@ theorem cyclicSourceArc_lt_mu_mul
   rw [hcellLength] at harc
   exact harc
 
+/-- Both positioned cell arcs satisfy the local `2 * mu` charge at the
+source carrier directly from the published `C₁` maximum bound. -/
+theorem cyclicArcLengths_le_two_mu_cellWeight
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {source target : Fin Delta.rCellCount}
+    (sourceArc : CyclicArc (cellDarts Delta source))
+    (targetArc : CyclicArc (cellDarts Delta target))
+    {left right : G}
+    (hleft : wordNorm D.alphabet.carrier left ≤ eps)
+    (hright : wordNorm D.alphabet.carrier right ≤ eps)
+    (harcs : GGT.RelLetter.listVal (dartWord Delta targetArc.darts) =
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.darts) * right)
+    (hwhole : GGT.RelLetter.listVal (dartWord Delta targetArc.rotated) ≠
+      left * GGT.RelLetter.listVal (dartWord Delta sourceArc.rotated) * left⁻¹) :
+    (sourceArc.length : ℝ) + (targetArc.length : ℝ) ≤
+      2 * mu * Delta.cellWeight source := by
+  have hpublished := isPublishedPiece_of_cyclicCellArcs
+    hsc.toIsSmallCancellation sourceArc targetArc hleft hright harcs hwhole
+  have hbound := hsc.publishedPiecesSmall (dartWord Delta sourceArc.darts)
+    (dartWord Delta targetArc.darts) (dartWord Delta sourceArc.rotated)
+    hpublished
+  have hsource : (sourceArc.length : ℝ) <
+      mu * (dartWord Delta sourceArc.rotated).length := by
+    simpa only [dartWord, List.length_map, sourceArc.darts_length] using
+      lt_of_le_of_lt (le_max_left _ _) hbound
+  have htarget : (targetArc.length : ℝ) <
+      mu * (dartWord Delta sourceArc.rotated).length := by
+    simpa only [dartWord, List.length_map, targetArc.darts_length] using
+      lt_of_le_of_lt (le_max_right _ _) hbound
+  have hcellLength := congrArg List.length (dartWord_cellDarts Delta source)
+  have hcarrier : (dartWord Delta sourceArc.rotated).length =
+      (cell Delta source).word.length := by
+    simp only [dartWord, List.length_map, sourceArc.rotated_length]
+    simpa only [dartWord, List.length_map] using hcellLength
+  rw [hcarrier] at hsource htarget
+  have hsum : (sourceArc.length : ℝ) + (targetArc.length : ℝ) <
+      2 * mu * ((cell Delta source).word.length : ℝ) := by
+    linarith
+  exact le_of_lt hsum
+
+namespace Contiguity
+
+/-- When an embedded region has outer target, transport its target arc to the
+oriented boundary carrier. -/
+def exteriorArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (htarget : Gamma.target = none) :
+    CyclicArc (outerDarts Delta) := by
+  change CyclicArc (targetDarts Delta none)
+  rw [← htarget]
+  exact Gamma.targetArc
+
+/-- An embedded exterior contiguity arc is a prefix of a cyclic shift of the
+diagram boundary word.  This is the identification used by the exterior
+perimeter sum, with no piece hypothesis. -/
+theorem exists_exteriorArc_boundary_suffix
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (htarget : Gamma.target = none) :
+    ∃ suffix : List (GGT.RelLetter G Lambda),
+      Delta.boundaryWord.rotate (Gamma.exteriorArc htarget).start.1 =
+        dartWord Delta (Gamma.exteriorArc htarget).darts ++ suffix :=
+  (Gamma.exteriorArc htarget).exists_boundary_suffix
+
+/-- The embedded exterior arc has length at most the outer perimeter. -/
+theorem exteriorArc_length_le_boundary
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (htarget : Gamma.target = none) :
+    (Gamma.exteriorArc htarget).length ≤ Delta.boundaryWord.length :=
+  (Gamma.exteriorArc htarget).length_le_boundary
+
+end Contiguity
+
 namespace Contiguity
 
 /-- Transfer the stable `CellContiguity` O52 charge to the two positioned arcs
