@@ -2214,7 +2214,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       exact Fin.mk_lt_mk.mpr (by omega)
     by_contra hne
     have hgap : (occ i).val + 1 < (occ i1).val := by
-      exact Nat.succ_lt_of_lt hoccLt
+      have hval : (occ i).val < (occ i1).val := hoccLt
+      omega
     have hcBound : (occ i).val + 1 < (peripheralPositions P).card := by
       exact lt_of_lt_of_le hgap (Nat.le_of_lt (occ i1).isLt)
     let c : Fin (peripheralPositions P).card :=
@@ -2238,7 +2239,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     have hcEnd : (peripheralOccurrence P c).pos + 1 < P.length := by
       have hj := hsourceEnd i1
       dsimp [source] at hj
-      exact lt_of_le_of_lt (Nat.succ_le_of_lt hposCB) hj
+      have hnext : (peripheralOccurrence P c).pos + 1 ≤
+          (peripheralOccurrence P (occ i1)).pos := Nat.succ_le_of_lt hposCB
+      omega
     have hcS : c ∈ S := mem_strictInteriorOccurrences.mpr ⟨hcPos, hcEnd⟩
     let Eord := S.orderIsoOfFin rfl
     let ez : S := ⟨c, hcS⟩
