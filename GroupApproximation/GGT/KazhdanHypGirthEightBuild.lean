@@ -123,10 +123,12 @@ def OrientedCactusBoundaryProducer : Prop :=
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (Z : HullSC.Lemma44OrientedRelatorDiagram A
+      (Z : HullSC.Lemma44OrientedRelatorDiagram (u := 0) (w := 0) A
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusBoundaryInput (T := T) := by
@@ -167,7 +169,14 @@ theorem reducedRelatorOnly_of_cactusBoundary
       congrArg (List.map (GGT.RelLetter.base : FreeGroup Generator →
         GGT.RelLetter (FreeGroup Generator) PEmpty)) I.boundaryWord_eq
     _ = relativeWord w := by
-      rfl
+      induction w with
+      | nil => rfl
+      | cons u us ih =>
+          simp only [List.map_cons]
+          congr 1
+          · rcases u with ⟨g, positive⟩
+            cases positive <;> rfl
+          · exact ih
 
 /-! ## Relative base-cell elimination -/
 
@@ -203,6 +212,8 @@ theorem baseCellEliminationAt_of_relatorCellCover
 /-- A landed cactus retyping certificate becomes the required reduction by
 first invoking the exact-boundary bridge and then the named identity
 reduction on its relator-only output. -/
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem baseCellEliminationAt_of_cactusRelatorRetyping
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (C : VanKampen.CactusRelatorRetyping Delta) :
@@ -224,7 +235,7 @@ theorem baseCellEliminationAt_of_cactusRelatorRetyping
 explicitly the family of cactus retyping certificates.  Keeping this input
 named makes the remaining topological obligation visible to the consumer. -/
 def CactusRelatorRetypingAvailability : Prop :=
-  ∀ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T)),
+  ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
     Delta.Reduced → Nonempty (VanKampen.CactusRelatorRetyping Delta)
 
 theorem baseCellElimination_of_cactusRelatorRetypingAvailability
@@ -232,7 +243,7 @@ theorem baseCellElimination_of_cactusRelatorRetypingAvailability
     BaseCellElimination (T := T) := by
   intro Delta hred
   obtain ⟨C⟩ := hcertificate Delta hred
-  exact baseCellEliminationAt_of_cactusRelatorRetyping Delta C
+  exact baseCellEliminationAt_of_cactusRelatorRetyping Delta C hred
 
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
@@ -280,10 +291,12 @@ theorem innerStarLayers_sum_bound_from_combMapStars
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
       (fun i ↦ Delta.toCombMap.faceStarLayer seed i ∩ Delta.innerFaces) := by
     intro i _hi j _hj hij
-    exact (Delta.toCombMap.faceStarLayer_disjoint seed (by
-      intro hval
-      apply hij
-      exact Fin.ext hval)).mono Finset.inter_subset_left Finset.inter_subset_left
+    exact (by
+      simpa [innerBoundaryFaceStarLayer, boundaryFaceStarLayer] using
+        (innerBoundaryFaceStarLayer_disjoint Delta P (by
+          intro hval
+          apply hij
+          exact Fin.ext hval)))
   change (∑ i : Fin depth,
     (Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) i ∩
       Delta.innerFaces).card) ≤ Delta.innerFaces.card
@@ -366,6 +379,7 @@ omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
+@[reducible]
 noncomputable def starLayerInput_of_faceComplete_and_layerCover
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (L : TriangularDiagramLocalData T Delta)
@@ -492,7 +506,7 @@ theorem build_with_boundary
           (↑(GirthEightSlim.presentedGeneratorFinset T) :
             Set (TriangularHodgeLayer.Presented T)) p q) →
       ∃ (w : List (TriangularHodgeLayer.SignedGenerator Generator))
-        (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+        (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
         (L : TriangularDiagramLocalData T Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
         PresentedWordIsTrivial (T := T) w ∧
@@ -542,7 +556,7 @@ theorem build_argument
         delta < wordDist
           (↑(GirthEightSlim.presentedGeneratorFinset T) :
             Set (TriangularHodgeLayer.Presented T)) p q) →
-      ∃ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+      ∃ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
         (_L : TriangularDiagramLocalData T Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
         Delta.combinatorialBoundaryLength ≤ 6 * ell ∧
@@ -563,9 +577,10 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build
     (hcactus : CactusBoundaryInput (T := T))
     (hbase : BaseCellElimination (T := T))
     (hstar : StarLayerConstruction (T := T)) :
-    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) :=
+  Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) :=
   GirthEightSlim.presented_isHyperbolicGroup_of_girthEight_layer_construction
-    hchecks (build_argument hword hcactus hbase hstar)
+    hchecks (fun x y z p hp hfarXZ hfarZY =>
+      build_argument hword hcactus hbase hstar delta x y z p hp hfarXZ hfarZY)
 
 /-- Re-export the consumer with base-cell elimination replaced by the landed
 cactus-retyping certificate family. -/
