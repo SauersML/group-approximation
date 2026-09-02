@@ -2,6 +2,7 @@ import GroupApproximation.GGT.RelHypOsin24SuitabilityGlue
 import GroupApproximation.GGT.RelHypOsin24Action
 import GroupApproximation.GGT.RelHypOsin24ContinuationData
 import GroupApproximation.GGT.RelHypOsin24PairRefinement
+import GroupApproximation.GGT.RelHypOsin24ArbitraryRefinement
 import GroupApproximation.GGT.RelHypOsin24Iteration
 import GroupApproximation.GGT.HullSCAuxiliaryRelatorPublished
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
@@ -353,6 +354,21 @@ theorem osinTheorem24FinitePresentationAddendum_of_hull_of_pairRefinement
   osinTheorem24FinitePresentationAddendum_of_singletonStep
     (osin24SingletonStep_of_hull_of_compatibleContinuation h44family h49 hyi
       (compatibleRelativeHullContinuationStatement_of_pairRefinement hrefine))
+
+/-- The general Hull assembly after Osin's one-element classification.  The
+arbitrary-index acylindrical enlargement is supplied by
+`hyperbolicPairAcylindricalRefinement_of_elementClassification`, so the only
+source-action premise left here is the named classification proposition. -/
+theorem osinTheorem24FinitePresentationAddendum_of_hull_of_elementClassification
+    (h44family :
+      HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (hclass : HyperbolicElementLoxodromicStatement.{0, 0}) :
+    OsinTheorem24FinitePresentationAddendum :=
+  osinTheorem24FinitePresentationAddendum_of_hull_of_pairRefinement
+    h44family h49 hyi
+    (hyperbolicPairAcylindricalRefinement_of_elementClassification hclass)
 
 end RelHyp
 end GGT
