@@ -819,7 +819,7 @@ theorem mem_bigDarts_iff
         · rw [List.mem_ofFn]
           exact ⟨i, rfl⟩
         · rw [cellSegment, List.mem_append]
-          right
+          left
           rw [relatorBackwardDarts, List.mem_ofFn]
           exact ⟨j.rev, by simp⟩
   | stemOut i =>
