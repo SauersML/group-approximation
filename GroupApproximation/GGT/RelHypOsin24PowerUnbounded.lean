@@ -25,6 +25,7 @@ namespace GGT
 namespace RelHyp
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
 
 universe u v
 
