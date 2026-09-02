@@ -1099,17 +1099,19 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
         dsimp [q']
         omega
       have hgeo := sub_le_wordDist_vertex D hclose p' q' hpq' hq'
-      have hgapEq : q - p = q' - p' := by
-        dsimp [p', q']
+      rw [vertex_length] at hgeo
+      have hgapShift : word.length + q' - (word.length + p') = q' - p' := by
         omega
       rw [show cycle = word ++ close from rfl, hpEq, hqEq,
         vertex_append_add word close v p', vertex_append_add word close v q',
-        hgapEq]
+        hgapShift]
       norm_num only [div_one]
-      exact_mod_cast (show q' - p' ≤
-        wordDist D.alphabet.carrier
-          (vertex (vertex v word word.length) close p')
-          (vertex (vertex v word word.length) close q') + 1 by omega)
+      have hgeoReal : ((q' - p' : ℕ) : ℝ) ≤
+          ((wordDist D.alphabet.carrier
+            (vertex (v * RelLetter.listVal word) close p')
+            (vertex (v * RelLetter.listVal word) close q') : ℕ) : ℝ) := by
+        exact_mod_cast hgeo
+      linarith
   have hdeep : ∀ s ∈ I,
       (vertex v cycle (cut s))⁻¹ * vertex v cycle (cut (s + 1))
         ∉ D.relBall (lamSide s) (50 * C) := by
@@ -1124,15 +1126,27 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     have hread := (peripheralOccurrence word (owner s hs)).read
     have hreadLt := (List.getElem?_eq_some_iff.mp hread).1
     dsimp [lamSide]
-    rw [dif_pos hs, show cycle = word ++ close from rfl,
-      appendCut_oneSide_left word close (by omega),
-      appendCut_oneSide_left word close (by omega),
-      vertex_append_of_le word close v _ (by omega),
-      vertex_append_of_le word close v _ (by omega)]
+    rw [dif_pos hs]
+    have hcutS : cut s = s := by
+      rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
+      exact appendCut_oneSide_left word close (by omega)
+    have hcutSucc : cut (s + 1) = s + 1 := by
+      rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
+      exact appendCut_oneSide_left word close (by omega)
+    rw [hcutS, hcutSucc]
+    have hdeepOccurrence :
+        (vertex v cycle (peripheralOccurrence word (owner s hs)).pos)⁻¹ *
+          vertex v cycle ((peripheralOccurrence word (owner s hs)).pos + 1)
+            ∉ D.relBall (peripheralOccurrence word (owner s hs)).label
+              (50 * C) := by
+      rw [show cycle = word ++ close from rfl,
+        vertex_append_of_le word close v _ (by omega),
+        vertex_append_of_le word close v _ (by omega),
+        vertex_succ word v _ hreadLt, inv_mul_cancel_left,
+        (List.getElem?_eq_some_iff.mp hread).2]
+      exact hW2 _ _ _ hread
     dsimp [pos] at hposEq
-    rw [← hposEq, vertex_succ word v _ hreadLt, inv_mul_cancel_left,
-      (List.getElem?_eq_some_iff.mp hread).2]
-    exact hW2 _ _ _ hread
+    simpa only [hposEq] using hdeepOccurrence
   have hcount := deepIsolated_card_bound hbound hcycleLet hcycleClosed hcut
     I lamSide hIrange hedge hcomp hiso hquasi hdeep
   rw [hcardI] at hcount
