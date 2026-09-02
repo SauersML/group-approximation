@@ -18,6 +18,7 @@ namespace GirthEightPrimitives2
 
 open GroupApproximation.KazhdanHyp
 open VanKampen
+open GirthEightVKInterface
 
 universe u w v
 
