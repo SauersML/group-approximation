@@ -34,13 +34,14 @@ namespace VanKampen
 open GroupApproximation.HullSC
 open GroupApproximation.WordMetric
 
-universe u w
+universe u w v
 
 /-- A relator-free four-sided region between two labelled arcs. -/
 structure ContiguityRegion
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps : ℕ) where
-  diagram : DiscDiagram (∅ : Set (List (GGT.RelLetter G Lambda)))
+  diagram : DiscDiagram.{u, w, v}
+    (∅ : Set (List (GGT.RelLetter G Lambda)))
   no_relator_cells : diagram.relatorCells = []
   firstArc : List (GGT.RelLetter G Lambda)
   rightSide : List (GGT.RelLetter G Lambda)
@@ -63,21 +64,21 @@ namespace ContiguityRegion
 def leftConnector
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    (Gamma : ContiguityRegion D eps) : G :=
+    (Gamma : ContiguityRegion.{u, w, v} D eps) : G :=
   GGT.RelLetter.listVal Gamma.leftSide
 
 /-- The group element on the right side. -/
 def rightConnector
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    (Gamma : ContiguityRegion D eps) : G :=
+    (Gamma : ContiguityRegion.{u, w, v} D eps) : G :=
   GGT.RelLetter.listVal Gamma.rightSide
 
 /-- The four-sided `G`-region gives the standard arc-label equation. -/
 theorem arcs_value
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    (Gamma : ContiguityRegion D eps) :
+    (Gamma : ContiguityRegion.{u, w, v} D eps) :
     GGT.RelLetter.listVal Gamma.secondArc =
       Gamma.leftConnector * GGT.RelLetter.listVal Gamma.firstArc *
         Gamma.rightConnector := by
@@ -126,7 +127,7 @@ theorem arcs_value
 theorem leftConnector_short
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    (Gamma : ContiguityRegion D eps) :
+    (Gamma : ContiguityRegion.{u, w, v} D eps) :
     wordNorm D.alphabet.carrier Gamma.leftConnector ≤ eps :=
   Gamma.leftSide_short
 
@@ -134,7 +135,7 @@ theorem leftConnector_short
 theorem rightConnector_short
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
-    (Gamma : ContiguityRegion D eps) :
+    (Gamma : ContiguityRegion.{u, w, v} D eps) :
     wordNorm D.alphabet.carrier Gamma.rightConnector ≤ eps :=
   Gamma.rightSide_short
 
@@ -147,13 +148,13 @@ structure CellContiguity
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     (pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W))
     (source target : RelatorCell Delta.toCombMap Delta.outerFace W) where
   split : Delta.relatorCells =
     pre ++ source :: (between ++ target :: suf)
-  region : ContiguityRegion D eps
+  region : ContiguityRegion.{u, w, v} D eps
   sourceRemainder : List (GGT.RelLetter G Lambda)
   source_decomposition : source.word = region.firstArc ++ sourceRemainder
   targetRemainder : List (GGT.RelLetter G Lambda)
@@ -173,12 +174,12 @@ theorem whole_relators_ne
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
     GGT.RelLetter.listVal (RelWord.revInv target.word) ≠
       Gamma.region.leftConnector * GGT.RelLetter.listVal source.word *
         Gamma.region.leftConnector⁻¹ := by
@@ -197,13 +198,13 @@ theorem isPublishedPiece
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
     RelWord.IsPublishedPiece D W eps Gamma.region.firstArc
       Gamma.region.secondArc source.word := by
   exact ⟨source.word_mem, ⟨Gamma.sourceRemainder,
@@ -220,13 +221,13 @@ theorem sourceArc_lt_mu_mul
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) <
       mu * (source.word.length : ℝ) := by
   have hpublished := Gamma.isPublishedPiece hsc.toIsSmallCancellation hred
@@ -235,15 +236,15 @@ theorem sourceArc_lt_mu_mul
   exact lt_of_le_of_lt (le_max_left _ _) hbound
 
 /-- Contiguity degree measured on the source cell. -/
-def degree
+noncomputable def degree
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : CellContiguity pre between suf source target) : ℝ :=
+    (Gamma : CellContiguity.{u, w, v} pre between suf source target) : ℝ :=
   (Gamma.region.firstArc.length : ℝ) / source.word.length
 
 /-- Osin Lemma 4.4 (`O52`): an interior contiguity degree is less than
@@ -252,14 +253,14 @@ theorem degree_lt_mu
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps rho : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hrho : 0 < rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity.{u, w, v} pre between suf source target) :
     Gamma.degree < mu := by
   have hlenNat : 0 < source.word.length :=
     lt_of_lt_of_le hrho (hsc.long source.word source.word_mem)
@@ -276,10 +277,10 @@ structure BoundaryContiguity
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     (source : RelatorCell Delta.toCombMap Delta.outerFace W) where
   source_mem : source ∈ Delta.relatorCells
-  region : ContiguityRegion D eps
+  region : ContiguityRegion.{u, w, v} D eps
   sourceRemainder : List (GGT.RelLetter G Lambda)
   source_decomposition : source.word = region.secondArc ++ sourceRemainder
   boundaryBefore : List (GGT.RelLetter G Lambda)
@@ -290,13 +291,13 @@ structure BoundaryContiguity
 namespace BoundaryContiguity
 
 /-- Exterior contiguity degree measured on the relator cell. -/
-def degree
+noncomputable def degree
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : BoundaryContiguity source) : ℝ :=
+    (Gamma : BoundaryContiguity.{u, w, v} source) : ℝ :=
   (Gamma.region.secondArc.length : ℝ) / source.word.length
 
 /-- The exterior arc has no more letters than its source relator. -/
@@ -304,9 +305,9 @@ theorem sourceArc_length_le
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram W} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
     {source : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (Gamma : BoundaryContiguity source) :
+    (Gamma : BoundaryContiguity.{u, w, v} source) :
     Gamma.region.secondArc.length ≤ source.word.length := by
   rw [Gamma.source_decomposition]
   simp only [List.length_append]
