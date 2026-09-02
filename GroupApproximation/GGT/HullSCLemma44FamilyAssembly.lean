@@ -66,12 +66,14 @@ theorem quotientJointPeripheralPreservation_of_control
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
     (control : RelativeIsoperimetricControl joint q hq) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
+  have hjointQ : (joint.mapSurjective q hq).IsHyperbolicallyEmbedded :=
+    RelativeIsoperimetricControl.embedded hjointEmbedded control
   refine ⟨{
     rel := joint.mapSurjective q hq
     base_inv := ?_
     fam_original := ?_
     fam_selected := ?_
-    embedded := control.embedded ?_ }⟩
+    embedded := hjointQ }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
@@ -82,7 +84,6 @@ theorem quotientJointPeripheralPreservation_of_control
     change (joint.fam (Sum.inr i)).map q =
       (selected.cores.peripheral i).map q
     rw [hselected i]
-  · exact control.embedded hjointEmbedded
 
 /-! ## Radius-one support -/
 
