@@ -153,7 +153,7 @@ noncomputable def innerFaceCount
   Delta.innerFaces.card
 
 /-- Combinatorial boundary length, as the degree of the outer face. -/
-def combinatorialBoundaryLength
+noncomputable def combinatorialBoundaryLength
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram W) : ℕ :=
@@ -166,8 +166,8 @@ theorem boundaryWord_length_eq_combinatorialBoundaryLength
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram W) :
     Delta.boundaryWord.length = Delta.combinatorialBoundaryLength := by
-  rw [boundaryWord, combinatorialBoundaryLength]
-  exact Delta.faceWord_length Delta.outerFace
+  rw [combinatorialBoundaryLength]
+  exact Delta.boundaryWord_length
 
 /-- Adding the outer face to the inner faces gives every face. -/
 theorem innerFaceCount_add_one_eq_faceCount
@@ -291,11 +291,11 @@ theorem face_incidence
       3 * Delta.innerFaceCount + Delta.combinatorialBoundaryLength := by
   classical
   have hinner :
-      (∑ f in Delta.innerFaces, Delta.toCombMap.faceDegree f) =
+      (∑ f ∈ Delta.innerFaces, Delta.toCombMap.faceDegree f) =
         3 * Delta.innerFaceCount := by
     calc
-      (∑ f in Delta.innerFaces, Delta.toCombMap.faceDegree f) =
-          ∑ _f in Delta.innerFaces, 3 := by
+      (∑ f ∈ Delta.innerFaces, Delta.toCombMap.faceDegree f) =
+          ∑ _f ∈ Delta.innerFaces, 3 := by
             apply Finset.sum_congr rfl
             intro f hf
             exact C.innerFaceDegree f hf
@@ -305,8 +305,8 @@ theorem face_incidence
   have hsubset : ({Delta.outerFace} : Finset Delta.toCombMap.Face) <= Finset.univ :=
     Finset.subset_univ _
   have hsplit :
-      (∑ f in Delta.innerFaces, Delta.toCombMap.faceDegree f) +
-          ∑ f in ({Delta.outerFace} : Finset Delta.toCombMap.Face),
+      (∑ f ∈ Delta.innerFaces, Delta.toCombMap.faceDegree f) +
+          ∑ f ∈ ({Delta.outerFace} : Finset Delta.toCombMap.Face),
             Delta.toCombMap.faceDegree f =
         ∑ f : Delta.toCombMap.Face, Delta.toCombMap.faceDegree f := by
     simpa only [DiscDiagram.innerFaces] using
@@ -327,12 +327,12 @@ theorem vertex_degree_lower
   classical
   have hinterior :
       8 * C.interiorVertexCount <=
-        ∑ v in C.interiorVertices, Delta.toCombMap.vertexDegree v := by
+        ∑ v ∈ C.interiorVertices, Delta.toCombMap.vertexDegree v := by
     calc
-      8 * C.interiorVertexCount = ∑ _v in C.interiorVertices, 8 := by
+      8 * C.interiorVertexCount = ∑ _v ∈ C.interiorVertices, 8 := by
         simp only [interiorVertexCount, Finset.sum_const,
           Nat.nsmul_eq_mul, Nat.mul_comm]
-      _ <= ∑ v in C.interiorVertices, Delta.toCombMap.vertexDegree v := by
+      _ <= ∑ v ∈ C.interiorVertices, Delta.toCombMap.vertexDegree v := by
         apply Finset.sum_le_sum
         intro v hv
         apply C.interiorVertexDegree v
@@ -340,19 +340,19 @@ theorem vertex_degree_lower
           true_and] using hv
   have hboundary :
       2 * C.boundaryVertices.card <=
-        ∑ v in C.boundaryVertices, Delta.toCombMap.vertexDegree v := by
+        ∑ v ∈ C.boundaryVertices, Delta.toCombMap.vertexDegree v := by
     calc
-      2 * C.boundaryVertices.card = ∑ _v in C.boundaryVertices, 2 := by
+      2 * C.boundaryVertices.card = ∑ _v ∈ C.boundaryVertices, 2 := by
         simp only [Finset.sum_const, Nat.nsmul_eq_mul, Nat.mul_comm]
-      _ <= ∑ v in C.boundaryVertices, Delta.toCombMap.vertexDegree v := by
+      _ <= ∑ v ∈ C.boundaryVertices, Delta.toCombMap.vertexDegree v := by
         apply Finset.sum_le_sum
         intro v hv
         exact C.boundaryVertexDegree v hv
   have hsubset : C.boundaryVertices <=
       (Finset.univ : Finset Delta.toCombMap.Vertex) := Finset.subset_univ _
   have hsplit :
-      (∑ v in C.interiorVertices, Delta.toCombMap.vertexDegree v) +
-          ∑ v in C.boundaryVertices, Delta.toCombMap.vertexDegree v =
+      (∑ v ∈ C.interiorVertices, Delta.toCombMap.vertexDegree v) +
+          ∑ v ∈ C.boundaryVertices, Delta.toCombMap.vertexDegree v =
         ∑ v : Delta.toCombMap.Vertex, Delta.toCombMap.vertexDegree v := by
     simpa only [interiorVertices] using
       (Finset.sum_sdiff hsubset (f := Delta.toCombMap.vertexDegree))
