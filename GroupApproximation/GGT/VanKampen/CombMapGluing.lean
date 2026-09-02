@@ -500,9 +500,10 @@ theorem connected_of_doubleConnectivityData
     · simpa using hsame
     · have hcross : Relation.EqvGen S.closedMap.Adjacent
           (1, C.base.2) (0, C.base.2) :=
-        Relation.EqvGen.symm _ _ _ C.crossCopy
-      exact hsame.trans hcross
-  exact (toZero d).trans (toZero e).symm
+        Relation.EqvGen.symm _ _ C.crossCopy
+      exact Relation.EqvGen.trans _ _ _ hsame hcross
+  exact Relation.EqvGen.trans _ _ _ (toZero d)
+    (Relation.EqvGen.symm _ _ (toZero e))
 
 /-- The corrected incidence equations for the double of a disc.  `boundary`
 is the number of darts on the outer face, so gluing two copies identifies one
