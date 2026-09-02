@@ -349,6 +349,65 @@ theorem exists_isComp_peripheralPos {D : RelGenSet G Λ}
   obtain ⟨lam, g, hread⟩ := exists_read_peripheralPos ht
   exact ⟨lam, g, hread, isComp_singleton_of_isWThree_read hW3 hread⟩
 
+/-! ## Canonical occurrences -/
+
+/-- The data at one rank in the ordered peripheral position set. -/
+structure PeripheralOccurrence (word : List (RelLetter G Λ)) where
+  /-- Position in the word. -/
+  pos : ℕ
+  /-- Peripheral index of the letter. -/
+  label : Λ
+  /-- Group element written on the letter. -/
+  value : G
+  /-- The exact letter at `pos`. -/
+  read : word[pos]? = some (RelLetter.comp label value)
+
+/-- The canonical occurrence at a rank in the finite ordered position set. -/
+noncomputable def peripheralOccurrence (word : List (RelLetter G Λ))
+    (t : Fin (peripheralPositions word).card) : PeripheralOccurrence word :=
+  let h := exists_read_peripheralPos t.isLt
+  { pos := peripheralPos word t.val
+    label := Classical.choose h
+    value := Classical.choose (Classical.choose_spec h)
+    read := Classical.choose_spec (Classical.choose_spec h) }
+
+omit [Group G] in
+/-- The occurrence position is the ordered position selected above. -/
+theorem peripheralOccurrence_pos (word : List (RelLetter G Λ))
+    (t : Fin (peripheralPositions word).card) :
+    (peripheralOccurrence word t).pos = peripheralPos word t.val := rfl
+
+omit [Group G] in
+/-- Occurrence positions respect rank strictly. -/
+theorem peripheralOccurrence_pos_lt (word : List (RelLetter G Λ))
+    {s t : Fin (peripheralPositions word).card} (hst : s < t) :
+    (peripheralOccurrence word s).pos <
+      (peripheralOccurrence word t).pos := by
+  rw [peripheralOccurrence_pos, peripheralOccurrence_pos]
+  exact peripheralPos_lt t.isLt hst
+
+/-- Every occurrence in a W3 word is its singleton maximal component. -/
+theorem PeripheralOccurrence.isComp {D : RelGenSet G Λ}
+    {word : List (RelLetter G Λ)} (hW3 : WWord.IsWThree D word)
+    (t : Fin (peripheralPositions word).card) :
+    IsComp (peripheralOccurrence word t).label word
+      (peripheralOccurrence word t).pos
+      ((peripheralOccurrence word t).pos + 1) :=
+  isComp_singleton_of_isWThree_read hW3
+    (peripheralOccurrence word t).read
+
+omit [Group G] in
+/-- Successive occurrences have the separator printed in Lemma 4.21(b). -/
+theorem PeripheralOccurrence.baseEdgeOrTrivial_succ
+    {word : List (RelLetter G Λ)} (hW1 : WWord.IsWOne word)
+    (t : Fin (peripheralPositions word).card)
+    (ht : t.val + 1 < (peripheralPositions word).card) :
+    BaseEdgeOrTrivial word ((peripheralOccurrence word t).pos + 1)
+      ((peripheralOccurrence word
+        ⟨t.val + 1, ht⟩).pos) := by
+  simpa only [peripheralOccurrence_pos] using
+    baseEdgeOrTrivial_peripheralPos_succ hW1 ht
+
 end OsinComponents
 end GGT
 end GroupApproximation
