@@ -219,9 +219,12 @@ theorem Contiguity.targetArc_value_of_pasting
   have htargetBoundary :
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
         (Gamma.cellTargetArc target htarget).reverseDarts := by
-    rw [htarget]
-    rfl
+    simpa only [targetBoundaryDarts, htarget]
   rw [htargetBoundary] at hboundary
+  change GGT.RelLetter.listVal
+      (dartWord Delta
+        ((Gamma.cellTargetArc target htarget).darts.reverse.map
+          Delta.toCombMap.alpha)) = _ at hboundary
   have hinverse := listVal_dartWord_reverse_alpha Delta
     (Gamma.cellTargetArc target htarget).darts
   rw [hinverse] at hboundary
