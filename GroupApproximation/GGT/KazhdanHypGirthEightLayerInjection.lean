@@ -177,7 +177,7 @@ structure CenteredWindowLayerCover
       f ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ) ∧
       P.darts.get (position i q) ∈ (Delta.faceBoundary f).darts
   /-- Every face offered by the cover has the prescribed perimeter bound. -/
-  faceDegree_le : ∀ (i : Fin depth) (q : Fin (scale - loss))
+  faceDegree_le : ∀ (i : Fin depth) (_q : Fin (scale - loss))
     (f : Delta.toCombMap.Face),
     f ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ) →
       Delta.toCombMap.faceDegree f ≤ perimeter
@@ -352,8 +352,6 @@ theorem layerCoversWindow_of_firstLayer
   layer_covers_of_incidenceInjection
     (layerIncidenceInjection_of_firstLayer Delta P depth scale loss perimeter C)
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- The centered layer cover produces the incidence injection. -/
 theorem layerIncidenceInjection_of_layerCover
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
