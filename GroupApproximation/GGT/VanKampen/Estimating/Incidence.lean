@@ -195,6 +195,90 @@ theorem weight_le_incident
       hcondition.toIsSmallCancellation hcondition.publishedPiecesSmall
 
 end InteriorEdge
+
+/-! ## Exterior regions -/
+
+/-- A selected region from one fixed relator cell to the outer boundary. -/
+def ExteriorRegion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) :=
+  { candidate : Candidate D eps Delta //
+      candidate ∈ selected ∧
+        candidate.contiguity.source = i ∧
+        candidate.contiguity.target = none }
+
+noncomputable instance exteriorRegionFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount} : Fintype (ExteriorRegion selected i) := by
+  classical
+  letI : Finite (ExteriorRegion selected i) :=
+    Finite.of_injective
+      (fun region : ExteriorRegion selected i => region.1)
+      Subtype.val_injective
+  exact Fintype.ofFinite _
+
+namespace ExteriorRegion
+
+/-- Forget the selected-family membership while retaining the embedded
+boundary-contiguity witness. -/
+def toBoundaryContiguity
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (region : ExteriorRegion selected i) :
+    EmbeddedBoundaryContiguity D eps Delta i where
+  faces := region.1.1
+  region := region.1.contiguity
+  source_eq := region.2.2.1
+  target_eq := region.2.2.2
+
+end ExteriorRegion
+
+/-- Choose one selected exterior region at a cell when such a region exists.
+Lemma 65(a)'s two-gon condition later shows that this one region accounts for
+the entire exterior class. -/
+noncomputable def selectedOuter
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) :
+    Option (EmbeddedBoundaryContiguity D eps Delta i) := by
+  classical
+  exact if h : Nonempty (ExteriorRegion selected i) then
+    some (Classical.choice h).toBoundaryContiguity
+  else none
+
+/-- The canonical exterior option is absent exactly when no selected region
+joins the cell to the outer boundary. -/
+theorem selectedOuter_eq_none_iff
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) :
+    selectedOuter selected i = none ↔ IsEmpty (ExteriorRegion selected i) := by
+  classical
+  rw [selectedOuter]
+  split_ifs with h
+  · simp only [Option.some_ne_none, false_iff]
+    exact not_isEmpty_of_nonempty h
+  · simp only [true_iff]
+    exact not_nonempty_iff.mp h
+
 end Embedded
 
 end VanKampen
