@@ -356,6 +356,15 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelG
   exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
     hmuNinetyTwo hthreshold q hsurj hker hcert hkernelAt hlocAt
 
+/-- Universe-zero specialization for the manuscript's canonical quotient. -/
+theorem hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
+    (hgeom : RelativeGreendlingerStatement.{0, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
+    hgeom hkernel htransfer
+
 /-! ## Empty-family model of the two estimate interfaces -/
 
 /-- If the source and quotient are one-point groups, the kernel-geodesic
