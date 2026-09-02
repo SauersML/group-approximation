@@ -1620,6 +1620,74 @@ theorem exists_target_of_deep_component_of_uniformBound
   rw [span_fourGon_side p q r s hiq (by omega)] at hspan
   exact hdeep (relBall_mono_radius D lam hrho hspan)
 
+omit [Group G] in
+/-! ## The finite consecutive-run extraction -/
+
+/-- If every source in a finite run either has an opposite-side match or is
+assigned to one of `M` short-side slots, then `M + 1` consecutive blocks of
+length `K` contain one whole block of opposite matches.  Distinct unmatched
+sources must have distinct short slots. -/
+theorem exists_consecutive_block_of_short_absorption
+    {K M : ℕ} (hK : 0 < K)
+    (Matched : Fin (K * (M + 1)) → Prop)
+    (short : Fin (K * (M + 1)) → Fin M)
+    (hclass : ∀ i, Matched i ∨ ∃ z : Fin M, ¬ Matched i ∧ short i = z)
+    (hinj : ∀ i j, ¬ Matched i → ¬ Matched j → short i = short j → i = j) :
+    ∃ b : Fin (M + 1),
+      ∀ j : Fin K,
+        Matched ⟨b.val * K + j.val, by
+          have hb := b.isLt
+          have hj := j.isLt
+          omega⟩ := by
+  classical
+  by_contra hnone
+  push Not at hnone
+  have hbad : ∀ b : Fin (M + 1),
+      ∃ j : Fin K,
+        ¬ Matched ⟨b.val * K + j.val, by
+          have hb := b.isLt
+          have hj := j.isLt
+          omega⟩ := by
+    intro b
+    by_contra hall
+    push Not at hall
+    exact hnone b hall
+  let chosen : Fin (M + 1) → Fin (K * (M + 1)) := fun b =>
+    let j := Classical.choose (hbad b)
+    ⟨b.val * K + j.val, by
+      have hb := b.isLt
+      have hj := j.isLt
+      omega⟩
+  have hchosenBad : ∀ b : Fin (M + 1), ¬ Matched (chosen b) := by
+    intro b
+    dsimp [chosen]
+    exact (Classical.choose_spec (hbad b))
+  have hsourceInj : Function.Injective chosen := by
+    intro a b hab
+    have hv := congrArg Fin.val hab
+    have ha := (Classical.choose (hbad a)).isLt
+    have hb := (Classical.choose (hbad b)).isLt
+    apply Fin.ext
+    omega
+  let owner : Fin (M + 1) → Fin M := fun b =>
+    Classical.choose (hclass (chosen b) |>.resolve_left (hchosenBad b))
+  have hownerSpec : ∀ b : Fin (M + 1),
+      ¬ Matched (chosen b) ∧ short (chosen b) = owner b := by
+    intro b
+    dsimp [owner]
+    exact Classical.choose_spec
+      (hclass (chosen b) |>.resolve_left (hchosenBad b))
+  have hownerInj : Function.Injective owner := by
+    intro a b hab
+    have hshortEq : short (chosen a) = short (chosen b) := by
+      rw [hownerSpec a |>.2, hownerSpec b |>.2, hab]
+    have hchosenEq := hinj (chosen a) (chosen b)
+      (hownerSpec a).1 (hownerSpec b).1 hshortEq
+    exact hsourceInj hchosenEq
+  have hcard := Fintype.card_le_of_injective owner hownerInj
+  simp only [Fintype.card_fin] at hcard
+  omega
+
 end OsinComponents
 end GGT
 end GroupApproximation
