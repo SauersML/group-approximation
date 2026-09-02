@@ -1,6 +1,9 @@
 import GroupApproximation.GGT.KazhdanHypGQScheme
 import Mathlib.FieldTheory.Finite.GaloisField
 import Mathlib.LinearAlgebra.BilinearForm.Properties
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.LinearAlgebra.Dual.Lemmas
 import Mathlib.LinearAlgebra.Projectivization.Cardinality
 import Mathlib.LinearAlgebra.Projectivization.Collinear
 
@@ -89,6 +92,24 @@ theorem form_isAlt : form.IsAlt := by
 /-- Orthogonality for the coordinate form is symmetric. -/
 theorem form_eq_zero_comm (x y : Vec) : form x y = 0 ↔ form y x = 0 :=
   form_isAlt.eq_iff
+
+/-- The standard coordinate form separates vectors in the left argument. -/
+theorem form_separatingLeft : form.SeparatingLeft := by
+  intro x hx
+  funext i
+  fin_cases i
+  · have h := hx (basisVector 2)
+    simpa [form_apply, basisVector, Pi.single_apply] using h
+  · have h := hx (basisVector 3)
+    simpa [form_apply, basisVector, Pi.single_apply] using h
+  · have h := hx (basisVector 0)
+    simpa [form_apply, basisVector, Pi.single_apply] using h
+  · have h := hx (basisVector 1)
+    simpa [form_apply, basisVector, Pi.single_apply] using h
+
+/-- The standard symplectic form is nondegenerate. -/
+theorem form_nondegenerate : form.Nondegenerate :=
+  LinearMap.BilinForm.Nondegenerate.ofSeparatingLeft form_separatingLeft
 
 /-- The Galois field used by `W(8)` has eight elements. -/
 theorem fieldEight_card : Fintype.card FieldEight = 8 := by
@@ -181,6 +202,123 @@ theorem line_unique {p q : Point} (hpq : p ≠ q) {L M : Line}
     (hpM : Incident p M) (hqM : Incident q M) : L = M := by
   apply Subtype.ext
   exact underlying_line_unique hpq L.1 M.1 L.2.1 M.2.1 hpL hqL hpM hqM
+
+/-! ## Unique projection to an isotropic line -/
+
+/-- A totally isotropic line lies in its symplectic orthogonal complement. -/
+theorem line_le_orthogonal (L : Line) : L.1 ≤ form.orthogonal L.1 := by
+  intro x hx
+  rw [LinearMap.BilinForm.mem_orthogonal_iff]
+  intro y hy
+  exact L.2.2 y hy x hx
+
+/-- A two-dimensional totally isotropic subspace is Lagrangian: its
+orthogonal complement is itself. -/
+theorem line_orthogonal_eq (L : Line) : form.orthogonal L.1 = L.1 := by
+  apply (Submodule.eq_of_le_of_finrank_eq (line_le_orthogonal L) ?_).symm
+  rw [LinearMap.BilinForm.finrank_orthogonal form_nondegenerate, vec_finrank,
+    L.2.1]
+
+/-- Restrict the functional `B(p,-)` to a symplectic line. -/
+def lineFunctional (p : Point) (L : Line) : L.1 →ₗ[FieldEight] FieldEight :=
+  (form p.rep).comp L.1.subtype
+
+/-- If `p` is outside `L`, the restricted functional `B(p,-)` is nonzero. -/
+theorem lineFunctional_ne_zero {p : Point} {L : Line} (hout : ¬ Incident p L) :
+    lineFunctional p L ≠ 0 := by
+  intro hzero
+  have hpOrth : p.rep ∈ form.orthogonal L.1 := by
+    rw [LinearMap.BilinForm.mem_orthogonal_iff]
+    intro y hy
+    have happ := LinearMap.congr_fun hzero ⟨y, hy⟩
+    have hpy : form p.rep y = 0 := by
+      simpa [lineFunctional] using happ
+    exact (form_eq_zero_comm p.rep y).mp hpy
+  apply hout
+  rw [Incident, Submodule.mem_projectivization_iff_submodule_le]
+  rw [p.submodule_eq, ← line_orthogonal_eq L]
+  exact Submodule.span_le.mpr (Set.singleton_subset_iff.mpr hpOrth)
+
+/-- The kernel of the restricted functional, transported back into the
+ambient four-space. -/
+def projectionSubmodule (p : Point) (L : Line) : Submodule FieldEight Vec :=
+  (LinearMap.ker (lineFunctional p L)).map L.1.subtype
+
+/-- For an outside point, the projection kernel is one-dimensional. -/
+theorem projectionSubmodule_finrank {p : Point} {L : Line}
+    (hout : ¬ Incident p L) :
+    Module.finrank FieldEight (projectionSubmodule p L) = 1 := by
+  rw [projectionSubmodule, Submodule.finrank_map_subtype_eq]
+  have hker := Module.Dual.finrank_ker_add_one_of_ne_zero
+    (lineFunctional_ne_zero hout)
+  have hdim : Module.finrank FieldEight L.1 = 2 := L.2.1
+  omega
+
+/-- The unique point of `L` orthogonal to an outside point `p`. -/
+def projectedPoint (p : Point) (L : Line) (hout : ¬ Incident p L) : Point :=
+  Projectivization.mk'' (projectionSubmodule p L)
+    (projectionSubmodule_finrank hout)
+
+/-- The projected point belongs to the given isotropic line. -/
+theorem projectedPoint_incident (p : Point) (L : Line) (hout : ¬ Incident p L) :
+    Incident (projectedPoint p L hout) L := by
+  rw [Incident, Submodule.mem_projectivization_iff_submodule_le]
+  change (Projectivization.mk'' (projectionSubmodule p L)
+    (projectionSubmodule_finrank hout)).submodule ≤ L.1
+  rw [Projectivization.submodule_mk'']
+  intro x hx
+  obtain ⟨y, hy, rfl⟩ := hx
+  exact y.2
+
+/-- The projected point is orthogonal to the outside point. -/
+theorem projectedPoint_orthogonal (p : Point) (L : Line)
+    (hout : ¬ Incident p L) :
+    form p.rep (projectedPoint p L hout).rep = 0 := by
+  have hmem : (projectedPoint p L hout).rep ∈ projectionSubmodule p L := by
+    have hm : (projectedPoint p L hout).rep ∈
+        (projectedPoint p L hout).submodule := by
+      rw [(projectedPoint p L hout).submodule_eq]
+      exact Submodule.mem_span_singleton_self _
+    rw [show (projectedPoint p L hout).submodule = projectionSubmodule p L by
+      exact Projectivization.submodule_mk'' _ _] at hm
+    exact hm
+  obtain ⟨y, hy, heq⟩ := hmem
+  have hyzero : lineFunctional p L y = 0 := by
+    exact LinearMap.mem_ker.mp hy
+  rw [← heq]
+  simpa [lineFunctional] using hyzero
+
+/-- Any point of `L` orthogonal to `p` spans the projection kernel. -/
+theorem submodule_eq_projectionSubmodule {p q : Point} {L : Line}
+    (hout : ¬ Incident p L) (hqL : Incident q L)
+    (hpq : form p.rep q.rep = 0) :
+    q.submodule = projectionSubmodule p L := by
+  have hqmem : q.rep ∈ L.1 := rep_mem_of_incident hqL
+  have hqker : (⟨q.rep, hqmem⟩ : L.1) ∈ LinearMap.ker (lineFunctional p L) := by
+    rw [LinearMap.mem_ker]
+    simpa [lineFunctional] using hpq
+  have hle : q.submodule ≤ projectionSubmodule p L := by
+    rw [q.submodule_eq]
+    apply Submodule.span_le.mpr
+    rw [Set.singleton_subset_iff]
+    exact ⟨⟨q.rep, hqmem⟩, hqker, rfl⟩
+  apply Submodule.eq_of_le_of_finrank_eq hle
+  rw [q.finrank_submodule, projectionSubmodule_finrank hout]
+
+/-- **The generalized-quadrangle projection axiom for `W(8)`.**  Given a
+point outside an isotropic line, there is exactly one point on that line
+orthogonal (so collinear) to it. -/
+theorem existsUnique_incident_orthogonal (p : Point) (L : Line)
+    (hout : ¬ Incident p L) :
+    ∃! q : Point, Incident q L ∧ form p.rep q.rep = 0 := by
+  refine ⟨projectedPoint p L hout,
+    ⟨projectedPoint_incident p L hout,
+      projectedPoint_orthogonal p L hout⟩, ?_⟩
+  intro q hq
+  apply Projectivization.submodule_injective
+  rw [submodule_eq_projectionSubmodule hout hq.1 hq.2]
+  exact (Projectivization.submodule_mk'' (projectionSubmodule p L)
+    (projectionSubmodule_finrank hout)).symm
 
 /-! ## A concrete incident flag -/
 
