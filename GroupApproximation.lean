@@ -3256,6 +3256,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.PieceCarrier
 import GroupApproximation.GGT.DGOProposition414ArcTerminalSeam
 import GroupApproximation.GGT.VanKampen.FaceShelling
 import GroupApproximation.GGT.VanKampen.Estimating.SelectionSelfIncidence
+import GroupApproximation.GGT.VanKampen.Estimating.SelectionDichotomy
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
