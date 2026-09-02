@@ -47,6 +47,76 @@ theorem sideSpan_eq_targetLetter
 
 end AuxiliaryCycleCertificate
 
+namespace AuxiliaryCyclePathInput
+
+/-- A nonempty one-letter right connector has side span equal to the value of
+the whole connector word. -/
+theorem rightConnector_sideSpan
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {b : ℕ} (Q : AuxiliaryCyclePathInput D hsymm b)
+    (hpos : 0 < Q.right.length) (hone : Q.right.length ≤ 1) :
+    Q.certificate.sideSpan (Q.left.length + Q.arcSides) =
+      RelLetter.listVal Q.right := by
+  have ht : Q.left.length + Q.arcSides ∈ Q.certificate.target := by
+    change Q.left.length + Q.arcSides ∈ Q.localTarget ∪
+      DGOPolygonCut.auxiliaryCycleConnectorTarget
+        Q.left Q.right Q.arcSides
+    exact Finset.mem_union.mpr (Or.inr
+      (DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_right
+        Q.left Q.right Q.arcSides 0 hpos))
+  have hspan := Q.certificate.sideSpan_eq_targetLetter ht
+  have hcut := auxiliaryCycleCut_right Q.left Q.right
+    Q.arcPolygon.cut (r := 0) (by omega)
+  change Q.certificate.sideSpan (Q.left.length + Q.arcSides) =
+    ((auxiliaryCycleWord Q.left Q.arc Q.right Q.chord)[
+      auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+        (Q.left.length + Q.arcSides)]'_).val at hspan
+  rw [hcut] at hspan
+  rcases hright : Q.right with _ | ⟨a, t⟩
+  · simp at hpos
+  · have ht : t = [] := by
+      apply List.length_eq_zero_iff.mp
+      have hlen := hone
+      simp only [hright, List.length_cons] at hlen
+      omega
+    subst t
+    simpa [hright, auxiliaryCycleWord, OsinComponents.length_revWord,
+      listVal_singleton, RelLetter.val] using hspan
+
+/-- A nonempty one-letter left connector is read backwards at the beginning
+of the auxiliary cycle, so its side span is the inverse connector value. -/
+theorem leftConnector_sideSpan
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {b : ℕ} (Q : AuxiliaryCyclePathInput D hsymm b)
+    (hpos : 0 < Q.left.length) (hone : Q.left.length ≤ 1) :
+    Q.certificate.sideSpan 0 = (RelLetter.listVal Q.left)⁻¹ := by
+  have ht : 0 ∈ Q.certificate.target := by
+    change 0 ∈ Q.localTarget ∪
+      DGOPolygonCut.auxiliaryCycleConnectorTarget
+        Q.left Q.right Q.arcSides
+    exact Finset.mem_union.mpr (Or.inr
+      (DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_left
+        Q.left Q.right Q.arcSides 0 hpos))
+  have hspan := Q.certificate.sideSpan_eq_targetLetter ht
+  have hcut := auxiliaryCycleCut_left Q.left Q.right Q.arcSides Q.arcCut
+    (r := 0) (by omega)
+  change Q.certificate.sideSpan 0 =
+    ((auxiliaryCycleWord Q.left Q.arc Q.right Q.chord)[
+      auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right 0]'_).val at hspan
+  rw [hcut] at hspan
+  rcases hleft : Q.left with _ | ⟨a, t⟩
+  · simp at hpos
+  · have ht : t = [] := by
+      apply List.length_eq_zero_iff.mp
+      have hlen := hone
+      simp only [hleft, List.length_cons] at hlen
+      omega
+    subst t
+    simpa [hleft, auxiliaryCycleWord, revWord, invLetter,
+      listVal_singleton, RelLetter.val] using hspan
+
+end AuxiliaryCyclePathInput
+
 namespace TwoHalfTargetSlot
 
 /-- A slot tagged by a first child has the value of that child's target
