@@ -88,23 +88,107 @@ theorem letters_expandWord
       · exact ih b hb
 
 omit [Group G] in
-/-- The expansion is at least as long as the source word, provided no letter is
-spelled by the empty word. -/
+/-- The expansion is at least as long as the source word, provided no letter of
+it is spelled by the empty word. -/
 theorem length_le_length_expandWord
     (spell : GGT.RelLetter G (AuxiliaryPeripheralIndex k) →
       List (GGT.RelLetter G Lambda))
-    (hne : ∀ a, 1 ≤ (spell a).length)
-    (v : List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))) :
+    (v : List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))
+    (hne : ∀ a ∈ v, 1 ≤ (spell a).length) :
     v.length ≤ (expandWord spell v).length := by
   induction v with
   | nil => simp [expandWord]
   | cons a t ih =>
       show (a :: t).length ≤ (spell a ++ expandWord spell t).length
       rw [List.length_cons, List.length_append]
-      have := hne a
+      have hhead := hne a (by simp)
+      have htail := ih (fun b hb => hne b (List.mem_cons_of_mem _ hb))
       omega
 
 end Expansion
+
+/-! ## Every element is spelled over a relative generating set -/
+
+section Spelling
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+
+/-- Every element of the relative alphabet is the value of a legal letter. -/
+theorem exists_relLetter_of_mem_alphabet (D : GGT.RelGenSet G Lambda) {x : G}
+    (hx : x ∈ D.alphabet.carrier) :
+    ∃ a : GGT.RelLetter G Lambda, D.IsLetter a ∧ a.val = x := by
+  rcases hx with hx | hx
+  · exact ⟨GGT.RelLetter.base x, hx, rfl⟩
+  · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hx
+    exact ⟨GGT.RelLetter.comp lam x, hlam, rfl⟩
+
+/-- A word over the relative alphabet becomes a word of legal letters spelling
+the same element. -/
+theorem exists_word_of_alphabetList (D : GGT.RelGenSet G Lambda)
+    (l : List G) (hl : ∀ x ∈ l, x ∈ D.alphabet.carrier) :
+    ∃ word : List (GGT.RelLetter G Lambda),
+      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = l.prod := by
+  induction l with
+  | nil =>
+      refine ⟨[], ?_, rfl⟩
+      intro a ha
+      simp at ha
+  | cons x t ih =>
+      obtain ⟨a, ha, hav⟩ := exists_relLetter_of_mem_alphabet D (hl x (by simp))
+      obtain ⟨word, hword, hval⟩ :=
+        ih (fun y hy => hl y (List.mem_cons_of_mem _ hy))
+      refine ⟨a :: word, ?_, ?_⟩
+      · intro b hb
+        rcases List.mem_cons.mp hb with hb | hb
+        · rw [hb]
+          exact ha
+        · exact hword b hb
+      · rw [GGT.OsinComponents.listVal_cons, hav, hval, List.prod_cons]
+
+/-- **Every group element is spelled by a word of legal letters**, because the
+relative alphabet generates. -/
+theorem exists_word_of_relGenSet (D : GGT.RelGenSet G Lambda) (g : G) :
+    ∃ word : List (GGT.RelLetter G Lambda),
+      (∀ a ∈ word, D.IsLetter a) ∧ GGT.RelLetter.listVal word = g := by
+  obtain ⟨l, hl⟩ := exists_isGeodesicWord D.alphabet.symmetricGenerating g
+  obtain ⟨word, hword, hval⟩ :=
+    exists_word_of_alphabetList D l hl.isWord.letters
+  exact ⟨word, hword, by rw [hval, hl.isWord.prod_eq]⟩
+
+variable {k : ℕ}
+
+/-- A choice of spelling of every selected letter over the original relative
+alphabet.  No enlargement of the original family is needed: the adjoined target
+letters are spelled here like any other element. -/
+noncomputable def canonicalSpelling (original : GGT.RelGenSet G Lambda)
+    (a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)) :
+    List (GGT.RelLetter G Lambda) :=
+  Classical.choose (exists_word_of_relGenSet original a.val)
+
+theorem canonicalSpelling_letters (original : GGT.RelGenSet G Lambda)
+    (a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)) :
+    ∀ b ∈ canonicalSpelling original a, original.IsLetter b :=
+  (Classical.choose_spec (exists_word_of_relGenSet original a.val)).1
+
+theorem canonicalSpelling_value (original : GGT.RelGenSet G Lambda)
+    (a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)) :
+    GGT.RelLetter.listVal (canonicalSpelling original a) = a.val :=
+  (Classical.choose_spec (exists_word_of_relGenSet original a.val)).2
+
+/-- Only the identity is spelled by the empty word, so every letter with a
+nontrivial value has a nonempty spelling. -/
+theorem canonicalSpelling_length (original : GGT.RelGenSet G Lambda)
+    {a : GGT.RelLetter G (AuxiliaryPeripheralIndex k)} (ha : a.val ≠ 1) :
+    1 ≤ (canonicalSpelling original a).length := by
+  rcases Nat.eq_zero_or_pos (canonicalSpelling original a).length with h | h
+  · refine absurd ?_ ha
+    have hnil : canonicalSpelling original a = [] :=
+      List.length_eq_zero_iff.mp h
+    rw [← canonicalSpelling_value original a, hnil,
+      GGT.RelLetter.listVal_nil]
+  · exact h
+
+end Spelling
 
 /-! ## The residual estimate for one relator -/
 
@@ -177,7 +261,7 @@ def ofSpelling
       List (GGT.RelLetter G Lambda))
     (hspell : ∀ a, GGT.RelLetter.listVal (spell a) = a.val)
     (hletters : ∀ a b, b ∈ spell a → original.IsLetter b)
-    (hne : ∀ a, 1 ≤ (spell a).length)
+    (hne : ∀ a ∈ v, 1 ≤ (spell a).length)
     (hbase : ∀ g ∈ original.base, g⁻¹ ∈ original.base)
     (hlong : rho ≤ v.length)
     (hdeep : ∀ b ∈ expandWord spell v, ∀ lam : Lambda,
@@ -200,11 +284,45 @@ def ofSpelling
   base_inv := hbase
   letters := letters_expandWord spell hletters v
   value := listVal_expandWord spell hspell v
-  long := le_trans hlong (length_le_length_expandWord spell hne v)
+  long := le_trans hlong (length_le_length_expandWord spell v hne)
   deep := hdeep
   pieces := hpieces
   published := hpublished
   quasiGeodesic := hqg
+
+/-- **The canonical expansion.**  The spelling is the chosen one, so the only
+fields left to supply are the four metric clauses; the nontriviality hypothesis
+on the letters of the relator is what makes the expansion long, and for Hull's
+relator it holds because the depth clause keeps every peripheral letter out of
+the relative ball, which contains the identity. -/
+noncomputable def canonical
+    (hbase : ∀ g ∈ original.base, g⁻¹ ∈ original.base)
+    (hval : ∀ a ∈ v, a.val ≠ 1)
+    (hlong : rho ≤ v.length)
+    (hdeep : ∀ b ∈ expandWord (canonicalSpelling original) v,
+      ∀ lam : Lambda, GGT.RelLetter.IsCompOf lam b →
+        b.val ∉ original.relBall lam rho ∧
+          (b.val)⁻¹ ∉ original.relBall lam rho)
+    (hpieces : ∀ u w : List (GGT.RelLetter G Lambda),
+      RelWord.IsPiece original
+        (RelWord.symmetrized (expandWord (canonicalSpelling original) v))
+        eps u w →
+        (u.length : ℝ) < mu * w.length)
+    (hpublished : ∀ u u' w : List (GGT.RelLetter G Lambda),
+      RelWord.IsPublishedPiece original
+        (RelWord.symmetrized (expandWord (canonicalSpelling original) v))
+        eps u u' w →
+        max (u.length : ℝ) (u'.length : ℝ) < mu * w.length)
+    (hqg : ∀ w ∈ RelWord.symmetrized
+        (expandWord (canonicalSpelling original) v),
+      GGT.IsQuasiGeodesicChainAt original.alphabet.carrier 4 1
+        (fun i => GGT.RelLetter.listVal (w.take i)) w.length) :
+    OriginalRelatorExpansion original v eps rho mu :=
+  ofSpelling (canonicalSpelling original)
+    (fun a => canonicalSpelling_value original a)
+    (fun a b hb => canonicalSpelling_letters original a b hb)
+    (fun a ha => canonicalSpelling_length original (hval a ha))
+    hbase hlong hdeep hpieces hpublished hqg
 
 /-- The two families normally generate the same subgroup, because the expansion
 spells the same element. -/
