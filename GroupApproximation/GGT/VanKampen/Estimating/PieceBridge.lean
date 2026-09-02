@@ -373,7 +373,7 @@ structure CellPieceEquations
 
 /-- A face-set pasting and its transported reducedness exclusion produce the
 single certificate consumed by both O52 endpoint estimates. -/
-theorem CellPieceEquations.of_pasting
+def CellPieceEquations.of_pasting
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
