@@ -454,6 +454,63 @@ structure MirrorPairDeletion
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
 
+/-! The map-level mirror cut is available before a labelled replacement
+diagram is assembled.  The shared dart and its reverse are internal to the
+selected two-face region, so `replaceGRegion` deletes that edge pair. -/
+
+structure MirrorPairMapSurgery
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  firstFace : Delta.toCombMap.Face
+  secondFace : Delta.toCombMap.Face
+  shared : Delta.toCombMap.Dart
+  shared_first : Delta.toCombMap.faceOf shared = firstFace
+  shared_second : Delta.toCombMap.faceOf (Delta.toCombMap.alpha shared) =
+    secondFace
+  faces : Finset Delta.toCombMap.Face
+  first_mem : firstFace ∈ faces
+  second_mem : secondFace ∈ faces
+  region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
+
+noncomputable def MirrorPairMapSurgery.reclosedMap
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairMapSurgery Delta) : CombMap.{v} :=
+  Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region
+
+theorem MirrorPairMapSurgery.shared_internal
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairMapSurgery Delta) :
+    Surgery.MapCollapse.InternalDart Delta.toCombMap C.faces C.shared := by
+  refine ⟨?_, ?_⟩
+  · rw [C.shared_first]
+    exact C.first_mem
+  · rw [C.shared_second]
+    exact C.second_mem
+
+theorem MirrorPairMapSurgery.reclosed_planar
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairMapSurgery Delta)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    C.reclosedMap.IsPlanar := by
+  exact Surgery.MapCollapse.replaceGRegion_planar
+    Delta.toCombMap C.faces C.region hplanar
+
+theorem MirrorPairMapSurgery.reclosed_connected
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairMapSurgery Delta)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    C.reclosedMap.IsConnected :=
+  (C.reclosed_planar hplanar).1
+
 /-! A mirror reclosure input records the two incident face positions and the
 landed endpoint-trimmed replacement.  Unlike the old abstract cut, this
 constructor exposes the actual `replaceGRegion` map and derives the deletion
