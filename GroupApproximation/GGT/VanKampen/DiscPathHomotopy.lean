@@ -444,7 +444,6 @@ theorem innerFace_presentedValue_eq_one
     ((Delta.faceWord f).map (fun d ↦ presentedLetterValue T d)).prod = 1 := by
   obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
   rw [hj, triangleRelatorWord, List.map_map]
-  simp only [Function.comp_apply]
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
       presentedLetterValue T
           (signedFreeRelLetter u :
@@ -465,16 +464,30 @@ theorem innerFace_presentedValue_eq_one
             (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
             (FreeGroup.of generator) = PresentedGroup.of generator
         rfl
-  rw [show (TriangularHodgeLayer.letters (T j)).map (fun u ↦
+  have hmap : (TriangularHodgeLayer.letters (T j)).map (fun u ↦
       presentedLetterValue T
         (signedFreeRelLetter u :
           GGT.RelLetter (FreeGroup Generator) PEmpty)) =
       (TriangularHodgeLayer.letters (T j)).map
-        (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) by
+        (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
     induction TriangularHodgeLayer.letters (T j) with
     | nil => rfl
-    | cons u us ih => simp only [List.map_cons, hletter u, ih]]
-  exact TriangularHodgeLayer.wordValue_triangle_eq_one T j
+    | cons u us ih => simp only [List.map_cons, hletter u, ih]
+  calc
+    (List.map ((fun d ↦ presentedLetterValue T d) ∘ signedFreeRelLetter)
+        (TriangularHodgeLayer.letters (T j))).prod =
+        ((TriangularHodgeLayer.letters (T j)).map (fun u ↦
+          presentedLetterValue T
+            (signedFreeRelLetter u :
+              GGT.RelLetter (FreeGroup Generator) PEmpty))).prod := by
+      apply congrArg List.prod
+      induction TriangularHodgeLayer.letters (T j) with
+      | nil => rfl
+      | cons u us ih => simp only [List.map_cons, Function.comp_apply, ih]
+    _ = ((TriangularHodgeLayer.letters (T j)).map
+        (FoxBoundary.letterValue (TriangularHodgeLayer.generator T))).prod := by
+      rw [hmap]
+    _ = 1 := TriangularHodgeLayer.wordValue_triangle_eq_one T j
 
 theorem pathValue_erase_innerFace
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
@@ -487,8 +500,13 @@ theorem pathValue_erase_innerFace
         presentedLetterValue T (Delta.label d))).prod := by
   have hface : ((Delta.faceBoundary f).darts.map
       (fun d ↦ presentedLetterValue T (Delta.label d))).prod = 1 := by
-    change ((Delta.faceWord f).map
-      (fun d ↦ presentedLetterValue T d)).prod = 1
+    have hmap : (Delta.faceBoundary f).darts.map
+        (fun d ↦ presentedLetterValue T (Delta.label d)) =
+        (Delta.faceWord f).map (presentedLetterValue T) := by
+      induction (Delta.faceBoundary f).darts with
+      | nil => rfl
+      | cons d ds ih => simp only [List.map_cons, ih]
+    rw [hmap]
     exact innerFace_presentedValue_eq_one Delta R f hf
   simp only [List.map_append, List.prod_append]
   rw [hface]
