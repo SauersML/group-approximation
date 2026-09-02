@@ -97,76 +97,43 @@ structure KernelConeLocalFinitenessStatement : Prop where
       Nonempty (RelativeDiagramCertificate D W eps mu Z)),
     KernelConeLocalFinitenessAt D W eps rho mu hsc q
 
-/-! ## Canonical quotient assembly -/
+/-! ## Fixed-parameter quotient assembly -/
 
-set_option maxHeartbeats 600000 in
-/-- Greendlinger certificates together with the two exact kernel-cone
-estimates imply Hull's canonical quotient statement. -/
-theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
-    (hgeom : RelativeGreendlingerStatement.{u, 0})
+/-- The nontrivial fixed-parameter assembly. -/
+theorem quotientPeripheralPreservation_of_kernelBounds_at
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S)
+    {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {R eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
+    (hmu : mu ≤ 1 / 92)
+    (hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ))
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
     (hkernel : KernelGeodesicEstimateStatement.{u})
     (hloc : KernelConeLocalFinitenessStatement.{u}) :
-    HullLemma44CanonicalQuotientStatement.{u} := by
-  intro G _ A N k S D R
-  let mu : ℝ := 1 / 1000
-  have hmuPos : 0 < mu := by
-    dsimp [mu]
-    norm_num
-  have hmuSixteen : mu ≤ 1 / 16 := by
-    dsimp [mu]
-    norm_num
-  have hmuNinetyTwo : mu ≤ 1 / 92 := by
-    dsimp [mu]
-    norm_num
-  have hmuThousand : mu ≤ 1 / 1000 := by
-    dsimp [mu]
-    norm_num
-  obtain ⟨eps, rho₀, hcertificate⟩ :=
-    hgeom D.rel D.embedded mu hmuPos hmuSixteen
-  let fullRadius : ℕ := max R 1
-  let boundaryScale : ℕ := 2 * fullRadius + 2 * eps + 1
-  let rho : ℕ := max rho₀
-    (max (8 * boundaryScale) (20 * (eps + 1)))
-  have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
-  have hrhoScale : 8 * boundaryScale ≤ rho :=
-    le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
-  have hrhoDehn : 20 * (eps + 1) ≤ rho :=
-    le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
-  have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
-    dsimp [boundaryScale, fullRadius]
-    positivity
-  have hthreshold :
-      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
-        (3 / 4 : ℝ) * (rho : ℝ) := by
-    have hrhoScaleReal : (8 : ℝ) * (boundaryScale : ℝ) ≤
-        (rho : ℝ) := by
-      exact_mod_cast hrhoScale
-    change 4 * (boundaryScale : ℝ) < (3 / 4 : ℝ) * (rho : ℝ)
-    nlinarith
-  refine ⟨eps, rho, mu, hmuPos, ?_⟩
-  intro W Q _ q hsc hsurj hker
-  have hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
-      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z) := by
-    intro r Z
-    exact hcertificate rho hrho₀ W r hsc Z
+    Set.InjOn q (cayleyBall A.alphabet R) ∧
+      Nonempty (QuotientPeripheralPreservation q D) := by
   have hAlphabet : A.alphabet.carrier ⊆ D.rel.alphabet.carrier := by
     intro x hx
     exact Set.mem_union_left _ (D.base_le hx)
   have hinject :=
     injOn_ball_and_peripheralUnion_of_relativeDiagramCertificates
-      D.rel A.alphabet hAlphabet hsc hmuNinetyTwo hthreshold q hker
+      D.rel A.alphabet hAlphabet hsc hmu hthreshold q hker
         (hcert (max R 1))
-  obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hsurj hker hcert
+  obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hq hker hcert
   have hcone :
       (D.rel.adjoinRelatorPrefixes W
         hsc.toIsSmallCancellation).adjoinKernel q |>.IsHyperbolicallyEmbedded :=
     isHyperbolicallyEmbedded_prefixKernelCone_of_bounds D.rel D.embedded W
-      hsc q M hM (hloc.finite D.rel W eps rho mu hsc q hsurj hker hcert)
-  have hprefix :
-      (D.rel.prefixQuotient W hsc.toIsSmallCancellation q hsurj).
-        IsHyperbolicallyEmbedded :=
-    isHyperbolicallyEmbedded_prefixQuotient_of_kernelConeTransfer
-      D.rel W hsc q hsurj hcone
+      hsc q M hM (hloc.finite D.rel W eps rho mu hsc q hq hker hcert)
   have hinjectCores : Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k,
         (D.cores.peripheral i : Set G)) := by
@@ -182,7 +149,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
       exact hi
     · exact hxy
   have hpres : Nonempty (QuotientPeripheralPreservation q D) := by
-    exact quotientPeripheralPreservation_of_prefixKernelCone D hsc q hsurj
+    exact quotientPeripheralPreservation_of_prefixKernelCone D hsc q hq
       hcone hinjectCores
   exact ⟨hinject.1, hpres⟩
 
