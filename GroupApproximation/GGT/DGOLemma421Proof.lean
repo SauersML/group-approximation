@@ -378,7 +378,7 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     · exact ⟨b.val - a.val, a, b, habLt, rfl, hlabel, habConn⟩
     · refine ⟨a.val - b.val, b, a, hbaLt, rfl, hlabel.symm, ?_⟩
       have hsymm := connected_symm habConn
-      rwa [hlabel] at hsymm
+      simpa only [hlabel] using hsymm
   let gap : ℕ := Nat.find hPair
   obtain ⟨s, r, hsr, hgap, hsrLabel, hsrConn⟩ := Nat.find_spec hPair
   have hminimal : ∀ {x y : Fin (peripheralPositions word).card},
@@ -466,7 +466,7 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     calc
       I.card = J.card := Finset.card_image_iff.mpr hsideInj
       _ = gap - 1 := by
-        simp only [J, Finset.card_Ioo]
+        simp only [J, Fin.card_Ioo]
         omega
   have hpack : ∀ q ∈ I, ∃ lam : Λ,
       IsComp lam cycle q (q + 1) ∧
@@ -491,7 +491,7 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
       dsimp [side]
       omega
     have hsideLt : side t < width := by
-      rw [← hwidthEnd]
+      dsimp [side, width, start]
       omega
     have hboundary : (peripheralOccurrence word t).pos + 1 = start + width →
         A.label ≠ (peripheralOccurrence word t).label := by
