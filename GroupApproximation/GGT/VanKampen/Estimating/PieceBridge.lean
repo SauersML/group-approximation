@@ -290,8 +290,10 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
     (Gamma.cellTargetArc target htarget)
   refine ⟨suffix, ?_⟩
-  simpa [Contiguity.targetInverseCarrier, CyclicArc.reversePrefixTarget,
-    CyclicArc.reverseDartsWord, targetBoundaryDarts, htarget] using hsuffix
+  unfold Contiguity.targetInverseCarrier
+  unfold targetBoundaryDarts
+  split <;> simp_all [CyclicArc.reversePrefixTarget,
+    CyclicArc.reverseDartsWord]
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
