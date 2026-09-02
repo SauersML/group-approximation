@@ -425,7 +425,7 @@ theorem innerFaceWordHomotopy_of_peeling
     (W : RootedPathPeelingWitness Delta)
     (a b : List Delta.toCombMap.Dart) :
     InnerFaceWordHomotopy Delta a b := by
-  let total := W.rank a + W.rank b
+  generalize htotal : W.rank a + W.rank b = total
   induction total using Nat.strong_induction_on generalizing a b with
   | h total ih =>
       by_cases hab : a = b
@@ -433,25 +433,17 @@ theorem innerFaceWordHomotopy_of_peeling
         exact InnerFaceWordHomotopy.refl a
       · obtain ⟨c, hac, hbc, hca, hcb⟩ := W.peel hab
         have hac_lt : W.rank a + W.rank c < total := by
-          dsimp [total]
+          rw [← htotal]
           omega
         have hbc_lt : W.rank b + W.rank c < total := by
-          dsimp [total]
+          rw [← htotal]
           omega
         have hac' := ih (W.rank a + W.rank c) hac_lt a c
         have hbc' := ih (W.rank b + W.rank c) hbc_lt b c
         exact hac'.trans hbc'.symm
 
-/-- A peeling witness gives `RootedPathsFaceComplete` for every chosen rooted
-path system. -/
-theorem rootedPathsFaceComplete_of_peeling
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (R : RootedPathSystem Delta.toCombMap)
-    (W : RootedPathPeelingWitness Delta) :
-    RootedPathsFaceComplete Delta R := by
-  intro v p q
-  exact innerFaceWordHomotopy_of_peeling Delta W p.darts q.darts
-
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- The empty word is the one-face model of the peeling induction. -/
 theorem innerFaceWordHomotopy_empty_model
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)) :
@@ -490,6 +482,16 @@ abbrev RootedPathsFaceComplete
   ∀ (v : Delta.toCombMap.Vertex)
     (p q : DartPath Delta.toCombMap R.root v),
     InnerFaceWordHomotopy Delta p.darts q.darts
+
+/-- A peeling witness gives `RootedPathsFaceComplete` for every chosen rooted
+path system. -/
+theorem rootedPathsFaceComplete_of_peeling
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (R : RootedPathSystem Delta.toCombMap)
+    (W : RootedPathPeelingWitness Delta) :
+    RootedPathsFaceComplete Delta R := by
+  intro v p q
+  exact innerFaceWordHomotopy_of_peeling Delta W p.darts q.darts
 
 /-- Face completeness and relator-only inner faces prove path-independent
 integration. -/
