@@ -347,7 +347,6 @@ theorem firstGap_arcBase
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endConnector := by
           simp only [firstGapLeft, hf, ↓reduceIte]
-          simp only [hprev]
           rfl
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
@@ -361,7 +360,6 @@ theorem firstGap_arcBase
         have hleft : B.firstGapLeft j =
             (B.firstBrokenConnectors s hs).endThroughPartner := by
           simp only [firstGapLeft, hf, ↓reduceIte]
-          simp only [hprev]
           rfl
         rw [hfinish, hleft, hside, listVal_revWord, hend, harc]
         group
@@ -409,7 +407,6 @@ theorem firstGap_arcFinish
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startConnector := by
           simp only [firstGapRight, hf, ↓reduceIte]
-          simp only [hnext]
           rfl
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s + 1 := by
@@ -423,7 +420,6 @@ theorem firstGap_arcFinish
         have hright : B.firstGapRight j =
             (B.firstBrokenConnectors s hs).startThroughPartner := by
           simp only [firstGapRight, hf, ↓reduceIte]
-          simp only [hnext]
           rfl
         have hchordStart : B.firstGapChordStart j =
             B.brokenAssignment.first.partner s := by
