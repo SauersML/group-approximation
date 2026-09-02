@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
 import GroupApproximation.GGT.VanKampen.SurgeryMap
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 
 /-!
 # Face-set deletion schedules
@@ -113,45 +114,6 @@ structure FaceSetPeelStep
   tail : FaceSetDeletionSchedule (faces.erase face) next
 
 /-! ## Explicit finite move factorisations -/
-
-/-- One elementary move in a boundary peel.  The two insertion constructors
-are the symmetric forms of the deletion generators; naming them explicitly
-makes the ``insert the remaining face boundary, then cancel internal
-`alpha`-pairs'' factorisation available to geometric producers. -/
-inductive FaceSetElementaryMove
-    {faces : Finset Delta.toCombMap.Face} :
-    List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
-  | eraseFace (face : Delta.toCombMap.Face) (hface : face ∈ faces)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetElementaryMove
-        (before ++ (Delta.faceBoundary face).darts ++ after)
-        (before ++ after)
-  | insertFace (face : Delta.toCombMap.Face) (hface : face ∈ faces)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetElementaryMove
-        (before ++ after)
-        (before ++ (Delta.faceBoundary face).darts ++ after)
-  | eraseAlphaPair (dart : Delta.toCombMap.Dart)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetElementaryMove
-        (before ++ dart :: Delta.toCombMap.alpha dart :: after)
-        (before ++ after)
-  | insertAlphaPair (dart : Delta.toCombMap.Dart)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetElementaryMove
-        (before ++ after)
-        (before ++ dart :: Delta.toCombMap.alpha dart :: after)
-
-/-- A finite sequence of elementary peel moves. -/
-inductive FaceSetMoveSequence
-    {faces : Finset Delta.toCombMap.Face} :
-    List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
-  | refl (word : List Delta.toCombMap.Dart) :
-      FaceSetMoveSequence word word
-  | cons {first second third : List Delta.toCombMap.Dart}
-      (head : FaceSetElementaryMove (faces := faces) first second)
-      (tail : FaceSetMoveSequence (faces := faces) second third) :
-      FaceSetMoveSequence first third
 
 namespace FaceSetMoveSequence
 

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopy
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 
 /-!
 # The word algebra of face-set peel moves
@@ -30,15 +31,6 @@ namespace Embedded
 open GroupApproximation.HullSC
 
 universe u w v
-
-/-- The reverse-orientation dart list: the order is reversed and every dart is
-replaced by its `alpha`-reverse.  This is the word-level inverse of a dart
-list. -/
-def invDarts {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
-    (darts : List Delta.toCombMap.Dart) : List Delta.toCombMap.Dart :=
-  darts.reverse.map Delta.toCombMap.alpha
 
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.FaceSetMoveAlgebra
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 
 /-!
 # Shellings of a selected face set
@@ -80,22 +81,6 @@ theorem FaceSetMoveSequence.shellStep
   exact (hexposed.append_context before after).symm
 
 /-! ## Shellings -/
-
-/-- A shelling of a selected face set: an ordering of faces in which each new
-face attaches to the current walk along one arc, which may be empty. -/
-inductive FaceShelling {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
-    (faces : Finset Delta.toCombMap.Face) :
-    List Delta.toCombMap.Face → List Delta.toCombMap.Dart → Prop
-  | empty : FaceShelling Delta faces [] []
-  | step {l : List Delta.toCombMap.Face}
-      {before arc after exposed : List Delta.toCombMap.Dart}
-      (face : Delta.toCombMap.Face) (hface : face ∈ faces) (k : ℕ)
-      (hrot : (Delta.faceBoundary face).darts.rotate k =
-        exposed ++ invDarts Delta arc)
-      (rest : FaceShelling Delta faces l (before ++ arc ++ after)) :
-      FaceShelling Delta faces (face :: l) (before ++ exposed ++ after)
 
 /-- The last walk of a shelling is trivial in the face-set algebra. -/
 theorem faceSetMoveSequence_of_shelling

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 import Mathlib.Tactic.Group
 
 /-!
@@ -83,34 +84,6 @@ theorem dartWord_append
   simp only [dartWord, List.map_append]
 
 /-! ## Face-pasting homotopy -/
-
-/-- Finite word moves used when a planar union of faces is pasted into its
-single exterior boundary.  A selected complete face and an immediate
-`alpha`-pair are the two elementary deletions. -/
-inductive FaceSetWordHomotopy
-    {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
-    (faces : Finset Delta.toCombMap.Face) :
-    List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
-  | refl (word) : FaceSetWordHomotopy Delta faces word word
-  | eraseFace (face : Delta.toCombMap.Face) (hface : face ∈ faces)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetWordHomotopy Delta faces
-        (before ++ (Delta.faceBoundary face).darts ++ after)
-        (before ++ after)
-  | eraseAlphaPair (dart : Delta.toCombMap.Dart)
-      (before after : List Delta.toCombMap.Dart) :
-      FaceSetWordHomotopy Delta faces
-        (before ++ dart :: Delta.toCombMap.alpha dart :: after)
-        (before ++ after)
-  | symm {first second} :
-      FaceSetWordHomotopy Delta faces first second →
-        FaceSetWordHomotopy Delta faces second first
-  | trans {first second third} :
-      FaceSetWordHomotopy Delta faces first second →
-      FaceSetWordHomotopy Delta faces second third →
-        FaceSetWordHomotopy Delta faces first third
 
 /-- Face-pasting moves preserve dart-word value when every selected face is a
 G-cell. -/
