@@ -140,7 +140,6 @@ structure EmbeddedBoundaryPosition
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
-    (hreal : RelativeDiscRealization D W Z)
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
     {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
@@ -159,6 +158,7 @@ structure EmbeddedBoundaryCertificateData
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
+    (hreal : RelativeDiscRealization D W Z)
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
     {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
