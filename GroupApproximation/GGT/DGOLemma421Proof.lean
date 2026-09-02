@@ -111,7 +111,84 @@ theorem dgoProposition414Uniform_trivialModel (mu c : ℝ)
     ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound trivialUniformRelGenSet mu c C := by
   exact ⟨1, Nat.zero_lt_one, dgoUniformSumBound_trivialModel mu c 1⟩
 
-/-! ## Counting deep isolated components in an every-edge polygon -/
+/-! ## Counting deep isolated singleton sides -/
+
+/-- **The counting consequence of Proposition 4.14 at an arbitrary cut.**
+
+If the distinguished singleton sides all lie outside the relative ball of
+radius `B`, every radius witness supplied by Proposition 4.14 is at least
+`B+1`.  Summing gives `(B+1)|I| ≤ Cn`. -/
+theorem deepIsolated_card_bound
+    {D : RelGenSet G Λ} {mu c : ℝ} {C B n : ℕ}
+    (hbound : DGOUniformSumBound D mu c C)
+    {v : G} {word : List (RelLetter G Λ)} {cut : ℕ → ℕ}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hclosed : RelLetter.listVal word = 1)
+    (hcut : IsPolygonCut n word cut)
+    (I : Finset ℕ) (lam : ℕ → Λ)
+    (hI : ∀ s ∈ I, s < n)
+    (hedge : ∀ s ∈ I, cut (s + 1) = cut s + 1)
+    (hcomp : ∀ s ∈ I, IsComp (lam s) word (cut s) (cut (s + 1)))
+    (hiso : ∀ s ∈ I, IsIsolated D.fam (lam s) v word (cut s))
+    (hquasi : ∀ s : ℕ, s < n → s ∉ I → ∀ p q : ℕ,
+      cut s ≤ p → p ≤ q → q ≤ cut (s + 1) →
+      ((q - p : ℕ) : ℝ) / mu - c ≤
+        ((wordDist D.alphabet.carrier
+          (vertex v word p) (vertex v word q) : ℕ) : ℝ))
+    (hdeep : ∀ s ∈ I,
+      (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1))
+        ∉ D.relBall (lam s) B) :
+    (B + 1) * I.card ≤ C * n := by
+  obtain ⟨r, hrmem, hrsum⟩ :=
+    hbound n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
+  have hrLarge : ∀ s ∈ I, B + 1 ≤ r s := by
+    intro s hs
+    by_contra hnot
+    have hrle : r s ≤ B := by omega
+    have hmono : D.relBall (lam s) (r s) ⊆ D.relBall (lam s) B :=
+      RelGenSet.relBall_mono_radius D hrle
+    exact hdeep s hs (hmono (hrmem s hs))
+  calc
+    (B + 1) * I.card = ∑ _s ∈ I, (B + 1) := by
+      rw [Finset.sum_const_nat]
+      exact Nat.mul_comm _ _
+    _ ≤ ∑ s ∈ I, r s := by
+      exact Finset.sum_le_sum fun s hs => hrLarge s hs
+    _ ≤ C * n := hrsum
+
+/-- A deep singleton side of an `n`-gon cannot be isolated once its depth
+threshold is at least the Proposition 4.14 bound `C n`. -/
+theorem not_isolated_singleton_of_uniformBound
+    {D : RelGenSet G Λ} {mu c : ℝ} {C n : ℕ}
+    (hbound : DGOUniformSumBound D mu c C)
+    {v : G} {word : List (RelLetter G Λ)} {cut : ℕ → ℕ}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hclosed : RelLetter.listVal word = 1)
+    (hcut : IsPolygonCut n word cut)
+    {s : ℕ} (hs : s < n) {lam : Λ}
+    (hedge : cut (s + 1) = cut s + 1)
+    (hcomp : IsComp lam word (cut s) (cut (s + 1)))
+    (hquasi : ∀ t : ℕ, t < n → t ≠ s → ∀ p q : ℕ,
+      cut t ≤ p → p ≤ q → q ≤ cut (t + 1) →
+      ((q - p : ℕ) : ℝ) / mu - c ≤
+        ((wordDist D.alphabet.carrier
+          (vertex v word p) (vertex v word q) : ℕ) : ℝ))
+    (hdeep : (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1))
+      ∉ D.relBall lam (C * n)) :
+    ¬ IsIsolated D.fam lam v word (cut s) := by
+  intro hiso
+  have hcount := deepIsolated_card_bound hbound hlet hclosed hcut
+    {s} (fun _ => lam)
+    (by simp [hs]) (by simp [hedge]) (by simpa [hedge] using hcomp)
+    (by simpa using hiso)
+    (by
+      intro t ht htn
+      exact hquasi t ht (by simpa using htn))
+    (by simpa using hdeep)
+  simp only [Finset.card_singleton] at hcount
+  omega
+
+/-! ## The every-edge specialization -/
 
 /-- **The counting consequence of Proposition 4.14 used in Lemma 4.21.**
 
@@ -136,9 +213,8 @@ theorem deepIsolated_card_bound_everyEdge
     (B + 1) * I.card ≤ C * word.length := by
   have hcut : IsPolygonCut word.length word (fun s => s) :=
     ⟨rfl, rfl, fun s => Nat.le_succ s⟩
-  obtain ⟨r, hrmem, hrsum⟩ :=
-    hbound word.length v word (fun s => s) I lam hlet hclosed hcut hI
-      (fun _ _ => rfl) hcomp hiso (by
+  apply deepIsolated_card_bound hbound hlet hclosed hcut I lam hI
+    (fun _ _ => rfl) hcomp hiso (by
         intro s hs hsI p q hp hpq hq
         have hpqOne : q - p ≤ 1 := by omega
         have hnonneg : (0 : ℝ) ≤
@@ -146,21 +222,7 @@ theorem deepIsolated_card_bound_everyEdge
               (vertex v word p) (vertex v word q) : ℕ) : ℝ) :=
           Nat.cast_nonneg _
         norm_num
-        exact le_trans (by exact_mod_cast hpqOne) (by linarith))
-  have hrLarge : ∀ s ∈ I, B + 1 ≤ r s := by
-    intro s hs
-    by_contra hnot
-    have hrle : r s ≤ B := by omega
-    have hmono : D.relBall (lam s) (r s) ⊆ D.relBall (lam s) B :=
-      RelGenSet.relBall_mono_radius D hrle
-    exact hdeep s hs (hmono (hrmem s hs))
-  calc
-    (B + 1) * I.card = ∑ _s ∈ I, (B + 1) := by
-      rw [Finset.sum_const_nat]
-      exact Nat.mul_comm _ _
-    _ ≤ ∑ s ∈ I, r s := by
-      exact Finset.sum_le_sum fun s hs => hrLarge s hs
-    _ ≤ C * word.length := hrsum
+        exact le_trans (by exact_mod_cast hpqOne) (by linarith)) hdeep
 
 end OsinComponents
 end GGT
