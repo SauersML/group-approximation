@@ -91,6 +91,83 @@ noncomputable def kind
         CellArcKind.interior
   | .target _ _ _ => CellArcKind.interior
 
+/-- Positions of the fixed cell boundary occupied by one selected
+incidence. -/
+noncomputable def Position
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) :=
+  {position : Fin (cellDarts Delta i).length //
+    (cellDarts Delta i).get position ∈ incidence.arc.darts}
+
+/-- The arc of an incidence has no repeated darts. -/
+theorem arc_darts_nodup
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) : incidence.arc.darts.Nodup :=
+  incidence.arc.darts_nodup (cellDarts_nodup Delta i)
+
+/-- Occupied boundary positions are equivalent to the darts of the stored
+cyclic arc. -/
+noncomputable def positionEquivArcDarts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) :
+    incidence.Position ≃
+      {d : Delta.toCombMap.Dart // d ∈ incidence.arc.darts} := by
+  classical
+  let carrierEquiv : Fin (cellDarts Delta i).length ≃
+      {d : Delta.toCombMap.Dart // d ∈ cellDarts Delta i} :=
+    (cellDarts_nodup Delta i).getEquiv (cellDarts Delta i)
+  let restricted : incidence.Position ≃
+      {d : {d : Delta.toCombMap.Dart // d ∈ cellDarts Delta i} //
+        d.1 ∈ incidence.arc.darts} :=
+    carrierEquiv.subtypeEquiv fun _ => Iff.rfl
+  let forgetCarrier :
+      {d : {d : Delta.toCombMap.Dart // d ∈ cellDarts Delta i} //
+          d.1 ∈ incidence.arc.darts} ≃
+        {d : Delta.toCombMap.Dart // d ∈ incidence.arc.darts} where
+    toFun d := ⟨d.1.1, d.2⟩
+    invFun d :=
+      ⟨⟨d.1, incidence.arc.mem_cycle_of_mem_darts d.2⟩, d.2⟩
+    left_inv _ := rfl
+    right_inv _ := rfl
+  exact restricted.trans forgetCarrier
+
+/-- The number of occupied positions of an incidence is exactly its stored
+arc length. -/
+theorem card_position
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (incidence : CellIncidence selected i) :
+    Fintype.card incidence.Position = incidence.arc.length := by
+  classical
+  calc
+    Fintype.card incidence.Position =
+        Fintype.card {d : Delta.toCombMap.Dart // d ∈ incidence.arc.darts} :=
+      Fintype.card_congr incidence.positionEquivArcDarts
+    _ = Fintype.card (Fin incidence.arc.darts.length) := by
+      exact Fintype.card_congr
+        ((incidence.arc_darts_nodup.getEquiv incidence.arc.darts).symm)
+    _ = incidence.arc.length := by
+      rw [Fintype.card_fin, incidence.arc.darts_length]
+
 end CellIncidence
 
 /-- The singleton cyclic arc at one actual dart position. -/
