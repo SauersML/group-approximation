@@ -3274,6 +3274,7 @@ import GroupApproximation.GGT.DGOProposition435IsolatedWitness
 import GroupApproximation.GGT.VanKampen.PermOrbitSum
 import GroupApproximation.GGT.HullSCRelativeGreendlingerGeodesicConsumers
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundEmptyDisc
+import GroupApproximation.GGT.DGOProposition414HalfWordChord
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
