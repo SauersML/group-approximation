@@ -1,41 +1,40 @@
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
+import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
+import GroupApproximation.GGT.OsinTheorem54SepSymmetric
 
 /-!
-# Hull Lemma 4.4 for an arbitrary peripheral family
+# Hull Lemma 4.4 with a preserved peripheral family
 
-Hull's printed Lemma 4.4 is not restricted to the finite family of elementary
-closures chosen later in the filling construction.  It starts with an
-arbitrary hyperbolically embedded family and says that a sufficiently strong
-relative small-cancellation quotient preserves that whole family.  The
-application to Osin's Theorem 2.4 needs exactly this quantifier: the original
-peripheral family must remain present alongside the finitely many elementary
-closures selected inside the suitable subgroup.
+Hull's small-cancellation relators are read in the relative alphabet of the
+finitely many elementary closures selected inside the suitable subgroups.  In
+the relatively hyperbolic application, there is a second relative structure:
+the original peripheral family.  Its relative Cayley alphabet is Hull's
+generating alphabet, and Lemma 4.4 preserves it through the same quotient.
 
-`HullLemma44CanonicalQuotientStatement` currently packages the special case
-whose index type is `AuxiliaryPeripheralIndex k`.  This module states the
-family form directly over an arbitrary index type `Λ`.  There are no new
-geometric assumptions hidden in the wrapper:
+These two structures must remain distinct.  Putting an original infinite
+peripheral both in Hull's alphabet and in the family of a relative generating
+set whose base contains that alphabet violates local finiteness: the peripheral
+then lies in its own radius-one relative ball through base-labelled edges.  The
+checked obstruction is
+`RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base`.
 
-* `D.IsHyperbolicallyEmbedded` is the source family in Hull's lemma;
-* `A.alphabet.carrier ⊆ D.base` lets its requested Cayley ball be read in the
-  relative base;
-* inversion closure of `D.base` is the convention used by the diagram lemmas;
-* the output contains the mapped family, its hyperbolic embeddedness, and
-  injectivity on the union of every source peripheral.
+`HullLemma44CanonicalQuotientFamilyStatement` consequently quantifies over:
 
-The quotient is still the natural quotient by the values of `W`.  In
-particular the family statement does not postulate an unrelated quotient and
-does not alter the quantifier order of the small-cancellation constants.
+* an `AuxiliaryPeripheralFamily`, whose letters spell the relator; and
+* an arbitrary hyperbolically embedded `preserved` family whose relative
+  alphabet equals Hull's alphabet.
 
-`hullLemma44CanonicalQuotientStatement_of_family` proves that this is a genuine
-generalisation of the existing interface by specializing `Λ` to
-`AuxiliaryPeripheralIndex k`.  The conversion of the preservation structures is
-literal, using `AuxiliaryPeripheralFamily.fam_eq` only to change the displayed
-name of each subgroup.
+The output for the preserved family is the canonical surjective image relative
+generating set.  Its base is exactly `q '' preserved.base`, so finiteness of an
+Osin relative base survives the quotient.  The selected auxiliary elementary
+closures are preserved at the same time through the existing
+`QuotientPeripheralPreservation` record.
 
-The empty-relator/bijective quotient lemmas are model tests for the new output
-record.  They show that its fields can be inhabited simultaneously and that
-the arbitrary-family conclusion has the expected identity-quotient model.
+Specializing the preserved family to the empty family recovers
+`HullLemma44CanonicalQuotientStatement`.  Thus the family statement is a strict
+extension of the existing interface and remains usable by all Hull consumers.
+The bijective and empty-relator theorems below are model tests for every field
+of the new conclusion.
 -/
 
 namespace GroupApproximation
@@ -46,167 +45,163 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
-/-! ## 1. Preservation of an arbitrary indexed family -/
+/-! ## Preservation of the original family -/
 
-/-- The family-valued output of Hull Lemma 4.4.
+/-- The canonical quotient image of an arbitrary source peripheral family.
 
-Unlike `QuotientPeripheralPreservation`, this record does not mention the
-chosen elementary cores.  Its source is an arbitrary relative generating set,
-so it can preserve the original relatively hyperbolic peripheral family and
-the selected elementary closures in one application. -/
+The base equality is part of the conclusion because it is the bridge from a
+finite relative base in `G` to a finite relative base in the quotient. -/
 structure CanonicalQuotientFamilyPreservation
-    {G : Type u} [Group G] {Λ : Type w} {Q : Type u} [Group Q]
-    (A : HullGeneratingSet G) (q : G →* Q) (D : GGT.RelGenSet G Λ) where
-  /-- The quotient relative generating set, with the same labels. -/
-  rel : GGT.RelGenSet Q Λ
-  /-- The old Hull alphabet maps into the quotient relative base. -/
-  base_image : ∀ a ∈ A.alphabet.carrier, q a ∈ rel.base
-  /-- The quotient relative base retains the symmetric-base convention used
-  by the arbitrary-index almost-malnormality theorem. -/
-  base_inv : ∀ x ∈ rel.base, x⁻¹ ∈ rel.base
-  /-- Every quotient peripheral is the image of its source peripheral. -/
-  fam_map : ∀ lam : Λ, rel.fam lam = (D.fam lam).map q
-  /-- The entire mapped family remains hyperbolically embedded. -/
+    {G : Type u} [Group G] {Lambda : Type w} {Q : Type u} [Group Q]
+    (q : G →* Q) (D : GGT.RelGenSet G Lambda) where
+  /-- The quotient relative structure. -/
+  rel : GGT.RelGenSet Q Lambda
+  /-- Its base is the image of the source relative base. -/
+  base_map : rel.base = q '' D.base
+  /-- Its labelled peripherals are the subgroup images. -/
+  fam_map : ∀ lam : Lambda, rel.fam lam = (D.fam lam).map q
+  /-- The image family is hyperbolically embedded. -/
   embedded : rel.IsHyperbolicallyEmbedded
-  /-- No two elements belonging to the union of source peripherals collapse. -/
+  /-- The quotient is injective on the union of the source peripherals. -/
   injOn_peripheralUnion :
-    Set.InjOn q (⋃ lam : Λ, (D.fam lam : Set G))
+    Set.InjOn q (⋃ lam : Lambda, (D.fam lam : Set G))
 
 namespace CanonicalQuotientFamilyPreservation
 
-variable {G : Type u} [Group G] {Λ : Type w} {Q : Type u} [Group Q]
-  {A : HullGeneratingSet G} {q : G →* Q} {D : GGT.RelGenSet G Λ}
+variable {G : Type u} [Group G] {Lambda : Type w} {Q : Type u} [Group Q]
+  {q : G →* Q} {D : GGT.RelGenSet G Lambda}
 
-/-- The preservation record immediately gives injectivity on any one member
-of the source family. -/
-theorem injOn_fam (P : CanonicalQuotientFamilyPreservation A q D)
-    (lam : Λ) : Set.InjOn q (D.fam lam : Set G) := by
+/-- Preservation of the union implies injectivity on each labelled member. -/
+theorem injOn_fam (P : CanonicalQuotientFamilyPreservation q D)
+    (lam : Lambda) : Set.InjOn q (D.fam lam : Set G) := by
   intro x hx y hy hxy
   exact P.injOn_peripheralUnion
     (Set.mem_iUnion.mpr ⟨lam, hx⟩)
     (Set.mem_iUnion.mpr ⟨lam, hy⟩) hxy
 
-/-- The preserved family is pointwise the mapped source family. -/
-theorem fam_eq_map (P : CanonicalQuotientFamilyPreservation A q D)
-    (lam : Λ) : P.rel.fam lam = (D.fam lam).map q :=
+/-- The quotient base is finite whenever the source base is finite. -/
+theorem base_finite (P : CanonicalQuotientFamilyPreservation q D)
+    (hfinite : D.base.Finite) : P.rel.base.Finite := by
+  rw [P.base_map]
+  exact hfinite.image q
+
+/-- The displayed quotient family is pointwise the mapped source family. -/
+theorem fam_eq_map (P : CanonicalQuotientFamilyPreservation q D)
+    (lam : Lambda) : P.rel.fam lam = (D.fam lam).map q :=
   P.fam_map lam
 
 end CanonicalQuotientFamilyPreservation
 
-/-! ## 2. The arbitrary-family statement -/
+/-! ## The two-structure statement -/
 
-/-- **Hull Lemma 4.4, canonical quotient, arbitrary-family form.**
+/-- **Hull Lemma 4.4, canonical quotient, arbitrary preserved-family form.**
 
-The constants are chosen after the source relative structure and requested
-ball radius, but before the relator family and quotient.  This is the printed
-quantifier order.  The conclusion simultaneously supplies ball injectivity
-and preservation of every labelled peripheral. -/
+`selected` is the finite elementary-closure family used to spell the
+small-cancellation relators.  `preserved` is an arbitrary hyperbolically
+embedded family whose relative Cayley alphabet is Hull's chosen alphabet.  The
+same natural quotient preserves both families and is injective on the requested
+Cayley ball and on the union of the original peripherals. -/
 def HullLemma44CanonicalQuotientFamilyStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Λ : Type w}
-    (A : HullGeneratingSet G) (D : GGT.RelGenSet G Λ),
-      A.alphabet.carrier ⊆ D.base →
-      (∀ x ∈ D.base, x⁻¹ ∈ D.base) →
-      D.IsHyperbolicallyEmbedded →
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (preserved : GGT.RelGenSet G Lambda),
+      preserved.alphabet = A.alphabet →
+      preserved.IsHyperbolicallyEmbedded →
       ∀ R : ℕ,
         ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
-          ∀ (W : Set (List (GGT.RelLetter G Λ)))
+          ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
             {Q : Type u} [Group Q] (q : G →* Q),
-            RelWord.IsLemma44Input D W eps mu rho →
+            RelWord.IsLemma44Input selected.rel W eps mu rho →
             Function.Surjective q →
             q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
               Set.InjOn q (cayleyBall A.alphabet R) ∧
-                Nonempty (CanonicalQuotientFamilyPreservation A q D)
+                Nonempty (QuotientPeripheralPreservation q selected) ∧
+                Nonempty (CanonicalQuotientFamilyPreservation q preserved)
 
-/-! ## 3. Model tests -/
+/-! ## Model tests -/
 
-/-- A bijective homomorphism transports an arbitrary preserved family.  This
-is the identity-quotient model of the family output record. -/
-theorem canonicalQuotientFamilyPreservation_of_bijective_of_embedded
-    {G : Type u} [Group G] {Λ : Type w}
-    (A : HullGeneratingSet G) (D : GGT.RelGenSet G Λ)
-    (hbase : A.alphabet.carrier ⊆ D.base)
-    (hbaseInv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
-    (hemb : D.IsHyperbolicallyEmbedded)
+/-- A bijective homomorphism canonically preserves an arbitrary source family. -/
+theorem canonicalQuotientFamilyPreservation_of_bijective
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
     {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
-    Nonempty (CanonicalQuotientFamilyPreservation A q D) := by
-  let e : G ≃* Q := MulEquiv.ofBijective q hq
+    Nonempty (CanonicalQuotientFamilyPreservation q D) := by
   refine ⟨{
-    rel := D.mapMulEquiv e
-    base_image := ?_
-    base_inv := ?_
+    rel := D.mapSurjective q hq.2
+    base_map := rfl
     fam_map := fun _ => rfl
-    embedded := hemb.mapMulEquiv e
+    embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
+      D hD q hq
     injOn_peripheralUnion := hq.1.injOn }⟩
-  · intro a ha
-    change q a ∈ q '' D.base
-    exact ⟨a, hbase ha, rfl⟩
-  · intro y hy
-    change y⁻¹ ∈ (e : G →* Q) '' D.base
-    obtain ⟨x, hx, rfl⟩ := hy
-    exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
 
-/-- Empty relators force a surjective natural quotient to be bijective, so the
-full arbitrary-family conclusion holds.  This checks the ball and peripheral
-parts together at the smallest relator family. -/
+/-- Empty relators force the natural quotient to be bijective, so both the
+selected family and any arbitrary original family are preserved together. -/
 theorem hullLemma44CanonicalFamily_empty
-    {G : Type u} [Group G] {Λ : Type w}
-    (A : HullGeneratingSet G) (D : GGT.RelGenSet G Λ)
-    (hbase : A.alphabet.carrier ⊆ D.base)
-    (hbaseInv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
-    (hemb : D.IsHyperbolicallyEmbedded) (R : ℕ)
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (preserved : GGT.RelGenSet G Lambda)
+    (hpreserved : preserved.IsHyperbolicallyEmbedded) (R : ℕ)
     {Q : Type u} [Group Q] (q : G →* Q)
     (hsurj : Function.Surjective q)
     (hker : q.ker = Subgroup.normalClosure
       (GGT.RelLetter.listVal ''
-        (∅ : Set (List (GGT.RelLetter G Λ))))) :
+        (∅ : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))))) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
-      Nonempty (CanonicalQuotientFamilyPreservation A q D) := by
+      Nonempty (QuotientPeripheralPreservation q selected) ∧
+      Nonempty (CanonicalQuotientFamilyPreservation q preserved) := by
   have hbot : q.ker = ⊥ := by
     simpa using hker
   have hinj : Function.Injective q := (MonoidHom.ker_eq_bot_iff q).mp hbot
+  have hbij : Function.Bijective q := ⟨hinj, hsurj⟩
   exact ⟨hinj.injOn,
-    canonicalQuotientFamilyPreservation_of_bijective_of_embedded
-      A D hbase hbaseInv hemb q ⟨hinj, hsurj⟩⟩
+    quotientPeripheralPreservation_of_bijective selected q hbij,
+    canonicalQuotientFamilyPreservation_of_bijective preserved hpreserved q hbij⟩
 
-/-! ## 4. Specialisation to the existing auxiliary-family interface -/
+/-! ## Empty-family specialization -/
 
-/-- Convert arbitrary-family preservation at `D.rel` to the existing record
-whose family is displayed through `D.cores.peripheral`. -/
-def CanonicalQuotientFamilyPreservation.toAuxiliary
-    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
-    {k : ℕ} {S : Fin k → Subgroup G}
-    (D : AuxiliaryPeripheralFamily A N S)
-    {Q : Type u} [Group Q] {q : G →* Q}
-    (P : CanonicalQuotientFamilyPreservation A q D.rel) :
-    QuotientPeripheralPreservation q D where
-  rel := P.rel
-  base_image := P.base_image
-  fam_map := by
-    intro i
-    rw [P.fam_map i, D.fam_eq i]
-  embedded := P.embedded
-  injOn_peripheralUnion := by
-    intro x hx y hy hxy
-    apply P.injOn_peripheralUnion
-    · obtain ⟨i, hxi⟩ := Set.mem_iUnion.mp hx
-      exact Set.mem_iUnion.mpr ⟨i, by rwa [D.fam_eq i]⟩
-    · obtain ⟨i, hyi⟩ := Set.mem_iUnion.mp hy
-      exact Set.mem_iUnion.mpr ⟨i, by rwa [D.fam_eq i]⟩
-    · exact hxy
+/-- The empty peripheral family whose base is exactly Hull's alphabet. -/
+def emptyPreservedRelGenSet {G : Type u} [Group G]
+    (A : HullGeneratingSet G) : GGT.RelGenSet G Empty where
+  base := A.alphabet.carrier
+  fam := Empty.elim
+  symmetricGenerating := by
+    simpa using A.alphabet.symmetricGenerating
 
-/-- The arbitrary-family Lemma 4.4 implies the existing canonical auxiliary
-statement by literal specialization, so downstream Hull modules need
-no compatibility layer and can continue consuming their current named Prop. -/
+/-- The empty-family relative alphabet is Hull's alphabet. -/
+theorem emptyPreservedRelGenSet_alphabet {G : Type u} [Group G]
+    (A : HullGeneratingSet G) :
+    (emptyPreservedRelGenSet A).alphabet = A.alphabet := by
+  apply GGT.OsinComponents.alphabet_eq_of_carrier_eq
+  simp [emptyPreservedRelGenSet]
+
+/-- The empty family is hyperbolically embedded precisely using the
+hyperbolicity already bundled in Hull's generating set. -/
+theorem emptyPreservedRelGenSet_embedded {G : Type u} [Group G]
+    (A : HullGeneratingSet G) :
+    (emptyPreservedRelGenSet A).IsHyperbolicallyEmbedded := by
+  refine ⟨?_, ?_⟩
+  · rw [emptyPreservedRelGenSet_alphabet A]
+    exact ⟨A.delta, A.hyperbolic⟩
+  · intro lam
+    exact Empty.elim lam
+
+/-- The arbitrary-family statement implies the existing canonical statement
+by taking the second, preserved family to be empty. -/
 theorem hullLemma44CanonicalQuotientStatement_of_family
     (h44 : HullLemma44CanonicalQuotientFamilyStatement.{u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} := by
-  intro G _ A N k S D R
+  intro G _ A N k S selected R
   obtain ⟨eps, rho, mu, hmu, hgood⟩ :=
-    h44 A D.rel D.base_le D.base_inv D.embedded R
+    h44 selected (emptyPreservedRelGenSet A)
+      (emptyPreservedRelGenSet_alphabet A)
+      (emptyPreservedRelGenSet_embedded A) R
   refine ⟨eps, rho, mu, hmu, ?_⟩
   intro W Q _ q hinput hsurj hker
-  obtain ⟨hinj, ⟨P⟩⟩ := hgood W q hinput hsurj hker
-  exact ⟨hinj, ⟨P.toAuxiliary D⟩⟩
+  obtain ⟨hinj, hselected, _hempty⟩ :=
+    hgood W q hinput hsurj hker
+  exact ⟨hinj, hselected⟩
 
 end HullSC
 end GroupApproximation
