@@ -304,7 +304,7 @@ theorem finiteFamilyRelativePowerEscapeSource_of_boundedPowerExtraction
     exact finiteAlphabetRelativePowerEscape_emptyModel D hbase g hord
   · letI : Nonempty I := not_isEmpty_iff.mp hI
     exact isEscaping_of_relativeBoundedPowerExtraction D hbase hemb hhyper hord
-      (hExtract G inferInstance I D hbase hemb g)
+      hExtract
 
 /-- Model test for the source-facing finite-family target: in `PUnit` the
 infinite-order premise is contradictory, so the conclusion is immediate. -/
