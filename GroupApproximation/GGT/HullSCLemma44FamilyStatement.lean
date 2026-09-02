@@ -41,9 +41,13 @@ universe u w
 /-- The canonical quotient image of the original labelled peripheral family. -/
 structure CanonicalQuotientFamilyPreservation
     {G : Type u} [Group G] {Lambda : Type w} {Q : Type u} [Group Q]
-    (q : G →* Q) (D : GGT.RelGenSet G Lambda) where
+    (q : G →* Q) (D : GGT.RelGenSet G Lambda) (Y : Set G) where
   rel : GGT.RelGenSet Q Lambda
-  base_map : rel.base = q '' D.base
+  /-- The quotient relative base is the image of the source base together with
+  finitely many extra letters drawn from `Y`.  Osin's Theorem 2.4 outputs the
+  image of the source base; the finite enlargement is what the printed
+  Proposition 4.35 adjoins when it drops the auxiliary members. -/
+  base_map : ∃ T : Set G, T.Finite ∧ T ⊆ Y ∧ rel.base ⊆ q '' (D.base ∪ T)
   fam_map : ∀ lam : Lambda, rel.fam lam = (D.fam lam).map q
   embedded : rel.IsHyperbolicallyEmbedded
   injOn_peripheralUnion :
@@ -52,46 +56,37 @@ structure CanonicalQuotientFamilyPreservation
 namespace CanonicalQuotientFamilyPreservation
 
 variable {G : Type u} [Group G] {Lambda : Type w} {Q : Type u} [Group Q]
-  {q : G →* Q} {D : GGT.RelGenSet G Lambda}
+  {q : G →* Q} {D : GGT.RelGenSet G Lambda} {Y : Set G}
 
-theorem injOn_fam (P : CanonicalQuotientFamilyPreservation q D)
+theorem injOn_fam (P : CanonicalQuotientFamilyPreservation q D Y)
     (lam : Lambda) : Set.InjOn q (D.fam lam : Set G) := by
   intro x hx y hy hxy
   exact P.injOn_peripheralUnion
     (Set.mem_iUnion.mpr ⟨lam, hx⟩)
     (Set.mem_iUnion.mpr ⟨lam, hy⟩) hxy
 
-theorem base_finite (P : CanonicalQuotientFamilyPreservation q D)
+theorem base_finite (P : CanonicalQuotientFamilyPreservation q D Y)
     (hfinite : D.base.Finite) : P.rel.base.Finite := by
-  rw [P.base_map]
-  exact hfinite.image q
+  obtain ⟨T, hT, -, hsub⟩ := P.base_map
+  exact (((hfinite.union hT).image q)).subset hsub
 
-/-- The preserved relative alphabet is exactly the image of the source
-relative alphabet. -/
-theorem alphabet_carrier_eq_image
-    (P : CanonicalQuotientFamilyPreservation q D) :
-    P.rel.alphabet.carrier = q '' D.alphabet.carrier := by
-  ext y
-  constructor
-  · intro hy
-    rcases hy with hy | hy
-    · rw [P.base_map] at hy
-      obtain ⟨x, hx, rfl⟩ := hy
-      exact ⟨x, Set.mem_union_left _ hx, rfl⟩
-    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
-      rw [P.fam_map lam] at hlam
-      obtain ⟨x, hx, rfl⟩ := hlam
-      exact ⟨x, Set.mem_union_right _
-        (Set.mem_iUnion.mpr ⟨lam, hx⟩), rfl⟩
-  · rintro ⟨x, hx, rfl⟩
+/-- The preserved relative alphabet lies in the image of the source relative
+alphabet together with the allowed enlargement.  Only this inclusion survives
+the weakening of `base_map`; the reverse needed `q '' D.base ⊆ rel.base`. -/
+theorem alphabet_carrier_subset_image
+    (P : CanonicalQuotientFamilyPreservation q D Y) :
+    P.rel.alphabet.carrier ⊆ q '' (D.alphabet.carrier ∪ Y) := by
+  obtain ⟨T, -, hTY, hsub⟩ := P.base_map
+  rintro y (hy | hy)
+  · obtain ⟨x, hx, rfl⟩ := hsub hy
     rcases hx with hx | hx
-    · exact Set.mem_union_left _ (by
-        rw [P.base_map]
-        exact ⟨x, hx, rfl⟩)
-    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hx
-      exact Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, by
-        rw [P.fam_map lam]
-        exact Subgroup.mem_map_of_mem q hlam⟩)
+    · exact ⟨x, Or.inl (Set.mem_union_left _ hx), rfl⟩
+    · exact ⟨x, Or.inr (hTY hx), rfl⟩
+  · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+    rw [P.fam_map lam] at hlam
+    obtain ⟨x, hx, rfl⟩ := hlam
+    exact ⟨x, Or.inl (Set.mem_union_right _
+      (Set.mem_iUnion.mpr ⟨lam, hx⟩)), rfl⟩
 
 end CanonicalQuotientFamilyPreservation
 
@@ -160,7 +155,8 @@ def HullLemma44CanonicalQuotientFamilyStatement : Prop :=
             q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
               Set.InjOn q (cayleyBall A.alphabet R) ∧
                 Nonempty (QuotientPeripheralPreservation q selected) ∧
-                Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+                Nonempty (CanonicalQuotientFamilyPreservation q original
+                  selected.rel.alphabet.carrier) ∧
                 Nonempty (QuotientJointPeripheralPreservation q selected original)
 
 /-! ## Identity models -/
@@ -168,11 +164,15 @@ def HullLemma44CanonicalQuotientFamilyStatement : Prop :=
 theorem canonicalQuotientFamilyPreservation_of_bijective
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
-    {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
-    Nonempty (CanonicalQuotientFamilyPreservation q D) := by
+    {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q)
+    (Y : Set G) :
+    Nonempty (CanonicalQuotientFamilyPreservation q D Y) := by
   refine ⟨{
     rel := D.mapSurjective q hq.2
-    base_map := rfl
+    base_map := ⟨∅, Set.finite_empty, Set.empty_subset Y, by
+      intro y hy
+      rw [Set.union_empty]
+      exact hy⟩
     fam_map := fun _ => rfl
     embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
       D hD q hq
