@@ -138,9 +138,10 @@ theorem twoFace_planarCertificate
     Nonempty (PlanarFacePeelCertificate boundary) := by
   obtain ⟨boundary₂, hboundary₂⟩ := hcycle₂
   subst faces
-  have hmem : f₁ ∈ faces := by
+  have hmem : f₁ ∈ ({f₁, f₂} : Finset Delta.toCombMap.Face) := by
     simp [hneq]
-  have hmoves : FaceSetMoveSequence (faces := faces) boundary.cycle next := by
+  have hmoves : FaceSetMoveSequence
+      (faces := ({f₁, f₂} : Finset Delta.toCombMap.Face)) boundary.cycle next := by
     simpa [hcycle] using moves
   refine ⟨PlanarFacePeelCertificate.mk f₁ hmem h₁ next cycle ?_
     ⟨[], [], by simpa using hcycle⟩ hmoves ?_⟩
