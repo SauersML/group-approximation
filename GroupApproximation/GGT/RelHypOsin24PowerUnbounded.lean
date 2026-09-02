@@ -1,0 +1,168 @@
+import GroupApproximation.GGT.RelHypOsin24BoundedPenetration
+import GroupApproximation.GGT.DGOProposition433Finite
+
+/-!
+# The power-pigeonhole step
+
+The proof of Osin's Theorem 1.10 (Theorem `10` in the fetched Memoirs source)
+uses the following algebraic implication.  Once bounded relative powers have
+been put in one fixed finite double coset `K h H_λ`, two powers with the same
+left factor differ by a nonzero power lying in `H_λ`.  For a finite peripheral
+family, Proposition 4.33(b) then forces the original element itself into
+`H_λ`: otherwise the intersection `H_λ ∩ g⁻¹H_λg` is finite, while it contains
+all powers of that nonzero power.  This file proves those two steps from the
+landed labelled relative-geometry API.
+
+The source-dependent step that turns a bounded relative-length subsequence of
+powers into one fixed finite `K h H_λ` is not reintroduced as an unchecked
+hypothesis.  The proved statements below are the strict smaller algebraic and
+finite-slice consequences to which that source argument reduces.  The finite
+slice itself is in `RelHypOsin24BoundedPenetration`.
+-/
+
+namespace GroupApproximation
+namespace GGT
+namespace RelHyp
+
+universe u v
+
+/-! ## A fixed double-coset witness forces a peripheral power -/
+
+/-- **Fixed-double-coset power witness.**  If infinitely many positive powers
+of `g` have the form `k h z` with the same `k` and `z ∈ H`, then a nonzero
+positive power of `g` lies in `H`.  This is the power-pigeonhole calculation in
+Osin's Lemma 4.2-type argument. -/
+def FixedPeripheralPowerWitnessStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (H : Subgroup G) (g k h : G)
+    (S : Set ℕ),
+    S.Infinite →
+      (∀ n : ℕ, n ∈ S → ∃ z : G, z ∈ H ∧ g ^ n = k * h * z) →
+        ∃ m : ℕ, 0 < m ∧ g ^ m ∈ H
+
+/-- The fixed-double-coset calculation. -/
+theorem fixedPeripheralPowerWitness_proved :
+    FixedPeripheralPowerWitnessStatement.{u} := by
+  intro G instG H g k h S hS hdecomp
+  letI : Group G := instG
+  obtain ⟨n₁, hn₁S, hn₁gt⟩ := Set.Infinite.exists_gt hS 0
+  obtain ⟨n₂, hn₂S, hn₂gt⟩ := Set.Infinite.exists_gt hS n₁
+  obtain ⟨z₁, hz₁H, hz₁⟩ := hdecomp n₁ hn₁S
+  obtain ⟨z₂, hz₂H, hz₂⟩ := hdecomp n₂ hn₂S
+  have hsum : n₁ + (n₂ - n₁) = n₂ := by omega
+  have hpowdiff : g ^ (n₂ - n₁) = z₁⁻¹ * z₂ := by
+    calc
+      g ^ (n₂ - n₁) = (g ^ n₁)⁻¹ * (g ^ n₁ * g ^ (n₂ - n₁)) := by group
+      _ = (g ^ n₁)⁻¹ * g ^ (n₁ + (n₂ - n₁)) := by rw [pow_add]
+      _ = (g ^ n₁)⁻¹ * g ^ n₂ := by rw [hsum]
+      _ = (k * h * z₁)⁻¹ * (k * h * z₂) := by rw [hz₁, hz₂]
+      _ = z₁⁻¹ * z₂ := by group
+  refine ⟨n₂ - n₁, by omega, ?_⟩
+  rw [hpowdiff]
+  exact H.mul_mem (H.inv_mem hz₁H) hz₂H
+
+/-- Model test for the pigeonhole calculation: in the one-point group the
+peripheral subgroup is `⊤`, so the conclusion is immediate for `S = univ`. -/
+theorem fixedPeripheralPowerWitness_trivialModel
+    (S : Set ℕ) (hS : S.Infinite) :
+    ∃ m : ℕ, 0 < m ∧ (1 : PUnit) ^ m ∈ (⊤ : Subgroup PUnit) := by
+  exact ⟨1, by omega, Subgroup.mem_top _⟩
+
+/-! ## Hyperbolic elements have no peripheral powers -/
+
+/-- **No peripheral power for a hyperbolic element.**  In a finite labelled
+family, local finiteness and Proposition 4.33(b) imply that an infinite-order
+element which is not parabolic has no positive power in any peripheral
+subgroup.  The proof uses only the existing finite-family almost-malnormality
+theorem and commutation of powers. -/
+theorem no_peripheral_power_of_hyperbolic_finiteFamily
+    {G : Type u} [Group G] {I : Type v} [Finite I]
+    (D : RelGenSet G I) (hemb : D.IsHyperbolicallyEmbedded) {g : G}
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    ∀ (lam : I) (m : ℕ), 0 < m → g ^ m ∉ D.fam lam := by
+  have hnotfin : ¬ IsOfFinOrder g := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    exact hord n hn hpow
+  have hinj : Function.Injective (fun n : ℕ => g ^ n) :=
+    injective_pow_of_not_isOfFinOrder hnotfin
+  intro lam m hm hmem
+  have hgH : g ∈ D.fam lam := by
+    by_contra hgnot
+    have hfin :
+        {x : G | x ∈ D.fam lam ∧ g⁻¹ * x * g ∈ D.fam lam}.Finite :=
+      finite_conj_inter_of_notMem D hemb hgnot
+    have hmul_inj : Function.Injective (fun n : ℕ => g ^ (m * n)) := by
+      intro a b hab
+      have hmul : m * a = m * b := hinj hab
+      omega
+    have hpow_range : (Set.range (fun n : ℕ => g ^ (m * n))).Infinite :=
+      Set.infinite_range_of_injective hmul_inj
+    have hsubset :
+        Set.range (fun n : ℕ => g ^ (m * n)) ⊆
+          {x : G | x ∈ D.fam lam ∧ g⁻¹ * x * g ∈ D.fam lam} := by
+      rintro x ⟨n, rfl⟩
+      constructor
+      · rw [← pow_mul]
+        exact (D.fam lam).pow_mem hmem n
+      · have hcomm : Commute g (g ^ (m * n)) :=
+          (Commute.refl g).pow_right _
+        calc
+          g⁻¹ * g ^ (m * n) * g = g⁻¹ * (g * g ^ (m * n)) := by
+            rw [hcomm.eq]
+          _ = g ^ (m * n) := by group
+    have hfiniteRange :
+        (Set.range (fun n : ℕ => g ^ (m * n))).Finite :=
+      hfin.subset hsubset
+    exact (Set.not_infinite.2 hfiniteRange) hpow_range
+  exact hhyper ⟨lam, 1, by simpa using hgH⟩
+
+/-- Model test for the no-peripheral-power theorem: in `PUnit` the order
+hypothesis is impossible, so the theorem closes by contradiction. -/
+theorem no_peripheral_power_of_hyperbolic_trivialModel
+    {I : Type v} [Finite I] (D : RelGenSet PUnit I)
+    (hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    ∀ (lam : I) (m : ℕ), 0 < m → g ^ m ∉ D.fam lam := by
+  intro lam m hm
+  exfalso
+  exact hord m hm (Subsingleton.elim _ _)
+
+/-! ## The source-facing finite-slice contradiction -/
+
+/-- **Fixed bounded-penetration slices contradict hyperbolicity.**  This is the
+source-facing output of the two proved steps above.  Once a bounded power
+subsequence has been placed in a fixed right peripheral ball and fixed left
+factor, the hyperbolic infinite-order hypotheses are inconsistent. -/
+theorem not_fixed_boundedPenetration_power_slice
+    {G : Type u} [Group G] {I : Type v} [Finite I]
+    (D : RelGenSet G I) (hemb : D.IsHyperbolicallyEmbedded) {g : G}
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
+    (lam : I) (n : ℕ) (k h : G) (S : Set ℕ) (hS : S.Infinite)
+    (hdecomp : ∀ q : ℕ, q ∈ S →
+      ∃ z : G, z ∈ D.relBall lam n ∧ g ^ q = k * h * z) :
+    False := by
+  have hfixed : ∀ q : ℕ, q ∈ S →
+      ∃ z : G, z ∈ D.fam lam ∧ g ^ q = k * h * z := by
+    intro q hq
+    obtain ⟨z, hzball, hz⟩ := hdecomp q hq
+    exact ⟨z, (RelGenSet.mem_relBall.mp hzball).1, hz⟩
+  obtain ⟨m, hm, hmp⟩ := fixedPeripheralPowerWitness_proved G inferInstance
+    (D.fam lam) g k h S hS hfixed
+  exact no_peripheral_power_of_hyperbolic_finiteFamily D hemb hhyper hord lam m hm hmp
+
+/-- Model test for the source-facing contradiction: the order premise is
+impossible in `PUnit`, so every putative bounded slice is contradictory. -/
+theorem not_fixed_boundedPenetration_power_slice_trivialModel
+    {I : Type v} [Finite I] (D : RelGenSet PUnit I)
+    (hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    False := by
+  exact hord 1 (by omega) (Subsingleton.elim _ _)
+
+end RelHyp
+end GGT
+end GroupApproximation
