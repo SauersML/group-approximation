@@ -685,10 +685,9 @@ structure LayerIncidenceInjection
   /-- Different positions have different face-incidence pairs. -/
   injective : ∀ (i : Fin depth), Function.Injective (encode i)
 
-/-- Geometric input for the centered-window injection.  A surviving boundary
-position selects its first face in the specified star layer.  The incidence
-slot is not supplied: it is reconstructed from the duplicate-free stored
-boundary of that face. -/
+/-! Geometric input for the centered-window injection.  A surviving boundary
+position selects its first face in the specified star layer and an incidence
+slot in that face. -/
 structure CenteredWindowFirstLayerIncidence
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) where
@@ -960,6 +959,30 @@ theorem nonempty_powerDiscCandidate_of_literalFilling
     boundary_eq := hboundary
     relatorOnly := hrelatorOnly }⟩
 
+/-- The exact-boundary cactus retyping bridge.  Once the free-group-trivial
+complementary cell has been removed, the resulting diagram has the literal
+power boundary and the relator-only field required by the power-disc
+candidate. -/
+theorem nonempty_powerDiscCandidate_of_cactusRetyping
+    (word : List (TriangularHodgeLayer.SignedGenerator Generator))
+    (hword : PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (PresentedGroupRelatorReplay.word word) = g)
+    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1)
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (C : VanKampen.CactusRelatorRetyping Delta)
+    (hboundary : C.diagram.boundaryWord =
+      (List.replicate n (word.map signedFreeRelLetter)).flatten) :
+    Nonempty (PowerDiscCandidate T g n) := by
+  have hrelatorOnly : RelatorOnly T C.diagram where
+    cell := C.relatorOnly.cell
+  exact ⟨{
+    word := word
+    represents := hword
+    diagram := C.diagram
+    boundary_eq := hboundary
+    relatorOnly := hrelatorOnly }⟩
+
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
     (hred : D.diagram.Reduced) : PowerDisc T g n where
@@ -1028,6 +1051,32 @@ abbrev CancellationReducesArea (D : PowerDiscCandidate T g n) : Prop :=
       (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
     ∃ D' : PowerDiscCandidate T g n,
       D'.diagram.rCellCount < D.diagram.rCellCount
+
+/-- A power-disc cancellation cut packages the result of deleting a mirror
+pair, its unchanged literal boundary, and the two-cell area drop. -/
+structure PowerDiscMirrorPairCut (D : PowerDiscCandidate T g n) where
+  result : PowerDiscCandidate T g n
+  boundaryWord_eq : result.diagram.boundaryWord = D.diagram.boundaryWord
+  area_eq : result.diagram.rCellCount + 2 = D.diagram.rCellCount
+
+/-- A supplied mirror-pair cut proves the cancellation premise by arithmetic. -/
+theorem cancellationReducesArea_of_mirrorPairCut
+    (D : PowerDiscCandidate T g n)
+    (cut : ∀ (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+      (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)),
+      D.diagram.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
+      (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+        (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
+      PowerDiscMirrorPairCut D) :
+    CancellationReducesArea D := by
+  intro pre between suf C₁ C₂ hsplit hcancel
+  obtain ⟨cut, _hboundary, harea⟩ := cut pre between suf C₁ C₂ hsplit hcancel
+  refine ⟨cut.result, ?_⟩
+  have harea' := harea
+  omega
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
