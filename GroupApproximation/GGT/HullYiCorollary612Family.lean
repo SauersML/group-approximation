@@ -653,8 +653,9 @@ theorem middleMatchedLetter_mem_relBall
     group
   rw [huEq]
   convert hprod using 1
+  · congr 1
+    omega
   · exact mul_assoc (c 1) v ((e 1)⁻¹)
-  · ring
 
 /-! ## DGO Corollary 6.12, finite-family form -/
 
