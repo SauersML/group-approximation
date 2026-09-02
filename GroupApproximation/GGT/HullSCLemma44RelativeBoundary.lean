@@ -45,6 +45,7 @@ theorem exists_positive_least_relatorArea
       ∀ {m : ℕ},
         RelatorDefectBudget.IsRelatorProduct
           (GGT.RelLetter.listVal '' W) m boundary → area ≤ m := by
+  classical
   have hex : ∃ area, RelatorDefectBudget.IsRelatorProduct
       (GGT.RelLetter.listVal '' W) area boundary :=
     RelatorDefectBudget.exists_isRelatorProduct hboundary
@@ -58,7 +59,7 @@ theorem exists_positive_least_relatorArea
         (GGT.RelLetter.listVal '' W) 0 boundary := by
       simpa only [hzero] using harea
     exact hne hareaZero.eq_one_of_index_zero
-  exact ⟨area, hpositive, harea, fun h ⇒ Nat.find_min' hex h⟩
+  exact ⟨area, hpositive, harea, fun h => Nat.find_min' hex h⟩
 
 /-- The least-area normal-closure product, flattened and oriented factor by
 factor, gives a reduced diagram with the supplied boundary spelling. -/
@@ -183,7 +184,8 @@ theorem boundaryWord_length_pos_of_relativeDehnCut
     {W : Set (List (GGT.RelLetter G Lambda))} {eps : ℕ}
     {q : G →* Q} {boundaryWord : List G}
     (C : RelativeDehnCut D W eps q boundaryWord) : 0 < boundaryWord.length := by
-  have hnonneg : 0 ≤ C.contiguity.shortenedBoundaryWord.length := Nat.zero_le _
+  have hlt : C.contiguity.shortenedBoundaryWord.length < boundaryWord.length :=
+    C.length_lt
   omega
 
 /-- A one-point source has no nontrivial boundary to which the construction
