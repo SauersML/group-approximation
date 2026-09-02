@@ -80,6 +80,14 @@ def faceSetBoundaryPeelWitness_of_planarCertificate
     FaceSetBoundaryPeelWitness boundary :=
   certificate.to_witness
 
+/-- Alias used by the planar-map consumer. -/
+def faceSetBoundaryPeelWitness_of_planar
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (certificate : PlanarFacePeelCertificate boundary) :
+    FaceSetBoundaryPeelWitness boundary :=
+  faceSetBoundaryPeelWitness_of_planarCertificate boundary certificate
+
 /-- A family of extremal planar certificates supplies the local oracle used by
 the finite termination theorem. -/
 theorem faceSetBoundaryPeeling_of_planarCertificates
