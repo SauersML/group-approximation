@@ -116,6 +116,7 @@ shape of Lemma 4.21(b), with the stronger rank-indexed interface exposed. -/
 def DGO421OrderedOccurrenceProducer : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
       ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
       0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
@@ -133,8 +134,8 @@ Lemma 4.21(b).  The conversion is the combinatorial separator bridge in the
 DGO proof; only the producer's geometric existence remains. -/
 theorem dgoLemma421b_of_orderedOccurrenceProducer
     (h : DGO421OrderedOccurrenceProducer.{u, w}) : DGOLemma421b.{u, w} := by
-  intro G _ Λ D hhyp
-  obtain ⟨C, hC⟩ := h G Λ D hhyp
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC⟩ := h G Λ D hhyp hbase
   refine ⟨C, ?_⟩
   intro eps K heps hK
   obtain ⟨R, hR, hRall⟩ := hC eps K heps hK

@@ -71,6 +71,7 @@ every `n`-gon. -/
 def DGOProposition414Uniform : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
       ∀ mu c : ℝ, 1 ≤ mu → 0 ≤ c →
       ∃ C : ℕ, 0 < C ∧
         DGOUniformSumBound D mu c C ∧
@@ -86,9 +87,10 @@ def DGOProposition414Uniform : Prop :=
 theorem dgoUniformSumBound_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) (D : RelGenSet G Λ)
     (hhyp : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet))
+    (hbase : DGO421BaseSymmetric D)
     (mu c : ℝ) (hmu : 1 ≤ mu) (hc : 0 ≤ c) :
     ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound D mu c C := by
-  obtain ⟨C, hC, hsum, hbound⟩ := h G Λ D hhyp mu c hmu hc
+  obtain ⟨C, hC, hsum, hbound⟩ := h G Λ D hhyp hbase mu c hmu hc
   refine ⟨C, hC, ?_⟩
   exact hsum
 
@@ -1390,8 +1392,8 @@ theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
 /-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
 theorem dgoLemma421a_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
-  intro G _ Λ D hhyp
-  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp 1 1
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp hbase 1 1
     le_rfl (by norm_num)
   refine ⟨50 * C, ?_⟩
   intro v word hlet hW1 hW2 hW3 i j hij hj
@@ -2069,6 +2071,7 @@ is read from an unspecified basepoint on `q` and says nothing about the pair
 def DGO421FiniteAbsorptionConclusion : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
       ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
       0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
@@ -2098,13 +2101,13 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) :
     DGO421FiniteAbsorptionConclusion.{u, w} := by
   classical
-  intro G _ Λ D hhyp
+  intro G _ Λ D hhyp hbase
   obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
-    h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
+    h G Λ D hhyp hbase 4 1 (by norm_num) (by norm_num)
   obtain ⟨C11, hC11, hsum11, _hproj11⟩ :=
-    h G Λ D hhyp 1 1 (by norm_num) (by norm_num)
+    h G Λ D hhyp hbase 1 1 (by norm_num) (by norm_num)
   have hAall := dgoLemma421a_of_uniform414 h
-  obtain ⟨CA, hA⟩ := hAall G Λ D hhyp
+  obtain ⟨CA, hA⟩ := hAall G Λ D hhyp hbase
   let C := max (50 * C11) (max (50 * C414) (50 * CA))
   refine ⟨C, ?_⟩
   intro eps K heps hK

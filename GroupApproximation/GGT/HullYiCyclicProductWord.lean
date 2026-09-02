@@ -1208,6 +1208,7 @@ theorem exists_consecutiveMatches_cyclicPeripheralPowerWord_of_dgoLemma421b
     (h421b : DGOLemma421b.{u, 0}) {k : ℕ}
     (D : RelGenSet G (Fin (k + 1)))
     (hhyp : ∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet))
+    (hbase : DGO421BaseSymmetric D)
     (hk : 1 ≤ k) (eps : ℝ) (K : ℕ) (heps : 0 < eps) (hK : 0 < K) :
     ∃ C R : ℕ, 0 < R ∧
       ∀ (a b : Fin (k + 1) → G),
@@ -1236,7 +1237,7 @@ theorem exists_consecutiveMatches_cyclicPeripheralPowerWord_of_dgoLemma421b
             (vertex vp (cyclicPeripheralPowerWord a n) (ip t))⁻¹ *
               vertex vq (cyclicPeripheralPowerWord b n) (iq t)
                 ∈ D.fam (lam t) := by
-  obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+  obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp hbase
   obtain ⟨R, hR, hmatch⟩ := hraw eps K heps hK
   refine ⟨C, R, hR, ?_⟩
   intro a b ha hb hdeepA hdeepB n hn vp vq hstart hend
@@ -1285,6 +1286,7 @@ theorem exists_depth_hasConsecutiveComponentMatchData_of_positiveNormalizer
   let D : RelGenSet G (Fin (k + 1)) :=
     coneOffFamily A (fun i ↦ elementaryClosure (f i))
   obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+    A.symmetricGenerating.inv_mem
   refine ⟨C, ?_⟩
   intro a ha hdeep t q hq hnormalize
   let K := 2 * (k + 1) + 1

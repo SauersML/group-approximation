@@ -123,6 +123,7 @@ theorem exists_depth_hasPositivePowerNormalizer_cyclicProduct_of_dgoLemma421b
   let D : RelGenSet G (Fin (k + 1)) :=
     coneOffFamily A (fun i ↦ elementaryClosure (f i))
   obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+    A.symmetricGenerating.inv_mem
   refine ⟨C, ?_⟩
   intro a ha hdeep hlox t ht
   obtain ⟨q, hq, hpos | hneg⟩ :=

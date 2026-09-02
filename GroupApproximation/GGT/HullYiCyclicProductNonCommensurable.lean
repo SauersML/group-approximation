@@ -117,6 +117,7 @@ theorem exists_depth_pairwiseNonCommensurable_cyclicProducts_of_dgoLemma421b
   let D : RelGenSet G (Fin (k + 1)) :=
     coneOffFamily A (fun i ↦ elementaryClosure (f i))
   obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
+    A.symmetricGenerating.inv_mem
   refine ⟨C, ?_⟩
   intro ι a ha hdeep hlox hcommon hcentral hinter hterminal
     j l hjl p q hp hq t heq

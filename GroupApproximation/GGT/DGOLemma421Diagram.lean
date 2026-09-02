@@ -24,12 +24,6 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- The symmetry assumption on the relative base needed to read `revWord` as a
-word over the same relative alphabet.  This is the `X = X⁻¹` convention in
-Dahmani--Guirardel--Osin's Section 4. -/
-def DGO421BaseSymmetric (D : RelGenSet G Λ) : Prop :=
-  ∀ x ∈ D.base, x⁻¹ ∈ D.base
-
 /-- Reversal admissibility for every admissible relative word.  This is the
 same letter condition used when the fourth side of the DGO four-gon is read
 backwards. -/

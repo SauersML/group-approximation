@@ -34,11 +34,12 @@ The threshold is uniform in `λ`, `a` and `h`, because the constant in
 `DGOLemma421a` is chosen immediately after the relative generating set. -/
 theorem exists_threshold_isLoxodromic_mul_of_dgoLemma421a
     (h421a : DGOLemma421a.{u, w}) (D : RelGenSet G Λ)
-    (hemb : D.IsHyperbolicallyEmbedded) :
+    (hemb : D.IsHyperbolicallyEmbedded)
+    (hbase : DGO421BaseSymmetric D) :
     ∃ C : ℕ, ∀ (lam : Λ) (a : G), a ∈ D.base → a ∉ D.fam lam →
       ∀ h ∈ D.fam lam, h ∉ D.relBall lam C →
         IsLoxodromic (a * h) (Cayley.base D.alphabet) := by
-  obtain ⟨C, hquasi⟩ := h421a G Λ D hemb.hyperbolic
+  obtain ⟨C, hquasi⟩ := h421a G Λ D hemb.hyperbolic hbase
   refine ⟨C, ?_⟩
   intro lam a ha haH h hh hdeep
   refine ⟨(1 / 2 : ℝ), by norm_num, 1, by norm_num, ?_⟩

@@ -726,7 +726,7 @@ theorem exists_pairwiseNonCommensurable_mul_powers_of_dgoLemma421b
   obtain ⟨Clox, hClox⟩ := exists_threshold_isLoxodromic_mul_of_symm
     D () hbaseD.inv_mem hhyp hgFam
       wg hwgLetter hwgValue hwgNo
-  obtain ⟨Cmatch, hraw⟩ := h421b G Unit D hhyp
+  obtain ⟨Cmatch, hraw⟩ := h421b G Unit D hhyp hbaseD.inv_mem
   obtain ⟨deltaD, hdeltaD⟩ := hhyp
   have hfour : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier ⌈deltaD⌉₊ :=
     isFourPointHyperbolic_of_isHyperbolicSpace_cayley D.alphabet hdeltaD

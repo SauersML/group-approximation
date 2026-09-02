@@ -66,14 +66,25 @@ measured in the enlarged relative metric. -/
 theorem exists_threshold_isLoxodromic_mul_adjoinPair
     (h421a : DGOLemma421a.{u, w}) (D : RelGenSet G Λ)
     (hemb : D.IsHyperbolicallyEmbedded)
+    (hbase : DGO421BaseSymmetric D)
     (lam : Λ) (t : G) (htH : t ∉ D.fam lam) :
     ∃ C : ℕ, ∀ h ∈ D.fam lam, h ∉ (D.adjoinPair t).relBall lam C →
       IsLoxodromic (t * h) (Cayley.base (D.adjoinPair t).alphabet) := by
   have hemb' : (D.adjoinPair t).IsHyperbolicallyEmbedded :=
     (RelGenSet.dgoCorollary427 G Λ D (D.adjoinPair t) rfl
       (RelGenSet.finite_base_symmDiff_adjoinPair D t)).mp hemb
+  have hbase' : DGO421BaseSymmetric (D.adjoinPair t) := by
+    intro x hx
+    rcases hx with (hx | hx) | hx
+    · exact Or.inl (Or.inl (hbase x hx))
+    · rw [hx]
+      exact Or.inr (Or.inr rfl)
+    · rw [Set.mem_singleton_iff] at hx
+      rw [hx, inv_inv]
+      exact Or.inr (Or.inl rfl)
   obtain ⟨C, hC⟩ :=
-    exists_threshold_isLoxodromic_mul_of_dgoLemma421a h421a (D.adjoinPair t) hemb'
+    exists_threshold_isLoxodromic_mul_of_dgoLemma421a h421a (D.adjoinPair t)
+      hemb' hbase'
   refine ⟨C, fun h hh hdeep => ?_⟩
   exact hC lam t (Or.inr (Or.inl rfl)) (by simpa using htH) h
     (by simpa using hh) hdeep

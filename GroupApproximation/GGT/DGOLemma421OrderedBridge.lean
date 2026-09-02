@@ -375,6 +375,7 @@ of clause (b). -/
 def DGO421OrderedBlockConclusion : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
       ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
       0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
@@ -391,8 +392,8 @@ def DGO421OrderedBlockConclusion : Prop :=
 witness tuple the printed statement asserts. -/
 theorem dgoLemma421b_of_orderedBlockConclusion
     (h : DGO421OrderedBlockConclusion.{u, w}) : DGOLemma421b.{u, w} := by
-  intro G _ Λ D hhyp
-  obtain ⟨C, hC⟩ := h G Λ D hhyp
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC⟩ := h G Λ D hhyp hbase
   refine ⟨C, ?_⟩
   intro eps K heps hK
   obtain ⟨R, hR, hRall⟩ := hC eps K heps hK

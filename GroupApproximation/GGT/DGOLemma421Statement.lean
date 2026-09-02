@@ -164,6 +164,18 @@ the relative base `X`. -/
 def BaseEdgeOrTrivial (w : List (RelLetter G Λ)) (k i : ℕ) : Prop :=
   i = k ∨ ∃ x : G, i = k + 1 ∧ w[k]? = some (RelLetter.base x)
 
+/-- **Dahmani--Guirardel--Osin's standing convention on the relative
+generating set.**  Section 4.3 states it outright, immediately before Lemma
+4.21: "*Recall that relative generating sets are always assumed symmetric, so
+`X = X⁻¹` in the following lemma*".
+
+`RelGenSet` does not require it --- only the union `X ⊔ ℋ` is symmetric there
+--- so the convention has to be carried.  It is not decoration: without it
+`relBall_inv` is false, by the counter-model
+`OsinComponents.not_relBall_inv_of_asymmetricBase`. -/
+def DGO421BaseSymmetric (D : RelGenSet G Λ) : Prop :=
+  ∀ x ∈ D.base, x⁻¹ ∈ D.base
+
 /-- **Lemma 4.21(a)**: every path labelled by a word of `W` is
 `(4,1)`-quasi-geodesic.
 
@@ -178,7 +190,8 @@ number by Proposition 4.14 with the constant uniform in the side count.  So
 clause (a) is blocked on the same input as clause (b). -/
 def DGOLemma421a : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
-    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) → ∃ C : ℕ,
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D → ∃ C : ℕ,
       ∀ (v : G) (u : List (RelLetter G Λ)), (∀ a ∈ u, D.IsLetter a) →
         WWord.IsWOne u → WWord.IsWTwo D C u → WWord.IsWThree D u →
           ∀ i j : ℕ, i ≤ j → j ≤ u.length →
@@ -207,6 +220,7 @@ follows, a component's two endpoints differing by its own label, which lies in
 def DGOLemma421b : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
       ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
       0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
