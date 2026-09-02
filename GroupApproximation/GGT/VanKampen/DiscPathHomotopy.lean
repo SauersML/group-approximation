@@ -134,6 +134,43 @@ theorem equivalence : Equivalence (@InnerFaceWordHomotopy G _ Lambda _ Delta) :=
 
 end InnerFaceWordHomotopy
 
+/-! ## Single deletion moves -/
+
+/-- One face-boundary erasure or edge backtrack exposed by a deletion step. -/
+inductive ElementaryPathMove
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v}) :
+    List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
+  | faceErase (face : Delta.toCombMap.Face) (hface : face ≠ Delta.outerFace)
+      (before after : List Delta.toCombMap.Dart) :
+      ElementaryPathMove Delta
+        (before ++ (Delta.faceBoundary face).darts ++ after)
+        (before ++ after)
+  | backtrackErase (dart : Delta.toCombMap.Dart)
+      (before after : List Delta.toCombMap.Dart) :
+      ElementaryPathMove Delta
+        (before ++ dart :: Delta.toCombMap.alpha dart :: after)
+        (before ++ after)
+
+namespace ElementaryPathMove
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (GGT.RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v} W}
+
+/-- Every single deletion move is an allowed inner-face word homotopy. -/
+theorem toHomotopy {a b : List Delta.toCombMap.Dart}
+    (h : ElementaryPathMove Delta a b) :
+    InnerFaceWordHomotopy Delta a b := by
+  cases h with
+  | faceErase face hface before after =>
+      exact InnerFaceWordHomotopy.erase face hface before after
+  | backtrackErase dart before after =>
+      exact InnerFaceWordHomotopy.eraseBacktrack dart before after
+
+end ElementaryPathMove
+
 /-! ## The exact consumer proposition -/
 
 /-- Two rooted edge paths to the same vertex differ by inner-face boundary
@@ -153,8 +190,8 @@ abbrev RootedPathsFaceComplete
 /-- One planar face-deletion step for a pair of rooted paths.  The selected
 faces are inner faces, `region` says that they form a disc, and `common` is
 the path left after deleting a face adjacent to one of the two paths.  The
-two homotopies are the boundary insertion or erasure used to lift the
-induction result back to the original diagram. -/
+single elementary move is the boundary insertion or erasure used to lift
+the induction result back to the original diagram. -/
 structure FaceDeletionStep
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -172,10 +209,8 @@ structure FaceDeletionStep
       (common : DartPath Delta.toCombMap R.root vertex),
       (∀ f, f ∈ faces → f ≠ Delta.outerFace) ∧
       region.toBoundaryCycle.cycle ≠ [] ∧
-      InnerFaceWordHomotopy Delta p.darts common.darts ∧
-      InnerFaceWordHomotopy Delta q.darts common.darts ∧
-      rank vertex common < rank vertex p ∧
-      rank vertex common < rank vertex q
+      ElementaryPathMove Delta p.darts common.darts ∧
+      rank vertex common < rank vertex p
 
 namespace FaceDeletionStep
 
@@ -194,7 +229,7 @@ theorem replacement_planar
         Delta.toCombMap faces),
       (VanKampen.Surgery.MapCollapse.replaceGRegion
         Delta.toCombMap faces region).IsPlanar := by
-  obtain ⟨faces, region, common, _hinner, _hcycle, _hp, _hq, _hrp, _hrq⟩ :=
+  obtain ⟨faces, region, common, _hinner, _hcycle, _hp, _hrp⟩ :=
     S.delete vertex p q hpq
   exact ⟨faces, region,
     VanKampen.Surgery.MapCollapse.replaceGRegion_planar
@@ -227,19 +262,15 @@ theorem rootedPathsFaceComplete_of_faceDeletionStep
       by_cases hpq : p = q
       · subst q
         exact InnerFaceWordHomotopy.refl p.darts
-      · obtain ⟨_faces, _region, common, _hinner, _hcycle, hp, hq, hpc, hqc⟩ :=
+      · obtain ⟨_faces, _region, common, _hinner, _hcycle, hp, hpc⟩ :=
           S.delete vertex p q hpq
-        have hpc_lt : S.rank vertex p + S.rank vertex common < total := by
+        have hpc_lt : S.rank vertex common + S.rank vertex q < total := by
           rw [← htotal]
           omega
-        have hqc_lt : S.rank vertex q + S.rank vertex common < total := by
-          rw [← htotal]
-          omega
-        have hpc' := ih (S.rank vertex p + S.rank vertex common)
-          hpc_lt vertex p common rfl
-        have hqc' := ih (S.rank vertex q + S.rank vertex common)
-          hqc_lt vertex q common rfl
-        exact hpc'.trans hqc'.symm
+        have hpc' := ih (S.rank vertex common + S.rank vertex q)
+          hpc_lt vertex common q rfl
+        exact (ElementaryPathMove.toHomotopy hp).trans
+          hpc'
 
 /-- The clean interface turns a face-deletion witness into the exact named
 path-completeness proposition. -/
