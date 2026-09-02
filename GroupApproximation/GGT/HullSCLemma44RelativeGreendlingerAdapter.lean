@@ -94,9 +94,11 @@ theorem exists_realized_relativeGreendlingerWitness
   intro W hcondition R Z hboundary
   obtain ⟨C⟩ := hreal D W R Z
   have hred : C.diagram.Reduced := C.reduced
-  have hcells : 0 < C.diagram.rCellCount := C.rCellCount_pos
+  have hcells : 0 < C.diagram.rCellCount :=
+    RelativeDiscRealization.rCellCount_pos C
   have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c
-      C.diagram.boundaryWord := C.boundary_quasiGeodesic hboundary
+      C.diagram.boundaryWord :=
+    RelativeDiscRealization.boundary_quasiGeodesic C hboundary
   obtain ⟨Delta', hequiv, faces, Gamma, htarget, hlarge⟩ :=
     hgood W hcondition C.diagram hred hcells hboundary'
   exact ⟨C, Delta', hequiv, faces, Gamma, htarget, hlarge⟩
