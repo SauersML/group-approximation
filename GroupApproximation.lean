@@ -3257,6 +3257,8 @@ import GroupApproximation.GGT.DGOProposition414ArcTerminalSeam
 import GroupApproximation.GGT.VanKampen.FaceShelling
 import GroupApproximation.GGT.VanKampen.Estimating.SelectionSelfIncidence
 import GroupApproximation.GGT.VanKampen.Estimating.SelectionDichotomy
+import GroupApproximation.GGT.DGOProposition435FiniteLetters
+import GroupApproximation.GGT.VanKampen.FaceSetWordHomotopyCore
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
