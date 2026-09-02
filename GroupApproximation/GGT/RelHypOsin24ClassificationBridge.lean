@@ -110,6 +110,39 @@ theorem isEscaping_of_linear_lower_bound
   exact linearLowerBoundEscape_proved
     (fun n : ℕ => dist x ((g ^ n) • x)) l B hl hB hlin
 
+/-- **Finite-alphabet power escape.**  This is a strictly smaller geometric
+specialisation of `RelativePowerEscapeStatement`: when the entire labelled
+alphabet is finite, ordinary properness proves escape for every infinite-order
+element, without using peripheral components. -/
+def FiniteAlphabetRelativePowerEscapeStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) (D : RelGenSet G I),
+    D.alphabet.carrier.Finite → ∀ g : G,
+      (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+        IsEscaping g (Cayley.base D.alphabet)
+
+/-- The finite-alphabet specialisation follows from properness of a finite
+Cayley graph. -/
+theorem finiteAlphabetRelativePowerEscape_proved :
+    FiniteAlphabetRelativePowerEscapeStatement.{u, v} := by
+  intro G instG I D halphabet g hord
+  letI : Group G := instG
+  have hnot : ¬ IsOfFinOrder g := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    exact hord n hn hpow
+  exact HullSCUnionGeometry.isEscaping_cayley_of_not_isOfFinOrder
+    D.alphabet halphabet hnot
+
+/-- Empty peripherals with a finite base satisfy the finite-alphabet model
+assumption, so this theorem recovers `relativePowerEscape_emptyModel`. -/
+theorem finiteAlphabetRelativePowerEscape_emptyModel
+    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
+    (D : RelGenSet G I) (hfinite : D.base.Finite) (g : G)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  apply finiteAlphabetRelativePowerEscape_proved G inferInstance I D
+    (relGenSet_alphabet_finite_of_isEmpty D hfinite) g hord
+
 /-! ### The missing finite-base binder is load-bearing
 
 The source theorem is a theorem for a finite relative generating set.  The
