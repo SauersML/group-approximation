@@ -1405,8 +1405,12 @@ theorem dgoLemma421a_of_uniform414
       have hend : vertex (vertex v word i) segment segment.length =
           vertex v word j := by
         rw [hsegmentLength]
-        simpa [segment] using
-          (vertex_segment word v i (j - i) (j - i) le_rfl)
+        calc
+          vertex (vertex v word i) segment (j - i) =
+              vertex v word (i + (j - i)) := by
+            simpa [segment] using
+              (vertex_segment word v i (j - i) (j - i) le_rfl)
+          _ = vertex v word j := by rw [show i + (j - i) = j by omega]
       rw [hend] at hwhole
       omega
 
