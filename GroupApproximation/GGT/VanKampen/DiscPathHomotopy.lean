@@ -170,7 +170,7 @@ structure FaceDeletionStep
       (region : VanKampen.Surgery.MapCollapse.IsDiscRegion
         Delta.toCombMap faces)
       (common : DartPath Delta.toCombMap R.root vertex),
-      (∀ f, f ∈ faces → f ∈ Delta.innerFaces) ∧
+      (∀ f, f ∈ faces → f ≠ Delta.outerFace) ∧
       InnerFaceWordHomotopy Delta p.darts common.darts ∧
       InnerFaceWordHomotopy Delta q.darts common.darts ∧
       rank vertex common < rank vertex p ∧
