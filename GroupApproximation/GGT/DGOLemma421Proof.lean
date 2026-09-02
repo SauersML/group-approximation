@@ -1628,7 +1628,7 @@ assigned to one of `M` short-side slots, then `M + 1` consecutive blocks of
 length `K` contain one whole block of opposite matches.  Distinct unmatched
 sources must have distinct short slots. -/
 theorem exists_consecutive_block_of_short_absorption
-    {K M : ℕ} (hK : 0 < K)
+    {K M : ℕ} (_hK : 0 < K)
     (Matched : Fin (K * (M + 1)) → Prop)
     (short : Fin (K * (M + 1)) → Fin M)
     (hclass : ∀ i, Matched i ∨ ∃ z : Fin M, ¬ Matched i ∧ short i = z)
@@ -1636,39 +1636,81 @@ theorem exists_consecutive_block_of_short_absorption
     ∃ b : Fin (M + 1),
       ∀ j : Fin K,
         Matched ⟨b.val * K + j.val, by
-          have hb := b.isLt
-          have hj := j.isLt
-          omega⟩ := by
+          have hstep : b.val * K + j.val < b.val * K + K :=
+            Nat.add_lt_add_left j.isLt _
+          have hbM : b.val ≤ M := Nat.le_of_lt_succ b.isLt
+          have hblock : b.val * K + K ≤ (M + 1) * K := by
+            calc
+              b.val * K + K ≤ M * K + K :=
+                Nat.add_le_add_right (Nat.mul_le_mul_right K hbM) K
+              _ = (M + 1) * K := by rw [Nat.succ_mul]
+          rw [Nat.mul_comm K (M + 1)]
+          exact lt_of_lt_of_le hstep hblock⟩ := by
   classical
   by_contra hnone
   push Not at hnone
   have hbad : ∀ b : Fin (M + 1),
       ∃ j : Fin K,
         ¬ Matched ⟨b.val * K + j.val, by
-          have hb := b.isLt
-          have hj := j.isLt
-          omega⟩ := by
+          have hstep : b.val * K + j.val < b.val * K + K :=
+            Nat.add_lt_add_left j.isLt _
+          have hbM : b.val ≤ M := Nat.le_of_lt_succ b.isLt
+          have hblock : b.val * K + K ≤ (M + 1) * K := by
+            calc
+              b.val * K + K ≤ M * K + K :=
+                Nat.add_le_add_right (Nat.mul_le_mul_right K hbM) K
+              _ = (M + 1) * K := by rw [Nat.succ_mul]
+          rw [Nat.mul_comm K (M + 1)]
+          exact lt_of_lt_of_le hstep hblock⟩ := by
     intro b
-    by_contra hall
-    push Not at hall
-    exact hnone b hall
+    exact hnone b
   let chosen : Fin (M + 1) → Fin (K * (M + 1)) := fun b =>
     let j := Classical.choose (hbad b)
     ⟨b.val * K + j.val, by
-      have hb := b.isLt
-      have hj := j.isLt
-      omega⟩
+      have hstep : b.val * K + j.val < b.val * K + K :=
+        Nat.add_lt_add_left j.isLt _
+      have hbM : b.val ≤ M := Nat.le_of_lt_succ b.isLt
+      have hblock : b.val * K + K ≤ (M + 1) * K := by
+        calc
+          b.val * K + K ≤ M * K + K :=
+            Nat.add_le_add_right (Nat.mul_le_mul_right K hbM) K
+          _ = (M + 1) * K := by rw [Nat.succ_mul]
+      rw [Nat.mul_comm K (M + 1)]
+      exact lt_of_lt_of_le hstep hblock⟩
   have hchosenBad : ∀ b : Fin (M + 1), ¬ Matched (chosen b) := by
     intro b
     dsimp [chosen]
     exact (Classical.choose_spec (hbad b))
   have hsourceInj : Function.Injective chosen := by
     intro a b hab
-    have hv := congrArg Fin.val hab
-    have ha := (Classical.choose (hbad a)).isLt
-    have hb := (Classical.choose (hbad b)).isLt
-    apply Fin.ext
-    omega
+    by_contra hne
+    rcases lt_or_gt_of_ne hne with hablt | hblt
+    · have hstep : (a.val + 1) * K ≤ b.val * K := by
+        exact Nat.mul_le_mul_right K (Nat.succ_le_of_lt hablt)
+      have hstep' : a.val * K + K ≤ b.val * K := by
+        simpa [Nat.succ_mul] using hstep
+      have haUpper : (chosen a).val < a.val * K + K := by
+        dsimp [chosen]
+        exact Nat.add_lt_add_left (Classical.choose (hbad a)).isLt _
+      have hbLower : b.val * K ≤ (chosen b).val := by
+        dsimp [chosen]
+        exact Nat.le_add_right _ _
+      have hlt : (chosen a).val < (chosen b).val :=
+        lt_of_lt_of_le (lt_of_lt_of_le haUpper hstep') hbLower
+      exact (Nat.ne_of_lt hlt) (congrArg Fin.val hab)
+    · have hstep : (b.val + 1) * K ≤ a.val * K := by
+        exact Nat.mul_le_mul_right K (Nat.succ_le_of_lt hblt)
+      have hstep' : b.val * K + K ≤ a.val * K := by
+        simpa [Nat.succ_mul] using hstep
+      have hbUpper : (chosen b).val < b.val * K + K := by
+        dsimp [chosen]
+        exact Nat.add_lt_add_left (Classical.choose (hbad b)).isLt _
+      have haLower : a.val * K ≤ (chosen a).val := by
+        dsimp [chosen]
+        exact Nat.le_add_right _ _
+      have hlt : (chosen b).val < (chosen a).val :=
+        lt_of_lt_of_le (lt_of_lt_of_le hbUpper hstep') haLower
+      exact (Nat.ne_of_lt hlt) (congrArg Fin.val hab).symm
   let owner : Fin (M + 1) → Fin M := fun b =>
     Classical.choose (hclass (chosen b) |>.resolve_left (hchosenBad b))
   have hownerSpec : ∀ b : Fin (M + 1),
@@ -1686,6 +1728,81 @@ theorem exists_consecutive_block_of_short_absorption
     exact hsourceInj hchosenEq
   have hcard := Fintype.card_le_of_injective owner hownerInj
   simp only [Fintype.card_fin] at hcard
+  omega
+
+/-! ## Strictly interior peripheral occurrences -/
+
+/-- The canonical occurrences used as sources start after the first vertex and
+end before the last letter. -/
+noncomputable def strictInteriorOccurrences
+    (word : List (RelLetter G Λ)) :
+    Finset (Fin (peripheralPositions word).card) :=
+  (internalPeripheralOccurrences word).filter fun t =>
+    0 < (peripheralOccurrence word t).pos
+
+omit [Group G] in
+@[simp] theorem mem_strictInteriorOccurrences
+    {word : List (RelLetter G Λ)}
+    {t : Fin (peripheralPositions word).card} :
+    t ∈ strictInteriorOccurrences word ↔
+      0 < (peripheralOccurrence word t).pos ∧
+        (peripheralOccurrence word t).pos + 1 < word.length := by
+  constructor
+  · intro ht
+    have ht' : t ∈ internalPeripheralOccurrences word ∧
+        0 < (peripheralOccurrence word t).pos := by
+      simpa [strictInteriorOccurrences] using ht
+    exact ⟨ht'.2, mem_internalPeripheralOccurrences.mp ht'.1⟩
+  · intro ht
+    apply Finset.mem_filter.mpr
+    exact ⟨mem_internalPeripheralOccurrences.mpr ht.2, ht.1⟩
+
+/-- At most one peripheral occurrence can start at the first position, so the
+strictly interior occurrences lose at most two positions in total. -/
+omit [Group G] in
+theorem peripheralCount_le_strictInterior_card_add_two
+    (word : List (RelLetter G Λ)) :
+    peripheralCount word ≤ (strictInteriorOccurrences word).card + 2 := by
+  classical
+  let Internal := internalPeripheralOccurrences word
+  let Zero : Finset (Fin (peripheralPositions word).card) :=
+    Internal.filter fun t => (peripheralOccurrence word t).pos = 0
+  let Positive : Finset (Fin (peripheralPositions word).card) :=
+    Internal.filter fun t => 0 < (peripheralOccurrence word t).pos
+  have hzero : Zero.card ≤ 1 := by
+    rw [Finset.card_le_one]
+    intro a ha b hb
+    have ha0 : (peripheralOccurrence word a).pos = 0 := by
+      simpa [Zero] using (Finset.mem_filter.mp ha).2
+    have hb0 : (peripheralOccurrence word b).pos = 0 := by
+      simpa [Zero] using (Finset.mem_filter.mp hb).2
+    rcases lt_trichotomy a b with hab | hab | hba
+    · have hpos := peripheralOccurrence_pos_lt word hab
+      omega
+    · exact hab
+    · have hpos := peripheralOccurrence_pos_lt word hba
+      omega
+  have hpartition : Positive.card + Zero.card = Internal.card := by
+    have hpart := Finset.card_filter_add_card_filter_not
+      (s := Internal) (p := fun t => 0 < (peripheralOccurrence word t).pos)
+    have hnotEq : Internal.filter (fun t =>
+        ¬ 0 < (peripheralOccurrence word t).pos) = Zero := by
+      ext t
+      simp [Zero]
+    have hnot : (Internal.filter fun t =>
+        ¬ 0 < (peripheralOccurrence word t).pos).card = Zero.card := by
+      exact congrArg Finset.card hnotEq
+    rw [hnot] at hpart
+    exact hpart
+  have hpositiveEq : Positive = strictInteriorOccurrences word := by
+    ext t
+    simp [Positive, strictInteriorOccurrences, Internal,
+      mem_internalPeripheralOccurrences]
+  have hcardInternal : Internal.card + 1 ≥ peripheralCount word := by
+    exact peripheralCount_le_internal_card_add_one word
+  have hpositiveCard : Positive.card =
+      (strictInteriorOccurrences word).card :=
+    congrArg Finset.card hpositiveEq
   omega
 
 end OsinComponents
