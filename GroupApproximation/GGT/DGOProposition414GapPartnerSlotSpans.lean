@@ -68,7 +68,7 @@ theorem firstBrokenPartnerSlot_span
     _ = _ := by
       change ((orientedSegment B.chord (B.secondGapChordStart j)
         (B.secondGapChordFinish j))[r]'_).val = _
-      exact orientedEdgeIndex_val B.chord
+      exact AuxiliaryCyclePathInput.orientedEdgeIndex_val B.chord
         (B.secondGapChordStart_le j) (B.secondGapChordFinish_le j)
         (B.brokenAssignment.first.partner_lt s hs) hedge
 
@@ -119,7 +119,7 @@ theorem secondBrokenPartnerSlot_span
     _ = _ := by
       change ((orientedSegment B.chord (B.firstGapChordStart j)
         (B.firstGapChordFinish j))[r]'_).val = _
-      exact orientedEdgeIndex_val B.chord
+      exact AuxiliaryCyclePathInput.orientedEdgeIndex_val B.chord
         (B.firstGapChordStart_le j) (B.firstGapChordFinish_le j)
         (B.brokenAssignment.second.partner_lt s hs) hedge
 
