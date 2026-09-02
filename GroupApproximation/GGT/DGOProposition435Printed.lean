@@ -1,4 +1,3 @@
-import GroupApproximation.GGT.DGOProposition435HullJoint
 import GroupApproximation.GGT.WPDElementaryEmbedding
 
 /-!
