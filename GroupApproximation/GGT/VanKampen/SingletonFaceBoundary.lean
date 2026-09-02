@@ -41,10 +41,9 @@ def NoInternalFaceDart (M : CombMap) (f : M.Face) : Prop :=
   ∀ d, M.faceOf d = f → M.faceOf (M.alpha d) ≠ f
 
 theorem singleton_boundary_iff_of_noInternalFaceDart
-    (f : Delta.toCombMap.Face) (hno : NoInternalFaceDart Delta.toCombMap f)
-    (d : Delta.toCombMap.Dart) :
-    IsBoundaryDart Delta.toCombMap ({f} : Finset Delta.toCombMap.Face) d ↔
-      Delta.toCombMap.faceOf d = f := by
+    {M : CombMap} (f : M.Face) (hno : NoInternalFaceDart M f)
+    (d : M.Dart) :
+    IsBoundaryDart M ({f} : Finset M.Face) d ↔ M.faceOf d = f := by
   constructor
   · intro hd
     exact Finset.mem_singleton.mp hd.1
@@ -150,9 +149,9 @@ theorem oneTriangle_noInternalFaceDart (i : ZMod 3) :
   obtain ⟨j, b⟩ := d
   cases b with
   | false =>
-      intro h
       change oneTriangleCombMap.faceOf (j, true) ≠
         oneTriangleCombMap.faceOf (i, false)
+      intro h
       exact oneTriangle_face_false_ne_true i j h.symm
   | true =>
       change oneTriangleCombMap.faceOf (j, false) ≠
