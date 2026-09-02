@@ -180,6 +180,47 @@ def cellPieceEquations_of_contiguity
     CellPieceEquations Gamma :=
   cellPieceEquations_of_pasting Gamma (contiguity_pasting Gamma) htarget hne
 
+/-- **The non-cancellation clause of a region, from reducedness alone.**  The
+region's `o52Certificate` field plus `Delta.Reduced` give it; no producer and no
+`InteriorEdge` packaging is involved. -/
+theorem Contiguity.whole_ne_of_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (hred : Delta.Reduced)
+    {target : Fin Delta.rCellCount} (htarget : Gamma.target = some target) :
+    GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+  obtain ⟨pre, between, suf, hsplit, hsf, htf, hsource, htargetword, hconn⟩ :=
+    Gamma.o52Certificate target htarget
+  refine whole_ne_of_certificate Gamma target htarget hred hsplit hsf htf
+    hsource ?_ ?_
+  · rw [targetArcAtSome_rotated]
+    exact htargetword
+  · rw [targetArcAtSome_darts]
+    exact hconn
+
+/-- **The two-arc certificate of a region, from reducedness alone.**  Both
+inputs are fields: `pasting` for the boundary-dart equation and
+`o52Certificate` for the non-cancellation clause. -/
+def Contiguity.cellPieceEquations_of_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (hred : Delta.Reduced)
+    {target : Fin Delta.rCellCount} (htarget : Gamma.target = some target) :
+    CellPieceEquations Gamma :=
+  cellPieceEquations_of_contiguity Gamma htarget
+    (Gamma.whole_ne_of_reduced hred htarget)
+
 /-- The same certificate from the ear statement, which produces the pasting via
 a face-deletion schedule.  Kept as a corollary; both it and
 `RegionShellingStatement` are now superseded by the `pasting` field. -/
