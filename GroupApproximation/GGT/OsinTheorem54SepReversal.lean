@@ -380,6 +380,107 @@ theorem relBall_inv (D : RelGenSet G Λ) (lam : Λ)
   · rw [length_revWord]
     exact hlen
 
+/-! ## `d̂_λ` is not symmetric without a symmetric base
+
+`relBall_inv` is the one place in this development where base symmetry is not
+bookkeeping.  Reversing a *word* can be avoided by substituting letters
+(`exists_reversibleSubstitute`), but reversing a *path that avoids `Γ_{H λ}`*
+cannot: substituting a base letter by the peripheral letter on the same edge
+changes `AvoidsFrom`, which is exactly what the relative ball is defined by.
+
+The model below shows the statement is false without the hypothesis, so no
+substitution argument can remove it.
+-/
+
+/-- `X = {y⁻¹}` inside `H = G = ⟨y⟩`.  The alphabet `X ⊔ ℋ` is symmetric and
+generates, as `RelGenSet` demands, but the base is not inversion closed. -/
+private def relBallAsymmetricRelGenSet : RelGenSet (Multiplicative ℤ) Unit where
+  base := {Multiplicative.ofAdd (-1 : ℤ)}
+  fam := fun _ => ⊤
+  symmetricGenerating := by
+    constructor
+    · intro x _
+      right
+      simp
+    · have hunion :
+          ({Multiplicative.ofAdd (-1 : ℤ)} : Set (Multiplicative ℤ)) ∪
+            (⋃ _ : Unit, ((⊤ : Subgroup (Multiplicative ℤ)) :
+              Set (Multiplicative ℤ))) = Set.univ := by
+        ext x
+        simp
+      rw [hunion]
+      exact Subgroup.closure_univ
+
+/-- In that model no peripheral letter may ever be read, the peripheral
+subgroup being the whole group, so an admissible path avoiding `Γ_{H λ}`
+spells a negative power of `y`. -/
+private theorem listVal_of_avoidsFrom_relBallAsymmetric :
+    ∀ (w : List (RelLetter (Multiplicative ℤ) Unit)),
+      (∀ a ∈ w, relBallAsymmetricRelGenSet.IsLetter a) →
+        ∀ v : Multiplicative ℤ,
+          AvoidsFrom relBallAsymmetricRelGenSet.fam () w v →
+            RelLetter.listVal w = Multiplicative.ofAdd (-(w.length : ℤ)) := by
+  intro w
+  induction w with
+  | nil =>
+      intro _ _ _
+      simp [RelLetter.listVal_nil]
+  | cons a t ih =>
+      intro hlet v hav
+      obtain ⟨hhead, htail⟩ := hav
+      have hbase : ∃ x : Multiplicative ℤ, a = RelLetter.base x := by
+        cases a with
+        | base x => exact ⟨x, rfl⟩
+        | comp mu h =>
+            refine absurd ⟨?_, ?_⟩ hhead
+            · cases mu
+              rfl
+            · exact Subgroup.mem_top v
+      obtain ⟨x, rfl⟩ := hbase
+      have hx : x = Multiplicative.ofAdd (-1 : ℤ) := by
+        have hmem := hlet _ List.mem_cons_self
+        simpa [relBallAsymmetricRelGenSet, RelGenSet.IsLetter] using hmem
+      subst hx
+      have hrest := ih (fun b hb => hlet b (List.mem_cons_of_mem _ hb))
+        (v * (RelLetter.base (Multiplicative.ofAdd (-1 : ℤ))).val) htail
+      rw [listVal_cons, hrest]
+      show Multiplicative.ofAdd (-1 : ℤ) *
+          Multiplicative.ofAdd (-(t.length : ℤ)) =
+        Multiplicative.ofAdd (-(((t.length + 1 : ℕ)) : ℤ))
+      rw [← ofAdd_add]
+      congr 1
+      push_cast
+      ring
+
+/-- **The symmetry of `d̂_λ` genuinely needs a symmetric base.**  In the model
+above `y⁻¹` lies in the radius-one relative ball while `y` lies in no relative
+ball at all.  So the base-symmetry hypothesis of `relBall_inv` cannot be
+removed, and in particular no letter substitution removes it. -/
+theorem not_relBall_inv_of_asymmetricBase :
+    ¬ ∀ (n : ℕ) (h : Multiplicative ℤ),
+        h ∈ relBallAsymmetricRelGenSet.relBall () n →
+          h⁻¹ ∈ relBallAsymmetricRelGenSet.relBall () n := by
+  intro hinv
+  have hmem : Multiplicative.ofAdd (-1 : ℤ) ∈
+      relBallAsymmetricRelGenSet.relBall () 1 := by
+    refine ⟨Subgroup.mem_top _,
+      [RelLetter.base (Multiplicative.ofAdd (-1 : ℤ))], ?_, ?_, ?_, ?_⟩
+    · intro a ha
+      rw [List.eq_of_mem_singleton ha]
+      show Multiplicative.ofAdd (-1 : ℤ) ∈ relBallAsymmetricRelGenSet.base
+      simp [relBallAsymmetricRelGenSet]
+    · rw [listVal_singleton]
+      rfl
+    · exact ⟨fun hc => hc.1, trivial⟩
+    · simp
+  obtain ⟨-, w, hlet, hval, hav, -⟩ := hinv 1 _ hmem
+  have hw := listVal_of_avoidsFrom_relBallAsymmetric w hlet 1 hav
+  rw [hw] at hval
+  have hval' : (-(w.length : ℤ)) = 1 := by
+    have h := congrArg Multiplicative.toAdd hval
+    simpa [← ofAdd_neg] using h
+  omega
+
 end OsinComponents
 end GGT
 end GroupApproximation
