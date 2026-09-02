@@ -50,6 +50,48 @@ end AuxiliaryCycleCertificate
 
 namespace AuxiliaryCyclePathInput
 
+/-- A one-edge inherited arc side has the value of the corresponding letter
+of the restricted arc word. -/
+theorem arc_sideSpan_eq_letter
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {b : ℕ} (Q : AuxiliaryCyclePathInput D hsymm b)
+    (r : ℕ) (hr : r < Q.arcSides)
+    (hedge : Q.arcCut (r + 1) = Q.arcCut r + 1) :
+    Q.certificate.sideSpan (Q.left.length + r) =
+      (Q.arc[Q.arcCut r]'(by
+        have hle := Q.arcPolygon.cut.le_length
+          (Nat.succ_le_iff.mpr hr)
+        omega)).val := by
+  let word := auxiliaryCycleWord Q.left Q.arc Q.right Q.chord
+  have hcut0 := auxiliaryCycleCut_arc Q.left Q.right
+    Q.arcPolygon.cut hr.le
+  have hcut1 := auxiliaryCycleCut_arc Q.left Q.right
+    Q.arcPolygon.cut (Nat.succ_le_iff.mpr hr)
+  have hcutLe : Q.arcCut r ≤ Q.arc.length :=
+    Q.arcPolygon.cut.le_length hr.le
+  have hcutSuccLe : Q.arcCut r + 1 ≤ Q.arc.length := by
+    have hle := Q.arcPolygon.cut.le_length
+      (Nat.succ_le_iff.mpr hr)
+    omega
+  have hcutLt : Q.arcCut r < Q.arc.length := by omega
+  change (vertex Q.basepoint word
+      (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+        (Q.left.length + r)))⁻¹ *
+      vertex Q.basepoint word
+        (auxiliaryCycleCut Q.left Q.arcSides Q.arcCut Q.right
+          (Q.left.length + r + 1)) =
+      (Q.arc[Q.arcCut r]'hcutLt).val
+  rw [show Q.left.length + r + 1 =
+      Q.left.length + (r + 1) by omega,
+    hcut0, hcut1, hedge,
+    vertex_auxiliaryCycle_arc Q.basepoint Q.left Q.arc Q.right Q.chord hcutLe,
+    vertex_auxiliaryCycle_arc Q.basepoint Q.left Q.arc Q.right Q.chord
+      hcutSuccLe,
+    vertex_succ Q.arc
+      (Q.basepoint * RelLetter.listVal (revWord Q.left))
+      (Q.arcCut r) hcutLt]
+  group
+
 /-- A side on the final chord block has the span of the corresponding chord
 letter. -/
 theorem chord_sideSpan_eq_letter
