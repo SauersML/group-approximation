@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.RelHypRelativeCayley
+import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.CoprodIFinitePresentation
 import GroupApproximation.Kazhdan.AmenableKazhdanFinite
@@ -6,40 +7,28 @@ import Mathlib.GroupTheory.Index
 import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 /-!
-# Relative hyperbolicity, the free product `U ∗ H`, and non-elementarity
+# Labelled relative hyperbolicity, the free product `U ∗ H`, and non-elementarity
 
 Three things the Fournier-Facio input paragraph needs before Osin's small
 cancellation theorem can be quoted at all.
 
 ## 1.  Relative hyperbolicity
 
-Two conditions, in the order Farb and then Dahmani--Guirardel--Osin state
-them.
+`IsRelativelyHyperbolic G H` is the labelled DGO notion: there is a finite
+relative base `X` for which the family `H` is hyperbolically embedded in
+`(G,X)`.  The relative alphabet is the disjoint union of base letters and
+indexed peripheral letters (`RelLetter`), and `d̂_λ` forbids precisely
+`λ`-labelled edges starting in `H_λ`.  Thus equal subgroups with different
+indices remain different edge families.
 
-* `IsWeaklyRelativelyHyperbolic` -- **Farb's condition**: the relative Cayley
-  graph `Γ(G, X ⊔ ℋ)` is Gromov hyperbolic for some finite relative generating
-  set `X`.  This alone is not enough: a free product of two copies of `ℤ`
-  is weakly hyperbolic relative to almost anything, and Farb's own examples
-  show the condition does not control how a relative geodesic enters and
-  leaves a peripheral coset.
-* `PeripheralMetricLocallyFinite` -- the second clause, in the
-  Dahmani--Guirardel--Osin form for a hyperbolically embedded family: the
-  metric `d̂_λ` induced on each `H_λ` by relative paths **avoiding the subgraph
-  spanned by `H_λ`** is locally finite, i.e. each of its balls is a finite set.
-  This is the clause that fails in Farb's examples, and it is stated here over
-  `RelativeGeneratingSet.peripheralLengths` with no new geometry.  In
-  `ℤ² = ⟨a⟩ × ⟨b⟩` with peripheral `⟨a⟩` the coned graph is quasi-isometric to
-  a line and so hyperbolic, while `d̂(1, aⁿ) ≤ 3` for every `n` by the path
-  `b, aⁿ, b⁻¹` through the coset `b⟨a⟩`, so every ball is infinite and this
-  clause fails -- which is the whole reason it is here.
-* `IsRelativelyHyperbolic` -- both together.  Equivalently, and this is Osin's
-  own definition, `G` has a linear relative Dehn function with respect to
-  `{H_λ}`; that equivalence is Osin's Memoirs, Theorem 1.5 and is not proved
-  here, which is why the definition used is the one whose two clauses are each
-  a statement about the object this repository already has.
-
-`IsRelativelyHyperbolic.weak` is the only implication between them that is
-proved, and it is the trivial one.
+This is the characterisation of Osin relative hyperbolicity in
+Dahmani--Guirardel--Osin, arXiv:1111.7048, Proposition 4.28, compared with
+Osin, *Relatively hyperbolic groups*, Memoirs AMS 179 (2006).  The former
+endpoint-only definition remains below solely as the legacy
+`RelativeGeneratingSet`/`PeripheralMetricLocallyFinite` vocabulary.  It is
+not used in `IsRelativelyHyperbolic`: `RelHypOsin24Glue` records the duplicate-
+peripheral countermodel showing that endpoint avoidance forgets labels and is
+strictly stronger than DGO's relative metric.
 
 ## 2.  The free product, and its peripheral factor
 
@@ -104,12 +93,13 @@ universe u v
 
 /-! ## 1.  Relative hyperbolicity -/
 
-/-- **Farb's weak relative hyperbolicity**: some finite relative generating set
-makes the relative Cayley graph `Γ(G, X ⊔ ℋ)` Gromov hyperbolic. -/
+/-- **Farb's weak relative hyperbolicity**, using the same labelled relative
+generating object as the full definition but retaining only its hyperbolicity
+clause. -/
 def IsWeaklyRelativelyHyperbolic (G : Type u) [Group G] {ι : Type v}
     (H : ι → Subgroup G) : Prop :=
-  ∃ (X : RelativeGeneratingSet G H) (delta : ℝ),
-    HullGeometry.IsHyperbolicSpace delta (Cayley X.alphabet)
+  ∃ D : GGT.RelGenSet G ι, D.base.Finite ∧ D.fam = H ∧
+    ∃ delta : ℝ, HullGeometry.IsHyperbolicSpace delta (Cayley D.alphabet)
 
 /-- **The second clause**: the metric induced on a peripheral subgroup by paths
 avoiding it is locally finite.
@@ -124,19 +114,47 @@ def PeripheralMetricLocallyFinite {G : Type u} [Group G] {ι : Type v}
   ∀ (l : ι) (n : ℕ),
     {h : G | h ∈ H l ∧ ∃ m ∈ X.peripheralLengths l h, m ≤ n}.Finite
 
-/-- **A relatively hyperbolic pair.**  Both clauses, at the same relative
-generating set. -/
+/-- Forget only the obsolete endpoint-path encoding, retaining the same finite
+base and family as a labelled `RelGenSet`.  The alphabets have the same vertex
+metric; the new object additionally distinguishes peripheral edge labels. -/
+def RelativeGeneratingSet.toRelGenSet {G : Type u} [Group G] {ι : Type v}
+    {H : ι → Subgroup G} (X : RelativeGeneratingSet G H) :
+    GGT.RelGenSet G ι where
+  base := X.carrier
+  fam := H
+  symmetricGenerating := X.alphabet.symmetricGenerating
+
+@[simp] theorem RelativeGeneratingSet.toRelGenSet_base
+    {G : Type u} [Group G] {ι : Type v} {H : ι → Subgroup G}
+    (X : RelativeGeneratingSet G H) : X.toRelGenSet.base = X.carrier := rfl
+
+@[simp] theorem RelativeGeneratingSet.toRelGenSet_fam
+    {G : Type u} [Group G] {ι : Type v} {H : ι → Subgroup G}
+    (X : RelativeGeneratingSet G H) : X.toRelGenSet.fam = H := rfl
+
+/-- **A relatively hyperbolic pair (labelled DGO/Osin form).**
+
+This is DGO Proposition 4.28 as a definitional bridge: Osin relative
+hyperbolicity is a finite relative base together with a hyperbolically embedded
+peripheral family.  `RelGenSet` spells paths in `X ⊔ ⨆ H_λ`, so its relative
+balls retain the peripheral index carried by every edge. -/
 def IsRelativelyHyperbolic (G : Type u) [Group G] {ι : Type v}
     (H : ι → Subgroup G) : Prop :=
-  ∃ (X : RelativeGeneratingSet G H) (delta : ℝ),
-    HullGeometry.IsHyperbolicSpace delta (Cayley X.alphabet) ∧
-      PeripheralMetricLocallyFinite X
+  ∃ D : GGT.RelGenSet G ι,
+    D.base.Finite ∧ D.fam = H ∧ D.IsHyperbolicallyEmbedded
 
 theorem IsRelativelyHyperbolic.weak {G : Type u} [Group G] {ι : Type v}
     {H : ι → Subgroup G} (h : IsRelativelyHyperbolic G H) :
     IsWeaklyRelativelyHyperbolic G H := by
-  obtain ⟨X, delta, hdelta, -⟩ := h
-  exact ⟨X, delta, hdelta⟩
+  obtain ⟨D, hfinite, hfam, hemb⟩ := h
+  exact ⟨D, hfinite, hfam, hemb.hyperbolic⟩
+
+/-- Constructor form used by quotient-preservation and free-product bridges. -/
+theorem isRelativelyHyperbolic_of_relGenSet {G : Type u} [Group G]
+    {ι : Type v} {H : ι → Subgroup G} (D : GGT.RelGenSet G ι)
+    (hfinite : D.base.Finite) (hfam : D.fam = H)
+    (hemb : D.IsHyperbolicallyEmbedded) : IsRelativelyHyperbolic G H :=
+  ⟨D, hfinite, hfam, hemb⟩
 
 /-! ## 2.  The free product `U ∗ H` and its peripheral factor -/
 
