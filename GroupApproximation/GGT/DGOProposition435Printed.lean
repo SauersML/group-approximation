@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.CyclicCayleyHyperbolic
+import GroupApproximation.GGT.DGOProposition435JointPrescribed
 import GroupApproximation.GGT.WPDElementaryEmbedding
 import GroupApproximation.GGT.HullSCLemma44JointRelabel
 
@@ -75,6 +76,37 @@ def DGOProposition435PrintedStatement : Prop :=
             Z.fam p = ((E p.1).fam p.2).map (D.fam p.1).subtype) ∧
             Z.IsHyperbolicallyEmbedded
 
+/-! ## Osin's drop lemma, and why it is the other half
+
+The printed 4.35 names the base of the family it produces, which is what a
+record about that base needs.  For the bare conclusion that the quotient is
+hyperbolic relative to the original images, Osin uses a different lemma, and
+that one puts no finiteness on the family that is kept.
+
+Osin, *Small cancellations over relatively hyperbolic groups* (arXiv
+`math/0411039`), Lemma `exhyp` at `embed-final.tex:1904-1913`, transcribed:
+
+> Suppose that a group `G` is hyperbolic relative to a collection of subgroups
+> `{H_λ}_{λ∈Λ} ∪ {S_1, …, S_m}`, where `S_1, …, S_m` are finitely generated and
+> hyperbolic in the ordinary (non--relative) sense.  Then `G` is hyperbolic
+> relative to `{H_λ}`.
+
+Osin records it as a particular case of Theorem 2.40 of his Memoir.  Only the
+dropped members are finitely many; `Λ` is an arbitrary index set throughout that
+paper, and the only finiteness in his setup is of the relative generating set,
+which is what `RelHyp.IsRelativelyHyperbolic` already asks.  "Finitely generated
+and hyperbolic in the ordinary sense" is `Hyperbolic.IsHyperbolicGroup`, whose
+alphabet is a `Finset` and so carries the finite generation.
+
+The cone-to-base half of the proof of Theorem 2.40 is Dahmani--Guirardel--Osin
+Remark 4.26, formalized as `isHyperbolicallyEmbedded_demoteAuxiliary`. -/
+def OsinLemmaExhypStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {M : Type v} [Finite M]
+    (H : Lambda → Subgroup G) (S : M → Subgroup G),
+    IsRelativelyHyperbolic G (Sum.elim H S) →
+    (∀ i : M, Hyperbolic.IsHyperbolicGroup (S i)) →
+      IsRelativelyHyperbolic G H
+
 /-! ## Keeping a member: the group in itself over the empty base -/
 
 /-- The one-member subfamily of a group by itself, over the empty relative
@@ -145,6 +177,33 @@ theorem selfRelGenSet_isHyperbolicallyEmbedded (H : Type u) [Group H] :
     cases u
     rw [selfRelGenSet_relBall H n]
     exact Set.finite_singleton 1
+
+/-! ### Model tests for the drop lemma -/
+
+/-- **Every group is hyperbolic relative to itself**, over the empty relative
+base.  So the hypothesis on the dropped members carries the whole weight of the
+drop lemma: without it the lemma at `Λ` empty and one dropped member would say
+that every group is hyperbolic relative to the empty family, which is to say
+finitely generated with a hyperbolic Cayley graph. -/
+theorem isRelativelyHyperbolic_self (C : Type u) [Group C] :
+    IsRelativelyHyperbolic C (fun _ : Unit => (⊤ : Subgroup C)) :=
+  ⟨selfRelGenSet C, Set.finite_empty, rfl,
+    selfRelGenSet_isHyperbolicallyEmbedded C⟩
+
+/-- **Model test: no dropped members.**  The drop lemma with `M` empty is a
+reindexing of the relative structure along `Λ ≃ Λ ⊕ Empty`, and it holds. -/
+theorem isRelativelyHyperbolic_of_sumEmpty {C : Type u} [Group C]
+    {Lambda : Type w} (H : Lambda → Subgroup C)
+    (h : IsRelativelyHyperbolic C
+      (Sum.elim H (Empty.elim : Empty → Subgroup C))) :
+    IsRelativelyHyperbolic C H := by
+  obtain ⟨D, hbase, hfam, hemb⟩ := h
+  refine ⟨relGenSetReindex D (Equiv.sumEmpty Lambda Empty).symm, hbase, ?_,
+    relGenSetReindex_isHyperbolicallyEmbedded D _ hemb⟩
+  funext l
+  show D.fam ((Equiv.sumEmpty Lambda Empty).symm l) = H l
+  rw [hfam]
+  rfl
 
 /-! ## Dropping a member: the empty subfamily of a hyperbolic group -/
 
@@ -308,19 +367,9 @@ theorem exists_generator_of_eq_zpowers {H : Subgroup Q} {a : Q}
   rw [SubgroupClass.coe_zpow]
   exact hm
 
-/-- Each selected auxiliary peripheral is the set of powers of its loxodromic
-element, by the two cyclicity fields of the auxiliary cores. -/
-theorem peripheral_eq_zpowers {A : HullGeneratingSet G} {N : Subgroup G}
-    {S : Fin k → Subgroup G} (D : AuxiliaryNonElementaryCores A N S)
-    (i : AuxiliaryPeripheralIndex k) :
-    ∃ g : G, D.peripheral i = Subgroup.zpowers g := by
-  obtain ⟨j, b⟩ := i
-  cases j with
-  | none => exact ⟨D.coreN.lox b, D.cyclicN b⟩
-  | some j => exact ⟨(D.coreS j).lox b, D.cyclicS j b⟩
-
 /-- The quotient image of a selected auxiliary peripheral is the set of powers
-of the image of that loxodromic element. -/
+of the image of that loxodromic element.  The source cyclicity is
+`HullSC.AuxiliaryNonElementaryCores.peripheral_eq_zpowers`. -/
 theorem exists_zpowers_fam_selected
     {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
     {selected : AuxiliaryPeripheralFamily A N S}
@@ -328,9 +377,9 @@ theorem exists_zpowers_fam_selected
     (P : QuotientJointPeripheralPreservation q selected original)
     (i : AuxiliaryPeripheralIndex k) :
     ∃ a : Q, P.rel.fam (Sum.inr i) = Subgroup.zpowers a := by
-  obtain ⟨g, hg⟩ := peripheral_eq_zpowers selected.cores i
-  refine ⟨q g, ?_⟩
-  rw [P.fam_selected i, hg, MonoidHom.map_zpowers]
+  refine ⟨q (selected.cores.lox i), ?_⟩
+  rw [P.fam_selected i, selected.cores.peripheral_eq_zpowers i,
+    MonoidHom.map_zpowers]
 
 /-- **The images of the original peripheral family are relatively hyperbolic in
 the filling quotient, with no hypothesis about the dropped members.**

@@ -144,24 +144,42 @@ def Lemma65aConclusion
   PhiSimple scaffold.selected.family ∧
     ExteriorMergeAvailable scaffold.selected.family
 
+/-- **The conclusion of Lemma 65 at one diagram.**  Osin states both clauses
+"up to passing to an `O`-equivalent diagram", and they hold on one and the same
+diagram, so the conjunction is asserted at a single scaffold. -/
+def Lemma65Conclusion
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ) (lambda c mu : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) : Prop :=
+  ∃ Delta' : DiscDiagram.{u, w, v} W,
+    Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+      ∃ (sections' : BoundarySections D lambda c Delta')
+        (scaffold : EstimatingScaffold D eps Delta'),
+        Lemma65aConclusion scaffold ∧ Lemma65bConclusion mu sections' eps
+
 /-- **Lemma 65, as one statement.**  Both clauses hold after passing to an
 `O`-equivalent diagram.  The induction on the `R`-cell count has this
 conjunction as its conclusion, which is why neither clause is stated as a
 separate residue: the multiple-edge half of (a) is proved from the inductive
-instance of (b), and (b) is proved using (a) at the same stage. -/
+instance of (b), and (b) is proved using (a) at the same stage.
+
+The parameters are the ones the source names.  `mu <= 1/16` is spent in
+`multipleEdge_contradiction`; `0 < rho` and the `C`-condition give every
+`R`-cell a boundary of positive length; and
+`lambda⁻¹ (3 eps + c) < (mu / 2) rho` is Osin's "if `rho` is large enough" in
+the side-arc estimate, the only other place a parameter inequality is used. -/
 def Lemma65Statement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (eps : ℕ) (lambda c mu : ℝ)
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
-    (sections : BoundarySections D lambda c Delta),
-    Delta.Reduced → 0 < Delta.rCellCount →
-      ∃ Delta' : DiscDiagram.{u, w, v} W,
-        Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
-          ∃ (sections' : BoundarySections D lambda c Delta')
-            (scaffold : EstimatingScaffold D eps Delta'),
-            Lemma65aConclusion scaffold ∧
-              Lemma65bConclusion mu sections' eps
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (lambda c mu : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))},
+    OsinCCondition D W eps mu lambda c rho →
+    0 < lambda → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 → 0 < rho →
+    lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ) →
+    ∀ (Delta : DiscDiagram.{u, w, v} W)
+      (sections : BoundarySections D lambda c Delta),
+      Delta.Reduced → 0 < Delta.rCellCount →
+        Lemma65Conclusion D eps lambda c mu Delta
 
 /-- **Osin's `mu`, per region.**  Sharper than `degree_le_two_mu`, and the one
 the multiple-edge step needs: Osin writes "(Pi, Gamma_2, t_1) + (Pi, Gamma_4,
@@ -237,6 +255,7 @@ reduced. -/
 structure Lemma65CutData
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
+    (D : GGT.RelGenSet G Lambda) (lambda c : ℝ)
     (Delta : DiscDiagram.{u, w, v} W) where
   /-- The enclosed subdiagram `Xi`. -/
   enclosed : DiscDiagram.{u, w, v} W
@@ -247,6 +266,13 @@ structure Lemma65CutData
   rCellCount_pos : 0 < enclosed.rCellCount
   /-- Reducedness is inherited. -/
   reduced : enclosed.Reduced
+  /-- Osin's clause (i), `partial Xi = s_1 t_1 s_2 t_2`: the four arcs are a
+  boundary decomposition of the enclosed subdiagram into quasi-geodesic
+  sections, which is what lets the inductive assumption apply to it.  Each
+  `s_j` is a side arc of a distinguished region, so it is short and geodesic;
+  each `t_j` is a subpath of a relator-cell boundary, so it is
+  `(lambda, c)`-quasi-geodesic by the `C`-condition. -/
+  sections : BoundarySections D lambda c enclosed
 
 /-- **Existence of the cut.**  Two distinct selected regions with the same
 source and the same target cell enclose such a subdiagram.  This is the one
@@ -255,7 +281,7 @@ operation from `SurgeryMap.replaceGRegion`, which collapses a face set rather
 than cutting along a four-arc closed walk. -/
 def Lemma65CutStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
     (selected : Finset (Candidate D eps Delta))
@@ -263,7 +289,7 @@ def Lemma65CutStatement : Prop :=
     e₁ ≠ e₂ →
       e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
         e₁.target = e₂.target →
-          Nonempty (Lemma65CutData Delta)
+          Nonempty (Lemma65CutData D lambda c Delta)
 
 /-! ## Model checks -/
 

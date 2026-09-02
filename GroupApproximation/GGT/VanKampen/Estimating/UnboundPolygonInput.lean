@@ -110,7 +110,75 @@ theorem bisection_side_counts_lt {n m : ℕ} (hn : 9 ≤ n)
     m + 2 < n ∧ n - m + 2 < n ∧ 2 ≤ m + 2 ∧ 2 ≤ n - m + 2 := by
   refine ⟨by omega, by omega, by omega, by omega⟩
 
+/-! ## The subdivision into small polygons -/
+
+/-- **The leaf count of the subdivision is linear.**  Cutting adds four sides
+and one piece, so `∑ (r_i - 4)` is unchanged by a cut and still equals
+`r - 4` at the leaves; that is the identity `∑ size i + 4 = r + 4 * L` below,
+not a weakening.  Every leaf of the bisection has at least five sides, since
+only polygons with nine sides or more are cut and both pieces of such a cut
+have `m + 2 >= 5` and `n - m + 2 >= 5` sides.  So each leaf contributes at
+least one to the potential, and there are at most `r - 4` of them. -/
+theorem leafCount_le {L r : ℕ} (size : Fin L → ℕ)
+    (hsize : ∀ i, 5 ≤ size i)
+    (hpotential : (∑ i : Fin L, size i) + 4 = r + 4 * L) :
+    L + 4 ≤ r := by
+  have hconst : (∑ _i : Fin L, (5 : ℕ)) = L * 5 := by
+    rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul]
+  have hlower : (∑ _i : Fin L, (5 : ℕ)) ≤ ∑ i : Fin L, size i :=
+    Finset.sum_le_sum fun i _ => hsize i
+  rw [hconst] at hlower
+  omega
+
+/-- The total number of sides over all leaves is below `5 * r`.  With
+`∑ size i = r - 4 + 4 * L` and `L + 4 <= r`, the total is at most
+`5 * r - 20`. -/
+theorem totalSides_le {L r : ℕ} (size : Fin L → ℕ)
+    (hsize : ∀ i, 5 ≤ size i)
+    (hpotential : (∑ i : Fin L, size i) + 4 = r + 4 * L) :
+    (∑ i : Fin L, size i) + 20 ≤ 5 * r := by
+  have hL := leafCount_le size hsize hpotential
+  omega
+
+/-- **The pigeonhole over the leaves.**  If the first class carries more than
+`5 * a * r` in total, some leaf carries more than `a` times its own side
+count.  The constant `5` is exactly the `5 * r` bound on the total leaf side
+count, so it is pinned by the potential identity rather than chosen. -/
+theorem exists_leaf_dense {L r : ℕ} {a : ℝ} (size : Fin L → ℕ)
+    (sigma : Fin L → ℝ)
+    (hsize : ∀ i, 5 ≤ size i)
+    (hpotential : (∑ i : Fin L, size i) + 4 = r + 4 * L)
+    (ha : 0 ≤ a)
+    (htotal : 5 * a * (r : ℝ) < ∑ i : Fin L, sigma i) :
+    ∃ i : Fin L, a * (size i : ℝ) < sigma i := by
+  by_contra hnone
+  push_neg at hnone
+  have hcast : ((∑ i : Fin L, size i : ℕ) : ℝ) = ∑ i : Fin L, (size i : ℝ) := by
+    simp
+  have hbound : ((∑ i : Fin L, size i : ℕ) : ℝ) + 20 ≤ 5 * (r : ℝ) := by
+    exact_mod_cast totalSides_le size hsize hpotential
+  have hsize' : (∑ i : Fin L, (size i : ℝ)) ≤ 5 * (r : ℝ) := by
+    rw [← hcast]
+    linarith
+  have hkey : (∑ i : Fin L, sigma i) ≤ a * (5 * (r : ℝ)) := by
+    calc (∑ i : Fin L, sigma i) ≤ ∑ i : Fin L, a * (size i : ℝ) :=
+          Finset.sum_le_sum fun i _ => hnone i
+      _ = a * ∑ i : Fin L, (size i : ℝ) := by rw [Finset.mul_sum]
+      _ ≤ a * (5 * (r : ℝ)) := mul_le_mul_of_nonneg_left hsize' ha
+  have heq : (5 : ℝ) * a * (r : ℝ) = a * (5 * (r : ℝ)) := by ring
+  linarith
+
 /-! ## Model checks -/
+
+/-- The leaf bound at the smallest polygon the cut accepts: a nine-gon cut at
+`m = 3` gives a five-gon and an eight-gon, so `L = 2` and the potential reads
+`13 + 4 = 9 + 8`. -/
+theorem leafCount_nineGon_model (size : Fin 2 → ℕ)
+    (h0 : size 0 = 5) (h1 : size 1 = 8) : (2 : ℕ) + 4 ≤ 9 := by
+  refine leafCount_le (r := 9) size ?_ ?_
+  · rw [Fin.forall_fin_two, h0, h1]
+    exact ⟨le_refl 5, by norm_num⟩
+  · rw [Fin.sum_univ_two, h0, h1]
 
 /-- The descent at the smallest polygon it accepts: a nine-gon cut at
 `m = 3` leaves a five-gon and an eight-gon. -/
