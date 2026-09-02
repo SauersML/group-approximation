@@ -87,6 +87,7 @@ structure BoundaryWordFarPointWitness
 
 namespace BoundaryWordFarPointWitness
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A reduced diagram with a boundary spelling and a supplied weight obtains
 the maximum point and its two arcs by the finite boundary theorem. -/
 theorem of_diagram
@@ -151,9 +152,10 @@ def FarPointBoundaryWitnessSource : Prop :=
       delta < wordDist
         (↑(GirthEightSlim.presentedGeneratorFinset T) :
           Set (TriangularHodgeLayer.Presented T)) p q) →
-    ∃ source : BoundaryWordDiagramWitness (T := T), source.trivial
+    ∃ source : BoundaryWordDiagramWitness (T := T),
+      PresentedWordIsTrivial (T := T) source.word
 
-/-- A witness source implies the exact word-only far-point proposition. -/
+/- A witness source implies the exact word-only far-point proposition. -/
 omit [DecidableEq TriangleIndex] in
 theorem farPointBoundaryWord_of_witnessSource
     (hsource : FarPointBoundaryWitnessSource (T := T)) :
