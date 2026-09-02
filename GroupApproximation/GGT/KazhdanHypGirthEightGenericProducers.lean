@@ -47,11 +47,7 @@ def CactusPowerFoldStepSource : Prop :=
         Delta.toCombMap.IsPlanar ∧
         ∃ C : CactusBaseCellFoldData Delta,
           C.powerWord = word.map signedFreeRelLetter ∧
-          C.exponent = n ∧
-          C.before_power ∧
-          C.after_power ∧
-          C.replacement.diagram.innerFaceCount + 1 =
-              Delta.innerFaceCount
+          C.exponent = n
 
 /-- The landed fold data is a concrete constructor for the exact
 `CactusBaseCellDeletionForPower` producer.  The first two conclusions are
@@ -61,10 +57,10 @@ theorem cactusBaseCellDeletionForPower_of_foldStepSource
     CactusBaseCellDeletionForPower T := by
   rw [CactusPowerFoldStepSource] at hsource
   intro g n hn hpow hne word hword
-  obtain ⟨Delta, hplanar, C, hCword, hCn, _hbefore, hafter, _hdrop⟩ :=
+  obtain ⟨Delta, hplanar, C, hCword, hCn⟩ :=
     hsource g n hn hpow hne word hword
   refine ⟨Delta, hplanar, C.toDeletion, ?_⟩
-  simpa [hCword, hCn] using hafter
+  simpa [hCword, hCn] using C.after_power
 
 /-- A power-fold chain source.  Each step is a concrete landed
 `CactusBaseCellDeletion`; the chain index is the number of deleted base
@@ -117,7 +113,7 @@ theorem cactusPowerFoldStep_oneCell_model
 
 /-! ## Exposed pairing and Euler counts -/
 
-abbrev PlanarDiscExposedPairingEulerProducer :=
+def PlanarDiscExposedPairingEulerProducer : Type 1 :=
   ∀ (Generator TriangleIndex : Type)
     (_ : Fintype Generator) (_ : DecidableEq Generator)
     (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
@@ -170,8 +166,8 @@ produce the count package consumed by the generic seam theorem. -/
 theorem doubleEulerCountData_of_incidence
     {g : Presented T} {D : PowerDisc T g 2}
     {B : ExposedPairing D.diagram 2}
-    (C : SeamGluing.Pairing.DoubleIncidenceEquivalences B.toPairing)
-    (K : SeamGluing.Pairing.DoubleConnectivityData B.toPairing) :
+    (C : VanKampen.SeamGluing.Pairing.DoubleIncidenceEquivalences B.toPairing)
+    (K : VanKampen.SeamGluing.Pairing.DoubleConnectivityData B.toPairing) :
     Pairing.EulerTwoCountData B.toPairing := by
   have hD := C.toEulerCountData K
   refine {
