@@ -39,9 +39,12 @@ theorem exists_scaled_periodic_block_offset
     dsimp [blockLength]
     simpa [Nat.mul_comm] using Nat.div_mul_le_self total divisor
   have hsixBlock : 6 * blockLength ≤ total := by
-    have hmul := Nat.mul_le_mul_right blockLength hdivisor
-    rw [Nat.mul_comm divisor blockLength] at hblockBudget
-    exact le_trans hmul hblockBudget
+    have hmul : blockLength * 6 ≤ blockLength * divisor :=
+      Nat.mul_le_mul_left blockLength hdivisor
+    calc
+      6 * blockLength = blockLength * 6 := Nat.mul_comm _ _
+      _ ≤ blockLength * divisor := hmul
+      _ ≤ total := hblockBudget
   have hquarterBudget : 4 * (total / 4) ≤ total := by
     simpa [Nat.mul_comm] using Nat.div_mul_le_self total 4
   by_cases hlower : lower ≤ period
