@@ -440,6 +440,28 @@ theorem qTwoData_girth :
     GirthEightChecks (triangles qTwoData) 3 :=
   checkTableAt_true_girth qTwoData qTwoData_checkTableAt
 
+/-- A 1755-row stress input obtained by repeating the q=2 rows.  Its point-to-line
+map is deliberately non-bijective, so the compact local guard rejects the
+large row array before the exact-cover and girth folds are evaluated.  This
+calibrates the kernel cost of constructing the generated-size table without a
+large `decide` goal. -/
+def qTwoInflatedRows : Fin 1755 → Triple 15 := fun j =>
+  qTwoRows ⟨j.val % 15, Nat.mod_lt _ (by norm_num)⟩
+
+def qTwoInflatedData : Table 15 1755 := {
+  incident := qTwoData.incident
+  lambda := fun _ => 0
+  rows := qTwoInflatedRows }
+
+theorem qTwoInflated_local_false :
+    localCheck qTwoInflatedData = false := by
+  decide
+
+theorem qTwoInflated_check_false :
+    checkTableAt qTwoInflatedData 3 = false := by
+  rw [checkTableAt, qTwoInflated_local_false]
+  rfl
+
 theorem emptyTable_checkTableAt_false :
     checkTableAt (Table.mk (n := 0) (m := 0)
       (fun _ _ => false) (fun x => x) (fun j => nomatch j)) 9 = false := by
