@@ -238,6 +238,75 @@ noncomputable def DGO421TargetRankData.ofNoIntermediate
   simp only [occ, hidx t ht0, hidx (t + 1) ht] at h
   exact h
 
+/-- **The minimality step stated where the geometry lives: on positions in `q`.**
+
+Dahmani--Guirardel--Osin's targets are components of `q`, and their minimality
+argument compares *positions* along the path, not ranks in an enumeration.
+This turns that statement into the rank data: the target of each matched
+component starts a component of `q` with its partner's label, consecutive
+targets advance, and no peripheral letter of `q` lies strictly between two
+consecutive targets --- which is exactly "*there is a component `p_{i+a'}` of
+`p`, `0 < a' < a` ... connected to `q_{j+b'}` for some `b' > 0`.  However this
+contradicts minimality of `a`*" read on the `q` side.
+
+The rank enumeration and the ordering facts about it are supplied here, so a
+construction never has to mention `peripheralPositions`. -/
+noncomputable def DGO421TargetRankData.ofCompStart
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hstart : ∀ t : Fin K,
+      IsCompStart (cert.label (cert.blockIndex t)) q (cert.blockTarget t))
+    (hmono : ∀ (t : ℕ) (ht : t + 1 < K),
+      cert.blockTarget ⟨t, Nat.lt_of_succ_lt ht⟩ <
+        cert.blockTarget ⟨t + 1, ht⟩)
+    (hgap : ∀ (t : ℕ) (ht : t + 1 < K) (z : ℕ),
+      cert.blockTarget ⟨t, Nat.lt_of_succ_lt ht⟩ < z →
+        z < cert.blockTarget ⟨t + 1, ht⟩ →
+          z ∉ peripheralPositions q)
+    (hK : 0 < K) :
+    DGO421TargetRankData cert := by
+  classical
+  let rank : Fin K → Fin (peripheralPositions q).card := fun t =>
+    Classical.choose (exists_peripheralOccurrence_eq_of_isCompStart (hstart t))
+  have hspec : ∀ t : Fin K,
+      (peripheralOccurrence q (rank t)).pos = cert.blockTarget t ∧
+        (peripheralOccurrence q (rank t)).label =
+          cert.label (cert.blockIndex t) := fun t =>
+    Classical.choose_spec
+      (exists_peripheralOccurrence_eq_of_isCompStart (hstart t))
+  have hrankStrict : ∀ (t : ℕ) (ht : t + 1 < K),
+      (rank ⟨t, Nat.lt_of_succ_lt ht⟩).val < (rank ⟨t + 1, ht⟩).val := by
+    intro t ht
+    have hstep := hmono t ht
+    have h1 := (hspec ⟨t, Nat.lt_of_succ_lt ht⟩).1
+    have h2 := (hspec ⟨t + 1, ht⟩).1
+    by_contra hcon
+    have hle : (rank ⟨t + 1, ht⟩).val ≤
+        (rank ⟨t, Nat.lt_of_succ_lt ht⟩).val := by omega
+    rcases Nat.eq_or_lt_of_le hle with heq | hlt
+    · have hfin : rank ⟨t + 1, ht⟩ = rank ⟨t, Nat.lt_of_succ_lt ht⟩ :=
+        Fin.ext heq
+      rw [hfin, h1] at h2
+      omega
+    · have hposLT := peripheralOccurrence_pos_lt q hlt
+      rw [h1, h2] at hposLT
+      omega
+  have hrankNo : ∀ (t : ℕ) (ht : t + 1 < K),
+      ∀ z : Fin (peripheralPositions q).card,
+        (rank ⟨t, Nat.lt_of_succ_lt ht⟩).val < z.val →
+          z.val < (rank ⟨t + 1, ht⟩).val → False := by
+    intro t ht z hz1 hz2
+    have h1 := peripheralOccurrence_pos_lt q hz1
+    have h2 := peripheralOccurrence_pos_lt q hz2
+    rw [(hspec ⟨t, Nat.lt_of_succ_lt ht⟩).1] at h1
+    rw [(hspec ⟨t + 1, ht⟩).1] at h2
+    refine hgap t ht (peripheralOccurrence q z).pos h1 h2 ?_
+    rw [peripheralOccurrence_pos]
+    exact peripheralPos_mem z.isLt
+  exact DGO421TargetRankData.ofNoIntermediate rank
+    (fun t => (hspec t).1) (fun t => (hspec t).2) hrankStrict hrankNo hK
+
 /-- **Both remaining clauses of the ordered block follow from the minimality
 step.**  The component clause is the (W3) singleton lemma at the target rank;
 the separator clause is `oppositeContiguity_of_rankSuccessor` on `q`, the same
