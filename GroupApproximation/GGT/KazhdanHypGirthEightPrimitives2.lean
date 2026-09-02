@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
+import GroupApproximation.GGT.VanKampen.DiscPathHomotopy
 import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives
 import GroupApproximation.GGT.VanKampen.CombMapGluing
 import GroupApproximation.GGT.VanKampen.CombMapReduction
@@ -187,86 +188,12 @@ end Table
 
 /-! ## Cayley labels from path integration -/
 
-/-- A directed edge path in the one-skeleton of a combinatorial map. -/
-inductive DartPath (M : VanKampen.CombMap.{u}) : M.Vertex → M.Vertex → Type u
-  | nil (v : M.Vertex) : DartPath M v v
-  | cons (d : M.Dart) {finish : M.Vertex}
-      (rest : DartPath M (M.vertexOf (M.alpha d)) finish) :
-      DartPath M (M.vertexOf d) finish
-
-namespace DartPath
-
-variable {M : VanKampen.CombMap.{u}}
-
-/-- Concatenate two directed dart paths. -/
-def append {x y z : M.Vertex} :
-    DartPath M x y → DartPath M y z → DartPath M x z
-  | .nil _, q => q
-  | .cons d rest, q => .cons d (rest.append q)
-
-/-- The path consisting of one oriented dart. -/
-def single (d : M.Dart) :
-    DartPath M (M.vertexOf d) (M.vertexOf (M.alpha d)) :=
-  .cons d (.nil _)
-
-/-- The oriented darts traversed by a path. -/
-def darts {x y : M.Vertex} : DartPath M x y → List M.Dart
-  | .nil _ => []
-  | .cons d rest => d :: rest.darts
-
-@[simp]
-theorem darts_append {x y z : M.Vertex}
-    (p : DartPath M x y) (q : DartPath M y z) :
-    (p.append q).darts = p.darts ++ q.darts := by
-  induction p with
-  | nil => rfl
-  | cons d rest ih => simp [append, darts, ih]
-
-@[simp]
-theorem darts_single (d : M.Dart) : (single d).darts = [d] :=
-  rfl
-
-end DartPath
-
-/-- A chosen path from one base vertex to every map vertex.  Connectivity of
-the one-skeleton supplies this data; keeping it explicit avoids a second,
-noncomputable graph-path implementation. -/
-structure RootedPathSystem (M : VanKampen.CombMap.{u}) where
-  /-- Base vertex. -/
-  root : M.Vertex
-  /-- Chosen path from the base to a vertex. -/
-  pathTo : ∀ v, DartPath M root v
-
 section Cayley
 
 variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator] [Fintype TriangleIndex]
   [DecidableEq TriangleIndex]
   {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
-
-/-- Evaluate a diagram path in its triangularly presented Cayley group. -/
-def cayleyPathValue
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    {x y : Delta.toCombMap.Vertex} (p : DartPath Delta.toCombMap x y) :
-    TriangularHodgeLayer.Presented T :=
-  (p.darts.map fun d ↦ presentedLetterValue T (Delta.label d)).prod
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
-theorem cayleyPathValue_append
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    {x y z : Delta.toCombMap.Vertex}
-    (p : DartPath Delta.toCombMap x y) (q : DartPath Delta.toCombMap y z) :
-    cayleyPathValue Delta (p.append q) =
-    cayleyPathValue Delta p * cayleyPathValue Delta q := by
-  simp [cayleyPathValue, List.map_append, List.prod_append]
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
-theorem cayleyPathValue_single
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (d : Delta.toCombMap.Dart) :
-    cayleyPathValue Delta (DartPath.single d) =
-      presentedLetterValue T (Delta.label d) := by
-  simp [cayleyPathValue]
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- A literal signed relator letter evaluates to the corresponding Cayley
@@ -289,42 +216,6 @@ theorem presentedLetterValue_signedFreeRelLetter
         (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
         (FreeGroup.of generator) = PresentedGroup.of generator
       rfl
-
-/-- Every relator-only inner face has identity value in the presented group. -/
-theorem innerFace_presentedValue_eq_one
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (R : RelatorOnly T Delta) (f : Delta.toCombMap.Face)
-    (hf : f ≠ Delta.outerFace) :
-    ((Delta.faceWord f).map fun d ↦
-      presentedLetterValue T d).prod = 1 := by
-  obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
-  rw [hj, triangleRelatorWord, List.map_map]
-  let eval : GGT.RelLetter (FreeGroup Generator) PEmpty.{1} →
-      TriangularHodgeLayer.Presented T :=
-    presentedLetterValue (Generator := Generator) T
-  change ((TriangularHodgeLayer.letters (T j)).map fun u ↦
-    eval (signedFreeRelLetter (Generator := Generator) u :
-      GGT.RelLetter (FreeGroup Generator) PEmpty.{1})).prod = 1
-  have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
-      eval
-        (signedFreeRelLetter (Generator := Generator) u :
-          GGT.RelLetter (FreeGroup Generator) PEmpty.{1}) =
-        FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
-    intro u
-    simpa [eval] using
-      (presentedLetterValue_signedFreeRelLetter (T := T) u)
-  have hmap : (TriangularHodgeLayer.letters (T j)).map
-      (fun u ↦ eval (signedFreeRelLetter (Generator := Generator) u :
-        GGT.RelLetter (FreeGroup Generator) PEmpty.{1})) =
-      (TriangularHodgeLayer.letters (T j)).map
-        (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) := by
-    induction TriangularHodgeLayer.letters (T j) with
-    | nil => rfl
-    | cons u us ih =>
-        simp only [List.map_cons]
-        rw [hletter u, ih]
-  rw [hmap]
-  exact TriangularHodgeLayer.wordValue_triangle_eq_one T j
 
 /-- Evaluate an arbitrary list of oriented diagram darts. -/
 def cayleyDartListValue
@@ -352,18 +243,6 @@ theorem cayleyDartListValue_erase_innerFace
   simp
 
 omit [Fintype Generator] [DecidableEq TriangleIndex] in
-/-- Reversing an oriented diagram letter inverts its value in the presented
-group. -/
-theorem presentedLetterValue_inv
-    (a : GGT.RelLetter (FreeGroup Generator) PEmpty) :
-    presentedLetterValue T (HullSC.RelWord.inv a) =
-      (presentedLetterValue T a)⁻¹ := by
-  cases a with
-  | base x =>
-      simp [presentedLetterValue, HullSC.RelWord.inv]
-  | comp i _ => exact PEmpty.elim i
-
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Erasing an edge followed immediately by its reverse does not change
 presented value. -/
 theorem cayleyDartListValue_erase_backtrack
@@ -382,26 +261,6 @@ theorem cayleyDartListValue_erase_backtrack
     List.prod_append, List.prod_cons]
   rw [halpha]
   simp
-
-/-- Word homotopy generated by insertion or erasure of complete inner-face
-boundaries and immediate edge backtracks.  These are the elementary moves in
-the cellular path induction for a planar disc. -/
-inductive InnerFaceWordHomotopy
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)) :
-    List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
-  | refl (word) : InnerFaceWordHomotopy Delta word word
-  | erase (f : Delta.toCombMap.Face) (hf : f ≠ Delta.outerFace)
-      (before after : List Delta.toCombMap.Dart) :
-      InnerFaceWordHomotopy Delta
-        (before ++ (Delta.faceBoundary f).darts ++ after) (before ++ after)
-  | eraseBacktrack (d : Delta.toCombMap.Dart)
-      (before after : List Delta.toCombMap.Dart) :
-      InnerFaceWordHomotopy Delta
-        (before ++ d :: Delta.toCombMap.alpha d :: after) (before ++ after)
-  | symm {a b} : InnerFaceWordHomotopy Delta a b →
-      InnerFaceWordHomotopy Delta b a
-  | trans {a b c} : InnerFaceWordHomotopy Delta a b →
-      InnerFaceWordHomotopy Delta b c → InnerFaceWordHomotopy Delta a c
 
 /-! ## Planar path peeling -/
 
@@ -468,24 +327,6 @@ theorem cayleyDartListValue_eq_of_innerFaceWordHomotopy
   | symm _ ih => exact ih.symm
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
-/-- Path integration is well-defined from a fixed base vertex. -/
-abbrev PathIntegralWellDefined
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (R : RootedPathSystem Delta.toCombMap) : Prop :=
-  ∀ (v : Delta.toCombMap.Vertex)
-    (p q : DartPath Delta.toCombMap R.root v),
-    cayleyPathValue Delta p = cayleyPathValue Delta q
-
-/-- The exact planar face-move statement needed for path independence: chosen
-and arbitrary rooted paths to the same vertex are related by inner-face
-insertions and erasures. -/
-abbrev RootedPathsFaceComplete
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (R : RootedPathSystem Delta.toCombMap) : Prop :=
-  ∀ (v : Delta.toCombMap.Vertex)
-    (p q : DartPath Delta.toCombMap R.root v),
-    InnerFaceWordHomotopy Delta p.darts q.darts
-
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A peeling witness gives `RootedPathsFaceComplete` for every chosen rooted
@@ -497,20 +338,6 @@ theorem rootedPathsFaceComplete_of_peeling
     RootedPathsFaceComplete Delta R := by
   intro v p q
   exact innerFaceWordHomotopy_of_peeling Delta W p.darts q.darts
-
-/-- Face completeness and relator-only inner faces prove path-independent
-integration. -/
-theorem pathIntegralWellDefined_of_faceComplete
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (relatorOnly : RelatorOnly T Delta)
-    (R : RootedPathSystem Delta.toCombMap)
-    (hcomplete : RootedPathsFaceComplete Delta R) :
-    PathIntegralWellDefined Delta R := by
-  intro v p q
-  change cayleyDartListValue Delta p.darts =
-    cayleyDartListValue Delta q.darts
-  exact cayleyDartListValue_eq_of_innerFaceWordHomotopy
-    Delta relatorOnly (hcomplete v p q)
 
 /-- Path-independent integration gives the exact Cayley vertex labelling used
 by `SuccessiveStarLayers.cayley`. -/
@@ -535,16 +362,6 @@ noncomputable def cayleyVertexLabelling_of_pathIntegral
           ((R.pathTo (Delta.toCombMap.vertexOf d)).append
             (DartPath.single d)) = _
         rw [cayleyPathValue_append, cayleyPathValue_single]
-
-/-- Direct constructor from the planar face-completeness statement. -/
-noncomputable def cayleyVertexLabelling_of_faceComplete
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (relatorOnly : RelatorOnly T Delta)
-    (R : RootedPathSystem Delta.toCombMap)
-    (hcomplete : RootedPathsFaceComplete Delta R) :
-    CayleyVertexLabelling T Delta :=
-  cayleyVertexLabelling_of_pathIntegral Delta R
-    (pathIntegralWellDefined_of_faceComplete Delta relatorOnly R hcomplete)
 
 /-- The one-triangle model has a genuine one-edge path whose dart list is the
 chosen dart. -/
