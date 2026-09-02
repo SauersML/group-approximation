@@ -137,6 +137,43 @@ theorem exists_distinguishedFamily {C : Type u} [Fintype C]
         hotherAdmissible, hotherMaximum, and_self]
     exact hminimum other hotherMem
 
+/-! ## Replacement consequences of Definition M -/
+
+/-- No compatible replacement can have both at least the selected total
+arc length and fewer members.  A larger weight contradicts the first
+optimization in Definition `M`; equal weight and smaller cardinality
+contradict its second optimization.  This is the finite-selection
+contradiction used when Osin merges parallel edges or an empty two-gon. -/
+theorem not_weight_ge_and_card_lt {C : Type u} [Fintype C]
+    {compatible : C → C → Prop} {weight : C → ℕ}
+    (selected : DistinguishedFamily compatible weight)
+    (replacement : Finset C)
+    (hreplacement : PairwiseCompatible compatible replacement) :
+    ¬ (familyWeight weight selected.family ≤
+          familyWeight weight replacement ∧
+        replacement.card < selected.family.card) := by
+  rintro ⟨hweight, hcard⟩
+  have hreverse := selected.weight_maximal replacement hreplacement
+  have hequal : familyWeight weight replacement =
+      familyWeight weight selected.family := le_antisymm hreverse hweight
+  have hminimal := selected.card_minimal replacement hreplacement hequal
+  omega
+
+/-- Consequently, a compatible replacement with no smaller total length has
+at least as many regions as the distinguished family. -/
+theorem card_le_of_weight_le {C : Type u} [Fintype C]
+    {compatible : C → C → Prop} {weight : C → ℕ}
+    (selected : DistinguishedFamily compatible weight)
+    (replacement : Finset C)
+    (hreplacement : PairwiseCompatible compatible replacement)
+    (hweight : familyWeight weight selected.family ≤
+      familyWeight weight replacement) :
+    selected.family.card ≤ replacement.card := by
+  by_contra hnot
+  have hcard : replacement.card < selected.family.card := by omega
+  exact not_weight_ge_and_card_lt selected replacement hreplacement
+    ⟨hweight, hcard⟩
+
 /-! ## Model checks -/
 
 /-- With one candidate of positive weight and universal compatibility, the
@@ -170,6 +207,16 @@ theorem distinguishedFamily_singletonModel :
   have hx : x = PUnit.unit := Subsingleton.elim _ _
   rw [hx]
   simp only [hmem, Finset.mem_singleton]
+
+/-- In the singleton model, the empty replacement has fewer members but
+cannot preserve the selected positive weight. -/
+theorem singletonModel_no_empty_replacement
+    (selected : DistinguishedFamily (C := PUnit) (fun _ _ => True)
+      (fun _ => 1)) (hselected : selected.family = {PUnit.unit}) :
+    ¬ (familyWeight (fun _ : PUnit => 1) selected.family ≤
+      familyWeight (fun _ : PUnit => 1) ∅) := by
+  rw [hselected]
+  simp [familyWeight]
 
 end EstimatingSelection
 
