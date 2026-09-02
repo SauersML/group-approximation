@@ -68,9 +68,10 @@ def outerIndex
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.RelativeReducedDiagram D W R)
     (j : Fin Z.cactusShape.boundaryLength) :
-    Fin Z.outerFaceWord.length := by
-  rw [outerFaceWord, RelWord.length_revInv, List.length_map]
-  exact j
+    Fin Z.outerFaceWord.length :=
+  ⟨j.1, by
+    rw [outerFaceWord, RelWord.length_revInv, List.length_map]
+    exact j.2⟩
 
 def label
     {G : Type u} [Group G] {Lambda : Type w}
@@ -123,7 +124,7 @@ theorem outerForward_word
   simp only [List.getElem_ofFn]
   congr 1
   apply Fin.ext
-  simp [outerIndex, Fin.val_cast]
+  simp [outerIndex]
 
 theorem relatorForward_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -227,8 +228,10 @@ theorem relatorBackward_word
     _ = RelWord.revInv (Z.geometricCell i).relator := by
       rw [RelWord.revInv]
       rw [← hforward]
-      exact (List.map_ofFn (f := fun j : Fin (Z.cactusShape.relatorLength i) ↦
-        Z.label (.relatorForward i j)) (g := RelWord.inv)).symm
+      apply congrArg List.reverse
+      simpa only [Function.comp_def] using
+        (List.map_ofFn (f := fun j : Fin (Z.cactusShape.relatorLength i) ↦
+          Z.label (.relatorForward i j)) (g := RelWord.inv)).symm
 
 theorem cellSegment_word
     {G : Type u} [Group G] {Lambda : Type w}
