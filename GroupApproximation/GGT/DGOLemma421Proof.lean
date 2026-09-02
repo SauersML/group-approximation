@@ -3,6 +3,7 @@ import GroupApproximation.GGT.DGOPolygonCutFamily
 import GroupApproximation.GGT.DGOLemma421Components
 import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOAssemblyCuts
+import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
 
 /-!
 # DGO Lemma 4.21 from the uniform isolated-component sum bound
@@ -1263,6 +1264,154 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
   rw [← hpartition] at hperipheral
   rw [hcloseLength] at hNonisoBound
   omega
+
+omit [Group G] in
+/-- A bounded segment reads the original word at the shifted position. -/
+theorem getElem?_drop_take_of_lt_421 (word : List (RelLetter G Λ))
+    {start width t : ℕ} (ht : t < width) :
+    ((word.drop start).take width)[t]? = word[start + t]? := by
+  simp only [List.getElem?_take, List.getElem?_drop, if_pos ht]
+
+omit [Group G] in
+/-- Condition (W1) passes to a contiguous segment. -/
+theorem isWOne_drop_take_421 {word : List (RelLetter G Λ)}
+    (hW1 : WWord.IsWOne word) (start width : ℕ) :
+    WWord.IsWOne ((word.drop start).take width) := by
+  intro i x y hx hy
+  have hi : i < width := by
+    have hlt := (List.getElem?_eq_some_iff.mp hx).1
+    simp only [List.length_take, List.length_drop] at hlt
+    omega
+  have hi1 : i + 1 < width := by
+    have hlt := (List.getElem?_eq_some_iff.mp hy).1
+    simp only [List.length_take, List.length_drop] at hlt
+    omega
+  have hx' : word[start + i]? = some (RelLetter.base x) := by
+    rw [← getElem?_drop_take_of_lt_421 word hi]
+    exact hx
+  have hy' : word[(start + i) + 1]? = some (RelLetter.base y) := by
+    rw [show (start + i) + 1 = start + (i + 1) from by omega,
+      ← getElem?_drop_take_of_lt_421 word hi1]
+    exact hy
+  exact hW1 (start + i) x y hx' hy'
+
+/-- Condition (W2) passes to a contiguous segment. -/
+theorem isWTwo_drop_take_421 {D : RelGenSet G Λ} {R : ℕ}
+    {word : List (RelLetter G Λ)} (hW2 : WWord.IsWTwo D R word)
+    (start width : ℕ) :
+    WWord.IsWTwo D R ((word.drop start).take width) := by
+  intro i lam x hx
+  have hi : i < width := by
+    have hlt := (List.getElem?_eq_some_iff.mp hx).1
+    simp only [List.length_take, List.length_drop] at hlt
+    omega
+  apply hW2 (start + i) lam x
+  rw [← getElem?_drop_take_of_lt_421 word hi]
+  exact hx
+
+/-- Condition (W3) passes to a contiguous segment. -/
+theorem isWThree_drop_take_421 {D : RelGenSet G Λ}
+    {word : List (RelLetter G Λ)} (hW3 : WWord.IsWThree D word)
+    (start width : ℕ) :
+    WWord.IsWThree D ((word.drop start).take width) := by
+  constructor
+  · intro i lam mu x y hx hy
+    have hi : i < width := by
+      have hlt := (List.getElem?_eq_some_iff.mp hx).1
+      simp only [List.length_take, List.length_drop] at hlt
+      omega
+    have hi1 : i + 1 < width := by
+      have hlt := (List.getElem?_eq_some_iff.mp hy).1
+      simp only [List.length_take, List.length_drop] at hlt
+      omega
+    apply hW3.1 (start + i) lam mu x y
+    · rw [← getElem?_drop_take_of_lt_421 word hi]
+      exact hx
+    · rw [show (start + i) + 1 = start + (i + 1) from by omega,
+        ← getElem?_drop_take_of_lt_421 word hi1]
+      exact hy
+  · intro i lam mu x y z hx hz hy
+    have hi : i < width := by
+      have hlt := (List.getElem?_eq_some_iff.mp hx).1
+      simp only [List.length_take, List.length_drop] at hlt
+      omega
+    have hi1 : i + 1 < width := by
+      have hlt := (List.getElem?_eq_some_iff.mp hz).1
+      simp only [List.length_take, List.length_drop] at hlt
+      omega
+    have hi2 : i + 2 < width := by
+      have hlt := (List.getElem?_eq_some_iff.mp hy).1
+      simp only [List.length_take, List.length_drop] at hlt
+      omega
+    apply hW3.2 (start + i) lam mu x y z
+    · rw [← getElem?_drop_take_of_lt_421 word hi]
+      exact hx
+    · rw [show (start + i) + 1 = start + (i + 1) from by omega,
+        ← getElem?_drop_take_of_lt_421 word hi1]
+      exact hz
+    · rw [show (start + i) + 2 = start + (i + 2) from by omega,
+        ← getElem?_drop_take_of_lt_421 word hi2]
+      exact hy
+
+/-- If there are no peripheral indices, (W1) bounds a word by one letter. -/
+omit [Group G] in
+theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
+    {word : List (RelLetter G Λ)} (hW1 : WWord.IsWOne word) :
+    word.length ≤ 1 := by
+  by_contra hlen
+  have hzero : 0 < word.length := by omega
+  have hone : 1 < word.length := by omega
+  cases hzeroLetter : word[0]'hzero with
+  | comp lam x => exact isEmptyElim lam
+  | base x =>
+      cases honeLetter : word[1]'hone with
+      | comp lam y => exact isEmptyElim lam
+      | base y =>
+          apply hW1 0 x y
+          · simpa [List.getElem?_eq_getElem hzero] using hzeroLetter
+          · simpa [List.getElem?_eq_getElem hone] using honeLetter
+
+/-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
+theorem dgoLemma421a_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
+  intro G _ Λ D hhyp
+  obtain ⟨C, hC, hbound⟩ := h G Λ D hhyp 1 1 le_rfl (by norm_num)
+  refine ⟨50 * C, ?_⟩
+  intro v word hlet hW1 hW2 hW3 i j hij hj
+  let segment := (word.drop i).take (j - i)
+  have hsegmentLength : segment.length = j - i := by
+    exact length_segment word i (j - i) (by omega)
+  cases isEmpty_or_nonempty Λ with
+  | inl hEmpty =>
+      letI : IsEmpty Λ := hEmpty
+      have hwordLength := length_le_one_of_isEmpty_of_isWOne hW1
+      have hdistNonneg : 0 ≤ wordDist D.alphabet.carrier
+          (vertex v word i) (vertex v word j) := Nat.zero_le _
+      omega
+  | inr hNonempty =>
+      letI : Nonempty Λ := hNonempty
+      have hsegmentLet : ∀ a ∈ segment, D.IsLetter a := by
+        intro a ha
+        exact hlet a (List.mem_of_mem_drop (List.mem_of_mem_take ha))
+      have hsegmentW1 : WWord.IsWOne segment :=
+        isWOne_drop_take_421 hW1 i (j - i)
+      have hsegmentW2 : WWord.IsWTwo D (50 * C) segment :=
+        isWTwo_drop_take_421 hW2 i (j - i)
+      have hsegmentW3 : WWord.IsWThree D segment :=
+        isWThree_drop_take_421 hW3 i (j - i)
+      have hwhole := wWord_length_le_four_wordDist_add_four_of_uniformBound
+        hC hbound hsegmentLet hsegmentW1 hsegmentW2 hsegmentW3
+        (vertex v word i)
+      have hend : vertex (vertex v word i) segment segment.length =
+          vertex v word j := by
+        rw [hsegmentLength]
+        exact vertex_segment word v i (j - i) (j - i) le_rfl
+      have hend' : vertex (vertex v word i) segment (j - i) =
+          vertex v word j := by
+        rw [← hsegmentLength]
+        exact hend
+      rw [hend'] at hwhole
+      exact hwhole
 
 end OsinComponents
 end GGT
