@@ -196,6 +196,53 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
       hcone hinjectPeripheral
   exact ⟨hinjectA, hpres⟩
 
+/-! ## Parameter assembly from the relative certificate -/
+
+/-- Relative Greendlinger together with the two kernel-cone estimates gives
+Hull's canonical quotient statement.  The radius is absorbed into the lower
+bound for the relator length after the Greendlinger constants are chosen. -/
+theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelBounds
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
+    (hloc : KernelConeLocalFinitenessStatement.{u, u, 0}) :
+    HullLemma44CanonicalQuotientStatement.{u} := by
+  intro G _ A N k S D R
+  let mu : ℝ := 1 / 1000
+  have hmuPos : 0 < mu := by
+    dsimp [mu]
+    norm_num
+  have hmuSixteen : mu ≤ 1 / 16 := by
+    dsimp [mu]
+    norm_num
+  obtain ⟨eps, rho₀, hcertificate⟩ :=
+    hgeom D.rel D.embedded mu hmuPos hmuSixteen
+  let fullRadius : ℕ := max R 1
+  let boundaryScale : ℕ := 2 * fullRadius + 2 * eps + 1
+  let rho : ℕ := max rho₀ (max (8 * boundaryScale) (20 * (eps + 1)))
+  have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
+  have hrhoScale : 8 * boundaryScale ≤ rho :=
+    le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
+  have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
+    dsimp [boundaryScale, fullRadius]
+    positivity
+  have hrhoScaleReal :
+      (8 : ℝ) * (boundaryScale : ℝ) ≤ (rho : ℝ) := by
+    exact_mod_cast hrhoScale
+  have hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ) := by
+    change 4 * (boundaryScale : ℝ) <
+      (3 / 4 : ℝ) * (rho : ℝ)
+    nlinarith
+  refine ⟨eps, rho, mu, hmuPos, ?_⟩
+  intro W Q _ q hsc hsurj hker
+  have hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z) := by
+    intro r Z
+    exact hcertificate rho hrho₀ W r hsc Z
+  exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuPos
+    hthreshold q hsurj hker hcert hkernel hloc
+
 /-! ## Empty-family model of the two estimate interfaces -/
 
 /-- If the source and quotient are one-point groups, the kernel-geodesic
