@@ -259,6 +259,28 @@ noncomputable def of_copyMate
       _ = d.1.1 := hd
       _ = (index d).1 := (index_copy d).symm
 
+/-- The boundary-copy swap used by the double of a disc. -/
+def doubleCopyMate : Perm (Fin 2) := finRotate 2
+
+/-- The double-copy swap is an involution. -/
+theorem doubleCopyMate_involutive : Function.Involutive doubleCopyMate := by
+  intro i
+  fin_cases i <;> simp [doubleCopyMate, finRotate_apply]
+
+/-- The double-copy swap has no fixed point. -/
+theorem doubleCopyMate_fixedPointFree (i : Fin 2) :
+    doubleCopyMate i ≠ i := by
+  fin_cases i <;> simp [doubleCopyMate, finRotate_apply]
+
+/-- A boundary indexing of the two copies gives the actual exposed mate
+permutation for the double, with the two copies paired across every boundary
+occurrence. -/
+noncomputable def of_doubleCopyMate
+    {I : Type v} (index : ExposedCopiedDart Delta 2 ≃ Fin 2 × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1) : ExposedPairing Delta 2 :=
+  of_copyMate index index_copy doubleCopyMate
+    doubleCopyMate_involutive doubleCopyMate_fixedPointFree
+
 end ExposedPairing
 
 namespace Pairing
@@ -444,6 +466,56 @@ structure EulerTwoCountData (S : Pairing Delta n) where
   face_count_eq :
     (S.closedMap.faceCount : ℤ) =
       (n : ℤ) * (Delta.toCombMap.faceCount : ℤ) - (n : ℤ)
+
+/-- The corrected incidence equations for the double of a disc.  `boundary`
+is the number of darts on the outer face, so gluing two copies identifies one
+boundary cycle in vertices and edges and removes the two outer faces. -/
+structure DoubleEulerCountData (S : Pairing Delta 2) where
+  connected : S.closedMap.IsConnected
+  boundary : ℕ
+  boundary_eq_outerDegree : boundary =
+    Delta.toCombMap.faceDegree Delta.outerFace
+  vertex_count_eq :
+    (S.closedMap.vertexCount : ℤ) + (boundary : ℤ) =
+      2 * (Delta.toCombMap.vertexCount : ℤ)
+  edge_count_eq :
+    (S.closedMap.edgeCount : ℤ) + (boundary : ℤ) =
+      2 * (Delta.toCombMap.edgeCount : ℤ)
+  face_count_eq :
+    (S.closedMap.faceCount : ℤ) + 2 =
+      2 * (Delta.toCombMap.faceCount : ℤ)
+
+/-- Removing the outer face from a planar closed-map presentation leaves the
+disc Euler equation `V - E + (F - 1) = 1`. -/
+theorem disc_interiorEuler_eq_one_of_planar
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    (Delta.toCombMap.vertexCount : ℤ) -
+        (Delta.toCombMap.edgeCount : ℤ) +
+        (Delta.toCombMap.faceCount : ℤ) - 1 = 1 := by
+  have h := Delta.toCombMap.euler_eq_two hplanar
+  linarith
+
+/-- The double incidence equations and source planarity prove the spherical
+certificate.  The boundary terms cancel, and the source interior equation is
+the preceding `disc_interiorEuler_eq_one_of_planar` identity. -/
+theorem spherical_of_doubleEulerCountData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {S : Pairing Delta 2}
+    (C : DoubleEulerCountData S)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    Spherical S := by
+  refine ⟨C.connected, ?_⟩
+  unfold CombMap.eulerCharacteristic
+  have hv := C.vertex_count_eq
+  have he := C.edge_count_eq
+  have hf := C.face_count_eq
+  have hsource := Delta.toCombMap.euler_eq_two hplanar
+  linarith
 
 /-- The copied-incidence count gives the Euler-characteristic-two spherical
 certificate.  The old disc planarity supplies the identity
