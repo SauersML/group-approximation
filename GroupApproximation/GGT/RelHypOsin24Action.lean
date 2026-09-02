@@ -107,6 +107,8 @@ structure RelativeHullData
   base_finite : rel.base.Finite
   /-- Its labelled family is the requested family. -/
   fam_eq : rel.fam = Hfam
+  /-- The original family is hyperbolically embedded. -/
+  embedded : rel.IsHyperbolicallyEmbedded
   /-- Hull's generating set on the same relative Cayley graph. -/
   hull : HullGeneratingSet G
   /-- The two alphabets agree literally. -/
@@ -170,6 +172,7 @@ theorem exists_relativeHullData_of_actionBridges
     rel := D
     base_finite := hfinite
     fam_eq := hfam
+    embedded := hemb
     hull := A
     hull_alphabet := rfl
     suitable := hHullSuitable }⟩
