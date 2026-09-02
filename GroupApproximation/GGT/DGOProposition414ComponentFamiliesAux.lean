@@ -1447,18 +1447,6 @@ theorem secondGapArcBoundaryExclusion_terminal_of_parent_successor
   exact hparent.2.2.2.2 htargetNext hparentLetter
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
-theorem secondGapArcBoundaryExclusion_emptyModel
-    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
-    {δ b n k R : ℕ}
-    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
-    {P : SumBoundInput D (b : ℝ) n}
-    (B : BalancedSplitData D hsymm b hδ P k R)
-    (j : Fin B.brokenAssignment.index.second.pieceCount) (s : ℕ)
-    (hcycle : B.secondGapCycle j = []) :
-    FirstGapArcBoundaryExclusion B j s := by
-  simp [FirstGapArcBoundaryExclusion, hcycle]
-
-/-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {δ b n k R : ℕ}
