@@ -19,6 +19,74 @@ mirror hypotheses use the exact names consumed by
 `KazhdanHypGirthEightTorsionExtraction`; the seam hypothesis is the exposed
 pairing/Euler input consumed by the same extraction theorem.  Hyperbolicity is
 obtained from kohyp's `girthEightHyperbolicity_of_diagramPrimitives`.
+
+The torsion chain is source-audited as follows.  At the leaf,
+`GroupApproximation.IsPowerTorsionFree G` is exactly
+
+```
+∀ (g : G) (n : ℕ), 0 < n → g ^ n = 1 → g = 1.
+```
+
+For a checked table, `presented_isPowerTorsionFree_of_sphericalExtraction`
+consumes `hchecks : GirthEightChecks T d` and an extractor with the exact
+quantifiers
+
+```
+∀ (g : Presented T) (n : ℕ), 0 < n → g ^ n = 1 → g ≠ 1 →
+  (∀ j, ¬ RelatorIsProperPower (relator (T j))) →
+  ∃ M, Nonempty (TriangularRelatorSphericalMap T M).
+```
+
+It first applies `finiteOrderForcesRelatorProperPower_of_sphericalExtraction`
+to the same `g`, positive `n`, and nonidentity premise.  The latter assumes
+the no-proper-power branch, calls the extractor, and applies
+`TriangularRelatorSphericalMap.false_of_girthEightChecks`.  The resulting
+`FiniteOrderForcesRelatorProperPower T` is passed to
+`presented_isPowerTorsionFree_of_finiteOrderForcesRelatorProperPower`; its
+second input is `hchecks.relators_not_properPower`.
+
+The latter input uses `positive_triangle_cube_of_relatorIsProperPower` and
+`hchecks.noCube`; `hchecks.noCube` is obtained from the link-simplicity clause,
+so a literal `(x,x,x)` relator is rejected exactly at the proper-power step.
+The verifier's separate `noCubeCheck` is not needed by the current
+`checkTable_true_girth` soundness theorem because the same fact follows from
+the checked simplicity clause.
+
+The extractor is
+`sphericalExtraction_of_combMapOperations H`.  Given arbitrary `g` and
+positive `n`, it first chooses an arbitrary-length signed word with
+`exists_signedWord_represents`.  `H.filling` is consumed by
+`cactusPowerBoundaryFilling_of_baseCellDeletion`, which gives a
+`PowerDiscCandidate` whose `DiscDiagram` boundary is the literal repetition
+of that whole word.  `leastPowerDisc_of_filling` then selects a least-area
+candidate, and `H.mirrorDeletion` is consumed by
+`mirrorPairCutSupply_of_surgeryDeletion` and
+`cancellationReducesArea_of_mirrorPairCut` to supply its reducedness.
+`H.seam` supplies `ExposedPairingEulerInput` for that same arbitrary `n`;
+`powerDiscSphereGluing_of_eulerCounts` and
+`exists_labelledSphere_of_powerDiscGluing` produce the labelled spherical map.
+Thus the current formal extractor covers every positive exponent, not only
+generator words or a fixed exponent.  The source theorem is stated for order
+`1 < s < ∞`; the formal positive-exponent statement is stronger in its
+quantifier, and the `n = 1` case is vacuous under `g ≠ 1` and `g ^ n = 1`.
+
+The source audit also fixes the diagram-type boundary: the formal input is
+always `PowerDisc.diagram : DiscDiagram`, constructed from a null-homotopy of
+the boundary word `w^n`.  The cyclic gluing is a sphere from copies of that
+disc.  The repository has no `AnnularDiagram` in this chain, so annular
+diagrams from conjugacy or periodic-annulus arguments are not silently being
+used as discs.  If the cactus producer cannot supply this actual disc, the
+failure is at `CactusBaseCellDeletionForPower`, not in the Euler calculation.
+The Euler fields explicitly require the disc's planar map and the seam's
+connectedness/count data; no annulus is admitted by their types.
+
+The available readiness theorem below proves infiniteness from the already
+obtained torsion-free conclusion and positivity, and proves finite
+presentation directly from finite generator and triangle types.  `GirthEightChecks`
+alone does not currently imply infiniteness in the repository: the only
+available infiniteness route is positivity plus torsion-freeness, while the
+asphericity/universal-cover Euler-characteristic route from Huebschmann is not
+formalized.  The exact missing implication is recorded in `REPORT.md`.
 -/
 
 set_option linter.unusedSectionVars false
@@ -200,6 +268,52 @@ theorem girthEightHyperbolicity_of_diagramPrimitives
     GirthEightHyperbolicity :=
   GirthEightVKInterface.girthEightHyperbolicity_of_diagramPrimitives primitives
 
+/-! ## Readiness facts for the non-spectral conjuncts -/
+
+/-- Positivity and the torsion-free conclusion make every checked triangular
+presentation infinite.  This is the `C₃` quotient argument used by
+`infinite_of_positive_of_torsionFree`; the finite-order localization is kept
+as an explicit input because `GirthEightChecks` alone does not formalize
+asphericity. -/
+theorem infinite_of_girthEightChecks_and_torsionFree
+    {Generator TriangleIndex : Type}
+    [Fintype Generator] [DecidableEq Generator] [Nonempty Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ}
+    (hchecks : GirthEightChecks T d)
+    (htf : IsPowerTorsionFree (TriangularHodgeLayer.Presented T)) :
+    Infinite (TriangularHodgeLayer.Presented T) :=
+  infinite_of_positive_of_torsionFree T hchecks.1 htf
+
+/-- A finite triangular table presents a finitely presented group.  The
+`GirthEightChecks` argument records the intended checked-table use; finite
+presentation itself is supplied by the finite generator and triangle types. -/
+theorem isFinitelyPresented_of_girthEightChecks
+    {Generator TriangleIndex : Type}
+    [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ}
+    (_hchecks : GirthEightChecks T d) :
+    Group.IsFinitelyPresented (TriangularHodgeLayer.Presented T) :=
+  inferInstance
+
+/-- The two readiness conjuncts needed before torsion-freeness and
+hyperbolicity are inserted into `SharpExistence`. -/
+theorem infinite_and_finitelyPresented_of_girthEightChecks
+    {Generator TriangleIndex : Type}
+    [Fintype Generator] [DecidableEq Generator] [Nonempty Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ}
+    (hchecks : GirthEightChecks T d)
+    (htf : IsPowerTorsionFree (TriangularHodgeLayer.Presented T)) :
+    Infinite (TriangularHodgeLayer.Presented T) ∧
+      Group.IsFinitelyPresented (TriangularHodgeLayer.Presented T) :=
+  ⟨infinite_of_girthEightChecks_and_torsionFree hchecks htf,
+    isFinitelyPresented_of_girthEightChecks hchecks⟩
+
 /-! ## Checked-table endpoint -/
 
 /-- A Boolean-checked `W(8)` table closes the infinite, finitely presented,
@@ -236,10 +350,18 @@ theorem sharpExistence_of_checkedTable
   have hsdp : GirthEightSDPChecks T 9 (5 / 9)
       hlink.reindexed.gramRow := by
     simpa [hgap] using hsdp0
-  exact sharpExistence_of_girthEightChecks
+  have htf : IsPowerTorsionFree (TriangularHodgeLayer.Presented T) :=
     (girthEightTorsionFree_of_extractionProducers cactus mirror seam)
+      _ _ inferInstance inferInstance inferInstance inferInstance inferInstance T 9 hgeom
+  have hready := infinite_and_finitelyPresented_of_girthEightChecks hgeom htf
+  have hhyp : Hyperbolic.IsHyperbolicGroup
+      (TriangularHodgeLayer.Presented T) :=
     (girthEightHyperbolicity_of_diagramPrimitives diagramPrimitives)
-    T 9 hlink.reindexed.gramRow hgeom hsdp
+      _ _ inferInstance inferInstance inferInstance inferInstance inferInstance
+      T 9 hgeom
+  exact ⟨TriangularHodgeLayer.Presented T, inferInstance,
+    hready.1, hready.2, htf, hhyp,
+    hasKazhdanPropertyT_of_girthEightSDPChecks hgeom hsdp⟩
 
 /-! ## The `GQ(2,2)` non-spectral model -/
 
@@ -260,8 +382,9 @@ theorem gqTwo_nonT_conjuncts_model
         (TriangularHodgeLayer.Presented GQTwoTable.triangles) ∧
       Hyperbolic.IsHyperbolicGroup
         (TriangularHodgeLayer.Presented GQTwoTable.triangles) := by
-  refine ⟨infinite_of_positive_of_torsionFree GQTwoTable.triangles
-      GQTwoTable.positive htf, inferInstance, htf, hhyp⟩
+  have hready := infinite_and_finitelyPresented_of_girthEightChecks
+    GQTwoTable.girthEightChecks htf
+  exact ⟨hready.1, hready.2, htf, hhyp⟩
 
 end KazhdanHypSharpExistenceAssembly
 end GGT
