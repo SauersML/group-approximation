@@ -52,14 +52,13 @@ theorem boundedPowerSubsequence_proved :
   rw [IsEscaping, Filter.tendsto_atTop] at hnot
   push Not at hnot
   obtain ⟨R, hR⟩ := hnot
-  rw [Filter.eventually_atTop] at hR
-  push Not at hR
+  rw [Filter.frequently_atTop] at hR
   refine ⟨R, ?_⟩
   intro hfinite
   obtain ⟨N, hN⟩ := hfinite.bddAbove
   obtain ⟨n, hnN, hnR⟩ := hR (N + 1)
   have hnmem : n ∈ {n : ℕ | dist x ((g ^ n) • x) ≤ R} := by
-    exact le_of_not_ge hnR
+    exact le_of_lt hnR
   have hnle : n ≤ N := hN hnmem
   omega
 
