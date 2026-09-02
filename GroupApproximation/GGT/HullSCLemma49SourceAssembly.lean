@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCLemma49SourceBranches
 import GroupApproximation.GGT.HullSCLemma49BowditchGap
 import GroupApproximation.GGT.HullSCLemma49ShortPower
+import GroupApproximation.GGT.HullSCLemma49FacePasting
 import GroupApproximation.GGT.HullSCLemma49InjectivityBridge
 
 /-!
@@ -89,15 +90,7 @@ a shortest conjugate of the non-loxodromic power lies in the protected ball. -/
 theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     (hgeom :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0})
-    (hpasting : ∀
-      {G : Type u} [Group G] {Lambda : Type w}
-      {D : GGT.RelGenSet G Lambda}
-      {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
-      {Z : Lemma49GeodesicPowerDiagram D v g n},
-      ∀ C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
-          D v g n eps mu Z,
-        GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
-          C.contiguity.boundary.cycle [])
+    (hpasting : HullLemma49SourceFacePastingStatement.{u, w})
     (hinjective : HullLemma49InjectivityCallback.{u, w}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
   intro G _ Lambda D hemb hacylindrical
@@ -109,12 +102,16 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
   obtain ⟨epsLong, rhoLong, hlong⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_source
       hgeom D hdelta
-      (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
+      (fun {v} {g} {n} {eps} {mu} {Z} C => by
+        obtain ⟨peeling⟩ := hpasting C
+        exact peeling.to_homotopy)
   obtain ⟨epsShort, rhoShort, muShort, hmuShort, _hmuShortUpper,
       hshortLox⟩ :=
     exists_parameters_false_of_shortLoxodromic_powerDiagram_source
       hgeom D hdelta hgap
-      (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
+      (fun {v} {g} {n} {eps} {mu} {Z} C => by
+        obtain ⟨peeling⟩ := hpasting C
+        exact peeling.to_homotopy)
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
       hinjAll⟩ := hinjective D hemb delta hdelta
   let eps : ℕ := max epsLong (max epsShort epsInjective)
