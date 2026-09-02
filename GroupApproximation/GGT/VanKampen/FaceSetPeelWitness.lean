@@ -82,7 +82,7 @@ def faceSetBoundaryPeelWitness_of_planarCertificate
 
 /-- A family of extremal planar certificates supplies the local oracle used by
 the finite termination theorem. -/
-def faceSetBoundaryPeeling_of_planarCertificates
+theorem faceSetBoundaryPeeling_of_planarCertificates
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
@@ -128,6 +128,7 @@ theorem twoFace_planarCertificate
     (hfaces : faces = {f₁, f₂})
     (hneq : f₁ ≠ f₂)
     (h₁ : f₁ ≠ Delta.outerFace)
+    (h₁mem : f₁ ∈ faces)
     (boundary : FaceSetBoundary Delta faces)
     (cycle next : List Delta.toCombMap.Dart)
     (hcycle : boundary.cycle = cycle)
@@ -136,7 +137,7 @@ theorem twoFace_planarCertificate
       boundary.cycle = next) :
     Nonempty (PlanarFacePeelCertificate boundary) := by
   obtain ⟨boundary₂, hboundary₂⟩ := hcycle₂
-  refine ⟨{ face := f₁, face_mem := by simpa [hfaces, hneq] using h₁mem,
+  refine ⟨{ face := f₁, face_mem := by simp [hfaces, hneq],
     face_ne_outer := h₁, next := next, arc := cycle, arc_nonempty := ?_,
     arc_factor := ⟨[], [], by simp⟩, moves := ?_, remainder := ?_ }⟩
   · intro hnil
