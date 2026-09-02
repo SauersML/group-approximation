@@ -578,8 +578,8 @@ theorem card_classifiedPosition_eq_kindLength
       {position : Fin (cellDarts Delta i).length //
         position ∈ classifiedFinset} :=
     (Equiv.refl _).subtypeEquiv fun position => by
-      simp only [ClassifiedPosition, classifiedFinset, Finset.mem_filter,
-        Finset.mem_univ, true_and]
+      simp only [classifiedFinset, Finset.mem_filter, Finset.mem_univ,
+        true_and, Equiv.refl_apply]
   calc
     Fintype.card (ClassifiedPosition partition kind) =
         Fintype.card {position : Fin (cellDarts Delta i).length //
