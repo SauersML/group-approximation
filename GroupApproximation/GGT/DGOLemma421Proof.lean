@@ -1390,7 +1390,7 @@ theorem dgoLemma421a_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
   intro G _ Λ D hhyp
   obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp 1 1
-    le_rfl
+    le_rfl (by norm_num)
   refine ⟨50 * C, ?_⟩
   intro v word hlet hW1 hW2 hW3 i j hij hj
   let segment := (word.drop i).take (j - i)
@@ -1476,7 +1476,7 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
       RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
         RelLetter.listVal r →
       IsQuasiGeodesicPolygon D mu b n 1 (p ++ q ++ r ++ revWord s) →
-      ∀ (i k : ℕ), IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+      ∀ (i k : ℕ), IsComp lam q i k → k < q.length →
         C * n ≤ rho →
         (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
         ∃ n' : ℕ, n' ≠ p.length + i ∧
@@ -1492,7 +1492,7 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
               vertex (1 : G) (p ++ q ++ r ++ revWord s) n' := by
     intro n rho hn p q r s hclose hpoly i k hcomp hk hrho hdeep
     have hbridge := isComp_fourGon_of_isComp_side_of_interior
-      p q r s lam hcomp.1 hcomp.2.1 hcomp
+      p q r s lam hcomp.1 hk hcomp
     have hiq : i ≤ q.length := le_trans (Nat.le_of_lt hcomp.1) hcomp.2.1
     have hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
         (p.length + i) := ⟨p.length + k, hbridge⟩
@@ -1519,7 +1519,7 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
     obtain ⟨n, hn, hnstart, hnloc, h, hh, heq⟩ :=
       hdeepTarget 4 rho (by omega) p q r s hclose hpoly
         (source i) (source i + 1) (hsource_comp i)
-        (Or.inl (by omega)) (by simpa using hrho) (hsource_deep i)
+        (hsource_end i) (by simpa using hrho) (hsource_deep i)
     refine ⟨n, hn, hnstart, hnloc, h, hh, heq⟩
   have htarget : ∀ i, ∃ n : ℕ, n ≠ p.length + source i ∧
       IsCompStart lam (p ++ q ++ r ++ revWord s) n ∧
