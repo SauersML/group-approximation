@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightDiagram
+import GroupApproximation.GGT.VanKampen.CactusRealization
 
 /-!
 # Relator-cell coverage and identity reduction
@@ -84,6 +85,81 @@ theorem innerFaceCount_le_rCellCount (R : RelatorCellCover Delta) :
   rw [R.rCellCount_eq_innerFaceCount]
 
 end RelatorCellCover
+
+/-! ## Exact-boundary retyping of the cactus complement -/
+
+/-- A cactus complement can be retyped away from the distinguished base cell
+when an explicit relator-only retyping is supplied.  The fields record only
+the boundary, area, and reducedness consequences used by a literal filling. -/
+structure CactusRelatorRetyping
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v}) where
+  diagram : DiscDiagram.{u, w, v} W
+  boundaryWord_eq : diagram.boundaryWord = Delta.boundaryWord
+  relatorOnly : RelatorCellCover diagram
+  rCellCount_le : diagram.rCellCount ≤ Delta.rCellCount
+  reduced : diagram.Reduced
+
+/-- The retyped cactus is an exact-boundary relator-only disc. -/
+theorem exactBoundaryRelatorOnly_of_cactusRetyping
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (C : CactusRelatorRetyping Delta) :
+    ∃ D : DiscDiagram.{u, w, v} W,
+      D.boundaryWord = Delta.boundaryWord ∧
+      RelatorCellCover D ∧ D.Reduced ∧ D.rCellCount ≤ Delta.rCellCount :=
+  ⟨C.diagram, C.boundaryWord_eq, C.relatorOnly, C.reduced, C.rCellCount_le⟩
+
+/-! ## Cancellation surgery output -/
+
+/-- Output of cutting a mirror relator-cell pair and re-closing the
+complementary boundary.  The area equation is the sole numerical fact needed
+to turn the topological cut into a strict least-area contradiction. -/
+structure MirrorPairCut
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  result : DiscDiagram.{u, w, v} W
+  boundaryWord_eq : result.boundaryWord = Delta.boundaryWord
+  relatorOnly : RelatorCellCover result
+  reduced : result.Reduced
+  area_eq : result.rCellCount + 2 = Delta.rCellCount
+
+/-- A mirror-pair cut strictly lowers relator area. -/
+theorem MirrorPairCut.area_lt
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} (C : MirrorPairCut Delta) :
+    C.result.rCellCount < Delta.rCellCount := by
+  omega
+
+/-- The exact-boundary output of a mirror-pair cut supplies the strict
+area-decrease premise used by least-power reduction. -/
+theorem exists_strict_cut_of_mirrorPairCut
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} (C : MirrorPairCut Delta) :
+    ∃ D : DiscDiagram.{u, w, v} W,
+      D.boundaryWord = Delta.boundaryWord ∧ D.rCellCount < Delta.rCellCount :=
+  ⟨C.result, C.boundaryWord_eq, C.area_lt⟩
+
+/-! ## Degenerate model checks -/
+
+/-- A zero-cell diagram cannot contain a mirror pair, so the cancellation
+premise is empty in the one-face model. -/
+theorem no_mirror_pair_of_empty_relatorCells
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (hzero : Delta.relatorCells = []) :
+    ¬ ∃ C : RelatorCell Delta.toCombMap Delta.outerFace W,
+      C ∈ Delta.relatorCells := by
+  intro h
+  obtain ⟨C, hC⟩ := h
+  rw [hzero] at hC
+  exact List.not_mem_nil C hC
 
 /-! ## Presentation-independent identity reduction -/
 
