@@ -555,7 +555,7 @@ def relGenSetReindex (D : GGT.RelGenSet G Lambda) (e : Lambda' ≃ Lambda) :
     have hcarrier :
         (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
           ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G) :=
-      Set.iUnion_comp e.surjective _
+      e.surjective.iUnion_comp _
     rw [hcarrier]
     exact D.symmetricGenerating
 
@@ -564,7 +564,7 @@ theorem relGenSetReindex_alphabet_carrier (D : GGT.RelGenSet G Lambda)
     (relGenSetReindex D e).alphabet.carrier = D.alphabet.carrier := by
   show D.base ∪ (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
     D.base ∪ ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G)
-  rw [Set.iUnion_comp e.surjective]
+  rw [e.surjective.iUnion_comp]
 
 theorem relGenSetReindex_alphabet (D : GGT.RelGenSet G Lambda)
     (e : Lambda' ≃ Lambda) :
@@ -580,6 +580,7 @@ theorem isLetter_relabelLetter_reindex (D : GGT.RelGenSet G Lambda)
   | base x => exact ha
   | comp l y => exact ha
 
+omit [Group G] in
 theorem isCompOf_relabelLetter_reindex (e : Lambda' ≃ Lambda) (l : Lambda')
     (a : GGT.RelLetter G Lambda') :
     (relabelLetter (⇑e) a).IsCompOf (e l) ↔ a.IsCompOf l := by
@@ -605,7 +606,7 @@ theorem avoidsFrom_map_relabelLetter_reindex (D : GGT.RelGenSet G Lambda)
       constructor
       · rintro ⟨hcomp, hmem⟩
         exact hv.1 ⟨(isCompOf_relabelLetter_reindex e l a).mp hcomp, hmem⟩
-      · simpa [relabelLetter_val a] using ih (v * a.val) hv.2
+      · simpa [relabelLetter_val] using ih (v * a.val) hv.2
 
 theorem relGenSetReindex_relBall_subset (D : GGT.RelGenSet G Lambda)
     (e : Lambda' ≃ Lambda) (l : Lambda') (n : ℕ) :
