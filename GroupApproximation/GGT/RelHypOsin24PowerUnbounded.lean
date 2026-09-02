@@ -95,7 +95,7 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
     have hmul_inj : Function.Injective (fun n : ℕ => g ^ (m * n)) := by
       intro a b hab
       have hmul : m * a = m * b := hinj hab
-      exact Nat.mul_left_cancel hmul
+      exact Nat.mul_left_cancel hm hmul
     have hpow_range : (Set.range (fun n : ℕ => g ^ (m * n))).Infinite :=
       Set.infinite_range_of_injective hmul_inj
     have hsubset :
@@ -104,13 +104,14 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
       rintro x ⟨n, rfl⟩
       constructor
       · change g ^ (m * n) ∈ D.fam lam
-        rw [← pow_mul]
-        exact (D.fam lam).pow_mem hmem n
+        simpa only [pow_mul] using (D.fam lam).pow_mem hmem n
       · have hcomm : Commute g (g ^ (m * n)) :=
           (Commute.refl g).pow_right _
         have hconj : g⁻¹ * g ^ (m * n) * g = g ^ (m * n) := by
           calc
-            g⁻¹ * g ^ (m * n) * g = g⁻¹ * (g * g ^ (m * n)) := by
+            g⁻¹ * g ^ (m * n) * g = g⁻¹ * (g ^ (m * n) * g) := by
+              rw [mul_assoc]
+            _ = g⁻¹ * (g * g ^ (m * n)) := by
               rw [hcomm.eq]
             _ = g ^ (m * n) := by group
         rw [hconj]
