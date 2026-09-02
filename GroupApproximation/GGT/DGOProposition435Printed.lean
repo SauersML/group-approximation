@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.WPDElementaryEmbedding
+import GroupApproximation.GGT.HullSCLemma44JointRelabel
 
 /-!
 # Proposition 4.35 in its printed direction, and the two subfamily models
@@ -174,6 +175,102 @@ theorem emptySubfamilyRelGenSet_isHyperbolicallyEmbedded {E : Type u} [Group E]
       IsHyperbolicSpace delta (Cayley (emptySubfamilyRelGenSet Y hY).alphabet)) :
     (emptySubfamilyRelGenSet Y hY).IsHyperbolicallyEmbedded :=
   ⟨hhyp, fun e => Empty.elim e⟩
+
+
+/-! ## Dropping the elementary members of a filling quotient
+
+Osin's step, in the filling setting: the quotient is relatively hyperbolic with
+respect to the images of the whole joint family, and the elementary members are
+then dropped because they are hyperbolic with a finite generating set.  The
+base of the result is the joint base together with finitely many generators, so
+it stays finite, which is what relative hyperbolicity asks for.
+-/
+
+section Drop
+
+open GroupApproximation.HullSC
+
+variable {G : Type u} [Group G] {Lambda : Type w} {k : ℕ}
+
+/-- One member is kept, indexed by `Unit`; one is dropped, indexed by
+`Empty`. -/
+def dropIndex : Sum Lambda (AuxiliaryPeripheralIndex k) → Type :=
+  Sum.elim (fun _ => Unit) (fun _ => Empty)
+
+variable {Q : Type u} [Group Q]
+
+/-- The subfamily choice: each original member keeps itself over the empty
+base, each selected member is replaced by the empty family over a finite
+generating set. -/
+def dropSubfamilies (J : RelGenSet Q (Sum Lambda (AuxiliaryPeripheralIndex k)))
+    (E : ∀ i : AuxiliaryPeripheralIndex k,
+      RelGenSet (J.fam (Sum.inr i)) Empty) :
+    ∀ s, RelGenSet (J.fam s) (dropIndex s) := fun s =>
+  Sum.rec (motive := fun s => RelGenSet (J.fam s) (dropIndex s))
+    (fun l => selfRelGenSet (J.fam (Sum.inl l))) (fun i => E i) s
+
+/-- The kept members are indexed by the original index. -/
+def dropEquiv :
+    Lambda ≃ ((s : Sum Lambda (AuxiliaryPeripheralIndex k)) × dropIndex s) where
+  toFun l := ⟨Sum.inl l, ()⟩
+  invFun p :=
+    Sum.rec (motive := fun s => dropIndex s → Lambda) (fun l _ => l)
+      (fun _ e => Empty.elim e) p.1 p.2
+  left_inv l := rfl
+  right_inv p := by
+    obtain ⟨s, m⟩ := p
+    cases s with
+    | inl l =>
+        cases m
+        rfl
+    | inr i => exact Empty.elim m
+
+/-- **The images of the original peripheral family are relatively hyperbolic in
+the filling quotient.**
+
+This is the step Osin performs at `embed-final.tex:1956-1959`: the joint image
+family is relatively hyperbolic, and the elementary members drop out by the
+printed Proposition 4.35, since each is hyperbolic with a finite generating
+set.  No record about the original family is needed, because relative
+hyperbolicity only asks for SOME finite relative generating set. -/
+theorem isRelativelyHyperbolic_original_of_jointPreservation
+    (h435 : DGOProposition435PrintedStatement.{u, 0, w})
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    {selected : AuxiliaryPeripheralFamily A N S} [Finite Lambda]
+    {original : RelGenSet G Lambda} {q : G →* Q}
+    (P : QuotientJointPeripheralPreservation q selected original)
+    (hfinite : original.base.Finite)
+    (E : ∀ i : AuxiliaryPeripheralIndex k,
+      RelGenSet (P.rel.fam (Sum.inr i)) Empty)
+    (hE : ∀ i, (E i).IsHyperbolicallyEmbedded)
+    (hEfinite : ∀ i, (E i).base.Finite) :
+    IsRelativelyHyperbolic Q (fun l : Lambda => (original.fam l).map q) := by
+  have hsub : ∀ s, (dropSubfamilies P.rel E s).IsHyperbolicallyEmbedded := by
+    intro s
+    cases s with
+    | inl l => exact selfRelGenSet_isHyperbolicallyEmbedded _
+    | inr i => exact hE i
+  obtain ⟨Z, hZbase, hZfam, hZemb⟩ :=
+    h435 P.rel (dropSubfamilies P.rel E) P.embedded hsub
+  have hbaseFinite : Z.base.Finite := by
+    rw [hZbase]
+    refine Set.Finite.union (P.base_finite hfinite) ?_
+    refine Set.finite_iUnion ?_
+    intro s
+    refine Set.Finite.image _ ?_
+    cases s with
+    | inl l => exact Set.finite_empty
+    | inr i => exact hEfinite i
+  refine ⟨relGenSetReindex Z dropEquiv, hbaseFinite, ?_,
+    relGenSetReindex_isHyperbolicallyEmbedded Z dropEquiv hZemb⟩
+  funext l
+  show Z.fam (dropEquiv l) = (original.fam l).map q
+  rw [hZfam ⟨Sum.inl l, ()⟩]
+  show ((⊤ : Subgroup (P.rel.fam (Sum.inl l))).map
+    (P.rel.fam (Sum.inl l)).subtype) = (original.fam l).map q
+  rw [← MonoidHom.range_eq_map, Subgroup.range_subtype, P.fam_original l]
+
+end Drop
 
 end RelHyp
 end GGT
