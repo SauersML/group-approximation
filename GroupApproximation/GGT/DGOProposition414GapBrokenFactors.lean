@@ -103,6 +103,38 @@ noncomputable def secondBrokenExitForward
     (HalfEntry.exitChild B.brokenAssignment.index.second
       (B.secondSourceEntry s hs))
 
+/-- Connector pair attached to the actual greedy entry chosen for a broken
+first-half source. -/
+noncomputable def firstBrokenEntryConnectors
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :=
+  B.firstBrokenConnectors
+    (HalfEntry.entrySource B.brokenAssignment.index.first
+      (B.firstSourceEntry s hs))
+    (HalfEntry.entrySource_mem B.brokenAssignment.index.first
+      (B.firstSourceEntry s hs))
+
+/-- Connector pair attached to the actual greedy entry chosen for a broken
+wrapped-half source. -/
+noncomputable def secondBrokenEntryConnectors
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :=
+  B.secondBrokenConnectors
+    (HalfEntry.entrySource B.brokenAssignment.index.second
+      (B.secondSourceEntry s hs))
+    (HalfEntry.entrySource_mem B.brokenAssignment.index.second
+      (B.secondSourceEntry s hs))
+
 /-- A first-half broken source needs a separate middle chord factor exactly
 when its adjacent gap orientations agree. -/
 noncomputable def firstBrokenMiddleSlot
@@ -288,11 +320,11 @@ theorem firstBrokenStartSlot_span_cases
       B.componentPlacement.firstSurvives) :
     (B.firstBrokenEntryForward hs →
       optionalTargetSlotSpan (B.firstBrokenStartSlot C hs) =
-        RelLetter.listVal (B.firstBrokenConnectors s hs).startConnector) ∧
+        RelLetter.listVal (B.firstBrokenEntryConnectors hs).startConnector) ∧
     (¬ B.firstBrokenEntryForward hs →
       optionalTargetSlotSpan (B.firstBrokenStartSlot C hs) =
         RelLetter.listVal
-          (B.firstBrokenConnectors s hs).startThroughPartner) := by
+          (B.firstBrokenEntryConnectors hs).startThroughPartner) := by
   constructor <;> intro hf
   · rw [B.firstBrokenStartSlot_span C hs]
     have hf' : B.firstGapRunsForward
@@ -301,7 +333,6 @@ theorem firstBrokenStartSlot_span_cases
     unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases (B.firstSourceEntry_source s hs).symm
     rfl
   · rw [B.firstBrokenStartSlot_span C hs]
     have hf' : ¬ B.firstGapRunsForward
@@ -310,7 +341,6 @@ theorem firstBrokenStartSlot_span_cases
     unfold firstBrokenOwner firstGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases (B.firstSourceEntry_source s hs).symm
     rfl
 
 /-- The first-half exit slot is the inverse plain exit connector in the
@@ -327,11 +357,11 @@ theorem firstBrokenEndSlot_span_cases
     (B.firstBrokenExitForward hs →
       optionalTargetSlotSpan (B.firstBrokenEndSlot C hs) =
         (RelLetter.listVal
-          (B.firstBrokenConnectors s hs).endConnector)⁻¹) ∧
+          (B.firstBrokenEntryConnectors hs).endConnector)⁻¹) ∧
     (¬ B.firstBrokenExitForward hs →
       optionalTargetSlotSpan (B.firstBrokenEndSlot C hs) =
         (RelLetter.listVal
-          (B.firstBrokenConnectors s hs).endThroughPartner)⁻¹) := by
+          (B.firstBrokenEntryConnectors hs).endThroughPartner)⁻¹) := by
   constructor <;> intro hf
   · rw [B.firstBrokenEndSlot_span C hs]
     have hf' : B.firstGapRunsForward
@@ -340,7 +370,6 @@ theorem firstBrokenEndSlot_span_cases
     unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases (B.firstSourceEntry_source s hs).symm
     rfl
   · rw [B.firstBrokenEndSlot_span C hs]
     have hf' : ¬ B.firstGapRunsForward
@@ -349,7 +378,6 @@ theorem firstBrokenEndSlot_span_cases
     unfold firstGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases (B.firstSourceEntry_source s hs).symm
     rfl
 
 /-- The wrapped entry convention is opposite: forward gaps use the
@@ -366,11 +394,11 @@ theorem secondBrokenStartSlot_span_cases
     (B.secondBrokenEntryForward hs →
       optionalTargetSlotSpan (B.secondBrokenStartSlot C hs) =
         RelLetter.listVal
-          (B.secondBrokenConnectors s hs).startThroughPartner) ∧
+          (B.secondBrokenEntryConnectors hs).startThroughPartner) ∧
     (¬ B.secondBrokenEntryForward hs →
       optionalTargetSlotSpan (B.secondBrokenStartSlot C hs) =
         RelLetter.listVal
-          (B.secondBrokenConnectors s hs).startConnector) := by
+          (B.secondBrokenEntryConnectors hs).startConnector) := by
   constructor <;> intro hf
   · rw [B.secondBrokenStartSlot_span C hs]
     have hf' : B.secondGapRunsForward
@@ -379,7 +407,6 @@ theorem secondBrokenStartSlot_span_cases
     unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases (B.secondSourceEntry_source s hs).symm
     rfl
   · rw [B.secondBrokenStartSlot_span C hs]
     have hf' : ¬ B.secondGapRunsForward
@@ -388,7 +415,6 @@ theorem secondBrokenStartSlot_span_cases
     unfold secondBrokenOwner secondGapRight
     rw [HalfGap.nextEntry_entryChild]
     simp only [hf', ↓reduceIte]
-    cases (B.secondSourceEntry_source s hs).symm
     rfl
 
 /-- Forward wrapped exit gaps use the inverse exit-through-partner
@@ -405,11 +431,11 @@ theorem secondBrokenEndSlot_span_cases
     (B.secondBrokenExitForward hs →
       optionalTargetSlotSpan (B.secondBrokenEndSlot C hs) =
         (RelLetter.listVal
-          (B.secondBrokenConnectors s hs).endThroughPartner)⁻¹) ∧
+          (B.secondBrokenEntryConnectors hs).endThroughPartner)⁻¹) ∧
     (¬ B.secondBrokenExitForward hs →
       optionalTargetSlotSpan (B.secondBrokenEndSlot C hs) =
         (RelLetter.listVal
-          (B.secondBrokenConnectors s hs).endConnector)⁻¹) := by
+          (B.secondBrokenEntryConnectors hs).endConnector)⁻¹) := by
   constructor <;> intro hf
   · rw [B.secondBrokenEndSlot_span C hs]
     have hf' : B.secondGapRunsForward
@@ -418,7 +444,6 @@ theorem secondBrokenEndSlot_span_cases
     unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases (B.secondSourceEntry_source s hs).symm
     rfl
   · rw [B.secondBrokenEndSlot_span C hs]
     have hf' : ¬ B.secondGapRunsForward
@@ -427,7 +452,6 @@ theorem secondBrokenEndSlot_span_cases
     unfold secondGapLeft
     rw [HalfGap.previousEntry_exitChild]
     simp only [hf', ↓reduceIte]
-    cases (B.secondSourceEntry_source s hs).symm
     rfl
 
 /-- The selected first-half partner span is the inverse forward global-chord
