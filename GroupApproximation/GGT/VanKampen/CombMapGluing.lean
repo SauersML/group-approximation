@@ -239,9 +239,9 @@ noncomputable def of_copyMate
     invFun := mateFun
     left_inv := hmate_involutive
     right_inv := hmate_involutive }
-  refine { mate := matePerm
-    involutive := hmate_involutive
-    fixedPointFree := ?_
+  refine { mate := matePerm,
+    involutive := hmate_involutive,
+    fixedPointFree := ?_,
     changes_copy := ?_ }
   · intro d hd
     apply hfree (index d).1
