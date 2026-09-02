@@ -101,7 +101,7 @@ def HullLemma44CanonicalQuotientFamilyInclusionJointStatement : Prop :=
         (∀ i : AuxiliaryPeripheralIndex k,
           joint.fam (Sum.inr i) = selected.cores.peripheral i) →
         joint.IsHyperbolicallyEmbedded →
-        joint.base ⊆ original.base →
+        (∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T) →
       ∀ R : ℕ,
         ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
           ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
@@ -141,7 +141,7 @@ def JointAuxiliaryPeripheralEmbedding : Prop :=
               (∀ i : AuxiliaryPeripheralIndex k,
                 joint.fam (Sum.inr i) = selected.cores.peripheral i) ∧
                 joint.IsHyperbolicallyEmbedded ∧
-                  joint.base ⊆ original.base
+                  ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T
 
 /-! ## The empty relator family -/
 
@@ -212,8 +212,10 @@ theorem jointAuxiliaryPeripheralEmbedding_of_familyInclusion
     rw [P.fam_original lam, Subgroup.map_id]
   · intro i
     rw [P.fam_selected i, Subgroup.map_id]
-  · intro x hx
-    have hmem := P.base_subset hx
+  · obtain ⟨T, hT, hsub⟩ := P.base_subset
+    refine ⟨T, hT, ?_⟩
+    intro x hx
+    have hmem := hsub hx
     simpa using hmem
 
 /-- The repaired form is weaker: it is the same conclusion under strictly more
@@ -283,7 +285,8 @@ theorem familyInclusionConclusion_identityModel
     (hjointSelected : ∀ i,
       joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (hjoint : joint.IsHyperbolicallyEmbedded)
-    (hjointSub : joint.base ⊆ original.base) (R : ℕ) :
+    (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
+    (R : ℕ) :
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) ∧
       Nonempty

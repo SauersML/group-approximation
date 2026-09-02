@@ -72,7 +72,7 @@ theorem quotientJointPeripheralPreservation_of_control
     {Q : Type u} [Group Q] (q : G →* Q)
     (hq : Function.Surjective q)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
-    (hjointSub : joint.base ⊆ original.base)
+    (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     (control : RelativeIsoperimetricControl joint q hq) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   have hjointQ : (joint.mapSurjective q hq).IsHyperbolicallyEmbedded :=
@@ -83,7 +83,9 @@ theorem quotientJointPeripheralPreservation_of_control
     fam_original := ?_
     fam_selected := ?_
     embedded := hjointQ
-    base_subset := Set.image_mono hjointSub }⟩
+    base_subset := by
+      obtain ⟨T, hT, hsub⟩ := hjointSub
+      exact ⟨T, hT, Set.image_mono hsub⟩ }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
@@ -140,7 +142,7 @@ theorem familyPreservation_of_controls
       hsc.toIsSmallCancellation q hq)
     (originalControl : RelativeIsoperimetricControl original q hq)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
-    (hjointSub : joint.base ⊆ original.base)
+    (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     (jointControl : RelativeIsoperimetricControl joint q hq)
     (hinjA : Set.InjOn q (cayleyBall A.alphabet 1))
     (hinjSelected : Set.InjOn q
@@ -205,7 +207,7 @@ theorem familyInclusionConclusion_of_relativeControls
       hsc.toIsSmallCancellation q hq)
     (originalControl : RelativeIsoperimetricControl original q hq)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
-    (hjointSub : joint.base ⊆ original.base)
+    (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     (jointControl : RelativeIsoperimetricControl joint q hq) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q selected) ∧
@@ -293,7 +295,7 @@ theorem familyPreservation_identityModel
       joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (horiginalEmbedded : original.IsHyperbolicallyEmbedded)
     (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
-    (hjointSub : joint.base ⊆ original.base)
+    (hjointSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     (R : ℕ) :
     Set.InjOn (MonoidHom.id G) (cayleyBall A.alphabet R) ∧
       Nonempty (CanonicalQuotientFamilyPreservation (MonoidHom.id G) original) ∧

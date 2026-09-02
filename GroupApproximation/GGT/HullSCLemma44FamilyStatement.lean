@@ -118,7 +118,7 @@ structure QuotientJointPeripheralPreservation
   builds one from this base by adjoining finitely many generators of the
   members it drops; so this base has to be finite, and it is, because the
   original base is. -/
-  base_subset : rel.base ⊆ q '' original.base
+  base_subset : ∃ T : Set G, T.Finite ∧ rel.base ⊆ q '' (original.base ∪ T)
 
 namespace QuotientJointPeripheralPreservation
 
@@ -130,8 +130,9 @@ theorem base_finite {G : Type u} [Group G] {A : HullGeneratingSet G}
     {selected : AuxiliaryPeripheralFamily A N S}
     {original : GGT.RelGenSet G Lambda}
     (P : QuotientJointPeripheralPreservation q selected original)
-    (hfinite : original.base.Finite) : P.rel.base.Finite :=
-  (hfinite.image q).subset P.base_subset
+    (hfinite : original.base.Finite) : P.rel.base.Finite := by
+  obtain ⟨T, hT, hsub⟩ := P.base_subset
+  exact (((hfinite.union hT).image q)).subset hsub
 
 end QuotientJointPeripheralPreservation
 
@@ -189,7 +190,7 @@ theorem quotientJointPeripheralPreservation_of_bijective
     (horiginal : ∀ lam, joint.fam (Sum.inl lam) = original.fam lam)
     (hselected : ∀ i, joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (hjoint : joint.IsHyperbolicallyEmbedded)
-    (hbaseSub : joint.base ⊆ original.base)
+    (hbaseSub : ∃ T : Set G, T.Finite ∧ joint.base ⊆ original.base ∪ T)
     {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   refine ⟨{
@@ -199,7 +200,9 @@ theorem quotientJointPeripheralPreservation_of_bijective
     fam_selected := ?_
     embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
       joint hjoint q hq
-    base_subset := Set.image_mono hbaseSub }⟩
+    base_subset := by
+      obtain ⟨T, hT, hsub⟩ := hbaseSub
+      exact ⟨T, hT, Set.image_mono hsub⟩ }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
