@@ -500,6 +500,122 @@ theorem secondBroken_partnerSpan_eq_chord
       (B.brokenAssignment.second.partner_lt s hs)]
   group
 
+/-! ## Greedy-entry connector spans -/
+
+/-- The connector pair selected through the greedy entry has the original
+first-half source span. -/
+theorem firstBrokenEntry_sourceSpan_eq
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    P.span s =
+      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos s))⁻¹ *
+        vertex B.firstBase B.firstWord
+          (B.firstBrokenEntryConnectors hs).sourceEnd := by
+  let t := HalfEntry.entrySource B.brokenAssignment.index.first
+    (B.firstSourceEntry s hs)
+  let ht := HalfEntry.entrySource_mem B.brokenAssignment.index.first
+    (B.firstSourceEntry s hs)
+  let E := B.firstBrokenEntryConnectors hs
+  have h := B.firstBroken_sourceSpan_eq ht
+  change P.span t =
+    (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos t))⁻¹ *
+      vertex B.firstBase B.firstWord E.sourceEnd at h
+  have hsource : t = s := B.firstSourceEntry_source s hs
+  rw [hsource] at h
+  exact h
+
+/-- The greedy-entry first-half partner span is the inverse global chord
+edge selected for the source. -/
+theorem firstBrokenEntry_partnerSpan_eq_chordInv
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    (vertex B.firstBase B.firstWord
+        (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+      vertex B.firstBase B.firstWord
+        (B.firstBrokenEntryConnectors hs).partnerEnd =
+      (B.chord[B.brokenAssignment.first.partner s]'
+        (B.brokenAssignment.first.partner_lt s hs)).val⁻¹ := by
+  let t := HalfEntry.entrySource B.brokenAssignment.index.first
+    (B.firstSourceEntry s hs)
+  let ht := HalfEntry.entrySource_mem B.brokenAssignment.index.first
+    (B.firstSourceEntry s hs)
+  let E := B.firstBrokenEntryConnectors hs
+  have h := B.firstBroken_partnerSpan_eq_chordInv ht
+  change (vertex B.firstBase B.firstWord
+      (B.firstChordPos (B.brokenAssignment.first.partner t)))⁻¹ *
+    vertex B.firstBase B.firstWord E.partnerEnd =
+      (B.chord[B.brokenAssignment.first.partner t]'_).val⁻¹ at h
+  have hsource : t = s := B.firstSourceEntry_source s hs
+  rw [hsource] at h
+  exact h
+
+/-- The connector pair selected through the greedy entry has the original
+wrapped-half source span. -/
+theorem secondBrokenEntry_sourceSpan_eq
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    P.span s =
+      (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos s))⁻¹ *
+        vertex B.secondBase B.secondWord
+          (B.secondBrokenEntryConnectors hs).sourceEnd := by
+  let t := HalfEntry.entrySource B.brokenAssignment.index.second
+    (B.secondSourceEntry s hs)
+  let ht := HalfEntry.entrySource_mem B.brokenAssignment.index.second
+    (B.secondSourceEntry s hs)
+  let E := B.secondBrokenEntryConnectors hs
+  have h := B.secondBroken_sourceSpan_eq ht
+  change P.span t =
+    (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos t))⁻¹ *
+      vertex B.secondBase B.secondWord E.sourceEnd at h
+  have hsource : t = s := B.secondSourceEntry_source s hs
+  rw [hsource] at h
+  exact h
+
+/-- The greedy-entry wrapped partner span is the forward global chord edge
+selected for the source. -/
+theorem secondBrokenEntry_partnerSpan_eq_chord
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    (vertex B.secondBase B.secondWord
+        (B.secondChordPos (B.brokenAssignment.second.partner s)))⁻¹ *
+      vertex B.secondBase B.secondWord
+        (B.secondBrokenEntryConnectors hs).partnerEnd =
+      (B.chord[B.brokenAssignment.second.partner s]'
+        (B.brokenAssignment.second.partner_lt s hs)).val := by
+  let t := HalfEntry.entrySource B.brokenAssignment.index.second
+    (B.secondSourceEntry s hs)
+  let ht := HalfEntry.entrySource_mem B.brokenAssignment.index.second
+    (B.secondSourceEntry s hs)
+  let E := B.secondBrokenEntryConnectors hs
+  have h := B.secondBroken_partnerSpan_eq_chord ht
+  change (vertex B.secondBase B.secondWord
+      (B.secondChordPos (B.brokenAssignment.second.partner t)))⁻¹ *
+    vertex B.secondBase B.secondWord E.partnerEnd =
+      (B.chord[B.brokenAssignment.second.partner t]'_).val at h
+  have hsource : t = s := B.secondSourceEntry_source s hs
+  rw [hsource] at h
+  exact h
+
 end BalancedSplitData
 
 end DGOProposition414
