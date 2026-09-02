@@ -340,6 +340,306 @@ theorem cutWord_isCompStart_cases
           exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
         exact ⟨t, hjlt, hpos, hlabel⟩
 
+/-! ## Components of one W-word are isolated -/
+
+/-- **The first paragraph of DGO Lemma 4.21.**
+
+For a W-word whose peripheral letters lie outside the radius `50C` balls, no
+two distinct components are connected.  If a connected pair existed, choose
+one of minimal rank gap.  The components strictly between it are isolated in
+the cut cycle closed by one peripheral edge.  Proposition 4.14 bounds their
+total depth by `C` times at most twice the rank gap, contradicting (W2). -/
+theorem peripheralOccurrence_not_connected_of_uniformBound
+    {D : RelGenSet G Λ} {C : ℕ} (hC : 0 < C)
+    (hbound : DGOUniformSumBound D 1 1 C)
+    {word : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hW1 : WWord.IsWOne word)
+    (hW2 : WWord.IsWTwo D (50 * C) word)
+    (hW3 : WWord.IsWThree D word) (v : G)
+    {a b : Fin (peripheralPositions word).card} (hab : a ≠ b)
+    (hlabel : (peripheralOccurrence word b).label =
+      (peripheralOccurrence word a).label) :
+    ¬ Connected D.fam (peripheralOccurrence word a).label v word
+      (peripheralOccurrence word a).pos
+      (peripheralOccurrence word b).pos := by
+  classical
+  intro habConn
+  let Pair : ℕ → Prop := fun gap =>
+    ∃ s r : Fin (peripheralPositions word).card,
+      s < r ∧ r.val - s.val = gap ∧
+      (peripheralOccurrence word r).label =
+        (peripheralOccurrence word s).label ∧
+      Connected D.fam (peripheralOccurrence word s).label v word
+        (peripheralOccurrence word s).pos
+        (peripheralOccurrence word r).pos
+  have hPair : ∃ gap : ℕ, Pair gap := by
+    rcases lt_or_gt_of_ne hab with habLt | hbaLt
+    · exact ⟨b.val - a.val, a, b, habLt, rfl, hlabel, habConn⟩
+    · refine ⟨a.val - b.val, b, a, hbaLt, rfl, hlabel.symm, ?_⟩
+      have hsymm := connected_symm habConn
+      rwa [hlabel] at hsymm
+  let gap : ℕ := Nat.find hPair
+  obtain ⟨s, r, hsr, hgap, hsrLabel, hsrConn⟩ := Nat.find_spec hPair
+  have hminimal : ∀ {x y : Fin (peripheralPositions word).card},
+      x < y →
+      (peripheralOccurrence word y).label =
+        (peripheralOccurrence word x).label →
+      Connected D.fam (peripheralOccurrence word x).label v word
+        (peripheralOccurrence word x).pos
+        (peripheralOccurrence word y).pos →
+      gap ≤ y.val - x.val := by
+    intro x y hxy hxyLabel hxyConn
+    exact Nat.find_min' hPair ⟨x, y, hxy, rfl, hxyLabel, hxyConn⟩
+  have hgapTwo : 2 ≤ gap := by
+    have hgapPos : 0 < gap := by omega
+    by_contra hnot
+    have hgapOne : gap = 1 := by omega
+    have hrVal : r.val = s.val + 1 := by omega
+    have hsucc : s.val + 1 < (peripheralPositions word).card := by omega
+    let r' : Fin (peripheralPositions word).card := ⟨s.val + 1, hsucc⟩
+    have hrr' : r = r' := Fin.ext hrVal
+    rw [hrr'] at hsrLabel hsrConn
+    exact not_connected_peripheralOccurrence_succ hlet hW1 hW3 v s hsucc
+      hsrLabel hsrConn
+  let A := peripheralOccurrence word s
+  let B := peripheralOccurrence word r
+  let start := A.pos + 1
+  let width := B.pos - start
+  have hABpos : A.pos < B.pos := peripheralOccurrence_pos_lt word hsr
+  have hstartB : start ≤ B.pos := by
+    dsimp [start]
+    omega
+  have hwidthEnd : start + width = B.pos := by
+    dsimp [width]
+    omega
+  have hBword : B.pos < word.length :=
+    (List.getElem?_eq_some_iff.mp B.read).1
+  have hwidthWord : start + width ≤ word.length := by omega
+  let z : G := (vertex v word B.pos)⁻¹ * vertex v word start
+  have hAcomp : IsComp A.label word A.pos (A.pos + 1) :=
+    PeripheralOccurrence.isComp hW3 s
+  have hAspan : (vertex v word A.pos)⁻¹ * vertex v word start
+      ∈ D.fam A.label := by
+    simpa [start] using span_mem_fam_of_isComp D v hlet hAcomp
+  have hzFam : z ∈ D.fam A.label := by
+    have hzEq : z =
+        ((vertex v word A.pos)⁻¹ * vertex v word B.pos)⁻¹ *
+          ((vertex v word A.pos)⁻¹ * vertex v word start) := by
+      dsimp [z]
+      group
+    rw [hzEq]
+    exact mul_mem (inv_mem hsrConn) hAspan
+  let cycle := cutWord word A.label start width z
+  have hcycleLen : cycle.length = width + 1 := by
+    exact length_cutWord word A.label start width z hwidthWord
+  have hcycleLet : ∀ c ∈ cycle, D.IsLetter c := by
+    exact letters_cutWord D hlet A.label start width hzFam
+  have hcycleClosed : RelLetter.listVal cycle = 1 := by
+    have hclosed := listVal_cutWord v word A.label start width
+    have hzEq : z =
+        (vertex v word (start + width))⁻¹ * vertex v word start := by
+      dsimp [z]
+      rw [hwidthEnd]
+    simpa [cycle, hzEq] using hclosed
+  let J : Finset (Fin (peripheralPositions word).card) := Finset.Ioo s r
+  let side : Fin (peripheralPositions word).card → ℕ := fun t =>
+    (peripheralOccurrence word t).pos - start
+  let I : Finset ℕ := J.image side
+  have hsideInj : Set.InjOn side (↑J : Set (Fin (peripheralPositions word).card)) := by
+    intro x hx y hy hxy
+    have hxJ : s < x ∧ x < r := Finset.mem_Ioo.mp hx
+    have hyJ : s < y ∧ y < r := Finset.mem_Ioo.mp hy
+    have hAx : A.pos < (peripheralOccurrence word x).pos := by
+      exact peripheralOccurrence_pos_lt word hxJ.1
+    have hAy : A.pos < (peripheralOccurrence word y).pos := by
+      exact peripheralOccurrence_pos_lt word hyJ.1
+    have hposEq : (peripheralOccurrence word x).pos =
+        (peripheralOccurrence word y).pos := by
+      dsimp [side, start] at hxy
+      omega
+    rcases lt_trichotomy x y with hlt | heq | hgt
+    · exact False.elim ((peripheralOccurrence_pos_lt word hlt).ne hposEq)
+    · exact heq
+    · exact False.elim ((peripheralOccurrence_pos_lt word hgt).ne hposEq.symm)
+  have hcardI : I.card = gap - 1 := by
+    calc
+      I.card = J.card := Finset.card_image_iff.mpr hsideInj
+      _ = gap - 1 := by
+        simp only [J, Finset.card_Ioo]
+        omega
+  have hpack : ∀ q ∈ I, ∃ lam : Λ,
+      IsComp lam cycle q (q + 1) ∧
+      IsIsolated D.fam lam (vertex v word start) cycle q ∧
+      (vertex (vertex v word start) cycle q)⁻¹ *
+        vertex (vertex v word start) cycle (q + 1)
+          ∉ D.relBall lam (50 * C) := by
+    intro q hq
+    obtain ⟨t, htJ, htSide⟩ := Finset.mem_image.mp hq
+    have htBounds : s < t ∧ t < r := Finset.mem_Ioo.mp htJ
+    have hAt : A.pos < (peripheralOccurrence word t).pos :=
+      peripheralOccurrence_pos_lt word htBounds.1
+    have htB : (peripheralOccurrence word t).pos < B.pos :=
+      peripheralOccurrence_pos_lt word htBounds.2
+    have hstartT : start ≤ (peripheralOccurrence word t).pos := by
+      dsimp [start]
+      omega
+    have hendT : (peripheralOccurrence word t).pos + 1 ≤ start + width := by
+      rw [hwidthEnd]
+      omega
+    have hsideCoord : start + side t = (peripheralOccurrence word t).pos := by
+      dsimp [side]
+      omega
+    have hsideLt : side t < width := by
+      rw [← hwidthEnd]
+      omega
+    have hboundary : (peripheralOccurrence word t).pos + 1 = start + width →
+        A.label ≠ (peripheralOccurrence word t).label := by
+      intro hnext
+      have hBnext : word[(peripheralOccurrence word t).pos + 1]? =
+          some (RelLetter.comp B.label B.value) := by
+        rw [hnext, hwidthEnd]
+        exact B.read
+      have hne := hW3.1 (peripheralOccurrence word t).pos
+        (peripheralOccurrence word t).label B.label
+        (peripheralOccurrence word t).value B.value
+        (peripheralOccurrence word t).read hBnext
+      intro hEq
+      apply hne
+      exact hEq.symm.trans hsrLabel.symm
+    have htComp : IsComp (peripheralOccurrence word t).label word
+        (peripheralOccurrence word t).pos
+        ((peripheralOccurrence word t).pos + 1) :=
+      PeripheralOccurrence.isComp hW3 t
+    have htCycleComp : IsComp (peripheralOccurrence word t).label cycle
+        (side t) (side t + 1) := by
+      dsimp [cycle]
+      exact isComp_cutWord_of_singleton hwidthWord htComp hstartT hendT hboundary
+    have htIsolated : IsIsolated D.fam (peripheralOccurrence word t).label
+        (vertex v word start) cycle (side t) := by
+      refine ⟨⟨side t + 1, htCycleComp⟩, ?_⟩
+      intro j hjne hjStart hjConn
+      rcases cutWord_isCompStart_cases hW3 hwidthWord hjStart with
+        ⟨hjWidth, hcloseLabel⟩ | ⟨u, hjWidth, huPos, huLabel⟩
+      · have hjle : j ≤ width := by omega
+        have htle : side t ≤ width := by omega
+        have hconnOriginal :=
+          (connected_cutWord_iff D.fam (peripheralOccurrence word t).label
+            A.label v word z hwidthWord htle hjle).mp hjConn
+        have hconnTR : Connected D.fam (peripheralOccurrence word t).label v word
+            (peripheralOccurrence word t).pos B.pos := by
+          simpa only [hsideCoord, hjWidth, hwidthEnd] using hconnOriginal
+        have hlabelTR : B.label = (peripheralOccurrence word t).label :=
+          hsrLabel.trans hcloseLabel
+        have hmin := hminimal htBounds.2 hlabelTR hconnTR
+        omega
+      · have hjle : j ≤ width := by omega
+        have htle : side t ≤ width := by omega
+        have hconnOriginal :=
+          (connected_cutWord_iff D.fam (peripheralOccurrence word t).label
+            A.label v word z hwidthWord htle hjle).mp hjConn
+        have hconnTU : Connected D.fam (peripheralOccurrence word t).label v word
+            (peripheralOccurrence word t).pos
+            (peripheralOccurrence word u).pos := by
+          rw [hsideCoord, huPos]
+          exact hconnOriginal
+        have hsu : s < u := by
+          have hAu : A.pos < (peripheralOccurrence word u).pos := by
+            rw [huPos]
+            dsimp [start]
+            omega
+          rcases lt_trichotomy s u with hlt | heq | hgt
+          · exact hlt
+          · subst u
+            exact False.elim (hAu.ne rfl)
+          · exact False.elim
+              ((peripheralOccurrence_pos_lt word hgt).not_le (le_of_lt hAu))
+        have hur : u < r := by
+          have huB : (peripheralOccurrence word u).pos < B.pos := by
+            rw [huPos, ← hwidthEnd]
+            omega
+          rcases lt_trichotomy u r with hlt | heq | hgt
+          · exact hlt
+          · subst u
+            exact False.elim (huB.ne rfl)
+          · exact False.elim
+              ((peripheralOccurrence_pos_lt word hgt).not_le (le_of_lt huB))
+        by_cases hut : u = t
+        · subst u
+          apply hjne
+          dsimp [side]
+          rw [huPos]
+          omega
+        · rcases lt_or_gt_of_ne hut with hutLt | htuLt
+          · have hconnUT := connected_symm hconnTU
+            have hconnUT' : Connected D.fam (peripheralOccurrence word u).label
+                v word (peripheralOccurrence word u).pos
+                (peripheralOccurrence word t).pos := by
+              rwa [huLabel]
+            have hmin := hminimal hutLt huLabel.symm hconnUT'
+            omega
+          · have hmin := hminimal htuLt huLabel hconnTU
+            omega
+    have htDeep :
+        (vertex (vertex v word start) cycle (side t))⁻¹ *
+          vertex (vertex v word start) cycle (side t + 1)
+            ∉ D.relBall (peripheralOccurrence word t).label (50 * C) := by
+      have hsideSucc : start + (side t + 1) =
+          (peripheralOccurrence word t).pos + 1 := by omega
+      rw [show cycle = cutWord word A.label start width z from rfl,
+        vertex_cutWord v word A.label start width z hwidthWord
+          (side t) (by omega),
+        vertex_cutWord v word A.label start width z hwidthWord
+          (side t + 1) (by omega), hsideCoord, hsideSucc,
+        vertex_succ word v (peripheralOccurrence word t).pos
+          (List.getElem?_eq_some_iff.mp (peripheralOccurrence word t).read).1,
+        inv_mul_cancel_left]
+      exact hW2 (peripheralOccurrence word t).pos
+        (peripheralOccurrence word t).label
+        (peripheralOccurrence word t).value
+        (peripheralOccurrence word t).read
+    rw [← htSide]
+    exact ⟨(peripheralOccurrence word t).label, htCycleComp,
+      htIsolated, htDeep⟩
+  let lamSide : ℕ → Λ := fun q =>
+    if hq : q ∈ I then Classical.choose (hpack q hq) else A.label
+  have hlamSpec : ∀ q ∈ I,
+      IsComp (lamSide q) cycle q (q + 1) ∧
+      IsIsolated D.fam (lamSide q) (vertex v word start) cycle q ∧
+      (vertex (vertex v word start) cycle q)⁻¹ *
+        vertex (vertex v word start) cycle (q + 1)
+          ∉ D.relBall (lamSide q) (50 * C) := by
+    intro q hq
+    dsimp [lamSide]
+    rw [dif_pos hq]
+    exact Classical.choose_spec (hpack q hq)
+  have hIrange : ∀ q ∈ I, q < cycle.length := by
+    intro q hq
+    obtain ⟨t, htJ, rfl⟩ := Finset.mem_image.mp hq
+    have htBounds : s < t ∧ t < r := Finset.mem_Ioo.mp htJ
+    have hAt : A.pos < (peripheralOccurrence word t).pos :=
+      peripheralOccurrence_pos_lt word htBounds.1
+    have htB : (peripheralOccurrence word t).pos < B.pos :=
+      peripheralOccurrence_pos_lt word htBounds.2
+    dsimp [side, start]
+    rw [hcycleLen]
+    dsimp [width]
+    omega
+  have hcount := deepIsolated_card_bound_everyEdge hbound hcycleLet hcycleClosed
+    I lamSide hIrange (fun q hq => (hlamSpec q hq).1)
+    (fun q hq => (hlamSpec q hq).2.1)
+    (fun q hq => (hlamSpec q hq).2.2)
+  have hspacing := peripheralPos_le_add_two_mul hW1 r.isLt (le_of_lt hsr)
+  have hwidthBound : width + 1 ≤ 2 * gap := by
+    rw [← hgap]
+    dsimp [width, start, A, B]
+    rw [peripheralOccurrence_pos, peripheralOccurrence_pos]
+    omega
+  rw [hcardI, hcycleLen] at hcount
+  have hstrict : C * (width + 1) < (50 * C + 1) * (gap - 1) := by
+    nlinarith
+  omega
+
 end OsinComponents
 end GGT
 end GroupApproximation
