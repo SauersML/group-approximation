@@ -637,7 +637,7 @@ theorem false_of_relativeAdjacent_direct_revInv
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = a b ^ e := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
     rfl
-  have hVW0 := span_eq_val_of_getElem? hsj
+  have hVW0 := span_eq_val_of_getElem? (v := (1 : G)) hsj
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = (a b ^ e)⁻¹ := by
@@ -796,7 +796,7 @@ theorem false_of_relativeAdjacent_revInv_direct
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = (a b ^ e)⁻¹ := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
     rfl
-  have hVW0 := span_eq_val_of_getElem? hsj
+  have hVW0 := span_eq_val_of_getElem? (v := (1 : G)) hsj
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u' j = a b ^ e := by
