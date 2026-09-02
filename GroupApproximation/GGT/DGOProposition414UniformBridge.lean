@@ -49,20 +49,22 @@ theorem exists_dgoUniformSumBound_of_linearSumBound
   intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
   by_cases hn : n = 0
   · subst n
-    exact sumBound_zero D (b : ℝ) (L + 1) v word cut I lam hlet hclosed
-      hcut hI hedge hcomp hiso hquasi
+    apply sumBound_zero D (b : ℝ) (L + 1) v word cut I lam hlet hclosed
+      hcut hI hedge hcomp hiso
+    intro s hs
+    omega
   · have hnpos : 1 ≤ n := by omega
     have hsum := hL n hnpos
     obtain ⟨r, hr, htotal⟩ := hsum v word cut I lam hlet hclosed hcut hI
       hedge hcomp hiso (by
-        intro s hs hsn hnot p q hp hpq hq
-        have hq' := hquasi s hsn hnot p q hp hpq hq
+        intro s hs hnot p q hp hpq hq
+        have hq' := hquasi s hs hnot p q hp hpq hq
         norm_num at hq' ⊢
         exact hq')
     refine ⟨r, hr, ?_⟩
     have hlinTotal : (∑ s ∈ I, r s) ≤ L * n := htotal
     have hsucc : L * n ≤ (L + 1) * n := by
-      omega
+      exact Nat.mul_le_mul_right n (by omega)
     exact le_trans hlinTotal hsucc
 
 end OsinComponents
