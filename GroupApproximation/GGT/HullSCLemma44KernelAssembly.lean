@@ -100,6 +100,29 @@ structure KernelConeLocalFinitenessStatement : Prop where
 
 /-! ## Fixed-parameter quotient assembly -/
 
+/-- The prefix-kernel transfer supplies local finiteness at the parameter range
+used by the relative-area induction. -/
+theorem kernelConeLocalFinitenessAt_of_prefixKernelTransfer
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (htransfer : PrefixKernelConeTransferStatement.{u, v, w})
+    (D : GGT.RelGenSet G Lambda) (hD : D.IsHyperbolicallyEmbedded)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q)
+    (hmu : mu ≤ 1 / 1000)
+    (hrho : 20 * (eps + 1) ≤ rho)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    KernelConeLocalFinitenessAt D W eps rho mu hsc q := by
+  have harea : RelativeLinearKernelArea D W q :=
+    relativeLinearKernelArea_of_certificates D hsc hmu hrho q hker hcert
+  have hcone := htransfer D hD W eps rho mu hsc q hq harea
+  intro lam n
+  exact hcone.locallyFinite lam n
+
 /-- Certificates at one radius give injectivity on the full relative ball. -/
 theorem relativeBallInjectivity_of_certificate
     {G : Type u} [Group G] {Lambda : Type w}
