@@ -127,7 +127,7 @@ def OrientedCactusBoundaryProducer : Prop :=
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
-omit [DecidableEq TriangleIndex] in
+omit [Fintype Generator] in
 theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusBoundaryInput (T := T) := by
@@ -141,7 +141,7 @@ theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     boundaryWord_eq := hboundary
   }⟩
 
-omit [DecidableEq TriangleIndex] in
+omit [Fintype Generator] in
 /-- The cactus and base-cell bridge has the exact literal boundary required by
 the disc-diagram consumer. -/
 theorem reducedRelatorOnly_of_cactusBoundary
@@ -381,7 +381,6 @@ structure StarLayerConstructionCertificate
   boundary_bound : Delta.combinatorialBoundaryLength ≤ 6 * scale
   depth_too_large : 18 * perimeter * scale < depth * (scale - loss)
 
-omit [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
 theorem starLayerInput_of_faceComplete_and_layerCover
@@ -460,12 +459,16 @@ def StarLayerConstruction : Prop :=
       ∃ L : TriangularDiagramLocalData T Delta,
         Nonempty (StarLayerInput (T := T) Delta L)
 
+omit [DecidableEq TriangleIndex] in
 theorem starLayerConstruction_of_certificate
     (hcertificate : StarLayerConstructionCertificateInput (T := T)) :
     StarLayerConstruction (T := T) := by
+  classical
   intro delta x y z p hp hfarXZ hfarZY Delta hred
   obtain ⟨L, ⟨C⟩⟩ := hcertificate delta x y z p hp hfarXZ hfarZY Delta hred
   exact ⟨L, starLayerInput_of_faceComplete_and_layerCover Delta L C hred⟩
+
+namespace StarLayerInput
 
 variable {Delta : VanKampen.DiscDiagram (triangleRelatorWords T)}
   {L : TriangularDiagramLocalData T Delta}
