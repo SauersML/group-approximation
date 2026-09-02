@@ -416,6 +416,8 @@ structure RootedPathPeelingWitness
       InnerFaceWordHomotopy Delta b c ∧
       rank c < rank a ∧ rank c < rank b
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- The common-face peeling induction produces the full word homotopy between
 two rooted paths.  This is the planar disc induction step consumed by
 `RootedPathsFaceComplete`; the two branches are recursively peeled until they
