@@ -87,9 +87,12 @@ cone. -/
 structure KernelConeLocalFinitenessStatement : Prop where
   finite : ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
+    (_hD : D.IsHyperbolicallyEmbedded)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (_hmu : mu ≤ 1 / 1000)
+    (_hrho : 20 * (eps + 1) ≤ rho)
     {Q : Type v} [Group Q] (q : G →* Q)
     (_hq : Function.Surjective q)
     (_hker : q.ker =
@@ -122,6 +125,16 @@ theorem kernelConeLocalFinitenessAt_of_prefixKernelTransfer
   have hcone := htransfer D hD W eps rho mu hsc q hq harea
   intro lam n
   exact hcone.locallyFinite lam n
+
+/-- The local-finiteness interface is a theorem at the exact small-cancellation
+parameter range used by the relative-area induction. -/
+theorem kernelConeLocalFinitenessStatement_of_prefixKernelTransfer
+    (htransfer : PrefixKernelConeTransferStatement.{u, v, w}) :
+    KernelConeLocalFinitenessStatement.{u, v, w} := by
+  refine ⟨?_⟩
+  intro G _ Lambda D hD W eps rho mu hsc hmu hrho Q _ q hq hker hcert
+  exact kernelConeLocalFinitenessAt_of_prefixKernelTransfer htransfer D hD W
+    eps rho mu hsc q hq hmu hrho hker hcert
 
 /-- Certificates at one radius give injectivity on the full relative ball. -/
 theorem relativeBallInjectivity_of_certificate
@@ -233,6 +246,7 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
     (hthreshold :
       4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
         (3 / 4 : ℝ) * (rho : ℝ))
+    (hrho : 20 * (eps + 1) ≤ rho)
     {Q : Type u} [Group Q] (q : G →* Q)
     (hq : Function.Surjective q)
     (hker : q.ker =
@@ -247,7 +261,7 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
   have hkernelAt : KernelGeodesicEstimateAt D.rel W eps rho mu hsc q :=
     ⟨M, hM⟩
   have hlocAt : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q :=
-    hloc.finite D.rel W eps rho mu hsc q hq hker hcert
+    hloc.finite D.rel D.embedded W eps rho mu hsc hmu hrho q hq hker hcert
   exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
     hmu hthreshold q hq hker hcert hkernelAt hlocAt
 
@@ -280,6 +294,8 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
   have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
   have hrhoScale : 8 * boundaryScale ≤ rho :=
     le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
+  have hrhoDehn : 20 * (eps + 1) ≤ rho :=
+    le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
   have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
     dsimp [boundaryScale, fullRadius]
     positivity
@@ -299,7 +315,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
     intro r Z
     exact hcertificate rho hrho₀ W r hsc Z
   exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuNinetyTwo
-    hthreshold q hsurj hker hcert hkernel hloc
+    hthreshold hrhoDehn q hsurj hker hcert hkernel hloc
 
 /-- The kernel-geodesic estimate and the existing prefix-kernel transfer are
 enough to supply the local-finiteness input pointwise. -/
@@ -440,6 +456,9 @@ theorem kernelConeLocalFinitenessStatement_at_trivialModel
     (W : Set (List (GGT.RelLetter PUnit.{1} Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hD : D.IsHyperbolicallyEmbedded)
+    (hmu : mu ≤ 1 / 1000)
+    (hrho : 20 * (eps + 1) ≤ rho)
     {Q : Type} [Group Q] (q : PUnit.{1} →* Q)
     (hq : Function.Surjective q)
     (hker : q.ker =
@@ -447,7 +466,7 @@ theorem kernelConeLocalFinitenessStatement_at_trivialModel
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
     KernelConeLocalFinitenessAt D W eps rho mu hsc q := by
-  exact H.finite D W eps rho mu hsc q hq hker hcert
+  exact H.finite D hD W eps rho mu hsc hmu hrho q hq hker hcert
 
 end HullSC
 end GroupApproximation
