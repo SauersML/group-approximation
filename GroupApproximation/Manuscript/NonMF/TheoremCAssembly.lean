@@ -14,6 +14,7 @@ import GroupApproximation.GGT.HullYiFiniteFamilyPair
 import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.TreeWPDAxis
 import GroupApproximation.GGT.DGOTheorem442Proof
+import GroupApproximation.GGT.HullYiCyclicProductClosure
 
 /-!
 # Theorem C assembly
@@ -116,13 +117,22 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **Open geometric proof.**  The local form of Hull's Lemmas 5.4 and 5.6:
-inside one suitable subgroup, choose a cyclic Yi pair avoiding the finitely
-many ambient commensurability classes already selected.  The finite-family
-induction and the passage to the simultaneous peripheral family are proved. -/
-theorem hullYiSuitablePairAvoidingFiniteOneSided :
-    HullSC.YiSuitablePairAvoidingFiniteOneSided.{0} := by
+/-- **Open geometric proof.**  Dahmani–Guirardel–Osin, Lemma 4.21(b), in the
+corrected start-coset form of `GGT/DGOLemma421Statement.lean`: two long words
+satisfying (W1)–(W3) with `ε`-close endpoints share `K` consecutive matched
+components.  Its proof is the uniform Proposition 4.14 (isolated components
+of a quasi-geodesic polygon), under construction in `GGT/DGOProposition414*`. -/
+theorem dgoLemma421b : GGT.OsinComponents.DGOLemma421b.{0, 0} := by
   sorry
+
+/-- Hull's Lemmas 5.4–5.6 in the local finite-avoidance form, proved from
+DGO Lemma 4.21(b) alone: the orientation-pure detector, the pairwise
+non-commensurable triple, the freshening and aggregation steps, the cyclic
+product family with its consecutive component match, and the finite
+commensurability avoidance are all in `GGT/HullYi*.lean`. -/
+theorem hullYiSuitablePairAvoidingFiniteOneSided :
+    HullSC.YiSuitablePairAvoidingFiniteOneSided.{0} :=
+  HullSC.yiSuitablePairAvoidingFiniteOneSided_of_dgoLemma421b dgoLemma421b
 
 /-- Hull's printed all-`m` Corollary 5.7, derived from the local finite-
 avoidance producer by the proved finite induction. -/
