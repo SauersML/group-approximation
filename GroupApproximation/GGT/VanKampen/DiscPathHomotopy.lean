@@ -1,7 +1,6 @@
 import GroupApproximation.GGT.VanKampen.CombMap
 import GroupApproximation.GGT.VanKampen.DiscDiagram
 import GroupApproximation.GGT.VanKampen.CombMapStars
-import GroupApproximation.GGT.VanKampen.CombMapReduction
 
 /-!
 # Rooted paths and face-boundary homotopy
