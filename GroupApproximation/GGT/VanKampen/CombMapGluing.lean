@@ -136,22 +136,24 @@ theorem reverseInnerDart_not_exposed (d : InnerDart Delta)
 
 /-- Extend an exposed seam pairing by the old reversal on internal edges. -/
 noncomputable def alphaFun (B : ExposedPairing Delta n) (d : CopiedInnerDart Delta n) :
-    CopiedInnerDart Delta n :=
-  if h : IsExposed Delta d.2 then (B.mate ⟨d, h⟩).1
-  else (d.1, reverseInnerDart Delta d.2 h)
+    CopiedInnerDart Delta n := by
+  classical
+  exact if h : IsExposed Delta d.2 then (B.mate ⟨d, h⟩).1
+    else (d.1, reverseInnerDart Delta d.2 h)
 
 /-- The extended edge reversal is involutive. -/
 theorem alphaFun_involutive (B : ExposedPairing Delta n) :
     Function.Involutive B.alphaFun := by
+  classical
   intro d
   by_cases h : IsExposed Delta d.2
   · have hmate : IsExposed Delta (B.mate ⟨d, h⟩).1.2 :=
       (B.mate ⟨d, h⟩).2
-    simp only [alphaFun, dif_pos h, dif_pos hmate]
+    simp [alphaFun, h, hmate]
     exact congrArg Subtype.val (B.involutive ⟨d, h⟩)
   · have hreverse : ¬ IsExposed Delta (reverseInnerDart Delta d.2 h) :=
       reverseInnerDart_not_exposed d.2 h
-    simp only [alphaFun, dif_neg h, dif_neg hreverse]
+    simp [alphaFun, h, hreverse]
     apply Prod.ext
     · rfl
     · apply Subtype.ext
@@ -160,20 +162,21 @@ theorem alphaFun_involutive (B : ExposedPairing Delta n) :
 /-- The extended edge reversal has no fixed dart. -/
 theorem alphaFun_fixedPointFree (B : ExposedPairing Delta n)
     (d : CopiedInnerDart Delta n) : B.alphaFun d ≠ d := by
+  classical
   by_cases h : IsExposed Delta d.2
-  · simp only [alphaFun, dif_pos h]
+  · simp [alphaFun, h]
     intro hfixed
     apply B.fixedPointFree ⟨d, h⟩
     apply Subtype.ext
     exact hfixed
-  · simp only [alphaFun, dif_neg h]
+  · simp [alphaFun, h]
     intro hfixed
     apply Delta.toCombMap.alpha_fixedPointFree d.2.1
     have hsecond := congrArg (fun q ↦ q.2.1) hfixed
     exact hsecond
 
 /-- The extended edge reversal as a permutation. -/
-def seamAlpha (B : ExposedPairing Delta n) :
+noncomputable def seamAlpha (B : ExposedPairing Delta n) :
     Perm (CopiedInnerDart Delta n) where
   toFun := B.alphaFun
   invFun := B.alphaFun
@@ -181,18 +184,22 @@ def seamAlpha (B : ExposedPairing Delta n) :
   right_inv := B.alphaFun_involutive
 
 /-- An exposed pairing canonically gives all seam data. -/
-def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
+noncomputable def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
   seamAlpha := B.seamAlpha
   involutive := B.alphaFun_involutive
   fixedPointFree := B.alphaFun_fixedPointFree
   agrees_internal copy d h := by
-    simp only [seamAlpha, alphaFun, dif_neg h]
+    classical
+    change B.alphaFun (copy, d) = (copy, reverseInnerDart Delta d h)
+    simp [alphaFun, h]
   exposed d hd := by
-    simp only [seamAlpha, alphaFun, dif_pos hd]
-    exact (B.mate ⟨d, hd⟩).2
+    classical
+    change IsExposed Delta (B.alphaFun d).2
+    simp [alphaFun, hd]
   changes_copy d hd := by
-    simp only [seamAlpha, alphaFun, dif_pos hd]
-    exact B.changes_copy ⟨d, hd⟩
+    classical
+    change (B.alphaFun d).1 ≠ d.1
+    simp [alphaFun, hd]
 
 end ExposedPairing
 
@@ -279,7 +286,7 @@ theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
   | zero => rfl
   | succ m ih =>
       rw [pow_succ', pow_succ', Perm.mul_apply, Perm.mul_apply]
-      change (((innerFacePerm Delta) ^ m) (innerFacePerm Delta d)).1 = _
+      change ((innerFacePerm Delta) (((innerFacePerm Delta) ^ m) d)).1 = _
       rw [ih]
       rfl
 
@@ -293,8 +300,7 @@ theorem sameCycle_of_source_sameCycle (S : Pairing Delta n)
     obtain ⟨m, hm⟩ := h.exists_nat_pow_eq
     refine ⟨m, ?_⟩
     apply Subtype.ext
-    rw [innerFacePerm_pow_val]
-    exact hm
+    exact (innerFacePerm_pow_val m a).trans hm
   have hcopied : (copiedFacePerm Delta n).SameCycle (copy, a) (copy, b) :=
     OrbitClassifier.sameCycle_map (innerFacePerm Delta)
       (copiedFacePerm Delta n) (fun d ↦ (copy, d)) (fun _ ↦ rfl) hinner
