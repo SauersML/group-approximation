@@ -216,7 +216,7 @@ theorem isHyperbolicElement_of_mem_distinct_jointPeripheral
         c⁻¹ * x * c ∈ D.fam (original i)}.Finite :=
     finite_conj_inter D hbaseInv hemb (by
       rintro ⟨heq, -⟩
-      exact hdisjoint i k heq.symm)
+      exact hdisjoint i k heq)
   have hnot : ¬ IsOfFinOrder g := by
     intro hfin
     obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
