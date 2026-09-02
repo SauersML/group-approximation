@@ -196,6 +196,81 @@ theorem weight_le_incident
 
 end InteriorEdge
 
+/-! ## Reindexing all interior cell occurrences -/
+
+/-- All cellwise interior incidences of a selected family. -/
+noncomputable def InteriorIncidence
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :=
+  Σ i : Fin Delta.rCellCount,
+    CellIncidence.OfKind (selected := selected) (i := i) CellArcKind.interior
+
+noncomputable instance interiorIncidenceFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)} :
+    Fintype (InteriorIncidence selected) := by
+  unfold InteriorIncidence
+  infer_instance
+
+/-- Every selected cell-to-cell region occurs exactly twice in the cellwise
+interior incidence sum, once at its source and once at its target. -/
+noncomputable def interiorIncidenceEquiv
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    InteriorIncidence selected ≃ InteriorEdge selected × Bool where
+  toFun occurrence := by
+    obtain ⟨i, incidence, hkind⟩ := occurrence
+    cases incidence with
+    | source candidate mem_selected source_eq =>
+        cases htarget : candidate.contiguity.target with
+        | none =>
+            simp only [CellIncidence.kind, htarget, ↓reduceIte,
+              CellArcKind.exterior.injEq] at hkind
+        | some target =>
+            exact (⟨(candidate, target), mem_selected, htarget⟩, false)
+    | target candidate mem_selected target_eq =>
+        exact (⟨(candidate, i), mem_selected, target_eq⟩, true)
+  invFun tagged :=
+    match tagged.2 with
+    | false =>
+        ⟨tagged.1.candidate.contiguity.source,
+          ⟨CellIncidence.source tagged.1.candidate tagged.1.candidate_mem rfl,
+            by simp [CellIncidence.kind, tagged.1.target_eq]⟩⟩
+    | true =>
+        ⟨tagged.1.target,
+          ⟨CellIncidence.target tagged.1.candidate tagged.1.candidate_mem
+            tagged.1.target_eq, rfl⟩⟩
+  left_inv occurrence := by
+    obtain ⟨i, incidence, hkind⟩ := occurrence
+    cases incidence with
+    | source candidate mem_selected source_eq =>
+        cases htarget : candidate.contiguity.target with
+        | none =>
+            simp only [CellIncidence.kind, htarget, ↓reduceIte,
+              CellArcKind.exterior.injEq] at hkind
+        | some target =>
+            cases source_eq
+            rfl
+    | target candidate mem_selected target_eq =>
+        rfl
+  right_inv tagged := by
+    obtain ⟨edge, tag⟩ := tagged
+    cases tag with
+    | false =>
+        rw [edge.target_eq]
+        rfl
+    | true =>
+        rfl
+
 /-! ## Exterior regions -/
 
 /-- A selected region from one fixed relator cell to the outer boundary. -/
