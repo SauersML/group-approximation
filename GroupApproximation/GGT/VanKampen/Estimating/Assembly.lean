@@ -180,7 +180,8 @@ noncomputable def ofScaffold
   edgeWeight := Embedded.InteriorEdge.weight
   edgeWeight_le_incident := by
     intro i edge hincident
-    exact edge.weight_le_incident pieces.equations hcondition i edge hincident
+    exact Embedded.InteriorEdge.weight_le_incident pieces.equations
+      hcondition i edge hincident
   interiorWeight_sum := graph.interiorWeight_sum
   uncovered_total_le := by
     apply scaffold.partition.unbound_total_le_two_mu mu rho
