@@ -224,7 +224,7 @@ variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
 
 /-- Checked face lengths and presentation-link girth produce the local
 degree data used by spherical curvature. -/
-def toTriangularSphericalMap
+theorem toTriangularSphericalMap
     (C : TriangularRelatorSphericalMap T M)
     (hchecks : KazhdanHyp.GirthEightChecks T d) :
     TriangularSphericalMap 8 M where
