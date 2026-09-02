@@ -130,6 +130,56 @@ theorem phiMap_edgeCount_of_unique (E : Type v) [Fintype E] [Unique E]
   rw [phiMap_edgeCount]
   simp
 
+/-! ## Osin's condition (*) -/
+
+/-- **Loops of `Phi_M` are already excluded.**  Osin writes "it is easy to show
+that `Phi_M` can not contain loops either"; in this formalization that is not an
+argument but a field, since `Contiguity.target_ne_source` says a relator-cell
+target is a different cell. -/
+theorem interiorEdge_source_ne_target
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    (edge : InteriorEdge selected) :
+    edge.candidate.contiguity.source ≠ edge.target :=
+  edge.candidate.contiguity.target_ne_source edge.target edge.target_eq
+
+/-- **Simplicity of `Phi_M`: the multiple-edge half of Osin's condition (`*`).**
+Two selected interior regions joining the same ordered pair of cells are the
+same region.
+
+Osin does *not* derive this from Definition `M`, and does not use a multigraph
+Euler bound.  He assumes it, verbatim (arXiv math/0411039, `embed-final.tex`,
+just after the definition of `Phi_M`):
+
+> `(*)` For any distinguished system of `e`-contiguity subdiagrams `M` in
+> `Delta`, the graph `Phi_M` is simple and inside every `2`-gon of `Phi'_M`,
+> there is a vertex of `Phi_M`.
+
+with the remark "The next `4` results are proved under the following additional
+assumption.  It will be eliminated later in Lemma `65`."  Its elimination, in
+Lemma `65(a)`, is an induction on the number of `R`-cells that consumes Lemma
+`O52`, Lemma `Eul` and Lemma `62`: two distinguished subdiagrams between the
+same pair bound a subdiagram which must contain a cell, and the inductive
+`1 - 13 mu` estimate for that cell contradicts `O52`'s `2 mu` plus two
+side-arc terms below `mu / 2`, since `1 - 13 mu > 3 mu` for `mu < 1/16`.
+
+The `2`-gon half of `(*)` is the merge argument already formalized as
+`ExteriorMergeAvailable`: "otherwise one can include the `e`-contiguity
+subdiagrams corresponding to the edges `e` and `f` into a single
+`e`-contiguity subdiagram, contrary to the definition of `M`." -/
+def PhiSimple
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) : Prop :=
+  ∀ e₁ e₂ : InteriorEdge selected,
+    e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
+      e₁.target = e₂.target → e₁ = e₂
+
 /-! ## What remains: the cyclic order at each cell -/
 
 /-- **The geometric input to the realization.**  A vertex rotation on the
