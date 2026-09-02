@@ -151,6 +151,34 @@ theorem isEscaping_of_strict_linear_lower_bound
   exact strictLinearLowerBoundEscape_proved
     (fun n : ℕ => dist x ((g ^ n) • x)) l B hl hB hlin
 
+/-- Existing loxodromy supplies the strict power-growth convention used by
+Osin, with a harmless weakening of the slope and an additive increase of one.
+This adapter is useful when a later geometric argument first constructs a
+loxodromic axis and then needs the exact strict inequality from Theorem 1.10. -/
+theorem strictLinearLowerBound_of_isLoxodromic
+    {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
+    [MulAction G X] {g : G} {x : X} (hlox : IsLoxodromic g x) :
+    ∃ l B : ℝ, 0 < l ∧ 0 ≤ B ∧
+      ∀ n : ℕ, l * n - B < dist x ((g ^ n) • x) := by
+  obtain ⟨L, hL, B, hB, hbound⟩ := hlox
+  refine ⟨L / 2, B + 1, by linarith, by linarith, ?_⟩
+  intro n
+  have hn0 : (0 : ℝ) ≤ n := by exact_mod_cast (Nat.zero_le n)
+  have hweak : L / 2 * (n : ℝ) - (B + 1) < L * (n : ℝ) - B := by
+    nlinarith
+  exact lt_of_lt_of_le hweak (hbound n)
+
+/-- The corrected finite-base escape predicate is immediate once loxodromy has
+already been established.  This is the direction available from the existing
+axis theory; the converse for a merely non-parabolic element is Osin's missing
+relative centralizer estimate. -/
+theorem relativePowerEscape_of_isLoxodromic
+    {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I)
+    (_hfinite : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded)
+    {g : G} (hlox : IsLoxodromic g (Cayley.base D.alphabet)) :
+    IsEscaping g (Cayley.base D.alphabet) :=
+  hlox.isEscaping
+
 /-- Model test for Osin's strict convention: the sequence `n` is strictly above
 `n - 1`, so it escapes by the preceding theorem. -/
 theorem strictLinearLowerBoundEscape_standardModel :
