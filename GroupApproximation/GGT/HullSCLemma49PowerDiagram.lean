@@ -294,13 +294,13 @@ theorem Lemma49OrientedPowerDiagram.relators_ne_inverseConjugate
 /-! ## The geodesic power boundary -/
 
 /-- The word obtained by reading `w` exactly `n` times. -/
-def lemma49BoundaryPower {G : Type u} {Λ : Type w}
-    (w : List (GGT.RelLetter G Λ)) : ℕ → List (GGT.RelLetter G Λ)
+def lemma49BoundaryPower {Alpha : Type*}
+    (w : List Alpha) : ℕ → List Alpha
   | 0 => []
   | n + 1 => w ++ lemma49BoundaryPower w n
 
 @[simp] theorem lemma49BoundaryPower_length
-    {G : Type u} {Λ : Type w} (w : List (GGT.RelLetter G Λ)) :
+    {Alpha : Type*} (w : List Alpha) :
     ∀ n : ℕ, (lemma49BoundaryPower w n).length = n * w.length
   | 0 => by simp [lemma49BoundaryPower]
   | n + 1 => by
