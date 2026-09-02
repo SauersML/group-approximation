@@ -1,4 +1,6 @@
 import GroupApproximation.GGT.DGOProposition414GapLocalTarget
+import GroupApproximation.GGT.DGOAssemblyVertices
+import GroupApproximation.GGT.DGOIsolatedComponentRotate
 
 /-!
 # Quasigeodesicity of the inherited balanced arcs
@@ -14,6 +16,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.GGT.OsinComponents
 open GroupApproximation.WordMetric
 
 universe u w
@@ -77,8 +80,6 @@ theorem firstArcCut_succ_of_lt
     B.firstArcCut (s + 1) =
       P.cut (B.firstSide + s + 1) - B.firstVertex := by
   rw [B.firstArcCut_of_pos (by omega) (by omega)]
-  congr 2
-  omega
 
 /-- The last first-arc side finishes at the second inserted chord endpoint. -/
 theorem firstArcCut_last_succ
@@ -89,6 +90,7 @@ theorem firstArcCut_last_succ
     (B : BalancedSplitData D hsymm b hδ P k R) :
     B.firstArcCut (B.secondSide - B.firstSide + 1) =
       B.secondVertex - B.firstVertex := by
+  have horder := B.side_order
   have hbase : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
     simp [refinedCut, splitPairCut_left B.side_order]
   have hend : B.refinedCut (B.secondSide + 2) = B.secondVertex := by
@@ -112,6 +114,7 @@ theorem firstArc_offTarget_source_or_trivial
     B.firstSide + s ∉ P.target ∨
       B.firstArcCut (s + 1) = B.firstArcCut s := by
   classical
+  have horder := B.side_order
   by_cases hparent : B.firstSide + s ∈ P.target
   · right
     by_cases hinside : B.targetInFirstArc (B.firstSide + s)
@@ -127,12 +130,15 @@ theorem firstArc_offTarget_source_or_trivial
       unfold targetInFirstArc at hinside
       by_cases hs0 : s = 0
       · subst s
+        simp only [Nat.add_zero] at hedge hinside
         have hfinishLe : P.cut (B.firstSide + 1) ≤ B.secondVertex := by
           exact (P.polygonCut.mono_le (show B.firstSide + 1 ≤
             B.secondSide by omega)).trans B.secondVertex_mem.1
         have hnotStart : ¬B.firstVertex ≤ P.cut B.firstSide := by
           exact fun hstart => hinside ⟨hstart, hfinishLe⟩
         have hvertex : B.firstVertex = P.cut (B.firstSide + 1) := by
+          have hleft := B.firstVertex_mem.1
+          have hright := B.firstVertex_mem.2
           omega
         rw [B.firstArcCut_zero, B.firstArcCut_succ_of_lt (by omega),
           show B.firstSide + 0 + 1 = B.firstSide + 1 by omega,
@@ -150,7 +156,7 @@ theorem firstArc_offTarget_source_or_trivial
             have hleft := B.secondVertex_mem.1
             rw [← hsource] at hleft
             omega
-          rw [B.firstArcCut_last_succ,
+          rw [hlast, B.firstArcCut_last_succ,
             B.firstArcCut_of_pos hs0 (by omega), hvertex]
         · have hstartLe : B.firstVertex ≤ P.cut (B.firstSide + s) := by
             exact B.firstVertex_mem.2.trans
@@ -178,6 +184,8 @@ theorem firstArc_quasi
         ((wordDist D.alphabet.carrier
           (vertex B.firstBase B.firstArc p)
           (vertex B.firstBase B.firstArc q) : ℕ) : ℝ) := by
+  have horder := B.side_order
+  have hsecond := B.secondSide_lt
   intro s hs hsTarget p q hp hpq hq
   rcases B.firstArc_offTarget_source_or_trivial hs hsTarget with
       hparent | htrivial
@@ -185,7 +193,8 @@ theorem firstArc_quasi
     have hleft : P.cut (B.firstSide + s) ≤ B.firstVertex + p := by
       by_cases hs0 : s = 0
       · subst s
-        simpa using B.firstVertex_mem.1.trans (Nat.add_le_add_left hp _)
+        have hvertex := B.firstVertex_mem.1
+        omega
       · have hcut := B.firstArcCut_of_pos hs0 (by omega)
         rw [hcut] at hp
         have hvertex := B.firstVertex_mem.2.trans
@@ -319,6 +328,7 @@ theorem secondArcCut_tail_add
     (hr : r ≤ B.firstSide) :
     B.secondArcCut (n - B.secondSide + r) =
       (P.word.length - B.secondVertex) + P.cut r := by
+  have hsecond := B.secondSide_lt
   let tail := n + 2 - (B.secondSide + 2)
   have htail : tail = n - B.secondSide := by dsimp [tail]; omega
   have htail0 : 0 < tail := by dsimp [tail]; omega
@@ -349,6 +359,8 @@ theorem secondArcCut_finish
     (B : BalancedSplitData D hsymm b hδ P k R) :
     B.secondArcCut ((n - B.secondSide) + B.firstSide + 1) =
       (P.word.length - B.secondVertex) + B.firstVertex := by
+  have horder := B.side_order
+  have hsecond := B.secondSide_lt
   rw [B.secondArc_isCutPath.cut.finish]
   have hfirstLe : B.firstVertex ≤ P.word.length :=
     B.firstVertex_mem.2.trans
@@ -366,6 +378,8 @@ theorem secondTargetSide_secondArcSource
     (B : BalancedSplitData D hsymm b hδ P k R)
     (hs : s < (n - B.secondSide) + B.firstSide + 1) :
     B.secondTargetSide (B.secondArcSource s) = s := by
+  have horder := B.side_order
+  have hsecond := B.secondSide_lt
   by_cases htail : s < n - B.secondSide
   · simp [secondArcSource, secondTargetSide, htail]
   · have hsource : s - (n - B.secondSide) ≤ B.firstSide := by omega
@@ -387,6 +401,8 @@ theorem secondArc_offTarget_source_or_trivial
     B.secondArcSource s ∉ P.target ∨
       B.secondArcCut (s + 1) = B.secondArcCut s := by
   classical
+  have horder := B.side_order
+  have hsecond := B.secondSide_lt
   by_cases hparent : B.secondArcSource s ∈ P.target
   · right
     have hunion : B.secondArcSource s ∈ B.firstTarget ∪ B.secondTarget := by
@@ -461,6 +477,8 @@ theorem secondArc_quasi
         ((wordDist D.alphabet.carrier
           (vertex B.secondBase B.secondArc p)
           (vertex B.secondBase B.secondArc q) : ℕ) : ℝ) := by
+  have horder := B.side_order
+  have hsecond := B.secondSide_lt
   intro s hs hsTarget p q hp hpq hq
   rcases B.secondArc_offTarget_source_or_trivial hs hsTarget with
       hparent | htrivial
@@ -514,9 +532,10 @@ theorem secondArc_quasi
           B.secondVertex + p := by
         by_cases hs0 : s = 0
         · subst s
-          simpa only [secondArcSource, if_pos (show 0 < n - B.secondSide by
-              omega), Nat.add_zero, B.secondArcCut_zero] using
-            B.secondVertex_mem.1.trans (Nat.add_le_add_left hp _)
+          simp only [secondArcSource, if_pos (show 0 < n - B.secondSide by
+            omega), Nat.add_zero]
+          have hvertex := B.secondVertex_mem.1
+          omega
         · have hcut := B.secondArcCut_of_pos_le_tail hs0 (by omega)
           rw [hcut] at hp
           have hvertex := B.secondVertex_mem.2.trans
