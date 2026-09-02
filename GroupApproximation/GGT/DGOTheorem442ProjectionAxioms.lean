@@ -165,7 +165,13 @@ theorem approxCosetProjectionPairSet_isBounded
     y (by simpa [approxCosetProjectionPairSet] using hy)
 
 /-- DGO's approximate projection distance
-`d^π_Y(A,B) = diam(proj_Y(A) ∪ proj_Y(B))`. -/
+`d^π_Y(A,B) = diam(proj_Y(A) ∪ proj_Y(B))`.
+
+Mathlib's `Metric.diam` is `0` on an unbounded set, so this agrees with DGO's
+diameter only where the pair set is bounded; the boundedness proved just above
+(`approxCosetProjectionPairSet_isBounded`, DGO Lemma 4.46's
+bound `ν`) is what the projection axioms below are stated under, and the
+final Theorem 4.42 mentions no diameter at all. -/
 noncomputable def approxCosetProjectionDistance
     (H : Subgroup G) (s : S) (κ : ℝ) (Y A B : G ⧸ H) : ℝ :=
   Metric.diam (approxCosetProjectionPairSet H s κ Y A B)
