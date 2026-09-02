@@ -94,7 +94,7 @@ the boundary, area, and reducedness consequences used by a literal filling. -/
 structure CactusRelatorRetyping
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v}) where
+    (Delta : DiscDiagram.{u, w, v} W) where
   diagram : DiscDiagram.{u, w, v} W
   boundaryWord_eq : diagram.boundaryWord = Delta.boundaryWord
   relatorOnly : RelatorCellCover diagram
@@ -133,6 +133,7 @@ theorem MirrorPairCut.area_lt
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W} (C : MirrorPairCut Delta) :
     C.result.rCellCount < Delta.rCellCount := by
+  have harea := C.area_eq
   omega
 
 /-- The exact-boundary output of a mirror-pair cut supplies the strict
@@ -159,7 +160,7 @@ theorem no_mirror_pair_of_empty_relatorCells
   intro h
   obtain ⟨C, hC⟩ := h
   rw [hzero] at hC
-  exact List.not_mem_nil C hC
+  simpa using hC
 
 /-! ## Presentation-independent identity reduction -/
 
