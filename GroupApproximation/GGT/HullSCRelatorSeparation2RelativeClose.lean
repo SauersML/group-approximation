@@ -280,8 +280,8 @@ theorem listVal_conj_of_relativeAdjacent_direct
       (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
       (by omega) (by omega) hjR
       (by simpa only [R] using hqiPow) (by simpa only [R] using hqiPow')
-      (by rw [← hef]; simpa only [R] using hsjPow)
-      (by rw [← hef']; simpa only [R] using hsjPow')
+      (by rw [hef]; simpa only [R] using hsjPow)
+      (by rw [hef']; simpa only [R] using hsjPow')
   have halt : b' = !b := index_alternates_of_rotate hp0
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
@@ -445,8 +445,8 @@ theorem listVal_conj_of_relativeAdjacent_revInv
       (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
       (by omega) (by omega) hjR
       (by simpa only [R] using hqiPow) (by simpa only [R] using hqiPow')
-      (by rw [← hef]; simpa only [R] using hsjPow)
-      (by rw [← hef']; simpa only [R] using hsjPow')
+      (by rw [hef]; simpa only [R] using hsjPow)
+      (by rw [hef']; simpa only [R] using hsjPow')
   have halt : b' = !b := index_alternates_of_rotate_revInv hp0
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
@@ -772,12 +772,12 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hsum0 := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
-    hef (by rw [← hef]; simpa only [R] using hsjPow)
+    hef (by rw [hef]; simpa only [R] using hsjPow)
       (by simpa only [R] using hqiPow)
   have hsum1 := position_sum_of_mirroredMatch hinj' hnodup
     (lt_of_lt_of_le (by omega : j' - 1 < u'.length) hu'Len)
     (lt_of_lt_of_le (by omega : i + 1 < u.length) huLen)
-    hef' (by rw [← hef']; simpa only [R] using hsjPow')
+    hef' (by rw [hef']; simpa only [R] using hsjPow')
       (by simpa only [R] using hqiPow')
   have hsum : (c + i) % R.length + (c' + (j - 1)) % R.length =
       R.length - 1 := by simpa only [Nat.add_comm] using hsum0
