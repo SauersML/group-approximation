@@ -1178,7 +1178,6 @@ theorem firstGapArcBoundaryExclusion_start_of_source
       exact hparent.2.2.2.1
         (B.firstArcCut (B.firstTargetSide s) - 1) hparentEq (by omega) hprevLabel
 
-
 /-- The predecessor-side exclusion for an inherited wrapped-gap arc source.
 This is the first conjunct of `SecondGapArcBoundaryExclusion`; interior
 positions use the parent component, while the zero-offset case uses the
@@ -1515,6 +1514,43 @@ theorem secondGapArcBoundaryExclusion_terminal_of_distinct_label
   intro hsource
   apply hlabel
   exact eq_of_isCompOf_of_isCompOf hsource hcomp
+
+/-! ## Terminal-side connector seam for inherited first-gap sources -/
+
+/-- The terminal cycle letter is a right-connector letter when that connector
+is nonempty.  Its component label is the next broken source label, so a
+distinct-label hypothesis discharges the terminal exclusion. -/
+theorem firstGapArcBoundaryExclusion_terminal_of_rightConnector
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (e : Fin B.brokenAssignment.index.first.sources.length)
+    (heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e)
+    (hpositive : 0 < (B.firstGapRight j).length)
+    (hlabel : P.label s ≠ B.firstGapLocalLabel j
+      ((B.firstGapLeft j).length +
+        (B.firstGapFinishSide j - B.firstGapStartSide j))) :
+    ∀ hn :
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1 <
+        (B.firstGapCycle j).length,
+      ¬ ((B.firstGapCycle j)[
+        (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s) := by
+  intro hn hletter
+  apply firstGapArcBoundaryExclusion_terminal_of_distinct_label B j s hn hlabel
+  have hnext := B.firstGap_rightConnector_isCompOf j e heq 0 hpositive (by
+    simpa [firstGapCycle, auxiliaryCycleWord, OsinComponents.length_revWord] using hn)
+  have hnextLabel := B.firstGapLocalLabel_rightConnector j e heq 0 hpositive
+  rw [← hnextLabel] at hnext
+  simpa only [firstGapCycle, Nat.add_assoc] using hnext
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
