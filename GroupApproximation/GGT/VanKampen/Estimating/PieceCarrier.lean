@@ -138,22 +138,32 @@ theorem whole_relators_ne_of_split
 
 /-! ## The stored target arc is the arc at a cell target -/
 
+/-- Casting a cyclic arc along an equality of its carrier cycle does not change
+the rotated dart list.  Stated over the carrier rather than over `Contiguity`,
+so that adding fields to `Contiguity` cannot break it. -/
+theorem cyclicArc_cast_rotated {Dart : Type v} {c₁ c₂ : List Dart}
+    (h : c₁ = c₂) (arc : CyclicArc c₁) :
+    (cast (congrArg CyclicArc h) arc).rotated = arc.rotated := by
+  cases h
+  rfl
+
+/-- The same for the arc's own darts. -/
+theorem cyclicArc_cast_darts {Dart : Type v} {c₁ c₂ : List Dart}
+    (h : c₁ = c₂) (arc : CyclicArc c₁) :
+    (cast (congrArg CyclicArc h) arc).darts = arc.darts := by
+  cases h
+  rfl
+
 theorem targetArcAtSome_rotated (Gamma : Contiguity D eps Delta faces)
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     (Gamma.targetArcAtSome target htarget).rotated =
-      Gamma.targetArc.rotated := by
-  cases Gamma with
-  | mk _ _ tgt _ targetArc _ _ _ _ _ _ _ _ _ =>
-      cases htarget
-      rfl
+      Gamma.targetArc.rotated :=
+  cyclicArc_cast_rotated _ _
 
 theorem targetArcAtSome_darts (Gamma : Contiguity D eps Delta faces)
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
-    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts := by
-  cases Gamma with
-  | mk _ _ tgt _ targetArc _ _ _ _ _ _ _ _ _ =>
-      cases htarget
-      rfl
+    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts :=
+  cyclicArc_cast_darts _ _
 
 /-! ## The O52 inequality from the certificate -/
 
