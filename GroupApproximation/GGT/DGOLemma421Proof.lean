@@ -656,7 +656,9 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     convert r.isLt using 1 <;> omega)
   have hspacing' : peripheralPos word r.val ≤
       peripheralPos word s.val + 2 * (r.val - s.val) := by
-    convert hspacing using 1 <;> omega
+    have hidx : s.val + (r.val - s.val) = r.val := by omega
+    rw [hidx] at hspacing
+    exact hspacing
   have hgapEq : gap = r.val - s.val := by
     dsimp [gap]
     omega
@@ -667,7 +669,17 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
     omega
   rw [hcardI, hcycleLen] at hcount
   have hstrict : C * (width + 1) < (50 * C + 1) * (gap - 1) := by
-    nlinarith
+    have hgapLe : gap ≤ 2 * (gap - 1) := by omega
+    have hcoeff : 4 * C < 50 * C + 1 := by omega
+    calc
+      C * (width + 1) ≤ C * (2 * gap) :=
+        Nat.mul_le_mul_left C hwidthBound
+      _ = (2 * C) * gap := by ring
+      _ ≤ (2 * C) * (2 * (gap - 1)) :=
+        Nat.mul_le_mul_left (2 * C) hgapLe
+      _ = (4 * C) * (gap - 1) := by ring
+      _ < (50 * C + 1) * (gap - 1) :=
+        Nat.mul_lt_mul_of_pos_right hcoeff (by omega)
   omega
 
 end OsinComponents
