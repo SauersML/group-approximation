@@ -808,8 +808,7 @@ theorem lastIndex_eq_prevFin_zero {n : ℕ} (hn : 0 < n) :
       CactusShape.prevFin n (⟨0, hn⟩ : Fin n) := by
   rw [prevFin_zero_eq_rev_zero hn]
   apply Fin.ext
-  simp only [Fin.val_rev, Fin.val_mk]
-  omega
+  simp only [Fin.val_rev]
 
 /-- The flattened cell-block list is nonempty. -/
 theorem cactusCellSegments_ne_nil
@@ -843,11 +842,15 @@ theorem cactusCellSegments_head
     simp only [blocks, List.length_ofFn, List.length_nil] at hlength
     exact (Nat.ne_of_gt Z.cells_length_pos) hlength
   have hfirst : blocks.head hblocks ≠ [] := by
-    rw [blocks, List.head_ofFn]
+    simp only [blocks, List.head_ofFn]
     exact Z.cactusCellSegment_ne_nil
       (Z.cactusShape.cellZero Z.cells_length_pos)
-  change blocks.flatten.head h = _
-  rw [List.head_flatten_eq_head_head h hfirst, blocks, List.head_ofFn]
+  have hflatten : blocks.flatten ≠ [] := by
+    change Z.cactusCellSegments ≠ []
+    exact h
+  change blocks.flatten.head hflatten = _
+  rw [List.head_flatten_eq_head_head hflatten hfirst]
+  simp only [blocks, List.head_ofFn]
   exact Z.cactusCellSegment_head
     (Z.cactusShape.cellZero Z.cells_length_pos) _
 
@@ -870,11 +873,15 @@ theorem cactusCellSegments_getLast
     simp only [blocks, List.length_ofFn, List.length_nil] at hlength
     exact (Nat.ne_of_gt Z.cells_length_pos) hlength
   have hlast : blocks.getLast hblocks ≠ [] := by
-    rw [blocks, List.getLast_ofFn]
+    simp only [blocks, List.getLast_ofFn]
     exact Z.cactusCellSegment_ne_nil _
-  change blocks.flatten.getLast h = _
-  rw [List.getLast_flatten_eq_getLast_getLast h hlast,
-    blocks, List.getLast_ofFn, Z.cactusCellSegment_getLast]
+  have hflatten : blocks.flatten ≠ [] := by
+    change Z.cactusCellSegments ≠ []
+    exact h
+  change blocks.flatten.getLast hflatten = _
+  rw [List.getLast_flatten_eq_getLast_getLast hflatten hlast]
+  simp only [blocks, List.getLast_ofFn]
+  rw [Z.cactusCellSegment_getLast]
   exact congrArg (fun i ↦ CactusDart.stemIn (S := Z.cactusShape) i)
     (lastIndex_eq_prevFin_zero Z.cells_length_pos)
 
@@ -909,7 +916,8 @@ theorem cactusBigDarts_head
     Z.cactusBigDarts.head h = CactusDart.outerBackward
       (CactusShape.prevFin Z.cactusShape.boundaryLength
         Z.cactusShape.boundaryZero) := by
-  rw [cactusBigDarts, List.head_append_of_ne_nil _
+  change (Z.cactusOuterBackwardDarts ++ Z.cactusCellSegments).head _ = _
+  rw [List.head_append_of_ne_nil _
     Z.cactusOuterBackwardDarts_ne_nil]
   exact Z.cactusOuterBackwardDarts_head _
 
@@ -923,7 +931,8 @@ theorem cactusBigDarts_getLast
     Z.cactusBigDarts.getLast h = CactusDart.stemIn
       (CactusShape.prevFin Z.cells.length
         (Z.cactusShape.cellZero Z.cells_length_pos)) := by
-  rw [cactusBigDarts, List.getLast_append_of_ne_nil _
+  change (Z.cactusOuterBackwardDarts ++ Z.cactusCellSegments).getLast _ = _
+  rw [List.getLast_append_of_ne_nil _
     Z.cactusCellSegments_ne_nil]
   exact Z.cactusCellSegments_getLast _
 
@@ -945,8 +954,6 @@ theorem facePerm_stemIn_prev_zero (S : CactusShape)
         S.cellZero (Nat.zero_lt_of_lt
           (CactusShape.prevFin S.cellCount (S.cellZero hpos)).isLt) := by
     rw [hnext]
-    apply Fin.ext
-    rfl
   rw [CactusShape.sigmaFun, dif_pos htest]
 
 /-- The full complementary list closes cyclically. -/
