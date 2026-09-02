@@ -86,8 +86,7 @@ noncomputable def indexedFaceBoundary (S : CactusShape) (i : S.FaceIndex) :
       let last := CactusShape.prevFin S.boundaryLength S.boundaryZero
       have hface : S.toCombMap.faceOf (.outerBackward last) =
           S.indexedFace .big := by
-        rw [CombMap.faceOf_eq_iff]
-        exact (S.outerBackward_sameCycle last).symm
+        exact Quotient.sound (S.outerBackward_sameCycle last).symm
       exact hface ▸ FaceBoundary.based S.toCombMap (.outerBackward last)
 
 /-- A coherent based boundary choice for every cactus face. -/
