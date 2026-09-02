@@ -3199,6 +3199,12 @@ import GroupApproximation.GGT.KazhdanHypSingerOrbitCounts
 import GroupApproximation.GGT.HullSCLemma44EmbeddedCertificate
 import GroupApproximation.GGT.RelHypOsin24BoundedPenetration
 import GroupApproximation.GGT.RelHypOsin24PowerUnbounded
+import GroupApproximation.GGT.DGOProposition414UniformGeneral
+import GroupApproximation.GGT.HullSCLemma44KernelGeodesicInduction
+import GroupApproximation.GGT.HullSCLemma49TransferModels
+import GroupApproximation.GGT.KazhdanHypPolarityOrbitReduction
+import GroupApproximation.GGT.KazhdanHypSymplecticPolarity
+import GroupApproximation.GGT.VanKampen.FaceSetPeelWitness
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
