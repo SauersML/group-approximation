@@ -1912,7 +1912,12 @@ theorem revWord_revWord_421 (word : List (RelLetter G Λ)) :
       rw [revWord_cons, revWord_append]
       have hinv : invLetter (invLetter a) = a := by
         cases a <;> simp [invLetter]
-      simp [revWord, hinv, ih]
+      have hmap : List.map (invLetter ∘ invLetter) t = t := by
+        induction t with
+        | nil => rfl
+        | cons b t iht =>
+            simp [Function.comp_def, iht]
+      simpa [revWord, hinv, hmap]
 
 theorem exists_component_of_opposite_start_421
     {D : RelGenSet G Λ} {lam : Λ}
@@ -1932,14 +1937,15 @@ theorem exists_component_of_opposite_start_421
       (s.length - j) ≤ p.length + q.length + r.length + s.length := by
     omega
   have hrev := isComp_side_revs_of_isComp_fourGon p q r s lam hcomp
-    hstartglobal hkglobal
+    (by omega) hkglobal
   have hdouble := isComp_revWord lam (revWord s) hrev
   refine ⟨s.length - (k - (p.length + q.length + r.length)), ?_⟩
   have hdouble' : IsComp lam s
       (s.length - (k - (p.length + q.length + r.length)))
       (s.length - (s.length - j)) := by
     simpa [revWord_revWord_421, length_revWord] using hdouble
-  rw [Nat.sub_sub_cancel hj] at hdouble'
+  have hidx : s.length - (s.length - j) = j := by omega
+  rw [hidx] at hdouble'
   exact hdouble'
 
 end OsinComponents
