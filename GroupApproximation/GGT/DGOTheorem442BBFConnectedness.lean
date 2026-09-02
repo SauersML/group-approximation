@@ -28,7 +28,10 @@ theorem bbf_blockers_left_subset
     (hY : Y ∈ (ProjectionPerturbation.bbf P).blockers K X Z) :
     (ProjectionPerturbation.bbf P).blockers K X Y ⊆
       (ProjectionPerturbation.bbf P).blockers K X Z := by
+  change Y ≠ X ∧ Y ≠ Z ∧ K < P.bbfProjDist Y X Z at hY
   intro W hW
+  change W ≠ X ∧ W ≠ Y ∧ K < P.bbfProjDist W X Y at hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z
   have hYX : Y ≠ X := hY.1
   have hYZ : Y ≠ Z := hY.2.1
   have hXZ : X ≠ Z := by
@@ -74,7 +77,10 @@ theorem bbf_blockers_right_subset
     (hY : Y ∈ (ProjectionPerturbation.bbf P).blockers K X Z) :
     (ProjectionPerturbation.bbf P).blockers K Y Z ⊆
       (ProjectionPerturbation.bbf P).blockers K X Z := by
+  change Y ≠ X ∧ Y ≠ Z ∧ K < P.bbfProjDist Y X Z at hY
   intro W hW
+  change W ≠ Y ∧ W ≠ Z ∧ K < P.bbfProjDist W Y Z at hW
+  change W ≠ X ∧ W ≠ Z ∧ K < P.bbfProjDist W X Z
   have hYX : Y ≠ X := hY.1
   have hYZ : Y ≠ Z := hY.2.1
   have hXZ : X ≠ Z := by
@@ -196,13 +202,13 @@ theorem approxCosetProjectionComplex_preconnected
     (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
     (H : Subgroup G) (s : S) (hqc : IsQuasiconvexOrbitAt H s)
     (hsep : GeometricallySeparatedAt H s) {K : ℝ}
-    (hK : let P := approxCosetEquivariantProjectionSystem
-      hδ hδ0 hδpos hgeo hiso H s hqc hsep
-      4 * P.ξ ≤ K) :
+    (hK : 4 * (approxCosetEquivariantProjectionSystem
+      hδ hδ0 hδpos hgeo hiso H s hqc hsep).ξ ≤ K) :
     (approxCosetProjectionComplex
       hδ hδ0 hδpos hgeo hiso H s hqc hsep K).Preconnected := by
   let P := approxCosetEquivariantProjectionSystem
     hδ hδ0 hδpos hgeo hiso H s hqc hsep
+  change 4 * P.ξ ≤ K at hK
   exact P.toProjectionSystem.bbf_graph_preconnected hK
 
 end Elementary
