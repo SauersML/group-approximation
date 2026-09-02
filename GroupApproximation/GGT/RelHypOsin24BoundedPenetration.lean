@@ -62,12 +62,15 @@ version of the source theorem, and `Nonempty I` excludes the separate empty
 family model, where properness of the finite base proves escape directly.
 
 The conclusion is strictly smaller than power escape: it has no conclusion
-about an element being loxodromic, only the fixed-index, fixed-factor
-decomposition consumed by `RelHypOsin24PowerUnbounded`. -/
+about orbit growth, only the fixed-index, fixed-factor decomposition consumed
+by `RelHypOsin24PowerUnbounded`, under the same hyperbolic infinite-order
+hypotheses as Osin's theorem. -/
 def RelativeBoundedPowerExtractionStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I] [Nonempty I]
     (D : RelGenSet G I),
     D.base.Finite → D.IsHyperbolicallyEmbedded → ∀ g : G,
+      IsHyperbolicElement D.fam g →
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
       ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
         (∀ q : ℕ, q ∈ S →
           dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
@@ -81,20 +84,16 @@ required decomposition for any chosen peripheral label. -/
 theorem relativeBoundedPowerExtraction_trivialModel
     {I : Type v} [Finite I] [Nonempty I] (D : RelGenSet PUnit I)
     (_hbase : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded) :
-    ∀ g : PUnit, ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
-      (∀ q : ℕ, q ∈ S →
-        dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
-      ∃ (lam : I) (n : ℕ) (k h : PUnit),
-        ∀ q : ℕ, q ∈ S →
-          ∃ z : PUnit, z ∈ D.relBall lam n ∧ g ^ q = k * h * z := by
-  intro g R S _hS _hbound
-  let lam : I := Classical.choice (inferInstance : Nonempty I)
-  refine ⟨lam, 0, 1, 1, ?_⟩
-  intro q _hq
-  refine ⟨1, ?_, ?_⟩
-  · rw [RelGenSet.relBall_zero]
-    exact Set.mem_singleton 1
-  · exact Subsingleton.elim _ _
+    ∀ g : PUnit, IsHyperbolicElement D.fam g →
+      (∀ n : ℕ, 0 < n → g ^ n ≠ 1) → ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
+        (∀ q : ℕ, q ∈ S →
+          dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+        ∃ (lam : I) (n : ℕ) (k h : PUnit),
+          ∀ q : ℕ, q ∈ S →
+            ∃ z : PUnit, z ∈ D.relBall lam n ∧ g ^ q = k * h * z := by
+  intro g _hhyper hord
+  exfalso
+  exact hord 1 (by omega) (Subsingleton.elim _ _)
 
 /-- A conjugated bounded peripheral ball is finite.  This is the form used
 when a bounded-penetration diagram is based at a conjugate of the identity. -/

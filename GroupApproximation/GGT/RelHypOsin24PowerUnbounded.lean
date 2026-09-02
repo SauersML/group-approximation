@@ -274,7 +274,7 @@ theorem isEscaping_of_relativeBoundedPowerExtraction
     IsEscaping g (Cayley.base D.alphabet) := by
   apply isEscaping_of_boundedPenetration_extraction D hbase hemb hhyper hord
   intro R S hS hbounded
-  exact hExtract G inferInstance I D hbase hemb g R S hS hbounded
+  exact hExtract G inferInstance I D hbase hemb g hhyper hord R S hS hbounded
 
 /-/ Model test for the extraction assembly: the order premise is impossible in
 `PUnit`, so the conclusion closes regardless of the supplied extraction map. -/
