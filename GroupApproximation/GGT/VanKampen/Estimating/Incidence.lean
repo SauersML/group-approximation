@@ -871,6 +871,46 @@ def ExteriorRegionsUnique
   ∀ i : Fin Delta.rCellCount,
     ∀ first second : ExteriorRegion selected i, first = second
 
+/-- The local surgery premise for the boundary two-gon case of Appendix
+Lemma `65(a)`: every distinct pair of selected outer regions at one cell can
+be replaced by one compatible candidate whose weight is at least the sum of
+the two original weights. -/
+def ExteriorMergeAvailable
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) : Prop :=
+  ∀ i : Fin Delta.rCellCount,
+    ∀ first second : ExteriorRegion selected i,
+      first ≠ second →
+        ∃ merged : Candidate D eps Delta,
+          Nonempty (MergeSurgery first.1 second.1 merged) ∧
+            first.1.weight + second.1.weight ≤ merged.weight
+
+/-- Definition `M` rules out two distinct outer regions whenever the boundary
+two-gon surgery certificate is available. -/
+theorem exteriorRegionsUnique_of_mergeAvailable
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (hmerge : ExteriorMergeAvailable selected.family) :
+    ExteriorRegionsUnique selected.family := by
+  intro i first second
+  by_contra hne
+  obtain ⟨merged, hsurgery, hweight⟩ := hmerge i first second hne
+  have hcandidateNe : first.1 ≠ second.1 := by
+    intro heq
+    apply hne
+    exact Subtype.ext heq
+  obtain ⟨surgery⟩ := hsurgery
+  exact (lemma65a_no_mergeable_twoGon selected first.1 second.1 merged
+    first.2.1 second.2.1 hcandidateNe surgery hweight).elim
+
 /-- The empty selected family has unique outer regions. -/
 theorem exteriorRegionsUnique_emptyModel
     {G : Type u} [Group G] {Lambda : Type w}
@@ -878,6 +918,18 @@ theorem exteriorRegionsUnique_emptyModel
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
     ExteriorRegionsUnique (∅ : Finset (Candidate D eps Delta)) := by
+  intro i first
+  have hfalse : False := by simpa using first.2.1
+  exact hfalse.elim
+
+/-- The exterior merge premise is vacuous for an empty selected family. -/
+theorem exteriorMergeAvailable_emptyModel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W} :
+    ExteriorMergeAvailable
+      (∅ : Finset (Candidate D eps Delta)) := by
   intro i first
   have hfalse : False := by simpa using first.2.1
   exact hfalse.elim
