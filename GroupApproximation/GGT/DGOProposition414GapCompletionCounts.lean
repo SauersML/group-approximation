@@ -16,6 +16,8 @@ namespace GroupApproximation
 namespace GGT
 namespace DGOProposition414
 
+open GroupApproximation.GGT.OsinComponents
+
 universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
