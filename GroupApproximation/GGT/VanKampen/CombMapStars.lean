@@ -145,6 +145,14 @@ theorem exists_vertexOrbitDart (M : CombMap.{u}) (vertex : M.Vertex)
       simp [closedOrbitList, hd, Equiv.Perm.length_toList]
     exact ⟨i, hdegree ▸ hi, hie⟩
 
+/-- Every vertex orbit contains its selected representative, so its degree is
+strictly positive. -/
+theorem vertexDegree_pos (M : CombMap.{u}) (vertex : M.Vertex) :
+    0 < M.vertexDegree vertex := by
+  obtain ⟨i, hi, _⟩ := M.exists_vertexOrbitDart vertex
+    (M.vertexRepresentative vertex) (M.vertexOf_vertexRepresentative vertex)
+  omega
+
 /-- Orbit positions before the vertex degree are distinct. -/
 theorem vertexOrbitDart_injective (M : CombMap.{u}) (vertex : M.Vertex)
     (i j : ℕ) (hi : i < M.vertexDegree vertex)
@@ -248,6 +256,26 @@ theorem faceStarBall_mono_succ (M : CombMap.{u}) (seed : Finset M.Face)
   change M.faceStarBall seed n ⊆ M.faceStarSet (M.faceStarBall seed n)
   exact M.subset_faceStarSet _
 
+/-- Closed star balls are monotone in their radius. -/
+theorem faceStarBall_mono (M : CombMap.{u}) (seed : Finset M.Face)
+    {i j : ℕ} (hij : i ≤ j) :
+    M.faceStarBall seed i ⊆ M.faceStarBall seed j := by
+  induction j, hij using Nat.le_induction with
+  | base => exact fun _ h ↦ h
+  | succ j _ ih =>
+      exact ih.trans (M.faceStarBall_mono_succ seed j)
+
+/-- A star layer is contained in the ball at the same radius. -/
+theorem faceStarLayer_subset_ball (M : CombMap.{u})
+    (seed : Finset M.Face) (n : ℕ) :
+    M.faceStarLayer seed n ⊆ M.faceStarBall seed n := by
+  classical
+  by_cases hn : n = 0
+  · subst n
+    simp [faceStarLayer]
+  · rw [faceStarLayer, if_neg hn]
+    exact Finset.sdiff_subset
+
 theorem faceStarLayer_succ_disjoint_ball (M : CombMap.{u})
     (seed : Finset M.Face) (n : ℕ) :
     Disjoint (M.faceStarLayer seed (n + 1)) (M.faceStarBall seed n) := by
@@ -259,6 +287,46 @@ theorem faceStarLayer_succ_disjoint_ball (M : CombMap.{u})
     (M.faceStarBall seed (n + 1) \ M.faceStarBall seed n)
     (M.faceStarBall seed n)
   exact Finset.sdiff_disjoint
+
+/-- Layers at two different radii are disjoint. -/
+theorem faceStarLayer_disjoint (M : CombMap.{u})
+    (seed : Finset M.Face) {i j : ℕ} (hij : i ≠ j) :
+    Disjoint (M.faceStarLayer seed i) (M.faceStarLayer seed j) := by
+  classical
+  wlog hlt : i < j generalizing i j with H
+  · exact (H M seed hij.symm (by omega)).symm
+  have hjpos : j ≠ 0 := by omega
+  rw [Finset.disjoint_left]
+  intro f hfi hfj
+  have hfiBall : f ∈ M.faceStarBall seed i :=
+    M.faceStarLayer_subset_ball seed i hfi
+  have hijpred : i ≤ j - 1 := by omega
+  have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
+    M.faceStarBall_mono seed hijpred hfiBall
+  rw [faceStarLayer, if_neg hjpos] at hfj
+  exact hfj.2 hfpred
+
+/-- Pairwise-disjoint star layers contained in a finite face set have total
+cardinality at most the cardinality of that set.  This is the exact counting
+part of the successive-star estimate; the geometric covering lower bound is
+separate. -/
+theorem sum_faceStarLayer_card_le (M : CombMap.{u})
+    (seed container : Finset M.Face) (m : ℕ)
+    (hsub : ∀ i : Fin m, M.faceStarLayer seed i ⊆ container) :
+    (∑ i : Fin m, (M.faceStarLayer seed i).card) ≤ container.card := by
+  classical
+  have hpairwise : ((Finset.univ : Finset (Fin m)) : Set (Fin m)).PairwiseDisjoint
+      (fun i ↦ M.faceStarLayer seed i) := by
+    intro i _hi j _hj hij
+    exact M.faceStarLayer_disjoint seed (by
+      intro hval
+      apply hij
+      exact Fin.ext hval)
+  rw [← Finset.card_biUnion hpairwise]
+  apply Finset.card_le_card
+  intro f hf
+  obtain ⟨i, _hi, hfi⟩ := Finset.mem_biUnion.mp hf
+  exact hsub i hfi
 
 end CombMap
 
