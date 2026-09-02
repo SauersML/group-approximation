@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.DGOTheorem442BBFOrder
-import GroupApproximation.GGT.DGOTheorem442ProjectionComplex
+import GroupApproximation.GGT.DGOTheorem442BBFConnectedness
 
 /-!
 # Consecutive large projections form the BBF standard path
@@ -211,7 +211,7 @@ theorem bbf_graph_adj_of_consecutive
         hWlarge hY₀Y₁ hWY₁.symm hY₀W hbefore hY₁Wbefore
       linarith [hW.2.2, hsmall, hK, P.ξ_pos]
   · have hsmall := P.bbf_before_before_projDist_lt hK hWlarge hY₀ hY₁
-      hY₀W hY₀Y₁ hWY₁ hWY₀before hbefore
+      hY₀W.symm hY₀Y₁ hWY₁ hWY₀before hbefore
     linarith [hW.2.2, hsmall, hK, P.ξ_pos]
 
 /-- The first vertex of the ordered large-projection set is adjacent to the
