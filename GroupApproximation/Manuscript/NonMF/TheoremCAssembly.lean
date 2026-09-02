@@ -15,6 +15,8 @@ import GroupApproximation.GGT.HullYiFiniteFamilyInduction
 import GroupApproximation.GGT.TreeWPDAxis
 import GroupApproximation.GGT.DGOTheorem442Proof
 import GroupApproximation.GGT.HullYiCyclicProductClosure
+import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
+import GroupApproximation.GGT.RelHypProp23FromHullOsin24
 
 /-!
 # Theorem C assembly
@@ -171,14 +173,26 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
-/-- **Open proof.**  Hull, Lemma 4.4, after the simultaneous auxiliary
-peripheral family has been selected.  This is the exact natural-quotient
-conclusion: injectivity on the requested Cayley ball and hyperbolic embedding
-of every mapped peripheral.  No rotating-space geometry is attributed to the
-lemma. -/
-theorem hullLemma44Canonical :
-    HullSC.HullLemma44CanonicalQuotientStatement.{0} := by
+/-- **Open proof.**  Hull, Lemma 4.4, in the form Hull prints it: the natural
+quotient by a relator family satisfying the small cancellation condition is
+injective on the requested Cayley ball and preserves both the simultaneously
+selected auxiliary peripherals and any original hyperbolically embedded
+family contained in the alphabet, jointly.  The family form is what
+Fournier-Facio's Proposition 2.3 consumes through Osin's Theorem 2.4
+(`GGT/RelHypProp23FromHullOsin24.lean`); the selected-family form used by
+Theorem 7.1 is its special case.  No rotating-space geometry is attributed to
+the lemma. -/
+theorem hullLemma44FamilyInclusion :
+    HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0} := by
   sorry
+
+/-- Hull's Lemma 4.4 for the selected family alone, the special case of the
+family-inclusion form in which the original hyperbolically embedded family is
+empty. -/
+theorem hullLemma44Canonical :
+    HullSC.HullLemma44CanonicalQuotientStatement.{0} :=
+  HullSC.hullLemma44CanonicalQuotientStatement_of_familyInclusion
+    hullLemma44FamilyInclusion
 
 /-- **Open exact geometric proof.**  This is Hull's Lemma 4.9 after the
 shortest quotient-conjugacy representative, correction transport, order,
@@ -296,11 +310,20 @@ presented torsion-free hyperbolic group with property (T). -/
 theorem kotowskiOllivier : KotowskiOllivierStatement := by
   sorry
 
-/-- **Open proof.**  Fournier-Facio et al., Proposition 2.3, with Osin,
-*Small cancellations over relatively hyperbolic groups and embedding theorems*,
-Theorem 2.4(5). -/
-theorem smallCancellationQuotient : FournierFacioQuotientStatement := by
-  sorry
+/-- **Fournier-Facio et al., Proposition 2.3, no longer a citation of its
+own.**  Osin's Theorem 2.4 at the relatively hyperbolic pair `(U * H₀, U)` is
+Hull's one-step small cancellation over the free product
+(`GGT/RelHypOsin24FromHull.lean`, `GGT/RelHypProp23FromHullOsin24.lean`): the
+tied one-relator quotients are iterated over the finite target set, finite
+normal generation of the kernel is a theorem of that construction
+(`GGT/RelHypOsin24Construction.lean`), torsion lifts through Hull's Lemma 4.9
+correction, and suitability of the image follows from the preserved
+elementary closures.  The three geometric leaves are the ones Theorem 7.1
+already rests on: Lemma 4.4 in its family form, Lemma 4.9, and the Yi pair. -/
+theorem smallCancellationQuotient : FournierFacioQuotientStatement :=
+  GGT.RelHyp.fournierFacioQuotientStatement_of_hull_osin24
+    TorsionFree.hullLemma44FamilyInclusion TorsionFree.hullLemma49KernelPower
+    TorsionFree.hullYiSuitablePairAvoidingFiniteOneSided
 
 /-- **Open proof.**  Osin, *Acylindrically hyperbolic groups*, Theorem
 1.2, in the implication `(AH₃) ⇒ (AH₁)`: a group that is not virtually cyclic
