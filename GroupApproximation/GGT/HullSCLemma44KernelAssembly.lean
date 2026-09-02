@@ -65,36 +65,46 @@ def KernelConeLocalFinitenessAt
     (((D.adjoinRelatorPrefixes W
       hsc.toIsSmallCancellation).adjoinKernel q).relBall lam n).Finite
 
+/-- Uniform form of the old-geodesic estimate, with the exact quantifier
+order used by the canonical assembly. -/
+def KernelGeodesicEstimateStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type u}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)),
+    KernelGeodesicEstimateAt D W eps rho mu hsc q
+
+/-- Uniform form of the finite relative-ball estimate for the prefix kernel
+cone. -/
+def KernelConeLocalFinitenessStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type u}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)),
+    KernelConeLocalFinitenessAt D W eps rho mu hsc q
+
 /-! ## Canonical quotient assembly -/
 
 /-- Greendlinger certificates together with the two exact kernel-cone
 estimates imply Hull's canonical quotient statement. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (hkernel : ∀ {G : Type u} [Group G]
-      {Lambda : Type u} (D : GGT.RelGenSet G Lambda)
-      (W : Set (List (GGT.RelLetter G Lambda)))
-      (eps rho : ℕ) (mu : ℝ)
-      (hsc : RelWord.IsLemma44Input D W eps mu rho)
-      {Q : Type u} [Group Q] (q : G →* Q)
-      (hq : Function.Surjective q)
-      (hker : q.ker =
-        Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-      (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-        Nonempty (RelativeDiagramCertificate D W eps mu Z)),
-      KernelGeodesicEstimateAt D W eps rho mu hsc q)
-    (hloc : ∀ {G : Type u} [Group G]
-      {Lambda : Type u} (D : GGT.RelGenSet G Lambda)
-      (W : Set (List (GGT.RelLetter G Lambda)))
-      (eps rho : ℕ) (mu : ℝ)
-      (hsc : RelWord.IsLemma44Input D W eps mu rho)
-      {Q : Type u} [Group Q] (q : G →* Q)
-      (hq : Function.Surjective q)
-      (hker : q.ker =
-        Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-      (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-        Nonempty (RelativeDiagramCertificate D W eps mu Z)),
-      KernelConeLocalFinitenessAt D W eps rho mu hsc q) :
+    (hkernel : KernelGeodesicEstimateStatement.{u})
+    (hloc : KernelConeLocalFinitenessStatement.{u}) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
   let mu : ℝ := 1 / 1000
@@ -121,6 +131,9 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
     le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
   have hrhoDehn : 20 * (eps + 1) ≤ rho :=
     le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
+  have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
+    dsimp [boundaryScale, fullRadius]
+    positivity
   have hthreshold :
       4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
         (3 / 4 : ℝ) * (rho : ℝ) := by
@@ -204,9 +217,10 @@ theorem kernelGeodesicEstimateAt_trivialModel
     exact hlength
   have hi0 : i = 0 := by omega
   subst hi0
-  have hwordnil : word = [] := List.length_eq_zero.mp hlen
+  have hwordnil : word = [] := List.length_eq_zero_iff.mp hlen
   subst word
   simp only [List.take_zero, List.prod_nil, wordDist_self]
+  exact le_rfl
 
 /-- If the source is one-point, every kernel-cone relative ball is finite. -/
 theorem kernelConeLocalFinitenessAt_trivialModel
