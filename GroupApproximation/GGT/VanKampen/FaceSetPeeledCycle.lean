@@ -86,8 +86,8 @@ theorem isBoundaryDart_of_mem_before_after
   intro hxf
   have hxarc : x ∈ arc := hear x hxC hxf
   rcases hx with hx | hx
-  · exact hdisjBarc hx hxarc
-  · exact hdisjBAafter (List.mem_append_right _ hxarc) hx
+  · exact hdisjBarc x hx hxarc
+  · exact hdisjBAafter x (List.mem_append_right _ hxarc) hx
 
 /-- Every dart of the interior of the peeled face has its reverse based in a
 selected face other than the peeled one.  The arc carries all the boundary
@@ -114,7 +114,7 @@ theorem faceOf_alpha_of_mem_interior
   have hC : y ∈ boundary.cycle := (boundary.cycle_mem_iff y).2 hB
   have harc : y ∈ arc := hear y hC hyface
   obtain ⟨_, _, hdisj⟩ := List.nodup_append.mp (nodup_arc_append_interior hfacerot)
-  exact hdisj harc hy
+  exact hdisj y harc hy
 
 /-! ## The peeled word enumerates the erased boundary -/
 
@@ -220,10 +220,10 @@ theorem nodup_peeled
     apply hb.2
     rw [hxf]
     exact hfacemem
-  have hdisjBefore : before.Disjoint (invDarts Delta interior) := by
+  have hdisjBefore : ∀ a ∈ before, a ∉ invDarts Delta interior := by
     intro x hxb hxi
     exact hout x (Or.inl hxb) (hinv x hxi)
-  have hdisjAfter : (invDarts Delta interior).Disjoint after := by
+  have hdisjAfter : ∀ a ∈ invDarts Delta interior, a ∉ after := by
     intro x hxi hxa
     exact hout x (Or.inr hxa) (hinv x hxi)
   have hleft : (before ++ invDarts Delta interior).Nodup := by
@@ -232,8 +232,8 @@ theorem nodup_peeled
   refine List.nodup_append.mpr ⟨hleft, hnodupAfter, ?_⟩
   intro x hx hxa
   rcases List.mem_append.mp hx with hx | hx
-  · exact hdisjBAafter (List.mem_append_left _ hx) hxa
-  · exact hdisjAfter hx hxa
+  · exact hdisjBAafter x (List.mem_append_left _ hx) hxa
+  · exact hdisjAfter x hx hxa
 
 end Peel
 

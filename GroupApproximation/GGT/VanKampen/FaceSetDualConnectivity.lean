@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.FaceSetBoundaryExit
+import GroupApproximation.GGT.VanKampen.FaceSetDualReach
 
 /-!
 # The selected-face dual along a boundary cycle
@@ -136,24 +137,23 @@ theorem boundaryCycle_face_mem
     Delta.toCombMap.faceOf d ∈ faces :=
   (boundary.cycle_mem_iff d).mp hd |>.1
 
-/-- The selected-face dual is connected on the whole selected carrier, not
-just on boundary occurrences.  Every selected face has a boundary dart by
-the ambient dart-connectivity argument, and `boundaryCycle_faces_connected`
-then joins any two such occurrences. -/
+/-- The selected-face dual is connected on the whole selected carrier.
+
+The earlier proof here was wrong: it took the dart supplied by
+`exists_boundary_cycle_dart_of_face_mem`, which is a boundary dart of the face
+*set*, to be a dart of the named face.  It need not be one, and for some
+selected faces no dart of the face is a boundary dart at all.  In a plus
+pentomino the central face is surrounded by selected faces on all four sides
+and contributes nothing to the boundary cycle, so no repair of that route can
+work.  `dualFaces_connected` proves the statement instead by a closure argument
+on darts. -/
 theorem selectedFaces_connected
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     {f g : Delta.toCombMap.Face}
     (hf : f ∈ faces) (hg : g ∈ faces) :
     Relation.EqvGen (SelectedFaceAdjacency faces) f g := by
-  obtain ⟨df, hdf_cycle, hdf⟩ :=
-    exists_boundary_cycle_dart_of_face_mem boundary hf
-  obtain ⟨dg, hdg_cycle, hdg⟩ :=
-    exists_boundary_cycle_dart_of_face_mem boundary hg
-  have hff : Delta.toCombMap.faceOf df = f := hdf.1
-  have hgg : Delta.toCombMap.faceOf dg = g := hdg.1
-  rw [← hff, ← hgg]
-  exact boundaryCycle_faces_connected boundary hdf_cycle hdg_cycle
+  exact dualFaces_connected boundary hf hg
 
 end Embedded
 end VanKampen
