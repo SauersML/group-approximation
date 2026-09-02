@@ -103,7 +103,9 @@ noncomputable def firstSurvivorGapOwner
     (hsurvives : B.componentPlacement.firstSurvives s) :
     Fin B.brokenAssignment.index.first.pieceCount :=
   Fin.cast (by
-    simp [GreedyHalfFamilyIndex.pieceCount])
+    rw [GreedyHalfFamilyIndex.pieceCount,
+      B.firstBrokenSides_length,
+      ← B.brokenAssignment.index.first.source_length])
     (Classical.choose (exists_orderedGap_of_not_mem 0
       (B.secondSide - B.firstSide + 1) (B.firstTargetSide s)
       B.firstBrokenSides (Nat.zero_le _) (B.firstTargetSide_lt hs)
@@ -144,7 +146,9 @@ noncomputable def secondSurvivorGapOwner
     (hsurvives : B.componentPlacement.secondSurvives s) :
     Fin B.brokenAssignment.index.second.pieceCount :=
   Fin.cast (by
-    simp [GreedyHalfFamilyIndex.pieceCount])
+    rw [GreedyHalfFamilyIndex.pieceCount,
+      B.secondBrokenSides_length,
+      ← B.brokenAssignment.index.second.source_length])
     (Classical.choose (exists_orderedGap_of_not_mem 0
       ((n - B.secondSide) + B.firstSide + 1) (B.secondTargetSide s)
       B.secondBrokenSides (Nat.zero_le _) (B.secondTargetSide_lt hs)
