@@ -1980,6 +1980,7 @@ theorem exists_side_occurrence_of_fourGon_start_421
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
 
+/-
 /-! ## Assembly of Lemma 4.21(b) -/
 
 theorem dgoLemma421b_of_uniform414
@@ -2134,6 +2135,7 @@ theorem dgoLemma421b_of_uniform414
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
+-/
 
 end OsinComponents
 end GGT
