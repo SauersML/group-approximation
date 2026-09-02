@@ -492,12 +492,15 @@ theorem estimatingGraphData_emptyFamilyModel
   have hedge_empty : ∀ edges : Finset
       (Embedded.InteriorEdge scaffold.selected.family), edges = ∅ := by
     intro edges
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro edge hedge
-    have hcandidate : edge.candidate ∈ scaffold.selected.family :=
-      edge.candidate_mem
-    rw [hempty] at hcandidate
-    exact hcandidate.elim
+    ext edge
+    constructor
+    · intro hedge
+      have hcandidate : edge.candidate ∈ scaffold.selected.family :=
+        edge.candidate_mem
+      rw [hempty] at hcandidate
+      exact hcandidate.elim
+    · intro hedge
+      simp at hedge
   refine ⟨{
     planarEdgeBound := ?_
     selfIncidenceSeparated := ?_
