@@ -125,6 +125,47 @@ structure CactusBaseCellDeletion
   relatorOnly : RelatorCellCover replacement.diagram
   reduced : Delta.Reduced
 
+/-- The explicit combinatorial map obtained by deleting the selected cactus
+region and re-closing its trimmed boundary cycle. -/
+noncomputable def CactusBaseCellDeletion.surgeryMap
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellDeletion Delta) : CombMap.{v} :=
+  Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region
+
+/-- The explicit map is the map stored by the landed diagram replacement. -/
+theorem CactusBaseCellDeletion.surgeryMap_eq_replacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellDeletion Delta) :
+    C.surgeryMap = C.replacement.diagram.toCombMap := by
+  exact C.replacement_map_eq.symm
+
+/-- Planarity of the source disc is preserved by the concrete cactus map
+deletion. -/
+theorem CactusBaseCellDeletion.surgeryMap_planar
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellDeletion Delta)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    C.surgeryMap.IsPlanar := by
+  unfold CactusBaseCellDeletion.surgeryMap
+  exact Surgery.MapCollapse.replaceGRegion_planar
+    Delta.toCombMap C.faces C.region hplanar
+
+/-- The concrete cactus map deletion has the replacement's literal boundary
+word. -/
+theorem CactusBaseCellDeletion.surgeryMap_boundaryWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellDeletion Delta) :
+    C.replacement.diagram.boundaryWord = Delta.boundaryWord :=
+  C.replacement.outerWord_eq
+
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
 area is unchanged by the ordered cell equivalence, and reducedness transports
@@ -142,9 +183,8 @@ def CactusBaseCellDeletion.toRetyping
     rw [C.replacement.rCellCount_eq]
   reduced := C.replacement.reduced C.reduced
   planar := by
-    rw [C.replacement_map_eq]
-    exact Surgery.MapCollapse.replaceGRegion_planar
-      Delta.toCombMap C.faces C.region hplanar
+    rw [← C.surgeryMap_eq_replacement]
+    exact C.surgeryMap_planar hplanar
 
 /-- The generic cactus constructor under the source disc's planarity field.
 The deletion witness supplies the endpoint trimming and free-base-cell fold. -/
@@ -226,6 +266,46 @@ structure MirrorPairDeletion
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
 
+/-- The explicit combinatorial map obtained by deleting the two mirror faces
+and re-closing their two trimmed complementary boundary paths. -/
+noncomputable def MirrorPairDeletion.surgeryMap
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) : CombMap.{v} :=
+  Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region
+
+/-- The explicit mirror-surgery map is the map stored by the landed diagram
+replacement. -/
+theorem MirrorPairDeletion.surgeryMap_eq_replacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) :
+    C.surgeryMap = C.replacement.diagram.toCombMap := by
+  exact C.replacement_map_eq.symm
+
+/-- Planarity of the source disc is preserved by the concrete mirror cut. -/
+theorem MirrorPairDeletion.surgeryMap_planar
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta)
+    (hplanar : Delta.toCombMap.IsPlanar) :
+    C.surgeryMap.IsPlanar := by
+  unfold MirrorPairDeletion.surgeryMap
+  exact Surgery.MapCollapse.replaceGRegion_planar
+    Delta.toCombMap C.faces C.region hplanar
+
+/-- The concrete mirror-surgery map has the same literal exterior word. -/
+theorem MirrorPairDeletion.surgeryMap_boundaryWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) :
+    C.replacement.diagram.boundaryWord = Delta.boundaryWord :=
+  C.replacement.outerWord_eq
+
 /-- The two-cell cut lowers ordered relator area by exactly two. -/
 theorem MirrorPairDeletion.area_drop
     {G : Type u} [Group G] {Lambda : Type w}
@@ -274,9 +354,8 @@ def MirrorPairDeletion.toMirrorPairCut
   reduced := C.replacement.reduced hred
   area_eq := C.area_drop
   planar := by
-    rw [C.replacement_map_eq]
-    exact Surgery.MapCollapse.replaceGRegion_planar
-      Delta.toCombMap C.faces C.region hplanar
+    rw [← C.surgeryMap_eq_replacement]
+    exact C.surgeryMap_planar hplanar
 
 /-- The generic mirror constructor exposes the planar output of the
 reclosure and the exact two-cell area drop. -/
