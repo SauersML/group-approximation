@@ -294,7 +294,8 @@ theorem cutWord_isCompStart_cases
     {start m j : ℕ} {z : G} (hm : start + m ≤ word.length)
     {lam : Λ}
     (hj : IsCompStart lam (cutWord word closeLam start m z) j) :
-    j = m ∨ ∃ t : Fin (peripheralPositions word).card,
+    (j = m ∧ closeLam = lam) ∨
+      ∃ t : Fin (peripheralPositions word).card,
       (peripheralOccurrence word t).pos = start + j ∧
         (peripheralOccurrence word t).label = lam := by
   obtain ⟨k, hcomp⟩ := hj
@@ -306,7 +307,15 @@ theorem cutWord_isCompStart_cases
     rw [hlen] at hjCycle
     omega
   rcases eq_or_lt_of_le hjle with rfl | hjlt
-  · exact Or.inl rfl
+  · apply Or.inl
+    refine ⟨rfl, ?_⟩
+    have hmCycle : m < (cutWord word closeLam start m z).length := by omega
+    have hcompOf :
+        ((cutWord word closeLam start m z)[m]'hmCycle).IsCompOf lam :=
+      hcomp.2.2.1 m le_rfl hcomp.1 hmCycle
+    rw [getElem_cutWord_last word closeLam start m z hm m rfl hmCycle]
+      at hcompOf
+    exact hcompOf
   · apply Or.inr
     have hcompOf :
         ((cutWord word closeLam start m z)[j]'hjCycle).IsCompOf lam :=
