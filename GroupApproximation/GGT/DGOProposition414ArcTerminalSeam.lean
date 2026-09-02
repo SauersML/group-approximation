@@ -116,6 +116,74 @@ theorem isCompOf_head_orientedSegment_fromStart
   rw [List.getElem_of_eq heq hseg]
   simp
 
+/-! ## Heads of a child chord anchored at a component of the parent chord -/
+
+/-- If `[y, y+1)` is a component of `word` and a child segment starts at
+`y + 1` and runs forwards, its first letter is `word[y+1]`, excluded by the
+component's own maximality clause. -/
+theorem not_isCompOf_head_orientedSegment_succ
+    (lam : Λ) (word : List (RelLetter G Λ)) {y cf : ℕ}
+    (hcomp : IsComp lam word y (y + 1)) (hle : y + 1 ≤ cf)
+    (hseg : 0 < (orientedSegment word (y + 1) cf).length) :
+    ¬ ((orientedSegment word (y + 1) cf)[0]'hseg).IsCompOf lam := by
+  have heq : orientedSegment word (y + 1) cf =
+      (word.drop (y + 1)).take (cf - (y + 1)) := by
+    rw [orientedSegment, if_pos hle]
+  have hpos : 0 < ((word.drop (y + 1)).take (cf - (y + 1))).length := by
+    rw [← heq]
+    exact hseg
+  have hlen : ((word.drop (y + 1)).take (cf - (y + 1))).length =
+      min (cf - (y + 1)) (word.length - (y + 1)) := by
+    rw [List.length_take, List.length_drop]
+  have hlt : y + 1 < word.length := by
+    rw [hlen] at hpos
+    omega
+  intro hletter
+  rw [List.getElem_of_eq heq hseg, List.getElem_take,
+    List.getElem_drop] at hletter
+  exact hcomp.2.2.2.2 hlt hletter
+
+/-- If `[y, y+1)` is a component of `word` and a child segment starts at `y`
+and runs backwards, its first letter is the inverse of `word[y-1]`, excluded
+by the component's predecessor clause. -/
+theorem not_isCompOf_head_orientedSegment_pred
+    (lam : Λ) (word : List (RelLetter G Λ)) {y cf : ℕ}
+    (hcomp : IsComp lam word y (y + 1)) (hle : cf ≤ y)
+    (hseg : 0 < (orientedSegment word y cf).length) :
+    ¬ ((orientedSegment word y cf)[0]'hseg).IsCompOf lam := by
+  have hylen : y + 1 ≤ word.length := hcomp.2.1
+  have hne : ¬ (y ≤ cf) := by
+    intro hyc
+    have hyeq : y = cf := le_antisymm hyc hle
+    rw [orientedSegment, if_pos hyc, hyeq] at hseg
+    simp at hseg
+  have heq : orientedSegment word y cf =
+      revWord ((word.drop cf).take (y - cf)) := by
+    rw [orientedSegment, if_neg hne]
+  have hLlen : ((word.drop cf).take (y - cf)).length = y - cf := by
+    rw [List.length_take, List.length_drop]
+    omega
+  have ht : ((word.drop cf).take (y - cf)).length - 1 <
+      ((word.drop cf).take (y - cf)).length := by
+    rw [hLlen]
+    omega
+  have hrev : 0 < (revWord ((word.drop cf).take (y - cf))).length := by
+    rw [OsinComponents.length_revWord, hLlen]
+    omega
+  have hiff := isCompOf_getElem_revWord' ((word.drop cf).take (y - cf)) lam
+    (m := 0) hrev ht rfl
+  have hidx : cf + (((word.drop cf).take (y - cf)).length - 1) = y - 1 := by
+    rw [hLlen]
+    omega
+  have hy1 : y - 1 < word.length := by omega
+  intro hletter
+  rw [List.getElem_of_eq heq hseg, hiff, List.getElem_take,
+    List.getElem_drop] at hletter
+  have hfinal : (word[y - 1]'hy1).IsCompOf lam := by
+    rw [← getElem_congr_idx (c := word) hidx]
+    exact hletter
+  exact hcomp.2.2.2.1 (y - 1) (by omega) hy1 hfinal
+
 namespace BalancedSplitData
 
 /-! ## The residual chord seam -/
@@ -849,6 +917,40 @@ theorem secondGapArcChordSeam_of_lastGap
     rw [hfinal]
     exact hchordHead
   exact hwordComp.2.2.2.2 hltWord hbad
+
+/-! ## Partner edges are maximal components of the geodesic chord -/
+
+/-- The chord partner of a broken first-half source is its own maximal
+component of the chord, because the chord is geodesic. -/
+theorem firstPartner_chord_isComp
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives) :
+    IsComp (P.label s) B.chord (B.brokenAssignment.first.partner s)
+      (B.brokenAssignment.first.partner s + 1) :=
+  isComp_of_isCompOf_geodesic D (P.label s) B.chord_geodesic
+    (B.brokenAssignment.first.partner_lt s hs)
+    (B.firstPartner_chordLetter_label s hs)
+
+/-- The chord partner of a broken wrapped-half source is its own maximal
+component of the chord. -/
+theorem secondPartner_chord_isComp
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (s : ℕ) (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives) :
+    IsComp (P.label s) B.chord (B.brokenAssignment.second.partner s)
+      (B.brokenAssignment.second.partner s + 1) :=
+  isComp_of_isCompOf_geodesic D (P.label s) B.chord_geodesic
+    (B.brokenAssignment.second.partner_lt s hs)
+    (B.secondPartner_chordLetter_label s hs)
 
 end BalancedSplitData
 
