@@ -68,19 +68,20 @@ structure DGO421FiniteAbsorptionOrderData
     (cert : DGO421FiniteAbsorptionCertificate D p q N M K) where
   qIndex : ℕ → ℕ
   qEnd : ℕ → ℕ
-  qComponent : ∀ t : ℕ, t < K →
-    IsComp (cert.label (cert.blockIndex ⟨t, by omega⟩)) q
+  qComponent : ∀ (t : ℕ) (ht : t < K),
+    IsComp (cert.label (cert.blockIndex ⟨t, ht⟩)) q
       (qIndex t) (qEnd t)
-  pSeparator : ∀ t : ℕ, t + 1 < K →
+  pSeparator : ∀ (t : ℕ) (ht : t + 1 < K),
     BaseEdgeOrTrivial p
-      (cert.source (cert.blockIndex ⟨t, by omega⟩) + 1)
-      (cert.source (cert.blockIndex ⟨t + 1, by omega⟩))
-  qSeparator : ∀ t : ℕ, t + 1 < K →
+      (cert.source (cert.blockIndex ⟨t,
+        Nat.lt_trans (Nat.lt_succ_self t) ht⟩) + 1)
+      (cert.source (cert.blockIndex ⟨t + 1, ht⟩))
+  qSeparator : ∀ (t : ℕ) (_ : t + 1 < K),
     BaseEdgeOrTrivial q (qEnd t) (qIndex (t + 1))
-  cosetMatch : ∀ t : ℕ, t < K →
-    (vertex (1 : G) p (cert.source (cert.blockIndex ⟨t, by omega⟩)))⁻¹ *
+  cosetMatch : ∀ (t : ℕ) (ht : t < K),
+    (vertex (1 : G) p (cert.source (cert.blockIndex ⟨t, ht⟩)))⁻¹ *
         vertex (1 : G) q (qIndex t) ∈
-      D.fam (cert.label (cert.blockIndex ⟨t, by omega⟩))
+      D.fam (cert.label (cert.blockIndex ⟨t, ht⟩))
 
 /-- The finite certificate and its order data assemble into the ordered-block
 payload.  This is the precise local reduction of the DGO minimality argument:
@@ -115,21 +116,15 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
   · intro t ht
     exact cert.source_comp (blockAt t)
   · intro t ht
-    dsimp [lamAt, indexAt, endAt, blockAt]
-    rw [dif_pos ht, dif_pos ht]
-    exact O.qComponent t ht
+    simpa [lamAt, indexAt, endAt, blockAt, ht] using O.qComponent t ht
   · intro t ht
-    dsimp [kpAt, ipAt, blockAt]
-    rw [dif_pos (by omega), dif_pos (by omega), dif_pos (by omega)]
-    exact O.pSeparator t ht
+    have ht0 : t < K := by omega
+    simpa [kpAt, ipAt, blockAt, ht0, ht] using O.pSeparator t ht
   · intro t ht
-    dsimp [endAt, indexAt, blockAt]
-    rw [dif_pos (by omega), dif_pos (by omega)]
-    exact O.qSeparator t ht
+    have ht0 : t < K := by omega
+    simpa [endAt, indexAt, blockAt, ht0, ht] using O.qSeparator t ht
   · intro t ht
-    dsimp [ipAt, indexAt, lamAt, blockAt]
-    rw [dif_pos ht, dif_pos ht, dif_pos ht]
-    exact O.cosetMatch t ht
+    simpa [ipAt, indexAt, lamAt, blockAt, ht] using O.cosetMatch t ht
 
 /-! ## Trivial-group model -/
 

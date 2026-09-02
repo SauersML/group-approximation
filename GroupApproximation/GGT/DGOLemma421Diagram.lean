@@ -105,10 +105,10 @@ theorem oppositeContiguity_of_rankSuccessor
   rw [hend]
   exact hsep
 
+omit [Group G] in
 /-- A strictly increasing block with no peripheral rank between adjacent
 entries has rank difference one.  This is the finite-order argument used to
 turn an ordered block of opposite components into consecutive components. -/
-omit [Group G] in
 theorem rankSuccessor_of_noIntermediate
     {q : List (RelLetter G Λ)} {K : ℕ}
     (occ : ℕ → Fin (peripheralPositions q).card)
@@ -172,18 +172,20 @@ theorem DGO421BaseSymmetric_trivialModel :
 because its peripheral subgroup is top, but its base is not inversion closed.
 So reversal admissibility genuinely fails without the base-symmetry field. -/
 private def dgo421AsymmetricAdditiveRelGenSet :
-    RelGenSet (Multiplicative (ZMod 3)) Unit where
-  base := {0, 1}
+    RelGenSet (Multiplicative ℤ) Unit where
+  base := {Multiplicative.ofAdd (0 : ℤ),
+    Multiplicative.ofAdd (1 : ℤ)}
   fam := fun _ => ⊤
   symmetricGenerating := by
     constructor
     · intro x hx
       right
       simp
-    · have hunion : ({0, 1} : Set (Multiplicative (ZMod 3))) ∪
+    · have hunion : ({Multiplicative.ofAdd (0 : ℤ),
+        Multiplicative.ofAdd (1 : ℤ)} : Set (Multiplicative ℤ)) ∪
           (⋃ _ : Unit,
-            ((⊤ : Subgroup (Multiplicative (ZMod 3))) :
-              Set (Multiplicative (ZMod 3)))) = Set.univ := by
+            ((⊤ : Subgroup (Multiplicative ℤ)) :
+              Set (Multiplicative ℤ))) = Set.univ := by
         ext x
         simp
       rw [hunion]
@@ -196,11 +198,22 @@ theorem dgo421ReversalAdmissibility_asymmetricModel :
   intro h
   have hbase := (dgo421ReversalAdmissibility_iff_baseSymmetric
     dgo421AsymmetricAdditiveRelGenSet).mp h
-  have hone : (1 : Multiplicative (ZMod 3)) ∈
+  have hone : Multiplicative.ofAdd (1 : ℤ) ∈
       dgo421AsymmetricAdditiveRelGenSet.base := by
     simp [dgo421AsymmetricAdditiveRelGenSet]
-  have hinv := hbase 1 hone
-  norm_num [dgo421AsymmetricAdditiveRelGenSet] at hinv
+  have hinv := hbase (Multiplicative.ofAdd (1 : ℤ)) hone
+  have hinv' : (Multiplicative.ofAdd (1 : ℤ))⁻¹ =
+      Multiplicative.ofAdd (0 : ℤ) ∨
+      (Multiplicative.ofAdd (1 : ℤ))⁻¹ =
+        Multiplicative.ofAdd (1 : ℤ) := by
+    simpa [dgo421AsymmetricAdditiveRelGenSet] using hinv
+  rcases hinv' with hzero | hone'
+  · have hto := congrArg Multiplicative.toAdd hzero
+    rw [← ofAdd_neg] at hto
+    norm_num at hto
+  · have hto := congrArg Multiplicative.toAdd hone'
+    rw [← ofAdd_neg] at hto
+    norm_num at hto
 
 private def dgo421TrivialWord : List (RelLetter PUnit Bool) :=
   WWord.hullShape () () ()
