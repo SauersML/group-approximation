@@ -86,8 +86,8 @@ theorem isBoundaryDart_of_mem_before_after
   intro hxf
   have hxarc : x ∈ arc := hear x hxC hxf
   rcases hx with hx | hx
-  · exact hdisjBarc x hx hxarc
-  · exact hdisjBAafter x (List.mem_append_right _ hxarc) hx
+  · exact hdisjBarc x hx x hxarc rfl
+  · exact hdisjBAafter x (List.mem_append_right _ hxarc) x hx rfl
 
 /-- Every dart of the interior of the peeled face has its reverse based in a
 selected face other than the peeled one.  The arc carries all the boundary
@@ -114,7 +114,7 @@ theorem faceOf_alpha_of_mem_interior
   have hC : y ∈ boundary.cycle := (boundary.cycle_mem_iff y).2 hB
   have harc : y ∈ arc := hear y hC hyface
   obtain ⟨_, _, hdisj⟩ := List.nodup_append.mp (nodup_arc_append_interior hfacerot)
-  exact hdisj y harc hy
+  exact hdisj y harc y hy rfl
 
 /-! ## The peeled word enumerates the erased boundary -/
 
@@ -220,20 +220,24 @@ theorem nodup_peeled
     apply hb.2
     rw [hxf]
     exact hfacemem
-  have hdisjBefore : ∀ a ∈ before, a ∉ invDarts Delta interior := by
-    intro x hxb hxi
-    exact hout x (Or.inl hxb) (hinv x hxi)
-  have hdisjAfter : ∀ a ∈ invDarts Delta interior, a ∉ after := by
-    intro x hxi hxa
-    exact hout x (Or.inr hxa) (hinv x hxi)
+  have hdisjBefore : ∀ a ∈ before, ∀ b ∈ invDarts Delta interior, a ≠ b := by
+    intro x hxb y hyi hxy
+    refine hout x (Or.inl hxb) ?_
+    rw [hxy]
+    exact hinv y hyi
+  have hdisjAfter : ∀ a ∈ invDarts Delta interior, ∀ b ∈ after, a ≠ b := by
+    intro x hxi y hya hxy
+    refine hout y (Or.inr hya) ?_
+    rw [← hxy]
+    exact hinv x hxi
   have hleft : (before ++ invDarts Delta interior).Nodup := by
     refine List.nodup_append.mpr ⟨hnodupBefore, ?_, hdisjBefore⟩
     exact invDarts_nodup hnodupInterior
   refine List.nodup_append.mpr ⟨hleft, hnodupAfter, ?_⟩
-  intro x hx hxa
+  intro x hx y hy hxy
   rcases List.mem_append.mp hx with hx | hx
-  · exact hdisjBAafter x (List.mem_append_left _ hx) hxa
-  · exact hdisjAfter x hx hxa
+  · exact hdisjBAafter x (List.mem_append_left _ hx) y hy hxy
+  · exact hdisjAfter x hx y hy hxy
 
 end Peel
 
