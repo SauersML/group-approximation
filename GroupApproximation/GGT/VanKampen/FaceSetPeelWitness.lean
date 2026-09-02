@@ -137,8 +137,9 @@ theorem twoFace_planarCertificate
       boundary.cycle = next) :
     Nonempty (PlanarFacePeelCertificate boundary) := by
   obtain ⟨boundary₂, hboundary₂⟩ := hcycle₂
+  subst faces
   have hmem : f₁ ∈ faces := by
-    simp [hfaces, hneq]
+    simp [hneq]
   have hmoves : FaceSetMoveSequence (faces := faces) boundary.cycle next := by
     simpa [hcycle] using moves
   refine ⟨PlanarFacePeelCertificate.mk f₁ hmem h₁ next cycle ?_
@@ -147,7 +148,9 @@ theorem twoFace_planarCertificate
     apply boundary.cycle_nonempty
     rw [hcycle, hnil]
   · right
-    refine ⟨boundary₂, hboundary₂⟩
+    refine ⟨?_, ?_⟩
+    · simpa [hneq] using boundary₂
+    · simpa [hneq] using hboundary₂
 
 end Embedded
 end VanKampen
