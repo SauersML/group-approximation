@@ -162,16 +162,20 @@ theorem exists_bbf_standard_walk
         apply hchainLeft.append (List.isChain_singleton Z)
         intro A hA B hB
         have hAeq : (Y :: L).getLast hLne = A := by
-          simpa [hLne] using hA
+          apply (List.getLast_eq_iff_getLast?_eq_some hLne).2
+          simpa using hA
         have hBeq : Z = B := by simpa using hB
         rw [← hAeq, ← hBeq]
         exact hright
       let q := SimpleGraph.Walk.ofSupport ((X :: Y :: L) ++ [Z])
         (by simp) hfull
       let p : ((ProjectionPerturbation.bbf P).graph K).Walk X Z :=
-        q.copy (by simp [q]) (by simp [q])
+        q.copy (by simp) (by simp)
       refine ⟨p, ?_⟩
-      simp [p, q]
+      dsimp only [p]
+      rw [SimpleGraph.Walk.support_copy]
+      dsimp only [q]
+      exact SimpleGraph.Walk.support_ofSupport _ _
 
 end ProjectionSystem
 end GGT
