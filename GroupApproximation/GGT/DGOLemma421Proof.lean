@@ -2315,7 +2315,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
   have hclassBase : ∀ i : Fin N,
       Matched i ∨ ∃ z : Fin M, ¬ Matched i ∧
         ((if h : targetN i < pc.length then targetN i
-          else targetN i - P.length) = z.val) := by
+          else E + (targetN i - (pc.length + P.length))) = z.val) := by
     intro i
     by_cases hmatched : Matched i
     · exact Or.inl hmatched
@@ -2368,13 +2368,16 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             have hpcM : pc.length < M := lt_of_le_of_lt hpcLen hEMlt
             have hieq : i' = P.length := by omega
             by_cases hrcpos : 0 < rc.length
-            · refine ⟨⟨pc.length, hpcM⟩, hmatched, ?_⟩
+            · have hEM : E < M := by
+                dsimp [M]
+                omega
+              refine ⟨⟨E, hEM⟩, hmatched, ?_⟩
               have hnotTarget : ¬ targetN i < pc.length := by
                 intro hlt
                 have hlt' : pc.length + i' < pc.length := hni ▸ hlt
                 omega
               rw [dif_neg hnotTarget, hni, hieq]
-              exact Nat.add_sub_cancel _ _
+              simp
             · have hrczero : rc.length = 0 := by omega
               exfalso
               apply hmatched
@@ -2389,20 +2392,18 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
             have hmE : m < E := lt_of_lt_of_le hm hrcLen
-            have hsum : pc.length + m < E + E := by omega
+            have hsum : E + m < E + E := by omega
             have hMadd : E + E = M := by
               dsimp [M]
               omega
-            have hslot : pc.length + m < M := by
+            have hslot : E + m < M := by
               rw [← hMadd]
               exact hsum
-            refine ⟨⟨pc.length + m, hslot⟩, hmatched, ?_⟩
+            refine ⟨⟨E + m, hslot⟩, hmatched, ?_⟩
             rw [hmn]
             have hnot : ¬ pc.length + P.length + m < pc.length := by omega
             rw [dif_neg hnot]
-            rw [show pc.length + P.length + m =
-              P.length + (pc.length + m) by omega,
-              Nat.add_sub_cancel_left]
+            simp
           · exfalso
             rcases hscase with ⟨j, hj, hjn⟩
             apply hmatched
@@ -2418,7 +2419,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     else Classical.choose ((hclassBase i).resolve_left hi)
   have hshortSpec : ∀ i, ¬ Matched i →
       (if h : targetN i < pc.length then targetN i
-        else targetN i - P.length) = (short i).val := by
+        else E + (targetN i - (pc.length + P.length))) = (short i).val := by
     intro i hi
     dsimp [short]
     rw [dif_neg hi]
