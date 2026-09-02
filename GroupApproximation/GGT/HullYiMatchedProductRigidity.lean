@@ -205,6 +205,63 @@ theorem mem_zpowers_of_connector_eq_one
     ⟨l - m,
       (eq_zpow_sub_of_connector_eq_one h t connector l m hc ht).symm⟩
 
+/-- A finite-order member of a matched product's elementary closure belongs to
+every detector subgroup, provided their intersection is torsion and
+centralizes the product.  This is Hull's `⟨h⟩ × K` calculation restricted to
+the finite elements needed when selecting the detector family. -/
+theorem finiteOrder_mem_detectorIntersection_of_matchedProduct
+    {k : ℕ} (E : Fin k → Subgroup G) (a : Fin k → G) (h : G)
+    (hcentral : ∀ i : Fin k, ∀ x : G, x ∈ E i → Commute x (a i))
+    (hintersectionFiniteOrder : ∀ x : G,
+      (∀ i : Fin k, x ∈ E i) → IsOfFinOrder x)
+    (hintersectionCommutes : ∀ x : G,
+      (∀ i : Fin k, x ∈ E i) → Commute x h)
+    (hinfinite : ¬ IsOfFinOrder h)
+    (hmatch : ∀ t : G,
+      ∃ (l m : ℤ) (c : Fin (k + 1) → G),
+        (∀ i : Fin k, c i.castSucc ∈ E i) ∧
+        (∀ i : Fin k,
+          c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
+        t = h ^ l * c 0 * h ^ (-m))
+    {t : G} (htfinite : IsOfFinOrder t) :
+    ∀ i : Fin k, t ∈ E i := by
+  obtain ⟨l, m, c, hmem, hnext, ht⟩ := hmatch t
+  obtain ⟨-, hcinter⟩ :=
+    matchedConnectors_eq_first E a c hcentral hmem hnext
+  let d : G := c 0
+  have hdinter : ∀ i : Fin k, d ∈ E i := hcinter
+  have hdcomm : Commute d h := hintersectionCommutes d hdinter
+  have hdfinite : IsOfFinOrder d := hintersectionFiniteOrder d hdinter
+  let n : ℤ := l - m
+  have htform : t = h ^ n * d := by
+    rw [ht]
+    dsimp [n, d]
+    rw [(hdcomm.zpow_right (-m)).eq, zpow_sub, zpow_neg]
+    group
+  have htcomm : Commute t d := by
+    rw [htform]
+    exact (hdcomm.zpow_right n).symm.mul_left (Commute.refl d)
+  have hpowFinite : IsOfFinOrder (h ^ n) := by
+    have hmulFinite : IsOfFinOrder (t * d⁻¹) :=
+      htcomm.inv_right.isOfFinOrder_mul htfinite hdfinite.inv
+    have hmul : t * d⁻¹ = h ^ n := by
+      rw [htform]
+      group
+    rwa [hmul] at hmulFinite
+  have hn : n = 0 := by
+    by_contra hn0
+    apply hinfinite
+    obtain ⟨q, hq, hpow⟩ := isOfFinOrder_iff_zpow_eq_one.mp hpowFinite
+    apply isOfFinOrder_iff_zpow_eq_one.mpr
+    refine ⟨n * q, mul_ne_zero hn0 hq, ?_⟩
+    rw [zpow_mul]
+    exact hpow
+  have htd : t = d := by
+    rw [htform, hn, zpow_zero, one_mul]
+  intro i
+  rw [htd]
+  exact hdinter i
+
 /-- **The complete post-matching cyclicity implication.**
 
 The matching producer may choose different connector and prefix data for each
