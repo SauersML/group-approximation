@@ -233,8 +233,9 @@ noncomputable def interiorIncidenceEquiv
     | source candidate mem_selected source_eq =>
         cases htarget : candidate.contiguity.target with
         | none =>
-            simp only [CellIncidence.kind, htarget, ↓reduceIte,
-              CellArcKind.exterior.injEq] at hkind
+            have hfalse : CellArcKind.exterior = CellArcKind.interior := by
+              simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+            cases hfalse
         | some target =>
             exact (⟨(candidate, target), mem_selected, htarget⟩, false)
     | target candidate mem_selected target_eq =>
@@ -255,8 +256,9 @@ noncomputable def interiorIncidenceEquiv
     | source candidate mem_selected source_eq =>
         cases htarget : candidate.contiguity.target with
         | none =>
-            simp only [CellIncidence.kind, htarget, ↓reduceIte,
-              CellArcKind.exterior.injEq] at hkind
+            have hfalse : CellArcKind.exterior = CellArcKind.interior := by
+              simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+            cases hfalse
         | some target =>
             cases source_eq
             rfl
