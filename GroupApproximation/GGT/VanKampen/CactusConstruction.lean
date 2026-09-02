@@ -164,7 +164,7 @@ theorem finRotate_pow_zero {n : ℕ} (hn : 0 < n) (k : ℕ) (hk : k < n) :
     ((finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
   rw [← Equiv.Perm.iterate_eq_pow,
     ← finCycle_eq_finRotate_iterate (k := (⟨k, hk⟩ : Fin n))]
-  simp
+  exact Fin.zero_add ⟨k, hk⟩
 
 /-- A permutation orbit which is an explicitly parametrized finite rotation
 has its closed orbit list in that parameter order. -/
@@ -205,7 +205,9 @@ theorem closedOrbitList_eq_of_finRotate
     intro k hkleft hkright
     simp only [closedOrbitList, if_neg hfixed]
     rw [Equiv.Perm.getElem_toList]
-    rw [hpow, finRotate_pow_zero hn k hkright]
+    have hk : k < n := by
+      simpa only [List.length_ofFn] using hkright
+    rw [hpow, finRotate_pow_zero hn k hk]
     simp only [List.getElem_ofFn]
 
 noncomputable local instance cactusShapeDartDecidableEq (S : CactusShape) :
