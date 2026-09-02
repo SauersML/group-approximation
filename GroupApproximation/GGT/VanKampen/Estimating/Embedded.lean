@@ -338,6 +338,152 @@ theorem exists_distinguishedFamily
     (Compatible (D := D) (eps := eps) (Delta := Delta))
     (Candidate.weight (D := D) (eps := eps) (Delta := Delta))
 
+/-! ## G-cell surgery and Lemma 65(a) -/
+
+/-- An `O`-equivalent replacement of a G-cell-only region inside one ambient
+diagram.  Both face sets have disc boundaries consisting only of G-cells, and
+the two oriented boundary words agree.  This is the face-set form of the
+local surgery used in Osin's Appendix: the relator cells and the outer
+boundary of the ambient diagram are untouched. -/
+structure GCellReplacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (oldFaces newFaces : Finset Delta.toCombMap.Face) where
+  oldBoundary : FaceSetBoundary Delta oldFaces
+  newBoundary : FaceSetBoundary Delta newFaces
+  boundaryWord_eq :
+    dartWord Delta oldBoundary.cycle = dartWord Delta newBoundary.cycle
+
+/-- The surgery which merges two embedded regions.  Its old carrier is the
+union of their face sets and its new carrier is the candidate chosen to
+replace them. -/
+structure MergeSurgery
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (first second merged : Candidate D eps Delta) where
+  mergedFaces : merged.1 = first.1 ∪ second.1
+  replacement : GCellReplacement Delta (first.1 ∪ second.1) merged.1
+
+/-- Compatibility of embedded regions is symmetric. -/
+theorem compatible_symm
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {first second : Candidate D eps Delta}
+    (h : Compatible first second) : Compatible second first := by
+  exact h.symm
+
+/-- A merged face set is disjoint from any candidate disjoint from each of
+its two constituents. -/
+theorem compatible_merge
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {first second merged other : Candidate D eps Delta}
+    (surgery : MergeSurgery first second merged)
+    (hfirst : Compatible first other)
+    (hsecond : Compatible second other) : Compatible merged other := by
+  rw [Compatible, surgery.mergedFaces]
+  rw [Finset.disjoint_left] at hfirst hsecond ⊢
+  intro face hface hother
+  rcases Finset.mem_union.mp hface with hface | hface
+  · exact hfirst hface hother
+  · exact hsecond hface hother
+
+/-- Replacing two selected embedded regions by their merged surgery preserves
+pairwise face-disjointness of the distinguished family. -/
+theorem merge_replacement_pairwise
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (first second merged : Candidate D eps Delta)
+    (hfirst : first ∈ selected.family)
+    (hsecond : second ∈ selected.family)
+    (surgery : MergeSurgery first second merged) :
+    EstimatingSelection.PairwiseCompatible
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (insert merged ((selected.family.erase first).erase second)) := by
+  classical
+  intro a ha b hb hab
+  rcases Finset.mem_insert.mp ha with rfl | ha
+  · rcases Finset.mem_insert.mp hb with rfl | hb
+    · exact (hab rfl).elim
+    · have hbData := Finset.mem_erase.mp hb
+      have hbFirst := Finset.mem_erase.mp hbData.2
+      have hfirstb := selected.pairwise first hfirst b hbFirst.2 hbFirst.1.symm
+      have hsecondb := selected.pairwise second hsecond b hbData.2 hbData.1.symm
+      exact compatible_merge surgery hfirstb hsecondb
+  · rcases Finset.mem_insert.mp hb with rfl | hb
+    · have haData := Finset.mem_erase.mp ha
+      have haFirst := Finset.mem_erase.mp haData.2
+      have hfirsta := selected.pairwise first hfirst a haFirst.2 haFirst.1.symm
+      have hseconda := selected.pairwise second hsecond a haData.2 haData.1.symm
+      exact compatible_symm (compatible_merge surgery hfirsta hseconda)
+    · have haSelected : a ∈ selected.family :=
+        (Finset.mem_erase.mp (Finset.mem_erase.mp ha).2).2
+      have hbSelected : b ∈ selected.family :=
+        (Finset.mem_erase.mp (Finset.mem_erase.mp hb).2).2
+      exact selected.pairwise a haSelected b hbSelected hab
+
+/-- A genuine union merge cannot already be one of the untouched selected
+regions: it contains every face of the nonempty first region, whereas the
+selected family makes those two face sets disjoint. -/
+theorem merged_not_mem_rest
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (first second merged : Candidate D eps Delta)
+    (hfirst : first ∈ selected.family)
+    (surgery : MergeSurgery first second merged) :
+    merged ∉ (selected.family.erase first).erase second := by
+  intro hmerged
+  have hmergedData := Finset.mem_erase.mp hmerged
+  have hmergedFirst := Finset.mem_erase.mp hmergedData.2
+  have hdisjoint := selected.pairwise first hfirst merged
+    hmergedFirst.2 hmergedFirst.1.symm
+  obtain ⟨face, hface⟩ := first.contiguity.boundary.faces_nonempty
+  have hfaceMerged : face ∈ merged.1 := by
+    rw [surgery.mergedFaces]
+    exact Finset.mem_union_left second.1 hface
+  exact (Finset.disjoint_left.mp hdisjoint) hface hfaceMerged
+
+/-- **Lemma 65(a), two-gon consequence.**  Two selected regions cannot admit
+an `O`-equivalent G-cell-only union replacement whose two contiguity arcs have
+at least their combined length.  Thus every parallel two-gon surviving the
+Definition M selection contains a relator cell; otherwise its G-cell faces
+give precisely such a merge surgery. -/
+theorem lemma65a_no_mergeable_twoGon
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (first second merged : Candidate D eps Delta)
+    (hfirst : first ∈ selected.family)
+    (hsecond : second ∈ selected.family)
+    (hne : first ≠ second)
+    (surgery : MergeSurgery first second merged)
+    (hweight : first.weight + second.weight ≤ merged.weight) : False := by
+  exact EstimatingSelection.no_two_for_one_replacement selected first second merged
+    hfirst hsecond hne (merged_not_mem_rest selected first second merged hfirst surgery)
+    (merge_replacement_pairwise selected first second merged hfirst hsecond surgery)
+    hweight
+
 end Embedded
 
 end VanKampen
