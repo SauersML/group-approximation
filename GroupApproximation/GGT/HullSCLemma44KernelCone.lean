@@ -412,6 +412,38 @@ theorem isHyperbolicallyEmbedded_prefixQuotient_of_kernelConeTransfer
   exact GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_adjoinKernel
     (D.adjoinRelatorPrefixes W hsc.toIsSmallCancellation) q hq hcone
 
+/-- A hyperbolically embedded prefix kernel cone and injectivity on the
+selected peripheral union give Hull's preservation object. -/
+theorem quotientPeripheralPreservation_of_prefixKernelCone
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S)
+    {W : Set (List
+      (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hcone : GGT.RelGenSet.IsHyperbolicallyEmbedded
+      ((D.rel.adjoinRelatorPrefixes W
+        hsc.toIsSmallCancellation).adjoinKernel q))
+    (hinj : Set.InjOn q
+      (⋃ i : AuxiliaryPeripheralIndex k,
+        (D.cores.peripheral i : Set G))) :
+    Nonempty (QuotientPeripheralPreservation q D) := by
+  refine ⟨{
+    rel := D.rel.prefixQuotient W hsc.toIsSmallCancellation q hq
+    base_image := ?_
+    fam_map := ?_
+    embedded := isHyperbolicallyEmbedded_prefixQuotient_of_kernelConeTransfer
+      D.rel W hsc q hq hcone
+    injOn_peripheralUnion := hinj }⟩
+  · intro a ha
+    exact D.rel.map_mem_prefixQuotient_base W hsc.toIsSmallCancellation
+      q hq (D.base_le ha)
+  · intro i
+    rw [GGT.RelGenSet.fam_prefixQuotient, D.fam_eq i]
+
 /-! ## Model test -/
 
 /-- Every relative generating set on the one-point group is hyperbolically
