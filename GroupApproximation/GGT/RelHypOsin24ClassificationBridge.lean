@@ -52,6 +52,91 @@ def RelativePowerEscapeStatement : Prop :=
         (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
           IsEscaping g (Cayley.base D.alphabet)
 
+/-! ### The missing finite-base binder is load-bearing
+
+The source theorem is a theorem for a finite relative generating set.  The
+hyperbolically embedded predicate by itself allows an infinite base, and then
+the positive-power conclusion is false even with an empty peripheral family:
+take the whole group as the base alphabet.  This model is the direct analogue
+of Osin's `K × ℤ` warning before Theorem 5.4, with the peripheral index empty.
+The refutation is kept next to the named statement so no downstream theorem can
+silently use the uncorrected quantifier order.
+ -/
+
+def infiniteBaseEmptyRelGenSet : RelGenSet (Multiplicative ℤ) Empty where
+  base := Set.univ
+  fam := Empty.elim
+  symmetricGenerating := by
+    constructor
+    · intro x _hx
+      exact Set.mem_univ x⁻¹
+    · rw [eq_top_iff]
+      intro x _hx
+      exact Subgroup.subset_closure (Or.inl (Set.mem_univ x))
+
+theorem infiniteBaseEmptyRelGenSet_alphabet_carrier :
+    infiniteBaseEmptyRelGenSet.alphabet.carrier = Set.univ := by
+  ext x
+  constructor
+  · intro _
+    exact Set.mem_univ x
+  · intro _
+    exact Set.mem_union_left _ (Set.mem_univ x)
+
+theorem infiniteBaseEmptyRelGenSet_hyperbolicallyEmbedded :
+    infiniteBaseEmptyRelGenSet.IsHyperbolicallyEmbedded := by
+  refine ⟨?_, ?_⟩
+  · rw [infiniteBaseEmptyRelGenSet_alphabet_carrier]
+    exact isHyperbolicSpace_of_bounded (by
+      intro x y
+      have hmem : ((Cayley.val x)⁻¹ * Cayley.val y : Multiplicative ℤ) ∈
+          (Set.univ : Set (Multiplicative ℤ)) := Set.mem_univ _
+      have hnorm : WordMetric.wordNorm (Set.univ : Set (Multiplicative ℤ))
+          ((Cayley.val x)⁻¹ * Cayley.val y) ≤ 1 :=
+        WordMetric.wordNorm_le_one_of_mem hmem
+      rw [Cayley.dist_eq]
+      exact_mod_cast hnorm)
+  · intro e
+    exact Empty.elim e
+
+theorem infiniteBaseEmptyRelGenSet_all_powers_bounded (g : Multiplicative ℤ) :
+    ∀ n : ℕ, dist (Cayley.base infiniteBaseEmptyRelGenSet.alphabet)
+      ((g ^ n) • Cayley.base infiniteBaseEmptyRelGenSet.alphabet) ≤ (1 : ℝ) := by
+  intro n
+  rw [infiniteBaseEmptyRelGenSet_alphabet_carrier]
+  have hmem : (g ^ n : Multiplicative ℤ) ∈
+      (Set.univ : Set (Multiplicative ℤ)) := Set.mem_univ _
+  have hnorm : WordMetric.wordNorm (Set.univ : Set (Multiplicative ℤ))
+      (g ^ n) ≤ 1 := WordMetric.wordNorm_le_one_of_mem hmem
+  rw [Cayley.dist_eq, WordMetric.wordDist_one_left]
+  exact_mod_cast hnorm
+
+theorem not_isEscaping_of_infiniteBaseEmptyRelGenSet (g : Multiplicative ℤ) :
+    ¬ IsEscaping g (Cayley.base infiniteBaseEmptyRelGenSet.alphabet) := by
+  intro hesc
+  have hev := hesc.eventually_ge_atTop (2 : ℝ)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨N, hN⟩ := hev
+  have hbad := hN N (le_refl N)
+  have hbound := infiniteBaseEmptyRelGenSet_all_powers_bounded g N
+  linarith
+
+theorem not_relativePowerEscapeStatement :
+    ¬ RelativePowerEscapeStatement.{0, 0} := by
+  intro hEscape
+  let g : Multiplicative ℤ := Multiplicative.ofAdd 1
+  have hpow : ∀ n : ℕ, 0 < n → g ^ n ≠ 1 := by
+    intro n hn hzero
+    have hcast : (n : ℤ) = 0 := by
+      exact_mod_cast congrArg Multiplicative.toAdd hzero
+    omega
+  have hhyper : IsHyperbolicElement infiniteBaseEmptyRelGenSet.fam g :=
+    isHyperbolicElement_of_isEmpty infiniteBaseEmptyRelGenSet.fam g
+  have hesc := hEscape (Multiplicative ℤ) inferInstance Empty
+    infiniteBaseEmptyRelGenSet infiniteBaseEmptyRelGenSet_hyperbolicallyEmbedded
+      g hhyper hpow
+  exact not_isEscaping_of_infiniteBaseEmptyRelGenSet g hesc
+
 /-- The finite empty-family model of relative power escape.  This is the model
 test required for the named estimate: its proof is ordinary properness of a
 finite Cayley graph, followed by no relative-component argument. -/
