@@ -1269,6 +1269,142 @@ def SecondGapArcCutAlignment
         (B.secondArcCut (B.secondTargetSide s) -
           B.secondArcCut (B.secondGapStartSide j)) + 1
 
+/-- The first-gap cut dictionary gives the alignment for every inherited arc
+source. -/
+theorem firstGapArcCutAlignment_of_source
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j) :
+    FirstGapArcCutAlignment B j s := by
+  have hsData := Finset.mem_filter.mp hs
+  have harc : IsPolygonCut
+      (B.firstGapFinishSide j - B.firstGapStartSide j)
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j))
+      (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) :=
+    isPolygonCut_arcWord B.firstArc_isCutPath.cut
+      (B.firstGap_side_order j) (B.firstGapFinishSide_le j)
+  have hcut0 := auxiliaryCycleCut_arc (B.firstGapLeft j)
+    (B.firstGapRight j) harc
+    (r := B.firstTargetSide s - B.firstGapStartSide j) (by omega)
+  have harg0 : B.firstGapStartSide j +
+      (B.firstTargetSide s - B.firstGapStartSide j) =
+      B.firstTargetSide s := by omega
+  rw [harg0] at hcut0
+  have hr1 : B.firstTargetSide s - B.firstGapStartSide j + 1 ≤
+      B.firstGapFinishSide j - B.firstGapStartSide j := by omega
+  have haux1 := auxiliaryCycleCut_arc (B.firstGapLeft j)
+    (B.firstGapRight j) harc
+    (r := B.firstTargetSide s - B.firstGapStartSide j + 1) hr1
+  have hcut1 : auxiliaryCycleCut (B.firstGapLeft j)
+      (B.firstGapFinishSide j - B.firstGapStartSide j)
+      (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
+      ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
+      (B.firstGapLeft j).length +
+        (B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j)) + 1 := by
+    calc
+      _ = auxiliaryCycleCut (B.firstGapLeft j)
+          (B.firstGapFinishSide j - B.firstGapStartSide j)
+          (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+            B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
+          ((B.firstGapLeft j).length +
+            (B.firstTargetSide s - B.firstGapStartSide j + 1)) := by
+        congr 5 <;> omega
+      _ = (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstGapStartSide j +
+            (B.firstTargetSide s - B.firstGapStartSide j + 1)) -
+            B.firstArcCut (B.firstGapStartSide j)) := haux1
+      _ = (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1 := by
+        have harg1 : B.firstGapStartSide j +
+            (B.firstTargetSide s - B.firstGapStartSide j + 1) =
+            B.firstTargetSide s + 1 := by omega
+        have hcutTarget := (B.firstArcCut_target hsData.1).2
+        have hcutTarget0 := (B.firstArcCut_target hsData.1).1
+        rw [harg1, hcutTarget, ← hcutTarget0]
+        omega
+  refine ⟨?_, ?_⟩
+  · simpa only [firstGapCut] using hcut0
+  · simpa only [firstGapCut] using hcut1
+
+/-- The wrapped-gap cut dictionary gives the alignment for every inherited arc
+source. -/
+theorem secondGapArcCutAlignment_of_source
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j) :
+    SecondGapArcCutAlignment B j s := by
+  have hsData := Finset.mem_filter.mp hs
+  have harc : IsPolygonCut
+      (B.secondGapFinishSide j - B.secondGapStartSide j)
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j))
+      (fun r => B.secondArcCut (B.secondGapStartSide j + r) -
+        B.secondArcCut (B.secondGapStartSide j)) :=
+    isPolygonCut_arcWord B.secondArc_isCutPath.cut
+      (B.secondGap_side_order j) (B.secondGapFinishSide_le j)
+  have hcut0 := auxiliaryCycleCut_arc (B.secondGapLeft j)
+    (B.secondGapRight j) harc
+    (r := B.secondTargetSide s - B.secondGapStartSide j) (by omega)
+  have harg0 : B.secondGapStartSide j +
+      (B.secondTargetSide s - B.secondGapStartSide j) =
+      B.secondTargetSide s := by omega
+  rw [harg0] at hcut0
+  have hr1 : B.secondTargetSide s - B.secondGapStartSide j + 1 ≤
+      B.secondGapFinishSide j - B.secondGapStartSide j := by omega
+  have haux1 := auxiliaryCycleCut_arc (B.secondGapLeft j)
+    (B.secondGapRight j) harc
+    (r := B.secondTargetSide s - B.secondGapStartSide j + 1) hr1
+  have hcut1 : auxiliaryCycleCut (B.secondGapLeft j)
+      (B.secondGapFinishSide j - B.secondGapStartSide j)
+      (fun r => B.secondArcCut (B.secondGapStartSide j + r) -
+        B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
+      ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
+      (B.secondGapLeft j).length +
+        (B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j)) + 1 := by
+    calc
+      _ = auxiliaryCycleCut (B.secondGapLeft j)
+          (B.secondGapFinishSide j - B.secondGapStartSide j)
+          (fun r => B.secondArcCut (B.secondGapStartSide j + r) -
+            B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
+          ((B.secondGapLeft j).length +
+            (B.secondTargetSide s - B.secondGapStartSide j + 1)) := by
+        congr 5 <;> omega
+      _ = (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondGapStartSide j +
+            (B.secondTargetSide s - B.secondGapStartSide j + 1)) -
+            B.secondArcCut (B.secondGapStartSide j)) := haux1
+      _ = (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 := by
+        have harg1 : B.secondGapStartSide j +
+            (B.secondTargetSide s - B.secondGapStartSide j + 1) =
+            B.secondTargetSide s + 1 := by omega
+        have hcutTarget := (B.secondArcCut_target hsData.1).2
+        have hcutTarget0 := (B.secondArcCut_target hsData.1).1
+        rw [harg1, hcutTarget, ← hcutTarget0]
+        omega
+  refine ⟨?_, ?_⟩
+  · simpa only [secondGapCut] using hcut0
+  · simpa only [secondGapCut] using hcut1
+
 /-- Transport an inherited first-gap component under the endpoint and cut
 alignment inputs.  This is the component-family seam in DGO Proposition 4.14. -/
 theorem firstGapArcSource_fullComponent_of_boundaryAndCutAlignment
