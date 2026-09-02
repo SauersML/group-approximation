@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.DGOLemma421Statement
 import GroupApproximation.GGT.DGOPolygonCutFamily
+import GroupApproximation.GGT.DGOLemma421Components
+import GroupApproximation.GGT.DGOIsolatedComponentCut
 
 /-!
 # DGO Lemma 4.21 from the uniform isolated-component sum bound
@@ -146,12 +148,11 @@ theorem deepIsolated_card_bound
     by_contra hnot
     have hrle : r s ≤ B := by omega
     have hmono : D.relBall (lam s) (r s) ⊆ D.relBall (lam s) B :=
-      RelGenSet.relBall_mono_radius D hrle
+      relBall_mono_radius D (lam s) hrle
     exact hdeep s hs (hmono (hrmem s hs))
   calc
     (B + 1) * I.card = ∑ _s ∈ I, (B + 1) := by
-      rw [Finset.sum_const_nat]
-      exact Nat.mul_comm _ _
+      simp [Nat.mul_comm]
     _ ≤ ∑ s ∈ I, r s := by
       exact Finset.sum_le_sum fun s hs => hrLarge s hs
     _ ≤ C * n := hrsum
@@ -221,8 +222,108 @@ theorem deepIsolated_card_bound_everyEdge
             ((wordDist D.alphabet.carrier
               (vertex v word p) (vertex v word q) : ℕ) : ℝ) :=
           Nat.cast_nonneg _
-        norm_num
-        exact le_trans (by exact_mod_cast hpqOne) (by linarith)) hdeep
+        have hpqReal : ((q - p : ℕ) : ℝ) ≤ 1 := by
+          exact_mod_cast hpqOne
+        norm_num only [div_one]
+        linarith) hdeep
+
+/-! ## The minimal connected-pair cut -/
+
+omit [Group G] in
+/-- An internal singleton component remains maximal after cutting the segment
+and appending one closing peripheral edge.  At the far boundary, the closing
+family index is required to differ from the internal component's index. -/
+theorem isComp_cutWord_of_singleton
+    {word : List (RelLetter G Λ)} {lam closeLam : Λ}
+    {start m i : ℕ} {z : G}
+    (hm : start + m ≤ word.length)
+    (hcomp : IsComp lam word i (i + 1))
+    (hstart : start ≤ i) (hend : i + 1 ≤ start + m)
+    (hboundary : i + 1 = start + m → closeLam ≠ lam) :
+    IsComp lam (cutWord word closeLam start m z)
+      (i - start) (i - start + 1) := by
+  have hlen : (cutWord word closeLam start m z).length = m + 1 :=
+    length_cutWord word closeLam start m z hm
+  have hpos : start + (i - start) = i := by omega
+  have hside : i - start < m := by omega
+  refine ⟨by omega, by omega, ?_, ?_, ?_⟩
+  · intro j hj0 hj1 hj
+    have hjEq : j = i - start := by omega
+    subst j
+    rw [getElem_cutWord_lt word closeLam start m z hm (i - start)
+      (by omega) (by omega) hside, hpos]
+    exact hcomp.2.2.1 i le_rfl (by omega) (by omega)
+  · intro j hji hj hc
+    have hjm : j < m := by omega
+    have hjw : start + j < word.length := by omega
+    rw [getElem_cutWord_lt word closeLam start m z hm j hj hjw hjm] at hc
+    exact hcomp.2.2.2.1 (start + j) (by omega) hjw hc
+  · intro hk hc
+    by_cases hendEq : i - start + 1 = m
+    · rw [getElem_cutWord_last word closeLam start m z hm
+        (i - start + 1) hendEq hk] at hc
+      have hne : closeLam ≠ lam := hboundary (by omega)
+      exact hne hc
+    · have hltm : i - start + 1 < m := by omega
+      have hword : start + (i - start + 1) < word.length := by omega
+      rw [getElem_cutWord_lt word closeLam start m z hm
+        (i - start + 1) hk hword hltm] at hc
+      exact hcomp.2.2.2.2 (by omega) (by simpa [hpos] using hc)
+
+/-- Connectedness between vertices before the closing edge is unchanged by
+the cut-cycle coordinate shift. -/
+theorem connected_cutWord_iff (H : Λ → Subgroup G) (lam closeLam : Λ)
+    (v : G) (word : List (RelLetter G Λ)) {start m : ℕ} (z : G)
+    (hm : start + m ≤ word.length) {p q : ℕ}
+    (hp : p ≤ m) (hq : q ≤ m) :
+    Connected H lam (vertex v word start) (cutWord word closeLam start m z) p q
+      ↔ Connected H lam v word (start + p) (start + q) := by
+  show (vertex (vertex v word start) (cutWord word closeLam start m z) p)⁻¹ *
+      vertex (vertex v word start) (cutWord word closeLam start m z) q ∈ H lam ↔
+    (vertex v word (start + p))⁻¹ * vertex v word (start + q) ∈ H lam
+  rw [vertex_cutWord v word closeLam start m z hm p hp,
+    vertex_cutWord v word closeLam start m z hm q hq]
+
+omit [Group G] in
+/-- A component start before the cut's closing edge is an original ordered W
+occurrence.  The only remaining start position is the closing edge itself. -/
+theorem cutWord_isCompStart_cases
+    {D : RelGenSet G Λ} {word : List (RelLetter G Λ)}
+    (hW3 : WWord.IsWThree D word) {closeLam : Λ}
+    {start m j : ℕ} {z : G} (hm : start + m ≤ word.length)
+    {lam : Λ}
+    (hj : IsCompStart lam (cutWord word closeLam start m z) j) :
+    j = m ∨ ∃ t : Fin (peripheralPositions word).card,
+      (peripheralOccurrence word t).pos = start + j ∧
+        (peripheralOccurrence word t).label = lam := by
+  obtain ⟨k, hcomp⟩ := hj
+  have hlen : (cutWord word closeLam start m z).length = m + 1 :=
+    length_cutWord word closeLam start m z hm
+  have hjle : j ≤ m := by omega
+  rcases eq_or_lt_of_le hjle with rfl | hjlt
+  · exact Or.inl rfl
+  · apply Or.inr
+    have hjCycle : j < (cutWord word closeLam start m z).length := by omega
+    have hcompOf :
+        ((cutWord word closeLam start m z)[j]'hjCycle).IsCompOf lam :=
+      hcomp.2.2.1 j le_rfl hcomp.1 hjCycle
+    have hword : start + j < word.length := by omega
+    rw [getElem_cutWord_lt word closeLam start m z hm j hjCycle hword hjlt]
+      at hcompOf
+    cases hread : word[start + j]'hword with
+    | base x =>
+        rw [hread] at hcompOf
+        exact False.elim hcompOf
+    | comp mu x =>
+        rw [hread] at hcompOf
+        have hmulam : mu = lam := hcompOf
+        have hreadOpt : word[start + j]? = some (RelLetter.comp lam x) := by
+          rw [← hmulam]
+          simpa [List.getElem?_eq_getElem hword] using hread
+        have hstartOriginal : IsCompStart lam word (start + j) :=
+          ⟨start + j + 1,
+            isComp_singleton_of_isWThree_read hW3 hreadOpt⟩
+        exact exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
 
 end OsinComponents
 end GGT
