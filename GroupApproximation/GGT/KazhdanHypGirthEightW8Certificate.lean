@@ -23,7 +23,7 @@ theorem girthEightSDPChecks_of_wEightLinkIdentification
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (hgeom : GirthEightChecks T 9)
     (I : TriangleLinkIdentification T wEightQuadrangleLinkData) :
-    GirthEightSDPChecks T 9 (5 / 9) I.reindexed.gramRow := by
+    GirthEightSDPChecks T 9 (5 / 9 : ℚ) I.reindexed.gramRow := by
   have hparams := wEightQuadrangleLinkData_parameters
   have hdeg : (9 : ℚ) = wEightQuadrangleLinkData.deg := by
     exact_mod_cast hparams.1.symm
