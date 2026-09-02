@@ -43,7 +43,7 @@ theorem firstTargetSide_not_mem_firstBrokenSides_of_survives
     B.brokenAssignment.index.first e
   have htTarget := (mem_brokenSet_iff.mp htBroken).1
   have hside : B.firstTargetSide s = B.firstTargetSide t := by
-    simpa [firstBrokenSides, e, t] using heq
+    simpa [firstBrokenSides, e, t] using heq.symm
   have hpos : B.componentPlacement.firstPos s =
       B.componentPlacement.firstPos t := by
     have hcutS := (B.firstArcCut_target hs).1
@@ -52,8 +52,10 @@ theorem firstTargetSide_not_mem_firstBrokenSides_of_survives
     rw [← hcutS, ← hcutT, hside]
   have hst : s = t :=
     B.componentPlacement.firstPos_injective hs htTarget hpos
-  subst t
-  exact (mem_brokenSet_iff.mp htBroken).2 hsurvives
+  have hsBroken : s ∈ brokenSet B.componentPlacement.firstTarget
+      B.componentPlacement.firstSurvives := by
+    simpa only [hst] using htBroken
+  exact (mem_brokenSet_iff.mp hsBroken).2 hsurvives
 
 /-- A surviving wrapped-half target side is not one of the ordered broken
 sides. -/
@@ -76,7 +78,7 @@ theorem secondTargetSide_not_mem_secondBrokenSides_of_survives
     B.brokenAssignment.index.second e
   have htTarget := (mem_brokenSet_iff.mp htBroken).1
   have hside : B.secondTargetSide s = B.secondTargetSide t := by
-    simpa [secondBrokenSides, e, t] using heq
+    simpa [secondBrokenSides, e, t] using heq.symm
   have hpos : B.componentPlacement.secondPos s =
       B.componentPlacement.secondPos t := by
     have hcutS := (B.secondArcCut_target hs).1
@@ -85,8 +87,10 @@ theorem secondTargetSide_not_mem_secondBrokenSides_of_survives
     rw [← hcutS, ← hcutT, hside]
   have hst : s = t :=
     B.componentPlacement.secondPos_injective hs htTarget hpos
-  subst t
-  exact (mem_brokenSet_iff.mp htBroken).2 hsurvives
+  have hsBroken : s ∈ brokenSet B.componentPlacement.secondTarget
+      B.componentPlacement.secondSurvives := by
+    simpa only [hst] using htBroken
+  exact (mem_brokenSet_iff.mp hsBroken).2 hsurvives
 
 /-- Canonical gap containing a surviving first-half target. -/
 noncomputable def firstSurvivorGapOwner
@@ -98,11 +102,13 @@ noncomputable def firstSurvivorGapOwner
     (hs : s ∈ B.componentPlacement.firstTarget)
     (hsurvives : B.componentPlacement.firstSurvives s) :
     Fin B.brokenAssignment.index.first.pieceCount :=
-  Classical.choose (exists_orderedGap_of_not_mem 0
-    (B.secondSide - B.firstSide + 1) (B.firstTargetSide s)
-    B.firstBrokenSides (Nat.zero_le _) (B.firstTargetSide_lt hs)
-    (B.firstTargetSide_not_mem_firstBrokenSides_of_survives hs hsurvives)
-    B.firstBrokenSides_pairwise)
+  Fin.cast (by
+    simp [GreedyHalfFamilyIndex.pieceCount])
+    (Classical.choose (exists_orderedGap_of_not_mem 0
+      (B.secondSide - B.firstSide + 1) (B.firstTargetSide s)
+      B.firstBrokenSides (Nat.zero_le _) (B.firstTargetSide_lt hs)
+      (B.firstTargetSide_not_mem_firstBrokenSides_of_survives hs hsurvives)
+      B.firstBrokenSides_pairwise))
 
 /-- The surviving first-half source belongs to its canonical gap's inherited
 target set. -/
@@ -121,9 +127,11 @@ theorem firstSurvivorGapOwner_mem
     B.firstBrokenSides (Nat.zero_le _) (B.firstTargetSide_lt hs)
     (B.firstTargetSide_not_mem_firstBrokenSides_of_survives hs hsurvives)
     B.firstBrokenSides_pairwise)
-  rw [← B.firstGapStartSide_eq_orderedGapStart,
-    ← B.firstGapFinishSide_eq_orderedGapFinish] at hgap
-  exact Finset.mem_filter.mpr ⟨hs, hgap⟩
+  apply Finset.mem_filter.mpr
+  refine ⟨hs, ?_⟩
+  rw [B.firstGapStartSide_eq_orderedGapStart,
+    B.firstGapFinishSide_eq_orderedGapFinish]
+  simpa [firstSurvivorGapOwner] using hgap
 
 /-- Canonical gap containing a surviving wrapped-half target. -/
 noncomputable def secondSurvivorGapOwner
@@ -135,11 +143,13 @@ noncomputable def secondSurvivorGapOwner
     (hs : s ∈ B.componentPlacement.secondTarget)
     (hsurvives : B.componentPlacement.secondSurvives s) :
     Fin B.brokenAssignment.index.second.pieceCount :=
-  Classical.choose (exists_orderedGap_of_not_mem 0
-    ((n - B.secondSide) + B.firstSide + 1) (B.secondTargetSide s)
-    B.secondBrokenSides (Nat.zero_le _) (B.secondTargetSide_lt hs)
-    (B.secondTargetSide_not_mem_secondBrokenSides_of_survives hs hsurvives)
-    B.secondBrokenSides_pairwise)
+  Fin.cast (by
+    simp [GreedyHalfFamilyIndex.pieceCount])
+    (Classical.choose (exists_orderedGap_of_not_mem 0
+      ((n - B.secondSide) + B.firstSide + 1) (B.secondTargetSide s)
+      B.secondBrokenSides (Nat.zero_le _) (B.secondTargetSide_lt hs)
+      (B.secondTargetSide_not_mem_secondBrokenSides_of_survives hs hsurvives)
+      B.secondBrokenSides_pairwise))
 
 /-- The surviving wrapped-half source belongs to its canonical gap's
 inherited target set. -/
@@ -158,9 +168,11 @@ theorem secondSurvivorGapOwner_mem
     B.secondBrokenSides (Nat.zero_le _) (B.secondTargetSide_lt hs)
     (B.secondTargetSide_not_mem_secondBrokenSides_of_survives hs hsurvives)
     B.secondBrokenSides_pairwise)
-  rw [← B.secondGapStartSide_eq_orderedGapStart,
-    ← B.secondGapFinishSide_eq_orderedGapFinish] at hgap
-  exact Finset.mem_filter.mpr ⟨hs, hgap⟩
+  apply Finset.mem_filter.mpr
+  refine ⟨hs, ?_⟩
+  rw [B.secondGapStartSide_eq_orderedGapStart,
+    B.secondGapFinishSide_eq_orderedGapFinish]
+  simpa [secondSurvivorGapOwner] using hgap
 
 end BalancedSplitData
 
