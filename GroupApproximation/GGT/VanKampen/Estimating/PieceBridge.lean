@@ -290,7 +290,7 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
     (Gamma.cellTargetArc target htarget)
   refine ⟨suffix, ?_⟩
-  simpa [Contiguity.targetInverseCarrier, reverseDartsWord,
+  simpa [Contiguity.targetInverseCarrier, CyclicArc.reverseDartsWord,
     targetBoundaryDarts, htarget] using hsuffix
 
 /-- The transported inverse carrier has the target arc length. -/
@@ -309,7 +309,7 @@ theorem Contiguity.targetBoundaryDarts_length
         (targetBoundaryDarts Delta target arc).length = arc.length := by
     intro target
     cases target with
-    | none => intro arc; rfl
+    | none => intro arc; exact arc.darts_length
     | some i =>
         intro arc
         simp only [targetBoundaryDarts, CyclicArc.reverseDarts,
@@ -416,6 +416,7 @@ theorem Contiguity.arcLengths_le_two_mu_source
       (dartWord_cellDarts Delta Gamma.source)
     simpa only [dartWord, List.length_map] using hlength
   rw [hcarrier] at hsource htarget
+  rw [Gamma.cellTargetArc_length equations.target equations.target_eq]
   linarith
 
 /-- The same certificate gives the target charge: invert both connectors and
@@ -494,6 +495,7 @@ theorem Contiguity.arcLengths_le_two_mu_target
       (dartWord_cellDarts Delta equations.target)
     simpa only [dartWord, List.length_map] using hlength
   rw [hcarrier] at hsource htarget
+  rw [Gamma.cellTargetArc_length equations.target equations.target_eq]
   linarith
 
 /-- Transporting the dependent target carrier does not change the stored arc
