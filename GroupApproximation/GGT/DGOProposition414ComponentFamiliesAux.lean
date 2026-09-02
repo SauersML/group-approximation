@@ -1170,6 +1170,14 @@ theorem firstGapArcBoundaryExclusion_start_of_source
           B.firstArc[B.firstArcCut (B.firstTargetSide s) - 1]'(by omega) :=
         getElem_congr_idx hidx
       rw [hget] at hprevLabel
+      have hcurEq : B.firstArcCut (B.firstTargetSide s) =
+          B.firstArcCut (B.firstGapStartSide j) := by
+        apply Nat.le_antisymm
+        · exact Nat.sub_eq_zero_iff_le.mp hdiff0
+        · exact B.firstArc_isCutPath.cut.mono_le hsData.2.1
+      have hpositive : 0 < B.firstArcCut (B.firstTargetSide s) := by
+        rw [hcurEq, ← hprevPos]
+        omega
       have hparentEq : B.firstTargetPos s =
           B.firstArcCut (B.firstTargetSide s) - 1 + 1 := by
         rw [← (B.firstArcCut_target hsData.1).1]
