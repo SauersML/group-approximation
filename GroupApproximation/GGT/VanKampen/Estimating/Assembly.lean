@@ -500,7 +500,8 @@ theorem estimatingGraphData_emptyFamilyModel
       have hcandidate' : edge.candidate ∈
           (∅ : Finset (Embedded.Candidate D eps Delta)) :=
         hempty ▸ hcandidate
-      exact hcandidate'.elim
+      have hfalse : False := by simpa using hcandidate'
+      exact hfalse.elim
     · intro hedge
       simp at hedge
   refine ⟨{
