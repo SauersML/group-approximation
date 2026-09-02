@@ -38,6 +38,7 @@ structure KernelGeodesicCutData
     (q : G →* Q) (M area : ℕ) (word : List G) where
   diagram : RelativeReducedDiagram D W word.length
   diagram_boundary : diagram.boundaryWord = word
+  realization : RelativeDiscRealization D W diagram
   certificate : RelativeDiagramCertificate D W eps mu diagram
   /-- Every prefix bound for the shorter geodesic transfers across the
   selected boundary arc.  This is the exact vk boundary-prefix estimate. -/
@@ -62,6 +63,30 @@ structure KernelGeodesicCutData
           ((D.adjoinRelatorPrefixes W
             hsc.toIsSmallCancellation).adjoinKernel q).alphabet.carrier
           1 (word.take i).prod ≤ M
+
+/-- The realization field exposes reducedness of the least-area planar disc to
+the cut consumer. -/
+theorem KernelGeodesicCutData.reduced
+    {G : Type u} [Group G] {Q : Type v} [Group Q] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    {hsc : RelWord.IsLemma44Input D W eps mu rho}
+    {q : G →* Q} {M area : ℕ} {word : List G}
+    (data : KernelGeodesicCutData D W eps rho mu hsc q M area word) :
+    data.diagram.Reduced :=
+  data.realization.reduced
+
+/-- The vk realization statement supplies a nonempty planar realization for a
+given least-area relative diagram. -/
+theorem nonemptyRelativeDiscRealization_of_statement
+    {G : Type u} [Group G] {Lambda : Type w}
+    (hreal : RelativeDiscRealizationStatement.{u, w})
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    (Z : RelativeReducedDiagram D W area) :
+    Nonempty (RelativeDiscRealization D W Z) :=
+  hreal D W area Z
 
 /-- The certificate data performs one actual cut and constructs every field of
 `KernelGeodesicCutStep`, including the new kernel endpoint and its area. -/
