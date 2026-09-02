@@ -822,8 +822,7 @@ theorem mem_bigDarts_iff
           left
           change CactusDart.relatorBackward i j ∈
             CactusDart.stemOut i :: Z.relatorBackwardDarts i
-          simp only [List.mem_cons, reduceCtorEq, not_false_eq_true,
-            true_or, false_or]
+          simp only [List.mem_cons, reduceCtorEq, false_or]
           rw [relatorBackwardDarts, List.mem_ofFn]
           exact ⟨j.rev, by simp⟩
   | stemOut i =>
