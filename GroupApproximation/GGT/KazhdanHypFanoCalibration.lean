@@ -206,6 +206,10 @@ theorem fanoZMod_eq_iff_val_eq (a b : ZMod 7) : a = b ↔ a.val = b.val :=
 @[simp] theorem fanoZMod_val_mk (n : ℕ) (h : n < 7) :
     ZMod.val (show ZMod 7 from ⟨n, h⟩) = n := rfl
 
+@[simp] theorem fanoZMod_val_zero : ZMod.val (0 : ZMod 7) = 0 := rfl
+
+@[simp] theorem fanoZMod_val_one : ZMod.val (1 : ZMod 7) = 1 := rfl
+
 /-- Two distinct points lie on one common line; a point has three incident
 lines.  This is the row identity `N Nᵀ = 2I + J`. -/
 theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
@@ -218,7 +222,7 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
     fanoCorner_productSum]
   fin_cases x <;> fin_cases x' <;>
     norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, fanoZMod_val_mk,
-      ZMod.val_zero, ZMod.val_one_eq_one_mod, ZMod.val_ofNat]
+      fanoZMod_val_zero, fanoZMod_val_one, ZMod.val_ofNat]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
