@@ -1,4 +1,6 @@
 import GroupApproximation.GGT.RelHypOsin24Glue
+import GroupApproximation.GGT.DGOProposition433Finite
+import GroupApproximation.GGT.HullSCRelatorWord
 
 /-!
 # Suitability glue for Osin's Theorem 2.4
@@ -123,6 +125,106 @@ theorem IsSuitableSubgroup.normalizesNoNontrivialFinite
 
 end FiniteNormalizer
 
+/-! ## Quotient form of Osin Theorem 2.1 -/
+
+/-- The precise quotient consequence of Osin Theorem 2.1 used for suitability:
+an infinite-order member of a hyperbolically embedded peripheral has its Osin
+elementary closure inside that peripheral.
+
+This is strictly smaller than quotient suitability.  It mentions neither a
+suitable subgroup nor a pair of witnesses; it is the maximality property for
+one already-preserved elementary subgroup. -/
+def OsinTheorem21QuotientClosureStatement : Prop :=
+  ∀ (Q : Type) (_ : Group Q) (Λ : Type) (D : RelGenSet Q Λ),
+    (∀ x ∈ D.base, x⁻¹ ∈ D.base) → D.IsHyperbolicallyEmbedded →
+      ∀ (lam : Λ) (g : Q), g ∈ D.fam lam →
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+          osinElementaryClosure g ⊆ D.fam lam
+
+/-- DGO Proposition 4.33 proves the quotient closure statement.
+
+If `c` conjugates a positive power of `g` to that power or its inverse and
+`c` were outside the peripheral, almost malnormality would make
+`H ∩ H^c` finite.  All natural powers of that positive power lie in the
+intersection, while infinite order makes the power map injective, a
+contradiction. -/
+theorem osinTheorem21QuotientClosureStatement :
+    OsinTheorem21QuotientClosureStatement := by
+  intro Q _ Λ D hbaseInv hemb lam g hg hord c hc
+  by_contra hcP
+  have hfinite :
+      {x : Q | x ∈ D.fam lam ∧ c⁻¹ * x * c ∈ D.fam lam}.Finite :=
+    finite_conj_inter D hbaseInv hemb (fun hbad => hcP hbad.2)
+  obtain ⟨n, hn, hsame | hinverse⟩ := hc
+  · have hpowInfinite : ¬ IsOfFinOrder (g ^ n) := by
+      intro hfin
+      obtain ⟨m, hm, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+      exact hord (n * m) (Nat.mul_pos hn hm) (by rw [pow_mul, hpow])
+    have hinj : Function.Injective (fun k : ℕ => (g ^ n) ^ k) :=
+      HullSC.injective_pow_of_not_isOfFinOrder hpowInfinite
+    have hsub : Set.range (fun k : ℕ => (g ^ n) ^ k) ⊆
+        {x : Q | x ∈ D.fam lam ∧ c⁻¹ * x * c ∈ D.fam lam} := by
+      rintro x ⟨k, rfl⟩
+      refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
+      rw [← conj_pow, hsame]
+      exact pow_mem (pow_mem hg n) k
+    exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
+  · have hpowInfinite : ¬ IsOfFinOrder (g ^ n) := by
+      intro hfin
+      obtain ⟨m, hm, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+      exact hord (n * m) (Nat.mul_pos hn hm) (by rw [pow_mul, hpow])
+    have hinj : Function.Injective (fun k : ℕ => (g ^ n) ^ k) :=
+      HullSC.injective_pow_of_not_isOfFinOrder hpowInfinite
+    have hsub : Set.range (fun k : ℕ => (g ^ n) ^ k) ⊆
+        {x : Q | x ∈ D.fam lam ∧ c⁻¹ * x * c ∈ D.fam lam} := by
+      rintro x ⟨k, rfl⟩
+      refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
+      rw [← conj_pow, hinverse]
+      exact pow_mem (inv_mem (pow_mem hg n)) k
+    exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
+
+/-- Two preserved source peripherals with trivial intersection give trivial
+intersection of the Osin elementary closures of their infinite-order marked
+elements.  Peripheral-union injectivity is exactly what lets the two quotient
+preimages be identified. -/
+theorem eq_one_of_preserved_osinElementaryClosures
+    {G : Type u} [Group G] {Q : Type v} [Group Q] {Λ : Type*}
+    (eta : G →* Q) (D : RelGenSet Q Λ)
+    (hbaseInv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hemb : D.IsHyperbolicallyEmbedded) (lam₁ lam₂ : Λ)
+    (E₁ E₂ : Subgroup G)
+    (hfam₁ : D.fam lam₁ = E₁.map eta)
+    (hfam₂ : D.fam lam₂ = E₂.map eta)
+    (hinj : Set.InjOn eta ((E₁ : Set G) ∪ (E₂ : Set G)))
+    {f₁ f₂ : G} (hf₁ : f₁ ∈ E₁) (hf₂ : f₂ ∈ E₂)
+    (hord₁ : ∀ n : ℕ, 0 < n → eta f₁ ^ n ≠ 1)
+    (hord₂ : ∀ n : ℕ, 0 < n → eta f₂ ^ n ≠ 1)
+    (hinter : ∀ x, x ∈ E₁ → x ∈ E₂ → x = 1)
+    {q : Q} (hq₁ : q ∈ osinElementaryClosure (eta f₁))
+    (hq₂ : q ∈ osinElementaryClosure (eta f₂)) : q = 1 := by
+  have hf₁Q : eta f₁ ∈ D.fam lam₁ := by
+    rw [hfam₁]
+    exact Subgroup.mem_map_of_mem eta hf₁
+  have hf₂Q : eta f₂ ∈ D.fam lam₂ := by
+    rw [hfam₂]
+    exact Subgroup.mem_map_of_mem eta hf₂
+  have hqE₁ : q ∈ E₁.map eta := by
+    rw [← hfam₁]
+    exact osinTheorem21QuotientClosureStatement Q inferInstance Λ D
+      hbaseInv hemb lam₁ (eta f₁) hf₁Q hord₁ hq₁
+  have hqE₂ : q ∈ E₂.map eta := by
+    rw [← hfam₂]
+    exact osinTheorem21QuotientClosureStatement Q inferInstance Λ D
+      hbaseInv hemb lam₂ (eta f₂) hf₂Q hord₂ hq₂
+  obtain ⟨x₁, hx₁, hx₁q⟩ := hqE₁
+  obtain ⟨x₂, hx₂, hx₂q⟩ := hqE₂
+  have hxeq : x₁ = x₂ := hinj (Or.inl hx₁) (Or.inr hx₂)
+    (hx₁q.trans hx₂q.symm)
+  subst x₂
+  have hx1 : x₁ = 1 := hinter x₁ hx₁ hx₂
+  subst x₁
+  simpa using hx₁q.symm
+
 /-! ## Exact quotient suitability constructor -/
 
 /-- The mapped pair data needed after the quotient is constructed gives
@@ -134,8 +236,8 @@ theorem isOsin24SuitabilityConclusion_of_mapWitnesses
     {G : Type u} [Group G] {Q : Type v} [Group Q] {i : Type*}
     {Hfam : i → Subgroup G} {H : Subgroup G} (eta : G →* Q)
     {f₁ f₂ : G} (hf₁ : f₁ ∈ H) (hf₂ : f₂ ∈ H)
-    (hhyper₁ : IsHyperbolicElement (fun l ⇒ (Hfam l).map eta) (eta f₁))
-    (hhyper₂ : IsHyperbolicElement (fun l ⇒ (Hfam l).map eta) (eta f₂))
+    (hhyper₁ : IsHyperbolicElement (fun l => (Hfam l).map eta) (eta f₁))
+    (hhyper₂ : IsHyperbolicElement (fun l => (Hfam l).map eta) (eta f₂))
     (hord₁ : ∀ n : ℕ, 0 < n → eta f₁ ^ n ≠ 1)
     (hord₂ : ∀ n : ℕ, 0 < n → eta f₂ ^ n ≠ 1)
     (hnc : ¬ OsinCommensurable (eta f₁) (eta f₂))
