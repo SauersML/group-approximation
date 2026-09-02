@@ -500,6 +500,36 @@ theorem originalOverAux_relBall_finite_of_base_eq (D : RelGenSet G Λ)
   | base _ => exact hsub hb
   | comp _ _ => exact hb
 
+
+/-! ## The named endpoints -/
+
+/-- **The auxiliary-alphabet residue, from Proposition 4.14 and the
+original-family residue.** -/
+theorem dgoProposition435FullLocalFiniteness_of_proposition414Uniform
+    (h414 : OsinComponents.DGOProposition414Uniform.{u, w})
+    (hiso : DGOProposition435IsolatedWitnessStatement.{u, v, w})
+    (horig : DGOProposition435FullOriginalLocalFinitenessStatement.{u, v, w}) :
+    DGOProposition435FullLocalFinitenessStatement.{u, v, w} := by
+  intro G _ Lambda I _ D E hbase hEinv hD hE lam n
+  exact relBall_inl_finite_full_of_proposition414Uniform h414 hiso horig D E
+    hbase hEinv hD hE lam n
+
+/-- **The auxiliary-alphabet form of Proposition 4.35's joint direction, from
+Proposition 4.14 and the two smaller inputs.**
+
+This is the assembly leaf, reduced: clause (a) is free, clause (b) at an
+auxiliary index comes from the auxiliary family itself, and clause (b) at an
+original index comes from Proposition 4.14, the isolated-witness statement, and
+the local finiteness of the original family over the auxiliary base. -/
+theorem dgoProposition435FullStatement_of_proposition414Uniform
+    (h414 : OsinComponents.DGOProposition414Uniform.{u, w})
+    (hiso : DGOProposition435IsolatedWitnessStatement.{u, v, w})
+    (horig : DGOProposition435FullOriginalLocalFinitenessStatement.{u, v, w}) :
+    DGOProposition435FullStatement.{u, v, w} :=
+  dgoProposition435FullStatement_of_localFiniteness
+    (dgoProposition435FullLocalFiniteness_of_proposition414Uniform h414 hiso
+      horig)
+
 end RelHyp
 end GGT
 end GroupApproximation
