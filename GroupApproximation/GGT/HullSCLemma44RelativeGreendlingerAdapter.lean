@@ -230,5 +230,45 @@ theorem exists_realized_embeddedBoundaryContiguity_of_geodesicBoundary
     target_eq := htarget }
   exact ⟨C, Delta', Gamma.source, packaged, hequiv, rfl, htarget, hlarge⟩
 
+/-- The source-level boundary package uses exactly the three est construction
+components and the vk realization statement.  This is the input shape for
+the later conversion from embedded boundary data to a relative certificate. -/
+theorem exists_realized_embeddedBoundaryContiguity_of_components_and_geodesicBoundary
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+    (hreal : GGT.VanKampen.RelativeDiscRealizationStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (hhyper : ∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
+    {lambda c mu : ℝ}
+    (hlambda : 0 < lambda) (hlambdaUpper : lambda ≤ 1)
+    (hc : 0 ≤ c) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) :
+    ∃ eps rho : ℕ, 0 < rho ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+        GGT.VanKampen.OsinCCondition D W eps mu lambda c rho →
+          ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+            GGT.OsinComponents.IsGeodesicWord D 1 Z.boundary
+              (Z.boundaryWord.map
+                (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)) →
+              ∃ (C : RelativeDiscRealization D W Z)
+                (Delta' : DiscDiagram.{u, w, 0} W)
+                (i : Fin Delta'.rCellCount)
+                (Gamma : EmbeddedBoundaryContiguity D eps Delta' i),
+                Nonempty (GGT.VanKampen.OEquivalentDiscDiagram C.diagram Delta') ∧
+                  Gamma.region.source = i ∧
+                  Gamma.region.target = none ∧
+                  (1 - 13 * mu) *
+                      ((GGT.VanKampen.Embedded.cell Delta' i).word.length : ℝ) <
+                    (Gamma.region.sourceArc.length : ℝ) := by
+  exact exists_realized_embeddedBoundaryContiguity_of_geodesicBoundary
+    (GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound)
+    hreal D hhyper hlambda hlambdaUpper hc hmu hmuUpper
+
 end HullSC
 end GroupApproximation
