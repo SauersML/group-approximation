@@ -1,4 +1,5 @@
-import GroupApproximation.GGT.HullSCLemma49QuadrangleShadow
+import GroupApproximation.GGT.HullSCLemma49LongArc
+import GroupApproximation.Sofic.HullSuitabilityGeometry
 
 /-!
 # Stable translation makes a geodesic power boundary uniform
