@@ -296,6 +296,15 @@ theorem firstGapArcSource_fullComponent
       (B.firstGapFinishSide j)) (B.firstGapRight j)
     (orientedSegment B.chord (B.firstGapChordStart j)
       (B.firstGapChordFinish j))
+  have hcycleLen : cycle.length =
+      (B.firstGapLeft j).length +
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length +
+        (B.firstGapRight j).length +
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)).length := by
+    simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
+      Nat.add_assoc]
   have hlocalComp : IsComp (P.label s)
       (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
         (B.firstGapFinishSide j)) i (i + 1) := by
@@ -305,31 +314,30 @@ theorem firstGapArcSource_fullComponent
       ∀ ht : t < cycle.length, ¬ (cycle[t]'ht).IsCompOf (P.label s) := by
     intro t hteq ht
     by_cases hi : 0 < i
-    · have htArc : t - (B.firstGapLeft j).length <
-          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-            (B.firstGapFinishSide j)).length := by
-        dsimp [i] at hteq
+    · have hteq' : (B.firstGapLeft j).length + (i - 1) = t := by
+        dsimp [i] at hteq ⊢
         omega
-      have htEq : t = (B.firstGapLeft j).length + (t -
-          (B.firstGapLeft j).length) := by omega
-      have hrCycle : (B.firstGapLeft j).length +
-          (t - (B.firstGapLeft j).length) < cycle.length := by
-        simpa only [htEq] using ht
+      have htArc : i - 1 <
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)).length := by omega
+      have hrCycle : (B.firstGapLeft j).length + (i - 1) < cycle.length := by
+        rw [hteq']
+        exact ht
+      have hcycleLetter := ‹(cycle[t]'ht).IsCompOf (P.label s)›
+      change ((auxiliaryCycleWord (B.firstGapLeft j)
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)))[t]'ht).IsCompOf (P.label s) at hcycleLetter
       have hletter := (isCompOf_auxiliaryCycle_arc_iff (P.label s)
         (B.firstGapLeft j)
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
           (B.firstGapFinishSide j)) (B.firstGapRight j)
         (orientedSegment B.chord (B.firstGapChordStart j)
-          (B.firstGapChordFinish j)) (t - (B.firstGapLeft j).length)
+          (B.firstGapChordFinish j)) (i - 1)
         htArc hrCycle).mp (by
-          simpa only [cycle, htEq] using
-            ‹(cycle[t]'ht).IsCompOf (P.label s)›)
-      have hidx : t - (B.firstGapLeft j).length = i - 1 := by omega
-      have hletter' :
-          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
-            (B.firstGapFinishSide j))[i - 1]'(by omega)).IsCompOf (P.label s) := by
-        simpa only [hidx] using hletter
-      exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter'
+          simpa only [hteq'] using hcycleLetter)
+      exact hlocalComp.2.2.2.1 (i - 1) (by omega) hletter
     · have hi0 : i = 0 := by omega
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.first j = none
@@ -406,7 +414,8 @@ theorem firstGapArcSource_fullComponent
         (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
           (B.firstGapFinishSide j)) (B.firstGapRight j)
         (orientedSegment B.chord (B.firstGapChordStart j)
-          (B.firstGapChordFinish j)) (i + 1) hiend (by omega)).mp (by
+          (B.firstGapChordFinish j)) (i + 1) hiend
+          (by simpa only [cycle] using hn)).mp (by
             simpa [cycle] using hletter)
       exact hlocalComp.2.2.2.2 _ (by omega) hiend hco
     · have hiEq : i + 1 =
@@ -552,6 +561,15 @@ theorem secondGapArcSource_fullComponent
       (B.secondGapFinishSide j)) (B.secondGapRight j)
     (orientedSegment B.chord (B.secondGapChordStart j)
       (B.secondGapChordFinish j))
+  have hcycleLen : cycle.length =
+      (B.secondGapLeft j).length +
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)).length +
+        (B.secondGapRight j).length +
+        (orientedSegment B.chord (B.secondGapChordStart j)
+          (B.secondGapChordFinish j)).length := by
+    simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
+      Nat.add_assoc]
   have hlocalComp : IsComp (P.label s)
       (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
         (B.secondGapFinishSide j)) i (i + 1) := by
@@ -561,31 +579,30 @@ theorem secondGapArcSource_fullComponent
       ∀ ht : t < cycle.length, ¬ (cycle[t]'ht).IsCompOf (P.label s) := by
     intro t hteq ht
     by_cases hi : 0 < i
-    · have htArc : t - (B.secondGapLeft j).length <
-          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
-            (B.secondGapFinishSide j)).length := by
-        dsimp [i] at hteq
+    · have hteq' : (B.secondGapLeft j).length + (i - 1) = t := by
+        dsimp [i] at hteq ⊢
         omega
-      have htEq : t = (B.secondGapLeft j).length + (t -
-          (B.secondGapLeft j).length) := by omega
-      have hrCycle : (B.secondGapLeft j).length +
-          (t - (B.secondGapLeft j).length) < cycle.length := by
-        simpa only [htEq] using ht
+      have htArc : i - 1 <
+          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+            (B.secondGapFinishSide j)).length := by omega
+      have hrCycle : (B.secondGapLeft j).length + (i - 1) < cycle.length := by
+        rw [hteq']
+        exact ht
+      have hcycleLetter := ‹(cycle[t]'ht).IsCompOf (P.label s)›
+      change ((auxiliaryCycleWord (B.secondGapLeft j)
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)) (B.secondGapRight j)
+        (orientedSegment B.chord (B.secondGapChordStart j)
+          (B.secondGapChordFinish j)))[t]'ht).IsCompOf (P.label s) at hcycleLetter
       have hletter := (isCompOf_auxiliaryCycle_arc_iff (P.label s)
         (B.secondGapLeft j)
         (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
           (B.secondGapFinishSide j)) (B.secondGapRight j)
         (orientedSegment B.chord (B.secondGapChordStart j)
-          (B.secondGapChordFinish j)) (t - (B.secondGapLeft j).length)
+          (B.secondGapChordFinish j)) (i - 1)
         htArc hrCycle).mp (by
-          simpa only [cycle, htEq] using
-            ‹(cycle[t]'ht).IsCompOf (P.label s)›)
-      have hidx : t - (B.secondGapLeft j).length = i - 1 := by omega
-      have hletter' :
-          (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
-            (B.secondGapFinishSide j))[i - 1]'(by omega)).IsCompOf (P.label s) := by
-        simpa only [hidx] using hletter
-      exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter'
+          simpa only [hteq'] using hcycleLetter)
+      exact hlocalComp.2.2.2.1 (i - 1) (by omega) hletter
     · have hi0 : i = 0 := by omega
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.second j = none
@@ -662,7 +679,8 @@ theorem secondGapArcSource_fullComponent
         (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
           (B.secondGapFinishSide j)) (B.secondGapRight j)
         (orientedSegment B.chord (B.secondGapChordStart j)
-          (B.secondGapChordFinish j)) (i + 1) hiend (by omega)).mp (by
+          (B.secondGapChordFinish j)) (i + 1) hiend
+          (by simpa only [cycle] using hn)).mp (by
             simpa [cycle] using hletter)
       exact hlocalComp.2.2.2.2 _ (by omega) hiend hco
     · have hiEq : i + 1 =
