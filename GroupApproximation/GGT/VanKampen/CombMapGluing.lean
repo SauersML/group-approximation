@@ -231,18 +231,21 @@ noncomputable def of_copyMate
     left_inv := by
       intro d
       apply index.injective
+      simp only [Equiv.apply_symm_apply]
       apply Prod.ext
       · exact hinvol (index d).1
       · rfl
     right_inv := by
       intro d
       apply index.injective
+      simp only [Equiv.apply_symm_apply]
       apply Prod.ext
       · exact hinvol (index d).1
       · rfl }
   involutive := by
     intro d
     apply index.injective
+    simp only [Equiv.apply_symm_apply]
     apply Prod.ext
     · exact hinvol (index d).1
     · rfl
