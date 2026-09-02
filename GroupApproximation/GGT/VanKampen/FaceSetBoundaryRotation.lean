@@ -255,60 +255,49 @@ theorem FaceSetBoundary.rotate_mem_iff
 
 /-! ## Basepoint exposure -/
 
-private theorem exists_append_cons_of_mem
-    {α : Type*} {d : α} : ∀ {cycle : List α}, d ∈ cycle →
-      ∃ before after : List α, cycle = before ++ d :: after
-  | [], h => (by simp at h)
-  | a :: tail, h => by
-      by_cases had : a = d
-      · subst a
-        exact ⟨[], tail, rfl⟩
-      · have htail : d ∈ tail := by
-          exact (List.mem_cons.mp h).resolve_left (fun hda => had hda.symm)
-        obtain ⟨before, after, hsplit⟩ := exists_append_cons_of_mem htail
-        refine ⟨a :: before, after, ?_⟩
-        rw [hsplit]
-        simp only [List.cons_append]
-
-/-- A boundary with a specified base dart, given an explicit split of its
-cycle at that dart. -/
-def FaceSetBoundary.ofDart
+/-- Rotate a boundary so that the first occurrence of a chosen boundary dart
+is the head.  The finite `idxOf` is well-defined because the cycle is
+duplicate-free and the dart is on the boundary. -/
+noncomputable def FaceSetBoundary.ofDart
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     (d : Delta.toCombMap.Dart)
-    (before after : List Delta.toCombMap.Dart)
-    (_hsplit : boundary.cycle = before ++ d :: after) :
+    (hd : IsBoundaryDart Delta faces d) :
     FaceSetBoundary Delta faces :=
-  boundary.rotate before.length
+  boundary.rotate (boundary.cycle.idxOf d)
+
+theorem FaceSetBoundary.ofDart_head
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (d : Delta.toCombMap.Dart)
+    (hd : IsBoundaryDart Delta faces d) :
+    (boundary.ofDart d hd).cycle.head
+        (boundary.ofDart d hd).cycle_nonempty = d := by
+  have hmem : d ∈ boundary.cycle :=
+    (boundary.cycle_mem_iff d).2 hd
+  have hidx : boundary.cycle.idxOf d < boundary.cycle.length :=
+    List.idxOf_lt_length_iff.mpr hmem
+  apply (List.head_eq_iff_head?_eq_some
+    (boundary.ofDart d hd).cycle_nonempty).2
+  rw [FaceSetBoundary.ofDart, FaceSetBoundary.rotate_cycle,
+    List.head?_rotate hidx, List.getElem?_idxOf hmem]
+
+theorem FaceSetBoundary.ofDart_mem_iff
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (d : Delta.toCombMap.Dart)
+    (hd : IsBoundaryDart Delta faces d) :
+    ∀ e, e ∈ (boundary.ofDart d hd).cycle ↔ e ∈ boundary.cycle := by
+  intro e
+  exact boundary.rotate_mem_iff (boundary.cycle.idxOf d) e
 
 theorem FaceSetBoundary.ofDart_cycle_eq
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     (d : Delta.toCombMap.Dart)
-    (before after : List Delta.toCombMap.Dart)
-    (hsplit : boundary.cycle = before ++ d :: after) :
-    (boundary.ofDart d before after hsplit).cycle =
-      (before ++ d :: after).drop before.length ++
-        (before ++ d :: after).take before.length := by
-  change boundary.cycle.rotate before.length = _
-  rw [hsplit, List.rotate_eq_drop_append_take]
-  exact (by
-    simp only [List.length_append, List.length_cons]
-    omega)
-
-theorem FaceSetBoundary.exists_ofDart
-    {faces : Finset Delta.toCombMap.Face}
-    (boundary : FaceSetBoundary Delta faces)
-    (d : Delta.toCombMap.Dart)
     (hd : IsBoundaryDart Delta faces d) :
-    ∃ before after : List Delta.toCombMap.Dart,
-      boundary.cycle = before ++ d :: after ∧
-        (boundary.rotate before.length).cycle =
-          boundary.cycle.rotate before.length := by
-  have hmem : d ∈ boundary.cycle :=
-    (boundary.cycle_mem_iff d).2 hd
-  obtain ⟨before, after, hsplit⟩ := exists_append_cons_of_mem hmem
-  refine ⟨before, after, hsplit, ?_⟩
+    (boundary.ofDart d hd).cycle =
+      boundary.cycle.rotate (boundary.cycle.idxOf d) := by
   rfl
 
 /-! ## Small model checks -/
