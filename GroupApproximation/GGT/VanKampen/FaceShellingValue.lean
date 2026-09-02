@@ -15,9 +15,12 @@ face boundary.  So a shelling of a closed word down to the empty word writes its
 value as an ordered product of conjugated face values, which is the van Kampen
 product formula for the region the shelling peels.
 
-`CellShelling` is `FaceShelling` with those conjugators recorded, so a producer
-that supplies a shelling whose recorded cells are a given ordered list of based
-relator cells gets the product formula for exactly that list.
+The peel step does not use that the peeled word is a face boundary, so it is
+proved for an arbitrary closed word and both orientations of a face are
+instances of it.  `CellShelling` records the conjugator and the oriented word of
+each step, so a producer supplying a shelling whose recorded steps are a given
+ordered list of based relator cells gets the product formula for exactly that
+list, whichever way each cell is based.
 -/
 
 namespace GroupApproximation
@@ -69,122 +72,125 @@ theorem listVal_dartWord_rotate
 
 /-! ## One peel step -/
 
-/-- The conjugator contributed by one peel step. -/
-noncomputable def shellConjugator
+/-- The conjugator contributed by peeling the word `cellDarts` at rotation
+`k` out of a word whose part before the replaced arc is `before`. -/
+noncomputable def shellConjugatorOn
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W) (face : Delta.toCombMap.Face)
-    (before : List Delta.toCombMap.Dart) (k : ℕ) : G :=
+    (Delta : DiscDiagram.{u, w, v} W)
+    (cellDarts before : List Delta.toCombMap.Dart) (k : ℕ) : G :=
   GGT.RelLetter.listVal (dartWord Delta before) *
-    (GGT.RelLetter.listVal (dartWord Delta
-      ((Delta.faceBoundary face).darts.take
-        (k % (Delta.faceBoundary face).darts.length))))⁻¹
+    (GGT.RelLetter.listVal
+      (dartWord Delta (cellDarts.take (k % cellDarts.length))))⁻¹
 
-/-- Peeling one face multiplies the value of the word on the left by the
-conjugate of the face's value. -/
-theorem listVal_dartWord_shellStep
+/-- Peeling one closed word multiplies the value of the word on the left by the
+conjugate of the peeled word's value. -/
+theorem listVal_dartWord_shellStepOn
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W) (face : Delta.toCombMap.Face)
-    (before arc after exposed : List Delta.toCombMap.Dart) (k : ℕ)
-    (hrot : (Delta.faceBoundary face).darts.rotate k =
-      exposed ++ invDarts Delta arc) :
+    (Delta : DiscDiagram.{u, w, v} W)
+    (cellDarts before arc after exposed : List Delta.toCombMap.Dart) (k : ℕ)
+    (hrot : cellDarts.rotate k = exposed ++ invDarts Delta arc) :
     GGT.RelLetter.listVal (dartWord Delta (before ++ exposed ++ after)) =
-      shellConjugator Delta face before k *
-        GGT.RelLetter.listVal (Delta.faceWord face) *
-        (shellConjugator Delta face before k)⁻¹ *
+      shellConjugatorOn Delta cellDarts before k *
+        GGT.RelLetter.listVal (dartWord Delta cellDarts) *
+        (shellConjugatorOn Delta cellDarts before k)⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta (before ++ arc ++ after)) := by
-  have hfw : GGT.RelLetter.listVal (Delta.faceWord face) =
-      GGT.RelLetter.listVal
-        (dartWord Delta (Delta.faceBoundary face).darts) := rfl
-  have hu := listVal_dartWord_rotate Delta (Delta.faceBoundary face).darts k
+  have hu := listVal_dartWord_rotate Delta cellDarts k
   rw [hrot, dartWord_append, RelWord.listVal_append,
     listVal_dartWord_invDarts] at hu
   have hexposed : GGT.RelLetter.listVal (dartWord Delta exposed) =
-      (GGT.RelLetter.listVal (dartWord Delta
-          ((Delta.faceBoundary face).darts.take
-            (k % (Delta.faceBoundary face).darts.length))))⁻¹ *
+      (GGT.RelLetter.listVal
+          (dartWord Delta (cellDarts.take (k % cellDarts.length))))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta cellDarts) *
         GGT.RelLetter.listVal
-          (dartWord Delta (Delta.faceBoundary face).darts) *
-        GGT.RelLetter.listVal (dartWord Delta
-          ((Delta.faceBoundary face).darts.take
-            (k % (Delta.faceBoundary face).darts.length))) *
+          (dartWord Delta (cellDarts.take (k % cellDarts.length))) *
         GGT.RelLetter.listVal (dartWord Delta arc) := by
     calc GGT.RelLetter.listVal (dartWord Delta exposed)
         = GGT.RelLetter.listVal (dartWord Delta exposed) *
             (GGT.RelLetter.listVal (dartWord Delta arc))⁻¹ *
             GGT.RelLetter.listVal (dartWord Delta arc) := by group
-      _ = ((GGT.RelLetter.listVal (dartWord Delta
-              ((Delta.faceBoundary face).darts.take
-                (k % (Delta.faceBoundary face).darts.length))))⁻¹ *
+      _ = ((GGT.RelLetter.listVal
+              (dartWord Delta (cellDarts.take (k % cellDarts.length))))⁻¹ *
+            GGT.RelLetter.listVal (dartWord Delta cellDarts) *
             GGT.RelLetter.listVal
-              (dartWord Delta (Delta.faceBoundary face).darts) *
-            GGT.RelLetter.listVal (dartWord Delta
-              ((Delta.faceBoundary face).darts.take
-                (k % (Delta.faceBoundary face).darts.length)))) *
+              (dartWord Delta (cellDarts.take (k % cellDarts.length)))) *
             GGT.RelLetter.listVal (dartWord Delta arc) := by rw [hu]
       _ = _ := by group
   rw [dartWord_append, dartWord_append, RelWord.listVal_append,
     RelWord.listVal_append, dartWord_append, dartWord_append,
-    RelWord.listVal_append, RelWord.listVal_append, hexposed, hfw,
-    shellConjugator]
+    RelWord.listVal_append, RelWord.listVal_append, hexposed,
+    shellConjugatorOn]
   group
 
-/-! ## Shellings with their conjugators recorded -/
+/-! ## The two orientations of a face -/
 
-/-- A shelling of a closed dart word together with the conjugator each peel
-step contributes. -/
+/-- The boundary of a face, read either way round. -/
+noncomputable def orientedFaceDarts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (face : Delta.toCombMap.Face)
+    (rev : Bool) : List Delta.toCombMap.Dart :=
+  if rev then invDarts Delta (Delta.faceBoundary face).darts
+    else (Delta.faceBoundary face).darts
+
+/-- Reading a face boundary the other way round inverts the face word's
+value. -/
+theorem listVal_orientedFaceDarts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (face : Delta.toCombMap.Face)
+    (rev : Bool) :
+    GGT.RelLetter.listVal (dartWord Delta (orientedFaceDarts Delta face rev)) =
+      (if rev then (GGT.RelLetter.listVal (Delta.faceWord face))⁻¹
+        else GGT.RelLetter.listVal (Delta.faceWord face)) := by
+  cases rev
+  · rfl
+  · exact listVal_dartWord_invDarts Delta (Delta.faceBoundary face).darts
+
+/-! ## Shellings with their steps recorded -/
+
+/-- A shelling of a closed dart word together with, for each peel step, the
+conjugator it contributes and the oriented face boundary it peels. -/
 inductive CellShelling {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W)
     (faces : Finset Delta.toCombMap.Face) :
-    List G → List Delta.toCombMap.Face → List Delta.toCombMap.Dart → Prop
+    List G → List (List Delta.toCombMap.Dart) →
+      List Delta.toCombMap.Dart → Prop
   | empty : CellShelling Delta faces [] [] []
-  | step {gs : List G} {l : List Delta.toCombMap.Face}
+  | step {gs : List G} {cds : List (List Delta.toCombMap.Dart)}
       {before arc after exposed : List Delta.toCombMap.Dart}
-      (face : Delta.toCombMap.Face) (hface : face ∈ faces) (k : ℕ) (g : G)
-      (hrot : (Delta.faceBoundary face).darts.rotate k =
-        exposed ++ invDarts Delta arc)
-      (hg : g = shellConjugator Delta face before k)
-      (rest : CellShelling Delta faces gs l (before ++ arc ++ after)) :
-      CellShelling Delta faces (g :: gs) (face :: l)
+      (face : Delta.toCombMap.Face) (hface : face ∈ faces) (rev : Bool)
+      (k : ℕ) (g : G) (cd : List Delta.toCombMap.Dart)
+      (hcd : cd = orientedFaceDarts Delta face rev)
+      (hrot : cd.rotate k = exposed ++ invDarts Delta arc)
+      (hg : g = shellConjugatorOn Delta cd before k)
+      (rest : CellShelling Delta faces gs cds (before ++ arc ++ after)) :
+      CellShelling Delta faces (g :: gs) (cd :: cds)
         (before ++ exposed ++ after)
 
-/-- Forgetting the conjugators returns a shelling. -/
-theorem cellShelling_toShelling
-    {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W}
-    {faces : Finset Delta.toCombMap.Face}
-    {gs : List G} {l : List Delta.toCombMap.Face}
-    {cycle : List Delta.toCombMap.Dart}
-    (h : CellShelling Delta faces gs l cycle) :
-    FaceShelling Delta faces l cycle := by
-  induction h with
-  | empty => exact FaceShelling.empty
-  | @step gs l before arc after exposed face hface k g hrot hg rest ih =>
-      exact FaceShelling.step face hface k hrot ih
-
 /-- **The van Kampen product formula for a shelled region.**  The value of a
-shelled closed word is the ordered product of the conjugated values of the faces
-peeled off it. -/
+shelled closed word is the ordered product of the conjugated values of the
+words peeled off it. -/
 theorem listVal_dartWord_of_cellShelling
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
     {faces : Finset Delta.toCombMap.Face}
-    {gs : List G} {l : List Delta.toCombMap.Face}
+    {gs : List G} {cds : List (List Delta.toCombMap.Dart)}
     {cycle : List Delta.toCombMap.Dart}
-    (h : CellShelling Delta faces gs l cycle) :
+    (h : CellShelling Delta faces gs cds cycle) :
     GGT.RelLetter.listVal (dartWord Delta cycle) =
       (List.zipWith
-        (fun g f => g * GGT.RelLetter.listVal (Delta.faceWord f) * g⁻¹)
-        gs l).prod := by
+        (fun g cd => g * GGT.RelLetter.listVal (dartWord Delta cd) * g⁻¹)
+        gs cds).prod := by
   induction h with
   | empty => rfl
-  | @step gs l before arc after exposed face hface k g hrot hg rest ih =>
+  | @step gs cds before arc after exposed face hface rev k g cd hcd hrot hg
+      rest ih =>
       rw [List.zipWith_cons_cons, List.prod_cons, ← ih, hg]
-      exact listVal_dartWord_shellStep Delta face before arc after exposed k
+      exact listVal_dartWord_shellStepOn Delta cd before arc after exposed k
         hrot
 
 end Embedded
