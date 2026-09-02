@@ -230,9 +230,6 @@ theorem firstSurvivorSlot_span
   have hindex : B.firstArcCut (B.firstGapStartSide j) +
       (B.firstArcCut (B.firstGapStartSide j + r) -
         B.firstArcCut (B.firstGapStartSide j)) = B.firstTargetPos s := by
-    change B.firstArcCut (B.firstGapStartSide j) +
-        (B.firstArcCut (B.firstGapStartSide j + r) -
-          B.firstArcCut (B.firstGapStartSide j)) = B.firstTargetPos s
     rw [hrStart, htargetCut.1]
     have hmono := B.firstArc_isCutPath.cut.mono_le hsGap.2.1
     omega
@@ -301,9 +298,6 @@ theorem secondSurvivorSlot_span
   have hindex : B.secondArcCut (B.secondGapStartSide j) +
       (B.secondArcCut (B.secondGapStartSide j + r) -
         B.secondArcCut (B.secondGapStartSide j)) = B.secondTargetPos s := by
-    change B.secondArcCut (B.secondGapStartSide j) +
-        (B.secondArcCut (B.secondGapStartSide j + r) -
-          B.secondArcCut (B.secondGapStartSide j)) = B.secondTargetPos s
     rw [hrStart, htargetCut.1]
     have hmono := B.secondArc_isCutPath.cut.mono_le hsGap.2.1
     omega
