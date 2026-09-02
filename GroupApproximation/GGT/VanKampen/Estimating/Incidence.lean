@@ -580,7 +580,9 @@ theorem sum_canonical_interiorLength_eq_sum_weight
             CellIncidence.OfKind (selected := selected) (i := i)
               CellArcKind.interior,
           occurrence.2.1.arc.length
-      exact (Fintype.sum_sigma' fun _i incidence =>
+      exact (Fintype.sum_sigma' fun (i : Fin Delta.rCellCount)
+          (incidence : CellIncidence.OfKind
+            (selected := selected) (i := i) CellArcKind.interior) =>
         incidence.1.arc.length).symm
     _ = ∑ edge : InteriorEdge selected, edge.candidate.weight :=
       sum_interiorIncidence_arcLength_eq_sum_weight selected
