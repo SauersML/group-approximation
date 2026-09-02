@@ -428,9 +428,11 @@ theorem exists_drop_subfamily_base
     rcases CyclicCayley.mem_pairSet_iff.mp hx with h | h
     · refine ⟨g i, Set.mem_iUnion.mpr ⟨i, CyclicCayley.mem_pairSet_self _⟩, ?_⟩
       rw [hgq i, h]
+      rfl
     · refine ⟨(g i)⁻¹,
         Set.mem_iUnion.mpr ⟨i, CyclicCayley.inv_mem_pairSet _⟩, ?_⟩
       rw [map_inv, hgq i, h, map_inv]
+      rfl
 
 /-- **The canonical original-family record in the filling quotient.**
 
