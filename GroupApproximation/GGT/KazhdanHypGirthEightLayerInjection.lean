@@ -352,8 +352,10 @@ theorem layerCoversWindow_of_firstLayer
   layer_covers_of_incidenceInjection
     (layerIncidenceInjection_of_firstLayer Delta P depth scale loss perimeter C)
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- The centered layer cover produces the incidence injection. -/
-theorem layerIncidenceInjection_of_layerCover
+noncomputable def layerIncidenceInjection_of_layerCover
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
     (K : CenteredWindowLayerCover Delta P depth scale loss perimeter) :
