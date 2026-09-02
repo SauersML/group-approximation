@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.RelativeDiscRealization
 import GroupApproximation.GGT.VanKampen.GeodesicQuasiGeodesic
+import GroupApproximation.GGT.VanKampen.Estimating.Assembly
 
 /-!
 # Realized relative Greendlinger witnesses
@@ -99,6 +100,48 @@ theorem exists_realized_relativeGreendlingerWitness
   obtain ⟨Delta', hequiv, faces, Gamma, htarget, hlarge⟩ :=
     hgood W hcondition C.diagram hred hcells hboundary'
   exact ⟨C, Delta', hequiv, faces, Gamma, htarget, hlarge⟩
+
+/-- The three est construction components and the vk realization statement
+produce the realized corrected Greendlinger witness.  This is the source-level
+interface used before the exterior witness is converted into a relative
+certificate. -/
+theorem exists_realized_relativeGreendlingerWitness_of_components
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+    (hreal : GGT.VanKampen.RelativeDiscRealizationStatement.{u, w})
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (hhyper : ∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
+    {lambda c mu : ℝ}
+    (hlambda : 0 < lambda) (hlambdaUpper : lambda ≤ 1)
+    (hc : 0 ≤ c) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) :
+    ∃ eps rho : ℕ, 0 < rho ∧
+      ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+        GGT.VanKampen.OsinCCondition D W eps mu lambda c rho →
+          ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+            IsLambdaCQuasiGeodesicWord D lambda c
+              (Z.boundaryWord.map
+                (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)) →
+              ∃ (C : RelativeDiscRealization D W Z)
+                (Delta' : DiscDiagram.{u, w, 0} W),
+                Nonempty (GGT.VanKampen.OEquivalentDiscDiagram C.diagram Delta') ∧
+                  ∃ (faces : Finset Delta'.toCombMap.Face)
+                    (Gamma : GGT.VanKampen.Embedded.Contiguity
+                      D eps Delta' faces),
+                    Gamma.target = none ∧
+                      (1 - 13 * mu) *
+                          ((GGT.VanKampen.Embedded.cell Delta'
+                            Gamma.source).word.length : ℝ) <
+                        (Gamma.sourceArc.length : ℝ) := by
+  exact exists_realized_relativeGreendlingerWitness
+    (GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound)
+    hreal D hhyper hlambda hlambdaUpper hc hmu hmuUpper
 
 end HullSC
 end GroupApproximation
