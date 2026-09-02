@@ -54,23 +54,31 @@ theorem singleton_boundary_iff_of_noInternalFaceDart
     · intro halpha
       exact hno d hdf (Finset.mem_singleton.mp halpha)
 
-/-- The stored face boundary is the map-collapse boundary cycle of a singleton
+/-- A stored face boundary is the map-collapse boundary cycle of a singleton
 face whenever that face has no internally paired dart. -/
-noncomputable def singletonBoundaryCycle
-    (f : Delta.toCombMap.Face) (hno : NoInternalFaceDart Delta.toCombMap f) :
-    BoundaryCycle Delta.toCombMap ({f} : Finset Delta.toCombMap.Face) where
-  cycle := (Delta.faceBoundary f).darts
-  cycle_nonempty := (Delta.faceBoundary f).nonempty
-  cycle_nodup := (Delta.faceBoundary f).nodup
+noncomputable def singletonBoundaryCycle_of_faceBoundary
+    (M : CombMap) (f : M.Face) (B : FaceBoundary M f)
+    (hno : NoInternalFaceDart M f) :
+    BoundaryCycle M ({f} : Finset M.Face) where
+  cycle := B.darts
+  cycle_nonempty := B.nonempty
+  cycle_nodup := B.nodup
   cycle_mem_iff := by
     intro d
-    rw [(Delta.faceBoundary f).mem_iff]
-    exact singleton_boundary_iff_of_noInternalFaceDart f hno d
+    rw [B.mem_iff]
+    exact (singleton_boundary_iff_of_noInternalFaceDart f hno d).symm
+
+/-- The disc-diagram specialization uses its canonical face boundary. -/
+noncomputable def singletonBoundaryCycle
+    (f : Delta.toCombMap.Face) (hno : NoInternalFaceDart Delta.toCombMap f) :
+    BoundaryCycle Delta.toCombMap ({f} : Finset Delta.toCombMap.Face) :=
+  singletonBoundaryCycle_of_faceBoundary Delta.toCombMap f
+    (Delta.faceBoundary f) hno
 
 @[simp]
 theorem singletonBoundaryCycle_cycle
     (f : Delta.toCombMap.Face) (hno : NoInternalFaceDart Delta.toCombMap f) :
-    (singletonBoundaryCycle Delta f hno).cycle =
+    (singletonBoundaryCycle (Delta := Delta) f hno).cycle =
       (Delta.faceBoundary f).darts :=
   rfl
 
@@ -82,25 +90,27 @@ two fields already named by `IsDiscRegion` remain. -/
 structure SingletonDiscRegionData
     (f : Delta.toCombMap.Face) (hno : NoInternalFaceDart Delta.toCombMap f) where
   reclosed_connected :
-    (reclosedMap Delta.toCombMap ({f} : Finset Delta.toCombMap.Face)).IsConnected
+    (reclosedMap Delta.toCombMap ({f} : Finset Delta.toCombMap.Face)
+      (singletonBoundaryCycle (Delta := Delta) f hno)).IsConnected
   euler_preserved :
-    (reclosedMap Delta.toCombMap ({f} : Finset Delta.toCombMap.Face)).eulerCharacteristic =
+    (reclosedMap Delta.toCombMap ({f} : Finset Delta.toCombMap.Face)
+      (singletonBoundaryCycle (Delta := Delta) f hno)).eulerCharacteristic =
       Delta.toCombMap.eulerCharacteristic
 
 noncomputable def SingletonDiscRegionData.toIsDiscRegion
     {f : Delta.toCombMap.Face} {hno : NoInternalFaceDart Delta.toCombMap f}
-    (data : SingletonDiscRegionData Delta f hno) :
+    (data : SingletonDiscRegionData (Delta := Delta) f hno) :
     IsDiscRegion Delta.toCombMap ({f} : Finset Delta.toCombMap.Face) where
-  cycle := (singletonBoundaryCycle Delta f hno).cycle
-  cycle_nonempty := (singletonBoundaryCycle Delta f hno).cycle_nonempty
-  cycle_nodup := (singletonBoundaryCycle Delta f hno).cycle_nodup
-  cycle_mem_iff := (singletonBoundaryCycle Delta f hno).cycle_mem_iff
+  cycle := (singletonBoundaryCycle (Delta := Delta) f hno).cycle
+  cycle_nonempty := (singletonBoundaryCycle (Delta := Delta) f hno).cycle_nonempty
+  cycle_nodup := (singletonBoundaryCycle (Delta := Delta) f hno).cycle_nodup
+  cycle_mem_iff := (singletonBoundaryCycle (Delta := Delta) f hno).cycle_mem_iff
   reclosed_connected := data.reclosed_connected
   euler_preserved := data.euler_preserved
 
 theorem singleton_discRegion_boundary_eq
     {f : Delta.toCombMap.Face} {hno : NoInternalFaceDart Delta.toCombMap f}
-    (data : SingletonDiscRegionData Delta f hno) :
+    (data : SingletonDiscRegionData (Delta := Delta) f hno) :
     (data.toIsDiscRegion.toBoundaryCycle).cycle =
       (Delta.faceBoundary f).darts :=
   rfl
@@ -141,38 +151,19 @@ theorem oneTriangle_noInternalFaceDart (i : ZMod 3) :
   cases b with
   | false =>
       intro h
-      exact oneTriangle_face_false_ne_true i j
-        (hd.symm.trans h)
+      change oneTriangleCombMap.faceOf (j, true) ≠
+        oneTriangleCombMap.faceOf (i, false)
+      exact oneTriangle_face_false_ne_true i j h.symm
   | true =>
-      intro h
-      exact oneTriangle_face_false_ne_true i j h
+      change oneTriangleCombMap.faceOf (j, false) ≠
+        oneTriangleCombMap.faceOf (i, false)
+      intro _
+      exact (oneTriangle_face_false_ne_true i j hd.symm).elim
 
 theorem oneTriangle_singletonBoundaryCycle_model (i : ZMod 3) :
-    (singletonBoundaryCycle
-      (Delta := {
-        toCombMap := oneTriangleCombMap
-        planar := by
-          exact ⟨by
-            intro d e
-            exact Relation.EqvGen.refl _
-            , by
-              simp [CombMap.eulerCharacteristic, CombMap.vertexCount,
-                CombMap.edgeCount, CombMap.faceCount]
-          ⟩
-        label := fun d => GGT.RelLetter.base 1
-        label_alpha := by intro d; simp
-        outerFace := oneTriangleCombMap.faceOf (0, true)
-        faceBoundary := fun f => FaceBoundary.based oneTriangleCombMap
-          (Quotient.out f)
-        relatorCells := []
-        relatorCell_faces_nodup := by simp
-        relatorCell_word := by simp
-        inner_face := by
-          intro f hf
-          right
-          simp
-        boundary_product := by simp }
+    (singletonBoundaryCycle_of_faceBoundary oneTriangleCombMap
       (oneTriangleCombMap.faceOf (i, false))
+      (FaceBoundary.based oneTriangleCombMap (i, false))
       (oneTriangle_noInternalFaceDart i)).cycle =
       ((FaceBoundary.based oneTriangleCombMap (i, false)).darts) :=
   rfl
