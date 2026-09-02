@@ -127,7 +127,8 @@ theorem kernelGeodesicEstimateAt_of_cutInduction
           rw [hcurrentGeodesic, hkone, wordDist_self]
         have hjzero : j = 0 := by omega
         subst hjzero
-        subst hzero
+        have hnil : current = [] := List.length_eq_zero_iff.mp hzero
+        subst current
         simp only [List.take_zero, List.prod_nil, wordDist_self]
         exact le_rfl
       · obtain ⟨C⟩ := hM area k hk current hcurrentLetters
@@ -141,7 +142,10 @@ theorem kernelGeodesicEstimateAt_of_cutInduction
           C.next_word_prod_eq.trans hcurrentProd
         have hnextGeodesic : C.nextWord.length =
             wordDist E.alphabet.carrier 1 k := by
-          rw [C.next_word_geodesic, C.next_word_prod_eq]
+          calc
+            C.nextWord.length = wordDist E.alphabet.carrier 1 C.nextWord.prod :=
+              C.next_word_geodesic
+            _ = wordDist E.alphabet.carrier 1 k := by rw [hnextProd]
         have hnextBound : ∀ l ≤ C.nextWord.length,
             wordDist B.alphabet.carrier 1
               (C.nextWord.take l).prod ≤ M := by
@@ -214,14 +218,13 @@ theorem kernelGeodesicEstimateAt_trivialModel_zero
             1 (word.take i).prod ≤ M := by
   refine ⟨0, rfl, ?_⟩
   intro k hk word hword hprod hlength i hi
-  have hkone : k = 1 := by
-    rw [← hprod]
-    exact Subsingleton.elim _ _
+  have hkone : k = 1 := Subsingleton.elim _ _
   have hzero : word.length = 0 := by
     rw [hlength, hkone, wordDist_self]
   have hizero : i = 0 := by omega
   subst hizero
-  rw [hzero]
+  have hnil : word = [] := List.length_eq_zero_iff.mp hzero
+  subst word
   simp only [List.take_zero, List.prod_nil, wordDist_self]
   exact le_rfl
 
