@@ -191,11 +191,13 @@ theorem whole_relators_ne
   simp only [RelatorCell.value, Gamma.source_forward, Gamma.target_forward,
     Bool.false_eq_true, if_false]
   have htarget : GGT.RelLetter.listVal target.word =
-      (Gamma.region.leftConnector * GGT.RelLetter.listVal source.word *
-        Gamma.region.leftConnector⁻¹)⁻¹ := by
+      ((source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator)⁻¹ * GGT.RelLetter.listVal source.word *
+        (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator))⁻¹ := by
     have hinv := congrArg (fun g : G => g⁻¹) hwhole
     simpa only [inv_inv] using hinv
-  rw [htarget, Gamma.leftConnector_transport]
+  rw [htarget]
   group
 
 /-- Osin Lemma 4.4 (`O52`), local step: a cell-to-cell contiguity arc is a
