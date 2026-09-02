@@ -102,7 +102,6 @@ structure YiOrientationPureProductFamily
   detector_mem : ∀ i, detector i ∈ T
   detector_loxodromic : ∀ i,
     IsLoxodromic (detector i) (Cayley.base A.alphabet)
-  detector_nonCommensurable : PairwiseNonCommensurable detector
   exponent : Fin k → ℤ
   exponent_ne_zero : ∀ i, exponent i ≠ 0
   base_centralizer : ∀ i,
