@@ -56,6 +56,27 @@ theorem finiteFamilyRelativePowerEscape_of_linearGrowth
     hGrowth G instG I D hbase hemb g hhyper hord
   exact isEscaping_of_strict_linear_lower_bound hl hB hlin
 
+/-- A linear-growth estimate makes the bounded-power extraction statement
+vacuous: an infinite bounded subsequence cannot exist.  This adapter records
+the direction of Osin's chain explicitly and lets the power-pigeonhole module
+consume either the source inequality or the extracted slice. -/
+theorem relativeBoundedPowerExtraction_of_linearGrowth
+    (hGrowth : FiniteFamilyRelativePowerLinearGrowthStatement.{u, v}) :
+    RelativeBoundedPowerExtractionStatement.{u, v} := by
+  intro G instG I _ D hbase hemb g hhyper hord R S hS hbounded
+  letI : Group G := instG
+  have hesc : IsEscaping g (Cayley.base D.alphabet) := by
+    exact finiteFamilyRelativePowerEscape_of_linearGrowth hGrowth
+      G inferInstance I D hbase hemb g hhyper hord
+  have hev := hesc.eventually_gt_atTop (R + 1)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨N, hN⟩ := hev
+  obtain ⟨q, hqS, hqN⟩ := Set.Infinite.exists_gt hS N
+  have hsmall := hbounded q hqS
+  have hlarge := hN q hqN
+  exfalso
+  linarith
+
 /-- The exact source inequality is also enough for the acylindrical action
 classification, once the relative alphabet is known to be acylindrical. -/
 theorem hyperbolicElementLoxodromicAcylindrical_of_linearGrowth
@@ -104,6 +125,27 @@ theorem finiteFamilyRelativePowerLinearGrowth_standardModel
           dist (Cayley.base D.alphabet)
             ((g ^ n) • Cayley.base D.alphabet) :=
   finiteFamilyRelativePowerLinearGrowth_emptyModel D hbase hemb g hord
+
+/-- The extraction adapter is vacuous in the same ordinary hyperbolic model,
+because the strict power bound rules out every bounded infinite subsequence. -/
+theorem relativeBoundedPowerExtraction_linearGrowth_standardModel
+    {G : Type u} [Group G] {I : Type v} [IsEmpty I]
+    (D : RelGenSet G I) (hbase : D.base.Finite)
+    (hemb : D.IsHyperbolicallyEmbedded) :
+    ∀ g : G, IsHyperbolicElement D.fam g →
+      (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+        ∀ R : ℝ, ∀ S : Set ℕ, S.Infinite →
+          (∀ q : ℕ, q ∈ S →
+            dist (Cayley.base D.alphabet)
+              ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+          ∃ (lam : I) (n : ℕ) (k h : G),
+            ∀ q : ℕ, q ∈ S →
+              ∃ z : G, z ∈ D.relBall lam n ∧ g ^ q = k * h * z := by
+  intro g hhyper hord R S hS hbounded
+  exact relativeBoundedPowerExtraction_of_linearGrowth
+    (fun G _ I _ D hbase hemb g hhyper hord ↦
+      finiteFamilyRelativePowerLinearGrowth_emptyModel D hbase hemb g hord)
+    G inferInstance I D hbase hemb g hhyper hord R S hS hbounded
 
 end RelHyp
 end GGT
