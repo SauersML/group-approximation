@@ -162,7 +162,7 @@ def cactusShape
 natural-number value, before the wrap-around step. -/
 theorem finRotate_pow_zero {n : ℕ} (hn : 0 < n) (k : ℕ) (hk : k < n) :
     ((finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
-  rw [← iterate_eq_pow,
+  rw [← Equiv.Perm.iterate_eq_pow,
     ← finCycle_eq_finRotate_iterate (k := (⟨k, hk⟩ : Fin n))]
   simp
 
@@ -203,8 +203,8 @@ theorem closedOrbitList_eq_of_finRotate
             Equiv.Perm.mul_apply, hstep, ih]
     apply List.ext_getElem (by simpa only [List.length_ofFn] using hlength)
     intro k hkleft hkright
-    rw [closedOrbitList, if_neg hfixed,
-      Equiv.Perm.getElem_toList]
+    simp only [closedOrbitList, if_neg hfixed]
+    rw [Equiv.Perm.getElem_toList]
     rw [hpow, finRotate_pow_zero hn k hkright]
     simp only [List.getElem_ofFn]
 
