@@ -1023,10 +1023,15 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     have happended := isComp_append_of_lt_421 (tail := close) horiginal hend
     dsimp [pos] at hposEq
     dsimp [lamSide]
-    rw [dif_pos hs, show cycle = word ++ close from rfl,
-      appendCut_oneSide_left word close (by omega),
-      appendCut_oneSide_left word close (by omega), hposEq]
-    exact happended
+    rw [dif_pos hs, show cycle = word ++ close from rfl]
+    have hcutS : cut s = s := by
+      rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
+      exact appendCut_oneSide_left word close (by omega)
+    have hcutSucc : cut (s + 1) = s + 1 := by
+      rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
+      exact appendCut_oneSide_left word close (by omega)
+    rw [hcutS, hcutSucc]
+    simpa only [hposEq] using happended
   have hiso : ∀ s ∈ I,
       IsIsolated D.fam (lamSide s) v cycle (cut s) := by
     intro s hs
@@ -1047,8 +1052,8 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
     have hcutS : cut s = s := by
       rw [show cut = appendCut (fun s => s) word.length (oneSideCut close) from rfl]
       exact appendCut_oneSide_left word close (by omega)
-    rw [hcutS, ← hposEq]
-    exact htIsolation
+    rw [hcutS]
+    simpa only [hposEq] using htIsolation
   have hquasi : ∀ s : ℕ, s < word.length + 1 → s ∉ I → ∀ p q : ℕ,
       cut s ≤ p → p ≤ q → q ≤ cut (s + 1) →
       ((q - p : ℕ) : ℝ) / (1 : ℝ) - 1 ≤
