@@ -2227,18 +2227,6 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
-  have hfixed : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G)
-      (u : List (RelLetter G Λ)),
-      IsQuasiGeodesicPolygon D 4 1 n v u →
-      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
-        IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
-    intro n hn v u hquasi nu i k hcomp hiso
-    have hC414le : C414 ≤ C := by
-      dsimp [C]
-      omega
-    exact relBall_mono_radius D nu (Nat.mul_le_mul_right n hC414le)
-      (hproj414 n v u hquasi nu i k hcomp hiso)
   have htargetRaw : ∀ i : Fin N, ∃ n : ℕ, n ≠ pc.length + source i ∧
       IsCompStart (peripheralOccurrence P (occ i)).label
         (pc ++ P ++ rc ++ revWord Q) n ∧
@@ -2252,11 +2240,14 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         RelLetter.listVal pc * vertex (1 : G) P (source i) * h =
           vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) n := by
     intro i
-    have htar := target_of_fixed_uniformBound (mu := 4) (b := 1) (C := C)
-      D (peripheralOccurrence P (occ i)).label (by dsimp [C]; omega)
-      hfixed 4 C pc P rc Q (by norm_num) hclose hpoly
+    have htar := target_of_fixed_uniformBound (mu := 4) (b := 1) (C := C414)
+      D (peripheralOccurrence P (occ i)).label hC414 hproj414
+      4 (C414 * 4) pc P rc Q (by norm_num) hclose hpoly
       (source i) (source i + 1) (hsourcePos i) (hsourceEnd i)
-      (hsourceComp i) (by dsimp [C]; omega) (hsourceDeep i)
+      (hsourceComp i) (by omega) (by
+        intro hm
+        exact hsourceDeep i (relBall_mono_radius D
+          (peripheralOccurrence P (occ i)).label (by dsimp [C]; omega) hm))
     exact htar
   let targetN : Fin N → ℕ := fun i => Classical.choose (htargetRaw i)
   have htargetSpec : ∀ i : Fin N,
@@ -2297,7 +2288,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         1 P (source i) (peripheralOccurrence P u).pos := by
       have hs := connected_fourGon_side_iff D
         (peripheralOccurrence P (occ i)).label pc P rc Q
-        (i := source i) (i' := i') (by omega) (by omega)
+        (i := source i) (i' := i')
+          (by exact le_trans (Nat.le_of_lt (hsourceComp i).1)
+            (hsourceComp i).2.1)
+          (by exact Nat.le_of_lt hi')
       have hmem := hs.mp hconn
       rw [← huPos] at hmem
       exact hmem
@@ -2308,8 +2302,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       simpa [source] using huPos.symm
     apply peripheralOccurrence_not_connected_of_uniformBound hC11 hsum11
       hletP hW1P
-      (fun z lam x hz => hW2P z lam x hz
-        (relBall_mono_radius D lam (by dsimp [C]; omega)))
+      (fun z lam x hz hmem => hW2P z lam x hz
+        (relBall_mono_radius D lam (by dsimp [C]; omega) hmem))
       hW3P 1 hoccne huLabel
     exact hconnP
   have hclassBase : ∀ i : Fin N,
@@ -2319,9 +2313,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     intro i
     rcases (htargetSpec i).2.2.1 with hpcase | hrest
     · right
-      refine ⟨⟨targetN i, by dsimp [M]; omega⟩, ?_, rfl⟩
+      refine ⟨⟨targetN i, by dsimp [M]; omega⟩, ?_, ?_⟩
       intro hm
       exact (htargetSpec i).1 (by omega)
+      exact dif_pos hpcase
     · rcases hrest with hqcase | hrest
       · exfalso
         rcases hqcase with ⟨i', hi', hni⟩
@@ -2336,10 +2331,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                 (pc.length + source i))⁻¹ *
               vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (pc.length + i') ∈
                 D.fam (peripheralOccurrence P (occ i)).label
-            rw [vertex_fourGon_side pc P rc Q 1 (by omega),
-              vertex_fourGon_side pc P rc Q 1 hi']
             obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
             rw [← heq]
+            rw [vertex_fourGon_side pc P rc Q 1 (by omega),
+              vertex_fourGon_side pc P rc Q 1 hi']
             group
           exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
             (htargetSpec i).2.1)) hconn
