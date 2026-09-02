@@ -112,12 +112,28 @@ structure QuotientJointPeripheralPreservation
   fam_selected : ∀ i : AuxiliaryPeripheralIndex k,
     rel.fam (Sum.inr i) = (selected.cores.peripheral i).map q
   embedded : rel.IsHyperbolicallyEmbedded
-  /-- The joint relative base stays finite.  Dahmani--Guirardel--Osin's
-  Proposition 4.35 enlarges it by finitely many generators of the members it
-  drops, so relative hyperbolicity of the quotient with respect to the original
-  family, which asks for a finite relative generating set, is read off this
-  field. -/
-  base_finite : rel.base.Finite
+  /-- The joint relative base comes from the original one.  Relative
+  hyperbolicity of the quotient with respect to the original family asks for a
+  finite relative generating set, and Proposition 4.35 in its printed direction
+  builds one from this base by adjoining finitely many generators of the
+  members it drops; so this base has to be finite, and it is, because the
+  original base is. -/
+  base_subset : rel.base ⊆ q '' original.base
+
+namespace QuotientJointPeripheralPreservation
+
+/-- The joint quotient base is finite whenever the original relative base is,
+which is the form Proposition 4.35's printed direction consumes. -/
+theorem base_finite {G : Type u} [Group G] {A : HullGeneratingSet G}
+    {N : Subgroup G} {k : ℕ} {S : Fin k → Subgroup G} {Lambda : Type w}
+    {Q : Type u} [Group Q] {q : G →* Q}
+    {selected : AuxiliaryPeripheralFamily A N S}
+    {original : GGT.RelGenSet G Lambda}
+    (P : QuotientJointPeripheralPreservation q selected original)
+    (hfinite : original.base.Finite) : P.rel.base.Finite :=
+  (hfinite.image q).subset P.base_subset
+
+end QuotientJointPeripheralPreservation
 
 /-! ## The arbitrary-family statement -/
 
@@ -173,7 +189,7 @@ theorem quotientJointPeripheralPreservation_of_bijective
     (horiginal : ∀ lam, joint.fam (Sum.inl lam) = original.fam lam)
     (hselected : ∀ i, joint.fam (Sum.inr i) = selected.cores.peripheral i)
     (hjoint : joint.IsHyperbolicallyEmbedded)
-    (hbaseFinite : joint.base.Finite)
+    (hbaseSub : joint.base ⊆ original.base)
     {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
     Nonempty (QuotientJointPeripheralPreservation q selected original) := by
   refine ⟨{
@@ -183,7 +199,7 @@ theorem quotientJointPeripheralPreservation_of_bijective
     fam_selected := ?_
     embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_mapSurjective_of_bijective
       joint hjoint q hq
-    base_finite := hbaseFinite.image q }⟩
+    base_subset := Set.image_mono hbaseSub }⟩
   · intro y hy
     obtain ⟨x, hx, rfl⟩ := hy
     exact ⟨x⁻¹, hbaseInv x hx, by simp⟩
