@@ -470,8 +470,44 @@ structure EulerTwoCountData (S : Pairing Delta n) where
 /-- The corrected incidence equations for the double of a disc.  `boundary`
 is the number of darts on the outer face, so gluing two copies identifies one
 boundary cycle in vertices and edges and removes the two outer faces. -/
+structure DoubleConnectivityData (S : Pairing Delta 2) where
+  /-- A retained boundary dart used as the basepoint of the doubled map. -/
+  base : CopiedInnerDart Delta 2
+  /-- Every dart in either copy reaches the corresponding base boundary dart. -/
+  sameCopy : ∀ (copy : Fin 2) (d : InnerDart Delta),
+    Relation.EqvGen S.closedMap.Adjacent (copy, d) (copy, base.2)
+  /-- The two base boundary copies are joined across the seam. -/
+  crossCopy :
+    Relation.EqvGen S.closedMap.Adjacent (0, base.2) (1, base.2)
+
+/-- The explicit same-copy and cross-seam paths imply connectedness of the
+doubled map. -/
+theorem connected_of_doubleConnectivityData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {S : Pairing Delta 2}
+    (C : DoubleConnectivityData S) :
+    S.closedMap.IsConnected := by
+  intro d e
+  change CopiedInnerDart Delta 2 at d e
+  have toZero : ∀ x : CopiedInnerDart Delta 2,
+      Relation.EqvGen S.closedMap.Adjacent x (0, C.base.2) := by
+    intro x
+    have hsame := C.sameCopy x.1 x.2
+    fin_cases hx : x.1
+    · simpa [hx] using hsame
+    · have hcross : Relation.EqvGen S.closedMap.Adjacent
+          (1, C.base.2) (0, C.base.2) :=
+        Relation.EqvGen.symm _ _ _ C.crossCopy
+      exact hsame.trans hcross
+  exact (toZero d).trans (toZero e).symm
+
+/-- The corrected incidence equations for the double of a disc.  `boundary`
+is the number of darts on the outer face, so gluing two copies identifies one
+boundary cycle in vertices and edges and removes the two outer faces. -/
 structure DoubleEulerCountData (S : Pairing Delta 2) where
-  connected : S.closedMap.IsConnected
+  connectivity : DoubleConnectivityData S
   boundary : ℕ
   boundary_eq_outerDegree : boundary =
     Delta.toCombMap.faceDegree Delta.outerFace
@@ -509,7 +545,7 @@ theorem spherical_of_doubleEulerCountData
     (C : DoubleEulerCountData S)
     (hplanar : Delta.toCombMap.IsPlanar) :
     Spherical S := by
-  refine ⟨C.connected, ?_⟩
+  refine ⟨connected_of_doubleConnectivityData C.connectivity, ?_⟩
   unfold CombMap.eulerCharacteristic
   have hv := C.vertex_count_eq
   have he := C.edge_count_eq
