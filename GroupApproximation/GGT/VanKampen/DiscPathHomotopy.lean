@@ -178,6 +178,10 @@ noncomputable section OneTriangleModel
 local instance oneTriangleDartDecidableEq : DecidableEq OneTriangleDart :=
   Classical.decEq _
 
+local instance oneTriangleCombMapDartDecidableEq :
+    DecidableEq oneTriangleCombMap.Dart :=
+  Classical.decEq _
+
 /-- The canonical ordered boundary of the one-triangle model is the closed
 orbit list supplied by the Van Kampen boundary API. -/
 theorem oneTriangle_faceBoundary_model (d : OneTriangleDart) :
