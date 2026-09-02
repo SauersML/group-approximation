@@ -949,16 +949,16 @@ def FirstGapArcBoundaryExclusion
           (B.firstArcCut (B.firstTargetSide s) -
             B.firstArcCut (B.firstGapStartSide j)) = t + 1 →
       ∀ ht : t < (B.firstGapCycle j).length,
-      ¬ (B.firstGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
+      ¬ ((B.firstGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
   (∀ hn :
       (B.firstGapLeft j).length +
           (B.firstArcCut (B.firstTargetSide s) -
             B.firstArcCut (B.firstGapStartSide j)) + 1 <
         (B.firstGapCycle j).length,
-      ¬ (B.firstGapCycle j)[
+      ¬ ((B.firstGapCycle j)[
           (B.firstGapLeft j).length +
             (B.firstArcCut (B.firstTargetSide s) -
-              B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+              B.firstArcCut (B.firstGapStartSide j)) + 1]'hn)).IsCompOf
         (P.label s))
 
 /-- The wrapped endpoint exclusions required for the corresponding second-gap
@@ -976,16 +976,16 @@ def SecondGapArcBoundaryExclusion
           (B.secondArcCut (B.secondTargetSide s) -
             B.secondArcCut (B.secondGapStartSide j)) = t + 1 →
       ∀ ht : t < (B.secondGapCycle j).length,
-      ¬ (B.secondGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
+      ¬ ((B.secondGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
   (∀ hn :
       (B.secondGapLeft j).length +
           (B.secondArcCut (B.secondTargetSide s) -
             B.secondArcCut (B.secondGapStartSide j)) + 1 <
         (B.secondGapCycle j).length,
-      ¬ (B.secondGapCycle j)[
+      ¬ ((B.secondGapCycle j)[
           (B.secondGapLeft j).length +
             (B.secondArcCut (B.secondTargetSide s) -
-              B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+              B.secondArcCut (B.secondGapStartSide j)) + 1]'hn)).IsCompOf
         (P.label s))
 
 /-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
