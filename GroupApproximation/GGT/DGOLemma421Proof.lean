@@ -2142,8 +2142,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
           (vertex (1 : G) P j) : ℕ) : ℝ) := by
     intro i j hij hj
     have hW2A : WWord.IsWTwo D CA P := by
-      intro z lam x hz
-      intro hmem
+      intro z lam x hz hmem
       exact hW2P z lam x hz
         (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
     have hz := hA (1 : G) P hletP hW1P
@@ -2160,8 +2159,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
           (vertex (1 : G) Q j) : ℕ) : ℝ) := by
     intro i j hij hj
     have hW2A : WWord.IsWTwo D CA Q := by
-      intro z lam x hz
-      intro hmem
+      intro z lam x hz hmem
       exact hW2Q z lam x hz
         (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
     have hz := hA (1 : G) Q hletQ hW1Q hW2A hW3Q i j hij hj
@@ -2378,8 +2376,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
         (pc ++ P ++ rc ++ revWord Q) (pc.length + i') →
       ¬ Connected D.fam (peripheralOccurrence P (occ i)).label 1
         (pc ++ P ++ rc ++ revWord Q) (pc.length + source i) (pc.length + i') := by
-    intro i i' hi' hne hstart'
-    intro hconn
+    intro i i' hi' hne hstart' hconn
     obtain ⟨u, huPos, huLabel⟩ :=
       exists_side_occurrence_of_fourGon_start_421 hW3P
         hi' hstart'
@@ -2543,8 +2540,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
       rfl
   have htarget_not_interior : ∀ (i : Fin N), ¬ Matched i →
       ∀ i' : ℕ, i' < P.length → targetN i ≠ pc.length + i' := by
-    intro i hi i' hi'
-    intro hni
+    intro i hi i' hi' hni
     have hsource_le : source i ≤ P.length := by
       exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))
     have hne : i' ≠ source i := by
