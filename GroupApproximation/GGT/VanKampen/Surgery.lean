@@ -452,7 +452,6 @@ theorem removeLoop_zeroCellModel_card :
     (Incidence.removeLoop
       (Finset.univ : Finset CactusShape.zeroCellModel.toCombMap.Edge)
       edge).card = 2 := by
-  classical
   dsimp only
   rw [Incidence.removeLoop,
     Finset.card_erase_of_mem (Finset.mem_univ _)]
@@ -475,7 +474,6 @@ theorem mergeParallelEdges_oneCellModel_card :
     (Incidence.mergeParallelEdges
       (Finset.univ : Finset CactusShape.oneCellModel.toCombMap.Edge)
       retained redundant).card = 5 := by
-  classical
   dsimp only
   rw [Incidence.mergeParallelEdges,
     Finset.card_erase_of_mem (Finset.mem_univ _)]
