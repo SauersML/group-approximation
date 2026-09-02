@@ -84,6 +84,23 @@ theorem quotientJointPeripheralPreservation_of_control
     rw [hselected i]
   · exact control.embedded hjointEmbedded
 
+/-! ## Radius-one support -/
+
+/-- Every original peripheral subgroup is contained in the ambient radius-one
+ball when its relative alphabet is included in the ambient alphabet. -/
+theorem originalPeripheralUnion_subset_cayleyBall_one
+    {G : Type u} [Group G] {A : HullGeneratingSet G}
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (hA : original.alphabet.carrier ⊆ A.alphabet.carrier) :
+    (⋃ lam : Lambda, (original.fam lam : Set G)) ⊆
+      cayleyBall A.alphabet 1 := by
+  intro x hx
+  obtain ⟨lam, hxlam⟩ := Set.mem_iUnion.mp hx
+  rw [mem_cayleyBall_iff, wordDist_one_left]
+  exact le_trans
+    (wordNorm_le_one_of_mem (hA (GGT.RelGenSet.fam_subset_alphabet
+      original lam hxlam))) (by norm_num)
+
 /-! ## Complete fixed-parameter family output -/
 
 /-- The selected, original, and joint preservation objects are assembled from
@@ -127,21 +144,8 @@ theorem familyPreservation_of_controls
   have horiginalUnion : Set.InjOn q
       (⋃ lam : Lambda, (original.fam lam : Set G)) := by
     intro x hx y hy hxy
-    obtain ⟨lam, hxlam⟩ := Set.mem_iUnion.mp hx
-    obtain ⟨lam', hylam⟩ := Set.mem_iUnion.mp hy
-    have hxball : x ∈ cayleyBall A.alphabet 1 := by
-      rw [mem_cayleyBall_iff]
-      rw [wordDist_one_left]
-      exact le_trans
-        (wordNorm_le_one_of_mem (hA (GGT.RelGenSet.fam_subset_alphabet
-          original lam hxlam))) (by norm_num)
-    have hyball : y ∈ cayleyBall A.alphabet 1 := by
-      rw [mem_cayleyBall_iff]
-      rw [wordDist_one_left]
-      exact le_trans
-        (wordNorm_le_one_of_mem (hA (GGT.RelGenSet.fam_subset_alphabet
-          original lam' hylam))) (by norm_num)
-    exact hinjA hxball hyball hxy
+    exact hinjA (originalPeripheralUnion_subset_cayleyBall_one original hA hx)
+      (originalPeripheralUnion_subset_cayleyBall_one original hA hy) hxy
   have horiginalPreserved :
       Nonempty (CanonicalQuotientFamilyPreservation q original) :=
     canonicalQuotientFamilyPreservation_of_control original horiginalEmbedded q hq
