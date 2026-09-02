@@ -322,7 +322,9 @@ theorem faceOf_alpha_mem_of_mem_targetArc
     exact ⟨d, hd, rfl⟩
   have htargetBoundary : Delta.toCombMap.alpha d ∈
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc := by
-    simpa only [targetBoundaryDarts, htarget] using hreverse
+    rw [targetBoundaryDarts.eq_def]
+    rw [htarget]
+    exact hreverse
   have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
     rw [Gamma.boundary_decomposition]
     simp only [List.mem_append]
