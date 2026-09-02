@@ -405,6 +405,51 @@ def originalOverAux (D : RelGenSet G Λ) (E : RelGenSet G I)
     (hEinv : ∀ x ∈ E.base, x⁻¹ ∈ E.base) :
     (originalOverAux D E hbase hEinv).fam = D.fam := rfl
 
+/-- **The alphabet of the original family over the auxiliary base is that
+base.**  Dropping the peripherals from the base and putting them back as
+peripheral letters changes nothing. -/
+@[simp] theorem originalOverAux_alphabet_carrier (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hEinv : ∀ x ∈ E.base, x⁻¹ ∈ E.base) :
+    (originalOverAux D E hbase hEinv).alphabet.carrier = E.base := by
+  classical
+  refine Set.Subset.antisymm ?_ ?_
+  · rintro y (hy | hy)
+    · exact hy.1
+    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+      exact hbase (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hlam⟩))
+  · intro y hy
+    by_cases hH : y ∈ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
+    · exact Or.inr hH
+    · exact Or.inl ⟨hy, hH⟩
+
+/-- **Joint hyperbolicity is free over the auxiliary base.**
+
+If the original family is read over the auxiliary base rather than over its own,
+the joint alphabet is *literally* the auxiliary alphabet: the base contributes
+every auxiliary base letter that is not peripheral, and the peripherals come
+back as peripheral letters.  So clause (a) needs no transport and no finiteness
+hypothesis, at any distance between the two bases.
+
+The auxiliary family may be taken before its relative generating set was
+enlarged, since only its family and base enter. -/
+theorem jointHyperbolic_originalOverAux (D : RelGenSet G Λ)
+    (E E' : RelGenSet G I) (hfam : E'.fam = E.fam)
+    (hbase : D.alphabet.carrier ⊆ E'.base)
+    (hEinv : ∀ x ∈ E'.base, x⁻¹ ∈ E'.base)
+    (hE' : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley E'.alphabet)) :
+    ∃ delta : ℝ, IsHyperbolicSpace delta
+      (Cayley (jointRelGenSet (originalOverAux D E' hbase hEinv) E).alphabet) := by
+  have hcarrier :
+      (jointRelGenSet (originalOverAux D E' hbase hEinv) E).alphabet.carrier
+        = E'.alphabet.carrier := by
+    rw [jointRelGenSet_alphabet_carrier, originalOverAux_alphabet_carrier]
+    show E'.base ∪ (⋃ i : I, ((E.fam i : Subgroup G) : Set G))
+      = E'.base ∪ (⋃ i : I, ((E'.fam i : Subgroup G) : Set G))
+    rw [hfam]
+  exact exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hE'
+
 /-- **The residue of the auxiliary-alphabet form, with the auxiliary family
 removed.**
 
