@@ -570,37 +570,7 @@ theorem estimatingPieceConstruction_of_boundaryPeelings
   exact Embedded.CellPieceEquations.of_boundaryPeeling
     (hbridge edge) (hpeeling edge) hred
 
-/-- The one-step planar peel callback and the reduced cell bridge are exactly
-the remaining producers for the global Piece construction statement.  The
-face-count induction is supplied by `faceSetBoundaryPeeling_of_planarCertificates`,
-and the resulting homotopy is consumed by `CellPieceEquations.of_boundaryPeeling`.
--/
-theorem estimatingPieceConstruction_of_planarPeelOracle
-    (hbridge :
-      ∀ {G : Type u} [Group G] {Lambda : Type w}
-        (D : GGT.RelGenSet G Lambda) (eps : ℕ)
-        {W : Set (List (GGT.RelLetter G Lambda))}
-        (Delta : DiscDiagram.{u, w, v} W)
-        (scaffold : EstimatingScaffold D eps Delta)
-        (_hred : Delta.Reduced)
-        (edge : Embedded.InteriorEdge scaffold.selected.family),
-        Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
-    (hplanar :
-      ∀ {G : Type u} [Group G] {Lambda : Type w}
-        {W : Set (List (GGT.RelLetter G Lambda))}
-        {Delta : DiscDiagram.{u, w, v} W}
-        {faces : Finset Delta.toCombMap.Face}
-        (boundary : Embedded.FaceSetBoundary Delta faces),
-        Embedded.PlanarFacePeelCertificate boundary) :
-    EstimatingPieceConstructionStatement.{u, w, v} := by
-  intro G _ Lambda D eps W Delta scaffold hred
-  refine estimatingPieceConstruction_of_boundaryPeelings D eps Delta scaffold
-    hred (fun edge => hbridge D eps Delta scaffold hred edge) ?_
-  intro edge
-  exact Embedded.faceSetBoundaryPeeling_of_planarCertificates
-    edge.candidate.contiguity.boundary (fun boundary => hplanar boundary)
-
-/-- The direct boundary-counting form of the Piece construction.  This is the
+/-/ The direct boundary-counting form of the Piece construction.  This is the
 exact callback produced by counting boundary darts of each selected region;
 the reduced bridge contributes only the non-cancellation inequality. -/
 theorem estimatingPieceConstruction_of_boundaryEquations
@@ -639,6 +609,37 @@ theorem estimatingPieceConstruction_of_boundaryEquations
   exact Embedded.CellPieceEquations.of_boundary_equation_reduced
     edge.candidate.contiguity bridge (harcs scaffold edge) hred
 
+/-- The one-step planar peel callback and the reduced cell bridge are exactly
+the remaining producers for the global Piece construction statement.  The
+face-count induction is supplied by `faceSetBoundaryPeeling_of_planarCertificates`,
+and the resulting homotopy is consumed by `CellPieceEquations.of_boundaryPeeling`.
+-/
+theorem estimatingPieceConstruction_of_planarPeelOracle
+    (hbridge :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        (Delta : DiscDiagram.{u, w, v} W)
+        (scaffold : EstimatingScaffold D eps Delta)
+        (_hred : Delta.Reduced)
+        (edge : Embedded.InteriorEdge scaffold.selected.family),
+        Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
+    (hplanar :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : DiscDiagram.{u, w, v} W}
+        {faces : Finset Delta.toCombMap.Face}
+        (boundary : Embedded.FaceSetBoundary Delta faces),
+        Embedded.PlanarFacePeelCertificate boundary) :
+    EstimatingPieceConstructionStatement.{u, w, v} := by
+  refine estimatingPieceConstruction_of_boundaryEquations hbridge ?_
+  intro G _ Lambda W Delta D eps scaffold edge
+  let peeling : Embedded.FaceSetBoundaryPeeling
+      edge.candidate.contiguity.boundary :=
+    Embedded.faceSetBoundaryPeeling_of_planarCertificates
+      edge.candidate.contiguity.boundary (fun boundary => hplanar boundary)
+  exact edge.candidate.contiguity.targetBoundary_value_of_pasting
+    peeling.to_homotopy
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
