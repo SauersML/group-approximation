@@ -138,6 +138,33 @@ def OEquivalentDiscDiagram.refl
   cellIndex := Equiv.refl _
   cellWord_eq := fun _ => rfl
 
+namespace OEquivalentDiscDiagram
+
+/-- An `O`-equivalence preserves the number of relator cells. -/
+theorem rCellCount_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta Delta' : DiscDiagram.{u, w, v} W}
+    (equiv : OEquivalentDiscDiagram Delta Delta') :
+    Delta'.rCellCount = Delta.rCellCount := by
+  have hcard := Fintype.card_congr equiv.cellIndex
+  simpa only [Fintype.card_fin] using hcard
+
+/-- A quasi-geodesic boundary word transports across an `O`-equivalence. -/
+theorem boundary_quasiGeodesic
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda}
+    {Delta Delta' : DiscDiagram.{u, w, v} W}
+    {lambda c : ℝ}
+    (equiv : OEquivalentDiscDiagram Delta Delta')
+    (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
+    IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord := by
+  rw [equiv.boundaryWord_eq]
+  exact hboundary
+
+end OEquivalentDiscDiagram
+
 /-- One selected embedded region from cell `i` to the outer boundary. -/
 structure EmbeddedBoundaryContiguity
     {G : Type u} [Group G] {Lambda : Type w}
