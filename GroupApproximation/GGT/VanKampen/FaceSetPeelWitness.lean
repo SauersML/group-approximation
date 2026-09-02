@@ -73,7 +73,7 @@ def PlanarFacePeelCertificate.to_witness
 
 /-- The requested VK-side conversion from a planar extremal-face certificate
 to a peel witness. -/
-theorem faceSetBoundaryPeelWitness_of_planarCertificate
+def faceSetBoundaryPeelWitness_of_planarCertificate
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     (certificate : PlanarFacePeelCertificate boundary) :
@@ -82,7 +82,7 @@ theorem faceSetBoundaryPeelWitness_of_planarCertificate
 
 /-- A family of extremal planar certificates supplies the local oracle used by
 the finite termination theorem. -/
-theorem faceSetBoundaryPeeling_of_planarCertificates
+def faceSetBoundaryPeeling_of_planarCertificates
     {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces)
     (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
@@ -97,7 +97,7 @@ theorem faceSetBoundaryPeeling_of_planarCertificates
 
 /-- One face, with its boundary list based at the same dart, is the direct
 face-erasure model. -/
-theorem oneFace_planarCertificate
+def oneFace_planarCertificate
     {face : Delta.toCombMap.Face}
     {boundary : FaceSetBoundary Delta ({face} : Finset Delta.toCombMap.Face)}
     (hcycle : boundary.cycle = (Delta.faceBoundary face).darts)
@@ -112,9 +112,10 @@ theorem oneFace_planarCertificate
   arc_factor := ⟨[], [], by simp⟩
   moves := by
     rw [hcycle]
-    exact FaceSetMoveSequence.cons
-      (FaceSetElementaryMove.eraseFace face (by simp) [] [])
-      (FaceSetMoveSequence.refl [])
+    simpa only [List.nil_append, List.append_nil] using
+      (FaceSetMoveSequence.cons
+        (FaceSetElementaryMove.eraseFace face (by simp) [] [])
+        (FaceSetMoveSequence.refl []))
   remainder := by
     left
     simp
@@ -127,26 +128,23 @@ theorem twoFace_planarCertificate
     (hfaces : faces = {f₁, f₂})
     (hneq : f₁ ≠ f₂)
     (h₁ : f₁ ≠ Delta.outerFace)
+    (boundary : FaceSetBoundary Delta faces)
     (cycle next : List Delta.toCombMap.Dart)
+    (hcycle : boundary.cycle = cycle)
     (moves : FaceSetMoveSequence (faces := faces) cycle next)
-    (hnext : next = (Delta.faceBoundary f₂).darts)
-    (hcycle : ∃ boundary : FaceSetBoundary Delta ({f₂} : Finset _),
+    (hcycle₂ : ∃ boundary : FaceSetBoundary Delta ({f₂} : Finset _),
       boundary.cycle = next) :
-    ∃ boundary : FaceSetBoundary Delta faces,
-      PlanarFacePeelCertificate boundary := by
-  obtain ⟨boundary₂, hboundary₂⟩ := hcycle
-  subst faces
-  refine ⟨?_, { face := f₁, face_mem := by simp, face_ne_outer := h₁,
-    next := next, arc := cycle, arc_nonempty := ?_,
-    arc_factor := ⟨[], [], by simp⟩, moves := moves,
-    remainder := ?_ }⟩
-  · exact ⟨by simp, by simp⟩
+    Nonempty (PlanarFacePeelCertificate boundary) := by
+  obtain ⟨boundary₂, hboundary₂⟩ := hcycle₂
+  refine ⟨{ face := f₁, face_mem := by simpa [hfaces, hneq] using h₁mem,
+    face_ne_outer := h₁, next := next, arc := cycle, arc_nonempty := ?_,
+    arc_factor := ⟨[], [], by simp⟩, moves := ?_, remainder := ?_ }⟩
   · intro hnil
-    subst cycle
-    simp at hneq
+    apply boundary.cycle_nonempty
+    rw [hcycle, hnil]
+  · simpa [hcycle] using moves
   · right
-    refine ⟨boundary₂, ?_⟩
-    exact hboundary₂
+    refine ⟨boundary₂, hboundary₂⟩
 
 end Embedded
 end VanKampen
