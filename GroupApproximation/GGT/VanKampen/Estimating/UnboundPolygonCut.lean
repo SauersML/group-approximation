@@ -7,7 +7,7 @@ Ol'shanskii's Lemma 25 (Mat. Sb. **182** (1991)) is proved by recursion: bisect
 a polygon along a short cut until every piece has at most eight sides.
 `Olshanskii.exists_balanced_cut` supplies the cut, and
 `Estimating.bisection_side_counts_lt` shows the recursion terminates, but
-nothing so far turns a cut into two polygons.  This file builds one of them.
+nothing so far turns a cut into two polygons.  This file builds both.
 
 Given a closed polygon read from `b0`, two side indices `a` and `a + m` inside
 its range, a point at parameter `s` on side `a`, a point at parameter `s'` on
@@ -23,7 +23,11 @@ and a class of sides carried through a cut loses nothing except what the cut
 itself adds.
 
 The outer arc is the same construction applied to the polygon read from the
-other cut side, which needs a rotation lemma; that is not in this file.
+other cut side.  `isClosedPolygonAt_rotate` re-reads a closed polygon from any
+of its vertices, spending the closing hypothesis exactly once, at the seam
+where the side leaving the closing vertex is the side leaving the base one.
+So `exists_outerCut_polygon` is `exists_innerCut_polygon` composed with it,
+and the two pieces have `m + 2` and `n - m + 2` sides.
 -/
 
 namespace GroupApproximation
@@ -392,7 +396,7 @@ theorem exists_outerCut_polygon {X : Type v} [PseudoMetricSpace X]
     exact hsM
   · rw [hsb, hsa]
     exact hcut
-  · rw [hsb, hsa]
+  · rw [hsb]
     exact hcut0
   · rw [hsb, hsa]
     exact hcut1
