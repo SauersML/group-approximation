@@ -18,8 +18,8 @@ families in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245
 > `⋃_{λ∈Λ} {K_{λμ}}_{μ∈M_λ} ↪_h (G, Z)`, where `Z = X ∪ (⋃_{λ∈Λ} Y_λ)`.
 
 Its proof is the relative-presentation argument: strongly bounded relative
-presentations with linear relative isoperimetric functions are chosen for
-`G` over `(X, ℋ)` and for each `H_λ` over `(Y_λ, 𝒦_λ)`, the `S_λ`-cells of a
+presentations with linear relative isoperimetric functions are chosen for `G`
+over `(X, ℋ)` and for each `H_λ` over `(Y_λ, 𝒦_λ)`, the `𝒮_λ`-cells of a
 minimal-type diagram over the first are replaced by diagrams over the second,
 and the resulting count of `𝒫`- and `ℛ`-cells is again linear.  Finiteness of
 `Λ` enters once, to choose a single constant `C` working for every `λ`.  Both
@@ -33,18 +33,17 @@ Proposition 4.35 **removes** the family `{H_λ}` from the conclusion and
 replaces it by subgroups of its members.  Hull's Lemma 4.4 needs the opposite
 bookkeeping: the original peripheral family `{H_λ}` has to survive **beside**
 the auxiliary elementary closures `{E_i}` that the filling cones off, over the
-original relative generating set.  In the notation of this file, with
-`D` the original relative generating set and `E` the auxiliary one:
+original relative generating set.  In the notation of this file, with `D` the
+original relative generating set and `E` the auxiliary one:
 
 * `D.IsHyperbolicallyEmbedded` is `{H_λ} ↪_h (G, X)`;
-* `E.base = D.alphabet.carrier` together with `E.IsHyperbolicallyEmbedded` is
-  `{E_i} ↪_h (G, X ∪ ⋃_λ H_λ)`, the second coning-off performed over the
-  first relative alphabet;
-* the conclusion wanted is `{H_λ} ∪ {E_i} ↪_h (G, X)`, that is,
-  `(combinedRelGenSet D E).IsHyperbolicallyEmbedded`.
+* `E.IsHyperbolicallyEmbedded` together with a condition relating `E.base` to
+  `D.alphabet.carrier` is `{E_i} ↪_h (G, X ∪ ⋃_λ H_λ)`, the second coning-off
+  performed over the first relative alphabet;
+* the conclusion wanted is `{H_λ} ∪ {E_i} ↪_h (G, X)`.
 
-This is `DGOProposition435Statement` below.  It is **not** printed in
-Dahmani--Guirardel--Osin.  The two printed facts nearest to it are
+This is **not** printed in Dahmani--Guirardel--Osin.  The two printed facts
+nearest to it are
 
 * Remark 4.26, which gives only the forward implication
   `{H_λ}_{λ∈Λ} ↪_h (G, X)` ⟹ `H_λ ↪_h (G, X ∪ ⋃_{μ≠λ} H_μ)`, and states
@@ -52,47 +51,52 @@ Dahmani--Guirardel--Osin.  The two printed facts nearest to it are
 * Corollary 4.27, which moves `↪_h` between two relative generating sets whose
   symmetric difference is finite (`GGT.DGOCorollary427`).
 
-Remark 4.26's counterexample does not refute `DGOProposition435Statement`: in
-it, `{H₂} ↪_h (G, X ∪ H₁)` fails, because `X ∪ H₁ = G` makes the relative
-metric of `H₂` bounded.  The base equation `E.base = D.alphabet.carrier` is
-exactly the hypothesis that rules this out.
+Remark 4.26's counterexample does not refute the statement below: in it,
+`{H₂} ↪_h (G, X ∪ H₁)` fails, because `X ∪ H₁ = G` makes the relative metric
+of `H₂` bounded.
 
-## What is proved here and what is left
+## Two forms, and the residues of each
 
-Two of the three clauses of `↪_h` for the labelled sum are proved outright:
+The filling lane holds the two families over *nested*, not equal, alphabets:
+the auxiliary family is coned off over Hull's alphabet, which contains the
+original relative alphabet.  Both forms are therefore stated.
 
-* `combinedRelGenSet_hyperbolic` — clause (a).  The base equation makes the
-  joint alphabet *equal* to the auxiliary alphabet
-  (`RelHyp.combined_alphabet_eq`), so hyperbolicity is reused, not
-  transported.
-* `combined_relBall_inr_subset` — clause (b) at an auxiliary index.  Every
-  joint word avoiding `Γ_{E_i}` becomes an auxiliary word of the same length
-  and the same value by reading each original peripheral letter as a *base*
-  letter, which the base equation licenses.  So the joint relative balls at
-  `Sum.inr i` are contained in the auxiliary ones.
+`DGOProposition435Statement` is the **equal-alphabet** form, over
+`RelHyp.combinedRelGenSet` (base `D.base`).  Under `E.base =
+D.alphabet.carrier` the joint alphabet is *equal* to the auxiliary alphabet,
+so clause (a) of `↪_h` is reused rather than transported
+(`combinedRelGenSet_hyperbolic`), and clause (b) at an auxiliary index follows
+by reading each original peripheral letter as an auxiliary *base* letter
+(`combined_relBall_inr_subset`).  Its single residue is clause (b) at an
+original index, `DGOProposition435LocalFinitenessStatement`, and
+`dgoProposition435Statement_iff_localFiniteness` shows the residue is exactly
+the gap.
 
-What is left is clause (b) at an *original* index: the original peripheral
-metrics must stay locally finite after the auxiliary subgroups are coned off.
-That single residue is `DGOProposition435LocalFinitenessStatement`, and
-`dgoProposition435Statement_iff_localFiniteness` shows it is exactly the gap.
-It is where Proposition 4.35's diagram surgery would go: an auxiliary letter
-is a single edge of unbounded relative length, and nothing geometric bounds it
-without Theorem 4.24.
+`DGOProposition435InclusionStatement` is the **nested-alphabet** form, over
+`jointRelGenSet` (base the symmetrisation of `D.base`, which leaves the
+alphabet unchanged and makes the joint base inversion-closed for free).  Under
+`D.alphabet.carrier ⊆ E.base` clause (b) at an auxiliary index still follows
+(`jointRelGenSet_relBall_inr_subset`), but clause (a) no longer does: the
+joint alphabet is now a *subset* of the auxiliary one, and hyperbolicity does
+not pass to a smaller generating set.  So this form has two residues,
+`DGOProposition435JointHyperbolicStatement` and
+`DGOProposition435JointLocalFinitenessStatement`, and
+`dgoProposition435InclusionStatement_of_residues` splits it into exactly them.
+`dgoProposition435JointHyperbolic_of_base_eq` discharges the first whenever
+the two alphabets do agree, which is what the first filling step supplies.
 
-## The base equation is not decoration
+## Model tests
 
-`combined_relBall_inl_subset_of_isEmpty` and
-`isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_left` are the two
-degenerate model tests: with no auxiliary subgroups the statement reduces to
-its first hypothesis, and with no original subgroups to its second.
+`isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_left` and
+`isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_right` are the two
+degenerate tests: with no auxiliary subgroups the statement reduces to its
+first hypothesis, and with no original subgroups to its second.
 
-`not_isHyperbolicallyEmbedded_of_base_splits` records the failure mode when
-the base equation is weakened to `D.alphabet.carrier ⊆ E.base`, which is the
-inclusion the filling lane actually carries: as soon as every original
-peripheral element is a product of two auxiliary base letters that are not
-peripheral, the original relative metric collapses to radius `2` and local
-finiteness fails.  Enlarging the base is therefore not free, and Corollary
-4.27 repairs only finite enlargements.
+`not_isHyperbolicallyEmbedded_of_base_splits` records what goes wrong if the
+enlarged auxiliary base is taken as the joint base instead of the original
+one: as soon as every original peripheral element is a product of two joint
+base letters, the original relative metric collapses to radius `2` and local
+finiteness fails.  That is why `jointRelGenSet` keeps the original base.
 -/
 
 namespace GroupApproximation
@@ -109,7 +113,7 @@ variable {G : Type u} {Λ : Type v} {I : Type w}
 
 /-- **A joint letter read as an auxiliary letter.**  An original peripheral
 letter becomes a base letter, which is admissible exactly when the auxiliary
-base is the whole original relative alphabet. -/
+base contains the original relative alphabet. -/
 def auxOfJoint : RelLetter G (Sum Λ I) → RelLetter G I
   | base x => base x
   | comp (Sum.inl _) h => base h
@@ -160,7 +164,7 @@ theorem isCompOf_of_auxOfJoint {a : RelLetter G (Sum Λ I)} {i : I}
   | comp s _ =>
       cases s with
       | inl _ => exact h.elim
-      | inr j => exact congrArg Sum.inr h
+      | inr _ => exact congrArg Sum.inr h
 
 /-- Only an original peripheral letter can be a `lam`-component after reading
 a joint letter as an original letter. -/
@@ -170,7 +174,7 @@ theorem isCompOf_of_origOfJoint {a : RelLetter G (Sum Λ I)} {lam : Λ}
   | base _ => exact h.elim
   | comp s _ =>
       cases s with
-      | inl mu => exact congrArg Sum.inl h
+      | inl _ => exact congrArg Sum.inl h
       | inr _ => exact h.elim
 
 end RelLetter
@@ -181,35 +185,14 @@ variable {G : Type u} [Group G] {Λ : Type v} {I : Type w}
 
 /-! ## Reading joint words as auxiliary words -/
 
-/-- A joint letter is an auxiliary letter once the auxiliary base is the whole
-original relative alphabet: base letters are already auxiliary base letters,
-original peripheral letters are auxiliary base letters because the original
-family lies in the original relative alphabet, and auxiliary peripheral letters
-are unchanged. -/
-theorem isLetter_auxOfJoint (D : RelGenSet G Λ) (E : RelGenSet G I)
-    (hbase : E.base = D.alphabet.carrier) {a : RelLetter G (Sum Λ I)}
-    (ha : (combinedRelGenSet D E).IsLetter a) :
-    E.IsLetter (RelLetter.auxOfJoint a) := by
-  cases a with
-  | base x =>
-      show x ∈ E.base
-      rw [hbase]
-      exact Set.mem_union_left _ ha
-  | comp s h =>
-      cases s with
-      | inl lam =>
-          show h ∈ E.base
-          rw [hbase]
-          exact Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, ha⟩)
-      | inr _ => exact ha
-
-/-- Avoidance of `Γ_{E_i}` survives reading a joint word as an auxiliary
-word: the two words have the same vertices, and the only joint letters that
-become `i`-components are the auxiliary `i`-letters themselves. -/
-theorem avoidsFrom_map_auxOfJoint (D : RelGenSet G Λ) (E : RelGenSet G I)
-    (i : I) : ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
-      AvoidsFrom (combinedRelGenSet D E).fam (Sum.inr i) u p →
-        AvoidsFrom E.fam i (u.map RelLetter.auxOfJoint) p := by
+/-- Avoidance of `Γ_{E_i}` survives reading a joint word as an auxiliary word:
+the two words have the same vertices, and the only joint letters that become
+`i`-components are the auxiliary `i`-letters themselves. -/
+theorem avoidsFrom_map_auxOfJoint {F : Sum Λ I → Subgroup G}
+    {Ef : I → Subgroup G} (hF : ∀ j : I, F (Sum.inr j) = Ef j) (i : I) :
+    ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
+      AvoidsFrom F (Sum.inr i) u p →
+        AvoidsFrom Ef i (u.map RelLetter.auxOfJoint) p := by
   intro u
   induction u with
   | nil => intro _ _; exact trivial
@@ -218,29 +201,62 @@ theorem avoidsFrom_map_auxOfJoint (D : RelGenSet G Λ) (E : RelGenSet G I)
       obtain ⟨hhead, htail⟩ := hp
       refine ⟨?_, ?_⟩
       · rintro ⟨hc, hmem⟩
-        exact hhead ⟨RelLetter.isCompOf_of_auxOfJoint hc, hmem⟩
+        refine hhead ⟨RelLetter.isCompOf_of_auxOfJoint hc, ?_⟩
+        rw [hF i]
+        exact hmem
       · rw [RelLetter.auxOfJoint_val]
         exact ih (p * a.val) htail
 
-/-- **Clause (b) of `↪_h` at an auxiliary index.**  The joint relative ball is
-contained in the auxiliary relative ball of the same radius. -/
-theorem combined_relBall_inr_subset (D : RelGenSet G Λ) (E : RelGenSet G I)
-    (hbase : E.base = D.alphabet.carrier) (i : I) (n : ℕ) :
-    (combinedRelGenSet D E).relBall (Sum.inr i) n ⊆ E.relBall i n := by
+/-- **Clause (b) of `↪_h` at an auxiliary index, for any joint relative
+generating set** whose base and whose original peripherals are auxiliary base
+letters.  Every joint word avoiding `Γ_{E_i}` becomes an auxiliary word of the
+same length and the same value. -/
+theorem relBall_inr_subset_of_letters (J : RelGenSet G (Sum Λ I))
+    (E : RelGenSet G I) (hbase : J.base ⊆ E.base)
+    (hinl : ∀ lam : Λ, ((J.fam (Sum.inl lam) : Subgroup G) : Set G) ⊆ E.base)
+    (hinr : ∀ i : I, J.fam (Sum.inr i) = E.fam i) (i : I) (n : ℕ) :
+    J.relBall (Sum.inr i) n ⊆ E.relBall i n := by
   rintro h ⟨hmem, u, hlet, hval, hav, hlen⟩
-  refine ⟨hmem, u.map RelLetter.auxOfJoint, ?_, ?_, ?_, ?_⟩
+  refine ⟨?_, u.map RelLetter.auxOfJoint, ?_, ?_, ?_, ?_⟩
+  · rw [← hinr i]
+    exact hmem
   · intro a ha
     obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
-    exact isLetter_auxOfJoint D E hbase (hlet b hb)
+    have hb' := hlet b hb
+    cases b with
+    | base _ => exact hbase hb'
+    | comp s _ =>
+        cases s with
+        | inl lam => exact hinl lam hb'
+        | inr j =>
+            show _ ∈ E.fam j
+            rw [← hinr j]
+            exact hb'
   · rw [RelLetter.listVal_map_auxOfJoint]
     exact hval
-  · exact avoidsFrom_map_auxOfJoint D E i u 1 hav
+  · exact avoidsFrom_map_auxOfJoint hinr i u 1 hav
   · rw [List.length_map]
     exact hlen
 
-/-- **Clause (a) of `↪_h` for the labelled sum.**  The base equation makes the
-joint alphabet equal to the auxiliary alphabet, so its Cayley graph is the
-auxiliary one. -/
+/-! ## The equal-alphabet form -/
+
+/-- **Clause (b) at an auxiliary index**, for the labelled sum over the
+original base. -/
+theorem combined_relBall_inr_subset (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (hbase : E.base = D.alphabet.carrier) (i : I) (n : ℕ) :
+    (combinedRelGenSet D E).relBall (Sum.inr i) n ⊆ E.relBall i n :=
+  relBall_inr_subset_of_letters _ E
+    (by
+      rw [hbase]
+      exact fun x hx => Set.mem_union_left _ hx)
+    (fun lam => by
+      rw [hbase]
+      exact fun x hx => Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩))
+    (fun _ => rfl) i n
+
+/-- **Clause (a) for the labelled sum.**  The base equation makes the joint
+alphabet equal to the auxiliary alphabet, so its Cayley graph is the auxiliary
+one. -/
 theorem combinedRelGenSet_hyperbolic (D : RelGenSet G Λ) (E : RelGenSet G I)
     (hbase : E.base = D.alphabet.carrier)
     (hE : E.IsHyperbolicallyEmbedded) :
@@ -254,18 +270,11 @@ theorem combinedRelGenSet_hyperbolic (D : RelGenSet G Λ) (E : RelGenSet G I)
     exact hQ
   exact htransport _ _ (combined_alphabet_eq D E hbase) hE.hyperbolic
 
-/-! ## The statement and its exact residue -/
-
-/-- **The joint-family direction of hyperbolic-embeddedness transitivity.**
+/-- **The joint-family direction of hyperbolic-embeddedness transitivity, at
+equal alphabets.**
 
 `{H_λ} ↪_h (G, X)` and `{E_i} ↪_h (G, X ∪ ⋃_λ H_λ)` give
-`{H_λ} ∪ {E_i} ↪_h (G, X)`.
-
-This is the statement Hull's Lemma 4.4 consumes and the one recorded as
-unavailable in `RelHypOsin24CombinedFamily`.  It is not
-Dahmani--Guirardel--Osin's Proposition 4.35, which replaces `{H_λ}` by
-hyperbolically embedded subfamilies of its members instead of keeping it; see
-the module docstring. -/
+`{H_λ} ∪ {E_i} ↪_h (G, X)`. -/
 def DGOProposition435Statement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
     (D : RelGenSet G Lambda) (E : RelGenSet G I),
@@ -312,6 +321,191 @@ theorem dgoProposition435Statement_iff_localFiniteness :
   ⟨dgoProposition435LocalFiniteness_of_statement,
     dgoProposition435Statement_of_localFiniteness⟩
 
+/-! ## The nested-alphabet form -/
+
+/-- The symmetrisation of a relative base.  It is inversion-closed by
+construction and, because the whole relative alphabet is symmetric, it adds no
+letter the alphabet did not already have. -/
+def symBase (D : RelGenSet G Λ) : Set G := {x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base}
+
+theorem subset_symBase (D : RelGenSet G Λ) : D.base ⊆ symBase D :=
+  fun _ hx => Or.inl hx
+
+theorem symBase_inv (D : RelGenSet G Λ) {x : G} (hx : x ∈ symBase D) :
+    x⁻¹ ∈ symBase D := by
+  rcases hx with hx | hx
+  · refine Or.inr ?_
+    rwa [inv_inv]
+  · exact Or.inl hx
+
+theorem symBase_subset_alphabet (D : RelGenSet G Λ) :
+    symBase D ⊆ D.alphabet.carrier := by
+  rintro x (hx | hx)
+  · exact Set.mem_union_left _ hx
+  · have hxinv : x⁻¹ ∈ D.alphabet.carrier := Set.mem_union_left _ hx
+    have h := D.symmetricGenerating.inv_mem x⁻¹ hxinv
+    rwa [inv_inv] at h
+
+/-- **The joint relative generating set over the symmetrised original base.**
+
+Its base is inversion-closed, which both joint interfaces ask for and a bare
+`RelGenSet` does not supply, and symmetrising leaves the alphabet unchanged. -/
+def jointRelGenSet (D : RelGenSet G Λ) (E : RelGenSet G I) :
+    RelGenSet G (Sum Λ I) where
+  base := symBase D
+  fam
+    | Sum.inl lam => D.fam lam
+    | Sum.inr i => E.fam i
+  symmetricGenerating := by
+    refine ⟨?_, ?_⟩
+    · rintro y (hy | hy)
+      · exact Or.inl (symBase_inv D hy)
+      · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+        cases s with
+        | inl lam =>
+            exact Or.inr (Set.mem_iUnion.mpr
+              ⟨Sum.inl lam, (D.fam lam).inv_mem hs⟩)
+        | inr i =>
+            exact Or.inr (Set.mem_iUnion.mpr
+              ⟨Sum.inr i, (E.fam i).inv_mem hs⟩)
+    · refine eq_top_iff.mpr ?_
+      rw [← D.symmetricGenerating.closure_eq]
+      apply Subgroup.closure_mono
+      rintro y (hy | hy)
+      · exact Or.inl (subset_symBase D hy)
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+
+@[simp] theorem jointRelGenSet_base (D : RelGenSet G Λ) (E : RelGenSet G I) :
+    (jointRelGenSet D E).base = symBase D := rfl
+
+@[simp] theorem jointRelGenSet_fam_inl (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (lam : Λ) : (jointRelGenSet D E).fam (Sum.inl lam) = D.fam lam := rfl
+
+@[simp] theorem jointRelGenSet_fam_inr (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (i : I) : (jointRelGenSet D E).fam (Sum.inr i) = E.fam i := rfl
+
+/-- The joint base is closed under inversion. -/
+theorem jointRelGenSet_base_inv (D : RelGenSet G Λ) (E : RelGenSet G I) :
+    ∀ x ∈ (jointRelGenSet D E).base, x⁻¹ ∈ (jointRelGenSet D E).base :=
+  fun _ hx => symBase_inv D hx
+
+/-- The joint alphabet is the original relative alphabet together with the
+auxiliary peripherals. -/
+theorem jointRelGenSet_alphabet_carrier (D : RelGenSet G Λ)
+    (E : RelGenSet G I) :
+    (jointRelGenSet D E).alphabet.carrier =
+      D.alphabet.carrier ∪ (⋃ i : I, ((E.fam i : Subgroup G) : Set G)) := by
+  refine Set.Subset.antisymm ?_ ?_
+  · rintro y (hy | hy)
+    · exact Or.inl (symBase_subset_alphabet D hy)
+    · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+      cases s with
+      | inl lam =>
+          exact Or.inl (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hs⟩))
+      | inr i => exact Or.inr (Set.mem_iUnion.mpr ⟨i, hs⟩)
+  · rintro y (hy | hy)
+    · rcases hy with hy | hy
+      · exact Or.inl (subset_symBase D hy)
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+        exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
+    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
+      exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inr i, hi⟩)
+
+/-- **Clause (b) at an auxiliary index**, for the nested-alphabet form. -/
+theorem jointRelGenSet_relBall_inr_subset (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (hbase : D.alphabet.carrier ⊆ E.base) (i : I)
+    (n : ℕ) : (jointRelGenSet D E).relBall (Sum.inr i) n ⊆ E.relBall i n :=
+  relBall_inr_subset_of_letters _ E
+    (fun _ hx => hbase (symBase_subset_alphabet D hx))
+    (fun lam _ hx =>
+      hbase (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩)))
+    (fun _ => rfl) i n
+
+/-- **The joint-family direction at nested alphabets.**
+
+This is the form the filling lane can use: the auxiliary family is coned off
+over an alphabet that *contains* the original relative alphabet, which is all
+`AuxiliaryPeripheralFamily.base_le` and `RelativeHullContinuationData` give. -/
+def DGOProposition435InclusionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+    (D : RelGenSet G Lambda) (E : RelGenSet G I),
+      D.alphabet.carrier ⊆ E.base →
+      D.IsHyperbolicallyEmbedded →
+      E.IsHyperbolicallyEmbedded →
+        (jointRelGenSet D E).IsHyperbolicallyEmbedded
+
+/-- **First residue of the nested form: the joint Cayley graph is
+hyperbolic.**
+
+Under an inclusion the joint alphabet is a *subset* of the auxiliary one, and
+hyperbolicity does not descend to a smaller generating set, so this no longer
+follows from the hypotheses.  It is free when the two alphabets agree, by
+`dgoProposition435JointHyperbolic_of_base_eq`. -/
+def DGOProposition435JointHyperbolicStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+    (D : RelGenSet G Lambda) (E : RelGenSet G I),
+      D.alphabet.carrier ⊆ E.base →
+      D.IsHyperbolicallyEmbedded →
+      E.IsHyperbolicallyEmbedded →
+        ∃ delta : ℝ,
+          IsHyperbolicSpace delta (Cayley (jointRelGenSet D E).alphabet)
+
+/-- **Second residue of the nested form: the original peripheral metrics stay
+locally finite** once the auxiliary subgroups are coned off. -/
+def DGOProposition435JointLocalFinitenessStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+    (D : RelGenSet G Lambda) (E : RelGenSet G I),
+      D.alphabet.carrier ⊆ E.base →
+      D.IsHyperbolicallyEmbedded →
+      E.IsHyperbolicallyEmbedded →
+        ∀ (lam : Lambda) (n : ℕ),
+          ((jointRelGenSet D E).relBall (Sum.inl lam) n).Finite
+
+/-- **The nested form splits into exactly its two residues.** -/
+theorem dgoProposition435InclusionStatement_of_residues
+    (hhyp : DGOProposition435JointHyperbolicStatement.{u, v, w})
+    (hloc : DGOProposition435JointLocalFinitenessStatement.{u, v, w}) :
+    DGOProposition435InclusionStatement.{u, v, w} := by
+  intro G _ Lambda I D E hbase hD hE
+  refine ⟨hhyp D E hbase hD hE, ?_⟩
+  rintro (lam | i) n
+  · exact hloc D E hbase hD hE lam n
+  · exact (hE.locallyFinite i n).subset
+      (jointRelGenSet_relBall_inr_subset D E hbase i n)
+
+theorem dgoProposition435JointHyperbolic_of_inclusionStatement
+    (h : DGOProposition435InclusionStatement.{u, v, w}) :
+    DGOProposition435JointHyperbolicStatement.{u, v, w} := by
+  intro G _ Lambda I D E hbase hD hE
+  exact (h D E hbase hD hE).hyperbolic
+
+theorem dgoProposition435JointLocalFiniteness_of_inclusionStatement
+    (h : DGOProposition435InclusionStatement.{u, v, w}) :
+    DGOProposition435JointLocalFinitenessStatement.{u, v, w} := by
+  intro G _ Lambda I D E hbase hD hE lam n
+  exact (h D E hbase hD hE).locallyFinite (Sum.inl lam) n
+
+/-- **At equal alphabets the hyperbolicity residue is discharged**: the joint
+alphabet is then the auxiliary alphabet. -/
+theorem dgoProposition435JointHyperbolic_of_base_eq (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (hbase : E.base = D.alphabet.carrier)
+    (hE : E.IsHyperbolicallyEmbedded) :
+    ∃ delta : ℝ,
+      IsHyperbolicSpace delta (Cayley (jointRelGenSet D E).alphabet) := by
+  have hcarrier : (jointRelGenSet D E).alphabet.carrier = E.alphabet.carrier := by
+    rw [jointRelGenSet_alphabet_carrier D E, ← hbase]
+    rfl
+  have halph : (jointRelGenSet D E).alphabet = E.alphabet :=
+    OsinComponents.alphabet_eq_of_carrier_eq hcarrier
+  have htransport : ∀ P Q : Alphabet G, P = Q →
+      (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley Q)) →
+        ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley P) := by
+    intro P Q hPQ hQ
+    subst hPQ
+    exact hQ
+  exact htransport _ _ halph hE.hyperbolic
+
 /-! ## Model tests -/
 
 /-- **No original subgroups.**  The labelled sum is the auxiliary family, and
@@ -341,10 +535,11 @@ theorem isLetter_origOfJoint_of_isEmpty [IsEmpty I] (D : RelGenSet G Λ)
 
 /-- Avoidance of `Γ_{H_lam}` survives reading a joint word as an original
 word. -/
-theorem avoidsFrom_map_origOfJoint (D : RelGenSet G Λ) (E : RelGenSet G I)
-    (lam : Λ) : ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
-      AvoidsFrom (combinedRelGenSet D E).fam (Sum.inl lam) u p →
-        AvoidsFrom D.fam lam (u.map RelLetter.origOfJoint) p := by
+theorem avoidsFrom_map_origOfJoint {F : Sum Λ I → Subgroup G}
+    {Df : Λ → Subgroup G} (hF : ∀ mu : Λ, F (Sum.inl mu) = Df mu) (lam : Λ) :
+    ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
+      AvoidsFrom F (Sum.inl lam) u p →
+        AvoidsFrom Df lam (u.map RelLetter.origOfJoint) p := by
   intro u
   induction u with
   | nil => intro _ _; exact trivial
@@ -353,7 +548,9 @@ theorem avoidsFrom_map_origOfJoint (D : RelGenSet G Λ) (E : RelGenSet G I)
       obtain ⟨hhead, htail⟩ := hp
       refine ⟨?_, ?_⟩
       · rintro ⟨hc, hmem⟩
-        exact hhead ⟨RelLetter.isCompOf_of_origOfJoint hc, hmem⟩
+        refine hhead ⟨RelLetter.isCompOf_of_origOfJoint hc, ?_⟩
+        rw [hF lam]
+        exact hmem
       · rw [RelLetter.origOfJoint_val]
         exact ih (p * a.val) htail
 
@@ -369,7 +566,8 @@ theorem combined_relBall_inl_subset_of_isEmpty [IsEmpty I]
     exact isLetter_origOfJoint_of_isEmpty D E (hlet b hb)
   · rw [RelLetter.listVal_map_origOfJoint]
     exact hval
-  · exact avoidsFrom_map_origOfJoint D E lam u 1 hav
+  · exact avoidsFrom_map_origOfJoint (F := (combinedRelGenSet D E).fam)
+      (Df := D.fam) (fun _ => rfl) lam u 1 hav
   · rw [List.length_map]
     exact hlen
 
@@ -386,21 +584,16 @@ theorem isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_right
       (combined_relBall_inl_subset_of_isEmpty D E lam n)
   · exact isEmptyElim i
 
-/-! ## Why the base equation cannot be weakened to an inclusion -/
+/-! ## Why the joint base has to be the original one -/
 
-/-- **The inclusion form is false.**
+/-- **The enlarged auxiliary base cannot be used as the joint base.**
 
-If the auxiliary base is allowed to be strictly larger than the original
-relative alphabet, an original peripheral subgroup can be reached in two base
-steps and its relative metric collapses.  The hypothesis `hsplit` says exactly
-that: every element of `H_lam` is a product of two auxiliary base letters that
-are not peripheral letters of the joint family, so all of `H_lam` lies in the
-joint relative ball of radius `2`.
-
-This is the obstruction the filling lane meets, where the auxiliary family is
-embedded over Hull's alphabet and only an inclusion
-`D.alphabet.carrier ⊆ E.base` is available.  Corollary 4.27 repairs only
-finite enlargements of a relative generating set. -/
+The hypothesis `hsplit` says that every element of `H_lam` is a product of two
+joint base letters, so all of `H_lam` lies in the joint relative ball of radius
+`2` and local finiteness fails.  Over Hull's alphabet, which contains the
+original relative alphabet, that is exactly what happens, which is why
+`jointRelGenSet` keeps the original base and pays for it with the hyperbolicity
+residue instead. -/
 theorem not_isHyperbolicallyEmbedded_of_base_splits
     (J : RelGenSet G (Sum Λ I)) (lam : Λ)
     (hsplit : ∀ h ∈ J.fam (Sum.inl lam), ∃ x y : G,
