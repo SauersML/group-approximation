@@ -1402,6 +1402,62 @@ theorem firstGapArcBoundaryExclusion_terminal_of_parent_successor
     exact hcycle
   exact hparent.2.2.2.2 htargetNext hparentLetter
 
+/-- A wrapped terminal cycle letter identified with the parent arc's successor
+is excluded by the parent's maximality clause. -/
+theorem secondGapArcBoundaryExclusion_terminal_of_parent_successor
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (hn :
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 <
+        (B.secondGapCycle j).length)
+    (hnext : B.secondArcCut (B.secondTargetSide s) + 1 < B.secondArc.length)
+    (hadj :
+      (B.secondGapCycle j)[
+          (B.secondGapLeft j).length +
+            (B.secondArcCut (B.secondTargetSide s) -
+              B.secondArcCut (B.secondGapStartSide j)) + 1]'hn =
+        B.secondArc[B.secondArcCut (B.secondTargetSide s) + 1]'hnext) :
+    ¬ ((B.secondGapCycle j)[
+        (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+      (P.label s) := by
+  have hsData := Finset.mem_filter.mp hs
+  intro hcycle
+  have hparent := B.secondArc_targetComponent hsData.1
+  have htargetNext : B.secondTargetPos s + 1 < B.secondArc.length := by
+    rw [← (B.secondArcCut_target hsData.1).1]
+    exact hnext
+  have hget : B.secondArc[B.secondArcCut (B.secondTargetSide s) + 1]'hnext =
+      B.secondArc[B.secondTargetPos s + 1]'htargetNext := by
+    apply getElem_congr_idx
+    rw [(B.secondArcCut_target hsData.1).1]
+  have hparentLetter :
+      (B.secondArc[B.secondTargetPos s + 1]'htargetNext).IsCompOf
+        (P.label s) := by
+    rw [← hget, ← hadj]
+    exact hcycle
+  exact hparent.2.2.2.2 htargetNext hparentLetter
+
+/-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
+theorem secondGapArcBoundaryExclusion_emptyModel
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount) (s : ℕ)
+    (hcycle : B.secondGapCycle j = []) :
+    FirstGapArcBoundaryExclusion B j s := by
+  simp [FirstGapArcBoundaryExclusion, hcycle]
+
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
