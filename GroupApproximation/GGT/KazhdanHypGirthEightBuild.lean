@@ -127,7 +127,7 @@ def OrientedCactusBoundaryProducer : Prop :=
         (triangleRelatorWords T) R),
       Z.boundaryWord = w.map freeLetter
 
-omit [Fintype Generator] in
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusBoundaryInput (T := T) := by
@@ -141,7 +141,7 @@ theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     boundaryWord_eq := hboundary
   }⟩
 
-omit [Fintype Generator] in
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The cactus and base-cell bridge has the exact literal boundary required by
 the disc-diagram consumer. -/
 theorem reducedRelatorOnly_of_cactusBoundary
@@ -521,6 +521,7 @@ theorem build_with_boundary
         (∑ i, layer i) ≤ Delta.innerFaceCount ∧
         (∀ i, ell - loss ≤ rho * layer i) ∧
         18 * rho * ell < m * (ell - loss) := by
+  classical
   intro delta x y z p hp hfarXZ hfarZY
   obtain ⟨w, hw, hfree⟩ := hword delta x y z p hp hfarXZ hfarZY
   obtain ⟨Delta, hboundary, hred, _hrelatorOnly⟩ :=
