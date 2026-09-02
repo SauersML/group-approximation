@@ -147,7 +147,8 @@ theorem hereditaryAverageDegree_oneVertexNoEdgesModel
   have hedges : edges = ∅ := Subsingleton.elim _ _
   rw [hedges]
   have hcardPos : 0 < vertices.card := Finset.card_pos.mpr hvertices
-  simp only [incidentEdges, Finset.filter_empty, Finset.card_empty]
+  simp only [incidentEdges, Finset.filter_empty, Finset.card_empty,
+    Finset.sum_const_zero]
   omega
 
 /-- Average degree below six supplies a vertex of active degree at most five. -/
