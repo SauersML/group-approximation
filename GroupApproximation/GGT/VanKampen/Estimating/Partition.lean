@@ -181,6 +181,17 @@ noncomputable def canonical
         (Classical.choose_spec hbound)
     · exact CellDartClass.unbound
 
+/-- The canonical classifier makes every cell boundary partition inhabited. -/
+theorem nonempty
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) :
+    Nonempty (CellBoundaryPartition selected i) :=
+  ⟨canonical selected i⟩
+
 /-- Number of boundary darts of one kind. -/
 noncomputable def kindLength
     {G : Type u} [Group G] {Lambda : Type w}
