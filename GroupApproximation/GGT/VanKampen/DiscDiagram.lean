@@ -151,8 +151,8 @@ theorem boundaryWord_length {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram W) :
     Delta.boundaryWord.length = Delta.toCombMap.faceDegree Delta.outerFace := by
-  rw [boundaryWord, HullSC.RelWord.revInv, List.length_map,
-    List.length_reverse, Delta.faceWord_length]
+  rw [boundaryWord, HullSC.RelWord.revInv, List.length_reverse,
+    List.length_map, Delta.faceWord_length]
 
 /-- The group element read around the exterior boundary. -/
 def boundaryValue {G : Type u} [Group G] {Lambda : Type w}
@@ -253,7 +253,7 @@ structure CactusRealization
     {A : Manuscript.NonMF.TorsionFree.Alphabet G}
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) where
-  diagram : DiscDiagram W
+  diagram : DiscDiagram.{u, w, 0} W
   boundaryWord_eq : diagram.boundaryWord =
     Z.boundaryWord.map (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)
   cellValues_eq : diagram.relatorCells.map RelatorCell.value = Z.factors
