@@ -14,6 +14,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -49,15 +50,23 @@ theorem firstGapLeft_length_le_one
     (B.firstGapLeft j).length ≤ 1 := by
   classical
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.first j with
-  | none => simp [firstGapLeft, hprev]
+  | none =>
+      simp only [firstGapLeft]
+      rw [hprev]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
       let C := B.firstBrokenConnectors s hs
       by_cases hforward : B.firstGapRunsForward j
-      · simpa only [firstGapLeft, hprev, hforward, ↓reduceIte] using C.end_length
-      · simpa only [firstGapLeft, hprev, hforward, ↓reduceIte] using
-          C.endThroughPartner_length
+      · simp only [firstGapLeft]
+        rw [hprev]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.end_length
+      · simp only [firstGapLeft]
+        rw [hprev]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.endThroughPartner_length
 
 theorem firstGapRight_length_le_one
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -69,16 +78,23 @@ theorem firstGapRight_length_le_one
     (B.firstGapRight j).length ≤ 1 := by
   classical
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.first j with
-  | none => simp [firstGapRight, hnext]
+  | none =>
+      simp only [firstGapRight]
+      rw [hnext]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
       let C := B.firstBrokenConnectors s hs
       by_cases hforward : B.firstGapRunsForward j
-      · simpa only [firstGapRight, hnext, hforward, ↓reduceIte] using
-          C.start_length
-      · simpa only [firstGapRight, hnext, hforward, ↓reduceIte] using
-          C.startThroughPartner_length
+      · simp only [firstGapRight]
+        rw [hnext]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.start_length
+      · simp only [firstGapRight]
+        rw [hnext]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.startThroughPartner_length
 
 theorem secondGapLeft_length_le_one
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -90,15 +106,23 @@ theorem secondGapLeft_length_le_one
     (B.secondGapLeft j).length ≤ 1 := by
   classical
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.second j with
-  | none => simp [secondGapLeft, hprev]
+  | none =>
+      simp only [secondGapLeft]
+      rw [hprev]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
       let C := B.secondBrokenConnectors s hs
       by_cases hforward : B.secondGapRunsForward j
-      · simpa only [secondGapLeft, hprev, hforward, ↓reduceIte] using
-          C.endThroughPartner_length
-      · simpa only [secondGapLeft, hprev, hforward, ↓reduceIte] using C.end_length
+      · simp only [secondGapLeft]
+        rw [hprev]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.endThroughPartner_length
+      · simp only [secondGapLeft]
+        rw [hprev]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.end_length
 
 theorem secondGapRight_length_le_one
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -110,16 +134,23 @@ theorem secondGapRight_length_le_one
     (B.secondGapRight j).length ≤ 1 := by
   classical
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.second j with
-  | none => simp [secondGapRight, hnext]
+  | none =>
+      simp only [secondGapRight]
+      rw [hnext]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
       let C := B.secondBrokenConnectors s hs
       by_cases hforward : B.secondGapRunsForward j
-      · simpa only [secondGapRight, hnext, hforward, ↓reduceIte] using
-          C.startThroughPartner_length
-      · simpa only [secondGapRight, hnext, hforward, ↓reduceIte] using
-          C.start_length
+      · simp only [secondGapRight]
+        rw [hnext]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.startThroughPartner_length
+      · simp only [secondGapRight]
+        rw [hnext]
+        simp only [hforward, ↓reduceIte]
+        simpa only [C, s] using C.start_length
 
 theorem firstGapLeft_length_le_startSide
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -131,7 +162,10 @@ theorem firstGapLeft_length_le_startSide
     (B.firstGapLeft j).length ≤ B.firstGapStartSide j := by
   classical
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.first j with
-  | none => simp [firstGapLeft, firstGapStartSide, hprev]
+  | none =>
+      simp only [firstGapLeft, firstGapStartSide]
+      rw [hprev]
+      simp
   | some e =>
       have hlen := B.firstGapLeft_length_le_one j
       have hstart : B.firstGapStartSide j =
@@ -150,7 +184,10 @@ theorem secondGapLeft_length_le_startSide
     (B.secondGapLeft j).length ≤ B.secondGapStartSide j := by
   classical
   cases hprev : HalfGap.previousEntry B.brokenAssignment.index.second j with
-  | none => simp [secondGapLeft, secondGapStartSide, hprev]
+  | none =>
+      simp only [secondGapLeft, secondGapStartSide]
+      rw [hprev]
+      simp
   | some e =>
       have hlen := B.secondGapLeft_length_le_one j
       have hstart : B.secondGapStartSide j =
@@ -170,7 +207,10 @@ theorem firstGapFinishSide_add_right_length_le
       B.secondSide - B.firstSide + 1 := by
   classical
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.first j with
-  | none => simp [firstGapFinishSide, firstGapRight, hnext]
+  | none =>
+      simp only [firstGapFinishSide, firstGapRight]
+      rw [hnext]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.first e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
@@ -192,7 +232,10 @@ theorem secondGapFinishSide_add_right_length_le
       (n - B.secondSide) + B.firstSide + 1 := by
   classical
   cases hnext : HalfGap.nextEntry B.brokenAssignment.index.second j with
-  | none => simp [secondGapFinishSide, secondGapRight, hnext]
+  | none =>
+      simp only [secondGapFinishSide, secondGapRight]
+      rw [hnext]
+      simp
   | some e =>
       let s := HalfEntry.entrySource B.brokenAssignment.index.second e
       have hs := HalfEntry.entrySource_mem B.brokenAssignment.index.second e
