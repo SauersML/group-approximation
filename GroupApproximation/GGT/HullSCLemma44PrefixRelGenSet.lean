@@ -114,7 +114,8 @@ theorem RelWord.listVal_mem_prefixValues_of_mem
     {W : Set (List (GGT.RelLetter G Lambda))}
     {word : List (GGT.RelLetter G Lambda)} (hword : word ∈ W) :
     GGT.RelLetter.listVal word ∈ RelWord.prefixValues W := by
-  exact RelWord.listVal_mem_prefixValues hword (by simp)
+  exact RelWord.listVal_mem_prefixValues (pre := word) (suffix := [])
+    hword (by simp)
 
 /-- The empty prefix puts the identity in the prefix-value set whenever the
 relator family is nonempty. -/
@@ -124,7 +125,8 @@ theorem RelWord.one_mem_prefixValues_of_nonempty
     (1 : G) ∈ RelWord.prefixValues W := by
   obtain ⟨word, hword⟩ := hW
   refine ⟨word, hword, [], word, rfl, ?_⟩
-  exact GGT.RelLetter.listVal_nil
+  change (1 : G) = 1
+  rfl
 
 /-- Formal inversion and rotation make prefix values inversion closed. -/
 theorem RelWord.inv_mem_prefixValues
@@ -156,10 +158,11 @@ theorem RelWord.inv_mem_prefixValues
     RelWord.prefixValues
       (∅ : Set (List (GGT.RelLetter G Lambda))) = ∅ := by
   ext g
-  simp only [RelWord.prefixValues, Set.mem_setOf_eq, Set.not_mem_empty,
-    iff_false]
-  rintro ⟨word, hword, pre, suffix, hsplit, hvalue⟩
-  exact hword.elim
+  constructor
+  · rintro ⟨word, hword, pre, suffix, hsplit, hvalue⟩
+    exact hword.elim
+  · intro hg
+    exact hg.elim
 
 /-! ## Source and quotient prefix relative generating sets -/
 
