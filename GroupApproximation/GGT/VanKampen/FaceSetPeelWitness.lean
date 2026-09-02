@@ -149,9 +149,11 @@ theorem twoFace_planarCertificate
     apply boundary.cycle_nonempty
     rw [hcycle, hnil]
   · right
-    refine ⟨?_, ?_⟩
-    · simpa [hneq] using boundary₂
-    · simpa [hneq] using hboundary₂
+    have hfaceserase :
+        (({f₁, f₂} : Finset Delta.toCombMap.Face).erase f₁) = {f₂} := by
+      simp [hneq]
+    rw [hfaceserase]
+    exact ⟨boundary₂, hboundary₂⟩
 
 end Embedded
 end VanKampen
