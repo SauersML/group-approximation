@@ -23,6 +23,7 @@ namespace HullSC
 
 open GroupApproximation.GGT
 open GroupApproximation.GGT.Elementary
+open GroupApproximation.GGT.OsinComponents
 open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
