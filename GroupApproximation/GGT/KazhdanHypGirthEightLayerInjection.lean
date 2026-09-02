@@ -10,7 +10,7 @@ It deliberately does not import `KazhdanHypGirthEightPrimitives2`: the
 interface below is the part needed by that module, while its larger import
 closure is currently under repair.
 
-For a centered boundary window, `CenteredWindowLayerCover` records the
+For a centered boundary window, `CenteredWindowLayerCover` specifies the
 surviving positions and the fact that the successive-star layers cover them.
 The first face is selected from that cover, so
 `CenteredWindowFirstLayerIncidence` is constructed rather than assumed.
