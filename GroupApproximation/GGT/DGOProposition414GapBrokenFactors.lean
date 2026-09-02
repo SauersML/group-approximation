@@ -178,10 +178,12 @@ theorem firstBroken_sourceSpan_eq
         vertex B.firstBase B.firstWord
           (B.firstBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
+  change s ∈ B.firstTarget at hsTarget
   let C := B.firstBrokenConnectors s hs
   have hposLt : B.componentPlacement.firstPos s < B.firstWord.length := by
     obtain ⟨t, ht⟩ := B.componentPlacement.first_start s hsTarget
     exact ht.1.trans_le ht.2.1
+  change B.firstTargetPos s < B.firstWord.length at hposLt
   have hsourceEnd := C.source_end_eq
   have hletter :
       B.firstWord[B.componentPlacement.firstPos s]'hposLt =
@@ -221,10 +223,12 @@ theorem secondBroken_sourceSpan_eq
         vertex B.secondBase B.secondWord
           (B.secondBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
+  change s ∈ B.secondTarget at hsTarget
   let C := B.secondBrokenConnectors s hs
   have hposLt : B.componentPlacement.secondPos s < B.secondWord.length := by
     obtain ⟨t, ht⟩ := B.componentPlacement.second_start s hsTarget
     exact ht.1.trans_le ht.2.1
+  change B.secondTargetPos s < B.secondWord.length at hposLt
   have hsourceEnd := C.source_end_eq
   have hword : B.secondWord = B.secondArc ++ B.chord := by
     have hleft : B.refinedCut (B.firstSide + 1) = B.firstVertex := by
@@ -238,10 +242,21 @@ theorem secondBroken_sourceSpan_eq
       B.secondWord[B.componentPlacement.secondPos s]'hposLt =
         B.secondArc[B.secondTargetPos s]'
           (B.secondTargetPos_lt_secondArc_length hsTarget) := by
-    rw [hword]
-    change (B.secondArc ++ B.chord)[B.secondTargetPos s]'_ = _
-    rw [List.getElem_append_left
-      (B.secondTargetPos_lt_secondArc_length hsTarget)]
+    let p := B.secondTargetPos s
+    have hpArc : p < B.secondArc.length :=
+      B.secondTargetPos_lt_secondArc_length hsTarget
+    have hpAppend : p < (B.secondArc ++ B.chord).length := by
+      rw [List.length_append]
+      omega
+    have hopt := congrArg (fun w : List (RelLetter G Λ) => w[p]?) hword
+    rw [List.getElem?_eq_getElem hposLt,
+      List.getElem?_eq_getElem hpAppend] at hopt
+    have hget : B.secondWord[p]'hposLt =
+        (B.secondArc ++ B.chord)[p]'hpAppend := Option.some.inj hopt
+    calc
+      _ = (B.secondArc ++ B.chord)[p]'hpAppend := hget
+      _ = B.secondArc[p]'hpArc := by
+        rw [List.getElem_append_left hpArc]
   rw [hsourceEnd]
   calc
     P.span s =
