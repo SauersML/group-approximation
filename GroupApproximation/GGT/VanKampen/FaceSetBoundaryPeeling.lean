@@ -58,7 +58,7 @@ structure FaceSetBoundaryPeelWitness
 
 /-- A local peel oracle, parametrised over every nonempty single-cycle
 `G`-region in the diagram. -/
-abbrev FaceSetBoundaryPeelOracle : Prop :=
+abbrev FaceSetBoundaryPeelOracle :=
   ∀ {faces : Finset Delta.toCombMap.Face}
     (boundary : FaceSetBoundary Delta faces),
     FaceSetBoundaryPeelWitness boundary
@@ -106,7 +106,7 @@ theorem oneFacePeelWitness
     {face : Delta.toCombMap.Face} (hne : face ≠ Delta.outerFace) :
     FaceSetDeletionSchedule (Delta := Delta) {face}
       (Delta.faceBoundary face).darts :=
-  FaceSetDeletionSchedule.oneFace face hne
+  oneFace face hne
 
 /-- Two adjacent selected faces are handled by two successive witnesses.  The
 first witness may use an arbitrary finite insertion/cancellation sequence;
@@ -128,7 +128,7 @@ theorem twoFacePeeling
     oneFace f₂ h₂
   rw [hnext] at moves
   have hstep := FaceSetDeletionSchedule.step f₁
-    (by simpa [hneq] using h₁mem) h₁ moves htail
+    (by simp [hneq]) h₁ moves.to_homotopy htail
   simpa [hneq] using hstep
 
 end Embedded
