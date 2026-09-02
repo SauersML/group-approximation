@@ -583,8 +583,12 @@ theorem cactusRelatorBackwardDarts_ne_nil
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (i : Fin Z.cells.length) :
     Z.cactusRelatorBackwardDarts i ≠ [] := by
-  rw [cactusRelatorBackwardDarts, List.ofFn_eq_nil_iff]
-  exact Nat.ne_of_gt (Z.cactusShape.relator_pos i)
+  change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
+    CactusDart.relatorBackward i j.rev)) ≠ []
+  intro hnil
+  have hlength := congrArg List.length hnil
+  simp only [List.length_ofFn, List.length_nil] at hlength
+  exact (Nat.ne_of_gt (Z.cactusShape.relator_pos i)) hlength
 
 /-- The first backward relator dart is the predecessor of its distinguished
 dart. -/
@@ -599,7 +603,9 @@ theorem cactusRelatorBackwardDarts_head
       CactusDart.relatorBackward i
         (CactusShape.prevFin (Z.cactusShape.relatorLength i)
           (Z.cactusShape.relatorZero i)) := by
-  rw [cactusRelatorBackwardDarts, List.head_ofFn]
+  change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
+    CactusDart.relatorBackward i j.rev)).head _ = _
+  rw [List.head_ofFn]
   exact congrArg
     (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
     (prevFin_zero_eq_rev_zero (Z.cactusShape.relator_pos i)).symm
@@ -614,7 +620,9 @@ theorem cactusRelatorBackwardDarts_getLast
     (h : Z.cactusRelatorBackwardDarts i ≠ []) :
     (Z.cactusRelatorBackwardDarts i).getLast h =
       CactusDart.relatorBackward i (Z.cactusShape.relatorZero i) := by
-  rw [cactusRelatorBackwardDarts, List.getLast_ofFn]
+  change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
+    CactusDart.relatorBackward i j.rev)).getLast _ = _
+  rw [List.getLast_ofFn]
   apply congrArg
     (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
   apply Fin.ext
@@ -648,7 +656,8 @@ theorem cactusCellSegment_getLast
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (i : Fin Z.cells.length) (h : Z.cactusCellSegment i ≠ []) :
     (Z.cactusCellSegment i).getLast h = CactusDart.stemIn i := by
-  rw [cactusCellSegment]
+  change ((CactusDart.stemOut i ::
+    Z.cactusRelatorBackwardDarts i) ++ [CactusDart.stemIn i]).getLast _ = _
   simp
 
 /-- The outgoing stem, backward relator polygon, and incoming stem form one
@@ -690,7 +699,7 @@ theorem cactusCellSegment_chain
     subst y
     rw [Z.cactusRelatorBackwardDarts_head i hrel]
     rfl
-  simpa only [List.singleton_append, rel, cactusCellSegment] using hwhole
+  simpa [rel, cactusCellSegment, List.append_assoc] using hwhole
 
 /-- Below the wrap point, cyclic successor agrees with ordinary successor. -/
 theorem nextFin_mk_succ {n k : ℕ} (hk : k + 1 < n) :
