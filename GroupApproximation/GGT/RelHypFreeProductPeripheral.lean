@@ -12,12 +12,10 @@ the one geometric input of the Fournier-Facio quotient sentence:
 > if `H` is word hyperbolic then `U ∗ H` is hyperbolic relative to the factor
 > `U`.
 
-`IsRelativelyHyperbolic` has two clauses at the same relative generating set:
-Farb's -- the coned-off Cayley graph `Γ(G, X ⊔ ℋ)` is Gromov hyperbolic -- and
-Dahmani--Guirardel--Osin's -- the metric `d̂` that the *avoiding* relative paths
-induce on each peripheral subgroup is locally finite.  **This module proves the
-second one outright**, for the free product at the canonical relative generating
-set, and reduces the statement to the first.
+`IsRelativelyHyperbolic` is now the labelled DGO notion.  This module proves
+its local-finiteness clause directly for `RelLetter` paths at the canonical
+relative generating set and reduces the statement to hyperbolicity of the
+coned Cayley graph.
 
 ## What is proved, and why it is the clause that needed proving
 
@@ -473,6 +471,101 @@ theorem peripheralMetricLocallyFinite_pairRelGen (S : Finset (G true))
   exact Set.Finite.subset (Set.finite_singleton (1 : CoprodI G))
     (peripheralBall_subset_one S hS l n)
 
+/-! ### The labelled DGO relative generating set -/
+
+/-- The labelled version of `pairRelGen`.  Its base is the finite image of the
+partner-factor generators and its sole peripheral is the other free factor. -/
+def pairLabelledRelGen (S : Finset (G true))
+    (hS : IsSymmetricGeneratingSet (S : Set (G true))) :
+    GGT.RelGenSet (CoprodI G) Unit where
+  base := (pairRelGen S hS).carrier
+  fam := fun _ => pairPeripheral G
+  symmetricGenerating := (pairRelGen S hS).alphabet.symmetricGenerating
+
+@[simp] theorem pairLabelledRelGen_base (S : Finset (G true))
+    (hS : IsSymmetricGeneratingSet (S : Set (G true))) :
+    (pairLabelledRelGen S hS).base = (pairRelGen S hS).carrier := rfl
+
+/-- The head-factor invariant also survives a labelled avoiding word.  Base
+letters come from the partner factor; a peripheral letter can be read only
+when the current vertex is outside the peripheral factor. -/
+theorem headsPartner_listVal_of_avoidsFrom [∀ b, DecidableEq (G b)]
+    (S : Finset (G true))
+    (hS : IsSymmetricGeneratingSet (S : Set (G true))) :
+    ∀ (w : List (RelLetter (CoprodI G) Unit)) (g₀ : CoprodI G),
+      (∀ a ∈ w, (pairLabelledRelGen S hS).IsLetter a) →
+      HeadsPartner g₀ →
+      AvoidsFrom (pairLabelledRelGen S hS).fam () w g₀ →
+      HeadsPartner (g₀ * RelLetter.listVal w) := by
+  classical
+  intro w
+  induction w with
+  | nil =>
+      intro g₀ _ hg₀ _
+      simpa [RelLetter.listVal] using hg₀
+  | cons a w ih =>
+      intro g₀ hletters hg₀ havoid
+      have ha := hletters a (by simp)
+      have htail : ∀ x ∈ w, (pairLabelledRelGen S hS).IsLetter x :=
+        fun x hx => hletters x (by simp [hx])
+      have havHead := havoid.1
+      have havTail := havoid.2
+      have hstep : HeadsPartner (g₀ * a.val) := by
+        cases a with
+        | base x =>
+            change x ∈ (pairRelGen S hS).carrier at ha
+            obtain ⟨s, hs, rfl⟩ := ha
+            by_cases hs1 : s = 1
+            · subst s
+              simpa using hg₀
+            · have hnot : (CoprodI.of s : CoprodI G) ∉ pairPeripheral G := by
+                intro hmem
+                have hone : (CoprodI.of s : CoprodI G) = 1 :=
+                  eq_one_of_headsPartner_of_mem
+                    (Or.inr (headIdx_of hs1)) hmem
+                apply hs1
+                apply CoprodI.of_injective true
+                simpa using hone
+              apply headsPartner_mul hg₀ ⟨true, s, rfl⟩
+              rintro ⟨hgmem, hgamem⟩
+              apply hnot
+              have hm := (pairPeripheral G).mul_mem
+                ((pairPeripheral G).inv_mem hgmem) hgamem
+              simpa [mul_assoc] using hm
+        | comp l x =>
+            cases l
+            change x ∈ pairPeripheral G at ha
+            obtain ⟨s, hsx⟩ := mem_pairPeripheral.mp ha
+            subst x
+            apply headsPartner_mul hg₀ ⟨false, s, rfl⟩
+            rintro ⟨hgmem, _⟩
+            exact havHead ⟨rfl, hgmem⟩
+      have hrec := ih (g₀ * a.val) htail hstep havTail
+      simpa [RelLetter.listVal, mul_assoc] using hrec
+
+/-- Every labelled relative ball in the free-product peripheral is `{1}`. -/
+theorem labelledRelBall_subset_one (S : Finset (G true))
+    (hS : IsSymmetricGeneratingSet (S : Set (G true))) (n : ℕ) :
+    (pairLabelledRelGen S hS).relBall () n ⊆ ({1} : Set (CoprodI G)) := by
+  classical
+  intro x hx
+  rw [RelGenSet.mem_relBall] at hx
+  obtain ⟨hxP, w, hletters, hval, havoid, _⟩ := hx
+  have hgood := headsPartner_listVal_of_avoidsFrom S hS w 1 hletters
+    (Or.inl rfl) havoid
+  rw [one_mul, hval] at hgood
+  exact eq_one_of_headsPartner_of_mem hgood hxP
+
+/-- The canonical free-product peripheral is locally finite for the labelled
+DGO metric. -/
+theorem pairLabelledRelGen_locallyFinite (S : Finset (G true))
+    (hS : IsSymmetricGeneratingSet (S : Set (G true))) :
+    ∀ (l : Unit) (n : ℕ), ((pairLabelledRelGen S hS).relBall l n).Finite := by
+  intro l n
+  cases l
+  exact Set.Finite.subset (Set.finite_singleton 1)
+    (labelledRelBall_subset_one S hS n)
+
 end TwoFactor
 
 /-! ## 3.  What is left of Osin's Theorem 2.34 -/
@@ -487,6 +580,12 @@ def freeProductRelGen (U H : Type) [Group U] [Group H] (S : Finset H)
     RelativeGeneratingSet (CoprodI (pairFamily U H))
       (fun _ : Unit => freeProductPeripheral U H) :=
   pairRelGen (G := pairFamily U H) S hS
+
+/-- The labelled DGO relative generating set of `U ∗ H` relative to `U`. -/
+def freeProductLabelledRelGen (U H : Type) [Group U] [Group H]
+    (S : Finset H) (hS : IsSymmetricGeneratingSet (S : Set H)) :
+    GGT.RelGenSet (CoprodI (pairFamily U H)) Unit :=
+  pairLabelledRelGen (G := pairFamily U H) S hS
 
 /-- The peripheral clause, at the free product. -/
 theorem peripheralMetricLocallyFinite_freeProductRelGen (U H : Type) [Group U]
@@ -511,7 +610,7 @@ def FreeProductConedHyperbolicStatement : Prop :=
     (hS : IsSymmetricGeneratingSet (S : Set H)) (δ : ℕ),
       Hyperbolic.IsFourPointHyperbolic (S : Set H) δ →
         ∃ Δ : ℝ, HullGeometry.IsHyperbolicSpace Δ
-          (Cayley (freeProductRelGen U H S hS).alphabet)
+          (Cayley (freeProductLabelledRelGen U H S hS).alphabet)
 
 /-- **`FreeProductRelativelyHyperbolicStatement` from Farb's clause alone.**
 
@@ -524,8 +623,10 @@ theorem freeProductRelativelyHyperbolicStatement_of_coned
   intro U H instU instH hhyp
   obtain ⟨S, hS, δ, hδ⟩ := hhyp
   obtain ⟨Δ, hΔ⟩ := h U H instU instH S hS δ hδ
-  exact ⟨freeProductRelGen U H S hS, Δ, hΔ,
-    peripheralMetricLocallyFinite_freeProductRelGen U H S hS⟩
+  refine ⟨freeProductLabelledRelGen U H S hS, ?_, rfl, ?_⟩
+  · exact (freeProductRelGen U H S hS).finite
+  · exact ⟨⟨Δ, hΔ⟩,
+      pairLabelledRelGen_locallyFinite (G := pairFamily U H) S hS⟩
 
 /-- **The Fournier-Facio quotient sentence, on three inputs, the geometric one
 weakened.**
