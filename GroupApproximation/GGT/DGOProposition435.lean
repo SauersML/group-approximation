@@ -1036,7 +1036,8 @@ theorem jointRelGenSetFull_relBall_inr_subset (D : RelGenSet G Λ)
 
 The form the relator re-spelling consumes.  Its joint family lives on the
 auxiliary relative alphabet, so it is a second peripheral structure on the same
-alphabet. -/
+alphabet.  Of the three forms in this file it is the strongest, and it is the
+only one whose clause (a) is free without a matched alphabet. -/
 def DGOProposition435FullStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
     (D : RelGenSet G Lambda) (E : RelGenSet G I),

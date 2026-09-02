@@ -127,6 +127,20 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
   hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
     (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion h435) h44
 
+/-- **The unrepaired family-inclusion leaf, from the auxiliary-alphabet
+form.**
+
+The same flip through the form whose joint family lives on the auxiliary
+relative alphabet.  That form has one residue instead of two, so this is the
+route to prefer unless its stronger local-finiteness demand turns out to
+fail. -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435Full
+    (h435 : GGT.RelHyp.DGOProposition435FullStatement.{u, w, 0})
+    (h44 : HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
+  hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
+    (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Full h435) h44
+
 /-! ## Discharging the hyperbolicity residue at a matched alphabet -/
 
 /-- **At a matched Hull alphabet the first residue of the nested form is
