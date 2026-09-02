@@ -101,6 +101,7 @@ structure CactusRelatorRetyping
   relatorOnly : RelatorCellCover diagram
   rCellCount_le : diagram.rCellCount ≤ Delta.rCellCount
   reduced : diagram.Reduced
+  planar : diagram.toCombMap.IsPlanar
 
 /-! ## Concrete surgery certificates -/
 
@@ -132,13 +133,28 @@ def CactusBaseCellDeletion.toRetyping
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
-    (C : CactusBaseCellDeletion Delta) : CactusRelatorRetyping Delta where
+    (C : CactusBaseCellDeletion Delta)
+    (hplanar : Delta.toCombMap.IsPlanar) : CactusRelatorRetyping Delta where
   diagram := C.replacement.diagram
   boundaryWord_eq := C.replacement.outerWord_eq
   relatorOnly := C.relatorOnly
   rCellCount_le := by
     rw [C.replacement.rCellCount_eq]
   reduced := C.replacement.reduced C.reduced
+  planar := by
+    rw [C.replacement_map_eq]
+    exact Surgery.MapCollapse.replaceGRegion_planar
+      Delta.toCombMap C.faces C.region hplanar
+
+/-- The generic cactus constructor under the source disc's planarity field.
+The deletion witness supplies the endpoint trimming and free-base-cell fold. -/
+def cactusRelatorRetyping_of_planarDisc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (hplanar : Delta.toCombMap.IsPlanar)
+    (C : CactusBaseCellDeletion Delta) : CactusRelatorRetyping Delta :=
+  C.toRetyping hplanar
 
 /-- The retyped cactus is an exact-boundary relator-only disc. -/
 theorem exactBoundaryRelatorOnly_of_cactusRetyping
@@ -165,6 +181,7 @@ structure MirrorPairCut
   relatorOnly : RelatorCellCover result
   reduced : result.Reduced
   area_eq : result.rCellCount + 2 = Delta.rCellCount
+  planar : result.toCombMap.IsPlanar
 
 /-- Data for the actual two-cell cut.  The `GRegionReplacement` is the
 reclosed map after the two mirror faces are deleted.  The list equation says
@@ -221,6 +238,17 @@ def MirrorPairDeletion.toMirrorPairCut
   relatorOnly := C.relatorOnly
   reduced := C.replacement.reduced hred
   area_eq := C.area_drop
+  planar := C.replacement.diagram.planar
+
+/-- The generic mirror constructor exposes the planar output of the
+reclosure and the exact two-cell area drop. -/
+def mirrorPairCut_of_planarDisc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced) :
+    MirrorPairCut Delta :=
+  C.toMirrorPairCut hred
 
 /-- A mirror-pair cut strictly lowers relator area. -/
 theorem MirrorPairCut.area_lt
