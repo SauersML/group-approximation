@@ -307,17 +307,22 @@ theorem boundaryLength_le_six_mul_of_six_pieces
       simp only [List.length_append]
       omega
 
-/-- Actual face-star layers are pairwise disjoint; if the selected layers are
-inner faces, their total cardinality is at most `innerFaceCount`.  This proves
-the second inequality consumed by `girthEight_layer_depth_bound`. -/
-theorem boundaryFaceStarLayer_sum_le_innerFaceCount
+/-- The inner part of a boundary face-star layer.  Intersecting with
+`innerFaces` removes the distinguished exterior face that belongs to the
+zero-th boundary star. -/
+noncomputable def innerBoundaryFaceStarLayer
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (P : BoundarySubpath T Delta) (depth : ℕ)
-    (hinner : ∀ i : Fin depth,
-      GirthEightPrimitives.boundaryFaceStarLayer Delta P i ⊆
-        Delta.innerFaces) :
+    (P : BoundarySubpath T Delta) (i : ℕ) : Finset Delta.toCombMap.Face :=
+  GirthEightPrimitives.boundaryFaceStarLayer Delta P i ∩ Delta.innerFaces
+
+/-- Inner face-star layers are pairwise disjoint, so their total cardinality
+is at most `innerFaceCount`.  This proves the second inequality consumed by
+`girthEight_layer_depth_bound`. -/
+theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth : ℕ) :
     (∑ i : Fin depth,
-      (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card) ≤
+      (innerBoundaryFaceStarLayer Delta P i).card) ≤
         Delta.innerFaceCount := by
   classical
   let M := Delta.toCombMap
@@ -350,18 +355,42 @@ theorem boundaryFaceStarLayer_sum_le_innerFaceCount
     rw [VanKampen.CombMap.faceStarLayer, if_neg hjpos] at hfj
     exact hfj.2 hfpred
   have hpairwise : ((Finset.univ : Finset (Fin depth)) : Set (Fin depth)).PairwiseDisjoint
-      (fun i ↦ M.faceStarLayer seed i) := by
+      (fun i ↦ M.faceStarLayer seed i ∩ Delta.innerFaces) := by
     intro i _hi j _hj hij
-    exact hlayerDisjoint (by
+    exact (hlayerDisjoint (by
       intro hval
       apply hij
-      exact Fin.ext hval)
-  change (∑ i : Fin depth, (M.faceStarLayer seed i).card) ≤ Delta.innerFaces.card
+      exact Fin.ext hval)).mono Finset.inter_subset_left Finset.inter_subset_left
+  change (∑ i : Fin depth,
+    (M.faceStarLayer seed i ∩ Delta.innerFaces).card) ≤ Delta.innerFaces.card
   rw [← Finset.card_biUnion hpairwise]
   apply Finset.card_le_card
   intro f hf
   obtain ⟨i, _hi, hfi⟩ := Finset.mem_biUnion.mp hf
-  exact hinner i hfi
+  exact (Finset.mem_inter.mp hfi).2
+
+/-- A combinatorial certificate for the layer-covering estimate: every
+surviving boundary position injects into a pair consisting of an inner layer
+face and one of at most `perimeter` incidences on that face. -/
+structure LayerIncidenceInjection
+    {Face : Type} [DecidableEq Face]
+    (layer : Fin depth → Finset Face) (scale loss perimeter : ℕ) where
+  /-- Assign a face and an incidence slot to each surviving position. -/
+  encode : ∀ i : Fin depth,
+    Fin (scale - loss) → {f // f ∈ layer i} × Fin perimeter
+  /-- Different positions have different face-incidence pairs. -/
+  injective : ∀ i, Function.Injective (encode i)
+
+/-- An incidence injection proves the numerical covering inequality. -/
+theorem layer_covers_of_incidenceInjection
+    {Face : Type} [DecidableEq Face]
+    {layer : Fin depth → Finset Face} {scale loss perimeter : ℕ}
+    (C : LayerIncidenceInjection layer scale loss perimeter) :
+    ∀ i : Fin depth, scale - loss ≤ perimeter * (layer i).card := by
+  intro i
+  have hcard := Fintype.card_le_of_injective (C.encode i) (C.injective i)
+  simpa only [Fintype.card_fin, Fintype.card_prod, Fintype.card_coe,
+    Nat.mul_comm] using hcard
 
 /-- The genuinely geometric local estimate for a star layer: after losing the
 two endpoint neighborhoods, its triangular faces cover the surviving window.
@@ -370,7 +399,17 @@ abbrev LayerCoversWindow
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) : Prop :=
   ∀ i : Fin depth, scale - loss ≤ perimeter *
-    (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card
+    (innerBoundaryFaceStarLayer Delta P i).card
+
+/-- Explicit boundary-position incidences prove `LayerCoversWindow`. -/
+theorem layerCoversWindow_of_incidenceInjection
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (C : LayerIncidenceInjection
+      (fun i : Fin depth ↦ innerBoundaryFaceStarLayer Delta P i)
+      scale loss perimeter) :
+    LayerCoversWindow Delta P depth scale loss perimeter :=
+  layer_covers_of_incidenceInjection C
 
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
@@ -381,7 +420,7 @@ theorem boundaryFaceStarLayer_covers
     (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
     (hcover : LayerCoversWindow Delta P depth scale loss perimeter) :
     ∀ i : Fin depth, scale - loss ≤ perimeter *
-      (GirthEightPrimitives.boundaryFaceStarLayer Delta P i).card :=
+      (innerBoundaryFaceStarLayer Delta P i).card :=
   hcover
 
 /-- When the surviving window has positive length, there is an arithmetic
@@ -408,9 +447,6 @@ noncomputable def successiveStarLayers_of_geometricData
     (cayley : CayleyVertexLabelling T Delta) (side : BoundarySubpath T Delta)
     (depth scale loss perimeter : ℕ)
     (hboundary : Delta.combinatorialBoundaryLength ≤ 6 * scale)
-    (hinner : ∀ i : Fin depth,
-      GirthEightPrimitives.boundaryFaceStarLayer Delta side i ⊆
-        Delta.innerFaces)
     (hcover : LayerCoversWindow Delta side depth scale loss perimeter)
     (hdepth : 18 * perimeter * scale < depth * (scale - loss)) :
     SuccessiveStarLayers T where
@@ -422,10 +458,10 @@ noncomputable def successiveStarLayers_of_geometricData
   scale := scale
   loss := loss
   perimeter := perimeter
-  layer i := (GirthEightPrimitives.boundaryFaceStarLayer Delta side i).card
+  layer i := (innerBoundaryFaceStarLayer Delta side i).card
   boundary_bound := hboundary
-  layer_disjoint := boundaryFaceStarLayer_sum_le_innerFaceCount
-    Delta side depth hinner
+  layer_disjoint := innerBoundaryFaceStarLayer_sum_le_innerFaceCount
+    Delta side depth
   layer_covers := hcover
   depth_too_large := hdepth
 
@@ -444,6 +480,31 @@ theorem oneTriangle_zeroLayer_unit_cover :
     1 ≤ (VanKampen.oneTriangleCombMap.faceStarLayer
       (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0).card :=
   Finset.card_pos.mpr oneTriangle_zeroLayer_nonempty
+
+/-- The one-triangle zero-th layer has an explicit unit incidence injection,
+so the new covering certificate is inhabited nonvacuously. -/
+noncomputable def oneTriangle_unitIncidenceInjection :
+    LayerIncidenceInjection
+      (fun _ : Fin 1 ↦ VanKampen.oneTriangleCombMap.faceStarLayer
+        (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0)
+      1 0 1 := by
+  classical
+  refine {
+    encode := fun _ _ ↦
+      (⟨VanKampen.oneTriangleCombMap.faceOf (0, false), ?_⟩, 0)
+    injective := ?_ }
+  · rw [VanKampen.CombMap.faceStarLayer, if_pos rfl]
+    exact Finset.mem_univ _
+  · intro i x y _hxy
+    exact Subsingleton.elim x y
+
+/-- The incidence-count theorem recovers the unit covering inequality in the
+one-triangle model. -/
+theorem oneTriangle_unit_cover_of_incidenceInjection :
+    ∀ i : Fin 1, 1 - 0 ≤ 1 *
+      (VanKampen.oneTriangleCombMap.faceStarLayer
+        (Finset.univ : Finset VanKampen.oneTriangleCombMap.Face) 0).card :=
+  layer_covers_of_incidenceInjection oneTriangle_unitIncidenceInjection
 
 end Table
 
