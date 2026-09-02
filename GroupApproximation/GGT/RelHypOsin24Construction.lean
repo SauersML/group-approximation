@@ -47,11 +47,13 @@ namespace RelHyp
 
 open FiniteRelatorQuotient
 
+universe u v w
+
 /-! ## 1.  The three geometric conclusions at a fixed quotient -/
 
 section Conclusions
 
-variable {G Q : Type} [Group G] [Group Q] {ι : Type}
+variable {G : Type u} {Q : Type v} [Group G] [Group Q] {ι : Type w}
 
 /-- The relative-hyperbolicity and peripheral-faithfulness conclusions at one
 quotient map.  This is the output used from Osin's Theorem 4.1 and Lemma 4.4.
