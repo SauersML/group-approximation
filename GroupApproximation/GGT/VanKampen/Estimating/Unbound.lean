@@ -209,6 +209,42 @@ theorem side_total_lt_oneThousandth
     nlinarith
   exact lt_of_le_of_lt hside hscale
 
+/-- For positive `lambda`, one natural threshold works for every larger
+`rho` in the inequality `B < lambda * sqrt rho / 240 - c`.  This is the
+uniform large-`rho` choice used after the displayed `sigma_1` estimate in
+Osin's Lemma 62. -/
+theorem exists_nat_sqrt_threshold
+    (lambda c B : ℝ) (hlambda : 0 < lambda) :
+    ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+      B < lambda * Real.sqrt (rho : ℝ) / 240 - c := by
+  let threshold : ℝ := 240 * (B + c) / lambda
+  obtain ⟨n, hn⟩ := exists_nat_gt (max threshold 0)
+  let k : ℕ := n + 1
+  have hk : 0 < k := by simp [k]
+  refine ⟨k * k, Nat.mul_pos hk hk, ?_⟩
+  intro rho hrho
+  have hcast : ((k * k : ℕ) : ℝ) ≤ (rho : ℝ) := by
+    exact_mod_cast hrho
+  have hsqrt := Real.sqrt_le_sqrt hcast
+  have hsqrtK : Real.sqrt (((k * k : ℕ) : ℝ)) = (k : ℝ) := by
+    rw [Nat.cast_mul]
+    have hnonneg : (0 : ℝ) ≤ (k : ℝ) := Nat.cast_nonneg k
+    calc
+      Real.sqrt ((k : ℝ) * (k : ℝ)) =
+          Real.sqrt ((k : ℝ) ^ 2) := by ring
+      _ = |(k : ℝ)| := Real.sqrt_sq_eq_abs _
+      _ = (k : ℝ) := abs_of_nonneg hnonneg
+  rw [hsqrtK] at hsqrt
+  have hthreshold : threshold < (k : ℝ) := by
+    have hmax : threshold < (n : ℝ) := lt_of_le_of_lt (le_max_left _ _) hn
+    simp only [k, Nat.cast_add, Nat.cast_one]
+    linarith
+  have hmul : 240 * (B + c) < (k : ℝ) * lambda := by
+    exact (div_lt_iff₀ hlambda).mp hthreshold
+  have hscaled : (k : ℝ) * lambda ≤ Real.sqrt (rho : ℝ) * lambda :=
+    mul_le_mul_of_nonneg_right hsqrt (le_of_lt hlambda)
+  nlinarith
+
 /-! ### Model checks -/
 
 /-- The replacement estimate is exact in the one-arc zero-loss model. -/
@@ -221,6 +257,11 @@ theorem replacement_total_oneArcModel (t : ℝ) :
     (fun _ : Fin 1 => t) (fun _ : Fin 1 => t)
     (by norm_num) (by norm_num) (by norm_num)
     (by intro i; simp) (by simpa using ht)
+
+/-- At the smallest positive square, the square-root normalization used by
+`exists_nat_sqrt_threshold` is an equality. -/
+theorem sqrt_one_base : Real.sqrt ((1 : ℕ) : ℝ) = 1 := by
+  norm_num
 
 /-- The cutting conversion is exact at the smallest positive arc count. -/
 theorem twoForty_constant_base (t : ℝ) :
