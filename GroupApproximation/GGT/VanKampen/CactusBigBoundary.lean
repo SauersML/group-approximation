@@ -573,6 +573,173 @@ theorem cactusRelatorBackwardDarts_chain
     (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
     (prevFin_rev_succ hk)
 
+/-! ## Cell-block chains -/
+
+/-- A backward relator-polygon list is nonempty. -/
+theorem cactusRelatorBackwardDarts_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    Z.cactusRelatorBackwardDarts i ≠ [] := by
+  rw [cactusRelatorBackwardDarts, List.ofFn_eq_nil_iff]
+  exact Nat.ne_of_gt (Z.cactusShape.relator_pos i)
+
+/-- The first backward relator dart is the predecessor of its distinguished
+dart. -/
+theorem cactusRelatorBackwardDarts_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length)
+    (h : Z.cactusRelatorBackwardDarts i ≠ []) :
+    (Z.cactusRelatorBackwardDarts i).head h =
+      CactusDart.relatorBackward i
+        (CactusShape.prevFin (Z.cactusShape.relatorLength i)
+          (Z.cactusShape.relatorZero i)) := by
+  rw [cactusRelatorBackwardDarts, List.head_ofFn]
+  exact congrArg
+    (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
+    (prevFin_zero_eq_rev_zero (Z.cactusShape.relator_pos i)).symm
+
+/-- The final backward relator dart is its distinguished dart. -/
+theorem cactusRelatorBackwardDarts_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length)
+    (h : Z.cactusRelatorBackwardDarts i ≠ []) :
+    (Z.cactusRelatorBackwardDarts i).getLast h =
+      CactusDart.relatorBackward i (Z.cactusShape.relatorZero i) := by
+  rw [cactusRelatorBackwardDarts, List.getLast_ofFn]
+  apply congrArg
+    (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
+  apply Fin.ext
+  simp only [Fin.val_rev, CactusShape.relatorZero, Fin.val_mk]
+  omega
+
+/-- One cell segment is nonempty because it begins with its outgoing stem. -/
+theorem cactusCellSegment_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) : Z.cactusCellSegment i ≠ [] := by
+  simp [cactusCellSegment]
+
+/-- A cell segment begins with its outgoing stem. -/
+theorem cactusCellSegment_head
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) (h : Z.cactusCellSegment i ≠ []) :
+    (Z.cactusCellSegment i).head h = CactusDart.stemOut i := by
+  rfl
+
+/-- A cell segment ends with its incoming stem. -/
+theorem cactusCellSegment_getLast
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) (h : Z.cactusCellSegment i ≠ []) :
+    (Z.cactusCellSegment i).getLast h = CactusDart.stemIn i := by
+  rw [cactusCellSegment]
+  simp
+
+/-- The outgoing stem, backward relator polygon, and incoming stem form one
+face-permutation chain. -/
+theorem cactusCellSegment_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusCellSegment i).IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+  let rel := Z.cactusRelatorBackwardDarts i
+  have hrel : rel ≠ [] := Z.cactusRelatorBackwardDarts_ne_nil i
+  have hrelChain := Z.cactusRelatorBackwardDarts_chain i
+  have htail : (rel ++ [CactusDart.stemIn i]).IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+    apply hrelChain.append (List.IsChain.singleton _)
+    intro x hx y hy
+    rw [List.getLast?_eq_some_getLast hrel] at hx
+    simp only [List.head?_singleton, Option.mem_some_iff] at hx hy
+    subst x
+    subst y
+    rw [Z.cactusRelatorBackwardDarts_getLast i hrel]
+    exact Z.cactusShape.facePerm_relatorBackward_zero i
+  have hwhole : ([CactusDart.stemOut i] ++
+      (rel ++ [CactusDart.stemIn i])).IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+    apply (List.IsChain.singleton _).append htail
+    intro x hx y hy
+    simp only [List.getLast?_singleton, Option.mem_some_iff] at hx
+    rw [List.head?_append_of_ne_nil rel hrel,
+      List.head?_eq_some_head hrel] at hy
+    simp only [Option.mem_some_iff] at hy
+    subst x
+    subst y
+    rw [Z.cactusRelatorBackwardDarts_head i hrel]
+    rfl
+  simpa only [List.singleton_append, rel, cactusCellSegment] using hwhole
+
+/-- Below the wrap point, cyclic successor agrees with ordinary successor. -/
+theorem nextFin_mk_succ {n k : ℕ} (hk : k + 1 < n) :
+    CactusShape.nextFin n (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n) =
+      (⟨k + 1, hk⟩ : Fin n) := by
+  apply Fin.ext
+  simp [CactusShape.nextFin, finRotate_apply, Fin.add_def,
+    Nat.mod_eq_of_lt hk]
+
+/-- The flattened list of cell segments follows the complementary face
+permutation. -/
+theorem cactusCellSegments_chain
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Z.cactusCellSegments.IsChain
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
+  rw [cactusCellSegments]
+  apply (List.isChain_flatten (by
+    rw [List.mem_ofFn]
+    rintro ⟨i, hi⟩
+    exact Z.cactusCellSegment_ne_nil i hi)).2
+  constructor
+  · intro l hl
+    rw [List.mem_ofFn] at hl
+    obtain ⟨i, rfl⟩ := hl
+    exact Z.cactusCellSegment_chain i
+  · rw [List.isChain_ofFn]
+    intro k hk l₁ hl₁ l₂ hl₂
+    let i : Fin Z.cells.length := ⟨k, Nat.lt_of_succ_lt hk⟩
+    let j : Fin Z.cells.length := ⟨k + 1, hk⟩
+    rw [List.getLast?_eq_some_getLast (Z.cactusCellSegment_ne_nil i)] at hl₁
+    rw [List.head?_eq_some_head (Z.cactusCellSegment_ne_nil j)] at hl₂
+    simp only [Option.mem_some_iff] at hl₁ hl₂
+    subst l₁
+    subst l₂
+    rw [Z.cactusCellSegment_getLast i, Z.cactusCellSegment_head j]
+    have hnext : CactusShape.nextFin Z.cells.length i = j :=
+      nextFin_mk_succ hk
+    have hne : CactusShape.nextFin Z.cells.length i ≠
+        Z.cactusShape.cellZero (Nat.zero_lt_of_lt i.isLt) := by
+      rw [hnext]
+      intro hzero
+      have hval := congrArg Fin.val hzero
+      simp [j, CactusShape.cellZero] at hval
+    rw [Z.cactusShape.facePerm_stemIn_of_ne i hne, hnext]
+
 end Lemma44OrientedRelatorDiagram
 end HullSC
 end GroupApproximation
