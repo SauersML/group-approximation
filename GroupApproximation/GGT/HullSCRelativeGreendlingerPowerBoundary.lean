@@ -202,5 +202,42 @@ theorem hasQuasiGeodesicSpellingAt_toRelativeReducedDiagram_one
   hasQuasiGeodesicSpellingAt_of_hasQuasiGeodesicSpelling
     (hasQuasiGeodesicSpelling_toRelativeReducedDiagram_one Z)
 
+/-! ## Side-word admissibility from base symmetry -/
+
+/-- **Base symmetry is exactly what makes a formal inverse admissible.**
+
+`GGT.VanKampen.DiscDiagram.label_alpha` forces the reverse of a dart to carry
+`RelWord.inv` of its label, and `RelWord.inv` on a base letter is
+`GGT.RelLetter.base g⁻¹`.  So admissibility of a diagram's labels is closed
+under reversal exactly when the relative base is closed under inversion, which
+is `GGT.OsinComponents.DGO421BaseSymmetric D` written out.  A peripheral letter
+needs no hypothesis: a subgroup is closed under inverses.
+
+This is the derivation the exterior-arc conversion needs in order to produce
+`RelativeBoundaryContiguity.leftSide_admissible` and `rightSide_admissible`
+from planar dart words. -/
+theorem isLetter_inv_of_baseSymmetric
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    (hbase : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    {a : GGT.RelLetter G Lambda} (ha : D.IsLetter a) :
+    D.IsLetter (RelWord.inv a) := by
+  cases a with
+  | base g => exact hbase g ha
+  | comp lam h => exact (D.fam lam).inv_mem ha
+
+/-- Admissibility of a word is preserved by formal inversion of every letter,
+under base symmetry. -/
+theorem isAdmissible_map_inv_of_baseSymmetric
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    (hbase : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    {v : List (GGT.RelLetter G Lambda)}
+    (hv : RelWord.IsAdmissible D v) :
+    RelWord.IsAdmissible D (v.map RelWord.inv) := by
+  intro a ha
+  obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
+  exact isLetter_inv_of_baseSymmetric hbase (hv b hb)
+
 end HullSC
 end GroupApproximation
