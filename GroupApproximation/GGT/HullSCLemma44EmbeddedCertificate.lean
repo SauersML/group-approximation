@@ -13,8 +13,8 @@ the outer arc.  This file states the small bridge between those interfaces.
 The bridge asks only for data not exposed by the generic planar record:
 face-set peeling supplies the value-one equation, a boundary-position witness
 linearizes the outer cyclic arc, and admissibility witnesses type the two side
-words.  The resulting theorem builds the complete finite certificate, putting
-the supplied contiguity at one cell and using empty options elsewhere.
+words.  The resulting definition turns this supplied local data into the based
+relative contiguity consumed by the quotient arguments.
 -/
 
 namespace GroupApproximation
