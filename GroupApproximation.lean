@@ -3254,6 +3254,7 @@ import GroupApproximation.GGT.VanKampen.BasedDiscDiagram
 import GroupApproximation.GGT.HullSCLemma44OriginalExpansion
 import GroupApproximation.GGT.VanKampen.Estimating.PieceCarrier
 import GroupApproximation.GGT.DGOProposition414ArcTerminalSeam
+import GroupApproximation.GGT.VanKampen.FaceShelling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
