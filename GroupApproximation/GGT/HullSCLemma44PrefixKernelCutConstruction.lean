@@ -122,5 +122,22 @@ theorem prefixKernelConeEmbedded_of_data
   exact isHyperbolicallyEmbedded_prefixKernelCone_of_kernelEstimate_and_oneStepCuts
     D hD W hsc q hkernel hconeData.toOneStep
 
+/-! ## Degenerate model -/
+
+/-- In the one-point source the cone cut has source radius zero exactly. -/
+theorem prefixKernelConeCutData_trivialModel
+    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda)
+    (W : Set (List (GGT.RelLetter PUnit Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type v} [Group Q] (q : PUnit →* Q) :
+    ∃ data : PrefixKernelConeCutData D W eps rho mu hsc q,
+      data.radius 0 = 0 := by
+  refine ⟨{ radius := fun _ => 0, cut := ?_ }, rfl⟩
+  intro lam n y hy
+  left
+  rw [GGT.RelGenSet.relBall_zero]
+  exact Set.mem_singleton_iff.mpr (Subsingleton.elim _ _)
+
 end HullSC
 end GroupApproximation
