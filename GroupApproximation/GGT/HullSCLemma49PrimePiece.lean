@@ -80,7 +80,11 @@ theorem Lemma49RepeatedBoundaryBlocks.first_powerArc_span
       C.boundaryArc.take B.block.length =
           (B.block ++ B.middle ++ B.block ++ B.tail).take B.block.length :=
         congrArg (List.take B.block.length) B.decomposition
-      _ = B.block := List.take_left
+      _ = B.block := by
+        simpa only [List.append_assoc] using
+          (List.take_left :
+            (B.block ++ (B.middle ++ B.block ++ B.tail)).take
+                B.block.length = B.block)
   simp only [Lemma49RelativeGreendlingerCell.powerArcVertex, List.take_zero,
     GGT.RelLetter.listVal_nil, mul_one, htake]
   group
@@ -123,7 +127,7 @@ theorem Lemma49RepeatedBoundaryBlocks.second_powerArc_span
           (List.take (B.block.length + B.middle.length + B.block.length))
           B.decomposition
       _ = B.block ++ B.middle ++ B.block := by
-        simpa only [List.length_append, List.append_assoc] using
+        simpa only [List.length_append] using
           (List.take_left :
             ((B.block ++ B.middle ++ B.block) ++ B.tail).take
                 (B.block ++ B.middle ++ B.block).length =
@@ -206,6 +210,10 @@ theorem Lemma49RelativeGreendlingerCell.listVal_relatorInterval
     GGT.OsinComponents.vertex_eq_mul_listVal_take,
     GGT.OsinComponents.vertex_eq_mul_listVal_take, one_mul, one_mul,
     hiTake, hjTake] at hspan
+  change GGT.RelLetter.listVal
+      ((C.relator.drop i).take (j - i)) =
+    (GGT.RelLetter.listVal (C.contiguity.exterior.take i))⁻¹ *
+      GGT.RelLetter.listVal (C.contiguity.exterior.take j)
   rw [← hspan]
   group
 
@@ -262,7 +270,6 @@ theorem Lemma49ContiguityShadow.indexSpan_lower
           (max (Sh.index x) (Sh.index y) - min (Sh.index x) (Sh.index y) : ℕ) := by
     exact_mod_cast hdistUpper
   have hpowLower := (hPow x y hxy hy).1
-  push_cast
   linarith [hdistUpperReal]
 
 /-- Every shadow interval corresponding to one repeated block is longer than
@@ -308,7 +315,7 @@ theorem Lemma49ContiguityShadow.repeatedBlock_indexSpan_large
       100 * ((C.boundaryArc.length / 100 : ℕ) + 1) := by
     exact_mod_cast hdivisionNat
   rw [hgap, B.block_length] at hspan
-  norm_num at hexterior ⊢
+  norm_num at hexterior hspan ⊢
   linarith
 
 /-! ## The prime-piece contradiction -/
@@ -361,6 +368,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
   have hj₁₂ : Sh.index p₁ < Sh.index p₂ := by
     apply Sh.index_strictMono_of_far hRel hPow hp₁₂ hp₂
     dsimp [p₁, p₂]
+    rw [Nat.add_sub_cancel_left]
     exact hmiddleFar
   have hj₁₃ : Sh.index p₁ < Sh.index p₃ := by
     apply Sh.index_strictMono_of_far hRel hPow hp₁₃ hp₃
@@ -411,7 +419,6 @@ theorem false_of_lemma49LongArc_contiguityShadow
       (first.length : ℝ) := by
     rw [List.length_rotate, hfirstLength]
     dsimp [j₀, j₁]
-    rw [Nat.max_eq_right hj₀₁'.le, Nat.min_eq_left hj₀₁'.le]
     exact hfirstLargeRaw
   have hsecondLargeRaw := Sh.repeatedBlock_indexSpan_large B hcertificateInput
     hRel hPow hscale hp₂₃ hp₃ (by dsimp [p₂, p₃])
