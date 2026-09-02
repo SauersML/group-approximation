@@ -94,6 +94,48 @@ theorem DGO421FiniteAbsorptionCertificate.blockTarget_le
   (Classical.choose_spec
     (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).1
 
+/-- The selected target index is positive: it is the *end* of a component. -/
+theorem DGO421FiniteAbsorptionCertificate.blockTarget_pos
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) :
+    0 < cert.blockTarget t :=
+  (Classical.choose_spec
+    (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).2.1
+
+/-- **The target ends a component of `q` carrying the source's label.**  This is
+the clause the counting half establishes on the fourth block of its
+quadrilateral and the certificate now keeps. -/
+theorem DGO421FiniteAbsorptionCertificate.blockTarget_isComp
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) :
+    ∃ i' : ℕ, IsComp (cert.label (cert.blockIndex t)) q i' (cert.blockTarget t) :=
+  (Classical.choose_spec
+    (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).2.2.1
+
+/-- **The target component starts one step earlier.**  By (W3) every component
+of a `W`-word is a single letter, so the component ending at the target index
+starts at its predecessor. -/
+theorem DGO421FiniteAbsorptionCertificate.isComp_pred_blockTarget
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K)
+    (hW3 : WWord.IsWThree D q) (t : Fin K) :
+    IsComp (cert.label (cert.blockIndex t)) q
+      (cert.blockTarget t - 1) (cert.blockTarget t) := by
+  obtain ⟨i', hcomp⟩ := cert.blockTarget_isComp t
+  have hsucc : cert.blockTarget t = i' + 1 := isComp_succ_of_isWThree hW3 hcomp
+  have hpred : cert.blockTarget t - 1 = i' := by omega
+  rw [hpred]
+  exact hcomp
+
+/-- **The first of the three positional facts.**  The target of each matched
+component starts a component of `q` carrying its partner's label. -/
+theorem DGO421FiniteAbsorptionCertificate.isCompStart_pred_blockTarget
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K)
+    (hW3 : WWord.IsWThree D q) (t : Fin K) :
+    IsCompStart (cert.label (cert.blockIndex t)) q (cert.blockTarget t - 1) :=
+  ⟨cert.blockTarget t, cert.isComp_pred_blockTarget hW3 t⟩
+
 /-- **The start-coset identity of Lemma 4.21(b) is already in the
 certificate**, read from the basepoint `1` on `p` and the basepoint `pre⁻¹` on
 `q`. -/
@@ -105,7 +147,7 @@ theorem DGO421FiniteAbsorptionCertificate.blockTarget_cosetMatch
       D.fam (cert.label (cert.blockIndex t)) := by
   obtain ⟨hgen, hmem, heq⟩ :=
     (Classical.choose_spec
-      (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).2
+      (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).2.2.2
   have hbt : Classical.choose
       (cert.matched_spec (cert.blockIndex t) (cert.block_matched t)) =
       cert.blockTarget t := rfl

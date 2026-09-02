@@ -2597,8 +2597,14 @@ structure DGO421FiniteAbsorptionCertificate
   blockIndex : Fin K → Fin N
   blockIndex_formula : ∀ j, (blockIndex j).val = block.val * K + j.val
   block_matched : ∀ j, matched (blockIndex j)
+  /-- The target index of a matched source: it is positive, it is the end of a
+  component of `q` carrying the source's label, and the connection there is the
+  coset identity.  The component clause is what the counting half's `Matched`
+  predicate records on the fourth block of its quadrilateral; keeping it is what
+  lets the ordered block read the target at the component's start. -/
   matched_spec : ∀ i, matched i →
-    ∃ j : ℕ, j ≤ q.length ∧
+    ∃ j : ℕ, j ≤ q.length ∧ 0 < j ∧
+      (∃ i' : ℕ, IsComp (label i) q i' j) ∧
       ∃ h : G, h ∈ D.fam (label i) ∧
         pre * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
 
@@ -2662,52 +2668,11 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
   have hM : 0 < M := by dsimp [M]; omega
   have hR : 0 < R := by dsimp [R, N]; omega
   refine ⟨R, hR, ?_⟩
-  intro vp vq P Qraw hletP hletQraw hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart
-    hend
-  -- With Dahmani--Guirardel--Osin's convention available, the reversed word is
-  -- admissible outright, so the second path is used as it stands: `Q` is
-  -- literally `Qraw`.  The tuple shape is kept so that the polygon argument
-  -- below reads the same whether or not a substitute is needed.
-  obtain ⟨Q, hQlen, hQrev, hQvert⟩ :
-      ∃ Q : List (RelLetter G Λ), Q.length = Qraw.length ∧
-        (∀ a ∈ revWord Q, D.IsLetter a) ∧
-        ∀ (v : G) (i : ℕ), vertex v Q i = vertex v Qraw i :=
-    ⟨Qraw, rfl, isLetter_of_mem_revWord D hbase hletQraw, fun _ _ => rfl⟩
-  suffices hgoal : ∃ cert : DGO421FiniteAbsorptionCertificate D P Q N M K,
-      cert.pre = vq⁻¹ * vp by
-    obtain ⟨cert, hpre⟩ := hgoal
-    show ∃ cert : DGO421FiniteAbsorptionCertificate D P Qraw N M K,
-      cert.pre = vq⁻¹ * vp
-    refine ⟨{ pre := cert.pre
-              source := cert.source
-              offset := cert.offset
-              target := cert.target
-              label := cert.label
-              matched := cert.matched
-              source_comp := cert.source_comp
-              source_injective := cert.source_injective
-              rank := cert.rank
-              rank_pos := cert.rank_pos
-              rank_label := cert.rank_label
-              rank_succ := cert.rank_succ
-              target_ne_offset := cert.target_ne_offset
-              block := cert.block
-              blockIndex := cert.blockIndex
-              blockIndex_formula := cert.blockIndex_formula
-              block_matched := cert.block_matched
-              matched_spec := ?_ }, ?_⟩
-    · intro i hi
-      obtain ⟨j, hjle, hgen, hgenMem, hgenEq⟩ := cert.matched_spec i hi
-      refine ⟨j, ?_, hgen, hgenMem, ?_⟩
-      · rw [← hQlen]
-        exact hjle
-      · rw [← hQvert (1 : G) j]
-        exact hgenEq
-    · exact hpre
-  have hendSub : (wordDist D.alphabet.carrier (vertex vp P P.length)
-      (vertex vq Q Q.length) : ℝ) ≤ eps := by
-    rw [hQvert vq Q.length, hQlen]
-    exact hend
+  intro vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
+  -- Dahmani--Guirardel--Osin's convention makes the reversed second path
+  -- admissible outright, so the path is used as it stands.
+  have hQrev : ∀ a ∈ revWord Q, D.IsLetter a :=
+    isLetter_of_mem_revWord D hbase hletQ
   obtain ⟨pc, hpc⟩ := existsGeodesicWord D (1 : G) (vq⁻¹ * vp)
   let endP := vertex vp P P.length
   let endQ := vertex vq Q Q.length
@@ -2768,19 +2733,15 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
         ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
           (vertex (1 : G) Q j) : ℕ) : ℝ) := by
     intro i j hij hj
-    have hjraw : j ≤ Qraw.length := by
-      rw [← hQlen]
-      exact hj
-    have hW2A : WWord.IsWTwo D CA Qraw := by
+    have hW2A : WWord.IsWTwo D CA Q := by
       intro z lam x hz hmem
       exact hW2Q z lam x hz
         (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
-    have hz := hA (1 : G) Qraw hletQraw hW1Q hW2A hW3Q i j hij hjraw
+    have hz := hA (1 : G) Q hletQ hW1Q hW2A hW3Q i j hij hj
     have hz' : ((j - i : ℕ) : ℝ) ≤
-        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Qraw i)
-          (vertex (1 : G) Qraw j) : ℕ) : ℝ) + 4 := by
+        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
+          (vertex (1 : G) Q j) : ℕ) : ℝ) + 4 := by
       exact_mod_cast hz
-    rw [hQvert (1 : G) i, hQvert (1 : G) j]
     norm_num
     linarith
   have hpc' : IsGeodesicWord D (1 : G) (RelLetter.listVal pc) pc := by
@@ -2812,7 +2773,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
         rw [inv_mul_cancel] at hdist'
         exact hdist'
       rw [hdist]
-      exact_mod_cast hendSub
+      exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   let S := strictInteriorOccurrences P
   have hS : N ≤ S.card := by
@@ -3405,8 +3366,10 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
     block_matched := hblockMatched
     matched_spec := by
       intro i hi
-      rcases hi with ⟨j, hj, -, ⟨hh, hmem, heq⟩⟩
-      exact ⟨j, hj, hh, hmem, heq⟩ }, ?_⟩
+      rcases hi with ⟨j, hj, hstartQ, ⟨hh, hmem, heq⟩⟩
+      obtain ⟨hjpos, hcompQ⟩ :=
+        exists_isComp_of_matched_fourGonStart hj hstartQ
+      exact ⟨j, hj, hjpos, hcompQ, hh, hmem, heq⟩ }, ?_⟩
   exact hpcVal
 
 end OsinComponents
