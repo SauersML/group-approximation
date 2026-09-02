@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.RelHypOsin24PairRefinement
+import GroupApproximation.GGT.RelHypOsin24ElementClassification
 import GroupApproximation.GGT.OsinTheorem54Unconditional
 
 /-!
@@ -75,19 +75,33 @@ theorem emptyFamilyRelGenSet_embedded {G : Type u} [Group G] {I : Type v}
 
 /-! ## The estimate and its finite empty-family model -/
 
+/-- The actual empty-family output of Osin's enlargement.  Keeping the
+relative generating set in the conclusion lets the element-classification
+statement be applied to the same enlarged labelled alphabet. -/
+theorem exists_emptyFamilyAcylindricalEnlargement
+    {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I)
+    (hD : D.IsHyperbolicallyEmbedded) :
+    ∃ (E : RelGenSet G Empty),
+      D.alphabet.carrier ⊆ E.alphabet.carrier ∧
+        E.IsHyperbolicallyEmbedded ∧
+          IsAcylindrical G (Cayley E.alphabet) := by
+  obtain ⟨E, hbase, _hfam, hE, hacy⟩ :=
+    OsinEnlargement.osinTheorem54Fam_unconditional G Empty
+      (emptyFamilyRelGenSet D) (emptyFamilyRelGenSet_embedded D hD)
+  have hcontain : D.alphabet.carrier ⊆ E.alphabet.carrier := by
+    intro x hx
+    exact Or.inl (hbase hx)
+  exact ⟨E, hcontain, hE, hacy⟩
+
 /-- The empty-family application of Osin's Theorem 5.4 proves the arbitrary
 index enlargement estimate. -/
 theorem arbitraryFamilyAcylindricalEnlargement_proved :
     ArbitraryFamilyAcylindricalEnlargementStatement.{u, v} := by
   intro G instG I D hD
   letI : Group G := instG
-  obtain ⟨E, hbase, _hfam, hE, hacy⟩ :=
-    OsinEnlargement.osinTheorem54Fam_unconditional G Empty
-      (emptyFamilyRelGenSet D) (emptyFamilyRelGenSet_embedded D hD)
+  obtain ⟨E, hcontain, hE, hacy⟩ :=
+    exists_emptyFamilyAcylindricalEnlargement D hD
   obtain ⟨delta, hdelta⟩ := hE.hyperbolic
-  have hcontain : D.alphabet.carrier ⊆ E.alphabet.carrier := by
-    intro x hx
-    exact Or.inl (hbase hx)
   exact ⟨E.alphabet, delta, hcontain, hdelta, hacy⟩
 
 /-- In the empty-family finite-Cayley model no enlargement is needed. -/
@@ -102,6 +116,29 @@ theorem arbitraryFamilyAcylindricalEnlargement_emptyModel
   obtain ⟨delta, hdelta⟩ := hD.hyperbolic
   exact ⟨D.alphabet, delta, Set.Subset.rfl, hdelta,
     relHypFiniteBaseAcylindricity_empty D hfinite⟩
+
+/-- The arbitrary-index pair refinement follows from the one-element
+classification on the enlarged empty-family relative graph.  Thus the pair
+statement adds no new acylindricity estimate: its only remaining input is the
+classification that every infinite-order non-parabolic element is loxodromic
+after Osin's enlargement. -/
+theorem hyperbolicPairAcylindricalRefinement_of_elementClassification
+    (hclass : HyperbolicElementLoxodromicStatement.{u, 0}) :
+    HyperbolicPairAcylindricalRefinementStatement.{u, v} := by
+  intro G instG I D _hfinite hD f₁ f₂ _hhyper₁ _hhyper₂ hord₁ hord₂
+  letI : Group G := instG
+  obtain ⟨E, hcontain, hE, hacy⟩ :=
+    exists_emptyFamilyAcylindricalEnlargement D hD
+  have hhyper₁E : IsHyperbolicElement E.fam f₁ :=
+    isHyperbolicElement_of_isEmpty E.fam f₁
+  have hhyper₂E : IsHyperbolicElement E.fam f₂ :=
+    isHyperbolicElement_of_isEmpty E.fam f₂
+  have hlox₁ : IsLoxodromic f₁ (Cayley.base E.alphabet) :=
+    hclass G instG Empty E hE f₁ hhyper₁E hord₁
+  have hlox₂ : IsLoxodromic f₂ (Cayley.base E.alphabet) :=
+    hclass G instG Empty E hE f₂ hhyper₂E hord₂
+  obtain ⟨delta, hdelta⟩ := hE.hyperbolic
+  exact ⟨E.alphabet, delta, hcontain, hdelta, hacy, hlox₁, hlox₂⟩
 
 end RelHyp
 end GGT
