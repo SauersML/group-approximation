@@ -3296,6 +3296,7 @@ import GroupApproximation.GGT.VanKampen.SurgeryFaceNew
 import GroupApproximation.GGT.CyclicCayleyHyperbolic
 import GroupApproximation.GGT.VanKampen.SurgeryCutReduced
 import GroupApproximation.GGT.VanKampen.SurgeryFaceDiagram
+import GroupApproximation.GGT.VanKampen.SurgeryCutCells
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
