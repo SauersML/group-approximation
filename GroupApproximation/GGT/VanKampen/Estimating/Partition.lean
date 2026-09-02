@@ -221,6 +221,8 @@ theorem cellDarts_length_eq_kindLengths
   simp only [kindLength, Finset.card_eq_sum_ones]
   rw [Finset.sum_filter, Finset.sum_filter, Finset.sum_filter]
   rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
+  rw [show Fintype.card (Fin (cellDarts Delta i).length) =
+      ∑ _position : Fin (cellDarts Delta i).length, 1 by simp]
   apply Finset.sum_congr rfl
   intro position _
   cases hkind : (partition.classify position).kind <;> simp [hkind]
