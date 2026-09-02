@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.RelHypOsin24CombinedFamily
 import GroupApproximation.GGT.DGOCorollary427PairLocal
+import GroupApproximation.GGT.DGOCorollary427Full
 
 /-!
 # Dahmani--Guirardel--Osin, Proposition 4.35, and the direction the filling
@@ -730,7 +731,8 @@ generating set are bi-Lipschitz, and hyperbolicity crosses them.
 
 This is what discharges the residue whenever the auxiliary family is available
 before its relative generating set has been enlarged, and it tolerates the
-finitely many filling targets adjoined on the way. -/
+finitely many filling targets adjoined on the way.  Its Hull-side consumer is
+`HullSC.jointHyperbolic_of_matched_peripherals`. -/
 theorem jointHyperbolic_of_finite_base_excess (D : RelGenSet G Λ)
     (E E' : RelGenSet G I) (hfam : E'.fam = E.fam)
     (hbase : D.alphabet.carrier ⊆ E'.base)
