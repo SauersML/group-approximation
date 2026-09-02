@@ -155,7 +155,21 @@ the source side. -/
 /-- The output of the minimality step of Dahmani--Guirardel--Osin's Lemma
 4.21(b) on the target side: the certificate's matched targets are consecutive
 peripheral occurrences of `q`, and each carries the label of its partner on
-`p`.  No polygon, counting or isolation hypothesis occurs here. -/
+`p`.  No polygon, counting or isolation hypothesis occurs here.
+
+**A trap for whoever constructs this.**  The counting certificate is built over
+a *substitute* for `q` (`exists_reversibleSubstitute`), whose reversal is
+admissible over an arbitrary relative generating set.  The substitute replaces
+a base letter `x` with `x⁻¹ ∉ X` by the peripheral letter on the same edge, so
+it can carry peripheral letters where `q` carries base letters, and those extra
+letters are shallow --- `x ∈ X` puts `x` in the radius-one relative ball, so
+they violate (W2).  The certificate never sees the difference, because it
+records only a vertex index of `q`; this record does see it, since it asks for
+a peripheral occurrence *of `q` itself*.  So a construction must either assume
+`DGO421BaseSymmetric D`, which is Dahmani--Guirardel--Osin's standing
+convention (§4.3: "*Recall that relative generating sets are always assumed
+symmetric, so `X = X⁻¹` in the following lemma*"), or rule out targets at
+substituted letters. -/
 structure DGO421TargetRankData
     {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
     {N M K : ℕ}
@@ -334,6 +348,22 @@ noncomputable def orderedBlockPayload_of_certificate
     (vp := vp) (vq := vq)
     (by rw [hpre]; group)
     (O.toPayload hW1 hW3 hK)
+
+/-- **Everything in DGO Lemma 4.21(b) except the minimality step.**  From the
+counting certificate, its connector identity, and the target ranks, the ordered
+block of clause (b) follows outright.  `DGO421TargetRankData` is the whole of
+what the geometry still owes. -/
+noncomputable def orderedBlockPayload_of_certificate_of_targetRank
+    {D : RelGenSet G Λ} {vp vq : G} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ}
+    (hW1P : WWord.IsWOne p) (hW3P : WWord.IsWThree D p)
+    (hW1Q : WWord.IsWOne q) (hW3Q : WWord.IsWThree D q)
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hpre : cert.pre = vq⁻¹ * vp)
+    (T : DGO421TargetRankData cert) (hK : 0 < K) :
+    DGO421OrderedBlockPayload D vp vq p q K :=
+  orderedBlockPayload_of_certificate hW1P hW3P hpre
+    (T.toOrderData hW1Q hW3Q hK) hK
 
 /-! ## The ordered-block form of the lemma -/
 
