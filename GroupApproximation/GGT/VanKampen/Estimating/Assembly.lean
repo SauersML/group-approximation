@@ -492,6 +492,31 @@ theorem selection_drop_of_gRegionReplacement
     equiv.boundary_quasiGeodesic hboundary
   exact ⟨Delta', ⟨equiv⟩, hdrop, hred', hcells', hboundary'⟩
 
+/-- A per-diagram terminal certificate or map-level replacement is exactly a
+face-drop oracle.  The replacement branch is retyped by
+`selection_drop_of_gRegionReplacement`, so all fields required by Lemma
+65(a) are checked at this boundary. -/
+theorem selectionFaceDropOracle_of_gRegionReplacements
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hreplacement : ∀ (Delta : DiscDiagram.{u, w, v} W),
+      Delta.Reduced → 0 < Delta.rCellCount →
+      IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+      (∃ scaffold : EstimatingScaffold D eps Delta,
+        Nonempty (EstimatingGraphData D eps Delta scaffold)) ∨
+      ∃ replacement : Surgery.GRegionReplacement Delta,
+        replacement.diagram.toCombMap.faceCount <
+          Delta.toCombMap.faceCount) :
+    SelectionFaceDropOracle D eps rho mu lambda c hcondition := by
+  intro Delta hred hcells hboundary
+  rcases hreplacement Delta hred hcells hboundary with hterminal | hdrop
+  · exact Or.inl hterminal
+  · obtain ⟨replacement, hface⟩ := hdrop
+    exact Or.inr (selection_drop_of_gRegionReplacement hred hcells hboundary
+      replacement hface)
+
 /-- O-equivalence composes, so successive face-drop surgeries retain the
 boundary word and ordered relator-cell words. -/
 def OEquivalentDiscDiagram.trans
