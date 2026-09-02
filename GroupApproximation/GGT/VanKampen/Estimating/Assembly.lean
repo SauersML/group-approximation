@@ -116,7 +116,7 @@ structure EstimatingData
       | none => 0
       | some contiguity => contiguity.weight) =
         partition.kindWeight Embedded.CellArcKind.exterior i
-  InteriorEdge : Type (max u w v)
+  InteriorEdge : Type v
   interiorEdgeFintype : Fintype InteriorEdge
   interiorEdgeDecidableEq : DecidableEq InteriorEdge
   incident : Fin Delta.rCellCount → InteriorEdge → Prop
