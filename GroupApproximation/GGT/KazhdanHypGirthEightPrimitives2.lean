@@ -1006,6 +1006,28 @@ theorem nonempty_powerDiscCandidate_of_cactusDeletion
   exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
     _hn _hpow _hne Delta (C.toRetyping hplanar) hboundary
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+/-- A finite chain of concrete cactus folds supplies the literal power-disc
+candidate from its terminal relator-only diagram. -/
+theorem nonempty_powerDiscCandidate_of_cactusFoldChain
+    (word : List (TriangularHodgeLayer.SignedGenerator Generator))
+    (hword : PresentedGroup.mk
+        (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+        (PresentedGroupRelatorReplay.word word) = g)
+    (_hn : 0 < n) (_hpow : g ^ n = 1) (_hne : g ≠ 1)
+    (Delta Next : VanKampen.DiscDiagram.{0, 0, 0}
+      (triangleRelatorWords T))
+    (chain : VanKampen.CactusFoldChain Delta Next k)
+    (hplanar : Delta.toCombMap.IsPlanar)
+    (hred : Delta.Reduced)
+    (hboundary : Next.boundaryWord =
+      (List.replicate n (word.map signedFreeRelLetter)).flatten) :
+    Nonempty (PowerDiscCandidate T g n) := by
+  let C : VanKampen.CactusRelatorRetyping Delta :=
+    chain.toRetyping hplanar hred
+  exact nonempty_powerDiscCandidate_of_cactusRetyping word hword
+    _hn _hpow _hne Delta C hboundary
+
 /-- A reduced candidate is the interface's `PowerDisc`. -/
 def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
     (hred : D.diagram.Reduced) : PowerDisc T g n where
