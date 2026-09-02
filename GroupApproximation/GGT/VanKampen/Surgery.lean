@@ -443,9 +443,8 @@ end Embedded.InteriorEdge
 /-! ## Executable small-map checks -/
 
 /-- Removing one edge from the one-polygon cactus model leaves two edges. -/
-theorem removeLoop_zeroCellModel_card :
-    letI : DecidableEq CactusShape.zeroCellModel.toCombMap.Edge :=
-      Classical.decEq _
+theorem removeLoop_zeroCellModel_card
+    [DecidableEq CactusShape.zeroCellModel.toCombMap.Edge] :
     let edge : CactusShape.zeroCellModel.toCombMap.Edge :=
       Quotient.mk''
         (CactusDart.outerForward CactusShape.zeroCellModel.boundaryZero)
@@ -461,9 +460,8 @@ theorem removeLoop_zeroCellModel_card :
 
 /-- Merging away one edge in the one-relator-cell cactus model leaves five
 edges. -/
-theorem mergeParallelEdges_oneCellModel_card :
-    letI : DecidableEq CactusShape.oneCellModel.toCombMap.Edge :=
-      Classical.decEq _
+theorem mergeParallelEdges_oneCellModel_card
+    [DecidableEq CactusShape.oneCellModel.toCombMap.Edge] :
     let retained : CactusShape.oneCellModel.toCombMap.Edge :=
       Quotient.mk''
         (CactusDart.outerForward CactusShape.oneCellModel.boundaryZero)
