@@ -133,13 +133,14 @@ theorem toOwnerOrientation
               edges.filter (fun e => owner e = x) =
                 incidentEdges incident x edges := by
             ext e
+            change (e ∈ edges ∧ owner e = x) ↔
+              (e ∈ edges ∧ incident x e)
             by_cases hxe : incident x e
             · constructor
               · intro h
-                exact (Finset.mem_filter.mp h).1
+                exact h.1
               · intro h
-                have hmem : e ∈ edges ∧ incident x e :=
-                  Finset.mem_filter.mp h
+                have hmem : e ∈ edges ∧ incident x e := h
                 simp only [owner, hxe, ↓reduceIte]
                 exact ⟨hmem.1, rfl⟩
             · constructor
@@ -156,9 +157,7 @@ theorem toOwnerOrientation
                   simpa only [owner, hxe, ↓reduceIte] using h.2
                 exact (hne hownerEq).elim
               · intro h
-                have hinc : incident x e :=
-                  (Finset.mem_filter.mp h).2
-                exact (hxe hinc).elim
+                exact (hxe h.2).elim
           rw [hfilter]
           exact hdegree
         · have hyRemaining : y ∈ remainingVertices x vertices := by
@@ -169,6 +168,9 @@ theorem toOwnerOrientation
                 (nonincidentEdges incident x edges).filter
                   (fun e => tailOrientation.owner e = y) := by
             ext e
+            change (e ∈ edges ∧ owner e = y) ↔
+              ((e ∈ edges ∧ ¬ incident x e) ∧
+                tailOrientation.owner e = y)
             by_cases he : e ∈ edges
             · by_cases hxe : incident x e
               · have hxyeq : x ≠ y := by
@@ -176,14 +178,12 @@ theorem toOwnerOrientation
                   exact hyx hxy.symm
                 simp [owner, nonincidentEdges, he, hxe, hxyeq]
               · simp [owner, nonincidentEdges, he, hxe]
-            · simp only [Finset.mem_filter, he, false_and]
+            · simp only [he, false_and]
               constructor
               · intro h
                 exact h.elim
               · intro h
-                have hmem : e ∈ edges :=
-                  (Finset.mem_filter.mp h).1
-                exact (he hmem).elim
+                exact (he h.1.1).elim
           rw [hfilter]
           exact htail
 
