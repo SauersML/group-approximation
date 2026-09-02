@@ -2123,6 +2123,41 @@ theorem exists_isGeodesicWord_peripheralConnector
       rw [List.eq_of_mem_singleton ha]
       exact rfl
 
+/-- **The minimality polygon closes.**  Dahmani--Guirardel--Osin's `Q''` has
+"*sides `e`, `f`, and edges of `p` (respectively, `q`) between `(p_i)_+` and
+`(p_{i+a})_-` (respectively, `(q_j)_+` and `(q_{j+b})_-`)*" (HE.tex:766).  Read
+as a quadrilateral with the `q`-segment as its opposite side, its closing
+equation is exactly that the two connectors spell the two vertex differences:
+`e` from the `q`-side to the `p`-side at the near ends, `f` back again at the
+far ends.
+
+This is the `hclose` input of `isQuasiGeodesicPolygon_fourGon_of_mixed` at the
+`Q''` shape, so no index arithmetic is left for the construction. -/
+theorem listVal_minimalityFourGon_closes
+    {P Q e f : List (RelLetter G Λ)} {ip1 ip2 iq1 iq2 : ℕ}
+    (hip : ip1 ≤ ip2) (hiq : iq1 ≤ iq2)
+    (he : RelLetter.listVal e = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1)
+    (hf : RelLetter.listVal f =
+      (vertex (1 : G) P ip2)⁻¹ * vertex (1 : G) Q iq2) :
+    RelLetter.listVal ((Q.drop iq1).take (iq2 - iq1))
+      = RelLetter.listVal e *
+        RelLetter.listVal ((P.drop ip1).take (ip2 - ip1)) *
+        RelLetter.listVal f := by
+  have hP := mul_listVal_take_drop (1 : G) P ip1 (ip2 - ip1)
+  have hQ := mul_listVal_take_drop (1 : G) Q iq1 (iq2 - iq1)
+  rw [show ip1 + (ip2 - ip1) = ip2 by omega] at hP
+  rw [show iq1 + (iq2 - iq1) = iq2 by omega] at hQ
+  have hPseg : RelLetter.listVal ((P.drop ip1).take (ip2 - ip1))
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P ip2 := by
+    rw [← hP]
+    group
+  have hQseg : RelLetter.listVal ((Q.drop iq1).take (iq2 - iq1))
+      = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) Q iq2 := by
+    rw [← hQ]
+    group
+  rw [hQseg, he, hPseg, hf]
+  group
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
