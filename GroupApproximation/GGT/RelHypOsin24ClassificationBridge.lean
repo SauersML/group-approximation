@@ -222,6 +222,47 @@ theorem finiteAlphabetRelativePowerEscape_emptyModel
   apply finiteAlphabetRelativePowerEscape_proved G inferInstance I D
     (relGenSet_alphabet_finite_of_isEmpty D hfinite) g hord
 
+/-! ## A finite-family specialization -/
+
+/-- **Finite-family relative power escape.**  If the peripheral index is finite,
+the base is finite, and every peripheral subgroup is finite, then the labelled
+relative alphabet is finite.  Properness of the resulting Cayley graph gives
+Osin's escape conclusion without the centralizer argument.  This is strictly
+smaller than `RelativePowerEscapeStatement`, which allows infinite peripheral
+subgroups. -/
+def FiniteFamilyRelativePowerEscapeStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I]
+    (D : RelGenSet G I),
+    D.base.Finite →
+      (∀ i : I, (D.fam i : Set G).Finite) → ∀ g : G,
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+          IsEscaping g (Cayley.base D.alphabet)
+
+/-- The finite-family statement follows by taking the finite union of the
+base and the finitely many finite peripheral sets. -/
+theorem finiteFamilyRelativePowerEscape_proved :
+    FiniteFamilyRelativePowerEscapeStatement.{u, v} := by
+  intro G instG I _ D hbase hfam g hord
+  letI : Group G := instG
+  have hunion : (⋃ i : I, (D.fam i : Set G)).Finite := by
+    exact Set.finite_iUnion (fun i => hfam i)
+  have halphabet : D.alphabet.carrier.Finite := by
+    change (D.base ∪ ⋃ i : I, (D.fam i : Set G)).Finite
+    exact hbase.union hunion
+  exact finiteAlphabetRelativePowerEscape_proved G inferInstance I D
+    halphabet g hord
+
+/-- Model test for the finite-family specialization.  In the one-point group
+there is no positive-order element, so the order premise closes the statement
+for every finite peripheral index and every relative generating set. -/
+theorem finiteFamilyRelativePowerEscape_trivialModel
+    {I : Type v} [Finite I] (D : RelGenSet PUnit I) (g : PUnit)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  exfalso
+  obtain ⟨n, hn⟩ : ∃ n : ℕ, 0 < n := ⟨1, by omega⟩
+  exact hord n hn (Subsingleton.elim _ _)
+
 /-! ### The missing finite-base binder is load-bearing
 
 The source theorem is a theorem for a finite relative generating set.  The
