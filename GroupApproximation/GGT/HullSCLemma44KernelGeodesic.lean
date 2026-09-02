@@ -52,8 +52,8 @@ theorem wordDist_adjoinKernel_prod_take_le
       (word.take i) (word.take i).prod :=
     isWord_adjoinKernel_of_isWord E q htake
   have hlength := wordNorm_le_length htakeCone
-  rw [wordDist_one_left, List.length_take] at hlength
-  exact le_trans hlength (min_le_left _ _)
+  rw [wordDist_one_left]
+  exact le_trans hlength (by rw [List.length_take]; exact min_le_left _ _)
 
 /-- A shortest old-alphabet word ending at an old letter has length at most
 one. -/
@@ -192,8 +192,8 @@ theorem isHyperbolicallyEmbedded_prefixQuotient_of_bounds
     (hloc : ∀ (lam : Lambda) (n : ℕ),
       (((D.adjoinRelatorPrefixes W
         hsc.toIsSmallCancellation).adjoinKernel q).relBall lam n).Finite) :
-    (D.prefixQuotient W hsc.toIsSmallCancellation q hq).
-      IsHyperbolicallyEmbedded := by
+    GGT.RelGenSet.IsHyperbolicallyEmbedded
+      (D.prefixQuotient W hsc.toIsSmallCancellation q hq) := by
   apply isHyperbolicallyEmbedded_prefixQuotient_of_kernelConeTransfer
     D W hsc q hq
   exact isHyperbolicallyEmbedded_prefixKernelCone_of_bounds
