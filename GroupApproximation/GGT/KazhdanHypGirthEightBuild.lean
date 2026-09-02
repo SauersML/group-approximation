@@ -114,6 +114,32 @@ def CactusBoundaryInput : Prop :=
     (w.map freeLetter).prod ≠ 1 →
     Nonempty (TrivialWordCactusWitness (T := T) w)
 
+/-- The exact algebraic producer required by `CactusBoundaryInput`: it keeps
+the literal boundary spelling while supplying an oriented least-area
+certificate.  The planar realization itself is then supplied by the named
+`VanKampen.cactusRealizationStatement`. -/
+def OrientedCactusBoundaryProducer : Prop :=
+  ∀ (w : List (TriangularHodgeLayer.SignedGenerator Generator)),
+    PresentedWordIsTrivial (T := T) w →
+    (w.map freeLetter).prod ≠ 1 →
+    ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
+      (Z : HullSC.Lemma44OrientedRelatorDiagram A
+        (triangleRelatorWords T) R),
+      Z.boundaryWord = w.map freeLetter
+
+theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
+    (hproducer : OrientedCactusBoundaryProducer (T := T)) :
+    CactusBoundaryInput (T := T) := by
+  intro w hw hfree
+  obtain ⟨A, R, Z, hboundary⟩ := hproducer w hw hfree
+  exact ⟨{
+    trivial := hw
+    alphabet := A
+    radius := R
+    algebraic := Z
+    boundaryWord_eq := hboundary
+  }⟩
+
 /-- The cactus and base-cell bridge has the exact literal boundary required by
 the disc-diagram consumer. -/
 theorem reducedRelatorOnly_of_cactusBoundary
@@ -541,6 +567,45 @@ theorem presented_isHyperbolicGroup_of_cactus_star_build
   GirthEightSlim.presented_isHyperbolicGroup_of_girthEight_layer_construction
     hchecks (build_argument hword hcactus hbase hstar)
 
+/-- Re-export the consumer with base-cell elimination replaced by the landed
+cactus-retyping certificate family. -/
+theorem presented_isHyperbolicGroup_of_cactus_star_build_of_retyping
+    {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
+    (hword : FarPointBoundaryWord (T := T))
+    (hcactus : CactusBoundaryInput (T := T))
+    (hcertificate : CactusRelatorRetypingAvailability (T := T))
+    (hstar : StarLayerConstruction (T := T)) :
+    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
+  exact presented_isHyperbolicGroup_of_cactus_star_build hchecks hword hcactus
+    (baseCellElimination_of_cactusRelatorRetypingAvailability hcertificate) hstar
+
+/-- Re-export the consumer with the star construction expressed by its
+rooted-path and centered first-face certificates. -/
+theorem presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
+    {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
+    (hword : FarPointBoundaryWord (T := T))
+    (hcactus : CactusBoundaryInput (T := T))
+    (hbase : BaseCellElimination (T := T))
+    (hcertificate : StarLayerConstructionCertificateInput (T := T)) :
+    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
+  exact presented_isHyperbolicGroup_of_cactus_star_build hchecks hword hcactus hbase
+    (starLayerConstruction_of_certificate hcertificate)
+
+/-- The clean build consumer after both certificate interfaces have been
+exposed.  The far-point and algebraic cactus producers remain separate named
+inputs because they are not consequences of map surgery. -/
+theorem presented_isHyperbolicGroup_of_cactus_star_build_of_certificates
+    {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
+    (hword : FarPointBoundaryWord (T := T))
+    (hproducer : OrientedCactusBoundaryProducer (T := T))
+    (hbase : BaseCellElimination (T := T))
+    (hstar : StarLayerConstructionCertificateInput (T := T)) :
+    Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T) := by
+  exact presented_isHyperbolicGroup_of_cactus_star_build_of_starCertificate
+    hchecks hword
+    (cactusBoundaryInput_of_orientedCactusBoundaryProducer hproducer)
+    hbase hstar
+
 /-! ## Model tests for the named residuals -/
 
 def emptyTriangleTableBuild : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
@@ -553,6 +618,13 @@ theorem presentedWordIsTrivial_emptyWord_model
 
 theorem cactusBoundaryInput_trivialGroup_model :
     CactusBoundaryInput (T := emptyTriangleTableBuild) := by
+  intro w _ hfree
+  have hfreeOne : (w.map freeLetter).prod = (1 : FreeGroup PEmpty) :=
+    Subsingleton.elim _ _
+  exact (hfree hfreeOne).elim
+
+theorem orientedCactusBoundaryProducer_trivialGroup_model :
+    OrientedCactusBoundaryProducer (T := emptyTriangleTableBuild) := by
   intro w _ hfree
   have hfreeOne : (w.map freeLetter).prod = (1 : FreeGroup PEmpty) :=
     Subsingleton.elim _ _
@@ -573,6 +645,18 @@ theorem farPointBoundaryWord_trivialGroup_model :
 theorem starLayerConstruction_trivialGroup_model :
     StarLayerConstruction (T := emptyTriangleTableBuild) := by
   intro delta x y z p hp hfarXZ hfarZY
+  have hfar := hfarXZ x (Hyperbolic.isBetween_left _ x z)
+  have hdist : wordDist
+      (↑(GirthEightSlim.presentedGeneratorFinset emptyTriangleTableBuild) :
+        Set (TriangularHodgeLayer.Presented emptyTriangleTableBuild)) p x = 0 := by
+    have hpx : p = x := Subsingleton.elim _ _
+    subst p
+    exact wordDist_self _ _
+  omega
+
+theorem starLayerConstructionCertificateInput_trivialGroup_model :
+    StarLayerConstructionCertificateInput (T := emptyTriangleTableBuild) := by
+  intro delta x y z p hp hfarXZ hfarZY Delta hred
   have hfar := hfarXZ x (Hyperbolic.isBetween_left _ x z)
   have hdist : wordDist
       (↑(GirthEightSlim.presentedGeneratorFinset emptyTriangleTableBuild) :
