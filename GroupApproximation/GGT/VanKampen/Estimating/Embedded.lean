@@ -380,7 +380,7 @@ noncomputable def candidateFaceUnion
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (first second : Candidate D eps Delta) : Finset Delta.toCombMap.Face := by
   letI : DecidableEq Delta.toCombMap.Face := Classical.decEq _
-  exact Finset.union first.1 second.1
+  exact first.1 ∪ second.1
 
 /-- The surgery which merges two embedded regions.  Its old carrier is the
 union of their face sets and its new carrier is the candidate chosen to
@@ -424,7 +424,7 @@ theorem compatible_merge
   intro face hface hother
   have hfirst' := Finset.disjoint_left.mp hfirst
   have hsecond' := Finset.disjoint_left.mp hsecond
-  change face ∈ Finset.union first.1 second.1 at hface
+  change face ∈ first.1 ∪ second.1 at hface
   rcases Finset.mem_union.mp hface with hface | hface
   · exact hfirst' hface hother
   · exact hsecond' hface hother
