@@ -773,6 +773,35 @@ theorem append_isCompStart_left_occurrence
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hreadOpt⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartOriginal
 
+/-- The cut with one side containing an entire word. -/
+def oneSideCut (word : List (RelLetter G Λ)) : ℕ → ℕ := fun s =>
+  if s = 0 then 0 else word.length
+
+omit [Group G] in
+/-- `oneSideCut` cuts a word as a one-gon. -/
+theorem isPolygonCut_oneSide (word : List (RelLetter G Λ)) :
+    IsPolygonCut 1 word (oneSideCut word) := by
+  refine ⟨rfl, by simp [oneSideCut], ?_⟩
+  intro s
+  cases s with
+  | zero => simp [oneSideCut]
+  | succ s => simp [oneSideCut]
+
+omit [Group G] in
+/-- Before the final side, the appended cut agrees with the identity cut on
+the first word. -/
+theorem appendCut_oneSide_left (word tail : List (RelLetter G Λ))
+    {s : ℕ} (hs : s ≤ word.length) :
+    appendCut (fun t => t) word.length (oneSideCut tail) s = s := by
+  simp [appendCut, hs]
+
+omit [Group G] in
+/-- The last corner of the appended cut is the end of the concatenation. -/
+theorem appendCut_oneSide_last (word tail : List (RelLetter G Λ)) :
+    appendCut (fun t => t) word.length (oneSideCut tail)
+      (word.length + 1) = word.length + tail.length := by
+  simp [appendCut, oneSideCut]
+
 end OsinComponents
 end GGT
 end GroupApproximation
