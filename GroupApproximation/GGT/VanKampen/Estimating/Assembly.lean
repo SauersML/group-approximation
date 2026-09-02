@@ -66,7 +66,7 @@ theorem exists_estimatingScaffold
 
 /-- A surgery replacement with equal dart universe yields the embedded
 O-equivalence required by the selection statement. -/
-theorem Surgery.GRegionReplacement.toOEquivalent
+def Surgery.GRegionReplacement.toOEquivalent
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
@@ -76,9 +76,15 @@ theorem Surgery.GRegionReplacement.toOEquivalent
   cellIndex := replacement.cells.indexEquiv
   cellWord_eq := by
     intro i
-    have hcells := replacement.cells.cells_eq
-    have hget := congrArg (fun cells => cells.get (replacement.cells.indexEquiv i)) hcells
-    simpa only [Embedded.cell, List.get_map] using hget.symm
+    have hget :
+        replacement.diagram.relatorCells.get (replacement.cells.indexEquiv i) =
+          replacement.cells.cellEquiv (Delta.relatorCells.get i) := by
+      rw [List.get_eq_getElem, List.get_eq_getElem,
+        replacement.cells.cells_eq, List.get_eq_getElem]
+      simp only [List.getElem_map]
+      rfl
+    rw [Embedded.cell, Embedded.cell, hget]
+    exact replacement.cells.word_eq (Delta.relatorCells.get i)
 
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
 The selected interior regions form a hereditary simple planar graph, no
@@ -423,6 +429,7 @@ def EstimatingSelectionConstructionStatement : Prop :=
                   IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
                     ∃ Delta' : DiscDiagram.{u, w, v} W,
                       Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                        Delta'.Reduced ∧
                         ∃ scaffold : EstimatingScaffold D eps Delta',
                           Nonempty (EstimatingGraphData D eps Delta' scaffold)
 
@@ -433,7 +440,7 @@ def SelectionFaceDropOracle
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (hcondition : OsinCCondition D W eps mu lambda c rho) : Prop :=
+    (_hcondition : OsinCCondition D W eps mu lambda c rho) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W),
     Delta.Reduced → 0 < Delta.rCellCount →
       IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
@@ -460,7 +467,7 @@ def OEquivalentDiscDiagram.trans
     intro i
     calc
       (Embedded.cell Delta₃ (first.cellIndex.trans second.cellIndex i)).word =
-          (Embedded.cell Delta₂ (second.cellIndex (first.cellIndex i))).word :=
+          (Embedded.cell Delta₂ (first.cellIndex i)).word :=
         second.cellWord_eq (first.cellIndex i)
       _ = (Embedded.cell Delta₁ i).word := first.cellWord_eq i
 
@@ -471,12 +478,13 @@ theorem selection_output_of_faceDropOracle
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
     {W : Set (List (GGT.RelLetter G Lambda))}
     (hcondition : OsinCCondition D W eps mu lambda c rho)
-    (oracle : SelectionFaceDropOracle D eps rho mu lambda c hcondition)
+    (oracle : SelectionFaceDropOracle (v := v) D eps rho mu lambda c hcondition)
     (Delta : DiscDiagram.{u, w, v} W)
     (hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
     (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
-    ∃ Delta' : DiscDiagram.{u, w, v} W,
+      ∃ Delta' : DiscDiagram.{u, w, v} W,
       Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+        Delta'.Reduced ∧
         ∃ scaffold : EstimatingScaffold D eps Delta',
           Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
   have aux : ∀ n : ℕ, ∀ (Delta : DiscDiagram.{u, w, v} W),
@@ -485,6 +493,7 @@ theorem selection_output_of_faceDropOracle
           IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
             ∃ Delta' : DiscDiagram.{u, w, v} W,
               Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                Delta'.Reduced ∧
                 ∃ scaffold : EstimatingScaffold D eps Delta',
                   Nonempty (EstimatingGraphData D eps Delta' scaffold) := by
     intro n
@@ -492,15 +501,16 @@ theorem selection_output_of_faceDropOracle
     | h n ih =>
         intro Delta hface hred' hcells' hboundary'
         rcases oracle Delta hred' hcells' hboundary' with hterminal | hdrop
-        · exact hterminal
+        · rcases hterminal with ⟨scaffold, graph⟩
+          exact ⟨Delta, ⟨OEquivalentDiscDiagram.refl Delta⟩, hred', scaffold, graph⟩
         · obtain ⟨Delta₂, hequiv, hdropFace, hred₂, hcells₂, hboundary₂⟩ := hdrop
           obtain ⟨equiv₁⟩ := hequiv
           have hlt : Delta₂.toCombMap.faceCount < n := by
             omega
-          obtain ⟨Delta₃, hequiv₂, scaffold, graph⟩ :=
-            ih Delta₂ hlt hred₂ hcells₂ hboundary₂
+          obtain ⟨Delta₃, hequiv₂, hred₃, scaffold, graph⟩ :=
+            ih Delta₂.toCombMap.faceCount hlt Delta₂ rfl hred₂ hcells₂ hboundary₂
           obtain ⟨equiv₂⟩ := hequiv₂
-          refine ⟨Delta₃, ⟨equiv₁.trans equiv₂⟩, scaffold, graph⟩
+          exact ⟨Delta₃, ⟨equiv₁.trans equiv₂⟩, hred₃, scaffold, graph⟩
   exact aux Delta.toCombMap.faceCount Delta rfl hred hcells hboundary
 
 /-- The local O52 input: every selected face-set candidate has the two-cell
@@ -512,6 +522,7 @@ def EstimatingPieceConstructionStatement : Prop :=
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W)
     (scaffold : EstimatingScaffold D eps Delta),
+    Delta.Reduced →
     Nonempty (CellPieceData D eps Delta scaffold)
 
 /-! ## Local piece-construction bridge -/
@@ -582,11 +593,11 @@ theorem estimatingDataConstruction_of_components
     hlambda hlambdaUpper hc hmu hmuUpper
   refine ⟨eps, rho, hrho, ?_⟩
   intro W hcondition Delta hred hcells hboundary
-  obtain ⟨Delta', hequiv, scaffold, graph⟩ := hselect W hcondition Delta
+  obtain ⟨Delta', hequiv, hred', scaffold, graph⟩ := hselect W hcondition Delta
     hred hcells hboundary
   obtain ⟨equiv⟩ := hequiv
   obtain ⟨graph⟩ := graph
-  obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold
+  obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold hred'
   have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord :=
     equiv.boundary_quasiGeodesic hboundary
   obtain ⟨unbound⟩ := hunbound D eps rho mu lambda c hcondition Delta'
