@@ -57,8 +57,8 @@ theorem uniformProposition414Statement_of_dgo414
   obtain ⟨C, _hCpos, hsum, _hball⟩ :=
     h414 G Lambda D hhyper hsymm 1 (b : ℝ) (le_refl 1) (Nat.cast_nonneg b)
   refine ⟨C, ?_⟩
-  intro n _hn
-  intro v word cut I lam hletters hclosed hcut hI hedge hcomp hisolated hquasi
+  intro n _hn v word cut I lam hletters hclosed hcut hI hedge hcomp hisolated
+    hquasi
   refine hsum n v word cut I lam hletters hclosed hcut hI hedge hcomp
     hisolated ?_
   intro s hsn hsI p q hsp hpq hqs
