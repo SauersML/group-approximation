@@ -49,11 +49,11 @@ theorem sum_orientedTrimmedChordWalk_dist_le
     (∑ j : Fin (xs.length + 1),
       Nat.dist
         (if h : j.val < xs.length then
-          if forward j then xs[j.val] + 1 else xs[j.val]
+          endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          if forward j then xs[j.val - 1]'(by omega)
-          else xs[j.val - 1]'(by omega) + 1
+          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+            (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       chordTraversalCost (initial :: xs ++ [terminal]) +
         2 * (xs.length + 1) := by
@@ -62,11 +62,11 @@ theorem sum_orientedTrimmedChordWalk_dist_le
     (∑ j : Fin (xs.length + 1),
       Nat.dist
         (if h : j.val < xs.length then
-          if forward j then xs[j.val] + 1 else xs[j.val]
+          endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          if forward j then xs[j.val - 1]'(by omega)
-          else xs[j.val - 1]'(by omega) + 1
+          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+            (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       ∑ j : Fin (xs.length + 1),
         (Nat.dist (chordWalkStart terminal xs j)
@@ -76,32 +76,32 @@ theorem sum_orientedTrimmedChordWalk_dist_le
             by_cases hf : forward j
             · by_cases hn : j.val < xs.length
               · by_cases hp : 0 < j.val
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
               · by_cases hp : 0 < j.val
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
             · by_cases hn : j.val < xs.length
               · by_cases hp : 0 < j.val
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
               · by_cases hp : 0 < j.val
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
-                · simp [hf, hn, hp, chordWalkStart, chordWalkFinish,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
                     Nat.dist]
                   omega
     _ = chordTraversalCost (initial :: xs ++ [terminal]) +
@@ -117,11 +117,11 @@ theorem sum_orientedTrimmedChordWalk_dist_le_four_length
     (∑ j : Fin (xs.length + 1),
       Nat.dist
         (if h : j.val < xs.length then
-          if forward j then xs[j.val] + 1 else xs[j.val]
+          endpointByOrientation (forward j) (xs[j.val] + 1) xs[j.val]
         else terminal)
         (if h : 0 < j.val then
-          if forward j then xs[j.val - 1]'(by omega)
-          else xs[j.val - 1]'(by omega) + 1
+          endpointByOrientation (forward j) xs[j.val - 1]'(by omega)
+            (xs[j.val - 1]'(by omega) + 1)
         else initial)) ≤
       chordTraversalCost (initial :: xs ++ [terminal]) + 4 * xs.length := by
   cases xs with
