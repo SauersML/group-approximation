@@ -102,6 +102,24 @@ theorem value_eq_basePath_conj_inv (Delta : BasedDiscDiagram.{u, w, v} W)
           ((Delta.basePath i).map Delta.toDiscDiagram.label))⁻¹ := by
   simp only [RelatorCell.value, hrev, if_true, Delta.basePath_value i]
 
+/-- A diagram whose conjugators are the label values of single darts is based
+by the one-dart basing paths.  This is the shape the cactus constructions
+already have: `CactusConstruction.lean` labels the stem darts
+`.stemOut i` and `.stemIn i` by `GGT.RelLetter.base` of the `i`-th cell's
+conjugator and its inverse, so a stem dart is exactly a basing path of
+length one. -/
+def ofDartConjugators (Delta : DiscDiagram.{u, w, v} W)
+    (stem : Fin Delta.relatorCells.length → Delta.toCombMap.Dart)
+    (hstem : ∀ i, (Delta.relatorCells.get i).conjugator =
+      GGT.RelLetter.val (Delta.label (stem i))) :
+    BasedDiscDiagram.{u, w, v} W where
+  toDiscDiagram := Delta
+  basePath := fun i => [stem i]
+  basePath_value := by
+    intro i
+    rw [hstem i]
+    simp [GGT.RelLetter.listVal]
+
 /-! ## Model test -/
 
 /-- A diagram with no relator cells is based, with no basing paths to supply.
