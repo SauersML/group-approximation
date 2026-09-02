@@ -2543,6 +2543,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i) := by
         rw [htargetEq]
         exact hej
+      have heqA :
+          RelLetter.listVal pc * vertex (1 : G) P (source i) * hhi =
+            RelLetter.listVal pc * vertex (1 : G) P (source j) * hhj := by
+        rw [hei, hej']
       have halg :
           (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
               (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
@@ -2550,16 +2554,12 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         calc
           (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
                 (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
-              ((RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-                vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i)) *
-                ((RelLetter.listVal pc * vertex (1 : G) P (source j))⁻¹ *
-                  vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i))⁻¹ := by
+              (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                ((RelLetter.listVal pc * vertex (1 : G) P (source j)) * hhj) * hhj⁻¹ := by
               group
-          _ = ((RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-                (RelLetter.listVal pc * vertex (1 : G) P (source i) * hhi)) *
-                ((RelLetter.listVal pc * vertex (1 : G) P (source j))⁻¹ *
-                  (RelLetter.listVal pc * vertex (1 : G) P (source j) * hhj))⁻¹ := by
-              rw [← hei, ← hej']
+          _ = (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                ((RelLetter.listVal pc * vertex (1 : G) P (source i)) * hhi) * hhj⁻¹ := by
+              rw [heqA]
           _ = hhi * hhj⁻¹ := by group
       rw [halg]
       exact hmul
