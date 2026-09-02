@@ -164,7 +164,6 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
       GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
     (hunbound :
       GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
-    (hpasting : HullLemma49SourceFacePastingStatement.{0, 0})
     (hinjective : HullLemma49InjectivityCallback.{0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have hgeom :
@@ -173,7 +172,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
       hselection hpieces hunbound
   apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
   · exact hgeom
-  · exact hpasting
+  · exact hullLemma49SourceFacePastingStatement_holds
   · exact hinjective
 
 /-- End-to-end input leaf for the manuscript power-diagram statement.
@@ -181,9 +180,9 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
 The first four arguments are the current estimating interfaces: the common
 relative Greendlinger statement and the three separated construction
 certificates.  The next two are the kernel-geodesic and prefix-kernel outputs
-of the Hull 4.4 assembly.  The final argument is vk's planar face-peel
-certificate callback; `faceSetBoundaryPeelWitness_of_planar` and the finite
-face-count induction turn it into the source certificate consumed above. -/
+of the Hull 4.4 assembly.  The source face-pasting certificate is no longer an
+argument: `hullLemma49SourceFacePastingStatement_holds` supplies it from the
+shelling that every contiguity region carries. -/
 theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hgeom : GGT.VanKampen.RelativeGreendlingerStatement.{0, 0})
     (hselection :
@@ -193,20 +192,11 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hunbound :
       GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
-    (hplanar :
-      ∀ {G : Type} [Group G] {Lambda : Type}
-        {W : Set (List (GGT.RelLetter G Lambda))}
-        {Delta : GGT.VanKampen.DiscDiagram.{0, 0, 0} W}
-        {faces : Finset Delta.toCombMap.Face}
-        (boundary : GGT.VanKampen.Embedded.FaceSetBoundary Delta faces),
-        GGT.VanKampen.Embedded.PlanarFacePeelCertificate boundary) :
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
     hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
       hgeom hkernel htransfer
-  have hpasting : HullLemma49SourceFacePastingStatement.{0, 0} :=
-    hullLemma49SourceFacePastingStatement_of_planar hplanar
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   have hquasi :
@@ -215,7 +205,7 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
       hselection hpieces hunbound
   apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
   · exact hquasi
-  · exact hpasting
+  · exact hullLemma49SourceFacePastingStatement_holds
   · exact hinjective
 
 /-! ## Model check -/
