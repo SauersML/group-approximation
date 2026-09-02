@@ -186,16 +186,16 @@ theorem Lemma62AveragingCertificate.total_lt
 /-- The empty-component certificate is valid at the smallest positive values,
 so the averaging leaf has a nonvacuous positive target. -/
 theorem lemma62AveragingCertificate_emptyModel :
-    Lemma62AveragingCertificate 1 0 1 := by
-  refine {
+    Nonempty (Lemma62AveragingCertificate 1 0 1) := by
+  refine ⟨{
     n_pos := by norm_num
     t_pos := by norm_num
-    arcCount := fun i => i.elim
-    unboundLength := fun i => i.elim
+    arcCount := fun i => Fin.elim0 i
+    unboundLength := fun i => Fin.elim0 i
     arc_count_le := by simp
-    component_lt := ?_ }
+    component_lt := ?_ }⟩
   intro i
-  exact i.elim
+  exact Fin.elim0 i
 
 /-- Osin Appendix Lemma 62, averaging form: a total of at least `n * t`
 forces one component to meet the `1/60` density threshold. -/
