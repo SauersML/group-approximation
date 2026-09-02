@@ -791,6 +791,8 @@ theorem listVal_conj_of_exactDesign_long_prefixes
     have hwlen : j ≤ w.length := by rw [hu, List.length_append]; omega
     have hc := hcount w hw i j hij hwlen
     rw [hvi, hvj]
+    dsimp only [cw]
+    simp only [blockConst, List.length_singleton] at hc ⊢
     omega
   have hcu' : ∀ i j : ℕ, i ≤ j → j ≤ u'.length →
       j - i ≤ wordDist E.rel.alphabet.carrier
@@ -809,6 +811,8 @@ theorem listVal_conj_of_exactDesign_long_prefixes
     have hwlen : j ≤ w'.length := by rw [hu', List.length_append]; omega
     have hc := hcount w' hw' i j hij hwlen
     rw [hvi, hvj]
+    dsimp only [cw]
+    simp only [blockConst, List.length_singleton] at hc ⊢
     omega
   have hqg := fourGonQG_of_sides E.rel (le_trans hpylen hshort)
     (le_trans hpzlen hshort) hcu hcu'
