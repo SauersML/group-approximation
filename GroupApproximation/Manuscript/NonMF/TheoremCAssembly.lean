@@ -17,6 +17,7 @@ import GroupApproximation.GGT.DGOTheorem442Proof
 import GroupApproximation.GGT.HullYiCyclicProductClosure
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.RelHypProp23FromHullOsin24
+import GroupApproximation.GGT.DGOProposition435HullJoint
 
 /-!
 # Theorem C assembly
@@ -183,6 +184,31 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
+/-- **Open input.**  The joint hyperbolic embedding of an original
+hyperbolically embedded family together with the simultaneously selected
+auxiliary elementary closures over the nested relative alphabets
+(`GGT/DGOProposition435.lean`).  This is the transitivity input that Osin's
+Theorem 2.4 takes for granted in its relatively hyperbolic setting; it is not
+Dahmani--Guirardel--Osin Proposition 4.35, which removes the original family
+from the conclusion.  Its residues are the joint hyperbolicity and the joint
+local finiteness statements named in that module. -/
+theorem dgoProposition435Inclusion :
+    GGT.RelHyp.DGOProposition435InclusionStatement.{0, 0, 0} := by
+  sorry
+
+/-- **Open exact geometric proof.**  Hull's Lemma 4.4 in its family form with
+the source joint family bound explicitly
+(`GGT/HullSCLemma44FamilyInclusionStatement.lean`); the previous unbound form
+was over-strong, since at the identity quotient with the empty relator family
+it produced the joint embedding for free
+(`HullSC.jointAuxiliaryPeripheralEmbedding_of_familyInclusion`).  It reduces to
+the relative Greendlinger statement, the relative isoperimetric bridge and the
+relator re-spelling statement
+(`HullSC.hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls`). -/
+theorem hullLemma44FamilyInclusionJoint :
+    HullSC.HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{0, 0} := by
+  sorry
+
 /-- **Open proof.**  Hull, Lemma 4.4, in the form Hull prints it: the natural
 quotient by a relator family satisfying the small cancellation condition is
 injective on the requested Cayley ball and preserves both the simultaneously
@@ -193,8 +219,9 @@ Fournier-Facio's Proposition 2.3 consumes through Osin's Theorem 2.4
 Theorem 7.1 is its special case.  No rotating-space geometry is attributed to
 the lemma. -/
 theorem hullLemma44FamilyInclusion :
-    HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0} := by
-  sorry
+    HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0} :=
+  HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
+    dgoProposition435Inclusion hullLemma44FamilyInclusionJoint
 
 /-- Hull's Lemma 4.4 for the selected family alone, the special case of the
 family-inclusion form in which the original hyperbolically embedded family is
