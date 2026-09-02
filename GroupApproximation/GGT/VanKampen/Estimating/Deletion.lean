@@ -66,6 +66,110 @@ inductive FiveDeletionOrder
         (nonincidentEdges incident x edges)) :
       FiveDeletionOrder incident vertices edges
 
+/-! ## Five-owner orientations -/
+
+/-- A five-owner orientation assigns every active edge to one incident active
+vertex, with at most five edges assigned to any active vertex.  This is the
+orientation conclusion of Osin's Appendix Lemma `Eul`. -/
+structure FiveOwnerOrientation
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    (vertices : Finset V) (edges : Finset E) where
+  owner : E → V
+  owner_mem : ∀ e ∈ edges, owner e ∈ vertices ∧ incident (owner e) e
+  owner_card : ∀ x ∈ vertices,
+    (edges.filter (fun e => owner e = x)).card ≤ 5
+
+namespace FiveDeletionOrder
+
+/-- The deletion order recursively assigns each removed edge to the vertex
+removed at that step. -/
+theorem toOwnerOrientation
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident]
+    {vertices : Finset V} {edges : Finset E}
+    (order : FiveDeletionOrder incident vertices edges)
+    [Nonempty V] :
+    Nonempty (FiveOwnerOrientation incident vertices edges) := by
+  induction order with
+  | empty =>
+      let x₀ : V := Classical.choice (inferInstance : Nonempty V)
+      refine ⟨{
+        owner := fun _ => x₀
+        owner_mem := ?_
+        owner_card := ?_ }⟩
+      · intro e he
+        simp only [Finset.not_mem_empty] at he
+      · intro x hx
+        simp only [Finset.filter_empty, Finset.card_empty]
+  | @step vertices edges x hx hdegree tail ih =>
+      obtain ⟨tailOrientation⟩ := ih
+      let owner : E → V := fun e =>
+        if incident x e then x else tailOrientation.owner e
+      refine ⟨{
+        owner := owner
+        owner_mem := ?_
+        owner_card := ?_ }⟩
+      · intro e he
+        by_cases hxe : incident x e
+        · exact ⟨hx, hxe⟩
+        · have hnonincident : e ∈ nonincidentEdges incident x edges := by
+            simp only [nonincidentEdges, Finset.mem_filter, he, true_and]
+            exact hxe
+          have htail := tailOrientation.owner_mem e hnonincident
+          have hnotx : tailOrientation.owner e ≠ x := by
+            intro heq
+            have hmem := htail.1
+            rw [heq] at hmem
+            exact (Finset.mem_erase.mp hmem).1 rfl
+          rw [show owner e = tailOrientation.owner e by
+            simp only [owner, hxe, ↓reduceIte]]
+          exact ⟨Finset.mem_of_mem_erase htail.1, htail.2⟩
+      · intro y hy
+        by_cases hyx : y = x
+        · subst y
+          have hfilter :
+              edges.filter (fun e => owner e = x) =
+                incidentEdges incident x edges := by
+            ext e
+            by_cases hxe : incident x e
+            · simp only [Finset.mem_filter, hxe, true_and, owner, hxe,
+                ↓reduceIte]
+            · simp only [Finset.mem_filter, hxe, false_and, owner, hxe,
+                ↓reduceIte]
+              exact ⟨fun h => (h rfl).elim, fun h => (hxe h).elim⟩
+          rw [hfilter]
+          exact hdegree
+        · have hyRemaining : y ∈ remainingVertices x vertices := by
+            exact Finset.mem_erase.mpr ⟨hyx, hy⟩
+          have htail := tailOrientation.owner_card y hyRemaining
+          have hfilter :
+              edges.filter (fun e => owner e = y) =
+                (nonincidentEdges incident x edges).filter
+                  (fun e => tailOrientation.owner e = y) := by
+            ext e
+            by_cases he : e ∈ edges
+            · by_cases hxe : incident x e
+              · simp only [Finset.mem_filter, he, true_and, owner, hxe,
+                  ↓reduceIte, hyx, false_eq_true]
+              · simp only [Finset.mem_filter, he, hxe, true_and, owner,
+                  hxe, ↓reduceIte]
+            · simp only [Finset.mem_filter, he, false_and]
+          rw [hfilter]
+          exact htail
+
+end FiveDeletionOrder
+
+/-! ## Model checks -/
+
+/-- The empty incidence state has a five-owner orientation whenever its
+ambient vertex type is inhabited. -/
+theorem fiveOwnerOrientation_emptyModel
+    {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
+    (incident : V → E → Prop) [DecidableRel incident] [Nonempty V] :
+    Nonempty (FiveOwnerOrientation incident (∅ : Finset V) (∅ : Finset E)) := by
+  exact FiveDeletionOrder.toOwnerOrientation incident FiveDeletionOrder.empty
+
 /-- The empty incidence state is the base model for a five-deletion order. -/
 theorem fiveDeletionOrder_emptyModel
     {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
