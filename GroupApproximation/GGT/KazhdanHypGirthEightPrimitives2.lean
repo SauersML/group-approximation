@@ -438,8 +438,8 @@ theorem innerFaceWordHomotopy_of_peeling
         have hbc_lt : W.rank b + W.rank c < total := by
           rw [← htotal]
           omega
-        have hac' := ih (W.rank a + W.rank c) hac_lt a c
-        have hbc' := ih (W.rank b + W.rank c) hbc_lt b c
+        have hac' := ih (W.rank a + W.rank c) hac_lt a c rfl
+        have hbc' := ih (W.rank b + W.rank c) hbc_lt b c rfl
         exact hac'.trans hbc'.symm
 
 omit [Fintype Generator] [DecidableEq Generator]
