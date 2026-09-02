@@ -796,9 +796,11 @@ theorem source_target_eq_none_of_kind_exterior
   cases htarget : candidate.contiguity.target with
   | none => rfl
   | some target =>
+      have hne : candidate.contiguity.target ≠ none := by
+        rw [htarget]
+        exact Option.some_ne_none target
       have hfalse : CellArcKind.interior = CellArcKind.exterior := by
-        simpa only [CellIncidence.kind, Option.some_ne_none, ↓reduceIte] using
-          hkind
+        simpa only [CellIncidence.kind, if_neg hne] using hkind
       cases hfalse
 
 /-- Convert an exterior-kind incidence into its selected outer region. -/
