@@ -1476,7 +1476,7 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
       RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
         RelLetter.listVal r →
       IsQuasiGeodesicPolygon D mu b n 1 (p ++ q ++ r ++ revWord s) →
-      ∀ (i k : ℕ), IsComp lam q i k → k < q.length →
+      ∀ (i k : ℕ), 0 < i → IsComp lam q i k → k < q.length →
         C * n ≤ rho →
         (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
         ∃ n' : ℕ, n' ≠ p.length + i ∧
@@ -1490,9 +1490,9 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
           ∃ h : G, h ∈ D.fam lam ∧
             RelLetter.listVal p * vertex (1 : G) q i * h =
               vertex (1 : G) (p ++ q ++ r ++ revWord s) n' := by
-    intro n rho hn p q r s hclose hpoly i k hcomp hk hrho hdeep
+    intro n rho hn p q r s hclose hpoly i k hi hcomp hk hrho hdeep
     have hbridge := isComp_fourGon_of_isComp_side_of_interior
-      p q r s lam hcomp.1 hk hcomp
+      p q r s lam hi hk hcomp
     have hiq : i ≤ q.length := le_trans (Nat.le_of_lt hcomp.1) hcomp.2.1
     have hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
         (p.length + i) := ⟨p.length + k, hbridge⟩
@@ -1518,7 +1518,7 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
     intro i
     obtain ⟨n, hn, hnstart, hnloc, h, hh, heq⟩ :=
       hdeepTarget 4 rho (by omega) p q r s hclose hpoly
-        (source i) (source i + 1) (hsource_comp i)
+        (source i) (source i + 1) (hsource_pos i) (hsource_comp i)
         (hsource_end i) (by simpa using hrho) (hsource_deep i)
     refine ⟨n, hn, hnstart, hnloc, h, hh, heq⟩
   have htarget : ∀ i, ∃ n : ℕ, n ≠ p.length + source i ∧
