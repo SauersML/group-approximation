@@ -23,6 +23,12 @@ open GroupApproximation.WordMetric
 
 universe u w v
 
+noncomputable local instance faceDecidableEqPiece
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} :
+    DecidableEq Delta.toCombMap.Face := Classical.decEq _
+
 namespace Embedded
 namespace CyclicArc
 
@@ -571,7 +577,7 @@ def CellPieceEquations.of_boundaryPeeling
 
 /-- The one-cell disc model uses the direct face-boundary deletion schedule,
 so its boundary-counting equation is available without a global peel oracle. -/
-theorem CellPieceEquations.oneCell_model
+def CellPieceEquations.oneCell_model
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -602,7 +608,7 @@ theorem CellPieceEquations.oneCell_model
 
 /-- The two-cell mirror model uses the explicit adjacent-face schedule; the
 same boundary-dart equation then feeds the reduced piece bridge. -/
-theorem CellPieceEquations.twoCell_mirror_model
+def CellPieceEquations.twoCell_mirror_model
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -620,9 +626,14 @@ theorem CellPieceEquations.twoCell_mirror_model
     (bridge : ReducedCellPieceBridge Gamma)
     (hred : Delta.Reduced) :
     CellPieceEquations Gamma := by
+  have h₁mem : f₁ ∈ faces := by
+    rw [hfaces]
+    simp [hneq]
+  have h₂mem : f₂ ∈ faces := by
+    rw [hfaces]
+    simp [hneq]
   have hschedule : FaceSetDeletionSchedule (Delta := Delta) faces cycle :=
-    twoFacePeeling hfaces hneq h₁ h₂
-      (by simp [hneq]) (by simp [hneq]) cycle next moves hnext
+    twoFacePeeling hfaces hneq h₁ h₂ h₁mem h₂mem cycle next moves hnext
   have hschedule' : FaceSetDeletionSchedule (Delta := Delta) faces
       Gamma.boundary.cycle := by
     rw [hcycle]
