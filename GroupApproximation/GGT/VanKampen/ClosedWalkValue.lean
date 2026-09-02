@@ -112,19 +112,14 @@ theorem faceSetWordHomotopy_of_faceAssembly
   | empty =>
       intro _
       exact FaceSetWordHomotopy.refl []
-  | insertFace face rest ih =>
+  | @insertFace l before after face _rest ih =>
       intro hl
       have hface : face ∈ faces := hl face List.mem_cons_self
-      have hstep : FaceSetWordHomotopy Delta faces
-          (_ ++ (Delta.faceBoundary face).darts ++ _) (_ ++ _) :=
-        FaceSetWordHomotopy.eraseFace face hface _ _
-      exact hstep.trans (ih (fun f hf => hl f (List.mem_cons_of_mem face hf)))
-  | insertPair dart rest ih =>
+      exact (FaceSetWordHomotopy.eraseFace face hface before after).trans
+        (ih (fun f hf => hl f (List.mem_cons_of_mem face hf)))
+  | @insertPair l before after dart _rest ih =>
       intro hl
-      have hstep : FaceSetWordHomotopy Delta faces
-          (_ ++ dart :: Delta.toCombMap.alpha dart :: _) (_ ++ _) :=
-        FaceSetWordHomotopy.eraseAlphaPair dart _ _
-      exact hstep.trans (ih hl)
+      exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).trans (ih hl)
 
 /-- An assembly of a boundary cycle from the selected faces gives the boundary
 value identity used by every consumer. -/
