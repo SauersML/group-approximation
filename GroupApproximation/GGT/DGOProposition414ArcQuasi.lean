@@ -80,6 +80,7 @@ theorem firstArcCut_succ_of_lt
     B.firstArcCut (s + 1) =
       P.cut (B.firstSide + s + 1) - B.firstVertex := by
   rw [B.firstArcCut_of_pos (by omega) (by omega)]
+  congr 2
 
 /-- The last first-arc side finishes at the second inserted chord endpoint. -/
 theorem firstArcCut_last_succ
@@ -156,8 +157,9 @@ theorem firstArc_offTarget_source_or_trivial
             have hleft := B.secondVertex_mem.1
             rw [← hsource] at hleft
             omega
-          rw [hlast, B.firstArcCut_last_succ,
-            B.firstArcCut_of_pos hs0 (by omega), hvertex]
+          subst s
+          rw [B.firstArcCut_last_succ,
+            B.firstArcCut_of_pos (by omega) (le_refl _), hvertex]
         · have hstartLe : B.firstVertex ≤ P.cut (B.firstSide + s) := by
             exact B.firstVertex_mem.2.trans
               (P.polygonCut.mono_le (show B.firstSide + 1 ≤
@@ -193,20 +195,22 @@ theorem firstArc_quasi
     have hleft : P.cut (B.firstSide + s) ≤ B.firstVertex + p := by
       by_cases hs0 : s = 0
       · subst s
-        have hvertex := B.firstVertex_mem.1
-        omega
-      · have hcut := B.firstArcCut_of_pos hs0 (by omega)
+        simpa only [Nat.add_zero] using
+          B.firstVertex_mem.1.trans (Nat.le_add_right B.firstVertex p)
+      · have hcut := B.firstArcCut_of_pos (by omega) (by omega)
         rw [hcut] at hp
         have hvertex := B.firstVertex_mem.2.trans
           (P.polygonCut.mono_le (show B.firstSide + 1 ≤
             B.firstSide + s by omega))
         omega
     have hright : B.firstVertex + q ≤ P.cut (B.firstSide + s + 1) := by
+      have hvertices := B.split_vertices_ordered
       by_cases hlast : s = B.secondSide - B.firstSide
       · rw [hlast, B.firstArcCut_last_succ] at hq
         have hvertex := B.secondVertex_mem.2
         omega
-      · have hcut := B.firstArcCut_succ_of_lt (by omega)
+      · have hslt : s < B.secondSide - B.firstSide := by omega
+        have hcut := B.firstArcCut_succ_of_lt hslt
         rw [hcut] at hq
         have hvertex := B.firstVertex_mem.2.trans
           (P.polygonCut.mono_le (show B.firstSide + 1 ≤
