@@ -398,18 +398,7 @@ theorem qTwoTriangles_eq :
 
 theorem qTwoData_checkTableAt :
     checkTableAt qTwoData 3 = true := by
-  rw [checkTableAt, Bool.and_eq_true]
-  constructor
-  · have hp : positiveCardinalityCheck qTwoData = true := by decide
-    have hl : lambdaCheck qTwoData = true := by decide
-    have hr : rowCompatibilityCheck qTwoData = true := by decide
-    have hc : pairCoverCheck qTwoData = true := by decide
-    have hn : noCubeCheck qTwoData = true := by decide
-    rw [localCheck, hp, hl, hr, hc, hn]
-    rfl
-  · apply (girthCheckAt_eq_true_iff qTwoData).mpr
-    rw [qTwoTriangles_eq]
-    exact GQTwoTable.girthEightChecks
+  decide
 
 theorem qTwoData_girth :
     GirthEightChecks (triangles qTwoData) 3 :=
