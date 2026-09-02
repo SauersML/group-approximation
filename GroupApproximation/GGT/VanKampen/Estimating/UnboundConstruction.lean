@@ -114,8 +114,8 @@ theorem finset_piece_sum_empty_model (bound : ℝ) (hbound : 0 ≤ bound) :
       ((0 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
     (piece := fun _ : Fin 0 => (0 : ℝ)) (bound := bound) (N := 0) ?_ ?_ hbound
-  · intro i hi
-    norm_num
+  · intro _ _
+    exact hbound
   · simp
 
 /-- The cardinality estimate has the exact one-piece model: one piece of
@@ -125,7 +125,7 @@ theorem finset_piece_sum_oneCell_model (bound : ℝ) (hbound : 0 ≤ bound) :
       ((1 : ℕ) : ℝ) * bound := by
   refine finset_piece_sum_le_of_card_bound (s := Finset.univ)
     (piece := fun _ : Fin 1 => bound) (bound := bound) (N := 1) ?_ ?_ hbound
-  · intro i hi
+  · intro _ _
     exact le_rfl
   · simp
 
