@@ -302,6 +302,124 @@ theorem closedMap_facePerm (S : Pairing Delta n) :
     exact Surgery.MapCollapse.ofAlphaFacePerm_facePerm S.seamAlpha
       (copiedFacePerm Delta n) S.involutive S.fixedPointFree
 
+/-! The next identity is the local path-lifting fact used by the double
+seam connectedness proof.  Away from an exposed dart, the seam involution is
+the old reversal, hence the forced vertex rotation is the copied source
+rotation. -/
+
+theorem closedMap_sigma_of_unexposed (S : Pairing Delta n)
+    (copy : Fin n) (d : InnerDart Delta)
+    (h : ¬ IsExposed Delta d) :
+    S.closedMap.sigma (copy, d) =
+      (copy, ⟨Delta.toCombMap.sigma d.1, by
+        have hperm : Delta.toCombMap.facePerm (Delta.toCombMap.alpha d.1) =
+            Delta.toCombMap.sigma d.1 := by
+          change Delta.toCombMap.sigma
+              (Delta.toCombMap.alpha (Delta.toCombMap.alpha d.1)) = _
+          rw [Delta.toCombMap.alpha_involutive]
+        have hface := Delta.toCombMap.faceOf_facePerm
+          (Delta.toCombMap.alpha d.1)
+        rw [hperm] at hface
+        intro hs
+        apply h
+        change Delta.toCombMap.faceOf (Delta.toCombMap.alpha d.1) =
+          Delta.outerFace
+        rw [← hface]
+        exact hs⟩) := by
+  change (copiedFacePerm Delta n * S.seamAlpha) (copy, d) = _
+  rw [Equiv.Perm.mul_apply, S.agrees_internal copy d h]
+  apply Prod.ext
+  · rfl
+  · apply Subtype.ext
+    change Delta.toCombMap.facePerm
+        (Delta.toCombMap.alpha d.1) = Delta.toCombMap.sigma d.1
+    change Delta.toCombMap.sigma
+        (Delta.toCombMap.alpha (Delta.toCombMap.alpha d.1)) = _
+    rw [Delta.toCombMap.alpha_involutive]
+
+/-! Source paths which stay in the retained interior lift to paths in every
+copy of the seam quotient.  The side condition on an alpha-step is exactly
+the condition that the edge is not cut by the seam. -/
+
+def InnerAdjacent (Delta : DiscDiagram.{u, w, v} W)
+    (d e : InnerDart Delta) : Prop :=
+  (¬ IsExposed Delta d ∧ Delta.toCombMap.alpha d.1 = e.1) ∨
+    (¬ IsExposed Delta d ∧ Delta.toCombMap.sigma d.1 = e.1)
+
+theorem closedMap_adjacent_of_innerAdjacent
+    (S : Pairing Delta n) (copy : Fin n)
+    {d e : InnerDart Delta} (hde : InnerAdjacent Delta d e) :
+    S.closedMap.Adjacent (copy, d) (copy, e) := by
+  rcases hde with hde | hde
+  · left
+    have ha := S.agrees_internal copy d hde.1
+    apply congrArg (fun x : CopiedInnerDart Delta n => x) at ha
+    have he : S.closedMap.alpha (copy, d) = (copy, e) := by
+      change S.seamAlpha (copy, d) = (copy, e)
+      rw [ha]
+      apply Prod.ext
+      · rfl
+      · apply Subtype.ext
+        exact hde.2
+    exact he
+  · right
+    have hs := S.closedMap_sigma_of_unexposed copy d hde.1
+    apply hs.trans
+    apply Prod.ext
+    · rfl
+    · apply Subtype.ext
+      exact hde.2
+
+structure InnerPathConnectedData
+    (Delta : DiscDiagram.{u, w, v} W) where
+  base : InnerDart Delta
+  path : ∀ d : InnerDart Delta,
+    Relation.EqvGen (InnerAdjacent Delta) d base
+
+theorem lift_innerPath
+    (S : Pairing Delta n) (copy : Fin n)
+    {d e : InnerDart Delta}
+    (hde : Relation.EqvGen (InnerAdjacent Delta) d e) :
+    Relation.EqvGen S.closedMap.Adjacent (copy, d) (copy, e) := by
+  induction hde with
+  | refl => exact Relation.EqvGen.refl _
+  | rel a b hab =>
+      exact Relation.EqvGen.rel _ _
+        (closedMap_adjacent_of_innerAdjacent S copy hab)
+  | symm a b hab ih => exact Relation.EqvGen.symm _ _ ih
+  | trans a b c hab hbc ih₁ ih₂ =>
+      exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
+
+/-! The source interior paths and one seam crossing are precisely the data
+needed to prove connectedness of the double.  The constructor below derives
+the target `DoubleConnectivityData`; no connectedness field is copied by
+hand. -/
+
+def DoubleConnectivityData.of_innerPath
+    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
+    (cross : Relation.EqvGen S.closedMap.Adjacent
+      (0, C.base) (1, C.base)) :
+    DoubleConnectivityData S where
+  base := C.base
+  sameCopy := by
+    intro copy d
+    exact lift_innerPath S copy (C.path d)
+  crossCopy := cross
+
+theorem connected_of_innerPathData
+    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
+    (cross : Relation.EqvGen S.closedMap.Adjacent
+      (0, C.base) (1, C.base)) :
+    S.closedMap.IsConnected := by
+  exact connected_of_doubleConnectivityData
+    (DoubleConnectivityData.of_innerPath S C cross)
+
+theorem innerPathConnectedData_of_subsingleton
+    [Subsingleton (InnerDart Delta)] (base : InnerDart Delta) :
+    InnerPathConnectedData Delta where
+  base := base
+  path := by intro d; exact Relation.EqvGen.refl _
+
 /-- Copy number attached to a retained dart. -/
 def dartCopy (d : CopiedInnerDart Delta n) : Fin n := d.1
 
@@ -522,6 +640,69 @@ structure DoubleEulerCountData (S : Pairing Delta 2) where
   face_count_eq :
     (S.closedMap.faceCount : ℤ) + 2 =
       2 * (Delta.toCombMap.faceCount : ℤ)
+
+/-! Incidence bijections are the concrete seam-count calculation.  Their
+domains contain the two boundary copies which are identified by the seam;
+the codomains are the two source copies.  Taking finite cardinalities gives
+the exact three equations consumed by `DoubleEulerCountData`. -/
+
+structure DoubleIncidenceEquivalences (S : Pairing Delta 2) where
+  boundary : ℕ
+  boundary_eq_outerDegree : boundary =
+    Delta.toCombMap.faceDegree Delta.outerFace
+  vertexEquiv : S.closedMap.Vertex ⊕ Fin boundary ≃
+    Fin 2 × Delta.toCombMap.Vertex
+  edgeEquiv : S.closedMap.Edge ⊕ Fin boundary ≃
+    Fin 2 × Delta.toCombMap.Edge
+  faceEquiv : S.closedMap.Face ⊕ Fin 2 ≃
+    Fin 2 × Delta.toCombMap.Face
+
+theorem DoubleIncidenceEquivalences.vertex_count_eq
+    (C : DoubleIncidenceEquivalences S) :
+    (S.closedMap.vertexCount : ℤ) + (C.boundary : ℤ) =
+      2 * (Delta.toCombMap.vertexCount : ℤ) := by
+  have hnat : S.closedMap.vertexCount + C.boundary =
+      2 * Delta.toCombMap.vertexCount := by
+    change Nat.card S.closedMap.Vertex + C.boundary =
+      2 * Nat.card Delta.toCombMap.Vertex
+    rw [← Nat.card_congr C.vertexEquiv]
+    simp [CombMap.vertexCount]
+  exact_mod_cast hnat
+
+theorem DoubleIncidenceEquivalences.edge_count_eq
+    (C : DoubleIncidenceEquivalences S) :
+    (S.closedMap.edgeCount : ℤ) + (C.boundary : ℤ) =
+      2 * (Delta.toCombMap.edgeCount : ℤ) := by
+  have hnat : S.closedMap.edgeCount + C.boundary =
+      2 * Delta.toCombMap.edgeCount := by
+    change Nat.card S.closedMap.Edge + C.boundary =
+      2 * Nat.card Delta.toCombMap.Edge
+    rw [← Nat.card_congr C.edgeEquiv]
+    simp [CombMap.edgeCount]
+  exact_mod_cast hnat
+
+theorem DoubleIncidenceEquivalences.face_count_eq
+    (C : DoubleIncidenceEquivalences S) :
+    (S.closedMap.faceCount : ℤ) + 2 =
+      2 * (Delta.toCombMap.faceCount : ℤ) := by
+  have hnat : S.closedMap.faceCount + 2 =
+      2 * Delta.toCombMap.faceCount := by
+    change Nat.card S.closedMap.Face + Nat.card (Fin 2) =
+      2 * Nat.card Delta.toCombMap.Face
+    rw [← Nat.card_congr C.faceEquiv]
+    simp [CombMap.faceCount]
+  exact_mod_cast hnat
+
+def DoubleIncidenceEquivalences.toEulerCountData
+    (C : DoubleIncidenceEquivalences S)
+    (connectivity : DoubleConnectivityData S) :
+    DoubleEulerCountData S where
+  connectivity := connectivity
+  boundary := C.boundary
+  boundary_eq_outerDegree := C.boundary_eq_outerDegree
+  vertex_count_eq := C.vertex_count_eq
+  edge_count_eq := C.edge_count_eq
+  face_count_eq := C.face_count_eq
 
 /-- Removing the outer face from a planar closed-map presentation leaves the
 disc Euler equation `V - E + (F - 1) = 1`. -/
