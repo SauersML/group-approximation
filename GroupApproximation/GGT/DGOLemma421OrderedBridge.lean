@@ -238,6 +238,49 @@ noncomputable def DGO421TargetRankData.ofNoIntermediate
   simp only [occ, hidx t ht0, hidx (t + 1) ht] at h
   exact h
 
+/-! ## Reading the connection at either end of the matched component -/
+
+/-- **The start-coset identity may be read at either endpoint of the matched
+component.**  Dahmani--Guirardel--Osin connect the *ends*: "*Let `e` be the edge
+connecting `(q_j)_+` to `(p_i)_+` and labelled by a letter from `H_λ`*", while
+the printed conclusion of clause (b) is stated at the starts.  The two agree
+because a component's endpoints differ by its own label, which lies in `H λ`.
+
+This is the conversion the `Q''` construction needs, since the polygon there is
+built from the two connecting edges at the component ends. -/
+theorem cosetMatch_start_of_cosetMatch_end
+    {D : RelGenSet G Λ} {lam : Λ} {vp vq : G}
+    {p q : List (RelLetter G Λ)} {ip iq kq : ℕ}
+    (hlet : ∀ a ∈ q, D.IsLetter a)
+    (hcomp : IsComp lam q iq kq)
+    (hmatch : (vertex vp p ip)⁻¹ * vertex vq q kq ∈ D.fam lam) :
+    (vertex vp p ip)⁻¹ * vertex vq q iq ∈ D.fam lam := by
+  have hspan : (vertex vq q iq)⁻¹ * vertex vq q kq ∈ D.fam lam :=
+    span_mem_fam_of_isComp D vq hlet hcomp
+  have hkey : (vertex vp p ip)⁻¹ * vertex vq q iq =
+      ((vertex vp p ip)⁻¹ * vertex vq q kq) *
+        ((vertex vq q iq)⁻¹ * vertex vq q kq)⁻¹ := by
+    group
+  rw [hkey]
+  exact mul_mem hmatch (inv_mem hspan)
+
+/-- The same conversion in the other direction. -/
+theorem cosetMatch_end_of_cosetMatch_start
+    {D : RelGenSet G Λ} {lam : Λ} {vp vq : G}
+    {p q : List (RelLetter G Λ)} {ip iq kq : ℕ}
+    (hlet : ∀ a ∈ q, D.IsLetter a)
+    (hcomp : IsComp lam q iq kq)
+    (hmatch : (vertex vp p ip)⁻¹ * vertex vq q iq ∈ D.fam lam) :
+    (vertex vp p ip)⁻¹ * vertex vq q kq ∈ D.fam lam := by
+  have hspan : (vertex vq q iq)⁻¹ * vertex vq q kq ∈ D.fam lam :=
+    span_mem_fam_of_isComp D vq hlet hcomp
+  have hkey : (vertex vp p ip)⁻¹ * vertex vq q kq =
+      ((vertex vp p ip)⁻¹ * vertex vq q iq) *
+        ((vertex vq q iq)⁻¹ * vertex vq q kq) := by
+    group
+  rw [hkey]
+  exact mul_mem hmatch hspan
+
 /-- **The minimality step stated where the geometry lives: on positions in `q`.**
 
 Dahmani--Guirardel--Osin's targets are components of `q`, and their minimality
