@@ -10,12 +10,8 @@ through sep2fix's repairing `Estimating.PieceBridge`.
 
 The landed `VanKampen.cactusRealizationStatement` starts with an oriented
 least-area algebraic diagram.  The source predicate below supplies precisely
-that missing algebraic object and the small-cancellation datum needed by
-`Lemma44RelatorDiagramBoundary.exists_reduced` and
-`Lemma44ReducedRelatorDiagram.exists_oriented`.  The resulting theorem has the
-same word spelling as the Build-level oriented-cactus producer.  A second
-adapter turns it into the literal reduced disc diagram by the named cactus
-realization theorem.
+that object with its exact boundary spelling.  A second adapter turns it into
+the literal reduced disc diagram by the named cactus realization theorem.
 
 The separate retyping availability theorem is not repeated here: its landed
 type lives in `CombMapReduction.lean`, whose current import path includes
@@ -69,26 +65,17 @@ def OrientedCactusBoundarySource : Prop :=
     PresentedWordIsTrivial (T := T) w →
     (w.map freeLetter).prod ≠ 1 →
     ∃ (A : Alphabet (FreeGroup Generator)) (R : ℕ)
-      (D : Lemma44RelatorDiagramBoundary.{0, 0} A
+      (Z : Lemma44OrientedRelatorDiagram.{0, 0} A
         (triangleRelatorWords T) R),
-      D.boundaryWord = w.map freeLetter ∧
-      ∃ (E : GGT.RelGenSet.{0, 0} (FreeGroup Generator) PEmpty)
-        (eps : ℕ) (mu : ℝ) (rho : ℕ),
-        RelWord.IsSmallCancellation E (triangleRelatorWords T) eps mu rho
+      Z.boundaryWord = w.map freeLetter
 
 theorem orientedCactusBoundaryProducer_of_source
     (hsource : OrientedCactusBoundarySource (T := T)) :
     OrientedCactusBoundaryProducer (T := T) := by
   intro w hw hfree
-  obtain ⟨A, R, D, hboundary, E, eps, mu, rho, hsc⟩ :=
+  obtain ⟨A, R, Z, hboundary⟩ :=
     hsource w hw hfree
-  obtain ⟨Dred⟩ := D.exists_reduced
-  obtain ⟨Z⟩ := Dred.exists_oriented hsc
-  have hZD : Z.boundaryWord = D.boundaryWord := by
-    change Z.toLemma44ReducedRelatorDiagram.toLemma44RelatorDiagramBoundary.boundaryWord =
-      D.boundaryWord
-    rfl
-  exact ⟨A, R, Z, hZD.trans hboundary⟩
+  exact ⟨A, R, Z, hboundary⟩
 
 /-! ## Cactus realization and literal boundary spelling -/
 
@@ -109,8 +96,6 @@ def CactusDiscDiagramProducer : Prop :=
         (triangleRelatorWords T),
       Delta.boundaryWord = relativeWord w ∧ Delta.Reduced
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusDiscDiagramProducer_of_oriented
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusDiscDiagramProducer (T := T) := by
