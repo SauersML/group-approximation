@@ -275,7 +275,7 @@ theorem interiorIncidenceToTagged_source
             by simp [CellIncidence.kind, htarget]⟩⟩ =
       (⟨(candidate, target), mem_selected, htarget⟩, false) := by
   unfold interiorIncidenceToTagged
-  rw [htarget]
+  cases htarget
   rfl
 
 /-- The forward map sends the target occurrence to the true tag. -/
