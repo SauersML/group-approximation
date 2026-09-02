@@ -122,6 +122,7 @@ structure CactusBaseCellDeletion
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
   relatorOnly : RelatorCellCover replacement.diagram
+  reduced : Delta.Reduced
 
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
@@ -137,7 +138,7 @@ def CactusBaseCellDeletion.toRetyping
   relatorOnly := C.relatorOnly
   rCellCount_le := by
     rw [C.replacement.rCellCount_eq]
-  reduced := C.replacement.reduced Delta.Reduced
+  reduced := C.replacement.reduced C.reduced
 
 /-- The retyped cactus is an exact-boundary relator-only disc. -/
 theorem exactBoundaryRelatorOnly_of_cactusRetyping
@@ -173,9 +174,11 @@ structure MirrorPairDeletion
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W) where
-  pre between suf : List
-    (RelatorCell Delta.toCombMap Delta.outerFace W)
-  first second : RelatorCell Delta.toCombMap Delta.outerFace W
+  pre : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  between : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  first : RelatorCell Delta.toCombMap Delta.outerFace W
+  second : RelatorCell Delta.toCombMap Delta.outerFace W
   old_cells : Delta.relatorCells =
     pre ++ first :: (between ++ second :: suf)
   replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
