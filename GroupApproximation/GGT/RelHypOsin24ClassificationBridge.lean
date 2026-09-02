@@ -112,7 +112,11 @@ theorem infiniteBaseEmptyRelGenSet_all_powers_bounded (g : Multiplicative ℤ) :
     exact Set.mem_univ _
   have hnorm : WordMetric.wordNorm infiniteBaseEmptyRelGenSet.alphabet.carrier
       (g ^ n) ≤ 1 := WordMetric.wordNorm_le_one_of_mem hmem
-  rw [Cayley.dist_eq, WordMetric.wordDist_one_left]
+  have hdist : dist (Cayley.base infiniteBaseEmptyRelGenSet.alphabet)
+      ((g ^ n) • Cayley.base infiniteBaseEmptyRelGenSet.alphabet) =
+      (WordMetric.wordDist infiniteBaseEmptyRelGenSet.alphabet.carrier
+        1 (g ^ n) : ℝ) := by simp
+  rw [hdist, WordMetric.wordDist_one_left]
   exact_mod_cast hnorm
 
 theorem not_isEscaping_of_infiniteBaseEmptyRelGenSet (g : Multiplicative ℤ) :
