@@ -5,6 +5,7 @@ import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOAssemblyCuts
 import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
 import GroupApproximation.GGT.OsinTheorem54SepGeodesicSides
+import GroupApproximation.GGT.OsinTheorem54SepFourGonSpan
 import GroupApproximation.GGT.HullSCRelatorSeparation2RelativeSides
 
 /-!
@@ -1483,9 +1484,9 @@ theorem isQuasiGeodesicPolygon_fourGon_of_mixed
       exact hqg x' y' (by omega) (by omega)
     · by_cases h2 : t = 2
       · subst t
-        rw [fourGonCut_two, fourGonCut_three] at hx hy
         have hx' : p.length + q.length ≤ x := hx
-        have hy' : y ≤ p.length + q.length + r.length := hy
+        have hy' : y ≤ p.length + q.length + r.length := by
+          simpa [fourGonCut] using hy
         obtain ⟨x', rfl⟩ : ∃ x', x = p.length + q.length + x' :=
           ⟨x - (p.length + q.length), by omega⟩
         obtain ⟨y', rfl⟩ : ∃ y', y = p.length + q.length + y' :=
@@ -1902,6 +1903,33 @@ theorem peripheralCount_le_strictInterior_card_add_two
       (strictInteriorOccurrences word).card :=
     congrArg Finset.card hpositiveEq
   omega
+
+theorem revWord_revWord_421 (word : List (RelLetter G Λ)) :
+    revWord (revWord word) = word := by
+  induction word with
+  | nil => rfl
+  | cons a t ih =>
+      cases a <;> simp [revWord, ih]
+
+theorem exists_component_of_opposite_start_421
+    {D : RelGenSet G Λ} {lam : Λ}
+    {p q r s : List (RelLetter G Λ)}
+    {j : ℕ}
+    (hj : j ≤ s.length) (hjpos : 0 < j)
+    (hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
+      (p.length + q.length + r.length + (s.length - j))) :
+    ∃ i : ℕ, IsComp lam s i j := by
+  obtain ⟨k, hcomp⟩ := hstart
+  have hpolyLen : (p ++ q ++ r ++ revWord s).length =
+      p.length + q.length + r.length + s.length := length_fourGon p q r s
+  have hrev := isComp_side_revs_of_isComp_fourGon p q r s lam hcomp
+    (by omega) (by omega)
+  have hdouble := isComp_revWord lam (revWord s) hrev
+  refine ⟨s.length - (k - (p.length + q.length + r.length)), ?_⟩
+  have hidx : s.length -
+      ((p.length + q.length + r.length + (s.length - j)) -
+        (p.length + q.length + r.length)) = j := by omega
+  simpa [revWord_revWord_421, length_revWord, hidx] using hdouble
 
 end OsinComponents
 end GGT
