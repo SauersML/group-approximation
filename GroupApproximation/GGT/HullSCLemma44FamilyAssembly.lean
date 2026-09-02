@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
+import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 import GroupApproximation.GGT.HullSCLemma44RelativeIsoperimetric
 
 /-!
@@ -156,6 +157,111 @@ theorem familyPreservation_of_controls
     quotientJointPeripheralPreservation_of_control selected original joint
       hbaseInv horiginal hselected q hq hjointEmbedded jointControl
   exact ⟨hinjA, hselectedPreserved, horiginalPreserved, hjointPreserved⟩
+
+/-! ## Certificate-driven family output -/
+
+/-! At fixed parameters, the relative Greendlinger certificate supplies the
+ambient ball injections needed by the three control constructions.  The
+selected, original, and joint controls then give the complete family-form
+output. -/
+theorem familyInclusionConclusion_of_relativeControls
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type u} (original : GGT.RelGenSet G Lambda)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k)))
+    (hbaseInv : ∀ x ∈ joint.base, x⁻¹ ∈ joint.base)
+    (horiginal : ∀ lam : Lambda,
+      joint.fam (Sum.inl lam) = original.fam lam)
+    (hselected : ∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.cores.peripheral i)
+    {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {R eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input selected.rel W eps mu rho)
+    (hmu : mu ≤ 1 / 92)
+    (hthreshold :
+      4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ))
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hA : original.alphabet.carrier ⊆ A.alphabet.carrier)
+    (horiginalEmbedded : original.IsHyperbolicallyEmbedded)
+    (hcert : ∀ (Z : RelativeReducedDiagram selected.rel W (max R 1)),
+      Nonempty (RelativeDiagramCertificate selected.rel W eps mu Z))
+    (selectedControl : PrefixRelativeIsoperimetricControl selected.rel W
+      hsc.toIsSmallCancellation q hq)
+    (originalControl : RelativeIsoperimetricControl original q hq)
+    (hjointEmbedded : joint.IsHyperbolicallyEmbedded)
+    (jointControl : RelativeIsoperimetricControl joint q hq) :
+    Set.InjOn q (cayleyBall A.alphabet R) ∧
+      Nonempty (QuotientPeripheralPreservation q selected) ∧
+      Nonempty (CanonicalQuotientFamilyPreservation q original) ∧
+      Nonempty (QuotientJointPeripheralPreservation q selected original) := by
+  have hinjRelative : Set.InjOn q
+      (cayleyBall selected.rel.alphabet (max R 1)) :=
+    injOn_relativeBall_of_relativeDiagramCertificates selected.rel
+      hsc.toIsSmallCancellation hmu hthreshold q hker hcert
+  have hselectedUnion : Set.InjOn q
+      (⋃ i : AuxiliaryPeripheralIndex k,
+        (selected.cores.peripheral i : Set G)) := by
+    intro x hx y hy hxy
+    obtain ⟨i, hxi⟩ := Set.mem_iUnion.mp hx
+    obtain ⟨j, hyj⟩ := Set.mem_iUnion.mp hy
+    have hxi' : x ∈ selected.rel.fam i := by
+      rw [selected.fam_eq i]
+      exact hxi
+    have hyj' : y ∈ selected.rel.fam j := by
+      rw [selected.fam_eq j]
+      exact hyj
+    apply hinjRelative
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_right R 1)
+      exact peripheralUnion_subset_cayleyBall_one selected.rel
+        (Set.mem_iUnion.mpr ⟨i, hxi'⟩)
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_right R 1)
+      exact peripheralUnion_subset_cayleyBall_one selected.rel
+        (Set.mem_iUnion.mpr ⟨j, hyj'⟩)
+    · exact hxy
+  have hinjAOne : Set.InjOn q (cayleyBall A.alphabet 1) := by
+    intro x hx y hy hxy
+    apply hinjRelative
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_right R 1)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet
+        selected.rel.alphabet (by
+          intro z hz
+          exact Set.mem_union_left _ (selected.base_le hz)) 1 hx
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_right R 1)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet
+        selected.rel.alphabet (by
+          intro z hz
+          exact Set.mem_union_left _ (selected.base_le hz)) 1 hy
+    · exact hxy
+  have hinjAR : Set.InjOn q (cayleyBall A.alphabet R) := by
+    intro x hx y hy hxy
+    apply hinjRelative
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_left R 1)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet
+        selected.rel.alphabet (by
+          intro z hz
+          exact Set.mem_union_left _ (selected.base_le hz)) R hx
+    · apply cayleyBall_subset_of_le_radius selected.rel.alphabet
+        (Nat.le_max_left R 1)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet
+        selected.rel.alphabet (by
+          intro z hz
+          exact Set.mem_union_left _ (selected.base_le hz)) R hy
+    · exact hxy
+  obtain ⟨_, hselectedPreserved, horiginalPreserved, hjointPreserved⟩ :=
+    familyPreservation_of_controls selected original joint hbaseInv
+      horiginal hselected q hq hA horiginalEmbedded hsc selectedControl
+      originalControl hjointEmbedded jointControl hinjAOne hselectedUnion
+  exact ⟨hinjAR, hselectedPreserved, horiginalPreserved, hjointPreserved⟩
 
 /-! ## A direct local model -/
 
