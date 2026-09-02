@@ -52,9 +52,12 @@ theorem exists_dgoUniformSumBound_of_linearSumBound
     refine ⟨r, hr, ?_⟩
     have hIempty : I = ∅ := by
       ext s
-      simp only [Finset.mem_empty, iff_false]
-      intro hs
-      exact (by omega : False)
+      constructor
+      · intro hs
+        have hs0 := hI s hs
+        omega
+      · intro hs
+        simp at hs
     simp [hIempty]
   · have hnpos : 1 ≤ n := by omega
     have hsum := hL n hnpos
