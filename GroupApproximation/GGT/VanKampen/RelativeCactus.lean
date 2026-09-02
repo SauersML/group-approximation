@@ -820,8 +820,6 @@ theorem mem_bigDarts_iff
           exact ⟨i, rfl⟩
         · rw [cellSegment, List.mem_append]
           left
-          change CactusDart.relatorBackward i j ∈
-            CactusDart.stemOut i :: Z.relatorBackwardDarts i
           simp only [List.mem_cons, reduceCtorEq, false_or]
           rw [relatorBackwardDarts, List.mem_ofFn]
           exact ⟨j.rev, by simp⟩
