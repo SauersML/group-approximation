@@ -2319,11 +2319,11 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     rcases (htargetSpec i).2.2.1 with hpcase | hrest
     · right
       have htargetM : targetN i < M := by
+        have htE : targetN i < E := lt_of_lt_of_le hpcase hpcLen
         have hEM : E ≤ M := by
           dsimp [M]
           omega
-        have hpcM : pc.length ≤ M := le_trans hpcLen hEM
-        exact lt_of_lt_of_le hpcase hpcM
+        exact lt_of_lt_of_le htE hEM
       refine ⟨⟨targetN i, htargetM⟩, ?_, ?_⟩
       intro hm
       exact (htargetSpec i).1 (by omega)
@@ -2349,7 +2349,16 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             rw [hni] at heq
             rw [vertex_fourGon_side pc P rc Q 1 hsource_le]
             rw [← heq]
-            group
+            have hmem' :
+                (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                  (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) ∈
+                    D.fam (peripheralOccurrence P (occ i)).label := by
+              rw [show
+                (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                    (RelLetter.listVal pc * vertex (1 : G) P (source i) * hh) = hh
+                  by group]
+              exact hmem
+            simpa only [one_mul] using hmem'
           exact (hsourceNoSame i i' hilt hne (by rw [← hni]; exact
             (htargetSpec i).2.1)) hconn
         · right
