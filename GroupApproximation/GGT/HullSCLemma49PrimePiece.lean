@@ -415,8 +415,7 @@ theorem false_of_lemma49LongArc_contiguityShadow
     exact length_listInterval C.relator hcd.le hdRelator
   have hfirstLargeRaw := Sh.repeatedBlock_indexSpan_large B hcertificateInput
     hRel hPow hscale hp₀₁ hp₁ (by dsimp [p₀, p₁])
-  rw [Nat.max_eq_right hj₀₁.le, Nat.min_eq_left hj₀₁.le] at
-    hfirstLargeRaw
+  rw [Nat.max_eq_right hj₀₁.le, Nat.min_eq_left hj₀₁.le] at hfirstLargeRaw
   have hfirstLarge : (1 / 100000 : ℝ) * (rotated.length : ℝ) ≤
       (first.length : ℝ) := by
     rw [List.length_rotate, hfirstLength]
