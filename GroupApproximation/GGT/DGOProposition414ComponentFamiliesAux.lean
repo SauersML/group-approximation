@@ -1527,14 +1527,19 @@ theorem firstGapArcBoundaryExclusion_terminal_of_rightConnector
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.first.pieceCount)
-    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (s : ℕ) (_hs : s ∈ B.firstGapArcSources j)
     (e : Fin B.brokenAssignment.index.first.sources.length)
     (heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e)
     (hpositive : 0 < (B.firstGapRight j).length)
     (hlabel : P.label s ≠ B.firstGapLocalLabel j
       ((B.firstGapLeft j).length +
-        (B.firstGapFinishSide j - B.firstGapStartSide j))) :
-    ∀ hn :
+        (B.firstGapFinishSide j - B.firstGapStartSide j)))
+    (hterminal :
+      B.firstArcCut (B.firstTargetSide s) -
+        B.firstArcCut (B.firstGapStartSide j) + 1 =
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j)).length)
+    : ∀ hn :
       (B.firstGapLeft j).length +
           (B.firstArcCut (B.firstTargetSide s) -
             B.firstArcCut (B.firstGapStartSide j)) + 1 <
@@ -1546,11 +1551,90 @@ theorem firstGapArcBoundaryExclusion_terminal_of_rightConnector
         (P.label s) := by
   intro hn hletter
   apply firstGapArcBoundaryExclusion_terminal_of_distinct_label B j s hn hlabel
-  have hnext := B.firstGap_rightConnector_isCompOf j e heq 0 hpositive (by
-    simpa [firstGapCycle, auxiliaryCycleWord, OsinComponents.length_revWord] using hn)
-  have hnextLabel := B.firstGapLocalLabel_rightConnector j e heq 0 hpositive
-  rw [← hnextLabel] at hnext
-  simpa only [firstGapCycle, Nat.add_assoc] using hnext
+  have hcycle : (B.firstGapLeft j).length +
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j)).length <
+      (auxiliaryCycleWord (B.firstGapLeft j)
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j))).length := by
+    rw [← hterminal]
+    have hright : 0 < (B.firstGapRight j).length := hpositive
+    have htail : 0 < (B.firstGapRight j).length +
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)).length := by
+      omega
+    omega
+  have hnext := B.firstGap_rightConnector_isCompOf j e heq 0 hpositive hcycle
+  have hindex : (B.firstGapLeft j).length +
+      (B.firstArcCut (B.firstTargetSide s) -
+        B.firstArcCut (B.firstGapStartSide j)) + 1 =
+      (B.firstGapLeft j).length +
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length := by
+    omega
+  simp only [hindex]
+  simpa only [firstGapCycle, Nat.add_assoc, Nat.add_zero,
+    List.get_eq_getElem] using hnext
+  exact hletter
+
+/-- The wrapped terminal cycle letter has the corresponding right-connector
+label, so a distinct-label hypothesis gives the wrapped exclusion. -/
+theorem secondGapArcBoundaryExclusion_terminal_of_rightConnector
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (_hs : s ∈ B.secondGapArcSources j)
+    (e : Fin B.brokenAssignment.index.second.sources.length)
+    (heq : HalfGap.nextEntry B.brokenAssignment.index.second j = some e)
+    (hpositive : 0 < (B.secondGapRight j).length)
+    (hlabel : P.label s ≠ B.secondGapLocalLabel j
+      ((B.secondGapLeft j).length +
+        (B.secondGapFinishSide j - B.secondGapStartSide j)))
+    (hterminal :
+      B.secondArcCut (B.secondTargetSide s) -
+        B.secondArcCut (B.secondGapStartSide j) + 1 =
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)).length)
+    : ∀ hn :
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 <
+        (B.secondGapCycle j).length,
+      ¬ ((B.secondGapCycle j)[
+        (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s) := by
+  intro hn hletter
+  apply secondGapArcBoundaryExclusion_terminal_of_distinct_label B j s hn hlabel
+  have hcycle : (B.secondGapLeft j).length +
+      (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+        (B.secondGapFinishSide j)).length <
+      (auxiliaryCycleWord (B.secondGapLeft j)
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)) (B.secondGapRight j)
+        (orientedSegment B.chord (B.secondGapChordStart j)
+          (B.secondGapChordFinish j))).length := by
+    rw [← hterminal]
+    have hright : 0 < (B.secondGapRight j).length := hpositive
+    omega
+  have hnext := B.secondGap_rightConnector_isCompOf j e heq 0 hpositive hcycle
+  have hindex : (B.secondGapLeft j).length +
+      (B.secondArcCut (B.secondTargetSide s) -
+        B.secondArcCut (B.secondGapStartSide j)) + 1 =
+      (B.secondGapLeft j).length +
+        (arcWord B.secondArc B.secondArcCut (B.secondGapStartSide j)
+          (B.secondGapFinishSide j)).length := by
+    omega
+  simp only [hindex]
+  simpa only [secondGapCycle, Nat.add_assoc, Nat.add_zero,
+    List.get_eq_getElem] using hnext
+  exact hletter
 
 /-- In the degenerate empty-cycle model both boundary exclusions are vacuous. -/
 theorem firstGapArcBoundaryExclusion_emptyModel
