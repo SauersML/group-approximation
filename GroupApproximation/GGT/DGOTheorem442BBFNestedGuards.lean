@@ -71,7 +71,7 @@ theorem exists_maximal_half_blocker_before
   obtain ⟨U₀, hU₀, hU₀W⟩ := hseed
   have hU₀C : U₀ ∈ C := by
     dsimp only [C]
-    rw [List.mem_filter]
+    rw [List.mem_filter, decide_eq_true_eq]
     exact ⟨(hmem U₀).mpr hU₀, hU₀W⟩
   have hCne : C ≠ [] := List.ne_nil_of_mem hU₀C
   let W' : V := C.getLast hCne
@@ -80,13 +80,13 @@ theorem exists_maximal_half_blocker_before
   have hW'parts : W' ∈ L ∧
       5 * P.ξ < P.bbfProjDist W' X W := by
     dsimp only [C] at hW'C
-    exact List.mem_filter.mp hW'C
+    simpa only [decide_eq_true_eq] using List.mem_filter.mp hW'C
   have hW'block := (hmem W').mp hW'parts.1
   refine ⟨W', hW'block, hW'parts.2, ?_⟩
   intro U hU hUW
   have hUC : U ∈ C := by
     dsimp only [C]
-    rw [List.mem_filter]
+    rw [List.mem_filter, decide_eq_true_eq]
     exact ⟨(hmem U).mpr hU, hUW⟩
   have hpairC : C.Pairwise (fun A B =>
       5 * P.ξ < P.bbfProjDist A X B) := by
@@ -110,7 +110,9 @@ theorem exists_isBBFGuard_mem_half_blockers_of_not_adj
       W ∈ (ProjectionPerturbation.bbf P).blockers (K / 2) X Z := by
   classical
   have hhalf : 12 * P.ξ ≤ K / 2 := by
-    linarith [hK]
+    calc
+      12 * P.ξ ≤ 32 * P.ξ := by linarith [P.ξ_pos]
+      _ ≤ K / 2 := by linarith [hK]
   have hKhalf : K / 2 < K := by
     linarith [hK, P.ξ_pos]
   have hblockers : (ProjectionPerturbation.bbf P).blockers K X Z ≠ ∅ := by
