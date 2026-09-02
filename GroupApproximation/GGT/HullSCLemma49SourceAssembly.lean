@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCLemma49SourceBranches
 import GroupApproximation.GGT.HullSCLemma49BowditchGap
 import GroupApproximation.GGT.HullSCLemma49ShortPower
+import GroupApproximation.GGT.HullSCLemma49InjectivityBridge
 
 /-!
 # Assembly of the source-faithful Lemma 4.9 branches
@@ -97,18 +98,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
           D v g n eps mu Z,
         GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
           C.contiguity.boundary.cycle [])
-    (hinjective : ∀
-      {G : Type u} [Group G] {Lambda : Type w}
-      (D : GGT.RelGenSet G Lambda) (delta : ℕ),
-      D.IsHyperbolicallyEmbedded →
-      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta →
-      ∃ (epsInjective rhoInjective : ℕ) (muInjective : ℝ),
-        0 < muInjective ∧
-        ∀ (W : Set (List (GGT.RelLetter G Lambda)))
-          {Q : Type u} [Group Q] (q : G →* Q),
-          RelWord.IsLemma49Input D W epsInjective muInjective rhoInjective →
-          q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
-          Set.InjOn q (cayleyBall D.alphabet (8 * delta + 1))) :
+    (hinjective : HullLemma49InjectivityCallback.{u, w}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
   intro G _ Lambda D hemb hacylindrical
   obtain ⟨delta, hdelta⟩ :=
