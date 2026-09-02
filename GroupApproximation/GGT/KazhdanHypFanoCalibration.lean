@@ -312,7 +312,7 @@ theorem fanoLinkData_degree : (3 : ℚ) = (fanoPlane.linkData).deg := by
 /-- The literal `LinkCertificateChecks` object for the cyclic Fano table.
 Its rows are the rational Gram rows constructed by completing the square for
 the Fano incidence matrix. -/
-noncomputable def fanoLinkCertificate :
+theorem fanoLinkCertificate :
     TriangularHodgeLayer.LinkCertificateChecks fanoTriangles 3
       (fanoPlane.linkData).gapValue (fanoPlane.linkData).gramRow :=
   linkCertificateChecks_of_linkData fanoTriangles fanoPlane.linkData 3
@@ -436,12 +436,11 @@ theorem fanoPlane_zero_threePaths :
       apply Finset.sum_congr rfl
       intro a _
       exact hinner a
-    _ = ∑ a,
-        (fanoPlane.order *
+    _ = ∑ a, ((fanoPlane.order *
             (fanoPlane.linkAdj p a * (if a = l then (1 : ℚ) else 0)) +
           (1 / 2 : ℚ) * fanoPlane.linkAdj p a) +
           (fanoPlane.linkSign l / 2) *
-            (fanoPlane.linkAdj p a * fanoPlane.linkSign a) := by
+            (fanoPlane.linkAdj p a * fanoPlane.linkSign a)) := by
       apply Finset.sum_congr rfl
       intro a _
       ring
