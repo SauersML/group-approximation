@@ -85,7 +85,8 @@ theorem orientedCactusBoundaryProducer_of_source
   obtain ⟨Dred⟩ := D.exists_reduced
   obtain ⟨Z⟩ := Dred.exists_oriented hsc
   have hZD : Z.boundaryWord = D.boundaryWord := by
-    change Dred.boundaryWord = D.boundaryWord
+    change Z.toLemma44ReducedRelatorDiagram.toLemma44RelatorDiagramBoundary.boundaryWord =
+      D.boundaryWord
     rfl
   exact ⟨A, R, Z, hZD.trans hboundary⟩
 
@@ -108,6 +109,8 @@ def CactusDiscDiagramProducer : Prop :=
         (triangleRelatorWords T),
       Delta.boundaryWord = relativeWord w ∧ Delta.Reduced
 
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 theorem cactusDiscDiagramProducer_of_oriented
     (hproducer : OrientedCactusBoundaryProducer (T := T)) :
     CactusDiscDiagramProducer (T := T) := by
