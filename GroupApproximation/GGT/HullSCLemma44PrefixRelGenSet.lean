@@ -246,6 +246,103 @@ theorem map_prefixValue_mem_prefixQuotient_base
     q x ∈ (D.prefixQuotient W hsc q hq).base := by
   exact ⟨x, Set.mem_union_right _ hx, rfl⟩
 
+/-- A legal source relative letter maps to a legal letter for the quotient
+prefix relative generating set. -/
+theorem isLetter_mapHom_prefixQuotient
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q)
+    {a : GGT.RelLetter G Lambda} (ha : D.IsLetter a) :
+    (D.prefixQuotient W hsc q hq).IsLetter
+      (GGT.RelLetter.mapHom q a) := by
+  cases a with
+  | base x => exact D.map_mem_prefixQuotient_base W hsc q hq ha
+  | comp lam x => exact ⟨x, ha, rfl⟩
+
 end RelGenSet
 end GGT
+
+namespace HullSC
+
+/-! ## The triangular relations between consecutive prefixes -/
+
+/-- The quotient relative word associated to one step between consecutive
+prefixes of a relator. -/
+def RelWord.prefixTriangle
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (q : G →* Q) (pre : List (GGT.RelLetter G Lambda))
+    (a : GGT.RelLetter G Lambda) : List (GGT.RelLetter Q Lambda) :=
+  [GGT.RelLetter.base (q (GGT.RelLetter.listVal pre)),
+    GGT.RelLetter.mapHom q a,
+    GGT.RelLetter.base
+      (q (GGT.RelLetter.listVal (pre ++ [a])))⁻¹]
+
+/-- Every prefix triangle has the uniform presentation length three. -/
+@[simp] theorem RelWord.prefixTriangle_length
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (q : G →* Q) (pre : List (GGT.RelLetter G Lambda))
+    (a : GGT.RelLetter G Lambda) :
+    (RelWord.prefixTriangle q pre a).length = 3 := rfl
+
+/-- A prefix triangle spells the identity in the quotient group. -/
+theorem RelWord.listVal_prefixTriangle
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (q : G →* Q) (pre : List (GGT.RelLetter G Lambda))
+    (a : GGT.RelLetter G Lambda) :
+    GGT.RelLetter.listVal (RelWord.prefixTriangle q pre a) = 1 := by
+  rw [RelWord.prefixTriangle, RelWord.listVal_cons,
+    RelWord.listVal_cons, RelWord.listVal_singleton]
+  simp only [GGT.RelLetter.val, GGT.RelLetter.val_mapHom,
+    map_mul, map_inv]
+  rw [RelWord.listVal_append, RelWord.listVal_singleton]
+  group
+
+/-- Both endpoint prefixes in a displayed relator step belong to the prefix
+value set. -/
+theorem RelWord.prefixValues_of_step
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {word pre suffix : List (GGT.RelLetter G Lambda)}
+    {a : GGT.RelLetter G Lambda}
+    (hword : word ∈ W) (hsplit : word = pre ++ a :: suffix) :
+    GGT.RelLetter.listVal pre ∈ RelWord.prefixValues W ∧
+      GGT.RelLetter.listVal (pre ++ [a]) ∈ RelWord.prefixValues W := by
+  constructor
+  · exact RelWord.listVal_mem_prefixValues hword
+      (hsplit.trans (by simp [List.append_assoc]))
+  · exact RelWord.listVal_mem_prefixValues hword
+      (hsplit.trans (by simp [List.append_assoc]))
+
+/-- Prefix triangles are legal words for the quotient prefix relative
+generating set whenever they come from a displayed step of a relator. -/
+theorem RelWord.prefixTriangle_admissible
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (q : G →* Q) (hq : Function.Surjective q)
+    {word pre suffix : List (GGT.RelLetter G Lambda)}
+    {a : GGT.RelLetter G Lambda}
+    (hword : word ∈ W) (hsplit : word = pre ++ a :: suffix) :
+    RelWord.IsAdmissible (D.prefixQuotient W hsc q hq)
+      (RelWord.prefixTriangle q pre a) := by
+  obtain ⟨hpre, hnext⟩ := RelWord.prefixValues_of_step hword hsplit
+  have haWord : a ∈ word := by
+    rw [hsplit]
+    simp
+  have ha : D.IsLetter a := hsc.admissible word hword a haWord
+  intro b hb
+  simp only [RelWord.prefixTriangle, List.mem_cons,
+    List.mem_singleton] at hb
+  rcases hb with rfl | rfl | rfl
+  · exact D.map_prefixValue_mem_prefixQuotient_base W hsc q hq hpre
+  · exact D.isLetter_mapHom_prefixQuotient W hsc q hq ha
+  · exact D.map_prefixValue_mem_prefixQuotient_base W hsc q hq
+      (RelWord.inv_mem_prefixValues hsc hnext)
+
+end HullSC
 end GroupApproximation
