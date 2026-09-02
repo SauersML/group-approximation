@@ -429,14 +429,22 @@ theorem listVal_image_relabelWords {G : Type u} [Group G] {Lambda : Type w}
 The re-spelled family normally generates the same subgroup, so it presents the
 same quotient, and it is again a Lemma 4.4 input with parameters above the
 prescribed thresholds.  The thresholds are what Osin's certificate theorem asks
-of the target family, so they are given before the re-spelling is produced. -/
+of the target family, so they are given before the re-spelling is produced.
+
+Only the normal closures are asked to agree, not the sets of spelled elements.
+A relator family is closed under cyclic permutation, and a rotation spells the
+conjugate of the relator by the prefix it moves; re-spelling changes those
+prefixes, so the two families spell different conjugates and only their normal
+closures survive.  Requiring the spelled sets themselves to agree would make
+this predicate unsatisfiable for any genuine re-spelling. -/
 def RelatorRespellingAt {G : Type u} [Group G] {Lambda : Type w}
     {Lambda' : Type v} (E : GGT.RelGenSet G Lambda')
     (W : Set (List (GGT.RelLetter G Lambda))) (eps0 rho0 : ℕ) (mu : ℝ) :
     Prop :=
   ∃ (W' : Set (List (GGT.RelLetter G Lambda'))) (eps rho : ℕ),
     eps0 ≤ eps ∧ rho0 ≤ rho ∧ 20 * (eps + 1) ≤ rho ∧
-      GGT.RelLetter.listVal '' W' = GGT.RelLetter.listVal '' W ∧
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W') =
+          Subgroup.normalClosure (GGT.RelLetter.listVal '' W) ∧
         RelWord.IsLemma44Input E W' eps mu rho
 
 /-- Model test: the empty relator family re-spells to the empty family at every
@@ -474,7 +482,7 @@ theorem relatorRespellingAt_of_relabel {G : Type u} [Group G]
     (h : RelWord.IsLemma44Input E (relabelWords f W) eps mu rho) :
     RelatorRespellingAt E W eps0 rho0 mu :=
   ⟨relabelWords f W, eps, rho, heps, hrho, h20,
-    listVal_image_relabelWords f W, h⟩
+    congrArg Subgroup.normalClosure (listVal_image_relabelWords f W), h⟩
 
 /-- **The one residual input of the family form.**
 
