@@ -87,9 +87,9 @@ theorem letters_expandWord
       · exact hletters a b hb
       · exact ih b hb
 
+omit [Group G] in
 /-- The expansion is at least as long as the source word, provided no letter is
 spelled by the empty word. -/
-omit [Group G] in
 theorem length_le_length_expandWord
     (spell : GGT.RelLetter G (AuxiliaryPeripheralIndex k) →
       List (GGT.RelLetter G Lambda))
