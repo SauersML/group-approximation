@@ -76,14 +76,15 @@ def Surgery.GRegionReplacement.toOEquivalent
   cellIndex := replacement.cells.indexEquiv
   cellWord_eq := by
     intro i
-    have hget :
-        replacement.diagram.relatorCells.get (replacement.cells.indexEquiv i) =
-          replacement.cells.cellEquiv (Delta.relatorCells.get i) := by
-      rw [List.get_eq_getElem, List.get_eq_getElem,
-        replacement.cells.cells_eq, List.get_eq_getElem]
-      simp only [List.getElem_map]
-      rfl
-    rw [Embedded.cell, Embedded.cell, hget]
+    change (replacement.diagram.relatorCells.get
+        (replacement.cells.indexEquiv i)).word =
+      (Delta.relatorCells.get i).word
+    have hcount : replacement.diagram.rCellCount = Delta.rCellCount :=
+      replacement.cells.rCellCount_eq
+    cases hcount
+    rw [replacement.cells.cells_eq]
+    simp only [Surgery.RCellEquiv.indexEquiv, List.get_eq_getElem,
+      List.getElem_map]
     exact replacement.cells.word_eq (Delta.relatorCells.get i)
 
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
@@ -478,7 +479,7 @@ theorem selection_output_of_faceDropOracle
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
     {W : Set (List (GGT.RelLetter G Lambda))}
     (hcondition : OsinCCondition D W eps mu lambda c rho)
-    (oracle : SelectionFaceDropOracle (v := v) D eps rho mu lambda c hcondition)
+    (oracle : SelectionFaceDropOracle D eps rho mu lambda c hcondition)
     (Delta : DiscDiagram.{u, w, v} W)
     (hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
     (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
@@ -512,6 +513,32 @@ theorem selection_output_of_faceDropOracle
           obtain ⟨equiv₂⟩ := hequiv₂
           exact ⟨Delta₃, ⟨equiv₁.trans equiv₂⟩, hred₃, scaffold, graph⟩
   exact aux Delta.toCombMap.faceCount Delta rfl hred hcells hboundary
+
+/-! The preceding induction is the complete finite part of Lemma 65(a).  The
+remaining geometric input is therefore packaged once, at the exact outer
+quantifiers of the construction statement. -/
+
+theorem estimatingSelectionConstruction_of_faceDropOracles
+    (hparameter :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        (D : GGT.RelGenSet G Lambda),
+        (∃ delta : ℕ,
+          Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+        ∀ lambda c mu : ℝ,
+          0 < lambda → lambda ≤ 1 → 0 ≤ c →
+          0 < mu → mu ≤ 1 / 16 →
+          ∃ eps rho : ℕ, 0 < rho ∧
+            ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+              ∀ hcondition : OsinCCondition D W eps mu lambda c rho,
+                SelectionFaceDropOracle D eps rho mu lambda c hcondition) :
+    EstimatingSelectionConstructionStatement := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
+  obtain ⟨eps, rho, hrho, horacle⟩ := hparameter D hhyper lambda c mu
+    hlambda hlambdaUpper hc hmu hmuUpper
+  refine ⟨eps, rho, hrho, ?_⟩
+  intro W hcondition Delta hred hcells hboundary
+  exact selection_output_of_faceDropOracle D eps rho mu lambda c hcondition
+    (horacle W hcondition) Delta hred hcells hboundary
 
 /-- The local O52 input: every selected face-set candidate has the two-cell
 arc equations required by `PieceBridge`.  It is independent of the global
@@ -565,6 +592,36 @@ theorem estimatingPieceConstruction_of_boundaryPeelings
   intro edge
   exact Embedded.CellPieceEquations.of_boundaryPeeling
     (hbridge edge) (hpeeling edge) hred
+
+/-- The one-step planar peel callback and the reduced cell bridge are exactly
+the remaining producers for the global Piece construction statement.  The
+face-count induction is supplied by `faceSetBoundaryPeeling_of_planarCertificates`,
+and the resulting homotopy is consumed by `CellPieceEquations.of_boundaryPeeling`.
+-/
+theorem estimatingPieceConstruction_of_planarPeelOracle
+    (hbridge :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        (Delta : DiscDiagram.{u, w, v} W)
+        (scaffold : EstimatingScaffold D eps Delta)
+        (_hred : Delta.Reduced)
+        (edge : Embedded.InteriorEdge scaffold.selected.family),
+        Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
+    (hplanar :
+      ∀ {G : Type u} [Group G] {Lambda : Type w}
+        {W : Set (List (GGT.RelLetter G Lambda))}
+        {Delta : DiscDiagram.{u, w, v} W}
+        {faces : Finset Delta.toCombMap.Face}
+        (boundary : Embedded.FaceSetBoundary Delta faces),
+        Embedded.PlanarFacePeelCertificate boundary) :
+    EstimatingPieceConstructionStatement := by
+  intro G _ Lambda D eps W Delta scaffold hred
+  refine estimatingPieceConstruction_of_boundaryPeelings D eps Delta scaffold
+    hred (fun edge => hbridge D eps Delta scaffold hred edge) ?_
+  intro edge
+  exact Embedded.faceSetBoundaryPeeling_of_planarCertificates
+    edge.candidate.contiguity.boundary (fun boundary => hplanar boundary)
 
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
