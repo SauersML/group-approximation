@@ -56,6 +56,7 @@ theorem firstTarget_rotated_isolated
   have hlenEq : B.secondArc.length =
       (P.word.length - B.secondVertex) + B.firstVertex := by
     rw [B.secondArc_length_eq]
+    simp only [secondArcLength]
   have hidx : B.secondArc.length + B.firstTargetPos s =
       P.word.length - B.secondVertex + P.cut s := by
     rw [hlenEq]
