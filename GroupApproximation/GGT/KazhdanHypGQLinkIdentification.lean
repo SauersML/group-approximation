@@ -18,7 +18,8 @@ instance and its rational Gram rows come from the algebraic W(8) instance;
 there is no enumeration of the 1170 link vertices.  This is the finite link
 input used alongside Huebschmann's least-area spherical-map obstruction and
 Duda's `C(3)-T(6)` discussion (arXiv:2112.01912, `all3.tex`, circa
-lines 1234--1249).
+lines 1234--1249).  The concrete transfer below deliberately names the
+committed `wEightCounts` and `wEightQuadrangleLinkData` exports explicitly.
 -/
 
 set_option linter.unusedSectionVars false
