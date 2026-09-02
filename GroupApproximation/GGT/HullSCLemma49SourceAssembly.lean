@@ -104,7 +104,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
       ∃ (epsInjective rhoInjective : ℕ) (muInjective : ℝ),
         0 < muInjective ∧
         ∀ (W : Set (List (GGT.RelLetter G Lambda)))
-          {Q : Type*} [Group Q] (q : G →* Q),
+          {Q : Type u} [Group Q] (q : G →* Q),
           RelWord.IsLemma49Input D W epsInjective muInjective rhoInjective →
           q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
           Set.InjOn q (cayleyBall D.alphabet (8 * delta + 1))) :
