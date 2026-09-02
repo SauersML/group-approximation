@@ -181,8 +181,10 @@ theorem wEightLinkNumerics :
     rw [Fintype.card_sum, hp, hl]
   have hparameters :=
     _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData_parameters
-  norm_num [hp] at hparameters ⊢
-  exact ⟨hvertex, hparameters.1, hparameters.2, by omega, by omega⟩
+  rcases hparameters with ⟨hdeg, hgap⟩
+  refine ⟨hvertex, hdeg, hgap, ?_, ?_⟩
+  · omega
+  · omega
 
 /-- The `GirthEightChecks` disjointness clause gives the no-two-triples-sharing
 a consecutive pair fact used by cellular reducedness in every W(8) table. -/
