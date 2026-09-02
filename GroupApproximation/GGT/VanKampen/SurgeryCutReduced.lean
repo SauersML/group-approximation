@@ -9,6 +9,10 @@ one relator cell with a later one across the product of the cells between them,
 so it does not pass to an arbitrary sublist of the ordered cells: a sublist can
 see a smaller between-product than the one the source diagram constrains.
 
+The kept cells are indexed by a list, since a cut selects them with a proof that
+their face survives, so they arrive as the image of one index list under two
+maps rather than as a sublist of the source cells.
+
 Two conditions make it pass.  The kept cells are an infix of the ordered list of
 the source diagram, so every split of the piece is a split of the source with the
 same list between the two cells, and every kept cell is rebased by one fixed
@@ -25,7 +29,7 @@ namespace GroupApproximation
 namespace GGT
 namespace VanKampen
 
-universe u w v
+universe u w v x
 
 /-! ## Conjugation of ordered cell values -/
 
@@ -34,12 +38,12 @@ values. -/
 theorem prod_map_value_conj {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {M N : CombMap.{v}} {outerM : M.Face} {outerN : N.Face} (c : G)
-    (phi : RelatorCell M outerM W → RelatorCell N outerN W)
-    (hvalue : ∀ C : RelatorCell M outerM W,
-      (phi C).value = c⁻¹ * C.value * c)
-    (l : List (RelatorCell M outerM W)) :
+    {iota : Type x} (psi : iota → RelatorCell M outerM W)
+    (phi : iota → RelatorCell N outerN W)
+    (hvalue : ∀ i : iota, (phi i).value = c⁻¹ * (psi i).value * c)
+    (l : List iota) :
     ((l.map phi).map RelatorCell.value).prod =
-      c⁻¹ * (l.map RelatorCell.value).prod * c := by
+      c⁻¹ * ((l.map psi).map RelatorCell.value).prod * c := by
   induction l with
   | nil => simp
   | cons a t ih =>
@@ -71,30 +75,31 @@ Lemma 6.5 cut. -/
 theorem reduced_of_infix_of_conj
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta Xi : DiscDiagram.{u, w, v} W) (c : G)
-    (phi : RelatorCell Delta.toCombMap Delta.outerFace W →
-      RelatorCell Xi.toCombMap Xi.outerFace W)
-    (hvalue : ∀ C : RelatorCell Delta.toCombMap Delta.outerFace W,
-      (phi C).value = c⁻¹ * C.value * c)
-    (pre enclosed suf :
-      List (RelatorCell Delta.toCombMap Delta.outerFace W))
-    (hinfix : Delta.relatorCells = pre ++ enclosed ++ suf)
-    (hcells : Xi.relatorCells = enclosed.map phi)
+    (Delta Xi : DiscDiagram.{u, w, v} W) (c : G) {iota : Type x}
+    (psi : iota → RelatorCell Delta.toCombMap Delta.outerFace W)
+    (phi : iota → RelatorCell Xi.toCombMap Xi.outerFace W)
+    (hvalue : ∀ i : iota, (phi i).value = c⁻¹ * (psi i).value * c)
+    (l : List iota)
+    (pre suf : List (RelatorCell Delta.toCombMap Delta.outerFace W))
+    (hinfix : Delta.relatorCells = pre ++ l.map psi ++ suf)
+    (hcells : Xi.relatorCells = l.map phi)
     (hred : Delta.Reduced) : Xi.Reduced := by
   intro pre' between' suf' D₁ D₂ hsplit
   rw [hcells] at hsplit
   obtain ⟨e1, rest, hrestsplit, _, hrest⟩ := List.map_eq_append_iff.1 hsplit
-  obtain ⟨X₁, rest2, hrest2, hX₁, hrest2map⟩ := List.map_eq_cons_iff.1 hrest
+  obtain ⟨i₁, rest2, hrest2, hD₁, hrest2map⟩ := List.map_eq_cons_iff.1 hrest
   obtain ⟨e2, rest3, hsplit3, hbetween, hrest3⟩ :=
     List.map_eq_append_iff.1 hrest2map
-  obtain ⟨X₂, rest4, hrest4, hX₂, _⟩ := List.map_eq_cons_iff.1 hrest3
+  obtain ⟨i₂, rest4, hrest4, hD₂, _⟩ := List.map_eq_cons_iff.1 hrest3
   have hdelta : Delta.relatorCells =
-      (pre ++ e1) ++ X₁ :: (e2 ++ X₂ :: (rest4 ++ suf)) := by
+      (pre ++ e1.map psi) ++ psi i₁ ::
+        (e2.map psi ++ psi i₂ :: (rest4.map psi ++ suf)) := by
     rw [hinfix, hrestsplit, hrest2, hsplit3, hrest4]
     simp
-  have hne := hred (pre ++ e1) e2 (rest4 ++ suf) X₁ X₂ hdelta
-  rw [← hbetween, ← hX₁, ← hX₂, prod_map_value_conj c phi hvalue e2,
-    hvalue X₁, hvalue X₂, cellValue_conj_expression]
+  have hne := hred (pre ++ e1.map psi) (e2.map psi) (rest4.map psi ++ suf)
+    (psi i₁) (psi i₂) hdelta
+  rw [← hbetween, ← hD₁, ← hD₂, prod_map_value_conj c psi phi hvalue e2,
+    hvalue i₁, hvalue i₂, cellValue_conj_expression]
   exact conj_ne_one_of_ne_one c _ hne
 
 end VanKampen
