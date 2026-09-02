@@ -19,6 +19,7 @@ import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.RelHypProp23FromHullOsin24
 import GroupApproximation.GGT.DGOProposition435HullJoint
 import GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents
+import GroupApproximation.GGT.VanKampen.Estimating.PieceConstruction
 
 /-!
 # Theorem C assembly
