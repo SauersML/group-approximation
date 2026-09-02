@@ -198,8 +198,10 @@ theorem isRelativelyHyperbolic_of_sumEmpty {C : Type u} [Group C]
       (Sum.elim H (Empty.elim : Empty → Subgroup C))) :
     IsRelativelyHyperbolic C H := by
   obtain ⟨D, hbase, hfam, hemb⟩ := h
-  refine ⟨relGenSetReindex D (Equiv.sumEmpty Lambda Empty).symm, hbase, ?_,
-    relGenSetReindex_isHyperbolicallyEmbedded D _ hemb⟩
+  refine ⟨GroupApproximation.HullSC.relGenSetReindex D
+      (Equiv.sumEmpty Lambda Empty).symm, hbase, ?_,
+    GroupApproximation.HullSC.relGenSetReindex_isHyperbolicallyEmbedded D _
+      hemb⟩
   funext l
   show D.fam ((Equiv.sumEmpty Lambda Empty).symm l) = H l
   rw [hfam]
