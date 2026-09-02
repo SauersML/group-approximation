@@ -302,7 +302,7 @@ theorem faceOf_alpha_mem_of_mem_sourceArc
   have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
     rw [Gamma.boundary_decomposition]
     simp only [List.mem_append]
-    exact Or.inl hreverse
+    exact Or.inl (Or.inl (Or.inl hreverse))
   exact (Gamma.boundary.cycle_mem_iff (Delta.toCombMap.alpha d)).mp hcycle |>.1
 
 /-- When the target is a relator cell, crossing a dart of its target arc also
@@ -322,12 +322,11 @@ theorem faceOf_alpha_mem_of_mem_targetArc
     exact ⟨d, hd, rfl⟩
   have htargetBoundary : Delta.toCombMap.alpha d ∈
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc := by
-    rw [targetBoundaryDarts, htarget]
-    exact hreverse
+    simpa only [targetBoundaryDarts, htarget] using hreverse
   have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
     rw [Gamma.boundary_decomposition]
     simp only [List.mem_append]
-    exact Or.inr (Or.inr (Or.inl htargetBoundary))
+    exact Or.inl (Or.inr htargetBoundary)
   exact (Gamma.boundary.cycle_mem_iff (Delta.toCombMap.alpha d)).mp hcycle |>.1
 
 end Contiguity
