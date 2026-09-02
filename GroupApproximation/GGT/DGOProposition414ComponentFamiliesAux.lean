@@ -1318,7 +1318,7 @@ theorem firstGapArcCutAlignment_of_source
             B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
           ((B.firstGapLeft j).length +
             (B.firstTargetSide s - B.firstGapStartSide j + 1)) := by
-        congr 5 <;> omega
+        simpa only [Nat.add_assoc]
       _ = (B.firstGapLeft j).length +
           (B.firstArcCut (B.firstGapStartSide j +
             (B.firstTargetSide s - B.firstGapStartSide j + 1)) -
@@ -1386,7 +1386,7 @@ theorem secondGapArcCutAlignment_of_source
             B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
           ((B.secondGapLeft j).length +
             (B.secondTargetSide s - B.secondGapStartSide j + 1)) := by
-        congr 5 <;> omega
+        simpa only [Nat.add_assoc]
       _ = (B.secondGapLeft j).length +
           (B.secondArcCut (B.secondGapStartSide j +
             (B.secondTargetSide s - B.secondGapStartSide j + 1)) -
