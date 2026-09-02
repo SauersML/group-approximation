@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CactusFaceBoundary
+import Mathlib.Data.List.FinRange
 
 /-!
 # The labelled cactus realization
@@ -134,6 +135,137 @@ def cactusShape
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (i : Fin Z.cells.length) :
     Z.cactusShape.relatorLength i = (Z.cellAt i).relator.length := rfl
+
+/-! ## Ordered polygon boundaries -/
+
+/-- Iterating finite rotation from zero visits the index with the same
+natural-number value, before the wrap-around step. -/
+theorem finRotate_pow_zero {n : ℕ} (hn : 0 < n) (k : ℕ) (hk : k < n) :
+    ((Equiv.finRotate n : Equiv.Perm (Fin n)) ^ k) ⟨0, hn⟩ = ⟨k, hk⟩ := by
+  apply Fin.ext
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      rw [pow_succ', Equiv.Perm.mul_apply,
+        Equiv.coe_finRotate_of_ne_last,
+        ih (lt_trans (Nat.lt_succ_self k) hk)]
+      rw [Ne, Fin.ext_iff,
+        ih (lt_trans (Nat.lt_succ_self k) hk), Fin.val_last]
+      exact ne_of_lt (Nat.lt_of_succ_lt_succ hk)
+
+/-- A permutation orbit which is an explicitly parametrized finite rotation
+has its closed orbit list in that parameter order. -/
+theorem closedOrbitList_eq_of_finRotate
+    {D : Type*} [Fintype D] [DecidableEq D]
+    {n : ℕ} (hn : 0 < n) (p : Equiv.Perm D) (f : Fin n → D)
+    (hf : Function.Injective f)
+    (hstep : ∀ i, p (f i) = f (Equiv.finRotate n i))
+    (hcomplete : ∀ d, p.SameCycle (f ⟨0, hn⟩) d ↔ ∃ i, f i = d) :
+    closedOrbitList p (f ⟨0, hn⟩) = List.ofFn f := by
+  have hrightNodup : (List.ofFn f).Nodup :=
+    List.nodup_ofFn_ofInjective hf
+  have hperm : closedOrbitList p (f ⟨0, hn⟩) ~ List.ofFn f := by
+    apply (List.perm_ext_iff_of_nodup
+      (closedOrbitList.nodup p (f ⟨0, hn⟩)) hrightNodup).mpr
+    intro d
+    rw [closedOrbitList.mem_iff_sameCycle, hcomplete]
+    simp only [List.mem_ofFn]
+  have hlength : (closedOrbitList p (f ⟨0, hn⟩)).length = n := by
+    rw [hperm.length_eq, List.length_ofFn]
+  by_cases hfixed : p (f ⟨0, hn⟩) = f ⟨0, hn⟩
+  · have hsingleton : [f ⟨0, hn⟩] ~ List.ofFn f := by
+      simpa only [closedOrbitList, if_pos hfixed] using hperm
+    have heq : List.ofFn f = [f ⟨0, hn⟩] :=
+      List.perm_singleton.mp hsingleton.symm
+    simpa only [closedOrbitList, if_pos hfixed] using heq.symm
+  · have hpow : ∀ k i, (p ^ k) (f i) =
+        f (((Equiv.finRotate n : Equiv.Perm (Fin n)) ^ k) i) := by
+      intro k
+      induction k with
+      | zero => intro i; rfl
+      | succ k ih =>
+          intro i
+          rw [pow_succ, Equiv.Perm.mul_apply, pow_succ,
+            Equiv.Perm.mul_apply, hstep, ih]
+    apply List.ext_getElem hlength
+    intro k hkleft hkright
+    rw [closedOrbitList, if_neg hfixed,
+      Equiv.Perm.getElem_toList]
+    rw [hpow, finRotate_pow_zero hn k hkright]
+    simp only [List.getElem_ofFn]
+
+/-- The outer face orbit is exactly the forward outer darts. -/
+theorem cactus_outer_sameCycle_iff (S : CactusShape)
+    (d : CactusDart S) :
+    S.toCombMap.facePerm.SameCycle
+        (.outerForward S.boundaryZero) d ↔
+      ∃ j : Fin S.boundaryLength, CactusDart.outerForward j = d := by
+  constructor
+  · intro hcycle
+    have hclass := OrbitClassifier.eq_of_sameCycle S.toCombMap.facePerm
+      S.faceClass S.faceClass_facePerm hcycle
+    cases d with
+    | outerForward j => exact ⟨j, rfl⟩
+    | outerBackward j => simp [CactusShape.faceClass] at hclass
+    | relatorForward i j => simp [CactusShape.faceClass] at hclass
+    | relatorBackward i j => simp [CactusShape.faceClass] at hclass
+    | stemOut i => simp [CactusShape.faceClass] at hclass
+    | stemIn i => simp [CactusShape.faceClass] at hclass
+  · rintro ⟨j, rfl⟩
+    exact S.faceRepresentative_sameCycle (.outerForward j)
+
+/-- The outer indexed face boundary is the forward polygon in increasing
+finite-index order. -/
+theorem cactus_outerBoundary_darts (S : CactusShape) :
+    (S.indexedFaceBoundary .outer).darts =
+      List.ofFn (CactusDart.outerForward :
+        Fin S.boundaryLength → CactusDart S) := by
+  change closedOrbitList S.toCombMap.facePerm
+      (.outerForward S.boundaryZero) = _
+  apply closedOrbitList_eq_of_finRotate S.boundary_pos
+  · exact CactusDart.outerForward.inj
+  · exact S.facePerm_outerForward
+  · exact S.cactus_outer_sameCycle_iff
+
+/-- A relator face orbit is exactly the forward darts of that relator
+polygon. -/
+theorem cactus_relator_sameCycle_iff (S : CactusShape)
+    (i : Fin S.cellCount) (d : CactusDart S) :
+    S.toCombMap.facePerm.SameCycle
+        (.relatorForward i (S.relatorZero i)) d ↔
+      ∃ j : Fin (S.relatorLength i),
+        CactusDart.relatorForward i j = d := by
+  constructor
+  · intro hcycle
+    have hclass := OrbitClassifier.eq_of_sameCycle S.toCombMap.facePerm
+      S.faceClass S.faceClass_facePerm hcycle
+    cases d with
+    | outerForward j => simp [CactusShape.faceClass] at hclass
+    | outerBackward j => simp [CactusShape.faceClass] at hclass
+    | relatorForward k j =>
+        have hki : k = i := by
+          simpa [CactusShape.faceClass] using hclass.symm
+        subst k
+        exact ⟨j, rfl⟩
+    | relatorBackward k j => simp [CactusShape.faceClass] at hclass
+    | stemOut k => simp [CactusShape.faceClass] at hclass
+    | stemIn k => simp [CactusShape.faceClass] at hclass
+  · rintro ⟨j, rfl⟩
+    exact S.faceRepresentative_sameCycle (.relatorForward i j)
+
+/-- Each relator indexed face boundary is its forward polygon in increasing
+finite-index order. -/
+theorem cactus_relatorBoundary_darts (S : CactusShape)
+    (i : Fin S.cellCount) :
+    (S.indexedFaceBoundary (.relator i)).darts =
+      List.ofFn (CactusDart.relatorForward i :
+        Fin (S.relatorLength i) → CactusDart S) := by
+  change closedOrbitList S.toCombMap.facePerm
+      (.relatorForward i (S.relatorZero i)) = _
+  apply closedOrbitList_eq_of_finRotate (S.relator_pos i)
+  · exact CactusDart.relatorForward.inj i
+  · exact S.facePerm_relatorForward i
+  · exact S.cactus_relator_sameCycle_iff i
 
 end Lemma44OrientedRelatorDiagram
 
