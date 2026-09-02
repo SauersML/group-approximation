@@ -119,7 +119,7 @@ theorem exists_depth_pairwiseNonCommensurable_cyclicProducts_of_dgoLemma421b
   obtain ⟨C, hraw⟩ := h421b G (Fin (k + 1)) D hhyp
   refine ⟨C, ?_⟩
   intro ι a ha hdeep hlox hcommon hcentral hinter hterminal
-  intro j l hjl p q hp hq t heq
+    j l hjl p q hp hq t heq
   obtain ⟨n, m, hn, hm, hsame | hopp⟩ :=
     exists_positive_conjugatePower_eq_or_inv hp hq heq
   · let K := 2 * (k + 1) + 1
