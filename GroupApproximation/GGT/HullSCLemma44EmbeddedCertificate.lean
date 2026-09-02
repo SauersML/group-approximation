@@ -268,7 +268,8 @@ theorem EmbeddedBoundaryCertificateData.cellLabel_eq
     (data : EmbeddedBoundaryCertificateData Z hreal C) :
     Embedded.dartWord hreal.diagram C.region.sourceArc.rotated =
       (Z.cells.get (hreal.cellIndex.symm i)).relator :=
-  simpa only [C.source_eq] using data.cell_label_transport
+  rw [← C.source_eq]
+  exact data.cell_label_transport
 
 end HullSC
 end GroupApproximation
