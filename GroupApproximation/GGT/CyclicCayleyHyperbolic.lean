@@ -302,6 +302,7 @@ theorem mem_zpowers_ofAdd_one (x : Multiplicative ℤ) :
     x ∈ Subgroup.zpowers (Multiplicative.ofAdd (1 : ℤ)) := by
   refine Subgroup.mem_zpowers_iff.mpr ⟨Multiplicative.toAdd x, ?_⟩
   rw [← ofAdd_zsmul, zsmul_eq_mul, mul_one, Int.cast_id]
+  exact ofAdd_toAdd x
 
 /-- **The unbounded model.**  The infinite cyclic group over one generator: the
 injective branch applies and the Cayley graph is the line. -/
