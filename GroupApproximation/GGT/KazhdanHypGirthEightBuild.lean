@@ -141,6 +141,7 @@ theorem cactusBoundaryInput_of_orientedCactusBoundaryProducer
     boundaryWord_eq := hboundary
   }⟩
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The cactus and base-cell bridge has the exact literal boundary required by
 the disc-diagram consumer. -/
 theorem reducedRelatorOnly_of_cactusBoundary
@@ -380,8 +381,8 @@ structure StarLayerConstructionCertificate
   boundary_bound : Delta.combinatorialBoundaryLength ≤ 6 * scale
   depth_too_large : 18 * perimeter * scale < depth * (scale - loss)
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+omit [Fintype Generator] [Fintype TriangleIndex]
+    [DecidableEq TriangleIndex] in
 /-- Rooted-path completeness and the centered first-face certificate construct
 all fields of the star input, including its covering inequality. -/
 theorem starLayerInput_of_faceComplete_and_layerCover
