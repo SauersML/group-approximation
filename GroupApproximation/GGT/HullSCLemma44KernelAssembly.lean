@@ -67,8 +67,8 @@ def KernelConeLocalFinitenessAt
 
 /-- Uniform form of the old-geodesic estimate, with the exact quantifier
 order used by the canonical assembly. -/
-def KernelGeodesicEstimateStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type u}
+structure KernelGeodesicEstimateStatement : Prop where
+  bound : ∀ {G : Type u} [Group G] {Lambda : Type u}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
@@ -83,8 +83,8 @@ def KernelGeodesicEstimateStatement : Prop :=
 
 /-- Uniform form of the finite relative-ball estimate for the prefix kernel
 cone. -/
-def KernelConeLocalFinitenessStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type u}
+structure KernelConeLocalFinitenessStatement : Prop where
+  finite : ∀ {G : Type u} [Group G] {Lambda : Type u}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
@@ -156,12 +156,12 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_kernelBounds
     injOn_ball_and_peripheralUnion_of_relativeDiagramCertificates
       D.rel A.alphabet hAlphabet hsc hmuNinetyTwo hthreshold q hker
         (hcert (max R 1))
-  obtain ⟨M, hM⟩ := hkernel D.rel W eps rho mu hsc q hsurj hker hcert
+  obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hsurj hker hcert
   have hcone :
       (D.rel.adjoinRelatorPrefixes W
         hsc.toIsSmallCancellation).adjoinKernel q |>.IsHyperbolicallyEmbedded :=
     isHyperbolicallyEmbedded_prefixKernelCone_of_bounds D.rel D.embedded W
-      hsc q M hM (hloc D.rel W eps rho mu hsc q hsurj hker hcert)
+      hsc q M hM (hloc.finite D.rel W eps rho mu hsc q hsurj hker hcert)
   have hprefix :
       (D.rel.prefixQuotient W hsc.toIsSmallCancellation q hsurj).
         IsHyperbolicallyEmbedded :=
