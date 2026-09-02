@@ -158,7 +158,7 @@ induction result back to the original diagram. -/
 structure FaceDeletionStep
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v})
+    (Delta : DiscDiagram.{u, w, v} W)
     (R : RootedPathSystem Delta.toCombMap) : Prop where
   /-- The number of enclosed faces used by the induction. -/
   rank : ∀ (vertex : Delta.toCombMap.Vertex),
@@ -180,7 +180,7 @@ namespace FaceDeletionStep
 
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
-  {Delta : DiscDiagram.{u, w, v}}
+  {Delta : DiscDiagram.{u, w, v} W}
   {R : RootedPathSystem Delta.toCombMap}
 
 /-- The map obtained by deleting the selected inner region is planar. -/
@@ -206,18 +206,16 @@ by `RootedPathsFaceComplete`. -/
 structure FaceDeletionCompletenessWitness
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v})
+    (Delta : DiscDiagram.{u, w, v} W)
     (R : RootedPathSystem Delta.toCombMap) : Prop where
   /-- The lower-rank face-deletion step. -/
   step : FaceDeletionStep Delta R
 
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- Strong induction on the enclosed-face rank gives the path homotopy. -/
 theorem rootedPathsFaceComplete_of_faceDeletionStep
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v})
+    (Delta : DiscDiagram.{u, w, v} W)
     (R : RootedPathSystem Delta.toCombMap)
     (S : FaceDeletionStep Delta R) :
     RootedPathsFaceComplete Delta R := by
@@ -228,7 +226,7 @@ theorem rootedPathsFaceComplete_of_faceDeletionStep
       by_cases hpq : p = q
       · subst q
         exact InnerFaceWordHomotopy.refl p.darts
-      · obtain ⟨faces, region, common, _hinner, hp, hq, hpc, hqc⟩ :=
+      · obtain ⟨_faces, _region, common, _hinner, hp, hq, hpc, hqc⟩ :=
           S.delete vertex p q hpq
         have hpc_lt : S.rank vertex p + S.rank vertex common < total := by
           rw [← htotal]
