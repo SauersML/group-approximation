@@ -1339,7 +1339,8 @@ noncomputable def powerDiscSphereGluing_of_planarDisc
     (hcellular : ∀ v, CellularReducedAt (certificate v)) :
     PowerDiscSphereGluing D :=
   powerDiscSphereGluing_of_seam D B.toPairing
-    (B.spherical_of_planarDisc hcounts hplanar)
+    (VanKampen.SeamGluing.Pairing.ExposedPairing.spherical_of_planarDisc
+      B hcounts hplanar)
     certificate hcellular
 
 /-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
