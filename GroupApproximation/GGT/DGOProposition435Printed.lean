@@ -360,6 +360,138 @@ theorem isRelativelyHyperbolic_original_of_jointPreservation_of_cyclic
   exact isRelativelyHyperbolic_original_of_jointPreservation h435 P hfinite
     (fun i => emptySubfamilyRelGenSet (Y i) (hY i)) hYemb hYfin
 
+/-! ### The canonical original-family record -/
+
+/-- **The droppable subfamily, with its adjoined letters located in the source.**
+
+Each selected member is cyclic in the quotient, so the empty subfamily over the
+two letters of a generator is hyperbolically embedded in it.  Those two letters
+are images of an element of the selected peripheral and of its inverse, and the
+selected peripherals lie in the selected relative alphabet, so the whole
+enlargement is the image of one finite subset of that alphabet. -/
+theorem exists_drop_subfamily_base
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    {selected : AuxiliaryPeripheralFamily A N S}
+    {original : RelGenSet G Lambda} {q : G →* Q}
+    (P : QuotientJointPeripheralPreservation q selected original) :
+    ∃ E : ∀ i : AuxiliaryPeripheralIndex k,
+        RelGenSet (P.rel.fam (Sum.inr i)) Empty,
+      (∀ i, (E i).IsHyperbolicallyEmbedded) ∧ (∀ i, (E i).base.Finite) ∧
+        ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
+          ∀ i, (P.rel.fam (Sum.inr i)).subtype '' (E i).base ⊆ q '' T := by
+  choose a ha using fun i => exists_zpowers_fam_selected P i
+  have hamem : ∀ i, a i ∈ P.rel.fam (Sum.inr i) := by
+    intro i
+    rw [ha i]
+    exact Subgroup.mem_zpowers (a i)
+  have hpre : ∀ i, ∃ g : G, g ∈ selected.cores.peripheral i ∧ q g = a i := by
+    intro i
+    have h := hamem i
+    rw [P.fam_selected i] at h
+    obtain ⟨g, hg, hgq⟩ := h
+    exact ⟨g, hg, hgq⟩
+  choose g hg hgq using hpre
+  have hzgen : ∀ (i : AuxiliaryPeripheralIndex k)
+      (x : (P.rel.fam (Sum.inr i))),
+      x ∈ Subgroup.zpowers (⟨a i, hamem i⟩ : (P.rel.fam (Sum.inr i))) := by
+    intro i x
+    have hx : (x : Q) ∈ Subgroup.zpowers (a i) := by
+      rw [← ha i]
+      exact x.2
+    obtain ⟨m, hm⟩ := Subgroup.mem_zpowers_iff.mp hx
+    refine Subgroup.mem_zpowers_iff.mpr ⟨m, ?_⟩
+    refine Subtype.ext ?_
+    rw [SubgroupClass.coe_zpow]
+    exact hm
+  refine ⟨fun i => emptySubfamilyRelGenSet
+      (CyclicCayley.pairSet (⟨a i, hamem i⟩ : (P.rel.fam (Sum.inr i))))
+      (CyclicCayley.isSymmetricGeneratingSet_pairSet _ (hzgen i)),
+    ?_, ?_, ⋃ i, CyclicCayley.pairSet (g i), ?_, ?_, ?_⟩
+  · intro i
+    refine emptySubfamilyRelGenSet_isHyperbolicallyEmbedded _ _ ?_
+    exact CyclicCayley.exists_isHyperbolicSpace_cayley_of_zpowers (hzgen i) _
+      (emptySubfamilyRelGenSet_alphabet_carrier _ _)
+  · intro i
+    exact CyclicCayley.finite_pairSet _
+  · exact Set.finite_iUnion fun i => CyclicCayley.finite_pairSet (g i)
+  · intro x hx
+    obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
+    have hmem : x ∈ selected.rel.fam i := by
+      rcases CyclicCayley.mem_pairSet_iff.mp hi with h | h
+      · rw [h, selected.fam_eq i]
+        exact hg i
+      · rw [h, selected.fam_eq i]
+        exact Subgroup.inv_mem _ (hg i)
+    exact RelGenSet.fam_subset_alphabet selected.rel i hmem
+  · intro i y hy
+    obtain ⟨x, hx, rfl⟩ := hy
+    rcases CyclicCayley.mem_pairSet_iff.mp hx with h | h
+    · refine ⟨g i, Set.mem_iUnion.mpr ⟨i, CyclicCayley.mem_pairSet_self _⟩, ?_⟩
+      rw [hgq i, h]
+    · refine ⟨(g i)⁻¹,
+        Set.mem_iUnion.mpr ⟨i, CyclicCayley.inv_mem_pairSet _⟩, ?_⟩
+      rw [map_inv, hgq i, h, map_inv]
+
+/-- **The canonical original-family record in the filling quotient.**
+
+The printed Proposition 4.35 drops the selected cyclic members from the joint
+image family, leaving a hyperbolically embedded family indexed by the original
+index alone.  Its base is the joint base together with two letters for each
+dropped member, and those letters come from the selected relative alphabet, so
+the record's finite enlargement clause holds over that alphabet.  No control
+for the original family, and so no re-spelling of the relator over the original
+letters, is used. -/
+theorem canonicalQuotientFamilyPreservation_of_jointPreservation
+    (h435 : DGOProposition435PrintedStatement.{u, 0, w})
+    {A : HullGeneratingSet G} {N : Subgroup G} {S : Fin k → Subgroup G}
+    {selected : AuxiliaryPeripheralFamily A N S} [Finite Lambda]
+    {original : RelGenSet G Lambda} {q : G →* Q}
+    (P : QuotientJointPeripheralPreservation q selected original)
+    (hbase : ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
+      P.rel.base ⊆ q '' (original.base ∪ T))
+    (hinj : Set.InjOn q (⋃ lam : Lambda, (original.fam lam : Set G))) :
+    Nonempty (CanonicalQuotientFamilyPreservation q original
+      selected.rel.alphabet.carrier) := by
+  obtain ⟨E, hEemb, hEfin, T₂, hT₂fin, hT₂Y, hT₂sub⟩ :=
+    exists_drop_subfamily_base P
+  have hsub : ∀ s, (dropSubfamilies P.rel E s).IsHyperbolicallyEmbedded := by
+    intro s
+    cases s with
+    | inl l => exact selfRelGenSet_isHyperbolicallyEmbedded _
+    | inr i => exact hEemb i
+  obtain ⟨Z, hZbase, hZfam, hZemb⟩ :=
+    h435 P.rel (dropSubfamilies P.rel E) P.embedded hsub
+  obtain ⟨T₁, hT₁fin, hT₁Y, hT₁sub⟩ := hbase
+  refine ⟨{
+    rel := relGenSetReindex Z dropEquiv
+    base_map := ⟨T₁ ∪ T₂, hT₁fin.union hT₂fin,
+      Set.union_subset hT₁Y hT₂Y, ?_⟩
+    fam_map := ?_
+    embedded := relGenSetReindex_isHyperbolicallyEmbedded Z dropEquiv hZemb
+    injOn_peripheralUnion := hinj }⟩
+  · show Z.base ⊆ q '' (original.base ∪ (T₁ ∪ T₂))
+    rw [hZbase]
+    rintro y (hy | hy)
+    · obtain ⟨x, hx, rfl⟩ := hT₁sub hy
+      rcases hx with hx | hx
+      · exact ⟨x, Set.mem_union_left _ hx, rfl⟩
+      · exact ⟨x, Set.mem_union_right _ (Set.mem_union_left _ hx), rfl⟩
+    · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
+      cases s with
+      | inl l =>
+          obtain ⟨x, hx, -⟩ := hs
+          have hx' : x ∈ (∅ : Set (P.rel.fam (Sum.inl l))) := hx
+          exact hx'.elim
+      | inr i =>
+          obtain ⟨x, hx, rfl⟩ := hT₂sub i hs
+          exact ⟨x, Set.mem_union_right _ (Set.mem_union_right _ hx), rfl⟩
+  · intro l
+    show Z.fam (dropEquiv l) = (original.fam l).map q
+    rw [hZfam (dropEquiv l)]
+    show ((⊤ : Subgroup (P.rel.fam (Sum.inl l))).map
+      (P.rel.fam (Sum.inl l)).subtype) = (original.fam l).map q
+    rw [← MonoidHom.range_eq_map, Subgroup.range_subtype, P.fam_original l]
+
 end Drop
 
 end RelHyp
