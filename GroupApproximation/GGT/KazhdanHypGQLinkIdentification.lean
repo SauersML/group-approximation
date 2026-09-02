@@ -179,6 +179,30 @@ theorem girthEightSDPChecks_of_orderEight_link_identification
       QuadrangleLinkData.reindex_gapValue, hgap] using hc
   exact hc'
 
+/-! ## The concrete W(8) theorem -/
+
+/-- The algebraic symplectic quadrangle `W(8)` supplies the exact degree-nine
+link data and its `5/9` gap.  The only table-specific input is the signed
+corner incidence identity; the proof consumes ko's committed
+`wEightCounts`/`wEightQuadrangleLinkData` definitions and does not enumerate
+the `1170` signed link vertices. -/
+theorem girthEightSDPChecks_of_wEight_link_identification
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (h : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap) :
+    GirthEightSDPChecks T 9 (5 / 9)
+      (QuadrangleLinkData.reindex
+        _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData
+        (signedVertexEquiv lineMap)).gramRow := by
+  simpa [_root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData] using
+    (girthEightSDPChecks_of_orderEight_link_identification
+      _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightCounts
+      (by rfl) hgeom lineMap h)
+
 /-! ## Singer row reduction -/
 
 /-- For an equivariant table, positivity of only the 27 representative rows
@@ -201,7 +225,38 @@ theorem positiveRows_of_singer_representatives
       intro j hj k
       rw [hT j k]
       exact hj k)
-    hrows.2
+      hrows.2
+
+/-- A Singer-equivariant W(8) table needs positivity only on its `27` stored
+triangle-orbit rows.  Replacing the positivity component of `hgeom` with
+those representatives and applying the concrete W(8) transfer yields the
+gap-`5/9` SDP certificate outright.  The other four girth/link clauses in
+`hgeom` are the geometric checks supplied by the existing girth-eight
+pipeline; no `1170`-vertex link enumeration occurs here. -/
+theorem girthEightSDPChecks_of_singerRows_wEight
+    {TriangleIndex TriangleRep : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    [Fintype TriangleRep]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (sigma : Equiv.Perm SymplecticQuadrangle.Point)
+    (tau : Equiv.Perm TriangleIndex)
+    (hT : TriangleEquivariant sigma tau T)
+    (triangleCover : CyclicOrbitCover tau TriangleRep)
+    (hrows : Fintype.card TriangleRep = 27 ∧
+      ∀ r k, (T (triangleCover.root r) k).2 = true)
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (h : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap) :
+    GirthEightSDPChecks T 9 (5 / 9)
+      (QuadrangleLinkData.reindex
+        _root_.GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData
+        (signedVertexEquiv lineMap)).gramRow := by
+  have hpositive := positiveRows_of_singer_representatives
+    sigma tau T hT triangleCover hrows
+  rcases hgeom with ⟨_, htail⟩
+  exact girthEightSDPChecks_of_wEight_link_identification
+    ⟨hpositive, htail⟩ lineMap h
 
 /-! ## A published small model -/
 
@@ -224,6 +279,16 @@ theorem gqTwo_cornerIncidence_model :
     if s then (if t then 0 else GQTwoTable.incidence x y)
     else (if t then GQTwoTable.incidence y x else 0)
   exact GQTwoTable.adjacency_eq_incidence x y s t
+
+/-- The GQ(2,2) model has the same hypothesis shape as the concrete theorem:
+literal positivity together with a signed corner/incidence identification.
+It is an abstract-interface model because this repository has no algebraic
+`W(2)` counts package. -/
+theorem gqTwo_singerRows_hypothesis_shape_model :
+    (∀ j k, (GQTwoTable.triangles j k).2 = true) ∧
+      CornerIncidenceTable GQTwoTable.triangles gqTwoIncident
+        (Equiv.refl (Fin 15)) := by
+  exact ⟨GQTwoTable.positive, gqTwo_cornerIncidence_model⟩
 
 end KazhdanHyp
 end GroupApproximation
