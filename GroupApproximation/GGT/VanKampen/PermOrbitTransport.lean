@@ -20,19 +20,19 @@ namespace GroupApproximation
 namespace GGT
 namespace VanKampen
 
-universe u
+universe u w
 
 /-! ## Powers along a conjugation -/
 
 /-- A power of a conjugated permutation is the conjugate of the power. -/
-theorem permCongr_zpow {α β : Type u} (e : α ≃ β) (p : Equiv.Perm α) (i : ℤ)
+theorem permCongr_zpow {α : Type u} {β : Type w} (e : α ≃ β) (p : Equiv.Perm α) (i : ℤ)
     (x : α) : ((e.permCongr p) ^ i) (e x) = e ((p ^ i) x) := by
   have hpow : (e.permCongr p) ^ i = e.permCongr (p ^ i) :=
     (map_zpow (Equiv.permCongrHom e) p i).symm
   rw [hpow, Equiv.permCongr_apply, e.symm_apply_apply]
 
 /-- Being in the same cycle is preserved and reflected by a conjugation. -/
-theorem sameCycle_permCongr {α β : Type u} (e : α ≃ β) (p : Equiv.Perm α)
+theorem sameCycle_permCongr {α : Type u} {β : Type w} (e : α ≃ β) (p : Equiv.Perm α)
     (x y : α) :
     Equiv.Perm.SameCycle p x y ↔
       Equiv.Perm.SameCycle (e.permCongr p) (e x) (e y) := by
@@ -45,7 +45,8 @@ theorem sameCycle_permCongr {α β : Type u} (e : α ≃ β) (p : Equiv.Perm α)
     rw [← permCongr_zpow e p i x, hi]
 
 /-- Orbits transport along an equivalence of the underlying types. -/
-noncomputable def orbitPermCongr {α β : Type u} (e : α ≃ β) (p : Equiv.Perm α) :
+noncomputable def orbitPermCongr {α : Type u} {β : Type w} (e : α ≃ β)
+    (p : Equiv.Perm α) :
     CombMap.Orbit p ≃ CombMap.Orbit (e.permCongr p) :=
   Quotient.congr e (fun x y => sameCycle_permCongr e p x y)
 
