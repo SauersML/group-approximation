@@ -113,7 +113,8 @@ theorem longMatch_of_listVal_eq_one {D : GGT.RelGenSet G Λ}
     (eps B : ℕ) :
     ∀ w w' u u' : List (GGT.RelLetter G Λ), Sym v w → Sym v w' →
       (∃ s, w = u ++ s) → (∃ s', w' = u' ++ s') → B < u.length →
-        ∀ y z : G, wordNorm D.base y ≤ eps → wordNorm D.base z ≤ eps →
+        ∀ y z : G, wordNorm D.alphabet.carrier y ≤ eps →
+          wordNorm D.alphabet.carrier z ≤ eps →
           GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z →
             GGT.RelLetter.listVal w'
               = y * GGT.RelLetter.listVal w * y⁻¹ := by
