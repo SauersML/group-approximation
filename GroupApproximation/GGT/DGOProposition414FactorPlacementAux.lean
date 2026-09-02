@@ -1593,6 +1593,47 @@ theorem distributedPacket_second_origin
           simp at hxMiddle
       · exact B.secondBrokenEndSlot_origin C hbroken j hxEnd
 
+/-! ## Separation between different parent sources -/
+
+/-- Packets belonging to different parent targets are disjoint.  The origin
+coordinates identify both the child and local target coordinate, and the
+coordinate-separation lemmas then recover the parent source. -/
+theorem distributedSources_disjoint
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s t : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B)
+    (q : Sum (Fin B.brokenAssignment.index.first.pieceCount)
+      (Fin B.brokenAssignment.index.second.pieceCount))
+    (hs : s ∈ P.target) (ht : t ∈ P.target) (hne : s ≠ t) :
+    Disjoint (B.distributedPacket C q s) (B.distributedPacket C q t) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro x hxs hxt
+  cases q with
+  | inl j =>
+      obtain ⟨K, hKchild, hKindex⟩ :=
+        B.distributedPacket_first_origin C hs j hxs
+      obtain ⟨L, hLchild, hLindex⟩ :=
+        B.distributedPacket_first_origin C ht j hxt
+      have hchild : K.child = L.child := hKchild.trans hLchild.symm
+      have hindex : K.targetIndex = L.targetIndex :=
+        hKindex.trans hLindex.symm
+      exact hne (FirstChildSlotKind.source_eq_of_same_coordinate K L
+        hchild hindex)
+  | inr j =>
+      obtain ⟨K, hKchild, hKindex⟩ :=
+        B.distributedPacket_second_origin C hs j hxs
+      obtain ⟨L, hLchild, hLindex⟩ :=
+        B.distributedPacket_second_origin C ht j hxt
+      have hchild : K.child = L.child := hKchild.trans hLchild.symm
+      have hindex : K.targetIndex = L.targetIndex :=
+        hKindex.trans hLindex.symm
+      exact hne (SecondChildSlotKind.source_eq_of_same_coordinate K L
+        hchild hindex)
+
 end BalancedSplitData
 
 end DGOProposition414
