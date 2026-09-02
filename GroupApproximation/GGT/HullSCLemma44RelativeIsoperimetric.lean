@@ -372,6 +372,62 @@ theorem quotientPeripheralPreservation_of_isoperimetricControl
   exact quotientPeripheralPreservation_of_mapSurjective D q hq
     (C.embedded D.embedded) hinj
 
+/-- Prefix isoperimetric control supplies Hull's preservation object using the
+enlarged quotient base and the unchanged labelled peripheral images. -/
+theorem quotientPeripheralPreservation_of_prefixIsoperimetricControl
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S)
+    {W : Set (List
+      (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D.rel W eps mu rho)
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (C : PrefixRelativeIsoperimetricControl D.rel W hsc q hq)
+    (hinj : Set.InjOn q
+      (⋃ i : AuxiliaryPeripheralIndex k,
+        (D.cores.peripheral i : Set G))) :
+    Nonempty (QuotientPeripheralPreservation q D) := by
+  refine ⟨{
+    rel := D.rel.prefixQuotient W hsc q hq
+    base_image := ?_
+    fam_map := ?_
+    embedded := C.embedded D.embedded
+    injOn_peripheralUnion := hinj }⟩
+  · intro a ha
+    exact D.rel.map_mem_prefixQuotient_base W hsc q hq (D.base_le ha)
+  · intro i
+    rw [GGT.RelGenSet.fam_prefixQuotient, D.fam_eq i]
+
+/-- The prefix certificate bridge, followed by peripheral-union injectivity,
+gives the complete preservation conclusion at fixed parameters. -/
+theorem quotientPeripheralPreservation_of_prefixRelativeDiagramCertificates
+    (hbridge : PrefixRelativeIsoperimetricBridgeStatement.{u, u, 0})
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (D : AuxiliaryPeripheralFamily A N S)
+    {eps rho : ℕ} {mu : ℝ}
+    {W : Set (List
+      (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q)
+    (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000)
+    (hrho : 20 * (eps + 1) ≤ rho)
+    (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
+      Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
+    (hinj : Set.InjOn q
+      (⋃ i : AuxiliaryPeripheralIndex k,
+        (D.cores.peripheral i : Set G))) :
+    Nonempty (QuotientPeripheralPreservation q D) := by
+  obtain ⟨C⟩ := hbridge D.rel D.embedded eps rho mu W q hq hmu
+    hmuUpper hrho hsc hker hcert
+  exact quotientPeripheralPreservation_of_prefixIsoperimetricControl D
+    hsc.toIsSmallCancellation q hq C hinj
+
 /-! ## Degenerate and source-only checks -/
 
 /-- For an empty relator family, the kernel equation makes a surjective map
