@@ -263,6 +263,42 @@ theorem finiteFamilyRelativePowerEscape_trivialModel
   obtain ⟨n, hn⟩ : ∃ n : ℕ, 0 < n := ⟨1, by omega⟩
   exact hord n hn (Subsingleton.elim _ _)
 
+/-! ## The source-facing finite-family target -/
+
+/-- **Finite-family Osin escape target.**  This is the finite-index form of
+`RelativePowerEscapeStatement` with the hypotheses displayed in Osin's
+Theorem 1.10: a finite relative base, a hyperbolically embedded labelled
+family, and a hyperbolic infinite-order element.  The earlier
+`FiniteFamilyRelativePowerEscapeStatement` above is retained as the proved
+finite-peripheral specialization; this source-facing target is the one that
+allows infinite peripheral subgroups. -/
+def FiniteFamilyRelativePowerEscapeSourceStatement : Prop :=
+  ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I]
+    (D : RelGenSet G I),
+    D.base.Finite → D.IsHyperbolicallyEmbedded → ∀ g : G,
+      IsHyperbolicElement D.fam g →
+        (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
+          IsEscaping g (Cayley.base D.alphabet)
+
+/-- The general finite-base escape statement immediately supplies its
+finite-index specialization. -/
+theorem finiteFamilyRelativePowerEscapeSource_of_relativePowerEscape
+    (hEscape : RelativePowerEscapeStatement.{u, v}) :
+    FiniteFamilyRelativePowerEscapeSourceStatement.{u, v} := by
+  intro G instG I _ D hbase hemb g hhyper hord
+  exact hEscape G instG I D hbase hemb g hhyper hord
+
+/-- Model test for the source-facing finite-family target: in `PUnit` the
+infinite-order premise is contradictory, so the conclusion is immediate. -/
+theorem finiteFamilyRelativePowerEscapeSource_trivialModel
+    {I : Type v} [Finite I] (D : RelGenSet PUnit I)
+    (_hbase : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (_hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  exfalso
+  exact hord 1 (by omega) (Subsingleton.elim _ _)
+
 /-- Finite peripherals also give the one-element classification.  The finite
 alphabet supplies acylindricity, while the preceding finite-family estimate
 supplies escape; the relative non-parabolic hypothesis is retained in the
