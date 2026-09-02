@@ -244,5 +244,41 @@ theorem kernelConeLocalFinitenessAt_trivialModel
   intro lam n
   exact Set.toFinite _
 
+/-! The universal interfaces specialize without changing the estimate when all
+types are at the base universe. -/
+
+/-- The geodesic interface can be consumed at the one-point source model. -/
+theorem kernelGeodesicEstimateStatement_at_trivialModel
+    (H : KernelGeodesicEstimateStatement.{0, 0, 0})
+    {Lambda : Type} (D : GGT.RelGenSet PUnit Lambda)
+    (W : Set (List (GGT.RelLetter PUnit Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type} [Group Q] (q : PUnit →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    KernelGeodesicEstimateAt D W eps rho mu hsc q := by
+  exact H.bound D W eps rho mu hsc q hq hker hcert
+
+/-- The local-finiteness interface can be consumed at the one-point source
+model. -/
+theorem kernelConeLocalFinitenessStatement_at_trivialModel
+    (H : KernelConeLocalFinitenessStatement.{0, 0, 0})
+    {Lambda : Type} (D : GGT.RelGenSet PUnit Lambda)
+    (W : Set (List (GGT.RelLetter PUnit Lambda)))
+    (eps rho : ℕ) (mu : ℝ)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    {Q : Type} [Group Q] (q : PUnit →* Q)
+    (hq : Function.Surjective q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    KernelConeLocalFinitenessAt D W eps rho mu hsc q := by
+  exact H.finite D W eps rho mu hsc q hq hker hcert
+
 end HullSC
 end GroupApproximation
