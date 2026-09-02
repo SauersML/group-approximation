@@ -236,9 +236,9 @@ def pointLineOtherEquiv (p : Point) :
     ⟨pointLineOtherToOrthogonalOther_injective p,
       pointLineOtherToOrthogonalOther_surjective p⟩
 
-/-- Every projective point lies on exactly seven isotropic lines. -/
+/-- Every projective point lies on exactly eight isotropic lines. -/
 theorem incident_line_card (p : Point) :
-    Fintype.card (PointLine p) = 7 := by
+    Fintype.card (PointLine p) = 8 := by
   classical
   have hflags : Fintype.card (PointLineOtherFlag p) = 56 := by
     rw [Fintype.card_congr (pointLineOtherEquiv p), orthogonalOther_card]
@@ -248,11 +248,11 @@ theorem incident_line_card (p : Point) :
   refine Nat.mul_right_cancel (m := 7) (by norm_num) ?_
   calc
     Fintype.card (PointLine p) * 7 = 56 := hflags
-    _ = 7 * 7 := by norm_num
+    _ = 8 * 7 := by norm_num
 
-/-- The natural incidence row sum on the point side is seven. -/
+/-- The natural incidence row sum on the point side is eight. -/
 theorem incident_point_degree (p : Point) :
-    ∑ L, incidenceWeight Incident p L = 7 := by
+    ∑ L, incidenceWeight Incident p L = 8 := by
   classical
   calc
     (∑ L, incidenceWeight Incident p L) =
@@ -260,7 +260,7 @@ theorem incident_point_degree (p : Point) :
       simp [incidenceWeight]
     _ = Fintype.card (PointLine p) :=
       (Fintype.card_subtype _).symm
-    _ = 7 := incident_line_card p
+    _ = 8 := incident_line_card p
 
 /-! ## The number of isotropic lines and two-step incidence counts -/
 
@@ -286,7 +286,7 @@ theorem line_card : Fintype.card Line = 400 := by
 /-- Both sides of incidence have 400 vertices and constant degree eight. -/
 theorem incidenceRegularModel :
     Fintype.card Point = 400 ∧ Fintype.card Line = 400 ∧
-      (∀ p, ∑ L, incidenceWeight Incident p L = 7) ∧
+      (∀ p, ∑ L, incidenceWeight Incident p L = 8) ∧
       (∀ L, ∑ p, incidenceWeight Incident p L = 8) :=
   ⟨point_card, line_card, incident_point_degree, incident_line_degree⟩
 
@@ -474,9 +474,9 @@ abbrev LinePointOtherFlag (L : Line) :=
 abbrev ConcurrentOther (L : Line) :=
   {M : Line // M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M}
 
-/-- Removing `L` from the seven lines through a point on `L` leaves six. -/
+/-- Removing `L` from the eight lines through a point on `L` leaves seven. -/
 theorem otherLineAt_card (L : Line) (p : LinePoint L) :
-    Fintype.card (OtherLineAt L p) = 6 := by
+    Fintype.card (OtherLineAt L p) = 7 := by
   classical
   let e : OtherLineAt L p ≃
       {M : {N : Line // Incident p.1 N} // M ≠ ⟨L, p.2⟩} :=
@@ -496,7 +496,7 @@ theorem otherLineAt_card (L : Line) (p : LinePoint L) :
       Fintype.card_congr e
     _ = Fintype.card {N : Line // Incident p.1 N} - 1 :=
       Set.card_ne_eq (⟨L, p.2⟩ : {N : Line // Incident p.1 N})
-    _ = 6 := by rw [incident_line_card]
+    _ = 7 := by rw [incident_line_card]
 
 /-- A flagged point and another line through it determine a concurrent line. -/
 def linePointOtherToConcurrentOther (L : Line) :
@@ -817,18 +817,18 @@ abbrev LineCommonNeighbor (L M : Line) :=
 noncomputable instance lineCommonNeighborFintype (L M : Line) :
     Fintype (LineCommonNeighbor L M) := Fintype.ofFinite _
 
-/-- Removing two distinct lines from the seven lines through a point leaves
-five lines. -/
+/-- Removing two distinct lines from the eight lines through a point leaves
+six lines. -/
 theorem otherTwoLinesAtPoint_card (p : Point) (L M : Line)
     (hpL : Incident p L) (hpM : Incident p M) (hLM : L ≠ M) :
-    Fintype.card {N : Line // Incident p N ∧ N ≠ L ∧ N ≠ M} = 5 := by
+    Fintype.card {N : Line // Incident p N ∧ N ≠ L ∧ N ≠ M} = 6 := by
   classical
   let S : Finset Line := Finset.univ.filter fun N ↦ Incident p N
-  have hScard : S.card = 7 := by
+  have hScard : S.card = 8 := by
     calc
       S.card = Fintype.card {N : Line // Incident p N} :=
         (Fintype.card_subtype _).symm
-      _ = 7 := incident_line_card p
+      _ = 8 := incident_line_card p
   have hLS : L ∈ S := by simp [S, hpL]
   have hMS : M ∈ S := by simp [S, hpM]
   have hMErase : M ∈ S.erase L := by simp [hMS, Ne.symm hLM]
@@ -842,7 +842,7 @@ theorem otherTwoLinesAtPoint_card (p : Point) (L M : Line)
       simp [S, and_assoc, and_left_comm, and_comm]
     _ = (S.erase L).card - 1 := Finset.card_erase_of_mem hMErase
     _ = S.card - 1 - 1 := by rw [Finset.card_erase_of_mem hLS]
-    _ = 5 := by rw [hScard]
+    _ = 6 := by rw [hScard]
 
 /-- For two distinct concurrent lines, every common concurrency neighbour
 passes through their unique intersection point. -/
@@ -864,16 +864,16 @@ theorem lineCommonNeighbor_iff_incident_intersection
     have hab : a = b := has.trans hbs.symm
     have hpaEq : p = a := by
       apply commonPoint_unique hLM hpL hpM haL
-      rw [← hab]
+      rw [hab]
       exact hbM
     exact hpN (by simpa [hpaEq] using haN)
   · rintro ⟨hpN, hNL, hNM⟩
     exact ⟨hNL, ⟨p, hpL, hpN⟩, hNM, ⟨p, hpM, hpN⟩⟩
 
-/-- Distinct concurrent lines have exactly five common concurrency neighbours. -/
+/-- Distinct concurrent lines have exactly six common concurrency neighbours. -/
 theorem lineCommonNeighbor_card_of_concurrent {L M : Line} (hLM : L ≠ M)
     {p : Point} (hpL : Incident p L) (hpM : Incident p M) :
-    Fintype.card (LineCommonNeighbor L M) = 5 := by
+    Fintype.card (LineCommonNeighbor L M) = 6 := by
   let e : LineCommonNeighbor L M ≃
       {N : Line // Incident p N ∧ N ≠ L ∧ N ≠ M} :=
     Equiv.subtypeEquivProp (by
@@ -914,6 +914,22 @@ def pointOnLineToCommonLine (L M : Line)
       simpa [h] using hpN
     exact ⟨N, hNL, ⟨p.1, p.2, hpN⟩, hNM, ⟨q, hqM, hqN⟩⟩
 
+/-- The common-line map sends a point of `L` to a line through that point. -/
+theorem pointOnLineToCommonLine_left_incident (L M : Line)
+    (hnon : ¬ ∃ p, Incident p L ∧ Incident p M) (p : LinePoint L) :
+    Incident p.1 (pointOnLineToCommonLine L M hnon p) := by
+  let hpOut : ¬ Incident p.1 M := fun hpM ↦ hnon ⟨p.1, p.2, hpM⟩
+  let q := projectedPoint p.1 M hpOut
+  have hpqOrth : form p.1.rep q.rep = 0 :=
+    projectedPoint_orthogonal p.1 M hpOut
+  have hpq : p.1 ≠ q := by
+    intro hpq
+    exact hpOut (by
+      rw [← hpq]
+      exact projectedPoint_incident p.1 M hpOut)
+  change Incident p.1 (lineThrough p.1 q hpq hpqOrth)
+  exact left_incident_lineThrough p.1 q hpq hpqOrth
+
 /-- Distinct points of `L` produce distinct common concurrent lines. -/
 theorem pointOnLineToCommonLine_injective (L M : Line)
     (hnon : ¬ ∃ p, Incident p L ∧ Incident p M) :
@@ -926,10 +942,10 @@ theorem pointOnLineToCommonLine_injective (L M : Line)
     Ne.symm (pointOnLineToCommonLine L M hnon p).2.1
   apply Subtype.ext
   apply commonPoint_unique hother p.2
-  · exact (pointOnLineToCommonLine L M hnon p).2.2.1.choose_spec.2
+  · exact pointOnLineToCommonLine_left_incident L M hnon p
   · exact q.2
   · rw [hN]
-    exact (pointOnLineToCommonLine L M hnon q).2.2.1.choose_spec.2
+    exact pointOnLineToCommonLine_left_incident L M hnon q
 
 /-- Every common concurrency neighbour of nonconcurrent lines is obtained
 from its intersection point with the first line. -/
@@ -943,7 +959,7 @@ theorem pointOnLineToCommonLine_surjective (L M : Line)
   have hab : a ≠ b := by
     intro hab
     apply hnon
-    exact ⟨a, haL, by simpa [hab] using hbM⟩
+    exact ⟨a, haL, by rw [hab]; exact hbM⟩
   have habOrth : form a.rep b.rep = 0 := orthogonal_of_incident haN hbN
   have hbProj : b = projectedPoint a M haOut := by
     apply Projectivization.submodule_injective
@@ -954,19 +970,22 @@ theorem pointOnLineToCommonLine_surjective (L M : Line)
   let flagged : LinePoint L := ⟨a, haL⟩
   refine ⟨flagged, ?_⟩
   apply Subtype.ext
-  change lineThrough a (projectedPoint a M haOut) _ _ = N.1
-  apply line_unique
-    (by
-      intro h
-      apply haOut
-      rw [← h]
-      exact projectedPoint_incident a M haOut)
-  · exact left_incident_lineThrough a (projectedPoint a M haOut) _ _
-  · rw [← hbProj]
-    exact haN
-  · exact right_incident_lineThrough a (projectedPoint a M haOut) _ _
-  · rw [← hbProj]
+  have haProj : a ≠ projectedPoint a M haOut := by
+    intro h
+    apply haOut
+    rw [← h]
+    exact projectedPoint_incident a M haOut
+  have haProjOrth : form a.rep (projectedPoint a M haOut).rep = 0 :=
+    projectedPoint_orthogonal a M haOut
+  have hProjN : Incident (projectedPoint a M haOut) N.1 := by
+    rw [hbProj]
     exact hbN
+  change lineThrough a (projectedPoint a M haOut) haProj haProjOrth = N.1
+  apply line_unique haProj
+  · exact left_incident_lineThrough a (projectedPoint a M haOut) haProj haProjOrth
+  · exact hProjN
+  · exact haN
+  · exact hbN
 
 /-- Nonconcurrent lines have one common concurrency neighbour for each of the
 eight points on the first line. -/
@@ -1031,9 +1050,10 @@ theorem line_col_square_count (L M : Line) :
     simp [lineConcurrencyWeight]
   · by_cases hex : ∃ p, Incident p L ∧ Incident p M
     · obtain ⟨p, hpL, hpM⟩ := hex
+      have hcon : ∃ p, Incident p L ∧ Incident p M := ⟨p, hpL, hpM⟩
       rw [lineCommonNeighbor_card_of_concurrent hLM hpL hpM]
       have hex' : ∃ p, Incident p M ∧ Incident p L := ⟨p, hpM, hpL⟩
-      simp [lineConcurrencyWeight, hLM, hex, hex']
+      simp [lineConcurrencyWeight, hLM, hcon, hex']
     · rw [lineCommonNeighbor_card_of_nonconcurrent L M hex]
       have hnex' : ¬ ∃ p, Incident p M ∧ Incident p L := by
         rintro ⟨p, hpM, hpL⟩
@@ -1093,7 +1113,7 @@ def wSevenQuadrangleLinkData :
     QuadrangleLinkData wSevenCounts.Vertex := by
   apply wSevenCounts.toQuadrangleLinkData (15 / 4)
   · norm_num
-  · norm_num [quadrangleMuBound_seven]
+  · simpa [wSevenCounts] using quadrangleMuBound_seven
 
 /-- Model check: the symbolic certificate has degree eight and gap `511/960`. -/
 theorem wSevenQuadrangleLinkData_parameters :
