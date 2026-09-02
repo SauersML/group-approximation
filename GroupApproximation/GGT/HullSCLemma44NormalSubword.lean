@@ -206,35 +206,36 @@ theorem quotientNormalSublist_length_le
     segment.length ≤ replacement.length := by
   let normal := quotientNormalWord D q hq y
   let candidate := pre ++ replacement ++ suffix
+  have hsplitNormal : normal = pre ++ segment ++ suffix := hsplit
   have hnormal : IsWord D.alphabet.carrier normal normal.prod :=
     quotientNormalWord.isWord D q hq y
   have hcandidate :
       IsWord D.alphabet.carrier candidate candidate.prod := by
     refine ⟨?_, rfl⟩
     intro x hx
-    have hxparts : x ∈ pre ∨ x ∈ replacement ∨ x ∈ suffix := by
+    have hxparts : (x ∈ pre ∨ x ∈ replacement) ∨ x ∈ suffix := by
       simpa only [candidate, List.mem_append] using hx
-    rcases hxparts with hxprefix | hxreplacement | hxsuffix
+    rcases hxparts with (hxprefix | hxreplacement) | hxsuffix
     · apply hnormal.letters x
-      rw [hsplit]
+      rw [hsplitNormal]
       exact List.mem_append_left _ (List.mem_append_left _ hxprefix)
     · exact hreplacement.letters x hxreplacement
     · apply hnormal.letters x
-      rw [hsplit]
+      rw [hsplitNormal]
       exact List.mem_append_right _ hxsuffix
   have hcandidateMap : q candidate.prod = y := by
     have hnormalMap : q normal.prod = y :=
       quotientNormalWord.map_prod D q hq y
     have hnormalProd :
         normal.prod = pre.prod * segment.prod * suffix.prod := by
-      have := congrArg List.prod hsplit
+      have := congrArg List.prod hsplitNormal
       simpa only [List.prod_append] using this
     simp only [candidate, List.prod_append, map_mul]
     rw [hmap, ← map_mul, ← map_mul, ← hnormalProd]
     exact hnormalMap
   have hminimal : normal.length ≤ candidate.length :=
     quotientNormalWord.length_le D q hq y hcandidate hcandidateMap
-  have hnormalLength := congrArg List.length hsplit
+  have hnormalLength := congrArg List.length hsplitNormal
   simp only [candidate, List.length_append] at hminimal hnormalLength
   omega
 
