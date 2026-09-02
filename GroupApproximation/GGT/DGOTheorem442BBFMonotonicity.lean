@@ -31,11 +31,13 @@ theorem bbfAdmissible_left_of_candidate_large
     (hYa : Y ≠ a) (hYb : Y ≠ b)
     (hlarge : 2 * P.ξ < P.projDist Y a b) :
     (a, b) ∈ P.bbfAdmissible X Y := by
+  simp only [bbfAdmissible, Set.mem_setOf_eq] at hab ⊢
   rcases hab with ⟨habne, hgeneral | hleft | hright | horiginal⟩
   · rcases hgeneral with ⟨hXa, hXb, _hZa, _hZb, hXab, _hZab⟩
     exact ⟨habne, Or.inl ⟨hXa, hXb, hYa, hYb, hXab, hlarge⟩⟩
   · rcases hleft with ⟨haX, _hZX, _hZb, _hZXb⟩
-    exact ⟨habne, Or.inr (Or.inl ⟨haX, hYX, hYb, hlarge⟩)⟩
+    subst a
+    exact ⟨habne, Or.inr (Or.inl ⟨rfl, hYX, hYb, hlarge⟩)⟩
   · rcases hright with ⟨hbZ, hXa, hXZ, hXaZ⟩
     subst b
     exact ⟨habne, Or.inl ⟨hXa, hXZ, hYa, hYZ, hXaZ, hlarge⟩⟩
@@ -114,7 +116,7 @@ theorem bbfCandidateValues_subset_left_of_large
 both modified distances in the conclusion are in their published domains. -/
 theorem bbfProjDist_left_mono
     (P : ProjectionSystem V) {W Y X Z : V}
-    (hWX : W ≠ X) (hWY : W ≠ Y) (hWZ : W ≠ Z)
+    (hWX : W ≠ X) (_hWY : W ≠ Y) (hWZ : W ≠ Z)
     (hYX : Y ≠ X) (hYZ : Y ≠ Z) (hXZ : X ≠ Z)
     (hlarge : 4 * P.ξ < P.bbfProjDist Y X Z) :
     P.bbfProjDist W X Y ≤ P.bbfProjDist W X Z := by
@@ -140,9 +142,12 @@ theorem bbfProjDist_left_mono
         obtain ⟨⟨a, b⟩, hab, hW⟩ := hcontains
         exact ⟨(a, b),
           P.bbfAdmissible_left_of_large hYX hYZ hXZ hlarge hab, hW⟩
-    · rw [bbfProjDist, bbfRawProjDist, if_neg htarget, if_neg hsource]
-      exact csInf_le_csInf (P.bbfCandidateValues_bddBelow W X Y)
-        (P.bbfCandidateValues_nonempty hWX hWZ hXZ) hsubset
+    · simp only [targetZero] at htarget
+      simp only [sourceZero] at hsource
+      simpa only [bbfProjDist, bbfRawProjDist, if_neg htarget,
+        if_neg hsource] using
+        (csInf_le_csInf (P.bbfCandidateValues_bddBelow W X Y)
+          (P.bbfCandidateValues_nonempty hWX hWZ hXZ) hsubset)
 
 /-- BBF monotonicity, second inequality.  It is the first inequality after
 reversing `(X,Z)` and using symmetry of the modified distances. -/
