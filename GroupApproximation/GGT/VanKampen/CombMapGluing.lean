@@ -289,7 +289,6 @@ theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
       change Delta.toCombMap.facePerm
           ((((innerFacePerm Delta) ^ m) d).1) = _
       rw [ih]
-      rfl
 
 /-- Two darts in one old inner-face orbit remain in the same copied face
 orbit. -/
@@ -338,7 +337,7 @@ theorem faceDegree_eq_source (S : Pairing Delta n)
       apply Quotient.sound
       apply S.sameCycle_of_source_sameCycle
       rw [← Delta.toCombMap.faceOf_eq_iff]
-      exact d.2.symm⟩
+      exact d.2⟩
   let E :
       {d : S.closedMap.Dart //
           S.closedMap.faceOf d = S.closedMap.faceOf representative} ≃
