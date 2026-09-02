@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives
+import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
 import GroupApproximation.GGT.VanKampen.CombMapGluing
 import GroupApproximation.GGT.VanKampen.CombMapReduction
 
@@ -472,15 +472,29 @@ theorem boundaryLength_le_six_mul_of_six_pieces
     _ = (a ++ b ++ c ++ d ++ e ++ f).length := congrArg List.length hsplit
     _ ≤ 6 * scale := by
       simp only [List.length_append]
-      omega
+    omega
+
+/-- Faces incident to the vertices of a boundary subpath. -/
+noncomputable def boundaryFaceSeed
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) : Finset Delta.toCombMap.Face := by
+  classical
+  exact P.darts.toFinset.biUnion fun d ↦
+    Delta.toCombMap.faceStar (Delta.toCombMap.faceOf d)
+
+/-- The new faces in the `n`-th closed-star layer around a boundary subpath. -/
+noncomputable def boundaryFaceStarLayer
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (n : ℕ) : Finset Delta.toCombMap.Face :=
+  Delta.toCombMap.faceStarLayer (boundaryFaceSeed Delta P) n
 
 /-- The inner part of a boundary face-star layer.  Intersecting with
 `innerFaces` removes the distinguished exterior face that belongs to the
 zero-th boundary star. -/
 noncomputable def innerBoundaryFaceStarLayer
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+  (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (P : BoundarySubpath T Delta) (i : ℕ) : Finset Delta.toCombMap.Face :=
-  GirthEightPrimitives.boundaryFaceStarLayer Delta P i ∩ Delta.innerFaces
+  boundaryFaceStarLayer Delta P i ∩ Delta.innerFaces
 
 /-- Inner face-star layers are pairwise disjoint, so their total cardinality
 is at most `innerFaceCount`.  This proves the second inequality consumed by
@@ -493,7 +507,7 @@ theorem innerBoundaryFaceStarLayer_sum_le_innerFaceCount
         Delta.innerFaceCount := by
   classical
   let M := Delta.toCombMap
-  let seed := GirthEightPrimitives.boundaryFaceSeed Delta P
+  let seed := boundaryFaceSeed Delta P
   have hballMono : ∀ {i j : ℕ}, i ≤ j →
       M.faceStarBall seed i ⊆ M.faceStarBall seed j := by
     intro i j hij
