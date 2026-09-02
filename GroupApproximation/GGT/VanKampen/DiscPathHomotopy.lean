@@ -173,6 +173,9 @@ theorem rootedPathsFaceComplete_of_faceDeletion
 
 /-! ## One-triangle model checks -/
 
+local instance oneTriangleDartDecidableEq : DecidableEq OneTriangleDart :=
+  Classical.decEq _
+
 /-- The canonical ordered boundary of the one-triangle model is the closed
 orbit list supplied by the Van Kampen boundary API. -/
 theorem oneTriangle_faceBoundary_model (d : OneTriangleDart) :
