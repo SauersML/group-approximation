@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.CombMap
 import GroupApproximation.GGT.VanKampen.DiscDiagram
 import GroupApproximation.GGT.VanKampen.CombMapStars
+import GroupApproximation.GGT.VanKampen.SurgeryMap
 
 /-!
 # Rooted paths and face-boundary homotopy
@@ -13,13 +14,12 @@ boundary and by immediate edge backtracking.
 
 The exact planar completeness assertion is exposed as
 `RootedPathsFaceComplete`, the name consumed by the girth-eight interface.
-The present clean Van Kampen import boundary contains the rotation-system
-facts and the canonical ordered face boundaries, but not the face-deletion
-map required to carry out the planar induction.  Accordingly,
-`FaceDeletionCompletenessWitness` is the explicit handoff for that missing
-topological operation; no proposition is proved by an unsound declaration.
-The elementary model below uses the canonical face boundary of the committed
-six-dart one-triangle map.
+`FaceDeletionStep` gives the local induction data: it names the inner region
+deleted by a surgery, supplies the lower-rank common path, and supplies the
+two elementary path moves to that path.  The induction theorem uses
+`Surgery.MapCollapse.replaceGRegion_planar` to retain planarity of the
+deleted region.  The elementary model below uses the canonical face boundary
+of the committed six-dart one-triangle map.
 -/
 
 namespace GroupApproximation
@@ -148,17 +148,99 @@ abbrev RootedPathsFaceComplete
     (p q : DartPath Delta.toCombMap R.root vertex),
     InnerFaceWordHomotopy Delta p.darts q.darts
 
-/-- A face-deletion implementation supplies exactly the output needed by
-`RootedPathsFaceComplete`.  The eventual proof may establish this witness by
-strong induction on the number of inner faces, deleting one enclosed face at
-each step and lifting the resulting homotopy back across the surgery. -/
+/-! ## The surgery induction interface -/
+
+/-- One planar face-deletion step for a pair of rooted paths.  The selected
+faces are inner faces, `region` says that they form a disc, and `common` is
+the path left after deleting a face adjacent to one of the two paths.  The
+two homotopies are the boundary insertion or erasure used to lift the
+induction result back to the original diagram. -/
+structure FaceDeletionStep
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v})
+    (R : RootedPathSystem Delta.toCombMap) : Prop where
+  /-- The number of enclosed faces used by the induction. -/
+  rank : ∀ (vertex : Delta.toCombMap.Vertex),
+    DartPath Delta.toCombMap R.root vertex → ℕ
+  /-- Delete a nonempty inner disc and expose a lower-rank common path. -/
+  delete : ∀ (vertex : Delta.toCombMap.Vertex)
+    (p q : DartPath Delta.toCombMap R.root vertex), p ≠ q →
+    ∃ (faces : Finset Delta.toCombMap.Face)
+      (region : VanKampen.Surgery.MapCollapse.IsDiscRegion
+        Delta.toCombMap faces)
+      (common : DartPath Delta.toCombMap R.root vertex),
+      (∀ f, f ∈ faces → f ∈ Delta.innerFaces) ∧
+      InnerFaceWordHomotopy Delta p.darts common.darts ∧
+      InnerFaceWordHomotopy Delta q.darts common.darts ∧
+      rank vertex common < rank vertex p ∧
+      rank vertex common < rank vertex q
+
+namespace FaceDeletionStep
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (GGT.RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v}}
+  {R : RootedPathSystem Delta.toCombMap}
+
+/-- The map obtained by deleting the selected inner region is planar. -/
+theorem replacement_planar
+    (S : FaceDeletionStep Delta R)
+    (vertex : Delta.toCombMap.Vertex)
+    (p q : DartPath Delta.toCombMap R.root vertex) (hpq : p ≠ q) :
+    ∃ (faces : Finset Delta.toCombMap.Face)
+      (region : VanKampen.Surgery.MapCollapse.IsDiscRegion
+        Delta.toCombMap faces),
+      (VanKampen.Surgery.MapCollapse.replaceGRegion
+        Delta.toCombMap faces region).IsPlanar := by
+  obtain ⟨faces, region, common, _hinner, _hp, _hq, _hrp, _hrq⟩ :=
+    S.delete vertex p q hpq
+  exact ⟨faces, region,
+    VanKampen.Surgery.MapCollapse.replaceGRegion_planar
+      Delta.toCombMap faces region Delta.planar⟩
+
+end FaceDeletionStep
+
+/-- A face-deletion implementation supplies the local induction data needed
+by `RootedPathsFaceComplete`. -/
 structure FaceDeletionCompletenessWitness
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v} W)
+    (Delta : DiscDiagram.{u, w, v})
     (R : RootedPathSystem Delta.toCombMap) : Prop where
-  /-- The lifted induction conclusion for every endpoint and path pair. -/
-  complete : RootedPathsFaceComplete Delta R
+  /-- The lower-rank face-deletion step. -/
+  step : FaceDeletionStep Delta R
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Strong induction on the enclosed-face rank gives the path homotopy. -/
+theorem rootedPathsFaceComplete_of_faceDeletionStep
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v})
+    (R : RootedPathSystem Delta.toCombMap)
+    (S : FaceDeletionStep Delta R) :
+    RootedPathsFaceComplete Delta R := by
+  intro vertex p q
+  generalize htotal : S.rank vertex p + S.rank vertex q = total
+  induction total using Nat.strong_induction_on generalizing vertex p q with
+  | h total ih =>
+      by_cases hpq : p = q
+      · subst q
+        exact InnerFaceWordHomotopy.refl p.darts
+      · obtain ⟨faces, region, common, _hinner, hp, hq, hpc, hqc⟩ :=
+          S.delete vertex p q hpq
+        have hpc_lt : S.rank vertex p + S.rank vertex common < total := by
+          rw [← htotal]
+          omega
+        have hqc_lt : S.rank vertex q + S.rank vertex common < total := by
+          rw [← htotal]
+          omega
+        have hpc' := ih (S.rank vertex p + S.rank vertex common)
+          hpc_lt vertex p common rfl
+        have hqc' := ih (S.rank vertex q + S.rank vertex common)
+          hqc_lt vertex q common rfl
+        exact hpc'.trans hqc'.symm
 
 /-- The clean interface turns a face-deletion witness into the exact named
 path-completeness proposition. -/
@@ -169,7 +251,7 @@ theorem rootedPathsFaceComplete_of_faceDeletion
     (R : RootedPathSystem Delta.toCombMap)
     (H : FaceDeletionCompletenessWitness Delta R) :
     RootedPathsFaceComplete Delta R :=
-  H.complete
+  rootedPathsFaceComplete_of_faceDeletionStep Delta R H.step
 
 /-! ## One-triangle model checks -/
 
