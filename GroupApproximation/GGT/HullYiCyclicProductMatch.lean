@@ -247,12 +247,12 @@ theorem exists_depth_hasConsecutiveComponentMatchData_of_dgoLemma421b
         (coneOffFamily A (fun j ↦ elementaryClosure (f j))).relBall i C) →
       IsLoxodromic (orderedFinProduct a) (Cayley.base A) →
       ∀ t : G, t ∈ elementaryClosure (orderedFinProduct a) →
-      ∃ (l m : ℤ) (p : G) (c : Fin (k + 2) → G),
+      ∃ (l m : ℤ) (c : Fin (k + 2) → G),
         (∀ i : Fin (k + 1),
           c i.castSucc ∈ elementaryClosure (f i)) ∧
         (∀ i : Fin (k + 1),
           c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
-        t = orderedFinProduct a ^ l * p * c 0 * p⁻¹ *
+        t = orderedFinProduct a ^ l * c 0 *
           orderedFinProduct a ^ (-m) := by
   obtain ⟨Corient, horient⟩ :=
     exists_depth_hasPositivePowerNormalizer_cyclicProduct_of_dgoLemma421b
