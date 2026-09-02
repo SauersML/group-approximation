@@ -311,7 +311,7 @@ theorem symmetrizedGeneratorFinset_isSymmetricGeneratingSet
       Finset.mem_image, Finset.mem_univ, true_and] at hx ⊢
     rcases hx with ⟨i, hi⟩ | ⟨i, hi⟩
     · right
-      exact ⟨i, by rw [← hi, inv_inv]⟩
+      exact ⟨i, by rw [← hi]⟩
     · left
       exact ⟨i, by rw [← hi, inv_inv]⟩
   · have hrange : Set.range generator ⊆
