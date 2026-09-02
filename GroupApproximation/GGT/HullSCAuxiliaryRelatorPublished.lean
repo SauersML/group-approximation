@@ -381,10 +381,11 @@ theorem map_embed_focus_eq_of_letters_in_sym
         rfl)
     _ = z := List.map_id z
 
-private theorem wordNorm_focusNBase_le (D : AuxiliaryPeripheralFamily A N S)
-    (x : G) : wordNorm D.focusNRel.base x ≤ wordNorm D.rel.base x := by
-  exact wordNorm_mono Set.subset_union_left
-    (wordLengths_nonempty D.isSymmetricGeneratingSet_base x)
+private theorem wordNorm_focusNAlphabet_le
+    (D : AuxiliaryPeripheralFamily A N S) (x : G) :
+    wordNorm D.focusNRel.alphabet.carrier x ≤
+      wordNorm D.rel.alphabet.carrier x := by
+  rw [D.focusNRel_alphabet]
 
 theorem isPiece_focus_of_full (D : AuxiliaryPeripheralFamily A N S)
     {R : List (GGT.RelLetter G Bool)} {eps : ℕ}
@@ -409,8 +410,8 @@ theorem isPiece_focus_of_full (D : AuxiliaryPeripheralFamily A N S)
     ⟨s.map D.focusLetterOfFull, by simp [hvs]⟩,
     v'.map D.focusLetterOfFull, D.sym_map_focusLetterOfFull hv', ?_,
     u'.map D.focusLetterOfFull, s'.map D.focusLetterOfFull, by simp [hv's'],
-    y, z, le_trans (D.wordNorm_focusNBase_le y) hy,
-    le_trans (D.wordNorm_focusNBase_le z) hz, ?_, ?_⟩
+    y, z, le_trans (D.wordNorm_focusNAlphabet_le y) hy,
+    le_trans (D.wordNorm_focusNAlphabet_le z) hz, ?_, ?_⟩
   · intro heq
     apply hne
     rw [← hvrec, ← hv'rec, heq]
@@ -432,8 +433,8 @@ theorem isPublishedPiece_focus_of_full
     ⟨s.map D.focusLetterOfFull, by simp [hvs]⟩,
     v'.map D.focusLetterOfFull, D.sym_map_focusLetterOfFull hv',
     s'.map D.focusLetterOfFull, by simp [hv's'], y, z,
-    le_trans (D.wordNorm_focusNBase_le y) hy,
-    le_trans (D.wordNorm_focusNBase_le z) hz, ?_, ?_⟩
+    le_trans (D.wordNorm_focusNAlphabet_le y) hy,
+    le_trans (D.wordNorm_focusNAlphabet_le z) hz, ?_, ?_⟩
   · simpa only [D.listVal_map_focusLetterOfFull] using hval
   · simpa only [D.listVal_map_focusLetterOfFull] using hexcl
 
@@ -449,8 +450,8 @@ theorem isPrimePiece_focus_of_full
   obtain ⟨hv, middle, tail, hsplit, y, z, hy, hz, hval⟩ := hp
   refine ⟨D.sym_map_focusLetterOfFull hv,
     middle.map D.focusLetterOfFull, tail.map D.focusLetterOfFull,
-    by simp [hsplit], y, z, le_trans (D.wordNorm_focusNBase_le y) hy,
-    le_trans (D.wordNorm_focusNBase_le z) hz, ?_⟩
+    by simp [hsplit], y, z, le_trans (D.wordNorm_focusNAlphabet_le y) hy,
+    le_trans (D.wordNorm_focusNAlphabet_le z) hz, ?_⟩
   simpa only [D.listVal_map_focusLetterOfFull] using hval
 
 theorem base_mem_of_mem_sym_embedNLetter
