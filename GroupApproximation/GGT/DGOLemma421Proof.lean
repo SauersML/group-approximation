@@ -2038,14 +2038,6 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     h G Λ D hhyp 4 1 (by norm_num) (by norm_num)
   obtain ⟨C11, hC11, hsum11, _hproj11⟩ :=
     h G Λ D hhyp 1 1 (by norm_num) (by norm_num)
-  have hpoint : ∃ C : ℕ, 0 < C ∧
-      ∀ n, n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
-        IsQuasiGeodesicPolygon D 4 1 n v u →
-        ∀ nu i k, IsComp nu u i k → IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
-    refine ⟨C414, hC414, ?_⟩
-    intro n hn v u hpoly nu i k hcomp hiso
-    exact hproj414 n v u hpoly nu i k hcomp hiso
   have hAall := dgoLemma421a_of_uniform414 h
   obtain ⟨CA, hA⟩ := hAall G Λ D hhyp
   let C := max (50 * C11) (max (50 * C414) (50 * CA))
@@ -2227,6 +2219,14 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       (peripheralOccurrence P (occ i)).label
       (peripheralOccurrence P (occ i)).value
       (peripheralOccurrence P (occ i)).read
+  have hfixed414 : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G)
+      (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 4 1 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
+        IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C414 * n) := by
+    intro n hn v u hquasi nu i k hcomp hiso
+    exact hproj414 n v u hquasi nu i k hcomp hiso
   have htargetRaw : ∀ i : Fin N, ∃ n : ℕ, n ≠ pc.length + source i ∧
       IsCompStart (peripheralOccurrence P (occ i)).label
         (pc ++ P ++ rc ++ revWord Q) n ∧
@@ -2241,7 +2241,7 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) n := by
     intro i
     have htar := target_of_fixed_uniformBound (mu := 4) (b := 1) (C := C414)
-      D (peripheralOccurrence P (occ i)).label hC414 hproj414
+      D (peripheralOccurrence P (occ i)).label hC414 hfixed414
       4 (C414 * 4) pc P rc Q (by norm_num) hclose hpoly
       (source i) (source i + 1) (hsourcePos i) (hsourceEnd i)
       (hsourceComp i) (by omega) (by
@@ -2284,14 +2284,16 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     obtain ⟨u, huPos, huLabel⟩ :=
       exists_side_occurrence_of_fourGon_start_421 hW3P
         hi' hstart'
+    have hsource_le : source i ≤ P.length := by
+      exact Nat.le_of_lt (lt_of_lt_of_le (hsourceComp i).2.1
+        (hsourceEnd i))
+    have hi'_le : i' ≤ P.length := Nat.le_of_lt hi'
     have hconnP : Connected D.fam (peripheralOccurrence P (occ i)).label
         1 P (source i) (peripheralOccurrence P u).pos := by
       have hs := connected_fourGon_side_iff D
         (peripheralOccurrence P (occ i)).label pc P rc Q
         (i := source i) (i' := i')
-          (by exact le_trans (Nat.le_of_lt (hsourceComp i).1)
-            (hsourceComp i).2.1)
-          (by exact Nat.le_of_lt hi')
+          hsource_le hi'_le
       have hmem := hs.mp hconn
       rw [← huPos] at hmem
       exact hmem
@@ -2303,7 +2305,10 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
     apply peripheralOccurrence_not_connected_of_uniformBound hC11 hsum11
       hletP hW1P
       (fun z lam x hz hmem => hW2P z lam x hz
-        (relBall_mono_radius D lam (by dsimp [C]; omega) hmem))
+        (relBall_mono_radius D lam (by
+          dsimp [C]
+          exact le_trans (Nat.le_max_left _ _)
+            (Nat.le_max_left _ _)) hmem))
       hW3P 1 hoccne huLabel
     exact hconnP
   have hclassBase : ∀ i : Fin N,
@@ -2333,8 +2338,8 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
                 D.fam (peripheralOccurrence P (occ i)).label
             obtain ⟨hh, hmem, heq⟩ := (htargetSpec i).2.2.2
             rw [← heq]
-            rw [vertex_fourGon_side pc P rc Q 1 (by omega),
-              vertex_fourGon_side pc P rc Q 1 hi']
+            rw [vertex_fourGon_side pc P rc Q 1 hsource_le,
+              vertex_fourGon_side pc P rc Q 1 hi'_le]
             group
           exact (hsourceNoSame i i' hi' hne (by rw [hni]; exact
             (htargetSpec i).2.1)) hconn
