@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 import GroupApproximation.GGT.HullSCLemma44RelativeIsoperimetric
+import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 
 /-!
 # Hull Lemma 4.4 from relative Greendlinger and isoperimetry
