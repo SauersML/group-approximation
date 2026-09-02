@@ -91,17 +91,27 @@ theorem rightConnector_sideSpan
       rw [vertex_succ word Q.basepoint off hoff]
       group
     _ = RelLetter.listVal Q.right := by
-      dsimp [word, off]
-      rcases hright : Q.right with _ | ⟨a, t⟩
-      · simp at hpos
-      · have ht : t = [] := by
-          apply List.length_eq_zero_iff.mp
-          have hlen' := hlen
-          simp only [hright, List.length_cons] at hlen'
-          omega
-        subst t
-        simp [hright, auxiliaryCycleWord, OsinComponents.length_revWord,
-          listVal_singleton, RelLetter.val]
+      let a := Q.right[0]'hpos
+      have hright : Q.right = [a] := by
+        apply List.ext_getElem
+        · simp [hlen]
+        · intro i hi hi'
+          have hi0 : i = 0 := by
+            simp only [List.length_singleton] at hi'
+            omega
+          subst i
+          rfl
+      have hletter :
+          (word[off]'hoff) = a := by
+        dsimp [word, off, a]
+        unfold auxiliaryCycleWord
+        rw [List.getElem_append_left (by
+          simp [OsinComponents.length_revWord]
+          omega)]
+        rw [List.getElem_append_right (by
+          simp [OsinComponents.length_revWord])]
+        simp [OsinComponents.length_revWord]
+      rw [hletter, hright, listVal_singleton]
 
 /-- A nonempty one-letter left connector is read backwards at the beginning
 of the auxiliary cycle, so its side span is the inverse connector value. -/
@@ -135,17 +145,37 @@ theorem leftConnector_sideSpan
       rw [vertex_succ word Q.basepoint 0 hzero]
       group
     _ = (RelLetter.listVal Q.left)⁻¹ := by
-      dsimp [word]
-      rcases hleft : Q.left with _ | ⟨a, t⟩
-      · simp at hpos
-      · have ht : t = [] := by
-          apply List.length_eq_zero_iff.mp
-          have hlen' := hlen
-          simp only [hleft, List.length_cons] at hlen'
-          omega
-        subst t
-        simp [hleft, auxiliaryCycleWord, revWord, invLetter,
-          listVal_singleton, RelLetter.val]
+      let a := Q.left[0]'hpos
+      have hleft : Q.left = [a] := by
+        apply List.ext_getElem
+        · simp [hlen]
+        · intro i hi hi'
+          have hi0 : i = 0 := by
+            simp only [List.length_singleton] at hi'
+            omega
+          subst i
+          rfl
+      have hrev : (revWord Q.left)[0]'(by
+          rw [OsinComponents.length_revWord]
+          exact hpos) = invLetter a := by
+        have h := getElem_revWord Q.left (m := 0) (by
+          rw [OsinComponents.length_revWord]
+          exact hpos) (by omega)
+        simpa [a, hlen] using h
+      have hletter : (word[0]'hzero) = invLetter a := by
+        dsimp [word]
+        unfold auxiliaryCycleWord
+        rw [List.getElem_append_left (by
+          simp [OsinComponents.length_revWord]
+          omega),
+          List.getElem_append_left (by
+            simp [OsinComponents.length_revWord]
+            omega),
+          List.getElem_append_left (by
+            simp [OsinComponents.length_revWord]
+            omega)]
+        exact hrev
+      rw [hletter, hleft, listVal_singleton, val_invLetter]
 
 end AuxiliaryCyclePathInput
 
