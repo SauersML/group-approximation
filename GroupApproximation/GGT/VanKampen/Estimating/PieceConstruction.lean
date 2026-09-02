@@ -38,6 +38,26 @@ theorem estimatingPieceConstruction_of_earStatement
     (hne D eps Delta scaffold.selected.family hred edge edge.target
       edge.target_eq)
 
+/-- **The Piece construction from the ear statement alone.**  The
+non-cancellation input is no longer a hypothesis: it is discharged by
+`estimatingPieceNonCancellationStatement`, which reads Osin's `O52` certificate
+off `Embedded.Contiguity` and turns it into the inequality using
+`DiscDiagram.Reduced`.  So the only remaining input to the estimating Piece
+construction is vk's planar ear statement.
+
+**What a contiguity producer must now supply.**  `IsCandidate` is
+correspondingly stronger: est's Lemma 65(a) construction, behind
+`EstimatingSelectionConstructionStatement`, must supply the
+`Embedded.Contiguity` fields `target_ne_source` and `o52Certificate` when it
+builds a region, that is the stored-order split at the two cells, both cells
+read forwards, the two arc alignments, and the connector identity along the
+target arc and back along the right side. -/
+theorem estimatingPieceConstruction_of_ear
+    (hear : Embedded.FaceSetEarStatement.{u, w, v}) :
+    EstimatingPieceConstructionStatement.{u, w, v} :=
+  estimatingPieceConstruction_of_earStatement hear
+    estimatingPieceNonCancellationStatement
+
 /-- Model test at the empty relator family: the target structure of the
 construction statement is inhabited, because an interior edge carries a
 relator-cell index and there is none. -/
