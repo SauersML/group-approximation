@@ -14,7 +14,8 @@ the shape Lemma 62 consumes, `UnboundEstimate.UniformProposition414Statement`,
 which asks for one constant `L` with `SumBound D b n (L * n)` for every
 positive `n`.  That shape is not a second axiom: it is the specialization of
 `OsinComponents.DGOProposition414Uniform` at `mu = 1` and `c = b`, and
-`uniformProposition414Statement_of_dgo414` proves it so.
+`uniformProposition414Statement_of_dgo414` proves it so, with no hypothesis
+beyond that proposition.
 
 The second is Ol'shanskii's Lemma 25, which Osin cites under the label
 `N123`.  Its printed hypothesis is on the aggregate: the sides of a geodesic
@@ -41,19 +42,20 @@ Osin Proposition 4.14 at `mu = 1` and `c = b`.  The quasi-geodesic clause of
 the two agree at `mu = 1`; the constant `L` is the constant `C` that
 Proposition 4.14 produces.
 
-The hyperbolicity hypothesis is passed in DGO's spelling.  The statement
-being proved carries the four-point spelling instead, and the repository has
-no bridge between the two, so the four-point hypothesis of the conclusion is
-simply not used. -/
+The two statements spell hyperbolicity differently, four-point on the word
+metric here and `IsHyperbolicSpace` on the Cayley graph there.
+`isHyperbolicSpace_cayley_of_fourPoint` converts one to the other at the same
+constant, so this theorem needs no hyperbolicity hypothesis of its own. -/
 theorem uniformProposition414Statement_of_dgo414
     {G : Type u} [Group G] {Lambda : Type w}
     (h414 : OsinComponents.DGOProposition414Uniform.{u, w})
-    (D : GGT.RelGenSet G Lambda) (b : ℕ)
-    (hhyper : ∃ delta : ℝ,
-      HullGeometry.IsHyperbolicSpace delta
-        (Manuscript.NonMF.TorsionFree.Cayley D.alphabet)) :
+    (D : GGT.RelGenSet G Lambda) (b : ℕ) :
     UniformProposition414Statement D b := by
-  intro hsymm _delta _hdelta
+  intro hsymm delta hdelta
+  have hhyper : ∃ d : ℝ,
+      HullGeometry.IsHyperbolicSpace d
+        (Manuscript.NonMF.TorsionFree.Cayley D.alphabet) :=
+    ⟨(delta : ℝ), isHyperbolicSpace_cayley_of_fourPoint D.alphabet hdelta⟩
   obtain ⟨C, _hCpos, hsum, _hball⟩ :=
     h414 G Lambda D hhyper hsymm 1 (b : ℝ) (le_refl 1) (Nat.cast_nonneg b)
   refine ⟨C, ?_⟩
