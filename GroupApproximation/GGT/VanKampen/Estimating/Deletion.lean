@@ -328,6 +328,29 @@ theorem edgeWeight_sum_le_of_fiveDeletionOrder
 
 namespace CombMap
 
+/-- A connected planar combinatorial map whose face degrees are at least
+three satisfies the edge inequality used for each nontrivial deletion
+component in Osin's Lemma `Eul`. -/
+theorem edgeCount_le_three_mul_vertex_sub_one
+    (M : CombMap) (hplanar : M.IsPlanar)
+    (hface : ∀ face : M.Face, 3 ≤ M.faceDegree face) :
+    M.edgeCount ≤ 3 * (M.vertexCount - 1) := by
+  classical
+  have hEulerInt : (M.vertexCount : ℤ) + (M.faceCount : ℤ) =
+      (M.edgeCount : ℤ) + 2 := by
+    have h := M.euler_eq_two hplanar
+    linarith
+  have hEuler : M.vertexCount + M.faceCount = M.edgeCount + 2 := by
+    exact_mod_cast hEulerInt
+  have hfaceSum : 3 * M.faceCount ≤ 2 * M.edgeCount := by
+    calc
+      3 * M.faceCount = ∑ _face : M.Face, 3 := by
+        simp [faceCount, Nat.mul_comm]
+      _ ≤ ∑ face : M.Face, M.faceDegree face := by
+        exact Finset.sum_le_sum fun face _ => hface face
+      _ = 2 * M.edgeCount := M.sum_faceDegree_eq_two_mul_edgeCount
+  omega
+
 /-- A map vertex and edge are incident when a dart represents both. -/
 def Incident (M : CombMap) (x : M.Vertex) (e : M.Edge) : Prop :=
   ∃ d : M.Dart, M.vertexOf d = x ∧ M.edgeOf d = e
@@ -378,7 +401,7 @@ theorem hasAtMostTwoEndpoints (M : CombMap) :
         exact h
       subst q
       simp [hqx]
-  exact le_trans (Finset.card_le_card hsubset) (by simp)
+  exact le_trans (Finset.card_le_card hsubset) Finset.card_le_two
 
 /-- The low-degree theorem for every remaining incidence state gives the
 five-deletion order used by the estimating graph. -/
