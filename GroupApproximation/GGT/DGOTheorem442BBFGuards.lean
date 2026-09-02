@@ -77,6 +77,7 @@ theorem mem_half_blockers_of_bbf_before
   have htri := P.bbfProjDist_triangle hU.1 hWU.symm hU.2.1
     hW.1.symm hW.2.1 hXZ
   refine ⟨hWU.symm, hU.2.1, ?_⟩
+  change K / 2 < P.bbfProjDist U W Z
   linarith [hU.2.2, hend.2, hK, P.ξ_pos]
 
 /-- The order of vertices which are large from two different left endpoints
@@ -99,7 +100,7 @@ theorem bbf_before_independent_of_left_endpoint
   · have hsmall :=
       (P.bbf_before_consequences hT hU₀ hW₀ hUW hbefore).2.2
     have hlarge :=
-      (P.bbf_before_consequences hT hW₁ hU₁ hUW.symm hreverse).2.1
+      (P.bbf_before_consequences hT hW₁ hU₁ (Ne.symm hUW) hreverse).2.1
     linarith [hsmall, hlarge, hT, P.ξ_pos]
 
 /-- The "in particular" clause of BBF's guard-constant lemma.  An empty
@@ -122,10 +123,10 @@ theorem isBBFGuard_of_half_blockers_eq_empty
     change U ≠ X ∧ U ≠ Z ∧ K < P.bbfProjDist U X Z at hU
     exact ⟨hU.1, hU.2.1, lt_of_le_of_lt hK hU.2.2⟩
   have htotal := P.bbf_before_total_on_large (le_refl (12 * P.ξ))
-    hW.1 hW.2.1 hU12.1 hU12.2.1 hUW.symm hW.2.2 hU12.2.2
+    hW.1 hW.2.1 hU12.1 hU12.2.1 (Ne.symm hUW) hW.2.2 hU12.2.2
   rcases htotal with hWU | hUWbefore
   · have hhalf := P.mem_half_blockers_of_bbf_before hK hW hU
-      hUW.symm hWU
+      (Ne.symm hUW) hWU
     rw [hempty] at hhalf
     exact hhalf.elim
   · exact Or.inr hUWbefore
