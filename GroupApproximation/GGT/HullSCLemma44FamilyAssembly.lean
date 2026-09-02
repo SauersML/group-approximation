@@ -2,6 +2,7 @@ import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 import GroupApproximation.GGT.HullSCLemma44RelativeIsoperimetric
 import GroupApproximation.GGT.HullSCLemma44KernelAssembly
+import GroupApproximation.GGT.HullSCLemma44Canonical
 
 /-!
 # Family-form preservation at fixed filling parameters
@@ -208,7 +209,7 @@ theorem familyInclusionConclusion_of_relativeControls
   have hinjRelative : Set.InjOn q
       (cayleyBall selected.rel.alphabet (max R 1)) :=
     injOn_relativeBall_of_relativeDiagramCertificates selected.rel
-      hsc.toIsSmallCancellation hmu hthreshold q hker hcert
+      hsc hmu hthreshold q hker hcert
   have hselectedUnion : Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k,
         (selected.cores.peripheral i : Set G)) := by
