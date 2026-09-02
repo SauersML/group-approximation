@@ -219,6 +219,52 @@ theorem multipleEdge_contradiction {mu d₁ d₂ d₃ d₄ : ℝ}
     (hside₁ : d₁ < mu / 2) (hside₃ : d₃ < mu / 2) : False := by
   linarith
 
+/-! ## The cut, as data -/
+
+/-- **The subdiagram enclosed by two contiguity regions between the same pair
+of cells.**  Osin: "Consider a subdiagram `Xi` in `Delta` such that: (i)
+`partial Xi = s_1 t_1 s_2 t_2`, where `s_j` is a side arc of `Theta_j` and
+`t_j` is a subpath of `partial Pi_j`; (ii) `Xi` does not contain `Pi_1` and
+`Pi_2`."
+
+`rCellCount_lt` is clause (ii), "the number of `R`-cells in `Xi` is smaller
+than `n`".  `rCellCount_pos` is *not* surgery: it is Osin's "By the definition
+of `M`, we can not include `Theta_1` and `Theta_2` into a single
+`e`-contiguity subdiagram ... This means that `Xi` contains at least one
+`R`-cell", so it is discharged from the distinguished family, not from the
+cut.  `reduced` is inherited, since a subdiagram of a reduced diagram is
+reduced. -/
+structure Lemma65CutData
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  /-- The enclosed subdiagram `Xi`. -/
+  enclosed : DiscDiagram.{u, w, v} W
+  /-- Osin's clause (ii): fewer `R`-cells, which is what the induction descends
+  on. -/
+  rCellCount_lt : enclosed.rCellCount < Delta.rCellCount
+  /-- From the definition of `M`, not from the surgery. -/
+  rCellCount_pos : 0 < enclosed.rCellCount
+  /-- Reducedness is inherited. -/
+  reduced : enclosed.Reduced
+
+/-- **Existence of the cut.**  Two distinct selected regions with the same
+source and the same target cell enclose such a subdiagram.  This is the one
+statement the induction needs from the surgery side; the cut is a different
+operation from `SurgeryMap.replaceGRegion`, which collapses a face set rather
+than cutting along a four-arc closed walk. -/
+def Lemma65CutStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (e₁ e₂ : InteriorEdge selected),
+    e₁ ≠ e₂ →
+      e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
+        e₁.target = e₂.target →
+          Nonempty (Lemma65CutData Delta)
+
 /-! ## Model checks -/
 
 /-- Model check at one relator cell: clause (a)'s multiple-edge half is
