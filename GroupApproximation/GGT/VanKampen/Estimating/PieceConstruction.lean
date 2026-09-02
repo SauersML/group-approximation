@@ -58,6 +58,26 @@ theorem estimatingPieceConstruction_of_ear
   estimatingPieceConstruction_of_earStatement hear
     estimatingPieceNonCancellationStatement
 
+/-- **The Piece construction from the region shelling statement.**  This is the
+form to prefer over `estimatingPieceConstruction_of_ear`:
+`GGT.VanKampen.RegionShellingStatement` is strictly weaker than
+`Embedded.FaceSetEarStatement` -- it asks only that a selected face set admit a
+shelling, not that an ear exist, that erasing it leave a single boundary cycle,
+or that the ear face be unpinched -- and it is the same residue the Hull leaves
+now sit on, so the paths unify on one open Prop instead of two. -/
+theorem estimatingPieceConstruction_of_shelling
+    (hshelling : RegionShellingStatement.{u, w, v}) :
+    EstimatingPieceConstructionStatement.{u, w, v} := by
+  intro G _ Lambda D eps W Delta scaffold hred
+  refine ⟨{ equations := ?_ }⟩
+  intro edge
+  exact Embedded.cellPieceEquations_of_pasting edge.candidate.contiguity
+    (faceSetWordHomotopy_of_regionShelling hshelling
+      edge.candidate.contiguity.boundary)
+    edge.target_eq
+    (estimatingPieceNonCancellationStatement D eps Delta
+      scaffold.selected.family hred edge edge.target edge.target_eq)
+
 /-- Model test at the empty relator family: the target structure of the
 construction statement is inhabited, because an interior edge carries a
 relator-cell index and there is none. -/

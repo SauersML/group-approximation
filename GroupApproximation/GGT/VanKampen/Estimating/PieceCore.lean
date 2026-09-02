@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Incidence
 import GroupApproximation.GGT.VanKampen.Estimating.PieceCarrier
 import GroupApproximation.GGT.VanKampen.FaceSetPeelProducer
+import GroupApproximation.GGT.VanKampen.FaceShelling
 
 /-!
 # The local core of the Piece construction
@@ -122,9 +123,32 @@ universe u w v
 
 namespace Embedded
 
-/-- **The two-arc certificate at one embedded region.**  The boundary-dart
-equation comes from the face-deletion schedule produced by the ear statement;
-the non-cancellation clause is the only other input. -/
+/-- **The two-arc certificate at one embedded region, from its pasting.**  The
+boundary-dart equation is the trivial-value statement for the region's boundary
+cycle, which is exactly what a face-set word homotopy to the empty word says.
+The non-cancellation clause is the only other input.  This is the form to use:
+a producer of pastings never has to be unpacked. -/
+def cellPieceEquations_of_pasting
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle [])
+    {target : Fin Delta.rCellCount}
+    (htarget : Gamma.target = some target)
+    (hne : GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)) :
+    CellPieceEquations Gamma :=
+  CellPieceEquations.of_boundary_equation Gamma htarget
+    (Gamma.targetBoundary_value_of_pasting pasting) hne
+
+/-- The same certificate from the ear statement, which produces the pasting via
+a face-deletion schedule.  Kept as a corollary; `RegionShellingStatement` is a
+strictly weaker source of the same pasting. -/
 def cellPieceEquations_of_earStatement
     (hear : FaceSetEarStatement.{u, w, v})
     {G : Type u} [Group G] {Lambda : Type w}
