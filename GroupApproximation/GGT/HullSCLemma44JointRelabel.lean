@@ -140,7 +140,7 @@ theorem unrelabelJoint_isCompOf {G : Type u} {Lambda : Type w} {k : ℕ}
             have hEq :
                 (Sum.inl lam : Sum Lambda (AuxiliaryPeripheralIndex k)) =
                   Sum.inr i := hcontra
-            exact Sum.noConfusion hEq
+            exact absurd hEq Sum.inl_ne_inr
       | inr j =>
           constructor
           · intro hj
