@@ -32,11 +32,12 @@ noncomputable def cactusFaceBoundary
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (f : Z.cactusShape.toCombMap.Face) :
-    FaceBoundary Z.cactusShape.toCombMap f :=
-  if h : f = Z.cactusShape.bigFace then
-    h.symm ▸ Z.cactusBigFaceBoundary
-  else
-    Z.cactusShape.faceBoundary f
+    FaceBoundary Z.cactusShape.toCombMap f := by
+  classical
+  exact if h : f = Z.cactusShape.bigFace then
+      h.symm ▸ Z.cactusBigFaceBoundary
+    else
+      Z.cactusShape.faceBoundary f
 
 /-- Away from the big face, the custom selector is the canonical polygon
 boundary. -/
@@ -115,7 +116,7 @@ theorem cactus_inner_face
       · rw [cactusRelatorCells, List.mem_ofFn]
         exact ⟨j, rfl⟩
       · change Z.cactusShape.relatorFace j.rev = f
-        rw [j, Fin.rev_rev]
+        simp only [j, Fin.rev_rev]
         exact (face_eq_indexedFace_of_faceEquiv_eq Z.cactusShape
           f (.relator i) hi).symm
   | big =>
