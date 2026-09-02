@@ -1259,7 +1259,7 @@ theorem wWord_length_le_four_wordDist_add_four_of_uniformBound
   have hlength := length_le_two_mul_peripheralCount_add_one hW1
   have hcloseLength : close.length =
       wordDist D.alphabet.carrier v (vertex v word word.length) := by
-    rw [hclose.2.2, wordDist_symmetric]
+    rw [hclose.2.2, wordDist_comm D.alphabet.symmetricGenerating]
   rw [← hpartition] at hperipheral
   rw [hcloseLength] at hNonisoBound
   omega
