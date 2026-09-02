@@ -415,13 +415,15 @@ theorem false_of_lemma49LongArc_contiguityShadow
     exact length_listInterval C.relator hcd.le hdRelator
   have hfirstLargeRaw := Sh.repeatedBlock_indexSpan_large B hcertificateInput
     hRel hPow hscale hp₀₁ hp₁ (by dsimp [p₀, p₁])
+  rw [Nat.max_eq_right hj₀₁.le, Nat.min_eq_left hj₀₁.le] at
+    hfirstLargeRaw
   have hfirstLarge : (1 / 100000 : ℝ) * (rotated.length : ℝ) ≤
       (first.length : ℝ) := by
     rw [List.length_rotate, hfirstLength]
     dsimp [j₀, j₁]
     exact hfirstLargeRaw
   have hsecondLargeRaw := Sh.repeatedBlock_indexSpan_large B hcertificateInput
-    hRel hPow hscale hp₂₃ hp₃ (by dsimp [p₂, p₃])
+    hRel hPow hscale hp₂₃ hp₃ (by dsimp [p₂, p₃]; omega)
   have hsecondLarge : (1 / 100000 : ℝ) * (rotated.length : ℝ) ≤
       (second.length : ℝ) := by
     rw [List.length_rotate, hsecondLength]
