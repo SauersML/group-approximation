@@ -110,6 +110,7 @@ theorem quotientPeripheralPreservation_of_relativeDiagramCertificates
     {Q : Type u} [Group Q] (q : G →* Q)
     (hq : Function.Surjective q)
     (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000)
+    (hrho : 20 * (eps + 1) ≤ rho)
     (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
@@ -120,7 +121,7 @@ theorem quotientPeripheralPreservation_of_relativeDiagramCertificates
         (D.cores.peripheral i : Set G))) :
     Nonempty (QuotientPeripheralPreservation q D) := by
   obtain ⟨C⟩ := hbridge D.rel D.embedded eps rho mu W q hq
-    hmu hmuUpper hsc hker hcert
+    hmu hmuUpper hrho hsc hker hcert
   exact quotientPeripheralPreservation_of_isoperimetricControl D q hq C hinj
 
 /-- The certificate theorem and Osin's relative-isoperimetric bridge imply
@@ -146,9 +147,12 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
     hgeom D.rel D.embedded mu hmuPos hmuSixteen
   let fullRadius : ℕ := max R 1
   let boundaryScale : ℕ := 2 * fullRadius + 2 * eps + 1
-  let rho : ℕ := max rho₀ (8 * boundaryScale)
+  let rho : ℕ := max rho₀ (max (8 * boundaryScale) (20 * (eps + 1)))
   have hrho₀ : rho₀ ≤ rho := Nat.le_max_left _ _
-  have hrhoScale : 8 * boundaryScale ≤ rho := Nat.le_max_right _ _
+  have hrhoScale : 8 * boundaryScale ≤ rho :=
+    le_trans (Nat.le_max_left _ _) (Nat.le_max_right _ _)
+  have hrhoDehn : 20 * (eps + 1) ≤ rho :=
+    le_trans (Nat.le_max_right _ _) (Nat.le_max_right _ _)
   have hscalePos : (0 : ℝ) < (boundaryScale : ℝ) := by
     dsimp [boundaryScale, fullRadius]
     positivity
@@ -179,13 +183,18 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
     intro x hx y hy hxy
     apply hinject.2
     · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
-      exact Set.mem_iUnion.mpr ⟨i, by rw [D.fam_eq i]; exact hi⟩
+      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
+      rw [D.fam_eq i]
+      exact hi
     · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
-      exact Set.mem_iUnion.mpr ⟨i, by rw [D.fam_eq i]; exact hi⟩
+      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
+      rw [D.fam_eq i]
+      exact hi
     · exact hxy
   refine ⟨hinject.1, ?_⟩
   exact quotientPeripheralPreservation_of_relativeDiagramCertificates
-    hbridge D q hsurj hmuPos hmuThousand hsc hker hcert hinjectCores
+    hbridge D q hsurj hmuPos hmuThousand hrhoDehn hsc hker hcert
+      hinjectCores
 
 /-- The same two geometric inputs also imply the older
 peripheral-preservation-only formulation of Hull Lemma 4.4. -/

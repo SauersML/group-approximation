@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.CayleyFourPointBridge
 import GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet
+import GroupApproximation.GGT.HullSCLemma44RelativeDehn
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 
 /-!
@@ -98,20 +99,27 @@ reduced diagram over the chosen family.  The conclusion is strictly below the
 canonical Hull quotient statement: it concerns only the image relative
 generating set, with no prescribed Cayley ball and no auxiliary-family
 packaging. -/
+def RelativeIsoperimetricBridgeAt
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) : Prop :=
+  ∀ (eps rho : ℕ) (mu : ℝ)
+    (W : Set (List (GGT.RelLetter G Lambda)))
+    {Q : Type v} [Group Q] (q : G →* Q)
+    (hq : Function.Surjective q),
+    0 < mu → mu ≤ 1 / 1000 →
+      20 * (eps + 1) ≤ rho →
+      RelWord.IsLemma44Input D W eps mu rho →
+      q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+        (∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+          Nonempty (RelativeDiagramCertificate D W eps mu Z)) →
+            Nonempty (RelativeIsoperimetricControl D q hq)
+
+/-- Uniform form of Osin's relative-isoperimetric induction over all source
+relative generating sets. -/
 def RelativeIsoperimetricBridgeStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda),
-    D.IsHyperbolicallyEmbedded →
-      ∀ (eps rho : ℕ) (mu : ℝ)
-        (W : Set (List (GGT.RelLetter G Lambda)))
-        {Q : Type v} [Group Q] (q : G →* Q)
-        (hq : Function.Surjective q),
-        0 < mu → mu ≤ 1 / 1000 →
-          RelWord.IsLemma44Input D W eps mu rho →
-          q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
-            (∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-              Nonempty (RelativeDiagramCertificate D W eps mu Z)) →
-                Nonempty (RelativeIsoperimetricControl D q hq)
+    D.IsHyperbolicallyEmbedded → RelativeIsoperimetricBridgeAt.{u, v, w} D
 
 /-- The bridge statement, followed by its elementary consumer, proves
 hyperbolic embeddedness of the concrete quotient image family. -/
@@ -123,6 +131,7 @@ theorem isHyperbolicallyEmbedded_mapSurjective_of_bridge
     {W : Set (List (GGT.RelLetter G Lambda))}
     (q : G →* Q) (hq : Function.Surjective q)
     (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000)
+    (hrho : 20 * (eps + 1) ≤ rho)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
@@ -130,7 +139,7 @@ theorem isHyperbolicallyEmbedded_mapSurjective_of_bridge
       Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
     (D.mapSurjective q hq).IsHyperbolicallyEmbedded := by
   obtain ⟨C⟩ := hbridge D hD eps rho mu W q hq hmu hmuUpper
-    hsc hker hcert
+    hrho hsc hker hcert
   exact C.embedded hD
 
 /-- Relative-isoperimetric control and injectivity on the selected peripheral
@@ -181,6 +190,43 @@ theorem relativeIsoperimetricBridge_emptyFamilyModel
         (∅ : Set (List (GGT.RelLetter G Lambda))))) :
     (D.mapSurjective q hq).IsHyperbolicallyEmbedded :=
   isHyperbolicallyEmbedded_mapSurjective_emptyFamily D hD q hq hker
+
+/-- The pullback assertion has a direct one-point source model: every quotient
+element is the image of `1`, which lies in the radius-zero source ball. -/
+theorem peripheralPullbackBound_trivialSource
+    {Q : Type v} [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet PUnit Lambda) (q : PUnit →* Q)
+    (hq : Function.Surjective q) :
+    PeripheralPullbackBound D q hq (fun _ ⇒ 0) := by
+  haveI : Subsingleton Q :=
+    ⟨fun x y ⇒ by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  intro lam n y hy
+  refine ⟨1, ?_, Subsingleton.elim _ _⟩
+  rw [GGT.RelGenSet.relBall_zero]
+  exact Set.mem_singleton_iff.mpr rfl
+
+/-- The pointwise bridge proposition is inhabited on every relative
+generating set of the one-point group.  This tests the quantifier order,
+quotient universes, certificate input, and concrete control output. -/
+theorem relativeIsoperimetricBridgeAt_trivialSourceModel
+    {Lambda : Type w} (D : GGT.RelGenSet PUnit Lambda) :
+    RelativeIsoperimetricBridgeAt.{0, v, w} D := by
+  intro eps rho mu W Q _ q hq hmu hmuUpper hrho hsc hker hcert
+  haveI : Subsingleton Q :=
+    ⟨fun x y ⇒ by
+      obtain ⟨a, rfl⟩ := hq x
+      obtain ⟨b, rfl⟩ := hq y
+      rw [Subsingleton.elim a b]⟩
+  refine ⟨⟨0, ?_, fun _ ⇒ 0, ?_⟩⟩
+  · intro a b c d
+    rw [Subsingleton.elim a b, Subsingleton.elim c b,
+      Subsingleton.elim d b]
+    simp only [WordMetric.wordDist_self, zero_add, max_self, mul_zero,
+      le_refl]
+  · exact peripheralPullbackBound_trivialSource D q hq
 
 /-- In a one-point source group every surjective quotient is a one-point
 group.  Its image relative Cayley graph has zero word distance and every
