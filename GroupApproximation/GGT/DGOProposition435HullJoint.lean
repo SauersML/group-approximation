@@ -156,6 +156,44 @@ theorem jointHyperbolic_of_selection_at_hullAlphabet
   GGT.RelHyp.dgoProposition435JointHyperbolic_of_base_eq original selected.rel
     (by rw [hselbase, hA]) selected.embedded
 
+/-- **The enlargement of the auxiliary base is irrelevant to the residue.**
+
+The joint alphabet is the original relative alphabet together with the selected
+peripherals; it never sees the auxiliary *base*.  So the hyperbolicity of the
+joint Cayley graph can be borrowed from any auxiliary family with the same
+peripherals, in particular from the one built by coning off Hull's alphabet
+itself, before the filling target is adjoined and before Osin's Theorem 5.4
+enlarges the base.  Only the gap between the original relative alphabet and
+Hull's alphabet has to be finite, and it is empty at a matched alphabet.
+
+This is what removes Osin's Theorem 5.4 from the residue entirely: the
+enlargement is the price of Hull's Lemma 4.9, and Lemma 4.9 is not involved
+here. -/
+theorem jointHyperbolic_of_matched_peripherals
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected pre : AuxiliaryPeripheralFamily A N S)
+    (hcores : ∀ i : AuxiliaryPeripheralIndex k,
+      selected.cores.peripheral i = pre.cores.peripheral i)
+    (hprebase : pre.rel.base = A.alphabet.carrier)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (hsub : original.alphabet.carrier ⊆ A.alphabet.carrier)
+    (hfin : (A.alphabet.carrier \ original.alphabet.carrier).Finite) :
+    ∃ delta : ℝ, IsHyperbolicSpace delta
+      (Cayley (GGT.RelHyp.jointRelGenSet original selected.rel).alphabet) := by
+  have hfam : pre.rel.fam = selected.rel.fam := by
+    funext i
+    rw [pre.fam_eq i, ← hcores i, selected.fam_eq i]
+  have hbase : original.alphabet.carrier ⊆ pre.rel.base := by
+    intro x hx
+    rw [hprebase]
+    exact hsub hx
+  have hfin' : (pre.rel.base \ original.alphabet.carrier).Finite := by
+    rw [hprebase]
+    exact hfin
+  exact GGT.RelHyp.jointHyperbolic_of_finite_base_excess original selected.rel
+    pre.rel hfam hbase hfin' pre.embedded.hyperbolic
+
 /-- **Hull's `yi` statement already supplies the matched auxiliary family.**
 
 The finite-family `yi` statement and the proved Theorem 3.16 assembly build the
