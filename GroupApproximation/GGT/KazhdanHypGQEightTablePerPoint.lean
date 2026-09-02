@@ -164,7 +164,8 @@ def syntheticW8OnePoint : Table 585 0 := {
 
 theorem syntheticW8OnePoint_checkPoint :
     checkPoint syntheticW8OnePoint 0 = true := by
-  set_option maxRecDepth 4096 in decide
+  set_option maxRecDepth 4096 in
+  set_option maxHeartbeats 20000 in decide
 
 end GQEightTableFormat
 end KazhdanHyp
