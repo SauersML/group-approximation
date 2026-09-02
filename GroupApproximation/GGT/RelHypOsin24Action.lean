@@ -87,19 +87,19 @@ structure RelativeHullData
   fam_eq : rel.fam = Hfam
   /-- The original family is hyperbolically embedded. -/
   embedded : rel.IsHyperbolicallyEmbedded
-  /-- Hull's generating set containing the finite-base relative alphabet. -/
+  /-- Hull's generating set on the same relative Cayley graph. -/
   hull : HullGeneratingSet G
-  /-- Every original relative letter is available in Hull's alphabet. -/
-  rel_alphabet_subset : rel.alphabet.carrier ⊆ hull.alphabet.carrier
+  /-- The two alphabets agree literally. -/
+  hull_alphabet : hull.alphabet = rel.alphabet
   /-- The subgroup is suitable for Hull's action. -/
   suitable : Suitable hull.alphabet H
 
 /-- **The compatible action form of Osin Lemma 2.3.**
 
-The output keeps the original labelled relative structure and equips an
-alphabet containing it with Hull's hyperbolic, acylindrical, non-elementary
-data so that the given subgroup is suitable.  This is the sole pre-quotient
-geometric input of the Hull specialization. -/
+The output keeps the original labelled relative structure and equips its same
+alphabet with Hull's hyperbolic, acylindrical, non-elementary data so that the
+given subgroup is suitable.  This is the sole pre-quotient geometric input of
+the Hull specialization. -/
 def CompatibleRelativeHullActionStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v)
     (Hfam : I → Subgroup G), IsRelativelyHyperbolic G Hfam →
@@ -157,7 +157,7 @@ theorem nonempty_relativeHullData_emptyModel
     fam_eq := hfam
     embedded := hemb
     hull := A
-    rel_alphabet_subset := Set.Subset.rfl
+    hull_alphabet := rfl
     suitable := hHullSuitable }⟩
 
 end RelHyp

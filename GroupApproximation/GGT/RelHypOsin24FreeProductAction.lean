@@ -166,7 +166,7 @@ theorem nonempty_relativeHullData_freeProduct
     fam_eq := hfam
     embedded := hemb
     hull := A
-    rel_alphabet_subset := Set.Subset.rfl
+    hull_alphabet := rfl
     suitable := hHullSuitable }⟩
 
 end RelHyp
