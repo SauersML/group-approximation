@@ -250,11 +250,11 @@ types are at the base universe. -/
 /-- The geodesic interface can be consumed at the one-point source model. -/
 theorem kernelGeodesicEstimateStatement_at_trivialModel
     (H : KernelGeodesicEstimateStatement.{0, 0, 0})
-    {Lambda : Type} (D : GGT.RelGenSet PUnit.{0} Lambda)
-    (W : Set (List (GGT.RelLetter PUnit.{0} Lambda)))
+    {Lambda : Type} (D : GGT.RelGenSet PUnit.{1} Lambda)
+    (W : Set (List (GGT.RelLetter PUnit.{1} Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type} [Group Q] (q : PUnit.{0} →* Q)
+    {Q : Type} [Group Q] (q : PUnit.{1} →* Q)
     (hq : Function.Surjective q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
@@ -267,11 +267,11 @@ theorem kernelGeodesicEstimateStatement_at_trivialModel
 model. -/
 theorem kernelConeLocalFinitenessStatement_at_trivialModel
     (H : KernelConeLocalFinitenessStatement.{0, 0, 0})
-    {Lambda : Type} (D : GGT.RelGenSet PUnit.{0} Lambda)
-    (W : Set (List (GGT.RelLetter PUnit.{0} Lambda)))
+    {Lambda : Type} (D : GGT.RelGenSet PUnit.{1} Lambda)
+    (W : Set (List (GGT.RelLetter PUnit.{1} Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type} [Group Q] (q : PUnit.{0} →* Q)
+    {Q : Type} [Group Q] (q : PUnit.{1} →* Q)
     (hq : Function.Surjective q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
