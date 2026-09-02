@@ -82,6 +82,27 @@ structure EstimatingGraphData
   exteriorMergeAvailable :
     Embedded.ExteriorMergeAvailable scaffold.selected.family
 
+/-- Construct graph data from the three independent geometric certificates.
+The certificates are exactly the hereditary planar inequality, the separated
+incidence positions, and the admissible exterior merge supplied by the
+estimating-graph surgery. */
+theorem estimatingGraphData_of_certificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    (hplanar : HasHereditaryPlanarEdgeBound
+      (Embedded.InteriorEdge.Incident
+        (selected := scaffold.selected.family)))
+    (hseparated : Embedded.SelfIncidenceSeparated scaffold.selected.family)
+    (hmerge : Embedded.ExteriorMergeAvailable scaffold.selected.family) :
+    Nonempty (EstimatingGraphData D eps Delta scaffold) := by
+  exact ⟨{
+    planarEdgeBound := hplanar
+    selfIncidenceSeparated := hseparated
+    exteriorMergeAvailable := hmerge }⟩
+
 /-- The neutral surgery transports an already-certified scaffold to the
 selection-output shape. This is the base case for the Lemma 65(a) surgery
 induction. -/
