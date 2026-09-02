@@ -32,7 +32,7 @@ variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
   {Delta : DiscDiagram.{u, w, v} W}
 
-noncomputable local instance faceDecidableEq :
+noncomputable local instance faceDecidableEqBoundaryPeeling :
     DecidableEq Delta.toCombMap.Face := Classical.decEq _
 
 /-- One geometrically exposed face and the finite word factorisation which
@@ -115,6 +115,7 @@ theorem twoFacePeeling
     {faces : Finset Delta.toCombMap.Face}
     {f₁ f₂ : Delta.toCombMap.Face}
     (hfaces : faces = {f₁, f₂})
+    (hneq : f₁ ≠ f₂)
     (h₁ : f₁ ≠ Delta.outerFace) (h₂ : f₂ ≠ Delta.outerFace)
     (h₁mem : f₁ ∈ faces) (h₂mem : f₂ ∈ faces)
     (cycle next : List Delta.toCombMap.Dart)
@@ -124,10 +125,11 @@ theorem twoFacePeeling
   subst faces
   have htail : FaceSetDeletionSchedule (Delta := Delta) ({f₂} : Finset _)
       (Delta.faceBoundary f₂).darts :=
-    FaceSetDeletionSchedule.oneFace f₂ h₂
+    oneFace f₂ h₂
   rw [hnext] at moves
-  exact FaceSetDeletionSchedule.step f₁ (by simpa using h₁mem) h₁
-    moves htail
+  have hstep := FaceSetDeletionSchedule.step f₁
+    (by simpa [hneq] using h₁mem) h₁ moves htail
+  simpa [hneq] using hstep
 
 end Embedded
 end VanKampen
