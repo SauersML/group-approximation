@@ -2369,19 +2369,21 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
             have hieq : i' = P.length := by omega
             have hnotTarget : ¬ targetN i < pc.length := by
               intro hlt
-              have hlt' : pc.length + i' < pc.length := by
-                simpa [hni] using hlt
+              have hlt' : pc.length + i' < pc.length := hni ▸ hlt
               omega
             rw [dif_neg hnotTarget, hni, hieq]
-            omega
+            exact Nat.add_sub_cancel _ _
         · rcases hrest with hrcase | hscase
           · rcases hrcase with ⟨m, hm, hmn⟩
             refine ⟨⟨pc.length + m, by dsimp [M]; omega⟩, hmatched, ?_⟩
             dsimp
             rw [hmn]
-            omega
-          · left
+            rw [show pc.length + P.length + m =
+              P.length + (pc.length + m) by omega,
+              Nat.add_sub_cancel_left]
+          · exfalso
             rcases hscase with ⟨j, hj, hjn⟩
+            apply hmatched
             refine ⟨j, hj, ?_, ?_⟩
             · rw [← hjn]
               exact (htargetSpec i).2.1
