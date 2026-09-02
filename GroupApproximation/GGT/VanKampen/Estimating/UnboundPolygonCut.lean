@@ -9,21 +9,21 @@ a polygon along a short cut until every piece has at most eight sides.
 `Estimating.bisection_side_counts_lt` shows the recursion terminates, but
 nothing so far turns a cut into two polygons.  This file builds one of them.
 
-Given a closed polygon read from `b0`, two side indices `a < a + m` inside its
-range, a point at parameter `s` on side `a`, a point at parameter `s'` on side
-`a + m`, and a geodesic joining those two points, the inner arc closes up into
-a polygon with `m + 2` sides: the tail of side `a` after `s`, the untouched
-sides between, the head of side `a + m` up to `s'`, and the cut read backwards.
+Given a closed polygon read from `b0`, two side indices `a` and `a + m` inside
+its range, a point at parameter `s` on side `a`, a point at parameter `s'` on
+side `a + m`, and a geodesic joining those two points, the inner arc closes up
+into a polygon with `m + 2` sides: the tail of side `a` after `s`, the
+untouched sides between, the head of side `a + m` up to `s'`, and the cut.
 
 The accounting the recursion needs comes out with it.  Every side strictly
 between the two cut sides keeps its length; side `a` contributes its tail, of
 length its own length minus `s`; side `a + m` contributes its head, of length
-`s'`.  So the two pieces of a split side have lengths summing to the original,
+`s'`.  So the two parts of a split side have lengths summing to the original,
 and a class of sides carried through a cut loses nothing except what the cut
 itself adds.
 
 The outer arc is the same construction applied to the polygon read from the
-other cut side, which needs the rotation lemma; that is not in this file.
+other cut side, which needs a rotation lemma; that is not in this file.
 -/
 
 namespace GroupApproximation
@@ -36,12 +36,11 @@ open GroupApproximation.Olshanskii
 
 universe v
 
-variable {X : Type v} [PseudoMetricSpace X]
-
 /-! ## Restricting a geodesic to a shorter initial interval -/
 
 /-- A geodesic on `[0, M]` is a geodesic on every shorter initial interval. -/
-theorem isGeodesicSegment_restrict {f : ℝ → X} {M u : ℝ}
+theorem isGeodesicSegment_restrict {X : Type v} [PseudoMetricSpace X]
+    {f : ℝ → X} {M u : ℝ}
     (h : IsGeodesicSegment f 0 M) (hu : u ≤ M) :
     IsGeodesicSegment f 0 u := by
   intro s hs t ht
@@ -52,8 +51,8 @@ theorem isGeodesicSegment_restrict {f : ℝ → X} {M u : ℝ}
 /-- Vertices of the inner piece: the first cut point, then the vertices
 between the two cut sides, then the second cut point, then back to the
 first. -/
-def innerVertex (vs : ℕ → X) (sides : ℕ → ℝ → X) (a m : ℕ) (s s' : ℝ) :
-    ℕ → X :=
+def innerVertex {X : Type v} (vs : ℕ → X) (sides : ℕ → ℝ → X)
+    (a m : ℕ) (s s' : ℝ) : ℕ → X :=
   fun j =>
     if j = 0 then sides a s
     else if j ≤ m then vs (a + j)
@@ -62,93 +61,117 @@ def innerVertex (vs : ℕ → X) (sides : ℕ → ℝ → X) (a m : ℕ) (s s' :
 
 /-- Sides of the inner piece: the tail of side `a`, the untouched sides, the
 head of side `a + m`, and the cut. -/
-def innerSide (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ) (cut : ℝ → X) :
-    ℕ → ℝ → X :=
+def innerSide {X : Type v} (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
+    (cut : ℝ → X) : ℕ → ℝ → X :=
   fun j =>
     if j = 0 then (fun r => sides a (s + r))
     else if j < m then sides (a + j)
     else if j = m then sides (a + m)
     else cut
 
-@[simp] theorem innerVertex_zero (vs : ℕ → X) (sides : ℕ → ℝ → X)
+theorem innerVertex_zero {X : Type v} (vs : ℕ → X) (sides : ℕ → ℝ → X)
     (a m : ℕ) (s s' : ℝ) :
-    innerVertex vs sides a m s s' 0 = sides a s := by
-  simp only [innerVertex, if_pos rfl]
+    innerVertex vs sides a m s s' 0 = sides a s := rfl
 
-theorem innerVertex_mid (vs : ℕ → X) (sides : ℕ → ℝ → X)
+theorem innerVertex_mid {X : Type v} (vs : ℕ → X) (sides : ℕ → ℝ → X)
     (a m : ℕ) (s s' : ℝ) {j : ℕ} (hj1 : 1 ≤ j) (hj2 : j ≤ m) :
     innerVertex vs sides a m s s' j = vs (a + j) := by
   have h0 : ¬ (j = 0) := by omega
-  simp only [innerVertex, if_neg h0, if_pos hj2]
+  show (if j = 0 then sides a s
+      else if j ≤ m then vs (a + j)
+      else if j = m + 1 then sides (a + m) s'
+      else sides a s) = vs (a + j)
+  rw [if_neg h0, if_pos hj2]
 
-theorem innerVertex_cutPoint (vs : ℕ → X) (sides : ℕ → ℝ → X)
+theorem innerVertex_cutPoint {X : Type v} (vs : ℕ → X) (sides : ℕ → ℝ → X)
     (a m : ℕ) (s s' : ℝ) :
     innerVertex vs sides a m s s' (m + 1) = sides (a + m) s' := by
   have h0 : ¬ (m + 1 = 0) := by omega
   have h1 : ¬ (m + 1 ≤ m) := by omega
-  simp only [innerVertex, if_neg h0, if_neg h1, if_pos rfl]
+  show (if m + 1 = 0 then sides a s
+      else if m + 1 ≤ m then vs (a + (m + 1))
+      else if m + 1 = m + 1 then sides (a + m) s'
+      else sides a s) = sides (a + m) s'
+  rw [if_neg h0, if_neg h1, if_pos rfl]
 
-theorem innerVertex_last (vs : ℕ → X) (sides : ℕ → ℝ → X)
+theorem innerVertex_last {X : Type v} (vs : ℕ → X) (sides : ℕ → ℝ → X)
     (a m : ℕ) (s s' : ℝ) :
     innerVertex vs sides a m s s' (m + 2) = sides a s := by
   have h0 : ¬ (m + 2 = 0) := by omega
   have h1 : ¬ (m + 2 ≤ m) := by omega
   have h2 : ¬ (m + 2 = m + 1) := by omega
-  simp only [innerVertex, if_neg h0, if_neg h1, if_neg h2]
+  show (if m + 2 = 0 then sides a s
+      else if m + 2 ≤ m then vs (a + (m + 2))
+      else if m + 2 = m + 1 then sides (a + m) s'
+      else sides a s) = sides a s
+  rw [if_neg h0, if_neg h1, if_neg h2]
 
-@[simp] theorem innerSide_zero (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
+theorem innerSide_zero {X : Type v} (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
     (cut : ℝ → X) :
-    innerSide sides a m s cut 0 = fun r => sides a (s + r) := by
-  simp only [innerSide, if_pos rfl]
+    innerSide sides a m s cut 0 = fun r => sides a (s + r) := rfl
 
-theorem innerSide_mid (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
+theorem innerSide_mid {X : Type v} (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
     (cut : ℝ → X) {j : ℕ} (hj1 : 1 ≤ j) (hj2 : j < m) :
     innerSide sides a m s cut j = sides (a + j) := by
   have h0 : ¬ (j = 0) := by omega
-  simp only [innerSide, if_neg h0, if_pos hj2]
+  show (if j = 0 then (fun r => sides a (s + r))
+      else if j < m then sides (a + j)
+      else if j = m then sides (a + m)
+      else cut) = sides (a + j)
+  rw [if_neg h0, if_pos hj2]
 
-theorem innerSide_end (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
+theorem innerSide_end {X : Type v} (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
     (cut : ℝ → X) (hm : 1 ≤ m) :
     innerSide sides a m s cut m = sides (a + m) := by
   have h0 : ¬ (m = 0) := by omega
   have h1 : ¬ (m < m) := by omega
-  simp only [innerSide, if_neg h0, if_neg h1, if_pos rfl]
+  show (if m = 0 then (fun r => sides a (s + r))
+      else if m < m then sides (a + m)
+      else if m = m then sides (a + m)
+      else cut) = sides (a + m)
+  rw [if_neg h0, if_neg h1, if_pos rfl]
 
-theorem innerSide_cut (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
+theorem innerSide_cut {X : Type v} (sides : ℕ → ℝ → X) (a m : ℕ) (s : ℝ)
     (cut : ℝ → X) :
     innerSide sides a m s cut (m + 1) = cut := by
   have h0 : ¬ (m + 1 = 0) := by omega
   have h1 : ¬ (m + 1 < m) := by omega
   have h2 : ¬ (m + 1 = m) := by omega
-  simp only [innerSide, if_neg h0, if_neg h1, if_neg h2]
+  show (if m + 1 = 0 then (fun r => sides a (s + r))
+      else if m + 1 < m then sides (a + (m + 1))
+      else if m + 1 = m then sides (a + m)
+      else cut) = cut
+  rw [if_neg h0, if_neg h1, if_neg h2]
 
 /-! ## The two cut-point distances -/
 
 /-- The tail of a side after parameter `s` has the side's length minus `s`. -/
-theorem dist_cutPoint_endpoint {f : ℝ → X} {M s : ℝ}
+theorem dist_cutPoint_endpoint {X : Type v} [PseudoMetricSpace X]
+    {f : ℝ → X} {M s : ℝ}
     (h : IsGeodesicSegment f 0 M) (hs0 : 0 ≤ s) (hsM : s ≤ M) :
     dist (f s) (f M) = M - s := by
-  rw [h s ⟨hs0, hsM⟩ M ⟨le_trans hs0 hsM, le_refl M⟩]
-  rw [abs_of_nonpos (by linarith)]
+  rw [h s ⟨hs0, hsM⟩ M ⟨le_trans hs0 hsM, le_refl M⟩,
+    abs_of_nonpos (by linarith : s - M ≤ 0)]
   ring
 
 /-- The head of a side up to parameter `s'` has length `s'`. -/
-theorem dist_startPoint_cutPoint {f : ℝ → X} {M s' : ℝ}
+theorem dist_startPoint_cutPoint {X : Type v} [PseudoMetricSpace X]
+    {f : ℝ → X} {M s' : ℝ}
     (h : IsGeodesicSegment f 0 M) (hs0 : 0 ≤ s') (hsM : s' ≤ M) :
     dist (f 0) (f s') = s' := by
-  rw [h 0 ⟨le_refl 0, le_trans hs0 hsM⟩ s' ⟨hs0, hsM⟩]
-  rw [abs_of_nonpos (by linarith)]
+  rw [h 0 ⟨le_refl 0, le_trans hs0 hsM⟩ s' ⟨hs0, hsM⟩,
+    abs_of_nonpos (by linarith : (0 : ℝ) - s' ≤ 0)]
   ring
 
 /-! ## The cut -/
 
-/-- **Cutting a closed geodesic polygon along a geodesic between points on
-two of its sides.**  The inner arc, between side `a` and side `a + m`, closes
-into a polygon with `m + 2` sides.  The last four conclusions are the length
+/-- **Cutting a closed geodesic polygon along a geodesic between points on two
+of its sides.**  The inner arc, between side `a` and side `a + m`, closes into
+a polygon with `m + 2` sides.  The last four conclusions are the length
 accounting: the sides strictly between the cut sides are unchanged, and the
 two cut sides contribute a tail of length `|side a| - s` and a head of length
-`s'`, so each split side's two parts add back up to it. -/
-theorem exists_innerCut_polygon
+`s'`, so the two parts of each split side add back up to it. -/
+theorem exists_innerCut_polygon {X : Type v} [PseudoMetricSpace X]
     {vs : ℕ → X} {sides : ℕ → ℝ → X} {b0 n a m : ℕ}
     (hpoly : IsClosedPolygonAt vs sides b0 n)
     (hb0a : b0 ≤ a) (hm : 1 ≤ m) (hbn : a + m < b0 + n)
@@ -173,25 +196,15 @@ theorem exists_innerCut_polygon
       dist (innerVertex vs sides a m s s' (m + 1))
           (innerVertex vs sides a m s s' (m + 2)) =
         dist (sides (a + m) s') (sides a s) := by
-  classical
   obtain ⟨hside, _hclose⟩ := hpoly
-  -- the two cut sides
-  have hsa := hside a hb0a (by omega)
-  have hsb := hside (a + m) (by omega) (by omega)
-  obtain ⟨hgeoA, hzeroA, hendA⟩ := hsa
-  obtain ⟨hgeoB, hzeroB, _hendB⟩ := hsb
-  -- the length of the tail of side `a`
+  obtain ⟨hgeoA, _hzeroA, hendA⟩ := hside a hb0a (by omega)
+  obtain ⟨hgeoB, hzeroB, _hendB⟩ := hside (a + m) (by omega) (by omega)
   have htail0 : dist (sides a s) (sides a (dist (vs a) (vs (a + 1)))) =
       dist (vs a) (vs (a + 1)) - s := dist_cutPoint_endpoint hgeoA hs0 hsM
   rw [hendA] at htail0
-  have htail : dist (sides a s) (vs (a + 1)) =
-      dist (vs a) (vs (a + 1)) - s := htail0
-  -- the length of the head of side `a + m`
   have hhead0 : dist (sides (a + m) 0) (sides (a + m) s') = s' :=
     dist_startPoint_cutPoint hgeoB hs0' hsM'
   rw [hzeroB] at hhead0
-  have hhead : dist (vs (a + m)) (sides (a + m) s') = s' := hhead0
-  -- the four vertex values used below
   have hv0 : innerVertex vs sides a m s s' 0 = sides a s :=
     innerVertex_zero vs sides a m s s'
   have hv1 : innerVertex vs sides a m s s' 1 = vs (a + 1) :=
@@ -203,68 +216,58 @@ theorem exists_innerCut_polygon
   have hvm2 : innerVertex vs sides a m s s' (m + 2) = sides a s :=
     innerVertex_last vs sides a m s s'
   refine ⟨⟨?_, ?_⟩, ?_, ?_, ?_, ?_⟩
-  · -- the side conditions
-    intro i _hi0 hi
+  · intro i _hi0 hi
     have him : i < m + 2 := by omega
     rcases Nat.lt_or_ge i 1 with hlow | hlow
-    · -- the tail of side `a`
-      have hi0 : i = 0 := by omega
-      rw [hi0, innerSide_zero, hv0, hv1, htail]
+    · have hi0 : i = 0 := by omega
+      rw [hi0, innerSide_zero, hv0, hv1, htail0]
       refine ⟨?_, ?_, ?_⟩
-      · have hshift := isGeodesicSegment_shift (f := sides a)
+      · exact isGeodesicSegment_shift (f := sides a)
           (M := dist (vs a) (vs (a + 1))) (u := s)
           (u' := dist (vs a) (vs (a + 1))) hgeoA hs0 (le_refl _)
-        exact hshift
       · show sides a (s + 0) = sides a s
         rw [add_zero]
       · show sides a (s + (dist (vs a) (vs (a + 1)) - s)) = vs (a + 1)
         rw [show s + (dist (vs a) (vs (a + 1)) - s)
-            = dist (vs a) (vs (a + 1)) by ring]
+            = dist (vs a) (vs (a + 1)) from by ring]
         exact hendA
     rcases Nat.lt_or_ge i m with hmid | hmid
-    · -- an untouched side
-      have hv : innerVertex vs sides a m s s' i = vs (a + i) :=
+    · have hva : innerVertex vs sides a m s s' i = vs (a + i) :=
         innerVertex_mid vs sides a m s s' hlow (le_of_lt hmid)
-      have hv' : innerVertex vs sides a m s s' (i + 1) = vs (a + (i + 1)) :=
+      have hvb : innerVertex vs sides a m s s' (i + 1) = vs (a + (i + 1)) :=
         innerVertex_mid vs sides a m s s' (by omega) (by omega)
       have harg : a + (i + 1) = a + i + 1 := by omega
-      rw [innerSide_mid sides a m s cut hlow hmid, hv, hv', harg]
+      rw [innerSide_mid sides a m s cut hlow hmid, hva, hvb, harg]
       exact hside (a + i) (by omega) (by omega)
     rcases Nat.lt_or_ge i (m + 1) with hend | hend
-    · -- the head of side `a + m`
-      have him' : i = m := by omega
-      rw [him', innerSide_end sides a m s cut hm, hvm, hvm1, hhead]
-      refine ⟨?_, ?_, ?_⟩
-      · exact isGeodesicSegment_restrict hgeoB hsM'
-      · exact hzeroB
-      · rfl
-    · -- the cut
-      have him' : i = m + 1 := by omega
+    · have him' : i = m := by omega
+      rw [him', innerSide_end sides a m s cut hm, hvm, hvm1, hhead0]
+      exact ⟨isGeodesicSegment_restrict hgeoB hsM', hzeroB, rfl⟩
+    · have him' : i = m + 1 := by omega
       rw [him', innerSide_cut, hvm1, hvm2]
       exact ⟨hcut, hcut0, hcut1⟩
-  · -- the polygon closes
-    show innerVertex vs sides a m s s' (0 + (m + 2)) =
+  · show innerVertex vs sides a m s s' (0 + (m + 2)) =
       innerVertex vs sides a m s s' 0
     rw [show 0 + (m + 2) = m + 2 from by omega, hvm2, hv0]
   · rw [hv0, hv1]
-    exact htail
+    exact htail0
   · intro j hj1 hj2
-    have hv : innerVertex vs sides a m s s' j = vs (a + j) :=
+    have hva : innerVertex vs sides a m s s' j = vs (a + j) :=
       innerVertex_mid vs sides a m s s' hj1 (le_of_lt hj2)
-    have hv' : innerVertex vs sides a m s s' (j + 1) = vs (a + (j + 1)) :=
+    have hvb : innerVertex vs sides a m s s' (j + 1) = vs (a + (j + 1)) :=
       innerVertex_mid vs sides a m s s' (by omega) (by omega)
     have harg : a + (j + 1) = a + j + 1 := by omega
-    rw [hv, hv', harg]
+    rw [hva, hvb, harg]
   · rw [hvm, hvm1]
-    exact hhead
+    exact hhead0
   · rw [hvm1, hvm2]
 
 /-! ## Model check -/
 
 /-- A quadrilateral cut between side `0` and side `2` gives an inner piece of
-four sides: the tail of side `0`, side `1`, the head of side `2`, and the
-cut.  The side count is `m + 2 = 4` at `m = 2`, matching the descent bound
-`bisection_side_counts_lt` at its smallest admissible input. -/
+four sides: the tail of side `0`, side `1`, the head of side `2`, and the cut.
+The count `m + 2` agrees with the descent bound at its smallest admissible
+input. -/
 theorem innerCut_quadrilateral_sideCount : (2 : ℕ) + 2 = 4 := rfl
 
 end Estimating
