@@ -6,12 +6,13 @@ set_option maxHeartbeats 800000
 # Per-point verification for generated triangle tables
 
 For a fixed point, `pointPairCheck` checks all outgoing compatible directed
-pairs and `pointRowsCheck` checks cyclic compatibility of every row containing
-that point.  The global local conditions follow by running `checkPoint` at
-each point, so generated W(8) witnesses can emit one small kernel decision per
-point instead of one reduction over all 585 points at once.  This is the
-finite-table form of the row-local checks in the triangle-presentation
-definition of Kangaslampi--Vdovina.
+pairs and `pointRowsCheck` checks cyclic compatibility of rows whose canonical
+first vertex is that point.  Every row has one canonical first vertex, so the
+global local conditions follow by running `checkPoint` at each point.  Generated
+W(8) witnesses can emit one small kernel decision per point instead of one
+reduction over all 585 points at once.  This is the finite-table form of the
+row-local checks in the triangle-presentation definition of
+Kangaslampi--Vdovina.
 -/
 
 namespace GroupApproximation
@@ -22,9 +23,10 @@ open scoped BigOperators
 
 /-! ## Local predicates -/
 
-/-- A row contains a point in one of its three cyclic positions. -/
+/-- A row is checked at its canonical first vertex.  Every row has one such
+vertex, so the global assembly recovers all cyclic-row checks. -/
 def rowUsesPoint {n m : ℕ} (T : Table n m) (j : Fin m) (x : Fin n) : Bool :=
-  decide ((T.rows j).x = x ∨ (T.rows j).y = x ∨ (T.rows j).z = x)
+  decide ((T.rows j).x = x)
 
 /-- Exact-cover and cyclic-row checks attached to one point. -/
 def pointPairCheck {n m : ℕ} (T : Table n m) (x : Fin n) : Bool :=
@@ -50,7 +52,7 @@ def checkGirth {n m : ℕ} (T : Table n m) : Bool := girthCheckAt T 9
 
 theorem rowUsesPoint_spec {n m : ℕ} (T : Table n m) (j : Fin m) (x : Fin n) :
     rowUsesPoint T j x = true ↔
-      (T.rows j).x = x ∨ (T.rows j).y = x ∨ (T.rows j).z = x := by
+      (T.rows j).x = x := by
   simp [rowUsesPoint]
 
 theorem pointPairCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
@@ -59,15 +61,13 @@ theorem pointPairCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
   unfold pointPairCheck
   rw [allFinN_eq_true_iff]
   constructor
+  · intro h y hy
+    have hh := h y
+    simp [hy] at hh
+    exact hh
   · intro h y
     by_cases hy : member T x y = true
-    · have hh := h y
-      simp [hy] at hh
-      exact decide_eq_true_eq.mp hh
-    · simp [hy]
-  · intro h y
-    by_cases hy : member T x y = true
-    · exact decide_eq_true_eq.mpr (h y hy)
+    · simp [hy, decide_eq_true_eq.mpr (h y hy)]
     · simp [hy]
 
 theorem pointRowsCheck_spec {n m : ℕ} (T : Table n m) (x : Fin n) :
@@ -112,12 +112,15 @@ theorem rowContainsPair_member_of_compat {n m : ℕ} (T : Table n m)
     (hrow : rowCompatible T r = true)
     (hpair : rowContainsPair r x y = true) :
     member T x y = true := by
-  rw [rowCompatible, Bool.and_eq_true] at hrow
+  rw [rowCompatible, Bool.and_eq_true, Bool.and_eq_true] at hrow
   have hcases := decide_eq_true_eq.mp hpair
+  have hxyMem : member T r.x r.y = true := hrow.1.1
+  have hyzMem : member T r.y r.z = true := hrow.1.2
+  have hzxMem : member T r.z r.x = true := hrow.2
   rcases hcases with hxy | hyz | hzx
-  · simpa [hxy.1, hxy.2] using hrow.1
-  · simpa [hyz.1, hyz.2] using hrow.2.1
-  · simpa [hzx.1, hzx.2] using hrow.2.2
+  · simpa [hxy.1, hxy.2] using hxyMem
+  · simpa [hyz.1, hyz.2] using hyzMem
+  · simpa [hzx.1, hzx.2] using hzxMem
 
 theorem pairCoverCount_eq_zero_of_nonmember {n m : ℕ} (T : Table n m)
     (hrows : ∀ j, rowCompatible T (T.rows j) = true)
