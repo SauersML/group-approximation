@@ -82,8 +82,8 @@ structure EstimatingGraphData
     HasHereditaryPlanarEdgeBound
       (Embedded.InteriorEdge.Incident
         (selected := scaffold.selected.family))
-  incidenceUnique :
-    Embedded.IncidencePositionUnique scaffold.selected.family
+  selfIncidenceSeparated :
+    Embedded.SelfIncidenceSeparated scaffold.selected.family
 
 /-- The G-cell boundary equation and reducedness exclusion needed to apply
 Lemma O52 to every selected cell-to-cell region. -/
@@ -199,7 +199,9 @@ noncomputable def ofScaffold
           Embedded.CellArcKind.interior i) =
       ∑ edge : Embedded.InteriorEdge scaffold.selected.family, edge.weight
     exact Embedded.sum_canonical_interiorWeight_eq_sum_edgeWeight
-      scaffold.selected.family graph.incidenceUnique
+      scaffold.selected.family
+      (Embedded.incidencePositionUnique_of_selfIncidenceSeparated
+        scaffold.selected graph.selfIncidenceSeparated)
   uncovered_total_le := by
     apply scaffold.partition.unbound_total_le_two_mu mu rho
     · intro i
