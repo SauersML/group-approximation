@@ -571,6 +571,10 @@ theorem firstGapArcSource_fullComponent
     (r := B.firstTargetSide s - B.firstGapStartSide j) (by
       have hs' := hsData.2
       omega)
+  have harg0 : B.firstGapStartSide j +
+      (B.firstTargetSide s - B.firstGapStartSide j) =
+      B.firstTargetSide s := by omega
+  rw [harg0] at hcut0
   have hcut1 : B.firstGapCut j
       ((B.firstGapLeft j).length +
         (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
@@ -597,7 +601,8 @@ theorem firstGapArcSource_fullComponent
         B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
       ((B.firstGapLeft j).length +
         (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
-      (B.firstGapLeft j).length + i + 1 := hcut1
+      (B.firstGapLeft j).length + i + 1 := by
+    convert hcut1 using 1 <;> omega
   rw [hcut1'] at ⊢
   simpa only [cycle, B.firstGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
 
@@ -901,6 +906,10 @@ theorem secondGapArcSource_fullComponent
     (r := B.secondTargetSide s - B.secondGapStartSide j) (by
       have hs' := hsData.2
       omega)
+  have harg0 : B.secondGapStartSide j +
+      (B.secondTargetSide s - B.secondGapStartSide j) =
+      B.secondTargetSide s := by omega
+  rw [harg0] at hcut0
   have hcut1 : B.secondGapCut j
       ((B.secondGapLeft j).length +
         (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
@@ -926,7 +935,8 @@ theorem secondGapArcSource_fullComponent
         B.secondArcCut (B.secondGapStartSide j)) (B.secondGapRight j)
       ((B.secondGapLeft j).length +
         (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
-      (B.secondGapLeft j).length + i + 1 := hcut1
+      (B.secondGapLeft j).length + i + 1 := by
+    convert hcut1 using 1 <;> omega
   rw [hcut1'] at ⊢
   simpa only [cycle, B.secondGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
 -/
