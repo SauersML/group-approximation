@@ -8,9 +8,11 @@ import Mathlib.Data.List.Chain
 This file defines a planar disc diagram over the relative alphabet
 `X ⊔ ⨆ H_lambda`.  A face cycle is an ordered, duplicate-free enumeration of a
 face orbit.  Darts carry relative letters and edge reversal applies the formal
-letter inverse.  One face is distinguished as the exterior face.  Every other
-face is either listed as a relator cell or has boundary value one in the base
-group, so it is a `G`-cell in Osin's presentation convention.
+letter inverse.  The disc boundary is the reverse-inverse of the outer-face
+traversal in the closed combinatorial map.  One face is distinguished as the
+exterior face.  Every other face is either listed as a relator cell or has
+boundary value one in the base group, so it is a `G`-cell in Osin's
+presentation convention.
 
 Relator cells are ordered and based by conjugators.  Their conjugate-product
 is required to be the exterior boundary value.  From that datum this file
@@ -32,7 +34,7 @@ namespace VanKampen
 
 open GroupApproximation.HullSC
 
-universe u w
+universe u w v
 
 /-- An ordered traversal of one face orbit. -/
 structure FaceBoundary (M : CombMap) (f : M.Face) where
@@ -100,7 +102,7 @@ end RelatorCell
 ordered list of based relator faces. -/
 structure DiscDiagram {G : Type u} [Group G] {Lambda : Type w}
     (W : Set (List (GGT.RelLetter G Lambda))) where
-  toCombMap : CombMap
+  toCombMap : CombMap.{v}
   planar : toCombMap.IsPlanar
   label : toCombMap.Dart → GGT.RelLetter G Lambda
   label_alpha : ∀ d : toCombMap.Dart,
@@ -117,7 +119,8 @@ structure DiscDiagram {G : Type u} [Group G] {Lambda : Type w}
       GGT.RelLetter.listVal ((faceBoundary f).darts.map label) = 1
   boundary_product :
     (relatorCells.map RelatorCell.value).prod =
-      GGT.RelLetter.listVal ((faceBoundary outerFace).darts.map label)
+      GGT.RelLetter.listVal
+        (HullSC.RelWord.revInv ((faceBoundary outerFace).darts.map label))
 
 namespace DiscDiagram
 
@@ -136,11 +139,20 @@ theorem faceWord_length {G : Type u} [Group G] {Lambda : Type w}
   rw [faceWord, List.length_map]
   exact (Delta.faceBoundary f).length_eq_degree
 
-/-- The exterior boundary word. -/
+/-- The exterior boundary word.  The outer face of the closed map has the
+opposite orientation from the boundary of the remaining disc. -/
 def boundaryWord {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram W) : List (GGT.RelLetter G Lambda) :=
-  Delta.faceWord Delta.outerFace
+  HullSC.RelWord.revInv (Delta.faceWord Delta.outerFace)
+
+/-- Reverse-inversion preserves the length of the exterior traversal. -/
+theorem boundaryWord_length {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram W) :
+    Delta.boundaryWord.length = Delta.toCombMap.faceDegree Delta.outerFace := by
+  rw [boundaryWord, HullSC.RelWord.revInv, List.length_map,
+    List.length_reverse, Delta.faceWord_length]
 
 /-- The group element read around the exterior boundary. -/
 def boundaryValue {G : Type u} [Group G] {Lambda : Type w}
