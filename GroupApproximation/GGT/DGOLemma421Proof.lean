@@ -2545,10 +2545,22 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
         exact hej
       have halg :
           (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
-            (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
+              (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
             hhi * hhj⁻¹ := by
-        rw [← hei, ← hej']
-        group
+        calc
+          (RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                (RelLetter.listVal pc * vertex (1 : G) P (source j)) =
+              ((RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i)) *
+                ((RelLetter.listVal pc * vertex (1 : G) P (source j))⁻¹ *
+                  vertex (1 : G) (pc ++ P ++ rc ++ revWord Q) (targetN i))⁻¹ := by
+              group
+          _ = ((RelLetter.listVal pc * vertex (1 : G) P (source i))⁻¹ *
+                (RelLetter.listVal pc * vertex (1 : G) P (source i) * hhi)) *
+                ((RelLetter.listVal pc * vertex (1 : G) P (source j))⁻¹ *
+                  (RelLetter.listVal pc * vertex (1 : G) P (source j) * hhj))⁻¹ := by
+              rw [← hei, ← hej']
+          _ = hhi * hhj⁻¹ := by group
       rw [halg]
       exact hmul
     have hconn : Connected D.fam (peripheralOccurrence P (occ i)).label 1
