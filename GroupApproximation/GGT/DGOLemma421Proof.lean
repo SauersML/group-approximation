@@ -1719,7 +1719,6 @@ theorem exists_target_of_deep_component_of_uniformBound
   rw [span_fourGon_side p q r s hiq (by omega)] at hspan
   exact hdeep (relBall_mono_radius D lam hrho hspan)
 
-omit [Group G] in
 /-- The fixed-radius form of the preceding target lemma.  It keeps the radius
 chosen by a uniform Proposition 4.14 witness visible to the final counting
 argument. -/
@@ -2163,10 +2162,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       rw [hrc.2.2]
       have hdist : wordDist D.alphabet.carrier (1 : G) (endP⁻¹ * endQ) =
           wordDist D.alphabet.carrier endP endQ := by
-      have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
+        have hdist' := wordDist_left_invariant D.alphabet.carrier endP⁻¹ endP endQ
         rw [inv_mul_cancel] at hdist'
-        rw [wordDist_comm D.alphabet.symmetricGenerating] at hdist'
-        exact hdist'.symm
+        exact hdist'
       rw [hdist]
       exact_mod_cast hend
     exact_mod_cast hh.trans (Nat.le_ceil eps)
