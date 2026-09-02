@@ -584,7 +584,7 @@ theorem cactusRelatorBackwardDarts_ne_nil
     (i : Fin Z.cells.length) :
     Z.cactusRelatorBackwardDarts i ≠ [] := by
   change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
-    CactusDart.relatorBackward i j.rev)) ≠ []
+    CactusDart.relatorBackward (S := Z.cactusShape) i j.rev)) ≠ []
   intro hnil
   have hlength := congrArg List.length hnil
   simp only [List.length_ofFn, List.length_nil] at hlength
@@ -604,7 +604,7 @@ theorem cactusRelatorBackwardDarts_head
         (CactusShape.prevFin (Z.cactusShape.relatorLength i)
           (Z.cactusShape.relatorZero i)) := by
   change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
-    CactusDart.relatorBackward i j.rev)).head _ = _
+    CactusDart.relatorBackward (S := Z.cactusShape) i j.rev)).head _ = _
   rw [List.head_ofFn]
   exact congrArg
     (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
@@ -621,7 +621,7 @@ theorem cactusRelatorBackwardDarts_getLast
     (Z.cactusRelatorBackwardDarts i).getLast h =
       CactusDart.relatorBackward i (Z.cactusShape.relatorZero i) := by
   change (List.ofFn (fun j : Fin (Z.cactusShape.relatorLength i) ↦
-    CactusDart.relatorBackward i j.rev)).getLast _ = _
+    CactusDart.relatorBackward (S := Z.cactusShape) i j.rev)).getLast _ = _
   rw [List.getLast_ofFn]
   apply congrArg
     (fun j ↦ CactusDart.relatorBackward (S := Z.cactusShape) i j)
