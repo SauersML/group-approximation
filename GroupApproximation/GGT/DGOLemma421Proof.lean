@@ -2572,14 +2572,20 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
           (pc.length + source j) ∈
           D.fam (peripheralOccurrence P (occ i)).label
       rw [vertex_fourGon_side pc P rc Q 1
-        (by exact le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i)))]
-      exact hmemA
+        (by exact le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd i))),
+        vertex_fourGon_side pc P rc Q 1
+        (by exact le_trans (Nat.le_succ _) (Nat.le_of_lt (hsourceEnd j)))]
+      simpa only [one_mul] using hmemA
     by_contra hne
     have hstartj : IsCompStart (peripheralOccurrence P (occ i)).label
         (pc ++ P ++ rc ++ revWord Q) (pc.length + source j) := by
       rw [hlabelEq]
-      exact (htargetSpec j).2.1
-    exact (hsourceNoSame i (source j) (by omega) hne hstartj) hconn
+      exact ⟨pc.length + source j + 1,
+        isComp_fourGon_of_isComp_side_of_interior pc P rc Q
+          (peripheralOccurrence P (occ j)).label
+          (hsourcePos j) (hsourceEnd j) (hsourceComp j)⟩
+    exact (hsourceNoSame i (source j)
+      (Nat.lt_of_succ_lt (hsourceEnd j)) hne.symm hstartj) hconn
   have hshortInj : ∀ i j, ¬ Matched i → ¬ Matched j →
       short i = short j → i = j := by
     intro i j hi hj hshortEq
@@ -2595,35 +2601,48 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
       · have hteq : targetN i = targetN j := by simpa [hipc, hjpc] using hcoord
         exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
       · exfalso
-        simp [hipc, hjend] at hcoord
+        have hjnot : ¬ targetN j < pc.length := by rw [hjend]; omega
+        rw [dif_pos hipc, dif_neg hjnot, hjend] at hcoord
         omega
       · exfalso
-        simp [hipc, hnj] at hcoord
+        have hjnot : ¬ targetN j < pc.length := by rw [hnj]; omega
+        rw [dif_pos hipc, dif_neg hjnot, hnj] at hcoord
         omega
     · rcases htargetLoc j hj with hjpc | hjend | ⟨mj, hmj, hnj⟩
       · exfalso
-        simp [hiend, hjpc] at hcoord
+        have hinot : ¬ targetN i < pc.length := by rw [hiend]; omega
+        rw [dif_neg hinot, dif_pos hjpc, hiend] at hcoord
         omega
-      · have hteq : targetN i = targetN j := by simpa [hiend, hjend] using hcoord
+      · have hinot : ¬ targetN i < pc.length := by rw [hiend]; omega
+        have hjnot : ¬ targetN j < pc.length := by rw [hjend]; omega
+        rw [dif_neg hinot, dif_neg hjnot, hiend, hjend] at hcoord
+        have hteq : targetN i = targetN j := by omega
         exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
       · have hmj0 : mj = 0 := by
-          simp [hiend, hnj] at hcoord
+          have hinot : ¬ targetN i < pc.length := by rw [hiend]; omega
+          have hjnot : ¬ targetN j < pc.length := by rw [hnj]; omega
+          rw [dif_neg hinot, dif_neg hjnot, hiend, hnj] at hcoord
           omega
         subst mj
         have hteq : targetN i = targetN j := by omega
         exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
     · rcases htargetLoc j hj with hjpc | hjend | ⟨mj, hmj, hnj⟩
       · exfalso
-        simp [hni, hjpc] at hcoord
+        have hinot : ¬ targetN i < pc.length := by rw [hni]; omega
+        rw [dif_neg hinot, dif_pos hjpc, hni] at hcoord
         omega
       · have hmi0 : mi = 0 := by
-          simp [hni, hjend] at hcoord
+          have hinot : ¬ targetN i < pc.length := by rw [hni]; omega
+          have hjnot : ¬ targetN j < pc.length := by rw [hjend]; omega
+          rw [dif_neg hinot, dif_neg hjnot, hni, hjend] at hcoord
           omega
         subst mi
         have hteq : targetN i = targetN j := by omega
         exact hsourceInj (hsource_of_target_eq i j hi hj hteq)
       · have hmeq : mi = mj := by
-          simp [hni, hnj] at hcoord
+          have hinot : ¬ targetN i < pc.length := by rw [hni]; omega
+          have hjnot : ¬ targetN j < pc.length := by rw [hnj]; omega
+          rw [dif_neg hinot, dif_neg hjnot, hni, hnj] at hcoord
           omega
         subst mj
         have hteq : targetN i = targetN j := by omega
