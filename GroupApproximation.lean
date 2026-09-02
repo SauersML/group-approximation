@@ -3171,6 +3171,10 @@ import GroupApproximation.GGT.KazhdanHypSymplecticQuadrangleStrongRegular
 import GroupApproximation.GGT.RelHypOsin24ArbitraryRefinement
 import GroupApproximation.GGT.RelHypOsin24ElementClassification
 import GroupApproximation.GGT.VanKampen.GeodesicQuasiGeodesic
+import GroupApproximation.GGT.DGOProposition414GapComponentAssembly
+import GroupApproximation.GGT.HullSCLemma49SourceAssembly
+import GroupApproximation.GGT.KazhdanHypGQSevenScheme
+import GroupApproximation.GGT.KazhdanHypGirthEightBuild
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
