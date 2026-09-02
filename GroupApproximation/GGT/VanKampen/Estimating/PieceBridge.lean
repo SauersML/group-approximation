@@ -77,9 +77,7 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
     (Delta : DiscDiagram.{u, w, v} W)
     {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
     ∃ suffix : List (GGT.RelLetter G Lambda),
-      (reversePrefixTarget Delta arc =
-        reverseDartsWord Delta arc ++ suffix)
-  := by
+      reversePrefixTarget Delta arc = reverseDartsWord Delta arc ++ suffix := by
   have hsplit : arc.rotated = arc.rotated.take arc.length ++
       arc.rotated.drop arc.length := by
     exact (List.take_append_drop arc.length arc.rotated).symm
@@ -293,7 +291,7 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
   unfold Contiguity.targetInverseCarrier
   unfold targetBoundaryDarts
   split <;> simp_all [CyclicArc.reversePrefixTarget,
-    CyclicArc.reverseDartsWord]
+    CyclicArc.reverseDartsWord] <;> subst_vars <;> rfl
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
