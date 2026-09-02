@@ -3287,6 +3287,7 @@ import GroupApproximation.GGT.VanKampen.PermOrbitRestrict
 import GroupApproximation.GGT.DGOProposition414ComponentFamilyAssembly
 import GroupApproximation.GGT.HullSCRelativeGreendlingerPowerBoundary
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonInput
+import GroupApproximation.GGT.DGOProposition435JointPrescribed
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
