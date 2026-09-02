@@ -444,15 +444,27 @@ theorem innerFace_presentedValue_eq_one
     ((Delta.faceWord f).map (fun d ↦ presentedLetterValue T d)).prod = 1 := by
   obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
   rw [hj, triangleRelatorWord, List.map_map]
+  simp only [Function.comp_apply]
   have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
       presentedLetterValue T
           (signedFreeRelLetter u :
             GGT.RelLetter (FreeGroup Generator) PEmpty) =
         FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
     intro u
-    simpa using
-      (GirthEightVKInterface.presentedLetterValue_signedFreeRelLetter
-        (T := T) u)
+    rcases u with ⟨generator, positive⟩
+    cases positive with
+    | false =>
+        change PresentedGroup.mk
+            (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+            ((FreeGroup.of generator)⁻¹) =
+          (PresentedGroup.of generator)⁻¹
+        rw [map_inv]
+        rfl
+    | true =>
+        change PresentedGroup.mk
+            (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+            (FreeGroup.of generator) = PresentedGroup.of generator
+        rfl
   rw [show (TriangularHodgeLayer.letters (T j)).map (fun u ↦
       presentedLetterValue T
         (signedFreeRelLetter u :
@@ -473,8 +485,8 @@ theorem pathValue_erase_innerFace
       presentedLetterValue T (Delta.label d))).prod =
       ((before ++ after).map (fun d ↦
         presentedLetterValue T (Delta.label d))).prod := by
-  have hface : (((Delta.faceBoundary f).darts.map Delta.label).map
-      (presentedLetterValue T)).prod = 1 := by
+  have hface : ((Delta.faceBoundary f).darts.map
+      (fun d ↦ presentedLetterValue T (Delta.label d))).prod = 1 := by
     change ((Delta.faceWord f).map
       (fun d ↦ presentedLetterValue T d)).prod = 1
     exact innerFace_presentedValue_eq_one Delta R f hf
@@ -482,7 +494,6 @@ theorem pathValue_erase_innerFace
   rw [hface]
   simp
 
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem innerFaceWordHomotopy_value_eq
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (R : RelatorOnly T Delta) {a b : List Delta.toCombMap.Dart}
@@ -507,7 +518,6 @@ abbrev PathIntegralWellDefined
     (p q : DartPath Delta.toCombMap R.root v),
     cayleyPathValue Delta p = cayleyPathValue Delta q
 
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem pathIntegralWellDefined_of_faceComplete
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
     (relatorOnly : RelatorOnly T Delta)
