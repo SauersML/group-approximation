@@ -33,6 +33,7 @@ namespace HullSC
 
 open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.WordMetric
 
 universe u v w
 
@@ -238,9 +239,9 @@ theorem peripheralPullbackBound_trivialSource
     {Q : Type v} [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet PUnit Lambda) (q : PUnit →* Q)
     (hq : Function.Surjective q) :
-    PeripheralPullbackBound D q hq (fun _ ⇒ 0) := by
+    PeripheralPullbackBound D q hq (fun _ => 0) := by
   haveI : Subsingleton Q :=
-    ⟨fun x y ⇒ by
+    ⟨fun x y => by
       obtain ⟨a, rfl⟩ := hq x
       obtain ⟨b, rfl⟩ := hq y
       rw [Subsingleton.elim a b]⟩
@@ -257,11 +258,11 @@ theorem relativeIsoperimetricBridgeAt_trivialSourceModel
     RelativeIsoperimetricBridgeAt.{0, v, w} D := by
   intro eps rho mu W Q _ q hq hmu hmuUpper hrho hsc hker hcert
   haveI : Subsingleton Q :=
-    ⟨fun x y ⇒ by
+    ⟨fun x y => by
       obtain ⟨a, rfl⟩ := hq x
       obtain ⟨b, rfl⟩ := hq y
       rw [Subsingleton.elim a b]⟩
-  refine ⟨⟨0, ?_, fun _ ⇒ 0, ?_⟩⟩
+  refine ⟨⟨0, ?_, fun _ => 0, ?_⟩⟩
   · intro a b c d
     rw [Subsingleton.elim a b, Subsingleton.elim c b,
       Subsingleton.elim d b]
@@ -277,11 +278,11 @@ theorem relativeDehnTransferAt_trivialSourceModel
     RelativeDehnTransferAt.{0, v, w} D := by
   intro W eps Q _ q hq hsupport hcuts
   haveI : Subsingleton Q :=
-    ⟨fun x y ⇒ by
+    ⟨fun x y => by
       obtain ⟨a, rfl⟩ := hq x
       obtain ⟨b, rfl⟩ := hq y
       rw [Subsingleton.elim a b]⟩
-  refine ⟨⟨0, ?_, fun _ ⇒ 0, ?_⟩⟩
+  refine ⟨⟨0, ?_, fun _ => 0, ?_⟩⟩
   · intro a b c d
     rw [Subsingleton.elim a b, Subsingleton.elim c b,
       Subsingleton.elim d b]
@@ -305,8 +306,11 @@ theorem relativeIsoperimetricBridge_trivialSourceModel
   haveI : Finite Q := Finite.of_surjective q hq
   refine ⟨⟨0, ?_⟩, ?_⟩
   · intro a b c d
-    rw [Subsingleton.elim a b, Subsingleton.elim c b,
-      Subsingleton.elim d b]
+    have heq : ∀ x y : Cayley (D.mapSurjective q hq).alphabet, x = y := by
+      intro x y
+      change Cayley.val x = Cayley.val y
+      exact Subsingleton.elim _ _
+    rw [heq a b, heq c b, heq d b]
     simp only [gromovProduct, dist_self, zero_add, sub_zero, min_self]
     norm_num
   · intro lam n
