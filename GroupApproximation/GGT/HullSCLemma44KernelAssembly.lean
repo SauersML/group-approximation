@@ -189,6 +189,7 @@ theorem kernelGeodesicEstimateAt_trivialModel
       obtain ⟨a, rfl⟩ := hq x
       obtain ⟨b, rfl⟩ := hq y
       exact congrArg q (Subsingleton.elim a b)
+    ⟩
   refine ⟨0, ?_⟩
   intro k hk word hword hprod hlength i hi
   have hkone : k = 1 := Subsingleton.elim _ _
