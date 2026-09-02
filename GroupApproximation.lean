@@ -3187,7 +3187,6 @@ import GroupApproximation.GGT.DGOProposition414Uniform
 import GroupApproximation.GGT.KazhdanHypGQTableAdapter
 import GroupApproximation.GGT.KazhdanHypGirthEightLayerInjection
 import GroupApproximation.GGT.DGOLemma421Assembly
-import GroupApproximation.GGT.DGOLemma421FourGon
 import GroupApproximation.GGT.DGOLemma421OppositeMatch
 import GroupApproximation.GGT.DGOLemma421OppositeStart
 import GroupApproximation.GGT.DGOProposition414ComponentFamiliesBridge
@@ -3241,6 +3240,9 @@ import GroupApproximation.GGT.VanKampen.FaceSetBoundaryDeterminism
 import GroupApproximation.GGT.VanKampen.FaceSetMoveAlgebra
 import GroupApproximation.GGT.VanKampen.FaceSetPeelProducer
 import GroupApproximation.GGT.VanKampen.FaceSetSingletonPeel
+import GroupApproximation.GGT.DGOProposition435
+import GroupApproximation.GGT.VanKampen.Estimating.PieceConstruction
+import GroupApproximation.GGT.VanKampen.Estimating.PieceCore
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
