@@ -4,16 +4,18 @@ import GroupApproximation.GGT.DGOLemma421Components
 import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.GGT.DGOAssemblyCuts
 import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
+import GroupApproximation.GGT.HullSCRelatorSeparation2RelativeSides
 
 /-!
-# DGO Lemma 4.21 from the uniform isolated-component sum bound
+# DGO Lemma 4.21 from the uniform isolated-component bound
 
 Dahmani--Guirardel--Osin Proposition 4.14 states that, in a weakly relatively
 hyperbolic group, the total relative length of distinguished isolated
 components in an `n`-gon is bounded by `C(μ,c) n` when all other sides are
 `(μ,c)`-quasi-geodesic.  `DGOUniformSumBound` is that conclusion in the
 radius-witness form used by `DGOPolygonCut.SumBound`, and
-`DGOProposition414Uniform` keeps the source's quantifier order.
+`DGOProposition414Uniform` keeps the source's quantifier order while retaining
+the pointwise isolated-component projection used by Lemma 4.21.
 
 The rest of this module proves DGO Lemma 4.21(b) from that uniform bound.
 -/
@@ -63,16 +65,13 @@ def DGOUniformSumBound (D : RelGenSet G Λ) (mu c : ℝ) (C : ℕ) : Prop :=
 The quantifier order is the one printed in Proposition 4.14: after the group,
 relative structure, and weak-hyperbolicity hypothesis are fixed, arbitrary
 `μ ≥ 1` and `c ≥ 0` determine one positive constant `C(μ,c)` which works for
-every `n`-gon.  The last line is the radius form of the printed total-length
-bound: every isolated component has relative length at most `C n`.
-
-The arbitrary component span is essential here.  A singleton-cut specialization
-is recovered below for the counting lemmas used in clause (a). -/
+every `n`-gon. -/
 def DGOProposition414Uniform : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet)) →
-    ∀ mu c : ℝ, 1 ≤ mu → 0 ≤ c →
+      ∀ mu c : ℝ, 1 ≤ mu → 0 ≤ c →
       ∃ C : ℕ, 0 < C ∧
+        DGOUniformSumBound D mu c C ∧
         ∀ (n : ℕ) (v : G) (word : List (RelLetter G Λ)),
           IsQuasiGeodesicPolygon D mu c n v word →
           ∀ (lam : Λ) (i k : ℕ), IsComp lam word i k →
@@ -85,36 +84,11 @@ def DGOProposition414Uniform : Prop :=
 theorem dgoUniformSumBound_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) (D : RelGenSet G Λ)
     (hhyp : ∃ delta : ℝ, IsHyperbolicSpace delta (Cayley D.alphabet))
-    (mu c : ℝ) (hmu : 1 ≤ mu) (hc : 0 ≤ c) (hc1 : 1 ≤ c) :
+    (mu c : ℝ) (hmu : 1 ≤ mu) (hc : 0 ≤ c) :
     ∃ C : ℕ, 0 < C ∧ DGOUniformSumBound D mu c C := by
-  obtain ⟨C, hC, hbound⟩ := h G Λ D hhyp mu c hmu hc
+  obtain ⟨C, hC, hsum, hbound⟩ := h G Λ D hhyp mu c hmu hc
   refine ⟨C, hC, ?_⟩
-  intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
-  obtain ⟨cutStart, cutFinish, cutMono⟩ := hcut
-  have hpoly : IsQuasiGeodesicPolygon D mu c n v word := by
-    refine ⟨hlet, hclosed, cut, cutStart, cutFinish, cutMono, ?_⟩
-    intro s hs p q hp hpq hq
-    by_cases hsI : s ∈ I
-    · rw [hedge s hsI] at hq
-      have hstep : q - p ≤ 1 := by omega
-      have hstepReal : ((q - p : ℕ) : ℝ) ≤ 1 := by
-        exact_mod_cast hstep
-      have hnonneg : (0 : ℝ) ≤
-          ((wordDist D.alphabet.carrier (vertex v word p)
-            (vertex v word q) : ℕ) : ℝ) := Nat.cast_nonneg _
-      have hmu0 : (0 : ℝ) < mu := lt_of_lt_of_le zero_lt_one hmu
-      have hdiv : ((q - p : ℕ) : ℝ) / mu ≤ 1 := by
-        calc
-          ((q - p : ℕ) : ℝ) / mu ≤ 1 / mu := by
-            exact div_le_div_of_nonneg_right hstepReal (le_of_lt hmu0)
-          _ ≤ 1 := by
-            exact (div_le_iff₀ hmu0).2 (by linarith)
-      linarith
-    · exact hquasi s hs hsI p q hp hpq hq
-  intro s hs
-  have hspan := hbound n v word hpoly (lam s) (cut s) (cut (s + 1))
-    (hcomp s hs) (hiso s hs)
-  exact hspan
+  exact hsum
 
 /-! ## Model test for the uniform-bound payload -/
 
@@ -133,18 +107,27 @@ uniform component bound holds with radius zero for every parameter and polygon. 
 theorem dgoProposition414Uniform_trivialModel (mu c : ℝ)
     (_hmu : 1 ≤ mu) (_hc : 0 ≤ c) :
     ∃ C : ℕ, 0 < C ∧
+      DGOUniformSumBound trivialUniformRelGenSet mu c C ∧
       ∀ (n : ℕ) (v : PUnit) (word : List (RelLetter PUnit Unit)),
         IsQuasiGeodesicPolygon trivialUniformRelGenSet mu c n v word →
         ∀ (lam : Unit) (i k : ℕ), IsComp lam word i k →
           IsIsolated trivialUniformRelGenSet.fam lam v word i →
             (vertex v word i)⁻¹ * vertex v word k ∈
               trivialUniformRelGenSet.relBall lam (C * n) := by
-  refine ⟨1, Nat.zero_lt_one, ?_⟩
-  intro n v word hpoly lam i k hcomp hiso
-  have hspan : (vertex v word i)⁻¹ * vertex v word k = 1 :=
-    Subsingleton.elim _ _
-  rw [hspan]
-  exact one_mem_relBall trivialUniformRelGenSet lam (1 * n)
+  refine ⟨1, Nat.zero_lt_one, ?_, ?_⟩
+  · intro n v word cut I lam hlet hclosed hcut hI hedge hcomp hiso hquasi
+    refine ⟨fun _ => 0, ?_, by simp⟩
+    intro s hs
+    have hspan :
+        (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) = 1 :=
+      Subsingleton.elim _ _
+    rw [hspan]
+    exact one_mem_relBall trivialUniformRelGenSet (lam s) 0
+  · intro n v word hpoly lam i k hcomp hiso
+    have hspan : (vertex v word i)⁻¹ * vertex v word k = 1 :=
+      Subsingleton.elim _ _
+    rw [hspan]
+    exact one_mem_relBall trivialUniformRelGenSet lam (1 * n)
 
 /-! ## Counting deep isolated singleton sides -/
 
@@ -1407,7 +1390,7 @@ theorem dgoLemma421a_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
   intro G _ Λ D hhyp
   obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp 1 1
-    le_rfl (by norm_num) (by norm_num)
+    le_rfl
   refine ⟨50 * C, ?_⟩
   intro v word hlet hW1 hW2 hW3 i j hij hj
   let segment := (word.drop i).take (j - i)
@@ -1445,6 +1428,145 @@ theorem dgoLemma421a_of_uniform414
           _ = vertex v word j := by rw [show i + (j - i) = j by omega]
       rw [hend] at hwhole
       omega
+
+/-! ## One opposite-side match from a deep run -/
+
+/-- A run of more deep singleton components than the two short connector
+words can absorb contains a component matched on the opposite long side.
+This is the finite-absorption paragraph of Dahmani--Guirardel--Osin's proof of
+Lemma 4.21(b), with arbitrary quasi-geodesic constants and arbitrary relative
+connector words. -/
+theorem exists_opposite_match_of_deep_run_of_uniformBound
+    (D : RelGenSet G Λ) (lam : Λ) {mu b : ℝ}
+    (hbnd : ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
+          IsIsolated D.fam nu v u i →
+            (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (rho : ℕ) (p q r s : List (RelLetter G Λ)),
+        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
+          RelLetter.listVal r →
+        IsQuasiGeodesicPolygon D mu b 4 1
+          (p ++ q ++ r ++ revWord s) →
+        ∀ (source : Fin (p.length + r.length + 1) → ℕ),
+          (∀ i, 0 < source i) →
+          (∀ i, source i + 1 < q.length) →
+          (∀ i, IsComp lam q (source i) (source i + 1)) →
+          Function.Injective source →
+          (∀ i, (vertex (1 : G) q (source i))⁻¹ *
+              vertex (1 : G) q (source i + 1) ∉ D.relBall lam rho) →
+          C * 4 ≤ rho →
+          (∀ i i', i' ≤ q.length → i' ≠ source i →
+            IsCompStart lam (p ++ q ++ r ++ revWord s)
+              (p.length + i') →
+            ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+              (p.length + source i) (p.length + i')) →
+          ∃ i : Fin (p.length + r.length + 1), ∃ j : ℕ,
+            j ≤ s.length ∧
+            IsCompStart lam (p ++ q ++ r ++ revWord s)
+              (p.length + q.length + r.length + (s.length - j)) ∧
+              ∃ h : G, h ∈ D.fam lam ∧
+                RelLetter.listVal p * vertex (1 : G) q (source i) * h =
+                  vertex (1 : G) s j := by
+  obtain ⟨C, hC, hdeepBound⟩ := hbnd
+  have hdeepTarget : ∀ (n : ℕ) (rho : ℕ), n ≤ 6 →
+      ∀ (p q r s : List (RelLetter G Λ)),
+      RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
+        RelLetter.listVal r →
+      IsQuasiGeodesicPolygon D mu b n 1 (p ++ q ++ r ++ revWord s) →
+      ∀ (i k : ℕ), IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        C * n ≤ rho →
+        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
+        ∃ n' : ℕ, n' ≠ p.length + i ∧
+          IsCompStart lam (p ++ q ++ r ++ revWord s) n' ∧
+          (n' < p.length ∨
+            (∃ i' : ℕ, i' ≤ q.length ∧ n' = p.length + i') ∨
+            (∃ m : ℕ, m < r.length ∧
+              n' = p.length + q.length + m) ∨
+            (∃ j : ℕ, j ≤ s.length ∧
+              n' = p.length + q.length + r.length + (s.length - j))) ∧
+          ∃ h : G, h ∈ D.fam lam ∧
+            RelLetter.listVal p * vertex (1 : G) q i * h =
+              vertex (1 : G) (p ++ q ++ r ++ revWord s) n' := by
+    intro n rho hn p q r s hclose hpoly i k hcomp hk hrho hdeep
+    have hbridge := isComp_fourGon_of_isComp_side_of_interior
+      p q r s lam hcomp.1 hcomp.2.1 hcomp
+    have hiq : i ≤ q.length := le_trans (Nat.le_of_lt hcomp.1) hcomp.2.1
+    have hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
+        (p.length + i) := ⟨p.length + k, hbridge⟩
+    apply exists_other_component_fourGon_general D lam p q r s hiq hstart
+    intro hisolated
+    have hspan := hdeepBound n hn 1 (p ++ q ++ r ++ revWord s) hpoly
+      lam (p.length + i) (p.length + k) hbridge hisolated
+    rw [span_fourGon_side p q r s (by omega) (by omega)] at hspan
+    exact hdeep (relBall_mono_radius D lam hrho hspan)
+  refine ⟨C, hC, ?_⟩
+  intro rho p q r s hclose hpoly source hsource_pos hsource_end
+    hsource_comp hsource_inj hsource_deep hrho hnotSame
+  have hraw : ∀ i, ∃ n : ℕ, n ≠ p.length + source i ∧
+      IsCompStart lam (p ++ q ++ r ++ revWord s) n ∧
+      (n < p.length ∨
+        (∃ i' : ℕ, i' ≤ q.length ∧ n = p.length + i') ∨
+        (∃ m : ℕ, m < r.length ∧ n = p.length + q.length + m) ∨
+        (∃ j : ℕ, j ≤ s.length ∧
+          n = p.length + q.length + r.length + (s.length - j))) ∧
+      ∃ h : G, h ∈ D.fam lam ∧
+        RelLetter.listVal p * vertex (1 : G) q (source i) * h =
+          vertex (1 : G) (p ++ q ++ r ++ revWord s) n := by
+    intro i
+    obtain ⟨n, hn, hnstart, hnloc, h, hh, heq⟩ :=
+      hdeepTarget 4 rho (by omega) p q r s hclose hpoly
+        (source i) (source i + 1) (hsource_comp i)
+        (Or.inl (by omega)) (by simpa using hrho) (hsource_deep i)
+    refine ⟨n, hn, hnstart, hnloc, h, hh, heq⟩
+  have htarget : ∀ i, ∃ n : ℕ, n ≠ p.length + source i ∧
+      IsCompStart lam (p ++ q ++ r ++ revWord s) n ∧
+      Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+        (p.length + source i) n ∧
+      (n < p.length ∨
+        (∃ i' : ℕ, i' ≤ q.length ∧ n = p.length + i') ∨
+        (∃ m : ℕ, m < r.length ∧ n = p.length + q.length + m) ∨
+        (∃ j : ℕ, j ≤ s.length ∧
+          n = p.length + q.length + r.length + (s.length - j))) := by
+    intro i
+    obtain ⟨n, hn, hnstart, hnloc, h, hh, heq⟩ := hraw i
+    refine ⟨n, hn, hnstart, ?_, hnloc⟩
+    show (vertex (1 : G) (p ++ q ++ r ++ revWord s)
+        (p.length + source i))⁻¹ *
+      vertex (1 : G) (p ++ q ++ r ++ revWord s) n ∈ D.fam lam
+    rw [vertex_fourGon_side p q r s 1 (by
+      exact le_trans (Nat.le_of_lt (hsource_comp i).1)
+        (hsource_comp i).2.1), ← heq]
+    have hcancel :
+        (RelLetter.listVal p * vertex (1 : G) q (source i))⁻¹ *
+          (RelLetter.listVal p * vertex (1 : G) q (source i) * h) = h := by
+      group
+    simp only [one_mul]
+    rw [hcancel]
+    exact hh
+  have hpairwise : ∀ i j, i ≠ j →
+      ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+        (p.length + source i) (p.length + source j) := by
+    intro i j hij
+    apply hnotSame i (source j)
+    · exact le_trans (Nat.le_of_lt (hsource_comp j).1)
+        (hsource_comp j).2.1
+    · exact fun heq => hij (hsource_inj heq.symm)
+    · exact ⟨p.length + source j + 1,
+        isComp_fourGon_of_isComp_side_of_interior p q r s lam
+          (hsource_pos j) (hsource_end j) (hsource_comp j)⟩
+  obtain ⟨i, n, j, hnstart, hnconn, hj, hn⟩ :=
+    exists_opposite_component_of_finite_absorption D.fam lam p q r s source
+      hpairwise htarget hnotSame
+  refine ⟨i, j, hj, ?_, ?_⟩
+  · rw [← hn]
+    exact hnstart
+  exact exists_connector_fourGon D lam p q r s hclose
+    (by
+      exact le_trans (Nat.le_of_lt (hsource_comp i).1)
+        (hsource_comp i).2.1) (hn ▸ hnconn)
 
 end OsinComponents
 end GGT
