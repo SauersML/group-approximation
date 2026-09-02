@@ -497,8 +497,10 @@ theorem estimatingGraphData_emptyFamilyModel
     · intro hedge
       have hcandidate : edge.candidate ∈ scaffold.selected.family :=
         edge.candidate_mem
-      rw [hempty] at hcandidate
-      exact hcandidate.elim
+      have hcandidate' : edge.candidate ∈
+          (∅ : Finset (Embedded.Candidate D eps Delta)) :=
+        hempty ▸ hcandidate
+      exact hcandidate'.elim
     · intro hedge
       simp at hedge
   refine ⟨{
