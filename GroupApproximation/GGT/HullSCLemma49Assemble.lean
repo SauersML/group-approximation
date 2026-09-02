@@ -181,9 +181,9 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
 The first four arguments are the current estimating interfaces: the common
 relative Greendlinger statement and the three separated construction
 certificates.  The next two are the kernel-geodesic and prefix-kernel outputs
-of the Hull 4.4 assembly.  The final argument is vk's generic face-boundary
-peeling callback; `hullLemma49SourceFacePastingStatement_of_faceSetBoundaryPeeling`
-turns it into the source certificate consumed above. -/
+of the Hull 4.4 assembly.  The final argument is vk's planar face-peel
+certificate callback; `faceSetBoundaryPeelWitness_of_planar` and the finite
+face-count induction turn it into the source certificate consumed above. -/
 theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hgeom : GGT.VanKampen.RelativeGreendlingerStatement.{0, 0})
     (hselection :
@@ -194,57 +194,19 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
       GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
     (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
-    (hfaceSetBoundaryPeeling :
+    (hplanar :
       ∀ {G : Type} [Group G] {Lambda : Type}
         {W : Set (List (GGT.RelLetter G Lambda))}
         {Delta : GGT.VanKampen.DiscDiagram.{0, 0, 0} W}
         {faces : Finset Delta.toCombMap.Face}
         (boundary : GGT.VanKampen.Embedded.FaceSetBoundary Delta faces),
-        GGT.VanKampen.Embedded.FaceSetBoundaryPeeling boundary) :
+        GGT.VanKampen.Embedded.PlanarFacePeelCertificate boundary) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
     hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
       hgeom hkernel htransfer
   have hpasting : HullLemma49SourceFacePastingStatement.{0, 0} :=
-    hullLemma49SourceFacePastingStatement_of_faceSetBoundaryPeeling
-      hfaceSetBoundaryPeeling
-  have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
-    hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
-  have hquasi :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
-    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
-      hselection hpieces hunbound
-  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
-  · exact hquasi
-  · exact hpasting
-  · exact hinjective
-
-/-- The same input leaf using the currently landed vk shape.  vk's named
-`faceSetBoundaryPeeling_of_faceSetBoundary` consumes the displayed local
-`FaceSetBoundaryPeelOracle`; the Hull49 bridge applies it to each selected
-source certificate. -/
-theorem hullLemma49GeodesicPowerDiagram_of_inputs_of_vkOracle
-    (hgeom : GGT.VanKampen.RelativeGreendlingerStatement.{0, 0})
-    (hselection :
-      GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
-    (hpieces :
-      GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
-    (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
-    (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
-    (horacle :
-      ∀ {G : Type} [Group G] {Lambda : Type}
-        {W : Set (List (GGT.RelLetter G Lambda))}
-        {Delta : GGT.VanKampen.DiscDiagram.{0, 0, 0} W},
-        GGT.VanKampen.Embedded.FaceSetBoundaryPeelOracle
-          (Delta := Delta)) :
-    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
-  have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
-    hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-      hgeom hkernel htransfer
-  have hpasting : HullLemma49SourceFacePastingStatement.{0, 0} :=
-    hullLemma49SourceFacePastingStatement_of_vkFaceSetBoundaryPeeling horacle
+    hullLemma49SourceFacePastingStatement_of_planar hplanar
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   have hquasi :
