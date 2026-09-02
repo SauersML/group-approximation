@@ -45,7 +45,8 @@ theorem exists_estimatingScaffold
   obtain ⟨selected⟩ := Embedded.exists_distinguishedFamily D eps Delta
   exact ⟨{
     selected := selected
-    partition := Embedded.canonicalDiagramPartition selected.family }⟩
+    partition := fun i =>
+      Embedded.CellBoundaryPartition.canonical selected.family i }⟩
 
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
