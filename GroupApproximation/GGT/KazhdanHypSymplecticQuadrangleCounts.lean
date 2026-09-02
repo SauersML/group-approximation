@@ -480,16 +480,9 @@ theorem point_col_degree_count (p : Point) :
 /-- Points on a fixed line. -/
 abbrev LinePoint (L : Line) := {p : Point // Incident p L}
 
-noncomputable instance linePointFintype (L : Line) : Fintype (LinePoint L) :=
-  Fintype.ofFinite _
-
 /-- Other lines through a flagged point of `L`. -/
 abbrev OtherLineAt (L : Line) (p : LinePoint L) :=
   {M : Line // Incident p.1 M ∧ M ≠ L}
-
-noncomputable instance otherLineAtFintype (L : Line) (p : LinePoint L) :
-    Fintype (OtherLineAt L p) :=
-  Fintype.ofFinite _
 
 /-- A point of `L`, together with another line through that point. -/
 abbrev LinePointOtherFlag (L : Line) :=
@@ -498,10 +491,6 @@ abbrev LinePointOtherFlag (L : Line) :=
 /-- Lines other than `L` which are concurrent with `L`. -/
 abbrev ConcurrentOther (L : Line) :=
   {M : Line // M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M}
-
-noncomputable instance concurrentOtherFintype (L : Line) :
-    Fintype (ConcurrentOther L) :=
-  Fintype.ofFinite _
 
 /-- Removing `L` from the nine lines through a point on `L` leaves eight. -/
 theorem otherLineAt_card (L : Line) (p : LinePoint L) :
