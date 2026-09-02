@@ -146,7 +146,8 @@ def HullLemma44CanonicalQuotientStatement : Prop :=
 /-- Hull Lemma 4.9 reduced to its quotient-free diagram conclusion, for an
 arbitrary hyperbolically embedded source family. -/
 def HullLemma49KernelPowerStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ),
+  ∀ {G : Type u} [Group G] {Λ : Type w} [Finite Λ]
+    (D : GGT.RelGenSet G Λ),
     D.IsHyperbolicallyEmbedded → IsAcylindrical G (Cayley D.alphabet) →
       ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
         ∀ (W : Set (List (GGT.RelLetter G Λ)))

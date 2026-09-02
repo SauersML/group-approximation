@@ -93,7 +93,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     (hpasting : HullLemma49SourceFacePastingStatement.{u, w})
     (hinjective : HullLemma49InjectivityCallback.{u, w}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
-  intro G _ Lambda D hemb hacylindrical
+  intro G _ Lambda _ D hemb hacylindrical
   obtain ⟨delta, hdelta⟩ :=
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   have hgap : CayleyUniformLoxodromicTranslationGap D.alphabet :=
