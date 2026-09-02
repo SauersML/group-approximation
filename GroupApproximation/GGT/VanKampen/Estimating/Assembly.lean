@@ -192,6 +192,22 @@ noncomputable def ofScaffold
     · exact unbound.unbound_lt
     · exact unbound.threshold
 
+/-- The three source-level certificates give the requested inhabited
+`EstimatingData` object. -/
+theorem nonempty_of_certificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (scaffold : EstimatingScaffold D eps Delta)
+    (graph : EstimatingGraphData D eps Delta scaffold)
+    (pieces : CellPieceData D eps Delta scaffold)
+    (unbound : Lemma62Data D eps mu rho Delta scaffold)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    Nonempty (EstimatingData D eps mu Delta) :=
+  ⟨ofScaffold scaffold graph pieces unbound hcondition⟩
+
 /-- Lemma Eul gives the `10 * mu` total interior-contiguity budget. -/
 theorem interior_total_le
     {G : Type u} [Group G] {Lambda : Type w}
