@@ -555,7 +555,7 @@ def relGenSetReindex (D : GGT.RelGenSet G Lambda) (e : Lambda' ≃ Lambda) :
     have hcarrier :
         (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
           ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G) :=
-      e.surjective.iUnion_comp _
+      e.surjective.iUnion_comp (fun lam => ((D.fam lam : Subgroup G) : Set G))
     rw [hcarrier]
     exact D.symmetricGenerating
 
@@ -564,7 +564,7 @@ theorem relGenSetReindex_alphabet_carrier (D : GGT.RelGenSet G Lambda)
     (relGenSetReindex D e).alphabet.carrier = D.alphabet.carrier := by
   show D.base ∪ (⋃ l : Lambda', ((D.fam (e l) : Subgroup G) : Set G)) =
     D.base ∪ ⋃ lam : Lambda, ((D.fam lam : Subgroup G) : Set G)
-  rw [e.surjective.iUnion_comp]
+  rw [e.surjective.iUnion_comp (fun lam => ((D.fam lam : Subgroup G) : Set G))]
 
 theorem relGenSetReindex_alphabet (D : GGT.RelGenSet G Lambda)
     (e : Lambda' ≃ Lambda) :
