@@ -115,15 +115,64 @@ def PowerDiscMirrorPairDeletionSupply
 /-- The exact seam output still absent from the generic CombMap API.  Its
 fields separate the global exposed pairing/count construction from the local
 triangle-corner and cellular-reducedness certificates. -/
+def TrianglePairUnique
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) : Prop :=
+  ∀ {p p' : TriangleIndex × Fin 3},
+    T p.1 p.2 = T p'.1 p'.2 →
+    T p.1 (TriangularHodgeLayer.nextCorner p.2) =
+      T p'.1 (TriangularHodgeLayer.nextCorner p'.2) →
+    p = p'
+
+/-- The disjointness/simple-link clause of `GirthEightChecks` is precisely
+the no-two-triples-sharing-a-consecutive-pair certificate used by a cellular
+reducedness construction. -/
+theorem trianglePairUnique_of_girthEightChecks
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ}
+    (hgeom : GirthEightChecks T d) : TrianglePairUnique T := by
+  intro p p' hfirst hnext
+  exact corner_unique_of_linkSimple T hgeom.simple hfirst hnext
+
 structure ExposedPairingEulerInput
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n) where
   pairing : VanKampen.SeamGluing.ExposedPairing D.diagram n
+  pairUnique : TrianglePairUnique T
   counts : VanKampen.SeamGluing.Pairing.EulerTwoCountData pairing.toPairing
   corner : ∀ v, VertexCornerCertificate T
     (cornerCycleOfCombMap pairing.toPairing.closedMap v)
   cellular : ∀ v, CellularReducedAt (corner v)
+
+/-- The landed copy-involution constructor supplies the exposed pairing.  The
+remaining fields are the Euler and local certificates attached to that
+pairing; `pairUnique` is the table-side no-shared-pair certificate. -/
+noncomputable def exposedPairingEulerInput_of_copyMate
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    {I : Type}
+    (D : PowerDisc T g n)
+    (index : ExposedCopiedDart D.diagram n ≃ Fin n × I)
+    (copyMate : Equiv.Perm (Fin n))
+    (hinvol : Function.Involutive copyMate)
+    (hfree : ∀ i, copyMate i ≠ i)
+    (hpairUnique : TrianglePairUnique T)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
+      (VanKampen.SeamGluing.ExposedPairing.of_copyMate
+        index copyMate hinvol hfree).toPairing)
+    (hcorner : ∀ v, VertexCornerCertificate T
+      (cornerCycleOfCombMap
+        (VanKampen.SeamGluing.ExposedPairing.of_copyMate
+          index copyMate hinvol hfree).toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
+    ExposedPairingEulerInput T D := by
+  let B := VanKampen.SeamGluing.ExposedPairing.of_copyMate
+    index copyMate hinvol hfree
+  exact {
+    pairing := B
+    pairUnique := hpairUnique
+    counts := hcounts
+    corner := hcorner
+    cellular := hcellular }
 
 /-- The remaining filling contract, now expressed through the landed
 `CactusRelatorRetyping` construction.  A supplied cactus complement must
@@ -301,6 +350,40 @@ theorem exposedPairingEulerCertificate_of_wEight_linkData
   exact (exposedPairingEulerCertificate_and_wEightSDP_of_input
     hgeom lineMap hlink D hinput).1
 
+/-- The copy-involution form is the explicit W(8) seam contract: the landed
+`ExposedPairing.of_copyMate` builds the exposed pairing, while the W(8)
+disjointness clause supplies `TrianglePairUnique`.  The remaining arguments
+are exactly the still-topological Euler/corner certificates. -/
+theorem exposedPairingEulerCertificate_of_wEight_copyMate
+    {TriangleIndex : Type}
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+    {T : TriangleIndex →
+      TriangularHodgeLayer.Triangle SymplecticQuadrangle.Point}
+    (hgeom : GirthEightChecks T 9)
+    (lineMap : SymplecticQuadrangle.Point ≃ SymplecticQuadrangle.Line)
+    (hlink : CornerIncidenceTable T SymplecticQuadrangle.Incident lineMap)
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n)
+    {I : Type}
+    (index : ExposedCopiedDart D.diagram n ≃ Fin n × I)
+    (copyMate : Equiv.Perm (Fin n))
+    (hinvol : Function.Involutive copyMate)
+    (hfree : ∀ i, copyMate i ≠ i)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
+      (VanKampen.SeamGluing.ExposedPairing.of_copyMate
+        index copyMate hinvol hfree).toPairing)
+    (hcorner : ∀ v, VertexCornerCertificate T
+      (cornerCycleOfCombMap
+        (VanKampen.SeamGluing.ExposedPairing.of_copyMate
+          index copyMate hinvol hfree).toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
+    ExposedPairingEulerCertificate T D := by
+  have hinput := exposedPairingEulerInput_of_copyMate D index copyMate
+    hinvol hfree (trianglePairUnique_of_girthEightChecks hgeom)
+    hcounts hcorner hcellular
+  exact exposedPairingEulerCertificate_of_wEight_linkData
+    hgeom lineMap hlink D hinput
+
 /-- A residual-input package keeps the three still-missing constructions
 aligned to the same triangular presentation. -/
 structure ExtractionInputs
@@ -412,6 +495,27 @@ theorem exposedPairingEulerCertificate_model
   dsimp
   exact ⟨hcounts, certificate, hcellular⟩
 
+/-- The complete exposed-input record has a concrete small-map model whenever
+the copied pairing, Euler counts, corner labels, and no-shared-pair table
+certificate are supplied. -/
+theorem exposedPairingEulerInput_model
+    {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+    (D : PowerDisc T g n)
+    (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
+    (hpairUnique : TrianglePairUnique T)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData B.toPairing)
+    (certificate : ∀ v, VertexCornerCertificate T
+      (cornerCycleOfCombMap B.toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt
+      (certificate v)) :
+    ExposedPairingEulerInput T D := by
+  exact {
+    pairing := B
+    pairUnique := hpairUnique
+    counts := hcounts
+    corner := certificate
+    cellular := hcellular }
+
 /-! ## The GQ(2,2) 27-row shape -/
 
 /-- The abstract 27-representative indexing used by the small GQ(2,2) model.
@@ -456,6 +560,26 @@ theorem exposedPairingEulerCertificate_gqTwo_27Model
       ExposedPairingEulerCertificate GQTwoTable.triangles D := by
   exact ⟨gqTwo27RepresentativeRows,
     exposedPairingEulerCertificate_of_input D hinput⟩
+
+/-- A fully supplied GQ(2,2) seam model obtains the table-side certificate
+from the certified simple-link check, while retaining the 27 representative
+rows in the conclusion. -/
+theorem exposedPairingEulerInput_gqTwo_27Model
+    {g : TriangularHodgeLayer.Presented GQTwoTable.triangles} {n : ℕ}
+    (D : PowerDisc GQTwoTable.triangles g n)
+    (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
+    (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData B.toPairing)
+    (certificate : ∀ v, VertexCornerCertificate GQTwoTable.triangles
+      (cornerCycleOfCombMap B.toPairing.closedMap v))
+    (hcellular : ∀ v, CellularReducedAt (certificate v)) :
+    GQTwo27RepresentativeRows ∧
+      ExposedPairingEulerInput GQTwoTable.triangles D := by
+  have hpairUnique : TrianglePairUnique GQTwoTable.triangles := by
+    intro p p' hfirst hnext
+    exact corner_unique_of_linkSimple GQTwoTable.triangles
+      GQTwoTable.link_simple hfirst hnext
+  exact ⟨gqTwo27RepresentativeRows,
+    exposedPairingEulerInput_model D B hpairUnique hcounts certificate hcellular⟩
 
 /-- The two-point torsion model refutes localization at an empty obstruction
 family, so the no-proper-power branch in the extraction theorem cannot be
