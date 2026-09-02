@@ -251,8 +251,9 @@ theorem isComp_cutWord_of_singleton
     have hjEq : j = i - start := by omega
     subst j
     rw [getElem_cutWord_lt word closeLam start m z hm (i - start)
-      (by omega) (by omega) hside, hpos]
-    exact hcomp.2.2.1 i le_rfl (by omega) (by omega)
+      (by omega) (by omega) hside]
+    simpa only [hpos] using
+      hcomp.2.2.1 i le_rfl (by omega) (by omega)
   · intro j hji hj hc
     have hjm : j < m := by omega
     have hjw : start + j < word.length := by omega
@@ -268,7 +269,8 @@ theorem isComp_cutWord_of_singleton
       have hword : start + (i - start + 1) < word.length := by omega
       rw [getElem_cutWord_lt word closeLam start m z hm
         (i - start + 1) hk hword hltm] at hc
-      exact hcomp.2.2.2.2 (by omega) (by simpa [hpos] using hc)
+      have hidx : start + (i - start + 1) = i + 1 := by omega
+      exact hcomp.2.2.2.2 (by omega) (by simpa only [hidx] using hc)
 
 /-- Connectedness between vertices before the closing edge is unchanged by
 the cut-cycle coordinate shift. -/
@@ -284,7 +286,6 @@ theorem connected_cutWord_iff (H : Λ → Subgroup G) (lam closeLam : Λ)
   rw [vertex_cutWord v word closeLam start m z hm p hp,
     vertex_cutWord v word closeLam start m z hm q hq]
 
-omit [Group G] in
 /-- A component start before the cut's closing edge is an original ordered W
 occurrence.  The only remaining start position is the closing edge itself. -/
 theorem cutWord_isCompStart_cases
