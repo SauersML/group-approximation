@@ -166,7 +166,7 @@ theorem faceOf_val_mem_of_eq_newFace (M : CombMap.{v}) (faces : Finset M.Face)
       exact (replaceGRegionFaceEquiv M faces region).apply_symm_apply
         (Sum.inr PUnit.unit)
     rw [replaceGRegionFaceEquiv_faceOf_notMem M faces region d hd] at happly
-    exact Sum.noConfusion happly
+    simp at happly
 
 /-! ## The ordered boundary of a kept face -/
 
@@ -276,11 +276,18 @@ theorem keptFaceDarts_chain (M : CombMap.{v}) (faces : Finset M.Face)
   have hnot : M.faceOf ((keptFaceDarts M faces f hf B)[i]'hivalid).1 ∉ faces := by
     rw [hvali]
     exact faceOf_notMem_of_mem_darts M faces f hf B _ (List.getElem_mem hi0)
-  apply Subtype.ext
-  rw [replaceGRegion_facePerm_val_of_notMem M faces region _ hnot, hvali, hvali1]
+  have hstep := replaceGRegion_facePerm_val_of_notMem M faces region
+    ((keptFaceDarts M faces f hf B)[i]'hivalid) hnot
   have hchain := B.chain
   rw [List.isChain_iff_getElem] at hchain
-  exact hchain i hi1
+  apply Subtype.ext
+  calc ((replaceGRegion M faces region).facePerm
+          ((keptFaceDarts M faces f hf B)[i]'hivalid)).1
+      = M.facePerm ((keptFaceDarts M faces f hf B)[i]'hivalid).1 := hstep
+    _ = M.facePerm (B.darts[i]'hi0) :=
+        congrArg (fun z : M.Dart => M.facePerm z) hvali
+    _ = B.darts[i + 1]'hi1 := hchain i hi1
+    _ = ((keptFaceDarts M faces f hf B)[i + 1]'hi).1 := hvali1.symm
 
 theorem keptFaceDarts_closes (M : CombMap.{v}) (faces : Finset M.Face)
     (region : IsDiscRegion M faces) (f : M.Face) (hf : f ∉ faces)
@@ -297,9 +304,20 @@ theorem keptFaceDarts_closes (M : CombMap.{v}) (faces : Finset M.Face)
     rw [hlast]
     exact faceOf_notMem_of_mem_darts M faces f hf B _
       (List.getLast_mem B.nonempty)
+  have hstep := replaceGRegion_facePerm_val_of_notMem M faces region
+    ((keptFaceDarts M faces f hf B).getLast
+      (keptFaceDarts_ne_nil M faces f hf B)) hnot
   apply Subtype.ext
-  rw [replaceGRegion_facePerm_val_of_notMem M faces region _ hnot, hlast, hhead]
-  exact B.closes
+  calc ((replaceGRegion M faces region).facePerm
+          ((keptFaceDarts M faces f hf B).getLast
+            (keptFaceDarts_ne_nil M faces f hf B))).1
+      = M.facePerm ((keptFaceDarts M faces f hf B).getLast
+          (keptFaceDarts_ne_nil M faces f hf B)).1 := hstep
+    _ = M.facePerm (B.darts.getLast B.nonempty) :=
+        congrArg (fun z : M.Dart => M.facePerm z) hlast
+    _ = B.darts.head B.nonempty := B.closes
+    _ = ((keptFaceDarts M faces f hf B).head
+          (keptFaceDarts_ne_nil M faces f hf B)).1 := hhead.symm
 
 /-- The ordered boundary of a kept face, given an ordered boundary of the old
 face. -/
