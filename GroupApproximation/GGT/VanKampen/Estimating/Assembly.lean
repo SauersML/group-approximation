@@ -106,6 +106,25 @@ structure Lemma62Data
     (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
   threshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)
 
+/-- A finite complementary-component averaging certificate yields the strict
+unbound budget and, with the numerical threshold, the `Lemma62Data` required
+by the assembly. -/
+theorem lemma62Data_of_partitionCertificate
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {mu : ℝ} {rho : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {scaffold : EstimatingScaffold D eps Delta}
+    {d : ℕ}
+    (certificate : UnboundEstimate.PartitionUnboundCertificate
+      Delta.rCellCount d (Real.sqrt (rho : ℝ))
+      (scaffold.partition.unboundTotal : ℝ))
+    (hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)) :
+    Nonempty (Lemma62Data D eps mu rho Delta scaffold) := by
+  refine ⟨{ unbound_lt := ?_, threshold := hthreshold }⟩
+  simpa using certificate.total_lt
+
 /-- Local geometric data before applying Lemma Eul. -/
 structure EstimatingData
     {G : Type u} [Group G] {Lambda : Type w}
@@ -397,16 +416,12 @@ theorem estimatingPieceConstruction_of_pasting_reduced
     (Delta : DiscDiagram.{u, w, v} W)
     (scaffold : EstimatingScaffold D eps Delta)
     (hred : Delta.Reduced)
-    (hbridge : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
-      Embedded.ReducedCellPieceBridge edge.candidate.contiguity)
-    (hpasting : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
-      FaceSetWordHomotopy Delta edge.candidate.1
-        edge.candidate.contiguity.boundary.cycle []) :
+    (hcertificate : ∀ edge : Embedded.InteriorEdge scaffold.selected.family,
+      Embedded.PastingReducedCellPieceCertificate edge.candidate.contiguity) :
     Nonempty (CellPieceData D eps Delta scaffold) := by
   refine ⟨{ equations := ?_ }⟩
   intro edge
-  exact Embedded.cellPieceEquations_of_pasting_reduced
-    edge.candidate.contiguity (hbridge edge) hred (hpasting edge)
+  exact (hcertificate edge).equations hred
 
 /-- The local Lemmas `61` and `62` input: after selection, the unbound arc
 partition satisfies the strict square-root budget and its numerical threshold.
