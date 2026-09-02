@@ -217,6 +217,62 @@ theorem card_position
     _ = incidence.arc.length := by
       rw [Fintype.card_fin, incidence.arc.darts_length]
 
+/-- Incidences of one of the three boundary kinds at a fixed cell. -/
+def OfKind
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (kind : CellArcKind) :=
+  {incidence : CellIncidence selected i // incidence.kind = kind}
+
+noncomputable instance ofKindFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount} {kind : CellArcKind} :
+    Fintype (OfKind (selected := selected) (i := i) kind) := by
+  classical
+  exact Fintype.ofInjective
+    (fun incidence : OfKind (selected := selected) (i := i) kind => incidence.1)
+    Subtype.val_injective
+
+/-- An occurrence is an incidence of the chosen kind together with one of
+the cell positions occupied by its arc. -/
+noncomputable def Occurrence
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (kind : CellArcKind) :=
+  Σ incidence : OfKind (selected := selected) (i := i) kind,
+    incidence.1.Position
+
+/-- Counting occurrences fibrewise sums the stored lengths of all incidences
+of the chosen kind. -/
+theorem card_occurrence_eq_sum_arcLength
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (kind : CellArcKind) :
+    Fintype.card (Occurrence (selected := selected) (i := i) kind) =
+      ∑ incidence : OfKind (selected := selected) (i := i) kind,
+        incidence.1.arc.length := by
+  classical
+  rw [Occurrence, Fintype.card_sigma]
+  apply Finset.sum_congr rfl
+  intro incidence _
+  exact incidence.1.card_position
+
 end CellIncidence
 
 /-- The singleton cyclic arc at one actual dart position. -/
