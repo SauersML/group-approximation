@@ -280,6 +280,49 @@ theorem not_girthEight_layers_of_depth_gt
   have hbound := girthEight_layer_depth_bound C layer hperimeter hsum hlayer
   omega
 
+/-! ## A finite symmetric alphabet from a finite generating tuple -/
+
+/-- Adjoin the inverses of a finite generating tuple. -/
+noncomputable def symmetrizedGeneratorFinset {Index : Type} [Fintype Index]
+    (generator : Index → G) : Finset G := by
+  classical
+  exact Finset.univ.image generator ∪
+    Finset.univ.image (fun i ↦ (generator i)⁻¹)
+
+/-- Every value of the original tuple belongs to its finite
+symmetrization. -/
+theorem generator_mem_symmetrizedGeneratorFinset
+    {Index : Type} [Fintype Index] (generator : Index → G) (i : Index) :
+    generator i ∈ symmetrizedGeneratorFinset generator := by
+  classical
+  simp [symmetrizedGeneratorFinset]
+
+/-- The finite symmetrization is closed under inversion and generates the
+whole group whenever the original tuple does. -/
+theorem symmetrizedGeneratorFinset_isSymmetricGeneratingSet
+    {Index : Type} [Fintype Index] (generator : Index → G)
+    (hgenerate : Subgroup.closure (Set.range generator) = ⊤) :
+    IsSymmetricGeneratingSet
+      ((symmetrizedGeneratorFinset generator : Finset G) : Set G) := by
+  classical
+  refine ⟨?_, ?_⟩
+  · intro x hx
+    simp only [symmetrizedGeneratorFinset, Finset.mem_coe, Finset.mem_union,
+      Finset.mem_image, Finset.mem_univ, true_and] at hx ⊢
+    rcases hx with ⟨i, hi⟩ | ⟨i, hi⟩
+    · right
+      exact ⟨i, by rw [← hi, inv_inv]⟩
+    · left
+      exact ⟨i, by rw [← hi, inv_inv]⟩
+  · have hrange : Set.range generator ⊆
+        ((symmetrizedGeneratorFinset generator : Finset G) : Set G) := by
+      intro x hx
+      obtain ⟨i, rfl⟩ := hx
+      exact generator_mem_symmetrizedGeneratorFinset generator i
+    apply le_antisymm le_top
+    rw [← hgenerate]
+    exact Subgroup.closure_mono hrange
+
 /-! ## The exact successive-star input for slimness -/
 
 /-- **The linear filling inequality gives slim triangles once successive
