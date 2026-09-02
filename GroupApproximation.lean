@@ -3175,6 +3175,11 @@ import GroupApproximation.GGT.DGOProposition414GapComponentAssembly
 import GroupApproximation.GGT.HullSCLemma49SourceAssembly
 import GroupApproximation.GGT.KazhdanHypGQSevenScheme
 import GroupApproximation.GGT.KazhdanHypGirthEightBuild
+import GroupApproximation.GGT.DGOProposition414DistributedFactorPlacement
+import GroupApproximation.GGT.DGOProposition414GapConnectorTargetComponents
+import GroupApproximation.GGT.VanKampen.DiscPathHomotopy
+import GroupApproximation.GGT.VanKampen.RelativeCactus
+import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerAdapter
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
