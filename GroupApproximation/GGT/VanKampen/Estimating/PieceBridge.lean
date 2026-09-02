@@ -433,26 +433,6 @@ def CellPieceEquations.of_boundary_equation
     arcs_value := harcs
     whole_ne := hwhole }
 
-/-- A reduced cell bridge supplies the non-cancellation field for the direct
-boundary-equation constructor. -/
-def CellPieceEquations.of_boundary_equation_reduced
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
-    {faces : Finset Delta.toCombMap.Face}
-    (Gamma : Contiguity D eps Delta faces)
-    (bridge : ReducedCellPieceBridge Gamma)
-    (harcs : GGT.RelLetter.listVal
-        (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc)) =
-      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
-        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
-        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)
-    (hred : Delta.Reduced) :
-    CellPieceEquations Gamma :=
-  CellPieceEquations.of_boundary_equation Gamma bridge.target_eq harcs
-    (bridge.whole_ne hred)
-
 /-! ## Reducedness transfer for pasted embedded regions -/
 
 /-- The data identifying an embedded source/target pair with the ordered
@@ -564,6 +544,26 @@ theorem whole_ne
       simp only [inv_inv]
 
 end ReducedCellPieceBridge
+
+/-- A reduced cell bridge supplies the non-cancellation field for the direct
+boundary-equation constructor. -/
+def CellPieceEquations.of_boundary_equation_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (harcs : GGT.RelLetter.listVal
+        (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc)) =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)
+    (hred : Delta.Reduced) :
+    CellPieceEquations Gamma :=
+  CellPieceEquations.of_boundary_equation Gamma bridge.target_eq harcs
+    (bridge.whole_ne hred)
 
 /-- A complete pasted certificate produces the two face-set equations. -/
 def PastingReducedCellPieceCertificate.equations
