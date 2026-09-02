@@ -173,6 +173,24 @@ structure Lemma62AveragingCertificate (n d : ℕ) (t : ℝ) where
   component_lt : ∀ i : Fin d,
     unboundLength i < (arcCount i : ℝ) * t / 60
 
+/-! ## Partition-level packaging -/
+
+/-- A complementary-component averaging certificate whose total is identified
+with a diagram's unbound boundary length. -/
+structure PartitionUnboundCertificate
+    (n d : ℕ) (t total : ℝ) where
+  averaging : Lemma62AveragingCertificate n d t
+  total_eq : (∑ i : Fin d, averaging.unboundLength i) = total
+
+/-- The strict square-root estimate follows from the component averaging
+certificate and its total-length identification. -/
+theorem PartitionUnboundCertificate.total_lt
+    {n d : ℕ} {t total : ℝ}
+    (certificate : PartitionUnboundCertificate n d t total) :
+    total < (n : ℝ) * t := by
+  rw [← certificate.total_eq]
+  exact certificate.averaging.total_lt
+
 /-- A Lemma 62 averaging certificate forces the total unbound length below
 `n * t`, with the strict margin `53 < 60`. -/
 theorem Lemma62AveragingCertificate.total_lt
@@ -196,6 +214,14 @@ theorem lemma62AveragingCertificate_emptyModel :
     component_lt := ?_ }⟩
   intro i
   exact Fin.elim0 i
+
+/-- The partition packaging is inhabited in the empty-component model, with
+the total identified exactly at zero. -/
+theorem partitionUnboundCertificate_emptyModel :
+    Nonempty (PartitionUnboundCertificate 1 0 1 0) := by
+  obtain ⟨averaging⟩ := lemma62AveragingCertificate_emptyModel
+  refine ⟨{ averaging := averaging, total_eq := ?_ }⟩
+  simp
 
 /-- Osin Appendix Lemma 62, averaging form: a total of at least `n * t`
 forces one component to meet the `1/60` density threshold. -/
