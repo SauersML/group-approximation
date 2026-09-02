@@ -223,15 +223,15 @@ theorem finiteAlphabetRelativePowerEscape_emptyModel
   apply finiteAlphabetRelativePowerEscape_proved G inferInstance I D
     (relGenSet_alphabet_finite_of_isEmpty D hfinite) g hord
 
-/-! ## A finite-family specialization -/
+/-! ## A finite-peripheral specialization -/
 
-/-- **Finite-family relative power escape.**  If the peripheral index is finite,
+/-- **Finite-peripheral relative power escape.**  If the peripheral index is finite,
 the base is finite, and every peripheral subgroup is finite, then the labelled
 relative alphabet is finite.  Properness of the resulting Cayley graph gives
 Osin's escape conclusion without the centralizer argument.  This is strictly
 smaller than `RelativePowerEscapeStatement`, which allows infinite peripheral
 subgroups. -/
-def FiniteFamilyRelativePowerEscapeStatement : Prop :=
+def FinitePeripheralRelativePowerEscapeStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I]
     (D : RelGenSet G I),
     D.base.Finite →
@@ -241,8 +241,8 @@ def FiniteFamilyRelativePowerEscapeStatement : Prop :=
 
 /-- The finite-family statement follows by taking the finite union of the
 base and the finitely many finite peripheral sets. -/
-theorem finiteFamilyRelativePowerEscape_proved :
-    FiniteFamilyRelativePowerEscapeStatement.{u, v} := by
+theorem finitePeripheralRelativePowerEscape_proved :
+    FinitePeripheralRelativePowerEscapeStatement.{u, v} := by
   intro G instG I _ D hbase hfam g hord
   letI : Group G := instG
   have hunion : (⋃ i : I, (D.fam i : Set G)).Finite := by
@@ -256,7 +256,7 @@ theorem finiteFamilyRelativePowerEscape_proved :
 /-- Model test for the finite-family specialization.  In the one-point group
 there is no positive-order element, so the order premise closes the statement
 for every finite peripheral index and every relative generating set. -/
-theorem finiteFamilyRelativePowerEscape_trivialModel
+theorem finitePeripheralRelativePowerEscape_trivialModel
     {I : Type v} [Finite I] (D : RelGenSet PUnit I) (g : PUnit)
     (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
     IsEscaping g (Cayley.base D.alphabet) := by
@@ -269,11 +269,8 @@ theorem finiteFamilyRelativePowerEscape_trivialModel
 /-- **Finite-family Osin escape target.**  This is the finite-index form of
 `RelativePowerEscapeStatement` with the hypotheses displayed in Osin's
 Theorem 1.10: a finite relative base, a hyperbolically embedded labelled
-family, and a hyperbolic infinite-order element.  The earlier
-`FiniteFamilyRelativePowerEscapeStatement` above is retained as the proved
-finite-peripheral specialization; this source-facing target is the one that
-allows infinite peripheral subgroups. -/
-def FiniteFamilyRelativePowerEscapeSourceStatement : Prop :=
+family, and a hyperbolic infinite-order element. -/
+def FiniteFamilyRelativePowerEscapeStatement : Prop :=
   ∀ (G : Type u) (_ : Group G) (I : Type v) [Finite I]
     (D : RelGenSet G I),
     D.base.Finite → D.IsHyperbolicallyEmbedded → ∀ g : G,
@@ -283,9 +280,9 @@ def FiniteFamilyRelativePowerEscapeSourceStatement : Prop :=
 
 /-- The general finite-base escape statement immediately supplies its
 finite-index specialization. -/
-theorem finiteFamilyRelativePowerEscapeSource_of_relativePowerEscape
+theorem finiteFamilyRelativePowerEscape_of_relativePowerEscape
     (hEscape : RelativePowerEscapeStatement.{u, v}) :
-    FiniteFamilyRelativePowerEscapeSourceStatement.{u, v} := by
+    FiniteFamilyRelativePowerEscapeStatement.{u, v} := by
   intro G instG I _ D hbase hemb g hhyper hord
   exact hEscape G instG I D hbase hemb g hhyper hord
 
@@ -293,9 +290,9 @@ theorem finiteFamilyRelativePowerEscapeSource_of_relativePowerEscape
 extraction.  The empty-family branch is the finite-alphabet model; when the
 family is nonempty, `isEscaping_of_relativeBoundedPowerExtraction` supplies
 the Memoirs power-growth conclusion. -/
-theorem finiteFamilyRelativePowerEscapeSource_of_boundedPowerExtraction
+theorem finiteFamilyRelativePowerEscape_of_boundedPowerExtraction
     (hExtract : RelativeBoundedPowerExtractionStatement.{u, v}) :
-    FiniteFamilyRelativePowerEscapeSourceStatement.{u, v} := by
+    FiniteFamilyRelativePowerEscapeStatement.{u, v} := by
   classical
   intro G instG I _ D hbase hemb g hhyper hord
   letI : Group G := instG
@@ -308,7 +305,7 @@ theorem finiteFamilyRelativePowerEscapeSource_of_boundedPowerExtraction
 
 /-- Model test for the source-facing finite-family target: in `PUnit` the
 infinite-order premise is contradictory, so the conclusion is immediate. -/
-theorem finiteFamilyRelativePowerEscapeSource_trivialModel
+theorem finiteFamilyRelativePowerEscape_trivialModel
     {I : Type v} [Finite I] (D : RelGenSet PUnit I)
     (_hbase : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
     (_hhyper : IsHyperbolicElement D.fam g)
@@ -339,7 +336,7 @@ theorem hyperbolicElementLoxodromic_of_finiteFamily
   obtain ⟨delta, hdelta⟩ := hemb.hyperbolic
   exact HullSCUnionGeometry.escapingIsLoxodromic_cayley_of_acylindrical
     D.alphabet hdelta hacy g
-      (finiteFamilyRelativePowerEscape_proved G inferInstance I D hbase hfam g hord)
+      (finitePeripheralRelativePowerEscape_proved G inferInstance I D hbase hfam g hord)
 
 /-! ### The missing finite-base binder is load-bearing
 
