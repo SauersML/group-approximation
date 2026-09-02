@@ -80,7 +80,7 @@ theorem firstGapChordSource_segmentIsolated
   refine ⟨⟨i + 1, hcomp⟩, ?_⟩
   intro q hqi hqstart hconnected
   exact not_connected_of_isCompStart_of_geodesic D hgeo
-    ⟨i + 1, hcomp⟩ hqstart hqi hconnected
+    ⟨i + 1, hcomp⟩ hqstart hqi.symm hconnected
 
 /-- A charged first-half source is a maximal one-edge component in the
 oriented chord of its wrapped-half gap child. -/
@@ -137,7 +137,7 @@ theorem secondGapChordSource_segmentIsolated
   refine ⟨⟨i + 1, hcomp⟩, ?_⟩
   intro q hqi hqstart hconnected
   exact not_connected_of_isCompStart_of_geodesic D hgeo
-    ⟨i + 1, hcomp⟩ hqstart hqi hconnected
+    ⟨i + 1, hcomp⟩ hqstart hqi.symm hconnected
 
 end BalancedSplitData
 
