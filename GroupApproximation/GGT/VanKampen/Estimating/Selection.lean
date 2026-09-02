@@ -159,7 +159,7 @@ theorem not_weight_ge_and_card_lt {C : Type u} [Fintype C]
   have hminimal := selected.card_minimal replacement hreplacement hequal
   omega
 
-/-- Consequently, a compatible replacement with no smaller total length has
+/-- A compatible replacement with no smaller total length has
 at least as many regions as the distinguished family. -/
 theorem card_le_of_weight_le {C : Type u} [Fintype C]
     {compatible : C → C → Prop} {weight : C → ℕ}
