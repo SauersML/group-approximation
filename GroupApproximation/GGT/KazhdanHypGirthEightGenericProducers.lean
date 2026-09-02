@@ -19,6 +19,7 @@ open TriangularHodgeLayer
 open GroupApproximation.KazhdanHyp
 open VanKampen
 open VanKampen.SeamGluing
+open VanKampen.SeamGluing.Pairing
 open GirthEightTorsionExtraction
 open GirthEightPrimitives2
 open GirthEightVKInterface
@@ -45,6 +46,8 @@ def CactusPowerFoldStepSource : Prop :=
       ∃ Delta : DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
         Delta.toCombMap.IsPlanar ∧
         ∃ C : CactusBaseCellFoldData Delta,
+          C.powerWord = word.map signedFreeRelLetter ∧
+          C.exponent = n ∧
           C.before_power =
               (List.replicate n (word.map signedFreeRelLetter)).flatten ∧
           C.after_power =
@@ -60,10 +63,10 @@ theorem cactusBaseCellDeletionForPower_of_foldStepSource
     CactusBaseCellDeletionForPower T := by
   rw [CactusPowerFoldStepSource] at hsource
   intro g n hn hpow hne word hword
-  obtain ⟨Delta, hplanar, C, hbefore, hafter, hdrop⟩ :=
+  obtain ⟨Delta, hplanar, C, hCword, hCn, _hbefore, hafter, _hdrop⟩ :=
     hsource g n hn hpow hne word hword
   refine ⟨Delta, hplanar, C.toDeletion, ?_⟩
-  exact hafter
+  simpa [hCword, hCn] using hafter
 
 /-- A power-fold chain source.  Each step is a concrete landed
 `CactusBaseCellDeletion`; the chain index is the number of deleted base
@@ -78,6 +81,7 @@ def CactusPowerFoldChainSource : Prop :=
       ∃ Delta Next : DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
         Delta.toCombMap.IsPlanar ∧ Delta.Reduced ∧
         ∃ k : ℕ, ∃ chain : CactusFoldChain Delta Next k,
+          Next.innerFaceCount + k = Delta.innerFaceCount ∧
           Delta.boundaryWord =
             (List.replicate n (word.map signedFreeRelLetter)).flatten
 
@@ -88,7 +92,7 @@ theorem cactusRelatorRetypingForPower_of_foldChainSource
     CactusRelatorRetypingForPower T := by
   rw [CactusPowerFoldChainSource] at hsource
   intro g n hn hpow hne word hword
-  obtain ⟨Delta, Next, hplanar, hred, k, chain, hboundary⟩ :=
+  obtain ⟨Delta, Next, hplanar, hred, k, chain, _harea, hboundary⟩ :=
     hsource g n hn hpow hne word hword
   let R : CactusRelatorRetyping Delta :=
     chain.toRetyping hplanar hred
@@ -112,6 +116,14 @@ theorem cactusPowerFoldStep_oneCell_model
   exact C.area_zero_of_oneCell hone
 
 /-! ## Exposed pairing and Euler counts -/
+
+abbrev PlanarDiscExposedPairingEulerProducer : Prop :=
+  ∀ (Generator TriangleIndex : Type)
+    (_ : Fintype Generator) (_ : DecidableEq Generator)
+    (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
+    (T : TriangleIndex → Triangle Generator)
+    (g : Presented T) (n : ℕ) (D : PowerDisc T g n),
+    ExposedPairingEulerInput T D
 
 /-- Raw seam geometry for the exposed-pairing producer.  The mate is built
 from a boundary indexing equivalence, connectedness is supplied by a landed
@@ -146,11 +158,9 @@ theorem planarDiscExposedPairingEulerData_of_planarDisc
       (T : TriangleIndex → Triangle Generator)
       (g : Presented T) (n : ℕ) (D : PowerDisc T g n),
       PlanarDiscExposedPairingGeometry T D) :
-    ExposedPairingEulerProducer := by
+    PlanarDiscExposedPairingEulerProducer := by
   intro Generator TriangleIndex fg dg ft dt T g n D
   let G := hsource Generator TriangleIndex fg dg ft dt T g n D
-  let B := ExposedPairing.of_copyMate G.index G.index_copy G.copyMate
-    G.hinvol G.hfree
   refine ⟨G.indexType, G.index, G.index_copy, G.copyMate,
     G.hinvol, G.hfree, ?_, G.corner, G.cellular⟩
   exact G.incidence
