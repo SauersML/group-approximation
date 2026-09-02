@@ -2,6 +2,7 @@ import GroupApproximation.GGT.VanKampen.CombMap
 import GroupApproximation.GGT.VanKampen.DiscDiagram
 import GroupApproximation.GGT.VanKampen.CombMapStars
 import GroupApproximation.GGT.VanKampen.SurgeryMap
+import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
 
 /-!
 # Rooted paths and face-boundary homotopy
@@ -27,6 +28,8 @@ namespace GGT
 namespace GirthEightPrimitives2
 
 open GroupApproximation.GGT.VanKampen
+open GroupApproximation.GGT.GirthEightVKInterface
+open GroupApproximation.KazhdanHyp
 
 universe u w v
 
@@ -237,6 +240,84 @@ theorem replacement_planar
 
 end FaceDeletionStep
 
+/-! ## The one-face deletion certificate -/
+
+/-- The local topological certificate used by the planar path induction.  The
+selected region is one inner face, and its map-collapse boundary is required
+to be the canonical face boundary.  The equality is important: it is what
+turns the map deletion into the `faceErase` move on the original dart word.
+
+`Surgery.MapCollapse.IsDiscRegion` intentionally stores connectedness and
+Euler preservation rather than pretending that they follow from a bare
+finite set of faces.  This is therefore the exact small certificate needed
+from the planar face-deletion lemma. -/
+structure SingleFaceDiscRegionCertificate
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  face : Delta.toCombMap.Face
+  inner : face ≠ Delta.outerFace
+  region : VanKampen.Surgery.MapCollapse.IsDiscRegion
+    Delta.toCombMap {face}
+  boundary_eq : region.toBoundaryCycle.cycle =
+    (Delta.faceBoundary face).darts
+
+/-- A singleton face certificate is exactly a valid elementary deletion move.
+The theorem is kept separate from the path induction so the topological
+producer can be replaced without changing the algebraic consumer. -/
+theorem SingleFaceDiscRegionCertificate.face_move
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : SingleFaceDiscRegionCertificate Delta)
+    (before after : List Delta.toCombMap.Dart) :
+    ElementaryPathMove Delta
+      (before ++ C.region.toBoundaryCycle.cycle ++ after)
+      (before ++ after) := by
+  rw [C.boundary_eq]
+  exact .faceErase C.face C.inner before after
+
+/-! ## Induction with the narrowed topological input -/
+
+/-- The path-deletion plan required by the strong induction, with the
+`IsDiscRegion` witness narrowed to a single adjacent inner face. -/
+structure SingleFaceDeletionPlan
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (R : RootedPathSystem Delta.toCombMap) where
+  rank : ∀ (vertex : Delta.toCombMap.Vertex),
+    DartPath Delta.toCombMap R.root vertex → ℕ
+  delete : ∀ (vertex : Delta.toCombMap.Vertex)
+    (p q : DartPath Delta.toCombMap R.root vertex), p ≠ q →
+    ∃ (C : SingleFaceDiscRegionCertificate Delta)
+      (common : DartPath Delta.toCombMap R.root vertex),
+      ∃ (before after : List Delta.toCombMap.Dart),
+        p.darts = before ++ C.region.toBoundaryCycle.cycle ++ after ∧
+        common.darts = before ++ after ∧
+      rank vertex common < rank vertex p
+
+/-- A one-face deletion plan is the general `FaceDeletionStep` consumed by
+`rootedPathsFaceComplete_of_faceDeletionStep`. -/
+def SingleFaceDeletionPlan.toFaceDeletionStep
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {R : RootedPathSystem Delta.toCombMap}
+    (P : SingleFaceDeletionPlan Delta R) : FaceDeletionStep Delta R where
+  rank := P.rank
+  delete vertex p q hpq := by
+    obtain ⟨C, common, before, after, hp, hc, hlt⟩ :=
+      P.delete vertex p q hpq
+    refine ⟨{C.face}, C.region, common, ?_, ?_, ?_, hlt⟩
+    · intro f hf
+      have hf' : f = C.face := by simpa using hf
+      subst f
+      exact C.inner
+    · simpa [C.boundary_eq] using C.region.toBoundaryCycle.cycle_nonempty
+    · rw [hp, hc]
+      exact C.face_move before after
+
 /-- A face-deletion implementation supplies the local induction data needed
 by `RootedPathsFaceComplete`. -/
 structure FaceDeletionCompletenessWitness
@@ -272,6 +353,18 @@ theorem rootedPathsFaceComplete_of_faceDeletionStep
         exact (ElementaryPathMove.toHomotopy hp).trans
           hpc'
 
+/-- The strong induction closes once the one-face planar deletion plan is
+available. -/
+theorem rootedPathsFaceComplete_of_singleFaceDeletionPlan
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (R : RootedPathSystem Delta.toCombMap)
+    (P : SingleFaceDeletionPlan Delta R) :
+    RootedPathsFaceComplete Delta R :=
+  rootedPathsFaceComplete_of_faceDeletionStep Delta R
+    P.toFaceDeletionStep
+
 /-- The clean interface turns a face-deletion witness into the exact named
 path-completeness proposition. -/
 theorem rootedPathsFaceComplete_of_faceDeletion
@@ -282,6 +375,173 @@ theorem rootedPathsFaceComplete_of_faceDeletion
     (H : FaceDeletionCompletenessWitness Delta R) :
     RootedPathsFaceComplete Delta R :=
   rootedPathsFaceComplete_of_faceDeletionStep Delta R H.step
+
+/-! ## Path integration for the clean girth-eight closure -/
+
+section Cayley
+
+variable {Generator TriangleIndex : Type}
+  [Fintype Generator] [DecidableEq Generator]
+  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+
+/-- Evaluate a diagram path in the triangularly presented Cayley group. -/
+def cayleyPathValue
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    {x y : Delta.toCombMap.Vertex} (p : DartPath Delta.toCombMap x y) :
+    TriangularHodgeLayer.Presented T :=
+  (p.darts.map fun d ↦ presentedLetterValue T (Delta.label d)).prod
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem cayleyPathValue_append
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    {x y z : Delta.toCombMap.Vertex}
+    (p : DartPath Delta.toCombMap x y) (q : DartPath Delta.toCombMap y z) :
+    cayleyPathValue Delta (p.append q) =
+      cayleyPathValue Delta p * cayleyPathValue Delta q := by
+  simp [cayleyPathValue, List.map_append, List.prod_append]
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem cayleyPathValue_single
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (d : Delta.toCombMap.Dart) :
+    cayleyPathValue Delta (DartPath.single d) =
+      presentedLetterValue T (Delta.label d) := by
+  simp [cayleyPathValue]
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem presentedLetterValue_inv
+    (a : GGT.RelLetter (FreeGroup Generator) PEmpty) :
+    presentedLetterValue T (HullSC.RelWord.inv a) =
+      (presentedLetterValue T a)⁻¹ := by
+  cases a with
+  | base x => simp [presentedLetterValue, HullSC.RelWord.inv]
+  | comp i _ => exact PEmpty.elim i
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem pathValue_erase_backtrack
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (d : Delta.toCombMap.Dart)
+    (before after : List Delta.toCombMap.Dart) :
+    ((before ++ d :: Delta.toCombMap.alpha d :: after).map (fun e ↦
+      presentedLetterValue T (Delta.label e))).prod =
+      ((before ++ after).map (fun e ↦
+        presentedLetterValue T (Delta.label e))).prod := by
+  have halpha : presentedLetterValue T
+      (Delta.label (Delta.toCombMap.alpha d)) =
+        (presentedLetterValue T (Delta.label d))⁻¹ := by
+    rw [Delta.label_alpha]
+    exact presentedLetterValue_inv (T := T) (Delta.label d)
+  simp only [List.map_append, List.map_cons, List.prod_append,
+    List.prod_cons]
+  rw [halpha]
+  simp
+
+theorem innerFace_presentedValue_eq_one
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (R : RelatorOnly T Delta) (f : Delta.toCombMap.Face)
+    (hf : f ≠ Delta.outerFace) :
+    ((Delta.faceWord f).map (fun d ↦ presentedLetterValue T d)).prod = 1 := by
+  obtain ⟨j, hj⟩ := R.exists_faceWord_eq f hf
+  rw [hj, triangleRelatorWord, List.map_map]
+  have hletter : ∀ u : TriangularHodgeLayer.SignedGenerator Generator,
+      presentedLetterValue T
+          (signedFreeRelLetter u :
+            GGT.RelLetter (FreeGroup Generator) PEmpty) =
+        FoxBoundary.letterValue (TriangularHodgeLayer.generator T) u := by
+    intro u
+    simpa using
+      (GirthEightVKInterface.presentedLetterValue_signedFreeRelLetter
+        (T := T) u)
+  rw [show (TriangularHodgeLayer.letters (T j)).map (fun u ↦
+      presentedLetterValue T
+        (signedFreeRelLetter u :
+          GGT.RelLetter (FreeGroup Generator) PEmpty)) =
+      (TriangularHodgeLayer.letters (T j)).map
+        (FoxBoundary.letterValue (TriangularHodgeLayer.generator T)) by
+    induction TriangularHodgeLayer.letters (T j) with
+    | nil => rfl
+    | cons u us ih => simp only [List.map_cons, hletter u, ih]]
+  exact TriangularHodgeLayer.wordValue_triangle_eq_one T j
+
+theorem pathValue_erase_innerFace
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (R : RelatorOnly T Delta) (f : Delta.toCombMap.Face)
+    (hf : f ≠ Delta.outerFace)
+    (before after : List Delta.toCombMap.Dart) :
+    ((before ++ (Delta.faceBoundary f).darts ++ after).map (fun d ↦
+      presentedLetterValue T (Delta.label d))).prod =
+      ((before ++ after).map (fun d ↦
+        presentedLetterValue T (Delta.label d))).prod := by
+  have hface : (((Delta.faceBoundary f).darts.map Delta.label).map
+      (presentedLetterValue T)).prod = 1 := by
+    change ((Delta.faceWord f).map
+      (fun d ↦ presentedLetterValue T d)).prod = 1
+    exact innerFace_presentedValue_eq_one Delta R f hf
+  simp only [List.map_append, List.prod_append]
+  rw [hface]
+  simp
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem innerFaceWordHomotopy_value_eq
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (R : RelatorOnly T Delta) {a b : List Delta.toCombMap.Dart}
+    (h : InnerFaceWordHomotopy Delta a b) :
+    (a.map (fun d ↦ presentedLetterValue T (Delta.label d))).prod =
+      (b.map (fun d ↦ presentedLetterValue T (Delta.label d))).prod := by
+  induction h with
+  | refl => rfl
+  | erase f hf before after =>
+      exact pathValue_erase_innerFace Delta R f hf before after
+  | eraseBacktrack d before after =>
+      exact pathValue_erase_backtrack Delta d before after
+  | symm _ ih => exact ih.symm
+  | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
+
+/-- Path integration is well-defined once the rooted path completeness
+certificate has been supplied. -/
+abbrev PathIntegralWellDefined
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (R : RootedPathSystem Delta.toCombMap) : Prop :=
+  ∀ (v : Delta.toCombMap.Vertex)
+    (p q : DartPath Delta.toCombMap R.root v),
+    cayleyPathValue Delta p = cayleyPathValue Delta q
+
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
+theorem pathIntegralWellDefined_of_faceComplete
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (relatorOnly : RelatorOnly T Delta)
+    (R : RootedPathSystem Delta.toCombMap)
+    (hcomplete : RootedPathsFaceComplete Delta R) :
+    PathIntegralWellDefined Delta R := by
+  intro v p q
+  exact innerFaceWordHomotopy_value_eq Delta relatorOnly
+    (hcomplete v p q)
+
+/-- Construct the Cayley vertex labelling used by successive stars from the
+rooted path certificate. -/
+noncomputable def cayleyVertexLabelling_of_faceComplete
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (relatorOnly : RelatorOnly T Delta)
+    (R : RootedPathSystem Delta.toCombMap)
+    (hcomplete : RootedPathsFaceComplete Delta R) :
+    CayleyVertexLabelling T Delta where
+  value v := cayleyPathValue Delta (R.pathTo v)
+  edge d := by
+    let extended := (R.pathTo (Delta.toCombMap.vertexOf d)).append
+      (DartPath.single d)
+    calc
+      cayleyPathValue Delta
+          (R.pathTo (Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d))) =
+          cayleyPathValue Delta extended := by
+        exact (pathIntegralWellDefined_of_faceComplete Delta relatorOnly R
+          hcomplete _ extended (R.pathTo _)).symm
+      _ = cayleyPathValue Delta (R.pathTo
+            (Delta.toCombMap.vertexOf d)) *
+          presentedLetterValue T (Delta.label d) := by
+        rw [cayleyPathValue_append, cayleyPathValue_single]
+
+end Cayley
 
 /-! ## One-triangle model checks -/
 

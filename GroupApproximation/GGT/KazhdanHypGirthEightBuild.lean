@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightSlim
 import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
-import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives2
+import GroupApproximation.GGT.VanKampen.DiscPathHomotopy
+import GroupApproximation.GGT.KazhdanHypGirthEightLayerInjection
 import GroupApproximation.GGT.VanKampen.CactusRealization
 import GroupApproximation.GGT.VanKampen.CombMapReduction
 import GroupApproximation.GGT.VanKampen.CombMapStars
@@ -20,9 +21,9 @@ the four inequalities are passed to the existing metric consumer.
 The source operations used here are the face-star disjointness theorem
 `CombMap.faceStarLayer_disjoint`, the identity reduction theorem
 `VanKampen.identityRelatorOnlyReduction`, and the cactus construction in
-`VanKampen.CactusRealization`.  The two geometric existence inputs are not
-available in the current map interface, so they are stated separately and
-model-tested on the trivial presentation.
+`VanKampen.CactusRealization`.  The singleton-region, far-point, and
+centered-window producers are kept as named certificates until their
+topological/geodesic constructions are available.
 -/
 
 namespace GroupApproximation
@@ -173,6 +174,40 @@ theorem baseCellEliminationAt_of_relatorCellCover
   }⟩
   rw [I.rCellCount_eq]
 
+/-- A landed cactus retyping certificate becomes the required reduction by
+first invoking the exact-boundary bridge and then the named identity
+reduction on its relator-only output. -/
+theorem baseCellEliminationAt_of_cactusRelatorRetyping
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (C : VanKampen.CactusRelatorRetyping Delta) :
+    BaseCellEliminationAt (T := T) Delta := by
+  intro hred
+  obtain ⟨D, hboundary, hcover, hDred, hcount⟩ :=
+    VanKampen.exactBoundaryRelatorOnly_of_cactusRetyping Delta C
+  let I := VanKampen.identityRelatorOnlyReduction D hcover hDred
+  refine ⟨{
+    diagram := I.diagram
+    boundaryWord_eq := I.boundaryWord_eq.trans hboundary
+    rCellCount_le := ?_
+    reduced := I.reduced
+    relatorOnly := { cell := I.cover.cell }
+  }⟩
+  exact I.rCellCount_eq.le.trans hcount
+
+/-- The global producer needed to make `BaseCellElimination` unconditional is
+explicitly the family of cactus retyping certificates.  Keeping this input
+named makes the remaining topological obligation visible to the consumer. -/
+def CactusRelatorRetypingAvailability : Prop :=
+  ∀ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T)),
+    Delta.Reduced → Nonempty (VanKampen.CactusRelatorRetyping Delta)
+
+theorem baseCellElimination_of_cactusRelatorRetypingAvailability
+    (hcertificate : CactusRelatorRetypingAvailability (T := T)) :
+    BaseCellElimination (T := T) := by
+  intro Delta hred
+  obtain ⟨C⟩ := hcertificate Delta hred
+  exact baseCellEliminationAt_of_cactusRelatorRetyping Delta C
+
 omit [Fintype Generator] [DecidableEq Generator]
     [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
 /-- A diagram with only its exterior face is eliminated by the named identity
@@ -234,6 +269,32 @@ theorem innerStarLayers_sum_bound_from_combMapStars
 
 /-! ## The local-data and successive-star residual -/
 
+/-- Package the clean layer-injection inequalities into the interface record.
+This copy lives in the clean build closure so the build module does not need
+the repairing `KazhdanHypGirthEightPrimitives2` import. -/
+noncomputable def successiveStarLayers_of_geometricData
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (L : TriangularDiagramLocalData T Delta)
+    (cayley : CayleyVertexLabelling T Delta) (side : BoundarySubpath T Delta)
+    (depth scale loss perimeter : ℕ)
+    (hboundary : Delta.combinatorialBoundaryLength ≤ 6 * scale)
+    (hcover : LayerCoversWindow Delta side depth scale loss perimeter)
+    (hdepth : 18 * perimeter * scale < depth * (scale - loss)) :
+    SuccessiveStarLayers T where
+  diagram := Delta
+  localData := L
+  cayley := cayley
+  side := side
+  depth := depth
+  scale := scale
+  loss := loss
+  perimeter := perimeter
+  layer i := (innerBoundaryFaceStarLayer Delta side i).card
+  boundary_bound := hboundary
+  layer_disjoint := innerStarLayers_sum_bound_from_combMapStars Delta side depth
+  layer_covers := hcover
+  depth_too_large := hdepth
+
 /-- One output of the missing local-data and star construction. -/
 structure StarLayerInput
     (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
@@ -256,6 +317,76 @@ structure StarLayerInput
   layer_covers : LayerCoversWindow Delta side depth scale loss perimeter
   /-- The chosen depth exceeds the arithmetic curvature bound. -/
   depth_too_large : 18 * perimeter * scale < depth * (scale - loss)
+
+/-- The concrete certificate consumed by the star constructor.  The Cayley
+labelling is not an independent field: it is obtained from the rooted-path
+completeness theorem, while the centered first-face certificate supplies the
+layer covering inequality. -/
+structure StarLayerConstructionCertificate
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (_L : TriangularDiagramLocalData T Delta) where
+  rooted : RootedPathSystem Delta.toCombMap
+  rooted_complete : RootedPathsFaceComplete Delta rooted
+  side : BoundarySubpath T Delta
+  depth : ℕ
+  scale : ℕ
+  loss : ℕ
+  perimeter : ℕ
+  centered_cover : CenteredWindowLayerCover Delta side depth scale loss perimeter
+  boundary_bound : Delta.combinatorialBoundaryLength ≤ 6 * scale
+  depth_too_large : 18 * perimeter * scale < depth * (scale - loss)
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Rooted-path completeness and the centered first-face certificate construct
+all fields of the star input, including its covering inequality. -/
+noncomputable def starLayerInput_of_faceComplete_and_layerCover
+    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (L : TriangularDiagramLocalData T Delta)
+    (C : StarLayerConstructionCertificate Delta L) (_hred : Delta.Reduced) :
+    Nonempty (StarLayerInput (T := T) Delta L) := by
+  let relatorOnly : RelatorOnly T Delta := { cell := L.innerFaceCell }
+  let cayley := cayleyVertexLabelling_of_faceComplete Delta relatorOnly
+    C.rooted C.rooted_complete
+  have hcover := layerCoversWindow_of_layerCover Delta C.side C.depth
+    C.scale C.loss C.perimeter C.centered_cover
+  exact ⟨{
+    cayley := cayley
+    side := C.side
+    depth := C.depth
+    scale := C.scale
+    loss := C.loss
+    perimeter := C.perimeter
+    boundary_bound := C.boundary_bound
+    layer_covers := hcover
+    depth_too_large := C.depth_too_large
+  }⟩
+
+/-- The only remaining star producer is the existence of the explicit
+rooted-path/centered-window certificate for every reduced filling. -/
+def StarLayerConstructionCertificateInput : Prop :=
+  ∀ (delta : ℕ) (x y z p : TriangularHodgeLayer.Presented T),
+    Hyperbolic.IsBetween
+      (↑(GirthEightSlim.presentedGeneratorFinset T) :
+        Set (TriangularHodgeLayer.Presented T)) x p y →
+    (∀ q : TriangularHodgeLayer.Presented T,
+      Hyperbolic.IsBetween
+        (↑(GirthEightSlim.presentedGeneratorFinset T) :
+          Set (TriangularHodgeLayer.Presented T)) x q z →
+      delta < wordDist
+        (↑(GirthEightSlim.presentedGeneratorFinset T) :
+          Set (TriangularHodgeLayer.Presented T)) p q) →
+    (∀ q : TriangularHodgeLayer.Presented T,
+      Hyperbolic.IsBetween
+        (↑(GirthEightSlim.presentedGeneratorFinset T) :
+          Set (TriangularHodgeLayer.Presented T)) z q y →
+      delta < wordDist
+        (↑(GirthEightSlim.presentedGeneratorFinset T) :
+          Set (TriangularHodgeLayer.Presented T)) p q) →
+    ∀ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T)),
+      Delta.Reduced →
+      ∃ L : TriangularDiagramLocalData T Delta,
+        Nonempty (StarLayerConstructionCertificate Delta L)
 
 /-- The remaining local topological input: a reduced cactus output has local
 diagram data and a centered star construction with all four numerical fields.
@@ -284,6 +415,13 @@ def StarLayerConstruction : Prop :=
       Delta.Reduced →
       ∃ L : TriangularDiagramLocalData T Delta,
         Nonempty (StarLayerInput (T := T) Delta L)
+
+theorem starLayerConstruction_of_certificate
+    (hcertificate : StarLayerConstructionCertificateInput (T := T)) :
+    StarLayerConstruction (T := T) := by
+  intro delta x y z p hp hfarXZ hfarZY Delta hred
+  obtain ⟨L, ⟨C⟩⟩ := hcertificate delta x y z p hp hfarXZ hfarZY Delta hred
+  exact ⟨L, starLayerInput_of_faceComplete_and_layerCover Delta L C hred⟩
 
 namespace StarLayerInput
 
