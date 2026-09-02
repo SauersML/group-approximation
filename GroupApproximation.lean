@@ -3223,7 +3223,6 @@ import GroupApproximation.GGT.HullSCLemma44PrefixKernelCutConstruction
 import GroupApproximation.GGT.HullSCLemma44RelativeCertificateAdapter
 import GroupApproximation.GGT.KazhdanHypGQEightTablePerPoint
 import GroupApproximation.GGT.KazhdanHypGirthEightFarPointProducer
-import GroupApproximation.GGT.KazhdanHypGirthEightGenericProducers
 import GroupApproximation.GGT.KazhdanHypGirthEightStarProducer
 import GroupApproximation.GGT.KazhdanHypGirthEightUnconditional
 import GroupApproximation.GGT.RelHypOsin24BoundedWordPattern
@@ -3231,7 +3230,6 @@ import GroupApproximation.GGT.RelHypOsin24PowerGrowth
 import GroupApproximation.GGT.VanKampen.FaceSetDualConnectivity
 import GroupApproximation.GGT.HullSCLemma49BoundaryPartition
 import GroupApproximation.GGT.DGOProposition414CompleteTargetFamily
-import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
 import GroupApproximation.GGT.KazhdanHypGirthEightReducedSeam
 import GroupApproximation.GGT.RelHypOsin24PatternPigeonhole
 import GroupApproximation.GGT.RelHypOsin24PatternSlice
@@ -3248,6 +3246,7 @@ import GroupApproximation.GGT.VanKampen.FaceSetArcRotation
 import GroupApproximation.GGT.VanKampen.FaceSetBoundaryWalk
 import GroupApproximation.GGT.VanKampen.FaceSetPeeledCycle
 import GroupApproximation.GGT.VanKampen.FaceSetEar
+import GroupApproximation.GGT.VanKampen.FaceSetDualLeaf
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
