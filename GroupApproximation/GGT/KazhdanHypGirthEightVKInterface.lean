@@ -373,6 +373,7 @@ theorem oneTriangle_vertexDegree_two_le
     (d : VanKampen.OneTriangleDart) :
     2 ≤ VanKampen.oneTriangleCombMap.vertexDegree
       (VanKampen.oneTriangleCombMap.vertexOf d) := by
+  classical
   change 2 ≤ VanKampen.CombMap.orbitDegree
     VanKampen.oneTriangleCombMap.sigma (Quotient.mk'' d)
   rw [← VanKampen.closedOrbitList.length_eq_orbitDegree]
