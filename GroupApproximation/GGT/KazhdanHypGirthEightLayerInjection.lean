@@ -98,8 +98,14 @@ theorem innerBoundaryFaceStarLayer_disjoint
       by
         by_cases hi : i = 0
         · subst i
-          simpa [VanKampen.CombMap.faceStarLayer] using hfi
-        · simpa [VanKampen.CombMap.faceStarLayer, hi] using hfi
+          simpa [VanKampen.CombMap.faceStarLayer,
+            VanKampen.CombMap.faceStarBall] using hfi
+        · have hfi' : face ∈
+              Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) i ∧
+              face ∉ Delta.toCombMap.faceStarBall
+                (boundaryFaceSeed Delta P) (i - 1) := by
+            simpa [VanKampen.CombMap.faceStarLayer, hi] using hfi
+          exact hfi'.1
     have hijpred : i ≤ j - 1 := by omega
     have hfpred : face ∈
         Delta.toCombMap.faceStarBall (boundaryFaceSeed Delta P) (j - 1) :=
@@ -227,7 +233,10 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hslot := congrArg (fun p ↦ p.2) hxy
   dsimp at hslot
   unfold firstLayerIncidenceSlot at hslot
-  have hslot_val := congrArg Fin.val hslot
+  have hslot_val :
+      (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val =
+        (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val := by
+    simpa [firstLayerIncidenceSlot] using congrArg Fin.val hslot
   clear hslot
   clear hxy
   cases hface
