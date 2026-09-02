@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.KazhdanHypGQEightTableFormat
+import GroupApproximation.GGT.KazhdanHypGQEightTableSoundness
 import GroupApproximation.GGT.KazhdanHypGirthEightNontrivial
 import GroupApproximation.GGT.KazhdanHypGirthEightTorsionExtraction
 import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
@@ -8,7 +8,9 @@ import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
 
 The finite table checker supplies the two finite facts used by the endpoint:
 `GirthEightChecks` and the identification of the presentation link with the
-algebraic `W(8)` link.  The latter is fed to
+algebraic `W(8)` link.  Both are the soundness theorems of
+`GGT/KazhdanHypGQEightTableSoundness.lean`, and both consume the single
+Boolean `GQEightTableFormat.checkTable`.  The latter is fed to
 `girthEightSDPChecks_of_linkIdentification`, so the Gram rows are the rows of
 `wEightQuadrangleLinkData` reindexed along the checked link equivalence; no
 enumeration of the 1170 signed link vertices occurs here.
@@ -320,48 +322,64 @@ theorem infinite_and_finitelyPresented_of_girthEightChecks
 torsion-free, hyperbolic Kazhdan endpoint.  The theorem has exactly the four
 not-yet-landed producers as explicit hypotheses: kohyp's diagram primitives,
 the cactus base-cell deletion, the power-disc mirror-pair deletion, and the
-exposed pairing/Euler input.  The table checker and its two soundness theorems
-are imported from `KazhdanHyp.GQEightTable` as the finite part of the API.
+exposed pairing/Euler input.
+
+The finite part of the API is the verifier `GQEightTableFormat.checkTable` of
+`KazhdanHypGQEightTableFormat` together with the two soundness theorems of
+`KazhdanHypGQEightTableSoundness`: `girthEightChecks_of_checkTable` and
+`linkIdentification_of_checkTable`.  Both consume the single Boolean
+`checkTable T.toTable = true` and nothing else --- in particular the
+bijectivity of the point-to-line map is the `lambdaCheck` clause of that same
+Boolean, and the link identification is *proved* from the exact-cover clause
+rather than checked by a second decision over the `1170` signed link vertices.
+The table's coordinate incidence is tied to the algebraic symplectic
+quadrangle by the `W8Table` fields `pointEquiv`, `lineEquiv` and
+`incident_spec`, so a witness may be built with `W8Table.ofCoordinate`.
 -/
 theorem sharpExistence_of_checkedTable
     (diagramPrimitives : DiagramPrimitivesProducer)
     (cactus : CactusBaseCellDeletionProducer)
     (mirror : PowerDiscMirrorPairDeletionProducer)
     (seam : ExposedPairingEulerProducer) :
-    ∀ T : GQEightTable.Table,
-      GQEightTable.checkTable T = true →
+    ∀ (m : ℕ) (T : GQEightTableFormat.W8Table m),
+      GQEightTableFormat.checkTable T.toTable = true →
         Hyperbolic.SharpExistence := by
-  intro T hT
-  have hgeom : GirthEightChecks T 9 :=
-    GQEightTable.girthEightChecks_of_checkTable T hT
-  have hlink : TriangleLinkIdentification T
+  intro m T hT
+  have hgeom : GirthEightChecks (GQEightTableFormat.triangles T.toTable) 9 :=
+    GQEightTableFormat.girthEightChecks_of_checkTable T.toTable hT
+  have hlink : TriangleLinkIdentification
+      (GQEightTableFormat.triangles T.toTable)
       SymplecticQuadrangle.wEightQuadrangleLinkData :=
-    GQEightTable.linkIdentification_of_checkTable T hT
+    GQEightTableFormat.linkIdentification_of_checkTable T hT
   have hdeg : (9 : ℚ) =
       SymplecticQuadrangle.wEightQuadrangleLinkData.deg := by
     exact SymplecticQuadrangle.wEightQuadrangleLinkData_parameters.1.symm
   have hsdp0 := girthEightSDPChecks_of_linkIdentification
-    T hgeom SymplecticQuadrangle.wEightQuadrangleLinkData hlink hdeg
+    (GQEightTableFormat.triangles T.toTable) hgeom
+    SymplecticQuadrangle.wEightQuadrangleLinkData hlink hdeg
   have hgap : hlink.reindexed.gapValue = (5 / 9 : ℚ) := by
     change (SymplecticQuadrangle.wEightQuadrangleLinkData.reindex
       hlink.vertexEquiv).gapValue = (5 / 9 : ℚ)
     rw [QuadrangleLinkData.reindex_gapValue]
     exact SymplecticQuadrangle.wEightQuadrangleLinkData_parameters.2
-  have hsdp : GirthEightSDPChecks T 9 (5 / 9)
-      hlink.reindexed.gramRow := by
-    simpa [hgap] using hsdp0
-  have htf : IsPowerTorsionFree (TriangularHodgeLayer.Presented T) :=
+  rw [hgap] at hsdp0
+  have htf : IsPowerTorsionFree
+      (TriangularHodgeLayer.Presented
+        (GQEightTableFormat.triangles T.toTable)) :=
     (girthEightTorsionFree_of_extractionProducers cactus mirror seam)
-      _ _ inferInstance inferInstance inferInstance inferInstance inferInstance T 9 hgeom
+      _ _ inferInstance inferInstance inferInstance inferInstance inferInstance
+      (GQEightTableFormat.triangles T.toTable) 9 hgeom
   have hready := infinite_and_finitelyPresented_of_girthEightChecks hgeom htf
   have hhyp : Hyperbolic.IsHyperbolicGroup
-      (TriangularHodgeLayer.Presented T) :=
+      (TriangularHodgeLayer.Presented
+        (GQEightTableFormat.triangles T.toTable)) :=
     (girthEightHyperbolicity_of_diagramPrimitives diagramPrimitives)
       _ _ inferInstance inferInstance inferInstance inferInstance inferInstance
-      T 9 hgeom
-  exact ⟨TriangularHodgeLayer.Presented T, inferInstance,
+      (GQEightTableFormat.triangles T.toTable) 9 hgeom
+  exact ⟨TriangularHodgeLayer.Presented
+      (GQEightTableFormat.triangles T.toTable), inferInstance,
     hready.1, hready.2, htf, hhyp,
-    hasKazhdanPropertyT_of_girthEightSDPChecks hgeom hsdp⟩
+    hasKazhdanPropertyT_of_girthEightSDPChecks hgeom hsdp0⟩
 
 /-! ## The `GQ(2,2)` non-spectral model -/
 
