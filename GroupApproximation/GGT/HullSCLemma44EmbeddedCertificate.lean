@@ -140,6 +140,7 @@ structure EmbeddedBoundaryPosition
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R : ℕ} (Z : RelativeReducedDiagram D W R)
+    (hreal : RelativeDiscRealization D W Z)
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
     {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
@@ -161,11 +162,22 @@ structure EmbeddedBoundaryCertificateData
     {eps : ℕ} {Delta : DiscDiagram.{u, w, 0} W}
     {i : Fin Delta.rCellCount}
     (contiguity : EmbeddedBoundaryContiguity D eps Delta i) where
+  /-- The outer dart cycle is read from a linear position in the designated
+  boundary word, with the displayed three-piece decomposition. -/
   position : EmbeddedBoundaryPosition Z contiguity
+  /-- The two connector paths are relative words of length at most `eps`; the
+  planar right side is the based left connector and the planar left side is
+  the based right connector. -/
   leftSide_admissible : RelWord.IsAdmissible D
     (Embedded.dartWord Delta contiguity.region.rightSide)
   rightSide_admissible : RelWord.IsAdmissible D
     (Embedded.dartWord Delta contiguity.region.leftSide)
+  /-- The positioned cyclic source arc has the algebraic relator label at the
+  corresponding source-cell index. -/
+  cell_label_transport :
+    Embedded.dartWord hreal.diagram contiguity.region.sourceArc.rotated =
+      (Z.cells.get (hreal.cellIndex.symm contiguity.region.source)).relator
+  /-- The pasted boundary cycle has value one. -/
   cycle_value_one : GGT.RelLetter.listVal
     (Embedded.dartWord Delta contiguity.region.boundary.cycle) = 1
 
@@ -183,7 +195,7 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
     (hreal : RelativeDiscRealization D W Z)
     {i : Fin hreal.diagram.rCellCount}
     (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
-    (data : EmbeddedBoundaryCertificateData Z C) :
+    (data : EmbeddedBoundaryCertificateData Z hreal C) :
     RelativeBoundaryContiguity D eps Z.boundaryWord
       (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated) := by
   let sourceArc := C.region.sourceArc
@@ -238,10 +250,25 @@ theorem RelativeBoundaryContiguity.of_embeddedData_exists
     (hreal : RelativeDiscRealization D W Z)
     {i : Fin hreal.diagram.rCellCount}
     (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
-    (data : EmbeddedBoundaryCertificateData Z C) :
+    (data : EmbeddedBoundaryCertificateData Z hreal C) :
     Nonempty (RelativeBoundaryContiguity D eps Z.boundaryWord
       (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated)) :=
   ⟨RelativeBoundaryContiguity.of_embeddedData Z hreal C data⟩
+
+/-- The vk package exposes the exact algebraic label associated to its
+positioned planar source arc. -/
+theorem EmbeddedBoundaryCertificateData.cellLabel_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R)
+    (hreal : RelativeDiscRealization D W Z)
+    {eps : ℕ} {i : Fin hreal.diagram.rCellCount}
+    (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
+    (data : EmbeddedBoundaryCertificateData Z hreal C) :
+    Embedded.dartWord hreal.diagram C.region.sourceArc.rotated =
+      (Z.cells.get (hreal.cellIndex.symm i)).relator :=
+  data.cell_label_transport
 
 end HullSC
 end GroupApproximation
