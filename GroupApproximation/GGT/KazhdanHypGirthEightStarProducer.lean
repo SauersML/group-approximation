@@ -20,6 +20,7 @@ namespace KazhdanHypGirthEightStarProducer
 open GroupApproximation.GGT.GirthEightVKInterface
 open GroupApproximation.GGT.GirthEightPrimitives2
 open GroupApproximation.KazhdanHyp
+open GroupApproximation.WordMetric
 open scoped BigOperators
 
 section Table
@@ -59,7 +60,7 @@ theorem innerStarLayers_sum_bound
 record.  `centered_cover` is the first-face covering fact; its incidence
 injection is constructed by the clean layer module. -/
 structure StarLayerConstructionCertificate
-    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (_L : TriangularDiagramLocalData T Delta) where
   rooted : RootedPathSystem Delta.toCombMap
   rooted_complete : RootedPathsFaceComplete Delta rooted
@@ -76,7 +77,7 @@ structure StarLayerConstructionCertificate
 /-- Build the exact `SuccessiveStarLayers` record from the path and centered
 cover certificate. -/
 noncomputable def StarLayerConstructionCertificate.toSuccessiveStarLayers
-    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (L : TriangularDiagramLocalData T Delta)
     (C : StarLayerConstructionCertificate Delta L) :
     SuccessiveStarLayers T := by
@@ -101,7 +102,7 @@ noncomputable def StarLayerConstructionCertificate.toSuccessiveStarLayers
     depth_too_large := C.depth_too_large }
 
 theorem starLayerConstructionCertificate_boundary_bound
-    (Delta : VanKampen.DiscDiagram (triangleRelatorWords T))
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
     (L : TriangularDiagramLocalData T Delta)
     (C : StarLayerConstructionCertificate Delta L) :
     (C.toSuccessiveStarLayers Delta L).diagram.combinatorialBoundaryLength ≤
@@ -132,14 +133,14 @@ def StarLayerConstructionCertificateInput : Prop :=
       delta < wordDist
         (↑(GirthEightSlim.presentedGeneratorFinset T) :
           Set (TriangularHodgeLayer.Presented T)) p q) →
-    ∀ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T)),
+    ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
       Delta.Reduced →
       ∃ L : TriangularDiagramLocalData T Delta,
         Nonempty (StarLayerConstructionCertificate Delta L)
 
+omit [DecidableEq TriangleIndex] in
 /-- The source package constructs a `SuccessiveStarLayers` record for every
 geodesic configuration. -/
-omit [DecidableEq TriangleIndex] in
 theorem successiveStarLayers_of_certificateInput
     (hsource : StarLayerConstructionCertificateInput (T := T)) :
     ∀ (delta : ℕ) (x y z p : TriangularHodgeLayer.Presented T),
@@ -160,7 +161,7 @@ theorem successiveStarLayers_of_certificateInput
         delta < wordDist
           (↑(GirthEightSlim.presentedGeneratorFinset T) :
             Set (TriangularHodgeLayer.Presented T)) p q) →
-      ∀ (Delta : VanKampen.DiscDiagram (triangleRelatorWords T)),
+      ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
         Delta.Reduced →
         ∃ L : TriangularDiagramLocalData T Delta,
           Nonempty (SuccessiveStarLayers T) := by
