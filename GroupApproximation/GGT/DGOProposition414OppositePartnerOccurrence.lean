@@ -262,10 +262,8 @@ theorem firstGapChordStart_eq_trimmedWalk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    by_cases hf : B.firstGapRunsForward j
-    · simpa [endpointByOrientation, hf, A, e] using
-        congrArg (fun z => z + 1) hpEq.symm
-    · simpa [endpointByOrientation, hf, A, e] using hpEq.symm
+    rw [hpEq]
+    rfl
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -313,10 +311,8 @@ theorem firstGapChordFinish_eq_walk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    by_cases hf : B.firstGapRunsForward j
-    · simpa [endpointByOrientation, hf, A, e] using hpEq.symm
-    · simpa [endpointByOrientation, hf, A, e] using
-        congrArg (fun z => z + 1) hpEq.symm
+    rw [hpEq]
+    rfl
   · unfold firstGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
@@ -347,10 +343,8 @@ theorem secondGapChordStart_eq_walk
     rw [show HalfGap.nextEntry A j = some e by
       simp [HalfGap.nextEntry, A, e, h]]
     rw [dif_pos hpLen]
-    by_cases hf : B.secondGapRunsForward j
-    · simpa [endpointByOrientation, hf, A, e] using
-        congrArg (fun z => z + 1) hpEq.symm
-    · simpa [endpointByOrientation, hf, A, e] using hpEq.symm
+    rw [hpEq]
+    rfl
   · have hpLen : ¬ j.val < A.partners.length := by
       rw [A.partner_length]
       exact h
@@ -398,10 +392,8 @@ theorem secondGapChordFinish_eq_trimmedWalk
     rw [show HalfGap.previousEntry A j = some e by
       simp [HalfGap.previousEntry, A, e, h]]
     rw [dif_pos h]
-    by_cases hf : B.secondGapRunsForward j
-    · simpa [endpointByOrientation, hf, A, e] using hpEq.symm
-    · simpa [endpointByOrientation, hf, A, e] using
-        congrArg (fun z => z + 1) hpEq.symm
+    rw [hpEq]
+    rfl
   · unfold secondGapChordFinish
     rw [show HalfGap.previousEntry A j = none by
       simp [HalfGap.previousEntry, A, h]]
