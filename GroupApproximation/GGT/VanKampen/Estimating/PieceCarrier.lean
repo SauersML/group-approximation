@@ -100,6 +100,42 @@ theorem listVal_targetInverseCarrier
   rw [htake, RelWord.listVal_revInv, hdw, hta, hsplit]
   group
 
+/-! ## Reducedness, without the region baggage
+
+`VanKampen.CellContiguity.whole_relators_ne` proves this, but only from four of
+its input's fields.  Stating it over those four directly means a producer need
+not build a `ContiguityRegion` or the word decompositions to use it. -/
+
+/-- **Reducedness excludes the transported cancellation.**  For two cells in the
+stored order, with both read forwards, the target relator's inverse is not the
+source relator conjugated by the transport across the intervening cells. -/
+theorem whole_relators_ne_of_split
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (hred : Delta.Reduced)
+    (hsplit : Delta.relatorCells = pre ++ source :: (between ++ target :: suf))
+    (hsf : source.reversed = false) (htf : target.reversed = false) :
+    GGT.RelLetter.listVal (RelWord.revInv target.word) ≠
+      (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator)⁻¹ *
+        GGT.RelLetter.listVal source.word *
+        (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator) := by
+  rw [RelWord.listVal_revInv]
+  intro hwhole
+  have hnocancel := hred pre between suf source target hsplit
+  apply hnocancel
+  simp only [RelatorCell.value, hsf, htf, Bool.false_eq_true, if_false]
+  have htarget : GGT.RelLetter.listVal target.word =
+      ((source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator)⁻¹ * GGT.RelLetter.listVal source.word *
+        (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator))⁻¹ := by
+    have hinv := congrArg (fun g : G => g⁻¹) hwhole
+    simpa only [inv_inv] using hinv
+  rw [htarget]
+  group
+
 end Embedded
 end VanKampen
 end GGT
