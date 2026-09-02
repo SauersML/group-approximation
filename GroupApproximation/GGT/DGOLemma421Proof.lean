@@ -1906,21 +1906,24 @@ theorem peripheralCount_le_strictInterior_card_add_two
 
 theorem revWord_revWord_421 (word : List (RelLetter G Λ)) :
     revWord (revWord word) = word := by
+  have hinvAll : ∀ a : RelLetter G Λ, invLetter (invLetter a) = a := by
+    intro a
+    cases a <;> simp [invLetter]
+  have hmapAll : ∀ t : List (RelLetter G Λ),
+      List.map (invLetter ∘ invLetter) t = t := by
+    intro t
+    induction t with
+    | nil => rfl
+    | cons b t iht =>
+        simp only [List.map, Function.comp_apply, hinvAll b, iht]
   induction word with
   | nil => rfl
   | cons a t ih =>
       rw [revWord_cons, revWord_append]
-      have hinv : invLetter (invLetter a) = a := by
-        cases a <;> simp [invLetter]
-      have hmap : List.map (invLetter ∘ invLetter) t = t := by
-        induction t with
-        | nil => rfl
-        | cons b t iht =>
-            simp [Function.comp_def, iht]
-      simpa [revWord, hinv, hmap]
+      simpa [revWord, hinvAll a, hmapAll t]
 
 theorem exists_component_of_opposite_start_421
-    {D : RelGenSet G Λ} {lam : Λ}
+    {lam : Λ}
     {p q r s : List (RelLetter G Λ)}
     {j : ℕ}
     (hj : j ≤ s.length) (hjpos : 0 < j)
