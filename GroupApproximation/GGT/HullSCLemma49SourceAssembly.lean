@@ -100,6 +100,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     (hinjective : ∀
       {G : Type u} [Group G] {Lambda : Type w}
       (D : GGT.RelGenSet G Lambda) (delta : ℕ),
+      D.IsHyperbolicallyEmbedded →
       Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta →
       ∃ (epsInjective rhoInjective : ℕ) (muInjective : ℝ),
         0 < muInjective ∧
@@ -125,7 +126,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
       hgeom D hdelta hgap
       (fun {v} {g} {n} {eps} {mu} {Z} C => hpasting C)
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
-      hinjAll⟩ := hinjective D delta hdelta
+      hinjAll⟩ := hinjective D hemb delta hdelta
   let eps : ℕ := max epsLong (max epsShort epsInjective)
   let rho : ℕ := max rhoLong (max rhoShort rhoInjective)
   let mu : ℝ := min (1 / 100000 : ℝ) (min muShort muInjective)
