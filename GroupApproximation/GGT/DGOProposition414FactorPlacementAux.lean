@@ -1634,6 +1634,38 @@ theorem distributedSources_disjoint
       exact hne (SecondChildSlotKind.source_eq_of_same_coordinate K L
         hchild hindex)
 
+/-- The canonical three distributed slots form the two-half placement required
+by the balanced-split completion. -/
+theorem exists_twoHalfDistributedFactorPlacement
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (C : GapComponentConfigurations hsymm hδ P B) :
+    Nonempty (TwoHalfDistributedFactorPlacement D hsymm b hδ
+      (B.gapIntervalsOfConfigurations C).toPathInput.family
+      P.target P.label P.span) := by
+  classical
+  refine ⟨{
+    leftSlot := B.distributedLeftSlot C
+    middleSlot := B.distributedMiddleSlot C
+    rightSlot := B.distributedRightSlot C
+    leftInverted := fun _ => False
+    middleInverted := B.distributedMiddleInverted
+    rightInverted := fun _ => False
+    factorization := ?_
+    slots_disjoint := ?_
+    sources_disjoint := ?_
+  }⟩
+  · intro s hs
+    exact B.distributedSlots_factorization C hs
+  · intro q s hs
+    exact B.distributedSlots_disjoint C q hs
+  · intro q s t hs ht hne
+    simpa only [distributedPacket] using
+      B.distributedSources_disjoint C (s := s) (t := t) q hs ht hne
+
 end BalancedSplitData
 
 end DGOProposition414
