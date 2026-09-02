@@ -654,6 +654,7 @@ structure PowerDiscCandidate
   /-- Every inner face is a defining relator face. -/
   relatorOnly : RelatorOnly T diagram
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- Every element of a triangularly presented group has a literal signed-word
 representative. -/
 theorem exists_signedWord_represents
