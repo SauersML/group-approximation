@@ -434,6 +434,94 @@ theorem canonical_kind_of_mem
   next hbound =>
     exact (hbound ⟨incidence, hmem⟩).elim
 
+/-- Positions classified with one fixed kind. -/
+def ClassifiedPosition
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (partition : CellBoundaryPartition selected i) (kind : CellArcKind) :=
+  {position : Fin (cellDarts Delta i).length //
+    (partition.classify position).kind = kind}
+
+noncomputable instance classifiedPositionFintype
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    {partition : CellBoundaryPartition selected i} {kind : CellArcKind} :
+    Fintype (ClassifiedPosition partition kind) := by
+  classical
+  exact Fintype.ofInjective
+    (fun position : ClassifiedPosition partition kind => position.1)
+    Subtype.val_injective
+
+/-- A canonical non-unbound position exposes the selected incidence which
+occupies it. -/
+theorem exists_incidence_of_canonical_kind
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (i : Fin Delta.rCellCount) (kind : CellArcKind)
+    (hkind : kind ≠ CellArcKind.unbound)
+    (position : ClassifiedPosition (canonical selected i) kind) :
+    ∃ incidence : CellIncidence selected i,
+      incidence.kind = kind ∧
+        (cellDarts Delta i).get position.1 ∈ incidence.arc.darts := by
+  cases hclass : (canonical selected i).classify position.1 with
+  | bound incidence hmem =>
+      refine ⟨incidence, ?_, hmem⟩
+      have hposition := position.2
+      rw [hclass] at hposition
+      exact hposition
+  | unbound =>
+      have hposition := position.2
+      rw [hclass] at hposition
+      exact (hkind hposition.symm).elim
+
+/-- Under incidence uniqueness, occurrences of a non-unbound kind are
+equivalent to the positions which the canonical partition gives that kind. -/
+noncomputable def occurrenceEquivClassifiedPosition
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (hunique : IncidencePositionUnique selected)
+    (i : Fin Delta.rCellCount) (kind : CellArcKind)
+    (hkind : kind ≠ CellArcKind.unbound) :
+    CellIncidence.Occurrence (selected := selected) (i := i) kind ≃
+      ClassifiedPosition (canonical selected i) kind where
+  toFun occurrence :=
+    ⟨occurrence.2.1, canonical_kind_of_mem selected hunique i occurrence.2.1
+      occurrence.1.1 occurrence.2.2 |>.trans occurrence.1.2⟩
+  invFun position := by
+    let witness := Classical.choose
+      (exists_incidence_of_canonical_kind selected i kind hkind position)
+    have hwitness := Classical.choose_spec
+      (exists_incidence_of_canonical_kind selected i kind hkind position)
+    exact ⟨⟨witness, hwitness.1⟩, ⟨position.1, hwitness.2⟩⟩
+  left_inv occurrence := by
+    let hdata := exists_incidence_of_canonical_kind selected i kind hkind
+      ⟨occurrence.2.1, canonical_kind_of_mem selected hunique i occurrence.2.1
+        occurrence.1.1 occurrence.2.2 |>.trans occurrence.1.2⟩
+    have heq : Classical.choose hdata = occurrence.1.1 :=
+      hunique i occurrence.2.1 (Classical.choose hdata) occurrence.1.1
+        (Classical.choose_spec hdata).2 occurrence.2.2
+    apply Sigma.ext
+    · exact Subtype.ext heq
+    · apply Subtype.ext
+      rfl
+  right_inv position := by
+    apply Subtype.ext
+    rfl
+
 /-- The canonical classifier makes every cell boundary partition inhabited. -/
 theorem nonempty
     {G : Type u} [Group G] {Lambda : Type w}
