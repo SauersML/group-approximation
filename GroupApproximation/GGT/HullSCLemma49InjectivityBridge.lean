@@ -69,18 +69,15 @@ theorem hullLemma44InjectivityOutput_of_canonicalStatement
     (h44 : HullLemma44CanonicalQuotientStatement.{0})
     {G : Type} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
-    (D : AuxiliaryPeripheralFamily A N S) (R : ℕ)
-    {eps rho : ℕ} {mu : ℝ}
-    {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
-    {Q : Type} [Group Q] (q : G →* Q)
-    (hinput : RelWord.IsLemma44Input D.rel W eps mu rho)
-    (hq : Function.Surjective q)
-    (hker : q.ker =
-      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
-    Set.InjOn q (cayleyBall A.alphabet R) := by
-  obtain ⟨eps, rho, mu, hmu, hgood⟩ := h44 D R
-  have hresult := hgood W q hinput hq hker
-  exact hresult.1
+    (D : AuxiliaryPeripheralFamily A N S) (R : ℕ) :
+    ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+      ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
+        {Q : Type} [Group Q] (q : G →* Q),
+        RelWord.IsLemma44Input D.rel W eps mu rho →
+        Function.Surjective q →
+        q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+          Set.InjOn q (cayleyBall A.alphabet R) := by
+  exact h44 D R
 
 /-- The named hull44 kernel-assembly theorem supplies the same injectivity
 projection for an auxiliary peripheral family. -/
@@ -90,20 +87,19 @@ theorem hullLemma44InjectivityOutput_of_relativeGreendlinger_of_kernelGeodesic_o
     (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
     {G : Type} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
-    (D : AuxiliaryPeripheralFamily A N S) (R : ℕ)
-    {eps rho : ℕ} {mu : ℝ}
-    {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
-    {Q : Type} [Group Q] (q : G →* Q)
-    (hinput : RelWord.IsLemma44Input D.rel W eps mu rho)
-    (hq : Function.Surjective q)
-    (hker : q.ker =
-      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
-    Set.InjOn q (cayleyBall A.alphabet R) := by
-  apply hullLemma44InjectivityOutput_of_canonicalStatement
+    (D : AuxiliaryPeripheralFamily A N S) (R : ℕ) :
+    ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+      ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
+        {Q : Type} [Group Q] (q : G →* Q),
+        RelWord.IsLemma44Input D.rel W eps mu rho →
+        Function.Surjective q →
+        q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+          Set.InjOn q (cayleyBall A.alphabet R) := by
+  exact hullLemma44InjectivityOutput_of_canonicalStatement
     (h44 :=
       hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
         hgeom hkernel htransfer)
-    D R hinput hq hker
+    D R
 
 /-! ## The face-pasting certificate -/
 
