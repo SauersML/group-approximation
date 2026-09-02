@@ -518,6 +518,16 @@ theorem relativeGreendlingerQuasiGeodesic_of_data
   relativeGreendlingerQuasiGeodesic
     (embeddedEstimatingSystemConstruction_of_data hdata)
 
+/-- The separated selection, O52, and unbound certificates prove the
+source-faithful quasi-geodesic Gr0 statement directly. -/
+theorem relativeGreendlingerQuasiGeodesic_of_components
+    (hselection : EstimatingSelectionConstructionStatement.{u, w, v})
+    (hpieces : EstimatingPieceConstructionStatement.{u, w, v})
+    (hunbound : EstimatingUnboundConstructionStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicStatement.{u, w, v} :=
+  relativeGreendlingerQuasiGeodesic_of_data
+    (estimatingDataConstruction_of_components hselection hpieces hunbound)
+
 /-- The `EstimatingData` construction conclusion over the empty relator
 family is valid because its positive-cell hypothesis is impossible. -/
 theorem estimatingDataConstruction_emptyFamilyModel
