@@ -1013,7 +1013,8 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z →
       GGT.RelLetter.listVal w' = y * GGT.RelLetter.listVal w * y⁻¹ := by
     intro w w' u u' hw hw' _hne ⟨tl, htl⟩ ⟨tl', htl'⟩ hu y z hy hz hval
-    apply listVal_conj_of_exactDesign_long_prefixes E hN ht hdesign' hcount
+    apply listVal_conj_of_exactDesign_long_prefixes (eps := eps)
+      E hN ht hdesign' hcount
       heven hW
     · simpa only [p, cw] using hadj
     · exact hadjRho
@@ -1041,8 +1042,8 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       RelWord.IsSameWordPublishedPiece E.rel (RelWord.symmetrized R) eps u u' v →
         max (u.length : ℝ) (u'.length : ℝ) < mu * v.length := by
     intro u u' v hv
-    have hnat := sameWordPublishedPiece_lengths_le_of_exactDesign E hN ht
-      hdesign' hcount heven hW
+    have hnat := sameWordPublishedPiece_lengths_le_of_exactDesign (eps := eps)
+      E hN ht hdesign' hcount heven hW
       (by simpa only [p, cw] using hadj) hadjRho hadjEps hepsRho
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
@@ -1064,8 +1065,8 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
       change ExactPublishedGapOutput E gapC
         (blockConst [t⁻¹] (max 1 (eps + 2))) at hgap
       exact hgap
-    have hnat := primePiece_lengths_le_of_exactDesign E hN ht hdesign'
-      hcount heven hW (by simpa only [p, cw] using hadj)
+    have hnat := primePiece_lengths_le_of_exactDesign (eps := eps)
+      E hN ht hdesign' hcount heven hW (by simpa only [p, cw] using hadj)
       hadjRho hadjEps hepsRho hgap' hgapRho hgapEps
       (by simpa only [R, p] using hv)
     have hle : max (u.length : ℝ) (u'.length : ℝ) ≤ (B : ℝ) := by
