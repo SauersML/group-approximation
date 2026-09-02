@@ -114,6 +114,33 @@ theorem singleton_discRegion_boundary_eq
       (Delta.faceBoundary f).darts :=
   rfl
 
+/-! ## The exact singleton-face producer interface -/
+
+/-- Every stored relator face is assigned a singleton map-collapse region whose
+boundary is the stored face cycle.  This is the topological producer needed by
+the one-face path-deletion step. -/
+def RelatorFaceSingletonProducer : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W)
+    (C : RelatorCell Delta.toCombMap Delta.outerFace W),
+    C ∈ Delta.relatorCells →
+    ∃ region : IsDiscRegion Delta.toCombMap {C.face},
+      region.toBoundaryCycle.cycle = (Delta.faceBoundary C.face).darts
+
+/-- The local singleton construction discharges the exact producer once the
+two topological fields of `IsDiscRegion` are supplied for each relator face.
+The two fields are deliberately quantified here: neither is present in the
+bare `DiscDiagram` record. -/
+theorem relatorFaceSingletonProducer_of_topology
+    (hdata : ∀ (Delta : DiscDiagram.{u, w, v} W)
+      (C : RelatorCell Delta.toCombMap Delta.outerFace W),
+      C ∈ Delta.relatorCells →
+      ∃ hno : NoInternalFaceDart Delta.toCombMap C.face,
+        Nonempty (SingletonDiscRegionData Delta C.face hno)) :
+    RelatorFaceSingletonProducer (W := W) := by
+  intro Delta C hC
+  obtain ⟨hno, ⟨data⟩⟩ := hdata Delta C hC
+  exact ⟨data.toIsDiscRegion, singleton_discRegion_boundary_eq data⟩
+
 /-! ## The one-triangle local model -/
 
 noncomputable section OneTriangleModel
