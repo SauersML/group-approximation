@@ -16,6 +16,7 @@ namespace GGT
 namespace DGOProposition414
 
 open GroupApproximation.GGT.DGOPolygonCut
+open BalancedSplitData
 
 /-- Successive chord-walk segments have the traversal cost of the partner
 list with its two boundary vertices. -/
@@ -127,7 +128,7 @@ theorem sum_orientedTrimmedChordWalk_dist_le_four_length
       chordTraversalCost (initial :: xs ++ [terminal]) + 4 * xs.length := by
   cases xs with
   | nil =>
-      simp [Fin.sum_univ_one, chordTraversalCost, Nat.dist_comm]
+      simp [chordTraversalCost, Nat.dist_comm]
   | cons x xs =>
       have h := sum_orientedTrimmedChordWalk_dist_le
         (x :: xs) initial terminal forward
