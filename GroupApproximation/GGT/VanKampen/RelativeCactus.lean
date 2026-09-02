@@ -17,6 +17,7 @@ namespace HullSC
 
 open GroupApproximation.HullSC
 open GroupApproximation.GGT.VanKampen
+open GroupApproximation.HullSC.Lemma44OrientedRelatorDiagram
 
 universe u w
 
