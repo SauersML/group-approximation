@@ -197,10 +197,14 @@ theorem MirrorPairDeletion.area_drop
     {Delta : DiscDiagram.{u, w, v} W}
     (C : MirrorPairDeletion Delta) :
     C.replacement.diagram.rCellCount + 2 = Delta.rCellCount := by
+  change C.replacement.diagram.relatorCells.length + 2 =
+    Delta.relatorCells.length
   have hOld := congrArg List.length C.old_cells
   have hNew := congrArg List.length C.new_cells
-  simp only [DiscDiagram.rCellCount, List.length_append, List.length_cons,
-    List.length_map] at hOld hNew
+  simp only [List.length_append, List.length_cons, List.length_map] at hOld hNew
+  have hcount := C.replacement.rCellCount_eq
+  change C.replacement.diagram.relatorCells.length =
+    Delta.relatorCells.length at hcount
   omega
 
 /-- The concrete two-cell cut supplies the abstract mirror-pair certificate.
