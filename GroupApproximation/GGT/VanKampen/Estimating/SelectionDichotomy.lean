@@ -37,6 +37,48 @@ namespace VanKampen
 
 universe u w v
 
+/-! ## The planar edge bound, reduced to realizing Osin's incidence graph -/
+
+/-- **Osin's `Phi_M` drawn in the diagram.**  For every sub-selection of cells
+and interior edges that covers, the incidence graph is realized by a connected
+planar combinatorial map with face degrees at least three, on the same number
+of vertices and edges.  This is the only remaining input to the hereditary
+planar edge bound; the Euler estimate itself is already proved as
+`CombMap.edgeCount_le_three_mul_vertex_sub_one`. -/
+def InteriorIncidencePlanarRealization : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Embedded.Candidate D eps Delta))
+    (vertices : Finset (Fin Delta.rCellCount))
+    (edges : Finset (Embedded.InteriorEdge selected)),
+    EdgesCovered (Embedded.InteriorEdge.Incident (selected := selected))
+        vertices edges →
+      vertices.Nonempty →
+      ∃ M : CombMap.{v}, M.IsPlanar ∧
+        (∀ face : M.Face, 3 ≤ M.faceDegree face) ∧
+        M.vertexCount = vertices.card ∧ M.edgeCount = edges.card
+
+/-- **The hereditary planar edge bound from the realization.**  Osin's Lemma
+`Eul` inequality is `CombMap.edgeCount_le_three_mul_vertex_sub_one`, already
+proved; realizing the incidence graph as a planar map is the whole remaining
+content. -/
+theorem hasHereditaryPlanarEdgeBound_of_realization
+    (hrealization : InteriorIncidencePlanarRealization.{u, w, v})
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Embedded.Candidate D eps Delta)) :
+    HasHereditaryPlanarEdgeBound
+      (Embedded.InteriorEdge.Incident (selected := selected)) := by
+  intro vertices edges hcovered hnonempty
+  obtain ⟨M, hplanar, hface, hvertex, hedge⟩ :=
+    hrealization selected vertices edges hcovered hnonempty
+  rw [← hedge, ← hvertex]
+  exact M.edgeCount_le_three_mul_vertex_sub_one hplanar hface
+
 /-- **The one geometric dichotomy left in Lemma 65(a).**  For every reduced,
 positive-cell, quasi-geodesic diagram: either some scaffold carries the
 hereditary planar edge bound and the admissible exterior merge, or the diagram
