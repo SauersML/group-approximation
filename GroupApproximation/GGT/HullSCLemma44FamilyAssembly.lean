@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 import GroupApproximation.GGT.HullSCLemma44RelativeIsoperimetric
+import GroupApproximation.GGT.HullSCLemma44KernelAssembly
 
 /-!
 # Family-form preservation at fixed filling parameters
@@ -16,6 +17,11 @@ The result is the local consumer for Osin's Theorem 4.1 and DGO Theorem
 7.19(b).  Its hypotheses are strictly below the canonical family-inclusion
 statement: all numerical choices and all small-cancellation certificates are
 already fixed.
+
+The last section lifts the fixed-parameter output to the quantified statement.
+It names the residual relative-isoperimetric input for the original and joint
+families and derives both the repaired family statement and, with the
+joint-family selection input, the statement as Theorem C currently consumes it.
 -/
 
 namespace GroupApproximation
@@ -303,6 +309,122 @@ theorem selectedPreservation_identityModel
     Nonempty (QuotientPeripheralPreservation (MonoidHom.id G) selected) := by
   exact quotientPeripheralPreservation_of_bijective selected (MonoidHom.id G)
     ⟨Function.injective_id, Function.surjective_id⟩
+
+/-! ## Leaf B: the family statement from named construction inputs
+
+The selected half of Hull Lemma 4.4 is already reduced to three named
+construction statements: the relative Greendlinger certificate, the
+kernel-geodesic estimate, and the prefix-kernel cone transfer.  Their assembly
+in `HullSCLemma44KernelAssembly` returns ball injectivity and preservation of
+the selected auxiliary family.
+
+The family form adds two more conclusions, and each is the image of one
+relative-isoperimetric control: an ordinary control for the original labelled
+family and one for the source joint family.  Those two controls are the only
+remaining input, and they are named below.  Nothing here is new geometry: the
+two constructors above do the transport, and the radius-one injectivity both
+need is read off the selected assembly at radius `max R 1`.
+
+Why the two controls are not consequences of the three named statements: every
+landed control producer, `RelativeIsoperimetricBridgeStatement` included, is
+indexed by the same family that carries the relator set `W`.  Here `W` is a set
+of words over `RelLetter G (AuxiliaryPeripheralIndex k)`, so those producers
+apply to the selected family only; for the original and the joint family the
+relator data is not even of the right type.  Osin's Lemma 5.1 for those two
+families is exactly the residue named next.
+-/
+
+/-- **Osin's relative-isoperimetric conclusion for the two auxiliary families
+of Hull Lemma 4.4.**
+
+The quotient is Hull's: it kills the normal closure of a small-cancellation
+family over the selected relative generating set.  The conclusion is the pair
+of controls the family form needs, one for the original labelled family and
+one for the source joint family.  No conclusion about the selected family is
+asked for here; that half is already reduced. -/
+def FamilyInclusionRelativeControlStatement : Prop :=
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    original.IsHyperbolicallyEmbedded →
+    joint.IsHyperbolicallyEmbedded →
+    (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
+    (∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.cores.peripheral i) →
+    ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
+      (eps rho : ℕ) (mu : ℝ),
+      RelWord.IsLemma44Input selected.rel W eps mu rho →
+      ∀ {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Surjective q),
+        q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+          Nonempty (RelativeIsoperimetricControl original q hq) ∧
+            Nonempty (RelativeIsoperimetricControl joint q hq)
+
+/-- The repaired family form follows from the canonical selected-family
+statement together with the two residual controls.  The requested radius is
+enlarged to `max R 1`, so one application supplies both the prescribed ball
+and the radius-one ball carrying every original peripheral letter. -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_of_controls
+    (h44 : HullLemma44CanonicalQuotientStatement.{u})
+    (hcontrols : FamilyInclusionRelativeControlStatement.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} := by
+  intro G _ A N k S selected Lambda original hA horiginal joint hbaseInv
+    hjointOriginal hjointSelected hjointEmbedded R
+  obtain ⟨eps, rho, mu, hmu, hgood⟩ := h44 selected (max R 1)
+  refine ⟨eps, rho, mu, hmu, ?_⟩
+  intro W Q _ q hsc hsurj hker
+  obtain ⟨hinjMax, hselectedPreserved⟩ := hgood W q hsc hsurj hker
+  have hinjR : Set.InjOn q (cayleyBall A.alphabet R) :=
+    hinjMax.mono
+      (cayleyBall_subset_of_le_radius A.alphabet (Nat.le_max_left R 1))
+  have hinjOne : Set.InjOn q (cayleyBall A.alphabet 1) :=
+    hinjMax.mono
+      (cayleyBall_subset_of_le_radius A.alphabet (Nat.le_max_right R 1))
+  obtain ⟨⟨originalControl⟩, ⟨jointControl⟩⟩ :=
+    hcontrols selected original joint horiginal hjointEmbedded hjointOriginal
+      hjointSelected W eps rho mu hsc q hsurj hker
+  have horiginalUnion : Set.InjOn q
+      (⋃ lam : Lambda, (original.fam lam : Set G)) := by
+    intro x hx y hy hxy
+    exact hinjOne
+      (originalPeripheralUnion_subset_cayleyBall_one original hA hx)
+      (originalPeripheralUnion_subset_cayleyBall_one original hA hy) hxy
+  exact ⟨hinjR, hselectedPreserved,
+    canonicalQuotientFamilyPreservation_of_control original horiginal q hsurj
+      originalControl horiginalUnion,
+    quotientJointPeripheralPreservation_of_control selected original joint
+      hbaseInv hjointOriginal hjointSelected q hsurj hjointEmbedded
+      jointControl⟩
+
+/-- **Leaf B, repaired form, from named inputs only.**  Three of the four are
+the construction statements already carrying the selected half; the fourth is
+the residual pair of controls. -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
+    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
+    (hcontrols : FamilyInclusionRelativeControlStatement.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} :=
+  hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_of_controls
+    (hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
+      hgeom hkernel htransfer)
+    hcontrols
+
+/-- **Leaf B as currently stated, from named inputs only.**  The extra
+hypothesis over the repaired form is the joint-family selection input, and by
+`jointAuxiliaryPeripheralEmbedding_of_familyInclusion` it cannot be avoided:
+the leaf entails it. -/
+theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_controls
+    (hgeom : RelativeGreendlingerStatement.{u, 0})
+    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
+    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
+    (hcontrols : FamilyInclusionRelativeControlStatement.{u, w})
+    (hsel : JointAuxiliaryPeripheralEmbedding.{u, w}) :
+    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
+  hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint hsel
+    (hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls
+      hgeom hkernel htransfer hcontrols)
 
 end HullSC
 end GroupApproximation
