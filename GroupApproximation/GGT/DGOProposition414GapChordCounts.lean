@@ -92,13 +92,13 @@ theorem sum_orientedTrimmedChordWalk_dist_le
               · by_cases hp : 0 < j.val
                 · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                · simp [hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
             · by_cases hn : j.val < xs.length
               · by_cases hp : 0 < j.val
                 · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                · simp [hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
               · by_cases hp : 0 < j.val
                 · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
