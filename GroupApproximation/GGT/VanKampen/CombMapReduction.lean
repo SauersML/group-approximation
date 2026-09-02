@@ -315,6 +315,11 @@ structure MirrorPairDeletion
   suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)
   first : RelatorCell Delta.toCombMap Delta.outerFace W
   second : RelatorCell Delta.toCombMap Delta.outerFace W
+  shared : Delta.toCombMap.Dart
+  shared_first : Delta.toCombMap.faceOf shared = first.face
+  shared_second : Delta.toCombMap.faceOf (Delta.toCombMap.alpha shared) =
+    second.face
+  mirror_word : second.word = HullSC.RelWord.revInv first.word
   old_cells : Delta.relatorCells =
     pre ++ first :: (between ++ second :: suf)
   replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
@@ -329,6 +334,16 @@ structure MirrorPairDeletion
   region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+
+/-- The common dart has inverse labels on its two orientations. -/
+theorem MirrorPairDeletion.shared_label_inverse
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) :
+    Delta.label (Delta.toCombMap.alpha C.shared) =
+      HullSC.RelWord.inv (Delta.label C.shared) :=
+  Delta.label_alpha C.shared
 
 /-- The explicit combinatorial map obtained by deleting the two mirror faces
 and re-closing their two trimmed complementary boundary paths. -/
