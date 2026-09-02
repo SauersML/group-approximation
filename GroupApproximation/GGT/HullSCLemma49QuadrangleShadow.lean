@@ -294,7 +294,7 @@ theorem Lemma49RelativeGreendlingerCell.powerArc_isQuasiGeodesicChainAt
       GGT.OsinComponents.vertex_append_of_le C.boundaryArc
         C.boundaryAfter (GGT.RelLetter.listVal C.boundaryBefore) i hi,
       GGT.OsinComponents.vertex_eq_mul_listVal_take]
-  have hArc : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier 4 b qArc
+  have hArc : GGT.IsQuasiGeodesicChainAt D.alphabet.carrier powerMu b qArc
       C.boundaryArc.length := by
     apply isQuasiGeodesicChainAt_of_pairwiseDistance hshift
     intro i hi j hj
