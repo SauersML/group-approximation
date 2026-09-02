@@ -123,7 +123,7 @@ noncomputable def reindexed (I : TriangleLinkIdentification T Q) :
     QuadrangleLinkData (Generator × Bool) :=
   Q.reindex I.vertexEquiv
 
-theorem adjacency_eq (I : TriangleLinkIdentification T Q) (u w) :
+theorem adjacency_eq_reindexed (I : TriangleLinkIdentification T Q) (u w) :
     (TriangularHodgeLayer.adjacencyCount T u w : ℚ) =
       (I.reindexed.adj u w) :=
   I.adjacency_eq u w
