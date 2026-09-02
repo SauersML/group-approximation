@@ -1,4 +1,5 @@
-import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
+import GroupApproximation.GGT.VanKampen.Estimating.Embedded
+import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 
 /-!
 # O52 piece bounds for embedded contiguity arcs
@@ -94,9 +95,11 @@ theorem cyclicArcLengths_le_two_mu_source
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
-    {mu lambda c : ℝ}
-    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length)
     {source target : Fin Delta.rCellCount}
     (sourceArc : CyclicArc (cellDarts Delta source))
     (targetArc : CyclicArc (cellDarts Delta target))
@@ -110,8 +113,8 @@ theorem cyclicArcLengths_le_two_mu_source
     (sourceArc.length : ℝ) + (targetArc.length : ℝ) ≤
       2 * mu * ((cell Delta source).word.length : ℝ) := by
   have hpublished := isPublishedPiece_of_cyclicCellArcs
-    hcondition.toIsSmallCancellation sourceArc targetArc hleft hright harcs hwhole
-  have hbound := hcondition.publishedPiecesSmall
+    hsc sourceArc targetArc hleft hright harcs hwhole
+  have hbound := hpieces
     (dartWord Delta sourceArc.darts) (dartWord Delta targetArc.darts)
     (dartWord Delta sourceArc.rotated) hpublished
   have hsource : (sourceArc.length : ℝ) <
@@ -177,16 +180,18 @@ theorem Contiguity.arcLengths_le_two_mu_source
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
-    {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
     (equations : CellPieceEquations Gamma)
-    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (Gamma.sourceArc.length : ℝ) +
         ((Gamma.cellTargetArc equations.target equations.target_eq).length : ℝ) ≤
       2 * mu * ((cell Delta Gamma.source).word.length : ℝ) := by
-  exact cyclicArcLengths_le_two_mu_source hcondition Gamma.sourceArc
+  exact cyclicArcLengths_le_two_mu_source hsc hpieces Gamma.sourceArc
     (Gamma.cellTargetArc equations.target equations.target_eq)
     Gamma.leftSide_norm_le Gamma.rightSide_norm_le
     equations.arcs_value equations.whole_ne
@@ -197,12 +202,14 @@ theorem Contiguity.arcLengths_le_two_mu_target
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
-    {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
     (equations : CellPieceEquations Gamma)
-    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (Gamma.sourceArc.length : ℝ) +
         ((Gamma.cellTargetArc equations.target equations.target_eq).length : ℝ) ≤
       2 * mu * ((cell Delta equations.target).word.length : ℝ) := by
@@ -231,7 +238,7 @@ theorem Contiguity.arcLengths_le_two_mu_target
     apply equations.whole_ne
     rw [hsame]
     group
-  have hbound := cyclicArcLengths_le_two_mu_source hcondition
+  have hbound := cyclicArcLengths_le_two_mu_source hsc hpieces
     (Gamma.cellTargetArc equations.target equations.target_eq) Gamma.sourceArc
     hleft hright harcs hwhole
   linarith
@@ -273,16 +280,18 @@ theorem Candidate.weight_le_two_mu_source
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
-    {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     (candidate : Candidate D eps Delta)
     (equations : CellPieceEquations candidate.contiguity)
-    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (candidate.weight : ℝ) ≤
       2 * mu *
         ((cell Delta candidate.contiguity.source).word.length : ℝ) := by
   rw [candidate.weight_eq_cellPieceArcLengths equations]
-  exact candidate.contiguity.arcLengths_le_two_mu_source equations hcondition
+  exact candidate.contiguity.arcLengths_le_two_mu_source equations hsc hpieces
 
 /-- Osin O52 fills the target incidence of
 `EstimatingData.edgeWeight_le_incident` for a selected candidate. -/
@@ -290,16 +299,18 @@ theorem Candidate.weight_le_two_mu_target
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ}
-    {mu lambda c : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
     (candidate : Candidate D eps Delta)
     (equations : CellPieceEquations candidate.contiguity)
-    (hcondition : OsinCCondition D W eps mu lambda c rho) :
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second word →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
     (candidate.weight : ℝ) ≤
       2 * mu * ((cell Delta equations.target).word.length : ℝ) := by
   rw [candidate.weight_eq_cellPieceArcLengths equations]
   exact candidate.contiguity.arcLengths_le_two_mu_target equations
-    hcondition
+    hsc hpieces
 
 end Embedded
 
