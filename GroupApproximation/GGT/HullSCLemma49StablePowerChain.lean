@@ -84,7 +84,8 @@ theorem sub_lt_two_mul_of_div_add_one_gt_div
   have hquotient := Nat.mul_le_mul_right period hdivLe
   have hiFloor : i / period * period ≤ i := Nat.div_mul_le_self i period
   have hjILt : j < i + period := by
-    rw [Nat.add_mul, one_mul] at hquotient
+    have hjLt' : j < j / period * period + period := by
+      simpa only [Nat.add_mul, Nat.one_mul] using hjLt
     omega
   omega
 
@@ -220,9 +221,13 @@ theorem isQuasiGeodesicChainAt_power_of_stableTranslation
       omega
     have horbitLower : d * (qRight - qLeft : ℕ) ≤
         (wordDist D.alphabet.carrier (g ^ qLeft) (g ^ qRight) : ℝ) := by
-      simp only [hqDiff, Int.cast_natCast, abs_of_nonneg (Nat.cast_nonneg _),
-        zpow_natCast, Cayley.dist_eq, Cayley.val_smul, Cayley.val_base,
-        mul_one] at horbit
+      rw [hqDiff] at horbit
+      simp only [Int.cast_natCast] at horbit
+      have hqDiffNonneg : (0 : ℝ) ≤ (qRight - qLeft : ℕ) :=
+        Nat.cast_nonneg _
+      rw [abs_of_nonneg hqDiffNonneg] at horbit
+      simp only [zpow_natCast, Cayley.dist_eq, Cayley.val_smul,
+        Cayley.val_base, mul_one] at horbit
       have hscaled := mul_le_mul_of_nonneg_right hdStable
         (Nat.cast_nonneg (qRight - qLeft))
       exact le_trans hscaled horbit
@@ -269,7 +274,18 @@ theorem isQuasiGeodesicChainAt_power_of_stableTranslation
       have hmul := mul_le_mul_of_nonneg_left hwordLM
         (Nat.cast_nonneg (qRight - qLeft + 2))
       push_cast at hmul
-      nlinarith
+      have hgapReal' : ((j - i : ℕ) : ℝ) ≤
+          (((qRight - qLeft : ℕ) : ℝ) + 2) *
+            (word.length : ℝ) := by
+        simpa only [Nat.cast_add, Nat.cast_ofNat] using hgapReal
+      calc
+        ((j - i : ℕ) : ℝ) ≤
+            (((qRight - qLeft : ℕ) : ℝ) + 2) *
+              (word.length : ℝ) := hgapReal'
+        _ ≤ (((qRight - qLeft : ℕ) : ℝ) + 2) *
+              (d * (M : ℝ)) := hmul
+        _ = (d * ((qRight - qLeft : ℕ) : ℝ) + 2 * d) *
+              (M : ℝ) := by ring
     have hwordL : (word.length : ℝ) ≤ (L : ℝ) := by
       exact_mod_cast hlength
     push_cast
