@@ -307,7 +307,8 @@ theorem listVal_conj_of_relativeAdjacent_direct
     (lt_of_lt_of_le (by omega : i < u.length) huLen)
     (lt_of_lt_of_le (by omega : j - 1 < u'.length) hu'Len)
     he hf hw hw' (by omega) (by omega) hx
-    (by simpa only [hjstep] using hx') hgap1
+    (by simpa only [hjstep] using hx')
+    (by simpa only [hjstep] using hgap1)
     (by simpa only [R] using hqiPow)
     (by simpa only [R] using hsjPow)
 
@@ -635,6 +636,7 @@ theorem false_of_relativeAdjacent_direct_revInv
   have hAB : (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = a b ^ e := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
+    rfl
   have hVW0 := span_eq_val_of_getElem? hsj
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
@@ -793,6 +795,7 @@ theorem false_of_relativeAdjacent_revInv_direct
   have hAB : (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
       GGT.OsinComponents.vertex (1 : G) u (i + 1) = (a b ^ e)⁻¹ := by
     rw [span_eq_val_of_getElem? hqi, hvq, ite_apply_eq a b]
+    rfl
   have hVW0 := span_eq_val_of_getElem? hsj
   rw [hvs, ite_apply_eq a b, ← hef] at hVW0
   have hVW : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
