@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CactusRealization
+import GroupApproximation.GGT.VanKampen.RelativeCactus
 import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
 
 /-!
@@ -51,6 +52,19 @@ def RelativeDiscRealizationStatement : Prop :=
 
 namespace RelativeDiscRealization
 
+/-- The shared cactus supplies a realization for every generic reduced input. -/
+noncomputable def of_generic
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    RelativeDiscRealization D W Z where
+  diagram := HullSC.RelativeReducedDiagram.cactusDiscDiagram Z
+  cellIndex := HullSC.RelativeReducedDiagram.cellIndexEquiv Z
+  cellWord_eq := HullSC.RelativeReducedDiagram.cellIndexEquiv_word Z
+  outerWord_eq := HullSC.RelativeReducedDiagram.cactusDiscDiagram_boundaryWord Z
+  reduced := HullSC.RelativeReducedDiagram.cactusDiscDiagram_reduced Z
+
 /-- Every algebraic cell represented by a planar relator face has a nonempty
 relator word. -/
 theorem cellRelator_ne_nil
@@ -73,6 +87,14 @@ theorem not_nonempty_of_empty_cell
     ¬ Nonempty (RelativeDiscRealization D W Z) := by
   rintro ⟨C⟩
   exact C.cellRelator_ne_nil i hi
+
+theorem exists_of_generic
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    Nonempty (RelativeDiscRealization D W Z) :=
+  ⟨of_generic Z⟩
 
 end RelativeDiscRealization
 
@@ -143,6 +165,12 @@ end HullSC
 
 namespace GGT
 namespace VanKampen
+
+/-- Every common relative reduced diagram has the explicit planar cactus
+realization, with one relator face per algebraic cell. -/
+theorem relativeDiscRealizationStatement : RelativeDiscRealizationStatement := by
+  intro G _ Lambda D W R Z
+  exact RelativeDiscRealization.exists_of_generic Z
 
 /-- Every common relative diagram produced by Hull's oriented least-area
 construction has the required planar realization. -/
