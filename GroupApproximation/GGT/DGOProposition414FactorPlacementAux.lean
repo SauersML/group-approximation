@@ -683,6 +683,177 @@ theorem distributedSlots_disjoint
         distributedRightSlot, hnotFirst, hsSecond, hsurvives,
         ↓reduceDIte] using B.secondBroken_slots_disjoint C hbroken q
 
+/-! ## First-family coordinate origins -/
+
+theorem halfEntry_exitChild_injective
+    {I : Finset ℕ} {pos partner : ℕ → ℕ} {L : ℕ}
+    (A : GreedyHalfFamilyIndex I pos partner L) {e f : Fin A.sources.length}
+    (h : HalfEntry.exitChild A e = HalfEntry.exitChild A f) : e = f := by
+  apply Fin.ext
+  have hval := congrArg Fin.val h
+  change e.val + 1 = f.val + 1 at hval
+  omega
+
+/-- The four separated target blocks which can charge a first-family child. -/
+inductive FirstChildSlotKind
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R) (s : ℕ) : Type
+  | endConnector
+      (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+        B.componentPlacement.firstSurvives)
+      (present : 0 < (B.firstGapLeft
+        (HalfEntry.exitChild B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs))).length)
+  | survivor (hs : s ∈ B.componentPlacement.firstTarget)
+      (hsurvives : B.componentPlacement.firstSurvives s)
+  | startConnector
+      (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+        B.componentPlacement.firstSurvives)
+      (present : 0 < (B.firstGapRight (B.firstBrokenOwner s hs)).length)
+  | chord
+      (hs : s ∈ brokenSet B.componentPlacement.secondTarget
+        B.componentPlacement.secondSurvives)
+
+namespace FirstChildSlotKind
+
+noncomputable def child
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (K : FirstChildSlotKind B s) :
+    Fin B.brokenAssignment.index.first.pieceCount :=
+  match K with
+  | .endConnector hs _ => HalfEntry.exitChild B.brokenAssignment.index.first
+      (B.firstSourceEntry s hs)
+  | .survivor hs hsurvives => B.firstSurvivorGapOwner hs hsurvives
+  | .startConnector hs _ => B.firstBrokenOwner s hs
+  | .chord _ => B.secondPartnerFirstGapOwner s
+
+noncomputable def targetIndex
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (K : FirstChildSlotKind B s) : ℕ :=
+  match K with
+  | .endConnector _ _ => 0
+  | .survivor hs hsurvives => B.firstSurvivorLocalIndex hs hsurvives
+  | .startConnector hs _ =>
+      (B.firstGapLeft (B.firstBrokenOwner s hs)).length +
+        (B.firstGapFinishSide (B.firstBrokenOwner s hs) -
+          B.firstGapStartSide (B.firstBrokenOwner s hs))
+  | .chord _ => B.firstGapChordTargetIndex
+      (B.secondPartnerFirstGapOwner s)
+      (B.brokenAssignment.second.partner s)
+
+def region
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (K : FirstChildSlotKind B s) : ℕ :=
+  match K with
+  | .endConnector _ _ => 0
+  | .survivor _ _ => 1
+  | .startConnector _ _ => 2
+  | .chord _ => 3
+
+theorem targetIndex_lt_of_region_lt
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s t : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (K : FirstChildSlotKind B s) (L : FirstChildSlotKind B t)
+    (hchild : K.child = L.child) (hregion : K.region < L.region) :
+    K.targetIndex < L.targetIndex := by
+  cases K <;> cases L <;> simp only [region] at hregion
+  all_goals try omega
+  all_goals simp only [child, targetIndex] at hchild ⊢
+  · have hpositive := ‹0 < (B.firstGapLeft _).length›
+    rw [hchild] at hpositive
+    unfold firstSurvivorLocalIndex
+    omega
+  · have hpositive := ‹0 < (B.firstGapLeft _).length›
+    rw [hchild] at hpositive
+    omega
+  · have hpositive := ‹0 < (B.firstGapLeft _).length›
+    rw [hchild] at hpositive
+    unfold firstGapChordTargetIndex auxiliaryChordTargetIndex
+    omega
+  · have hmem := Finset.mem_filter.mp
+      (B.firstSurvivorGapOwner_mem ‹_› ‹_›)
+    rw [hchild] at hmem
+    unfold firstSurvivorLocalIndex
+    omega
+  · have hmem := Finset.mem_filter.mp
+      (B.firstSurvivorGapOwner_mem ‹_› ‹_›)
+    rw [hchild] at hmem
+    unfold firstSurvivorLocalIndex firstGapChordTargetIndex
+      auxiliaryChordTargetIndex
+    omega
+  · have hpositive := ‹0 < (B.firstGapRight _).length›
+    rw [hchild] at hpositive
+    unfold firstGapChordTargetIndex auxiliaryChordTargetIndex
+    omega
+
+/-- In one first-family child, the block and local target coordinate determine
+the original parent source. -/
+theorem source_eq_of_same_coordinate
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R s t : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    {B : BalancedSplitData D hsymm b hδ P k R}
+    (K : FirstChildSlotKind B s) (L : FirstChildSlotKind B t)
+    (hchild : K.child = L.child)
+    (hindex : K.targetIndex = L.targetIndex) : s = t := by
+  have hregion : K.region = L.region := by
+    apply Nat.le_antisymm
+    · by_contra hnot
+      have hlt : L.region < K.region := by omega
+      have hstrict := L.targetIndex_lt_of_region_lt K hchild.symm hlt
+      omega
+    · by_contra hnot
+      have hlt : K.region < L.region := by omega
+      have hstrict := K.targetIndex_lt_of_region_lt L hchild hlt
+      omega
+  cases K <;> cases L <;> simp only [region] at hregion
+  all_goals try omega
+  all_goals simp only [child, targetIndex] at hchild hindex
+  · have hentry := halfEntry_exitChild_injective
+      B.brokenAssignment.index.first hchild
+    calc
+      s = HalfEntry.entrySource B.brokenAssignment.index.first
+          (B.firstSourceEntry s ‹_›) := (B.firstSourceEntry_source s ‹_›).symm
+      _ = HalfEntry.entrySource B.brokenAssignment.index.first
+          (B.firstSourceEntry t ‹_›) := congrArg _ hentry
+      _ = t := B.firstSourceEntry_source t ‹_›
+  · have hsMem := B.firstSurvivorGapOwner_mem ‹_› ‹_›
+    have htMem := B.firstSurvivorGapOwner_mem ‹_› ‹_›
+    rw [← hchild] at htMem
+    apply B.firstGapArcSource_injective _ hsMem htMem
+    simpa only [firstSurvivorLocalIndex] using hindex
+  · exact B.firstBrokenOwner_injective ‹_› ‹_› hchild
+  · have hsMem : s ∈ B.firstGapChordSources
+        (B.secondPartnerFirstGapOwner s) :=
+      Finset.mem_filter.mpr ⟨‹_›, rfl⟩
+    have htMem : t ∈ B.firstGapChordSources
+        (B.secondPartnerFirstGapOwner s) := by
+      apply Finset.mem_filter.mpr
+      exact ⟨‹_›, hchild.symm⟩
+    apply B.firstGapChordSource_injective _ hsMem htMem
+    exact hindex
+
+end FirstChildSlotKind
+
 end BalancedSplitData
 
 end DGOProposition414
