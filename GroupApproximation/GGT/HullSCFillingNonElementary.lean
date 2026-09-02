@@ -954,7 +954,7 @@ theorem hullLemma58SuitableFamily_unconditional :
     { hullSet := H
       alphabet_image := by
         intro a ha
-        exact Set.mem_union_left _ (hbase (P.base_image a ha)) }
+        exact Set.mem_union_left _ (hbase (P.base_image a (D.base_le ha))) }
   have hperiph : ∀ x ∈ D.rel.alphabet.carrier,
       q x ∈ B.hullSet.alphabet.carrier := by
     rintro x (hx | hx)
