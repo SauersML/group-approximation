@@ -202,14 +202,6 @@ This keeps the remaining forty-nine row-pair cases in ordinary arithmetic. -/
 theorem fanoZMod_eq_iff_val_eq (a b : ZMod 7) : a = b ↔ a.val = b.val :=
   (ZMod.val_injective 7).eq_iff.symm
 
-/-- The canonical constructor of `Z/7Z` has its displayed representative. -/
-@[simp] theorem fanoZMod_val_mk (n : ℕ) (h : n < 7) :
-    ZMod.val (show ZMod 7 from ⟨n, h⟩) = n := rfl
-
-@[simp] theorem fanoZMod_val_zero : ZMod.val (0 : ZMod 7) = 0 := rfl
-
-@[simp] theorem fanoZMod_val_one : ZMod.val (1 : ZMod 7) = 1 := rfl
-
 /-- Two distinct points lie on one common line; a point has three incident
 lines.  This is the row identity `N Nᵀ = 2I + J`. -/
 theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
@@ -220,9 +212,13 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
   simp_rw [fanoIncidence_cornerExpansion]
   simp only [add_mul, mul_add, Finset.sum_add_distrib,
     fanoCorner_productSum]
-  fin_cases x <;> fin_cases x' <;>
-    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, fanoZMod_val_mk,
-      fanoZMod_val_zero, fanoZMod_val_one, ZMod.val_ofNat]
+  have hxzero : 0 ≤ x.val := Nat.zero_le _
+  have hxlt : x.val < 7 := ZMod.val_lt x
+  have hx'zero : 0 ≤ x'.val := Nat.zero_le _
+  have hx'lt : x'.val < 7 := ZMod.val_lt x'
+  interval_cases hxval : x.val using hxzero, hxlt <;>
+    interval_cases hx'val : x'.val using hx'zero, hx'lt <;>
+      norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, hxval, hx'val]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
