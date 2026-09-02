@@ -75,17 +75,17 @@ def HullLemma44CanonicalQuotientFamilyInclusionStatement : Prop :=
 /-- **Hull Lemma 4.4, arbitrary preserved family, with the source joint family
 bound.**
 
-This is the previous statement with the four hypotheses that Hull's setting
-supplies and the previous form omits: the source joint family over the sum
-index, its base symmetry, the two family-agreement equations, and its
-hyperbolic embeddedness.  No numerical hypothesis is added: `eps`, `rho` and
+This is the previous statement with the data Hull's setting supplies and the
+previous form omits: the source joint family over the sum index, its base
+symmetry, the two family-agreement equations, and its hyperbolic
+embeddedness.  No numerical hypothesis is added: `eps`, `rho` and
 `mu` are still chosen after the families and the radius, and the
 small-cancellation input is still stated over the selected relative
 generating set, exactly as in the printed lemma.
 
 The conclusion block is unchanged, and it is model-tested at the identity
 quotient by `familyInclusionConclusion_identityModel` below, whose hypotheses
-are precisely the four new binders.  The fixed-parameter producer
+are precisely the new binders.  The fixed-parameter producer
 `familyInclusionConclusion_of_relativeControls` takes the same four, so this
 form is the one the landed assembly can reach. -/
 def HullLemma44CanonicalQuotientFamilyInclusionJointStatement : Prop :=
