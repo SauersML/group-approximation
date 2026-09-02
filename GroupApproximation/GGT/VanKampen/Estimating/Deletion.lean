@@ -133,6 +133,7 @@ theorem toOwnerOrientation
               edges.filter (fun e => owner e = x) =
                 incidentEdges incident x edges := by
             ext e
+            simp only [Finset.mem_filter, incidentEdges]
             change (e ∈ edges ∧ owner e = x) ↔
               (e ∈ edges ∧ incident x e)
             by_cases hxe : incident x e
@@ -168,6 +169,7 @@ theorem toOwnerOrientation
                 (nonincidentEdges incident x edges).filter
                   (fun e => tailOrientation.owner e = y) := by
             ext e
+            simp only [Finset.mem_filter, nonincidentEdges]
             change (e ∈ edges ∧ owner e = y) ↔
               ((e ∈ edges ∧ ¬ incident x e) ∧
                 tailOrientation.owner e = y)
