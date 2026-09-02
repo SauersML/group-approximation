@@ -54,7 +54,7 @@ theorem exists_quasiChain_quadrangleShadow
       ∀ i ≤ nPow, ∃ j ≤ nRel, wordDist S (qPow i) (qRel j) ≤ K := by
   obtain ⟨Rp, hp⟩ := Hyperbolic.morseLemma_univ.{u} 4 b delta
   obtain ⟨Rr, hr⟩ :=
-    exists_index_wordDist_le_of_isBetween_of_fourPoint (u := u) 4 1 delta
+    exists_index_wordDist_le_of_isBetween_of_fourPoint 4 1 delta
   refine ⟨Rp + Rr + 8 * delta + eps, ?_⟩
   intro G _ S qRel qPow nRel nPow hS hdelta hRel hPow hleft hright i hi
   have hpActual := hp G inferInstance S hS hdelta nPow qPow
@@ -163,7 +163,9 @@ theorem Lemma49RelativeGreendlingerCell.exterior_isQuasiGeodesicChainAt
       C.contiguity.exterior.length := by
   have hprefix := isQuasiGeodesicChainAt_shift
     (hinput.quasiGeodesic C.relator C.relator_mem)
-    C.contiguity.exterior_length_le_relator
+    (start := 0) (length := C.contiguity.exterior.length) (by
+      simpa only [Nat.zero_add] using
+        C.contiguity.exterior_length_le_relator)
   apply isQuasiGeodesicChainAt_of_pairwiseDistance
     hprefix
   intro i hi j hj
@@ -206,7 +208,7 @@ theorem Lemma49RelativeGreendlingerCell.powerArc_isQuasiGeodesicChainAt
         GGT.RelLetter.listVal C.boundaryBefore * qArc i := by
     intro i hi
     dsimp [start, qArc]
-    rw [C.boundary_decomposition, ← List.append_assoc,
+    rw [C.boundary_decomposition, List.append_assoc,
       GGT.OsinComponents.vertex_append_add C.boundaryBefore
         (C.boundaryArc ++ C.boundaryAfter) 1 i,
       one_mul,
@@ -301,7 +303,7 @@ theorem exists_lemma49ContiguityShadow_constant
       8 * delta + 2 ≤ Z.boundaryWord.length →
       Nonempty (Lemma49ContiguityShadow C K) := by
   obtain ⟨K, hK⟩ := exists_quasiChain_quadrangleShadow
-    (u := u) delta eps (8 * delta + 2)
+    delta eps (8 * delta + 2)
   refine ⟨K, ?_⟩
   intro G _ Lambda D v g n rho Z C N _ hdelta hinput hshort hlong
   have hRel := C.exterior_isQuasiGeodesicChainAt hinput
@@ -323,7 +325,7 @@ theorem exists_lemma49ContiguityShadow_constant
 /-- Constant chains shadow each other at index zero when their endpoints
 coincide.  This checks the endpoint branches independently of Morse geometry. -/
 theorem constantChain_shadow_model {G : Type u} [Group G]
-    {S : Set G} (hS : IsSymmetricGeneratingSet S) (x : G) :
+    {S : Set G} (x : G) :
     ∀ i ≤ 0, ∃ j ≤ 0,
       wordDist S ((fun _ : ℕ => x) i) ((fun _ : ℕ => x) j) ≤ 0 := by
   intro i hi
