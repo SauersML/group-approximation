@@ -457,7 +457,7 @@ theorem presented_isHyperbolicGroup_of_girthEight_layer_construction
           (↑(presentedGeneratorFinset T) :
             Set (TriangularHodgeLayer.Presented T)) p q) →
       ∃ (Delta : VanKampen.DiscDiagram (KazhdanHyp.triangleRelatorWords T))
-        (L : KazhdanHyp.TriangularDiagramLocalData T Delta)
+        (_L : KazhdanHyp.TriangularDiagramLocalData T Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
         Delta.combinatorialBoundaryLength <= 6 * ell ∧
         (∑ i, layer i) <= Delta.innerFaceCount ∧
