@@ -50,34 +50,14 @@ def RelativeHullData.toContinuation
   rel_alphabet_subset := by rw [← B.hull_alphabet]
   suitable := B.suitable
 
-/-- The preserved relative alphabet is exactly the image of the source
-relative alphabet. -/
-theorem canonicalPreserved_alphabet_carrier_eq_image
+/-- The preserved relative alphabet lies in the image of the source relative
+alphabet together with the allowed enlargement. -/
+theorem canonicalPreserved_alphabet_carrier_subset_image
     {G : Type u} [Group G] {I : Type v} {Q : Type u} [Group Q]
-    {q : G →* Q} {D : RelGenSet G I}
-    (P : HullSC.CanonicalQuotientFamilyPreservation q D) :
-    P.rel.alphabet.carrier = q '' D.alphabet.carrier := by
-  ext y
-  constructor
-  · intro hy
-    rcases hy with hy | hy
-    · rw [P.base_map] at hy
-      obtain ⟨x, hx, rfl⟩ := hy
-      exact ⟨x, Set.mem_union_left _ hx, rfl⟩
-    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
-      rw [P.fam_map i] at hi
-      obtain ⟨x, hx, rfl⟩ := hi
-      exact ⟨x, Set.mem_union_right _
-        (Set.mem_iUnion.mpr ⟨i, hx⟩), rfl⟩
-  · rintro ⟨x, hx, rfl⟩
-    rcases hx with hx | hx
-    · exact Set.mem_union_left _ (by
-        rw [P.base_map]
-        exact ⟨x, hx, rfl⟩)
-    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
-      exact Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨i, by
-        rw [P.fam_map i]
-        exact Subgroup.mem_map_of_mem q hi⟩)
+    {q : G →* Q} {D : RelGenSet G I} {Y : Set G}
+    (P : HullSC.CanonicalQuotientFamilyPreservation q D Y) :
+    P.rel.alphabet.carrier ⊆ q '' (D.alphabet.carrier ∪ Y) :=
+  P.alphabet_carrier_subset_image
 
 end RelHyp
 end GGT
