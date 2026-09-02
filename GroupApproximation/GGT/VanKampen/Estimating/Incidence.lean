@@ -218,6 +218,141 @@ noncomputable instance interiorIncidenceFintype
   unfold InteriorIncidence
   infer_instance
 
+/-- Send a cellwise interior incidence to its selected cell-to-cell region and
+the Boolean which distinguishes its source and target occurrences. -/
+noncomputable def interiorIncidenceToTagged
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    InteriorIncidence selected → InteriorEdge selected × Bool := by
+  intro occurrence
+  obtain ⟨i, incidence, hkind⟩ := occurrence
+  cases incidence with
+  | source candidate mem_selected source_eq =>
+      cases htarget : candidate.contiguity.target with
+      | none =>
+          have hfalse : CellArcKind.exterior = CellArcKind.interior := by
+            simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+          cases hfalse
+      | some target =>
+          exact (⟨(candidate, target), mem_selected, htarget⟩, false)
+  | target candidate mem_selected target_eq =>
+      exact (⟨(candidate, i), mem_selected, target_eq⟩, true)
+
+/-- Recover the source or target occurrence selected by a tagged interior
+edge. -/
+noncomputable def taggedToInteriorIncidence
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    InteriorEdge selected × Bool → InteriorIncidence selected
+  | (edge, false) =>
+      ⟨edge.candidate.contiguity.source,
+        ⟨CellIncidence.source edge.candidate edge.candidate_mem rfl,
+          by simp [CellIncidence.kind, edge.target_eq]⟩⟩
+  | (edge, true) =>
+      ⟨edge.target,
+        ⟨CellIncidence.target edge.candidate edge.candidate_mem edge.target_eq,
+          rfl⟩⟩
+
+/-- The forward map sends the source occurrence to the false tag. -/
+theorem interiorIncidenceToTagged_source
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (target : Fin Delta.rCellCount)
+    (htarget : candidate.contiguity.target = some target) :
+    interiorIncidenceToTagged selected
+        ⟨candidate.contiguity.source,
+          ⟨CellIncidence.source candidate mem_selected rfl,
+            by simp [CellIncidence.kind, htarget]⟩⟩ =
+      (⟨(candidate, target), mem_selected, htarget⟩, false) := by
+  unfold interiorIncidenceToTagged
+  rw [htarget]
+  rfl
+
+/-- The forward map sends the target occurrence to the true tag. -/
+theorem interiorIncidenceToTagged_target
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (target : Fin Delta.rCellCount)
+    (htarget : candidate.contiguity.target = some target) :
+    interiorIncidenceToTagged selected
+        ⟨target,
+          ⟨CellIncidence.target candidate mem_selected htarget, rfl⟩⟩ =
+      (⟨(candidate, target), mem_selected, htarget⟩, true) := by
+  unfold interiorIncidenceToTagged
+  rfl
+
+/-- Recovering an interior incidence after tagging it is the identity. -/
+theorem taggedToInteriorIncidence_leftInverse
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    Function.LeftInverse (taggedToInteriorIncidence selected)
+      (interiorIncidenceToTagged selected) := by
+  intro occurrence
+  obtain ⟨i, incidence, hkind⟩ := occurrence
+  cases incidence with
+  | source candidate mem_selected source_eq =>
+      cases htarget : candidate.contiguity.target with
+      | none =>
+          have hfalse : CellArcKind.exterior = CellArcKind.interior := by
+            simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
+          cases hfalse
+      | some target =>
+          cases source_eq
+          rw [interiorIncidenceToTagged_source selected candidate mem_selected
+            target htarget]
+          unfold taggedToInteriorIncidence
+          rfl
+  | target candidate mem_selected target_eq =>
+      rw [interiorIncidenceToTagged_target selected candidate mem_selected i
+        target_eq]
+      unfold taggedToInteriorIncidence
+      rfl
+
+/-- Tagging a recovered endpoint occurrence is the identity. -/
+theorem taggedToInteriorIncidence_rightInverse
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    Function.RightInverse (taggedToInteriorIncidence selected)
+      (interiorIncidenceToTagged selected) := by
+  rintro ⟨edge, tag⟩
+  cases tag with
+  | false =>
+      unfold taggedToInteriorIncidence
+      rw [interiorIncidenceToTagged_source selected edge.candidate
+        edge.candidate_mem edge.target edge.target_eq]
+      apply Prod.ext
+      · apply Subtype.ext
+        rfl
+      · rfl
+  | true =>
+      unfold taggedToInteriorIncidence
+      rw [interiorIncidenceToTagged_target selected edge.candidate
+        edge.candidate_mem edge.target edge.target_eq]
+      apply Prod.ext
+      · apply Subtype.ext
+        rfl
+      · rfl
+
 /-- Every selected cell-to-cell region occurs exactly twice in the cellwise
 interior incidence sum, once at its source and once at its target. -/
 noncomputable def interiorIncidenceEquiv
@@ -227,51 +362,10 @@ noncomputable def interiorIncidenceEquiv
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (selected : Finset (Candidate D eps Delta)) :
     InteriorIncidence selected ≃ InteriorEdge selected × Bool where
-  toFun occurrence := by
-    obtain ⟨i, incidence, hkind⟩ := occurrence
-    cases incidence with
-    | source candidate mem_selected source_eq =>
-        cases htarget : candidate.contiguity.target with
-        | none =>
-            have hfalse : CellArcKind.exterior = CellArcKind.interior := by
-              simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
-            cases hfalse
-        | some target =>
-            exact (⟨(candidate, target), mem_selected, htarget⟩, false)
-    | target candidate mem_selected target_eq =>
-        exact (⟨(candidate, i), mem_selected, target_eq⟩, true)
-  invFun tagged :=
-    match tagged.2 with
-    | false =>
-        ⟨tagged.1.candidate.contiguity.source,
-          ⟨CellIncidence.source tagged.1.candidate tagged.1.candidate_mem rfl,
-            by simp [CellIncidence.kind, tagged.1.target_eq]⟩⟩
-    | true =>
-        ⟨tagged.1.target,
-          ⟨CellIncidence.target tagged.1.candidate tagged.1.candidate_mem
-            tagged.1.target_eq, rfl⟩⟩
-  left_inv occurrence := by
-    obtain ⟨i, incidence, hkind⟩ := occurrence
-    cases incidence with
-    | source candidate mem_selected source_eq =>
-        cases htarget : candidate.contiguity.target with
-        | none =>
-            have hfalse : CellArcKind.exterior = CellArcKind.interior := by
-              simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
-            cases hfalse
-        | some target =>
-            cases source_eq
-            rfl
-    | target candidate mem_selected target_eq =>
-        rfl
-  right_inv tagged := by
-    obtain ⟨edge, tag⟩ := tagged
-    cases tag with
-    | false =>
-        rw [edge.target_eq]
-        rfl
-    | true =>
-        rfl
+  toFun := interiorIncidenceToTagged selected
+  invFun := taggedToInteriorIncidence selected
+  left_inv := taggedToInteriorIncidence_leftInverse selected
+  right_inv := taggedToInteriorIncidence_rightInverse selected
 
 /-! ## Exterior regions -/
 
