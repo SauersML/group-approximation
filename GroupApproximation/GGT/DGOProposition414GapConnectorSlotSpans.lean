@@ -41,6 +41,7 @@ theorem firstBrokenStartSlot_span
   change optionalTargetSlotSpan (B.firstBrokenStartSlot C hs) =
     RelLetter.listVal (B.firstGapRight j)
   unfold firstBrokenStartSlot
+  simp only
   split
   next h =>
     change (Q.first j).certificate.sideSpan
@@ -77,6 +78,7 @@ theorem firstBrokenEndSlot_span
   change optionalTargetSlotSpan (B.firstBrokenEndSlot C hs) =
     (RelLetter.listVal (B.firstGapLeft j))⁻¹
   unfold firstBrokenEndSlot
+  simp only
   split
   next h =>
     change (Q.first j).certificate.sideSpan 0 =
@@ -109,6 +111,7 @@ theorem secondBrokenStartSlot_span
   change optionalTargetSlotSpan (B.secondBrokenStartSlot C hs) =
     RelLetter.listVal (B.secondGapRight j)
   unfold secondBrokenStartSlot
+  simp only
   split
   next h =>
     change (Q.second j).certificate.sideSpan
@@ -144,6 +147,7 @@ theorem secondBrokenEndSlot_span
   change optionalTargetSlotSpan (B.secondBrokenEndSlot C hs) =
     (RelLetter.listVal (B.secondGapLeft j))⁻¹
   unfold secondBrokenEndSlot
+  simp only
   split
   next h =>
     change (Q.second j).certificate.sideSpan 0 =
