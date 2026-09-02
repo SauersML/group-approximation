@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.VanKampen.CactusTopology
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
 
 /-!
@@ -267,6 +268,187 @@ theorem replaceGRegion_refl_reduced
     (Delta : DiscDiagram.{u, w, v} W) (hred : Delta.Reduced) :
     (GRegionReplacement.refl Delta).replaceGRegion.Reduced :=
   (GRegionReplacement.refl Delta).reduced hred
+
+/-! ## Finite incidence surgery -/
+
+namespace Incidence
+
+/-- Remove a loop edge from the active edge set.  The loop hypothesis belongs
+to the application: deletion itself is the finite edge-set operation used by
+the contracted estimating graph. -/
+def removeLoop {E : Type*} [DecidableEq E]
+    (edges : Finset E) (loop : E) : Finset E :=
+  edges.erase loop
+
+/-- Merge a parallel pair by retaining the first edge and erasing the second.
+The parallel and weight hypotheses belong to the geometric two-gon
+certificate below. -/
+def mergeParallelEdges {E : Type*} [DecidableEq E]
+    (edges : Finset E) (_retained redundant : E) : Finset E :=
+  edges.erase redundant
+
+/-- A removed loop is absent from the resulting edge set. -/
+theorem loop_not_mem_removeLoop {E : Type*} [DecidableEq E]
+    (edges : Finset E) (loop : E) : loop ∉ removeLoop edges loop := by
+  simp [removeLoop]
+
+/-- The redundant member of a parallel pair is absent after merging. -/
+theorem redundant_not_mem_mergeParallelEdges
+    {E : Type*} [DecidableEq E]
+    (edges : Finset E) (retained redundant : E) :
+    redundant ∉ mergeParallelEdges edges retained redundant := by
+  simp [mergeParallelEdges]
+
+/-- Removing a loop cannot introduce an uncovered edge. -/
+theorem edgesCovered_removeLoop
+    {V E : Type*} [DecidableEq E]
+    (incident : V → E → Prop) (vertices : Finset V) (edges : Finset E)
+    (loop : E) (hcovered : EdgesCovered incident vertices edges) :
+    EdgesCovered incident vertices (removeLoop edges loop) := by
+  intro edge hedge
+  exact hcovered edge (Finset.mem_of_mem_erase hedge)
+
+/-- Merging parallel edges cannot introduce an uncovered edge. -/
+theorem edgesCovered_mergeParallelEdges
+    {V E : Type*} [DecidableEq E]
+    (incident : V → E → Prop) (vertices : Finset V) (edges : Finset E)
+    (retained redundant : E)
+    (hcovered : EdgesCovered incident vertices edges) :
+    EdgesCovered incident vertices
+      (mergeParallelEdges edges retained redundant) := by
+  intro edge hedge
+  exact hcovered edge (Finset.mem_of_mem_erase hedge)
+
+/-- Removing a present loop lowers the active edge count by one. -/
+theorem card_removeLoop
+    {E : Type*} [DecidableEq E]
+    (edges : Finset E) {loop : E} (hloop : loop ∈ edges) :
+    (removeLoop edges loop).card + 1 = edges.card := by
+  exact Finset.card_erase_add_one hloop
+
+/-- Merging a present redundant parallel edge lowers the active edge count by
+one. -/
+theorem card_mergeParallelEdges
+    {E : Type*} [DecidableEq E]
+    (edges : Finset E) (retained : E) {redundant : E}
+    (hredundant : redundant ∈ edges) :
+    (mergeParallelEdges edges retained redundant).card + 1 = edges.card := by
+  exact Finset.card_erase_add_one hredundant
+
+end Incidence
+
+/-! ## The embedded estimating graph -/
+
+namespace Embedded.InteriorEdge
+
+/-- An estimating edge is a loop when its stored source and target are the
+same relator cell. -/
+def IsLoop
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Embedded.Candidate D eps Delta)}
+    (edge : Embedded.InteriorEdge selected) : Prop :=
+  edge.candidate.contiguity.source = edge.target
+
+/-- Two estimating edges are parallel when their unordered pairs of stored
+endpoints agree. -/
+def Parallel
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Embedded.Candidate D eps Delta)}
+    (first second : Embedded.InteriorEdge selected) : Prop :=
+  (first.candidate.contiguity.source =
+      second.candidate.contiguity.source ∧ first.target = second.target) ∨
+    (first.candidate.contiguity.source = second.target ∧
+      first.target = second.candidate.contiguity.source)
+
+/-- Parallelism of estimating edges is symmetric. -/
+theorem parallel_symm
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Embedded.Candidate D eps Delta)}
+    {first second : Embedded.InteriorEdge selected}
+    (hparallel : Parallel first second) : Parallel second first := by
+  rcases hparallel with hparallel | hparallel
+  · exact Or.inl ⟨hparallel.1.symm, hparallel.2.symm⟩
+  · exact Or.inr ⟨hparallel.2.symm, hparallel.1.symm⟩
+
+/-- A parallel two-gon which can be replaced by one embedded region.  The
+replacement includes the `G`-face surgery certificate and the nondecrease of
+the total two contiguity-arc lengths. -/
+structure TwoGonSurgery
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Embedded.Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Embedded.Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (first second : Embedded.InteriorEdge selected.family) where
+  parallel : Parallel first second
+  candidate_ne : first.candidate ≠ second.candidate
+  merged : Embedded.Candidate D eps Delta
+  surgery : Embedded.MergeSurgery first.candidate second.candidate merged
+  weight_nondec : first.candidate.weight + second.candidate.weight ≤
+    merged.weight
+
+/-- Definition M excludes every mergeable parallel two-gon in the selected
+estimating graph. -/
+theorem no_twoGonSurgery
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Embedded.Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Embedded.Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (first second : Embedded.InteriorEdge selected.family) :
+    ¬ Nonempty (TwoGonSurgery selected first second) := by
+  rintro ⟨twoGon⟩
+  exact Embedded.lemma65a_no_mergeable_twoGon selected
+    first.candidate second.candidate twoGon.merged
+    first.candidate_mem second.candidate_mem twoGon.candidate_ne
+    twoGon.surgery twoGon.weight_nondec
+
+end Embedded.InteriorEdge
+
+/-! ## Executable small-map checks -/
+
+/-- Removing one edge from the one-polygon cactus model leaves two edges. -/
+theorem removeLoop_zeroCellModel_card :
+    let M := CactusShape.zeroCellModel.toCombMap
+    let edge := M.edgeOf
+      (CactusDart.outerForward (CactusShape.zeroCellModel.boundaryZero))
+    (Incidence.removeLoop (Finset.univ : Finset M.Edge) edge).card = 2 := by
+  dsimp only
+  rw [Finset.card_erase_of_mem (Finset.mem_univ _)]
+  have hcount := CactusShape.zeroCellModel_counts.2.1
+  change Nat.card CactusShape.zeroCellModel.toCombMap.Edge = 3 at hcount
+  simpa only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
+
+/-- Merging away one edge in the one-relator-cell cactus model leaves five
+edges. -/
+theorem mergeParallelEdges_oneCellModel_card :
+    let M := CactusShape.oneCellModel.toCombMap
+    let retained := M.edgeOf
+      (CactusDart.outerForward (CactusShape.oneCellModel.boundaryZero))
+    let redundant := M.edgeOf
+      (CactusDart.outerForward
+        (CactusShape.nextFin CactusShape.oneCellModel.boundaryLength
+          CactusShape.oneCellModel.boundaryZero))
+    (Incidence.mergeParallelEdges (Finset.univ : Finset M.Edge)
+      retained redundant).card = 5 := by
+  dsimp only
+  rw [Finset.card_erase_of_mem (Finset.mem_univ _)]
+  have hcount := CactusShape.oneCellModel_counts.2.1
+  change Nat.card CactusShape.oneCellModel.toCombMap.Edge = 6 at hcount
+  simpa only [Finset.card_univ, Fintype.card_eq_nat_card, hcount]
 
 end Surgery
 
