@@ -98,12 +98,12 @@ theorem sum_orientedTrimmedChordWalk_dist_le
               · by_cases hp : 0 < j.val
                 · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
-                · simp [hn, hp, chordWalkStart,
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
               · by_cases hp : 0 < j.val
                 · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                · simp [hn, hp, chordWalkStart,
                     chordWalkFinish, Nat.dist] <;> omega
     _ = chordTraversalCost (initial :: xs ++ [terminal]) +
         2 * (xs.length + 1) := by
