@@ -220,5 +220,21 @@ theorem hullLemma44CanonicalQuotientStatement_zero
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
     hgeom hbridge
 
+/-- Form using Osin Lemma 5.1's local Dehn transfer directly. -/
+theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
+    (hgeom : RelativeGreendlingerStatement.{u, w})
+    (htransfer : RelativeDehnTransferStatement.{u, u, w}) :
+    HullLemma44CanonicalQuotientStatement.{u} :=
+  hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
+    hgeom (relativeIsoperimetricBridgeStatement_of_dehnTransfer htransfer)
+
+/-- Universe-zero form with the two source lemmas separated. -/
+theorem hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer
+    (hgeom : RelativeGreendlingerStatement.{0, 0})
+    (htransfer : RelativeDehnTransferStatement.{0, 0, 0}) :
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
+    hgeom htransfer
+
 end HullSC
 end GroupApproximation
