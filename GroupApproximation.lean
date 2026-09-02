@@ -3281,6 +3281,8 @@ import GroupApproximation.GGT.VanKampen.Estimating.UnboundRepaired
 import GroupApproximation.GGT.HullSCRelativeGreendlingerQuasiGeodesicSpelling
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundComponentSplit
 import GroupApproximation.GGT.DGOProposition414ArcChordSeamProofWrapped
+import GroupApproximation.GGT.DGOProposition414LeftChordSeamProof
+import GroupApproximation.GGT.DGOProposition435HullBase
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
