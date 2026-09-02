@@ -288,9 +288,13 @@ theorem listVal_prefixTriangle
     (q : G →* Q) (pre : List (GGT.RelLetter G Lambda))
     (a : GGT.RelLetter G Lambda) :
     GGT.RelLetter.listVal (prefixTriangle q pre a) = 1 := by
-  cases a <;>
-    simp [prefixTriangle, RelWord.listVal_cons,
-      RelWord.listVal_singleton, RelWord.listVal_append]
+  rw [prefixTriangle, RelWord.listVal_cons, RelWord.listVal_cons,
+    RelWord.listVal_cons, GGT.RelLetter.listVal_nil,
+    GGT.RelLetter.val_mapHom]
+  change q (GGT.RelLetter.listVal pre) *
+    (q a.val * ((q (GGT.RelLetter.listVal (pre ++ [a])))⁻¹ * 1)) = 1
+  rw [mul_one, RelWord.listVal_append, RelWord.listVal_singleton, map_mul]
+  group
 
 /-- Both endpoint prefixes in a displayed relator step belong to the prefix
 value set. -/
@@ -335,8 +339,9 @@ theorem prefixTriangle_admissible
   · exact D.isLetter_mapHom_prefixQuotient W hsc q hq ha
   · change (q (GGT.RelLetter.listVal (pre ++ [a])))⁻¹ ∈
       (D.prefixQuotient W hsc q hq).base
-    exact D.map_prefixValue_mem_prefixQuotient_base W hsc q hq
-      (RelWord.inv_mem_prefixValues hsc hnext)
+    simpa only [map_inv] using
+      D.map_prefixValue_mem_prefixQuotient_base W hsc q hq
+        (RelWord.inv_mem_prefixValues hsc hnext)
 
 end RelGenSet
 end GGT
