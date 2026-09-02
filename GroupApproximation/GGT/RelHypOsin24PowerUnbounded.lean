@@ -219,6 +219,60 @@ theorem not_fixed_boundedPenetration_power_slice_trivialModel
     False := by
   exact hord 1 (by omega) (Subsingleton.elim _ _)
 
+/-! ## Assembly once the source extraction estimate is supplied -/
+
+/-- **Escape from Osin's bounded-penetration extraction.**  Suppose every
+bounded subsequence of the relative power orbit can be placed in one fixed
+finite double-coset slice with a bounded right peripheral factor.  The
+bounded-subsequence lemma and the fixed-slice contradiction then prove
+`IsEscaping`.  The displayed extraction hypothesis is exactly the geometric
+step left in Osin's Lemma 4.2-type argument; it is stronger than the finite
+slice theorem above and weaker than the final escape statement. -/
+theorem isEscaping_of_boundedPenetration_extraction
+    {G : Type u} [Group G] {I : Type v} [Finite I]
+    (D : RelGenSet G I) (_hbase : D.base.Finite)
+    (hemb : D.IsHyperbolicallyEmbedded) {g : G}
+    (hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
+    (hExtract : ∀ (R : ℝ) (S : Set ℕ), S.Infinite →
+      (∀ q : ℕ, q ∈ S →
+        dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+      ∃ (lam : I) (n : ℕ) (k h : G),
+        ∀ q : ℕ, q ∈ S →
+          ∃ z : G, z ∈ D.relBall lam n ∧ g ^ q = k * h * z) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  classical
+  by_contra hnot
+  obtain ⟨R, hSraw⟩ := boundedPowerSubsequence_proved
+    G inferInstance (Cayley.base D.alphabet) inferInstance inferInstance g
+      (Cayley.base D.alphabet) hnot
+  let S : Set ℕ :=
+    {q : ℕ | dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R}
+  have hS : S.Infinite := by
+    simpa [S] using hSraw
+  obtain ⟨lam, n, k, h, hdecomp⟩ := hExtract R S hS (by
+    intro q hq
+    exact hq)
+  exact not_fixed_boundedPenetration_power_slice D hemb hhyper hord lam n k h S hS
+    hdecomp
+
+/-/ Model test for the extraction assembly: the order premise is impossible in
+`PUnit`, so the conclusion closes regardless of the supplied extraction map. -/
+theorem isEscaping_of_boundedPenetration_extraction_trivialModel
+    {I : Type v} [Finite I] (D : RelGenSet PUnit I)
+    (_hbase : D.base.Finite) (_hemb : D.IsHyperbolicallyEmbedded) (g : PUnit)
+    (_hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
+    (_hExtract : ∀ (R : ℝ) (S : Set ℕ), S.Infinite →
+      (∀ q : ℕ, q ∈ S →
+        dist (Cayley.base D.alphabet) ((g ^ q) • Cayley.base D.alphabet) ≤ R) →
+      ∃ (lam : I) (n : ℕ) (k h : PUnit),
+        ∀ q : ℕ, q ∈ S →
+          ∃ z : PUnit, z ∈ D.relBall lam n ∧ g ^ q = k * h * z) :
+    IsEscaping g (Cayley.base D.alphabet) := by
+  exfalso
+  exact hord 1 (by omega) (Subsingleton.elim _ _)
+
 end RelHyp
 end GGT
 end GroupApproximation
