@@ -210,13 +210,16 @@ theorem firstSurvivorSlot_span
   change (Q.first j).certificate.sideSpan
       ((Q.first j).left.length + r) = P.span s
   rw [(Q.first j).arc_sideSpan_eq_letter r hr hedge]
+  change ((arcWord B.firstArc B.firstArcCut
+      (B.firstGapStartSide j) (B.firstGapFinishSide j))[
+        B.firstArcCut (B.firstGapStartSide j + r) -
+          B.firstArcCut (B.firstGapStartSide j)]'_).val = P.span s
   have hfinishLe := B.firstGapFinishSide_le j
   have hcutEnd := B.firstArc_isCutPath.cut.le_length hfinishLe
-  have hlocal : (Q.first j).arcCut r <
+  have hlocal : B.firstArcCut (B.firstGapStartSide j + r) -
+      B.firstArcCut (B.firstGapStartSide j) <
       B.firstArcCut (B.firstGapFinishSide j) -
         B.firstArcCut (B.firstGapStartSide j) := by
-    change B.firstArcCut (B.firstGapStartSide j + r) -
-        B.firstArcCut (B.firstGapStartSide j) < _
     have hmono := B.firstArc_isCutPath.cut.mono_le hsGap.2.1
     rw [hrStart, htargetCut.1]
     have hfinishMono := B.firstArc_isCutPath.cut.mono_le
@@ -225,7 +228,8 @@ theorem firstSurvivorSlot_span
     omega
   rw [getElem_arcWord B.firstArc B.firstArcCut hcutEnd hlocal]
   have hindex : B.firstArcCut (B.firstGapStartSide j) +
-      (Q.first j).arcCut r = B.firstTargetPos s := by
+      (B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) = B.firstTargetPos s := by
     change B.firstArcCut (B.firstGapStartSide j) +
         (B.firstArcCut (B.firstGapStartSide j + r) -
           B.firstArcCut (B.firstGapStartSide j)) = B.firstTargetPos s
@@ -277,13 +281,16 @@ theorem secondSurvivorSlot_span
   change (Q.second j).certificate.sideSpan
       ((Q.second j).left.length + r) = P.span s
   rw [(Q.second j).arc_sideSpan_eq_letter r hr hedge]
+  change ((arcWord B.secondArc B.secondArcCut
+      (B.secondGapStartSide j) (B.secondGapFinishSide j))[
+        B.secondArcCut (B.secondGapStartSide j + r) -
+          B.secondArcCut (B.secondGapStartSide j)]'_).val = P.span s
   have hfinishLe := B.secondGapFinishSide_le j
   have hcutEnd := B.secondArc_isCutPath.cut.le_length hfinishLe
-  have hlocal : (Q.second j).arcCut r <
+  have hlocal : B.secondArcCut (B.secondGapStartSide j + r) -
+      B.secondArcCut (B.secondGapStartSide j) <
       B.secondArcCut (B.secondGapFinishSide j) -
         B.secondArcCut (B.secondGapStartSide j) := by
-    change B.secondArcCut (B.secondGapStartSide j + r) -
-        B.secondArcCut (B.secondGapStartSide j) < _
     have hmono := B.secondArc_isCutPath.cut.mono_le hsGap.2.1
     rw [hrStart, htargetCut.1]
     have hfinishMono := B.secondArc_isCutPath.cut.mono_le
@@ -292,7 +299,8 @@ theorem secondSurvivorSlot_span
     omega
   rw [getElem_arcWord B.secondArc B.secondArcCut hcutEnd hlocal]
   have hindex : B.secondArcCut (B.secondGapStartSide j) +
-      (Q.second j).arcCut r = B.secondTargetPos s := by
+      (B.secondArcCut (B.secondGapStartSide j + r) -
+        B.secondArcCut (B.secondGapStartSide j)) = B.secondTargetPos s := by
     change B.secondArcCut (B.secondGapStartSide j) +
         (B.secondArcCut (B.secondGapStartSide j + r) -
           B.secondArcCut (B.secondGapStartSide j)) = B.secondTargetPos s
