@@ -217,6 +217,20 @@ def Contiguity.cellTargetArc
       rw [← hcycle]
       exact Gamma.targetArc.length_le }
 
+/-- The target arc transported to the syntactic `some target` carrier. -/
+noncomputable def Contiguity.targetArcAtSome
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    CyclicArc (targetDarts Delta (some target)) := by
+  have hcycle : targetDarts Delta Gamma.target =
+      targetDarts Delta (some target) := by rw [htarget]
+  exact cast (congrArg CyclicArc hcycle) Gamma.targetArc
+
 /-- The exact equation obtained from a cellular face-pasting certificate in
 the orientation used by `Embedded.Contiguity.boundary_decomposition`. -/
 theorem Contiguity.targetBoundary_value_of_pasting
@@ -281,23 +295,16 @@ theorem Contiguity.exists_targetInverseCarrier_suffix
     {Delta : DiscDiagram.{u, w, v} W}
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Contiguity D eps Delta faces)
-    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+  (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     ∃ suffix : List (GGT.RelLetter G Lambda),
       Gamma.targetInverseCarrier target htarget =
         dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc) ++ suffix := by
   obtain ⟨suffix, hsuffix⟩ := CyclicArc.exists_reverseDarts_prefix_of_rotated_revInv Delta
-    (Gamma.cellTargetArc target htarget)
+    Gamma.targetArc
   refine ⟨suffix, ?_⟩
-  unfold Contiguity.targetInverseCarrier
-  unfold targetBoundaryDarts
-  split
-  · simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord]
-  · rename_i targetOpt arcNone val arc htargetEq heqArc
-    subst_vars
-    have harc : Gamma.targetArc = arc := by
-      exact eq_of_heq heqArc
-    simp_all [CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord,
-      harc]
+  simpa [Contiguity.targetInverseCarrier, targetBoundaryDarts,
+    CyclicArc.reversePrefixTarget, CyclicArc.reverseDartsWord, htarget,
+    Contiguity.cellTargetArc] using hsuffix
 
 /-- The transported inverse carrier has the target arc length. -/
 theorem Contiguity.targetBoundaryDarts_length
