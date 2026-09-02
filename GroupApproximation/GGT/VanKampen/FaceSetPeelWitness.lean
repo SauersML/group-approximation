@@ -139,9 +139,8 @@ theorem twoFace_planarCertificate
   obtain ⟨boundary₂, hboundary₂⟩ := hcycle₂
   have hmem : f₁ ∈ faces := by
     simp [hfaces, hneq]
-  refine ⟨{ face := f₁, face_mem := hmem,
-    face_ne_outer := h₁, next := next, arc := cycle, arc_nonempty := ?_,
-    arc_factor := ⟨[], [], by simp⟩, moves := ?_, remainder := ?_ }⟩
+  refine ⟨PlanarFacePeelCertificate.mk f₁ hmem h₁ next cycle ?_
+    ⟨[], [], by simp⟩ moves ?_⟩
   · intro hnil
     apply boundary.cycle_nonempty
     rw [hcycle, hnil]
