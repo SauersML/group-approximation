@@ -283,6 +283,55 @@ structure Contiguity
   leftSide_norm_le : wordNorm D.alphabet.carrier
     (GGT.RelLetter.listVal (dartWord Delta leftSide)) ≤ eps
 
+namespace Contiguity
+
+/-- Crossing a dart of the source cell arc enters a face of the embedded
+G-cell region. -/
+theorem faceOf_alpha_mem_of_mem_sourceArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (d : Delta.toCombMap.Dart) (hd : d ∈ Gamma.sourceArc.darts) :
+    Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈ faces := by
+  have hreverse : Delta.toCombMap.alpha d ∈ Gamma.sourceArc.reverseDarts := by
+    simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
+    exact ⟨d, hd, rfl⟩
+  have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
+    rw [Gamma.boundary_decomposition]
+    simp only [List.mem_append]
+    exact Or.inl hreverse
+  exact (Gamma.boundary.cycle_mem_iff (Delta.toCombMap.alpha d)).mp hcycle |>.1
+
+/-- When the target is a relator cell, crossing a dart of its target arc also
+enters a face of the embedded G-cell region. -/
+theorem faceOf_alpha_mem_of_mem_targetArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    (d : Delta.toCombMap.Dart) (hd : d ∈ Gamma.targetArc.darts) :
+    Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈ faces := by
+  have hreverse : Delta.toCombMap.alpha d ∈ Gamma.targetArc.reverseDarts := by
+    simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
+    exact ⟨d, hd, rfl⟩
+  have htargetBoundary : Delta.toCombMap.alpha d ∈
+      targetBoundaryDarts Delta Gamma.target Gamma.targetArc := by
+    rw [targetBoundaryDarts, htarget]
+    exact hreverse
+  have hcycle : Delta.toCombMap.alpha d ∈ Gamma.boundary.cycle := by
+    rw [Gamma.boundary_decomposition]
+    simp only [List.mem_append]
+    exact Or.inr (Or.inr (Or.inl htargetBoundary))
+  exact (Gamma.boundary.cycle_mem_iff (Delta.toCombMap.alpha d)).mp hcycle |>.1
+
+end Contiguity
+
 /-- A face set is a candidate when it admits embedded contiguity data. -/
 def IsCandidate
     {G : Type u} [Group G] {Lambda : Type w}
