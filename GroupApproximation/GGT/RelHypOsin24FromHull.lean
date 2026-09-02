@@ -279,7 +279,7 @@ theorem osin24HullStep_of_data
   have hkernelFinite : eta.ker.IsFinitelyNormallyGenerated := by
     refine ⟨{GGT.RelLetter.listVal v}, Set.finite_singleton _, ?_⟩
     exact hker.symm
-  obtain ⟨BQ, hactsMap, _hactsFamily⟩ :=
+  obtain ⟨BQ, _hperiphMap, hactsMap, _hactsFamily⟩ :=
     HullSC.hullLemma58SuitableFamily_unconditional eta D Pselected
   have hnormalMap : HullSuitable.NormalizesNoNontrivialFinite (H.map eta) :=
     IsSuitableSubgroup.normalizesNoNontrivialFinite hsuitable
