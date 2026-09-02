@@ -462,12 +462,10 @@ theorem firstBroken_partnerSpan_eq_chordInv
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+  (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     (vertex B.firstBase B.firstWord
-        (B.firstChordPos (B.brokenAssignment.first.partner
-          (HalfEntry.entrySource B.brokenAssignment.index.first
-            (B.firstSourceEntry s hs)))))⁻¹ *
+        (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
       vertex B.firstBase B.firstWord
         (B.firstBrokenConnectors s hs).partnerEnd =
       (B.chord[B.brokenAssignment.first.partner s]'
@@ -539,10 +537,12 @@ theorem firstBrokenEntry_partnerSpan_eq_chordInv
     {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
-    (hs : s ∈ brokenSet B.componentPlacement.firstTarget
+  (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     (vertex B.firstBase B.firstWord
-        (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+        (B.firstChordPos (B.brokenAssignment.first.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.first
+            (B.firstSourceEntry s hs)))))⁻¹ *
       vertex B.firstBase B.firstWord
         (B.firstBrokenEntryConnectors hs).partnerEnd =
       (B.chord[B.brokenAssignment.first.partner s]'
