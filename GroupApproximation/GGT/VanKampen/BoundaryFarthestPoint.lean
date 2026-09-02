@@ -42,6 +42,7 @@ noncomputable def faceBoundaryVertices
 theorem faceBoundaryVertices_nonempty
     {M : CombMap} {f : M.Face} (B : FaceBoundary M f) :
     (faceBoundaryVertices B).Nonempty := by
+  classical
   obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil B.darts B.nonempty
   refine ⟨M.vertexOf d, ?_⟩
   rw [faceBoundaryVertices, List.mem_toFinset]
@@ -127,6 +128,7 @@ theorem farthestBoundaryPoint_vertex_mem
     {M : CombMap} {f : M.Face} (B : FaceBoundary M f)
     (weight : M.Vertex → ℕ) (C : BoundaryFarthestPoint B weight) :
     C.vertex ∈ faceBoundaryVertices B := by
+  classical
   rw [faceBoundaryVertices, List.mem_toFinset]
   exact List.mem_map.mpr ⟨C.dart, C.dart_mem, C.vertex_eq⟩
 
