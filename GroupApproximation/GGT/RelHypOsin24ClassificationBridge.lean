@@ -33,6 +33,7 @@ namespace GGT
 namespace RelHyp
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
@@ -134,13 +135,13 @@ theorem hyperbolicElementLoxodromicAcylindrical_emptyModel
 alphabet.  Its only purpose here is to feed Osin's Theorem 5.4, so the output
 alphabet contains every original labelled letter. -/
 def classificationEmptyFamilyRelGenSet {G : Type u} [Group G] {I : Type v}
-    (D : RelGenSet G I) : RelGenSet G Empty where
+    (D : RelGenSet G I) : RelGenSet G (ULift.{v} Empty) where
   base := D.alphabet.carrier
-  fam := Empty.elim
+  fam := fun e => Empty.elim e.down
   symmetricGenerating := by
     change IsSymmetricGeneratingSet
       (D.alphabet.carrier ∪
-        ⋃ e : Empty, ((Empty.elim e : Subgroup G) : Set G))
+        ⋃ e : ULift.{v} Empty, ((Empty.elim e.down : Subgroup G) : Set G))
     rw [Set.iUnion_of_empty, Set.union_empty]
     exact D.alphabet.symmetricGenerating
 
@@ -149,7 +150,8 @@ theorem classificationEmptyFamilyRelGenSet_alphabet
     (classificationEmptyFamilyRelGenSet D).alphabet = D.alphabet := by
   apply OsinComponents.alphabet_eq_of_carrier_eq
   change D.alphabet.carrier ∪
-      ⋃ e : Empty, ((Empty.elim e : Subgroup G) : Set G) = D.alphabet.carrier
+      ⋃ e : ULift.{v} Empty, ((Empty.elim e.down : Subgroup G) : Set G) =
+        D.alphabet.carrier
   rw [Set.iUnion_of_empty, Set.union_empty]
 
 theorem classificationEmptyFamilyRelGenSet_embedded
@@ -160,19 +162,19 @@ theorem classificationEmptyFamilyRelGenSet_embedded
   · rw [classificationEmptyFamilyRelGenSet_alphabet D]
     exact hD.hyperbolic
   · intro e
-    exact Empty.elim e
+    exact Empty.elim e.down
 
 /-- Theorem 5.4 supplies an acylindrical empty-family alphabet containing the
 original relative alphabet. -/
 theorem exists_classificationAcylindricalOutput
     {G : Type u} [Group G] {I : Type v} (D : RelGenSet G I)
     (hD : D.IsHyperbolicallyEmbedded) :
-    ∃ (E : RelGenSet G Empty),
+    ∃ (E : RelGenSet G (ULift.{v} Empty)),
       D.alphabet.carrier ⊆ E.alphabet.carrier ∧
         E.IsHyperbolicallyEmbedded ∧
           IsAcylindrical G (Cayley E.alphabet) := by
   obtain ⟨E, hbase, _hfam, hE, hacy⟩ :=
-    OsinEnlargement.osinTheorem54Fam_unconditional G Empty
+    OsinEnlargement.osinTheorem54Fam_unconditional G (ULift.{v} Empty)
       (classificationEmptyFamilyRelGenSet D)
       (classificationEmptyFamilyRelGenSet_embedded D hD)
   have hcontain : D.alphabet.carrier ⊆ E.alphabet.carrier := by
@@ -197,7 +199,7 @@ theorem hyperbolicElementLoxodromic_of_relativePowerEscape
   have hhyperE : IsHyperbolicElement E.fam g :=
     isHyperbolicElement_of_isEmpty E.fam g
   have hescE : IsEscaping g (Cayley.base E.alphabet) :=
-    hEscape G instG Empty E hE g hhyperE hord
+    hEscape G instG (ULift.{v} Empty) E hE g hhyperE hord
   have hloxE : IsLoxodromic g (Cayley.base E.alphabet) :=
     isLoxodromic_of_relativePowerEscape_of_acylindrical E hE hacy hescE
   exact HullSC.isLoxodromic_base_of_subset hcontain hloxE
