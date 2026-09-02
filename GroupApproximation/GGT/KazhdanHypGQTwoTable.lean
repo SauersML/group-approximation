@@ -16,8 +16,11 @@ and length-three-path checks consumed by `GirthEightChecks`; no spectral
 threshold is asserted.  Its normalized gap is `1/3`, below Zuk's strict
 `1/2` threshold.
 
-The last section states the rational association-scheme identities used by
-`generate_gq_projector_ldl.py`.  At `q=2` and the exact gap `1/3`, the four
+The proved identity `rowCommon_eq` is the point-side block of
+`N N^T = 3 I + C`; `pointLineThreePathsReduced_eq_six` checks its product
+with `N`.  The scratch generator independently checks both full signed
+identities `A^2 = 3 I + C` and
+`C^2 = 3 I - 2 C + 3 J_same`.  At `q=2` and the exact gap `1/3`, the four
 square-root-free projector weights are `5/3, 2/3, 3/4, 0`.
 -/
 
