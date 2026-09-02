@@ -8,9 +8,12 @@ Every consumer of a face-set peeling uses it only through
 nothing inspects the deletion schedule.  So the load-bearing content is a value
 identity for the boundary walk, not a schedule.
 
-`FaceAssembly Delta l walk` records that `walk` was built from the empty walk by
-inserting complete face boundaries, whose faces are listed in `l`, and
-cancelling `alpha`-pairs.  Walks are ordinary lists: darts may repeat and the
+`FaceAssembly Delta l walk` records that `walk` is connected to the empty walk
+by inserting complete face boundaries, whose faces are listed in `l`, and by
+inserting or cancelling `alpha`-pairs.  Cancellation is not optional: a region
+with an internal edge has a boundary cycle strictly shorter than the total
+length of its face boundaries, so an insertion-only relation could never reach
+it.  Walks are ordinary lists: darts may repeat and the
 walk may pass through a pinch vertex, so nothing here needs a single boundary
 cycle, an unpinched face, or an ear.
 
@@ -60,6 +63,12 @@ inductive FaceAssembly {G : Type u} [Group G] {Lambda : Type w}
       (rest : FaceAssembly Delta l (before ++ after)) :
       FaceAssembly Delta l
         (before ++ dart :: Delta.toCombMap.alpha dart :: after)
+  | erasePair {l : List Delta.toCombMap.Face}
+      {before after : List Delta.toCombMap.Dart}
+      (dart : Delta.toCombMap.Dart)
+      (rest : FaceAssembly Delta l
+        (before ++ dart :: Delta.toCombMap.alpha dart :: after)) :
+      FaceAssembly Delta l (before ++ after)
 
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
@@ -95,6 +104,11 @@ theorem closedWalk_value_eq_one_of_gCells
       intro hcells
       rw [listVal_dartWord_erase_alpha_pair]
       exact ih hcells
+  | erasePair dart rest ih =>
+      intro hcells
+      have hval := ih hcells
+      rw [listVal_dartWord_erase_alpha_pair] at hval
+      exact hval
 
 /-! ## Compatibility with the existing face-pasting relation -/
 
@@ -120,6 +134,10 @@ theorem faceSetWordHomotopy_of_faceAssembly
   | @insertPair l before after dart _rest ih =>
       intro hl
       exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).trans (ih hl)
+  | @erasePair l before after dart _rest ih =>
+      intro hl
+      exact (FaceSetWordHomotopy.eraseAlphaPair dart before after).symm.trans
+        (ih hl)
 
 /-- An assembly of a boundary cycle from the selected faces gives the boundary
 value identity used by every consumer. -/
