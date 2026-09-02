@@ -408,6 +408,46 @@ theorem PeripheralOccurrence.baseEdgeOrTrivial_succ
   simpa only [peripheralOccurrence_pos] using
     baseEdgeOrTrivial_peripheralPos_succ hW1 ht
 
+omit [Group G] in
+/-- Every component start of a relative word is one of its canonically ordered
+peripheral occurrences, with the same family index. -/
+theorem exists_peripheralOccurrence_eq_of_isCompStart
+    {word : List (RelLetter G Λ)} {lam : Λ} {i : ℕ}
+    (hstart : IsCompStart lam word i) :
+    ∃ t : Fin (peripheralPositions word).card,
+      (peripheralOccurrence word t).pos = i ∧
+        (peripheralOccurrence word t).label = lam := by
+  obtain ⟨k, hcomp⟩ := hstart
+  have hi : i < word.length := by
+    exact hcomp.1.trans_le hcomp.2.1
+  have hletter : (word[i]'hi).IsCompOf lam :=
+    hcomp.2.2.1 i le_rfl hcomp.1 hi
+  cases hread : word[i]'hi with
+  | base x =>
+      rw [hread] at hletter
+      exact False.elim hletter
+  | comp mu x =>
+      rw [hread] at hletter
+      have hmulam : mu = lam := hletter
+      have hiRead : word[i]? = some (RelLetter.comp mu x) := by
+        simpa [List.getElem?_eq_getElem hi] using hread
+      have hiMem : i ∈ peripheralPositions word :=
+        mem_peripheralPositions_iff.mpr ⟨mu, x, hiRead⟩
+      let E := (peripheralPositions word).orderIsoOfFin rfl
+      let t : Fin (peripheralPositions word).card := E.symm ⟨i, hiMem⟩
+      have hpos : peripheralPos word t.val = i := by
+        unfold peripheralPos
+        rw [dif_pos t.isLt]
+        exact congrArg Subtype.val (E.apply_symm_apply ⟨i, hiMem⟩)
+      have hoccRead := (peripheralOccurrence word t).read
+      have hlabel : (peripheralOccurrence word t).label = mu := by
+        rw [peripheralOccurrence_pos, hpos] at hoccRead
+        rw [hiRead] at hoccRead
+        have hletters := Option.some.inj hoccRead
+        exact (RelLetter.comp.inj hletters).1.symm
+      exact ⟨t, by simpa [peripheralOccurrence_pos] using hpos,
+        hlabel.trans hmulam⟩
+
 /-- Successive peripheral occurrences cannot be connected as components of
 one family.  This is the direct (W3) base case in the proof of Lemma 4.21. -/
 theorem not_connected_peripheralOccurrence_succ
@@ -438,7 +478,8 @@ theorem not_connected_peripheralOccurrence_succ
       rcases hout with hne | hout
       · exact False.elim (hne hlabel.symm)
       · exact hout
-    have hcompA : IsComp A.label word A.pos (A.pos + 1) := A.isComp hW3 t
+    have hcompA : IsComp A.label word A.pos (A.pos + 1) :=
+      PeripheralOccurrence.isComp hW3 t
     have hspan : (vertex v word A.pos)⁻¹ * vertex v word (A.pos + 1)
         ∈ D.fam A.label := span_mem_fam_of_isComp D v hlet hcompA
     have hmidLt : A.pos + 1 < word.length := by
