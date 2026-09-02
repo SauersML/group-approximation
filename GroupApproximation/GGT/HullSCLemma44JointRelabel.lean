@@ -133,8 +133,11 @@ theorem unrelabelJoint_isCompOf {G : Type u} {Lambda : Type w} {k : ℕ}
   | comp s h =>
       cases s with
       | inl lam =>
-          exact ⟨fun hfalse => hfalse.elim,
-            fun hcontra => Sum.noConfusion hcontra⟩
+          exact ⟨fun hfalse => (hfalse : False).elim,
+            fun hcontra =>
+              Sum.noConfusion
+                (hcontra : (Sum.inl lam : Sum Lambda (AuxiliaryPeripheralIndex k))
+                  = Sum.inr i)⟩
       | inr j =>
           exact ⟨fun hj => congrArg Sum.inr hj, fun hj => Sum.inr.inj hj⟩
 
@@ -161,6 +164,7 @@ theorem revInv_map_relabelLetter (f : Lambda → Lambda')
   apply congrArg List.reverse
   exact List.map_congr_left (fun a _ => inv_relabelLetter f a)
 
+omit [Group G] in
 theorem take_map_relabelLetter (f : Lambda → Lambda')
     (v : List (GGT.RelLetter G Lambda)) (n : ℕ) :
     (v.map (relabelLetter f)).take n = (v.take n).map (relabelLetter f) := by
@@ -189,6 +193,7 @@ def jointRelabelWords
     Set (List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))) :=
   relabelWords Sum.inr W
 
+omit [Group G] in
 theorem mem_jointRelabelWords_iff
     {W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))}
     {v : List (GGT.RelLetter G (Sum Lambda (AuxiliaryPeripheralIndex k)))} :
