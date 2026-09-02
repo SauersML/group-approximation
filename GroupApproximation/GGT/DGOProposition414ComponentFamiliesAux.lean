@@ -265,6 +265,7 @@ theorem SecondGapComponentFamily.ofTargetComponents
           (B.secondGapFinishSide j - B.secondGapStartSide j) r hr))
     simpa only [q] using htarget j q hq
 
+/-
 /-! ## The inherited-arc seam -/
 
 /-- An inherited first-gap target remains a component of the complete
@@ -348,6 +349,9 @@ theorem firstGapArcSource_fullComponent
           simpa only [hteq'] using hcycleLetter)
       exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
     · have hi0 : i = 0 := by omega
+      have hdiff0 : B.firstArcCut (B.firstTargetSide s) -
+          B.firstArcCut (B.firstGapStartSide j) = 0 := by
+        simpa only [i] using hi0
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.first j = none
       · have hleft0 : (B.firstGapLeft j).length = 0 := by
@@ -427,9 +431,12 @@ theorem firstGapArcSource_fullComponent
             B.firstArcCut (B.firstTargetSide s) - 1 := by
           have hcur : B.firstArcCut (B.firstTargetSide s) =
               B.firstArcCut (B.firstGapStartSide j) := by
-            dsimp [i] at hi0
-            rw [(B.firstArcCut_target hsData.1).1]
-            omega
+            have hcuts : B.firstArcCut (B.firstTargetSide s) =
+                B.firstArcCut (B.firstGapStartSide j) := by
+              apply Nat.le_antisymm
+              · exact Nat.sub_eq_zero_iff_le.mp hdiff0
+              · exact B.firstArc_isCutPath.cut.mono_le hsData.2.1
+            exact (B.firstArcCut_target hsData.1).1.trans hcuts
           rw [hcur, ← hprevPos]
           omega
         apply hparent.2.2.2.1
@@ -676,6 +683,9 @@ theorem secondGapArcSource_fullComponent
           simpa only [hteq'] using hcycleLetter)
       exact hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) hletter
     · have hi0 : i = 0 := by omega
+      have hdiff0 : B.secondArcCut (B.secondTargetSide s) -
+          B.secondArcCut (B.secondGapStartSide j) = 0 := by
+        simpa only [i] using hi0
       subst i
       by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.second j = none
       · have hleft0 : (B.secondGapLeft j).length = 0 := by
@@ -755,9 +765,12 @@ theorem secondGapArcSource_fullComponent
             B.secondArcCut (B.secondTargetSide s) - 1 := by
           have hcur : B.secondArcCut (B.secondTargetSide s) =
               B.secondArcCut (B.secondGapStartSide j) := by
-            dsimp [i] at hi0
-            rw [(B.secondArcCut_target hsData.1).1]
-            omega
+            have hcuts : B.secondArcCut (B.secondTargetSide s) =
+                B.secondArcCut (B.secondGapStartSide j) := by
+              apply Nat.le_antisymm
+              · exact Nat.sub_eq_zero_iff_le.mp hdiff0
+              · exact B.secondArc_isCutPath.cut.mono_le hsData.2.1
+            exact (B.secondArcCut_target hsData.1).1.trans hcuts
           rw [hcur, ← hprevPos]
           omega
         apply hparent.2.2.2.1
@@ -916,6 +929,104 @@ theorem secondGapArcSource_fullComponent
       (B.secondGapLeft j).length + i + 1 := hcut1
   rw [hcut1'] at ⊢
   simpa only [cycle, B.secondGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
+-/
+
+/-! ## Conditional endpoint bridges -/
+
+/-- The two endpoint exclusions required to extend an inherited arc component
+across the first-gap auxiliary cycle.  This is strictly smaller than the
+component assertion: it only controls the two neighbouring letters. -/
+def FirstGapArcBoundaryExclusion
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) : Prop :=
+  (∀ t : ℕ,
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) = t + 1 →
+      ∀ ht : t < (B.firstGapCycle j).length,
+      ¬ (B.firstGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
+  (∀ hn :
+      (B.firstGapLeft j).length +
+          (B.firstArcCut (B.firstTargetSide s) -
+            B.firstArcCut (B.firstGapStartSide j)) + 1 <
+        (B.firstGapCycle j).length,
+      ¬ (B.firstGapCycle j)[
+          (B.firstGapLeft j).length +
+            (B.firstArcCut (B.firstTargetSide s) -
+              B.firstArcCut (B.firstGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s))
+
+/-- The wrapped endpoint exclusions required for the corresponding second-gap
+auxiliary cycle. -/
+def SecondGapArcBoundaryExclusion
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) : Prop :=
+  (∀ t : ℕ,
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) = t + 1 →
+      ∀ ht : t < (B.secondGapCycle j).length,
+      ¬ (B.secondGapCycle j)[t]'ht).IsCompOf (P.label s)) ∧
+  (∀ hn :
+      (B.secondGapLeft j).length +
+          (B.secondArcCut (B.secondTargetSide s) -
+            B.secondArcCut (B.secondGapStartSide j)) + 1 <
+        (B.secondGapCycle j).length,
+      ¬ (B.secondGapCycle j)[
+          (B.secondGapLeft j).length +
+            (B.secondArcCut (B.secondTargetSide s) -
+              B.secondArcCut (B.secondGapStartSide j)) + 1]'hn).IsCompOf
+        (P.label s))
+
+/-- DGO's boundary lemma applied under the first endpoint-exclusion input. -/
+theorem firstGapArcSource_fullComponent_of_boundaryExclusion
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j)
+    (h : FirstGapArcBoundaryExclusion B j s) :
+    IsComp (B.firstGapLocalLabel j
+        ((B.firstGapLeft j).length +
+          (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCycle j)
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1)) := by
+  exact firstGapArcSource_cycleComponent_of_boundary B j s h.1 h.2
+
+/-- Wrapped counterpart of `firstGapArcSource_fullComponent_of_boundaryExclusion`. -/
+theorem secondGapArcSource_fullComponent_of_boundaryExclusion
+    {D : RelGenSet G Λ}
+    {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base} {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.second.pieceCount)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
+    (h : SecondGapArcBoundaryExclusion B j s) :
+    IsComp (B.secondGapLocalLabel j
+        ((B.secondGapLeft j).length +
+          (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCycle j)
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j)))
+      (B.secondGapCut j ((B.secondGapLeft j).length +
+        (B.secondTargetSide s - B.secondGapStartSide j) + 1)) := by
+  exact secondGapArcSource_cycleComponent_of_boundary B j s h.1 h.2
 
 /-! ## Exact certificate assembly -/
 
