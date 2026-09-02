@@ -451,13 +451,14 @@ def OEquivalentDiscDiagram.ofGRegionReplacement
   intro i
   have hlist : replacement.diagram.relatorCells =
       Delta.relatorCells.map cells.cellEquiv := cells.cells_eq
-  have hindex : (cells.indexEquiv i).val = i.val := by
+  have hword := cells.word_eq (Delta.relatorCells.get i)
+  have hget : replacement.diagram.relatorCells.get (cells.indexEquiv i) =
+      cells.cellEquiv (Delta.relatorCells.get i) := by
+    simp only [List.get_eq_getElem, hlist, List.getElem_map]
     rfl
   change (replacement.diagram.relatorCells.get (cells.indexEquiv i)).word =
     (Delta.relatorCells.get i).word
-  rw [hlist]
-  rw [hindex]
-  exact List.getElem_map_rev RelatorCell.word
+  rw [hget, hword]
 
 /-- A map-level region replacement with a strict face-count drop supplies the
 drop branch of the Lemma 65(a) face-drop oracle.  The relator count, reducedness,
@@ -466,12 +467,12 @@ theorem selection_drop_of_gRegionReplacement
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps rho : ℕ} {mu lambda c : ℝ}
+    {lambda c : ℝ}
     {Delta : DiscDiagram.{u, w, v} W}
     (hred : Delta.Reduced)
     (hcells : 0 < Delta.rCellCount)
     (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord)
-    (replacement : Surgery.GRegionReplacement Delta)
+    (replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta)
     (hdrop : replacement.diagram.toCombMap.faceCount <
       Delta.toCombMap.faceCount) :
     ∃ Delta' : DiscDiagram.{u, w, v} W,
@@ -506,10 +507,10 @@ theorem selectionFaceDropOracle_of_gRegionReplacements
       IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
       (∃ scaffold : EstimatingScaffold D eps Delta,
         Nonempty (EstimatingGraphData D eps Delta scaffold)) ∨
-      ∃ replacement : Surgery.GRegionReplacement Delta,
+      ∃ replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta,
         replacement.diagram.toCombMap.faceCount <
           Delta.toCombMap.faceCount) :
-    SelectionFaceDropOracle D eps rho mu lambda c hcondition := by
+    SelectionFaceDropOracle.{u, w, v} D eps rho mu lambda c hcondition := by
   intro Delta hred hcells hboundary
   rcases hreplacement Delta hred hcells hboundary with hterminal | hdrop
   · exact Or.inl hterminal
