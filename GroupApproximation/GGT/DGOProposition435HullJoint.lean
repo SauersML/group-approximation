@@ -68,7 +68,7 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
     GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
     fun _ => rfl, fun i => selected.fam_eq i,
     h435 original selected.rel hbase horig selected.embedded,
-    ⟨∅, Set.finite_empty,
+    ⟨∅, Set.finite_empty, Set.empty_subset _,
       Set.subset_union_of_subset_left (GGT.RelHyp.properBase_subset_base original) ∅⟩⟩
 
 /-- **The joint-family selection input, from the finite nested form.**  The
@@ -84,7 +84,7 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435InclusionFinite
     GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
     fun _ => rfl, fun i => selected.fam_eq i,
     h435 original selected.rel hbase selected.base_inv horig selected.embedded,
-    ⟨∅, Set.finite_empty,
+    ⟨∅, Set.finite_empty, Set.empty_subset _,
       Set.subset_union_of_subset_left (GGT.RelHyp.properBase_subset_base original) ∅⟩⟩
 
 /-- **The three conditions the relator re-spelling puts on the joint family**,

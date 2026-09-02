@@ -202,7 +202,7 @@ theorem jointAuxiliaryPeripheralEmbedding_of_proposition414Uniform
     GGT.RelHyp.isHyperbolicallyEmbedded_jointRelGenSet_of_isLoxodromic_relative
       h414 original selected.rel selected.cores.lox hfam hlox hbase
       selected.base_inv horig selected.embedded,
-    ∅, Set.finite_empty, ?_⟩
+    ∅, Set.finite_empty, Set.empty_subset _, ?_⟩
   intro x hx
   exact Or.inl (GGT.RelHyp.properBase_subset_base original hx)
 

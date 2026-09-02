@@ -449,8 +449,6 @@ theorem canonicalQuotientFamilyPreservation_of_jointPreservation
     {selected : AuxiliaryPeripheralFamily A N S} [Finite Lambda]
     {original : RelGenSet G Lambda} {q : G →* Q}
     (P : QuotientJointPeripheralPreservation q selected original)
-    (hbase : ∃ T : Set G, T.Finite ∧ T ⊆ selected.rel.alphabet.carrier ∧
-      P.rel.base ⊆ q '' (original.base ∪ T))
     (hinj : Set.InjOn q (⋃ lam : Lambda, (original.fam lam : Set G))) :
     Nonempty (CanonicalQuotientFamilyPreservation q original
       selected.rel.alphabet.carrier) := by
@@ -463,7 +461,7 @@ theorem canonicalQuotientFamilyPreservation_of_jointPreservation
     | inr i => exact hEemb i
   obtain ⟨Z, hZbase, hZfam, hZemb⟩ :=
     h435 P.rel (dropSubfamilies P.rel E) P.embedded hsub
-  obtain ⟨T₁, hT₁fin, hT₁Y, hT₁sub⟩ := hbase
+  obtain ⟨T₁, hT₁fin, hT₁Y, hT₁sub⟩ := P.base_subset
   refine ⟨{
     rel := relGenSetReindex Z dropEquiv
     base_map := ⟨T₁ ∪ T₂, hT₁fin.union hT₂fin,
