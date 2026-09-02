@@ -145,7 +145,7 @@ def ContiguityBoundaryArcLinearStatement : Prop :=
     (eps : ℕ) (Delta : DiscDiagram.{u, w, 0} W)
     {faces : Finset Delta.toCombMap.Face}
     (Gamma : Embedded.Contiguity D eps Delta faces)
-    (htarget : Gamma.target = none),
+    (_htarget : Gamma.target = none),
     ∃ arc : Embedded.CyclicArc (Embedded.outerDarts Delta),
       CyclicArcIsLinear arc ∧
         Embedded.dartWord Delta arc.darts =
