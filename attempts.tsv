@@ -256,3 +256,4 @@
 33560926063	2026-09-01T21:25:34Z	GroupApproximation/Sofic/CliffordWitnessDirectDefect.lean	stable_mem_compressionSet
 33571662612	2026-09-01T23:37:18Z	GroupApproximation/Sofic/CliffordWitnessLocallyRFByInt.lean	manuscriptShiftKernelForIsLocallyResiduallyFinite
 33579442017	2026-09-02T01:28:29Z	GroupApproximation/Sofic/CoAmenableActionSofic.lean	isAmenable_quotient
+33598894628	2026-09-02T06:27:46Z	GroupApproximation/Sofic/CoefficientAlternatingReynolds.lean	coefficientAlternatingReynolds_diagonalization
