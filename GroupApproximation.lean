@@ -3237,6 +3237,10 @@ import GroupApproximation.GGT.KazhdanHypGirthEightReducedSeam
 import GroupApproximation.GGT.RelHypOsin24PatternPigeonhole
 import GroupApproximation.GGT.RelHypOsin24PatternSlice
 import GroupApproximation.GGT.RelHypOsin24RelativeWordSpelling
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryDeterminism
+import GroupApproximation.GGT.VanKampen.FaceSetMoveAlgebra
+import GroupApproximation.GGT.VanKampen.FaceSetPeelProducer
+import GroupApproximation.GGT.VanKampen.FaceSetSingletonPeel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
