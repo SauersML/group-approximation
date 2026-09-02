@@ -329,6 +329,78 @@ end EstimatingData
 
 /-! ## Construction statement -/
 
+/-- The selection and Lemma `65(a)` input, separated from the local O52 and
+unbound estimates.  It chooses the `O`-equivalent diagram, the finite
+Definition-`M` scaffold, and the hereditary estimating-graph certificates. -/
+def EstimatingSelectionConstructionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda),
+    (∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+      ∀ lambda c mu : ℝ,
+        0 < lambda → lambda ≤ 1 → 0 ≤ c →
+        0 < mu → mu ≤ 1 / 16 →
+          ∃ eps rho : ℕ, 0 < rho ∧
+            ∀ (W : Set (List (GGT.RelLetter G Lambda))),
+              OsinCCondition D W eps mu lambda c rho →
+                ∀ Delta : DiscDiagram.{u, w, v} W,
+                  Delta.Reduced → 0 < Delta.rCellCount →
+                  IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+                    ∃ Delta' : DiscDiagram.{u, w, v} W,
+                      Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                        ∃ scaffold : EstimatingScaffold D eps Delta',
+                          Nonempty (EstimatingGraphData D eps Delta' scaffold)
+
+/-- The local O52 input: every selected face-set candidate has the two-cell
+arc equations required by `PieceBridge`.  It is independent of the global
+selection and unbound estimates. -/
+def EstimatingPieceConstructionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta),
+    ∃ pieces : CellPieceData D eps Delta scaffold
+
+/-- The local Lemmas `61` and `62` input: after selection, the unbound arc
+partition satisfies the strict square-root budget and its numerical threshold.
+The boundary quasi-geodesic is included so the source's unbound estimate is
+not detached from the diagram hypotheses. -/
+def EstimatingUnboundConstructionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta),
+    IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+      ∃ unbound : Lemma62Data D eps mu rho Delta scaffold, True
+
+/-- The three source-level certificates assemble into the complete geometric
+construction used by the strict Gr0 count. -/
+theorem estimatingDataConstruction_of_components
+    (hselection : EstimatingSelectionConstructionStatement.{u, w, v})
+    (hpieces : EstimatingPieceConstructionStatement.{u, w, v})
+    (hunbound : EstimatingUnboundConstructionStatement.{u, w, v}) :
+    EstimatingDataConstructionStatement.{u, w, v} := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
+  obtain ⟨eps, rho, hrho, hselect⟩ := hselection D hhyper lambda c mu
+    hlambda hlambdaUpper hc hmu hmuUpper
+  refine ⟨eps, rho, hrho, ?_⟩
+  intro W hcondition Delta hred hcells hboundary
+  obtain ⟨Delta', hequiv, scaffold, graph⟩ := hselect W hcondition Delta
+    hred hcells hboundary
+  obtain ⟨graph⟩ := graph
+  obtain ⟨pieces⟩ := hpieces D eps Delta' scaffold
+  have hboundary' : IsLambdaCQuasiGeodesicWord D lambda c Delta'.boundaryWord := by
+    rw [hequiv.boundaryWord_eq]
+    exact hboundary
+  obtain ⟨unbound, _⟩ := hunbound D eps rho mu lambda c hcondition Delta'
+    scaffold hboundary'
+  exact ⟨Delta', hequiv,
+    EstimatingData.nonempty_of_certificates scaffold graph pieces unbound
+      hcondition⟩
+
 /-- The remaining geometric construction at the `EstimatingData` level.  Its
 fields are exactly Lemma 65(a), the estimating-graph planarity input to Lemma
 Eul, the O52 local edge bounds, and Lemma 62's unbound budget. -/
