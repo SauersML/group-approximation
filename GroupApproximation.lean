@@ -3125,7 +3125,6 @@ import GroupApproximation.GGT.DGOLemma421Components
 import GroupApproximation.GGT.DGOLemma421Proof
 import GroupApproximation.GGT.DGOProposition414GapBrokenFactors
 import GroupApproximation.GGT.DGOProposition414GapSurvivorSlotSpans
-import GroupApproximation.GGT.HullSCLemma44PrefixFan
 import GroupApproximation.GGT.HullSCLemma49BowditchGap
 import GroupApproximation.GGT.HullSCLemma49ShortLoxodromic
 import GroupApproximation.GGT.KazhdanHypGQScheme
