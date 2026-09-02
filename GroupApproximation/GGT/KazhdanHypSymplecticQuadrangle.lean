@@ -203,6 +203,59 @@ theorem line_unique {p q : Point} (hpq : p ≠ q) {L M : Line}
   apply Subtype.ext
   exact underlying_line_unique hpq L.1 M.1 L.2.1 M.2.1 hpL hqL hpM hqM
 
+/-- The span of representatives of two distinct projective points has
+dimension two. -/
+theorem span_pair_finrank {p q : Point} (hpq : p ≠ q) :
+    Module.finrank FieldEight
+      (Submodule.span FieldEight {p.rep, q.rep}) = 2 := by
+  have hli : LinearIndependent FieldEight ![p.rep, q.rep] :=
+    Projectivization.linearIndependent_pair_iff_ne.mpr hpq
+  rw [← Matrix.range_cons_cons_empty p.rep q.rep ![]]
+  simpa using finrank_span_eq_card hli
+
+/-- Orthogonal distinct projective points span a totally isotropic plane. -/
+theorem span_pair_isotropic {p q : Point}
+    (horth : form p.rep q.rep = 0) :
+    IsTotallyIsotropic (Submodule.span FieldEight {p.rep, q.rep}) := by
+  intro x hx y hy
+  rw [Submodule.mem_span_pair] at hx hy
+  obtain ⟨a, b, rfl⟩ := hx
+  obtain ⟨c, d, rfl⟩ := hy
+  have hqp : form q.rep p.rep = 0 :=
+    (form_eq_zero_comm p.rep q.rep).mp horth
+  simp [map_add, map_smul, point_self_orthogonal, horth, hqp]
+
+/-- The isotropic line spanned by two distinct orthogonal points. -/
+def lineThrough (p q : Point) (hpq : p ≠ q)
+    (horth : form p.rep q.rep = 0) : Line :=
+  ⟨Submodule.span FieldEight {p.rep, q.rep}, span_pair_finrank hpq,
+    span_pair_isotropic horth⟩
+
+theorem left_incident_lineThrough (p q : Point) (hpq : p ≠ q)
+    (horth : form p.rep q.rep = 0) :
+    Incident p (lineThrough p q hpq horth) := by
+  rw [← p.mk_rep]
+  rw [Incident, Submodule.mk_mem_projectivization_iff]
+  exact Submodule.mem_span_of_mem (Set.mem_insert _ _)
+
+theorem right_incident_lineThrough (p q : Point) (hpq : p ≠ q)
+    (horth : form p.rep q.rep = 0) :
+    Incident q (lineThrough p q hpq horth) := by
+  rw [← q.mk_rep]
+  rw [Incident, Submodule.mk_mem_projectivization_iff]
+  exact Submodule.mem_span_of_mem (Set.mem_insert_of_mem _ (Set.mem_singleton _))
+
+/-- **The collinear-pair axiom for `W(8)`.**  Distinct orthogonal points lie
+on exactly one totally isotropic line. -/
+theorem existsUnique_incident_line {p q : Point} (hpq : p ≠ q)
+    (horth : form p.rep q.rep = 0) :
+    ∃! L : Line, Incident p L ∧ Incident q L := by
+  refine ⟨lineThrough p q hpq horth,
+    ⟨left_incident_lineThrough p q hpq horth,
+      right_incident_lineThrough p q hpq horth⟩, ?_⟩
+  intro L hL
+  exact line_unique hpq hL.1 hL.2
+
 /-! ## Unique projection to an isotropic line -/
 
 /-- A totally isotropic line lies in its symplectic orthogonal complement. -/
