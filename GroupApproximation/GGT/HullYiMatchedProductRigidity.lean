@@ -106,6 +106,8 @@ theorem matchedCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
     intro i
     have hcomm : Commute (c i.castSucc.castSucc) (a i.castSucc) :=
       hcentral i (c i.castSucc.castSucc) (hmem i.castSucc)
+    have hcommLeft := congrArg
+      (fun z : G ↦ (a i.castSucc)⁻¹ * z) hcomm.eq
     change c i.castSucc.succ = c i.castSucc.castSucc
     calc
       c i.castSucc.succ =
@@ -113,9 +115,11 @@ theorem matchedCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
         hnext i.castSucc
       _ = (a i.castSucc)⁻¹ * c i.castSucc.castSucc * a i.castSucc := by
         rw [hcommon i]
-      _ = c i.castSucc.castSucc := by
-        rw [hcomm.eq]
-        group
+      _ = (a i.castSucc)⁻¹ *
+          (c i.castSucc.castSucc * a i.castSucc) := by group
+      _ = (a i.castSucc)⁻¹ *
+          (a i.castSucc * c i.castSucc.castSucc) := hcommLeft
+      _ = c i.castSucc.castSucc := by group
   have hconst : ∀ j : Fin (k + 1), d j = d 0 := by
     intro j
     refine Fin.induction rfl ?_ j
