@@ -460,6 +460,18 @@ def ReducedCellPieceBridge.of_cellContiguity
   sourceRotated_value_eq := hsource
   connector_value_eq := hconnector
 
+/-- The complete local input for one pasted embedded region: a reducedness
+bridge together with the face-set word homotopy exposing its boundary. -/
+structure PastingReducedCellPieceCertificate
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) where
+  bridge : ReducedCellPieceBridge Gamma
+  pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle []
+
 namespace ReducedCellPieceBridge
 
 /-- Diagram reducedness transfers through a `ReducedCellPieceBridge` to the
@@ -494,6 +506,19 @@ theorem whole_ne
       simp only [inv_inv]
 
 end ReducedCellPieceBridge
+
+/-- A complete pasted certificate produces the two face-set equations. -/
+def PastingReducedCellPieceCertificate.equations
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (certificate : PastingReducedCellPieceCertificate Gamma)
+    (hred : Delta.Reduced) : CellPieceEquations Gamma :=
+  CellPieceEquations.of_pasting Gamma certificate.bridge.target_eq
+    certificate.pasting (ReducedCellPieceBridge.whole_ne certificate.bridge hred)
 
 /-- Every pasted embedded region equipped with the reducedness bridge yields
 its exact `CellPieceEquations` certificate. -/
