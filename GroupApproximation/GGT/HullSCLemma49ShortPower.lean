@@ -150,7 +150,8 @@ theorem isLoxodromic_of_long_shortestModuloConjugacy
     dsimp [slope, error]
     rw [hmulCast] at hlower
     push_cast at hlower
-    convert hlower using 1 <;> ring
+    convert hlower using 1
+    ring
 
 /-! ## Conjugating a non-loxodromic power into the protected ball -/
 
