@@ -23,9 +23,9 @@ universe u
 /-- The simultaneous `yi` witnesses produce the auxiliary family required by
 Hull Lemma 4.4, using the formalized Theorem 3.16 rather than a separate
 `HeGXFamily` premise. -/
-theorem simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
+theorem simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316
     (hyi : SimultaneousYiSuitableFamily.{u}) :
-    SimultaneousAuxiliaryPeripheralSelection.{u} := by
+    SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.{u} := by
   intro G _ A N k S hN hS
   obtain ⟨g, hg, hlox, hnc, hcyc⟩ := hyi A S hN hS
   let gN : Bool → G := fun b => g (none, b)
@@ -95,18 +95,33 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
     isHyperbolicallyEmbedded_zpowers_of_elementaryClosure_eq_unconditional
       A g hnc hlox hcyc
   refine ⟨⟨C, coneOffFamily A.alphabet (fun i => Subgroup.zpowers (g i)),
-    Set.Subset.rfl, A.alphabet.symmetricGenerating.inv_mem, ?_, hembAll⟩⟩
+    Set.Subset.rfl, A.alphabet.symmetricGenerating.inv_mem, ?_, hembAll⟩, rfl⟩
   rintro ⟨i, b⟩
   cases i <;> rfl
+
+/-- The base equality is extra information; forgetting it recovers the
+established selection premise. -/
+theorem simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
+    (hyi : SimultaneousYiSuitableFamily.{u}) :
+    SimultaneousAuxiliaryPeripheralSelection.{u} :=
+  (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316
+    hyi).toSelection
 
 /-- Hull's printed all-`m` `yi` statement is now the only selection premise:
 finite avoidance performs the simultaneous choice, and Theorem 3.16 supplies
 the whole embedded family. -/
+theorem simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_finiteYi_theorem316
+    (hyi : YiSuitableFiniteFamily.{u}) :
+    SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.{u} :=
+  simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316
+    (simultaneousYiSuitableFamily_of_finiteFamily hyi)
+
+/-- The same selection with the base equality forgotten. -/
 theorem simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
     (hyi : YiSuitableFiniteFamily.{u}) :
     SimultaneousAuxiliaryPeripheralSelection.{u} :=
-  simultaneousAuxiliaryPeripheralSelection_of_yi_theorem316
-    (simultaneousYiSuitableFamily_of_finiteFamily hyi)
+  (simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_finiteYi_theorem316
+    hyi).toSelection
 
 end HullSC
 end GroupApproximation

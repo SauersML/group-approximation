@@ -139,6 +139,31 @@ def SimultaneousAuxiliaryPeripheralSelection : Prop :=
       (∀ j : Fin k, Suitable A.alphabet (S j)) →
         Nonempty (AuxiliaryPeripheralFamily A N S)
 
+/-- **The simultaneous selection, over Hull's alphabet itself.**
+
+`AuxiliaryPeripheralFamily` records only `A.alphabet.carrier ⊆ rel.base`,
+because the target letters adjoined before the relator is chosen, and Osin's
+Theorem 5.4 after them, both enlarge the base.  The selection theorem builds
+the family by coning off Hull's alphabet, so it produces the base *equality*,
+and the transitivity of hyperbolic embeddedness needs exactly that equality:
+the joint alphabet must coincide with the auxiliary one, which an inclusion
+does not give.  So this is the form of the selection premise that the joint
+peripheral family can be built from. -/
+def SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet : Prop :=
+  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G}
+    {k : ℕ} (S : Fin k → Subgroup G), Suitable A.alphabet N →
+      (∀ j : Fin k, Suitable A.alphabet (S j)) →
+        ∃ D : AuxiliaryPeripheralFamily A N S,
+          D.rel.base = A.alphabet.carrier
+
+/-- Forgetting the base equality recovers the established selection premise. -/
+theorem SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.toSelection
+    (h : SimultaneousAuxiliaryPeripheralSelectionAtHullAlphabet.{u}) :
+    SimultaneousAuxiliaryPeripheralSelection.{u} := by
+  intro G _ A N k S hN hS
+  obtain ⟨D, -⟩ := h A S hN hS
+  exact ⟨D⟩
+
 /-- The distinguished subgroup attached to a block of the simultaneous
 auxiliary family. -/
 def AuxiliaryTarget {G : Type u} [Group G] (N : Subgroup G) {k : ℕ}
