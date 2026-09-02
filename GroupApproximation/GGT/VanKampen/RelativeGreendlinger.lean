@@ -56,7 +56,7 @@ theorem isLambdaCQuasiGeodesicWord_nil
   have hi0 : i = 0 := by omega
   subst i
   subst j
-  change lambda * (0 : ℝ) - c ≤
+  change lambda * (((0 - 0 : ℕ) : ℝ)) - c ≤
     ((wordDist D.alphabet.carrier
       (GGT.OsinComponents.vertex 1
         ([] : List (GGT.RelLetter G Lambda)) 0)
