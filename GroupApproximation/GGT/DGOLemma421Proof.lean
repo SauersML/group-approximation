@@ -2158,6 +2158,79 @@ theorem listVal_minimalityFourGon_closes
   rw [hQseg, he, hPseg, hf]
   group
 
+/-- A geodesic word is geodesic read from the identity, the word metric being
+left invariant.  The polygon predicate reads its geodesic sides from `1`. -/
+theorem isGeodesicWord_one_of_isGeodesicWord
+    {D : RelGenSet G Λ} {f g : G} {w : List (RelLetter G Λ)}
+    (h : IsGeodesicWord D f g w) :
+    IsGeodesicWord D (1 : G) (RelLetter.listVal w) w := by
+  obtain ⟨hlet, hval, hlen⟩ := h
+  refine ⟨hlet, one_mul _, ?_⟩
+  have hshift := wordDist_left_invariant D.alphabet.carrier f (1 : G)
+    (RelLetter.listVal w)
+  rw [mul_one] at hshift
+  rw [hlen, ← hval, ← hshift]
+
+/-- **The minimality polygon of DGO §4.3 is an admissible quasi-geodesic
+quadrilateral.**
+
+Its sides are the two connecting edges and the two segments cut out of the
+`W`-paths: "*the polygon `Q''` whose sides are `e`, `f`, and edges of `p`
+(respectively, `q`) between `(p_i)_+` and `(p_{i+a})_-` (respectively,
+`(q_j)_+` and `(q_{j+b})_-`)*" (HE.tex:766).  The connectors are geodesic
+because they are single peripheral edges or empty, the two segments carry the
+`(4,1)` estimate of clause (a), and the fourth side is read backwards, which is
+admissible under Dahmani--Guirardel--Osin's symmetric-base convention.
+
+This is step one of the minimality argument: the object `Proposition 4.14` is
+then applied to. -/
+theorem isQuasiGeodesicPolygon_minimalityFourGon
+    (D : RelGenSet G Λ) (hbase : DGO421BaseSymmetric D)
+    {P Q e f : List (RelLetter G Λ)} {ip1 ip2 iq1 iq2 : ℕ}
+    (hletP : ∀ a ∈ P, D.IsLetter a) (hletQ : ∀ a ∈ Q, D.IsLetter a)
+    (hlete : ∀ a ∈ e, D.IsLetter a) (hletf : ∀ a ∈ f, D.IsLetter a)
+    (hge : IsGeodesicWord D (1 : G) (RelLetter.listVal e) e)
+    (hgf : IsGeodesicWord D (1 : G) (RelLetter.listVal f) f)
+    (hipP : ip1 + (ip2 - ip1) ≤ P.length)
+    (hiqQ : iq1 + (iq2 - iq1) ≤ Q.length)
+    (hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
+          (vertex (1 : G) P j) : ℕ) : ℝ))
+    (hqgQ : ∀ i j : ℕ, i ≤ j → j ≤ Q.length →
+      ((j - i : ℕ) : ℝ) / 4 - 1 ≤
+        ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
+          (vertex (1 : G) Q j) : ℕ) : ℝ))
+    (hclose : RelLetter.listVal ((Q.drop iq1).take (iq2 - iq1))
+      = RelLetter.listVal e *
+        RelLetter.listVal ((P.drop ip1).take (ip2 - ip1)) *
+        RelLetter.listVal f) :
+    IsQuasiGeodesicPolygon D 4 1 4 (1 : G)
+      (e ++ (P.drop ip1).take (ip2 - ip1) ++ f ++
+        revWord ((Q.drop iq1).take (iq2 - iq1))) := by
+  have hletPseg : ∀ a ∈ (P.drop ip1).take (ip2 - ip1), D.IsLetter a := by
+    intro a ha
+    exact hletP a (List.mem_of_mem_drop (List.mem_of_mem_take ha))
+  have hletQseg : ∀ a ∈ (Q.drop iq1).take (iq2 - iq1), D.IsLetter a := by
+    intro a ha
+    exact hletQ a (List.mem_of_mem_drop (List.mem_of_mem_take ha))
+  have hlet : ∀ a ∈ e ++ (P.drop ip1).take (ip2 - ip1) ++ f ++
+      revWord ((Q.drop iq1).take (iq2 - iq1)), D.IsLetter a := by
+    intro a ha
+    rcases List.mem_append.mp ha with hleft | hrev
+    · rcases List.mem_append.mp hleft with hpre | hfmem
+      · rcases List.mem_append.mp hpre with hemem | hpseg
+        · exact hlete a hemem
+        · exact hletPseg a hpseg
+      · exact hletf a hfmem
+    · exact isLetter_of_mem_revWord D hbase hletQseg a hrev
+  exact isQuasiGeodesicPolygon_fourGon_of_mixed D e
+    ((P.drop ip1).take (ip2 - ip1)) f ((Q.drop iq1).take (iq2 - iq1))
+    hge hgf
+    (quasiGeodesic_segment_of_quasiGeodesic D hipP hqgP)
+    (quasiGeodesic_segment_of_quasiGeodesic D hiqQ hqgQ)
+    hlet hclose
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
