@@ -2539,6 +2539,36 @@ theorem connected_cross_of_connected_qSegment
     group
   rwa [hrw] at h
 
+/-- **A matched target really is a component of `q`.**
+
+The counting half's `Matched` predicate records that the target index starts a
+component *of the quadrilateral*, on its fourth block; the finite-absorption
+certificate then keeps only the vertex.  This is the link between the two: the
+fourth-block start is a component of `q` ending at the target index, and the
+target index is positive.
+
+Positivity is not an extra assumption.  At `j = 0` the fourth-block index is the
+length of the whole quadrilateral, and no component starts at the end of a
+word. -/
+theorem exists_isComp_of_matched_fourGonStart
+    {lam : Λ} {pc P rc Q : List (RelLetter G Λ)} {j : ℕ}
+    (hj : j ≤ Q.length)
+    (hstart : IsCompStart lam (pc ++ P ++ rc ++ revWord Q)
+      (pc.length + P.length + rc.length + (Q.length - j))) :
+    0 < j ∧ ∃ i' : ℕ, IsComp lam Q i' j := by
+  have hlen : (pc ++ P ++ rc ++ revWord Q).length
+      = pc.length + P.length + rc.length + Q.length := length_fourGon pc P rc Q
+  have hjpos : 0 < j := by
+    by_contra hcon
+    have hj0 : j = 0 := by omega
+    subst hj0
+    obtain ⟨k, hcomp⟩ := hstart
+    have h1 : pc.length + P.length + rc.length + (Q.length - 0) < k := hcomp.1
+    have h2 : k ≤ (pc ++ P ++ rc ++ revWord Q).length := hcomp.2.1
+    rw [hlen] at h2
+    omega
+  exact ⟨hjpos, exists_component_of_opposite_start_421 hj hjpos hstart⟩
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
