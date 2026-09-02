@@ -200,7 +200,7 @@ theorem fanoCorner_productSum (a b : ZMod 7) :
 /-- Equality in `Z/7Z` can be checked on canonical natural representatives.
 This keeps the remaining forty-nine row-pair cases in ordinary arithmetic. -/
 theorem fanoZMod_eq_iff_val_eq (a b : ZMod 7) : a = b ↔ a.val = b.val :=
-  (ZMod.val_injective 7).eq_iff
+  (ZMod.val_injective 7).eq_iff.symm
 
 /-- Two distinct points lie on one common line; a point has three incident
 lines.  This is the row identity `N Nᵀ = 2I + J`. -/
@@ -213,7 +213,7 @@ theorem fanoIncidence_rowPair : ∀ x x' : ZMod 7,
   simp only [add_mul, mul_add, Finset.sum_add_distrib,
     fanoCorner_productSum]
   fin_cases x <;> fin_cases x' <;>
-    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add]
+    norm_num [fanoZMod_eq_iff_val_eq, ZMod.val_add, ZMod.val]
 
 /-- Two distinct lines meet in one point; a line contains three points.
 This is the column identity `Nᵀ N = 2I + J`. -/
