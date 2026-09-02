@@ -123,7 +123,7 @@ theorem outerForward_word
   simp only [List.getElem_ofFn]
   congr 1
   apply Fin.ext
-  simp [outerIndex]
+  simp [outerIndex, Fin.val_cast]
 
 theorem relatorForward_word
     {G : Type u} [Group G] {Lambda : Type w}
@@ -227,9 +227,8 @@ theorem relatorBackward_word
     _ = RelWord.revInv (Z.geometricCell i).relator := by
       rw [RelWord.revInv]
       rw [← hforward]
-      congr 1
-      rw [List.map_ofFn]
-      rfl
+      exact (List.map_ofFn (f := fun j : Fin (Z.cactusShape.relatorLength i) ↦
+        Z.label (.relatorForward i j)) (g := RelWord.inv)).symm
 
 theorem cellSegment_word
     {G : Type u} [Group G] {Lambda : Type w}
