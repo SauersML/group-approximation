@@ -114,7 +114,7 @@ theorem before_eq_nil_of_erase_eq_empty
   have hmem : Delta.toCombMap.faceOf x ∈ faces.erase data.face :=
     Finset.mem_erase.mpr ⟨hnef, hb.1⟩
   rw [hempty] at hmem
-  exact absurd hmem (Finset.not_mem_empty _)
+  simp at hmem
 
 /-- When the peeled face was the last selected one, the cycle after the arc
 is empty. -/
@@ -128,7 +128,7 @@ theorem after_eq_nil_of_erase_eq_empty
   have hmem : Delta.toCombMap.faceOf x ∈ faces.erase data.face :=
     Finset.mem_erase.mpr ⟨hnef, hb.1⟩
   rw [hempty] at hmem
-  exact absurd hmem (Finset.not_mem_empty _)
+  simp at hmem
 
 /-- When the peeled face was the last selected one it has no interior: every
 one of its darts faced outside. -/
@@ -142,7 +142,7 @@ theorem interior_eq_nil_of_erase_eq_empty
   have hmem' : Delta.toCombMap.faceOf (Delta.toCombMap.alpha y) ∈
       faces.erase data.face := Finset.mem_erase.mpr ⟨hneq, hmem⟩
   rw [hempty] at hmem'
-  exact absurd hmem' (Finset.not_mem_empty _)
+  simp at hmem'
 
 /-- The peeled word of the last selected face is empty. -/
 theorem peeled_eq_nil_of_erase_eq_empty
