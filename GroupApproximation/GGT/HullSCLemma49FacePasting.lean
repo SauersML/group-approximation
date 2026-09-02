@@ -5,9 +5,9 @@ import GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerAdapter
 
 This file states the one cellular cancellation certificate needed after
 Osin's source Greendlinger selection.  The selected faces are G-cells in the
-planar `O`-equivalent diagram, and their boundary cycle must reduce to the
-empty dart word by complete face deletions and inverse dart-pair deletions.
-The adapter theorem turns this certificate into Hull's cyclic exterior arc.
+planar `O`-equivalent diagram, and their boundary cycle must admit a planar
+face-deletion schedule.  The schedule theorem turns this certificate into
+the face-set homotopy and then into Hull's cyclic exterior arc.
 The source is Osin's Appendix Definition M and Lemma 4.9.
 -/
 
@@ -21,8 +21,9 @@ universe u w
 
 /-! ## The strictly smaller source certificate -/
 
-/-- Every source Greendlinger power certificate has a cellular homotopy from
-the selected G-cell boundary to the empty dart word. -/
+/-- Every source Greendlinger power certificate has a face-deletion schedule
+from its selected G-cell boundary.  This is the precise topological input
+needed to build the cellular homotopy. -/
 def HullLemma49SourceFacePastingStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -30,8 +31,8 @@ def HullLemma49SourceFacePastingStatement : Prop :=
     {Z : Lemma49GeodesicPowerDiagram D v g n}
     (C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
       D v g n eps mu Z),
-    Nonempty (GGT.VanKampen.Embedded.FaceSetWordHomotopy
-      C.diagram C.faces C.contiguity.boundary.cycle [])
+    Nonempty (GGT.VanKampen.Embedded.FaceSetBoundaryPeeling
+      C.contiguity.boundary)
 
 /-- The source face-pasting certificate gives the embedded exterior arc used
 by the cyclic correction lemmas. -/
@@ -47,9 +48,9 @@ theorem exists_lemma49EmbeddedExteriorArc_of_sourceFacePasting
       D v g n eps mu Z)
     (hmu : 0 ≤ mu) :
     Nonempty (Lemma49EmbeddedExteriorArc D v g n eps mu Z) := by
-  obtain ⟨pasting⟩ := hpasting C
-  exact GGT.VanKampen.lemma49EmbeddedExteriorArc_of_sourceCertificate
-    hinput C hmu pasting
+  obtain ⟨peeling⟩ := hpasting C
+  exact GGT.VanKampen.lemma49EmbeddedExteriorArc_of_sourceCertificate_of_peeling
+    hinput C hmu peeling
 
 /-! ## Model check -/
 
@@ -61,8 +62,8 @@ theorem hullLemma49SourceFacePastingStatement_trivialModel
       {mu : ℝ} {Z : Lemma49GeodesicPowerDiagram D v g n},
       (C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
         D v g n eps mu Z) →
-      Nonempty (GGT.VanKampen.Embedded.FaceSetWordHomotopy
-        C.diagram C.faces C.contiguity.boundary.cycle []) := by
+      Nonempty (GGT.VanKampen.Embedded.FaceSetBoundaryPeeling
+        C.contiguity.boundary) := by
   intro v g n eps mu Z C
   exact (Z.power_ne_one (Subsingleton.elim _ _)).elim
 
