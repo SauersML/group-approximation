@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightLocalization
 import GroupApproximation.GGT.KazhdanHypGirthEightSlim
+import GroupApproximation.GGT.VanKampen.CombMapStars
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
@@ -28,10 +29,12 @@ below specify the requested geometric replacement by a reduced diagram for
 
 The committed `CombMap` API already proves preservation of a vertex under
 `sigma`, and `DiscDiagram` already gives ordered face boundaries and literal
-relator words.  This file proves the consequences of those facts.  The fields
-of `GirthEightDiagramPrimitives` are exactly the operations not supplied by
-the current vk modules: cyclic corner enumeration, local cellular reduction,
-nonbacktracking, Cayley labels, successive stars, and power-disc gluing.
+relator words.  This file proves the consequences of those facts.  Local link
+walks and boundary valence are requested only after a
+`TriangularDiagramLocalData` witness has supplied cellular reducedness and a
+spur-free boundary.  Algebraic `DiscDiagram.Reduced` alone does not imply
+either condition: the reduced one-edge disc in
+`KazhdanHypGirthEightPrimitives` is the counterexample.
 -/
 
 namespace GroupApproximation
@@ -312,6 +315,75 @@ structure PowerDisc
 
 /-! ## The single vk construction record -/
 
+/-- The two local projections used by triangular curvature.
+
+The input is deliberately `TriangularDiagramLocalData`, rather than the
+strictly weaker `DiscDiagram.Reduced`.  The former contains the cellular
+nonbacktracking link walk and the boundary-immersion degree estimate.  This
+conditioning excludes the one-edge boundary-spur countermodel without making
+an assertion about unrelated reduced diagrams. -/
+structure LocalDiagramProjections
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) where
+  /-- Project the nonbacktracking link walk at an interior vertex. -/
+  linkWalk : ∀
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (L : TriangularDiagramLocalData T Delta)
+    (v : Delta.toCombMap.Vertex),
+    v ∉ discOuterBoundaryVertices Delta →
+    PresentationLinkWalk T (Delta.toCombMap.vertexDegree v)
+  /-- Project the degree estimate at a spur-free boundary vertex. -/
+  boundaryDegree : ∀
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (L : TriangularDiagramLocalData T Delta)
+    (v : Delta.toCombMap.Vertex),
+    v ∈ discOuterBoundaryVertices Delta →
+    2 ≤ Delta.toCombMap.vertexDegree v
+
+namespace LocalDiagramProjections
+
+variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+
+/-- The local diagram record itself gives both conditioned projections. -/
+def canonical : LocalDiagramProjections T where
+  linkWalk _ L v hv := L.interiorVertexWalk v hv
+  boundaryDegree _ L v hv := L.boundaryVertexDegree v hv
+
+/-- Rebuilding the local record through the projection interface preserves
+all three inputs used by the curvature consumer. -/
+def rebuild (_P : LocalDiagramProjections T)
+    {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
+    (L : TriangularDiagramLocalData T Delta) :
+    TriangularDiagramLocalData T Delta where
+  innerFaceCell := L.innerFaceCell
+  interiorVertexWalk := _P.linkWalk Delta L
+  boundaryVertexDegree := _P.boundaryDegree Delta L
+
+/-- The repaired local interface is inhabited for every triangle table. -/
+theorem nonemptyModel : Nonempty (LocalDiagramProjections T) :=
+  ⟨canonical⟩
+
+end LocalDiagramProjections
+
+omit [Fintype Generator] [DecidableEq Generator]
+    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
+/-- Every vertex in the committed six-dart one-triangle rotation model has
+degree at least two.  This is the boundary-valence model for the repaired
+conditional interface; no claim is made for the unrelated one-edge spur. -/
+theorem oneTriangle_vertexDegree_two_le
+    (d : VanKampen.OneTriangleDart) :
+    2 ≤ VanKampen.oneTriangleCombMap.vertexDegree
+      (VanKampen.oneTriangleCombMap.vertexOf d) := by
+  change 2 ≤ VanKampen.CombMap.orbitDegree
+    VanKampen.oneTriangleCombMap.sigma (Quotient.mk'' d)
+  rw [← VanKampen.closedOrbitList.length_eq_orbitDegree]
+  have hne : VanKampen.oneTriangleCombMap.sigma d ≠ d := by
+    rcases d with ⟨i, b⟩
+    cases b <;> simp [VanKampen.oneTriangleCombMap,
+      VanKampen.oneTriangleSigma]
+  rw [VanKampen.closedOrbitList, if_neg hne]
+  exact Equiv.Perm.two_le_length_toList_iff_mem_support.mpr
+    (by simpa [Equiv.Perm.mem_support] using hne)
+
 /-- Operations still needed from the van Kampen implementation.
 
 `cornerCycle`, `facePositions`, and `linkWalk` form the local
@@ -322,6 +394,8 @@ geometric finite-order-to-sphere construction requested as an alternative to
 Huebschmann's cohomological theorem. -/
 structure GirthEightDiagramPrimitives
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) where
+  /-- Conditioned projections from cellular local diagram data. -/
+  local : LocalDiagramProjections T
   /-- Enumerate the corners at every map vertex. -/
   cornerCycle : ∀
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
@@ -336,20 +410,6 @@ structure GirthEightDiagramPrimitives
   removeBaseCells : ∀
     (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
     Delta.Reduced → RelatorOnlyReduction T Delta
-  /-- Cellular reducedness makes the cyclic corner labels nonbacktracking. -/
-  linkWalk : ∀
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (hred : Delta.Reduced) (R : RelatorOnly T Delta)
-    (v : Delta.toCombMap.Vertex),
-    v ∉ discOuterBoundaryVertices Delta →
-    (C : CyclicCornerEnumeration Delta.toCombMap v) →
-    (∀ f, f ≠ Delta.outerFace → TriangleFacePositions T Delta f) →
-    PresentationLinkWalk T (Delta.toCombMap.vertexDegree v)
-  /-- Vertices on a reduced outer boundary have degree at least two. -/
-  boundaryDegree : ∀
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
-    Delta.Reduced → ∀ v, v ∈ discOuterBoundaryVertices Delta →
-      2 ≤ Delta.toCombMap.vertexDegree v
   /-- A far point in a geodesic triangle produces the Cayley-labelled
   boundary subpath and disjoint successive-star layers. -/
   successiveStars : ∀ (delta : ℕ)
@@ -385,22 +445,14 @@ namespace GirthEightDiagramPrimitives
 
 variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
 
-/-- The local primitives assemble the existing
-`TriangularDiagramLocalData` input after free-base-cell removal. -/
-noncomputable def localData (P : GirthEightDiagramPrimitives T)
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (hred : Delta.Reduced) :
-    TriangularDiagramLocalData T (P.removeBaseCells Delta hred).diagram := by
-  let R := P.removeBaseCells Delta hred
-  refine {
-    innerFaceCell := R.relatorOnly.cell
-    interiorVertexWalk := ?_
-    boundaryVertexDegree := P.boundaryDegree R.diagram R.reduced }
-  intro v hv
-  apply P.linkWalk R.diagram R.reduced R.relatorOnly v hv
-  · exact P.cornerCycle R.diagram v
-  · intro f hf
-    exact P.facePositions R.diagram R.relatorOnly f hf
+/-- Re-project local data after the cellular reduction has supplied it.  The
+operation cannot manufacture spur-freeness from algebraic reducedness; it
+only exposes the data already proved for the diagram used by the consumer. -/
+def localData (P : GirthEightDiagramPrimitives T)
+    {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
+    (L : TriangularDiagramLocalData T Delta) :
+    TriangularDiagramLocalData T Delta :=
+  P.local.rebuild L
 
 /-- The successive-star field has exactly the type consumed by the existing
 slim-triangle theorem. -/
