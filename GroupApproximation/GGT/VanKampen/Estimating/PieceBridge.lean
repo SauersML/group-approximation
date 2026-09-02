@@ -43,7 +43,7 @@ theorem isPublishedPiece_reverse
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     RelWord.IsPublishedPiece D W eps Gamma.region.secondArc
       Gamma.region.firstArc (RelWord.revInv target.word) := by
   have hleftInv : wordNorm D.alphabet.carrier
@@ -87,7 +87,7 @@ theorem isPiece_or_sameWord
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     RelWord.IsPiece D W eps Gamma.region.firstArc source.word ∨
       RelWord.IsSameWordPublishedPiece D W eps Gamma.region.firstArc
         Gamma.region.secondArc source.word := by
@@ -106,7 +106,7 @@ theorem targetArc_lt_mu_mul
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     (Gamma.region.secondArc.length : ℝ) <
       mu * (target.word.length : ℝ) := by
   have hpublished := Gamma.isPublishedPiece_reverse
@@ -131,7 +131,7 @@ theorem arcLengths_lt_two_mu_source
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) +
         (Gamma.region.secondArc.length : ℝ) <
       2 * mu * (source.word.length : ℝ) := by
@@ -158,7 +158,7 @@ theorem arcLengths_lt_two_mu_target
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) +
         (Gamma.region.secondArc.length : ℝ) <
       2 * mu * (target.word.length : ℝ) := by
@@ -189,7 +189,7 @@ theorem arcLengths_le_two_mu_source
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) +
         (Gamma.region.secondArc.length : ℝ) ≤
       2 * mu * (source.word.length : ℝ) :=
@@ -207,7 +207,7 @@ theorem arcLengths_le_two_mu_target
     {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     (hred : Delta.Reduced)
-    (Gamma : CellContiguity pre between suf source target) :
+    (Gamma : CellContiguity (D := D) (eps := eps) pre between suf source target) :
     (Gamma.region.firstArc.length : ℝ) +
         (Gamma.region.secondArc.length : ℝ) ≤
       2 * mu * (target.word.length : ℝ) :=
@@ -538,7 +538,7 @@ theorem arcLengths_le_two_mu_cellWeight_source_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (hsource : sourceCell = cell Delta Gamma.source)
     (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
     (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
@@ -569,7 +569,7 @@ theorem arcWeight_le_two_mu_cellWeight_source_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (hsource : sourceCell = cell Delta Gamma.source)
     (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
     (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
@@ -593,7 +593,7 @@ theorem arcLengths_le_two_mu_cellWeight_target_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (htarget : targetCell = cell Delta target)
     (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
     (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
@@ -624,7 +624,7 @@ theorem arcWeight_le_two_mu_cellWeight_target_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (htarget : targetCell = cell Delta target)
     (hsourceArc : Gamma.sourceArc.length = cellGamma.region.firstArc.length)
     (htargetArc : Gamma.targetArc.length = cellGamma.region.secondArc.length)
@@ -651,7 +651,7 @@ theorem weight_le_two_mu_cellWeight_source_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (hsource : sourceCell = cell Delta candidate.contiguity.source)
     (hsourceArc : candidate.contiguity.sourceArc.length =
       cellGamma.region.firstArc.length)
@@ -677,7 +677,7 @@ theorem weight_le_two_mu_cellWeight_target_of_cellContiguity
     {pre between suf : List
       (RelatorCell Delta.toCombMap Delta.outerFace W)}
     {sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W}
-    (cellGamma : CellContiguity pre between suf sourceCell targetCell)
+    (cellGamma : CellContiguity (D := D) (eps := eps) pre between suf sourceCell targetCell)
     (htarget : targetCell = cell Delta target)
     (hsourceArc : candidate.contiguity.sourceArc.length =
       cellGamma.region.firstArc.length)
