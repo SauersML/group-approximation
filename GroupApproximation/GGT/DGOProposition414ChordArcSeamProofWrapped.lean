@@ -232,9 +232,12 @@ theorem secondGapChordArcSeam_of_source
         simp only [orientedEdgeIndex, if_pos hdir] at hoei0
         omega
       rw [hyEq]
-      have hspan := span_mem_fam_of_isComp D B.firstBase B.chord_geodesic.1
-        (B.firstPartner_chord_isComp s hsBroken)
-      rw [hyEq] at hspan
+      have hspan : (vertex B.firstBase B.chord (B.secondGapChordStart j))⁻¹ *
+          vertex B.firstBase B.chord (B.secondGapChordStart j + 1) ∈
+          D.fam (P.label s) := by
+        rw [← hyEq]
+        exact span_mem_fam_of_isComp D B.firstBase B.chord_geodesic.1
+          (B.firstPartner_chord_isComp s hsBroken)
       have hinv := inv_mem hspan
       have hfac : ((vertex B.firstBase B.chord (B.secondGapChordStart j))⁻¹ *
           vertex B.firstBase B.chord (B.secondGapChordStart j + 1))⁻¹ =
