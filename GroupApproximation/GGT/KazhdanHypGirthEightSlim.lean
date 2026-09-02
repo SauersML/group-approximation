@@ -41,7 +41,7 @@ namespace GirthEightSlim
 open GroupApproximation.WordMetric
 open scoped BigOperators
 
-universe u w
+universe u v w
 
 variable {G : Type u} [Group G]
 
@@ -342,7 +342,8 @@ requires the boundary-subpath, Cayley-vertex-label, and face-star operations
 not yet exposed by `VanKampen.DiscDiagram`. -/
 theorem isSlimTriangles_of_girthEight_layer_construction
     {S : Set G} {delta : ℕ}
-    {Lambda : Type w} {W : Set (List (GGT.RelLetter G Lambda))}
+    {Base : Type v} [Group Base]
+    {Lambda : Type w} {W : Set (List (GGT.RelLetter Base Lambda))}
     (build : ∀ x y z p : G,
       Hyperbolic.IsBetween S x p y →
       (∀ q : G, Hyperbolic.IsBetween S x q z →
@@ -383,7 +384,8 @@ metric step in Bridson--Haefliger III.H.2.9 after the topological layer
 construction has supplied `build`. -/
 theorem isHyperbolicGroup_of_girthEight_layer_construction
     {S : Finset G} {delta : ℕ}
-    {Lambda : Type w} {W : Set (List (GGT.RelLetter G Lambda))}
+    {Base : Type v} [Group Base]
+    {Lambda : Type w} {W : Set (List (GGT.RelLetter Base Lambda))}
     (hS : IsSymmetricGeneratingSet (S : Set G))
     (build : ∀ x y z p : G,
       Hyperbolic.IsBetween (S : Set G) x p y →
