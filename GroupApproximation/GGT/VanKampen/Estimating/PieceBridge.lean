@@ -51,6 +51,47 @@ theorem exists_dartWord_suffix
   conv_lhs => rw [← List.take_append_drop arc.length arc.rotated]
   simp only [dartWord, List.map_append, List.map_take, List.map_drop]
 
+/-- Reverse-alpha of a positioned arc is a prefix of a suitable rotation of
+the inverse carrier word.  The moved prefix is the carrier suffix, so this
+is the target-carrier orientation used by the pasted boundary equation. -/
+theorem exists_reverseDarts_prefix_of_rotated_revInv
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    {cycle : List Delta.toCombMap.Dart} (arc : CyclicArc cycle) :
+    ∃ suffix : List (GGT.RelLetter G Lambda),
+      (RelWord.revInv (dartWord Delta arc.rotated)).rotate
+          (dartWord Delta (arc.rotated.drop arc.length)).length =
+        dartWord Delta arc.reverseDarts ++ suffix := by
+  let carrier := arc.rotated
+  let prefix := carrier.take arc.length
+  let suffixDarts := carrier.drop arc.length
+  have hsplit : carrier = prefix ++ suffixDarts := by
+    exact (List.take_append_drop arc.length carrier).symm
+  have hword : dartWord Delta carrier =
+      dartWord Delta prefix ++ dartWord Delta suffixDarts := by
+    rw [hsplit, dartWord_append]
+  have hinv : RelWord.revInv (dartWord Delta carrier) =
+      RelWord.revInv (dartWord Delta suffixDarts) ++
+        RelWord.revInv (dartWord Delta prefix) := by
+    rw [hword, RelWord.revInv_append]
+  have hslen :
+      (RelWord.revInv (dartWord Delta suffixDarts)).length =
+        suffixDarts.length := by
+    rw [RelWord.length_revInv]
+    simp only [dartWord, List.length_map]
+  have hrotate :
+      (RelWord.revInv (dartWord Delta carrier)).rotate suffixDarts.length =
+        RelWord.revInv (dartWord Delta prefix) ++
+          RelWord.revInv (dartWord Delta suffixDarts) := by
+    rw [hinv, ← hslen, List.rotate_append_length_eq]
+  have hreverse :
+      dartWord Delta arc.reverseDarts =
+        RelWord.revInv (dartWord Delta prefix) := by
+    exact (dartWord_reverse_alpha Delta arc.darts).trans (by rfl)
+  refine ⟨RelWord.revInv (dartWord Delta suffixDarts), ?_⟩
+  rw [hrotate, hreverse]
+
 /-- The rotated carrier of a cell arc remains in a symmetrized family. -/
 theorem cell_rotated_mem
     {G : Type u} [Group G] {Lambda : Type w}
