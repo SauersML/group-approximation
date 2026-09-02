@@ -16,9 +16,12 @@ namespace GroupApproximation
 namespace GGT
 
 open TriangularHodgeLayer
+open GroupApproximation.KazhdanHyp
 open VanKampen
 open VanKampen.SeamGluing
 open GirthEightTorsionExtraction
+open GirthEightPrimitives2
+open GirthEightVKInterface
 
 universe u w v
 
@@ -55,6 +58,7 @@ the unchanged boundary power and the last is the exact one-cell area drop. -/
 theorem cactusBaseCellDeletionForPower_of_foldStepSource
     (hsource : CactusPowerFoldStepSource (T := T)) :
     CactusBaseCellDeletionForPower T := by
+  rw [CactusPowerFoldStepSource] at hsource
   intro g n hn hpow hne word hword
   obtain ⟨Delta, hplanar, C, hbefore, hafter, hdrop⟩ :=
     hsource g n hn hpow hne word hword
@@ -82,6 +86,7 @@ the retyped relator-only disc required by the torsion extraction. -/
 theorem cactusRelatorRetypingForPower_of_foldChainSource
     (hsource : CactusPowerFoldChainSource (T := T)) :
     CactusRelatorRetypingForPower T := by
+  rw [CactusPowerFoldChainSource] at hsource
   intro g n hn hpow hne word hword
   obtain ⟨Delta, Next, hplanar, hred, k, chain, hboundary⟩ :=
     hsource g n hn hpow hne word hword
