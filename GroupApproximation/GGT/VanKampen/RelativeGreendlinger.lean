@@ -148,7 +148,7 @@ theorem rCellCount_eq
     (equiv : OEquivalentDiscDiagram Delta Delta') :
     Delta'.rCellCount = Delta.rCellCount := by
   have hcard := Fintype.card_congr equiv.cellIndex
-  simpa only [Fintype.card_fin] using hcard
+  simpa only [Fintype.card_fin] using hcard.symm
 
 /-- A quasi-geodesic boundary word transports across an `O`-equivalence. -/
 theorem boundary_quasiGeodesic
