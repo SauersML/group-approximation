@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.RelHypOsin24Glue
 import GroupApproximation.GGT.DGOProposition433Finite
 import GroupApproximation.GGT.HullSCRelatorWord
+import GroupApproximation.GGT.HullSCUnionGeometryVirtuallyCyclic
 
 /-!
 # Suitability glue for Osin's Theorem 2.4
@@ -192,6 +193,83 @@ theorem osinTheorem21QuotientClosureStatement :
       rw [← hconj, hinverse]
       exact pow_mem (inv_mem (pow_mem hg n)) k
     exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
+
+/-! ## Distinct joint peripherals preserve hyperbolicity and separation -/
+
+/-- An infinite-order element in one member of a hyperbolically embedded
+family is hyperbolic relative to any disjointly indexed subfamily.
+
+If it were conjugate into another labelled peripheral, all its powers would
+lie in a twisted intersection which DGO Proposition 4.33 makes finite. -/
+theorem isHyperbolicElement_of_mem_distinct_jointPeripheral
+    {Q : Type u} [Group Q] {Lambda : Type v} (D : RelGenSet Q Lambda)
+    (hbaseInv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hemb : D.IsHyperbolicallyEmbedded)
+    {I K : Type*} (original : I → Lambda) (selected : K → Lambda)
+    (hdisjoint : ∀ i k, original i ≠ selected k)
+    {k : K} {g : Q} (hg : g ∈ D.fam (selected k))
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsHyperbolicElement (fun i => D.fam (original i)) g := by
+  rintro ⟨i, c, hc⟩
+  have hfinite :
+      {x : Q | x ∈ D.fam (selected k) ∧
+        c⁻¹ * x * c ∈ D.fam (original i)}.Finite :=
+    finite_conj_inter D hbaseInv hemb (by
+      rintro ⟨heq, -⟩
+      exact hdisjoint i k heq.symm)
+  have hnot : ¬ IsOfFinOrder g := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    exact hord n hn hpow
+  have hinj : Function.Injective (fun n : ℕ => g ^ n) :=
+    HullSC.injective_pow_of_not_isOfFinOrder hnot
+  have hsub : Set.range (fun n : ℕ => g ^ n) ⊆
+      {x : Q | x ∈ D.fam (selected k) ∧
+        c⁻¹ * x * c ∈ D.fam (original i)} := by
+    rintro x ⟨n, rfl⟩
+    refine ⟨pow_mem hg n, ?_⟩
+    have hconj : (c⁻¹ * g * c) ^ n = c⁻¹ * g ^ n * c := by
+      simpa only [inv_inv] using (@conj_pow Q _ n c⁻¹ g)
+    rw [← hconj]
+    exact pow_mem hc n
+  exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
+
+/-- Infinite-order elements in two distinct members of one hyperbolically
+embedded family remain non-commensurable.  A conjugacy between nonzero powers
+would again put infinitely many powers in the finite twisted intersection. -/
+theorem not_osinCommensurable_of_mem_distinct_jointPeripherals
+    {Q : Type u} [Group Q] {Lambda : Type v} (D : RelGenSet Q Lambda)
+    (hbaseInv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hemb : D.IsHyperbolicallyEmbedded)
+    {lam₁ lam₂ : Lambda} (hne : lam₁ ≠ lam₂)
+    {g₁ g₂ : Q} (hg₁ : g₁ ∈ D.fam lam₁)
+    (hg₂ : g₂ ∈ D.fam lam₂)
+    (hord₁ : ∀ n : ℕ, 0 < n → g₁ ^ n ≠ 1) :
+    ¬ OsinCommensurable g₁ g₂ := by
+  rintro ⟨p, q, c, hp, hq, heq⟩
+  have hfinite :
+      {x : Q | x ∈ D.fam lam₁ ∧ c⁻¹ * x * c ∈ D.fam lam₂}.Finite :=
+    finite_conj_inter D hbaseInv hemb (by
+      rintro ⟨hlam, -⟩
+      exact hne hlam.symm)
+  have hg₁Infinite : ¬ IsOfFinOrder g₁ := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    exact hord₁ n hn hpow
+  have haInfinite : ¬ IsOfFinOrder (g₁ ^ p) :=
+    HullSCUnionGeometry.not_isOfFinOrder_zpow hg₁Infinite hp
+  have hinj : Function.Injective (fun n : ℕ => (g₁ ^ p) ^ n) :=
+    HullSC.injective_pow_of_not_isOfFinOrder haInfinite
+  have hsub : Set.range (fun n : ℕ => (g₁ ^ p) ^ n) ⊆
+      {x : Q | x ∈ D.fam lam₁ ∧ c⁻¹ * x * c ∈ D.fam lam₂} := by
+    rintro x ⟨n, rfl⟩
+    refine ⟨pow_mem (zpow_mem hg₁ p) n, ?_⟩
+    have hconj : (c⁻¹ * g₁ ^ p * c) ^ n =
+        c⁻¹ * (g₁ ^ p) ^ n * c := by
+      simpa only [inv_inv] using (@conj_pow Q _ n c⁻¹ (g₁ ^ p))
+    rw [← hconj, heq]
+    exact pow_mem (zpow_mem hg₂ q) n
+  exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
 
 /-- Two preserved source peripherals with trivial intersection give trivial
 intersection of the Osin elementary closures of their infinite-order marked
