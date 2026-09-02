@@ -624,6 +624,44 @@ def CellPieceEquations.of_boundaryPeeling
     CellPieceEquations Gamma :=
   (PastingReducedCellPieceCertificate.of_boundaryPeeling bridge peeling).equations hred
 
+/-- A family of planar face-peel certificates supplies the pasted-region
+certificate directly.  The finite peeling induction is performed by the
+vk-side `faceSetBoundaryPeeling_of_planarCertificates` theorem, and its word
+homotopy is the boundary-counting input for both O52 charges. -/
+def PastingReducedCellPieceCertificate.of_planarPeelCertificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma)
+    (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
+      (boundary : FaceSetBoundary Delta faces),
+      PlanarFacePeelCertificate boundary) :
+    PastingReducedCellPieceCertificate Gamma := by
+  let peeling : FaceSetBoundaryPeeling Gamma.boundary :=
+    faceSetBoundaryPeeling_of_planarCertificates Gamma.boundary certificates
+  exact PastingReducedCellPieceCertificate.of_boundaryPeeling bridge peeling
+
+/-- The planar-peel certificate gives the complete local O52 equations after
+diagram reducedness is transported through the cell bridge. -/
+def CellPieceEquations.of_planarPeelCertificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma)
+    (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
+      (boundary : FaceSetBoundary Delta faces),
+      PlanarFacePeelCertificate boundary)
+    (hred : Delta.Reduced) :
+    CellPieceEquations Gamma :=
+  (PastingReducedCellPieceCertificate.of_planarPeelCertificates
+    bridge certificates).equations hred
+
 /-! ## One-cell and two-cell boundary models -/
 
 /-- The one-cell disc model uses the direct face-boundary deletion schedule,
@@ -970,6 +1008,57 @@ theorem Candidate.weight_le_two_mu_target
   rw [candidate.weight_eq_cellPieceArcLengths equations]
   exact candidate.contiguity.arcLengths_le_two_mu_target equations
     hsc hpieces
+
+/-- The source O52 charge follows directly from a planar peel certificate
+family and a reduced cell bridge, with no intermediate equation hypothesis. -/
+theorem Candidate.weight_le_two_mu_source_of_planarPeelCertificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (candidate : Candidate D eps Delta)
+    (bridge : ReducedCellPieceBridge candidate.contiguity)
+    (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
+      (boundary : FaceSetBoundary Delta faces),
+      PlanarFacePeelCertificate boundary)
+    (hred : Delta.Reduced)
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
+    (candidate.weight : ℝ) ≤
+      2 * mu *
+        ((cell Delta candidate.contiguity.source).word.length : ℝ) := by
+  let equations : CellPieceEquations candidate.contiguity :=
+    CellPieceEquations.of_planarPeelCertificates bridge certificates hred
+  exact candidate.weight_le_two_mu_source equations hsc hpieces
+
+/-- The target O52 charge follows directly from a planar peel certificate
+family and a reduced cell bridge, with the reversed target carrier supplied
+by the embedded boundary construction. -/
+theorem Candidate.weight_le_two_mu_target_of_planarPeelCertificates
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    (candidate : Candidate D eps Delta)
+    (bridge : ReducedCellPieceBridge candidate.contiguity)
+    (certificates : ∀ {faces : Finset Delta.toCombMap.Face}
+      (boundary : FaceSetBoundary Delta faces),
+      PlanarFacePeelCertificate boundary)
+    (hred : Delta.Reduced)
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho)
+    (hpieces : ∀ first second word,
+      RelWord.IsPublishedPiece D W eps first second →
+        max (first.length : ℝ) (second.length : ℝ) < mu * word.length) :
+    (candidate.weight : ℝ) ≤
+      2 * mu * ((cell Delta bridge.target).word.length : ℝ) := by
+  let equations : CellPieceEquations candidate.contiguity :=
+    CellPieceEquations.of_planarPeelCertificates bridge certificates hred
+  have hbound := candidate.weight_le_two_mu_target equations hsc hpieces
+  simpa [equations, CellPieceEquations.of_planarPeelCertificates,
+    PastingReducedCellPieceCertificate.of_planarPeelCertificates,
+    PastingReducedCellPieceCertificate.equations] using hbound
 
 end Embedded
 
