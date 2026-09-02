@@ -988,9 +988,9 @@ theorem nonempty_powerDiscCandidate_of_cactusRetyping
       relatorOnly := hrelatorOnly }
   exact ⟨candidate⟩
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The actual `SurgeryMap` cactus deletion supplies the literal power-disc
 candidate once its replacement diagram has the prescribed boundary. -/
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 theorem nonempty_powerDiscCandidate_of_cactusDeletion
     (word : List (TriangularHodgeLayer.SignedGenerator Generator))
     (hword : PresentedGroup.mk
@@ -1105,6 +1105,7 @@ structure PowerDiscMirrorPairDeletion
   result : PowerDiscCandidate T g n
   result_diagram_eq : result.diagram = topological.replacement.diagram
 
+omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The concrete topological mirror cut drops exactly two relator cells in a
 power-disc candidate. -/
 theorem PowerDiscMirrorPairDeletion.area_drop
