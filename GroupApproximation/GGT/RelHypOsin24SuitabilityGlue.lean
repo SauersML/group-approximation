@@ -135,7 +135,7 @@ This is strictly smaller than quotient suitability.  It mentions neither a
 suitable subgroup nor a pair of witnesses; it is the maximality property for
 one already-preserved elementary subgroup. -/
 def OsinTheorem21QuotientClosureStatement : Prop :=
-  ∀ (Q : Type) (_ : Group Q) (Λ : Type) (D : RelGenSet Q Λ),
+  ∀ (Q : Type u) (_ : Group Q) (Λ : Type v) (D : RelGenSet Q Λ),
     (∀ x ∈ D.base, x⁻¹ ∈ D.base) → D.IsHyperbolicallyEmbedded →
       ∀ (lam : Λ) (g : Q), g ∈ D.fam lam →
         (∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
@@ -166,6 +166,7 @@ theorem osinTheorem21QuotientClosureStatement :
         {x : Q | x ∈ D.fam lam ∧ c⁻¹ * x * c ∈ D.fam lam} := by
       rintro x ⟨k, rfl⟩
       refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
+      change c⁻¹ * (g ^ n) ^ k * c ∈ D.fam lam
       rw [← conj_pow, hsame]
       exact pow_mem (pow_mem hg n) k
     exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
@@ -179,6 +180,7 @@ theorem osinTheorem21QuotientClosureStatement :
         {x : Q | x ∈ D.fam lam ∧ c⁻¹ * x * c ∈ D.fam lam} := by
       rintro x ⟨k, rfl⟩
       refine ⟨pow_mem (pow_mem hg n) k, ?_⟩
+      change c⁻¹ * (g ^ n) ^ k * c ∈ D.fam lam
       rw [← conj_pow, hinverse]
       exact pow_mem (inv_mem (pow_mem hg n)) k
     exact Set.infinite_range_of_injective hinj (hfinite.subset hsub)
