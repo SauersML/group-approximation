@@ -82,7 +82,7 @@ structure BoundaryWordFarPointWitness
         GGT.RelLetter (FreeGroup Generator) PEmpty)
   reduced : Delta.Reduced
   weight : Delta.toCombMap.Vertex → ℕ
-  farthest : BoundaryFarthestPoint
+  farthest : VanKampen.BoundaryFarthestPoint
     (Delta.faceBoundary Delta.outerFace) weight
 
 namespace BoundaryWordFarPointWitness
@@ -101,7 +101,7 @@ noncomputable def of_diagram
           GGT.RelLetter (FreeGroup Generator) PEmpty))
     (hred : Delta.Reduced)
     (weight : Delta.toCombMap.Vertex → ℕ) :
-    Nonempty (BoundaryWordFarPointWitness (T := T) Delta) := by
+    Nonempty (BoundaryWordFarPointWitness Delta) := by
   obtain ⟨farthest⟩ :=
     VanKampen.farthestBoundaryPoint_of_discDiagram (Delta := Delta) weight
   exact ⟨{
@@ -114,6 +114,20 @@ noncomputable def of_diagram
     farthest := farthest }⟩
 
 end BoundaryWordFarPointWitness
+
+/-- The algebraic/geodesic source data before the finite maximum is taken. -/
+structure BoundaryWordDiagramWitness where
+  word : List (TriangularHodgeLayer.SignedGenerator Generator)
+  diagram : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)
+  weight : diagram.toCombMap.Vertex → ℕ
+  trivial : PresentedWordIsTrivial (T := T) word
+  free_nontrivial : (word.map freeLetter).prod ≠ 1
+  boundary_eq : diagram.boundaryWord =
+    (word.map freeLetter).map
+      (GGT.RelLetter.base : FreeGroup Generator →
+        GGT.RelLetter (FreeGroup Generator) PEmpty)
+  reduced : diagram.Reduced
+  weight_nonnegative : ∀ v, 0 ≤ weight v
 
 /-- The exact missing source: it supplies a labelled reduced diagram and a
 vertex weight for every geodesic configuration.  Its far-point certificate is
@@ -137,27 +151,18 @@ def FarPointBoundaryWitnessSource : Prop :=
       delta < wordDist
         (↑(GirthEightSlim.presentedGeneratorFinset T) :
           Set (TriangularHodgeLayer.Presented T)) p q) →
-    ∃ (word : List (TriangularHodgeLayer.SignedGenerator Generator))
-      (Delta : VanKampen.DiscDiagram.{0, 0, 0}
-        (triangleRelatorWords T))
-      (weight : Delta.toCombMap.Vertex → ℕ),
-      PresentedWordIsTrivial (T := T) word ∧
-      (word.map freeLetter).prod ≠ 1 ∧
-      Delta.boundaryWord =
-        (word.map freeLetter).map
-          (GGT.RelLetter.base : FreeGroup Generator →
-            GGT.RelLetter (FreeGroup Generator) PEmpty) ∧
-      Delta.Reduced
+    ∃ source : BoundaryWordDiagramWitness (T := T), True
 
 /-- A witness source implies the exact word-only far-point proposition. -/
 theorem farPointBoundaryWord_of_witnessSource
     (hsource : FarPointBoundaryWitnessSource (T := T)) :
     FarPointBoundaryWord (T := T) := by
   intro delta x y z p hp hfarXZ hfarZY
-  obtain ⟨word, Delta, weight, htrivial, hfree, hboundary, hred⟩ :=
+  obtain ⟨source, _⟩ :=
     hsource delta x y z p hp hfarXZ hfarZY
-  obtain ⟨W⟩ := BoundaryWordFarPointWitness.of_diagram word Delta
-    htrivial hfree hboundary hred weight
+  obtain ⟨W⟩ := BoundaryWordFarPointWitness.of_diagram source.word
+    source.diagram source.trivial source.free_nontrivial source.boundary_eq
+    source.reduced source.weight
   exact ⟨W.word, W.trivial, W.free_nontrivial⟩
 
 /-! ## Finite model -/
