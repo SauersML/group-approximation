@@ -101,6 +101,16 @@ theorem faceSetBoundaryPeeling_of_faceSetBoundary_of_oracle
             moves.to_homotopy htail
   exact ⟨aux faces.card boundary rfl⟩
 
+/-- Short name used by the Hull49 bridge.  The explicit oracle argument is
+the one-step extremal-face fact described by `FaceSetBoundaryPeelWitness`; it
+is kept visible until a planar producer supplies that fact. -/
+theorem faceSetBoundaryPeeling_of_faceSetBoundary
+    {faces : Finset Delta.toCombMap.Face}
+    (boundary : FaceSetBoundary Delta faces)
+    (oracle : FaceSetBoundaryPeelOracle (Delta := Delta)) :
+    FaceSetBoundaryPeeling boundary :=
+  faceSetBoundaryPeeling_of_faceSetBoundary_of_oracle boundary oracle
+
 /-- The one-face model is obtained from the direct face-boundary move. -/
 theorem oneFacePeelWitness
     {face : Delta.toCombMap.Face} (hne : face ≠ Delta.outerFace) :
