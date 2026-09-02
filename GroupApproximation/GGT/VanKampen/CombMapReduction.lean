@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightDiagram
 import GroupApproximation.GGT.VanKampen.CactusRealization
+import GroupApproximation.GGT.VanKampen.Surgery
 
 /-!
 # Relator-cell coverage and identity reduction
@@ -101,6 +102,43 @@ structure CactusRelatorRetyping
   rCellCount_le : diagram.rCellCount ≤ Delta.rCellCount
   reduced : diagram.Reduced
 
+/-! ## Concrete surgery certificates -/
+
+/-- A concrete free-base-cell deletion certificate.  The selected region is
+reclosed by `Surgery.MapCollapse.replaceGRegion`; its face words are trivial
+in the free base group, and the replacement diagram has only the retained
+relator cells. -/
+structure CactusBaseCellDeletion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  bigFace : Delta.toCombMap.Face
+  faces : Finset Delta.toCombMap.Face
+  bigFace_mem : bigFace ∈ faces
+  baseWord_one : ∀ f, f ∈ faces →
+    GGT.RelLetter.listVal (Delta.faceWord f) = 1
+  region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
+  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  replacement_map_eq : replacement.diagram.toCombMap =
+    Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+  relatorOnly : RelatorCellCover replacement.diagram
+
+/-- The concrete reclosed replacement supplies every field of
+`CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
+area is unchanged by the ordered cell equivalence, and reducedness transports
+along that equivalence. -/
+def CactusBaseCellDeletion.toRetyping
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : CactusBaseCellDeletion Delta) : CactusRelatorRetyping Delta where
+  diagram := C.replacement.diagram
+  boundaryWord_eq := C.replacement.outerWord_eq
+  relatorOnly := C.relatorOnly
+  rCellCount_le := by
+    rw [C.replacement.rCellCount_eq]
+  reduced := C.replacement.reduced Delta.Reduced
+
 /-- The retyped cactus is an exact-boundary relator-only disc. -/
 theorem exactBoundaryRelatorOnly_of_cactusRetyping
     {G : Type u} [Group G] {Lambda : Type w}
@@ -126,6 +164,56 @@ structure MirrorPairCut
   relatorOnly : RelatorCellCover result
   reduced : result.Reduced
   area_eq : result.rCellCount + 2 = Delta.rCellCount
+
+/-- Data for the actual two-cell cut.  The `GRegionReplacement` is the
+reclosed map after the two mirror faces are deleted.  The list equation says
+that exactly those two ordered relator cells disappear; the area drop is then
+proved by list-length arithmetic. -/
+structure MirrorPairDeletion
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  pre between suf : List
+    (RelatorCell Delta.toCombMap Delta.outerFace W)
+  first second : RelatorCell Delta.toCombMap Delta.outerFace W
+  old_cells : Delta.relatorCells =
+    pre ++ first :: (between ++ second :: suf)
+  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  new_cells : replacement.diagram.relatorCells =
+    pre.map replacement.cells.cellEquiv ++
+      between.map replacement.cells.cellEquiv ++
+      suf.map replacement.cells.cellEquiv
+  relatorOnly : RelatorCellCover replacement.diagram
+  mirror : (between.map RelatorCell.value).prod⁻¹ * first.value *
+      (between.map RelatorCell.value).prod * second.value = 1
+
+/-- The two-cell cut lowers ordered relator area by exactly two. -/
+theorem MirrorPairDeletion.area_drop
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) :
+    C.replacement.diagram.rCellCount + 2 = Delta.rCellCount := by
+  have hOld := congrArg List.length C.old_cells
+  have hNew := congrArg List.length C.new_cells
+  simp only [DiscDiagram.rCellCount, List.length_append, List.length_cons,
+    List.length_map] at hOld hNew
+  omega
+
+/-- The concrete two-cell cut supplies the abstract mirror-pair certificate.
+Reducedness is transported from the old diagram and the boundary word is
+preserved by the reclosure. -/
+def MirrorPairDeletion.toMirrorPairCut
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced) :
+    MirrorPairCut Delta where
+  result := C.replacement.diagram
+  boundaryWord_eq := C.replacement.outerWord_eq
+  relatorOnly := C.relatorOnly
+  reduced := C.replacement.reduced hred
+  area_eq := C.area_drop
 
 /-- A mirror-pair cut strictly lowers relator area. -/
 theorem MirrorPairCut.area_lt
