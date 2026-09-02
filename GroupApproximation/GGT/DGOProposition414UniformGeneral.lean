@@ -38,6 +38,17 @@ theorem quasiGeodesicComparison_zeroModel :
   norm_num at hmu hc h ⊢
   exact h
 
+/-- When the multiplicative quasi-geodesic constant is one, the comparison
+holds as soon as the additive side error is absorbed by the surgery constant.
+This is the elementary parameter instance used to sanity-check the radius
+conversion. -/
+theorem quasiGeodesicComparison_of_one
+    {c b : ℝ} (hc : 0 ≤ c) (hcb : c ≤ b) :
+    QuasiGeodesicComparison 1 c b := by
+  intro hmu _ t d ht hd hdist
+  norm_num at hmu hdist ⊢
+  linarith
+
 /-- A zero-side polygon contributes no distinguished radius. -/
 theorem zeroSideRadiusWitness
     (D : RelGenSet G Λ) (_mu _c : ℝ) (n : ℕ)
