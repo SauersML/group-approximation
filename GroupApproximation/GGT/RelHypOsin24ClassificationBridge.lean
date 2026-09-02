@@ -263,6 +263,28 @@ theorem finiteFamilyRelativePowerEscape_trivialModel
   obtain ⟨n, hn⟩ : ∃ n : ℕ, 0 < n := ⟨1, by omega⟩
   exact hord n hn (Subsingleton.elim _ _)
 
+/-- Finite peripherals also give the one-element classification.  The finite
+alphabet supplies acylindricity, while the preceding finite-family estimate
+supplies escape; the relative non-parabolic hypothesis is retained in the
+signature for compatibility with Osin's element statement. -/
+theorem hyperbolicElementLoxodromic_of_finiteFamily
+    {G : Type u} [Group G] {I : Type v} [Finite I]
+    (D : RelGenSet G I) (hbase : D.base.Finite)
+    (hfam : ∀ i : I, (D.fam i : Set G).Finite)
+    (hemb : D.IsHyperbolicallyEmbedded) {g : G}
+    (_hhyper : IsHyperbolicElement D.fam g)
+    (hord : ∀ n : ℕ, 0 < n → g ^ n ≠ 1) :
+    IsLoxodromic g (Cayley.base D.alphabet) := by
+  have hunion : (⋃ i : I, (D.fam i : Set G)).Finite := by
+    exact Set.finite_iUnion (fun i => hfam i)
+  have halphabet : D.alphabet.carrier.Finite := by
+    change (D.base ∪ ⋃ i : I, (D.fam i : Set G)).Finite
+    exact hbase.union hunion
+  have hacy : IsAcylindrical G (Cayley D.alphabet) :=
+    isAcylindrical_cayley_of_finite D.alphabet halphabet
+  exact isLoxodromic_of_relativePowerEscape_of_acylindrical D hemb hacy
+    (finiteFamilyRelativePowerEscape_proved G inferInstance I D hbase hfam g hord)
+
 /-! ### The missing finite-base binder is load-bearing
 
 The source theorem is a theorem for a finite relative generating set.  The
