@@ -3,6 +3,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.Incidence
 import GroupApproximation.GGT.VanKampen.Estimating.Partition
 import GroupApproximation.GGT.VanKampen.Estimating.Unbound
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
+import GroupApproximation.GGT.VanKampen.Surgery
 
 /-!
 # Assembly of embedded estimating systems
@@ -62,6 +63,22 @@ theorem exists_estimatingScaffold
     selected := selected }⟩
 
 /-! ## Geometric certificates on the finite scaffold -/
+
+/-- A surgery replacement with equal dart universe yields the embedded
+O-equivalence required by the selection statement. -/
+theorem Surgery.GRegionReplacement.toOEquivalent
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta) :
+    OEquivalentDiscDiagram Delta replacement.diagram where
+  boundaryWord_eq := replacement.outerWord_eq
+  cellIndex := replacement.cells.indexEquiv
+  cellWord_eq := by
+    intro i
+    have hcells := replacement.cells.cells_eq
+    have hget := congrArg (fun cells => cells.get (replacement.cells.indexEquiv i)) hcells
+    simpa only [Embedded.cell, List.get_map] using hget.symm
 
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
 The selected interior regions form a hereditary simple planar graph, no
