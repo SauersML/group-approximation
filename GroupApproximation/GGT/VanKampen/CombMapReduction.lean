@@ -206,6 +206,10 @@ structure MirrorPairDeletion
   relatorOnly : RelatorCellCover replacement.diagram
   mirror : (between.map RelatorCell.value).prod⁻¹ * first.value *
       (between.map RelatorCell.value).prod * second.value = 1
+  faces : Finset Delta.toCombMap.Face
+  region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
+  replacement_map_eq : replacement.diagram.toCombMap =
+    Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
 
 /-- The two-cell cut lowers ordered relator area by exactly two. -/
 theorem MirrorPairDeletion.area_drop
@@ -231,14 +235,18 @@ def MirrorPairDeletion.toMirrorPairCut
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
-    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced) :
+    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced)
+    (hplanar : Delta.toCombMap.IsPlanar) :
     MirrorPairCut Delta where
   result := C.replacement.diagram
   boundaryWord_eq := C.replacement.outerWord_eq
   relatorOnly := C.relatorOnly
   reduced := C.replacement.reduced hred
   area_eq := C.area_drop
-  planar := C.replacement.diagram.planar
+  planar := by
+    rw [C.replacement_map_eq]
+    exact Surgery.MapCollapse.replaceGRegion_planar
+      Delta.toCombMap C.faces C.region hplanar
 
 /-- The generic mirror constructor exposes the planar output of the
 reclosure and the exact two-cell area drop. -/
@@ -246,9 +254,10 @@ def mirrorPairCut_of_planarDisc
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
-    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced) :
+    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced)
+    (hplanar : Delta.toCombMap.IsPlanar) :
     MirrorPairCut Delta :=
-  C.toMirrorPairCut hred
+  C.toMirrorPairCut hred hplanar
 
 /-- A mirror-pair cut strictly lowers relator area. -/
 theorem MirrorPairCut.area_lt
