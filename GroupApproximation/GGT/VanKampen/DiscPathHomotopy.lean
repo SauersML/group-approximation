@@ -140,7 +140,7 @@ end InnerFaceWordHomotopy
 inductive ElementaryPathMove
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    (Delta : DiscDiagram.{u, w, v}) :
+    (Delta : DiscDiagram.{u, w, v} W) :
     List Delta.toCombMap.Dart → List Delta.toCombMap.Dart → Prop
   | faceErase (face : Delta.toCombMap.Face) (hface : face ≠ Delta.outerFace)
       (before after : List Delta.toCombMap.Dart) :
