@@ -152,6 +152,13 @@ theorem darts_nodup {Dart : Type v} {cycle : List Dart}
   rw [darts, arc.rotated_eq_rotate]
   exact (List.nodup_rotate.mpr hcycle).sublist (List.take_sublist _ _)
 
+/-- Every dart of a cyclic subarc belongs to its ambient carrier cycle. -/
+theorem mem_cycle_of_mem_darts {Dart : Type v} {cycle : List Dart}
+    (arc : CyclicArc cycle) {d : Dart} (hd : d ∈ arc.darts) : d ∈ cycle := by
+  have hrotated : d ∈ arc.rotated := List.mem_of_mem_take hd
+  rw [arc.rotated_eq_rotate] at hrotated
+  simpa using hrotated
+
 /-- Reversing every dart and reversing the order gives the opposite
 orientation of an arc. -/
 def reverseDarts {M : CombMap} {cycle : List M.Dart}
