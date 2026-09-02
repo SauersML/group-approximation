@@ -89,6 +89,34 @@ def boundaryContiguity
     simp at h
   pasting := shelling
 
+/-- The constructed region's target arc is the one supplied, definitionally.
+
+This is what a wrap-free-arc obligation needs: `hconv`'s
+`CyclicArcIsLinear` is a statement about `arc.start.1 + arc.length` against the
+cycle length, so if a producer supplies a linear outer arc the constructed
+region's `targetArc` is linear with nothing to prove.  Stated as a `simp` lemma
+so the transfer is a rewrite rather than a defeq argument at each use. -/
+@[simp] theorem boundaryContiguity_targetArc
+    (boundary : FaceSetBoundary Delta faces)
+    (source : Fin Delta.rCellCount)
+    (sourceArc : CyclicArc (cellDarts Delta source))
+    (outerArc :
+      CyclicArc (targetDarts Delta (none : Option (Fin Delta.rCellCount))))
+    (rightSide leftSide : List Delta.toCombMap.Dart)
+    (hdecomposition : boundary.cycle =
+      sourceArc.reverseDarts ++ rightSide ++ outerArc.darts ++ leftSide)
+    (hrightLength : rightSide.length ≤ eps)
+    (hleftLength : leftSide.length ≤ eps)
+    (hrightNorm : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (dartWord Delta rightSide)) ≤ eps)
+    (hleftNorm : wordNorm D.alphabet.carrier
+      (GGT.RelLetter.listVal (dartWord Delta leftSide)) ≤ eps)
+    (shelling : ∃ l : List Delta.toCombMap.Face,
+      FaceShelling Delta faces l boundary.cycle) :
+    (boundaryContiguity boundary source sourceArc outerArc rightSide leftSide
+        hdecomposition hrightLength hleftLength hrightNorm hleftNorm
+        shelling).targetArc = outerArc := rfl
+
 /-- The union of two carriers is a candidate as soon as the merged exterior
 region's geometry is supplied.  With `mergeSurgery_of_union` and
 `exteriorMergeAvailable_of_unionCandidates` this is the whole route to
