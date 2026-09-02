@@ -78,9 +78,8 @@ structure VertexCornerCertificate
 sides of any intervening edge do not carry mirror link labels.  Equivalently,
 the cyclic link walk never immediately traverses an edge and its reverse. -/
 abbrev CellularReducedAt
-    {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
-    {v : Delta.toCombMap.Vertex}
-    {C : CyclicCornerEnumeration Delta.toCombMap v}
+    {M : VanKampen.CombMap.{0}} {v : M.Vertex}
+    {C : CyclicCornerEnumeration M v}
     (K : VertexCornerCertificate C) : Prop :=
   ∀ i, K.linkVertex i ≠ K.linkVertex (i + 2)
 
@@ -108,11 +107,10 @@ theorem three_le_of_periodic_noMirror
 the exact `PresentationLinkWalk` consumed by
 `TriangularDiagramLocalData.interiorVertexWalk`. -/
 noncomputable def presentationLinkWalk_of_cellularReduced
-    {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
-    {v : Delta.toCombMap.Vertex}
-    (C : CyclicCornerEnumeration Delta.toCombMap v)
+    {M : VanKampen.CombMap.{0}} {v : M.Vertex}
+    (C : CyclicCornerEnumeration M v)
     (K : VertexCornerCertificate C) (hred : CellularReducedAt K) :
-    PresentationLinkWalk T (Delta.toCombMap.vertexDegree v) where
+    PresentationLinkWalk T (M.vertexDegree v) where
   vertex := K.linkVertex
   periodic := K.periodic
   adjacent i := by
@@ -122,8 +120,8 @@ noncomputable def presentationLinkWalk_of_cellularReduced
   three_le := three_le_of_periodic_noMirror
     (by
       obtain ⟨i, hi, _⟩ := C.covers
-        (Delta.toCombMap.vertexRepresentative v)
-        (Delta.toCombMap.vertexOf_vertexRepresentative v)
+        (M.vertexRepresentative v)
+        (M.vertexOf_vertexRepresentative v)
       omega)
     K.periodic hred
 
