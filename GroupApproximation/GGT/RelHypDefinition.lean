@@ -21,9 +21,14 @@ indexed peripheral letters (`RelLetter`), and `d̂_λ` forbids precisely
 `λ`-labelled edges starting in `H_λ`.  Thus equal subgroups with different
 indices remain different edge families.
 
-This is the characterisation of Osin relative hyperbolicity in
-Dahmani--Guirardel--Osin, arXiv:1111.7048, Proposition 4.28, compared with
-Osin, *Relatively hyperbolic groups*, Memoirs AMS 179 (2006).  The former
+For an arbitrary collection, Osin relative hyperbolicity implies this
+finite-base hyperbolically embedded condition by
+Dahmani--Guirardel--Osin, arXiv:1111.7048, Proposition 4.28(a).  Their converse,
+Proposition 4.28(b), assumes that the index set is finite.  Thus the predicate
+below is the labelled finite-base DGO condition requested by the quotient
+interfaces; at an infinite index type it must not be used to infer either the
+raw relative-Cayley action's acylindricity or Osin's finite relative
+presentation.  The former
 endpoint-only definition remains below solely as the legacy
 `RelativeGeneratingSet`/`PeripheralMetricLocallyFinite` vocabulary.  It is
 not used in `IsRelativelyHyperbolic`: `RelHypOsin24Glue` records the duplicate-
@@ -132,12 +137,13 @@ def RelativeGeneratingSet.toRelGenSet {G : Type u} [Group G] {ι : Type v}
     {G : Type u} [Group G] {ι : Type v} {H : ι → Subgroup G}
     (X : RelativeGeneratingSet G H) : X.toRelGenSet.fam = H := rfl
 
-/-- **A relatively hyperbolic pair (labelled DGO/Osin form).**
+/-- **A finite-base hyperbolically embedded peripheral family.**
 
-This is DGO Proposition 4.28 as a definitional bridge: Osin relative
-hyperbolicity is a finite relative base together with a hyperbolically embedded
-peripheral family.  `RelGenSet` spells paths in `X ⊔ ⨆ H_λ`, so its relative
-balls retain the peripheral index carried by every edge. -/
+`RelGenSet` spells paths in `X ⊔ ⨆ H_λ`, so its relative balls retain the
+peripheral index carried by every edge.  DGO Proposition 4.28(a) maps Osin's
+relative-hyperbolicity definition to this predicate.  Proposition 4.28(b)
+gives the converse for a finite peripheral family; the finiteness hypothesis
+is not silently imposed here. -/
 def IsRelativelyHyperbolic (G : Type u) [Group G] {ι : Type v}
     (H : ι → Subgroup G) : Prop :=
   ∃ D : GGT.RelGenSet G ι,
