@@ -67,8 +67,9 @@ theorem exteriorMergeAvailable_of_unionCandidates
         Nonempty (FaceSetBoundary Delta
           (candidateFaceUnion first.1 second.1)) ∧
           first.1.weight + second.1.weight ≤
-            (⟨candidateFaceUnion first.1 second.1, hcand⟩ :
-              Candidate D eps Delta).weight) :
+            Candidate.weight
+              (⟨candidateFaceUnion first.1 second.1, hcand⟩ :
+                Candidate D eps Delta)) :
     ExteriorMergeAvailable selected := by
   intro i first second hne
   obtain ⟨hcand, ⟨boundary⟩, hweight⟩ := hunion i first second hne
