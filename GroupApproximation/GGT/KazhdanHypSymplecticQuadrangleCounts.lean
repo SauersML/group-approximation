@@ -477,6 +477,142 @@ theorem point_col_degree_count (p : Point) :
       (Fintype.card_subtype _).symm
     _ = 72 := orthogonalOther_card p
 
+/-- Points on a fixed line. -/
+abbrev LinePoint (L : Line) := {p : Point // Incident p L}
+
+noncomputable instance linePointFintype (L : Line) : Fintype (LinePoint L) :=
+  Fintype.ofFinite _
+
+/-- Other lines through a flagged point of `L`. -/
+abbrev OtherLineAt (L : Line) (p : LinePoint L) :=
+  {M : Line // Incident p.1 M ∧ M ≠ L}
+
+noncomputable instance otherLineAtFintype (L : Line) (p : LinePoint L) :
+    Fintype (OtherLineAt L p) :=
+  Fintype.ofFinite _
+
+/-- A point of `L`, together with another line through that point. -/
+abbrev LinePointOtherFlag (L : Line) :=
+  Σ p : LinePoint L, OtherLineAt L p
+
+/-- Lines other than `L` which are concurrent with `L`. -/
+abbrev ConcurrentOther (L : Line) :=
+  {M : Line // M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M}
+
+noncomputable instance concurrentOtherFintype (L : Line) :
+    Fintype (ConcurrentOther L) :=
+  Fintype.ofFinite _
+
+/-- Removing `L` from the nine lines through a point on `L` leaves eight. -/
+theorem otherLineAt_card (L : Line) (p : LinePoint L) :
+    Fintype.card (OtherLineAt L p) = 8 := by
+  classical
+  let e : OtherLineAt L p ≃
+      {M : {N : Line // Incident p.1 N} // M ≠ ⟨L, p.2⟩} :=
+    { toFun := fun M ↦ ⟨⟨M.1, M.2.1⟩, by
+        intro h
+        apply M.2.2
+        exact congrArg (fun z : {N : Line // Incident p.1 N} ↦ z.1) h⟩
+      invFun := fun M ↦ ⟨M.1.1, M.1.2, by
+        intro h
+        apply M.2
+        exact Subtype.ext h⟩
+      left_inv := by intro M; exact Subtype.ext rfl
+      right_inv := by intro M; exact Subtype.ext rfl }
+  calc
+    Fintype.card (OtherLineAt L p) =
+        Fintype.card {M : {N : Line // Incident p.1 N} // M ≠ ⟨L, p.2⟩} :=
+      Fintype.card_congr e
+    _ = Fintype.card {N : Line // Incident p.1 N} - 1 :=
+      Set.card_ne_eq (⟨L, p.2⟩ : {N : Line // Incident p.1 N})
+    _ = 8 := by rw [incident_line_card]
+
+/-- A flagged point and another line through it determine a concurrent line. -/
+def linePointOtherToConcurrentOther (L : Line) :
+    LinePointOtherFlag L → ConcurrentOther L :=
+  fun x ↦ ⟨x.2.1, x.2.2.2, ⟨x.1.1, x.1.2, x.2.2.1⟩⟩
+
+/-- The flag-to-concurrent-line map is injective because distinct lines have
+at most one common point. -/
+theorem linePointOtherToConcurrentOther_injective (L : Line) :
+    Function.Injective (linePointOtherToConcurrentOther L) := by
+  intro x y hxy
+  have hline : x.2.1 = y.2.1 :=
+    congrArg (fun M : ConcurrentOther L ↦ M.1) hxy
+  have hother : L ≠ x.2.1 := Ne.symm x.2.2.2
+  have hpoint : x.1.1 = y.1.1 := by
+    apply commonPoint_unique hother x.1.2 x.2.2.1 y.1.2
+    rw [hline]
+    exact y.2.2.1
+  have hflag : x.1 = y.1 := Subtype.ext hpoint
+  apply Sigma.ext hflag
+  rw [Subtype.heq_iff_coe_eq (by
+    intro M
+    rw [hpoint])]
+  exact hline
+
+/-- Every concurrent line has its unique intersection point with `L`. -/
+theorem linePointOtherToConcurrentOther_surjective (L : Line) :
+    Function.Surjective (linePointOtherToConcurrentOther L) := by
+  intro M
+  obtain ⟨p, hpL, hpM⟩ := M.2.2
+  let flagged : LinePoint L := ⟨p, hpL⟩
+  let other : OtherLineAt L flagged := ⟨M.1, hpM, M.2.1⟩
+  refine ⟨⟨flagged, other⟩, ?_⟩
+  exact Subtype.ext rfl
+
+/-- The 72 flagged other lines are exactly the lines concurrent with `L`. -/
+def linePointOtherEquiv (L : Line) :
+    LinePointOtherFlag L ≃ ConcurrentOther L :=
+  Equiv.ofBijective (linePointOtherToConcurrentOther L)
+    ⟨linePointOtherToConcurrentOther_injective L,
+      linePointOtherToConcurrentOther_surjective L⟩
+
+/-- Every line is concurrent with exactly 72 other lines. -/
+theorem concurrentOther_card (L : Line) :
+    Fintype.card (ConcurrentOther L) = 72 := by
+  classical
+  have hflags : Fintype.card (LinePointOtherFlag L) =
+      Fintype.card (ConcurrentOther L) :=
+    Fintype.card_congr (linePointOtherEquiv L)
+  rw [Fintype.card_sigma] at hflags
+  simp_rw [otherLineAt_card] at hflags
+  norm_num [Finset.sum_const, incident_point_card] at hflags
+  exact hflags.symm
+
+/-- The line-concurrency indicator is the indicator of membership in
+`ConcurrentOther`. -/
+theorem lineConcurrencyWeight_eq (M L : Line) :
+    lineConcurrencyWeight Incident M L =
+      if M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M then 1 else 0 := by
+  unfold lineConcurrencyWeight
+  by_cases hML : M = L
+  · subst M
+    simp
+  · by_cases hex : ∃ p, Incident p L ∧ Incident p M
+    · have hex' : ∃ p, Incident p M ∧ Incident p L := by
+        obtain ⟨p, hpL, hpM⟩ := hex
+        exact ⟨p, hpM, hpL⟩
+      simp [hML, hex, hex']
+    · have hnex' : ¬ ∃ p, Incident p M ∧ Incident p L := by
+        rintro ⟨p, hpM, hpL⟩
+        exact hex ⟨p, hpL, hpM⟩
+      simp [hML, hex, hnex']
+
+/-- The line-concurrency graph is 72-regular. -/
+theorem line_col_degree_count (L : Line) :
+    ∑ M, lineConcurrencyWeight Incident M L = 72 := by
+  classical
+  simp_rw [lineConcurrencyWeight_eq]
+  calc
+    (∑ M, if M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M then 1 else 0) =
+        (Finset.univ.filter fun M ↦
+          M ≠ L ∧ ∃ p, Incident p L ∧ Incident p M).card := by
+      simp
+    _ = Fintype.card (ConcurrentOther L) :=
+      (Fintype.card_subtype _).symm
+    _ = 72 := concurrentOther_card L
+
 end SymplecticQuadrangle
 end KazhdanHyp
 end GroupApproximation
