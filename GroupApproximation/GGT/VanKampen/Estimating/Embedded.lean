@@ -148,6 +148,21 @@ def reverseDarts {M : CombMap} {cycle : List M.Dart}
 
 end CyclicArc
 
+/-- The target arc as it occurs on the boundary of the selected G-cell face
+set.  `outerDarts` is already oriented from the diagram side of the outer
+face.  A relator-cell target, like the source cell, must instead be crossed
+by `alpha` and read in reverse order. -/
+def targetBoundaryDarts
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W)
+    (target : Option (Fin Delta.rCellCount))
+    (arc : CyclicArc (targetDarts Delta target)) :
+    List Delta.toCombMap.Dart :=
+  match target with
+  | none => arc.darts
+  | some _ => arc.reverseDarts
+
 /-! ## Boundaries of face sets -/
 
 /-- A dart lies on the boundary of a face set when it is based in a selected
@@ -239,7 +254,8 @@ structure Contiguity
   rightSide : List Delta.toCombMap.Dart
   leftSide : List Delta.toCombMap.Dart
   boundary_decomposition : boundary.cycle =
-    sourceArc.darts ++ rightSide ++ targetArc.reverseDarts ++ leftSide
+    sourceArc.reverseDarts ++ rightSide ++
+      targetBoundaryDarts Delta target targetArc ++ leftSide
   rightSide_length_le : rightSide.length ≤ eps
   leftSide_length_le : leftSide.length ≤ eps
   rightSide_norm_le : wordNorm D.alphabet.carrier
