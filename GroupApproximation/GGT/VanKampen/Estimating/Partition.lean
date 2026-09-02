@@ -219,6 +219,7 @@ theorem cellDarts_length_eq_kindLengths
   classical
   rw [← Fintype.card_fin (cellDarts Delta i).length]
   simp only [kindLength, Finset.card_eq_sum_ones]
+  rw [Finset.sum_filter, Finset.sum_filter, Finset.sum_filter]
   rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
   apply Finset.sum_congr rfl
   intro position _
