@@ -18,6 +18,8 @@ namespace GGT
 namespace OsinComponents
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
 universe u w
@@ -106,6 +108,40 @@ noncomputable def DGO421OrderedOccurrenceMatch.toPayload
     simpa [iq, kq] using hsep
   · intro t ht
     simpa [ip, iq] using O.cosetMatch t ht
+
+/-- A producer for ordered occurrence matches has exactly the quantifier
+shape of Lemma 4.21(b), with the stronger rank-indexed interface exposed. -/
+def DGO421OrderedOccurrenceProducer : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
+      0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
+      ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
+        (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
+        WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
+        WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
+        R ≤ p.length →
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) : ℝ) ≤ eps →
+        Nonempty (DGO421OrderedOccurrenceMatch D p q K)
+
+/-- The ordered occurrence producer implies the natural-indexed conclusion of
+Lemma 4.21(b).  The conversion is the combinatorial separator bridge in the
+DGO proof; only the producer's geometric existence remains. -/
+theorem dgoLemma421b_of_orderedOccurrenceProducer
+    (h : DGO421OrderedOccurrenceProducer.{u, w}) : DGOLemma421b.{u, w} := by
+  intro G _ Λ D hhyp
+  obtain ⟨C, hC⟩ := h G Λ D hhyp
+  refine ⟨C, ?_⟩
+  intro eps K heps hK
+  obtain ⟨R, hR, hRall⟩ := hC eps K heps hK
+  refine ⟨R, hR, ?_⟩
+  intro vp vq p q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q
+    hRlen hstart hend
+  obtain ⟨O⟩ := hRall vp vq p q hletP hletQ hW1P hW2P hW3P hW1Q
+    hW2Q hW3Q hRlen hstart hend
+  exact (O.toPayload hW1P hW3P hW1Q hW3Q).toStartCosetWitness
 
 /-! ## Trivial-group model -/
 
