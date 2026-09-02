@@ -59,7 +59,7 @@ theorem sum_orderedGap_width_add_length (lo hi : ℕ) (xs : List ℕ)
     (hlo : ∀ x ∈ xs, lo ≤ x)
     (hhi : ∀ x ∈ xs, x < hi) (hordered : xs.Pairwise (fun x y => x < y)) :
     (∑ j : Fin (xs.length + 1),
-        orderedGapFinish hi xs j.val - orderedGapStart lo xs j.val) +
+        orderedGapFinish hi xs j - orderedGapStart lo xs j) +
       xs.length = hi - lo := by
   induction xs generalizing lo with
   | nil =>
@@ -123,7 +123,7 @@ theorem exists_orderedGap_of_not_mem (lo hi y : ℕ) (xs : List ℕ)
         have hnotTail : y ∉ xs := by
           intro hy
           exact hnot (by simp [hy])
-        obtain ⟨j, hj⟩ := ih (x + 1) hx1y hyhi hnotTail hordered.tail
+        obtain ⟨j, hj⟩ := ih (x + 1) hx1y hnotTail hordered.tail
         refine ⟨⟨j.val + 1, by simp; omega⟩, ?_⟩
         rw [orderedGapFinish_cons_succ,
           orderedGapStart_cons_succ lo x xs j.val j.isLt]
