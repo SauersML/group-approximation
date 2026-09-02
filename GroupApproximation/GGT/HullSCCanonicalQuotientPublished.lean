@@ -173,7 +173,7 @@ theorem quotientPeripheralPreservation_of_bijective
              injOn_peripheralUnion := hq.1.injOn }⟩
   · intro a ha
     change q a ∈ q '' D.rel.base
-    exact ⟨a, D.base_le ha, rfl⟩
+    exact ⟨a, ha, rfl⟩
   · intro i
     change (D.rel.fam i).map q = (D.cores.peripheral i).map q
     rw [D.fam_eq i]

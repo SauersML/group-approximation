@@ -440,7 +440,7 @@ theorem quotientPeripheralPreservation_of_prefixKernelCone
     injOn_peripheralUnion := hinj }⟩
   · intro a ha
     exact D.rel.map_mem_prefixQuotient_base W hsc.toIsSmallCancellation
-      q hq (D.base_le ha)
+      q hq ha
   · intro i
     rw [GGT.RelGenSet.fam_prefixQuotient, D.fam_eq i]
 
