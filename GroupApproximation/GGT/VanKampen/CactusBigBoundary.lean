@@ -433,10 +433,11 @@ theorem cactusBigDarts_ne_nil
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
     Z.cactusBigDarts ≠ [] := by
   intro hnil
-  have hlength := congrArg List.length hnil
-  simp only [cactusBigDarts, cactusOuterBackwardDarts,
-    List.length_append, List.length_ofFn, List.length_nil] at hlength
-  omega
+  have hmem : CactusDart.outerBackward Z.cactusShape.boundaryZero ∈
+      Z.cactusBigDarts := by
+    simp [cactusBigDarts, cactusOuterBackwardDarts, List.mem_ofFn]
+  rw [hnil] at hmem
+  exact (List.not_mem_nil _ hmem).elim
 
 /-- A dart belongs to the complementary face exactly when its explicit face
 classifier is `big`. -/
@@ -470,7 +471,7 @@ theorem mem_cactusBigDarts_iff
     (d : CactusDart Z.cactusShape) :
     d ∈ Z.cactusBigDarts ↔
       Z.cactusShape.toCombMap.faceOf d = Z.cactusShape.bigFace := by
-  rw [Z.cactusShape.faceOf_eq_bigFace_iff]
+  rw [faceOf_eq_bigFace_iff Z.cactusShape d]
   cases d <;>
     simp [cactusBigDarts, cactusOuterBackwardDarts, cactusCellSegments,
       cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn]
@@ -484,6 +485,9 @@ theorem prevFin_rev_succ {n k : ℕ} (hk : k + 1 < n) :
         (Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n)) =
       Fin.rev (⟨k + 1, hk⟩ : Fin n) := by
   apply (finRotate n).injective
+  change CactusShape.nextFin n
+      (CactusShape.prevFin n (Fin.rev ⟨k, Nat.lt_of_succ_lt hk⟩)) =
+    CactusShape.nextFin n (Fin.rev ⟨k + 1, hk⟩)
   rw [CactusShape.nextFin_prevFin]
   have hmod : n - (k + 1 + 1) + 1 < n := by omega
   apply Fin.ext
@@ -497,6 +501,8 @@ theorem prevFin_zero_eq_rev_zero {n : ℕ} (hn : 0 < n) :
     CactusShape.prevFin n (⟨0, hn⟩ : Fin n) =
       Fin.rev (⟨0, hn⟩ : Fin n) := by
   apply (finRotate n).injective
+  change CactusShape.nextFin n (CactusShape.prevFin n ⟨0, hn⟩) =
+    CactusShape.nextFin n (Fin.rev ⟨0, hn⟩)
   rw [CactusShape.nextFin_prevFin]
   apply Fin.ext
   simp [CactusShape.nextFin, finRotate_apply, Fin.add_def,
@@ -509,7 +515,8 @@ theorem cactusOuterBackwardDarts_chain
     {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
     Z.cactusOuterBackwardDarts.IsChain
-      (fun d e ↦ Z.cactusShape.toCombMap.facePerm d = e) := by
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
   rw [cactusOuterBackwardDarts, List.isChain_ofFn]
   intro k hk
   have hne : Fin.rev
@@ -531,7 +538,8 @@ theorem cactusRelatorBackwardDarts_chain
     (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
     (i : Fin Z.cells.length) :
     (Z.cactusRelatorBackwardDarts i).IsChain
-      (fun d e ↦ Z.cactusShape.toCombMap.facePerm d = e) := by
+      (fun d e : CactusDart Z.cactusShape ↦
+        Z.cactusShape.toCombMap.facePerm d = e) := by
   rw [cactusRelatorBackwardDarts, List.isChain_ofFn]
   intro k hk
   have hne : Fin.rev
