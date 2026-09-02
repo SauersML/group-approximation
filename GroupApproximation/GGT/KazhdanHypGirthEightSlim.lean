@@ -424,8 +424,8 @@ group. -/
 theorem presentedGeneratorFinset_isSymmetricGeneratingSet
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) :
     IsSymmetricGeneratingSet
-      ((presentedGeneratorFinset T :
-        Finset (TriangularHodgeLayer.Presented T)) : Set _) :=
+      (↑(presentedGeneratorFinset T) :
+        Set (TriangularHodgeLayer.Presented T)) :=
   symmetrizedGeneratorFinset_isSymmetricGeneratingSet
     (TriangularHodgeLayer.generator T)
     (TriangularHodgeLayer.closure_range_generator T)
@@ -440,22 +440,22 @@ theorem presented_isHyperbolicGroup_of_girthEight_layer_construction
     {d delta : ℕ} (hchecks : KazhdanHyp.GirthEightChecks T d)
     (build : ∀ x y z p : TriangularHodgeLayer.Presented T,
       Hyperbolic.IsBetween
-        ((presentedGeneratorFinset T :
-          Finset (TriangularHodgeLayer.Presented T)) : Set _) x p y →
+        (↑(presentedGeneratorFinset T) :
+          Set (TriangularHodgeLayer.Presented T)) x p y →
       (∀ q : TriangularHodgeLayer.Presented T,
         Hyperbolic.IsBetween
-          ((presentedGeneratorFinset T :
-            Finset (TriangularHodgeLayer.Presented T)) : Set _) x q z →
+          (↑(presentedGeneratorFinset T) :
+            Set (TriangularHodgeLayer.Presented T)) x q z →
         delta < wordDist
-          ((presentedGeneratorFinset T :
-            Finset (TriangularHodgeLayer.Presented T)) : Set _) p q) →
+          (↑(presentedGeneratorFinset T) :
+            Set (TriangularHodgeLayer.Presented T)) p q) →
       (∀ q : TriangularHodgeLayer.Presented T,
         Hyperbolic.IsBetween
-          ((presentedGeneratorFinset T :
-            Finset (TriangularHodgeLayer.Presented T)) : Set _) z q y →
+          (↑(presentedGeneratorFinset T) :
+            Set (TriangularHodgeLayer.Presented T)) z q y →
         delta < wordDist
-          ((presentedGeneratorFinset T :
-            Finset (TriangularHodgeLayer.Presented T)) : Set _) p q) →
+          (↑(presentedGeneratorFinset T) :
+            Set (TriangularHodgeLayer.Presented T)) p q) →
       ∃ (Delta : VanKampen.DiscDiagram (KazhdanHyp.triangleRelatorWords T))
         (L : KazhdanHyp.TriangularDiagramLocalData T Delta)
         (m ell loss rho : ℕ) (layer : Fin m → ℕ),
