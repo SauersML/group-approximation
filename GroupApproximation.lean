@@ -3247,6 +3247,7 @@ import GroupApproximation.GGT.DGOProposition435HullJoint
 import GroupApproximation.GGT.VanKampen.FaceSetArcRotation
 import GroupApproximation.GGT.VanKampen.FaceSetBoundaryWalk
 import GroupApproximation.GGT.VanKampen.FaceSetPeeledCycle
+import GroupApproximation.GGT.VanKampen.FaceSetEar
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
