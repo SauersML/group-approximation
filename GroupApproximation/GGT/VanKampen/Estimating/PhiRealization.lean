@@ -151,7 +151,22 @@ Two selected interior regions joining the same ordered pair of cells are the
 same region.
 
 Osin does *not* derive this from Definition `M`, and does not use a multigraph
-Euler bound.  He assumes it, verbatim (arXiv math/0411039, `embed-final.tex`,
+Euler bound.  **In particular simplicity is not a consequence of the weight
+maximality clause**: in the multiple-edge argument (`embed-final.tex`, lines
+2184--2190) Definition `M` is used only for the single step "By the definition
+of `M`, we can not include `Theta_1` and `Theta_2` into a single
+`e`-contiguity subdiagram of `Pi_1` to `Pi_2`.  This means that `Xi` contains
+at least one `R`-cell."  The contradiction itself is then drawn from the
+*inductive hypothesis*, "Hence by the inductive assumption, there is an
+`R`-cell `Pi` in `Xi` ... such that `(Pi,Gamma_1,s_1)+...+(Pi,Gamma_4,t_2) >
+1-13 mu`", against Lemma `O52`'s `2 mu` and two side-arc terms below `mu/2`,
+closing with "We obtain a contradiction since `1-13 mu > 3 mu` for
+`mu < 1/16`".  So the multiple-edge half sits inside Lemma `65`'s induction on
+the `R`-cell count and is mutually recursive with clause (b); it is not
+available from the distinguished family alone.  `not_mergeable_of_distinguished`
+below is the part Definition `M` does give.
+
+Osin assumes it, verbatim (arXiv math/0411039, `embed-final.tex`,
 just after the definition of `Phi_M`):
 
 > `(*)` For any distinguished system of `e`-contiguity subdiagrams `M` in
@@ -179,6 +194,27 @@ def PhiSimple
   ∀ e₁ e₂ : InteriorEdge selected,
     e₁.candidate.contiguity.source = e₂.candidate.contiguity.source →
       e₁.target = e₂.target → e₁ = e₂
+
+/-- **What Definition `M` alone gives: non-mergeability, not simplicity.**  Two
+distinct selected regions cannot be replaced by a single region of at least
+their combined weight.  This is the interior form of `lemma65a_no_mergeable_twoGon`
+and is exactly the step Osin's proof draws from the definition of `M`. -/
+theorem not_mergeable_of_distinguished
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (selected : EstimatingSelection.DistinguishedFamily
+      (Compatible (D := D) (eps := eps) (Delta := Delta))
+      (Candidate.weight (D := D) (eps := eps) (Delta := Delta)))
+    (e₁ e₂ : InteriorEdge selected.family)
+    (hne : e₁.candidate ≠ e₂.candidate)
+    (merged : Candidate D eps Delta)
+    (surgery : MergeSurgery e₁.candidate e₂.candidate merged)
+    (hweight : e₁.candidate.weight + e₂.candidate.weight ≤ merged.weight) :
+    False :=
+  lemma65a_no_mergeable_twoGon selected e₁.candidate e₂.candidate merged
+    e₁.candidate_mem e₂.candidate_mem hne surgery hweight
 
 /-! ## What remains: the cyclic order at each cell -/
 
