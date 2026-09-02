@@ -135,7 +135,7 @@ theorem reverseInnerDart_not_exposed (d : InnerDart Delta)
   exact hexposed
 
 /-- Extend an exposed seam pairing by the old reversal on internal edges. -/
-def alphaFun (B : ExposedPairing Delta n) (d : CopiedInnerDart Delta n) :
+noncomputable def alphaFun (B : ExposedPairing Delta n) (d : CopiedInnerDart Delta n) :
     CopiedInnerDart Delta n :=
   if h : IsExposed Delta d.2 then (B.mate ⟨d, h⟩).1
   else (d.1, reverseInnerDart Delta d.2 h)
@@ -147,11 +147,11 @@ theorem alphaFun_involutive (B : ExposedPairing Delta n) :
   by_cases h : IsExposed Delta d.2
   · have hmate : IsExposed Delta (B.mate ⟨d, h⟩).1.2 :=
       (B.mate ⟨d, h⟩).2
-    rw [alphaFun, dif_pos h, alphaFun, dif_pos hmate]
+    simp only [alphaFun, dif_pos h, dif_pos hmate]
     exact congrArg Subtype.val (B.involutive ⟨d, h⟩)
   · have hreverse : ¬ IsExposed Delta (reverseInnerDart Delta d.2 h) :=
       reverseInnerDart_not_exposed d.2 h
-    rw [alphaFun, dif_neg h, alphaFun, dif_neg hreverse]
+    simp only [alphaFun, dif_neg h, dif_neg hreverse]
     apply Prod.ext
     · rfl
     · apply Subtype.ext
@@ -161,12 +161,12 @@ theorem alphaFun_involutive (B : ExposedPairing Delta n) :
 theorem alphaFun_fixedPointFree (B : ExposedPairing Delta n)
     (d : CopiedInnerDart Delta n) : B.alphaFun d ≠ d := by
   by_cases h : IsExposed Delta d.2
-  · rw [alphaFun, dif_pos h]
+  · simp only [alphaFun, dif_pos h]
     intro hfixed
     apply B.fixedPointFree ⟨d, h⟩
     apply Subtype.ext
     exact hfixed
-  · rw [alphaFun, dif_neg h]
+  · simp only [alphaFun, dif_neg h]
     intro hfixed
     apply Delta.toCombMap.alpha_fixedPointFree d.2.1
     have hsecond := congrArg (fun q ↦ q.2.1) hfixed
@@ -186,12 +186,12 @@ def toPairing (B : ExposedPairing Delta n) : Pairing Delta n where
   involutive := B.alphaFun_involutive
   fixedPointFree := B.alphaFun_fixedPointFree
   agrees_internal copy d h := by
-    rw [seamAlpha, alphaFun, dif_neg h]
+    simp only [seamAlpha, alphaFun, dif_neg h]
   exposed d hd := by
-    rw [seamAlpha, alphaFun, dif_pos hd]
+    simp only [seamAlpha, alphaFun, dif_pos hd]
     exact (B.mate ⟨d, hd⟩).2
   changes_copy d hd := by
-    rw [seamAlpha, alphaFun, dif_pos hd]
+    simp only [seamAlpha, alphaFun, dif_pos hd]
     exact B.changes_copy ⟨d, hd⟩
 
 end ExposedPairing
@@ -279,7 +279,7 @@ theorem innerFacePerm_pow_val (m : ℕ) (d : InnerDart Delta) :
   | zero => rfl
   | succ m ih =>
       rw [pow_succ', pow_succ', Perm.mul_apply, Perm.mul_apply]
-      change ((innerFacePerm Delta) ^ m (innerFacePerm Delta d)).1 = _
+      change (((innerFacePerm Delta) ^ m) (innerFacePerm Delta d)).1 = _
       rw [ih]
       rfl
 
@@ -314,14 +314,14 @@ theorem faceDegree_eq_source (S : Pairing Delta n)
           S.closedMap.faceOf d = S.closedMap.faceOf representative} →
         {d : Delta.toCombMap.Dart //
           Delta.toCombMap.faceOf d =
-            Delta.toCombMap.faceOf representative} :=
+            Delta.toCombMap.faceOf representative.2.1} :=
     fun d ↦ ⟨d.1.2.1, by
       have h := congrArg S.sourceFace d.2
       simpa only [S.sourceFace_faceOf] using h⟩
   let fromSource :
       {d : Delta.toCombMap.Dart //
           Delta.toCombMap.faceOf d =
-            Delta.toCombMap.faceOf representative} →
+            Delta.toCombMap.faceOf representative.2.1} →
         {d : S.closedMap.Dart //
           S.closedMap.faceOf d = S.closedMap.faceOf representative} :=
     fun d ↦ ⟨(representative.1,
@@ -336,14 +336,15 @@ theorem faceDegree_eq_source (S : Pairing Delta n)
       {d : S.closedMap.Dart //
           S.closedMap.faceOf d = S.closedMap.faceOf representative} ≃
         {d : Delta.toCombMap.Dart //
-          Delta.toCombMap.faceOf d = Delta.toCombMap.faceOf representative} := {
+        Delta.toCombMap.faceOf d =
+          Delta.toCombMap.faceOf representative.2.1} := {
     toFun := toSource
     invFun := fromSource
     left_inv := fun d ↦ by
       apply Subtype.ext
       apply Prod.ext
       · have hcopy := congrArg S.sourceCopy d.2
-        simpa only [S.sourceCopy_faceOf] using hcopy
+        simpa only [S.sourceCopy_faceOf] using hcopy.symm
       · apply Subtype.ext
         rfl
     right_inv := fun d ↦ by
@@ -352,7 +353,8 @@ theorem faceDegree_eq_source (S : Pairing Delta n)
   change Nat.card {d : S.closedMap.Dart //
       S.closedMap.faceOf d = S.closedMap.faceOf representative} =
     Nat.card {d : Delta.toCombMap.Dart //
-      Delta.toCombMap.faceOf d = Delta.toCombMap.faceOf representative}
+      Delta.toCombMap.faceOf d =
+        Delta.toCombMap.faceOf representative.2.1}
   exact Nat.card_congr E
 
 /-- A seam pairing whose closed map satisfies Euler's planar-sphere
