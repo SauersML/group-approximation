@@ -48,15 +48,16 @@ universe u w
 
 /-- **A cyclic arc that does not wrap the cut.**  The start position plus the
 length stays inside the cycle. -/
-def Embedded.CyclicArc.IsLinear {Dart : Type} {cycle : List Dart}
+def CyclicArcIsLinear {Dart : Type} {cycle : List Dart}
     (arc : Embedded.CyclicArc cycle) : Prop :=
   arc.start.1 + arc.length ≤ cycle.length
 
 /-- A wrap-free arc reads a genuine contiguous block of its cycle. -/
-theorem Embedded.CyclicArc.darts_eq_take_drop_of_isLinear
+theorem cyclicArc_darts_eq_take_drop_of_isLinear
     {Dart : Type} {cycle : List Dart}
-    (arc : Embedded.CyclicArc cycle) (h : arc.IsLinear) :
+    (arc : Embedded.CyclicArc cycle) (h : CyclicArcIsLinear arc) :
     arc.darts = (cycle.drop arc.start.1).take arc.length := by
+  have h' : arc.start.1 + arc.length ≤ cycle.length := h
   have hlen : arc.length ≤ (cycle.drop arc.start.1).length := by
     rw [List.length_drop]
     omega
@@ -64,13 +65,13 @@ theorem Embedded.CyclicArc.darts_eq_take_drop_of_isLinear
   exact List.take_append_of_le_length hlen
 
 /-- **The linear decomposition of a cycle at a wrap-free arc.** -/
-theorem Embedded.CyclicArc.cycle_decomposition_of_isLinear
+theorem cyclicArc_cycle_decomposition_of_isLinear
     {Dart : Type} {cycle : List Dart}
-    (arc : Embedded.CyclicArc cycle) (h : arc.IsLinear) :
+    (arc : Embedded.CyclicArc cycle) (h : CyclicArcIsLinear arc) :
     cycle =
       cycle.take arc.start.1 ++ arc.darts ++
         cycle.drop (arc.start.1 + arc.length) := by
-  rw [arc.darts_eq_take_drop_of_isLinear h]
+  rw [cyclicArc_darts_eq_take_drop_of_isLinear arc h]
   rw [List.append_assoc]
   rw [← List.drop_drop]
   rw [List.take_append_drop, List.take_append_drop]
@@ -89,7 +90,7 @@ theorem boundaryWord_decomposition_of_isLinear
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, 0} W}
     (arc : Embedded.CyclicArc (Embedded.outerDarts Delta))
-    (harc : arc.IsLinear)
+    (harc : CyclicArcIsLinear arc)
     (boundaryWord : List G)
     (hword : Delta.boundaryWord.map GGT.RelLetter.val = boundaryWord) :
     boundaryWord =
@@ -100,7 +101,7 @@ theorem boundaryWord_decomposition_of_isLinear
       ((Embedded.dartWord Delta
           ((Embedded.outerDarts Delta).drop
             (arc.start.1 + arc.length))).map GGT.RelLetter.val) := by
-  have hcycle := arc.cycle_decomposition_of_isLinear harc
+  have hcycle := cyclicArc_cycle_decomposition_of_isLinear arc harc
   have hdart : Embedded.dartWord Delta (Embedded.outerDarts Delta) =
       Delta.boundaryWord := Embedded.dartWord_outerDarts Delta
   calc boundaryWord
@@ -146,7 +147,7 @@ def ContiguityBoundaryArcLinearStatement : Prop :=
     (Gamma : Embedded.Contiguity D eps Delta faces)
     (htarget : Gamma.target = none),
     ∃ arc : Embedded.CyclicArc (Embedded.outerDarts Delta),
-      arc.IsLinear ∧
+      CyclicArcIsLinear arc ∧
         Embedded.dartWord Delta arc.darts =
           Embedded.dartWord Delta
             (Embedded.targetBoundaryDarts Delta Gamma.target Gamma.targetArc)
@@ -154,20 +155,22 @@ def ContiguityBoundaryArcLinearStatement : Prop :=
 /-! ## Model checks -/
 
 /-- An arc based at the start of its cycle is wrap-free. -/
-theorem Embedded.CyclicArc.isLinear_of_start_zero
+theorem cyclicArcIsLinear_of_start_zero
     {Dart : Type} {cycle : List Dart}
     (arc : Embedded.CyclicArc cycle) (h : arc.start.1 = 0) :
-    arc.IsLinear := by
-  rw [Embedded.CyclicArc.IsLinear, h, Nat.zero_add]
+    CyclicArcIsLinear arc := by
+  show arc.start.1 + arc.length ≤ cycle.length
+  rw [h, Nat.zero_add]
   exact arc.length_le
 
 /-- An arc of length zero is wrap-free, whatever its base point. -/
-theorem Embedded.CyclicArc.isLinear_of_length_zero
+theorem cyclicArcIsLinear_of_length_zero
     {Dart : Type} {cycle : List Dart}
     (arc : Embedded.CyclicArc cycle) (h : arc.length = 0) :
-    arc.IsLinear := by
-  rw [Embedded.CyclicArc.IsLinear, h, Nat.add_zero]
-  omega
+    CyclicArcIsLinear arc := by
+  show arc.start.1 + arc.length ≤ cycle.length
+  rw [h, Nat.add_zero]
+  exact Nat.lt_succ_iff.mp arc.start.isLt
 
 end HullSC
 end GroupApproximation
