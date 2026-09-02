@@ -97,6 +97,39 @@ variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator] [Nonempty Generator]
   [Fintype TriangleIndex] [DecidableEq TriangleIndex]
 
+/-- A literal triangle table has the same weighted link as an abstract
+quadrangle incidence graph.  The equivalence is the vertex map of the link
+isomorphism; `adjacency_eq` is the edge-preservation clause.  Stating the
+isomorphism at the rational weight level is exactly what the certificate
+consumer reads, while avoiding a second Boolean adjacency encoding. -/
+structure TriangleLinkIdentification
+    {V : Type} [Fintype V] [DecidableEq V]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (Q : QuadrangleLinkData V) where
+  vertexEquiv : (Generator × Bool) ≃ V
+  adjacency_eq : ∀ u w,
+    (TriangularHodgeLayer.adjacencyCount T u w : ℚ) =
+      Q.adj (vertexEquiv u) (vertexEquiv w)
+
+namespace TriangleLinkIdentification
+
+variable {V : Type} [Fintype V] [DecidableEq V]
+  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+  {Q : QuadrangleLinkData V}
+
+/-- The identification reindexes the quadrangle link data onto signed
+generators, preserving its degree, Gram row, and rational gap. -/
+noncomputable def reindexed (I : TriangleLinkIdentification T Q) :
+    QuadrangleLinkData (Generator × Bool) :=
+  Q.reindex I.vertexEquiv
+
+theorem adjacency_eq (I : TriangleLinkIdentification T Q) (u w) :
+    (TriangularHodgeLayer.adjacencyCount T u w : ℚ) =
+      (I.reindexed.adj u w) :=
+  I.adjacency_eq u w
+
+end TriangleLinkIdentification
+
 /-- An adjacency-preserving identification with a quadrangle link transfers
 its exact rational Gram identity to `GirthEightSDPChecks` for the table. -/
 theorem girthEightSDPChecks_of_quadrangleEquiv
@@ -108,7 +141,7 @@ theorem girthEightSDPChecks_of_quadrangleEquiv
     (hdegval : (d : ℚ) = Q.deg)
     (hadj : ∀ u w,
       (TriangularHodgeLayer.adjacencyCount T u w : ℚ) =
-        Q.adj (e u) (e w)) :
+      Q.adj (e u) (e w)) :
     GirthEightSDPChecks T d (Q.reindex e).gapValue
       (Q.reindex e).gramRow := by
   let R : QuadrangleLinkData (Generator × Bool) := Q.reindex e
@@ -119,6 +152,19 @@ theorem girthEightSDPChecks_of_quadrangleEquiv
   have hlink := linkCertificateChecks_of_kgonChecks_three
     T d R.gapValue R.gramRow hgeom.regular hkgon
   exact ⟨hlink.1, hlink.2.1, hlink.2.2.2⟩
+
+/-- A link isomorphism in the preceding sense is sufficient for the exact
+certificate transfer. -/
+theorem girthEightSDPChecks_of_linkIdentification
+    {V : Type} [Fintype V] [DecidableEq V]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    {d : ℕ} (hgeom : GirthEightChecks T d)
+    (Q : QuadrangleLinkData V)
+    (I : TriangleLinkIdentification T Q)
+    (hdegval : (d : ℚ) = Q.deg) :
+    GirthEightSDPChecks T d I.reindexed.gapValue I.reindexed.gramRow := by
+  exact girthEightSDPChecks_of_quadrangleEquiv T hgeom Q I.vertexEquiv
+    hdegval I.adjacency_eq
 
 /-! ## Singer reduction for the link identification -/
 
