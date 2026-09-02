@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Incidence
+import GroupApproximation.GGT.VanKampen.Estimating.PieceCarrier
 import GroupApproximation.GGT.VanKampen.FaceSetPeelProducer
 
 /-!
@@ -193,7 +194,35 @@ theorem estimatingPieceNonCancellation_of_reducedBridges
   subst hidx
   exact bridge.whole_ne hred
 
+/-- **The named Prop, discharged.**  Every selected interior candidate carries
+Osin's `O52` certificate as a field of `Embedded.Contiguity`, and reducedness
+turns it into the non-cancellation inequality.  No hypothesis remains. -/
+theorem estimatingPieceNonCancellationStatement :
+    EstimatingPieceNonCancellationStatement.{u, w, v} := by
+  intro G _ Lambda D eps W Delta selected hred edge target htarget
+  obtain ⟨pre, between, suf, hsplit, hsf, htf, hsource, htargetword, hconn⟩ :=
+    edge.candidate.contiguity.o52Certificate target htarget
+  refine Embedded.whole_ne_of_certificate edge.candidate.contiguity target
+    htarget hred hsplit hsf htf hsource ?_ ?_
+  · rw [Embedded.targetArcAtSome_rotated]
+    exact htargetword
+  · rw [Embedded.targetArcAtSome_darts]
+    exact hconn
+
 /-! ## Model tests -/
+
+/-- Model test at exactly one relator cell: there are no interior edges at all,
+because `target_ne_source` and a single cell index are incompatible. -/
+theorem no_interiorEdge_of_rCellCount_one
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Embedded.Candidate D eps Delta)}
+    (hone : Delta.rCellCount = 1)
+    (edge : Embedded.InteriorEdge selected) : False :=
+  edge.candidate.contiguity.target_ne_source edge.target edge.target_eq
+    (interiorEdge_source_eq_target_of_rCellCount_one hone edge)
 
 /-- A diagram with at most one relator cell is reduced: the no-cancelling-pair
 condition quantifies over a split exhibiting two listed cells. -/

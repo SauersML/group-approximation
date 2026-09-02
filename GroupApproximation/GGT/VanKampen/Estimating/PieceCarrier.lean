@@ -136,6 +136,25 @@ theorem whole_relators_ne_of_split
   rw [htarget]
   group
 
+/-! ## The stored target arc is the arc at a cell target -/
+
+theorem targetArcAtSome_rotated (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (Gamma.targetArcAtSome target htarget).rotated =
+      Gamma.targetArc.rotated := by
+  cases Gamma with
+  | mk _ _ tgt _ targetArc _ _ _ _ _ _ _ _ _ =>
+      cases htarget
+      rfl
+
+theorem targetArcAtSome_darts (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts := by
+  cases Gamma with
+  | mk _ _ tgt _ targetArc _ _ _ _ _ _ _ _ _ =>
+      cases htarget
+      rfl
+
 /-! ## The O52 inequality from the certificate -/
 
 /-- **The non-cancellation inequality from the algebraic certificate.**  Given
@@ -204,6 +223,38 @@ theorem whole_ne_of_certificate
   apply whole_relators_ne_of_split hred hsplit hsf htf
   rw [RelWord.listVal_revInv, ← htargetword, ← hsource, hX, ht, hs]
   group
+
+/-- **The two-cell mirror pair is exactly what reducedness excludes.**  If the
+non-cancellation inequality fails for a region carrying the certificate, the
+diagram is not reduced.  This is the contrapositive of
+`whole_ne_of_certificate` and is the model test at the mirror pair: there the
+inequality fails, and so does `DiscDiagram.Reduced`. -/
+theorem not_reduced_of_certificate_of_whole_eq
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    (hsplit : Delta.relatorCells =
+      pre ++ cell Delta Gamma.source :: (between ++ cell Delta target :: suf))
+    (hsf : (cell Delta Gamma.source).reversed = false)
+    (htf : (cell Delta target).reversed = false)
+    (hsource : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (cell Delta Gamma.source).word)
+    (htargetword : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (cell Delta target).word)
+    (hconn : GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.targetArcAtSome target htarget).darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ =
+      ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator)⁻¹)
+    (hbad : GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)) :
+    ¬ Delta.Reduced := fun hred =>
+  whole_ne_of_certificate Gamma target htarget hred hsplit hsf htf hsource
+    htargetword hconn hbad
 
 end Embedded
 end VanKampen
