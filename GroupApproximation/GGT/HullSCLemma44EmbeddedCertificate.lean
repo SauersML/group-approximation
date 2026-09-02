@@ -229,5 +229,19 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
     exterior_value := hsourceValue' }
   exact B0
 
+/-- The positioned embedded data are inhabited at the relative interface. -/
+theorem RelativeBoundaryContiguity.of_embeddedData_exists
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {R : ℕ} (Z : RelativeReducedDiagram D W R)
+    (hreal : RelativeDiscRealization D W Z)
+    {i : Fin hreal.diagram.rCellCount}
+    (C : EmbeddedBoundaryContiguity D eps hreal.diagram i)
+    (data : EmbeddedBoundaryCertificateData Z C) :
+    Nonempty (RelativeBoundaryContiguity D eps Z.boundaryWord
+      (Embedded.dartWord hreal.diagram C.region.sourceArc.rotated)) :=
+  ⟨RelativeBoundaryContiguity.of_embeddedData Z hreal C data⟩
+
 end HullSC
 end GroupApproximation
