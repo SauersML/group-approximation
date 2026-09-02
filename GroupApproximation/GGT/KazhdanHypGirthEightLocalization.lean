@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightTorsion
-import GroupApproximation.GGT.VanKampen.CombMap
+import GroupApproximation.GGT.KazhdanHypGirthEightFromDiagram
 
 /-!
 # Spherical curvature for girth-eight triangle presentations
@@ -193,6 +193,61 @@ theorem not_exists_eight :
 
 end TriangularSphericalMap
 
+/-! ## Local presentation data on a spherical map -/
+
+section PresentationLink
+
+variable {Generator TriangleIndex : Type}
+  [Fintype Generator] [DecidableEq Generator]
+  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+
+/-- The local information read from a reduced spherical diagram over a
+literal triangular presentation.  Each face is assigned a defining triangle,
+and the corners around each vertex form a periodic nonbacktracking walk in the
+presentation link. -/
+structure TriangularRelatorSphericalMap
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (M : CombMap) where
+  /-- The underlying closed map is a combinatorial two-sphere. -/
+  planar : M.IsPlanar
+  /-- Every face is assigned a literal defining relator. -/
+  faceRelator : ∀ f : M.Face, ∃ j : TriangleIndex,
+    M.faceDegree f = (KazhdanHyp.triangleRelatorWord T j).length
+  /-- Reduced corners around a vertex give a nonbacktracking link circuit. -/
+  vertexLink : ∀ v : M.Vertex,
+    KazhdanHyp.PresentationLinkWalk T (M.vertexDegree v)
+
+namespace TriangularRelatorSphericalMap
+
+variable {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+  {d : ℕ} {M : CombMap}
+
+/-- Checked face lengths and presentation-link girth produce the local
+degree data used by spherical curvature. -/
+def toTriangularSphericalMap
+    (C : TriangularRelatorSphericalMap T M)
+    (hchecks : KazhdanHyp.GirthEightChecks T d) :
+    TriangularSphericalMap 8 M where
+  planar := C.planar
+  faceDegree := by
+    intro f
+    obtain ⟨j, hj⟩ := C.faceRelator f
+    rw [hj, KazhdanHyp.triangleRelatorWord_length T j]
+  vertexDegree := by
+    intro v
+    exact (C.vertexLink v).eight_le_length hchecks
+
+/-- A checked girth-eight table admits no reduced spherical diagram with the
+literal face and vertex-link data above. -/
+theorem false_of_girthEightChecks
+    (C : TriangularRelatorSphericalMap T M)
+    (hchecks : KazhdanHyp.GirthEightChecks T d) : False :=
+  (C.toTriangularSphericalMap hchecks).false_of_six_le (by norm_num)
+
+end TriangularRelatorSphericalMap
+
+end PresentationLink
+
 end VanKampen
 end GGT
 
@@ -210,24 +265,25 @@ variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator]
   [Fintype TriangleIndex] [DecidableEq TriangleIndex]
 
-omit [Fintype Generator] [DecidableEq TriangleIndex] in
 /-- The reduced-sphere extraction step and spherical curvature give the
 finite-order relator localization needed for torsion-freeness.
 
 The extraction premise is the geometric content still required from the
 small-cancellation topology: a nonidentity element with a positive power
 equal to one, together with the absence of proper-power relators, produces a
-closed triangular map whose vertex degrees are at least eight.  The map is
-then ruled out by `TriangularSphericalMap.false_of_six_le`. -/
+closed reduced spherical diagram.  Literal face relators and the reduced
+corner walks are enough; `GirthEightChecks` derives degree eight, and spherical
+curvature rules out the result. -/
 theorem finiteOrderForcesRelatorProperPower_of_sphericalExtraction
-    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator} {d : ℕ}
+    (hchecks : GirthEightChecks T d)
     (extract :
       ∀ (g : TriangularHodgeLayer.Presented T) (n : ℕ),
         0 < n → g ^ n = 1 → g ≠ 1 →
         (∀ j, ¬ RelatorIsProperPower
           (TriangularHodgeLayer.relator (T j))) →
         ∃ M : GGT.VanKampen.CombMap.{w},
-          Nonempty (GGT.VanKampen.TriangularSphericalMap 8 M)) :
+          Nonempty (GGT.VanKampen.TriangularRelatorSphericalMap T M)) :
     FiniteOrderForcesRelatorProperPower T := by
   classical
   intro g n hn hpow hne
@@ -237,7 +293,7 @@ theorem finiteOrderForcesRelatorProperPower_of_sphericalExtraction
     intro j hj
     exact hproper ⟨j, hj⟩
   obtain ⟨M, ⟨C⟩⟩ := extract g n hn hpow hne hnoProper
-  exact C.false_of_six_le (by norm_num)
+  exact C.false_of_girthEightChecks hchecks
 
 /-- For one checked triangle table, reduced-sphere extraction closes the
 torsion-freeness proof.  The algebraic no-proper-power input is already proved
@@ -251,10 +307,10 @@ theorem presented_isPowerTorsionFree_of_sphericalExtraction
         (∀ j, ¬ RelatorIsProperPower
           (TriangularHodgeLayer.relator (T j))) →
         ∃ M : GGT.VanKampen.CombMap.{w},
-          Nonempty (GGT.VanKampen.TriangularSphericalMap 8 M)) :
+          Nonempty (GGT.VanKampen.TriangularRelatorSphericalMap T M)) :
     IsPowerTorsionFree (TriangularHodgeLayer.Presented T) := by
   have hloc : FiniteOrderForcesRelatorProperPower T :=
-    finiteOrderForcesRelatorProperPower_of_sphericalExtraction T extract
+    finiteOrderForcesRelatorProperPower_of_sphericalExtraction hchecks extract
   exact presented_isPowerTorsionFree_of_finiteOrderForcesRelatorProperPower
     hchecks hloc
 
