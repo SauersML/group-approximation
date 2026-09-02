@@ -147,6 +147,48 @@ theorem map_shortenedBoundaryWord_prod_eq
   rw [hshortenedValue, hboundaryValue, map_mul, map_mul, map_mul, map_mul,
     harc]
 
+/-- One cut removes exactly one conjugate of the selected relator value from
+the source boundary.  This is the algebraic area step in Osin Lemma 5.1. -/
+theorem boundaryWord_prod_eq_conjugate_relator_mul_shortened
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
+    {relator : List (GGT.RelLetter G Lambda)}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator) :
+    boundaryWord.prod =
+      (C.boundaryBefore.prod *
+          (GGT.RelLetter.listVal C.leftSide)⁻¹) *
+        GGT.RelLetter.listVal relator *
+        (C.boundaryBefore.prod *
+            (GGT.RelLetter.listVal C.leftSide)⁻¹)⁻¹ *
+        C.shortenedBoundaryWord.prod := by
+  have hrelatorValue : GGT.RelLetter.listVal relator =
+      GGT.RelLetter.listVal C.exterior *
+        GGT.RelLetter.listVal C.remainder := by
+    calc
+      GGT.RelLetter.listVal relator =
+          GGT.RelLetter.listVal (C.exterior ++ C.remainder) :=
+        congrArg GGT.RelLetter.listVal C.relator_decomposition
+      _ = GGT.RelLetter.listVal C.exterior *
+          GGT.RelLetter.listVal C.remainder := by
+        rw [RelWord.listVal_append]
+  have hboundaryValue : boundaryWord.prod =
+      C.boundaryBefore.prod * C.boundaryArc.prod *
+        C.boundaryAfter.prod := by
+    calc
+      boundaryWord.prod =
+          (C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter).prod :=
+        congrArg List.prod C.boundary_decomposition
+      _ = C.boundaryBefore.prod * C.boundaryArc.prod *
+          C.boundaryAfter.prod := by
+        rw [List.prod_append, List.prod_append]
+  have hshortenedValue : C.shortenedBoundaryWord.prod =
+      C.boundaryBefore.prod * C.replacementWord.prod *
+        C.boundaryAfter.prod := by
+    rw [shortenedBoundaryWord, List.prod_append, List.prod_append]
+  rw [hboundaryValue, hshortenedValue, C.replacementWord_prod,
+    hrelatorValue, C.exterior_value]
+  group
+
 /-- Formal inversion preserves length. -/
 theorem length_revInv
     {G : Type u} [Group G] {Lambda : Type w}
