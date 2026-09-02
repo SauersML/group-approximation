@@ -21,9 +21,10 @@ variable {Generator TriangleIndex : Type}
 noncomputable def wEightReindexed
     {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
     (I : TriangleLinkIdentification T
-      SymplecticQuadrangle.wEightQuadrangleLinkData) :
+      GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData) :
     QuadrangleLinkData (Generator × Bool) :=
-  QuadrangleLinkData.reindex SymplecticQuadrangle.wEightQuadrangleLinkData
+  QuadrangleLinkData.reindex
+    GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData
     I.vertexEquiv
 
 /-- A degree-nine triangle table identified with the algebraic W(8) link has
@@ -32,16 +33,17 @@ theorem girthEightSDPChecks_of_wEightLinkIdentification
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
     (hgeom : GirthEightChecks T 9)
     (I : TriangleLinkIdentification T
-      SymplecticQuadrangle.wEightQuadrangleLinkData) :
+      GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData) :
     GirthEightSDPChecks T 9 (5 / 9 : ℚ)
       ((wEightReindexed I).gramRow :
         QuadRow (Generator × Bool) → Generator × Bool → ℚ) := by
-  have hparams := SymplecticQuadrangle.wEightQuadrangleLinkData_parameters
+  have hparams :=
+    GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData_parameters
   have hdeg : (9 : ℚ) =
-      SymplecticQuadrangle.wEightQuadrangleLinkData.deg := by
+      GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData.deg := by
     exact_mod_cast hparams.1.symm
   have h := girthEightSDPChecks_of_linkIdentification T hgeom
-    SymplecticQuadrangle.wEightQuadrangleLinkData I hdeg
+    GroupApproximation.KazhdanHyp.SymplecticQuadrangle.wEightQuadrangleLinkData I hdeg
   simpa only [hparams.2, wEightReindexed] using h
 
 end KazhdanHyp
