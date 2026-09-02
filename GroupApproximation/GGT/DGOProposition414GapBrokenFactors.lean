@@ -206,7 +206,9 @@ theorem firstBroken_sourceSpan_eq
     (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     P.span s =
-      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos s))⁻¹ *
+      (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos
+        (HalfEntry.entrySource B.brokenAssignment.index.first
+          (B.firstSourceEntry s hs))))⁻¹ *
         vertex B.firstBase B.firstWord
           (B.firstBrokenConnectors s hs).sourceEnd := by
   have hsTarget := (mem_brokenSet_iff.mp hs).1
@@ -526,8 +528,12 @@ theorem firstBrokenEntry_sourceSpan_eq
     (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos t))⁻¹ *
       vertex B.firstBase B.firstWord E.sourceEnd at h
   have hsource : t = s := B.firstSourceEntry_source s hs
-  rw [hsource] at h
-  exact h
+  change P.span s =
+    (vertex B.firstBase B.firstWord (B.componentPlacement.firstPos t))⁻¹ *
+      vertex B.firstBase B.firstWord E.sourceEnd
+  calc
+    P.span s = P.span t := by rw [hsource]
+    _ = _ := h
 
 /-- The greedy-entry first-half partner span is the inverse global chord
 edge selected for the source. -/
@@ -579,7 +585,9 @@ theorem secondBrokenEntry_sourceSpan_eq
     (hs : s ∈ brokenSet B.componentPlacement.secondTarget
       B.componentPlacement.secondSurvives) :
     P.span s =
-      (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos s))⁻¹ *
+      (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos
+        (HalfEntry.entrySource B.brokenAssignment.index.second
+          (B.secondSourceEntry s hs))))⁻¹ *
         vertex B.secondBase B.secondWord
           (B.secondBrokenEntryConnectors hs).sourceEnd := by
   let t := HalfEntry.entrySource B.brokenAssignment.index.second
@@ -592,8 +600,12 @@ theorem secondBrokenEntry_sourceSpan_eq
     (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos t))⁻¹ *
       vertex B.secondBase B.secondWord E.sourceEnd at h
   have hsource : t = s := B.secondSourceEntry_source s hs
-  rw [hsource] at h
-  exact h
+  change P.span s =
+    (vertex B.secondBase B.secondWord (B.componentPlacement.secondPos t))⁻¹ *
+      vertex B.secondBase B.secondWord E.sourceEnd
+  calc
+    P.span s = P.span t := by rw [hsource]
+    _ = _ := h
 
 /-- The greedy-entry wrapped partner span is the forward global chord edge
 selected for the source. -/
