@@ -157,19 +157,14 @@ the source side. -/
 peripheral occurrences of `q`, and each carries the label of its partner on
 `p`.  No polygon, counting or isolation hypothesis occurs here.
 
-**A trap for whoever constructs this.**  The counting certificate is built over
-a *substitute* for `q` (`exists_reversibleSubstitute`), whose reversal is
-admissible over an arbitrary relative generating set.  The substitute replaces
-a base letter `x` with `x⁻¹ ∉ X` by the peripheral letter on the same edge, so
-it can carry peripheral letters where `q` carries base letters, and those extra
-letters are shallow --- `x ∈ X` puts `x` in the radius-one relative ball, so
-they violate (W2).  The certificate never sees the difference, because it
-records only a vertex index of `q`; this record does see it, since it asks for
-a peripheral occurrence *of `q` itself*.  So a construction must either assume
-`DGO421BaseSymmetric D`, which is Dahmani--Guirardel--Osin's standing
+The certificate is built over `q` itself.  An earlier version of the counting
+proof closed the four-gon over a letter-by-letter substitute for `q`, which
+could carry a peripheral letter where `q` carries a base letter and so put a
+target where `q` has no component at all.  Carrying Dahmani--Guirardel--Osin's
 convention (§4.3: "*Recall that relative generating sets are always assumed
-symmetric, so `X = X⁻¹` in the following lemma*"), or rule out targets at
-substituted letters. -/
+symmetric, so `X = X⁻¹` in the following lemma*") makes the reversed word
+admissible outright, so no substitution happens and this record speaks about
+the same word the certificate does. -/
 structure DGO421TargetRankData
     {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
     {N M K : ℕ}

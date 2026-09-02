@@ -2123,8 +2123,15 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
   refine ⟨R, hR, ?_⟩
   intro vp vq P Qraw hletP hletQraw hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart
     hend
-  obtain ⟨Q, hQlen, _hletQ, hQrev, hQvert⟩ :=
-    exists_reversibleSubstitute D Qraw hletQraw
+  -- With Dahmani--Guirardel--Osin's convention available, the reversed word is
+  -- admissible outright, so the second path is used as it stands: `Q` is
+  -- literally `Qraw`.  The tuple shape is kept so that the polygon argument
+  -- below reads the same whether or not a substitute is needed.
+  obtain ⟨Q, hQlen, hQrev, hQvert⟩ :
+      ∃ Q : List (RelLetter G Λ), Q.length = Qraw.length ∧
+        (∀ a ∈ revWord Q, D.IsLetter a) ∧
+        ∀ (v : G) (i : ℕ), vertex v Q i = vertex v Qraw i :=
+    ⟨Qraw, rfl, isLetter_of_mem_revWord D hbase hletQraw, fun _ _ => rfl⟩
   suffices hgoal : ∃ cert : DGO421FiniteAbsorptionCertificate D P Q N M K,
       cert.pre = vq⁻¹ * vp by
     obtain ⟨cert, hpre⟩ := hgoal
