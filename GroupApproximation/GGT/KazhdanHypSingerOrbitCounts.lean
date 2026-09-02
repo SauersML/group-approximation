@@ -202,5 +202,19 @@ theorem wEightTriangleOrbitCheck_eq_true_iff
     wEightTriangleOrbitCheck orbit = true ↔ Function.Bijective orbit := by
   simp [wEightTriangleOrbitCheck, singerOrbitBijectionCheck]
 
+/-! ## The 27-row pair cover -/
+
+/-- Raw orbit-matrix rows, flattened by row and one of its three cyclic pair
+positions.  Bijection onto `Fin 81` checks both that each row has three
+distinct pair orbits and that the 27 rows cover every pair orbit once. -/
+def wEightTrianglePairCoverCheck
+    (pairOrbit : SingerTriangleOrbitRep × Fin 3 → SingerPairOrbitRep) : Bool :=
+  decide (Function.Bijective pairOrbit)
+
+theorem wEightTrianglePairCoverCheck_eq_true_iff
+    (pairOrbit : SingerTriangleOrbitRep × Fin 3 → SingerPairOrbitRep) :
+    wEightTrianglePairCoverCheck pairOrbit = true ↔ Function.Bijective pairOrbit := by
+  simp [wEightTrianglePairCoverCheck]
+
 end KazhdanHyp
 end GroupApproximation
