@@ -2026,6 +2026,108 @@ theorem exists_side_occurrence_of_fourGon_start_421
         ⟨j + 1, isComp_singleton_of_isWThree_read hW3 hread⟩
       exact exists_peripheralOccurrence_eq_of_isCompStart hstartQ
 
+/-! ## Reading a side backwards without assuming `X = X⁻¹`
+
+Dahmani--Guirardel--Osin close the two fellow-travelling paths of Lemma
+4.21(b) into a quadrilateral, whose fourth side is the second path read
+backwards.  Reversing a `RelLetter` word inverts each letter *on its own side
+of `X ⊔ ℋ`*, so `revWord` is admissible only when `X` is closed under
+inversion --- the convention `X = X⁻¹` that Section 4 works under silently,
+and which `RelGenSet` does not require.
+
+The convention is not needed.  The reversed *path* is admissible whatever `X`
+is, because the alphabet `X ⊔ ℋ` is symmetric: a base letter `x` whose inverse
+is not a base letter has `x⁻¹ ∈ H λ` for some `λ`, and then `x ∈ H λ` too, so
+the peripheral letter `comp λ x` labels the same edge and reverses to the
+admissible `comp λ x⁻¹`.  Substituting letter by letter changes no vertex and
+no length, so the substitute may replace the original as a side of a polygon.
+-/
+
+/-- **Every admissible letter has an admissible substitute of the same value
+whose inverse letter is admissible too.**
+
+A peripheral letter is its own substitute, a subgroup being closed under
+inversion.  A base letter `x` with `x⁻¹ ∉ X` becomes `comp λ x` for a `λ` with
+`x⁻¹ ∈ H λ`; such a `λ` exists because `X ⊔ ℋ` is symmetric and `x⁻¹` is not a
+base letter, and `x ∈ H λ` follows since `H λ` is a subgroup. -/
+theorem exists_isLetter_invLetter_of_isLetter (D : RelGenSet G Λ)
+    {a : RelLetter G Λ} (ha : D.IsLetter a) :
+    ∃ b : RelLetter G Λ, D.IsLetter b ∧ D.IsLetter (invLetter b) ∧
+      b.val = a.val := by
+  cases a with
+  | comp lam y =>
+      have hy : y ∈ D.fam lam := ha
+      exact ⟨RelLetter.comp lam y, hy, inv_mem hy, rfl⟩
+  | base x =>
+      have hx : x ∈ D.base := ha
+      by_cases hinv : x⁻¹ ∈ D.base
+      · exact ⟨RelLetter.base x, hx, hinv, rfl⟩
+      · have hxA : x ∈ D.alphabet.carrier := Set.mem_union_left _ hx
+        have hinvA : x⁻¹ ∈ D.base ∪
+            (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) :=
+          D.symmetricGenerating.inv_mem x hxA
+        rcases hinvA with hbaseMem | hfamMem
+        · exact absurd hbaseMem hinv
+        · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hfamMem
+          have hlam' : x⁻¹ ∈ D.fam lam := hlam
+          have hxlam : x ∈ D.fam lam := by
+            have hxx := inv_mem hlam'
+            rwa [inv_inv] at hxx
+          exact ⟨RelLetter.comp lam x, hxlam, inv_mem hxlam, rfl⟩
+
+/-- **Every admissible word has an admissible substitute reading the same path
+whose reversal is admissible.**
+
+The substitute has the same length and the same vertices from every
+basepoint, so it is interchangeable with the original as a side of a polygon;
+what it gains is that its reversal is again admissible.  This is what lets the
+four-gon of Lemma 4.21(b) be formed over an arbitrary relative generating
+set. -/
+theorem exists_reversibleSubstitute (D : RelGenSet G Λ) :
+    ∀ w : List (RelLetter G Λ), (∀ a ∈ w, D.IsLetter a) →
+      ∃ w' : List (RelLetter G Λ),
+        w'.length = w.length ∧
+        (∀ a ∈ w', D.IsLetter a) ∧
+        (∀ a ∈ revWord w', D.IsLetter a) ∧
+        ∀ (v : G) (i : ℕ), vertex v w' i = vertex v w i := by
+  intro w
+  induction w with
+  | nil =>
+      intro _
+      refine ⟨[], rfl, ?_, ?_, ?_⟩
+      · intro c hc
+        simp at hc
+      · intro c hc
+        rw [revWord_nil] at hc
+        simp at hc
+      · intro v i
+        rfl
+  | cons a t ih =>
+      intro hlet
+      obtain ⟨b, hbLet, hbInv, hbVal⟩ :=
+        exists_isLetter_invLetter_of_isLetter D (hlet a List.mem_cons_self)
+      obtain ⟨t', hlen, hlet', hrev', hvert'⟩ :=
+        ih (fun c hc => hlet c (List.mem_cons_of_mem a hc))
+      refine ⟨b :: t', ?_, ?_, ?_, ?_⟩
+      · rw [List.length_cons, List.length_cons, hlen]
+      · intro c hc
+        rcases List.mem_cons.mp hc with hceq | hc'
+        · rw [hceq]
+          exact hbLet
+        · exact hlet' c hc'
+      · intro c hc
+        rw [revWord_cons] at hc
+        rcases List.mem_append.mp hc with hc1 | hc2
+        · exact hrev' c hc1
+        · rw [List.eq_of_mem_singleton hc2]
+          exact hbInv
+      · intro v i
+        cases i with
+        | zero => simp only [vertex_zero]
+        | succ j =>
+            rw [vertex_cons_succ, vertex_cons_succ, hbVal]
+            exact hvert' (v * a.val) j
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
@@ -2040,6 +2142,15 @@ structure DGO421FiniteAbsorptionCertificate
   matched : Fin N → Prop
   source_comp : ∀ i, IsComp (label i) p (source i) (source i + 1)
   source_injective : Function.Injective source
+  /-- The peripheral rank of the `i`-th distinguished source component.  The
+  counting argument selects a *contiguous* run of peripheral occurrences of
+  `p`, and recording their ranks is what makes the separator clause of Lemma
+  4.21(b) available on the source side. -/
+  rank : Fin N → Fin (peripheralPositions p).card
+  rank_pos : ∀ i, (peripheralOccurrence p (rank i)).pos = source i
+  rank_label : ∀ i, (peripheralOccurrence p (rank i)).label = label i
+  rank_succ : ∀ (i : Fin N) (hi : i.val + 1 < N),
+    (rank ⟨i.val + 1, hi⟩).val = (rank i).val + 1
   target_ne_offset : ∀ i, target i ≠ offset i
   block : Fin (M + 1)
   blockIndex : Fin K → Fin N
@@ -2051,7 +2162,12 @@ structure DGO421FiniteAbsorptionCertificate
         pre * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
 
 /-- The strict finite-absorption conclusion supplied by the counting part of
-DGO Lemma 4.21(b), before the iterative consecutive-target step. -/
+DGO Lemma 4.21(b), before the iterative consecutive-target step.
+
+The certificate's `pre` is pinned to the connector `vq⁻¹ vp` between the two
+basepoints.  Without that clause the coset identity carried by `matched_spec`
+is read from an unspecified basepoint on `q` and says nothing about the pair
+`(vp, vq)` the lemma is stated at. -/
 def DGO421FiniteAbsorptionConclusion : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
@@ -2065,15 +2181,23 @@ def DGO421FiniteAbsorptionConclusion : Prop :=
         (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
         (wordDist D.alphabet.carrier (vertex vp p p.length)
           (vertex vq q q.length) : ℝ) ≤ eps →
-        Nonempty (DGO421FiniteAbsorptionCertificate D p q
-          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K)
+        ∃ cert : DGO421FiniteAbsorptionCertificate D p q
+          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K, cert.pre = vq⁻¹ * vp
 
 /-! ## Assembly of Lemma 4.21(b) -/
 
-theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
-    (h : DGOProposition414Uniform.{u, w})
-    (hbase : ∀ (G : Type u) [Group G] (Λ : Type w)
-      (D : RelGenSet G Λ), ∀ x ∈ D.base, x⁻¹ ∈ D.base) :
+/-- **The counting half of DGO Lemma 4.21(b) from the uniform Proposition 4.14
+bound.**
+
+The second path is replaced at once by the substitute of
+`exists_reversibleSubstitute`: it reads the same path, so it carries the
+quasi-geodesic estimate of clause (a) and closes the same quadrilateral, and
+its reversal is admissible, which is what the fourth side of that
+quadrilateral needs.  So Dahmani--Guirardel--Osin's standing convention
+`X = X⁻¹` is not assumed anywhere below; the substitution is the exact place
+where it would have been used. -/
+theorem dgoLemma421b_finiteAbsorption_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) :
     DGO421FiniteAbsorptionConclusion.{u, w} := by
   classical
   intro G _ Λ D hhyp
@@ -2096,8 +2220,45 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
   have hM : 0 < M := by dsimp [M]; omega
   have hR : 0 < R := by dsimp [R, N]; omega
   refine ⟨R, hR, ?_⟩
-  intro vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
-  have hbaseD : ∀ x ∈ D.base, x⁻¹ ∈ D.base := hbase G Λ D
+  intro vp vq P Qraw hletP hletQraw hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart
+    hend
+  obtain ⟨Q, hQlen, _hletQ, hQrev, hQvert⟩ :=
+    exists_reversibleSubstitute D Qraw hletQraw
+  suffices hgoal : ∃ cert : DGO421FiniteAbsorptionCertificate D P Q N M K,
+      cert.pre = vq⁻¹ * vp by
+    obtain ⟨cert, hpre⟩ := hgoal
+    show ∃ cert : DGO421FiniteAbsorptionCertificate D P Qraw N M K,
+      cert.pre = vq⁻¹ * vp
+    refine ⟨{ pre := cert.pre
+              source := cert.source
+              offset := cert.offset
+              target := cert.target
+              label := cert.label
+              matched := cert.matched
+              source_comp := cert.source_comp
+              source_injective := cert.source_injective
+              rank := cert.rank
+              rank_pos := cert.rank_pos
+              rank_label := cert.rank_label
+              rank_succ := cert.rank_succ
+              target_ne_offset := cert.target_ne_offset
+              block := cert.block
+              blockIndex := cert.blockIndex
+              blockIndex_formula := cert.blockIndex_formula
+              block_matched := cert.block_matched
+              matched_spec := ?_ }, ?_⟩
+    · intro i hi
+      obtain ⟨j, hjle, hgen, hgenMem, hgenEq⟩ := cert.matched_spec i hi
+      refine ⟨j, ?_, hgen, hgenMem, ?_⟩
+      · rw [← hQlen]
+        exact hjle
+      · rw [← hQvert (1 : G) j]
+        exact hgenEq
+    · exact hpre
+  have hendSub : (wordDist D.alphabet.carrier (vertex vp P P.length)
+      (vertex vq Q Q.length) : ℝ) ≤ eps := by
+    rw [hQvert vq Q.length, hQlen]
+    exact hend
   obtain ⟨pc, hpc⟩ := existsGeodesicWord D (1 : G) (vq⁻¹ * vp)
   let endP := vertex vp P P.length
   let endQ := vertex vq Q Q.length
@@ -2135,7 +2296,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
         · exact hpc.1 a hpcmem
         · exact hletP a hPmem
       · exact hrc.1 a hrcmem
-    · exact isLetter_of_mem_revWord D hbaseD hletQ a hQmem
+    · exact hQrev a hQmem
   have hqgP : ∀ i j : ℕ, i ≤ j → j ≤ P.length →
       ((j - i : ℕ) : ℝ) / 4 - 1 ≤
         ((wordDist D.alphabet.carrier (vertex (1 : G) P i)
@@ -2158,15 +2319,19 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
         ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
           (vertex (1 : G) Q j) : ℕ) : ℝ) := by
     intro i j hij hj
-    have hW2A : WWord.IsWTwo D CA Q := by
+    have hjraw : j ≤ Qraw.length := by
+      rw [← hQlen]
+      exact hj
+    have hW2A : WWord.IsWTwo D CA Qraw := by
       intro z lam x hz hmem
       exact hW2Q z lam x hz
         (relBall_mono_radius D lam (by dsimp [C]; omega) hmem)
-    have hz := hA (1 : G) Q hletQ hW1Q hW2A hW3Q i j hij hj
+    have hz := hA (1 : G) Qraw hletQraw hW1Q hW2A hW3Q i j hij hjraw
     have hz' : ((j - i : ℕ) : ℝ) ≤
-        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Q i)
-          (vertex (1 : G) Q j) : ℕ) : ℝ) + 4 := by
+        4 * ((wordDist D.alphabet.carrier (vertex (1 : G) Qraw i)
+          (vertex (1 : G) Qraw j) : ℕ) : ℝ) + 4 := by
       exact_mod_cast hz
+    rw [hQvert (1 : G) i, hQvert (1 : G) j]
     norm_num
     linarith
   have hpc' : IsGeodesicWord D (1 : G) (RelLetter.listVal pc) pc := by
@@ -2198,7 +2363,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
         rw [inv_mul_cancel] at hdist'
         exact hdist'
       rw [hdist]
-      exact_mod_cast hend
+      exact_mod_cast hendSub
     exact_mod_cast hh.trans (Nat.le_ceil eps)
   let S := strictInteriorOccurrences P
   have hS : N ≤ S.card := by
@@ -2763,7 +2928,7 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
   have hblockMatched : ∀ t : Fin K, Matched (blockIndex t) := by
     intro t
     simpa [blockIndex] using hblock t
-  have hcert : DGO421FiniteAbsorptionCertificate D P Q N M K := {
+  refine ⟨{
     pre := RelLetter.listVal pc
     source := source
     offset := fun i => pc.length + source i
@@ -2774,6 +2939,14 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
       intro i
       exact hsourceComp i
     source_injective := hsourceInj
+    rank := occ
+    rank_pos := by
+      intro i
+      rfl
+    rank_label := by
+      intro i
+      rfl
+    rank_succ := hoccSucc
     target_ne_offset := by
       intro i
       exact (htargetSpec i).1
@@ -2784,8 +2957,8 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414_of_baseSymm
     matched_spec := by
       intro i hi
       rcases hi with ⟨j, hj, -, ⟨hh, hmem, heq⟩⟩
-      exact ⟨j, hj, hh, hmem, heq⟩ }
-  exact ⟨hcert⟩
+      exact ⟨j, hj, hh, hmem, heq⟩ }, ?_⟩
+  exact hpcVal
 
 end OsinComponents
 end GGT

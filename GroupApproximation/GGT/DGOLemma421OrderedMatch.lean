@@ -29,7 +29,8 @@ variable {G : Type u} [Group G] {Λ : Type w}
 /-- Ordered peripheral occurrences together with the cross-word start-coset
 matches required by the final DGO diagram argument. -/
 structure DGO421OrderedOccurrenceMatch
-    (D : RelGenSet G Λ) (p q : List (RelLetter G Λ)) (K : ℕ) where
+    (D : RelGenSet G Λ) (vp vq : G)
+    (p q : List (RelLetter G Λ)) (K : ℕ) where
   pOccurrence : ℕ → Fin (peripheralPositions p).card
   qOccurrence : ℕ → Fin (peripheralPositions q).card
   label : ℕ → Λ
@@ -50,19 +51,20 @@ structure DGO421OrderedOccurrenceMatch
       (qOccurrence t).val < z.val →
       z.val < (qOccurrence (t + 1)).val → False
   cosetMatch : ∀ t : ℕ, t < K →
-    (vertex (1 : G) p
+    (vertex vp p
       (peripheralOccurrence p (pOccurrence t)).pos)⁻¹ *
-      vertex (1 : G) q
+      vertex vq q
         (peripheralOccurrence q (qOccurrence t)).pos ∈ D.fam (label t)
 
 /-- The ordered occurrence interface assembles the exact natural-indexed
 ordered block payload. -/
 noncomputable def DGO421OrderedOccurrenceMatch.toPayload
-    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {K : ℕ}
+    {D : RelGenSet G Λ} {vp vq : G}
+    {p q : List (RelLetter G Λ)} {K : ℕ}
     (hpW1 : WWord.IsWOne p) (hpW3 : WWord.IsWThree D p)
     (hqW1 : WWord.IsWOne q) (hqW3 : WWord.IsWThree D q)
-    (O : DGO421OrderedOccurrenceMatch D p q K) :
-    DGO421OrderedBlockPayload D p q K := by
+    (O : DGO421OrderedOccurrenceMatch D vp vq p q K) :
+    DGO421OrderedBlockPayload D vp vq p q K := by
   let ip : ℕ → ℕ := fun t =>
     (peripheralOccurrence p (O.pOccurrence t)).pos
   let kp : ℕ → ℕ := fun t => ip t + 1
@@ -124,7 +126,7 @@ def DGO421OrderedOccurrenceProducer : Prop :=
         (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
         (wordDist D.alphabet.carrier (vertex vp p p.length)
           (vertex vq q q.length) : ℝ) ≤ eps →
-        Nonempty (DGO421OrderedOccurrenceMatch D p q K)
+        Nonempty (DGO421OrderedOccurrenceMatch D vp vq p q K)
 
 /-- The ordered occurrence producer implies the natural-indexed conclusion of
 Lemma 4.21(b).  The conversion is the combinatorial separator bridge in the
@@ -161,6 +163,7 @@ interface.  Both no-intermediate fields are vacuous at `K = 1`, while the
 start-coset equation is the identity in the top peripheral subgroup. -/
 theorem DGO421OrderedOccurrenceMatch.trivialModel :
     Nonempty (DGO421OrderedOccurrenceMatch orderedMatchTrivialRelGenSet
+      (1 : PUnit) (1 : PUnit)
       orderedMatchTrivialWord orderedMatchTrivialWord 1) := by
   have hcard : (peripheralPositions orderedMatchTrivialWord).card = 1 := by
     simp [orderedMatchTrivialWord, peripheralPositions]

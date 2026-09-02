@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.DGOLemma421Diagram
 import GroupApproximation.GGT.DGOLemma421Proof
 
 /-!
@@ -16,6 +17,7 @@ namespace GGT
 namespace OsinComponents
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
@@ -58,31 +60,81 @@ theorem DGO421OrderedBlockPayload.toStartCosetWitness
   exact ⟨W.ip, W.kp, W.iq, W.kq, W.lam,
     W.pcomp, W.qcomp, W.psep, W.qsep, W.cosetMatch⟩
 
-/-- The order data still missing after the finite-absorption certificate has
-been constructed.  It supplies the target component starts and ends, both
-separator clauses, and the start-coset identity on the certificate's whole
-matched block.  No polygon or counting hypotheses occur in this local record.
+/-! ## What the certificate already decides
+
+Three of the six clauses of the ordered block are consequences of the
+certificate, and are proved here rather than assumed.
+
+* the **target index** and the **start-coset identity** at it: the
+  certificate's `matched_spec` asserts both, at the basepoints `1` on `p` and
+  `pre⁻¹` on `q` --- its `pre` is the geodesic connector `vq⁻¹ vp`, so those
+  are exactly the basepoints at which the two paths fellow-travel;
+* the **source separator**: the certificate's block is a run of *consecutive*
+  peripheral ranks of `p`, and (W1) puts at most one base letter between
+  consecutive peripheral letters.
+
+What is left is the target side: the end of the matched component of `q`, its
+maximality, and its separator.
 -/
+
+/-- The target index the certificate attaches to the `t`-th component of its
+matched block.  Only the existence of such an index is asserted there, so it
+is selected once here and every clause below is stated at this choice. -/
+noncomputable def DGO421FiniteAbsorptionCertificate.blockTarget
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) : ℕ :=
+  Classical.choose
+    (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))
+
+/-- The selected target index is an index of `q`. -/
+theorem DGO421FiniteAbsorptionCertificate.blockTarget_le
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) :
+    cert.blockTarget t ≤ q.length :=
+  (Classical.choose_spec
+    (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).1
+
+/-- **The start-coset identity of Lemma 4.21(b) is already in the
+certificate**, read from the basepoint `1` on `p` and the basepoint `pre⁻¹` on
+`q`. -/
+theorem DGO421FiniteAbsorptionCertificate.blockTarget_cosetMatch
+    {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)} {N M K : ℕ}
+    (cert : DGO421FiniteAbsorptionCertificate D p q N M K) (t : Fin K) :
+    (vertex (1 : G) p (cert.source (cert.blockIndex t)))⁻¹ *
+        vertex cert.pre⁻¹ q (cert.blockTarget t) ∈
+      D.fam (cert.label (cert.blockIndex t)) := by
+  obtain ⟨hgen, hmem, heq⟩ :=
+    (Classical.choose_spec
+      (cert.matched_spec (cert.blockIndex t) (cert.block_matched t))).2
+  have hbt : Classical.choose
+      (cert.matched_spec (cert.blockIndex t) (cert.block_matched t)) =
+      cert.blockTarget t := rfl
+  rw [hbt] at heq
+  have hv : vertex cert.pre⁻¹ q (cert.blockTarget t) =
+      cert.pre⁻¹ * vertex (1 : G) q (cert.blockTarget t) := by
+    have hs := vertex_smul cert.pre⁻¹ (1 : G) q (cert.blockTarget t)
+    rwa [mul_one] at hs
+  have hval : (vertex (1 : G) p (cert.source (cert.blockIndex t)))⁻¹ *
+      (cert.pre⁻¹ * vertex (1 : G) q (cert.blockTarget t)) = hgen := by
+    rw [← heq]
+    group
+  rw [hv, hval]
+  exact hmem
+
+/-- The order data still missing after the finite-absorption certificate has
+been constructed.  It supplies the end of the matched target component, its
+maximality, and the target separator.  No polygon or counting hypotheses occur
+in this local record. -/
 structure DGO421FiniteAbsorptionOrderData
     {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
     {N M K : ℕ}
     (cert : DGO421FiniteAbsorptionCertificate D p q N M K) where
-  qIndex : ℕ → ℕ
   qEnd : ℕ → ℕ
   qComponent : ∀ (t : ℕ) (ht : t < K),
     IsComp (cert.label (cert.blockIndex ⟨t, ht⟩)) q
-      (qIndex t) (qEnd t)
-  pSeparator : ∀ (t : ℕ) (ht : t + 1 < K),
-    BaseEdgeOrTrivial p
-      (cert.source (cert.blockIndex ⟨t,
-        Nat.lt_trans (Nat.lt_succ_self t) ht⟩) + 1)
-      (cert.source (cert.blockIndex ⟨t + 1, ht⟩))
-  qSeparator : ∀ (t : ℕ) (_ : t + 1 < K),
-    BaseEdgeOrTrivial q (qEnd t) (qIndex (t + 1))
-  cosetMatch : ∀ (t : ℕ) (ht : t < K),
-    (vertex (1 : G) p (cert.source (cert.blockIndex ⟨t, ht⟩)))⁻¹ *
-        vertex (1 : G) q (qIndex t) ∈
-      D.fam (cert.label (cert.blockIndex ⟨t, ht⟩))
+      (cert.blockTarget ⟨t, ht⟩) (qEnd t)
+  qSeparator : ∀ (t : ℕ) (ht : t + 1 < K),
+    BaseEdgeOrTrivial q (qEnd t) (cert.blockTarget ⟨t + 1, ht⟩)
 
 /-- The finite certificate and its order data assemble into the ordered-block
 payload.  This is the precise local reduction of the DGO minimality argument:
@@ -91,41 +143,156 @@ noncomputable def DGO421FiniteAbsorptionOrderData.toPayload
     {D : RelGenSet G Λ} {p q : List (RelLetter G Λ)}
     {N M K : ℕ}
     {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hW1 : WWord.IsWOne p) (hW3 : WWord.IsWThree D p)
     (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
-    DGO421OrderedBlockPayload D (1 : G) (1 : G) p q K := by
+    DGO421OrderedBlockPayload D (1 : G) cert.pre⁻¹ p q K := by
   let first : Fin K := ⟨0, hK⟩
-  let blockAt : ℕ → Fin N := fun t =>
-    if ht : t < K then cert.blockIndex ⟨t, ht⟩ else cert.blockIndex first
-  let indexAt : ℕ → ℕ := fun t =>
-    if ht : t < K then O.qIndex t else O.qIndex 0
-  let endAt : ℕ → ℕ := fun t =>
-    if ht : t < K then O.qEnd t else O.qEnd 0
+  let idx : ℕ → Fin K := fun t => if ht : t < K then ⟨t, ht⟩ else first
+  let blockAt : ℕ → Fin N := fun t => cert.blockIndex (idx t)
   let ipAt : ℕ → ℕ := fun t => cert.source (blockAt t)
   let kpAt : ℕ → ℕ := fun t => cert.source (blockAt t) + 1
   let lamAt : ℕ → Λ := fun t => cert.label (blockAt t)
+  let iqAt : ℕ → ℕ := fun t => cert.blockTarget (idx t)
+  let kqAt : ℕ → ℕ := fun t => if _ : t < K then O.qEnd t else O.qEnd 0
+  have hrank : ∀ s : ℕ, s + 1 < K →
+      (cert.rank (blockAt (s + 1))).val = (cert.rank (blockAt s)).val + 1 := by
+    intro s hs
+    have hs0 : s < K := by omega
+    have hidx0 : idx s = (⟨s, hs0⟩ : Fin K) := dif_pos hs0
+    have hidx1 : idx (s + 1) = (⟨s + 1, hs⟩ : Fin K) := dif_pos hs
+    have h1 : (blockAt s).val = cert.block.val * K + s := by
+      have hform := cert.blockIndex_formula (⟨s, hs0⟩ : Fin K)
+      simpa [blockAt, hidx0] using hform
+    have h2 : (blockAt (s + 1)).val = cert.block.val * K + (s + 1) := by
+      have hform := cert.blockIndex_formula (⟨s + 1, hs⟩ : Fin K)
+      simpa [blockAt, hidx1] using hform
+    have hlt : (blockAt s).val + 1 < N := by
+      have hbound := (blockAt (s + 1)).isLt
+      omega
+    have heq : blockAt (s + 1) = ⟨(blockAt s).val + 1, hlt⟩ := by
+      apply Fin.ext
+      show (blockAt (s + 1)).val = (blockAt s).val + 1
+      omega
+    rw [heq]
+    exact cert.rank_succ (blockAt s) hlt
   refine
     { ip := ipAt
       kp := kpAt
-      iq := indexAt
-      kq := endAt
+      iq := iqAt
+      kq := kqAt
       lam := lamAt
       pcomp := ?_
       qcomp := ?_
       psep := ?_
       qsep := ?_
       cosetMatch := ?_ }
-  · intro t ht
+  · intro t _ht
     exact cert.source_comp (blockAt t)
   · intro t ht
-    simpa [lamAt, indexAt, endAt, blockAt, ht] using O.qComponent t ht
+    simpa [lamAt, iqAt, kqAt, blockAt, idx, ht] using O.qComponent t ht
+  · intro t ht
+    exact oppositeContiguity_of_rankSuccessor hW1 hW3
+      (iq := ipAt) (kq := kpAt) (lam := lamAt)
+      (fun s _hs => cert.source_comp (blockAt s))
+      (fun s => cert.rank (blockAt s))
+      (fun s _hs => cert.rank_pos (blockAt s))
+      hrank t ht
   · intro t ht
     have ht0 : t < K := by omega
-    simpa [kpAt, ipAt, blockAt, ht0, ht] using O.pSeparator t ht
-  · intro t ht
-    have ht0 : t < K := by omega
-    simpa [endAt, indexAt, blockAt, ht0, ht] using O.qSeparator t ht
-  · intro t ht
-    simpa [ipAt, indexAt, lamAt, blockAt, ht] using O.cosetMatch t ht
+    simpa [kqAt, iqAt, idx, ht0, ht] using O.qSeparator t ht
+  · intro t _ht
+    exact cert.blockTarget_cosetMatch (idx t)
+
+/-- **Left translation of an ordered block payload.**  None of the component
+or separator clauses mentions a basepoint, and the start-coset clause is
+invariant under translating both basepoints, so a payload read from `1` and
+`vp⁻¹ vq` is a payload read from `vp` and `vq`. -/
+def DGO421OrderedBlockPayload.ofBasepointOne
+    {D : RelGenSet G Λ} {vp vq g : G} {p q : List (RelLetter G Λ)} {K : ℕ}
+    (hg : g = vp⁻¹ * vq)
+    (W : DGO421OrderedBlockPayload D (1 : G) g p q K) :
+    DGO421OrderedBlockPayload D vp vq p q K := by
+  subst hg
+  refine
+    { ip := W.ip
+      kp := W.kp
+      iq := W.iq
+      kq := W.kq
+      lam := W.lam
+      pcomp := W.pcomp
+      qcomp := W.qcomp
+      psep := W.psep
+      qsep := W.qsep
+      cosetMatch := ?_ }
+  intro t ht
+  have hp : vertex vp p (W.ip t) = vp * vertex (1 : G) p (W.ip t) := by
+    have hs := vertex_smul vp (1 : G) p (W.ip t)
+    rwa [mul_one] at hs
+  have hq : vertex vq q (W.iq t) = vp * vertex (vp⁻¹ * vq) q (W.iq t) := by
+    have hs := vertex_smul vp (vp⁻¹ * vq) q (W.iq t)
+    rwa [mul_inv_cancel_left] at hs
+  have hmatch := W.cosetMatch t ht
+  rw [hp, hq]
+  have hrw : (vp * vertex (1 : G) p (W.ip t))⁻¹ *
+      (vp * vertex (vp⁻¹ * vq) q (W.iq t)) =
+      (vertex (1 : G) p (W.ip t))⁻¹ * vertex (vp⁻¹ * vq) q (W.iq t) := by
+    group
+  rw [hrw]
+  exact hmatch
+
+/-- **The local reduction of DGO Lemma 4.21(b) at fixed data.**  A
+finite-absorption certificate whose connector is the one between the two
+basepoints, together with the target-side order data, is the ordered block the
+lemma asserts.  Everything except `DGO421FiniteAbsorptionOrderData` is now
+supplied by the counting argument. -/
+noncomputable def orderedBlockPayload_of_certificate
+    {D : RelGenSet G Λ} {vp vq : G} {p q : List (RelLetter G Λ)}
+    {N M K : ℕ} (hW1 : WWord.IsWOne p) (hW3 : WWord.IsWThree D p)
+    {cert : DGO421FiniteAbsorptionCertificate D p q N M K}
+    (hpre : cert.pre = vq⁻¹ * vp)
+    (O : DGO421FiniteAbsorptionOrderData cert) (hK : 0 < K) :
+    DGO421OrderedBlockPayload D vp vq p q K :=
+  DGO421OrderedBlockPayload.ofBasepointOne
+    (vp := vp) (vq := vq)
+    (by rw [hpre]; group)
+    (O.toPayload hW1 hW3 hK)
+
+/-! ## The ordered-block form of the lemma -/
+
+/-- **DGO Lemma 4.21(b) with the ordered block as its output.**  Its
+hypotheses are those of `DGO421FiniteAbsorptionConclusion`; only the
+conclusion is strengthened, from the counting certificate to the ordered block
+of components.  `dgoLemma421b_of_orderedBlockConclusion` shows it is the whole
+of clause (b). -/
+def DGO421OrderedBlockConclusion : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
+      0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
+      ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
+        (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
+        WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
+        WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
+        R ≤ p.length →
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) : ℝ) ≤ eps →
+        Nonempty (DGO421OrderedBlockPayload D vp vq p q K)
+
+/-- The ordered-block conclusion is clause (b): the payload is exactly the
+witness tuple the printed statement asserts. -/
+theorem dgoLemma421b_of_orderedBlockConclusion
+    (h : DGO421OrderedBlockConclusion.{u, w}) : DGOLemma421b.{u, w} := by
+  intro G _ Λ D hhyp
+  obtain ⟨C, hC⟩ := h G Λ D hhyp
+  refine ⟨C, ?_⟩
+  intro eps K heps hK
+  obtain ⟨R, hR, hRall⟩ := hC eps K heps hK
+  refine ⟨R, hR, ?_⟩
+  intro vp vq p q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
+  obtain ⟨W⟩ := hRall vp vq p q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q
+    hRlen hstart hend
+  exact W.toStartCosetWitness
 
 /-! ## Trivial-group model -/
 
