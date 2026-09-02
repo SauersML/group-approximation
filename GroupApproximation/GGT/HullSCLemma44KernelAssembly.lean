@@ -25,19 +25,19 @@ open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
-universe u
+universe u v w
 
 /-! ## Pointwise estimate interfaces -/
 
 /-- The old-geodesic estimate used by Osin Lemma 5.5, specialized to Hull's
 prefix family. -/
 def KernelGeodesicEstimateAt
-    {G : Type u} [Group G] {Lambda : Type u}
+    {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type u} [Group Q] (q : G →* Q) : Prop :=
+    {Q : Type v} [Group Q] (q : G →* Q) : Prop :=
   ∃ M : ℕ, ∀ k ∈ q.ker,
     ∀ word : List G,
       (∀ x ∈ word,
@@ -55,12 +55,12 @@ def KernelGeodesicEstimateAt
 
 /-- Finiteness of every relative ball in the prefix kernel cone. -/
 def KernelConeLocalFinitenessAt
-    {G : Type u} [Group G] {Lambda : Type u}
+    {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type u} [Group Q] (q : G →* Q) : Prop :=
+    {Q : Type v} [Group Q] (q : G →* Q) : Prop :=
   ∀ (lam : Lambda) (n : ℕ),
     (((D.adjoinRelatorPrefixes W
       hsc.toIsSmallCancellation).adjoinKernel q).relBall lam n).Finite
@@ -68,12 +68,12 @@ def KernelConeLocalFinitenessAt
 /-- Uniform form of the old-geodesic estimate, with the exact quantifier
 order used by the canonical assembly. -/
 structure KernelGeodesicEstimateStatement : Prop where
-  bound : ∀ {G : Type u} [Group G] {Lambda : Type u}
+  bound : ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type u} [Group Q] (q : G →* Q)
+    {Q : Type v} [Group Q] (q : G →* Q)
     (_hq : Function.Surjective q)
     (_hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
@@ -84,12 +84,12 @@ structure KernelGeodesicEstimateStatement : Prop where
 /-- Uniform form of the finite relative-ball estimate for the prefix kernel
 cone. -/
 structure KernelConeLocalFinitenessStatement : Prop where
-  finite : ∀ {G : Type u} [Group G] {Lambda : Type u}
+  finite : ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     (W : Set (List (GGT.RelLetter G Lambda)))
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    {Q : Type u} [Group Q] (q : G →* Q)
+    {Q : Type v} [Group Q] (q : G →* Q)
     (_hq : Function.Surjective q)
     (_hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
@@ -101,7 +101,7 @@ structure KernelConeLocalFinitenessStatement : Prop where
 
 /-- Certificates at one radius give injectivity on the full relative ball. -/
 theorem relativeBallInjectivity_of_certificate
-    {G : Type u} [Group G] {Lambda : Type u}
+    {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     {W : Set (List (GGT.RelLetter G Lambda))}
     {R eps rho : ℕ} {mu : ℝ}
@@ -110,7 +110,7 @@ theorem relativeBallInjectivity_of_certificate
     (hthreshold :
       4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) <
         (3 / 4 : ℝ) * (rho : ℝ))
-    {Q : Type u} [Group Q] (q : G →* Q)
+    {Q : Type v} [Group Q] (q : G →* Q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ Z : RelativeReducedDiagram D W R,
@@ -141,8 +141,8 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
       Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
-    (hkernel : KernelGeodesicEstimateStatement.{u})
-    (hloc : KernelConeLocalFinitenessStatement.{u}) :
+    (hkernel : KernelGeodesicEstimateStatement.{u, w})
+    (hloc : KernelConeLocalFinitenessStatement.{u, w}) :
     Set.InjOn q (cayleyBall A.alphabet R) ∧
       Nonempty (QuotientPeripheralPreservation q D) := by
   have hAlphabet : A.alphabet.carrier ⊆ D.rel.alphabet.carrier := by
