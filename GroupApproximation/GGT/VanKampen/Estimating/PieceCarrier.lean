@@ -79,8 +79,10 @@ theorem listVal_targetInverseCarrier
       GGT.RelLetter.listVal (w.take L) * GGT.RelLetter.listVal (w.drop L) := by
     conv_lhs => rw [← List.take_append_drop L w]
     rw [RelWord.listVal_append]
+  have hrevlen : (RelWord.revInv w).length = w.length := by
+    simp [RelWord.revInv]
   have hrotk : (w.length - L) ≤ (RelWord.revInv w).length := by
-    rw [RelWord.revInv, List.length_reverse, List.length_map]
+    rw [hrevlen]
     omega
   have hcarrier : Gamma.targetInverseCarrier target htarget =
       (RelWord.revInv w).rotate (w.length - L) := by
@@ -93,7 +95,7 @@ theorem listVal_targetInverseCarrier
     congr 1
     omega
   rw [htake, RelWord.listVal_revInv, dartWord_drop, harc, dartWord_take,
-    ← hw, ← hL, hsplit]
+    hsplit]
   group
 
 end Embedded
