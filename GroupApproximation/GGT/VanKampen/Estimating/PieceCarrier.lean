@@ -93,8 +93,11 @@ theorem listVal_targetInverseCarrier
       RelWord.revInv (w.drop L) := by
     simp only [RelWord.revInv, List.take_reverse, List.length_map, hsub,
       ← List.map_drop]
-  rw [htake, RelWord.listVal_revInv, dartWord_drop, harc, dartWord_take,
-    hsplit]
+  have hdw : dartWord Delta (A.rotated.drop L) = w.drop L := by
+    rw [dartWord_drop, ← hw]
+  have hta : dartWord Delta A.darts = w.take L := by
+    rw [harc, dartWord_take, ← hw]
+  rw [htake, RelWord.listVal_revInv, hdw, hta, hsplit]
   group
 
 end Embedded
