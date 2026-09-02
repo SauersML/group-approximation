@@ -96,7 +96,7 @@ theorem faceSetBoundaryPeeling_of_faceSetBoundary_of_oracle
             rw [← hcard]
             exact Finset.card_erase_lt_of_mem hface
           have htail := ih (faces.erase face).card hlt boundary' rfl
-          rw [← hcycle] at htail
+          rw [hcycle] at htail
           exact FaceSetDeletionSchedule.step face hface hne
             moves.to_homotopy htail
   exact ⟨aux faces.card boundary rfl⟩
@@ -126,9 +126,12 @@ theorem twoFacePeeling
   have htail : FaceSetDeletionSchedule (Delta := Delta) ({f₂} : Finset _)
       (Delta.faceBoundary f₂).darts :=
     oneFace f₂ h₂
+  have htail' : FaceSetDeletionSchedule (Delta := Delta)
+      ({f₁, f₂}.erase f₁) (Delta.faceBoundary f₂).darts := by
+    simpa [hneq] using htail
   rw [hnext] at moves
   have hstep := FaceSetDeletionSchedule.step f₁
-    (by simp [hneq]) h₁ moves.to_homotopy htail
+    (by simp [hneq]) h₁ moves.to_homotopy htail'
   simpa [hneq] using hstep
 
 end Embedded
