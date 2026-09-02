@@ -566,6 +566,27 @@ theorem dgoProposition435JointLocalFiniteness_of_inclusionStatement
   intro G _ Lambda I D E hbase hD hE lam n
   exact (h D E hbase hD hE).locallyFinite (Sum.inl lam) n
 
+/-- **No auxiliary subgroups: the hyperbolicity residue holds outright.**
+
+The joint alphabet is then the original relative alphabet, so clause (a) is the
+first hypothesis.  Together with `dgoProposition435JointHyperbolic_of_base_eq`
+at a matched alphabet and `jointHyperbolic_of_finite_base_excess` at a finitely
+exceeding one, this is the third instance in which the residue is a theorem
+rather than an input. -/
+theorem jointHyperbolic_of_isEmpty [IsEmpty I] (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (hD : D.IsHyperbolicallyEmbedded) :
+    ∃ delta : ℝ,
+      IsHyperbolicSpace delta (Cayley (jointRelGenSet D E).alphabet) := by
+  have hcarrier :
+      (jointRelGenSet D E).alphabet.carrier = D.alphabet.carrier := by
+    rw [jointRelGenSet_alphabet_carrier D E]
+    refine Set.union_eq_self_of_subset_right ?_
+    intro y hy
+    obtain ⟨i, -⟩ := Set.mem_iUnion.mp hy
+    exact isEmptyElim i
+  exact exists_isHyperbolicSpace_of_alphabet_eq
+    (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hD.hyperbolic
+
 /-- **At equal alphabets the hyperbolicity residue is discharged**: the joint
 alphabet is then the auxiliary alphabet. -/
 theorem dgoProposition435JointHyperbolic_of_base_eq (D : RelGenSet G Λ)
