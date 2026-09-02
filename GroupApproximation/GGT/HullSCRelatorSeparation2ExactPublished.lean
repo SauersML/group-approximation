@@ -945,7 +945,9 @@ theorem exists_hullRelatorWord₂OfBaseLetterPublished_exact
   have hp : p = [t⁻¹] := rfl
   have hadj' : ExactPublishedAdjacentGapOutput E adjacentC
       (blockConst [t⁻¹] (max 1 (eps + 2))) := by
-    simpa only [p, cw] using hadj
+    change ExactPublishedAdjacentGapOutput E adjacentC
+      (blockConst [t⁻¹] (max 1 (eps + 2))) at hadj
+    exact hadj
   have hdesign' : ExactRelatorDesign₂ E t⁻¹ designRho epsD epsD
       (target + 1) target ms := by
     simpa only [designRho, requestedRho] using hdesign
