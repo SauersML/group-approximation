@@ -33,11 +33,12 @@ admits an assembly from its own faces.
 namespace GroupApproximation
 namespace GGT
 namespace VanKampen
+
+universe u w v
+
 namespace Embedded
 
 open GroupApproximation.HullSC
-
-universe u w v
 
 /-- A closed walk built from the empty walk by inserting complete face
 boundaries and cancelling `alpha`-pairs.  The first index lists the faces
@@ -83,7 +84,7 @@ theorem closedWalk_value_eq_one_of_gCells
       intro hcells
       have hface : GGT.RelLetter.listVal
           (dartWord Delta (Delta.faceBoundary face).darts) = 1 := by
-        have hval := hcells face (List.mem_cons_self face _)
+        have hval := hcells face List.mem_cons_self
         simpa only [dartWord, DiscDiagram.faceWord] using hval
       have hrest := ih (fun f hf => hcells f (List.mem_cons_of_mem face hf))
       rw [dartWord_append, RelWord.listVal_append] at hrest
@@ -113,7 +114,7 @@ theorem faceSetWordHomotopy_of_faceAssembly
       exact FaceSetWordHomotopy.refl []
   | insertFace face rest ih =>
       intro hl
-      have hface : face ∈ faces := hl face (List.mem_cons_self face _)
+      have hface : face ∈ faces := hl face List.mem_cons_self
       have hstep : FaceSetWordHomotopy Delta faces
           (_ ++ (Delta.faceBoundary face).darts ++ _) (_ ++ _) :=
         FaceSetWordHomotopy.eraseFace face hface _ _
