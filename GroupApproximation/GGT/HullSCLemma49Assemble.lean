@@ -171,9 +171,10 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
     GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
       hselection hpieces hunbound
-  exact hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
-    hgeom (fun {G} {Lambda} {D} {v} {g} {n} {eps} {mu} {Z} C =>
-      hpasting C) hinjective
+  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+  · exact hgeom
+  · exact hpasting
+  · exact hinjective
 
 /-! ## Model check -/
 
