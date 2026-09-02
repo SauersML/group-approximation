@@ -186,16 +186,17 @@ theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
 
 /-- **Open input.**  The joint hyperbolic embedding of an original
 hyperbolically embedded family together with the simultaneously selected
-auxiliary elementary closures, over the auxiliary relative alphabet with the
-joint base equal to the auxiliary base minus the original peripherals
-(`GGT/DGOProposition435.lean`, the full form; its only residue is the local
-finiteness statement `DGOProposition435FullLocalFinitenessStatement`).  This is the transitivity input that Osin's
+auxiliary elementary closures, over the proper part of the original relative
+base (`GGT/DGOProposition435.lean`, the nested form; its residues are the
+hyperbolicity of the joint relative Cayley graph and the isolated-witness
+word surgery `DGOProposition435IsolatedWitnessStatement`, the local finiteness
+half being discharged from Proposition 4.14).  This is the transitivity input that Osin's
 Theorem 2.4 takes for granted in its relatively hyperbolic setting; it is not
 Dahmani--Guirardel--Osin Proposition 4.35, which removes the original family
 from the conclusion.  Its residues are the joint hyperbolicity and the joint
 local finiteness statements named in that module. -/
-theorem dgoProposition435Full :
-    GGT.RelHyp.DGOProposition435FullStatement.{0, 0, 0} := by
+theorem dgoProposition435Inclusion :
+    GGT.RelHyp.DGOProposition435InclusionStatement.{0, 0, 0} := by
   sorry
 
 /-- **Open exact geometric proof.**  Hull's Lemma 4.4 in its family form with
@@ -222,8 +223,8 @@ Theorem 7.1 is its special case.  No rotating-space geometry is attributed to
 the lemma. -/
 theorem hullLemma44FamilyInclusion :
     HullSC.HullLemma44CanonicalQuotientFamilyInclusionStatement.{0, 0} :=
-  HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435Full
-    dgoProposition435Full hullLemma44FamilyInclusionJoint
+  HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
+    dgoProposition435Inclusion hullLemma44FamilyInclusionJoint
 
 /-- Hull's Lemma 4.4 for the selected family alone, the special case of the
 family-inclusion form in which the original hyperbolically embedded family is

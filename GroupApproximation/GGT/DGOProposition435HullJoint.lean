@@ -66,25 +66,8 @@ theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion
   exact ⟨GGT.RelHyp.jointRelGenSet original selected.rel,
     GGT.RelHyp.jointRelGenSet_base_inv original selected.rel,
     fun _ => rfl, fun i => selected.fam_eq i,
-    h435 original selected.rel hbase horig selected.embedded⟩
-
-/-- **The joint-family selection input, from the auxiliary-alphabet form.**
-
-The same conclusion from the form whose joint alphabet is the auxiliary
-alphabet.  The base-symmetry clause comes from
-`AuxiliaryPeripheralFamily.base_inv`. -/
-theorem jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Full
-    (h435 : GGT.RelHyp.DGOProposition435FullStatement.{u, w, 0}) :
-    JointAuxiliaryPeripheralEmbedding.{u, w} := by
-  intro G _ A N k S selected Lambda original hA horig
-  have hbase : original.alphabet.carrier ⊆ selected.rel.base :=
-    hA.trans selected.base_le
-  exact ⟨GGT.RelHyp.jointRelGenSetFull original selected.rel,
-    GGT.RelHyp.jointRelGenSetFull_base_inv original selected.rel
-      selected.base_inv,
-    fun _ => rfl, fun i => selected.fam_eq i,
-    h435 original selected.rel hbase selected.base_inv horig
-      selected.embedded⟩
+    h435 original selected.rel hbase horig selected.embedded,
+    GGT.RelHyp.properBase_subset_base original⟩
 
 /-- **The three conditions the relator re-spelling puts on the joint family**,
 all met by the auxiliary-alphabet form.
@@ -126,20 +109,6 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435
     HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
   hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
     (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Inclusion h435) h44
-
-/-- **The unrepaired family-inclusion leaf, from the auxiliary-alphabet
-form.**
-
-The same flip through the form whose joint family lives on the auxiliary
-relative alphabet.  That form has one residue instead of two, so this is the
-route to prefer unless its stronger local-finiteness demand turns out to
-fail. -/
-theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_dgo435Full
-    (h435 : GGT.RelHyp.DGOProposition435FullStatement.{u, w, 0})
-    (h44 : HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w}) :
-    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
-  hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint
-    (jointAuxiliaryPeripheralEmbedding_of_dgoProposition435Full h435) h44
 
 /-! ## Discharging the hyperbolicity residue at a matched alphabet -/
 
