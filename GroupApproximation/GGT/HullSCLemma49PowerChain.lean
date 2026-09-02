@@ -139,8 +139,8 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
   let chunks := gap / blockLength
   let remainder := gap % blockLength
   let chunkEnd := i + chunks * blockLength
-  have hdivision : blockLength * chunks + remainder = gap := by
-    simpa [chunks, remainder, Nat.mul_comm] using Nat.div_add_mod gap blockLength
+  have hdivision : chunks * blockLength + remainder = gap := by
+    simpa [chunks, remainder] using Nat.div_add_mod' gap blockLength
   have hremainder : remainder < blockLength := by
     dsimp [remainder]
     exact Nat.mod_lt _ hblockPos
@@ -154,20 +154,27 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
       (blockLength : ℝ) ≤ dist (y t) (y (t + 1)) := by
     intro t ht
     have hleft : i + t * blockLength ≤
-        i + (t + 1) * blockLength := by omega
+        i + (t + 1) * blockLength := by
+      exact Nat.add_le_add_left
+        (Nat.mul_le_mul_right blockLength (by omega)) i
     have hright : i + (t + 1) * blockLength ≤ power.length := by
       have : i + (t + 1) * blockLength ≤ chunkEnd := by
         dsimp [chunkEnd]
-        omega
+        exact Nat.add_le_add_left
+          (Nat.mul_le_mul_right blockLength (by omega)) i
       exact le_trans this (le_trans hchunkEnd hj)
     have hdist := wordDist_powerVertices_eq_of_sub_le_period D N hshort
       hword hn hwordNe hleft hright (by
         have : i + (t + 1) * blockLength - (i + t * blockLength) =
-            blockLength := by omega
+            blockLength := by
+          rw [Nat.add_sub_add_left, Nat.add_mul, one_mul,
+            Nat.add_sub_cancel_left]
         rw [this]
         exact le_trans (by omega : blockLength ≤ 2 * blockLength) htwoBlocks)
     have hstep : i + (t + 1) * blockLength -
-        (i + t * blockLength) = blockLength := by omega
+        (i + t * blockLength) = blockLength := by
+      rw [Nat.add_sub_add_left, Nat.add_mul, one_mul,
+        Nat.add_sub_cancel_left]
     simp only [y, Cayley.dist_eq, Cayley.val_of]
     rw [hdist, hstep]
   have hlocal : ∀ t : ℕ, t + 2 ≤ chunks →
@@ -179,14 +186,19 @@ theorem isQuasiGeodesicChainAt_power_of_long_period
             (GGT.OsinComponents.vertex 1 power (i + (t + b) * blockLength)) =
           (b - a) * blockLength := by
       have hleft : i + (t + a) * blockLength ≤
-          i + (t + b) * blockLength := by omega
+          i + (t + b) * blockLength := by
+        exact Nat.add_le_add_left
+          (Nat.mul_le_mul_right blockLength (by omega)) i
       have hright : i + (t + b) * blockLength ≤ power.length := by
         have : i + (t + b) * blockLength ≤ chunkEnd := by
           dsimp [chunkEnd]
-          omega
+          exact Nat.add_le_add_left
+            (Nat.mul_le_mul_right blockLength (by omega)) i
         exact le_trans this (le_trans hchunkEnd hj)
       have hsub : i + (t + b) * blockLength -
-          (i + (t + a) * blockLength) = (b - a) * blockLength := by omega
+          (i + (t + a) * blockLength) = (b - a) * blockLength := by
+        rw [Nat.add_sub_add_left, Nat.add_mul, Nat.add_mul,
+          Nat.add_sub_add_left, Nat.sub_mul]
       apply wordDist_powerVertices_eq_of_sub_le_period D N hshort hword
         hn hwordNe hleft hright
       rw [hsub]
