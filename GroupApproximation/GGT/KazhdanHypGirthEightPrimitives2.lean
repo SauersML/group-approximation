@@ -532,6 +532,110 @@ structure LayerIncidenceInjection
   /-- Different positions have different face-incidence pairs. -/
   injective : ∀ i, Function.Injective (encode i)
 
+/-- Geometric input for the centered-window injection.  A surviving boundary
+position selects its first face in the specified star layer.  The incidence
+slot is not supplied: it is reconstructed from the duplicate-free stored
+boundary of that face. -/
+structure CenteredWindowFirstLayerIncidence
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ) where
+  /-- Occurrence of each surviving position in the centered boundary path. -/
+  position : ∀ i : Fin depth, Fin (scale - loss) → Fin P.darts.length
+  /-- Different surviving positions have different path occurrences. -/
+  position_injective : ∀ i, Function.Injective (position i)
+  /-- First inner star-layer face met by the position. -/
+  face : ∀ i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
+  /-- The selected face belongs to the required inner layer. -/
+  face_mem : ∀ i q, face i q ∈ innerBoundaryFaceStarLayer Delta P i
+  /-- The boundary dart at the position occurs on the selected face. -/
+  on_face : ∀ i q, P.darts.get (position i q) ∈
+    (Delta.faceBoundary (face i q)).darts
+  /-- Every selected face has at most the prescribed number of incidences. -/
+  faceDegree_le : ∀ i q,
+    Delta.toCombMap.faceDegree (face i q) ≤ perimeter
+
+/-- A literal boundary subpath has no repeated darts. -/
+theorem boundarySubpath_nodup
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) : P.darts.Nodup := by
+  have hall :
+      (P.beforeDarts ++ (P.darts ++ P.afterDarts)).Nodup := by
+    rw [← List.append_assoc, ← P.split]
+    exact (Delta.faceBoundary Delta.outerFace).nodup
+  exact hall.of_append_right.of_append_left
+
+/-- Position of the selected dart in the duplicate-free boundary list of its
+first layer face. -/
+noncomputable def firstLayerIncidenceIndex
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
+    (i : Fin depth) (q : Fin (scale - loss)) :
+    Fin (Delta.faceBoundary (C.face i q)).darts.length := by
+  classical
+  exact ((Delta.faceBoundary (C.face i q)).nodup.getEquiv
+    (Delta.faceBoundary (C.face i q)).darts).symm
+      ⟨P.darts.get (C.position i q), C.on_face i q⟩
+
+/-- Reading the reconstructed face-boundary incidence returns the original
+centered-window dart. -/
+theorem firstLayerIncidenceIndex_get
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
+    (i : Fin depth) (q : Fin (scale - loss)) :
+    (Delta.faceBoundary (C.face i q)).darts.get
+        (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i q) =
+      P.darts.get (C.position i q) := by
+  classical
+  have h := ((Delta.faceBoundary (C.face i q)).nodup.getEquiv
+    (Delta.faceBoundary (C.face i q)).darts).apply_symm_apply
+      ⟨P.darts.get (C.position i q), C.on_face i q⟩
+  exact congrArg Subtype.val h
+
+/-- The reconstructed incidence index embeds in the uniform perimeter bound. -/
+noncomputable def firstLayerIncidenceSlot
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
+    (i : Fin depth) (q : Fin (scale - loss)) : Fin perimeter :=
+  Fin.castLE (by
+    rw [(Delta.faceBoundary (C.face i q)).length_eq_degree]
+    exact C.faceDegree_le i q)
+    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i q)
+
+/-- The first-layer face assignment canonically constructs the incidence
+injection used in the third successive-star inequality. -/
+noncomputable def layerIncidenceInjection_of_firstLayer
+    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
+    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
+    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter) :
+    LayerIncidenceInjection
+      (fun i : Fin depth ↦ innerBoundaryFaceStarLayer Delta P i)
+      scale loss perimeter := by
+  classical
+  refine {
+    encode := fun i q ↦
+      (⟨C.face i q, C.face_mem i q⟩,
+        firstLayerIncidenceSlot Delta P depth scale loss perimeter C i q)
+    injective := ?_ }
+  intro i x y hxy
+  have hface : C.face i x = C.face i y :=
+    congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
+  cases hface
+  have hslot := congrArg Prod.snd hxy
+  have hindex :
+      firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
+        firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y :=
+    Fin.castLE_injective _ hslot
+  have hdart : P.darts.get (C.position i x) =
+      P.darts.get (C.position i y) := by
+    rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
+      ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
+      hindex]
+  exact C.position_injective i
+    ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
+
 /-- An incidence injection proves the numerical covering inequality. -/
 theorem layer_covers_of_incidenceInjection
     {Face : Type} [DecidableEq Face]
