@@ -43,6 +43,7 @@ namespace GirthEightTorsionExtraction
 open GroupApproximation.KazhdanHyp
 open GirthEightVKInterface
 open GirthEightPrimitives2
+open VanKampen.SeamGluing
 
 section Table
 
