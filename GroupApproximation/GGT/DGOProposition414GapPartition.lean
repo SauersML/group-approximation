@@ -95,9 +95,19 @@ theorem sum_orderedGap_width_add_length (lo hi : ℕ) (xs : List ℕ)
         rw [show j.succ.val = j.val + 1 by rfl,
           orderedGapFinish_cons_succ,
           orderedGapStart_cons_succ lo x xs j.val j.isLt]
-      rw [hsum]
-      simp only [List.length_cons]
-      omega
+      calc
+        (x - lo + ∑ j : Fin (xs.length + 1),
+            (orderedGapFinish hi (x :: xs) j.succ.val -
+              orderedGapStart lo (x :: xs) j.succ.val)) +
+            (x :: xs).length =
+          (x - lo + ∑ j : Fin (xs.length + 1),
+            (orderedGapFinish hi xs j.val -
+              orderedGapStart (x + 1) xs j.val)) +
+            (x :: xs).length := congrArg
+              (fun z => (x - lo + z) + (x :: xs).length) hsum
+        _ = hi - lo := by
+          simp only [List.length_cons]
+          omega
 
 /-- Every coordinate not listed in a strictly ordered finite set belongs to
 one of its gaps. -/
