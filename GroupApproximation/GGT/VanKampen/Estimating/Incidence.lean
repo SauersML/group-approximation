@@ -218,6 +218,72 @@ noncomputable instance interiorIncidenceFintype
   unfold InteriorIncidence
   infer_instance
 
+/-- The target of a source incidence of interior kind is present. -/
+theorem sourceTarget_isSome
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.interior) :
+    candidate.contiguity.target.isSome := by
+  rw [Option.isSome_iff_ne_none]
+  intro hnone
+  have hfalse : CellArcKind.exterior = CellArcKind.interior := by
+    simpa only [CellIncidence.kind, hnone, ↓reduceIte] using hkind
+  cases hfalse
+
+/-- Canonical target extracted from a source incidence of interior kind. -/
+noncomputable def sourceInteriorTarget
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.interior) : Fin Delta.rCellCount :=
+  candidate.contiguity.target.get
+    (sourceTarget_isSome candidate mem_selected source_eq hkind)
+
+/-- The canonical target is the target stored by the embedded region. -/
+theorem sourceInteriorTarget_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {selected : Finset (Candidate D eps Delta)}
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.interior) :
+    candidate.contiguity.target =
+      some (sourceInteriorTarget candidate mem_selected source_eq hkind) :=
+  (Option.some_get
+    (sourceTarget_isSome candidate mem_selected source_eq hkind)).symm
+
+/-- Estimating edge determined by a source incidence of interior kind. -/
+noncomputable def sourceInteriorEdge
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    {i : Fin Delta.rCellCount}
+    (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.interior) : InteriorEdge selected :=
+  ⟨(candidate, sourceInteriorTarget candidate mem_selected source_eq hkind),
+    mem_selected, sourceInteriorTarget_eq candidate mem_selected source_eq hkind⟩
+
 /-- Send a cellwise interior incidence to its selected cell-to-cell region and
 the Boolean which distinguishes its source and target occurrences. -/
 noncomputable def interiorIncidenceToTagged
@@ -227,17 +293,11 @@ noncomputable def interiorIncidenceToTagged
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     (selected : Finset (Candidate D eps Delta)) :
     InteriorIncidence selected → InteriorEdge selected × Bool := by
-  intro occurrence
-  obtain ⟨i, incidence, hkind⟩ := occurrence
+  rintro ⟨i, incidence, hkind⟩
   cases incidence with
   | source candidate mem_selected source_eq =>
-      cases htarget : candidate.contiguity.target with
-      | none =>
-          have hfalse : CellArcKind.exterior = CellArcKind.interior := by
-            simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
-          cases hfalse
-      | some target =>
-          exact (⟨(candidate, target), mem_selected, htarget⟩, false)
+      exact (sourceInteriorEdge selected candidate mem_selected source_eq hkind,
+        false)
   | target candidate mem_selected target_eq =>
       exact (⟨(candidate, i), mem_selected, target_eq⟩, true)
 
@@ -265,17 +325,16 @@ theorem interiorIncidenceToTagged_source
     {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
-    (selected : Finset (Candidate D eps Delta))
+    (selected : Finset (Candidate D eps Delta)) {i : Fin Delta.rCellCount}
     (candidate : Candidate D eps Delta) (mem_selected : candidate ∈ selected)
-    (target : Fin Delta.rCellCount)
-    (htarget : candidate.contiguity.target = some target) :
+    (source_eq : candidate.contiguity.source = i)
+    (hkind : (CellIncidence.source candidate mem_selected source_eq).kind =
+      CellArcKind.interior) :
     interiorIncidenceToTagged selected
-        ⟨candidate.contiguity.source,
-          ⟨CellIncidence.source candidate mem_selected rfl,
-            by simp [CellIncidence.kind, htarget]⟩⟩ =
-      (⟨(candidate, target), mem_selected, htarget⟩, false) := by
+        ⟨i, ⟨CellIncidence.source candidate mem_selected source_eq, hkind⟩⟩ =
+      (sourceInteriorEdge selected candidate mem_selected source_eq hkind,
+        false) := by
   unfold interiorIncidenceToTagged
-  cases htarget
   rfl
 
 /-- The forward map sends the target occurrence to the true tag. -/
@@ -308,17 +367,11 @@ theorem taggedToInteriorIncidence_leftInverse
   obtain ⟨i, incidence, hkind⟩ := occurrence
   cases incidence with
   | source candidate mem_selected source_eq =>
-      cases htarget : candidate.contiguity.target with
-      | none =>
-          have hfalse : CellArcKind.exterior = CellArcKind.interior := by
-            simpa only [CellIncidence.kind, htarget, ↓reduceIte] using hkind
-          cases hfalse
-      | some target =>
-          cases source_eq
-          rw [interiorIncidenceToTagged_source selected candidate mem_selected
-            target htarget]
-          unfold taggedToInteriorIncidence
-          rfl
+      cases source_eq
+      rw [interiorIncidenceToTagged_source selected candidate mem_selected
+        rfl hkind]
+      unfold taggedToInteriorIncidence
+      rfl
   | target candidate mem_selected target_eq =>
       rw [interiorIncidenceToTagged_target selected candidate mem_selected i
         target_eq]
@@ -337,12 +390,24 @@ theorem taggedToInteriorIncidence_rightInverse
   rintro ⟨edge, tag⟩
   cases tag with
   | false =>
-      unfold taggedToInteriorIncidence
-      rw [interiorIncidenceToTagged_source selected edge.candidate
-        edge.candidate_mem edge.target edge.target_eq]
+      let hkind :
+          (CellIncidence.source edge.candidate edge.candidate_mem rfl).kind =
+            CellArcKind.interior := by
+        simp [CellIncidence.kind, edge.target_eq]
+      have hforward := interiorIncidenceToTagged_source selected edge.candidate
+        edge.candidate_mem rfl hkind
+      rw [show taggedToInteriorIncidence selected (edge, false) =
+          ⟨edge.candidate.contiguity.source,
+            ⟨CellIncidence.source edge.candidate edge.candidate_mem rfl,
+              hkind⟩⟩ by rfl]
+      rw [hforward]
       apply Prod.ext
       · apply Subtype.ext
-        rfl
+        apply Prod.ext
+        · rfl
+        · apply Option.some.inj
+          exact (sourceInteriorTarget_eq edge.candidate edge.candidate_mem rfl
+            hkind).symm.trans edge.target_eq
       · rfl
   | true =>
       unfold taggedToInteriorIncidence
