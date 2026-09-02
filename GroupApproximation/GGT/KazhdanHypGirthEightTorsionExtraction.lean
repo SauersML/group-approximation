@@ -110,7 +110,7 @@ def PowerDiscMirrorPairDeletionSupply
     (hcancel :
       (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
         (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1) →
-    PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel
+    Nonempty (PowerDiscMirrorPairDeletion D pre between suf C₁ C₂ hsplit hcancel)
 
 /-- The exact seam output still absent from the generic CombMap API.  Its
 fields separate the global exposed pairing/count construction from the local
@@ -152,21 +152,22 @@ noncomputable def exposedPairingEulerInput_of_copyMate
     {I : Type}
     (D : PowerDisc T g n)
     (index : ExposedCopiedDart D.diagram n ≃ Fin n × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
     (copyMate : Equiv.Perm (Fin n))
     (hinvol : Function.Involutive copyMate)
     (hfree : ∀ i, copyMate i ≠ i)
     (hpairUnique : TrianglePairUnique T)
     (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
       (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-        index copyMate hinvol hfree).toPairing)
+        index index_copy copyMate hinvol hfree).toPairing)
     (hcorner : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap
         (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-          index copyMate hinvol hfree).toPairing.closedMap v))
+          index index_copy copyMate hinvol hfree).toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
     ExposedPairingEulerInput T D := by
   let B := VanKampen.SeamGluing.ExposedPairing.of_copyMate
-    index copyMate hinvol hfree
+    index index_copy copyMate hinvol hfree
   exact {
     pairing := B
     pairUnique := hpairUnique
@@ -245,7 +246,7 @@ def MirrorPairCutSupply
     D.diagram.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
     (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
       (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
-      PowerDiscMirrorPairCut D
+      Nonempty (PowerDiscMirrorPairCut D)
 
 /-- The landed SurgeryMap deletion is retyped as the power-disc mirror cut.
 The boundary equality comes from the reclosed replacement and the exact two
@@ -277,8 +278,9 @@ theorem mirrorPairCutSupply_of_surgeryDeletion
     (h : PowerDiscMirrorPairDeletionSupply T) :
     MirrorPairCutSupply T := by
   intro g n D pre between suf C₁ C₂ hsplit hcancel
-  exact powerDiscMirrorPairCut_of_surgeryDeletion D pre between suf C₁ C₂
-    hsplit hcancel (h g n D pre between suf C₁ C₂ hsplit hcancel)
+  obtain ⟨C⟩ := h g n D pre between suf C₁ C₂ hsplit hcancel
+  exact ⟨powerDiscMirrorPairCut_of_surgeryDeletion D pre between suf C₁ C₂
+    hsplit hcancel C⟩
 
 /-- The remaining seam certificate uses the landed exposed-boundary pairing.
 `ExposedPairing.toPairing` supplies the closed-map edge involution, and the
@@ -290,13 +292,7 @@ def ExposedPairingEulerCertificate
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n) : Prop :=
   (∀ j, ¬ RelatorIsProperPower (TriangularHodgeLayer.relator (T j))) →
-    ∃ B : VanKampen.SeamGluing.ExposedPairing D.diagram n,
-      let S : VanKampen.SeamGluing.Pairing D.diagram n := B.toPairing
-      VanKampen.SeamGluing.Pairing.EulerTwoCountData S ∧
-        (∀ v, VertexCornerCertificate T
-          (cornerCycleOfCombMap S.closedMap v)) ∧
-        (∀ v, CellularReducedAt
-          (VertexCornerCertificate T (cornerCycleOfCombMap S.closedMap v)))
+    Nonempty (ExposedPairingEulerInput T D)
 
 /-- The landed seam constructor, once its three observable fields are
 provided, is exactly the exposed-pairing contract. -/
@@ -305,8 +301,7 @@ theorem exposedPairingEulerCertificate_of_input
     (D : PowerDisc T g n) (h : ExposedPairingEulerInput T D) :
     ExposedPairingEulerCertificate T D := by
   intro _hnoProper
-  refine ⟨h.pairing, ?_⟩
-  exact ⟨h.counts, h.corner, h.cellular⟩
+  exact ⟨h⟩
 
 /-- The W(8) link data and a supplied seam input can be consumed together:
 the first conjunct is the extraction seam certificate and the second is the
@@ -366,19 +361,20 @@ theorem exposedPairingEulerCertificate_of_wEight_copyMate
     (D : PowerDisc T g n)
     {I : Type}
     (index : ExposedCopiedDart D.diagram n ≃ Fin n × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
     (copyMate : Equiv.Perm (Fin n))
     (hinvol : Function.Involutive copyMate)
     (hfree : ∀ i, copyMate i ≠ i)
     (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData
       (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-        index copyMate hinvol hfree).toPairing)
+        index index_copy copyMate hinvol hfree).toPairing)
     (hcorner : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap
         (VanKampen.SeamGluing.ExposedPairing.of_copyMate
-          index copyMate hinvol hfree).toPairing.closedMap v))
+          index index_copy copyMate hinvol hfree).toPairing.closedMap v))
     (hcellular : ∀ v, CellularReducedAt (hcorner v)) :
     ExposedPairingEulerCertificate T D := by
-  have hinput := exposedPairingEulerInput_of_copyMate D index copyMate
+  have hinput := exposedPairingEulerInput_of_copyMate D index index_copy copyMate
     hinvol hfree (trianglePairUnique_of_girthEightChecks hgeom)
     hcounts hcorner hcellular
   exact exposedPairingEulerCertificate_of_wEight_linkData
@@ -423,14 +419,11 @@ theorem sphericalExtraction_of_combMapOperations
         ((mirrorPairCutSupply_of_surgeryDeletion H.mirrorDeletion)
           g n candidate))
   have hD : PowerDisc T g n := D
-  obtain ⟨B, hB⟩ := exposedPairingEulerCertificate_of_input hD
-    (H.seam g n hD)
-      hnoProper
-  dsimp at hB
-  obtain ⟨hcounts, hcertificate, hcellular⟩ := hB
+  obtain ⟨hinput⟩ := exposedPairingEulerCertificate_of_input hD
+    (H.seam g n hD) hnoProper
   have hglue : PowerDiscSphereGluing hD :=
-    powerDiscSphereGluing_of_eulerCounts hD B.toPairing hcounts
-      hD.diagram.planar hcertificate hcellular
+    powerDiscSphereGluing_of_eulerCounts hD hinput.pairing.toPairing
+      hinput.counts hD.diagram.planar hinput.corner hinput.cellular
   exact exists_labelledSphere_of_powerDiscGluing hD hglue
 
 /-- The extraction theorem is exactly the input expected by
@@ -470,6 +463,7 @@ theorem mirrorPairCutSupply_emptyModel
       (D : PowerDiscCandidate T g n), D.diagram.relatorCells = []) :
     MirrorPairCutSupply T := by
   intro g n D pre between suf C₁ C₂ hsplit _hcancel
+  exfalso
   rw [hempty g n D] at hsplit
   have hlength := congrArg List.length hsplit
   simp only [List.length_nil, List.length_append, List.length_cons] at hlength
@@ -483,17 +477,19 @@ theorem exposedPairingEulerCertificate_model
     {g : TriangularHodgeLayer.Presented T} {n : ℕ}
     (D : PowerDisc T g n)
     (B : VanKampen.SeamGluing.ExposedPairing D.diagram n)
+    (hpairUnique : TrianglePairUnique T)
     (hcounts : VanKampen.SeamGluing.Pairing.EulerTwoCountData B.toPairing)
     (certificate : ∀ v, VertexCornerCertificate T
       (cornerCycleOfCombMap B.toPairing.closedMap v))
-    (hcellular : ∀ v, CellularReducedAt
-      (VertexCornerCertificate T
-        (cornerCycleOfCombMap B.toPairing.closedMap v))) :
+    (hcellular : ∀ v, CellularReducedAt (certificate v)) :
     ExposedPairingEulerCertificate T D := by
   intro _hnoProper
-  refine ⟨B, ?_⟩
-  dsimp
-  exact ⟨hcounts, certificate, hcellular⟩
+  exact ⟨{
+    pairing := B
+    pairUnique := hpairUnique
+    counts := hcounts
+    corner := certificate
+    cellular := hcellular }⟩
 
 /-- The complete exposed-input record has a concrete small-map model whenever
 the copied pairing, Euler counts, corner labels, and no-shared-pair table
