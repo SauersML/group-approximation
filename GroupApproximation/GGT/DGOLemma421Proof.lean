@@ -1353,8 +1353,8 @@ theorem isWThree_drop_take_421 {D : RelGenSet G Λ}
         ← getElem?_drop_take_of_lt_421 word hi2]
       exact hy
 
-/-- If there are no peripheral indices, (W1) bounds a word by one letter. -/
 omit [Group G] in
+/-- If there are no peripheral indices, (W1) bounds a word by one letter. -/
 theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
     {word : List (RelLetter G Λ)} (hW1 : WWord.IsWOne word) :
     word.length ≤ 1 := by
@@ -1405,13 +1405,10 @@ theorem dgoLemma421a_of_uniform414
       have hend : vertex (vertex v word i) segment segment.length =
           vertex v word j := by
         rw [hsegmentLength]
-        exact vertex_segment word v i (j - i) (j - i) le_rfl
-      have hend' : vertex (vertex v word i) segment (j - i) =
-          vertex v word j := by
-        rw [← hsegmentLength]
-        exact hend
-      rw [hend'] at hwhole
-      exact hwhole
+        simpa [segment] using
+          (vertex_segment word v i (j - i) (j - i) le_rfl)
+      rw [hend] at hwhole
+      omega
 
 end OsinComponents
 end GGT
