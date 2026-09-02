@@ -44,6 +44,39 @@ structure Lemma49SourceGreendlingerCertificate
         ((Embedded.cell diagram contiguity.source).word.length : ℝ) <
       (contiguity.sourceArc.length : ℝ)
 
+namespace Lemma49SourceGreendlingerCertificate
+
+/-- Compose the cactus cell index with the `O`-equivalence cell index. -/
+noncomputable def cellIndex
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
+    {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z) :
+    Fin Z.cells.length ≃ Fin C.diagram.rCellCount :=
+  C.realization.cellIndex.trans (Classical.choice C.equivalent).cellIndex
+
+/-- The final `O`-equivalent cell at the composed algebraic index reads the
+original oriented relator word. -/
+theorem cellWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
+    {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n}
+    (C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z)
+    (i : Fin Z.cells.length) :
+    (Embedded.cell C.diagram (C.cellIndex i)).word =
+      (Z.cells.get i).relator := by
+  let E := Classical.choice C.equivalent
+  calc
+    (Embedded.cell C.diagram (C.cellIndex i)).word =
+        (Embedded.cell C.realization.diagram
+          (C.realization.cellIndex i)).word := by
+      exact E.cellWord_eq (C.realization.cellIndex i)
+    _ = (Z.cells.get i).relator := C.realization.cellWord_eq i
+
+end Lemma49SourceGreendlingerCertificate
+
 /-- The explicit power cactus has a positive number of relator cells. -/
 theorem relativeDiscRealizationPower_rCellCount_pos
     {G : Type u} [Group G] {Lambda : Type w}
