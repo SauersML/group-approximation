@@ -54,21 +54,28 @@ theorem, shared by the two lanes that stand on it.
   (T) is met by `Multiplicative ℤ`, and
   `Hyperbolic.CharTwoTorsionObstruction` records why no group this repository
   builds meets that one.
-* `smallCancellationQuotient` — Osin's Theorem 2.4(5) on small cancellation
-  over relatively hyperbolic groups.  Nothing here constructs a quotient of a
-  hyperbolic group in which a prescribed subgroup embeds.
-* `osinTheorem12` — Osin's Theorem 1.2 in the implication `(AH₃) ⇒ (AH₁)`, which
-  is what is left of the Minasyan–Osin citation.  `minasyanOsin` is no longer a
-  citation of its own: `E` acts on the Bass–Serre tree of its second HNN
-  splitting (`GGT.BassSerreHNN`), the tree is `0`-hyperbolic, `u₂u₁⁻¹` is
-  loxodromic on it, and `GGT.BassSerreDoubleHNN.isWPDAt_axisElt_unconditional`
-  proves it satisfies the WPD condition — Minasyan–Osin's Corollary 4.3, proved
-  in `GGT/TreeWPDAxis.lean` from the shift invariant of a tree action.  `E` is
-  never virtually cyclic (`GGT.BassSerreDoubleHNN.not_isVirtuallyCyclic`), so
-  the `(AH₃)` datum of `E` is unconditional and only the passage from it to the
-  Cayley-graph form remains.  `GGT/WPDAcylindricalHyperbolicity.lean` reduces
-  that passage further, to Dahmani–Guirardel–Osin's Theorem 6.8 and Osin's
-  Theorem 5.4 with his Lemma 5.12.
+* `smallCancellationQuotient` — **proved** from the three Hull leaves.  Osin's
+  Theorem 2.4 at the relatively hyperbolic pair `(U * H₀, U)` is Hull's
+  one-step small cancellation over the free product
+  (`GGT/RelHypOsin24FromHull.lean`, `GGT/RelHypProp23FromHullOsin24.lean`):
+  one tied relator per prescribed element, iterated over the finite target
+  set, with finite normal generation of the kernel a theorem of the
+  construction (`GGT/RelHypOsin24Construction.lean`), torsion lifted through
+  Lemma 4.9's correction, and suitability of the image from the preserved
+  elementary closures.  Relative hyperbolicity is the labelled finite-base
+  form of `GGT/RelHypDefinition.lean`; the earlier endpoint-only form admitted
+  a duplicated peripheral and is refuted there.
+* `osinTheorem12` — **proved**.  `minasyanOsin` is no longer a citation of its
+  own: `E` acts on the Bass–Serre tree of its second HNN splitting
+  (`GGT.BassSerreHNN`), `u₂u₁⁻¹` is loxodromic on it with the WPD property
+  (`GGT/TreeWPDAxis.lean`), `E` is never virtually cyclic, and Osin's
+  Theorem 1.2 `(AH₃) ⇒ (AH₁)` is
+  `GGT.Elementary.osinTheorem12_unconditional`: Dahmani–Guirardel–Osin's
+  Theorem 6.8 through their Theorem 4.42, whose proof is the
+  Bestvina–Bromberg–Fujiwara projection complex (`GGT/DGOTheorem442*.lean`:
+  the perturbed projections, standard paths, guards and barriers,
+  hyperbolicity of the projection graph, the near-minimal double-coset
+  relative generators, and inequality (41)).
 * `hullCommonQuotient` — Hull's Corollary 7.4, which is Hull's Theorem 7.1
   applied to the free product of `E` with `H₀`, so it rests on the same four
   leaves as `hullTheorem71` does, together with the free product input;
@@ -78,10 +85,13 @@ theorem, shared by the two lanes that stand on it.
   (`HullSCCommonQuotientCorrected.not_freeProductStatement`): it omits the
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
-* `hullLemma44Canonical`, `hullLemma49KernelPower` — the source-faithful
+* `hullLemma44FamilyInclusion`, `hullLemma49KernelPower` — the source-faithful
   quotient leaves.  Lemma 4.4 is
-  recorded only as injectivity of the natural quotient on the requested ball
-  and preservation of the simultaneously selected peripheral family.  Lemma
+  recorded as injectivity of the natural quotient on the requested ball
+  and joint preservation of the simultaneously selected peripheral family
+  and of any original hyperbolically embedded family inside the alphabet,
+  which is Hull's printed form and what Osin's Theorem 2.4 consumes; the
+  selected-family form `hullLemma44Canonical` is its special case.  Lemma
   4.9 is recorded as its quotient-free kernel-power correction, exactly
   equivalent to order-preserving finite-order lifts.  Neither lemma is
   attributed a cone-off, rotating family, apex separation, or DGO conclusion.
