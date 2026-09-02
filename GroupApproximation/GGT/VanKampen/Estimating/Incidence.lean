@@ -475,6 +475,63 @@ theorem CellIncidence.target_arc_length
   simp only [CellIncidence.arc]
   exact CyclicArc.cast_length hcarrier candidate.contiguity.targetArc
 
+/-- The false tagged endpoint contributes the source-arc length. -/
+theorem taggedToInteriorIncidence_false_arcLength
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (edge : InteriorEdge selected) :
+    (taggedToInteriorIncidence selected (edge, false)).2.1.arc.length =
+      edge.candidate.contiguity.sourceArc.length := by
+  unfold taggedToInteriorIncidence
+  exact CellIncidence.source_arc_length edge.candidate edge.candidate_mem rfl
+
+/-- The true tagged endpoint contributes the target-arc length. -/
+theorem taggedToInteriorIncidence_true_arcLength
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (edge : InteriorEdge selected) :
+    (taggedToInteriorIncidence selected (edge, true)).2.1.arc.length =
+      edge.candidate.contiguity.targetArc.length := by
+  unfold taggedToInteriorIncidence
+  exact CellIncidence.target_arc_length edge.candidate edge.candidate_mem
+    edge.target_eq
+
+/-- Summing all cellwise interior incidences counts each selected
+cell-to-cell region once at each endpoint, so it gives the Definition M
+weight sum. -/
+theorem sum_interiorIncidence_arcLength_eq_sum_weight
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta)) :
+    (∑ occurrence : InteriorIncidence selected, occurrence.2.1.arc.length) =
+      ∑ edge : InteriorEdge selected, edge.candidate.weight := by
+  classical
+  calc
+    (∑ occurrence : InteriorIncidence selected, occurrence.2.1.arc.length) =
+        ∑ tagged : InteriorEdge selected × Bool,
+          (taggedToInteriorIncidence selected tagged).2.1.arc.length := by
+      simpa only [interiorIncidenceEquiv] using
+        (Equiv.sum_comp (interiorIncidenceEquiv selected).symm
+          (fun occurrence : InteriorIncidence selected =>
+            occurrence.2.1.arc.length)).symm
+    _ = ∑ edge : InteriorEdge selected, ∑ tag : Bool,
+          (taggedToInteriorIncidence selected (edge, tag)).2.1.arc.length := by
+      rw [Fintype.sum_prod_type]
+    _ = ∑ edge : InteriorEdge selected, edge.candidate.weight := by
+      apply Finset.sum_congr rfl
+      intro edge _
+      rw [Fintype.sum_bool, taggedToInteriorIncidence_true_arcLength,
+        taggedToInteriorIncidence_false_arcLength]
+      exact Nat.add_comm _ _
+
 /-! ## Exterior regions -/
 
 /-- A selected region from one fixed relator cell to the outer boundary. -/
