@@ -27,7 +27,14 @@ values of the faces it encloses" is not stated here, because *encloses* has no
 meaning without planarity: on a surface which is not simply connected a closed
 walk need not bound the faces inside it in any sense, and the identity is false.
 `FaceAssembly` replaces enclosure by an explicit construction, which is exactly
-the data a planar argument would have to produce.  So the planar input has not
+the data a planar argument would have to produce.
+
+There is a second, independent obstruction to the enclosed-product form, so it
+should not be attempted over this inductive: the conjugator of an inserted face
+is the value of the walk prefix at the moment of insertion, and `insertFace`
+takes that prefix implicitly in a `Prop`-valued inductive, so the conjugators
+cannot be eliminated into data.  Stating a product identity would need a
+`Type`-valued variant recording the prefixes.  So the planar input has not
 been removed, it has been isolated: what remains is
 `RegionFaceAssemblyStatement`, that the boundary cycle of a selected face set
 admits an assembly from its own faces.
