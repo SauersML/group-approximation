@@ -86,7 +86,8 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
   have hword : dartWord Delta arc.rotated =
       dartWord Delta (arc.rotated.take arc.length) ++
         dartWord Delta (arc.rotated.drop arc.length) := by
-    rw [hsplit, dartWord_append]
+    have h := congrArg (dartWord Delta) hsplit
+    simpa only [dartWord_append] using h
   have hinv : RelWord.revInv (dartWord Delta arc.rotated) =
       RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length)) ++
         RelWord.revInv (dartWord Delta (arc.rotated.take arc.length)) := by
@@ -108,7 +109,11 @@ theorem exists_reverseDarts_prefix_of_rotated_revInv
     exact (dartWord_reverse_alpha Delta arc.darts).trans (by rfl)
   refine ⟨RelWord.revInv (dartWord Delta (arc.rotated.drop arc.length)), ?_⟩
   unfold reversePrefixTarget
-  rw [hrotate, hreverse]
+  have hlen :
+      (dartWord Delta (arc.rotated.drop arc.length)).length =
+        (arc.rotated.drop arc.length).length := by
+    simp only [dartWord, List.length_map]
+  rw [hlen, hrotate, hreverse]
 
 /-- The rotated carrier of a cell arc remains in a symmetrized family. -/
 theorem cell_rotated_mem
@@ -300,7 +305,7 @@ theorem Contiguity.targetBoundaryDarts_length
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     (targetBoundaryDarts Delta Gamma.target Gamma.targetArc).length =
       Gamma.targetArc.length := by
-  rw [htarget]
+  cases htarget
   simp only [targetBoundaryDarts, CyclicArc.reverseDarts,
     List.length_map, List.length_reverse, CyclicArc.darts_length]
 
