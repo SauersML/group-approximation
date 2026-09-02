@@ -683,6 +683,33 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
         Nat.mul_lt_mul_of_pos_right hcoeff (by omega)
   omega
 
+/-- Every canonical peripheral occurrence of a W-word is an isolated
+component of that path. -/
+theorem peripheralOccurrence_isIsolated_of_uniformBound
+    {D : RelGenSet G Λ} {C : ℕ} (hC : 0 < C)
+    (hbound : DGOUniformSumBound D 1 1 C)
+    {word : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ word, D.IsLetter a)
+    (hW1 : WWord.IsWOne word)
+    (hW2 : WWord.IsWTwo D (50 * C) word)
+    (hW3 : WWord.IsWThree D word) (v : G)
+    (t : Fin (peripheralPositions word).card) :
+    IsIsolated D.fam (peripheralOccurrence word t).label v word
+      (peripheralOccurrence word t).pos := by
+  refine ⟨⟨(peripheralOccurrence word t).pos + 1,
+    PeripheralOccurrence.isComp hW3 t⟩, ?_⟩
+  intro j hjne hjStart hjConn
+  obtain ⟨u, huPos, huLabel⟩ :=
+    exists_peripheralOccurrence_eq_of_isCompStart hjStart
+  have hut : t ≠ u := by
+    intro htu
+    subst u
+    exact hjne huPos.symm
+  have hnot := peripheralOccurrence_not_connected_of_uniformBound
+    hC hbound hlet hW1 hW2 hW3 v hut huLabel
+  apply hnot
+  rwa [huPos]
+
 end OsinComponents
 end GGT
 end GroupApproximation
