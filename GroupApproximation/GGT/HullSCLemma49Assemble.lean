@@ -163,7 +163,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hinjective : HullLemma49InjectivityCallback.{0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have hgeom :
@@ -190,7 +190,7 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{0, 0, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
     (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by

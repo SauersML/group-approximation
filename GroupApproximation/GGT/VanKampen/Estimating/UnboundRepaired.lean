@@ -3,8 +3,8 @@ import GroupApproximation.GGT.VanKampen.Estimating.UnboundEmptyDisc
 /-!
 # The repaired Lemma 62 construction statement
 
-`UnboundEmptyDisc` refutes `EstimatingUnboundConstructionStatement` twice
-over.  This file states the form that matches Osin's Appendix Lemma 62
+`UnboundEmptyDisc` refutes the pre-repair statement, kept there as
+`RefutedUnboundConstructionStatement`, twice over.  This file states the form that matches Osin's Appendix Lemma 62
 (arXiv `math/0411039`) and reduces it to a single geometric producer.
 
 The source runs Lemma 62 on a reduced diagram with `n >= 1` R-cells, under
@@ -107,7 +107,7 @@ theorem unboundTotal_add_covered_eq_perimeterTotal
 /-! ## The repaired statement -/
 
 /-- Osin Appendix Lemma 62 with the three hypotheses the source states and
-`EstimatingUnboundConstructionStatement` drops: the diagram has a relator
+the refuted form dropped: the diagram has a relator
 cell, the estimating graph satisfies `(*)`, and `rho` was chosen against
 `mu`. -/
 def EstimatingUnboundRepairedStatement : Prop :=
@@ -155,6 +155,18 @@ theorem estimatingUnboundRepaired_of_componentPartition
     Delta hcells scaffold graph hboundary
   obtain ⟨certificate⟩ := hcertificate
   exact lemma62Data_of_partitionCertificate certificate hthreshold
+
+/-- The same-diagram form gives the source's `O`-equivalent output form, by
+the reflexive `O`-equivalence.  A producer that never has to move the diagram
+can be written at this stronger statement. -/
+theorem estimatingUnboundOutput_of_repaired
+    (hrepaired : EstimatingUnboundRepairedStatement.{u, w, v}) :
+    EstimatingUnboundOutputStatement.{u, w, v} := by
+  intro G _ Lambda D eps rho mu lambda c hthreshold W hcondition Delta hred
+    hcells scaffold graph hboundary
+  exact ⟨Delta, ⟨OEquivalentDiscDiagram.refl Delta⟩, hred, scaffold, ⟨graph⟩,
+    hrepaired D eps rho mu lambda c hthreshold hcondition Delta hcells scaffold
+      graph hboundary⟩
 
 /-! ## Model checks -/
 

@@ -219,6 +219,36 @@ def RelativeDiagramCertificate.ofLargeCell
     refine ⟨i, C, ?_, hlarge⟩
     simp
 
+/-- **A certificate whose labels are a common cyclic permutation of the
+relators.**  The planar side of Osin's argument delivers a *cyclic* arc of the
+source cell's dart cycle, while `RelativeBoundaryContiguity.relator_decomposition`
+asks the exterior to be a prefix; rotating every label by the same amount turns
+the cyclic subword into a prefix.  Membership is preserved because
+`RelWord.IsSmallCancellation` requires the family to be closed under cyclic
+permutation, which is the `rotate_mem` hypothesis below. -/
+def RelativeDiagramCertificate.ofLargeCellRotated
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R eps : ℕ} {mu : ℝ}
+    {Z : RelativeReducedDiagram D W R}
+    (hrotate : ∀ v ∈ W, ∀ m : ℕ, v.rotate m ∈ W)
+    (i : Fin Z.cells.length) (n : ℕ)
+    (C : RelativeBoundaryContiguity D eps Z.boundaryWord
+      (((Z.cells.get i).relator).rotate n))
+    (hlarge : (1 - 23 * mu) *
+        ((((Z.cells.get i).relator).rotate n).length : ℝ)
+      ≤ (C.exterior.length : ℝ)) :
+    RelativeDiagramCertificate D W eps mu Z where
+  boundaryWord := Z.boundaryWord
+  boundaryWord_eq := rfl
+  cellLabel := fun k => ((Z.cells.get k).relator).rotate n
+  cellLabel_rotate := fun _ => ⟨n, rfl⟩
+  cellLabel_mem := fun k => hrotate _ ((Z.cells.get k).relator_mem) n
+  contiguity := fun k => if h : i = k then some (h ▸ C) else none
+  largeCell := by
+    refine ⟨i, C, ?_, hlarge⟩
+    simp
+
 /-! ## Transporting a planar cell index to its algebraic cell -/
 
 /-- **The planar relator word at a cell of an `O`-equivalent diagram is the
@@ -332,7 +362,7 @@ theorem relativeGreendlingerBaseGeodesicStatement_of_components
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hconv : RelativeExteriorArcConversionStatement.{u, w}) :
     RelativeGreendlingerBaseGeodesicStatement.{u, w} := by
   intro G _ Lambda D hD mu hmu hmuUpper
@@ -394,7 +424,7 @@ theorem hullSC_relativeGreendlingerStatement_of_components
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hconv : RelativeExteriorArcConversionStatement.{u, w})
     (hall : AllReducedDiagramsHaveBaseGeodesicBoundary.{u, w}) :
     RelativeGreendlingerStatement.{u, w} :=

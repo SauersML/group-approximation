@@ -9,8 +9,10 @@ reduced diagram `Delta` "which has `n >= 1` R-cells", under the additional
 hypothesis `(*)` on the estimating graph, and after choosing `rho` large
 against `mu`: the closing computation of Lemma 63 reads `rho > mu^{-2}`.
 
-`EstimatingUnboundConstructionStatement` drops the cell-count hypothesis and
-the parameter choice, so it is false.  This file supplies the witness.  The
+The pre-repair form of `EstimatingUnboundOutputStatement` dropped the
+cell-count hypothesis and the parameter choice, so it was false.  It is kept
+here verbatim as `RefutedUnboundConstructionStatement`, and this file supplies
+the witness against it.  The
 single unoriented edge gives a planar closed map with one face, two vertices
 and one edge, so it is a disc diagram whose relator-cell list is empty and
 whose exterior word spells the identity.  The empty relator family satisfies
@@ -254,15 +256,31 @@ theorem no_lemma62Data_at_mu_zero {G : Type u} [Group G] {Lambda : Type w}
   rw [mul_zero, zero_mul] at hthreshold
   norm_num at hthreshold
 
+/-! ## The retired statement -/
+
+/-- The form `EstimatingUnboundOutputStatement` had before the repair, kept
+verbatim so the refutation below stays checkable.  It is not consumed
+anywhere: `Estimating/Assembly.lean` now states Osin's own hypotheses. -/
+def RefutedUnboundConstructionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
+    (_hrho : 0 < rho)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (_hcondition : OsinCCondition D W eps mu lambda c rho)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (scaffold : EstimatingScaffold D eps Delta),
+    IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+      Nonempty (Lemma62Data D eps mu rho Delta scaffold)
+
 /-! ## The refutations -/
 
-/-- `EstimatingUnboundConstructionStatement` fails on the one-edge disc at
+/-- `RefutedUnboundConstructionStatement` fails on the one-edge disc at
 `mu = 1`, `rho = 1`, where the numerical threshold `1 <= 2` holds and the
 strict budget is the only failing field.  This isolates the missing
 hypothesis `0 < Delta.rCellCount`. -/
-theorem not_estimatingUnboundConstructionStatement_cells {G : Type} [Group G]
+theorem not_refutedUnboundConstructionStatement_cells {G : Type} [Group G]
     {Lambda : Type} (D : GGT.RelGenSet G Lambda) (lam : Lambda) :
-    ¬ EstimatingUnboundConstructionStatement.{0, 0, 0} := by
+    ¬ RefutedUnboundConstructionStatement.{0, 0, 0} := by
   intro hstatement
   obtain ⟨scaffold⟩ :=
     exists_estimatingScaffold D 0 (emptyFamilyDisc (G := G) lam)
@@ -273,12 +291,12 @@ theorem not_estimatingUnboundConstructionStatement_cells {G : Type} [Group G]
   exact no_lemma62Data_of_rCellCount_eq_zero
     (emptyFamilyDisc_rCellCount (G := G) lam) hdata
 
-/-- `EstimatingUnboundConstructionStatement` fails on the one-edge disc at
+/-- `RefutedUnboundConstructionStatement` fails on the one-edge disc at
 `mu = 0`, `rho = 1`, where the failing field is the numerical threshold.
 This isolates the missing parameter choice relating `rho` to `mu`. -/
-theorem not_estimatingUnboundConstructionStatement_threshold {G : Type}
+theorem not_refutedUnboundConstructionStatement_threshold {G : Type}
     [Group G] {Lambda : Type} (D : GGT.RelGenSet G Lambda) (lam : Lambda) :
-    ¬ EstimatingUnboundConstructionStatement.{0, 0, 0} := by
+    ¬ RefutedUnboundConstructionStatement.{0, 0, 0} := by
   intro hstatement
   obtain ⟨scaffold⟩ :=
     exists_estimatingScaffold D 0 (emptyFamilyDisc (G := G) lam)
@@ -310,9 +328,9 @@ def fullPeripheral (G : Type) [Group G] : GGT.RelGenSet G PUnit.{1} where
 
 /-- The refutation at a concrete relative generating set, so the two theorems
 above are not vacuous. -/
-theorem not_estimatingUnboundConstructionStatement :
-    ¬ EstimatingUnboundConstructionStatement.{0, 0, 0} :=
-  not_estimatingUnboundConstructionStatement_cells
+theorem not_refutedUnboundConstructionStatement :
+    ¬ RefutedUnboundConstructionStatement.{0, 0, 0} :=
+  not_refutedUnboundConstructionStatement_cells
     (fullPeripheral PUnit.{1}) PUnit.unit
 
 end Estimating

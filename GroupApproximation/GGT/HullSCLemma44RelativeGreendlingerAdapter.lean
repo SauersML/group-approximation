@@ -113,7 +113,7 @@ theorem exists_realized_relativeGreendlingerWitness_of_components
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hreal : GGT.VanKampen.RelativeDiscRealizationStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -241,7 +241,7 @@ theorem exists_realized_embeddedBoundaryContiguity_of_components_and_geodesicBou
     (hpieces :
       GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
     (hunbound :
-      GGT.VanKampen.EstimatingUnboundConstructionStatement.{u, w, 0})
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hreal : GGT.VanKampen.RelativeDiscRealizationStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
