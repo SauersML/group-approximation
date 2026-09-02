@@ -243,6 +243,7 @@ theorem finiteOrder_mem_detectorIntersection_of_matchedProduct
         rw [(hdcomm.zpow_right (-m)).eq]
       _ = h ^ (l - m) * c 0 := by
         rw [zpow_sub, zpow_neg]
+        group
   have htcomm : Commute t d := by
     rw [htform]
     exact (hdcomm.zpow_right n).symm.mul_left (Commute.refl d)
