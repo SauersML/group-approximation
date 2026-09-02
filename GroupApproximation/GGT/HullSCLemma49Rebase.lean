@@ -219,6 +219,9 @@ theorem exists_rotated_lemma49GeodesicPowerDiagram
     ∃ rotated : G,
       ∃ Zrot : Lemma49GeodesicPowerDiagram D v rotated n,
         Zrot.boundaryWord = Z.boundaryWord.rotate start ∧
+          ConjugateModulo
+            (Subgroup.normalClosure
+              ({GGT.RelLetter.listVal v} : Set G)) g rotated ∧
           IsShortestModuloConjugacy D.alphabet.carrier
             (Subgroup.normalClosure
               ({GGT.RelLetter.listVal v} : Set G)) rotated := by
@@ -281,7 +284,7 @@ theorem exists_rotated_lemma49GeodesicPowerDiagram
     toLemma49OrientedPowerDiagram := Zoriented
     boundaryWord := rotatedWord
     boundary_geodesic := hrotatedGeo }
-  refine ⟨rotated, Zrot, rfl, ?_⟩
+  refine ⟨rotated, Zrot, rfl, hconj, ?_⟩
   exact isShortestModuloConjugacy_listVal_rotate N hshort
     Z.boundary_geodesic start
 
@@ -299,12 +302,16 @@ theorem Lemma49EmbeddedExteriorArc.exists_rebasedGreendlingerCell
       (Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G)) g) :
     ∃ rotated : G,
       ∃ Zrot : Lemma49GeodesicPowerDiagram D v rotated n,
-        IsShortestModuloConjugacy D.alphabet.carrier
+        ConjugateModulo
+            (Subgroup.normalClosure
+              ({GGT.RelLetter.listVal v} : Set G)) g rotated ∧
+          Zrot.boundaryWord = Z.boundaryWord.rotate E.boundaryStart ∧
+          IsShortestModuloConjugacy D.alphabet.carrier
             (Subgroup.normalClosure
               ({GGT.RelLetter.listVal v} : Set G)) rotated ∧
           Nonempty (Lemma49RelativeGreendlingerCell
             D v rotated n eps mu Zrot) := by
-  obtain ⟨rotated, Zrot, hword, hshortRot⟩ :=
+  obtain ⟨rotated, Zrot, hword, hconj, hshortRot⟩ :=
     exists_rotated_lemma49GeodesicPowerDiagram D Z hshort E.boundaryStart
   have hpower : lemma49BoundaryPower Zrot.boundaryWord n =
       E.boundaryArc ++ E.boundaryAfter := by
@@ -342,7 +349,7 @@ theorem Lemma49EmbeddedExteriorArc.exists_rebasedGreendlingerCell
     boundary_decomposition := by simpa only [List.nil_append] using hpower
     boundaryArc_value := rfl
     exterior_large := E.exterior_large }
-  exact ⟨rotated, Zrot, hshortRot, ⟨C⟩⟩
+  exact ⟨rotated, Zrot, hconj, hword, hshortRot, ⟨C⟩⟩
 
 end HullSC
 end GroupApproximation
