@@ -685,7 +685,6 @@ theorem componentIndex_cyclicPeripheralPowerWord {k n i q : ℕ}
   simp only [Option.some.injEq, RelLetter.comp.injEq] at hg
   exact hg.1.symm
 
-omit [Group G] in
 /-- At a position of the reversed cyclic word, the peripheral index is the
 index counted backwards from the end of the original word. -/
 theorem getElem?_rev_cyclicPeripheralPowerWord {k n j : ℕ}
@@ -708,7 +707,6 @@ theorem getElem?_rev_cyclicPeripheralPowerWord {k n j : ℕ}
   rw [hrev, helem]
   rfl
 
-omit [Group G] in
 /-- Every component of the reversed cyclic word carries the peripheral index
 at its start, counted backwards from the original endpoint. -/
 theorem componentIndex_rev_cyclicPeripheralPowerWord {k n i q : ℕ}
@@ -729,7 +727,6 @@ theorem componentIndex_rev_cyclicPeripheralPowerWord {k n i q : ℕ}
   simp only [Option.some.injEq, RelLetter.comp.injEq] at hg
   exact hg.1.symm
 
-omit [Group G] in
 /-- The reversed all-peripheral word still has no base letters, so the
 separator between consecutive DGO components is trivial. -/
 theorem eq_of_baseEdgeOrTrivial_rev_cyclicPeripheralPowerWord
@@ -749,26 +746,31 @@ omit [Group G] in
 theorem mod_pred_eq {j m : ℕ} (hj : 0 < j) (hm : 0 < m) :
     (j - 1) % m = (j % m + m - 1) % m := by
   have hrlt : j % m < m := Nat.mod_lt _ hm
-  have hdiv := Nat.div_add_mod j m
+  have hdiv := Nat.div_add_mod' j m
   by_cases hr : j % m = 0
   · have hqpos : 0 < j / m := by
       by_contra hq
-      have hqzero : j / m = 0 := by omega
+      have hqzero : j / m = 0 := Nat.eq_zero_of_not_pos hq
       rw [hqzero, hr] at hdiv
-      simp at hdiv
-      omega
+      simp only [zero_mul, zero_add] at hdiv
+      exact (Nat.ne_of_gt hj) hdiv.symm
+    have hj : (j / m) * m = j := by omega
+    have hqdecomp : j / m = (j / m - 1) + 1 := by omega
     have hleft : j - 1 = (j / m - 1) * m + (m - 1) := by
-      omega
-    rw [hleft, Nat.add_mod, Nat.mul_mod, Nat.zero_mod, zero_add,
-      Nat.mod_eq_of_lt (by omega : m - 1 < m), hr]
-    exact Nat.mod_eq_of_lt (by omega : m - 1 < m)
+      calc
+        j - 1 = (j / m) * m - 1 := by rw [hj]
+        _ = ((j / m - 1) + 1) * m - 1 :=
+          congrArg (fun z : ℕ ↦ z * m - 1) hqdecomp
+        _ = ((j / m - 1) * m + m) - 1 := by rw [Nat.add_mul, one_mul]
+        _ = (j / m - 1) * m + (m - 1) := by omega
+    rw [hleft, hr]
+    simp [Nat.add_mod, Nat.mod_eq_of_lt (by omega : m - 1 < m)]
   · have hrpos : 0 < j % m := Nat.pos_of_ne_zero hr
-    have hleft : j - 1 = m * (j / m) + (j % m - 1) := by
+    have hleft : j - 1 = (j / m) * m + (j % m - 1) := by
       omega
     have hright : j % m + m - 1 = (j % m - 1) + m := by omega
-    rw [hleft, Nat.add_mod, Nat.mul_mod, Nat.zero_mod, zero_add,
-      Nat.mod_eq_of_lt (by omega : j % m - 1 < m), hright,
-      Nat.add_mod_right, Nat.mod_eq_of_lt (by omega : j % m - 1 < m)]
+    rw [hleft, hright]
+    simp [Nat.add_mod, Nat.mod_eq_of_lt (by omega : j % m - 1 < m)]
 
 /-- Consecutive components on the reversed cyclic word retreat through the
 peripheral factors in cyclic order. -/
@@ -791,10 +793,14 @@ theorem cyclicPred_componentIndex_of_consecutiveMatches_rev
     isComp_succ_of_isWThree hW3 (hcomp t (by omega))
   have hip : ip (t + 1) = kp t :=
     eq_of_baseEdgeOrTrivial_rev_cyclicPeripheralPowerWord a (hstep t ht)
-  have hlam := componentIndex_rev_cyclicPeripheralPowerWord a
-    (hcomp t (by omega))
-  have hlam₁ := componentIndex_rev_cyclicPeripheralPowerWord a
-    (hcomp (t + 1) ht)
+  have hlam : lam t =
+      ⟨((cyclicPeripheralPowerWord a n).length - 1 - ip t) % (k + 1),
+        Nat.mod_lt _ (Nat.succ_pos k)⟩ :=
+    componentIndex_rev_cyclicPeripheralPowerWord a (hcomp t (by omega))
+  have hlam₁ : lam (t + 1) =
+      ⟨((cyclicPeripheralPowerWord a n).length - 1 - ip (t + 1)) % (k + 1),
+        Nat.mod_lt _ (Nat.succ_pos k)⟩ :=
+    componentIndex_rev_cyclicPeripheralPowerWord a (hcomp (t + 1) ht)
   rw [hlam, hlam₁]
   apply Fin.ext
   simp only [cyclicPred, Fin.val_mk]
@@ -1059,7 +1065,7 @@ theorem exists_fullCycleConnectorData_of_consecutiveMatches
     have hlamEnd : lam (r + (k + 1)) = 0 := by
       rw [hindexEnd]
       apply Fin.ext
-      simp [hipEnd, Nat.add_mod, hmodR]
+      simp [hipEnd, hmodR]
     have hm := hmem (r + (k + 1)) hrend
     rw [hlamEnd] at hm
     simpa [c] using hm
