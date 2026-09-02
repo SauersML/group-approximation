@@ -544,6 +544,63 @@ theorem sum_interiorIncidence_arcLength_eq_sum_weight
         taggedToInteriorIncidence_false_arcLength]
       exact Nat.add_comm _ _
 
+/-- Unique positioned incidences identify the canonical total interior length
+with the sum of the selected cell-to-cell region weights. -/
+theorem sum_canonical_interiorLength_eq_sum_weight
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (hunique : IncidencePositionUnique selected) :
+    (∑ i : Fin Delta.rCellCount,
+        (CellBoundaryPartition.canonical selected i).kindLength
+          CellArcKind.interior) =
+      ∑ edge : InteriorEdge selected, edge.candidate.weight := by
+  classical
+  calc
+    (∑ i : Fin Delta.rCellCount,
+        (CellBoundaryPartition.canonical selected i).kindLength
+          CellArcKind.interior) =
+        ∑ i : Fin Delta.rCellCount,
+          ∑ incidence : CellIncidence.OfKind
+              (selected := selected) (i := i) CellArcKind.interior,
+            incidence.1.arc.length := by
+      apply Finset.sum_congr rfl
+      intro i _
+      exact CellBoundaryPartition.canonical_kindLength_eq_sum_arcLength
+        selected hunique i CellArcKind.interior (by decide)
+    _ = ∑ occurrence : InteriorIncidence selected,
+          occurrence.2.1.arc.length := by
+      change (∑ i : Fin Delta.rCellCount,
+          ∑ incidence : CellIncidence.OfKind
+              (selected := selected) (i := i) CellArcKind.interior,
+            incidence.1.arc.length) =
+        ∑ occurrence : Σ i : Fin Delta.rCellCount,
+            CellIncidence.OfKind (selected := selected) (i := i)
+              CellArcKind.interior,
+          occurrence.2.1.arc.length
+      exact (Fintype.sum_sigma' fun _i incidence =>
+        incidence.1.arc.length).symm
+    _ = ∑ edge : InteriorEdge selected, edge.candidate.weight :=
+      sum_interiorIncidence_arcLength_eq_sum_weight selected
+
+/-- Real-valued form of the canonical interior-length identity used by the
+estimating count. -/
+theorem sum_canonical_interiorWeight_eq_sum_edgeWeight
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (selected : Finset (Candidate D eps Delta))
+    (hunique : IncidencePositionUnique selected) :
+    (∑ i : Fin Delta.rCellCount,
+        (canonicalDiagramPartition selected).kindWeight CellArcKind.interior i) =
+      ∑ edge : InteriorEdge selected, edge.weight := by
+  simp only [canonicalDiagramPartition, DiagramBoundaryPartition.kindWeight,
+    InteriorEdge.weight]
+  exact_mod_cast sum_canonical_interiorLength_eq_sum_weight selected hunique
+
 /-! ## Exterior regions -/
 
 /-- A selected region from one fixed relator cell to the outer boundary. -/
