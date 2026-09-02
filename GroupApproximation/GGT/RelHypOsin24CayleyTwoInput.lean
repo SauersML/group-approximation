@@ -23,8 +23,7 @@ The two that remain are the two that are genuinely other people's:
 ## The relative generating set, named
 
 `OsinRelatorDesignCayley` asks its supplier to *produce* an `X` with
-`IsRelHypAt X`, and `isRelativelyHyperbolic_iff_exists_relHypAt` produces one
-existentially.  That is enough to typecheck and not enough to build with: the
+`IsRelHypAt X`.  That is enough to typecheck and not enough to build with: the
 general-position argument that chooses the `w_k` has to know what the letters
 *are*.  `isRelHypAt_freeProductRelGen` names the witness --
 `freeProductRelGen U H S hS`, whose alphabet is `X_H ⊔ U` for the finite
@@ -50,25 +49,24 @@ theorem isHyperbolicSpace_cayley_freeProductRelGen (U H : Type) [Group U]
     [Group H] (S : Finset H) (hS : IsSymmetricGeneratingSet (S : Set H)) {δ : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic (S : Set H) δ) :
     IsHyperbolicSpace ((max δ 1 : ℕ) : ℝ)
-      (Cayley (freeProductRelGen U H S hS).alphabet) :=
+      (Cayley (freeProductLabelledRelGen U H S hS).alphabet) :=
   isHyperbolicSpace_cayley_of_fourPoint _
     (isFourPointHyperbolic_freeProductRelGen U H S hS hδ)
 
 /-- **The relatively hyperbolic structure of `(U ∗ H, U)`, at a named relative
 generating set.**
 
-Both clauses of `IsRelHypAt` at the same `X`, which is what the fourth-generation
-leaf asks for and what a floating `IsRelativelyHyperbolic` cannot supply without
-Osin's independence theorem: hyperbolicity is
+Both labelled DGO clauses of `IsRelHypAt` at the same `X`: hyperbolicity is
 `isHyperbolicSpace_cayley_freeProductRelGen`, and the peripheral metric is
-discrete by `peripheralMetricLocallyFinite_freeProductRelGen`. -/
+discrete by `pairLabelledRelGen_locallyFinite`. -/
 theorem isRelHypAt_freeProductRelGen (U H : Type) [Group U] [Group H]
     (S : Finset H) (hS : IsSymmetricGeneratingSet (S : Set H)) {δ : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic (S : Set H) δ) :
-    IsRelHypAt (G := pairFamily U H) (freeProductRelGen U H S hS) :=
-  ⟨((max δ 1 : ℕ) : ℝ),
-    isHyperbolicSpace_cayley_freeProductRelGen U H S hS hδ,
-    peripheralMetricLocallyFinite_freeProductRelGen U H S hS⟩
+    IsRelHypAt (G := pairFamily U H) (freeProductRelGen U H S hS) := {
+  hyperbolic := ⟨((max δ 1 : ℕ) : ℝ),
+    isHyperbolicSpace_cayley_freeProductRelGen U H S hS hδ⟩
+  locallyFinite := pairLabelledRelGen_locallyFinite
+    (G := pairFamily U H) S hS }
 
 /-- **A hyperbolic `H` gives the pair a certified relative generating set.**  The
 existential form, with the generating set and the constant of
