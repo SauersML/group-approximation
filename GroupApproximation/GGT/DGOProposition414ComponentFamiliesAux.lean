@@ -265,6 +265,225 @@ theorem SecondGapComponentFamily.ofTargetComponents
           (B.secondGapFinishSide j - B.secondGapStartSide j) r hr))
     simpa only [q] using htarget j q hq
 
+/-! ## The inherited-arc seam -/
+
+/-- An inherited first-gap target remains a component of the complete
+auxiliary cycle.  Interior targets transfer by geodesic restriction.  At a
+gap endpoint, the preceding or following broken component supplies the
+maximality letter, while a surviving half supplies the terminal exclusion;
+these are the endpoint cases in DGO Proposition 4.14. -/
+theorem firstGapArcSource_fullComponent
+    {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
+    {δ b n k R : ℕ}
+    {hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ}
+    {P : SumBoundInput D (b : ℝ) n}
+    (B : BalancedSplitData D hsymm b hδ P k R)
+    (j : Fin B.brokenAssignment.index.first.pieceCount)
+    (s : ℕ) (hs : s ∈ B.firstGapArcSources j) :
+    IsComp (B.firstGapLocalLabel j
+        ((B.firstGapLeft j).length +
+          (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCycle j)
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j)))
+      (B.firstGapCut j ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1)) := by
+  have hsData := Finset.mem_filter.mp hs
+  let i := B.firstArcCut (B.firstTargetSide s) -
+    B.firstArcCut (B.firstGapStartSide j)
+  let cycle := auxiliaryCycleWord (B.firstGapLeft j)
+    (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+      (B.firstGapFinishSide j)) (B.firstGapRight j)
+    (orientedSegment B.chord (B.firstGapChordStart j)
+      (B.firstGapChordFinish j))
+  have hlocalComp : IsComp (P.label s)
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j)) i (i + 1) := by
+    simpa only [i] using B.firstGapArcSource_component j s hs
+  have hstart : ∀ t : ℕ,
+      (B.firstGapLeft j).length + i = t + 1 →
+      ∀ ht : t < cycle.length, ¬ (cycle[t]'ht).IsCompOf (P.label s) := by
+    intro t hteq ht
+    by_cases hi : 0 < i
+    · have htArc : t - (B.firstGapLeft j).length <
+          (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+            (B.firstGapFinishSide j)).length := by omega
+      have htEq : t = (B.firstGapLeft j).length + (t -
+          (B.firstGapLeft j).length) := by omega
+      have hletter := (isComp_auxiliaryCycle_arc_iff (P.label s)
+        (B.firstGapLeft j)
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)) (t - (B.firstGapLeft j).length)
+        htArc (by omega)).mp (by
+          simpa [cycle, htEq] using
+            ‹(cycle[t]'ht).IsCompOf (P.label s)›)
+      have hpre := hlocalComp.2.2.2.1 (i - 1) (by omega) (by omega) htArc
+      rw [show t - (B.firstGapLeft j).length = i - 1 by omega] at hletter
+      exact hpre (i - 1) (by omega) htArc hletter
+    · have hi0 : i = 0 := by omega
+      subst i
+      by_cases hp : HalfGap.previousEntry B.brokenAssignment.index.first j = none
+      · have hleft0 : (B.firstGapLeft j).length = 0 := by
+          simp [firstGapLeft, hp]
+        omega
+      · obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hp
+        have heq : HalfGap.previousEntry B.brokenAssignment.index.first j = some e := by
+          simpa using he
+        have htleft : t < (B.firstGapLeft j).length := by omega
+        have hconn := B.firstGap_leftConnector_isCompOf j e heq t htleft (by
+          rw [cycle] at ht
+          simpa [auxiliaryCycleWord, OsinComponents.length_revWord] using ht)
+        have hconnLabel := B.firstGapLocalLabel_leftConnector j e heq t htleft
+        have hEqLabel : P.label s =
+            P.label (HalfEntry.entrySource B.brokenAssignment.index.first e) :=
+          eq_of_isCompOf_of_isCompOf hconn hconnLabel
+        have heSrc := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
+        have heTarget := (mem_brokenSet_iff.mp heSrc).1
+        have hprevComp := B.firstArc_targetComponent heTarget
+        have hprevSide : B.firstGapStartSide j =
+            B.firstTargetSide (HalfEntry.entrySource
+              B.brokenAssignment.index.first e) + 1 := by
+          simp only [firstGapStartSide]
+          rw [heq]
+        have hprevPos : B.firstArcCut
+            (B.firstTargetSide (HalfEntry.entrySource
+              B.brokenAssignment.index.first e)) + 1 =
+            B.firstArcCut (B.firstGapStartSide j) := by
+          rw [hprevSide]
+          rw [← hprevSide, (B.firstArcCut_target heTarget).2]
+        have hprevLetter :
+            (B.firstArc[B.firstArcCut (B.firstTargetSide
+              (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
+                exact B.firstArc_isCutPath.cut.le_length
+                  (B.firstTargetSide_lt heTarget).le)).IsCompOf
+              (P.label (HalfEntry.entrySource
+                B.brokenAssignment.index.first e)) :=
+          hprevComp.2.2.1 _ le_rfl (by omega) _
+        have hprevLabel :
+            (B.firstArc[B.firstArcCut (B.firstTargetSide
+              (HalfEntry.entrySource B.brokenAssignment.index.first e))]'(by
+                exact B.firstArc_isCutPath.cut.le_length
+                  (B.firstTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
+          simpa only [hEqLabel] using hprevLetter
+        have hparent := B.firstArc_targetComponent hsData.1
+        have hidx : B.firstArcCut (B.firstTargetSide
+              (HalfEntry.entrySource B.brokenAssignment.index.first e)) =
+            B.firstArcCut (B.firstTargetSide s) - 1 := by
+          have hcur : B.firstArcCut (B.firstTargetSide s) =
+              B.firstArcCut (B.firstGapStartSide j) := by
+            exact (B.firstArcCut_target hsData.1).1.trans (by simp [hi0])
+          rw [hcur, ← hprevPos]
+          omega
+        apply hparent.2.2.2.1
+          (B.firstArcCut (B.firstTargetSide s) - 1) (by omega) _ hprevLabel
+  have hend : ∀ hn :
+      (B.firstGapLeft j).length + i + 1 < cycle.length,
+      ¬ (cycle[(B.firstGapLeft j).length + i + 1]'hn).IsCompOf (P.label s) := by
+    intro hn hletter
+    by_cases hiend : i + 1 <
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length
+    · have hco := (isComp_auxiliaryCycle_arc_iff (P.label s)
+        (B.firstGapLeft j)
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)) (B.firstGapRight j)
+        (orientedSegment B.chord (B.firstGapChordStart j)
+          (B.firstGapChordFinish j)) (i + 1) hiend (by omega)).mp (by
+            simpa [cycle] using hletter)
+      exact hlocalComp.2.2.2.2 _ (by omega) hiend hco
+    · have hiEq : i + 1 =
+        (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+          (B.firstGapFinishSide j)).length := by omega
+      by_cases hnxt : HalfGap.nextEntry B.brokenAssignment.index.first j = none
+      · have hsurv := B.firstGapArcSource_survives j s hs
+        have hwordComp := hsurv.1
+        have hwordPost := hwordComp.2.2.2.2
+        have hwordLen : B.firstWord.length =
+            B.firstArc.length + B.chord.length := by
+          simp [BalancedSplitData.firstWord, firstHalf, Nat.add_assoc]
+        have hauxEq : (cycle[(B.firstGapLeft j).length + i + 1]'hn) =
+            B.firstWord[B.firstTargetPos s + 1]'(by
+              rw [← (B.firstArcCut_target hsData.1).2]
+              omega) := by
+          simp [cycle, auxiliaryCycleWord, OsinComponents.length_revWord,
+            hwordComp, hwordLen, hiEq]
+          omega
+        rw [hauxEq] at hletter
+        exact hwordPost _ (by omega) hletter
+      · obtain ⟨e, he⟩ := Option.ne_none_iff_exists'.mp hnxt
+        have heq : HalfGap.nextEntry B.brokenAssignment.index.first j = some e := by
+          simpa using he
+        have heSrc := HalfEntry.entrySource_mem B.brokenAssignment.index.first e
+        have heTarget := (mem_brokenSet_iff.mp heSrc).1
+        have hright : B.firstGapFinishSide j =
+            B.firstTargetSide (HalfEntry.entrySource
+              B.brokenAssignment.index.first e) := by
+          simp only [firstGapFinishSide]
+          rw [heq]
+        have hrightPos : 0 < (B.firstGapRight j).length := by
+          have := B.firstGapRight_length_le_one j
+          omega
+        have hnextComp := B.firstGap_rightConnector_isCompOf j e heq 0 (by
+          exact hrightPos) (by
+            simpa [cycle, auxiliaryCycleWord, OsinComponents.length_revWord] using hn)
+        have hnextEq : P.label s = P.label
+            (HalfEntry.entrySource B.brokenAssignment.index.first e) :=
+          eq_of_isCompOf_of_isCompOf hletter hnextComp
+        have hparent := B.firstArc_targetComponent hsData.1
+        have hnextLetter : (B.firstArc[B.firstArcCut
+            (B.firstTargetSide (HalfEntry.entrySource
+              B.brokenAssignment.index.first e))]'(by
+                exact B.firstArc_isCutPath.cut.le_length
+                  (B.firstTargetSide_lt heTarget).le)).IsCompOf (P.label s) := by
+          have hh := hparent.2.2.1 _ le_rfl (by omega) _
+          simpa only [hnextEq] using hh
+        exact hlocalComp.2.2.2.2 _ (by omega) (by omega) hnextLetter
+  have hraw := firstGapArcSource_cycleComponent_of_boundary B j s hstart hend
+  have harc : IsPolygonCut
+      (B.firstGapFinishSide j - B.firstGapStartSide j)
+      (arcWord B.firstArc B.firstArcCut (B.firstGapStartSide j)
+        (B.firstGapFinishSide j))
+      (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) :=
+    isPolygonCut_arcWord B.firstArc_isCutPath.cut
+      (B.firstGap_side_order j) (B.firstGapFinishSide_le j)
+  have hcut0 := auxiliaryCycleCut_arc (B.firstGapLeft j)
+    (B.firstGapRight j) harc
+    (r := B.firstTargetSide s - B.firstGapStartSide j) (by
+      have hs' := hsData.2
+      omega)
+  have hcut1 : B.firstGapCut j
+      ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
+      (B.firstGapLeft j).length + i + 1 := by
+    have hr : B.firstTargetSide s - B.firstGapStartSide j + 1 ≤
+        B.firstGapFinishSide j - B.firstGapStartSide j := by
+      omega
+    have h := auxiliaryCycleCut_arc (B.firstGapLeft j)
+      (B.firstGapRight j) harc
+      (r := B.firstTargetSide s - B.firstGapStartSide j + 1) hr
+    have hcutTarget := (B.firstArcCut_target hsData.1).2
+    dsimp [firstGapCut, i]
+    rw [h]
+    have harg : B.firstGapStartSide j +
+        (B.firstTargetSide s - B.firstGapStartSide j + 1) =
+        B.firstTargetSide s + 1 := by omega
+    rw [harg, hcutTarget]
+    omega
+  dsimp [firstGapCycle, firstGapCut]
+  rw [hcut0]
+  have hcut1' : auxiliaryCycleCut (B.firstGapLeft j)
+      (B.firstGapFinishSide j - B.firstGapStartSide j)
+      (fun r => B.firstArcCut (B.firstGapStartSide j + r) -
+        B.firstArcCut (B.firstGapStartSide j)) (B.firstGapRight j)
+      ((B.firstGapLeft j).length +
+        (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
+      (B.firstGapLeft j).length + i + 1 := hcut1
+  rw [hcut1'] at ⊢
+  simpa only [cycle, B.firstGapLocalLabel_arc j s hs, Nat.add_assoc] using hraw
+
 /-! ## Exact certificate assembly -/
 
 /-- Assemble a first-gap component family and its separation input into the
