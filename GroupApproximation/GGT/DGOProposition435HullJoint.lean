@@ -21,9 +21,11 @@ hypothesis of the joint-selection input gives only
 `original.alphabet.carrier ⊆ A.alphabet.carrier`.  Composing them is exactly
 `original.alphabet.carrier ⊆ selected.rel.base`, the hypothesis of the nested
 form.  The joint family is `GGT.RelHyp.jointRelGenSet`, whose base is the
-symmetrisation of the original relative base: that is inversion-closed, which
-the joint interface demands and a bare `GGT.RelGenSet` does not supply, and
-symmetrising leaves the alphabet unchanged.
+proper part of the original relative base, the base letters that are not
+already peripheral letters.  That base is inversion-closed, which the joint
+interface demands and a bare `GGT.RelGenSet` does not supply, and dropping
+those letters leaves the alphabet unchanged because they come back as
+peripheral letters of the sum.
 
 The nested form has two residues, the hyperbolicity of the joint Cayley graph
 and the local finiteness of the original peripheral metrics.  The first is
@@ -51,7 +53,8 @@ universe u w
 form.**
 
 The joint family is the labelled sum of the original family and the selected
-auxiliary family over the symmetrised original relative base.  Its base is
+auxiliary family over the proper part of the original relative base.  Its base
+is
 inversion-closed, it restricts to the original family on the left and to the
 selected auxiliary peripherals on the right, and the nested form of
 Proposition 4.35 makes it hyperbolically embedded. -/

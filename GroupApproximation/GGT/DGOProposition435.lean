@@ -73,8 +73,9 @@ original index, `DGOProposition435LocalFinitenessStatement`, and
 the gap.
 
 `DGOProposition435InclusionStatement` is the **nested-alphabet** form, over
-`jointRelGenSet` (base the symmetrisation of `D.base`, which leaves the
-alphabet unchanged and makes the joint base inversion-closed for free).  Under
+`jointRelGenSet`, whose base is the proper part of `D.base`, the base letters
+that are not already peripheral letters.  Dropping those leaves the alphabet
+unchanged and makes the joint base inversion-closed for free.  Under
 `D.alphabet.carrier ⊆ E.base` clause (b) at an auxiliary index still follows
 (`jointRelGenSet_relBall_inr_subset`), but clause (a) no longer does: the
 joint alphabet is now a *subset* of the auxiliary one, and hyperbolicity does
@@ -325,43 +326,63 @@ theorem dgoProposition435Statement_iff_localFiniteness :
 
 /-! ## The nested-alphabet form -/
 
-/-- The symmetrisation of a relative base.  It is inversion-closed by
-construction and, because the whole relative alphabet is symmetric, it adds no
-letter the alphabet did not already have. -/
-def symBase (D : RelGenSet G Λ) : Set G := {x : G | x ∈ D.base ∨ x⁻¹ ∈ D.base}
+/-- **The proper part of a relative base**: the base letters that are not
+already peripheral letters.
 
-theorem subset_symBase (D : RelGenSet G Λ) : D.base ⊆ symBase D :=
-  fun _ hx => Or.inl hx
+It is inversion-closed with no hypothesis, because the whole relative alphabet
+is symmetric and the peripherals are subgroups; it is contained in the base;
+and putting the peripherals back recovers the whole alphabet.  It meets no
+`H_lam`, so `RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base` can
+never bite on a joint family built over it. -/
+def properBase (D : RelGenSet G Λ) : Set G :=
+  D.base \ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
 
-theorem symBase_inv (D : RelGenSet G Λ) {x : G} (hx : x ∈ symBase D) :
-    x⁻¹ ∈ symBase D := by
-  rcases hx with hx | hx
-  · refine Or.inr ?_
-    rwa [inv_inv]
-  · exact Or.inl hx
+theorem properBase_subset_base (D : RelGenSet G Λ) : properBase D ⊆ D.base :=
+  fun _ hx => hx.1
 
-theorem symBase_subset_alphabet (D : RelGenSet G Λ) :
-    symBase D ⊆ D.alphabet.carrier := by
-  rintro x (hx | hx)
-  · exact Set.mem_union_left _ hx
-  · have hxinv : x⁻¹ ∈ D.alphabet.carrier := Set.mem_union_left _ hx
-    have h := D.symmetricGenerating.inv_mem x⁻¹ hxinv
-    rwa [inv_inv] at h
+theorem properBase_disjoint_fam (D : RelGenSet G Λ) (lam : Λ) {x : G}
+    (hx : x ∈ properBase D) : x ∉ D.fam lam :=
+  fun hmem => hx.2 (Set.mem_iUnion.mpr ⟨lam, hmem⟩)
 
-/-- **The joint relative generating set over the symmetrised original base.**
+theorem properBase_inv (D : RelGenSet G Λ) {x : G} (hx : x ∈ properBase D) :
+    x⁻¹ ∈ properBase D := by
+  refine ⟨?_, ?_⟩
+  · have hxA : x ∈ D.alphabet.carrier := Set.mem_union_left _ hx.1
+    rcases D.symmetricGenerating.inv_mem x hxA with hb | hf
+    · exact hb
+    · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+      have hlam' : x⁻¹ ∈ D.fam lam := hlam
+      exact absurd (by simpa using inv_mem hlam') (properBase_disjoint_fam D lam hx)
+  · intro hf
+    obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+    have hlam' : x⁻¹ ∈ D.fam lam := hlam
+    exact properBase_disjoint_fam D lam hx (by simpa using inv_mem hlam')
+
+theorem base_subset_properBase_union (D : RelGenSet G Λ) :
+    D.base ⊆ properBase D ∪ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) := by
+  intro x hx
+  by_cases hf : x ∈ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G))
+  · exact Or.inr hf
+  · exact Or.inl ⟨hx, hf⟩
+
+/-- **The joint relative generating set over the proper part of the original
+base.**
 
 Its base is inversion-closed, which both joint interfaces ask for and a bare
-`RelGenSet` does not supply, and symmetrising leaves the alphabet unchanged. -/
+`RelGenSet` does not supply; it is contained in the original base, so the
+original relative balls only shrink; and dropping the peripheral letters from
+the base leaves the alphabet unchanged, because they come back as peripheral
+letters of the sum. -/
 def jointRelGenSet (D : RelGenSet G Λ) (E : RelGenSet G I) :
     RelGenSet G (Sum Λ I) where
-  base := symBase D
+  base := properBase D
   fam
     | Sum.inl lam => D.fam lam
     | Sum.inr i => E.fam i
   symmetricGenerating := by
     refine ⟨?_, ?_⟩
     · rintro y (hy | hy)
-      · exact Or.inl (symBase_inv D hy)
+      · exact Or.inl (properBase_inv D hy)
       · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
         cases s with
         | inl lam =>
@@ -374,12 +395,15 @@ def jointRelGenSet (D : RelGenSet G Λ) (E : RelGenSet G I) :
       rw [← D.symmetricGenerating.closure_eq]
       apply Subgroup.closure_mono
       rintro y (hy | hy)
-      · exact Or.inl (subset_symBase D hy)
+      · rcases base_subset_properBase_union D hy with hp | hf
+        · exact Or.inl hp
+        · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
       · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
         exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
 
 @[simp] theorem jointRelGenSet_base (D : RelGenSet G Λ) (E : RelGenSet G I) :
-    (jointRelGenSet D E).base = symBase D := rfl
+    (jointRelGenSet D E).base = properBase D := rfl
 
 @[simp] theorem jointRelGenSet_fam_inl (D : RelGenSet G Λ) (E : RelGenSet G I)
     (lam : Λ) : (jointRelGenSet D E).fam (Sum.inl lam) = D.fam lam := rfl
@@ -390,7 +414,7 @@ def jointRelGenSet (D : RelGenSet G Λ) (E : RelGenSet G I) :
 /-- The joint base is closed under inversion. -/
 theorem jointRelGenSet_base_inv (D : RelGenSet G Λ) (E : RelGenSet G I) :
     ∀ x ∈ (jointRelGenSet D E).base, x⁻¹ ∈ (jointRelGenSet D E).base :=
-  fun _ hx => symBase_inv D hx
+  fun _ hx => properBase_inv D hx
 
 /-- The joint alphabet is the original relative alphabet together with the
 auxiliary peripherals. -/
@@ -400,7 +424,7 @@ theorem jointRelGenSet_alphabet_carrier (D : RelGenSet G Λ)
       D.alphabet.carrier ∪ (⋃ i : I, ((E.fam i : Subgroup G) : Set G)) := by
   refine Set.Subset.antisymm ?_ ?_
   · rintro y (hy | hy)
-    · exact Or.inl (symBase_subset_alphabet D hy)
+    · exact Or.inl (Set.mem_union_left _ (properBase_subset_base D hy))
     · obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hy
       cases s with
       | inl lam =>
@@ -408,7 +432,10 @@ theorem jointRelGenSet_alphabet_carrier (D : RelGenSet G Λ)
       | inr i => exact Or.inr (Set.mem_iUnion.mpr ⟨i, hs⟩)
   · rintro y (hy | hy)
     · rcases hy with hy | hy
-      · exact Or.inl (subset_symBase D hy)
+      · rcases base_subset_properBase_union D hy with hp | hf
+        · exact Or.inl hp
+        · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hf
+          exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
       · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
         exact Or.inr (Set.mem_iUnion.mpr ⟨Sum.inl lam, hlam⟩)
     · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
@@ -419,7 +446,7 @@ theorem jointRelGenSet_relBall_inr_subset (D : RelGenSet G Λ)
     (E : RelGenSet G I) (hbase : D.alphabet.carrier ⊆ E.base) (i : I)
     (n : ℕ) : (jointRelGenSet D E).relBall (Sum.inr i) n ⊆ E.relBall i n :=
   relBall_inr_subset_of_letters _ E
-    (fun _ hx => hbase (symBase_subset_alphabet D hx))
+    (fun _ hx => hbase (Set.mem_union_left _ (properBase_subset_base D hx)))
     (fun lam _ hx =>
       hbase (Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hx⟩)))
     (fun _ => rfl) i n
@@ -602,22 +629,12 @@ theorem isHyperbolicallyEmbedded_jointRelGenSet_of_isEmpty_left
   · exact (hE.locallyFinite i n).subset
       (jointRelGenSet_relBall_inr_subset D E hbase.symm.subset i n)
 
-/-- The symmetrisation does nothing to a base that is already inversion-closed.
--/
-theorem symBase_eq_of_base_inv (D : RelGenSet G Λ)
-    (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base) : symBase D = D.base := by
-  refine Set.Subset.antisymm ?_ (subset_symBase D)
-  rintro x (hx | hx)
-  · exact hx
-  · have h := hinv _ hx
-    rwa [inv_inv] at h
-
-/-- **No auxiliary subgroups, nested form**, at an inversion-closed original
-base.  The joint alphabet is then the original one, so both clauses come from
-the first hypothesis alone. -/
+/-- **No auxiliary subgroups, nested form.**  The joint alphabet is then the
+original one, so both clauses come from the first hypothesis alone.  No
+hypothesis on the original base is needed, because the proper part of a base
+is always contained in it. -/
 theorem isHyperbolicallyEmbedded_jointRelGenSet_of_isEmpty_right
     [IsEmpty I] (D : RelGenSet G Λ) (E : RelGenSet G I)
-    (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (hD : D.IsHyperbolicallyEmbedded) :
     (jointRelGenSet D E).IsHyperbolicallyEmbedded := by
   have hcarrier :
@@ -630,8 +647,7 @@ theorem isHyperbolicallyEmbedded_jointRelGenSet_of_isEmpty_right
   refine ⟨exists_isHyperbolicSpace_of_alphabet_eq
     (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hD.hyperbolic, ?_⟩
   rintro (lam | i) n
-  · have hb : (jointRelGenSet D E).base ⊆ D.base :=
-      (symBase_eq_of_base_inv D hinv).subset
+  · have hb : (jointRelGenSet D E).base ⊆ D.base := properBase_subset_base D
     exact (hD.locallyFinite lam n).subset
       (relBall_inl_subset_of_letters_of_isEmpty _ D hb (fun _ => rfl) lam n)
   · exact isEmptyElim i
