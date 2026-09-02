@@ -2384,8 +2384,9 @@ theorem dgoLemma421b_of_uniform414_of_baseSymm
               rw [← hMadd]
               exact hsum
             refine ⟨⟨pc.length + m, hslot⟩, hmatched, ?_⟩
-            dsimp
             rw [hmn]
+            have hnot : ¬ pc.length + P.length + m < pc.length := by omega
+            rw [dif_neg hnot]
             rw [show pc.length + P.length + m =
               P.length + (pc.length + m) by omega,
               Nat.add_sub_cancel_left]
