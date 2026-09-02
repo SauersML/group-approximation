@@ -202,7 +202,7 @@ theorem exists_depth_pairwiseNonCommensurable_cyclicProducts_of_dgoLemma421b
         D (by omega) (a l) (a j) M N 1 t ip kp iq kq lam
           hcompL hcompJ hstepL hstepJ hmem
     have hprefix := matchedElementaryCommonPrefixConnectors_eq_one
-      (by omega : 0 < k) f (a l) (a j) c
+      f (a l) (a j) c
       (fun i ↦ (hcommon l j i).symm)
       (hcentral l) hcmem hcrec hinter
     have hlastStart : c (Fin.last k).castSucc = 1 := hprefix (Fin.last k)

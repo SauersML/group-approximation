@@ -90,7 +90,7 @@ first `k` letters.  The connector at the start of the final component is
 trivial because the successive common-prefix connectors also lie in the
 final peripheral subgroup.  No centralizer condition is needed for the last
 letter, where the two products are allowed to differ. -/
-theorem matchedCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
+theorem matchedCommonPrefixConnectors_eq_one {k : ℕ}
     (E : Fin (k + 1) → Subgroup G) (a b : Fin (k + 1) → G)
     (c : Fin (k + 2) → G)
     (hcommon : ∀ i : Fin k, b i.castSucc = a i.castSucc)
@@ -134,7 +134,7 @@ theorem matchedCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
   exact (hconst j).trans hd0
 
 /-- The elementary-closure adapter for common-prefix propagation. -/
-theorem matchedElementaryCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
+theorem matchedElementaryCommonPrefixConnectors_eq_one {k : ℕ}
     (f a b : Fin (k + 1) → G) (c : Fin (k + 2) → G)
     (hcommon : ∀ i : Fin k, b i.castSucc = a i.castSucc)
     (hcentral : ∀ i : Fin k,
@@ -147,7 +147,7 @@ theorem matchedElementaryCommonPrefixConnectors_eq_one {k : ℕ} (hk : 0 < k)
     (hinter : ∀ x : G,
       (∀ i : Fin (k + 1), x ∈ elementaryClosure (f i)) → x = 1) :
     ∀ j : Fin (k + 1), c j.castSucc = 1 := by
-  apply matchedCommonPrefixConnectors_eq_one hk
+  apply matchedCommonPrefixConnectors_eq_one
     (fun i ↦ elementaryClosure (f i)) a b c hcommon
   · intro i x hx
     exact Set.mem_setOf_eq.mp ((Set.ext_iff.mp (hcentral i) x).mp hx)
