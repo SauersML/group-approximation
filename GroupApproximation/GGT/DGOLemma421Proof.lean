@@ -2358,6 +2358,72 @@ theorem exists_connected_side_of_deep_minimalityFourGon
   exact fourGon_index_cases e Pseg f Qseg
     (le_of_lt (lt_of_lt_of_le hcompj.1 hcompj.2.1))
 
+/-- A vertex of a segment, read from the identity, is the difference of two
+vertices of the whole word. -/
+theorem vertex_segment_one (w : List (RelLetter G Λ)) (k m a : ℕ) (ha : a ≤ m) :
+    vertex (1 : G) ((w.drop k).take m) a
+      = (vertex (1 : G) w k)⁻¹ * vertex (1 : G) w (k + a) := by
+  have hshift := vertex_smul (vertex (1 : G) w k) (1 : G)
+    ((w.drop k).take m) a
+  rw [mul_one] at hshift
+  have hs := vertex_segment w (1 : G) k m a ha
+  rw [hshift] at hs
+  rw [← hs]
+  group
+
+/-- **A component of the `p`-segment connected to the near connector is
+connected to `p_i` itself.**
+
+This is the first of Dahmani--Guirardel--Osin's three exclusions: "*`p_{i+a}`
+can not be connected to `e` as otherwise it is connected to `p_i` as well,
+which contradicts the fact that all components of `p` are isolated*"
+(HE.tex:764).  The conclusion here is the "connected to `p_i` as well" half;
+the contradiction is then the isolation of `p`'s components, which the counting
+half already proves.
+
+The connector occupies the single position `0` of the quadrilateral, so a
+connection to it is a connection to the polygon's basepoint, and unwinding the
+two vertex identities turns that into a connection inside `p`. -/
+theorem connected_source_of_connected_nearConnector
+    {D : RelGenSet G Λ} {P Q e f Qseg : List (RelLetter G Λ)}
+    {lam : Λ} {ip1 iq1 m a' : ℕ}
+    (hev : RelLetter.listVal e
+      = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1)
+    (hm1 : (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) Q iq1 ∈ D.fam lam)
+    (ha' : a' ≤ ((P.drop ip1).take m).length)
+    (hconn : Connected D.fam lam (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) (e.length + a') 0) :
+    Connected D.fam lam (1 : G) P ip1 (ip1 + a') := by
+  have ham : a' ≤ m := by
+    refine le_trans ha' ?_
+    rw [List.length_take]
+    exact Nat.min_le_left _ _
+  have hvz : vertex (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) 0 = (1 : G) :=
+    vertex_zero _ _
+  have hvi : vertex (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) (e.length + a')
+      = RelLetter.listVal e * vertex (1 : G) ((P.drop ip1).take m) a' := by
+    rw [vertex_fourGon_side e ((P.drop ip1).take m) f Qseg (1 : G) ha']
+    group
+  have hseg : vertex (1 : G) ((P.drop ip1).take m) a'
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a') :=
+    vertex_segment_one P ip1 m a' ham
+  have h : (vertex (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) (e.length + a'))⁻¹ *
+      vertex (1 : G) (e ++ (P.drop ip1).take m ++ f ++ revWord Qseg) 0
+      ∈ D.fam lam := hconn
+  rw [hvz, hvi, hseg, hev] at h
+  have hrw : (((vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1 *
+      ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a')))⁻¹ * 1)
+      = (vertex (1 : G) P (ip1 + a'))⁻¹ * vertex (1 : G) Q iq1 := by group
+  rw [hrw] at h
+  have hprod := mul_mem hm1 (inv_mem h)
+  have hrw2 : ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) Q iq1) *
+      ((vertex (1 : G) P (ip1 + a'))⁻¹ * vertex (1 : G) Q iq1)⁻¹
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a') := by group
+  rwa [hrw2] at hprod
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
