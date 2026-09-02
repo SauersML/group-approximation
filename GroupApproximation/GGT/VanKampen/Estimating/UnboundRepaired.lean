@@ -57,30 +57,14 @@ theorem rho_pos_of_threshold {mu : ℝ} {rho : ℕ}
   rw [hzero, Nat.cast_zero, Real.sqrt_zero, mul_zero] at hthreshold
   norm_num at hthreshold
 
-/-- Osin's parameter choice `rho > mu^{-2}` is available: every positive `mu`
-admits a positive `rho` meeting the threshold.  The witness is the ceiling of
-`(2 * mu)^{-2}`. -/
+/-- Osin's parameter choice `rho > mu^{-2}` is available at a single `rho`.
+The uniform statement over all large `rho` is `exists_two_mu_sqrt_threshold`,
+and this is its one-witness corollary, in the shape the selection statement
+now promises. -/
 theorem exists_rho_threshold {mu : ℝ} (hmu : 0 < mu) :
     ∃ rho : ℕ, 0 < rho ∧ 1 ≤ 2 * mu * Real.sqrt (rho : ℝ) := by
-  have hmune : mu ≠ 0 := ne_of_gt hmu
-  have hx : (0 : ℝ) < 1 / (2 * mu) := by positivity
-  refine ⟨max 1 (Nat.ceil ((1 / (2 * mu)) ^ 2)), ?_, ?_⟩
-  · exact lt_of_lt_of_le Nat.one_pos (le_max_left 1 _)
-  · have hceil : (1 / (2 * mu)) ^ 2 ≤
-        ((Nat.ceil ((1 / (2 * mu)) ^ 2) : ℕ) : ℝ) := Nat.le_ceil _
-    have hmono : ((Nat.ceil ((1 / (2 * mu)) ^ 2) : ℕ) : ℝ) ≤
-        ((max 1 (Nat.ceil ((1 / (2 * mu)) ^ 2)) : ℕ) : ℝ) :=
-      Nat.cast_le.mpr (Nat.le_max_right 1 (Nat.ceil ((1 / (2 * mu)) ^ 2)))
-    have hsqrt : 1 / (2 * mu) ≤
-        Real.sqrt ((max 1 (Nat.ceil ((1 / (2 * mu)) ^ 2)) : ℕ) : ℝ) :=
-      (Real.le_sqrt' hx).mpr (le_trans hceil hmono)
-    have h2mu : (0 : ℝ) ≤ 2 * mu := by positivity
-    have hmul : 2 * mu * (1 / (2 * mu)) ≤
-        2 * mu * Real.sqrt ((max 1 (Nat.ceil ((1 / (2 * mu)) ^ 2)) : ℕ) : ℝ) :=
-      mul_le_mul_of_nonneg_left hsqrt h2mu
-    have hone : 2 * mu * (1 / (2 * mu)) = 1 := by field_simp
-    rw [hone] at hmul
-    exact hmul
+  obtain ⟨rho0, hrho0, hthreshold⟩ := exists_two_mu_sqrt_threshold mu hmu
+  exact ⟨rho0, hrho0, hthreshold rho0 (le_refl rho0)⟩
 
 /-! ## The cell-boundary counting identity -/
 
