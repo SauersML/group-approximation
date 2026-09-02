@@ -1411,7 +1411,7 @@ theorem secondGapArcBoundaryExclusion_terminal_of_parent_successor
     {P : SumBoundInput D (b : ℝ) n}
     (B : BalancedSplitData D hsymm b hδ P k R)
     (j : Fin B.brokenAssignment.index.second.pieceCount)
-    (s : ℕ)
+    (s : ℕ) (hs : s ∈ B.secondGapArcSources j)
     (hn :
       (B.secondGapLeft j).length +
           (B.secondArcCut (B.secondTargetSide s) -
