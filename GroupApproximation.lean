@@ -3289,6 +3289,7 @@ import GroupApproximation.GGT.HullSCRelativeGreendlingerPowerBoundary
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonInput
 import GroupApproximation.GGT.DGOProposition435JointPrescribed
 import GroupApproximation.GGT.VanKampen.SurgeryFacePartition
+import GroupApproximation.GGT.HullSCRelativeGreendlingerBoundaryArc
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
