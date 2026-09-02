@@ -3251,6 +3251,7 @@ import GroupApproximation.GGT.HullSCLemma44JointRelabel
 import GroupApproximation.GGT.VanKampen.FaceSetDualErase
 import GroupApproximation.GGT.VanKampen.FaceSetDualWalk
 import GroupApproximation.GGT.VanKampen.ClosedWalkValue
+import GroupApproximation.GGT.VanKampen.RegionSubMap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
