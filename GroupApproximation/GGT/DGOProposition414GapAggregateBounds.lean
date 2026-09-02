@@ -163,8 +163,13 @@ theorem sum_firstGapRight_length_le
     apply Finset.sum_le_sum
     intro j _hj
     exact B.firstGapRight_length_le_one j.castSucc
-  simpa [GreedyHalfFamilyIndex.pieceCount, firstGapRight,
-    HalfGap.nextEntry] using hinit
+  have hlast :
+      (B.firstGapRight
+        (Fin.last B.brokenAssignment.index.first.sources.length)).length = 0 := by
+    simp [GreedyHalfFamilyIndex.pieceCount, firstGapRight,
+      HalfGap.nextEntry]
+  rw [hlast, Nat.add_zero]
+  simpa using hinit
 
 /-- Wrapped left connectors have the same source-count bound. -/
 theorem sum_secondGapLeft_length_le
@@ -215,8 +220,13 @@ theorem sum_secondGapRight_length_le
     apply Finset.sum_le_sum
     intro j _hj
     exact B.secondGapRight_length_le_one j.castSucc
-  simpa [GreedyHalfFamilyIndex.pieceCount, secondGapRight,
-    HalfGap.nextEntry] using hinit
+  have hlast :
+      (B.secondGapRight
+        (Fin.last B.brokenAssignment.index.second.sources.length)).length = 0 := by
+    simp [GreedyHalfFamilyIndex.pieceCount, secondGapRight,
+      HalfGap.nextEntry]
+  rw [hlast, Nat.add_zero]
+  simpa using hinit
 
 /-- Both trimmed chord families together cost at most the two quadratic
 traversals plus their endpoint and orientation corrections. -/
@@ -253,6 +263,7 @@ theorem sum_gapChord_length_le
   have hm₂ : A₂.partners.length ≤ B.chord.length := by
     rw [A₂.partner_length, A₂.source_length]
     exact A₂.source_count_le
+  dsimp only [A₁, A₂] at ht₁ ht₂ hi₁ hi₂ hm₁ hm₂
   unfold ChordPartnerQuadraticTraversalBound at hi₁ hi₂
   omega
 
@@ -349,10 +360,11 @@ theorem gapIntervalsOfConfigurations_count_upper
               (B.firstGapChordFinish j)).length) := by
     apply Finset.sum_congr rfl
     intro j _hj
-    rw [AuxiliaryIntervalOnChord.toPathInput_sideCount]
-    rcases B.gapIntervalsOfConfigurations_first_shape C j with
-      ⟨hleft, harc, hright, hstart, hfinish⟩
-    rw [hleft, harc, hright, hstart, hfinish]
+    let S := (B.gapIntervalsOfConfigurations C).first j
+    have hshape := B.gapIntervalsOfConfigurations_first_shape C j
+    change S.toPathInput.sideCount = _
+    rw [S.toPathInput_sideCount, hshape.1, hshape.2.1, hshape.2.2.1,
+      hshape.2.2.2.1, hshape.2.2.2.2]
   have hsecond :
       (∑ j, (((B.gapIntervalsOfConfigurations C).toPathInput).second j).sideCount) =
         ∑ j : Fin B.brokenAssignment.index.second.pieceCount,
@@ -363,10 +375,11 @@ theorem gapIntervalsOfConfigurations_count_upper
               (B.secondGapChordFinish j)).length) := by
     apply Finset.sum_congr rfl
     intro j _hj
-    rw [AuxiliaryIntervalOnChord.toPathInput_sideCount]
-    rcases B.gapIntervalsOfConfigurations_second_shape C j with
-      ⟨hleft, harc, hright, hstart, hfinish⟩
-    rw [hleft, harc, hright, hstart, hfinish]
+    let S := (B.gapIntervalsOfConfigurations C).second j
+    have hshape := B.gapIntervalsOfConfigurations_second_shape C j
+    change S.toPathInput.sideCount = _
+    rw [S.toPathInput_sideCount, hshape.1, hshape.2.1, hshape.2.2.1,
+      hshape.2.2.2.1, hshape.2.2.2.2]
   rw [hfirst, hsecond]
   exact B.sum_rawGap_sideCount_upper
 
