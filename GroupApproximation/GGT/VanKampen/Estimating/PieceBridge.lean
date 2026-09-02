@@ -215,6 +215,7 @@ theorem Contiguity.targetArc_value_of_pasting
       GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
         (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+  cases htarget
   have hboundary := Gamma.targetBoundary_value_of_pasting pasting
   have htargetBoundary :
       targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
@@ -231,8 +232,8 @@ theorem Contiguity.targetArc_value_of_pasting
   calc
     GGT.RelLetter.listVal
         (dartWord Delta (Gamma.cellTargetArc target htarget).darts) =
-        (GGT.RelLetter.listVal
-          (dartWord Delta (Gamma.cellTargetArc target htarget).darts))⁻¹ := by
+        ((GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.cellTargetArc target htarget).darts))⁻¹)⁻¹ := by
             rw [inv_inv]
     _ = ((GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
         GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
