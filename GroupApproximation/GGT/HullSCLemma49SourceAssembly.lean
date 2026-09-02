@@ -223,8 +223,8 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceConstruction
   have hgeom :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} :=
     GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_data hdata
-  exact hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches hgeom
-    hpasting hinjective
+  exact hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+    (hgeom := hgeom) (hpasting := hpasting) (hinjective := hinjective)
 
 /-! ## Model check -/
 
