@@ -636,6 +636,11 @@ structure CenteredWindowFirstLayerIncidence
   position_injective : ∀ (i : Fin depth), Function.Injective (position i)
   /-- First inner star-layer face met by the position. -/
   face : ∀ _i : Fin depth, Fin (scale - loss) → Delta.toCombMap.Face
+  /-- Incidence slot of the selected face. -/
+  slot : ∀ (i : Fin depth), Fin (scale - loss) → Fin perimeter
+  /-- The face-slot pair separates positions in each layer. -/
+  slot_injective : ∀ (i : Fin depth), Function.Injective
+    (fun q ↦ (face i q, slot i q))
   /-- The selected face belongs to the required inner layer. -/
   face_mem : ∀ (i : Fin depth) q,
     face i q ∈ innerBoundaryFaceStarLayer Delta P (i : ℕ)
@@ -658,48 +663,6 @@ theorem boundarySubpath_nodup
     exact (Delta.faceBoundary Delta.outerFace).nodup
   exact hall.of_append_right.of_append_left
 
-/-- Position of the selected dart in the duplicate-free boundary list of its
-first layer face. -/
-noncomputable def firstLayerIncidenceIndex
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
-    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
-    (i : Fin depth) (q : Fin (scale - loss)) :
-    Fin (Delta.faceBoundary (C.face i q)).darts.length := by
-  classical
-  exact ((Delta.faceBoundary (C.face i q)).nodup.getEquiv
-    (Delta.faceBoundary (C.face i q)).darts).symm
-      ⟨P.darts.get (C.position i q), C.on_face i q⟩
-
-omit [Fintype Generator] [DecidableEq Generator]
-    [Fintype TriangleIndex] [DecidableEq TriangleIndex] in
-/-- Reading the reconstructed face-boundary incidence returns the original
-centered-window dart. -/
-theorem firstLayerIncidenceIndex_get
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
-    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
-    (i : Fin depth) (q : Fin (scale - loss)) :
-    (Delta.faceBoundary (C.face i q)).darts.get
-        (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i q) =
-      P.darts.get (C.position i q) := by
-  classical
-  have h := ((Delta.faceBoundary (C.face i q)).nodup.getEquiv
-      (Delta.faceBoundary (C.face i q)).darts).apply_symm_apply
-      ⟨P.darts.get (C.position i q), C.on_face i q⟩
-  exact congrArg Subtype.val h
-
-/-- The reconstructed incidence index embeds in the uniform perimeter bound. -/
-noncomputable def firstLayerIncidenceSlot
-    (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T))
-    (P : BoundarySubpath T Delta) (depth scale loss perimeter : ℕ)
-    (C : CenteredWindowFirstLayerIncidence Delta P depth scale loss perimeter)
-    (i : Fin depth) (q : Fin (scale - loss)) : Fin perimeter :=
-  Fin.castLE (by
-    rw [(Delta.faceBoundary (C.face i q)).length_eq_degree]
-    exact C.faceDegree_le i q)
-    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i q)
-
 /-- The first-layer face assignment canonically constructs the incidence
 injection used in the third successive-star inequality. -/
 noncomputable def layerIncidenceInjection_of_firstLayer
@@ -712,39 +675,13 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   classical
   refine {
     encode := fun i q ↦
-      (⟨C.face i q, C.face_mem i q⟩,
-        firstLayerIncidenceSlot Delta P depth scale loss perimeter C i q)
+      (⟨C.face i q, C.face_mem i q⟩, C.slot i q)
     injective := ?_ }
   intro i x y hxy
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
-  have hslot := congrArg Prod.snd hxy
-  dsimp [firstLayerIncidenceSlot] at hslot
-  let ix : ℕ :=
-    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val
-  let iy : ℕ :=
-    (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val
-  have hval : ix = iy := by
-    simpa [ix, iy] using congrArg Fin.val hslot
-  clear hslot
-  have finish : ∀ (hface : C.face i x = C.face i y), ix = iy →
-      x = y := by
-    intro hface
-    cases hface
-    intro hval
-    have hindex :
-        firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
-          firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y := by
-      apply Fin.ext
-      simpa [ix, iy] using hval
-    have hdart : P.darts.get (C.position i x) =
-        P.darts.get (C.position i y) := by
-      rw [← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i x,
-        ← firstLayerIncidenceIndex_get Delta P depth scale loss perimeter C i y,
-        hindex]
-    exact C.position_injective i
-      ((boundarySubpath_nodup Delta P).get_inj_iff.mp hdart)
-  exact finish hface hval
+  apply C.slot_injective i
+  exact Prod.ext hface (congrArg Prod.snd hxy)
 
 /-- An incidence injection proves the numerical covering inequality. -/
 theorem layer_covers_of_incidenceInjection
