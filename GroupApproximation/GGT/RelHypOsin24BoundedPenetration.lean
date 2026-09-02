@@ -65,9 +65,11 @@ theorem finite_fixed_doubleCoset_slice_of_isHyperbolicallyEmbedded
     (k h : G) :
     (Set.image (fun z : G => k * h * z) (D.relBall lam n)).Finite := by
   have hK : ({k} : Set G).Finite := Set.finite_singleton k
-  have hslice := relativeBoundedPenetrationSlice_proved G inferInstance I D
-    (Set.toFinite _)
-    hemb lam n ({k} : Set G) h hK
+  have hslice :
+      (Set.image2 (fun a z : G => a * h * z) ({k} : Set G)
+        (D.relBall lam n)).Finite :=
+    Set.Finite.image2 (fun a z : G => a * h * z) hK
+      (hemb.locallyFinite lam n)
   have himage :
       Set.image2 (fun a z : G => a * h * z) ({k} : Set G)
         (D.relBall lam n) =
