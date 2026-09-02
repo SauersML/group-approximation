@@ -1,7 +1,7 @@
+import GroupApproximation.GGT.KazhdanHypSymplecticQuadrangleStrongRegular
 import GroupApproximation.GGT.KazhdanHypGirthEight
 import GroupApproximation.GGT.KazhdanHypGQLinkTransfer
 import GroupApproximation.GGT.KazhdanHypSingerReduction
-import GroupApproximation.GGT.KazhdanHypSymplecticQuadrangleStrongRegular
 import GroupApproximation.GGT.KazhdanHypGQTwoTable
 
 /-!
@@ -280,15 +280,31 @@ theorem gqTwo_cornerIncidence_model :
     else (if t then GQTwoTable.incidence y x else 0)
   exact GQTwoTable.adjacency_eq_incidence x y s t
 
-/-- The GQ(2,2) model has the same hypothesis shape as the concrete theorem:
-literal positivity together with a signed corner/incidence identification.
-It is an abstract-interface model because this repository has no algebraic
-`W(2)` counts package. -/
+/-- The GQ(2,2) model has the same row-reduction hypothesis shape as the
+concrete theorem.  The abstract cover permits a 27-element representative
+type even though the fifteen identity orbits are repeated here; this tests
+the contract without pretending that the table has a `W(8)` instance. -/
 theorem gqTwo_singerRows_hypothesis_shape_model :
-    (∀ j k, (GQTwoTable.triangles j k).2 = true) ∧
+    ∃ cover : CyclicOrbitCover (1 : Equiv.Perm (Fin 15)) (Fin 27),
+      TriangleEquivariant (1 : Equiv.Perm (Fin 15)) (1 : Equiv.Perm (Fin 15))
+          GQTwoTable.triangles ∧
+      Fintype.card (Fin 27) = 27 ∧
+      (∀ r k, (GQTwoTable.triangles (cover.root r) k).2 = true) ∧
       CornerIncidenceTable GQTwoTable.triangles gqTwoIncident
         (Equiv.refl (Fin 15)) := by
-  exact ⟨GQTwoTable.positive, gqTwo_cornerIncidence_model⟩
+  let cover : CyclicOrbitCover (1 : Equiv.Perm (Fin 15)) (Fin 27) := {
+    root := fun r => ⟨r.val % 15, Nat.mod_lt _ (by decide)⟩
+    representative := fun x => ⟨x.val, by omega⟩
+    exponent := fun _ => 0
+    covers := by
+      intro x
+      apply Fin.ext
+      simp [Nat.mod_eq_of_lt x.isLt] }
+  refine ⟨cover, triangleEquivariant_identityModel GQTwoTable.triangles, ?_, ?_,
+    gqTwo_cornerIncidence_model⟩
+  · norm_num
+  · intro r k
+    exact GQTwoTable.positive (cover.root r) k
 
 end KazhdanHyp
 end GroupApproximation
