@@ -104,7 +104,8 @@ theorem no_peripheral_power_of_hyperbolic_finiteFamily
       rintro x ⟨n, rfl⟩
       constructor
       · change g ^ (m * n) ∈ D.fam lam
-        simpa only [pow_mul] using (D.fam lam).pow_mem hmem n
+        rw [pow_mul]
+        exact (D.fam lam).pow_mem hmem n
       · have hcomm : Commute g (g ^ (m * n)) :=
           (Commute.refl g).pow_right _
         have hconj : g⁻¹ * g ^ (m * n) * g = g ^ (m * n) := by
