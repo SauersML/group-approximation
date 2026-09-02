@@ -243,6 +243,81 @@ theorem vertexCount_eq (S : CactusShape) :
   rw [CombMap.vertexCount, Nat.card_congr S.vertexEquiv]
   simp [VertexIndex]
 
+/-! ## Edge orbits -/
+
+/-- Edge indices of the cactus: outer polygon edges, relator polygon edges,
+and stems. -/
+abbrev EdgeIndex (S : CactusShape) :=
+  (Fin S.boundaryLength ⊕
+    Σ i : Fin S.cellCount, Fin (S.relatorLength i)) ⊕
+      Fin S.cellCount
+
+/-- The unoriented edge containing a cactus dart. -/
+def edgeClass (S : CactusShape) : CactusDart S → S.EdgeIndex
+  | .outerForward j => Sum.inl (Sum.inl j)
+  | .outerBackward j => Sum.inl (Sum.inl j)
+  | .relatorForward i j => Sum.inl (Sum.inr ⟨i, j⟩)
+  | .relatorBackward i j => Sum.inl (Sum.inr ⟨i, j⟩)
+  | .stemOut i => Sum.inr i
+  | .stemIn i => Sum.inr i
+
+/-- A canonical orientation of every cactus edge. -/
+def edgeRepresentative (S : CactusShape) : S.EdgeIndex → CactusDart S
+  | Sum.inl (Sum.inl j) => .outerForward j
+  | Sum.inl (Sum.inr ⟨i, j⟩) => .relatorForward i j
+  | Sum.inr i => .stemOut i
+
+theorem edgeClass_representative (S : CactusShape) (e : S.EdgeIndex) :
+    S.edgeClass (S.edgeRepresentative e) = e := by
+  rcases e with (e | i)
+  · rcases e with (j | q)
+    · rfl
+    · rcases q with ⟨i, j⟩
+      rfl
+  · rfl
+
+/-- Edge reversal preserves the explicit edge classifier. -/
+theorem edgeClass_alpha (S : CactusShape) (d : CactusDart S) :
+    S.edgeClass (S.alpha d) = S.edgeClass d := by
+  cases d <;> rfl
+
+/-- The canonical representative and a dart with the same edge index are
+equal or reverses. -/
+theorem edgeRepresentative_related (S : CactusShape) (d : CactusDart S) :
+    DartPairRel S.alpha (S.edgeRepresentative (S.edgeClass d)) d := by
+  cases d with
+  | outerForward j => exact Or.inl rfl
+  | outerBackward j => exact Or.inr rfl
+  | relatorForward i j => exact Or.inl rfl
+  | relatorBackward i j => exact Or.inr rfl
+  | stemOut i => exact Or.inl rfl
+  | stemIn i => exact Or.inr rfl
+
+/-- Edge pairs are exactly the explicitly indexed polygon edges and stems. -/
+noncomputable def edgeEquiv (S : CactusShape) :
+    S.toCombMap.Edge ≃ S.EdgeIndex where
+  toFun := Quotient.lift S.edgeClass fun d e hde ↦ by
+    rcases hde with hde | hde
+    · exact congrArg S.edgeClass hde
+    · calc
+        S.edgeClass d = S.edgeClass (S.alpha d) := (S.edgeClass_alpha d).symm
+        _ = S.edgeClass e := congrArg S.edgeClass hde
+  invFun e := Quotient.mk'' (S.edgeRepresentative e)
+  left_inv q := by
+    refine Quotient.inductionOn' q ?_
+    intro d
+    apply Quotient.sound
+    exact S.edgeRepresentative_related d
+  right_inv e := S.edgeClass_representative e
+
+/-- The cactus has all polygon edges and one stem edge per cell. -/
+theorem edgeCount_eq (S : CactusShape) :
+    S.toCombMap.edgeCount =
+      S.boundaryLength +
+        (∑ i : Fin S.cellCount, S.relatorLength i) + S.cellCount := by
+  rw [CombMap.edgeCount, Nat.card_congr S.edgeEquiv]
+  simp [EdgeIndex]
+
 end CactusShape
 
 end VanKampen
