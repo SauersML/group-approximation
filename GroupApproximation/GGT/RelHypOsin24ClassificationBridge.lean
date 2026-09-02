@@ -2,6 +2,7 @@ import GroupApproximation.GGT.RelHypOsin24Action
 import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
 import GroupApproximation.GGT.HullYiAlphabetTransfer
 import GroupApproximation.GGT.OsinTheorem54Unconditional
+import GroupApproximation.GGT.RelHypOsin24PowerUnbounded
 
 /-!
 # The escape-to-loxodromy bridge for Osin's element classification
@@ -287,6 +288,23 @@ theorem finiteFamilyRelativePowerEscapeSource_of_relativePowerEscape
     FiniteFamilyRelativePowerEscapeSourceStatement.{u, v} := by
   intro G instG I _ D hbase hemb g hhyper hord
   exact hEscape G instG I D hbase hemb g hhyper hord
+
+/-- The finite-index source target follows from the named bounded-penetration
+extraction.  The empty-family branch is the finite-alphabet model; when the
+family is nonempty, `isEscaping_of_relativeBoundedPowerExtraction` supplies
+the Memoirs power-growth conclusion. -/
+theorem finiteFamilyRelativePowerEscapeSource_of_boundedPowerExtraction
+    (hExtract : RelativeBoundedPowerExtractionStatement.{u, v}) :
+    FiniteFamilyRelativePowerEscapeSourceStatement.{u, v} := by
+  classical
+  intro G instG I _ D hbase hemb g hhyper hord
+  letI : Group G := instG
+  by_cases hI : IsEmpty I
+  · letI : IsEmpty I := hI
+    exact finiteAlphabetRelativePowerEscape_emptyModel D hbase g hord
+  · letI : Nonempty I := not_isEmpty_iff.mp hI
+    exact isEscaping_of_relativeBoundedPowerExtraction D hbase hemb hhyper hord
+      (hExtract G inferInstance I D hbase hemb g)
 
 /-- Model test for the source-facing finite-family target: in `PUnit` the
 infinite-order premise is contradictory, so the conclusion is immediate. -/
