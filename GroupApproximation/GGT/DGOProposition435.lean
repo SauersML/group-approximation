@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.RelHypOsin24CombinedFamily
+import GroupApproximation.GGT.DGOCorollary427PairLocal
 
 /-!
 # Dahmani--Guirardel--Osin, Proposition 4.35, and the direction the filling
@@ -85,6 +86,18 @@ not pass to a smaller generating set.  So this form has two residues,
 `dgoProposition435InclusionStatement_of_residues` splits it into exactly them.
 `dgoProposition435JointHyperbolic_of_base_eq` discharges the first whenever
 the two alphabets do agree, which is what the first filling step supplies.
+
+## The local-finiteness residue, reduced
+
+`DGOProposition435FiniteAuxiliaryLettersStatement` says that for each original
+index and radius, finitely many auxiliary letters suffice to spell the whole
+joint relative ball.
+`dgoProposition435JointLocalFiniteness_of_finiteAuxiliaryLetters` proves the
+second residue from it, by turning those letters into finitely many extra base
+letters and quoting the local-finiteness half of Corollary 4.27, which is
+proved in `GGT/DGOCorollary427PairLocal.lean`.  So the residue is now a
+statement about auxiliary letters alone, which is the shape Proposition 4.14
+delivers.
 
 ## Model tests
 
@@ -206,6 +219,27 @@ theorem avoidsFrom_map_auxOfJoint {F : Sum Λ I → Subgroup G}
         rw [hF i]
         exact hmem
       · rw [RelLetter.auxOfJoint_val]
+        exact ih (p * a.val) htail
+
+/-- Avoidance of `Γ_{H_lam}` survives reading a joint word as an original
+word. -/
+theorem avoidsFrom_map_origOfJoint {F : Sum Λ I → Subgroup G}
+    {Df : Λ → Subgroup G} (hF : ∀ mu : Λ, F (Sum.inl mu) = Df mu) (lam : Λ) :
+    ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
+      AvoidsFrom F (Sum.inl lam) u p →
+        AvoidsFrom Df lam (u.map RelLetter.origOfJoint) p := by
+  intro u
+  induction u with
+  | nil => intro _ _; exact trivial
+  | cons a t ih =>
+      intro p hp
+      obtain ⟨hhead, htail⟩ := hp
+      refine ⟨?_, ?_⟩
+      · rintro ⟨hc, hmem⟩
+        refine hhead ⟨RelLetter.isCompOf_of_origOfJoint hc, ?_⟩
+        rw [hF lam]
+        exact hmem
+      · rw [RelLetter.origOfJoint_val]
         exact ih (p * a.val) htail
 
 /-- **Clause (b) of `↪_h` at an auxiliary index, for any joint relative
@@ -528,6 +562,145 @@ theorem dgoProposition435JointHyperbolic_of_base_eq (D : RelGenSet G Λ)
   exact exists_isHyperbolicSpace_of_alphabet_eq
     (OsinComponents.alphabet_eq_of_carrier_eq hcarrier) hE.hyperbolic
 
+/-! ## Reducing the local-finiteness residue to finitely many auxiliary
+letters -/
+
+/-- Adjoin a symmetric set of letters to a relative base. -/
+def adjoinBase (D : RelGenSet G Λ) (F : Set G) (hFinv : ∀ x ∈ F, x⁻¹ ∈ F) :
+    RelGenSet G Λ where
+  base := D.base ∪ F
+  fam := D.fam
+  symmetricGenerating := by
+    have hup : D.base ∪ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) ⊆
+        (D.base ∪ F) ∪ (⋃ lam : Λ, ((D.fam lam : Subgroup G) : Set G)) := by
+      rintro y (hy | hy)
+      · exact Or.inl (Or.inl hy)
+      · exact Or.inr hy
+    refine ⟨?_, ?_⟩
+    · rintro y ((hy | hy) | hy)
+      · exact hup (D.symmetricGenerating.inv_mem y (Set.mem_union_left _ hy))
+      · exact Or.inl (Or.inr (hFinv y hy))
+      · obtain ⟨lam, hlam⟩ := Set.mem_iUnion.mp hy
+        exact Or.inr (Set.mem_iUnion.mpr ⟨lam, (D.fam lam).inv_mem hlam⟩)
+    · refine eq_top_iff.mpr ?_
+      rw [← D.symmetricGenerating.closure_eq]
+      exact Subgroup.closure_mono hup
+
+@[simp] theorem adjoinBase_base (D : RelGenSet G Λ) (F : Set G)
+    (hFinv : ∀ x ∈ F, x⁻¹ ∈ F) :
+    (adjoinBase D F hFinv).base = D.base ∪ F := rfl
+
+@[simp] theorem adjoinBase_fam (D : RelGenSet G Λ) (F : Set G)
+    (hFinv : ∀ x ∈ F, x⁻¹ ∈ F) : (adjoinBase D F hFinv).fam = D.fam := rfl
+
+/-- **A finite enlargement of the base keeps the relative balls finite.**
+
+This is the local-finiteness half of Dahmani--Guirardel--Osin's Corollary 4.27,
+in the one-way direction, and it is proved in the repository. -/
+theorem relBall_finite_adjoinBase (D : RelGenSet G Λ) (F : Set G)
+    (hFinv : ∀ x ∈ F, x⁻¹ ∈ F) (hFfin : F.Finite)
+    (hD : D.IsHyperbolicallyEmbedded) (lam : Λ) (n : ℕ) :
+    ((adjoinBase D F hFinv).relBall lam n).Finite :=
+  RelGenSet.localFiniteness_of_finite_base_diff D (adjoinBase D F hFinv) rfl
+    (hFfin.subset (by
+      rintro x ⟨hx, hxn⟩
+      exact hx.resolve_left hxn))
+    (fun mu m => hD.locallyFinite mu m) lam n
+
+/-- **Joint balls at an original index, once the auxiliary letters are
+confined.**
+
+If every element of the joint ball is spelled by a joint word of the same
+length whose auxiliary letters all lie in `F`, and `F` already sits in the
+enlarged base `D'`, then reading each auxiliary letter as a base letter of `D'`
+sends the joint ball into a relative ball of `D'`.  A base letter is never an
+edge of `Γ_{H_lam}`, so the avoidance condition survives the reading. -/
+theorem relBall_inl_subset_of_auxLetters (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (D' : RelGenSet G Λ)
+    (hbase : properBase D ⊆ D'.base) (hfam : D'.fam = D.fam) (F : Set G)
+    (hFbase : F ⊆ D'.base) (lam : Λ) (n : ℕ)
+    (hwit : ∀ h ∈ (jointRelGenSet D E).relBall (Sum.inl lam) n,
+      ∃ w : List (RelLetter G (Sum Λ I)),
+        (∀ a ∈ w, (jointRelGenSet D E).IsLetter a) ∧
+          RelLetter.listVal w = h ∧
+            AvoidsFrom (jointRelGenSet D E).fam (Sum.inl lam) w 1 ∧
+              w.length ≤ n ∧
+                ∀ (i : I) (e : G), RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F) :
+    (jointRelGenSet D E).relBall (Sum.inl lam) n ⊆ D'.relBall lam n := by
+  intro h hh
+  obtain ⟨w, hlet, hval, hav, hlen, haux⟩ := hwit h hh
+  refine ⟨?_, w.map RelLetter.origOfJoint, ?_, ?_, ?_, ?_⟩
+  · rw [hfam]
+    exact hh.1
+  · intro a ha
+    obtain ⟨b, hb, rfl⟩ := List.mem_map.mp ha
+    have hb' := hlet b hb
+    cases b with
+    | base _ => exact hbase hb'
+    | comp s e =>
+        cases s with
+        | inl mu =>
+            show e ∈ D'.fam mu
+            rw [hfam]
+            exact hb'
+        | inr i => exact hFbase (haux i e hb)
+  · rw [RelLetter.listVal_map_origOfJoint]
+    exact hval
+  · refine avoidsFrom_map_origOfJoint ?_ lam w 1 hav
+    intro mu
+    show D.fam mu = D'.fam mu
+    rw [hfam]
+  · rw [List.length_map]
+    exact hlen
+
+/-- **The finite-auxiliary-letter statement.**
+
+For each original index and each radius, finitely many auxiliary letters
+suffice to spell the whole joint relative ball.  This is what
+Dahmani--Guirardel--Osin's Proposition 4.14 delivers in their setting: in a
+shortest joint word avoiding `Γ_{H_lam}` the auxiliary components are isolated
+in the cycle closed by the `H_lam`-edge, so their relative lengths are bounded
+linearly in the radius, and local finiteness of the auxiliary family turns that
+bound into a finite set of letters. -/
+def DGOProposition435FiniteAuxiliaryLettersStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type v} {I : Type w}
+    (D : RelGenSet G Lambda) (E : RelGenSet G I),
+      D.alphabet.carrier ⊆ E.base →
+      D.IsHyperbolicallyEmbedded →
+      E.IsHyperbolicallyEmbedded →
+        ∀ (lam : Lambda) (n : ℕ), ∃ F : Set G, F.Finite ∧
+          ∀ h ∈ (jointRelGenSet D E).relBall (Sum.inl lam) n,
+            ∃ w : List (RelLetter G (Sum Lambda I)),
+              (∀ a ∈ w, (jointRelGenSet D E).IsLetter a) ∧
+                RelLetter.listVal w = h ∧
+                  AvoidsFrom (jointRelGenSet D E).fam (Sum.inl lam) w 1 ∧
+                    w.length ≤ n ∧
+                      ∀ (i : I) (e : G),
+                        RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F
+
+/-- **The local-finiteness residue follows from the finite-auxiliary-letter
+statement.**
+
+Confining the auxiliary letters to a finite set turns them into finitely many
+extra base letters, and a finite enlargement of the base keeps the relative
+balls finite by the local-finiteness half of Corollary 4.27.  So the second
+residue of the nested form is exactly a statement about auxiliary letters, with
+no further use of the original family. -/
+theorem dgoProposition435JointLocalFiniteness_of_finiteAuxiliaryLetters
+    (h : DGOProposition435FiniteAuxiliaryLettersStatement.{u, v, w}) :
+    DGOProposition435JointLocalFinitenessStatement.{u, v, w} := by
+  intro G _ Lambda I D E hbase hD hE lam n
+  obtain ⟨F, hFfin, hwit⟩ := h D E hbase hD hE lam n
+  have hF'fin : (F ∪ F⁻¹).Finite := hFfin.union hFfin.inv
+  have hF'inv : ∀ x ∈ F ∪ F⁻¹, x⁻¹ ∈ F ∪ F⁻¹ := by
+    rintro x (hx | hx)
+    · exact Or.inr (by simpa using hx)
+    · exact Or.inl (by simpa using hx)
+  refine (relBall_finite_adjoinBase D (F ∪ F⁻¹) hF'inv hF'fin hD lam n).subset ?_
+  refine relBall_inl_subset_of_auxLetters D E (adjoinBase D (F ∪ F⁻¹) hF'inv)
+    (fun _ hx => Or.inl (properBase_subset_base D hx)) rfl F
+    (fun _ hx => Or.inr (Or.inl hx)) lam n hwit
+
 /-! ## Model tests -/
 
 /-- **No original subgroups.**  The labelled sum is the auxiliary family, and
@@ -542,27 +715,6 @@ theorem isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_left
   · exact isEmptyElim lam
   · exact (hE.locallyFinite i n).subset
       (combined_relBall_inr_subset D E hbase i n)
-
-/-- Avoidance of `Γ_{H_lam}` survives reading a joint word as an original
-word. -/
-theorem avoidsFrom_map_origOfJoint {F : Sum Λ I → Subgroup G}
-    {Df : Λ → Subgroup G} (hF : ∀ mu : Λ, F (Sum.inl mu) = Df mu) (lam : Λ) :
-    ∀ (u : List (RelLetter G (Sum Λ I))) (p : G),
-      AvoidsFrom F (Sum.inl lam) u p →
-        AvoidsFrom Df lam (u.map RelLetter.origOfJoint) p := by
-  intro u
-  induction u with
-  | nil => intro _ _; exact trivial
-  | cons a t ih =>
-      intro p hp
-      obtain ⟨hhead, htail⟩ := hp
-      refine ⟨?_, ?_⟩
-      · rintro ⟨hc, hmem⟩
-        refine hhead ⟨RelLetter.isCompOf_of_origOfJoint hc, ?_⟩
-        rw [hF lam]
-        exact hmem
-      · rw [RelLetter.origOfJoint_val]
-        exact ih (p * a.val) htail
 
 /-- **Clause (b) at an original index when there are no auxiliary
 subgroups**, for any joint relative generating set whose base letters are
@@ -613,6 +765,41 @@ theorem isHyperbolicallyEmbedded_combinedRelGenSet_of_isEmpty_right
   · exact (hD.locallyFinite lam n).subset
       (combined_relBall_inl_subset_of_isEmpty D E lam n)
   · exact isEmptyElim i
+
+/-- **Radius zero.**  The only element of the ball is the identity, spelled by
+the empty word, so no auxiliary letter is needed. -/
+theorem finiteAuxiliaryLetters_zero (D : RelGenSet G Λ) (E : RelGenSet G I)
+    (lam : Λ) : ∃ F : Set G, F.Finite ∧
+      ∀ h ∈ (jointRelGenSet D E).relBall (Sum.inl lam) 0,
+        ∃ w : List (RelLetter G (Sum Λ I)),
+          (∀ a ∈ w, (jointRelGenSet D E).IsLetter a) ∧
+            RelLetter.listVal w = h ∧
+              AvoidsFrom (jointRelGenSet D E).fam (Sum.inl lam) w 1 ∧
+                w.length ≤ 0 ∧
+                  ∀ (i : I) (e : G),
+                    RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F := by
+  refine ⟨∅, Set.finite_empty, ?_⟩
+  intro h hh
+  rw [RelGenSet.relBall_zero] at hh
+  rw [Set.mem_singleton_iff] at hh
+  subst hh
+  exact ⟨[], by simp, RelLetter.listVal_nil, trivial, by simp, by simp⟩
+
+/-- **No auxiliary subgroups.**  The empty set of auxiliary letters works at
+every radius. -/
+theorem finiteAuxiliaryLetters_of_isEmpty [IsEmpty I] (D : RelGenSet G Λ)
+    (E : RelGenSet G I) (lam : Λ) (n : ℕ) : ∃ F : Set G, F.Finite ∧
+      ∀ h ∈ (jointRelGenSet D E).relBall (Sum.inl lam) n,
+        ∃ w : List (RelLetter G (Sum Λ I)),
+          (∀ a ∈ w, (jointRelGenSet D E).IsLetter a) ∧
+            RelLetter.listVal w = h ∧
+              AvoidsFrom (jointRelGenSet D E).fam (Sum.inl lam) w 1 ∧
+                w.length ≤ n ∧
+                  ∀ (i : I) (e : G),
+                    RelLetter.comp (Sum.inr i) e ∈ w → e ∈ F := by
+  refine ⟨∅, Set.finite_empty, ?_⟩
+  rintro h ⟨-, w, hlet, hval, hav, hlen⟩
+  exact ⟨w, hlet, hval, hav, hlen, fun i _ _ => isEmptyElim i⟩
 
 /-! ### The same two tests for the nested form -/
 
