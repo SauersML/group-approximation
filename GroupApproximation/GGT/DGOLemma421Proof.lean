@@ -2,6 +2,7 @@ import GroupApproximation.GGT.DGOLemma421Statement
 import GroupApproximation.GGT.DGOPolygonCutFamily
 import GroupApproximation.GGT.DGOLemma421Components
 import GroupApproximation.GGT.DGOIsolatedComponentCut
+import GroupApproximation.GGT.DGOAssemblyCuts
 
 /-!
 # DGO Lemma 4.21 from the uniform isolated-component sum bound
