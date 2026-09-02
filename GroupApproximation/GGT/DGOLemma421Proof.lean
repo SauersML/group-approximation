@@ -1568,6 +1568,58 @@ theorem exists_opposite_match_of_deep_run_of_uniformBound
       exact le_trans (Nat.le_of_lt (hsource_comp i).1)
         (hsource_comp i).2.1) (hn ▸ hnconn)
 
+/-! ## Per-source targets for the consecutive-run count -/
+
+/-- A deep interior component has a distinct connected target in the
+quadrilateral.  The target is either on a short side, on the opposite long
+side, or at another start on the same long side.  The pointwise projection in
+the uniform Proposition 4.14 payload is used only to exclude isolation. -/
+theorem exists_target_of_deep_component_of_uniformBound
+    (D : RelGenSet G Λ) (lam : Λ) {mu b : ℝ}
+    (hbnd : ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k →
+          IsIsolated D.fam nu v u i →
+            (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ) (rho : ℕ) (p q r s : List (RelLetter G Λ)),
+        n ≤ 6 →
+        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q *
+          RelLetter.listVal r →
+        IsQuasiGeodesicPolygon D mu b n 1
+          (p ++ q ++ r ++ revWord s) →
+        ∀ (i k : ℕ), 0 < i → k < q.length → IsComp lam q i k →
+          C * n ≤ rho →
+          (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉
+            D.relBall lam rho →
+          ∃ n' : ℕ, n' ≠ p.length + i ∧
+            IsCompStart lam (p ++ q ++ r ++ revWord s) n' ∧
+            (n' < p.length ∨
+              (∃ i' : ℕ, i' ≤ q.length ∧ n' = p.length + i') ∨
+              (∃ m : ℕ, m < r.length ∧
+                n' = p.length + q.length + m) ∨
+              (∃ j : ℕ, j ≤ s.length ∧
+                n' = p.length + q.length + r.length + (s.length - j))) ∧
+            ∃ h : G, h ∈ D.fam lam ∧
+              RelLetter.listVal p * vertex (1 : G) q i * h =
+                vertex (1 : G) (p ++ q ++ r ++ revWord s) n' := by
+  obtain ⟨C, hC, hdeepBound⟩ := hbnd
+  refine ⟨C, hC, ?_⟩
+  intro n rho p q r s hn hclose hpoly i k hi hk hcomp hrho hdeep
+  have hbridge := isComp_fourGon_of_isComp_side_of_interior
+    p q r s lam hi hk hcomp
+  have hiq : i ≤ q.length :=
+    le_trans (Nat.le_of_lt hcomp.1) hcomp.2.1
+  have hstart : IsCompStart lam (p ++ q ++ r ++ revWord s)
+      (p.length + i) := ⟨p.length + k, hbridge⟩
+  apply exists_other_component_fourGon_general D lam p q r s hiq hstart
+  intro hisolated
+  have hspan := hdeepBound n hn 1 (p ++ q ++ r ++ revWord s) hpoly
+    lam (p.length + i) (p.length + k) hbridge hisolated
+  rw [span_fourGon_side p q r s hiq (by omega)] at hspan
+  exact hdeep (relBall_mono_radius D lam hrho hspan)
+
 end OsinComponents
 end GGT
 end GroupApproximation
