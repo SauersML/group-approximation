@@ -22,6 +22,7 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+omit [Group G] in
 /-- A canonical connector target is a left index or a shifted right index. -/
 theorem mem_auxiliaryCycleConnectorTarget_cases
     (left right : List (RelLetter G Λ)) (nArc : ℕ) {s : ℕ}
