@@ -44,6 +44,7 @@ theorem exists_scaled_periodic_block_offset
     calc
       6 * blockLength = blockLength * 6 := Nat.mul_comm _ _
       _ ≤ blockLength * divisor := hmul
+      _ = divisor * blockLength := Nat.mul_comm _ _
       _ ≤ total := hblockBudget
   have hquarterBudget : 4 * (total / 4) ≤ total := by
     simpa [Nat.mul_comm] using Nat.div_mul_le_self total 4
