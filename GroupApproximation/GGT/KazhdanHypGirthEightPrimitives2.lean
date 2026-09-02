@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.KazhdanHypGirthEightVKInterface
+import GroupApproximation.GGT.KazhdanHypGirthEightPrimitives
 import GroupApproximation.GGT.VanKampen.CombMapGluing
 import GroupApproximation.GGT.VanKampen.CombMapReduction
 import Mathlib.Data.Finset.Lattice.Basic
