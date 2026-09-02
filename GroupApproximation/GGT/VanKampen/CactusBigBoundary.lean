@@ -917,8 +917,7 @@ theorem cactusBigDarts_head
       (CactusShape.prevFin Z.cactusShape.boundaryLength
         Z.cactusShape.boundaryZero) := by
   change (Z.cactusOuterBackwardDarts ++ Z.cactusCellSegments).head _ = _
-  rw [List.head_append_of_ne_nil _
-    Z.cactusOuterBackwardDarts_ne_nil]
+  rw [List.head_append_of_ne_nil Z.cactusCellSegments]
   exact Z.cactusOuterBackwardDarts_head _
 
 /-- The full complementary list ends at the final incoming stem. -/
