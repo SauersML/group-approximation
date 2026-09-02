@@ -243,6 +243,7 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
     {R eps rho : ℕ} {mu : ℝ}
     (hsc : RelWord.IsLemma44Input D.rel W eps mu rho)
     (hmu : mu ≤ 1 / 92)
+    (hmuTransfer : mu ≤ 1 / 1000)
     (hthreshold :
       4 * ((2 * max R 1 + 2 * eps + 1 : ℕ) : ℝ) <
         (3 / 4 : ℝ) * (rho : ℝ))
@@ -261,7 +262,7 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
   have hkernelAt : KernelGeodesicEstimateAt D.rel W eps rho mu hsc q :=
     ⟨M, hM⟩
   have hlocAt : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q :=
-    hloc.finite D.rel D.embedded W eps rho mu hsc hmu hrho q hq hker hcert
+    hloc.finite D.rel D.embedded W eps rho mu hsc hmuTransfer hrho q hq hker hcert
   exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
     hmu hthreshold q hq hker hcert hkernelAt hlocAt
 
@@ -315,7 +316,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelB
     intro r Z
     exact hcertificate rho hrho₀ W r hsc Z
   exact quotientPeripheralPreservation_of_kernelBounds_at D hsc hmuNinetyTwo
-    hthreshold hrhoDehn q hsurj hker hcert hkernel hloc
+    hmuThousand hthreshold hrhoDehn q hsurj hker hcert hkernel hloc
 
 /-- The kernel-geodesic estimate and the existing prefix-kernel transfer are
 enough to supply the local-finiteness input pointwise. -/
