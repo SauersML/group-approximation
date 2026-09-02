@@ -1,5 +1,5 @@
-import GroupApproximation.GGT.HullSCLemma44Canonical
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesic
+import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 
 /-!
 # Canonical Hull assembly from the kernel-cone estimates
@@ -99,6 +99,30 @@ structure KernelConeLocalFinitenessStatement : Prop where
 
 /-! ## Fixed-parameter quotient assembly -/
 
+/-- Certificates at one radius give injectivity on the full relative ball. -/
+theorem relativeBallInjectivity_of_certificate
+    {G : Type u} [Group G] {Lambda : Type u}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 92)
+    (hthreshold :
+      4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) <
+        (3 / 4 : ℝ) * (rho : ℝ))
+    {Q : Type u} [Group Q] (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ Z : RelativeReducedDiagram D W R,
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    Set.InjOn q (cayleyBall D.alphabet R) := by
+  by_contra hnot
+  obtain ⟨Z₀⟩ := exists_lemma44ReducedRelatorDiagram_of_not_injOn
+    D.alphabet W R q hker hnot
+  obtain ⟨Z⟩ := Z₀.exists_oriented hsc.toIsSmallCancellation
+  obtain ⟨K⟩ := hcert (Z.toRelativeReducedDiagram D)
+  exact false_of_relativeDiagramCertificate D Z hsc hmu hthreshold K
+
 /-- The nontrivial fixed-parameter assembly. -/
 theorem quotientPeripheralPreservation_of_kernelBounds_at
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
@@ -125,33 +149,52 @@ theorem quotientPeripheralPreservation_of_kernelBounds_at
     intro x hx
     exact Set.mem_union_left _ (D.base_le hx)
   have hinject :=
-    injOn_ball_and_peripheralUnion_of_relativeDiagramCertificates
-      D.rel A.alphabet hAlphabet hsc hmu hthreshold q hker
-        (hcert (max R 1))
+    relativeBallInjectivity_of_certificate D.rel hsc hmu hthreshold q hker
+      (hcert (max R 1))
   obtain ⟨M, hM⟩ := hkernel.bound D.rel W eps rho mu hsc q hq hker hcert
   have hcone :
       (D.rel.adjoinRelatorPrefixes W
         hsc.toIsSmallCancellation).adjoinKernel q |>.IsHyperbolicallyEmbedded :=
     isHyperbolicallyEmbedded_prefixKernelCone_of_bounds D.rel D.embedded W
       hsc q M hM (hloc.finite D.rel W eps rho mu hsc q hq hker hcert)
-  have hinjectCores : Set.InjOn q
+  have hinjectPeripheral : Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k,
         (D.cores.peripheral i : Set G)) := by
     intro x hx y hy hxy
-    apply hinject.2
-    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
-      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
+    obtain ⟨i, hxi⟩ := Set.mem_iUnion.mp hx
+    obtain ⟨j, hyj⟩ := Set.mem_iUnion.mp hy
+    have hxi' : x ∈ D.rel.fam i := by
       rw [D.fam_eq i]
-      exact hi
-    · obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hy
-      refine Set.mem_iUnion.mpr ⟨i, ?_⟩
-      rw [D.fam_eq i]
-      exact hi
+      exact hxi
+    have hyj' : y ∈ D.rel.fam j := by
+      rw [D.fam_eq j]
+      exact hyj
+    apply hinject
+    · exact cayleyBall_subset_of_le_radius D.rel.alphabet
+        (Nat.le_max_right _ _)
+        (peripheralUnion_subset_cayleyBall_one D.rel
+          (Set.mem_iUnion.mpr ⟨i, hxi'⟩))
+    · exact cayleyBall_subset_of_le_radius D.rel.alphabet
+        (Nat.le_max_right _ _)
+        (peripheralUnion_subset_cayleyBall_one D.rel
+          (Set.mem_iUnion.mpr ⟨j, hyj'⟩))
+    · exact hxy
+  have hinjectA : Set.InjOn q (cayleyBall A.alphabet R) := by
+    intro x hx y hy hxy
+    apply hinject
+    · apply cayleyBall_subset_of_le_radius D.rel.alphabet
+        (Nat.le_max_left _ _)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet D.rel.alphabet
+        hAlphabet R hx
+    · apply cayleyBall_subset_of_le_radius D.rel.alphabet
+        (Nat.le_max_left _ _)
+      exact cayleyBall_subset_of_alphabet_subset A.alphabet D.rel.alphabet
+        hAlphabet R hy
     · exact hxy
   have hpres : Nonempty (QuotientPeripheralPreservation q D) := by
     exact quotientPeripheralPreservation_of_prefixKernelCone D hsc q hq
-      hcone hinjectCores
-  exact ⟨hinject.1, hpres⟩
+      hcone hinjectPeripheral
+  exact ⟨hinjectA, hpres⟩
 
 /-! ## Empty-family model of the two estimate interfaces -/
 
