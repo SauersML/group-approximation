@@ -40,8 +40,11 @@ structure KernelGeodesicCutStep
   next_word_letters : ∀ x ∈ nextWord,
     x ∈ (D.adjoinRelatorPrefixes W
       hsc.toIsSmallCancellation).alphabet.carrier
-  /-- The cut keeps the represented group element. -/
-  next_word_prod_eq : nextWord.prod = word.prod
+  /-- The cut has a new endpoint in the filling kernel.  A relator cut
+  preserves the quotient endpoint, not the source-group endpoint. -/
+  nextKernel : G
+  next_kernel_mem : nextKernel ∈ q.ker
+  next_word_prod_eq : nextWord.prod = nextKernel
   /-- The recursive boundary is geodesic in the prefix alphabet. -/
   next_word_geodesic : nextWord.length = wordDist
     (D.adjoinRelatorPrefixes W
@@ -108,20 +111,21 @@ theorem kernelGeodesicEstimateAt_of_cutInduction
   let E := D.adjoinRelatorPrefixes W hsc.toIsSmallCancellation
   let B := E.adjoinKernel q
   let P : ℕ → Prop := fun area =>
-    ∀ (word : List G), word.length = area →
+    ∀ (endpoint : G), endpoint ∈ q.ker → ∀ (word : List G),
+      word.length = area →
       (∀ x ∈ word, x ∈ E.alphabet.carrier) →
-      word.prod = k →
-      word.length = wordDist E.alphabet.carrier 1 k →
+      word.prod = endpoint →
+      word.length = wordDist E.alphabet.carrier 1 endpoint →
       ∀ j ≤ word.length,
         wordDist B.alphabet.carrier 1 (word.take j).prod ≤ M
   have hP : ∀ area : ℕ, P area := by
     intro area
     induction area using Nat.strong_induction_on with
     | _ area ih =>
-      intro current hcurrentLength hcurrentLetters hcurrentProd
-        hcurrentGeodesic j hj
+      intro endpoint hendpoint current hcurrentLength hcurrentLetters
+        hcurrentProd hcurrentGeodesic j hj
       by_cases hone : current.prod = 1
-      · have hkone : k = 1 := by
+      · have hkone : endpoint = 1 := by
           rw [← hcurrentProd, hone]
         have hzero : current.length = 0 := by
           rw [hcurrentGeodesic, hkone, wordDist_self]
@@ -131,30 +135,30 @@ theorem kernelGeodesicEstimateAt_of_cutInduction
         subst current
         simp only [List.take_zero, List.prod_nil, wordDist_self]
         exact Nat.zero_le _
-      · obtain ⟨C⟩ := hM area k hk current hcurrentLetters
+      · obtain ⟨C⟩ := hM area endpoint hendpoint current hcurrentLetters
           hcurrentProd hcurrentGeodesic hcurrentLength hone
         have hnextLength : C.nextWord.length = C.next_area :=
           C.next_word_area
         have hnextArea : C.next_area < area := C.next_area_lt
         have hnextLetters : ∀ x ∈ C.nextWord, x ∈ E.alphabet.carrier :=
           C.next_word_letters
-        have hnextProd : C.nextWord.prod = k :=
-          C.next_word_prod_eq.trans hcurrentProd
+        have hnextProd : C.nextWord.prod = C.nextKernel :=
+          C.next_word_prod_eq
         have hnextGeodesic : C.nextWord.length =
-            wordDist E.alphabet.carrier 1 k := by
+            wordDist E.alphabet.carrier 1 C.nextKernel := by
           calc
             C.nextWord.length = wordDist E.alphabet.carrier 1 C.nextWord.prod :=
               C.next_word_geodesic
-            _ = wordDist E.alphabet.carrier 1 k := by rw [hnextProd]
+            _ = wordDist E.alphabet.carrier 1 C.nextKernel := by rw [hnextProd]
         have hnextBound : ∀ l ≤ C.nextWord.length,
             wordDist B.alphabet.carrier 1
               (C.nextWord.take l).prod ≤ M := by
-          exact ih C.next_area hnextArea C.nextWord hnextLength
-            hnextLetters hnextProd hnextGeodesic
+          exact ih C.next_area hnextArea C.nextKernel C.next_kernel_mem
+            C.nextWord hnextLength hnextLetters hnextProd hnextGeodesic
         exact C.prefix_transfer hnextBound j hj
   have hbound : ∀ j ≤ word.length,
       wordDist B.alphabet.carrier 1 (word.take j).prod ≤ M := by
-    exact hP word.length word rfl hword hprod hlength
+    exact hP word.length k hk word rfl hword hprod hlength
   exact hbound i hi
 
 /-! ## Uniform statement and model checks -/
