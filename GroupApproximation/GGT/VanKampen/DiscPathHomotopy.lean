@@ -159,7 +159,7 @@ structure FaceDeletionStep
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W)
-    (R : RootedPathSystem Delta.toCombMap) : Prop where
+    (R : RootedPathSystem Delta.toCombMap) where
   /-- The number of enclosed faces used by the induction. -/
   rank : ∀ (vertex : Delta.toCombMap.Vertex),
     DartPath Delta.toCombMap R.root vertex → ℕ
@@ -207,7 +207,7 @@ structure FaceDeletionCompletenessWitness
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     (Delta : DiscDiagram.{u, w, v} W)
-    (R : RootedPathSystem Delta.toCombMap) : Prop where
+    (R : RootedPathSystem Delta.toCombMap) where
   /-- The lower-rank face-deletion step. -/
   step : FaceDeletionStep Delta R
 
