@@ -218,6 +218,21 @@ theorem lemma62Data_oneCell_zeroUnbound_model
   have hrhoReal : (0 : ℝ) < (rho : ℝ) := by exact_mod_cast hrho
   exact Real.sqrt_pos.2 hrhoReal
 
+/-- The threshold field rules out `rho = 0` for every fixed diagram and
+scaffold.  The universal estimating statement quantifies `rho` without a
+positive-parameter premise, so this is the exact numerical obstruction to an
+unconditional producer for that statement. -/
+theorem no_lemma62Data_at_rho_zero
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps : ℕ} {mu : ℝ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {scaffold : EstimatingScaffold D eps Delta} :
+    ¬ Nonempty (Lemma62Data D eps mu 0 Delta scaffold) := by
+  rintro ⟨data⟩
+  norm_num at data.threshold
+
 /-- The averaging certificate has the exact empty-component model used by the
 partition producer, and its numerical output is strict at the smallest
 positive square-root parameter. -/
