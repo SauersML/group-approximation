@@ -653,7 +653,8 @@ theorem peripheralOccurrence_not_connected_of_uniformBound
               peripheralPos word (s.val + d) + 2 := hstep
           _ ≤ peripheralPos word s.val + 2 * (d + 1) := by omega
   have hspacing := hwalk (r.val - s.val) (by
-    convert r.isLt using 1 <;> omega)
+    convert r.isLt using 1
+    omega)
   have hspacing' : peripheralPos word r.val ≤
       peripheralPos word s.val + 2 * (r.val - s.val) := by
     have hidx : s.val + (r.val - s.val) = r.val := by omega
