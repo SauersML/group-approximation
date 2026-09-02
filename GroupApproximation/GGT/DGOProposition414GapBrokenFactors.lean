@@ -465,7 +465,9 @@ theorem firstBroken_partnerSpan_eq_chordInv
     (hs : s ∈ brokenSet B.componentPlacement.firstTarget
       B.componentPlacement.firstSurvives) :
     (vertex B.firstBase B.firstWord
-        (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+        (B.firstChordPos (B.brokenAssignment.first.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.first
+            (B.firstSourceEntry s hs)))))⁻¹ *
       vertex B.firstBase B.firstWord
         (B.firstBrokenConnectors s hs).partnerEnd =
       (B.chord[B.brokenAssignment.first.partner s]'
@@ -559,12 +561,9 @@ theorem firstBrokenEntry_partnerSpan_eq_chordInv
   have hpartner : B.brokenAssignment.first.partner t =
       B.brokenAssignment.first.partner s := congrArg _ hsource
   change (vertex B.firstBase B.firstWord
-      (B.firstChordPos (B.brokenAssignment.first.partner s)))⁻¹ *
+      (B.firstChordPos (B.brokenAssignment.first.partner t)))⁻¹ *
     vertex B.firstBase B.firstWord E.partnerEnd = _
   calc
-    _ = (vertex B.firstBase B.firstWord
-          (B.firstChordPos (B.brokenAssignment.first.partner t)))⁻¹ *
-        vertex B.firstBase B.firstWord E.partnerEnd := by rw [hpartner]
     _ = (B.chord[B.brokenAssignment.first.partner t]'_).val⁻¹ := h
     _ = (B.chord[B.brokenAssignment.first.partner s]'_).val⁻¹ := by
       rw [getElem_congr_idx hpartner]
@@ -607,7 +606,9 @@ theorem secondBrokenEntry_partnerSpan_eq_chord
     (hs : s ∈ brokenSet B.componentPlacement.secondTarget
       B.componentPlacement.secondSurvives) :
     (vertex B.secondBase B.secondWord
-        (B.secondChordPos (B.brokenAssignment.second.partner s)))⁻¹ *
+        (B.secondChordPos (B.brokenAssignment.second.partner
+          (HalfEntry.entrySource B.brokenAssignment.index.second
+            (B.secondSourceEntry s hs)))))⁻¹ *
       vertex B.secondBase B.secondWord
         (B.secondBrokenEntryConnectors hs).partnerEnd =
       (B.chord[B.brokenAssignment.second.partner s]'
@@ -626,12 +627,9 @@ theorem secondBrokenEntry_partnerSpan_eq_chord
   have hpartner : B.brokenAssignment.second.partner t =
       B.brokenAssignment.second.partner s := congrArg _ hsource
   change (vertex B.secondBase B.secondWord
-      (B.secondChordPos (B.brokenAssignment.second.partner s)))⁻¹ *
+      (B.secondChordPos (B.brokenAssignment.second.partner t)))⁻¹ *
     vertex B.secondBase B.secondWord E.partnerEnd = _
   calc
-    _ = (vertex B.secondBase B.secondWord
-          (B.secondChordPos (B.brokenAssignment.second.partner t)))⁻¹ *
-        vertex B.secondBase B.secondWord E.partnerEnd := by rw [hpartner]
     _ = (B.chord[B.brokenAssignment.second.partner t]'_).val := h
     _ = (B.chord[B.brokenAssignment.second.partner s]'_).val := by
       rw [getElem_congr_idx hpartner]
