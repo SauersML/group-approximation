@@ -196,49 +196,6 @@ theorem Contiguity.targetBoundary_value_of_pasting
   rw [hsource]
   group
 
-/-- For a relator-cell target, the forward target arc is the inverse of the
-target-boundary word, so pasting yields `target = left · source⁻¹ · right`.
-This is the orientation-correct local bridge to Osin's cell-to-cell piece. -/
-theorem Contiguity.targetArc_value_of_pasting
-    {G : Type u} [Group G] {Lambda : Type w}
-    {D : GGT.RelGenSet G Lambda}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
-    {faces : Finset Delta.toCombMap.Face}
-    (Gamma : Contiguity D eps Delta faces)
-    (htarget : Gamma.target ≠ none)
-    (pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle []) :
-    GGT.RelLetter.listVal
-        (dartWord Delta
-          Gamma.targetArc.darts) =
-      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
-        (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
-        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
-  cases htargetValue : Gamma.target with
-  | none => exact (htarget htargetValue).elim
-  | some target =>
-      have hboundary := Gamma.targetBoundary_value_of_pasting pasting
-      change GGT.RelLetter.listVal
-          (dartWord Delta (Gamma.targetArc.darts.reverse.map
-            Delta.toCombMap.alpha)) = _ at hboundary
-      have hinverse := listVal_dartWord_reverse_alpha Delta
-        Gamma.targetArc.darts
-      rw [hinverse] at hboundary
-      calc
-        GGT.RelLetter.listVal
-            (dartWord Delta Gamma.targetArc.darts) =
-            ((GGT.RelLetter.listVal
-              (dartWord Delta Gamma.targetArc.darts))⁻¹)⁻¹ := by
-                rw [inv_inv]
-        _ = ((GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
-            GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
-            (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)⁻¹ := by
-              rw [hboundary]
-        _ = GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
-            (GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts))⁻¹ *
-            GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
-              group
-
 /-- O52 in the exact source-incidence charge form used by assembly. -/
 theorem Contiguity.arcLengths_le_two_mu_source
     {G : Type u} [Group G] {Lambda : Type w}
