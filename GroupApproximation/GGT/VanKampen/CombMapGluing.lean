@@ -369,6 +369,50 @@ structure Spherical (S : Pairing Delta n) : Prop where
   /-- The seam quotient is connected and has Euler characteristic two. -/
   planar : S.closedMap.IsPlanar
 
+/-- Count data for the quotient of `n` copies.  The first three equations are
+the explicit incidence calculation: copied interior cells contribute
+`n * (V - 1)` vertices plus the two seam vertices, `n * E` edges, and
+`n * (F - 1)` faces.  The equations are the exact hypotheses needed before
+the Euler-two conclusion, so no planarity assertion is hidden in the seam
+constructor. -/
+structure EulerTwoCountData (S : Pairing Delta n) where
+  connected : S.closedMap.IsConnected
+  vertex_count_eq :
+    (S.closedMap.vertexCount : ℤ) =
+      (n : ℤ) * (Delta.toCombMap.vertexCount : ℤ) - (n : ℤ) + 2
+  edge_count_eq :
+    (S.closedMap.edgeCount : ℤ) =
+      (n : ℤ) * (Delta.toCombMap.edgeCount : ℤ)
+  face_count_eq :
+    (S.closedMap.faceCount : ℤ) =
+      (n : ℤ) * (Delta.toCombMap.faceCount : ℤ) - (n : ℤ)
+
+/-- The copied-incidence count gives the Euler-characteristic-two spherical
+certificate.  The old disc planarity supplies the identity
+`V - E + F = 2`; substituting the three count equations leaves exactly two. -/
+theorem spherical_of_eulerTwoCountData
+    (S : Pairing Delta n) (C : EulerTwoCountData S)
+    (hdisc : Delta.toCombMap.IsPlanar) :
+    Spherical S := by
+  refine ⟨?_, ?_⟩
+  · exact C.connected
+  · unfold CombMap.eulerCharacteristic
+    rw [C.vertex_count_eq, C.edge_count_eq, C.face_count_eq]
+    have hdisc' := Delta.toCombMap.euler_eq_two hdisc
+    have hzero :
+        (Delta.toCombMap.vertexCount : ℤ) -
+            (Delta.toCombMap.edgeCount : ℤ) +
+            (Delta.toCombMap.faceCount : ℤ) - 2 = 0 := by
+      linarith
+    calc
+      ((n : ℤ) * (Delta.toCombMap.vertexCount : ℤ) - (n : ℤ) + 2) -
+          (n : ℤ) * (Delta.toCombMap.edgeCount : ℤ) +
+          ((n : ℤ) * (Delta.toCombMap.faceCount : ℤ) - (n : ℤ)) =
+          (n : ℤ) * ((Delta.toCombMap.vertexCount : ℤ) -
+            (Delta.toCombMap.edgeCount : ℤ) +
+            (Delta.toCombMap.faceCount : ℤ) - 2) + 2 := by ring
+      _ = 2 := by rw [hzero]; ring
+
 /-- A spherical seam gives a closed planar combinatorial map. -/
 noncomputable def sphericalCombMap (S : Pairing Delta n) (hS : S.Spherical) :
     SphericalCombMap.{v} where
