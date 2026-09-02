@@ -26,7 +26,7 @@ namespace GroupApproximation
 namespace GGT
 namespace GirthEightPrimitives2
 
-namespace VanKampen
+open GroupApproximation.GGT.VanKampen
 
 universe u w v
 
@@ -193,8 +193,6 @@ theorem oneTriangle_faceMove_model
       (before ++ (Delta.faceBoundary face).darts ++ after)
       (before ++ after) :=
   .erase face hface before after
-
-end VanKampen
 
 end GirthEightPrimitives2
 end GGT
