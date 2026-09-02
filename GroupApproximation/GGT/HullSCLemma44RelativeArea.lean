@@ -103,8 +103,10 @@ theorem ker_eq_normalClosure
   · intro g hg
     obtain ⟨boundaryWord, hword⟩ :=
       exists_isWord D.alphabet.symmetricGenerating g
+    have hwordProd : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod :=
+      ⟨hword.letters, rfl⟩
     rw [← hword.prod_eq]
-    apply H.word_prod_mem_normalClosure boundaryWord hword
+    apply H.word_prod_mem_normalClosure boundaryWord hwordProd
     rw [hword.prod_eq]
     exact MonoidHom.mem_ker.mp hg
   · apply Subgroup.normalClosure_le_normal
