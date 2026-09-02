@@ -88,12 +88,11 @@ theorem listVal_targetInverseCarrier
       (RelWord.revInv w).rotate (w.length - L) := by
     rw [Contiguity.targetInverseCarrier, ← hw, ← hA, ← hL, hdroplen]
   rw [hcarrier, RelWord.listVal_rotate _ hrotk, RelWord.listVal_revInv]
+  have hsub : w.length - (w.length - L) = L := Nat.sub_sub_self hle
   have htake : (RelWord.revInv w).take (w.length - L) =
       RelWord.revInv (w.drop L) := by
-    rw [RelWord.revInv, RelWord.revInv, List.take_reverse, List.length_map,
-      List.map_drop]
-    congr 1
-    omega
+    simp only [RelWord.revInv, List.take_reverse, List.length_map, hsub,
+      ← List.map_drop]
   rw [htake, RelWord.listVal_revInv, dartWord_drop, harc, dartWord_take,
     hsplit]
   group
