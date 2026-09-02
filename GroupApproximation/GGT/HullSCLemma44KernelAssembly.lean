@@ -74,10 +74,10 @@ def KernelGeodesicEstimateStatement : Prop :=
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     {Q : Type u} [Group Q] (q : G →* Q)
-    (hq : Function.Surjective q)
-    (hker : q.ker =
+    (_hq : Function.Surjective q)
+    (_hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+    (_hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z)),
     KernelGeodesicEstimateAt D W eps rho mu hsc q
 
@@ -90,10 +90,10 @@ def KernelConeLocalFinitenessStatement : Prop :=
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     {Q : Type u} [Group Q] (q : G →* Q)
-    (hq : Function.Surjective q)
-    (hker : q.ker =
+    (_hq : Function.Surjective q)
+    (_hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+    (_hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z)),
     KernelConeLocalFinitenessAt D W eps rho mu hsc q
 
@@ -195,12 +195,12 @@ theorem kernelGeodesicEstimateAt_trivialModel
     (eps rho : ℕ) (mu : ℝ)
     (hsc : RelWord.IsLemma44Input D W eps mu rho)
     {Q : Type u} [Group Q] (q : PUnit →* Q)
-    (hq : Function.Surjective q) :
+    (_hq : Function.Surjective q) :
     KernelGeodesicEstimateAt D W eps rho mu hsc q := by
   haveI : Subsingleton Q :=
     ⟨fun x y => by
-      obtain ⟨a, rfl⟩ := hq x
-      obtain ⟨b, rfl⟩ := hq y
+      obtain ⟨a, rfl⟩ := _hq x
+      obtain ⟨b, rfl⟩ := _hq y
       exact congrArg q (Subsingleton.elim a b)
     ⟩
   refine ⟨0, ?_⟩
