@@ -262,6 +262,141 @@ theorem exists_innerCut_polygon {X : Type v} [PseudoMetricSpace X]
     exact hhead0
   · rw [hvm1, hvm2]
 
+/-! ## Reading a closed polygon from another of its vertices -/
+
+/-- Vertices of a closed polygon re-read from a later index: past the closing
+vertex the enumeration wraps back by `n`. -/
+def rotVertex {X : Type v} (vs : ℕ → X) (n b0 : ℕ) : ℕ → X :=
+  fun j => if j ≤ b0 + n then vs j else vs (j - n)
+
+/-- Sides of a closed polygon re-read from a later index. -/
+def rotSide {X : Type v} (sides : ℕ → ℝ → X) (n b0 : ℕ) : ℕ → ℝ → X :=
+  fun j => if j < b0 + n then sides j else sides (j - n)
+
+theorem rotVertex_of_le {X : Type v} (vs : ℕ → X) (n b0 : ℕ) {j : ℕ}
+    (hj : j ≤ b0 + n) : rotVertex vs n b0 j = vs j := by
+  show (if j ≤ b0 + n then vs j else vs (j - n)) = vs j
+  rw [if_pos hj]
+
+theorem rotVertex_of_gt {X : Type v} (vs : ℕ → X) (n b0 : ℕ) {j : ℕ}
+    (hj : b0 + n < j) : rotVertex vs n b0 j = vs (j - n) := by
+  have h : ¬ (j ≤ b0 + n) := by omega
+  show (if j ≤ b0 + n then vs j else vs (j - n)) = vs (j - n)
+  rw [if_neg h]
+
+theorem rotSide_of_lt {X : Type v} (sides : ℕ → ℝ → X) (n b0 : ℕ) {j : ℕ}
+    (hj : j < b0 + n) : rotSide sides n b0 j = sides j := by
+  show (if j < b0 + n then sides j else sides (j - n)) = sides j
+  rw [if_pos hj]
+
+theorem rotSide_of_ge {X : Type v} (sides : ℕ → ℝ → X) (n b0 : ℕ) {j : ℕ}
+    (hj : b0 + n ≤ j) : rotSide sides n b0 j = sides (j - n) := by
+  have h : ¬ (j < b0 + n) := by omega
+  show (if j < b0 + n then sides j else sides (j - n)) = sides (j - n)
+  rw [if_neg h]
+
+/-- **A closed geodesic polygon may be read from any of its vertices.**  The
+only place the argument spends the closing hypothesis is the seam, where the
+side leaving the closing vertex is the side leaving the base vertex. -/
+theorem isClosedPolygonAt_rotate {X : Type v} [PseudoMetricSpace X]
+    {vs : ℕ → X} {sides : ℕ → ℝ → X} {b0 n k : ℕ}
+    (hpoly : IsClosedPolygonAt vs sides b0 n)
+    (hk0 : b0 ≤ k) (hkn : k ≤ b0 + n) :
+    IsClosedPolygonAt (rotVertex vs n b0) (rotSide sides n b0) k n := by
+  obtain ⟨hside, hclose⟩ := hpoly
+  refine ⟨?_, ?_⟩
+  · intro i hki hin
+    rcases Nat.lt_or_ge i (b0 + n) with hlt | hge
+    · rw [rotSide_of_lt sides n b0 hlt,
+        rotVertex_of_le vs n b0 (by omega : i ≤ b0 + n),
+        rotVertex_of_le vs n b0 (by omega : i + 1 ≤ b0 + n)]
+      exact hside i (by omega) hlt
+    rcases Nat.eq_or_lt_of_le hge with heq | hgt
+    · have hi : i = b0 + n := heq.symm
+      rw [hi, rotSide_of_ge sides n b0 (le_refl (b0 + n)),
+        show b0 + n - n = b0 from by omega,
+        rotVertex_of_le vs n b0 (le_refl (b0 + n)),
+        rotVertex_of_gt vs n b0 (by omega : b0 + n < b0 + n + 1),
+        show b0 + n + 1 - n = b0 + 1 from by omega, hclose]
+      exact hside b0 (le_refl b0) (by omega)
+    · rw [rotSide_of_ge sides n b0 (by omega : b0 + n ≤ i),
+        rotVertex_of_gt vs n b0 hgt,
+        rotVertex_of_gt vs n b0 (by omega : b0 + n < i + 1),
+        show i + 1 - n = i - n + 1 from by omega]
+      exact hside (i - n) (by omega) (by omega)
+  · rcases Nat.eq_or_lt_of_le hk0 with heq | hgt
+    · have hk : k = b0 := heq.symm
+      rw [hk, rotVertex_of_le vs n b0 (le_refl (b0 + n)),
+        rotVertex_of_le vs n b0 (by omega : b0 ≤ b0 + n)]
+      exact hclose
+    · rw [rotVertex_of_gt vs n b0 (by omega : b0 + n < k + n),
+        rotVertex_of_le vs n b0 hkn,
+        show k + n - n = k from by omega]
+
+/-- Past the closing vertex, index `a + n` of the re-read polygon is the
+original vertex `a`.  At the base vertex this is the closing hypothesis; past
+it, it is the wrap. -/
+theorem rotVertex_wrap {X : Type v} (vs : ℕ → X) {n b0 a : ℕ}
+    (hclose : vs (b0 + n) = vs b0) (hb0a : b0 ≤ a) :
+    rotVertex vs n b0 (a + n) = vs a := by
+  rcases Nat.eq_or_lt_of_le hb0a with heq | hgt
+  · have ha : a = b0 := heq.symm
+    rw [ha, rotVertex_of_le vs n b0 (le_refl (b0 + n))]
+    exact hclose
+  · rw [rotVertex_of_gt vs n b0 (by omega : b0 + n < a + n),
+      show a + n - n = a from by omega]
+
+/-- **The outer piece of the same cut.**  Reading the polygon from the second
+cut side turns the outer arc into an inner arc, so the same construction gives
+a closed polygon with `n - m + 2` sides. -/
+theorem exists_outerCut_polygon {X : Type v} [PseudoMetricSpace X]
+    {vs : ℕ → X} {sides : ℕ → ℝ → X} {b0 n a m : ℕ}
+    (hpoly : IsClosedPolygonAt vs sides b0 n)
+    (hb0a : b0 ≤ a) (hm : 1 ≤ m) (hbn : a + m < b0 + n)
+    {s s' : ℝ}
+    (hs0 : 0 ≤ s) (hsM : s ≤ dist (vs a) (vs (a + 1)))
+    (hs0' : 0 ≤ s') (hsM' : s' ≤ dist (vs (a + m)) (vs (a + m + 1)))
+    {cut : ℝ → X}
+    (hcut : IsGeodesicSegment cut 0 (dist (sides a s) (sides (a + m) s')))
+    (hcut0 : cut 0 = sides a s)
+    (hcut1 : cut (dist (sides a s) (sides (a + m) s')) = sides (a + m) s') :
+    IsClosedPolygonAt
+      (innerVertex (rotVertex vs n b0) (rotSide sides n b0)
+        (a + m) (n - m) s' s)
+      (innerSide (rotSide sides n b0) (a + m) (n - m) s' cut)
+      0 (n - m + 2) := by
+  have hclose := hpoly.2
+  have hpoly' := isClosedPolygonAt_rotate hpoly (by omega : b0 ≤ a + m)
+    (by omega : a + m ≤ b0 + n)
+  have harg : a + m + (n - m) = a + n := by omega
+  have hva : rotVertex vs n b0 (a + m) = vs (a + m) :=
+    rotVertex_of_le vs n b0 (by omega)
+  have hva1 : rotVertex vs n b0 (a + m + 1) = vs (a + m + 1) :=
+    rotVertex_of_le vs n b0 (by omega)
+  have hvb : rotVertex vs n b0 (a + m + (n - m)) = vs a := by
+    rw [harg]
+    exact rotVertex_wrap vs hclose hb0a
+  have hvb1 : rotVertex vs n b0 (a + m + (n - m) + 1) = vs (a + 1) := by
+    rw [harg, rotVertex_of_gt vs n b0 (by omega : b0 + n < a + n + 1),
+      show a + n + 1 - n = a + 1 from by omega]
+  have hsa : rotSide sides n b0 (a + m) = sides (a + m) :=
+    rotSide_of_lt sides n b0 (by omega)
+  have hsb : rotSide sides n b0 (a + m + (n - m)) = sides a := by
+    rw [harg, rotSide_of_ge sides n b0 (by omega : b0 + n ≤ a + n),
+      show a + n - n = a from by omega]
+  refine (exists_innerCut_polygon hpoly' (le_refl (a + m)) (by omega)
+    (by omega) hs0' ?_ hs0 ?_ ?_ ?_ ?_).1
+  · rw [hva, hva1]
+    exact hsM'
+  · rw [hvb, hvb1]
+    exact hsM
+  · rw [hsb, hsa]
+    exact hcut
+  · rw [hsb, hsa]
+    exact hcut0
+  · rw [hsb, hsa]
+    exact hcut1
+
 /-! ## Model check -/
 
 /-- A quadrilateral cut between side `0` and side `2` gives an inner piece of
