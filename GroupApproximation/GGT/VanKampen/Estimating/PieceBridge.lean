@@ -470,6 +470,111 @@ theorem cyclicArcLengths_le_two_mu_cellWeight
 
 namespace Contiguity
 
+/-- When an embedded region has a relator-cell target, transport its target
+arc to that cell's cyclic carrier. -/
+def cellTargetArc
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    (htarget : Gamma.target = some target) :
+    CyclicArc (cellDarts Delta target) := by
+  change CyclicArc (targetDarts Delta (some target))
+  rw [← htarget]
+  exact Gamma.targetArc
+
+/-- An embedded cell-to-cell region's positioned arcs and its two
+relative-short sides give exactly Hull's published piece data.  The two
+remaining equations are respectively the G-cell boundary value equation and
+the non-cancellation conclusion supplied by diagram reducedness. -/
+theorem isPublishedPiece_of_cellTarget
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    (htarget : Gamma.target = some target)
+    (harcs : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).darts) =
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))
+    (hwhole : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).rotated) ≠
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho) :
+    RelWord.IsPublishedPiece D W eps
+      (dartWord Delta Gamma.sourceArc.darts)
+      (dartWord Delta (Gamma.cellTargetArc target htarget).darts)
+      (dartWord Delta Gamma.sourceArc.rotated) := by
+  exact isPublishedPiece_of_cyclicCellArcs hsc Gamma.sourceArc
+    (Gamma.cellTargetArc target htarget) Gamma.leftSide_norm_le
+    Gamma.rightSide_norm_le harcs hwhole
+
+/-- The distinct-cell and same-word/nontrivial-connector branches of the
+embedded published piece. -/
+theorem isPiece_or_sameWord_of_cellTarget
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    (htarget : Gamma.target = some target)
+    (harcs : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).darts) =
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))
+    (hwhole : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).rotated) ≠
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)
+    (hsc : RelWord.IsSmallCancellation D W eps mu rho) :
+    RelWord.IsPiece D W eps (dartWord Delta Gamma.sourceArc.darts)
+        (dartWord Delta Gamma.sourceArc.rotated) ∨
+      RelWord.IsSameWordPublishedPiece D W eps
+        (dartWord Delta Gamma.sourceArc.darts)
+        (dartWord Delta (Gamma.cellTargetArc target htarget).darts)
+        (dartWord Delta Gamma.sourceArc.rotated) := by
+  have hpublished :=
+    Gamma.isPublishedPiece_of_cellTarget target htarget harcs hwhole hsc
+  exact hpublished.toIsPiece_or_sameWord
+
+/-- The embedded cell-target interface gives the source-incidence O52 charge
+in the exact `2 * mu * cellWeight` form. -/
+theorem arcLengths_le_two_mu_cellWeight_of_cellTarget
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps rho : ℕ} {mu : ℝ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) (target : Fin Delta.rCellCount)
+    (htarget : Gamma.target = some target)
+    (harcs : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).darts) =
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.darts) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))
+    (hwhole : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.cellTargetArc target htarget).rotated) ≠
+      GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.leftSide))⁻¹)
+    (hsc : RelWord.IsLemma44Input D W eps mu rho) :
+    (Gamma.sourceArc.length : ℝ) +
+        ((Gamma.cellTargetArc target htarget).length : ℝ) ≤
+      2 * mu * Delta.cellWeight Gamma.source := by
+  exact cyclicArcLengths_le_two_mu_cellWeight hsc Gamma.sourceArc
+    (Gamma.cellTargetArc target htarget) Gamma.leftSide_norm_le
+    Gamma.rightSide_norm_le harcs hwhole
+
 /-- When an embedded region has outer target, transport its target arc to the
 oriented boundary carrier. -/
 def exteriorArc
