@@ -3209,6 +3209,14 @@ import GroupApproximation.GGT.HullSCLemma44PrefixKernelBallInduction
 import GroupApproximation.GGT.KazhdanHypSharpExistenceAssembly
 import GroupApproximation.GGT.VanKampen.BoundaryFarthestPoint
 import GroupApproximation.GGT.VanKampen.SingletonFaceBoundary
+import GroupApproximation.GGT.DGOLemma421Diagram
+import GroupApproximation.GGT.DGOLemma421OrderedBridge
+import GroupApproximation.GGT.DGOProposition414GapTargetWitness
+import GroupApproximation.GGT.HullSCLemma44KernelGeodesicCut
+import GroupApproximation.GGT.HullSCLemma44PrefixKernelTransferInduction
+import GroupApproximation.GGT.KazhdanHypGirthEightCactusProducer
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundConstruction
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryRotation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
