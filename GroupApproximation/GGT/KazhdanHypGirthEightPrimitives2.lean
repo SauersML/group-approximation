@@ -56,9 +56,8 @@ by one literal position of one defining triangle.  This is precisely the
 bookkeeping extracted from `TriangleFacePositions`; it contains no
 nonbacktracking assumption. -/
 structure VertexCornerCertificate
-    {Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)}
-    {v : Delta.toCombMap.Vertex}
-    (C : CyclicCornerEnumeration Delta.toCombMap v) where
+    {M : VanKampen.CombMap.{0}} {v : M.Vertex}
+    (C : CyclicCornerEnumeration M v) where
   /-- Presentation-link vertex at each cyclic corner. -/
   linkVertex : ℕ → TriangularHodgeLayer.SignedGenerator Generator
   /-- Triangle supplying the corner step. -/
@@ -73,7 +72,7 @@ structure VertexCornerCertificate
       (T (triangle i) (TriangularHodgeLayer.nextCorner (position i)))
   /-- Labels repeat when the map corner cycle repeats. -/
   periodic : ∀ i,
-    linkVertex (i + Delta.toCombMap.vertexDegree v) = linkVertex i
+    linkVertex (i + M.vertexDegree v) = linkVertex i
 
 /-- Cellular reducedness at a vertex: the two relator corners on the two
 sides of any intervening edge do not carry mirror link labels.  Equivalently,
@@ -447,6 +446,193 @@ theorem oneTriangle_zeroLayer_unit_cover :
   Finset.card_pos.mpr oneTriangle_zeroLayer_nonempty
 
 end Table
+
+/-! ## Least-area power discs and cancellation surgery -/
+
+section PowerDisc
+
+variable {Generator TriangleIndex : Type}
+  [Fintype Generator] [DecidableEq Generator]
+  [Fintype TriangleIndex] [DecidableEq TriangleIndex]
+  {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+  {g : TriangularHodgeLayer.Presented T} {n : ℕ}
+
+/-- A relator-only filling of a literal power boundary, before imposing
+minimality or reducedness. -/
+structure PowerDiscCandidate
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (g : TriangularHodgeLayer.Presented T) (n : ℕ) where
+  /-- Literal signed word representing the group element. -/
+  word : List (TriangularHodgeLayer.SignedGenerator Generator)
+  /-- The chosen word represents `g`. -/
+  represents : PresentedGroup.mk
+      (TriangularHodgeLayer.relators T : Set (FreeGroup Generator))
+      (PresentedGroupRelatorReplay.word word) = g
+  /-- Filling diagram. -/
+  diagram : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)
+  /-- Its exterior is the literal `n`-fold repetition. -/
+  boundary_eq : diagram.boundaryWord =
+    (List.replicate n (word.map signedFreeRelLetter)).flatten
+  /-- Every inner face is a defining relator face. -/
+  relatorOnly : RelatorOnly T diagram
+
+/-- A reduced candidate is the interface's `PowerDisc`. -/
+def PowerDiscCandidate.toPowerDisc (D : PowerDiscCandidate T g n)
+    (hred : D.diagram.Reduced) : PowerDisc T g n where
+  word := D.word
+  represents := D.represents
+  diagram := D.diagram
+  boundary_eq := D.boundary_eq
+  reduced := hred
+  relatorOnly := D.relatorOnly
+
+/-- Candidate areas form a nonempty subset of the natural numbers. -/
+theorem exists_powerDiscCandidate_area
+    (hfill : Nonempty (PowerDiscCandidate T g n)) :
+    ∃ area : ℕ, ∃ D : PowerDiscCandidate T g n,
+      D.diagram.rCellCount = area := by
+  obtain ⟨D⟩ := hfill
+  exact ⟨D.diagram.rCellCount, D, rfl⟩
+
+/-- Least relator area among candidates with the fixed literal power
+boundary. -/
+noncomputable def leastPowerDiscArea
+    (hfill : Nonempty (PowerDiscCandidate T g n)) : ℕ :=
+  Nat.find (exists_powerDiscCandidate_area hfill)
+
+/-- A candidate attaining the least relator area. -/
+noncomputable def leastPowerDiscCandidate
+    (hfill : Nonempty (PowerDiscCandidate T g n)) :
+    PowerDiscCandidate T g n :=
+  Classical.choose (Nat.find_spec (exists_powerDiscCandidate_area hfill))
+
+/-- The selected candidate has the declared least area. -/
+theorem leastPowerDiscCandidate_area_eq
+    (hfill : Nonempty (PowerDiscCandidate T g n)) :
+    (leastPowerDiscCandidate hfill).diagram.rCellCount =
+      leastPowerDiscArea hfill :=
+  Classical.choose_spec (Nat.find_spec (exists_powerDiscCandidate_area hfill))
+
+/-- No candidate with the same literal boundary has smaller relator area. -/
+theorem leastPowerDiscCandidate_area_le
+    (hfill : Nonempty (PowerDiscCandidate T g n))
+    (D : PowerDiscCandidate T g n) :
+    (leastPowerDiscCandidate hfill).diagram.rCellCount ≤
+      D.diagram.rCellCount := by
+  rw [leastPowerDiscCandidate_area_eq]
+  exact Nat.find_min' (exists_powerDiscCandidate_area hfill) ⟨D, rfl⟩
+
+/-- The local surgery property needed from a cellular cancellation: whenever
+two stored relator cells form a cancelling pair in the sense of
+`DiscDiagram.Reduced`, cutting that pair out produces a candidate with the
+same literal power boundary and strictly smaller relator area. -/
+abbrev CancellationReducesArea (D : PowerDiscCandidate T g n) : Prop :=
+  ∀ (pre between suf : List
+      (VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+        (triangleRelatorWords T)))
+    (C₁ C₂ : VanKampen.RelatorCell D.diagram.toCombMap D.diagram.outerFace
+      (triangleRelatorWords T)),
+    D.diagram.relatorCells = pre ++ C₁ :: (between ++ C₂ :: suf) →
+    (between.map VanKampen.RelatorCell.value).prod⁻¹ * C₁.value *
+      (between.map VanKampen.RelatorCell.value).prod * C₂.value = 1 →
+    ∃ D' : PowerDiscCandidate T g n,
+      D'.diagram.rCellCount < D.diagram.rCellCount
+
+/-- Least area gives diagram reducedness exactly when cancelling pairs admit
+the area-decreasing surgery above. -/
+theorem leastPowerDiscCandidate_reduced
+    (hfill : Nonempty (PowerDiscCandidate T g n))
+    (hsurgery : CancellationReducesArea (leastPowerDiscCandidate hfill)) :
+    (leastPowerDiscCandidate hfill).diagram.Reduced := by
+  intro pre between suf C₁ C₂ hsplit hcancel
+  obtain ⟨D', hlt⟩ := hsurgery pre between suf C₁ C₂ hsplit hcancel
+  have hle := leastPowerDiscCandidate_area_le hfill D'
+  omega
+
+/-- This is the precise least-power-disc constructor used by ko's
+`GirthEightDiagramPrimitives.leastPowerDisc`: van Kampen filling supplies one
+candidate, and cellular cancellation surgery makes a least candidate reduced. -/
+noncomputable def leastPowerDisc_of_filling
+    (hn : 0 < n) (hpow : g ^ n = 1) (hne : g ≠ 1)
+    (fill : 0 < n → g ^ n = 1 → g ≠ 1 →
+      Nonempty (PowerDiscCandidate T g n))
+    (surgery : ∀ D : PowerDiscCandidate T g n,
+      CancellationReducesArea D) : PowerDisc T g n := by
+  let hfill := fill hn hpow hne
+  exact (leastPowerDiscCandidate hfill).toPowerDisc
+    (leastPowerDiscCandidate_reduced hfill
+      (surgery (leastPowerDiscCandidate hfill)))
+
+/-- A candidate with no stored relator cells satisfies the cancellation
+surgery premise vacuously.  This is the zero-area model test for the new local
+property. -/
+theorem cancellationReducesArea_of_noCells
+    (D : PowerDiscCandidate T g n) (hcells : D.diagram.relatorCells = []) :
+    CancellationReducesArea D := by
+  intro pre between suf C₁ C₂ hsplit _hcancel
+  rw [hcells] at hsplit
+  have hlength := congrArg List.length hsplit
+  simp only [List.length_nil, List.length_append, List.length_cons] at hlength
+  omega
+
+/-! ## Rotated-copy gluing and the spherical certificate -/
+
+/-- Combinatorial data produced by gluing rotated copies of a power disc.
+Every spherical face names its copy and its source inner face, and the degree
+is preserved.  The remaining fields are the local relator-corner certificates
+and the no-mirror condition on the glued seams. -/
+structure PowerDiscSphereGluing (D : PowerDisc T g n) where
+  /-- The closed planar map after gluing. -/
+  sphere : VanKampen.SphericalCombMap.{0}
+  /-- Rotated copy from which a spherical face comes. -/
+  sourceCopy : sphere.toCombMap.Face → Fin n
+  /-- Source face in that copy of the disc. -/
+  sourceFace : sphere.toCombMap.Face → D.diagram.toCombMap.Face
+  /-- Exterior faces are removed by the gluing. -/
+  sourceFace_ne_outer : ∀ f, sourceFace f ≠ D.diagram.outerFace
+  /-- Gluing preserves the boundary degree of every source face. -/
+  faceDegree_eq : ∀ f, sphere.toCombMap.faceDegree f =
+    D.diagram.toCombMap.faceDegree (sourceFace f)
+  /-- Cyclic corners of the glued map. -/
+  cornerCycle : ∀ v, CyclicCornerEnumeration sphere.toCombMap v
+  /-- Literal presentation-link labels at glued corners. -/
+  cornerCertificate : ∀ v, VertexCornerCertificate (cornerCycle v)
+  /-- Least-area seam reduction rules out mirror corner pairs. -/
+  cellularReduced : ∀ v, CellularReducedAt (cornerCertificate v)
+
+/-- A rotated-copy gluing certificate gives the exact labelled reduced sphere
+consumed by `presented_isPowerTorsionFree_of_sphericalExtraction`. -/
+noncomputable def triangularRelatorSphericalMap_of_powerDiscGluing
+    (D : PowerDisc T g n) (G : PowerDiscSphereGluing D) :
+    VanKampen.TriangularRelatorSphericalMap T G.sphere.toCombMap where
+  planar := G.sphere.planar
+  faceRelator f := by
+    obtain ⟨j, _hj⟩ := D.relatorOnly.exists_faceWord_eq
+      (G.sourceFace f) (G.sourceFace_ne_outer f)
+    refine ⟨j, ?_⟩
+    have hmem : G.sourceFace f ∈ D.diagram.innerFaces := by
+      simpa only [VanKampen.DiscDiagram.innerFaces, Finset.mem_sdiff,
+        Finset.mem_univ, true_and, Finset.mem_singleton] using
+        G.sourceFace_ne_outer f
+    calc
+      G.sphere.toCombMap.faceDegree f =
+          D.diagram.toCombMap.faceDegree (G.sourceFace f) := G.faceDegree_eq f
+      _ = 3 := D.relatorOnly.innerFaceDegree (G.sourceFace f) hmem
+      _ = (TriangularHodgeLayer.letters (T j)).length := by
+        simp only [TriangularHodgeLayer.letters_eq_three, List.length_cons,
+          List.length_nil, Nat.reduceAdd]
+  vertexLink v := presentationLinkWalk_of_cellularReduced
+    (G.cornerCycle v) (G.cornerCertificate v) (G.cellularReduced v)
+
+/-- The gluing certificate has exactly ko's `gluePowerDisc` conclusion. -/
+theorem exists_labelledSphere_of_powerDiscGluing
+    (D : PowerDisc T g n) (G : PowerDiscSphereGluing D) :
+    ∃ M : VanKampen.CombMap.{0},
+      Nonempty (VanKampen.TriangularRelatorSphericalMap T M) :=
+  ⟨G.sphere.toCombMap,
+    ⟨triangularRelatorSphericalMap_of_powerDiscGluing D G⟩⟩
+
+end PowerDisc
 
 /-! ## One-triangle model test -/
 
