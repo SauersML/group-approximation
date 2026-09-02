@@ -283,6 +283,8 @@ structure Lemma49VKDesignatedBoundaryCycle
   traversal : List (CactusDart Z.cactusShape)
   traversal_eq : traversal =
     (Z.cactusFaceBoundary Z.cactusShape.outerFace).darts
+  traversal_nonempty : traversal ≠ []
+  traversal_starts_at_base : traversal.head traversal_nonempty = baseDart
   traversal_from_base : traversal = List.ofFn
     (CactusDart.outerForward :
       Fin Z.cactusShape.boundaryLength → CactusDart Z.cactusShape)
@@ -306,6 +308,15 @@ noncomputable def lemma49VKDesignatedBoundaryCycle
   baseDart_eq := rfl
   traversal := (Z.cactusFaceBoundary Z.cactusShape.outerFace).darts
   traversal_eq := rfl
+  traversal_nonempty :=
+    (Z.cactusFaceBoundary Z.cactusShape.outerFace).nonempty
+  traversal_starts_at_base := by
+    rw [Z.cactusFaceBoundary_of_ne_big
+      Z.cactusShape.bigFace_ne_outerFace.symm,
+      Z.cactusShape.faceBoundary_outerFace_darts,
+      HullSC.Lemma49GeodesicPowerDiagram.cactus_outerBoundary_darts,
+      List.head_ofFn]
+    rfl
   traversal_from_base := by
     rw [Z.cactusFaceBoundary_of_ne_big
       Z.cactusShape.bigFace_ne_outerFace.symm,
@@ -337,6 +348,21 @@ structure RelativeDiscRealizationPower
     lemma49BoundaryPower Z.boundaryWord n
   reduced : diagram.Reduced
   designatedBoundary : Lemma49VKDesignatedBoundaryCycle Z
+
+namespace RelativeDiscRealizationPower
+
+/-- The consecutive-copy partition flattens to the literal outer word of the
+realized disc diagram. -/
+theorem boundaryCopies_flatten_eq_outerWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {v : List (GGT.RelLetter G Lambda)} {g : G} {n : ℕ}
+    {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n}
+    (C : RelativeDiscRealizationPower D v g n Z) :
+    C.designatedBoundary.boundaryCopies.flatten = C.diagram.boundaryWord :=
+  C.designatedBoundary.copies_flatten.trans C.outerWord_eq.symm
+
+end RelativeDiscRealizationPower
 
 /-- The explicit power cactus supplies the source-ready realization. -/
 noncomputable def relativeDiscRealizationPower
