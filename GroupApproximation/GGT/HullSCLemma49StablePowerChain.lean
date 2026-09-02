@@ -23,6 +23,7 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
 universe u w
@@ -52,7 +53,12 @@ theorem vertex_lemma49BoundaryPower_mul_length
   have hn : n = q + (n - q) := (Nat.add_sub_of_le hq).symm
   have hsplit : lemma49BoundaryPower word n =
       lemma49BoundaryPower word q ++ lemma49BoundaryPower word (n - q) := by
-    rw [hn, lemma49BoundaryPower_add]
+    calc
+      lemma49BoundaryPower word n =
+          lemma49BoundaryPower word (q + (n - q)) := congrArg _ hn
+      _ = lemma49BoundaryPower word q ++
+          lemma49BoundaryPower word (n - q) :=
+        lemma49BoundaryPower_add word q (n - q)
   have hlength : (lemma49BoundaryPower word q).length = q * word.length :=
     lemma49BoundaryPower_length word q
   rw [hsplit, ← hlength,
@@ -68,11 +74,18 @@ theorem sub_lt_two_mul_of_div_add_one_gt_div
     {i j period : ℕ} (hperiod : 0 < period) (hij : i ≤ j)
     (hdiv : j / period < i / period + 1) :
     j - i < 2 * period := by
-  have hiMod : i % period < period := Nat.mod_lt i hperiod
   have hjMod : j % period < period := Nat.mod_lt j hperiod
-  have hiDecomp := Nat.div_add_mod i period
   have hjDecomp := Nat.div_add_mod j period
-  nlinarith
+  have hdivLe : j / period ≤ i / period := by omega
+  have hjLt : j < (j / period + 1) * period := by
+    rw [Nat.add_mul, one_mul]
+    nlinarith
+  have hquotient := Nat.mul_le_mul_right period hdivLe
+  have hiFloor : i / period * period ≤ i := Nat.div_mul_le_self i period
+  have hjILt : j < i + period := by
+    rw [Nat.add_mul, one_mul] at hquotient
+    omega
+  omega
 
 /-- When complete periods do occur between the indices, the total gap is at
 most their orbit-index gap plus the two endpoint periods. -/
@@ -80,11 +93,24 @@ theorem sub_le_period_gap_add_two
     {i j period : ℕ} (hperiod : 0 < period) (hij : i ≤ j)
     (hdiv : i / period + 1 ≤ j / period) :
     j - i ≤ (j / period - (i / period + 1) + 2) * period := by
-  have hiMod : i % period < period := Nat.mod_lt i hperiod
   have hjMod : j % period < period := Nat.mod_lt j hperiod
-  have hiDecomp := Nat.div_add_mod i period
   have hjDecomp := Nat.div_add_mod j period
-  nlinarith
+  let qGap := j / period - (i / period + 1)
+  have hqEq : j / period = i / period + 1 + qGap := by
+    dsimp [qGap]
+    exact (Nat.add_sub_of_le hdiv).symm
+  have hjLt : j < (j / period + 1) * period := by
+    rw [Nat.add_mul, one_mul]
+    nlinarith
+  have hiFloor : i / period * period ≤ i := Nat.div_mul_le_self i period
+  have hsplit : (j / period + 1) * period =
+      i / period * period + (qGap + 2) * period := by
+    rw [hqEq]
+    simp only [Nat.add_mul, Nat.one_mul]
+    omega
+  rw [hsplit] at hjLt
+  have hgap : j - i ≤ (qGap + 2) * period := by omega
+  simpa only [qGap] using hgap
 
 /-! ## The stable-translation power chain -/
 
@@ -136,7 +162,10 @@ theorem isQuasiGeodesicChainAt_power_of_stableTranslation
       dsimp [rightIndex, qRight]
       exact Nat.div_mul_le_self j word.length
     have hleftFit : leftIndex ≤ power.length := by
-      exact le_trans hrightIndex (le_trans hij hj)
+      have hleftRight : leftIndex ≤ rightIndex := by
+        dsimp [leftIndex, rightIndex]
+        exact Nat.mul_le_mul_right word.length hcomplete
+      exact le_trans hleftRight (le_trans hrightIndex hj)
     have hrightFit : rightIndex ≤ power.length :=
       le_trans hrightIndex hj
     have hqLeft : qLeft ≤ n := by
@@ -155,8 +184,12 @@ theorem isQuasiGeodesicChainAt_power_of_stableTranslation
       have hiMod : i % word.length < word.length :=
         Nat.mod_lt i hwordPos
       have hiDecomp := Nat.div_add_mod i word.length
-      dsimp [leftIndex, qLeft] at hraw
-      omega
+      have hgap : leftIndex - i ≤ word.length := by
+        dsimp [leftIndex, qLeft]
+        rw [Nat.add_mul, one_mul]
+        rw [Nat.mul_comm word.length (i / word.length)] at hiDecomp
+        omega
+      exact le_trans hraw hgap
     have hrightClose : wordDist D.alphabet.carrier
         (GGT.OsinComponents.vertex 1 power rightIndex)
         (GGT.OsinComponents.vertex 1 power j) ≤ word.length := by
@@ -165,8 +198,11 @@ theorem isQuasiGeodesicChainAt_power_of_stableTranslation
       have hjMod : j % word.length < word.length :=
         Nat.mod_lt j hwordPos
       have hjDecomp := Nat.div_add_mod j word.length
-      dsimp [rightIndex, qRight] at hraw
-      omega
+      have hgap : j - rightIndex ≤ word.length := by
+        dsimp [rightIndex, qRight]
+        rw [Nat.mul_comm word.length (j / word.length)] at hjDecomp
+        omega
+      exact le_trans hraw hgap
     have hleftVertex : GGT.OsinComponents.vertex 1 power leftIndex =
         g ^ qLeft := by
       dsimp [power, leftIndex]
