@@ -81,12 +81,6 @@ theorem boundaryArc_length_le_boundaryWord
 
 end RelativeBoundaryContiguity
 
-/-- The common reduced-diagram input to relative Greendlinger.  Both Hull
-Lemma 4.4 and Hull Lemma 4.9 provide these fields: a nontrivial designated
-boundary word, a positive list of oriented relator cells whose product is the
-boundary value, and the cell-level reducedness condition inherited from least
-area.  No geodesicity condition is imposed on the whole boundary word; each
-application supplies its own boundary geometry separately. -/
 /-- In a reduced diagram no oriented cell reads the empty relator: such a
 cell would contribute the value `1`, a trivial subproduct of the factor
 list. -/
@@ -116,6 +110,12 @@ theorem Lemma44OrientedRelatorCell.relator_ne_nil_of_reduced
     rw [← hfac, List.take_append_getElem hi, List.take_append_drop]
   exact hreduced _ _ _ hsplit (List.cons_ne_nil _ _) (by simp)
 
+/-- The common reduced-diagram input to relative Greendlinger.  Both Hull
+Lemma 4.4 and Hull Lemma 4.9 provide these fields: a nontrivial designated
+boundary word, a positive list of oriented relator cells whose product is the
+boundary value, and the cell-level reducedness condition inherited from least
+area.  No geodesicity condition is imposed on the whole boundary word; each
+application supplies its own boundary geometry separately. -/
 structure RelativeReducedDiagram
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
