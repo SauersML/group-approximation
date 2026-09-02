@@ -321,18 +321,16 @@ the selected auxiliary family.
 
 The family form adds two more conclusions, and each is the image of one
 relative-isoperimetric control: an ordinary control for the original labelled
-family and one for the source joint family.  Those two controls are the only
-remaining input, and they are named below.  Nothing here is new geometry: the
+family and one for the source joint family.  Nothing here is new geometry: the
 two constructors above do the transport, and the radius-one injectivity both
 need is read off the selected assembly at radius `max R 1`.
 
-Why the two controls are not consequences of the three named statements: every
-landed control producer, `RelativeIsoperimetricBridgeStatement` included, is
-indexed by the same family that carries the relator set `W`.  Here `W` is a set
-of words over `RelLetter G (AuxiliaryPeripheralIndex k)`, so those producers
-apply to the selected family only; for the original and the joint family the
-relator data is not even of the right type.  Osin's Lemma 5.1 for those two
-families is exactly the residue named next.
+Every landed control producer, `RelativeIsoperimetricBridgeStatement` included,
+is indexed by the family that carries the relator set `W`, and here `W` is a set
+of words over `RelLetter G (AuxiliaryPeripheralIndex k)`.  So the bridge applies
+verbatim to the selected family, and to the other two only after the relators
+are re-spelled over their letters.  That re-spelling is isolated below as
+`RelatorRespellingAt`, and the two controls are then proved, not assumed.
 -/
 
 /-- **Osin's relative-isoperimetric conclusion for the two auxiliary families
@@ -342,7 +340,11 @@ The quotient is Hull's: it kills the normal closure of a small-cancellation
 family over the selected relative generating set.  The conclusion is the pair
 of controls the family form needs, one for the original labelled family and
 one for the source joint family.  No conclusion about the selected family is
-asked for here; that half is already reduced. -/
+asked for here; that half is already reduced.
+
+The small-cancellation parameters are chosen by the statement, exactly as in
+`HullLemma44CanonicalQuotientStatement`: Osin's constants for the two auxiliary
+families depend on those families, and the relator is presented afterwards. -/
 def FamilyInclusionRelativeControlStatement : Prop :=
   ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
@@ -354,13 +356,217 @@ def FamilyInclusionRelativeControlStatement : Prop :=
     (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
     (∀ i : AuxiliaryPeripheralIndex k,
       joint.fam (Sum.inr i) = selected.cores.peripheral i) →
-    ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
-      (eps rho : ℕ) (mu : ℝ),
-      RelWord.IsLemma44Input selected.rel W eps mu rho →
-      ∀ {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Surjective q),
-        q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
-          Nonempty (RelativeIsoperimetricControl original q hq) ∧
-            Nonempty (RelativeIsoperimetricControl joint q hq)
+      ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+        ∀ (W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))))
+          {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Surjective q),
+          RelWord.IsLemma44Input selected.rel W eps mu rho →
+          q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
+            Nonempty (RelativeIsoperimetricControl original q hq) ∧
+              Nonempty (RelativeIsoperimetricControl joint q hq)
+
+/-! ### Re-spelling the relators over another peripheral structure -/
+
+universe v
+
+/-- Relabelling a relative letter along a map of index types.  Base letters are
+untouched, and a component letter keeps its group element. -/
+def relabelLetter {G : Type u} {Lambda : Type w} {Lambda' : Type v}
+    (f : Lambda → Lambda') :
+    GGT.RelLetter G Lambda → GGT.RelLetter G Lambda'
+  | GGT.RelLetter.base x => GGT.RelLetter.base x
+  | GGT.RelLetter.comp lam h => GGT.RelLetter.comp (f lam) h
+
+@[simp] theorem relabelLetter_val {G : Type u} {Lambda : Type w}
+    {Lambda' : Type v} (f : Lambda → Lambda')
+    (a : GGT.RelLetter G Lambda) :
+    (relabelLetter f a).val = a.val := by
+  cases a <;> rfl
+
+theorem map_val_relabelLetter {G : Type u} {Lambda : Type w}
+    {Lambda' : Type v} (f : Lambda → Lambda')
+    (word : List (GGT.RelLetter G Lambda)) :
+    (word.map (relabelLetter f)).map GGT.RelLetter.val =
+      word.map GGT.RelLetter.val := by
+  induction word with
+  | nil => rfl
+  | cons a t ih =>
+      simp only [List.map_cons, relabelLetter_val, ih]
+
+/-- Relabelling spells the same group element. -/
+theorem listVal_map_relabelLetter {G : Type u} [Group G] {Lambda : Type w}
+    {Lambda' : Type v} (f : Lambda → Lambda')
+    (word : List (GGT.RelLetter G Lambda)) :
+    GGT.RelLetter.listVal (word.map (relabelLetter f)) =
+      GGT.RelLetter.listVal word := by
+  show ((word.map (relabelLetter f)).map GGT.RelLetter.val).prod =
+    (word.map GGT.RelLetter.val).prod
+  rw [map_val_relabelLetter]
+
+/-- The relabelled relator family. -/
+def relabelWords {G : Type u} {Lambda : Type w} {Lambda' : Type v}
+    (f : Lambda → Lambda') (W : Set (List (GGT.RelLetter G Lambda))) :
+    Set (List (GGT.RelLetter G Lambda')) :=
+  (fun word => word.map (relabelLetter f)) '' W
+
+/-- Relabelling leaves the normally generating set of the filling unchanged. -/
+theorem listVal_image_relabelWords {G : Type u} [Group G] {Lambda : Type w}
+    {Lambda' : Type v} (f : Lambda → Lambda')
+    (W : Set (List (GGT.RelLetter G Lambda))) :
+    GGT.RelLetter.listVal '' relabelWords f W =
+      GGT.RelLetter.listVal '' W := by
+  ext g
+  constructor
+  · rintro ⟨w', hw', hval⟩
+    obtain ⟨word, hword, hmap⟩ := hw'
+    refine ⟨word, hword, ?_⟩
+    rw [← hval, ← hmap, listVal_map_relabelLetter]
+  · rintro ⟨word, hword, hval⟩
+    refine ⟨word.map (relabelLetter f), ⟨word, hword, rfl⟩, ?_⟩
+    rw [listVal_map_relabelLetter, hval]
+
+/-- **Hull's relator family re-spelled over another peripheral structure.**
+
+The re-spelled family normally generates the same subgroup, so it presents the
+same quotient, and it is again a Lemma 4.4 input with parameters above the
+prescribed thresholds.  The thresholds are what Osin's certificate theorem asks
+of the target family, so they are given before the re-spelling is produced. -/
+def RelatorRespellingAt {G : Type u} [Group G] {Lambda : Type w}
+    {Lambda' : Type v} (E : GGT.RelGenSet G Lambda')
+    (W : Set (List (GGT.RelLetter G Lambda))) (eps0 rho0 : ℕ) (mu : ℝ) :
+    Prop :=
+  ∃ (W' : Set (List (GGT.RelLetter G Lambda'))) (eps rho : ℕ),
+    eps0 ≤ eps ∧ rho0 ≤ rho ∧ 20 * (eps + 1) ≤ rho ∧
+      GGT.RelLetter.listVal '' W' = GGT.RelLetter.listVal '' W ∧
+        RelWord.IsLemma44Input E W' eps mu rho
+
+/-- Model test: the empty relator family re-spells to the empty family at every
+threshold, so the re-spelling predicate is not vacuous. -/
+theorem relatorRespellingAt_empty {G : Type u} [Group G] {Lambda : Type w}
+    {Lambda' : Type v} (E : GGT.RelGenSet G Lambda') (eps0 rho0 : ℕ)
+    (mu : ℝ) :
+    RelatorRespellingAt E (∅ : Set (List (GGT.RelLetter G Lambda)))
+      eps0 rho0 mu := by
+  refine ⟨(∅ : Set (List (GGT.RelLetter G Lambda'))), eps0,
+    max rho0 (20 * (eps0 + 1)), le_rfl, Nat.le_max_left _ _,
+    Nat.le_max_right _ _, ?_,
+    RelWord.isLemma44Input_empty E eps0 mu _⟩
+  rw [Set.image_empty, Set.image_empty]
+
+/-- Model test: a family re-spells to itself once its own input meets the
+thresholds. -/
+theorem relatorRespellingAt_self {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (W : Set (List (GGT.RelLetter G Lambda)))
+    {eps0 rho0 eps rho : ℕ} {mu : ℝ}
+    (heps : eps0 ≤ eps) (hrho : rho0 ≤ rho) (h20 : 20 * (eps + 1) ≤ rho)
+    (h : RelWord.IsLemma44Input D W eps mu rho) :
+    RelatorRespellingAt D W eps0 rho0 mu :=
+  ⟨W, eps, rho, heps, hrho, h20, rfl, h⟩
+
+/-- A re-spelling produced by relabelling the index type.  This is the witness
+the joint family is meant to use: its letters are the source letters with the
+peripheral labels pushed along `Sum.inr`, so only the small-cancellation
+clauses have to be re-established. -/
+theorem relatorRespellingAt_of_relabel {G : Type u} [Group G]
+    {Lambda : Type w} {Lambda' : Type v} (E : GGT.RelGenSet G Lambda')
+    (W : Set (List (GGT.RelLetter G Lambda))) (f : Lambda → Lambda')
+    {eps0 rho0 eps rho : ℕ} {mu : ℝ}
+    (heps : eps0 ≤ eps) (hrho : rho0 ≤ rho) (h20 : 20 * (eps + 1) ≤ rho)
+    (h : RelWord.IsLemma44Input E (relabelWords f W) eps mu rho) :
+    RelatorRespellingAt E W eps0 rho0 mu :=
+  ⟨relabelWords f W, eps, rho, heps, hrho, h20,
+    listVal_image_relabelWords f W, h⟩
+
+/-- **The one residual input of the family form.**
+
+Hull's relator family, presented over the selected auxiliary alphabet, has a
+re-spelling over the original peripheral family and over the source joint
+family.  The source thresholds are chosen after the target thresholds, which is
+the order Hull's construction uses: the relator is selected once all constants
+are fixed.
+
+This is strictly smaller than the control statement: no quotient, no diagram
+certificate and no isoperimetric inequality occurs in it, only the combinatorial
+small-cancellation clauses for two other peripheral structures. -/
+def HullRelatorRespellingStatement : Prop :=
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    original.IsHyperbolicallyEmbedded →
+    joint.IsHyperbolicallyEmbedded →
+    (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
+    (∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.cores.peripheral i) →
+    ∀ mu : ℝ, 0 < mu → mu ≤ 1 / 1000 →
+      ∀ eps0 rho0 : ℕ,
+        ∃ eps rho : ℕ,
+          ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
+            RelWord.IsLemma44Input selected.rel W eps mu rho →
+              RelatorRespellingAt original W eps0 rho0 mu ∧
+                RelatorRespellingAt joint W eps0 rho0 mu
+
+/-- **The two residual controls, proved.**  Osin's certificate theorem and his
+relative-isoperimetric bridge are applied to each auxiliary family in turn,
+against the re-spelled relators.  The thresholds handed to the re-spelling are
+exactly the constants the certificate theorem returns for the two families, and
+the bridge is then applied at those constants after one monotonicity step. -/
+theorem familyInclusionRelativeControlStatement_of_greendlinger_of_isoperimetric_of_respelling
+    (hgeom : RelativeGreendlingerStatement.{u, w})
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, w})
+    (hrespell : HullRelatorRespellingStatement.{u, w}) :
+    FamilyInclusionRelativeControlStatement.{u, w} := by
+  intro G _ A N k S selected Lambda original joint horiginal hjoint hinl hinr
+  let mu : ℝ := 1 / 1000
+  have hmuPos : 0 < mu := by
+    dsimp [mu]
+    norm_num
+  have hmuSixteen : mu ≤ 1 / 16 := by
+    dsimp [mu]
+    norm_num
+  have hmuThousand : mu ≤ 1 / 1000 := le_rfl
+  obtain ⟨epsO, rho0O, hcertO⟩ :=
+    hgeom original horiginal mu hmuPos hmuSixteen
+  obtain ⟨epsJ, rho0J, hcertJ⟩ := hgeom joint hjoint mu hmuPos hmuSixteen
+  obtain ⟨epsS, rhoS, hres⟩ :=
+    hrespell selected original joint horiginal hjoint hinl hinr mu hmuPos
+      hmuThousand (max epsO epsJ) (max rho0O rho0J)
+  refine ⟨epsS, rhoS, mu, hmuPos, ?_⟩
+  intro W Q _ q hq hsc hker
+  obtain ⟨hrespO, hrespJ⟩ := hres W hsc
+  constructor
+  · obtain ⟨W', eps', rho', heps', hrho', h20', hlist', hsc'⟩ := hrespO
+    have hepsO : epsO ≤ eps' := le_trans (Nat.le_max_left _ _) heps'
+    have hrhoO : rho0O ≤ rho' := le_trans (Nat.le_max_left _ _) hrho'
+    have hscO : RelWord.IsLemma44Input original W' epsO mu rho' :=
+      hsc'.mono_parameters hepsO le_rfl le_rfl
+    have hkerO : q.ker =
+        Subgroup.normalClosure (GGT.RelLetter.listVal '' W') := by
+      rw [hker, hlist']
+    have hstep : 20 * (epsO + 1) ≤ 20 * (eps' + 1) := by omega
+    have h20 : 20 * (epsO + 1) ≤ rho' := le_trans hstep h20'
+    have hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram original W' R),
+        Nonempty (RelativeDiagramCertificate original W' epsO mu Z) := by
+      intro R Z
+      exact hcertO rho' hrhoO W' R hscO Z
+    exact hbridge original horiginal epsO rho' mu W' q hq hmuPos hmuThousand
+      h20 hscO hkerO hcert
+  · obtain ⟨W', eps', rho', heps', hrho', h20', hlist', hsc'⟩ := hrespJ
+    have hepsJ : epsJ ≤ eps' := le_trans (Nat.le_max_right _ _) heps'
+    have hrhoJ : rho0J ≤ rho' := le_trans (Nat.le_max_right _ _) hrho'
+    have hscJ : RelWord.IsLemma44Input joint W' epsJ mu rho' :=
+      hsc'.mono_parameters hepsJ le_rfl le_rfl
+    have hkerJ : q.ker =
+        Subgroup.normalClosure (GGT.RelLetter.listVal '' W') := by
+      rw [hker, hlist']
+    have hstep : 20 * (epsJ + 1) ≤ 20 * (eps' + 1) := by omega
+    have h20 : 20 * (epsJ + 1) ≤ rho' := le_trans hstep h20'
+    have hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram joint W' R),
+        Nonempty (RelativeDiagramCertificate joint W' epsJ mu Z) := by
+      intro R Z
+      exact hcertJ rho' hrhoJ W' R hscJ Z
+    exact hbridge joint hjoint epsJ rho' mu W' q hq hmuPos hmuThousand
+      h20 hscJ hkerJ hcert
 
 /-- The repaired family form follows from the canonical selected-family
 statement together with the two residual controls.  The requested radius is
@@ -372,10 +578,19 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
     HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} := by
   intro G _ A N k S selected Lambda original hA horiginal joint hbaseInv
     hjointOriginal hjointSelected hjointEmbedded R
-  obtain ⟨eps, rho, mu, hmu, hgood⟩ := h44 selected (max R 1)
-  refine ⟨eps, rho, mu, hmu, ?_⟩
+  obtain ⟨epsP, rhoP, muP, hmuP, hgood⟩ := h44 selected (max R 1)
+  obtain ⟨epsC, rhoC, muC, hmuC, hcontrol⟩ :=
+    hcontrols selected original joint horiginal hjointEmbedded hjointOriginal
+      hjointSelected
+  refine ⟨max epsP epsC, max rhoP rhoC, min muP muC, lt_min hmuP hmuC, ?_⟩
   intro W Q _ q hsc hsurj hker
-  obtain ⟨hinjMax, hselectedPreserved⟩ := hgood W q hsc hsurj hker
+  have hscP : RelWord.IsLemma44Input selected.rel W epsP muP rhoP :=
+    hsc.mono_parameters (Nat.le_max_left _ _) (min_le_left _ _)
+      (Nat.le_max_left _ _)
+  have hscC : RelWord.IsLemma44Input selected.rel W epsC muC rhoC :=
+    hsc.mono_parameters (Nat.le_max_right _ _) (min_le_right _ _)
+      (Nat.le_max_right _ _)
+  obtain ⟨hinjMax, hselectedPreserved⟩ := hgood W q hscP hsurj hker
   have hinjR : Set.InjOn q (cayleyBall A.alphabet R) :=
     hinjMax.mono
       (cayleyBall_subset_of_le_radius A.alphabet (Nat.le_max_left R 1))
@@ -383,8 +598,7 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
     hinjMax.mono
       (cayleyBall_subset_of_le_radius A.alphabet (Nat.le_max_right R 1))
   obtain ⟨⟨originalControl⟩, ⟨jointControl⟩⟩ :=
-    hcontrols selected original joint horiginal hjointEmbedded hjointOriginal
-      hjointSelected W eps rho mu hsc q hsurj hker
+    hcontrol W q hsurj hscC hker
   have horiginalUnion : Set.InjOn q
       (⋃ lam : Lambda, (original.fam lam : Set G)) := by
     intro x hx y hy hxy
@@ -398,34 +612,36 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
       hbaseInv hjointOriginal hjointSelected q hsurj hjointEmbedded
       jointControl⟩
 
-/-- **Leaf B, repaired form, from named inputs only.**  Three of the four are
-the construction statements already carrying the selected half; the fourth is
-the residual pair of controls. -/
+/-- **Leaf B, repaired form, from three named inputs.**  Osin's certificate
+theorem and his relative-isoperimetric bridge carry the selected half and, once
+the relators are re-spelled, the other two conclusions as well.  The
+kernel-geodesic route of `HullSCLemma44KernelAssembly` reaches the same selected
+half and is not needed here, since the bridge is required for the auxiliary
+families in any case. -/
 theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
-    (hcontrols : FamilyInclusionRelativeControlStatement.{u, w}) :
-    HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, w} :=
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, 0})
+    (hrespell : HullRelatorRespellingStatement.{u, 0}) :
+    HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{u, 0} :=
   hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_of_controls
-    (hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-      hgeom hkernel htransfer)
-    hcontrols
+    (hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
+      hgeom hbridge)
+    (familyInclusionRelativeControlStatement_of_greendlinger_of_isoperimetric_of_respelling
+      hgeom hbridge hrespell)
 
-/-- **Leaf B as currently stated, from named inputs only.**  The extra
-hypothesis over the repaired form is the joint-family selection input, and by
-`jointAuxiliaryPeripheralEmbedding_of_familyInclusion` it cannot be avoided:
+/-- **Leaf B as Theorem C currently consumes it, from four named inputs.**  The
+extra hypothesis over the repaired form is the joint-family selection input, and
+by `jointAuxiliaryPeripheralEmbedding_of_familyInclusion` it cannot be avoided:
 the leaf entails it. -/
 theorem hullLemma44CanonicalQuotientFamilyInclusionStatement_of_controls
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
-    (hcontrols : FamilyInclusionRelativeControlStatement.{u, w})
-    (hsel : JointAuxiliaryPeripheralEmbedding.{u, w}) :
-    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, w} :=
+    (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, 0})
+    (hrespell : HullRelatorRespellingStatement.{u, 0})
+    (hsel : JointAuxiliaryPeripheralEmbedding.{u, 0}) :
+    HullLemma44CanonicalQuotientFamilyInclusionStatement.{u, 0} :=
   hullLemma44CanonicalQuotientFamilyInclusionStatement_of_joint hsel
     (hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls
-      hgeom hkernel htransfer hcontrols)
+      hgeom hbridge hrespell)
 
 end HullSC
 end GroupApproximation
