@@ -190,42 +190,6 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
     exact (false_of_powerDiagram_of_not_isLoxodromic_of_ballInjective
       D Z hdelta hlox hinjBall).elim
 
-/-! ## Embedded construction integration -/
-
-/-- The embedded estimating-system construction supplies the source
-Greendlinger estimate, so the source branch assembly proves Hull's complete
-Lemma 4.9 statement from that construction and the two remaining interfaces.
--/
-theorem hullLemma49ShortestGeodesicPowerDiagram_of_embeddedConstruction
-    (hconstruction :
-      GGT.VanKampen.EmbeddedEstimatingSystemConstructionStatement.{u, w, 0})
-    (hpasting : ∀
-      {G : Type u} [Group G] {Lambda : Type w}
-      {D : GGT.RelGenSet G Lambda}
-      {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
-      {Z : Lemma49GeodesicPowerDiagram D v g n},
-      ∀ C : GGT.VanKampen.Lemma49SourceGreendlingerCertificate
-          D v g n eps mu Z,
-        GGT.VanKampen.Embedded.FaceSetWordHomotopy C.diagram C.faces
-          C.contiguity.boundary.cycle [])
-    (hinjective : ∀
-      {G : Type u} [Group G] {Lambda : Type w}
-      (D : GGT.RelGenSet G Lambda) (delta : ℕ),
-      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta →
-      ∃ (epsInjective rhoInjective : ℕ) (muInjective : ℝ),
-        0 < muInjective ∧
-        ∀ (W : Set (List (GGT.RelLetter G Lambda)))
-          {Q : Type u} [Group Q] (q : G →* Q),
-          RelWord.IsLemma49Input D W epsInjective muInjective rhoInjective →
-          q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
-          Set.InjOn q (cayleyBall D.alphabet (8 * delta + 1))) :
-    HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
-  have hgeom :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} :=
-    GGT.VanKampen.relativeGreendlingerQuasiGeodesic hconstruction
-  exact hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
-    (hgeom := hgeom) (hpasting := hpasting) (hinjective := hinjective)
-
 /-! ## Model check -/
 
 /-- The trivial-group model has no nontrivial power diagram, so the assembled
