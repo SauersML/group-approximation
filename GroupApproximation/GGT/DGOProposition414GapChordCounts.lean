@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOProposition414GapArcPartition
+import GroupApproximation.GGT.DGOProposition414OppositePartnerOccurrence
 
 /-!
 # Chord-length accounting for balanced gap children
@@ -25,7 +26,7 @@ theorem sum_chordWalk_dist (xs : List ℕ) (initial terminal : ℕ) :
       chordTraversalCost (initial :: xs ++ [terminal]) := by
   induction xs generalizing initial with
   | nil =>
-      simp [Fin.sum_univ_one, chordWalkStart, chordWalkFinish,
+      simp [chordWalkStart, chordWalkFinish,
         chordTraversalCost, Nat.dist_comm]
   | cons x xs ih =>
       rw [Fin.sum_univ_succ]
@@ -38,10 +39,15 @@ theorem sum_chordWalk_dist (xs : List ℕ) (initial terminal : ℕ) :
               (chordWalkFinish x xs j) := by
         apply Finset.sum_congr rfl
         intro j _hj
-        simp [chordWalkStart, chordWalkFinish]
+        rcases j with ⟨j, hj⟩
+        cases j <;> simp [chordWalkStart, chordWalkFinish]
+      change Nat.dist x initial +
+          (∑ j : Fin (xs.length + 1),
+            Nat.dist (chordWalkStart terminal (x :: xs) j.succ)
+              (chordWalkFinish initial (x :: xs) j.succ)) =
+        chordTraversalCost (initial :: x :: xs ++ [terminal])
       rw [htail, ih x]
-      simp [chordWalkStart, chordWalkFinish, chordTraversalCost,
-        Nat.dist_comm]
+      simp [chordTraversalCost, Nat.dist_comm]
 
 /-- Moving either endpoint of every chord-walk segment forward by at most one
 adds at most two per segment to the total traversal. -/
@@ -78,38 +84,31 @@ theorem sum_orientedTrimmedChordWalk_dist_le
             by_cases hf : forward j
             · by_cases hn : j.val < xs.length
               · by_cases hp : 0 < j.val
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
               · by_cases hp : 0 < j.val
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
             · by_cases hn : j.val < xs.length
               · by_cases hp : 0 < j.val
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
               · by_cases hp : 0 < j.val
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
-                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart, chordWalkFinish,
-                    Nat.dist]
-                  omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
+                · simp [endpointByOrientation, hf, hn, hp, chordWalkStart,
+                    chordWalkFinish, Nat.dist] <;> omega
     _ = chordTraversalCost (initial :: xs ++ [terminal]) +
         2 * (xs.length + 1) := by
       rw [Finset.sum_add_distrib, sum_chordWalk_dist]
       simp
+      omega
 
 /-- The orientation correction vanishes for an empty partner list and is at
 most four times the number of partners otherwise. -/
