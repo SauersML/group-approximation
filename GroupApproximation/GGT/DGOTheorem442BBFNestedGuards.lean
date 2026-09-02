@@ -169,6 +169,146 @@ theorem exists_isBBFGuard_mem_half_blockers_of_not_adj
     (by linarith [hK]) hW12 hempty
   exact ⟨W, hguard, hWhalf⟩
 
+/-- **BBF nested-guards lemma.**  When a guard ceases to be `(K/2)`-large
+after moving across one graph edge, a new guard can be chosen below it.  The
+old guard is then `12ξ`-large from the new guard's viewpoint. -/
+theorem exists_nested_isBBFGuard
+    (P : ProjectionSystem V) {K : ℝ} (hK : 64 * P.ξ ≤ K)
+    {X₀ X₁ Z W : V}
+    (h01 : ((ProjectionPerturbation.bbf P).graph K).Adj X₀ X₁)
+    (hguard : IsBBFGuard P K W Z)
+    (hW₀ : W ∈
+      (ProjectionPerturbation.bbf P).blockers (K / 2) X₀ Z)
+    (hW₁not : W ∉
+      (ProjectionPerturbation.bbf P).blockers (K / 2) X₁ Z)
+    (h0Wnot : ¬ ((ProjectionPerturbation.bbf P).graph K).Adj X₀ W)
+    (hX₁W : X₁ ≠ W) (hX₁Z : X₁ ≠ Z)
+    (hX₁Znot : ¬ ((ProjectionPerturbation.bbf P).graph K).Adj X₁ Z) :
+    ∃ W',
+      IsBBFGuard P K W' Z ∧
+      W' ∈ (ProjectionPerturbation.bbf P).blockers (K / 2) X₁ Z ∧
+      W ∈ (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) W' Z := by
+  have hhalf : 12 * P.ξ ≤ K / 2 := by
+    calc
+      12 * P.ξ ≤ 32 * P.ξ := by linarith [P.ξ_pos]
+      _ ≤ K / 2 := by linarith [hK]
+  have hX₀Z : X₀ ≠ Z := P.ne_of_mem_bbf_blockers (by
+    linarith [hhalf, P.ξ_pos]) hW₀
+  change W ≠ X₀ ∧ W ≠ Z ∧ K / 2 < P.bbfProjDist W X₀ Z at hW₀
+  have hmove := P.abs_bbfProjDist_sub_le_eight_mul_of_adj_of_not_adj
+    (by linarith [hK]) h01 hW₀.1.symm h0Wnot hW₀.2.1
+      hX₀Z hX₁Z
+  have hW₁strong : K / 2 - 8 * P.ξ < P.bbfProjDist W X₁ Z := by
+    have hupper := (abs_le.mp hmove).2
+    linarith [hW₀.2.2]
+  have hW₁12 : W ∈
+      (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) X₁ Z := by
+    change W ≠ X₁ ∧ W ≠ Z ∧ 12 * P.ξ < P.bbfProjDist W X₁ Z
+    refine ⟨hX₁W.symm, hW₀.2.1, ?_⟩
+    linarith [hW₁strong, hK, P.ξ_pos]
+  have hblockers : (ProjectionPerturbation.bbf P).blockers K X₁ Z ≠ ∅ := by
+    intro hempty
+    apply hX₁Znot
+    exact (ProjectionPerturbation.graph_adj_iff_blockers_eq_empty
+      (ProjectionPerturbation.bbf P) K X₁ Z).mpr ⟨hX₁Z, hempty⟩
+  obtain ⟨U₀, hU₀⟩ :
+      ((ProjectionPerturbation.bbf P).blockers K X₁ Z).Nonempty :=
+    Set.nonempty_iff_ne_empty.mpr hblockers
+  have hKhalf : K / 2 < K := by
+    linarith [hK, P.ξ_pos]
+  have hU₀half : U₀ ∈
+      (ProjectionPerturbation.bbf P).blockers (K / 2) X₁ Z := by
+    change U₀ ≠ X₁ ∧ U₀ ≠ Z ∧ K / 2 < P.bbfProjDist U₀ X₁ Z
+    change U₀ ≠ X₁ ∧ U₀ ≠ Z ∧ K < P.bbfProjDist U₀ X₁ Z at hU₀
+    exact ⟨hU₀.1, hU₀.2.1, hKhalf.trans hU₀.2.2⟩
+  have hU₀before : 5 * P.ξ < P.bbfProjDist U₀ X₁ W := by
+    have horder := hguard.2 X₁ hW₁12 U₀ hU₀
+    rcases horder with hU₀W | hbefore
+    · subst U₀
+      exact (hW₁not hU₀half).elim
+    · exact hbefore
+  obtain ⟨W', hW'half, hW'before, hmax⟩ :=
+    P.exists_maximal_half_blocker_before (by linarith [hK]) hW₁12
+      ⟨U₀, hU₀half, hU₀before⟩
+  have hW'W : W' ≠ W := P.ne_of_bbf_before hW'before
+  have hend := P.bbfProjDist_endpoints_lt hW'half.1 hW'W
+    hX₁W (by linarith [hW'before, P.ξ_pos])
+  have htri := P.bbfProjDist_triangle hX₁W.symm hW'W.symm hW₀.2.1
+    hW'half.1.symm hW'half.2.1 hX₁Z
+  have hWW' : W ∈
+      (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) W' Z := by
+    change W ≠ W' ∧ W ≠ Z ∧ 12 * P.ξ < P.bbfProjDist W W' Z
+    refine ⟨hW'W.symm, hW₀.2.1, ?_⟩
+    linarith [hW₁strong, hend.2, htri, hK, P.ξ_pos]
+  have hW'12 : W' ∈
+      (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) X₁ Z := by
+    change W' ≠ X₁ ∧ W' ≠ Z ∧ 12 * P.ξ < P.bbfProjDist W' X₁ Z
+    change W' ≠ X₁ ∧ W' ≠ Z ∧ K / 2 < P.bbfProjDist W' X₁ Z at hW'half
+    exact ⟨hW'half.1, hW'half.2.1,
+      lt_of_le_of_lt hhalf hW'half.2.2⟩
+  have hguard' : IsBBFGuard P K W' Z := by
+    refine ⟨⟨X₁, hW'12⟩, ?_⟩
+    intro A hW'A V₀ hV₀
+    have hAZ : A ≠ Z := P.ne_of_mem_bbf_blockers (by
+      linarith [P.ξ_pos]) hW'A
+    change W' ≠ A ∧ W' ≠ Z ∧
+      12 * P.ξ < P.bbfProjDist W' A Z at hW'A
+    change V₀ ≠ A ∧ V₀ ≠ Z ∧ K < P.bbfProjDist V₀ A Z at hV₀
+    by_cases hV₀W' : V₀ = W'
+    · exact Or.inl hV₀W'
+    have hWA : W ≠ A := by
+      intro hWA
+      subst A
+      have hend' := P.bbfProjDist_endpoints_lt hW'W hW'A.2.1
+        hW₀.2.1 (by linarith [hW'A.2.2, P.ξ_pos])
+      linarith [hWW'.2.2, hend'.1, P.ξ_pos]
+    have hmono := P.bbfProjDist_right_mono hWA hW'W.symm hW₀.2.1
+      hW'A.1 hW'A.2.1 hAZ (by linarith [hW'A.2.2, P.ξ_pos])
+    rw [P.bbfProjDist_comm W Z W'] at hmono
+    have hWA12 : W ∈
+        (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) A Z :=
+      ⟨hWA, hW₀.2.1, hWW'.2.2.trans_le hmono⟩
+    have hV₀A12 : V₀ ∈
+        (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) A Z :=
+      ⟨hV₀.1, hV₀.2.1, lt_of_le_of_lt (by linarith [hK]) hV₀.2.2⟩
+    have htotal := P.bbf_before_total_on_large (le_refl (12 * P.ξ))
+      hW'A.1 hW'A.2.1 hV₀A12.1 hV₀A12.2.1
+      (Ne.symm hV₀W') hW'A.2.2 hV₀A12.2.2
+    rcases htotal with hW'V₀ | hV₀W'
+    · have hV₀halfW' := P.mem_half_blockers_of_bbf_before
+        (by linarith [hK]) (by
+          exact ⟨hW'A.1, hW'A.2.1, hW'A.2.2⟩) (by
+          exact ⟨hV₀.1, hV₀.2.1, hV₀.2.2⟩) (Ne.symm hV₀W') hW'V₀
+      have hV₀half := P.bbf_blocker_transfer_of_large
+        (T := K / 2) (S := K / 2)
+        (by linarith [hhalf, P.ξ_pos])
+        (by linarith [hhalf, P.ξ_pos]) hW'half hV₀halfW'
+      have hV₀W : V₀ ≠ W := by
+        intro hV₀W
+        subst V₀
+        exact hW₁not hV₀half
+      have hV₀beforeA : 5 * P.ξ < P.bbfProjDist V₀ A W := by
+        have horder := hguard.2 A hWA12 V₀ (by
+          exact ⟨hV₀.1, hV₀.2.1, hV₀.2.2⟩)
+        exact horder.resolve_left hV₀W
+      have hV₀12 : V₀ ∈
+          (ProjectionPerturbation.bbf P).blockers (12 * P.ξ) X₁ Z :=
+        ⟨hV₀half.1, hV₀half.2.1,
+          lt_of_le_of_lt hhalf hV₀half.2.2⟩
+      have hV₀before₁ := P.bbf_before_independent_of_left_endpoint
+        (le_refl (12 * P.ξ)) hV₀A12 hWA12 hV₀12 hW₁12
+          hV₀W hV₀beforeA
+      have hmaxResult := hmax V₀ hV₀half hV₀before₁
+      have hV₀beforeW'₁ := hmaxResult.resolve_left hV₀W'
+      have hV₀beforeW'A := P.bbf_before_independent_of_left_endpoint
+        (le_refl (12 * P.ξ)) hV₀12 hW'12 hV₀A12
+          (by exact ⟨hW'A.1, hW'A.2.1, hW'A.2.2⟩)
+          hV₀W' hV₀beforeW'₁
+      exact (P.bbf_before_asymm hV₀A12.1 hV₀W' hW'A.1
+        hV₀beforeW'A hW'V₀).elim
+    · exact Or.inr hV₀W'
+  exact ⟨W', hguard', hW'half, hWW'⟩
+
 end ProjectionSystem
 end GGT
 end GroupApproximation
