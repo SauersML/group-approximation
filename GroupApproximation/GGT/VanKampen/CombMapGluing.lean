@@ -224,41 +224,32 @@ noncomputable def of_copyMate
     {I : Type v} (index : ExposedCopiedDart Delta n ≃ Fin n × I)
     (copyMate : Perm (Fin n))
     (hinvol : Function.Involutive copyMate)
-    (hfree : ∀ i, copyMate i ≠ i) : ExposedPairing Delta n where
-  mate := {
-    toFun := fun d => index.symm (copyMate (index d).1, (index d).2)
-    invFun := fun d => index.symm (copyMate (index d).1, (index d).2)
-    left_inv := by
-      intro d
-      apply index.injective
-      simp only [Equiv.apply_symm_apply]
-      apply Prod.ext
-      · exact hinvol (index d).1
-      · rfl
-    right_inv := by
-      intro d
-      apply index.injective
-      simp only [Equiv.apply_symm_apply]
-      apply Prod.ext
-      · exact hinvol (index d).1
-      · rfl }
-  involutive := by
+    (hfree : ∀ i, copyMate i ≠ i) : ExposedPairing Delta n := by
+  let mateFun : ExposedCopiedDart Delta n → ExposedCopiedDart Delta n :=
+    fun d => index.symm (copyMate (index d).1, (index d).2)
+  have hmate_involutive : Function.Involutive mateFun := by
     intro d
     apply index.injective
-    simp only [Equiv.apply_symm_apply]
+    simp only [mateFun, Equiv.apply_symm_apply]
     apply Prod.ext
     · exact hinvol (index d).1
     · rfl
-  fixedPointFree := by
-    intro d hd
+  let matePerm : Perm (ExposedCopiedDart Delta n) := {
+    toFun := mateFun
+    invFun := mateFun
+    left_inv := hmate_involutive
+    right_inv := hmate_involutive }
+  refine { mate := matePerm
+    involutive := hmate_involutive
+    fixedPointFree := ?_
+    changes_copy := ?_ }
+  · intro d hd
     apply hfree (index d).1
     have h := congrArg index hd
-    exact congrArg Prod.fst h
-  changes_copy := by
-    intro d hd
+    simpa [matePerm, mateFun, Equiv.apply_symm_apply] using congrArg Prod.fst h
+  · intro d hd
     apply hfree (index d).1
-    change copyMate (index d).1 = (index d).1 at hd
-    exact hd
+    simpa [matePerm, mateFun, Equiv.apply_symm_apply] using hd
 
 end ExposedPairing
 
