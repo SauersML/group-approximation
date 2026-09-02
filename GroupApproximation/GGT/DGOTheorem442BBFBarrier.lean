@@ -191,7 +191,7 @@ theorem exists_bbf_standard_walk_within_two
       refine ⟨?_, ?_, ?_⟩
       · intro hAY
         subst A
-        simpa using hdist
+        simp at hdist
       · intro hAY
         have hdistOne :
             ((ProjectionPerturbation.bbf P).graph K).dist Y A = 1 :=
