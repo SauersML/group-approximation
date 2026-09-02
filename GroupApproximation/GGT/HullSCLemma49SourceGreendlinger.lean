@@ -162,6 +162,34 @@ theorem RelWord.IsLemma49Input.toOsinCCondition
     GGT.VanKampen.OsinCCondition D W eps mu (1 / 4) 1 rho :=
   hinput.toIsLemma44Input.toOsinCCondition
 
+/-- Hull's relator condition remains an Osin condition after decreasing the
+multiplicative coefficient and increasing the additive error. -/
+theorem RelWord.IsLemma44Input.toOsinCCondition_of_weakerConstants
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu lambda c : ℝ}
+    (hinput : RelWord.IsLemma44Input D W eps mu rho)
+    (hlambda : lambda ≤ 1 / 4) (hc : 1 ≤ c) :
+    GGT.VanKampen.OsinCCondition D W eps mu lambda c rho where
+  toIsSmallCancellation := hinput.toIsSmallCancellation
+  quasiGeodesic word hword := by
+    have hbase := hinput.relator_isLambdaCQuasiGeodesicWord hword
+    have hslope := isLambdaCQuasiGeodesicWord_mono_slope hbase hlambda
+    exact isLambdaCQuasiGeodesicWord_mono_error hslope hc
+  publishedPiecesSmall := hinput.publishedPiecesSmall
+
+/-- The same weakening is available directly from a Lemma 4.9 input. -/
+theorem RelWord.IsLemma49Input.toOsinCCondition_of_weakerConstants
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu lambda c : ℝ}
+    (hinput : RelWord.IsLemma49Input D W eps mu rho)
+    (hlambda : lambda ≤ 1 / 4) (hc : 1 ≤ c) :
+    GGT.VanKampen.OsinCCondition D W eps mu lambda c rho :=
+  hinput.toIsLemma44Input.toOsinCCondition_of_weakerConstants hlambda hc
+
 /-! ## Geodesic and power boundaries -/
 
 /-- A geodesic word has the exact chain estimate with multiplicative
@@ -268,6 +296,30 @@ theorem isLambdaCQuasiGeodesicWord_power_of_stableTranslation
     (n := n) (b := 4 * L) (M := (M : ℝ)) D hword.1
       (isQuasiGeodesicChainAt_power_of_stableTranslation D hword
         hwordPos hlength hM hd hdStable hdL hLM)
+
+/-- The stable-power multiplicative constant can be chosen at least four, so
+its reciprocal is no larger than the fixed relator coefficient `1/4`. -/
+theorem exists_lemma49StablePowerConstant_four_le
+    {d : ℝ} (hd : 0 < d) (L : ℕ) :
+    ∃ M : ℕ, 4 ≤ M ∧ (L : ℝ) ≤ d * M := by
+  obtain ⟨M, _hM, hLM⟩ := exists_lemma49StablePowerConstant hd L
+  let M' := M + 4
+  have hMM' : M ≤ M' := by
+    dsimp [M']
+    omega
+  have hcast : (M : ℝ) ≤ (M' : ℕ) := Nat.cast_le.mpr hMM'
+  have hproduct : d * (M : ℝ) ≤ d * (M' : ℕ) :=
+    mul_le_mul_of_nonneg_left hcast hd.le
+  refine ⟨M', ?_, le_trans hLM hproduct⟩
+  dsimp [M']
+  omega
+
+/-- A natural denominator at least four gives an Osin coefficient no larger
+than the relator coefficient. -/
+theorem one_div_natCast_le_quarter {M : ℕ} (hM : 4 ≤ M) :
+    (1 / (M : ℝ)) ≤ 1 / 4 := by
+  have hcast : (4 : ℝ) ≤ (M : ℕ) := Nat.cast_le.mpr hM
+  exact one_div_le_one_div_of_le (by norm_num) hcast
 
 /-! ## Numerical source parameters -/
 
