@@ -114,7 +114,16 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
             sourceCertificate.contiguity.leftSide) := by
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
       (hpasting sourceCertificate)
-    simpa [sourceCertificate.target_eq] using h
+    have htargetDarts :
+        GGT.VanKampen.Embedded.targetBoundaryDarts
+            sourceCertificate.diagram sourceCertificate.contiguity.target
+            sourceCertificate.contiguity.targetArc =
+          (sourceCertificate.contiguity.outerTargetArc
+            sourceCertificate.target_eq).darts := by
+      rw [sourceCertificate.target_eq]
+      rfl
+    rw [htargetDarts] at h
+    exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
     sourceCertificate.contiguity sourceCertificate.target_eq
       sourceCertificate.boundaryWord_eq hmuCertPos.le
@@ -298,7 +307,16 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
             sourceCertificate.contiguity.leftSide) := by
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
       (hpasting sourceCertificate)
-    simpa [sourceCertificate.target_eq] using h
+    have htargetDarts :
+        GGT.VanKampen.Embedded.targetBoundaryDarts
+            sourceCertificate.diagram sourceCertificate.contiguity.target
+            sourceCertificate.contiguity.targetArc =
+          (sourceCertificate.contiguity.outerTargetArc
+            sourceCertificate.target_eq).darts := by
+      rw [sourceCertificate.target_eq]
+      rfl
+    rw [htargetDarts] at h
+    exact h
   obtain ⟨E⟩ := exists_lemma49EmbeddedExteriorArc Z hbaseInput
     sourceCertificate.contiguity sourceCertificate.target_eq
       sourceCertificate.boundaryWord_eq hmuCertPos.le
