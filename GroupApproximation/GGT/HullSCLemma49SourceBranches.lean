@@ -124,9 +124,8 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_source
         GGT.RelLetter.listVal
           (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
             sourceCertificate.contiguity.leftSide) := by
-    obtain ⟨peeling⟩ := hpasting sourceCertificate
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
-      peeling.to_homotopy
+      (hpasting sourceCertificate)
     have htargetDarts := targetBoundaryDarts_eq_outerTargetArc
       sourceCertificate.contiguity sourceCertificate.target_eq
     rw [htargetDarts] at h
@@ -306,9 +305,8 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_source
         GGT.RelLetter.listVal
           (GGT.VanKampen.Embedded.dartWord sourceCertificate.diagram
             sourceCertificate.contiguity.leftSide) := by
-    obtain ⟨peeling⟩ := hpasting sourceCertificate
     have h := sourceCertificate.contiguity.arcs_value_of_pasting
-      peeling.to_homotopy
+      (hpasting sourceCertificate)
     have htargetDarts := targetBoundaryDarts_eq_outerTargetArc
       sourceCertificate.contiguity sourceCertificate.target_eq
     rw [htargetDarts] at h
