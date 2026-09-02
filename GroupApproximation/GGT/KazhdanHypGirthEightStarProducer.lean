@@ -162,11 +162,10 @@ theorem successiveStarLayers_of_certificateInput
             Set (TriangularHodgeLayer.Presented T)) p q) →
       ∀ (Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T)),
         Delta.Reduced →
-        ∃ L : TriangularDiagramLocalData T Delta,
-          Nonempty (SuccessiveStarLayers T) := by
+        ∃ S : SuccessiveStarLayers T, S.diagram = Delta := by
   intro delta x y z p hp hfarXZ hfarZY Delta hred
   obtain ⟨L, ⟨C⟩⟩ := hsource delta x y z p hp hfarXZ hfarZY Delta hred
-  exact ⟨L, ⟨C.toSuccessiveStarLayers Delta L⟩⟩
+  exact ⟨C.toSuccessiveStarLayers Delta L, rfl⟩
 
 /-! ## One-triangle layer model -/
 
