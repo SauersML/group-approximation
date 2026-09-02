@@ -56,7 +56,6 @@ theorem isLambdaCQuasiGeodesicWord_nil
   have hi0 : i = 0 := by omega
   subst i
   subst j
-  simp only [Nat.cast_zero, zero_sub, mul_zero]
   have hdist : (0 : ℝ) ≤
       ((wordDist D.alphabet.carrier
         (GGT.OsinComponents.vertex 1 [] 0)
@@ -369,8 +368,12 @@ theorem relativeGreendlingerQuasiGeodesic
     system.exists_large_exterior hmu hmuUpper
   refine ⟨Delta', hequiv, contiguity.faces, contiguity.region,
     contiguity.target_eq, ?_⟩
-  rw [contiguity.source_eq]
-  exact hlarge
+  have hlength :
+      ((Embedded.cell Delta' contiguity.region.source).word.length : ℝ) =
+        ((Embedded.cell Delta' i).word.length : ℝ) := by
+    rw [contiguity.source_eq]
+  rw [hlength]
+  simpa only [EmbeddedBoundaryContiguity.weight] using hlarge
 
 /-- The construction frontier is correctly vacuous over the empty family:
 there is no positive-cell diagram to which it could apply. -/
@@ -382,7 +385,7 @@ theorem embeddedEstimatingSystemConstruction_emptyFamilyModel
     (hcells : 0 < Delta.rCellCount) : False := by
   have hnil : Delta.relatorCells = [] := by
     cases hcellsList : Delta.relatorCells with
-    | nil => exact hcellsList
+    | nil => rfl
     | cons cell cells =>
         have hmem : cell ∈ Delta.relatorCells := by rw [hcellsList]; simp
         exact cell.word_mem.elim
