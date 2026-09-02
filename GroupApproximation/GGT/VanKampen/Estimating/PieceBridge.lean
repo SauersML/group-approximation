@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
+import GroupApproximation.GGT.VanKampen.Contiguity
 import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 
 /-!
@@ -393,6 +394,87 @@ def CellPieceEquations.of_pasting
     target_eq := htarget
     arcs_value := Gamma.targetBoundary_value_of_pasting pasting
     whole_ne := hwhole }
+
+/-! ## Reducedness transfer for pasted embedded regions -/
+
+/-- The data identifying an embedded source/target pair with the ordered
+cell-to-cell certificate used by `CellContiguity.whole_relators_ne`. The
+three value equalities are the orientation changes needed by the pasted
+boundary equation. -/
+structure ReducedCellPieceBridge
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces) where
+  target : Fin Delta.rCellCount
+  target_eq : Gamma.target = some target
+  pre between suf : List
+    (RelatorCell Delta.toCombMap Delta.outerFace W)
+  sourceCell targetCell : RelatorCell Delta.toCombMap Delta.outerFace W
+  cellContiguity : CellContiguity (D := D) (eps := eps)
+    pre between suf sourceCell targetCell
+  targetCarrier_value_eq : GGT.RelLetter.listVal
+      (Gamma.targetInverseCarrier target target_eq) =
+      GGT.RelLetter.listVal (RelWord.revInv targetCell.word)
+  sourceRotated_value_eq : GGT.RelLetter.listVal
+      (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal sourceCell.word
+  connector_value_eq : cellContiguity.region.leftConnector =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹
+
+namespace ReducedCellPieceBridge
+
+/-- Diagram reducedness transfers through a `ReducedCellPieceBridge` to the
+non-cancellation clause required by `CellPieceEquations`. -/
+theorem whole_ne
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    {Gamma : Contiguity D eps Delta faces}
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced) :
+    GGT.RelLetter.listVal
+        (Gamma.targetInverseCarrier bridge.target bridge.target_eq) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+  intro hbad
+  apply bridge.cellContiguity.whole_relators_ne hred
+  calc
+    GGT.RelLetter.listVal (RelWord.revInv bridge.targetCell.word) =
+        GGT.RelLetter.listVal
+          (Gamma.targetInverseCarrier bridge.target bridge.target_eq) :=
+      bridge.targetCarrier_value_eq.symm
+    _ = (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+          GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+          GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := hbad
+    _ = bridge.cellContiguity.region.leftConnector *
+          GGT.RelLetter.listVal bridge.sourceCell.word *
+          bridge.cellContiguity.region.leftConnector⁻¹ := by
+      rw [bridge.connector_value_eq, bridge.sourceRotated_value_eq]
+      simp only [inv_inv]
+
+end ReducedCellPieceBridge
+
+/-- Every pasted embedded region equipped with the reducedness bridge yields
+its exact `CellPieceEquations` certificate. -/
+theorem cellPieceEquations_of_pasting_reduced
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+    {faces : Finset Delta.toCombMap.Face}
+    (Gamma : Contiguity D eps Delta faces)
+    (bridge : ReducedCellPieceBridge Gamma)
+    (hred : Delta.Reduced)
+    (pasting : FaceSetWordHomotopy Delta faces Gamma.boundary.cycle []) :
+    CellPieceEquations Gamma := by
+  exact CellPieceEquations.of_pasting Gamma bridge.target_eq pasting
+    (bridge.whole_ne hred)
 
 /-- A pasted embedded region and its reducedness exclusion form the published
 piece used by both endpoint estimates. -/
