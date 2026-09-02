@@ -222,6 +222,7 @@ copy index.  The indexing equivalence is the landed boundary-order
 bookkeeping; no presentation-specific relator data enters this constructor. -/
 noncomputable def of_copyMate
     {I : Type v} (index : ExposedCopiedDart Delta n ≃ Fin n × I)
+    (index_copy : ∀ d, (index d).1 = d.1.1)
     (copyMate : Perm (Fin n))
     (hinvol : Function.Involutive copyMate)
     (hfree : ∀ i, copyMate i ≠ i) : ExposedPairing Delta n := by
@@ -250,9 +251,13 @@ noncomputable def of_copyMate
     simpa [matePerm, mateFun, Equiv.apply_symm_apply] using congrArg Prod.fst h
   · intro d hd
     apply hfree (index d).1
-    have hsub : matePerm d = d := Subtype.ext hd
-    have h := congrArg index hsub
-    simpa [matePerm, mateFun, Equiv.apply_symm_apply] using congrArg Prod.fst h
+    have hmate_index : (index (matePerm d)).1 = copyMate (index d).1 := by
+      simp [matePerm, mateFun, Equiv.apply_symm_apply]
+    calc
+      copyMate (index d).1 = (index (matePerm d)).1 := hmate_index.symm
+      _ = (matePerm d).1.1 := index_copy (matePerm d)
+      _ = d.1.1 := hd
+      _ = (index d).1 := (index_copy d).symm
 
 end ExposedPairing
 
