@@ -96,17 +96,17 @@ universe u v w
 def RelWord.prefixValues
     {G : Type u} [Group G] {Lambda : Type w}
     (W : Set (List (GGT.RelLetter G Lambda))) : Set G :=
-  {g | ∃ word ∈ W, ∃ prefix suffix, word = prefix ++ suffix ∧
-    g = GGT.RelLetter.listVal prefix}
+  {g | ∃ word ∈ W, ∃ pre suffix, word = pre ++ suffix ∧
+    g = GGT.RelLetter.listVal pre}
 
 /-- A displayed prefix decomposition gives a prefix value. -/
 theorem RelWord.listVal_mem_prefixValues
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
-    {word prefix suffix : List (GGT.RelLetter G Lambda)}
-    (hword : word ∈ W) (hsplit : word = prefix ++ suffix) :
-    GGT.RelLetter.listVal prefix ∈ RelWord.prefixValues W :=
-  ⟨word, hword, prefix, suffix, hsplit, rfl⟩
+    {word pre suffix : List (GGT.RelLetter G Lambda)}
+    (hword : word ∈ W) (hsplit : word = pre ++ suffix) :
+    GGT.RelLetter.listVal pre ∈ RelWord.prefixValues W :=
+  ⟨word, hword, pre, suffix, hsplit, rfl⟩
 
 /-- The value of a complete relator is among its prefix values. -/
 theorem RelWord.listVal_mem_prefixValues_of_mem
@@ -135,20 +135,20 @@ theorem RelWord.inv_mem_prefixValues
     (hsc : RelWord.IsSmallCancellation D W eps mu rho)
     {g : G} (hg : g ∈ RelWord.prefixValues W) :
     g⁻¹ ∈ RelWord.prefixValues W := by
-  obtain ⟨word, hword, prefix, suffix, hsplit, rfl⟩ := hg
+  obtain ⟨word, hword, pre, suffix, hsplit, rfl⟩ := hg
   let inverseWord := RelWord.revInv word
   let rotated := inverseWord.rotate (RelWord.revInv suffix).length
   have hinverse : inverseWord ∈ W := hsc.inv_mem word hword
   have hrotated : rotated ∈ W :=
     hsc.rotate_mem inverseWord hinverse (RelWord.revInv suffix).length
   have hrotatedSplit :
-      rotated = RelWord.revInv prefix ++ RelWord.revInv suffix := by
+      rotated = RelWord.revInv pre ++ RelWord.revInv suffix := by
     dsimp only [rotated, inverseWord]
     rw [hsplit, RelWord.revInv_append,
       List.rotate_append_length_eq]
-  refine ⟨rotated, hrotated, RelWord.revInv prefix,
+  refine ⟨rotated, hrotated, RelWord.revInv pre,
     RelWord.revInv suffix, hrotatedSplit, ?_⟩
-  exact (RelWord.listVal_revInv prefix).symm
+  exact (RelWord.listVal_revInv pre).symm
 
 /-- The empty family has no prefix values. -/
 @[simp] theorem RelWord.prefixValues_empty
@@ -156,11 +156,10 @@ theorem RelWord.inv_mem_prefixValues
     RelWord.prefixValues
       (∅ : Set (List (GGT.RelLetter G Lambda))) = ∅ := by
   ext g
-  constructor
-  · rintro ⟨word, hword, prefix, suffix, hsplit, hvalue⟩
-    exact hword.elim
-  · intro hg
-    exact hg.elim
+  simp only [RelWord.prefixValues, Set.mem_setOf_eq, Set.not_mem_empty,
+    iff_false]
+  rintro ⟨word, hword, pre, suffix, hsplit, hvalue⟩
+  exact hword.elim
 
 /-! ## Source and quotient prefix relative generating sets -/
 
