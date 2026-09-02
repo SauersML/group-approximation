@@ -618,7 +618,7 @@ theorem middleMatchedLetter_mem_relBall
     (hletterQ : ∀ c ∈ q, D.IsLetter c)
     (hstart : ∀ t : ℕ, t < 3 →
       (vertex vp p (ip t))⁻¹ * vertex vq q (iq t) ∈ D.fam lam)
-    (hu : u ∈ D.fam lam) (hv : v ∈ D.fam lam)
+    (_hu : u ∈ D.fam lam) (hv : v ∈ D.fam lam)
     (hr : r ∈ D.base) (hs : s ∈ D.base)
     (hrnot : r ∉ D.fam lam) (hsnot : s ∉ D.fam lam) :
     u ∈ D.relBall lam (wordNorm D.base v + 2 * R) := by
