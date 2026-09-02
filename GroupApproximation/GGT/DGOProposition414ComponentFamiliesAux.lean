@@ -1033,19 +1033,23 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
     (r := B.firstTargetSide s - B.firstGapStartSide j) (by
       have hs' := hsData.2
       omega)
+  have harg0 : B.firstGapStartSide j +
+      (B.firstTargetSide s - B.firstGapStartSide j) =
+      B.firstTargetSide s := by omega
+  rw [harg0] at hcut0
+  have hr1 : B.firstTargetSide s - B.firstGapStartSide j + 1 ≤
+      B.firstGapFinishSide j - B.firstGapStartSide j := by
+    omega
+  have haux := auxiliaryCycleCut_arc (B.firstGapLeft j)
+    (B.firstGapRight j) harc
+    (r := B.firstTargetSide s - B.firstGapStartSide j + 1) hr1
   have hcut1 : B.firstGapCut j
       ((B.firstGapLeft j).length +
         (B.firstTargetSide s - B.firstGapStartSide j) + 1) =
       (B.firstGapLeft j).length + i + 1 := by
-    have hr : B.firstTargetSide s - B.firstGapStartSide j + 1 ≤
-        B.firstGapFinishSide j - B.firstGapStartSide j := by
-      omega
-    have h := auxiliaryCycleCut_arc (B.firstGapLeft j)
-      (B.firstGapRight j) harc
-      (r := B.firstTargetSide s - B.firstGapStartSide j + 1) hr
     have hcutTarget := (B.firstArcCut_target hsData.1).2
     dsimp [firstGapCut, i]
-    rw [h]
+    rw [haux]
     have harg : B.firstGapStartSide j +
         (B.firstTargetSide s - B.firstGapStartSide j + 1) =
         B.firstTargetSide s + 1 := by omega
@@ -1065,7 +1069,7 @@ theorem firstGapArcSource_fullComponent_of_boundaryExclusion
           (B.firstArcCut (B.firstGapStartSide j +
             (B.firstTargetSide s - B.firstGapStartSide j + 1)) -
             B.firstArcCut (B.firstGapStartSide j)) := by
-        simpa only [Nat.add_assoc] using h
+        simpa only [Nat.add_assoc] using haux
       _ = (B.firstGapLeft j).length + i + 1 := by
         have harg1 : B.firstGapStartSide j +
             (B.firstTargetSide s - B.firstGapStartSide j + 1) =
@@ -1112,19 +1116,23 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
     (r := B.secondTargetSide s - B.secondGapStartSide j) (by
       have hs' := hsData.2
       omega)
+  have harg0 : B.secondGapStartSide j +
+      (B.secondTargetSide s - B.secondGapStartSide j) =
+      B.secondTargetSide s := by omega
+  rw [harg0] at hcut0
+  have hr1 : B.secondTargetSide s - B.secondGapStartSide j + 1 ≤
+      B.secondGapFinishSide j - B.secondGapStartSide j := by
+    omega
+  have haux := auxiliaryCycleCut_arc (B.secondGapLeft j)
+    (B.secondGapRight j) harc
+    (r := B.secondTargetSide s - B.secondGapStartSide j + 1) hr1
   have hcut1 : B.secondGapCut j
       ((B.secondGapLeft j).length +
         (B.secondTargetSide s - B.secondGapStartSide j) + 1) =
       (B.secondGapLeft j).length + i + 1 := by
-    have hr : B.secondTargetSide s - B.secondGapStartSide j + 1 ≤
-        B.secondGapFinishSide j - B.secondGapStartSide j := by
-      omega
-    have h := auxiliaryCycleCut_arc (B.secondGapLeft j)
-      (B.secondGapRight j) harc
-      (r := B.secondTargetSide s - B.secondGapStartSide j + 1) hr
     have hcutTarget := (B.secondArcCut_target hsData.1).2
     dsimp [secondGapCut, i]
-    rw [h]
+    rw [haux]
     have harg : B.secondGapStartSide j +
         (B.secondTargetSide s - B.secondGapStartSide j + 1) =
         B.secondTargetSide s + 1 := by omega
@@ -1144,7 +1152,7 @@ theorem secondGapArcSource_fullComponent_of_boundaryExclusion
           (B.secondArcCut (B.secondGapStartSide j +
             (B.secondTargetSide s - B.secondGapStartSide j + 1)) -
             B.secondArcCut (B.secondGapStartSide j)) := by
-        simpa only [Nat.add_assoc] using h
+        simpa only [Nat.add_assoc] using haux
       _ = (B.secondGapLeft j).length + i + 1 := by
         have harg1 : B.secondGapStartSide j +
             (B.secondTargetSide s - B.secondGapStartSide j + 1) =
