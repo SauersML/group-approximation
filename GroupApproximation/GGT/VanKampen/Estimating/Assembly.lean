@@ -64,29 +64,6 @@ theorem exists_estimatingScaffold
 
 /-! ## Geometric certificates on the finite scaffold -/
 
-/-- A surgery replacement with equal dart universe yields the embedded
-O-equivalence required by the selection statement. -/
-def Surgery.GRegionReplacement.toOEquivalent
-    {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W}
-    (replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta) :
-    OEquivalentDiscDiagram Delta replacement.diagram where
-  boundaryWord_eq := replacement.outerWord_eq
-  cellIndex := replacement.cells.indexEquiv
-  cellWord_eq := by
-    intro i
-    change (replacement.diagram.relatorCells.get
-        (replacement.cells.indexEquiv i)).word =
-      (Delta.relatorCells.get i).word
-    have hcount : replacement.diagram.rCellCount = Delta.rCellCount :=
-      replacement.cells.rCellCount_eq
-    cases hcount
-    rw [replacement.cells.cells_eq]
-    simp only [Surgery.RCellEquiv.indexEquiv, List.get_eq_getElem,
-      List.getElem_map]
-    exact replacement.cells.word_eq (Delta.relatorCells.get i)
-
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
 The selected interior regions form a hereditary simple planar graph, no
 position belongs to two incidences, and the two-gon condition leaves at most
@@ -479,7 +456,7 @@ theorem selection_output_of_faceDropOracle
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
     {W : Set (List (GGT.RelLetter G Lambda))}
     (hcondition : OsinCCondition D W eps mu lambda c rho)
-    (oracle : SelectionFaceDropOracle D eps rho mu lambda c hcondition)
+    (oracle : SelectionFaceDropOracle.{u, w, v} D eps rho mu lambda c hcondition)
     (Delta : DiscDiagram.{u, w, v} W)
     (hred : Delta.Reduced) (hcells : 0 < Delta.rCellCount)
     (hboundary : IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord) :
@@ -530,8 +507,8 @@ theorem estimatingSelectionConstruction_of_faceDropOracles
           ∃ eps rho : ℕ, 0 < rho ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               ∀ hcondition : OsinCCondition D W eps mu lambda c rho,
-                SelectionFaceDropOracle D eps rho mu lambda c hcondition) :
-    EstimatingSelectionConstructionStatement := by
+                SelectionFaceDropOracle.{u, w, v} D eps rho mu lambda c hcondition) :
+    EstimatingSelectionConstructionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
   obtain ⟨eps, rho, hrho, horacle⟩ := hparameter D hhyper lambda c mu
     hlambda hlambdaUpper hc hmu hmuUpper
@@ -615,7 +592,7 @@ theorem estimatingPieceConstruction_of_planarPeelOracle
         {faces : Finset Delta.toCombMap.Face}
         (boundary : Embedded.FaceSetBoundary Delta faces),
         Embedded.PlanarFacePeelCertificate boundary) :
-    EstimatingPieceConstructionStatement := by
+    EstimatingPieceConstructionStatement.{u, w, v} := by
   intro G _ Lambda D eps W Delta scaffold hred
   refine estimatingPieceConstruction_of_boundaryPeelings D eps Delta scaffold
     hred (fun edge => hbridge D eps Delta scaffold hred edge) ?_
