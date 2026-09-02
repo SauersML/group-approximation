@@ -218,6 +218,184 @@ def sphericalMapOfDisc
 
 end Table
 
+/-! ## The one-edge reduced-disc test for the bundled boundary field -/
+
+/-- Edge reversal on the two darts of a single unoriented edge. -/
+def oneEdgeAlpha : Equiv.Perm Bool where
+  toFun := Bool.not
+  invFun := Bool.not
+  left_inv := by intro b; cases b <;> rfl
+  right_inv := by intro b; cases b <;> rfl
+
+/-- The one-edge closed rotation system: both endpoints have singleton
+`sigma` orbits, and edge reversal forms the unique face orbit. -/
+def oneEdgeCombMap : VanKampen.CombMap where
+  Dart := Bool
+  dartFintype := inferInstance
+  alpha := oneEdgeAlpha
+  sigma := 1
+  alpha_involutive := by intro b; cases b <;> rfl
+  alpha_fixedPointFree := by intro b; cases b <;> decide
+
+/-- The one-edge map is connected through its unique edge. -/
+theorem oneEdge_isConnected : oneEdgeCombMap.IsConnected := by
+  intro d e
+  cases d <;> cases e
+  · exact Relation.EqvGen.refl _
+  · exact Relation.EqvGen.rel _ _ (Or.inl rfl)
+  · exact Relation.EqvGen.rel _ _ (Or.inl rfl)
+  · exact Relation.EqvGen.refl _
+
+/-- Vertex orbits of the one-edge map are its two darts because `sigma` is the
+identity. -/
+noncomputable def oneEdgeVertexEquiv : oneEdgeCombMap.Vertex ≃ Bool :=
+  VanKampen.OrbitClassifier.orbitEquiv oneEdgeCombMap.sigma id id
+    (by intro d; rfl) (by intro d; rfl)
+    (by intro d; exact Equiv.Perm.SameCycle.rfl)
+
+/-- The edge quotient of the one-edge map is a singleton. -/
+noncomputable def oneEdgeEdgeEquiv : oneEdgeCombMap.Edge ≃ PUnit.{1} where
+  toFun := fun _ ↦ PUnit.unit
+  invFun := fun _ ↦ Quotient.mk'' false
+  left_inv q := by
+    refine Quotient.inductionOn' q ?_
+    intro d
+    apply Quotient.sound
+    cases d
+    · exact Or.inl rfl
+    · exact Or.inr rfl
+  right_inv _ := rfl
+
+/-- The face quotient of the one-edge map is a singleton. -/
+noncomputable def oneEdgeFaceEquiv : oneEdgeCombMap.Face ≃ PUnit.{1} where
+  toFun := fun _ ↦ PUnit.unit
+  invFun := fun _ ↦ Quotient.mk'' false
+  left_inv q := by
+    refine Quotient.inductionOn' q ?_
+    intro d
+    apply Quotient.sound
+    cases d
+    · exact Equiv.Perm.SameCycle.rfl
+    · refine ⟨1, ?_⟩
+      rfl
+  right_inv _ := rfl
+
+theorem oneEdge_vertexCount : oneEdgeCombMap.vertexCount = 2 := by
+  rw [VanKampen.CombMap.vertexCount, Nat.card_congr oneEdgeVertexEquiv]
+  rw [Nat.card_eq_fintype_card]
+  exact Fintype.card_bool
+
+theorem oneEdge_edgeCount : oneEdgeCombMap.edgeCount = 1 := by
+  rw [VanKampen.CombMap.edgeCount, Nat.card_congr oneEdgeEdgeEquiv]
+  rw [Nat.card_eq_fintype_card]
+  exact Fintype.card_punit
+
+theorem oneEdge_faceCount : oneEdgeCombMap.faceCount = 1 := by
+  rw [VanKampen.CombMap.faceCount, Nat.card_congr oneEdgeFaceEquiv]
+  rw [Nat.card_eq_fintype_card]
+  exact Fintype.card_punit
+
+/-- The one-edge rotation system is a planar closed map. -/
+theorem oneEdge_planar : oneEdgeCombMap.IsPlanar := by
+  refine ⟨oneEdge_isConnected, ?_⟩
+  simp [VanKampen.CombMap.eulerCharacteristic, oneEdge_vertexCount,
+    oneEdge_edgeCount, oneEdge_faceCount]
+
+/-- Every face of the one-edge map is its unique face. -/
+theorem oneEdge_face_eq (f : oneEdgeCombMap.Face) :
+    f = oneEdgeCombMap.faceOf false := by
+  refine Quotient.inductionOn' f ?_
+  intro d
+  apply Quotient.sound
+  cases d
+  · exact Equiv.Perm.SameCycle.rfl
+  · refine ⟨1, ?_⟩
+    rfl
+
+/-- The canonical two-dart traversal, transported to the unique face. -/
+noncomputable def oneEdgeFaceBoundary (f : oneEdgeCombMap.Face) :
+    VanKampen.FaceBoundary oneEdgeCombMap f := by
+  have hface : oneEdgeCombMap.faceOf false = f := (oneEdge_face_eq f).symm
+  exact hface ▸ VanKampen.FaceBoundary.based oneEdgeCombMap false
+
+/-- There is no triangle index in the empty model. -/
+def emptyTriangleTable : PEmpty → TriangularHodgeLayer.Triangle PEmpty :=
+  PEmpty.elim
+
+/-- All darts in the one-edge test carry the identity base letter. -/
+def oneEdgeLabel (_ : oneEdgeCombMap.Dart) :
+    GGT.RelLetter (FreeGroup PEmpty) PEmpty :=
+  GGT.RelLetter.base 1
+
+/-- A planar disc with one unoriented edge, one exterior face, and no relator
+cells.  Its only face is the exterior face. -/
+noncomputable def oneEdgeDiagram :
+    VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords emptyTriangleTable) where
+  toCombMap := oneEdgeCombMap
+  planar := oneEdge_planar
+  label := oneEdgeLabel
+  label_alpha := by
+    intro d
+    simp [oneEdgeLabel, HullSC.RelWord.inv]
+  outerFace := oneEdgeCombMap.faceOf false
+  faceBoundary := oneEdgeFaceBoundary
+  relatorCells := []
+  relatorCell_faces_nodup := List.nodup_nil
+  relatorCell_word := by intro C hC; simp at hC
+  inner_face := by
+    intro f hf
+    exact (hf (oneEdge_face_eq f)).elim
+  boundary_product := by
+    simp only [List.map_nil, List.prod_nil, HullSC.RelWord.revInv,
+      GGT.RelLetter.listVal, List.map_reverse, List.map_map]
+    change 1 = (List.map (fun _ : Bool ↦ (1 : FreeGroup PEmpty))
+      (oneEdgeFaceBoundary (oneEdgeCombMap.faceOf false)).darts).reverse.prod
+    simp
+
+/-- The one-edge disc is reduced because its stored relator-cell list is
+empty. -/
+theorem oneEdgeDiagram_reduced : oneEdgeDiagram.Reduced :=
+  oneEdgeDiagram.reduced_of_no_rCells rfl
+
+/-- One endpoint of the one-edge disc has degree one. -/
+theorem oneEdge_vertexDegree_false :
+    oneEdgeCombMap.vertexDegree (oneEdgeCombMap.vertexOf false) = 1 := by
+  classical
+  change VanKampen.CombMap.orbitDegree oneEdgeCombMap.sigma
+    (Quotient.mk'' false) = 1
+  rw [← VanKampen.closedOrbitList.length_eq_orbitDegree
+    oneEdgeCombMap.sigma false]
+  have hfixed : oneEdgeCombMap.sigma false = false := rfl
+  rw [VanKampen.closedOrbitList, if_pos hfixed]
+  rfl
+
+/-- The same degree computation in the definitional map of the test disc. -/
+theorem oneEdgeDiagram_vertexDegree_false :
+    oneEdgeDiagram.toCombMap.vertexDegree
+      (oneEdgeDiagram.toCombMap.vertexOf false) = 1 := by
+  change oneEdgeCombMap.vertexDegree (oneEdgeCombMap.vertexOf false) = 1
+  exact oneEdge_vertexDegree_false
+
+/-- The degree-one endpoint occurs on the stored exterior traversal. -/
+theorem oneEdge_false_mem_outerBoundary :
+    oneEdgeDiagram.toCombMap.vertexOf false ∈
+      discOuterBoundaryVertices oneEdgeDiagram := by
+  classical
+  rw [discOuterBoundaryVertices]
+  rw [List.mem_toFinset, List.mem_map]
+  refine ⟨false, ?_, rfl⟩
+  exact ((oneEdgeDiagram.faceBoundary oneEdgeDiagram.outerFace).mem_iff false).mpr rfl
+
+/-- The current bundle has no instance even for the empty triangular table:
+its boundary-degree field contradicts the reduced one-edge disc. -/
+theorem not_nonempty_girthEightDiagramPrimitives_emptyTable :
+    ¬ Nonempty (GirthEightDiagramPrimitives emptyTriangleTable) := by
+  rintro ⟨P⟩
+  have hdegree := P.boundaryDegree oneEdgeDiagram oneEdgeDiagram_reduced
+    (oneEdgeDiagram.toCombMap.vertexOf false) oneEdge_false_mem_outerBoundary
+  rw [oneEdgeDiagram_vertexDegree_false] at hdegree
+  omega
+
 end GirthEightPrimitives
 end GGT
 end GroupApproximation
