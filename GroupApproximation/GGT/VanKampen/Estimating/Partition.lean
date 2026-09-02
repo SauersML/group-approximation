@@ -514,10 +514,8 @@ noncomputable def occurrenceEquivClassifiedPosition
     have heq : Classical.choose hdata = occurrence.1.1 :=
       hunique i occurrence.2.1 (Classical.choose hdata) occurrence.1.1
         (Classical.choose_spec hdata).2 occurrence.2.2
-    apply Sigma.ext
-    · exact Subtype.ext heq
-    · apply Subtype.ext
-      rfl
+    cases heq
+    rfl
   right_inv position := by
     apply Subtype.ext
     rfl
