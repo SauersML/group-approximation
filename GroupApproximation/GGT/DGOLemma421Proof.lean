@@ -2483,6 +2483,62 @@ theorem connected_far_of_connected_farConnector
   rw [hlen] at hconn
   exact connected_source_of_connected_pSegment hm ha' le_rfl hconn
 
+/-- **The surviving case: a connection into the reversed `q`-segment is a
+connection from `p` to `q`.**
+
+"*Hence `p_{i+a}` is connected to an `H_μ`-component `q_{j+b}` of `q`*"
+(HE.tex:764).  Once the quadrilateral closes, the fourth block is read in `q`'s
+own coordinates, and the translation by the near connector cancels against the
+`q`-segment's basepoint, leaving exactly the cross-path connection.
+
+This is the case the minimality argument keeps: for `0 < a' < a` it contradicts
+the minimality of `a`, and read on the other side it is the empty-interval fact
+the target ranks need. -/
+theorem connected_cross_of_connected_qSegment
+    {D : RelGenSet G Λ} {P Q e f : List (RelLetter G Λ)}
+    {nu : Λ} {ip1 iq1 m m' a' b : ℕ}
+    (hev : RelLetter.listVal e
+      = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1)
+    (hmP : ip1 + m ≤ P.length) (_hmQ : iq1 + m' ≤ Q.length)
+    (ha' : a' ≤ m) (hb : b ≤ m')
+    (hclose : RelLetter.listVal ((Q.drop iq1).take m')
+      = RelLetter.listVal e * RelLetter.listVal ((P.drop ip1).take m) *
+        RelLetter.listVal f)
+    (hconn : Connected D.fam nu (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord ((Q.drop iq1).take m'))
+      (e.length + a')
+      (e.length + ((P.drop ip1).take m).length + f.length +
+        (((Q.drop iq1).take m').length - b))) :
+    (vertex (1 : G) P (ip1 + a'))⁻¹ * vertex (1 : G) Q (iq1 + b)
+      ∈ D.fam nu := by
+  have hlenP : ((P.drop ip1).take m).length = m := length_segment P ip1 m hmP
+  have hia : a' ≤ ((P.drop ip1).take m).length := by rw [hlenP]; exact ha'
+  have hsegP : vertex (1 : G) ((P.drop ip1).take m) a'
+      = (vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a') :=
+    vertex_segment_one P ip1 m a' ha'
+  have hsegQ : vertex (1 : G) ((Q.drop iq1).take m') b
+      = (vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) Q (iq1 + b) :=
+    vertex_segment_one Q iq1 m' b hb
+  have h : (vertex (1 : G)
+      (e ++ (P.drop ip1).take m ++ f ++ revWord ((Q.drop iq1).take m'))
+        (e.length + a'))⁻¹ *
+      vertex (1 : G)
+        (e ++ (P.drop ip1).take m ++ f ++ revWord ((Q.drop iq1).take m'))
+        (e.length + ((P.drop ip1).take m).length + f.length +
+          (((Q.drop iq1).take m').length - b))
+      ∈ D.fam nu := hconn
+  rw [vertex_fourGon_side e ((P.drop ip1).take m) f
+      ((Q.drop iq1).take m') (1 : G) hia,
+    vertex_fourGon_opposite_closed e ((P.drop ip1).take m) f
+      ((Q.drop iq1).take m') hclose b,
+    hsegP, hsegQ, hev] at h
+  have hrw : ((1 : G) * ((vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) P ip1) *
+      ((vertex (1 : G) P ip1)⁻¹ * vertex (1 : G) P (ip1 + a')))⁻¹ *
+      ((vertex (1 : G) Q iq1)⁻¹ * vertex (1 : G) Q (iq1 + b))
+      = (vertex (1 : G) P (ip1 + a'))⁻¹ * vertex (1 : G) Q (iq1 + b) := by
+    group
+  rwa [hrw] at h
+
 /-- The finite absorption payload obtained before the DGO order argument.  It
 contains distinguished source components, their target coset matches, source
 injectivity, and one whole block of matched sources. -/
