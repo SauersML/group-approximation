@@ -72,7 +72,8 @@ theorem innerBoundaryFaceStarLayer_disjoint
     Disjoint (innerBoundaryFaceStarLayer Delta P i)
       (innerBoundaryFaceStarLayer Delta P j) := by
   classical
-  exact (Delta.toCombMap.faceStarLayer_disjoint (boundaryFaceSeed Delta P) hij).mono
+  exact (VanKampen.CombMap.faceStarLayer_disjoint Delta.toCombMap
+    (boundaryFaceSeed Delta P) hij).mono
     Finset.inter_subset_left Finset.inter_subset_left
 
 /-! ## Face positions and incidence slots -/
@@ -185,6 +186,8 @@ noncomputable def layerIncidenceInjection_of_firstLayer
   have hface : C.face i x = C.face i y :=
     congrArg (fun p ↦ (p.1.1 : Delta.toCombMap.Face)) hxy
   have hslot := congrArg Prod.snd hxy
+  have hslot_val := congrArg Fin.val hslot
+  clear hxy
   cases hface
   have hindex :
       firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x =
@@ -193,7 +196,7 @@ noncomputable def layerIncidenceInjection_of_firstLayer
     change
       (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i x).val =
         (firstLayerIncidenceIndex Delta P depth scale loss perimeter C i y).val
-    exact congrArg Fin.val hslot
+    exact hslot_val
   have hgetx := firstLayerIncidenceIndex_get
     Delta P depth scale loss perimeter C i x
   have hgety := firstLayerIncidenceIndex_get
