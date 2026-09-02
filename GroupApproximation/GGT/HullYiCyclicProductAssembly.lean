@@ -174,16 +174,17 @@ cyclicity conclusion.
 For `t ∈ E(h)`, the `k` matched components give connector labels
 `c₀,…,cₖ`.  Each initial connector belongs to the corresponding
 `E(fᵢ)`, and the terminal connector is conjugation by the matched letter
-`aᵢ`.  The final equation is Hull's prefix calculation. -/
+`aᵢ`.  The final equation uses the cycle-boundary basepoints of the concrete
+product word. -/
 def HasConsecutiveComponentMatch
     (P : YiOrientationPureProductFamily A T ι) : Prop :=
   ∀ j (t : G), t ∈ elementaryClosure (P.product j) →
-    ∃ (l m : ℤ) (p : G) (c : Fin (P.k + 1) → G),
+    ∃ (l m : ℤ) (c : Fin (P.k + 1) → G),
       (∀ i : Fin P.k,
         c i.castSucc ∈ elementaryClosure (P.detector i)) ∧
       (∀ i : Fin P.k,
         c i.succ = (P.letter j i)⁻¹ * c i.castSucc * P.letter j i) ∧
-      t = P.product j ^ l * p * c 0 * p⁻¹ * P.product j ^ (-m)
+      t = P.product j ^ l * c 0 * P.product j ^ (-m)
 
 /-- The consecutive-component match forces a prepared product to have cyclic
 elementary closure.  All geometry has disappeared at this point: this is the
