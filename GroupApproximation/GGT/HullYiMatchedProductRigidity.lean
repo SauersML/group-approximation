@@ -217,15 +217,15 @@ theorem finiteOrder_mem_detectorIntersection_of_matchedProduct
     (hintersectionCommutes : ∀ x : G,
       (∀ i : Fin k, x ∈ E i) → Commute x h)
     (hinfinite : ¬ IsOfFinOrder h)
-    (hmatch : ∀ t : G,
+    {t : G} (htfinite : IsOfFinOrder t)
+    (hmatch :
       ∃ (l m : ℤ) (c : Fin (k + 1) → G),
         (∀ i : Fin k, c i.castSucc ∈ E i) ∧
         (∀ i : Fin k,
           c i.succ = (a i)⁻¹ * c i.castSucc * a i) ∧
-        t = h ^ l * c 0 * h ^ (-m))
-    {t : G} (htfinite : IsOfFinOrder t) :
+        t = h ^ l * c 0 * h ^ (-m)) :
     ∀ i : Fin k, t ∈ E i := by
-  obtain ⟨l, m, c, hmem, hnext, ht⟩ := hmatch t
+  obtain ⟨l, m, c, hmem, hnext, ht⟩ := hmatch
   obtain ⟨-, hcinter⟩ :=
     matchedConnectors_eq_first E a c hcentral hmem hnext
   let d : G := c 0
