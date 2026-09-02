@@ -120,6 +120,24 @@ theorem lemma49EmbeddedExteriorArc_of_sourceCertificate_of_peeling
   apply lemma49EmbeddedExteriorArc_of_sourceCertificate hinput C hmu
   exact peeling.to_homotopy
 
+/-- A family of planar face-peeling witnesses discharges Hull49's `hpasting`
+premise for every source Greendlinger certificate. -/
+theorem sourceHpasting_of_faceSetPeeling
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (hpeeling : ∀ {v : List (GGT.RelLetter G Lambda)} {g : G}
+      {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Embedded.FaceSetBoundaryPeeling C.contiguity.boundary) :
+    ∀ {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
+      {Z : HullSC.Lemma49GeodesicPowerDiagram D v g n},
+      ∀ C : Lemma49SourceGreendlingerCertificate D v g n eps mu Z,
+        Embedded.FaceSetWordHomotopy C.diagram C.faces
+          C.contiguity.boundary.cycle [] := by
+  intro v g n eps mu Z C
+  exact (hpeeling C).to_homotopy
+
 end VanKampen
 end GGT
 end GroupApproximation
