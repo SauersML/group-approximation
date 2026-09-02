@@ -157,6 +157,71 @@ theorem exists_component_ge_twoForty
     unboundLength hcount htotal
   exact ⟨i, component_ge_twoForty (le_of_lt ht) (hsides i) hi⟩
 
+/-! ## Quasi-geodesic replacement lengths -/
+
+/-- Replacing each of `m` unbound arcs by a geodesic loses at most `c` per
+arc.  If these arcs have total length strictly greater than `k * t / 240`
+and `m ≤ k`, their geodesic replacements have total length strictly greater
+than `k * (lambda * t / 240 - c)`.  This is the displayed estimate for
+`sigma_1` in Osin's proof of Lemma 62. -/
+theorem replacement_total_gt
+    {m k : ℕ} {lambda c t : ℝ}
+    (arcLength replacementLength : Fin m → ℝ)
+    (hlambda : 0 < lambda) (hc : 0 ≤ c) (hmk : m ≤ k)
+    (hreplacement : ∀ i, lambda * arcLength i - c ≤ replacementLength i)
+    (hdense : (k : ℝ) * t / 240 < ∑ i : Fin m, arcLength i) :
+    (k : ℝ) * (lambda * t / 240 - c) <
+      ∑ i : Fin m, replacementLength i := by
+  have hterm :
+      ∑ i : Fin m, (lambda * arcLength i - c) ≤
+        ∑ i : Fin m, replacementLength i := by
+    exact Finset.sum_le_sum fun i _ => hreplacement i
+  have hsum :
+      ∑ i : Fin m, (lambda * arcLength i - c) =
+        lambda * (∑ i : Fin m, arcLength i) - (m : ℝ) * c := by
+    rw [Finset.sum_sub_distrib, Finset.mul_sum]
+    simp
+  have hmkReal : (m : ℝ) ≤ (k : ℝ) := by exact_mod_cast hmk
+  have hpenalty : (m : ℝ) * c ≤ (k : ℝ) * c :=
+    mul_le_mul_of_nonneg_right hmkReal hc
+  rw [hsum] at hterm
+  have hscaled : lambda * ((k : ℝ) * t / 240) <
+      lambda * (∑ i : Fin m, arcLength i) :=
+    mul_lt_mul_of_pos_left hdense hlambda
+  calc
+    (k : ℝ) * (lambda * t / 240 - c) =
+        lambda * ((k : ℝ) * t / 240) - (k : ℝ) * c := by ring
+    _ < lambda * (∑ i : Fin m, arcLength i) - (m : ℝ) * c := by
+      linarith
+    _ ≤ ∑ i : Fin m, replacementLength i := hterm
+
+/-- If the side arcs have total length at most `eps * k`, the source's
+choice `1000 * eps < a` makes their total strictly less than
+`10⁻³ * a * k`, as required by Lemma `N123`. -/
+theorem side_total_lt_oneThousandth
+    {k : ℕ} {eps a sideTotal : ℝ}
+    (hk : 0 < k) (hside : sideTotal ≤ eps * (k : ℝ))
+    (hchoice : 1000 * eps < a) :
+    sideTotal < (1 / 1000 : ℝ) * a * (k : ℝ) := by
+  have hkReal : (0 : ℝ) < (k : ℝ) := by exact_mod_cast hk
+  have hscale : eps * (k : ℝ) <
+      (1 / 1000 : ℝ) * a * (k : ℝ) := by
+    nlinarith
+  exact lt_of_le_of_lt hside hscale
+
+/-! ### Model checks -/
+
+/-- The replacement estimate is exact in the one-arc zero-loss model. -/
+theorem replacement_total_oneArcModel (t : ℝ) :
+    (1 : ℝ) * t / 240 < t →
+      (1 : ℝ) * ((1 : ℝ) * t / 240 - 0) < t := by
+  intro ht
+  simpa using replacement_total_gt
+    (m := 1) (k := 1) (lambda := 1) (c := 0)
+    (fun _ : Fin 1 => t) (fun _ : Fin 1 => t)
+    (by norm_num) (by norm_num) (by norm_num)
+    (by intro i; simp) (by simpa using ht)
+
 /-- The cutting conversion is exact at the smallest positive arc count. -/
 theorem twoForty_constant_base (t : ℝ) :
     (4 : ℝ) * t / 240 = (1 : ℝ) * t / 60 := by
