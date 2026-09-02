@@ -95,8 +95,10 @@ auxiliary alphabet *exactly* (`jointRelGenSetFull_alphabet_carrier`), so the two
 peripheral structures live on one relative alphabet, which is what the relator
 re-spelling of Hull's Lemma 4.4 needs, and clause (a) of `↪_h` is again free.
 That form therefore has a single residue,
-`DGOProposition435FullLocalFinitenessStatement`.  Its base is much larger, so
-that residue is a strictly stronger demand than the one of the nested form;
+`DGOProposition435FullLocalFinitenessStatement`, which
+`GGT/DGOProposition435FiniteLetters.lean` reduces further.  Its base is much
+larger, so that residue is a strictly stronger demand than the one of the
+nested form;
 `jointBaseFull_subset_properBase_union` names the exact excess and
 `not_isHyperbolicallyEmbedded_jointRelGenSetFull_of_base_splits` says when the
 demand fails.
@@ -362,8 +364,8 @@ theorem dgoProposition435Statement_of_localFiniteness
 theorem dgoProposition435LocalFiniteness_of_statement
     (h : DGOProposition435Statement.{u, v, w}) :
     DGOProposition435LocalFinitenessStatement.{u, v, w} := by
-  intro G _ Lambda I _ D E hbase hEinv hD hE lam n
-  exact (h D E hbase hEinv hD hE).locallyFinite (Sum.inl lam) n
+  intro G _ Lambda I D E hbase hD hE lam n
+  exact (h D E hbase hD hE).locallyFinite (Sum.inl lam) n
 
 /-- **The residue is exactly the gap.** -/
 theorem dgoProposition435Statement_iff_localFiniteness :
@@ -1317,8 +1319,8 @@ theorem dgoProposition435FullStatement_of_localFiniteness
 theorem dgoProposition435FullLocalFiniteness_of_statement
     (h : DGOProposition435FullStatement.{u, v, w}) :
     DGOProposition435FullLocalFinitenessStatement.{u, v, w} := by
-  intro G _ Lambda I D E hbase hD hE lam n
-  exact (h D E hbase hD hE).locallyFinite (Sum.inl lam) n
+  intro G _ Lambda I _ D E hbase hEinv hD hE lam n
+  exact (h D E hbase hEinv hD hE).locallyFinite (Sum.inl lam) n
 
 /-- **The residue is exactly the gap**, in the auxiliary-alphabet form. -/
 theorem dgoProposition435FullStatement_iff_localFiniteness :
