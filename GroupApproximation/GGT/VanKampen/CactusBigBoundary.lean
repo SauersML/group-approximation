@@ -435,9 +435,12 @@ theorem cactusBigDarts_ne_nil
   intro hnil
   have hmem : CactusDart.outerBackward Z.cactusShape.boundaryZero ∈
       Z.cactusBigDarts := by
-    simp [cactusBigDarts, cactusOuterBackwardDarts, List.mem_ofFn]
+    rw [cactusBigDarts, List.mem_append]
+    left
+    rw [cactusOuterBackwardDarts, List.mem_ofFn]
+    exact ⟨Z.cactusShape.boundaryZero.rev, by rw [Fin.rev_rev]⟩
   rw [hnil] at hmem
-  exact (List.not_mem_nil _ hmem).elim
+  simpa using hmem
 
 /-- A dart belongs to the complementary face exactly when its explicit face
 classifier is `big`. -/
@@ -472,9 +475,13 @@ theorem mem_cactusBigDarts_iff
     d ∈ Z.cactusBigDarts ↔
       Z.cactusShape.toCombMap.faceOf d = Z.cactusShape.bigFace := by
   rw [faceOf_eq_bigFace_iff Z.cactusShape d]
+  have hrev : ∀ {n : ℕ} (j : Fin n), ∃ i : Fin n, i.rev = j := by
+    intro n j
+    exact ⟨j.rev, Fin.rev_rev j⟩
   cases d <;>
     simp [cactusBigDarts, cactusOuterBackwardDarts, cactusCellSegments,
-      cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn]
+      cactusCellSegment, cactusRelatorBackwardDarts, List.mem_ofFn,
+      CactusShape.faceClass, hrev]
 
 /-! ## Successive darts in the complementary traversal -/
 
@@ -484,29 +491,28 @@ theorem prevFin_rev_succ {n k : ℕ} (hk : k + 1 < n) :
     CactusShape.prevFin n
         (Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n)) =
       Fin.rev (⟨k + 1, hk⟩ : Fin n) := by
-  apply (finRotate n).injective
-  change CactusShape.nextFin n
-      (CactusShape.prevFin n (Fin.rev ⟨k, Nat.lt_of_succ_lt hk⟩)) =
-    CactusShape.nextFin n (Fin.rev ⟨k + 1, hk⟩)
-  rw [CactusShape.nextFin_prevFin]
-  have hmod : n - (k + 1 + 1) + 1 < n := by omega
+  have hne : Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin n) ≠ 0 := by
+    intro hzero
+    have hval := congrArg Fin.val hzero
+    simp at hval
+    omega
+  rw [CactusShape.prevFin, finRotate_symm_apply]
   apply Fin.ext
-  simp only [CactusShape.nextFin, finRotate_apply, Fin.val_add,
-    Fin.val_rev, Fin.val_mk, Fin.add_def]
-  rw [Nat.mod_eq_of_lt hmod]
+  rw [Fin.val_sub_one_of_ne_zero hne]
+  simp only [Fin.val_rev, Fin.val_mk]
   omega
 
 /-- The cyclic predecessor of zero is the reverse of the zero index. -/
 theorem prevFin_zero_eq_rev_zero {n : ℕ} (hn : 0 < n) :
     CactusShape.prevFin n (⟨0, hn⟩ : Fin n) =
       Fin.rev (⟨0, hn⟩ : Fin n) := by
-  apply (finRotate n).injective
-  change CactusShape.nextFin n (CactusShape.prevFin n ⟨0, hn⟩) =
-    CactusShape.nextFin n (Fin.rev ⟨0, hn⟩)
+  obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hn)
+  apply (finRotate (m + 1)).injective
+  change CactusShape.nextFin (m + 1)
+      (CactusShape.prevFin (m + 1) ⟨0, Nat.zero_lt_succ m⟩) =
+    CactusShape.nextFin (m + 1) (Fin.rev ⟨0, Nat.zero_lt_succ m⟩)
   rw [CactusShape.nextFin_prevFin]
-  apply Fin.ext
-  simp [CactusShape.nextFin, finRotate_apply, Fin.add_def,
-    Nat.mod_eq_of_lt hn]
+  simp [CactusShape.nextFin]
 
 /-- Backward outer darts follow the complementary face permutation. -/
 theorem cactusOuterBackwardDarts_chain
@@ -519,12 +525,13 @@ theorem cactusOuterBackwardDarts_chain
         Z.cactusShape.toCombMap.facePerm d = e) := by
   rw [cactusOuterBackwardDarts, List.isChain_ofFn]
   intro k hk
-  have hne : Fin.rev
-      (⟨k, Nat.lt_of_succ_lt hk⟩ : Fin Z.cactusShape.boundaryLength) ≠
-      Z.cactusShape.boundaryZero := by
+  have hne : Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ :
+      Fin Z.cactusShape.boundaryLength) ≠
+      (⟨0, Z.cactusShape.boundary_pos⟩ :
+        Fin Z.cactusShape.boundaryLength) := by
     intro hzero
     have hval := congrArg Fin.val hzero
-    simp [CactusShape.boundaryZero] at hval
+    simp at hval
     omega
   rw [Z.cactusShape.facePerm_outerBackward_of_ne _ hne]
   exact congrArg CactusDart.outerBackward (prevFin_rev_succ hk)
@@ -542,13 +549,13 @@ theorem cactusRelatorBackwardDarts_chain
         Z.cactusShape.toCombMap.facePerm d = e) := by
   rw [cactusRelatorBackwardDarts, List.isChain_ofFn]
   intro k hk
-  have hne : Fin.rev
-      (⟨k, Nat.lt_of_succ_lt hk⟩ :
-        Fin (Z.cactusShape.relatorLength i)) ≠
-      Z.cactusShape.relatorZero i := by
+  have hne : Fin.rev (⟨k, Nat.lt_of_succ_lt hk⟩ :
+      Fin (Z.cactusShape.relatorLength i)) ≠
+      (⟨0, Z.cactusShape.relator_pos i⟩ :
+        Fin (Z.cactusShape.relatorLength i)) := by
     intro hzero
     have hval := congrArg Fin.val hzero
-    simp [CactusShape.relatorZero] at hval
+    simp at hval
     omega
   rw [Z.cactusShape.facePerm_relatorBackward_of_ne i _ hne]
   exact congrArg (CactusDart.relatorBackward i) (prevFin_rev_succ hk)
