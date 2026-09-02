@@ -298,6 +298,18 @@ theorem exists_nat_sqrt_threshold
     mul_le_mul_of_nonneg_right hsqrt (le_of_lt hlambda)
   nlinarith
 
+/-- For positive `mu`, the final uncovered-budget threshold holds uniformly
+for every sufficiently large natural `rho`. -/
+theorem exists_two_mu_sqrt_threshold (mu : ℝ) (hmu : 0 < mu) :
+    ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+      1 ≤ 2 * mu * Real.sqrt (rho : ℝ) := by
+  obtain ⟨rho0, hrho0, hthreshold⟩ :=
+    exists_nat_sqrt_threshold (2 * mu) 0 1 (mul_pos (by norm_num) hmu)
+  refine ⟨rho0, hrho0, ?_⟩
+  intro rho hrho
+  have hlarge := hthreshold rho hrho
+  nlinarith
+
 /-! ### Model checks -/
 
 /-- The replacement estimate is exact in the one-arc zero-loss model. -/
