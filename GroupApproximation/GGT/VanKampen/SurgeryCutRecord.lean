@@ -128,7 +128,7 @@ theorem keptCells_faces_nodup (cut : RegionCutData Delta) :
   have hface : x.1.face = y.1.face :=
     keptFace_inj Delta.toCombMap cut.outside cut.region x.1.face y.1.face
       x.2 y.2 hxy
-  exact List.inj_on_of_nodup_map cut.cells_faces_nodup x hx y hy hface
+  exact List.inj_on_of_nodup_map cut.cells_faces_nodup hx hy hface
 
 /-- The cut keeps fewer relator cells than the source has. -/
 theorem rCellCount_lt (cut : RegionCutData Delta) :
@@ -159,7 +159,7 @@ theorem keptFaceWord (cut : RegionCutData Delta) (g : Delta.toCombMap.Face)
       = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
             Delta.faceBoundary
             (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
-          Subtype.val).map Delta.label := (List.map_map _ _ _).symm
+          Subtype.val).map Delta.label := List.map_map.symm
     _ = ((Delta.faceBoundary g).darts).map Delta.label :=
         congrArg (fun l => l.map Delta.label) hmap
     _ = Delta.faceWord g := rfl
@@ -180,7 +180,7 @@ theorem newFaceWord (cut : RegionCutData Delta) :
       = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
             Delta.faceBoundary
             (newFace Delta.toCombMap cut.outside cut.region)).darts).map
-          Subtype.val).map Delta.label := (List.map_map _ _ _).symm
+          Subtype.val).map Delta.label := List.map_map.symm
     _ = (cut.region.toBoundaryCycle.cycle).map Delta.label :=
         congrArg (fun l => l.map Delta.label) hmap
     _ = Embedded.dartWord Delta cut.region.toBoundaryCycle.cycle := rfl
