@@ -102,19 +102,29 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
 
 /-! ## The relatively hyperbolic one-target specialization -/
 
+/-- One literal Hull filling step together with the relative/Hull data needed
+to apply the construction again in its quotient. -/
+def Osin24HullStepConclusion
+    {G : Type} [Group G] {I : Type} (Hfam : I → Subgroup G)
+    (H : Subgroup G) (t : G) : Prop :=
+  ∃ (Q : Type) (_ : Group Q) (eta : G →* Q),
+    IsOsin24Quotient Hfam H ({t} : Set G) Q eta ∧
+      eta.ker.IsFinitelyNormallyGenerated ∧
+        Nonempty (RelativeHullData (fun i => (Hfam i).map eta) (H.map eta))
+
 /-- The arbitrary-family Lemma 4.4, Lemma 4.9, and Yi selection give the
-one-target Osin quotient once the compatible relative Hull action is
-available.  The quotient is the literal quotient by Hull's one relator
-`t⁻¹u`, so finite normal generation is part of the construction. -/
-theorem osin24SingletonStep_of_hull_of_compatibleAction
+one-target Osin quotient from compatible relative Hull data.  The quotient is
+the literal quotient by Hull's one relator `t⁻¹u`, so finite normal generation
+is part of the construction.  Hull Lemma 5.8 supplies a quotient Hull alphabet,
+and Osin suitability supplies its finite-normalizer clause, so the output can
+be iterated. -/
+theorem osin24HullStep_of_data
     (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
     (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
     (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
-    (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
-    Osin24SingletonStepStatement := by
-  intro G instG I Hfam hrel H hsuit t
-  letI : Group G := instG
-  obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
+    {G : Type} [Group G] {I : Type} {Hfam : I → Subgroup G}
+    {H : Subgroup G} (B : RelativeHullData Hfam H) (t : G) :
+    Osin24HullStepConclusion Hfam H t := by
   have hfiniteYi : HullSC.YiSuitableFiniteFamily.{0} :=
     HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr hyi
   have hselect : HullSC.SimultaneousAuxiliaryPeripheralSelection.{0} :=
@@ -125,8 +135,8 @@ theorem osin24SingletonStep_of_hull_of_compatibleAction
     intro j
     exact Fin.elim0 j)
   obtain ⟨D, htBase, hacyD⟩ := D₀.exists_acylindricalAdjoinPair t
-  have hOriginalAlphabet : B.rel.alphabet = B.hull.alphabet :=
-    B.hull_alphabet.symm
+  have hOriginalAlphabet : B.rel.alphabet.carrier ⊆
+      B.hull.alphabet.carrier := B.rel_alphabet_subset
   obtain ⟨eps₄₄, rho₄₄, mu₄₄, hmu₄₄, hgood₄₄⟩ :=
     h44family D B.rel hOriginalAlphabet B.embedded 1
   obtain ⟨eps₄₉, rho₄₉, mu₄₉, hmu₄₉, hgood₄₉⟩ :=
@@ -262,7 +272,43 @@ theorem osin24SingletonStep_of_hull_of_compatibleAction
   have hkernelFinite : eta.ker.IsFinitelyNormallyGenerated := by
     refine ⟨{GGT.RelLetter.listVal v}, Set.finite_singleton _, ?_⟩
     exact hker.symm
-  exact ⟨Q, inferInstance, eta, hquotient, hkernelFinite⟩
+  obtain ⟨BQ, hactsMap, _hactsFamily⟩ :=
+    HullSC.hullLemma58SuitableFamily_unconditional eta D Pselected
+  have hnormalMap : HullSuitable.NormalizesNoNontrivialFinite (H.map eta) :=
+    IsSuitableSubgroup.normalizesNoNontrivialFinite hsuitable
+  have hHullSuitableMap : Suitable BQ.hullSet.alphabet (H.map eta) :=
+    ⟨hactsMap, hnormalMap⟩
+  have hnextAlphabet : Poriginal.rel.alphabet.carrier ⊆
+      BQ.hullSet.alphabet.carrier := by
+    rw [Poriginal.alphabet_carrier_eq_image]
+    rintro y ⟨x, hx, rfl⟩
+    exact BQ.alphabet_image x (B.rel_alphabet_subset hx)
+  let Bnext : RelativeHullData (fun i => (Hfam i).map eta) (H.map eta) :=
+    { rel := Poriginal.rel
+      base_finite := Poriginal.base_finite B.base_finite
+      fam_eq := by
+        funext i
+        rw [Poriginal.fam_map i, B.fam_eq]
+      embedded := Poriginal.embedded
+      hull := BQ.hullSet
+      rel_alphabet_subset := hnextAlphabet
+      suitable := hHullSuitableMap }
+  exact ⟨Q, inferInstance, eta, hquotient, hkernelFinite, ⟨Bnext⟩⟩
+
+/-- A compatible-action producer specializes the reusable Hull-data step to
+the singleton statement used by the general finite induction. -/
+theorem osin24SingletonStep_of_hull_of_compatibleAction
+    (h44family : HullSC.HullLemma44CanonicalQuotientFamilyStatement.{0, 0})
+    (h49 : HullSC.HullLemma49KernelPowerStatement.{0, 0})
+    (hyi : HullSC.YiSuitablePairAvoidingFiniteOneSided.{0})
+    (haction : CompatibleRelativeHullActionStatement.{0, 0}) :
+    Osin24SingletonStepStatement := by
+  intro G instG I Hfam hrel H hsuit t
+  letI : Group G := instG
+  obtain ⟨B⟩ := haction G instG I Hfam hrel H hsuit
+  obtain ⟨Q, instQ, eta, hquotient, hkernel, _hnext⟩ :=
+    osin24HullStep_of_data h44family h49 hyi B t
+  exact ⟨Q, instQ, eta, hquotient, hkernel⟩
 
 /-- Finite iteration turns the conditional one-target specialization into the
 full finite-presentation addendum. -/
