@@ -41,6 +41,16 @@ noncomputable instance innerDartFintype
 abbrev CopiedInnerDart (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) :=
   Fin n × InnerDart Delta
 
+/-- The retained dart set has one copy of every inner dart for each seam
+copy. -/
+theorem copiedInnerDart_card
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (n : ℕ) :
+    Nat.card (CopiedInnerDart Delta n) = n * Nat.card (InnerDart Delta) := by
+  rw [Nat.card_prod]
+  simp only [Nat.card_fin]
+
 /-- The old face rotation restricts to the darts of inner faces. -/
 def innerFacePerm (Delta : DiscDiagram.{u, w, v} W) :
     Perm (InnerDart Delta) where
@@ -449,6 +459,26 @@ theorem oneTriangle_rebuild_facePerm_true (i : ZMod 3) :
     (rebuild oneTriangleCombMap).facePerm (i, true) = (i - 1, true) := by
   rw [rebuild_facePerm]
   exact oneTriangle_facePerm_true i
+
+/-- The one-triangle seam bookkeeping has the expected two-copy retained dart
+count. -/
+theorem copiedInnerDart_two_card_model
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) :
+    Nat.card (CopiedInnerDart Delta 2) =
+      2 * Nat.card (InnerDart Delta) :=
+  copiedInnerDart_card Delta 2
+
+/-- The one-triangle seam bookkeeping has the expected three-copy retained
+dart count. -/
+theorem copiedInnerDart_three_card_model
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) :
+    Nat.card (CopiedInnerDart Delta 3) =
+      3 * Nat.card (InnerDart Delta) :=
+  copiedInnerDart_card Delta 3
 
 end SeamGluing
 end VanKampen
