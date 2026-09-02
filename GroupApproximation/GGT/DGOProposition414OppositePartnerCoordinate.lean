@@ -123,7 +123,11 @@ theorem firstGapChordStart_le
       have hlt := B.brokenAssignment.first.partner_lt
         (HalfEntry.entrySource B.brokenAssignment.index.first e) hmem
       simp only [firstGapChordStart, hnext]
-      omega
+      by_cases hf : B.firstGapRunsForward j
+      · simp only [hf, ↓reduceIte]
+        omega
+      · simp only [hf, ↓reduceIte]
+        omega
 
 theorem firstGapChordFinish_le
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -139,9 +143,14 @@ theorem firstGapChordFinish_le
   | some e =>
       have hmem := HalfEntry.entrySource_mem
         B.brokenAssignment.index.first e
-      simpa only [firstGapChordFinish, hprev] using
-        (B.brokenAssignment.first.partner_lt
-          (HalfEntry.entrySource B.brokenAssignment.index.first e) hmem).le
+      have hlt := B.brokenAssignment.first.partner_lt
+        (HalfEntry.entrySource B.brokenAssignment.index.first e) hmem
+      simp only [firstGapChordFinish, hprev]
+      by_cases hf : B.firstGapRunsForward j
+      · simp only [hf, ↓reduceIte]
+        omega
+      · simp only [hf, ↓reduceIte]
+        omega
 
 theorem secondGapChordStart_le
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -157,9 +166,14 @@ theorem secondGapChordStart_le
   | some e =>
       have hmem := HalfEntry.entrySource_mem
         B.brokenAssignment.index.second e
-      simpa only [secondGapChordStart, hnext] using
-        (B.brokenAssignment.second.partner_lt
-          (HalfEntry.entrySource B.brokenAssignment.index.second e) hmem).le
+      have hlt := B.brokenAssignment.second.partner_lt
+        (HalfEntry.entrySource B.brokenAssignment.index.second e) hmem
+      simp only [secondGapChordStart, hnext]
+      by_cases hf : B.secondGapRunsForward j
+      · simp only [hf, ↓reduceIte]
+        omega
+      · simp only [hf, ↓reduceIte]
+        omega
 
 theorem secondGapChordFinish_le
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
@@ -178,7 +192,11 @@ theorem secondGapChordFinish_le
       have hlt := B.brokenAssignment.second.partner_lt
         (HalfEntry.entrySource B.brokenAssignment.index.second e) hmem
       simp only [secondGapChordFinish, hprev]
-      omega
+      by_cases hf : B.secondGapRunsForward j
+      · simp only [hf, ↓reduceIte]
+        omega
+      · simp only [hf, ↓reduceIte]
+        omega
 
 /-- Local side coordinate occupied by a chord edge in a first-half gap. -/
 noncomputable def firstGapChordTargetIndex
