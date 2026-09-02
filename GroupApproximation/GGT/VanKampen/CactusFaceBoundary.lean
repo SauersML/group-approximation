@@ -73,10 +73,22 @@ theorem bigFace_ne_relatorFace (S : CactusShape)
   have hi := congrArg S.faceEquiv h
   simp [bigFace, relatorFace, S.faceEquiv_indexedFace] at hi
 
-/-- The ordered face boundary based at the representative of an index. -/
+/-- The ordered face boundary based at a convenient dart of an index.  The
+complementary face starts at the predecessor of the distinguished outer
+dart, so it reads the exterior boundary before the inverse cell factors. -/
 noncomputable def indexedFaceBoundary (S : CactusShape) (i : S.FaceIndex) :
-    FaceBoundary S.toCombMap (S.indexedFace i) :=
-  FaceBoundary.based S.toCombMap (S.faceRepresentative i)
+    FaceBoundary S.toCombMap (S.indexedFace i) := by
+  cases i with
+  | outer => exact FaceBoundary.based S.toCombMap (.outerForward S.boundaryZero)
+  | relator i =>
+      exact FaceBoundary.based S.toCombMap (.relatorForward i (S.relatorZero i))
+  | big =>
+      let last := CactusShape.prevFin S.boundaryLength S.boundaryZero
+      have hface : S.toCombMap.faceOf (.outerBackward last) =
+          S.indexedFace .big := by
+        rw [CombMap.faceOf_eq_iff]
+        exact (S.outerBackward_sameCycle last).symm
+      exact hface ▸ FaceBoundary.based S.toCombMap (.outerBackward last)
 
 /-- A coherent based boundary choice for every cactus face. -/
 noncomputable def faceBoundary (S : CactusShape)
@@ -123,6 +135,16 @@ theorem faceBoundary_bigFace_darts (S : CactusShape) :
     (S.faceBoundary S.bigFace).darts =
       (S.indexedFaceBoundary .big).darts := by
   exact S.faceBoundary_indexedFace_darts .big
+
+/-- The complementary indexed face begins at the predecessor of the
+distinguished outer dart. -/
+theorem indexedFaceBoundary_big_darts (S : CactusShape) :
+    (S.indexedFaceBoundary .big).darts =
+      closedOrbitList S.toCombMap.facePerm
+        (.outerBackward
+          (CactusShape.prevFin S.boundaryLength S.boundaryZero)) := by
+  rw [indexedFaceBoundary]
+  exact faceBoundary_darts_transport _ _
 
 end CactusShape
 
