@@ -157,13 +157,17 @@ theorem cyclicArc_cast_darts {Dart : Type v} {c₁ c₂ : List Dart}
 theorem targetArcAtSome_rotated (Gamma : Contiguity D eps Delta faces)
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
     (Gamma.targetArcAtSome target htarget).rotated =
-      Gamma.targetArc.rotated :=
-  cyclicArc_cast_rotated _ _
+      Gamma.targetArc.rotated := by
+  have h : targetDarts Delta Gamma.target = targetDarts Delta (some target) := by
+    rw [htarget]
+  exact cyclicArc_cast_rotated h Gamma.targetArc
 
 theorem targetArcAtSome_darts (Gamma : Contiguity D eps Delta faces)
     (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
-    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts :=
-  cyclicArc_cast_darts _ _
+    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts := by
+  have h : targetDarts Delta Gamma.target = targetDarts Delta (some target) := by
+    rw [htarget]
+  exact cyclicArc_cast_darts h Gamma.targetArc
 
 /-! ## The O52 inequality from the certificate -/
 
