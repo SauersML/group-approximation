@@ -490,6 +490,22 @@ noncomputable def sphericalCombMap (S : Pairing Delta n) (hS : S.Spherical) :
 
 end Pairing
 
+namespace ExposedPairing
+
+variable {Delta : DiscDiagram.{u, w, v} W} {n : ℕ}
+
+/-- The planar-disc spherical certificate is exported at the exposed-pairing
+namespace so consumers need not depend on the implementation namespace used
+by the Euler-count proof. -/
+theorem spherical_of_planarDisc
+    (B : ExposedPairing Delta n)
+    (C : Pairing.EulerTwoCountData B.toPairing)
+    (hdisc : Delta.toCombMap.IsPlanar) :
+    Pairing.Spherical B.toPairing :=
+  Pairing.ExposedPairing.spherical_of_planarDisc B C hdisc
+
+end ExposedPairing
+
 /-! ## Constructor and one-triangle checks -/
 
 /-- Rebuilding any map from its edge and face permutations is the identity on

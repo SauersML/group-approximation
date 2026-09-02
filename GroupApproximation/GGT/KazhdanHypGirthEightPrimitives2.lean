@@ -1339,7 +1339,7 @@ noncomputable def powerDiscSphereGluing_of_planarDisc
     (hcellular : ∀ v, CellularReducedAt (certificate v)) :
     PowerDiscSphereGluing D :=
   powerDiscSphereGluing_of_seam D B.toPairing
-    (VanKampen.SeamGluing.Pairing.ExposedPairing.spherical_of_planarDisc
+    (VanKampen.SeamGluing.ExposedPairing.spherical_of_planarDisc
       B hcounts hplanar)
     certificate hcellular
 
