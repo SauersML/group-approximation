@@ -310,6 +310,20 @@ theorem CactusFoldChain.toRetyping_diagram_eq
         exact C.surgeryMap_planar hplanar)
         (C.replacement.reduced C.reduced)
 
+theorem CactusFoldChain.terminal_boundaryWord_eq
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta Next : DiscDiagram.{u, w, v} W} {k : ℕ}
+    (chain : CactusFoldChain Delta Next k)
+    (word : List (GGT.RelLetter G Lambda)) (n : ℕ)
+    (hboundary : Delta.boundaryWord =
+      (List.replicate n word).flatten) :
+    Next.boundaryWord = (List.replicate n word).flatten := by
+  induction chain with
+  | done cover => exact hboundary
+  | @step D Next k C tail area_drop ih =>
+      exact (ih (C.replacement.outerWord_eq.trans hboundary))
+
 /-- The concrete reclosed replacement supplies every field of
 `CactusRelatorRetyping`.  The boundary is unchanged by the surgery, relator
 area is unchanged by the ordered cell equivalence, and reducedness transports
@@ -382,6 +396,19 @@ structure MirrorPairCut
   area_eq : result.rCellCount + 2 = Delta.rCellCount
   planar : result.toCombMap.IsPlanar
 
+/-! A relator-cell surgery is different from a `G`-region replacement: two
+stored relator cells are removed, so there is no order-preserving equivalence
+with the old relator list.  This structure records the concrete reclosed map,
+its boundary, and the reducedness certificate of the new diagram. -/
+
+structure RRegionReplacement
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  diagram : DiscDiagram.{u, w, v} W
+  outerWord_eq : diagram.boundaryWord = Delta.boundaryWord
+  reduced : diagram.Reduced
+
 /-- Data for the actual two-cell cut.  The `GRegionReplacement` is the
 reclosed map after the two mirror faces are deleted.  The list equation says
 that exactly those two ordered relator cells disappear; the area drop is then
@@ -402,11 +429,12 @@ structure MirrorPairDeletion
   mirror_word : second.word = HullSC.RelWord.revInv first.word
   old_cells : Delta.relatorCells =
     pre ++ first :: (between ++ second :: suf)
-  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  replacement : RRegionReplacement Delta
+  cellEquiv :
+    RelatorCell Delta.toCombMap Delta.outerFace W ≃
+      RelatorCell replacement.diagram.toCombMap replacement.diagram.outerFace W
   new_cells : replacement.diagram.relatorCells =
-    pre.map replacement.cells.cellEquiv ++
-      between.map replacement.cells.cellEquiv ++
-      suf.map replacement.cells.cellEquiv
+    (pre ++ between ++ suf).map cellEquiv
   relatorOnly : RelatorCellCover replacement.diagram
   mirror : (between.map RelatorCell.value).prod⁻¹ * first.value *
       (between.map RelatorCell.value).prod * second.value = 1
@@ -438,13 +466,14 @@ structure MirrorPairReclosureData
     pre ++ first :: (between ++ second :: suf)
   faces : Finset Delta.toCombMap.Face
   region : Surgery.MapCollapse.IsDiscRegion Delta.toCombMap faces
-  replacement : Surgery.GRegionReplacement.{u, w, v, v} Delta
+  replacement : RRegionReplacement Delta
   replacement_map_eq : replacement.diagram.toCombMap =
     Surgery.MapCollapse.replaceGRegion Delta.toCombMap faces region
+  cellEquiv :
+    RelatorCell Delta.toCombMap Delta.outerFace W ≃
+      RelatorCell replacement.diagram.toCombMap replacement.diagram.outerFace W
   new_cells : replacement.diagram.relatorCells =
-    pre.map replacement.cells.cellEquiv ++
-      between.map replacement.cells.cellEquiv ++
-      suf.map replacement.cells.cellEquiv
+    (pre ++ between ++ suf).map cellEquiv
   relatorOnly : RelatorCellCover replacement.diagram
   mirror : (between.map RelatorCell.value).prod⁻¹ * first.value *
       (between.map RelatorCell.value).prod * second.value = 1
@@ -465,6 +494,7 @@ def MirrorPairReclosureData.toDeletion
     mirror_word := C.mirror_word
     old_cells := C.old_cells
     replacement := C.replacement
+    cellEquiv := C.cellEquiv
     new_cells := C.new_cells
     relatorOnly := C.relatorOnly
     mirror := C.mirror
@@ -472,21 +502,12 @@ def MirrorPairReclosureData.toDeletion
     region := C.region
     replacement_map_eq := C.replacement_map_eq }
 
-theorem MirrorPairReclosureData.surgeryMap_eq_reclosed
-    {G : Type u} [Group G] {Lambda : Type w}
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {Delta : DiscDiagram.{u, w, v} W}
-    (C : MirrorPairReclosureData Delta) :
-    C.toDeletion.surgeryMap =
-      Surgery.MapCollapse.replaceGRegion Delta.toCombMap C.faces C.region := by
-  rfl
-
 theorem MirrorPairReclosureData.boundaryWord_eq
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
     (C : MirrorPairReclosureData Delta) :
-    C.toDeletion.replacement.diagram.boundaryWord = Delta.boundaryWord :=
+    C.replacement.diagram.boundaryWord = Delta.boundaryWord :=
   C.replacement.outerWord_eq
 
 theorem MirrorPairReclosureData.area_drop
@@ -494,15 +515,12 @@ theorem MirrorPairReclosureData.area_drop
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
     (C : MirrorPairReclosureData Delta) :
-    C.toDeletion.replacement.diagram.rCellCount + 2 = Delta.rCellCount := by
-  change C.toDeletion.replacement.diagram.relatorCells.length + 2 =
+    C.replacement.diagram.rCellCount + 2 = Delta.rCellCount := by
+  change C.replacement.diagram.relatorCells.length + 2 =
     Delta.relatorCells.length
   have hOld := congrArg List.length C.old_cells
   have hNew := congrArg List.length C.new_cells
   simp only [List.length_append, List.length_cons, List.length_map] at hOld hNew
-  have hcount := C.replacement.rCellCount_eq
-  change C.toDeletion.replacement.diagram.relatorCells.length =
-    Delta.relatorCells.length at hcount
   omega
 
 /-- The common dart has inverse labels on its two orientations. -/
@@ -567,9 +585,6 @@ theorem MirrorPairDeletion.area_drop
   have hOld := congrArg List.length C.old_cells
   have hNew := congrArg List.length C.new_cells
   simp only [List.length_append, List.length_cons, List.length_map] at hOld hNew
-  have hcount := C.replacement.rCellCount_eq
-  change C.replacement.diagram.relatorCells.length =
-    Delta.relatorCells.length at hcount
   omega
 
 /-- In the two-cell model, the concrete cut has zero relator cells left. -/
@@ -594,13 +609,13 @@ def MirrorPairDeletion.toMirrorPairCut
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (GGT.RelLetter G Lambda))}
     {Delta : DiscDiagram.{u, w, v} W}
-    (C : MirrorPairDeletion Delta) (hred : Delta.Reduced)
+    (C : MirrorPairDeletion Delta) (_hred : Delta.Reduced)
     (hplanar : Delta.toCombMap.IsPlanar) :
     MirrorPairCut Delta where
   result := C.replacement.diagram
   boundaryWord_eq := C.replacement.outerWord_eq
   relatorOnly := C.relatorOnly
-  reduced := C.replacement.reduced hred
+  reduced := C.replacement.reduced
   area_eq := C.area_drop
   planar := by
     rw [← C.surgeryMap_eq_replacement]
