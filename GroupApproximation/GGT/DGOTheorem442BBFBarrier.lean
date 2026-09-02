@@ -191,12 +191,12 @@ theorem exists_bbf_standard_walk_within_two
       refine ⟨?_, ?_, ?_⟩
       · intro hAY
         subst A
-        exact hdist (by simp)
+        simpa using hdist
       · intro hAY
         have hdistOne :
             ((ProjectionPerturbation.bbf P).graph K).dist Y A = 1 :=
           SimpleGraph.dist_eq_one_iff_adj.mpr hAY.symm
-        exact hdist (by omega)
+        omega
       · intro W hWY
         constructor
         · intro hAW
@@ -204,13 +204,13 @@ theorem exists_bbf_standard_walk_within_two
           have hdistOne :
               ((ProjectionPerturbation.bbf P).graph K).dist Y W = 1 :=
             SimpleGraph.dist_eq_one_iff_adj.mpr hWY.symm
-          exact hdist (by omega)
+          omega
         · intro hAW
-          have q : ((ProjectionPerturbation.bbf P).graph K).Walk Y A :=
-            hWY.symm.toWalk.append hAW.symm.toWalk
-          have hle := SimpleGraph.dist_le q
-          have hq : q.length = 2 := by simp [q]
-          exact hdist (by omega)
+          have hle :
+              ((ProjectionPerturbation.bbf P).graph K).dist Y A ≤ 2 := by
+            simpa using SimpleGraph.dist_le
+              (hWY.symm.toWalk.append hAW.symm.toWalk)
+          omega
     obtain ⟨B, hbarrier⟩ := P.exists_bbf_barrier_for_walk hK competing hfar
     have hBX := hbarrier X competing.start_mem_support
     have hBZ := hbarrier Z competing.end_mem_support
