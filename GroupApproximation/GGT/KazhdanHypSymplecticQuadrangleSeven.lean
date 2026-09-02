@@ -33,6 +33,9 @@ set_option linter.unusedSimpArgs false
 /-- The field with seven elements. -/
 abbrev FieldSeven := ZMod 7
 
+noncomputable instance fieldSevenPrime : Fact (Nat.Prime 7) :=
+  ⟨by norm_num⟩
+
 noncomputable instance fieldSevenFintype : Fintype FieldSeven :=
   Fintype.ofFinite FieldSeven
 
