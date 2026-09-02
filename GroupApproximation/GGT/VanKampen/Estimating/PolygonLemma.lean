@@ -109,14 +109,12 @@ theorem of_geodesicWord (D : RelGenSet G Lambda) (epsilon : Nat)
       ((word.drop (cut side)).take (cut (side + 1) - cut side)).length := by
     rw [hlength]
     exact hj
-  have hiReplacement : i <=
-      ((word.drop (cut side)).take (cut (side + 1) - cut side)).length :=
-    hij.trans hjReplacement
+  have hiSegment : i <= cut (side + 1) - cut side := hij.trans hj
   have hlocal := hchain i j hij hjReplacement
   rw [vertex_segment word basepoint (cut side)
-      (cut (side + 1) - cut side) i hiReplacement,
+      (cut (side + 1) - cut side) i hiSegment,
     vertex_segment word basepoint (cut side)
-      (cut (side + 1) - cut side) j hjReplacement] at hlocal
+      (cut (side + 1) - cut side) j hj] at hlocal
   exact hlocal
 
 /-- An `epsilon`-contiguity side satisfies the source classification using
