@@ -262,3 +262,4 @@
 33670437722	2026-09-02T18:58:42Z	GroupApproximation/Sofic/CollapsePrintedDiagonalization.lean	exists_uniform_agreement_threshold
 33687417772	2026-09-02T21:52:27Z	GroupApproximation/Sofic/CollapsePrintedProfile.lean	isBoundedSeq_printed
 33699023425	2026-09-03T00:20:00Z	GroupApproximation/Sofic/CollapseProfileBound.lean	gaussian_bound_of_kazhdan_le
+33717802791	2026-09-03T05:19:08Z	GroupApproximation/Sofic/CollapseProfileBoundNumeric.lean	mul_log_two_le_num
