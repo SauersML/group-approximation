@@ -267,3 +267,4 @@
 33767874694	2026-09-03T14:37:33Z	GroupApproximation/Sofic/CollapseScaledStepSix.lean	sits
 33788527982	2026-09-03T18:16:12Z	GroupApproximation/Sofic/CollapseTransportDiagonalization.lean	flatE_unflatE
 33806074666	2026-09-03T21:06:50Z	GroupApproximation/Sofic/CollapseTransportDiagonalizationCommutant.lean	mem_scaledCommutingSubgroup
+33817056029	2026-09-03T23:19:32Z	GroupApproximation/Sofic/CollapseUniverseScopeDefs.lean	IsInvolutiveCompressionWitness
