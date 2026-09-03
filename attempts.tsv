@@ -265,3 +265,4 @@
 33717802791	2026-09-03T05:19:08Z	GroupApproximation/Sofic/CollapseProfileBoundNumeric.lean	mul_log_two_le_num
 33741408616	2026-09-03T09:55:05Z	GroupApproximation/Sofic/CollapseRankWeightTransport.lean	rankTransportWeight_nonneg
 33767874694	2026-09-03T14:37:33Z	GroupApproximation/Sofic/CollapseScaledStepSix.lean	sits
+33788527982	2026-09-03T18:16:12Z	GroupApproximation/Sofic/CollapseTransportDiagonalization.lean	flatE_unflatE
