@@ -272,3 +272,4 @@
 33844827448	2026-09-04T06:45:46Z	GroupApproximation/Sofic/CollapseWordMetricBridge.lean	wordNorm_le_wordLen
 33869482076	2026-09-04T12:03:08Z	GroupApproximation/Sofic/CollisionCapacityDetectors.lean	collision_kills_phase
 33887876792	2026-09-04T15:10:28Z	GroupApproximation/Sofic/CommensurabilityInvariance.lean	AbstractlyCommensurable
+33906027498	2026-09-04T18:28:38Z	GroupApproximation/Sofic/CommutantPinning.lean	exists_mem_close_of_almost_le
