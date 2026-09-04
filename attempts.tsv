@@ -270,3 +270,4 @@
 33817056029	2026-09-03T23:19:32Z	GroupApproximation/Sofic/CollapseUniverseScopeDefs.lean	IsInvolutiveCompressionWitness
 33825646132	2026-09-04T01:25:11Z	GroupApproximation/Sofic/CollapseWordMetric.lean	isSymmetricGeneratingSet_coe
 33844827448	2026-09-04T06:45:46Z	GroupApproximation/Sofic/CollapseWordMetricBridge.lean	wordNorm_le_wordLen
+33869482076	2026-09-04T12:03:08Z	GroupApproximation/Sofic/CollisionCapacityDetectors.lean	collision_kills_phase
