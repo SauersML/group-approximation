@@ -6,6 +6,7 @@ title: Exhibit explicit generators of the fundamental group of Aut of the irrati
 root: true
 artifacts:
   - research/artifacts/stw99-actions-classification-cluster-2026-08-30.md
+  - research/artifacts/stw50-rotation-loop-retraction-2026-09-04.md
 ---
 
 **Problem L of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Find
@@ -15,25 +16,38 @@ progress, via the finite analogue of Dadarlat's
 algebra; more generally explicit `π_1(Aut(A))` generators for
 UCT-Kirchberg or monotracial classifiable `A`.  STW: the rotation
 action `T^2 ↷ A_θ` gives an injective `Z^2` (winding numbers through
-`tr ∘ Bott ∘ ev`), suspected to be a direct summand; the other four
-generators are unidentified.
+`tr ∘ Bott ∘ ev`), now proved below to be a direct summand; the other four
+generators are not constructed here.
+
+## Proved subsidiary question (2026-09-04)
+
+`stw50-rotation-loops-form-a-direct-summand` proves the direct-summand
+assertion explicitly raised by STW immediately before Problem L.
+For an automorphism loop alpha, evaluate at U and V, translate both
+unitary loops to basepoint 1, apply stabilized Bott, and extract the
+coefficient of [1] in K_0(A_theta). The resulting homomorphism to Z^2
+is a left inverse to the canonical rotation loops. The argument also
+works on A_theta tensor O_infinity.
+
+This settles the subsidiary splitting question. It does not produce
+all six loops, so the full Problem L remains open. If the Z^6
+computation reported by STW is used, the retraction identifies a
+complement isomorphic to Z^4.
 
 ## Attempts
 
-* Bookkeeping candidate for the missing four: (i) INNER loops — the
-  fibration `T → U(A_θ) → U/T` and `Ad : U/T → Aut` give a map from
-  `π_1(U(A_θ))/⟨[1]⟩ ≅ K_0(A_θ)/Z[1] ≅ Z` into `π_1(Aut)`; (ii) the
-  two `Z^2`-rotation loops; that accounts for at most 3 of 6, so at
-  least three generators are neither inner nor rotational — they must
-  move `K`-theory data invisibly (loops of approximately inner but
-  not inner automorphisms, Thomsen's algebraic `K_1` territory), and
-  the natural source is the `SL_2(Z)`-symmetry: paths conjugating the
-  flip/Fourier automorphisms back to themselves trace loops whose
-  Dadarlat classes live in the `Hom(K_1, K_0)`-part of
-  `KK^1(C_uA, SA)` — exactly a rank-4 block
-  (`K_1(A_θ) = Z^2 → K_0(A_θ) = Z^2`).  Conjecture recorded: the six
-  generators are the two rotation loops plus four
-  `Hom(K_1,K_0)`-loops realized by Rieffel-projection transport
-  around the two circle directions; a groupoid model (STW's own
-  suggested route, Mitscher--Spielberg style, easier on
-  `A_θ ⊗ O_∞`) would make these visible.
+The remaining task is to construct four explicit loops generating the
+kernel of the retraction. A candidate loop can be placed in that kernel
+by subtracting its two rotation coordinates; this gives a concrete
+normalization but does not prove generation.
+
+The previous inner-loop bookkeeping was speculative: a map from inner
+loops into pi_1(Aut(A_theta)) need not be injective, so its domain rank
+cannot be counted as a new independent generator. Similarly, conjugating
+by an SL_2(Z) symmetry does not by itself construct a based loop or
+compute its integral homotopy class.
+
+The graph/groupoid strategy proposed by STW for the Kirchberg counterpart
+remains a route to investigate. It requires actual automorphism loops
+and a proof that their homotopy classes form a basis of the remaining
+kernel; a rank count or a list of abstract KK classes is insufficient.
