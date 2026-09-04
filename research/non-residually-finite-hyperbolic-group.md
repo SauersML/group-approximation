@@ -12,6 +12,7 @@ distinct_from:
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
+  - research/artifacts/periodic-higman-cofinite-spectrum-2026-09-04.md
 ---
 
 Produce a word-hyperbolic group that is not residually finite, or prove that
@@ -53,7 +54,11 @@ Five live routes, none of which this graph can yet walk:
   automorphism.  The route is reduced exactly to
   `periodic-higman-large-prime-period-gap`: one prime above the filling
   threshold must be absent from the resulting Higman period spectrum.  That
-  finite-group statement is open here.
+  finite-group statement is open here. The 2026-09-04 result
+  `periodic-higman-spectrum-is-cofinite` proves that every integer above
+  `B_*=4000*40^12` belongs to the spectrum, and gives finite quotients
+  detecting all four base generators at those periods. Only the finite
+  interval `[m_0,B_*]` can still supply a missing prime for this route.
 
 - `non-rf-hyperbolic-from-nonsofic-hyperbolic` — inherit it from a non-sofic
   hyperbolic group.  Blocked exactly where `nonsofic-hyperbolic-group` is

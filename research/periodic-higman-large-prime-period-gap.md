@@ -5,6 +5,7 @@ kind: claim
 title: The periodic-Higman spectrum omits a prime beyond the filling threshold
 artifacts:
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
+  - research/artifacts/periodic-higman-cofinite-spectrum-2026-09-04.md
 distinct_from:
   periodic-higman-spectrum-has-no-odd-primes: that much stronger parity assertion excludes every odd prime and is false; this asks only for one prime above the fixed Dehn-filling threshold.
 ---
@@ -27,12 +28,19 @@ exclusion of all odd primes is being asserted.
 
 ## Attempts
 
+- **Only a finite exceptional interval can supply a missing prime.**
+  `periodic-higman-spectrum-is-cofinite` proves that every integer
+  `n>B_*=4000*40^12` belongs to `Sigma`, using an explicit algebraic matrix
+  certificate and Voutier's primitive-divisor theorem. Any witness to this
+  fixed-threshold claim must therefore lie in `[m_0,B_*]`. The entire
+  interval has not been checked. This claim remains OPEN; cofinite
+  membership alone does not refute it. Enlarging the filling threshold
+  beyond `B_*` cannot help this approach.
 - **Parity and solvability shortcuts fail.**
   `periodic-higman-spectrum-contains-three` supplies an explicit odd-prime
   model, so the recurrence does not force `2`-power period.  The remaining
-  attack must bound the prime spectrum using the finite semisimple quotient
-  and its automorphism action; that classification step is deferred rather
-  than inferred from the false parity claim.
+  classification approach uses the finite semisimple quotient and its
+  automorphism action; no exclusion follows from the false parity claim.
 - **Prime certificates now have an exact semisimple normal form.**
   `periodic-higman-prime-spectrum-semisimple-reduction` proves that a prime
   `ell in Sigma` already has a certificate on `S` or `S^ell`, for one
