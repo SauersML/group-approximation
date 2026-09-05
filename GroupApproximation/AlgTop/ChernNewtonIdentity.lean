@@ -93,9 +93,9 @@ theorem newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
       + (-1 : A) ^ q * (q : A) * c.chernClass q = 0 := by
   have hmain := c.natCast_mul_chernClass q
   rw [Finset.Nat.sum_antidiagonal_eq_sum_range_succ
-      (fun i j => c.chernClass i * ((-1 : A) ^ (j + 1) * c.powerSum j)) q,
-    Finset.sum_range_succ] at hmain
-  simp only [Nat.sub_self, powerSum_zero, mul_zero, add_zero] at hmain
+      (fun i j => c.chernClass i * ((-1 : A) ^ (j + 1) * c.powerSum j)) q] at hmain
+  simp only [Finset.sum_range_succ, Nat.sub_self, powerSum_zero, mul_zero,
+    add_zero] at hmain
   have hsum : (∑ i ∈ Finset.range q,
       (-1 : A) ^ i * c.chernClass i * (((q - i)! : ℕ) : A) * c.chernChar (q - i))
       = ∑ i ∈ Finset.range q, (-1 : A) ^ i * c.chernClass i * c.powerSum (q - i) := by

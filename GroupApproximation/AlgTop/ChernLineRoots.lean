@@ -24,6 +24,7 @@ The proof is the coefficient recursion of `(1 + aX) · N(1 + aX) = X · a`.
 * `TotalChern.coeff_succ_newtonSeries_line` — the Newton series of a line class
   is `∑_{q ≥ 1} (-1)^{q+1} a^q X^q`.
 * `TotalChern.powerSum_line` — `p_q(1 + aX) = a^q` for `q > 0`.
+* `TotalChern.powerSum_prod_line` — `p_q(∏ᵢ (1 + aᵢX)) = ∑ᵢ aᵢ^q`.
 -/
 
 namespace GroupApproximation
@@ -81,9 +82,7 @@ theorem coeff_succ_newtonSeries_line (a : A) (q : ℕ) :
     PowerSeries.coeff (q + 1) (newtonSeries (line a))
       = (-1 : A) ^ (q + 1 + 1) * a ^ (q + 1) := by
   induction q with
-  | zero =>
-      rw [coeff_one_newtonSeries_line]
-      norm_num
+  | zero => simpa using coeff_one_newtonSeries_line a
   | succ q ih =>
       rw [coeff_add_two_newtonSeries_line, ih]
       ring
@@ -94,6 +93,19 @@ theorem powerSum_line (a : A) {q : ℕ} (hq : 0 < q) : (line a).powerSum q = a ^
   have hsign : ((-1 : A) ^ (m + 1 + 1)) * ((-1 : A) ^ (m + 1 + 1)) = 1 := by
     rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow]
   rw [powerSum, coeff_succ_newtonSeries_line, ← mul_assoc, hsign, one_mul]
+
+/-- **The power sums of a split class are the power sums of its Chern roots.**
+Together with `chernClass_prod_line` (Vieta) this is the classical Newton setup,
+now a theorem about the logarithmic-derivative definition rather than its
+definition. -/
+theorem powerSum_prod_line {ι : Type*} (s : Finset ι) (a : ι → A) {q : ℕ} (hq : 0 < q) :
+    (∏ i ∈ s, line (a i)).powerSum q = ∑ i ∈ s, a i ^ q := by
+  classical
+  induction s using Finset.induction with
+  | empty => simp [powerSum]
+  | insert j s hj ih =>
+      rw [Finset.prod_insert hj, Finset.sum_insert hj, powerSum_mul,
+        powerSum_line (a j) hq, ih]
 
 end
 
