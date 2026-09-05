@@ -97,3 +97,36 @@ mod 3 sector, started from the exact metaplectic seed (perturbed):
   a max unlifted defect of 0.34 concentrated on few relators.  It is far below every random-start minimum at d = 4
   (0.3776) and is the best mod-3 energy seen in the whole experiment.  It is still a local minimum of a heuristic
   energy on a finite sample of relators: it is not evidence about the normalized-HS gap.
+
+--- second-order theta constants (theta2b.py, 17:50 EDT) ---
+Theta[a](tau) = theta[a,0](2 tau), a in (Z/2)^2, dimension 4.  For each root generator the 4x4 matrix is the null
+vector of the 2x2-minor equations at 8 random Siegel points (second singular value 2.7e-3, smallest 1e-16),
+unitary after normalization (residual 1e-14).  All 304,412 relators scalar (max nonscalar part 3.2e-14).
+Coboundary fit of the relator phases to (-1)^k: max residual 7.8e-8 over all relators, generator phases
+theta/2pi = [1/2, 1/2, 0, 0, 1/8, 5/8, 0, 0]; fit to the trivial pattern fails (residual 2).
+Rescaled generators: max defect against (-1)^k over ALL relators 7.8e-8.  Orders modulo scalars: long roots 4,
+short roots 2 (factors through Sp_4(Z/4)).  Seed file seed_theta_d4.json.  Direct sums give exact metaplectic
+models in every dimension 4a + 10b (seed_theta_4p4_d8, 4x3_d12, 10p4_d14, 10p10_d20).
+
+--- what the mod-3 minima from the theta seed are (analyze_min.py, abelian_check.py) ---
+The d = 10 minimum (E = 0.012760 on the sample of 400 unlifted + 20 lifted relators) evaluated on ALL relators:
+  mean sq defect 0.012462, max defect 0.4384, max lifted defect 0.0170; 15,206 relators have defect > 0.2,
+  77,461 > 0.1, 199,991 > 0.05.
+  The worst relators (defect 0.438, length 12, lift 0) are SCALAR with phase -0.070 * 2 pi (all ten eigenphases
+  equal); i.e. the minimizer is very nearly an exact projective representation with a different scalar pattern.
+  Per-generator normalized-HS distance from the seed after the best global unitary alignment: 0.03 to 0.09,
+  which is |e^{i theta_s} - 1| for small generator phases theta_s.
+  The d = 20 minima (both stackings) and the d = 30 minimum are the same point (mean sq 0.012462 / 0.012608
+  on all relators, max 0.438 / 0.443, identical defect histograms).
+  So the descent from the exact metaplectic seed converges to a COBOUNDARY RESCALING of the seed: the
+  generator phases move to trade the defect 1 on the 20 lifted relators (they need omega^{+-1}, the seed gives -1)
+  for small phase errors spread over the unlifted relators.  This is the abelian relaxation of the sampled
+  objective, in which the lifted relators carry weight 20/420.
+  Uniform mean square over all 304,412 relators: the optimal coboundary is the seed itself (theta = 0,
+  mean sq 20/304412 = 6.5e-5, max defect 1); the sampled objective moved the optimum to max defect 0.44.
+  Conclusion: the seeded mean-square descents found nothing nonabelian; the mean-square objective on a
+  sample is the wrong quantity (the max defect over a presentation is what an almost-representation needs),
+  and the coboundary direction must be removed for a nonabelian search.  optimize5.py does both: objective
+  mean_r sq_r^p with p = 4 (near-max) on 8,000-20,000 relators, and the phase of det U_s pinned after every
+  step so the coboundary slide is impossible.  Runs from the exact seeds at d = 4, 8, 10, 12, 14, 20 and from
+  random starts at d = 10 are recorded below as they finish.

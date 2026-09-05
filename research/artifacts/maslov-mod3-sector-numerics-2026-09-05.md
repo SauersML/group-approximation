@@ -193,13 +193,53 @@ the lowest mod-three energy in the experiment, well below every random-start
 minimum, and it is a reproducible local minimum of the heuristic energy, not
 a solution: the nonzero unlifted defect is exactly what the class obstruction
 predicts for any exact scalar-relator solution and says nothing about the
-normalized-HS gap.  Runs from the seed stacked to `d = 20` and `d = 30`
-(tensoring with identities) are recorded in `RESULTS.txt` when they finish.
+normalized-HS gap.  The stacked seeds at `d = 20` and `d = 30` reach the
+same minimum.
+
+What that minimum is (`analyze_min.py`, `abelian_check.py`).  Evaluated on
+all `304,412` relators the `d = 10` minimizer has mean square defect
+`0.0125` and maximal defect `0.438`; its worst relators are *scalar*, with
+all eigenvalues equal to `e^{-0.070 * 2 pi i}`, and after the best global
+unitary alignment each generator sits at normalized-HS distance `0.03` to
+`0.09` from the seed, which is `|e^{i theta} - 1|` for a small phase.  So
+the descent converged to a coboundary rescaling of the seed: it traded the
+defect `1` on the twenty lifted relators (they want `omega^{+-1}` where the
+seed gives `-1`) for small phase errors spread over the unlifted relators,
+and it did so because the sampled objective weights the lifted relators
+`20/420`.  In the uniform mean square over all relators the optimal
+coboundary is the seed itself (energy `6.5e-5`, maximal defect `1`).  The
+identical minima at `d = 20` and `d = 30` are the same rescaling.  So the
+seeded mean-square descents found nothing nonabelian either, and two
+methodological corrections follow: the quantity an almost-representation
+needs is the maximal defect over a presentation, not a sampled mean square,
+and the coboundary direction must be removed before a nonabelian search
+means anything.
+
+# Addendum: the metaplectic class in dimension four
+
+The four second-order theta constants `Theta[a](tau) = theta[a,0](2 tau)`
+give a projective representation of `Sp_4(Z)` in `U(4)` whose matrices are
+solved from `2 x 2`-minor equations at random Siegel points; all relators
+are scalar to `3e-14`, and after a coboundary rescaling by eighth roots of
+unity the scalars are `(-1)^{k_r}` to `8e-8` on every relator
+(`sp4-second-order-thetas-realize-metaplectic-class-in-dim-four`).  It
+factors through level four.  With the ten-dimensional model this gives
+exact metaplectic seeds in every dimension `4a + 10b`
+(`make_sum_seeds.py`).
+
+# Addendum: near-maximal objective with pinned determinants
+
+`optimize5.py` minimizes `mean_r sq_r^p` with `p = 4` over `8,000` to
+`20,000` relators (all twenty lifted ones included) and pins the phase of
+`det U_s` after every retraction, so the coboundary slide of the previous
+runs is impossible.  Runs from the exact metaplectic seeds at
+`d = 4, 8, 10, 12, 14, 20` and from random starts at `d = 10` are recorded
+in `RESULTS.txt` as they finish.
 
 # Files
 
 `experiments/maslov_sector/presentation.py` (BFS, relators, vectorized
-winding lifts), `lift_lattice_check.py`, `optimize.py` (v4: staged descent, phase-file sectors, seed starts), `launch.sh`, `launch_d4_search.sh`, `launch_spin_control.sh`, `spin_seed.py`, `spin_phases.py`, `seed_spin_d4.json`,
+winding lifts), `lift_lattice_check.py`, `optimize.py` (v4: staged descent, phase-file sectors, seed starts), `optimize5.py` (near-max objective, pinned determinants), `theta2b.py` and `seed_theta_d4.json` (second-order theta model), `make_sum_seeds.py`, `analyze_min.py`, `abelian_check.py`, `eval_all.py`, `launch.sh`, `launch_d4_search.sh`, `launch_spin_control.sh`, `launch_v5.sh`, `launch_v5c.sh`, `spin_seed.py`, `spin_phases.py`, `seed_spin_d4.json`,
 `lifted_relators_and_abelian_floor.py`, `lifted_relators.txt`, and
 `RESULTS.txt` with the raw numbers.  The `13 MB` relator file `pres6.json`
 lives on MSI at `/projects/standard/hsiehph/sauer354/maslov_experiment/` and
