@@ -274,10 +274,14 @@ instance : AddCommGroup (KZero A) :=
 def mk (x : Cycle A) : KZero A := Algebra.GrothendieckAddGroup.of (VMonoid.mk x)
 
 @[simp] theorem mk_add (x y : Cycle A) : mk (x + y) = mk x + mk y := by
-  simp [mk]
+  show Algebra.GrothendieckAddGroup.of (VMonoid.mk (x + y))
+      = Algebra.GrothendieckAddGroup.of (VMonoid.mk x)
+        + Algebra.GrothendieckAddGroup.of (VMonoid.mk y)
+  rw [VMonoid.mk_add, map_add]
 
 @[simp] theorem mk_zero : mk (0 : Cycle A) = 0 := by
-  simp [mk]
+  show Algebra.GrothendieckAddGroup.of (VMonoid.mk (0 : Cycle A)) = 0
+  rw [VMonoid.mk_zero, map_zero]
 
 end KZero
 
