@@ -233,6 +233,13 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
   initial rsync reports the whole tree as changed and the script builds one
   `rm -f` argument per changed module.  Re-run once; the second probe syncs only
   what actually changed.
+* **`git add GroupApproximation/CharClass/` sweeps peers' in-flight files onto
+  main.**  cc-thom's commits `05a5fd71a`, `574d4aafe`, `10120c0cc`, `6603e2a7d`,
+  `690767b1f` and `fb2d5b958` each carried other lanes' uncommitted work in the
+  shared tree along with cc-thom's own modules (the same effect `sweep.sh` has,
+  and non-destructive since only current worktree bytes are recorded, but not
+  what §3.5 of the program note asks for).  Fixed forward by naming the nine
+  `Thom*`/`EulerLocal*` files explicitly; nothing was reverted.
 * `AlgTop/ComplexProjective*` and `AlgTop/BundleCalculus*` are **authored but
   never verified**.  `AlgTop/PuncturedNormedSphere.lean` and
   `AlgTop/UniversalCoefficients.lean` are worth reading before reproving
