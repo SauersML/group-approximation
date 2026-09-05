@@ -162,6 +162,15 @@ evidence about the gap, and this closes the numerical route for local search:
 a decisive experiment needs a global method or an exact metaplectic seed.
 Raw numbers are in `experiments/maslov_sector/RESULTS.txt`.
 
+A further check twists the seed by the scalar `i^{sign}` (all root generators
+are odd permutations of the six odd characteristics) and also tests the scalar
+representation `i^{sign}` alone; together with the seed these realize all
+three nonzero classes of `H^2(S_6; Z/2)`, and none matches the universal-cover
+lift pattern mod two.  So the metaplectic class is not inflated from level
+two (`sp4-metaplectic-class-is-not-inflated-from-level-two`), and no
+finite-dimensional representation of the metaplectic cover with `z -> -1`
+factors through `Sp_4(F_2)`.
+
 # Files
 
 `experiments/maslov_sector/presentation.py` (BFS, relators, vectorized

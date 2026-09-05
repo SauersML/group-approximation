@@ -56,3 +56,10 @@ seed-start runs at d=4 (init = spin seed perturbed):
 Conclusion: the optimizer recovers exact solutions only inside a basin of radius about one around them and never from
 random starts, even in a sector where an exact 4-dimensional solution is in hand; its minima in the Deligne sector are
 therefore not evidence about the normalized-HS gap in either direction.
+
+--- twist_test (same day) ---
+parities of the generator permutations of the six odd characteristics: all odd.
+spin seed rho:               scalar phases {+1,-1}; rescalable to genuine: False; matches metaplectic lift pattern: False
+i^sign-twisted spin seed:    scalar phases {+1,-1}; rescalable to genuine: False; matches metaplectic lift pattern: False
+scalar representation i^sign: scalar phases {+1,-1}; rescalable to genuine: False; matches metaplectic lift pattern: False
+Conclusion: none of the three nonzero classes of H^2(S_6; Z/2) pulls back to the metaplectic class of Sp_4(Z).
