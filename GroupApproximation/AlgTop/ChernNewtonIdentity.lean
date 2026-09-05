@@ -6,9 +6,10 @@ import Mathlib.Data.Nat.Factorial.Basic
 /-!
 # Newton's identity for a total Chern class, discharged
 
-`GroupApproximation.ChernParityAlgebra.NewtonIdentity` takes Newton's identity
-as a *hypothesis*, with the note that deriving it "is the splitting principle,
-and therefore topology".  It is not: for the encoding of
+The parity chain of the STW Problem LIX manuscript needs Newton's identity for
+the *virtual* class `δ = [W] - [p^*V]`, and it is standard to take that as a
+hypothesis on the grounds that deriving it is the splitting principle and
+therefore topology.  It is not: for the encoding of
 `GroupApproximation.AlgTop.TotalChern` — a total Chern class is a normalized
 power series, and a virtual class is a quotient of two of them — Newton's
 identity is the degree-`q` coefficient of the logarithmic-derivative identity
@@ -19,25 +20,17 @@ c · N(c) = X · c',      N(c) = X c' / c,
 
 which holds for **every** element of the group `TotalChern A`, split or not.
 This file converts `GroupApproximation.AlgTop.TotalChern.natCast_mul_chernClass`
-into the exact shape of that structure's `newton` field, so the hypothesis can be
-replaced by a theorem.
+into the `Finset.range` shape in which the parity chain states Newton's identity,
+so that the hypothesis can be replaced by a theorem.  The replacement itself is
+`GroupApproximation.AlgTop.TotalChern.chernClass_eq_of_chernChar_sq_zero`.
 
-The Chern character is defined here from the power sums by
-`ch_q = p_q / q!`, which needs the coefficients to be a `ℚ`-algebra — exactly the
-hypothesis `ChernParityAlgebra` already carries for the same reason (it has to
-divide Newton's identity by `q`).
+The Chern character is defined here from the power sums by `ch_q = p_q / q!`,
+which needs the coefficients to be a `ℚ`-algebra — the same hypothesis the parity
+chain already carries for the same reason, since it has to divide Newton's
+identity by `q`.
 
-## Plugging it in
-
-```lean
-example {A : Type*} [CommRing A] [Algebra ℚ A] (c : TotalChern A) :
-    GroupApproximation.ChernParityAlgebra.NewtonIdentity c.chernClass c.chernChar :=
-  ⟨c.chernClass_zero, fun q hq => c.newton_identity_range q hq⟩
-```
-
-This file deliberately does not `import` `ChernParityAlgebra`, so that the two
-lanes stay independently buildable; the packaging above is one line at the
-consumer.
+This file imports nothing from the parity lane, so the two stay independently
+buildable.
 
 ## Main declarations
 
@@ -72,7 +65,7 @@ theorem factorial_mul_chernChar (c : TotalChern A) (q : ℕ) :
     map_one, one_mul]
 
 /-- **Newton's identity**, in the `Finset.range` form used by
-`ChernParityAlgebra.NewtonIdentity`, for every total Chern class over a
+the parity chain states it, for every total Chern class over a
 `ℚ`-algebra — including a virtual one.  No splitting principle and no topology:
 it is the coefficientwise form of `c · N(c) = X c'`. -/
 theorem newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
