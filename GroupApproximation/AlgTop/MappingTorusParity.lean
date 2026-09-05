@@ -119,6 +119,49 @@ theorem even_chernClass_top_pairing {S : Type*} [CommRing S]
     Even (φ (W.chernClass r)) :=
   even_map_of_two_dvd φ (two_dvd_chernClass_top htf W V r hV hsq hlow hint)
 
+/-! ## `hV` discharged for the manuscript's `V` -/
+
+/-- **Lemma 3 with `hV` discharged.**  The manuscript's `V = 1^3 ⊕ H` with
+`H = ⨁_j L_j^(⊕ d_j)` has total Chern class `∏_j (line h_j)^(d_j)`: the three
+trivial summands are the identity of `TotalChern` and drop out.  So
+`c_r(V) = 0` as soon as `r > ∑_j d_j`, which `r = m + 3` certainly is.
+
+The manuscript derives `c_r(V) = 0` from `dim Y = 2m < 2r` instead.  That
+dimension count is not needed: the vanishing is a statement about the *rank* of
+`V`, and holds over any base whatsoever.  Nobody therefore owes Lemma 3 a
+dimension bound. -/
+theorem two_dvd_chernClass_top_of_sumLine {S : Type*} [CommRing S]
+    (htf : ∀ m : ℕ, m ≠ 0 → ∀ x y : S, (m : S) * x = (m : S) * y → x = y)
+    (W V : TotalChern S) (r : ℕ) {ι : Type*} (s : Finset ι) (h : ι → S) (d : ι → ℕ)
+    (hVdef : V = ∏ a ∈ s, (TotalChern.line (h a)) ^ (d a))
+    (hr : (∑ a ∈ s, d a) < r)
+    (hsq : ∀ i j : ℕ, 0 < i → 0 < j →
+      (W / V).chernClass i * (W / V).powerSum j = 0)
+    (hlow : ∀ q : ℕ, 0 < q → q < 3 → (W / V).powerSum q = 0)
+    (hint : ∀ n : ℕ, ∃ w : S,
+      (W / V).powerSum (n + 3) = (((n + 3) * ((n + 2) * (n + 1)) : ℕ) : S) * w) :
+    (2 : S) ∣ W.chernClass r := by
+  refine two_dvd_chernClass_top htf W V r ?_ hsq hlow hint
+  rw [hVdef]
+  exact TotalChern.chernClass_prod_line_pow_eq_zero_of_lt s h d hr
+
+/-- **(2.3) with `hV` discharged.**  `even_chernClass_top_pairing` for the
+manuscript's `V`, so that the caller supplies only the `K`-theoretic data. -/
+theorem even_chernClass_top_pairing_of_sumLine {S : Type*} [CommRing S]
+    (htf : ∀ m : ℕ, m ≠ 0 → ∀ x y : S, (m : S) * x = (m : S) * y → x = y)
+    (φ : S →+ ℤ) (W V : TotalChern S) (r : ℕ)
+    {ι : Type*} (s : Finset ι) (h : ι → S) (d : ι → ℕ)
+    (hVdef : V = ∏ a ∈ s, (TotalChern.line (h a)) ^ (d a))
+    (hr : (∑ a ∈ s, d a) < r)
+    (hsq : ∀ i j : ℕ, 0 < i → 0 < j →
+      (W / V).chernClass i * (W / V).powerSum j = 0)
+    (hlow : ∀ q : ℕ, 0 < q → q < 3 → (W / V).powerSum q = 0)
+    (hint : ∀ n : ℕ, ∃ w : S,
+      (W / V).powerSum (n + 3) = (((n + 3) * ((n + 2) * (n + 1)) : ℕ) : S) * w) :
+    Even (φ (W.chernClass r)) :=
+  even_map_of_two_dvd φ
+    (two_dvd_chernClass_top_of_sumLine htf W V r s h d hVdef hr hsq hlow hint)
+
 end MappingTorusParity
 end AlgTop
 end GroupApproximation
