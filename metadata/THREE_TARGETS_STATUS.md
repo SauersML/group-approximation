@@ -2002,3 +2002,77 @@ gate reads — a docstring is exactly that, and two were wrong.
 | `Topology/SphereModelBridge.lean` | does not exist |
 | `ProblemLIX` | does not exist |
 | real concurrent builds | 1 |
+
+## Sweep 21, 2026-09-05 — what actually blocks `ProblemLIX`, and the trap inside it
+
+`lix-design` reports that no simplicity predicate exists.  Verified
+independently rather than accepted, since it is a claim about what was checked:
+searching `def|abbrev|structure|class` against `*[Ss]imple` across
+`GroupApproximation/` and `STW/` (excluding untracked FLT) returns only
+`IsPurelyInfiniteSimpleUnitalRing` (manuscript-local, `Ring`, not C\*),
+`PropositionSimple := IsSimpleGroup H`, the Choquet/Bauer **simplex** family,
+and simplicial-set names (`awCastAssocSimplex`).  **Nothing in the corpus states
+simplicity of a C\*-algebra.**  Confirmed.
+
+So `ProblemLIX` is blocked on one small generic definition — and
+`lix-design`'s point about ordering is right and is this file's own standing
+concern: **`IsSimpleCStar` landing after `lix-limit` proves simplicity of the
+specific limit is the same failure mode as an endpoint landing after the
+refutation.**  It is now a tracked row.
+
+### The trap in that definition, which is not the one being watched
+
+Mathlib at the pin has `IsSimpleRing` and `IsSimpleOrder`.  **Neither is the
+right notion**, and reaching for one is the obvious shortcut.  A C\*-algebra is
+simple when it has no nontrivial **closed** two-sided ideal; `IsSimpleRing` asks
+for no nontrivial *algebraic* two-sided ideal, which is strictly stronger.
+
+The direction of the error is worth being precise about, because it is the
+opposite of the usual one.  `ProblemLIX = ∀ A, IsSimple A → K1Injective A`, so
+strengthening `IsSimple` makes the hypothesis harder to satisfy and therefore
+makes **`¬ ProblemLIX` harder to prove**, not easier.  The campaign's witness is
+an inductive limit of homogeneous algebras; it is simple in the C\*-sense and
+almost certainly not algebraically simple.  So the failure mode here is not a
+vacuous endpoint — it is an endpoint **nobody can ever discharge**, discovered
+at the join, after `lix-limit` has proved the wrong simplicity statement.  The
+predicate must quantify over closed ideals.
+
+### Two statement-shape facts, verified at source
+
+Both `lix-design` claims check out, and both belong in the endpoint's docstring
+rather than in an agent message.
+
+1. **The order binders are forced by Mathlib, not chosen.**
+   `CStarKOne.lean:35` is
+   `variable (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]`,
+   and at the pin every `CStarMatrix` instance requires
+   `[PartialOrder A] [StarOrderedRing A]`, so `CStarMat n A` cannot be formed
+   without them.  `ProblemLIX` must therefore quantify over them.
+   That *looks* like quantifying over a choice of order, which would weaken
+   `¬ ProblemLIX`.  It does not, and the reason is checkable at the pin:
+   `Mathlib/Algebra/Order/Star/Basic.lean:79` defines
+   `class StarOrderedRing … : Prop where le_iff : ∀ x y, x ≤ y ↔ ∃ p ∈ AddSubmonoid.closure (Set.range fun s => star s * s), y = x + p`
+   — the order relation is *characterised* by the star structure, so any two
+   `PartialOrder A` instances satisfying it have the same `≤`.  The argument
+   holds.  **It should still be landed as a lemma rather than argued**, because
+   Lean's elaborator does not know it: `K1Injective A` at two propositionally
+   equal instances is two distinct terms, and a reader cannot see that the
+   quantification is harmless.
+2. **`KOne : Type u` is universe-polymorphic** (`CStarKOne.lean:32,65`), so
+   quantifying `ProblemLIX` over `Type` is genuinely weaker than over `Type u`.
+   `Type` is the right choice — the witness is a concrete separable algebra
+   built from matrices over `C(X, ℂ)`, so it lives in `Type 0`, and it is what
+   STW means.  Compare target 1, where `.{1}` is *forced* structurally
+   (`MaximalGroupCStar` raises the level).  Here it is a free choice, and a free
+   choice belongs in the docstring, not in whichever line the author typed
+   first.
+
+### Standing rows added
+
+| row | state |
+|---|---|
+| `IsSimpleCStar` exists | **no** — blocks `ProblemLIX` |
+| …defined over **closed** ideals (not `IsSimpleRing`) | pending |
+| …landed **before** `lix-limit`'s simplicity theorem | pending |
+| order-independence of `K1Injective` landed as a lemma | pending |
+| universe choice recorded in the `ProblemLIX` docstring | pending |
