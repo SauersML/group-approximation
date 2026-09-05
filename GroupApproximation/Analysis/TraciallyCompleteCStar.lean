@@ -76,6 +76,16 @@ theorem ofReal_mul_nonneg {t : ℝ} (ht : 0 ≤ t) {z : ℂ} (hz : 0 ≤ z) :
   · rw [Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, zero_mul, add_zero,
       ← him, mul_zero]
 
+/-- Bundled tracial states are determined by their values. -/
+theorem tracialState_ext {σ τ : TracialState A} (h : ∀ a, σ a = τ a) : σ = τ := by
+  cases σ with
+  | mk f hf1 hfp hft =>
+    cases τ with
+    | mk g hg1 hgp hgt =>
+      have hfg : f = g := LinearMap.ext h
+      subst g
+      rfl
+
 /-- The functional underlying the convex combination `t σ + (1 - t) τ`. -/
 def convexCombLinearMap (t : ℝ) (σ τ : TracialState A) : A →ₗ[ℂ] ℂ :=
   (t : ℂ) • σ.toLinearMap + ((1 - t : ℝ) : ℂ) • τ.toLinearMap
