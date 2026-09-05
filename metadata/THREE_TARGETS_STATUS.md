@@ -1030,3 +1030,99 @@ Two lanes are also still redirecting build output to the same shared path
 `scratchpad/probe1.log`, which with 22 concurrent builds makes reading another
 lane's result a near certainty — `remote-build.sh` tags its remote log per
 invocation and the local redirect undoes that.
+
+---
+
+# The honest paragraph per target
+
+Written to be read on its own, and updated as the wave lands.  State as of
+2026-09-05, sweep 9.
+
+## Problem X(1) — is every amenable trace quasidiagonal?  No.
+
+**This one is proved, and it is the only one of the three that is.**
+`GroupApproximation.NinetyNineProblems.not_problemX1Statement : ¬ ProblemX1Statement.{1}`
+refutes Brown's question at the universe where it lives, and `ProblemX.lean` is
+inside the root import closure, so an ordinary build elaborates it and runs its
+nine `#audit_axioms`/`#audit_closed_axioms` lines — the only target of which
+that is true.  The statement quantifies over nothing but Brown's two
+definitions, transcribed as structures with no hypothesis fields differing in
+exactly one clause, and reaches no entry of the literature quarantine; in
+particular it does not reach `TikuisisWhiteWinterInput`, which is the one a
+reader should suspect, since X(1) is the converse of that theorem.  Neither
+half is free: `IsQuasidiagonalTrace` is inhabited
+(`isQuasidiagonalTrace_complex`, the identity trace on `ℂ`) and so is
+`IsAmenableTrace`, so `amenable ∧ ¬ quasidiagonal` is a real conjunction rather
+than a vacuous one.  The witness is a concrete finite presentation on eight
+generators, not a group handed over by a citation.  **What is not yet done:**
+until this campaign, nothing gated the *literature quarantine* at this endpoint
+— `#audit_closed_axioms` gates the axiom closure and the outer telescope, and
+the quarantine walk is seeded elsewhere.  Three names were added to
+`zeroInputEndpoints` on 2026-09-05, which fixes that, but the corpus audit that
+runs the walk **has not been executed**, because it needs a fully built `.lake`
+and the tree has unbuilt modules.  So the correct reading today is: proved,
+machine-checked for axioms, and awaiting one audit run for the citation check.
+**Remaining input: none identified.**
+
+## Problem XXII — the trace problem for factorial tracially complete C\*-algebras.  No.
+
+**The mathematics looks complete; the formalization is not, in two separate
+ways, and the second is the one that matters.**  The topological input is
+genuinely machine-checked: build tag 64648 compiled the whole odd-degree
+closure with zero errors and fired `borsuk_ulam_closed` on
+`propext / Classical.choice / Quot.sound`, and the complex-coordinate form the
+counterexample consumes follows from it by realification.  That is a real
+theorem of this repository, not a citation — and it also discharges
+`CommonZeroProperty`, which the campaign's own brief still lists as the open
+residue.  Against that: **the operator-algebra half has never been compiled.**
+Of the 443 project modules under `negativeSolutionToProblemXXII`, 190 are
+orphan, the endpoint among them, so its `#audit_closed_axioms` has never fired
+and no gate has ever seen it.  And **the endpoint does not state the problem's
+hypothesis.**  Problem XXII asks about *factorial* tracially complete pairs; the
+endpoint's ten conjuncts assert unitality, separability, nuclearity, Type I, a
+gauge identity, a nonempty Bauer trace simplex, a compact metrizable boundary,
+and injectivity-but-not-surjectivity of the canonical extension — and not
+factoriality.  The argument for factoriality exists in exactly one parenthetical
+sentence of prose in a research artifact.  CCEGSTW Definitions 3.4 and 3.13 have
+now been written in Lean, faithfully, but nothing yet proves the antipodal pair
+satisfies them and the endpoint does not mention them.  **Remaining input: a
+theorem that the antipodal designated trace set is a factorial tracially
+complete pair, stated as a conjunct of the endpoint; and a build.**  Neither is
+a citation, and the first may be close — but until both land, the declaration's
+name claims more than its type.
+
+## Problem LIX — are all unital simple C\*-algebras K₁-injective?  No.
+
+**Nothing is proved.  There is no endpoint, and there is not yet a statement.**
+Target 3 began this campaign with zero Lean and it still has none that concludes
+anything about Problem LIX.  What exists is a plan, now in its third revision,
+and the elementary floor beneath it: `K1Injective` stated correctly over
+Mathlib's `unitary` and `Subgroup.pathComponentOne` (so an outside reader can
+check it *is* Problem LIX), the standard refutation criterion, the
+Murray–von Neumann calculus, the projection model of `ℂP^d`, the clutching and
+tautological-section lemmas.  All of it is orphan and none of it has been
+compiled.  The plan's own verdict is the thing to read: revision 1 concluded
+there is **no unconditional route to the parity obstruction at feasible cost**
+and reduced the whole problem to one named `Prop`; revision 2 withdrew that
+`Prop` under a changed mandate and aims instead at building the missing
+foundations, and names the only two places it can fail — **Bott periodicity,
+which has never been formalized in Lean**, and Leray–Hirsch for the projective
+bundle formula.  Both are library-scale theorems.  The elementary remainder is
+4000–6000 lines the plan itself calls grinding rather than research.  **Remaining
+input: two open formalization projects, either of which stalling stalls the
+target.**  The campaign's honest output for LIX today is a reduction, not an
+answer, and the reduction's own statement — revision 1's
+`TwistedCancellationFailure`, Murray–von Neumann inequivalence of two explicit
+projections — has been withdrawn rather than kept, which this lane has
+recommended reversing so the fallback still exists in writing if the gamble
+does not come in.
+
+## The discount that applies to all three
+
+`autoImplicit` is on across all 4331 files (see sweep 9).  An identifier that is
+not in scope becomes an auto-bound implicit rather than an error, and in a
+*hypothesis* that silently weakens the statement.  One live instance was found
+and repaired during this campaign, by a lane reading source and not by any
+gate.  Every "it compiles" above should be read with that discount until
+`autoImplicit := false` is set, including the green given to the Borsuk–Ulam
+port.
