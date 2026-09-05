@@ -12,7 +12,7 @@ Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 
 ## 1. GREEN
 
-Probe of all nine modules together: **`Build completed successfully (2910 jobs)`**,
+Probe of all nine modules together: **`Build completed successfully (2911 jobs)`**,
 `ERROR_LINES=0`, `LAKE_EXIT=0` (private clone `cc_clones/cc-thom`, 2026-09-05).
 Every module below has a `Built …` line, not `Replayed`, for its current bytes.
 
@@ -22,13 +22,13 @@ Every module below has a `Built …` line, not `Replayed`, for its current bytes
 | `CharClass/ThomPuncturedCover.lean` | the two-set open cover of a punctured product and its four homeomorphisms, as sets and as `Opens` |
 | `CharClass/ThomPuncturedSphere.lean` | `spherePuncturedHomeo`, `ContractibleSpace ↥({v}ᶜ)` for the unit sphere of any real inner product space |
 | `CharClass/ThomFreeModule.lean` | the Leray–Hirsch linear algebra: `thomGenerator`, `surjective_of_basis`, `ker_eq_span_thomGenerator`, `existsUnique_smul_thomGenerator`, `existsUnique_lift`, `existsUnique_smul_of_injective_of_range` |
-| `CharClass/EulerLocalChart.lean` | `homeomorphCompl`, `compl_singleton_subtype`, `chartPairHomeo` |
+| `CharClass/EulerLocalChart.lean` | `homeomorphCompl`, `compl_singleton_subtype`, `chartPairHomeo`, `openPartialHomeomorphChartPair` |
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `PuncturedAcyclic.congr`, `puncturedAcyclic_pi` |
 
-Job count: 2910.
+Job count: 2911.
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -78,14 +78,9 @@ theorem isZero_cohomology_prod (A B : Type) [TopologicalSpace A] [TopologicalSpa
     IsZero (cohomologyZMod2 (TopCat.of (A × B)) k)
 ```
 
-**(A5) Contractible spaces.**  `pullEquivOfHomotopyEquiv` plus `H^n(pt) = 0` for
-`n ≥ 1`.
-
-```lean
-theorem isZero_cohomology_of_contractible (A : Type) [TopologicalSpace A]
-    [ContractibleSpace A] (n : ℕ) (hn : 0 < n) :
-    IsZero (cohomologyZMod2 (TopCat.of A) n)
-```
+**(A5) Contractible spaces.**  *Authored* as
+`CohomologyContractible.cohomology_isZero_of_contractible`; once it is green the
+`contractible` field of `CohomologyToolkit` is filled by it directly.
 
 **(A6) The empty space** (base case `CP(0) ∖ pt = ∅`), same shape with
 `[IsEmpty A]` and no degree restriction.
@@ -189,6 +184,15 @@ half of the sphere base case, `S^n ∖ pt` contractible, is **done and green** i
 `CharClass/ThomPuncturedSphere.lean` for `Metric.sphere (0 : E) 1` in any real
 inner product space; use it rather than reproving.
 
+**Duplication to resolve (lead).**  `cc-cohom-api` has since authored
+`CharClass/CohomologySphereComplement.lean` with the same stereographic argument
+(`spherePunctureHomeo`, `contractibleSpace_sphere_compl`) for the vendored
+`Sphere n`.  cc-thom's `ThomPuncturedSphere.lean` is green and general (any real
+inner product space, `Metric.sphere (0 : E) 1`); theirs is specialised to the
+vendored model.  Keeping both is harmless but one of them should be retired once
+the concrete sphere model for `S¹`, `S⁴`, `S⁵` is fixed.  cc-thom will not touch
+a peer's file.
+
 ### From `cc-lix-odd` / the lead
 
 Instantiate `CohomologyToolkit` once (five fields, all listed above), then
@@ -241,4 +245,5 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | 5 Mathlib-only modules | 3 green, 2 red (localized) |
 | 2026-09-05 | 9 modules | 8 green, `ThomPuncturedPi` red on `Unique (Fin (0+1))` |
 | 2026-09-05 | 9 modules | **green, 2910 jobs** |
-| 2026-09-05 | 9 modules, after adding `rankOneOfIso` / `range_eq_ker_of_exact` | see the final report line |
+| 2026-09-05 | 9 modules, after adding `rankOneOfIso` / `range_eq_ker_of_exact` | **green, 2911 jobs** |
+| 2026-09-05 | 9 modules, after adding `openPartialHomeomorphChartPair` | **green, 2911 jobs** |
