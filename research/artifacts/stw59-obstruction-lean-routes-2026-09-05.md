@@ -794,3 +794,113 @@ mapping torus, which is `1` because the section of
 **Interface note.** Item 13 is rank-free: it never mentions the rank of `W`.
 That is essential, because the restricted bundle in item 12 still has rank
 `m + 3`, not `m' + 3`, and must satisfy the sub-product's own statement.
+
+---
+
+## 12. Independent verification of three claims, and the route that wins
+
+Three claims were put to this lane for an independent check before propagation:
+the `r`-odd criterion, the sparsity of `A`, and `lix-design`'s route. **All three
+hold.** The third supersedes §9: it is shorter, it needs a weaker hypothesis, and
+it is the one to formalize. §9 stays as an independent check, nothing more.
+
+### 12.1 The `r − 2` criterion — CONFIRMED
+
+Wu at `i = 1` is
+`Sq²(c_j) = binom(j−2,0)·c₁c_j + binom(j−1,1)·c₀c_{j+1} = c₁c_j + (j−1)·c_{j+1}`.
+Taking `j = r − 1` to reach the top class gives the coefficient `r − 2`. So the
+`i = 1` instance is usable exactly when **`r` is odd**, i.e. when `m = Σ_j d_j` is
+even.
+
+* `Y = CP¹`: `m = 1`, `r = 4`, coefficient `2` — dead. This is `lix-design`'s
+  counterexample, and it is correct.
+* `Y = CP²`: `m = 2`, `r = 5`, coefficient `3` — live. (§2.2 closed it through
+  `Sq⁴(γ₃)`; the `i = 1` instance closes it too, since `γ₁ = 0`.)
+* The tower: `m = Σ_{j<i} 2^{j+1} = 2^{i+1} − 2` is even at every stage, so
+  `r = 2^{i+1} + 1` is odd and `r − 2 = 2^{i+1} − 1` is odd. **Available at every
+  stage.**
+
+With `γ₁(W) = 0` (the slice restriction is injective in degree 2 and
+`c₁(V) = Σ_j d_j h_j ≡ 0` because every `d_j` is even), this reduces the lemma at
+every stage to `γ_r(W) = Sq²(γ_{r−1}(W))`.
+
+**Caveat, so nobody over-reads this.** That reduction alone does not finish:
+`γ_{r−1}(W) = t x b_{m−1}` (its `A`-part vanishes above degree `2m`), so one still
+has to know `Sq²(b_{m−1})`, and `m − 1 = 2^{ℓ+1} − 3` is exactly one of the
+indices the §8 descent cannot reach. The criterion is what separates `CP¹` from
+`CP²`; it is not by itself a proof. §12.3 is.
+
+### 12.2 The sparsity of `A` — CONFIRMED
+
+For the tower, `d_j = 2^{j+1}` is a power of two, so mod 2
+`(1 + h_j)^{d_j} = 1 + h_j^{d_j}` by Frobenius, and `h_j^{d_j}` is the top power of
+`h_j` (nonzero, since `h_j^{d_j+1} = 0`). Hence `A = ∏_j (1 + h_j^{d_j})`, supported
+on the subset sums of `{2, 4, …, 2^ℓ}`. Those are `2·Σ_j ε_j 2^j`, and binary
+representations are unique, so they are exactly the even integers `0, 2, …, m`,
+each hit once. So
+
+```
+A_n ≠ 0  ⟺  n even and 0 ≤ n ≤ m,   and then A_n is a single monomial μ_{S(n)}.
+```
+
+Also confirmed: `A² = ∏_j (1 + h_j^{2 d_j}) = 1`, since `2 d_j ≥ d_j + 1`. So `A`
+is its own inverse and `γ(δ) = γ(W)·A` needs no power-series inversion. (This last
+point is special to powers of two: at `d = 6`, `A = 1 + h² + h⁴ + h⁶` and
+`A² = 1 + h⁴ ≠ 1`.)
+
+### 12.3 `lix-design`'s route — CONFIRMED, and it is the one to build
+
+Write `z = t x`, so `z² = 0` and `H^{even}(N;F₂) = R ⊕ z·R` with `z·(−)` injective.
+`γ(δ) = γ(W)·γ(p^*V)^{-1} = (A + z b)·A^{-1} = 1 + z·c` with `c = b·A^{-1}`, so
+
+```
+γ₀(δ) = 1,   γ_k(δ) = z · c_{k−3}   (in particular γ₁(δ) = γ₂(δ) = 0).
+```
+
+**Step 1 (Wu collapses for `δ`).** In
+`Sq^{2k}(γ_i(δ)) = Σ_t binom(i+t−k−1, t)·γ_{k−t}(δ)·γ_{i+t}(δ)`, every factor with a
+positive index lies in `z·R`, so `z² = 0` kills every term except `t = k`, where the
+first factor is `γ₀(δ) = 1`. Hence
+`Sq^{2k}(γ_i(δ)) = binom(i−1, k)·γ_{i+k}(δ)`. With `i = j + 3` and `z` injective,
+
+```
+Sq^{2k}(c_j) = binom(j+2, k) · c_{j+k}.
+```
+
+**Step 2 (instability picks the coefficient 1).** `c_j` has degree `2j`, so
+`Sq^{2k}(c_j) = 0` whenever `k > j`. For even `n ≥ 2` take `j = n/2 − 1`,
+`k = n/2 + 1`: then `k > j`, `j + k = n`, and
+`binom(j+2, k) = binom(n/2+1, n/2+1) = 1`. Therefore **`c_n = 0` for every even
+`n ≥ 2`**. And `c_0 = 0` from the same relation at `i = 2, k = 1`:
+`Sq²(γ₂(δ)) = binom(1,1)·γ₃(δ)` with `γ₂(δ) = 0`, so `γ₃(δ) = z c₀ = 0`.
+
+**Step 3 (only even indices meet `A`).** `b = c·A`, so
+`b_m = Σ_k c_k · A_{m−k}`. `A` is supported in even indices and `m` is even, so
+only even `k` contribute — and every even `c_k` vanishes by Step 2. Hence
+`b_m = 0`, i.e. `γ_r(W) = z·b_m = 0`. ∎
+
+**Hypothesis.** Step 1 and Step 2 use nothing about `A`. Step 3 needs only that
+`A` is supported in even degrees, and for any **even** `d` one Frobenius gives
+`(1+h)^d = (1+h²)^{d/2}`, a polynomial in `h²`. So the route needs only
+
+> every `d_j` even
+
+and **not** "every `d_j` a power of two". My earlier flat claim that powers of two
+are load-bearing was load-bearing *for §9 only*, where each `a_q` has to be a single
+squarefree monomial for the top-degree extraction; at `d = 6` the class `a_2 = h²`
+is not of that form and §9's induction does not close. Both hypotheses hold in the
+tower, so nothing operational turns on it — but the doc must not tell a future
+reader that the mod-2 method is narrower than it is.
+
+**Consistency check at `CP¹`.** `d = 1`, `m = 1`, `A = 1 + h` has an odd-index
+component. Then `b_1 = c₀A₁ + c₁A₀ = c₁`, and `c₁` has an odd index, so Step 2 says
+nothing about it. The route fails at `CP¹` for exactly the reason the `r`-odd
+criterion says it must. The two obstructions agree.
+
+### 12.4 Verdict on §9
+
+§9 proves the same theorem by induction on the number of factors, using sub-product
+restrictions and top-degree extraction. It needs powers of two and it needs the
+restriction maps; §12.3 needs neither and is four lines. **Formalize §12.3.** §9 is
+retained as an independent derivation that reached the same conclusion by a
+different route, which is the reason to have some confidence in both.
