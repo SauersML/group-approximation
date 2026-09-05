@@ -7,13 +7,17 @@ Owns `Analysis/CStarSimple.lean`, `Analysis/LIXSimplicity.lean`,
 
 | module | job count |
 |---|---|
-| `Analysis/CStarSimple` | 2961 (built together with the other two) |
-| `Analysis/LIXSimplicity` | 2961 |
-| `Analysis/LIXSimplicityInstance` | 2988 (after adding the tower bridge; re-probed clean) |
+| `Analysis/CStarSimple` | 2988 |
+| `Analysis/LIXSimplicity` | 2988 |
+| `Analysis/LIXSimplicityInstance` | 2988 |
 
 All three probed together via `ccprobe.sh cs-simplicity Analysis.CStarSimple
-Analysis.LIXSimplicity Analysis.LIXSimplicityInstance`, `Build completed successfully`, no
-warnings, no `sorry`/`axiom`/`admit`/`opaque`.
+Analysis.LIXSimplicity Analysis.LIXSimplicityInstance`: `ERROR_LINES=0`,
+`Build completed successfully (2988 jobs)`, `PROBE GREEN`, no warnings, no
+`sorry`/`axiom`/`admit`/`opaque`.  Re-confirmed after the session hand-off with a **forced
+rebuild** rather than a replay — the log carries `Built GroupApproximation.Analysis.CStarSimple`,
+`Built … LIXSimplicity` and `Built … LIXSimplicityInstance`, not `Replayed`, so the green is
+about the source now on `main` and not about a cached artifact.
 
 ## 2. What is delivered
 
@@ -120,8 +124,14 @@ instantiation site is safe.
    (`mem_of_mul_self_le`).
 2. **Heredity without an approximate unit** (unchanged): `0 ≤ s`, `s s ≤ v ∈ I ⟹ s ∈ I` via the
    resolvent `r_δ = δ (v + δ)⁻¹` written as a functional calculus of `v`.
-3. **`Ideal.closure` is only a left ideal in Mathlib** (unchanged): `I.closure.IsTwoSided` needs
-   `mulRight_continuous` supplied by hand.
+3. **`Ideal.closure` is only a left ideal in Mathlib** (unchanged): `I.closure.IsTwoSided` has to
+   be supplied by hand, and it costs two corrections rather than one.  `map_mem_closure` has to
+   solve `f x =?= a * b` and takes the first-order splitting `f := (a * ·)`, `x := b`, which
+   contradicts the `hx : a ∈ closure I` in hand — pin it with `(f := fun x => x * b)`.  And the
+   continuity lemma is `continuous_mul_const`; `mulRight_continuous`, the mirror of what
+   `Ideal.closure`'s own proof uses, is `@[deprecated (since := "2026-02-20")]` at this pin
+   (`Mathlib/Topology/Algebra/Monoid.lean:110`), so under `-DwarningAsError=true` it is itself an
+   error.  Both were live errors in probe round 1.
 4. **`NonUnitalStarAlgHom.isometry`/`.norm_map` live in `Mathlib.Analysis.CStarAlgebra.Hom`**,
    which is only `public import`ed by the umbrella `Mathlib.lean`, *not* transitively reachable
    through the `ContinuousFunctionalCalculus.{Order,Isometric,Unique}` imports

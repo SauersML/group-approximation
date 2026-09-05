@@ -58,8 +58,15 @@ section Closure
 variable {R : Type u} [TopologicalSpace R] [Ring R] [IsTopologicalRing R]
 
 /-- **The closure of a two-sided ideal is two-sided.**  `Ideal.closure` records only that the
-closure is a left ideal, because that is all `Submodule` sees; right absorption is the same
-argument with `mulRight_continuous` in place of `mulLeft_continuous`. -/
+closure is a left ideal, because that is all `Submodule` sees; right absorption is the mirror
+argument.
+
+Two things have to be said by hand.  `map_mem_closure` must solve `f x =?= a * b` and takes the
+first-order solution `f := (a * ·)`, `x := b`, which is the wrong splitting here, so the
+multiplier is pinned with `(f := fun x => x * b)`.  And the continuity is
+`continuous_mul_const`, not the `mulRight_continuous` that `Ideal.closure`'s own proof mirrors:
+that name is a deprecated alias at this pin, and deprecation is an error under
+`-DwarningAsError=true`. -/
 instance isTwoSided_closure (I : Ideal R) [I.IsTwoSided] : I.closure.IsTwoSided := by
   constructor
   intro a b ha
