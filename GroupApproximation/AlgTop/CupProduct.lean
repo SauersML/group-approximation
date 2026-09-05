@@ -383,16 +383,24 @@ theorem cup_add_right {X : TopCat.{0}} {p q : ℕ} (a : cohomology R X p)
   obtain ⟨φ, hφ, rfl⟩ := cocycleClass_surjective R X p a
   obtain ⟨ψ, hψ, rfl⟩ := cocycleClass_surjective R X q b
   obtain ⟨ψ', hψ', rfl⟩ := cocycleClass_surjective R X q b'
-  rw [← cocycleClass_add R X q ψ ψ' hψ hψ', cup_mk, cup_mk, cup_mk,
-    ← cocycleClass_add R X (p + q) _ _ (cochainCup_cocycle hφ hψ) (cochainCup_cocycle hφ hψ')]
+  have hs : IsCocycle R X q (ψ + ψ') := by
+    rw [cochainCoboundary_add, hψ, hψ', add_zero]
+  have hsum : IsCocycle R X (p + q) (cochainCup p q φ ψ + cochainCup p q φ ψ') := by
+    rw [cochainCoboundary_add, cochainCup_cocycle hφ hψ, cochainCup_cocycle hφ hψ', add_zero]
+  rw [← cocycleClass_add R X q ψ ψ' hψ hψ' hs, cup_mk, cup_mk, cup_mk,
+    ← cocycleClass_add R X (p + q) _ _ (cochainCup_cocycle hφ hψ)
+      (cochainCup_cocycle hφ hψ') hsum]
   exact cocycleClass_congr R X (p + q) (cochainCup_add_right p q φ ψ ψ') _ _
 
 theorem cup_smul_right {X : TopCat.{0}} {p q : ℕ} (s : R) (a : cohomology R X p)
     (b : cohomology R X q) : a ⌣ (s • b) = s • (a ⌣ b) := by
   obtain ⟨φ, hφ, rfl⟩ := cocycleClass_surjective R X p a
   obtain ⟨ψ, hψ, rfl⟩ := cocycleClass_surjective R X q b
-  rw [← cocycleClass_smul R X q s ψ hψ, cup_mk, cup_mk,
-    ← cocycleClass_smul R X (p + q) s _ (cochainCup_cocycle hφ hψ)]
+  have hs : IsCocycle R X q (s • ψ) := by rw [cochainCoboundary_smul, hψ, smul_zero]
+  have hs2 : IsCocycle R X (p + q) (s • cochainCup p q φ ψ) := by
+    rw [cochainCoboundary_smul, cochainCup_cocycle hφ hψ, smul_zero]
+  rw [← cocycleClass_smul R X q s ψ hψ hs, cup_mk, cup_mk,
+    ← cocycleClass_smul R X (p + q) s _ (cochainCup_cocycle hφ hψ) hs2]
   exact cocycleClass_congr R X (p + q) (cochainCup_smul_right p q s φ ψ) _ _
 
 @[simp] theorem zero_cup {X : TopCat.{0}} {p q : ℕ} (b : cohomology R X q) :
@@ -403,9 +411,10 @@ theorem cup_smul_right {X : TopCat.{0}} {p q : ℕ} (s : R) (a : cohomology R X 
 @[simp] theorem cup_zero {X : TopCat.{0}} {p q : ℕ} (a : cohomology R X p) :
     a ⌣ (0 : cohomology R X q) = 0 := by
   obtain ⟨φ, hφ, rfl⟩ := cocycleClass_surjective R X p a
-  rw [← cocycleClass_zero R X q (by simp), cup_mk]
-  refine cocycleClass_eq_zero_of_eq R X (p + q) (cochainCup_zero_right p q φ) _ (by simp) ?_
-  exact cocycleClass_zero R X (p + q) (by simp)
+  rw [← cocycleClass_zero R X q (cochainCoboundary_zero R X q), cup_mk]
+  exact cocycleClass_eq_zero_of_eq R X (p + q) (cochainCup_zero_right p q φ) _
+    (cochainCoboundary_zero R X (p + q))
+    (cocycleClass_zero R X (p + q) (cochainCoboundary_zero R X (p + q)))
 
 /-! ## 6. The unit class -/
 
