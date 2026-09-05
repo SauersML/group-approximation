@@ -1507,3 +1507,194 @@ None of this touches the three targets — no FLT module is in any target's
 import closure — and this lane has changed nothing.  It is recorded because
 the corpus's trust surface is what this file is for, and because a later
 reader finding `ThirdParty/FLT.lean` on main deserves to know what it is.
+
+---
+
+## Sweep 16, 2026-09-05 — mandate change, two self-corrections, and X(1) becomes a machine result
+
+### Vocabulary change: CONDITIONAL-ON-X is now a failure state
+
+The user's instruction is now *"we need literally all of it"*.  A named-`Prop`
+residue is no longer an acceptable terminal state for any target.  This file
+keeps recording residues with the same precision — that does not change — but
+**CONDITIONAL-ON-X is from here a defect tracked to closure, not a verdict a
+target may end on.**  The three verdicts available at the end are
+UNCONDITIONAL, or a named open obligation, or NOT-YET-STATED.  Nothing is
+"done" while it carries one.
+
+### VOID window (ENOSPC), 2026-09-05
+
+Between roughly **16:35 and 17:05 local**, the data volume ran under 1 GiB free
+and hit 0; one of this lane's tool calls died with `ENOSPC`.  Cause: a 1.8 GiB
+shallow clone of `anthropics/fermats-last-theorem` in the shared scratchpad,
+since deleted (`fe8a55d82`); a second idle duplicate was reclaimed later.
+
+**Every build, `--audit` run, and gate result produced inside that window is
+VOID — neither red nor green.**  On a full disk `remote-build.sh` can fail on
+the *sync* leg, which reads as a build failure and is not one, and a log can
+truncate mid-write.  Anything from that window must be re-run, not believed and
+not disbelieved.  Known casualty: the lead's first `ProblemXWitness` probe died
+without writing a log.
+
+### Self-correction 1 — this lane's XXII probe was stale, by five minutes
+
+Sweep 10 recorded `STW22ConditionalNegativeSolution` failing with nine
+`∀ (n : ℕ), Nonempty (TracialState (AntipodalCounterexampleBlock n))` synthesis
+failures and four `sorryAx` poisonings.  **That result is superseded.**  The
+probe's source sync ran at **16:12:55**; `d14e7b91b` — *"name the antipodal
+nonempty-trace family so the conditional core elaborates"* — landed at
+**16:18:02**, five minutes later, and `instNonemptyTracialStateAntipodalFamily`
+now sits at `STW22ConditionalNegativeSolution.lean:66`.  Verified here, both
+the instance and the two timestamps.
+
+The finding was true of the tree it was run against and is the reason the fix
+exists; it is **not** true of the tree today, and this file will not carry it
+as a live defect.  The lead's probe (tag `lead-xxii`) is the re-run and will
+report the job count.  This lane is not duplicating it.
+
+Recorded because the staleness rule this file has been applying to other lanes
+applies to it first: *a probe certifies the source it synced, not the source
+that exists when you read the log.*  Mine did not, and I did not notice —
+`xxii-factoriality` did.
+
+### Self-correction 2 — the concurrent-build count was 3× too high
+
+Sweep 11 reported "22 concurrent `remote-build.sh` processes" with five
+duplicated targets.  Wrong instrument.  `pgrep -f remote-build.sh` matches the
+`/bin/zsh -c source …snapshot…` wrapper that every tool call spawns, because
+the wrapper's command line *contains* the string; and for a batched invocation
+it matches once per target name inside the quoted argument.  Filtering wrappers
+leaves **7 real invocations**, two of them `--sync-only`.  There was no
+`LIXProjectiveSpaceModel ×4` and no `ProblemXWitness ×2`.
+
+Corrected predicate, published so no other lane repeats it:
+
+```sh
+# wrong: counts wrapper shells and batched target names
+pgrep -f "remote-build.sh"
+# right: match the command, not the whole line
+ps -eo command= | grep -E '^(bash )?scripts/remote-build\.sh'
+```
+
+Same family as this file's earlier `homologyπ` regex truncation (sweep 4).
+Two instrument errors in sixteen sweeps, both in this lane's own tools, both
+found by someone else reading the number.  **A verification lane's instruments
+need the same scepticism as the corpus**, and this file's numbers should be
+read with that applied.
+
+### Target 1 is now a machine result
+
+`brown-x1-verify` ran `scripts/ProblemXVerify.lean` on acn112.  At
+`not_problemX1Statement`: leading binder **false**, axioms
+`[propext, Classical.choice, Quot.sound]`, statement closure **27974**
+constants of which **21** are in `GroupApproximation` — `FiniteModel` and its
+four fields, `finiteModelDecidableEq`, `finiteModelFintype`, `TracialState` and
+its two fields, `hsNorm`, `hsNormSq`, `normTrace`, `ProblemX1Statement`,
+`Quasidiagonal.{AmenableTraceModel, IsAmenableTrace, IsCompletelyPositiveOnMatrices,
+IsQuasidiagonalTrace, QuasidiagonalTraceModel}` and the two `.mk`s.
+**Literature packages named by the statement: none.**  That matches this file's
+hand read at sweep 1 exactly, name for name.
+
+The filter is **not vacuous**: `TikuisisWhiteWinterInput`, `AmenableNuclearInput`
+and `AmenableUCTInput` all exist inside `ProblemX`'s import closure and are
+simply not reached.  A gate that could not have failed would have proved
+nothing; this one could have.
+
+`ProblemX.lean` itself is green at current source (tag **61312**, 3940 jobs),
+printing the axiom line for `not_problemX1Statement`.  **One honest caveat, from
+the lane that ran it**: `--run` execs `lake env lean` and has *no* job count, so
+3940 belongs to the module build and not to the driver; and there is no
+moved-count baseline against which to prove tag 61312 re-elaborated rather than
+replayed.  The test — touch `ProblemX.lean`, rebuild, watch the count move off
+3940 — has not been run.  So target 1's row is: **statement closure machine-verified;
+module green; replay not yet excluded.**
+
+**Two traps that lane found, both worth more than the result.**
+
+1. **A `def X : Prop` on `zeroInputEndpoints` checks nothing.**
+   `statementConstants` reads a declaration's *type*, and the type of
+   `def LiteralFactorizationProperty : Prop` is `Prop` — closure size **0**.
+   Not clean: *nothing asked*.  The theorem `literalFactorizationProperty` has
+   closure 48892, of which 263 in `GroupApproximation`, and zero roster
+   packages — that is the walk that means something.  This is why `365a823a5`
+   seeds the **theorem** and not the `Prop`.  Generalized: **any `def _ : Prop`
+   listed as a quarantine root is an inert entry.**  Belongs in
+   `metadata/LITERATURE_QUARANTINE.md`; this lane does not own that file and
+   has flagged it rather than edited it.
+2. **`KirchbergKazhdanQuasidiagonalInput`**
+   (`NinetyNineProblems/KazhdanQuasidiagonalTraces.lean:107`, Brown Lemma
+   4.1.11 / Kirchberg) is an unproved literature package that is **not** on
+   `literaturePackages`.  Today it is always an explicit leading hypothesis, so
+   nothing advertises it — but the roster would not catch it if that changed.
+   It cannot be resolved until `scripts/Audit.lean` can run.
+
+**And the audit still cannot run at all**: `remote-build.sh --audit` fails on a
+missing `GGT/HullSCLemma49Correction.olean`.  So the quarantine gate added at
+`365a823a5` remains unfired corpus-wide; what has fired is the standalone
+driver, which is a different and narrower instrument.
+
+### Target 3: grade held open, not lowered
+
+`lix-obstruction`'s mod-2 Wu route removes every one of the five library-scale
+inputs this file listed at sweep 3 — no K-theory, no Bott periodicity, no Chern
+character, no integral Künneth, no Chern-character integrality.  The lead
+checked the arithmetic independently: the Wu instance producing the top class
+carries coefficient `r − 2`, usable exactly when `r` is odd; `lix-design`'s
+`ℂP¹` counterexample has `r = 4` (dead) and `lix-obstruction`'s `ℂP²` has
+`r = 5` (live), and **every tower stage has `r = 2^{i+1} + 1`, odd**.
+
+So this file withdraws the quotation of revision 1's *"no unconditional Lean
+route to the parity obstruction at feasible cost"* as the campaign's position.
+It was the position when written and is not now.
+
+**The verdict does not change and the reason moves.**  Target 3 is incomplete
+because of **the general tower stage**, not because of missing K-theory:
+`lix-obstruction` has closed `Y = pt` and `Y = ℂP²`; the induction needs some
+`i ≥ 1` with `binom(k + 2 − i, i)` odd, which **fails for certain `k`, first at
+`k = 1`**.  Also recorded, as a correction the lanes made to the lead: `Y = ℂP²`
+alone does **not** suffice, because the tower needs Corollary 4 at every stage
+and the doubling `r_{i+1} = 2 r_i` is forced by multiplicity matching.  The one
+genuinely new foundation is Steenrod squares up to Cartan — below Bott, and on
+a base (`SingularCohomology`, `CupProduct`, `CohomologyCupProduct`,
+`CochainCupLeibniz`, `MayerVietoris`) that already exists here.
+
+The sweep-3 pre-registered rank check **stands and now applies to the Wu route
+too**: `F = 1 − x xᴴ` over `S⁵` has rank 2, so `1²` is the hard comparison and
+`1³` is two lines from the trace.
+
+### The CP^d model question, resolved
+
+Sweep 2 flagged two projection models of `ℂP^d`.  Current state, checked
+directly: `AlgTop/ComplexProjectiveBasic.lean` line 1 is
+`import GroupApproximation.Analysis.LIXProjectiveSpaceModel`, it defines **no
+type**, and `IsLineProj` has **zero occurrences repo-wide**.  The surviving
+model is `GroupApproximation.STW59.cpSet d = {q | IsStarProjection q ∧ q.trace = 1}`
+over **Mathlib's** `IsStarProjection`, with `abbrev CP d := ↥(cpSet d)`;
+`AlgTop.CPn` is its lemma layer.  One model, and it is the program note's
+model on the nose.  Nothing to merge.
+
+What the flag did surface was worse than a duplicate and is now fixed:
+`IsLineProj` was used in four places (`ComplexProjectiveHyperplane.lean:39,40,69`,
+`ComplexProjectiveChart.lean:49`) and **defined nowhere**, invisible because
+`autoImplicit` is on (sweep 9).
+
+### Foundation lanes now in scope
+
+Seven lanes are building what Mathlib lacks, all for the target-3 obstruction,
+all producing orphan modules.  Added to this file's inventory:
+
+| lane | modules |
+|---|---|
+| `found-bundle-calculus` | `AlgTop/BundleCalculus*.lean` |
+| `found-cohomology-ring` | `AlgTop/{SingularCohomology,CupProduct,Spheres,Kunneth}.lean` |
+| `found-cpn-cohomology` | `AlgTop/ComplexProjective*.lean` |
+| `found-chern-classes` | `AlgTop/Chern*.lean` |
+| `found-ktheory-bott` | `KTheory/*.lean` → repointed to Steenrod squares |
+| `found-euler-class` | `AlgTop/Euler*.lean` → mod-2 only |
+| `found-mapping-torus-parity` | `AlgTop/MappingTorusParity.lean` → Wu's formula |
+
+The instantiation check the lead asked for is now a standing column: **for each
+foundation theorem a target-3 endpoint depends on, does the campaign actually
+apply it to the concrete `H_i`, `E_i`, `F`?**  A Chern-class API nobody can
+instantiate is not progress.  Nothing to report on it yet — no target-3
+endpoint exists to depend on anything.
