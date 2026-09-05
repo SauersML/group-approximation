@@ -119,12 +119,15 @@ def totalPi (p : Bundle X ι) : C(Total p, X) :=
 theorem totalPi_apply (p : Bundle X ι) (v : Total p) :
     totalPi p v = (v : X × (ι → ℂ)).1 := rfl
 
+theorem zeroSection_mem (p : Bundle X ι) (x : X) :
+    ((x, (0 : ι → ℂ)) : X × (ι → ℂ)) ∈ totalSet p := by
+  show p x *ᵥ (0 : ι → ℂ) = 0
+  exact Matrix.mulVec_zero _
+
 /-- The zero section `X → E(p)`. -/
-def zeroSection (p : Bundle X ι) : C(X, Total p) :=
-  ⟨fun x => ⟨(x, 0), by
-      show p x *ᵥ (0 : ι → ℂ) = 0
-      exact Matrix.mulVec_zero _⟩,
-    (continuous_id.prodMk continuous_const).subtype_mk _⟩
+def zeroSection (p : Bundle X ι) : C(X, Total p) where
+  toFun x := ⟨(x, 0), zeroSection_mem p x⟩
+  continuous_toFun := (continuous_id.prodMk continuous_const).subtype_mk _
 
 @[simp]
 theorem zeroSection_apply (p : Bundle X ι) (x : X) :
