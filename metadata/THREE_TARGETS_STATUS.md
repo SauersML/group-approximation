@@ -2030,12 +2030,11 @@ for no nontrivial *algebraic* two-sided ideal, which is strictly stronger.
 The direction of the error is worth being precise about, because it is the
 opposite of the usual one.  `ProblemLIX = ∀ A, IsSimple A → K1Injective A`, so
 strengthening `IsSimple` makes the hypothesis harder to satisfy and therefore
-makes **`¬ ProblemLIX` harder to prove**, not easier.  The campaign's witness is
-an inductive limit of homogeneous algebras; it is simple in the C\*-sense and
-almost certainly not algebraically simple.  So the failure mode here is not a
-vacuous endpoint — it is an endpoint **nobody can ever discharge**, discovered
-at the join, after `lix-limit` has proved the wrong simplicity statement.  The
-predicate must quantify over closed ideals.
+makes **`¬ ProblemLIX` harder to prove**, not easier.  **This severity claim was wrong and is corrected at sweep 23**: for a *unital*
+C\*-algebra the two notions coincide, so `IsSimpleRing` is not stronger here and
+cannot produce an undischargeable endpoint.  The general reasoning above holds;
+the instance it was applied to does not.  The recommendation — quantify over
+closed ideals — survives for different reasons, given at sweep 23.
 
 ### Two statement-shape facts, verified at source
 
@@ -2134,3 +2133,75 @@ but the number is the evidence and it was not recorded.
 | `ProblemLIX` | does not exist |
 | `IsSimpleCStar` | does not exist |
 | `STW22ConditionalNegativeSolution` | **unknown** — last probe predates its fix |
+
+## Sweep 23, 2026-09-05 — correcting sweep 21's severity claim
+
+`lix-design` challenged sweep 21's claim that stating `ProblemLIX` with
+`IsSimpleRing` would produce **an endpoint nobody can ever discharge**.  They
+are right and I checked their argument at the pin rather than accepting it.
+
+**The general reasoning stands; the instance does not.**  It is true that
+`ProblemLIX = ∀ A, IsSimple A → K1Injective A` inverts the usual direction, so a
+*stronger* `IsSimple` makes `¬ ProblemLIX` harder rather than vacuous.  What is
+false is the premise that `IsSimpleRing` is stronger **for the algebras
+`ProblemLIX` quantifies over**.
+
+Verified at `81a5d257`:
+
+* `Mathlib/RingTheory/SimpleRing/Defs.lean:27` —
+  `class IsSimpleRing (R) [NonUnitalNonAssocRing R] : Prop where simple : IsSimpleOrder (TwoSidedIdeal R)`.
+  Algebraic two-sided ideals, no closure condition.  Sweep 21 was right about
+  that much.
+* `Mathlib/Analysis/CStarAlgebra/Classes.lean:38` —
+  `class CStarAlgebra (A) extends NormedRing A, StarRing A, CompleteSpace A, CStarRing A, …`.
+  **`NormedRing` is unital**, so every algebra `ProblemLIX` ranges over is unital.
+* `Mathlib/Analysis/Normed/Ring/Units.lean:84,88` —
+  `nonunits.subset_compl_ball : nonunits R ⊆ (Metric.ball (1 : R) 1)ᶜ` and
+  `nonunits.isClosed`, under `variable [NormedRing R] [HasSummableGeomSeries R]`.
+* and the side condition is free: `Mathlib/Analysis/SpecificLimits/Normed.lean:279`
+  gives `instance [NormedRing R] [CompleteSpace R] : HasSummableGeomSeries R`,
+  which a `CStarAlgebra` satisfies automatically.  I checked this specifically,
+  because "it is a short lemma" is the kind of claim that fails on a missing
+  instance.
+
+So the argument goes through: a proper two-sided ideal `J` of a unital Banach
+algebra contains no unit, hence `J ⊆ nonunits`, which is closed and misses `1`;
+so `closure J` is a proper *closed* two-sided ideal, C\*-simplicity kills it, and
+`J = 0`.  With the converse trivial, **C\*-simple ⟺ `IsSimpleRing` for a unital
+C\*-algebra.**  My `K(H)` intuition — C\*-simple with the finite-rank operators as
+a dense proper ideal — is correct and is exactly the *non-unital* case, which is
+why the general statement was true and its application here was not.
+
+**The recommendation is unchanged and the reasons are better.**  Define
+`IsSimpleCStar` by **closed** two-sided ideals, because:
+
+1. **Fidelity.**  STW Problem LIX means C\*-simple.  An endpoint stated with
+   `IsSimpleRing` is not *visibly* the problem STW asked, and a referee would
+   have to know the equivalence to see that it is.  An endpoint should say what
+   the problem says.
+2. **A theorem smuggled into a definition.**  The equivalence needs unitality.
+   Stating the endpoint with `IsSimpleRing` makes it silently depend on a lemma
+   nobody has written — and `lix-limit` will prove the *closed*-ideal statement
+   anyway, since the manuscript's positive-cutdown argument (Lemma 5) produces
+   closed ideals.  So the bridge lemma is needed either way; the only choice is
+   whether it is discovered now or at the join.
+
+And land the bridge explicitly:
+
+```lean
+theorem isSimpleCStar_iff_isSimpleRing (A) [CStarAlgebra A] [Nontrivial A] :
+    IsSimpleCStar A ↔ IsSimpleRing A
+```
+
+so that a later reader wondering whether the campaign picked a weak notion can
+see that it did not.
+
+**Tracked row amended** from *"would be unprovable"* to **"wrong notion to
+state; the equivalence must be landed rather than assumed"**.
+
+Fifth correction to this lane's own output in twenty-three sweeps, and the first
+that was a **severity** error rather than an instrument or a missed check: the
+finding was real, the recommendation was right, and the reason attached to it
+was wrong in a way that would have misdirected whoever acted on it.  Worth
+separating, because a correct recommendation resting on a false reason is the
+harder kind to catch — nobody re-examines advice they are already following.
