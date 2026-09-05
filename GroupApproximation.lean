@@ -3320,6 +3320,14 @@ import GroupApproximation.KTheory.BlockMoves
 import GroupApproximation.Analysis.CStarKOneWhitehead
 import GroupApproximation.Analysis.CStarSimple
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
+import GroupApproximation.Analysis.LIXFiniteStageNullHomotopy
+import GroupApproximation.Analysis.LIXLimitTower
+import GroupApproximation.Analysis.LIXLimitCompletion
+import GroupApproximation.Analysis.LIXLimitMatrixTransport
+import GroupApproximation.Analysis.LIXLimitSeparable
+import GroupApproximation.Analysis.LIXLimitWitness
+import GroupApproximation.Analysis.LIXSimplicity
+import GroupApproximation.Analysis.LIXSimplicityInstance
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
