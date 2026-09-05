@@ -28,3 +28,10 @@ The established node `steinberg-cycles-have-big-cell-chord-coordinates`
 removes all panel variables: the claim is now equivalent to the two
 three-variable equations `(SBC5)`, whose exceptional transformed flags are
 fixed signed cut-sums in one explicit spanning tree.
+
+Exact full-column minors now also close the complete map at `p=5,7` in
+`steinberg-flag-fox-map-is-injective-at-five-and-seven`, without assuming
+zero chord marginals.  The characteristic-five minor has determinant
+`4 mod 5`, and the characteristic-seven minor has determinant `3 mod 7`.
+These finite certificates do not establish the present all-prime claim;
+in particular no characteristic-eleven result is asserted.
