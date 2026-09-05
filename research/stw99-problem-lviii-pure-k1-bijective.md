@@ -11,6 +11,8 @@ artifacts:
   - notes/stw58-soft-module-compression-attempt-2026-09-05.md
   - research/artifacts/stw58-local-factorization-and-overlap-cancellation-2026-09-05.md
   - research/artifacts/stw58-overlap-corrected-word-spaces-and-homotopy-lifting-2026-09-05.md
+  - research/artifacts/stw58-degree-one-primary-citation-audit-2026-09-05.md
+  - research/artifacts/stw58-compatible-split-stable-surjectivity-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -38,6 +40,22 @@ Thus neither injectivity nor surjectivity remains in the unital simple slice.
 The `K_1`-bijectivity question remains for non-simple pure algebras and for
 any nonunital formulation not covered by the stated convention.  The stronger
 `K`-stability question remains even for simple pure algebras.
+
+The stable-surjectivity half is now established in every positive
+degree for the unital simple finite pure slice by
+`stw58-simple-finite-pure-split-stable-surjectivity`. A single full
+hereditary endpoint matrix piece gives compatible group sections
+of every map `pi_k U(M_m(B)) -> K_(k+1)(B)` for fixed k>=1.
+The remaining question there is vanishing of the unstable kernels.
+This is not a proof that consecutive matrix maps are surjective:
+they can still have nontrivial maps between those kernels.
+
+The same theorem proves K1-surjectivity of `C_0(X,B)` for every
+locally compact Hausdorff X and every such coefficient B, including
+nonmetrizable bases. Finite scalar coordinates reduce each K-class
+to a finite-dimensional compact range, where a large endpoint piece
+provides a size-one representative. This does not assert K1-injectivity
+or purity of the function algebra.
 
 The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
@@ -80,3 +98,10 @@ compactly parameterized homotopy with an initial lift, after finitely
 many identity-valued word blocks are appended. Connectivity of the
 remaining corrected fiber is unproved; computing the domain's stable
 homotopy groups does not identify the homotopy groups of U(B).
+
+The degree-one source audit separately proves loop surjectivity from
+stable rank one. Sarkowicz and CGSTW explicitly assert the stronger
+degree-one isomorphism, but their cited Rieffel theorem has an extra
+all-torus hypothesis. The audit has not verified the additional
+injectivity derivation and does not assert that the published claim
+is false or mathematically open.

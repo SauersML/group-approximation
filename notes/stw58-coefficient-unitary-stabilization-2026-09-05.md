@@ -137,6 +137,15 @@ the published degree-one assertion is false. Until an applicable
 primary proof or a complete derivation is located, these notes do
 not promote it to a new LVIII closure result.
 
+The [degree-one supplement](../research/artifacts/stw58-degree-one-primary-citation-audit-2026-09-05.md)
+now gives the full surjectivity derivation from the circle connected-
+stable-rank bound and the last-column sequence. It also checks that
+CGSTW v4, Remark 2.8, retains the stronger published assertion and
+records an exact alternative injectivity criterion via general stable
+rank of `C(S2) tensor A`. The additional argument proving that criterion
+from stable rank one has not been supplied. The distinction above
+between a published assertion and our verified derivation is unchanged.
+
 ## Primary sources and current-literature check
 
 - H. Lin, *Strict comparison and stable rank one*, J. Funct. Anal.

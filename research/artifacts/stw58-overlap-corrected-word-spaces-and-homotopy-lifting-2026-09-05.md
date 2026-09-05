@@ -312,7 +312,12 @@ applied there stays there. It gives no homotopy in \(U(B)\),
 so it cannot close this residual gap by descent.
 
 Thus no unconditional global case \(k=1\) or \(k=2\) of LVIII
-is asserted. The new rigorous results are the full stable-range
+is proved by these word-space arguments. This is a limitation of
+this construction, not a declaration of the literature status of
+degree one: the [separate source audit](stw58-degree-one-primary-citation-audit-2026-09-05.md)
+records the published degree-one assertions and the precise gap
+in our verification of their cited derivation.
+The new rigorous results are the full stable-range
 calculation of the overlap-corrected word space and compact
 homotopy lifting after finitely many fixed identity-valued blocks.
 

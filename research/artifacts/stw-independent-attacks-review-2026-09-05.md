@@ -101,3 +101,44 @@ The MSI logs are `proof-batch-check.log` and
 `proof-batch-preview.log` under
 `/projects/standard/hsiehph/sauer354/stw79-cairn-check-20260904/cu-all-base-scope-20260905/`.
 These files are replaced by subsequent scoped validation runs.
+
+## Compatible stable surjectivity and function algebras
+
+The final deduction in this round is
+[compatible split stable surjectivity](stw58-compatible-split-stable-surjectivity-2026-09-05.md).
+The root proposed the deduction and independently reviewed the complete
+written proof. For each positive homotopy degree, one fixed full
+hereditary matrix piece has its unitary homotopy groups already in
+the stable range at every matrix size. Inverting its canonical stable
+maps and composing with inclusion gives compatible group sections.
+Only one nonzero endpoint is needed; the other endpoint and overlap
+may vanish. The direct-sum description of the remaining kernels is
+group-theoretic and does not assert continuous sections of spaces.
+
+The function-algebra corollary reduces a matrix unitary to finitely
+many scalar coordinates with compact joint range. The matrix size
+can then exceed the stable-rank bound for that coordinate range.
+The split scalar quotient handles a nonunital hereditary coefficient.
+Full hereditary inclusion transfers its size-one K1 representative
+back to the original function algebra. Normalization at infinity
+uses actual degree-zero K1-injectivity of B and the split evaluation
+extension. This proves K1-surjectivity for every locally compact
+Hausdorff base, without asserting purity or K1-injectivity of the
+function algebra.
+
+The [degree-one source supplement](stw58-degree-one-primary-citation-audit-2026-09-05.md)
+records a separate verified loop-surjectivity proof and the newer
+CGSTW citation cross-check. The original Rieffel scan was rendered
+on MSI and visually read by both the root and the unitary-group agent.
+Its all-torus hypothesis is not replaced by stable rank one. The
+supplement preserves the existing note's distinction between later
+published degree-one assertions and the injectivity derivation that
+has not been verified here. Rechecking that citation is not counted
+as a new theorem or an open-problem resolution.
+
+After integrating compatible split stable surjectivity and the source
+supplement, both native `check --changed` and `preview` passed on MSI
+for the expanded closure of 71 nodes (37 claims and 34 routes).
+The new split-surjectivity claim derived as established; LIX remained
+refuted and LVIII, LXI, and LXXVI remained open. These are scoped
+research-graph checks, not formal verification of the mathematics.
