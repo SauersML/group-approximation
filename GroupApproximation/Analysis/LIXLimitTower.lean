@@ -91,6 +91,9 @@ theorem climb_succ {i k : ℕ} (h : k ≤ i) (a : A k) :
     T.climb (i + 1) k a = T.succHom i (T.climb i k a) :=
   dif_neg (by omega)
 
+@[simp] theorem climb_succ_self (i : ℕ) (a : A i) : T.climb (i + 1) i a = T.succHom i a := by
+  rw [T.climb_succ (le_refl i), T.climb_self]
+
 theorem climb_trans {k i j : ℕ} (hki : k ≤ i) (hij : i ≤ j) (a : A k) :
     T.climb j i (T.climb i k a) = T.climb j k a := by
   induction j, hij using Nat.le_induction with
@@ -535,6 +538,9 @@ theorem iota_injective (i : ℕ) : Function.Injective (T.iota i) :=
 @[simp] theorem iota_climb {k i : ℕ} (h : k ≤ i) (a : A k) :
     T.iota i (T.climb i k a) = T.iota k a :=
   T.mkAt_climb h a
+
+@[simp] theorem iota_succHom (i : ℕ) (a : A i) : T.iota (i + 1) (T.succHom i a) = T.iota i a := by
+  rw [← T.climb_succ_self i a, T.iota_climb (Nat.le_succ i)]
 
 theorem iota_climbHom {k i : ℕ} (h : k ≤ i) (a : A k) :
     T.iota i (T.climbHom h a) = T.iota k a :=

@@ -112,6 +112,11 @@ theorem limIota_injective (i : ℕ) : Function.Injective (T.limIota i) :=
     T.limIota i (T.climb i k a) = T.limIota k a := by
   rw [T.limIota_apply, T.limIota_apply, T.iota_climb h]
 
+/-- Compatibility with the connecting maps in its literal successor form: `ι_{i+1} ∘ φ_i = ι_i`. -/
+@[simp] theorem limIota_succHom (i : ℕ) (a : A i) :
+    T.limIota (i + 1) (T.succHom i a) = T.limIota i a := by
+  rw [T.limIota_apply, T.limIota_apply, T.iota_succHom]
+
 theorem limIota_climbHom {k i : ℕ} (h : k ≤ i) (a : A k) :
     T.limIota i (T.climbHom h a) = T.limIota k a :=
   T.limIota_climb h a

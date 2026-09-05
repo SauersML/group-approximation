@@ -5,10 +5,13 @@
 | module | job count | note |
 |---|---|---|
 | `Analysis/LIXFiniteStageNullHomotopy` | 2978 | **Lemma 7** verified (one repair, see TRAPS) |
-| `Analysis/LIXLimitTower` | 2978 | new: `CStarTower`, `climb`, the algebraic colimit as a pre-C⋆-algebra |
-| `Analysis/LIXLimitCompletion` | 2985 | new: `Limit`, `limIota`, `stage`, **persistence** |
-| `Analysis/LIXLimitMatrixTransport` | 2998 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
-| `Analysis/LIXLimitSeparable` | 2998 | new: separability of the limit (bonus item 4) |
+| `Analysis/LIXLimitTower` | 2999 | new: `CStarTower`, `climb`, the algebraic colimit as a pre-C⋆-algebra |
+| `Analysis/LIXLimitCompletion` | 2999 | new: `Limit`, `limIota`, `stage`, **persistence** |
+| `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
+| `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
+
+The last four were built together in one probe, `Build completed successfully
+(2999 jobs)`, each with its own `Built …` line.
 
 Peer modules that also built clean inside cs-limit probes:
 `Analysis/CStarCompletion`, `Analysis/CStarCompletionCoe`,
@@ -37,6 +40,7 @@ T.Limit                     -- = UniformSpace.Completion T.Colim; a `CStarAlgebr
                             -- `Nontrivial` as soon as `A 0` is
 T.limIota (i : ℕ) : A i →⋆ₐ[ℂ] T.Limit         -- isometric, injective
 T.limIota_climb (h : k ≤ i) : T.limIota i (T.climb i k a) = T.limIota k a
+T.limIota_succHom : T.limIota (i+1) (T.succHom i a) = T.limIota i a   -- ι_{i+1} ∘ φ_i = ι_i
 T.stage (i : ℕ) : StarSubalgebra ℂ T.Limit     -- = (T.limIota i).range
 T.isClosed_stage, T.stage_mono, T.dense_iUnion_stage
 LIX.unitaryHom (f : B →⋆ₐ[ℂ] C) : unitary B →* unitary C   -- continuous
