@@ -167,9 +167,23 @@ concrete `ker`/`range` picture. Budget several build cycles.
 
 ### A2. `AlgTop/Spheres.lean`
 
-The vendored `sphereTopHomology_step_MV` and `sphere0_singularHomologyℤ_isZero`
-already give integral `H_*(Sⁿ;ℤ)`, and it is free in every degree. So A1 gives, with
-no new topology at all:
+The vendored tree already proves `Hₙ(Sⁿ;ℤ) ≅ ℤ` **unconditionally** for `n ≥ 1`:
+`SphereOrientationPosFromMV.sphereTopHomologyIso_unconditional (n) (hn : 1 ≤ n) :
+SphereTopHomologyIso n`, where `SphereTopHomologyIso n := sphereTopHomologyℤ n ≅
+ModuleCat.of ℤ ℤ`, with `SphereModelTransport` / `sphereModelHomologyIso`
+carrying it between the `TopCat.sphere n` and raw `Sphere n` models (design C2's
+single transport). So A1 gives, with no new topology:
+
+**One gap to note.** UCT *injectivity* at degree `n` needs `Hₙ₋₁(Sⁿ;ℤ)`
+projective. For `n = 1` that is `H₀(S¹;ℤ) ≅ ℤ`, free. For `n ≥ 2` it is `0`, but
+the vendored tree does **not** package integral off-degree vanishing — it has
+`isZero_singularHomologyℤ_of_contractibleSpace`, `…_disk`, `…_punit_of_pos`, and
+the mod-2 vanishing, but no `Hₖ(Sⁿ;ℤ) = 0` for `0 < k < n`. It follows from the
+same Mayer–Vietoris tower that gives the top class and should be added alongside.
+Until it is, **surjectivity alone still delivers what `found-euler-class` needs**:
+a class `sphereGen` with `⟨sphereGen, [Sⁿ]⟩ = 1` and the normalised pairing. Only
+the statement `Hⁿ(Sⁿ;ℤ) ≅ ℤ` needs the vanishing.
+
 
 ```lean
 def sphereTopCohomologyIso (n) (hn : 1 ≤ n) : cohomologyℤ (Sph n) n ≅ ModuleCat.of ℤ ℤ
