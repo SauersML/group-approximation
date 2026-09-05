@@ -733,3 +733,64 @@ theorem esymm_halfAntidiagonal_eq (n i : ℕ) :
       = ∑ B ∈ Finset.univ.powersetCard i, ∑ k ∈ Bᶜ,
           (∏ l ∈ B, MvPolynomial.X l ^ 2) * MvPolynomial.X k
 ```
+
+---
+
+## 11. The Lean assembly of §9, in dependency order
+
+What follows is the interface `found-chern-classes`, `found-cohomology-ring`
+and a Steenrod lane would have to supply, and the shape of the assembly on top
+of it. Nothing here needs `K`-theory.
+
+**Layer A — the ring (found-cohomology-ring, found-cpn-cohomology).**
+
+1. `H^*(CP^d; F₂) = F₂[h]/(h^{d+1})`, `|h| = 2`, with `h` the mod-2 reduction of
+   an integral class.
+2. `H^*(S¹ × S⁵ × Y; F₂) = Λ(t) ⊗ Λ(x) ⊗ H^*(Y;F₂)` for `Y` a finite product of
+   projective spaces. Field coefficients, so this is Künneth with no Tor term.
+3. The restriction ring maps: to the slice `{1} × M` (kills `t`), and to
+   `S¹ × S⁵ × ∏_{j∉S} CP^{d_j}` (kills `h_j` for `j ∈ S`). In the campaign's
+   projection model the second is induced by the basepoint inclusion
+   `y ↦ (fun j => if j ∈ S then basePoint else y j)`, which is continuous with
+   no work.
+
+**Layer B — Steenrod squares.**
+
+4. `Sq^k` natural, additive, with the Cartan formula, `Sq^k = 0` above the
+   degree, and `Sq^n x = x²` in degree `n`.
+5. `Sq^k t = 0` and `Sq^k x = 0` for `k > 0` — immediate from naturality, since
+   both are pulled back from spheres whose cohomology vanishes in the target
+   degrees. This is what makes `Sq(t x b) = t x Sq(b)`.
+6. `Sq¹ = 0` on mod-2 reductions of integral classes (so `Sq(h_j) = h_j + h_j²`).
+
+**Layer C — mod-2 Chern classes (found-chern-classes, mod-2 only).**
+
+7. `γ_i(E) = c_i(E) mod 2`, Whitney sum, naturality under pullback.
+8. The splitting principle, enough to prove item 9.
+9. `(Wu-diag)`: `Sq^{2i}(γ_{i+1}) = Σ_{s=0}^{i} γ_{i-s} γ_{i+1+s}`. §10.1 and
+   §10.3 give two proofs; §10.3 is the one to formalize.
+
+**Layer D — the assembly (this lane).**
+
+10. `splitEven`: every even class of `H^*(N;F₂)` is uniquely `a + t x b` with
+    `a, b ∈ H^*(Y;F₂)`; `a` is the image under the slice restriction; `(tx)² = 0`.
+11. `slice_class`: if `W|_{{1}×M} ≅ 1^k ⊕ ⨁_j L_j^{⊕ d_j}` and each `d_j` is a
+    power of two, then `a = ∏_j (1 + h_j^{d_j})`, so each `a_q` is a single
+    squarefree monomial `μ_S` or zero, and `a_q = 0` for odd `q`.
+12. `top_extract`: for `q + k = m`, the degree-`2m` component of `μ_S · b_k` is
+    the coefficient of `μ_{J∖S}` in `b_k`, which is the top component of `b`
+    for the restricted bundle over `∏_{j∉S} CP^{d_j}`.
+13. `parity`: induction on `|J|`. Instantiate (Wu-diag) at `i = m/2 + 1`,
+    `j = m/2 + 2`, take the `t x`-component, note the left side vanishes by
+    item 4 (degree `2i = m+2` exceeds `deg b_{m/2-1} = m-2`), and kill every
+    non-target term by items 11–12 and the inductive hypothesis. Conclude
+    `b_m = 0`, i.e. `γ_{m+3}(W) = 0`.
+
+The endpoint delivered to `found-euler-class` is then: for `r = m + 3`,
+`γ_r(W) = 0` in `H^{2r}(N;F₂) ≅ F₂`, contradicting the mod-2 Euler class of the
+mapping torus, which is `1` because the section of
+`AlgTop/ManuscriptSectionZeroCount.lean` has exactly one nondegenerate zero.
+
+**Interface note.** Item 13 is rank-free: it never mentions the rank of `W`.
+That is essential, because the restricted bundle in item 12 still has rank
+`m + 3`, not `m' + 3`, and must satisfy the sub-product's own statement.
