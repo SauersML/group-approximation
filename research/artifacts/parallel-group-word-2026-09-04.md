@@ -6,10 +6,13 @@ unconditional root remains open.
 The concrete affirmative operation investigated here was the following:
 exactify the commuting row-root operators, then optimize over permutations
 and phases of their joint spectral atoms to turn the paired Steinberg
-shears into finite coefficient maps. Unlike a fixed Reynolds trace, the
-choice of all joint atoms uses the finiteness of the ambient matrix algebra.
-It is therefore a plausible place to look for the genuinely finite-matrix
-step missing from `affine-leavitt-boundary-shear-payment`.
+shears into finite coefficient maps. The joint atom decomposition of the
+full infinite coefficient-root family would use finiteness of the ambient
+matrix algebra. A fixed finite root table, in contrast, has a finite
+spectral decomposition in a finite factor as well. Only the former is a
+possible source of the genuinely finite-matrix step missing from
+`affine-leavitt-boundary-shear-payment`; the lemmas below do not establish
+the passage to that full family.
 
 The calculation below proves that local root covariance alone cannot
 authenticate this operation with a constant independent of the number of
