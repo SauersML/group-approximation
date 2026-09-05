@@ -35,7 +35,7 @@ product of canonical degree-`p` and degree-`q` generators is nonzero whenever
 to build the full cellular cup-product structure on `RPⁿ` over `F₂`. -/
 structure RPnGeneratorCupNonzeroWitness (n : ℕ) where
   nonzero : ∀ (c : RPnCellularCochainStructure n)
-    (p q : ℕ) (hp : p ≤ n) (hq : q ≤ n) (hpq : p + q ≤ n),
+    (p q : ℕ) (hp : p ≤ n) (hq : q ≤ n) (_hpq : p + q ≤ n),
       cupZMod2
         (rpCohomologyGenerator c p hp)
         (rpCohomologyGenerator c q hq) ≠ 0

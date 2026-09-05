@@ -185,8 +185,12 @@ theorem projTransferHomologyZMod2_homologyπ (n : ℕ)
         (((chainCxZMod2 (TopCat.of (RP n))).homologyπ n).hom ζ)
       = ((chainCxZMod2 (TopCat.of (Sphere n))).homologyπ n).hom
           ((HomologicalComplex.cyclesMap (projTransferChainMap n) n).hom ζ) := by
-  rw [projTransferHomologyZMod2_eq_homologyMap, ← ModuleCat.comp_apply,
-    HomologicalComplex.homologyπ_naturality, ModuleCat.comp_apply]
+  have key : (chainCxZMod2 (TopCat.of (RP n))).homologyπ n ≫ projTransferHomologyZMod2 n n
+      = HomologicalComplex.cyclesMap (projTransferChainMap n) n
+        ≫ (chainCxZMod2 (TopCat.of (Sphere n))).homologyπ n := by
+    rw [projTransferHomologyZMod2_eq_homologyMap]
+    exact HomologicalComplex.homologyπ_naturality (projTransferChainMap n) n
+  exact ConcreteCategory.congr_hom key ζ
 
 /-! ## Nonzero preservation, reduced to the homology side -/
 

@@ -39,7 +39,8 @@ front/back face-composition identities.
 
 noncomputable section
 
-open CategoryTheory AlgebraicTopology Limits AlexanderWhitney
+open CategoryTheory AlgebraicTopology Limits
+  GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 

@@ -191,7 +191,10 @@ theorem cofiberRawMap_norm (n : ℕ) (x : Sphere (n + 1)) : ‖cofiberRawMap n x
 theorem cofiberRawMap_continuous (n : ℕ) : Continuous (cofiberRawMap n) := by
   have h1 : Continuous (fun x : Sphere (n+1) => (x : EuclideanSpace ℝ (Fin (n+2)))) :=
     continuous_subtype_val
-  exact ((continuous_const.mul (continuous_const.inner h1)).smul h1).sub continuous_const
+  have h2 : Continuous fun x : Sphere (n + 1) =>
+      inner ℝ (affineElast n) (x : EuclideanSpace ℝ (Fin (n + 2))) :=
+    Continuous.inner (𝕜 := ℝ) continuous_const h1
+  exact ((continuous_const.mul h2).smul h1).sub continuous_const
 
 /-- The collapse map as a continuous self-map of `Sⁿ⁺¹`. -/
 def cofiberSphereMap (n : ℕ) : C(Sphere (n + 1), Sphere (n + 1)) where
@@ -271,8 +274,8 @@ theorem cofiberToSphere_injective (n : ℕ) : Function.Injective (cofiberToSpher
   obtain ⟨x₂, rfl⟩ := RP.exists_rep q₂
   simp_all +decide;
   have h_eq_or_antipodal : (2 * (x₁ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1))) • (x₁ : EuclideanSpace ℝ (Fin (n + 2))) = (2 * (x₂ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1))) • (x₂ : EuclideanSpace ℝ (Fin (n + 2))) := by
-    have h_eq_or_antipodal : cofiberRawMap n x₁ = cofiberRawMap n x₂ := by
-      convert congr_arg Subtype.val hxy using 1;
+    have h_eq_or_antipodal : cofiberRawMap n x₁ = cofiberRawMap n x₂ :=
+      congr_arg Subtype.val hxy
     convert congr_arg ( fun v => v + affineElast n ) h_eq_or_antipodal using 1 <;> norm_num [ cofiberRawMap ];
     · rw [ inner_affineElast ];
     · rw [ inner_affineElast ];
@@ -328,10 +331,26 @@ theorem cofiberToSphere_surjective (n : ℕ) : Function.Surjective (cofiberToSph
           rw [ @norm_add_sq ℝ ] ; norm_num [ affineElast ] ; ring_nf;
           rw [ EuclideanSpace.inner_single_right ] ; norm_num ; linarith!;
         rw [ norm_smul, Real.norm_of_nonneg ( by positivity ), div_mul_eq_mul_div, div_eq_iff ] <;> nlinarith [ norm_nonneg ( w + affineElast n ) ];
-      refine' ⟨ ⟨ x_val, _ ⟩, _ ⟩ <;> simp_all +decide;
-      ext i; simp [cofiberSphereMap, cofiberRawMap, x_val];
-      simp +decide [ inner_add_right, inner_smul_right, affineElast ] ; ring_nf;
-      split_ifs <;> simp_all +decide [ inner ]; all_goals grind;
+      -- `⟪e, x⟫ = (1/(2t))·(c+1) = (1/(2t))·2t² = t`, so
+      -- `F(x) = 2t • ((1/(2t)) • (w + e)) - e = (w + e) - e = w`.
+      have h2t : (0 : ℝ) < 2 * t := by linarith
+      have hx_val_mem : x_val ∈ Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 2))) 1 := by
+        rw [mem_sphere_zero_iff_norm]; exact hx_val_norm
+      have he_self : inner ℝ (affineElast n) (affineElast n) = 1 := by
+        rw [real_inner_self_eq_norm_sq, affineElast_norm]; norm_num
+      have hinner : inner ℝ (affineElast n) x_val = t := by
+        have hxv : x_val
+            = (1 / (2 * t)) • ((w : EuclideanSpace ℝ (Fin (n + 2))) + affineElast n) := rfl
+        rw [hxv, real_inner_smul_right, inner_add_right, inner_affineElast, he_self, ← ht_sq,
+          show (2 : ℝ) * t ^ 2 = (2 * t) * t by ring, one_div, ← mul_assoc,
+          inv_mul_cancel₀ h2t.ne', one_mul]
+      refine ⟨⟨x_val, hx_val_mem⟩, Subtype.ext ?_⟩
+      show (2 * inner ℝ (affineElast n) x_val) • x_val - affineElast n
+          = (w : EuclideanSpace ℝ (Fin (n + 2)))
+      rw [hinner]
+      show (2 * t) • ((1 / (2 * t)) • ((w : EuclideanSpace ℝ (Fin (n + 2))) + affineElast n))
+          - affineElast n = _
+      rw [smul_smul, mul_one_div, div_self h2t.ne', one_smul, add_sub_cancel_right]
   use Quotient.mk _ (proj (n + 1) x);
   convert hx using 1
 
