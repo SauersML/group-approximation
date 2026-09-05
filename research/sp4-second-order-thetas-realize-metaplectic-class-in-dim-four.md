@@ -35,7 +35,13 @@ multiplier system of the second-order theta constants is the metaplectic
 class, in dimension four.  Modulo scalars the long-root generators have
 order `4` and the short-root generators order `2`, so this projective
 representation factors through `Sp_4(Z/4)`, one level below the even theta
-constants.
+constants.  With `sp4-metaplectic-class-is-not-inflated-from-level-two`
+this pins the conductor: the metaplectic class of `Sp_4(Z)` is inflated
+from `Sp_4(Z/4)` and from no smaller level.  By contrast the mod-three
+sector class is inflated from no finite quotient at all
+(`deligne-triple-cover-fd-central-invisibility`): the universal-cover
+class of `Sp_4(Z)` is finite-level at the prime two and infinite-level at
+the prime three.
 
 Direct sums of copies of this model and of the ten-dimensional one give
 exact metaplectic models in every dimension `4a + 10b`, which is what the
