@@ -60,8 +60,17 @@ variable {R : Type u} [TopologicalSpace R] [Ring R] [IsTopologicalRing R]
 /-- **The closure of a two-sided ideal is two-sided.**  `Ideal.closure` records only that the
 closure is a left ideal, because that is all `Submodule` sees; right absorption is the same
 argument with `mulRight_continuous` in place of `mulLeft_continuous`. -/
-instance isTwoSided_closure (I : Ideal R) [I.IsTwoSided] : I.closure.IsTwoSided :=
-  ⟨fun b hx => map_mem_closure (mulRight_continuous b) hx fun _ hy => I.mul_mem_right b hy⟩
+instance isTwoSided_closure (I : Ideal R) [I.IsTwoSided] : I.closure.IsTwoSided := by
+  constructor
+  intro a b ha
+  have ha' : a ∈ closure (I : Set R) := by
+    rw [← Ideal.coe_closure]
+    exact ha
+  have hmaps : Set.MapsTo (fun x : R => x * b) (I : Set R) (I : Set R) :=
+    fun _ hy => I.mul_mem_right b hy
+  have hmem := map_mem_closure (f := fun x : R => x * b) (continuous_mul_const b) ha' hmaps
+  rw [← Ideal.coe_closure] at hmem
+  exact hmem
 
 end Closure
 
@@ -160,8 +169,8 @@ theorem isSimpleCStar_iff_isSimpleRing (A : Type u) [CStarAlgebra A] [Nontrivial
         intro x hx
         have hx' : x ∈ J.asIdeal.closure :=
           subset_closure (TwoSidedIdeal.mem_asIdeal.mpr hx)
-        have : x = 0 := Ideal.mem_bot.mp (hbot ▸ hx')
-        exact TwoSidedIdeal.mem_bot.mpr this
+        have hzero : x = 0 := Ideal.mem_bot.mp (hbot ▸ hx')
+        simpa using hzero
       · exact absurd htop hne
   · intro h I hI _
     haveI := hI
