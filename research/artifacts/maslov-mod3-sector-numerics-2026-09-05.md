@@ -215,6 +215,13 @@ needs is the maximal defect over a presentation, not a sampled mean square,
 and the coboundary direction must be removed before a nonabelian search
 means anything.
 
+The abelian bar (`abelian_check.py`).  Over all `304,412` relators the best
+coboundary rescaling of the metaplectic seed, in the maximum norm, has
+maximal defect `0.309`, moving only the four long-root generators by
+`0.062` radians; so every dimension `4a + 10b` carries an explicit tuple
+with maximal relator defect `0.309`, and a nonabelian search is informative
+only if it beats that number on all relators.
+
 # Addendum: the metaplectic class in dimension four
 
 The four second-order theta constants `Theta[a](tau) = theta[a,0](2 tau)`

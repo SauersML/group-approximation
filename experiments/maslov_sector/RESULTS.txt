@@ -130,3 +130,14 @@ The d = 10 minimum (E = 0.012760 on the sample of 400 unlifted + 20 lifted relat
   mean_r sq_r^p with p = 4 (near-max) on 8,000-20,000 relators, and the phase of det U_s pinned after every
   step so the coboundary slide is impossible.  Runs from the exact seeds at d = 4, 8, 10, 12, 14, 20 and from
   random starts at d = 10 are recorded below as they finish.
+
+--- abelian relaxations of the theta seed over ALL relators (abelian_check.py, 18:00 EDT) ---
+targets c_r = omega^{k_r} / (-1)^{k_r} (the phase the seed is missing), phases theta_s on the 8 generators:
+  mean-square optimum: theta = 0 (the seed itself), mean sq 6.5e-5, max defect 0.996.
+  minimax optimum (smoothed max, 21 starts): max defect 0.3090 (mean sq 0.00639), theta/2pi = [-0.0098, -0.0098,
+    0, 0, +0.0098, +0.0098, 0, 0]: only the four long-root generators move, by -+0.062 rad.
+  So every dimension 4a + 10b has an explicit tuple with maximal relator defect 0.309 on all 304,412 relators
+  (coboundary rescaling of a direct sum of exact metaplectic models); this is the bar a nonabelian search must beat.
+  The v4 descent minimizer (max 0.438) was a coboundary rescaling optimized for the sampled mean square: its
+  energy coincides to six digits with the pure coboundary carrying its generator phases (0.012462 / 0.4384).
+  distinct (exponent-sum vector, lift mod 3) pairs among the relators: 17,247.
