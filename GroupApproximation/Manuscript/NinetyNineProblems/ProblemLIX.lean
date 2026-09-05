@@ -27,9 +27,9 @@ the simple separable nuclear class; injectivity is the direction STW call open.
   because the convention that a simple algebra is nonzero is a convention.
   The hypothesis is not free: it weakens `ProblemLIX`, so the negation is
   correspondingly *stronger*, and a counterexample has to be exhibited as a
-  nonzero algebra rather than sliding in on the zero one.  (The zero algebra
-  would not have worked anyway --- its unitary group is trivial, so it is
-  `K₁`-injective.)
+  nonzero algebra rather than sliding in on the zero one.  It also could not
+  have been the zero algebra: there the unitary group is a singleton, so
+  `U(A)/U₀(A)` is trivial and every map out of it is injective.
 * **simple** --- `IsSimpleCStar A`, every closed two-sided ideal is `⊥` or
   `⊤` (`Analysis/CStarSimple`).  Not Mathlib's `IsSimpleRing`, which asks the
   same of *algebraic* two-sided ideals.  The two agree for a unital
