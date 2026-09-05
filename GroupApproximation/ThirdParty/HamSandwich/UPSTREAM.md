@@ -32,8 +32,48 @@ The upstream kernel audit reports:
 
 ## Port status
 
-The first v4.32 incompatibility layer is being ported before importing the
-remaining closure. The following modules are green on v4.32:
+**The port is complete and green on v4.32.**  On 2026-09-05 a single build of
+`GroupApproximation.Analysis.STW22NegativeSolution` — the target whose import
+closure contains this whole slice — compiled 165 of these modules in one run
+with zero `error:` and zero `warning:`, ending at
+`Built …SphereOddDegree.ComplexOddMapCommonZero`.  A standalone build of
+`…SphereOddDegree.ComplexOddMapCommonZero` reports
+`Build completed successfully (8828 jobs)`.
+
+Eight `#audit_closed_axioms` endpoints fired in that build, every one on
+`[propext, Classical.choice, Quot.sound]` and nothing else:
+`borsuk_ulam_closed`, `complexOddMapCommonZero_closed`,
+`oddMapFixesTopClass_unconditional_closed`,
+`rpCohomology_dimension_vanishing_closed`,
+`rpHomology_dimension_vanishing_closed`,
+`rpDeletedNorth_homology_iso_closed`,
+`sphereModTwo_above_dimension_vanishing_closed`,
+`sphereModTwo_intermediate_vanishing_closed`.  That command rejects a leading
+hypothesis binder as a build error, so the unconditionality of
+`no_odd_map_sphere_succ`, `borsuk_ulam` and `complexOddMapCommonZero` is
+enforced by `lake build` rather than asserted here.
+
+Two facts about the shape of the tree, both machine-derived from the actual
+`import` lines and confirmed against that build log:
+
+* The endpoint does **not** need all 199 modules.  The closure of
+  `SphereOddDegree.ComplexOddMapCommonZero` is 173 of them; the closure of
+  `SphereOddDegree.BorsukUlam` is 171.  The remaining 26 — the RPⁿ
+  cellular-cochain and cellular cup-product stack, and the whole Branch-4
+  transfer stack — are reachable only through the `ThirdParty.HamSandwich`
+  aggregator and are compiled by nothing on the critical path.  Not one of them
+  appears as a `Built` line in the endpoint build.
+* `Final/OddDegreeTheorem.lean`, `Final/OddDegreeTheoremBranch2Discharged.lean`
+  and `Final/FinalUnconditional.lean` carry headers, now marked historical,
+  saying a fully unconditional odd-degree theorem is unattainable because
+  `RPnCellularCochainStructure n` has no constructor.  That reasoning was
+  overtaken: `rpCohomology_topPlusOne_isZero_direct` proves
+  `Hⁿ⁺¹(RPⁿ; F₂) = 0` by Kronecker duality from the Mayer–Vietoris homology
+  vanishing, which needs no cellular datum, and
+  `oddMapFixesTopClass_of_topVanish` turns that single fact into
+  `OddMapFixesTopClass n`.  This is why the cellular stack is dead weight.
+
+The following modules are green on v4.32:
 
 - `RPnCohomologyRingModel`: its model type is now an `abbrev`, allowing v4.32
   to reuse the quotient ring's canonical instances.
