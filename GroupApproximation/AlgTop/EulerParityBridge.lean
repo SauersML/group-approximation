@@ -70,8 +70,6 @@ theorem false_of_parity_mismatch {n : ℤ} {k : ℕ}
     (hbridge : Even n ↔ Even k) (hEven : Even n) (hOdd : ¬ Even k) : False :=
   hOdd (hbridge.mp hEven)
 
-theorem not_even_one : ¬ Even 1 := by decide
-
 /-- **The shape of the assembled Lemma 2.**  `eulerNumber` is
 `⟨c_r(W_g), [S¹ × M]⟩`; `zeroCount` is the number of zeros of the manuscript's section
 (2.10), which `AlgTop/ManuscriptSectionZeroCount.lean` shows is `1`; `hEven` is
@@ -87,6 +85,6 @@ theorem lemmaTwo_contradiction {eulerNumber : ℤ} {zeroCount : ℕ}
     (hcount : zeroCount = 1) : False := by
   refine false_of_parity_mismatch hbridge hEven ?_
   rw [hcount]
-  exact not_even_one
+  exact Nat.not_even_one
 
 end GroupApproximation.AlgTop
