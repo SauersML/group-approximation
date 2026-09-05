@@ -6,6 +6,8 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every group is MF. [`non_mf_group_notes.tex`](non_mf_group_notes.tex) is an archived research notebook for an earlier construction and is not a companion to the current manuscript.
 
+[`non_mf_groups_exist.pdf`](non_mf_groups_exist.pdf) at the repository root is the distribution PDF, rebuilt from the root TeX source by the draft PDF workflow. The obsolete duplicate under `output/pdf/` has been removed. A draft PDF build does not certify the manuscript's Lean coverage.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

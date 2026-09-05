@@ -930,8 +930,8 @@ norm satisfies
 \]
 For fixed $h$ the right-hand side tends to zero as $L\to\infty$.
 
-The normalized trace of $\phi_{F,L}(u_g)$ counts the points of the finite
-window fixed by $g$.  If $g$ fixed $wH_{F,L}$, then
+The normalized trace of $\phi_{F,L}(u_g)$ is the fraction of points of the
+finite window fixed by $g$.  If $g$ fixed $wH_{F,L}$, then
 $w^{-1}gw\in H_{F,L}\leq N$, and hence $k_g=0$.  Thus a nonzero-height
 element fixes no selected coset.  If $g\in F\setminus\{1\}$ and $k_g=0$,
 fixing $t^jr_qH_{F,L}$ would give
@@ -947,8 +947,9 @@ But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.  Thus
  \qquad
  \tr_{L|Q_{F,L}|}(\phi_{F,L}(1))=1.
 \]
-Take an exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ and a diagonal
-choice $L_n\to\infty$.  The maps $\phi_{F_n,L_n}$ are asymptotically
+Take a finite exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ with
+$1\in F_1$, and choose $L_n\ge n(1+\max_{g\in F_n}|k_g|)$.
+The maps $\phi_{F_n,L_n}$ are asymptotically
 multiplicative in normalized Hilbert--Schmidt norm and their traces converge
 to $\tau_G$ on every canonical unitary.  The linear span of these unitaries
 is dense in $C^*_{\max}(G)$; contractivity extends both limits to the whole
@@ -1182,7 +1183,7 @@ quasidiagonal.
 \end{corollary}
 
 \begin{proof}
-The verified properties of $\bar\Gamma$ and $\alpha$ meet the hypotheses
+The properties of $\bar\Gamma$ and $\alpha$ established above meet the hypotheses
 of Proposition~\ref{prop:clifford-locally-rf}, which gives every assertion.
 \end{proof}
 
