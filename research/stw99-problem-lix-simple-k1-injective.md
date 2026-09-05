@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md
   - research/artifacts/stw59-factorial-torsion-simple-ah-manuscript-2026-09-05.md
   - research/artifacts/stw59-exact-factorial-component-groups-2026-09-05.md
+  - research/artifacts/stw59-exact-arbitrary-cyclic-component-groups-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -36,6 +37,15 @@ does compute the entire group for this family: U(A^(n))/U0(A^(n))
 is Z/(n!). In particular, the original example has component group
 exactly Z/2. Its proof uses the one-line gauge fibration and computes
 the image of its Euler map exactly.
+
+The further strengthening
+`stw59-exact-arbitrary-cyclic-unitary-component-groups` realizes
+the entire group U(A_d)/U0(A_d) as Z/d for every d>=2, with K1(A_d)=0.
+Its initial base is S2 times CP^(d-1); the Euler image is exactly d Z,
+and a signed-zero product formula proves that every twisted connecting
+map preserves the component generator. This remains a strengthening
+of the same LIX counterexample, with internal review rather than
+external peer acceptance or formal verification.
 
 ## Attempts
 

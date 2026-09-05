@@ -23,6 +23,8 @@ artifacts:
   - research/artifacts/stw99-lxxvi-rr0-relative-projection-selection-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-cutoff-relative-selection-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-full-order-reflection-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-finite-projection-patch-realization-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-two-patch-angle-realization-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -212,6 +214,15 @@ spectral tails. Closing the equality set of a source cutoff gives a
 compact core on which the earlier projection theorem supplies boundary
 data. The remaining task for full Cu regularity in this coefficient
 class is realization of arbitrary mixed target classes.
+The attached finite-patch reduction places every target cutoff below
+a finite sum of localized target projections inside the same hereditary
+algebra, and each individual localized projection has an exact source
+lift. Their overlapping sum still requires proof. The two-patch audit
+proves exact realization for nested supports when the orthogonal angle
+remainder is soft or has a uniform angle spectral gap. A transverse
+compression also handles certain nonnested supports with soft remainder.
+These are proved special cases; arbitrary mixed angle remainders and
+general finite-patch realization remain unresolved.
 
 ## Literature boundary
 

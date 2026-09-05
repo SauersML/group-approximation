@@ -25,8 +25,14 @@ and induces an isomorphism on the whole component group. Hence
 
 The algebra is the same simple unital separable nuclear stably finite
 AH algebra already constructed. For n=2 this computes the original
-LIX example's entire component group as Z/2. No statement is made
-that every finite group is realized as an entire component group.
+LIX example's entire component group as Z/2.
+
+The subsequent strengthening
+`stw59-exact-arbitrary-cyclic-unitary-component-groups` changes the
+initial base to S2 times CP^(d-1) and realizes the entire group Z/d
+for every d>=2, still with K1 zero. It uses this theorem's gauge/Euler
+calculation and a new signed-zero generator-transport lemma. No statement
+is made that every noncyclic finite group is realized.
 
 ROUTES
 

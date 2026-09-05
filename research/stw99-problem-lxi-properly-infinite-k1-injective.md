@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw61-alternating-conjugate-shift-obstruction-2026-09-05.md
   - research/artifacts/stw61-functional-letter-flip-obstruction-2026-09-05.md
   - research/artifacts/stw61-projective-finite-representation-obstruction-2026-09-05.md
+  - research/artifacts/stw61-projective-mf-coefficient-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -53,6 +54,14 @@ handles every mixed unitary over any coefficient subalgebra admitting
 a finite-dimensional representation that detects both sides of the
 projection. This includes every two-projection coefficient algebra.
 It does not provide such a representation for the full Toeplitz algebra.
+The extension `stw61-mf-coefficient-maximal-commutator` proves the
+same exact norm-one obstruction for every mixed unitary over MF
+coefficients, including UHF coefficients with no finite-dimensional
+representations. More generally, a matrix-quotient homomorphism
+detecting both complementary projections suffices. Genuine coordinate
+unitary lifts and projective-space tests establish the quotient norm.
+The full Toeplitz algebra admits no such unital homomorphism, so
+the unrestricted properly infinite coefficient case remains open.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem
