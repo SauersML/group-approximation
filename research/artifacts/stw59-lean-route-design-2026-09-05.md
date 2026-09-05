@@ -927,8 +927,36 @@ land
 theorem isSimpleCStar_iff_isSimpleRing (A) [CStarAlgebra A] [Nontrivial A] :
     IsSimpleCStar A ↔ IsSimpleRing A
 ```
-from the two `nonunits` lemmas. It is short, it documents that the choice costs
-nothing, and it forecloses the substitution.
+It is short, it documents that the choice costs nothing, and it forecloses the
+substitution. **Complete verified recipe**, so no lane has to rediscover the
+instance path:
+
+1. `J` a proper two-sided ideal of `A` contains no unit (else `1 = j⁻¹j ∈ J`),
+   so `J ⊆ nonunits A`.
+2. `nonunits.subset_compl_ball : nonunits R ⊆ (Metric.ball (1:R) 1)ᶜ`
+   (`Analysis/Normed/Ring/Units.lean:84`) and `nonunits.isClosed` (:88), both
+   under `variable [NormedRing R] [HasSummableGeomSeries R]` (:41).
+3. That side condition is **free**:
+   `instance [NormedRing R] [CompleteSpace R] : HasSummableGeomSeries R`
+   (`Analysis/SpecificLimits/Normed.lean:279`), and `CStarAlgebra` extends both
+   `NormedRing` and `CompleteSpace` (`Analysis/CStarAlgebra/Classes.lean:38`).
+   *(This precondition was missing from my first statement of the argument;
+   `audit-gate` checked it and it holds.)*
+4. So `1 ∉ closure J`, `closure J` is a proper closed two-sided ideal,
+   C\*-simplicity gives `closure J = 0`, hence `J = 0`. Converse trivial.
+
+### C.8 Named deliverables that do not exist yet
+
+Three, all small, all blocked on nobody, all measured absent by `audit-gate`:
+
+| Deliverable | Owner | Blocking |
+|---|---|---|
+| `Topology/SphereModelBridge.lean` — `sphereFiveHomeoSphere` | `lix-spaces` | every join between the cohomology stack and `F` (§C.3 C2) |
+| `IsSimpleCStar` (closed ideals) + `isSimpleCStar_iff_isSimpleRing` | `ktheory-k1` | `ProblemLIX`; **must precede** `ProblemLIXLimit.lean`'s simplicity theorem |
+| `ProblemLIX` | `ktheory-k1` | the endpoint being auditable at all (§C.7) |
+
+The `SphereOddDegree` import invariant currently measures a genuine **zero**
+across `Analysis/LIX*` and `KTheory/*`, so it is enforced from a clean baseline.
 
 `limitAlg`: Mathlib has no inductive limit of C\*-algebras and building the
 general theory is a trap. Realize every `A_i` concretely inside one fixed
