@@ -1,0 +1,80 @@
+Fermat's Last Theorem in Lean 4
+Copyright 2026 Anthropic, PBC
+
+This repository is made available under the Apache License, Version 2.0 (see the file LICENSE).
+
+Portions of this repository are derived from the third-party works listed in items 1-3 below, each licensed under
+the Apache License, Version 2.0; item 4 lists the libraries bundled with the web pages, under their own licences.
+The file ATTRIBUTION.md lists, file by file, the files of this repository that contain such material (106 files
+with material from items 1 and 2, 54 under Definitions/ and 52 under P2M/Sol/; and, in its §4, the 23 files that
+reproduce Mathlib text, item 3), with the upstream file each portion comes from and that file's copyright holder
+and authors. The Lean files are published byte-for-byte as they were checked and carry no attribution headers,
+apart from five files that retained an FLT-project notice in place (marked in ATTRIBUTION.md) and the Mathlib
+provenance header of Definitions/Def_Compat_Mathlib430.lean; for all the others ATTRIBUTION.md is where the
+per-file notices are reproduced. The notices below cover the works as a whole.
+
+1. The FLT project — the Lean formalisation of Fermat's Last Theorem led by Kevin Buzzard at
+   Imperial College London. https://github.com/ImperialCollegeLondon/FLT
+   Material was taken from the project's `main` branch as of 2026-05-21, two files from commit
+   8387d589441c1097d606ea89370c4165147255d5 (2026-05-27) and one from commit
+   7a87d3b25db19d008cd45b29edd2b92803e785b1, as recorded per file in ATTRIBUTION.md.
+   Copyright (c) 2024-2026 Kevin Buzzard, Andrew Yang, Matthew Jasper, Salvatore Mercuri, Javier López-Contreras,
+   Madison Crim, Yaël Dillies, David Ledvinka, Ruben Van de Velde and the other authors named in the per-file
+   notices (Anatole Dedecker, Bhavik Mehta, Bryan Wang Peng Jun, David Renshaw, James Sundstrom, Michael Rothgang,
+   Pietro Monticone, William Coram), and the FLT project contributors.
+   Released under the Apache License, Version 2.0 ("Released under Apache 2.0 license as described in the file
+   LICENSE" in the per-file notices; that project's LICENSE file is the Apache License, Version 2.0, the same licence as in this
+   repository's LICENSE file).
+   104 files of this repository contain such material: definition modules under Definitions/ (in particular
+   Def_Mathlib_*.lean — the project's "FLT/Mathlib" files —, Def_DedekindDomain_*, Def_Deformations_*, Def_HaarMeasure_*,
+   Def_NumberField_*, Def_FLTPrelim_FreyPackage/GaloisRep, Def_AbstractHeckeOperator, Def_Patching_SystemTypes,
+   Def_Representation_AbsolutelyIrreducible and others) and proof modules under P2M/Sol/ that inline upstream lemmas
+   (patching, depth, adic valuations and finite adeles, restricted products, Haar characters, Frobenius elements,
+   the Frey curve); ATTRIBUTION.md §§1-2 is the complete list.
+
+2. flt-regular — the Lean formalisation of Fermat's Last Theorem for regular primes (Kummer's theorem).
+   https://github.com/leanprover-community/flt-regular
+   A. J. Best, C. Birkbeck, R. Brasca, E. Rodriguez Boidi, R. Van de Velde, A. Yang, "A complete formalization of
+   Fermat's Last Theorem for regular primes in Lean", arXiv:2410.01466.
+   Copyright (c) the flt-regular authors, as recorded in that repository.
+   Released under the Apache License, Version 2.0.
+   P2M/Sol/S_flt_regular.lean is a port, with proofs, of that project's FltRegular/NumberTheory/* (regular primes,
+   cyclotomic units, Hilbert 90/92/94, Kummer's lemma), FltRegular/MayAssume/*, FltRegular/CaseI/* and FltRegular/CaseII/*
+   files, ending in the theorem that Fermat's Last Theorem holds for odd regular prime exponents; it is used here for
+   the exponents 7, 11 and 13. P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean adapts FltRegular/SmallNumbers/*.
+   That project's per-file headers are not reproduced in this revision; this notice and ATTRIBUTION.md §3 stand in
+   their place.
+
+3. Mathlib — https://github.com/leanprover-community/mathlib4
+   Copyright (c) the respective Mathlib authors, as recorded in the headers of the Mathlib source files.
+   Released under the Apache License, Version 2.0.
+   This repository is built against a pinned Mathlib revision (see lake-manifest.json); some files adapt or restate
+   Mathlib material. One file copies Mathlib text wholesale: Definitions/Def_Compat_Mathlib430.lean reproduces,
+   under new names and without their docstrings, the Mathlib v4.30.0 (commit
+   c5ea00351c28e24afc9f0f84379aa41082b1188f) text of a few definitions, lemmas and one notation whose form changed
+   in Mathlib v4.33.0 — verbatim apart from four lines marked `-- [port]` — each copied block headed by the Mathlib
+   file and line range it is taken from, together with two small bridging declarations of our own
+   (Representation.ofMulActionFinsuppEquiv, Rep.ofMulActionFinsuppIso), three one-line `example` checks and, in its
+   last block, four lemmas adapted and re-proved from Mathlib/NumberTheory/RamificationInertia/Galois.lean rather
+   than copied. In addition, twenty-two other modules (twenty-one under P2M/Sol/, one under Definitions/) inline or
+   adapt an individual proof or auxiliary construction from one of thirteen further Mathlib files — for example the
+   exactness construction of Mathlib/RingTheory/AdicCompletion/Exactness.lean and the proof of `integral_comp_abs`
+   from Mathlib/MeasureTheory/Measure/Lebesgue/Integral.lean — typically a private Mathlib lemma re-proved in
+   place. ATTRIBUTION.md §4 lists the modules so identified, each with the Mathlib file drawn on and that file's
+   copyright and author lines, twenty-one Mathlib files in all. Shorter restatements of Mathlib lemmas elsewhere in
+   the tree have not been traced individually; this notice covers Mathlib as a whole.
+
+4. Libraries bundled with the web pages, in html/assets/vendor/ (used only by the html/ documentation, not by the Lean
+   build), each distributed under its own licence; html/assets/vendor/LICENSES.txt lists them:
+   - KaTeX 0.18.4 (katex/katex.min.js, and katex/katex-embedded.css with the KaTeX fonts inlined).
+     Copyright (c) 2013-2020 Khan Academy and other contributors. MIT License, reproduced in
+     html/assets/vendor/katex/LICENSE. The bundled KaTeX fonts are Copyright (c) 2009-2010 Design Science, Inc. and
+     Copyright (c) 2014-2018 Khan Academy, under the SIL Open Font License 1.1, whose text and the fonts' notice are
+     reproduced in html/assets/vendor/katex/FONTS-LICENSE.txt.
+   - @hpcc-js/wasm 2.35.0 (graphviz.umd.js: Graphviz compiled to WebAssembly). Apache License, Version 2.0, reproduced
+     in html/assets/vendor/graphviz.LICENSE.txt. It includes Graphviz as compiled code, licensed under the Eclipse
+     Public License 1.0 / Common Public License; the Graphviz source code is published at
+     https://gitlab.com/graphviz/graphviz (Eclipse Public License 1.0).
+
+The Lean 4 toolchain (https://github.com/leanprover/lean4) and the other Lake packages listed in lake-manifest.json
+are dependencies fetched at build time and are not distributed in this repository.
