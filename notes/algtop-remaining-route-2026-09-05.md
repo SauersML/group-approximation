@@ -59,13 +59,42 @@ theorem kronecker_surjective (R) [CommRing R] [IsDomain R] [IsPrincipalIdealRing
 theorem kronecker_injective  -- when H_{n-1}(X;R) is projective
 ```
 
-Surjectivity: transport `f ∘ homologyπ` across `ShortComplex.moduleCatCyclesIso`
-to a functional on `ker ∂ₙ`, extend it with `exists_extend_off_ker_d`, and check
-the extension is a cocycle — the only content is that `∂c` is a cycle whose class
-is zero, i.e. `toCycles_comp_homologyπ`. Injectivity: if `φ` vanishes on cycles
-it factors through `Cₙ/ker ∂ₙ ≅ Bₙ₋₁`, and the resulting functional extends first
-over `Zₙ₋₁` (needs `Hₙ₋₁` projective) and then over `Cₙ₋₁` (the same splitting),
-producing an explicit primitive.
+**Surjectivity is now proved** (`AlgTop/UniversalCoefficients.lean`,
+`kronecker_surjective` and `exists_cocycle_pairing`): transport `f ∘ homologyπ`
+across `ShortComplex.moduleCatCyclesIso` to a functional on `ker ∂ₙ`, extend it
+with `exists_extend_off_ker_d`, and observe the extension is a cocycle because a
+boundary is a cycle of zero class (`toCycles_comp_homologyπ`).
+
+**Injectivity is the one theorem left.** Statement and proof, fully specified:
+
+```lean
+theorem kronecker_injective (m : ℕ) (hproj : Module.Projective R (homologyOf R X m))
+    (a : cohomology R X (m + 1)) (ha : (kronecker R X (m + 1)).hom a = 0) : a = 0
+```
+
+Write `a = cocycleClass φ hφ`. From `ha` and `homologyπ_kronOfCocycle`, together
+with `homologyπ` being epi, `iCycles (m+1) ≫ φ = 0`: `φ` kills `ker ∂ₘ₊₁`. Then
+
+1. `φ̄ := Submodule.liftQ (ker ∂ₘ₊₁) φ.hom h : (Cₘ₊₁ ⧸ ker) →ₗ[R] R`, and
+   `ḡ := φ̄ ∘ (LinearMap.quotKerEquivRange ∂ₘ₊₁).symm : ↥(range ∂ₘ₊₁) →ₗ[R] R`,
+   with `ḡ ⟨∂c, _⟩ = φ c` by `LinearMap.quotKerEquivRange_symm_apply_image` then
+   `Submodule.liftQ_mkQ`.
+2. Extend `ḡ` from `Bₘ = range ∂ₘ₊₁` to `Zₘ = ker ∂ₘ`. The quotient
+   `Zₘ ⧸ (range ∂ₘ₊₁).comap Zₘ.subtype` is `Hₘ` — because
+   `ShortComplex.moduleCatToCycles` is `∂ₘ₊₁.codRestrict Zₘ _` and
+   `LinearMap.range_codRestrict` says its range is exactly that `comap` — so it
+   is projective by `hproj` transported along `moduleCatHomologyIso`. Apply
+   `exists_extend_of_projective_quotient`.
+3. Extend again from `Zₘ` to `Cₘ` with `exists_extend_off_ker_d`, giving `ψ`.
+4. `d (m+1) m ≫ ψ = φ` by construction, i.e. `φ = cochainCoboundary R X m ψ`
+   (`cochainCoboundary_eq_comp`), so `a = 0` by `cocycleClass_coboundary_zero`.
+
+Extra Mathlib handles for this half, all checked at the pin:
+`Submodule.liftQ`, `Submodule.liftQ_mkQ`, `LinearMap.quotKerEquivRange`,
+`LinearMap.quotKerEquivRange_symm_apply_image`, `LinearMap.range_codRestrict`,
+`ShortComplex.moduleCatHomologyIso`. The one arithmetic lemma to state first is
+`(ComplexShape.down ℕ).next (m+1) = m`, the mirror of `down_prev` in
+`Kronecker.lean`.
 
 The original sketch, kept for context:
 
