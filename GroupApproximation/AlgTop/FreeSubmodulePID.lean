@@ -40,7 +40,7 @@ Then `{lead N i : leadGen N i ≠ 0}` is a basis of `N`:
   strictly lowers that index.
 -/
 
-namespace GroupApproximation.AlgTop
+namespace GroupApproximation.AlgTop.PID
 
 section FinsuppCase
 
@@ -174,9 +174,11 @@ theorem mem_span_leadFam_of_mem_below (i : ι) :
         exact Submodule.mem_span_singleton.mp hmem
       have hybelow : x - c • lead N i ∈ below N i :=
         (below N i).sub_mem hx ((below N i).smul_mem c (lead_mem_below N i))
+      have hce : (c • lead N i) i = x i := by
+        rw [Finsupp.smul_apply, lead_apply]
+        exact hc
       have hyi : (x - c • lead N i) i = 0 := by
-        rw [Finsupp.sub_apply, Finsupp.smul_apply, lead_apply, smul_eq_mul, ← hc, smul_eq_mul,
-          sub_self]
+        rw [Finsupp.sub_apply, hce, sub_self]
       have hleadspan : lead N i ∈ Submodule.span R (Set.range (leadFam N)) :=
         Submodule.subset_span ⟨⟨i, hgen⟩, rfl⟩
       have hxeq : x = (x - c • lead N i) + c • lead N i := by abel
@@ -201,8 +203,11 @@ theorem span_leadFam : Submodule.span R (Set.range (leadFam N)) = N := by
 /-- The candidate basis family, as elements of the submodule itself. -/
 noncomputable def leadFamN (i : leadSupport N) : N := ⟨lead N i.1, lead_mem N i.1⟩
 
-theorem linearIndependent_leadFamN : LinearIndependent R (leadFamN N) :=
-  LinearIndependent.of_comp N.subtype (linearIndependent_leadFam N)
+theorem linearIndependent_leadFamN : LinearIndependent R (leadFamN N) := by
+  apply LinearIndependent.of_comp N.subtype
+  have h : ⇑(N.subtype) ∘ leadFamN N = leadFam N := by funext i; rfl
+  rw [h]
+  exact linearIndependent_leadFam N
 
 theorem span_leadFamN : ⊤ ≤ Submodule.span R (Set.range (leadFamN N)) := by
   have hinj : Function.Injective (N.subtype) := fun _ _ h => Subtype.ext h
@@ -246,6 +251,6 @@ theorem projective_of_submodule_of_pid {R : Type*} [CommRing R] [IsDomain R]
     [IsPrincipalIdealRing R] {M : Type*} [AddCommGroup M] [Module R M] [Module.Free R M]
     (N : Submodule R M) : Module.Projective R N :=
   haveI := free_of_submodule_of_pid N
-  inferInstance
+  Module.Projective.of_basis (Module.Free.chooseBasis R N)
 
-end GroupApproximation.AlgTop
+end GroupApproximation.AlgTop.PID
