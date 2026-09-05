@@ -112,7 +112,6 @@ theorem su2_conjTranspose_mul_self {α β : ℂ} (h : Complex.normSq α + Comple
     first
       | ring1
       | linear_combination hn
-      | linear_combination -hn
 
 theorem su2_mul_conjTranspose {α β : ℂ} (h : Complex.normSq α + Complex.normSq β = 1) :
     su2 α β * (su2 α β)ᴴ = 1 := by
@@ -123,7 +122,6 @@ theorem su2_mul_conjTranspose {α β : ℂ} (h : Complex.normSq α + Complex.nor
     first
       | ring1
       | linear_combination hn
-      | linear_combination -hn
 
 /-! ## The generator -/
 
@@ -215,7 +213,8 @@ theorem norm_hopfOff_le (z w : ℂ) : ‖hopfOff z w‖ ≤ eqRadius z w := by
       Real.norm_eq_abs, abs_div, abs_of_pos hpos]
     rw [div_mul_eq_mul_div, div_le_iff₀ hpos, hsq]
     have h2 : 2 * ‖z‖ * ‖w‖ ≤ ‖z‖ ^ 2 + ‖w‖ ^ 2 := by nlinarith [sq_nonneg (‖z‖ - ‖w‖)]
-    rw [← hnz, ← hnw]
+    have h2abs : |(2 : ℝ)| = 2 := by norm_num
+    rw [← hnz, ← hnw, h2abs]
     nlinarith [norm_nonneg z, norm_nonneg w, h2]
 
 theorem continuous_eqRadius : Continuous fun p : ℂ × ℂ => eqRadius p.1 p.2 :=
