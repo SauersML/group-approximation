@@ -1,6 +1,14 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the arbitrary-depth Leavitt equivalence and
+The latest snapshot, including the explicit universal congruence host and
+sublinear exact seeds, passes with **14,134 nodes and no errors, warnings,
+or duplicate candidates** in 9.878 seconds. Comparison with the same pinned
+commit `027c44cb7bc59d699273153feff5871f628720ff` also finds no newly dead
+claims, newly detached lane tops, or new open claims lacking attempts.
+Its record is
+`research/artifacts/universal-schreier-host-cairn-validation-2026-09-05.json`.
+
+The preceding snapshot, including the arbitrary-depth Leavitt equivalence and
 rectangular seed alignment bound, passes with **14,130 nodes and no errors,
 warnings, or duplicate candidates** in 12.058 seconds. Comparison with pinned
 commit `027c44cb7bc59d699273153feff5871f628720ff` (14,128 nodes) also finds

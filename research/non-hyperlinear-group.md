@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/opposite-root-character-interface-2026-09-05.md
   - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
+  - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -83,6 +84,18 @@ must have dimension `(1-o(1))d` if its errors vanish. At the matching
 kernel Gamma(p), a one-dimensional seed and coordinate rows give zero
 errors. Thus the construction must find the quotient content of the
 approximate input; merely increasing the subgroup index cannot do it.
+
+There is now a positive way to choose that host universally for exact
+inputs. Every unitary `SL_5(Z)` representation of dimension at most D
+factors through level `q_D=lcm(1,...,floor(D^(1/3)))`. Three independent
+Heisenberg pairs bound the order of each root eigenvalue; the precise
+Bass--Milnor--Serre normal-generation theorem supplies the congruence
+kernel. The resulting regular quotient host admits exact frames with
+trivial seeds, whose optimal dimension is sublinear along every exact
+regular-character sequence. No constituents need to be discarded.
+Consequently arbitrary seed holonomy is unnecessary once the exact
+comparison exists. The remaining operation is constructing the frame
+from an approximate tuple, not guessing a congruence level.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

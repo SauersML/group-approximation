@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
+  - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -226,3 +227,73 @@ seed is the regular quotient representation itself. Coordinate rows
 `A_(t')rho(s)=A_t` for every Schreier transition. Restriction to the
 mean-zero input keeps these equalities and the coprime bound. The linked
 artifact records the canonical trace limits as p tends to infinity.
+
+For `(MSC9)`, fix a genuine d-dimensional representation of `SL_5(Z)`.
+Each root C=rho(e_ij(1)) is the central commutator of
+`A_l=rho(e_il(1))`, `B_l=rho(e_lj(1))` for any of the three spare indices
+l. Its eigenspace of eigenvalue lambda is invariant under these operators.
+Taking determinants there shows that lambda has finite order h dividing
+the eigenspace dimension. The three A_l commute, the three B_l commute,
+and `[A_l,B_m]=C^(delta_lm)`. Joint A_l eigenspaces are therefore permuted
+by independent multiplication of their three eigenvalues by lambda.
+Each orbit has h^3 distinct weights of equal multiplicity. Thus h^3
+divides the C-eigenspace dimension and h^3<=d<=D.
+
+Every root image consequently has order dividing q_D. The kernel contains
+every e_ij(a q_D) and their normal closure. Bass--Milnor--Serre, §4 and
+Corollary 4.3(a),(b), identifies this normal closure inside `SL_5(Z)`
+with Gamma(q_D), for every integer level including even levels. The
+linked artifact gives the primary citation and verifies its exact
+normal-closure convention. This proves factorization through Q_D.
+
+Inducing a trivial k-dimensional seed from N_D gives
+`lambda_(Q_D) tensor I_k`. Each irreducible sigma of Q_D appears with
+multiplicity `k dim(sigma)`. Schur decomposition therefore proves the
+exact minimum in `(MSC9)`. Choose isometries of the input multiplicity
+spaces into those of this induced representation to construct an
+equivariant isometry J, and take its coset coordinate rows A_t. These
+give an exact Parseval frame and exact Schreier edge equations.
+
+For completeness, the sublinear assertion requires a spectral argument.
+Fix an irreducible sigma of dimension r and a sequence rho_j with
+regular limiting normalized character. Put
+`theta_j=rho_j tensor conjugate(sigma)`. For any genuine theta let
+
+```text
+L_theta=(I+(1/|S|)sum_s theta(s))/2,
+c=kappa^2/(4|S|).
+```
+
+These are positive contractions, with spectrum on invariant complements
+bounded above by 1-c: expand their quadratic forms as
+`sum_s||theta(s)v-v||^2/(4|S|)` and apply the Kazhdan inequality.
+For each positive integer a, the invariant multiplicity obeys
+
+```text
+m_j(sigma)/(d_j r)<=tr_(d_j r)(L_theta_j^a).
+```
+
+The finite word expansion and convergence of normalized characters make
+the right side tend to `tau_G(L_lambda^a)`. The infinite group's regular
+representation has no invariant vector, so this is at most `(1-c)^a`.
+Let j tend to infinity and then a tend to infinity. It follows that the
+isotypic fraction `m_j(sigma)r/d_j` tends to zero.
+
+Only finitely many irreducibles have dimension below any fixed M: the
+first part puts them all in the finite quotient Q_M. Thus their total
+dimension fraction epsilon_(j,M) tends to zero. Also d_j tends to
+infinity, since bounded dimensions would force every representation to
+kill the same nonidentity root e_12(q_D), contrary to the canonical limit.
+The exact multiplicity formula now gives
+
+```text
+k_min(rho_j)/d_j
+ <=max(epsilon_(j,M),1/M^2)+1/d_j.
+```
+
+For large-dimensional constituents use `m_sigma dim(sigma)<=d_j`; for
+the others use their total fraction epsilon_(j,M). Let j tend to
+infinity and then M tend to infinity. This proves sublinearity without
+discarding any sector. Finally, because the constructed J is an isometry,
+replacing rho(s) by U_s changes its intertwining error by exactly
+`||U_s-rho(s)||_(2,d)`, proving the nearby-input assertion.

@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/moving-schreier-correction-audit-2026-09-04.md
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
+  - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -125,6 +126,33 @@ errors exactly. The distinction persists after removing the single
 trivial line of the regular input, and under vanishing HS perturbations.
 Thus large index is insufficient: the subgroup must match the quotient
 representation content, which arbitrary QRC data do not yet identify.
+
+For exact `SL_5(Z)` inputs there is nevertheless one explicit universal
+choice of subgroup depending only on a dimension bound D:
+
+```text
+q_D=lcm(1,...,floor(D^(1/3))),
+N_D=Gamma(q_D),       Q_D=SL_5(Z)/N_D.                  (MSC9)
+```
+
+Every genuine unitary representation rho of dimension `d<=D` factors
+through Q_D. If its irreducible multiplicities are m_sigma, the smallest
+trivial seed for an exact rectangular frame at this host is
+
+```text
+k_min(rho)=max_(m_sigma>0) ceil(m_sigma/dim(sigma)).
+```
+
+The resulting frame has zeta=beta_rect=0. For every sequence of exact
+representations whose normalized characters converge to the canonical
+regular character, `k_min(rho_j)/d_j->0`. Every constituent is retained.
+The same frames have zeta zero and edge error at most eta for any tuple
+within generator HS distance eta of the exact input.
+
+Thus the subgroup and triviality of the seed can be fixed before choosing
+an exact comparison representation. Selecting a good frame directly from
+an arbitrary approximate tuple is still unproved. The large quotient in
+`(MSC9)` is an existence construction; no efficient enumeration is claimed.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.
