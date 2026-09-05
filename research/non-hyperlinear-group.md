@@ -13,6 +13,9 @@ artifacts:
   - research/artifacts/unitary-expander-nonhyperlinearity-audit-2026-09-04.md
   - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
+  - research/artifacts/compressed-representation-quadratic-curvature-2026-09-05.md
+  - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
+  - research/artifacts/opposite-root-character-interface-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -20,14 +23,29 @@ is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
 
 The September 5 audits leave this target open. Hilbert `H^2` vanishing
-now gives a correction concentrating arbitrary normalized-HS curvature
-on small subspaces, but does not make those subspaces invariant.
+now gives uniform fixed-tolerance correction concentrating arbitrary
+normalized-HS curvature on supports of quadratic relative rank, but
+does not make those subspaces invariant. Compressed irreducibles force
+some exact corrections to restore every deleted dimension. A small exact
+seed plus regular tails cannot construct the needed dilation: almost
+unitary Kazhdan corners must overlap almost entirely with its genuine
+finite-dimensional representation sector. The older Ulam route now
+explicitly requires a uniform all-pairs operator bound; pointwise
+operator-ultraproduct lifting did not supply that bound.
 On the group-word route, one character-placement anchor and an
 authenticated expanding action on a finite root table control its
 normalizer uniformly in matrix multiplicity. The actor covariance and
 placement hypotheses, and the eventual finite-matrix obstruction, still
 need to follow from the candidate group's relations. Neither result is
 an existence proof.
+
+The literal opposite-root audit sharpens the latter boundary. At one
+prefix depth r, the native arms and opposite mark root generate exactly
+`SL_(2^r+2)(F_p)`; weighted degree-zero packets still have finite marked
+models. Combining depths one and two with the same opposite root instead
+generates the full `EL_3(L_2(F_p))`. The mixed-depth relations therefore
+recover the whole elementary Leavitt problem rather than a larger finite
+packet; no matrix obstruction for that full group has been proved here.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

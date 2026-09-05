@@ -1,6 +1,11 @@
 # Cairn source-graph health audit, September 5
 
-The latest follow-up snapshot, including the small-angle curvature theorem,
+The latest follow-up snapshot, including the flexible-dilation and mixed-depth
+audits, passes with **14,120 nodes and no errors, warnings, or duplicate
+candidates** in 9.342 seconds. Its record is
+`research/artifacts/flexible-dilation-cairn-validation-2026-09-05.json`.
+
+The preceding snapshot, including the small-angle curvature theorem,
 passes with **14,108 nodes and no errors, warnings, or duplicate candidates**
 in 8.755 seconds. Its record is
 `research/artifacts/quadratic-curvature-cairn-validation-2026-09-05.json`.

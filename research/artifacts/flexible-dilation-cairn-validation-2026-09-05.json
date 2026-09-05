@@ -1,0 +1,21 @@
+{
+  "scope": "Complete source snapshot checked remotely on MSI acn116 using native Cairn load_nodes, lint_nodes, Graph, and unfiltered duplicate_findings. Artifact existence used the workspace manifest; historical pins used remote Git. Remote checker bytes matched the archived source. This is structural validation, not mathematical proof-kernel verification.",
+  "source_archive_sha256": "57cdff01f11dc1cb5477ddd307d3db8dc855cc368c26dcffdb79f677ed451919",
+  "node_count": 14120,
+  "claims": 6992,
+  "routes": 7128,
+  "elapsed_seconds": 9.342,
+  "findings": [],
+  "duplicate_candidates": 0,
+  "root_status": "OPEN",
+  "reviewed_node_statuses": {
+    "compressed-irreducibles-require-all-deleted-dimensions": "ESTABLISHED",
+    "kazhdan-unitary-corners-require-finite-dimensional-mass": "ESTABLISHED",
+    "weighted-leavitt-opposite-root-packets-have-finite-models": "ESTABLISHED",
+    "tracial-to-uniform-lifting-for-sl-n-z": "OPEN",
+    "hs-stability-from-ulam-stability-and-lifting": "OPEN",
+    "two-kazhdan-correction-has-quadratic-rank-curvature": "ESTABLISHED"
+  },
+  "review": "Parallel mathematical audits checked the compression estimates, finite-sector mass argument, weighted-ring model and mixed-depth generation. The rewritten Ulam route was independently checked against the published all-pairs supremum and the flexible dimension convention.",
+  "remaining_gap": "No unconditional non-hyperlinear group has been proved. The arithmetic route still needs a genuine flexible correction; the group-word route still needs an analytic obstruction for the mixed-depth elementary Leavitt group."
+}

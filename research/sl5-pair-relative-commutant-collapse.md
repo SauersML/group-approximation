@@ -79,6 +79,12 @@ non-hyperlinear group.
   Thus that universal surgery assertion is false for this group; a
   viable correction route must allow dimension enlargement or use a
   strictly narrower input class with a separately proved justification.
+  `compressed-irreducibles-require-all-deleted-dimensions` shows a
+  necessary quadratic padding scale even within this all-H2 setting.
+  `kazhdan-unitary-corners-require-finite-dimensional-mass` excludes
+  completing its small curvature support using only a small exact seed
+  and regular tails: a successful dilation must already supply almost
+  full overlap with its finite-dimensional representation sector.
   `scalar-phase-regularization-makes-ui-stability-complete` also shows
   that restricting a qualitative stability claim to uniformly
   integrable input residuals does not avoid the full stability problem.
