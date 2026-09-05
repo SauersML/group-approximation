@@ -174,3 +174,73 @@ arbitrary unital C*-algebra and an arbitrary preconnected index space.
 
 Direct sum, padding and reindexing are **already done** in
 `KTheory/MatrixProjection.lean`; do not rebuild them.
+
+---
+
+## 5. Later modules (all committed, none verified as of this writing)
+
+`GroupApproximation/AlgTop/BundleCalculusPullback.lean`
+
+```lean
+noncomputable def pullback (f : C(X, Z)) :
+  C(Z, CStarMatrix ι ι ℂ) →⋆ₐ[ℂ] C(X, CStarMatrix ι ι ℂ)   -- = compStarAlgHom'
+pullback_id / pullback_comp / isStarProjection_pullback
+murrayVonNeumannEquiv_pullback / unitaryConj_pullback
+unitaryConj_pullback_of_homotopy      (H : ContinuousMap.Homotopy f₀ f₁)
+murrayVonNeumannEquiv_pullback_of_homotopy / _of_homotopic
+```
+
+Pullback is precomposition, so it is a `StarAlgHom` for free and well definedness
+on classes is `MurrayVonNeumannEquiv.map`.  Only the base `X` needs compactness;
+the target `Z` needs none.
+
+`GroupApproximation/AlgTop/BundleCalculusInvariant.lean`
+
+```lean
+eq_of_unitaryConj (τ : A → B)
+  (hτ : ∀ u ∈ unitary A, ∀ a, τ (u * a * star u) = τ a) : UnitaryConj p q → τ p = τ q
+isLocallyConstant_of_unitaryInvariant / eq_of_preconnected / eq_of_isPreconnected
+trace_isometry_conj (hu : star u * u = 1) : trace (u * a * star u) = trace a
+rankAt / isLocallyConstant_rankAt / rankAt_eq_of_preconnectedSpace
+```
+
+Homotopy invariance of *every* unitary invariant at once, rather than one proof
+per invariant.  Rank is the case `τ = Matrix.trace`; note that neither
+continuity of the trace nor its integrality is used — the ball where two
+projections are within distance `1` does the job.
+
+`GroupApproximation/AlgTop/BundleCalculusModelBridge.lean`
+
+```lean
+noncomputable def matrixSectionEquiv :
+  Matrix ι ι C(X, ℂ) ≃⋆ₐ[ℂ] C(X, CStarMatrix ι ι ℂ)
+toSection / ofSection (+ `@[simp]` apply lemmas, both round trips)
+isStarProjection_toSection / _ofSection
+murrayVonNeumannEquiv_toSection / _ofSection, unitaryConj_toSection / _ofSection
+murrayVonNeumannEquiv_of_path_block   -- analytic hypothesis, algebraic conclusion
+```
+
+The join between the two models.  Needs no compactness; only multiplicativity is
+non-definitional.
+
+`GroupApproximation/AlgTop/BundleCalculusUnitSection.lean` — for
+`found-euler-class`, over a commutative star ring `R` (take `R = C(X, ℂ)`):
+
+```lean
+def rankOneProj (ξ : ι → R) := Matrix.vecMulVec ξ (star ξ)
+structure IsUnitSection (P) (ξ) : Prop   -- mulVec_eq, sum_star_mul_self
+def perp (P) (ξ) := P - rankOneProj ξ
+isStarProjection_rankOneProj / isStarProjection_perp
+perp_add_rankOneProj / perp_mul_rankOneProj / rankOneProj_mul_perp
+murrayVonNeumannEquiv_rankOneProj_single (i₀ : ι)
+```
+
+Stated **unstably**, inside `M_ι(R)`: `P = perp P ξ + rankOneProj ξ` with the two
+pieces orthogonal and the second equivalent to a matrix unit.  The blockSum
+phrasing `MurrayVonNeumannEquiv P (blockSum P' 1)` is the wrong statement — the
+sides live in different algebras, and stabilising is exactly what destroys the
+obstruction target 3 turns on.
+
+Still to come: `exists_isUnitSection_of_nowhere_zero` (normalisation, the one
+lemma needing `[CompactSpace X]`), and the clutching construction, which is
+blocked on `lix-clutching` naming the type of its overlap datum.
