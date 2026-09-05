@@ -70,6 +70,38 @@ of which are **absent from the pinned Mathlib** (the project carries
 `Hₙ(Sⁿ; ℤ) ≅ ℤ` itself only as the bundled hypothesis `SphereOrientation` /
 `SphereTopHomologyIso`, see `SphereTopHomology.lean`). See
 `current/Transfer_Top_Class_Nonzero_Transfer_Result.md`.
+
+Porting changes for Mathlib v4.32 (no statement is changed):
+
+Every failure in this file was a `convert` that had been carrying dependent
+`ModuleCat`/`forget₂` index equalities as extra goals; under v4.32 those goals
+are no longer closed by the ambient `simp`s, and `convert` even left the
+composition itself as a metavariable (`?convert_6 ≫ ?convert_7`). Each is
+replaced by the categorical morphism equality it was approximating — the same
+`ConcreteCategory.congr_hom` treatment already applied to
+`CohomologyCupProduct`, whose `cohPullback_cocycleClass` is the green template
+these proofs now follow:
+
+* `cochainMap_preserves_cocycle`: `change` to the complex differential, rewrite
+  along `D.comm n (n+1)` through `ModuleCat.comp_apply`, then `map_zero`.
+* `cohomologyMap_cocycleClass`: `homologyπ_naturality` followed by a `calc` on
+  cycles through `HomologicalComplex.cyclesMap_i` and `iCycles_cyclesMk`,
+  replacing `simp; congr! 1; convert …; convert …`.
+* `projTransferCochainMap_f_apply`: the transfer cochain map is precomposition,
+  so this is exactly `ModuleCat.comp_apply` with both morphisms named; `convert`
+  could not infer them.
+* `projTransferHomologyZMod2_homologyπ`: rewrite along
+  `projTransferHomologyZMod2_eq_homologyMap` and `homologyπ_naturality`.
+* `cohTransferZMod2_ne_zero_iff_kronecker`: the two `simp_all` calls are now the
+  explicit injectivity and `map_zero` steps.
+* the tail of `cohTransferZMod2_kronecker_adjunction`: `cyclesMap_i` applied at
+  `ζ` via `ConcreteCategory.congr_hom`, replacing a `congrArg` whose `simp only`
+  made no progress.
+
+The file also adopts the two definitional-equality compatibility options that
+`CohomologyCupProduct` already sets, since these proofs `change` between
+`cochainCoboundary` and the cochain complex's differential exactly as that
+module does.
 -/
 
 noncomputable section
@@ -77,6 +109,9 @@ noncomputable section
 open CategoryTheory AlgebraicTopology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 /-! ## Generic cochain-map facts on cocycle classes -/
 
@@ -89,9 +124,11 @@ theorem cochainMap_preserves_cocycle {X Y : TopCat.{0}}
     (D : cochainCxZMod2 Y ⟶ cochainCxZMod2 X) (n : ℕ)
     (φ : singularCochainGroup (ZMod 2) Y n) (hφ : cochainCoboundary (ZMod 2) Y n φ = 0) :
     cochainCoboundary (ZMod 2) X n ((D.f n).hom φ) = 0 := by
-  convert congr_arg ( fun x => ( D.f ( n + 1 ) |> ModuleCat.Hom.hom ) x ) hφ using 1;
-  · convert D.comm n ( n + 1 ) |> congr_arg ( fun f => f.hom φ ) using 1;
-  · exact Eq.symm ( map_zero _ )
+  have hcomm := D.comm n (n + 1)
+  change ((cochainCxZMod2 X).d n (n + 1)).hom ((D.f n).hom φ) = 0
+  rw [← ModuleCat.comp_apply, hcomm, ModuleCat.comp_apply]
+  change (D.f (n + 1)).hom (cochainCoboundary (ZMod 2) Y n φ) = 0
+  rw [hφ, map_zero]
 
 /-
 The homology of a cochain map `D : C^•(Y) ⟶ C^•(X)` on the class of a cocycle
@@ -104,16 +141,16 @@ theorem cohomologyMap_cocycleClass {X Y : TopCat.{0}}
     (HomologicalComplex.homologyMap D n).hom (cocycleClass Y n φ hφ)
       = cocycleClass X n ((D.f n).hom φ) (cochainMap_preserves_cocycle D n φ hφ) := by
   unfold cocycleClass
-  rw [← ModuleCat.comp_apply, HomologicalComplex.homologyπ_naturality]
-  simp +decide [HomologicalComplex.cyclesMap]
-  congr! 1
+  rw [← ModuleCat.comp_apply, HomologicalComplex.homologyπ_naturality, ModuleCat.comp_apply]
+  apply congrArg ((cochainCxZMod2 X).homologyπ n).hom
   apply (ModuleCat.mono_iff_injective ((cochainCxZMod2 X).iCycles n)).1 inferInstance
-  convert congr_arg
-    (fun f => f (HomologicalComplex.cyclesMk (cochainCxZMod2 Y) φ (n + 1)
-      (by simp +decide [ComplexShape.next]) hφ)) (HomologicalComplex.cyclesMap_i D n) using 1
-  simp +decide
-  convert (cochainCxZMod2 X).i_cyclesMk _ _ _ _ using 1
-  exact congr_arg _ (cochainCxZMod2 Y |>.i_cyclesMk _ _ _ _)
+  calc
+    _ = (((cochainCxZMod2 Y).iCycles n ≫ D.f n).hom)
+          ((cochainCxZMod2 Y).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ) :=
+      ConcreteCategory.congr_hom (HomologicalComplex.cyclesMap_i D n) _
+    _ = (D.f n).hom φ := by
+      rw [ModuleCat.comp_apply, iCycles_cyclesMk]
+    _ = _ := (iCycles_cyclesMk X n _ _).symm
 
 /-! ## The transfer cochain map and its homology
 
@@ -135,8 +172,8 @@ theorem projTransferCochainMap_f_apply (n : ℕ)
     (φ : singularCochainGroup (ZMod 2) (TopCat.of (Sphere n)) n)
     (x : (chainCxZMod2 (TopCat.of (RP n))).X n) :
     (((projTransferCochainMap n).f n).hom φ).hom x
-      = φ.hom ((((projTransferChainMap n).f n)).hom x) := by
-  convert ModuleCat.comp_apply _ _ _ using 1
+      = φ.hom ((((projTransferChainMap n).f n)).hom x) :=
+  ModuleCat.comp_apply ((projTransferChainMap n).f n) φ x
 
 /-
 The homology transfer on the class of a cycle `ζ` is the class of the
@@ -148,8 +185,8 @@ theorem projTransferHomologyZMod2_homologyπ (n : ℕ)
         (((chainCxZMod2 (TopCat.of (RP n))).homologyπ n).hom ζ)
       = ((chainCxZMod2 (TopCat.of (Sphere n))).homologyπ n).hom
           ((HomologicalComplex.cyclesMap (projTransferChainMap n) n).hom ζ) := by
-  convert congr_arg ( fun f => f.hom ζ ) ( show ( chainCxZMod2 ( TopCat.of ( RP n ) ) ).homologyπ n ≫ projTransferHomologyZMod2 n n = HomologicalComplex.cyclesMap ( projTransferChainMap n ) n ≫ ( chainCxZMod2 ( TopCat.of ( Sphere n ) ) ).homologyπ n from ?_ ) using 1;
-  convert HomologicalComplex.homologyπ_naturality ( projTransferChainMap n ) n using 1
+  rw [projTransferHomologyZMod2_eq_homologyMap, ← ModuleCat.comp_apply,
+    HomologicalComplex.homologyπ_naturality, ModuleCat.comp_apply]
 
 /-! ## Nonzero preservation, reduced to the homology side -/
 
@@ -160,8 +197,8 @@ theorem cohTransferZMod2_ne_zero_iff_kronecker (n : ℕ) (c : sphereCohomology n
     (cohTransferZMod2 n n).hom c ≠ 0
       ↔ (kroneckerMap (TopCat.of (RP n)) n).hom ((cohTransferZMod2 n n).hom c) ≠ 0 := by
   constructor <;> intro h <;> contrapose! h
-  · exact Function.Injective.eq_iff (kroneckerMap_injective _ _) |>.1 (by simp_all)
-  · simp_all
+  · exact kroneckerMap_injective _ _ (h.trans (map_zero _).symm)
+  · rw [h, map_zero]
 
 /-
 **The transfer–Kronecker adjunction** `⟨tr c, z⟩ = ⟨c, tr_* z⟩`: pairing the
@@ -199,11 +236,8 @@ theorem cohTransferZMod2_kronecker_adjunction (n : ℕ) (c : sphereCohomology n 
     rw [projTransferHomologyZMod2_homologyπ, kroneckerMap_cocycleClass, kroneckerFunctional_apply]
   rw [hL, hR]
   congr 1
-  have h := HomologicalComplex.cyclesMap_i (projTransferChainMap n) n
-  have h2 := congrArg
-    (fun (m : (chainCxZMod2 (TopCat.of (RP n))).cycles n ⟶ _) => m.hom ζ) h
-  simp only [ModuleCat.hom_comp, LinearMap.comp_apply] at h2
-  exact h2.symm
+  exact (ConcreteCategory.congr_hom
+    (HomologicalComplex.cyclesMap_i (projTransferChainMap n) n) ζ).symm
 
 /-- **Route A in usable form.** If some `RPⁿ` homology class `z` pairs
 nontrivially with `c` *after* the homology transfer, `⟨c, tr_* z⟩ ≠ 0`, then the
