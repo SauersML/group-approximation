@@ -260,6 +260,15 @@ cohomology ℤ X (2 * n)` and `gMul := cup` composed with the degree cast
 already exist.  So once `cup_comm_even` lands, `A` is an instantiation, not a
 construction.
 
+## 3b. One deliberate duplication
+
+`AlgTop.isUnit_natCast_of_pos` (ChernNewtonSquareZero.lean) and
+`AlgTop.isUnit_natCast_pos` (ChernNewtonDischarge.lean) are the same five-line
+fact: a positive natural is a unit in a `ℚ`-algebra.  They are kept separate so
+that the live module (`ChernNewtonDischarge`, which carries the hypothesis-free
+(2.7)) does not import the superseded one, which exists only because
+`MappingTorusParity.lean` imports it.  Collapse them when that import goes away.
+
 ## 4. Withdrawn
 
 `ChernParityCoefficient.lean` and `ChernNewtonSquareZero.lean` duplicated the
