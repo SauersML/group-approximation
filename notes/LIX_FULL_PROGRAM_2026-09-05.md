@@ -392,7 +392,7 @@ circle with an explicit chart — pick what makes the section continuous).  The
 section: `S(m, t) := h_t(m)((1−t)·x + t·e₃, χ(t) σ(y), 0)` arranged so the two
 ends agree through `g e = s` (check the direction!).  Its zero set is the single
 point given by `AlgTop/ManuscriptSectionZeroCount.lean`; near it the section is
-a local homeomorphism (inverse function theorem `HasStrictFDerivAt.toPartialHomeomorph`
+a local homeomorphism (inverse function theorem `HasStrictFDerivAt.toOpenPartialHomeomorph` (Mathlib/Analysis/Calculus/InverseFunctionTheorem/FDeriv.lean at the pin)
 on an explicit chart of `S⁵ × CP^{d} × ℝ`; derivative from `EulerLocalModel`).
 Deliver Lemma 2 as `¬ MurrayVonNeumannEquiv (F ⊕ p_H) (1² ⊕ p_H)` and as
 `ClutchingObstruction`.
