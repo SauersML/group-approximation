@@ -446,7 +446,7 @@ theorem cohPullback_cup {X Y : TopCat.{0}} (f : X ⟶ Y) (p q : ℕ)
 /-- The pullback preserves the unit class. -/
 @[simp] theorem cohPullback_one {X Y : TopCat.{0}} (f : X ⟶ Y) :
     (cohPullback R f 0).hom (one R Y) = one R X := by
-  rw [one, cohPullback_cocycleClass, one]
+  rw [one, cohPullback_cocycleClass]
   refine cocycleClass_congr R X 0 ?_ _ _
   apply cochain_ext
   intro σ

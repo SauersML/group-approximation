@@ -191,13 +191,13 @@ theorem cochainCast_eval_awCastAssoc (R : Type) [CommRing R] (X : TopCat.{0}) (p
   unfold cochainEval cochainCast awCastAssocSimplex
   rw [ModuleCat.hom_comp, LinearMap.comp_apply]
   congr 1
-  have e1 : (eqToHom (by rw [(add_assoc p q r).symm]) :
+  have e1 : (eqToHom (by rw [Nat.add_assoc]) :
       (((singularChainComplexFunctor (ModuleCat.{0} R)).obj (ModuleCat.of R R)).obj X).X
           (p + q + r)
        ⟶ (((singularChainComplexFunctor (ModuleCat.{0} R)).obj (ModuleCat.of R R)).obj X).X
           (p + (q + r)))
       = (singularChainSimplicialModule R X).map ((awCastAssoc p q r).op) := by
-    rw [show ((awCastAssoc p q r).op) = eqToHom (by rw [(add_assoc p q r).symm]) from ?_]
+    rw [show ((awCastAssoc p q r).op) = eqToHom (by rw [Nat.add_assoc]) from ?_]
     · rw [eqToHom_map]
     · rw [awCastAssoc, eqToHom_op]
   rw [e1]
@@ -211,11 +211,11 @@ theorem cochainCast_eval_awCastZeroAdd (R : Type) [CommRing R] (X : TopCat.{0}) 
   unfold cochainEval cochainCast awCastZeroAddSimplex
   rw [ModuleCat.hom_comp, LinearMap.comp_apply]
   congr 1
-  have e1 : (eqToHom (by rw [(Nat.zero_add q).symm]) :
+  have e1 : (eqToHom (by rw [Nat.zero_add]) :
       (((singularChainComplexFunctor (ModuleCat.{0} R)).obj (ModuleCat.of R R)).obj X).X (0 + q)
        ⟶ (((singularChainComplexFunctor (ModuleCat.{0} R)).obj (ModuleCat.of R R)).obj X).X q)
       = (singularChainSimplicialModule R X).map ((awCastZeroAdd q).op) := by
-    rw [show ((awCastZeroAdd q).op) = eqToHom (by rw [(Nat.zero_add q).symm]) from ?_]
+    rw [show ((awCastZeroAdd q).op) = eqToHom (by rw [Nat.zero_add]) from ?_]
     · rw [eqToHom_map]
     · rw [awCastZeroAdd, eqToHom_op]
   rw [e1]

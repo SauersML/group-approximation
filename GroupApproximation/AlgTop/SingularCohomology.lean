@@ -233,14 +233,15 @@ theorem cohCast_refl (R : Type) [CommRing R] (X : TopCat.{0}) (m : ℕ) :
 theorem cohCast_self_apply (R : Type) [CommRing R] (X : TopCat.{0}) {m : ℕ} (h : m = m)
     (a : cohomology R X m) : (cohCast R X h).hom a = a := by
   unfold cohCast
-  rw [eqToHom_refl]
-  rfl
+  simp
 
 /-- Degree transports compose. -/
 theorem cohCast_comp (R : Type) [CommRing R] (X : TopCat.{0}) {m m' m'' : ℕ}
     (h : m = m') (h' : m' = m'') (a : cohomology R X m) :
     (cohCast R X h').hom ((cohCast R X h).hom a) = (cohCast R X (h.trans h')).hom a := by
-  subst h; subst h'; rfl
+  subst h; subst h'
+  unfold cohCast
+  simp
 
 /-- Compatibility of `cocycleClass` with the cochain degree cast. -/
 theorem cocycleClass_cast (R : Type) [CommRing R] (X : TopCat.{0}) {m m' : ℕ} (h : m = m')
@@ -249,8 +250,8 @@ theorem cocycleClass_cast (R : Type) [CommRing R] (X : TopCat.{0}) {m m' : ℕ} 
     cocycleClass R X m' (cochainCast h φ) hφ'
       = (cohCast R X h).hom (cocycleClass R X m φ hφ) := by
   subst h
-  unfold cochainCast cohCast
-  simp
+  rw [cohCast_self_apply]
+  exact cocycleClass_congr R X m (cochainCast_self _ φ) hφ' hφ
 
 /-- **A degree-relabelled coboundary is nullhomologous.** -/
 theorem cocycleClass_cast_coboundary_zero (R : Type) [CommRing R] (X : TopCat.{0})
