@@ -746,3 +746,61 @@ What would close it, in decreasing order of what this lane would accept:
 
 Silently keeping the name is the one option that is not available, because it is
 exactly the badge-claim-strength defect this repository exists to catch.
+
+## Sweep 6, 2026-09-05 — target 3's `K₁`-injectivity is stated correctly
+
+Orphan count **274** (+39 on baseline, still **−0 wired**).  Gate counts
+unchanged (36 / 136); `check_import_regression` still red; lexical scan
+unchanged at 13 hits, of which 8 are real (the 7 `sorry`s in
+`NonMF/TheoremCAssembly.lean` and `scripts/Audit/Plants.lean`'s deliberate
+calibration axiom) and 5 are the words inside docstrings.  **No new `sorry`.**
+
+### Pre-registered check 4: passed
+
+`Analysis/CStarKOne.lean` states the target-3 endpoint's vocabulary in exactly
+the shape this lane asked for before it existed:
+
+```lean
+abbrev KOne : Type u := (kOneTower A).Colim          -- colim U(Mₙ(A))/U₀(Mₙ(A)) along u ↦ diag(u,1)
+def kappa : UnitaryClass A →* KOne A                 -- U(A)/U₀(A) → K₁(A)
+def K1Injective : Prop := Function.Injective (kappa A)
+```
+
+`UnitaryClass A` is `unitary A ⧸ unitaryComponentOne A` and
+`unitaryComponentOne` is `Subgroup.pathComponentOne (unitary A)` over Mathlib's
+own `unitary` — so `K1Injective` is the textbook statement over the textbook
+objects, not a predicate the counterexample invented for itself.  An outside
+reader can check that this is Problem LIX.  That was check 4 and it is met.
+
+### Pre-registered check 3 now has a concrete shape
+
+`Analysis/CStarKOneInjectivityCriterion.not_k1Injective_of_exists_witness`
+reduces `¬ K1Injective A` to
+
+```lean
+∃ u : unitary A, u ∉ unitaryComponentOne A ∧
+  diagOne u ∈ unitaryComponentOne (CStarMat 2 A)
+```
+
+— a unitary not null-homotopic in `U(A)` whose block sum `diag(u,1)` *is*
+null-homotopic in `U(M₂(A))`.  That is the standard criterion and it is not
+cheap: both clauses are about the same `u`, and the whole difficulty of the
+counterexample is producing one.  It is also the design note's "Removal 1"
+made good — `K₁(A) = 0` never appears, because
+`kappa_mk_eq_kOneIota_two` shows the class of `u` in `K₁` is read at level two
+of the tower, so `diag(u,1) ∈ U₀(M₂A)` kills it directly.  No Bott
+periodicity, no Morita invariance.
+
+So the LIX chain is being built in the right vocabulary, with the right
+criterion, and against a residue the lane has itself refused to call closed.
+The verdict is unchanged and will stay unchanged until
+`TwistedCancellationFailure` is inhabited: **CONDITIONAL**.
+
+### Instrument note
+
+This lane's sweep script lives in the session scratchpad, and another process
+cleaned that directory mid-campaign, so sweep 6 was run inline instead.  Worth
+recording only because it is the same class of failure the lane exists to
+catch: a check that silently does not run looks exactly like a check that
+passed.  The counts above are from a run that produced output, not from an
+exit code.
