@@ -6,6 +6,7 @@ title: Hilbert H2 vanishing leaves arbitrarily small HS curvature outside quadra
 artifacts:
   - research/artifacts/flexible-relator-dilation-audit-2026-09-05.md
   - research/artifacts/tapered-curvature-halo-audit-2026-09-05.md
+  - research/artifacts/stationary-curvature-and-operator-flat-gradient-basin-2026-09-05.md
 distinct_from:
   two-kazhdan-correction-concentrates-normalized-hs-curvature: that gives trace-norm improvement and supports of vanishing relative rank; this removes all small-angle tangent curvature and gives a quadratic-rank bound for each fixed residual reduction factor.
   orthogonal-frozen-support-surgery-has-square-root-rank-cost: that requires exact reducing supports and a summable repair schedule; these spectral supports need not be invariant and no repair schedule is supplied.
@@ -82,6 +83,22 @@ max_r (||(V(r)-I)(I-P)||_2+||(I-P)(V(r)-I)||_2)
 
 This fixes epsilon before choosing the constants and makes no assertion
 that the constants remain bounded as epsilon decreases.
+
+For the distinct elementary generator presentation of SL5, there is
+also a stationary-point consequence. If
+`F(U)=sum_r||U(r)-I||_2^2` and
+`||grad F(U_j)||_2=o(delta_j)`, the original tuples already satisfy
+the hard-angle conclusion `(QRC2)` and its quadratic-rank support
+consequence, with no preceding generator correction. There are
+uniform t0,c0>0 such that operator relator defect below t0 forces
+`||grad F||_2>=c0 delta`. Thus nonexact critical tuples cannot have
+all relator angles uniformly small. The separate theorem
+`two-kazhdan-stationary-curvature-has-no-small-angle-part` proves
+this and a gradient-flow first-exit estimate. Its hybrid condition
+`d F(U_0)(alpha_0/t0)^theta<t0^2` gives an exact limit in the
+original dimension with O(delta) HS motion. Without that condition,
+flow may exit through a hard angle on a small subspace; invariant
+supports and global exactification remain unproved.
 
 DERIVATION
 small-angle-cohomology-and-hard-curvature-proof

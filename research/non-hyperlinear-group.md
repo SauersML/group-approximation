@@ -32,6 +32,7 @@ artifacts:
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
   - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
+  - research/artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -169,6 +170,17 @@ and their relative cost is comparable to delta^2 even when k grows.
 This establishes the right scale for this supplied-ambient class;
 it does not construct an ambient representation for an arbitrary
 canonical residual.
+
+The irreducible spectral basin now gives a stronger supplied-seed result.
+By `(MSC23)`, one vector below a fixed coefficient cutoff into an exact
+irreducible of dimension N>=d yields full linear correction and
+quadratic padding. The weighted Gram identity forces N<2d; regular
+multiplicity then gives `N_U(L delta)>=N` in Q_(2d). The
+[proof artifact](artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md)
+also proves dimension-uniform same-dimensional HS rigidity near any
+exact irreducible. It supplies neither the initial spectral vector nor
+its irreducible target, and makes no corresponding full-correction
+claim for N<d or reducible targets. The existence target remains open.
 
 The new sequential extraction theorem offers another quantitative
 possibility. Approximate exact corners of ranks r_i can be removed with

@@ -9,6 +9,7 @@ requires:
   - sequential-exact-corner-extraction-has-quadratic-error-ledger
   - kazhdan-approximate-coefficients-have-curved-hodge-control
   - kazhdan-irreducible-compressions-have-quadratic-defect
+  - irreducible-kazhdan-representations-have-uniform-hs-rigidity
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
@@ -26,6 +27,7 @@ artifacts:
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
   - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
+  - research/artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -1057,3 +1059,51 @@ The general theorem's Schur-variance proof needs no finite quotient.
 The original rectangular Kazhdan comparison excludes every correction
 dimension below N at vanishing error, so its necessary k/d padding
 is now comparable to delta^2 for all k=o(N), including growing k.
+
+For `(MSC23)`, apply the required irreducible rigidity theorem with
+its same-dimensional HS basin radius eta0 and correction constant L.
+Choose epsilon_ir>0 so a_ir=2h epsilon_ir^2/kappa^2<1/2 and
+`sqrt(h)epsilon_ir+2sqrt(a_ir/(1-a_ir))<=eta0`.
+
+Let A:C^d->C^N be a coefficient eigenvector of eigenvalue at most
+epsilon_ir^2, normalized by Tr(AA*)=N. With H=A*A and
+X_s=A*rho(s)A, its exact weighted identity is
+
+```text
+lambda Tr(H^2)
+ =(1/h)sum_s[Tr(H^2)-||X_s||HS^2+||X_s-HU_s||HS^2].
+```
+
+Symmetry of S and inverse compatibility give this identity from the
+inner product of Delta A with AH. Irreducible Schur variance for AA*
+then gives `Tr(H^2)-N<=a_ir Tr(H^2)`. Since rank H<=d,
+
+```text
+N^2/d<=Tr(H^2)<=N/(1-a_ir),
+N<=d/(1-a_ir)<2d.
+```
+
+The required theorem pads A by N-d zero columns, polar-completes it,
+and places U direct_sum I_(N-d) in the HS basin of a conjugate of rho.
+Its defining defect is delta(U)sqrt(d/N). Thus the same-dimensional
+basin theorem gives the first bound in `(MSC23)`. If q=N-d>0, the
+corrected irreducible sigma has no invariant vector. Applying property
+(T) to the inclusion J_q of the added identity columns gives
+
+```text
+kappa sqrt(q)<=max_s||sigma(s)J_q-J_q||HS
+ <=L delta(U)sqrt(d),
+```
+
+which proves quadratic padding and excludes q>0 at zero defect.
+The original d columns, transported back to rho by its conjugating
+unitary, form an isometry of Rayleigh quotient at most L^2 delta(U)^2.
+This proves the third bound.
+
+Finally N<2d puts rho in Q_(2d) by the universal-conductor theorem.
+The improved coefficient vector makes rho an active type at cutoff
+L delta(U). Its regular multiplicity is N, proving the displayed
+count lower bound. The generic rigidity theorem does not require
+finite image; only this last SL5 host step does. Nothing in the proof
+constructs the initial target or eigenvector, or extends its full
+correction conclusion to N<d or reducible comparison representations.

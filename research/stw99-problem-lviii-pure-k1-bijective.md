@@ -17,6 +17,8 @@ artifacts:
   - research/artifacts/stw58-soft-support-orthogonal-reservoir-contraction-2026-09-05.md
   - research/artifacts/stw58-small-quasitrace-support-kernel-contraction-2026-09-05.md
   - research/artifacts/stw58-canonical-small-support-stable-splitting-2026-09-05.md
+  - research/artifacts/stw58-fixed-spectral-point-global-localization-2026-09-05.md
+  - research/artifacts/stw58-tracial-selfless-k-stability-free-smoothing-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -39,11 +41,22 @@ in one of two branches:
 
 Thus neither injectivity nor surjectivity remains in the unital simple slice.
 
+[Tracial selfless C*-algebras are now K-stable](stw58-tracial-selfless-k-stability.md)
+in every degree and matrix size, with no nuclearity, exactness,
+real-rank-zero, or separability hypothesis. In an existential free
+extension, an explicit based free-exponential homotopy removes atoms
+at one fixed spectral point. Spectral squeezing and small-support
+contraction give an actual nullhomotopy there; finite triangulation
+and polar interpolation reflect it back. This proves the full higher
+stabilization assertion for the tracial selfless subclass, including
+its nonnuclear examples. It does not derive selflessness from pureness.
+
 ## Remaining frontier
 
 The `K_1`-bijectivity question remains for non-simple pure algebras and for
 any nonunital formulation not covered by the stated convention.  The stronger
-`K`-stability question remains even for simple pure algebras.
+`K`-stability question remains for general simple finite pure algebras;
+the tracial selfless subclass is covered by the theorem above.
 
 The stable-surjectivity half is now established in every positive
 degree for the unital simple finite pure slice by
@@ -107,10 +120,16 @@ over representatives is zero on this summand and at least 1/(k+1)
 outside it. The remaining injectivity assertion is I_k(B)=pi_k U(B);
 the theorem does not prove this equality.
 
-The 2025--26 selflessness examples—reduced group algebras of limit groups and
-their relatives—remain useful tests for the higher `K`-stability maps:
-pureness need not give `Z`-stability in the nonnuclear setting, even though
-stable rank one has already settled their scalar-unitary `K_1` map.
+[Fixed spectral-point localization](stw58-fixed-spectral-point-small-support-localization.md)
+also supplies a global criterion for general coefficients in this slice.
+If one lambda!=1 has spectral atom mass below 1/(k+1) at every
+parameter and normalized quasitrace, one fixed degree-one circle
+function deforms the sphere family into small support. The class then
+lies in the canonical stable summand. Consequently any class outside
+that summand must exhibit an atom of mass at least 1/(k+1) at every
+lambda!=1, with the parameter and quasitrace allowed to vary. Even
+contractible scalar families can fail this criterion everywhere, so
+the criterion alone does not finish general kernel localization.
 
 ## Attempts
 

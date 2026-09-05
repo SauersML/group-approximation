@@ -21,6 +21,7 @@ artifacts:
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
   - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
+  - research/artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -529,6 +530,43 @@ rate on this class. Every vanishing-error correction must restore all
 k dimensions, with necessary padding comparable to delta^2. This uses
 the supplied irreducible ambient and makes no claim of a full local
 correction theorem for arbitrary tuples.
+
+One vector at a fixed cutoff gives a full correction when its supplied
+irreducible target is at least as large as the input. For SL5 there are
+uniform epsilon_ir,L>0 such that, for any exact irreducible
+rho:SL5->U(N), any inverse-compatible tuple U in U(d), and N>=d,
+
+```text
+min Spec Delta_(rho,U)<=epsilon_ir^2
+```
+
+implies a representation sigma conjugate to rho satisfying
+
+```text
+max_s||sigma(s)-(U_s direct_sum I_(N-d))||_(2,N)
+ <=L delta(U)sqrt(d/N),
+(N-d)/d<=L^2 delta(U)^2/kappa^2,
+min Spec Delta_(rho,U)<=L^2 delta(U)^2,
+N_U(L delta(U))>=N.                                  (MSC23)
+```
+
+Here Delta_(rho,U) is the rectangular coefficient connection, and
+N_U is count in the fixed universal host Q_(2d). The fixed cutoff is
+chosen with `a_ir=2h epsilon_ir^2/kappa^2<1/2`. A weighted eigenvector
+identity and irreducible Schur variance force `N<=d/(1-a_ir)<2d`,
+so rho occurs in this host and its regular multiplicity is N.
+
+The generic theorem
+`irreducible-kazhdan-representations-have-uniform-hs-rigidity` proves
+the correction and padding bounds without a finite-image assumption.
+Heat, scalar Gram control, and square polar completion give full
+linear correction in a uniform HS basin of an exact irreducible.
+The weighted identity puts the padded tuple in that basin; property
+(T) on its added identity columns then forces quadratic padding.
+For N=d the correction needs no padding, and zero defect forces N=d.
+This statement requires the irreducible target and the fixed-cutoff
+vector to be supplied. It does not produce that seed or give the same
+full-correction conclusion for N<d or reducible targets.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

@@ -4,7 +4,8 @@ id: small-angle-cohomology-and-hard-curvature-proof
 kind: route
 title: Kill the tangent module of delta-scaled operator-small matrix sequences
 target: two-kazhdan-correction-has-quadratic-rank-curvature
-requires: []
+requires:
+  - two-kazhdan-stationary-curvature-has-no-small-angle-part
 ---
 
 Fix a free ultrafilter and the input scale `delta_j`. Let `H_all` be the
@@ -177,3 +178,11 @@ subsequence indices all are below `j`, and the complementary error is
 at most `epsilon delta_j`. This contradicts the choice of the inputs.
 The resulting constants are nonconstructive and may grow as epsilon
 decreases. This argument supplies no invariant support.
+
+The appended stationary and gradient-flow consequence is the required
+stationary-curvature theorem, applied to the same all-unitary H2
+hypothesis and the literal elementary generator sections. It tests
+the cohomological descent direction against the actual energy gradient,
+so almost-stationarity removes the need to change the tuple first.
+Its first-exit estimate supplies the stated hybrid correction radius,
+without assuming that the spectral supports are invariant.

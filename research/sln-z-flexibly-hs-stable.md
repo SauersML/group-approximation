@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
   - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
+  - research/artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -38,6 +39,17 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **One fixed-cutoff vector in a sufficiently large irreducible suffices
+  (2026-09-05).** `(MSC23)` gives full linear correction and quadratic
+  padding from one supplied coefficient vector below a fixed cutoff
+  into an exact irreducible of dimension N>=d. Its weighted Gram
+  identity forces N<2d, and the improved vector gives
+  `N_U(L delta)>=N` in Q_(2d). The underlying generic theorem gives
+  same-dimensional linear rigidity throughout a uniform HS basin of
+  any exact irreducible, without H2 or finite-image assumptions.
+  The [proof artifact](artifacts/irreducible-kazhdan-local-hs-rigidity-2026-09-05.md)
+  retains the supplied-target and supplied-vector hypotheses. Neither
+  seed existence nor the cases N<d and reducible targets are resolved.
 - **Compressed irreducibles satisfy the linear seed estimate
   (2026-09-05).** `(MSC22)` proves `N_U(L delta)>=N` when U is the
   polar compression of an N-dimensional irreducible by k=o(N)

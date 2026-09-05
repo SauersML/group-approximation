@@ -11,7 +11,8 @@ distinct_from:
   full-leavitt-idempotent-defect-saturation: that shows one complementary root normally generates the rank-20 Steinberg group; this is a conjugacy statement between root elements themselves, in the elementary group, with the module-theoretic invariants that decide it.
 ---
 
-**ESTABLISHED.**  Let `R=L_(F_2)(1,2)` and `H=EL_12(R)=GL_12(R)`.  Call
+**ESTABLISHED.** Let `R=L_(F_2)(1,2)` and `G=EL_3(R)`. The same conclusions
+hold for the previously treated `H=EL_12(R)=GL_12(R)`. Call
 `y in R` **monomial-type** if
 
 ```text
@@ -23,10 +24,10 @@ for binary words `u,v` and some `m` (so `y` is `s_u t_v`, `s_0 b`, `b t_0`,
 `i!=j`,
 
 ```text
-x_ij(y)  is conjugate in H to  x_ij(1).                                (MRC2)
+x_ij(y)  is conjugate in G to  x_ij(1).                                (MRC2)
 ```
 
-Consequently, for every character `phi` of `H` (in particular every MF
+Consequently, for every character `phi` of `G` (in particular every MF
 character), with `w` the constant of
 `degree-zero-leavitt-core-characters-are-dirac-haar-mixtures`,
 
@@ -44,9 +45,17 @@ trace `w`.  Moreover the order-three elements
 x_01(s_0)x_10(t_0)   and   x_01(1)x_10(1)                              (MRC4)
 ```
 
-are conjugate in `H`, so the two `S_3` subgroups `<x_01(s_0),x_10(t_0)>`
+are conjugate in `G`, so the two `S_3` subgroups `<x_01(s_0),x_10(t_0)>`
 and `<x_01(1),x_10(1)>` have identical character restrictions
-`((5w+1)/6, (1-w)/6, (1-w)/3)` on (trivial, sign, two-dimensional).
+`w*1+(1-w)*delta_e`.
+
+The rank-three conclusion uses the exact prefix map `(WOP8)` from
+`weighted-leavitt-opposite-root-packets-have-finite-models` at depth four:
+`Phi_4:EL_3(R)~=EL_18(R)` fixes both outer root coefficients literally.
+Place a rank-twelve conjugator in a twelve-coordinate block containing
+the two outer coordinates, extend by the identity on six coordinates,
+and pull it back through `Phi_4`. Constant Weyl words handle any other
+pair of root positions. This does not assert `GL_3(R)=EL_3(R)`.
 
 ## What this means for the Property-`(T)`-free endpoint
 
@@ -55,11 +64,12 @@ Weyl-mixed relations.  This shows the trace data of those roots is already
 fixed: every surviving corona representation has normalized character `w`
 on every monomial-type root of every degree, and on the mixed `S_3`'s the
 profile is the regular-like one.  No trace value at a monomial-type root,
-nor at the mixed `S_3` subgroups, can distinguish a surviving
-representation from the regular character; the distinction must lie in
+nor at the mixed `S_3` subgroups, supplies information beyond this same
+parameter `w`. A full character classification still has to address
 non-monomial coefficients (such as `1+s_0`, whose right ideal is not a
-direct summand), in infinite-order elements, or in operator-norm data that
-no character sees.
+direct summand), infinite-order elements, and general products of roots.
+Operator-norm information requires additional input beyond these trace
+identities.
 
 The proof is module-theoretic: a square-zero endomorphism `N=yE_ij` of the
 free module `R^12` is classified up to conjugacy by the isomorphism types
@@ -68,7 +78,17 @@ for monomial-type `y` all three are nonzero finitely generated projective
 modules built from cylinder idempotents, hence free of rank one by the
 Leavitt relation `R ~= R^2`.  No property `(T)`, character bound, or
 literature input is used beyond `GL_12(R)=EL_12(R)`, which is
-established in the graph.
+established in the graph. The prefix transport then gives the stated
+rank-three identities without a rank-three general-linear equality.
+
+## Attempts
+
+- **Does the rank-three transport close the trace endpoint?** It makes
+  the monomial-root and mixed `S_3` trace identities available for the
+  literal `EL_3(R)` candidate, removing the previous rank mismatch.
+  It does not classify arbitrary group words, supply a nonembeddable
+  character, or force `w=1`. The regular character still satisfies
+  every displayed identity with `w=0`.
 
 DERIVATION
 monomial-root-conjugacy-proof

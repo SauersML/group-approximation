@@ -36,12 +36,21 @@ For R=L_2(F_2), the current Cairn claim
 Consequently every character of EL_n(R) restricts to such a mixture on K.
 It does not establish (CT1) on EL_n(R).
 
-The current `monomial-root-elements-are-conjugate-in-the-leavitt-group`
-extends the single constant a to monomial root elements, but is stated
-for EL_12(R)=GL_12(R). It neither classifies arbitrary group words nor
-asserts this rank-specific equality for EL_3 or EL_5. In particular,
-mixed-degree coefficients and products of root elements remain outside
-the resulting character classification.
+The monomial-root conclusion now holds in EL_3(R) itself. The proof in
+`monomial-root-conjugacy-proof`, Step 6, transports its original
+rank-twelve conjugacy through the depth-four prefix isomorphism
+Phi_4:EL_3(R) -> EL_18(R) of `(WOP8)`. That map fixes both outer roots
+and their coefficients literally. Put the rank-twelve conjugator in a
+twelve-coordinate block containing those outer coordinates, extend by
+I_6, and pull it back. This proves both monomial-root conjugacy and the
+mixed opposite-root S_3 order-three conjugacy already in EL_3(R),
+without asserting GL_3(R)=EL_3(R).
+
+Thus every character of EL_3(R) has the same core constant a on every
+monomial-type root, and restriction a*1+(1-a)*delta_e on the displayed
+mixed S_3 subgroups. The rank mismatch is removed for these identities.
+Arbitrary group words, non-monomial coefficients, and general products
+of root elements remain outside the resulting classification.
 
 The relevant primary sources do not fill that gap:
 
@@ -131,3 +140,7 @@ group. Current core rigidity, monomial conjugacy, absence of finite-
 dimensional representations, and hyperfinite stability provide neither
 the full classification nor the trace construction. Sections 3 and 4
 show why dropping either obligation is invalid.
+
+The new rank-three transport does not change these two obligations.
+In particular all its identities hold for the regular character with
+a=0; it supplies no finite-unitary marked-collapse inequality.

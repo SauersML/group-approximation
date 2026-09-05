@@ -6,11 +6,13 @@ title: Classify square-zero endomorphisms of the free Leavitt module by three pr
 target: monomial-root-elements-are-conjugate-in-the-leavitt-group
 requires:
   - degree-zero-leavitt-core-characters-are-dirac-haar-mixtures
+  - weighted-leavitt-opposite-root-packets-have-finite-models
 ---
 
-Throughout, `V=R^12` is a right `R`-module with the standard basis
+In Steps 1--5, `V=R^12` is a right `R`-module with the standard basis
 `e_0,...,e_11`, and `GL_12(R)` acts on the left; the repository's
-`GL_12(R)=EL_12(R)` identifies this with `H`.
+`GL_12(R)=EL_12(R)` identifies this with `H`. Step 6 transports the
+result to `G=EL_3(R)` while fixing the actual root coefficients.
 
 ## Step 1: conjugacy of square-zero endomorphisms
 
@@ -91,3 +93,46 @@ the same module `R^2` with the same action, and the fixed submodules
 `R directSum R^10` and `R^10` are both free of rank one.  Hence `M` and
 `M_0` are conjugate in `H`, giving `(MRC4)` and, with `(MRC3)`, the equal
 `S_3` profiles.
+
+## Step 6: literal transport to rank three
+
+Use the prefix expansion `(WOP8)` with depth r=4, weights `(0,4,0)`,
+and N=2^4+2=18. Label its two outer coordinates a,b and its sixteen
+middle coordinates by length-four prefixes. The rectangular matrices
+T_4,S_4 are the identity on the outer coordinates, so for every y in R,
+
+```text
+Phi_4(x_13(y))=x_(a,b)(y),
+Phi_4(x_31(y))=x_(b,a)(y).                              (4)
+```
+
+These are literal equalities, not identifications of a coefficient
+with a corner image or a sum of roots. The same theorem proves that
+Phi_4 maps EL_3(R) isomorphically onto EL_18(R): its inverse lifts every
+elementary generator, including those between two middle coordinates.
+
+Choose twelve coordinates containing a,b. Relabel the rank-twelve
+conjugator from Step 3 so that its distinguished ordered pair is a,b,
+and extend it by the identity on the remaining six coordinates.
+This is an element c of EL_18(R), since block inclusion sends every
+elementary generator to an elementary generator. It satisfies
+
+```text
+c x_(a,b)(y) c^-1=x_(a,b)(1).
+```
+
+Consequently Phi_4^-1(c) belongs to EL_3(R), and (4) proves (MRC2) for
+the outer root. Constant Weyl conjugation in SL_3(F_2) moves this to
+every ordered pair of distinct root coordinates. Apply the identical
+argument to the conjugator of the two opposite-root products in
+Step 5; both factors in each product are preserved by (4). This proves
+the rank-three version of (MRC4) too.
+
+For a character of EL_3(R), use the rank-three instance of the core
+classification to define w. The constant root and the constant
+order-three product are nonidentity elements of that core, so their
+character values are w. The transported conjugacies give (MRC3) and
+the same value at the nonidentity conjugacy classes of either S_3.
+Thus each restriction is exactly w*1+(1-w)*delta_e. No equality between
+GL_3(R) and EL_3(R), and no arbitrary-word character classification,
+has been used or proved.

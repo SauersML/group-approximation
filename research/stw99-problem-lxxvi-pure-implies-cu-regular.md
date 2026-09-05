@@ -31,6 +31,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-compact-equality-strata-comparison-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-field-cu-regularity-2026-09-05.md
   - research/artifacts/stw99-lxxvi-hereditary-k-stability-and-cutoff-restriction-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-dense-cutoff-restriction-and-local-control-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -307,9 +308,18 @@ precise failed replacement for the projection tower: exact restriction
 between arbitrary positive cutoff embedding spaces need not be onto,
 even for CAR coefficients and strict comparison against a projection
 target. The [shared reviewed proof](artifacts/stw99-lxxvi-hereditary-k-stability-and-cutoff-restriction-2026-09-05.md)
-leaves approximate lifting open. Neither this obstruction nor the
-conditional projection theorem changes the full RR0 result above or
-settles general LXXVI.
+does not address approximate lifting. The subsequent reviewed boundary
+`stw99-lxxvi-cutoff-density-without-local-openness` settles pointwise
+norm density positively under stable rank one alone, explicitly as
+a CEI prior-art consequence. Its
+[quantitative CAR example](artifacts/stw99-lxxvi-dense-cutoff-restriction-and-local-control-2026-09-05.md)
+also shows that cutoff frames may converge while every sufficiently
+accurate larger lift stays at least 3/4 from a prescribed base lift.
+Thus global density does not supply small corrections at fixed
+cutoff levels. Parameterized approximation with fixed uniform error
+and iterations that change cutoff levels remain open here. These
+results preserve the full RR0 theorem above and the open status of
+general LXXVI.
 
 ## Literature boundary
 

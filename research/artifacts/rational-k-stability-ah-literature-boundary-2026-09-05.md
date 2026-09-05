@@ -1,7 +1,11 @@
 # Rational K-stability versus K-stability for AH algebras: exact target
 
 Date: 5 September 2026. Primary-source audit and scope clarification.
-This records an open target; it is not a solution manuscript.
+This is the source audit, not the solution manuscript. The subsequent
+internally reviewed [torsion Euler tower](stw59-rational-k-stability-torsion-euler-tower-2026-09-05.md)
+answers the compact-block AH question negatively, even for a simple
+unital monotracial algebra. The literature boundaries below explain
+why the previously published examples did not supply that answer.
 
 ## 1. Published question and conventions
 
@@ -83,15 +87,17 @@ This remains true when their degree-zero obstruction is finite torsion
 or zero. Torsion in one computed unstable group does not by itself
 establish rational K-stability in all positive degrees.
 
-A possible next construction would retain an integral torsion
-obstruction on rationally acyclic finite bases. It must prove both
-survival under the actual simplicity-producing connecting maps and
-rational stability in every fixed positive degree. No such tower
-is established in this audit. In particular, checking only Chern
-characters or line-bundle-generated K-classes would leave possible
-integral torsion contributions uncontrolled.
+A torsion replacement must prove survival under the actual
+simplicity-producing connecting maps and rational stability in every
+fixed positive degree. The subsequent manuscript does so using
+real-projective factors and a fourth-power identity for the integral
+Euler map reduced modulo two. The identity treats every K^0 class,
+including possible Kunneth torsion contributions. An integral Thom
+product preserves the obstruction; the limit kernel is exactly Z/2.
+Checking only Chern characters or line-bundle-generated K-classes
+would not have justified that conclusion.
 
-The checked primary sources do not settle the general compact-block
+The checked prior primary sources do not settle the general compact-block
 AH question or its simple unital twisted-bundle specialization.
 This is a statement about the sources inspected, not an exhaustive
 priority or novelty certification.
