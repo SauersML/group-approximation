@@ -38,6 +38,7 @@ identification followed by the block inclusion `M_1(A) → M_2(A)`. -/
 def diagOne (u : unitary A) : unitary (CStarMat 2 A) :=
   blockOneUnitary (by norm_num : (1 : ℕ) ≤ 2) (unitaryOneByOne A u)
 
+omit [PartialOrder A] [StarOrderedRing A] in
 theorem coe_diagOne (u : unitary A) :
     ((diagOne u : unitary (CStarMat 2 A)) : CStarMat 2 A)
       = blockOne (toOneByOneHom A (u : A)) 2 := rfl

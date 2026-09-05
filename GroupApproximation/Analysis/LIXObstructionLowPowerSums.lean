@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ChernPowerSums
+import Mathlib.Tactic.IntervalCases
 
 /-!
 # `hlow` of Lemma 3, without K-theory
