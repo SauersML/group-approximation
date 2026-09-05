@@ -1190,3 +1190,94 @@ build without the Borsuk–Ulam port, this one among them; wired when written,
 this would have been caught the same hour instead of surviving on main.  The
 campaign has produced 281 orphan modules and the first one anybody compiled
 failed.  There is no reason to assume the rest are better.
+
+## Sweep 11, 2026-09-05 — the face condition is proved; the LIX plan changes its risks again
+
+### Target 2: Problem 2B moves, and the part that moved is the hard part
+
+`cf75ca5b9` lands `Analysis/STW22FactorialCore.lean`, 375 lines, and proves the
+condition this file singled out at sweep 8 as the one to look at first:
+
+```lean
+theorem isFaceTraceSet_designatedTraces …          -- the face condition
+theorem isClosed_designatedTraces …
+theorem isCompact_designatedTraces …
+theorem isConvexTraceSet_designatedTraces …
+theorem designatedTraces_nonempty …
+theorem designatedTraces_eq_range …                -- X = range canonicalExtension
+theorem mem_designatedTraces_iff_isCompletionUniformTwoContinuous …  -- CCEGSTW Prop 3.15
+```
+
+The argument is short for the right reason: CCEGSTW Proposition 3.23(iv) makes
+factoriality of the completion equivalent to `X` being a face of `T(A)`, and
+here `X` is all of `T(A)`, which is a face of itself.  A closed face was
+genuinely stronger than the compact convexity already available, and it is now
+a theorem rather than a parenthesis in a research note.  Credit where it is
+due — that is a real answer to a finding, delivered in about an hour.
+
+**Problem 2B is still open, and what is left is bookkeeping plus two clauses.**
+
+1. `IsFactorialTraciallyCompletePair` is **never instantiated**.
+   `STW22FactorialCore.lean` imports `TraciallyCompleteCStar` but neither that
+   name nor `IsTraciallyCompletePair` occurs in it.  Five of the structure's
+   fields exist as separate theorems; nothing has the type that *is* CCEGSTW
+   Definition 3.13.
+2. Two fields of Definition 3.4 are **not proved at all**: `IsFaithfulTraceSet`
+   and `UnitBallUniformTwoComplete`.  Neither name occurs in the new file.
+   These are what make the pair *tracially complete* rather than a C\*-algebra
+   with a distinguished face.
+3. The endpoint still does not mention factoriality.  Grepping
+   `STW22NegativeSolution.lean` and `STW22ConditionalNegativeSolution.lean` for
+   `Factorial` returns nothing.
+
+And the 375 new lines have never been elaborated, in a file whose consumer is
+currently `sorryAx`-poisoned (sweep 10).
+
+### Target 3: the plan's "only two ways to fail" has now changed three times
+
+| revision | route | stated risks |
+|---|---|---|
+| rev 1 | integral Chern / K-theory | *"no unconditional route at feasible cost"*; one residue `Prop` |
+| rev 2 | integral, K-theory collapsed to (KT-min) | Bott periodicity; Leray–Hirsch |
+| rev 3 | **mod-2 Wu** | Wu for a virtual class; the tower assembly; **Steenrod squares** |
+
+`bd6fc788c` closes the mod-2 parity for every stage of the tower and takes Bott
+and Leray–Hirsch off the path entirely.  The argument is careful and it
+reconciles its own earlier refutation rather than quietly dropping it: revision
+2 had a counterexample at `Y = ℂP¹` with `γ₁ = 1/6`, and rev 3 explains that
+`d = 1` is **odd** there while the surviving term is `b₁` with `1 ≡ 1 (mod 4)`,
+so both statements stand — mod 2 cannot prove Lemma 3 for general `Y`, and can
+for this tower.  That reconciliation is the mark of a plan being reasoned about
+rather than rewritten.
+
+**Two things to hold them to, recorded here so they cannot be dropped
+silently.**
+
+* **`every d_j is even` is now a load-bearing side condition** — the commit
+  says so outright, *"the hypothesis a lane may not drop"*.  Step 1 needs it
+  (`(1+h_j)^{d_j} = (1+h_j²)^{d_j/2}` by one Frobenius), and rev 2's
+  counterexample lives exactly where it fails.  Any LIX statement that
+  quantifies over dimensions without it is refuted, not merely weaker.
+* **Steenrod squares are back**, having been on rev 1's *"do not let a lane
+  drift into them"* list and off rev 2's route.  This file recorded that
+  conflict at sweep 4; it is now resolved in favour of building them, which is
+  a decision, not an oversight — but it is the third answer to the same
+  question in one afternoon.
+
+`TwistedCancellationFailure` has been **restored as a markdown-only fallback,
+explicitly at this lane's recommendation**.  That was the right call: it costs
+nothing and it means the reduction statement still exists in writing if the
+foundations do not land.
+
+**The verdict does not move, and the reason is now sharper.**  Target 3 has no
+compiled Lean, no endpoint, and a plan whose two stated failure modes have been
+replaced twice in a few hours.  Each revision has been better-argued than the
+last and this lane has no criticism of the work — but a plan that is still
+discovering what its risks are is not evidence that the risks are small, and it
+is not a basis for grading anything green.  **NOT-YET-STATED.**
+
+### Fleet
+
+23 concurrent `remote-build.sh` processes.  `f2a8c3a59` records a probe finding
+real breakage — *"repair two Mathlib names that block the whole LIX chain"* —
+which is the wiring-and-probing loop working as it should.
