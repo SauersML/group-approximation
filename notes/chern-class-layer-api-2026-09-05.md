@@ -251,6 +251,15 @@ re-walks it:
   statement.  Some commutativity theorem has to be proved; the even case is the
   cheapest form of it.
 
+**The packaging itself is not work.**  Mathlib at the pin has
+`DirectSum.GCommRing` and `DirectSum.commRing : CommRing (⨁ i, A i)`
+(`Mathlib/Algebra/DirectSum/Ring.lean:144,355`).  Taking `A n :=
+cohomology ℤ X (2 * n)` and `gMul := cup` composed with the degree cast
+`2m + 2n = 2(m + n)`, a `GCommRing` instance is exactly `cup_assoc`, `cup_one`,
+`one_cup`, bilinearity and the even `cup_comm` — all of which except the last
+already exist.  So once `cup_comm_even` lands, `A` is an instantiation, not a
+construction.
+
 ## 4. Withdrawn
 
 `ChernParityCoefficient.lean` and `ChernNewtonSquareZero.lean` duplicated the
