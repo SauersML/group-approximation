@@ -112,3 +112,33 @@ presentation coordinates.
   So local search of this kind cannot see the obstruction, and its numbers
   are not evidence either way; the artifact says what a decisive run needs
   (a theta-constant seed for the control, or exhaustive small-`d` search).
+- **Falsification run, second attempt (2026-09-05, evening).**  Exact
+  metaplectic models now exist in every dimension `4a + 10b`
+  (`sp4-even-theta-constants-realize-the-metaplectic-class`,
+  `sp4-second-order-thetas-realize-metaplectic-class-in-dim-four`), so the
+  control the first attempt asked for is in hand.  Three facts came out.
+  (1) Every mean-square descent from the ten-dimensional model into this
+  sector (`d = 10, 20, 30`) converged to a pure coboundary rescaling of the
+  model: the worst relators are scalar, the generator phases are small, and
+  the energy of the pure rescaling agrees with the minimizer to six digits.
+  (2) The best coboundary rescaling in the maximum norm over all `304,412`
+  recorded relators has maximal defect `0.309` (only the four long-root
+  generators move, by `0.062` radians); from the trivial class the same bar
+  is `0.608`, and the spin classes do not relax at all.  This is an explicit
+  tuple in every dimension `4a + 10b`, so it is what a nonabelian search
+  must beat.  (3) Started at that optimum, with a smoothed-maximum objective
+  (`beta = 30, 100, 300`) and no coboundary freedom removed, descents at
+  `d = 4, 8, 10` never went below the bar on all relators: the minima are
+  the coboundary point again (nonabelian residual `0.01` to `0.05` per
+  generator), and a working-set maximum of `0.295` at `d = 4` became
+  `0.340` on the full relator set.  Random starts stay near maximal defect
+  `1.6`; `d = 12, 14, 20` are appended to the artifact as they finish.  So
+  the numerics found no finite-dimensional tuple below the abelian bar and
+  no dimension dependence; this is consistent with a gap and equally
+  consistent with a nonabelian valley that local descent from the exact
+  models cannot reach, so it remains no evidence either way.  What it does
+  settle is the instrument: sampled mean-square energies, `p`-power
+  objectives, and determinant pinning each produce artifacts (coboundary
+  slides, invisible small defects, an eigenvalue-balance floor
+  `2 sin(pi/3d)` when `3` does not divide `d`), all recorded in the
+  artifact.
