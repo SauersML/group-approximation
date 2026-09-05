@@ -6,7 +6,14 @@ Architect's design for formalizing
 v4.32.0); every Mathlib name below was checked at that revision with
 `git -C /Users/user/mathlib4 grep -n <pat> 81a5d257 -- Mathlib`.
 
-Revision 2 (2026-09-05, later): the mandate changed from "find the cheapest
+**Revision 3** (2026-09-05, latest) is the current route: §B.9. Revision 2 is
+superseded on the mathematics — it concluded that the integral Chern-character
+route was forced and named Bott periodicity as the campaign's deepest risk.
+Both are wrong for this tower; §B.9 proves Lemma 3 mod 2 with no K-theory and no
+Bott. §§B.3–B.5 are retained as the record of that reasoning and of the two
+removals in §B.6, which still stand.
+
+Revision 2 (2026-09-05, earlier): the mandate changed from "find the cheapest
 route that avoids the missing foundations" to "build the foundations". The
 honest-ledger section of revision 1 is superseded: **nothing here remains a
 named `Prop` residue.** What survives from revision 1 is the concrete model
@@ -98,6 +105,15 @@ Unchanged from the manuscript: on `S⁵ × Y` with `Y = ∏ CP^{d_j}`,
 * Contradiction.
 
 ### B.2 W1 — no Steenrod squares, no Stiefel–Whitney classes, no Wu formula
+
+> **REVISION 3 SUPERSEDES THIS SECTION'S CONCLUSION.** Revision 2 concluded that
+> mod-2 methods cannot prove Lemma 3 and that the integral (Chern-character /
+> Bott) route was therefore forced. That conclusion is correct **for general
+> `Y`** and wrong **for this tower**, and the dividing line is the parity of the
+> `d_j`. See §B.9, which is now the campaign's route: mod-2 throughout, no
+> Chern character, no Künneth over `ℤ`, and **no Bott periodicity**. The
+> argument below is retained because it is what tells a lane which hypothesis it
+> may not drop.
 
 **Scope of this section.** What follows is an argument that the *mod-2 route
 cannot replace the K-theoretic parity inside route 4*. It is not, and was never,
@@ -231,6 +247,101 @@ two ends differ by an automorphism `g` of `V`. The lane may assume `W = W_g`.
   from (L2)/(L3); its new work is `⊗`, dual, clutching and the mapping torus.
 * `found-mapping-torus-parity` — may assume `W = W_g`.
 
+### B.9 THE ROUTE (revision 3): Lemma 3 mod 2, via Wu and instability
+
+Work mod 2 on `N = S¹ × S⁵ × Y`. Write `A = γ(V) = γ(H)`, and
+`γ(δ) = 1 + z·b` with `b = Σ_j b_j`, `b_j ∈ H^{2j}(Y;𝔽₂)`, `z = t x`.
+Multiplication by `z` is injective by Künneth, so every relation may be read on
+`Y` after stripping `z`. The quantity to kill is
+```
+c_r(W) = Σ_k A_{m-k} · b_k        (top degree; m = Σ_j d_j, r = m+3).
+```
+
+**Step 1 — only even `k` appear.** `A_n = 0` for every odd `n`. This needs only
+that every `d_j` is **even**: mod 2, `(1+h_j)^{d_j} = (1+h_j²)^{d_j/2}` by one
+application of Frobenius, so each factor is a polynomial in `h_j²` and the
+product is supported in even degrees; `m` is even too. Hence `A_{m-k} = 0` for
+odd `k`.
+
+*(Sharper, and true but not needed: since `d_j = 2^{j+1}` are distinct powers of
+two, uniqueness of binary representation makes the subset sums exactly the even
+integers `0,2,…,m`, each `A_n` a single monomial, and `A² = 1` — so
+`γ(δ) = γ(W)·A` with no power-series inversion. Carry the evenness lemma; keep
+the sparsity as an optimization.)*
+
+**Step 2 — every even-index `b` vanishes.** Stripping `z` from
+`Sq^{2k} γ_i(δ) = C(i-1,k)·γ_{i+k}(δ)` with `i = j+3` gives
+```
+(*)   Sq^{2k} b_j = C(j+2, k) · b_{j+k}
+```
+legitimate because `Sq^a z = 0` for `a > 0` (`z` lies in `H⁶(S¹×S⁵)`, which is
+top degree there), so Cartan gives `Sq^{2k}(z·b) = z·Sq^{2k}b`. Now apply the
+**instability axiom** on `Y`: `b_j` has degree `2j`, so `Sq^{2k} b_j = 0`
+whenever `k > j`. Therefore
+```
+k > j and C(j+2,k) odd   ⟹   b_{j+k} = 0,
+```
+and for every even `n ≥ 2` such a pair exists with the binomial equal to `1` on
+the nose:
+```
+j = n/2 - 1,   k = n/2 + 1,   C(j+2,k) = C(n/2+1, n/2+1) = 1,   k > j.
+```
+So `b_n = 0` for every even `n ≥ 2`. With `b_0 = 0` — the base case:
+`γ₁ = γ₂ = 0` by degree, and `Sq²γ₂ = γ₁γ₂ + γ₃` gives `γ₃ = 0` — every
+even-index `b` vanishes.
+
+**Conclusion.** Step 1 leaves only even `k`; step 2 kills every even-index `b_k`.
+So `c_r(W) ≡ 0 mod 2` at every tower stage — no induction on `ℓ`, no case
+analysis, no supplementary relation.
+
+Spot checks: `n=2 → (0,2)`, `C(2,2)=1`, `Sq⁴b₀ = 0` since `4 > 0`;
+`n=4 → (1,3)`, `C(3,3)=1`, `Sq⁶b₁ = 0` since `6 > 2`;
+`n=6 → (2,4)`, `C(4,4)=1`, `Sq⁸b₂ = 0` since `8 > 4`.
+A full Lucas enumeration of `(*)` gives zeros at
+`n = 0,2,3,4,6,7,8,10,11,12,14,15,16,18,19,20,…`; the only unreachable indices
+are `n ≡ 1 (mod 4)` — all odd, hence all invisible to an even-supported `A`.
+That is why "the binomials fail for some `k`" and it does not matter.
+
+**Why this reconciles §B.2.** §B.2's counterexample was `Y = CP¹`, where
+`γ₁ = 1/6` satisfies every mod-2 constraint while `c₄(δ)` is odd. There `d = 1`
+is **odd**, so `A = 1 + h` has odd-degree support and `m = 1` is odd; the sum is
+`A₁b₀ + A₀b₁ = b₁`, and `b₁` has index `1 ≡ 1 (mod 4)` — precisely the
+unreachable class. Both statements stand: mod 2 **cannot** prove Lemma 3 for
+general `Y`, and **can** for this tower. **The hypothesis a lane may not drop is
+that every `d_j` is even.**
+
+**The step to verify hardest.** Relation `(*)` is Wu's formula applied to the
+*virtual* class `δ`, where `γ(δ) := γ(W)·γ(p*V)^{-1}`. Wu is proved for genuine
+bundles by the splitting principle; the extension to a formal quotient needs the
+total square to be a ring homomorphism (Cartan) plus the universal statement in
+`H^*(BO)`. It is standard, but it is the step where a slip would be invisible,
+and everything above rests on it. Instability, Frobenius and the Künneth
+injectivity of `z` are cheap by comparison.
+
+**What B.9 deletes.** Bott periodicity, the Chern character, Newton's identity,
+integral Künneth, integral Chern classes, the integral Euler class, and (KT-min)
+in its entirety. `found-ktheory-bott` is repointed to **Steenrod squares up to
+the Cartan formula and no further**; `found-mapping-torus-parity` to **Wu's
+formula as symmetric-function algebra**; `found-chern-classes` to **mod-2 Chern
+classes only**; `found-euler-class` to the **mod-2 Euler class only**. A
+consequence already observed by `found-cohomology-ring`: its blocker — "every
+subgroup of a free abelian group is free" at arbitrary rank, for the UCT
+splitting — **evaporates over `𝔽₂`**, since a subspace of a vector space is free
+with no transfinite argument. That detour and its proposed extra lane are
+cancelled.
+
+**Fallback, kept in markdown only (per `audit-gate`).** If B.9 stalls, the
+statement to fall back to is
+```lean
+/-- Manuscript Lemma 2, as Murray–von Neumann inequivalence. -/
+TwistedCancellationFailure : Prop :=
+  ∀ {l} (d : Fin l → ℕ), (∀ j, 0 < d j) →
+    ¬ MurrayVonNeumannEquiv (blockDiag (Fproj ⊗ 1) (Hproj' d)) (blockDiag 1₂ (Hproj' d))
+```
+It lives here and **nowhere in the Lean tree**: a `Prop` in a markdown file
+cannot reach an audit roster, and deleting it would cost the campaign its honest
+fallback for nothing.
+
 ---
 
 ## (C) The cross-lane graph
@@ -248,10 +359,10 @@ two ends differ by an automorphism `g` of `V`. The lane may assume `W = W_g`.
 | L1 | `Topology/BundleProj.lean` | `found-bundle-calculus` | bundle = projection; rank, `⊕`, `⊗`, dual, pullback; `Iso := MvNEquiv`; homotopy invariance; clutching over a closed cover; mapping torus |
 | L2 | `Topology/SingularCohomologyRing.lean` | `found-cohomology-ring` | graded ring `H^*(−;R)`, naturality, homotopy invariance, Mayer–Vietoris, `H^*(Sⁿ)`, free-case Künneth, top-class pairing |
 | L3 | `Topology/CPnCohomology.lean` | `found-cpn-cohomology` | `H^*(CPd d;ℤ) ≅ ℤ[h]/(h^{d+1})`; products; the Künneth generator |
-| L4 | `Topology/ChernClasses.lean` | `found-chern-classes` | projective bundle formula, Leray–Hirsch, `c_i`, Whitney, splitting principle, naturality, `c(δ) = c(W)c(V)^{-1}`, Newton polynomials `p_k`, `ch` |
-| L5a | `Topology/EulerClass.lean` | `found-euler-class` | `e = c_top`; one nondegenerate zero ⟹ `⟨e,[N]⟩ = ±1` |
-| L5b | `Topology/KTheoryBott.lean` | `found-ktheory-bott` | `ch` additive/multiplicative on `K⁰`; `ch(K̃(S^{2n})) = ℤ`; (KT-min) |
-| L6 | `Topology/MappingTorusParity.lean` | `found-mapping-torus-parity` | manuscript Lemma 3 |
+| L4 | `Topology/ChernClasses.lean` | `found-chern-classes` | **mod-2 only**: `γ_i = c_i mod 2` (= `w_{2i}`), Whitney, splitting principle, naturality, `γ(δ) = γ(W)γ(V)^{-1}`. No integral Chern classes, no `ch`, no Newton |
+| L5a | `Topology/EulerClass.lean` | `found-euler-class` | **mod-2** Euler class `= w_top`; one nondegenerate zero ⟹ odd count |
+| L5b | `Topology/SteenrodSquares.lean` | `found-ktheory-bott` **(repointed)** | cup-`i` products, `Sq^i`, Cartan, instability. **No K-theory, no Bott, no `ch`** |
+| L6 | `Topology/MappingTorusParity.lean` | `found-mapping-torus-parity` | Wu's formula as symmetric-function algebra, then §B.9 |
 | L7 | `Manuscript/NinetyNineProblems/ProblemLIX*.lean` | the five LIX lanes | as in §C.4 |
 
 Edges: `L0 → L1 → {L4, L5a, L5b}`; `L2 → L3 → L4 → {L5a, L5b} → L6 →
@@ -544,28 +655,33 @@ can say exactly which layer is unfinished.
 |---|---|---|
 | L0 | `MvNEquiv` calculus, corners, concrete spaces, `K₀`/`K₁` of a C\*-algebra | routine; ~1200 lines; no research content |
 | L1 | bundle calculus in the projection model | routine given L0; `⊗` and the mapping torus are the only new constructions |
-| L2 | cohomology ring, Künneth, top pairing | **large**, but mostly already vendored (C1); the new work is the ring structure, Künneth, and coefficient generality |
-| L3 | `H^*(CP^n;ℤ)` and products | moderate; cell structure or Gysin, then Künneth |
-| L4 | Chern classes | **the critical path.** Projective bundle formula + Leray–Hirsch is the single largest genuinely new piece |
-| L5a | Euler class, one-zero count | moderate; Thom class and localization, no transversality theory |
-| L5b | (KT-min) | **the deepest theorem in the campaign.** Bott periodicity (only for the `S^{2n}` normalization) plus Künneth for `S¹×S⁵×Y` |
-| L6 | Lemma 3 | short once L4 and L5b are in: the argument is §B.3(b), a few hundred lines |
-| L5b′ | `K₁(C(X)) = 0` for an even-cell finite complex | follow-on to (KT-min), **lower priority than the refutation**; an induction over cells reusing (KT-min)'s machinery, not a new stack. Needed only for the `K₁(A) = 0` clause of printed Theorem 1, which is off the critical path for LIX itself (§B.6, Removal 1) |
+| L2 | cohomology ring, Künneth, top pairing — **over `𝔽₂`** | **large**, but mostly already vendored (C1), and the UCT blocker evaporates over `𝔽₂` (§B.9) |
+| L3 | `H^*(CP^n;𝔽₂)` and products | moderate; cell structure or Gysin, then Künneth |
+| L4 | **mod-2** Chern classes `γ_i = w_{2i}`, Whitney, splitting principle | moderate. No projective bundle formula, no Leray–Hirsch, no `ch` |
+| L5a | mod-2 Euler class, one-zero count | moderate; Thom class and localization, no transversality theory |
+| L5b | Steenrod squares up to Cartan and instability | **the largest single new build.** Cup-`i` products via equivariant acyclic carriers. No K-theory, no Bott |
+| L6 | Wu's formula, then §B.9 | short once L4 and L5b are in; the two risks are `(*)` for a virtual class and the tower assembly |
+| L5b′ | `K₁(C(X)) = 0` for an even-cell finite complex | **lower priority than the refutation**, and now **without a K-theory stack under it**; needed only for the `K₁(A) = 0` clause of printed Theorem 1, which is off the critical path for LIX itself (§B.6, Removal 1) |
 | L7 | the five LIX lanes | elementary C\*-algebra; ~4000–6000 lines; no research content. L0's analytic floor is already landed (C8) |
 
-**Where the campaign can still fail.** Two places, and only two.
+**Where the campaign can still fail (revision 3).** Revision 2 named Bott
+periodicity and Leray–Hirsch. **Both are off the critical path** — §B.9 deletes
+them. The risks are now:
 
-1. **L5b.** Bott periodicity has never been formalized in Lean. The
-   Atiyah–Bött clutching-function proof is self-contained and is the one to
-   attempt; the target is narrow (`ch(K̃(S^{2n})) = ℤ`, not the full periodicity
-   theorem as a natural equivalence), which is a real reduction, but it remains
-   the single highest-risk item. If it stalls, the campaign stalls there and
-   nowhere else — every other layer is independent of it except L6.
-2. **L4's Leray–Hirsch.** The projective bundle formula needs
-   `H^*(P(E))` free over `H^*(X)` with basis `1, ξ, …, ξ^{n-1}`, proved by
-   Mayer–Vietoris induction over a finite trivializing cover. In the projection
-   model `P(E) = {(x, q) : q a rank-one projection ≤ p(x)}` is concrete, which
-   helps, but the induction is delicate.
+1. **Wu's formula for a virtual class**, relation `(*)` of §B.9. Everything
+   rests on it and a slip would be invisible. It is standard mathematics, not
+   research, but it must be proved and not assumed.
+2. **The tower assembly.** §B.9 closes the general stage as far as I can check
+   it on paper — `b_n = 0` for every even `n`, via `(j,k) = (n/2-1, n/2+1)`.
+   Until that is Lean-checked at general `ℓ` rather than at `Y = pt` and
+   `Y = CP²`, it is a paper argument, and paper arguments in this campaign have
+   been wrong before (this section, in revision 2, was one).
+3. **Steenrod squares themselves.** Cup-`i` products via equivariant acyclic
+   carriers, up to Cartan and instability, are now on the critical path where
+   revision 2 had them deleted. This is the largest single new build.
+
+*Superseded risk:* Bott periodicity, which had never been formalized in Lean and
+was revision 2's highest-risk item, is no longer needed at all.
 
 **What is *not* at risk.** All of L0, L1, L3, L5a, L6 and L7, and the elementary
 half of the manuscript (simplicity, stable finiteness, Lemma 6, Lemma 7, the
