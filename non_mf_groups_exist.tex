@@ -68,13 +68,13 @@
 Some groups are not MF. For example, $H=\EL_{12}(L_{\F_2}(1,2))$ is
 a simple property-\textup{(T)} group, and every homomorphism from $H$ to an
 MF group is trivial.  We also construct a two-generated, finitely presented,
-torsion-free property-\textup{(T)} group with the same rigidity, and a non-MF
+torsion-free property-\textup{(T)} group with the same rigidity, and a sofic non-MF
 affine--Clifford group $W$ that is an extension of $\mathbb Z$ by a locally
 residually finite group.  The common mechanism is a normal property-\textup{(T)} subgroup
 contained in the normal closure of commutators arising from a one-sided
 compression.  Consequently,
 $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, while the
-canonical trace of $W$ is amenable but not quasidiagonal.
+canonical trace on $C^*_{\max}(W)$ is amenable but not quasidiagonal.
 \end{abstract}
 
 \maketitle
@@ -92,7 +92,8 @@ binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
 OpenAI used this group to construct the first nonsofic
 group~\cite[Chapter~3]{OAI}.
 
-A group $G$ is \emph{MF}~\cite{CDE} if there are positive
+We work with countable groups throughout.  A countable group $G$ is
+\emph{MF}~\cite{CDE} if there are positive
 integers $d_n$ and maps $V_n\colon G\to\U(d_n)$, with $V_n(1)=1$, such that
 \[
  \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
@@ -126,6 +127,7 @@ homomorphism $G\to\U(\mathcal Q_{\mathbf d})$ a \emph{corona
 homomorphism}.  A separable
 $C^*$-algebra is MF if it embeds in a norm matrix corona~\cite{BK}.
 
+We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
 The groups here fail to be MF because they contain a subgroup that is
 conjugated into itself.  For $L\le G$ put
 \[
@@ -217,7 +219,10 @@ torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} and Hull's small
 cancellation theorem~\cite{Hull}.
 
 We construct an affine--Clifford group $W$ that is an extension of
-$\mathbb Z$ by a locally residually finite group but is not MF.  Its canonical trace on
+$\mathbb Z$ by a locally residually finite group but is not MF.  It is sofic:
+locally residually finite groups are sofic, and soficity passes to
+extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}.
+Its canonical trace on
 $C^*_{\max}(W)$ is amenable and not quasidiagonal.  This answers
 Brown's question whether every amenable trace is
 quasidiagonal~\cite[discussion preceding Proposition~3.5.1]{Brown}.
@@ -251,9 +256,7 @@ Theorem~\ref{thm:torsion-free} reuses Fournier-Facio's
 configuration~\cite{FFF}.  Bachner--Dogon--Lubotzky showed that for groups
 of Deligne type, operator--Hilbert--Schmidt stability would imply that the
 group is not MF~\cite[Proposition~1.5]{BDL}.  The compression relation
-replaces stability.  For a short elementary construction of non-MF
-generalized wreath products from one-sided compression,
-see~\cite{Eckhardt}.
+replaces stability.
 
 Leavitt introduced the algebras $L_K(1,n)$~\cite{Leavitt}.  The binary
 Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, is an
@@ -468,8 +471,9 @@ form a normal subgroup of $G$, so it contains $\mathfrak D_G(L)$.
 
 A corona homomorphism $\rho$ cannot simply be restricted to a corner: a
 projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that only
-asymptotically commute with the lifts of $\rho(g)$, so the compressions
-$q_n\rho(g)q_n$ are only approximately unitary.
+asymptotically commute with chosen unitary lifts $U_n(g)$ of $\rho(g)$,
+so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the
+matrix corners.
 
 \begin{lemma}[central corona corners]\label{lem:central-corona-corner}
 Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
@@ -551,9 +555,12 @@ represent \(b\), so the negative part of \(b_n-(\kappa^2/|S|)I_{r_n}\)
 tends to zero in operator norm, and taking normalized traces on
 \(M_{r_n}(\C)\) gives
 \[
- \frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-I_{r_n}}^{\,2}
+\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-I_{r_n}}^{\,2}
  \ge \frac{\kappa^2}{|S|}-o(1).
 \]
+Here the Hilbert--Schmidt norms use $\tr_{r_n}$, the normalized trace of
+the new corner.  The lower bound is independent of $r_n/d_n$, even if
+that ratio tends to zero.  The hypothesis applies to $(W_n)$ itself.
 After passing to a subsequence, one fixed \(s_0\in S\) stays a positive
 Hilbert--Schmidt distance from \(I_{r_n}\), against the hypothesis applied
 to \((W_n)\) and \(s_0\in K\).
@@ -665,9 +672,11 @@ injective.  Put
  Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix};
 \]
 block multiplication with~\eqref{eq:leavitt} gives $Y=X^{-1}$ and
-$X\operatorname{diag}(A,I_3)Y=\operatorname{diag}(\Psi(A),I_3)$.  The matrix
-$X$ need not lie in an elementary group, which is why there are twelve
-coordinates: with
+$X\operatorname{diag}(A,I_3)Y=\operatorname{diag}(\Psi(A),I_3)$.
+In fact $X\in\EL_6(R)$, since $\GL_6(R)=\EL_6(R)$ by
+Khanh--Thanh~\cite[Proposition~4.2]{KhanhThanh}.  We use twelve coordinates
+to establish elementary membership of the compressor directly through
+Whitehead's lemma, without an elementary factorization of $X$: with
 \begin{equation}\label{eq:tau}
  \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R)
 \end{equation}
@@ -801,8 +810,9 @@ puts a proper isometry in $C^*_{\max}(H)$.
 
 Brown observed that it was unknown whether every amenable trace on a
 $C^*$-algebra is quasidiagonal~\cite[discussion preceding
-Proposition~3.5.1]{Brown}.  We use the following sequential notions for an
-arbitrary unital $C^*$-algebra $A$.  A trace $\tau$ is \emph{amenable} if
+Proposition~3.5.1]{Brown}.  We use the following sequential definitions
+for a separable unital $C^*$-algebra $A$; all applications below are in
+this scope.  A tracial state $\tau$ is \emph{amenable} if
 there are u.c.p. maps
 $\phi_n\colon A\to M_{d_n}(\C)$ such that
 \[
@@ -813,7 +823,7 @@ $\phi_n\colon A\to M_{d_n}(\C)$ such that
 It is \emph{quasidiagonal} if the first limit holds in operator norm instead
 of normalized Hilbert--Schmidt norm, with the same trace convergence.
 
-For a group $G$, let $u_g$ denote the canonical unitary in
+For a countable group $G$, let $u_g$ denote the canonical unitary in
 $C^*_{\max}(G)$.  The canonical trace $\tau_G$ is
 determined by
 \[
@@ -822,7 +832,7 @@ determined by
 
 \begin{theorem}[canonical-trace obstruction]
 \label{thm:factorization-nonmf-trace}
-Let $G$ be a group.  If $G$ is not MF, then its canonical trace
+Let $G$ be a countable group.  If $G$ is not MF, then its canonical trace
 $\tau_G$ on $C^*_{\max}(G)$ is not quasidiagonal.  Consequently, if
 $\tau_G$ is amenable, then it is amenable and not quasidiagonal.
 \leanverified{Manuscript/NinetyNineProblems/ProblemXGroups}{GroupApproximation.NinetyNineProblems.manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF}
@@ -833,7 +843,7 @@ $\tau_G$ is amenable, then it is amenable and not quasidiagonal.
 Suppose that $\tau_G$ is quasidiagonal, and let $\phi_n$ be u.c.p. models as
 above.  Operator-norm multiplicativity makes both
 $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$.
-Polar correction therefore gives unitaries $V_n(g)$ with
+Polar correction therefore gives unitaries $V_n(g)$, with $V_n(1)=1$, such that
 \[
  \opnorm{V_n(g)-\phi_n(u_g)}\longrightarrow0.
 \]
@@ -860,16 +870,22 @@ where $N$ is locally residually finite.  Then $\tau_G$ is amenable.
 \end{proposition}
 
 \begin{proof}
-Write an element of $N\rtimes_\beta\mathbb Z$ as $(x,k)$ and call $k$ its
-height, and write $t=(1,1)$.  Fix a finite set $F\subseteq G$ and the finite
-level window $I_L=\{0,\ldots,L-1\}$.  Moving the elements of $F$ past the
-powers $t^j$ for $j\in I_L$ produces finitely many normal coordinates.
-Let $N_{F,L}\leq N$ be the subgroup that they generate.  It is residually
-finite, so there is a finite quotient
+Write $g=x_gt^{k_g}$, where $x_g\in N$, $k_g\in\mathbb Z$, and
+$t=(1,1)$, so $txt^{-1}=\beta(x)$ for $x\in N$.  Call $k_g$ the height
+of $g$.  Fix a finite set $F\subseteq G$ and a positive integer $L$, and
+put $I_L=\{0,\ldots,L-1\}$.  Define
+\[
+ a_{g,j}=t^{-(j+k_g)}gt^j=\beta^{-(j+k_g)}(x_g)\in N,
+ \qquad g\in F,\quad j\in I_L,
+\]
+and put $N_{F,L}=\langle a_{g,j}:g\in F,\ j\in I_L\rangle$.
+This finitely generated subgroup of $N$ is residually finite.  Taking a
+finite product of separating quotients, and restricting to its image,
+gives a finite quotient
 \[
  \theta_{F,L}\colon N_{F,L}\longrightarrow Q_{F,L}
 \]
-that separates every nonidentity coordinate in this finite collection.  Let
+that separates every nonidentity $a_{g,j}$.  Let
 $H_{F,L}\leq G$ be the image of $\ker\theta_{F,L}\leq N_{F,L}$ under the
 inclusion $N\hookrightarrow G$.  Choose a representative $r_q\in N_{F,L}$
 for each $q\in Q_{F,L}$ and set
@@ -885,6 +901,13 @@ $P_{F,L}$ be the projection onto $\ell^2(S_{F,L})$.  Put
  \qquad(b\in C^*_{\max}(G)).
 \]
 This map is u.c.p., being the compression of a unitary representation.
+For $g\in F$ and $j+k_g\in I_L$, the action satisfies
+\[
+ g(t^jr_qH_{F,L})
+ =t^{j+k_g}a_{g,j}r_qH_{F,L}
+ =t^{j+k_g}r_{\theta_{F,L}(a_{g,j})q}H_{F,L}.
+\]
+Thus the image stays in $S_{F,L}$ exactly when its height stays in $I_L$.
 
 Let $u_g$ denote the canonical unitary of $g$.  For $g,h\in F$, the two
 operators $\phi_{F,L}(u_{gh})$ and
@@ -892,29 +915,37 @@ $\phi_{F,L}(u_g)\phi_{F,L}(u_h)$ agree on the basis vector indexed by
 $s\in S_{F,L}$ whenever $h\cdot s$ remains in the window.  The escaping
 vectors lie over the boundary levels
 \[
- \partial_{k(h)}I_L
- =\{j\in I_L:j+k(h)\notin I_L\}.
+ \partial_{k_h}I_L
+ =\{j\in I_L:j+k_h\notin I_L\}.
 \]
-The quotient coordinate contributes the same multiplicity above every
-level, and therefore
+On an escaping vector the compressed product is zero, while the directly
+compressed permutation has norm at most one.  Each level has
+$|Q_{F,L}|$ basis vectors, so the normalized squared Hilbert--Schmidt
+norm satisfies
 \[
  \hsnorm{\phi_{F,L}(u_{gh})-
    \phi_{F,L}(u_g)\phi_{F,L}(u_h)}^2
- \leq \frac{|\partial_{k(h)}I_L|}{|I_L|}.
+ \leq \frac{|\partial_{k_h}I_L|}{|I_L|}
+ \leq \frac{|k_h|}{L}.
 \]
 For fixed $h$ the right-hand side tends to zero as $L\to\infty$.
 
 The normalized trace of $\phi_{F,L}(u_g)$ counts the points of the finite
 window fixed by $g$.  If $g$ fixed $wH_{F,L}$, then
-$w^{-1}gw\in H_{F,L}\leq N$, and hence $k(g)=0$.  Thus a nonzero-height
-element fixes no selected coset.  If $k(g)=0$ and $g\ne1$, fixing the coset
-at level $j$ would put its nontrivial normal coordinate at that level in
-$\ker\theta_{F,L}$, contrary to the choice of the quotient.  Thus
+$w^{-1}gw\in H_{F,L}\leq N$, and hence $k_g=0$.  Thus a nonzero-height
+element fixes no selected coset.  If $g\in F\setminus\{1\}$ and $k_g=0$,
+fixing $t^jr_qH_{F,L}$ would give
 \[
- \operatorname{tr}(\phi_{F,L}(u_g))=0
+ r_q^{-1}a_{g,j}r_q\in H_{F,L}.
+\]
+Since $H_{F,L}=\ker\theta_{F,L}$ is normal in $N_{F,L}$ and
+$r_q\in N_{F,L}$, this implies $a_{g,j}\in\ker\theta_{F,L}$.
+But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.  Thus
+\[
+ \tr_{L|Q_{F,L}|}(\phi_{F,L}(u_g))=0
  \quad(g\in F\setminus\{1\}),
  \qquad
- \operatorname{tr}(\phi_{F,L}(1))=1.
+ \tr_{L|Q_{F,L}|}(\phi_{F,L}(1))=1.
 \]
 Take an exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ and a diagonal
 choice $L_n\to\infty$.  The maps $\phi_{F_n,L_n}$ are asymptotically
@@ -942,7 +973,33 @@ for $x\in X$, with relations
  \varepsilon^2=c_x^2=1,\qquad [\varepsilon,c_x]=1,\qquad
  [c_x,c_y]=\varepsilon\quad(x\ne y).
 \]
-The permutation action of $V$ on $X$ acts on these lamps, and the
+To see that $\varepsilon$ survives these relations, fix a total order on
+$X$ and put $E=\F_2^{(X)}$, the finitely supported functions on $X$.
+Define a multiplication on $\F_2\times E$ by
+\[
+ (a,f)(b,g)=\left(a+b+B(f,g),\ f+g\right),
+ \qquad B(f,g)=\sum_{x>y}f(x)g(y).
+\]
+The sum is finite, and bilinearity gives
+$B(f,g)+B(f+g,h)=B(g,h)+B(f,g+h)$, proving associativity.
+The identity is $(0,0)$ and the inverse of $(a,f)$ is
+$(a+B(f,f),f)$.  The elements $(1,0)$ and $(0,\delta_x)$ satisfy the
+displayed relations: they are involutions, $(1,0)$ is central, and the
+commutator of two distinct $(0,\delta_x)$ is $(1,0)$.  Hence the assignments
+$\varepsilon\mapsto(1,0)$ and $c_x\mapsto(0,\delta_x)$ define a
+homomorphism from the presented group, proving $\varepsilon\ne1$.
+Reordering words gives forms
+\[
+ \varepsilon^a c_{x_1}\cdots c_{x_r},
+ \qquad a\in\F_2,\quad x_1<\cdots<x_r,
+\]
+whose images are $(a,\delta_{x_1}+\cdots+\delta_{x_r})$; thus these forms
+are unique.  In particular, the subgroup generated by $\varepsilon$ and
+the lamps on a finite set $Y$ has order $2^{|Y|+1}$, so
+$\operatorname{Cl}(X)$ is locally finite and countable.
+Every permutation of $X$ preserves the symmetric presentation and
+therefore induces an automorphism fixing $\varepsilon$.  In particular,
+the permutation action of $V$ on $X$ acts on these lamps, and the
 affine--Clifford witness is
 \begin{equation}\label{eq:affine-clifford-witness}
  W=\operatorname{Cl}(X)\rtimes V.
@@ -999,7 +1056,8 @@ $[\Gamma:\alpha(\Gamma)]<\infty$.  Then
  W\cong K\rtimes\mathbb Z,
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
 \]
-where $K$ is locally residually finite.  Consequently the canonical trace on
+where $K$ is locally residually finite.  Consequently $W$ is sofic but not
+MF, and the canonical trace on
 $C^*_{\max}(W)$ is amenable and not quasidiagonal.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}
@@ -1014,8 +1072,6 @@ Reassociating the semidirect products yields
  W\cong K\rtimes\mathbb Z,
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
 \]
-The group $K$ is locally residually finite
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}.
 For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
 copy of $\Gamma$ in $T_\alpha$.  Successive telescope copies have finite
 relative index because $[\Gamma:\alpha(\Gamma)]<\infty$, so all the
@@ -1032,8 +1088,8 @@ the original finite subset is contained in
 \[
  C_Y\rtimes\Gamma_n,
 \]
-where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the displayed
-presentation of $\operatorname{Cl}(X)$.  This semidirect product is
+where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the
+normal form above.  This semidirect product is
 residually finite.  Indeed, an element with nontrivial $\Gamma_n$-component
 survives in a finite quotient of $\Gamma_n$.  For a nontrivial element of
 $C_Y$, let $J$ be the kernel of the action
@@ -1042,6 +1098,11 @@ and the finite semidirect product $C_Y\rtimes(\Gamma_n/J)$ retains that
 element.  Therefore every finitely generated subgroup of $K$ is residually
 finite.
 
+Each finitely generated subgroup of $K$ is residually finite and hence
+sofic.  The group $K$ is their directed union, and $W/K\cong\mathbb Z$
+is amenable.  Soficity passes to directed unions and to extensions with
+amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
+Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
 Proposition~\ref{prop:locally-rf-by-z-trace} now makes the canonical trace
 amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it
 nonquasidiagonal.
@@ -1072,6 +1133,25 @@ They generate
   \right\}
  \cong\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z).
 \]
+Indeed, the three linear blocks have determinant one.  Using one-based
+indices on these $3\times3$ blocks, direct multiplication gives
+\[
+ T:=y^{-1}xz\,y^{-1}x^{-1}=e_{12}(1),\qquad
+ xTx^{-1}=e_{31}(1),\qquad x^{-1}Tx=e_{23}(1).
+\]
+Here the block matrices are identified with their affine embeddings.
+The commutator identities
+\[
+ \begin{aligned}
+ [e_{12}(1),e_{23}(1)]&=e_{13}(1),\\
+ [e_{23}(1),e_{31}(1)]&=e_{21}(1),\\
+ [e_{31}(1),e_{12}(1)]&=e_{32}(1)
+ \end{aligned}
+\]
+give all remaining elementary directions.  Powers give $e_{ij}(m)$ for
+every $m\in\mathbb Z$, and integer row reduction shows that these generate
+$\mathrm{SL}_3(\mathbb Z)$.  The $v_i$ generate the translation lattice,
+proving the asserted equality.
 It is residually finite and has property~\textup{(T)}.  The first assertion
 follows because reduction modulo a suitable integer separates any two
 distinct integral matrices.  The second is the standard property~\textup{(T)}
@@ -1094,18 +1174,16 @@ this $\bar\Gamma$, $\alpha$ and $a$.
 
 \begin{corollary}[the affine--Clifford trace]
 \label{cor:affine-clifford-trace}
-The canonical trace $\tau_W$ on $C^*_{\max}(W)$ is amenable but not
+The affine--Clifford group $W$ is sofic but not MF.  Its canonical trace
+$\tau_W$ on $C^*_{\max}(W)$ is amenable but not
 quasidiagonal.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
 \leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
 \end{corollary}
 
 \begin{proof}
-The decomposition $W\cong K\rtimes\mathbb Z$ and local residual finiteness of
-$K$ imply that $\tau_W$ is amenable by
-Proposition~\ref{prop:locally-rf-by-z-trace}.  Since $W$ is not MF,
-Theorem~\ref{thm:factorization-nonmf-trace} implies that $\tau_W$ is not
-quasidiagonal.
+The verified properties of $\bar\Gamma$ and $\alpha$ meet the hypotheses
+of Proposition~\ref{prop:clifford-locally-rf}, which gives every assertion.
 \end{proof}
 
 \section{A torsion-free finitely presented example}
@@ -1193,18 +1271,17 @@ finitely presented, torsion-free, and acylindrically hyperbolic,
 $\varphi(N)=Q$, and $\varphi(s)\ne1$.  The group $Q$ has
 property~\textup{(T)} as a quotient of $G_0$.
 
-Let $r\colon Q\to M$ be a homomorphism to an MF group with image $\bar G$,
-and put $\rho=r\circ\varphi$.  Since $\varphi(N)=Q$, the normal closure of
-$\rho(S)$ in $\bar G$ is $\rho(N)=\bar G$, and by
-Lemma~\ref{lem:commutator-in-defect} it lies in the normal subgroup
-$\mathfrak D_{\bar G}(\rho(\Gamma))$, so $\mathfrak D_{\bar G}(\rho(\Gamma))=\bar G$.
-The group $\bar G$ has property~\textup{(T)} as a quotient of $Q$, and
-$\rho(\Gamma)$ has property~\textup{(T)} as a quotient of $\Gamma$.
-Theorem~\ref{thm:compression-criterion}, applied to $\bar G$ with the
-subgroup $\rho(\Gamma)$ and $K=\bar G$, makes every homomorphism from
-$\bar G$ to an MF group trivial.  But $\bar G$ is a subgroup of the MF
-group $M$, so it is MF, and its identity map is such a homomorphism.  So
-$\bar G=1$, and $r$ is trivial.  A homomorphism from a quotient of $Q$
+Lemma~\ref{lem:commutator-in-defect}, applied directly to $\varphi$, gives
+$\varphi(S)\le\mathfrak D_Q(\varphi(\Gamma))$.  This defect subgroup is
+normal in $Q$, and the normal closure of $\varphi(S)$ is $\varphi(N)=Q$.
+Hence
+\[
+ \mathfrak D_Q(\varphi(\Gamma))=Q.
+\]
+Both $Q$ and $\varphi(\Gamma)$ have property~\textup{(T)}, as quotients of
+$G_0$ and $\Gamma$, respectively.  The final clause of
+Theorem~\ref{thm:compression-criterion} therefore makes every homomorphism
+from $Q$ to an MF group trivial.  A homomorphism from a quotient of $Q$
 composes to one from $Q$, so no nontrivial quotient of $Q$ is MF\@.
 \end{proof}
 
@@ -1222,6 +1299,10 @@ and matrix norms.
 Large language models were used extensively in mathematical exploration,
 proof development, manuscript drafting, literature navigation, Lean
 formalization, and editorial revision.
+The source markers link selected statements to Lean declarations; they
+do not certify every proof in this revision.  No fresh comprehensive Lean
+build or dependency audit is claimed here, and the cited literature
+remains an external input.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}
@@ -1279,16 +1360,17 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
 
-\bibitem[Ec]{Eckhardt}
-C.~Eckhardt,
-\emph{Non-MF groups and non-finite full group $C^*$-algebras},
-preprint, 2026.
-
 \bibitem[EJZ]{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
 \emph{Property~\textup{(T)} for noncommutative universal lattices},
 Invent. Math. \textbf{179} (2010), 303--347,
 \doi{10.1007/s00222-009-0218-2}.
+
+\bibitem[ES]{ElekSzabo}
+G.~Elek and E.~Szab\'o,
+\emph{On sofic groups},
+preprint, 2003,
+\href{https://arxiv.org/abs/math/0305352}{arXiv:math/0305352}.
 
 \bibitem[FF]{FFF}
 F.~Fournier-Facio,
