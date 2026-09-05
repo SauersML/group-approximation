@@ -75,16 +75,14 @@ theorem kronOfCocycle_add (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
     kronOfCocycle R X n (φ + ψ) hs
       = kronOfCocycle R X n φ hφ + kronOfCocycle R X n ψ hψ := by
   apply (cancel_epi ((chainCx R X).homologyπ n)).mp
-  rw [homologyπ_kronOfCocycle, Preadditive.comp_add, homologyπ_kronOfCocycle,
-    homologyπ_kronOfCocycle, Preadditive.comp_add]
+  simp only [homologyπ_kronOfCocycle, Preadditive.comp_add]
 
 theorem kronOfCocycle_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s : R)
     (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ)
     (hs : IsCocycle R X n (s • φ)) :
     kronOfCocycle R X n (s • φ) hs = s • kronOfCocycle R X n φ hφ := by
   apply (cancel_epi ((chainCx R X).homologyπ n)).mp
-  rw [homologyπ_kronOfCocycle, Linear.comp_smul, homologyπ_kronOfCocycle,
-    Linear.comp_smul]
+  simp only [homologyπ_kronOfCocycle, Linear.comp_smul]
 
 /-- **A coboundary pairs to zero.** This is what makes the Kronecker map descend
 to cohomology classes. -/
