@@ -1844,3 +1844,90 @@ Both clean.  The 1219-dangling-import window on main lasted roughly one hour.
 
 Orphans excluding the untracked FLT tree: **305**.  Gates unchanged at 36 and
 136.  Real concurrent builds, using the corrected predicate: **1**.
+
+## Sweep 19, 2026-09-05 — the fork is one space wide, and the K-theory layer passes
+
+### Narrowing sweep 17: `S⁴` was never forked
+
+`lix-design` supplied a fact this file's report omitted, and it changes the
+framing rather than the finding.  In the same file, one line above `sphereFive`:
+
+```lean
+abbrev sphereFour : Set (EuclideanSpace ℝ (Fin 5)) := Metric.sphere 0 1     -- :114
+abbrev sphereFive : Set (Fin 3 → ℂ)               := unitVectors (Fin 3)    -- :117
+```
+
+and `SphereOddDegree.Sphere n := ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n+1))) 1)`.
+Checked directly: `Fin (4+1)` reduces to `Fin 5`, so **`↥sphereFour` is
+definitionally `Sphere 4`**.
+
+So `lix-spaces` did **not** adopt a rival sphere convention.  `S⁴` is already on
+the cohomology model; only `S⁵` diverged, and it diverged for a substantive
+reason — `F(x) = 1 − x xᴴ` needs `x` to be a complex vector.  Sweep 17's finding
+stands; its framing was one space too wide, and the corrected version is that
+this is a one-space bridge problem, not a two-model architecture.
+
+### Ruling accepted, and the invariant that makes it auditable
+
+`lix-design` rules **bridge, do not unify**, and the reasoning is right for a
+reason worth recording: cohomology is a homotopy functor, so every cohomology
+fact transports across a homeomorphism for free, whereas `1 − x xᴴ` transports
+across nothing and would need rewriting at every use site.  Bridging puts one
+conversion at a handful of joins; unifying puts one at every occurrence of `F`,
+`hopfCol` and every block projection, permanently.
+
+The bridge is also cheaper than this file costed it.  `realToComplex`
+(`Topology/OddMapNormalization.lean:80`) is already the right map at `n = 2`
+— `EuclideanSpace ℝ (Fin 6) → (Fin 3 → ℂ)` — with continuity and injectivity
+proved.  What is missing is (a) `∑ i, ‖realToComplex 2 x i‖² = ‖x‖²`, which is
+`Complex.sq_abs` plus a reindex over the even/odd pair and is exactly the
+equation `unitVectors (Fin 3)` is defined by; (b) surjectivity, immediate from
+(a); (c) the homeomorphism, which needs **no inverse construction** —
+`Continuous.homeoOfEquivCompactToT2`, with `sphereFive.instCompactSpace`
+(`LIXBlockProjections.lean:119`) already in the tree.
+
+**The auditable invariant, now a standing row in this file.**  A bridge alone
+only defers the failure mode: both halves still compile green about different
+spaces until someone remembers to transport.  The discipline that closes it is
+
+> every cohomology fact consumed on the C\*-side must be **stated over
+> `sphereFive`**, obtained once from its `Sphere 5` counterpart through the
+> bridge; `Topology/SphereModelBridge.lean` must be the **only** LIX-side
+> module importing `SphereOddDegree`.
+
+**Baseline, measured now: the invariant HOLDS.**  Zero modules among
+`Analysis/LIX*`, `Analysis/CStarKOne*` and `KTheory/*` import `SphereOddDegree`.
+The bridge itself does not exist yet — no `Topology/SphereModelBridge.lean`, no
+`sphereFiveHomeoSphere` anywhere in the corpus.  A second LIX-side importer
+appearing is the signal that someone is transporting ad hoc, and this file will
+flag it by name.
+
+### The K-theory layer passes the genericity check — the first layer that does
+
+The instantiation column asked whether a foundation API can actually be applied
+to the campaign's concrete objects.  Its dual is whether the API has been
+contaminated *by* them.  `lix-design` raised the worry that `KOne` may already
+be shaped by the counterexample.  Measured, across every declaration in
+`Analysis/{CStarKOne, CStarKOneInjectivityCriterion, CStarUnitaryComponent,
+SequentialGroupColimit}.lean` and `KTheory/{Basic, BlockMoves, Functorial,
+MatrixProjection}.lean`, searching for `sphereFive`, `sphereFour`, `hopfCol`,
+`stageRank`, `LIX`, `antipodal`, `cpSet`, `CP`, `STW59`:
+
+**Zero counterexample-specific names in any declaration.**  The single textual
+hit is a docstring line in `CStarKOneInjectivityCriterion.lean:18` — *"This is
+the load-bearing reduction for STW Problem LIX"* — which is prose, not a
+dependency.  The import graph corroborates it: `CStarUnitaryComponent` and
+`SequentialGroupColimit` import **only Mathlib**, and the `KTheory/*` chain
+reaches nothing outside itself and `FiniteCStarMurrayVonNeumann`.
+
+So `K1Injective`, `KOne`, `kappa` and the refutation criterion are generic
+statements about an arbitrary unital C\*-algebra, exactly as
+`metadata/THREE_TARGETS_STATUS.md`'s pre-registered check 4 required, and the
+worry is unfounded.  Recorded as a pass because this file has spent nineteen
+sweeps recording failures and a layer that is clean deserves the same
+precision.
+
+**`ProblemLIX` still does not exist.**  `grep` over the corpus returns nothing.
+It is a gating requirement on `ktheory-k1`, and target 3 stays NOT-YET-STATED
+until it lands — over Mathlib's `unitary` and `Subgroup.pathComponentOne` plus
+a generic `KOne`, before anything is proved about it.
