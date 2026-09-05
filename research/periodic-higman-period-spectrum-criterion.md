@@ -22,3 +22,9 @@ G_m is word-hyperbolic and not residually finite.       (PH3)
 
 Here `G_m=M_phi/<<t^m>>`, with `M_phi` the mapping torus in
 `periodic-higman-mapping-torus-is-word-hyperbolic`.
+
+The conditional implication remains valid, but its missing-period
+hypothesis fails for every `m>=2`: the 2026-09-05 result
+`periodic-higman-spectrum-contains-every-prime` puts a prime divisor of
+every such `m` in `Sigma`. Thus this criterion cannot supply a filling
+with the proposed residual-finiteness obstruction.

@@ -31,9 +31,11 @@ the image of `t` has exact order `n`.
 This is a restriction on the proposed missing-period construction of a
 non-residually-finite hyperbolic group. It is **not** a solution of Gromov's
 question, and it does **not** prove that any `G_n` is residually finite.
-The fixed-threshold claim `periodic-higman-large-prime-period-gap` remains
-open: a missing prime between its threshold `m_0` and `B_*` has not been
-excluded by this argument. The bound is deliberately conservative.
+This argument alone does not exclude a missing prime between the filling
+threshold `m_0` and `B_*`. The subsequent
+[all-primes proof](periodic-higman-all-primes-2026-09-05.md) excludes that
+entire interval and refutes `periodic-higman-large-prime-period-gap`.
+The bound here is deliberately conservative.
 
 ## 1. An exact algebraic matrix certificate
 
@@ -188,11 +190,10 @@ belongs to `Sigma` and divides `m`. The stronger conclusion above also
 shows directly that these finite quotients detect the proposed base mark
 `x_0`.
 
-A witness to `periodic-higman-large-prime-period-gap`, if one exists, must
-therefore lie in the finite interval `[m_0,B_*]`. No search of that entire
-interval is claimed. If a filling threshold is enlarged beyond `B_*`, the
-missing-prime assertion for that enlarged threshold is false; this does
-not refute the assertion for a smaller, already fixed threshold.
+At this stage a witness to `periodic-higman-large-prime-period-gap` would
+have to lie in the finite interval `[m_0,B_*]`. The later all-primes proof
+eliminates that interval by rigorous estimates and exact certificates.
+Cofinite membership alone would not have justified that stronger conclusion.
 
 Detecting four individual generators is insufficient to prove residual
 finiteness, which requires detecting every nonidentity element. No new

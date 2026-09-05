@@ -23,3 +23,6 @@ reduces to one.
 
 All matrices and the defining degree-five polynomial over `Z[i]` are
 explicit in Sections 1–2 of the artifact.
+The cyclic matrix equations already hold over the universal ring
+`Z[i,1/2,L]/(P)`, so they specialize at any root of `P` in any field
+of odd characteristic, with the displayed inverse for `L`.

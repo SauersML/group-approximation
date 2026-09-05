@@ -21,6 +21,7 @@ each of `x_0,x_1,x_2,x_3` as a nonidentity element, with the stable letter
 having exact order `n`.
 
 Consequently the missing-period criterion cannot apply at any `m>B_*`.
-This does not assert that `G_n` is residually finite. It leaves open the
-possibility of missing primes in the finite interval from the fixed
-filling threshold `m_0` to `B_*`.
+This does not assert that `G_n` is residually finite. By itself this bound
+leaves a finite interval from the filling threshold `m_0` to `B_*` to
+consider. The later `periodic-higman-spectrum-contains-every-prime` theorem
+excludes missing primes in that interval as well.
