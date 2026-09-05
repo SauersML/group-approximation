@@ -207,9 +207,12 @@ lemma amMap_comm {A : ModuleCat.{0} Λ} (hF : FreeOnModels M Λ F)
               (((F.obj (M (hF.mdl (k + 2) b))).d (k + 2) (k + 1)).hom (hF.gen (k + 2) b)))
             (ih (M (hF.mdl (k + 2) b)))
           simp only [ModuleCat.hom_comp, LinearMap.comp_apply] at h1
-          rw [h1, ← LinearMap.comp_apply, ← ModuleCat.hom_comp,
-            HomologicalComplex.d_comp_d, ModuleCat.hom_zero, LinearMap.zero_apply,
-            map_zero]
+          have hdd : ((F.obj (M (hF.mdl (k + 2) b))).d (k + 1) k).hom
+              (((F.obj (M (hF.mdl (k + 2) b))).d (k + 2) (k + 1)).hom
+                (hF.gen (k + 2) b)) = 0 := by
+            rw [← LinearMap.comp_apply, ← ModuleCat.hom_comp,
+              HomologicalComplex.d_comp_d, ModuleCat.hom_zero, LinearMap.zero_apply]
+          rw [h1, hdd, map_zero]
         obtain ⟨z, hz⟩ := hG.exists_preimage (hF.mdl (k + 2) b) k _ hcyc
         rw [cmElt_succ]
         exact pickPreimage_spec _ _ ⟨z, hz⟩
