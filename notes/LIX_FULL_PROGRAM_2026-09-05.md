@@ -425,6 +425,8 @@ from completeness), so its closure is a proper closed ideal.
 |---|---|
 | program note, probe helper, base clone | 2026-09-05 18:10 EDT: base clone `cc_clones/_base` complete (12 min cp -al), marker set |
 | every lane | launched 18:05 EDT, see `notes/lix-lane-reports/` |
+| 18:52 EDT Opus session limit | all fifteen Opus lanes stopped; snapshot 292620dfd; every lane relaunched on Sonnet 5 at 19:33 EDT as `<lane>-s`, same files, same clones, same rules; Opus agents resume after 22:40 EDT |
+| root: `CStarSimple` + `ProblemLIX` wired | 19:05 EDT, commit 1b4a37c25 (green at 2999 jobs; `#audit_axioms` report the three classical axioms) |
 | cc-thom phase 1 | GREEN, nine modules, 2911 jobs (19:00 EDT); Step C assembled over a `CohomologyToolkit` awaiting MV/Künneth/relative/LH instantiation |
 | root: K₁ layer + endpoint statement wired | 18:50 EDT, commit fa15b619f (ten modules, cs-endpoint green at 2996 jobs); `LIXEndpointStatement` built in the root build |
 | root build state | RED on four GGT modules (`HullSCLemma44EmbeddedCertificate` → `…RelativeDehn`, `…CertificateInjectivity`, `HullSCLemma49Correction`), broken since 06:47 by the WIP commit `fadb6fd6d` (boundary-cycle rotation); NOT LIX; lane `ggt-repair` (Opus) assigned 18:55 |
