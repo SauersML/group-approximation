@@ -68,13 +68,21 @@ contain **zero** occurrences of the counterexample's vocabulary
   `CStarMat` / `Matrix` seam.
 * `Analysis/LIXEndpointStatement.lean` — `HasK1InjWitness` and
   `not_k1Inj_of_hasWitness` added.
-* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — **landed**, statement half:
-  `ProblemLIX` and `not_problemLIX_of_exists`, with `#audit_axioms` on both.
-  The endpoint deliberately lands before anything is proved about it (route
-  design §C.7).  `exists_simple_unital_not_k1Inj` and `not_problemLIX` wait on
-  `cs-limit`'s algebra; nothing in the file asserts `ProblemLIX` is false, and
-  `not_problemLIX_of_exists` carries `#audit_axioms`, not
-  `#audit_closed_axioms`, because it has a leading input.
+* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — **landed**, three
+  declarations, each with an `#audit_axioms` line:
+  * `ProblemLIX`, the statement, landed before anything is proved about it
+    (route design §C.7);
+  * `exists_simple_unital_not_k1Inj_of`, the assembly against hypotheses — one
+    algebra plus its nontriviality, simplicity and `HasK1InjWitness` gives the
+    existential;
+  * `not_problemLIX_of_exists`, the existential to the negation of the printed
+    universal.
+
+  Between them there is no mathematics left, only an application, so the join
+  is two lines.  Nothing in the file asserts `ProblemLIX` is false: all three
+  carry `#audit_axioms` rather than `#audit_closed_axioms`, because each has a
+  leading input.  Not yet compiled — it imports `Analysis/CStarSimple`, which
+  is red.
 
 `cs-simplicity`'s `Analysis/CStarSimple.lean` landed with exactly the shape
 asked for below — `[CStarAlgebra A]` only, closed two-sided ideals, no
