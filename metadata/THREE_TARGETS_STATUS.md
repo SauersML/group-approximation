@@ -880,3 +880,76 @@ It is the fallback statement.  If Bott stalls, the honest output reverts to
 revision 1's — "LIX reduces to one sentence about two explicit projections" —
 and that sentence should still exist when it is needed.  A withdrawn residue
 that nobody can quote is worse to audit than a named one.
+
+## Sweep 8, 2026-09-05 — Problem 2B gets its vocabulary, but not yet its theorem
+
+`e09ad4f4d` lands `GroupApproximation/Analysis/TraciallyCompleteCStar.lean`,
+552 lines, in direct response to Problem 2B.  The definitions are faithful and
+this lane has no complaint about any of them:
+
+```lean
+structure IsTraciallyCompletePair (X : Set (TracialState A)) : Prop where   -- CCEGSTW Def 3.4
+  nonempty : X.Nonempty
+  isCompact : IsCompact X
+  isConvex : IsConvexTraceSet X
+  faithful : IsFaithfulTraceSet X
+  unitBallComplete : UnitBallUniformTwoComplete X
+
+structure IsFactorialTraciallyCompletePair (X : Set (TracialState A)) : Prop where  -- Def 3.13
+  toIsTraciallyCompletePair : IsTraciallyCompletePair X
+  isClosed : IsClosed X
+  isFace : IsFaceTraceSet X
+```
+
+Three details are right in the way that distinguishes a transcription from a
+paraphrase.  `IsFaceTraceSet`'s second field quantifies over a **proper**
+convex combination (`0 < t < 1`, not `0 ≤ t ≤ 1`), which is the real face
+condition and not the weakening a hurried reading produces.  The paper's
+implicit nonemptiness is made an explicit field rather than inherited.  And
+both forms of Question 1.1 are present — `AllTracesUniformTwoContinuous` and
+`DesignatedTracesAreAllTraces` — with
+`allTracesUniformTwoContinuous_iff_designatedTracesAreAllTraces` connecting
+them under the CCEGSTW Proposition 3.15 hypothesis.
+
+**Problem 2B is nevertheless still open, and the distinction is the campaign's
+whole subject.**  Defining factoriality and instantiating it are different
+acts.  Grepping both `STW22NegativeSolution.lean` and
+`STW22ConditionalNegativeSolution.lean` for `IsFactorialTraciallyCompletePair`
+and `AllTracesUniformTwoContinuous` returns nothing: the endpoint is unchanged,
+its ten conjuncts still do not include factoriality, and its name still
+promises more than its type delivers.  What is needed is a theorem
+`IsFactorialTraciallyCompletePair (the antipodal designated trace set)` **and
+that theorem as a named conjunct of the endpoint**.
+
+Of the six fields to discharge, `isCompact`, `isConvex` and `isClosed` look
+free from what is already proved (`antipodalWeakStarTraceSimplex` is nonempty
+and Bauer).  `faithful` and `unitBallComplete` are substance.  **`isFace` is
+the one to look at first**, because a closed face is genuinely stronger than a
+compact convex subset, and the prose sentence this lane located at sweep 5
+does not argue it — it argues that the extreme *fibres* are factors, which is a
+different statement, equivalent only through CCEGSTW's own proposition and not
+by inspection.
+
+`TraciallyCompleteCStar` is itself a new orphan (orphan count now **275**), so
+its 552 lines have not been elaborated.  It does join the port-free batch of
+`metadata/CAMPAIGN_WIRING_PREFLIGHT.md` — its imports are
+`UniformTracialGNSTwoGauge` and `TracialStateWeakStarTopology`, the latter
+already at position 32 — so it can be built without waiting on the port.
+
+### Roster integrity, checked
+
+Exactly one commit has touched `scripts/Audit.lean` or
+`metadata/LITERATURE_QUARANTINE.md` since the campaign began (`365a823a5`), and
+it is purely additive: three names appended to `zeroInputEndpoints`, no
+`literaturePackages` entry removed, no roster line deleted.  The quarantine's
+own rule — an entry is retired only by proving it, in the same commit that
+deletes the line — has not been tested, because nothing has been retired.
+
+### Probe in flight
+
+`scripts/remote-build.sh GroupApproximation.Analysis.STW22NegativeSolution`,
+log tag **18285**, launched by this lane; currently queued on the fleet build
+lock.  It is the decisive probe for target 2: it pulls the port and the
+operator-algebra chain together and fires
+`#audit_closed_axioms negativeSolutionToProblemXXII`.  The number to read from
+it is the **job count**, not the verdict.
