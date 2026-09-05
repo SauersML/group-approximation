@@ -451,3 +451,127 @@ which cut the number of independent operations down sharply in this range.
 This does not affect the §2 verdict: the mod-2 route is the cheapest, it is
 proved at stages 1 and 2, and its remaining gap is a finite question about
 binomial coefficients mod 2 rather than a missing theory.
+
+---
+
+## 9. The general tower stage closes
+
+**This section supersedes §8.3's derivation for stage 2 and closes §8.4's gap.**
+§8.3 obtained stage 2 from "`b` is divisible by `h₁⋯h_ℓ`", which needs the
+*full* vanishing `b = 0` over each sub-product — and that is exactly what the
+descent does **not** give (it never determines `b_n` at the failure indices
+`n = 2^k − 3`). The argument below does not need it. It proves the mod-2
+Lemma 3 for **every** stage of the tower, by an induction on the number of
+factors that uses one Wu relation per stage.
+
+### 9.1 Statement
+
+> **Theorem (mod-2 Lemma 3).** Let `J` be a finite set and, for `j ∈ J`, let
+> `d_j` be a power of two. Put `Y = ∏_{j∈J} CP^{d_j}`, `m = Σ_j d_j`,
+> `N = S¹ × S⁵ × Y`. Let `W` be a complex vector bundle on `N`. Write the total
+> mod-2 Chern class as `γ(W) = a + t x b` with `a, b ∈ R = H^*(Y;F₂)`. Then the
+> top-degree component `b_m` of `b` vanishes.
+>
+> In particular, when `W` restricts to `V = 1³ ⊕ H` on a slice and `r = m + 3`,
+> `γ_r(W) = t x b_m = 0`, i.e. `⟨c_r(W), [S¹×M]⟩` is even.
+
+The tower has `d_j = 2^j`, so the hypothesis holds at every stage, and it is
+inherited by every sub-product. Powers of two are what makes
+`(1 + h_j)^{d_j} = 1 + h_j^{d_j}` mod 2 — for a merely even `d_j` this fails
+(e.g. `(1+h)^6 = 1 + h² + h⁴ + h⁶`) and the bookkeeping in 9.3 changes.
+
+### 9.2 Two structural facts
+
+**(F1) Sparsity of `a`.** `a = γ(W|_{{1}×M})`; when `W|` is `V` this is
+`∏_j (1+h_j)^{d_j} = ∏_j (1 + h_j^{d_j})`. Since the `d_j` are distinct powers
+of two, distinct subsets have distinct sums, so
+
+```
+a_q = μ_S  if  Σ_{j∈S} d_j = q  for a (unique) S ⊆ J,      μ_S := ∏_{j∈S} h_j^{d_j},
+a_q = 0    otherwise.
+```
+
+In particular `a_q = 0` for every odd `q`, and `a_0 = 1` (`S = ∅`).
+
+**(F2) Top-degree extraction is restriction to a sub-product.** `R` has
+one-dimensional top degree `2m`, spanned by `μ_J`. For any `k`,
+
+```
+( a_q · b_k )|_{top}  =  Σ_{S : Σ_{j∈S} d_j = q}  ( coefficient of μ_{J∖S} in b_k ).
+```
+
+because `μ_S · ν = μ_J` forces `ν = μ_{J∖S}`. And the coefficient of `μ_{J∖S}`
+in `b` is exactly the **top** coefficient of `b|_{h_j = 0, j ∈ S}`, which is the
+`b` of the restricted bundle `W|_{S¹ × S⁵ × ∏_{j∉S} CP^{d_j}}`. So each summand
+is an instance of the Theorem over a **strictly smaller** sub-product whenever
+`S ≠ ∅`.
+
+### 9.3 Proof
+
+Induction on `|J|`. For `J = ∅`, `Y = pt`, `R = F₂`, and `b = b_0` with
+`γ₃(W) = t x b_0`; §2.1 gives `γ₃(W) = 0`, so `b_0 = 0`.
+
+For `|J| ≥ 1`: every `d_j` is even, so `m` is even and `m ≥ 2`. Take
+
+```
+n = m,        i = m/2 + 1,        j = n + 3 − i = m/2 + 2.
+```
+
+Split the Wu relation for mod-2 Chern classes into its `R`- and `tx`-parts,
+using `Sq(t) = t` and `Sq(x) = x` (both are pulled back from spheres, where all
+positive squares vanish) and the Cartan formula:
+
+```
+Sq^{2i}(b_{n−i}) = Σ_{s=0}^{i} binom(n+2−2i+s, s) · ( a_{i−s} b_{n−i+s} + b_{i−s−3} a_{j+s} ).
+```
+
+Now read off the top-degree component of both sides.
+
+* **The left side is zero, for free.** `b_{n−i} = b_{m/2−1}` has degree `m − 2`,
+  while `2i = m + 2 > m − 2`; the unstable axiom gives `Sq^{2i} = 0` on it.
+  (This is the trick the §8 descent was missing: choosing `i > n/2` kills the
+  left-hand side without knowing anything about `b_{n−i}`.)
+* **The `s = i` term is exactly what we want.** Its coefficient is
+  `binom(n+2−i, i) = binom(m/2+1, m/2+1) = 1`, odd, and the term is
+  `a_0 b_m = b_m`.
+* **Every other term vanishes by induction.** For `s < i` the first summand is
+  `a_{i−s} b_{n−i+s}` with `i − s ≥ 1`, so by (F1) its `a` is `μ_S` with
+  `S ≠ ∅`, and by (F2) its top-degree part is the top `b` of a proper
+  sub-product — zero by the inductive hypothesis. The second summand is
+  `b_{i−s−3} a_{j+s}` with `j + s ≥ j = m/2 + 2 > 0`, so again `S ≠ ∅` and (F2)
+  plus the inductive hypothesis kill it. Degrees match in both cases:
+  `(i−s) + (n−i+s) = m` and `(j+s) + (i−s−3) = i + j − 3 = m`.
+
+Hence `0 = b_m`. ∎
+
+### 9.4 Checks
+
+* **`J = {1}`, `Y = CP^d`, `d` a power of two.** `i = d/2 + 1`,
+  `LHS = Sq^{d+2}(b_{d/2−1}) = 0` by degree; `a_q ≠ 0` only for `q ∈ {0, d}`, and
+  the surviving non-target terms reduce to `b_0`, which is `0`. So `b_d = 0`.
+  For `d = 2` this is §2.2; for `d = 4` it is the relation `b_4 = Sq⁶(b_1) = 0`,
+  where `Sq⁶` annihilates a degree-2 class.
+* **`J = {1,2}`, `Y = CP² × CP⁴`** (tower stage 2, `m = 6`, `r = 9`).
+  `i = 4`, `j = 5`, all `binom(s, s) = 1`. `LHS = Sq⁸(b_2) = 0` (degree 4).
+  Surviving terms: `a_4 b_2` and `a_2 b_4`, whose top-degree parts are the top
+  `b` of `CP²` and of `CP⁴` respectively — both zero by the `|J| = 1` case. So
+  `b_6 = 0`. (Direct computation agrees: `Sq⁴` sends both of `h₁h₂³`, `h₁²h₂²`
+  to `h₁²h₂⁴`, and the `h₂⁴` coefficient of `b_4` is the `CP⁴` top coefficient.)
+
+### 9.5 Consequence
+
+With §9 the mod-2 route needs no K-theory, no Bott periodicity, no Chern
+character, no integral Künneth, **and no case analysis on binomial
+coefficients** — one Wu relation per stage, at `i = m/2 + 1`, plus the `Y = pt`
+base case of §2.1 and the restriction maps to sub-products. The Lean
+foundation it needs is exactly:
+
+1. mod-2 singular cohomology with cup products (**in the repo**), and the rings
+   `H^*(CP^d;F₂)`, `H^*(S¹×S⁵×Y;F₂)`;
+2. Steenrod squares with the Cartan formula, the unstable axiom `Sq^k = 0` above
+   the degree, `Sq^n x = x²` in degree `n`, and `Sq¹ = 0` on integral
+   reductions;
+3. mod-2 Chern classes with Whitney sum and the splitting principle, and the Wu
+   relation extracted from `Sq(γ) = ∏(1 + y + y²)`;
+4. the mod-2 Euler class (top mod-2 Chern class obstructs a nowhere-zero
+   section) and the explicit single transverse zero of §2.3.
