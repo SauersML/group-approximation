@@ -575,3 +575,41 @@ foundation it needs is exactly:
    relation extracted from `Sq(γ) = ∏(1 + y + y²)`;
 4. the mod-2 Euler class (top mod-2 Chern class obstructs a nowhere-zero
    section) and the explicit single transverse zero of §2.3.
+
+### 9.6 Correction to the statement of 9.1
+
+**§9.1 as written is too strong and must be read with the hypothesis below.**
+It says "let `W` be a complex vector bundle on `N`", with no condition on `W`.
+That is wrong: the proof uses (F1), the sparsity of `a`, and `a` is
+`γ(W|_{{1}×M})` — for an arbitrary `W` it is an arbitrary element of `R` and
+(F2) no longer produces top classes of sub-products. The correct statement is:
+
+> **Theorem (mod-2 Lemma 3), corrected.** Let `J` be finite and let each `d_j`
+> (`j ∈ J`) be a power of two. Put `Y = ∏_{j∈J} CP^{d_j}`, `m = Σ_j d_j`,
+> `M = S⁵ × Y`, `N = S¹ × M`. Let `W` be a complex vector bundle on `N` whose
+> restriction to the slice `{1} × M` has total mod-2 Chern class
+> `∏_j (1 + h_j^{d_j})` — for instance `W|_{{1}×M} ≅ 1^k ⊕ ⨁_j L_j^{⊕ d_j}` for
+> any `k`, which is the manuscript's `V = 1³ ⊕ H`. Write
+> `γ(W) = a + t x b` with `a, b ∈ R = H^*(Y;F₂)`. Then the degree-`2m`
+> component `b_m` of `b` vanishes; equivalently, when `r = m + 3`,
+> `γ_r(W) = 0` and `⟨c_r(W), [N]⟩` is even.
+
+Nothing in §9.2 or §9.3 changes. The hypothesis **is inherited by the
+induction**: restricting to `S¹ × S⁵ × ∏_{j∉S} CP^{d_j}` sets `h_j = 0` for
+`j ∈ S`, so the slice class becomes `∏_{j∉S}(1 + h_j^{d_j})`, which is the same
+hypothesis for the sub-product. The rank plays no role anywhere — the theorem is
+rank-free, which is what lets the restricted bundle (still of rank `r = m + 3`,
+not `m' + 3`) satisfy the sub-product's statement.
+
+Two further notes, both checked:
+
+* The base case is not a separate argument. Taking `J = ∅` in the general step
+  gives `m = 0`, `i = 1`, `j = 2`, `b_{m/2−1} = b_{−1} = 0`, and every other
+  term has a negative index, so the relation reads `0 = b_0` directly. §2.1 is
+  the same computation spelled out through `H² = H⁴ = 0` on `S¹ × S⁵`.
+* "`d_j` a power of two" is load-bearing, not cosmetic: it is what makes
+  `(1 + h_j)^{d_j} = 1 + h_j^{d_j}` mod 2, hence `a_q` a single squarefree
+  monomial `μ_S`, hence (F2). For a merely even `d_j` — say `d = 6`, where
+  `(1+h)^6 = 1 + h² + h⁴ + h⁶` — `a_q` is a sum of monomials that are not of the
+  form `μ_S`, and the induction does not close. The tower's forced doubling
+  `r_{i+1} = 2 r_i` supplies exactly the powers of two.
