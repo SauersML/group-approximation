@@ -20,6 +20,39 @@ Machine-derived from the actual `import` lines of all 199 `.lean` files under
   - `SphereOddDegree.Basic`
   - `SphereOddDegree.RPnCohomologyRingModel`
 
+- There is a **200th file**, the aggregator `GroupApproximation/ThirdParty/HamSandwich.lean`
+  (a sibling of the directory, so not in the 199 counted above). It has 142 `import`
+  lines whose transitive closure is **exactly all 199** modules. So the single
+  cheapest whole-tree probe is one target:
+  `scripts/remote-build.sh GroupApproximation.ThirdParty.HamSandwich`.
+- The root `GroupApproximation.lean` does **not** import `ThirdParty` at all
+  (3263 imports, zero of them `ThirdParty`), so the tree reaches `lake` only as an
+  explicitly named target or through `scripts/check.py --list-orphans`. It is,
+  however, already imported by ~150 `GroupApproximation/Analysis/STW22*.lean`
+  and `GroupApproximation/Topology/TautologicalAntipodal.lean` files, so building
+  `GroupApproximation.Analysis.STW22NegativeSolution` also builds the tree.
+
+## Lexical pre-flight against mathlib `81a5d257` (clean)
+
+Three checks that do not need the compiler, all run 2026-09-05 and all clean:
+
+- **Imports.** All 50 distinct `import Mathlib.*` lines in the tree resolve to a
+  file that exists at the pin. Zero missing modules.
+- **Deprecated aliases** (build ERRORS here, `-DwarningAsError=true`). Extracted
+  every `@[deprecated ...]`-tagged name at the pin (1992 of them) and intersected
+  with every identifier token in the tree. The only true-positive candidates were
+  `LocPathConnectedSpace` (occurs once, inside a docstring in `CoveringSimplexLift.lean`,
+  so it never elaborates), `Algebra.smul_eq_mul` and `add_neg_cancel` in
+  `AddGroupWithTop` — the tree's bare `smul_eq_mul` / `add_neg_cancel` resolve to the
+  live root lemmas, not to the deprecated namespaced ones. Zero real hits.
+- **Removed names.** Tokenized all of mathlib at the pin (228908 tokens) and every
+  identifier in the tree, and diffed. Every leftover was a tree-local declaration, a
+  local binder (`h_lift`, `hj_pos`, …), or a `.md` roadmap title inside a docstring.
+  No Mathlib lemma referenced by the tree has been deleted.
+
+So no breakage in this tree is lexical: whatever fails will fail at elaboration
+or defeq, which only a build can find.
+
 ## How to use this
 
 `scripts/remote-build.sh <Mod>` builds `<Mod>` and its transitive imports. The
