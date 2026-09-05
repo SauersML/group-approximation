@@ -209,6 +209,7 @@ than editing it.
 | `cs-limit` | `Analysis/LIXLimit*.lean`, `Analysis/LIXFiniteStageNullHomotopy.lean` | the limit `A` (§1.2 item 3) with `ι_i`, density, unitality, nontriviality; Lemma 7 verified; `diag(v,1) ∈ U₀(M₂A)` transport; separability if cheap |
 | `cs-simplicity` | `Analysis/LIXSimplicity.lean`, `Analysis/LIXSimplicityInstance*.lean`, `Analysis/CStarSimple*.lean` | `IsSimpleCStar`, `isSimpleCStar_iff_isSimpleRing`; `LIXSimplicity` verified; fullness for the specific tower; `IsSimpleCStar A` |
 | `cs-clutching` | `Analysis/LIXClutching.lean`, `Analysis/LIXGeneratorUnitary.lean`, `Analysis/LIXObstructionComplementUnitary.lean`, `Analysis/LIXLemmaSix*.lean` | repair to green; `u`, `diag(u,1) ∈ U₀`, the clutched projection of `u ⊕ 1_H` is `F ⊕ H`, `clutchingObstruction_of_equiv`; Step A; Lemma 6 (`v_i ≃ w_i`) |
+| `ggt-repair` | the four red GGT consumers of `fadb6fd6d` | a green root (outside LIX) |
 | `cs-endpoint` | `Analysis/CStarKOne*.lean`, `Analysis/CStarSymmetryComponent.lean`, `Analysis/LIXEndpointStatement.lean`, `Manuscript/NinetyNineProblems/ProblemLIX.lean` | repair `CStarKOne` (noncomputable) to green; `ProblemLIX`, `not_problemLIX`, the assembly; `#audit_closed_axioms` lines; the root wiring proposal (lead wires) |
 
 The lead (this session) wires the root, runs the mutexed full builds, keeps
@@ -424,5 +425,7 @@ from completeness), so its closure is a proper closed ideal.
 |---|---|
 | program note, probe helper, base clone | 2026-09-05 18:10 EDT: base clone `cc_clones/_base` complete (12 min cp -al), marker set |
 | every lane | launched 18:05 EDT, see `notes/lix-lane-reports/` |
+| root: K₁ layer + endpoint statement wired | 18:50 EDT, commit fa15b619f (ten modules, cs-endpoint green at 2996 jobs); `LIXEndpointStatement` built in the root build |
+| root build state | RED on four GGT modules (`HullSCLemma44EmbeddedCertificate` → `…RelativeDehn`, `…CertificateInjectivity`, `HullSCLemma49Correction`), broken since 06:47 by the WIP commit `fadb6fd6d` (boundary-cycle rotation); NOT LIX; lane `ggt-repair` (Opus) assigned 18:55 |
 | root wiring tool | `scratchpad/cc/wire.py closure <modules>` (lead session): topological import order of the not-yet-rooted closure, cycle and dangling checks; corpus clean at 4370 modules |
 | fleet-green modules with no olean | `AlgTop/ManuscriptSectionZeroCount`, `AlgTop/CPTautologicalSection` (now owned by `cc-lix-odd`); `AlgTop/BundleCalculus*`, `AlgTop/ComplexProjective*`, `AlgTop/SingularCohomology`, `CupProduct`, `CupAssoc`, `CrossProduct` (reference only) |
