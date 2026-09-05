@@ -14,6 +14,13 @@ import Mathlib.Tactic.Abel
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Linarith
 
+-- This repository leaves `autoImplicit` on everywhere, so an identifier that resolves to
+-- nothing silently auto-binds as a variable instead of erroring.  In a HYPOTHESIS that
+-- turns a theorem into a weaker one that still compiles.  This file is the root of the
+-- LIX chain, so it opts out: every binder here is explicit, and any future typo in a
+-- hypothesis has to be an error rather than a silent weakening.
+set_option autoImplicit false
+
 /-!
 # A concrete matrix model of complex projective space
 
