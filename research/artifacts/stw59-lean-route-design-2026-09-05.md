@@ -140,6 +140,9 @@ gives `C(2,1) = 2`, `(2,2)` gives `C(1,2) = 0`, `(1,3)` gives `C(0,3) = 0`.
 Concretely for `Y = CP¹`: `γ = γ₀ + γ₁h`, `c₄(δ) = ±6 z γ₁`, and `γ₁ = 1/6`
 satisfies every cohomological and mod-2 constraint while making `c₄(δ)` odd.
 The parity is a 2-adic fact about factorials that mod-2 methods cannot see.
+**This is a witness that the mod-2 data is insufficient, not a counterexample:**
+`1/6` is not realizable by any `β ∈ K⁰(CP¹)`, since `h² = 0` there makes
+`ch(L) = 1 + h` and every actual class integral. See §B.9's framing correction.
 
 ### B.3 W2 — the K-theory lane shrinks to one lemma
 
@@ -302,13 +305,56 @@ A full Lucas enumeration of `(*)` gives zeros at
 are `n ≡ 1 (mod 4)` — all odd, hence all invisible to an even-supported `A`.
 That is why "the binomials fail for some `k`" and it does not matter.
 
-**Why this reconciles §B.2.** §B.2's counterexample was `Y = CP¹`, where
-`γ₁ = 1/6` satisfies every mod-2 constraint while `c₄(δ)` is odd. There `d = 1`
-is **odd**, so `A = 1 + h` has odd-degree support and `m = 1` is odd; the sum is
+**Why this reconciles §B.2.** §B.2's witness was `Y = CP¹`, where `γ₁ = 1/6`
+satisfies every mod-2 constraint while `c₄(δ)` is odd. There `d = 1` is **odd**,
+so `A = 1 + h` has odd-degree support and `m = 1` is odd; the sum is
 `A₁b₀ + A₀b₁ = b₁`, and `b₁` has index `1 ≡ 1 (mod 4)` — precisely the
 unreachable class. Both statements stand: mod 2 **cannot** prove Lemma 3 for
-general `Y`, and **can** for this tower. **The hypothesis a lane may not drop is
-that every `d_j` is even.**
+general `Y`, and **can** for this tower.
+
+*Framing correction (team-lead).* `γ₁ = 1/6` is **not** a bundle-level
+counterexample and the doc should not call it one. On `CP¹`, `h² = 0`, so
+`ch(L) = e^h = 1 + h` and every actual class in `K⁰(CP¹)` has integral Chern
+character; `1/6` is not realizable. What it exhibits is that **the mod-2 data
+alone does not pin `c₄`** — an obstruction to the *method*, not to the
+statement. That is exactly the claim §B.9 needs, and it shows the evenness
+hypothesis doing real work rather than bookkeeping: the integral route proves
+`c₄(δ)` even on `CP¹` *because of* that integrality, and the mod-2 route cannot.
+
+### B.9.1 Two criteria, and which one is proved
+
+`team-lead` derived a different and weaker-looking criterion, and the doc records
+both because a reader given only one will be misled.
+
+* **team-lead's.** `Sq²(c_i) = c_1c_i + (i-1)c_{i+1}`, so the instance producing
+  `c_r` from `c_{r-1}` carries coefficient `r-2`, usable exactly when `r` is odd,
+  i.e. when **`Σ_j d_j` is even**. (I confirmed the coefficient.)
+* **§B.9's.** Step 1 needs **every `d_j` individually even**, which is strictly
+  stronger: one Frobenius puts `A` in even degrees, and that fails as soon as a
+  single `d_j` is odd, even when the sum is even.
+
+Separating test case: `Y = CP¹ × CP¹`, `d = (1,1)`, `m = 2` even, `r = 5` odd.
+team-lead's criterion says live; §B.9 does not apply, because
+`A = (1+h₁)(1+h₂)` has odd-degree components, so the sum keeps
+`A₁b₁ = (h₁+h₂)b₁` and `b₁` sits in the one residue class `n ≡ 1 (mod 4)` that
+Step 2 cannot reach. So either the `r-2` route has an ingredient beyond the
+coefficient that also handles odd `d_j`, or the true criterion is "all `d_j`
+even". **The tower is in the good case under either reading** (`d_j = 2^{j+1}`,
+individually even), so nothing operational turns on it — but the doc must record
+the criterion `lix-obstruction` actually verified, not the weaker-looking one.
+
+*One gap I could not reconstruct in the `r-2` route:* `γ_r = Sq²(γ_{r-1})`
+exhibits the top class as a square but does not make it vanish. Evaluating on
+`N` and applying Wu for the manifold turns it into `⟨v₂·γ_{r-1}, [N]⟩` with
+`v₂ = w₂(TY) = Σ_j (d_j+1)h_j = Σ_j h_j` mod 2 when the `d_j` are even — not
+obviously zero. §B.9 avoids that step entirely: it works on `δ` rather than `W`,
+and uses **instability** rather than the manifold's Wu class. If the `r-2` route
+needs `v₂·γ_{r-1} = 0`, that is a third item for the verification list.
+
+**The hypothesis a lane may not drop is that every `d_j` is even** — and the
+construction's doubling `d_j = 2^{j+1}`, which `lix-obstruction` showed is forced
+by multiplicity matching, supplies it. That is why the doubling matters beyond
+multiplicity matching, and it belongs in the manuscript's commentary.
 
 **The step to verify hardest.** Relation `(*)` is Wu's formula applied to the
 *virtual* class `δ`, where `γ(δ) := γ(W)·γ(p*V)^{-1}`. Wu is proved for genuine
@@ -384,6 +430,9 @@ pullback of the generator of `H²(CP^N)` along the classifying map, so
 | Object | Defined once by | Everyone else |
 |---|---|---|
 | `MurrayVonNeumannEquiv`, (L1)(L2)(L3), `UnitaryConj` | `Analysis/FiniteCStarMurrayVonNeumann.lean` | imports; **no second MvN predicate anywhere** |
+| `MurrayVonNeumannEquiv.trans`, `.map` | `KTheory/MatrixProjection.lean` (:78, :99) | imports; `BundleCalculus` deletes its versions |
+| `blockSum` = the campaign's `⊕`, and its calculus | `KTheory/{MatrixProjection,BlockMoves}.lean` | imports; never restated on `CStarMatrix` |
+| `KOne`/`KZero`, stated for an **arbitrary** C\*-algebra | `ktheory-k1` | `BundleAlg X N` is the instantiation `A := C(X,ℂ)` |
 | `Corner p A p` | `Analysis/LIXCornerAlgebra.lean` | imports |
 | `CP d`, `cpSet d` | `Analysis/LIXProjectiveSpaceModel.lean` (namespace `GroupApproximation.STW59`) | imports, never redefines; `AlgTop.CPn` is its lemma layer |
 | `Sph n`, `Gr n N` | `lix-spaces` | not yet claimed |
@@ -458,9 +507,46 @@ renaming it would touch the manuscript corpus while renaming the newer one
 touches one lane. `BundleCalculusProjection.lean` imports it, deletes its own
 `def MvNEquiv`, drops `MvNEquiv.refl`/`.symm` in favour of the existing ones,
 and re-homes onto `MurrayVonNeumannEquiv` its genuine additions: `UnitaryConj`
-(:73), `UnitaryConj.mvNEquiv` (:103), `MvNEquiv.trans` (:131), and the three
-analytic lemmas `mvNEquiv_of_norm_sub_lt_one` (:277), `unitaryConj_of_preconnected`
-(:288) and `mvNEquiv_of_path` (:349) — which are exactly (L1), (L3) and (L2).
+(:73), `UnitaryConj.mvNEquiv` (:103), and the three analytic lemmas
+`mvNEquiv_of_norm_sub_lt_one` (:277), `unitaryConj_of_preconnected` (:288) and
+`mvNEquiv_of_path` (:349) — which are exactly (L1), (L3) and (L2).
+
+*Correction (raised by `found-ktheory-bott`).* `.trans` is **not** among the
+re-homed lemmas. `KTheory/MatrixProjection.lean:78` already declares
+`MurrayVonNeumannEquiv.trans` under `[Semigroup A] [StarMul A]` with
+`IsIdempotentElem` at both ends — strictly weaker hypotheses than
+`BundleCalculusProjection.lean:131`, which asks `IsStarProjection` at both ends
+in a C\*-ambient. Only idempotence of the two ends is used, since `w * v`
+implements the composite. Likewise `MurrayVonNeumannEquiv.map` (:99). **Ruling:**
+`KTheory/MatrixProjection.lean` owns `.trans` and `.map`; `BundleCalculus`
+**deletes** rather than re-homes those two, and imports that file.
+
+**C10 — the direct sum. RESOLVED before it surfaced.**
+`KTheory/MatrixProjection.lean:122–216` and `KTheory/BlockMoves.lean` already
+hold `blockSum` with a complete calculus: `blockSum_mul_blockSum`,
+`star_blockSum`, `isStarProjection_blockSum`, `murrayVonNeumannEquiv_blockSum`,
+`murrayVonNeumannEquiv_submatrix`, `blockSum_submatrix`, `blockSum_comm`,
+`blockSum_assoc`, `blockSum_zero_right`, and the reindexing equivalences
+`finSumCongr`, `finSumSwap`, `finSumAssoc`. That is exactly the `⊕` named in
+`found-bundle-calculus`'s mandate. **Ruling:** `⊕` lives in
+`GroupApproximation.KTheory`; `found-bundle-calculus` consumes it and does not
+restate it on `CStarMatrix`.
+
+**C11 — the model seam, and where the K-groups are stated.** `blockSum` lives on
+`Matrix (Fin m) (Fin m) A` over a bare `[NonUnitalSemiring A] [StarRing A]`;
+`found-bundle-calculus` pinned `BundleAlg X N := CStarMatrix (Fin N) (Fin N) C(X,ℂ)`.
+**Ruling:** the block calculus stays typeclass-minimal — it contains no analysis
+and must not acquire a C\*-typeclass to reach `BundleAlg` — and **the K-groups
+are stated in the general algebraic model, for an arbitrary C\*-algebra `A`, not
+over `BundleAlg`.** That is forced by §C.7: the Problem LIX endpoint must be
+stated over a generic `KOne`, and a `KOne` defined over `BundleAlg X N` could not
+carry it. `BundleAlg X N` is the instantiation `A := C(X,ℂ)`.
+
+The seam is nearly free: at the pin `CStarMatrix` is a **type synonym** —
+`def CStarMatrix (m n A) := Matrix m n A` (`CStarMatrix.lean:44`) with
+`def ofMatrix : Matrix m n A ≃ CStarMatrix m n A := Equiv.refl _` (:54) — so one
+transfer lemma at `BundleAlg` suffices and every `blockSum` lemma transports by
+`rfl` or a one-line `simp [ofMatrix]`.
 
 *Consequence for the plan:* **L0's analytic floor is already done.** Revision 2
 listed (L1)(L2)(L3) as unbuilt; they are built, on the wrong predicate.
@@ -671,11 +757,15 @@ them. The risks are now:
 1. **Wu's formula for a virtual class**, relation `(*)` of §B.9. Everything
    rests on it and a slip would be invisible. It is standard mathematics, not
    research, but it must be proved and not assumed.
-2. **The tower assembly.** §B.9 closes the general stage as far as I can check
-   it on paper — `b_n = 0` for every even `n`, via `(j,k) = (n/2-1, n/2+1)`.
-   Until that is Lean-checked at general `ℓ` rather than at `Y = pt` and
-   `Y = CP²`, it is a paper argument, and paper arguments in this campaign have
-   been wrong before (this section, in revision 2, was one).
+2. **The tower assembly, and *which* criterion is proved.** §B.9 closes the
+   general stage as far as I can check it on paper — `b_n = 0` for every even
+   `n`, via `(j,k) = (n/2-1, n/2+1)`. Until that is Lean-checked at general `ℓ`
+   rather than at `Y = pt` and `Y = CP²`, it is a paper argument, and paper
+   arguments in this campaign have been wrong before (this section, in revision
+   2, was one). §B.9.1 records two inequivalent criteria — `Σd_j` even versus
+   every `d_j` even — that agree on the tower and disagree on `CP¹ × CP¹`;
+   whichever `lix-obstruction` verifies is the one the doc must carry, and if it
+   is the `r-2` route then `⟨v₂·γ_{r-1},[N]⟩ = 0` is a third item to verify.
 3. **Steenrod squares themselves.** Cup-`i` products via equivariant acyclic
    carriers, up to Cartan and instability, are now on the critical path where
    revision 2 had them deleted. This is the largest single new build.
