@@ -44,10 +44,9 @@ theorem finSumSwap_involutive (n : ℕ) (i : Fin (n + n)) :
   | left a => rw [finSumSwap_castAdd, finSumSwap_natAdd]
   | right b => rw [finSumSwap_natAdd, finSumSwap_castAdd]
 
-theorem finSumSwap_symm_self (n : ℕ) : (finSumSwap n n).symm = finSumSwap n n := by
-  ext i
-  apply (finSumSwap n n).injective
-  rw [Equiv.apply_symm_apply, finSumSwap_involutive]
+theorem finSumSwap_symm_self (n : ℕ) : (finSumSwap n n).symm = finSumSwap n n :=
+  Equiv.ext fun i => (finSumSwap n n).injective <| by
+    rw [Equiv.apply_symm_apply, finSumSwap_involutive]
 
 section Algebra
 
@@ -127,14 +126,24 @@ theorem permMat_conj {N : ℕ} (e : Fin N ≃ Fin N) (M : CStarMat N A) :
 
 /-! ## Block sums of unitaries -/
 
+/-- `blockSum` of two identity matrices is the identity.
+
+Stated at `Matrix`, not at `CStarMat`, and so is every lemma below that a `rw` has to fire on.
+`CStarMat n A` is Mathlib's `CStarMatrix (Fin n) (Fin n) A`, a plain `def` on top of `Matrix`,
+but it carries its **own** `Mul` and `Star` instances (`CStarMatrix.instStar`,
+`CStarMatrix.instMul`), which are only definitionally equal to `Matrix`'s.  A term-mode `exact`
+crosses that seam, because it checks definitional equality at default transparency; `rw` does
+not, because it matches instances syntactically.  So the arithmetic lives here and the transfer
+to `unitary (CStarMat _ A)` happens once, in `blockSumU`, as an application. -/
 theorem blockSum_one_one (m n : ℕ) :
-    blockSum (1 : CStarMat m A) (1 : CStarMat n A) = (1 : CStarMat (m + n) A) := by
+    blockSum (1 : Matrix (Fin m) (Fin m) A) (1 : Matrix (Fin n) (Fin n) A)
+      = (1 : Matrix (Fin (m + n)) (Fin (m + n)) A) := by
   ext i j
   induction i using Fin.addCases with
   | left a =>
     induction j using Fin.addCases with
     | left b =>
-      rw [blockSum_apply_castAdd_castAdd, CStarMatrix.one_apply, CStarMatrix.one_apply]
+      rw [blockSum_apply_castAdd_castAdd, Matrix.one_apply, Matrix.one_apply]
       by_cases h : a = b
       · rw [if_pos h, if_pos (by rw [h])]
       · refine (if_neg h).trans (if_neg ?_).symm
@@ -143,39 +152,51 @@ theorem blockSum_one_one (m n : ℕ) :
         have hval := congrArg Fin.val hc
         simpa using hval
     | right b =>
-      rw [blockSum_apply_castAdd_natAdd, CStarMatrix.one_apply, if_neg]
+      rw [blockSum_apply_castAdd_natAdd, Matrix.one_apply, if_neg]
       intro hc
       have ha := a.isLt
       have hval := congrArg Fin.val hc
-      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at hval
+      simp only [Fin.val_castAdd, Fin.val_natAdd] at hval
       omega
   | right a =>
     induction j using Fin.addCases with
     | left b =>
-      rw [blockSum_apply_natAdd_castAdd, CStarMatrix.one_apply, if_neg]
+      rw [blockSum_apply_natAdd_castAdd, Matrix.one_apply, if_neg]
       intro hc
       have hb := b.isLt
       have hval := congrArg Fin.val hc
-      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at hval
+      simp only [Fin.val_castAdd, Fin.val_natAdd] at hval
       omega
     | right b =>
-      rw [blockSum_apply_natAdd_natAdd, CStarMatrix.one_apply, CStarMatrix.one_apply]
+      rw [blockSum_apply_natAdd_natAdd, Matrix.one_apply, Matrix.one_apply]
       by_cases h : a = b
       · rw [if_pos h, if_pos (by rw [h])]
       · refine (if_neg h).trans (if_neg ?_).symm
         intro hc
         refine h (Fin.eq_of_val_eq ?_)
         have hval := congrArg Fin.val hc
-        simp only [Fin.coe_natAdd] at hval
+        simp only [Fin.val_natAdd] at hval
         omega
 
-/-- The block sum of two unitaries. -/
+/-- Both unitarity equations for a block sum, at `Matrix`. -/
+theorem star_mul_self_blockSum {m n : ℕ} {p : Matrix (Fin m) (Fin m) A}
+    {q : Matrix (Fin n) (Fin n) A} (hp : star p * p = 1) (hq : star q * q = 1) :
+    star (blockSum p q) * blockSum p q = 1 := by
+  rw [star_blockSum, blockSum_mul_blockSum, hp, hq, blockSum_one_one]
+
+theorem mul_star_self_blockSum {m n : ℕ} {p : Matrix (Fin m) (Fin m) A}
+    {q : Matrix (Fin n) (Fin n) A} (hp : p * star p = 1) (hq : q * star q = 1) :
+    blockSum p q * star (blockSum p q) = 1 := by
+  rw [star_blockSum, blockSum_mul_blockSum, hp, hq, blockSum_one_one]
+
+/-- The block sum of two unitaries.
+
+The two membership proofs are `Matrix`-level facts applied to `CStarMat`-level hypotheses; the
+application is where the type synonym is crossed, and it is the only place it is crossed. -/
 def blockSumU {m n : ℕ} (x : unitary (CStarMat m A)) (y : unitary (CStarMat n A)) :
     unitary (CStarMat (m + n) A) :=
-  ⟨blockSum (x : CStarMat m A) (y : CStarMat n A), by
-    refine ⟨?_, ?_⟩
-    · rw [star_blockSum, blockSum_mul_blockSum, x.2.1, y.2.1, blockSum_one_one]
-    · rw [star_blockSum, blockSum_mul_blockSum, x.2.2, y.2.2, blockSum_one_one]⟩
+  ⟨blockSum (x : CStarMat m A) (y : CStarMat n A),
+    ⟨star_mul_self_blockSum x.2.1 y.2.1, mul_star_self_blockSum x.2.2 y.2.2⟩⟩
 
 @[simp] theorem coe_blockSumU {m n : ℕ} (x : unitary (CStarMat m A))
     (y : unitary (CStarMat n A)) :
@@ -194,25 +215,26 @@ theorem blockOne_eq_blockSum {n : ℕ} (M : CStarMat n A) (m : ℕ) :
   ext i j
   induction i using Fin.addCases with
   | left a =>
-    have hia : ((Fin.castAdd m a : Fin (n + m)) : ℕ) < n := by simpa using a.isLt
+    have hia : ((Fin.castAdd m a : Fin (n + m)) : ℕ) < n := by simp
     induction j using Fin.addCases with
     | left b =>
-      have hjb : ((Fin.castAdd m b : Fin (n + m)) : ℕ) < n := by simpa using b.isLt
+      have hjb : ((Fin.castAdd m b : Fin (n + m)) : ℕ) < n := by simp
       rw [blockOne_apply_of_lt_of_lt M _ _ hia hjb, blockSum_apply_castAdd_castAdd]
+      rfl
     | right b =>
       have hjb : ¬ (((Fin.natAdd n b : Fin (n + m)) : ℕ) < n) := by
-        simp only [Fin.coe_natAdd]; omega
+        simp only [Fin.val_natAdd]; omega
       rw [blockOne_apply_of_lt_of_not_lt M _ _ hia hjb, blockSum_apply_castAdd_natAdd]
   | right a =>
     have hia : ¬ (((Fin.natAdd n a : Fin (n + m)) : ℕ) < n) := by
-      simp only [Fin.coe_natAdd]; omega
+      simp only [Fin.val_natAdd]; omega
     induction j using Fin.addCases with
     | left b =>
-      have hjb : ((Fin.castAdd m b : Fin (n + m)) : ℕ) < n := by simpa using b.isLt
+      have hjb : ((Fin.castAdd m b : Fin (n + m)) : ℕ) < n := by simp
       rw [blockOne_apply_of_not_lt_of_lt M _ _ hia hjb, blockSum_apply_natAdd_castAdd]
     | right b =>
       have hjb : ¬ (((Fin.natAdd n b : Fin (n + m)) : ℕ) < n) := by
-        simp only [Fin.coe_natAdd]; omega
+        simp only [Fin.val_natAdd]; omega
       rw [blockOne_apply_of_not_lt_of_not_lt M _ _ hia hjb, blockSum_apply_natAdd_natAdd,
         CStarMatrix.one_apply]
       by_cases h : a = b
@@ -221,7 +243,7 @@ theorem blockOne_eq_blockSum {n : ℕ} (M : CStarMat n A) (m : ℕ) :
         intro hc
         refine h (Fin.eq_of_val_eq ?_)
         have hval := congrArg Fin.val hc
-        simp only [Fin.coe_natAdd] at hval
+        simp only [Fin.val_natAdd] at hval
         omega
 
 theorem blockOneUnitary_eq_blockSumU {n m : ℕ} (h : n ≤ n + m)
@@ -245,11 +267,9 @@ theorem swapU_conj_blockSumU {n : ℕ} (x y : unitary (CStarMat n A)) :
     swapU A n * blockSumU x y * swapU A n = blockSumU y x := by
   refine Subtype.ext ?_
   have hconj := permMat_conj (A := A) (finSumSwap n n)
-    (blockSum (x : CStarMat n A) (y : CStarMat n A))
+    ((blockSumU x y : unitary (CStarMat (n + n) A)) : CStarMat (n + n) A)
   rw [finSumSwap_symm_self] at hconj
-  show permMat A (finSumSwap n n) * blockSum (x : CStarMat n A) (y : CStarMat n A)
-      * permMat A (finSumSwap n n) = blockSum (y : CStarMat n A) (x : CStarMat n A)
-  rw [hconj, blockSum_comm]
+  exact hconj.trans (blockSum_comm (x : CStarMat n A) (y : CStarMat n A))
 
 end Algebra
 

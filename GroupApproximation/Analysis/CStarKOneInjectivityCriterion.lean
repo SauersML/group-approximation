@@ -43,6 +43,7 @@ theorem coe_diagOne (u : unitary A) :
     ((diagOne u : unitary (CStarMat 2 A)) : CStarMat 2 A)
       = blockOne (toOneByOneHom A (u : A)) 2 := rfl
 
+omit [PartialOrder A] [StarOrderedRing A] in
 theorem coe_diagOne_apply (u : unitary A) (i j : Fin 2) :
     ((diagOne u : unitary (CStarMat 2 A)) : CStarMat 2 A) i j =
       if (i : ℕ) = 0 then (if (j : ℕ) = 0 then (u : A) else 0)
