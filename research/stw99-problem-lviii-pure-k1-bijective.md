@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw58-overlap-corrected-word-spaces-and-homotopy-lifting-2026-09-05.md
   - research/artifacts/stw58-degree-one-primary-citation-audit-2026-09-05.md
   - research/artifacts/stw58-compatible-split-stable-surjectivity-2026-09-05.md
+  - research/artifacts/stw58-small-projection-support-kernel-contraction-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -56,6 +57,17 @@ nonmetrizable bases. Finite scalar coordinates reduce each K-class
 to a finite-dimensional compact range, where a large endpoint piece
 provides a size-one representative. This does not assert K1-injectivity
 or purity of the function algebra.
+
+An explicit part of the kernel now vanishes by
+[the varying-projection support theorem](stw58-small-projection-support-kernel-vanishing.md).
+Over a connected finite CW base of dimension d>=1, a stably null
+family supported by a nonzero projection p contracts whenever
+d[p]<=[1-p]. For simple finite pure coefficients, proper p and a
+uniform normalized quasitrace bound strictly below 1/(d+1)
+imply this comparison. The support may vary over the base.
+Moving arbitrary families into such supports remains unproved;
+the criterion has no nonzero proper supports in projectionless
+coefficients and does not settle the general kernel question.
 
 The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
