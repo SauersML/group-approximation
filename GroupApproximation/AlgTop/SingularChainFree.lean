@@ -94,7 +94,8 @@ theorem cochainCoboundary_eq_comp (R : Type) [CommRing R] (X : TopCat.{0}) (n : 
 theorem isCocycle_iff (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
     (φ : singularCochainGroup R X n) :
     IsCocycle R X n φ ↔ (chainCx R X).d (n + 1) n ≫ φ = 0 := by
-  rw [IsCocycle, cochainCoboundary_eq_comp]
+  show cochainCoboundary R X n φ = 0 ↔ _
+  rw [cochainCoboundary_eq_comp]
 
 end
 

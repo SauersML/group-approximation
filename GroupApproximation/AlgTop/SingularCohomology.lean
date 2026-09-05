@@ -1,6 +1,7 @@
 import GroupApproximation.AlgTop.CochainLeibniz
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomologyHomotopyInvariance
 import Mathlib.Algebra.Homology.ConcreteCategory
+import Mathlib.Topology.Homotopy.Equiv
 
 /-!
 # Integral singular cohomology `Hⁿ(X; R)` and its element-level API
@@ -179,6 +180,7 @@ theorem cyclesMk_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s : R)
     (cochainCx R X).cyclesMk (s • φ) (n + 1) (by simp [ComplexShape.next]) hs
       = s • (cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ := by
   apply (ModuleCat.mono_iff_injective ((cochainCx R X).iCycles n)).1 inferInstance
+  show ((cochainCx R X).iCycles n).hom _ = ((cochainCx R X).iCycles n).hom _
   rw [map_smul, iCycles_cyclesMk, iCycles_cyclesMk]
 
 /-- Taking the class of a cocycle is additive. -/
@@ -326,7 +328,9 @@ theorem cochainPullback_cochainCoboundary (R : Type) [CommRing R] {X Y : TopCat.
 theorem cochainPullback_cocycle (R : Type) [CommRing R] {X Y : TopCat.{0}} (f : X ⟶ Y) (n : ℕ)
     (φ : singularCochainGroup R Y n) (hφ : IsCocycle R Y n φ) :
     IsCocycle R X n (cochainPullback f n φ) := by
-  rw [cochainPullback_cochainCoboundary, hφ]
+  have hφ' : cochainCoboundary R Y n φ = 0 := hφ
+  show cochainCoboundary R X n (cochainPullback f n φ) = 0
+  rw [cochainPullback_cochainCoboundary, hφ']
   show (((singularCochainComplexFunctor R (ModuleCat.of R R)).map f.op).f (n + 1)).hom 0 = 0
   rw [map_zero]
 

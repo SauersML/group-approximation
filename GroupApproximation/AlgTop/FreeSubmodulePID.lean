@@ -40,6 +40,8 @@ Then `{lead N i : leadGen N i ≠ 0}` is a basis of `N`:
   strictly lowers that index.
 -/
 
+set_option linter.unusedSectionVars false
+
 namespace GroupApproximation.AlgTop.PID
 
 section FinsuppCase
@@ -51,7 +53,7 @@ variable (N : Submodule R (ι →₀ R))
 /-! ## 1. Initial segments of the submodule -/
 
 /-- The elements of `N` supported in the initial segment `{j | j ≤ i}`. -/
-def below (i : ι) : Submodule R (ι →₀ R) :=
+noncomputable def below (i : ι) : Submodule R (ι →₀ R) :=
   N ⊓ Finsupp.supported R R {j : ι | j ≤ i}
 
 theorem mem_below {i : ι} {x : ι →₀ R} :
@@ -67,7 +69,7 @@ theorem apply_eq_zero_of_mem_below {i : ι} {x : ι →₀ R} (hx : x ∈ below 
 /-! ## 2. The leading-coefficient ideal and its chosen generator -/
 
 /-- The ideal of `i`-th coefficients of elements of `N` supported in `{j | j ≤ i}`. -/
-def leadIdeal (i : ι) : Ideal R := Submodule.map (Finsupp.lapply i) (below N i)
+noncomputable def leadIdeal (i : ι) : Ideal R := Submodule.map (Finsupp.lapply i) (below N i)
 
 theorem mem_leadIdeal {i : ι} {c : R} :
     c ∈ leadIdeal N i ↔ ∃ x ∈ below N i, x i = c := by
@@ -103,7 +105,7 @@ theorem lead_apply_of_lt {i j : ι} (h : i < j) : (lead N i) j = 0 :=
   apply_eq_zero_of_mem_below N (lead_mem_below N i) h
 
 /-- The indices that carry a basis vector: those whose leading generator is nonzero. -/
-def leadSupport : Set ι := {i : ι | leadGen N i ≠ 0}
+noncomputable def leadSupport : Set ι := {i : ι | leadGen N i ≠ 0}
 
 /-- The candidate basis family, as elements of the ambient module `ι →₀ R`. -/
 noncomputable def leadFam (i : leadSupport N) : ι →₀ R := lead N i.1
@@ -220,8 +222,8 @@ theorem span_leadFamN : ⊤ ≤ Submodule.span R (Set.range (leadFamN N)) := by
   exact le_of_eq (Submodule.map_injective_of_injective hinj hmap).symm
 
 /-- A basis of a submodule of `ι →₀ R`, for `R` a principal ideal domain. -/
-noncomputable def basisOfSubmoduleFinsupp : Basis (leadSupport N) R N :=
-  Basis.mk (linearIndependent_leadFamN N) (span_leadFamN N)
+noncomputable def basisOfSubmoduleFinsupp : Module.Basis (leadSupport N) R N :=
+  Module.Basis.mk (linearIndependent_leadFamN N) (span_leadFamN N)
 
 /-- **A submodule of `ι →₀ R` is free**, for `R` a principal ideal domain. -/
 theorem free_of_submodule_finsupp : Module.Free R N :=
@@ -242,9 +244,9 @@ theorem free_of_submodule_of_pid {R : Type*} [CommRing R] [IsDomain R] [IsPrinci
   haveI : WellFoundedLT (Module.Free.ChooseBasisIndex R M) :=
     ⟨(WellOrderingRel.isWellOrder (α := Module.Free.ChooseBasisIndex R M)).wf⟩
   let e : M ≃ₗ[R] (Module.Free.ChooseBasisIndex R M →₀ R) := (Module.Free.chooseBasis R M).repr
-  haveI : Module.Free R (Submodule.map (e : M →ₗ[R] _) N) := free_of_submodule_finsupp _
+  haveI : Module.Free R (Submodule.map e.toLinearMap N) := free_of_submodule_finsupp _
   exact Module.Free.of_equiv
-    (Submodule.equivMapOfInjective (e : M →ₗ[R] _) e.injective N).symm
+    (Submodule.equivMapOfInjective e.toLinearMap e.injective N).symm
 
 /-! ## 6. Splitting off a submodule with projective quotient
 
@@ -262,7 +264,8 @@ theorem exists_retraction_of_projective_quotient {R M : Type*} [Ring R] [AddComm
   have hs' : ∀ z : M ⧸ Q, Q.mkQ (s z) = z := fun z => LinearMap.congr_fun hs z
   have hmem : ∀ x : M, x - s (Q.mkQ x) ∈ Q := by
     intro x
-    rw [← Submodule.ker_mkQ Q, LinearMap.mem_ker, map_sub, hs', sub_self]
+    have h1 : Q.mkQ (x - s (Q.mkQ x)) = 0 := by rw [map_sub, hs', sub_self]
+    rwa [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at h1
   refine ⟨(LinearMap.id - s.comp Q.mkQ).codRestrict Q (fun x => by simpa using hmem x), ?_⟩
   intro x
   apply Subtype.ext

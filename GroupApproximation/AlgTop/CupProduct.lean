@@ -384,8 +384,10 @@ theorem cup_add_right {X : TopCat.{0}} {p q : ℕ} (a : cohomology R X p)
   obtain ⟨ψ, hψ, rfl⟩ := cocycleClass_surjective R X q b
   obtain ⟨ψ', hψ', rfl⟩ := cocycleClass_surjective R X q b'
   have hs : IsCocycle R X q (ψ + ψ') := by
+    show cochainCoboundary R X q (ψ + ψ') = 0
     rw [cochainCoboundary_add, hψ, hψ', add_zero]
   have hsum : IsCocycle R X (p + q) (cochainCup p q φ ψ + cochainCup p q φ ψ') := by
+    show cochainCoboundary R X (p + q) (cochainCup p q φ ψ + cochainCup p q φ ψ') = 0
     rw [cochainCoboundary_add, cochainCup_cocycle hφ hψ, cochainCup_cocycle hφ hψ', add_zero]
   rw [← cocycleClass_add R X q ψ ψ' hψ hψ' hs, cup_mk, cup_mk, cup_mk,
     ← cocycleClass_add R X (p + q) _ _ (cochainCup_cocycle hφ hψ)
@@ -396,8 +398,11 @@ theorem cup_smul_right {X : TopCat.{0}} {p q : ℕ} (s : R) (a : cohomology R X 
     (b : cohomology R X q) : a ⌣ (s • b) = s • (a ⌣ b) := by
   obtain ⟨φ, hφ, rfl⟩ := cocycleClass_surjective R X p a
   obtain ⟨ψ, hψ, rfl⟩ := cocycleClass_surjective R X q b
-  have hs : IsCocycle R X q (s • ψ) := by rw [cochainCoboundary_smul, hψ, smul_zero]
+  have hs : IsCocycle R X q (s • ψ) := by
+    show cochainCoboundary R X q (s • ψ) = 0
+    rw [cochainCoboundary_smul, hψ, smul_zero]
   have hs2 : IsCocycle R X (p + q) (s • cochainCup p q φ ψ) := by
+    show cochainCoboundary R X (p + q) (s • cochainCup p q φ ψ) = 0
     rw [cochainCoboundary_smul, cochainCup_cocycle hφ hψ, smul_zero]
   rw [← cocycleClass_smul R X q s ψ hψ hs, cup_mk, cup_mk,
     ← cocycleClass_smul R X (p + q) s _ (cochainCup_cocycle hφ hψ) hs2]
@@ -422,6 +427,7 @@ theorem cup_smul_right {X : TopCat.{0}} {p q : ℕ} (s : R) (a : cohomology R X 
 two boundary faces, with opposite signs. -/
 theorem cochainCoboundary_cochainOne (X : TopCat.{0}) :
     IsCocycle R X 0 (cochainOne (R := R) (Z := X)) := by
+  show cochainCoboundary R X 0 (cochainOne (R := R) (Z := X)) = 0
   apply cochain_ext
   intro σ
   rw [cochainCoboundary_eval, cochainEval_zero]
