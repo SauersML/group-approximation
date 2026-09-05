@@ -787,6 +787,62 @@ theorem continuousAt_seamCorrection (hc : IsSuspensionChart t ν) (hΩ : IsDiscU
       exact hD.star
     exact (hA.mul hB).mul hC
 
+/-- **The cone of a disc unitary is continuous**, poles included.  The
+equatorial direction `ν/‖ν‖` has no limit at either pole; the factor `‖ν‖`
+in front of it does go to zero, and that is the whole content of "the gluing
+is continuous". -/
+theorem continuous_coneMat (hc : IsSuspensionChart t ν) (hΩ : IsDiscUnitary Ω) :
+    Continuous fun x => coneMat Ω (ν x) := by
+  have h : Continuous fun x => ((‖ν x‖ : ℝ) : ℂ) • Ω (chartDir ν x) := by
+    refine continuous_damped (U := {x : X | ν x ≠ 0}) (isOpen_equator_ne hc)
+      hc.continuous_equator.norm ?_
+      (fun x => norm_entry_le_one (hΩ.star_mul_self _ (norm_chartDir_le_one ν x))) ?_
+    · exact continuousOn_of_forall_continuousAt fun x hx =>
+        hΩ.continuous.continuousAt.comp (continuousAt_chartDir hc hx)
+    · intro x hx
+      have h0 : ν x = 0 := by simpa using hx
+      rw [h0]
+      simp
+  exact h
+
+/-- **The clutched projection is continuous.** -/
+theorem continuous_clutchOfChart (hc : IsSuspensionChart t ν) (hΩ : IsDiscUnitary Ω) :
+    Continuous fun x => clutchMat (t x) (coneMat Ω (ν x)) := by
+  have hcone := continuous_coneMat hc hΩ
+  have hrw : (fun x => clutchMat (t x) (coneMat Ω (ν x))) = fun x => Matrix.fromBlocks
+      ((((1 + t x) / 2 : ℝ) : ℂ) • (1 : Matrix n n ℂ))
+      ((1 / 2 : ℂ) • (coneMat Ω (ν x))ᴴ) ((1 / 2 : ℂ) • coneMat Ω (ν x))
+      ((((1 - t x) / 2 : ℝ) : ℂ) • (1 : Matrix n n ℂ)) := rfl
+  rw [hrw]
+  refine continuous_fromBlocks ?_ ?_ ?_ ?_
+  · exact (Complex.continuous_ofReal.comp
+      ((continuous_const.add hc.continuous_height).div_const 2)).smul continuous_const
+  · exact continuous_const.smul hcone.star
+  · exact continuous_const.smul hcone
+  · exact (Complex.continuous_ofReal.comp
+      ((continuous_const.sub hc.continuous_height).div_const 2)).smul continuous_const
+
+/-- **The untwisted projection is continuous.** -/
+theorem continuous_clutchUntwisted (hc : IsSuspensionChart t ν) :
+    Continuous fun x =>
+      clutchMat (t x) (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ)) := by
+  have hnorm : Continuous fun x => ((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ) :=
+    (Complex.continuous_ofReal.comp hc.continuous_equator.norm).smul continuous_const
+  have hrw : (fun x => clutchMat (t x) (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ)))
+      = fun x => Matrix.fromBlocks
+      ((((1 + t x) / 2 : ℝ) : ℂ) • (1 : Matrix n n ℂ))
+      ((1 / 2 : ℂ) • (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ))ᴴ)
+      ((1 / 2 : ℂ) • (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ)))
+      ((((1 - t x) / 2 : ℝ) : ℂ) • (1 : Matrix n n ℂ)) := rfl
+  rw [hrw]
+  refine continuous_fromBlocks ?_ ?_ ?_ ?_
+  · exact (Complex.continuous_ofReal.comp
+      ((continuous_const.add hc.continuous_height).div_const 2)).smul continuous_const
+  · exact continuous_const.smul hnorm.star
+  · exact continuous_const.smul hnorm
+  · exact (Complex.continuous_ofReal.comp
+      ((continuous_const.sub hc.continuous_height).div_const 2)).smul continuous_const
+
 /-! ### The main theorem -/
 
 /-- **Null-homotopy kills the twist.**
@@ -870,8 +926,9 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
         ((continuous_const.add hc.continuous_height).div_const 2) ?_ hb1 ?_
       · exact continuousOn_of_forall_continuousAt fun x hx => continuousAt_seamGauge hc hΩ hx
       · intro x hx
-        have : t x = -1 := by simpa using hx
-        rw [this]
+        have h1 : t x = -1 := by simpa using hx
+        show (1 + t x) / 2 = 0
+        rw [h1]
         norm_num
     -- block 4
     have hblock4 : Continuous fun x =>
@@ -882,8 +939,9 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
       · exact continuousOn_of_forall_continuousAt fun x hx =>
           continuousAt_seamCorrection hc hΩ hx
       · intro x hx
-        have : t x = 1 := by simpa using hx
-        rw [this]
+        have h1 : t x = 1 := by simpa using hx
+        show (1 - t x) / 2 = 0
+        rw [h1]
         norm_num
     -- block 2
     have hblock2 : Continuous fun x =>
@@ -900,6 +958,7 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
         exact hB.mul hC
       · intro x hx
         have h0 : ν x = 0 := by simpa using hx
+        show ‖ν x‖ / 2 = 0
         rw [h0]
         norm_num
     -- block 3
@@ -915,6 +974,7 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
         exact hA.mul hB
       · intro x hx
         have h0 : ν x = 0 := by simpa using hx
+        show ‖ν x‖ / 2 = 0
         rw [h0]
         norm_num
     have hV₀cont : Continuous (fun x => seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
@@ -945,6 +1005,7 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
     exact hV₀star x
   · intro x
     have hU := clutchConj_conjTranspose_mul_self (hΩν x)
+    have hS := hV₀star' x
     have hconj : clutchConj (Ω (ν x)) *
         clutchMat (t x) (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ)) *
         (clutchConj (Ω (ν x)))ᴴ = clutchMat (t x) (twistedCone ν Ω x) := by
@@ -955,18 +1016,14 @@ theorem exists_partialIsometry_of_isDiscUnitary (hc : IsSuspensionChart t ν)
       intro P
       rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hU, Matrix.one_mul, Matrix.mul_assoc, hU,
         Matrix.mul_one]
-    calc (clutchConj (Ω (ν x)))ᴴ * seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
-      (seamCorrection t ν Ω x) *
-          ((clutchConj (Ω (ν x)))ᴴ * seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
-      (seamCorrection t ν Ω x))ᴴ
-        = (clutchConj (Ω (ν x)))ᴴ * (seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
-      (seamCorrection t ν Ω x) *
-            (seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
-      (seamCorrection t ν Ω x))ᴴ) * clutchConj (Ω (ν x)) := by
+    set S := seamMat (t x) (coneMat Ω (ν x)) (twistedCone ν Ω x) (seamGauge t ν Ω x)
+      (seamCorrection t ν Ω x) with hSdef
+    calc (clutchConj (Ω (ν x)))ᴴ * S * ((clutchConj (Ω (ν x)))ᴴ * S)ᴴ
+        = (clutchConj (Ω (ν x)))ᴴ * (S * Sᴴ) * clutchConj (Ω (ν x)) := by
           rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
           simp only [Matrix.mul_assoc]
       _ = (clutchConj (Ω (ν x)))ᴴ * clutchMat (t x) (twistedCone ν Ω x) *
-            clutchConj (Ω (ν x)) := by rw [hV₀star' x]
+            clutchConj (Ω (ν x)) := by rw [hS]
       _ = (clutchConj (Ω (ν x)))ᴴ * (clutchConj (Ω (ν x)) *
             clutchMat (t x) (((‖ν x‖ : ℝ) : ℂ) • (1 : Matrix n n ℂ)) *
             (clutchConj (Ω (ν x)))ᴴ) * clutchConj (Ω (ν x)) := by rw [hconj]
@@ -1012,6 +1069,7 @@ theorem not_isDiscUnitary_of_clutchingObstruction {t : X → ℝ} {ν : X → E}
   fun hΩ => hobs (exists_partialIsometry_of_isDiscUnitary hc hΩ)
 
 /-- A partial isometry absorbs its initial projection. -/
+open scoped ComplexOrder in
 theorem mul_source_of_partialIsometry {ι : Type*} [Fintype ι] [DecidableEq ι]
     {W q : Matrix ι ι ℂ} (hq : Wᴴ * W = q) (hidem : q * q = q) : W * q = W := by
   have hqs : qᴴ = q := by
