@@ -53,8 +53,7 @@ theorem rad_scale (p : I × ↥(punctured d)) :
   exact_mod_cast h2
 
 theorem rad_scale_lt_one (p : I × ↥(punctured d)) : rad (scale p) < 1 := by
-  have hτ : 0 < scaleTrace (p.1 : ℝ) (p.2 : CP (d + 1)) :=
-    scaleTrace_pos p.1.2.1 p.1.2.2 p.2.2
+  have hτ : 0 < scaleTrace (p.1 : ℝ) (p.2 : CP (d + 1)) := scaleTrace_pos p.2.2
   have hlt : rad (p.2 : CP (d + 1)) < 1 := rad_lt_one p.2.2
   rw [rad_scale, div_lt_one hτ]
   simp only [scaleTrace]

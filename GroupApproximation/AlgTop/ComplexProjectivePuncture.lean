@@ -25,8 +25,8 @@ Two facts make this work, and both are consequences of the rank-one identity
   for **any** weights `δ`. With `δ c = (δ t c)²` this is exactly the idempotent law for
   the scaled matrix, and with `a = b` it also computes its trace.
 * `CPn.rad_eq_one_iff` : `∑ k ‖x k 0‖² = 1` iff `x` is the base point. So away from the
-  base point `τ t x ≥ 1 - rad x > 0` for every `t ∈ [0,1]`, and the renormalization never
-  divides by zero.
+  base point `τ t x ≥ 1 - rad x > 0` for EVERY real `t` — `(1-t)²` is a square, so the
+  interval `[0,1]` is never needed for this — and the renormalization never divides by zero.
 
 ## Main results
 
@@ -198,16 +198,16 @@ def scaleVec (t : ℝ) : Fin (d + 2) → ℝ := Fin.cons (1 - t) 1
 /-- The normalizing trace `∑ c, (scaleVec t c)² * x c c`, as a real number. -/
 def scaleTrace (t : ℝ) (x : CP (d + 1)) : ℝ := (1 - t) ^ 2 * rad x + (1 - rad x)
 
-theorem scaleTrace_pos {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) {x : CP (d + 1)}
+theorem scaleTrace_pos {t : ℝ} {x : CP (d + 1)}
     (hx : x ≠ basePoint (d + 1)) : 0 < scaleTrace t x := by
   have h1 : rad x < 1 := rad_lt_one hx
   have h2 : (0:ℝ) ≤ (1 - t) ^ 2 * rad x := mul_nonneg (sq_nonneg _) (rad_nonneg x)
   simp only [scaleTrace]
   linarith
 
-theorem scaleTrace_ne_zero {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) {x : CP (d + 1)}
+theorem scaleTrace_ne_zero {t : ℝ} {x : CP (d + 1)}
     (hx : x ≠ basePoint (d + 1)) : ((scaleTrace t x : ℝ) : ℂ) ≠ 0 := by
-  exact_mod_cast (scaleTrace_pos ht ht1 hx).ne'
+  exact_mod_cast (scaleTrace_pos hx).ne'
 
 /-- The identity that makes the renormalization work: the weighted trace of `x` with
 weights `(scaleVec t c)²` is `scaleTrace t x`. -/
@@ -244,9 +244,9 @@ def scaleMat (t : ℝ) (x : CP (d + 1)) : Matrix (Fin (d + 2)) (Fin (d + 2)) ℂ
       ((scaleVec (d := d) t a : ℝ) : ℂ) * entry x a b * ((scaleVec (d := d) t b : ℝ) : ℂ)
         / ((scaleTrace t x : ℝ) : ℂ) := rfl
 
-theorem scaleMat_mem {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) {x : CP (d + 1)}
+theorem scaleMat_mem {t : ℝ} {x : CP (d + 1)}
     (hx : x ≠ basePoint (d + 1)) : scaleMat t x ∈ cpSet (d + 1) := by
-  have hτ : ((scaleTrace t x : ℝ) : ℂ) ≠ 0 := scaleTrace_ne_zero ht ht1 hx
+  have hτ : ((scaleTrace t x : ℝ) : ℂ) ≠ 0 := scaleTrace_ne_zero hx
   refine ⟨?_, ?_, ?_⟩
   · refine Matrix.ext fun a b => ?_
     rw [Matrix.conjTranspose_apply, scaleMat_apply, scaleMat_apply]
@@ -280,8 +280,7 @@ theorem scaleMat_mem {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) {x : CP (d + 1)}
 /-- **The deformation.** `scale (t, x)` scales the first homogeneous coordinate of `x` by
 `1 - t`; it is defined on all of `I × (ℂP^{d+1} ∖ {basePoint})`. -/
 def scale (p : I × ↥(punctured d)) : CP (d + 1) :=
-  ⟨scaleMat (p.1 : ℝ) (p.2 : CP (d + 1)),
-    scaleMat_mem p.1.2.1 p.1.2.2 p.2.2⟩
+  ⟨scaleMat (p.1 : ℝ) (p.2 : CP (d + 1)), scaleMat_mem p.2.2⟩
 
 @[simp] theorem scale_entry (p : I × ↥(punctured d)) (a b : Fin (d + 2)) :
     entry (scale p) a b = scaleMat (p.1 : ℝ) (p.2 : CP (d + 1)) a b := rfl
@@ -375,7 +374,7 @@ theorem continuous_scale : Continuous (scale (d := d)) := by
         ((continuous_entry a b).comp hsnd)).mul
           (Complex.continuous_ofReal.comp ((continuous_scaleVec b).comp hfst)))
   · intro p
-    exact scaleTrace_ne_zero p.1.2.1 p.1.2.2 p.2.2
+    exact scaleTrace_ne_zero p.2.2
 
 end CPn
 
