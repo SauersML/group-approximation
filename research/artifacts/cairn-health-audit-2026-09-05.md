@@ -1,6 +1,19 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including low-energy Schreier frames, the bounded
+The latest snapshot, including the weaker positive soft-mass theorem and
+its quantitative coarea construction, passes with **14,138 nodes and no
+errors, warnings, or duplicate candidates** in 10.219 seconds. Comparison
+with the pinned commit `027c44cb7bc59d699273153feff5871f628720ff` finds no
+newly dead claims, newly detached lane tops, or new open claims lacking
+attempts. Its record is
+`research/artifacts/soft-mass-cairn-validation-2026-09-05.json`.
+All five edited theorem, root, and proof-artifact files were compared
+byte for byte with this validated archive. A prior attempt detected a
+snapshot/manifest race during concurrent file additions and stopped
+before validation; the refreshed snapshot passed the exact membership
+assertion and all checks.
+
+The preceding snapshot, including low-energy Schreier frames, the bounded
 Gram second-moment corner theorem, and the nonuniform positive-corner
 bootstrap, passes with **14,136 nodes and no errors, warnings, or duplicate
 candidates** in 9.981 seconds. Comparison with the pinned commit

@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
+  - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -463,3 +464,63 @@ Kazhdan corner rounding yields flexible stability for all asymptotic
 tuples. The linked bootstrap artifact spells out the quantifiers and
 diagonal choices. Existence of suitable full low-energy spaces with the
 bounded second moment remains an unproved hypothesis throughout.
+
+For the weaker `(MSC13)`, put `F=F_0(H+I)^(-1/2)`, a contraction with
+Gram `K=H(H+I)^(-1)`. Soft polar normalization at tau=1 gives
+`sum_s ||Pi^direct_sum(s)F-FU_s||_(2,d)^2<=2h epsilon^2`.
+The difference of the Gram matrices of `Pi(s)F` and `FU_s` is the sum
+of two products with contraction factors. Therefore
+
+```text
+sum_s ||[K,U_s]||_(2,d)^2<=8h epsilon^2,
+sum_s ||[K,U_s]||_(2,d)<=2sqrt(2)h epsilon.
+```
+
+For `P_t=1_[t,1](K)`, expand in an eigenbasis of K. Integrating the
+commutator formula and applying Cauchy--Schwarz with weights
+`|U_s(i,j)|^2/d` gives the finite-dimensional coarea bound
+
+```text
+integral_0^1 ||[P_t,U_s]||_(2,d)^2 dt
+ =sum_(i,j) |lambda_i-lambda_j| |U_s(i,j)|^2/d
+ <=||[K,U_s]||_(2,d).
+```
+
+The interval `[c/4,c/2]` has length c/4, so some threshold in it makes
+the sum of generator squared boundary norms at most
+`A=8sqrt(2)h epsilon/c`. Since `tr K>=c`, every threshold in that
+interval has `theta=tr P_t>=c-t>=c/2`. This choice is made separately
+at each j; no continuity-point subsequence is needed for the estimate.
+
+Choose inverse-compatible unitary polar completions W_s of `P U_s P`.
+The compression estimate in the bootstrap artifact gives
+`||U_sP-PW_s||_(2,d)<=||[P,U_s]||_(2,d)`. Since the whole F is now a
+contraction, the restricted edge error is bounded directly by
+`e=sqrt(2h)epsilon+sqrt(A)`. The least singular value of FP is at least
+`sqrt(t)`. Polar whitening costs at most `1/sqrt(t theta)` in the corner
+normalization, yielding `beta_0<=2sqrt(2)e/c` as claimed. Applying the
+original-rank Kazhdan correction directly to this isometry gives relative
+padding at most `4beta_0^2/kappa^2` and generator error at most
+`(1+10/kappa)beta_0`. The corner is canonical by the ICC argument above.
+
+For the separate sublinear-seed conclusion, `rank H<=bd` and `0<=K<=I`
+give `b>=tr K>=c`, so `(MSC10)` supplies `K_eff/d->0`. The whitened
+component covariance satisfies `C_sel<=C/(bt)` and hence
+
+```text
+Tr(C_sel^2)/(theta d)<=K_eff/(t^2 theta)<=32K_eff/c^3.
+```
+
+Gaussian compression therefore gives
+`zeta<=2sqrt(32K_eff/(c^3 k))` and `beta_rect<=2sqrt(h)beta_0`.
+Taking `k=ceil sqrt(d max(1,K_eff))` proves sublinear seeds and vanishing
+errors. The extra Gram term has only qualitative o(1) control; the
+explicit beta_0 correction rate belongs to the uncompressed isometry.
+
+Finally, scalar Cauchy--Schwarz in a spectral basis gives
+`1=(tr H)^2<=tr[H/(1+H)] tr[H(1+H)]`. Thus a moment bound M implies
+soft mass at least `1/(M+1)`. Positive mass itself is all this proof
+uses. The positive-corner bootstrap proves the final conditional
+stability assertion with sequence-dependent c and subsequences. The
+linked soft-mass artifact includes the full constants and retains
+existence of suitable spectral spaces as an unresolved hypothesis.

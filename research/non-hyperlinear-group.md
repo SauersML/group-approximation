@@ -22,6 +22,7 @@ artifacts:
   - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
+  - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -112,7 +113,12 @@ admits such spectral data on a subsequence, maximal recoverable mass
 promotes positive-corner correction to full correction; constant-one
 ucp untensoring then gives flexible HS stability for all SL5 tuples.
 The existing thin co-dense HNN route would give nonhyperlinear existence.
-The bounded-moment hypothesis is still unproved. The spectral theorem
+The second-moment hypothesis can now be replaced by the weaker positive
+soft mass `tr[H(H+I)^(-1)]>=c>0`. A spectral coarea estimate extracts a
+canonical correctable corner of fraction at least c/2 from the bounded
+soft polar frame, with an explicit vanishing correction bound. Arbitrary
+canonical sequences are not yet known to admit quotient hosts and
+cutoffs tending to zero with that positive mass. The spectral theorem
 and bootstrap therefore leave this root open.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`

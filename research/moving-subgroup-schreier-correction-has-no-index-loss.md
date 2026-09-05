@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
+  - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -223,6 +224,39 @@ over subsequences and apply the same hypothesis to a positive remainder.
 The existing constant-one ucp untensoring theorem then removes the
 canonical restriction. This conditional theorem does not assert its
 moment hypothesis. Small curvature does not presently supply `(MSC11)`.
+
+The moment assumption can be weakened further to positive soft mass:
+
+```text
+tr_d[H(H+I)^(-1)]>=c>0.                               (MSC13)
+```
+
+It gives `b>=c` and a canonical correctable corner of relative rank
+`theta>=c/2`. For each j there is a threshold `t in [c/4,c/2]` for
+`K=H(H+I)^(-1)` such that P=`1_[t,1](K)` satisfies
+
+```text
+max_s ||[P,U_s]||_(2,d)^2<=A:=8sqrt(2)h epsilon/c.
+```
+
+Restricting the contraction `F_0(H+I)^(-1/2)` to this corner and whitening
+it gives an exact isometric frame with edge error at most
+
+```text
+beta_0=(2sqrt(2)/c)(sqrt(2h)epsilon+sqrt(A)).
+```
+
+Thus `(MSC2)` applies directly with beta_0, giving quantitative vanishing
+error and padding for fixed c. A further Gaussian compression also
+supplies trivial seeds `k_j=o(d_j)` and vanishing errors. This latter
+conclusion has no asserted epsilon-rate without a rate for `K_eff/d`.
+
+The moment bound implies `(MSC13)` with `c=1/(M+1)` by Cauchy--Schwarz,
+but positive soft mass does not require a bounded second moment.
+Accordingly `(MSC12)` remains valid if its moment hypothesis is replaced
+by `(MSC13)`, with c allowed to depend on the canonical sequence and
+with the same subsequence quantifier. The unknown input is now positive
+soft mass at suitable quotient hosts and cutoffs tending to zero.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

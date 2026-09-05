@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
+  - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -28,6 +29,18 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Positive soft spectral mass suffices (2026-09-05).** The moment
+  hypothesis below can be replaced by
+  `tr[H(H+I)^(-1)]>=c>0`, with c depending on the canonical sequence.
+  `(MSC13)` uses a globally contractive soft polar frame and a spectral
+  coarea estimate to recover at least a c/2 fraction of the input. Its
+  direct isometric correction has an explicit vanishing error bound;
+  sublinear trivial seeds are also available with qualitative vanishing
+  error. The same nonuniform positive-corner bootstrap would establish
+  full stability. Choosing quotient hosts and cutoffs tending to zero
+  with this positive mass is still unproved. Neither existence of a
+  nonzero low-energy vector nor a small curvature support provides a
+  positive lower bound for the normalized mass.
 - **Bounded spectral Gram moments suffice (2026-09-05).** For SL5,
   `(MSC10)--(MSC12)` in
   `moving-subgroup-schreier-correction-has-no-index-loss` construct small
