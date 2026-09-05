@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
+  - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -36,6 +37,20 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **One fixed spectral cutoff now suffices for positive mass
+  (2026-09-05).** `(MSC21)` proves, for a uniform epsilon_*>0,
+  `N_U(sqrt(delta))/d >= (3/4)min(N_U(epsilon_*)/d,1)-C delta`.
+  A curved degree-one Hodge estimate and contractive heat flow retain
+  the supplied coarse corner mass while reducing its energy to
+  O(delta^2) in logarithmic time. Thus a positive normalized count at
+  this fixed cutoff transfers to a vanishing cutoff, and the maximal
+  unstable canonical residual must have vanishing count density already
+  at epsilon_*. This is a fixed-cutoff density exclusion, not a lower
+  bound on its smallest eigenvalue. The same proof establishes the
+  MSC19 linear first-vector estimate in a uniform normalized-HS
+  neighborhood of any exact same-dimensional representation. Neither
+  that coarse exact comparison nor positive fixed-cutoff mass is yet
+  supplied for arbitrary input tuples.
 - **Root torsion does not supply the averaged ledger (2026-09-05).**
   `(MSC20)` in `moving-subgroup-schreier-correction-has-no-index-loss`
   gives canonical approximate SL5 tuples with exact universal root
@@ -54,10 +69,12 @@ produces an explicit non-hyperlinear group
   `min Spec(Delta_(Q_(2d),U))<=L^2 delta(U)^2` uniformly for all
   sufficiently small-defect tuples. The new sequential extraction
   theorem controls total squared error by `3 sum_i xi_i^2 r_i`, with
-  no factor for the number of steps. A discrete Gronwall estimate then
-  permits arbitrarily small nonzero exact corners to be removed until
-  the whole tuple is corrected flexibly. This solves the error-accounting
-  problem for microscopic extraction under the stated linear seed
+  no factor for the number of steps. A discrete Gronwall estimate using
+  the current residual dimension gives generator error
+  `O(delta^(1/(c+1)))` and relative padding `O(delta^(2/(c+1)))`, where
+  `c=6K^2 ell^2` for the corner/padding constant K and longest relator
+  length ell. Even rank-one extractions suffice. This solves the
+  error-accounting problem for microscopic extraction under the stated linear seed
   estimate. The estimate itself is unproved. Qualitative nonzero seeds
   provide no rate that keeps all intermediate residuals approximate.
 - **Universal spectral host and residual exclusion (2026-09-05).**
@@ -73,8 +90,9 @@ produces an explicit non-hyperlinear group
   maps to occupy almost all cosets, even in exact examples; a local
   polynomial filter needs degree at least logarithmic in the quotient
   index. The remaining task is a global count argument at the fixed
-  universal host, or another contradiction for the residual. No fixed
-  positive spectral gap is claimed.
+  universal host, or another contradiction for the residual. MSC21
+  now strengthens this to fixed-cutoff density exclusion, while a
+  positive lower bound on the smallest eigenvalue remains unproved.
 - **Source Gram control is automatic; spectral count remains
   (2026-09-05).** `(MSC14)` uses pair-product conjugation and a positive
   weighted spectral trace to prove

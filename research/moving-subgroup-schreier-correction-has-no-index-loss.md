@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
+  - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -403,8 +404,9 @@ complement would contradict maximality by `(MSC14)`. Host universality
 makes the exclusion uniform over Q, and `(MSC18)` preserves it under
 every vanishing HS perturbation, including QRC changes. This is a
 conditional description of a possible residual, not an existence proof
-for it or a uniform positive spectral gap. A contradiction still needs
-a theorem forcing positive count from its defining relations.
+for it or a uniform positive lower bound on the smallest eigenvalue.
+The fixed-cutoff density strengthening `(MSC21)` below still needs a
+theorem forcing positive count from the defining relations.
 
 There is a quantitative way to bypass a positive count in one step.
 Fix an elementary finite presentation of SL5 and let delta(U) be its
@@ -416,8 +418,13 @@ min Spec(Delta_(Q_(2n),U))<=L^2 delta(U)^2
         whenever 0<delta(U)<delta_*.                  (MSC19)
 ```
 
-Then SL5 is flexibly HS-stable. This hypothesis requires only one
-low-energy vector, not a positive fraction of the input dimension.
+Then SL5 is flexibly HS-stable, with generator error
+`O(delta^(1/(c+1)))` and relative padding `O(delta^(2/(c+1)))`.
+Here `c=6K^2 ell^2`, ell is the longest defining-relator length, and
+one may take
+`K=max(sqrt(h)(1+4/kappa)L,4h L^2/kappa^2)`.
+The constants are independent of dimension. This hypothesis requires
+only one low-energy vector, not a positive fraction of the input dimension.
 The uniform linear relation between its cutoff and delta is essential
 to the proof. Mere existence of a nonzero spectral space at some
 cutoff tending to zero does not supply it.
@@ -428,11 +435,12 @@ flexible correction with linear error and quadratic padding. Iterate
 on complementary polar tuples. The separate theorem
 `sequential-exact-corner-extraction-has-quadratic-error-ledger` bounds
 the total squared HS change by `3 sum_i xi_i^2 r_i`, independently of
-the number of extractions. A discrete Gronwall bound keeps every
-positive-density remainder within the small-defect regime. Thus even
-rank-one extractions suffice under `(MSC19)`. That spectral estimate
-remains unproved; the iteration theorem does not produce the first
-vector or its required rate.
+the number of extractions. Keeping the current residual dimension in
+the discrete Gronwall bound gives the stated Holder rates while keeping
+every residual requiring another seed below a fixed admissible defect
+threshold. Thus even rank-one extractions suffice under `(MSC19)`.
+That spectral estimate remains unproved; the iteration theorem does
+not produce the first vector or its required rate.
 
 A direct root-torsion route to a finite-ring averaged relation ledger
 fails, even for canonical approximate SL5 tuples already in QRC's hard
@@ -462,6 +470,41 @@ the bad block gives an exact representation at total cost delta. Thus
 data to the power-defined averaged ledger. It supplies no instability
 example and does not rule out coherent phase correction, a different
 joint construction of root maps, or the spectral estimate `(MSC19)`.
+
+There is a quantitative transfer from one fixed small spectral cutoff
+to vanishing cutoffs. For SL5 and the fixed presentation above, there
+exist `epsilon_*>0`, `C<infinity`, and `delta_*>0`, independent of d,
+such that every inverse-compatible tuple with `0<delta(U)<delta_*`
+satisfies, for every eta>0,
+
+```text
+N_U(eta)/d >= (3/4)min(N_U(epsilon_*)/d,1)
+             -C delta^2 log(1/delta)-C delta^2/eta^2. (MSC21)
+```
+
+In particular `N_U(sqrt(delta))/d` is at least
+`(3/4)min(N_U(epsilon_*)/d,1)-C' delta`. Thus a positive normalized
+count at this single fixed cutoff supplies positive count at cutoffs
+tending to zero. This lowers the remaining existence requirement:
+positive fixed-cutoff count on a subsequence for every canonical input
+would suffice for flexible stability. The maximal unstable residual
+above must now satisfy `N_(W_j)(epsilon_*)/n_j->0`. This is exclusion
+in normalized spectral density at a fixed positive cutoff; microscopic
+small eigenvalues remain possible, so no minimum-eigenvalue gap follows.
+
+The proof uses only degree-one cohomology vanishing from property (T).
+A uniform curved Hodge inequality controls the failure of the coefficient
+action to be genuine by the defining HS defect times the cochain's
+operator norm. Contractive heat flow applied to the supplied `(MSC14)`
+corner retains its positive mass and reduces its energy to `O(delta^2)`
+in time `O(log(1/delta))`. It creates no mass when none was supplied.
+The same proof establishes `(MSC19)` uniformly throughout some fixed
+normalized-HS neighborhood of any exact same-dimensional representation:
+there exist eta_0,L_0>0 such that
+`max_s||U_s-rho(s)||_(2,d)<=eta_0` implies
+`min Spec Delta_(Q_(2d),U)<=L_0^2 delta(U)^2` at small defect.
+No operator-norm closeness is required, but the coarse comparison rho
+is an input and is not supplied for arbitrary tuples.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

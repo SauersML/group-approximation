@@ -67,7 +67,7 @@ same argument proves (ML3).
 
 ## 2. A linear microscopic seed estimate suffices
 
-Fix a finite presentation with longest relator length ell, and put
+Fix a finite presentation with longest relator length ell>=1, and put
 
     delta(U)=max_R ||R(U)-I||_(2,n)
 
@@ -79,11 +79,17 @@ that every tuple with 0<delta(U)<delta_* admits either:
 * a full flexible exact correction, with normalized generator error
   at most K delta(U) and relative padding at most K delta(U)^2.
 
-Then the group is flexibly HS-stable. No uniform lower bound on the
-corner rank or rank fraction is required.
+Then the group is flexibly HS-stable, with the explicit Holder rates
 
-Here is a quantitative finite-iteration proof. Fix theta in (0,1),
-start with defect delta_0, and continue extracting while the residual
+    generator error = O(delta_0^(1/(c+1))),
+    relative padding = O(delta_0^(2/(c+1))),
+    c=6K^2 ell^2.                                    (ML5H)
+
+No uniform lower bound on the corner rank or rank fraction is required.
+Constants are independent of dimension and of the number of extractions.
+
+Here is a quantitative finite-iteration proof. Start with defect delta_0
+and a threshold theta in (0,1), and continue extracting while the residual
 dimension n_i exceeds theta d. Stop immediately if a residual is exact
 or the second alternative occurs. Define
 
@@ -94,30 +100,56 @@ The comparison tuple in (ML2) has exact extracted blocks. Telescoping
 each relator against U^(0), and then restricting its defect to the
 residual block, gives
 
-    delta(U^(i)) <= (delta_0+ell sqrt(3A_i))/sqrt(theta),
-    delta(U^(i))^2 <= (2/theta)(delta_0^2+3ell^2 A_i).  (ML6)
+    x_i=n_i/d,
+    delta(U^(i)) <= (delta_0+ell sqrt(3A_i))/sqrt(x_i),
+    delta(U^(i))^2 <= (2/x_i)(delta_0^2+3ell^2 A_i).   (ML6)
 
 Consequently, with B_i=delta_0^2+3ell^2 A_i,
 
-    B_(i+1)<=B_i(1+(6K^2 ell^2/theta)(r_i/d)).
+    B_(i+1)<=B_i(1+c r_i/n_i),     c=6K^2 ell^2.
 
-Since the removed ranks sum to at most d,
+If n_(i+1)>0, put u=r_i/n_i<1 and use
+log(1+cu)<=cu<=-c log(1-u). Induction gives the sharper bounds
 
-    B_i<=delta_0^2 exp(6K^2 ell^2/theta).              (ML7)
+    B_i<=delta_0^2 x_i^(-c),
+    delta(U^(i))^2<=2delta_0^2 x_i^(-c-1).             (ML7)
 
-For each fixed theta, choosing delta_0 sufficiently small ensures that
-every intermediate residual satisfies the seed threshold delta_*.
-Every extraction removes at least one dimension, so there are at most
-d extractions. If a residual of dimension at most theta d is reached,
-(ML3) and (ML7) give an exact correction with squared normalized error
-at most C_theta delta_0^2+4theta.
+Choose a fixed 0<delta_bar<delta_* and, for sufficiently small delta_0,
 
-If the full flexible alternative occurs earlier, combine that residual
-correction with the already exact blocks. Equation (ML2), (ML6), and
-the triangle inequality for this one final replacement give generator
-error O_theta(delta_0) and relative padding O_theta(delta_0^2).
-The case of an exactly represented residual is easier. Thus first
-delta_0->0 and then theta->0 prove flexible stability.
+    theta=(2delta_0^2/delta_bar^2)^(1/(c+1))<1.
+
+Every pre-step x_i>theta satisfies
+
+    delta(U^(i))^2<=delta_bar^2,
+    delta(U^(i))^2 x_i<=delta_bar^2 theta,
+    B_i<=delta_bar^2 theta/2.                         (ML7a)
+
+This inductively verifies the seed threshold at every step. Intermediate
+defects need only stay below this fixed admissible threshold; they need
+not all tend to zero. Every extraction removes at least one dimension,
+so there are at most d extractions.
+
+If an extraction first crosses to n_(i+1)<=theta d, its multiplier in
+the B recurrence is at most 1+c, also when it removes all n_i dimensions.
+Thus B_terminal<=(1+c)delta_bar^2 theta/2. Equation (ML3) gives a
+same-dimensional exact correction with squared normalized error at most
+
+    [4+(1+c)delta_bar^2/(2ell^2)] theta.               (ML7b)
+
+If the full flexible alternative occurs earlier, write q for its padding
+on the current residual and combine it with the already exact blocks.
+Then q<=K delta(U^(i))^2 n_i, so q/d<=K delta_bar^2 theta. The squared
+global error, normalized by d+q, is at most
+
+    6A_i+2K^2 delta(U^(i))^2 (n_i+q)/(d+q)
+    <=[delta_bar^2/ell^2
+       +2K^2(1+K delta_bar^2)delta_bar^2] theta.        (ML7c)
+
+The first term uses (ML2) and one final triangle inequality; the second
+retains the residual's dimension weight. An exact residual gives the
+same conclusion directly from (ML2). Equations (ML7b)--(ML7c) prove
+(ML5H), including its padding exponent. The case delta_0=0 is already
+an exact representation.
 
 For SL_5(Z), a concrete sufficient spectral input is
 

@@ -1,6 +1,30 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the sequential microscopic extraction
+The latest snapshot, including the curved Hodge theorem, quantitative
+heat transfer from one fixed spectral cutoff, the conditional Holder
+extraction rates, and the repaired swap commutator statements, passes
+with **14,166 nodes and no errors, warnings, or duplicate candidates**
+in 11.568 seconds. Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/fixed-cutoff-heat-cairn-validation-2026-09-05.json`.
+All twelve edited theorem, root, and proof-artifact files were compared
+byte for byte with the validated archive. Independent mathematical audits
+checked the uniform exact and curved Hodge gaps, inverse-consistency
+cochain conventions, heat contractivity, mass retention, Bessel-frame
+normalization, and both terminal cases in the Holder extraction bound.
+The fixed-cutoff result concerns normalized spectral density, not a
+lower bound on the smallest eigenvalue. Positive initial spectral mass
+and nonhyperlinear group existence remain unproved.
+
+The swap repair preserves its abelian-carrier exclusion: the free pair
+has squared additive commutator norm 2, while the maximum is 4, attained
+by anticommuting Pauli matrices. Unsupported maximality, noncommutative
+carrier exclusion, and strict-separation language were removed from the
+claim, proof, and referring passages. These were mathematical repairs,
+not changes to the graph checker or its acceptance rules.
+
+The preceding snapshot, including the sequential microscopic extraction
 ledger, the conditional linear spectral seed criterion, and the exact
 root-torsion counterexample to the uncorrected averaged relation ledger,
 passes with **14,154 nodes and no errors, warnings, or duplicate candidates**

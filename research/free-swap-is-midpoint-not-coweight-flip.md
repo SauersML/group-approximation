@@ -7,7 +7,7 @@ invalidates:
   - outlier-exclusion-from-coweight-flip
 distinct_from:
   coweight-triangle-charges-every-common-sheet-flip: that gives a sharp obstruction when all three denominator directions approximately carry one projection to its complement; this computes the actual amalgamated-free swap overlaps and shows that they are a fixed distance one over square root two from that hypothesis.
-  swap-involution-enemy-is-never-abelian-carried: that uses a four-letter moment to prove maximal noncommutation of a swap and one twist; this uses the two-letter overlap moment simultaneously in the three coweight directions and evaluates the newly established triangle inequality on the enemy itself.
+  swap-involution-enemy-is-never-abelian-carried: that uses a four-letter moment to prove squared additive commutator norm two for a swap and one twist, excluding abelian carriers; this uses the two-letter overlap moment simultaneously in the three coweight directions and evaluates the newly established triangle inequality on the enemy itself.
 ---
 
 Use the arithmetic pair `C=SL_3(Z)<A=SL_3(Z[1/p])` and the three

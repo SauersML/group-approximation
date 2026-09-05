@@ -7,6 +7,7 @@ target: moving-subgroup-schreier-correction-has-no-index-loss
 requires:
   - residual-finite-regularization-removes-the-weak-ucp-quantifier
   - sequential-exact-corner-extraction-has-quadratic-error-ledger
+  - kazhdan-approximate-coefficients-have-curved-hodge-control
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
@@ -22,6 +23,7 @@ artifacts:
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
+  - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -753,7 +755,9 @@ By `(MSC16)`, N_j(t) in Q_(2n_j) equals the supremum over all finite
 quotients for sufficiently small t. Equation `(MSC18)` then proves
 invariance under vanishing HS changes. The linked residual artifact
 records every subsequence and fixed-cutoff quantifier. Neither the
-iterated limit nor its proof asserts a fixed positive spectral gap.
+iterated limit nor its proof asserts a lower bound on the smallest
+eigenvalue. The later `(MSC21)` does strengthen the density exclusion
+to one fixed positive cutoff.
 
 For `(MSC19)`, choose epsilon=L delta(U). At sufficiently small defect,
 `a=2h epsilon^2/kappa^2<=1/2`. The nonzero low-energy space in `(MSC14)`
@@ -765,14 +769,16 @@ small positive-defect tuple supplies a nonzero exact corner with error
 at most K delta(U) relative to its rank, or a full flexible correction
 with error at most K delta(U) and relative padding at most K delta(U)^2.
 
-Fix theta in (0,1), an original dimension d and defect delta_0. Extract
-such corners and use unitary polar completions on the remaining spaces
+Fix an original dimension d, defect delta_0>0 and a threshold theta in
+(0,1), to be chosen below. Extract such corners and use unitary polar
+completions on the remaining spaces
 until their dimension is at most theta d. Stop earlier if the remaining
 tuple is exact or receives a full flexible correction. Write r_i for
 the extracted ranks, delta_i for the current normalized defect, and
 
 ```text
-A_i=(1/d)sum_(l<i) xi_l^2 r_l,       xi_l=K delta_l.
+A_i=(1/d)sum_(l<i) xi_l^2 r_l,       xi_l=K delta_l,
+x_i=n_i/d,
 ```
 
 By the required sequential extraction ledger, the original tuple is
@@ -783,29 +789,60 @@ the extracted blocks give, as long as the residual dimension exceeds
 theta d,
 
 ```text
-delta_i <=(delta_0+ell sqrt(3A_i))/sqrt(theta),
-delta_i^2 <=(2/theta)(delta_0^2+3ell^2 A_i).
+delta_i <=(delta_0+ell sqrt(3A_i))/sqrt(x_i),
+delta_i^2 <=(2/x_i)(delta_0^2+3ell^2 A_i).
 ```
 
-Set B_i=`delta_0^2+3ell^2 A_i`. Its increments satisfy
+Set B_i=`delta_0^2+3ell^2 A_i` and `c=6K^2 ell^2`. Its increments satisfy
 
 ```text
-B_(i+1)<=B_i(1+(6K^2 ell^2/theta)(r_i/d)),
-B_i<=delta_0^2 exp(6K^2 ell^2/theta),
+B_(i+1)<=B_i(1+c r_i/n_i).
 ```
 
-since the removed ranks sum to at most d. For each fixed theta this
-bound makes every intermediate delta_i small when delta_0 is small,
-so it verifies the seed threshold throughout the iteration. Each step
-removes at least one dimension, hence there are at most d steps. On
-reaching a remainder of size at most theta d, fill it trivially. The
-ledger gives squared normalized generator error at most
-`C_theta delta_0^2+4theta`. In the terminal flexible alternative, combine
-that one residual correction with the already exact blocks. The same
-bound and one final triangle inequality give error O_theta(delta_0)
-and relative padding O_theta(delta_0^2). An exact residual is immediate.
-First let delta_0 tend to zero and then theta tend to zero. This proves
-flexible stability under the stated uniform microscopic seed estimate.
+Whenever n_(i+1)>0, put u=r_i/n_i<1. The inequality
+`log(1+cu)<=cu<=-c log(1-u)` gives inductively
+
+```text
+B_i<=delta_0^2 x_i^(-c),
+delta_i^2<=2delta_0^2 x_i^(-c-1).
+```
+
+Choose a fixed delta_bar>0 below the uniform seed threshold and small
+enough for the cutoff a<=1/2 used above. For sufficiently small delta_0,
+set `theta=(2delta_0^2/delta_bar^2)^(1/(c+1))<1`. Every pre-step
+x_i>theta then satisfies
+
+```text
+delta_i^2<=delta_bar^2,
+delta_i^2 x_i<=delta_bar^2 theta,
+B_i<=delta_bar^2 theta/2.
+```
+
+Thus the seed threshold remains valid throughout; the intermediate
+defects need only stay below this fixed threshold. Each step removes
+at least one dimension, so there are at most d steps. If an extraction
+first crosses to residual dimension at most theta d, its last B
+multiplier is at most 1+c, including the case of zero remaining
+dimension. Trivial filling and the ledger give squared normalized error
+at most `[4+(1+c)delta_bar^2/(2ell^2)]theta`.
+
+In the terminal flexible alternative, let q be the residual padding.
+Then `q<=K delta_i^2 n_i`, so `q/d<=K delta_bar^2 theta`. Combine
+that correction with the already exact blocks. One final triangle
+inequality bounds the squared error normalized by d+q by
+
+```text
+6A_i+2K^2 delta_i^2 (n_i+q)/(d+q)
+ <=[delta_bar^2/ell^2
+    +2K^2(1+K delta_bar^2)delta_bar^2]theta.
+```
+
+This retains the residual dimension weight even if delta_i itself does
+not tend to zero. An exact residual is easier, and delta_0=0 is exact
+from the start. Since theta is a constant times delta_0^(2/(c+1)), the
+generator error is `O(delta_0^(1/(c+1)))` and relative padding is
+`O(delta_0^(2/(c+1)))`. This proves the conditional Holder refinement
+of flexible stability under the uniform microscopic seed estimate.
 
 The ledger controls accumulated error even for arbitrarily many tiny
 corners, but does not justify a qualitative seed iteration by itself.
@@ -906,3 +943,97 @@ already allowed spectra. This establishes the stated failure of
 the uncorrected power-defined ledger, while explicitly ruling out
 any interpretation as an instability counterexample. The linked
 universal-root-torsion artifact records the full construction.
+
+For `(MSC21)`, use the finite presentation cochain maps d0,d1 with
+`(d0 v)_s=(T_s-I)v` and the Fox/word differential satisfying
+`(d1 d0 v)_r=(T(r)-I)v`. If the symmetric generator labels are treated
+as independent cochain coordinates, include their inverse-consistency
+relators in the presentation. Their evaluated defects are zero for our
+tuples. This ensures ker d1 is precisely the group cocycle space for
+genuine coefficient actions.
+
+Property (T) gives full H^1 vanishing for every unitary coefficient
+representation. Hence there is an exact uniform Hodge gap 2mu>0:
+
+```text
+||d0* f||^2+||d1 f||^2 >= 2mu ||f||^2.
+```
+
+Otherwise unit cochains of vanishing Hodge energy in genuine actions
+have a Hilbert-ultraproduct limit that is a nonzero cocycle orthogonal
+to all coboundaries, contradicting full H^1 vanishing.
+
+Let rho:G->U(D) be exact and let U act on C^d with defining defect
+delta. On rectangular matrices put `T_s(A)=rho(s) A U_s^*`, and
+normalize HS norms by sqrt(d). Uniform constants C0,delta_0>0 give
+the curved inequality
+
+```text
+mu ||f||_2^2 <= ||d0* f||_2^2+||d1 f||_2^2
+                  +C0 delta^2 max_s||f_s||op^2.
+```
+
+To prove uniformity, a sequence violating it with C0=j and
+0<delta_j<1/j can be normalized to ||f_j||_2=1, forcing
+`delta_j max_s||f_(j,s)||op<=sqrt(mu/j)`. In the rectangular HS
+ultraproduct, the closure of classes represented by A_j satisfying
+`delta_j||A_j||op->0` carries a genuine G action, because
+`||(T(r)-I)A_j||_2<=delta_j||A_j||op`. The limiting cochain belongs
+to that Hilbert subspace and has Hodge energy at most mu, violating
+the exact gap 2mu. At delta=0 the exact inequality applies directly.
+
+For any contraction A0 define `A_t=exp(-t L0)A0`,
+`L0=d0*d0=sum_s(2I-T_s-T_s*)`. The heat semigroup is a Poisson
+average of powers of `(1/(2h))sum_s(T_s+T_s*)`, hence preserves
+operator contractivity. Write `E(t)=||d0 A_t||_2^2` and
+`N(t)=||A_t||_2^2`. The curvature identity gives
+`||d1d0 A_t||_2^2<=|R|delta^2`, while
+`max_s||(d0 A_t)_s||op<=2`. With K0=|R|+4C0, differentiation
+and the curved inequality yield
+
+```text
+E'(t)<=-2mu E(t)+2K0 delta^2,       N'(t)=-2E(t),
+E(t)<=E(0)e^(-2mu t)+(K0/mu)delta^2,
+N(t)>=N(0)-E(0)/mu-(2K0/mu)delta^2 t.
+```
+
+Choose epsilon_*>0 so `a_*=2h epsilon_*^2/kappa^2<=1/2` and,
+for `xi_*=sqrt(h)epsilon_*+2sqrt(a_* /(1-a_*))`,
+`gamma=h xi_*^2/[mu(1-a_*)]<=1/4`. Put r=N_U(epsilon_*).
+If r=0 the claimed bound is immediate. Otherwise `(MSC14)` gives
+an exact target Theta of dimension r and a contraction A0:C^d->C^r
+with `N(0)=min(r,d)/d` and `E(0)<=h xi_*^2 r/d`. When r>d,
+take the original d columns of its padded polar unitary. Since
+`r/d<=1/(1-a_*)`, in both cases `E(0)/mu<=gamma N(0)`.
+
+At `t=log(1/delta)/mu`, the heat estimates give energy at most
+C1 delta^2 and mass at least
+`(1-gamma)min(r,d)/d-C1 delta^2 log(1/delta)`. Also r<=2d,
+so Theta factors through the universal host Q_(2d). Choose an
+HS-orthonormal basis T_a of exact intertwiners Theta->lambda_Q;
+regular multiplicities give `sum_a T_a* T_a=I_r`. Since A_t is
+an operator contraction, the usual Bessel frame satisfies
+
+```text
+F=sum_a |T_a A_t><T_a A_t|<=I,
+Tr F=d N(t),            Tr(Delta F)=d E(t)/h.
+```
+
+Spectral truncation implies `N_U(eta)/d>=N(t)-E(t)/(h eta^2)`.
+This proves `(MSC21)`, uniformly over tuples and dimensions. At
+eta=sqrt(delta), its two remainder terms are O(delta). Positive
+fixed-cutoff normalized count thus produces positive count at a
+vanishing cutoff. Applied to the maximal residual's iterated-limit
+exclusion, it forces its count density at epsilon_* to vanish.
+The conclusion concerns density, not the smallest eigenvalue.
+
+For the stated HS basin, take D=d, A0=I, and
+`max_s||rho(s)-U_s||_2<=eta_0` with `h eta_0^2<=mu/4`.
+Then N(0)=1 and E(0)<=h eta_0^2. At logarithmic time and small
+delta, N(t)>=1/2 and E(t)<=(h eta_0^2+K0/mu)delta^2. The
+Rayleigh quotient of A_t for Delta=L0/h is at most
+`[2eta_0^2+2K0/(h mu)]delta^2`. At least one irreducible component
+of rho has no larger quotient. That component occurs in regular
+Q_(2d), proving the claimed local form of `(MSC19)`. The coarse
+exact comparison remains a hypothesis. The linked curved-Hodge
+artifact supplies the full normalization and quantifier details.

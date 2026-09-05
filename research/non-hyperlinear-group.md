@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
+  - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -143,6 +144,19 @@ Short local polynomial filters therefore cannot produce the missing
 count. The remaining argument must use global information from the
 relations; no contradiction for such a residual has been proved.
 
+The curved Hodge and heat-flow theorem `(MSC21)` now sharpens this
+frontier. There is one fixed epsilon_*>0 such that positive normalized
+count at epsilon_* transfers to positive count at a vanishing cutoff:
+`N_U(sqrt(delta))/d >= (3/4)min(N_U(epsilon_*)/d,1)-C delta`.
+The proof retains a supplied coarse corner while reducing its energy
+to O(delta^2) in logarithmic time. Consequently the maximal unstable
+residual must have vanishing spectral count density at this fixed
+positive cutoff. Microscopic small eigenvalues remain allowed; this
+is not a minimum-eigenvalue gap. The same argument proves the linear
+first-vector estimate locally in a uniform HS neighborhood of an exact
+representation. Producing the initial fixed-cutoff mass, or the coarse
+exact comparison needed for that local result, remains open.
+
 The new sequential extraction theorem offers another quantitative
 possibility. Approximate exact corners of ranks r_i can be removed with
 total squared HS error at most `3 sum_i xi_i^2 r_i`, even for arbitrarily
@@ -151,7 +165,9 @@ cost, so their effects can be summed without multiplying by the number
 of steps. Consequently a uniform one-vector estimate
 `min Spec(Delta_(Q_(2d),U))<=L^2 delta(U)^2` would suffice for flexible
 stability: a discrete Gronwall argument keeps successive remainders
-within the seed regime. That estimate is still unproved. Qualitative
+within the seed regime. Quantitatively, `(MSC19)` gives Hölder error
+exponent `1/(c+1)` and padding exponent `2/(c+1)`, where
+`c=6 K^2 ell^2`; the uniform linear seed estimate is still unproved. Qualitative
 nonzero seeds alone do not provide the rate needed for the iteration.
 
 An arithmetic method counterexample now limits how that seed might be
@@ -3558,7 +3574,8 @@ use an infinite dilation or a different positive-definite kernel, and still
 must connect its displacement back to the original finite presentation.
 
 **Double-swap route audit (2026-08-25, late).**  The day closed with a third
-reduction, strictly weaker at the leaf than the two stability reductions.
+reduction, more restricted at the leaf than the two stability reductions;
+no converse or strict separation has been proved.
 `hnn-stable-letter-rounds-to-finite-order` rounds the Haar stable letter of
 any hyperlinear co-dense HNN group to exact central letters of every finite
 order, so the binary swap group `E_p = Gamma *_Lambda (Lambda x C_2)` is the
@@ -3571,8 +3588,9 @@ route `non-hyperlinear-from-sl3-double-swap` therefore needs only
 `sl3-outliers-carry-no-balanced-free-involution`: no repair of outliers, just
 that one moment pattern (a trace-half `Lambda`-central projection whose
 `h`-translate is trace-independent) cannot occur on them.  Two structural
-constraints on any refuter are in place: the enemy involution maximally
-anticommutes with its twist (`swap-involution-enemy-is-never-abelian-carried`),
+constraints on any refuter are in place: the enemy involution has squared
+additive commutator norm `2` with its twist
+(`swap-involution-enemy-is-never-abelian-carried`),
 so no abelian/Cartan carrier -- Bernoulli wreath and homogeneous quotient
 included -- can feed it; and the naive regeneration of enemies one congruence
 floor down is refuted by an exact Weyl identity
