@@ -51,8 +51,7 @@ theorem coe_diagOne_apply (u : unitary A) (i j : Fin 2) :
   · have hi' : (i : ℕ) < 1 := by omega
     by_cases hj : (j : ℕ) = 0
     · have hj' : (j : ℕ) < 1 := by omega
-      rw [blockOne_apply_of_lt_of_lt _ i j hi' hj', if_pos hi, if_pos hj]
-      rfl
+      rw [blockOne_apply_of_lt_of_lt _ i j hi' hj', toOneByOneHom_apply, if_pos hi, if_pos hj]
     · have hj' : ¬ ((j : ℕ) < 1) := by omega
       rw [blockOne_apply_of_lt_of_not_lt _ i j hi' hj', if_pos hi, if_neg hj]
   · have hi' : ¬ ((i : ℕ) < 1) := by omega
@@ -61,7 +60,7 @@ theorem coe_diagOne_apply (u : unitary A) (i j : Fin 2) :
       rw [blockOne_apply_of_not_lt_of_lt _ i j hi' hj', if_neg hi, if_pos hj]
     · have hj' : ¬ ((j : ℕ) < 1) := by omega
       rw [blockOne_apply_of_not_lt_of_not_lt _ i j hi' hj', if_neg hi, if_neg hj,
-        if_pos (Fin.eq_of_val_eq (by omega))]
+        if_pos (show i = j from Fin.eq_of_val_eq (by omega))]
 
 /-- The image of `[u]` under `kappa` is the class of `diag (u, 1)` at level two of the tower.
 This single identity is the whole of `K_1(A)` that the reduction below needs. -/

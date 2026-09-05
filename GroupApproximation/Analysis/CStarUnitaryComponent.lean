@@ -107,7 +107,7 @@ theorem unitaryComponentOne_eq_closure_range_expUnitary :
   refine le_antisymm ?_ ?_
   · intro u hu
     obtain ⟨l, rfl⟩ := mem_unitaryComponentOne_iff_exists_list.mp hu
-    refine Subgroup.list_prod_mem ?_
+    apply Subgroup.list_prod_mem
     intro x hx
     obtain ⟨y, _, rfl⟩ := List.mem_map.mp hx
     exact Subgroup.subset_closure ⟨y, rfl⟩
@@ -144,7 +144,7 @@ groups.  This is how `U_0` is transported along the matrix block inclusions, whi
 homomorphisms of unitary groups but not algebra maps. -/
 def unitaryClassMap {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
     (hf : Continuous f) : UnitaryClass A →* UnitaryClass B :=
-  QuotientGroup.map _ _ f fun g hg => mapsTo_pathComponentOne f hf hg
+  QuotientGroup.map _ _ f fun _g hg => mapsTo_pathComponentOne f hf hg
 
 @[simp] theorem unitaryClassMap_mk {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
     (hf : Continuous f) (v : unitary A) :
