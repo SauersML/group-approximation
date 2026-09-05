@@ -135,14 +135,28 @@ general.
 `LIXLimitMatrixTransport.lean` have landed;
 `Limit := UniformSpace.Completion Colim` is the right shape and
 `Analysis/CStarCompletion.lean:198` should supply its `CStarAlgebra` instance.
-What I still need is a concrete algebra rather than the generic tower:
+What I still need is a concrete algebra rather than the generic tower.  **Superseded
+2026-09-05 ~19:5x by `cs-limit-s`/`cs-simplicity-s`**: there is no separate `LIXLimit`
+alias any more.  The canonical concrete tower is
 
 ```lean
-def LIXLimit : Type                       -- Type 0, not Type u
-instance : CStarAlgebra LIXLimit
-instance : Nontrivial LIXLimit
-theorem lixLimit_hasK1InjWitness : HasK1InjWitness LIXLimit
+def STW59.tower : LIX.CStarTower STW59.StageAlgebra :=
+  LIX.CStarTower.ofInjective STW59.connect STW59.connect_injective
 ```
+
+and the algebra this endpoint quantifies over is `STW59.tower.Limit` directly (`Type 0`,
+since `StageAlgebra : ℕ → Type` is annotated `Type` not `Type*`, checked against
+`Analysis/LIXStageAlgebra.lean:130`).  `[Nontrivial STW59.tower.Limit]` is free from
+`[Nontrivial (StageAlgebra 0)]` via `CStarTower.instNontrivialLimit` (cs-limit, already
+green).  What still needs to land:
+
+```lean
+theorem lixLimit_hasK1InjWitness : HasK1InjWitness STW59.tower.Limit
+```
+
+a direct application of `cs-limit`'s already-green `T.exists_unitary_witness` /
+`hasK1InjWitness_limit` once `cs-clutching` supplies `u : unitary (StageAlgebra 0)`,
+`hstage`, `hdiag` at `k = 0` (see `notes/lix-lane-reports/cs-limit.md` §3).
 
 `Type 0` is load-bearing: `KOne` is universe-polymorphic, so `ProblemLIX`
 quantified over `Type` is genuinely weaker than over `Type u`, and a universe
@@ -166,9 +180,32 @@ membership at those instances, which a term-mode `exact` reaches across and a
 
 ### From `cs-simplicity`, the second item — **BLOCKING**
 
+**Superseded 2026-09-05 ~19:5x**: `cs-simplicity` built a sharper bridge than a
+stage-exposure API (`CStarTower.stagewiseFullTower` / `CStarTower.isSimpleCStar_limit`,
+`Analysis/LIXSimplicityInstance.lean`, green at 2988 jobs) that consumes `cs-limit`'s raw
+`CStarTower` plus a fullness hypothesis stated **entirely in finite-stage language** — no
+stage-exposure names (`lixStage`, `lixStage_full`) are needed from `cs-limit` any more.
+The one thing outstanding is still on `cs-stages`, now in its exact final form:
+
 ```lean
-theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit
+namespace STW59
+def connect (i : ℕ) : StageAlgebra i →⋆ₐ[ℂ] StageAlgebra (i + 1)
+theorem connect_injective (i : ℕ) : Function.Injective (connect i)
+instance : Nontrivial (StageAlgebra 0)
+theorem fullness (k : ℕ) (a : StageAlgebra k) (h0 : 0 ≤ a) (hne : a ≠ 0) :
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (STW59.tower.climb j k a)
 ```
+
+(`0 ≤ a` under whatever `StarOrderedRing (StageAlgebra k)` instance the stage lane
+installs — `cs-simplicity`'s new `nonneg_iff_of_injective` makes the choice irrelevant).
+Then the whole instantiation is one line:
+
+```lean
+theorem STW59.isSimpleCStar : LIX.IsSimpleCStar STW59.tower.Limit :=
+  STW59.tower.isSimpleCStar_limit STW59.fullness
+```
+
+Full authoritative recipe in `notes/lix-lane-reports/cs-simplicity.md` §3.
 
 ## 3b. ROOT WIRING PROPOSAL (this lane does not touch the root)
 
