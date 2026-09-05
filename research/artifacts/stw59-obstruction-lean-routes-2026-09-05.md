@@ -332,3 +332,122 @@ Foundation layer (the seven Opus lanes), in dependency order:
 
 Items 1–5 are this lane's immediate work and are independent of every
 foundation above.
+
+---
+
+## 8. Addendum: the general tower stage, worked
+
+This section supersedes the "open" verdict of §6(b) for the first two tower
+stages and reduces the rest to one precisely-located gap.
+
+### 8.1 Setup
+
+`N = S¹ × S⁵ × Y`, `Y = ∏_{j=1}^{ℓ} CP^{d_j}`, `m = Σ d_j`,
+`R = F₂[h₁,…,h_ℓ]/(h_j^{d_j+1})`, `H^*(N;F₂) = Λ(t) ⊗ Λ(x) ⊗ R` with
+`|t| = 1`, `|x| = 5`. Since `t` and `x` are odd, every **even** class is
+
+```
+γ = a + t x b,        a, b ∈ R.
+```
+
+For the total mod-2 Chern class `γ = γ(W)` of a complex bundle `W` on `N`:
+
+* `a = γ(W|_{{1}×M})`, so when `W|_{{1}×M} ≅ V = 1³ ⊕ H` we get
+  `a = ∏_j (1+h_j)^{d_j}`. In the tower `d_j = 2^j` is a power of two, so
+  `(1+h_j)^{d_j} = 1 + h_j^{d_j}` mod 2 and
+
+  ```
+  a = ∏_{j=1}^{ℓ} (1 + h_j^{d_j}),
+  ```
+
+  which is extremely sparse: `a_q ≠ 0` only for `q` a sum of a subset of
+  `{d_1,…,d_ℓ}`. **In particular `a_q = 0` for every odd `q`.**
+* Writing `γ_q = a_q + t x b_{q-3}` (so `b_n` has degree `2n` in `R`, and
+  `b_n = 0` for `n < 0`), the goal `γ_r = 0` with `r = m+3` is exactly
+  `b_m = 0`, since `a_r = 0` for degree reasons (`R` vanishes above degree `2m`).
+
+### 8.2 The Wu descent
+
+The Wu formula for mod-2 Chern classes,
+`Sq^{2i}(c_j) = Σ_{s=0}^{i} binom(2(j+s-i)-1, 2s) c_{i-s} c_{j+s}`, has
+coefficients `binom(2(j+s-i)-1, 2s) ≡ binom(j+s-i-1, s) (mod 2)` by Lucas
+(the low bit of `2s` is `0`, so the submask condition is unchanged).
+
+Splitting that relation into its `R`- and `tx`-components — `Sq` is a ring map,
+and `Sq(t) = t`, `Sq(x) = x` because `t` and `x` are pulled back from `S¹` and
+`S⁵` where all positive squares vanish — gives, for `i + j = n + 3`:
+
+```
+Sq^{2i}(b_{n-i}) = Σ_{s=0}^{i} binom(j+s-i-1, s) · ( a_{i-s} b_{n-i+s} + b_{i-s-3} a_{j+s} ).
+```
+
+The `s = i` term is `binom(j-1, i) · b_n`, and `binom(j-1,i) = binom(n+2-i, i)`
+is odd exactly when `i` is a bitwise submask of `n+2-i` (Lucas). So:
+
+> **(D)** If `i` is a submask of `n+2-i`, then `b_n` is an explicit expression
+> in `b_{n-i}, …, b_{n-1}` with coefficients among the `a_q`.
+
+Two facts thin the right-hand side out drastically:
+
+* `a_1 = a_3 = ⋯ = 0` (odd `a_q` vanish), so the `i = 1` instance reads
+  `b_n = Sq²(b_{n-1})` and the `i = 2` instance reads
+  `b_n = Sq⁴(b_{n-2}) + a_2 b_{n-2}` — **the `i = 2` step needs only `b_{n-2}`,
+  skipping `b_{n-1}` entirely.**
+* Restricting `W` to `S¹ × S⁵ × Y'`, where `Y'` collapses one factor
+  `CP^{d_{j₀}}` to a point, sets `h_{j₀} = 0` and gives the `b` of a product
+  with fewer factors. By induction on `ℓ` (base `ℓ = 0`: §2.1), that `b`
+  vanishes, so **`b` is divisible by `h₁h₂⋯h_ℓ`**; in particular `b_n = 0` for
+  `n < ℓ`.
+
+Usability of (D): `i = 1` works iff `n` is even; `i = 2` works iff `n ≡ 2, 3
+(mod 4)`. No `i ≥ 1` works iff `n + 2 = 2^k - 1`, i.e.
+
+```
+n ∈ {1, 5, 13, 29, 61, …} = {2^k − 3}.
+```
+
+(If `M = n+2` is all ones then `i` and `M − i` are disjoint bitwise, so `i ⊆
+M − i` forces `i = 0`; for every other `M` a carry creates an overlap.)
+
+### 8.3 Stages 1 and 2 close
+
+* **`ℓ = 1`, `Y = CP²`** (`m = 2`, `r = 5`). `b_0 = 0` by §2.2. Then (D) at
+  `n = 2`, `i = 2`, `j = 3` has all coefficients `binom(s,s) = 1` and reads
+  `Sq⁴(b_0) = a_2 b_0 + a_1 b_1 + b_2`; with `b_0 = 0` and `a_1 = 0` this gives
+  `b_2 = 0`, i.e. `γ_5(W) = 0`. Note `b_1` is never needed — `n = 1` is a
+  failure index, and the descent steps over it.
+* **`ℓ = 2`, `Y = CP² × CP⁴`** (`m = 6`, `r = 9`, `dim N = 18`). `b` is
+  divisible by `h₁h₂`, so `b_0 = b_1 = 0`. Descent:
+  `6 →(i=2) 4 →(i=1) 3 →(i=2) 1`, and `b_1 = 0`. Explicitly
+  `b_6 = Sq⁴(b_4) + a_2 b_4`, `b_4 = Sq²(b_3)`,
+  `b_3 = Sq⁴(b_1) + a_2 b_1 = 0`. So `γ_9(W) = 0`.
+
+So Lemma 3 is proved mod 2 for the first two stages of the actual tower.
+
+### 8.4 Where the general stage still sticks
+
+At the top, `m = 2^{ℓ+1} − 2 ≡ 2 (mod 4)`, so `i = 2` always starts the
+descent. The descent then moves `n ↦ n−1` (n even) or `n ↦ n−2`
+(`n ≡ 2,3 mod 4`), and **gets stuck at `n ≡ 1 (mod 4)`**, where neither `i = 1`
+nor `i = 2` is usable. For `ℓ = 2` the first such `n` is `1`, which the
+divisibility `h₁h₂ ∣ b` already kills. For `ℓ = 3` (`m = 14`) the descent
+reaches `n = 9`; there `i = 4` is usable (`4 ⊆ 7`), but its right-hand side
+needs both `b_5` and `b_7`, and `n = 5` is a genuine failure index that the
+divisibility `h₁h₂h₃ ∣ b` (lowest degree `6`, i.e. `b_n = 0` only for `n < 3`)
+does not reach.
+
+So the remaining question is sharp and finite:
+
+> **Open.** Supply one further relation that determines `b_n` at
+> `n ∈ {2^k − 3}`, or a descent that avoids those indices for every `ℓ`.
+
+Candidate inputs, in order of cheapness: (i) further restrictions — to
+`S¹ × S⁵ × ∏_{j∈S} CP^{d_j}` for every subset `S`, not only the corank-one
+ones, which constrains `b` monomial by monomial; (ii) the relations (D) for
+`i + j > n + 3`, which involve `b_n` multiplied by `a_q`'s and are not used
+above; (iii) `Sq^{2i}` for `i` a power of two together with the Adem relations,
+which cut the number of independent operations down sharply in this range.
+
+This does not affect the §2 verdict: the mod-2 route is the cheapest, it is
+proved at stages 1 and 2, and its remaining gap is a finite question about
+binomial coefficients mod 2 rather than a missing theory.
