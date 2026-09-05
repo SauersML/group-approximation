@@ -79,6 +79,41 @@ theorem kronecker_injective         -- when H_{n-1}(X;R) is projective
 Nothing here needs `Ext`; both halves are the two splittings and no more. Do
 **not** build the full six-term UCT — the campaign only needs these two.
 
+**Every Mathlib handle this needs was checked at pin `81a5d257` and exists:**
+
+| Need | Handle |
+|---|---|
+| lift along a surjection out of a projective | `Module.projective_lifting_property [Projective R P] (f : M →ₗ N) (g : P →ₗ N) (hf : Surjective f) : ∃ h, f.comp h = g` |
+| the chain group is a direct sum | `ModuleCat.coprodIsoDirectSum Z : ∐ Z ≅ ModuleCat.of R (⨁ i, Z i)` (`Mathlib/Algebra/Category/ModuleCat/Products.lean`) — and `(chainCx R X).X n` is that coproduct **by `rfl`** |
+| direct sums of free modules are free | `Module.Free.directSum` (`Mathlib/LinearAlgebra/DirectSum/Basis.lean`) |
+| transport freeness | `Module.Free.of_equiv`, `ModuleCat.Iso.toLinearEquiv` |
+| `M/ker ≅ range` | `LinearMap.quotKerEquivRange` |
+| `ker mkQ = Q` | `Submodule.ker_mkQ`, `Submodule.mkQ_surjective` |
+| concrete cycles/homology in `ModuleCat` | `ShortComplex.moduleCatLeftHomologyData`, `moduleCatCyclesIso`, `moduleCatHomologyIso`, `moduleCatLeftHomologyData_descH_hom` |
+
+The two auxiliary lemmas to build first (they are short, and everything else is
+plumbing on top of them):
+
+```lean
+theorem exists_retraction_of_projective_quotient {R M} [Ring R] [AddCommGroup M] [Module R M]
+    (Q : Submodule R M) [Module.Projective R (M ⧸ Q)] :
+    ∃ r : M →ₗ[R] Q, ∀ x : Q, r x = x
+theorem exists_extend_of_projective_quotient (Q : Submodule R M)
+    [Module.Projective R (M ⧸ Q)] (f : Q →ₗ[R] N) :
+    ∃ F : M →ₗ[R] N, ∀ x : Q, F x = f x
+```
+
+The first is `Module.projective_lifting_property Q.mkQ LinearMap.id
+Q.mkQ_surjective` followed by `(LinearMap.id - s.comp Q.mkQ).codRestrict Q`; the
+second is `f.comp r`. The projectivity hypothesis is discharged for
+`Q = ker (∂ₙ)` by `LinearMap.quotKerEquivRange` plus
+`free_of_submodule_of_pid (LinearMap.range ∂ₙ)`, whose freeness hypothesis on
+`Cₙ₋₁` is the `coprodIsoDirectSum` row above.
+
+**Effort.** Roughly 400–700 lines. The mathematics is three short arguments; the
+bulk is translating between `HomologicalComplex.cycles/iCycles/homologyπ` and the
+concrete `ker`/`range` picture. Budget several build cycles.
+
 ### A2. `AlgTop/Spheres.lean`
 
 The vendored `sphereTopHomology_step_MV` and `sphere0_singularHomologyℤ_isZero`
