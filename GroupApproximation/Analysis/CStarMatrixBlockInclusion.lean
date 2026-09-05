@@ -9,18 +9,17 @@ The colimit defining topological `K_1` runs along the block inclusions
 
     M_n(A) → M_m(A),   M ↦ diag (M, 1),   n ≤ m,
 
-which are unital star monoid homomorphisms.  They are *not* algebra maps: they
-are not additive.  This file defines them entrywise, proves that they are
-unital, multiplicative, star-preserving, continuous and functorial in `n ≤ m`,
-and packages the induced homomorphism of unitary groups.
+which are unital star monoid homomorphisms.  They are *not* algebra maps: they are not additive.
+This file defines them entrywise, proves that they are unital, multiplicative, star-preserving,
+continuous and functorial in `n ≤ m`, and packages the induced homomorphism of unitary groups.
 
-Everything here is elementary index bookkeeping.  The one step with content is
-`blockOne_mul`, where a sum over `Fin m` collapses onto the upper-left block;
-`sum_eq_sum_castLE` isolates that collapse.
+Everything here is elementary index bookkeeping.  The one step with content is `blockOne_mul`,
+where a sum over `Fin m` collapses onto the upper-left block; `sum_eq_sum_castLE` isolates that
+collapse.
 
-Note the local trap: `CStarMatrix.one_apply` unfolds to an `if`, so a rewrite
-chain through `Matrix.one_apply_eq` cannot fire.  The proofs below use
-`CStarMatrix.one_apply` directly.
+Note the local trap: `CStarMatrix.one_apply` unfolds to an `if`, so a rewrite chain through
+`Matrix.one_apply_eq` cannot fire.  The proofs below use `CStarMatrix.one_apply` directly, with
+`ite_mk_eq` to move between an index of `Fin m` and the corresponding index of `Fin n`.
 -/
 
 namespace GroupApproximation
@@ -43,7 +42,19 @@ theorem sum_eq_sum_castLE {B : Type*} [AddCommMonoid B] (h : n ≤ m) (g : Fin m
     exact Finset.mem_image.mpr ⟨⟨(x : ℕ), hlt⟩, Finset.mem_univ _, rfl⟩
   rw [← key, Finset.sum_image]
   intro a _ b _ hab
-  exact Fin.eq_of_val_eq (congrArg Fin.val hab)
+  have hval : (a : ℕ) = (b : ℕ) := congrArg Fin.val hab
+  exact Fin.eq_of_val_eq hval
+
+/-- Moving an `if` on `Fin n` indices to the corresponding `if` on `Fin m` indices. -/
+theorem ite_mk_eq {B : Type*} (i j : Fin m) (hi : (i : ℕ) < n) (hj : (j : ℕ) < n) {a b : B} :
+    (if (⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩ then a else b) = if i = j then a else b := by
+  by_cases hij : (i : ℕ) = (j : ℕ)
+  · have h₁ : (⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩ := Fin.eq_of_val_eq hij
+    have h₂ : i = j := Fin.eq_of_val_eq hij
+    rw [if_pos h₁, if_pos h₂]
+  · have h₁ : ¬ ((⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩) := fun hc => hij (congrArg Fin.val hc)
+    have h₂ : ¬ (i = j) := fun hc => hij (congrArg Fin.val hc)
+    rw [if_neg h₁, if_neg h₂]
 
 section Algebra
 
@@ -85,7 +96,7 @@ theorem blockOne_apply_of_not_lt_of_not_lt (M : CStarMat n A) (i j : Fin m)
 
 theorem blockOne_castLE (h : n ≤ m) (M : CStarMat n A) (i j : Fin n) :
     blockOne M m (Fin.castLE h i) (Fin.castLE h j) = M i j :=
-  blockOne_apply_of_lt_of_lt M _ _ i.isLt j.isLt
+  blockOne_apply_of_lt_of_lt M (Fin.castLE h i) (Fin.castLE h j) i.isLt j.isLt
 
 theorem blockOne_self (M : CStarMat n A) : blockOne M n = M := by
   ext i j
@@ -93,19 +104,18 @@ theorem blockOne_self (M : CStarMat n A) : blockOne M n = M := by
 
 theorem blockOne_one (n m : ℕ) : blockOne (1 : CStarMat n A) m = 1 := by
   ext i j
-  rw [CStarMatrix.one_apply]
   by_cases hi : (i : ℕ) < n
   · by_cases hj : (j : ℕ) < n
-    · rw [blockOne_apply_of_lt_of_lt (1 : CStarMat n A) i j hi hj, CStarMatrix.one_apply]
-      by_cases hij : i = j
-      · rw [if_pos hij, if_pos (Fin.eq_of_val_eq (congrArg Fin.val hij))]
-      · rw [if_neg hij, if_neg (fun hc => hij (Fin.eq_of_val_eq (congrArg Fin.val hc)))]
-    · rw [blockOne_apply_of_lt_of_not_lt (1 : CStarMat n A) i j hi hj,
-        if_neg (fun hc => hj (hc ▸ hi))]
+    · rw [blockOne_apply_of_lt_of_lt (1 : CStarMat n A) i j hi hj, CStarMatrix.one_apply,
+        CStarMatrix.one_apply, ite_mk_eq i j hi hj]
+    · have h₂ : ¬ (i = j) := by rintro rfl; exact hj hi
+      rw [blockOne_apply_of_lt_of_not_lt (1 : CStarMat n A) i j hi hj, CStarMatrix.one_apply,
+        if_neg h₂]
   · by_cases hj : (j : ℕ) < n
-    · rw [blockOne_apply_of_not_lt_of_lt (1 : CStarMat n A) i j hi hj,
-        if_neg (fun hc => hi (hc ▸ hj))]
-    · rw [blockOne_apply_of_not_lt_of_not_lt (1 : CStarMat n A) i j hi hj]
+    · have h₂ : ¬ (i = j) := by rintro rfl; exact hi hj
+      rw [blockOne_apply_of_not_lt_of_lt (1 : CStarMat n A) i j hi hj, CStarMatrix.one_apply,
+        if_neg h₂]
+    · rw [blockOne_apply_of_not_lt_of_not_lt (1 : CStarMat n A) i j hi hj, CStarMatrix.one_apply]
 
 theorem blockOne_mul (h : n ≤ m) (M N : CStarMat n A) :
     blockOne (M * N) m = blockOne M m * blockOne N m := by
@@ -114,8 +124,8 @@ theorem blockOne_mul (h : n ≤ m) (M N : CStarMat n A) :
   by_cases hi : (i : ℕ) < n
   · by_cases hj : (j : ℕ) < n
     · rw [blockOne_apply_of_lt_of_lt (M * N) i j hi hj, CStarMatrix.mul_apply,
-        sum_eq_sum_castLE h _ (fun l hl => by
-          rw [blockOne_apply_of_lt_of_not_lt M i l hi hl, zero_mul])]
+        sum_eq_sum_castLE h (fun l : Fin m => blockOne M m i l * blockOne N m l j)
+          (fun l hl => by rw [blockOne_apply_of_lt_of_not_lt M i l hi hl, zero_mul])]
       refine Finset.sum_congr rfl fun l _ => ?_
       rw [blockOne_apply_of_lt_of_lt M i (Fin.castLE h l) hi l.isLt,
         blockOne_apply_of_lt_of_lt N (Fin.castLE h l) j l.isLt hj]
@@ -185,15 +195,13 @@ theorem blockOne_trans (h : n ≤ m) (M : CStarMat n A) (k : ℕ) :
       by_cases him : (i : ℕ) < m
       · by_cases hjm : (j : ℕ) < m
         · rw [blockOne_apply_of_lt_of_lt (blockOne M m) i j him hjm,
-            blockOne_apply_of_not_lt_of_not_lt M ⟨(i : ℕ), him⟩ ⟨(j : ℕ), hjm⟩ hi hj]
-          by_cases hij : i = j
-          · rw [if_pos hij, if_pos (Fin.eq_of_val_eq (congrArg Fin.val hij))]
-          · rw [if_neg hij, if_neg (fun hc => hij (Fin.eq_of_val_eq (congrArg Fin.val hc)))]
-        · rw [blockOne_apply_of_lt_of_not_lt (blockOne M m) i j him hjm,
-            if_neg (fun hc => hjm (hc ▸ him))]
+            blockOne_apply_of_not_lt_of_not_lt M ⟨(i : ℕ), him⟩ ⟨(j : ℕ), hjm⟩ hi hj,
+            ite_mk_eq i j him hjm]
+        · have h₂ : ¬ (i = j) := by rintro rfl; exact hjm him
+          rw [blockOne_apply_of_lt_of_not_lt (blockOne M m) i j him hjm, if_neg h₂]
       · by_cases hjm : (j : ℕ) < m
-        · rw [blockOne_apply_of_not_lt_of_lt (blockOne M m) i j him hjm,
-            if_neg (fun hc => him (hc ▸ hjm))]
+        · have h₂ : ¬ (i = j) := by rintro rfl; exact him hjm
+          rw [blockOne_apply_of_not_lt_of_lt (blockOne M m) i j him hjm, if_neg h₂]
         · rw [blockOne_apply_of_not_lt_of_not_lt (blockOne M m) i j him hjm]
 
 /-- The block inclusion as a unital star monoid homomorphism `M_n(A) →⋆* M_m(A)`. -/
@@ -206,11 +214,21 @@ def blockOneHom (h : n ≤ m) : CStarMat n A →⋆* CStarMat m A where
 @[simp] theorem blockOneHom_apply (h : n ≤ m) (M : CStarMat n A) :
     blockOneHom h M = blockOne M m := rfl
 
-end Algebra
+/-- The block inclusion of unitary groups, `u ↦ diag (u, 1)`. -/
+def blockOneUnitary (h : n ≤ m) : unitary (CStarMat n A) →* unitary (CStarMat m A) :=
+  (Unitary.map (blockOneHom h)).toMonoidHom
 
-section Topology
+@[simp] theorem coe_blockOneUnitary (h : n ≤ m) (u : unitary (CStarMat n A)) :
+    ((blockOneUnitary h u : unitary (CStarMat m A)) : CStarMat m A)
+      = blockOne (u : CStarMat n A) m := rfl
 
-variable [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+theorem blockOneUnitary_self (h : n ≤ n) (u : unitary (CStarMat n A)) :
+    blockOneUnitary h u = u :=
+  Subtype.ext (blockOne_self (u : CStarMat n A))
+
+theorem blockOneUnitary_trans (h₁ : n ≤ m) (h₂ : m ≤ k) (u : unitary (CStarMat n A)) :
+    blockOneUnitary h₂ (blockOneUnitary h₁ u) = blockOneUnitary (h₁.trans h₂) u :=
+  Subtype.ext (blockOne_trans h₁ (u : CStarMat n A) k)
 
 theorem continuous_blockOne (n m : ℕ) :
     Continuous (fun M : CStarMat n A => blockOne M m) := by
@@ -225,25 +243,15 @@ theorem continuous_blockOne (n m : ℕ) :
     · exact continuous_const.congr
         fun M => (blockOne_apply_of_not_lt_of_not_lt M i j hi hj).symm
 
-/-- The block inclusion of unitary groups, `u ↦ diag (u, 1)`. -/
-def blockOneUnitary (h : n ≤ m) : unitary (CStarMat n A) →* unitary (CStarMat m A) :=
-  (Unitary.map (blockOneHom h)).toMonoidHom
+end Algebra
 
-@[simp] theorem coe_blockOneUnitary (h : n ≤ m) (u : unitary (CStarMat n A)) :
-    ((blockOneUnitary h u : unitary (CStarMat m A)) : CStarMat m A)
-      = blockOne (u : CStarMat n A) m := rfl
+section Topology
+
+variable [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 theorem continuous_blockOneUnitary (h : n ≤ m) :
     Continuous (blockOneUnitary (A := A) h) :=
   continuous_induced_rng.mpr ((continuous_blockOne n m).comp continuous_subtype_val)
-
-theorem blockOneUnitary_self (h : n ≤ n) (u : unitary (CStarMat n A)) :
-    blockOneUnitary h u = u :=
-  Subtype.ext (blockOne_self (u : CStarMat n A))
-
-theorem blockOneUnitary_trans (h₁ : n ≤ m) (h₂ : m ≤ k) (u : unitary (CStarMat n A)) :
-    blockOneUnitary h₂ (blockOneUnitary h₁ u) = blockOneUnitary (h₁.trans h₂) u :=
-  Subtype.ext (blockOne_trans h₁ (u : CStarMat n A) k)
 
 end Topology
 

@@ -110,8 +110,8 @@ theorem unitaryComponentOne_eq_closure_range_expUnitary :
     intro x hx
     obtain ⟨y, _, rfl⟩ := List.mem_map.mp hx
     exact Subgroup.subset_closure ⟨y, rfl⟩
-  · refine Subgroup.closure_le _ |>.mpr ?_
-    rintro - ⟨x, rfl⟩
+  · refine (Subgroup.closure_le _).mpr ?_
+    rintro w ⟨x, rfl⟩
     exact expUnitary_mem_unitaryComponentOne x
 
 /-- A unitary within distance `2` of the identity lies in the identity component. -/
@@ -136,7 +136,18 @@ theorem unitaryClass_eq_one_iff {u : unitary A} :
   QuotientGroup.eq_one_iff u
 
 theorem unitaryClass_surjective : Function.Surjective (unitaryClass A) :=
-  QuotientGroup.mk'_surjective _
+  fun x => QuotientGroup.induction_on x fun u => ⟨u, rfl⟩
+
+/-- The map `U(A)/U_0(A) →* U(B)/U_0(B)` induced by a continuous homomorphism of unitary
+groups.  This is how `U_0` is transported along the matrix block inclusions, which are group
+homomorphisms of unitary groups but not algebra maps. -/
+def unitaryClassMap {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
+    (hf : Continuous f) : UnitaryClass A →* UnitaryClass B :=
+  QuotientGroup.map _ _ f fun _ hg => mapsTo_pathComponentOne f hf hg
+
+@[simp] theorem unitaryClassMap_mk {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
+    (hf : Continuous f) (v : unitary A) :
+    unitaryClassMap f hf (QuotientGroup.mk v) = QuotientGroup.mk (f v) := rfl
 
 end CStar
 
