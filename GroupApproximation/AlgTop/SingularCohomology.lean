@@ -228,6 +228,20 @@ def cohCast (R : Type) [CommRing R] (X : TopCat.{0}) {m m' : ℕ} (h : m = m') :
 theorem cohCast_refl (R : Type) [CommRing R] (X : TopCat.{0}) (m : ℕ) :
     cohCast R X (rfl : m = m) = 𝟙 _ := rfl
 
+/-- A degree transport along an equality of a degree with itself is the identity. -/
+@[simp]
+theorem cohCast_self_apply (R : Type) [CommRing R] (X : TopCat.{0}) {m : ℕ} (h : m = m)
+    (a : cohomology R X m) : (cohCast R X h).hom a = a := by
+  unfold cohCast
+  rw [eqToHom_refl]
+  rfl
+
+/-- Degree transports compose. -/
+theorem cohCast_comp (R : Type) [CommRing R] (X : TopCat.{0}) {m m' m'' : ℕ}
+    (h : m = m') (h' : m' = m'') (a : cohomology R X m) :
+    (cohCast R X h').hom ((cohCast R X h).hom a) = (cohCast R X (h.trans h')).hom a := by
+  subst h; subst h'; rfl
+
 /-- Compatibility of `cocycleClass` with the cochain degree cast. -/
 theorem cocycleClass_cast (R : Type) [CommRing R] (X : TopCat.{0}) {m m' : ℕ} (h : m = m')
     (φ : singularCochainGroup R X m) (hφ : IsCocycle R X m φ)
