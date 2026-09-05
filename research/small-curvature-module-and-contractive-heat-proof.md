@@ -7,6 +7,7 @@ target: kazhdan-approximate-coefficients-have-curved-hodge-control
 requires: []
 artifacts:
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/heat-mass-loss-and-fixed-basin-boundary-2026-09-05.md
 ---
 
 Property (T) gives H1(G,H_pi)=0 for every unitary Hilbert representation
@@ -73,3 +74,17 @@ Integrate the first scalar inequality and then the second identity to
 obtain `(KCH2)`. Every heat trajectory is in a fixed finite-dimensional
 matrix space. The ultraproduct only establishes the uniform constants;
 no infinite-time or dimension interchange enters these estimates.
+
+For the boundary statements, use exact U=I_d and
+rho=I_(d-k) direct_sum sigma with sigma nontrivial irreducible. The
+contraction A0=I has energy at most 4h k/d, but every exact intertwiner
+has image in rho^G and hence normalized mass at most 1-k/d. This rules
+out O(delta^2) mass loss already at delta=0. For the basin assertion,
+dilute arbitrary U to U direct_sum I_((m-1)d), with fixed m large
+enough to lie in the specified HS basin around the identity. A flexible
+correction of this tuple supplies an almost invariant original-rank
+corner inside a genuine representation. Invariant averaging, spectral
+rounding, and polar identification give error O(beta) and relative
+padding O(beta^2), where beta is the retained-column error normalized
+by sqrt(d). The boundary artifact includes the full calculation and
+the linear-error, quadratic-padding version of this transfer.

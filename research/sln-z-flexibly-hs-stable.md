@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -37,6 +38,17 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Compressed irreducibles satisfy the linear seed estimate
+  (2026-09-05).** `(MSC22)` proves `N_U(L delta)>=N` when U is the
+  polar compression of an N-dimensional irreducible by k=o(N)
+  dimensions. Heat flow improves the supplied inclusion, and the
+  original irreducible remains an active universal-host type. The
+  generic theorem `kazhdan-irreducible-compressions-have-quadratic-defect`
+  also proves `delta^2` comparable to k/(N-k) for every finitely
+  presented Kazhdan group, without finite image or H2 assumptions.
+  Thus growing deletions do not refute MSC19; their necessary padding
+  has exactly the quadratic defect scale. The argument requires the
+  exact irreducible ambient already supplied by the compression.
 - **One fixed spectral cutoff now suffices for positive mass
   (2026-09-05).** `(MSC21)` proves, for a uniform epsilon_*>0,
   `N_U(sqrt(delta))/d >= (3/4)min(N_U(epsilon_*)/d,1)-C delta`.

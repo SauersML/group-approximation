@@ -31,6 +31,7 @@ artifacts:
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -156,6 +157,18 @@ is not a minimum-eigenvalue gap. The same argument proves the linear
 first-vector estimate locally in a uniform HS neighborhood of an exact
 representation. Producing the initial fixed-cutoff mass, or the coarse
 exact comparison needed for that local result, remains open.
+
+Compressed irreducibles now pass the linear seed test quantitatively.
+For every k=o(N) deletion, `(MSC22)` recovers a low-energy space of
+dimension at least the original N at cutoff L delta. More generally,
+every finitely presented Kazhdan group has compressed defect squared
+comparable to k/(N-k), without H2 or finite-image assumptions. The
+proof combines heat flow of the supplied inclusion with irreducible
+Schur variance. Hence all deleted dimensions still have to be restored,
+and their relative cost is comparable to delta^2 even when k grows.
+This establishes the right scale for this supplied-ambient class;
+it does not construct an ambient representation for an arbitrary
+canonical residual.
 
 The new sequential extraction theorem offers another quantitative
 possibility. Approximate exact corners of ranks r_i can be removed with

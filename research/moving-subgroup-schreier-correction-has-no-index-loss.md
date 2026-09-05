@@ -20,6 +20,7 @@ artifacts:
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -505,6 +506,29 @@ there exist eta_0,L_0>0 such that
 `min Spec Delta_(Q_(2d),U)<=L_0^2 delta(U)^2` at small defect.
 No operator-norm closeness is required, but the coarse comparison rho
 is an input and is not supplied for arbitrary tuples.
+
+The linear first-vector estimate is now proved for every small
+irreducible compression. Let rho:SL5->U(N) be irreducible, remove
+k dimensions, put d=N-k, and polar-round the compressed generators.
+There are uniform theta_0,L,c,C>0 such that for `0<k/d<=theta_0`,
+
+```text
+c k/d <= delta(U)^2 <= C k/d,
+N_U(L delta(U)) >= N       at sufficiently small defect. (MSC22)
+```
+
+Contractive heat flow starts with the supplied inclusion C^d->C^N;
+it retains squared HS mass at least d/2 and reaches energy
+O(delta^2 d). Its target is the original irreducible, which must
+therefore be an active type. Since N<2d it lies in Q_(2d), and its
+regular multiplicity forces the displayed count. A direct Kazhdan
+and Schur-variance argument proves the defect comparison for every
+finitely presented Kazhdan group, including infinite-image irreducibles,
+without H2 vanishing. Thus growing k causes no failure of the MSC19
+rate on this class. Every vanishing-error correction must restore all
+k dimensions, with necessary padding comparable to delta^2. This uses
+the supplied irreducible ambient and makes no claim of a full local
+correction theorem for arbitrary tuples.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

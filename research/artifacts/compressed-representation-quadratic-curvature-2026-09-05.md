@@ -6,6 +6,10 @@ projection zero and a same-dimensional iteration converges. Above that
 threshold, compressions of large irreducible Kazhdan representations
 show why dimension flexibility is indispensable and why a universal
 padding bound smaller than the squared normalized-HS defect is impossible.
+The later curved Hodge argument strengthens this test: for every fixed
+finitely presented Kazhdan group and every k=o(N), the compressed
+defect satisfies `delta^2` comparable to `k/(N-k)`. This general
+comparison needs neither H2 vanishing nor finite image.
 
 ## 1. A regime where the QRC iteration closes
 
@@ -133,35 +137,45 @@ with `(CRI4)` yields
 ```
 
 Thus relative padding `o(delta^2)` cannot be promised uniformly.
-For general growing `k`, this does not assert that `delta^2 d` is
-comparable to `k`: `(CRI4)` is only an upper bound on the defect.
+The upper bound `(CRI4)` alone does not prove comparability. The
+curved Hodge and Schur-variance argument now supplies the reverse
+bound for all sufficiently small deletion ratios, including growing
+k. Consequently every k=o(N) family satisfies `delta^2 d` comparable
+to k. Restoring rho has error O(delta) and relative padding O(delta^2).
 
-## 4. Deleting one dimension gives a sharp quadratic scale
+## 4. Every small deletion ratio gives a sharp quadratic scale
 
-Set `k=1` and let irreducible dimensions `N` tend to infinity. For
-`d=N-1`, the stronger same-dimensional version of `(CRI6)` is
-
-```text
-dist_2(U,Rep_d(G))>=kappa-sqrt(2/d).                    (CRI9)
-```
-
-If the group also has all-unitary `H^2` vanishing, use the constants
-from Section 1. The input defect tends to zero by `(CRI4)`. Eventually
-
-```text
-C d delta^2>=1.                                      (CRI10)
-```
-
-Otherwise `(CRI2)` would give exact same-dimensional representations
-at distance at most `2A delta->0`, contradicting `(CRI9)`. Therefore
+For a finitely presented Kazhdan group, take the curved Hodge constants
+mu,C_H,delta_H, put K0=|R|+4C_H, and choose
+`theta_0<=min(1/2,mu/(8|S|),kappa^2/4)`. The initial inclusion W
+in `(CRI3)` is an operator contraction of normalized squared HS mass
+one and coefficient energy at most `2|S|k/d`. If `k/d<=theta_0`,
+its contractive heat flow at time `log(1/delta)/mu` gives, at small
+positive defect, a map A with
 
 ```text
-1/C<=d delta^2<=2 ell^2.
+||A||op<=1,       ||A||HS^2>=d/2,
+sum_s||rho(s)A-AU_s||HS^2<=B delta^2 d.               (CRI9)
 ```
 
-The necessary one-dimensional padding has relative size `1/d`
-comparable to `delta^2`. This lower defect bound explicitly uses
-`(QRC5)` and rank integrality; it does not follow from compression alone.
+Here B depends only on the fixed group and presentation. Property (T)
+and irreducible Schur averaging bound the variance of Q=AA* above by
+`4B delta^2 d/kappa^2`. Since rank Q<=d and TrQ>=d/2, the same
+variance is at least `d k/(4N)`. Thus `k/d<=C delta^2`; above the
+small-defect threshold enlarge C using k/d<=theta_0. The result is
+
+```text
+c k <= d delta^2 <= 2 ell^2 k                         (CRI10)
+```
+
+for all small deletion ratios, with no H2 assumption. The exact
+zero-defect case cannot occur for k>0 in this range: property (T)
+on Hom(U,rho) would force `kappa^2 d<=2k`. Taking k=1 recovers
+the earlier sharp one-dimensional result under weaker hypotheses.
+The integral-rank QRC argument in Section 1 remains a separate valid
+correction basin, but it is no longer needed for this defect floor.
+The [general compression artifact](general-irreducible-compression-quadratic-defect-2026-09-05.md)
+gives the complete constants, heat proof, and SL5 spectral interpretation.
 
 ## 5. The all-H2 arithmetic test
 

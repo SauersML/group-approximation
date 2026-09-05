@@ -5,6 +5,7 @@ kind: claim
 title: No uniform lattice outlier carries a balanced central involution free from the S-arithmetic group
 artifacts:
   - research/artifacts/sl3-corner-descent-dilation-budget-2026-09-05.md
+  - research/artifacts/four-swap-faces-preserve-the-arithmetic-hecke-module-2026-09-05.md
 distinct_from:
   sl3-z-weakly-ucp-stable: that forbids uniform outliers of the lattice altogether, repairing every hyperlinear approximation to genuine representations; this forbids only one structure on them -- a balanced free central involution -- and is implied by stability, without a claimed proof that the implication is strict.
   sl3-double-swap-involution-is-outlier-carried: that is the established confinement theorem -- the swap involution of E_p rides only on outliers; this is the open other half, that outliers cannot carry it either, and together they make E_p and the arithmetic double non-hyperlinear.
@@ -32,6 +33,23 @@ non-hyperlinear group through `non-hyperlinear-from-sl3-double-swap`.
 
 ## Attempts
 
+- **The full arithmetic compressed actor retains its Hecke module.**
+  With `q_a=(1+a s)/2`, the four maps
+  `xi -> 2 q_a xi q_b` from the `B`-bimodule span of `Lambda h Lambda`
+  are isometries with mutually orthogonal ranges. This follows from
+  the reduced amalgam words `s^e g s^f`; it uses the full canonical
+  swap pattern. For `c in Lambda cap h Lambda h^-1`, the exact relation
+  `u_c q_a h q_b=q_a h q_b u_(h^-1 c h)` supplies a nonzero
+  intertwiner between the two approximate restrictions. Each face
+  nevertheless has the original Hecke correspondence, a finite
+  multiple of the regular Lambda representation on either side,
+  rather than a genuine finite-dimensional target. It contains no
+  finite-dimensional Lambda submodule, and the four equal faces have
+  consistent matrix-corner capacities. The artifact proves the full
+  Gram identity and its uniform Kazhdan gap after tensoring with any
+  finite-dimensional target. This does not exclude coordinate spectral
+  seeds in growing hosts; it identifies the missing passage from an
+  approximate-to-approximate intertwiner to an exact target.
 - **Implied by stability (route comparison).**  `sl3-z-weakly-ucp-stable`
   forbids the outlier sector entirely, hence this claim vacuously; the
   point of stating the claim is that nothing here

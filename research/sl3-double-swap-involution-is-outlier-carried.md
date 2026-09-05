@@ -46,8 +46,8 @@ group `E_p` (equivalently the double `D_p = Gamma *_Lambda Gamma`, by the
 swap identification) is non-hyperlinear if and only if no uniform lattice
 outlier carries the balanced free involution -- the open leaf
 `sl3-outliers-carry-no-balanced-free-involution`, which is implied by
-`sl3-z-weakly-ucp-stable` and is the first goal leaf in the graph that is
-strictly weaker than a stability hypothesis.
+`sl3-z-weakly-ucp-stable`. It asks for a more restricted exclusion than
+stability; no converse or strict separation has been proved.
 
 ## Attempts
 

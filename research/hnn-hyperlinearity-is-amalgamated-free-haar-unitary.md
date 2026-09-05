@@ -43,11 +43,12 @@ embedding of `N` admits such a `k`.
   =>  no amalgamated-free Haar unitary in B' cap M          (= (2) fails).
 ```
 
-Both implications are strict in content: a `k` as in `(2)` is a leak
+These implications follow from the required moment pattern: a `k` as in `(2)` is a leak
 (`[k, u_h]` has trace `0`, not `1`, by freeness), so `(RCC)` forbids it;
 its commutator has trace `0` rather than modulus `1`, so projective
 transfer forbids it; but `(2)` asks only for leaks with the full
-amalgamated-free joint distribution.  The minimal statement the HNN lane
+amalgamated-free joint distribution. This does not prove that either
+implication is strict for the arithmetic pair. The minimal statement the HNN lane
 must prove is therefore: **no regular-trace matrix model of `A` carries a
 Haar unitary in the `C`-centraliser that is free from `L(A)` with
 amalgamation over `L(C)`.**

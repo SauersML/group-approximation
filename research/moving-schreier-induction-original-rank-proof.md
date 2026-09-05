@@ -8,6 +8,7 @@ requires:
   - residual-finite-regularization-removes-the-weak-ucp-quantifier
   - sequential-exact-corner-extraction-has-quadratic-error-ledger
   - kazhdan-approximate-coefficients-have-curved-hodge-control
+  - kazhdan-irreducible-compressions-have-quadratic-defect
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
@@ -24,6 +25,7 @@ artifacts:
   - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
   - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -1037,3 +1039,21 @@ of rho has no larger quotient. That component occurs in regular
 Q_(2d), proving the claimed local form of `(MSC19)`. The coarse
 exact comparison remains a hypothesis. The linked curved-Hodge
 artifact supplies the full normalization and quantifier details.
+
+For `(MSC22)`, the required generic compression theorem gives constants
+theta_0,c,C and a heat-flow contraction A:C^d->C^N satisfying
+`||A||HS^2>=d/2` and
+`sum_s||rho(s)A-AU_s||HS^2<=B delta^2 d`, as well as the full
+two-sided defect comparison. Decrease theta_0 to at most 1/2.
+Then N=(1+k/d)d<2d, so the universal-conductor result places rho
+in the regular Q_(2d) host. The map A has Rayleigh quotient at most
+`L^2 delta^2`, where L^2=2B/h. Hence the coefficient block of rho
+has a nonzero low-energy vector. Its regular multiplicity is dim rho=N,
+so the full low-energy space has dimension at least N, proving MSC22.
+MSC14 also bounds this count by d/(1-a), with
+`a=2hL^2 delta^2/kappa^2`; when a<=1/2 this yields
+`k/d<=4hL^2 delta^2/kappa^2` directly in the arithmetic host.
+The general theorem's Schur-variance proof needs no finite quotient.
+The original rectangular Kazhdan comparison excludes every correction
+dimension below N at vanishing error, so its necessary k/d padding
+is now comparable to delta^2 for all k=o(N), including growing k.

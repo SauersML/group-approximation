@@ -1,6 +1,30 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the curved Hodge theorem, quantitative
+The latest snapshot, including the general irreducible compression
+defect theorem, its MSC22 spectral realization, the heat mass-loss and
+fixed-basin boundaries, and the full-arithmetic four-face Hecke audit,
+passes with **14,168 nodes and no errors, warnings, or duplicate candidates**
+in 9.409 seconds. Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/general-compression-cairn-validation-2026-09-05.json`.
+All seventeen edited theorem, root, and proof-artifact files were compared
+byte for byte with the validated archive. Independent mathematical audits
+checked the heat thresholds, zero-defect exclusion, Schur-variance bound,
+large-defect extension, and finite-image scope of MSC22. They also checked
+the four-face Gram factors and subgroup indices, regular absorption, and
+the original-dimension normalization in the dilution argument.
+
+Review corrected an omitted added-input-column term in the auxiliary
+rounding estimate, giving the validated bound `(1+10/kappa)beta` with
+relative padding at most `4beta^2/kappa^2`. The heat-vector conclusion
+is explicitly restricted to sufficiently small positive defect, while
+the compression defect comparison holds throughout the stated small
+deletion-ratio range. Two further unsupported strict-separation sentences
+were repaired in the swap/HNN hierarchy. Neither the global spectral seed
+nor either nonhyperlinear existence endpoint was marked proved.
+
+The preceding snapshot, including the curved Hodge theorem, quantitative
 heat transfer from one fixed spectral cutoff, the conditional Holder
 extraction rates, and the repaired swap commutator statements, passes
 with **14,166 nodes and no errors, warnings, or duplicate candidates**

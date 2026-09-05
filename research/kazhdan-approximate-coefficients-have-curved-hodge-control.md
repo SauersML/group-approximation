@@ -5,6 +5,7 @@ kind: claim
 title: Approximate coefficients of a finitely presented Kazhdan group obey a curved Hodge bound
 artifacts:
   - research/artifacts/curved-hodge-heat-transfers-fixed-schreier-mass-2026-09-05.md
+  - research/artifacts/heat-mass-loss-and-fixed-basin-boundary-2026-09-05.md
 distinct_from:
   two-kazhdan-correction-has-quadratic-rank-curvature: that uses all-unitary H2 vanishing to change a tuple and concentrate its relator defects; this uses H1 vanishing to bound cochain energy for an unchanged tuple and an exact comparison representation.
   moving-subgroup-schreier-correction-has-no-index-loss: that extracts exact corners and estimates regular-host spectral count; this supplies the general curved Hodge inequality and contractive heat estimates used to improve a supplied spectral seed.
@@ -55,6 +56,16 @@ Thus positive initial mass with sufficiently small relative energy
 survives logarithmic heat time while its energy falls to O(delta^2).
 This theorem improves supplied mass; it asserts no positive mass for
 an arbitrary approximate tuple in a finite regular host.
+
+The mass loss cannot generally be improved to O(delta^2): even two exact
+representations can have a small fixed unmatched summand, forcing
+contractive intertwiners with vanishing energy to lose that summand's
+mass in the limit. Likewise,
+full flexible correction on a fixed normalized-HS basin around exact
+representations would already imply global flexible stability, by fixed
+dilution followed by genuine Kazhdan corner rounding. The linked boundary
+artifact proves both assertions. The local first-vector conclusion makes
+neither stronger claim.
 
 DERIVATION
 small-curvature-module-and-contractive-heat-proof

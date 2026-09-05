@@ -5,12 +5,13 @@ kind: claim
 title: Close exact corrections of compressed irreducibles must restore every deleted dimension
 artifacts:
   - research/artifacts/compressed-representation-quadratic-curvature-2026-09-05.md
+  - research/artifacts/general-irreducible-compression-quadratic-defect-2026-09-05.md
 distinct_from:
   direct-sum-weil-compressions-have-quadratic-padding: that supplies an upper padding ledger for a special direct sum of Weil compressions; this forces every close correction of any irreducible Kazhdan representation to recover all deleted dimensions.
-  infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that excludes qualitative same-dimension stability; this gives an explicit obstruction at every intermediate dimension and a sharp quadratic padding scale in the all-H2 case.
+  infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that excludes qualitative same-dimension stability; this gives an explicit obstruction at every intermediate dimension and a sharp quadratic padding scale for all small irreducible compressions.
 ---
 
-Let `G=<S|R>` have a finite symmetric Kazhdan generating set S with
+Let `G=<S|R>` be finitely presented with a finite symmetric Kazhdan generating set S and
 constant kappa, in the convention
 `dist(v,H^G)<=kappa^(-1)max_s||pi(s)v-v||`. Write ell for the maximal
 defining-relator length. Let `rho:G->U(N)` be irreducible, remove any
@@ -44,20 +45,19 @@ padding is at least
 ```
 
 No uniform relative-padding bound `o(delta^2)` can hold for these inputs.
-For growing k, `(CID1)` alone does not give comparability between
-`d delta^2` and k.
-
-There is a sharp all-H2 specialization. Assume in addition ordinary
-Hilbert H2 vanishes for every unitary representation and take `k=1`
-with N tending to infinity. Then constants `c,C>0` independent of N
-satisfy eventually
+The separate theorem
+`kazhdan-irreducible-compressions-have-quadratic-defect` supplies the
+reverse defect bound: there are theta_0,c,C>0 such that whenever
+`0<k/d<=theta_0`,
 
 ```text
-c <= d delta^2 <= C.                                   (CID4)
+c k <= d delta^2 <= C k.                               (CID4)
 ```
 
-Consequently the necessary one-dimensional padding has relative size
-comparable to `delta^2`. The hypotheses have explicit instances in
+This holds for growing k and requires neither H2 vanishing nor finite
+image. Consequently the necessary padding is comparable to delta^2
+for every k=o(N) family; restoring rho has error O(delta) and relative
+padding O(delta^2). The hypotheses have explicit instances in
 `SL_5(Z)`: its finite projective-point permutation representations have
 irreducible mean-zero summands of dimensions `p^4+p^3+p^2+p`, for primes p.
 This is a sharp test for the correction program, not a construction of
