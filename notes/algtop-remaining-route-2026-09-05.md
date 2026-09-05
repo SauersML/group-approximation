@@ -15,7 +15,9 @@ alternative route.
 | `AlgTop/CupProduct.lean` | `cup` / `⌣`, `cup_mk`, bilinearity, `one`, `cup_one`, `cohPullback_cup`, `cohPullback_one` |
 | `AlgTop/CupAssoc.lean` | `cochainCup_assoc`, `cup_assoc`, `cochainCup_one_left`, `one_cup` |
 | `AlgTop/CrossProduct.lean` | `prodMap`, `cross` / `×ᶜ`, bilinearity, `cross_natural`, `cross_one_right` |
-| `AlgTop/FreeSubmodulePID.lean` | `free_of_submodule_of_pid`, `projective_of_submodule_of_pid` (arbitrary rank) |
+| `AlgTop/FreeSubmodulePID.lean` | `free_of_submodule_of_pid`, `projective_of_submodule_of_pid` (arbitrary rank), `exists_retraction_of_projective_quotient`, `exists_extend_of_projective_quotient` — namespace `…AlgTop.PID` |
+| `AlgTop/SingularChainFree.lean` | `chainCx`, `free_chainCx_X`, `free_range_d`, `projective_quot_ker_d`, `exists_extend_off_ker_d`, `cochainCoboundary_eq_comp`, `isCocycle_iff` |
+| `AlgTop/Kronecker.lean` | `homologyOf`, `kronOfCocycle` (+ `homologyπ_kronOfCocycle`, additivity, linearity, vanishing on coboundaries), `kronecker`, `kronecker_cocycleClass` |
 
 The whole stack sits on HamSandwich layers 0–7, which the first probe confirmed
 green on v4.32. The only `ZMod 2`-specific step in that vendored stack was the
@@ -45,7 +47,27 @@ any concrete space needs either the UCT or cohomology Mayer–Vietoris, and:
 
 `AlgTop/FreeSubmodulePID.lean` supplies the missing algebra. The route from there:
 
-### A1. `AlgTop/UniversalCoefficients.lean`
+### A1. `AlgTop/UniversalCoefficients.lean` — **the two remaining theorems**
+
+`Kronecker.lean` already builds the map and its computation rule, and
+`SingularChainFree.lean` already supplies both splittings. What is left is
+exactly two statements:
+
+```lean
+theorem kronecker_surjective (R) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] (X) (n)
+    (f : homologyOf R X n →ₗ[R] R) : ∃ a : cohomology R X n, (kronecker R X n).hom a = f
+theorem kronecker_injective  -- when H_{n-1}(X;R) is projective
+```
+
+Surjectivity: transport `f ∘ homologyπ` across `ShortComplex.moduleCatCyclesIso`
+to a functional on `ker ∂ₙ`, extend it with `exists_extend_off_ker_d`, and check
+the extension is a cocycle — the only content is that `∂c` is a cycle whose class
+is zero, i.e. `toCycles_comp_homologyπ`. Injectivity: if `φ` vanishes on cycles
+it factors through `Cₙ/ker ∂ₙ ≅ Bₙ₋₁`, and the resulting functional extends first
+over `Zₙ₋₁` (needs `Hₙ₋₁` projective) and then over `Cₙ₋₁` (the same splitting),
+producing an explicit primitive.
+
+The original sketch, kept for context:
 
 Work in `ModuleCat R` with Mathlib's concrete homology model
 (`ShortComplex.moduleCatLeftHomologyData`, `moduleCatHomologyIso`,
