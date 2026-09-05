@@ -107,3 +107,34 @@ it lands in `U(2)` because it fixes `e₃`, and it contracts in `U(3)` because
 **Four collision risks** across lanes, all owned by `lix-design` to arbitrate:
 the projection model of a bundle, the `CP^n` model, the clutching
 construction, and the sphere models. One of each, campaign-wide.
+
+## Standing rule added mid-wave: nobody deletes a peer-facing module
+
+**A lane must never delete a module on the grounds that a peer has a better
+one.** Report the duplicate to the lead, who checks the other copy actually
+exists, and decides which survives.
+
+This fired three times in one hour on 2026-09-05, and twice it produced a hole
+rather than a redundancy:
+
+* `lix-obstruction` deleted three modules (`LIXObstructionTautSection`,
+  `TautChart`, `Segment`) because `found-euler-class` had built them better —
+  at the same moment the lead had told `found-euler-class` that
+  `lix-obstruction` owned that chain and not to build into it.
+  `found-euler-class` then proposed retiring their own copies. Had they done
+  it, the campaign would have had **no** proof that the section over `CP^d`
+  has exactly one zero, and nothing would have flagged it, because each
+  deletion is locally correct. Caught only because that lane refused to delete
+  a file on a ruling without checking.
+* `found-chern-classes` deleted `ChernParityCoefficient` and
+  `ChernNewtonSquareZero` as duplicates of `ChernParityAlgebra`, while the
+  parity lane deleted `ChernParityAlgebra` and rewrote `MappingTorusParity` to
+  import the two just-deleted files. Dangling import; both restored.
+  That lane *did* grep for importers first — ten minutes before the import was
+  added.
+
+The general hazard: on a shared tree, "this duplicates a peer's file, delete
+mine" and "this duplicates a peer's file, delete mine" run concurrently and
+both files vanish. A grep for importers is not sufficient, because it races.
+Deletion is the one operation where mutual deference subtracts instead of
+duplicating, and neither deleter can see it happening.
