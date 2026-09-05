@@ -7,34 +7,57 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 ## 1. GREEN
 
-*(nothing recorded yet; probe round 1 in flight)*
+Probe round 3, `Build completed successfully` not reached, but the per-module
+verdicts are exact — the build ran 2996 jobs and only two modules logged
+failures:
+
+| module | round 3 |
+|---|---|
+| `Analysis/CStarKOne` | **built** (job 2993 of 2996) |
+| `Analysis/CStarSymmetryComponent` | **built** |
+| `Analysis/CStarKOneInjectivityCriterion` | red, one error |
+| `Analysis/CStarKOneWhitehead` | red, 20 errors |
+| `Analysis/LIXEndpointStatement` | not reached (imports the criterion) |
+
+A job count for a clean run is not yet recorded, so nothing here is a green
+claim under the campaign rule.
 
 ## 2. AUTHORED, UNVERIFIED
 
-* `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
-  `Analysis/CStarKOneWhitehead.lean`, `Analysis/CStarSymmetryComponent.lean`,
-  `Analysis/LIXEndpointStatement.lean` — inherited at `fa86fdb1a`; the errors
-  quoted in the lane brief predate that commit, so the true state is being
-  measured before anything is touched.
-* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — **blocked on
-  `IsSimpleCStar`** (see NEEDS).  Drafted, not landed: it must not define a
-  second simplicity predicate, so it lands the moment `Analysis/CStarSimple*`
-  exists.
+* `Analysis/CStarKOneInjectivityCriterion.lean` — round-3 fix applied:
+  `coe_diagOne_apply` needed the `omit [PartialOrder A] [StarOrderedRing A] in`
+  that its neighbour `coe_diagOne` already had.
+* `Analysis/CStarKOneWhitehead.lean` — round-3 fixes applied, see TRAPS for the
+  `CStarMat` / `Matrix` seam.
+* `Analysis/LIXEndpointStatement.lean` — `HasK1InjWitness` and
+  `not_k1Inj_of_hasWitness` added.
+* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — **landed**, statement half:
+  `ProblemLIX` and `not_problemLIX_of_exists`, with `#audit_axioms` on both.
+  The endpoint deliberately lands before anything is proved about it (route
+  design §C.7).  `exists_simple_unital_not_k1Inj` and `not_problemLIX` wait on
+  `cs-limit`'s algebra; nothing in the file asserts `ProblemLIX` is false, and
+  `not_problemLIX_of_exists` carries `#audit_axioms`, not
+  `#audit_closed_axioms`, because it has a leading input.
+
+`cs-simplicity`'s `Analysis/CStarSimple.lean` landed with exactly the shape
+asked for below — `[CStarAlgebra A]` only, closed two-sided ideals, no
+nontriviality conjunct, universe-polymorphic — so the first NEEDS item is
+**discharged**.
 
 ## 3. NEEDS
 
-### From `cs-simplicity` — one definition, and nothing else
+### From `cs-simplicity` — one definition — **DISCHARGED**
+
+Landed as `Analysis/CStarSimple.lean:77`
 
 ```lean
--- GroupApproximation/Analysis/CStarSimple.lean   (any `CStarSimple*` name)
-namespace GroupApproximation
-
-/-- A C⋆-algebra is simple when its only closed two-sided ideals are `⊥` and `⊤`. -/
-def IsSimpleCStar (A : Type u) [CStarAlgebra A] : Prop := …
+def IsSimpleCStar (A : Type u) [CStarAlgebra A] : Prop :=
+  ∀ I : Ideal A, I.IsTwoSided → IsClosed (I : Set A) → I = ⊥ ∨ I = ⊤
 ```
 
-Three constraints on the shape, in decreasing order of how expensive they are
-to fix later:
+with `isSimpleCStar_iff_isSimpleRing` beside it.  All four constraints below
+are met.  Kept in the report because they are the reasons the endpoint reads
+the way it does, not merely a request:
 
 1. **Instance arguments: `[CStarAlgebra A]` and nothing more.**  In particular
    *not* `[PartialOrder A] [StarOrderedRing A]`.  `ProblemLIX` is stated over
@@ -56,7 +79,14 @@ to fix later:
 Nothing else is needed from this lane by me: the assembly never unfolds
 `IsSimpleCStar`.
 
-### From `cs-limit` — the algebra, and one named `Prop` I am providing
+### From `cs-limit` — the algebra — **STILL OPEN**
+
+`Analysis/LIXLimitTower.lean` has landed and carries the general machinery:
+`CStarTower`, `Colim`, `iota`, `iota_injective`, and `instNontrivial` from
+`Nontrivial (A 0)`.  What it does not yet carry is a **`CStarAlgebra` instance**
+— `Colim` is a `NormedRing` and a `CStarRing`, but nothing supplies
+`CompleteSpace`, so it is not a `CStarAlgebra` and cannot be the endpoint's
+algebra.  The completion is the remaining gap on this side.
 
 ```lean
 -- GroupApproximation/Analysis/LIXLimit*.lean
@@ -88,7 +118,7 @@ attribute [local instance] GroupApproximation.instSpectralPartialOrder
                            GroupApproximation.instSpectralStarOrderedRing
 ```
 
-### From `cs-simplicity` (second item)
+### From `cs-simplicity` (second item) — still open
 
 ```lean
 theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit
@@ -162,6 +192,32 @@ so it can be wired separately or last.
 * **The clone is the bottleneck, not the build.**  Nine lanes ran `cp -al` of
   the same 25 GB tree at once; this lane's took 746 s and round 1 cost about
   35 minutes wall clock.
+* **`CStarMat` is a type synonym with its own `Mul` and `Star`, and `rw` cannot
+  cross it.**  `CStarMat n A` is `CStarMatrix (Fin n) (Fin n) A`, a plain `def`
+  over `Matrix` (`Mathlib/Analysis/CStarAlgebra/CStarMatrix.lean:44`), but
+  `CStarMatrix.instStar` is its own `⟨conjTranspose⟩` and the `Mul` comes
+  through a bespoke `HMul` instance, both only *definitionally* equal to
+  `Matrix`'s.  `Matrix.instOne`, by contrast, is shared verbatim
+  (`inferInstanceAs`).  So every `rw [star_blockSum]` and
+  `rw [blockSum_mul_blockSum]` in `CStarKOneWhitehead` failed with
+
+  ```
+  Did not find an occurrence of the pattern star (blockSum ?p ?q)
+  Note: The target expression is not type-correct under the `instances`
+  transparency level
+  ```
+
+  while the neighbouring `blockSumU_mul`, written in term mode as
+  `Subtype.ext (blockSum_mul_blockSum _ _ _ _)`, compiled without complaint.
+  That is the whole rule: **`exact` checks definitional equality at default
+  transparency and crosses the synonym; `rw` matches instances syntactically
+  and does not.**  The fix is not a coercion but a placement decision — state
+  the arithmetic at `Matrix`, where its lemmas live, and cross the synonym once,
+  by application, at the point where the `unitary (CStarMat _ A)` element is
+  built.  A `show` at the `Matrix` type does not help either: the mixed
+  application `permMat A e * blockSum p q` then asks for
+  `HMul (CStarMat (n+n) A) (Matrix (Fin (n+n)) (Fin (n+n)) A) ?m`, which
+  instance search cannot find for exactly the same reason.
 * **The brief's error list is stale.**  `fa86fdb1a` ("noncomputable K_1 and a
   hand-rolled expansion") already carries a `noncomputable section` in
   `CStarKOne.lean`, so the five "consider marking it as noncomputable" lines
