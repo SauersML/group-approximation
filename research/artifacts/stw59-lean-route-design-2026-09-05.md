@@ -69,8 +69,14 @@ identity map, and a rank-`n` bundle *is* its own classifying map `X → Gr n N`.
 Section algebras are corners: `Corner A p := {x : A // p*x = x ∧ x*p = x}`,
 a unital C\*-algebra with unit `p`.
 
-`F` over `Sph 5 ⊂ ℂ³` is `x ↦ 1 - x xᴴ`, with `Sph 5` inside
-`EuclideanSpace ℝ (Fin 6)` and an explicit `ℝ⁶ ≅ ℂ³`.
+`F` over `S⁵ ⊂ ℂ³` is `x ↦ 1 - x xᴴ`. **Superseded in detail by what landed:**
+this design said `Sph 5` inside `EuclideanSpace ℝ (Fin 6)` with an explicit
+`ℝ⁶ ≅ ℂ³`; `lix-spaces` instead used
+`STW59.sphereFive : Set (Fin 3 → ℂ) := unitVectors (Fin 3)`, which is the better
+carrier for `F` and is the model that stands. `S⁴` is `sphereFour` in
+`EuclideanSpace ℝ (Fin 5)`, which already agrees with the cohomology model. The
+`ℝ⁶ ≅ ℂ³` of the original plan survives as the **bridge** of §C.3 C2, not as the
+ambient space of `F`.
 
 **Change of line bundle from the manuscript (§B.6, W4(ii)).** Where the
 manuscript writes `L_j` for the tautological line, we use its **conjugate**
@@ -493,7 +499,9 @@ pullback of the generator of `H²(CP^N)` along the classifying map, so
 | `KOne`/`KZero`, stated for an **arbitrary** C\*-algebra | `ktheory-k1` | `BundleAlg X N` is the instantiation `A := C(X,ℂ)` |
 | `Corner p A p` | `Analysis/LIXCornerAlgebra.lean` | imports |
 | `CP d`, `cpSet d` | `Analysis/LIXProjectiveSpaceModel.lean` (namespace `GroupApproximation.STW59`) | imports, never redefines; `AlgTop.CPn` is its lemma layer |
-| `Sph n`, `Gr n N` | `lix-spaces` | not yet claimed |
+| `sphereFive` (S^5, in `Fin 3 -> C`), `sphereFour` (S^4, Euclidean) | `Analysis/LIXBlockProjections.lean` | imports |
+| `sphereFiveHomeoSphere` — the ONE bridge to `SphereOddDegree.Sphere 5` | `Topology/SphereModelBridge.lean` (`lix-spaces`, owed) | the only LIX-side importer of `SphereOddDegree` |
+| `Gr n N` | `lix-spaces` | not yet claimed |
 | bundle, pullback, `⊕`, `⊗`, clutch, mapping torus | `found-bundle-calculus` | imports |
 | `H^*(−;R)`, cup, Künneth, top pairing | `found-cohomology-ring` | imports |
 | `H^*(CP^n)`, the class `h` | `found-cpn-cohomology` | imports |
@@ -514,11 +522,51 @@ in `CupProduct.lean`, with `CohomologyCupProduct.lean` above it. Restarting
 costs the campaign months. Two lanes are bringing that tree green on v4.32 right
 now, so `found-cohomology-ring` must coordinate with them rather than fork.
 
-**C2 — the sphere model.** Three sphere types are about to exist:
-`Metric.sphere` in `EuclideanSpace` (this design), the vendored `TopCat.{0}`
-model, and whatever `found-cohomology-ring` picks. A bridge file already
-exists: `SphereOddDegree/SphereModelTransport.lean`. Require exactly one
-transport, stated once, from `Sph n` to the model the cohomology is computed in.
+**C2 — the sphere model. NOW LIVE, and RULED: bridge, do not unify.**
+Revision 3 recorded this as not yet live. It is live, for exactly one space.
+
+* `STW59.sphereFive : Set (Fin 3 → ℂ) := unitVectors (Fin 3)`
+  (`Analysis/LIXBlockProjections.lean:117`) carries `F`, `hopfCol` and every
+  block projection.
+* `SphereOddDegree.Sphere n := ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n+1))) 1)`
+  (`SphereOddDegree/Basic.lean:19`) carries the whole `AlgTop` cohomology stack
+  (`CupProduct`, `CupAssoc`, `CrossProduct`, `SingularCohomology`,
+  `SingularChainFree`, `CochainLeibniz`, `OddDegreeOfHomeomorphism`).
+
+`EuclideanSpace ℝ (Fin 6)` is `PiLp 2`, distinct from `Fin 6 → ℝ`, distinct
+again from `Fin 3 → ℂ`; nothing bridges them, and no `LIX*` module imports
+`SphereOddDegree` at all.
+
+**The decisive fact:** in the same file, `sphereFour` (:114) is
+`Metric.sphere (0 : EuclideanSpace ℝ (Fin 5)) 1`, *definitionally*
+`SphereOddDegree.Sphere 4`. So `lix-spaces` did not adopt a rival convention —
+`S⁴` is already on the cohomology model and only `S⁵` diverged, because
+`F(x) = 1 - xxᴴ` needs `x` to be a complex vector. One space, not a fault line.
+
+**Ruling.** Bridge. Restating `sphereFive` as `Sphere 5` would put a conversion
+at every use of `F`, `hopfCol` and every block projection, permanently; bridging
+puts one at a handful of joins. The asymmetry is that cohomology is a *homotopy
+functor* and transports across a homeomorphism for free, while `1 - xxᴴ`
+transports across nothing. `lix-spaces` lands
+`GroupApproximation/Topology/SphereModelBridge.lean` with the single declaration
+```lean
+STW59.sphereFiveHomeoSphere : ↥STW59.sphereFive ≃ₜ SphereOddDegree.Sphere 5
+```
+Cheaper than it looks: `Topology/OddMapNormalization.lean:80` already has
+`realToComplex n : EuclideanSpace ℝ (Fin (2n+2)) → (Fin (n+1) → ℂ)` with
+continuity (:84) and injectivity proved, and at `n = 2` that is exactly the map.
+Missing: the norm identity `∑ i, ‖realToComplex 2 x i‖² = ‖x‖²` (from
+`‖a+bI‖² = a²+b²`, i.e. `Complex.sq_abs` plus one reindexed sum), which is what
+carries `Metric.sphere 0 1` onto `unitVectors (Fin 3)` — defined by that same
+equation; then surjectivity; then `Continuous.homeoOfEquivCompactToT2`, so **no
+inverse need be constructed**. Both compactness instances already exist.
+
+**The discipline that makes the fork harmless.** A bridge alone only defers the
+failure mode: both halves keep compiling green about different spaces until
+someone remembers to transport. So **every cohomology fact consumed on the
+C\*-side must be STATED over `sphereFive`**, obtained once through the bridge.
+Auditable form: `SphereModelBridge.lean` must be the **only** LIX-side module
+importing `SphereOddDegree`; a second one means someone is transporting ad hoc.
 
 **C3 — the `CP^n` model.** `found-cpn-cohomology` must use `lix-spaces`' `CPd d`
 (rank-one projections, subspace topology). A quotient-topology `CP^n` is
@@ -780,6 +828,17 @@ Mathlib's (`Topology/Connected/PathConnected.lean:375`, with the C\*-specific
 `Analysis/CStarAlgebra/Unitary/Connected.lean:336`). `KOne` is new — Mathlib has
 no C\*-K-theory at the pin — but it must be generic: no mention of the
 counterexample, its spaces, or its projections. The target is `¬ ProblemLIX`.
+
+**Status: NOT LANDED.** `audit-gate` reports `grep ProblemLIX` over the corpus
+returns nothing. This is not bookkeeping: every day `KOne` is developed before
+the statement exists is a day it can be shaped, unnoticed, around the
+counterexample it is meant to refute — the one shape that cannot be audited from
+outside. It also interacts with C11: the K-groups must be stated for an
+*arbitrary* C\*-algebra rather than over `BundleAlg X N`, and a `KOne` written
+after the fact is far more likely to have drifted into the concrete model.
+`ktheory-k1` should land `ProblemLIX` and `K1Injective` ahead of any further
+`KOne` lemmas; the signature above is a sketch and is to be replaced by the real
+one on landing.
 
 `limitAlg`: Mathlib has no inductive limit of C\*-algebras and building the
 general theory is a trap. Realize every `A_i` concretely inside one fixed
