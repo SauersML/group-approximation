@@ -111,7 +111,6 @@ theorem completionGauge_sub_baseToCompletion {r : ℕ → ℝ}
           (((realize (G D) hr x - baseToScalarPlusJ (G D) b : M D) :
             BoundedCStarSequence D)) := by
   rw [completionGauge, realize_sub, realize_baseToCompletion]
-  rfl
 
 /-! ## Convergence along a bounded base approximation -/
 
@@ -283,7 +282,7 @@ theorem isCompletionUniformTwoContinuous_of_bounded {r : ℕ → ℝ}
   intro x hx
   refine squeeze_zero_norm
     (fun N ↦ (norm_apply_le_tracialTwoNorm σ (x N)).trans (hC (x N))) ?_
-  simpa using hx.const_mul C
+  simpa [completionGauge] using hx.const_mul C
 
 /-- **The designated traces are exactly the uniform-two-continuous traces.**
 This is CCEGSTW Proposition 3.15 for this pair. -/
@@ -377,10 +376,12 @@ theorem exists_not_isCompletionUniformTwoContinuous_of_not_surjective
     ∃ σ : TracialState (BoundedUniformTwoCompletion (G D) r hr),
       ¬ IsCompletionUniformTwoContinuous (G D) hr σ := by
   by_contra hall
-  push_neg at hall
   refine hns fun σ ↦ ?_
+  have hcont : IsCompletionUniformTwoContinuous (G D) hr σ := by
+    by_contra hσ
+    exact hall ⟨σ, hσ⟩
   have hmem : σ ∈ designatedTraces hr :=
-    (mem_designatedTraces_iff_isCompletionUniformTwoContinuous hr σ).2 (hall σ)
+    (mem_designatedTraces_iff_isCompletionUniformTwoContinuous hr σ).2 hcont
   rw [designatedTraces_eq_range] at hmem
   exact hmem
 
