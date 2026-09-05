@@ -3,116 +3,108 @@
 Consumers: `found-chern-classes`, `found-ktheory-bott`, `found-euler-class`,
 `found-mapping-torus-parity`, `lix-spaces`, `lix-clutching`, `lix-obstruction`.
 
-Code against the signatures below rather than inventing your own projection
-vocabulary.  Everything here is Mathlib-pin-checked at `81a5d257`
-(toolchain v4.32.0).
+Mathlib names below are checked at pin `81a5d257` (toolchain v4.32.0).
+
+> **Revision.** The first version of this note told five lanes to move their
+> ambient algebra, and introduced an `MvNEquiv` that duplicated the repository's
+> existing `MurrayVonNeumannEquiv`.  Both were wrong; both are corrected below,
+> and the code has been changed rather than the lanes.
 
 ---
 
-## 1. Pick the right ambient algebra: `CStarMatrix n n C(X, ℂ)`
+## 1. Do not invent a new equivalence relation
 
-There are two plausible spellings of "matrix-valued function on `X`" and only
-one of them carries the instances the analysis needs.
-
-| spelling | `CStarAlgebra` | `PartialOrder` | `StarOrderedRing` |
-|---|---|---|---|
-| `Matrix (Fin N) (Fin N) C(X,ℂ)` | no norm at all | — | — |
-| `C(X, CStarMatrix (Fin N) (Fin N) ℂ)` | yes | no | **no** |
-| `CStarMatrix (Fin N) (Fin N) C(X,ℂ)` | yes | yes | **yes** |
-
-`Matrix` has no C*-norm in Mathlib (its `NormedRing` instances are the sup and
-Frobenius norms, and they are scoped).  `C(α, A)` gets `StarOrderedRing` only
-through `ContinuousMap.instStarOrderedRing`, which needs `ContinuousSqrt A`, and
-that class is instantiated for `ℝ`, `ℝ≥0`, `ℂ` and nothing else — so
-`C(X, CStarMatrix n n ℂ)` is a dead end for every order-dependent argument,
-which means for every CFC argument, which means for homotopy invariance.
-
-**So: put the space on the inside.**
+The campaign already has one, and it is exactly the right one:
 
 ```lean
-open scoped ComplexOrder     -- supplies `PartialOrder ℂ`
-
-variable {X : Type*} [TopologicalSpace X] [CompactSpace X] {N : ℕ}
-
-abbrev BundleAlg (X : Type*) [TopologicalSpace X] [CompactSpace X] (N : ℕ) :=
-  CStarMatrix (Fin N) (Fin N) C(X, ℂ)
+-- GroupApproximation/Analysis/FiniteCStarMurrayVonNeumann.lean
+def MurrayVonNeumannEquiv {A : Type*} [Mul A] [Star A] (p q : A) : Prop :=
+  ∃ v : A, star v * v = p ∧ v * star v = q
 ```
 
-The instance ladder that then fires, in order:
+with, in that file, `MurrayVonNeumannEquiv.refl`, `.symm`, and
+`.of_isometry_conjugate` (`p ∼ u p u*` from `star u * u = 1` alone), and in
+`GroupApproximation/KTheory/MatrixProjection.lean`, `.trans`, `.map`, plus
+`blockSum`, `isStarProjection_blockSum`, `murrayVonNeumannEquiv_blockSum` and
+`murrayVonNeumannEquiv_submatrix`.
 
-1. `PartialOrder ℂ` — scoped, from `open scoped ComplexOrder`.  **Without this
-   line nothing below resolves**, and the failure looks like a missing
-   `StarOrderedRing`, not like a missing order on `ℂ`.
-2. `ContinuousMap.partialOrder : PartialOrder C(X, ℂ)` (pointwise).
-3. `ContinuousMap.instStarOrderedRing : StarOrderedRing C(X, ℂ)` — via
-   `ContinuousSqrt ℂ`.
-4. `ContinuousMap.instCommCStarAlgebra : CommCStarAlgebra C(X, ℂ)` — needs
-   `[CompactSpace X]`.  `T2Space` is *not* required.
-5. `CStarMatrix.instCStarAlgebra`, `CStarMatrix.instPartialOrder`
-   (`= CStarAlgebra.spectralOrder _`), `CStarMatrix.instStarOrderedRing`.
+**So the direct sum, the padding maps, and the reindexing moves already exist.**
+Read `KTheory/MatrixProjection.lean` before building any of them.
 
-Two traps worth knowing before you hit them:
+Projections are Mathlib's `IsStarProjection` (fields `.isIdempotentElem`,
+`.isSelfAdjoint`, both `protected`, reached by dot notation).  `IsIdempotentElem`
+is a plain `def`, so `rw` needs `hp.isIdempotentElem.eq`, while
+`have h : p * p = p := hp.isIdempotentElem` is fine.
 
-* the `CStarMatrix` order is the **spectral order**, a `def` promoted to an
-  instance.  Spend it by naming lemmas about it; do not try to rewrite it into
+## 2. The ambient algebra: keep `SectionAlgebra`
+
+```lean
+-- GroupApproximation/Analysis/LIXCornerAlgebra.lean
+abbrev SectionAlgebra (X : Type*) [TopologicalSpace X] (ι : Type*) [Fintype ι]
+    [DecidableEq ι] := C(X, CStarMatrix ι ι ℂ)
+```
+
+At the pin this type is a `CStarAlgebra` (given `[CompactSpace X]`) and carries
+the pointwise `PartialOrder`, but it has **no `StarOrderedRing` instance** — and
+without one there is no `ℝ≥0` continuous functional calculus, so no inverse
+square root, so no homotopy invariance.
+
+That is a one-instance gap, not a structural defect, and the instance is now
+supplied:
+
+```lean
+-- GroupApproximation/AlgTop/BundleCalculusTransport.lean
+instance (priority := 50) BundleCalculus.instContinuousSqrtOfCStarAlgebra
+    {A : Type*} [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A] :
+    ContinuousSqrt A
+```
+
+`ContinuousMap.instStarOrderedRing` derives `StarOrderedRing C(α, R)` from
+`ContinuousSqrt R`, and Mathlib instantiates `ContinuousSqrt` for `ℝ`, `ℝ≥0` and
+`ℂ` only.  But every ordered C*-algebra has one: `ContinuousSqrt` asks for a
+continuous `s` with `b = a + s*s` on `{a ≤ b}`, and `s = CFC.sqrt (b - a)` is
+one — `CFC.sqrt_nonneg`, `CFC.sqrt_mul_sqrt_self`, and continuity on the positive
+cone from `CFC.continuousOn_sqrt`
+(`Mathlib/Analysis/SpecialFunctions/ContinuousFunctionalCalculus/Rpow/Isometric.lean`).
+Low priority, so `instContinuousSqrtRCLike` keeps precedence on the scalar
+fields.
+
+**To use it**: `import GroupApproximation.AlgTop.BundleCalculusTransport` and
+`open scoped ComplexOrder`.  The `ComplexOrder` line is not optional — without
+it the missing `PartialOrder ℂ` surfaces much later as a missing
+`StarOrderedRing`, which is a confusing place to start debugging.
+
+`CStarMatrix ι ι C(X, ℂ)` — the space on the inside — is the other spelling and
+needs no extra instance; `CStarMat n A` in
+`Analysis/CStarMatrixBlockInclusion.lean` is the campaign's name for it.  Either
+works.  Two facts about `CStarMatrix` worth knowing before you fight them:
+
+* its order is the **spectral** order (`CStarAlgebra.spectralOrder`, a `def`
+  promoted to an instance).  Spend it by naming lemmas, not by rewriting it into
   the entrywise order.
-* the topology on `CStarMatrix m n A` is the product topology —
-  `CStarMatrix.ofMatrixL` is a continuous linear equivalence with
-  `continuous_toFun := continuous_id`.  So continuity of a map *into*
-  `CStarMatrix` is entrywise continuity, and you never need a norm estimate for
-  it.
+* its topology **is** the product topology — `CStarMatrix.ofMatrixL` is a
+  continuous linear equivalence with `continuous_toFun := continuous_id`.  So
+  continuity of a map *into* `CStarMatrix` is entrywise continuity, and never
+  needs a norm estimate.
 
-## 2. Bundle = projection, isomorphism = Murray–von Neumann
+## 3. What this lane adds: unitary conjugacy and homotopy invariance
 
 Module: `GroupApproximation/AlgTop/BundleCalculusProjection.lean`
 Namespace: `GroupApproximation.BundleCalculus`
 
-Use Mathlib's `IsStarProjection` — do not roll your own.
-
 ```lean
-structure IsStarProjection [Mul R] [Star R] (p : R) : Prop where
-  isIdempotentElem : IsIdempotentElem p     -- `.eq : p * p = p`
-  isSelfAdjoint : IsSelfAdjoint p           -- `.star_eq : star p = p`
-```
-
-Both fields are `protected`, so reach them by dot notation, and remember that
-`IsIdempotentElem` is a plain `def`: `rw` needs `hp.isIdempotentElem.eq`, while
-`have h : p * p = p := hp.isIdempotentElem` is fine.
-
-The two equivalence notions:
-
-```lean
-/-- Murray–von Neumann equivalence.  This is bundle isomorphism. -/
-def MvNEquiv {R : Type*} [Mul R] [Star R] (p q : R) : Prop :=
-  ∃ v : R, star v * v = p ∧ v * star v = q
-
-/-- Unitary conjugacy.  Stronger, and what the analysis actually produces. -/
-def UnitaryConj {R : Type*} [Monoid R] [StarMul R] (p q : R) : Prop :=
+/-- Stronger than Murray–von Neumann equivalence, and what the analysis produces. -/
+def UnitaryConj [Monoid R] [StarMul R] (p q : R) : Prop :=
   ∃ u ∈ unitary R, u * p * star u = q
+
+UnitaryConj.refl / .symm / .trans
+UnitaryConj.map                     -- along a unital star hom (BundleCalculusTransport)
+UnitaryConj.murrayVonNeumannEquiv (hp : IsStarProjection p) :
+  UnitaryConj p q → MurrayVonNeumannEquiv p q
 ```
 
-Groupoid lemmas (`R` a monoid with `StarMul`):
-
-```lean
-UnitaryConj.refl  (p : R) : UnitaryConj p p
-UnitaryConj.symm  : UnitaryConj p q → UnitaryConj q p
-UnitaryConj.trans : UnitaryConj p q → UnitaryConj q r → UnitaryConj p r
-UnitaryConj.mvNEquiv (hp : IsStarProjection p) : UnitaryConj p q → MvNEquiv p q
-
-MvNEquiv.refl  (hp : IsStarProjection p) : MvNEquiv p p
-MvNEquiv.symm  : MvNEquiv p q → MvNEquiv q p
-MvNEquiv.trans (hp : IsStarProjection p) (hr : IsStarProjection r) :
-  MvNEquiv p q → MvNEquiv q r → MvNEquiv p r
-```
-
-`MvNEquiv.trans` genuinely needs the two projection hypotheses: for a general
-`v` the element `star v * v` need not be idempotent, so the composite partial
-isometry has to be recognised using `p * p = p`.
-
-## 3. Homotopy invariance — the theorem the whole layer rests on
-
-In a unital C*-algebra `A` with `[CStarAlgebra A] [PartialOrder A]
-[StarOrderedRing A]` (exactly Mathlib's own idiom in
+In a unital C*-algebra with `[CStarAlgebra A] [PartialOrder A]
+[StarOrderedRing A]` (Mathlib's own idiom, as in
 `Mathlib/Analysis/CStarAlgebra/Projection.lean`):
 
 ```lean
@@ -121,12 +113,10 @@ theorem unitaryConj_of_norm_sub_lt_one {p q : A}
     (hp : IsStarProjection p) (hq : IsStarProjection q) (h : ‖p - q‖ < 1) :
     UnitaryConj p q
 
-theorem mvNEquiv_of_norm_sub_lt_one {p q : A}
-    (hp : IsStarProjection p) (hq : IsStarProjection q) (h : ‖p - q‖ < 1) :
-    MvNEquiv p q
+theorem murrayVonNeumannEquiv_of_norm_sub_lt_one   -- same hypotheses
 
-/-- A continuous family of projections indexed by a preconnected space is
-constant up to unitary conjugation. -/
+/-- A continuous family of projections over a preconnected space is constant
+up to unitary conjugation. -/
 theorem unitaryConj_of_preconnected {Y : Type*} [TopologicalSpace Y]
     [PreconnectedSpace Y] {f : Y → A} (hf : Continuous f)
     (hproj : ∀ y, IsStarProjection (f y)) (y₀ y₁ : Y) :
@@ -137,21 +127,21 @@ theorem unitaryConj_of_isPreconnected {Y : Type*} [TopologicalSpace Y]
     (hproj : ∀ y, IsStarProjection (f y)) {y₀ y₁ : Y} (h₀ : y₀ ∈ s) (h₁ : y₁ ∈ s) :
     UnitaryConj (f y₀) (f y₁)
 
-/-- Endpoints of a continuous path of projections. -/
 theorem unitaryConj_of_path {f : ℝ → A} (hf : Continuous f)
     (hproj : ∀ t : ℝ, IsStarProjection (f t)) : UnitaryConj (f 0) (f 1)
 
-theorem mvNEquiv_of_path {f : ℝ → A} (hf : Continuous f)
-    (hproj : ∀ t : ℝ, IsStarProjection (f t)) : MvNEquiv (f 0) (f 1)
+theorem murrayVonNeumannEquiv_of_path   -- same hypotheses
 ```
 
-The index space is a *parameter*, not `[0,1]` baked in.  Take
-`unitaryConj_of_isPreconnected` with `s := Set.Icc 0 1` for a homotopy, but take
-it with `s := X` when you want "a projection over a connected `X` has constant
-rank" or "over a contractible base every projection is trivial".
+and, with the instance ladder of §2 discharged, the same three specialised to
+`C(X, CStarMatrix ι ι ℂ)`: `unitaryConj_of_path_sectionAlgebra`,
+`murrayVonNeumannEquiv_of_path_sectionAlgebra`,
+`unitaryConj_of_isPreconnected_sectionAlgebra`.
 
-Note what is **not** assumed: `A` is any unital C*-algebra.  Compactness of `X`
-enters only through the instance ladder of §1, and the theorem never sees it.
+**The index space is a parameter, not `[0,1]`.**  That is the design decision to
+take away from this note.  `s := Set.Icc 0 1` is homotopy invariance; `s := X`
+is "a projection over a connected base has constant rank"; a contractible base
+gives triviality.  Three lanes were each about to reprove one of those.
 
 ### How the proof goes, so you can predict what generalises
 
@@ -163,31 +153,24 @@ continuous function of `a` it inherits `a`'s commutation with `p` — `(p - q)²
 commutes with `p` — turning `z p = q z` into `u p = q u`.
 
 Globally: `{y | UnitaryConj (f y₀) (f y)}` and its complement are both open,
-because each is a union of the balls on which the local step applies.  Nonempty
-clopen in a preconnected space is everything.  **No subdivision, no uniform
-continuity, no compactness of the index space.**
+each being a union of balls on which the local step applies.  Nonempty clopen in
+a preconnected space is everything.  **No subdivision, no uniform continuity, no
+compactness of the index space** — which is why the theorem holds over an
+arbitrary unital C*-algebra and an arbitrary preconnected index space.
 
-## 4. Landing next (do not duplicate — ask me)
+## 4. Landing next in this lane — ask before duplicating
 
-Same lane, module `GroupApproximation/AlgTop/BundleCalculusMatrixModel.lean`:
-
-* **pullback** `f^* : BundleAlg Z N → BundleAlg X N` along `f : C(X, Z)`,
-  entrywise `ContinuousMap.compStarAlgHom'`; respects `MvNEquiv` because it is a
-  star algebra hom, and *every* star algebra hom does (`IsStarProjection.map`).
-* **direct sum** (block diagonal, `N + M`), **tensor** (Kronecker, `N * M`),
-  **trivial bundle** `1^n`, **dual** (transpose composed with entrywise
-  conjugation).
+* **pullback** along `f : C(X, Z)`, from `ContinuousMap.compStarAlgHom'`;
+  well definedness on classes is `MurrayVonNeumannEquiv.map` / `UnitaryConj.map`,
+  since a pullback is a unital star homomorphism.
 * **rank** `x ↦ trace (P x)` as a continuous `X → ℤ`; locally constant; constant
-  on connected `X`; additive on `⊕`, multiplicative on `⊗`.
-* **complement** `P ⊕ (1 - P) = 1^N`.
-* **nowhere-vanishing section** ↔ `E ≅ E' ⊕ 1` (for `found-euler-class` and the
+  on connected `X`; additive on `blockSum`, multiplicative on Kronecker.
+* **nowhere-vanishing section** ↔ `E ≅ E' ⊕ 1`, phrased with `blockSum` from
+  `KTheory/MatrixProjection.lean` (for `found-euler-class` and the
   `CommonZeroProperty` work).
-* **clutching**: `lix-clutching` owns the C*-side in
-  `GroupApproximation/Analysis/LIXClutching.lean`; I supply the bundle-side
-  lemmas.  One construction in the campaign, not two — coordinate before writing
-  a second one.
+* **clutching**: `lix-clutching` owns the C*-side.  What is missing everywhere is
+  the glueing itself — a projection over `X = X₀ ∪ X₁` from a unitary on the
+  overlap.  One construction in the campaign, not two.
 
-Rank, additivity and the pullback are all pure algebra plus §3 and should be
-cheap.  The *only* place where a genuinely new analytic idea is needed is
-cancellation (target 3), and there the honest statement is that cancellation
-fails; state carefully, prove only the stable-range direction.
+Direct sum, padding and reindexing are **already done** in
+`KTheory/MatrixProjection.lean`; do not rebuild them.
