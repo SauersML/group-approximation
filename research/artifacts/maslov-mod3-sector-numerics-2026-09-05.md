@@ -234,14 +234,33 @@ factors through level four.  With the ten-dimensional model this gives
 exact metaplectic seeds in every dimension `4a + 10b`
 (`make_sum_seeds.py`).
 
-# Addendum: near-maximal objective with pinned determinants
+# Addendum: the nonabelian search from the abelian optimum
 
-`optimize5.py` minimizes `mean_r sq_r^p` with `p = 4` over `8,000` to
-`20,000` relators (all twenty lifted ones included) and pins the phase of
-`det U_s` after every retraction, so the coboundary slide of the previous
-runs is impossible.  Runs from the exact metaplectic seeds at
-`d = 4, 8, 10, 12, 14, 20` and from random starts at `d = 10` are recorded
-in `RESULTS.txt` as they finish.
+Two instruments were tried and discarded, with the reasons recorded in
+`RESULTS.txt`: a `mean sq^4` objective is blind to small defects next to
+the lifted ones, and pinning the determinant phases freezes the lifted
+relators at an exact model (their gradient there is a pure coboundary
+direction) and imposes the eigenvalue-balance floor `2 sin(pi/3d)` on them
+whenever `3` does not divide `d`.  The instrument kept is `optimize7.py`:
+the smoothed maximum `2 + log(mean_r exp(beta (sq_r - 2)))/beta`
+(`beta = 30, 100, 300`) over the twenty lifted relators and `6,000` to
+`20,000` unlifted ones, started at the minimax coboundary optimum of each
+exact model (`make_abmin_seeds.py`) with perturbations of size `0.05` to
+`0.3`, and no coboundary freedom removed.  Since that starting point is
+optimal among coboundary rescalings, any maximum below `0.309` on all
+relators would be a nonabelian improvement.
+
+Outcome (`RESULTS.txt`, sections "v7 results"): at `d = 4, 8, 10` every
+descent returns to the coboundary point up to a nonabelian residual of
+`0.01` to `0.05` per generator; the all-relator maxima are `0.360`
+(`beta = 30`, which trades the twenty lifted relators against the bulk),
+`0.317` (`beta = 100`) and `0.340` (`beta = 300`, whose working-set value
+`0.295` was a sampling artifact), and the pinned control reproduces the
+bar, `0.3091`.  Random starts stay near `1.6`.  The class bars from the
+other finite-dimensional classes are `0.608` (trivial) and no relaxation
+at all for the spin classes, so the metaplectic models are the right seeds.
+No dimension dependence appears.  Higher dimensions are appended to
+`RESULTS.txt` as they finish.
 
 # Files
 
