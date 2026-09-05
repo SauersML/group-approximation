@@ -44,6 +44,13 @@ def piFinSuccHomeo {n : ℕ} (X : Fin (n + 1) → Type) [∀ i, TopologicalSpace
       simp only [Fin.cons_succ]
       exact (continuous_apply j).comp continuous_snd
 
+/-- **A one-factor product is its only factor.**  Stated through `piFinSuccHomeo` and
+`Homeomorph.prodUnique` rather than `Homeomorph.piUnique`, so that the underlying map is
+literally `fun f => f 0` and no `default` ever appears. -/
+def piFinOneHomeo (X : Fin 1 → Type) [∀ i, TopologicalSpace (X i)] :
+    (∀ i, X i) ≃ₜ X 0 :=
+  (piFinSuccHomeo X).trans (Homeomorph.prodUnique (X 0) (∀ i : Fin 0, X (Fin.succ i)))
+
 namespace PuncturedAcyclic
 
 /-- **Top-punctured acyclicity transports along a homeomorphism.**  Both halves are
@@ -69,9 +76,8 @@ theorem puncturedAcyclic_pi (T : CohomologyToolkit) {n : ℕ} :
   induction n with
   | zero =>
     intro X _ _ d z h
-    haveI : Unique (Fin (0 + 1)) := inferInstanceAs (Unique (Fin 1))
     rw [Fin.sum_univ_one d]
-    exact PuncturedAcyclic.congr T (Homeomorph.piUnique X) (h 0)
+    exact PuncturedAcyclic.congr T (piFinOneHomeo X) (h 0)
   | succ m ih =>
     intro X _ _ d z h
     rw [Fin.sum_univ_succ]

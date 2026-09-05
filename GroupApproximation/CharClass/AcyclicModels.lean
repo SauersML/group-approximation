@@ -163,8 +163,8 @@ variable {C : Type u} [Category.{v} C] {ι : Type w} {M : ι → C}
 variable {Λ : Type} [CommRing Λ]
 variable {F G : C ⥤ ChainComplex (ModuleCat.{0} Λ) ℕ}
 
-/-- A classically chosen preimage of `y` under `d`, or `0` if none exists. -/
 open Classical in
+/-- A classically chosen preimage of `y` under `d`, or `0` if none exists. -/
 noncomputable def pickPreimage {A B : ModuleCat.{0} Λ} (d : A ⟶ B) (y : B) : A :=
   if h : ∃ z : A, d.hom z = y then h.choose else 0
 

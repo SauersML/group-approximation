@@ -82,7 +82,7 @@ theorem card_cutU_singleton (c : Fin N) :
 theorem restrictSimplex_id {X : TopCat.{0}} {n : ℕ} (σ : singularSimplices X n) :
     restrictSimplex (𝟙 (⦋n⦌ : SimplexCategory)) σ = σ := by
   unfold restrictSimplex
-  rw [op_id, FunctorToTypes.map_id_apply]
+  rw [op_id, Functor.map_id_apply]
 
 theorem cochainCupI_zero {R : Type} [CommRing R] {X : TopCat.{0}} (p q : ℕ)
     (φ : singularCochainGroup R X p) (ψ : singularCochainGroup R X q) :
