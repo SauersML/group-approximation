@@ -63,3 +63,9 @@ spin seed rho:               scalar phases {+1,-1}; rescalable to genuine: False
 i^sign-twisted spin seed:    scalar phases {+1,-1}; rescalable to genuine: False; matches metaplectic lift pattern: False
 scalar representation i^sign: scalar phases {+1,-1}; rescalable to genuine: False; matches metaplectic lift pattern: False
 Conclusion: none of the three nonzero classes of H^2(S_6; Z/2) pulls back to the metaplectic class of Sp_4(Z).
+
+--- final tallies (15:50 EDT; remaining processes were still finishing, numbers below did not change over the last 200 restarts) ---
+basin test from the spin seed: eps = 0.3, 0.6, 1.0, 1.5 all return to E = 0 exactly (max defect 0.0000); eps = 2.5 still running.
+spin sector, random starts: best E = 3.4749 after 107 restarts (exact solution at E = 0 exists in this dimension).
+mod 3, random starts, d = 4: best E = 0.3776 after 631 restarts.   mod 2, random starts, d = 4: best E = 0.7035 after 626 restarts.
+seed starts (spin seed perturbed): mod 3 eps 0.3: E = 1.671; eps 1.0: E = 1.686.  mod 2 eps 0.3: E = 1.669; eps 1.0: E = 1.709.
