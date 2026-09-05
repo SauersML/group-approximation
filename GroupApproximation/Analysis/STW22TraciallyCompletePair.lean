@@ -218,8 +218,9 @@ theorem eq_zero_of_completionGauge_eq_zero
     funext n
     simpa using hcoord n
   have hz' : realize (G D) hr x = 0 := Subtype.ext hz
-  have hzero : realize (G D) hr (0 : BoundedUniformTwoCompletion (G D) r hr) = 0 :=
-    map_zero (realizationStarAlgEquiv (G D) hr)
+  have hzero : realize (G D) hr (0 : BoundedUniformTwoCompletion (G D) r hr) = 0 := by
+    rw [realize_eq_coe]
+    exact map_zero (realizationStarAlgEquiv (G D) hr)
   exact realize_injective (G D) hr (by rw [hz', hzero])
 
 theorem isFaithfulTraceSet_designatedTraces
