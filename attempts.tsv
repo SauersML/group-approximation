@@ -278,3 +278,4 @@
 33934886800	2026-09-05T01:02:37Z	GroupApproximation/Sofic/CommutingLampQuotientSofic.lean	Phi_surjective
 33948188539	2026-09-05T05:49:49Z	GroupApproximation/Sofic/CompressionDefectSquare.lean	conj_sq_eq_one
 33961313183	2026-09-05T10:41:36Z	GroupApproximation/Sofic/CompressionUniverseTransfer.lean	mapCore_transported
+33969242096	2026-09-05T13:34:16Z	GroupApproximation/Sofic/CompressionWreathFinitelyGenerated.lean	fg_vertical
