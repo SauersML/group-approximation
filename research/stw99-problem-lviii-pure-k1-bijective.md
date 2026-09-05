@@ -7,6 +7,8 @@ root: true
 artifacts:
   - research/artifacts/stw99-k1-kk-cluster-2026-08-30.md
   - research/artifacts/stw58-simple-pure-k1-bijectivity-audit-2026-08-30.md
+  - notes/stw58-coefficient-unitary-stabilization-2026-09-05.md
+  - notes/stw58-soft-module-compression-attempt-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -39,3 +41,19 @@ The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
 pureness need not give `Z`-stability in the nonnuclear setting, even though
 stable rank one has already settled their scalar-unitary `K_1` map.
+
+The attached coefficient-stabilization notes record a full higher-degree
+result under unbounded exact K0 divisibility of the unit and a nonempty
+normalized quasitrace space. Strict comparison realizes the unit roots
+by projections; stable-rank-one cancellation gives exact large matrix
+decompositions, and Rieffel's published bounded-divisibility theorem
+applies. This is a consequence of prior art, not a solution of LVIII.
+
+Soft divisibility instead gives a concrete Hilbert-module sandwich
+X^n -> B -> X^(n+1). It supplies a large compact corner over K(X),
+but its first embedding need not be adjointable. The soft-module note
+proves local coefficient-dependent contraction inside sufficiently
+large hereditary matrix pieces and their dimension-drop overlap.
+Localization of arbitrary sphere families into those pieces remains
+unproved. A finite-matrix example rules out unrestricted hereditary
+homotopy excision, so an argument must use an explicit stable range.
