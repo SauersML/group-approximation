@@ -47,9 +47,6 @@ IMPORT_RE = re.compile(r"^import\s+(GroupApproximation(?:\.[A-Za-z0-9_']+)*)\s*$
 # A comment-aware scan: these tokens matter only outside `--` and `/- -/`.
 BAD_TOKEN_RE = re.compile(r"\b(sorry|admit)\b|^\s*axiom\s")
 
-MARKER = "-- === wired orphans (scripts/wire_orphans.py) ==="
-
-
 def module_of(path: Path) -> str:
     rel = path.relative_to(ROOT).with_suffix("")
     return ".".join(rel.parts)
@@ -198,13 +195,22 @@ def main() -> int:
     if not chosen:
         return 0
 
-    body = ROOT_MODULE.read_text(encoding="utf-8")
-    if MARKER not in body:
-        body = body.rstrip("\n") + "\n\n" + MARKER + "\n"
-    head, _, tail = body.partition(MARKER)
-    existing = [ln for ln in tail.splitlines() if ln.strip()]
-    lines = sorted(set(existing + [f"import {m}" for m in chosen]))
-    ROOT_MODULE.write_text(head + MARKER + "\n" + "\n".join(lines) + "\n", encoding="utf-8")
+    # Lean 4 requires every `import` to precede EVERY other command, the module
+    # docstring included.  Appending to the end of the root file produces a
+    # syntax error that stops the whole library parsing -- and the visible
+    # symptom is not a Lean error but a garbage orphan count, because
+    # `scripts/check.py` can no longer read the root.  (Landed and caught
+    # 2026-09-05: the count jumped 281 -> 2744.)  So INSERT after the last
+    # existing import rather than appending.
+    src = ROOT_MODULE.read_text(encoding="utf-8").splitlines(keepends=True)
+    already = {ln.strip() for ln in src if ln.startswith("import ")}
+    add = [f"import {m}\n" for m in chosen if f"import {m}" not in already]
+    if not add:
+        print("\nall chosen modules are already imported by the root")
+        return 0
+    last_import = max(i for i, ln in enumerate(src) if ln.startswith("import "))
+    out = src[: last_import + 1] + add + src[last_import + 1 :]
+    ROOT_MODULE.write_text("".join(out), encoding="utf-8")
     print(f"\nwired {len(chosen)} module(s) into GroupApproximation.lean")
     for m in chosen:
         print(f"  + {m}")

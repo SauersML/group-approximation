@@ -143,9 +143,13 @@ def punctureHomotopyEquiv (d : ℕ) :
     ContinuousMap.HomotopyEquiv ↥(punctured d) (CP d) where
   toFun := retractMap d
   invFun := inclPMap d
-  left_inv := (⟨scaleHomotopy d⟩ : ContinuousMap.Homotopic _ _).symm
+  left_inv := by
+    have h : ContinuousMap.Homotopic (ContinuousMap.id ↥(punctured d))
+        ((inclPMap d).comp (retractMap d)) := ⟨scaleHomotopy d⟩
+    exact h.symm
   right_inv := by
     rw [retractMap_comp_inclPMap d]
+    exact ContinuousMap.Homotopic.refl _
 
 @[simp] theorem punctureHomotopyEquiv_apply (d : ℕ) (x : ↥(punctured d)) :
     punctureHomotopyEquiv d x = retract x := rfl

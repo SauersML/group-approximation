@@ -249,9 +249,8 @@ theorem scaleMat_mem {t : ℝ} (ht : 0 ≤ t) (ht1 : t ≤ 1) {x : CP (d + 1)}
   have hτ : ((scaleTrace t x : ℝ) : ℂ) ≠ 0 := scaleTrace_ne_zero ht ht1 hx
   refine ⟨?_, ?_, ?_⟩
   · refine Matrix.ext fun a b => ?_
-    rw [Matrix.conjTranspose_apply, scaleMat_apply, scaleMat_apply, star_div₀]
-    simp only [star_mul, Complex.star_def, Complex.conj_ofReal]
-    rw [← Complex.star_def, ← entry_symm x a b]
+    rw [Matrix.conjTranspose_apply, scaleMat_apply, scaleMat_apply]
+    simp only [Complex.star_def, map_div₀, map_mul, Complex.conj_ofReal, entry_conj]
     ring
   · refine Matrix.ext fun a b => ?_
     rw [Matrix.mul_apply]

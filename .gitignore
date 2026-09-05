@@ -14,3 +14,13 @@ scripts/msi-build.sh
 .cairn/
 scripts/remote-build.env
 scripts/msi-build.sh.pre-split.bak
+
+# Vendored FLT tree: 60k+ files, assessed 2026-09-05 and found to contain no
+# algebraic topology this campaign needs (zero Steenrod/Chern/Stiefel-Whitney/
+# K-theory/Borsuk-Ulam/bundle/homotopy-group files; its "cohomology" is Galois
+# cohomology). Ignored so the snapshot sweep cannot commit it and so the
+# remote-build rsync does not carry it. See notes/flt-repo-assessment-2026-09-05.md
+GroupApproximation/ThirdParty/FLT/**
+!GroupApproximation/ThirdParty/FLT/UPSTREAM.md
+!GroupApproximation/ThirdParty/FLT/Definitions/
+!GroupApproximation/ThirdParty/FLT/Definitions/Def_Mathlib_Algebra_IsDirectLimit.lean

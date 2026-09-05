@@ -3305,6 +3305,7 @@ import GroupApproximation.GGT.DGOProposition414FirstSeparationTargets
 import GroupApproximation.GGT.DGOProposition414SecondSeparationTransport
 import GroupApproximation.GGT.VanKampen.SurgeryCutProduct
 import GroupApproximation.GGT.VanKampen.SurgeryCutDiagram
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
@@ -3365,3 +3366,4 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+

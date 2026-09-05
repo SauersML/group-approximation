@@ -107,6 +107,13 @@ theorem trace_coe (x : CP d) : (x : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trac
 theorem entry_symm (x : CP d) (a b : Fin (d + 1)) : entry x a b = star (entry x b a) :=
   proj_entry_symm (isStarProjection_coe x) a b
 
+/-- Conjugation of entries, in the `starRingEnd` form that `map_mul` / `map_div₀`
+produce after distributing `conj` over a quotient of products. -/
+theorem entry_conj (x : CP d) (a b : Fin (d + 1)) :
+    (starRingEnd ℂ) (entry x b a) = entry x a b := by
+  rw [← Complex.star_def]
+  exact (entry_symm x a b).symm
+
 theorem entry_minor (x : CP d) (a b j : Fin (d + 1)) :
     entry x a j * entry x j b = entry x j j * entry x a b :=
   minor x.2 a b j

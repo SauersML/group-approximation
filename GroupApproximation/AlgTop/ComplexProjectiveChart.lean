@@ -210,8 +210,7 @@ theorem chartAt_chartInv (x : CP d) (hx : entry x 0 0 ≠ 0) : chartAt (chartInv
   refine ext fun a b => ?_
   rw [chartAt_entry, hvec a, hvec b, hsum]
   have hstar : star (entry x b 0 / (r : ℂ)) = entry x 0 b / (r : ℂ) := by
-    rw [star_div₀, Complex.star_def, Complex.conj_ofReal, ← Complex.star_def,
-      ← entry_symm x 0 b]
+    simp only [Complex.star_def, map_div₀, Complex.conj_ofReal, entry_conj]
   have hminor : entry x a 0 * entry x 0 b = (r : ℂ) * entry x a b := by
     rw [← hr]; exact entry_minor x a b 0
   rw [hstar]
