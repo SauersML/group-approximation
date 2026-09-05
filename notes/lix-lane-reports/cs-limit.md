@@ -9,19 +9,19 @@
 | `Analysis/LIXLimitCompletion` | 2999 | new: `Limit`, `limIota`, `stage`, **persistence** |
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
-| `Analysis/LIXLimitWitness` | 3002 | new: packages the tower's data for its two consumers |
+| `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
-The last four were built together in one probe, `Build completed successfully
-(2999 jobs)`, each with its own `Built …` line.  **Re-probed clean at the start
-of this session** (all five together, `Build completed successfully (2999
-jobs)`, `ERROR_LINES=0`): the five modules above are still genuinely green,
-not a replay.
+The last four of the original five were built together in one probe, `Build
+completed successfully (2999 jobs)`, each with its own `Built …` line.
+**Re-probed clean at the start of this session** (all five together, `Build
+completed successfully (2999 jobs)`, `ERROR_LINES=0`): the five modules above
+are still genuinely green, not a replay.
 
-`Analysis/LIXLimitWitness` is new this session, probed alone,
-`Build completed successfully (3002 jobs)`, `Built … (8.6s)` — not a replay.
-It repackages the tower's generic data into the two shapes its consumers ask
-for, so that the eventual concrete instantiation is a one-line application of
-each rather than a fresh proof:
+`Analysis/LIXLimitWitness` is new this session, standalone-probed green
+(`Build completed successfully (2999 jobs)`, `Built … (10s)` — not a replay).
+It repackages `exists_unitary_witness` into the exact name `cs-endpoint`'s
+`HasK1InjWitness` asks for, so that the eventual concrete instantiation is a
+one-line application rather than a fresh proof:
 
 ```lean
 -- Analysis/LIXLimitWitness
@@ -29,20 +29,28 @@ CStarTower.hasK1InjWitness_limit (T : CStarTower A) {k} (u : unitary (A k))
   (hstage : ∀ j (hj : k ≤ j), unitaryHom (T.climbHom hj) u ∉ unitaryComponentOne (A j))
   (hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (A k))) :
   HasK1InjWitness T.Limit                              -- cs-endpoint's exact name
-
-CStarTower.stagewiseFullTower (T : CStarTower A)
-  (full_stage : ∀ k (a : T.Limit), a ∈ T.stage k → 0 ≤ a → a ≠ 0 →
-    ∃ j, k ≤ j ∧ IsFullIn (T.stage j) a) :
-  LIX.StagewiseFullTower T.Limit                        -- cs-simplicity's exact structure
 ```
 
-`hasK1InjWitness_limit` needed no fresh instance bookkeeping: `HasK1InjWitness` is a plain `def`,
-so `isDefEq` unfolds both files' spectral-order local instances down to the same
+It needed no fresh instance bookkeeping: `HasK1InjWitness` is a plain `def`, so `isDefEq` unfolds
+both files' spectral-order local instances down to the same
 `CStarAlgebra.spectralOrder`/`spectralOrderedRing` term and `exact` (term-mode, which this is)
 accepts it directly — the "different constants, same value" trap noted below only bites `rw`.
-`stagewiseFullTower` had to be a `noncomputable def`, not a `theorem`: `StagewiseFullTower`
-bundles data (fields `stage`, `isClosed_stage`, …), so its type is not a `Prop`, and it depends on
-`T.stage`, which is noncomputable. Both traps cost one probe cycle each; recorded below.
+
+**A matching bridge for `cs-simplicity`'s `LIX.StagewiseFullTower` was authored, probed green,
+then withdrawn**: mid-session, a `CStarTower.stagewiseFullTower` packaging `stage`,
+`isClosed_stage`, `stage_mono`, `dense_iUnion_stage` given a limit-language fullness hypothesis
+was added here, probed green at 3002 jobs, and committed.  A subsequent check of `cs-simplicity`'s
+files (their report directory had no report file yet, so this lane read
+`Analysis/LIXSimplicityInstance.lean` on disk directly, per program-note §2's "if it is red, tell
+the lead" — here it was neither red nor requested, but the same "check the peer's actual file"
+discipline applies to a name before inventing it) found `cs-simplicity` independently authoring
+*the same fully-qualified name*, `GroupApproximation.LIX.CStarTower.stagewiseFullTower`, with a
+strictly better interface: fullness in finite-stage language, transported to the limit internally
+via `nonneg_iff_of_injective` + `isFullIn_of_isFull_map`, so a stage lane never reasons about the
+limit at all.  Removed this lane's version and pushed (`a03804f50`) rather than race a rename;
+sent `cs-simplicity` a heads-up so they lose no time on the collision.  `hasK1InjWitness_limit` is
+unaffected and re-probed green standalone (2999 jobs) once the now-unneeded
+`LIXSimplicityInstance` import was dropped.
 
 Peer modules that also built clean inside cs-limit probes:
 `Analysis/CStarCompletion`, `Analysis/CStarCompletionCoe`,
