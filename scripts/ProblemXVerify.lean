@@ -76,7 +76,30 @@ def endpoints : List Name :=
    `GroupApproximation.NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal,
    `GroupApproximation.NinetyNineProblems.literalCanonicalTrace_isHyperlinearTrace,
    `GroupApproximation.NinetyNineProblems.literalCanonicalTrace_not_isQuasidiagonalTrace,
+   `GroupApproximation.NinetyNineProblems.isHyperlinearTrace_of_isAmenableTrace,
+   `GroupApproximation.NinetyNineProblems.not_problemX1Statement_of_literalFactorizationProperty,
+   `GroupApproximation.NinetyNineProblems.literalCanonicalTrace_isTracialState,
    `GroupApproximation.LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt]
+
+/-- **Non-vacuity calibration.**  `¬ IsQuasidiagonalTrace τ_E` is only a
+refutation of Brown's question if `IsQuasidiagonalTrace` can hold at all: a
+predicate no trace satisfies would make the negative half free and the
+endpoint an artefact of the transcription rather than a theorem about `E`.
+The same asymmetry runs the other way for `IsAmenableTrace`, which the
+positive half must satisfy at `τ_E` and which therefore must not be so weak
+that everything satisfies it --- the first entry below is the one that
+separates the two, since it says quasidiagonal implies amenable and nothing
+in the corpus proves the converse.
+
+Each name here is printed with its type, so a reader can see that the scalar
+witness is a genuine model on `ℂ` and not a degenerate one. -/
+def calibration : List Name :=
+  [`GroupApproximation.Quasidiagonal.isAmenableTrace_of_isQuasidiagonalTrace,
+   `GroupApproximation.Quasidiagonal.isQuasidiagonalTrace_complex,
+   `GroupApproximation.Quasidiagonal.isAmenableTrace_complex,
+   `GroupApproximation.Quasidiagonal.isCompletelyPositiveOnMatrices_zero,
+   `GroupApproximation.Quasidiagonal.ucpContractive,
+   `GroupApproximation.Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace]
 
 /-- Every constant reachable from `seeds`, unfolding through the type *and*
 the value of everything it meets, and through a structure's constructors --- a
@@ -136,4 +159,31 @@ run_cmd do
       logInfo m!"  corpus constants in the statement closure \
 ({ours.length}): {(ours.toArray.qsort Name.lt).toList}"
 
+  logInfo "=== non-vacuity calibration ==="
+  for r in calibration do
+    match env.find? r with
+    | none => logError m!"MISSING calibration declaration: {r}"
+    | some ci =>
+        let closure := (← collectAxioms r).qsort Name.lt
+        logInfo m!"---- {r}\n  type: {ci.type}\n  axioms: {closure.toList}"
+
 end ProblemXVerify
+
+/-! ## Name-resolution check for the roster entries added to `scripts/Audit.lean`
+
+The corpus-wide audit needs a fully built `.lake`, which a tree with an
+unbuilt module does not have, so a mis-spelled roster entry could sit on main
+until the next full build.  These three are spelled exactly as
+`zeroInputEndpoints` spells them, inside the namespace that file is in, so a
+resolution failure is an error here instead. -/
+namespace GroupApproximation.Audit
+
+/-- The `NinetyNineProblems` entries of `zeroInputEndpoints`. -/
+def problemXZeroInputEndpoints : List Lean.Name :=
+  [``NinetyNineProblems.not_problemX1Statement,
+   ``NinetyNineProblems.literalFactorizationProperty,
+   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal]
+
+run_cmd Lean.logInfo m!"audit roster entries resolve: {problemXZeroInputEndpoints}"
+
+end GroupApproximation.Audit
