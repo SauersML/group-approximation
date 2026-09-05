@@ -192,6 +192,43 @@ Item 4 is what feeds `hsq`; `ChernSquareZeroIdeal.squareZero_of_dvd_squareZero`
 turns `z ∣ ch_q(δ)` and `z² = 0` into it.  Newton's identity is **no longer** on
 this list.
 
+## 3a. The exact join with `found-cohomology-ring`, as of 16:30
+
+`TotalChern A` wants ONE commutative ring `A`.  What
+`GroupApproximation/AlgTop/{SingularCohomology,CupProduct,CupAssoc,CrossProduct}.lean`
+currently provide is the *graded* picture:
+
+```lean
+abbrev cohomology (R) [CommRing R] (X : TopCat.{0}) (n : ℕ) : ModuleCat R
+def cup {X} {p q} : cohomology R X p → cohomology R X q → cohomology R X (p + q)
+def one (R) [CommRing R] (X) : cohomology R X 0
+theorem cup_assoc, cup_one, one_cup, cup_add_left/right, cup_smul_left/right,
+        cohPullback_cup, cross, cross_natural
+```
+
+The join is the **even** subring
+
+```text
+A := ⨁_{n : ℕ} H^{2n}(X; ℤ),
+```
+
+which is a genuine `CommRing` — graded commutativity is honest commutativity in
+even total degree — and is exactly the `A` every statement in this file is stated
+over, since Chern classes live in even degrees only.
+
+Everything needed for that direct sum to be a `CommRing` is present **except one
+theorem**: graded commutativity
+
+```lean
+theorem cup_comm {X} {p q} (a : cohomology R X p) (b : cohomology R X q) :
+    cup a b = (-1 : R) ^ (p * q) • cohCast R X (Nat.add_comm q p) (cup b a)
+```
+
+`cup_assoc`, `cup_one`, `one_cup` and bilinearity are already there.  So the
+single blocking item between the cohomology lane and the whole Chern layer is
+`cup_comm`, plus the `DirectSum` packaging.  That is worth saying plainly,
+because it is one theorem and not a programme.
+
 ## 4. Withdrawn
 
 `ChernParityCoefficient.lean` and `ChernNewtonSquareZero.lean` duplicated the
