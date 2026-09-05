@@ -281,7 +281,7 @@ theorem isCompletionUniformTwoContinuous_of_bounded {r : ℕ → ℝ}
     (hC : ∀ z, tracialTwoNorm σ z ≤ C * completionGauge hr z) :
     IsCompletionUniformTwoContinuous (G D) hr σ := by
   intro x hx
-  refine squeeze_zero_norm (g := fun N ↦ C * completionGauge hr (x N))
+  refine squeeze_zero_norm
     (fun N ↦ (norm_apply_le_tracialTwoNorm σ (x N)).trans (hC (x N))) ?_
   simpa using hx.const_mul C
 
