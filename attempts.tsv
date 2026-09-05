@@ -276,3 +276,4 @@
 33919306780	2026-09-04T21:04:31Z	GroupApproximation/Sofic/CommutingLampCollapse.lean	zpow_mem_pair
 33928081687	2026-09-04T23:05:11Z	GroupApproximation/Sofic/CommutingLampQuotientSofic.lean	mem_subgroup_of_single_mem
 33934886800	2026-09-05T01:02:37Z	GroupApproximation/Sofic/CommutingLampQuotientSofic.lean	Phi_surjective
+33948188539	2026-09-05T05:49:49Z	GroupApproximation/Sofic/CompressionDefectSquare.lean	conj_sq_eq_one
