@@ -143,7 +143,10 @@ theorem lixLimit_hasK1InjWitness : HasK1InjWitness LIXLimit
 
 `Type 0` is load-bearing: `KOne` is universe-polymorphic, so `ProblemLIX`
 quantified over `Type` is genuinely weaker than over `Type u`, and a universe
-slip there would silently weaken the endpoint.
+slip there would silently weaken the endpoint.  **Checked, and it is fine**:
+`cs-stages`' `Analysis/LIXStageAlgebra.lean:130` declares
+`abbrev StageAlgebra (i : ℕ) : Type`, annotated `Type` rather than `Type*`, and
+neither the colimit nor `UniformSpace.Completion` raises the level.
 
 `HasK1InjWitness` is landed and green in `Analysis/LIXEndpointStatement.lean`:
 
