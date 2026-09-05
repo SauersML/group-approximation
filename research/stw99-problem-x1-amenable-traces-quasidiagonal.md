@@ -127,3 +127,18 @@ unconditional reductions are:
   respectively QD, exactly when its invariant base trace is.  Therefore the
   X(1) property passes through finite-group actions with the Rokhlin
   property, since in that case every crossed-product trace is canonical.
+
+## Residual after the refutation (2026-09-05)
+
+The refutation lives on a nonexact algebra and cannot be moved into the
+exact class: on any exact quotient of `C*(E)` carrying `tau_E` the GNS
+closure is `L(E)`, which is not injective, so the trace is not amenable
+there.  STW themselves single out the exact case as the substantive
+remainder; it is now the root
+`amenable-traces-on-exact-cstar-algebras-are-quasidiagonal`, with STW's
+footnote-26 reduction recorded as
+`exact-x1-via-uct-free-trace-extending-af-embedding` from the UCT-free
+trace-extending AF-embedding leaf
+`exact-faithful-amenable-trace-extends-to-af-embedding`.  The verbatim
+problem text is pinned in
+`research/artifacts/stw10-x1-exact-residual-2026-09-05.md`.
