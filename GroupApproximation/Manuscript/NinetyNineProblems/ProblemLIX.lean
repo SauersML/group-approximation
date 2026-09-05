@@ -73,14 +73,17 @@ justify.
 
 The statement lands before anything is proved about it, which is the point: an
 endpoint written after the proof, in the proof's vocabulary, cannot be audited
-from outside.  `not_problemLIX_of_exists` is the whole of the logic between the
-counterexample and the printed problem, and it takes the counterexample as a
-hypothesis.
+from outside.  Two steps follow it and both take the counterexample as input:
+`exists_simple_unital_not_k1Inj_of` assembles the existential from one algebra
+and its witness, and `not_problemLIX_of_exists` carries the existential to the
+negation of the printed universal.  Between them there is no mathematics left,
+only an application.
 
-The counterexample itself is not here yet.  Nothing in this file asserts that
-`ProblemLIX` is false, and `not_problemLIX_of_exists` is audited with
-`#audit_axioms`, not `#audit_closed_axioms`, precisely because it has a leading
-input.
+**The counterexample itself is not here yet.**  Nothing in this file asserts
+that `ProblemLIX` is false, and both theorems are audited with `#audit_axioms`,
+not `#audit_closed_axioms`, precisely because each has a leading input.  When
+the algebra lands, `exists_simple_unital_not_k1Inj` and `not_problemLIX` are
+two closed statements and two `#audit_closed_axioms` lines.
 -/
 
 namespace GroupApproximation
@@ -94,6 +97,25 @@ the spectral order pinned.  Quantified over `Type`, deliberately; see the
 module docstring for that choice and for the clause-by-clause reading. -/
 def ProblemLIX : Prop :=
   ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A
+
+/-- **The counterexample assembly.**  One nontrivial simple C⋆-algebra carrying
+a single unitary that is not null-homotopic but whose `diag (·, 1)` is
+discharges the existential.
+
+`HasK1InjWitness` is `Analysis/LIXEndpointStatement`'s name for that unitary's
+existence, and `not_k1Inj_of_hasWitness` is the only step of `K₁`-theory the
+refutation uses.  Nothing about `K₁(A)` is computed: not that it vanishes, not
+that `U(A)/U₀(A)` has order two.  Both would need further theorems, and neither
+is part of the answer to Problem LIX.
+
+Every argument is data about a specific algebra, so this is audited with
+`#audit_axioms`.  It is the assembly, not the answer. -/
+theorem exists_simple_unital_not_k1Inj_of
+    (A : Type) [CStarAlgebra A] (hnt : Nontrivial A) (hsimp : IsSimpleCStar A)
+    (hw : HasK1InjWitness A) :
+    ∃ (B : Type) (_inst : CStarAlgebra B),
+      Nontrivial B ∧ IsSimpleCStar B ∧ ¬ K1Inj B :=
+  ⟨A, inferInstance, hnt, hsimp, not_k1Inj_of_hasWitness hw⟩
 
 /-- **A counterexample refutes the printed problem**, and no excluded middle is
 used to get from one to the other.
@@ -114,4 +136,5 @@ end GroupApproximation
 open GroupApproximation.NinetyNineProblems
 
 #audit_axioms ProblemLIX
+#audit_axioms exists_simple_unital_not_k1Inj_of
 #audit_axioms not_problemLIX_of_exists
