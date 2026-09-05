@@ -356,13 +356,71 @@ construction's doubling `d_j = 2^{j+1}`, which `lix-obstruction` showed is force
 by multiplicity matching, supplies it. That is why the doubling matters beyond
 multiplicity matching, and it belongs in the manuscript's commentary.
 
-**The step to verify hardest.** Relation `(*)` is Wu's formula applied to the
-*virtual* class `δ`, where `γ(δ) := γ(W)·γ(p*V)^{-1}`. Wu is proved for genuine
-bundles by the splitting principle; the extension to a formal quotient needs the
-total square to be a ring homomorphism (Cartan) plus the universal statement in
-`H^*(BO)`. It is standard, but it is the step where a slip would be invisible,
-and everything above rests on it. Instability, Frobenius and the Künneth
-injectivity of `z` are cheap by comparison.
+*Resolved (team-lead, after re-deriving Step 2 independently).* The `r-2` route
+is withdrawn: `γ_r = Sq²(γ_{r-1})` exhibits the top class as a square but does
+not make it vanish, and `⟨v₂·γ_{r-1},[N]⟩` is not obviously zero. §B.9's
+criterion — every `d_j` even — is the operative one; `Σ_j d_j` even is the
+weaker condition the top-class Wu instance needs, implied and not binding.
+
+### B.10 The Euler wall: the odd side, decomposed
+
+`found-euler-class` cannot bridge "the section has exactly one transverse zero"
+to "the top class is nonzero", and as stated they are right: that sentence *is*
+the Thom isomorphism plus localization plus manifold theory. Stated mod 2 and
+for our `N` only, it decomposes into four steps, three of which are cheap.
+
+* **E1 — the relative top class. THE IRREDUCIBLE PIECE.** For a rank-`r` bundle
+  `W` on a compact `X` and a section `s` nowhere zero on a closed `A ⊆ X`, a
+  class `e(W,s) ∈ H^{2r}(X, A; 𝔽₂)`, natural in `(X,A)`, whose image in
+  `H^{2r}(X;𝔽₂)` is `w_{2r}(W)`. This is the Thom class in disguise and there is
+  no way around it.
+* **E2 — excision and the top cell.** With `A = N ∖ int D` for a `2r`-disk `D`
+  around the zero, excision gives
+  `H^{2r}(N,A;𝔽₂) ≅ H^{2r}(D,∂D;𝔽₂) ≅ 𝔽₂`, and the map to `H^{2r}(N;𝔽₂) ≅ 𝔽₂`
+  is an **iso**. Prove this **cellularly, not by manifold theory or Poincaré
+  duality**: `N = S¹ × S⁵ × ∏CP^{d_j}` has an explicit product CW structure with
+  a *unique* top cell, which may be chosen inside `D`, so the map is an iso by
+  cellular cochain inspection — and the vendored tree already has the
+  cellular↔singular comparison.
+* **E3 — the relative class is the local degree.** `e(W,s)` corresponds under E2
+  to `deg₂(s|_{∂D})`, where `s|_{∂D}` lands in `ℂ^r ∖ 0 ≃ S^{2r-1}`.
+* **E4 — a nondegenerate zero has odd degree.** Mod 2 this is trivial: the
+  derivative is a real-linear isomorphism and a linear iso induces a degree `±1`
+  map of spheres. **Working mod 2 deletes all the orientation bookkeeping the
+  manuscript carries** — its derivative `(ξ,a) ↦ ξ/2 - 2a e₃` only has to be
+  invertible, never orientation-tracked. The vendored degree machinery covers
+  this.
+
+So the ask to `found-euler-class` is **E1 alone**, stated relatively and mod 2,
+with E2–E4 as separate small lemmas — a much smaller target than "the Euler
+class of an oriented bundle with its signed transverse-zero count".
+
+*If E1 is unreachable*, it becomes the campaign's single named `Prop`, one layer
+below and much smaller than the withdrawn `TwistedCancellationFailure`.
+
+*On W4(i).* The instruction not to build Poincaré duality still stands for the
+top pairing. But if E1 turns out to want a perfect cup pairing, note that for our
+`N` that is pure algebra rather than manifold theory: `H^*(N;𝔽₂)` is a tensor
+product of `𝔽₂[h]/(h^{d+1})`'s and sphere factors by Künneth, and perfectness of
+the cup pairing on such a ring is a direct computation. Cheap if needed — still
+not to be built speculatively.
+
+**Wu for the virtual class — RESOLVED, and cheap.** Relation `(*)` applies Wu to
+`δ`, where `γ(δ) := γ(W)·γ(p*V)^{-1}`. This needs no re-derivation of Wu for
+formal differences. `w(E) = ∏(1+y_i)` with `y_i` the mod-2 Chern roots in degree
+2; `Sq(y_i) = y_i + Sq¹y_i + y_i² = y_i + y_i²`, since `y_i` is the reduction of
+an integral class and the Bockstein kills it; so `Sq(w(E)) = ∏(1+y_i+y_i²)`.
+Both `Sq` and that universal expression are **multiplicative** on the group of
+normalized total classes — `Sq` by Cartan, the expression because the roots of a
+product are the union — and they agree on genuine bundles by the splitting
+principle. Two group homomorphisms agreeing on a generating set agree on the
+subgroup generated, which contains every formal quotient. So the Lean obligation
+is Cartan, the `CommGroup` of normalized total classes, and
+`Sq(1+y) = 1+y+y²`. `found-chern-classes`' `TotalChern` already supplies the
+middle. *(Argument due to `team-lead`; verified here. This was revision 3's
+top-listed risk and is now the cheapest item on the list.)*
+
+Instability, Frobenius and the Künneth injectivity of `z` are cheap likewise.
 
 **What B.9 deletes.** Bott periodicity, the Chern character, Newton's identity,
 integral Künneth, integral Chern classes, the integral Euler class, and (KT-min)
@@ -744,7 +802,7 @@ can say exactly which layer is unfinished.
 | L2 | cohomology ring, Künneth, top pairing — **over `𝔽₂`** | **large**, but mostly already vendored (C1), and the UCT blocker evaporates over `𝔽₂` (§B.9) |
 | L3 | `H^*(CP^n;𝔽₂)` and products | moderate; cell structure or Gysin, then Künneth |
 | L4 | **mod-2** Chern classes `γ_i = w_{2i}`, Whitney, splitting principle | moderate. No projective bundle formula, no Leray–Hirsch, no `ch` |
-| L5a | mod-2 Euler class, one-zero count | moderate; Thom class and localization, no transversality theory |
+| L5a | mod-2 Euler class, one-zero count | **THE WALL.** E1 (relative top class = Thom in disguise) is irreducible; E2–E4 are cheap. See §B.10 |
 | L5b | Steenrod squares up to Cartan and instability | **the largest single new build.** Cup-`i` products via equivariant acyclic carriers. No K-theory, no Bott |
 | L6 | Wu's formula, then §B.9 | short once L4 and L5b are in; the two risks are `(*)` for a virtual class and the tower assembly |
 | L5b′ | `K₁(C(X)) = 0` for an even-cell finite complex | **lower priority than the refutation**, and now **without a K-theory stack under it**; needed only for the `K₁(A) = 0` clause of printed Theorem 1, which is off the critical path for LIX itself (§B.6, Removal 1) |
@@ -754,9 +812,28 @@ can say exactly which layer is unfinished.
 periodicity and Leray–Hirsch. **Both are off the critical path** — §B.9 deletes
 them. The risks are now:
 
-1. **Wu's formula for a virtual class**, relation `(*)` of §B.9. Everything
-   rests on it and a slip would be invisible. It is standard mathematics, not
-   research, but it must be proved and not assumed.
+1. **The Euler wall — now the campaign's single remaining topological wall.**
+   `found-euler-class` reports they cannot bridge "the section has exactly one
+   transverse zero" to "the top class is nonzero", and they are right that as
+   stated it *is* the Thom isomorphism plus localization plus manifold theory.
+   It decomposes, and three of the four pieces are cheap here — see §B.10. The
+   irreducible piece is **E1**, the relative top class, which is the Thom class
+   in disguise. If E1 proves unreachable, the fallback is to state E1 alone as
+   the campaign's single named `Prop` — one layer below, and much smaller than,
+   the withdrawn `TwistedCancellationFailure`.
+
+   *Two things that bound how far this can be simplified.* The Euler side cannot
+   be replaced by structure: Lemma 3 applies to `W_g` too, since it restricts to
+   `V` on the slice, so the contradiction **is** Euler-count-versus-parity, and
+   the zero count is the only place the hypothesis `g e = s` enters. And the `Y`
+   factor does not split off: if `W_g` were an external product `W₁ ⊠ H` then
+   `⟨w_{2m}(H),[Y]⟩ = 1` would be a pure cohomology-ring computation and only a
+   rank-3 bundle over the 6-manifold `S¹×S⁵` would need an Euler count — but `g`
+   is arbitrary and mixes the summands. I looked for such a splitting; it is not
+   there.
+
+2. ~~**Wu's formula for a virtual class.**~~ **Resolved** — see §B.9; it is now
+   Cartan plus a two-line multiplicativity argument.
 2. **The tower assembly, and *which* criterion is proved.** §B.9 closes the
    general stage as far as I can check it on paper — `b_n = 0` for every even
    `n`, via `(j,k) = (n/2-1, n/2+1)`. Until that is Lean-checked at general `ℓ`
