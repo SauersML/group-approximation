@@ -1,5 +1,7 @@
 import GroupApproximation.AlgTop.ChernPowerSums
 
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 /-!
 # The power sums of a line class are the powers of its Chern root
 

@@ -3,6 +3,8 @@ import Mathlib.Algebra.BigOperators.NatAntidiagonal
 import Mathlib.Algebra.Algebra.Rat
 import Mathlib.Data.Nat.Factorial.Basic
 
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 /-!
 # Newton's identity for a total Chern class, discharged
 

@@ -1,15 +1,16 @@
-import Mathlib.Algebra.Group.Basic
+import Mathlib.Algebra.Divisibility.Basic
 import Mathlib.Algebra.Ring.Defs
+import Mathlib.Tactic.Ring
 
 /-!
 # The square-zero hypothesis, supplied by a square-zero class
 
 The square-zero Newton step
-`GroupApproximation.AlgTop.natCast_mul_chern_eq_of_squareZero` takes the
-hypothesis
+`GroupApproximation.AlgTop.TotalChern.natCast_mul_chernClass_of_squareZero`
+takes the hypothesis
 
 ```text
-∀ i j, 0 < i → 0 < j → c i * p j = 0.
+∀ i j, 0 < i → 0 < j → c_i * p_j = 0.
 ```
 
 In Lemma 3 of the STW Problem LIX manuscript that hypothesis is supplied by a

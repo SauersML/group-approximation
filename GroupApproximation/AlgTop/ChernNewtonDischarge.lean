@@ -1,5 +1,7 @@
 import GroupApproximation.AlgTop.ChernNewtonIdentity
 
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 /-!
 # Equation (2.7) with no Newton hypothesis
 

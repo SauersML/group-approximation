@@ -214,7 +214,8 @@ theorem chernClass_mul_top {c d : TotalChern A} {m n : ℕ}
         exact ⟨hEq, by omega⟩
       rw [hd p₂ (by omega), mul_zero]
   · intro hp
-    exact absurd (mem_antidiagonal.2 rfl) hp
+    have hmem : ((m, n) : ℕ × ℕ) ∈ antidiagonal (m + n) := mem_antidiagonal.2 rfl
+    exact absurd hmem hp
 
 /-- The top Chern class of the `d`-fold sum of a line bundle: `c_d(L^{⊕d}) = a^d`
 where `a = c₁(L)`. -/

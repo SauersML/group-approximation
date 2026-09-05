@@ -1,6 +1,8 @@
 import GroupApproximation.AlgTop.ChernSeries
 import Mathlib.RingTheory.PowerSeries.Derivative
 
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 /-!
 # Power sums of a total Chern class, and Newton's identity for virtual classes
 
@@ -106,8 +108,9 @@ theorem natCast_mul_chernClass (c : TotalChern A) (q : ℕ) :
     (q : A) * c.chernClass q
       = ∑ ij ∈ antidiagonal q,
           c.chernClass ij.1 * ((-1) ^ (ij.2 + 1) * c.powerSum ij.2) := by
-  have hcoeff := congrArg (fun f => PowerSeries.coeff q f) (series_mul_newtonSeries c)
-  simp only at hcoeff
+  have hcoeff : PowerSeries.coeff q (c.series * newtonSeries c)
+      = PowerSeries.coeff q (PowerSeries.X * PowerSeries.derivativeFun c.series) := by
+    rw [series_mul_newtonSeries]
   rw [PowerSeries.coeff_mul] at hcoeff
   have hright : PowerSeries.coeff q (PowerSeries.X * PowerSeries.derivativeFun c.series)
       = (q : A) * c.chernClass q := by
@@ -118,26 +121,21 @@ theorem natCast_mul_chernClass (c : TotalChern A) (q : ℕ) :
     · rw [PowerSeries.coeff_succ_X_mul, PowerSeries.coeff_derivativeFun, chernClass]
       push_cast
       ring
-  rw [← hright, hcoeff]
+  rw [← hright, ← hcoeff]
   refine Finset.sum_congr rfl fun ij _ => ?_
-  rw [powerSum, chernClass]
-  rw [← mul_assoc, ← mul_assoc]
+  simp only [chernClass, powerSum]
   have hsign : ((-1 : A) ^ (ij.2 + 1)) * ((-1 : A) ^ (ij.2 + 1)) = 1 := by
-    rw [← pow_add, ← two_mul]
-    simp [pow_mul]
-  calc PowerSeries.coeff ij.1 c.series * PowerSeries.coeff ij.2 (newtonSeries c)
-      = PowerSeries.coeff ij.1 c.series *
-          (((-1 : A) ^ (ij.2 + 1)) * ((-1 : A) ^ (ij.2 + 1)) *
-            PowerSeries.coeff ij.2 (newtonSeries c)) := by rw [hsign, one_mul]
-    _ = PowerSeries.coeff ij.1 c.series * (-1 : A) ^ (ij.2 + 1) *
-          ((-1 : A) ^ (ij.2 + 1) * PowerSeries.coeff ij.2 (newtonSeries c)) := by ring
+    rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow]
+  linear_combination (-(PowerSeries.coeff ij.1 c.series *
+    PowerSeries.coeff ij.2 (newtonSeries c))) * hsign
 
 /-- **(2.7), with Newton's identity discharged.**  If every product of a positive
 Chern class with a positive power sum vanishes — which is what `z² = 0` gives in
-the manuscript — then `q · c_q = (-1)^{q+1} p_q`. -/
+the manuscript — then `q · c_q = (-1)^{q+1} p_q`.
+
+No positivity of `q` is needed: at `q = 0` both sides are zero. -/
 theorem natCast_mul_chernClass_of_squareZero (c : TotalChern A)
-    (hsq : ∀ i j, 0 < i → 0 < j → c.chernClass i * c.powerSum j = 0)
-    {q : ℕ} (hq : 0 < q) :
+    (hsq : ∀ i j, 0 < i → 0 < j → c.chernClass i * c.powerSum j = 0) (q : ℕ) :
     (q : A) * c.chernClass q = (-1) ^ (q + 1) * c.powerSum q := by
   rw [natCast_mul_chernClass c q]
   have hmem : ((0, q) : ℕ × ℕ) ∈ antidiagonal q := mem_antidiagonal.2 (by simp)
