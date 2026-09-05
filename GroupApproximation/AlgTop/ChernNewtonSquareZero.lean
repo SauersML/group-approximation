@@ -36,14 +36,18 @@ and the square-zero hypothesis kills every summand except `i = 0`, which is
 
 Both the hypothesis and the conclusion are stated for arbitrary sequences
 `c, p : ℕ → A` in a commutative ring, so nothing here is specific to cohomology:
-this is the algebra that the topological layer will instantiate.
+this is the algebra that the topological layer will instantiate.  Newton's
+identity itself is discharged for split classes in
+`GroupApproximation.AlgTop.TotalChern.newton_of_split`.
 
 ## Main declarations
 
 * `natCast_mul_chern_eq_of_squareZero` — the cleared-denominator form
   `q · c_q = (-1)^{q+1} p_q`, valid in any commutative ring.
+* `chern_eq_of_squareZero_of_isUnit` — the same with the factor `q` cancelled.
+* `isUnit_natCast_of_pos` — `(q : A)` is a unit in a `ℚ`-algebra.
 * `chern_eq_of_squareZero` — (2.7) itself, `c_q = (-1)^{q+1} (q-1)! ch_q`, over a
-  `ℚ`-algebra, where `q` is invertible.
+  `ℚ`-algebra.
 -/
 
 namespace GroupApproximation
@@ -61,31 +65,61 @@ variable {A : Type*} [CommRing A]
 The vanishing hypothesis is what the manuscript gets from `z² = 0`: the virtual
 class `δ` has `ch(δ) = z · ch(β)` with `z` of odd total degree squaring to zero,
 so all of its positive Chern classes and all of its positive power sums lie in a
-square-zero ideal. -/
+square-zero ideal.  See
+`GroupApproximation.AlgTop.squareZero_of_dvd_squareZero`. -/
 theorem natCast_mul_chern_eq_of_squareZero (c p : ℕ → A) (hc0 : c 0 = 1)
     (hnewton : ∀ k, 0 < k → (k : A) * c k
       = (-1) ^ (k + 1) *
-        ∑ a ∈ Finset.filter (fun a => a.1 < k) (antidiagonal k),
+        ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
           (-1) ^ a.1 * c a.1 * p a.2)
     (hsq : ∀ i j, 0 < i → 0 < j → c i * p j = 0)
     {k : ℕ} (hk : 0 < k) :
     (k : A) * c k = (-1) ^ (k + 1) * p k := by
-  rw [hnewton k hk]
-  congr 1
-  refine Finset.sum_eq_single (0, k) ?_ ?_
-  · rintro ⟨q₁, q₂⟩ hq hne
+  have hmem : ((0, k) : ℕ × ℕ) ∈
+      Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k) :=
+    Finset.mem_filter.2 ⟨mem_antidiagonal.2 (by simp), by simpa using hk⟩
+  have h₀ : ∀ b ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
+      b ≠ (0, k) → (-1 : A) ^ b.1 * c b.1 * p b.2 = 0 := by
+    rintro ⟨q₁, q₂⟩ hq hne
     rw [Finset.mem_filter, mem_antidiagonal] at hq
     obtain ⟨hsum, hlt⟩ := hq
-    simp only at hsum hlt
+    simp only at hsum hlt ⊢
     have h₁ : 0 < q₁ := by
       rcases Nat.eq_zero_or_pos q₁ with h | h
-      · exact absurd (by rw [h]; congr 1; omega : ((q₁, q₂) : ℕ × ℕ) = (0, k)) hne
+      · refine absurd ?_ hne
+        simp only [Prod.mk.injEq]
+        exact ⟨h, by omega⟩
       · exact h
-    have h₂ : 0 < q₂ := by omega
-    simp only
-    rw [mul_assoc, hsq q₁ q₂ h₁ h₂, mul_zero]
-  · intro hmem
-    exact absurd (Finset.mem_filter.2 ⟨mem_antidiagonal.2 (by simp), by simpa using hk⟩) hmem
+    rw [mul_assoc, hsq q₁ q₂ h₁ (by omega), mul_zero]
+  have h₁ : ((0, k) : ℕ × ℕ) ∉
+      Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k) →
+      (-1 : A) ^ ((0, k) : ℕ × ℕ).1 * c ((0, k) : ℕ × ℕ).1 * p ((0, k) : ℕ × ℕ).2 = 0 :=
+    fun h => absurd hmem h
+  rw [hnewton k hk, Finset.sum_eq_single (0, k) h₀ h₁]
+  simp [hc0]
+
+/-- (2.7) with the factor `q` cancelled, in any commutative ring in which
+`(q : A)` happens to be a unit.  The caller supplies the factorization
+`p_q = q · v`; in the intended instance `v = (q-1)! ch_q`. -/
+theorem chern_eq_of_squareZero_of_isUnit (c p : ℕ → A) (hc0 : c 0 = 1)
+    (hnewton : ∀ k, 0 < k → (k : A) * c k
+      = (-1) ^ (k + 1) *
+        ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
+          (-1) ^ a.1 * c a.1 * p a.2)
+    (hsq : ∀ i j, 0 < i → 0 < j → c i * p j = 0)
+    {k : ℕ} (hk : 0 < k) (hu : IsUnit ((k : ℕ) : A)) (v : A) (hv : p k = (k : A) * v) :
+    c k = (-1) ^ (k + 1) * v := by
+  refine hu.mul_left_cancel ?_
+  rw [natCast_mul_chern_eq_of_squareZero c p hc0 hnewton hsq hk, hv]
+  ring
+
+/-- In a `ℚ`-algebra every positive natural number is a unit. -/
+theorem isUnit_natCast_of_pos {A : Type*} [CommRing A] [Algebra ℚ A] {k : ℕ} (hk : 0 < k) :
+    IsUnit ((k : ℕ) : A) := by
+  have hcast : ((k : ℕ) : A) = algebraMap ℚ A ((k : ℕ) : ℚ) := by simp
+  rw [hcast]
+  refine IsUnit.map (algebraMap ℚ A) (isUnit_iff_ne_zero.2 ?_)
+  exact_mod_cast hk.ne'
 
 /-- **(2.7).**  Over a `ℚ`-algebra, with `p_q = q! · ch_q`, the square-zero
 Newton step gives `c_q = (-1)^{q+1} (q-1)! ch_q`.
@@ -95,29 +129,17 @@ theorem chern_eq_of_squareZero {A : Type*} [CommRing A] [Algebra ℚ A]
     (c ch : ℕ → A) (hc0 : c 0 = 1)
     (hnewton : ∀ k, 0 < k → (k : A) * c k
       = (-1) ^ (k + 1) *
-        ∑ a ∈ Finset.filter (fun a => a.1 < k) (antidiagonal k),
-          (-1) ^ a.1 * c a.1 * ((a.2 ! : ℕ) * ch a.2))
-    (hsq : ∀ i j, 0 < i → 0 < j → c i * ((j ! : ℕ) * ch j) = 0)
+        ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
+          (-1) ^ a.1 * c a.1 * ((a.2 ! : A) * ch a.2))
+    (hsq : ∀ i j, 0 < i → 0 < j → c i * ((j ! : A) * ch j) = 0)
     {k : ℕ} (hk : 0 < k) :
-    c k = (-1) ^ (k + 1) * ((k - 1)! : ℕ) * ch k := by
+    c k = (-1) ^ (k + 1) * (((k - 1)! : A) * ch k) := by
   obtain ⟨n, rfl⟩ : ∃ n, k = n + 1 := ⟨k - 1, by omega⟩
-  have key := natCast_mul_chern_eq_of_squareZero c (fun j => ((j ! : ℕ) : A) * ch j)
-    hc0 hnewton hsq hk
-  have hfac : (((n + 1)! : ℕ) : A) = ((n + 1 : ℕ) : A) * ((n ! : ℕ) : A) := by
-    rw [Nat.factorial_succ]
-    push_cast
-    ring
-  have hrewrite : ((n + 1 : ℕ) : A) * c (n + 1)
-      = ((n + 1 : ℕ) : A) * ((-1) ^ (n + 1 + 1) * ((n + 1 - 1)! : ℕ) * ch (n + 1)) := by
-    rw [key, hfac]
-    simp only [Nat.add_sub_cancel]
-    ring
-  have hu : IsUnit ((n + 1 : ℕ) : A) := by
-    have hcast : ((n + 1 : ℕ) : A) = algebraMap ℚ A ((n + 1 : ℕ) : ℚ) := by
-      simp
-    rw [hcast]
-    exact IsUnit.map (algebraMap ℚ A) (isUnit_iff_ne_zero.2 (by positivity))
-  exact hu.mul_left_cancel hrewrite
+  refine chern_eq_of_squareZero_of_isUnit c (fun j => ((j ! : A)) * ch j) hc0 hnewton hsq hk
+    (isUnit_natCast_of_pos hk) _ ?_
+  simp only [Nat.add_sub_cancel, Nat.factorial_succ]
+  push_cast
+  ring
 
 end AlgTop
 end GroupApproximation

@@ -84,7 +84,7 @@ theorem ext {c d : TotalChern A} (h : c.series = d.series) : c = d := by
   cases c; cases d; subst h; rfl
 
 instance : One (TotalChern A) :=
-  ⟨⟨1, map_one _⟩⟩
+  ⟨⟨1, by simp⟩⟩
 
 instance : Mul (TotalChern A) :=
   ⟨fun c d => ⟨c.series * d.series, by
@@ -165,7 +165,7 @@ theorem rankLE_one : (1 : TotalChern A).RankLE 0 := by
 
 theorem rankLE_line (a : A) : (line a).RankLE 1 := by
   intro k hk
-  rw [chernClass_line, if_neg (by omega), if_neg (by omega)]
+  rw [chernClass_line, if_neg (by omega : ¬ k = 0), if_neg (by omega : ¬ k = 1)]
 
 theorem RankLE.mul {c d : TotalChern A} {m n : ℕ} (hc : c.RankLE m) (hd : d.RankLE n) :
     (c * d).RankLE (m + n) := by
@@ -182,20 +182,18 @@ theorem RankLE.pow {c : TotalChern A} {m : ℕ} (hc : c.RankLE m) (d : ℕ) :
   induction d with
   | zero => simpa using rankLE_one
   | succ d ih =>
-      have := ih.mul hc
       rw [pow_succ]
-      exact this.mono (by ring_nf; omega)
+      exact (ih.mul hc).mono (le_of_eq (by ring))
 
-theorem RankLE.prod {ι : Type*} {s : Finset ι} {c : ι → TotalChern A} {n : ι → ℕ}
-    (h : ∀ i ∈ s, (c i).RankLE (n i)) :
+theorem RankLE.prod {ι : Type*} {c : ι → TotalChern A} {n : ι → ℕ}
+    (h : ∀ i, (c i).RankLE (n i)) (s : Finset ι) :
     (∏ i ∈ s, c i).RankLE (∑ i ∈ s, n i) := by
   classical
   induction s using Finset.induction with
   | empty => simpa using rankLE_one
   | insert a s ha ih =>
       rw [Finset.prod_insert ha, Finset.sum_insert ha]
-      exact (h a (Finset.mem_insert_self a s)).mul
-        (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+      exact (h a).mul ih
 
 /-- The top Chern class of a product of two total Chern classes of complementary
 ranks is the product of their top Chern classes. -/
@@ -203,16 +201,20 @@ theorem chernClass_mul_top {c d : TotalChern A} {m n : ℕ}
     (hc : c.RankLE m) (hd : d.RankLE n) :
     (c * d).chernClass (m + n) = c.chernClass m * d.chernClass n := by
   rw [chernClass_mul]
-  refine Finset.sum_eq_single (m, n) (fun p hp hne => ?_) (fun hp => ?_)
-  · rw [mem_antidiagonal] at hp
-    rcases lt_or_ge m p.1 with h | h
-    · rw [hc p.1 h, zero_mul]
-    · have hp2 : n < p.2 := by
-        rcases lt_or_eq_of_le h with h' | h'
-        · omega
-        · exact absurd (Prod.ext h'.symm (by omega)) hne
-      rw [hd p.2 hp2, mul_zero]
-  · exact absurd (mem_antidiagonal.2 rfl) hp
+  refine Finset.sum_eq_single (m, n) ?_ ?_
+  · rintro ⟨p₁, p₂⟩ hp hne
+    rw [mem_antidiagonal] at hp
+    simp only at hp ⊢
+    rcases lt_or_ge m p₁ with h | h
+    · rw [hc p₁ h, zero_mul]
+    · have hp₁ : p₁ ≠ m := by
+        intro hEq
+        apply hne
+        simp only [Prod.mk.injEq]
+        exact ⟨hEq, by omega⟩
+      rw [hd p₂ (by omega), mul_zero]
+  · intro hp
+    exact absurd (mem_antidiagonal.2 rfl) hp
 
 /-- The top Chern class of the `d`-fold sum of a line bundle: `c_d(L^{⊕d}) = a^d`
 where `a = c₁(L)`. -/
@@ -222,22 +224,20 @@ theorem chernClass_line_pow (a : A) (d : ℕ) : ((line a) ^ d).chernClass d = a 
   | succ d ih =>
       have hpow : ((line a) ^ d).RankLE d := by
         simpa using (rankLE_line a).pow d
-      have := chernClass_mul_top (c := (line a) ^ d) (d := line a) hpow (rankLE_line a)
-      rw [pow_succ, this, ih, chernClass_line_one, pow_succ]
+      rw [pow_succ, chernClass_mul_top hpow (rankLE_line a), ih, chernClass_line_one,
+        pow_succ]
 
 /-- The top Chern class of a finite product is the product of the top Chern
 classes, once each factor is known to have the stated rank. -/
-theorem chernClass_prod_top {ι : Type*} (s : Finset ι) (c : ι → TotalChern A) (n : ι → ℕ)
-    (h : ∀ i ∈ s, (c i).RankLE (n i)) :
+theorem chernClass_prod_top {ι : Type*} {c : ι → TotalChern A} {n : ι → ℕ}
+    (h : ∀ i, (c i).RankLE (n i)) (s : Finset ι) :
     (∏ i ∈ s, c i).chernClass (∑ i ∈ s, n i) = ∏ i ∈ s, (c i).chernClass (n i) := by
   classical
   induction s using Finset.induction with
   | empty => simp
   | insert a s ha ih =>
-      have hmem : ∀ i ∈ s, (c i).RankLE (n i) := fun i hi =>
-        h i (Finset.mem_insert_of_mem hi)
       rw [Finset.prod_insert ha, Finset.sum_insert ha, Finset.prod_insert ha,
-        chernClass_mul_top (h a (Finset.mem_insert_self a s)) (RankLE.prod hmem), ih hmem]
+        chernClass_mul_top (h a) (RankLE.prod h s), ih]
 
 /-- **The manuscript's (2.1).**  For `H = ⨁_j L_j^{⊕ d_j}` with `c₁(L_j) = h j`,
 the top Chern class in degree `m = ∑_j d_j` is `∏_j (h j)^{d_j}`.
@@ -247,10 +247,9 @@ coefficient of a product of polynomials is the product of the leading
 coefficients. -/
 theorem chernClass_prod_line_pow_top {ι : Type*} (s : Finset ι) (h : ι → A) (d : ι → ℕ) :
     (∏ j ∈ s, (line (h j)) ^ (d j)).chernClass (∑ j ∈ s, d j) = ∏ j ∈ s, h j ^ d j := by
-  have hrank : ∀ j ∈ s, ((line (h j)) ^ (d j)).RankLE (d j) := by
-    intro j _
+  have hrank : ∀ j : ι, ((line (h j)) ^ (d j)).RankLE (d j) := fun j => by
     simpa using (rankLE_line (h j)).pow (d j)
-  rw [chernClass_prod_top s _ d hrank]
+  rw [chernClass_prod_top hrank s]
   exact Finset.prod_congr rfl fun j _ => chernClass_line_pow (h j) (d j)
 
 /-- The **virtual class identity**: writing `δ = W / V` for the total Chern class

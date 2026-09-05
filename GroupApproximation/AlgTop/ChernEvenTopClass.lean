@@ -48,7 +48,7 @@ the base and no dimension count is used. -/
 theorem chernClass_prod_line_pow_eq_zero_of_lt {ι : Type*} (s : Finset ι) (h : ι → A)
     (d : ι → ℕ) {k : ℕ} (hk : (∑ j ∈ s, d j) < k) :
     (∏ j ∈ s, (line (h j)) ^ (d j)).chernClass k = 0 := by
-  refine RankLE.prod (fun j _ => ?_) k hk
+  refine RankLE.prod (fun j => ?_) s k hk
   simpa using (rankLE_line (h j)).pow (d j)
 
 /-- If the top Chern class of `V` vanishes and every positive Chern class of `δ`
@@ -63,6 +63,7 @@ theorem two_dvd_chernClass_mul (V δ : TotalChern A) (r : ℕ)
   rcases Nat.eq_zero_or_pos p.2 with hzero | hpos
   · have hfst : p.1 = r := by omega
     rw [hfst, hV, zero_mul]
+    exact dvd_zero 2
   · exact (hδ p.2 hpos).mul_left _
 
 /-- **The closing inference of Lemma 3.**  Write `δ = W / V` for the total Chern
