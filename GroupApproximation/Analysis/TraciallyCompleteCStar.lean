@@ -348,7 +348,10 @@ theorem isClosed_traceLocus : IsClosed (traceLocus A) := by
   have h4 : IsClosed {f : A → ℂ | ∀ x : A, 0 ≤ f (star x * x)} := by
     simp only [Set.setOf_forall]
     refine isClosed_iInter fun x ↦ ?_
-    exact (isClosed_complexNonneg).preimage (continuous_apply (star x * x))
+    have hpre : {f : A → ℂ | 0 ≤ f (star x * x)}
+        = (fun g : A → ℂ ↦ g (star x * x)) ⁻¹' {z : ℂ | 0 ≤ z} := rfl
+    rw [hpre]
+    exact isClosed_complexNonneg.preimage (continuous_apply (star x * x))
   have h5 : IsClosed {f : A → ℂ | ∀ x y : A, f (x * y) = f (y * x)} := by
     simp only [Set.setOf_forall]
     refine isClosed_iInter fun x ↦ isClosed_iInter fun y ↦ ?_

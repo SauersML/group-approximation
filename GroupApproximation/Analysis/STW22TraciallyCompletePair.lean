@@ -160,6 +160,40 @@ theorem uniformTwoNormOn_designatedTraces {r : ℕ → ℝ}
   le_antisymm (uniformTwoNormOn_designatedTraces_le hr x)
     (completionGauge_le_uniformTwoNormOn hr x)
 
+/-- The abstract `‖·‖_{2,X}`-continuity of a trace and this project's concrete
+`IsCompletionUniformTwoContinuous` are the same condition, because the two
+gauges agree. -/
+theorem isUniformTwoContinuousOn_iff_isCompletionUniformTwoContinuous
+    {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
+    (σ : TracialState (BoundedUniformTwoCompletion (G D) r hr)) :
+    IsUniformTwoContinuousOn (designatedTraces hr) σ
+      ↔ IsCompletionUniformTwoContinuous (G D) hr σ := by
+  have hfun : ∀ x : ℕ → BoundedUniformTwoCompletion (G D) r hr,
+      (fun k ↦ uniformTwoNormOn (designatedTraces hr) (x k))
+        = fun k ↦ uniformTwoNorm (G D) ((realize (G D) hr (x k)).1) := by
+    intro x
+    funext k
+    exact uniformTwoNormOn_designatedTraces hr (x k)
+  constructor
+  · intro h x hx
+    refine h x ?_
+    rw [hfun x]
+    exact hx
+  · intro h x hx
+    refine h x ?_
+    rw [hfun x] at hx
+    exact hx
+
+/-- **The designated traces are exactly the `‖·‖_{2,X}`-continuous traces**, in
+the abstract vocabulary.  This is CCEGSTW Proposition 3.15 for this pair, and
+it is what makes the two forms of Question 1.1 equivalent here. -/
+theorem mem_designatedTraces_iff_isUniformTwoContinuousOn {r : ℕ → ℝ}
+    (hr : IsCoordinateNormComparison (G D) r)
+    (σ : TracialState (BoundedUniformTwoCompletion (G D) r hr)) :
+    σ ∈ designatedTraces hr ↔ IsUniformTwoContinuousOn (designatedTraces hr) σ :=
+  (mem_designatedTraces_iff_isCompletionUniformTwoContinuous hr σ).trans
+    (isUniformTwoContinuousOn_iff_isCompletionUniformTwoContinuous hr σ).symm
+
 /-! ## Faithfulness -/
 
 /-- **The completion gauge is a norm.**  No extra hypothesis is needed: the
@@ -280,6 +314,17 @@ theorem isFactorialTraciallyCompletePair_designatedTraces {r : ℕ → ℝ}
   toIsTraciallyCompletePair := isTraciallyCompletePair_designatedTraces hr
   isClosed := isClosed_designatedTraces hr
   isFace := isFaceTraceSet_designatedTraces hr
+
+/-- **The two forms of the trace problem agree for this pair.**  CCEGSTW
+Question 1.1 asks either "are all traces `‖·‖_{2,X}`-continuous?" or,
+equivalently, "is `X ⊆ T(M)` an equality?"; for a factorial pair those coincide,
+and here that coincidence is a theorem. -/
+theorem allTracesUniformTwoContinuous_iff_designatedTracesAreAllTraces'
+    {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r) :
+    AllTracesUniformTwoContinuous (designatedTraces hr)
+      ↔ DesignatedTracesAreAllTraces (designatedTraces hr) :=
+  allTracesUniformTwoContinuous_iff_designatedTracesAreAllTraces
+    (mem_designatedTraces_iff_isUniformTwoContinuousOn hr)
 
 end
 
