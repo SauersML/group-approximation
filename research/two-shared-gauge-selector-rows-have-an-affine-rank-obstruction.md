@@ -3,6 +3,9 @@ rg: 2
 id: two-shared-gauge-selector-rows-have-an-affine-rank-obstruction
 kind: claim
 title: Two scale-changing selector rows with one gauge obey one affine rank parameter
+artifacts:
+  - research/artifacts/non-mf-without-property-t.md
+  - experiments/verify_binary_selector_sharp_gap.py
 distinct_from:
   shared-gauge-cz-cancellation-needs-an-identity-outer-anchor: that cancels one CZ gauge by an identity-outer occurrence; this retains the gauge and eliminates it by two incompatible source/target rank equations.
   controlled-fine-reflection-superrank-orientation-law: that computes the balanced orientation forced by one binary coarse-to-fine row; this gives the simultaneous two-row obstruction and the robust trace inequality.
@@ -163,3 +166,53 @@ route, the present argument needs no joint-fullness or spectator-elimination
 theorem: tensoring both gauges by an unused identity leaves `theta` and
 `(TSG4)` unchanged.  The remaining scalar target is therefore any fixed
 positive cross-Gram overlap for the two native scale-changing transports.
+
+
+## Sharp projection-level refinement, 5 September 2026
+
+The projection identity gives the stronger inequality
+
+```text
+delta_i^2 >= 4 |r_i-Phi_(q_i)(theta)|.                 (TSG8)
+```
+
+For the same two binary rows, this implies the sharp matrix bounds
+
+```text
+delta_1^2+delta_2^2 >= 2/3,
+delta_1+delta_2 >= sqrt(2/3),
+max(delta_1,delta_2) >= sqrt(2/5).                      (TSG9)
+```
+
+The first two bounds are attained in dimension 48 with multiplicity
+fraction `theta=5/6`; the last is attained in dimension 80 with
+`theta=7/10`. The proof and the exact verifier give the diagonal matrices.
+These are sharp under the stated standalone matrix hypotheses. They do
+not realize both selector rows with zero error and do not model the full
+Leavitt group.
+
+Writing `epsilon_i` for the same row differences in operator norm, unequal
+negative projection ranks have distance two as reflections. Hence
+
+```text
+max(epsilon_1,epsilon_2)=2.                            (TSG10)
+```
+
+For approximately shared gauges the squared projection bound improves the
+comparison to `|theta_1-theta_2| <= epsilon_g^2/4`, yielding
+
+```text
+delta_1^2/2 + delta_2^2/3 + epsilon_g^2/4 >= 1/3,
+delta_1^2+delta_2^2 >= 2(1/3-epsilon_g^2/4)_+,
+max(delta_1,delta_2)^2 >= (6/5)(1/3-epsilon_g^2/4)_+.    (TSG11)
+```
+
+If the gauge comparison is in operator norm and is strictly below two,
+the gauge ranks agree exactly and `(TSG10)` still applies. On a common
+reducing carrier of ambient trace `beta`, the squared ambient row energy
+is at least `2 beta/3-o(1)` as the gauge error vanishes.
+
+All these conclusions retain the original source-rank, common-carrier,
+and actual-row authentication hypotheses. They strengthen the terminal
+matrix obstruction; they do not establish the open native selector
+compiler or a Property-T-free non-MF group.
