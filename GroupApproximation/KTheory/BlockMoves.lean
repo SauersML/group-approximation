@@ -191,7 +191,7 @@ theorem blockSum_zero_right (p : Matrix (Fin m) (Fin m) A) :
   induction i using Fin.addCases with
   | left a =>
     induction j using Fin.addCases with
-    | left b => simpa using blockSum_apply_castAdd_castAdd p (0 : Matrix (Fin 0) (Fin 0) A) a b
+    | left b => exact blockSum_apply_castAdd_castAdd p (0 : Matrix (Fin 0) (Fin 0) A) a b
     | right b => exact b.elim0
   | right a => exact a.elim0
 
