@@ -1,0 +1,14 @@
+generator 0: singular ratios second-smallest 2.68e-03 smallest 3.71e-17; unitarity residual 1.16e-14
+generator 1: singular ratios second-smallest 2.68e-03 smallest 3.42e-17; unitarity residual 1.25e-14
+generator 2: singular ratios second-smallest 2.68e-03 smallest 4.02e-17; unitarity residual 1.64e-14
+generator 3: singular ratios second-smallest 2.68e-03 smallest 5.12e-17; unitarity residual 1.78e-14
+generator 4: singular ratios second-smallest 2.65e-03 smallest 6.66e-17; unitarity residual 1.37e-14
+generator 5: singular ratios second-smallest 2.64e-03 smallest 6.03e-17; unitarity residual 1.63e-14
+generator 6: singular ratios second-smallest 2.69e-03 smallest 1.33e-16; unitarity residual 3.14e-14
+generator 7: singular ratios second-smallest 2.68e-03 smallest 6.64e-17; unitarity residual 2.45e-14
+relators: 304412; nonscalar 0; max nonscalar defect 3.15e-14
+coboundary fit to (-1)^k: max residual over all relators 7.79e-08 (mean 8.23e-09); phases theta/2pi = [0.5   0.5   0.    1.    0.125 0.625 1.    1.   ]
+coboundary fit to the trivial class: max residual 2.00e+00
+rescaled generators: max defect against (-1)^k over ALL relators 7.79e-08
+orders of the generators modulo scalars: [4, 4, 2, 2, 4, 4, 2, 2]
+wrote seed_theta_d4.json
