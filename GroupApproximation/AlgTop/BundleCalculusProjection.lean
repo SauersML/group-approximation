@@ -319,6 +319,7 @@ theorem unitaryConj_of_preconnected {Y : Type*} [TopologicalSpace Y] [Preconnect
   have hne : ({y : Y | UnitaryConj (f y₀) (f y)}).Nonempty := by
     refine ⟨y₀, ?_⟩
     rw [Set.mem_setOf_eq]
+    exact UnitaryConj.refl _
   have huniv : {y : Y | UnitaryConj (f y₀) (f y)} = Set.univ :=
     IsClopen.eq_univ ⟨⟨hcompl⟩, hopen⟩ hne
   have hmem : y₁ ∈ {y : Y | UnitaryConj (f y₀) (f y)} := by
