@@ -85,7 +85,7 @@ lemma tensorCxMap_f_eq_zero {C D : ChainComplex (ModuleCat.{0} Λ) ℕ} (α : C 
   rcases i₁ with _ | p
   · obtain ⟨j, rfl⟩ : ∃ j, i₂ = j + 1 := ⟨k, by omega⟩
     rw [hβ j, CategoryTheory.Functor.map_zero, zero_comp, comp_zero]
-  · rw [hα p, CategoryTheory.Functor.map_zero, CategoryTheory.zero_app, zero_comp]
+  · rw [hα p, CategoryTheory.Functor.map_zero, zero_app, zero_comp]
 
 /-- **Acyclicity of a tensor product.**  If the identity of `C` is homotopic to a
 chain map vanishing in positive degrees, and likewise for `D`, then the tensor
