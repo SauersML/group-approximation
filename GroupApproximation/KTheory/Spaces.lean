@@ -33,11 +33,20 @@ algebras over `C(X, ℂ)`. -/
 abbrev KZeroSpace (X : Type*) [TopologicalSpace X] :=
   KZero C(X, ℂ)
 
-/-- Pullback of continuous functions, as a coefficient `*`-homomorphism. -/
-noncomputable def pullbackCoeffHom {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
-    (f : C(X, Y)) : C(Y, ℂ) →⋆ₙ+* C(X, ℂ) :=
-  NonUnitalStarRingHomClass.toNonUnitalStarRingHom
-    (ContinuousMap.compStarAlgHom' ℂ ℂ f)
+/-- Pullback of continuous functions, as a coefficient `*`-homomorphism.
+
+This is `ContinuousMap.compStarAlgHom'` with `map_one'` and `commutes'`
+forgotten, written out rather than coerced: the coercion from a `StarAlgHom`
+runs through `NonUnitalAlgHomClass F R A B`, whose scalar ring `R` is a
+non-out-param and would have to be guessed by instance search.  Every field
+below is `rfl` except the zero, exactly as in the Mathlib definition. -/
+def pullbackCoeffHom {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+    (f : C(X, Y)) : C(Y, ℂ) →⋆ₙ+* C(X, ℂ) where
+  toFun g := g.comp f
+  map_mul' _ _ := rfl
+  map_zero' := ContinuousMap.zero_comp f
+  map_add' _ _ := rfl
+  map_star' _ := rfl
 
 /-- **`K⁰` is contravariant in the space.** -/
 noncomputable def KZeroSpace.map {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
