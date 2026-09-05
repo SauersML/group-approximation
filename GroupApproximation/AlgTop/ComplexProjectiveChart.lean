@@ -42,21 +42,21 @@ variable {d : ℕ}
 
 /-! ## 1. Normalizing a vector -/
 
-/-- The squared Euclidean norm of a vector of `ℂ^m`. -/
-def sqNorm {m : ℕ} (u : Fin m → ℂ) : ℝ := ∑ k, ‖u k‖ ^ 2
+/-- The squared Euclidean norm of a vector of `ℂ^n`. -/
+def sqNorm {n : Type*} [Fintype n] (u : n → ℂ) : ℝ := ∑ k, ‖u k‖ ^ 2
 
-theorem sqNorm_nonneg {m : ℕ} (u : Fin m → ℂ) : 0 ≤ sqNorm u :=
+theorem sqNorm_nonneg {n : Type*} [Fintype n] (u : n → ℂ) : 0 ≤ sqNorm u :=
   Finset.sum_nonneg fun k _ => by positivity
 
-theorem sqNorm_pos {m : ℕ} {u : Fin m → ℂ} (hu : sqNorm u ≠ 0) : 0 < sqNorm u :=
+theorem sqNorm_pos {n : Type*} [Fintype n] {u : n → ℂ} (hu : sqNorm u ≠ 0) : 0 < sqNorm u :=
   lt_of_le_of_ne (sqNorm_nonneg u) (Ne.symm hu)
 
 /-- `u` rescaled to unit length. -/
-def normalize {m : ℕ} (u : Fin m → ℂ) : Fin m → ℂ :=
+def normalize {n : Type*} [Fintype n] (u : n → ℂ) : n → ℂ :=
   fun a => u a / ((Real.sqrt (sqNorm u) : ℝ) : ℂ)
 
-theorem normalize_mem {m : ℕ} {u : Fin m → ℂ} (hu : sqNorm u ≠ 0) :
-    normalize u ∈ unitVectors m := by
+theorem normalize_mem {n : Type*} [Fintype n] {u : n → ℂ} (hu : sqNorm u ≠ 0) :
+    normalize u ∈ unitVectors n := by
   have hpos : 0 < sqNorm u := sqNorm_pos hu
   have hs : 0 < Real.sqrt (sqNorm u) := Real.sqrt_pos.mpr hpos
   have hnorm : ‖((Real.sqrt (sqNorm u) : ℝ) : ℂ)‖ = Real.sqrt (sqNorm u) :=
@@ -70,7 +70,8 @@ theorem normalize_mem {m : ℕ} {u : Fin m → ℂ} (hu : sqNorm u ≠ 0) :
 
 /-- The entries of the rank-one projection attached to a normalized vector: the square
 root cancels. -/
-theorem rankOneProj_normalize {m : ℕ} {u : Fin m → ℂ} (hu : sqNorm u ≠ 0) (a b : Fin m) :
+theorem rankOneProj_normalize {n : Type*} [Fintype n] {u : n → ℂ} (hu : sqNorm u ≠ 0)
+    (a b : n) :
     rankOneProj (normalize u) a b = u a * star (u b) / ((sqNorm u : ℝ) : ℂ) := by
   have hpos : 0 < sqNorm u := sqNorm_pos hu
   have hs : ((Real.sqrt (sqNorm u) : ℝ) : ℂ) * ((Real.sqrt (sqNorm u) : ℝ) : ℂ)
