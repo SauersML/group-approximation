@@ -700,3 +700,49 @@ Largest consumers at the time: `/private/tmp/claude-501` at 2.1 GiB, of which
 1.7 GiB is this session's shared scratchpad — a 227 MiB `flt` git pack and a
 92 MiB `mathlib_all.txt` belonging to other lanes, which this lane did not
 touch.
+
+## Sweep 5, 2026-09-05 — Problem 2B, located exactly
+
+The factoriality gap now has a precise address.  It is not that nobody thought
+about factoriality; it is that the argument for it lives in **one parenthetical
+sentence of prose**, in a research artifact, and has never been formalized or
+stated.
+
+`research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`,
+lines 275–278, immediately after deriving `T(A) ⊊ T(M)`:
+
+> *"Since the uniform tracial completion with its designated compact trace face
+> is factorial in the tracially-complete sense (and here the extreme designated
+> fibres are the matrix factors `M_(s+1)` and the scalar fibre at infinity), the
+> example also refutes the equivalent factorial-tracially-complete
+> formulation."*
+
+That is the whole of it.  A `since`-clause with a parenthesis.  Everything else
+in the XXII chain — the gauge, the completion, the corona state, the strict
+inclusion — is formalized down to the kernel, and the one hypothesis that makes
+the result an answer to *Problem XXII* rather than to a weaker question is
+carried by that sentence.  There is still no `Factorial` and no
+`TraciallyComplete` in any Lean module (re-checked: the only `factorial` hits in
+the corpus are the arithmetic function and `Analysis/GroupVonNeumannAlgebra`,
+neither related).
+
+The mathematical claim is plausible — matrix algebras and `ℂ` are factors, so
+fibres over the extreme boundary being `M_{s+1}` and the scalar fibre at
+infinity is the right shape — and this lane is not disputing it.  The point is
+narrower and it is the campaign's whole subject: **the endpoint's name promises
+Problem XXII and its type does not deliver it**, and the missing step is
+recorded nowhere a gate can see.  A reader of `negativeSolutionToProblemXXII`
+gets ten conjuncts, none of which is factoriality, and no pointer to the prose
+that would supply it.
+
+What would close it, in decreasing order of what this lane would accept:
+
+1. a Lean definition of factoriality for the pair, a theorem that the antipodal
+   pair satisfies it, and that theorem as a **named conjunct** of the endpoint;
+2. failing that, a `Prop` stating it and the endpoint restated as an implication
+   from it — conditional, honest, and gateable;
+3. failing both, the declaration renamed so that it does not claim Problem XXII,
+   with the prose sentence quoted in its docstring as the step that is missing.
+
+Silently keeping the name is the one option that is not available, because it is
+exactly the badge-claim-strength defect this repository exists to catch.
