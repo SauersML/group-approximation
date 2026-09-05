@@ -435,6 +435,10 @@ from completeness), so its closure is a proper closed ideal.
 | every lane | launched 18:05 EDT, see `notes/lix-lane-reports/` |
 | 18:52 EDT Opus session limit | all fifteen Opus lanes stopped; snapshot 292620dfd; every lane relaunched on Sonnet 5 at 19:33 EDT as `<lane>-s`, same files, same clones, same rules; Opus agents resume after 22:40 EDT |
 | root: `CStarSimple` + `ProblemLIX` wired | 19:05 EDT, commit 1b4a37c25 (green at 2999 jobs; `#audit_axioms` report the three classical axioms) |
+| cc-wu | GREEN 19:55 EDT, 1553 jobs: the `MvPolynomial` half-antidiagonal identity, (Wu-diag) over `SqData`, Step D over `ParityData` (general "every `d_j` even" route, routes doc §12.3) |
+| cs-limit | GREEN 19:51 EDT, 3000 jobs: Lemma 7, tower, completion, matrix transport, separability, `hasK1InjWitness_limit` |
+| cs-simplicity | GREEN 19:50 EDT, 2988 jobs: `IsSimpleCStar`, `isSimpleCStar_iff_isSimpleRing`, positive cut-down, `isSimpleCStar_limit` from stage-wise fullness |
+| C*-side funnel | everything now waits on cs-stages: `STW59.connect`, `connect_injective`, `Nontrivial (StageAlgebra 0)`, fullness in stage language; then cs-clutching's Lemma 6 / Corollary 4 / `diag(u,1)`; then Lemma 2 from the topology side |
 | cc-thom phase 1 | GREEN, nine modules, 2911 jobs (19:00 EDT); Step C assembled over a `CohomologyToolkit` awaiting MV/Künneth/relative/LH instantiation |
 | root: K₁ layer + endpoint statement wired | 18:50 EDT, commit fa15b619f (ten modules, cs-endpoint green at 2996 jobs); `LIXEndpointStatement` built in the root build |
 | root build state | RED on four GGT modules (`HullSCLemma44EmbeddedCertificate` → `…RelativeDehn`, `…CertificateInjectivity`, `HullSCLemma49Correction`), broken since 06:47 by the WIP commit `fadb6fd6d` (boundary-cycle rotation); NOT LIX; lane `ggt-repair` (Opus) assigned 18:55 |
