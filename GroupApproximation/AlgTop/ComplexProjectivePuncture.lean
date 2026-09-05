@@ -161,12 +161,12 @@ theorem rad_eq_one_iff {x : CP d} : rad x = 1 ↔ x = basePoint d := by
     · subst ha
       by_cases hb : b = 0
       · subst hb
-        rw [h00]
+        rw [h00, baseVec_zero]
         simp
-      · rw [entry_col_eq_zero x (hzero b hb) 0]
-        simp [Pi.single_apply, hb]
-    · rw [entry_row_eq_zero x (hzero a ha) b]
-      simp [Pi.single_apply, ha]
+      · rw [entry_col_eq_zero x (hzero b hb) 0, baseVec_apply_of_ne hb]
+        simp
+    · rw [entry_row_eq_zero x (hzero a ha) b, baseVec_apply_of_ne ha]
+      simp
   · rintro rfl
     have h : entry (basePoint d) 0 0 = ((rad (basePoint d) : ℝ) : ℂ) :=
       entry_zero_zero_eq_rad _

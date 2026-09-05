@@ -50,10 +50,7 @@ theorem basePoint_mem_chartSet (d : ℕ) : basePoint d ∈ chartSet d := by
 theorem chartInv_basePoint (d : ℕ) : chartInv (basePoint d) = 0 := by
   funext i
   show entry (basePoint d) i.succ 0 / entry (basePoint d) 0 0 = 0
-  rw [basePoint_entry]
-  have hi : (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) i.succ = 0 := by
-    simp [Pi.single_apply, Fin.succ_ne_zero i]
-  rw [hi]
+  rw [basePoint_entry, baseVec_apply_of_ne (Fin.succ_ne_zero i)]
   simp
 
 /-- The base point of `ℂP^d` is the origin of the affine chart. -/

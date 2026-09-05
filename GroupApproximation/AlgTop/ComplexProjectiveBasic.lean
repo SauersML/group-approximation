@@ -56,7 +56,7 @@ variable {n : Type*} [Fintype n] {q : Matrix n n ℂ}
 
 /-- The idempotent law, read off entrywise. -/
 theorem sum_mul (hq : IsStarProjection q) (x y : n) : (∑ c, q x c * q c y) = q x y := by
-  have h := Matrix.mul_apply (M := q) (N := q) (i := x) (j := y)
+  have h := Matrix.mul_apply (M := q) (N := q) (i := x) (k := y)
   rw [hq.isIdempotentElem.eq] at h
   exact h.symm
 
@@ -67,9 +67,10 @@ theorem col_eq_zero_of_diag_eq_zero (hq : IsStarProjection q) {j : n} (hj : q j 
   have h1 : ((∑ k, ‖q k j‖ ^ 2 : ℝ) : ℂ) = ((0 : ℝ) : ℂ) := by
     rw [← proj_diag_eq hq j, hj, Complex.ofReal_zero]
   have h2 : (∑ k, ‖q k j‖ ^ 2 : ℝ) = 0 := by exact_mod_cast h1
-  have h3 : ‖q c j‖ ^ 2 = 0 :=
-    le_antisymm (h2 ▸ Finset.single_le_sum (fun k _ => by positivity) (Finset.mem_univ c))
-      (by positivity)
+  have h3 : ‖q c j‖ ^ 2 ≤ ∑ k, ‖q k j‖ ^ 2 :=
+    Finset.single_le_sum (f := fun k => ‖q k j‖ ^ 2) (fun k _ => by positivity)
+      (Finset.mem_univ c)
+  rw [h2] at h3
   have h4 : ‖q c j‖ = 0 := by nlinarith [norm_nonneg (q c j)]
   simpa using h4
 
@@ -149,28 +150,37 @@ theorem continuous_entry (a b : Fin (d + 1)) : Continuous fun x : CP d => entry 
 
 /-! ## 4. The base point -/
 
-theorem basePoint_unit (d : ℕ) :
-    (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) ∈ unitVectors (Fin (d + 1)) := by
-  show (∑ i, ‖(Pi.single (0 : Fin (d + 1)) (1 : ℂ)) i‖ ^ 2) = 1
+/-- The first standard basis vector of `ℂ^{d+1}`, spanning the line of the base point.
+Given an explicit function type: `Pi.single` is dependently typed, and left to itself the
+elaborator will not solve for the motive. -/
+def baseVec (d : ℕ) : Fin (d + 1) → ℂ := Pi.single 0 1
+
+@[simp] theorem baseVec_zero (d : ℕ) : baseVec d 0 = 1 := by
+  simp [baseVec]
+
+theorem baseVec_apply_of_ne {d : ℕ} {b : Fin (d + 1)} (hb : b ≠ 0) : baseVec d b = 0 := by
+  simp [baseVec, Pi.single_apply, hb]
+
+theorem basePoint_unit (d : ℕ) : baseVec d ∈ unitVectors (Fin (d + 1)) := by
+  rw [mem_unitVectors_iff]
   rw [Finset.sum_eq_single (0 : Fin (d + 1))]
   · simp
   · intro b _ hb
-    simp [Pi.single_apply, hb]
+    rw [baseVec_apply_of_ne hb]
+    simp
   · intro h
     exact absurd (Finset.mem_univ (0 : Fin (d + 1))) h
 
 /-- The base point `[1 : 0 : ⋯ : 0]` of `ℂP^d`, i.e. the projection onto the first
 coordinate axis. -/
 def basePoint (d : ℕ) : CP d :=
-  ⟨rankOneProj (Pi.single 0 1), rankOneProj_mem_cpSet (basePoint_unit d)⟩
+  ⟨rankOneProj (baseVec d), rankOneProj_mem_cpSet (basePoint_unit d)⟩
 
 theorem basePoint_entry (d : ℕ) (a b : Fin (d + 1)) :
-    entry (basePoint d) a b =
-      (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) a * star ((Pi.single (0 : Fin (d + 1)) (1 : ℂ)) b) :=
-  rfl
+    entry (basePoint d) a b = baseVec d a * star (baseVec d b) := rfl
 
 @[simp] theorem basePoint_entry_zero_zero (d : ℕ) : entry (basePoint d) 0 0 = 1 := by
-  rw [basePoint_entry]
+  rw [basePoint_entry, baseVec_zero]
   simp
 
 end CPn

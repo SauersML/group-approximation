@@ -251,13 +251,13 @@ theorem chartAt_zero (d : ℕ) : chartAt (0 : Fin d → ℂ) = basePoint d := by
     rw [chartVec_sqNorm]
     simp
   rw [chartAt_entry, hden, basePoint_entry]
-  have hv : ∀ c : Fin (d + 1), chartVec (0 : Fin d → ℂ) c
-      = (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) c := by
+  have hv : ∀ c : Fin (d + 1), chartVec (0 : Fin d → ℂ) c = baseVec d c := by
     intro c
     refine Fin.cases ?_ ?_ c
-    · simp
+    · rw [chartVec_zero, baseVec_zero]
     · intro i
-      simp [Pi.single_apply]
+      rw [chartVec_succ, baseVec_apply_of_ne (Fin.succ_ne_zero i)]
+      rfl
   rw [hv a, hv b]
   simp
 
