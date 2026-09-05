@@ -1074,10 +1074,15 @@ closure with zero errors and fired `borsuk_ulam_closed` on
 counterexample consumes follows from it by realification.  That is a real
 theorem of this repository, not a citation — and it also discharges
 `CommonZeroProperty`, which the campaign's own brief still lists as the open
-residue.  Against that: **the operator-algebra half has never been compiled.**
-Of the 443 project modules under `negativeSolutionToProblemXXII`, 190 are
-orphan, the endpoint among them, so its `#audit_closed_axioms` has never fired
-and no gate has ever seen it.  And **the endpoint does not state the problem's
+residue.  Against that: **the operator-algebra half does not compile.**  This lane
+probed it (log tag 18285) and the build fails: nine identical instance
+failures for `∀ (n : ℕ), Nonempty (TracialState (AntipodalCounterexampleBlock
+n))` poison `negativeSolutionToProblemXXII_of_borsukUlam` and three neighbours
+with `sorryAx`, with no `sorry` in the source.  One theorem in the file *is*
+clean — `not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam`,
+which is the substance of the negative answer — so the core is real and the
+assembly around it is red.  Nothing had ever run those `#audit` lines, because
+the module has been orphan since it was written.  And **the endpoint does not state the problem's
 hypothesis.**  Problem XXII asks about *factorial* tracially complete pairs; the
 endpoint's ten conjuncts assert unitality, separability, nuclearity, Type I, a
 gauge identity, a nonempty Bauer trace simplex, a compact metrizable boundary,
@@ -1126,3 +1131,62 @@ and repaired during this campaign, by a lane reading source and not by any
 gate.  Every "it compiles" above should be read with that discount until
 `autoImplicit := false` is set, including the green given to the Borsuk–Ulam
 port.
+
+---
+
+## Sweep 10, 2026-09-05 — the first probe of the XXII endpoint: RED
+
+`scripts/remote-build.sh GroupApproximation.Analysis.STW22NegativeSolution`,
+log tag **18285**, launched by this lane and queued about forty minutes behind
+the 22-deep fleet lock.
+
+```
+error: build failed
+Some required targets logged failures:
+- GroupApproximation.Analysis.STW22ConditionalNegativeSolution
+```
+
+**Cause: one instance, missing nine times.**  At
+`STW22ConditionalNegativeSolution.lean` lines 56:4, 62:24, 65:5, 84:27, 87:4,
+95:24, 97:27, 127:26 and 129:29, identically:
+
+```
+failed to synthesize instance of type class
+  ∀ (n : ℕ), Nonempty (TracialState (AntipodalCounterexampleBlock n))
+```
+
+**Consequence: the poisoning pattern, with no `sorry` in the source.**  The
+file's own four audit lines report:
+
+| declaration | axiom closure |
+|---|---|
+| `antipodalBaseTracialTwoSize_eq_completionGauge` | `[propext, sorryAx, Classical.choice, Quot.sound]` |
+| `antipodalCanonicalExtension_injective` | `sorryAx` |
+| `antipodal_trace_space_strict_inclusion_of_borsukUlam` | `sorryAx` |
+| `negativeSolutionToProblemXXII_of_borsukUlam` | `sorryAx` |
+| `not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam` | **clean** — `[propext, Classical.choice, Quot.sound]` |
+
+So the endpoint named "negative solution to STW Problem XXII" has been on main,
+described in commit messages as unconditional, **not typechecking** — while the
+one theorem carrying the actual content is machine-checked.  The gate that
+catches this was written correctly and sat in the file the whole time; it had
+never been run, because the module is orphan.  That is the baseline finding of
+this file with a casualty attached.
+
+No job count is recorded for this probe: the build failed before completing, so
+there is no "Build completed successfully (N jobs)" line.  A green claim for
+this module must come with one.
+
+**What this changes in the grades.**  Target 2's paragraph above is amended
+from "written and unbuilt" to "written and red".  Nothing else moves: the
+topological input is still genuinely machine-checked (build tag 64648), the
+core implication is still clean, and the factoriality gap is still separately
+open — a compiling endpoint that omits factoriality would still not be Problem
+XXII.
+
+**What it changes in the recommendation.**  The port-free batch of
+`metadata/CAMPAIGN_WIRING_PREFLIGHT.md` should be wired.  Forty-five modules
+build without the Borsuk–Ulam port, this one among them; wired when written,
+this would have been caught the same hour instead of surviving on main.  The
+campaign has produced 281 orphan modules and the first one anybody compiled
+failed.  There is no reason to assume the rest are better.
