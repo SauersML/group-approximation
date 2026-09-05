@@ -151,6 +151,9 @@ theorem lineOf_def (u : ι → ℂ) : lineOf u = ((eucNormSq u : ℝ) : ℂ)⁻�
 noncomputable def normalizeVec (u : ι → ℂ) : ι → ℂ :=
   (((Real.sqrt (eucNormSq u))⁻¹ : ℝ) : ℂ) • u
 
+theorem normalizeVec_eq_smul (u : ι → ℂ) :
+    normalizeVec u = (((Real.sqrt (eucNormSq u))⁻¹ : ℝ) : ℂ) • u := rfl
+
 theorem normalizeVec_mem_unitVectors {u : ι → ℂ} (hu : u ≠ 0) :
     normalizeVec u ∈ unitVectors ι := by
   have hpos : 0 < eucNormSq u := eucNormSq_pos hu
@@ -218,6 +221,14 @@ theorem lineOf_mulVec_self {u : ι → ℂ} (hu : u ≠ 0) : lineOf u *ᵥ u = u
     rw [Finset.sum_congr rfl fun j (_ : j ∈ Finset.univ) => hterm j, ← Finset.mul_sum, h3]
     ring
   rw [h2, ← mul_assoc, inv_mul_cancel₀ hne, one_mul]
+
+theorem continuous_normalizeVec {Z : Type} [TopologicalSpace Z] {u : Z → ι → ℂ}
+    (hu : Continuous u) (h : ∀ z, u z ≠ 0) : Continuous fun z => normalizeVec (u z) := by
+  have h1 : Continuous fun z => Real.sqrt (eucNormSq (u z)) :=
+    Real.continuous_sqrt.comp (continuous_eucNormSq.comp hu)
+  have h2 : ∀ z, Real.sqrt (eucNormSq (u z)) ≠ 0 :=
+    fun z => ne_of_gt (Real.sqrt_pos.mpr (eucNormSq_pos (h z)))
+  exact (Complex.continuous_ofReal.comp (h1.inv₀ h2)).smul hu
 
 theorem continuous_lineOf {Z : Type} [TopologicalSpace Z] {u : Z → ι → ℂ}
     (hu : Continuous u) (h : ∀ z, u z ≠ 0) : Continuous fun z => lineOf (u z) := by
