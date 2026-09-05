@@ -60,22 +60,20 @@ theorem powerSum_eq_zero_of_chernClass_eq_zero (c : TotalChern A) {N : ℕ}
     c.powerSum q = 0 := by
   have key := natCast_mul_chernClass c q
   rw [h q hq hqN, mul_zero] at key
-  have hsum : ∑ ij ∈ antidiagonal q,
+  have hmem : ((0 : ℕ), q) ∈ antidiagonal q := by simp
+  have hsingle : ∑ ij ∈ antidiagonal q,
       c.chernClass ij.1 * ((-1) ^ (ij.2 + 1) * c.powerSum ij.2)
-      = (-1) ^ (q + 1) * c.powerSum q := by
-    rw [Finset.sum_eq_single ((0 : ℕ), q)]
-    · rw [chernClass_zero, one_mul]
-    · rintro ⟨i, j⟩ hij hne
-      have hij' : i + j = q := mem_antidiagonal.mp hij
-      have hi : i ≠ 0 := by
-        rintro rfl
-        have hjq : j = q := by omega
-        exact hne (by rw [hjq])
-      have hiq : i ≤ q := by omega
-      rw [h i (Nat.pos_of_ne_zero hi) (le_trans hiq hqN), zero_mul]
-    · intro hmem
-      exact absurd (mem_antidiagonal.mpr (by simp)) hmem
-  rw [hsum] at key
+      = c.chernClass 0 * ((-1) ^ (q + 1) * c.powerSum q) :=
+    Finset.sum_eq_single_of_mem ((0 : ℕ), q) hmem (by
+      intro b hb hne
+      have hb' : b.1 + b.2 = q := mem_antidiagonal.mp hb
+      have hb1 : b.1 ≠ 0 := by
+        intro h0
+        refine hne ?_
+        rw [Prod.ext_iff]
+        exact ⟨h0, by omega⟩
+      rw [h b.1 (Nat.pos_of_ne_zero hb1) (by omega), zero_mul])
+  rw [hsingle, chernClass_zero, one_mul] at key
   have hsign : ((-1 : A) ^ (q + 1)) * ((-1 : A) ^ (q + 1)) = 1 := by
     rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow]
   calc c.powerSum q
