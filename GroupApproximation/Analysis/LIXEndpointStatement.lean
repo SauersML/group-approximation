@@ -3,15 +3,16 @@ import GroupApproximation.Analysis.CStarKOneInjectivityCriterion
 /-!
 # The endpoint shape for STW Problem LIX
 
-STW Problem LIX asks whether every unital simple C-star algebra is `K_1`-injective; the answer
-is no.  The endpoint itself is `Manuscript/NinetyNineProblems/ProblemLIX.lean`, which states
+STW Problem LIX asks whether every unital simple C-star algebra is `K_1`-injective, and this
+program answers it in the negative.  The endpoint is
+`Manuscript/NinetyNineProblems/ProblemLIX.lean`, which states
 
     def ProblemLIX : Prop :=
       ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A
 
-and proves `¬ ProblemLIX`, with no named `Prop` hypothesis anywhere in the statement.  This
-file is the last generic step before it: the vocabulary `ProblemLIX` is stated over, and the
-reduction of the negation to a single unitary.
+with no named `Prop` hypothesis anywhere in the statement, and is where `¬ ProblemLIX` is
+proved.  This file is the last generic step before it: the vocabulary `ProblemLIX` is stated
+over, and the reduction of the negation to a single unitary.
 
 Two things stand between `Analysis/CStarKOne` and that statement, and both are settled here.
 
@@ -25,14 +26,16 @@ every unital C-star algebra has exactly one order making it a `StarOrderedRing`,
 supplied, so it depends on nothing but the C-star structure and can appear under an existential
 quantifier that binds only `CStarAlgebra A`.
 
-A downstream file that wants to *discharge* the hypotheses of `not_k1Inj_of_witness` must open
-with the same two local instances
+A downstream file that wants to *discharge* `HasK1InjWitness` needs the same two instances in
+scope.  It should re-register the very declarations below,
 
-    noncomputable local instance : PartialOrder A := CStarAlgebra.spectralOrder A
-    local instance : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+    attribute [local instance] GroupApproximation.instSpectralPartialOrder
+                               GroupApproximation.instSpectralStarOrderedRing
 
-so that its `diagOne u` is the same term as the one here.  That is the repository's standing
-idiom for `CStarMatrix`.
+rather than declare a fresh pair of its own.  A fresh pair would be definitionally equal but
+not the same term, so its `diagOne u` would be a different term from the one here — good enough
+for `exact`, which checks definitional equality, and not good enough for `rw`, which matches
+instances syntactically.
 
 ## What remains
 
