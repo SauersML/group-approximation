@@ -368,3 +368,134 @@ nobody wrote after the fact.
 | import cycle invisible to a probe | the 196-module port being rewired by two lanes | parse `import` lines of the campaign modules, check acyclic |
 | residue closed by restating it | a lane replacing a named `Prop` by a definition that unfolds to it | statement-closure column above, per target |
 | endpoint drops the problem's hypothesis | **target 2: "factorial" is absent** | flagged as Problem 2B |
+
+---
+
+# Wave log
+
+Each entry is a re-run of the same sweep, so the numbers are comparable.  What
+matters in a row is the **count**, not the exit code.
+
+## Sweep 2, 2026-09-05 (first landings)
+
+`scripts/check_import_regression.py` is now **RED (exit 1)** with 7 new
+orphans.  It was green at baseline.  The gate's own words: *"present at working
+tree but outside the import closure, and it was not an orphan at
+`origin/main~`; nothing compiles it, and it fails the Source scan for every
+certificate."*  The 236 pre-existing orphans are tolerated; the 7 new ones are
+not.
+
+```
+GroupApproximation.AlgTop.ChernSeries
+GroupApproximation.AlgTop.CochainLeibniz
+GroupApproximation.AlgTop.ComplexProjectiveBasic
+GroupApproximation.Analysis.LIXProjectiveSpaceModel
+GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
+GroupApproximation.Topology.AntipodalObstructionFromOddDegree
+GroupApproximation.Topology.OddMapNormalization
+```
+
+This is the campaign's design — lanes are forbidden from editing the root, so
+every new module arrives unwired — but the consequence has to be stated plainly
+rather than tolerated silently: **none of these seven has been elaborated, so
+every `#audit_closed_axioms` line inside them is inert.**  The root import for
+each has to land, and the lead's script is the only thing that can land it.
+Until then, "the build is green" continues to say nothing about any of this
+wave's work.
+
+Other counts unchanged: 36 / 136 / 3263, `check_manuscript_claims` still green
+with the same 15 line-number warnings, and the lexical scan still shows the
+same 7 `sorry`s in `Manuscript/NonMF/TheoremCAssembly.lean` and nothing new.
+(The scan also reports `scripts/Audit/Plants.lean:28 axiom plantedAxiom : True`
+— that is the audit's own calibration plant and is supposed to be there.)
+
+`ProblemX` closure re-measured: **485 project modules, acyclic, zero orphans.**
+Target 1 remains the only fully-wired target.
+
+### Target 2: `CommonZeroProperty` is discharged, and the discharge is honest
+
+`GroupApproximation/Topology/AntipodalObstructionFromOddDegree.lean` now proves
+
+```lean
+theorem commonZeroProperty_unconditional : TautologicalCommonZero.CommonZeroProperty :=
+  TautologicalAntipodal.commonZeroProperty_of_antipodalObstruction antipodalObstruction
+```
+
+I checked this against the restated-residue failure mode, because a bridge from
+one common-zero statement to another is exactly the shape a restatement hides
+in.  It is not a restatement.  The intermediate
+`OddMapNormalization.SphereComplexCommonZero` is the *sphere* form — an odd map
+out of `↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (d+1))) 1)` — whereas
+`AntipodalObstruction` is about `ℂ^{N+1} ∖ {0}`, and
+`antipodalObstruction_of_sphereCommonZero` does the real work between them:
+`realToComplex` pairs the `2N+2` real coordinates into `N+1` complex ones,
+`eq_zero_of_realToComplex_eq_zero` proves that pairing injective (which is what
+keeps the composite inside the punctured set, so `ContinuousOn.comp_continuous`
+applies), `realToComplex_neg` carries oddness across, and the arithmetic is
+`2 * Nat.card κ ≤ 2N ≤ 2N + 1 = d` — tight, as the module says.  The
+`SphereOddDegree.Sphere d` of the vendored port is `abbrev`-equal to that same
+subtype, so feeding `complexOddMapCommonZero` in is a retyping and not a
+transport.
+
+Note what this means for the campaign brief: the two routes to the topological
+input — the Chern one through `CommonZeroProperty` and the operator-algebraic
+one through `ComplexOddMapCommonZero` — now **rest on the same theorem**,
+`SphereOddDegree.complexOddMapCommonZero`.  There is no longer an independent
+second opinion on that input.  Everything about target 2's topology reduces to
+whether the 169-module vendored port compiles and is sound.
+
+### Target 2: the endpoint was refactored into the right shape
+
+`STW22NegativeSolution.negativeSolutionToProblemXXII` is now
+`negativeSolutionToProblemXXII_of_borsukUlam.{v} complexOddMapCommonZero_unconditional`,
+with the conditional theorem living in the new
+`GroupApproximation/Analysis/STW22ConditionalNegativeSolution.lean`.  That file
+carries `#audit_axioms` on the four theorems that take the Borsuk–Ulam
+hypothesis and `#audit_closed_axioms` only on `antipodalCanonicalExtension_injective`,
+which does not.  That is the correct discipline — `#audit_closed_axioms`
+rejects a leading binder, so putting it on a conditional theorem would fail,
+and putting `#audit_axioms` on the applied endpoint would under-check it.  The
+applied endpoint keeps `#audit_closed_axioms`.  No objection.
+
+**Problem 2B is unaffected.**  Factoriality is still absent from the endpoint's
+conclusion, and no `Factorial` or `TraciallyComplete` definition exists.  Split
+into a conditional and an applied form is orthogonal to it.
+
+### Target 1: strengthened, and the strengthening is orphan
+
+`GroupApproximation/Manuscript/NinetyNineProblems/ProblemXWitness.lean` adds
+
+```lean
+theorem exists_tracialState_isAmenableTrace_not_isQuasidiagonalTrace :
+    ∃ τ : TracialState (MaximalGroupCStar MarkedGroup),
+      Quasidiagonal.IsAmenableTrace (fun a ↦ τ a) ∧
+        ¬ Quasidiagonal.IsQuasidiagonalTrace (fun a ↦ τ a)
+```
+
+This is a genuine improvement on `not_problemX1Statement`: the refutation in
+existential form, with the trace bundled so that tracialness is part of the
+witness rather than an assumption about it, and with
+`literalCanonicalTrace_isAmenableTrace` writing out the class instead of
+hiding it behind `LiteralFactorizationProperty`.  Its three
+`#audit_closed_axioms` lines are the right ones.
+
+But the module is a **new orphan**, so those three lines are inert, while the
+nine in `ProblemX.lean` are live.  Target 1's grade therefore does not move:
+the wired part is what it was.  This module is first in the queue for a root
+import.
+
+### Target 3: first modules, and two models of the same space
+
+Four LIX modules landed, all orphan: `AlgTop/ComplexProjectiveBasic.lean`,
+`AlgTop/ChernSeries.lean`, `AlgTop/CochainLeibniz.lean`,
+`Analysis/LIXProjectiveSpaceModel.lean`.  No endpoint yet, so the verdict
+stays NOT-YET-STATED.
+
+**Duplication, flagged to `lix-design`.**  `AlgTop.IsLineProj`
+(`qᴴ = q ∧ q * q = q ∧ q.trace = 1`, with `CP d` as its subtype) and
+`STW59.IsProj` (`qᴴ = q ∧ q * q = q`, trace-one carried as a hypothesis per
+lemma, with `unitVectors`/`rankOne`/`eq_rankOne_of_trace_one`) are two models
+of the same space in two namespaces.  They do not collide, so no gate catches
+them, and the repository's duplicate detector is already known to miss
+cross-vocabulary duplicates of exactly this kind.  Raised by hand before more
+is built on each.
