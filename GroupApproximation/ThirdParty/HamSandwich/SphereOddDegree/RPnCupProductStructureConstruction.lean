@@ -40,6 +40,23 @@ derived from the purely additive cochain isomorphism `c` alone, and inside the
 project it is exactly the content packaged by `RPnCupProductStructure`. It is
 isolated here as the single nonvanishing hypothesis of
 `branch3_construct_RPnCupProductStructure_of_cup_nonzero`.
+
+Porting changes for Mathlib v4.32 (no statement is changed):
+
+* `eq_of_finrank_one_of_ne_zero`: replace the brittle `fin_cases c <;> simp_all`
+  ending by an explicit `c = 0 ∨ c = 1` split, discharging the zero branch
+  against `hx` and the one branch by `one_smul`. Under v4.32 `simp_all` rewrote
+  `x` away in both branches and left `0 • y = y` and `1 • y = y` unsolved.
+* `cupZMod2_oneZMod2_right`: replace `rw [cocycleClass_congr]; convert rfl` by a
+  direct composition `cupZMod2_mk ▸ cocycleClass_congr`. The `convert` was
+  splitting the dependent index equality `p = p + 0` off as a separate goal;
+  `p + 0` and `p` are definitionally equal, so naming the cochain-level unit
+  law `cochainCup_one p φ` closes it with no index juggling.
+* `branch3_construct_RPnCupProductStructure_of_cup_nonzero`: `def` becomes
+  `theorem`. All fields of `RPnCupProductStructure` are propositions, so the
+  structure lives in `Prop`, and v4.32's `linter.defProp` makes a `def` of it an
+  error under this library's `-DwarningAsError=true`. The anonymous-constructor
+  body is the same term the `where` block built.
 -/
 
 noncomputable section
@@ -74,19 +91,19 @@ theorem eq_of_finrank_one_of_ne_zero {M : Type*} [AddCommGroup M] [Module (ZMod 
     (finrank_eq_one_iff_of_nonzero y hy).mp h
   obtain ⟨c, hc⟩ : ∃ c : ZMod 2, x = c • y := by
     exact Submodule.mem_span_singleton.mp ( h_sub.symm ▸ Submodule.mem_top ) |> fun ⟨ c, hc ⟩ => ⟨ c, hc.symm ⟩;
-  fin_cases c <;> simp_all +decide
+  rcases (by decide : ∀ d : ZMod 2, d = 0 ∨ d = 1) c with hc0 | hc1
+  · exact absurd (by rw [hc, hc0, zero_smul]) hx
+  · rw [hc, hc1, one_smul]
 
 /-! ## 3. Right unitality of the cohomology cup product -/
 
 /-- **Right unitality.** `a ⌣ 1 = a` for the cohomology cup product over `F₂`. -/
 theorem cupZMod2_oneZMod2_right {X : TopCat.{0}} {p : ℕ} (a : cohomologyZMod2 X p) :
     cupZMod2 a (oneZMod2 X) = a := by
-  obtain ⟨ φ, hφ, rfl ⟩ := cocycleClass_surjective X p a;
-  rw [ oneZMod2, cupZMod2_mk ];
-  rw [ cocycleClass_congr ];
-  convert rfl;
-  · convert cochainCup_one p φ;
-  · exact hφ
+  obtain ⟨ φ, hφ, rfl ⟩ := cocycleClass_surjective X p a
+  refine (cupZMod2_mk φ hφ (cochainOne (R := ZMod 2) (Z := X))
+    (cochainCoboundary_cochainOne X)).trans ?_
+  exact cocycleClass_congr X p (cochainCup_one p φ) _ hφ
 
 /-! ## 4. The unit is nonzero, and equals the degree-zero generator -/
 
@@ -122,14 +139,14 @@ field is proved outright (`branch3_one_eq_generator_zero`).
 The nonvanishing hypothesis is the genuine RPⁿ cup-product computation
 (`H^*(RPⁿ;F₂) = F₂[α]/(αⁿ⁺¹)`), which is Mathlib-absent and cannot be derived from
 the additive cochain isomorphism `c` alone. -/
-def branch3_construct_RPnCupProductStructure_of_cup_nonzero
+theorem branch3_construct_RPnCupProductStructure_of_cup_nonzero
     (c : RPnCellularCochainStructure n)
     (hcup : ∀ (p q : ℕ) (hp : p ≤ n) (hq : q ≤ n), p + q ≤ n →
       cupZMod2 (rpCohomologyGenerator c p hp) (rpCohomologyGenerator c q hq) ≠ 0) :
-    RPnCupProductStructure c where
-  cup_gen := fun p q hp hq hpq =>
-    eq_of_finrank_one_of_ne_zero (rpModTwoCohomology_dim c (p + q) hpq)
-      (hcup p q hp hq hpq) (rpCohomologyGenerator_ne_zero c (p + q) hpq)
-  one_eq_gen := branch3_one_eq_generator_zero c
+    RPnCupProductStructure c :=
+  { cup_gen := fun p q hp hq hpq =>
+      eq_of_finrank_one_of_ne_zero (rpModTwoCohomology_dim c (p + q) hpq)
+        (hcup p q hp hq hpq) (rpCohomologyGenerator_ne_zero c (p + q) hpq)
+    one_eq_gen := branch3_one_eq_generator_zero c }
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
