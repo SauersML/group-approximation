@@ -1090,11 +1090,20 @@ and injectivity-but-not-surjectivity of the canonical extension — and not
 factoriality.  The argument for factoriality exists in exactly one parenthetical
 sentence of prose in a research artifact.  CCEGSTW Definitions 3.4 and 3.13 have
 now been written in Lean, faithfully, but nothing yet proves the antipodal pair
-satisfies them and the endpoint does not mention them.  **Remaining input: a
-theorem that the antipodal designated trace set is a factorial tracially
-complete pair, stated as a conjunct of the endpoint; and a build.**  Neither is
-a citation, and the first may be close — but until both land, the declaration's
-name claims more than its type.
+satisfies them and the endpoint does not mention them.  **Update, sweep 14: the statement gap is closed.**
+`Analysis/STW22AntipodalFactorialPair.lean` now proves
+`antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam`, whose
+conclusion is `IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
+antipodalDesignatedTraces = Set.range (canonicalExtension …) ∧ ¬
+AllTracesUniformTwoContinuous … ∧ ¬ DesignatedTracesAreAllTraces …` — the
+problem's hypothesis, both forms of Question 1.1 refuted, and `X` pinned so no
+substitution is possible.  **Remaining input: a build, and three pieces of
+bookkeeping** — the `private theorem` at
+`STW22AntipodalBaseCoordinateMeasures.lean:29` that should be an `instance`
+(nine synthesis failures and four `sorryAx` poisonings downstream), an `#audit`
+line on the new module (it has none), and the one-line unconditional
+application of `complexOddMapCommonZero_unconditional`.  None of it is a
+citation and none of it is mathematics.
 
 ## Problem LIX — are all unital simple C\*-algebras K₁-injective?  No.
 
@@ -1390,3 +1399,60 @@ Two durable points from this.
   is the other kind: a gate that failed loudly, for a reason that had nothing
   to do with what it was measuring, and would have had a lane rewiring
   something that was never broken.
+
+## Sweep 14, 2026-09-05 — Problem 2B is closed at the statement level
+
+`Analysis/STW22AntipodalFactorialPair.lean:112`:
+
+```lean
+theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
+    (hBU : ComplexOddMapCommonZero) :
+    IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
+      antipodalDesignatedTraces =
+        Set.range (canonicalExtension antipodalAllTracesGauge_isCoordinateNormComparison) ∧
+      ¬ AllTracesUniformTwoContinuous antipodalDesignatedTraces ∧
+      ¬ DesignatedTracesAreAllTraces antipodalDesignatedTraces
+```
+
+**That is Problem XXII.**  The first conjunct is the hypothesis the endpoint
+was missing at baseline; the third and fourth refute both of CCEGSTW Question
+1.1's forms; the second pins what `X` is, so a reader cannot be handed a
+different trace set than the one the factoriality claim is about.  The module's
+own docstring names the finding it closes — *"This is the conjunction that
+`STW22NegativeSolution` was missing: the first component is the hypothesis of
+the problem, and without it the remaining components refute a strictly weaker
+statement."*
+
+The route there is worth recording because each step was a real discharge and
+not a weakening: `STW22FactorialCore` proved the face condition from CCEGSTW
+Prop 3.23(iv) with `X = T(A)`; `STW22TraciallyCompletePair` assembled
+Definition 3.4 and Definition 3.13 at `designatedTraces hr`; `16d6705bd`
+**deleted** the faithfulness hypothesis rather than assuming it, on the ground
+that the coordinate norm comparison `r n * q n z ≥ ‖z‖` already forces a
+gauge-null element to vanish coordinatewise; `STW22AntipodalFactorialPair`
+instantiated the whole thing at the antipodal pair.
+
+**Four things still stand between this and a verified target 2**, and none of
+them is mathematics:
+
+1. **The build error is unfixed.**  `STW22AntipodalBaseCoordinateMeasures.lean:29`
+   still reads `private theorem antipodalCounterexampleBlock_nonemptyTraceFamily`,
+   so sweep 10's nine instance failures and four `sorryAx` poisonings stand.
+   Everything above has been written against a compiler that has not seen it.
+2. **`STW22AntipodalFactorialPair.lean` carries no `#audit` line at all.**  The
+   new endpoint therefore has no axiom gate, in a file whose immediate
+   neighbour is currently poisoned.  It needs `#audit_axioms` (the theorem has
+   a leading binder, so not `_closed`).
+3. **There is no unconditional form.**  The only occurrence of
+   `antipodalFactorialNegativeSolutionToProblemXXII` in the corpus is its own
+   declaration; `complexOddMapCommonZero_unconditional` is a theorem, so the
+   application is one line, and *that* is the declaration that should carry
+   `#audit_closed_axioms` and be the one cited.
+4. **`negativeSolutionToProblemXXII` still holds the name.**  It is now the
+   weaker of two theorems while the stronger one has the accurate content.
+   Leaving the better name on the weaker statement is the baseline defect
+   relocated, not repaired.
+
+**Target 2's verdict, restated:** the topological input is machine-checked, the
+statement is now the problem, and what remains is one `private` keyword, one
+audit line, one application, and a green build.
