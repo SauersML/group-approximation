@@ -3,7 +3,7 @@
 Lane `found-chern-classes`, for the STW Problem LIX campaign (target 3 of
 `notes/STW_THREE_TARGETS_PROGRAM_2026-09-05.md`).  Consumer:
 `research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md`,
-Lemmas 2 and 3.
+Lemmas 2 and 3, and `GroupApproximation/AlgTop/MappingTorusParity.lean`.
 
 ## 1. Construction decision, and why
 
@@ -18,150 +18,182 @@ separate the two sides of Lemma 2.  The obstruction is genuinely unstable, and
 genuinely cohomological.
 
 **Rejected: Chern–Weil / de Rham.**  Mathlib at `81a5d257` has no de Rham
-cohomology and no integration of differential forms over manifolds, so the
-explicit curvature forms of the Grassmann connection of a projection-valued map
-have nowhere to land.
+cohomology and no integration of differential forms over manifolds.
 
 **Rejected: an axiomatic `structure ChernTheory` whose fields are (a)–(f).**
-That is a hypothesis smuggled into an endpoint, which the campaign forbids.
+That is a hypothesis smuggled into an endpoint.
 
-**Chosen: split the layer in two, and build the half that is cohomology-free,
-completely and now.**
+**Chosen: encode a total Chern class as a normalized formal power series over
+the (as yet unbuilt) cohomology ring, and build everything that is then pure
+algebra — which turned out to include Newton's identity.**
 
-* **Layer 0 (this lane, unconditional, no topology).**  Total Chern classes as
-  normalized formal power series over a commutative ring `A`, with `A` standing
-  for the (as yet unbuilt) cohomology ring.  Whitney becomes the group
-  multiplication and virtual classes become the group division, so those are
-  true by construction rather than by axiom.  On top of that: Vieta, Newton, the
-  square-zero step (2.7), the parity coefficient (2.8), the top-class
-  computation (2.1), and the closing evenness inference of Lemma 3.
-* **Layer 1 (blocked on `found-cohomology-ring` / `found-cpn-cohomology`).**
-  `c(E)` for an arbitrary bundle, `c₁(L_j) = h_j`, the projective bundle formula
-  and the splitting principle.  These need a cohomology ring with cup product;
-  there is none in Mathlib at the pin, and the vendored
-  `ThirdParty/HamSandwich/SphereOddDegree` tree still carries `sorry` in ten
-  files (including every `RPnCupProduct*` module) and documents itself as pinned
-  to Mathlib `v4.28.0`.
-
-## 2. Published API — Layer 0
-
-All in namespace `GroupApproximation.AlgTop`, `A` a `CommRing`.
-
-### `GroupApproximation/AlgTop/ChernSeries.lean`
-
+The encoding is
 ```lean
 structure TotalChern (A : Type*) [CommRing A] where
   series : PowerSeries A
   constantCoeff_series : PowerSeries.constantCoeff series = 1
+```
+with `c_k := coeff k series`.  Three consequences are structural rather than
+axiomatic:
 
+* **Whitney** `c(E ⊕ F) = c(E) c(F)` is the multiplication of `TotalChern A`.
+* **Virtual classes.** `TotalChern A` is a `CommGroup` (a normalized series is a
+  unit of `A⟦X⟧`), so `c(δ) = c(W) / c(V)` is *defined* and `c(W) = c(V) c(δ)`
+  is the group law.
+* **Newton's identity** is the degree-`q` coefficient of the logarithmic
+  derivative identity `c · N(c) = X c'` with `N(c) = X c' / c`.  It therefore
+  holds for **every** element of the group — virtual classes included — with no
+  Chern roots, no `Fintype`, and no splitting principle.  This is the finding
+  that matters: deriving Newton's identity is *not* topology in this encoding.
+
+## 2. The API — all in `GroupApproximation.AlgTop`, `A` a `CommRing`
+
+### `ChernSeries.lean` — GREEN (probe chern3)
+
+```lean
+structure TotalChern (A) [CommRing A]                     -- series, constantCoeff_series
 instance : CommGroup (TotalChern A)
-
 def TotalChern.chernClass (c : TotalChern A) (k : ℕ) : A
-def TotalChern.line (a : A) : TotalChern A          -- 1 + a X
-def TotalChern.RankLE (c : TotalChern A) (n : ℕ) : Prop  -- c_k = 0 for k > n
+def TotalChern.line (a : A) : TotalChern A                -- 1 + a X
+def TotalChern.RankLE (c : TotalChern A) (n : ℕ) : Prop   -- c_k = 0 for k > n
 
-theorem TotalChern.chernClass_zero (c : TotalChern A) : c.chernClass 0 = 1
-theorem TotalChern.chernClass_mul (c d : TotalChern A) (n : ℕ) :        -- WHITNEY
+theorem TotalChern.chernClass_zero : c.chernClass 0 = 1
+theorem TotalChern.chernClass_mul :                                        -- WHITNEY
     (c * d).chernClass n = ∑ p ∈ antidiagonal n, c.chernClass p.1 * d.chernClass p.2
 theorem TotalChern.chernClass_line (a : A) (k : ℕ) :
     (line a).chernClass k = if k = 0 then 1 else if k = 1 then a else 0
 theorem TotalChern.rankLE_line (a : A) : (line a).RankLE 1
-theorem TotalChern.RankLE.mul  : c.RankLE m → d.RankLE n → (c * d).RankLE (m + n)
-theorem TotalChern.RankLE.pow  : c.RankLE m → (c ^ d).RankLE (d * m)
-theorem TotalChern.RankLE.prod : (∀ i ∈ s, (c i).RankLE (n i)) →
-    (∏ i ∈ s, c i).RankLE (∑ i ∈ s, n i)
+theorem TotalChern.RankLE.mul / .pow / .prod / .mono
 theorem TotalChern.chernClass_mul_top :
     c.RankLE m → d.RankLE n → (c * d).chernClass (m + n) = c.chernClass m * d.chernClass n
 theorem TotalChern.chernClass_line_pow (a : A) (d : ℕ) : ((line a) ^ d).chernClass d = a ^ d
-theorem TotalChern.chernClass_prod_top (s) (c) (n) : ...
+theorem TotalChern.chernClass_prod_top
 
--- the manuscript's (2.1), UNCONDITIONALLY (no nilpotence of the h j needed):
+-- the manuscript's (2.1), with NO nilpotence of the h j:
 theorem TotalChern.chernClass_prod_line_pow_top (s : Finset ι) (h : ι → A) (d : ι → ℕ) :
     (∏ j ∈ s, (line (h j)) ^ (d j)).chernClass (∑ j ∈ s, d j) = ∏ j ∈ s, h j ^ d j
 
--- virtual classes: c(W) = c(V) · c(W / V) is the GROUP LAW
-theorem TotalChern.mul_div_cancel_self (W V : TotalChern A) : V * (W / V) = W
-theorem TotalChern.chernClass_eq_sum_div (W V : TotalChern A) (n : ℕ) : ...
+theorem TotalChern.mul_div_cancel_virtual (W V : TotalChern A) : V * (W / V) = W
+theorem TotalChern.chernClass_eq_sum_div
 ```
 
-### `GroupApproximation/AlgTop/ChernSplitNewton.lean`
+### `ChernEvenTopClass.lean` — GREEN (probe chern3)
 
 ```lean
-theorem TotalChern.prod_series (s : Finset ι) (c : ι → TotalChern A) :
-    (∏ i ∈ s, c i).series = ∏ i ∈ s, (c i).series
-theorem TotalChern.chernClass_prod_line (s : Finset ι) (a : ι → A) (k : ℕ) :  -- VIETA
-    (∏ i ∈ s, line (a i)).chernClass k = ∑ t ∈ s.powersetCard k, ∏ i ∈ t, a i
-theorem TotalChern.newton_of_split [Fintype ι] (a : ι → A) (k : ℕ) :          -- NEWTON
-    (k : A) * (∏ i, line (a i)).chernClass k
-      = (-1) ^ (k + 1) * ∑ q ∈ (antidiagonal k).filter (fun q => q.1 < k),
-          (-1) ^ q.1 * (∏ i, line (a i)).chernClass q.1 * (∑ i, a i ^ q.2)
-theorem TotalChern.natCast_mul_chernClass_of_split_squareZero : ...
-```
-
-### `GroupApproximation/AlgTop/ChernNewtonSquareZero.lean` — the manuscript's (2.7)
-
-```lean
-theorem natCast_mul_chern_eq_of_squareZero (c p : ℕ → A) (hc0 : c 0 = 1)
-    (hnewton : ∀ k, 0 < k → (k : A) * c k = (-1) ^ (k + 1) *
-      ∑ a ∈ (antidiagonal k).filter (fun a => a.1 < k), (-1) ^ a.1 * c a.1 * p a.2)
-    (hsq : ∀ i j, 0 < i → 0 < j → c i * p j = 0) {k : ℕ} (hk : 0 < k) :
-    (k : A) * c k = (-1) ^ (k + 1) * p k
-
-theorem chern_eq_of_squareZero [Algebra ℚ A] (c ch : ℕ → A) ... :
-    c k = (-1) ^ (k + 1) * ((k - 1)! : ℕ) * ch k
-```
-
-No logarithm and no exponential: Newton's identity plus `z² = 0` kills every
-summand except `i = 0`, and `c₀ = 1`.
-
-### `GroupApproximation/AlgTop/ChernParityCoefficient.lean` — the manuscript's (2.8)
-
-```lean
-theorem factorial_add_two_div_prod_factorial (s : Finset ι) (b : ι → ℕ) :
-    ((∑ j ∈ s, b j) + 2)! / (∏ j ∈ s, (b j)!)
-      = ((∑ j ∈ s, b j) + 2) * ((∑ j ∈ s, b j) + 1) * Nat.multinomial s b
-theorem even_factorial_add_two_div_prod_factorial (s : Finset ι) (b : ι → ℕ) :
-    Even (((∑ j ∈ s, b j) + 2)! / ∏ j ∈ s, (b j)!)
-theorem two_dvd_chernCoefficient (s : Finset ι) (b : ι → ℕ) (a : ι → ℤ) (q : ℕ) :
-    (2 : ℤ) ∣ (-1) ^ q * (((∑ j ∈ s, b j) + 2)! / ∏ j ∈ s, (b j)! : ℕ) * ∏ j ∈ s, a j ^ b j
-```
-
-The parity comes from the two consecutive integers `|b| + 1`, `|b| + 2`; the
-multi-index plays no role.
-
-### `GroupApproximation/AlgTop/ChernEvenTopClass.lean` — the close of Lemma 3
-
-```lean
-theorem TotalChern.chernClass_prod_line_pow_eq_zero_of_lt (s) (h) (d) :
+theorem TotalChern.chernClass_prod_line_pow_eq_zero_of_lt :
     (∑ j ∈ s, d j) < k → (∏ j ∈ s, (line (h j)) ^ (d j)).chernClass k = 0
+theorem TotalChern.two_dvd_chernClass_mul
 theorem TotalChern.two_dvd_chernClass_of_div (W V : TotalChern A) (r : ℕ) :
     V.chernClass r = 0 → (∀ j, 0 < j → (2 : A) ∣ (W / V).chernClass j) →
     (2 : A) ∣ W.chernClass r
 ```
 
-Note the first: for `V = 1³ ⊕ H` with `H = ⨁_j L_j^{⊕d_j}`, the vanishing
-`c_r(V) = 0` that the manuscript gets from `dim Y = 2m < 2r` is *already* a
-consequence of `RankLE` — the total class of `V` is a product of `∑_j d_j` line
-classes, hence a polynomial of that degree.  No dimension count is used.
+The first is worth noting: for `V = 1³ ⊕ H` with `H = ⨁_j L_j^{⊕d_j}`, the
+vanishing `c_r(V) = 0` that the manuscript derives from `dim Y = 2m < 2r` is
+already a consequence of `RankLE` — the total class of `V` is a product of
+`∑_j d_j` line classes, hence a polynomial of that degree.  No dimension count.
 
-## 3. What Layer 1 must supply, for whoever builds it
+### `ChernSplitNewton.lean` — GREEN (probe chern3)
 
-To finish Lemma 3 on top of this file set, the cohomology/K-theory lanes owe:
+```lean
+theorem TotalChern.prod_series
+theorem TotalChern.chernClass_prod_line (s : Finset ι) (a : ι → A) (k : ℕ) :   -- VIETA
+    (∏ i ∈ s, line (a i)).chernClass k = ∑ t ∈ s.powersetCard k, ∏ i ∈ t, a i
+theorem TotalChern.newton_of_split [Fintype ι] (a : ι → A) (k : ℕ)             -- via Mathlib
+```
 
-1. a commutative ring `A = H^{even}(S¹ × S⁵ × Y; ℚ)` (or ℤ, with the ℚ-algebra
-   version used only for (2.7)) and the classes `t, x, h_j` in it, with
-   `z = t x` satisfying `z ^ 2 = 0`;
-2. a total Chern class `c : K⁰(Z) → TotalChern A` that is a group homomorphism
-   from `(K⁰, +)` — Whitney — and is natural under pullback;
-3. `c(L_j) = line h_j`, and `c(⨁_j L_j^{⊕d_j}) = ∏_j (line h_j) ^ d_j`, so that
-   `chernClass_prod_line_pow_top` and
+### `ChernSquareZeroIdeal.lean` — GREEN (probe chern3)
+
+```lean
+theorem mul_eq_zero_of_mem_squareZero {z a b : A} (hz : z * z = 0) : z * a * (z * b) = 0
+theorem squareZero_of_dvd_squareZero (c p : ℕ → A) {z : A} (hz : z * z = 0)
+    (hc : ∀ i, 0 < i → z ∣ c i) (hp : ∀ j, 0 < j → z ∣ p j) :
+    ∀ i j, 0 < i → 0 < j → c i * p j = 0
+```
+
+### `ChernPowerSums.lean` — the Newton discharge
+
+```lean
+def TotalChern.newtonSeries (c : TotalChern A) : PowerSeries A      -- X c' / c
+def TotalChern.powerSum (c : TotalChern A) (q : ℕ) : A              -- (-1)^(q+1) coeff q (N c)
+
+theorem TotalChern.series_mul_newtonSeries : c.series * newtonSeries c = X * c.series'
+theorem TotalChern.newtonSeries_mul : newtonSeries (c * d) = newtonSeries c + newtonSeries d
+theorem TotalChern.powerSum_mul : (c * d).powerSum q = c.powerSum q + d.powerSum q
+theorem TotalChern.powerSum_div : (W / V).powerSum q = W.powerSum q - V.powerSum q
+theorem TotalChern.natCast_mul_chernClass (c : TotalChern A) (q : ℕ) :      -- NEWTON
+    (q : A) * c.chernClass q
+      = ∑ ij ∈ antidiagonal q, c.chernClass ij.1 * ((-1) ^ (ij.2 + 1) * c.powerSum ij.2)
+theorem TotalChern.natCast_mul_chernClass_of_squareZero
+```
+
+### `ChernLineRoots.lean` — the identification
+
+```lean
+theorem TotalChern.powerSum_line (a : A) {q : ℕ} (hq : 0 < q) : (line a).powerSum q = a ^ q
+```
+
+so on a split class `p_q = ∑ᵢ aᵢ^q` and `chernChar` is the classical
+`ch = ∑ᵢ exp(aᵢ)`.
+
+### `ChernNewtonIdentity.lean` — `[Algebra ℚ A]`
+
+```lean
+def TotalChern.chernChar (c : TotalChern A) (q : ℕ) : A := ((q ! : ℚ)⁻¹) • c.powerSum q
+theorem TotalChern.factorial_mul_chernChar : ((q ! : ℕ) : A) * c.chernChar q = c.powerSum q
+theorem TotalChern.chernChar_mul / chernChar_div          -- ch is additive
+theorem TotalChern.newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
+    (∑ i ∈ Finset.range q,
+        (-1 : A) ^ i * c.chernClass i * (((q - i)! : ℕ) : A) * c.chernChar (q - i))
+      + (-1 : A) ^ q * (q : A) * c.chernClass q = 0
+```
+
+That last is the `newton` field of the parity chain's Newton hypothesis,
+verbatim.
+
+### `ChernNewtonDischarge.lean` — the payoff, `[Algebra ℚ A]`
+
+```lean
+theorem isUnit_natCast_pos {k : ℕ} (hk : 0 < k) : IsUnit ((k : ℕ) : A)
+theorem TotalChern.chernClass_eq_of_chernChar_sq_zero (c : TotalChern A)
+    (hsq : ∀ i j : ℕ, 0 < i → 0 < j → c.chernChar i * c.chernChar j = 0) :
+    ∀ q : ℕ, 0 < q →
+      c.chernClass q = (-1 : A) ^ (q + 1) * ((((q - 1)! : ℕ) : A) * c.chernChar q)
+```
+
+This is `hshift` of `MappingTorusParity.two_dvd_chernClass_of_parity`, with **no
+Newton hypothesis** — only the square-zero condition that `z² = 0` supplies.
+
+### `ChernMap.lean` — naturality in the coefficient ring
+
+```lean
+def TotalChern.map (f : A →+* B) : TotalChern A →* TotalChern B
+theorem TotalChern.chernClass_map / map_line / RankLE.map / powerSum_map
+```
+
+Because `map f` is a monoid hom of groups it commutes with `⁻¹` and `/`, so a
+virtual class transports for free.  This is the `ι : S →+* R` of the parity
+chain's integral-to-rational comparison.
+
+## 3. What the topological lanes still owe
+
+To finish Lemma 3 on top of this file set:
+
+1. a commutative ring `A = H^{even}(S¹ × S⁵ × Y)` with the classes `t, x, h_j`,
+   and `z = t x` with `z ^ 2 = 0`;
+2. a total Chern class `c : K⁰(Z) → TotalChern A`, a group homomorphism from
+   `(K⁰, +)` and natural under pullback;
+3. `c(L_j) = line h_j`, so that `chernClass_prod_line_pow_top` and
    `chernClass_prod_line_pow_eq_zero_of_lt` apply verbatim;
-4. Newton's identity for `c` and `ch` on `K⁰` (the splitting principle), so that
-   `natCast_mul_chern_eq_of_squareZero` applies to the virtual class `δ`;
-5. `ch(δ) = z · ch(β)` for some `β ∈ K⁰(Y)` — the restriction sequence plus
-   Künneth;
-6. the top Chern number `⟨c_r(W), [S¹ × M]⟩` and its identification with the
-   Euler number (`found-euler-class`).
+4. `ch(δ) = z · ch(β)` for some `β ∈ K⁰(Y)` — restriction sequence plus Künneth;
+5. the top Chern number `⟨c_r(W), [S¹ × M]⟩` and the Euler-class identification.
 
-Items 1, 3 and 5 are the ones with real content; 2 and 4 are consequences of the
-splitting principle; 6 is a separate lane.
+Item 4 is what feeds `hsq`; `ChernSquareZeroIdeal.squareZero_of_dvd_squareZero`
+turns `z ∣ ch_q(δ)` and `z² = 0` into it.  Newton's identity is **no longer** on
+this list.
+
+## 4. Withdrawn
+
+`ChernParityCoefficient.lean` and `ChernNewtonSquareZero.lean` duplicated the
+multinomial parity (2.8) and the square-zero step (2.7) already carried by the
+parity lane; deleted rather than left as a second proof of the same thing.

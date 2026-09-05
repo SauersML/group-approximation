@@ -1,6 +1,7 @@
 import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Algebra.Ring.Parity
 
+import Mathlib.Tactic.Ring
 /-!
 # The parity of the mapping-torus Chern coefficient
 

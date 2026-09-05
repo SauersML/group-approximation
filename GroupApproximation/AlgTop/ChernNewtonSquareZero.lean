@@ -3,6 +3,7 @@ import Mathlib.Data.Finset.NatAntidiagonal
 import Mathlib.Algebra.Algebra.Rat
 import Mathlib.Data.Nat.Factorial.Basic
 
+import Mathlib.Tactic.Ring
 /-!
 # Chern classes from the Chern character in the square-zero case
 
@@ -39,6 +40,16 @@ Both the hypothesis and the conclusion are stated for arbitrary sequences
 this is the algebra that the topological layer will instantiate.  Newton's
 identity itself is discharged for split classes in
 `GroupApproximation.AlgTop.TotalChern.newton_of_split`.
+
+## Superseded, but kept
+
+`GroupApproximation.AlgTop.TotalChern.natCast_mul_chernClass` now **proves**
+Newton's identity for every total Chern class, virtual ones included, so the
+`hnewton` hypothesis below no longer has to be assumed:
+`GroupApproximation.AlgTop.TotalChern.chernClass_eq_of_chernChar_sq_zero` is the
+hypothesis-free form of (2.7).  This file is kept because it states the same
+collapse for bare sequences `c, p : ℕ → A`, which is the shape a consumer that
+has not packaged its Chern classes as a `TotalChern` still wants.
 
 ## Main declarations
 

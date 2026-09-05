@@ -79,7 +79,7 @@ theorem newtonSeries_map (f : A →+* B) (c : TotalChern A) :
     ext n
     rw [PowerSeries.coeff_derivativeFun, PowerSeries.coeff_map, PowerSeries.coeff_map,
       PowerSeries.coeff_derivativeFun, map_mul, map_add, map_natCast, map_one]
-  have hinv : (map f c)⁻¹ = map f c⁻¹ := ((map f).map_inv c).symm
+  have hinv : (map f c)⁻¹ = map f c⁻¹ := (map_inv (map f) c).symm
   rw [newtonSeries, newtonSeries, hinv]
   simp only [map_series]
   rw [hderiv, map_mul, map_mul, PowerSeries.map_X]

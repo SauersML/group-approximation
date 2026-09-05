@@ -38,6 +38,8 @@ buildable.
 
 * `TotalChern.chernChar` — `ch_q = p_q / q!`.
 * `TotalChern.factorial_mul_chernChar` — `q! · ch_q = p_q`.
+* `TotalChern.chernChar_mul`, `TotalChern.chernChar_div` — additivity, so a
+  virtual class has a Chern character.
 * `TotalChern.newton_identity_range` — Newton's identity in the `Finset.range`
   form, unconditionally.
 -/
@@ -65,6 +67,21 @@ theorem factorial_mul_chernChar (c : TotalChern A) (q : ℕ) :
   have hcast : ((q ! : ℕ) : A) = algebraMap ℚ A ((q ! : ℕ) : ℚ) := (map_natCast _ _).symm
   rw [chernChar, Algebra.smul_def, hcast, ← mul_assoc, ← map_mul, mul_inv_cancel₀ hne,
     map_one, one_mul]
+
+/-- **The Chern character is additive.**  `ch(E ⊕ F) = ch(E) + ch(F)`, here the
+statement that `chernChar` turns the group multiplication into addition. -/
+theorem chernChar_mul (c d : TotalChern A) (q : ℕ) :
+    (c * d).chernChar q = c.chernChar q + d.chernChar q := by
+  rw [chernChar, chernChar, chernChar, powerSum_mul, smul_add]
+
+/-- The Chern character of a virtual class: `ch([W] - [V]) = ch(W) - ch(V)`.
+This is what gives the manuscript's `δ = [W] - [p^*V]` a Chern character. -/
+theorem chernChar_div (W V : TotalChern A) (q : ℕ) :
+    (W / V).chernChar q = W.chernChar q - V.chernChar q := by
+  rw [chernChar, chernChar, chernChar, powerSum_div, smul_sub]
+
+@[simp] theorem chernChar_one (q : ℕ) : (1 : TotalChern A).chernChar q = 0 := by
+  rw [chernChar, powerSum, newtonSeries_one, map_zero, mul_zero, smul_zero]
 
 /-- **Newton's identity**, in the `Finset.range` form used by
 the parity chain states it, for every total Chern class over a
