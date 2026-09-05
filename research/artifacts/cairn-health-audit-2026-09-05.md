@@ -1,6 +1,18 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the explicit universal congruence host and
+The latest snapshot, including low-energy Schreier frames, the bounded
+Gram second-moment corner theorem, and the nonuniform positive-corner
+bootstrap, passes with **14,136 nodes and no errors, warnings, or duplicate
+candidates** in 9.981 seconds. Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/spectral-corner-cairn-validation-2026-09-05.json`.
+The integrated conditional Schreier theorem is established; SL5 flexible
+stability and nonhyperlinear existence remain open. All seven edited
+theorem, root, and proof-artifact files were compared byte for byte with
+the validated archive after the check.
+
+The preceding snapshot, including the explicit universal congruence host and
 sublinear exact seeds, passes with **14,134 nodes and no errors, warnings,
 or duplicate candidates** in 9.878 seconds. Comparison with the same pinned
 commit `027c44cb7bc59d699273153feff5871f628720ff` also finds no newly dead

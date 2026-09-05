@@ -19,6 +19,9 @@ artifacts:
   - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
   - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
+  - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
+  - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
+  - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -96,6 +99,21 @@ regular-character sequence. No constituents need to be discarded.
 Consequently arbitrary seed holonomy is unnecessary once the exact
 comparison exists. The remaining operation is constructing the frame
 from an approximate tuple, not guessing a congruence level.
+
+The new spectral construction makes that remaining operation precise.
+For a canonical approximate SL5 tuple, take the full low-energy space
+of maps into a finite regular quotient host and normalize its source
+Gram matrix H to trace one. Its target covariance is automatically
+sublinear whenever the space has positive relative dimension. A bounded
+second moment `tr(H^2)<=M` then produces a correctable canonical corner
+occupying at least `1/(16M)` of the input. The weighted leakage estimate
+allows H to have unbounded operator norm. If every canonical sequence
+admits such spectral data on a subsequence, maximal recoverable mass
+promotes positive-corner correction to full correction; constant-one
+ucp untensoring then gives flexible HS stability for all SL5 tuples.
+The existing thin co-dense HNN route would give nonhyperlinear existence.
+The bounded-moment hypothesis is still unproved. The spectral theorem
+and bootstrap therefore leave this root open.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

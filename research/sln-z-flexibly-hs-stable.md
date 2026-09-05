@@ -5,6 +5,9 @@ kind: claim
 title: SL_n(Z) for some n at least three is flexibly Hilbert-Schmidt stable
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
+  - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
+  - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -25,6 +28,23 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Bounded spectral Gram moments suffice (2026-09-05).** For SL5,
+  `(MSC10)--(MSC12)` in
+  `moving-subgroup-schreier-correction-has-no-index-loss` construct small
+  Schreier frames from low-energy rectangular intertwiner spaces. The
+  target covariance needed to compress the frame is automatically
+  sublinear for canonical inputs whenever the spectral-space dimension
+  is bounded below relative to the input dimension. If the normalized
+  source Gram matrix H has `tr(H^2)<=M`, a spectral band supplies a
+  correctable canonical corner of relative dimension at least `1/(16M)`.
+  Such positive-corner recovery for every canonical sequence, even only
+  on a subsequence and with sequence-dependent M, bootstraps to full
+  flexible stability by maximal recoverable mass and constant-one ucp
+  untensoring. The unresolved input is the existence of quotient hosts
+  and cutoffs tending to zero with this bounded second moment. Small
+  curvature has not supplied it. An arbitrarily tiny cutoff can miss
+  half of an already correctable tuple, so the cutoff cannot be chosen
+  without a coverage or moment argument.
 - **Not ruled out by the (T) obstruction.**  `SL_n(Z)` is an infinite
   hyperlinear Kazhdan group, so it is not STRICT/local HS-stable
   (`infinite-hyperlinear-kazhdan-group-is-not-hs-stable`), but that says

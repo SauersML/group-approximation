@@ -8,6 +8,9 @@ artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
   - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
+  - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
+  - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
+  - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -153,6 +156,73 @@ Thus the subgroup and triviality of the seed can be fixed before choosing
 an exact comparison representation. Selecting a good frame directly from
 an arbitrary approximate tuple is still unproved. The large quotient in
 `(MSC9)` is an existence construction; no efficient enumeration is claimed.
+
+There is a spectral construction for approximate inputs as well. Let
+`G=SL_5(Z)`, `h=|S|`, and let `U_(j,s)` be inverse-compatible canonical
+asymptotic tuples on `C^(d_j)`: every fixed evaluated word has normalized
+trace tending to the regular character of its group element. For any
+finite quotient regular host `Pi_j=lambda_(Q_j)`, define on the rectangular
+HS space
+
+```text
+D_s(T)=Pi_j(s)T-TU_(j,s),
+Delta_j=(1/h)sum_s D_s^*D_s,
+E_j=range 1_[0,epsilon_j^2](Delta_j),       epsilon_j->0.
+```
+
+Assume `E_j!=0`. For an HS-orthonormal basis `(T_a)` of E put
+
+```text
+r=dim E,       b=r/d,
+B=sum_a T_a^*T_a,       C=sum_a T_a T_a^*,
+H=B/b,       K_eff=Tr(C^2)/(b^2 d),       tr_d H=1.
+```
+
+If b stays bounded below, canonicality alone implies `K_eff/d->0`.
+For any positive tau and integer k, soft polar normalization and Gaussian
+compression supply a trivial k-dimensional seed with
+
+```text
+zeta <= tr_d[tau(H+tau I)^(-1)]+2sqrt(K_eff/(tau^2 k)),
+beta_rect <= 2sqrt(2h/tau) epsilon.                    (MSC10)
+```
+
+Consequently the soft coverage condition
+`lim_(tau down to 0) limsup_j tr_d[tau(H_j+tau I)^(-1)]=0`
+produces full-input frames with `k_j=o(d_j)` and both errors tending to
+zero. The effective-covariance assertion applies to the approximate
+tuple directly; no exact comparison representation is assumed.
+
+A weaker hypothesis suffices for a positive part of the input. If
+
+```text
+tr_(d_j)(H_j^2)<=M<infinity,                           (MSC11)
+```
+
+then, after a subsequence, there are asymptotically reducing projections
+P_j of relative rank at least `1/(16M)`. Their polar-compressed tuples
+remain canonical and admit vanishing-error rectangular frames with
+`k_j=o(d_j)`. Thus those tuples admit the exact flexible correction in
+`(MSC2)`. Any complementary corner of positive limiting relative rank
+also remains canonical. No bounded operator norm of H is required.
+
+Finally, suppose **every** canonical asymptotic SL5 tuple sequence has a
+subsequence, a choice of finite quotient hosts, and positive cutoffs
+`epsilon_j->0` for which E_j is nonzero and `(MSC11)` holds with some
+finite M. The constant M may depend on the sequence. Then
+
+```text
+SL_5(Z) is flexibly HS-stable.                        (MSC12)
+```
+
+The intermediate principle is useful independently: positive-fraction
+correctable canonical corners on a subsequence of every canonical
+sequence bootstrap to full canonical correction. Neither the fraction
+nor the number of recoveries must be uniform. Maximize recoverable mass
+over subsequences and apply the same hypothesis to a positive remainder.
+The existing constant-one ucp untensoring theorem then removes the
+canonical restriction. This conditional theorem does not assert its
+moment hypothesis. Small curvature does not presently supply `(MSC11)`.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

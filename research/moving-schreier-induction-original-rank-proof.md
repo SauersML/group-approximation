@@ -4,11 +4,15 @@ id: moving-schreier-induction-original-rank-proof
 kind: route
 title: Normalize the induced corner by its original rank and retain orthogonality at the spectral cut
 target: moving-subgroup-schreier-correction-has-no-index-loss
-requires: []
+requires:
+  - residual-finite-regularization-removes-the-weak-ucp-quantifier
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
   - research/artifacts/universal-dimension-schreier-host-2026-09-05.md
+  - research/artifacts/low-energy-schreier-frame-construction-2026-09-05.md
+  - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
+  - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -297,3 +301,165 @@ infinity and then M tend to infinity. This proves sublinearity without
 discarding any sector. Finally, because the constructed J is an isometry,
 replacing rho(s) by U_s changes its intertwining error by exactly
 `||U_s-rho(s)||_(2,d)`, proving the nearby-input assertion.
+
+For `(MSC10)`, stack the low-energy basis into
+`F_0=b^(-1/2) col_a T_a`. Its Gram matrix is H and its summed squared
+edge error, normalized by d, is at most `h epsilon^2`. The equivariant
+map `F -> F(F^*F+tau I)^(-1/2)` is HS Lipschitz with constant at most
+`sqrt(2/tau)`. This follows by applying the scalar Lipschitz function
+`x/sqrt(x^2+tau)` to the Hermitian block dilation of F and expanding in
+two spectral bases. The soft polar frame therefore has Gram defect
+`tr_d[tau(H+tau I)^(-1)]`, summed squared edge error at most
+`2h epsilon^2/tau`, and target covariance at most `C/(b tau)`.
+
+For any stacked frame `F=col_a S_a`, compress its multiplicity to k by
+independent standard complex Gaussian combinations
+`J=k^(-1/2) col_l(sum_a g_(la) S_a)`. Wick's two pairings give
+
+```text
+E(J^*J)=F^*F,
+E ||J^*J-F^*F||_(2,d)^2
+ =Tr((sum_a S_a S_a^*)^2)/(k d).
+```
+
+The expected summed squared edge error is unchanged. Applying Markov's
+inequality with factor four to both quantities simultaneously gives the
+two bounds in `(MSC10)` with positive probability. The coset coordinate
+rows of J are the required Schreier frame. Quotient size never multiplies
+either error.
+
+To prove automatic sublinear covariance, let P_E be the full spectral
+projection. The unitary `A_s(T)=Pi(s)T U_s^*` satisfies
+`||(A_s-I)P_E||_HS<=sqrt(h) epsilon sqrt(r)`. Hence
+`||A_s P_E A_s^*-P_E||_1<=2sqrt(h) epsilon r`. Partial trace onto the
+target gives the same bound on `Pi(s)C Pi(s)^*-C`. Since `0<=C<=dI`,
+the latter difference has squared HS norm at most `2sqrt(h) epsilon d r`.
+Apply property (T) to the genuine conjugation representation on the
+target HS space. Its invariant projection C_0 obeys
+
+```text
+Tr(C^2)=Tr(C_0^2)+||C-C_0||_HS^2,
+||C-C_0||_HS^2<=2sqrt(h) epsilon d r/kappa^2.
+```
+
+Right regular invariance of the full spectral space gives
+`P_E=direct_sum_sigma P_sigma tensor I_(r_sigma)`, where
+`r_sigma=dim sigma`, `mu_sigma=rank P_sigma`, and
+`sum r_sigma mu_sigma=r`. Its centralized target covariance is
+`C_0|sigma=(mu_sigma/r_sigma)I_(r_sigma^2)`. Therefore
+
+```text
+K_eff/d<=sum_sigma mu_sigma^2/(b^2 d^2)
+          +2sqrt(h) epsilon/(kappa^2 b).
+```
+
+For each fixed sigma, consider `L_(j,sigma)=I-Delta_(j,sigma)/4`, a
+positive contraction. On its low-energy space it is at least
+`1-epsilon_j^2/4`. For every fixed positive integer a,
+
+```text
+mu_(j,sigma)/(r_sigma d_j)
+ <=(1-epsilon_j^2/4)^(-a) tr_(r_sigma d_j)(L_(j,sigma)^a).
+```
+
+Canonical fixed-word moments make the trace converge to the lazy regular
+averaging trace, bounded by `(1-kappa^2/(4h))^a`. Let j tend to infinity
+and then a tend to infinity. Thus `mu_(j,sigma)/d_j->0`. By `(MSC9)`,
+only finitely many irreducible types have dimension below any fixed R;
+their contribution vanishes when b is bounded below. The remaining
+contribution is at most `1/R^2`. This proves `K_eff/d->0`.
+
+Right invariance also gives `rank B<=r`: on the conjugate source,
+`overline(B)=sum_sigma r_sigma Tr_(V_sigma)(P_sigma)`, and each partial
+trace has rank at most `r_sigma mu_sigma`. Thus soft coverage forces
+`liminf b_j>=1`. Choose tau_j decreasing slowly enough that the soft Gram
+defect, `epsilon_j^2/tau_j`, and `K_eff,j/(tau_j^2 d_j)` all vanish, then
+take `k_j=ceil sqrt(d_j max(1,K_eff,j/tau_j^2))`. This proves the full
+coverage conclusion. The linked low-energy artifact records all details
+and an exact-plus-small-phase example showing why an arbitrarily tiny
+spectral cutoff can miss half the input even for correctable tuples.
+
+For `(MSC11)`, the second moment and `rank H<=r` imply `b>=1/M`.
+Partial trace of the same projection displacement onto the source gives
+
+```text
+a_j=max_s ||U_s^*H U_s-H||_(1,d)<=2sqrt(h) epsilon_j.
+```
+
+Choose a subsequential limiting spectral measure of H and its continuity
+points `t in (1/8,1/4)` and `L in (4M,8M)`. Set `P=1_[t,L](H)`.
+The portions below t and above L contribute at most t and M/L to tr H.
+Consequently `theta=tr P>1/(2L)>1/(16M)`. This spectral projection
+asymptotically commutes with U. Indeed `(H+I)^(-1)` has squared normalized
+HS displacement at most a_j; continuous approximation to the interval
+indicator at its continuity endpoints proves the assertion.
+
+Write `F=F_0`, `Q=I-P` and
+`ell_j=max_s ||Q U_s P||_(2,d)->0`. The required leakage estimate retains
+the unbounded part of H rather than silently bounding all of F:
+
+```text
+||F Q U_s P||_(2,d)^2
+ <=a_j+L ||P U_s Q||_(2,d)^2
+ =a_j+L ||Q U_s P||_(2,d)^2.
+```
+
+Expand its trace as `tr(PU_s^*HU_sP)-tr(PU_s^*PHPU_sP)`; the first
+term is at most `tr(PH)+a_j`, and the second is at least
+`tr(PH)-L tr(PU_sQU_s^*P)`. Let W_s be consistent unitary polar
+completions of `PU_sP`. Their compression errors are at most ell_j.
+The restricted frame FP then has edge error at most
+`e_j=sqrt(h)epsilon_j+sqrt(a_j)+2sqrt(L)ell_j` in the original normalization.
+
+Since `tP<=PHP<=LP`, polar whitening FP gives an exact isometry with
+edge error at most `e_j/sqrt(t theta)`, normalized by `n=rank P`.
+This uses the HS Lipschitz constant `1/sqrt(t)` for polar factors of
+full-rank maps whose least singular value is at least `sqrt(t)`.
+For its component covariance, positivity gives
+`Tr(C_sel^2)/n<=K_eff/(t^2 theta)`. The same Gaussian argument gives
+
+```text
+zeta<=2sqrt(K_eff/(t^2 theta k)),
+beta_rect<=2sqrt(h/(t theta)) e_j.
+```
+
+Automatic sublinear covariance applies since b is bounded below. Taking
+`k_j=ceil sqrt(d_j max(1,K_eff,j))` makes `k_j=o(d_j)` and both errors
+vanish. Equation `(MSC7)` now corrects the positive corner.
+
+Canonicality survives this compression. The group SL5 is ICC: a matrix
+with finite conjugacy class commutes with a nonzero power of every
+elementary transvection, hence with every off-diagonal matrix unit, hence
+is scalar; the only integral scalar of determinant one in odd dimension
+is the identity. The regular character of an ICC group is extremal.
+Along a subsequence where theta converges, normalized traces of the two
+asymptotically reducing corners give a convex decomposition of that
+character. Every positive-weight summand must be the regular character.
+Equivalently, in the tracial ultraproduct the projection belongs to the
+relative commutant of the represented factor L(G); its conditional
+expectation onto that factor is the scalar theta. Polar compression and
+fixed-word telescoping preserve the limit.
+
+For `(MSC12)`, suppose a canonical sequence stays uniformly away from
+flexible correction. Take the supremum a of limiting fractions of
+asymptotically reducing, flexibly correctable corners on any subsequence
+of it. Diagonal selection over certificates approaching the supremum
+attains a while making all errors and relative padding vanish. If a<1,
+the positive-density complement is canonical by the preceding argument.
+Apply the assumed positive-corner property there, passing to a further
+subsequence if needed. It recovers some limiting fraction c>0 of that
+complement. Combining the two exact corrected blocks gives a correctable
+reducing corner of fraction `a+(1-a)c>a`, a contradiction. Thus a=1.
+Filling its o(d) complement with trivial representations gives a full
+flexible correction, again contradicting the chosen bad sequence.
+
+The supremum argument allows sequence-dependent M and recovery fractions;
+it does not assume a uniform finite number of steps. Compressing the
+resulting exact padded representations gives ucp corrections of every
+canonical sequence. The required residual-finite regularization theorem
+tensors arbitrary approximations with exact regular quotient packets,
+then untensors their ucp corrections with normalized HS constant one.
+Kazhdan corner rounding yields flexible stability for all asymptotic
+tuples. The linked bootstrap artifact spells out the quantifiers and
+diagonal choices. Existence of suitable full low-energy spaces with the
+bounded second moment remains an unproved hypothesis throughout.
