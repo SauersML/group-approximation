@@ -214,6 +214,45 @@ green as of round 7.
 the endpoint chain needs it, since `not_k1Inj_of_hasWitness` never uses
 commutativity.
 
+## 4a. INTEGRATION REVIEW (Sonnet continuation, 19:4x EDT)
+
+Per the lead's brief for the Sonnet continuation of this lane: read the four C*-lanes'
+current files directly on disk (not only their reports — `cs-stages` and `cs-clutching` had
+no report file at all yet) and checked whether their exported signatures actually compose
+into `HasK1InjWitness A`, `IsSimpleCStar A`, `Nontrivial A` for one concrete `A`.
+
+**Finding: a single bottleneck, on `cs-stages`.**  Nothing in `LIXCornerAlgebra.lean`,
+`LIXStageAlgebra.lean`, `LIXConnectingMapPoints.lean` or `LIXBlockProjections.lean` defines
+the connecting map `φ_i : StageAlgebra i →⋆ₐ[ℂ] StageAlgebra (i+1)` (§1.2 item 2 of the
+program note) or `Nontrivial (StageAlgebra 0)`, even though the pieces to build it already
+exist: `LIXConnectingMapPoints.lean`'s `stagePoint i` (the dense point `x_i`) and
+`LIXBlockProjections.lean:574`'s `Eproj_succ`, which gives the exact block shape
+(`Eproj (i+1)` reindexed `= fromBlocks (pullMat (baseProj i) (Eproj i)) 0 0 (newBlock i)`) that
+a twisted point evaluation has to fill the new block of. Sent `cs-stages-s` the concrete
+construction route (message id `fdcbf3fb`).
+
+This one gap is what blocks all three other C*-lanes at once, confirmed by reading their
+current files rather than inferring from reports:
+* `cs-limit-s`: generic tower/limit/matrix-transport/separable machinery is green (2999 jobs,
+  unchanged since the snapshot) and exactly matches its report; the only thing it cannot do
+  yet is instantiate `LIXLimit` concretely, because `CStarTower.ofInjective` needs `connect`/
+  `connect_injective` as arguments. Nothing else to fix there (msg `2a2b23da`).
+* `cs-clutching-s`: `LIXClutching.lean`/`LIXObstructionComplementUnitary.lean` untouched since
+  16:3x (predate this run); `LIXGeneratorUnitary.lean` has the `su2`/Hopf-suspension building
+  blocks but no concrete generator unitary `u` realized at the stage-algebra level yet, and no
+  `LIXLemmaSix*.lean` exists — Lemma 6 needs `connect` to even state `v_i := φ_{0,i}(u)`.
+  Corollary 4 and the `hdiag` half of the witness may be gettable now, independent of
+  `connect` (msg `8537196e`).
+* `cs-simplicity-s`: confirmed green at 2961 jobs (`a2cecadc6`, matches disk exactly);
+  `StagewiseFullTower`/`isFullIn_of_isFull_map`/`isClosed_range` are correctly generic and
+  ready. Its `full_stage` field also needs `connect` for the point-evaluation-summand
+  argument, on top of needing `cs-limit`'s concrete `lixStage` (msg `d6f40934`).
+
+No change to this lane's own six files; all still green at 2999 jobs. The two closed
+theorems (`exists_simple_unital_not_k1Inj`, `not_problemLIX`) remain gated on
+`HasK1InjWitness LIXLimit` and `IsSimpleCStar LIXLimit`, neither of which exists yet. Will
+add them and probe the moment both peer lanes report those two names green.
+
 ## 4. TRAPS
 
 * **Duplicate-declaration scan for the root wiring: clean.**  147 top-level
