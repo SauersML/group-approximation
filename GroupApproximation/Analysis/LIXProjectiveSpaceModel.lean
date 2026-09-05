@@ -172,8 +172,9 @@ theorem proj_eq_zero_of_trace_eq_zero (hq : IsStarProjection q) (h : q.trace = 0
   have h5 : ‖q i j‖ = 0 := by nlinarith [norm_nonneg (q i j)]
   simpa using h5
 
-/-- A nonzero projection has a column of nonzero norm. -/
-theorem exists_column_ne_zero (hq : IsStarProjection q) (hne : q ≠ 0) :
+/-- A nonzero matrix has a column of nonzero norm.  (No projection hypothesis is
+needed; the entrywise bound `proj_sq_le_column` holds for every matrix.) -/
+theorem exists_column_ne_zero (hne : q ≠ 0) :
     ∃ j : n, (∑ k, ‖q k j‖ ^ 2) ≠ 0 := by
   by_contra hcon
   apply hne
@@ -359,7 +360,7 @@ theorem eq_rankOneProj_of_trace_one {n : Type*} [Fintype n] {q : Matrix n n ℂ}
     intro h
     rw [h, Matrix.trace_zero] at ht
     exact zero_ne_one ht
-  obtain ⟨j, hj⟩ := exists_column_ne_zero hq hne
+  obtain ⟨j, hj⟩ := exists_column_ne_zero hne
   obtain ⟨x, hxu, hqP, hPq⟩ := exists_rankOneProj_absorbed hq hj
   refine ⟨x, hxu, ?_⟩
   have hPproj : IsStarProjection (rankOneProj x) := isStarProjection_rankOneProj hxu
@@ -372,7 +373,7 @@ theorem eq_rankOneProj_of_trace_one {n : Type*} [Fintype n] {q : Matrix n n ℂ}
 theorem exists_sub_rankOneProj {n : Type*} [Fintype n] {q : Matrix n n ℂ}
     (hq : IsStarProjection q) (hne : q ≠ 0) :
     ∃ P : Matrix n n ℂ, IsStarProjection (q - P) ∧ (q - P).trace = q.trace - 1 := by
-  obtain ⟨j, hj⟩ := exists_column_ne_zero hq hne
+  obtain ⟨j, hj⟩ := exists_column_ne_zero hne
   obtain ⟨x, hxu, hqP, hPq⟩ := exists_rankOneProj_absorbed hq hj
   refine ⟨rankOneProj x, isStarProjection_sub hq (isStarProjection_rankOneProj hxu) hqP hPq, ?_⟩
   rw [Matrix.trace_sub, trace_rankOneProj hxu]
@@ -466,15 +467,12 @@ theorem isClosed_cpSet (d : ℕ) : IsClosed (cpSet d) := by
     isClosed_eq (continuous_id.matrix_conjTranspose) continuous_id
   have h2 : IsClosed {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q * q = q} :=
     isClosed_eq (continuous_id.matrix_mul continuous_id) continuous_id
-  -- `Continuous.matrix_trace` does not exist at the Mathlib pin: the `Continuous.matrix_*`
-  -- family in `Topology/Instances/Matrix.lean` has no trace member.  Unfold the trace and
-  -- sum the entrywise continuities instead.
+  -- `Continuous.matrix_trace` DOES exist at pin 81a5d257: it is declared at
+  -- `Mathlib/Topology/Instances/Matrix.lean:208`, right after `Continuous.matrix_diag`,
+  -- and is `@[continuity, fun_prop]`.  Do not replace it with a `simp only [Matrix.trace]`
+  -- unfolding: that simp call makes no progress here and is a build error.
   have h3 : IsClosed {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q.trace = 1} :=
-    isClosed_eq
-      (by
-        simp only [Matrix.trace, Matrix.diag_apply]
-        exact continuous_finsetSum _ fun i _ => continuous_id.matrix_elem i i)
-      continuous_const
+    isClosed_eq (continuous_id.matrix_trace) continuous_const
   have hset : cpSet d = {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | qᴴ = q} ∩
       ({q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q * q = q} ∩
         {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q.trace = 1}) := rfl
