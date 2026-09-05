@@ -1931,3 +1931,74 @@ precision.
 It is a gating requirement on `ktheory-k1`, and target 3 stays NOT-YET-STATED
 until it lands — over Mathlib's `unitary` and `Subgroup.pathComponentOne` plus
 a generic `KOne`, before anything is proved about it.
+
+## Sweep 20, 2026-09-05 — the instantiation check gets its first data point
+
+### `found-chern-classes` ran the instantiation check on itself, and it is a partial pass
+
+`01efd56ad` lands `AlgTop/ChernPolynomialModel.lean`, which instantiates the
+whole Chern layer at `MvPolynomial ι ℤ` with `X j` playing `h_j`, and checks
+that (2.1) and the above-the-rank vanishing come out:
+
+```lean
+def bundleH : TotalChern (MvPolynomial ι ℤ)
+theorem chernClass_bundleH_top …
+theorem chernClass_bundleH_eq_zero {k : ℕ} (hk : (∑ j ∈ s, d j) < k) …
+theorem trivial_mul_bundleH …
+```
+
+Its own commit message is exactly right about what it is: *"Proves nothing new;
+nothing should import it"* — a smoke test done **before** the join rather than
+at it, *"so that the cohomology lane does not discover an interface problem only
+at the moment it has a ring to offer."*  That is the discipline this file has
+been asking for, applied by a lane to itself without being asked.
+
+**It is a partial pass and the distinction matters.**  `MvPolynomial ι ℤ` is a
+*proxy* ring, not the campaign's object.  What this establishes is that
+`TotalChern`'s abstract `CommRing` interface is usable at some commutative ring
+and that (2.1) survives contact with a real one — genuinely worth knowing, and
+the cheapest possible way to know it.  What it does **not** establish is that
+the API applies to the cohomology ring of `∏_j ℂP^{d_j}`, which does not exist
+yet.  The instantiation column therefore reads, for `found-chern-classes`:
+**interface verified at a proxy; not yet instantiated at the campaign's
+objects.**  That is the first non-empty entry in that column, and it is the
+right shape for an entry this early.
+
+### A cross-vocabulary duplicate, found and recorded by its own lane
+
+`60f8f857e` records that `isUnit_natCast_pos`
+(`AlgTop/ChernNewtonDischarge.lean:40`) and `isUnit_natCast_of_pos`
+(`AlgTop/ChernNewtonSquareZero.lean:128`) are the same five-line fact under two
+names, kept apart deliberately so the live (2.7) module does not import the
+superseded one that exists only for `MappingTorusParity`'s import — with a
+stated collapse condition.
+
+Worth recording for what it says about this file's own instrument: **the exact
+qualified-name scan of sweep 17 could not have found this**, because the names
+differ.  It is the same cross-vocabulary class as the `MurrayVonNeumannEquiv` /
+`BundleCalculus.MvNEquiv` pair (sweep 9) and the `CP^d` pair (sweep 2), and in
+all three cases a human reading found it and the name index did not.  A
+duplicate declared under two names is invisible to every mechanical check this
+lane has; the only defence is a lane recording its own, which is what happened
+here.
+
+### Two prose overclaims retracted by their own lanes
+
+`9e64b59ee` ("do not claim in prose what the file does not prove") and
+`38a2bd415` ("correct a false claim in the hlow docstring").  Both are lanes
+correcting docstrings that asserted more than the file establishes.  Recorded
+because `metadata/LITERATURE_QUARANTINE.md`'s standing hazard is a claim that no
+gate reads — a docstring is exactly that, and two were wrong.
+
+### Standing rows
+
+| row | state |
+|---|---|
+| orphans (excl. untracked FLT) | 308 |
+| dangling project imports | 0 |
+| import cycles | 0 |
+| gates | 36 / 136 unchanged |
+| LIX-side modules importing `SphereOddDegree` | **0** — invariant holds |
+| `Topology/SphereModelBridge.lean` | does not exist |
+| `ProblemLIX` | does not exist |
+| real concurrent builds | 1 |
