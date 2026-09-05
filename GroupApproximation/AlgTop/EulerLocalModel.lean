@@ -35,15 +35,15 @@ integer), so the Euler/zero-count half of the obstruction only ever needs the lo
 index *mod 2*.  A transverse zero has local index `±1`, and mod `2` that is `1`
 as soon as the derivative is invertible — the sign, and therefore every orientation
 of `E`, of `T_{-v} S(E) ⊕ ℝ`, and of the bundle, is irrelevant.  `eulerLocalModelEquiv`
-below is exactly the input that mod-2 local index needs and no more.
+below is exactly the input that a mod-2 local index needs, and no more.
 
 ## Main results
 
 * `eulerLocalModel_deriv_eq` — the displayed map really is the derivative of the
-  `ℂ³`-component of the manuscript's section at `(x, t) = (-v, 1/2)`, as an algebraic
-  identity between the two expressions.
-* `eulerLocalModel_eq_zero` / `eulerLocalModel_surjective` — the unbundled kernel and
-  image statements.
+  `ℂ³`-component of the manuscript's section at `(x, t) = (-v, 1/2)`, as an identity
+  between the two expressions.
+* `eulerLocalModel_eq_zero` / `eulerLocalModel_surjective` — the kernel and image
+  statements.
 * `eulerLocalModelEquiv` — the bundled conclusion: `(ℝ ∙ v)ᗮ × ℝ ≃ₗ[ℝ] E`.
 -/
 
@@ -63,12 +63,11 @@ at `-v` is the orthogonal complement `(ℝ ∙ v)ᗮ`. -/
 def eulerLocalModel (v : E) : (((ℝ ∙ v)ᗮ) × ℝ) →ₗ[ℝ] E where
   toFun p := (2 : ℝ)⁻¹ • (p.1 : E) - (2 * p.2) • v
   map_add' p q := by
-    simp only [Prod.fst_add, Prod.snd_add, Submodule.coe_add, smul_add, mul_add, add_smul]
-    abel
+    simp only [Prod.fst_add, Prod.snd_add, Submodule.coe_add]
+    module
   map_smul' c p := by
-    simp only [Prod.smul_fst, Prod.smul_snd, SetLike.val_smul, smul_eq_mul, RingHom.id_apply,
-      smul_sub, smul_smul]
-    rw [mul_comm (2 : ℝ)⁻¹ c, mul_comm (2 : ℝ) (c * p.2), mul_assoc, mul_comm p.2 (2 : ℝ)]
+    simp only [Prod.smul_fst, Prod.smul_snd, SetLike.val_smul, smul_eq_mul, RingHom.id_apply]
+    module
 
 @[simp]
 theorem eulerLocalModel_apply (v : E) (p : ((ℝ ∙ v)ᗮ) × ℝ) :
@@ -80,10 +79,7 @@ theorem eulerLocalModel_apply (v : E) (p : ((ℝ ∙ v)ᗮ) × ℝ) :
 `ξ/2 - 2 a v`. -/
 theorem eulerLocalModel_deriv_eq (v ξ : E) (a : ℝ) :
     ((2 : ℝ)⁻¹) • ξ + a • ((-v) - v) = (2 : ℝ)⁻¹ • ξ - (2 * a) • v := by
-  have h : ((-v) - v) = (-2 : ℝ) • v := by
-    rw [neg_sub_left, ← neg_smul, ← two_smul ℝ v, neg_smul]
-  rw [h, smul_smul, sub_eq_add_neg, ← neg_smul]
-  ring_nf
+  module
 
 /-! ## 2. Injectivity -/
 
@@ -96,8 +92,8 @@ theorem eulerLocalModel_eq_zero_aux {v ξ : E} {a : ℝ} (hv : ‖v‖ = 1)
     rw [real_inner_self_eq_norm_sq, hv, one_pow]
   -- Pair the relation with `v`: the tangential part drops out and `2 a = 0`.
   have hpair : (2 : ℝ)⁻¹ * ⟪v, ξ⟫_ℝ - (2 * a) * ⟪v, v⟫_ℝ = 0 := by
-    have := congrArg (fun w : E => ⟪v, w⟫_ℝ) h
-    simpa only [inner_sub_right, real_inner_smul_right, inner_zero_right] using this
+    have hc := congrArg (fun w : E => ⟪v, w⟫_ℝ) h
+    simpa only [inner_sub_right, real_inner_smul_right, inner_zero_right] using hc
   have ha : a = 0 := by
     rw [hξ, hvv] at hpair
     linarith
@@ -105,16 +101,19 @@ theorem eulerLocalModel_eq_zero_aux {v ξ : E} {a : ℝ} (hv : ‖v‖ = 1)
   have h2 : (2 : ℝ)⁻¹ • ξ = 0 := by
     rw [ha] at h
     simpa using h
-  have hne : (2 : ℝ)⁻¹ ≠ 0 := by norm_num
+  have hne : (2 : ℝ)⁻¹ ≠ (0 : ℝ) := by norm_num
   exact (smul_eq_zero.mp h2).resolve_left hne
 
 theorem eulerLocalModel_eq_zero {v : E} (hv : ‖v‖ = 1) {p : ((ℝ ∙ v)ᗮ) × ℝ}
     (h : eulerLocalModel v p = 0) : p = 0 := by
-  have hξ : ⟪v, (p.1 : E)⟫_ℝ = 0 :=
-    Submodule.mem_orthogonal_singleton_iff_inner_right.mp p.1.2
-  obtain ⟨h1, h2⟩ := eulerLocalModel_eq_zero_aux hv hξ (by simpa using h)
-  refine Prod.ext ?_ h2
-  exact Subtype.ext h1
+  obtain ⟨ξ, a⟩ := p
+  have hξ : ⟪v, (ξ : E)⟫_ℝ = 0 :=
+    Submodule.mem_orthogonal_singleton_iff_inner_right.mp ξ.2
+  have h' : (2 : ℝ)⁻¹ • (ξ : E) - (2 * a) • v = 0 := h
+  obtain ⟨h1, h2⟩ := eulerLocalModel_eq_zero_aux hv hξ h'
+  have hξ0 : ξ = 0 := Subtype.ext h1
+  rw [hξ0, h2]
+  rfl
 
 theorem eulerLocalModel_injective {v : E} (hv : ‖v‖ = 1) :
     Function.Injective (eulerLocalModel v) := by
@@ -131,14 +130,14 @@ theorem eulerLocalModel_surjective_aux {v : E} (hv : ‖v‖ = 1) (w : E) :
     ∃ (ξ : E) (a : ℝ), ⟪v, ξ⟫_ℝ = 0 ∧ (2 : ℝ)⁻¹ • ξ - (2 * a) • v = w := by
   have hvv : ⟪v, v⟫_ℝ = 1 := by
     rw [real_inner_self_eq_norm_sq, hv, one_pow]
-  set c : ℝ := ⟪v, w⟫_ℝ with hc
-  refine ⟨(2 : ℝ) • (w - c • v), -(c / 2), ?_, ?_⟩
-  · rw [real_inner_smul_right, inner_sub_right, real_inner_smul_right, hvv, ← hc]
+  refine ⟨(2 : ℝ) • (w - (⟪v, w⟫_ℝ) • v), -((⟪v, w⟫_ℝ) / 2), ?_, ?_⟩
+  · rw [real_inner_smul_right, inner_sub_right, real_inner_smul_right, hvv]
     ring
-  · rw [smul_smul]
-    norm_num
-    rw [smul_sub]
-    module
+  · have hs : (2 : ℝ)⁻¹ • ((2 : ℝ) • (w - (⟪v, w⟫_ℝ) • v)) = w - (⟪v, w⟫_ℝ) • v := by
+      rw [smul_smul]
+      norm_num
+    have hc : (2 : ℝ) * -((⟪v, w⟫_ℝ) / 2) = -(⟪v, w⟫_ℝ) := by ring
+    rw [hs, hc, neg_smul, sub_neg_eq_add, sub_add_cancel]
 
 /-- The bundled surjectivity statement. -/
 theorem eulerLocalModel_surjective {v : E} (hv : ‖v‖ = 1) :
@@ -146,14 +145,14 @@ theorem eulerLocalModel_surjective {v : E} (hv : ‖v‖ = 1) :
   intro w
   obtain ⟨ξ, a, hξ, hw⟩ := eulerLocalModel_surjective_aux hv w
   have hmem : ξ ∈ (ℝ ∙ v)ᗮ := Submodule.mem_orthogonal_singleton_iff_inner_right.mpr hξ
-  exact ⟨(⟨ξ, hmem⟩, a), by simpa using hw⟩
+  exact ⟨(⟨ξ, hmem⟩, a), hw⟩
 
 /-! ## 4. The conclusion -/
 
 /-- **The manuscript's local model is a real-linear isomorphism.**
 `T_{-v} S(E) ⊕ ℝ ≃ₗ[ℝ] E`, `(ξ, a) ↦ ξ/2 - 2 a v`.
 
-This is the statement the mod-2 local index at the mapping-torus zero consumes: the
+This is the statement a mod-2 local index at the mapping-torus zero consumes: the
 derivative is invertible, so the zero is transverse and its local index is odd.  No
 orientation and no sign is computed, because none is needed for a parity count. -/
 def eulerLocalModelEquiv {v : E} (hv : ‖v‖ = 1) : (((ℝ ∙ v)ᗮ) × ℝ) ≃ₗ[ℝ] E :=

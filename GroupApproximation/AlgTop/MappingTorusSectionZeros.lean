@@ -80,20 +80,21 @@ theorem seam_component_eq_zero_iff {v x : E} (hv : ‖v‖ = 1) (hx : ‖x‖ = 
     refine ⟨ht, ?_⟩
     -- With `t = 1/2` the relation reads `(1/2) • (v + x) = 0`.
     subst ht
+    have hhalf : (1 : ℝ) - 1 / 2 = 1 / 2 := by norm_num
+    rw [hhalf] at h
     have h2 : ((1 : ℝ) / 2) • (v + x) = 0 := by
       rw [smul_add]
-      norm_num at h ⊢
       exact h
     have hne : ((1 : ℝ) / 2) ≠ 0 := by norm_num
     have h3 : v + x = 0 := (smul_eq_zero.mp h2).resolve_left hne
     have h4 : x = -v := by
-      have := eq_neg_of_add_eq_zero_right h3
-      exact this
+      have hd := congrArg (fun u : E => u - v) h3
+      simpa using hd
     exact h4
   · rintro ⟨ht, hxv⟩
     subst ht
     subst hxv
-    norm_num
+    module
 
 /-! ## 2. The full section -/
 

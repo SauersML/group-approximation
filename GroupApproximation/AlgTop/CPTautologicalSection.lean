@@ -20,12 +20,19 @@ to conclude that the signed zero count of `σ` is `±1`.  Equation (2.1) is a
 characteristic-class computation, and characteristic classes do not exist in Mathlib
 at the campaign pin.
 
-**This file removes (2.1) from the critical path.**  Taking `H` built from the *dual*
-tautological line `L*` rather than from `L` — which changes nothing in the manuscript's
-construction, in Lemma 3's `K`-theory, or in `⟨c_m, [Y]⟩ = ±1` — the section attached
-to the coordinate linear forms becomes completely explicit, and the assertion "it has
-exactly one zero" becomes **linear algebra about rank-one projections**.  No topology,
-no cohomology, no characteristic class is used below.
+**This file removes (2.1) from the critical path.**  The section attached to the
+coordinate linear forms is completely explicit, and the assertion "it has exactly one
+zero" becomes **linear algebra about rank-one projections**.  No topology, no
+cohomology, no characteristic class is used below.
+
+The bundle used here is the *dual* tautological line `L*` (equivalently the conjugate
+`L̄`).  That is a convenience of presentation, **not** a change to the manuscript: lane
+`lix-obstruction` proves the same one-zero theorem for `L` itself in
+`Analysis/LIXObstructionTautSection.lean`, using the section `σ_a (z) = z · a` cut out
+by a constant vector, so the manuscript's `H = ⊕ⱼ Lⱼ^{⊕dⱼ}` needs no amendment.  The
+two differ only in the *sign* of the local index — the chart model here is the identity
+of `ℂ^d`, the chart model there is componentwise conjugation, of real determinant
+`(-1)^d` — and mod `2`, which is all the parity contradiction needs, they agree.
 
 ## The section
 
@@ -302,10 +309,10 @@ theorem chartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z :
   · intro h
     funext i
     have hi := h i
-    rw [chartHomotopy] at hi
+    simp only [chartHomotopy] at hi
     exact (mul_eq_zero.mp hi).resolve_left hne
   · intro h i
-    rw [chartHomotopy, h]
+    simp only [chartHomotopy, h]
     simp
 
 end GroupApproximation.AlgTop

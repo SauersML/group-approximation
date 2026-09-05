@@ -65,7 +65,7 @@ theorem productDualTautSection_eq_zero_iff (y : ∀ j, CP (dd j)) :
     funext j
     exact (dualTautSection_eq_zero_iff (y j)).mp (fun i k => h j i k)
   · intro h j i k
-    have hj : y j = CP.basePoint (dd j) := by rw [h]
+    have hj : y j = CP.basePoint (dd j) := congrFun h j
     exact (dualTautSection_eq_zero_iff (y j)).mpr hj i k
 
 /-! ## 2. The whole section of `W_g` -/
