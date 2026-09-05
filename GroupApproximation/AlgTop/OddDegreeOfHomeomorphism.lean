@@ -75,7 +75,10 @@ theorem not_even_degreeOfIso_of_homeomorph {n : ℕ}
     ¬ Even (degreeOfIso e ⟨φ, φ.continuous⟩) := by
   refine not_even_degreeOfIso_of_leftInverse e ⟨φ, φ.continuous⟩
     ⟨φ.symm, φ.symm.continuous⟩ ?_
-  ext x
+  -- `ext` is the wrong tactic here: `Sphere n` is a subtype of `EuclideanSpace ℝ _`,
+  -- which is a `PiLp`, so `ext` keeps going and lands on a single coordinate
+  -- `(… x).ofLp i`.  `ContinuousMap.ext` stops at the level of points.
+  refine ContinuousMap.ext (fun x => ?_)
   exact φ.symm_apply_apply x
 
 end GroupApproximation.AlgTop
