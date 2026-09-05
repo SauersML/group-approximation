@@ -186,11 +186,14 @@ theorem relInclusion_comp_pairRestriction (R : Type) [CommRing R] (X : TopCat.{0
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  show cochainPullback (sInclusion A) n (φ : singularCochainGroup R X n) = 0
-  apply cochain_ext
-  intro τ
-  rw [cochainPullback_eval, cochainEval_zero]
-  exact φ.2 _ (isSubordinate_pushSimplex_sInclusion A n τ)
+  have key : cochainPullback (sInclusion A) n
+      ((φ : relCochainSubmodule R X A n) : singularCochainGroup R X n) = 0 := by
+    apply cochain_ext
+    intro τ
+    rw [cochainPullback_eval, cochainEval_zero]
+    exact (φ : relCochainSubmodule R X A n).2 _
+      (isSubordinate_pushSimplex_sInclusion A n τ)
+  exact key
 
 /-! ## 4. The chain-level retraction of `A`-supported chains -/
 
@@ -278,6 +281,12 @@ theorem singularChainMap_sInclusion_eq (A : Set X) (n : ℕ) :
   apply LinearMap.ext
   intro c
   rfl
+
+/-- The vendored corestriction `C_*(A) ⟶ C_*^A(X)` is degreewise an isomorphism.
+(Restated here so that instance search finds it at the exact shape used below.) -/
+instance subChainCorestrict_f_isIso (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X)
+    (n : ℕ) : IsIso ((subChainCorestrict R X A).f n) :=
+  (ConcreteCategory.isIso_iff_bijective _).mpr (subChainCorestrict_bijective A n)
 
 /-- A retraction of the chain map induced by the inclusion `A ↪ X`. -/
 def relRetract (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :

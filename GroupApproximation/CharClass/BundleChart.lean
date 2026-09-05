@@ -39,7 +39,7 @@ variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
 
 theorem eucNormSq_sum_type {κ : Type} [Fintype κ] (w : ι ⊕ κ → ℂ) :
     eucNormSq w = eucNormSq (w ∘ Sum.inl) + eucNormSq (w ∘ Sum.inr) := by
-  rw [eucNormSq, eucNormSq, eucNormSq, Fintype.sum_sum_type]
+  rw [eucNormSq_def, eucNormSq_def, eucNormSq_def, Fintype.sum_sum_type]
   rfl
 
 theorem sum_elim_eta (w : ι ⊕ Unit → ℂ) :
@@ -75,6 +75,8 @@ theorem mem_plusOne_fibre_iff (p : Bundle X ι) (x : X) (w : ι ⊕ Unit → ℂ
 /-- The `ι`-block embedding of a matrix, `q ↦ diag(q, 0)`. -/
 def inclMat (q : Matrix ι ι ℂ) : Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ := Matrix.fromBlocks q 0 0 0
 
+theorem inclMat_def (q : Matrix ι ι ℂ) : inclMat q = Matrix.fromBlocks q 0 0 0 := rfl
+
 @[simp]
 theorem inclMat_apply_inl_inl (q : Matrix ι ι ℂ) (i j : ι) :
     inclMat q (Sum.inl i) (Sum.inl j) = q i j := rfl
@@ -84,18 +86,18 @@ theorem inclMat_apply_inr_inr (q : Matrix ι ι ℂ) (u u' : Unit) :
     inclMat q (Sum.inr u) (Sum.inr u') = 0 := rfl
 
 theorem inclMat_conjTranspose (q : Matrix ι ι ℂ) : (inclMat q)ᴴ = inclMat (qᴴ) := by
-  rw [inclMat, inclMat, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero]
+  simp only [inclMat_def, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero]
 
 theorem inclMat_mul (q q' : Matrix ι ι ℂ) : inclMat q * inclMat q' = inclMat (q * q') := by
-  rw [inclMat, inclMat, inclMat, Matrix.fromBlocks_multiply]
+  rw [inclMat_def, inclMat_def, inclMat_def, Matrix.fromBlocks_multiply]
   simp
 
 theorem trace_inclMat (q : Matrix ι ι ℂ) : (inclMat q).trace = q.trace := by
-  rw [inclMat, trace_fromBlocks, Matrix.trace_zero, add_zero]
+  rw [inclMat_def, trace_fromBlocks, Matrix.trace_zero, add_zero]
 
 theorem plusOne_mul_inclMat (p : Bundle X ι) (x : X) (q : Matrix ι ι ℂ) :
     p.plusOne x * inclMat q = inclMat (p x * q) := by
-  rw [plusOne_apply, inclMat, inclMat, Matrix.fromBlocks_multiply]
+  rw [plusOne_apply, inclMat_def, inclMat_def, Matrix.fromBlocks_multiply]
   simp
 
 theorem continuous_inclMat :
@@ -169,6 +171,9 @@ theorem exists_unitVector_of_mem_projSet {p : Bundle X ι} {z : X × Matrix ι �
 def betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) : ℂ :=
   z.2 (Sum.inr ()) (Sum.inr ())
 
+theorem betaEntry_def (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) :
+    betaEntry z = z.2 (Sum.inr ()) (Sum.inr ()) := rfl
+
 theorem continuous_betaEntry :
     Continuous (betaEntry : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ → ℂ) :=
   (continuous_snd.matrix_elem (Sum.inr ()) (Sum.inr ()))
@@ -179,7 +184,7 @@ theorem betaEntry_eq_zero_iff {p : Bundle X ι} {z : X × Matrix (ι ⊕ Unit) (
     betaEntry z = 0 ↔ ∃ z' : X × Matrix ι ι ℂ, z' ∈ projSet p ∧ z = (z'.1, inclMat z'.2) := by
   obtain ⟨w, hw, hzw, hfix⟩ := exists_unitVector_of_mem_projSet hz
   have hbeta : betaEntry z = ((‖w (Sum.inr ())‖ ^ 2 : ℝ) : ℂ) := by
-    rw [betaEntry, hzw, rankOneProj_apply]
+    rw [betaEntry_def, hzw, rankOneProj_apply]
     exact mul_star_self_eq_normSq _
   constructor
   · intro h0
@@ -334,7 +339,7 @@ theorem vecOf_eq_smul {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ} {w : ι 
     (hzw : z.2 = rankOneProj w) (hbeta : betaEntry z ≠ 0) :
     vecOf z = (w (Sum.inr ()))⁻¹ • (w ∘ Sum.inl) := by
   have hbeta' : betaEntry z = w (Sum.inr ()) * star (w (Sum.inr ())) := by
-    rw [betaEntry, hzw, rankOneProj_apply]
+    rw [betaEntry_def, hzw, rankOneProj_apply]
   have hlam : w (Sum.inr ()) ≠ 0 := by
     intro h
     apply hbeta
@@ -377,7 +382,7 @@ theorem chartOf_totalOf (p : Bundle X ι) (z : Chart p) : chartOf p (totalOf p z
   obtain ⟨w, hw, hzw, hfix⟩ := exists_unitVector_of_mem_projSet z.2.1
   have hbeta' : betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)
       = w (Sum.inr ()) * star (w (Sum.inr ())) := by
-    rw [betaEntry, hzw, rankOneProj_apply]
+    rw [betaEntry_def, hzw, rankOneProj_apply]
   have hlam : w (Sum.inr ()) ≠ 0 := by
     intro h
     apply z.2.2

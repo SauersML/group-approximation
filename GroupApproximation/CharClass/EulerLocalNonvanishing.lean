@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomFieldTwo
 import GroupApproximation.CharClass.ThomPuncturedRecursion
+import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
 
 /-!
 # Step C assembled: one zero, a local homeomorphism there, so `γ_r ≠ 0`
@@ -53,6 +54,22 @@ theorem ne_zero_of_map_ne_zero {M N : ModuleCat.{0} R} (f : M ⟶ N) {x : M}
     (h : f.hom x ≠ 0) : x ≠ 0 := by
   intro hx
   exact h (by rw [hx, map_zero])
+
+/-- **One-dimensionality transports along an isomorphism.**  Excision to a chart around
+the single zero (`cc-relative`, need (B3)) and the chart homeomorphism of pairs
+(`EulerLocalChart.chartPairHomeo` and need (B4)) identify `H^{2r}(N, N ∖ z)` with the
+local model `H^{2r}(ℂ^r, ℂ^r ∖ 0) ≅ F₂` (need (B6)); composing gives the `relEquiv`
+hypothesis of `topChernClass_ne_zero`. -/
+def rankOneOfIso {M N : ModuleCat.{0} R} (e : M ≅ N) (eN : N ≃ₗ[R] R) : M ≃ₗ[R] R :=
+  e.toLinearEquiv.trans eN
+
+/-- Exactness of a short complex of modules in the `range = ker` form that
+`surjective_of_punctured_acyclic` consumes.  Named here so that `cc-relative`'s long
+exact sequence plugs in whichever form it is stated in; the proof is Mathlib's
+`ShortComplex.Exact.moduleCat_range_eq_ker`. -/
+theorem range_eq_ker_of_exact {S : ShortComplex (ModuleCat.{0} R)} (hS : S.Exact) :
+    LinearMap.range S.f.hom = LinearMap.ker S.g.hom :=
+  hS.moduleCat_range_eq_ker
 
 end Transport
 

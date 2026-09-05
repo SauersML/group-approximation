@@ -40,6 +40,10 @@ namespace GroupApproximation.CharClass
 
 open scoped Matrix
 
+-- Statements below mention `n` only through `Matrix n n ℂ`, whose instances need fewer of
+-- the section's typeclass arguments than the statements do.
+set_option linter.unusedSectionVars false
+
 section Section
 
 variable {n : Type*} [Fintype n] [DecidableEq n]

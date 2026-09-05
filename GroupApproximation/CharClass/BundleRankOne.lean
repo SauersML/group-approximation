@@ -45,6 +45,8 @@ functions, never `EuclideanSpace`, exactly as in
 `eucNormSq = 1` (`mem_unitVectors_iff_eucNormSq`). -/
 def eucNormSq (u : ι → ℂ) : ℝ := ∑ i, ‖u i‖ ^ 2
 
+theorem eucNormSq_def (u : ι → ℂ) : eucNormSq u = ∑ i, ‖u i‖ ^ 2 := rfl
+
 theorem eucNormSq_nonneg (u : ι → ℂ) : 0 ≤ eucNormSq u :=
   Finset.sum_nonneg fun i _ => by positivity
 
@@ -60,7 +62,7 @@ theorem eucNormSq_eq_zero_iff {u : ι → ℂ} : eucNormSq u = 0 ↔ u = 0 := by
     have hn : ‖u i‖ = 0 := by nlinarith [norm_nonneg (u i)]
     simpa using hn
   · rintro rfl
-    simp [eucNormSq]
+    simp [eucNormSq_def]
 
 theorem eucNormSq_pos {u : ι → ℂ} (hu : u ≠ 0) : 0 < eucNormSq u :=
   lt_of_le_of_ne (eucNormSq_nonneg u) fun h => hu (eucNormSq_eq_zero_iff.mp h.symm)
@@ -72,7 +74,7 @@ theorem continuous_eucNormSq : Continuous (eucNormSq : (ι → ℂ) → ℝ) :=
   continuous_finsetSum _ fun i _ => ((continuous_apply i).norm).pow 2
 
 theorem eucNormSq_smul (c : ℂ) (u : ι → ℂ) : eucNormSq (c • u) = ‖c‖ ^ 2 * eucNormSq u := by
-  rw [eucNormSq, eucNormSq, Finset.mul_sum]
+  rw [eucNormSq_def, eucNormSq_def, Finset.mul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Pi.smul_apply, smul_eq_mul, norm_mul, mul_pow]
 
@@ -81,7 +83,7 @@ theorem smul_ne_zero_of_ne_zero {c : ℂ} {u : ι → ℂ} (hc : c ≠ 0) (hu : 
   refine hu ?_
   have hn : eucNormSq (c • u) = 0 := eucNormSq_eq_zero_iff.mpr h
   rw [eucNormSq_smul] at hn
-  have hc2 : ‖c‖ ^ 2 ≠ 0 := by positivity
+  have hc2 : ‖c‖ ^ 2 ≠ 0 := pow_ne_zero 2 (norm_ne_zero_iff.mpr hc)
   exact eucNormSq_eq_zero_iff.mp (by
     rcases mul_eq_zero.mp hn with h' | h'
     · exact absurd h' hc2
@@ -92,7 +94,7 @@ theorem smul_ne_zero_of_ne_zero {c : ℂ} {u : ι → ℂ} (hc : c ≠ 0) (hu : 
 theorem trace_rankOneProj_eq (u : ι → ℂ) :
     (rankOneProj u).trace = ((eucNormSq u : ℝ) : ℂ) := by
   have h : (rankOneProj u).trace = ∑ i, u i * star (u i) := rfl
-  rw [h, eucNormSq, Complex.ofReal_sum]
+  rw [h, eucNormSq_def, Complex.ofReal_sum]
   exact Finset.sum_congr rfl fun i _ => mul_star_self_eq_normSq (u i)
 
 theorem mul_vecMulVec (a : Matrix κ ι ℂ) (w : ι → ℂ) (y : ρ → ℂ) :
@@ -161,7 +163,7 @@ theorem normalizeVec_mem_unitVectors {u : ι → ℂ} (hu : u ≠ 0) :
     normalizeVec u ∈ unitVectors ι := by
   have hpos : 0 < eucNormSq u := eucNormSq_pos hu
   have hs : 0 < Real.sqrt (eucNormSq u) := Real.sqrt_pos.mpr hpos
-  rw [mem_unitVectors_iff_eucNormSq, normalizeVec, eucNormSq_smul]
+  rw [mem_unitVectors_iff_eucNormSq, normalizeVec_eq_smul, eucNormSq_smul]
   have hnorm : ‖(((Real.sqrt (eucNormSq u))⁻¹ : ℝ) : ℂ)‖ = (Real.sqrt (eucNormSq u))⁻¹ :=
     Complex.norm_of_nonneg (le_of_lt (inv_pos.mpr hs))
   rw [hnorm, inv_pow, Real.sq_sqrt (le_of_lt hpos)]
@@ -173,7 +175,7 @@ theorem lineOf_eq_rankOneProj_normalizeVec {u : ι → ℂ} (hu : u ≠ 0) :
   have hs : 0 < Real.sqrt (eucNormSq u) := Real.sqrt_pos.mpr hpos
   have hnorm : ‖(((Real.sqrt (eucNormSq u))⁻¹ : ℝ) : ℂ)‖ = (Real.sqrt (eucNormSq u))⁻¹ :=
     Complex.norm_of_nonneg (le_of_lt (inv_pos.mpr hs))
-  rw [normalizeVec, rankOneProj_smul, hnorm, inv_pow, Real.sq_sqrt (le_of_lt hpos),
+  rw [normalizeVec_eq_smul, rankOneProj_smul, hnorm, inv_pow, Real.sq_sqrt (le_of_lt hpos),
     lineOf_def, Complex.ofReal_inv]
 
 theorem isStarProjection_lineOf {u : ι → ℂ} (hu : u ≠ 0) : IsStarProjection (lineOf u) := by
@@ -198,7 +200,7 @@ theorem lineOf_smul {c : ℂ} (hc : c ≠ 0) (u : ι → ℂ) : lineOf (c • u)
   rw [lineOf_def, lineOf_def, eucNormSq_smul, rankOneProj_smul, smul_smul,
     Complex.ofReal_mul, mul_inv]
   congr 1
-  field_simp
+  rw [mul_comm, ← mul_assoc, mul_inv_cancel₀ hc2, one_mul]
 
 /-- A projection fixing `u` absorbs the line spanned by `u`. -/
 theorem mul_lineOf {p : Matrix ι ι ℂ} {u : ι → ℂ} (h : p *ᵥ u = u) : p * lineOf u = lineOf u := by
@@ -214,7 +216,7 @@ theorem lineOf_mulVec_self {u : ι → ℂ} (hu : u ≠ 0) : lineOf u *ᵥ u = u
       = ((eucNormSq u : ℝ) : ℂ)⁻¹ • (rankOneProj u *ᵥ u) := Matrix.smul_mulVec _ _ _
   rw [h1, Pi.smul_apply, smul_eq_mul, Matrix.mulVec_apply_eq_sum]
   have h3 : (∑ j, star (u j) * u j) = ((eucNormSq u : ℝ) : ℂ) := by
-    rw [eucNormSq, Complex.ofReal_sum]
+    rw [eucNormSq_def, Complex.ofReal_sum]
     exact Finset.sum_congr rfl fun j _ => star_mul_self_eq_normSq (u j)
   have hterm : ∀ j : ι, rankOneProj u i j * u j = u i * (star (u j) * u j) := by
     intro j
@@ -249,16 +251,19 @@ without choosing a spanning vector. -/
 noncomputable def conjNormalize (a : Matrix κ ι ℂ) (r : Matrix ι ι ℂ) : Matrix κ κ ℂ :=
   ((a * r * aᴴ).trace)⁻¹ • (a * r * aᴴ)
 
+theorem conjNormalize_def (a : Matrix κ ι ℂ) (r : Matrix ι ι ℂ) :
+    conjNormalize a r = ((a * r * aᴴ).trace)⁻¹ • (a * r * aᴴ) := rfl
+
 theorem conjNormalize_rankOneProj (a : Matrix κ ι ℂ) (u : ι → ℂ) :
     conjNormalize a (rankOneProj u) = lineOf (a *ᵥ u) := by
-  rw [conjNormalize, conj_rankOneProj, trace_rankOneProj_eq, lineOf_def]
+  rw [conjNormalize_def, conj_rankOneProj, trace_rankOneProj_eq, lineOf_def]
 
 theorem trace_conj_ne_zero_iff (a : Matrix κ ι ℂ) (u : ι → ℂ) :
     (a * rankOneProj u * aᴴ).trace ≠ 0 ↔ a *ᵥ u ≠ 0 := by
   rw [conj_rankOneProj, trace_rankOneProj_eq]
   constructor
   · intro h hz
-    exact h (by rw [hz]; simp [eucNormSq])
+    exact h (by rw [hz]; simp [eucNormSq_def])
   · intro h hz
     exact h (eucNormSq_eq_zero_iff.mp (by exact_mod_cast hz))
 

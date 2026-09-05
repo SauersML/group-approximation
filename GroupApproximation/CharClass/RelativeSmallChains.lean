@@ -193,21 +193,23 @@ theorem smallAnn_comp (R : Type) [CommRing R] (X : TopCat.{0}) (𝒰 : OpenCover
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  show ModuleCat.ofHom (smallChainSubmodule R X 𝒰 n).subtype
-      ≫ (φ : singularCochainGroup R X n) = 0
-  apply ModuleCat.hom_ext
-  apply LinearMap.ext
-  rintro ⟨c, hc⟩
-  show (φ : singularCochainGroup R X n).hom c = 0
-  refine smallChainSubmodule_induction (𝒰 := 𝒰)
-    (p := fun x => (φ : singularCochainGroup R X n).hom x = 0) ?_ ?_ ?_ ?_ hc
-  · intro σ hσ
-    exact φ.2 σ hσ
-  · exact map_zero _
-  · intro x y hx hy
-    rw [map_add, hx, hy, add_zero]
-  · intro a x hx
-    rw [map_smul, hx, smul_zero]
+  have key : ModuleCat.ofHom (smallChainSubmodule R X 𝒰 n).subtype
+      ≫ ((φ : smallAnnSubmodule R X 𝒰 n) : singularCochainGroup R X n) = 0 := by
+   apply ModuleCat.hom_ext
+   apply LinearMap.ext
+   rintro ⟨c, hc⟩
+   show ((φ : smallAnnSubmodule R X 𝒰 n) : singularCochainGroup R X n).hom c = 0
+   refine smallChainSubmodule_induction (𝒰 := 𝒰)
+    (p := fun x => ((φ : smallAnnSubmodule R X 𝒰 n) :
+      singularCochainGroup R X n).hom x = 0) ?_ ?_ ?_ ?_ hc
+   · intro σ hσ
+     exact (φ : smallAnnSubmodule R X 𝒰 n).2 σ hσ
+   · exact map_zero _
+   · intro x y hx hy
+     rw [map_add, hx, hy, add_zero]
+   · intro a x hx
+     rw [map_smul, hx, smul_zero]
+  exact key
 
 /-- The short complex `smallAnn → C^*(X) → Hom(C_*^𝒰(X), R)`. -/
 def smallAnnShortComplex (R : Type) [CommRing R] (X : TopCat.{0}) (𝒰 : OpenCoverData X) :

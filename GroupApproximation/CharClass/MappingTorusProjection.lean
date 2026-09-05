@@ -54,6 +54,10 @@ namespace GroupApproximation.CharClass
 
 open scoped Matrix
 
+-- Several statements below mention `n` only through `Matrix n n ℂ`, whose instances need
+-- fewer of the section's typeclass arguments than the statement does.
+set_option linter.unusedSectionVars false
+
 /-! ## 1. Extending a corner unitary -/
 
 section CornerUnitary
@@ -173,7 +177,7 @@ private theorem one_eq_fromBlocks :
 theorem mtSym_conjTranspose (t : ℝ) (f : Matrix n n ℂ) : (mtSym t f)ᴴ = mtSym t f := by
   rw [mtSym, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_conjTranspose,
     Matrix.conjTranspose_smul, Matrix.conjTranspose_smul, Matrix.conjTranspose_one]
-  congr 1 <;> simp [Complex.star_def, Complex.conj_ofReal]
+  congr 1 <;> simp [Complex.conj_ofReal]
 
 /-- The clutching identity: with `‖y‖² = 1 - t²` the symmetry squares to `1`. -/
 theorem mtSym_mul_self {t : ℝ} {f : Matrix n n ℂ}
@@ -190,13 +194,13 @@ theorem mtSym_mul_self {t : ℝ} {f : Matrix n n ℂ}
       add_neg_cancel, zero_smul]
   · rw [Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, smul_smul, h₂, add_comm,
       ← add_smul]
-    rw [show ((1 - t ^ 2 : ℝ) : ℂ) + (-(t : ℂ)) * (-(t : ℂ)) = 1 by push_cast; ring,
+    rw [show (-(t : ℂ)) * (-(t : ℂ)) + ((1 - t ^ 2 : ℝ) : ℂ) = 1 by push_cast; ring,
       one_smul]
 
 theorem mtProj_conjTranspose (t : ℝ) (f : Matrix n n ℂ) : (mtProj t f)ᴴ = mtProj t f := by
+  have hs : star (2⁻¹ : ℂ) = (2⁻¹ : ℂ) := by simp
   rw [mtProj, Matrix.conjTranspose_smul, Matrix.conjTranspose_add, Matrix.conjTranspose_one,
-    mtSym_conjTranspose, Complex.star_def]
-  norm_num
+    mtSym_conjTranspose, hs]
 
 theorem mtProj_mul_self {t : ℝ} {f : Matrix n n ℂ}
     (h₁ : fᴴ * f = ((1 - t ^ 2 : ℝ) : ℂ) • 1) (h₂ : f * fᴴ = ((1 - t ^ 2 : ℝ) : ℂ) • 1) :
@@ -230,7 +234,7 @@ theorem mtProj_eq (t : ℝ) (f : Matrix n n ℂ) :
     push_cast
     ring
   · rw [zero_add]
-  · rw [add_zero]
+  · rw [zero_add]
   · rw [show ((1 : Matrix n n ℂ) + (-(t : ℂ)) • 1) = ((1 - t : ℂ)) • (1 : Matrix n n ℂ) by
       rw [sub_eq_add_neg, add_smul, one_smul, neg_smul], smul_smul]
     congr 1
@@ -435,10 +439,10 @@ theorem mtProj_mul_double_comm {t : ℝ} {f V : Matrix n n ℂ} (hV : IsStarProj
     exact hd.symm
   rw [mtProj_eq, double, Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
   refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, ?_, ?_⟩
-  · simp [Matrix.smul_mul, Matrix.mul_smul]
-  · simp [Matrix.smul_mul, Matrix.mul_smul, hc']
-  · simp [Matrix.smul_mul, Matrix.mul_smul, hc]
-  · simp [Matrix.smul_mul, Matrix.mul_smul]
+  · simp
+  · simp [hc']
+  · simp [hc]
+  · simp
 
 /-- **The mapping torus bundle `W_g`.**  Over the circle chart `(y, t)` of `Z` and the
 base `M` it is the clutched family cut down to the range of `V`. -/
@@ -491,12 +495,14 @@ theorem mappingTorus_continuous (hV : Continuous V) (hG : Continuous G)
       (fun p hp => ?_)
     rw [← hp]
     simp
-  have hProj : Continuous fun p : Z × M => mtProj (t p.1) (mtTrans (G p.2) (y p.1)) := by
-    simp only [mtProj, mtSym]
-    refine continuous_const.smul (continuous_const.add ?_)
+  have hs : Continuous fun p : Z × M => mtSym (t p.1) (mtTrans (G p.2) (y p.1)) := by
+    simp only [mtSym]
     exact continuous_fromBlocks' ((Complex.continuous_ofReal.comp ht).smul continuous_const)
       hf.matrix_conjTranspose hf
       (((Complex.continuous_ofReal.comp ht).neg).smul continuous_const)
+  have hProj : Continuous fun p : Z × M => mtProj (t p.1) (mtTrans (G p.2) (y p.1)) := by
+    simp only [mtProj]
+    exact continuous_const.smul (continuous_const.add hs)
   refine hProj.matrix_mul ?_
   simp only [double]
   exact continuous_fromBlocks' hVm continuous_const continuous_const hVm
@@ -541,7 +547,7 @@ trace, and the trace of the mapping torus at every point of `S¹ × M` equals th
 theorem trace_mappingTorus (p : Z × M) :
     Matrix.trace (mappingTorus V G y t p) = Matrix.trace (V p.2) := by
   rw [mappingTorus, mtProj_eq, double, Matrix.fromBlocks_multiply, trace_fromBlocks']
-  simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.smul_mul,
+  simp only [Matrix.mul_zero, add_zero, zero_add, Matrix.smul_mul,
     Matrix.one_mul, Matrix.trace_smul, smul_eq_mul]
   rw [← add_mul, show ((((1 + t p.1) / 2 : ℝ)) : ℂ) + ((((1 - t p.1) / 2 : ℝ)) : ℂ) = 1 by
     push_cast; ring, one_mul]

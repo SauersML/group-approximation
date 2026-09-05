@@ -100,8 +100,10 @@ def relCochainMap (R : Type) [CommRing R] (f : X ⟶ Y) {A : Set X} {B : Set Y}
     apply LinearMap.ext
     intro φ
     apply Subtype.ext
-    show cochainCoboundary R X i (cochainPullback f i (φ : singularCochainGroup R Y i))
-      = cochainPullback f (i + 1) (cochainCoboundary R Y i (φ : singularCochainGroup R Y i))
+    show cochainCoboundary R X i
+        (cochainPullback f i ((φ : relCochainSubmodule R Y B i) : singularCochainGroup R Y i))
+      = cochainPullback f (i + 1) (cochainCoboundary R Y i
+        ((φ : relCochainSubmodule R Y B i) : singularCochainGroup R Y i))
     exact cochainPullback_cochainCoboundary' R f i _
 
 @[simp] theorem relCochainMap_f_val (f : X ⟶ Y) {A : Set X} {B : Set Y}
@@ -128,8 +130,8 @@ theorem relCochainMap_id (R : Type) [CommRing R] (W : TopCat.{0}) (A : Set W)
   apply LinearMap.ext
   intro φ
   apply Subtype.ext
-  show cochainPullback (𝟙 W) n (φ : singularCochainGroup R W n)
-    = (φ : singularCochainGroup R W n)
+  show cochainPullback (𝟙 W) n ((φ : relCochainSubmodule R W A n) : singularCochainGroup R W n)
+    = ((φ : relCochainSubmodule R W A n) : singularCochainGroup R W n)
   exact cochainPullback_id R W n _
 
 theorem relCochainMap_comp (R : Type) [CommRing R] (f : X ⟶ Y) (g : Y ⟶ Z)
@@ -144,8 +146,10 @@ theorem relCochainMap_comp (R : Type) [CommRing R] (f : X ⟶ Y) (g : Y ⟶ Z)
   apply LinearMap.ext
   intro φ
   apply Subtype.ext
-  show cochainPullback (f ≫ g) n (φ : singularCochainGroup R Z n)
-    = cochainPullback f n (cochainPullback g n (φ : singularCochainGroup R Z n))
+  show cochainPullback (f ≫ g) n ((φ : relCochainSubmodule R Z C n) :
+      singularCochainGroup R Z n)
+    = cochainPullback f n (cochainPullback g n
+      ((φ : relCochainSubmodule R Z C n) : singularCochainGroup R Z n))
   exact cochainPullback_comp R f g n _
 
 theorem relPullback_id (R : Type) [CommRing R] (W : TopCat.{0}) (A : Set W)

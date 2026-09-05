@@ -12,7 +12,9 @@ Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 
 ## 1. GREEN
 
-Probe: `ccprobe.sh cc-thom …` on the private clone, `Build completed successfully`.
+Probe of all nine modules together: **`Build completed successfully (2910 jobs)`**,
+`ERROR_LINES=0`, `LAKE_EXIT=0` (private clone `cc_clones/cc-thom`, 2026-09-05).
+Every module below has a `Built …` line, not `Replayed`, for its current bytes.
 
 | module | content |
 |---|---|
@@ -22,11 +24,11 @@ Probe: `ccprobe.sh cc-thom …` on the private clone, `Build completed successfu
 | `CharClass/ThomFreeModule.lean` | the Leray–Hirsch linear algebra: `thomGenerator`, `surjective_of_basis`, `ker_eq_span_thomGenerator`, `existsUnique_smul_thomGenerator`, `existsUnique_lift`, `existsUnique_smul_of_injective_of_range` |
 | `CharClass/EulerLocalChart.lean` | `homeomorphCompl`, `compl_singleton_subtype`, `chartPairHomeo` |
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
-| `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
+| `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `PuncturedAcyclic.congr`, `puncturedAcyclic_pi` |
 
-Job count: see §5.
+Job count: 2910.
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -102,9 +104,10 @@ def topCohomologyEquiv (N : TopCat.{0}) (twoR : ℕ) :
 **Already planned and matching** (no action): `relCohomology R X A n`, `relToAbs`
 (my `j`), `absToSub` (my `i`), `relLES_exact_abs` (exactness at `H^n(X)`).
 `EulerLocalNonvanishing.topChernClass_ne_zero` takes those three as arguments,
-in the form `LinearMap.range j.hom = LinearMap.ker i.hom`; if `relLES_exact_abs`
-is stated as a `ShortComplex.Exact`, please also export the `range = ker` form,
-or say which one is canonical and I will adapt.
+in the form `LinearMap.range j.hom = LinearMap.ker i.hom`.  **No action is needed
+if `relLES_exact_abs` is a `ShortComplex.Exact`**: Mathlib's
+`ShortComplex.Exact.moduleCat_range_eq_ker` converts, and it is re-exported as
+`EulerLocalNonvanishing.range_eq_ker_of_exact` so the call site needs no search.
 
 Still needed:
 
@@ -237,4 +240,5 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 |---|---|---|
 | 2026-09-05 | 5 Mathlib-only modules | 3 green, 2 red (localized) |
 | 2026-09-05 | 9 modules | 8 green, `ThomPuncturedPi` red on `Unique (Fin (0+1))` |
-| 2026-09-05 | 9 modules | see the final report line |
+| 2026-09-05 | 9 modules | **green, 2910 jobs** |
+| 2026-09-05 | 9 modules, after adding `rankOneOfIso` / `range_eq_ker_of_exact` | see the final report line |

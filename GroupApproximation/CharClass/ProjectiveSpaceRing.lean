@@ -42,6 +42,8 @@ namespace CharClass
 
 open CategoryTheory
 
+noncomputable section
+
 /-! ## 1. Lines over `F₂` -/
 
 /-- A one-dimensional `F₂`-vector space has exactly two elements, so any nonzero
@@ -71,10 +73,9 @@ def lineGen {M : Type} [AddCommGroup M] [Module (ZMod 2) M] (e : M ≃ₗ[ZMod 2
 theorem lineGen_ne_zero {M : Type} [AddCommGroup M] [Module (ZMod 2) M]
     (e : M ≃ₗ[ZMod 2] ZMod 2) : lineGen e ≠ 0 := by
   intro h
-  have : (1 : ZMod 2) = 0 := by
-    have := congrArg e h
-    simpa [lineGen] using this
-  exact one_ne_zero this
+  have h1 : e (lineGen e) = 0 := by rw [h, map_zero]
+  rw [lineGen, LinearEquiv.apply_symm_apply] at h1
+  exact one_ne_zero h1
 
 theorem eq_lineGen_of_ne_zero {M : Type} [AddCommGroup M] [Module (ZMod 2) M]
     (e : M ≃ₗ[ZMod 2] ZMod 2) {x : M} (hx : x ≠ 0) : x = lineGen e :=
@@ -137,11 +138,11 @@ structure GysinSequence (X S : TopCat.{0}) (e : Hmod2 X 2) where
 
 namespace GysinSequence
 
-variable {X S : TopCat.{0}} {e : Hmod2 X 2} (g : GysinSequence X S e)
+variable {X S : TopCat.{0}} {e : Hmod2 X 2}
 
 /-- **Where the sphere bundle is acyclic, cupping with the Euler class is an
 isomorphism** `H^n(X) ≅ H^{n+2}(X)`. -/
-theorem bijective_cupRight (n : ℕ)
+theorem bijective_cupRight (g : GysinSequence X S e) (n : ℕ)
     (hS1 : ∀ s : Hmod2 S (n + 1), s = 0)
     (hS2 : ∀ s : Hmod2 S (n + 2), s = 0) :
     Function.Bijective (cupRightE e n) := by
@@ -197,6 +198,8 @@ theorem eq_zero_or_eq_cupPowE {X S : TopCat.{0}} {e : Hmod2 X 2} (g : GysinSeque
     (hone : (one X) ≠ 0) {m : ℕ} (hm : m ≤ N) (a : Hmod2 X (2 * m)) :
     a = 0 ∨ a = cupPowE e m :=
   eq_zero_or_eq_of_line (hX.1 m hm).some (cupPowE_ne_zero g N hS hone hm) a
+
+end
 
 end CharClass
 end GroupApproximation

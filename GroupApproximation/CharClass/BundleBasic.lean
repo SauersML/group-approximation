@@ -92,7 +92,7 @@ variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
 
 instance instFunLike : FunLike (Bundle X ι) X (Matrix ι ι ℂ) where
   coe p := p.toFun
-  coe_injective' p q h := by
+  coe_injective p q h := by
     cases p
     cases q
     congr
@@ -203,7 +203,7 @@ def blockSum (p : Bundle X ι) (q : Bundle X κ) : Bundle X (ι ⊕ κ) where
   isStarProjection_toFun x := by
     rw [isStarProjection_matrix_iff]
     constructor
-    · rw [Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero, p.conjTranspose_eq,
+    · simp only [Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero, p.conjTranspose_eq,
         q.conjTranspose_eq]
     · rw [Matrix.fromBlocks_multiply]
       simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, p.mul_self, q.mul_self]
@@ -262,7 +262,8 @@ theorem isStarProjection_toMatrixSection (p : Bundle X ι) :
   exact p.isStarProjection x
 
 /-- A projection in `Matrix ι ι C(X, ℂ)` read as a bundle. -/
-def ofMatrixSection (P : Matrix ι ι C(X, ℂ)) (hP : IsStarProjection P) : Bundle X ι where
+noncomputable def ofMatrixSection (P : Matrix ι ι C(X, ℂ)) (hP : IsStarProjection P) :
+    Bundle X ι where
   toFun x := matEval x P
   continuous_toFun := continuous_matrix fun i j => map_continuous (P i j)
   isStarProjection_toFun x := isStarProjection_matEval hP x
@@ -388,11 +389,11 @@ theorem murrayVonNeumannEquiv {q' : Bundle X ι} (e : BundleIso p q') :
   refine ⟨Matrix.of fun i j => ⟨fun x => e.hom x i j, e.continuous_hom.matrix_elem i j⟩, ?_, ?_⟩
   · refine matrix_ext_of_matEval fun x => ?_
     rw [Matrix.star_eq_conjTranspose, matEval_mul, matEval_conjTranspose,
-      matEval_toMatrixSection]
+      Bundle.matEval_toMatrixSection]
     exact e.conjTranspose_mul x
   · refine matrix_ext_of_matEval fun x => ?_
     rw [Matrix.star_eq_conjTranspose, matEval_mul, matEval_conjTranspose,
-      matEval_toMatrixSection]
+      Bundle.matEval_toMatrixSection]
     exact e.mul_conjTranspose x
 
 /-- The converse: a Murray-von Neumann equivalence of the two matrices of
@@ -406,12 +407,12 @@ noncomputable def ofMurrayVonNeumannEquiv {q' : Bundle X ι}
     have hx := h.choose_spec.1
     have := congrArg (matEval x) hx
     rwa [Matrix.star_eq_conjTranspose, matEval_mul, matEval_conjTranspose,
-      matEval_toMatrixSection] at this
+      Bundle.matEval_toMatrixSection] at this
   mul_conjTranspose x := by
     have hx := h.choose_spec.2
     have := congrArg (matEval x) hx
     rwa [Matrix.star_eq_conjTranspose, matEval_mul, matEval_conjTranspose,
-      matEval_toMatrixSection] at this
+      Bundle.matEval_toMatrixSection] at this
 
 end
 

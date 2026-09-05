@@ -1,4 +1,5 @@
 import Mathlib.Topology.Homeomorph.Lemmas
+import Mathlib.Topology.OpenPartialHomeomorph.Basic
 
 /-!
 # Charts around an isolated zero: homeomorphisms of punctured pairs
@@ -27,6 +28,10 @@ anywhere: the generator is transported, never recomputed.
   excision statement `H^n(X, X ∖ z) ≅ H^n(D, D ∖ z)`.
 * `chartPairHomeo` — the homeomorphism of pairs induced by a chart taking the zero to
   the origin.
+* `openPartialHomeomorphChartPair` — the same, starting from the
+  `OpenPartialHomeomorph` that the inverse function theorem produces
+  (`HasStrictFDerivAt.toOpenPartialHomeomorph`), which is the shape in which
+  `cc-lix-odd` gets "the section is a local homeomorphism at its zero".
 -/
 
 namespace GroupApproximation.CharClass
@@ -70,5 +75,17 @@ def chartPairHomeo {D : Set X} {V : Set Y} (e : ↥D ≃ₜ ↥V) {z : X} (hz : 
   (Homeomorph.setCongr (compl_singleton_subtype D z hz).symm).trans
     ((homeomorphCompl e ⟨z, hz⟩).trans
       (Homeomorph.setCongr (by rw [hzo, compl_singleton_subtype V o ho])))
+
+/-- **From a local homeomorphism at the zero to a homeomorphism of pairs.**  The inverse
+function theorem (`HasStrictFDerivAt.toOpenPartialHomeomorph`) delivers an
+`OpenPartialHomeomorph` whose source is a neighbourhood of the zero `z` and whose target
+is a neighbourhood of the origin `o` of the fibre; this is that data, repackaged as the
+homeomorphism of pairs `(D, D ∖ z) ≅ (V, V ∖ o)` that excision and homeomorphism
+invariance of pairs consume. -/
+def openPartialHomeomorphChartPair (e : OpenPartialHomeomorph X Y) {z : X}
+    (hz : z ∈ e.source) {o : Y} (ho : o ∈ e.target) (h0 : e z = o) :
+    ↥((Subtype.val : ↥e.source → X) ⁻¹' ({z}ᶜ : Set X))
+      ≃ₜ ↥((Subtype.val : ↥e.target → Y) ⁻¹' ({o}ᶜ : Set Y)) :=
+  chartPairHomeo e.toHomeomorphSourceTarget hz ho (Subtype.ext (by simp [h0]))
 
 end GroupApproximation.CharClass

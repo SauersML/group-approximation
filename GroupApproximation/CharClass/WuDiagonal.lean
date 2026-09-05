@@ -68,13 +68,19 @@ variable {σ A : Type*} [CommRing A] [DecidableEq σ]
 def wuMonomialOn (C : Finset σ) (y : σ → A) (c : ℕ) : A :=
   ∑ B ∈ C.powersetCard c, (∏ l ∈ B, y l ^ 2) * ∏ l ∈ C \ B, y l
 
+theorem wuMonomialOn_def (C : Finset σ) (y : σ → A) (c : ℕ) :
+    wuMonomialOn C y c = ∑ B ∈ C.powersetCard c, (∏ l ∈ B, y l ^ 2) * ∏ l ∈ C \ B, y l := rfl
+
 theorem wuMonomialOn_zero (C : Finset σ) (y : σ → A) :
     wuMonomialOn C y 0 = ∏ l ∈ C, y l := by
-  simp [wuMonomialOn]
+  rw [wuMonomialOn_def, Finset.powersetCard_zero, Finset.sum_singleton, Finset.prod_empty,
+    Finset.sdiff_empty, one_mul]
 
 theorem wuMonomialOn_empty_of_pos (y : σ → A) {c : ℕ} (hc : 0 < c) :
     wuMonomialOn (∅ : Finset σ) y c = 0 := by
-  rw [wuMonomialOn, Finset.powersetCard_eq_empty.mpr (by simpa using hc), Finset.sum_empty]
+  have h : (∅ : Finset σ).powersetCard c = ∅ :=
+    Finset.powersetCard_eq_empty.mpr (by simpa using hc)
+  rw [wuMonomialOn_def, h, Finset.sum_empty]
 
 /-- Adjoining a variable to the monomial: the new factor is either left alone or
 squared. -/
@@ -101,7 +107,7 @@ theorem wuMonomialOn_insert {w : σ} {C : Finset σ} (hw : w ∉ C) (y : σ → 
   have hblock1 : ∑ B ∈ C.powersetCard (c + 1),
         (∏ l ∈ B, y l ^ 2) * ∏ l ∈ insert w C \ B, y l
       = y w * wuMonomialOn C y (c + 1) := by
-    rw [wuMonomialOn, Finset.mul_sum]
+    rw [wuMonomialOn_def, Finset.mul_sum]
     refine Finset.sum_congr rfl fun B hB => ?_
     have hBC : B ⊆ C := (Finset.mem_powersetCard.mp hB).1
     have hwB : w ∉ B := fun h => hw (hBC h)
@@ -113,7 +119,7 @@ theorem wuMonomialOn_insert {w : σ} {C : Finset σ} (hw : w ∉ C) (y : σ → 
   have hblock2 : ∑ B ∈ (C.powersetCard c).image (insert w),
         (∏ l ∈ B, y l ^ 2) * ∏ l ∈ insert w C \ B, y l
       = y w ^ 2 * wuMonomialOn C y c := by
-    rw [Finset.sum_image hinj, wuMonomialOn, Finset.mul_sum]
+    rw [Finset.sum_image hinj, wuMonomialOn_def, Finset.mul_sum]
     refine Finset.sum_congr rfl fun E hE => ?_
     have hEC : E ⊆ C := (Finset.mem_powersetCard.mp hE).1
     have hwE : w ∉ E := fun h => hw (hEC h)
@@ -132,7 +138,7 @@ theorem wuMonomialOn_insert {w : σ} {C : Finset σ} (hw : w ∉ C) (y : σ → 
       = (∑ B ∈ C.powersetCard (c + 1), (∏ l ∈ B, y l ^ 2) * ∏ l ∈ insert w C \ B, y l)
         + ∑ B ∈ (C.powersetCard c).image (insert w),
             (∏ l ∈ B, y l ^ 2) * ∏ l ∈ insert w C \ B, y l := by
-        rw [wuMonomialOn, hps]
+        rw [wuMonomialOn_def, hps]
         exact Finset.sum_union hdisj
     _ = y w * wuMonomialOn C y (c + 1) + y w ^ 2 * wuMonomialOn C y c := by
         rw [hblock1, hblock2]
@@ -152,7 +158,8 @@ structure SqData (σ : Type*) (A : Type*) [CommRing A] where
   /-- `Sq^0` is the identity. -/
   sq_zero_apply : ∀ a : A, Sq 0 a = a
   /-- The Cartan formula. -/
-  cartan : ∀ (n : ℕ) (u v : A), Sq n (u * v) = ∑ p ∈ Finset.range (n + 1), Sq p u * Sq (n - p) v
+  cartan : ∀ (n : ℕ) (u v : A),
+    Sq n (u * v) = ∑ p ∈ Finset.range (n + 1), Sq p u * Sq (n - p) v
   /-- The index set of the Chern roots. -/
   s : Finset σ
   /-- The Chern roots, of cohomological degree two. -/
@@ -184,12 +191,13 @@ def sqShift : ℕ → A → A
 /-- The Cartan formula against a Chern root collapses to two terms. -/
 theorem sq_mul_y (k : σ) (u : A) (n : ℕ) :
     D.Sq n (D.y k * u) = D.y k * D.Sq n u + D.y k ^ 2 * D.sqShift n u := by
-  match n with
-  | 0 => simp [D.sq_zero_apply]
-  | 1 =>
+  rcases n with _ | _ | n
+  · show D.Sq 0 (D.y k * u) = D.y k * D.Sq 0 u + D.y k ^ 2 * D.sqShift 0 u
+    simp [D.sq_zero_apply]
+  · show D.Sq 1 (D.y k * u) = D.y k * D.Sq 1 u + D.y k ^ 2 * D.sqShift 1 u
     rw [D.cartan 1 (D.y k) u]
     simp [Finset.sum_range_succ, D.sq_zero_apply, D.sq_y_one]
-  | (n + 2) =>
+  · show D.Sq (n + 2) (D.y k * u) = D.y k * D.Sq (n + 2) u + D.y k ^ 2 * D.sqShift (n + 2) u
     rw [D.cartan (n + 2) (D.y k) u]
     have hsub : ({0, 2} : Finset ℕ) ⊆ Finset.range (n + 2 + 1) := by
       intro p hp
@@ -201,11 +209,13 @@ theorem sq_mul_y (k : σ) (u : A) (n : ℕ) :
       intro p _ hp
       simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hp
       have hzp : D.Sq p (D.y k) = 0 := by
-        match p with
-        | 0 => exact absurd rfl hp.1
-        | 1 => exact D.sq_y_one k
-        | 2 => exact absurd rfl hp.2
-        | (m + 3) => exact D.sq_y_high k (m + 3) (by omega)
+        rcases p with _ | p
+        · exact absurd rfl hp.1
+        · rcases p with _ | p
+          · exact D.sq_y_one k
+          · rcases p with _ | p
+            · exact absurd rfl hp.2
+            · exact D.sq_y_high k _ (by omega)
       rw [hzp, zero_mul]
     rw [← Finset.sum_subset hsub hzero, Finset.sum_pair (by norm_num : (0 : ℕ) ≠ 2),
       Nat.sub_zero, show n + 2 - 2 = n from by omega, D.sq_zero_apply, D.sq_y_two,
@@ -223,8 +233,8 @@ theorem sq_one_eq_zero : ∀ n : ℕ, 0 < n → D.Sq n 1 = 0 := by
     omega
   | succ N ihN =>
     intro n hnN hpos
-    have hcar : D.Sq n ((1 : A) * 1) = ∑ p ∈ Finset.range (n + 1), D.Sq p 1 * D.Sq (n - p) 1 :=
-      D.cartan n 1 1
+    have hcar : D.Sq n ((1 : A) * 1)
+        = ∑ p ∈ Finset.range (n + 1), D.Sq p 1 * D.Sq (n - p) 1 := D.cartan n 1 1
     rw [one_mul] at hcar
     have hsub : ({0, n} : Finset ℕ) ⊆ Finset.range (n + 1) := by
       intro p hp
@@ -236,7 +246,7 @@ theorem sq_one_eq_zero : ∀ n : ℕ, 0 < n → D.Sq n 1 = 0 := by
       intro p hp hp'
       simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hp'
       have hplt : p < n := by
-        have := Finset.mem_range.mp hp
+        have hpr := Finset.mem_range.mp hp
         omega
       have hpos' : 0 < p := Nat.pos_of_ne_zero hp'.1
       rw [ihN p (by omega) hpos', zero_mul]
@@ -258,13 +268,15 @@ theorem sq_prod [DecidableEq σ] (C : Finset σ) :
       refine ⟨?_, ?_⟩
       · show D.Sq 0 (1 : A) = wuMonomialOn (∅ : Finset σ) D.y 0
         rw [D.sq_zero_apply, wuMonomialOn_zero, Finset.prod_empty]
-      · have h1 : D.Sq 1 (1 : A) = 0 := D.sq_one_eq_zero 1 (by omega)
-        exact h1
+      · show D.Sq 1 (1 : A) = 0
+        exact D.sq_one_eq_zero 1 (by omega)
     | succ c' =>
       refine ⟨?_, ?_⟩
-      · have h1 : D.Sq (2 * (c' + 1)) (1 : A) = 0 := D.sq_one_eq_zero _ (by omega)
-        rw [h1, wuMonomialOn_empty_of_pos D.y (Nat.succ_pos c')]
-      · exact D.sq_one_eq_zero _ (by omega)
+      · show D.Sq (2 * c' + 2) (1 : A) = wuMonomialOn (∅ : Finset σ) D.y (c' + 1)
+        rw [D.sq_one_eq_zero (2 * c' + 2) (by omega),
+          wuMonomialOn_empty_of_pos D.y (show 0 < c' + 1 by omega)]
+      · show D.Sq (2 * c' + 3) (1 : A) = 0
+        exact D.sq_one_eq_zero (2 * c' + 3) (by omega)
   · intro w t hw ih c
     rw [Finset.prod_insert hw]
     cases c with
@@ -282,7 +294,8 @@ theorem sq_prod [DecidableEq σ] (C : Finset σ) :
       have ih3 : D.Sq (2 * c' + 1 + 2) (∏ l ∈ t, D.y l) = 0 := (ih (c' + 1)).2
       have ih4 : D.Sq (2 * c' + 1) (∏ l ∈ t, D.y l) = 0 := (ih c').2
       refine ⟨?_, ?_⟩
-      · show D.Sq (2 * c' + 2) (D.y w * ∏ l ∈ t, D.y l) = wuMonomialOn (insert w t) D.y (c' + 1)
+      · show D.Sq (2 * c' + 2) (D.y w * ∏ l ∈ t, D.y l)
+            = wuMonomialOn (insert w t) D.y (c' + 1)
         rw [D.sq_mul_y, sqShift_add_two, ih1, ih2, wuMonomialOn_insert hw]
       · show D.Sq (2 * c' + 3) (D.y w * ∏ l ∈ t, D.y l) = 0
         rw [show 2 * c' + 3 = 2 * c' + 1 + 2 from by omega, D.sq_mul_y, sqShift_add_two,
@@ -291,13 +304,14 @@ theorem sq_prod [DecidableEq σ] (C : Finset σ) :
 /-- The `j`-th mod-2 Chern class of the split family. -/
 def gamma (j : ℕ) : A := esymmOn D.s D.y j
 
+theorem gamma_def (j : ℕ) : D.gamma j = esymmOn D.s D.y j := rfl
+
 @[simp] theorem gamma_zero : D.gamma 0 = 1 := esymmOn_zero _ _
 
 theorem sq_gamma_succ [DecidableEq σ] (i : ℕ) :
     D.Sq (2 * i) (D.gamma (i + 1))
       = ∑ C ∈ D.s.powersetCard (i + 1), wuMonomialOn C D.y i := by
-  simp only [gamma, esymmOn]
-  rw [map_sum]
+  rw [gamma_def, esymmOn_def, map_sum]
   exact Finset.sum_congr rfl fun C _ => (D.sq_prod C i).1
 
 /-- **(Wu-diag).**  `Sq^{2i} γ_{i+1} = ∑_{j ≤ i} γ_{i-j} γ_{i+1+j}`. -/

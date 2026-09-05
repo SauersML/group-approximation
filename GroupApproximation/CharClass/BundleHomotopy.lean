@@ -100,7 +100,7 @@ theorem sphereRetract_apply (p : Bundle X ι) (v : Punctured p) :
 
 theorem normalizeVec_of_mem_unitVectors {u : ι → ℂ} (hu : u ∈ unitVectors ι) :
     normalizeVec u = u := by
-  rw [normalizeVec, mem_unitVectors_iff_eucNormSq.mp hu, Real.sqrt_one, inv_one,
+  rw [normalizeVec_eq_smul, mem_unitVectors_iff_eucNormSq.mp hu, Real.sqrt_one, inv_one,
     Complex.ofReal_one, one_smul]
 
 theorem sphereRetract_comp_sphereToPunctured (p : Bundle X ι) :
