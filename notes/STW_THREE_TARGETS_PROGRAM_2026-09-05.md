@@ -138,3 +138,31 @@ mine" and "this duplicates a peer's file, delete mine" run concurrently and
 both files vanish. A grep for importers is not sufficient, because it races.
 Deletion is the one operation where mutual deference subtracts instead of
 duplicating, and neither deleter can see it happening.
+
+## Standing rule: a green claim carries its job count
+
+**"It builds" is not a result. `Build completed successfully (N jobs)` with a
+moved count, or a `Built <module> (Ns)` line with a real time, is the result.**
+
+The count is the *only* thing distinguishing a genuine rebuild from a replayed
+`.olean`. Without it a downstream reader has to re-run the build to learn what
+the builder already knew, and on a fleet this size that is the difference
+between one acquisition of a 20-deep mutex and two.
+
+This applies symmetrically, and both halves have now cost the campaign a day's
+confusion:
+
+* **Greens.** A module reported green with no count may have been replayed.
+  `remote-build.sh` `touch`es every synced file so lake re-hashes, but a target
+  that was never named and was only reached incidentally proves nothing about
+  the bytes you have on disk. Name your targets explicitly.
+* **Reds.** A probe result carries the timestamp of its *source sync* and stops
+  being evidence the moment any commit touches its closure. Two stale reds
+  propagated today: one from a sweep-committed mid-write file that a lane then
+  reported as a peer's broken module, and one from a probe whose sync predated
+  the fix by five minutes. Date every error list you send.
+
+Corollary for anyone reading a lane report: `--run` (i.e. `lake env lean`)
+produces **no** job count at all, so a driver result is a genuine machine
+result but cannot certify that its inputs were re-elaborated rather than read
+from cache.
