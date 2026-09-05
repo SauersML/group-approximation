@@ -7,6 +7,8 @@ root: true
 artifacts:
   - research/artifacts/stw99-k1-kk-cluster-2026-08-30.md
   - research/artifacts/stw61-blanchard-preprint-firewall-2026-08-30.md
+  - research/artifacts/stw61-free-envelope-compression-attack-2026-09-05.md
+  - research/artifacts/stw61-mixed-corner-rotation-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -20,12 +22,15 @@ infinite algebras are always `K_1`-surjective (Cuntz).
 
 Blanchard's arXiv:1606.04773v1 advertises
 `T_2 *_[C] T_2` as a properly infinite non-`K_1`-injective algebra.  It does
-not close this root.  Proposition 2(5), Step 1 passes finite-stage
-non-null-homotopy to an inductive limit solely from injectivity of the
-C\*-connecting maps.  Injective C\*-maps need not be injective on unstable
-unitary homotopy classes, so the implication used there is unavailable.
-The attached firewall artifact records the exact gap and the current primary
-source boundary.  STW v2 continues to state LXI as open.
+not close this root. Proposition 2(5), Step 2 invokes a retraction
+from a crossed product to its coefficient algebra by sending the
+implementing unitary to 1. Covariance would force its nontrivial
+dilation automorphism to be the identity. The attached firewall
+records this exact obstruction and also corrects its earlier
+overly broad criticism of the finite-stage passage in Step 1:
+non-nullness of the same compatible witness at every stage would
+suffice for non-nullness in the limit. STW v2 continues to state
+LXI as open.
 
 ## Attempts
 
