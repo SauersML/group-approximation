@@ -2311,3 +2311,62 @@ their own lane volunteered — so there is nothing to be misled by and equally
 nothing that would show they compile.  Both are recorded as UNVERIFIED, and
 their lane has been saying so in every report, which is the right conduct and
 is noted as such.
+
+## Sweep 25, 2026-09-05 — target 3's open mathematics is now one named step
+
+### The crux, named
+
+`532e29eb5` narrows target 3 to a single open step, and it is worth recording
+precisely because it is the first time this campaign has been able to name one:
+
+> *"The chain has steps 1–3 and 7; **step 6, the bridge from one transverse zero
+> to a nonzero top class, is the only open mathematics in target 3.**"*
+
+The decomposition given makes Poincaré duality drop out rather than be proved:
+`N` has one top cell, so `N ∖ {pt}` retracts to the `(2r−1)`-skeleton and
+`H^{2r}` of it vanishes; the localization map is therefore surjective, and a
+surjection `F₂ → F₂` is an isomorphism.  What remains is the mod-2 local degree
+of an invertible linear map — not a Thom isomorphism.  The reasoning is sound as
+stated: one top cell gives the retraction, and surjectivity between
+one-dimensional `F₂` spaces is invertibility.
+
+**The distinction this file must keep visible: that is a paper result, not a
+Lean one.**  `532e29eb5` is a `research:` commit.  Steps 1–3 and 7 are done on
+paper; **zero of the chain is compiled**, and target 3's three tracked
+deliverables are all still absent — `ProblemLIX`, `IsSimpleCStar` (and
+`isSimpleCStar_iff_isSimpleRing`), and `Topology/SphereModelBridge.lean` with
+`sphereFiveHomeoSphere`.  A campaign that can name its one open step is in a far
+better position than one that cannot, and it is still NOT-YET-STATED.
+
+The same commit independently flags the simplicity ownership gap this file
+escalated at sweep 24 — *"nobody owns the unconditional simplicity of the
+inductive limit, without which the whole chain is an implication into an
+uninhabited conclusion"* — reaching the same conclusion from the other
+direction, which is corroboration rather than an echo.
+
+### Second consecutive green claim without a job count
+
+`fa86fdb1a` — *"Probe round 4: SequentialGroupColimit, CStarMatrixBlockInclusion
+and CStarUnitaryComponent all build"* — again carries no job count, after
+`5d0760709` did the same and after this lane asked for it with the reason.
+
+As before, this is **not** a suspected false green: round 4 followed real fixes
+(the `noncomputable` cascade below `CStarMatrix.instCStarAlgebra`, and a
+`simp only` that applied `mul_smul_comm` before `add_mul` could distribute), and
+each round has found genuine errors, which is probing working.  But two in a row
+makes it a fleet convention gap rather than an oversight, and it is escalated as
+such rather than asked of the lane a third time.  **The count is the only thing
+that distinguishes a rebuild from a replay**, and without it a downstream reader
+has to re-run the build to learn what the builder already knew.
+
+### Standing rows
+
+| row | state |
+|---|---|
+| `ProblemLIX` | absent |
+| `IsSimpleCStar` / `isSimpleCStar_iff_isSimpleRing` | absent |
+| `Topology/SphereModelBridge.lean` / `sphereFiveHomeoSphere` | absent |
+| `Analysis/LIX*` or `KTheory/*` importing `SphereOddDegree` | **0** — invariant holds |
+| orphans (excl. untracked FLT) | 315 |
+| target 3 open mathematics | **one step**, on paper: step 6, transverse zero → nonzero top class |
+| target 3 compiled | none |
