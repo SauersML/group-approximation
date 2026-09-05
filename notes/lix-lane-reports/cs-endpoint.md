@@ -277,6 +277,19 @@ add them and probe the moment both peer lanes report those two names green.
   takes only `[CStarAlgebra A]` and the order sits inside the definition's
   body; only a `rw` aimed across the seam would fail, and a term-mode `exact`
   will not.
+* **A correct diagnosis can still carry a wrong fix, and this one did.**  My
+  reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
+  `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
+  the supplied `hx` — and pinning `f` is the fix.  But the repair I sent used
+  `mulRight_continuous`, which at this pin is
+  `@[deprecated (since := "2026-02-20")] alias` for `continuous_mul_const`
+  (`Mathlib/Topology/Algebra/Monoid.lean:110`), and a deprecation is an error
+  under `-DwarningAsError=true`.  `cs-simplicity` caught it and used
+  `continuous_mul_const b` with `(f := fun x : R => x * b)`.  The name came out
+  of the *error message*, which had printed `mulRight_continuous b has type
+  Continuous ⇑(AddMonoidHom.mulRight b)` — so it was a live name in the file
+  being compiled and I reused it without checking its own status.  A name that
+  appears in an error message is not thereby a name you may write.
 * **The first `ccprobe.sh` run on a fresh clone always fails, and it exits 0.**
   On a fresh clone the rsync itemizes the whole tree as changed, so the
   script's `$RM` accumulates four artifact paths per module for ~1300 modules
