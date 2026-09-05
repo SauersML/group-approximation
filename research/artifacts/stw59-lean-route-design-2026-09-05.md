@@ -99,6 +99,17 @@ Unchanged from the manuscript: on `S⁵ × Y` with `Y = ∏ CP^{d_j}`,
 
 ### B.2 W1 — no Steenrod squares, no Stiefel–Whitney classes, no Wu formula
 
+**Scope of this section.** What follows is an argument that the *mod-2 route
+cannot replace the K-theoretic parity inside route 4*. It is not, and was never,
+an argument that route 4 is obstructed. Revision 1's `Sq²` argument applied to
+routes 1–3 — direct detection of `Ση` on a suspension, where cup products vanish
+— and ruled out route 4 on **cost alone**. Route 4 does not detect `Ση` on a
+suspension: it detects the same `ℤ/2` on `S¹ × S⁵ × Y`, which is not a
+suspension and whose cohomology ring is large, and Chern classes see that
+computation perfectly well. That is exactly why `Y = ∏CP^{d_j}` is in the
+construction: over `S⁵` alone the class is invisible because `[F] = [1²]` in
+`K⁰(S⁵)`. Route 4 is the route we build.
+
 Revision 1 identified `Sq²` as the only route *given the missing foundations*.
 With Chern classes and the Chern character present, the integral route covers
 `q = 3` as well, since `c_q(δ) = ±(q-1)(q-2)·(integral class)` and
@@ -228,9 +239,10 @@ two ends differ by an automorphism `g` of `V`. The lane may assume `W = W_g`.
 
 | Layer | Module | Owner | Contents |
 |---|---|---|---|
-| L0 | `Analysis/ProjectionMvNEquivalence.lean` | `lix-spaces` | `MvNEquiv`; (L1) `‖p-q‖<1`; (L2) path of projections; (L3) contractible base; block sums |
-| L0 | `Analysis/CornerCStarAlgebra.lean` | `lix-spaces` | `Corner A p` and its `CStarAlgebra` instance |
-| L0 | `Topology/ConcreteSpaces.lean` | `lix-spaces` | `Sph n`, `CPd d`, `Gr n N`, `BaseSpace`, compactness, `ℝ^{2k} ≅ ℂ^k` |
+| L0 | `Analysis/FiniteCStarMurrayVonNeumann.lean` **(landed)** | `lix-spaces` | `MurrayVonNeumannEquiv` (:99) and its calculus; (L1)(L2)(L3) are **re-homed here** from `AlgTop/BundleCalculusProjection.lean` — see C8 |
+| L0 | `Analysis/LIXCornerAlgebra.lean` **(landed)** | `lix-spaces` | `SectionAlgebra`, `cornerAlgebra`, `Corner`, `cornerOne`, `corner_complete`, `ofFunctionMatrix` |
+| L0 | `Analysis/LIXProjectiveSpaceModel.lean` **(landed)** | `lix-spaces` | `cpSet` (:402), `CP d` (:471), `rankOneProj`, `eq_rankOneProj_of_trace_one`, compactness |
+| L0 | `Topology/ConcreteSpaces.lean` | `lix-spaces` | only what is **not** landed: `Sph n`, `Gr n N`, `BaseSpace`, `ℝ^{2k} ≅ ℂ^k` |
 | L0 | `Analysis/KOneUnitary.lean` | `ktheory-k1` | `K₁` of a C\*-algebra |
 | L0 | `Analysis/KZeroProjection.lean` | `ktheory-k1` | `K₀` of a C\*-algebra |
 | L1 | `Topology/BundleProj.lean` | `found-bundle-calculus` | bundle = projection; rank, `⊕`, `⊗`, dual, pullback; `Iso := MvNEquiv`; homotopy invariance; clutching over a closed cover; mapping torus |
@@ -260,9 +272,10 @@ pullback of the generator of `H²(CP^N)` along the classifying map, so
 
 | Object | Defined once by | Everyone else |
 |---|---|---|
-| `MvNEquiv`, (L1)(L2)(L3) | `lix-spaces` | imports |
-| `Corner p A p` | `lix-spaces` | imports |
-| `Sph n`, `CPd d`, `Gr n N` | `lix-spaces` | imports, never redefines |
+| `MurrayVonNeumannEquiv`, (L1)(L2)(L3), `UnitaryConj` | `Analysis/FiniteCStarMurrayVonNeumann.lean` | imports; **no second MvN predicate anywhere** |
+| `Corner p A p` | `Analysis/LIXCornerAlgebra.lean` | imports |
+| `CP d`, `cpSet d` | `Analysis/LIXProjectiveSpaceModel.lean` (namespace `GroupApproximation.STW59`) | imports, never redefines; `AlgTop.CPn` is its lemma layer |
+| `Sph n`, `Gr n N` | `lix-spaces` | not yet claimed |
 | bundle, pullback, `⊕`, `⊗`, clutch, mapping torus | `found-bundle-calculus` | imports |
 | `H^*(−;R)`, cup, Künneth, top pairing | `found-cohomology-ring` | imports |
 | `H^*(CP^n)`, the class `h` | `found-cpn-cohomology` | imports |
@@ -319,27 +332,80 @@ construction**. `found-ktheory-bott` then only proves `ch` is additive on `K⁰`
 and computes the `S^{2n}` normalization. If it defines its own `ch` from Chern
 roots, the Newton integrality has to be reproved.
 
+**C8 — two Murray–von Neumann predicates, both already landed. RESOLVED.**
+`Analysis/FiniteCStarMurrayVonNeumann.lean:99` and
+`AlgTop/BundleCalculusProjection.lean:68` define
+`∃ v, star v * v = p ∧ v * star v = q` character-for-character, under the same
+typeclass assumptions, in different namespaces, and the second does not import
+the first. `cairn`'s duplicate detector cannot see this.
+
+*Ruling:* `MurrayVonNeumannEquiv` survives. It is older and already consumed by
+`KTheory/MatrixProjection.lean`, `Analysis/LIXCornerAlgebra.lean`,
+`Analysis/CoronaProjectionOrder.lean`, `Analysis/OmegaFiniteComparison.lean`,
+`Analysis/MFStablyFinite.lean` and four `OneSidedMFRadical` manuscript files, so
+renaming it would touch the manuscript corpus while renaming the newer one
+touches one lane. `BundleCalculusProjection.lean` imports it, deletes its own
+`def MvNEquiv`, drops `MvNEquiv.refl`/`.symm` in favour of the existing ones,
+and re-homes onto `MurrayVonNeumannEquiv` its genuine additions: `UnitaryConj`
+(:73), `UnitaryConj.mvNEquiv` (:103), `MvNEquiv.trans` (:131), and the three
+analytic lemmas `mvNEquiv_of_norm_sub_lt_one` (:277), `unitaryConj_of_preconnected`
+(:288) and `mvNEquiv_of_path` (:349) — which are exactly (L1), (L3) and (L2).
+
+*Consequence for the plan:* **L0's analytic floor is already done.** Revision 2
+listed (L1)(L2)(L3) as unbuilt; they are built, on the wrong predicate.
+`Analysis/ProjectionMvNEquivalence.lean` and `Analysis/CornerCStarAlgebra.lean`
+are **withdrawn** — they were proposed from a Mathlib grep that was never
+repeated against this repository.
+
+**C9 — `IsLineProj` is undefined repo-wide.** There is no rival `CP^d` model:
+`AlgTop/ComplexProjectiveBasic.lean` imports `Analysis/LIXProjectiveSpaceModel`
+and opens `GroupApproximation.STW59`, defining no type, and the only `cpSet`/`CP`
+in the repository are STW59's, already built on Mathlib's `IsStarProjection`
+with the trace clause — the program note's model exactly. But `IsLineProj` has
+four occurrences repo-wide and **no definition**:
+`AlgTop/ComplexProjectiveHyperplane.lean:39,40,69` and
+`AlgTop/ComplexProjectiveChart.lean:49`. Those files were written against a
+planned bespoke structure — note the dot-notation `h.col_eq_zero_of_diag_eq_zero`,
+`h.conj_entry` — while the landed base uses `IsStarProjection`. They must be
+ported onto `ComplexProjectiveBasic`'s lemmas (`col_eq_zero_of_diag_eq_zero`
+:64, `row_eq_zero_of_diag_eq_zero` :76, `entry_symm` :109, `minor` :87) before
+any more of the cell decomposition is built on them. No new predicate.
+
+*Why no gate caught it:* the lakefile sets only
+`moreLeanArgs = ["-DwarningAsError=true"]` for the `GroupApproximation` lib and
+does not set `autoImplicit := false`, so an unresolved identifier in hypothesis
+position auto-binds instead of erroring.
+
 ### C.4 Interfaces — L0 and L1
 
 ```lean
--- Analysis/ProjectionMvNEquivalence.lean            [lix-spaces]
-def MvNEquiv {A : Type*} [CStarAlgebra A] (p q : A) : Prop :=
-  ∃ w : A, star w * w = p ∧ w * star w = q
-theorem MvNEquiv.refl / .symm / .trans
-theorem MvNEquiv.add_of_orthogonal        -- p₁⊥p₂, q₁⊥q₂ → p₁+p₂ ~ q₁+q₂
-theorem mvnEquiv_of_norm_sub_lt_one       -- (L1)
-theorem mvnEquiv_of_path                  -- (L2)
-theorem mvnEquiv_const_of_contractible    -- (L3)
+-- Analysis/FiniteCStarMurrayVonNeumann.lean  [LANDED; (L1)(L2)(L3) re-homed here per C8]
+def MurrayVonNeumannEquiv {A} [Mul A] [Star A] (p q : A) : Prop :=
+  ∃ v : A, star v * v = p ∧ v * star v = q          -- :99
+theorem MurrayVonNeumannEquiv.refl / .symm          -- :104, :114;  .trans from C8
+def UnitaryConj / theorem UnitaryConj.mvNEquiv      -- from C8
+theorem mvNEquiv_of_norm_sub_lt_one                 -- (L1), from C8
+theorem mvNEquiv_of_path                            -- (L2), from C8
+theorem unitaryConj_of_preconnected                 -- (L3), from C8
+-- still owed: MurrayVonNeumannEquiv.add_of_orthogonal (block sums)
 
--- Analysis/CornerCStarAlgebra.lean                  [lix-spaces]
-def Corner (A) [CStarAlgebra A] (p : A) : Type := {x : A // p * x = x ∧ x * p = x}
-noncomputable instance (hp : IsStarProjection p) (hp0 : p ≠ 0) : CStarAlgebra (Corner A p)
-lemma Corner.mem_unitary_iff / Corner.mem_U0_iff
+-- Analysis/LIXCornerAlgebra.lean                    [LANDED]
+abbrev SectionAlgebra (X) (ι) / def cornerAlgebra / abbrev Corner / instance cornerOne
+theorem corner_complete / ofFunctionMatrix / murrayVonNeumannEquiv_ofFunctionMatrix
+-- still owed: the CStarAlgebra instance on Corner, and Corner.mem_unitary_iff/mem_U0_iff
 
--- Topology/ConcreteSpaces.lean                      [lix-spaces]
-def Sph (n : ℕ) / def CPd (d : ℕ) / def Gr (n N : ℕ) / def BaseSpace
-instance : CompactSpace (CPd d) / (Gr n N) / (BaseSpace d)
-def conjTaut (d : ℕ) : C(CPd d, Matrix (Fin (d+1)) (Fin (d+1)) ℂ)   -- q ↦ q̄, = O(1)
+-- Analysis/LIXProjectiveSpaceModel.lean             [LANDED]
+def cpSet (d) := {q | IsStarProjection q ∧ q.trace = 1}      -- :402
+abbrev CP (d) := ↥(cpSet d)                                  -- :471
+def rankOneProj / theorem eq_rankOneProj_of_trace_one / cpSet_eq_image / isCompact_cpSet
+
+-- AlgTop/CPTautologicalSection.lean                 [LANDED — this is §A.1's O(1) section]
+def dualTautSection (x : CP d) : Fin d → Fin (d+1) → ℂ
+theorem dualTautSection_eq_zero_iff / dualTautSection_zeroLocus   -- exactly one zero
+
+-- Topology/ConcreteSpaces.lean                      [lix-spaces — only the unclaimed part]
+def Sph (n : ℕ) / def Gr (n N : ℕ) / def BaseSpace
+instance : CompactSpace (Gr n N) / (BaseSpace d)
 
 -- Topology/BundleProj.lean                          [found-bundle-calculus]
 structure VBundle (X : Type*) [TopologicalSpace X] [CompactSpace X] where
@@ -436,6 +502,30 @@ theorem exists_simple_unital_not_k1Injective :
     ∃ (A : Type) (_ : CStarAlgebra A), IsSimpleCStar A ∧ ¬ K1Injective A
 ```
 
+### C.7 The endpoint lands FIRST (gating requirement on `ktheory-k1`)
+
+Raised by `audit-gate` and accepted as a hard requirement. The named `Prop` that
+**is** Problem LIX must land *before* anything is proved about it, and must be
+stated over Mathlib vocabulary plus a generic `KOne` — never over a definition
+introduced by the counterexample's own construction. An endpoint whose statement
+is written after the proof, in the proof's vocabulary, cannot be audited from
+outside.
+
+```lean
+/-- STW Problem LIX: is every unital simple C⋆-algebra K₁-injective? -/
+def ProblemLIX : Prop :=
+  ∀ (A : Type) [CStarAlgebra A] [Nontrivial A], IsSimpleCStar A → K1Injective A
+```
+
+`K1Injective A` is defined for an **arbitrary** unital C\*-algebra as injectivity
+of `unitary A ⧸ Subgroup.pathComponentOne (unitary A) → KOne A`, where `unitary`
+is Mathlib's (`Algebra/Star/Unitary.lean:35`) and `Subgroup.pathComponentOne` is
+Mathlib's (`Topology/Connected/PathConnected.lean:375`, with the C\*-specific
+`Unitary.mem_pathComponentOne_iff` at
+`Analysis/CStarAlgebra/Unitary/Connected.lean:336`). `KOne` is new — Mathlib has
+no C\*-K-theory at the pin — but it must be generic: no mention of the
+counterexample, its spaces, or its projections. The target is `¬ ProblemLIX`.
+
 `limitAlg`: Mathlib has no inductive limit of C\*-algebras and building the
 general theory is a trap. Realize every `A_i` concretely inside one fixed
 containing C\*-algebra and define `limitAlg` as the closure of an increasing
@@ -460,7 +550,8 @@ can say exactly which layer is unfinished.
 | L5a | Euler class, one-zero count | moderate; Thom class and localization, no transversality theory |
 | L5b | (KT-min) | **the deepest theorem in the campaign.** Bott periodicity (only for the `S^{2n}` normalization) plus Künneth for `S¹×S⁵×Y` |
 | L6 | Lemma 3 | short once L4 and L5b are in: the argument is §B.3(b), a few hundred lines |
-| L7 | the five LIX lanes | elementary C\*-algebra; ~4000–6000 lines; no research content |
+| L5b′ | `K₁(C(X)) = 0` for an even-cell finite complex | follow-on to (KT-min), **lower priority than the refutation**; an induction over cells reusing (KT-min)'s machinery, not a new stack. Needed only for the `K₁(A) = 0` clause of printed Theorem 1, which is off the critical path for LIX itself (§B.6, Removal 1) |
+| L7 | the five LIX lanes | elementary C\*-algebra; ~4000–6000 lines; no research content. L0's analytic floor is already landed (C8) |
 
 **Where the campaign can still fail.** Two places, and only two.
 
