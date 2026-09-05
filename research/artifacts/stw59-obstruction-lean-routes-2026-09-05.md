@@ -681,3 +681,55 @@ symmetric-function project" — shrinks to:
 No binomial coefficients mod 2, no Lucas, no case analysis. Together with §9 the
 whole parity argument is: one identity (Wu-diag), one relation per stage, and an
 induction on the number of projective factors.
+
+### 10.3 A generating-function proof of (Wu-diag), better suited to Lean
+
+The monomial count of §10.1 is easier to run through a generating function, which
+is what a formalization should follow.
+
+Work first over `ℤ[y_1,…,y_n]` and put `E(T) = ∏_k (1 + y_k T) = Σ_a e_a T^a`.
+
+* **The full antidiagonal.** `E(T)² = ∏_k (1 + y_k T)²`, and over `F₂` this is
+  `∏_k (1 + y_k² T²)`, which has only even powers of `T`. Hence
+  `Σ_{a+b = 2i+1} e_a e_b = 0` in characteristic two — no pairing argument
+  needed.
+* **The half antidiagonal.** Over `ℤ`,
+  `E(T)² = ∏_k (1 + 2 y_k T + y_k² T²)`, and choosing for each `k` one of the
+  three factors gives
+
+  ```
+  [T^{2i+1}] E(T)²  =  Σ_{(T,U) disjoint, |U| + 2|T| = 2i+1}  2^{|U|} · y_T² y_U ,
+  ```
+
+  every term of which is even because `|U|` is odd (as `2i+1` is). Dividing by
+  `2` in the torsion-free ring `ℤ[y]`,
+
+  ```
+  Σ_{a=0}^{i} e_a e_{2i+1−a}  =  Σ_{(T,U)}  2^{|U|−1} · y_T² y_U ,
+  ```
+
+  and reducing mod 2 leaves exactly the terms with `|U| = 1`, i.e. `|T| = i`:
+
+  ```
+  Σ_{a=0}^{i} e_a e_{2i+1−a}  ≡  Σ_{|B| = i} Σ_{k ∉ B} y_B² y_k    (mod 2).
+  ```
+
+The `2^{|U|−1}` step is `Nat.sum_range_choose_halfway` in disguise but does not
+need it: the factor of two is visible in the product expansion rather than
+hidden in a binomial sum. So the only real Lean work is the coefficient
+extraction from `∏_k (1 + 2 y_k T + y_k² T²)`, which is a product over a
+`Finset` of three-term factors.
+
+A Lean statement that needs no Steenrod machinery at all, and that
+`found-chern-classes` can consume directly once it has the splitting principle
+and the Cartan formula (the two together give the left-hand side as
+`Sq^{2i}(e_{i+1})`):
+
+```
+theorem esymm_halfAntidiagonal_eq (n i : ℕ) :
+    (∑ s ∈ Finset.range (i+1),
+        MvPolynomial.esymm (Fin n) (ZMod 2) (i - s)
+          * MvPolynomial.esymm (Fin n) (ZMod 2) (i + 1 + s))
+      = ∑ B ∈ Finset.univ.powersetCard i, ∑ k ∈ Bᶜ,
+          (∏ l ∈ B, MvPolynomial.X l ^ 2) * MvPolynomial.X k
+```
