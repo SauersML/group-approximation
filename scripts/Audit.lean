@@ -799,7 +799,18 @@ def zeroInputEndpoints : List Name :=
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence,
    ``Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite,
    ``HilbertHotel.Cover.not_isOperatorMF_model,
-   ``HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical]
+   ``HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical,
+   -- STW Problem X(1), the negative answer to Brown's question.  Its module
+   -- carries `#audit_closed_axioms`, which gates the axiom closure and the
+   -- outer telescope but not the literature quarantine below -- and the
+   -- quarantine is the check that matters most here, because the whole claim
+   -- is that the refutation owes nothing to Tikuisis--White--Winter, whose
+   -- typed input sits three imports away in `TikuisisWhiteWinterCore`.  Until
+   -- these three lines existed no roster named a `NinetyNineProblems`
+   -- declaration, so nothing in the corpus asked.
+   ``NinetyNineProblems.not_problemX1Statement,
+   ``NinetyNineProblems.literalFactorizationProperty,
+   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool
