@@ -337,9 +337,17 @@ with `F` free on the models `Δ^n` (a chosen basis of `F_k(Δ^n)` generates
 `F_k(X)` freely under all `Δ^n → X`) and `G` acyclic on the models, any natural
 augmentation-preserving map in degree 0 extends to a natural chain map, unique
 up to natural chain homotopy; then the ℤ/2-equivariant variant (free over
-`ZMod 2[ℤ/2]`).  Apply to `W ⊗ S(X) → S(X) ⊗ S(X)` (Steenrod's diagonal) and the
-product `X × Y` to get the Cartan formula.  Coordinate the exact form of `Φ`
-with `cc-steenrod` early (write the signature into your report).
+`ZMod 2[ℤ/2]`).  Apply to `W ⊗ S(X) → S(X) ⊗ S(X)` (Steenrod's diagonal).  **Cartan is proved
+INTERNALLY, on one space, with no products, no Eilenberg–Zilber and no
+linearized Alexander–Whitney** (cc-cartan verified 19:43 that neither exists
+anywhere and that building them is a full lane): compare the two natural
+ℤ/2-equivariant chain maps `W ⊗ S(X) → S(X)^{⊗4}`, (A) `(Φ₀ ⊗ Φ₀) ∘ Φ` and
+(B) `swap ∘ (Φ ⊗ Φ) ∘ (Δ_W ⊗ Φ₀)` with `Δ_W(e_n) = Σ_{i+j=n} e_i ⊗ T^i e_j`
+the coproduct of the periodic resolution, `T` acting on the fourfold tensor by
+`(12)(34)`.  They agree in degree 0 and the target is contractible on models,
+so they are equivariantly homotopic; evaluating the homotopy on
+`a ⊗ b ⊗ a ⊗ b` is the Cartan formula.  Coordinate the exact form of `Φ` with
+`cc-steenrod` early (write the signature into your report).
 
 ### cc-bundle
 Work over a compact Hausdorff (in practice compact metric) `X : Type` with
