@@ -25,6 +25,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-rr0-full-order-reflection-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-finite-projection-patch-realization-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-two-patch-angle-realization-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-universal-small-angle-obstruction-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -223,6 +224,14 @@ remainder is soft or has a uniform angle spectral gap. A transverse
 compression also handles certain nonnested supports with soft remainder.
 These are proved special cases; arbitrary mixed angle remainders and
 general finite-patch realization remain unresolved.
+The subsequent small-angle audit identifies that last difficulty
+sharply: every target positive in a constant source projection corner
+is the angle remainder of two globally trivial projections, as close
+in norm as desired. An explicit small unitary homotopy can erase its
+entire Cu class. Increasing source-projection compressions exhaust
+every target class, so arbitrary angle-remainder realization is
+equivalent to full realization here. Projection-space homotopies
+alone, or invertible angle padding, do not supply this missing step.
 
 ## Literature boundary
 

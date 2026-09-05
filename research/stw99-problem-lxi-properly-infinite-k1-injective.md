@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw61-functional-letter-flip-obstruction-2026-09-05.md
   - research/artifacts/stw61-projective-finite-representation-obstruction-2026-09-05.md
   - research/artifacts/stw61-projective-mf-coefficient-obstruction-2026-09-05.md
+  - research/artifacts/stw61-toeplitz-defect-bell-shift-test-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -62,6 +63,13 @@ detecting both complementary projections suffices. Genuine coordinate
 unitary lifts and projective-space tests establish the quotient norm.
 The full Toeplitz algebra admits no such unital homomorphism, so
 the unrestricted properly infinite coefficient case remains open.
+An explicit mixed Bell conjugate now tests that remaining setting:
+its commutator norm is one in the universal free product and the
+Toeplitz shift representation, but is `sqrt(3)/2` in the Cuntz
+shift quotient. The conjugating unitary is constructed in the
+original free product, including every Toeplitz defect term.
+This shows exactly why a strict estimate in that properly infinite
+quotient cannot establish the universal strict-commutator criterion.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem

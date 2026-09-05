@@ -36,6 +36,25 @@ LIX; LVIII, LXI, and LXXVI remain open.
   do not require bounded inverses at the support boundary. The soft and
   uniform-angle-gap cases give exact lifts; arbitrary remainders remain
   unproved.
+- The subsequent small-angle calculation gives the exact norm
+  `||Q_t-Q_0||=sqrt(t||a||)` while its angle remainder retains `[a]`
+  for every positive `t`. Constant source-projection compressions
+  provide an actual increasing sequence of Cu classes exhausting any
+  target positive. The resulting equivalence with full realization
+  does not rely on cancellation in a section algebra.
+- The Bell-conjugate test constructs its universal conjugating
+  unitary using four explicit prefix isometries and all Toeplitz
+  defect terms. Its three-site overlap is a unitary divided by two
+  in the Cuntz quotient, but has a nonzero defect in the Toeplitz
+  model. The respective commutator norms are exactly `sqrt(3)/2`
+  and one. The universal norm is one as well.
+- The LVIII local factorization proof keeps every off-diagonal term
+  in its exact linear commutator decomposition. Small fixed conjugations
+  give an operator close to the identity; its Neumann inverse provides
+  a right inverse for the differential of a finite exponential product.
+  The explicit contraction mapping supplies the exact local chart.
+  Stable-range overlap transfer then contracts globally factored families
+  of total stable class zero. Global sphere factorization remains open.
 
 ## Native graph checks
 
@@ -57,6 +76,11 @@ commands on the enlarged 61-node closure (32 claims and 29 routes).
 Both new claims derived as established. The named root statuses were
 unchanged. The two projection-patch artifacts are linked as partial
 results and do not supply a route closing LXXVI.
+
+After linking the three distinct follow-up attacks (LVIII local
+factorization, LXI Bell test, and LXXVI small-angle universality), both
+commands passed again on the same 61-node closure. No new root closure
+was asserted and the derived named-problem statuses stayed unchanged.
 
 Cairn checks route dependencies, schema, and derived graph status. They
 do not establish the mathematical validity of a manuscript. The scope

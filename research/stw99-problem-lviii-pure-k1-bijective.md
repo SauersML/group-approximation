@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw58-simple-pure-k1-bijectivity-audit-2026-08-30.md
   - notes/stw58-coefficient-unitary-stabilization-2026-09-05.md
   - notes/stw58-soft-module-compression-attempt-2026-09-05.md
+  - research/artifacts/stw58-local-factorization-and-overlap-cancellation-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -59,3 +60,13 @@ large hereditary matrix pieces and their dimension-drop overlap.
 Localization of arbitrary sphere families into those pieces remains
 unproved. A finite-matrix example rules out unrestricted hereditary
 homotopy excision, so an argument must use an explicit stable range.
+
+The local-factorization artifact now proves an exact continuous
+factorization on a norm neighborhood of one, using a fullness identity,
+a bounded linear commutator decomposition, and a corrected exponential
+chart. Separately, a globally factored sphere family contracts whenever
+its total stable class vanishes: the full overlap absorbs each factor's
+K-class and cancels the sum in the stable matrix range. This also works
+for a global factorization approximating the family within distance two.
+The outstanding step is a continuous global factorization over the
+parameter sphere; local factorization does not automatically supply it.
