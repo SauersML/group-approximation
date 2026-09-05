@@ -108,3 +108,66 @@ Finally, root additivity and
 
 inductively supply every polynomial coefficient in every root position.
 These are all elementary generators of `EL_3(L_2(F_p))`, proving `(WOP4)`.
+
+For `(WOP6)`, every element of `F_r` lies in the weighted ring with row
+weights `(0,r,0)`. An element of both `F_1` and `F_2` has zero entries
+between row `2` and the outer rows: their required degrees are respectively
+`1` and `2`, or `-1` and `-2`, and the grading is a direct sum. Its outer
+block `C` is scalar, and its middle entry has the form `c_A` in the
+level-one core. Prefix refinement identifies that entry at level two with
+`A tensor I_2`. The two finite matrix identifications consequently give
+
+```text
+diag(C,A) in SL_4(F_p),
+diag(C,A tensor I_2) in SL_6(F_p).
+```
+
+Their determinant conditions are
+`det(C)det(A)=1=det(C)det(A)^2`, so both determinants equal one.
+Conversely each such block matrix belongs to both packets. The two block
+factors commute and embed injectively, proving the claimed direct-product
+intersection. In particular, the mark and its opposite root lie in the
+outer `SL_2` factor.
+
+For the finite gluing model, take `N/|F_i|` copies of the regular `F_i`
+action. Each restriction to `K` is `N/|K|` copies of the regular `K`
+action. A `K`-equivariant bijection identifies the two actions on one
+`N`-point set; their permutation matrices agree on all of `K`. The
+nonidentity element `w` has no fixed points, giving trace zero and squared
+normalized HS distance two. To record the full branching data, for complex
+irreducibles `sigma` of `F_i` and `tau` of `K` the multiplicities are
+
+```text
+m_i(sigma)=N dim(sigma)/|F_i|,
+m_K(tau)=N dim(tau)/|K|,
+sum_sigma m_i(sigma)[Res_K(sigma):tau]=m_K(tau).
+```
+
+The last identity is the restriction identity for regular representations.
+All these multiplicities are integral and realized on the common matrix
+space, so this is an exact countermodel to a marked kill conclusion based
+only on the finite chart and overlap branching constraints.
+
+Finally `(WOP5)` gives `(WOP7)` in the Leavitt group. To check that this
+relation is absent from the amalgam, abbreviate
+
+```text
+a=X_0, c=X_1 in F_1,
+b=Y_(0j), d=Y_(1j) in F_2.
+```
+
+Its amalgam normal form is
+
+```text
+a | b | a^(-1) | b^(-1)d | c | d^(-1) | c^(-1).
+```
+
+These seven factors alternate between the two finite groups and all lie
+outside `K`. In particular,
+`b^(-1)d=x_23((s_1-s_0)s_j)` is a nonzero middle-to-outer root, since
+left multiplication of its coefficient by `t_1` gives `s_j!=0`.
+Every element of `K` has that entry zero. The other six factors are
+nonzero native arms and likewise outside `K`. The reduced-word theorem
+for amalgams therefore makes `R_j` nonidentity there. This proves the
+precise distinction between the overlap constraints and the additional
+mixed Leavitt identity without asserting a matrix stability estimate.

@@ -1,6 +1,14 @@
 # Cairn source-graph health audit, September 5
 
-The latest follow-up snapshot, including the flexible-dilation and mixed-depth
+The latest snapshot, including rectangular Schreier correction and the exact
+two-depth overlap audit, passes with **14,126 nodes and no errors, warnings,
+or duplicate candidates** in 10.888 seconds. It also compares against pinned
+commit `47e34ed2f54d4b41007ae40cf4bae1ef7ac54da3` (14,124 nodes): there
+are no newly dead claims, newly detached lane tops, or new open claims
+missing recorded attempts. Its record is
+`research/artifacts/rectangular-overlap-cairn-validation-2026-09-05.json`.
+
+The preceding follow-up snapshot, including the flexible-dilation and mixed-depth
 audits, passes with **14,120 nodes and no errors, warnings, or duplicate
 candidates** in 9.342 seconds. Its record is
 `research/artifacts/flexible-dilation-cairn-validation-2026-09-05.json`.

@@ -5,6 +5,8 @@ kind: route
 title: Normalize the induced corner by its original rank and retain orthogonality at the spectral cut
 target: moving-subgroup-schreier-correction-has-no-index-loss
 requires: []
+artifacts:
+  - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -132,3 +134,49 @@ inequality in `ell^2(T)` with probability measure `1/m`, then maximize
 over `s`.  Finally `(MSC4)` follows by contraposition from `(MSC2)`:
 a smaller `beta` than both displayed thresholds produces an exact padded
 representation inside both the prescribed dimension and distance budgets.
+
+For the rectangular assertion `(MSC7)`, induce the genuine k-dimensional
+representation on `K=direct_sum_T C^k` and stack the frame maps into
+
+```text
+J_0:C^d->K,       J_0 x=sum_t delta_t tensor A_t x.
+```
+
+Then `J_0^*J_0=H`, and block orthogonality gives exactly
+
+```text
+max_s||Pi(s)J_0-J_0 U_s||_HS/sqrt(d)=beta_rect.
+```
+
+If dim K is below d, enlarge K by d-dim K trivial representation
+dimensions and extend J_0 by zero. This leaves H and the displayed
+intertwining errors unchanged. The ambient dimension is now at least d,
+so the polar partial isometry of J_0 extends on its kernel to an isometry
+`J_1:C^d->K`. With lambda_i the nonnegative eigenvalues of H,
+
+```text
+||J_1-J_0||_HS^2
+ =sum_i(sqrt(lambda_i)-1)^2
+ <=sum_i|lambda_i-1|=d zeta.
+```
+
+No invertibility of H is used. Since Pi(s) and U_s are unitaries,
+
+```text
+max_s||Pi(s)J_1-J_1 U_s||_HS/sqrt(d)
+ <=beta_rect+2sqrt(zeta)=gamma.
+```
+
+The proof from `(MSP2)` onward uses only an isometry from dimension d,
+a genuine ambient representation, and this intertwining bound. Apply it
+with W=J_1 and beta=gamma; it gives exactly the claimed final padding
+and generator estimates. Compression by J_1 also gives a ucp map with
+generator error at most gamma.
+
+Finally rank(H)<=mk before the auxiliary enlargement, so at least
+max(0,d-mk) eigenvalues of H are zero. Their contribution to
+`||H-I||_(1,d)` proves the stated capacity lower bound. The construction
+normalizes the stacked frame once, rather than separately rounding every
+fibre to a unitary; there is no hidden square-fibre or common-range
+assumption. Exact seed holonomy and the two error bounds remain explicit
+inputs to the construction.

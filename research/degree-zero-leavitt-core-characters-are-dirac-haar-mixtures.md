@@ -5,6 +5,7 @@ kind: claim
 title: Every character of the degree-zero Leavitt core is a mixture of the trivial and the regular character, so every MF character of the Leavitt group is Dirac--Haar on the core
 artifacts:
   - research/degree-zero-core-dirac-haar-proof.md
+  - research/artifacts/leavitt-character-transfer-audit-2026-09-05.md
 distinct_from:
   binary-leavitt-steinberg-mf-characters-are-trivial: that is the open target asserting every MF character of the Steinberg group is trivial; this is an established classification of ALL characters on the degree-zero core, which reduces that target to excluding a regular component and shows the Haar row profile is the only possible nontrivial restriction.
   surviving-leavitt-corona-character-has-infinite-parabolic-orbit: that excludes finite nonzero parabolic orbits for the row-module spectral measure; this computes the restriction of every character to every degree-zero root subgroup exactly, as `w*delta_0+(1-w)*Haar`, using no parabolic dynamics.
@@ -86,6 +87,19 @@ normalized trace tending to w+(1-w)*delta_e on Gamma_0 with w<1,     (DHM4)
 
 and by `(DHM3)` any such representation has exactly Haar spectral profile
 on every degree-zero root at every depth.
+
+For the nonhyperlinear endpoint, this restriction theorem does not turn an
+arbitrary non-Connes-embeddable character into a nonembeddable canonical
+character. The linked character-transfer audit proves the valid conditional
+implication: a full-group character simplex `conv{1,delta_e}`, together with
+an actual nonembeddable character of that same group, forces
+nonhyperlinearity. Neither additional input is supplied here. The audit
+also gives a hyperlinear overgroup of this degree-zero core carrying a
+nonembeddable character with canonical core restriction, and an explicit
+two-generator abelian subgroup of `EL_3` whose character cannot extend
+tracially because ambient conjugacy identifies elements it distinguishes.
+These delimit restriction and extension arguments; they do not exclude a
+future full-group theorem using the Leavitt group's additional structure.
 
 No Property `(T)`, spectral gap, or stability theorem is used; the only
 literature input is the finite-group character bound cited in

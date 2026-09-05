@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/compressed-representation-quadratic-curvature-2026-09-05.md
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/opposite-root-character-interface-2026-09-05.md
+  - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -46,6 +47,21 @@ models. Combining depths one and two with the same opposite root instead
 generates the full `EL_3(L_2(F_p))`. The mixed-depth relations therefore
 recover the whole elementary Leavitt problem rather than a larger finite
 packet; no matrix obstruction for that full group has been proved here.
+
+The two finite depth groups intersect in exactly `SL_2(F_p) x SL_2(F_p)`.
+Their regular representations can be glued over that intersection while
+keeping the mark at squared HS distance two. Thus compatible restrictions
+and branching multiplicities alone cannot force collapse. The overlap audit
+exhibits an explicit length-eight mixed relation missing from the abstract
+amalgam; a successful estimate must use relations beyond that overlap.
+
+On the arithmetic side, the moving-Schreier correction theorem now accepts
+rectangular frames from a smaller exact subgroup representation. Stacking
+the frame and normalizing it once gives error `beta+2sqrt(zeta)`, with no
+index loss, where zeta is its normalized trace-norm Gram error. Finite-index
+induction can therefore supply the required finite-dimensional sector.
+Constructing the genuine seed representation and small frame/edge errors
+from arbitrary approximate representations remains open.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

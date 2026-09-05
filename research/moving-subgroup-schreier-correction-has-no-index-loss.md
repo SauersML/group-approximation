@@ -5,6 +5,7 @@ kind: claim
 title: Kazhdan correction from Schreier holonomy has no subgroup-index loss
 artifacts:
   - research/artifacts/moving-schreier-correction-audit-2026-09-04.md
+  - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -68,6 +69,34 @@ Thus the certificate supplies prescribed matrix-valued positive-definite
 approximants as well as flexible exact representations.  Positivity comes
 from the exact induced representation, not from averaging an approximate
 representation as though it were genuine.
+
+There is a rectangular version in which the genuine subgroup representation
+can be much smaller than the tuple being corrected. Let
+`pi:N->U(k)` be genuine and let `A_t:C^d->C^k` be arbitrary linear maps.
+For the same Schreier transitions define
+
+```text
+H=sum_t A_t^* A_t,
+zeta=||H-I_d||_(1,d),
+beta_rect^2=max_s (1/d)sum_t
+ ||pi(n(s,t))A_t-A_(t')U_s||_HS^2,
+gamma=beta_rect+2sqrt(zeta).                            (MSC7)
+```
+
+The norms inside the sum are unnormalized. There is an exact padded
+representation as in `(MSC2)`, with beta replaced everywhere by gamma,
+and a full-group-algebra ucp map with generator error at most gamma.
+Neither bound depends on k, m, or a lower singular-value bound for H.
+The maps need not be square, unitary, or a PVM. The original certificate
+is the special case `k=d`, `A_t=m^(-1/2)V_t^*`, and zeta zero.
+
+If `mk>=d`, the ucp dilation is the exact induced representation itself.
+If `mk<d`, first add `d-mk` trivial ambient dimensions before normalizing
+the stacked frame; the same estimates hold. Necessarily
+`zeta>=max(0,1-mk/d)`, so a small Gram error still records the dimension
+capacity needed for an almost isometric d-dimensional corner. Supplying
+small beta_rect and zeta and genuine k-dimensional subgroup holonomy is
+essential; curvature concentration alone does not produce these data.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

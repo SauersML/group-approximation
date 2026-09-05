@@ -5,6 +5,7 @@ kind: claim
 title: One Leavitt prefix depth gives a finite group while two depths generate EL3
 artifacts:
   - research/artifacts/opposite-root-character-interface-2026-09-05.md
+  - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
 distinct_from:
   degree-zero-leavitt-core-has-locally-finite-marked-models: that uses gauge degree zero for every coefficient; this allows nonzero coefficient degrees compensated by different root-row weights, including literal opposite roots and native branch arms.
   finite-positive-root-fragments-have-marked-regular-models: that stays in the positive unipotent radical; this permits directed root cycles and negative roots inside a weighted degree-zero matrix ring.
@@ -75,6 +76,43 @@ complete rank-three coefficient core. This is an elementary-group
 generation theorem, not a stability theorem or a claim about its entire
 Steinberg preimage. In particular, it does not supply a uniformly accurate
 matrix-size-dependent character table for that core.
+
+The full overlap of those two finite packets also has an explicit marked
+finite model. Set
+
+```text
+F_r=<X_u,Y_u,Z:|u|=r>,
+c_A=sum_(i,j) A_ij s_i t_j.
+```
+
+With the outer block indexed by `(1,3)` and the middle block by `2`,
+
+```text
+F_1 intersect F_2
+ = K={diag_((1,3),2)(C,c_A): C,A in SL_2(F_p)}
+ ~= SL_2(F_p) x SL_2(F_p).                             (WOP6)
+```
+
+For any common multiple `N` of `|F_1|` and `|F_2|`, their amplified regular
+permutation representations on `N` points can be identified on every
+element of `K`. Both complete chart tables and all branching multiplicity
+constraints on this actual overlap then hold exactly, while
+`tr_N(w)=0` and `||w-I||_2^2=2`. Thus these overlap constraints alone cannot
+force a dimension-independent marked-word kill inequality.
+
+There are short mixed identities outside that information. For either
+`j in {0,1}`, the eight-letter word
+
+```text
+R_j=[X_0,Y_(0j)] [X_1,Y_(1j)]^(-1)                    (WOP7)
+```
+
+is the identity in `EL_3(L)` but is nonidentity in `F_1 *_K F_2` with the
+actual embeddings `(WOP6)`. Its two commutators both equal `x_13(s_j)` in
+the Leavitt group. Thus a terminal estimate must use mixed chart placement
+information beyond the complete overlap branching tables. No sufficiency
+or uniform marked collapse is asserted for `(WOP7)` alone, and the finite
+gluing model is not asserted to satisfy the full mixed Leavitt relations.
 
 DERIVATION
 weighted-leavitt-opposite-root-prefix-proof
