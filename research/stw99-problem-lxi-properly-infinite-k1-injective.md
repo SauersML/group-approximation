@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw61-blanchard-preprint-firewall-2026-08-30.md
   - research/artifacts/stw61-free-envelope-compression-attack-2026-09-05.md
   - research/artifacts/stw61-mixed-corner-rotation-obstruction-2026-09-05.md
+  - research/artifacts/stw61-alternating-conjugate-shift-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -33,6 +34,14 @@ suffice for non-nullness in the limit. STW v2 continues to state
 LXI as open.
 
 ## Attempts
+
+The free-envelope candidate `A_LIX * T2` has a stably null witness,
+but its non-nullness remains unproved. The attached compression notes
+exclude ordinary properly infinite tensor factors and several explicit
+families of candidate contraction projections. The shift obstruction
+proves `||[v,w p w*]||=1` for every finite alternating product of integer
+powers of v and arbitrary Toeplitz-factor unitaries, and every nontrivial
+Toeplitz projection p. General mixed unitaries remain outside this result.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem
