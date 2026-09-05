@@ -130,10 +130,42 @@ restarts) to obtain the true minimum of the largest relator defect as a
 function of `d`.  The relator data and lifts computed here are reusable for
 both; nothing about the winding-number lifts depends on the optimizer.
 
+
+# Addendum (same day): an explicit dimension-four projective representation and a real optimizer control
+
+The metaplectic control above was only asserted to have exact finite-dimensional
+solutions; the optimizer never found one, so the control was incomplete.  An
+exact seed was therefore constructed for a related sector.  The eight root
+generators act on the sixteen theta characteristics of genus two by the affine
+formula `(m', m'') -> (D m' - C m'' + diag(CD^T), -B m' + A m'' + diag(AB^T))`
+mod `2`, checked to be a homomorphism on all generator pairs and to preserve
+parity; they permute the six odd characteristics, which identifies
+`Sp_4(Z) -> Sp_4(F_2) = S_6` explicitly.  The basic spin representation of the
+double cover of `S_6` (transposition `(ij)` mapped to the Clifford element of
+`(e_i - e_j)/sqrt 2` in `Cl(R^5) = M_4(C)`) pulled back along these
+permutations gives eight unitaries in `U(4)` (`experiments/maslov_sector/seed_spin_d4.json`)
+with `rho(r) = +-I` on every one of the `304,412` relators.  No sign
+rescaling of the generators makes every relator `+I`, so the projective class
+is nonzero, and no rescaling matches the universal-cover lift pattern mod two,
+so it is not the metaplectic class: it is a torsion class of
+`H^2(Sp_4(Z); Z/2)` distinct from the reduction of the universal-cover class.
+This is `sp4-spin-cover-projective-representation-in-dimension-four`.
+
+With the seed's own relator scalars as the target phases, the seed has energy
+exactly zero, and the optimizer returns to it from every perturbation
+`exp(i eps H)` with `eps <= 1`.  From random starts in the same sector, 24
+processes with 30 restarts each never came below energy `3.4`.  So the method
+finds exact solutions only inside a basin of radius about one around them.
+Its random-start minima in the Deligne sector (`0.38` at `d = 4` after 439
+restarts, against `0.70` for the metaplectic sector) are therefore not
+evidence about the gap, and this closes the numerical route for local search:
+a decisive experiment needs a global method or an exact metaplectic seed.
+Raw numbers are in `experiments/maslov_sector/RESULTS.txt`.
+
 # Files
 
 `experiments/maslov_sector/presentation.py` (BFS, relators, vectorized
-winding lifts), `lift_lattice_check.py`, `optimize.py`, `launch.sh`,
+winding lifts), `lift_lattice_check.py`, `optimize.py` (v4: staged descent, phase-file sectors, seed starts), `launch.sh`, `launch_d4_search.sh`, `launch_spin_control.sh`, `spin_seed.py`, `spin_phases.py`, `seed_spin_d4.json`,
 `lifted_relators_and_abelian_floor.py`, `lifted_relators.txt`, and
 `RESULTS.txt` with the raw numbers.  The `13 MB` relator file `pres6.json`
 lives on MSI at `/projects/standard/hsiehph/sauer354/maslov_experiment/` and

@@ -7,13 +7,18 @@ perturbed by exp(i eps H). Objective = mean_unlifted + w * mean_lifted (w = weig
 """
 import sys, json, time, itertools
 import numpy as np
-pres = json.load(open(sys.argv[1])); modulus = int(sys.argv[2]); init = sys.argv[3]
+pres = json.load(open(sys.argv[1])); sector_arg = sys.argv[2]; init = sys.argv[3]
+if sector_arg.startswith("file:"):
+    PH = json.load(open(sector_arg[5:]))["phases"]; modulus = 2
+else:
+    PH = None; modulus = int(sector_arg)
 d = int(sys.argv[4]); restarts = int(sys.argv[5]); iters = int(sys.argv[6]); n_unl = int(sys.argv[7]); seed = int(sys.argv[8])
 wlift = float(sys.argv[9]) if len(sys.argv) > 9 else 1.0
 eps0 = float(sys.argv[10]) if len(sys.argv) > 10 else 0.3
 rng = np.random.default_rng(seed)
-rels = [tuple(r) for r in pres["relators"]]; lifts = pres["lifts"]; GEN = [np.array(g) for g in pres["generators"]]
+rels = [tuple(r) for r in pres["relators"]]; lifts = pres["lifts"] if PH is None else PH; GEN = [np.array(g) for g in pres["generators"]]
 nz = [i for i, k in enumerate(lifts) if k % modulus != 0]
+if PH is not None and len(nz) > n_unl: nz = list(rng.choice(nz, size=n_unl, replace=False))
 z = [i for i, k in enumerate(lifts) if k % modulus == 0]
 if len(z) > n_unl: z = list(rng.choice(z, size=n_unl, replace=False))
 def classes_of(idx, maxlen=None):
@@ -88,7 +93,14 @@ def perm_rep(p):
             P[idx[w], idx[v]] = 1
         Us.append(P)
     return np.stack(Us)
+def load_seed(fn):
+    J = json.load(open(fn)); dd = J["d"]; arr = np.array(J["seed"], dtype=float)
+    U = arr[:, :, 0] + 1j*arr[:, :, 1]
+    return U.reshape(8, dd, dd)
 def initial(eps):
+    if init.startswith("seed:"):
+        base = load_seed(init[5:]); assert base.shape[1] == d
+        return np.stack([base[i] @ expiH(eps * rand_herm()) for i in range(8)])
     if init == "random":
         return np.stack([polar(rng.standard_normal((d,d)) + 1j*rng.standard_normal((d,d))) for _ in range(8)])
     base = np.stack([np.eye(d, dtype=complex)]*8) if init == "trivial" else perm_rep(2 if init == "perm2" else 3)
@@ -108,6 +120,6 @@ for rep in range(restarts):
         candU, st2 = descend(cand, CU, iters)
         if st2[0] < cur[0]: cur, curU = st2, candU
     e, eu, el, mu, ml = cur
-    print(f"d={d} m={modulus} init={init} w={wlift} restart={rep}: E={e:.6f} unlifted={eu:.6f} lifted={el:.6f} maxdef_unl={mu:.4f} maxdef_lift={ml:.4f} t={time.time()-t0:.0f}s", flush=True)
+    print(f"d={d} m={sector_arg} init={init} w={wlift} eps0={eps0} restart={rep}: E={e:.6f} unlifted={eu:.6f} lifted={el:.6f} maxdef_unl={mu:.4f} maxdef_lift={ml:.4f} t={time.time()-t0:.0f}s", flush=True)
     if best is None or e < best[0]: best = cur
-print(f"BEST d={d} m={modulus} init={init} w={wlift}: E={best[0]:.6f} unlifted={best[1]:.6f} lifted={best[2]:.6f} maxdef_unl={best[3]:.4f} maxdef_lift={best[4]:.4f}", flush=True)
+print(f"BEST d={d} m={sector_arg} init={init} w={wlift} eps0={eps0}: E={best[0]:.6f} unlifted={best[1]:.6f} lifted={best[2]:.6f} maxdef_unl={best[3]:.4f} maxdef_lift={best[4]:.4f}", flush=True)

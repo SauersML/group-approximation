@@ -28,3 +28,31 @@ optimize.py (staged length continuation 6/8/10/12, Riemannian descent with backt
     init perm2    d=16 : E=0.184101 unlifted=0.180208 lifted=0.003893 maxdef_unl=0.8902 maxdef_lift=0.0717
   Abelian relaxation (scalar phases, all 20 lifted + 3000 sampled unlifted relators):
     mod 2: best mean squared defect 0.026490, max defect 2.0000;  mod 3: best mean squared defect 0.016435, max defect 1.3874.
+
+--- Spin-cover seed and controls (later on 2026-09-05) ---
+spin_seed.py: affine action of Sp_4(Z) on theta characteristics, convention
+  (m1,m2) -> (D m1 - C m2 + diag(C D^T), -B m1 + A m2 + diag(A B^T)) mod 2, verified to be a homomorphism on all
+  generator pairs and to preserve parity; the eight root generators permute the six odd characteristics as
+  [[1,0,2,3,4,5],[0,1,3,2,4,5],[1,0,3,2,5,4],[1,0,5,4,3,2],[4,1,2,3,0,5],[0,1,5,3,4,2],[4,3,5,1,0,2],[4,5,3,2,0,1]].
+  Basic spin representation of the double cover of S_6 (Clifford algebra of the 5-dimensional standard representation,
+  gamma matrices sx x 1, sy x 1, sz x sx, sz x sy, sz x sz; transposition (ij) -> Gamma((e_i - e_j)/sqrt 2)) pulled back
+  along these permutations gives eight unitaries rho(s) in U(4), file seed_spin_d4.json.
+spin_phases.py: rho(r) is a scalar +-I for ALL 304,412 relators (nonscalar: 0). 153,397 relators give +I and 151,015 give -I.
+  No choice of generator signs makes all relators +I (the class is nonzero), and no choice matches the universal-cover lift
+  pattern mod 2 (the class is not the metaplectic class). Phases on the 20 lifted relators: 0 1 1 0 0 0 0 1 1 0 0 1 1 0 0 0 0 1 1 0.
+optimize.py (v4, file:spin_phases.json sector, d=4):
+  seed itself: E = 0 exactly on all relators (max defect 0).
+  basin test, seed perturbed by exp(i eps H) with random Hermitian H of operator norm one:
+    eps=0.3, 0.6, 1.0: every restart returns to E = 0 (max defect 0.0000).  (eps=1.5, 2.5 pending at the time of writing)
+  random starts, 30 restarts x 24 processes: after 22 logged restarts the best energy is 3.47 (unlifted 1.72, lifted 1.75),
+    i.e. random local search never approaches the exact solution that exists in this dimension.
+d=4 random-start searches (30 restarts x 24 processes each, staged, basin hops), at 436 (mod 2) and 439 (mod 3) restarts:
+  mod 2 best: E=0.7035 unlifted=0.6986 lifted=0.0049 maxdef_unl=1.477 maxdef_lift=0.110
+  mod 3 best: E=0.3776 unlifted=0.3700 lifted=0.0075 maxdef_unl=1.062 maxdef_lift=0.111
+seed-start runs at d=4 (init = spin seed perturbed):
+  mod 3, eps 0.3: E=1.671 unlifted=1.670 lifted=0.0010;  eps 1.0: E=1.686 unlifted=1.685 lifted=0.0008
+  mod 2, eps 1.0: E=1.718 unlifted=1.717 lifted=0.0006
+  (the spin seed has -I on half of the relators that these sectors require to be +I, so it is far from both sectors)
+Conclusion: the optimizer recovers exact solutions only inside a basin of radius about one around them and never from
+random starts, even in a sector where an exact 4-dimensional solution is in hand; its minima in the Deligne sector are
+therefore not evidence about the normalized-HS gap in either direction.
