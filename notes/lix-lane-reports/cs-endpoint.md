@@ -7,20 +7,43 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 ## 1. GREEN
 
-Probe round 3, `Build completed successfully` not reached, but the per-module
-verdicts are exact — the build ran 2996 jobs and only two modules logged
-failures:
+**`Build completed successfully (2996 jobs)`** — probe round 5, targets
 
-| module | round 3 |
+```
+GroupApproximation.Analysis.CStarKOne
+GroupApproximation.Analysis.CStarSymmetryComponent
+GroupApproximation.Analysis.CStarKOneInjectivityCriterion
+GroupApproximation.Analysis.LIXEndpointStatement
+GroupApproximation.Analysis.CStarKOneWhitehead
+```
+
+All five of the lane's `Analysis/` modules.  The `Built`, not `Replayed`,
+evidence is in the earlier rounds rather than in round 5, so both are recorded:
+
+| module | first genuinely built |
 |---|---|
-| `Analysis/CStarKOne` | **built** (job 2993 of 2996) |
-| `Analysis/CStarSymmetryComponent` | **built** |
-| `Analysis/CStarKOneInjectivityCriterion` | red, one error |
-| `Analysis/CStarKOneWhitehead` | red, 20 errors |
-| `Analysis/LIXEndpointStatement` | not reached (imports the criterion) |
+| `Analysis/CStarKOne` | round 3 (job ≤ 2993 of 2996; not among the two `✖`) |
+| `Analysis/CStarSymmetryComponent` | round 3, same |
+| `Analysis/CStarKOneInjectivityCriterion` | round 4, `✔ Built … (15s)` |
+| `Analysis/CStarKOneWhitehead` | round 4, `✔ Built … (18s)` |
+| `Analysis/LIXEndpointStatement` | round 4, `✔ Built … (9.4s)` |
 
-A job count for a clean run is not yet recorded, so nothing here is a green
-claim under the campaign rule.
+Round 4 also cleared `Manuscript/NinetyNineProblems/ProblemLIX`, which failed
+only because its import `Analysis/CStarSimple` (owned by `cs-simplicity`) is
+red — three errors, all diagnosed and sent to that lane.  Nothing in my own
+files is red.
+
+**Genericity check, done by reading the code with docstrings and comments
+stripped:** `KOne`, `kappa`, `K1Injective`, `K1Inj`, `not_k1Inj_of_witness`,
+`diagOne`, `HasK1InjWitness` and every other declaration in
+`Analysis/{CStarKOne, CStarKOneInjectivityCriterion, LIXEndpointStatement,
+CStarUnitaryComponent, SequentialGroupColimit, CStarMatrixBlockInclusion}`
+contain **zero** occurrences of the counterexample's vocabulary
+(`LIX`, `CP`, `Sph`, `cpSet`, `Eproj`, `Hproj`, `Clutch`, `Chern`, `STW`,
+`manuscript`, `counterexample`).  Two of the six import Mathlib only.  And
+`K1Inj` does pin the order: `LIXEndpointStatement.lean:63,66` supply
+`CStarAlgebra.spectralOrder` and `CStarAlgebra.spectralOrderedRing` as
+`local instance`s, so `K1Inj A` depends on nothing but `[CStarAlgebra A]`.
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -139,9 +162,11 @@ named targets).
   to cycles because `lake` builds a DAG of what it can reach.
 * The root imports **none** of the ten modules below yet.
 
-Append in this order (dependencies first); `ProblemLIX` will add two more
-lines once `cs-simplicity` and `cs-limit` land, and this list is regenerated
-then:
+Append in this order (dependencies first).  Twelve lines, not thirteen: the
+comparison is against the root's **transitive** closure, so `Meta/AxiomGuard`
+is not listed — the root already reaches it through
+`Manuscript/NinetyNineProblems/ProblemX` (root line 2157).  Comparing against
+the root's direct import list alone over-reports.
 
 ```
 import GroupApproximation.Analysis.SequentialGroupColimit
@@ -150,15 +175,22 @@ import GroupApproximation.Analysis.CStarMatrixBlockInclusion
 import GroupApproximation.Analysis.CStarKOne
 import GroupApproximation.Analysis.CStarKOneInjectivityCriterion
 import GroupApproximation.Analysis.LIXEndpointStatement
+import GroupApproximation.Analysis.CStarSimple
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
 import GroupApproximation.Analysis.CStarSymmetryComponent
 import GroupApproximation.KTheory.MatrixProjection
 import GroupApproximation.KTheory.BlockMoves
 import GroupApproximation.Analysis.CStarKOneWhitehead
 ```
 
+Lines 1 to 6 are green as of round 5 and can be wired now.  Lines 7 and 8 wait
+on `Analysis/CStarSimple` going green.  Lines 9 to 12 are the Whitehead lemma
+and its `KTheory` dependencies, also green as of round 5, and can be wired now
+or last.
+
 `CStarKOneWhitehead` is the Whitehead lemma (`K₁` is abelian).  Nothing in the
 endpoint chain needs it — `not_k1Inj_of_hasWitness` never uses commutativity —
-so it can be wired separately or last.
+so it can be wired separately.
 
 ## 4. TRAPS
 

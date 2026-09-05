@@ -45,7 +45,18 @@ with open(os.path.join(ROOT, PKG + ".lean"), encoding="utf-8") as f:
         g = IMP.match(line)
         if g and g.group(1).split(".")[0] == PKG:
             root_imports.append(g.group(1))
-root_set = set(root_imports)
+# The root's TRANSITIVE closure: a module already reached through another root
+# import needs no new line, and comparing against the direct import list alone
+# over-reports (`Meta/AxiomGuard` is reached through `ProblemX`).
+root_set = set()
+def close(u):
+    if u in root_set or u not in edges:
+        return
+    root_set.add(u)
+    for v in edges.get(u, []):
+        close(v)
+for m in root_imports:
+    close(m)
 
 # dangling
 dangling = sorted({d for m in edges for d in edges[m] if d not in files})
@@ -100,7 +111,7 @@ for t in targets:
     topo(t)
 
 new = [m for m in order if m not in root_set]
-print(f"closure of {targets}: {len(order)} modules, {len(new)} not yet imported by the root")
+print(f"closure of {targets}: {len(order)} modules, {len(new)} not reachable from the root")
 print("ordered list to append to GroupApproximation.lean (dependencies first):")
 for m in new:
     print(f"import {m}")
