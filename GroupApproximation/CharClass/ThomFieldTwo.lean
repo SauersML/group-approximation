@@ -66,6 +66,7 @@ theorem ne_zero_of_surjective_of_linearEquiv (eM : M ≃ₗ[R] R) (eN : N ≃ₗ
   refine hx (injective_of_surjective_of_linearEquiv eM eN hf ?_)
   rw [hfx, map_zero]
 
+omit [Finite R] in
 /-- **Exactness plus a vanishing cokernel term gives surjectivity.**  If
 `M →f→ N →g→ P` is exact at `N` (`range f = ker g`) and `P` is a subsingleton, then
 `f` is surjective.  Applied to the long exact sequence of the pair `(N, N ∖ z)` with

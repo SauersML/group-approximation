@@ -100,7 +100,7 @@ theorem delta_comp_faceOfFinset {m k : ℕ} (U : Finset (Fin (m + 1))) (h : U.ca
     (j : Fin (k + 2)) :
     SimplexCategory.δ j ≫ faceOfFinset U h
       = faceOfFinset (U.erase (U.orderEmbOfFin h j))
-          (by rw [Finset.card_erase_of_mem (U.orderEmbOfFin_mem h j), h]; rfl) := by
+          (by have := Finset.card_erase_of_mem (U.orderEmbOfFin_mem h j); omega) := by
   refine eq_faceOfFinset _ _ _ (fun x => ?_) ?_
   · show U.orderEmbOfFin h (j.succAbove x) ∈ U.erase (U.orderEmbOfFin h j)
     refine Finset.mem_erase.2 ⟨fun hEq => ?_, U.orderEmbOfFin_mem h _⟩
@@ -140,12 +140,10 @@ together with the cut points themselves. -/
 def cutV (S : Finset (Fin N)) : Finset (Fin N) :=
   Finset.univ.filter (fun x => x ∈ S ∨ cutRank S x % 2 = 1)
 
-@[simp]
 theorem mem_cutU {S : Finset (Fin N)} {x : Fin N} :
     x ∈ cutU S ↔ x ∈ S ∨ cutRank S x % 2 = 0 := by
   simp [cutU]
 
-@[simp]
 theorem mem_cutV {S : Finset (Fin N)} {x : Fin N} :
     x ∈ cutV S ↔ x ∈ S ∨ cutRank S x % 2 = 1 := by
   simp [cutV]

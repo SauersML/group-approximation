@@ -48,7 +48,7 @@ variable {r : ℕ}
 
 /-- The class `ξ^r + γ₁ ξ^{r−1} + ⋯ + γ_r`, written in a Leray–Hirsch basis
 `b = (1, ξ, …, ξ^r)` with `c i = γ_{r−i}`. -/
-def thomGenerator (b : Module.Basis (Fin (r + 1)) R M) (c : Fin r → R) : M :=
+noncomputable def thomGenerator (b : Module.Basis (Fin (r + 1)) R M) (c : Fin r → R) : M :=
   b (Fin.last r) + ∑ i, c i • b (Fin.castSucc i)
 
 section Coordinates
@@ -63,15 +63,17 @@ theorem coord_last_basis_last : b.coord (Fin.last r) (b (Fin.last r)) = 1 := by
 
 theorem coord_last_basis_castSucc (i : Fin r) :
     b.coord (Fin.last r) (b (Fin.castSucc i)) = 0 := by
-  simp [Module.Basis.coord_apply, Module.Basis.repr_self_apply, (Fin.castSucc_lt_last i).ne]
+  simp [Module.Basis.coord_apply, (Fin.castSucc_lt_last i).ne]
 
 /-- The top coordinate of the Thom generator is `1`: it is a *monic* lift of the
 Chern relation. -/
 theorem coord_last_thomGenerator (c : Fin r → R) :
     b.coord (Fin.last r) (thomGenerator b c) = 1 := by
-  rw [thomGenerator, map_add, map_sum, coord_last_basis_last b,
-    Finset.sum_congr rfl (fun i (_ : i ∈ Finset.univ) => by
-      rw [map_smul, coord_last_basis_castSucc b i, smul_zero]),
+  have hsum : ∑ i : Fin r, b.coord (Fin.last r) (c i • b (Fin.castSucc i))
+      = ∑ _i : Fin r, (0 : R) :=
+    Finset.sum_congr rfl fun i _ => by
+      rw [map_smul, coord_last_basis_castSucc b i, smul_zero]
+  rw [thomGenerator, map_add, map_sum, coord_last_basis_last b, hsum,
     Finset.sum_const_zero, add_zero]
 
 theorem coord_last_smul_thomGenerator (c : Fin r → R) (a : R) :
@@ -85,8 +87,10 @@ theorem eq_sum_castSucc_of_coord_last_eq_zero {y : M}
     y = ∑ i : Fin r, b.coord (Fin.castSucc i) y • b (Fin.castSucc i) := by
   have h1 : ∑ j : Fin (r + 1), b.repr y j • b j = y := b.sum_repr y
   rw [Fin.sum_univ_castSucc, repr_eq_coord b y (Fin.last r), h0, zero_smul, add_zero] at h1
-  rw [← h1]
-  exact Finset.sum_congr rfl fun i _ => by rw [repr_eq_coord b y (Fin.castSucc i)]
+  have h2 : ∑ i : Fin r, b.coord (Fin.castSucc i) y • b (Fin.castSucc i)
+      = ∑ i : Fin r, b.repr y (Fin.castSucc i) • b (Fin.castSucc i) :=
+    Finset.sum_congr rfl fun i _ => by rw [repr_eq_coord b y (Fin.castSucc i)]
+  exact (h2.trans h1).symm
 
 end Coordinates
 
@@ -102,16 +106,16 @@ theorem surjective_of_basis (hcast : ∀ i : Fin r, ρ (b (Fin.castSucc i)) = b'
     Function.Surjective ρ := by
   rw [← LinearMap.range_eq_top, eq_top_iff, ← b'.span_eq, Submodule.span_le]
   rintro _ ⟨i, rfl⟩
-  exact ⟨b (Fin.castSucc i), hcast i⟩
+  exact SetLike.mem_coe.2 (LinearMap.mem_range.2 ⟨b (Fin.castSucc i), hcast i⟩)
 
 /-- **The Thom generator lies in the kernel.**  This is the Chern relation
 `ξ^r + γ₁ ξ^{r−1} + ⋯ + γ_r = 0` in `H^*(P(E))`. -/
 theorem map_thomGenerator (hcast : ∀ i : Fin r, ρ (b (Fin.castSucc i)) = b' i)
     (hlast : ρ (b (Fin.last r)) = -∑ i, c i • b' i) :
     ρ (thomGenerator b c) = 0 := by
-  rw [thomGenerator, map_add, map_sum, hlast,
-    Finset.sum_congr rfl (fun i (_ : i ∈ Finset.univ) => by rw [map_smul, hcast i]),
-    neg_add_cancel]
+  have hsum : ∑ i : Fin r, ρ (c i • b (Fin.castSucc i)) = ∑ i : Fin r, c i • b' i :=
+    Finset.sum_congr rfl fun i _ => by rw [map_smul, hcast i]
+  rw [thomGenerator, map_add, map_sum, hsum, hlast, neg_add_cancel]
 
 /-- An element of the kernel whose top coordinate vanishes is zero: the first `r` basis
 vectors of `M` map to a basis of `M'`. -/
@@ -121,8 +125,10 @@ theorem eq_zero_of_coord_last_eq_zero (hcast : ∀ i : Fin r, ρ (b (Fin.castSuc
   have hsum : ∑ i : Fin r, b.coord (Fin.castSucc i) y • b' i = 0 := by
     have hy' : ρ (∑ i : Fin r, b.coord (Fin.castSucc i) y • b (Fin.castSucc i)) = 0 := by
       rw [← hexp]; exact hy
-    rw [map_sum, Finset.sum_congr rfl
-      (fun i (_ : i ∈ Finset.univ) => by rw [map_smul, hcast i])] at hy'
+    have hmap : ∑ i : Fin r, ρ (b.coord (Fin.castSucc i) y • b (Fin.castSucc i))
+        = ∑ i : Fin r, b.coord (Fin.castSucc i) y • b' i :=
+      Finset.sum_congr rfl fun i _ => by rw [map_smul, hcast i]
+    rw [map_sum, hmap] at hy'
     exact hy'
   have hind : ∀ i : Fin r, b.coord (Fin.castSucc i) y = 0 := fun i =>
     linearIndependent_iff'.1 b'.linearIndependent Finset.univ _ hsum i (Finset.mem_univ i)
@@ -154,12 +160,14 @@ theorem existsUnique_smul_thomGenerator (hcast : ∀ i : Fin r, ρ (b (Fin.castS
 theorem ker_eq_span_thomGenerator (hcast : ∀ i : Fin r, ρ (b (Fin.castSucc i)) = b' i)
     (hlast : ρ (b (Fin.last r)) = -∑ i, c i • b' i) :
     LinearMap.ker ρ = Submodule.span R {thomGenerator b c} := by
-  refine le_antisymm (fun x hx => ?_) ?_
-  · exact Submodule.mem_span_singleton.2
+  apply le_antisymm
+  · rw [SetLike.le_def]
+    intro x hx
+    exact Submodule.mem_span_singleton.2
       ⟨b.coord (Fin.last r) x,
         (eq_coord_last_smul_thomGenerator b b' c hcast hlast (LinearMap.mem_ker.1 hx)).symm⟩
   · rw [Submodule.span_le, Set.singleton_subset_iff]
-    exact LinearMap.mem_ker.2 (map_thomGenerator b b' c hcast hlast)
+    exact SetLike.mem_coe.2 (LinearMap.mem_ker.2 (map_thomGenerator b b' c hcast hlast))
 
 end Restriction
 
@@ -174,12 +182,13 @@ injective with image `ker ρ`, there is exactly one class `u` restricting to
 Injectivity of `jm` is the long exact sequence of the pair together with
 `surjective_of_basis` in the previous degree; the image condition is exactness at
 `H^*(P(E ⊕ 1))`. -/
-theorem existsUnique_lift {w : M} (jm : P →ₗ[R] M) (hinj : Function.Injective jm)
+theorem existsUnique_lift {ρ : M →ₗ[R] M'} {w : M} (jm : P →ₗ[R] M)
+    (hinj : Function.Injective jm)
     (hrange : LinearMap.range jm = LinearMap.ker ρ) (hw : ρ w = 0) :
     ∃! u : P, jm u = w := by
   have hmem : w ∈ LinearMap.range jm := by
     rw [hrange]; exact LinearMap.mem_ker.2 hw
-  obtain ⟨u, hu⟩ := hmem
+  obtain ⟨u, hu⟩ := LinearMap.mem_range.1 hmem
   exact ⟨u, hu, fun v hv => hinj (hv.trans hu.symm)⟩
 
 /-- **`H^*(pair)` is free of rank one on the Thom class.**  Transporting
@@ -196,7 +205,7 @@ theorem existsUnique_smul_of_injective_of_range
     ∃! a : R, x = a • u := by
   have hxker : ρ (jm x) = 0 := by
     have : jm x ∈ LinearMap.ker ρ := by
-      rw [← hrange]; exact ⟨x, rfl⟩
+      rw [← hrange]; exact LinearMap.mem_range.2 ⟨x, rfl⟩
     exact LinearMap.mem_ker.1 this
   obtain ⟨a, ha, hauniq⟩ := existsUnique_smul_thomGenerator b b' c hcast hlast hxker
   refine ⟨a, hinj ?_, ?_⟩

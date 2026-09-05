@@ -144,8 +144,10 @@ def puncturedToTotal (p : Bundle X ι) : C(Punctured p, Total p) :=
 /-- The punctured total space is an open subspace of the total space. -/
 theorem isOpen_puncturedSet_in_total (p : Bundle X ι) :
     IsOpen {v : Total p | (v : X × (ι → ℂ)).2 ≠ 0} := by
-  refine IsOpen.preimage (continuous_snd.comp continuous_subtype_val) ?_
-  exact isOpen_compl_singleton
+  have h : {v : Total p | (v : X × (ι → ℂ)).2 ≠ 0}
+      = (fun v : Total p => (v : X × (ι → ℂ)).2) ⁻¹' ({(0 : ι → ℂ)}ᶜ) := rfl
+  rw [h]
+  exact IsOpen.preimage (continuous_snd.comp continuous_subtype_val) isOpen_compl_singleton
 
 /-! ### The projective bundle -/
 
@@ -154,13 +156,14 @@ theorem isOpen_puncturedSet_in_total (p : Bundle X ι) :
 The three equations on `q` are literally the three equations of
 `STW59.cpSet`, and the fourth is the absorption `p x · q = q`. -/
 def projSet (p : Bundle X ι) : Set (X × Matrix ι ι ℂ) :=
-  {z | z.2ᴴ = z.2 ∧ z.2 * z.2 = z.2 ∧ z.2.trace = 1 ∧ p z.1 * z.2 = z.2}
+  {z | (z.2)ᴴ = z.2 ∧ z.2 * z.2 = z.2 ∧ (z.2).trace = 1 ∧ p z.1 * z.2 = z.2}
 
 /-- The projective bundle as a topological space. -/
 abbrev Proj (p : Bundle X ι) : Type := ↥(projSet p)
 
 theorem mem_projSet_iff {p : Bundle X ι} {z : X × Matrix ι ι ℂ} :
-    z ∈ projSet p ↔ z.2ᴴ = z.2 ∧ z.2 * z.2 = z.2 ∧ z.2.trace = 1 ∧ p z.1 * z.2 = z.2 :=
+    z ∈ projSet p ↔
+      (z.2)ᴴ = z.2 ∧ z.2 * z.2 = z.2 ∧ (z.2).trace = 1 ∧ p z.1 * z.2 = z.2 :=
   Iff.rfl
 
 theorem isStarProjection_of_mem_projSet {p : Bundle X ι} {z : X × Matrix ι ι ℂ}
@@ -182,17 +185,17 @@ theorem mem_projSet_of_lineOf {p : Bundle X ι} {x : X} {u : ι → ℂ} (hu : u
 
 theorem isClosed_projSet (p : Bundle X ι) : IsClosed (projSet p) := by
   have hsnd : Continuous fun z : X × Matrix ι ι ℂ => z.2 := continuous_snd
-  have h1 : IsClosed {z : X × Matrix ι ι ℂ | z.2ᴴ = z.2} :=
+  have h1 : IsClosed {z : X × Matrix ι ι ℂ | (z.2)ᴴ = z.2} :=
     isClosed_eq hsnd.matrix_conjTranspose hsnd
   have h2 : IsClosed {z : X × Matrix ι ι ℂ | z.2 * z.2 = z.2} :=
     isClosed_eq (hsnd.matrix_mul hsnd) hsnd
-  have h3 : IsClosed {z : X × Matrix ι ι ℂ | z.2.trace = 1} :=
+  have h3 : IsClosed {z : X × Matrix ι ι ℂ | (z.2).trace = 1} :=
     isClosed_eq hsnd.matrix_trace continuous_const
   have h4 : IsClosed {z : X × Matrix ι ι ℂ | p z.1 * z.2 = z.2} :=
     isClosed_eq ((p.continuous.comp continuous_fst).matrix_mul hsnd) hsnd
-  have hset : projSet p = {z : X × Matrix ι ι ℂ | z.2ᴴ = z.2} ∩
+  have hset : projSet p = {z : X × Matrix ι ι ℂ | (z.2)ᴴ = z.2} ∩
       ({z : X × Matrix ι ι ℂ | z.2 * z.2 = z.2} ∩
-        ({z : X × Matrix ι ι ℂ | z.2.trace = 1} ∩
+        ({z : X × Matrix ι ι ℂ | (z.2).trace = 1} ∩
           {z : X × Matrix ι ι ℂ | p z.1 * z.2 = z.2})) := rfl
   rw [hset]
   exact h1.inter (h2.inter (h3.inter h4))
@@ -248,7 +251,8 @@ variable {X : Type} [TopologicalSpace X] {d : ℕ}
 
 /-- The projective bundle, presented inside `X × CP d`. -/
 def projSetCP (p : Bundle X (Fin (d + 1))) : Set (X × CP d) :=
-  {z | p z.1 * (z.2 : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) = (z.2 : Matrix _ _ ℂ)}
+  {z | p z.1 * (z.2 : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)
+      = (z.2 : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)}
 
 /-- **`P(p)` is a subspace of `X × ℂP^{K-1}`**, exactly as the campaign's design
 note asks.  The homeomorphism is bookkeeping: the four equations cutting out
@@ -261,14 +265,12 @@ def projHomeoCP (p : Bundle X (Fin (d + 1))) : Proj p ≃ₜ ↥(projSetCP p) wh
     (w : X × CP d).2.2.1, (w : X × CP d).2.2.2.1, (w : X × CP d).2.2.2.2, w.2⟩
   left_inv _ := rfl
   right_inv _ := rfl
-  continuous_toFun := by
-    refine Continuous.subtype_mk ?_ _
-    exact ((continuous_fst.comp continuous_subtype_val).prodMk
-      (((continuous_snd.comp continuous_subtype_val)).subtype_mk _))
-  continuous_invFun := by
-    refine Continuous.subtype_mk ?_ _
-    exact (continuous_fst.comp continuous_subtype_val).prodMk
-      (continuous_subtype_val.comp (continuous_snd.comp continuous_subtype_val))
+  continuous_toFun :=
+    (((continuous_fst.comp continuous_subtype_val)).prodMk
+      ((continuous_snd.comp continuous_subtype_val).subtype_mk _)).subtype_mk _
+  continuous_invFun :=
+    ((continuous_fst.comp continuous_subtype_val).prodMk
+      (continuous_subtype_val.comp (continuous_snd.comp continuous_subtype_val))).subtype_mk _
 
 /-- The classifying map of the tautological line: `P(p) → ℂP^{K-1}`. -/
 def tautClassifying (p : Bundle X (Fin (d + 1))) : C(Proj p, CP d) :=

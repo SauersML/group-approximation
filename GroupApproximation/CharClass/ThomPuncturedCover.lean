@@ -62,7 +62,7 @@ theorem mem_rightPunctured (y₀ : Y) (p : X × Y) :
 /-- **The two pieces cover the punctured product.** -/
 theorem leftPunctured_union_rightPunctured (x₀ : X) (y₀ : Y) :
     leftPunctured x₀ Y ∪ rightPunctured X y₀ = ({(x₀, y₀)}ᶜ : Set (X × Y)) := by
-  rw [← singleton_prod_singleton, compl_prod_eq_union]
+  rw [leftPunctured, rightPunctured, ← singleton_prod_singleton, compl_prod_eq_union]
 
 /-- **The intersection of the two pieces is the product of the punctured factors.** -/
 theorem leftPunctured_inter_rightPunctured (x₀ : X) (y₀ : Y) :

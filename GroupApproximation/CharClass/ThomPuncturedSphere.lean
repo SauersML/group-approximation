@@ -34,7 +34,7 @@ theorem stereographic_source_eq_compl (v : sphere (0 : E) 1) :
 
 /-- **Stereographic projection identifies a punctured sphere with a real vector space.**
 The vector space is the orthogonal complement of the puncture. -/
-def spherePuncturedHomeo (v : sphere (0 : E) 1) :
+noncomputable def spherePuncturedHomeo (v : sphere (0 : E) 1) :
     ↥({v}ᶜ : Set ↥(sphere (0 : E) 1)) ≃ₜ ↥((ℝ ∙ (v : E))ᗮ) :=
   (Homeomorph.setCongr (stereographic_source_eq_compl v).symm).trans
     ((stereographic (norm_eq_of_mem_sphere v)).toHomeomorphSourceTarget.trans

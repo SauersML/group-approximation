@@ -40,7 +40,8 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 def homeomorphCompl (e : X ≃ₜ Y) (a : X) :
     ↥({a}ᶜ : Set X) ≃ₜ ↥({e a}ᶜ : Set Y) where
   toFun x := ⟨e x, fun h => x.2 (e.injective h)⟩
-  invFun y := ⟨e.symm y, fun h => y.2 (by rw [← h, e.apply_symm_apply])⟩
+  invFun y := ⟨e.symm y, fun h =>
+    y.2 ((e.apply_symm_apply (y : Y)).symm.trans (congrArg (e : X → Y) h))⟩
   left_inv x := Subtype.ext (e.symm_apply_apply _)
   right_inv y := Subtype.ext (e.apply_symm_apply _)
   continuous_toFun := (e.continuous.comp continuous_subtype_val).subtype_mk _
@@ -50,6 +51,7 @@ def homeomorphCompl (e : X ≃ₜ Y) (a : X) :
 theorem homeomorphCompl_apply_coe (e : X ≃ₜ Y) (a : X) (x : ↥({a}ᶜ : Set X)) :
     ((homeomorphCompl e a x : ↥({e a}ᶜ : Set Y)) : Y) = e x := rfl
 
+omit [TopologicalSpace X] in
 /-- Inside a subspace `D` containing `z`, the complement of the point `⟨z, hz⟩` is the
 preimage of the complement of `z`.  This is what lines the chart pair `(D, D ∖ z)` up
 with the excision statement of `cc-relative`. -/
