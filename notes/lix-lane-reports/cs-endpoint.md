@@ -40,7 +40,10 @@ stripped:** `KOne`, `kappa`, `K1Injective`, `K1Inj`, `not_k1Inj_of_witness`,
 CStarUnitaryComponent, SequentialGroupColimit, CStarMatrixBlockInclusion}`
 contain **zero** occurrences of the counterexample's vocabulary
 (`LIX`, `CP`, `Sph`, `cpSet`, `Eproj`, `Hproj`, `Clutch`, `Chern`, `STW`,
-`manuscript`, `counterexample`).  Two of the six import Mathlib only.  And
+`manuscript`, `counterexample`).  **Three** of the six —
+`SequentialGroupColimit`, `CStarUnitaryComponent`, `CStarMatrixBlockInclusion`
+— have zero project imports at all, counted with
+`grep -c '^import GroupApproximation'` rather than from memory.  And
 `K1Inj` does pin the order: `LIXEndpointStatement.lean:63,66` supply
 `CStarAlgebra.spectralOrder` and `CStarAlgebra.spectralOrderedRing` as
 `local instance`s, so `K1Inj A` depends on nothing but `[CStarAlgebra A]`.

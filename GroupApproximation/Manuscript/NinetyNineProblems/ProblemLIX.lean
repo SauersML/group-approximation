@@ -42,8 +42,9 @@ the simple separable nuclear class; injectivity is the direction STW call open.
   group (`unitaryComponentOne`, built on Mathlib's `Subgroup.pathComponentOne`),
   and `K₁(A)` is the colimit of `U(Mₙ(A))/U₀(Mₙ(A))` along `u ↦ diag (u, 1)`
   (`Analysis/CStarKOne`).  Both are generic: no declaration in that chain
-  mentions any particular algebra, and the two modules under it import only
-  Mathlib.
+  mentions any particular algebra, and all three modules under `CStarKOne`
+  --- `SequentialGroupColimit`, `CStarUnitaryComponent` and
+  `CStarMatrixBlockInclusion` --- import Mathlib and nothing else.
 
 ## Two recorded choices
 
