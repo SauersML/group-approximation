@@ -1,6 +1,21 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including universal spectral-host domination,
+The latest snapshot, including the sequential microscopic extraction
+ledger, the conditional linear spectral seed criterion, and the exact
+root-torsion counterexample to the uncorrected averaged relation ledger,
+passes with **14,154 nodes and no errors, warnings, or duplicate candidates**
+in 11.348 seconds. Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/microscopic-extraction-cairn-validation-2026-09-05.json`.
+All eight edited theorem, root, and proof-artifact files were compared
+byte for byte with the validated archive. Independent mathematical reviews
+checked the trace-deficiency ledger, Gronwall iteration and terminal
+flexible correction, both arithmetic counterexample variants, the exact
+averaging formulas, and the individual spectral divisibility assertions.
+The seed estimate and the nonhyperlinear existence theorem remain open.
+
+The preceding snapshot, including universal spectral-host domination,
 the quotient-support obstruction, the index-free count perturbation
 estimate, and the conditional maximal-residual theorem, passes with
 **14,146 nodes and no errors, warnings, or duplicate candidates** in

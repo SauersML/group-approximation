@@ -14,6 +14,8 @@ artifacts:
   - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
   - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
+  - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
+  - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -34,6 +36,30 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Root torsion does not supply the averaged ledger (2026-09-05).**
+  `(MSC20)` in `moving-subgroup-schreier-correction-has-no-index-loss`
+  gives canonical approximate SL5 tuples with exact universal root
+  torsion and QRC curvature on an invariant quadratic-rank support,
+  but their power-defined root commutator ledger over Z/qZ has mean
+  squared error tending to 2. The stronger version already satisfies
+  the individual bounded root-order and eigenspace divisibility tests,
+  so independent nearest-root rounding changes nothing. All fixed
+  SL5 relations are approximate; no full relation exactness is assumed.
+  A coherent phase correction of size o(delta) repairs the averaged
+  ledger, and a delta-sized correction makes the tuple exact. This
+  closes that automatic torsion-to-ledger implication without providing
+  instability or excluding a jointly corrected root-map construction.
+- **One vector with a linear modulus would suffice (2026-09-05).**
+  `(MSC19)` needs only
+  `min Spec(Delta_(Q_(2d),U))<=L^2 delta(U)^2` uniformly for all
+  sufficiently small-defect tuples. The new sequential extraction
+  theorem controls total squared error by `3 sum_i xi_i^2 r_i`, with
+  no factor for the number of steps. A discrete Gronwall estimate then
+  permits arbitrarily small nonzero exact corners to be removed until
+  the whole tuple is corrected flexibly. This solves the error-accounting
+  problem for microscopic extraction under the stated linear seed
+  estimate. The estimate itself is unproved. Qualitative nonzero seeds
+  provide no rate that keeps all intermediate residuals approximate.
 - **Universal spectral host and residual exclusion (2026-09-05).**
   `(MSC16)` proves that Q_(2d) captures every possible low-energy type
   from every finite quotient whenever `2h epsilon^2/kappa^2<=1/2`.

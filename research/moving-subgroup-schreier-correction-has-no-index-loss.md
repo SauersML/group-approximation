@@ -17,6 +17,8 @@ artifacts:
   - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
   - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
+  - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
+  - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -403,6 +405,63 @@ every vanishing HS perturbation, including QRC changes. This is a
 conditional description of a possible residual, not an existence proof
 for it or a uniform positive spectral gap. A contradiction still needs
 a theorem forcing positive count from its defining relations.
+
+There is a quantitative way to bypass a positive count in one step.
+Fix an elementary finite presentation of SL5 and let delta(U) be its
+maximum normalized-HS defining-relator defect. Suppose some L>0 and
+delta_*>0, uniformly in the input dimension n, satisfy
+
+```text
+min Spec(Delta_(Q_(2n),U))<=L^2 delta(U)^2
+        whenever 0<delta(U)<delta_*.                  (MSC19)
+```
+
+Then SL5 is flexibly HS-stable. This hypothesis requires only one
+low-energy vector, not a positive fraction of the input dimension.
+The uniform linear relation between its cutoff and delta is essential
+to the proof. Mere existence of a nonzero spectral space at some
+cutoff tending to zero does not supply it.
+
+Indeed `(MSC14)` extracts a nonzero exact corner with retained-column
+error at most K delta(U) normalized by its rank, or gives a full
+flexible correction with linear error and quadratic padding. Iterate
+on complementary polar tuples. The separate theorem
+`sequential-exact-corner-extraction-has-quadratic-error-ledger` bounds
+the total squared HS change by `3 sum_i xi_i^2 r_i`, independently of
+the number of extractions. A discrete Gronwall bound keeps every
+positive-density remainder within the small-defect regime. Thus even
+rank-one extractions suffice under `(MSC19)`. That spectral estimate
+remains unproved; the iteration theorem does not produce the first
+vector or its required rate.
+
+A direct root-torsion route to a finite-ring averaged relation ledger
+fails, even for canonical approximate SL5 tuples already in QRC's hard
+curvature normal form. There are such tuples with an exactly reducing
+projection P, `tr_d(P)~delta^2/4`, complementary relator error
+`o(delta)`, and exact `U_ij^q=I` for
+`q=q_(2d)=lcm(1,...,floor((2d)^(1/3)))`, but
+
+```text
+(1/q^2) sum_(a,b mod q)
+ ||[U_12^a,U_23^b]U_13^(-ab)-I||_(2,d)^2 -> 2.       (MSC20)
+```
+
+Here `[a,b]=a^(-1)b^(-1)ab`. Every fixed SL5 relation is asymptotically
+satisfied, including the Weyl relations; root torsion is exact. In one
+version P has rank one. In another, every root eigenvalue already has
+order at most `floor((2d)^(1/3))`, and each order-s eigenspace has
+dimension divisible by `s^3`. Independent nearest-root rounding to
+either this allowed spectral set or the q-th roots fixes that second
+tuple and leaves `(MSC20)` unchanged.
+
+The construction is a phase twist of an exact regular congruence
+representation plus a vanishing-density bad block. Removing the phase
+costs `o(delta)` and makes the displayed average tend to zero; correcting
+the bad block gives an exact representation at total cost delta. Thus
+`(MSC20)` refutes only an automatic passage from root torsion and QRC
+data to the power-defined averaged ledger. It supplies no instability
+example and does not rule out coherent phase correction, a different
+joint construction of root maps, or the spectral estimate `(MSC19)`.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

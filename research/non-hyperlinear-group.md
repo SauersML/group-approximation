@@ -28,6 +28,8 @@ artifacts:
   - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
   - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
+  - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
+  - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -140,6 +142,32 @@ spread across almost all cosets, even when the original tuple is exact.
 Short local polynomial filters therefore cannot produce the missing
 count. The remaining argument must use global information from the
 relations; no contradiction for such a residual has been proved.
+
+The new sequential extraction theorem offers another quantitative
+possibility. Approximate exact corners of ranks r_i can be removed with
+total squared HS error at most `3 sum_i xi_i^2 r_i`, even for arbitrarily
+many tiny corners. Complementary polar corrections have quadratic trace
+cost, so their effects can be summed without multiplying by the number
+of steps. Consequently a uniform one-vector estimate
+`min Spec(Delta_(Q_(2d),U))<=L^2 delta(U)^2` would suffice for flexible
+stability: a discrete Gronwall argument keeps successive remainders
+within the seed regime. That estimate is still unproved. Qualitative
+nonzero seeds alone do not provide the rate needed for the iteration.
+
+An arithmetic method counterexample now limits how that seed might be
+constructed. `(MSC20)` in
+`moving-subgroup-schreier-correction-has-no-index-loss` gives canonical
+approximate SL5 tuples with exact universal root torsion and invariant
+quadratic-rank hard-curvature supports, but a power-defined root ledger
+over Z/qZ has mean squared error tending to 2. Even the individual
+bounded spectral orders and Heisenberg eigenspace divisibility tests
+can already hold, so independent root rounding supplies no repair.
+All fixed SL5 relations remain approximate. These tuples are explicitly
+close to exact representations, and a phase change of size o(delta)
+repairs the averaged ledger. The result excludes an automatic passage
+from torsion and QRC data to that ledger; it proves neither instability
+nor nonhyperlinear existence and leaves coherent global constructions
+open.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

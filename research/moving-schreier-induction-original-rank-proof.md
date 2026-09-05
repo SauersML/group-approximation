@@ -6,6 +6,7 @@ title: Normalize the induced corner by its original rank and retain orthogonalit
 target: moving-subgroup-schreier-correction-has-no-index-loss
 requires:
   - residual-finite-regularization-removes-the-weak-ucp-quantifier
+  - sequential-exact-corner-extraction-has-quadratic-error-ledger
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
@@ -19,6 +20,8 @@ artifacts:
   - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
   - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
   - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
+  - research/artifacts/microscopic-schreier-extraction-dimension-ledger-2026-09-05.md
+  - research/artifacts/universal-root-torsion-does-not-control-averaged-relations-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -751,3 +754,155 @@ quotients for sufficiently small t. Equation `(MSC18)` then proves
 invariance under vanishing HS changes. The linked residual artifact
 records every subsequence and fixed-cutoff quantifier. Neither the
 iterated limit nor its proof asserts a fixed positive spectral gap.
+
+For `(MSC19)`, choose epsilon=L delta(U). At sufficiently small defect,
+`a=2h epsilon^2/kappa^2<=1/2`. The nonzero low-energy space in `(MSC14)`
+then has a retained-column correction bound
+`xi<=sqrt(h)(1+4/kappa)L delta(U)` and, if its count exceeds the input
+dimension, padding at most `4h L^2 delta(U)^2/kappa^2`. Choose a single
+constant K bounding these two coefficients. Thus every sufficiently
+small positive-defect tuple supplies a nonzero exact corner with error
+at most K delta(U) relative to its rank, or a full flexible correction
+with error at most K delta(U) and relative padding at most K delta(U)^2.
+
+Fix theta in (0,1), an original dimension d and defect delta_0. Extract
+such corners and use unitary polar completions on the remaining spaces
+until their dimension is at most theta d. Stop earlier if the remaining
+tuple is exact or receives a full flexible correction. Write r_i for
+the extracted ranks, delta_i for the current normalized defect, and
+
+```text
+A_i=(1/d)sum_(l<i) xi_l^2 r_l,       xi_l=K delta_l.
+```
+
+By the required sequential extraction ledger, the original tuple is
+within sqrt(3A_i) of the block tuple consisting of all extracted exact
+representations and the current residual. If ell is the longest
+defining-relator length, fixed-word telescoping and the exactness of
+the extracted blocks give, as long as the residual dimension exceeds
+theta d,
+
+```text
+delta_i <=(delta_0+ell sqrt(3A_i))/sqrt(theta),
+delta_i^2 <=(2/theta)(delta_0^2+3ell^2 A_i).
+```
+
+Set B_i=`delta_0^2+3ell^2 A_i`. Its increments satisfy
+
+```text
+B_(i+1)<=B_i(1+(6K^2 ell^2/theta)(r_i/d)),
+B_i<=delta_0^2 exp(6K^2 ell^2/theta),
+```
+
+since the removed ranks sum to at most d. For each fixed theta this
+bound makes every intermediate delta_i small when delta_0 is small,
+so it verifies the seed threshold throughout the iteration. Each step
+removes at least one dimension, hence there are at most d steps. On
+reaching a remainder of size at most theta d, fill it trivially. The
+ledger gives squared normalized generator error at most
+`C_theta delta_0^2+4theta`. In the terminal flexible alternative, combine
+that one residual correction with the already exact blocks. The same
+bound and one final triangle inequality give error O_theta(delta_0)
+and relative padding O_theta(delta_0^2). An exact residual is immediate.
+First let delta_0 tend to zero and then theta tend to zero. This proves
+flexible stability under the stated uniform microscopic seed estimate.
+
+The ledger controls accumulated error even for arbitrarily many tiny
+corners, but does not justify a qualitative seed iteration by itself.
+Without a relation between xi_i and delta_i, the next residual need
+not stay within a vanishing-defect regime. Nor is a vanishing-density
+extracted corner necessarily canonical. Positive-density remainders
+are canonical only after the accumulated ledger tends to zero, by
+approximate reduction and the ICC conditional-expectation argument.
+The linked artifact separates these rate and trace issues explicitly.
+
+For `(MSC20)`, fix the twenty elementary generators x_ij of SL5 and
+the presentation with commuting-root relators, root relators
+`[x_ij,x_jk]x_ik^(-1)`, and `(x_12 x_21^(-1) x_12)^4`.
+Use `[a,b]=a^(-1)b^(-1)ab`; this precise presentation appears in
+[Biswas, *Uniform two-generator presentations for SL_n(Z) with polynomial
+complexity bounds*, Eq. (1)](https://arxiv.org/html/2604.17777v1#S1.E1).
+The Weyl relator uses no x_13.
+
+For odd primes p tending to infinity, let rho_p be the regular
+representation of Q_p=SL5(F_p), N=|Q_p|, d=N+m, and
+`q=lcm(1,...,n)`, `n=floor((2d)^(1/3))`. The upper unitriangular
+subgroup has order p^10 and the diagonal sign subgroup has order 16,
+so `p^10|N` and `16|N`. Thus p<=n, p|q, and q is even. Also
+`q>=lcm(n,n-1,n-2)>=n(n-1)(n-2)/2`, so `q>=c d` eventually.
+
+Choose a phase lambda of order s dividing q and define
+
+```text
+U_ij=rho_p(x_ij) direct_sum I_m,              (i,j)!=(1,3),
+U_13=lambda rho_p(x_13) direct_sum (-I_m).
+```
+
+Every U_ij has exact q-torsion. For any fixed word w with exponent
+sum e(w) in x_13,
+
+```text
+U(w)=lambda^(e(w))rho_p(w) direct_sum (-1)^(e(w)) I_m.
+```
+
+The chosen defining relators have exponent sum zero or -1, with -1
+attained by `[x_12,x_23]x_13^(-1)`. Therefore their exact maximum
+defect satisfies
+
+```text
+delta^2=(N/d)|lambda-1|^2+4m/d.
+```
+
+If m/d tends to zero and lambda tends to 1, every fixed true SL5
+relation is asymptotically satisfied. Any fixed nonidentity integer
+matrix remains nonidentity modulo all sufficiently large primes, so
+its regular trace is eventually zero; the word formula then proves
+canonicality. If additionally `|lambda-1|=o(delta)`, the last m
+coordinates give an exactly reducing support P with
+`tr_d(P)~delta^2/4`. The singular values of any defining defect on
+P are either 0 or 2, and its complementary norm is o(delta). Thus
+the relative low-angle curvature energy vanishes at every fixed
+cutoff below 2, as required for the QRC normal form.
+
+For uniform residues a,b modulo q the exact root identity on the
+regular block gives
+
+```text
+[U_12^a,U_23^b]U_13^(-ab)
+ =lambda^(-ab) I_N direct_sum (-1)^(ab) I_m.
+```
+
+Character orthogonality gives the average of `lambda^(ab)` as 1/s:
+the inner b average is one exactly when s divides a and zero
+otherwise. The average of `(-1)^(ab)` is 1/2 because q is even.
+Hence the squared averaged defect is exactly
+
+```text
+(N/d)(2-2/s)+m/d.
+```
+
+First take m=1 and `lambda=exp(2 pi i/q)`. Then
+`delta^2=4/d+O(q^(-2))`, `delta~2/sqrt(d)`, and
+`|lambda-1|=o(delta)`. The mean squared defect tends to 2, with
+the phase character average exactly 1/q.
+
+For the stronger spectral version take m=N/p and
+`lambda=exp(2 pi i/p)`. Now `delta^2=4/(p+1)+O(p^(-2))`,
+`|lambda-1|=o(delta)`, and the averaged defect is exactly
+`(2p-1)/(p+1)`, again tending to 2. The spectrum of each good root
+block consists of every p-th root with multiplicity N/p; multiplying
+one block by lambda permutes this spectrum. The only additional
+possible eigenvalues are 1 and -1. All orders are at most n.
+Each primitive p-th root eigenspace has dimension N/p divisible
+by p^3, while the -1 eigenspace has dimension m divisible by 8.
+Thus even the individual three-Heisenberg-pair divisibility tests
+hold. These spectral facts do not assert exact joint root relations.
+
+Both versions are repaired by replacing U_13 with
+`rho_p(x_13) direct_sum I_m`, at exact normalized HS cost delta.
+Removing only the scalar phase costs `o(delta)` and leaves averaged
+error m/d, which tends to zero. Root rounding alone fixes the
+already allowed spectra. This establishes the stated failure of
+the uncorrected power-defined ledger, while explicitly ruling out
+any interpretation as an instability counterexample. The linked
+universal-root-torsion artifact records the full construction.
