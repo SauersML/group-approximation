@@ -33,6 +33,7 @@ open STW22ActualTraceSpaces
 open STW22AntipodalBoundaryTraceFunction
 open STW22CanonicalTraceExtension
 open TraciallyComplete
+open UniformTracialBoundedCauchyQuotient
 
 noncomputable section
 
@@ -52,7 +53,8 @@ extends.  This is CCEGSTW's "implicitly we always imagine `X` to be
 non-empty", verified rather than assumed. -/
 theorem antipodalDesignatedTraces_nonempty :
     antipodalDesignatedTraces.Nonempty :=
-  ⟨_, Set.mem_range_self infinityBaseTracialState⟩
+  ⟨antipodalCanonicalExtensionMap infinityBaseTracialState,
+    Set.mem_range_self infinityBaseTracialState⟩
 
 /-- **CCEGSTW Question 1.1, second form, answered negatively.**  The designated
 traces of the antipodal completion are not all of its traces.

@@ -22,7 +22,7 @@ open STW22ActualTraceSpaces
 open Filter PolarLiftingGeneralCStar
 open UniformTracialSequenceCompletion UniformTracialTwoNullIdeal
 open UniformTracialBoundedCauchyQuotient
-open CuntzPedersenTraceZero STW22Assembly
+open CuntzPedersenCoronaObstruction CuntzPedersenTraceZero STW22Assembly
 open STW22CanonicalTraceExtension
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
