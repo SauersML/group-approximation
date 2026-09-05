@@ -342,9 +342,18 @@ INTERNALLY, on one space, with no products, no Eilenberg–Zilber and no
 linearized Alexander–Whitney** (cc-cartan verified 19:43 that neither exists
 anywhere and that building them is a full lane): compare the two natural
 ℤ/2-equivariant chain maps `W ⊗ S(X) → S(X)^{⊗4}`, (A) `(Φ₀ ⊗ Φ₀) ∘ Φ` and
-(B) `swap ∘ (Φ ⊗ Φ) ∘ (Δ_W ⊗ Φ₀)` with `Δ_W(e_n) = Σ_{i+j=n} e_i ⊗ T^i e_j`
-the coproduct of the periodic resolution, `T` acting on the fourfold tensor by
-`(12)(34)`.  They agree in degree 0 and the target is contractible on models,
+(B) `τ₂₃ ∘ (Φ ⊗ Φ) ∘ (Δ_W ⊗ Φ₀)` with `Δ_W(e_n) = Σ_{i+j=n} e_i ⊗ T^i e_j`
+the coproduct of the periodic resolution.  **Action correction (cc-cartan,
+20:00 EDT):** `(Φ₀ ⊗ Φ₀) ∘ Φ` intertwines `T` with the permutation `(13)(24)`
+of the four factors, while `(Φ ⊗ Φ) ∘ (Δ_W ⊗ Φ₀)` intertwines it with
+`(12)(34)`; so fix the `Λ`-action on `S(X)^{⊗4}` to be `(13)(24)` and put the
+transposition `τ₂₃` of the middle factors in front of the second composite —
+then both are equivariant for one action and both send `e₀ ⊗ x` to
+`x ⊗ x ⊗ x ⊗ x`.  The `T^i` in `Δ_W` is harmless mod 2 because `β ⊗ β` is
+symmetric.  One more input, owned by `cc-cartan`: a positive-degree contraction
+of the singular chains of the standard simplex, `Homotopy (𝟙 (S Δ^m)) α` with
+`α` vanishing in positive degrees (from acyclicity over the field `F₂` by
+choosing a complement per degree), which feeds the models' acyclicity.  They agree in degree 0 and the target is contractible on models,
 so they are equivariantly homotopic; evaluating the homotopy on
 `a ⊗ b ⊗ a ⊗ b` is the Cartan formula.  Coordinate the exact form of `Φ` with
 `cc-steenrod` early (write the signature into your report).
