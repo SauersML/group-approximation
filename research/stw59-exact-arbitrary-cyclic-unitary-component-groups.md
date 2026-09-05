@@ -29,6 +29,11 @@ of arbitrary noncyclic finite groups.
 The complete proof has undergone internal mathematical review;
 it has not been externally peer reviewed or formally verified.
 
+The subsequent theorem `stw59-exact-finite-abelian-unitary-component-groups`
+uses equal-dimension joined bases and independently attaining global
+Euler classes to realize every finite abelian group in one simple
+algebra. It retains this cyclic calculation as its armwise input.
+
 ROUTES
 
 stw59-projective-base-euler-image-and-generator-transport-proof

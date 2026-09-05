@@ -10,6 +10,7 @@ artifacts:
   - notes/stw58-coefficient-unitary-stabilization-2026-09-05.md
   - notes/stw58-soft-module-compression-attempt-2026-09-05.md
   - research/artifacts/stw58-local-factorization-and-overlap-cancellation-2026-09-05.md
+  - research/artifacts/stw58-overlap-corrected-word-spaces-and-homotopy-lifting-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -70,3 +71,12 @@ K-class and cancels the sum in the stable matrix range. This also works
 for a global factorization approximating the family within distance two.
 The outstanding step is a continuous global factorization over the
 parameter sphere; local factorization does not automatically supply it.
+
+The subsequent overlap-corrected word-space artifact removes the
+raw K-theoretic balancing classes by an explicit overlap-transfer
+homotopy quotient. Its homotopy groups map isomorphically to stable
+K-theory in the matrix range. It also proves exact lifting of any
+compactly parameterized homotopy with an initial lift, after finitely
+many identity-valued word blocks are appended. Connectivity of the
+remaining corrected fiber is unproved; computing the domain's stable
+homotopy groups does not identify the homotopy groups of U(B).

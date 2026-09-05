@@ -15,6 +15,8 @@ artifacts:
   - research/artifacts/stw59-factorial-torsion-simple-ah-manuscript-2026-09-05.md
   - research/artifacts/stw59-exact-factorial-component-groups-2026-09-05.md
   - research/artifacts/stw59-exact-arbitrary-cyclic-component-groups-2026-09-05.md
+  - research/artifacts/stw59-exact-finite-abelian-component-groups-2026-09-05.md
+  - research/artifacts/stw59-finite-abelian-independent-review-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -46,6 +48,16 @@ and a signed-zero product formula proves that every twisted connecting
 map preserves the component generator. This remains a strengthening
 of the same LIX counterexample, with internal review rather than
 external peer acceptance or formal verification.
+
+The theorem `stw59-exact-finite-abelian-unitary-component-groups`
+now realizes every finite abelian group as the entire component
+group of one simple AH algebra with K1 zero. Equal-dimension arm
+bases are joined at a point, and rank-zero global K0 classes attain
+the Euler generators independently on each arm. Thus the joined
+base introduces no relations between the prescribed cyclic factors.
+The commuting component generators and their first stabilized
+contractions persist through the simple limit. A separate internal
+review checks the complete joined-base proof.
 
 ## Attempts
 

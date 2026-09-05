@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw61-projective-finite-representation-obstruction-2026-09-05.md
   - research/artifacts/stw61-projective-mf-coefficient-obstruction-2026-09-05.md
   - research/artifacts/stw61-toeplitz-defect-bell-shift-test-2026-09-05.md
+  - research/artifacts/stw61-mixed-semicircular-defect-complete-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -70,6 +71,20 @@ shift quotient. The conjugating unitary is constructed in the
 original free product, including every Toeplitz defect term.
 This shows exactly why a strict estimate in that properly infinite
 quotient cannot establish the universal strict-commutator criterion.
+
+The internally reviewed theorem
+`stw61-mixed-semicircular-maximal-commutator` now gives a distinct
+full-Toeplitz obstruction: with `h_i=z s_i+s_i* z*`, every unitary
+in `H=C*(1,h_1,h_2)` satisfies `||[z,WpW*]||=1`. A left-right
+Fock representation keeps the Toeplitz defect nonzero and supplies
+the exact lower bound. For every nonzero real t, the explicit
+conjugate `q_t=exp(i t h_1)p exp(-i t h_1)` lies in no proper
+coefficient corner or scalar functional translate of one, and
+meets the defect and both generating ranges nontrivially. Thus
+this family escapes the previous fixed-corner hypothesis while
+still failing the strict BRR criterion. The theorem does not
+assert that H is the whole free product; arbitrary full-Toeplitz
+mixed unitaries remain outside its scope, and LXI remains open.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem

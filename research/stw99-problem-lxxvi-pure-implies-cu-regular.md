@@ -26,6 +26,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-rr0-finite-projection-patch-realization-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-two-patch-angle-realization-2026-09-05.md
   - research/artifacts/stw99-lxxvi-universal-small-angle-obstruction-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -232,6 +233,18 @@ entire Cu class. Increasing source-projection compressions exhaust
 every target class, so arbitrary angle-remainder realization is
 equivalent to full realization here. Projection-space homotopies
 alone, or invertible angle padding, do not supply this missing step.
+
+The reviewed theorem `stw99-lxxvi-rr0-compact-summand-cancellation`
+now proves `[p]+[a]<=[p]+[b]` implies `[a]<=[b]` for these
+real-rank-zero coefficient fields over every second-countable locally
+compact base. It applies to both source and target without assuming
+stable rank one of the section algebra. Over compact metrizable bases,
+the first-factor Cu image is also closed under removing compact
+summands. Hence the universal Gram class `[G_t]=[P]+[a]` is in the
+image exactly when `[a]` is. The
+[cancellation proof](artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md)
+settles this algebraic step; realizing the arbitrary mixed Gram class
+remains necessary for surjectivity.
 
 ## Literature boundary
 
