@@ -1,6 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferSurjective
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferNaturality
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualAlphaPowerNonvanishing
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferNonzero
 
 /-!
 # Assembly of `RPnTopClassTransfer n` (Prompt 09)
@@ -62,6 +63,16 @@ assumptions invented here), so this assembly genuinely *reduces* the previously
 free `RPnTopClassTransfer n` hypothesis to the project's standing topological data
 plus the one remaining homology witness. See
 `docs/current/Transfer_RPnTopClassTransfer_Assembly_Result.md`.
+
+Porting changes for Mathlib v4.32:
+
+* add the missing `import ... RPnTopClassTransferNonzero`. That module defines
+  both `TopHomologyTransferNonzeroWitness` and
+  `RPToSphereTransferTopNonzero_of_witness`, which
+  `rpnTopClassTransfer_of_cellular_witness` below already uses; without the
+  import `autoImplicit` bound the former as a variable of unknown type rather
+  than reporting an unresolved name. No statement changes; the import creates
+  no import cycle.
 -/
 
 noncomputable section

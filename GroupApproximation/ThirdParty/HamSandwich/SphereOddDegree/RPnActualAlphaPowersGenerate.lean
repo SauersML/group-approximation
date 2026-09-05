@@ -1,6 +1,7 @@
 import Mathlib
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPAlphaEqualsModelGenerator
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCupProductModelCompatibility
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualAlphaPowerNonvanishing
 
 /-!
 # The actual `actualRPAlpha` powers generate and are nonzero (Prompt 30)
@@ -41,6 +42,15 @@ the honest cellular data `c`, the cup-product data `cup`, and `1 ≤ n`.
 
 All declarations are honest restatements/transports of already-proved facts; no
 new model-only power theorem is asserted without the singular-cohomology transport.
+
+Porting changes for Mathlib v4.32:
+
+* add the missing `import ... RPnActualAlphaPowerNonvanishing`. That module
+  defines `rpTopClass`, which `rpTopClass_actual_ne_zero` below already
+  mentions; without the import `autoImplicit` silently bound `rpTopClass` as a
+  variable of unknown type instead of reporting an unresolved name, and the
+  file failed only at the point where that variable was applied to `n`. No
+  statement changes; the import creates no import cycle.
 -/
 
 noncomputable section
