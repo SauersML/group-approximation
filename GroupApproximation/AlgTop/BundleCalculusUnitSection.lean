@@ -41,16 +41,28 @@ Lemma 2).  Certifies no manuscript step on its own.
 namespace GroupApproximation
 namespace BundleCalculus
 
-section RankOne
+section Defs
 
-variable {ι : Type*} [Fintype ι] [DecidableEq ι] {R : Type*} [CommRing R] [StarRing R]
+variable {ι : Type*} {R : Type*} [Mul R] [Star R]
 
-/-- The rank-one projection onto the line spanned by `ξ`, as the matrix `ξ ξ*`. -/
+/-- The rank-one projection onto the line spanned by `ξ`, as the matrix `ξ ξ*`.
+
+The body is deliberately *syntactically identical* to `STW59.rankOneProj` in
+`Analysis/LIXProjectiveSpaceModel.lean`, and the typeclasses are as weak as
+`Matrix.vecMulVec` allows -- `[Mul R] [Star R]`, no `Fintype`, no ring.  So when
+the two are collapsed, that one becomes `abbrev rankOneProj := ...` and every
+proof about it survives by `rfl` rather than needing a port. -/
 def rankOneProj (ξ : ι → R) : Matrix ι ι R := Matrix.vecMulVec ξ (star ξ)
 
 @[simp]
 theorem rankOneProj_apply (ξ : ι → R) (i j : ι) :
     rankOneProj ξ i j = ξ i * star (ξ j) := rfl
+
+end Defs
+
+section RankOne
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι] {R : Type*} [CommRing R] [StarRing R]
 
 /-- **Rank-one matrices multiply by contracting the inner pair.**  Every other
 computation in this file is this one with different vectors substituted. -/
@@ -80,17 +92,19 @@ structure IsUnitSection (P : Matrix ι ι R) (ξ : ι → R) : Prop where
 
 variable {P : Matrix ι ι R} {ξ : ι → R}
 
-theorem isIdempotentElem_rankOneProj (hξ : IsUnitSection P ξ) :
+/-- Idempotence needs only the unit-length equation, not the bundle: this is the
+shape `STW59.isStarProjection_rankOneProj` also has, so the two merge. -/
+theorem isIdempotentElem_rankOneProj (h : ∑ k, star (ξ k) * ξ k = 1) :
     IsIdempotentElem (rankOneProj ξ) := by
   show Matrix.vecMulVec ξ (star ξ) * Matrix.vecMulVec ξ (star ξ)
       = Matrix.vecMulVec ξ (star ξ)
   rw [vecMulVec_mul_vecMulVec]
   simp only [Pi.star_apply]
-  rw [hξ.sum_star_mul_self, one_smul]
+  rw [h, one_smul]
 
-theorem isStarProjection_rankOneProj (hξ : IsUnitSection P ξ) :
+theorem isStarProjection_rankOneProj (h : ∑ k, star (ξ k) * ξ k = 1) :
     IsStarProjection (rankOneProj ξ) where
-  isIdempotentElem := isIdempotentElem_rankOneProj hξ
+  isIdempotentElem := isIdempotentElem_rankOneProj h
   isSelfAdjoint := isSelfAdjoint_rankOneProj ξ
 
 /-- A bundle absorbs the line spanned by one of its sections. -/
@@ -133,13 +147,13 @@ theorem perp_mul_rankOneProj (hξ : IsUnitSection P ξ) :
     perp P ξ * rankOneProj ξ = 0 := by
   show (P - rankOneProj ξ) * rankOneProj ξ = 0
   rw [sub_mul, mul_rankOneProj hξ.mulVec_eq,
-    (isIdempotentElem_rankOneProj hξ).eq, sub_self]
+    (isIdempotentElem_rankOneProj hξ.sum_star_mul_self).eq, sub_self]
 
 theorem rankOneProj_mul_perp (hP : IsStarProjection P) (hξ : IsUnitSection P ξ) :
     rankOneProj ξ * perp P ξ = 0 := by
   show rankOneProj ξ * (P - rankOneProj ξ) = 0
   rw [mul_sub, rankOneProj_mul hP hξ.mulVec_eq,
-    (isIdempotentElem_rankOneProj hξ).eq, sub_self]
+    (isIdempotentElem_rankOneProj hξ.sum_star_mul_self).eq, sub_self]
 
 /-- The complement of a unit section inside a bundle is again a bundle. -/
 theorem isStarProjection_perp (hP : IsStarProjection P) (hξ : IsUnitSection P ξ) :
@@ -148,7 +162,7 @@ theorem isStarProjection_perp (hP : IsStarProjection P) (hξ : IsUnitSection P �
     show (P - rankOneProj ξ) * (P - rankOneProj ξ) = P - rankOneProj ξ
     rw [sub_mul, mul_sub, mul_sub, hP.isIdempotentElem.eq,
       mul_rankOneProj hξ.mulVec_eq, rankOneProj_mul hP hξ.mulVec_eq,
-      (isIdempotentElem_rankOneProj hξ).eq]
+      (isIdempotentElem_rankOneProj hξ.sum_star_mul_self).eq]
     abel
   isSelfAdjoint := hP.isSelfAdjoint.sub (isSelfAdjoint_rankOneProj ξ)
 
