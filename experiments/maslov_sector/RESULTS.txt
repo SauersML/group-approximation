@@ -1,0 +1,30 @@
+Sp_4(Z) root-generator relators, universal-cover lifts, and sector energy minima (MSI acn112, 2026-09-05)
+
+presentation.py 6 13 pres6.json
+  BFS radius 6 on the 16 letters x_alpha(+-1): 1,148,696 group elements, 304,412 distinct cyclically reduced relators of length <= 13
+  (all relators have even length: 12 of length 4, 293 of length 6, 3150 of length 8, 30839 of length 10, 270118 of length 12).
+  All relators verified to evaluate to the identity in Sp_4(Z).
+  Winding sanity: w_{2e1}^4 -> 1, w_{2e2}^4 -> 1, w_{e1+e2}^4 -> 0, w_{e1-e2}^4 -> 0.
+  Radius 5 (all 34,294 relators of length <= 11): every lift exponent is 0 (max deviation from an integer 2e-15).
+  Radius 6, length 12: 270,118 relators; 270,098 lift to 0 and exactly 20 lift to 1 (max deviation 1.8e-15).
+  The 20 lifted relators are the length-12 words in the long-root pairs (2e1, -2e1) and (2e2, -2e2) listed in lifted_relators.txt.
+
+lift_lattice_check.py pres6.json
+  Integer echelon form of the exponent-sum lattice with the lift column: the central relation generator is c0 = 1,
+  so zeta lies in the commutator subgroup of the presented group; no sector admits scalar (one-dimensional) solutions.
+
+optimize.py (staged length continuation 6/8/10/12, Riemannian descent with backtracking, six basin hops, 600 or 400 sampled
+  unlifted relators plus all 20 lifted relators, objective = mean unlifted + mean lifted normalized-HS squared defect):
+  mod 3 (Deligne sector, relators w^4 -> omega I):
+    init trivial  d=4  : E=0.082075 unlifted=0.081250 lifted=0.000825 maxdef_unl=0.9230 maxdef_lift=0.0347  (4 restarts identical)
+    init trivial  d=8  : E=0.082075 unlifted=0.081250 lifted=0.000825 maxdef_unl=0.9230 maxdef_lift=0.0347
+    init trivial  d=16 : E=0.099106 unlifted=0.097851 lifted=0.001255 maxdef_unl=0.8565 maxdef_lift=0.0482
+    init perm2    d=16 : E=0.059555 unlifted=0.058869 lifted=0.000686 maxdef_unl=0.7348 maxdef_lift=0.0414
+    init random   d=8  : E=1.759299 unlifted=1.758886 lifted=0.000413 maxdef_unl=1.5093 maxdef_lift=0.0275
+  mod 2 (metaplectic control sector, relators w^4 -> -I; exact finite-dimensional solutions exist by Deligne):
+    init trivial  d=4  : E=0.106170 unlifted=0.105085 lifted=0.001085 maxdef_unl=1.0569 maxdef_lift=0.0396
+    init trivial  d=8  : E=0.106170 (identical)
+    init trivial  d=16 : E=0.111934 unlifted=0.110678 lifted=0.001257 maxdef_unl=0.9983 maxdef_lift=0.0560
+    init perm2    d=16 : E=0.184101 unlifted=0.180208 lifted=0.003893 maxdef_unl=0.8902 maxdef_lift=0.0717
+  Abelian relaxation (scalar phases, all 20 lifted + 3000 sampled unlifted relators):
+    mod 2: best mean squared defect 0.026490, max defect 2.0000;  mod 3: best mean squared defect 0.016435, max defect 1.3874.

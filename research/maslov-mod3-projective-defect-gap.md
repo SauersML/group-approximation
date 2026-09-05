@@ -5,6 +5,7 @@ kind: claim
 title: The two nontrivial mod-three Maslov projective sectors of Sp4(Z) have a dimension-free normalized-HS defect gap
 artifacts:
   - research/artifacts/deligne-maslov-hyperlinear-strategies-2026-08-21.md
+  - research/artifacts/maslov-mod3-sector-numerics-2026-09-05.md
 distinct_from:
   iwahori-local-global-defect-question: Iwahori asks whether two almost-compatible SL2(Z) representations can be repaired to a compatible pair; this asks only whether one fixed nonzero projective cohomology class of Sp4(Z) has any arbitrarily accurate normalized-HS models.
   exel-loring-mark-quantization: Exel--Loring quantizes a winding invariant of almost commuting matrices; this is a projective relator-energy gap for the mod-three Meyer--Maslov multiplier.
@@ -99,3 +100,15 @@ presentation coordinates.
   Thus one may attack a finite invisible central extension of an RF Kazhdan
   base, but RF and property `(T)` alone still do not supply the missing
   normalized-HS stability modulus.
+- **Falsification run, first attempt (2026-09-05).**  The relator exponents
+  the "Falsification" item needs are now computed without any cocycle
+  formula: `sp4-root-relators-below-length-twelve-lift-to-universal-cover`
+  shows every root relation of length below twelve is sector-blind and the
+  sector phase sits entirely on the twenty long-root `w^4` relators of length
+  twelve.  Staged Riemannian descent on `U(d)^8` for `d <= 16`, from trivial,
+  permutation and random starts, finds only abelian relaxations (identical
+  minima at `d = 4` and `d = 8`) and does worse on the metaplectic control
+  sector, which has exact finite-dimensional solutions, than on this sector.
+  So local search of this kind cannot see the obstruction, and its numbers
+  are not evidence either way; the artifact says what a decisive run needs
+  (a theta-constant seed for the control, or exhaustive small-`d` search).
