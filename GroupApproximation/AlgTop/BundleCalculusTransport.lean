@@ -1,46 +1,48 @@
 import GroupApproximation.AlgTop.BundleCalculusProjection
 import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 import Mathlib.Analysis.CStarAlgebra.ContinuousMap
+import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Isometric
 import Mathlib.Topology.ContinuousMap.Ordered
 import Mathlib.Topology.ContinuousMap.ContinuousSqrt
 
 /-!
-# Bundle calculus II: transport along star homomorphisms, and the matrix model
+# Bundle calculus II: ordering the section algebra, and transport
 
-Two things the consuming lanes need immediately, and which are cheap once
-`BundleCalculusProjection` is in hand.
+Two things, both in service of letting the rest of the campaign keep the model
+it already has.
 
-**Transport.**  Every operation on bundles that is going to be well defined on
-isomorphism classes -- pullback along a map of base spaces, restriction to a
-subspace, evaluation at a point, inclusion of a corner -- is a homomorphism of
-the ambient algebra that respects `star`.  So rather than proving well
-definedness once per operation, prove it once for homomorphisms:
+## The section algebra is a `StarOrderedRing`
 
-    MvNEquiv p q  →  MvNEquiv (f p) (f q)
+The campaign's ambient algebra is `SectionAlgebra X ι = C(X, CStarMatrix ι ι ℂ)`
+(`Analysis/LIXCornerAlgebra.lean`): continuous matrix-valued functions.  That
+type is a `CStarAlgebra` and carries the pointwise `PartialOrder`, but at the
+Mathlib pin it has **no `StarOrderedRing` instance**, and without one there is no
+continuous functional calculus over `ℝ≥0`, hence no inverse square root, hence no
+route to `unitaryConj_of_norm_sub_lt_one`.  The gap is a single missing instance:
+`ContinuousMap.instStarOrderedRing` derives `StarOrderedRing C(α, R)` from
+`ContinuousSqrt R`, and Mathlib instantiates `ContinuousSqrt` only for `ℝ`, `ℝ≥0`
+and `ℂ`.
 
-for any `f` in a `MulHomClass` that is also a `StarHomClass`, and the same for
-unitary conjugacy with `MonoidHomClass`.  Mathlib's `IsStarProjection.map`
-already says a homomorphic image of a projection is a projection, so a
-consumer's pullback lemma is two lines, not two pages.
+The instance is available for *every* ordered C*-algebra, and this file supplies
+it.  `ContinuousSqrt` asks for a continuous choice of `s` with `b = a + s * s` on
+the set where `a ≤ b`; take `s = CFC.sqrt (b - a)`, whose continuity on the
+positive cone is `CFC.continuousOn_sqrt`.  So `StarOrderedRing C(X, A)` holds for
+any C*-algebra `A` with its order, `SectionAlgebra` inherits it, and the homotopy
+invariance of `BundleCalculusProjection` applies to the existing model verbatim.
+No lane has to change its ambient algebra.
 
-**The matrix model.**  `BundleAlg X N` fixes the ambient algebra for the whole
-campaign as
+The instance is given low priority so that Mathlib's `instContinuousSqrtRCLike`
+still wins on the scalar fields, where it is the cheaper one.
 
-    CStarMatrix (Fin N) (Fin N) C(X, ℂ)
+## Transport
 
--- matrices with entries in the functions, *not* functions valued in matrices.
-The reason is instance availability rather than taste.  `Matrix` carries no
-C*-norm at all, and `C(X, A)` becomes a `StarOrderedRing` only through
-`ContinuousMap.instStarOrderedRing`, which wants `ContinuousSqrt A`; that class
-exists for `ℝ`, `ℝ≥0` and `ℂ` and for nothing else.  So `C(X, CStarMatrix n n ℂ)`
-has no order, hence no continuous functional calculus, hence no route to
-homotopy invariance.  Turning the expression inside out fixes all three: `C(X,ℂ)`
-is ordered because `ℂ` is, and `CStarMatrix.instStarOrderedRing` then carries the
-order up to the matrices.
-
-Callers must `open scoped ComplexOrder`.  Without it the missing `PartialOrder ℂ`
-surfaces much later as a missing `StarOrderedRing`, which is a confusing place to
-start debugging.
+Every operation on bundles that must be well defined on isomorphism classes --
+pullback along a map of base spaces, restriction, evaluation at a point,
+inclusion of a corner -- is a star homomorphism of the ambient algebra.  So
+prove well definedness once, for homomorphisms.  `MurrayVonNeumannEquiv.map`
+(`KTheory/MatrixProjection.lean`) already does this for bundle isomorphism; the
+missing half is unitary conjugacy, where unitality of the homomorphism is
+exactly what makes the image of a unitary a unitary.
 
 ## Manuscript status
 
@@ -54,17 +56,9 @@ section Transport
 
 variable {R S F : Type*}
 
-/-- A star homomorphism carries Murray-von Neumann equivalence forward: the
-partial isometry is the image of the partial isometry. -/
-theorem MvNEquiv.map [Mul R] [Star R] [Mul S] [Star S] [FunLike F R S]
-    [MulHomClass F R S] [StarHomClass F R S] {p q : R} (f : F) (h : MvNEquiv p q) :
-    MvNEquiv (f p) (f q) := by
-  obtain ⟨v, h₁, h₂⟩ := h
-  exact ⟨f v, by rw [← map_star, ← map_mul, h₁], by rw [← map_star, ← map_mul, h₂]⟩
-
 /-- A unital star homomorphism carries unitary conjugacy forward.  Unitality is
-what is doing the work: the image of a unitary is a unitary only because `1` goes
-to `1`. -/
+doing the work: the image of a unitary is a unitary only because `1` goes to
+`1`.  The `MurrayVonNeumannEquiv` counterpart is `MurrayVonNeumannEquiv.map`. -/
 theorem UnitaryConj.map [Monoid R] [StarMul R] [Monoid S] [StarMul S] [FunLike F R S]
     [MonoidHomClass F R S] [StarHomClass F R S] {p q : R} (f : F) (h : UnitaryConj p q) :
     UnitaryConj (f p) (f q) := by
@@ -76,68 +70,77 @@ theorem UnitaryConj.map [Monoid R] [StarMul R] [Monoid S] [StarMul S] [FunLike F
 
 end Transport
 
-section Complement
+section ContinuousSqrt
 
-variable {R : Type*} [Ring R] [StarRing R] {p : R}
+variable {A : Type*} [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
-/-- The complementary projection.  This is Mathlib's `IsStarProjection.one_sub`,
-named here because in the projection model it is the complement of a subbundle
-inside the trivial bundle of rank `N`. -/
-theorem isStarProjection_complement (hp : IsStarProjection p) : IsStarProjection (1 - p) :=
-  hp.one_sub
+/-- **Every ordered C*-algebra has a continuous square root of differences.**
+`ContinuousSqrt` wants a continuous `s` with `b = a + s * s` wherever `a ≤ b`,
+and `CFC.sqrt (b - a)` is one: it is nonnegative, it squares to `b - a`, and
+`CFC.continuousOn_sqrt` gives its continuity on the positive cone.
 
-theorem add_complement (p : R) : p + (1 - p) = 1 := by abel
+The point of the instance is `ContinuousMap.instStarOrderedRing`, which turns it
+into `StarOrderedRing C(X, A)` -- the instance the campaign's section algebra was
+missing.  Low priority, so `instContinuousSqrtRCLike` keeps precedence on `ℝ`,
+`ℝ≥0` and `ℂ`. -/
+noncomputable instance (priority := 50) instContinuousSqrtOfCStarAlgebra :
+    ContinuousSqrt A where
+  sqrt x := CFC.sqrt (x.2 - x.1)
+  continuousOn_sqrt := by
+    have hsub : ContinuousOn (fun x : A × A => x.2 - x.1) {x : A × A | x.1 ≤ x.2} :=
+      (continuous_snd.sub continuous_fst).continuousOn
+    have hmaps : Set.MapsTo (fun x : A × A => x.2 - x.1)
+        {x : A × A | x.1 ≤ x.2} {a : A | 0 ≤ a} := fun x hx => sub_nonneg.mpr hx
+    exact CFC.continuousOn_sqrt.comp' hsub hmaps
+  sqrt_nonneg _ _ := CFC.sqrt_nonneg _
+  sqrt_mul_sqrt x hx := by
+    rw [CFC.sqrt_mul_sqrt_self _ (sub_nonneg.mpr hx)]
+    abel
 
-theorem mul_complement (hp : IsStarProjection p) : p * (1 - p) = 0 := by
-  have hp2 : p * p = p := hp.isIdempotentElem
-  rw [mul_sub, mul_one, hp2, sub_self]
+end ContinuousSqrt
 
-theorem complement_mul (hp : IsStarProjection p) : (1 - p) * p = 0 := by
-  have hp2 : p * p = p := hp.isIdempotentElem
-  rw [sub_mul, one_mul, hp2, sub_self]
-
-end Complement
-
-section MatrixModel
+section SectionAlgebra
 
 open scoped ComplexOrder
 
-/-- The ambient algebra of the projection model: a complex vector bundle of rank
-at most `N` over a compact `X` is a star projection in `BundleAlg X N`, and two
-bundles are isomorphic when the projections are `MvNEquiv`. -/
-abbrev BundleAlg (X : Type*) [TopologicalSpace X] [CompactSpace X] (N : ℕ) :=
-  CStarMatrix (Fin N) (Fin N) C(X, ℂ)
+variable {X : Type*} [TopologicalSpace X] [CompactSpace X]
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-variable {X : Type*} [TopologicalSpace X] [CompactSpace X] {N : ℕ}
+/-- The instance ladder of the campaign's section algebra, compile-checked.
+The third of these is what `instContinuousSqrtOfCStarAlgebra` above supplies and
+what the pin does not. -/
+example : CStarAlgebra C(X, CStarMatrix ι ι ℂ) := inferInstance
 
-example : CStarAlgebra (BundleAlg X N) := inferInstance
-example : PartialOrder (BundleAlg X N) := inferInstance
-example : StarOrderedRing (BundleAlg X N) := inferInstance
+example : PartialOrder C(X, CStarMatrix ι ι ℂ) := inferInstance
 
-/-- **Homotopy invariance in the matrix model.**  A continuous path of bundles
-over `X` has isomorphic ends.  This is `unitaryConj_of_path` with the instance
-ladder of `BundleAlg` discharged, and its elaboration is the compile-time check
-that the ladder resolves. -/
-theorem unitaryConj_of_path_bundleAlg {P : ℝ → BundleAlg X N} (hP : Continuous P)
-    (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
+example : StarOrderedRing C(X, CStarMatrix ι ι ℂ) := inferInstance
+
+/-- **Homotopy invariance in the campaign's section algebra.**  A continuous path
+of projection-valued matrix functions over `X` has unitarily conjugate ends, so
+isomorphic ends.  This is `unitaryConj_of_path` with the instance ladder above
+discharged, and its elaboration is the compile-time proof that the ladder
+resolves. -/
+theorem unitaryConj_of_path_sectionAlgebra {P : ℝ → C(X, CStarMatrix ι ι ℂ)}
+    (hP : Continuous P) (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
     UnitaryConj (P 0) (P 1) :=
   unitaryConj_of_path hP hproj
 
-theorem mvNEquiv_of_path_bundleAlg {P : ℝ → BundleAlg X N} (hP : Continuous P)
-    (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
-    MvNEquiv (P 0) (P 1) :=
-  mvNEquiv_of_path hP hproj
+theorem murrayVonNeumannEquiv_of_path_sectionAlgebra {P : ℝ → C(X, CStarMatrix ι ι ℂ)}
+    (hP : Continuous P) (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
+    MurrayVonNeumannEquiv (P 0) (P 1) :=
+  murrayVonNeumannEquiv_of_path hP hproj
 
-/-- The form the consumers actually want: the index space is a parameter, so
+/-- The form the consumers want: the index space is a parameter, so
 `s := Set.Icc 0 1` is homotopy invariance and `s := Set.univ` over a connected
-`X` is constancy of the isomorphism class. -/
-theorem unitaryConj_of_isPreconnected_bundleAlg {Y : Type*} [TopologicalSpace Y]
-    {s : Set Y} (hs : IsPreconnected s) {P : Y → BundleAlg X N} (hP : Continuous P)
-    (hproj : ∀ y, IsStarProjection (P y)) {y₀ y₁ : Y} (h₀ : y₀ ∈ s) (h₁ : y₁ ∈ s) :
+`Y` is constancy of the isomorphism class along `Y`. -/
+theorem unitaryConj_of_isPreconnected_sectionAlgebra {Y : Type*} [TopologicalSpace Y]
+    {s : Set Y} (hs : IsPreconnected s) {P : Y → C(X, CStarMatrix ι ι ℂ)}
+    (hP : Continuous P) (hproj : ∀ y, IsStarProjection (P y))
+    {y₀ y₁ : Y} (h₀ : y₀ ∈ s) (h₁ : y₁ ∈ s) :
     UnitaryConj (P y₀) (P y₁) :=
   unitaryConj_of_isPreconnected hs hP hproj h₀ h₁
 
-end MatrixModel
+end SectionAlgebra
 
 end BundleCalculus
 end GroupApproximation

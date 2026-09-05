@@ -1,3 +1,4 @@
+import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
 import Mathlib.Analysis.CStarAlgebra.Projection
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Commute
 import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
@@ -62,14 +63,9 @@ section Defs
 
 variable {R : Type*}
 
-/-- Murray-von Neumann equivalence: `p` and `q` are the two ends of a partial
-isometry.  For projections this is exactly isomorphism of the corresponding
-modules, so it is the definition of bundle isomorphism in the projection model. -/
-def MvNEquiv [Mul R] [Star R] (p q : R) : Prop :=
-  ∃ v : R, star v * v = p ∧ v * star v = q
-
 /-- Unitary conjugacy: `q = u p u*` for a unitary `u`.  Stronger than
-`MvNEquiv` in general, and what the analytic arguments actually produce. -/
+`MurrayVonNeumannEquiv` in general, and what the analytic arguments actually
+produce. -/
 def UnitaryConj [Monoid R] [StarMul R] (p q : R) : Prop :=
   ∃ u ∈ unitary R, u * p * star u = q
 
@@ -98,57 +94,25 @@ theorem trans (h₁ : UnitaryConj p q) (h₂ : UnitaryConj q r) : UnitaryConj p 
   rw [← hvq, ← hup, star_mul]
   simp only [mul_assoc]
 
-/-- Unitary conjugacy of a projection with anything is Murray-von Neumann
-equivalence: the partial isometry is `u p`. -/
-theorem mvNEquiv (hp : IsStarProjection p) (h : UnitaryConj p q) : MvNEquiv p q := by
-  obtain ⟨u, hu, huq⟩ := h
-  have hp2 : p * p = p := hp.isIdempotentElem
-  have hps : star p = p := hp.isSelfAdjoint.star_eq
-  have h1 : star u * u = 1 := Unitary.star_mul_self_of_mem hu
-  refine ⟨u * p, ?_, ?_⟩
-  · rw [star_mul, hps]
-    simp only [mul_assoc]
-    rw [← mul_assoc (star u) u p, h1, one_mul, hp2]
-  · rw [star_mul, hps, ← huq]
-    simp only [mul_assoc]
-    rw [← mul_assoc p p (star u), hp2]
-
-
 end UnitaryConj
 
-namespace MvNEquiv
+section Ring
 
-variable {R : Type*} [Monoid R] [StarMul R] {p q r : R}
+variable {R : Type*} [Ring R] [StarRing R] {p q : R}
 
-theorem refl (hp : IsStarProjection p) : MvNEquiv p p :=
-  ⟨p, by rw [hp.isSelfAdjoint.star_eq, hp.isIdempotentElem.eq],
-    by rw [hp.isSelfAdjoint.star_eq, hp.isIdempotentElem.eq]⟩
+/-- Unitary conjugacy of a projection with anything is Murray-von Neumann
+equivalence -- so bundle isomorphism, in the projection model.  The repo's
+`MurrayVonNeumannEquiv.of_isometry_conjugate` already does the work: it needs
+only `star u * u = 1`, so unitarity is more than required.  This is that lemma
+phrased against `UnitaryConj`, which is what the analytic theorems below
+produce. -/
+theorem UnitaryConj.murrayVonNeumannEquiv (hp : IsStarProjection p) (h : UnitaryConj p q) :
+    MurrayVonNeumannEquiv p q := by
+  obtain ⟨u, hu, huq⟩ := h
+  rw [← huq]
+  exact MurrayVonNeumannEquiv.of_isometry_conjugate hp (Unitary.star_mul_self_of_mem hu)
 
-theorem symm (h : MvNEquiv p q) : MvNEquiv q p := by
-  obtain ⟨v, h₁, h₂⟩ := h
-  exact ⟨star v, by rw [star_star, h₂], by rw [star_star, h₁]⟩
-
-theorem trans (hp : IsStarProjection p) (hr : IsStarProjection r)
-    (h₁ : MvNEquiv p q) (h₂ : MvNEquiv q r) : MvNEquiv p r := by
-  obtain ⟨v, hv₁, hv₂⟩ := h₁
-  obtain ⟨w, hw₁, hw₂⟩ := h₂
-  refine ⟨w * v, ?_, ?_⟩
-  · calc star (w * v) * (w * v) = star v * (star w * w) * v := by
-          rw [star_mul]; simp only [mul_assoc]
-      _ = star v * q * v := by rw [hw₁]
-      _ = star v * (v * star v) * v := by rw [hv₂]
-      _ = star v * v * (star v * v) := by simp only [mul_assoc]
-      _ = p * p := by rw [hv₁]
-      _ = p := hp.isIdempotentElem.eq
-  · calc w * v * star (w * v) = w * (v * star v) * star w := by
-          rw [star_mul]; simp only [mul_assoc]
-      _ = w * q * star w := by rw [hv₂]
-      _ = w * (star w * w) * star w := by rw [hw₁]
-      _ = w * star w * (w * star w) := by simp only [mul_assoc]
-      _ = r * r := by rw [hw₂]
-      _ = r := hr.isIdempotentElem.eq
-
-end MvNEquiv
+end Ring
 
 section CStar
 
@@ -274,10 +238,10 @@ theorem unitaryConj_of_norm_sub_lt_one {p q : A}
     _ = q := by rw [h2, mul_one]
 
 /-- Murray-von Neumann form of `unitaryConj_of_norm_sub_lt_one`. -/
-theorem mvNEquiv_of_norm_sub_lt_one {p q : A}
+theorem murrayVonNeumannEquiv_of_norm_sub_lt_one {p q : A}
     (hp : IsStarProjection p) (hq : IsStarProjection q) (h : ‖p - q‖ < 1) :
-    MvNEquiv p q :=
-  (unitaryConj_of_norm_sub_lt_one hp hq h).mvNEquiv hp
+    MurrayVonNeumannEquiv p q :=
+  (unitaryConj_of_norm_sub_lt_one hp hq h).murrayVonNeumannEquiv hp
 
 /-- **Homotopy invariance, abstract form.**  A continuous family of projections
 indexed by a preconnected space is constant up to unitary conjugation.
@@ -346,10 +310,10 @@ theorem unitaryConj_of_path {f : ℝ → A} (hf : Continuous f)
     (Set.left_mem_Icc.mpr zero_le_one) (Set.right_mem_Icc.mpr zero_le_one)
 
 /-- Murray-von Neumann form of `unitaryConj_of_path`. -/
-theorem mvNEquiv_of_path {f : ℝ → A} (hf : Continuous f)
+theorem murrayVonNeumannEquiv_of_path {f : ℝ → A} (hf : Continuous f)
     (hproj : ∀ t : ℝ, IsStarProjection (f t)) :
-    MvNEquiv (f 0) (f 1) :=
-  (unitaryConj_of_path hf hproj).mvNEquiv (hproj 0)
+    MurrayVonNeumannEquiv (f 0) (f 1) :=
+  (unitaryConj_of_path hf hproj).murrayVonNeumannEquiv (hproj 0)
 
 end CStar
 
