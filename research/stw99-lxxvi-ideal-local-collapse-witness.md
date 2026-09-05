@@ -47,7 +47,10 @@ On the positive side, the witness cannot occur in the non-simple class
 `stw99-lxxvi-locally-subhomogeneous-positive-class`, since every pure member
 of that class is already Z-stable.
 
-The geometric construction route is now isolated in
-`stw99-lxxvi-local-collapse-via-s6-clutching`: it asks a pure coefficient
-algebra to preserve the unique unstable rank-two bundle over `S^6` and asks
-Z-stabilization to kill precisely that unstable homotopy class.
+The proposed geometric route
+`stw99-lxxvi-local-collapse-via-s6-clutching` is now closed: its scalar
+rank-two survival premise is refuted by
+`stw99-lxxvi-pure-coefficients-kill-scalar-unstable-homotopy`.
+All stably trivial scalar clutching classes already die in simple pure
+coefficients. A higher-dimensional projection counterexample would have
+to use coefficient-dependent unstable homotopy, rather than scalar bundles.

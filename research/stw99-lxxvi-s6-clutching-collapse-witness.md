@@ -3,7 +3,10 @@ rg: 2
 id: stw99-lxxvi-s6-clutching-collapse-witness
 kind: claim
 title: A simple pure coefficient preserves an unstable S6 clutching class until Z-stabilization
+refuted_by:
+  - stw99-lxxvi-pure-coefficients-kill-scalar-unstable-homotopy
 artifacts:
+  - research/artifacts/stw99-lxxvi-scalar-unstable-homotopy-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-third-depth-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-fourth-depth-audit-2026-08-30.md
 ---
@@ -17,7 +20,14 @@ alpha in pi_5(U(2)) = Z/2,
 
 the image of `alpha` in `pi_5(U(M_2(D)))` is nonzero.
 
-This remains open.  The associated rank-two projective module is nontrivial
+This assertion is false by
+`stw99-lxxvi-pure-coefficients-kill-scalar-unstable-homotopy`.
+Pureness and stable rank one force a unital finite prime dimension-drop
+map by Rørdam--Winter's published criterion, and that map kills the scalar
+class before tensoring. Lin's dichotomy supplies stable rank one in the
+finite simple case; K-stability handles the purely infinite simple case.
+Thus the associated scalar rank-two module is already trivial over `D`.
+The attempted route had required it to be nontrivial
 before Z and trivial afterward, although its stable K0 class is already zero.
 The disappearance after tensoring with `Z` is automatic by
 `stw99-lxxvi-z-stabilization-kills-unstable-unitary-kernel`, so it is no
@@ -60,12 +70,10 @@ without one, the homotopy-fibre sequence leaves only
 `pi_6(U(M_2(F)))`, which vanishes in the stable range.  Arbitrary endpoint
 multiplicity matrices are allowed.
 
-The sole remaining construction problem is therefore to find a unital simple
-separable pure `D`, necessarily containing neither a unital copy of `Z` nor
-a unital matrix algebra of size at least two nor any unital `I_(p,q)` with
-`p,q>=2`, and more generally no unital one-dimensional NCCW block with
-character-free zero-skeleton, for which
-
-```text
-alpha maps nontrivially into pi_5(U(M_2(D))).
-```
+The former remaining construction requirement is inconsistent with purity
+and stable rank one: compact-unit almost divisibility supplies
+`2x<=[1_D]<=3x` in `W(D)`, and Rørdam--Winter's criterion gives a unital
+map `I_(2,3)->D`. Its injectivity is unnecessary for scalar vanishing.
+There is therefore no surviving coefficient search in this scalar route.
+Coefficient-dependent higher homotopy classes in projection corners are
+not covered by this refutation.

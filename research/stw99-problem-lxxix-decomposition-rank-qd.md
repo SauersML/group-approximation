@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/stw99-final-band-cluster-2026-08-30.md
   - research/artifacts/stw79-index-dichotomy-2026-09-04.md
+  - research/artifacts/stw79-rational-index-criterion-2026-09-05.md
 ---
 
 **Problem LXXIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -28,6 +29,13 @@ quasidiagonality, quasidiagonality and stable finiteness are equivalent.
 All members have exactly three ideals, are nowhere scattered, and have
 finite nuclear dimension. This is a consequence of published theorems,
 not a claimed new solution of the general problem.
+
+Without the quotient K-zero restriction,
+`stw79-rational-stabilization-removes-kzero-torsion` gives the same exact
+index criterion for finite decomposition rank after tensoring by the
+universal UHF algebra. It also characterizes quasidiagonality and stable
+finiteness of the original middle algebra. Descent of finite decomposition
+rank from the rational stabilization remains unproved in that larger class.
 
 ## Attempts
 

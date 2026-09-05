@@ -14,6 +14,9 @@ artifacts:
   - research/artifacts/stw99-lxxvi-finite-graph-projectionless-cycle-audit-2026-08-31.md
   - research/artifacts/stw99-lxxvi-unicyclic-enriched-cu-audit-2026-08-31.md
   - research/artifacts/stw99-lxxvi-cactus-enriched-cu-audit-2026-08-31.md
+  - research/artifacts/stw99-lxxvi-finite-graph-compact-core-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-one-dimensional-simple-fiber-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-scalar-unstable-homotopy-audit-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -79,10 +82,10 @@ without a `K_1`-vanishing hypothesis.
 bundles by their fiber class and one `K_1`-clutching coordinate per cycle,
 and proves that the actual first-factor map preserves all of them.  Thus for
 a simple stably finite pure fiber `D`, every compact class of `C(X,D)`
-survives tensoring with `Z` for every finite graph `X`.  This does not give
-the full Cu isomorphism: Phillips's circle-with-a-tail phenomenon leaves a
-genuinely noncompact, supportwise-clutching corridor when `K_1(D)` is
-nonzero.
+survives tensoring with `Z` for every finite graph `X`. This compact result
+alone does not give the full Cu isomorphism: Phillips's circle-with-a-tail
+phenomenon requires supportwise clutching. The compact-core theorem below
+now retains exactly that data and proves the full finite-graph result.
 
 The full noncompact wing is now controlled over every finite tree, with no
 `K_1`-vanishing assumption.
@@ -131,8 +134,25 @@ only edges and circles, yielding a full enriched formula with one independent
 a nonzero constant compact class. Thus finite-cactus formation preserves
 Cu-regularity for simple stable-rank-one fibers, and simple stably finite pure
 fibers give pure Cu-regular fields over cacti with arbitrarily many cycles,
-arbitrary projections, and arbitrary `K_1`. The unresolved graph boundary is
-a 2-connected block of first Betti number at least two, such as a theta graph.
+arbitrary projections, and arbitrary `K_1`. The subsequent compact-core
+theorem also handles 2-connected blocks of first Betti number at least two.
+
+
+The full finite-graph corridor is now proved in
+`stw99-lxxvi-finite-graph-compact-core-cu-regularity`, including theta graphs
+and arbitrary multicycle blocks. For each pointwise Cu function, retain
+the union of circles on which it is a nonzero constant compact value.
+Brown--Ciuperca's spectral-gap theorem makes the restriction to every
+connected component of this core an actual compact class. Outside that
+core, finitely many small-spectrum cuts reduce comparison to a forest of
+compact cores. The proof realizes the data using the published surjective
+interval-pullback theorem, establishes set bijectivity first, and then uses
+`(O5)` to recover compact-left order before reflecting arbitrary comparison.
+It follows that any coefficient map between simple separable stably finite
+stable-rank-one algebras which is an isomorphism on Cu and K1 induces a
+Cu isomorphism over every finite graph. Compact restriction methods already
+appear in Tikuisis's theorem for Z-stable ASH coefficients; this result
+extends the coefficient scope and proves rigidity of the specified map.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
@@ -144,7 +164,14 @@ map is an isomorphism.  In particular, if `D` is simple, separable, stably
 finite, pure, and `K_1(D)=0`, then `C_0(X,D)` is pure and Cu-regular.  This
 permits noncompact bases, infinite branching, and infinitely many cycles.  The
 proof uses the published pointwise Cu formula, not an unproved graph pullback
-formula.
+formula. For simple fibers the K1 restriction is now removed entirely by
+`stw99-lxxvi-one-dimensional-simple-fiber-cu-regularity`: every simple
+separable stably finite pure `D` gives a pure Cu-regular `C_0(X,D)` for
+every second-countable locally compact Hausdorff `X` of dimension at most
+one. Compact bases are inverse limits of finite graphs, and the actual
+first-factor maps pass through the Cu inductive limit. Noncompact bases
+follow from one-point compactification and ideal permanence. This proves
+regularity, not an unrestricted pointwise `Lsc` formula.
 
 ## Literature boundary
 
@@ -219,26 +246,25 @@ cancellation assumptions in `stw99-lxxvi-ideal-local-collapse-witness`.
 There is a separate possible infinite-projection corridor in
 `stw99-lxxvi-infinite-projection-collapse-witness`.
 
-The 2026 continuous-function purity theorem closes the purity input in the
-`S^6` clutching route, and Jiang's K-stability theorem makes death after
-tensoring with `Z` automatic.  The sole remaining input is a simple pure
-coefficient in which the scalar unstable class survives before tensoring.
-Such a coefficient cannot contain `Z` unitally; in particular
-`C*_r(F_2)` is now rigorously excluded.  It also cannot contain any `M_k`,
-`k>=2`, unitally: `u |-> u tensor 1_k` lands in the degree-five stable range
-of `U(2k)` and kills the scalar torsion class before it reaches the
-coefficient algebra.  More strongly, it cannot contain even one unital
-generalized dimension-drop block `I_(p,q)` with `p,q>=2`.  The two endpoint
-amplifications kill `alpha`, while the homotopy-pullback obstruction group
-`pi_6(U(2pq))` vanishes.  Prime dimension-drop blocks are projectionless, so
-this no-go is genuinely weaker than matrix divisibility and does not assume
-Z-stability.  More generally, the exact one-dimensional NCCW criterion says
-that any unital block whose finite-dimensional zero-skeleton has no scalar
-summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
-circle theorem separately shows
-that no one-dimensional clutching analogue can work on a single circle.  The
-one-dimensional theorem rules out every second-countable locally compact base
-when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, the unicyclic
-classification records the exact supportwise clutching fiber missed by
-pointwise `Lsc` functions. No unrestricted pointwise formula is claimed, and
-a 2-connected block containing two or more independent cycles remains unresolved.
+The scalar `S^6` clutching route is now refuted, and the same obstruction
+is excluded on spheres of every dimension. The theorem
+`stw99-lxxvi-pure-coefficients-kill-scalar-unstable-homotopy` shows that
+every stably trivial class from `pi_k(U(r))` dies after scalar extension to
+a unital simple pure coefficient, before any Z tensoring. The missing
+literature input was Rørdam--Winter's criterion: almost divisibility of
+the compact unit and stable rank one give unital maps from every finite
+prime dimension-drop block `Z_(n,n+1)`. Choosing `n` in the stable
+unitary range makes endpoint evaluation injective on the relevant
+homotopy group; the coprime endpoint multiplicities remove the intervening
+obstruction. Injectivity or compatibility of the block maps is unnecessary.
+Lin handles the finite simple branch, and K-stability handles the purely
+infinite branch. A remaining higher-dimensional projection route must use
+coefficient-dependent unstable classes in projection corners, not scalar
+vector bundles. The
+one-dimensional simple-fiber theorem now rules out every second-countable
+locally compact base of dimension at most one, for arbitrary `K_1` and
+arbitrary projections in a simple separable stably finite pure fiber.
+The finite-graph compact-core classification records the supportwise
+clutching missed by pointwise `Lsc` functions; graph approximation extends
+the actual first-factor isomorphism to all the indicated bases. The
+higher-dimensional and general nonsimple-coefficient corridors remain open.

@@ -43,7 +43,10 @@ for `k>=2`.  Being subhomogeneous, it also contains no unital copy of the
 simple infinite-dimensional algebra `Z`.  Nevertheless its unitary
 homotopy pullback already kills `alpha`.
 
-This does not assert that purity alone forces a dimension-drop embedding.
-It narrows the surviving coefficient problem to pure algebras lacking even
-one such finite divisibility block, a strictly earlier obstruction than
-Z-stability or central-sequence dimension-drop absorption.
+For a unital pure algebra of stable rank one, the separate theorem
+`stw99-lxxvi-pure-coefficients-kill-scalar-unstable-homotopy` now supplies
+a unital `I_(2,3)` homomorphism automatically, by Rørdam--Winter.
+The homomorphism need not be injective: scalar factorization already
+suffices for the vanishing calculation. Thus the simple pure scalar-S6
+coefficient search is eliminated, rather than left open under an absence
+of finite divisibility blocks.

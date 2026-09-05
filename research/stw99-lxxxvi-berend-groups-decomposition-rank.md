@@ -9,6 +9,7 @@ distinct_from:
   stw99-eckhardt-wu-decomposition-rank-conjecture: that quantifies over all finitely generated elementary amenable groups; this is one specific unresolved instance where the strong-quasidiagonality obstruction is provably silent.
 artifacts:
   - research/artifacts/stw99-lxxxvi-berend-frontier-2026-08-30.md
+  - research/artifacts/berend-k-theory-quotient-obstruction-2026-09-05.md
 ---
 
 Let `G = Z^3 ⋊ Z^2` be a Berend-type group
@@ -72,6 +73,20 @@ crossed product, not one detected by a quotient.
   every locally closed Hausdorff primitive subspace has dimension at most
   two, and orbit tori attain two.  Hence the usual Hausdorff-stratum
   dimension is finite and cannot force infinite decomposition rank.
+* **Integral K-theory and return maps.**
+  `berend-integral-k-theory-and-invisible-class` computes both K-groups
+  for Eckhardt's exact cubic example and finds a nonzero top-torus
+  K-class killed by every proper quotient, even by the norming product
+  model. Its order is infinite for a norm-one second unit and exactly
+  two for a norm-minus-one second unit. The class is in the image of
+  `K_1(I)` for every nonzero ideal `I`.
+  `berend-quotient-return-maps-have-maximal-defect` then proves that a
+  unital completely positive return map recovering a fixed matrix
+  representative within norm less than one must have maximal
+  multiplicativity defect one on some quotient unitary. This rules out
+  globally multiplicative return maps. It does not rule out the
+  finite-colour sums permitted by decomposition rank; relating this
+  forced defect to unbounded colour number remains unresolved.
 * **Entropy (speculative).**  Every nonidentity element of the torsion-free
   unit subgroup has positive entropy: an infinite-order algebraic unit
   cannot have all conjugates on the unit circle, and the entropy of its
