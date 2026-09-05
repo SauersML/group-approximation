@@ -1456,3 +1456,54 @@ them is mathematics:
 **Target 2's verdict, restated:** the topological input is machine-checked, the
 statement is now the problem, and what remains is one `private` keyword, one
 audit line, one application, and a green build.
+
+## Sweep 15, 2026-09-05 — a commit describing 2,344 modules that are not in the repository
+
+`2851ec220` is titled *"thirdparty: vendor a generic 2,344-module slice of
+Anthropic's FLT formalization"* and its message asserts *"1123 theorems, 1123
+proof modules, 97 definition files, no sorry/axiom/unsafe"*, plus `INDEX.md`,
+`ATTRIBUTION.md` and `NOTICE`.
+
+What `git ls-files` shows under that path:
+
+```
+GroupApproximation/ThirdParty/FLT.lean                                        (1222 lines, aggregator)
+GroupApproximation/ThirdParty/FLT/Definitions/Def_Mathlib_Algebra_IsDirectLimit.lean
+GroupApproximation/ThirdParty/FLT/UPSTREAM.md
+```
+
+Three files.  One `.lean` module of the claimed 1220.  `INDEX.md`,
+`ATTRIBUTION.md` and `NOTICE` are absent from git **and** from disk.  The
+`.gitignore` still carries `GroupApproximation/ThirdParty/FLT/**` with exactly
+those three exceptions, under a comment stating the tree is ignored *"so the
+snapshot sweep cannot commit it"* and was *"found to contain no algebraic
+topology this campaign needs"* — a rationale now standing against a commit that
+vendors it as useful.
+
+**The measurable hazard.**  `ThirdParty/FLT.lean` is committed with 1220
+`import` lines, of which **1219 name modules that exist neither in git nor on
+disk** (checked both).  The FLT directory on this machine is down to one
+`.lean` file; the other 2343 are gone.  So a committed file on main cannot
+compile anywhere, by anyone.  It is orphan, so nothing is red today — and it is
+one root import from taking the build down.  The corpus had exactly **one**
+dangling project import at sweep 12; it now has **1220**.
+
+**The audit problem, which is the one that belongs to this lane.**  The commit
+asserts "no sorry/axiom/unsafe" and "1123 theorems" about code that is not in
+the repository.  Neither claim is checkable by anybody — not by this lane, not
+by CI, not by a referee.  That is worse than an unproved lemma: an unproved
+lemma can be pointed at.  A trust assertion about absent code is the exact
+shape this file exists to refuse, and it is recorded here in those terms.
+
+Three outcomes are fine and the current one is not: land the 1220 modules
+(with the `NOTICE` and `ATTRIBUTION` files, which Apache-2.0 §4(d) requires be
+retained on redistribution); or revert `FLT.lean` and `UPSTREAM.md` and keep
+the assessment in `notes/`, where a prose claim belongs; or leave the tree
+ignored as it was.  An aggregator on main importing 1219 files that do not
+exist, described by a message asserting properties of them, is the worst of
+the available states.
+
+None of this touches the three targets — no FLT module is in any target's
+import closure — and this lane has changed nothing.  It is recorded because
+the corpus's trust surface is what this file is for, and because a later
+reader finding `ThirdParty/FLT.lean` on main deserves to know what it is.
