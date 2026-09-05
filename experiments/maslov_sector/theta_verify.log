@@ -1,0 +1,9 @@
+generator 0: rho(x)^N scalar first at N = [8]
+generator 1: rho(x)^N scalar first at N = [8]
+generator 2: rho(x)^N scalar first at N = [4]
+generator 3: rho(x)^N scalar first at N = [4]
+generator 4: rho(x)^N scalar first at N = [8]
+generator 5: rho(x)^N scalar first at N = [8]
+generator 6: rho(x)^N scalar first at N = [4]
+generator 7: rho(x)^N scalar first at N = [4]
+all 304412 relators: nonscalar 0, phase mismatches with (-1)^k: 0

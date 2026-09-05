@@ -69,3 +69,12 @@ basin test from the spin seed: eps = 0.3, 0.6, 1.0, 1.5 all return to E = 0 exac
 spin sector, random starts: best E = 3.4749 after 107 restarts (exact solution at E = 0 exists in this dimension).
 mod 3, random starts, d = 4: best E = 0.3776 after 631 restarts.   mod 2, random starts, d = 4: best E = 0.7035 after 626 restarts.
 seed starts (spin seed perturbed): mod 3 eps 0.3: E = 1.671; eps 1.0: E = 1.686.  mod 2 eps 0.3: E = 1.669; eps 1.0: E = 1.709.
+
+--- even theta constants (theta_constants.py, theta_verify.py) ---
+Phases read off numerically at three random Siegel points as ratios theta[gamma o m](gamma tau) / theta[m](tau) over the ten
+even characteristics (tau-independent to 1e-5 after dividing by a reference ratio); monomial unitary matrices rho(s) in U(10)
+for the eight root generators, file seed_theta_d10.json.
+Verification on ALL 304,412 relators: rho(r) is scalar for every relator (nonscalar 0) and equals (-1)^{k_r} I exactly, with
+k_r the universal-cover lift exponent (phase mismatches 0); no rescaling of generators is needed.
+Order modulo scalars: long-root generators 8, short-root generators 4, so the projective representation factors through level 8.
+The seed has energy exactly 0 in the metaplectic (mod 2) sector.

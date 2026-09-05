@@ -171,6 +171,18 @@ two (`sp4-metaplectic-class-is-not-inflated-from-level-two`), and no
 finite-dimensional representation of the metaplectic cover with `z -> -1`
 factors through `Sp_4(F_2)`.
 
+# Addendum: the metaplectic class realized exactly by even theta constants
+
+Reading the theta transformation phases off numerically (no formula) gives
+monomial unitaries `rho(s) in U(10)` on the ten even theta constants of genus
+two which are scalar on all `304,412` relators with scalar exactly
+`(-1)^{k_r}`: the classical multiplier system of the even theta constants is
+the metaplectic class, and it factors through level eight
+(`sp4-even-theta-constants-realize-the-metaplectic-class`).  This supplies
+the exact metaplectic seed the control lacked, `seed_theta_d10.json`; its
+energy in the mod-two sector is zero.  Basin and mod-three runs from this
+seed are recorded in `RESULTS.txt` as they finish.
+
 # Files
 
 `experiments/maslov_sector/presentation.py` (BFS, relators, vectorized

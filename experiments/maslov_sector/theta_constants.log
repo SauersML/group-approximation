@@ -1,0 +1,6 @@
+even theta-constant monomial matrices built for all 8 generators
+scalar on 3020 of 3020 tested relators (nonscalar 0)
+phases are 8th roots to within 2.35e-15 ; histogram: [(0, 3000), (4, 20)]
+phases on lifted relators: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+rescaling by 8th roots to match metaplectic pattern (-1)^k: 2 solutions, e.g. (0, 0, 0, 0, 0, 0, 0, 0)
+rescaling by 8th roots to match genuine (all +1): 0 solutions
