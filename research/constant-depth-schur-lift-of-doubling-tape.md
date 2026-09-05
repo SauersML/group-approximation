@@ -12,8 +12,10 @@ distinct_from:
 
 Choose a depth `m` satisfying the terminal absorption condition in
 `finite-depth-contractive-computation-ladder`.  Construct a finitely presented
-group `Gamma_m`, a nonidentity word `w`, and, from every finite-dimensional
-tuple `V` with total squared normalized-HS relator energy `E(V)`, numbers
+group `Gamma_m`, a nonidentity word `w`, a fixed separation `0<rho<sqrt(2)`,
+and, from every finite-dimensional tuple `V` satisfying
+`||w(V)-I||_2>=rho`, with total squared normalized-HS relator energy `E(V)`,
+numbers
 
 ```text
 0<=a_n(V)<=A                         (0<=n<=m)
@@ -33,6 +35,17 @@ finite group, so ordinary fixed-group flexible HS exactification is
 admissible even when its constant depends on the whole chain.  Fresh selector
 families may be used at distinct levels, subject only to the finitely many
 incidence relations actually required by `(CDS1)`.
+
+The marked separation hypothesis is essential.  The all-identity tuple is
+an exact representation of every group presentation.  If `(CDS1)` were
+required for that tuple, iteration at `E=0` would give
+`a_*<=a_0<=lambda^m A<=a_*/2`, a contradiction.  The target is therefore a
+positive energy floor on separated tuples, not on all tuples.  A stronger
+valid formulation could replace the first row by
+`a_0>=c||w(V)-I||_2^2-K_0 sqrt(E(V))` for all tuples and set `a_*=c rho^2`
+after imposing separation.  Canonical microstates of a nonidentity group
+word satisfy `||w(V)-I||_2^2->2`, so the stated `rho` leaves the intended
+nonhyperlinearity implication unchanged.
 
 The remaining construction problem is finite:
 

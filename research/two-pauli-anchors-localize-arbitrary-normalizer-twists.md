@@ -74,5 +74,13 @@ Its application still requires an exact old Pauli factor and derivations
 of the indicated covariance and commutator checks from the chosen group
 presentation, with the losses required by that route.
 
+The exact presentation boundary is computed in
+`anchored-pauli-extension-splits-off-its-payload`: an actor acting on one
+finite Pauli frame, together with payload generators centralizing the actor
+and the two anchors, presents `(P_n semidirect Q) times L`.  Its
+hyperlinearity is exactly that of its actor and payload inputs.  Thus
+localization alone, even with the correct anchors, does not impose a
+one-sided multiplicity loss; that loss needs an additional mixed relation.
+
 DERIVATION
 two-pauli-anchor-norm-profile-proof

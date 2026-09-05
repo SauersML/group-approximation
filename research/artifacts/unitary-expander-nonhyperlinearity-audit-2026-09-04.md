@@ -93,6 +93,27 @@ presentation area for the needed rows or construct the exact old factor.
 
 ## Consequence for the active goal
 
+The next exact syntax check is now complete in
+`anchored-pauli-extension-splits-off-its-payload`.  For an actor `Q` acting
+on one finite Pauli frame, the two anchors and actor commutation relations
+force every payload generator to centralize that entire frame.  With only
+internal payload relations, the universal group is exactly
+`(P_n semidirect Q) times L`.  It embeds in the product of one finite group
+with `Q times L`; therefore it is hyperlinear precisely when both inputs
+are.  In particular free or finite actors and free payloads give exact
+finite-quotient canonical microstates, with no relator energy to charge.
+The new localization estimate must therefore be followed by a mixed
+relation absent from this presentation, rather than by more deductions
+from the same centralizing checks.
+
+The constant-depth Schur target also needed an explicit hypothesis:
+its positive base floor is required only on tuples with
+`||w(V)-I||_2>=rho`, for a fixed `0<rho<sqrt(2)`.  Without this restriction
+the trivial representation contradicts the proposed contraction at zero
+energy.  The corrected statement and its root route retain the original
+endpoint because canonical microstates of a nonidentity word have squared
+marked distance tending to `2`.
+
 The new theorem improves available expander constructions but proves no
 nonhyperlinear discrete-group witness.  The two direct attempts above have
 explicit failures, not merely an absence of a cited theorem.  The remaining
@@ -109,3 +130,11 @@ in 1.252 seconds with no errors and three existing dependency-cycle
 warnings.  Both new lemma routes compile as COMPLETE; the root and the
 uniform relative-cell claim remain OPEN.  This is not a full source
 rebuild or a proof-kernel verification of the mathematical arguments.
+
+The subsequent [fixed-frame syntax replay](anchored-pauli-syntax-replay-2026-09-04.json)
+includes fourteen source overlays and the new direct-product result and
+separation correction.  It ran on the same node in 1.448 seconds, with no
+errors and the same three existing cycle warnings.  The direct-product
+route compiles as COMPLETE; the corrected constant-depth target and the
+nonhyperlinear-group root remain OPEN.  Its validation scope has the same
+cached-source and non-kernel limitations as the earlier replay.
