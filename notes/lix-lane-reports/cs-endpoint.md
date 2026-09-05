@@ -199,17 +199,18 @@ import GroupApproximation.Analysis.CStarMatrixBlockInclusion   -- wired
 import GroupApproximation.Analysis.CStarKOne                   -- wired
 import GroupApproximation.Analysis.CStarKOneInjectivityCriterion -- wired
 import GroupApproximation.Analysis.LIXEndpointStatement        -- wired
-import GroupApproximation.Analysis.CStarSimple                 -- GREEN, wire it
-import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- GREEN, wire it
+import GroupApproximation.Analysis.CStarSimple                 -- wired (1b4a37c25)
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- wired (1b4a37c25)
 import GroupApproximation.Analysis.CStarSymmetryComponent      -- wired
 import GroupApproximation.KTheory.MatrixProjection             -- wired
 import GroupApproximation.KTheory.BlockMoves                   -- wired
 import GroupApproximation.Analysis.CStarKOneWhitehead          -- wired
 ```
 
-Ten of the twelve are already in the root at lines 3311 to 3320.  The two
-outstanding are `CStarSimple` and `ProblemLIX`, in that order, and both are
-green as of round 7.
+**All twelve now wired.**  The lead landed `CStarSimple` and `ProblemLIX` at
+`GroupApproximation.lean:3321-3322` in `1b4a37c25` ("root: wire IsSimpleCStar
+and the ProblemLIX statement (green at 2999 jobs)").  This root-wiring
+proposal is now fully discharged; nothing left for the lead to add here.
 `CStarKOneWhitehead` is the Whitehead lemma, that `K₁` is abelian; nothing in
 the endpoint chain needs it, since `not_k1Inj_of_hasWitness` never uses
 commutativity.
