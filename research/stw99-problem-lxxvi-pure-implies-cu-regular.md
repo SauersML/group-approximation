@@ -27,6 +27,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-rr0-two-patch-angle-realization-2026-09-05.md
   - research/artifacts/stw99-lxxvi-universal-small-angle-obstruction-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-closed-compact-stratum-realization-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -245,6 +246,18 @@ image exactly when `[a]` is. The
 [cancellation proof](artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md)
 settles this algebraic step; realizing the arbitrary mixed Gram class
 remains necessary for surjectivity.
+
+A mixed realization theorem is now proved in
+`stw99-lxxvi-closed-compact-stratum-realization`. For a finite-dimensional
+compact metric base, a target class lifts whenever its restriction to
+a closed subset is compact and all fibers outside that subset are
+soft or zero. The compact bundle need not extend over the whole base:
+the [collar construction](artifacts/stw99-lxxvi-closed-compact-stratum-realization-2026-09-05.md)
+attaches it to a source soft representative on shrinking neighborhoods,
+proves the resulting source classes increase, and verifies that their
+supremum maps to the target by relative cutoff comparison. Arbitrary
+accumulating compact strata remain outside this theorem, so full
+surjectivity and STW LXXVI remain open.
 
 ## Literature boundary
 

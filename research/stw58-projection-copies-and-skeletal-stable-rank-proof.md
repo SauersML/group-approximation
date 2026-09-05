@@ -41,4 +41,3 @@ artifacts:
 All prior-art inputs, the full-corner hypothesis, the normalization
 for lower semicontinuous quasitraces, and the remaining localization
 gap are proved or cited explicitly in the internally reviewed artifact.
-
