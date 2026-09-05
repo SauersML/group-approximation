@@ -613,3 +613,71 @@ Two further notes, both checked:
   `(1+h)^6 = 1 + h² + h⁴ + h⁶` — `a_q` is a sum of monomials that are not of the
   form `μ_S`, and the induction does not close. The tower's forced doubling
   `r_{i+1} = 2 r_i` supplies exactly the powers of two.
+
+---
+
+## 10. Only one Wu identity is needed, and it is elementary
+
+§9 uses the Wu relation at `j = i + 1` and nowhere else: the step takes
+`n = m`, `i = m/2 + 1`, `j = m/2 + 2`. So the general Wu formula, with its
+binomial coefficients, is **not** on the critical path. At `j = i + 1` every
+coefficient is `binom(i+s-i, s) = binom(s,s) = 1`, and the relation collapses to
+the single clean family
+
+```
+(Wu-diag)      Sq^{2i}( c_{i+1} )  =  Σ_{s=0}^{i} c_{i-s} · c_{i+1+s}    (mod 2).
+```
+
+Instances: `Sq²(c₂) = c₁c₂ + c₃`; `Sq⁴(c₃) = c₂c₃ + c₁c₄ + c₅`;
+`Sq⁶(c₄) = c₃c₄ + c₂c₅ + c₁c₆ + c₇`. Note the right-hand side is *half* the
+antidiagonal of `c · c` in degree `2i+1` — the full antidiagonal vanishes mod 2
+because `2i+1` is odd, so every pair `{a, b}` with `a + b = 2i+1` has `a ≠ b`
+and appears twice.
+
+### 10.1 (Wu-diag) has a self-contained counting proof
+
+By the splitting principle write `c = ∏_{k}(1 + y_k)`, so `c_j = e_j(y)`, and
+use `Sq(y_k) = y_k + y_k²` with the Cartan formula. Applying `Sq^{2i}` to a
+squarefree monomial `y_A` with `|A| = i + 1` picks `i` of its factors to square:
+
+```
+Sq^{2i}( e_{i+1} )  =  Σ_{|A| = i+1}  Σ_{B ⊆ A, |B| = i}  y_B² · y_{A∖B}
+                    =  Σ_{|B| = i}  Σ_{k ∉ B}  y_B² · y_k.
+```
+
+For the right-hand side, expand `Σ_{s=0}^{i} e_{i-s} e_{i+1+s}` monomial by
+monomial. A monomial appearing in a product `e_a e_b` has every exponent in
+`{0,1,2}`; write `T = {k : exponent 2}`, `t = |T|`, `U = {k : exponent 1}`,
+`u = |U|`, so `2t + u = a + b = 2i + 1` and `u` is odd. Writing the monomial as
+`y_A y_B` with `|A| = a` forces `T ⊆ A` and a choice of `a − t` elements of `U`,
+so it occurs `binom(u, a−t)` times. Summing over `a = 0, …, i`:
+
+```
+Σ_{a=0}^{i} binom(u, a−t)  =  Σ_{c=0}^{i−t} binom(u, c)  =  Σ_{c=0}^{(u−1)/2} binom(u, c)  =  2^{u−1},
+```
+
+the last equality being the symmetry of the binomials of an **odd** `u`. Mod 2
+this is `0` unless `u = 1`, and `u = 1` forces `t = i`. So the surviving
+monomials are exactly `y_T² y_k` with `|T| = i` and `k ∉ T`, each with
+coefficient `1` — which is the left-hand side. ∎
+
+Checked by hand at `i = 1`, `n = 3`: both sides are
+`a²b + a²c + ab² + b²c + ac² + bc²` (the `abc` terms on the right cancel mod 2,
+`3abc + abc = 4abc`).
+
+### 10.2 What this does to the cost estimate
+
+The item I flagged as the mod-2 route's one genuinely new and open-ended
+foundation — "the full Wu formula for mod-2 Chern classes, a real
+symmetric-function project" — shrinks to:
+
+* `Sq(y) = y + y²` on a degree-two integral reduction, plus the Cartan formula
+  (needed anyway);
+* the splitting principle for mod-2 Chern classes (needed anyway, and shared
+  with the integral route);
+* the counting argument of §10.1, whose only arithmetic input is
+  `Σ_{c ≤ (u−1)/2} binom(u,c) = 2^{u−1}` for odd `u`.
+
+No binomial coefficients mod 2, no Lucas, no case analysis. Together with §9 the
+whole parity argument is: one identity (Wu-diag), one relation per stage, and an
+induction on the number of projective factors.
