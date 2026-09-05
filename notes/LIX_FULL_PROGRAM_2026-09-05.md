@@ -422,5 +422,7 @@ from completeness), so its closure is a proper closed ideal.
 
 | item | state |
 |---|---|
-| program note, probe helper, base clone | 2026-09-05 evening |
-| every lane | launched, see `notes/lix-lane-reports/` |
+| program note, probe helper, base clone | 2026-09-05 18:10 EDT: base clone `cc_clones/_base` complete (12 min cp -al), marker set |
+| every lane | launched 18:05 EDT, see `notes/lix-lane-reports/` |
+| root wiring tool | `scratchpad/cc/wire.py closure <modules>` (lead session): topological import order of the not-yet-rooted closure, cycle and dangling checks; corpus clean at 4370 modules |
+| fleet-green modules with no olean | `AlgTop/ManuscriptSectionZeroCount`, `AlgTop/CPTautologicalSection` (now owned by `cc-lix-odd`); `AlgTop/BundleCalculus*`, `AlgTop/ComplexProjective*`, `AlgTop/SingularCohomology`, `CupProduct`, `CupAssoc`, `CrossProduct` (reference only) |
