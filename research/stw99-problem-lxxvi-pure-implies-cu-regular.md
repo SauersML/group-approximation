@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-closed-compact-stratum-realization-2026-09-05.md
   - research/artifacts/stw99-lxxvi-compact-equality-strata-comparison-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-field-cu-regularity-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-hereditary-k-stability-and-cutoff-restriction-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -291,6 +292,25 @@ This is a comparison theorem for actual sections. The full realization
 proof uses it twice to verify the two global inequalities of each
 hereditary sandwich; neither inequality follows merely from fiber ranks.
 
+Beyond real rank zero, the reviewed conditional theorem
+`stw99-lxxvi-hereditary-k-stable-projection-extension` proves exact
+strict relative projection-source embedding over finite-dimensional
+compact bases when the simple finite stable-rank-one coefficient has
+K-stable nonzero hereditary subalgebras throughout its stabilization.
+Its proof uses the full hereditary complement as a unitary stabilizer
+and does not need projection approximate units. The corresponding
+positive-source extension, with parameterized control sufficient for
+mixed target realization, remains unproved under this hypothesis.
+The separate theorem
+`stw99-lxxvi-exact-positive-cutoff-restriction-not-onto` identifies a
+precise failed replacement for the projection tower: exact restriction
+between arbitrary positive cutoff embedding spaces need not be onto,
+even for CAR coefficients and strict comparison against a projection
+target. The [shared reviewed proof](artifacts/stw99-lxxvi-hereditary-k-stability-and-cutoff-restriction-2026-09-05.md)
+leaves approximate lifting open. Neither this obstruction nor the
+conditional projection theorem changes the full RR0 result above or
+settles general LXXVI.
+
 ## Literature boundary
 
 There is now also a complete positive theorem with no base-dimension
@@ -403,4 +423,5 @@ arbitrary projections in a simple separable stably finite pure fiber.
 The finite-graph compact-core classification records the supportwise
 clutching missed by pointwise `Lsc` functions; graph approximation extends
 the actual first-factor isomorphism to all the indicated bases. The
-higher-dimensional and general nonsimple-coefficient corridors remain open.
+higher-dimensional non-RR0 coefficient corridor and general
+nonsimple-coefficient problem remain open outside the classes proved above.

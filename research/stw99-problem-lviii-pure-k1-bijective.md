@@ -15,6 +15,7 @@ artifacts:
   - research/artifacts/stw58-compatible-split-stable-surjectivity-2026-09-05.md
   - research/artifacts/stw58-small-projection-support-kernel-contraction-2026-09-05.md
   - research/artifacts/stw58-soft-support-orthogonal-reservoir-contraction-2026-09-05.md
+  - research/artifacts/stw58-small-quasitrace-support-kernel-contraction-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -79,8 +80,21 @@ actual hereditary matrix copies; a continuous-field stable-rank
 bound supplies the contraction. For simple finite pure B,
 strict fiber quasitrace size bounds can verify the comparison.
 This includes soft supports in projectionless coefficients.
-Producing such a support and reservoir for an arbitrary kernel
-family remains unproved.
+
+[The uniform quasitrace support theorem](stw58-small-quasitrace-support-kernel-vanishing.md)
+now removes the need for an originally full support or a prescribed
+reservoir. For simple unital finite pure B with nonempty QT1(B),
+a stably null family contracts whenever its support h has
+sup_(x,tau) d_tau(h(x))<1/(d+1). A tiny constant full positive
+element enlarges h without losing the size bound; complementary
+functional-calculus cutoffs then create a full orthogonal reservoir.
+In particular this applies directly to h=|u-1|, even when it vanishes
+at some parameter points or has zero annihilator before cutoff.
+Every representative of a surviving degree-k unstable kernel must
+therefore have uniform quasitrace support dimension at least 1/(k+1).
+The precise remaining gap is global support localization or
+fragmentation of arbitrary stably null families; the general kernel
+and LVIII questions remain unresolved here.
 
 The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
