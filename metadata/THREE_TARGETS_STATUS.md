@@ -2076,3 +2076,61 @@ rather than in an agent message.
 | …landed **before** `lix-limit`'s simplicity theorem | pending |
 | order-independence of `K1Injective` landed as a lemma | pending |
 | universe choice recorded in the `ProblemLIX` docstring | pending |
+
+## Sweep 22, 2026-09-05 — a stale RED is now propagating, and it is this lane's
+
+### My superseded finding is being quoted as current fact
+
+`665401966` ("instantiate the factorial pair at the antipodal gauge,
+independent of the red chain") justifies itself with:
+
+> *"STW22ConditionalNegativeSolution is currently red (nine instance-synthesis
+> failures poisoning four declarations with sorryAx)"*
+
+That is sweep 10's result, and sweep 16 recorded it as **superseded**.
+`instNonemptyTracialStateAntipodalFamily` sits at
+`STW22ConditionalNegativeSolution.lean:66` — verified again just now — and it
+was added at 16:18:02 precisely to fix those nine failures.  **No probe has run
+against that module since.**  So the module is not known red; it is **not
+known**, and the last measurement predates the fix.
+
+This is the mirror of the failure this file exists to catch.  Nineteen sweeps
+have been about a stale GREEN being trusted; this is a stale **RED** being
+trusted, propagating out of this lane's own report into another lane's design
+justification.  A stale red is cheaper — it causes wasted work rather than a
+false claim — but it is the same defect, and this file published it.
+
+**The architectural decision it produced is right anyway**, which is worth
+saying separately so the correction is not read as an objection: stating the
+factoriality half against `antipodalAllTracesGauge` directly, so it depends only
+on the coordinate norm comparison and not on the conditional-core chain, is
+better decoupling regardless of whether that chain is red. The premise is stale;
+the conclusion is sound.
+
+**Standing rule tightened, applying to this file first:** a probe result carries
+the timestamp of its *source sync*, and it stops being evidence the moment a
+commit touches its closure.  Sweep 10's entry now reads RED (16:12:55 sources,
+superseded 16:18:02) rather than RED.
+
+### A green claim without a job count
+
+`5d0760709` — *"SequentialGroupColimit and CStarMatrixBlockInclusion are green.
+Probe round 3: both build clean"* — carries no job count.  The campaign rule,
+which this lane asked for and the lead adopted, is that a green claim reports
+the terminal `Build completed successfully (N jobs)` line, because a count that
+does not move on a real change means the probe replayed a stale olean rather
+than rebuilding.  Round 3 following two rounds of real fixes makes a genuine
+rebuild very likely — this is a bookkeeping gap, not a suspected false green —
+but the number is the evidence and it was not recorded.
+
+### Standing rows
+
+| row | state |
+|---|---|
+| orphans (excl. untracked FLT) | 309 |
+| dangling project imports / cycles | 0 / 0 |
+| `Analysis/LIX*` or `KTheory/*` importing `SphereOddDegree` | **0** — invariant holds |
+| `Topology/SphereModelBridge.lean` | does not exist |
+| `ProblemLIX` | does not exist |
+| `IsSimpleCStar` | does not exist |
+| `STW22ConditionalNegativeSolution` | **unknown** — last probe predates its fix |
