@@ -836,12 +836,21 @@ This *looks* like quantifying over a choice of order, which would weaken
 `¬ ProblemLIX`. It does not: `StarOrderedRing` pins the order completely, since
 it characterises `x ≤ y` by `y - x` lying in the additive closure of
 `{star s * s}`, so any two such structures on the same starred ring coincide.
-Worth landing as a one-line lemma rather than leaving a reader to reconstruct.
+Worth landing as a one-line lemma rather than leaving a reader to reconstruct
+— and `audit-gate` sharpens the reason: Lean's elaborator does not know this, so
+`K1Injective A` at two propositionally equal instances is two distinct terms, and
+an argument in a design doc is available neither to the kernel nor to a referee.
+The relation is characterised at `Mathlib/Algebra/Order/Star/Basic.lean:79`:
+`le_iff : ∀ x y, x ≤ y ↔ ∃ p ∈ AddSubmonoid.closure (Set.range fun s => star s * s), y = x + p`.
 
-**Universe.** `KOne : Type u` is universe-polymorphic, so quantifying over `Type`
-is genuinely weaker than over `Type u`. `Type` is the right choice — we exhibit
-one separable algebra, and it is what STW means — but it must be a *recorded*
+**Universe.** `KOne : Type u` is universe-polymorphic (`CStarKOne.lean:32`,
+`:65`), so quantifying over `Type` is genuinely weaker than over `Type u`.
+`Type` is the right choice — the witness is concrete and separable, built from
+matrices over `C(X,ℂ)`, so it lives in `Type 0` — but it must be a *recorded*
 choice in the docstring, not an artefact of what the author typed first.
+Contrast target 1, where `.{1}` is *structurally forced* because
+`MaximalGroupCStar` raises the level; here the choice is free, and a free choice
+recorded as a choice is the difference between a decision and an artefact.
 
 `K1Injective A` is defined for an **arbitrary** unital C\*-algebra as injectivity
 of `unitary A ⧸ Subgroup.pathComponentOne (unitary A) → KOne A`, where `unitary`
@@ -885,6 +894,41 @@ definition away, and **that definition must land before
 the kind that gets shaped to fit the specific limit. `IsSimpleCStar` landing
 after the simplicity proof is the same failure mode as the endpoint landing
 after the refutation.
+
+**The `IsSimpleRing` trap (raised by `audit-gate`).** Mathlib at the pin has
+`IsSimpleRing R : Prop` = `IsSimpleOrder (TwoSidedIdeal R)`
+(`RingTheory/SimpleRing/Defs.lean:27`) — *algebraic* two-sided ideals, no closure
+condition — and it is the obvious shortcut for whoever writes `IsSimpleCStar`.
+It is the wrong notion to state, and the direction of the danger is the reverse
+of the usual one: since `ProblemLIX = ∀ A, IsSimple A → K1Injective A`,
+strengthening `IsSimple` makes `¬ ProblemLIX` **harder**, not vacuous.
+
+*But the two notions coincide here, and the severity claim does not survive.*
+In a unital Banach algebra a proper two-sided ideal `J` contains no unit, so
+`J ⊆ nonunits`; Mathlib supplies
+`nonunits.subset_compl_ball : nonunits R ⊆ (Metric.ball (1:R) 1)ᶜ`
+(`Analysis/Normed/Ring/Units.lean:84`) and `nonunits.isClosed` (:88), so
+`1 ∉ closure J` and `closure J` is a proper closed two-sided ideal; C\*-simplicity
+gives `closure J = 0`, hence `J = 0`. Mathlib's `CStarAlgebra` extends
+`NormedRing` and is unital, so **for our `A`, C\*-simple ⟺ `IsSimpleRing`**. The
+`K(H)` example that makes the general claim true — C\*-simple with the
+finite-rank operators as a dense proper ideal — is non-unital.
+
+So the failure mode is not "an endpoint nobody can discharge". It is (i)
+**fidelity** — STW Problem LIX means C\*-simple, and an endpoint stated with
+`IsSimpleRing` is not visibly the problem asked; and (ii) **a theorem smuggled
+into a definition** — the equivalence needs unitality, and `lix-limit` will prove
+the closed-ideal statement anyway, since the manuscript's positive-cutdown
+argument (Lemma 5) produces closed ideals.
+
+**Ruling.** Define `IsSimpleCStar` by **closed** two-sided ideals, and separately
+land
+```lean
+theorem isSimpleCStar_iff_isSimpleRing (A) [CStarAlgebra A] [Nontrivial A] :
+    IsSimpleCStar A ↔ IsSimpleRing A
+```
+from the two `nonunits` lemmas. It is short, it documents that the choice costs
+nothing, and it forecloses the substitution.
 
 `limitAlg`: Mathlib has no inductive limit of C\*-algebras and building the
 general theory is a trap. Realize every `A_i` concretely inside one fixed
