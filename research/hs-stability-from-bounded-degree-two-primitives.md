@@ -86,17 +86,16 @@ II_1 setting.
   the compressed maps still have operator-norm defect of order one
   (`|| (1-Q) sigma(s)^* Q ||_op` is not small), so `eps_op` is NOT
   reduced and the quadratic term stays `O(eps_op eps_2) = O(eps_2)`:
-  no contraction.  No Holder interpolation helps (every split of
-  the product gives total weight `eps_2 eps_op`).  Conversely, if
-  `eps_op` WERE small, Burger--Ozawa--Thom (SL_n(Z), n >= 3, Ulam
-  stability in operator norm; extended by Glebsky--Lubotzky--Monod--
-  Rangarajan [arXiv:2301.00476] to most high-rank lattices and all
-  submultiplicative norms -- normalized HS is not submultiplicative,
-  which is the norm gap once more) already gives an exact
-  representation at operator distance `O(eps_op)`.  So the
-  normalized problem is EXACTLY the reduction of 2-small defects to
-  operator-small defects, stated cleanly as a lifting problem in
-  `tracial-to-uniform-lifting-for-sl-n-z` with route
-  `hs-stability-from-ulam-stability-and-lifting`; the
-  bounded-primitive claim survives only as one conceivable mechanism
-  for that lifting, not as an independent route.
+  no contraction. No Holder interpolation helps: every split of
+  the product gives total weight `eps_2 eps_op`.
+- **Additional quantifier correction (2026-09-05).** Even operator-small
+  defining errors would not justify the former next step. The cited
+  Burger--Ozawa--Thom and Glebsky--Lubotzky--Monod--Rangarajan theorems
+  require an operator defect uniformly small over all group pairs.
+  Pointwise operator-ultraproduct lifting supplies no such supremum.
+  The corrected `tracial-to-uniform-lifting-for-sl-n-z` now states that
+  stronger open input explicitly and permits genuine dimension addition;
+  its route is conditional on that input. The small-angle cohomology
+  theorem supplies a valid one-step normalized-HS correction, but neither
+  this original truncation proof nor Ulam stability supplies its missing
+  flexible iteration. See the operator-lift quantifier audit artifact.

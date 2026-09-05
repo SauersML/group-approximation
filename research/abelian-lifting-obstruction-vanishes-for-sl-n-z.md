@@ -4,7 +4,7 @@ id: abelian-lifting-obstruction-vanishes-for-sl-n-z
 kind: claim
 title: The bounded second cohomology of SL_N(Z) with coefficients in the trace-null ideal vanishes, so the abelianized lifting obstruction is zero
 distinct_from:
-  tracial-to-uniform-lifting-for-sl-n-z: that is the nonabelian lifting of representations through the trace-null ideal; this is its ABELIANIZED shadow -- vanishing of H^2_b(Gamma, I) -- which would be necessary but, because the ideal is not nilpotent, not sufficient.
+  tracial-to-uniform-lifting-for-sl-n-z: that now asks for uniform all-pairs operator approximants after genuine padding; this concerns additive bounded cohomology of the trace-null ideal and supplies no such uniform multiplicative approximants.
   bounded-degree-two-primitives-for-higher-rank-lattices: that asks for operator-bounded primitives of 2-norm-small cocycles; this asks for the operator-bounded primitive of an I-valued bounded cocycle to be I-valued, the ideal version needed by lifting.
 ---
 

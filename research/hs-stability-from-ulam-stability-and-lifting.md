@@ -2,45 +2,50 @@
 rg: 2
 id: hs-stability-from-ulam-stability-and-lifting
 kind: route
-title: Ulam stability plus tracial-to-uniform lifting gives flexible Hilbert-Schmidt stability
+title: Apply finite-dimensional Ulam stability to uniformly controlled padded maps
 target: sln-z-flexibly-hs-stable
 requires:
   - tracial-to-uniform-lifting-for-sl-n-z
+artifacts:
+  - research/artifacts/operator-lift-ulam-quantifier-audit-2026-09-05.md
 ---
 
-Let `sigma_m : SL_N(Z) -> U(d_m)` have normalized-HS defect
-`eps_m -> 0`, `N >= 3`.  The ultraproduct `pi = prod_U sigma_m` is
-an exact representation into the tracial ultraproduct `M = A / I`.
+Choose the rank N supplied by the required claim and apply it to an
+arbitrary sequence of normalized-HS approximate generator tuples.
+It gives maps `f_j:G->U(D_j)` with `D_j/d_j->1`, the stated generator
+closeness, and
 
-**Step 1 (lift).**  By the required claim there is a vanishing
-corner `Q` and a lift `tilde pi` into `U(Q A Q)`; unwinding the
-ultraproduct, there are corner projections `Q_m` with
-`tau(1 - Q_m) -> 0` and maps `sigma'_m : SL_N(Z) -> U(Q_m H_m)` with
-OPERATOR-norm defect `eta_m -> 0` and `|| sigma'_m(s) - Q_m
-sigma_m(s) Q_m ||_2 -> 0` on generators.
+```text
+sup_(g,h in G)||f_j(gh)-f_j(g)f_j(h)||_op <= eta_j -> 0.
+```
 
-Only the lifting claim is consumed.  The linearized shadow
-`abelian-lifting-obstruction-vanishes-for-sl-n-z` (vanishing of
-`H^2_b(Gamma, I)`) is NOT an input: the defect of a set-theoretic lift is a
-nonabelian `U(A) cap (1 + I)`-valued cocycle, additive only modulo `I . I = I`,
-so the additive class is never the object to be killed, and the route is
-valid from the lifting claim alone.  The abelian node stays as the recorded
-first-order heuristic (and its own open `(ALO-GAP)` audit), off this route.
+Burger--Ozawa--Thom's finite-dimensional Ulam stability theorem for
+`SL_N(Z)`, N at least three, supplies a dimension-independent modulus
+`omega_N(t)->0` and exact representations `rho_j:G->U(D_j)` with
 
-**Step 2 (Ulam stability).**  Burger--Ozawa--Thom (`SL_n(Z)`,
-`n >= 3`): there are exact representations `rho_m` on `Q_m H_m` with
-`|| rho_m(s) - sigma'_m(s) ||_op <= C eta_m`; Glebsky--Lubotzky--
-Monod--Rangarajan [arXiv:2301.00476] give the same for most
-high-rank lattices.
+```text
+sup_(g in G)||rho_j(g)-f_j(g)||_op <= omega_N(eta_j).
+```
 
-**Step 3 (conclude).**  Operator distance dominates normalized-HS
-distance, so `|| rho_m(s) - sigma_m(s) ||_2 -> 0` on the corner
-`Q_m` of co-trace `-> 0`: flexible HS-stability, the target.  The
-converse reduction is immediate, so this route is an equivalence:
-for Ulam-stable groups the entire content of HS-stability is the
-lifting claim.  Downstream, HS-stability of `SL_N(Z)` removes the
-outlier sector of the correctability hole at rank `N`, and with the
-rank-generic Weyl sector theorem and the Lambda-exact face analysis
-at a prime with `(p,p)_p = -1` gives the relative commutant collapse
-and the non-hyperlinearity of the coset wreath group over that
-pair.
+An arbitrarily small additive error can be included if the infimum in
+the definition of the stability modulus is not attained. It has no effect
+on the limit. Operator norm dominates normalized HS norm, so the triangle
+inequality on each generator gives
+
+```text
+max_s||rho_j(bar(s))-(U_j(s) direct_sum I_(D_j-d_j))||_(2,D_j)
+ -> 0.
+```
+
+Together with the supplied dimension ledger this is flexible HS
+stability of `SL_N(Z)`, as required. Conversely, exact flexible
+corrections satisfy the required claim with uniform defect zero; hence
+these two existence statements, each asking for some N, are equivalent.
+
+The proof uses the all-pairs supremum explicitly. An exact representation
+in an operator-norm ultraproduct gives only pointwise vanishing defects
+of chosen lifts and cannot replace that input. No implication from
+pointwise operator-norm approximation to uniform Ulam approximation is
+claimed here. The earlier proof omitted this quantifier and used deletion
+of a corner as if it were genuine flexible dimension addition; both gaps
+are removed from this route by stating the correct open premise.

@@ -13,7 +13,10 @@ distinct_from:
 Decide whether `SL_n(Z)` (`n >= 3`) is flexibly Hilbert--Schmidt stable
 (Dogon--Vigdorovich Def 1.2 / Becker--Lubotzky flexible stability): every
 asymptotic unitary representation is, after padding by a vanishing-density
-corner, uniformly close to a genuine finite-dimensional representation.
+corner, generatorwise close in normalized HS norm to a genuine
+finite-dimensional representation. For a finitely generated group this
+also gives pointwise closeness on every fixed group element; no supremum
+over all elements is part of this definition.
 
 By `sln-z-thin-codense-tau-pair` and
 `hnn-over-codense-kazhdan-subgroup-not-hyperlinear`, a positive answer
