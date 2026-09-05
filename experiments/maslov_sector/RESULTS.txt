@@ -176,3 +176,13 @@ random d = 4 start were launched at 17:13 CDT; results below as they finish.
   d=4  beta=30 pinned: 0.3085 / 0.3071 (the bar itself).      d=4 random start (beta 30): max 1.67.
   d=8  beta=30 eps 0.1: max unl 0.292, max lift 0.363 (the d=4 minimum reproduced).
   d=10 beta=30 eps 0.05 / 0.3: max unl 0.291 / 0.288, max lift 0.354 / 0.357.
+  d=12 beta=30 eps 0.1: max unl 0.291, max lift 0.350.
+
+--- first-order criticality of exact models (critical_check.py, 19:20 EDT) ---
+Riemannian gradient of the mean-square mod-3 energy (all 20 lifted + 3000 unlifted relators) at the exact theta models:
+  d=4:  traceless remainder 4e-15 to 8e-15 per generator; coboundary coefficients +8.9e-3 (generators 0,1), -8.3e-3 (4,5),
+        ~1e-9 (short roots 2,3,6,7).
+  d=10: traceless remainder < 2e-16; coboundary coefficients +3.6e-3 (0,1), -3.3e-3 (4,5), ~1e-17 (short roots).
+  So the gradient at an exact model lies exactly in the span of the coboundary directions and touches only the
+  long-root generators (the ones in the twenty lifted relators), as the closed form in
+  exact-projective-models-are-critical-modulo-coboundaries predicts.
