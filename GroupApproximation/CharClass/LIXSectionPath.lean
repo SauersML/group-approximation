@@ -54,7 +54,7 @@ set_option linter.unusedSectionVars false
 pair.**  Stated for the Hermitian unit sphere `∑ ‖a i‖² = 1` of `ℂ^ι`, which is the form
 the repo's `unitVectors` takes, so no `EuclideanSpace` type synonym is involved. -/
 theorem unitVectors_seam_eq_zero_iff {ι : Type*} [Fintype ι] {a b : ι → ℂ}
-    (ha : ∑ i, ‖a i‖ ^ 2 = 1) (hb : ∑ i, ‖b i‖ ^ 2 = 1) {τ : ℝ} (h0 : 0 ≤ τ) (h1 : τ ≤ 1) :
+    (ha : ∑ i, ‖a i‖ ^ 2 = 1) (hb : ∑ i, ‖b i‖ ^ 2 = 1) {τ : ℝ} (_h0 : 0 ≤ τ) (_h1 : τ ≤ 1) :
     (∀ i, ((1 - τ : ℝ) : ℂ) * a i + ((τ : ℝ) : ℂ) * b i = 0)
       ↔ (τ = 1 / 2 ∧ ∀ i, b i = -a i) := by
   constructor
@@ -64,7 +64,7 @@ theorem unitVectors_seam_eq_zero_iff {ι : Type*} [Fintype ι] {a b : ι → ℂ
     have hnorm : ∀ i, (1 - τ) ^ 2 * ‖a i‖ ^ 2 = τ ^ 2 * ‖b i‖ ^ 2 := by
       intro i
       have h2 := congrArg (fun z : ℂ => ‖z‖ ^ 2) (hpt i)
-      simp only [norm_mul, norm_neg, Complex.norm_real, mul_pow, sq_abs] at h2
+      simp only [norm_mul, norm_neg, Complex.norm_real, Real.norm_eq_abs, mul_pow, sq_abs] at h2
       exact h2
     have hsum : (1 - τ) ^ 2 = τ ^ 2 := by
       have := Finset.sum_congr rfl (fun i (_ : i ∈ Finset.univ) => hnorm i)
@@ -141,16 +141,19 @@ theorem continuous_manuscriptPath {e s σ : M → n → ℂ} {χ : ℝ → ℝ} 
   have hei : Continuous fun p : Z × M => e p.2 i := (continuous_apply i).comp hem
   have hsi : Continuous fun p : Z × M => s p.2 i := (continuous_apply i).comp hsm
   have hσi : Continuous fun p : Z × M => σ p.2 i := (continuous_apply i).comp hσm
-  exact ((Complex.continuous_ofReal.comp (continuous_const.sub hτ)).mul hei).add
-    (((Complex.continuous_ofReal.comp hτ).mul hsi).add
-      ((Complex.continuous_ofReal.comp (hχ.comp hτ)).mul hσi))
+  simp only [manuscriptPath_apply]
+  refine Continuous.add (Continuous.add ?_ ?_) ?_
+  · exact (Complex.continuous_ofReal.comp (continuous_const.sub hτ)).mul hei
+  · exact (Complex.continuous_ofReal.comp hτ).mul hsi
+  · exact (Complex.continuous_ofReal.comp (hχ.comp hτ)).mul hσi
 
 /-- **The circle parameter of the southern arc**, an affine function of the horizontal
 coordinate: `0` at the equator point `y = -1`, `1` at `y = 1`, `1/2` at the poles. -/
 def southParam (y : Z → ℝ) (z : Z) : ℝ := (1 + y z) / 2
 
 theorem continuous_southParam {y : Z → ℝ} (hy : Continuous y) : Continuous (southParam y) := by
-  simpa [southParam] using (continuous_const.add hy).div_const 2
+  unfold southParam
+  exact (continuous_const.add hy).div_const 2
 
 @[simp]
 theorem southParam_of_one {y : Z → ℝ} {z : Z} (h : y z = 1) : southParam y z = 1 := by

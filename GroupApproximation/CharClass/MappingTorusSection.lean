@@ -125,7 +125,7 @@ theorem mtSection_north_form (hmem : V p.2 *ᵥ ξ p = ξ p) (hp : 0 ≤ t p.1) 
   rw [mtSection, if_pos hp, mappingTorus_eq, Matrix.fromBlocks_mulVec]
   congr 1 <;>
     simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
-      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
+      add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The southern normal form of the section. -/
 theorem mtSection_south_form (hmem : V p.2 *ᵥ η p = η p) (hp : ¬ 0 ≤ t p.1) :
@@ -135,7 +135,7 @@ theorem mtSection_south_form (hmem : V p.2 *ᵥ η p = η p) (hp : ¬ 0 ≤ t p.
   rw [mtSection, if_neg hp, mappingTorus_eq, Matrix.fromBlocks_mulVec]
   congr 1 <;>
     simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
-      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
+      zero_add, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The southern normal form, valid on the whole closed southern half (including the
 equator).  This is the shape the seam matching is checked in. -/
@@ -146,7 +146,7 @@ theorem mtSection_south_form' (hmem : V p.2 *ᵥ η p = η p) :
   rw [mappingTorus_eq, Matrix.fromBlocks_mulVec]
   congr 1 <;>
     simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
-      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
+      zero_add, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The northern normal form on the whole closed northern half. -/
 theorem mtSection_north_form' (hmem : V p.2 *ᵥ ξ p = ξ p) :
@@ -156,7 +156,7 @@ theorem mtSection_north_form' (hmem : V p.2 *ᵥ ξ p = ξ p) :
   rw [mappingTorus_eq, Matrix.fromBlocks_mulVec]
   congr 1 <;>
     simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
-      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
+      add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- **The two branches agree on the equator.**  This is the gluing computation: the
 transition matrix is an isometry there, so `fᴴ *ᵥ (f *ᵥ ξ) = ξ`. -/

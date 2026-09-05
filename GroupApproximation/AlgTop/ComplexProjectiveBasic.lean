@@ -159,7 +159,7 @@ def baseVec (d : ℕ) : Fin (d + 1) → ℂ := Pi.single 0 1
   simp [baseVec]
 
 theorem baseVec_apply_of_ne {d : ℕ} {b : Fin (d + 1)} (hb : b ≠ 0) : baseVec d b = 0 := by
-  simp [baseVec, Pi.single_apply, hb]
+  simp [baseVec, hb]
 
 theorem basePoint_unit (d : ℕ) : baseVec d ∈ unitVectors (Fin (d + 1)) := by
   rw [mem_unitVectors_iff]

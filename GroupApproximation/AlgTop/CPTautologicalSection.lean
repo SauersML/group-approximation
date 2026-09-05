@@ -112,13 +112,11 @@ theorem dualTautSection_apply (x : CP d) (i : Fin d) (j : Fin (d + 1)) :
 
 theorem basePoint_entry_of_row_ne_zero {a : Fin (d + 1)} (ha : a ≠ 0) (b : Fin (d + 1)) :
     entry (basePoint d) a b = 0 := by
-  rw [basePoint_entry]
-  simp [Pi.single_apply, ha]
+  rw [basePoint_entry, baseVec_apply_of_ne ha, zero_mul]
 
 theorem basePoint_entry_of_col_ne_zero {b : Fin (d + 1)} (hb : b ≠ 0) (a : Fin (d + 1)) :
     entry (basePoint d) a b = 0 := by
-  rw [basePoint_entry]
-  simp [Pi.single_apply, hb]
+  rw [basePoint_entry, baseVec_apply_of_ne hb, star_zero, mul_zero]
 
 /-! ## 3. Exactly one zero -/
 
@@ -310,8 +308,8 @@ whole point of running the campaign's obstruction mod `2`. -/
 theorem tautChartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z : Fin d → ℂ) :
     (∀ i, tautChartHomotopy s z i = 0) ↔ z = 0 := by
   have hpos := tautChartHomotopy_coeff_pos hs0 hs1 z
-  have hne : ((((1 - s) + s * (tautChartNorm z)⁻¹ : ℝ)) : ℂ) ≠ 0 := by
-    simpa using ne_of_gt hpos
+  have hne : ((((1 - s) + s * (tautChartNorm z)⁻¹ : ℝ)) : ℂ) ≠ 0 :=
+    Complex.ofReal_ne_zero.mpr (ne_of_gt hpos)
   constructor
   · intro h
     funext i
