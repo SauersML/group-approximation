@@ -1,5 +1,6 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.BorsukUlam
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ComplexOddMapRealification
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Complex-coordinate Borsuk--Ulam
@@ -57,5 +58,25 @@ theorem complexOddMapCommonZero
       linarith
     · change (f x k).im = 0
       linarith
+
+/-! ## Closed audit endpoint -/
+
+/-- **Closed endpoint for the complex-coordinate common-zero theorem.**
+
+This is the shape STW Problem XXII consumes: an odd continuous map of the unit
+sphere of `R^{d+1}` into `κ → ℂ` must vanish somewhere once the real dimension
+`2 * card κ` of the target fits inside `d`.  Stated with no construction data,
+paired with the sphere form it rests on, so `#audit_closed_axioms` certifies
+that neither carries a hypothesis binder. -/
+theorem complexOddMapCommonZero_closed :
+    (∀ (d : ℕ) (κ : Type) (_ : Finite κ), 2 * Nat.card κ ≤ d →
+        ∀ f : C(Sphere d, κ → ℂ), (∀ x : Sphere d, f (-x) = -f x) →
+          ∃ x : Sphere d, f x = 0) ∧
+    (∀ (n : ℕ) (g : C(Sphere (n + 1), Sphere n)),
+        (∀ x, g (-x) = - g x) → False) :=
+  ⟨fun d κ hκ hdim f hf => @complexOddMapCommonZero d κ hκ hdim f hf,
+    no_odd_map_sphere_succ⟩
+
+#audit_closed_axioms complexOddMapCommonZero_closed
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree

@@ -2,6 +2,7 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Final.OddDegree
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.DegreeAPIStrengthening
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SphereHomologyMVStep
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyHomotopyInvariance
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib
 
 /-!
@@ -155,5 +156,29 @@ theorem borsuk_ulam {n : ℕ}
   apply no_odd_map_sphere_succ n g;
   intro x; ext; simp [g, v];
   rw [ norm_sub_rev ] ; ring
+
+/-! ## Closed audit endpoint -/
+
+/-- **Closed endpoint for the Borsuk--Ulam pair.**
+
+Both halves are stated with no construction data of any kind, so the
+`#audit_closed_axioms` gate below certifies that the odd-degree chain behind
+them really is unconditional: there is no odd map `S^{n+1} -> S^n`, and every
+continuous `f : S^{n+1} -> R^{n+1}` identifies some antipodal pair.
+
+The three hypotheses that earlier stages of this port carried as explicit
+binders are all discharged upstream and none of them survives here:
+`hcmp : ModTwoTopClassComparison _` by `final_modTwoTopClassComparison`,
+`htop : OddMapFixesTopClass n` by `oddMapFixesTopClass_unconditional`, and
+`hvanish : IsZero (rpCohomology n (n+1))` by
+`rpCohomology_topPlusOne_isZero_direct`. -/
+theorem borsuk_ulam_closed :
+    (∀ (n : ℕ) (g : C(Sphere (n + 1), Sphere n)),
+        (∀ x, g (-x) = - g x) → False) ∧
+    (∀ (n : ℕ) (f : C(Sphere (n + 1), EuclideanSpace ℝ (Fin (n + 1)))),
+        ∃ x : Sphere (n + 1), f x = f (-x)) :=
+  ⟨no_odd_map_sphere_succ, fun _ f => borsuk_ulam f⟩
+
+#audit_closed_axioms borsuk_ulam_closed
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
