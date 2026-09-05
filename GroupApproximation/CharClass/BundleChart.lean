@@ -33,6 +33,8 @@ namespace Bundle
 
 section Chart
 
+set_option linter.unusedSectionVars false
+
 variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
 
 /-! ### Vectors and matrices split along `ι ⊕ Unit` -/
@@ -121,14 +123,17 @@ theorem inclMat_injective : Function.Injective (inclMat : Matrix ι ι ℂ → _
 
 /-! ### `P(p)` sits inside `P(p ⊕ 1)` -/
 
+theorem projIncl_mem (p : Bundle X ι) (z : Proj p) :
+    ((z : X × Matrix ι ι ℂ).1, inclMat (z : X × Matrix ι ι ℂ).2) ∈ projSet p.plusOne := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [inclMat_conjTranspose, z.2.1]
+  · rw [inclMat_mul, z.2.2.1]
+  · rw [trace_inclMat, z.2.2.2.1]
+  · rw [plusOne_mul_inclMat, z.2.2.2.2]
+
 /-- The hyperplane at infinity: `P(p) ⊆ P(p ⊕ 1)`. -/
 def projIncl (p : Bundle X ι) : C(Proj p, Proj p.plusOne) where
-  toFun z := ⟨((z : X × Matrix ι ι ℂ).1, inclMat (z : X × Matrix ι ι ℂ).2), by
-      refine ⟨?_, ?_, ?_, ?_⟩
-      · rw [inclMat_conjTranspose, z.2.1]
-      · rw [inclMat_mul, z.2.2.1]
-      · rw [trace_inclMat, z.2.2.2.1]
-      · rw [plusOne_mul_inclMat, z.2.2.2.2]⟩
+  toFun z := ⟨((z : X × Matrix ι ι ℂ).1, inclMat (z : X × Matrix ι ι ℂ).2), projIncl_mem p z⟩
   continuous_toFun :=
     ((continuous_fst.comp continuous_subtype_val).prodMk
       (continuous_inclMat.comp (continuous_snd.comp continuous_subtype_val))).subtype_mk _
@@ -303,7 +308,7 @@ theorem eucNormSq_chartVec_ne_zero (v : X × (ι → ℂ)) :
   simpa using eucNormSq_ne_zero (chartVec_ne_zero v)
 
 /-- The affine chart `E(p) → P(p ⊕ 1) ∖ P(p)`, `v ↦ [v : 1]`. -/
-def chartOf (p : Bundle X ι) : C(Total p, Chart p) where
+noncomputable def chartOf (p : Bundle X ι) : C(Total p, Chart p) where
   toFun v :=
     ⟨((v : X × (ι → ℂ)).1, lineOf (chartVec (v : X × (ι → ℂ)))),
       mem_projSet_of_lineOf (chartVec_ne_zero _)
@@ -324,7 +329,7 @@ theorem chartOf_apply (p : Bundle X ι) (v : Total p) :
       = ((v : X × (ι → ℂ)).1, lineOf (chartVec (v : X × (ι → ℂ)))) := rfl
 
 /-- The inverse of the chart, read off two entries: `v i = Q_{i*} / Q_{**}`. -/
-def vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) : ι → ℂ :=
+noncomputable def vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) : ι → ℂ :=
   fun i => z.2 (Sum.inl i) (Sum.inr ()) / betaEntry z
 
 theorem continuous_vecOf {Z : Type} [TopologicalSpace Z]
@@ -347,7 +352,7 @@ theorem vecOf_eq_smul {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ} {w : ι 
   have hstar : star (w (Sum.inr ())) ≠ 0 := star_ne_zero.mpr hlam
   funext i
   show z.2 (Sum.inl i) (Sum.inr ()) / betaEntry z = (w (Sum.inr ()))⁻¹ * w (Sum.inl i)
-  rw [hzw, rankOneProj_apply, hbeta', hzw, rankOneProj_apply]
+  rw [hzw, rankOneProj_apply, hbeta']
   field_simp
   ring
 
@@ -359,7 +364,7 @@ theorem vecOf_mem_totalSet {p : Bundle X ι} {z : X × Matrix (ι ⊕ Unit) (ι 
   rw [hv, Matrix.mulVec_smul, (mem_plusOne_fibre_iff p z.1 w).mp hfix]
 
 /-- The inverse chart `P(p ⊕ 1) ∖ P(p) → E(p)`. -/
-def totalOf (p : Bundle X ι) : C(Chart p, Total p) where
+noncomputable def totalOf (p : Bundle X ι) : C(Chart p, Total p) where
   toFun z := ⟨((z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ).1,
       vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)), vecOf_mem_totalSet z.2⟩
   continuous_toFun :=
@@ -410,7 +415,7 @@ theorem chartOf_totalOf (p : Bundle X ι) (z : Chart p) : chartOf p (totalOf p z
 
 /-- **The total space is the complement of the hyperplane at infinity**, and the
 identification is a homeomorphism onto an open subspace of `P(p ⊕ 1)`. -/
-def totalHomeoChart (p : Bundle X ι) : Total p ≃ₜ Chart p where
+noncomputable def totalHomeoChart (p : Bundle X ι) : Total p ≃ₜ Chart p where
   toFun := chartOf p
   invFun := totalOf p
   left_inv := totalOf_chartOf p

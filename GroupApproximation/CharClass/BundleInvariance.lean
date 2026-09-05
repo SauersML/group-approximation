@@ -107,15 +107,19 @@ theorem conjTranspose_mul_conjTranspose (e : BundleIso p q) (x : X) :
 
 /-! ### The total spaces correspond -/
 
-theorem mulVec_mem_totalSet (e : BundleIso p q) {v : X × (ι → ℂ)} (hv : v ∈ totalSet p) :
+theorem mulVec_mem_totalSet (e : BundleIso p q) {v : X × (ι → ℂ)} (_hv : v ∈ totalSet p) :
     ((v.1, e.hom v.1 *ᵥ v.2) : X × (κ → ℂ)) ∈ totalSet q := by
   show q v.1 *ᵥ (e.hom v.1 *ᵥ v.2) = e.hom v.1 *ᵥ v.2
   rw [Matrix.mulVec_mulVec, e.hom_mul_left]
 
 theorem conjTranspose_mulVec_mem_totalSet (e : BundleIso p q) {w : X × (κ → ℂ)}
-    (hw : w ∈ totalSet q) : ((w.1, (e.hom w.1)ᴴ *ᵥ w.2) : X × (ι → ℂ)) ∈ totalSet p := by
+    (_hw : w ∈ totalSet q) : ((w.1, (e.hom w.1)ᴴ *ᵥ w.2) : X × (ι → ℂ)) ∈ totalSet p := by
   show p w.1 *ᵥ ((e.hom w.1)ᴴ *ᵥ w.2) = (e.hom w.1)ᴴ *ᵥ w.2
-  rw [Matrix.mulVec_mulVec, e.conjTranspose_absorb_left]
+  have habs : p w.1 * (e.hom w.1)ᴴ = (e.hom w.1)ᴴ := by
+    have h : (e.hom w.1 * p w.1)ᴴ = (e.hom w.1)ᴴ :=
+      congrArg Matrix.conjTranspose (e.hom_mul_right w.1)
+    rwa [Matrix.conjTranspose_mul, p.conjTranspose_eq] at h
+  rw [Matrix.mulVec_mulVec, habs]
 
 /-- **Isomorphic bundles have homeomorphic total spaces, over the base.** -/
 def totalHomeo (e : BundleIso p q) : Total p ≃ₜ Total q where

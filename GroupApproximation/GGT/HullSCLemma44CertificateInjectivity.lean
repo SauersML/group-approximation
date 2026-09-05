@@ -96,26 +96,19 @@ theorem false_of_relativeDiagramCertificate
     exact le_trans
       (GGT.OsinComponents.wordNorm_listVal_le D C.rightSide
         C.rightSide_admissible) C.rightSide_short
-  have hboundaryDecomposition : Z.boundaryWord =
-      C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter := by
-    calc
-      Z.boundaryWord = K.boundaryWord := K.boundaryWord_eq.symm
-      _ = C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter :=
-        C.boundary_decomposition
+  have hbw : K.boundaryWord = Z.boundaryWord := K.boundaryWord_eq
   have harcWord : IsWord D.alphabet.carrier
       C.boundaryArc C.boundaryArc.prod := by
     refine ⟨?_, rfl⟩
     intro x hx
     apply Z.boundaryWord_isWord.letters x
-    rw [hboundaryDecomposition]
-    simp only [List.mem_append]
-    exact Or.inl (Or.inr hx)
+    rw [← hbw]
+    exact C.boundaryArc_mem_boundaryWord hx
   have harcLength : C.boundaryArc.length ≤ 2 * R := by
     calc
       C.boundaryArc.length ≤ Z.boundaryWord.length := by
-        have hlength := congrArg List.length hboundaryDecomposition
-        simp only [List.length_append] at hlength
-        omega
+        rw [← hbw]
+        exact C.boundaryArc_length_le_boundaryWord
       _ = wordNorm D.alphabet.carrier Z.boundary :=
         Z.boundaryWord_geodesic
       _ ≤ 2 * R := Z.boundary_length_le

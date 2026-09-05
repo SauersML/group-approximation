@@ -224,10 +224,13 @@ noncomputable def RelativeBoundaryContiguity.of_embeddedData
     exterior := Embedded.dartWord hreal.diagram sourceArc.darts
     remainder := remainder
     relator_decomposition := hsource
+    rotation := 0
     boundaryBefore := data.position.boundaryBefore
     boundaryArc := data.position.boundaryArc
     boundaryAfter := data.position.boundaryAfter
-    boundary_decomposition := data.position.boundary_decomposition
+    boundary_decomposition := by
+      rw [List.rotate_zero]
+      exact data.position.boundary_decomposition
     leftSide := Embedded.dartWord hreal.diagram C.region.rightSide
     rightSide := Embedded.dartWord hreal.diagram C.region.leftSide
     leftSide_admissible := data.leftSide_admissible

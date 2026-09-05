@@ -198,7 +198,9 @@ theorem exists_three_split_of_map_eq_three_append
 
 /-- The group-valued boundary decomposition in a relative Greendlinger
 certificate therefore comes from an actual subword of the repeated relative
-boundary word. -/
+boundary word, rotated by the certificate's boundary-cycle cut (see
+`RelativeBoundaryContiguity.rotation`).  At the wrap-free cut `rotation = 0`
+this is exactly the previous unrotated splitting. -/
 theorem exists_boundaryArc_source
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ}
@@ -207,14 +209,19 @@ theorem exists_boundaryArc_source
     (C : RelativeBoundaryContiguity D eps
       (boundary.map GGT.RelLetter.val) relator) :
     ∃ pre arc suf : List (GGT.RelLetter G Lambda),
-      boundary = pre ++ arc ++ suf ∧
+      boundary.rotate C.rotation = pre ++ arc ++ suf ∧
       pre.map GGT.RelLetter.val = C.boundaryBefore ∧
       arc.map GGT.RelLetter.val = C.boundaryArc ∧
       suf.map GGT.RelLetter.val = C.boundaryAfter ∧
       GGT.RelLetter.listVal arc = C.boundaryArc.prod := by
+  have hrotatedMap : (boundary.rotate C.rotation).map GGT.RelLetter.val =
+      C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter := by
+    rw [List.map_rotate]
+    exact C.boundary_decomposition
   obtain ⟨pre, arc, suf, hsplit, hpre, harc, hsuf⟩ :=
-    exists_three_split_of_map_eq_three_append GGT.RelLetter.val boundary
-      C.boundaryBefore C.boundaryArc C.boundaryAfter C.boundary_decomposition
+    exists_three_split_of_map_eq_three_append GGT.RelLetter.val
+      (boundary.rotate C.rotation)
+      C.boundaryBefore C.boundaryArc C.boundaryAfter hrotatedMap
   refine ⟨pre, arc, suf, hsplit, hpre, harc, hsuf, ?_⟩
   show (arc.map GGT.RelLetter.val).prod = C.boundaryArc.prod
   rw [harc]

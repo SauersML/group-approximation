@@ -127,7 +127,8 @@ theorem map_shortenedBoundaryWord_prod_eq
     {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
     {relator : List (GGT.RelLetter G Lambda)}
     (C : RelativeBoundaryContiguity D eps boundaryWord relator)
-    (q : G →* Q) (hrelator : q (GGT.RelLetter.listVal relator) = 1) :
+    (q : G →* Q) (hrelator : q (GGT.RelLetter.listVal relator) = 1)
+    (hrot : C.rotation = 0) :
     q C.shortenedBoundaryWord.prod = q boundaryWord.prod := by
   have harc := C.map_replacementWord_prod_eq_boundaryArc_prod q hrelator
   have hshortenedValue : C.shortenedBoundaryWord.prod =
@@ -140,7 +141,7 @@ theorem map_shortenedBoundaryWord_prod_eq
     calc
       boundaryWord.prod =
           (C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter).prod :=
-        congrArg List.prod C.boundary_decomposition
+        congrArg List.prod (C.boundary_decomposition_of_rotation_zero hrot)
       _ = C.boundaryBefore.prod * C.boundaryArc.prod *
           C.boundaryAfter.prod := by
         rw [List.prod_append, List.prod_append]
@@ -153,7 +154,8 @@ theorem boundaryWord_prod_eq_conjugate_relator_mul_shortened
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
     {relator : List (GGT.RelLetter G Lambda)}
-    (C : RelativeBoundaryContiguity D eps boundaryWord relator) :
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator)
+    (hrot : C.rotation = 0) :
     boundaryWord.prod =
       (C.boundaryBefore.prod *
           (GGT.RelLetter.listVal C.leftSide)⁻¹) *
@@ -177,7 +179,7 @@ theorem boundaryWord_prod_eq_conjugate_relator_mul_shortened
     calc
       boundaryWord.prod =
           (C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter).prod :=
-        congrArg List.prod C.boundary_decomposition
+        congrArg List.prod (C.boundary_decomposition_of_rotation_zero hrot)
       _ = C.boundaryBefore.prod * C.boundaryArc.prod *
           C.boundaryAfter.prod := by
         rw [List.prod_append, List.prod_append]
@@ -228,7 +230,7 @@ theorem shortenedBoundaryWord_length_lt
     C.shortenedBoundaryWord.length < boundaryWord.length := by
   have hboundaryLength := congrArg List.length C.boundary_decomposition
   rw [C.shortenedBoundaryWord_length]
-  simp only [List.length_append] at hboundaryLength
+  simp only [List.length_append, List.length_rotate] at hboundaryLength
   omega
 
 /-- Values of formally inverted admissible letters remain in the full
@@ -285,11 +287,13 @@ theorem shortenedBoundaryWord_isWord
   simp only [shortenedBoundaryWord, List.mem_append] at hx
   rcases hx with (hx | hx) | hx
   · apply hboundary.letters x
+    apply (List.mem_rotate (n := C.rotation)).mp
     rw [C.boundary_decomposition]
     exact List.mem_append_left C.boundaryAfter
       (List.mem_append_left C.boundaryArc hx)
   · exact hreplacement.letters x hx
   · apply hboundary.letters x
+    apply (List.mem_rotate (n := C.rotation)).mp
     rw [C.boundary_decomposition]
     exact List.mem_append_right (C.boundaryBefore ++ C.boundaryArc) hx
 
@@ -368,10 +372,7 @@ theorem replacementWord_length_lt_boundaryArc_of_certificate
         K.boundaryWord Z.boundary := by
       rw [K.boundaryWord_eq]
       exact Z.boundaryWord_isWord
-    apply hboundaryWord.letters x
-    rw [C.boundary_decomposition]
-    exact List.mem_append_left C.boundaryAfter
-      (List.mem_append_right C.boundaryBefore hx)
+    exact hboundaryWord.letters x (C.boundaryArc_mem_boundaryWord hx)
   have harcRel : wordNorm D.alphabet.carrier C.boundaryArc.prod ≤
       C.boundaryArc.length := wordNorm_le_length harcWord
   have hmulOne := wordNorm_mul_le D.alphabet.symmetricGenerating
@@ -440,7 +441,16 @@ theorem length_lt
 end RelativeDehnCut
 
 /-- Every certificate supplies the strict one-cell cut used by Osin's
-boundary-length induction, provided the quotient kills every relator. -/
+boundary-length induction, provided the quotient kills every relator.
+
+**`hrot` is a residue of the boundary-cycle rotation carried by
+`RelativeBoundaryContiguity` (see its docstring).**  The value-level identity
+this theorem needs only holds at the wrap-free cut; every certificate
+currently produced by `RelativeDiagramCertificate.largeCell` fixes the
+default `rotation := 0`, so `hrot` is discharged by `rfl` at every present
+call site.  A future certificate builder that actually wraps the cut will
+need to supply a genuine proof here (or this theorem will need the explicit
+conjugation correction instead). -/
 theorem exists_relativeDehnCut_of_certificate
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -451,9 +461,12 @@ theorem exists_relativeDehnCut_of_certificate
     (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
     (K : RelativeDiagramCertificate D W eps mu Z)
     (q : G →* Q)
-    (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1) :
+    (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1)
+    (hrot : ∀ {i : Fin Z.cells.length}
+      {C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)},
+      K.contiguity i = some C → C.rotation = 0) :
     Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
-  obtain ⟨i, C, _, hshort⟩ :=
+  obtain ⟨i, C, hcontiguity, hshort⟩ :=
     replacementWord_length_lt_boundaryArc_of_certificate D hsc hmu hrho K
   have hboundary : IsWord D.alphabet.carrier K.boundaryWord
       K.boundaryWord.prod := by
@@ -471,11 +484,11 @@ theorem exists_relativeDehnCut_of_certificate
     shortenedWord_isWord := C.shortenedBoundaryWord_isWord hboundary
       hrelatorAdmissible
     quotient_value := C.map_shortenedBoundaryWord_prod_eq q
-      (hkill (K.cellLabel i) (K.cellLabel_mem i))
+      (hkill (K.cellLabel i) (K.cellLabel_mem i)) (hrot hcontiguity)
     replacement_length_lt := hshort }⟩
 
 /-- The normal-closure kernel equation supplies the relator-killing premise
-of the packaged cut. -/
+of the packaged cut.  See `exists_relativeDehnCut_of_certificate` for `hrot`. -/
 theorem exists_relativeDehnCut_of_kernel
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -487,13 +500,17 @@ theorem exists_relativeDehnCut_of_kernel
     (K : RelativeDiagramCertificate D W eps mu Z)
     (q : G →* Q)
     (hker : q.ker =
-      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hrot : ∀ {i : Fin Z.cells.length}
+      {C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)},
+      K.contiguity i = some C → C.rotation = 0) :
     Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
   apply exists_relativeDehnCut_of_certificate D hsc hmu hrho K q
-  intro relator hrelator
-  apply MonoidHom.mem_ker.mp
-  rw [hker]
-  exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
+  · intro relator hrelator
+    apply MonoidHom.mem_ker.mp
+    rw [hker]
+    exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
+  · exact hrot
 
 end HullSC
 end GroupApproximation

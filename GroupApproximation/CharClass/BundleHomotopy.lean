@@ -69,7 +69,6 @@ def totalHomotopyEquivBase (p : Bundle X ι) : ContinuousMap.HomotopyEquiv (Tota
   left_inv := ⟨scaleHomotopy p⟩
   right_inv := by
     rw [totalPi_comp_zeroSection]
-    exact ContinuousMap.Homotopic.refl _
 
 /-! ### `E(p) ∖ 0` retracts onto the sphere bundle -/
 
@@ -85,7 +84,7 @@ theorem normalizeVec_mem_totalSet {p : Bundle X ι} {v : X × (ι → ℂ)} (hv 
   exact smul_mem_totalSet hv _
 
 /-- The normalization map `E(p) ∖ 0 → S(p)`. -/
-def sphereRetract (p : Bundle X ι) : C(Punctured p, Sphere p) where
+noncomputable def sphereRetract (p : Bundle X ι) : C(Punctured p, Sphere p) where
   toFun v := ⟨((v : X × (ι → ℂ)).1, normalizeVec (v : X × (ι → ℂ)).2),
     normalizeVec_mem_totalSet (v.2).1, normalizeVec_mem_unitVectors (v.2).2⟩
   continuous_toFun :=
@@ -106,12 +105,11 @@ theorem normalizeVec_of_mem_unitVectors {u : ι → ℂ} (hu : u ∈ unitVectors
 theorem sphereRetract_comp_sphereToPunctured (p : Bundle X ι) :
     (sphereRetract p).comp (sphereToPunctured p) = ContinuousMap.id (Sphere p) := by
   ext v
-  apply Subtype.ext
   show ((v : X × (ι → ℂ)).1, normalizeVec (v : X × (ι → ℂ)).2) = (v : X × (ι → ℂ))
   rw [normalizeVec_of_mem_unitVectors (v.2).2]
 
 /-- The homotopy pushing `E(p) ∖ 0` onto its sphere bundle. -/
-def sphereHomotopy (p : Bundle X ι) :
+noncomputable def sphereHomotopy (p : Bundle X ι) :
     ContinuousMap.Homotopy ((sphereToPunctured p).comp (sphereRetract p))
       (ContinuousMap.id (Punctured p)) where
   toFun tv :=
@@ -161,14 +159,13 @@ def sphereHomotopy (p : Bundle X ι) :
 
 /-- **The complement of the zero section is homotopy equivalent to the sphere
 bundle.** -/
-def puncturedHomotopyEquivSphere (p : Bundle X ι) :
+noncomputable def puncturedHomotopyEquivSphere (p : Bundle X ι) :
     ContinuousMap.HomotopyEquiv (Punctured p) (Sphere p) where
   toFun := sphereRetract p
   invFun := sphereToPunctured p
   left_inv := ⟨sphereHomotopy p⟩
   right_inv := by
     rw [sphereRetract_comp_sphereToPunctured]
-    exact ContinuousMap.Homotopic.refl _
 
 end Scaling
 
