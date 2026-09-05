@@ -1,9 +1,11 @@
 ---
 rg: 2
 id: property-t-sl3-congruence-hecke-absorber-proof
-kind: proof
-proves:
-  - property-t-does-not-repair-the-finite-hecke-router
+kind: route
+title: Realize the finite Hecke packet in the octahedral subgroup and odd congruence quotients
+target: property-t-does-not-repair-the-finite-hecke-router
+requires:
+  - single-hecke-transport-cannot-carry-complete-context
 ---
 
 # Proof

@@ -4,7 +4,7 @@ id: presentation-defect-does-not-control-off-commutant-mass
 kind: claim
 title: Presentation defect cannot force a Toeplitz gauge into the carrier commutant
 distinct_from:
-  bounded-coherence-toeplitz-gauges-cannot-retain-head: that assumes from the start that every gauge lies in the commutant; this proves that relator smallness alone cannot justify that assumption
+  bounded-multiplicity-toeplitz-gauges-collapse-head: that assumes from the start that every gauge lies in the commutant; this proves that relator smallness alone cannot justify that assumption
   unbounded-commutant-coherence-is-the-original-gate: that classifies arbitrary gauges after exact carrier separation; this exhibits the obstruction to obtaining such a separation
   toeplitz-folner-compressions-cannot-retain-jacobson-head: that compares the two endpoint transvections inside one finite-group representation; this concerns arbitrary tuples measured relative to that representation
 ---

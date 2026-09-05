@@ -6,9 +6,7 @@ title: A diagonal spin model absorbs the full five-Clifford orbit lock
 artifacts:
   - research/five-clifford-cyclic-phase-network-finite-model-proof.md
 distinct_from:
-  five-clifford-odd-orbit-cancels-phase-not-payload: that computes one orbit norm and exhibits an unconstrained cyclic multiplicity; this gives a single cyclic finite model satisfying every within-orbit and cross-orbit commutator lock simultaneously.
-  rectangular-pauli-gauges-absorb-every-controlled-phase-network: that uses independent rectangular Pauli gauges for arbitrary phase data; this preserves the one-actor order-five covariance and the exact five-Clifford volume relation.
-  extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial: that proves the normalizer globalization boundary; this shows that the finer actor-character compression in the cyclic proposal has positive leakage even when all proposed ordinary relators vanish.
+  extraspecial-fusion-filter-local-normalizer-globalization: that proves the normalizer globalization boundary; this shows that the finer actor-character compression in the cyclic proposal has positive leakage even when all proposed ordinary relators vanish.
 ---
 
 **EXACT FINITE CYCLIC ABSORBER.**

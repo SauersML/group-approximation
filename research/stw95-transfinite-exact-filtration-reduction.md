@@ -6,6 +6,7 @@ title: Exact tensoring reduces pure permanence through arbitrary continuous filt
 artifacts:
   - research/artifacts/stw95-pure-tensor-permanence-wave-audit-2026-08-30.md
 distinct_from:
+  stw95-countable-exact-filtrations-reduce-pure-tensors: that allows a possibly nonseparable algebra but only a countable ordinal filtration; this assumes separability of the algebra and permits arbitrary ordinals, including uncountable-cofinality limits.
   stw95-exact-finite-ideal-filtration-reduction: that performs only finite induction; this permits a continuous filtration indexed by an arbitrary ordinal, handles countable-cofinality limits by Cu continuity, and shows that separability forces stabilization at every uncountable-cofinality limit.
 ---
 

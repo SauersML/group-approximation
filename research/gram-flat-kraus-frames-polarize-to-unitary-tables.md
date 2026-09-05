@@ -4,7 +4,7 @@ id: gram-flat-kraus-frames-polarize-to-unitary-tables
 kind: claim
 title: Gram-flat square Kraus frames polarize to relative unitary tables
 artifacts:
-  - research/equivariant-polar-rounding-pays-gram-flatness.md
+  - afa569578:research/equivariant-polar-rounding-pays-gram-flatness.md
 distinct_from:
   multi-kraus-frame-energy-is-the-full-relative-pd-gate: that allows arbitrary rectangular Stinespring frames and exactly metrizes the full coefficient body; this gives a sufficient original-dimension flattening theorem for square pointwise Gram-flat frames.
   right-translation-flattens-every-relative-kraus-frame: that makes every frame pointwise isometric after a possibly large target amplification; this rounds square fibres to unitaries and therefore addresses the additional common-corange or target-dimension gate.
@@ -72,5 +72,6 @@ square Gram-flat minimizer must be selected there. The remaining open
 step is to force the common isometry/unitary energy to vanish from the
 two cubic presentation defects.
 
-DERIVATION
-equivariant-polar-rounding-pays-gram-flatness
+The historical artifact above contains the equivariant polar proof.
+Its route file is absent from the current graph, so this citation is
+historical evidence rather than a current derivation edge.

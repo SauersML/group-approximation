@@ -4,7 +4,7 @@ id: unbounded-commutant-coherence-is-the-original-gate
 kind: claim
 title: Unbounded commutant coherence is exactly the original Jacobson gate
 distinct_from:
-  bounded-coherence-toeplitz-gauges-cannot-retain-head: that proves collapse when every isotypic multiplicity is bounded; this identifies what happens when that hypothesis is removed
+  bounded-multiplicity-toeplitz-gauges-collapse-head: that proves collapse when every isotypic multiplicity is bounded; this identifies what happens when that hypothesis is removed
   toeplitz-folner-compressions-cannot-retain-jacobson-head: that rules out the literal finite-group carrier; this shows an unbounded commutant can contain an arbitrary microstate independently of that carrier
   scalar-rephased-toeplitz-sections-still-collapse-head: that closes one-dimensional coherence; this proves that unrestricted coherence is not a finite-section subclass at all
 ---
@@ -16,7 +16,7 @@ gauges `Z_s in rho(F_N)'`, and tuple
 U_s=rho(theta_N(s))Z_s
 ```
 
-from `bounded-coherence-toeplitz-gauges-cannot-retain-head`, but impose no
+from `bounded-multiplicity-toeplitz-gauges-collapse-head`, but impose no
 bound on the isotypic multiplicities.
 
 There are constants `A,B<infinity`, depending only on the fixed

@@ -4,7 +4,7 @@ id: two-c-conjugate-g2-mixed-carriers-collapse-to-one-orientation
 kind: claim
 title: Two C-conjugate g2 mixed carriers collapse to one raw orientation
 artifacts:
-  - research/two-c-conjugate-g2-mixed-carrier-collapse-proof.md
+  - 535aedaea:research/two-c-conjugate-g2-mixed-carrier-collapse-proof.md
 distinct_from:
   fixed-g2-mixed-pair-has-all-length-d8-normal-form: that repeats one shifted pair; this introduces a second C-conjugate T-root and an independent hidden sign.
   first-uncancelled-g2-mixed-carrier-has-no-hall-deficit: that computes one hidden sign; this gives the complete two-carrier polar table.

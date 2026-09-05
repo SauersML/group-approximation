@@ -3,7 +3,7 @@ rg: 2
 id: two-carrier-linear-interference-rank-proof
 kind: route
 title: Row-reduce the join of two hidden-sign carrier supports
-target: two-carrier-linear-interference-misses-target-by-five-over-2304
+target: two-carrier-support-join-stays-below-target
 requires:
   - two-c-conjugate-g2-mixed-carriers-collapse-to-one-orientation
 ---

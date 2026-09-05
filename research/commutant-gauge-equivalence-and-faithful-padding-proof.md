@@ -5,7 +5,7 @@ kind: route
 title: Strip every commutant gauge and recover the original microstate problem
 target: unbounded-commutant-coherence-is-the-original-gate
 requires:
-  - bounded-coherence-toeplitz-gauges-cannot-retain-head
+  - bounded-multiplicity-toeplitz-gauges-collapse-head
 ---
 
 Let `delta(U)` be the maximum defining-relator defect. Sections 1--3 of

@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: kt-diagonal-commutant-expectation-and-finite-wreath-countermodel-proof
+id: kt-diagonal-rounding-and-wreath-countermodel-proof
 kind: route
 title: Preserve the BCJM diagonal under Gamma rounding and isolate the missing Laurent extension
-target: gamma-only-exactification-preserves-the-diagonal-but-not-the-kt-return
+target: gamma-exactification-keeps-diagonal-not-kt-return
 requires:
   - amenable-lamp-rounding-preserves-the-kt-named-return-wall
   - kt-elementary-kazhdan-packet-rounds-base-lamp

@@ -4,10 +4,7 @@ id: moved-root-dft-router-loses-quarter-and-collides-two-to-one
 kind: claim
 title: The moved-root DFT router is invertible on its orbit but retains only three eighths of the two-atom source
 artifacts:
-  - research/moved-root-dft-router-quarter-loss-proof.md
-requires:
-  - three-carrier-hidden-line-join-crosses-target-but-has-no-range
-  - qutrit-head-preserving-scalar-router-is-three-cycle
+  - 07c67f1d7:research/moved-root-dft-router-quarter-loss-proof.md
 distinct_from:
   three-carrier-hidden-line-join-crosses-target-but-has-no-range: that builds a full three-hidden-line source but has no nontrivial h transport; this moves through all three scalar types and computes the exact cost of the first h-typed Fourier router.
   qutrit-head-preserving-scalar-router-is-three-cycle: that uses one finite scalar permutation with complete Hecke graph; this uses literal S and T roots, collects their ST commutators, and diagonalizes the resulting relative holonomy.

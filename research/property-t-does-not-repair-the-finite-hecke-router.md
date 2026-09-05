@@ -6,9 +6,9 @@ title: Property (T) does not repair a finite Hecke router: SL3(Z) has exact cong
 artifacts:
   - research/property-t-sl3-congruence-hecke-absorber-proof.md
 distinct_from:
-  single-nonreducing-hecke-transport-cannot-carry-a-complete-context: that proves the universal one-compression rank obstruction and a finite S4 absorber; this embeds the same packet in a property-(T) actor and preserves it in an infinite congruence family.
-  property-t-fixed-holonomy-character-regularization: that controls a fixed holonomy after character regularization; here exact representations retain macroscopic off-corner holonomy.
-  strict-compressor-exact-actor-collapse: that uses an infinite subgroup inclusion; here the anchor is finite and congruence quotients preserve its nonnormal relative position.
+  single-hecke-transport-cannot-carry-complete-context: that proves the universal one-compression rank obstruction and a finite S4 absorber; this embeds the same packet in a property-(T) actor and preserves it in an infinite congruence family.
+  property-t-does-not-kill-boolean-fiber-holonomy: that distinguishes fixed finite holonomy character regularization from property T alone; here exact property-T representations retain macroscopic off-corner mass.
+  strict-compressor-mixed-return-collapses-shared-pauli-sign: that uses an infinite subgroup inclusion to control a mixed return in genuine finite-dimensional actors; here a finite anchor retains its nonnormal relative position in congruence quotients.
 ---
 
 The property-(T) group SL_3(Z) contains the rotational signed-permutation

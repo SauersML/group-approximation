@@ -4,6 +4,7 @@ id: bost-fixed-two-generator-all-group-tester
 kind: claim
 title: One two-generator finitely presented group tests the Bost conjecture with coefficients for every group
 distinct_from:
+  luck-determinant-fixed-two-generator-tester: that tests Fuglede--Kadison determinant bounds for integral group-ring matrices; this tests the coefficient-sensitive Bost assembly map for L1 crossed products.
   bost-fixed-two-generator-torsion-free-tester: that uses a torsion-free host and tests only torsion-free groups; this tests all discrete groups with the torsionful universal host.
   full-farrell-jones-fixed-two-generator-all-group-tester: that concerns algebraic K- and L-theory over the virtually-cyclic family; this concerns topological K-theory of L1 crossed products over the finite-subgroup family.
   universal-all-group-subgroup-colimit-class-tester: that is the abstract tester; this checks the coefficient-sensitive Bost inheritance hypotheses.

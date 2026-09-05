@@ -229,7 +229,7 @@ NON_NODE_FILES = {"README.md", "FRONTIER.md"}
 KINDS = ("claim", "route")
 CACHE_FORMAT = 2
 
-__version__ = "2.13.0"
+__version__ = "2.13.1"
 
 EXIT_OK, EXIT_DUP, EXIT_LEASE, EXIT_INVALID, EXIT_USAGE = 0, 2, 3, 4, 64
 
@@ -391,6 +391,36 @@ class Node:
         return v if isinstance(v, list) else ([] if v is None else [v])
 
 
+def load_node_text(text, path, nodes, errors, relroot=REPO):
+    """Parse and validate one source document, including historical blobs."""
+    rel = os.path.relpath(path, relroot)
+    try:
+        meta, body = parse_frontmatter(text, rel)
+    except FrontmatterError as e:
+        errors.append(("error", "frontmatter", str(e)))
+        return
+    kind = meta.get("kind")
+    if kind not in KINDS:
+        errors.append(("error", "kind", f"{rel}: kind must be claim|route, got {kind!r}"))
+        return
+    node = Node(meta, body, path, kind, relroot)
+    nid = meta.get("id")
+    if not isinstance(nid, str) or not ID_RE.match(nid):
+        errors.append(("error", "id", f"{rel}: missing or malformed id (want a kebab-case slug), got {nid!r}"))
+        return
+    if os.path.splitext(os.path.basename(path))[0] != nid:
+        errors.append(("error", "filename", f"{rel}: filename must equal id ({nid}.md)"))
+        return
+    if nid in nodes:
+        errors.append(("error", "duplicate-id", f"{rel}: duplicate id {nid} (also {nodes[nid].relpath})"))
+        return
+    if not meta.get("title"):
+        errors.append(("error", "title", f"{rel}: missing title"))
+    if meta.get("rg") != 2:
+        errors.append(("error", "schema", f"{rel}: missing or unsupported schema version (want 'rg: 2')"))
+    nodes[nid] = node
+
+
 def load_nodes(errors, research_dir=RESEARCH_DIR, relroot=REPO):
     nodes = {}
     if not os.path.isdir(research_dir):
@@ -399,33 +429,8 @@ def load_nodes(errors, research_dir=RESEARCH_DIR, relroot=REPO):
         if not fn.endswith(".md") or fn in NON_NODE_FILES:
             continue
         path = os.path.join(research_dir, fn)
-        rel = os.path.relpath(path, relroot)
-        try:
-            with open(path, encoding="utf-8") as f:
-                meta, body = parse_frontmatter(f.read(), rel)
-        except FrontmatterError as e:
-            errors.append(("error", "frontmatter", str(e)))
-            continue
-        kind = meta.get("kind")
-        if kind not in KINDS:
-            errors.append(("error", "kind", f"{rel}: kind must be claim|route, got {kind!r}"))
-            continue
-        node = Node(meta, body, path, kind, relroot)
-        nid = meta.get("id")
-        if not isinstance(nid, str) or not ID_RE.match(nid):
-            errors.append(("error", "id", f"{rel}: missing or malformed id (want a kebab-case slug), got {nid!r}"))
-            continue
-        if os.path.splitext(fn)[0] != nid:
-            errors.append(("error", "filename", f"{rel}: filename must equal id ({nid}.md)"))
-            continue
-        if nid in nodes:
-            errors.append(("error", "duplicate-id", f"{rel}: duplicate id {nid} (also {nodes[nid].relpath})"))
-            continue
-        if not meta.get("title"):
-            errors.append(("error", "title", f"{rel}: missing title"))
-        if meta.get("rg") != 2:
-            errors.append(("error", "schema", f"{rel}: missing or unsupported schema version (want 'rg: 2')"))
-        nodes[nid] = node
+        with open(path, encoding="utf-8") as f:
+            load_node_text(f.read(), path, nodes, errors, relroot)
     return nodes
 
 
@@ -746,11 +751,12 @@ class Graph:
         def live_unary(target, req):
             return any(r.status != "INVALIDATED"
                        and r.meta.get("target") == target
-                       # Established side conditions do not make an
-                       # equivalence circular.  What matters is the route's
-                       # unresolved dependency edge, not its historical list
-                       # of already-proved prerequisites.
-                       and r.blocked_on == [req]
+                       # Keep the explicit equivalence edge even if its
+                       # endpoint is proved: blocked_on then omits it.
+                       # Every other hypothesis must already be established.
+                       and req in r.get_list("requires")
+                       and all(q == req or q in self.established
+                               for q in r.get_list("requires"))
                        for r in self.routes.values())
 
         seen = set()
@@ -4064,11 +4070,14 @@ def recently_touched(graph, limit=8):
 def changed_research_files():
     """Ids of research/*.md changed vs HEAD (staged, unstaged, untracked)."""
     out = set()
-    r = _git("status", "--porcelain", "--", "research")
+    # Disable rename coalescing: both the old and new node ids are changed.
+    # NUL records also avoid git's quoting rules for unusual filenames.
+    r = _git("status", "--porcelain=v1", "-z", "--no-renames",
+             "--untracked-files=all", "--", "research")
     if r.returncode != 0:
         return None
-    for line in r.stdout.splitlines():
-        p = line[3:].split(" -> ")[-1].strip().strip('"')
+    for line in r.stdout.split("\0"):
+        p = line[3:]
         if (p.startswith("research/") and p.endswith(".md")
                 and "/" not in p[len("research/"):-3]
                 and os.path.basename(p) not in NON_NODE_FILES):
@@ -4076,24 +4085,66 @@ def changed_research_files():
     return out
 
 
-def head_graph():
-    """Compile the graph as of HEAD (empty if research/ not committed yet)."""
-    r = _git("ls-tree", "-r", "--name-only", "HEAD", "--", "research")
-    os.makedirs(STATE_DIR, exist_ok=True)
-    tmp = tempfile.mkdtemp(prefix="head-", dir=STATE_DIR)
-    if r.returncode == 0:
-        want = [p for p in r.stdout.splitlines()
-                if p.endswith(".md") and os.path.basename(p) not in NON_NODE_FILES
-                and "/" not in p[len("research/"):]]
-        # One `git cat-file --batch` for the whole tree. A `git show` per node
-        # meant ~900 process spawns, which is the entire reason preview ran a
-        # hundred times slower than every other command — and why the loop
-        # step it implements got skipped.
-        for path, blob in _cat_file_batch([f"HEAD:{p}" for p in want], want):
-            with open(os.path.join(tmp, os.path.basename(path)), "wb") as f:
-                f.write(blob)
-    graph, errors = compile_graph(research_dir=tmp, repo=REPO)
-    return graph, errors, tmp
+def head_graph(current_graph=None):
+    """Compile one pinned HEAD snapshot without writing historical files.
+
+    A fresh working graph supplies parsed text for unchanged HEAD paths.
+    Historical nodes are reconstructed: Graph mutates derived Node state,
+    so sharing Node objects would corrupt the working graph being compared.
+    """
+    head = _git("rev-parse", "--verify", "HEAD")
+    nodes, errors = {}, []
+    if head.returncode != 0:
+        graph = Graph(nodes, errors, REPO)
+        graph.compile_errors = list(errors)
+        return graph, errors
+    revision = head.stdout.strip()
+    tree = _git("ls-tree", "-r", "-z", "--name-only", revision,
+                "--", "research")
+    if tree.returncode != 0:
+        raise RuntimeError(f"cannot read Cairn baseline tree {revision}")
+    want = [p for p in tree.stdout.split("\0")
+            if p.startswith("research/") and p.endswith(".md")
+            and os.path.basename(p) not in NON_NODE_FILES
+            and "/" not in p[len("research/"):]]
+
+    manifest = getattr(current_graph, "source_manifest", None)
+    reusable = (current_graph is not None and manifest is not None
+                and manifest == research_manifest(RESEARCH_DIR)
+                and not any(sev == "error" for sev, _, _
+                            in current_graph.compile_errors))
+    dirty = set()
+    if reusable:
+        diff = _git("diff", "--name-only", "--no-renames", "-z",
+                    revision, "--", "research")
+        if diff.returncode != 0:
+            raise RuntimeError(f"cannot compare Cairn sources with {revision}")
+        dirty = set(diff.stdout.split("\0"))
+        reusable = manifest == research_manifest(RESEARCH_DIR)
+
+    pending = []
+    for path in want:
+        nid = os.path.basename(path)[:-3]
+        old = current_graph.nodes.get(nid) if reusable else None
+        if old is not None and path not in dirty:
+            nodes[nid] = Node(old.meta, old.body, os.path.join(REPO, path),
+                              old.kind, REPO)
+        else:
+            pending.append(path)
+    fetched = set()
+    for path, blob in _cat_file_batch(
+            [f"{revision}:{p}" for p in pending], pending):
+        fetched.add(path)
+        load_node_text(blob.decode("utf-8"), os.path.join(REPO, path),
+                       nodes, errors, REPO)
+    if fetched != set(pending):
+        raise RuntimeError(f"incomplete Cairn baseline read at {revision}")
+    # Keep the same deterministic route/provenance order as load_nodes.
+    nodes = dict(sorted(nodes.items()))
+    lint_nodes(nodes, errors, REPO)
+    graph = Graph(nodes, errors, REPO)
+    graph.compile_errors = list(errors)
+    return graph, errors
 
 
 def _cat_file_batch(revs, paths):
@@ -4121,36 +4172,13 @@ def _cat_file_batch(revs, paths):
         at += size + 1           # trailing newline git adds after each blob
 
 
-def previous_graph(changed_ids):
-    """Compile the graph as of HEAD, cheaply: seed a scratch dir from the
-    working tree and re-fetch only the changed files from HEAD (one
-    `git show` per changed file instead of one per node). Returns None
-    when git is unavailable or the change set is degenerate."""
-    if changed_ids is None or not changed_ids or len(changed_ids) > 200:
+def previous_graph(changed_ids, current_graph):
+    """Compile the exact HEAD baseline, reusing unchanged parsed sources."""
+    if changed_ids is None:
         return None
-    os.makedirs(STATE_DIR, exist_ok=True)
-    tmp = tempfile.mkdtemp(prefix="prev-", dir=STATE_DIR)
-    try:
-        try:
-            names = os.listdir(RESEARCH_DIR)
-        except OSError:
-            return None
-        for f in names:
-            if (not f.endswith(".md") or f in NON_NODE_FILES
-                    or f[:-3] in changed_ids):
-                continue
-            src = os.path.join(RESEARCH_DIR, f)
-            if os.path.isfile(src):
-                shutil.copy(src, os.path.join(tmp, f))
-        for cid in changed_ids:
-            show = _git("show", f"HEAD:research/{cid}.md")
-            if show.returncode == 0:
-                with open(os.path.join(tmp, cid + ".md"), "w", encoding="utf-8") as f:
-                    f.write(show.stdout)
-        graph, _ = compile_graph(research_dir=tmp, repo=REPO)
-        return graph
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+    if not changed_ids:
+        return current_graph
+    return head_graph(current_graph)[0]
 
 
 def remaining_cost(graph, assume=frozenset()):
@@ -4320,11 +4348,8 @@ def cmd_check(args):
     # naming a hole is not finishing it: a NEW open claim must record at
     # least one attack (or say why the attack is deferred) before parking
     # An empty research diff means the working graph is its own baseline.
-    # `previous_graph` deliberately returns None for that case because there
-    # is no delta to compile, but lint transitions must distinguish it from
-    # git being unavailable.
-    prev = ((graph if changed == set() else previous_graph(changed))
-            if graph_valid else None)
+    # Unlike git being unavailable, that case has a known exact baseline.
+    prev = previous_graph(changed, graph) if graph_valid else None
     previous_dead = set(prev.dead_work) if prev is not None else set()
     newly_dead = sorted(set(graph.dead_work) - previous_dead)
     for cid in newly_dead:
@@ -4477,9 +4502,8 @@ def cmd_check(args):
 
 
 def cmd_preview(args):
-    old, _, tmp = head_graph()
-    shutil.rmtree(tmp, ignore_errors=True)
     new, errors = compile_graph(use_cache=False)
+    old, _ = head_graph(new)
     L = ["PROPOSED GRAPH CHANGE (working tree vs HEAD)", ""]
     delta = {"added": [], "removed": [], "status_changed": [], "dup_warnings": [],
              "direct_proof_assertions": [], "frontier_added": [], "frontier_removed": []}

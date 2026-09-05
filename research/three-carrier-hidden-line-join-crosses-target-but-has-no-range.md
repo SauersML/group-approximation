@@ -6,7 +6,7 @@ title: Three hidden-sign lines cross the target but do not force a one-atom rang
 artifacts:
   - research/three-carrier-hidden-line-source-selector-proof.md
 distinct_from:
-  two-carrier-linear-interference-misses-target-by-five-over-2304: that proves the join of two hidden lines remains below capacity; this adds the third nonzero line and constructs a linear combination with full source support.
+  two-carrier-support-join-stays-below-target: that proves the join of two hidden lines remains below capacity; this adds the third nonzero line and constructs a linear combination with full source support.
   qutrit-complementary-jacobson-signs-minimal-router-finite: that recombines four sign quarters in an acyclic finite packet; this uses three C-conjugate mixed S/T carriers containing the long-router occurrence.
 ---
 

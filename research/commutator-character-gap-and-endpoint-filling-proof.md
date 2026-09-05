@@ -3,7 +3,7 @@ rg: 2
 id: commutator-character-gap-and-endpoint-filling-proof
 kind: route
 title: A transvection character gap separates the Toeplitz carrier from its coherence gauges
-target: bounded-coherence-toeplitz-gauges-cannot-retain-head
+target: bounded-multiplicity-toeplitz-gauges-collapse-head
 requires:
   - toeplitz-folner-compressions-cannot-retain-jacobson-head
   - bounded-block-jacobson-microstates-also-collapse

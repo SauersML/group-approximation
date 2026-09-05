@@ -5,9 +5,7 @@ kind: route
 title: Build the diagonal-spin representation and compute every cyclic leakage row
 target: five-clifford-diagonal-spin-absorbs-the-full-orbit-lock
 requires:
-  - five-clifford-odd-orbit-cancels-phase-not-payload
-  - rectangular-pauli-gauges-absorb-every-controlled-phase-network
-  - extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial
+  - extraspecial-fusion-filter-local-normalizer-globalization
 ---
 
 # Build the diagonal-spin representation and compute every cyclic leakage row
@@ -23,7 +21,22 @@ The group
  X_1X_2X_3X_4X_5=J\rangle                              \tag{1}
 \]
 
-is extraspecial of order \(32\). It has a unique irreducible representation
+is extraspecial of order \(32\). This can be checked directly, without
+the deleted odd-orbit predecessor: eliminate \(X_5\) using the volume
+relation and put every word in the form
+\(J^aX_1^{b_1}\cdots X_4^{b_4}\), giving at most 32 elements.
+For the usual Pauli reflections \(X,Y,Z\), the assignments
+\[
+X_1=X\otimes I,\quad X_2=Z\otimes I,\quad
+X_3=Y\otimes X,\quad X_4=Y\otimes Z,\quad
+X_5=Y\otimes Y,\quad J=-I
+\]
+satisfy all the relations: the five reflections anticommute pairwise
+and their ordered product is \(-I\). The 32 signed monomials in the
+first four are distinct Pauli matrices. The commutator form on their
+four binary exponents is nonsingular, so the center and commutator
+subgroup both equal \(\langle J\rangle\). The actual extraspecial
+prerequisite therefore applies. The group has a unique irreducible representation
 
 \[
  \rho:K\longrightarrow U({\mathbf C}^4),\qquad
@@ -144,10 +157,10 @@ They commute, but (13) is not either second-factor gauge
 \(\rho(X_1)\) or \(\rho(X_2)\). Thus adding the extracted-gauge
 commutator relation does not remove the model.
 
-The calculation is the cyclic specialization of the rectangular Pauli
-absorber. Here the arbitrary phase ledger has been made equivariant: the
-same order-five actor shifts both the controller packet and its diagonal
-spin gauge.
+The displayed tensor calculation makes the phase cancellation equivariant:
+the same order-five actor shifts both the controller packet and its
+diagonal spin gauge. Equations (7)--(13) directly verify the complete
+cyclic phase network, without an additional rectangular-network theorem.
 
 ## 4. Every actor-character cut leaks
 
@@ -221,7 +234,7 @@ in the model (5) and quantitatively dominates (17). Such a word cannot be:
 
 It must see a nonmultiplicative return through the character cut, or an
 equivalent noncentral fusion datum. The complementary result
-extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial
+extraspecial-fusion-filter-local-normalizer-globalization
 shows that forcing every payload to reduce the cut instead returns to a
 finite matrix-factor globalization. The complementary compressed-PVM
 obstruction shows that one plain nonreducing transported PVM loses total

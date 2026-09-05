@@ -5,11 +5,16 @@ kind: route
 title: Collapse a transitive GKP embedding to the color of one basepoint
 target: mikhailova-left-right-soficity-is-one-color-code
 requires:
-  - mikhailova-left-right-action-current-frontier
+  - gkp-sofic-action-is-liftable-hamming-chart-family
 ---
 
 Write `G=F_m x F_m`, `M=M_H`, and identify `H` with `G/M` using
 the coset of the identity as basepoint.
+
+The external input is the general GKP chart characterization in
+[[gkp-sofic-action-is-liftable-hamming-chart-family]]. No conclusion of
+the downstream Mikhailova frontier, Schreier/IRS analysis, or palette
+escape theorem is used here. Those results consume this reduction.
 
 ## From orbit charts to one color
 

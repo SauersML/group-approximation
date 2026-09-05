@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: gamma-only-exactification-preserves-the-diagonal-but-not-the-kt-return
+id: gamma-exactification-keeps-diagonal-not-kt-return
 kind: claim
 title: Gamma-only exactification preserves the diagonal mass but does not control the Kun--Thom return
 artifacts:
-  - research/kt-diagonal-commutant-expectation-and-finite-wreath-countermodel-proof.md
+  - research/kt-diagonal-rounding-and-wreath-countermodel-proof.md
 distinct_from:
   kt-elementary-kazhdan-packet-rounds-base-lamp: That rounds a projection into the commutant of a supplied genuine Gamma representation; this additionally tracks the conditional expectation back to the BCJM diagonal and proves that Gamma-only data still permit the full named-return displacement.
   kt-full-kazhdan-majorana-return-collapses-in-fd: That assumes a genuine representation of the Laurent elementary actor containing h; this proves by exact finite models that a genuine representation of Gamma alone cannot replace that hypothesis.

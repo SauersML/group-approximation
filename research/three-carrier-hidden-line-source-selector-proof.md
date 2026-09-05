@@ -5,7 +5,7 @@ kind: route
 title: Cover all four hidden sectors with the three nonzero F2 lines
 target: three-carrier-hidden-line-join-crosses-target-but-has-no-range
 requires:
-  - two-carrier-linear-interference-misses-target-by-five-over-2304
+  - two-carrier-support-join-stays-below-target
   - jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
 ---
 

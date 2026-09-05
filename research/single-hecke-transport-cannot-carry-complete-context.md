@@ -1,14 +1,14 @@
 ---
 rg: 2
-id: single-nonreducing-hecke-transport-cannot-carry-a-complete-context
+id: single-hecke-transport-cannot-carry-complete-context
 kind: claim
 title: One nonreducing Hecke transport cannot carry a complete corner PVM, and the minimal finite-anchor filter has a finite absorber
 artifacts:
   - research/single-hecke-transport-rank-balance-proof.md
 distinct_from:
-  extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial: that identifies nonnormal Hecke transport as the remaining class; this computes the class with one stable letter and proves its unital-context obstruction.
-  five-clifford-odd-orbit-cancels-phase-not-payload: that finds automorphism-extension multiplicity for a normal finite packet; this treats a genuinely nonnormal finite anchor and its off-corner rank balance.
-  strict-compressor-exact-actor-collapse: that treats inclusion of subgroup von Neumann algebras; this is the projection-level compression theorem and supplies an explicit D8-in-S4 absorber.
+  extraspecial-fusion-filter-local-normalizer-globalization: that identifies nonnormal Hecke transport as the remaining class; this computes the class with one stable letter and proves its unital-context obstruction.
+  five-clifford-diagonal-spin-absorbs-the-full-orbit-lock: that gives a finite normalizer model retaining off-character leakage; this treats a genuinely nonnormal finite anchor and its off-corner rank balance.
+  strict-compressor-mixed-return-collapses-shared-pauli-sign: that uses equality of unitarily conjugate finite-dimensional subgroup algebras to control one mixed return; this is a projection-level compression theorem with an explicit D8-in-S4 absorber.
 ---
 
 Let Q be a projection and U a unitary in any finite tracial von Neumann

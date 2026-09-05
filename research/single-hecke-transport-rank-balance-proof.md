@@ -1,9 +1,10 @@
 ---
 rg: 2
 id: single-hecke-transport-rank-balance-proof
-kind: proof
-proves:
-  - single-nonreducing-hecke-transport-cannot-carry-a-complete-context
+kind: route
+title: Compute off-corner mass and the exact finite D8-in-S4 Hecke absorber
+target: single-hecke-transport-cannot-carry-complete-context
+requires: []
 ---
 
 # Proof
