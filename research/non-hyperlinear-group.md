@@ -23,6 +23,8 @@ artifacts:
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
+  - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
+  - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -101,25 +103,27 @@ Consequently arbitrary seed holonomy is unnecessary once the exact
 comparison exists. The remaining operation is constructing the frame
 from an approximate tuple, not guessing a congruence level.
 
-The new spectral construction makes that remaining operation precise.
-For a canonical approximate SL5 tuple, take the full low-energy space
-of maps into a finite regular quotient host and normalize its source
-Gram matrix H to trace one. Its target covariance is automatically
-sublinear whenever the space has positive relative dimension. A bounded
-second moment `tr(H^2)<=M` then produces a correctable canonical corner
-occupying at least `1/(16M)` of the input. The weighted leakage estimate
-allows H to have unbounded operator norm. If every canonical sequence
-admits such spectral data on a subsequence, maximal recoverable mass
-promotes positive-corner correction to full correction; constant-one
-ucp untensoring then gives flexible HS stability for all SL5 tuples.
-The existing thin co-dense HNN route would give nonhyperlinear existence.
-The second-moment hypothesis can now be replaced by the weaker positive
-soft mass `tr[H(H+I)^(-1)]>=c>0`. A spectral coarea estimate extracts a
-canonical correctable corner of fraction at least c/2 from the bounded
-soft polar frame, with an explicit vanishing correction bound. Arbitrary
-canonical sequences are not yet known to admit quotient hosts and
-cutoffs tending to zero with that positive mass. The spectral theorem
-and bootstrap therefore leave this root open.
+The spectral construction now controls the entire source Gram matrix
+from the low-energy dimension alone. For the full space E of maps into
+a finite regular quotient host, let r=dim E and B be its source Gram
+matrix. Pair-product conjugation and a positive weighted spectral trace
+give `r<=Tr(B^2)<=r/(1-2h epsilon^2/kappa^2)`. Thus Gram concentration
+is no longer a separate obstruction once r/d is positive. The blocks of
+E explicitly give an exact representation of dimension r. Polar
+completion recovers an exact rank-r corner with error linear in epsilon,
+or corrects the full tuple with small padding if r>d. Along canonical
+positive-count sequences the seed is deterministically sublinear, with
+no sampling error.
+
+The remaining arithmetic question is adequate low-energy count: can
+every canonical approximate SL5 sequence, on a subsequence, be assigned
+quotient hosts and cutoffs tending to zero with r/d bounded below? The
+positive-corner bootstrap and constant-one ucp untensoring would then
+give full flexible stability, and the existing thin co-dense HNN route
+would give nonhyperlinear existence. The count criterion is also
+necessary: any flexible correction forces r/d to one and the normalized
+source Gram matrix to I at suitable cutoffs in the fixed universal host
+Q_(2d). These results leave the count existence step and this root open.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

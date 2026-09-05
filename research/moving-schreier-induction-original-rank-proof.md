@@ -14,6 +14,8 @@ artifacts:
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
+  - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
+  - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -524,3 +526,123 @@ uses. The positive-corner bootstrap proves the final conditional
 stability assertion with sequence-dependent c and subsequences. The
 linked soft-mass artifact includes the full constants and retains
 existence of suitable spectral spaces as an unresolved hypothesis.
+
+For `(MSC14)`, choose a full low-energy basis `(T_a)` into the regular
+host Pi and set `X_s=sum_a T_a^*Pi(s)T_a`. Exact expansion of all pair
+products gives
+
+```text
+sum_(a,b)||T_a T_b^*||_HS^2=Tr(B^2),
+sum_(a,b)||Pi(s)T_a T_b^*Pi(s)^*-T_a T_b^*||_HS^2
+ =2(Tr(B^2)-||X_s||_HS^2).
+```
+
+Their total invariant squared norm under genuine conjugation is exactly
+r. To check the multiplicities, decompose the right-regular invariant
+spectral space as `direct_sum_sigma E_sigma tensor C^(r_sigma)`,
+where `r_sigma=dim sigma`, `mu_sigma=dim E_sigma`. A basis is indexed
+by `(sigma,u,l)`, with u in an orthonormal basis of E_sigma and l in
+the regular multiplicity space. Schur averaging of a product within
+one sigma block is `delta_(u,v) I_(V_sigma)/r_sigma tensor |l><m|`;
+cross-type averages vanish. The squared norm is `delta_(u,v)/r_sigma`,
+and summing yields `sum_sigma r_sigma mu_sigma=r`.
+
+The key bound is a weighted spectral trace. Right multiplication
+`R_B(T)=TB` is a positive operator on the rectangular HS space, and
+`0<=Delta P_E<=epsilon^2 P_E`. Positivity of the trace of a product of
+positive operators gives
+
+```text
+Tr(R_B Delta P_E)<=epsilon^2 Tr(R_B P_E)
+ =epsilon^2 Tr(B^2).
+```
+
+This does not assume that R_B commutes with the spectral projection or
+the Laplacian. Symmetry of S and inverse compatibility give
+`Delta T=2T-(2/h)sum_s Pi(s)T U_s^*`. Expansion and completing the
+square identify the weighted trace exactly as
+
+```text
+(1/h)sum_s [Tr(B^2)-||X_s||_HS^2+||X_s-BU_s||_HS^2].
+```
+
+The order BU_s matters; the cross term agrees by cyclicity and complex
+conjugation. Drop the last squared norms and apply the Kazhdan bound to
+the direct sum of all pair-product conjugation spaces. Its invariant
+part has squared norm r, so
+`Tr(B^2)-r<=2h epsilon^2 Tr(B^2)/kappa^2`. Orthogonality also gives
+`Tr(B^2)>=r`. Since `Tr B=r`, Cauchy--Schwarz gives `r^2/d<=Tr(B^2)`.
+These prove all three inequalities in `(MSC14)`.
+
+To construct the exact r-dimensional target efficiently in multiplicity,
+choose orthonormal block maps `A_(sigma,u):C^d->V_sigma` for E_sigma
+and stack `T=col_(sigma,u) sqrt(r_sigma) A_(sigma,u)`. Its target
+representation is `Theta=direct_sum_sigma sigma tensor I_(mu_sigma)`.
+The construction gives exactly
+
+```text
+T^*T=B,       Tr(TT^*)=r,
+E_(Ad Theta)(TT^*)=I_r,
+sum_s ||Theta(s)T-TU_s||_HS^2<=h epsilon^2 r.
+```
+
+In particular `||TT^*-I_r||_HS^2=Tr(B^2)-r<=a r/(1-a)`.
+If r<=d, complete the polar factor of T to a coisometry V. In a singular
+value decomposition this changes each singular value sqrt(lambda) to
+one, with squared cost at most `(lambda-1)^2`. The null spaces have
+enough dimension for completion, and
+`||T-V||_HS<=sqrt(a/(1-a))sqrt(r)`. Thus
+`||Theta(s)V-VU_s||_HS<=xi sqrt(r)`.
+
+Write J=`V^*` and P=`JJ^*`. Taking the adjoint residual and multiplying
+by the unitaries U_s and Theta(s) shows
+`||U_sJ-JTheta(s)||_HS=||Theta(s)V-VU_s||_HS`.
+Right multiplication by J^* preserves this HS norm, proving
+`||U_sP-JTheta(s)J^*||_HS<=xi sqrt(r)`. The off-diagonal part yields
+the asserted commutator bound. Extend `JTheta J^*` trivially on I-P.
+Its squared error is the sum of errors on the orthogonal input columns
+P and I-P, bounded by `xi^2 r+4(d-r)`. This proves the full-input bound.
+
+If r>d, append r-d zero columns to T and use the input unitaries
+`U_s direct_sum I_(r-d)`. The target Gram TT^* and residual estimates
+are unchanged. Complete the polar factor to a unitary V on C^r and
+conjugate Theta by it. This gives the asserted exact padded correction.
+The count bound `b<=1/(1-a)` gives the quadratic relative-padding bound.
+
+For the deterministic seed assertion, Theta embeds into
+`lambda_Q tensor I_k` with
+`k=max_sigma ceil(mu_sigma/r_sigma)`, by exact multiplicity comparison.
+Along canonical sequences with b bounded below, the fixed-type
+low-energy multiplicity estimate in `(MSC10)` gives `mu_sigma/d->0`
+for every fixed sigma. There are finitely many types below any fixed
+dimension R; types above R contribute at most `b/R^2` to
+`mu_sigma/(r_sigma d)`. Hence k/d tends to zero, and k/r does too.
+Compose this exact embedding with V. On the original input when r<=d
+the resulting partial Parseval frame has Gram P and edge error at most
+`xi sqrt(b)`; on the padded input when r>d it has Gram I and error at
+most xi. Exact embeddings add no error. Positive-density recovered
+corners remain canonical by the established ICC argument.
+
+For `(MSC15)`, use an exact correction rho factoring through Q_(2d)
+and the coordinate inclusion J from C^d into C^D. An HS-orthonormal
+basis `(T_a)` of `Hom_G(rho,lambda_Q)` has dimension D and source Gram
+`sum_a T_a^*T_a=I_D`, by the regular multiplicity formula. Restrict it
+to the input with `S_a=T_a J`. On the rectangular HS space the frame
+operator `A=sum_a |S_a><S_a|` obeys `0<=A<=I`: restriction by J is a
+contraction, so A is the contraction of an orthogonal projection.
+Moreover `Tr A=d`. The exact intertwining equations give
+
+```text
+Tr(Delta A)
+ =(1/h)sum_s ||rho(s)J-JU_s||_HS^2<=eta^2 D.
+```
+
+Since `Delta>=epsilon^2(I-P_E)`, we have
+`Tr(P_E A)>=d-eta^2 D/epsilon^2`. The bound A<=I makes this no greater
+than rank(P_E), proving `(MSC15)`. No orthogonality of the restricted
+maps is assumed. For flexible corrections choose epsilon tending to
+zero with eta/epsilon tending to zero. The resulting lower count and
+`(MSC14)` force b to one, then
+`||H-I||_(2,d)^2<=1/[b(1-a)]-1->0`. Thus soft mass tends to one half
+and full soft coverage holds. This verifies necessity at the fixed
+universal host without asserting existence of an exact correction.

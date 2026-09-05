@@ -9,6 +9,8 @@ artifacts:
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
+  - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
+  - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -29,6 +31,23 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Source Gram control is automatic; spectral count remains
+  (2026-09-05).** `(MSC14)` uses pair-product conjugation and a positive
+  weighted spectral trace to prove
+  `r<=Tr(B^2)<=r/(1-2h epsilon^2/kappa^2)` for the full low-energy
+  space of dimension r. Thus r/d bounded below supplies every Gram
+  condition used below. More directly, its irreducible blocks form an
+  exact representation of dimension r; polar completion gives an exact
+  rank-r corner with error linear in epsilon, or a padded full correction
+  when r>d. Exact multiplicity embeddings give deterministic sublinear
+  seeds along canonical sequences of positive count. Conversely,
+  `(MSC15)` shows that any known flexible correction forces r/d to one
+  at suitable cutoffs in the fixed universal host Q_(2d). The remaining
+  existence question is whether every canonical sequence admits a
+  subsequence and quotient/cutoff choices with positive normalized
+  low-energy count. The nonuniform corner bootstrap makes this sufficient
+  for full stability. Arbitrarily small cutoffs can miss almost all of
+  an already correctable tuple, so the choice still needs proof.
 - **Positive soft spectral mass suffices (2026-09-05).** The moment
   hypothesis below can be replaced by
   `tr[H(H+I)^(-1)]>=c>0`, with c depending on the canonical sequence.

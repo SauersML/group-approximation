@@ -1,6 +1,20 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the weaker positive soft-mass theorem and
+The latest snapshot, including the automatic pair-product Gram bound,
+linear-error exact corner construction, deterministic sublinear seeds,
+and the universal-host necessity theorem, passes with **14,144 nodes and
+no errors, warnings, or duplicate candidates** in 9.597 seconds.
+Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/pair-product-cairn-validation-2026-09-05.json`.
+All six edited theorem, root, and proof-artifact files were compared
+byte for byte with the validated archive. Independent mathematical audits
+checked the weighted trace, Schur multiplicities, polar completion,
+deterministic seed rate, and the Bessel-frame necessity argument. The
+remaining low-energy count existence step is not marked proved.
+
+The preceding snapshot, including the weaker positive soft-mass theorem and
 its quantitative coarea construction, passes with **14,138 nodes and no
 errors, warnings, or duplicate candidates** in 10.219 seconds. Comparison
 with the pinned commit `027c44cb7bc59d699273153feff5871f628720ff` finds no

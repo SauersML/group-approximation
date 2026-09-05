@@ -12,6 +12,8 @@ artifacts:
   - research/artifacts/second-moment-schreier-positive-corner-2026-09-05.md
   - research/artifacts/positive-canonical-corners-bootstrap-stability-2026-09-05.md
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
+  - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
+  - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -257,6 +259,67 @@ Accordingly `(MSC12)` remains valid if its moment hypothesis is replaced
 by `(MSC13)`, with c allowed to depend on the canonical sequence and
 with the same subsequence quantifier. The unknown input is now positive
 soft mass at suitable quotient hosts and cutoffs tending to zero.
+
+For a full low-energy spectral space, its source Gram shape is in fact
+controlled automatically. This needs no canonicality or exact comparison
+tuple. With the notation above and `a=2h epsilon^2/kappa^2<1`,
+
+```text
+r<=Tr(B^2)<=r/(1-a),
+b<=1/(1-a),       tr_d(H^2)<=1/[b(1-a)].               (MSC14)
+```
+
+In particular the only extra input needed for a bounded moment is a
+positive lower bound on the spectral count b. The proof applies genuine
+Kazhdan conjugation to pair products of all low-energy intertwiners;
+right regular symmetry makes their total invariant squared mass exactly r.
+A positive weighted spectral trace controls their displacement without
+an index factor or a prior operator-norm bound on B.
+
+There is a direct linear-error construction. Write
+`r=sum_sigma dim(sigma) mu_sigma`, where mu_sigma is the rank of the
+sigma block of the full spectral space, and form the exact representation
+`Theta=direct_sum_sigma sigma tensor I_(mu_sigma)` on `C^r`. Put
+
+```text
+xi=sqrt(h)epsilon+2sqrt(a/(1-a)).
+```
+
+If `r<=d`, an explicit coisometry `V:C^d->C^r` gives P=`V^*V` of rank r
+and the exact corner representation `W_s=V^*Theta(s)V` on P with
+
+```text
+||U_s P-W_s||_HS/sqrt(r)<=xi,
+||[P,U_s]||_HS/sqrt(r)<=sqrt(2)xi.
+```
+
+Extending W trivially on `I-P` gives an exact d-dimensional
+representation with squared generator error at most
+`xi^2 b+4(1-b)`. If `r>d`, the same polar construction gives an exact
+r-dimensional correction of `U_s direct_sum I_(r-d)` with generator
+error at most xi and relative padding at most `a/(1-a)`.
+These estimates are independent of b and the quotient index when
+normalized by the recovered dimension r. For canonical sequences with
+b bounded below, exact multiplicity embeddings give sublinear trivial
+seeds with these same linear edge bounds; no Gaussian error is required.
+
+Conversely, suppose a genuine representation rho of dimension
+`d<=D<=2d` is eta-close to `U direct_sum I_(D-d)` in normalized HS norm.
+At the fixed universal host `Q_(2d)` of `(MSC9)`, every positive cutoff
+obeys
+
+```text
+rank 1_[0,epsilon^2](Delta)
+ >=d-eta^2 D/epsilon^2.                               (MSC15)
+```
+
+Consequently every flexibly correctable sequence admits cutoffs tending
+to zero at these fixed hosts for which `b->1` and `H->I` in normalized
+HS norm. Canonicality is unnecessary for this implication. Combining
+`(MSC14)` with the positive-corner bootstrap proves that adequate
+low-energy count on a subsequence of every canonical sequence would
+establish full flexible stability. Equation `(MSC15)` proves necessity
+as well. No argument here establishes that count for arbitrary inputs.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.
