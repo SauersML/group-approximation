@@ -141,3 +141,21 @@ targets c_r = omega^{k_r} / (-1)^{k_r} (the phase the seed is missing), phases t
   The v4 descent minimizer (max 0.438) was a coboundary rescaling optimized for the sampled mean square: its
   energy coincides to six digits with the pure coboundary carrying its generator phases (0.012462 / 0.4384).
   distinct (exponent-sum vector, lift mod 3) pairs among the relators: 17,247.
+
+--- v6 (mean sq^4 objective, pinned determinants) is the wrong instrument; kept for the record (18:10 EDT) ---
+Seeded d = 4 runs from seed_theta_d4.json (eps 0.2 and 0.5): Ep stayed at exactly the seed's value 2.494e-3 with the 20
+lifted relators at defect 1.0000 while unlifted defects drifted to 0.27: with p = 4 an unlifted defect of 0.27
+(sq^4 = 3e-5) is invisible next to a lifted sq = 1, and with det U_s pinned the lifted relators cannot move at
+all (their gradient at an exact projective model is a pure coboundary direction).  Determinant pinning also
+imposes an eigenvalue-balance floor on the lifted relators whenever 3 does not divide d: with det rho(r) fixed at
+1 and the target omega^{+-1} I of determinant omega^{+-d} != 1, the best balanced spectrum gives defect
+2 sin(pi/(3d)) (0.518 at d = 4, 0.209 at d = 10, 0.105 at d = 20), zero only for 3 | d.
+Metaplectic control from the d = 4 seed perturbed by 0.5: Ep = 8e-7 but max defects 0.29 / 0.26: the p = 4
+objective does not pull small defects back to zero.  Random starts (p = 4, pinned) at d = 4: mod 2 best mean sq
+0.63, mod 3 best 0.91 -- as before, random local search finds nothing.
+v7 (optimize7.py) replaces the objective by the smoothed maximum 2 + log(mean_r exp(beta (sq_r - 2)))/beta,
+beta = 30 or 100, no pin by default, and starts from the MINIMAX COBOUNDARY OPTIMUM of each exact model
+(make_abmin_seeds.py, max defect 0.309 on all relators): since that point is optimal among coboundary
+rescalings, any descent below 0.309 on all relators is a nonabelian improvement.  Gradient verified by finite
+differences (ratio 1.0000).  Runs at d = 4 (beta 30/100, eps 0.05/0.3, pinned variant), 8, 10, 12, 14, 20 and a
+random d = 4 start were launched at 17:13 CDT; results below as they finish.
