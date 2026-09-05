@@ -140,7 +140,10 @@ theorem negativeSolutionToProblemXXII_of_borsukUlam
     antipodalCanonicalExtension_injective,
     antipodalCanonicalExtension_not_surjective_of_borsukUlam hBU⟩
 
-#audit_closed_axioms antipodalBaseTracialTwoSize_eq_completionGauge
+-- `antipodalBaseTracialTwoSize_eq_completionGauge` is universally quantified over
+-- the algebra element, so its type is a `∀` and the closed-endpoint gate would
+-- reject it on that ground alone; the axiom audit is the applicable one.
+#audit_axioms antipodalBaseTracialTwoSize_eq_completionGauge
 #audit_closed_axioms antipodalCanonicalExtension_injective
 #audit_axioms not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam
 #audit_axioms antipodal_trace_space_strict_inclusion_of_borsukUlam
