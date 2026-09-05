@@ -2205,3 +2205,109 @@ finding was real, the recommendation was right, and the reason attached to it
 was wrong in a way that would have misdirected whoever acted on it.  Worth
 separating, because a correct recommendation resting on a false reason is the
 harder kind to catch — nobody re-examines advice they are already following.
+
+## Sweep 24, 2026-09-05 — the LIX residue is cancelled; a look-alike endpoint appears
+
+### Target 3's residue is gone, and the verdict vocabulary changes with it
+
+`lix-obstruction` reports that the mandate amendment cancelled their third task:
+there will be **no `TwistedCancellationFailure`** from that lane, and Lemma 2 is
+being assembled as a theorem.  So target 3 has no named `Prop` to be
+conditional on, no `zeroInputEndpoints` question, and the CONDITIONAL-ON row is
+retired rather than closed.  **Verdict unchanged: NOT-YET-STATED**, and now for
+the plainest possible reason — the statement does not exist.
+
+### Pre-registered check 1 passes, and the arithmetic is verified here
+
+The rank check registered at sweep 3, before any of this existed:
+
+* `F(x) = 1 − x xᴴ` for `x` a unit vector in `ℂ³` is `1₃` minus the rank-one
+  projection onto `ℂx`, so `trace F = 3 − 1 = 2` and its pointwise rank is 2;
+* `1²` has rank 2;
+* `p_H` for `H = ⊕_j L_j^{⊕ d_j}` has rank `m = Σ_j d_j`.
+
+So `F ⊕ p_H` and `1² ⊕ p_H` both have pointwise rank `2 + m` **at every
+point**.  The ranks match exactly, the statement is not refutable from the
+trace, and it is the genuinely hard one.  **Check 1 passes.**
+
+The hazard it was registered against is real and narrower than expected:
+`lix-obstruction` notes the manuscript's `V` is `1³ ⊕ H` while the comparison
+bundle is `1² ⊕ H`, so **a 3-versus-2 slip is one character wide**, and they
+will state both ranks explicitly wherever Lemma 2 appears.  The rank bookkeeping
+already exists in source — `LIXBlockProjections.lean:225,239` prove
+`trace H_i = ∑_{j<i} r_j` (i.e. `rank H_i = r_i − 2`) and `rank E_i = r_i`
+in untruncated form — which is the right way to hold it.
+
+### A look-alike endpoint, in a module named for the endpoint
+
+`Analysis/LIXEndpointStatement.lean:91`:
+
+```lean
+theorem exists_cstarAlgebra_not_k1Inj {P : Type u → Prop} (hP : P A)
+    (h : ∃ u : unitary A, u ∉ unitaryComponentOne A ∧
+      diagOne u ∈ unitaryComponentOne (CStarMat 2 A)) :
+    ∃ (B : Type u) (_ : CStarAlgebra B), P B ∧ ¬ K1Inj B :=
+  ⟨A, inst, hP, not_k1Inj_of_witness h⟩
+```
+
+`P` is a **free variable**.  The theorem is true for every `P` because it
+repackages its own hypothesis `hP`; it says nothing whatever about simplicity,
+and it is the most endpoint-shaped declaration in the corpus for target 3.
+
+**The declaration is not the defect and its docstring is honest** — it says
+outright that substituting `lix-limit`'s conjunction of simplicity, separability
+and nontriviality for `P` "turns this into the STW LIX endpoint", and even gives
+the one-line direct term.  As an assembly schema it is fine.
+
+**The hazard is the surroundings.**  A theorem of the shape
+`∃ B, CStarAlgebra B ∧ P B ∧ ¬ K1Inj B`, living in a file called
+`LIXEndpointStatement.lean`, at a moment when `ProblemLIX` **does not exist**
+and `IsSimpleCStar` **does not exist**, is one citation away from being reported
+as "LIX is stated in Lean".  This file records it now so that citation cannot
+happen quietly: **`exists_cstarAlgebra_not_k1Inj` is not an endpoint and must
+not be cited as one until `P` is instantiated at a proved simplicity
+predicate.**  It is the same shape as the `rfl`-true conjunct of sweep 18 —
+something that certifies nothing while looking exactly like the thing that
+would.
+
+### `K1Inj` is not a gratuitous rename — it is the order fix
+
+`LIXEndpointStatement.lean:67` defines `K1Inj A := K1Injective A` with
+`k1Inj_iff` as `Iff.rfl`, which reads at first like the cross-vocabulary
+duplication this file has flagged three times.  It is not.  The two `local
+instance`s above it supply `CStarAlgebra.spectralOrder` and
+`CStarAlgebra.spectralOrderedRing`, so `K1Inj` is `K1Injective` **with the
+canonical spectral order pinned** — the predicate then depends on nothing but
+the C\*-structure.
+
+That directly addresses sweep 21's tracked concern about `ProblemLIX`
+quantifying over `[PartialOrder A] [StarOrderedRing A]`: stated over `K1Inj`
+there is no order quantification left to justify.  Tracked row *"order-
+independence of `K1Injective` landed as a lemma"* is **superseded** — pinning
+beats proving invariance, and the endpoint should be stated over `K1Inj`.
+
+### The simplicity ownership gap is narrower than reported
+
+`lix-obstruction` raised §5 simplicity as an unowned ownership gap.  Measured:
+`Analysis/LIXSimplicity.lean` exists, 270 lines, and works over the **right**
+notion — `{I : Ideal B} [I.IsTwoSided] (hI : IsClosed (I : Set B))` — with
+`posCut`, `IsFull`, `exists_ge_mem_ideal_of_nonneg` and
+`eq_top_of_stagewise_full`, which is the positive-cutdown argument.  So the
+general theorem *is* being built, over closed ideals, exactly as sweep 23
+recommended.
+
+What is missing is narrower and still real: **a named `IsSimpleCStar`
+predicate, and the application of `eq_top_of_stagewise_full` to the specific
+limit algebra.**  Without the second, the chain is still an implication into an
+uninhabited conclusion, which is pre-registered check 3.
+
+### Two modules asked to be probed, both unverified
+
+`Analysis/LIXObstructionComplementUnitary.lean` (234 lines, imports **Mathlib
+only**, the sole proof of the polar-decomposition step in the tree) and
+`Analysis/LIXObstructionLowPowerSums.lean` (109 lines, imports only
+`AlgTop/ChernPowerSums`).  **Neither contains a single `#audit` line** — which
+their own lane volunteered — so there is nothing to be misled by and equally
+nothing that would show they compile.  Both are recorded as UNVERIFIED, and
+their lane has been saying so in every report, which is the right conduct and
+is noted as such.
