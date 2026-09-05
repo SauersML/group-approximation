@@ -10,8 +10,9 @@ why the previously published examples did not supply that answer.
 ## 1. Published question and conventions
 
 In his contribution to Jaydeb Sarkar's compendium, Prahlad Vaidyanathan
-asks whether the equivalence between rational K-stability and K-stability
-known for AF and AT algebras extends to AH algebras. His wording does
+notes that the AT theorem was proved, "raising an interesting question
+about AH-algebras in general". That is an informal remark rather than a
+posed question, and its wording does
 not impose simplicity or unitality. See
 [Section 20, printed page 48](https://www.isibang.ac.in/~jay/papers/oaotINSA.pdf).
 The simple unital version is therefore a narrower research target,

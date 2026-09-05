@@ -6,6 +6,7 @@ title: A simple unital nuclear stably finite AH algebra has K1 zero and a nontri
 artifacts:
   - research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md
   - research/artifacts/stw59-independent-proof-review-2026-09-05.md
+  - research/artifacts/external-source-verification-lix-and-rational-ah-2026-09-05.md
 ---
 
 There are a separable, simple, unital, nuclear, stably finite, infinite-dimensional

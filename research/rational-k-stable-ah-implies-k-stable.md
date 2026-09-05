@@ -9,14 +9,21 @@ refuted_by:
 artifacts:
   - research/artifacts/rational-k-stability-ah-literature-boundary-2026-09-05.md
   - research/artifacts/stw59-rational-k-stability-torsion-euler-tower-2026-09-05.md
+  - research/artifacts/external-source-verification-lix-and-rational-ah-2026-09-05.md
 ---
 
-Published question: does rational K-stability imply integral K-stability
+Research target: does rational K-stability imply integral K-stability
 for an AH algebra, interpreted using compact homogeneous building
-blocks? Vaidyanathan raises the AH extension of the AF/AT equivalence
-in Section 20, printed page 48, of
-[Sarkar's compendium](https://www.isibang.ac.in/~jay/papers/oaotINSA.pdf).
-The simple unital twisted-AH case is a narrower target.
+blocks? This is not a separately posed or numbered problem. Its source
+is an informal remark of Vaidyanathan in Section 20, printed page 48, of
+[Sarkar's compendium](https://www.isibang.ac.in/~jay/papers/oaotINSA.pdf),
+attached to the AT theorem: that result was proved, "raising an
+interesting question about AH-algebras in general". The same paragraph
+records that rational and integral K-stability are already known to be
+distinct in general, so only the AH restriction is at issue here.
+The simple unital twisted-AH case is a narrower target still.
+The verbatim quotations are pinned in the attached primary-source
+verification artifact.
 
 The internally reviewed construction
 [rational-k-stable-simple-ah-torsion-counterexample](rational-k-stable-simple-ah-torsion-counterexample.md)

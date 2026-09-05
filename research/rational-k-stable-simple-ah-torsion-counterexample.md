@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw59-rational-k-stability-torsion-euler-tower-2026-09-05.md
   - research/artifacts/rational-ah-and-selfless-k-stability-proof-review-2026-09-05.md
+  - research/artifacts/external-source-verification-lix-and-rational-ah-2026-09-05.md
 ---
 
 There is a simple unital separable nuclear stably finite infinite-dimensional

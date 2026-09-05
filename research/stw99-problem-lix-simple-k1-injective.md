@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/stw59-finite-abelian-independent-review-2026-09-05.md
   - research/artifacts/stw59-unique-trace-and-matrix-stability-2026-09-05.md
   - research/artifacts/stw59-persistent-euler-degree-one-cokernel-2026-09-05.md
+  - research/artifacts/external-source-verification-lix-and-rational-ah-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
