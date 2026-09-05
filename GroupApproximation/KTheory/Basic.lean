@@ -224,7 +224,7 @@ end Cycle
 
 For `A = C(X, ℂ)` this is the monoid of stable isomorphism classes of complex
 vector bundles on `X`, whose Grothendieck group is `K⁰(X)`. -/
-def VMonoid (A : Type*) [NonUnitalSemiring A] [StarRing A] : Type :=
+def VMonoid (A : Type*) [NonUnitalSemiring A] [StarRing A] :=
   Quotient (Cycle.setoid (A := A))
 
 namespace VMonoid
@@ -252,6 +252,7 @@ instance : AddCommMonoid (VMonoid A) where
   zero_add a := Quotient.inductionOn a fun x => mk_eq_mk_of_rel (Cycle.rel_zero_add x)
   add_zero a := Quotient.inductionOn a fun x => congrArg mk (Cycle.add_zero_cycle x)
   add_comm a b := Quotient.inductionOn₂ a b fun x y => mk_eq_mk_of_rel (Cycle.rel_add_comm x y)
+  nsmul := nsmulRec
 
 end VMonoid
 
@@ -259,7 +260,7 @@ end VMonoid
 stable isomorphism classes of projections over `A`.
 
 For `A = C(X, ℂ)` with `X` compact Hausdorff this is `K⁰(X)`. -/
-def KZero (A : Type*) [NonUnitalSemiring A] [StarRing A] : Type :=
+def KZero (A : Type*) [NonUnitalSemiring A] [StarRing A] :=
   Algebra.GrothendieckAddGroup (VMonoid A)
 
 namespace KZero
@@ -273,10 +274,10 @@ instance : AddCommGroup (KZero A) :=
 def mk (x : Cycle A) : KZero A := Algebra.GrothendieckAddGroup.of (VMonoid.mk x)
 
 @[simp] theorem mk_add (x y : Cycle A) : mk (x + y) = mk x + mk y := by
-  simp only [mk, VMonoid.mk_add, map_add]
+  simp [mk]
 
 @[simp] theorem mk_zero : mk (0 : Cycle A) = 0 := by
-  simp only [mk, VMonoid.mk_zero, map_zero]
+  simp [mk]
 
 end KZero
 
