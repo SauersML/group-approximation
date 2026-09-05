@@ -7,11 +7,10 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 ## 1. GREEN
 
-**`Build completed successfully (2996 jobs)`**, probe round 6, with a genuine
-`✔ Built GroupApproximation.Analysis.LIXEndpointStatement (9.1s)` in the same
-log — a build, not a `Replayed`.  Targets:
+**`Build completed successfully (2999 jobs)`**, probe round 7, targets
 
 ```
+GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
 GroupApproximation.Analysis.CStarKOne
 GroupApproximation.Analysis.CStarSymmetryComponent
 GroupApproximation.Analysis.CStarKOneInjectivityCriterion
@@ -19,22 +18,42 @@ GroupApproximation.Analysis.LIXEndpointStatement
 GroupApproximation.Analysis.CStarKOneWhitehead
 ```
 
-All five of the lane's `Analysis/` modules.  Round 5 gave the same count; round
-6 repeats it after a docstring rewrite, so the count is stable across a real
-edit rather than one measurement replayed.  Per-module `Built` evidence:
+**All six modules of this lane are green**, including the endpoint.  The log
+ends
 
-| module | first genuinely built |
+```
+✔ [2998/2999] Built GroupApproximation.Analysis.CStarSimple (10s)
+ℹ [2999/2999] Built GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX (10s)
+Build completed successfully (2999 jobs).
+```
+
+and the three `#audit_axioms` lines each report exactly the classical three:
+
+```
+'ProblemLIX' depends on axioms: [propext, Classical.choice, Quot.sound]
+'exists_simple_unital_not_k1Inj_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'not_problemLIX_of_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+Per-module `Built` evidence, so that no green here rests on a replay:
+
+| module | genuinely built in |
 |---|---|
 | `Analysis/CStarKOne` | round 3 (job ≤ 2993 of 2996; not among the two `✖`) |
 | `Analysis/CStarSymmetryComponent` | round 3, same |
 | `Analysis/CStarKOneInjectivityCriterion` | round 4, `✔ Built … (15s)` |
 | `Analysis/CStarKOneWhitehead` | round 4, `✔ Built … (18s)` |
 | `Analysis/LIXEndpointStatement` | rounds 4 and 6, `✔ Built … (9.4s / 9.1s)` |
+| `Manuscript/…/ProblemLIX` | round 7, `ℹ Built … (10s)` |
 
-**Already wired into the root by the lead**, `GroupApproximation.lean:3311–3320`:
-all five, plus `CStarMatrixBlockInclusion`, `CStarUnitaryComponent` and
-`SequentialGroupColimit`.  `CStarSimple` and `ProblemLIX` are correctly not
-wired: the first is red.
+Rounds 5 and 6 each gave `2996 jobs` for the five `Analysis/` modules, before
+and after a real docstring edit, so that count is stable across an edit rather
+than one measurement replayed.
+
+**Root wiring**: the lead has `GroupApproximation.lean:3311–3320` carrying all
+five `Analysis/` modules plus `CStarMatrixBlockInclusion`,
+`CStarUnitaryComponent` and `SequentialGroupColimit`.  `CStarSimple` and
+`ProblemLIX` are now green and can be added.
 
 ### The two verifications the brief asked for
 
@@ -63,33 +82,29 @@ not leak into downstream instance search.
 
 ## 2. AUTHORED, UNVERIFIED
 
-Exactly one module, and it is blocked on a peer rather than on anything of
-mine.
+Nothing.  Every module this lane owns is green.
 
-* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — landed, three declarations,
-  each with an `#audit_axioms` line.  Not yet compiled, because it imports
-  `Analysis/CStarSimple`, which is red.
+What is *absent* rather than unverified is the counterexample itself.
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` carries three declarations and
+no claim that `ProblemLIX` is false:
 
-  * `ProblemLIX` — the statement, landed before anything is proved about it, as
-    the route design's §C.7 requires.
+* `ProblemLIX` — the statement, landed before anything was proved about it, as
+  the route design's §C.7 requires.
 
-    ```lean
-    def ProblemLIX : Prop :=
-      ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A
-    ```
+  ```lean
+  def ProblemLIX : Prop :=
+    ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A
+  ```
 
-  * `exists_simple_unital_not_k1Inj_of` — the assembly against hypotheses: one
-    algebra plus its nontriviality, its `IsSimpleCStar` and its
-    `HasK1InjWitness` gives the existential.
-  * `not_problemLIX_of_exists` — the existential to the negation of the printed
-    universal, with no excluded middle in between.
+* `exists_simple_unital_not_k1Inj_of` — one algebra plus its nontriviality, its
+  `IsSimpleCStar` and its `HasK1InjWitness` gives the existential.
+* `not_problemLIX_of_exists` — the existential to the negation of the printed
+  universal, with no excluded middle in between.
 
-  Between them no mathematics is left, only an application, so the join with
-  the two blocking lanes is two lines.  Nothing in the file asserts
-  `ProblemLIX` is false: all three carry `#audit_axioms` rather than
-  `#audit_closed_axioms`, because each has a leading input.  When the algebra
-  lands, `exists_simple_unital_not_k1Inj` and `not_problemLIX` become two
-  closed statements and two `#audit_closed_axioms` lines.
+All three carry `#audit_axioms` rather than `#audit_closed_axioms`, because
+each has a leading input.  Between them no mathematics is left, only an
+application: when the algebra exists, `exists_simple_unital_not_k1Inj` and
+`not_problemLIX` are two lines and two `#audit_closed_axioms` lines.
 
 ## 3. NEEDS
 
@@ -108,23 +123,11 @@ closed two-sided ideals rather than `IsSimpleRing`, with
 `ProblemLIX`'s separate `Nontrivial A →` is not redundant; universe-polymorphic.
 The assembly never unfolds it.
 
-### From `cs-simplicity`, the file being green — **BLOCKING**
+### From `cs-simplicity`, the file being green — **DISCHARGED**
 
-`Analysis/CStarSimple.lean` is red with three errors as of `b43b633ed`, and it
-is the only thing between `ProblemLIX` and a compiled endpoint.  Diagnosed
-against the pin and sent to that lane twice:
-
-* **`:64`, twice.**  `map_mem_closure` must solve `f x =?= a * b` and takes the
-  first-order splitting `f := (a * ·)`, `x := b`, contradicting the supplied
-  `hx : a ∈ closure I`.  Pin `f`:
-  `map_mem_closure (f := ⇑(AddMonoidHom.mulRight b)) (mulRight_continuous b) hx …`.
-  `⇑(AddMonoidHom.mulRight b) a` reduces to `a * b`, so a term-mode application
-  accepts the conclusion.
-* **`:164`.**  `TwoSidedIdeal.mem_bot.mpr` is not a constant.  The lemma exists
-  (`Mathlib/RingTheory/TwoSidedIdeal/Lattice.lean:122`) and the imports reach
-  it, but that file scopes its `variable {R}` to the `sup` section (lines 28 to
-  60) while `mem_bot` sits at 122, so `R` is **explicit** and dot notation
-  cannot instantiate past it.  Write `(TwoSidedIdeal.mem_bot _).mpr this`.
+`Analysis/CStarSimple.lean` was red for a while with three errors; `6f6e545f6`
+fixed them and it builds.  The two diagnoses are kept in TRAPS because both are
+general.
 
 ### From `cs-limit`, the algebra — **BLOCKING**
 
@@ -196,8 +199,8 @@ import GroupApproximation.Analysis.CStarMatrixBlockInclusion   -- wired
 import GroupApproximation.Analysis.CStarKOne                   -- wired
 import GroupApproximation.Analysis.CStarKOneInjectivityCriterion -- wired
 import GroupApproximation.Analysis.LIXEndpointStatement        -- wired
-import GroupApproximation.Analysis.CStarSimple                 -- waits: red
-import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- waits on the line above
+import GroupApproximation.Analysis.CStarSimple                 -- GREEN, wire it
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- GREEN, wire it
 import GroupApproximation.Analysis.CStarSymmetryComponent      -- wired
 import GroupApproximation.KTheory.MatrixProjection             -- wired
 import GroupApproximation.KTheory.BlockMoves                   -- wired
@@ -205,7 +208,8 @@ import GroupApproximation.Analysis.CStarKOneWhitehead          -- wired
 ```
 
 Ten of the twelve are already in the root at lines 3311 to 3320.  The two
-outstanding are `CStarSimple` and `ProblemLIX`, in that order.
+outstanding are `CStarSimple` and `ProblemLIX`, in that order, and both are
+green as of round 7.
 `CStarKOneWhitehead` is the Whitehead lemma, that `K₁` is abelian; nothing in
 the endpoint chain needs it, since `not_k1Inj_of_hasWitness` never uses
 commutativity.
