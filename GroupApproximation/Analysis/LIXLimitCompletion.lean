@@ -252,6 +252,22 @@ theorem notMem_unitaryComponentOne_limit {k : ℕ} {u : unitary (A k)}
   rw [hval] at hj
   exact h j hkj (T.joined_of_joinedIn_stage hj)
 
+/-! ### The construction stays in `Type 0`
+
+`ProblemLIX` quantifies over `Type`, so the endpoint is genuinely weaker if the limit lands in
+`Type 1`.  It does not: `Σ n, A n` lives in the universe of the levels, and `Quotient` and
+`UniformSpace.Completion` both preserve it.  The three checks below are the statement that a
+tower of `Type`-valued levels produces a `Type`-valued limit which is a nontrivial C⋆-algebra
+with no further input. -/
+
+example (A' : ℕ → Type) [∀ n, CStarAlgebra (A' n)] (T' : CStarTower A') : Type := T'.Limit
+
+example (A' : ℕ → Type) [∀ n, CStarAlgebra (A' n)] (T' : CStarTower A') :
+    CStarAlgebra T'.Limit := inferInstance
+
+example (A' : ℕ → Type) [∀ n, CStarAlgebra (A' n)] [Nontrivial (A' 0)] (T' : CStarTower A') :
+    Nontrivial T'.Limit := inferInstance
+
 end CStarTower
 
 end

@@ -9,6 +9,7 @@
 | `Analysis/LIXLimitCompletion` | 2999 | new: `Limit`, `limIota`, `stage`, **persistence** |
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
+| `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
 The last four of the original five were built together in one probe, `Build
@@ -100,7 +101,17 @@ T.exists_unitary_witness (u : unitary (A k))
 
 -- Analysis/LIXLimitSeparable
 T.separableSpace_colim, T.separableSpace_limit   -- given `∀ n, SeparableSpace (A n)`
+
+-- Analysis/LIXLimitWitness
+CStarTower.hasK1InjWitness_limit : … → HasK1InjWitness T.Limit
 ```
+
+**Universes.**  `CStarTower` is stated at `Type u`, and `Σ n, A n`, `Quotient` and
+`UniformSpace.Completion` all stay in the universe of the levels, so a tower of `Type`-valued
+levels gives a `Type`-valued limit.  `LIXLimitCompletion` closes with three `example`s that check
+exactly this: for `A' : ℕ → Type`, `T'.Limit : Type`, `CStarAlgebra T'.Limit` and (given
+`Nontrivial (A' 0)`) `Nontrivial T'.Limit` all resolve by `inferInstance`.  There is no universe
+slip between this lane and `ProblemLIX`'s quantification over `Type`.
 
 `T.exists_unitary_witness` is exactly the hypothesis of
 `LIXEndpointStatement.not_k1Inj_of_witness`.
