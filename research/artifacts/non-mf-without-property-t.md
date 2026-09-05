@@ -1,10 +1,10 @@
-# Non-MF groups without property T: proof audit, stronger matrix bounds, and remaining gap
+# Non-MF groups without property T: proof audit, sharp selector bounds, and a larger Higman spectral basin
 
 Research record dated **5 September 2026**.
 
-**Status: the requested existence theorem is not proved in this document.** I did not obtain a complete property-T-free construction. The attached Cairn project already recognizes this as an open strengthening of its non-MF theorem. This document gives complete proofs of the elementary results established or reconstructed in this investigation, a quantitative improvement to its two-selector obstruction, explicit countermodels to several attempted deductions, and the exact remaining implication. It does not label a conditional implication a breakthrough.
+**Status: the requested existence theorem is not proved in this document.** I did not obtain a complete property-T-free construction. The attached Cairn project already recognizes this as an open strengthening of its non-MF theorem. This document gives complete proofs of the elementary results established or reconstructed in this investigation, quantitative improvements to its two-selector obstruction and Higman spectral basin, explicit countermodels to several attempted deductions, and the exact remaining implication. It does not label a conditional implication a breakthrough.
 
-The main additional calculation is in §6. Under precisely stated common-carrier and common-gauge hypotheses, the two binary selector rows satisfy
+The first additional calculation is in §6. Under precisely stated common-carrier and common-gauge hypotheses, the two binary selector rows satisfy
 
 \[
 \delta_1^2+\delta_2^2\ge\frac23,
@@ -15,6 +15,8 @@ The main additional calculation is in §6. Under precisely stated common-carrier
 \]
 
 where the defects use the normalized Hilbert–Schmidt norm. These constants are attained by explicit finite-dimensional matrices. In operator norm, at least one of the two defects is **exactly 2**. These strengthen the estimates printed in the inspected Cairn selector node. They do **not** supply its missing group-to-selector construction. No claim of global novelty is made.
+
+The continuation in §14 proves a further dimension-independent result: an approximately square-conjugate unitary whose spectrum stays strictly below the fifth-root threshold must be approximately cubic torsion. Applied to Higman's four-cycle, it shows that every generator in a nontrivial norm-corona representation has distance at least \(2\sin(2\pi/5)\approx1.9021\) from the identity. The case with all four generators outside this basin remains unresolved.
 
 ## 1. Scope, sources, and verification status
 
@@ -1327,3 +1329,630 @@ diagnostic names either modified selector node. The full graph status is
 still invalid, so this is not a claim of a clean global graph build.
 The exact-arithmetic verifier passed. The live branch was refreshed before
 writing to preserve concurrent contributions.
+
+The first contribution was pushed directly to `main` as
+[1279ec82ed4ee713be8b15639cf8bf5b154e76ee](https://github.com/SauersML/group-approximation/commit/1279ec82ed4ee713be8b15639cf8bf5b154e76ee).
+It contains the two modified selector nodes, this cumulative record, and
+`experiments/verify_binary_selector_sharp_gap.py`. The Cairn preview reports
+no added or removed nodes, no changed statuses, no duplicate warnings, and
+no changed frontier. Its exit code still reflects the pre-existing graph
+errors. The push used a normal fast-forward update, preserving concurrent
+changes to `main`.
+
+## 14. Further progress: cubic spectral rigidity and a larger Higman basin
+
+This section proves a new refinement relative to the inspected Cairn
+Higman small-generator result. The earlier result assumed distance at most
+\(\sqrt2\). The argument below works at every fixed distance strictly below
+\(2\sin(2\pi/5)\). It uses finite-dimensional spectral matching and four
+ordinary group relations, with no property-T input.
+
+### 14.1. Eigenvalue matching along a short unitary path
+
+**Lemma.** Let \(A,B\in U(d)\) and \(\|A-B\|=\delta<2\). Their eigenvalues,
+counted with multiplicity, can be matched so that each matched pair has
+circular angular distance at most
+
+\[
+\alpha=2\arcsin(\delta/2).
+\tag{14.1}
+\]
+
+**Proof.** There is a self-adjoint matrix \(H\) with spectrum in
+\((-\pi,\pi)\) such that \(B=Ae^{iH}\). Diagonalizing \(A^*B\) shows that
+\(\|H\|=2\arcsin(\delta/2)=\alpha\).
+
+First suppose \(A\) has distinct eigenvalues. The path
+\(A(t)=Ae^{itH}\), \(0\le t\le1\), is analytic in \(t\). Its
+characteristic-polynomial discriminant is analytic and is nonzero at
+\(t=0\). Its zeros on the compact interval are consequently finite. Away
+from those times, eigenvalues are simple and can be followed differentiably;
+this follows by the implicit-function theorem for a simple root of the
+characteristic polynomial. A corresponding normalized eigenvector can be
+chosen differentiably locally, by solving the eigenvector equations in a
+coordinate chart where one component is nonzero.
+
+For \(A(t)v(t)=e^{i\theta(t)}v(t)\), differentiation and multiplication by
+\(v(t)^*\) give
+
+\[
+\theta'(t)=v(t)^*H v(t),\qquad |\theta'(t)|\le\|H\|.
+\]
+
+Here \(A'(t)=iA(t)H\), and normality gives
+\(v(t)^*A(t)=e^{i\theta(t)}v(t)^*\). At each of the finitely many collision
+times, join the incoming and outgoing branches with the same limiting
+eigenvalue. Eigenvalues are continuous as a multiset: this follows from
+continuity of polynomial roots, or by factoring a convergent sequence of
+monic characteristic polynomials and comparing their limiting factors.
+Choose continuous real lifts of the phases along the resulting branches.
+The derivative bound on the finitely many intervening intervals implies a
+total phase change of at most \(\|H\|\) for each branch. These branches
+give the desired matching.
+
+For general \(A\), choose unitary matrices \(A_k\to A\) with distinct
+eigenvalues, by perturbing its eigenangles, and put \(B_k=A_ke^{iH}\).
+The preceding proof matches the eigenvalues of \(A_k,B_k\) with angular
+distance at most the same \(\|H\|\). List their eigenvalues so that they
+converge, including multiplicities, to lists for \(A,B\). Passing to a
+subsequence makes the matching permutation constant, since there are only
+finitely many permutations. Taking the limit proves the lemma. ∎
+
+This proof uses only elementary finite-dimensional spectral theory and
+elementary facts about analytic functions. No estimate depends on \(d\).
+
+### 14.2. A periodic approximate doubling orbit below the fifth-root threshold
+
+**Lemma.** Fix
+
+\[
+\frac13\le a<\frac25,
+\qquad 0\le\epsilon<\frac{2-5a}{10}.
+\]
+
+Let a finite cyclic sequence \(x_j\in[-a,a]\) satisfy
+
+\[
+x_{j+1}\equiv2x_j+e_j\pmod1,\qquad |e_j|\le\epsilon.
+\tag{14.2}
+\]
+
+Then either every \(|x_j|\le\epsilon\), or the signs alternate and
+
+\[
+\left|x_j-\frac{\operatorname{sign}(x_j)}3\right|
+\le\epsilon
+\quad\text{for every }j.
+\tag{14.3}
+\]
+
+**Proof.** Write
+
+\[
+c=\frac{a+\epsilon}{2},\qquad
+b=\frac{1-a-\epsilon}{2}.
+\]
+
+The smallness hypothesis implies \(c<b\) and \(2a+\epsilon<1\).
+For a point \(x\in[-a,a]\) to have any allowed successor in \([-a,a]\),
+equation (14.2) requires
+
+\[
+x\in I_0\cup I_+\cup I_-,\qquad
+I_0=[-c,c],\quad I_+=[b,a],\quad I_-=[-a,-b].
+\tag{14.4}
+\]
+
+Indeed, if no integer is subtracted from \(2x+e\), then
+\(|2x|\le a+\epsilon\). If 1 is subtracted, then
+\(2x\ge1-a-\epsilon\); if \(-1\) is subtracted, the symmetric inequality
+holds. No other integer is possible because \(|2x+e|<1\).
+
+If \(x\in I_+\), then
+
+\[
+1-a-2\epsilon\le2x+e\le2a+\epsilon.
+\]
+
+The lower endpoint is greater than \(a\), so the successor must be
+\(y=2x+e-1\), which is negative. Furthermore,
+
+\[
+|y|\ge1-2a-\epsilon>c.
+\]
+
+The last strict inequality follows from \(3\epsilon<2-5a\). Since \(y\)
+also belongs to (14.4), it lies in \(I_-\). By symmetry \(I_-\) maps into
+\(I_+\) along any admissible cyclic sequence.
+
+Thus, if the cycle ever enters an outer interval, it stays in the outer
+intervals, and periodicity shows that all its points are outer. Their signs
+alternate. Set \(d_j=x_j-\operatorname{sign}(x_j)/3\). The wrap by 1 or
+\(-1\) just identified gives exactly
+
+\[
+d_{j+1}=2d_j+e_j.
+\]
+
+Let \(M=\max_j|d_j|\). At a point attaining this maximum,
+\(M\ge|d_{j+1}|\ge2M-\epsilon\), hence \(M\le\epsilon\).
+
+If the cycle never enters an outer interval, all \(|x_j|\le c\). Then
+\(|2x_j+e_j|\le a+2\epsilon<2/5<1/2\). Since the successor also lies in
+\([-c,c]\subset(-1/2,1/2)\), no wrap is possible. Consequently
+\(x_{j+1}=2x_j+e_j\) as an equality of real numbers. The same maximum
+argument gives \(\max_j|x_j|\le\epsilon\). ∎
+
+Finiteness of the cycle is essential. One cannot substitute an infinite
+one-way orbit and assume its largest deviation must return.
+
+### 14.3. Uniform cubic rigidity for one approximate Baumslag–Solitar pair
+
+**Theorem.** Fix \(1/3\le a<2/5\), and set
+
+\[
+c_a=2\sin(\pi a),\qquad
+\delta_a=2\sin\left(\frac{\pi(2-5a)}{10}\right)>0.
+\]
+
+If finite-dimensional unitaries \(U,V\) satisfy
+
+\[
+\|U-I\|\le c_a,
+\qquad \delta=\|VUV^*-U^2\|<\delta_a,
+\]
+
+then
+
+\[
+\boxed{\|U^3-I\|\le6\arcsin(\delta/2).}
+\tag{14.5}
+\]
+
+**Proof.** Write the eigenvalues of \(U\) as \(e^{2\pi i x_j}\), with
+\(x_j\in[-a,a]\); the norm bound gives precisely this inclusion.
+The eigenvalues of \(VUV^*\) are the same list, while those of \(U^2\)
+are its squared list. The matching lemma provides a permutation \(\sigma\)
+such that
+
+\[
+x_{\sigma(j)}\equiv2x_j+e_j\pmod1,
+\qquad |e_j|\le\epsilon
+:=\frac{2\arcsin(\delta/2)}{2\pi}.
+\]
+
+The defect threshold ensures \(\epsilon<(2-5a)/10\). Apply §14.2 to
+each cycle of \(\sigma\). Every \(x_j\) is within \(\epsilon\) of
+\(0,1/3\), or \(-1/3\). Thus
+
+\[
+|e^{6\pi i x_j}-1|\le6\pi\epsilon
+=6\arcsin(\delta/2).
+\]
+
+The spectral theorem gives (14.5). ∎
+
+For example, \(a=3/8\) gives
+\(c_a=\sqrt{2+\sqrt2}\) and \(\delta_a=2\sin(\pi/80)\).
+The theorem is a fixed-word, dimension-independent estimate. It does not
+correct the whole pair to an exact Baumslag–Solitar representation.
+
+The strict upper radius is sharp for this cubic conclusion. Let
+\(\zeta=e^{2\pi i/5}\), put
+\(U=\operatorname{diag}(\zeta,\zeta^2,\zeta^3,\zeta^4)\), and let the
+permutation unitary \(V\) send the basis vector labelled \(j\) to the one
+labelled \(3j\pmod5\). Then
+
+\[
+VUV^*=U^2,\quad \|U-I\|=2\sin(2\pi/5),\quad U^3\ne I.
+\]
+
+This is a counterexample only to extending the cubic theorem to its endpoint;
+it is not a Higman four-cycle model.
+
+### 14.4. Approximate cubic torsion collapses the four-cycle quantitatively
+
+Let \(U_0,U_1,U_2,U_3\) be unitaries and put
+
+\[
+\delta=\max_i\|U_iU_{i+1}U_i^*-U_{i+1}^2\|,
+\qquad \eta=\|U_0^3-I\|,
+\]
+
+with indices modulo four. Put \(N=2^{127}-1\), an odd integer.
+Then
+
+\[
+\|U_0-I\|\le(N+17)\eta+(3N+564)\delta,
+\tag{14.6}
+\]
+
+and
+
+\[
+\max_i\|U_i-I\|
+\le8(N+17)\eta+(24N+4519)\delta.
+\tag{14.7}
+\]
+
+**Proof.** If \(\|AWA^*-W^2\|\le\delta\), repeated conjugation and
+telescoping powers of unitaries give, for every fixed positive integer \(m\),
+
+\[
+\|A^mWA^{-m}-W^{2^m}\|\le(2^m-1)\delta.
+\]
+
+The induction step adds at most \(2^m\delta\), since
+\(\|X^k-Y^k\|\le k\|X-Y\|\) for unitaries. Also,
+\(\|A^mWA^{-m}-W\|\le2\|A^m-I\|\). Hence
+
+\[
+\|W^{2^m-1}-I\|
+\le(2^m-1)\delta+2\|A^m-I\|.
+\tag{14.8}
+\]
+
+Use (14.8) successively with \((A,W,m)=(U_0,U_1,3)\),
+\((U_1,U_2,7)\), and \((U_2,U_3,127)\). This yields
+
+\[
+\begin{aligned}
+\|U_1^7-I\|&\le7\delta+2\eta,\\
+\|U_2^{127}-I\|&\le141\delta+4\eta,\\
+\|U_3^N-I\|&\le(N+282)\delta+8\eta.
+\end{aligned}
+\tag{14.9}
+\]
+
+The last cyclic relation and the cubic error imply
+
+\[
+\|U_3U_0U_3^*-U_0^{-1}\|\le\delta+\eta,
+\]
+
+because \(\|U_0^2-U_0^{-1}\|=\eta\). Conjugation commutes with
+inversion, and inversion preserves distances between unitaries. Induction
+therefore gives
+
+\[
+\|U_3^kU_0U_3^{-k}-U_0^{(-1)^k}\|\le k(\delta+\eta).
+\]
+
+Since \(N\) is odd, comparison with \(U_0\) using (14.9) shows
+
+\[
+\|U_0-U_0^{-1}\|
+\le N(\delta+\eta)+2((N+282)\delta+8\eta).
+\]
+
+Finally,
+\(\|U_0-I\|\le\|U_0^3-I\|+\|U_0^2-I\|
+=\eta+\|U_0-U_0^{-1}\|\), proving (14.6).
+
+If \(r_i=\|U_i-I\|\), the ordinary cyclic relation also gives
+\(r_{i+1}\le2r_i+\delta\). Three iterations give
+\(\max_i r_i\le8r_0+7\delta\), which proves (14.7). ∎
+
+The very large constant is explicit and independent of dimension. This is
+an all-dimensional estimate, not an asymptotic argument involving
+dimension-dependent powers: the integers \(3,7,127,N\) are fixed once and
+for all.
+
+### 14.5. The improved Higman obstruction, and its limit
+
+Combining (14.5) and (14.7), if one generator satisfies
+\(\|U_j-I\|\le c_a\) and the four-relation defect is below \(\delta_a\),
+then
+
+\[
+\max_i\|U_i-I\|\le K\delta,
+\qquad
+K=(24+12\pi)N+204\pi+4519.
+\tag{14.10}
+\]
+
+Here we used \(2\arcsin(\delta/2)\le\pi\delta/2\), which follows from
+convexity of arcsine and its chord between 0 and 1. Cyclic relabelling
+handles any \(j\).
+
+Let \(H\) denote Higman's group with these four cyclic relations. If
+\(\rho:H\to U(\mathcal Q_{\mathbf d})\) is nontrivial, then
+
+\[
+\boxed{\|\rho(g_j)-1\|\ge2\sin(2\pi/5)
+\quad\text{for each }j.}
+\tag{14.11}
+\]
+
+For if one quotient norm were strictly smaller, choose \(a<2/5\), with
+\(a\ge1/3\), such that \(c_a\) is larger than that norm. Unitary coordinate
+lifts eventually satisfy the required radius bound, their four relator
+defects tend to zero, and (14.10) kills every generator in the quotient.
+This contradicts nontriviality.
+
+Equivalently, along any coordinate subsequence on which
+\(\max_i\|U_{i,n}-I\|\) is bounded away from zero and the relator defects
+tend to zero, the lower limit of every generator distance is at least
+\(2\sin(2\pi/5)\). Specifying the subsequence matters: arbitrary insertion
+of trivial coordinates does not destroy a limsup-separated corona model.
+
+**This still does not prove that \(H\) is non-MF.** The four generators may
+all stay at or above this threshold. In particular, the existing clock
+constructions with maximal spectral distance are not excluded. Nor does the
+fifth-root example close a full Higman cycle. The proved result is the
+larger spectral basin and its uniform estimate, not unconditional collapse.
+
+### 14.6. Scope of the further failed approaches
+
+The Jacobson investigation did not find uniform control of the moving
+collision words. Reading its existing mixed-root and center-fold nodes
+confirmed a further obstacle: the available coisometries do not identify a
+degree-two source tuple with the required literal degree-four target tuple.
+The finite marked models of those restricted packets prevent promoting
+their local matrix manipulations to a full group contradiction.
+
+The Higman investigation also checked Andreas Thom's primary paper,
+[*About the metric approximation of Higman's group*](https://arxiv.org/abs/1005.0823).
+Its obstruction concerns finite groups with commutator-contractive length
+functions. A unitary matrix group is generally infinite, so that theorem
+cannot simply be applied to the group generated by an approximate unitary
+tuple. The spectral proof above avoids that substitution, but leaves the
+large-spectrum case open.
+
+The repository and external searches conducted here did not identify the
+specific estimate (14.5) as a previously recorded Cairn result. This is not
+a claim of global priority. Its contribution is the proved estimate and its
+explicit implication for the existing Higman frontier.
+
+
+### 14.7. Exact calibration and limits of further spectral reductions
+
+The accompanying repository script `experiments/verify_cubic_spectral_basin.py`
+uses only integer arithmetic and rational numbers. On the grid with denominator
+120, radius \(a=3/8\), and allowed errors \(-1/120,0,1/120\), it finds
+exactly these vertices on directed cycles:
+
+\[
+\frac1{120}\{-41,-40,-39,-1,0,1,39,40,41\}.
+\]
+
+They lie within \(1/120\) of \(0,1/3,-1/3\), as the analytic theorem
+requires. The script also checks the fifth-root permutation countermodel
+and the exact arithmetic in the torsion exponents and constants. All checks
+passed. This finite graph does not replace the proof for arbitrary real
+eigenangles or arbitrary matrix dimension.
+
+Two prospective continuations do not follow from the theorem:
+
+1. **Choose a power that is close to the identity.** For one fixed matrix,
+   simultaneous approximation of its finitely many eigenangles can produce
+   such a power. That power can depend on dimension and on the matrix.
+   Equation (14.8) then carries an uncontrolled factor \(2^m-1\).
+   Moreover, replacing all four generators by their \(m\)-th powers does
+   not preserve the same Higman relations: conjugation by \(U_i^m\)
+   implements a \(2^m\)-power map, not a square map. This is not a route
+   to a uniform application of (14.10).
+2. **Cut away the large-spectrum portion of one generator.** Its spectral
+   projection need not reduce the other three unitaries. Compression can
+   destroy unitarity and the four relator estimates. No simultaneous
+   reducing-corner theorem is established here, so spectral cutting does
+   not close the remaining case.
+
+The general non-MF existence problem requested by the user is still not
+settled by these results. The new unconditional conclusions are the
+selector inequalities and the cubic spectral theorem with its conditional
+Higman collapse estimate.
+
+### 14.8. Cairn contribution validation
+
+The spectral contribution adds one claim,
+`unitary-square-covariance-forces-cubic-spectrum`, and its direct proof route,
+`square-covariance-cubic-spectrum-proof`. It strengthens the existing
+`one-small-higman-generator-collapses-the-four-cycle` claim and updates its
+proof route to depend on the new spectral theorem. It does not add a proof
+route establishing the intrinsic Higman seed or the property-T-free
+existence target.
+
+The source check was run with the repository's pinned Cairn implementation.
+It reports the same 81 pre-existing findings as the baseline, with no added
+or removed findings, and counts 6,959 claims and 7,097 routes. The global
+check remains invalid; this is not a clean-build or Lean-certification claim.
+The launcher in the supplied ZIP lacks execute permission, so it can be
+invoked as `sh bin/cairn`; no source change to the launcher is needed.
+
+The preview reports exactly the two added nodes just named, one direct-proof
+assertion, no duplicate warnings, no removed nodes, no status changes to
+existing nodes, and no frontier changes. Its process still exits with the
+pre-existing global graph errors. The mathematical proof is supplied in
+full; the graph check validates metadata and dependencies, not the truth of
+the spectral argument.
+
+The two concurrent main-branch commits inspected after the selector
+contribution changed the existing property-T manuscript and generated PDF;
+they did not change the Higman nodes edited here. The validation snapshot includes the relevant source through
+`59029525985310acce46918d0f3f725fa91e85d0`. Before the write, main advanced
+to `e5b8332c8ae5f753b9c73afa554ed8ab9b3a0441`; its seven changed paths
+concern ordered AF extension results and do not overlap this contribution.
+The GitHub tree is built on that newer main, preserving those concurrent
+changes. The counts above describe the checked local snapshot.
+
+## 15. Reproducible exact checks
+
+These two dependency-free Python scripts are included in full so this one
+Markdown file contains the verification material as well as the proofs.
+They check finite equality models and arithmetic; neither certifies the
+unresolved existence theorem or replaces the general proofs above.
+
+### 15.1. Selector equality models
+
+```python
+"""Exact equality examples for the standalone binary selector rank bounds.
+
+This verifies two finite examples; the all-dimensional theorem has a prose proof.
+It does not verify a group-level non-MF construction.
+"""
+
+from fractions import Fraction as F
+
+def targets(m, positive):
+    gauge = [1] * positive + [-1] * (m - positive)
+    label1 = [-1] * 2 + [1] * 6
+    label2 = [-1] + [1] * 7
+    return [[a * b for a in label for b in gauge]
+            for label in (label1, label2)]
+
+def source(target, negative_rank):
+    negative = [i for i, x in enumerate(target) if x == -1]
+    positive = [i for i, x in enumerate(target) if x == 1]
+    if negative_rank <= len(negative):
+        chosen = negative[:negative_rank]
+    else:
+        chosen = negative + positive[:negative_rank - len(negative)]
+    chosen = set(chosen)
+    return [-1 if i in chosen else 1 for i in range(len(target))]
+
+def audit(m, positive):
+    t1, t2 = targets(m, positive)
+    d = 8 * m
+    r1, r2 = source(t1, d // 2), source(t2, d // 4)
+    energy = [F(sum((a-b)**2 for a, b in zip(r, t)), d)
+              for r, t in ((r1, t1), (r2, t2))]
+    opnorm = [max(abs(a-b) for a, b in zip(r, t))
+              for r, t in ((r1, t1), (r2, t2))]
+    ranks = [sum(x == -1 for x in t) for t in (t1, t2)]
+    return d, ranks, energy, opnorm
+
+assert audit(6, 5) == (48, [16, 12], [F(2, 3), F(0)], [2, 0])
+assert audit(10, 7) == (80, [32, 28], [F(2, 5), F(2, 5)], [2, 2])
+
+# Binary atomic bound: s_i=1, t_i=2/3.
+inverse = abs(F(2, 3) - 1)
+complete = abs(2 * F(2, 3) - 1)
+assert inverse == complete == F(1, 3)
+assert 2 * inverse + complete == 1
+
+print(audit(6, 5))
+print(audit(10, 7))
+print('All exact arithmetic checks passed.')
+```
+
+### 15.2. Cubic spectral calibration
+
+```python
+"""Exact finite calibrations for the cubic spectral basin.
+
+The dimension-independent theorem is proved in the research Markdown.
+These checks certify a rational-grid instance and the endpoint countermodel;
+they are not substitutes for the proof over arbitrary real eigenangles.
+Run with Python 3; no external packages are required.
+"""
+
+from fractions import Fraction
+
+
+def recurrent_vertices(vertices, edges):
+    """Vertices on directed cycles, computed by exact finite reachability."""
+    recurrent = set()
+    for source in vertices:
+        pending = list(edges[source])
+        visited = set()
+        while pending:
+            node = pending.pop()
+            if node == source:
+                recurrent.add(source)
+                break
+            if node not in visited:
+                visited.add(node)
+                pending.extend(edges[node])
+    return recurrent
+
+
+def main():
+    denominator = 120
+    a = Fraction(3, 8)
+    epsilon = Fraction(1, denominator)
+    assert epsilon < (2 - 5 * a) / 10
+    vertices = set(range(-45, 46))
+    edges = {}
+    for vertex in vertices:
+        successors = set()
+        for error in (-1, 0, 1):
+            successor = (2 * vertex + error + 60) % 120 - 60
+            if successor in vertices:
+                successors.add(successor)
+        edges[vertex] = successors
+    recurrent = recurrent_vertices(vertices, edges)
+    expected = {-41, -40, -39, -1, 0, 1, 39, 40, 41}
+    assert recurrent == expected, (recurrent, expected)
+    assert all(min(abs(x - center) for center in (-40, 0, 40)) <= 1
+               for x in recurrent)
+    print("Recurrent grid numerators / 120:", sorted(recurrent))
+
+    # U e_j = zeta**j e_j, V e_j = e_(3j mod 5).
+    # V^* e_j = e_(2j mod 5), so V U V^* e_j = zeta**(2j) e_j.
+    labels = {1, 2, 3, 4}
+    permutation = {j: 3 * j % 5 for j in labels}
+    assert set(permutation.values()) == labels
+    assert all(permutation[2 * j % 5] == j for j in labels)
+    phases = {Fraction(j if j <= 2 else j - 5, 5) for j in labels}
+    assert max(map(abs, phases)) == Fraction(2, 5)
+    assert all(3 * j % 5 != 0 for j in labels)
+    print("Exact fifth-root phases:", sorted(phases))
+
+    # Bookkeeping for the fixed torsion powers 3 -> 7 -> 127 -> N.
+    exponent, defect, cubic_error = 3, 0, 1
+    for _ in range(3):
+        next_exponent = 2**exponent - 1
+        defect = next_exponent + 2 * defect
+        cubic_error *= 2
+        exponent = next_exponent
+    n = 2**127 - 1
+    assert (exponent, defect, cubic_error) == (n, n + 282, 8)
+    seed_defect = n + 2 * defect
+    seed_cubic = n + 2 * cubic_error + 1
+    assert (seed_defect, seed_cubic) == (3 * n + 564, n + 17)
+    assert 8 * seed_defect + 7 == 24 * n + 4519
+    assert 8 * seed_cubic == 8 * (n + 17)
+    print("All exact arithmetic checks passed.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+
+## 16. Publication receipts and final frontier check
+
+The following mathematical contributions were committed and pushed directly
+to `SauersML/group-approximation:main`:
+
+| Commit | Contribution |
+|---|---|
+| [1279ec82](https://github.com/SauersML/group-approximation/commit/1279ec82ed4ee713be8b15639cf8bf5b154e76ee) | Sharp common-gauge binary selector bounds, exact equality models, and the initial cumulative record. |
+| [ed50e5bc](https://github.com/SauersML/group-approximation/commit/ed50e5bc6a4f9902d09ccd4da3ca8069c11532b3) | Complete cubic spectral proof, stronger Higman collapse basin, exact calibration, and the expanded cumulative record. |
+
+The first attempted reference update for the spectral contribution encountered
+a concurrent main update and was rejected as not a fast-forward. The changes
+were rebuilt on the new main tree, after checking that the changed paths did
+not overlap, and the subsequent non-force update succeeded. The successful
+spectral commit has parent `e6bccb71722cf714c338f4ed0b312f581d7053d0`.
+The committed cumulative artifact was fetched and its blob identity compared
+with the local file before adding these receipts.
+
+A final read of the concurrently added
+[abelian anchor normalizer theorem](https://github.com/SauersML/group-approximation/blob/ed50e5bc6a4f9902d09ccd4da3ca8069c11532b3/research/one-abelian-anchor-and-label-expansion-round-a-normalizer.md)
+confirmed that it assumes both an explicit classical gap and exact actor
+covariance on the atom table. It also requires the anchor target to be
+identified with an actual element of that table. Its own statement says it
+does not impose a Leavitt one-to-two loss or give a nonhyperlinear group.
+Thus this concurrent result does not supply the missing group-to-selector
+implication in the present record. The updated nonhyperlinear root likewise
+continues to state that its September 5 audits leave its target open.
+
+**Final mathematical status:** complete proofs are given for the results
+stated as proved above, including the two quantitative contributions.
+No complete property-T-free non-MF existence proof was obtained. In the
+Leavitt/Jacobson approach the matrix obstruction still lacks the required
+uniform group-level decoder; in the Higman approach the simultaneous
+large-spectrum regime is still uncontrolled. Neither gap is hidden behind
+an assumed lemma, a graph-status change, or a computational check.
