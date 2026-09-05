@@ -1281,3 +1281,64 @@ is not a basis for grading anything green.  **NOT-YET-STATED.**
 23 concurrent `remote-build.sh` processes.  `f2a8c3a59` records a probe finding
 real breakage — *"repair two Mathlib names that block the whole LIX chain"* —
 which is the wiring-and-probing loop working as it should.
+
+## Sweep 12, 2026-09-05 — the root import file was broken by the wiring script
+
+**`scripts/check.py --list-orphans` jumped from 281 to 2744.**  Not because
+2463 modules were unwired: because `GroupApproximation.lean` stopped being a
+valid Lean file.
+
+`scripts/wire_orphans.py` appended the first wired orphan **after the module
+docstring**:
+
+```
+3309  /-!
+      … 60 lines of module docstring …
+3368  -/
+3369  -- === wired orphans (scripts/wire_orphans.py) ===
+3370  import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
+```
+
+In Lean 4 `import` must precede every other command, module docstring included,
+so an `import` there is a syntax error and **nothing builds**.  The other 3263
+root imports sit above line 1002 and are fine.  Caught as a working-tree change
+before it was committed, so it had not yet reached main; reported to the lead
+immediately, and not repaired by this lane — lanes do not edit the root.
+
+Two things worth drawing from it.
+
+First, the orphan count is a *gate reading*, not a fact about the corpus, and
+this is what it looks like when the instrument breaks instead of the subject.
+A 2744 in that column would have been read by any lane as catastrophic
+unwiring.  It was one line in the wrong place.
+
+Second, **wiring `ProblemXWitness` was correct** — it is this file's own
+recommendation and the module is fine.  What failed is the insertion point in
+the script, and it will fail identically for the next 44 imports of the
+port-free batch.  Fixing `wire_orphans.py` to insert rather than append is
+prerequisite to the wiring campaign, not an argument against it.
+
+### Two smaller findings from the same pass
+
+**One dangling project import, corpus-wide.**
+`GroupApproximation.AlgTop.MappingTorusParity` imports
+`GroupApproximation.AlgTop.ChernNewtonSquareZero`, which no longer exists on
+disk — renamed into the `ChernNewtonIdentity` / `ChernNewtonDischarge` family.
+Both modules are orphan so nothing breaks today, but the corpus was clean on
+this axis at `3a4b44ae3`, and a dangling import inside a module that later gets
+wired takes the root build down rather than reddening one file.
+
+**Audit-gate coverage on the new work is thin.**  About forty of the campaign's
+modules carry **no `#audit` line at all**: every `AlgTop.*` module
+(`ChernSeries`, `ChernNewtonIdentity`, `ChernPowerSums`, `CupProduct`,
+`CupAssoc`, `SingularCohomology`, `ComplexProjective*`, `MappingTorus*`,
+`EulerLocalModel`, `BundleCalculus*`, …), `Analysis.CStarKOne`,
+`CStarKOneInjectivityCriterion`, `CStarUnitaryComponent`,
+`CStarMatrixBlockInclusion`, `SequentialGroupColimit`, and the whole `LIX*`
+family.  A module with no audit line has no axiom gate even after it compiles,
+so wiring it buys a typecheck and nothing else.  The exceptions —
+`ProblemXWitness`, `STW22ConditionalNegativeSolution`, and the
+`SphereOddDegree` `_closed` endpoints — are precisely the modules that have
+caught something.  That is not a coincidence and it is the argument for putting
+a `#audit_closed_axioms` on each layer's public result as it lands, rather than
+at the end.
