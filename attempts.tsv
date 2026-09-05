@@ -281,3 +281,4 @@
 33969242096	2026-09-05T13:34:16Z	GroupApproximation/Sofic/CompressionWreathFinitelyGenerated.lean	fg_vertical
 33977394731	2026-09-05T16:18:07Z	GroupApproximation/Sofic/ConcreteCompressionSource.lean	s_ne_one
 33984540351	2026-09-05T18:36:14Z	GroupApproximation/Sofic/ConjExprMatching.lean	map_fst_labelledExpr
+33990980519	2026-09-05T20:44:48Z	GroupApproximation/Analysis/LIXEndpointStatement.lean	k1Inj_iff
