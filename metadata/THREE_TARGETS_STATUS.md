@@ -953,3 +953,80 @@ lock.  It is the decisive probe for target 2: it pulls the port and the
 operator-algebra chain together and fires
 `#audit_closed_axioms negativeSolutionToProblemXXII`.  The number to read from
 it is the **job count**, not the verdict.
+
+## Sweep 9, 2026-09-05 — `autoImplicit` is on across the whole corpus
+
+This is the largest structural finding of the audit and it is not specific to
+the three targets.
+
+```
+files under GroupApproximation/ :                      4331
+files containing `set_option autoImplicit false` :        0
+files containing `set_option relaxedAutoImplicit false`:  0
+lakefile.toml `moreLeanArgs` :        ["-DwarningAsError=true"]   -- and nothing else
+```
+
+Lean's default is `autoImplicit := true`.  Mathlib turns it off in its own
+lakefile; that setting does not reach this project's library.  So **every
+declaration in this repository is elaborated with automatic implicit binding
+switched on**, and an identifier that is not in scope does not fail — it
+becomes a fresh auto-bound implicit variable.
+
+Why this matters for a campaign about unconditionality, and in which direction.
+An auto-bound name in a *conclusion* usually makes the theorem unprovable, so
+it fails loudly.  An auto-bound name in a **hypothesis** makes the theorem
+*weaker* and it compiles silently: `theorem foo (h : IsLineProj q) : …`, with
+`IsLineProj` undefined, elaborates as `∀ {IsLineProj : _ → Prop}, IsLineProj q
+→ …` — an assumption about an arbitrary predicate, which is a far weaker
+hypothesis than intended and can be discharged by nonsense.  Hypotheses are
+exactly where this campaign keeps its residues.
+
+**This is not hypothetical here.**  `1a012c0c0` records that `IsLineProj`
+occurred four times repo-wide — `AlgTop/ComplexProjectiveHyperplane.lean:39,40,69`
+and `AlgTop/ComplexProjectiveChart.lean:49` — and **was defined nowhere**, and
+says in as many words: *"No gate caught it because the lakefile does not set
+`autoImplicit := false`."*  Verified here: `IsLineProj` no longer occurs
+anywhere in the corpus, so that instance has been repaired, but it was live,
+and it was found by a lane reading source rather than by any gate.
+
+The same commit records a second defect of the same family that no gate could
+see: `Analysis/FiniteCStarMurrayVonNeumann.lean:99` and
+`AlgTop/BundleCalculusProjection.lean:68` defined
+`∃ v, star v * v = p ∧ v * star v = q` **character for character** under the
+same typeclasses, in different namespaces, with no import between them.  That
+is the cross-vocabulary duplicate this file flagged at sweep 2 in its `CP^d`
+form, now confirmed in a second place and arbitrated (`MurrayVonNeumannEquiv`
+survives as the older name with six consumers; `BundleCalculusProjection`
+re-homes onto it, and `Analysis/ProjectionMvNEquivalence.lean` and
+`Analysis/CornerCStarAlgebra.lean` are withdrawn).  Note the consequence for
+the campaign's ledger: the three analytic lemmas being re-homed *are* the
+design note's (L1)(L2)(L3), so L0's analytic floor turns out to have been
+already done — the plan was written against Mathlib greps that were never
+repeated against this repository.
+
+**Recommendation, for whoever owns the lakefile** — not this lane, and not a
+change to make mid-wave:
+
+* at minimum, `set_option autoImplicit false` at the head of every new
+  campaign module.  It costs one line and it converts a silent weakening into
+  a build error;
+* at best, `autoImplicit := false` project-wide in `lakefile.toml`, taken as
+  its own piece of work with its own build, since 4331 files have never been
+  elaborated under it and some will need real binders added.
+
+Until one of those happens, "it compiles" in this repository means less than a
+reader assumes, and this file's verdicts should be read with that discount
+applied — including its own green for the Borsuk–Ulam port.
+
+### Fleet state, recorded because it is why nothing is verified yet
+
+**22 concurrent `remote-build.sh` processes** against one serialized fleet
+mutex, with five targets duplicated: `STW22NegativeSolution` ×2,
+`LIXProjectiveSpaceModel` ×4, `ProblemXWitness` ×2, `MappingTorusParity` ×2,
+`ComplexProjectiveHyperplane` ×2.  This lane's probe (log tag 18285) has been
+at `waiting on fleet build lock` for a quarter of an hour and the counter runs
+to 180.  The program note's own rule is not to oversubscribe the compute nodes.
+Two lanes are also still redirecting build output to the same shared path
+`scratchpad/probe1.log`, which with 22 concurrent builds makes reading another
+lane's result a near certainty — `remote-build.sh` tags its remote log per
+invocation and the local redirect undoes that.

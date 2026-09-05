@@ -33,7 +33,7 @@ rather than by fiat:
   unit of `A⟦X⟧` (`PowerSeries.invOfUnit`), so for a formal difference
   `δ = [W] - [V]` the total class `c(δ) = c(W) / c(V)` is *defined*, and
   `c(W) = c(V) c(δ)` is the group identity `V * (W / V) = W`
-  (`mul_div_cancel_self`).  This is the step that makes sense of the manuscript's
+  (`mul_div_cancel_virtual`).  This is the step that makes sense of the manuscript's
   `δ = [W] - [p^*V]`.
 * **Rank bounds.** `RankLE c n` says `c_k = 0` for `k > n`.  It is closed under
   products with ranks adding (`RankLE.mul`), and a line class has rank ≤ 1.
@@ -255,13 +255,13 @@ theorem chernClass_prod_line_pow_top {ι : Type*} (s : Finset ι) (h : ι → A)
 /-- The **virtual class identity**: writing `δ = W / V` for the total Chern class
 of the formal difference `[W] - [V]`, one has `c(W) = c(V) c(δ)`.  This is the
 group law, so it holds with no hypotheses whatsoever. -/
-theorem mul_div_cancel_self (W V : TotalChern A) : V * (W / V) = W := by
+theorem mul_div_cancel_virtual (W V : TotalChern A) : V * (W / V) = W := by
   rw [div_eq_mul_inv, mul_comm W V⁻¹, ← mul_assoc, mul_inv_cancel, one_mul]
 
 /-- The coefficientwise form of `c(W) = c(V) c(W / V)`. -/
 theorem chernClass_eq_sum_div (W V : TotalChern A) (n : ℕ) :
     W.chernClass n = ∑ p ∈ antidiagonal n, V.chernClass p.1 * (W / V).chernClass p.2 := by
-  conv_lhs => rw [← mul_div_cancel_self W V]
+  conv_lhs => rw [← mul_div_cancel_virtual W V]
   rw [chernClass_mul]
 
 end TotalChern

@@ -1,5 +1,4 @@
 import GroupApproximation.AlgTop.ChernSeries
-import GroupApproximation.AlgTop.ChernNewtonSquareZero
 import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
 
 /-!
@@ -20,20 +19,19 @@ the power sums `p_q = ∑_i a_i^q` satisfy **Newton's identity**
 (`newton_of_split`), obtained by evaluating Mathlib's
 `MvPolynomial.mul_esymm_eq_sum` at the roots.
 
-The point of `newton_of_split` is that it *discharges* the `hnewton` hypothesis
-of `GroupApproximation.AlgTop.natCast_mul_chern_eq_of_squareZero`.  The
-combination `chern_eq_of_squareZero_of_split` below is therefore a statement
-about split classes with no unproved algebraic input at all: only the square-zero
-hypothesis on the ambient ring, which is what `z² = 0` supplies in the
-manuscript.
+`newton_of_split` is the *split* route to Newton's identity, via Mathlib's
+symmetric-function machinery.  It is superseded for the campaign's purposes by
+`GroupApproximation.AlgTop.TotalChern.natCast_mul_chernClass`, which proves the
+same identity for **every** total Chern class — virtual ones included — by the
+logarithmic derivative and with no `Fintype` of Chern roots.  It is kept because
+Vieta (`chernClass_prod_line`) is the dictionary between the two descriptions of a
+split class, and because the two proofs are an independent check on each other.
 
 ## Main declarations
 
 * `TotalChern.prod_series` — `series` is multiplicative over finite products.
 * `TotalChern.chernClass_prod_line` — Vieta.
 * `TotalChern.newton_of_split` — Newton's identity for a split class.
-* `TotalChern.natCast_mul_chernClass_of_split_squareZero` — the square-zero
-  Newton step with its Newton hypothesis discharged.
 -/
 
 namespace GroupApproximation
@@ -102,17 +100,6 @@ theorem newton_of_split {ι : Type*} [Fintype ι] (a : ι → A) (k : ℕ) :
   have hmain := congrArg (MvPolynomial.aeval a) (MvPolynomial.mul_esymm_eq_sum ι A k)
   simp only [map_mul, map_sum, map_pow, map_neg, map_one, map_natCast, hes, hps] at hmain
   exact hmain
-
-/-- The square-zero Newton step for a **split** total Chern class, with the
-Newton hypothesis discharged.  Only the square-zero hypothesis remains, and in
-the manuscript that is exactly `z² = 0`. -/
-theorem natCast_mul_chernClass_of_split_squareZero {ι : Type*} [Fintype ι] (a : ι → A)
-    (hsq : ∀ i j : ℕ, 0 < i → 0 < j →
-      (∏ x, line (a x)).chernClass i * (∑ x, a x ^ j) = 0)
-    {k : ℕ} (hk : 0 < k) :
-    (k : A) * (∏ i, line (a i)).chernClass k = (-1) ^ (k + 1) * ∑ i, a i ^ k :=
-  natCast_mul_chern_eq_of_squareZero (fun m => (∏ i, line (a i)).chernClass m)
-    (fun m => ∑ i, a i ^ m) (chernClass_zero _) (newton_of_split a) hsq hk
 
 end
 

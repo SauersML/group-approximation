@@ -73,7 +73,7 @@ theorem two_dvd_chernClass_of_div (W V : TotalChern A) (r : ℕ)
     (hV : V.chernClass r = 0)
     (hδ : ∀ j, 0 < j → (2 : A) ∣ (W / V).chernClass j) :
     (2 : A) ∣ W.chernClass r := by
-  have hW : W = V * (W / V) := (mul_div_cancel_self W V).symm
+  have hW : W = V * (W / V) := (mul_div_cancel_virtual W V).symm
   rw [hW]
   exact two_dvd_chernClass_mul V (W / V) r hV hδ
 
