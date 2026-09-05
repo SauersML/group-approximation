@@ -18,22 +18,6 @@ action `T^2 ↷ A_θ` gives an injective `Z^2` (winding numbers through
 `tr ∘ Bott ∘ ev`), suspected to be a direct summand; the other four
 generators are unidentified.
 
-**KIRCHBERG HALF ANSWERED (2026-09-04).**  Six explicit circle actions on
-a UCT Kirchberg algebra with scaled graded K-theory `(Z^2,(1,0),Z^2)` are
-now an established integral basis of its `pi_1(Aut)` --
-`stw99-l-six-circle-actions-basis-of-pi1-aut`, with the four
-retraction-kernel generators on `A_theta (x) O_infinity` in
-`stw99-l-four-loop-basis-of-retraction-kernel`.  That is STW's own
-"or of the matching UCT Kirchberg algebra" alternative, reached through
-two fixed but nonconstructive classification isomorphisms.  It confirms
-the conjecture recorded below in its shape -- four `Hom(K_1,K_0)` loops
-plus two loops carrying the `K_0/Z[1] -> K_1` block -- but NOT its
-mechanism: the four are edge-phase gauge loops on a three-vertex graph
-model, not Rieffel-projection transport, and the last two are tensor-factor
-actions rather than rotations.  **This root stays open**: it asks for loops
-in `Aut(A_theta)` itself, and the weak homotopy equivalence supplies no
-explicit preimages in the stably finite algebra.
-
 ## Attempts
 
 * Bookkeeping candidate for the missing four: (i) INNER loops — the
