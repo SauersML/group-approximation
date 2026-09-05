@@ -45,6 +45,28 @@ noncomputable section
 
 universe v
 
+/-- The family of nonempty tracial-state spaces of the antipodal blocks, as a
+single `∀ n, …` instance.
+
+Every consumer below takes this as an instance-implicit binder, and synthesis
+cannot supply it here: `AntipodalCounterexampleBlock` abbreviates
+`RealProjectiveBlock`, whose instance search is pathological in this repository
+(a `Zero` search emitting ~23k trace lines before dying inside `Grind`
+instances, measured 2026-08-31).  Nine declarations in this file failed to
+elaborate for that reason alone, and Lean poisons a failed declaration with
+`sorryAx`, so all four `#audit_closed_axioms` gates at the end of the file
+reported `sorryAx` with no `sorry` anywhere in the source.
+
+Naming the family directly is the structural fix — the same one
+`STW22AntipodalBlockData.antipodalAllTracesGauge` already uses four lines below
+the underlying instance, where it `@`-applies `allTracesTracialTwoGauge` and
+passes `(fun n ↦ nonemptyTracialState_antipodalCounterexampleBlock n)` by hand
+rather than letting the binder be synthesized.  The campaign rule is that a
+timeout gets a structural fix, never a `maxHeartbeats` bump. -/
+instance instNonemptyTracialStateAntipodalFamily :
+    ∀ n, Nonempty (TracialState (AntipodalCounterexampleBlock n)) :=
+  fun n ↦ nonemptyTracialState_antipodalCounterexampleBlock n
+
 /-- The sequence-model gauge used throughout is exactly the supremum of the
 two-norms coming from all bundled tracial states of the actual base algebra.
 No topological input is involved. -/
