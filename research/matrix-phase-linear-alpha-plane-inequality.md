@@ -2,28 +2,36 @@
 rg: 2
 id: matrix-phase-linear-alpha-plane-inequality
 kind: claim
-title: Upgrade the matrix-phase alpha-plane modulus to a linear energy bound
+title: The matrix alpha-plane energy admits a universal linear bound
 root: true
 distinct_from:
-  matrix-phase-noncommutative-alpha-plane-route: that proves a nonconstructive uniform modulus by polar consensus and tracial compactness; this asks for an effective linear estimate.
+  matrix-phase-noncommutative-alpha-plane-route: that proves a nonconstructive vanishing modulus; this specifies linear dependence, still with a nonnumerical universal constant.
+artifacts:
+  - research/artifacts/alpha-plane-affine-tensor-linearization-2026-09-04.md
 ---
 
-OPEN.  In the notation `(NC1)--(NC3)` of
-`matrix-phase-noncommutative-alpha-plane-route`, prove or disprove
+In the notation `(NC1)--(NC3)` of
+`matrix-phase-noncommutative-alpha-plane-route`, one has
 
 ```text
 F(R) <= C (I(R)+A(R))
 ```
 
 with a universal constant `C`, independent of the field degree and matrix
-dimension.  The established compactness theorem rules out a sequence with
-`I+A->0` and `F` bounded below, but supplies no rate.
+dimension. The route `matrix-phase-linear-from-affine-tensors-proof`
+derives this from the existing qualitative theorem. More precisely, any
+uniform epsilon_*>0 for which I+A<=epsilon_* implies F<=1/4 gives
+C=1/epsilon_*. The proof uses a bound on every slope, affine
+symmetrization, identity dilution, conjugate doubling and tensor powers.
+It does not compute a numerical epsilon_* or bypass the separate
+same-basis occurrence-decoder gap toward nonhyperlinearity.
 
-## Attempts
+## Earlier attempts (before the affine tensor argument, 2026-09-04)
 
 - Polarizing the mean corrector gives `(NC16)--(NC23)`, but the resulting
-  perturbation bound is noncontractive.  A linear proof still needs the
-  Poincare--Lojasiewicz estimate `(NC24)` or another square-function argument.
+  perturbation bound is noncontractive. That approach still needs the
+  Poincare--Lojasiewicz estimate `(NC24)` or another square-function argument;
+  the affine tensor route does not require it.
 - Literal replacement of the four full-parallelogram vertices by one
   alpha-corrector each does not cancel: the resulting affine matching system
   is inconsistent even after all unsigned factor permutations.

@@ -21,21 +21,26 @@ the factor character of `Lambda` is regular.
    does not prescribe `ker(pi)`, and the factor `Q` has no nontrivial von
    Neumann quotient on which to impose the missing relations.
 2. **Products, free products and extensions.**  Any group with a proper
-   infinite ICC quotient fails regular-or-CE factor-character rigidity:
-   pull back that quotient's regular character.  Hence adjoining an infinite
-   rigid quotient to the CDI source destroys the required rigidity on the
-   enlarged group instead of transferring it to `Lambda`.  Tensoring the
-   CDI representation with a regular representation of the rigid factor
-   leaves the coefficient `chi(h)` visible on the complementary identity
-   slice.
+   infinite ICC quotient fails regular-or-finite-dimensional
+   factor-character rigidity: pull back that quotient's regular character.
+   This argument does **not** rule out regular-or-CE rigidity.  The pulled
+   character has GNS factor `L(K)`, which is CE whenever the quotient `K`
+   is hyperlinear; it is also nonfaithful and hence does not test the
+   faithful-character condition for `Lambda`.  Thus retaining such a
+   quotient obstructs the stronger classification, but supplies no transfer
+   theorem for the weaker one.  Independently, tensoring the CDI
+   representation with a regular representation of another group leaves
+   the coefficient `chi(h)` visible on the complementary identity slice.
 3. **Subgroups and induction.**  Restriction of a rigid group's regular
    representation remains regular and cannot recover the CDI character.
    Finite-index induction of a CDI factor representation would preserve a
    non-CE corner, but a finite extension of an acylindrically hyperbolic
-   group is again acylindrically hyperbolic and therefore fails the needed
-   rigidity.  Infinite-index induction has no normalized finite-factor trace
-   on the natural coset amplification and supplies no extremal character to
-   which rigidity applies.
+   group is again acylindrically hyperbolic and therefore fails the stronger
+   regular-or-finite-dimensional classification.  This does not itself
+   exclude the weaker faithful regular-or-CE classification needed for the
+   image bridge.  Infinite-index induction has no normalized finite-factor
+   trace on the natural coset amplification and supplies no extremal
+   character to which rigidity applies.
 
 The Kac--Moody proposal currently misses both inputs.  The simple Kazhdan
 Caprace--Remy groups are not acylindrically hyperbolic: a non-elementary
@@ -62,3 +67,22 @@ character by `faithful-irs-blocks-naive-ah-character-rigidity`.  This rules
 out rigidity of all faithful characters.  It does not by itself refute the
 faithful **extremal** classification required for the particular CDI image,
 because factoriality of that IRS character is an additional step.
+
+## Scope correction, 2026-09-04
+
+The earlier wording of item 2 incorrectly substituted "CE" for "finite
+dimensional."  There is a direct counterexample to that stronger assertion.
+Let `K` be the group of finitely supported permutations of the positive
+integers, let `G=K x K`, and let `q` be projection onto the first factor.
+The group `K` is infinite ICC and locally finite.  The quotient character
+`chi_q(g,h)=delta_e(g)` is nonregular, nonfaithful, and extremal, with
+infinite-dimensional hyperfinite GNS factor `L(K)`.  In fact every tracial
+GNS algebra of the locally finite group `G` is hyperfinite, so all of its
+factor characters are CE despite this proper infinite ICC quotient.
+
+The proof in `cdi-rigidity-permanence-firewall-proof` gives the details.
+This correction removes an invalid obstruction to the weaker classification;
+it does not establish that classification for a CDI image.  The independent
+calculation in `cdi-image-central-wreath-retains-the-regularity-gate` still
+shows that the distinguished output character is regular exactly when the
+input image character already is.  No nonhyperlinear group is constructed.

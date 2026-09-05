@@ -12,6 +12,8 @@ distinct_from:
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
+  - research/artifacts/periodic-higman-cofinite-spectrum-2026-09-04.md
+  - research/artifacts/periodic-higman-all-primes-2026-09-05.md
 ---
 
 Produce a word-hyperbolic group that is not residually finite, or prove that
@@ -44,16 +46,7 @@ residually finite groups are sofic.
 
 ## Attempts
 
-Five live routes, none of which this graph can yet walk:
-
-- `non-rf-hyperbolic-via-periodic-higman` — the explicit singular-on-`H_1`
-  endomorphism `x_i |-> [x_i,x_(i-1)]` has a hyperbolic mapping torus, and its
-  sufficiently deep torsion fillings retain the base mark.  Every finite
-  image of a filling has a perfect base image governed by one finite-order
-  automorphism.  The route is reduced exactly to
-  `periodic-higman-large-prime-period-gap`: one prime above the filling
-  threshold must be absent from the resulting Higman period spectrum.  That
-  finite-group statement is open here.
+Four live routes, none of which this graph can yet walk:
 
 - `non-rf-hyperbolic-from-nonsofic-hyperbolic` — inherit it from a non-sofic
   hyperbolic group.  Blocked exactly where `nonsofic-hyperbolic-group` is
@@ -84,8 +77,17 @@ graph-wreath products (`non-rf-hyperbolic-via-oyakawa-graph-wreath`), and
 routing a known non-residually-finite group through Hull's small-cancellation
 theorem (`non-rf-hyperbolic-via-hull-routing`).
 
-The strongest natural shortcut inside the new periodic-Higman route is also
-dead.  `periodic-higman-spectrum-contains-three` gives an exact
+The periodic-Higman missing-period route is now dead as well.
+`periodic-higman-spectrum-contains-every-prime`, proved on 2026-09-05,
+puts every prime in the spectrum, refuting
+`periodic-higman-large-prime-period-gap` and invalidating
+`non-rf-hyperbolic-via-periodic-higman`. Every filling `G_m` with `m>=2`
+has a finite quotient detecting all four base generators. The proof uses
+explicit algebraic matrices, a primitive-divisor theorem, certified root
+bounds, exact resultants, and an order-two model in `PSL_2(5)`.
+
+An earlier shortcut had already failed:
+`periodic-higman-spectrum-contains-three` gives an exact
 `PSL_2(11)` certificate with period three, refuting
 `periodic-higman-spectrum-has-no-odd-primes` and invalidating
 `non-rf-hyperbolic-via-odd-period-exclusion`.  Borisov--Sapir's residual
@@ -93,6 +95,7 @@ finiteness theorem for the *unfilled* injective free-group mapping torus is a
 second consistency check: the torsion filling is indispensable, not a
 cosmetic step.
 
-Conservatively modeled as OPEN.  The periodic-Higman construction is a real
-reduction to a sharply isolated finite-group lemma, not a solution; claiming
-otherwise would erase the only unproved implication in the construction.
+This root remains OPEN. The periodic-Higman missing-period premise is
+refuted. The finite quotients just constructed do not prove that these
+fillings are residually finite: separation of arbitrary nonidentity words
+is still unproved.
