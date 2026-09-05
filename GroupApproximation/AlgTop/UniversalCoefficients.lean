@@ -1,7 +1,7 @@
 import GroupApproximation.AlgTop.Kronecker
 
 /-!
-# Universal coefficients: the Kronecker map is surjective
+# The universal coefficient theorem for singular cohomology
 
 Over a principal ideal domain the Kronecker map
 
@@ -21,14 +21,18 @@ and it is the half the counterexample programme needs: it produces a class in
 `Hⁿ(Sⁿ; ℤ)` pairing to `1` against the generator of `Hₙ(Sⁿ; ℤ)`, hence a
 generator and a normalised top-degree pairing.
 
-The other half — injectivity when `Hₙ₋₁(X; R)` is projective, which upgrades this
-to an isomorphism — uses the same splitting twice and is stated in
-`notes/algtop-remaining-route-2026-09-05.md`.
+The other half is injectivity when `Hₘ(X; R)` is projective, which upgrades this
+to an isomorphism `H^{m+1}(X;R) ≅ Hom(H_{m+1}(X;R), R)`. It uses the same
+splitting twice: a cocycle killing all cycles factors through the boundaries,
+and the resulting functional extends first over the cycles (this is where the
+projectivity of `Hₘ` enters) and then over the chains, producing an explicit
+primitive.
 
 ## Main results
 
 * `kronecker_surjective`
 * `exists_cocycle_pairing` — the same statement in cocycle form.
+* `kronecker_injective`
 -/
 
 open CategoryTheory Limits AlgebraicTopology
@@ -119,6 +123,114 @@ theorem kronecker_surjective (f : homologyOf R X n →ₗ[R] R) :
     rw [hz, hg, LinearMap.comp_apply]
   have := (cancel_epi ((chainCx R X).homologyπ n)).mp hcomp
   exact congrArg ModuleCat.Hom.hom this
+
+/-! ## 2. Injectivity when the homology one degree down is projective -/
+
+/-- In the chain-complex shape the next index of `m + 1` is `m`. -/
+theorem down_next (m : ℕ) : (ComplexShape.down ℕ).next (m + 1) = m :=
+  (ComplexShape.down ℕ).next_eq (by simp [ComplexShape.down_Rel])
+
+theorem chainSc_f : (chainSc R X n).f
+    = (chainCx R X).d ((ComplexShape.down ℕ).prev n) n := rfl
+
+/-- The cycles at `m + 1` are the kernel of `∂ₘ₊₁`. -/
+theorem ker_chainSc_g_succ (m : ℕ) :
+    LinearMap.ker (chainSc R X (m + 1)).g.hom
+      = LinearMap.ker ((chainCx R X).d (m + 1) m).hom := by
+  rw [chainSc_g, down_next]
+
+/-- The boundaries inside the cycles, as the range of `moduleCatToCycles`. -/
+theorem range_moduleCatToCycles (m : ℕ) :
+    LinearMap.range (chainSc R X m).moduleCatToCycles
+      = Submodule.comap (LinearMap.ker (chainSc R X m).g.hom).subtype
+          (LinearMap.range ((chainCx R X).d (m + 1) m).hom) := by
+  show LinearMap.range (LinearMap.codRestrict _ (chainSc R X m).f.hom _) = _
+  rw [LinearMap.range_codRestrict]
+  congr 1
+  rw [chainSc_f, down_prev]
+
+/-- `Zₘ / Bₘ` is projective as soon as `Hₘ` is. -/
+theorem projective_quot_comap (m : ℕ) (hproj : Module.Projective R (homologyOf R X m)) :
+    Module.Projective R
+      (↥(LinearMap.ker (chainSc R X m).g.hom) ⧸
+        Submodule.comap (LinearMap.ker (chainSc R X m).g.hom).subtype
+          (LinearMap.range ((chainCx R X).d (m + 1) m).hom)) := by
+  haveI := hproj
+  haveI : Module.Projective R (↥(LinearMap.ker (chainSc R X m).g.hom) ⧸
+      LinearMap.range (chainSc R X m).moduleCatToCycles) :=
+    Module.Projective.of_equiv' ((chainSc R X m).moduleCatHomologyIso).toLinearEquiv
+  exact Module.Projective.of_equiv'
+    (Submodule.quotEquivOfEq _ _ (range_moduleCatToCycles R X m))
+
+/-- **Injectivity of the Kronecker map** when `Hₘ(X; R)` is projective. -/
+theorem kronecker_injective (m : ℕ) (hproj : Module.Projective R (homologyOf R X m))
+    (a : cohomology R X (m + 1)) (ha : (kronecker R X (m + 1)).hom a = 0) : a = 0 := by
+  classical
+  obtain ⟨φ, hφ, rfl⟩ := cocycleClass_surjective R X (m + 1) a
+  -- (1) the cocycle vanishes on every cycle
+  have h0 : kronOfCocycle R X (m + 1) φ hφ = 0 := by
+    apply ModuleCat.hom_ext
+    rw [← kronecker_cocycleClass R X (m + 1) φ hφ, ha]
+    rfl
+  have hvan : (chainCx R X).iCycles (m + 1) ≫ φ = 0 := by
+    rw [← homologyπ_kronOfCocycle R X (m + 1) φ hφ, h0, comp_zero]
+  have hvanish : ∀ x : (chainCx R X).X (m + 1),
+      x ∈ LinearMap.ker ((chainCx R X).d (m + 1) m).hom → φ.hom x = 0 := by
+    intro x hx
+    have hx' : x ∈ LinearMap.ker (chainSc R X (m + 1)).g.hom := by
+      rw [ker_chainSc_g_succ]; exact hx
+    have h := ConcreteCategory.congr_hom hvan
+      (((chainSc R X (m + 1)).moduleCatCyclesIso.inv).hom ⟨x, hx'⟩)
+    rw [ModuleCat.comp_apply, cyclesIso_inv_val] at h
+    simpa using h
+  -- (2) it therefore factors through the boundaries
+  have hle : LinearMap.ker ((chainCx R X).d (m + 1) m).hom ≤ LinearMap.ker φ.hom :=
+    fun x hx => LinearMap.mem_ker.mpr (hvanish x hx)
+  set gbar : ↥(LinearMap.range ((chainCx R X).d (m + 1) m).hom) →ₗ[R] R :=
+    (Submodule.liftQ (LinearMap.ker ((chainCx R X).d (m + 1) m).hom) φ.hom hle).comp
+      (LinearMap.quotKerEquivRange ((chainCx R X).d (m + 1) m).hom).symm.toLinearMap
+    with hgbar
+  have hgbar_apply : ∀ c : (chainCx R X).X (m + 1),
+      gbar ⟨((chainCx R X).d (m + 1) m).hom c,
+        LinearMap.mem_range_self ((chainCx R X).d (m + 1) m).hom c⟩ = φ.hom c := by
+    intro c
+    rw [hgbar, LinearMap.comp_apply, LinearEquiv.coe_coe,
+      LinearMap.quotKerEquivRange_symm_apply_image, Submodule.liftQ_apply]
+  -- (3) extend it over the cycles, then over the chains
+  haveI := projective_quot_comap R X m hproj
+  obtain ⟨G, hG⟩ := PID.exists_extend_of_projective_quotient
+    (Submodule.comap (LinearMap.ker (chainSc R X m).g.hom).subtype
+      (LinearMap.range ((chainCx R X).d (m + 1) m).hom))
+    (gbar.comp (((LinearMap.ker (chainSc R X m).g.hom).subtype.comp
+      (Submodule.comap (LinearMap.ker (chainSc R X m).g.hom).subtype
+        (LinearMap.range ((chainCx R X).d (m + 1) m).hom)).subtype).codRestrict
+      (LinearMap.range ((chainCx R X).d (m + 1) m).hom) (fun y => y.2)))
+  obtain ⟨Psi, hPsi⟩ :=
+    exists_extend_off_ker_d R X m ((ComplexShape.down ℕ).next m) G
+  -- (4) the extension is a primitive for the cocycle
+  have hprim : cochainCoboundary R X m (ModuleCat.ofHom Psi) = φ := by
+    rw [cochainCoboundary_eq_comp]
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro c
+    have hz : ((chainCx R X).d (m + 1) m).hom c ∈ LinearMap.ker (chainSc R X m).g.hom := by
+      rw [chainSc_g, LinearMap.mem_ker, ← ModuleCat.comp_apply, (chainCx R X).d_comp_d]
+      rfl
+    have hb : (⟨((chainCx R X).d (m + 1) m).hom c, hz⟩ :
+        ↥(LinearMap.ker (chainSc R X m).g.hom))
+        ∈ Submodule.comap (LinearMap.ker (chainSc R X m).g.hom).subtype
+            (LinearMap.range ((chainCx R X).d (m + 1) m).hom) :=
+      LinearMap.mem_range_self ((chainCx R X).d (m + 1) m).hom c
+    show Psi (((chainCx R X).d (m + 1) m).hom c) = φ.hom c
+    rw [show (((chainCx R X).d (m + 1) m).hom c)
+        = ((⟨((chainCx R X).d (m + 1) m).hom c, hz⟩ :
+            ↥(LinearMap.ker (chainSc R X m).g.hom)) :
+              (chainCx R X).X m) from rfl,
+      hPsi, hG ⟨_, hb⟩, LinearMap.comp_apply]
+    exact hgbar_apply c
+  exact cocycleClass_eq_zero_of_eq R X (m + 1) hprim.symm hφ
+    (by rw [hprim]; exact hφ)
+    (cocycleClass_coboundary_zero R X m (ModuleCat.ofHom Psi) (by rw [hprim]; exact hφ))
 
 /-- The same statement in cocycle form: every functional on homology is
 represented by a cocycle. -/
