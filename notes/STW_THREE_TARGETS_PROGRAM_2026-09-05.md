@@ -166,3 +166,22 @@ Corollary for anyone reading a lane report: `--run` (i.e. `lake env lean`)
 produces **no** job count at all, so a driver result is a genuine machine
 result but cannot certify that its inputs were re-elaborated rather than read
 from cache.
+
+## Shell trap: backticks in a `git commit -m` string are command substitution
+
+Under zsh, a double-quoted `-m "...`ident`..."` string runs `ident` as a
+command. Lean identifiers are backticked constantly in this campaign's commit
+messages, so this silently deletes words from the record:
+
+* three phrases vanished from `9db4dfc99` this way — the commit is otherwise
+  correct, but its account of what was fixed has holes in it;
+* worse, the same substitution ate the ARGUMENT of a verification command in
+  the same invocation, so a `git cat-file -e` that was supposed to confirm a
+  Mathlib module exists at the pin ran as `git cat-file -e` with no object and
+  failed — while the surrounding output still looked like the check had passed.
+  The claim was true (`Mathlib/Tactic/IntervalCases.lean` is at 81a5d257, 23
+  occurrences of the tactic), but it was re-verified afterwards, not before.
+
+Use a heredoc (`git commit -F -` with `<<'EOF'`, quoted delimiter) for any
+message containing backticks, and never put a verification command in the same
+shell invocation as an unquoted message string.
