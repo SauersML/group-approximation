@@ -115,7 +115,7 @@ together, `Build completed successfully (1674 jobs)`.
 
 ## 2. AUTHORED, UNVERIFIED
 
-Nothing.  Every declaration in the six owned modules is covered by the green
+Nothing.  Every declaration in the seven owned modules is covered by the green
 probe above.
 
 ## 3. NEEDS
@@ -225,3 +225,21 @@ same conclusion.
   complex of a contractible space is **not** contractible (its `H_0` is the
   coefficient ring), only its augmentation is.  A "null-homotopy of the
   identity" hypothesis would be false for every model.
+* `ModuleCat.{0} Λ` is **the category**; a single fixed object of it (e.g. `Λ`
+  acting on itself) is `ModuleCat.of Λ Λ`, and a morphism between two fixed
+  objects is typed against the *objects*, not the category — writing
+  `f : ModuleCat.{0} Λ ⟶ ModuleCat.{0} Λ` type-checks (both sides are
+  `Type`-valued) but means something else entirely (a functor-category
+  morphism between the whole category and itself, one universe up) and every
+  use of `f` downstream fails with confusing cascaded "application type
+  mismatch" errors that do not obviously point back at the declaration.  Wanted
+  `f : ModuleCat.of Λ Λ ⟶ ModuleCat.of Λ Λ`.
+* `linear_combination` needs `import Mathlib.Tactic.LinearCombination`
+  explicitly; without it the error is a bare "unknown tactic" with no hint
+  about the missing import.  It is the right tool for any "`ring`-plus-a-few-
+  hypotheses" goal (e.g. `(1+T)² = 0` from `T*T=1` and `(2:Λ)=0`: the
+  coefficients are `linear_combination hT + (1+T) * h2`, found by matching the
+  expansion `(1+T)² = 1+2T+T²` against `1·(T²−1) + (1+T)·(2−0)`) — much more
+  robust than a manual `rw`-then-`ring` chain, which silently leaves a residual
+  numeral goal (`⊢ 2 = 0`) that plain `ring` cannot close since `ring` never
+  consults hypotheses.
