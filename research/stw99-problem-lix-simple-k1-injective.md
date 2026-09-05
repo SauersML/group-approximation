@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/stw59-exact-arbitrary-cyclic-component-groups-2026-09-05.md
   - research/artifacts/stw59-exact-finite-abelian-component-groups-2026-09-05.md
   - research/artifacts/stw59-finite-abelian-independent-review-2026-09-05.md
+  - research/artifacts/stw59-unique-trace-and-matrix-stability-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -58,6 +59,15 @@ base introduces no relations between the prescribed cyclic factors.
 The commuting component generators and their first stabilized
 contractions persist through the simple limit. A separate internal
 review checks the complete joined-base proof.
+
+The further theorem `stw59-monotracial-matrix-stable-counterexamples`
+shows that the nontrivial finite-abelian examples have a unique trace
+and stable rank exactly two.
+At every matrix size m>=2, their canonical stable maps are isomorphisms
+in all homotopy degrees. Thus M2(A_G) is K-stable although its full
+unital corner A_G is not K1-injective. The proof uses an explicit
+Stiefel stable range and the exact one-half contraction of fiber
+traces; it does not compute the higher unstable groups at size one.
 
 ## Attempts
 
