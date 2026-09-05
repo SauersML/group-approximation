@@ -187,6 +187,21 @@ must therefore leave the "θ-only" family entirely — which is precisely the
 content of `π₄(S³) = ℤ/2` (equivalently, that the suspension
 `π₃(S²) = ℤ → π₄(S³)` is reduction mod 2), an EHP/Freudenthal computation.
 
+A second, independent check.  In quaternion form
+`u(v,s) = s + v i v̄/|v|` with `s = cos θ`, `|v| = sin θ`, so
+`u² = (2s²-1) + 2s·(v i v̄)/|v|`.  Two things are visible:
+
+* `u²` sends the whole equator `{s=0}` to the single point `-1`, so it factors
+  through `S⁴/S³ ≃ S⁴ ∨ S⁴` and `[u²] = [f_+] + [f_-]`, the classes of its two
+  collapsed hemispheres.
+* the reflection `R(v,s) = (v,-s)` satisfies `u²∘R = (u²)^{-1}` pointwise, so
+  `f_- = \mathrm{inv} ∘ f_+ ∘ R`.
+
+Inversion acts as `-1` on `π₄` and `R` has degree `-1` on the collapsed
+`S⁴`, so the two signs cancel: `[f_-] = [f_+]` and `[u²] = 2[f_+] = 2[u]`.
+The symmetry that looked like it might cancel the two halves does not.  There
+is no shortcut here; the vanishing is exactly `2·Ση = 0`.
+
 **Consequence for the counterexample:** (i) is *not* needed for the negative
 answer to Problem LIX.  It gives "order **exactly** two" in `U(A)/U₀(A)`.
 Failure of `K₁`-injectivity needs only `v ∉ U₀(A)` together with `[v] = 0` in
