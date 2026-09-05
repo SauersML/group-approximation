@@ -66,6 +66,18 @@ constraint and would be perfect for `G`, contradicting `omega*(G)<1`.
   orbit of the fibre.  Thus ucp compression reformulates rather than removes
   the remote-bit/invariant-fibre obstruction.
 
+- **The standard-form side switch does not build the second player.**
+  Representing `M` on `L^2(M,tau)`, keeping the unreadable observables in
+  the left action and moving the readable algebra to the commuting right
+  action preserves every one-vector correlation `tau(xp)`.  It does not
+  produce two commuting player algebras:
+  `standard-form-right-copy-does-not-freeze-zpc-controls` shows that
+  `W*(L(B),R(A))` and `W*(R(B),L(A))` commute only when `A` already
+  commutes with `B`, that the mixed vector state is not tracial already in
+  `M_2(C)`, and that a relator which is scalar on the selected vector need
+  not act as that scalar on its right ideal.  So the switch assumes the
+  frozen-fibre hypothesis rather than supplying it.
+
 - **Orbitwise equation-menu coherence is sufficient and weaker than fibre
   invariance.**  The exact repair does not require unreadable generators to
   preserve every readable bit.  It is enough that one positive readable atom
