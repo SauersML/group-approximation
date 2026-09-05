@@ -499,3 +499,113 @@ of the same space in two namespaces.  They do not collide, so no gate catches
 them, and the repository's duplicate detector is already known to miss
 cross-vocabulary duplicates of exactly this kind.  Raised by hand before more
 is built on each.
+
+## Sweep 3, 2026-09-05 — target 3 gets an architecture, and it is conditional by design
+
+Orphan count 248 (+13 on baseline, still −0 wired).  New since sweep 2:
+`AlgTop.ChernNewtonSquareZero`, `AlgTop.ChernParityCoefficient`,
+`AlgTop.SingularCohomology`, `Analysis.CStarUnitaryComponent`,
+`Analysis.SequentialGroupColimit`, `Analysis.STW22ConditionalNegativeSolution`.
+Other counts unchanged (36 / 136 / 3263); `check_import_regression` still red.
+
+**Duplicate-declaration pre-flight, run over all eight new campaign modules**
+(the wiring hazard where a module that nobody compiles re-declares a name the
+corpus already has, and turns main red the moment the lead wires it): I indexed
+58 437 qualified names across 4 301 files and checked each new module's
+declarations against it.  **Zero collisions.**  All eight are safe to wire on
+this axis.  This does not say they compile.
+
+### Target 3 — the architect's own verdict is CONDITIONAL, and it should stay that way
+
+`research/artifacts/stw59-lean-route-design-2026-09-05.md` (commit `d6f438fff`)
+settles target 3's shape, and it does not meet the campaign's stated goal.  Its
+verdict, quoted: *"There is no unconditional Lean route to the parity
+obstruction at feasible cost."*  Two of the manuscript's three deep topological
+inputs are removed — `K₁(A) = 0` is off the critical path (`[v] = 0` is
+witnessed directly by `diag(v,1)` in `U₀(M₂A)`), and stable triviality of
+`diag(u,1)` becomes free once `u` is defined by hemisphere comparison of the
+explicit frames of `F(x) = 1 − x xᴴ` rather than taken from Bott's
+`π₄(U(3)) = 0` — and what is left is **one** named `Prop`:
+
+```lean
+/-- Twisted cancellation failure (manuscript Lemma 2). -/
+def TwistedCancellationFailure : Prop
+```
+
+— over `S⁵ × ∏_j CP^{d_j}`, `F ⊕ p_H` is not Murray–von Neumann equivalent to
+`1² ⊕ p_H` in the matrix algebra over `C(·, ℂ)`, for any finite list of
+dimensions.  Discharging it needs Chern classes with Whitney sum, the Euler
+class as a signed transverse-zero count, `K⁰(∏CP^{d_j})`, Künneth, and Chern
+character integrality — none of which exist in Mathlib at pin `81a5d257`.
+
+The design note polices itself correctly and this lane endorses that, in its
+own words: `exists_simple_unital_not_k1Injective (h : TwistedCancellationFailure)`
+*"is a REDUCTION, not an endpoint … must not be registered as a closed endpoint
+for STW LIX, must not appear in the endpoint/audit roster as such, and must not
+be cited in the manuscript as answering Problem LIX in Lean."*  That is
+standing rule 3 applied to the lane's own work before anyone asked, and it is
+the right call.
+
+**Verdict for target 3: CONDITIONAL-ON-`TwistedCancellationFailure`.**  The
+campaign's user order was "fully unconditionally, no literature inputs"; on the
+architect's own analysis LIX will not meet it, and the honest output is *"LIX
+reduces to one sentence about two explicit projections"*, not *"LIX is closed"*.
+This lane will refuse a green grade for LIX while that `Prop` is undischarged,
+and will say so in the final paragraph regardless of what else lands.
+
+### Pre-registered checks for `TwistedCancellationFailure` when it lands
+
+Recorded now, before the statement exists, so the check cannot be fitted to it
+afterwards.  A residue `Prop` fails honestly only if it is *neither* vacuous
+*nor* provable by a triviality, and a negative statement about Murray–von
+Neumann equivalence has a specific way of going wrong:
+
+1. **Rank/trace parity.**  MvN-equivalent projections have equal pointwise
+   rank.  `F(x) = 1 − x xᴴ` over `S⁵ ⊂ ℂ³` has rank 2 at every point and so
+   does `1²`, so the statement is *not* trivially true.  If the landed
+   statement compares `F ⊕ p_H` against `1³ ⊕ p_H`, or otherwise mismatches
+   ranks, it becomes true by a two-line trace argument and the residue has been
+   "discharged" by a triviality that has nothing to do with Lemma 2.  Check the
+   ranks on both sides before believing any proof of it.
+2. **Quantifier direction.**  Lemma 2 must be *"for every finite `d` and every
+   `w`, no equivalence"*, not *"there exists a `d` with no equivalence"*.  The
+   second is weaker and would not support the limit argument.
+3. **Non-vacuity of the consumer.**  `exists_simple_unital_not_k1Injective`
+   must not be the only thing that ever mentions the `Prop`; if nothing
+   inhabits `IsSimpleCStar A ∧ ¬ K1Injective A` for any `A` even given the
+   hypothesis, the reduction is an implication with an uninhabited conclusion.
+4. **`K1Injective` must be Mathlib-shaped.**  If the endpoint's notion of
+   `K₁`-injectivity is a definition the counterexample's own construction
+   introduces, the statement is written in the proof's vocabulary and is not
+   auditable from outside.  It must be stated over the unitary group and its
+   connected component, not over a predicate invented for this file.
+
+Explicitly out of scope per the design note, and this lane will treat any of
+them appearing in a LIX module as scope drift to report: `K₁(A) = 0`,
+`π₄(U(3)) = 0`, `π₄(U(2)) = ℤ/2`, Steenrod squares, cup-`i` products,
+simplicial `CP²`, and any general theory of inductive limits.
+
+### Target 1 — the quarantine gate now exists
+
+Commit `365a823a5` adds `NinetyNineProblems.not_problemX1Statement`,
+`literalFactorizationProperty` and
+`literalCanonicalTrace_hyperlinear_not_quasidiagonal` to `zeroInputEndpoints`
+in `scripts/Audit.lean`.  This is the single most valuable thing landed in the
+campaign so far: it closes the hole this file recorded at baseline, where
+`ProblemX.lean`'s own `#audit_closed_axioms` gated the axiom closure and the
+telescope while **nothing** gated the literature quarantine — and
+`TikuisisWhiteWinterInput`, `AmenableNuclearInput` and `AmenableUCTInput` all
+sit three imports away in `Analysis/TikuisisWhiteWinterCore`.
+
+The grade does not move to "machine-checked" yet.  `scripts/Audit.lean` walks
+**oleans**, so the gate is only as good as the run behind it, and the commit
+message's specific numbers (21 corpus constants in the closure of
+`not_problemX1Statement`; none of the thirty roster packages reached) are
+either a run's output or a reading's, which are different claims.  I have asked
+`brown-x1-verify` for the log tag and job count.  Until that comes back the row
+stays **UNCONDITIONAL (stated + closed), source-read**.
+
+A consequence worth flagging for whoever next edits `TikuisisWhiteWinterCore`:
+the quarantine walk fails the run *at the seeded name*, so a future change that
+routes `IsAmenableTrace` or `IsQuasidiagonalTrace` through a typed input will
+turn the audit red at Problem X rather than at the module that caused it.
