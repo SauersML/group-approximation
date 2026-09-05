@@ -121,11 +121,25 @@ partial def reachableFrom (env : Environment) (visited : NameSet) :
       | none => reachableFrom env visited rest
 
 /-- The constants of a declaration's **type**: where the quarantine walk
-starts, so that a proof term mentioning a package is not a finding. -/
+starts, so that a proof term mentioning a package is not a finding.
+
+**Seed at the theorem, never at the `Prop`.**  For a `def P : Prop := body`
+the *type* is `Prop`, so this returns the empty list and the walk reports a
+closure of size zero --- not "clean", but "asked nothing".  The proposition
+gets walked only through a declaration whose type *is* `P`, i.e. through the
+theorem that proves it, from which `reachableFrom` unfolds the def's value.
+`literalFactorizationProperty` and `LiteralFactorizationProperty` are both in
+`endpoints` below so that the difference is visible in the output, and it is
+why `zeroInputEndpoints` in `scripts/Audit.lean` carries the theorem. -/
 def statementConstants (env : Environment) (n : Name) : List Name :=
   match env.find? n with
   | some ci => ci.type.getUsedConstants.toList
   | none => []
+
+-- The endpoint is `¬ ProblemX1Statement.{1}` while the definition is
+-- universe-polymorphic, and a reader should see which instance is refuted
+-- rather than infer it, so levels are printed.
+set_option pp.universes true
 
 run_cmd do
   let env ← getEnv

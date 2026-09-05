@@ -609,3 +609,94 @@ A consequence worth flagging for whoever next edits `TikuisisWhiteWinterCore`:
 the quarantine walk fails the run *at the seeded name*, so a future change that
 routes `IsAmenableTrace` or `IsQuasidiagonalTrace` through a typed input will
 turn the audit red at Problem X rather than at the module that caused it.
+
+## Sweep 4, 2026-09-05 — 22 new orphans, none wired; X(1) non-vacuity verified
+
+Orphan count **257** (+22 on baseline, still **−0 wired**).  Gate counts
+unchanged (36 / 136 / 3263); `check_import_regression` still red; lexical scan
+still the same 7 `sorry`s in `NonMF/TheoremCAssembly.lean` plus the audit's own
+`Plants.lean` calibration axiom.
+
+The wave's whole output so far is unbuilt.  Twenty-two modules, none of them
+elaborated by anything, every `#audit` line in them inert.  That is the
+campaign's design, but it means the honest answer to "is target 3 formalized"
+is currently "there is source for it".
+
+**Duplicate-declaration pre-flight, re-run over all 25 new orphan modules
+against 58 894 indexed qualified names: zero collisions.**  Note on the
+instrument, because a verification lane's own tools can lie too: the first run
+of this check reported a collision on `GroupApproximation.AlgTop.homology`
+across `SingularCohomology.lean:267` and `CupProduct.lean:304,311`.  That was
+my regex, not the corpus — the identifier class stopped at ASCII, so
+`homologyπ_classCycleRepr`, `homologyπ_cupHomologyLeft` and
+`homologyπ_cupHomologyRight` all truncated to `homology` at the `π`.  Fixed to
+accept the full Lean identifier alphabet and re-run; the clean result above is
+from the fixed instrument.
+
+### Target 1 — the non-vacuity check, independently verified
+
+`c7a3db69d` extends the X(1) driver to print `isQuasidiagonalTrace_complex`,
+`isAmenableTrace_of_isQuasidiagonalTrace` and `ucpContractive`, on the ground
+that `¬ IsQuasidiagonalTrace` refutes Brown's question only if the class can be
+inhabited at all — *"a transcription no trace satisfies would make the half
+free"*.  That is precisely the failure mode this lane was asked to watch for,
+caught by the lane being audited before the auditor asked.
+
+Verified here independently: `Analysis/QuasidiagonalTraceProperties.lean:549`
+proves `isQuasidiagonalTrace_complex : IsQuasidiagonalTrace (fun z : ℂ ↦ z)`,
+and `Analysis/TikuisisWhiteWinterCore.lean:160` derives the amenable side from
+it.  Both classes named in the X(1) statement are inhabited, so neither half of
+`IsAmenableTrace τ ∧ ¬ IsQuasidiagonalTrace τ` is free.
+
+The same commit also states plainly what this lane needed to know: *"The
+corpus-wide audit needs a fully built `.lake` and the tree currently has an
+unbuilt module."*  So the quarantine gate added in `365a823a5` has **not yet
+run**.  Target 1's row stays UNCONDITIONAL (stated + closed), source-read.
+
+### Target 3 — the Wu route contradicts the design note's own exclusion list
+
+`4caed940d` routes the parity obstruction through Wu's formula mod 2: two
+instances of the Wu relation for mod-2 Chern classes (`Sq² c₂ = c₁c₂ + c₃`,
+`Sq⁴ c₃ = c₂c₃ + c₁c₄ + c₅`) give manuscript Lemma 3 outright for `Y = pt` and
+`Y = ℂP²`, deleting K-theory, Bott periodicity, the Chern character and
+integral Künneth from the ingredient list and downgrading the Euler class to a
+mod-2 count.  That is a real reduction in the residue's cost.
+
+It also needs **Steenrod squares**, which `stw59-lean-route-design-2026-09-05.md`
+lists under *"Explicitly NOT needed — do not build, and do not let a lane drift
+into them"*.  The two documents are now in direct conflict about the same
+residue, and somebody has to own which is the campaign's route; this lane
+records the conflict rather than resolving it, since the architecture is
+`lix-design`'s call.  Either way the verdict does not move: the commit's own
+last line is *"the general stage of the mod-2 induction is open"*, and `Y = ℂP²`
+is explicitly *"a milestone and not the target"*.  **Target 3 remains
+CONDITIONAL.**
+
+What has actually landed for target 3 is upstream algebra, not the obstruction:
+`AlgTop.ChernParityCoefficient.two_dvd_chernCoefficient` and
+`AlgTop.ChernNewtonSquareZero.chern_eq_of_squareZero` are lemmas about
+multinomial coefficients and Newton's identities over a commutative ring —
+necessary for the parity calculation, nowhere near sufficient for it, and
+carrying no topology at all.  Recorded so that a later reading of "the Chern
+parity modules are done" is not mistaken for progress on the residue.
+
+One thing landed for target 3 is exactly right, and it is worth naming:
+`Analysis/CStarUnitaryComponent.lean` builds `unitaryComponentOne` as
+`Subgroup.pathComponentOne (unitary A)` over Mathlib's own `unitary` and
+`Mathlib.Analysis.CStarAlgebra.Unitary.Connected`, with `UnitaryClass A` as the
+quotient.  That satisfies pre-registered check 4 — the endpoint's notion of
+`K₁`-injectivity will be stated in Mathlib vocabulary and not in a predicate
+the counterexample invents for itself, which is the difference between a
+statement an outside reader can check and one they cannot.
+
+### Machine state, recorded because it can manufacture a false green
+
+At sweep 4 the data volume was **100% full — 121 MiB free of 230 GiB**, and a
+tool call failed with `ENOSPC` mid-sweep.  A full disk is the purest
+false-green generator there is: writes fail, logs truncate, and a step that
+never ran can look like a step that passed.  Any build, audit run or gate
+result produced around this timestamp should be re-run rather than trusted.
+Largest consumers at the time: `/private/tmp/claude-501` at 2.1 GiB, of which
+1.7 GiB is this session's shared scratchpad — a 227 MiB `flt` git pack and a
+92 MiB `mathlib_all.txt` belonging to other lanes, which this lane did not
+touch.
