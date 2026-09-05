@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/stw61-mixed-semicircular-defect-complete-obstruction-2026-09-05.md
   - research/artifacts/stw61-circle-and-properly-infinite-coefficient-fock-obstruction-2026-09-05.md
   - research/artifacts/stw61-finite-rank-side-threshold-obstruction-2026-09-05.md
+  - research/artifacts/stw61-four-compression-calkin-continuity-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -118,6 +119,19 @@ so this is not the BRR projection pair. For `p=s_1s_1*`, both
 represented sides must be infinite-dimensional when the
 whole T2 is represented unitally. The simultaneous full-T2
 coefficient case for that p remains open, as does LXI.
+
+The method obstruction
+`stw61-four-compression-calkin-continuity-no-go` shows why one
+direct Fredholm upgrade cannot be uniform. In a fixed T2
+representation with compact defect, four explicit coefficient
+rotations of p recover all matrix corners of a common
+self-adjoint-unitary threshold path from +I to -I. Their
+compressions cannot all be norm continuous modulo compacts:
+that would reconstruct an impossible norm-continuous Calkin
+projection path from 1 to 0. This is a proved obstruction to
+that continuity premise, not a refutation of universal maximal
+commutator norm. W-dependent paths, varying representations,
+and other index methods remain possible; LXI stays open.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem

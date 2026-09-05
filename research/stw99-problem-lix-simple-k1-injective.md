@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/stw59-exact-finite-abelian-component-groups-2026-09-05.md
   - research/artifacts/stw59-finite-abelian-independent-review-2026-09-05.md
   - research/artifacts/stw59-unique-trace-and-matrix-stability-2026-09-05.md
+  - research/artifacts/stw59-persistent-euler-degree-one-cokernel-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -68,6 +69,19 @@ in all homotopy degrees. Thus M2(A_G) is K-stable although its full
 unital corner A_G is not K1-injective. The proof uses an explicit
 Stiefel stable range and the exact one-half contraction of fiber
 traces; it does not compute the higher unstable groups at size one.
+
+The degree-one obstruction is now computed by
+`stw59-independent-component-and-degree-one-obstructions`. For a
+list d_1,...,d_s>=1, its simple monotracial AH algebra has component
+group direct sum Z/d_alpha and canonical degree-one stabilization
+cokernel Z^s. The integral Euler map survives both actual connecting
+blocks, so the image of pi_1 U(A) is exactly its kernel in K0(A).
+Order-one arms preserve the finite component group while increasing
+this free cokernel. Taking every d_alpha=1 gives K1-bijective examples
+which are not rationally K-stable, although M2(A) is K-stable.
+All these examples have stable rank exactly two: the nonzero
+degree-one cokernel excludes stable rank one by its verified loop-
+surjectivity consequence. The degree-one kernel remains uncomputed.
 
 ## Attempts
 
