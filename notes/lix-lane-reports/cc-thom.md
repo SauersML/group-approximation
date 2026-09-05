@@ -26,7 +26,7 @@ Every module below has a `Built …` line, not `Replayed`, for its current bytes
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
-| `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `PuncturedAcyclic.congr`, `puncturedAcyclic_pi` |
+| `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`, `puncturedAcyclic_pi` |
 
 Job count: 2911.
 
@@ -174,11 +174,28 @@ Any packaging of Leray–Hirsch producing those two bases will do; the `evenRing
 you are building is a fine base ring.
 **(D2)** `H^k(CP d) = 0` for `k > 2d`, and `H^{2d}(CP d) ≃ₗ[ZMod 2] ZMod 2`.
 **(D3)** `CP(d+1) ∖ pt ≃ₕ CP(d)` for the model of
-`Analysis/LIXProjectiveSpaceModel.lean`.  A candidate is already authored (and
-unverified) as `AlgTop/ComplexProjectivePunctureRetract.punctureHomotopyEquiv`;
-its `punctured d = {x | x ≠ basePoint (d+1)}` is definitionally
+`Analysis/LIXProjectiveSpaceModel.lean`.  cc-projective is landing this as
+`CharClass/ProjectiveSpaceRetract.punctureHomotopyEquiv (d) : ↥(punctured d) ≃ₕ CP d`;
+`punctured d = {x | x ≠ basePoint (d+1)}` is definitionally
 `({basePoint (d+1)}ᶜ : Set (CP (d+1)))`, which is the shape
-`puncturedAcyclic_of_homotopyEquiv` wants.
+`puncturedAcyclic_of_homotopyEquiv` wants.  **Do not** use
+`AlgTop/ComplexProjectivePunctureRetract.punctureHomotopyEquiv`: cc-projective
+reports the whole `AlgTop/ComplexProjective*` chain red at the pin, because
+`AlgTop/ComplexProjectiveBasic.lean` has an unused simp argument
+(`Pi.single_apply`), fatal under `-DwarningAsError=true`, and no lane owns it.
+
+**(D5) Homogeneity of `CP d`.**  (D3) deletes the *base point*; Step C's zero is
+an arbitrary point, so I need one symmetry:
+
+```lean
+theorem exists_homeomorph_mapsTo_basePoint (d : ℕ) (z : CP (d + 1)) :
+    ∃ e : CP (d + 1) ≃ₜ CP (d + 1), e z = basePoint (d + 1)
+```
+
+(conjugation by a unitary carrying `z` to the base point, in the projection
+model).  `ThomPuncturedPi.PuncturedAcyclic.congr'` turns that plus the base-point
+case into the statement at every `z` in one application.  The sphere side needs
+no analogue: `ThomPuncturedSphere` already punctures at an arbitrary point.
 **(D4)** `H^k(S^n) = 0` for `k > n` and `H^n(S^n) ≃ₗ[ZMod 2] ZMod 2`.  The other
 half of the sphere base case, `S^n ∖ pt` contractible, is **done and green** in
 `CharClass/ThomPuncturedSphere.lean` for `Metric.sphere (0 : E) 1` in any real
@@ -254,3 +271,4 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | 9 modules | **green, 2910 jobs** |
 | 2026-09-05 | 9 modules, after adding `rankOneOfIso` / `range_eq_ker_of_exact` | **green, 2911 jobs** |
 | 2026-09-05 | 9 modules, after adding `openPartialHomeomorphChartPair` | **green, 2911 jobs** |
+| 2026-09-05 | 9 modules, fixed `ccprobe.sh`, after adding `PuncturedAcyclic.congr'` | **green, 2911 jobs, `PROBE GREEN`** |

@@ -62,6 +62,15 @@ theorem congr (T : CohomologyToolkit) {Z W : Type} [TopologicalSpace Z] [Topolog
   ⟨h.pos, fun k hk => T.homeo _ _ e k (h.vanish k hk),
     fun k hk => T.homeo _ _ (homeomorphCompl e z) k (h.puncturedVanish k hk)⟩
 
+/-- **Transport with the image of the point named separately.**  The convenient form when
+the homeomorphism is a symmetry of the space carrying an arbitrary point to a
+distinguished one: `CP d` is homogeneous, so a unitary conjugation carries the zero `z`
+to the base point, and top-punctured acyclicity at the base point transports to `z`. -/
+theorem congr' (T : CohomologyToolkit) {Z W : Type} [TopologicalSpace Z]
+    [TopologicalSpace W] {d : ℕ} {z : Z} {w : W} (e : Z ≃ₜ W) (hw : e z = w)
+    (h : PuncturedAcyclic W d w) : PuncturedAcyclic Z d z :=
+  congr T e (by rw [hw]; exact h)
+
 end PuncturedAcyclic
 
 /-- **A nonempty finite product of top-punctured acyclic spaces is top-punctured
