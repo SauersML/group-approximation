@@ -66,7 +66,8 @@ def eulerLocalModel (v : E) : (((ℝ ∙ v)ᗮ) × ℝ) →ₗ[ℝ] E where
     simp only [Prod.fst_add, Prod.snd_add, Submodule.coe_add]
     module
   map_smul' c p := by
-    simp only [Prod.smul_fst, Prod.smul_snd, SetLike.val_smul, smul_eq_mul, RingHom.id_apply]
+    simp only [Prod.smul_fst, Prod.smul_snd, SetLike.val_smul, smul_eq_mul,
+      RingHom.id_apply]
     module
 
 @[simp]
@@ -133,7 +134,8 @@ theorem eulerLocalModel_surjective_aux {v : E} (hv : ‖v‖ = 1) (w : E) :
   refine ⟨(2 : ℝ) • (w - (⟪v, w⟫_ℝ) • v), -((⟪v, w⟫_ℝ) / 2), ?_, ?_⟩
   · rw [real_inner_smul_right, inner_sub_right, real_inner_smul_right, hvv]
     ring
-  · have hs : (2 : ℝ)⁻¹ • ((2 : ℝ) • (w - (⟪v, w⟫_ℝ) • v)) = w - (⟪v, w⟫_ℝ) • v := by
+  · have hs :
+        (2 : ℝ)⁻¹ • ((2 : ℝ) • (w - (⟪v, w⟫_ℝ) • v)) = w - (⟪v, w⟫_ℝ) • v := by
       rw [smul_smul]
       norm_num
     have hc : (2 : ℝ) * -((⟪v, w⟫_ℝ) / 2) = -(⟪v, w⟫_ℝ) := by ring

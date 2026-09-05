@@ -58,7 +58,7 @@ whose zero locus is a single point.
   point `[1 : 0 : ⋯ : 0]`.  Exactly one zero.
 * `sectionChart_apply` — in the standard affine chart around the base point the section
   is `z ↦ (1 + ‖z‖²)⁻¹ z`, a *positive* scalar multiple of the identity of `ℂ^d`.
-* `chartHomotopy_eq_zero_iff` — the straight-line homotopy from that map to the identity
+* `tautChartHomotopy_eq_zero_iff` — the straight-line homotopy from that map to the identity
   of `ℂ^d` has, at every time, the origin as its only zero.  This is the transversality
   input in the form a mod-2 local index consumes: no derivative, no orientation, no sign.
 -/
@@ -184,71 +184,78 @@ theorem dualTautSection_zeroLocus (d : ℕ) :
 /-! ## 4. The section in the standard affine chart -/
 
 /-- `1 + ‖z‖²`, the normalizing weight of the affine chart. -/
-def chartNorm (z : Fin d → ℂ) : ℝ := 1 + ∑ b, Complex.normSq (z b)
+def tautChartNorm (z : Fin d → ℂ) : ℝ := 1 + ∑ b, Complex.normSq (z b)
 
-theorem one_le_chartNorm (z : Fin d → ℂ) : 1 ≤ chartNorm z := by
+theorem one_le_tautChartNorm (z : Fin d → ℂ) : 1 ≤ tautChartNorm z := by
   have : (0 : ℝ) ≤ ∑ b, Complex.normSq (z b) :=
     Finset.sum_nonneg fun b _ => Complex.normSq_nonneg (z b)
-  simpa [chartNorm] using this
+  simpa [tautChartNorm] using this
 
-theorem chartNorm_pos (z : Fin d → ℂ) : 0 < chartNorm z :=
-  lt_of_lt_of_le zero_lt_one (one_le_chartNorm z)
+theorem tautChartNorm_pos (z : Fin d → ℂ) : 0 < tautChartNorm z :=
+  lt_of_lt_of_le zero_lt_one (one_le_tautChartNorm z)
 
-theorem chartNorm_ne_zero (z : Fin d → ℂ) : chartNorm z ≠ 0 := ne_of_gt (chartNorm_pos z)
+theorem tautChartNorm_ne_zero (z : Fin d → ℂ) : tautChartNorm z ≠ 0 :=
+  ne_of_gt (tautChartNorm_pos z)
 
 /-- The normalized lift `(1, z) / √(1 + ‖z‖²)` of a chart coordinate. -/
-def chartVec (z : Fin d → ℂ) : Fin (d + 1) → ℂ :=
-  fun a => ((Real.sqrt (chartNorm z))⁻¹ : ℝ) * (Fin.cons 1 z : Fin (d + 1) → ℂ) a
+def tautChartVec (z : Fin d → ℂ) : Fin (d + 1) → ℂ :=
+  fun a => ((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) * (Fin.cons 1 z : Fin (d + 1) → ℂ) a
 
-theorem chartVec_apply (z : Fin d → ℂ) (a : Fin (d + 1)) :
-    chartVec z a = ((Real.sqrt (chartNorm z))⁻¹ : ℝ) * (Fin.cons 1 z : Fin (d + 1) → ℂ) a :=
+theorem tautChartVec_apply (z : Fin d → ℂ) (a : Fin (d + 1)) :
+    tautChartVec z a
+      = ((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) * (Fin.cons 1 z : Fin (d + 1) → ℂ) a :=
   rfl
 
-theorem inv_sqrt_mul_inv_sqrt (z : Fin d → ℂ) :
-    (Real.sqrt (chartNorm z))⁻¹ * (Real.sqrt (chartNorm z))⁻¹ = (chartNorm z)⁻¹ := by
-  rw [← mul_inv, Real.mul_self_sqrt (chartNorm_pos z).le]
+theorem tautChartNorm_inv_sqrt_mul_self (z : Fin d → ℂ) :
+    (Real.sqrt (tautChartNorm z))⁻¹ * (Real.sqrt (tautChartNorm z))⁻¹
+      = (tautChartNorm z)⁻¹ := by
+  rw [← mul_inv, Real.mul_self_sqrt (tautChartNorm_pos z).le]
 
-theorem sum_normSq_chartVec (z : Fin d → ℂ) :
-    (∑ a, Complex.normSq (chartVec z a)) = 1 := by
-  have hstep : ∀ a : Fin (d + 1), Complex.normSq (chartVec z a)
-      = (chartNorm z)⁻¹ * Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a) := by
+theorem sum_normSq_tautChartVec (z : Fin d → ℂ) :
+    (∑ a, Complex.normSq (tautChartVec z a)) = 1 := by
+  have hstep : ∀ a : Fin (d + 1), Complex.normSq (tautChartVec z a)
+      = (tautChartNorm z)⁻¹ * Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a) := by
     intro a
-    rw [chartVec_apply, Complex.normSq_mul, Complex.normSq_ofReal, inv_sqrt_mul_inv_sqrt]
+    rw [tautChartVec_apply, Complex.normSq_mul, Complex.normSq_ofReal,
+      tautChartNorm_inv_sqrt_mul_self]
   rw [Finset.sum_congr rfl (fun a _ => hstep a), ← Finset.mul_sum]
-  have hsum : (∑ a, Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a)) = chartNorm z := by
+  have hsum :
+      (∑ a, Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a)) = tautChartNorm z := by
     rw [Fin.sum_univ_succ]
-    simp [chartNorm]
-  rw [hsum, inv_mul_cancel₀ (chartNorm_ne_zero z)]
+    simp [tautChartNorm]
+  rw [hsum, inv_mul_cancel₀ (tautChartNorm_ne_zero z)]
 
 /-- The standard affine chart of `ℂP^d` around the base point, in the projection model:
 `z ↦ ` the rank-one projection onto the line spanned by `(1, z)`. -/
-def chart (z : Fin d → ℂ) : CP d := CP.ofVec (chartVec z) (sum_normSq_chartVec z)
+def tautChart (z : Fin d → ℂ) : CP d := CP.ofVec (tautChartVec z) (sum_normSq_tautChartVec z)
 
 @[simp]
-theorem chart_mat (z : Fin d → ℂ) (a b : Fin (d + 1)) :
-    (chart z).mat a b = chartVec z a * conj (chartVec z b) :=
+theorem tautChart_mat (z : Fin d → ℂ) (a b : Fin (d + 1)) :
+    (tautChart z).mat a b = tautChartVec z a * conj (tautChartVec z b) :=
   CP.ofVec_mat _ _ a b
 
-theorem chart_zero (d : ℕ) : chart (0 : Fin d → ℂ) = CP.basePoint d := by
+theorem tautChart_zero (d : ℕ) : tautChart (0 : Fin d → ℂ) = CP.basePoint d := by
   refine (dualTautSection_eq_zero_iff _).mp (fun i j => ?_)
-  rw [dualTautSection_apply, chart_mat]
-  simp [chartVec_apply]
+  rw [dualTautSection_apply, tautChart_mat]
+  simp [tautChartVec_apply]
 
 /-- **The section in the chart.**  Along the affine chart around its zero, the section
 is `z ↦ (1 + ‖z‖²)⁻¹ z`: a *positive real* multiple of the identity of `ℂ^d`.  (Only the
 `0`-th coordinate of each block is recorded; that is the coordinate in which the
 trivialization of `L*` over the chart is written.) -/
-def sectionChart (z : Fin d → ℂ) : Fin d → ℂ := fun i => dualTautSection (chart z) i 0
+def sectionChart (z : Fin d → ℂ) : Fin d → ℂ := fun i => dualTautSection (tautChart z) i 0
 
 theorem sectionChart_apply (z : Fin d → ℂ) (i : Fin d) :
-    sectionChart z i = ((chartNorm z)⁻¹ : ℝ) * z i := by
-  have hc : ((Real.sqrt (chartNorm z))⁻¹ : ℂ) * ((Real.sqrt (chartNorm z))⁻¹ : ℂ)
-      = ((chartNorm z)⁻¹ : ℂ) := by
-    rw [← Complex.ofReal_mul, inv_sqrt_mul_inv_sqrt]
-  simp only [sectionChart, dualTautSection_apply, chart_mat, chartVec_apply, Fin.cons_succ,
+    sectionChart z i = ((tautChartNorm z)⁻¹ : ℝ) * z i := by
+  have hc : ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ) * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
+      = ((tautChartNorm z)⁻¹ : ℂ) := by
+    rw [← Complex.ofReal_mul, tautChartNorm_inv_sqrt_mul_self]
+  simp only [sectionChart, dualTautSection_apply, tautChart_mat, tautChartVec_apply, Fin.cons_succ,
     Fin.cons_zero, map_mul, Complex.conj_ofReal, map_one, mul_one]
-  have hre : ((Real.sqrt (chartNorm z))⁻¹ : ℂ) * z i * ((Real.sqrt (chartNorm z))⁻¹ : ℂ)
-      = (((Real.sqrt (chartNorm z))⁻¹ : ℂ) * ((Real.sqrt (chartNorm z))⁻¹ : ℂ)) * z i := by
+  have hre :
+      ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ) * z i * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
+        = (((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
+            * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)) * z i := by
     ring
   rw [hre, hc]
 
@@ -259,8 +266,8 @@ theorem sectionChart_eq_zero_iff (z : Fin d → ℂ) :
     funext i
     have hi := h i
     rw [sectionChart_apply] at hi
-    have hne : ((chartNorm z)⁻¹ : ℂ) ≠ 0 := by
-      simpa using inv_ne_zero (chartNorm_ne_zero z)
+    have hne : ((tautChartNorm z)⁻¹ : ℂ) ≠ 0 := by
+      simpa using inv_ne_zero (tautChartNorm_ne_zero z)
     simpa using (mul_eq_zero.mp hi).resolve_left hne
   · intro h i
     rw [sectionChart_apply, h]
@@ -270,27 +277,27 @@ theorem sectionChart_eq_zero_iff (z : Fin d → ℂ) :
 
 /-- The straight-line homotopy in `ℂ^d` from the identity (`s = 0`) to the chart form of
 the section (`s = 1`). -/
-def chartHomotopy (s : ℝ) (z : Fin d → ℂ) : Fin d → ℂ :=
-  fun i => (((1 - s) + s * (chartNorm z)⁻¹ : ℝ) : ℂ) * z i
+def tautChartHomotopy (s : ℝ) (z : Fin d → ℂ) : Fin d → ℂ :=
+  fun i => (((1 - s) + s * (tautChartNorm z)⁻¹ : ℝ) : ℂ) * z i
 
-theorem chartHomotopy_zero (z : Fin d → ℂ) : chartHomotopy 0 z = z := by
+theorem tautChartHomotopy_zero (z : Fin d → ℂ) : tautChartHomotopy 0 z = z := by
   funext i
-  simp [chartHomotopy]
+  simp [tautChartHomotopy]
 
-theorem chartHomotopy_one (z : Fin d → ℂ) : chartHomotopy 1 z = sectionChart z := by
+theorem tautChartHomotopy_one (z : Fin d → ℂ) : tautChartHomotopy 1 z = sectionChart z := by
   funext i
   rw [sectionChart_apply]
-  simp [chartHomotopy]
+  simp [tautChartHomotopy]
 
 /-- The homotopy coefficient is strictly positive at every time of the interval. -/
-theorem chartHomotopy_coeff_pos {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z : Fin d → ℂ) :
-    0 < (1 - s) + s * (chartNorm z)⁻¹ := by
-  have hinv : 0 < (chartNorm z)⁻¹ := inv_pos.mpr (chartNorm_pos z)
+theorem tautChartHomotopy_coeff_pos {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z : Fin d → ℂ) :
+    0 < (1 - s) + s * (tautChartNorm z)⁻¹ := by
+  have hinv : 0 < (tautChartNorm z)⁻¹ := inv_pos.mpr (tautChartNorm_pos z)
   rcases eq_or_lt_of_le hs0 with h | h
   · rw [← h]
     norm_num
   · have h1 : 0 ≤ 1 - s := by linarith
-    have h2 : 0 < s * (chartNorm z)⁻¹ := mul_pos h hinv
+    have h2 : 0 < s * (tautChartNorm z)⁻¹ := mul_pos h hinv
     linarith
 
 /-- **Transversality of the zero, mod-2 form.**  At every time `s ∈ [0, 1]` the homotopy
@@ -300,19 +307,19 @@ in particular it is odd.
 
 No derivative, no determinant, no orientation of `ℂ^d` or of `ℂP^d` enters — which is the
 whole point of running the campaign's obstruction mod `2`. -/
-theorem chartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z : Fin d → ℂ) :
-    (∀ i, chartHomotopy s z i = 0) ↔ z = 0 := by
-  have hpos := chartHomotopy_coeff_pos hs0 hs1 z
-  have hne : ((((1 - s) + s * (chartNorm z)⁻¹ : ℝ)) : ℂ) ≠ 0 := by
+theorem tautChartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) (z : Fin d → ℂ) :
+    (∀ i, tautChartHomotopy s z i = 0) ↔ z = 0 := by
+  have hpos := tautChartHomotopy_coeff_pos hs0 hs1 z
+  have hne : ((((1 - s) + s * (tautChartNorm z)⁻¹ : ℝ)) : ℂ) ≠ 0 := by
     simpa using ne_of_gt hpos
   constructor
   · intro h
     funext i
     have hi := h i
-    simp only [chartHomotopy] at hi
+    simp only [tautChartHomotopy] at hi
     exact (mul_eq_zero.mp hi).resolve_left hne
   · intro h i
-    simp only [chartHomotopy, h]
+    simp only [tautChartHomotopy, h]
     simp
 
 end GroupApproximation.AlgTop

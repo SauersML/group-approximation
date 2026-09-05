@@ -16,10 +16,10 @@ proof of Lemma 2) actually needs:
 
 The manuscript reaches the count `±1` through the Chern number
 `|⟨c_m(H), [Y]⟩| = 1` of (2.1).  Here the count is instead *exhibited*: over
-`Y = ∏ⱼ ℂP^{dⱼ}` with `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` built from the **dual** tautological lines,
-the coordinate-functional section has exactly one zero, namely the tuple of base
-points, and combining with the `S⁵ × [0,1]` factor the whole section has exactly one
-zero, namely `(-e₃, (basePoint)ⱼ, 1/2)`.
+`Y = ∏ⱼ ℂP^{dⱼ}` with `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` built from the **dual** tautological
+lines, the coordinate-functional section has exactly one zero, namely the tuple of
+base points, and combining with the `S⁵ × [0,1]` factor the whole section has exactly
+one zero, namely `(-e₃, (basePoint)ⱼ, 1/2)`.
 
 Nothing below uses a characteristic class, a cohomology group, an orientation, a
 fundamental class, or any smoothness: it is linear algebra about rank-one projections
@@ -44,8 +44,8 @@ namespace GroupApproximation.AlgTop
 
 variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
 
-/-- The manuscript's section `σ` of `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` over `Y = ∏ⱼ ℂP^{dⱼ}`: on the
-`j`-th factor it is the coordinate-functional section `dualTautSection`. -/
+/-- The manuscript's section `σ` of `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` over `Y = ∏ⱼ ℂP^{dⱼ}`: on
+the `j`-th factor it is the coordinate-functional section `dualTautSection`. -/
 def productDualTautSection (y : ∀ j, CP (dd j)) :
     ∀ j : Fin ℓ, Fin (dd j) → Fin (dd j + 1) → ℂ :=
   fun j => dualTautSection (y j)
