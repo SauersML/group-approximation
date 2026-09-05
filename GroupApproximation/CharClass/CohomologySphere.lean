@@ -96,11 +96,11 @@ def sphereTopClass (n : ℕ) (hn : 1 ≤ n) : Hmod2 (TopCat.of (Sphere n)) n :=
   (sphereTopEquiv n hn).symm 1
 
 theorem sphereTopClass_ne_zero (n : ℕ) (hn : 1 ≤ n) : sphereTopClass n hn ≠ 0 := by
-  intro h
-  have h1 : (1 : ZMod 2) = 0 := by
-    have := congrArg (sphereTopEquiv n hn) h
-    rwa [LinearEquiv.apply_symm_apply, map_zero] at this
-  exact one_ne_zero h1
+  have h : (sphereTopEquiv n hn) (sphereTopClass n hn) = 1 :=
+    (sphereTopEquiv n hn).apply_symm_apply 1
+  intro hz
+  rw [hz, map_zero] at h
+  exact one_ne_zero h.symm
 
 /-- Every class of `H^n(S^n; F₂)` is a multiple of the top class. -/
 theorem sphere_coh_top_eq_smul (n : ℕ) (hn : 1 ≤ n) (a : Hmod2 (TopCat.of (Sphere n)) n) :
@@ -109,15 +109,30 @@ theorem sphere_coh_top_eq_smul (n : ℕ) (hn : 1 ≤ n) (a : Hmod2 (TopCat.of (S
 
 /-! ## 4. Degree zero -/
 
-/-- `H^0(X; F₂) ≃ₗ F₂` for a nonempty path-connected space: the augmentation is
-an isomorphism on `H₀`, and the universal coefficient isomorphism dualizes it. -/
+/-- `H^0(X; F₂)` is one dimensional for a nonempty path-connected space: the
+augmentation is an isomorphism on `H₀`, and the mod-2 universal coefficient
+isomorphism dualizes it. -/
+theorem cohZero_finrank (X : TopCat.{0}) [Nonempty X] [PathConnectedSpace X] :
+    Module.finrank (ZMod 2) (Hmod2 X 0) = 1 := by
+  haveI : IsIso (H0Gen.H0aug (ZMod 2) X) := H0Gen.isIso_H0aug (R := ZMod 2) X
+  have e : Hmod2 X 0 ≃ₗ[ZMod 2] (homologyZMod2 X 0 →ₗ[ZMod 2] ZMod 2) :=
+    (kroneckerEquiv X 0).toLinearEquiv
+  have e2 : homologyZMod2 X 0 ≃ₗ[ZMod 2] (ZMod 2) :=
+    (asIso (H0Gen.H0aug (ZMod 2) X)).toLinearEquiv
+  rw [e.finrank_eq]
+  refine Subspace.dual_finrank_eq.trans ?_
+  rw [e2.finrank_eq]
+  simp
+
+theorem cohZero_finite (X : TopCat.{0}) [Nonempty X] [PathConnectedSpace X] :
+    Module.Finite (ZMod 2) (Hmod2 X 0) :=
+  Module.finite_of_finrank_pos (by rw [cohZero_finrank X]; exact Nat.one_pos)
+
+/-- `H^0(X; F₂) ≃ₗ F₂` for a nonempty path-connected space. -/
 def cohZeroEquiv (X : TopCat.{0}) [Nonempty X] [PathConnectedSpace X] :
     Hmod2 X 0 ≃ₗ[ZMod 2] ZMod 2 :=
-  haveI : IsIso (H0aug (ZMod 2) X) := isIso_H0aug (R := ZMod 2) X
-  ((kroneckerEquiv X 0).toLinearEquiv.trans
-      (LinearEquiv.arrowCongr (asIso (H0aug (ZMod 2) X)).toLinearEquiv
-        (LinearEquiv.refl (ZMod 2) (ZMod 2)))).trans
-    (LinearMap.ringLmapEquivSelf (ZMod 2) (ZMod 2) (ZMod 2))
+  haveI := cohZero_finite X
+  LinearEquiv.ofFinrankEq _ _ (by rw [cohZero_finrank X]; simp)
 
 /-! ## 5. Path-connectedness of the sphere -/
 

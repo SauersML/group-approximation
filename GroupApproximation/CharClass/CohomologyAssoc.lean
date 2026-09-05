@@ -27,7 +27,7 @@ Everything then reduces to three identities between morphisms of
 * `cochainCup_one_left`, `one_cup` — left unitality, up to the cast `0 + p = p`.
 -/
 
-open CategoryTheory
+open CategoryTheory Simplicial
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 
