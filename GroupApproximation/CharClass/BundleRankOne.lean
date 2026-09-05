@@ -119,9 +119,9 @@ theorem mul_rankOneProj (a : Matrix κ ι ℂ) (u : ι → ℂ) :
     a * rankOneProj u = Matrix.vecMulVec (a *ᵥ u) (star u) :=
   mul_vecMulVec a u (star u)
 
+omit [Fintype κ] in
 /-- **Conjugation moves the line.**  This one identity is the reason the whole
 lane needs no unitaries. -/
-omit [Fintype κ] in
 theorem conj_rankOneProj (a : Matrix κ ι ℂ) (u : ι → ℂ) :
     a * rankOneProj u * aᴴ = rankOneProj (a *ᵥ u) := by
   show a * Matrix.vecMulVec u (star u) * aᴴ = Matrix.vecMulVec (a *ᵥ u) (star (a *ᵥ u))
