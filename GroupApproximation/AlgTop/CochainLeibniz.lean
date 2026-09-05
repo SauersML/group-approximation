@@ -209,7 +209,8 @@ theorem aw_cochain_leibniz (R : Type) [CommRing R] {X : TopCat.{0}} (p q : ℕ)
           have hzero : ((0 : Fin (q + 2)) : ℕ) = 0 := rfl
           rw [hlast, hzero, add_zero, pow_succ]
           ring
-      · rw [cochainCast_eval_right, cochainCup_eval, cochainCoboundary_eval, Finset.mul_sum]
+      · rw [cochainCast_eval_right, cochainCup_eval, cochainCoboundary_eval, Finset.mul_sum,
+          Finset.mul_sum]
         apply Finset.sum_congr rfl
         intro j _
         rw [pow_add]
