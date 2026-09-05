@@ -817,8 +817,8 @@ theorem continuous_clutchOfChart (hc : IsSuspensionChart t ν) (hΩ : IsDiscUnit
   refine continuous_fromBlocks ?_ ?_ ?_ ?_
   · exact (Complex.continuous_ofReal.comp
       ((continuous_const.add hc.continuous_height).div_const 2)).smul continuous_const
-  · exact continuous_const.smul hcone.star
-  · exact continuous_const.smul hcone
+  · exact hcone.star.const_smul (1 / 2 : ℂ)
+  · exact hcone.const_smul (1 / 2 : ℂ)
   · exact (Complex.continuous_ofReal.comp
       ((continuous_const.sub hc.continuous_height).div_const 2)).smul continuous_const
 
@@ -838,8 +838,8 @@ theorem continuous_clutchUntwisted (hc : IsSuspensionChart t ν) :
   refine continuous_fromBlocks ?_ ?_ ?_ ?_
   · exact (Complex.continuous_ofReal.comp
       ((continuous_const.add hc.continuous_height).div_const 2)).smul continuous_const
-  · exact continuous_const.smul hnorm.star
-  · exact continuous_const.smul hnorm
+  · exact hnorm.star.const_smul (1 / 2 : ℂ)
+  · exact hnorm.const_smul (1 / 2 : ℂ)
   · exact (Complex.continuous_ofReal.comp
       ((continuous_const.sub hc.continuous_height).div_const 2)).smul continuous_const
 
@@ -1068,8 +1068,8 @@ theorem not_isDiscUnitary_of_clutchingObstruction {t : X → ℝ} {ν : X → E}
     (hobs : ClutchingObstruction t ν Ω) : ¬ IsDiscUnitary Ω :=
   fun hΩ => hobs (exists_partialIsometry_of_isDiscUnitary hc hΩ)
 
-/-- A partial isometry absorbs its initial projection. -/
 open scoped ComplexOrder in
+/-- A partial isometry absorbs its initial projection. -/
 theorem mul_source_of_partialIsometry {ι : Type*} [Fintype ι] [DecidableEq ι]
     {W q : Matrix ι ι ℂ} (hq : Wᴴ * W = q) (hidem : q * q = q) : W * q = W := by
   have hqs : qᴴ = q := by

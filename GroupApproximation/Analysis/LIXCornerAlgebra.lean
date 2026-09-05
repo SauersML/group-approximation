@@ -49,9 +49,45 @@ assembled below by an explicit ladder rather than by
 namespace GroupApproximation
 namespace STW59
 
-open scoped Matrix ComplexOrder
+open scoped Matrix ComplexOrder CStarAlgebra
 
 noncomputable section
+
+/-! ### Instance diagnostics for the ambient algebra
+
+`C(X, CStarMatrix ι ι ℂ)` is the shape used by the working precedent
+`GroupApproximation/Analysis/AntipodalHomogeneousBlock.lean`.  These `example`s pin down
+exactly which link of the instance chain is present at the pin; they are cheap and are
+kept because the chain runs through `open scoped ComplexOrder` (which is what supplies
+`PartialOrder ℂ` and `RCLike.toStarOrderedRing`, hence the C-star structure on
+`CStarMatrix ι ι ℂ`) and a silent break there produces a wall of unrelated errors. -/
+
+section Diagnostics
+
+example (ι : Type*) [Fintype ι] [DecidableEq ι] : Mul (CStarMatrix ι ι ℂ) := inferInstance
+
+example (ι : Type*) [Fintype ι] [DecidableEq ι] :
+    NonUnitalNonAssocSemiring (CStarMatrix ι ι ℂ) := inferInstance
+
+example (ι : Type*) [Fintype ι] [DecidableEq ι] : ContinuousMul (CStarMatrix ι ι ℂ) :=
+  inferInstance
+
+example (ι : Type*) [Fintype ι] [DecidableEq ι] : IsTopologicalSemiring (CStarMatrix ι ι ℂ) :=
+  inferInstance
+
+example (ι : Type*) [Fintype ι] [DecidableEq ι] : CStarAlgebra (CStarMatrix ι ι ℂ) :=
+  inferInstance
+
+example (X : Type*) [TopologicalSpace X] (ι : Type*) [Fintype ι] [DecidableEq ι] :
+    Ring C(X, CStarMatrix ι ι ℂ) := inferInstance
+
+example (X : Type*) [TopologicalSpace X] (ι : Type*) [Fintype ι] [DecidableEq ι] :
+    StarRing C(X, CStarMatrix ι ι ℂ) := inferInstance
+
+example (X : Type*) [TopologicalSpace X] [CompactSpace X] (ι : Type*) [Fintype ι]
+    [DecidableEq ι] : CStarAlgebra C(X, CStarMatrix ι ι ℂ) := inferInstance
+
+end Diagnostics
 
 /-! ### Murray–von Neumann equivalence under conjugation by an isometry -/
 
@@ -95,6 +131,7 @@ abbrev SectionAlgebra (X : Type*) [TopologicalSpace X] (ι : Type*) [Fintype ι]
 /-- The underlying set of the corner `p A p`. -/
 def cornerCarrier (p : SectionAlgebra X ι) : Set (SectionAlgebra X ι) := {a | p * a * p = a}
 
+omit [CompactSpace X] in
 theorem mem_cornerCarrier {p a : SectionAlgebra X ι} :
     a ∈ cornerCarrier p ↔ p * a * p = a := Iff.rfl
 
@@ -102,7 +139,7 @@ theorem mem_cornerCarrier {p a : SectionAlgebra X ι} :
 theorem corner_left_unit {p a : SectionAlgebra X ι} (hp : IsStarProjection p)
     (ha : p * a * p = a) : p * a = a := by
   calc p * a = p * (p * a * p) := by rw [ha]
-    _ = (p * p) * a * p := by noncomm_ring
+    _ = (p * p) * a * p := by simp [mul_assoc]
     _ = p * a * p := by rw [hp.isIdempotentElem.eq]
     _ = a := ha
 
@@ -110,7 +147,7 @@ theorem corner_left_unit {p a : SectionAlgebra X ι} (hp : IsStarProjection p)
 theorem corner_right_unit {p a : SectionAlgebra X ι} (hp : IsStarProjection p)
     (ha : p * a * p = a) : a * p = a := by
   calc a * p = (p * a * p) * p := by rw [ha]
-    _ = p * a * (p * p) := by noncomm_ring
+    _ = p * a * (p * p) := mul_assoc _ _ _
     _ = p * a * p := by rw [hp.isIdempotentElem.eq]
     _ = a := ha
 
@@ -133,7 +170,7 @@ def cornerAlgebra (p : SectionAlgebra X ι) (hp : IsStarProjection p) :
     have ha' : p * a * p = a := ha
     have hb' : p * b * p = b := hb
     show p * (a * b) * p = a * b
-    calc p * (a * b) * p = (p * a) * (b * p) := by noncomm_ring
+    calc p * (a * b) * p = (p * a) * (b * p) := by simp [mul_assoc]
       _ = a * b := by rw [corner_left_unit hp ha', corner_right_unit hp hb']
   smul_mem' := by
     intro c a ha
@@ -145,8 +182,7 @@ def cornerAlgebra (p : SectionAlgebra X ι) (hp : IsStarProjection p) :
     have ha' : p * a * p = a := ha
     show p * star a * p = star a
     have hstar : star (p * a * p) = p * star a * p := by
-      rw [star_mul, star_mul, hp.isSelfAdjoint.star_eq]
-      noncomm_ring
+      rw [star_mul, star_mul, hp.isSelfAdjoint.star_eq, mul_assoc]
     rw [← hstar, ha']
 
 theorem mem_cornerAlgebra_iff {p : SectionAlgebra X ι} {hp : IsStarProjection p}
@@ -263,7 +299,7 @@ theorem ofFunctionMatrix_mul (M N : Matrix ι ι C(X, ℂ)) :
   rw [ContinuousMap.mul_apply, CStarMatrix.mul_apply]
   simp only [ofFunctionMatrix_apply]
   show (matEval x (M * N)) i j = _
-  rw [map_mul]
+  rw [matEval_mul]
   rfl
 
 theorem ofFunctionMatrix_star (M : Matrix ι ι C(X, ℂ)) :
