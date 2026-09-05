@@ -44,7 +44,8 @@ variable {d : ℕ}
 
 /-- The matrix of `x : CP d` padded by a zero row and a zero column. -/
 def inclMat (x : CP d) : Matrix (Fin (d + 2)) (Fin (d + 2)) ℂ :=
-  Matrix.of (Fin.cons 0 fun i => Fin.cons 0 ((x : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) i))
+  Matrix.of (Fin.cons (0 : Fin (d + 2) → ℂ)
+    fun i => Fin.cons (0 : ℂ) ((x : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) i))
 
 @[simp] theorem inclMat_zero_row (x : CP d) (b : Fin (d + 2)) : inclMat x 0 b = 0 := by
   simp [inclMat]
