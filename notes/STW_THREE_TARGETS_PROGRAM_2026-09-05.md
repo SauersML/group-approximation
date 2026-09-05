@@ -73,3 +73,37 @@ projections over concrete compact spaces**:
 
 Everything above is elementary. The one genuinely topological ingredient is
 the **parity obstruction** (manuscript Lemmas 2–3).
+
+## Mandate amendment (user, 2026-09-05, mid-wave)
+
+> "we need literally all of it" / "if u need to do megaproject foundations
+> then get opus on it"
+
+**No named-`Prop` residue is an acceptable stopping point.** Rule 3 above still
+governs *intermediate* work — an unproved step is a named Prop, never a
+`sorry` — but a target is not finished until every such Prop is a theorem.
+Where Mathlib lacks the foundation, the foundation gets built.
+
+Seven Opus foundation lanes were added for the target-3 obstruction, which is
+the only place a residue was going to survive:
+
+| lane | owns | namespace |
+|---|---|---|
+| `found-bundle-calculus` | complex vector bundles AS continuous projection-valued maps (Serre–Swan as the definition): pullback, ⊕, ⊗, rank, **homotopy invariance**, complements, clutching, nowhere-zero sections | `AlgTop/BundleCalculus*` |
+| `found-cohomology-ring` | integral singular cohomology, cup product, spheres, free-case Künneth | `AlgTop/{SingularCohomology,CupProduct,Spheres,Kunneth}` |
+| `found-cpn-cohomology` | even-cell filtration of `CP^n`; `H^*(CP^n;ℤ)=ℤ[h]/(h^{n+1})`; products; torsion-freeness of `H^*(S^1×S^5×Y)` | `AlgTop/ComplexProjective*` |
+| `found-chern-classes` | total and virtual Chern classes, Whitney sum, `c_1(L_j)=h_j`, vanishing above rank and above dimension, splitting principle | `AlgTop/Chern*` |
+| `found-ktheory-bott` | `K^0`/`K^1`, split restriction sequence, free-case Künneth, `K^*(∏CP^d)`, Chern character with the integral normalization on `S^1`,`S^5` | `KTheory/*` |
+| `found-euler-class` | Euler class, Euler = top Chern, local index at a transverse zero, the mapping-torus bundle `W_g`, Lemma 2's ±1 count | `AlgTop/Euler*` |
+| `found-mapping-torus-parity` | Lemma 3, incl. the pure-algebra core `c_q(δ)=(-1)^{q-1}(q-1)!·ch_q(δ)` and the evenness of `(|b|+2)!/∏b_j!` | `AlgTop/MappingTorusParity` |
+
+Two scope restorations follow: `K_1(A)=0` and "order exactly two" are back in
+scope for target 3 (they are part of the printed Theorem 1), and the
+`u ⊕ 1` null-homotopy is proved elementarily — define `u` as the seam
+discrepancy `s₊(x)⁻¹s₋(x)` of hemisphere sections of `U(3) → S^5`, `a ↦ a e₃`;
+it lands in `U(2)` because it fixes `e₃`, and it contracts in `U(3)` because
+`s₋` extends over its disc. No Bott, no homotopy groups.
+
+**Four collision risks** across lanes, all owned by `lix-design` to arbitrate:
+the projection model of a bundle, the `CP^n` model, the clutching
+construction, and the sphere models. One of each, campaign-wide.
