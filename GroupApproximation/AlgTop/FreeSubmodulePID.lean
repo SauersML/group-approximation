@@ -246,6 +246,40 @@ theorem free_of_submodule_of_pid {R : Type*} [CommRing R] [IsDomain R] [IsPrinci
   exact Module.Free.of_equiv
     (Submodule.equivMapOfInjective (e : M →ₗ[R] _) e.injective N).symm
 
+/-! ## 6. Splitting off a submodule with projective quotient
+
+These are the two lemmas the universal coefficient theorem is built from: the
+splitting `Cₙ = Zₙ ⊕ (complement)` is exactly `exists_retraction_of_projective_quotient`
+applied to `Q = ker ∂ₙ`, whose quotient `Cₙ/Q ≅ Bₙ₋₁` is a submodule of the free
+module `Cₙ₋₁` and hence projective by the theorem above. -/
+
+/-- A submodule with projective quotient is a direct summand: there is a
+retraction of its inclusion. -/
+theorem exists_retraction_of_projective_quotient {R M : Type*} [Ring R] [AddCommGroup M]
+    [Module R M] (Q : Submodule R M) [Module.Projective R (M ⧸ Q)] :
+    ∃ r : M →ₗ[R] Q, ∀ x : Q, r x = x := by
+  obtain ⟨s, hs⟩ := Module.projective_lifting_property Q.mkQ LinearMap.id Q.mkQ_surjective
+  have hs' : ∀ z : M ⧸ Q, Q.mkQ (s z) = z := fun z => LinearMap.congr_fun hs z
+  have hmem : ∀ x : M, x - s (Q.mkQ x) ∈ Q := by
+    intro x
+    rw [← Submodule.ker_mkQ Q, LinearMap.mem_ker, map_sub, hs', sub_self]
+  refine ⟨(LinearMap.id - s.comp Q.mkQ).codRestrict Q (fun x => by simpa using hmem x), ?_⟩
+  intro x
+  apply Subtype.ext
+  have hx : Q.mkQ (x : M) = 0 := by
+    rw [← LinearMap.mem_ker, Submodule.ker_mkQ]
+    exact x.2
+  simp [LinearMap.codRestrict_apply, hx]
+
+/-- A linear map defined on a submodule with projective quotient extends to the
+whole module. -/
+theorem exists_extend_of_projective_quotient {R M P : Type*} [Ring R] [AddCommGroup M]
+    [Module R M] [AddCommGroup P] [Module R P] (Q : Submodule R M)
+    [Module.Projective R (M ⧸ Q)] (f : Q →ₗ[R] P) :
+    ∃ F : M →ₗ[R] P, ∀ x : Q, F x = f x := by
+  obtain ⟨r, hr⟩ := exists_retraction_of_projective_quotient Q
+  exact ⟨f.comp r, fun x => by rw [LinearMap.comp_apply, hr]⟩
+
 /-- A submodule of a free module over a principal ideal domain is projective. -/
 theorem projective_of_submodule_of_pid {R : Type*} [CommRing R] [IsDomain R]
     [IsPrincipalIdealRing R] {M : Type*} [AddCommGroup M] [Module R M] [Module.Free R M]
