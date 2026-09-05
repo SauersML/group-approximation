@@ -1,5 +1,6 @@
 import GroupApproximation.Topology.OddMapNormalization
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ComplexOddMapCommonZero
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `CommonZeroProperty`, unconditionally
@@ -59,6 +60,17 @@ tautological line bundle has a zero. -/
 theorem commonZeroProperty_unconditional :
     TautologicalCommonZero.CommonZeroProperty :=
   TautologicalAntipodal.commonZeroProperty_of_antipodalObstruction antipodalObstruction
+
+/-! ### Axiom closure
+
+Both endpoints state a closed proposition -- a bare named `Prop`, with no
+leading input -- so `#audit_closed_axioms` applies and gates them: it fails the
+build if either acquires a leading hypothesis or an axiom outside
+`propext / Classical.choice / Quot.sound`. -/
+
+#audit_closed_axioms antipodalObstruction
+
+#audit_closed_axioms commonZeroProperty_unconditional
 
 end Topology
 end GroupApproximation
