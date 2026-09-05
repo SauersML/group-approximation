@@ -129,6 +129,32 @@ noncomputable def powerBasisOfBijective (ξ : B) (r : ℕ)
     · intro h
       exact absurd (Finset.mem_univ i) h
 
+/-- **Leray–Hirsch, repackaged, unbundled.**  The same statement as
+`powerBasisOfBijective` but taking the bijectivity of the plain function
+`c ↦ ∑ cᵢ ξ^i`, so that a caller with a non-canonical `Algebra` instance does not
+have to bundle a `LinearMap` whose very type mentions that instance. -/
+noncomputable def powerBasisOfBijective' (ξ : B) (r : ℕ)
+    (hbij : Function.Bijective (fun c : Fin r → A => ∑ i : Fin r, c i • ξ ^ (i : ℕ))) :
+    PowerBasis A B :=
+  powerBasisOfBijective ξ r
+    { toFun := fun c => ∑ i : Fin r, c i • ξ ^ (i : ℕ)
+      map_add' := fun c c' => by
+        simp only [Pi.add_apply, add_smul]
+        exact Finset.sum_add_distrib
+      map_smul' := fun s c => by
+        simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply, Finset.smul_sum, smul_smul] }
+    (fun _ => rfl) hbij
+
+@[simp]
+theorem powerBasisOfBijective'_gen (ξ : B) (r : ℕ)
+    (hbij : Function.Bijective (fun c : Fin r → A => ∑ i : Fin r, c i • ξ ^ (i : ℕ))) :
+    (powerBasisOfBijective' ξ r hbij).gen = ξ := rfl
+
+@[simp]
+theorem powerBasisOfBijective'_dim (ξ : B) (r : ℕ)
+    (hbij : Function.Bijective (fun c : Fin r → A => ∑ i : Fin r, c i • ξ ^ (i : ℕ))) :
+    (powerBasisOfBijective' ξ r hbij).dim = r := rfl
+
 @[simp]
 theorem powerBasisOfBijective_gen (ξ : B) (r : ℕ)
     (L : (Fin r → A) →ₗ[A] B) (hL : ∀ c : Fin r → A, L c = ∑ i : Fin r, c i • ξ ^ (i : ℕ))

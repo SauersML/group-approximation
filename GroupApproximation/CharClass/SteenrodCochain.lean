@@ -79,7 +79,7 @@ theorem cochainEval_cochainOfFun {R : Type} [CommRing R] {X : TopCat.{0}} (n : �
       ModuleCat.ofHom ((F σ) • (LinearMap.id : R →ₗ[R] R))) τ)) (1 : R)
   simp only [ModuleCat.hom_comp, LinearMap.comp_apply] at h
   convert h using 1
-  all_goals simp [cochainEval]
+  all_goals simp
   all_goals rfl
 
 /-! ## 3. Evaluating a cochain on a subset of the vertices -/
@@ -210,14 +210,15 @@ vanish because `faceVal` does. -/
 def cochainCupI {R : Type} [CommRing R] {X : TopCat.{0}} (i a b n : ℕ)
     (α : singularCochainGroup R X a) (β : singularCochainGroup R X b) :
     singularCochainGroup R X n :=
-  cochainOfFun n (fun σ => ∑ S ∈ cutIndex i n, faceVal a α σ (cutU S) * faceVal b β σ (cutV S))
+  cochainOfFun n
+    (fun σ => ∑ S ∈ cutIndex (i + 1) n, faceVal a α σ (cutU S) * faceVal b β σ (cutV S))
 
 @[simp]
 theorem cochainCupI_eval {R : Type} [CommRing R] {X : TopCat.{0}} (i a b n : ℕ)
     (α : singularCochainGroup R X a) (β : singularCochainGroup R X b)
     (σ : singularSimplices X n) :
     cochainEval n (cochainCupI i a b n α β) σ
-      = ∑ S ∈ cutIndex i n, faceVal a α σ (cutU S) * faceVal b β σ (cutV S) :=
+      = ∑ S ∈ cutIndex (i + 1) n, faceVal a α σ (cutU S) * faceVal b β σ (cutV S) :=
   cochainEval_cochainOfFun n _ σ
 
 /-- **Degree bookkeeping is automatic.**  Outside the bidegree `a + b = n + i`

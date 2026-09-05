@@ -80,7 +80,9 @@ theorem continuous_sumElim_left {X : Type*} [TopologicalSpace X] {u : X → n �
     (hu : Continuous u) : Continuous fun x => Sum.elim (u x) (0 : n → ℂ) := by
   refine continuous_pi fun i => ?_
   cases i with
-  | inl i => simpa using (continuous_apply i).comp hu
+  | inl i =>
+    have h : Continuous fun x => u x i := (continuous_apply i).comp hu
+    simpa using h
   | inr i => simpa using continuous_const
 
 theorem continuous_sumElim_right {X : Type*} [TopologicalSpace X] {u : X → n → ℂ}
@@ -88,7 +90,9 @@ theorem continuous_sumElim_right {X : Type*} [TopologicalSpace X] {u : X → n �
   refine continuous_pi fun i => ?_
   cases i with
   | inl i => simpa using continuous_const
-  | inr i => simpa using (continuous_apply i).comp hu
+  | inr i =>
+    have h : Continuous fun x => u x i := (continuous_apply i).comp hu
+    simpa using h
 
 /-- **The data of a section of the mapping torus.**  Two vector fields, each taking values
 in the range of `V`, matched along the equator by the transition matrix. -/
@@ -119,12 +123,9 @@ theorem mtSection_north_form (hmem : V p.2 *ᵥ ξ p = ξ p) (hp : 0 ≤ t p.1) 
     mtSection V G y t ξ η p = Sum.elim ((((1 + t p.1) / 2 : ℝ) : ℂ) • ξ p)
       ((2⁻¹ : ℂ) • (mtTrans (G p.2) (y p.1) *ᵥ ξ p)) := by
   rw [mtSection, if_pos hp, mappingTorus_eq, Matrix.fromBlocks_mulVec]
-  congr 1
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, hmem]
-    simp
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec,
-      hmem]
-    simp
+  congr 1 <;>
+    simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
+      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The southern normal form of the section. -/
 theorem mtSection_south_form (hmem : V p.2 *ᵥ η p = η p) (hp : ¬ 0 ≤ t p.1) :
@@ -132,12 +133,9 @@ theorem mtSection_south_form (hmem : V p.2 *ᵥ η p = η p) (hp : ¬ 0 ≤ t p.
       Sum.elim ((2⁻¹ : ℂ) • ((mtTrans (G p.2) (y p.1))ᴴ *ᵥ η p))
         ((((1 - t p.1) / 2 : ℝ) : ℂ) • η p) := by
   rw [mtSection, if_neg hp, mappingTorus_eq, Matrix.fromBlocks_mulVec]
-  congr 1
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec,
-      hmem]
-    simp
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, hmem]
-    simp
+  congr 1 <;>
+    simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
+      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The southern normal form, valid on the whole closed southern half (including the
 equator).  This is the shape the seam matching is checked in. -/
@@ -146,12 +144,9 @@ theorem mtSection_south_form' (hmem : V p.2 *ᵥ η p = η p) :
       Sum.elim ((2⁻¹ : ℂ) • ((mtTrans (G p.2) (y p.1))ᴴ *ᵥ η p))
         ((((1 - t p.1) / 2 : ℝ) : ℂ) • η p) := by
   rw [mappingTorus_eq, Matrix.fromBlocks_mulVec]
-  congr 1
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec,
-      hmem]
-    simp
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, hmem]
-    simp
+  congr 1 <;>
+    simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
+      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- The northern normal form on the whole closed northern half. -/
 theorem mtSection_north_form' (hmem : V p.2 *ᵥ ξ p = ξ p) :
@@ -159,12 +154,9 @@ theorem mtSection_north_form' (hmem : V p.2 *ᵥ ξ p = ξ p) :
       Sum.elim ((((1 + t p.1) / 2 : ℝ) : ℂ) • ξ p)
         ((2⁻¹ : ℂ) • (mtTrans (G p.2) (y p.1) *ᵥ ξ p)) := by
   rw [mappingTorus_eq, Matrix.fromBlocks_mulVec]
-  congr 1
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, hmem]
-    simp
-  · rw [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec,
-      hmem]
-    simp
+  congr 1 <;>
+    simp only [Sum.elim_comp_inl, Sum.elim_comp_inr, Matrix.mulVec_zero, Matrix.smul_mulVec,
+      smul_zero, zero_add, add_zero, ← Matrix.mulVec_mulVec, hmem]
 
 /-- **The two branches agree on the equator.**  This is the gluing computation: the
 transition matrix is an isometry there, so `fᴴ *ᵥ (f *ᵥ ξ) = ξ`. -/
@@ -196,7 +188,10 @@ theorem mtSection_continuous (hd : IsMTSectionData V G y t ξ η)
     Continuous (mtSection V G y t ξ η) := by
   have hW : Continuous (mappingTorus V G y t) := mappingTorus_continuous hV hG hch
   have ht : Continuous fun p : Z × M => t p.1 := hch.continuous_height.comp continuous_fst
-  simp only [mtSection]
+  have hunfold : (mtSection V G y t ξ η) = fun p : Z × M => if 0 ≤ t p.1 then
+      mappingTorus V G y t p *ᵥ Sum.elim (ξ p) 0
+    else mappingTorus V G y t p *ᵥ Sum.elim 0 (η p) := rfl
+  rw [hunfold]
   refine Continuous.if_le (hW.matrix_mulVec (continuous_sumElim_left hd.continuous_north))
     (hW.matrix_mulVec (continuous_sumElim_right hd.continuous_south)) continuous_const ht
     (fun p hp => ?_)
@@ -243,8 +238,9 @@ theorem mtSection_eq_zero_iff (hd : IsMTSectionData V G y t ξ η) (p : Z × M) 
 /-- **A nowhere-vanishing northern field pushes every zero into the southern half.** -/
 theorem mtSection_ne_zero_of_nonneg (hd : IsMTSectionData V G y t ξ η) {p : Z × M}
     (hp : 0 ≤ t p.1) (hξ : ξ p ≠ 0) : mtSection V G y t ξ η p ≠ 0 := by
-  rw [mtSection_eq_zero_iff hd, if_pos hp]
-  exact hξ
+  intro h
+  rw [mtSection_eq_zero_iff hd, if_pos hp] at h
+  exact hξ h
 
 /-- **The zero locus when the northern field never vanishes.** -/
 theorem mtSection_eq_zero_iff_of_north_ne_zero (hd : IsMTSectionData V G y t ξ η)

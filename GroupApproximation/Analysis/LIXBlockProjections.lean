@@ -4,9 +4,12 @@ import Mathlib.Analysis.InnerProductSpace.PiL2
 import Mathlib.Analysis.Normed.Module.FiniteDimension
 import Mathlib.Topology.LocallyConstant.Basic
 import Mathlib.Data.Matrix.Block
+import Mathlib.LinearAlgebra.Matrix.Kronecker
 import Mathlib.Tactic.NoncommRing
 import Mathlib.Tactic.Abel
 import Mathlib.Tactic.Linarith
+
+set_option autoImplicit false
 
 /-!
 # The block projections of the STW LIX construction
@@ -31,18 +34,28 @@ bundle *is* a projection `p : Matrix ι ι C(X, ℂ)` and bundle isomorphism *is
 * Stage data: `r i = STW59.stageRank i = 2 ^ (i + 1)`,
   `Y i = STW59.baseY i = ∀ j : Fin i, CP (r j)`,
   `X i = STW59.baseX i = ↥sphereFour × baseY i`.
-* Index types: `H i` is indexed by `STW59.HIdx i = Σ j : Fin i, Fin (r j + 1) × Fin (r j)`
-  (the `j`-th summand contributes `r j` copies of the ambient `ℂ^{r j + 1}` of
-  `CP^{r j}`), and `E i` by `STW59.EIdx i = Fin 2 ⊕ HIdx i`.
-* Coefficients live in `C(X i, ℂ)`, so the block-diagonal assembly needs no continuity
-  proof: `Matrix.blockDiagonal'` over a ring of continuous functions is continuous by
-  construction.
+* Index types are **recursive in the stage**, so that the block decomposition used by the
+  connecting maps of `Analysis/LIXConnectingMap.lean` is definitional:
+  `STW59.NIdx i = Fin (r i) × Fin (r i + 1)` (`r i` copies of the ambient `ℂ^{r i + 1}` of
+  `CP^{r i}`), `STW59.HIdx (i+1) = HIdx i ⊕ NIdx i` with `HIdx 0 = Empty`, and
+  `STW59.EIdx i = Fin 2 ⊕ HIdx i`.  Thus
+  `EIdx (i+1) = Fin 2 ⊕ (HIdx i ⊕ NIdx i)` is `Equiv.sumAssoc`-equivalent to
+  `EIdx i ⊕ NIdx i` (`STW59.eIdxSucc`), and `STW59.Eproj_succ` says that under exactly
+  that equivalence `E_{i+1} = π_i^* E_i ⊕ (𝟏_{r i} ⊗ L_{i+1})`.
+* Coefficients live in `C(X i, ℂ)`, so the block assembly needs no continuity proof:
+  `Matrix.fromBlocks` over a ring of continuous functions is continuous by construction.
 
 ## Main results
 
-* `STW59.trace_Hproj`, `STW59.trace_Eproj`, `STW59.stageRank_sum`,
+* `STW59.trace_Hproj`, `STW59.trace_Eproj`, `STW59.hrank_add_two`,
   `STW59.realDim_baseX` — the manuscript's (4.2): `rank H_i = r_i - 2`,
   `rank E_i = r_i`, `dim_ℝ X_i = 2 r_i`.
+* `STW59.Eproj_succ` — the manuscript's global bundle decomposition
+  `E_{i+1} ≅ π_i^* E_i ⊕ (E_i(x_i) ⊗ L_{i+1})`, in the form in which the connecting map
+  uses it.
+* `STW59.exists_frame` — a star projection of trace `k` over `ℂ` is `s sᴴ` for an
+  isometry `s : ℂ^k → ℂ^n`; this is the manuscript's "choose an orthonormal
+  identification `E_i(x_i) ≅ ℂ^{r_i}`".
 * `STW59.murrayVonNeumannEquiv_Fproj` — `F ⊕ 𝟏 ≅ 𝟏³` over `S^5`.
 * `STW59.isLocallyConstant_trace` — the rank of a projection-valued function is locally
   constant, because it is a continuous `ℕ`-valued function
@@ -52,7 +65,7 @@ bundle *is* a projection `p : Matrix ι ι C(X, ℂ)` and bundle isomorphism *is
 namespace GroupApproximation
 namespace STW59
 
-open scoped Matrix
+open scoped Matrix Kronecker
 
 noncomputable section
 
@@ -76,21 +89,6 @@ theorem isStarProjection_blockDiagonal {o m : Type*} [DecidableEq o] [Fintype o]
     funext k
     exact (h k).isIdempotentElem.eq
 
-theorem isStarProjection_blockDiagonal' {o : Type*} [DecidableEq o] [Fintype o]
-    {m' : o → Type*} [∀ k, Fintype (m' k)] [∀ k, DecidableEq (m' k)]
-    {M : ∀ k, Matrix (m' k) (m' k) A} (h : ∀ k, IsStarProjection (M k)) :
-    IsStarProjection (Matrix.blockDiagonal' M) := by
-  rw [isStarProjection_matrix_iff]
-  constructor
-  · rw [Matrix.blockDiagonal'_conjTranspose]
-    congr 1
-    funext k
-    exact conjTranspose_eq_of_isStarProjection (h k)
-  · rw [← Matrix.blockDiagonal'_mul]
-    congr 1
-    funext k
-    exact (h k).isIdempotentElem.eq
-
 theorem isStarProjection_fromBlocks_diag {l m : Type*} [Fintype l] [Fintype m]
     {P : Matrix l l A} {Q : Matrix m m A} (hP : IsStarProjection P)
     (hQ : IsStarProjection Q) : IsStarProjection (Matrix.fromBlocks P 0 0 Q) := by
@@ -103,10 +101,219 @@ theorem isStarProjection_fromBlocks_diag {l m : Type*} [Fintype l] [Fintype m]
 
 end Blocks
 
+/-- A Kronecker product of star projections is a star projection. -/
+theorem isStarProjection_kronecker {A : Type*} [CommRing A] [StarRing A] {m n : Type*}
+    [Fintype m] [Fintype n] {P : Matrix m m A} {Q : Matrix n n A} (hP : IsStarProjection P)
+    (hQ : IsStarProjection Q) : IsStarProjection (P ⊗ₖ Q) := by
+  rw [isStarProjection_matrix_iff]
+  constructor
+  · rw [Matrix.conjTranspose_kronecker, conjTranspose_eq_of_isStarProjection hP,
+      conjTranspose_eq_of_isStarProjection hQ]
+  · rw [← Matrix.mul_kronecker_mul, hP.isIdempotentElem.eq, hQ.isIdempotentElem.eq]
+
 theorem trace_fromBlocks {l m R : Type*} [Fintype l] [Fintype m] [AddCommMonoid R]
     (P : Matrix l l R) (B : Matrix l m R) (C : Matrix m l R) (Q : Matrix m m R) :
     (Matrix.fromBlocks P B C Q).trace = P.trace + Q.trace := by
   simp [Matrix.trace, Matrix.diag_apply, Fintype.sum_sum_type]
+
+/-! ### Constant and pulled-back matrices of functions -/
+
+section Transfer
+
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+variable {ι κ : Type*}
+
+/-- A matrix of scalars, read as a matrix of constant continuous functions. -/
+def constMat (X : Type*) [TopologicalSpace X] (M : Matrix ι κ ℂ) : Matrix ι κ C(X, ℂ) :=
+  M.map fun c => ContinuousMap.const X c
+
+@[simp]
+theorem matEval_constMat (x : X) (M : Matrix ι κ ℂ) : matEval x (constMat X M) = M := rfl
+
+theorem constMat_mul [Fintype κ] {ρ : Type*} (M : Matrix ι κ ℂ) (N : Matrix κ ρ ℂ) :
+    constMat X (M * N) = constMat X M * constMat X N := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_constMat, matEval_mul, matEval_constMat, matEval_constMat]
+
+theorem constMat_one [DecidableEq ι] : constMat X (1 : Matrix ι ι ℂ) = 1 := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_constMat, matEval_one]
+
+theorem constMat_conjTranspose (M : Matrix ι κ ℂ) :
+    constMat X Mᴴ = (constMat X M)ᴴ := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_constMat, matEval_conjTranspose, matEval_constMat]
+
+/-- Pulling a matrix of continuous functions back along a continuous map. -/
+def pullMat (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ)) : Matrix ι κ C(X, ℂ) :=
+  M.map fun g => g.comp f
+
+@[simp]
+theorem matEval_pullMat (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ)) (x : X) :
+    matEval x (pullMat f M) = matEval (f x) M := rfl
+
+theorem pullMat_mul [Fintype κ] {ρ : Type*} (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ))
+    (N : Matrix κ ρ C(Y, ℂ)) : pullMat f (M * N) = pullMat f M * pullMat f N := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_mul, matEval_mul, matEval_pullMat, matEval_pullMat]
+
+theorem pullMat_one [DecidableEq ι] (f : C(X, Y)) :
+    pullMat f (1 : Matrix ι ι C(Y, ℂ)) = 1 := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_one, matEval_one]
+
+theorem pullMat_zero (f : C(X, Y)) : pullMat f (0 : Matrix ι κ C(Y, ℂ)) = 0 := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_zero, matEval_zero]
+
+theorem pullMat_conjTranspose (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ)) :
+    pullMat f Mᴴ = (pullMat f M)ᴴ := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_conjTranspose, matEval_conjTranspose, matEval_pullMat]
+
+theorem pullMat_constMat (f : C(X, Y)) (M : Matrix ι κ ℂ) :
+    pullMat f (constMat Y M) = constMat X M := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_constMat, matEval_constMat]
+
+theorem pullMat_fromBlocks {l m n p : Type*} (f : C(X, Y)) (A : Matrix l m C(Y, ℂ))
+    (B : Matrix l p C(Y, ℂ)) (C : Matrix n m C(Y, ℂ)) (D : Matrix n p C(Y, ℂ)) :
+    pullMat f (Matrix.fromBlocks A B C D)
+      = Matrix.fromBlocks (pullMat f A) (pullMat f B) (pullMat f C) (pullMat f D) := by
+  ext a b
+  rcases a with a | a <;> rcases b with b | b <;> rfl
+
+theorem isStarProjection_pullMat [Fintype ι] [DecidableEq ι] (f : C(X, Y))
+    {M : Matrix ι ι C(Y, ℂ)} (h : IsStarProjection M) : IsStarProjection (pullMat f M) := by
+  refine isStarProjection_of_forall_matEval fun x => ?_
+  rw [matEval_pullMat]
+  exact isStarProjection_matEval h _
+
+end Transfer
+
+/-! ### An orthonormal frame for the range of a projection
+
+The manuscript's "choose an orthonormal identification `E_i(x_i) ≅ ℂ^{r_i}`", proved by
+peeling rank-one subprojections off (`STW59.exists_rankOneProj_absorbed`), with no
+spectral theorem. -/
+
+/-- **A star projection of trace `k` is `s sᴴ` for an isometry `s : ℂ^k → ℂ^n`.** -/
+theorem exists_frame {n : Type*} [Fintype n] [DecidableEq n] :
+    ∀ (k : ℕ) (q : Matrix n n ℂ), IsStarProjection q → q.trace = (k : ℂ) →
+      ∃ s : Matrix n (Fin k) ℂ, sᴴ * s = 1 ∧ s * sᴴ = q := by
+  intro k
+  induction k with
+  | zero =>
+      intro q hq ht
+      have hq0 : q = 0 := proj_eq_zero_of_trace_eq_zero hq (by simpa using ht)
+      refine ⟨0, ?_, ?_⟩
+      · ext i j
+        exact i.elim0
+      · rw [hq0, Matrix.conjTranspose_zero, Matrix.mul_zero]
+  | succ k ih =>
+      intro q hq ht
+      have hne : q ≠ 0 := by
+        intro h
+        rw [h, Matrix.trace_zero] at ht
+        have hz : ((k + 1 : ℕ) : ℂ) = 0 := ht.symm
+        have hz' : (k + 1 : ℕ) = 0 := by exact_mod_cast hz
+        omega
+      obtain ⟨j, hj⟩ := exists_column_ne_zero hne
+      obtain ⟨x, hxu, hqP, hPq⟩ := exists_rankOneProj_absorbed hq hj
+      have hPproj : IsStarProjection (rankOneProj x) := isStarProjection_rankOneProj hxu
+      have hq' : IsStarProjection (q - rankOneProj x) := isStarProjection_sub hq hPproj hqP hPq
+      have ht' : (q - rankOneProj x).trace = (k : ℂ) := by
+        rw [Matrix.trace_sub, ht, trace_rankOneProj hxu]
+        push_cast
+        ring
+      obtain ⟨s', hs'1, hs'2⟩ := ih (q - rankOneProj x) hq' ht'
+      -- `x` as a one-column matrix, so that everything below is matrix multiplication
+      obtain ⟨col, hcol⟩ : ∃ c : Matrix n (Fin 1) ℂ, ∀ (a : n) (u : Fin 1), c a u = x a :=
+        ⟨Matrix.of fun a _ => x a, fun _ _ => rfl⟩
+      -- the peeled rank-one projection fixes `x`, so the remainder annihilates it
+      have hPx : rankOneProj x * col = col := by
+        ext i u
+        rw [Matrix.mul_apply, hcol i u]
+        have hterm : ∀ a : n, rankOneProj x i a * col a u = x i * (star (x a) * x a) := by
+          intro a
+          rw [rankOneProj_apply, hcol a u]
+          ring
+        rw [Finset.sum_congr rfl fun a _ => hterm a, ← Finset.mul_sum,
+          sum_star_mul_self hxu, mul_one]
+      have hzero : (q - rankOneProj x) * rankOneProj x = 0 := by
+        rw [Matrix.sub_mul, hqP, hPproj.isIdempotentElem.eq, sub_self]
+      have hAnn : (q - rankOneProj x) * col = 0 := by
+        have h1 : (q - rankOneProj x) * col = (q - rankOneProj x) * (rankOneProj x * col) := by
+          rw [hPx]
+        rw [h1, ← Matrix.mul_assoc, hzero, Matrix.zero_mul]
+      -- hence the frame of the remainder is orthogonal to `x`
+      have hsq : s'ᴴ * (q - rankOneProj x) = s'ᴴ := by
+        rw [← hs'2, ← Matrix.mul_assoc, hs'1, Matrix.one_mul]
+      have hOrth : ∀ j' : Fin k, (∑ a, star (s' a j') * x a) = 0 := by
+        intro j'
+        have hv : s'ᴴ * col = 0 := by
+          have h1 : s'ᴴ * col = (s'ᴴ * (q - rankOneProj x)) * col := by rw [hsq]
+          rw [h1, Matrix.mul_assoc, hAnn, Matrix.mul_zero]
+        have h2 : (s'ᴴ * col) j' 0 = 0 := by rw [hv, Matrix.zero_apply]
+        rw [Matrix.mul_apply] at h2
+        have hterm : ∀ a : n, s'ᴴ j' a * col a 0 = star (s' a j') * x a := by
+          intro a
+          rw [Matrix.conjTranspose_apply, hcol a 0]
+        rw [Finset.sum_congr rfl fun a _ => hterm a] at h2
+        exact h2
+      have hOrth' : ∀ j' : Fin k, (∑ a, star (x a) * s' a j') = 0 := by
+        intro j'
+        have hstep : (∑ a, star (x a) * s' a j') = star (∑ a, star (s' a j') * x a) := by
+          rw [star_sum]
+          refine Finset.sum_congr rfl fun a _ => ?_
+          rw [star_mul, star_star]
+        rw [hstep, hOrth j', star_zero]
+      -- the frame of `q`: the unit vector `x` followed by the frame of the remainder
+      obtain ⟨s, hs0, hssucc⟩ : ∃ s : Matrix n (Fin (k + 1)) ℂ,
+          (∀ a : n, s a 0 = x a) ∧ (∀ (a : n) (j' : Fin k), s a j'.succ = s' a j') :=
+        ⟨Matrix.of fun a => Fin.cons (x a) (s' a), fun _ => rfl, fun _ _ => rfl⟩
+      refine ⟨s, ?_, ?_⟩
+      · ext u v
+        rw [Matrix.mul_apply]
+        obtain rfl | ⟨u', rfl⟩ := u.eq_zero_or_eq_succ
+        · obtain rfl | ⟨v', rfl⟩ := v.eq_zero_or_eq_succ
+          · have hterm : ∀ a : n, sᴴ 0 a * s a 0 = star (x a) * x a := by
+              intro a
+              rw [Matrix.conjTranspose_apply, hs0 a]
+            rw [Finset.sum_congr rfl fun a _ => hterm a, sum_star_mul_self hxu,
+              Matrix.one_apply_eq]
+          · have hterm : ∀ a : n, sᴴ 0 a * s a v'.succ = star (x a) * s' a v' := by
+              intro a
+              rw [Matrix.conjTranspose_apply, hs0 a, hssucc a v']
+            rw [Finset.sum_congr rfl fun a _ => hterm a, hOrth' v',
+              Matrix.one_apply_ne (Ne.symm (Fin.succ_ne_zero v'))]
+        · obtain rfl | ⟨v', rfl⟩ := v.eq_zero_or_eq_succ
+          · have hterm : ∀ a : n, sᴴ u'.succ a * s a 0 = star (s' a u') * x a := by
+              intro a
+              rw [Matrix.conjTranspose_apply, hssucc a u', hs0 a]
+            rw [Finset.sum_congr rfl fun a _ => hterm a, hOrth u',
+              Matrix.one_apply_ne (Fin.succ_ne_zero u')]
+          · have hterm : ∀ a : n, sᴴ u'.succ a * s a v'.succ = s'ᴴ u' a * s' a v' := by
+              intro a
+              rw [Matrix.conjTranspose_apply, Matrix.conjTranspose_apply, hssucc a u',
+                hssucc a v']
+            rw [Finset.sum_congr rfl fun a _ => hterm a, ← Matrix.mul_apply, hs'1]
+            by_cases huv : u' = v'
+            · subst huv
+              rw [Matrix.one_apply_eq, Matrix.one_apply_eq]
+            · rw [Matrix.one_apply_ne huv,
+                Matrix.one_apply_ne (fun hsucc => huv (Fin.succ_inj.mp hsucc))]
+      · ext a b
+        rw [Matrix.mul_apply, Fin.sum_univ_succ]
+        have hhead : s a 0 * sᴴ 0 b = rankOneProj x a b := by
+          rw [Matrix.conjTranspose_apply, hs0 a, hs0 b, rankOneProj_apply]
+        have htail : ∀ j' : Fin k, s a j'.succ * sᴴ j'.succ b = s' a j' * s'ᴴ j' b := by
+          intro j'
+          rw [Matrix.conjTranspose_apply, Matrix.conjTranspose_apply, hssucc a j',
+            hssucc b j']
+        rw [hhead, Finset.sum_congr rfl fun j' _ => htail j', ← Matrix.mul_apply, hs'2,
+          Matrix.sub_apply]
+        ring
 
 /-! ### The base spaces -/
 
@@ -121,7 +328,7 @@ instance sphereFive.instCompactSpace : CompactSpace ↥sphereFive :=
 
 instance sphereFive.instNonempty : Nonempty ↥sphereFive := by
   classical
-  refine Set.Nonempty.to_subtype ⟨fun i : Fin 3 => if i = 0 then (1 : ℂ) else 0, ?_⟩
+  refine ⟨⟨fun i : Fin 3 => if i = 0 then (1 : ℂ) else 0, ?_⟩⟩
   show (∑ i : Fin 3, ‖(if i = 0 then (1 : ℂ) else 0)‖ ^ 2) = 1
   rw [Finset.sum_eq_single (0 : Fin 3)]
   · simp
@@ -130,6 +337,12 @@ instance sphereFive.instNonempty : Nonempty ↥sphereFive := by
   · intro h
     exact absurd (Finset.mem_univ (0 : Fin 3)) h
 
+instance sphereFour.instCompactSpace : CompactSpace ↥sphereFour :=
+  isCompact_iff_compactSpace.mp (isCompact_sphere (0 : EuclideanSpace ℝ (Fin 5)) 1)
+
+instance sphereFour.instNonempty : Nonempty ↥sphereFour :=
+  Set.Nonempty.to_subtype (NormedSpace.sphere_nonempty.mpr zero_le_one)
+
 /-! ### Stage data -/
 
 /-- `r i = 2^{i+1}`, the rank of `E_i` in the manuscript's (4.1). -/
@@ -137,26 +350,36 @@ def stageRank (i : ℕ) : ℕ := 2 ^ (i + 1)
 
 @[simp] theorem stageRank_zero : stageRank 0 = 2 := by simp [stageRank]
 
+theorem stageRank_pos (i : ℕ) : 0 < stageRank i := by
+  unfold stageRank
+  positivity
+
 theorem stageRank_succ (i : ℕ) : stageRank (i + 1) = 2 * stageRank i := by
   unfold stageRank
   rw [pow_succ]
   ring
 
+/-- `rank H_i = ∑_{j<i} r_j`, defined by the same recursion as `H_i` itself. -/
+def hrank : ℕ → ℕ
+  | 0 => 0
+  | (i + 1) => hrank i + stageRank i
+
+@[simp] theorem hrank_zero : hrank 0 = 0 := rfl
+
+theorem hrank_succ (i : ℕ) : hrank (i + 1) = hrank i + stageRank i := rfl
+
 /-- The manuscript's `rank H_i = r_i - 2`, stated without truncated subtraction. -/
-theorem stageRank_sum (i : ℕ) : (∑ j : Fin i, stageRank (j : ℕ)) + 2 = stageRank i := by
+theorem hrank_add_two (i : ℕ) : hrank i + 2 = stageRank i := by
   induction i with
   | zero => simp [stageRank]
   | succ i ih =>
-      rw [Fin.sum_univ_castSucc]
-      simp only [Fin.val_castSucc, Fin.val_last]
-      rw [add_right_comm, ih, stageRank_succ]
-      ring
+      rw [hrank_succ, stageRank_succ]
+      omega
 
 /-- The manuscript's `dim_ℝ X_i = 2 r_i`: `X_i = S^4 × ∏_{j<i} ℂP^{r_j}` has real
 dimension `4 + ∑_{j<i} 2 r_j`. -/
-theorem realDim_baseX (i : ℕ) : 4 + ∑ j : Fin i, 2 * stageRank (j : ℕ) = 2 * stageRank i := by
-  have h := stageRank_sum i
-  rw [← Finset.mul_sum]
+theorem realDim_baseX (i : ℕ) : 4 + 2 * hrank i = 2 * stageRank i := by
+  have h := hrank_add_two i
   omega
 
 /-- `Y_i = ∏_{j<i} ℂP^{r_j}`. -/
@@ -165,11 +388,69 @@ abbrev baseY (i : ℕ) := ∀ j : Fin i, CP (stageRank (j : ℕ))
 /-- `X_i = S^4 × Y_i`. -/
 abbrev baseX (i : ℕ) := ↥sphereFour × baseY i
 
+/-- The coordinate projection `X_i → X_k` for `k ≤ i`, the manuscript's `π_{k,i}`. -/
+def basePr {k i : ℕ} (h : k ≤ i) : C(baseX i, baseX k) :=
+  ⟨fun w => (w.1, fun j => w.2 (Fin.castLE h j)), by
+    refine Continuous.prodMk continuous_fst (continuous_pi fun j => ?_)
+    exact (continuous_apply (Fin.castLE h j)).comp continuous_snd⟩
+
+@[simp]
+theorem basePr_apply {k i : ℕ} (h : k ≤ i) (w : baseX i) :
+    basePr h w = (w.1, fun j => w.2 (Fin.castLE h j)) := rfl
+
+theorem basePr_self (i : ℕ) : basePr (le_refl i) = ContinuousMap.id (baseX i) :=
+  ContinuousMap.ext fun _ => rfl
+
+theorem basePr_comp {k i m : ℕ} (h₁ : k ≤ i) (h₂ : i ≤ m) :
+    (basePr h₁).comp (basePr h₂) = basePr (h₁.trans h₂) :=
+  ContinuousMap.ext fun _ => rfl
+
+/-- **The tower of base spaces is surjective**: every point of `X_k` is `π_{k,i}` of a
+point of `X_i`.  This is what makes the connecting maps injective and what the dense
+point sequence of `Analysis/LIXConnectingMapPoints.lean` needs. -/
+theorem basePr_surjective {k i : ℕ} (h : k ≤ i) : Function.Surjective (basePr h) := by
+  classical
+  rintro ⟨w1, w2⟩
+  refine ⟨⟨w1, fun j : Fin i =>
+      if hj : (j : ℕ) < k then w2 ⟨(j : ℕ), hj⟩ else Classical.arbitrary _⟩, ?_⟩
+  exact Prod.ext rfl (funext fun j => dif_pos j.2)
+
+/-- `π_i : X_{i+1} → X_i`. -/
+abbrev baseProj (i : ℕ) : C(baseX (i + 1), baseX i) := basePr (Nat.le_succ i)
+
+/-! ### Index types
+
+They are recursive in the stage, so that `EIdx (i+1)` splits as `EIdx i ⊕ NIdx i`
+definitionally (up to the fixed associativity equivalence `eIdxSucc`). -/
+
+/-- The new block at stage `i`: `r_i` copies of the ambient `ℂ^{r_i+1}` of `ℂP^{r_i}`. -/
+abbrev NIdx (i : ℕ) : Type := Fin (stageRank i) × Fin (stageRank i + 1)
+
 /-- The index set of `H_i = ⊕_{j<i} L_{j+1}^{⊕ r_j}`. -/
-abbrev HIdx (i : ℕ) := Σ j : Fin i, Fin (stageRank (j : ℕ) + 1) × Fin (stageRank (j : ℕ))
+def HIdx : ℕ → Type
+  | 0 => Empty
+  | (i + 1) => HIdx i ⊕ NIdx i
+
+instance instFintypeHIdx : (i : ℕ) → Fintype (HIdx i)
+  | 0 => inferInstanceAs (Fintype Empty)
+  | (i + 1) =>
+      letI := instFintypeHIdx i
+      inferInstanceAs (Fintype (HIdx i ⊕ NIdx i))
+
+instance instDecidableEqHIdx : (i : ℕ) → DecidableEq (HIdx i)
+  | 0 => inferInstanceAs (DecidableEq Empty)
+  | (i + 1) =>
+      letI := instDecidableEqHIdx i
+      inferInstanceAs (DecidableEq (HIdx i ⊕ NIdx i))
+
+theorem HIdx_succ (i : ℕ) : HIdx (i + 1) = (HIdx i ⊕ NIdx i) := rfl
 
 /-- The index set of `E_i = 𝟏² ⊕ H_i`. -/
-abbrev EIdx (i : ℕ) := Fin 2 ⊕ HIdx i
+abbrev EIdx (i : ℕ) : Type := Fin 2 ⊕ HIdx i
+
+/-- `E_{i+1}`'s index set is `E_i`'s plus the new block, by associativity of `⊕`. -/
+def eIdxSucc (i : ℕ) : EIdx i ⊕ NIdx i ≃ EIdx (i + 1) :=
+  Equiv.sumAssoc (Fin 2) (HIdx i) (NIdx i)
 
 /-! ### The line bundles `L_{j+1}` pulled back to `X_i` -/
 
@@ -197,52 +478,106 @@ theorem trace_lineProj (i : ℕ) (j : Fin i) : Matrix.trace (lineProj i j) = 1 :
   rw [← trace_matEval, matEval_lineProj, trace_taut]
   rfl
 
+/-- `L_{i+1}`, the tautological line of the newest projective factor of `X_{i+1}`. -/
+def newLine (i : ℕ) :
+    Matrix (Fin (stageRank i + 1)) (Fin (stageRank i + 1)) C(baseX (i + 1), ℂ) :=
+  lineProj (i + 1) (Fin.last i)
+
+theorem isStarProjection_newLine (i : ℕ) : IsStarProjection (newLine i) :=
+  isStarProjection_lineProj _ _
+
+theorem trace_newLine (i : ℕ) : Matrix.trace (newLine i) = 1 :=
+  trace_lineProj _ _
+
+/-- The new block of `H_{i+1}`: `r_i` copies of `L_{i+1}`. -/
+def newBlock (i : ℕ) : Matrix (NIdx i) (NIdx i) C(baseX (i + 1), ℂ) :=
+  (1 : Matrix (Fin (stageRank i)) (Fin (stageRank i)) C(baseX (i + 1), ℂ)) ⊗ₖ newLine i
+
+theorem isStarProjection_newBlock (i : ℕ) : IsStarProjection (newBlock i) :=
+  isStarProjection_kronecker (IsStarProjection.one _) (isStarProjection_newLine i)
+
+theorem trace_newBlock (i : ℕ) :
+    Matrix.trace (newBlock i) = ((stageRank i : ℕ) : C(baseX (i + 1), ℂ)) := by
+  rw [newBlock, Matrix.trace_kronecker, Matrix.trace_one, trace_newLine, mul_one,
+    Fintype.card_fin]
+
 /-! ### `H_i` and `E_i` -/
 
-/-- `H_i = ⊕_{j<i} L_{j+1}^{⊕ r_j}`, as an explicit block-diagonal projection-valued
-continuous function on `X_i`. -/
-def Hproj (i : ℕ) : Matrix (HIdx i) (HIdx i) C(baseX i, ℂ) :=
-  Matrix.blockDiagonal' fun j : Fin i =>
-    Matrix.blockDiagonal fun _ : Fin (stageRank (j : ℕ)) => lineProj i j
+/-- `H_i = ⊕_{j<i} L_{j+1}^{⊕ r_j}`, built by the recursion
+`H_{i+1} = π_i^* H_i ⊕ L_{i+1}^{⊕ r_i}`. -/
+def Hproj : (i : ℕ) → Matrix (HIdx i) (HIdx i) C(baseX i, ℂ)
+  | 0 => 0
+  | (i + 1) =>
+      Matrix.fromBlocks (pullMat (baseProj i) (Hproj i)) 0 0 (newBlock i)
+
+theorem Hproj_zero : Hproj 0 = 0 := rfl
+
+theorem Hproj_succ (i : ℕ) : Hproj (i + 1) =
+    Matrix.fromBlocks (pullMat (baseProj i) (Hproj i)) 0 0 (newBlock i) := rfl
 
 /-- `E_i = 𝟏² ⊕ H_i`. -/
 def Eproj (i : ℕ) : Matrix (EIdx i) (EIdx i) C(baseX i, ℂ) :=
   Matrix.fromBlocks (1 : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) 0 0 (Hproj i)
 
-theorem Hproj_def (i : ℕ) : Hproj i = Matrix.blockDiagonal' fun j : Fin i =>
-    Matrix.blockDiagonal fun _ : Fin (stageRank (j : ℕ)) => lineProj i j := rfl
-
 theorem Eproj_def (i : ℕ) : Eproj i =
     Matrix.fromBlocks (1 : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) 0 0 (Hproj i) := rfl
 
-theorem isStarProjection_Hproj (i : ℕ) : IsStarProjection (Hproj i) :=
-  Hproj_def i ▸ isStarProjection_blockDiagonal' fun j =>
-    isStarProjection_blockDiagonal fun _ => isStarProjection_lineProj i j
+theorem isStarProjection_Hproj : ∀ i, IsStarProjection (Hproj i)
+  | 0 => IsStarProjection.zero _
+  | (i + 1) => by
+      rw [Hproj_succ]
+      exact isStarProjection_fromBlocks_diag
+        (isStarProjection_pullMat _ (isStarProjection_Hproj i)) (isStarProjection_newBlock i)
 
 theorem isStarProjection_Eproj (i : ℕ) : IsStarProjection (Eproj i) :=
-  Eproj_def i ▸ isStarProjection_fromBlocks_diag (IsStarProjection.one _) (isStarProjection_Hproj i)
+  Eproj_def i ▸ isStarProjection_fromBlocks_diag (IsStarProjection.one _)
+    (isStarProjection_Hproj i)
 
 /-- **`rank H_i = r_i - 2`**, in the untruncated form `trace H_i = ∑_{j<i} r_j`. -/
-theorem trace_Hproj (i : ℕ) :
-    Matrix.trace (Hproj i) = ((∑ j : Fin i, stageRank (j : ℕ) : ℕ) : C(baseX i, ℂ)) := by
-  rw [Hproj_def, Matrix.trace_blockDiagonal']
-  have h : ∀ j : Fin i,
-      Matrix.trace (Matrix.blockDiagonal fun _ : Fin (stageRank (j : ℕ)) => lineProj i j)
-        = ((stageRank (j : ℕ) : ℕ) : C(baseX i, ℂ)) := by
-    intro j
-    rw [Matrix.trace_blockDiagonal]
-    simp [trace_lineProj]
-  rw [Finset.sum_congr rfl (fun j _ => h j)]
-  push_cast
-  ring
+theorem trace_Hproj : ∀ i : ℕ,
+    Matrix.trace (Hproj i) = ((hrank i : ℕ) : C(baseX i, ℂ))
+  | 0 => by rw [Hproj_zero, Matrix.trace_zero, hrank_zero, Nat.cast_zero]
+  | (i + 1) => by
+      have hblocks : Matrix.trace (Hproj (i + 1))
+          = Matrix.trace (pullMat (baseProj i) (Hproj i)) + Matrix.trace (newBlock i) :=
+        trace_fromBlocks _ _ _ _
+      have hpull : Matrix.trace (pullMat (baseProj i) (Hproj i))
+          = ((hrank i : ℕ) : C(baseX (i + 1), ℂ)) := by
+        refine ContinuousMap.ext fun w => ?_
+        rw [← trace_matEval, matEval_pullMat, trace_matEval, trace_Hproj i]
+        rw [ContinuousMap.natCast_apply, ContinuousMap.natCast_apply]
+      rw [hblocks, hpull, trace_newBlock, hrank_succ]
+      push_cast
+      ring
 
 /-- **`rank E_i = r_i`.** -/
 theorem trace_Eproj (i : ℕ) :
     Matrix.trace (Eproj i) = ((stageRank i : ℕ) : C(baseX i, ℂ)) := by
-  rw [Eproj_def, trace_fromBlocks, Matrix.trace_one, trace_Hproj, Fintype.card_fin]
-  rw [← stageRank_sum i]
+  rw [Eproj_def, trace_fromBlocks, Matrix.trace_one, trace_Hproj, Fintype.card_fin,
+    ← hrank_add_two i]
   push_cast
   ring
+
+/-- The pointwise form of `rank E_i = r_i`, which is what the frame construction
+(`STW59.exists_frame`) consumes. -/
+theorem trace_matEval_Eproj (i : ℕ) (w : baseX i) :
+    (matEval w (Eproj i)).trace = ((stageRank i : ℕ) : ℂ) := by
+  rw [trace_matEval, trace_Eproj, ContinuousMap.natCast_apply]
+
+/-! ### The stage decomposition `E_{i+1} = π_i^* E_i ⊕ (𝟏_{r_i} ⊗ L_{i+1})` -/
+
+/-- **The manuscript's global bundle decomposition**
+`E_{i+1} ≅ π_i^* E_i ⊕ (E_i(x_i) ⊗ L_{i+1})`, with `E_i(x_i) ⊗ L_{i+1}` written as
+`𝟏_{r_i} ⊗ L_{i+1}` under the orthonormal identification `E_i(x_i) ≅ ℂ^{r_i}` of
+`STW59.exists_frame`.  The equivalence is the fixed associativity reindexing
+`STW59.eIdxSucc`; no unitary is involved. -/
+theorem Eproj_succ (i : ℕ) :
+    Eproj (i + 1) = Matrix.reindex (eIdxSucc i) (eIdxSucc i)
+      (Matrix.fromBlocks (pullMat (baseProj i) (Eproj i)) 0 0 (newBlock i)) := by
+  rw [Eproj_def, Eproj_def, Hproj_succ, pullMat_fromBlocks, pullMat_one, pullMat_zero,
+    pullMat_zero]
+  ext a b
+  rcases a with a | (a | a) <;> rcases b with b | (b | b) <;> rfl
 
 /-! ### `F` over `S^5 ⊂ ℂ³` -/
 
@@ -282,11 +617,12 @@ theorem hopfCol_conjTranspose_mul : hopfColᴴ * hopfCol = 1 := by
       ((matEval x hopfCol)ᴴ) u a * (matEval x hopfCol) a v
         = star ((x : Fin 3 → ℂ) a) * (x : Fin 3 → ℂ) a := by
     intro a
-    simp [Matrix.conjTranspose_apply]
+    rw [Matrix.conjTranspose_apply]
+    rfl
   rw [Finset.sum_congr rfl (fun a _ => hterm a), sum_star_mul_self x.2]
   have huv : u = v := Subsingleton.elim u v
   subst huv
-  simp
+  rw [Matrix.one_apply_eq]
 
 theorem trace_hopfProj : Matrix.trace hopfProj = 1 := by
   refine ContinuousMap.ext fun x => ?_
@@ -332,21 +668,20 @@ theorem murrayVonNeumannEquiv_Fproj :
         (0 : Matrix (Fin 1) (Fin 1) C(↥sphereFive, ℂ))) := by
   refine ⟨Matrix.fromBlocks Fproj hopfCol 0 0, ?_, ?_⟩
   · rw [Matrix.star_eq_conjTranspose, Matrix.fromBlocks_conjTranspose,
-      Matrix.fromBlocks_multiply]
-    simp only [Matrix.conjTranspose_zero,
+      Matrix.conjTranspose_zero,
       conjTranspose_eq_of_isStarProjection isStarProjection_Fproj,
-      Matrix.mul_zero, add_zero,
-      isStarProjection_Fproj.isIdempotentElem.eq, Fproj_mul_hopfCol,
-      hopfCol_conjTranspose_mul_Fproj, hopfCol_conjTranspose_mul]
+      Matrix.fromBlocks_multiply, isStarProjection_Fproj.isIdempotentElem.eq,
+      Fproj_mul_hopfCol, hopfCol_conjTranspose_mul_Fproj, hopfCol_conjTranspose_mul]
+    simp
   · have hkey : Fproj * Fproj + hopfCol * hopfColᴴ
         = (1 : Matrix (Fin 3) (Fin 3) C(↥sphereFive, ℂ)) := by
       rw [isStarProjection_Fproj.isIdempotentElem.eq, ← hopfProj_def, Fproj_def]
       abel
     rw [Matrix.star_eq_conjTranspose, Matrix.fromBlocks_conjTranspose,
-      Matrix.fromBlocks_multiply]
-    simp only [Matrix.conjTranspose_zero,
+      Matrix.conjTranspose_zero,
       conjTranspose_eq_of_isStarProjection isStarProjection_Fproj,
-      Matrix.zero_mul, Matrix.mul_zero, add_zero, hkey]
+      Matrix.fromBlocks_multiply, hkey]
+    simp
 
 /-! ### Rank is locally constant -/
 
@@ -368,11 +703,11 @@ theorem isLocallyConstant_of_natCast_valued {X : Type*} [TopologicalSpace X] {f 
   have habs := abs_lt.mp hdist
   have hlk : (l : ℤ) = (k : ℤ) := by
     have h1 : (l : ℤ) - (k : ℤ) < 1 := by
-      have : ((l : ℤ) : ℝ) - ((k : ℤ) : ℝ) < 1 := by push_cast; linarith [habs.2]
-      exact_mod_cast this
+      have hr : ((l : ℤ) : ℝ) - ((k : ℤ) : ℝ) < 1 := by push_cast; linarith [habs.2]
+      exact_mod_cast hr
     have h2 : (-1 : ℤ) < (l : ℤ) - (k : ℤ) := by
-      have : (-1 : ℝ) < ((l : ℤ) : ℝ) - ((k : ℤ) : ℝ) := by push_cast; linarith [habs.1]
-      exact_mod_cast this
+      have hr : (-1 : ℝ) < ((l : ℤ) : ℝ) - ((k : ℤ) : ℝ) := by push_cast; linarith [habs.1]
+      exact_mod_cast hr
     omega
   have hlk' : l = k := by exact_mod_cast hlk
   rw [hlk']

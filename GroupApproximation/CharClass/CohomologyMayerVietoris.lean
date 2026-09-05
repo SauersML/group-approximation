@@ -1,5 +1,4 @@
 import GroupApproximation.CharClass.CohomologyContractible
-import GroupApproximation.CharClass.RelativeDual
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.MayerVietoris
 
 /-!
@@ -14,9 +13,8 @@ chain complexes** for two opens `U ⊔ V = ⊤`,
 
 together with an explicit **degreewise splitting** (`mvSplitting`).  A degreewise
 split short exact sequence stays short exact under any additive functor, so
-dualizing with `Hom(-, F₂)` (`cc-relative`'s `dualFunctor`, exact because `F₂` is
-an injective module over itself) gives the short exact sequence of **cochain**
-complexes
+dualizing with `Hom(-, F₂)` — exact, because `F₂` is an injective module over
+itself — gives the short exact sequence of **cochain** complexes
 
 ```text
 0 → C^*_{U,V}(X) → C^*(U) ⊕ C^*(V) → C^*(U ∩ V) → 0,
@@ -32,11 +30,12 @@ the outer terms into honest cohomology of spaces:
 
 ## Main declarations
 
+* `cohDualFunctor`, `dualCxFunctor`, `dualCx2`, `dualMap2` — the dualization, with
+  its exactness and the quasi-isomorphism instance.
 * `mvCoSC`, `mvCoSC_shortExact` — the cochain-level short exact sequence.
 * `mvInterIso`, `mvAmbientIso` — the two identifications of the outer terms.
 * `mvDelta` — the connecting map `H^n(U ∩ V; F₂) ⟶ H^{n+1}(X; F₂)`.
-* `mvExact_inter`, `mvExact_sum`, `mvExact_ambient` — exactness at the three spots
-  of the raw sequence.
+* `mvExact_inter`, `mvExact_sum`, `mvExact_ambient` — exactness at the three spots.
 * `isZero_mvCoX2` — the middle term vanishes when both `H^n(U)` and `H^n(V)` do.
 * `mvConnectingIso` — `H^n(U ∩ V; F₂) ≅ H^{n+1}(X; F₂)` when `U` and `V` have
   vanishing cohomology in degrees `n` and `n+1`; this is the form used to compute
@@ -53,21 +52,65 @@ noncomputable section
 
 variable {X : TopCat.{0}}
 
-/-! ## 1. The dualizing functor on complexes -/
+/-! ## 1. The dualizing functor and its exactness -/
 
-/-- The dualizing functor `K ↦ Hom(K, F₂)` from chain complexes to cochain
-complexes; `dualCx` and `dualMap` of `RelativeDual.lean` are its object and
-morphism parts. -/
+/-- The dualizing functor `Hom(-, F₂) : (ModuleCat F₂)ᵒᵖ ⥤ ModuleCat F₂`; this is
+the functor out of which the vendored `singularCochainComplexFunctor` is built. -/
+abbrev cohDualFunctor : (ModuleCat.{0} (ZMod 2))ᵒᵖ ⥤ ModuleCat.{0} (ZMod 2) :=
+  (linearYoneda (ZMod 2) (ModuleCat.{0} (ZMod 2))).obj (ModuleCat.of (ZMod 2) (ZMod 2))
+
+instance cohDualFunctor_preservesLimits : PreservesLimits cohDualFunctor :=
+  have : PreservesLimits (cohDualFunctor ⋙ forget (ModuleCat.{0} (ZMod 2))) :=
+    (inferInstance : PreservesLimits (yoneda.obj (ModuleCat.of (ZMod 2) (ZMod 2))))
+  preservesLimits_of_reflects_of_preserves _ (forget _)
+
+/-- `Hom(-, F₂)` turns monomorphisms into epimorphisms: `F₂` is an injective module
+over itself (the vendored `moduleInjective_ZMod2`, Baer's criterion over a field). -/
+instance cohDualFunctor_preservesEpimorphisms : cohDualFunctor.PreservesEpimorphisms where
+  preserves {A B} f hf := by
+    haveI := hf
+    haveI : Mono f.unop := inferInstance
+    haveI : Module.Injective (ZMod 2) (ZMod 2) := moduleInjective_ZMod2 (ZMod 2)
+    rw [ModuleCat.epi_iff_surjective]
+    intro ψ
+    obtain ⟨h, hh⟩ := Module.Injective.out (R := ZMod 2) (Q := ZMod 2)
+      (f.unop).hom ((ModuleCat.mono_iff_injective f.unop).1 inferInstance) ψ.hom
+    refine ⟨ModuleCat.ofHom h, ?_⟩
+    show f.unop ≫ ModuleCat.ofHom h = ψ
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    exact hh x
+
+instance cohDualFunctor_preservesHomology : cohDualFunctor.PreservesHomology :=
+  Functor.preservesHomology_of_preservesEpis_and_kernels _
+
+/-- The dualizing functor on complexes, `K ↦ Hom(K, F₂)`. -/
 abbrev dualCxFunctor : (ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ)ᵒᵖ ⥤
     CochainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
   HomologicalComplex.opFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.down ℕ) ⋙
-    ((dualFunctor (ZMod 2)).mapHomologicalComplex _)
+    (cohDualFunctor.mapHomologicalComplex _)
 
-theorem dualCxFunctor_obj (K : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ) :
-    dualCxFunctor.obj (Opposite.op K) = dualCx (ZMod 2) K := rfl
+/-- The dual cochain complex of a chain complex. -/
+abbrev dualCx2 (K : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ) :
+    CochainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
+  dualCxFunctor.obj (Opposite.op K)
 
-theorem dualCxFunctor_map {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f : K ⟶ L) :
-    dualCxFunctor.map f.op = dualMap (ZMod 2) f := rfl
+/-- The dual of a chain map. -/
+abbrev dualMap2 {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f : K ⟶ L) :
+    dualCx2 L ⟶ dualCx2 K :=
+  dualCxFunctor.map f.op
+
+/-- **The dual of a quasi-isomorphism is a quasi-isomorphism** over `F₂`. -/
+instance dualMap2_quasiIso {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f : K ⟶ L)
+    [QuasiIso f] : QuasiIso (dualMap2 f) :=
+  inferInstanceAs (QuasiIso ((cohDualFunctor.mapHomologicalComplex _).map
+    ((HomologicalComplex.opFunctor (ModuleCat.{0} (ZMod 2))
+      (ComplexShape.down ℕ)).map f.op)))
+
+/-- The singular cochain complex is the dual of the singular chain complex. -/
+theorem cochainCxZMod2_eq_dualCx2 (Y : TopCat.{0}) :
+    cochainCxZMod2 Y = dualCx2 (singularChainComplex (ZMod 2) Y) := rfl
 
 /-! ## 2. The Mayer–Vietoris short exact sequence of cochain complexes -/
 
@@ -84,7 +127,7 @@ def mvCoSplitting (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     ((HomologicalComplex.eval (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) k).mapShortComplex.obj
       (mvCoSC U V hUV)).Splitting :=
   (((mvSplitting (ZMod 2) U V hUV k).ofIso (mvEvalIso (ZMod 2) U V hUV k).symm).op).map
-    (dualFunctor (ZMod 2))
+    cohDualFunctor
 
 theorem mvCoSC_degreewise_shortExact (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     ((HomologicalComplex.eval (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) k).mapShortComplex.obj
@@ -103,13 +146,12 @@ theorem mvCoSC_shortExact (U V : Opens X) (hUV : U ⊔ V = ⊤) :
 singular cochain complex of `S`: the corestriction of the inclusion is an
 isomorphism of chain complexes. -/
 def subCxDualIso (S : Set X) :
-    dualCx (ZMod 2) (subChainComplex (ZMod 2) X S) ≅ cochainCxZMod2 (TopCat.of S) :=
+    dualCx2 (subChainComplex (ZMod 2) X S) ≅ cochainCxZMod2 (TopCat.of S) :=
   dualCxFunctor.mapIso (asIso (subChainCorestrict (ZMod 2) X S)).op.symm
 
 /-- The `H^n` of the dual subordinate-chain complex is `H^n(S; F₂)`. -/
 def subCxDualHomologyIso (S : Set X) (n : ℕ) :
-    (dualCx (ZMod 2) (subChainComplex (ZMod 2) X S)).homology n
-      ≅ Hmod2 (TopCat.of S) n :=
+    (dualCx2 (subChainComplex (ZMod 2) X S)).homology n ≅ Hmod2 (TopCat.of S) n :=
   (HomologicalComplex.homologyFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) n).mapIso
     (subCxDualIso S)
 
@@ -124,10 +166,10 @@ of the dual Mayer–Vietoris sequence computes `H^n(X; F₂)`. -/
 def mvAmbientIso (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
     (mvCoSC U V hUV).X₁.homology n ≅ Hmod2 X n :=
   haveI : IsIso (HomologicalComplex.homologyMap
-      (dualMap (ZMod 2) (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))) n) :=
-    (HomologicalComplex.quasiIsoAt_iff_isIso_homologyMap _ _).mp inferInstance
+      (dualMap2 (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))) n) :=
+    (quasiIsoAt_iff_isIso_homologyMap _ _).mp inferInstance
   (asIso (HomologicalComplex.homologyMap
-    (dualMap (ZMod 2) (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))) n)).symm
+    (dualMap2 (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))) n)).symm
 
 /-! ## 4. The connecting map and exactness -/
 
@@ -166,17 +208,17 @@ theorem mvExact_ambient (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
 /-! ## 5. The connecting isomorphism -/
 
 /-- The middle term of the dual Mayer–Vietoris sequence has vanishing `H^n` as soon
-as both `H^n(U; F₂)` and `H^n(V; F₂)` vanish.  The biproduct identity
+as both `H^n(U; F₂)` and `H^n(V; F₂)` vanish: the biproduct identity
 `fst ≫ inl + snd ≫ inr = 𝟙` is carried through the additive dualizing functor and
-through `homologyMap`, so the identity of `H^n(X₂)` factors through two zero
-objects. -/
+through `homologyMap`, so the identity of `H^n(X₂)` is a sum of two maps that each
+factor through a zero object. -/
 theorem isZero_mvCoX2 (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ)
     (hU : IsZero (Hmod2 (TopCat.of (U : Set X)) n))
     (hV : IsZero (Hmod2 (TopCat.of (V : Set X)) n)) :
     IsZero ((mvCoSC U V hUV).X₂.homology n) := by
-  have hU' : IsZero ((dualCx (ZMod 2) (subChainComplex (ZMod 2) X (U : Set X))).homology n) :=
+  have hU' : IsZero ((dualCx2 (subChainComplex (ZMod 2) X (U : Set X))).homology n) :=
     IsZero.of_iso hU (subCxDualHomologyIso (U : Set X) n)
-  have hV' : IsZero ((dualCx (ZMod 2) (subChainComplex (ZMod 2) X (V : Set X))).homology n) :=
+  have hV' : IsZero ((dualCx2 (subChainComplex (ZMod 2) X (V : Set X))).homology n) :=
     IsZero.of_iso hV (subCxDualHomologyIso (V : Set X) n)
   rw [IsZero.iff_id_eq_zero]
   have htot :
@@ -185,28 +227,28 @@ theorem isZero_mvCoX2 (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ)
           (subChainComplex (ZMod 2) X (U : Set X) ⊞ subChainComplex (ZMod 2) X (V : Set X)))
       = 𝟙 _ := biprod.total
   have hid : 𝟙 ((mvCoSC U V hUV).X₂.homology n)
-      = HomologicalComplex.homologyMap
-            (dualCxFunctor.map (biprod.inl (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n
-          ≫ HomologicalComplex.homologyMap (dualCxFunctor.map (biprod.fst
+      = HomologicalComplex.homologyMap (dualMap2
+            (biprod.inl (X := subChainComplex (ZMod 2) X (U : Set X))
+              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+          ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.fst
               (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n
-        + HomologicalComplex.homologyMap (dualCxFunctor.map (biprod.inr
+              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+        + HomologicalComplex.homologyMap (dualMap2 (biprod.inr
               (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n
-          ≫ HomologicalComplex.homologyMap (dualCxFunctor.map (biprod.snd
+              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+          ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.snd
               (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n := by
+              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n := by
     rw [← HomologicalComplex.homologyMap_comp, ← HomologicalComplex.homologyMap_comp,
       ← Functor.map_comp, ← Functor.map_comp, ← op_comp, ← op_comp,
       ← HomologicalComplex.homologyMap_add, ← Functor.map_add, ← op_add, htot]
     simp
-  rw [hid, hU'.eq_of_src (HomologicalComplex.homologyMap (dualCxFunctor.map
+  rw [hid, hU'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
       (biprod.fst (X := subChainComplex (ZMod 2) X (U : Set X))
-        (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n) 0,
-    hV'.eq_of_src (HomologicalComplex.homologyMap (dualCxFunctor.map
+        (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0,
+    hV'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
       (biprod.snd (X := subChainComplex (ZMod 2) X (U : Set X))
-        (Y := subChainComplex (ZMod 2) X (V : Set X))).op) n) 0]
+        (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0]
   simp
 
 /-- **The Mayer–Vietoris connecting isomorphism.**  If `H^n(U)`, `H^n(V)`,

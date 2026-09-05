@@ -91,7 +91,7 @@ theorem cochainCupI_zero {R : Type} [CommRing R] {X : TopCat.{0}} (p q : ℕ)
   intro σ
   rw [cochainCupI_eval, cochainCup_eval]
   obtain ⟨c₀, hc₀⟩ : ∃ c : Fin (p + q + 1), (c : ℕ) = p := ⟨⟨p, by omega⟩, rfl⟩
-  have hmem : ({c₀} : Finset (Fin (p + q + 1))) ∈ cutIndex 0 (p + q) :=
+  have hmem : ({c₀} : Finset (Fin (p + q + 1))) ∈ cutIndex 1 (p + q) :=
     mem_cutIndex.2 (Finset.card_singleton c₀)
   have hcardU : (cutU ({c₀} : Finset (Fin (p + q + 1)))).card = p + 1 := by
     rw [card_cutU_singleton, hc₀]
@@ -99,7 +99,7 @@ theorem cochainCupI_zero {R : Type} [CommRing R] {X : TopCat.{0}} (p q : ℕ)
     have hcount := cutU_card_add_cutV_card ({c₀} : Finset (Fin (p + q + 1)))
     rw [hcardU, Finset.card_singleton] at hcount
     omega
-  have hsum : ∑ S ∈ cutIndex 0 (p + q), faceVal p φ σ (cutU S) * faceVal q ψ σ (cutV S)
+  have hsum : ∑ S ∈ cutIndex 1 (p + q), faceVal p φ σ (cutU S) * faceVal q ψ σ (cutV S)
       = faceVal p φ σ (cutU ({c₀} : Finset (Fin (p + q + 1))))
         * faceVal q ψ σ (cutV ({c₀} : Finset (Fin (p + q + 1)))) := by
     refine Finset.sum_eq_single _ ?_ ?_
@@ -144,7 +144,8 @@ theorem cochainCupI_zero {R : Type} [CommRing R] {X : TopCat.{0}} (p q : ℕ)
 
 /-! ## 3. `⌣ₘ` on a pair of `m`-cochains is the identity -/
 
-theorem cutIndex_self (m : ℕ) : cutIndex m m = {(Finset.univ : Finset (Fin (m + 1)))} := by
+theorem cutIndex_self (m : ℕ) :
+    cutIndex (m + 1) m = {(Finset.univ : Finset (Fin (m + 1)))} := by
   ext S
   rw [mem_cutIndex, Finset.mem_singleton]
   constructor

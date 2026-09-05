@@ -110,7 +110,7 @@ theorem su2_conjTranspose_mul_self {α β : ℂ} (h : Complex.normSq α + Comple
   fin_cases i <;> fin_cases j <;>
     simp [su2, su2_conjTranspose, Matrix.mul_apply, Fin.sum_univ_two, Matrix.one_apply] <;>
     first
-      | ring
+      | ring1
       | linear_combination hn
       | linear_combination -hn
 
@@ -121,7 +121,7 @@ theorem su2_mul_conjTranspose {α β : ℂ} (h : Complex.normSq α + Complex.nor
   fin_cases i <;> fin_cases j <;>
     simp [su2, su2_conjTranspose, Matrix.mul_apply, Fin.sum_univ_two, Matrix.one_apply] <;>
     first
-      | ring
+      | ring1
       | linear_combination hn
       | linear_combination -hn
 
@@ -213,7 +213,7 @@ theorem norm_hopfOff_le (z w : ℂ) : ‖hopfOff z w‖ ≤ eqRadius z w := by
     have hnw : ‖w‖ ^ 2 = Complex.normSq w := (Complex.normSq_eq_norm_sq w).symm
     rw [hopfOff, norm_mul, norm_mul, Complex.norm_real, RCLike.norm_conj,
       Real.norm_eq_abs, abs_div, abs_of_pos hpos]
-    rw [div_mul_eq_mul_div, div_mul_eq_mul_div, div_le_iff₀ hpos, hsq]
+    rw [div_mul_eq_mul_div, div_le_iff₀ hpos, hsq]
     have h2 : 2 * ‖z‖ * ‖w‖ ≤ ‖z‖ ^ 2 + ‖w‖ ^ 2 := by nlinarith [sq_nonneg (‖z‖ - ‖w‖)]
     rw [← hnz, ← hnw]
     nlinarith [norm_nonneg z, norm_nonneg w, h2]
@@ -229,8 +229,9 @@ theorem continuous_hopfDiag : Continuous fun p : ℂ × ℂ => hopfDiag p.1 p.2 
   rcases eq_or_ne (eqRadius p.1 p.2) 0 with hr | hr
   · refine continuousAt_of_norm_le (r := fun q : ℂ × ℂ => eqRadius q.1 q.2)
       (fun q => by simpa [Real.norm_eq_abs] using abs_hopfDiag_le q.1 q.2) ?_ ?_
-    · have := continuous_eqRadius.continuousAt (x := p)
-      rwa [hr] at this
+    · have h0 : Filter.Tendsto (fun q : ℂ × ℂ => eqRadius q.1 q.2) (nhds p)
+          (nhds (eqRadius p.1 p.2)) := continuous_eqRadius.continuousAt
+      rwa [hr] at h0
     · rw [hopfDiag, hr, div_zero]
   · exact ContinuousAt.div
       (((Complex.continuous_normSq.comp continuous_fst).sub
@@ -243,8 +244,9 @@ theorem continuous_hopfOff : Continuous fun p : ℂ × ℂ => hopfOff p.1 p.2 :=
   rcases eq_or_ne (eqRadius p.1 p.2) 0 with hr | hr
   · refine continuousAt_of_norm_le (r := fun q : ℂ × ℂ => eqRadius q.1 q.2)
       (fun q => norm_hopfOff_le q.1 q.2) ?_ ?_
-    · have := continuous_eqRadius.continuousAt (x := p)
-      rwa [hr] at this
+    · have h0 : Filter.Tendsto (fun q : ℂ × ℂ => eqRadius q.1 q.2) (nhds p)
+          (nhds (eqRadius p.1 p.2)) := continuous_eqRadius.continuousAt
+      rwa [hr] at h0
     · rw [hopfOff, hr]
       norm_num
   · have hden : ContinuousAt (fun q : ℂ × ℂ => ((2 / eqRadius q.1 q.2 : ℝ) : ℂ)) p :=

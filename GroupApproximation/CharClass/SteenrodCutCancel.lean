@@ -391,25 +391,25 @@ theorem cut_insert_cancel {M : Type*} [AddCommGroup M] (h2 : ∀ x : M, x + x = 
 
 /-- Summing over cut sets of size `i+2` together with a chosen cut point is the
 same as summing over cut sets of size `i+1` together with a non-cut point. -/
-theorem sum_cutIndex_succ_erase {M : Type*} [AddCommMonoid M] (i n : ℕ)
+theorem sum_cutIndex_succ_erase {M : Type*} [AddCommMonoid M] (m n : ℕ)
     (G : Finset (Fin (n + 1)) → Fin (n + 1) → M) :
-    ∑ T ∈ cutIndex (i + 1) n, ∑ c ∈ T, G (T.erase c) c
-      = ∑ T ∈ cutIndex i n, ∑ c ∈ Tᶜ, G T c := by
+    ∑ T ∈ cutIndex (m + 1) n, ∑ c ∈ T, G (T.erase c) c
+      = ∑ T ∈ cutIndex m n, ∑ c ∈ Tᶜ, G T c := by
   classical
   have step : ∀ c : Fin (n + 1),
-      ∑ T ∈ (cutIndex (i + 1) n).filter (fun T => c ∈ T), G (T.erase c) c
-        = ∑ T ∈ (cutIndex i n).filter (fun T => c ∉ T), G T c := by
+      ∑ T ∈ (cutIndex (m + 1) n).filter (fun T => c ∈ T), G (T.erase c) c
+        = ∑ T ∈ (cutIndex m n).filter (fun T => c ∉ T), G T c := by
     intro c
     refine Finset.sum_nbij' (fun T => T.erase c) (fun T => insert c T) ?_ ?_ ?_ ?_ ?_
     · intro T hT
       obtain ⟨hT1, hT2⟩ := Finset.mem_filter.1 hT
       have hcard : (T.erase c).card = T.card - 1 := Finset.card_erase_of_mem hT2
-      have hT1' : T.card = i + 1 + 1 := mem_cutIndex.1 hT1
+      have hT1' : T.card = m + 1 := mem_cutIndex.1 hT1
       refine Finset.mem_filter.2 ⟨mem_cutIndex.2 (by omega), Finset.notMem_erase _ _⟩
     · intro T hT
       obtain ⟨hT1, hT2⟩ := Finset.mem_filter.1 hT
       have hcard : (insert c T).card = T.card + 1 := Finset.card_insert_of_notMem hT2
-      have hT1' : T.card = i + 1 := mem_cutIndex.1 hT1
+      have hT1' : T.card = m := mem_cutIndex.1 hT1
       exact Finset.mem_filter.2 ⟨mem_cutIndex.2 (by omega), Finset.mem_insert_self c T⟩
     · intro T hT
       exact Finset.insert_erase (Finset.mem_filter.1 hT).2
@@ -418,22 +418,22 @@ theorem sum_cutIndex_succ_erase {M : Type*} [AddCommMonoid M] (i n : ℕ)
     · intro _ _
       rfl
   calc
-    ∑ T ∈ cutIndex (i + 1) n, ∑ c ∈ T, G (T.erase c) c
-        = ∑ T ∈ cutIndex (i + 1) n, ∑ c : Fin (n + 1),
+    ∑ T ∈ cutIndex (m + 1) n, ∑ c ∈ T, G (T.erase c) c
+        = ∑ T ∈ cutIndex (m + 1) n, ∑ c : Fin (n + 1),
             if c ∈ T then G (T.erase c) c else 0 := by
           refine Finset.sum_congr rfl fun T _ => ?_
           rw [← Finset.sum_filter, Finset.filter_univ_mem]
-    _ = ∑ c : Fin (n + 1), ∑ T ∈ cutIndex (i + 1) n,
+    _ = ∑ c : Fin (n + 1), ∑ T ∈ cutIndex (m + 1) n,
             if c ∈ T then G (T.erase c) c else 0 := Finset.sum_comm
-    _ = ∑ c : Fin (n + 1), ∑ T ∈ (cutIndex (i + 1) n).filter (fun T => c ∈ T),
+    _ = ∑ c : Fin (n + 1), ∑ T ∈ (cutIndex (m + 1) n).filter (fun T => c ∈ T),
             G (T.erase c) c := by
           refine Finset.sum_congr rfl fun c _ => (Finset.sum_filter _ _).symm
-    _ = ∑ c : Fin (n + 1), ∑ T ∈ (cutIndex i n).filter (fun T => c ∉ T), G T c :=
+    _ = ∑ c : Fin (n + 1), ∑ T ∈ (cutIndex m n).filter (fun T => c ∉ T), G T c :=
           Finset.sum_congr rfl fun c _ => step c
-    _ = ∑ c : Fin (n + 1), ∑ T ∈ cutIndex i n, if c ∉ T then G T c else 0 :=
+    _ = ∑ c : Fin (n + 1), ∑ T ∈ cutIndex m n, if c ∉ T then G T c else 0 :=
           Finset.sum_congr rfl fun c _ => Finset.sum_filter _ _
-    _ = ∑ T ∈ cutIndex i n, ∑ c : Fin (n + 1), if c ∉ T then G T c else 0 := Finset.sum_comm
-    _ = ∑ T ∈ cutIndex i n, ∑ c ∈ Tᶜ, G T c := by
+    _ = ∑ T ∈ cutIndex m n, ∑ c : Fin (n + 1), if c ∉ T then G T c else 0 := Finset.sum_comm
+    _ = ∑ T ∈ cutIndex m n, ∑ c ∈ Tᶜ, G T c := by
           refine Finset.sum_congr rfl fun T _ => ?_
           rw [← Finset.sum_filter]
           refine Finset.sum_congr ?_ fun _ _ => rfl
@@ -519,10 +519,10 @@ theorem cutV_map_succAbove {n : ℕ} (k : Fin (n + 2)) (S : Finset (Fin (n + 1))
 
 /-- Reindexing the cut sets of a boundary face as the cut sets of the simplex
 that avoid the deleted vertex. -/
-theorem sum_cutIndex_map {M : Type*} [AddCommMonoid M] (i n : ℕ) (k : Fin (n + 2))
+theorem sum_cutIndex_map {M : Type*} [AddCommMonoid M] (m n : ℕ) (k : Fin (n + 2))
     (F : Finset (Fin (n + 2)) → M) :
-    ∑ S ∈ cutIndex i n, F (S.map (Fin.succAboveOrderEmb k).toEmbedding)
-      = ∑ T ∈ (cutIndex i (n + 1)).filter (fun T => k ∉ T), F T := by
+    ∑ S ∈ cutIndex m n, F (S.map (Fin.succAboveOrderEmb k).toEmbedding)
+      = ∑ T ∈ (cutIndex m (n + 1)).filter (fun T => k ∉ T), F T := by
   classical
   refine Finset.sum_bij (fun S _ => S.map (Fin.succAboveOrderEmb k).toEmbedding) ?_ ?_ ?_ ?_
   · intro S hS

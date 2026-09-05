@@ -118,7 +118,7 @@ theorem sqrtPosCut_mul_sub_mul (r t : ℝ) :
         = sqrtPosCut r t * sqrtPosCut r t * (t - r) := by ring
       _ = posCut r t * (t - r) := by rw [hsq]
   rw [step]
-  rcases le_or_lt t r with h | h
+  rcases le_or_gt t r with h | h
   · rw [posCut_eq_zero h]; ring
   · rw [posCut_eq_sub h.le]
 
@@ -290,7 +290,7 @@ theorem mem_of_mul_self_le {I : Ideal B} [I.IsTwoSided] (hI : IsClosed (I : Set 
     have h := star_mul_self_nonneg s
     rwa [hssa] at h
   have hv0 : (0 : B) ≤ v := hssnn.trans hsv
-  rw [← hI.closure_eq, Metric.mem_closure_iff]
+  rw [← SetLike.mem_coe, ← hI.closure_eq, Metric.mem_closure_iff]
   intro ε hε
   obtain ⟨δ, hδ, hδε⟩ : ∃ δ : ℝ, 0 < δ ∧ δ < ε ^ 2 :=
     ⟨ε ^ 2 / 2, div_pos (pow_pos hε 2) (by norm_num), by linarith [pow_pos hε 2]⟩
@@ -364,8 +364,8 @@ theorem exists_ge_nonneg_mem_approx (hmono : Monotone S) (hdense : Dense (⋃ i,
   refine ⟨k ⊔ i, le_sup_left, star z * z, mul_mem (star_mem hzS) hzS,
     star_mul_self_nonneg z, ?_⟩
   have key : star z * z - b = star z * (z - s) + star (z - s) * s := by
-    rw [← hss, star_sub, hsa]
-    ring
+    rw [← hss, star_sub, hsa, mul_sub, sub_mul]
+    abel
   have hnn : (0 : ℝ) ≤ ‖z - s‖ := norm_nonneg _
   have hsn : (0 : ℝ) ≤ ‖s‖ := norm_nonneg _
   calc ‖star z * z - b‖
@@ -455,8 +455,11 @@ theorem exists_ge_mem_ideal_of_nonneg (hclosed : ∀ i, IsClosed (S i : Set B))
   have hmem : ‖a‖ ∈ spectrum ℝ a := CStarAlgebra.norm_mem_spectrum_of_nonneg ha0
   have hcutpos : 0 < posCut ε ‖a‖ := posCut_pos (by rw [hεdef] at hnorm ⊢; linarith)
   intro hc
+  have hspecmap : spectrum ℝ (cfc (posCut ε) a) = posCut ε '' spectrum ℝ a :=
+    cfc_map_spectrum (R := ℝ) (p := IsSelfAdjoint) (f := posCut ε) (a := a) hasa
+      hpc.continuousOn
   have hspec : posCut ε ‖a‖ ∈ spectrum ℝ (cfc (posCut ε) a) := by
-    rw [cfc_map_spectrum hasa hpc.continuousOn]
+    rw [hspecmap]
     exact ⟨‖a‖, hmem, rfl⟩
   rw [hc, spectrum.zero_eq] at hspec
   simp only [Set.mem_singleton_iff] at hspec
@@ -506,11 +509,12 @@ theorem isSimpleCStar_of_stagewise_full [Nonempty ι] (hclosed : ∀ i, IsClosed
   · refine Or.inr ?_
     obtain ⟨x, hxI, hx⟩ : ∃ x, x ∈ I ∧ x ≠ 0 := by
       by_contra hcon
-      push_neg at hcon
-      exact h ((Submodule.eq_bot_iff I).mpr fun x hxI => hcon x hxI)
+      refine h ((Submodule.eq_bot_iff I).mpr fun x hxI => ?_)
+      by_contra hx0
+      exact hcon ⟨x, hxI, hx0⟩
     refine eq_top_of_stagewise_full hclosed hmono hdense ?_ hIclosed hxI hx
     intro i a haS ha0 hane
-    obtain ⟨-, -, hfullin⟩ := hfull i a haS ha0 hane
+    obtain ⟨j, -, hfullin⟩ := hfull i a haS ha0 hane
     exact hfullin.isFull
 
 end Ideal

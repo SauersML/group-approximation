@@ -134,9 +134,8 @@ def scaleHomotopy (d : ℕ) :
   map_one_left x := (inclP_retract x).symm
 
 theorem retractMap_comp_inclPMap (d : ℕ) :
-    (retractMap d).comp (inclPMap d) = ContinuousMap.id (CP d) := by
-  ext z
-  exact retract_inclP z
+    (retractMap d).comp (inclPMap d) = ContinuousMap.id (CP d) :=
+  ContinuousMap.ext fun z => retract_inclP z
 
 /-- **`ℂP^{d+1}` with its base point removed is homotopy equivalent to `ℂP^d`.**
 One composite is the identity on the nose; the other is homotopic to the identity through
@@ -151,7 +150,6 @@ def punctureHomotopyEquiv (d : ℕ) :
     exact h.symm
   right_inv := by
     rw [retractMap_comp_inclPMap d]
-    exact ContinuousMap.Homotopic.refl _
 
 @[simp] theorem punctureHomotopyEquiv_apply (d : ℕ) (x : ↥(punctured d)) :
     punctureHomotopyEquiv d x = retract x := rfl

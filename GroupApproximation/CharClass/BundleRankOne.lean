@@ -43,7 +43,7 @@ variable {ι κ ρ : Type} [Fintype ι] [Fintype κ] [Fintype ρ]
 functions, never `EuclideanSpace`, exactly as in
 `Analysis/LIXProjectiveSpaceModel.lean`; `STW59.unitVectors ι` is the level set
 `eucNormSq = 1` (`mem_unitVectors_iff_eucNormSq`). -/
-def eucNormSq (u : ι → ℂ) : ℝ := ∑ i, ‖u i‖ ^ 2
+noncomputable def eucNormSq (u : ι → ℂ) : ℝ := ∑ i, ‖u i‖ ^ 2
 
 theorem eucNormSq_def (u : ι → ℂ) : eucNormSq u = ∑ i, ‖u i‖ ^ 2 := rfl
 
@@ -97,12 +97,14 @@ theorem trace_rankOneProj_eq (u : ι → ℂ) :
   rw [h, eucNormSq_def, Complex.ofReal_sum]
   exact Finset.sum_congr rfl fun i _ => mul_star_self_eq_normSq (u i)
 
+omit [Fintype κ] [Fintype ρ] in
 theorem mul_vecMulVec (a : Matrix κ ι ℂ) (w : ι → ℂ) (y : ρ → ℂ) :
     a * Matrix.vecMulVec w y = Matrix.vecMulVec (a *ᵥ w) y := by
   ext i j
   rw [Matrix.mul_apply, Matrix.vecMulVec_apply, Matrix.mulVec_apply_eq_sum, Finset.sum_mul]
   exact Finset.sum_congr rfl fun k _ => by rw [Matrix.vecMulVec_apply, mul_assoc]
 
+omit [Fintype κ] [Fintype ρ] in
 theorem vecMulVec_mul_conjTranspose (a : Matrix κ ι ℂ) (w : ρ → ℂ) (u : ι → ℂ) :
     Matrix.vecMulVec w (star u) * aᴴ = Matrix.vecMulVec w (star (a *ᵥ u)) := by
   ext i j
@@ -129,6 +131,7 @@ theorem mul_rankOneProj_self {p : Matrix ι ι ℂ} {u : ι → ℂ} (h : p *ᵥ
   rw [mul_rankOneProj, h]
   rfl
 
+omit [Fintype ι] in
 theorem rankOneProj_smul (c : ℂ) (u : ι → ℂ) :
     rankOneProj (c • u) = ((‖c‖ ^ 2 : ℝ) : ℂ) • rankOneProj u := by
   have hc : ((‖c‖ ^ 2 : ℝ) : ℂ) = c * star c := (mul_star_self_eq_normSq c).symm

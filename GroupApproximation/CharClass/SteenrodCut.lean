@@ -53,7 +53,7 @@ needs -- deleting a vertex of the ambient simplex (`cutU_map_succAbove`, in
 `|u ⌣ᵢ v| = |u| + |v| - i` is a natural subtraction, and therefore a partial
 function of the wrong shape for Lean.  Nothing here mentions it: the sum
 defining `⌣ᵢ` runs over *all* `(i+1)`-element cut sets of the *output* simplex
-(`cutIndex`), and the cardinality bookkeeping is discharged by the face
+(`cutIndex (i+1)`), and the cardinality bookkeeping is discharged by the face
 evaluation `faceVal` of `SteenrodCochain.lean`, which returns `0` on a subset
 of the wrong size.  No subtraction occurs anywhere in this development.
 -/
@@ -211,32 +211,25 @@ theorem cutU_card_add_cutV_card (S : Finset (Fin N)) :
   rw [cutU_union_cutV, cutU_inter_cutV] at h
   simpa [Finset.card_univ] using h.symm
 
-/-! ## 3. The index set of an `i`-cut -/
+/-! ## 3. The index set of a cut -/
 
-/-- The **`i`-cuts of an `n`-simplex**: the `(i+1)`-element sets of cut points
-among its `n+1` vertices.  No cardinality condition on the two families is
-imposed here; it is enforced by `faceVal` in `SteenrodCochain.lean`, which
-evaluates a cochain to `0` on a face of the wrong dimension. -/
-def cutIndex (i n : ℕ) : Finset (Finset (Fin (n + 1))) :=
-  (Finset.univ : Finset (Fin (n + 1))).powersetCard (i + 1)
+/-- The **cuts of an `n`-simplex with `m` cut points**: the `m`-element sets of
+vertices among its `n+1`.  Steenrod's `⌣ᵢ` uses `m = i + 1`; the size, rather
+than `i`, is the parameter here so that `m = 0` -- which is what the Leibniz
+case `⌣₀` reduces to -- is expressible.  No cardinality condition on the two
+families is imposed; that is enforced by `faceVal` in `SteenrodCochain.lean`,
+which evaluates a cochain to `0` on a face of the wrong dimension. -/
+def cutIndex (m n : ℕ) : Finset (Finset (Fin (n + 1))) :=
+  (Finset.univ : Finset (Fin (n + 1))).powersetCard m
 
 @[simp]
-theorem mem_cutIndex {i n : ℕ} {S : Finset (Fin (n + 1))} :
-    S ∈ cutIndex i n ↔ S.card = i + 1 := by
+theorem mem_cutIndex {m n : ℕ} {S : Finset (Fin (n + 1))} :
+    S ∈ cutIndex m n ↔ S.card = m := by
   simp [cutIndex, Finset.mem_powersetCard, Finset.subset_univ]
 
-theorem card_of_mem_cutIndex {i n : ℕ} {S : Finset (Fin (n + 1))} (hS : S ∈ cutIndex i n) :
-    S.card = i + 1 :=
+theorem card_of_mem_cutIndex {m n : ℕ} {S : Finset (Fin (n + 1))} (hS : S ∈ cutIndex m n) :
+    S.card = m :=
   mem_cutIndex.mp hS
-
-/-- For an admissible bidegree, the right family has the complementary size, and
-this is derived from the counting identity rather than imposed. -/
-theorem cutV_card_of_cutU_card {i n a b : ℕ} {S : Finset (Fin (n + 1))}
-    (hS : S ∈ cutIndex i n) (hab : a + b = n + i) (hU : (cutU S).card = a + 1) :
-    (cutV S).card = b + 1 := by
-  have hcount := cutU_card_add_cutV_card S
-  rw [hU, card_of_mem_cutIndex hS] at hcount
-  omega
 
 end CharClass
 end GroupApproximation

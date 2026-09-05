@@ -116,6 +116,7 @@ theorem evenMul_evenOne {X : TopCat.{0}} {n : ℕ} (a : EvenPiece X n)
     cohCast h (evenMul a (evenOne X)) = a := by
   show cohCast h (cohCast (two_mul_add n 0) (cup a (one X))) = a
   rw [cup_one, cohCast_cohCast]
+  exact cohCast_self _ a
 
 /-! ## 4. Pullback -/
 
@@ -157,10 +158,8 @@ def EvenH.component (X : TopCat.{0}) (n : ℕ) : EvenH X →+ EvenPiece X n :=
 
 @[simp] theorem EvenH.component_of (X : TopCat.{0}) (n : ℕ) (a : EvenPiece X n) :
     EvenH.component X n (EvenH.of X n a) = a := by
-  show (DirectSum.component (ZMod 2) ℕ (fun n : ℕ => EvenPiece X n) n)
-      (DirectSum.of (fun n : ℕ => EvenPiece X n) n a) = a
-  rw [DirectSum.component.of]
-  simp
+  show (DirectSum.of (fun n : ℕ => EvenPiece X n) n a) n = a
+  exact DirectSum.of_eq_same n a
 
 /-- A class concentrated in a single degree vanishes in `EvenH X` exactly when it
 vanishes in its own degree.  This is what turns a nonvanishing top Chern class in

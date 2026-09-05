@@ -186,14 +186,14 @@ theorem relInclusion_comp_pairRestriction (R : Type) [CommRing R] (X : TopCat.{0
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  have key : cochainPullback (sInclusion A) n
-      ((φ : relCochainSubmodule R X A n) : singularCochainGroup R X n) = 0 := by
+  have key : ∀ ψ : relCochainSubmodule R X A n,
+      cochainPullback (sInclusion A) n (ψ : singularCochainGroup R X n) = 0 := by
+    intro ψ
     apply cochain_ext
     intro τ
     rw [cochainPullback_eval, cochainEval_zero]
-    exact (φ : relCochainSubmodule R X A n).2 _
-      (isSubordinate_pushSimplex_sInclusion A n τ)
-  exact key
+    exact ψ.2 _ (isSubordinate_pushSimplex_sInclusion A n τ)
+  exact key φ
 
 /-! ## 4. The chain-level retraction of `A`-supported chains -/
 
@@ -288,16 +288,27 @@ instance subChainCorestrict_f_isIso (R : Type) [CommRing R] (X : TopCat.{0}) (A 
     (n : ℕ) : IsIso ((subChainCorestrict R X A).f n) :=
   (ConcreteCategory.isIso_iff_bijective _).mpr (subChainCorestrict_bijective A n)
 
+/-- The inverse of the vendored corestriction, in degree `n`.  Stated with the
+domain written as `(subChainComplex R X A).X n` so that instance search sees the
+morphism at its native type. -/
+def subChainCorestrictInv (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :
+    (subChainComplex R X A).X n ⟶ singularChainGroup R (TopCat.of A) n :=
+  inv ((subChainCorestrict R X A).f n)
+
+theorem subChainCorestrict_comp_inv (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X)
+    (n : ℕ) : (subChainCorestrict R X A).f n ≫ subChainCorestrictInv R X A n = 𝟙 _ := by
+  rw [subChainCorestrictInv, IsIso.hom_inv_id]
+
 /-- A retraction of the chain map induced by the inclusion `A ↪ X`. -/
 def relRetract (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :
     singularChainGroup R X n ⟶ singularChainGroup R (TopCat.of A) n :=
-  subKeep R X A n ≫ inv ((subChainCorestrict R X A).f n)
+  subKeep R X A n ≫ subChainCorestrictInv R X A n
 
 theorem singularChainMap_comp_relRetract (A : Set X) (n : ℕ) :
     singularChainMap R (sInclusion A) n ≫ relRetract R X A n = 𝟙 _ := by
   rw [relRetract, singularChainMap_sInclusion_eq, Category.assoc,
     ← Category.assoc (ModuleCat.ofHom (subChainSubmodule R X A n).subtype),
-    subtype_comp_subKeep, Category.id_comp, IsIso.hom_inv_id]
+    subtype_comp_subKeep, Category.id_comp, subChainCorestrict_comp_inv]
 
 /-! ## 5. The short exact sequence of the pair -/
 

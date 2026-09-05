@@ -57,31 +57,13 @@ noncomputable section
 def evenAlgebra {X P : TopCat.{0}} (π : P ⟶ X) : Algebra (EvenH X) (EvenH P) :=
   (EvenH.map π).toAlgebra
 
-/-- The Leray–Hirsch combination `c ↦ ∑_{i<r} π^*(c i) · ξ^i`. -/
+/-- The Leray–Hirsch combination `c ↦ ∑_{i<r} π^*(c i) · ξ^i`, written without a
+scalar action so that its type does not mention the non-canonical `Algebra`
+instance.  It is *definitionally* the scalar combination, because the algebra map
+of `RingHom.toAlgebra` acts by multiplication. -/
 def lhFun {X P : TopCat.{0}} (π : P ⟶ X) (r : ℕ) (ξ : EvenPiece P 1)
     (c : Fin r → EvenH X) : EvenH P :=
   ∑ i : Fin r, EvenH.map π (c i) * EvenH.of P 1 ξ ^ (i : ℕ)
-
-theorem lhFun_eq_smul {X P : TopCat.{0}} (π : P ⟶ X) (r : ℕ) (ξ : EvenPiece P 1)
-    (c : Fin r → EvenH X) :
-    letI := evenAlgebra π
-    lhFun π r ξ c = ∑ i : Fin r, c i • EvenH.of P 1 ξ ^ (i : ℕ) := by
-  letI := evenAlgebra π
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [Algebra.smul_def]
-  rfl
-
-/-- The Leray–Hirsch combination as an `EvenH X`-linear map. -/
-def lhLinear {X P : TopCat.{0}} (π : P ⟶ X) (r : ℕ) (ξ : EvenPiece P 1) :
-    letI := evenAlgebra π
-    (Fin r → EvenH X) →ₗ[EvenH X] EvenH P :=
-  letI := evenAlgebra π
-  { toFun := fun c => ∑ i : Fin r, c i • EvenH.of P 1 ξ ^ (i : ℕ)
-    map_add' := fun c c' => by
-      simp only [Pi.add_apply, add_smul]
-      exact Finset.sum_add_distrib
-    map_smul' := fun s c => by
-      simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply, Finset.smul_sum, smul_smul] }
 
 /-- **Leray–Hirsch data** for a rank-`r` projective bundle over `X`: the
 projection, the tautological degree-2 class, the statement that its powers form a
@@ -110,31 +92,34 @@ variable {X P : TopCat.{0}} (D : LerayHirschData X P)
 
 /-- The `PowerBasis` presented by Leray–Hirsch data.  This is the input of
 `CharClass/ChernRelation.lean`. -/
-def powerBasis :
-    letI := evenAlgebra D.proj
-    PowerBasis (EvenH X) (EvenH P) :=
-  letI := evenAlgebra D.proj
-  powerBasisOfBijective (EvenH.of P 1 D.taut) D.rank (lhLinear D.proj D.rank D.taut)
-    (fun c => rfl)
-    (by
-      have h : (lhLinear D.proj D.rank D.taut : (Fin D.rank → EvenH X) → EvenH P)
-          = lhFun D.proj D.rank D.taut := by
-        funext c
-        exact (lhFun_eq_smul D.proj D.rank D.taut c).symm
-      rw [h]
-      exact D.free)
+def powerBasis : @PowerBasis (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) :=
+  @powerBasisOfBijective' (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj)
+    (EvenH.of P 1 D.taut) D.rank (by exact D.free)
 
 /-- The **mod-2 Chern classes** of the bundle, as elements of the even cohomology
 ring of the base: the coefficients of the unique monic degree-`rank` relation
 satisfied by the tautological class. -/
 def chern (i : ℕ) : EvenH X :=
-  letI := evenAlgebra D.proj
-  chernClass D.powerBasis i
+  @chernClass (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis i
 
 /-- The **total Chern polynomial** `X^r + γ_1 X^{r-1} + ⋯ + γ_r`. -/
 def chernPolynomial : Polynomial (EvenH X) :=
-  letI := evenAlgebra D.proj
-  chernPoly D.powerBasis
+  @chernPoly (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis
+
+/-- `γ_0 = 1`. -/
+theorem chern_zero [Nontrivial (EvenH X)] : D.chern 0 = 1 :=
+  @chernClass_zero (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) _ D.powerBasis
+
+/-- `γ_i = 0` above the rank. -/
+theorem chern_eq_zero_of_lt {i : ℕ} (hi : D.rank < i) : D.chern i = 0 :=
+  @chernClass_eq_zero_of_lt (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis i
+    (by simpa using hi)
+
+/-- **The defining relation** `ξ^r + γ_1 ξ^{r-1} + ⋯ + γ_r = 0`. -/
+theorem aeval_taut_chernPolynomial :
+    @Polynomial.aeval (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj)
+      (EvenH.of P 1 D.taut) D.chernPolynomial = 0 :=
+  @aeval_gen_chernPoly (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis
 
 end LerayHirschData
 

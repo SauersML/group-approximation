@@ -100,37 +100,37 @@ a pair of faces of a fixed `(n+1)`-simplex.  The left side is what the
 coboundary of `⌣ᵢ₊₁` produces; the four sums on the right are what
 `δα ⌣ᵢ₊₁ β`, `α ⌣ᵢ₊₁ δβ`, `α ⌣ᵢ β` and `β ⌣ᵢ α` produce. -/
 theorem cut_coboundary_master {M : Type*} [AddCommGroup M] (h2 : ∀ x : M, x + x = 0)
-    {n : ℕ} (i : ℕ) (Θ : Finset (Fin (n + 2)) → Finset (Fin (n + 2)) → M) :
-    (∑ k : Fin (n + 2), ∑ S ∈ cutIndex (i + 1) n,
+    {n : ℕ} (m : ℕ) (Θ : Finset (Fin (n + 2)) → Finset (Fin (n + 2)) → M) :
+    (∑ k : Fin (n + 2), ∑ S ∈ cutIndex (m + 1) n,
         Θ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
           ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k))
-      = (∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ cutU T, Θ ((cutU T).erase c) (cutV T))
-        + (∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ cutV T, Θ (cutU T) ((cutV T).erase c))
-        + (∑ T ∈ cutIndex i (n + 1), Θ (cutU T) (cutV T))
-        + (∑ T ∈ cutIndex i (n + 1), Θ (cutV T) (cutU T)) := by
+      = (∑ T ∈ cutIndex (m + 1) (n + 1), ∑ c ∈ cutU T, Θ ((cutU T).erase c) (cutV T))
+        + (∑ T ∈ cutIndex (m + 1) (n + 1), ∑ c ∈ cutV T, Θ (cutU T) ((cutV T).erase c))
+        + (∑ T ∈ cutIndex m (n + 1), Θ (cutU T) (cutV T))
+        + (∑ T ∈ cutIndex m (n + 1), Θ (cutV T) (cutU T)) := by
   classical
   have step1 : ∀ k : Fin (n + 2),
-      (∑ S ∈ cutIndex (i + 1) n,
+      (∑ S ∈ cutIndex (m + 1) n,
           Θ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
             ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k))
-        = ∑ T ∈ (cutIndex (i + 1) (n + 1)).filter (fun T => k ∉ T),
+        = ∑ T ∈ (cutIndex (m + 1) (n + 1)).filter (fun T => k ∉ T),
             Θ ((cutU T).erase k) ((cutV T).erase k) :=
-    fun k => sum_cutIndex_map (i + 1) n k (fun T => Θ ((cutU T).erase k) ((cutV T).erase k))
+    fun k => sum_cutIndex_map (m + 1) n k (fun T => Θ ((cutU T).erase k) ((cutV T).erase k))
   have estep1 :
-      (∑ k : Fin (n + 2), ∑ S ∈ cutIndex (i + 1) n,
+      (∑ k : Fin (n + 2), ∑ S ∈ cutIndex (m + 1) n,
           Θ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
             ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k))
-        = ∑ k : Fin (n + 2), ∑ T ∈ (cutIndex (i + 1) (n + 1)).filter (fun T => k ∉ T),
+        = ∑ k : Fin (n + 2), ∑ T ∈ (cutIndex (m + 1) (n + 1)).filter (fun T => k ∉ T),
             Θ ((cutU T).erase k) ((cutV T).erase k) :=
     Finset.sum_congr rfl (fun k (_ : k ∈ Finset.univ) => step1 k)
   have eswap :
-      (∑ k : Fin (n + 2), ∑ T ∈ (cutIndex (i + 1) (n + 1)).filter (fun T => k ∉ T),
+      (∑ k : Fin (n + 2), ∑ T ∈ (cutIndex (m + 1) (n + 1)).filter (fun T => k ∉ T),
           Θ ((cutU T).erase k) ((cutV T).erase k))
-        = ∑ T ∈ cutIndex (i + 1) (n + 1), ∑ k ∈ (Tᶜ : Finset (Fin (n + 2))),
+        = ∑ T ∈ cutIndex (m + 1) (n + 1), ∑ k ∈ (Tᶜ : Finset (Fin (n + 2))),
             Θ ((cutU T).erase k) ((cutV T).erase k) :=
-    sum_compl_swap (cutIndex (i + 1) (n + 1))
+    sum_compl_swap (cutIndex (m + 1) (n + 1))
       (fun k T => Θ ((cutU T).erase k) ((cutV T).erase k))
-  have step2 : ∀ T ∈ cutIndex (i + 1) (n + 1),
+  have step2 : ∀ T ∈ cutIndex (m + 1) (n + 1),
       (∑ k ∈ (Tᶜ : Finset (Fin (n + 2))), Θ ((cutU T).erase k) ((cutV T).erase k))
         = ((∑ c ∈ cutU T, Θ ((cutU T).erase c) (cutV T))
             + (∑ c ∈ cutV T, Θ (cutU T) ((cutV T).erase c)))
@@ -141,11 +141,11 @@ theorem cut_coboundary_master {M : Type*} [AddCommGroup M] (h2 : ∀ x : M, x + 
       char2_move h2 (Finset.sum_sdiff (subset_cutV T)).symm]
     abel
   have hBD :
-      (∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ T, Θ ((cutU T).erase c) (cutV T))
-        + (∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ T, Θ (cutU T) ((cutV T).erase c))
-      = (∑ T ∈ cutIndex i (n + 1), Θ (cutU T) (cutV T))
-        + (∑ T ∈ cutIndex i (n + 1), Θ (cutV T) (cutU T)) := by
-    have hmerge : ∀ T ∈ cutIndex (i + 1) (n + 1),
+      (∑ T ∈ cutIndex (m + 1) (n + 1), ∑ c ∈ T, Θ ((cutU T).erase c) (cutV T))
+        + (∑ T ∈ cutIndex (m + 1) (n + 1), ∑ c ∈ T, Θ (cutU T) ((cutV T).erase c))
+      = (∑ T ∈ cutIndex m (n + 1), Θ (cutU T) (cutV T))
+        + (∑ T ∈ cutIndex m (n + 1), Θ (cutV T) (cutU T)) := by
+    have hmerge : ∀ T ∈ cutIndex (m + 1) (n + 1),
         ((∑ c ∈ T, Θ ((cutU T).erase c) (cutV T)) + ∑ c ∈ T, Θ (cutU T) ((cutV T).erase c))
           = ∑ c ∈ T,
               (Θ ((cutU (insert c (T.erase c))).erase c) (cutV (insert c (T.erase c)))
@@ -155,30 +155,45 @@ theorem cut_coboundary_master {M : Type*} [AddCommGroup M] (h2 : ∀ x : M, x + 
       refine Finset.sum_congr rfl fun c hc => ?_
       rw [Finset.insert_erase hc]
     have hreindex :
-        (∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ T,
+        (∑ T ∈ cutIndex (m + 1) (n + 1), ∑ c ∈ T,
             (Θ ((cutU (insert c (T.erase c))).erase c) (cutV (insert c (T.erase c)))
               + Θ (cutU (insert c (T.erase c))) ((cutV (insert c (T.erase c))).erase c)))
-          = ∑ T ∈ cutIndex i (n + 1), ∑ c ∈ (Tᶜ : Finset (Fin (n + 2))),
+          = ∑ T ∈ cutIndex m (n + 1), ∑ c ∈ (Tᶜ : Finset (Fin (n + 2))),
               (Θ ((cutU (insert c T)).erase c) (cutV (insert c T))
                 + Θ (cutU (insert c T)) ((cutV (insert c T)).erase c)) :=
-      sum_cutIndex_succ_erase i (n + 1) (fun T c =>
+      sum_cutIndex_succ_erase m (n + 1) (fun T c =>
         Θ ((cutU (insert c T)).erase c) (cutV (insert c T))
           + Θ (cutU (insert c T)) ((cutV (insert c T)).erase c))
     have hcancel :
-        (∑ T ∈ cutIndex i (n + 1), ∑ c ∈ (Tᶜ : Finset (Fin (n + 2))),
+        (∑ T ∈ cutIndex m (n + 1), ∑ c ∈ (Tᶜ : Finset (Fin (n + 2))),
             (Θ ((cutU (insert c T)).erase c) (cutV (insert c T))
               + Θ (cutU (insert c T)) ((cutV (insert c T)).erase c)))
-          = ∑ T ∈ cutIndex i (n + 1), (Θ (cutU T) (cutV T) + Θ (cutV T) (cutU T)) :=
-      Finset.sum_congr rfl (fun T (_ : T ∈ cutIndex i (n + 1)) => cut_insert_cancel h2 Θ T)
+          = ∑ T ∈ cutIndex m (n + 1), (Θ (cutU T) (cutV T) + Θ (cutV T) (cutU T)) :=
+      Finset.sum_congr rfl (fun T (_ : T ∈ cutIndex m (n + 1)) => cut_insert_cancel h2 Θ T)
     rw [← Finset.sum_add_distrib, Finset.sum_congr rfl hmerge, hreindex, hcancel,
       Finset.sum_add_distrib]
   rw [estep1, eswap, Finset.sum_congr rfl step2, Finset.sum_add_distrib,
     Finset.sum_add_distrib, Finset.sum_add_distrib, hBD]
   abel
 
-/-! ## 3. The coboundary formula on cochains -/
+/-! ## 3. Two degenerate cuts -/
 
-/-- **Steenrod's coboundary formula for `⌣ᵢ`, mod 2.**  Every term lives in
+theorem cutRank_empty {N : ℕ} (x : Fin N) : cutRank (∅ : Finset (Fin N)) x = 0 := by
+  unfold cutRank
+  rw [Finset.filter_empty, Finset.card_empty]
+
+theorem cutV_empty {N : ℕ} : cutV (∅ : Finset (Fin N)) = ∅ := by
+  ext x
+  rw [mem_cutV, cutRank_empty]
+  simp
+
+theorem cutIndex_zero (n : ℕ) : cutIndex 0 n = {(∅ : Finset (Fin (n + 1)))} := by
+  ext S
+  rw [mem_cutIndex, Finset.mem_singleton, Finset.card_eq_zero]
+
+/-! ## 4. The coboundary formula on cochains -/
+
+/-- **Steenrod's coboundary formula for `⌣ᵢ₊₁`, mod 2.**  Every term lives in
 degree `n + 1`; nothing is transported along a degree equality. -/
 theorem cochainCupI_coboundary {X : TopCat.{0}} (i a b n : ℕ)
     (α : singularCochainGroup (ZMod 2) X a) (β : singularCochainGroup (ZMod 2) X b) :
@@ -193,7 +208,7 @@ theorem cochainCupI_coboundary {X : TopCat.{0}} (i a b n : ℕ)
   have h2 : ∀ x : ZMod 2, x + x = 0 := by decide
   have hlhs : cochainEval (n + 1)
       (cochainCoboundary (ZMod 2) X n (cochainCupI (i + 1) a b n α β)) τ
-      = ∑ k : Fin (n + 2), ∑ S ∈ cutIndex (i + 1) n,
+      = ∑ k : Fin (n + 2), ∑ S ∈ cutIndex (i + 1 + 1) n,
           faceVal a α τ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
             * faceVal b β τ ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k) := by
     rw [cochainCoboundary_eval]
@@ -204,27 +219,81 @@ theorem cochainCupI_coboundary {X : TopCat.{0}} (i a b n : ℕ)
       cutU_map_succAbove k S, cutV_map_succAbove k S]
   have hT1 : cochainEval (n + 1)
       (cochainCupI (i + 1) (a + 1) b (n + 1) (cochainCoboundary (ZMod 2) X a α) β) τ
-      = ∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ cutU T,
+      = ∑ T ∈ cutIndex (i + 1 + 1) (n + 1), ∑ c ∈ cutU T,
           faceVal a α τ ((cutU T).erase c) * faceVal b β τ (cutV T) := by
     rw [cochainCupI_eval]
     refine Finset.sum_congr rfl fun T _ => ?_
     rw [faceVal_coboundary a n α τ (cutU T), Finset.sum_mul]
   have hT2 : cochainEval (n + 1)
       (cochainCupI (i + 1) a (b + 1) (n + 1) α (cochainCoboundary (ZMod 2) X b β)) τ
-      = ∑ T ∈ cutIndex (i + 1) (n + 1), ∑ c ∈ cutV T,
+      = ∑ T ∈ cutIndex (i + 1 + 1) (n + 1), ∑ c ∈ cutV T,
           faceVal a α τ (cutU T) * faceVal b β τ ((cutV T).erase c) := by
     rw [cochainCupI_eval]
     refine Finset.sum_congr rfl fun T _ => ?_
     rw [faceVal_coboundary b n β τ (cutV T), Finset.mul_sum]
   have hT3 : cochainEval (n + 1) (cochainCupI i a b (n + 1) α β) τ
-      = ∑ T ∈ cutIndex i (n + 1), faceVal a α τ (cutU T) * faceVal b β τ (cutV T) :=
+      = ∑ T ∈ cutIndex (i + 1) (n + 1), faceVal a α τ (cutU T) * faceVal b β τ (cutV T) :=
     cochainCupI_eval i a b (n + 1) α β τ
   have hT4 : cochainEval (n + 1) (cochainCupI i b a (n + 1) β α) τ
-      = ∑ T ∈ cutIndex i (n + 1), faceVal a α τ (cutV T) * faceVal b β τ (cutU T) := by
+      = ∑ T ∈ cutIndex (i + 1) (n + 1), faceVal a α τ (cutV T) * faceVal b β τ (cutU T) := by
     rw [cochainCupI_eval]
     exact Finset.sum_congr rfl fun T _ => mul_comm _ _
   rw [cochainEval_add, cochainEval_add, cochainEval_add, hlhs, hT1, hT2, hT3, hT4]
-  exact cut_coboundary_master h2 i (fun A B => faceVal a α τ A * faceVal b β τ B)
+  exact cut_coboundary_master h2 (i + 1) (fun A B => faceVal a α τ A * faceVal b β τ B)
+
+/-- **The Leibniz rule, the `i = 0` end of the same formula.**  There are no
+lower terms because a cut with no cut points has an empty right family, and a
+cochain evaluates to `0` on the empty face. -/
+theorem cochainCupI_coboundary_zero {X : TopCat.{0}} (a b n : ℕ)
+    (α : singularCochainGroup (ZMod 2) X a) (β : singularCochainGroup (ZMod 2) X b) :
+    cochainCoboundary (ZMod 2) X n (cochainCupI 0 a b n α β)
+      = cochainCupI 0 (a + 1) b (n + 1) (cochainCoboundary (ZMod 2) X a α) β
+        + cochainCupI 0 a (b + 1) (n + 1) α (cochainCoboundary (ZMod 2) X b β) := by
+  classical
+  apply cochain_ext
+  intro τ
+  have h2 : ∀ x : ZMod 2, x + x = 0 := by decide
+  have hlhs : cochainEval (n + 1)
+      (cochainCoboundary (ZMod 2) X n (cochainCupI 0 a b n α β)) τ
+      = ∑ k : Fin (n + 2), ∑ S ∈ cutIndex (0 + 1) n,
+          faceVal a α τ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
+            * faceVal b β τ ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k) := by
+    rw [cochainCoboundary_eval]
+    refine Finset.sum_congr rfl fun k _ => ?_
+    rw [neg_one_pow_zmod2, one_mul, cochainCupI_eval]
+    refine Finset.sum_congr rfl fun S _ => ?_
+    rw [faceVal_faceSimplex a n α k τ (cutU S), faceVal_faceSimplex b n β k τ (cutV S),
+      cutU_map_succAbove k S, cutV_map_succAbove k S]
+  have hT1 : cochainEval (n + 1)
+      (cochainCupI 0 (a + 1) b (n + 1) (cochainCoboundary (ZMod 2) X a α) β) τ
+      = ∑ T ∈ cutIndex (0 + 1) (n + 1), ∑ c ∈ cutU T,
+          faceVal a α τ ((cutU T).erase c) * faceVal b β τ (cutV T) := by
+    rw [cochainCupI_eval]
+    refine Finset.sum_congr rfl fun T _ => ?_
+    rw [faceVal_coboundary a n α τ (cutU T), Finset.sum_mul]
+  have hT2 : cochainEval (n + 1)
+      (cochainCupI 0 a (b + 1) (n + 1) α (cochainCoboundary (ZMod 2) X b β)) τ
+      = ∑ T ∈ cutIndex (0 + 1) (n + 1), ∑ c ∈ cutV T,
+          faceVal a α τ (cutU T) * faceVal b β τ ((cutV T).erase c) := by
+    rw [cochainCupI_eval]
+    refine Finset.sum_congr rfl fun T _ => ?_
+    rw [faceVal_coboundary b n β τ (cutV T), Finset.mul_sum]
+  have hvanish1 :
+      (∑ T ∈ cutIndex 0 (n + 1), faceVal a α τ (cutU T) * faceVal b β τ (cutV T)) = 0 := by
+    rw [cutIndex_zero, Finset.sum_singleton, cutV_empty]
+    refine mul_eq_zero_of_right _ (faceVal_of_card_ne β τ ?_)
+    rw [Finset.card_empty]
+    omega
+  have hvanish2 :
+      (∑ T ∈ cutIndex 0 (n + 1), faceVal a α τ (cutV T) * faceVal b β τ (cutU T)) = 0 := by
+    rw [cutIndex_zero, Finset.sum_singleton, cutV_empty]
+    refine mul_eq_zero_of_left (faceVal_of_card_ne α τ ?_) _
+    rw [Finset.card_empty]
+    omega
+  rw [cochainEval_add, hlhs, hT1, hT2]
+  have hmaster := cut_coboundary_master h2 0 (fun A B => faceVal a α τ A * faceVal b β τ B)
+  rw [hvanish1, hvanish2, add_zero, add_zero] at hmaster
+  exact hmaster
 
 end CharClass
 end GroupApproximation

@@ -161,14 +161,16 @@ theorem smallAnnToRel_comp (R : Type) [CommRing R] :
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  apply Subtype.ext
-  show cochainPullback (sInclusion (V : Set X)) n
-      (φ : singularCochainGroup R X n) = 0
-  apply cochain_ext
-  intro τ
-  rw [cochainPullback_eval, cochainEval_zero]
-  exact φ.2 _ (isSmallSimplex_of_subordinate_right U V hUV
-    (isSubordinate_pushSimplex_sInclusion (V : Set X) n τ))
+  have key : cochainPullback (sInclusion (V : Set X)) n
+      ((φ : smallAnnSubmodule R X (twoSetCover U V hUV) n) :
+        singularCochainGroup R X n) = 0 := by
+    apply cochain_ext
+    intro τ
+    rw [cochainPullback_eval, cochainEval_zero]
+    exact (φ : smallAnnSubmodule R X (twoSetCover U V hUV) n).2 _
+      (isSmallSimplex_of_subordinate_right U V hUV
+        (isSubordinate_pushSimplex_sInclusion (V : Set X) n τ))
+  exact Subtype.ext key
 
 /-- The excision short complex `smallAnn → C^*(X, U) → C^*(V, U ∩ V)`. -/
 def excisionShortComplex (R : Type) [CommRing R] :
@@ -176,44 +178,53 @@ def excisionShortComplex (R : Type) [CommRing R] :
   ShortComplex.mk (smallAnnToRel U V hUV R) (excisionCochainMap U V R)
     (smallAnnToRel_comp U V hUV R)
 
+/-- The candidate preimage of a relative cochain of `(V, U ∩ V)`: extend it by zero
+off the chains supported in `V`. -/
+theorem excisionCochainMap_preimage (R : Type) [CommRing R] (n : ℕ)
+    (χ : relCochainSubmodule R (TopCat.of (V : Set X))
+      (excisedSub (U : Set X) (V : Set X)) n) :
+    (relRetract R X (V : Set X) n
+        ≫ (χ : singularCochainGroup R (TopCat.of (V : Set X)) n))
+      ∈ relCochainSubmodule R X (U : Set X) n := by
+  intro σ hσ
+  show ((relRetract R X (V : Set X) n
+    ≫ (χ : singularCochainGroup R (TopCat.of (V : Set X)) n)).hom)
+      (chainGenerator R X n σ) = 0
+  rw [ModuleCat.comp_apply]
+  by_cases hV : IsSubordinate (V : Set X) σ
+  · obtain ⟨τ, rfl⟩ := exists_pushSimplex_of_subordinate (V : Set X) n hV
+    rw [relRetract_generator]
+    exact χ.2 τ (isSubordinate_excisedSub (U : Set X) (V : Set X) n τ hσ)
+  · rw [relRetract_generator_of_not (V : Set X) n hV, map_zero]
+
 theorem excisionCochainMap_surjective (R : Type) [CommRing R] (n : ℕ) :
     Function.Surjective ((excisionCochainMap U V R).f n).hom := by
   intro χ
-  have hmem : (relRetract R X (V : Set X) n ≫ (χ : singularCochainGroup R
-      (TopCat.of (V : Set X)) n)) ∈ relCochainSubmodule R X (U : Set X) n := by
-    intro σ hσ
-    show ((relRetract R X (V : Set X) n ≫
-      (χ : singularCochainGroup R (TopCat.of (V : Set X)) n)).hom)
-        (chainGenerator R X n σ) = 0
-    rw [ModuleCat.comp_apply]
-    by_cases hV : IsSubordinate (V : Set X) σ
-    · obtain ⟨τ, rfl⟩ := exists_pushSimplex_of_subordinate (V : Set X) n hV
-      rw [relRetract_generator]
-      exact χ.2 τ (isSubordinate_excisedSub (U : Set X) (V : Set X) n τ hσ)
-    · rw [relRetract_generator_of_not (V : Set X) n hV, map_zero]
-  refine ⟨⟨_, hmem⟩, ?_⟩
-  apply Subtype.ext
-  show cochainPullback (sInclusion (V : Set X)) n
-      (relRetract R X (V : Set X) n ≫ (χ : singularCochainGroup R
-        (TopCat.of (V : Set X)) n)) = (χ : singularCochainGroup R
-        (TopCat.of (V : Set X)) n)
+  refine ⟨⟨_, excisionCochainMap_preimage U V R n χ⟩, ?_⟩
+  refine Subtype.ext ?_
   show singularChainMap R (sInclusion (V : Set X)) n
-      ≫ (relRetract R X (V : Set X) n ≫ (χ : singularCochainGroup R
-        (TopCat.of (V : Set X)) n)) = _
+      ≫ (relRetract R X (V : Set X) n
+        ≫ ((χ : relCochainSubmodule R (TopCat.of (V : Set X))
+          (excisedSub (U : Set X) (V : Set X)) n) :
+          singularCochainGroup R (TopCat.of (V : Set X)) n))
+    = ((χ : relCochainSubmodule R (TopCat.of (V : Set X))
+        (excisedSub (U : Set X) (V : Set X)) n) :
+        singularCochainGroup R (TopCat.of (V : Set X)) n)
   rw [← Category.assoc, singularChainMap_comp_relRetract, Category.id_comp]
 
 theorem ker_excisionCochainMap (R : Type) [CommRing R] (n : ℕ)
     (φ : relCochainSubmodule R X (U : Set X) n)
-    (hφ : ((excisionCochainMap U V R).f n).hom φ = 0) :
+    (hφ : cochainPullback (sInclusion (V : Set X)) n
+      (φ : singularCochainGroup R X n) = 0) :
     (φ : singularCochainGroup R X n) ∈ smallAnnSubmodule R X (twoSetCover U V hUV) n := by
   intro σ hσ
   rcases subordinate_or_of_isSmallSimplex U V hUV hσ with hU | hV
   · exact φ.2 σ hU
   · obtain ⟨τ, rfl⟩ := exists_pushSimplex_of_subordinate (V : Set X) n hV
     have h : cochainEval n
-        (cochainPullback (sInclusion (V : Set X)) n (φ : singularCochainGroup R X n)) τ = 0 := by
-      rw [show cochainPullback (sInclusion (V : Set X)) n (φ : singularCochainGroup R X n)
-        = 0 from congrArg Subtype.val hφ, cochainEval_zero]
+        (cochainPullback (sInclusion (V : Set X)) n
+          (φ : singularCochainGroup R X n)) τ = 0 := by
+      rw [hφ, cochainEval_zero]
     rw [cochainPullback_eval] at h
     exact h
 
@@ -223,8 +234,11 @@ theorem excisionShortComplex_degreewise_shortExact (R : Type) [CommRing R] (n : 
   refine ShortComplex.ShortExact.mk' ?_ ?_ ?_
   · rw [ShortComplex.moduleCat_exact_iff]
     intro x₂ hx₂
-    exact ⟨⟨(x₂ : singularCochainGroup R X n), ker_excisionCochainMap U V hUV R n x₂ hx₂⟩,
-      Subtype.ext rfl⟩
+    have hval : cochainPullback (sInclusion (V : Set X)) n
+        ((x₂ : relCochainSubmodule R X (U : Set X) n) : singularCochainGroup R X n) = 0 :=
+      congrArg Subtype.val hx₂
+    exact ⟨⟨((x₂ : relCochainSubmodule R X (U : Set X) n) : singularCochainGroup R X n),
+      ker_excisionCochainMap U V hUV R n x₂ hval⟩, Subtype.ext rfl⟩
   · rw [ModuleCat.mono_iff_injective]
     exact fun a b hab => Subtype.ext (congrArg Subtype.val hab)
   · rw [ModuleCat.epi_iff_surjective]

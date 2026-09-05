@@ -34,6 +34,8 @@ the *index* (cohomological degree halved): `sliceClass` has `A_q` as its `q`-th
 coefficient.
 -/
 
+set_option autoImplicit false
+
 namespace GroupApproximation.CharClass
 
 open Finset
@@ -43,7 +45,7 @@ section Slice
 variable {R : Type*} [CommRing R] {J : Type*}
 
 /-- In characteristic two the odd coefficients of a square vanish. -/
-theorem Polynomial.coeff_mul_self_odd_eq_zero (h2 : (2 : R) = 0) (p : Polynomial R) {n : ℕ}
+theorem coeff_mul_self_odd_eq_zero (h2 : (2 : R) = 0) (p : Polynomial R) {n : ℕ}
     (hn : Odd n) : (p * p).coeff n = 0 := by
   rw [Polynomial.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
   exact sum_antidiagonal_self_eq_zero h2 (fun k => p.coeff k) hn
@@ -54,9 +56,12 @@ degree-`2q` component. -/
 noncomputable def sliceClass (u : Finset J) (h : J → R) (d : J → ℕ) : Polynomial R :=
   ∏ j ∈ u, (1 + Polynomial.C (h j) * Polynomial.X) ^ d j
 
+theorem sliceClass_def (u : Finset J) (h : J → R) (d : J → ℕ) :
+    sliceClass u h d = ∏ j ∈ u, (1 + Polynomial.C (h j) * Polynomial.X) ^ d j := rfl
+
 theorem sliceClass_coeff_zero (u : Finset J) (h : J → R) (d : J → ℕ) :
     (sliceClass u h d).coeff 0 = 1 := by
-  rw [Polynomial.coeff_zero_eq_eval_zero, sliceClass]
+  rw [Polynomial.coeff_zero_eq_eval_zero, sliceClass_def]
   simp
 
 /-- Every even exponent makes the slice class a square. -/
@@ -65,7 +70,7 @@ theorem sliceClass_eq_mul_self (u : Finset J) (h : J → R) (d : J → ℕ)
     sliceClass u h d
       = (∏ j ∈ u, (1 + Polynomial.C (h j) * Polynomial.X) ^ (d j / 2))
         * ∏ j ∈ u, (1 + Polynomial.C (h j) * Polynomial.X) ^ (d j / 2) := by
-  rw [sliceClass, ← Finset.prod_mul_distrib]
+  rw [sliceClass_def, ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun j hj => ?_
   obtain ⟨m, hm⟩ := hd j hj
   rw [← pow_add, hm, show (m + m) / 2 = m from by omega]
@@ -76,7 +81,7 @@ theorem sliceClass_coeff_odd_eq_zero (h2 : (2 : R) = 0) (u : Finset J) (h : J �
     (hd : ∀ j ∈ u, Even (d j)) {q : ℕ} (hq : Odd q) :
     (sliceClass u h d).coeff q = 0 := by
   rw [sliceClass_eq_mul_self u h d hd]
-  exact Polynomial.coeff_mul_self_odd_eq_zero h2 _ hq
+  exact coeff_mul_self_odd_eq_zero h2 _ hq
 
 theorem natDegree_one_add_C_mul_X_le (a : R) :
     (1 + Polynomial.C a * Polynomial.X : Polynomial R).natDegree ≤ 1 := by
@@ -88,11 +93,12 @@ theorem natDegree_one_add_C_mul_X_le (a : R) :
 
 theorem natDegree_sliceClass_le (u : Finset J) (h : J → R) (d : J → ℕ) :
     (sliceClass u h d).natDegree ≤ ∑ j ∈ u, d j := by
+  rw [sliceClass_def]
   refine (Polynomial.natDegree_prod_le _ _).trans ?_
   refine Finset.sum_le_sum fun j _ => ?_
   refine Polynomial.natDegree_pow_le.trans ?_
   calc d j * (1 + Polynomial.C (h j) * Polynomial.X : Polynomial R).natDegree
-      ≤ d j * 1 := Nat.mul_le_mul_left _ (natDegree_one_add_C_mul_X_le (h j))
+      ≤ d j * 1 := Nat.mul_le_mul le_rfl (natDegree_one_add_C_mul_X_le (h j))
     _ = d j := mul_one _
 
 /-- The slice class vanishes above the top index `∑_j d_j`. -/

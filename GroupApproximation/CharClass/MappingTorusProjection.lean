@@ -502,7 +502,8 @@ theorem mappingTorus_continuous (hV : Continuous V) (hG : Continuous G)
       (((Complex.continuous_ofReal.comp ht).neg).smul continuous_const)
   have hProj : Continuous fun p : Z × M => mtProj (t p.1) (mtTrans (G p.2) (y p.1)) := by
     simp only [mtProj]
-    exact continuous_const.smul (continuous_const.add hs)
+    have hc : Continuous fun _ : Z × M => (2⁻¹ : ℂ) := continuous_const
+    exact hc.smul (continuous_const.add hs)
   refine hProj.matrix_mul ?_
   simp only [double]
   exact continuous_fromBlocks' hVm continuous_const continuous_const hVm

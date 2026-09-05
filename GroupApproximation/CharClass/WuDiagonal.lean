@@ -53,6 +53,8 @@ smaller positive square of `1` vanishes.
 * `GroupApproximation.CharClass.SqData.wu_diagonal` — (Wu-diag) for `γ_j = e_j(y)`.
 -/
 
+set_option autoImplicit false
+
 namespace GroupApproximation.CharClass
 
 open Finset
