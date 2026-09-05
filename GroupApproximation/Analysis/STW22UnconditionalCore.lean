@@ -2,6 +2,7 @@ import GroupApproximation.Analysis.STW22ActualTraceSpaces
 import GroupApproximation.Analysis.STW22AntipodalNormComparison
 import GroupApproximation.Analysis.STW22BaseUniformTracialGauge
 import GroupApproximation.Analysis.STW22CanonicalTraceExtension
+import GroupApproximation.Analysis.STW22ConditionalNegativeSolution
 import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ComplexOddMapCommonZero
 
@@ -78,33 +79,24 @@ theorem antipodal_stw22_trace_problem_counterexample :
 
 /-- The actual completion of the actual unitized `c₀` base has a bundled
 tracial state which is not a uniform-two-continuous extension of a base trace.
-This is the literal negative answer to the trace-continuity question. -/
+This is the literal negative answer to the trace-continuity question.
+
+This and the two statements below are the conditional theorems of
+`STW22ConditionalNegativeSolution` with the proved Borsuk--Ulam statement
+substituted for their hypothesis. -/
 theorem not_everyAntipodalCompletionTraceIsContinuousExtension :
     ¬ EveryCompletionTraceIsContinuousExtension antipodalAllTracesGauge
       antipodalAllTracesGauge_isCoordinateNormComparison :=
-  not_everyCompletionTraceIsContinuousExtension_of_blockData
-    antipodalAllTracesGauge
-    antipodalAllTracesGauge_isCoordinateNormComparison
-    antipodalCoordinateStateBlockDataUnconditional
-
-/-- The canonical map from the actual base trace space to the actual bounded
-uniform-two completion trace space is injective. -/
-theorem antipodalCanonicalExtension_injective :
-    Function.Injective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) := by
-  simpa only [antipodalAllTracesGauge] using
-    (canonicalExtension_injective
-      antipodalAllTracesGauge_isCoordinateNormComparison)
+  not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam
+    complexOddMapCommonZero_unconditional
 
 /-- The canonical map from the actual base trace space to the actual bounded
 uniform-two completion trace space is not surjective. -/
 theorem antipodalCanonicalExtension_not_surjective :
     ¬ Function.Surjective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) := by
-  simpa only [antipodalAllTracesGauge] using
-    canonicalExtension_not_surjective_of_not_every
-      antipodalAllTracesGauge_isCoordinateNormComparison
-      not_everyAntipodalCompletionTraceIsContinuousExtension
+      antipodalAllTracesGauge_isCoordinateNormComparison) :=
+  antipodalCanonicalExtension_not_surjective_of_borsukUlam
+    complexOddMapCommonZero_unconditional
 
 /-- The literal trace-space proper inclusion: the canonical extension map is
 an injection but not a surjection. -/
@@ -113,18 +105,8 @@ theorem antipodal_trace_space_strict_inclusion :
       antipodalAllTracesGauge_isCoordinateNormComparison) ∧
     ¬ Function.Surjective (canonicalExtension
       antipodalAllTracesGauge_isCoordinateNormComparison) :=
-  ⟨antipodalCanonicalExtension_injective,
-    antipodalCanonicalExtension_not_surjective⟩
-
-/-- The sequence-model gauge used above is exactly the supremum of the
-two-norms coming from all bundled tracial states of the actual base algebra. -/
-theorem antipodalBaseTracialTwoSize_eq_completionGauge
-    (x : BaseAlgebra AntipodalCounterexampleBlock) :
-    STW22BaseUniformTracialGauge.baseTracialTwoSize x =
-      UniformTracialSequenceCompletion.uniformTwoNorm
-        antipodalAllTracesGauge x.1 := by
-  simpa only [antipodalAllTracesGauge] using
-    STW22BaseUniformTracialGauge.baseTracialTwoSize_eq_uniformTwoNorm_allTraces x
+  antipodal_trace_space_strict_inclusion_of_borsukUlam
+    complexOddMapCommonZero_unconditional
 
 #audit_closed_axioms antipodal_stw22_trace_problem_counterexample
 #audit_closed_axioms not_everyAntipodalCompletionTraceIsContinuousExtension

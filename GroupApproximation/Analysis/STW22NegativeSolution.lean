@@ -29,6 +29,10 @@ open STW22AntipodalTraceSimplexBauer
 open STW22BaseAlgebraUnitization
 open STW22BaseAlgebraNuclear
 open STW22CanonicalTraceExtension
+open CStarExactness
+open TopologicalSpace
+
+open scoped NNReal
 
 noncomputable section
 
@@ -54,8 +58,7 @@ theorem negativeSolutionToProblemXXII :
       STW22.IsTypeI.{0, v} AntipodalCounterexampleAlgebra ∧
       (∀ x : AntipodalCounterexampleAlgebra,
         STW22BaseUniformTracialGauge.baseTracialTwoSize x =
-          UniformTracialSequenceCompletion.uniformTwoNorm
-            antipodalAllTracesGauge x.1) ∧
+          STW22Assembly.uniformTwoNorm antipodalAllTracesGauge x.1) ∧
       Set.Nonempty antipodalWeakStarTraceSimplex ∧
       IsBauerSimplex ℝ≥0 antipodalWeakStarTraceSimplex ∧
       (CompactSpace AntipodalWeakStarExtremeBoundary ∧
@@ -63,17 +66,9 @@ theorem negativeSolutionToProblemXXII :
       Function.Injective (canonicalExtension
         antipodalAllTracesGauge_isCoordinateNormComparison) ∧
       ¬ Function.Surjective (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) := by
-  refine ⟨⟨inferInstance⟩,
-    separableSpace_baseAlgebra_antipodalCounterexampleBlock,
-    isNuclearCStarAlgebra_baseAlgebra_antipodalCounterexampleBlock,
-    isTypeI_baseAlgebra_antipodalCounterexampleBlock,
-    antipodalBaseTracialTwoSize_eq_completionGauge,
-    ⟨tracialStateEvaluation infinityBaseTracialState,
-      infinityBaseTracialState, rfl⟩,
-    isBauerSimplex_antipodalWeakStarTraceSimplex,
-    antipodalWeakStarExtremeBoundary_compact_metrizable, ?_⟩
-  exact antipodal_trace_space_strict_inclusion
+        antipodalAllTracesGauge_isCoordinateNormComparison) :=
+  negativeSolutionToProblemXXII_of_borsukUlam
+    complexOddMapCommonZero_unconditional
 
 #audit_closed_axioms negativeSolutionToProblemXXII
 
