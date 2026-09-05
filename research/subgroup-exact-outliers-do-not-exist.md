@@ -129,3 +129,14 @@ isometry proves the asserted flexible generatorwise correction.
 The argument uses neither equivalence of close normalized characters nor a
 `U(C)`-valued cocycle vanishing theorem.  Those were exactly the two gaps in
 the invalidated earlier route.
+
+The fixed-index restriction can now be removed from the analytic step.
+`moving-subgroup-schreier-correction-has-no-index-loss` works directly with
+`N`, without taking a normal core, and measures each generator's Schreier
+equations by their root-mean-square error over the cosets.  If that error is
+`beta`, the corrected dimension is at most `(1+4beta^2/kappa^2)d` and the
+generator error is at most `(1+10/kappa)beta`, independently of `[G:N]`.
+Thus moving finite-index subgroups are allowed whenever their measured
+edge discrepancy tends to zero.  The remaining cost is the actual
+Schreier word-area and subgroup-correction ledger; pointwise small
+presentation defect does not automatically control a moving ledger.

@@ -1,0 +1,134 @@
+---
+rg: 2
+id: moving-schreier-induction-original-rank-proof
+kind: route
+title: Normalize the induced corner by its original rank and retain orthogonality at the spectral cut
+target: moving-subgroup-schreier-correction-has-no-index-loss
+requires: []
+---
+
+Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
+representation
+
+```text
+Pi(g)(delta_t tensor xi)=delta_(t') tensor pi(n(g,t))xi,
+g t=t' n(g,t).
+```
+
+This is genuine for any subgroup: if `h t=t_1 n_1` and
+`g t_1=t_2 n_2`, then `(gh)t=t_2 n_2 n_1`, exactly the multiplication
+rule needed for `Pi(g)Pi(h)=Pi(gh)`.
+
+Define an isometry and its range projection by
+
+```text
+W:H->K,       W xi=m^(-1/2) sum_t delta_t tensor V_t^*xi,
+P=WW^*,       rank(P)=d.
+```
+
+For every `s`, block orthogonality gives the exact equality
+
+```text
+||Pi(s)W-WU_s||_HS^2/d
+ =(1/m)sum_t ||pi(n(s,t))V_t^*-V_(t')^* U_s||_(2,d)^2
+ =(1/m)sum_t ||U_s V_t-V_(t')pi(n(s,t))||_(2,d)^2.        (MSP1)
+```
+
+All norms on maps into `K` below are unnormalized HS norms divided by
+`sqrt(d)`, not by `sqrt(dim K)`.  Put `R_s=Pi(s)W-WU_s`.  Since `P`
+and its unitary conjugate have the same finite rank,
+
+```text
+||Pi(s)P Pi(s)^*-P||_HS^2
+ =2||(1-P)Pi(s)W||_HS^2
+ <=2||R_s||_HS^2 <=2 beta^2 d.                          (MSP2)
+```
+
+Let `E` be orthogonal projection in `HS(K)` onto the invariant subspace
+of the genuine conjugation representation `Ad(Pi)`.  Property `(T)` gives
+
+```text
+a:=||P-E(P)||_HS <= sqrt(2) beta sqrt(d)/kappa.           (MSP3)
+```
+
+The operator `Z=E(P)` is a positive contraction: it is the limit of lazy
+averages of unitary conjugates of `P`.  Put `Q=1_[1/2,1](Z)`.
+Spectral cutoff is a best approximation to `Z` among orthogonal
+projections in HS norm.  Indeed in an eigenbasis of `Z`, the expression
+`||Z-R||_HS^2=Tr(Z^2)+Tr(R)-2Tr(ZR)` is minimized by including exactly
+the eigenvectors with eigenvalues at least `1/2`.  Thus
+`||Z-Q||_HS<=||Z-P||_HS=a`.
+
+Both `Z` and `Q` are invariant.  Therefore `P-Z` is HS-orthogonal to
+`Z-Q`, which improves the usual triangle-inequality estimate to
+
+```text
+h^2:=||P-Q||_HS^2
+ =||P-Z||_HS^2+||Z-Q||_HS^2
+ <=2a^2 <=4 beta^2 d/kappa^2.                           (MSP4)
+```
+
+Write `d'=rank(Q)`.  For two projections,
+
+```text
+|d'-d| <= d'+d-2Tr(PQ)=h^2.                            (MSP5)
+```
+
+The subspace `QK` carries an exact representation.  If `d'<d`, add
+`d-d'` copies of the trivial representation.  Denote the resulting invariant
+space by `K_0`, its representation by `alpha`, and its dimension by
+`D=max(d,d')`.  The padding used at this stage is on an auxiliary summand
+orthogonal to `K`, and `0<=D-d<=h^2`.
+
+Extend the polar part of `QW` to an isometry `J:H->K_0`.  This is possible
+because `D>=d`.  On the kernel of `QW` choose the missing orthonormal
+vectors in `K_0`; they are orthogonal to the corresponding vectors in
+`WH`, because those vectors are orthogonal to `QK` and to the auxiliary
+padding.  If `lambda_1,...,lambda_d` are the eigenvalues of `W^*QW`,
+this choice gives
+
+```text
+||J-W||_HS^2
+ =2 sum_i(1-sqrt(lambda_i))
+ <=2 sum_i(1-lambda_i)
+ =2(d-Tr(PQ)) <=2h^2.                                  (MSP6)
+```
+
+Regard `W` and `J` as maps into the common enlarged ambient space and
+extend `Pi` there by the same trivial representation.  From `(MSP1)` and
+`(MSP6)`,
+
+```text
+||alpha(s)J-JU_s||_HS
+ <=||R_s||_HS+2||J-W||_HS
+ <=(1+4sqrt(2)/kappa) beta sqrt(d).                      (MSP7)
+```
+
+Identify `JH` with the original `C^d` inside `K_0`.  On its orthogonal
+complement the desired padded tuple is the identity.  The two maps
+`alpha(s)` and that identity padding have HS norm at most `sqrt(D-d)`
+on this complement.  The triangle inequality and `(MSP7)` give
+
+```text
+||alpha(s)-(U_s direct_sum I_(D-d))||_HS
+ <=(1+4sqrt(2)/kappa) beta sqrt(d)+2sqrt(D-d)
+ <=(1+(4sqrt(2)+4)/kappa) beta sqrt(d).
+```
+
+Since `D>=d` and `4sqrt(2)+4<10`, division by `sqrt(D)` proves `(MSC2)`.
+No step introduced a factor involving `m`, nor was a normal core taken.
+
+The induced representation extends to a unital star representation of
+`C^*(G)`, and the compression `Phi(x)=W^*Pi(x)W` is ucp because `W` is
+an isometry.  Computing its coset blocks gives `(MSC5)`.  Each summand of
+`Phi(s)` is unitary; expanding its squared distance from `U_s` and
+averaging gives the equality in `(MSC6)`.  The inequality follows from
+the triangle inequality followed by Cauchy--Schwarz for the uniform coset
+average (or directly by compressing `(MSP1)`).
+
+For `(MSC3)`, relator telescoping and subgroup-word telescoping give each
+edge error at most `A_(s,t)delta+ell_(s,t)xi`.  Apply the triangle
+inequality in `ell^2(T)` with probability measure `1/m`, then maximize
+over `s`.  Finally `(MSC4)` follows by contraposition from `(MSC2)`:
+a smaller `beta` than both displayed thresholds produces an exact padded
+representation inside both the prescribed dimension and distance budgets.

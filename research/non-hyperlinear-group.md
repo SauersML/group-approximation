@@ -6,6 +6,7 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/moving-schreier-correction-audit-2026-09-04.md
   - research/artifacts/unitary-expander-nonhyperlinearity-audit-2026-09-04.md
   - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md

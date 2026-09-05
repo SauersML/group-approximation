@@ -4,27 +4,27 @@ id: finite-index-exact-kazhdan-induction-proof
 kind: route
 title: Induce the exact subgroup representation and round its almost-invariant range projection
 target: subgroup-exact-outliers-do-not-exist
-requires: []
+requires:
+  - moving-subgroup-schreier-correction-has-no-index-loss
 ---
 
-Let the notation be as in the target.  Replacing the finite-index subgroup
-by its normal core preserves near-exactness and leaves a fixed finite index.
-Induce the exact subgroup representation to `G`, and use the section
-isometry `(SE2)`.  The finitely many section multiplication identities give
-the intertwining estimate `(SE4)` by relator and subgroup-word telescoping.
-Hence the range
-projection of the section isometry is almost invariant for the **exact**
-conjugation representation of `G` on the induced Hilbert--Schmidt space.
+Fix a transversal of the subgroup in the target, without replacing it by
+its normal core.  Set `V_t=sigma_j(q_t)` on the finitely many section
+representatives.  Express every Schreier element `n(s,t)` in the fixed
+subgroup generating menu on which `pi_j` is close to `sigma_j`.
 
-Property `(T)` now applies without any almost-representation loophole: its
-Kazhdan estimate puts that projection within `O(delta)` of the commutant of
-the induced representation.  Conditional expectation followed by the
-spectral cut at `1/2` produces a commuting projection of rank
-`dim(H)+o(dim H)`.  The two-projection polar decomposition identifies
-all but `o(dim H)` dimensions of the original range with this exact
-invariant range.  Conjugating the exact compressed induced representation
-back along that partial isometry, and using the original intertwining
-estimate, gives flexible normalized-HS correction on the fixed generators.
+The section identities have a finite root-mean-square area bound `B`, and
+the subgroup expressions have a finite root-mean-square length bound `L`.
+Both are independent of `j` because the subgroup and all word choices are
+fixed.  Thus `(MSC3)` in the required theorem gives
 
-Every constant depends only on the presentation, the finite section, and a
-Kazhdan pair for `G`, never on matrix dimension.  This proves the target.
+```text
+beta_j <= B delta_j+L xi_j -> 0.
+```
+
+Apply `(MSC2)`.  It gives exact representations on dimensions `D_j>=d_j`
+with `D_j/d_j<=1+4beta_j^2/kappa^2` and generatorwise distance at most
+`(1+10/kappa)beta_j` from the padded original tuple.  This is the target's
+flexible normalized-HS correction.  The quantitative theorem additionally
+shows that only the actual word ledger, not the index itself, matters if
+one later allows the subgroup to move.

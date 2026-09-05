@@ -37,6 +37,18 @@ the p = 3 HNN microstates to the `Lambda`-exact face
 
 ## Attempts
 
+- **Moving subgroup induction has no index loss.**
+  `moving-subgroup-schreier-correction-has-no-index-loss` improves the
+  fixed-index outlier exclusion: exact subgroup holonomy and vanishing
+  root-mean-square Schreier edge discrepancy correct the original lattice
+  tuple with constants independent of the subgroup index.  The corrected
+  invariant summand has relative dimension `1+O(beta^2)`, even if the
+  induced ambient dimension is arbitrarily larger.  This removes the
+  index itself as an analytic obstruction.  It does not produce the
+  exact subgroup holonomy or bound the moving word-area ledger from
+  defining-relator defect; those are the remaining requirements for using
+  this construction on an arbitrary microstate.
+
 - **Not weaker than full flexible stability for this group (superseded
   quantifier audit, 2026-08-26).**
   The first framing of this node called weak ucp-stability "strictly
