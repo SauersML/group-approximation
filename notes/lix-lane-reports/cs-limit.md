@@ -9,9 +9,40 @@
 | `Analysis/LIXLimitCompletion` | 2999 | new: `Limit`, `limIota`, `stage`, **persistence** |
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
+| `Analysis/LIXLimitWitness` | 3002 | new: packages the tower's data for its two consumers |
 
 The last four were built together in one probe, `Build completed successfully
-(2999 jobs)`, each with its own `Built …` line.
+(2999 jobs)`, each with its own `Built …` line.  **Re-probed clean at the start
+of this session** (all five together, `Build completed successfully (2999
+jobs)`, `ERROR_LINES=0`): the five modules above are still genuinely green,
+not a replay.
+
+`Analysis/LIXLimitWitness` is new this session, probed alone,
+`Build completed successfully (3002 jobs)`, `Built … (8.6s)` — not a replay.
+It repackages the tower's generic data into the two shapes its consumers ask
+for, so that the eventual concrete instantiation is a one-line application of
+each rather than a fresh proof:
+
+```lean
+-- Analysis/LIXLimitWitness
+CStarTower.hasK1InjWitness_limit (T : CStarTower A) {k} (u : unitary (A k))
+  (hstage : ∀ j (hj : k ≤ j), unitaryHom (T.climbHom hj) u ∉ unitaryComponentOne (A j))
+  (hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (A k))) :
+  HasK1InjWitness T.Limit                              -- cs-endpoint's exact name
+
+CStarTower.stagewiseFullTower (T : CStarTower A)
+  (full_stage : ∀ k (a : T.Limit), a ∈ T.stage k → 0 ≤ a → a ≠ 0 →
+    ∃ j, k ≤ j ∧ IsFullIn (T.stage j) a) :
+  LIX.StagewiseFullTower T.Limit                        -- cs-simplicity's exact structure
+```
+
+`hasK1InjWitness_limit` needed no fresh instance bookkeeping: `HasK1InjWitness` is a plain `def`,
+so `isDefEq` unfolds both files' spectral-order local instances down to the same
+`CStarAlgebra.spectralOrder`/`spectralOrderedRing` term and `exact` (term-mode, which this is)
+accepts it directly — the "different constants, same value" trap noted below only bites `rw`.
+`stagewiseFullTower` had to be a `noncomputable def`, not a `theorem`: `StagewiseFullTower`
+bundles data (fields `stage`, `isClosed_stage`, …), so its type is not a `Prop`, and it depends on
+`T.stage`, which is noncomputable. Both traps cost one probe cycle each; recorded below.
 
 Peer modules that also built clean inside cs-limit probes:
 `Analysis/CStarCompletion`, `Analysis/CStarCompletionCoe`,
@@ -72,22 +103,34 @@ T.separableSpace_colim, T.separableSpace_limit   -- given `∀ n, SeparableSpace
 
 ## 3. NEEDS
 
-From `cs-stages` (`Analysis/LIXStageAlgebra*`, `Analysis/LIXConnectingMap*`), in the
-`STW59` namespace it is already using:
+**Checked directly against the tree at the start of this session, not from memory.**  From
+`cs-stages` (`Analysis/LIXStageAlgebra*`, `Analysis/LIXConnectingMap*`), in the `STW59`
+namespace this lane is already committed to using:
 
 ```lean
-STW59.StageAlgebra : ℕ → Type                       -- exists, with `CStarAlgebra` instance
-instance : Nontrivial (STW59.StageAlgebra 0)
-STW59.connect : ∀ i, STW59.StageAlgebra i →⋆ₐ[ℂ] STW59.StageAlgebra (i + 1)
-STW59.connect_injective : ∀ i, Function.Injective (STW59.connect i)
+STW59.StageAlgebra : ℕ → Type                       -- LANDED (LIXStageAlgebra.lean, green),
+                                                     -- with a checked `CStarAlgebra` instance
+instance : Nontrivial (STW59.StageAlgebra 0)        -- STILL MISSING — grepped, zero hits
+STW59.connect : ∀ i, STW59.StageAlgebra i →⋆ₐ[ℂ] STW59.StageAlgebra (i + 1)   -- STILL MISSING
+STW59.connect_injective : ∀ i, Function.Injective (STW59.connect i)          -- STILL MISSING
 ```
 
-Then the tower is `CStarTower.ofInjective STW59.connect STW59.connect_injective`, and nothing
-else about the stages is used by this lane.  Unitality is free (`→⋆ₐ[ℂ]` is unital by
-definition) and isometry is derived from injectivity by `NonUnitalStarAlgHom.norm_map`, so a
-separate norm hypothesis is *not* needed.
+`Analysis/LIXConnectingMapPoints.lean` has landed (green in this lane's reprobe's transitive
+closure) but is only the dense point sequence `STW59.stagePoint` (manuscript's `x_i`); it is not
+the connecting map `φ_i` itself, which no file in the tree yet defines under any name (grepped
+`def connect\b`, `STW59.connect` over the whole `GroupApproximation/` tree — zero hits).  This is
+the sole remaining blocker on the concrete instantiation.
 
-From `cs-clutching` / `cs-simplicity`, for `T.exists_unitary_witness` at `k = 0`:
+Once those three land, the concrete tower is one line,
+`CStarTower.ofInjective STW59.connect STW59.connect_injective`, and nothing else about the
+stages is needed by this lane.  Unitality is free (`→⋆ₐ[ℂ]` is unital by definition) and isometry
+is derived from injectivity by `NonUnitalStarAlgHom.norm_map`, so a separate norm hypothesis is
+*not* needed.
+
+From `cs-clutching` / `cs-simplicity`, for `T.exists_unitary_witness`/`hasK1InjWitness_limit` at
+`k = 0` (checked: `cs-clutching`'s files build the matrix-level clutching machinery —
+`ClutchingObstruction`, `clutchingObstruction_of_equiv` — but not yet the stage-algebra-level
+`w_i`/Corollary 4/Lemma 6 that would produce these; likely itself blocked on `STW59.connect`):
 
 ```lean
 u : unitary (STW59.StageAlgebra 0)
@@ -99,14 +142,56 @@ hdiag  : diagOne u ∈ unitaryComponentOne (CStarMat 2 (STW59.StageAlgebra 0))
 `T.climbHom hj` is the composite connecting map `φ_{0,j}`; `hstage` is manuscript Corollary 4
 plus Lemma 6.
 
-For `cs-endpoint`: `T.exists_unitary_witness`'s `diagOne` is elaborated under the local
-instances `LIX.instSpectralPartialOrder` / `LIX.instSpectralStarOrderedRing`, both of which
-unfold to `CStarAlgebra.spectralOrder` / `CStarAlgebra.spectralOrderedRing`.  They are therefore
-`rfl`-equal to the endpoint file's own local instances, but they are *different constants*, so
-composition must go through `exact`/`apply` (defeq), not `rw`.
+For `cs-simplicity`'s `IsSimpleCStar` instantiation, additionally, `full_stage` (manuscript's
+fullness of the point-evaluation summand, transported along `ι_{k+1}` — see
+`Analysis/LIXSimplicityInstance.isFullIn_of_isFull_map`):
+
+```lean
+full_stage : ∀ (k : ℕ) (a : T.Limit), a ∈ T.stage k → 0 ≤ a → a ≠ 0 →
+  ∃ j, k ≤ j ∧ LIX.IsFullIn (T.stage j) a
+```
+
+`Analysis/LIXLimitWitness.stagewiseFullTower` (this lane, green) turns this single hypothesis
+straight into `LIX.StagewiseFullTower T.Limit`.
+
+For `cs-endpoint`, discharged by this session's `Analysis/LIXLimitWitness.hasK1InjWitness_limit`
+(no longer a live NEED — recorded for the general trap it resolves): `T.exists_unitary_witness`'s
+`diagOne` is elaborated under the local instances `LIX.instSpectralPartialOrder` /
+`LIX.instSpectralStarOrderedRing`, both of which unfold to `CStarAlgebra.spectralOrder` /
+`CStarAlgebra.spectralOrderedRing`.  They are therefore `rfl`-equal to the endpoint file's own
+local instances, but they are *different constants*, so composition must go through `exact`
+(defeq), not `rw` — and `exact` alone was enough; no re-registration of the endpoint's own local
+instances was needed, since `HasK1InjWitness` is a plain (non-`irreducible`) `def` and `isDefEq`
+unfolds through it automatically during term elaboration.
+
+**What this lane will do the moment the three `STW59.*` declarations above land**: a new file
+`Analysis/LIXLimitInstance.lean` with
+`abbrev STW59.limitTower := CStarTower.ofInjective STW59.connect STW59.connect_injective`,
+`abbrev LIXLimit := STW59.limitTower.Limit`, `instance : CStarAlgebra LIXLimit`,
+`instance : Nontrivial LIXLimit` (from `instNontrivialLimit`), and
+`hasK1InjWitness_limit`/`stagewiseFullTower` applied once `u`/`hstage`/`hdiag`/`full_stage` are
+available from `cs-clutching`/`cs-simplicity`.  Until then there is nothing further to instantiate
+without a `sorry` or an `axiom`, which this program forbids.
 
 ## 4. TRAPS
 
+* **A `def` that returns a `structure`'s worth of data is not a `theorem`, even when every field
+  is a proof.**  `StagewiseFullTower T.Limit` bundles four proof fields and reads like a
+  conjunction, but the structure itself is `Type u`-valued (`structure … where` with no
+  `: Prop` inherited), so `theorem stagewiseFullTower … : StagewiseFullTower T.Limit := where …`
+  fails with "type of theorem … is not a proposition"; the fix is `def`.  A `Prop`-valued
+  structure would not have this problem — the trap is specific to structures that bundle data
+  even when every individual field happens to be a proof.
+* **That `def` then needs `noncomputable` because a field it assigns does.**  `stage := T.stage`
+  makes the whole `def` inherit `T.stage`'s `noncomputable` (from `UniformSpace.Completion`
+  underneath); the error is `failed to compile definition … consider marking it as
+  'noncomputable'`, naming the offending field.
+* **`attribute [local instance]` must be re-stated before every declaration that needs it, not
+  once anywhere earlier in the file.**  Placing it after one theorem and before the next protects
+  only the second: the first theorem's own hypothesis types (`diagOne u ∈ …`, needing
+  `[PartialOrder][StarOrderedRing]` on the base algebra to resolve `CStarMat`'s `CStarAlgebra`
+  instance) still fail to elaborate if the attribute line comes later in the file.  Put it
+  immediately after the `variable` line it serves, before the first theorem that uses it.
 * **`ring` is commutative-only.**  `LIXFiniteStageNullHomotopy` closed a noncommutative
   expansion `ey·w − ex·P = ey·(w − P) + (ey − ex)·P` with `ring`, which reports
   `` `ring_nf` made no progress ``.  Fix: `rw [mul_sub, sub_mul]` then `abel`.  This was the
