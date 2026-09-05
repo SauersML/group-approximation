@@ -7,7 +7,9 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 ## 1. GREEN
 
-**`Build completed successfully (2996 jobs)`** — probe round 5, targets
+**`Build completed successfully (2996 jobs)`**, probe round 6, with a genuine
+`✔ Built GroupApproximation.Analysis.LIXEndpointStatement (9.1s)` in the same
+log — a build, not a `Replayed`. Targets:
 
 ```
 GroupApproximation.Analysis.CStarKOne
@@ -17,8 +19,9 @@ GroupApproximation.Analysis.LIXEndpointStatement
 GroupApproximation.Analysis.CStarKOneWhitehead
 ```
 
-All five of the lane's `Analysis/` modules.  The `Built`, not `Replayed`,
-evidence is in the earlier rounds rather than in round 5, so both are recorded:
+All five of the lane's `Analysis/` modules.  Round 5 gave the same count; round
+6 repeats it after a docstring rewrite, so the count is stable across a real
+edit rather than a replay of one measurement.  Per-module `Built` evidence:
 
 | module | first genuinely built |
 |---|---|
@@ -26,15 +29,23 @@ evidence is in the earlier rounds rather than in round 5, so both are recorded:
 | `Analysis/CStarSymmetryComponent` | round 3, same |
 | `Analysis/CStarKOneInjectivityCriterion` | round 4, `✔ Built … (15s)` |
 | `Analysis/CStarKOneWhitehead` | round 4, `✔ Built … (18s)` |
-| `Analysis/LIXEndpointStatement` | round 4, `✔ Built … (9.4s)` |
+| `Analysis/LIXEndpointStatement` | rounds 4 and 6, `✔ Built … (9.4s / 9.1s)` |
 
-Round 4 also cleared `Manuscript/NinetyNineProblems/ProblemLIX`, which failed
-only because its import `Analysis/CStarSimple` (owned by `cs-simplicity`) is
-red — three errors, all diagnosed and sent to that lane.  Nothing in my own
-files is red.
+**Root wiring done by the lead** at `GroupApproximation.lean:3311–3320`: all
+five, plus `CStarMatrixBlockInclusion`, `CStarUnitaryComponent` and
+`SequentialGroupColimit`.  `CStarSimple` and `ProblemLIX` are not wired, which
+is correct — the first is red.
 
-**Genericity check, done by reading the code with docstrings and comments
-stripped:** `KOne`, `kappa`, `K1Injective`, `K1Inj`, `not_k1Inj_of_witness`,
+**Genericity, argued structurally rather than by grep.**  The whole import
+closure of `Analysis/LIXEndpointStatement` is six modules —
+`SequentialGroupColimit`, `CStarUnitaryComponent`, `CStarMatrixBlockInclusion`,
+`CStarKOne`, `CStarKOneInjectivityCriterion` and itself — and not one of them
+is counterexample-specific.  So `KOne`, `kappa`, `K1Injective`, `K1Inj`,
+`not_k1Inj_of_witness`, `diagOne` and `HasK1InjWitness` *cannot* mention the
+counterexample: there is nothing in scope to mention.  That is stronger than
+the name check, which was also run and also passes —
+
+**reading the code with docstrings and comments stripped,** `KOne`, `kappa`, `K1Injective`, `K1Inj`, `not_k1Inj_of_witness`,
 `diagOne`, `HasK1InjWitness` and every other declaration in
 `Analysis/{CStarKOne, CStarKOneInjectivityCriterion, LIXEndpointStatement,
 CStarUnitaryComponent, SequentialGroupColimit, CStarMatrixBlockInclusion}`
