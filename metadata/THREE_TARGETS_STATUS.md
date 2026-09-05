@@ -1698,3 +1698,79 @@ foundation theorem a target-3 endpoint depends on, does the campaign actually
 apply it to the concrete `H_i`, `E_i`, `F`?**  A Chern-class API nobody can
 instantiate is not progress.  Nothing to report on it yet — no target-3
 endpoint exists to depend on anything.
+
+## Sweep 17, 2026-09-05 — the sphere-model fork, and no duplicate declarations
+
+Answering the three things the lead asked this lane to watch in the foundation
+half of the campaign.
+
+### (1) Model collisions — one found, and it is `S⁵`
+
+**`S⁵` exists twice, in incompatible types, with nothing bridging them.**
+
+| | type | carries |
+|---|---|---|
+| `STW59.sphereFive` (`Analysis/LIXBlockProjections.lean:117`) | `Set (Fin 3 → ℂ)`, `:= unitVectors (Fin 3)` — its own docstring says "the **plain** product space" | `hopfCol` (:249), the block projections, hence `F(x) = 1 − x xᴴ` |
+| `SphereOddDegree.Sphere n` (`SphereOddDegree/Basic.lean:19`) | `↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n+1))) 1)` | `borsuk_ulam`, the odd-degree theorem, **and the whole `AlgTop` cohomology stack** |
+
+The second row is the one that makes this urgent.  Checked by import: every
+foundation module that will compute the parity obstruction —
+`AlgTop/{CupProduct, CupAssoc, CrossProduct, SingularCohomology,
+SingularChainFree, CochainLeibniz, OddDegreeOfHomeomorphism}` — imports
+`SphereOddDegree`.  **No `LIX*` module imports it at all.**  So the mod-2
+cohomology will be computed about `Sphere 5` in `EuclideanSpace ℝ (Fin 6)`,
+while the projections it is supposed to be computing the Chern classes *of*
+live over `↥sphereFive` in `Fin 3 → ℂ`.
+
+`EuclideanSpace ℝ (Fin 6)` is `PiLp 2` — a different type from `Fin 6 → ℝ`,
+which is different again from `Fin 3 → ℂ`.
+
+**No bridge exists.**  Grepped every `LIX*` and `AlgTop/*` module for a
+homeomorphism or `≃ₜ` relating them: nothing.  The nearest thing in the tree is
+`Topology/OddMapNormalization.realToComplex`
+(`EuclideanSpace ℝ (Fin (2n+2)) → (Fin (n+1) → ℂ)`, proved continuous and
+injective), which is not stated as a homeomorphism of spheres and is not on any
+LIX import path.
+
+This is the expensive kind of fork rather than a dead end.  The spaces really
+are homeomorphic — finite dimension, equivalent norms,
+`unitVectors (Fin 3) = {x | ∑ ‖x i‖² = 1}` is exactly the ℓ² unit sphere — so it
+is provable.  But it is **not definitional**, so both halves keep compiling
+green while being about different spaces, and the mismatch surfaces only when
+someone applies Wu's formula to `F`: the latest possible moment and the most
+expensive.  Reported to `lix-design` by name, with the cheap fix (land
+`↥STW59.sphereFive ≃ₜ SphereOddDegree.Sphere 5` now; Mathlib's
+`PiLp.continuousLinearEquiv` gives the norm half and `realToComplex` the
+realification half).
+
+### (2) Statements that assume what they prove — nothing to report yet
+
+The instantiation column stays empty for a reason worth stating: **no target-3
+endpoint exists**, so no foundation theorem is yet depended on by anything.
+`grep ProblemLIX` over the corpus returns nothing.  `lix-design` has accepted
+that the named `Prop` that *is* Problem LIX lands first, before anything is
+proved about it, over Mathlib's `unitary` and `Subgroup.pathComponentOne` plus a
+generic `KOne` with no mention of the counterexample.  This lane will audit it
+against exactly that when it appears; until then the check has no subject.
+
+The sphere fork above is the first concrete instance of the shape the check is
+aimed at: a foundation API that cannot, as things stand, be applied to the
+campaign's concrete objects.
+
+### (3) Duplicate declarations — none in the foundation directories
+
+Indexed **59459 qualified names across 4352 files** (excluding the untracked
+FLT tree), with block-comment tracking so docstring prose is not mistaken for
+declarations.  **Zero exact collisions in `AlgTop/`, `KTheory/`, `Topology/` or
+`Analysis/LIX*`.**  Eight repo-wide, all in `GGT/` and `Higman/`, and all eight
+are `private`/public pairs — Lean mangles private names per module, so they do
+not clash.  Checked each rather than reporting the raw count.
+
+**Instrument note, the third this campaign.**  The first run of this scan
+reported dozens of collisions on words like `is`, `of`, `and` and `as`: the
+declaration regex was matching *prose inside docstrings* whose continuation
+lines happen to begin with `theorem`, `class` or `def`.  Fixed by tracking
+`/- … -/` depth.  Three instrument errors in seventeen sweeps — the `homologyπ`
+truncation, the `pgrep` wrapper over-count, and this — and in each case the raw
+number looked like a finding.  **The rule this lane now applies to itself: no
+count leaves this file without a spot-check of the individual rows behind it.**
