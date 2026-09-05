@@ -56,22 +56,28 @@ theorem isSelfAdjoint_star_mul_self (w : A) : star (star w * w) = star w * w := 
 
 theorem mul_star_self_idem (hw : w * star w * w = w) :
     (w * star w) * (w * star w) = w * star w := by
-  rw [mul_assoc w (star w) (w * star w), ← mul_assoc (star w) w (star w),
-    ← mul_assoc w (star w * w) (star w), ← mul_assoc w (star w) w, hw]
+  have hassoc : (w * star w) * (w * star w) = (w * star w * w) * star w := by
+    noncomm_ring
+  rw [hassoc, hw]
 
 theorem star_mul_self_idem (hw : w * star w * w = w) :
     (star w * w) * (star w * w) = star w * w := by
-  rw [mul_assoc (star w) w (star w * w), ← mul_assoc w (star w) w, hw]
+  have hassoc : (star w * w) * (star w * w) = star w * (w * star w * w) := by
+    noncomm_ring
+  rw [hassoc, hw]
 
 theorem mul_star_mul_self_left (hw : w * star w * w = w) : (w * star w) * w = w := hw
 
 theorem mul_star_mul_self_right (hw : w * star w * w = w) : w * (star w * w) = w := by
   rw [← mul_assoc]; exact hw
 
+/-- Adjointing a partial isometry gives one, and this is the identity used to move
+`star w` past its own projections. -/
 theorem star_mul_star_self_left (hw : w * star w * w = w) :
     star w * (w * star w) = star w := by
-  have := congrArg star hw
-  simpa [star_mul, mul_assoc] using this
+  have h := congrArg star hw
+  rw [star_mul, star_mul, star_star] at h
+  exact h
 
 end PartialIsometry
 
@@ -97,7 +103,7 @@ theorem unitary_of_complementary_partialIsometry
     (h₁pi : w₁ * star w₁ * w₁ = w₁) :
     star (w₀ + w₁) * (w₀ + w₁) = P ∧ (w₀ + w₁) * star (w₀ + w₁) = P ∧
       (w₀ + w₁) * p * star (w₀ + w₁) = q := by
-  -- `q` is idempotent, and `w₀` is fixed by its range projection on the left.
+  -- `p` and `q` are idempotent, and `w₀` is fixed by its two projections.
   have hqq : q * q = q := by rw [← h₀rng]; exact mul_star_self_idem h₀pi
   have hpp : p * p = p := by rw [← h₀src]; exact star_mul_self_idem h₀pi
   have hqw₀ : q * w₀ = w₀ := by rw [← h₀rng]; exact mul_star_mul_self_left h₀pi
@@ -106,32 +112,33 @@ theorem unitary_of_complementary_partialIsometry
   have hw₁' : (P - q) * w₁ = w₁ := by rw [← h₁rng]; exact mul_star_mul_self_left h₁pi
   -- `star w₀` absorbs `q` on the right, hence `P` on the right.
   have hsw₀q : star w₀ * q = star w₀ := by
-    have := congrArg star hqw₀
-    rwa [star_mul, ← h₀rng, isSelfAdjoint_mul_star_self, h₀rng] at this
+    have h := congrArg star hqw₀
+    rwa [star_mul, ← h₀rng, isSelfAdjoint_mul_star_self, h₀rng] at h
   have hsw₀P : star w₀ * P = star w₀ := by
     calc star w₀ * P = (star w₀ * q) * P := by rw [hsw₀q]
       _ = star w₀ * (q * P) := by rw [mul_assoc]
       _ = star w₀ * q := by rw [hqP]
       _ = star w₀ := hsw₀q
-  have hw₀sp : p * star w₀ = star w₀ := by
-    have := congrArg star hw₀p
-    rwa [star_mul, ← h₀src, isSelfAdjoint_star_mul_self, h₀src] at this
-  have hPsw₀ : P * star w₀ = star w₀ := by
-    calc P * star w₀ = P * (p * star w₀) := by rw [hw₀sp]
-      _ = (P * p) * star w₀ := by rw [mul_assoc]
-      _ = p * star w₀ := by rw [hPp]
-      _ = star w₀ := hw₀sp
-  -- the two cross terms vanish
+  have hpsw₀ : p * star w₀ = star w₀ := by
+    have h := congrArg star hw₀p
+    rwa [star_mul, ← h₀src, isSelfAdjoint_star_mul_self, h₀src] at h
+  -- `w₁` kills `p` on the right.
+  have hw₁p : w₁ * p = 0 := by
+    calc w₁ * p = (w₁ * (P - p)) * p := by rw [hw₁]
+      _ = w₁ * ((P - p) * p) := by rw [mul_assoc]
+      _ = w₁ * (P * p - p * p) := by rw [sub_mul]
+      _ = 0 := by rw [hPp, hpp, sub_self, mul_zero]
+  -- the four cross terms vanish
   have hcross₁ : star w₀ * w₁ = 0 := by
     calc star w₀ * w₁ = star w₀ * ((P - q) * w₁) := by rw [hw₁']
       _ = (star w₀ * (P - q)) * w₁ := by rw [mul_assoc]
       _ = (star w₀ * P - star w₀ * q) * w₁ := by rw [mul_sub]
       _ = 0 := by rw [hsw₀P, hsw₀q, sub_self, zero_mul]
   have hcross₂ : star w₁ * w₀ = 0 := by
+    have hsw₁ : star w₁ * (P - q) = star w₁ := by
+      have h := congrArg star hw₁'
+      rwa [star_mul, star_sub, hPstar, ← h₀rng, isSelfAdjoint_mul_star_self, h₀rng] at h
     have hsw₁q : star w₁ * q = 0 := by
-      have hsw₁ : star w₁ * (P - q) = star w₁ := by
-        have := congrArg star hw₁'
-        rwa [star_mul, star_sub, hPstar, ← h₀rng, isSelfAdjoint_mul_star_self, h₀rng] at this
       calc star w₁ * q = (star w₁ * (P - q)) * q := by rw [hsw₁]
         _ = star w₁ * ((P - q) * q) := by rw [mul_assoc]
         _ = star w₁ * (P * q - q * q) := by rw [sub_mul]
@@ -139,27 +146,22 @@ theorem unitary_of_complementary_partialIsometry
     calc star w₁ * w₀ = star w₁ * (q * w₀) := by rw [hqw₀]
       _ = (star w₁ * q) * w₀ := by rw [mul_assoc]
       _ = 0 := by rw [hsw₁q, zero_mul]
-  have hcross₃ : w₀ * star w₁ = 0 := by
-    have := congrArg star hcross₂
-    simpa [star_mul] using this
   have hcross₄ : w₁ * star w₀ = 0 := by
-    have := congrArg star hcross₁
-    simpa [star_mul] using this
-  -- `w₁` kills `p` on the right
-  have hw₁p : w₁ * p = 0 := by
-    calc w₁ * p = (w₁ * (P - p)) * p := by rw [hw₁]
-      _ = w₁ * ((P - p) * p) := by rw [mul_assoc]
-      _ = w₁ * (P * p - p * p) := by rw [sub_mul]
-      _ = 0 := by rw [hPp, hpp, sub_self, mul_zero]
+    calc w₁ * star w₀ = w₁ * (p * star w₀) := by rw [hpsw₀]
+      _ = (w₁ * p) * star w₀ := by rw [mul_assoc]
+      _ = 0 := by rw [hw₁p, zero_mul]
+  have hcross₃ : w₀ * star w₁ = 0 := by
+    have h := congrArg star hcross₄
+    rwa [star_mul, star_star, star_zero] at h
   refine ⟨?_, ?_, ?_⟩
   · calc star (w₀ + w₁) * (w₀ + w₁)
         = star w₀ * w₀ + star w₀ * w₁ + (star w₁ * w₀ + star w₁ * w₁) := by
-          rw [star_add]; ring
-      _ = P := by rw [h₀src, h₁src, hcross₁, hcross₂]; ring
+          rw [star_add]; noncomm_ring
+      _ = P := by rw [h₀src, h₁src, hcross₁, hcross₂]; abel
   · calc (w₀ + w₁) * star (w₀ + w₁)
         = w₀ * star w₀ + w₀ * star w₁ + (w₁ * star w₀ + w₁ * star w₁) := by
-          rw [star_add]; ring
-      _ = P := by rw [h₀rng, h₁rng, hcross₃, hcross₄]; ring
+          rw [star_add]; noncomm_ring
+      _ = P := by rw [h₀rng, h₁rng, hcross₃, hcross₄]; abel
   · have hgp : (w₀ + w₁) * p = w₀ := by rw [add_mul, hw₀p, hw₁p, add_zero]
     calc (w₀ + w₁) * p * star (w₀ + w₁) = w₀ * (star w₀ + star w₁) := by
           rw [hgp, star_add]
@@ -168,11 +170,11 @@ theorem unitary_of_complementary_partialIsometry
 
 /-! ### The manuscript's `g`, with `g e = s`
 
-`e` and `s` are the two unit sections of `V`; `r` is the rank-one projection they
-are both partial isometries *from* (in the matrix picture, `e` is the column vector
-`e` regarded as a matrix supported in one column, and `r` is the projection onto
-that column).  Their range projections are `p = e eᴴ` and `q = s sᴴ`, the projections
-onto the lines they span. -/
+`e` and `s` are the two unit sections of `V`; `r` is the projection they are both
+partial isometries *from* (in the matrix picture, `e` is the column vector `e`
+regarded as a matrix supported in one column, and `r` is the projection onto that
+column).  Their range projections are `p = e eᴴ` and `q = s sᴴ`, the projections onto
+the lines they span. -/
 
 /-- **Extending an equivalence of the complements by `e ↦ s`.**
 
@@ -194,19 +196,25 @@ theorem mvn_complement_unitary_apply_eq
   have her : e * r = e := by rw [← heSrc, ← mul_assoc]; exact hePi
   have hsr : s * r = s := by rw [← hsSrc, ← mul_assoc]; exact hsPi
   have h₀src : star (s * star e) * (s * star e) = e * star e := by
-    calc star (s * star e) * (s * star e) = e * ((star s * s) * star e) := by
-          rw [star_mul, star_star]; noncomm_ring
+    have hassoc : (e * star s) * (s * star e) = e * ((star s * s) * star e) := by
+      noncomm_ring
+    calc star (s * star e) * (s * star e) = (e * star s) * (s * star e) := by
+          rw [star_mul, star_star]
+      _ = e * ((star s * s) * star e) := hassoc
       _ = (e * r) * star e := by rw [hsSrc, mul_assoc]
       _ = e * star e := by rw [her]
   have h₀rng : (s * star e) * star (s * star e) = s * star s := by
-    calc (s * star e) * star (s * star e) = s * ((star e * e) * star s) := by
-          rw [star_mul, star_star]; noncomm_ring
+    have hassoc : (s * star e) * (e * star s) = s * ((star e * e) * star s) := by
+      noncomm_ring
+    calc (s * star e) * star (s * star e) = (s * star e) * (e * star s) := by
+          rw [star_mul, star_star]
+      _ = s * ((star e * e) * star s) := hassoc
       _ = (s * r) * star s := by rw [heSrc, mul_assoc]
       _ = s * star s := by rw [hsr]
   have h₀pi : (s * star e) * star (s * star e) * (s * star e) = s * star e := by
-    rw [h₀rng]
-    calc s * star s * (s * star e) = (s * star s * s) * star e := by rw [mul_assoc]
-      _ = s * star e := by rw [hsPi]
+    have hassoc : s * star s * (s * star e) = (s * star s * s) * star e := by
+      noncomm_ring
+    rw [h₀rng, hassoc, hsPi]
   have hmain := unitary_of_complementary_partialIsometry (P := P) (p := e * star e)
     (q := s * star s) (w₀ := s * star e) (w₁ := w₁) hPstar
     (by rw [← mul_assoc, hPe]) heP (by rw [← mul_assoc, hPs]) hsP
