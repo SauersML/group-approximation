@@ -96,7 +96,7 @@ polar decomposition and no functional calculus are needed. -/
 theorem unitary_of_complementary_partialIsometry
     {P p q w₀ w₁ : A}
     (hPstar : star P = P)
-    (hPp : P * p = p) (hpP : p * P = p)
+    (hPp : P * p = p)
     (hPq : P * q = q) (hqP : q * P = q)
     (h₀src : star w₀ * w₀ = p) (h₀rng : w₀ * star w₀ = q) (h₀pi : w₀ * star w₀ * w₀ = w₀)
     (h₁src : star w₁ * w₁ = P - p) (h₁rng : w₁ * star w₁ = P - q)
@@ -187,7 +187,7 @@ theorem mvn_complement_unitary_apply_eq
     (hePi : e * star e * e = e) (hsPi : s * star s * s = s)
     (heSrc : star e * e = r) (hsSrc : star s * s = r)
     (hPe : P * e = e) (hPs : P * s = s)
-    (heP : e * star e * P = e * star e) (hsP : s * star s * P = s * star s)
+    (hsP : s * star s * P = s * star s)
     (h₁src : star w₁ * w₁ = P - e * star e) (h₁rng : w₁ * star w₁ = P - s * star s)
     (h₁pi : w₁ * star w₁ * w₁ = w₁) :
     star (s * star e + w₁) * (s * star e + w₁) = P ∧
@@ -217,7 +217,7 @@ theorem mvn_complement_unitary_apply_eq
     rw [h₀rng, hassoc, hsPi]
   have hmain := unitary_of_complementary_partialIsometry (P := P) (p := e * star e)
     (q := s * star s) (w₀ := s * star e) (w₁ := w₁) hPstar
-    (by rw [← mul_assoc, hPe]) heP (by rw [← mul_assoc, hPs]) hsP
+    (by rw [← mul_assoc, hPe]) (by rw [← mul_assoc, hPs]) hsP
     h₀src h₀rng h₀pi h₁src h₁rng h₁pi
   refine ⟨hmain.1, hmain.2.1, ?_⟩
   have hw₁e : w₁ * e = 0 := by
