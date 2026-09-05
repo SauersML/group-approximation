@@ -128,8 +128,8 @@ variable {R H : Type*} [CommRing R] [CommRing H] (P : ParityData R H)
 
 /-! ### Elementary consequences of the structure -/
 
-theorem two_eq_zero_target : (2 : H) = 0 := by
-  have hh : (2 : H) = P.ι 2 := by simp
+theorem two_eq_zero_target (P : ParityData R H) : (2 : H) = 0 := by
+  have hh : (2 : H) = P.ι 2 := (map_ofNat P.ι 2).symm
   rw [hh, P.two_eq_zero, map_zero]
 
 theorem sqH_mul_t (n : ℕ) (u : H) : P.SqH n (P.t * u) = P.t * P.SqH n u := by
@@ -197,15 +197,16 @@ theorem sum_a_mul_b_eq_zero (i : ℕ) :
   -- Reindex both halves of `B` by the total index.
   have hB1 : ∑ j ∈ Finset.range (i + 1), P.a (i - j) * P.b (i + 1 + j)
       = ∑ q ∈ Finset.range (i + 1), P.a q * P.b (2 * i + 1 - q) := by
-    have key : ∀ j ∈ Finset.range (i + 1),
-        P.a (i - j) * P.b (i + 1 + j)
-          = (fun q => P.a q * P.b (2 * i + 1 - q)) (i + 1 - 1 - j) := by
-      intro j hj
+    have hstep : ∑ j ∈ Finset.range (i + 1), P.a (i - j) * P.b (i + 1 + j)
+        = ∑ j ∈ Finset.range (i + 1),
+            P.a (i + 1 - 1 - j) * P.b (2 * i + 1 - (i + 1 - 1 - j)) := by
+      refine Finset.sum_congr rfl fun j hj => ?_
       have hj' : j ≤ i := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
-      have e1 : i + 1 - 1 - j = i - j := by omega
+      have e0 : i + 1 - 1 - j = i - j := by omega
       have e2 : 2 * i + 1 - (i - j) = i + 1 + j := by omega
-      simp only [e1, e2]
-    rw [Finset.sum_congr rfl key, Finset.sum_range_reflect]
+      rw [e0, e2]
+    rw [hstep]
+    exact Finset.sum_range_reflect (fun q => P.a q * P.b (2 * i + 1 - q)) (i + 1)
   have hB2 : ∑ j ∈ Finset.range (i + 1), P.b (i - j) * P.a (i + 1 + j)
       = ∑ q ∈ Finset.range (i + 1), P.a (i + 1 + q) * P.b (2 * i + 1 - (i + 1 + q)) := by
     refine Finset.sum_congr rfl fun j hj => ?_
@@ -255,7 +256,7 @@ theorem gamma_top_eq_zero {m : ℕ} (hm : Even m) (ha : ∀ q : ℕ, m < q → P
   obtain ⟨k, hk⟩ := hm
   have hodd : Odd (m + 3) := ⟨k + 1, by omega⟩
   rw [P.γ_eq (m + 3), ha (m + 3) (by omega), P.b_odd_eq_zero (m + 3) hodd,
-    map_zero, map_zero, mul_zero, add_zero]
+    map_zero, mul_zero, add_zero]
 
 /-- **Step D, packaged for the tower.**  If the slice class of `W` is
 `∏_j (1 + h_j)^{d_j}` with every `d_j` even, then `γ_r(W) = 0` for

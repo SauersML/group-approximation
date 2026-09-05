@@ -2,7 +2,9 @@ import Mathlib.RingTheory.MvPolynomial.Symmetric.Defs
 import Mathlib.Algebra.BigOperators.Intervals
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
+import Mathlib.Algebra.CharP.Two
 import Mathlib.Data.ZMod.Basic
+import Mathlib.RingTheory.MvPolynomial.Basic
 
 /-!
 # The half-antidiagonal identity for elementary symmetric functions
@@ -400,15 +402,17 @@ relation reads it. -/
 theorem esymmHalf_eq_sum_sub (s : Finset σ) (y : σ → A) (i : ℕ) :
     esymmHalf s y i
       = ∑ j ∈ Finset.range (i + 1), esymmOn s y (i - j) * esymmOn s y (i + 1 + j) := by
-  have key : ∀ j ∈ Finset.range (i + 1),
-      esymmOn s y (i - j) * esymmOn s y (i + 1 + j)
-        = (fun q => esymmOn s y q * esymmOn s y (2 * i + 1 - q)) (i + 1 - 1 - j) := by
-    intro j hj
-    have hj' : j ≤ i := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
-    have e1 : i + 1 - 1 - j = i - j := by omega
-    have e2 : 2 * i + 1 - (i - j) = i + 1 + j := by omega
-    simp only [e1, e2]
-  rw [esymmHalf_def, Finset.sum_congr rfl key, Finset.sum_range_reflect]
+  rw [esymmHalf_def,
+    show (∑ q ∈ Finset.range (i + 1), esymmOn s y q * esymmOn s y (2 * i + 1 - q))
+        = ∑ j ∈ Finset.range (i + 1),
+            esymmOn s y (i + 1 - 1 - j) * esymmOn s y (2 * i + 1 - (i + 1 - 1 - j)) from
+      (Finset.sum_range_reflect
+        (fun q => esymmOn s y q * esymmOn s y (2 * i + 1 - q)) (i + 1)).symm]
+  refine Finset.sum_congr rfl fun j hj => ?_
+  have hj' : j ≤ i := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
+  have e0 : i + 1 - 1 - j = i - j := by omega
+  have e2 : 2 * i + 1 - (i - j) = i + 1 + j := by omega
+  rw [e0, e2]
 
 /-- **(Wu-diag), the symmetric-function half.**  In characteristic two,
 
@@ -496,9 +500,8 @@ end Esymm
 
 section MvPoly
 
-theorem two_eq_zero_mvPolynomial (n : ℕ) : (2 : MvPolynomial (Fin n) (ZMod 2)) = 0 := by
-  have hz : (1 : ZMod 2) + 1 = 0 := by decide
-  rw [← one_add_one_eq_two, ← MvPolynomial.C_1, ← map_add, hz, map_zero]
+theorem two_eq_zero_mvPolynomial (n : ℕ) : (2 : MvPolynomial (Fin n) (ZMod 2)) = 0 :=
+  CharTwo.two_eq_zero
 
 theorem esymm_eq_esymmOn (n a : ℕ) :
     MvPolynomial.esymm (Fin n) (ZMod 2) a

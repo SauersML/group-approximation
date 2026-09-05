@@ -62,7 +62,7 @@ theorem sliceClass_def (u : Finset J) (h : J → R) (d : J → ℕ) :
 theorem sliceClass_coeff_zero (u : Finset J) (h : J → R) (d : J → ℕ) :
     (sliceClass u h d).coeff 0 = 1 := by
   rw [Polynomial.coeff_zero_eq_eval_zero, sliceClass_def]
-  simp
+  simp [Polynomial.eval_prod]
 
 /-- Every even exponent makes the slice class a square. -/
 theorem sliceClass_eq_mul_self (u : Finset J) (h : J → R) (d : J → ℕ)
@@ -89,7 +89,7 @@ theorem natDegree_one_add_C_mul_X_le (a : R) :
   refine max_le ?_ ?_
   · simp
   · refine Polynomial.natDegree_mul_le.trans ?_
-    simp
+    simp [Polynomial.natDegree_X_le]
 
 theorem natDegree_sliceClass_le (u : Finset J) (h : J → R) (d : J → ℕ) :
     (sliceClass u h d).natDegree ≤ ∑ j ∈ u, d j := by
