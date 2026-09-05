@@ -95,8 +95,12 @@ the universal assertion in STW LIX changes from `OPEN` to `REFUTED`.
 Full-snapshot duplicate checking found no unresolved duplicates for
 the two new claims.
 
-The imported full graph retains 37 unrelated source errors, so this
-is not a clean repository-wide validation claim. The scoped logs are
+The initial imported full graph had 37 unrelated source errors. A
+subsequent full-source audit on the same date passed with 14,104 nodes,
+zero findings, and zero duplicate candidates; its exact snapshot and
+checks are recorded in
+[the later review](stw99-lxxvi-all-base-review-2026-09-05.md).
+The original LIX scoped logs are
 in `stw79-cairn-check-20260904/stw59-full-proof-scope-20260905` under
 the shared MSI project directory. The adjacent
 `stw59-full-proof-global-audit-20260905.json` records the global audit.
