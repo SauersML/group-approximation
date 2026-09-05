@@ -216,6 +216,27 @@ so it can be wired separately.
 
 ## 4. TRAPS
 
+* **Duplicate-declaration scan for the root wiring: clean.**  147 top-level
+  declarations across the nine modules of the wiring proposal, checked as fully
+  qualified names against every other `.lean` file in `GroupApproximation/`.
+  Zero cross-module duplicates and zero internal ones.  Worth running because
+  wiring an orphan into the root is exactly when a duplicate name first becomes
+  a build error rather than a dormant one.
+* **Two `instSpectralPartialOrder` declarations now exist and they do not
+  collide.**  `Analysis/LIXEndpointStatement.lean:63` declares
+  `GroupApproximation.instSpectralPartialOrder`;
+  `Analysis/LIXLimitMatrixTransport.lean:36` (owned by `cs-limit`) declares
+  `GroupApproximation.LIX.instSpectralPartialOrder`.  Different namespaces, so
+  the root can import both.  Both are `local instance`, so neither leaks a
+  `PartialOrder B` for every `CStarAlgebra B` into downstream instance search —
+  which would have been much worse than a name clash.
+
+  What survives is narrower: the two are definitionally equal but not the same
+  term, so a `diagOne u` built under one is not syntactically the `diagOne u`
+  of the other.  `HasK1InjWitness A`'s *statement* is unaffected, because it
+  takes only `[CStarAlgebra A]` and the order sits inside the definition's
+  body; only a `rw` aimed across the seam would fail, and a term-mode `exact`
+  will not.
 * **The first `ccprobe.sh` run on a fresh clone always fails, and it exits 0.**
   On a fresh clone the rsync itemizes the whole tree as changed, so the
   script's `$RM` accumulates four artifact paths per module for ~1300 modules
