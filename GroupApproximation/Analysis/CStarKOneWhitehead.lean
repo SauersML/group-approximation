@@ -36,7 +36,22 @@ universe u
 
 noncomputable section
 
-variable {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+/-! ## The block swap of the index set -/
+
+theorem finSumSwap_involutive (n : ℕ) (i : Fin (n + n)) :
+    finSumSwap n n (finSumSwap n n i) = i := by
+  induction i using Fin.addCases with
+  | left a => rw [finSumSwap_castAdd, finSumSwap_natAdd]
+  | right b => rw [finSumSwap_natAdd, finSumSwap_castAdd]
+
+theorem finSumSwap_symm_self (n : ℕ) : (finSumSwap n n).symm = finSumSwap n n := by
+  ext i
+  apply (finSumSwap n n).injective
+  rw [Equiv.apply_symm_apply, finSumSwap_involutive]
+
+section Algebra
+
+variable {A : Type u} [CStarAlgebra A]
 
 /-! ## Permutation matrices -/
 
@@ -125,13 +140,14 @@ theorem blockSum_one_one (m n : ℕ) :
       · refine (if_neg h).trans (if_neg ?_).symm
         intro hc
         refine h (Fin.eq_of_val_eq ?_)
-        simpa using congrArg Fin.val hc
+        have hval := congrArg Fin.val hc
+        simpa using hval
     | right b =>
       rw [blockSum_apply_castAdd_natAdd, CStarMatrix.one_apply, if_neg]
       intro hc
       have ha := a.isLt
-      have := congrArg Fin.val hc
-      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at this
+      have hval := congrArg Fin.val hc
+      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at hval
       omega
   | right a =>
     induction j using Fin.addCases with
@@ -139,8 +155,8 @@ theorem blockSum_one_one (m n : ℕ) :
       rw [blockSum_apply_natAdd_castAdd, CStarMatrix.one_apply, if_neg]
       intro hc
       have hb := b.isLt
-      have := congrArg Fin.val hc
-      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at this
+      have hval := congrArg Fin.val hc
+      simp only [Fin.coe_castAdd, Fin.coe_natAdd] at hval
       omega
     | right b =>
       rw [blockSum_apply_natAdd_natAdd, CStarMatrix.one_apply, CStarMatrix.one_apply]
@@ -149,8 +165,8 @@ theorem blockSum_one_one (m n : ℕ) :
       · refine (if_neg h).trans (if_neg ?_).symm
         intro hc
         refine h (Fin.eq_of_val_eq ?_)
-        have := congrArg Fin.val hc
-        simp only [Fin.coe_natAdd] at this
+        have hval := congrArg Fin.val hc
+        simp only [Fin.coe_natAdd] at hval
         omega
 
 /-- The block sum of two unitaries. -/
@@ -178,8 +194,7 @@ theorem blockOne_eq_blockSum {n : ℕ} (M : CStarMat n A) (m : ℕ) :
   ext i j
   induction i using Fin.addCases with
   | left a =>
-    have hia : ((Fin.castAdd m a : Fin (n + m)) : ℕ) < n := by
-      simpa using a.isLt
+    have hia : ((Fin.castAdd m a : Fin (n + m)) : ℕ) < n := by simpa using a.isLt
     induction j using Fin.addCases with
     | left b =>
       have hjb : ((Fin.castAdd m b : Fin (n + m)) : ℕ) < n := by simpa using b.isLt
@@ -205,8 +220,8 @@ theorem blockOne_eq_blockSum {n : ℕ} (M : CStarMat n A) (m : ℕ) :
       · refine (if_neg ?_).trans (if_neg h).symm
         intro hc
         refine h (Fin.eq_of_val_eq ?_)
-        have := congrArg Fin.val hc
-        simp only [Fin.coe_natAdd] at this
+        have hval := congrArg Fin.val hc
+        simp only [Fin.coe_natAdd] at hval
         omega
 
 theorem blockOneUnitary_eq_blockSumU {n m : ℕ} (h : n ≤ n + m)
@@ -214,18 +229,7 @@ theorem blockOneUnitary_eq_blockSumU {n m : ℕ} (h : n ≤ n + m)
     blockOneUnitary h x = blockSumU x (1 : unitary (CStarMat m A)) :=
   Subtype.ext (blockOne_eq_blockSum (x : CStarMat n A) m)
 
-/-! ## The block swap -/
-
-theorem finSumSwap_involutive (n : ℕ) (i : Fin (n + n)) :
-    finSumSwap n n (finSumSwap n n i) = i := by
-  induction i using Fin.addCases with
-  | left a => rw [finSumSwap_castAdd, finSumSwap_natAdd]
-  | right b => rw [finSumSwap_natAdd, finSumSwap_castAdd]
-
-theorem finSumSwap_symm_self (n : ℕ) : (finSumSwap n n).symm = finSumSwap n n := by
-  ext i
-  apply (finSumSwap n n).injective
-  rw [Equiv.apply_symm_apply, finSumSwap_involutive]
+/-! ## The block swap as a unitary -/
 
 variable (A) in
 /-- The block swap of `M_{n+n}(A)`, as a unitary.  It is self-adjoint, hence lies in the
@@ -233,26 +237,34 @@ identity component of the unitary group. -/
 def swapU (n : ℕ) : unitary (CStarMat (n + n) A) :=
   ⟨permMat A (finSumSwap n n), permMat_mem_unitary _⟩
 
-theorem swapU_mem_unitaryComponentOne (n : ℕ) :
-    swapU A n ∈ unitaryComponentOne (CStarMat (n + n) A) :=
-  mem_unitaryComponentOne_of_isSelfAdjoint (isSelfAdjoint_permMat (finSumSwap_symm_self n))
+theorem isSelfAdjoint_swapU (n : ℕ) : IsSelfAdjoint ((swapU A n : unitary (CStarMat (n + n) A))
+    : CStarMat (n + n) A) :=
+  isSelfAdjoint_permMat (finSumSwap_symm_self n)
 
 theorem swapU_conj_blockSumU {n : ℕ} (x y : unitary (CStarMat n A)) :
     swapU A n * blockSumU x y * swapU A n = blockSumU y x := by
   refine Subtype.ext ?_
-  have h := permMat_conj (A := A) (finSumSwap n n)
+  have hconj := permMat_conj (A := A) (finSumSwap n n)
     (blockSum (x : CStarMat n A) (y : CStarMat n A))
-  rw [finSumSwap_symm_self] at h
+  rw [finSumSwap_symm_self] at hconj
   show permMat A (finSumSwap n n) * blockSum (x : CStarMat n A) (y : CStarMat n A)
       * permMat A (finSumSwap n n) = blockSum (y : CStarMat n A) (x : CStarMat n A)
-  rw [h, blockSum_comm]
+  rw [hconj, blockSum_comm]
 
-/-! ## Whitehead -/
+end Algebra
+
+section Whitehead
+
+variable {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+
+theorem swapU_mem_unitaryComponentOne (n : ℕ) :
+    swapU A n ∈ unitaryComponentOne (CStarMat (n + n) A) :=
+  mem_unitaryComponentOne_of_isSelfAdjoint (isSelfAdjoint_swapU n)
 
 theorem unitaryClass_blockSumU_swap {n : ℕ} (x y : unitary (CStarMat n A)) :
     unitaryClass (CStarMat (n + n) A) (blockSumU y x)
       = unitaryClass (CStarMat (n + n) A) (blockSumU x y) := by
-  have h1 : unitaryClass (CStarMat (n + n) A) (swapU A n) = 1 :=
+  have h₁ : unitaryClass (CStarMat (n + n) A) (swapU A n) = 1 :=
     unitaryClass_eq_one_iff.mpr (swapU_mem_unitaryComponentOne n)
   calc unitaryClass (CStarMat (n + n) A) (blockSumU y x)
       = unitaryClass (CStarMat (n + n) A) (swapU A n * blockSumU x y * swapU A n) := by
@@ -260,11 +272,11 @@ theorem unitaryClass_blockSumU_swap {n : ℕ} (x y : unitary (CStarMat n A)) :
     _ = unitaryClass (CStarMat (n + n) A) (swapU A n)
           * unitaryClass (CStarMat (n + n) A) (blockSumU x y)
           * unitaryClass (CStarMat (n + n) A) (swapU A n) := by rw [map_mul, map_mul]
-    _ = unitaryClass (CStarMat (n + n) A) (blockSumU x y) := by rw [h1, one_mul, mul_one]
+    _ = unitaryClass (CStarMat (n + n) A) (blockSumU x y) := by rw [h₁, one_mul, mul_one]
 
+variable (A) in
 /-- **The Whitehead lemma.**  `K_1(A)` is commutative. -/
-theorem kOne_mul_comm (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
-    (a b : KOne A) : a * b = b * a := by
+theorem kOne_mul_comm (a b : KOne A) : a * b = b * a := by
   refine GroupTower.commGroup_of_forall_commute (kOneTower A) ?_ a b
   intro n x y
   refine QuotientGroup.induction_on x fun u => ?_
@@ -307,10 +319,12 @@ theorem kOne_mul_comm (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrdere
           * unitaryClass (CStarMat (n + n) A) (blockSumU u 1) := by rw [hV]
     _ = unitaryClass (CStarMat (n + n) A) (blockSumU (v * u) 1) := by rw [← e₂, map_mul]
 
+variable (A) in
 /-- `K_1(A)` is an abelian group. -/
-instance kOneCommGroup (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A] :
-    CommGroup (KOne A) where
+instance kOneCommGroup : CommGroup (KOne A) where
   mul_comm := kOne_mul_comm A
+
+end Whitehead
 
 end
 
