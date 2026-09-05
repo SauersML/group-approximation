@@ -93,18 +93,15 @@ theorem not_everyAntipodalCompletionTraceIsContinuousExtension :
 /-- The canonical map from the actual base trace space to the actual bounded
 uniform-two completion trace space is not surjective. -/
 theorem antipodalCanonicalExtension_not_surjective :
-    ¬ Function.Surjective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) :=
+    ¬ Function.Surjective antipodalCanonicalExtensionMap :=
   antipodalCanonicalExtension_not_surjective_of_borsukUlam
     complexOddMapCommonZero_unconditional
 
 /-- The literal trace-space proper inclusion: the canonical extension map is
 an injection but not a surjection. -/
 theorem antipodal_trace_space_strict_inclusion :
-    Function.Injective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) ∧
-    ¬ Function.Surjective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) :=
+    Function.Injective antipodalCanonicalExtensionMap ∧
+    ¬ Function.Surjective antipodalCanonicalExtensionMap :=
   antipodal_trace_space_strict_inclusion_of_borsukUlam
     complexOddMapCommonZero_unconditional
 

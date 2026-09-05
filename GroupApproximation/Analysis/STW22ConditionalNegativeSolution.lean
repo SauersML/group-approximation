@@ -67,25 +67,48 @@ instance instNonemptyTracialStateAntipodalFamily :
     ∀ n, Nonempty (TracialState (AntipodalCounterexampleBlock n)) :=
   fun n ↦ nonemptyTracialState_antipodalCounterexampleBlock n
 
+/-- The canonical extension map `T(A) → T(M)` of the antipodal counterexample,
+with every instance argument supplied by hand.
+
+Registering the family above is necessary but not sufficient, and a diagnostic
+build says so: with the six standalone goals
+`(∀ n,) CStarAlgebra / Nontrivial / Nonempty (TracialState …)` all discharged by
+`inferInstance` in the same context, the *application*
+`canonicalExtension antipodalAllTracesGauge_isCoordinateNormComparison` still
+fails on the `Nonempty` binder, in the statement as well as in the proof, while
+the `@`-applied form below elaborates.  The reason is not findability: the
+elaborator reaches that binder before `D` is determined, because the only
+argument that would determine it is the comparison datum, whose own type is
+stated through the gauge abbreviation `G D`.  A goal `∀ n, Nonempty (TracialState
+(?D n))` has no solution however many instances are registered.
+
+Being an `abbrev`, this *is* `canonicalExtension …` rather than merely equal to
+it, so nothing downstream is weakened by naming it. -/
+noncomputable abbrev antipodalCanonicalExtensionMap :=
+  @canonicalExtension AntipodalCounterexampleBlock inferInstance inferInstance
+    instNonemptyTracialStateAntipodalFamily antipodalCoordinateNormBound
+    antipodalAllTracesGauge_isCoordinateNormComparison
+
 /-- The sequence-model gauge used throughout is exactly the supremum of the
 two-norms coming from all bundled tracial states of the actual base algebra.
 No topological input is involved. -/
 theorem antipodalBaseTracialTwoSize_eq_completionGauge
     (x : BaseAlgebra AntipodalCounterexampleBlock) :
     STW22BaseUniformTracialGauge.baseTracialTwoSize x =
-      STW22Assembly.uniformTwoNorm antipodalAllTracesGauge x.1 := by
-  simpa only [antipodalAllTracesGauge] using
-    STW22BaseUniformTracialGauge.baseTracialTwoSize_eq_uniformTwoNorm_allTraces x
+      STW22Assembly.uniformTwoNorm antipodalAllTracesGauge x.1 :=
+  @STW22BaseUniformTracialGauge.baseTracialTwoSize_eq_uniformTwoNorm_allTraces
+    AntipodalCounterexampleBlock inferInstance inferInstance
+    instNonemptyTracialStateAntipodalFamily x
 
 /-- The canonical map from the actual base trace space to the actual bounded
 uniform-two completion trace space is injective.  This half of the proper
 inclusion needs no topological input at all: it is inverted by restriction. -/
 theorem antipodalCanonicalExtension_injective :
-    Function.Injective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) := by
-  simpa only [antipodalAllTracesGauge] using
-    (canonicalExtension_injective
-      antipodalAllTracesGauge_isCoordinateNormComparison)
+    Function.Injective antipodalCanonicalExtensionMap :=
+  @canonicalExtension_injective AntipodalCounterexampleBlock inferInstance
+    inferInstance instNonemptyTracialStateAntipodalFamily
+    antipodalCoordinateNormBound
+    antipodalAllTracesGauge_isCoordinateNormComparison
 
 /-- Given the complex-coordinate Borsuk--Ulam statement, the actual completion
 of the actual unitized `c₀` base has a bundled tracial state which is not a
@@ -103,21 +126,19 @@ theorem not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam
 extension map is not surjective. -/
 theorem antipodalCanonicalExtension_not_surjective_of_borsukUlam
     (hBU : ComplexOddMapCommonZero) :
-    ¬ Function.Surjective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) := by
-  simpa only [antipodalAllTracesGauge] using
-    canonicalExtension_not_surjective_of_not_every
-      antipodalAllTracesGauge_isCoordinateNormComparison
-      (not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam hBU)
+    ¬ Function.Surjective antipodalCanonicalExtensionMap :=
+  @canonicalExtension_not_surjective_of_not_every AntipodalCounterexampleBlock
+    inferInstance inferInstance instNonemptyTracialStateAntipodalFamily
+    antipodalCoordinateNormBound
+    antipodalAllTracesGauge_isCoordinateNormComparison
+    (not_everyAntipodalCompletionTraceIsContinuousExtension_of_borsukUlam hBU)
 
 /-- The literal trace-space proper inclusion `T(A) ⊊ T(M)`, with the
 topological input explicit. -/
 theorem antipodal_trace_space_strict_inclusion_of_borsukUlam
     (hBU : ComplexOddMapCommonZero) :
-    Function.Injective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) ∧
-    ¬ Function.Surjective (canonicalExtension
-      antipodalAllTracesGauge_isCoordinateNormComparison) :=
+    Function.Injective antipodalCanonicalExtensionMap ∧
+    ¬ Function.Surjective antipodalCanonicalExtensionMap :=
   ⟨antipodalCanonicalExtension_injective,
     antipodalCanonicalExtension_not_surjective_of_borsukUlam hBU⟩
 
@@ -146,10 +167,8 @@ theorem negativeSolutionToProblemXXII_of_borsukUlam
       IsBauerSimplex ℝ≥0 antipodalWeakStarTraceSimplex ∧
       (CompactSpace AntipodalWeakStarExtremeBoundary ∧
         MetrizableSpace AntipodalWeakStarExtremeBoundary) ∧
-      Function.Injective (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) ∧
-      ¬ Function.Surjective (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) :=
+      Function.Injective antipodalCanonicalExtensionMap ∧
+      ¬ Function.Surjective antipodalCanonicalExtensionMap :=
   ⟨⟨inferInstance⟩,
     separableSpace_baseAlgebra_antipodalCounterexampleBlock,
     isNuclearCStarAlgebra_baseAlgebra_antipodalCounterexampleBlock,

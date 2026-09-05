@@ -63,10 +63,8 @@ theorem negativeSolutionToProblemXXII :
       IsBauerSimplex ℝ≥0 antipodalWeakStarTraceSimplex ∧
       (CompactSpace AntipodalWeakStarExtremeBoundary ∧
         MetrizableSpace AntipodalWeakStarExtremeBoundary) ∧
-      Function.Injective (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) ∧
-      ¬ Function.Surjective (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) :=
+      Function.Injective antipodalCanonicalExtensionMap ∧
+      ¬ Function.Surjective antipodalCanonicalExtensionMap :=
   negativeSolutionToProblemXXII_of_borsukUlam
     complexOddMapCommonZero_unconditional
 

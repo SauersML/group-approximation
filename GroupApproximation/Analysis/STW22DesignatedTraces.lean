@@ -45,7 +45,7 @@ abbrev AntipodalCompletionAlgebra :=
 tracial states of the base algebra.  This is the `X` of the pair `(M, X)` that
 STW Problem XXII asks about. -/
 abbrev antipodalDesignatedTraces : Set (TracialState AntipodalCompletionAlgebra) :=
-  Set.range (canonicalExtension antipodalAllTracesGauge_isCoordinateNormComparison)
+  Set.range antipodalCanonicalExtensionMap
 
 /-- The designated trace set is nonempty: the trace at the point at infinity
 extends.  This is CCEGSTW's "implicitly we always imagine `X` to be
