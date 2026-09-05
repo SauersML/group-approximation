@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/stw58-small-projection-support-kernel-contraction-2026-09-05.md
   - research/artifacts/stw58-soft-support-orthogonal-reservoir-contraction-2026-09-05.md
   - research/artifacts/stw58-small-quasitrace-support-kernel-contraction-2026-09-05.md
+  - research/artifacts/stw58-canonical-small-support-stable-splitting-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -95,6 +96,16 @@ therefore have uniform quasitrace support dimension at least 1/(k+1).
 The precise remaining gap is global support localization or
 fragmentation of arbitrary stably null families; the general kernel
 and LVIII questions remain unresolved here.
+
+[The canonical small-support splitting](stw58-canonical-small-support-stable-splitting.md)
+identifies the stable summand intrinsically: I_k(B) consists exactly
+of classes with arbitrarily small uniform quasitrace support. Its
+stabilization onto K_(k+1)(B) is an isomorphism. The inverse is
+choice-independent, natural for supported maps of *-homomorphisms,
+and compatible with matrix inclusions. The infimum of support size
+over representatives is zero on this summand and at least 1/(k+1)
+outside it. The remaining injectivity assertion is I_k(B)=pi_k U(B);
+the theorem does not prove this equality.
 
 The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
