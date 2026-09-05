@@ -10,8 +10,18 @@ Machine-derived from the actual `import` lines of all 199 `.lean` files under
 - **0** dangling internal imports: every `import GroupApproximation.ThirdParty.HamSandwich.*`
   line resolves to a file that exists in the tree.
 - Longest import chain: **57** modules (depth 0 through 56).
-- Single sink: `SphereOddDegree.ComplexOddMapCommonZero` (depth 56). Building it
-  builds all 199. `SphereOddDegree.BorsukUlam` (depth 55) builds 198 of them.
+- **Three** sinks (modules nothing else imports), and no one of them covers the
+  tree — checked by explicit closure, not by depth:
+  - `SphereOddDegree.ComplexOddMapCommonZero` (depth 56) -> closure **173**
+  - `SphereOddDegree.AlgebraicTopology.Branch4TransferNonvanishingUnconditional`
+    (depth 49) -> closure **167**
+  - `SphereOddDegree.RPnHomologyNotation` (depth 42) -> closure **90**
+
+  Together those three cover all 199 and no two of them do, so a whole-tree probe
+  needs all three (or the aggregator below). In particular the deepest module is
+  NOT the whole tree: 26 modules — the `Branch3*`/`Branch4*` transfer slice and the
+  RPn cellular-cochain / cup-product-structure slice — sit outside
+  `ComplexOddMapCommonZero`'s closure and are never built by naming `BorsukUlam`.
 - Six sources (depth 0, no internal imports):
   - `SphereOddDegree.AlgebraicTopology.AffineBarycentricSubdivision`
   - `SphereOddDegree.AlgebraicTopology.BarycentricFiniteCancellation`
