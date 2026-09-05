@@ -387,7 +387,7 @@
       "id": "thm:factorization-nonmf-trace",
       "environment": "theorem",
       "title": "canonical-trace obstruction",
-      "statement_sha256": "55d42a29de8b049eb33b9327bfd7ae940636eae2d4763c12f95a4d9ee202a6a5",
+      "statement_sha256": "a5e27a26d6434afe3e288ad3cfc188e11cac23f47c28fc459294303ca2afa9bf",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
