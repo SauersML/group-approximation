@@ -207,6 +207,43 @@ theorem STW59.isSimpleCStar : LIX.IsSimpleCStar STW59.tower.Limit :=
 
 Full authoritative recipe in `notes/lix-lane-reports/cs-simplicity.md` §3.
 
+### Separability: taken, as a separate theorem, after `connect`
+
+`cs-limit` has `CStarTower.separableSpace_limit`, conditional on
+`∀ n, SeparableSpace (A n)`, and the program note §0 calls separability a bonus
+conjunct if cheap.  Decision: **take it, but not by changing the specified
+signature.**
+
+`exists_simple_unital_not_k1Inj` lands exactly as the lead specified,
+
+```lean
+∃ (A : Type) (_inst : CStarAlgebra A), Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
+```
+
+because that is what `not_problemLIX_of_exists` consumes and what the endpoint's
+audit trail is written against.  Separability goes in a second, strictly
+stronger statement beside it.  A referee reading the answer to Problem LIX then
+sees the problem's own hypotheses and nothing else, and a reader who wants to
+know the counterexample is separable finds it as a named fact rather than as a
+conjunct that is not part of the question.
+
+It is worth having: STW cite Villadsen for simple *separable* unital nuclear
+examples defeating the surjectivity analogue, so the separable class is where
+the question lives, and a counterexample needing nonseparability would be a
+weaker answer.
+
+Sequencing: cs-stages must not be asked for the per-stage `SeparableSpace`
+instance until `connect` is green.  If it is not cheap, it is dropped; nothing
+depends on it.
+
+### The universe risk is retired, in Lean rather than in prose
+
+`cs-limit` closed the one thing this lane could not check by reading.
+`Analysis/LIXLimitCompletion.lean` now ends with three green `example`s: that
+`Type`-valued stages give a `Type`-valued limit, that `CStarAlgebra` of the
+limit really resolves through `CStarCompletion.completionCStarAlgebra`, and
+that `Nontrivial` of the limit follows from `Nontrivial (A 0)` alone.
+
 ### INTERFACE SPECIFICATION for `cs-stages` and `cs-clutching` (2026-09-05 ~19:5x)
 
 Read off the three consumers, all of which are green, so that the join costs
