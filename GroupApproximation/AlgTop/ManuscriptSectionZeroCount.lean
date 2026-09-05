@@ -16,16 +16,19 @@ proof of Lemma 2) actually needs:
 
 The manuscript reaches the count `±1` through the Chern number
 `|⟨c_m(H), [Y]⟩| = 1` of (2.1).  Here the count is instead *exhibited*: over
-`Y = ∏ⱼ ℂP^{dⱼ}` with `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` built from the **dual** tautological
-lines, the coordinate-functional section has exactly one zero, namely the tuple of
-base points, and combining with the `S⁵ × [0,1]` factor the whole section has exactly
-one zero, namely `(-e₃, (basePoint)ⱼ, 1/2)`.
+`Y = ∏ⱼ ℂP^{dⱼ}` the coordinate-functional section of `H` has exactly one zero, namely
+the tuple of base points, and combining with the `S⁵ × [0,1]` factor the whole section
+has exactly one zero, namely `(-e₃, (basePoint)ⱼ, 1/2)`.
+
+The per-factor lemma is the easy half; **the combination is the content**, because the
+manuscript's `±1` is a count over the whole of `S⁵ × Y × [0,1]` and not a count on each
+projective factor separately.
 
 Nothing below uses a characteristic class, a cohomology group, an orientation, a
 fundamental class, or any smoothness: it is linear algebra about rank-one projections
 plus a norm comparison.  What is *not* proved here — and is not provable without a
 Thom/Euler class — is the passage from "exactly one zero" to "the Euler number is odd".
-That interface is the campaign's remaining topological wall; see the lane report.
+That interface is the campaign's remaining topological wall.
 
 ## Main results
 
@@ -33,19 +36,23 @@ That interface is the campaign's remaining topological wall; see the lane report
   `H` vanishes exactly at the tuple of base points.
 * `manuscriptSection_eq_zero_iff` — the zero locus of (2.10) is the single point
   `(-e₃, (basePoint)ⱼ, 1/2)`.
-* `manuscriptSection_zero_unique` — any two zeros coincide, in all three coordinates.
+* `manuscriptSection_zero_unique` / `manuscriptSection_zero_exists` — that zero is
+  unique and is attained, so the count is exactly one and not zero.
 -/
 
 noncomputable section
 
 namespace GroupApproximation.AlgTop
 
+open GroupApproximation.STW59
+open CPn
+
 /-! ## 1. The section of `H` over a product of projective spaces -/
 
 variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
 
-/-- The manuscript's section `σ` of `H = ⊕ⱼ (L_j*)^{⊕dⱼ}` over `Y = ∏ⱼ ℂP^{dⱼ}`: on
-the `j`-th factor it is the coordinate-functional section `dualTautSection`. -/
+/-- The manuscript's section `σ` of `H` over `Y = ∏ⱼ ℂP^{dⱼ}`: on the `j`-th factor it
+is the coordinate-functional section `dualTautSection`. -/
 def productDualTautSection (y : ∀ j, CP (dd j)) :
     ∀ j : Fin ℓ, Fin (dd j) → Fin (dd j + 1) → ℂ :=
   fun j => dualTautSection (y j)
@@ -53,19 +60,19 @@ def productDualTautSection (y : ∀ j, CP (dd j)) :
 @[simp]
 theorem productDualTautSection_apply (y : ∀ j, CP (dd j)) (j : Fin ℓ) (i : Fin (dd j))
     (k : Fin (dd j + 1)) :
-    productDualTautSection y j i k = (y j).mat i.succ k := rfl
+    productDualTautSection y j i k = entry (y j) i.succ k := rfl
 
 /-- **The section of `H` has exactly one zero.**  Over `Y = ∏ⱼ ℂP^{dⱼ}` it vanishes
 exactly at the tuple of base points.  This is the manuscript's `|⟨c_m(H), [Y]⟩| = 1`
 of (2.1), proved as linear algebra rather than as a Chern-number computation. -/
 theorem productDualTautSection_eq_zero_iff (y : ∀ j, CP (dd j)) :
-    (∀ j i k, productDualTautSection y j i k = 0) ↔ y = fun j => CP.basePoint (dd j) := by
+    (∀ j i k, productDualTautSection y j i k = 0) ↔ y = fun j => basePoint (dd j) := by
   constructor
   · intro h
     funext j
     exact (dualTautSection_eq_zero_iff (y j)).mp (fun i k => h j i k)
   · intro h j i k
-    have hj : y j = CP.basePoint (dd j) := congrFun h j
+    have hj : y j = basePoint (dd j) := congrFun h j
     exact (dualTautSection_eq_zero_iff (y j)).mpr hj i k
 
 /-! ## 2. The whole section of `W_g` -/
@@ -82,7 +89,7 @@ theorem manuscriptSection_eq_zero_iff {v x : E} (hv : ‖v‖ = 1) (hx : ‖x‖
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     ((1 - t) • v + t • x = 0 ∧
         ∀ j i k, ((χ t : ℝ) : ℂ) * productDualTautSection y j i k = 0)
-      ↔ (t = 1 / 2 ∧ x = -v ∧ y = fun j => CP.basePoint (dd j)) := by
+      ↔ (t = 1 / 2 ∧ x = -v ∧ y = fun j => basePoint (dd j)) := by
   constructor
   · rintro ⟨h1, h2⟩
     obtain ⟨ht, hxv⟩ := (seam_component_eq_zero_iff hv hx ht0 ht1).mp h1
@@ -118,9 +125,9 @@ theorem manuscriptSection_zero_exists {v : E} (hv : ‖v‖ = 1) {χ : ℝ → �
     (hχ : χ (1 / 2) = 1) :
     ((1 - (1 / 2 : ℝ)) • v + (1 / 2 : ℝ) • (-v) = 0 ∧
       ∀ j i k, ((χ (1 / 2 : ℝ) : ℝ) : ℂ) *
-        productDualTautSection (dd := dd) (fun j => CP.basePoint (dd j)) j i k = 0) := by
+        productDualTautSection (dd := dd) (fun j => basePoint (dd j)) j i k = 0) := by
   have hx : ‖(-v : E)‖ = 1 := by simpa using hv
   exact (manuscriptSection_eq_zero_iff (v := v) (x := -v) (t := 1 / 2) hv hx hχ
-    (fun j => CP.basePoint (dd j)) (by norm_num) (by norm_num)).mpr ⟨rfl, rfl, rfl⟩
+    (fun j => basePoint (dd j)) (by norm_num) (by norm_num)).mpr ⟨rfl, rfl, rfl⟩
 
 end GroupApproximation.AlgTop

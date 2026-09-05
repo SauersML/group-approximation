@@ -26,13 +26,12 @@ zero" becomes **linear algebra about rank-one projections**.  No topology, no
 cohomology, no characteristic class is used below.
 
 The bundle used here is the *dual* tautological line `L*` (equivalently the conjugate
-`L̄`).  That is a convenience of presentation, **not** a change to the manuscript: lane
-`lix-obstruction` proves the same one-zero theorem for `L` itself in
-`Analysis/LIXObstructionTautSection.lean`, using the section `σ_a (z) = z · a` cut out
-by a constant vector, so the manuscript's `H = ⊕ⱼ Lⱼ^{⊕dⱼ}` needs no amendment.  The
-two differ only in the *sign* of the local index — the chart model here is the identity
-of `ℂ^d`, the chart model there is componentwise conjugation, of real determinant
-`(-1)^d` — and mod `2`, which is all the parity contradiction needs, they agree.
+`L̄`).  That is a convenience of presentation, not a change to the manuscript: the same
+one-zero theorem holds for `L` itself, via the section `σ_a (z) = z · a` cut out by a
+constant vector, so `H = ⊕ⱼ Lⱼ^{⊕dⱼ}` needs no amendment.  The two differ only in the
+*sign* of the local index — the chart model here is the identity of `ℂ^d`, the chart
+model for `L` is componentwise conjugation, of real determinant `(-1)^d` — and mod `2`,
+which is all the parity contradiction needs, they agree.
 
 ## The section
 
@@ -58,17 +57,20 @@ whose zero locus is a single point.
   point `[1 : 0 : ⋯ : 0]`.  Exactly one zero.
 * `sectionChart_apply` — in the standard affine chart around the base point the section
   is `z ↦ (1 + ‖z‖²)⁻¹ z`, a *positive* scalar multiple of the identity of `ℂ^d`.
-* `tautChartHomotopy_eq_zero_iff` — the straight-line homotopy from that map to the identity
-  of `ℂ^d` has, at every time, the origin as its only zero.  This is the transversality
-  input in the form a mod-2 local index consumes: no derivative, no orientation, no sign.
+* `tautChartHomotopy_eq_zero_iff` — the straight-line homotopy from that map to the
+  identity of `ℂ^d` has, at every time, the origin as its only zero.  This is the
+  transversality input in the form a mod-2 local index consumes: no derivative, no
+  orientation, no sign.
 -/
 
 noncomputable section
 
 namespace GroupApproximation.AlgTop
 
-open Matrix Complex
-open scoped ComplexConjugate
+open Matrix
+open GroupApproximation.STW59
+
+namespace CPn
 
 variable {d : ℕ}
 
@@ -78,24 +80,24 @@ variable {d : ℕ}
 `i`-th coordinate functional: at the rank-one projection `q` it is `q̄ · eᵢ`, i.e. the
 `i`-th row of `q`. -/
 def dualTautComponent (i : Fin (d + 1)) (x : CP d) : Fin (d + 1) → ℂ :=
-  fun j => x.mat i j
+  fun j => entry x i j
 
 @[simp]
 theorem dualTautComponent_apply (i : Fin (d + 1)) (x : CP d) (j : Fin (d + 1)) :
-    dualTautComponent i x j = x.mat i j := rfl
+    dualTautComponent i x j = entry x i j := rfl
 
 /-- `dualTautComponent i x` really is a section of the conjugate bundle: it is fixed by
-the conjugate projection `q̄`.  (`conj (q j k) = q k j` by self-adjointness, so the sum
+the conjugate projection `q̄`.  (`star (q j k) = q k j` by self-adjointness, so the sum
 below is the `(i, j)` entry of `q * q = q`.) -/
 theorem dualTautComponent_isSection (i : Fin (d + 1)) (x : CP d) (j : Fin (d + 1)) :
-    (∑ k, conj (x.mat j k) * dualTautComponent i x k) = dualTautComponent i x j := by
-  have hconj : ∀ k, conj (x.mat j k) = x.mat k j := fun k => x.prop.conj_entry j k
-  have hrw : ∀ k, conj (x.mat j k) * dualTautComponent i x k = x.mat i k * x.mat k j := by
+    (∑ k, star (entry x j k) * dualTautComponent i x k) = dualTautComponent i x j := by
+  have hrw : ∀ k, star (entry x j k) * dualTautComponent i x k = entry x i k * entry x k j := by
     intro k
-    rw [hconj k, dualTautComponent_apply]
+    have h1 : star (entry x j k) = entry x k j := (entry_symm x k j).symm
+    rw [h1, dualTautComponent_apply]
     ring
   rw [Finset.sum_congr rfl (fun k _ => hrw k)]
-  exact x.prop.sum_mul i j
+  exact entry_sum_mul x i j
 
 /-- The section of `(L*)^{⊕d}` over `CP d` given by the `d` coordinate functionals
 `ℓ₁, …, ℓ_d`.  Its `i`-th block is the `(i+1)`-st row of the projection. -/
@@ -104,55 +106,54 @@ def dualTautSection (x : CP d) : Fin d → Fin (d + 1) → ℂ :=
 
 @[simp]
 theorem dualTautSection_apply (x : CP d) (i : Fin d) (j : Fin (d + 1)) :
-    dualTautSection x i j = x.mat i.succ j := rfl
+    dualTautSection x i j = entry x i.succ j := rfl
 
 /-! ## 2. The base point, entrywise -/
 
-theorem basePoint_mat (d : ℕ) (a b : Fin (d + 1)) :
-    (CP.basePoint d).mat a b = if a = 0 then (if b = 0 then 1 else 0) else 0 := by
-  simp only [CP.basePoint, CP.ofVec_mat]
-  by_cases ha : a = 0 <;> by_cases hb : b = 0 <;> simp [ha, hb]
+theorem basePoint_entry_of_row_ne_zero {a : Fin (d + 1)} (ha : a ≠ 0) (b : Fin (d + 1)) :
+    entry (basePoint d) a b = 0 := by
+  rw [basePoint_entry]
+  simp [Pi.single_apply, ha]
 
-theorem basePoint_mat_of_ne_zero {d : ℕ} {a : Fin (d + 1)} (ha : a ≠ 0) (b : Fin (d + 1)) :
-    (CP.basePoint d).mat a b = 0 := by
-  rw [basePoint_mat, if_neg ha]
+theorem basePoint_entry_of_col_ne_zero {b : Fin (d + 1)} (hb : b ≠ 0) (a : Fin (d + 1)) :
+    entry (basePoint d) a b = 0 := by
+  rw [basePoint_entry]
+  simp [Pi.single_apply, hb]
 
 /-! ## 3. Exactly one zero -/
 
 /-- If every row of a rank-one projection other than the `0`-th vanishes, then so does
 every column other than the `0`-th: the matrix is self-adjoint. -/
 theorem col_eq_zero_of_rows_eq_zero {x : CP d}
-    (h : ∀ a : Fin (d + 1), a ≠ 0 → ∀ b, x.mat a b = 0)
-    (a b : Fin (d + 1)) (hb : b ≠ 0) : x.mat a b = 0 := by
-  have h1 : conj (x.mat b a) = x.mat a b := x.prop.conj_entry b a
-  rw [← h1, h b hb a, map_zero]
+    (h : ∀ a : Fin (d + 1), a ≠ 0 → ∀ b, entry x a b = 0)
+    (a b : Fin (d + 1)) (hb : b ≠ 0) : entry x a b = 0 := by
+  rw [entry_symm x a b, h b hb a, star_zero]
 
 /-- **Exactly one zero.**  The section `dualTautSection` of `(L*)^{⊕d}` over `ℂP^d`
 vanishes at `x` if and only if `x` is the base point `[1 : 0 : ⋯ : 0]`.
 
 This is the manuscript's `|⟨c_m(H), [Y]⟩| = 1` for a single factor, proved without any
-characteristic class: vanishing of the section says that the last `d` rows of the
-projection are zero, self-adjointness then kills the last `d` columns, and the trace
-condition forces the surviving entry to be `1`. -/
+characteristic class: vanishing of the section says that the rows other than the `0`-th
+are zero, self-adjointness then kills the corresponding columns, and the trace condition
+forces the surviving entry to be `1`. -/
 theorem dualTautSection_eq_zero_iff (x : CP d) :
-    (∀ i j, dualTautSection x i j = 0) ↔ x = CP.basePoint d := by
+    (∀ i j, dualTautSection x i j = 0) ↔ x = basePoint d := by
   constructor
   · intro h
     -- Every row other than the `0`-th vanishes.
-    have hrow : ∀ a : Fin (d + 1), a ≠ 0 → ∀ b, x.mat a b = 0 := by
+    have hrow : ∀ a : Fin (d + 1), a ≠ 0 → ∀ b, entry x a b = 0 := by
       intro a ha b
       obtain ⟨i, rfl⟩ := Fin.exists_succ_eq_of_ne_zero ha
       simpa using h i b
     -- Hence every entry off the `(0, 0)` slot vanishes.
-    have hoff : ∀ a b : Fin (d + 1), ¬ (a = 0 ∧ b = 0) → x.mat a b = 0 := by
+    have hoff : ∀ a b : Fin (d + 1), ¬ (a = 0 ∧ b = 0) → entry x a b = 0 := by
       intro a b hab
       by_cases ha : a = 0
-      · have hb : b ≠ 0 := fun hb => hab ⟨ha, hb⟩
-        exact col_eq_zero_of_rows_eq_zero hrow a b hb
+      · exact col_eq_zero_of_rows_eq_zero hrow a b (fun hb => hab ⟨ha, hb⟩)
       · exact hrow a ha b
     -- The trace condition pins the surviving entry.
-    have htr : x.mat 0 0 = 1 := by
-      have h1 : x.mat.trace = 1 := x.prop.trace_eq
+    have htr : entry x 0 0 = 1 := by
+      have h1 : (x : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace = 1 := trace_coe x
       rw [Matrix.trace] at h1
       simp only [Matrix.diag_apply] at h1
       rw [Finset.sum_eq_single (0 : Fin (d + 1))] at h1
@@ -162,34 +163,33 @@ theorem dualTautSection_eq_zero_iff (x : CP d) :
       · intro hcon
         exact absurd (Finset.mem_univ (0 : Fin (d + 1))) hcon
     -- Compare with the base point entrywise.
-    refine CP.ext_iff'.mpr (fun a b => ?_)
-    rw [basePoint_mat]
+    refine ext (fun a b => ?_)
     by_cases ha : a = 0
     · by_cases hb : b = 0
-      · rw [if_pos ha, if_pos hb, ha, hb]; exact htr
-      · rw [if_pos ha, if_neg hb]
-        exact hoff a b (fun hcon => hb hcon.2)
-    · rw [if_neg ha]
-      exact hoff a b (fun hcon => ha hcon.1)
+      · subst ha
+        subst hb
+        rw [htr, basePoint_entry_zero_zero]
+      · rw [hoff a b (fun hcon => hb hcon.2), basePoint_entry_of_col_ne_zero hb a]
+    · rw [hoff a b (fun hcon => ha hcon.1), basePoint_entry_of_row_ne_zero ha b]
   · intro h i j
     rw [dualTautSection_apply, h]
-    exact basePoint_mat_of_ne_zero (Fin.exists_succ_eq.mp ⟨i, rfl⟩) j
+    exact basePoint_entry_of_row_ne_zero (Fin.exists_succ_eq.mp ⟨i, rfl⟩) j
 
 /-- The zero locus of the section is the singleton `{basePoint}`. -/
 theorem dualTautSection_zeroLocus (d : ℕ) :
-    {x : CP d | ∀ i j, dualTautSection x i j = 0} = {CP.basePoint d} := by
+    {x : CP d | ∀ i j, dualTautSection x i j = 0} = {basePoint d} := by
   ext x
   simpa using dualTautSection_eq_zero_iff x
 
 /-! ## 4. The section in the standard affine chart -/
 
 /-- `1 + ‖z‖²`, the normalizing weight of the affine chart. -/
-def tautChartNorm (z : Fin d → ℂ) : ℝ := 1 + ∑ b, Complex.normSq (z b)
+def tautChartNorm (z : Fin d → ℂ) : ℝ := 1 + ∑ b, ‖z b‖ ^ 2
 
 theorem one_le_tautChartNorm (z : Fin d → ℂ) : 1 ≤ tautChartNorm z := by
-  have : (0 : ℝ) ≤ ∑ b, Complex.normSq (z b) :=
-    Finset.sum_nonneg fun b _ => Complex.normSq_nonneg (z b)
-  simpa [tautChartNorm] using this
+  have h : (0 : ℝ) ≤ ∑ b, ‖z b‖ ^ 2 :=
+    Finset.sum_nonneg fun b _ => sq_nonneg (‖z b‖)
+  simpa [tautChartNorm] using h
 
 theorem tautChartNorm_pos (z : Fin d → ℂ) : 0 < tautChartNorm z :=
   lt_of_lt_of_le zero_lt_one (one_le_tautChartNorm z)
@@ -206,37 +206,38 @@ theorem tautChartVec_apply (z : Fin d → ℂ) (a : Fin (d + 1)) :
       = ((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) * (Fin.cons 1 z : Fin (d + 1) → ℂ) a :=
   rfl
 
-theorem tautChartNorm_inv_sqrt_mul_self (z : Fin d → ℂ) :
-    (Real.sqrt (tautChartNorm z))⁻¹ * (Real.sqrt (tautChartNorm z))⁻¹
-      = (tautChartNorm z)⁻¹ := by
-  rw [← mul_inv, Real.mul_self_sqrt (tautChartNorm_pos z).le]
+theorem inv_sqrt_tautChartNorm_sq (z : Fin d → ℂ) :
+    ((Real.sqrt (tautChartNorm z))⁻¹) ^ 2 = (tautChartNorm z)⁻¹ := by
+  rw [inv_pow, Real.sq_sqrt (tautChartNorm_pos z).le]
 
-theorem sum_normSq_tautChartVec (z : Fin d → ℂ) :
-    (∑ a, Complex.normSq (tautChartVec z a)) = 1 := by
-  have hstep : ∀ a : Fin (d + 1), Complex.normSq (tautChartVec z a)
-      = (tautChartNorm z)⁻¹ * Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a) := by
-    intro a
-    rw [tautChartVec_apply, Complex.normSq_mul, Complex.normSq_ofReal,
-      tautChartNorm_inv_sqrt_mul_self]
-  rw [Finset.sum_congr rfl (fun a _ => hstep a), ← Finset.mul_sum]
-  have hsum :
-      (∑ a, Complex.normSq ((Fin.cons 1 z : Fin (d + 1) → ℂ) a)) = tautChartNorm z := by
+theorem norm_sq_tautChartVec (z : Fin d → ℂ) (a : Fin (d + 1)) :
+    ‖tautChartVec z a‖ ^ 2
+      = (tautChartNorm z)⁻¹ * ‖(Fin.cons 1 z : Fin (d + 1) → ℂ) a‖ ^ 2 := by
+  have hr : (0 : ℝ) ≤ (Real.sqrt (tautChartNorm z))⁻¹ := by positivity
+  rw [tautChartVec_apply, norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hr,
+    mul_pow, inv_sqrt_tautChartNorm_sq]
+
+theorem tautChartVec_mem_unitVectors (z : Fin d → ℂ) :
+    tautChartVec z ∈ unitVectors (Fin (d + 1)) := by
+  show (∑ a, ‖tautChartVec z a‖ ^ 2) = 1
+  rw [Finset.sum_congr rfl (fun a _ => norm_sq_tautChartVec z a), ← Finset.mul_sum]
+  have hsum : (∑ a, ‖(Fin.cons 1 z : Fin (d + 1) → ℂ) a‖ ^ 2) = tautChartNorm z := by
     rw [Fin.sum_univ_succ]
     simp [tautChartNorm]
   rw [hsum, inv_mul_cancel₀ (tautChartNorm_ne_zero z)]
 
 /-- The standard affine chart of `ℂP^d` around the base point, in the projection model:
 `z ↦ ` the rank-one projection onto the line spanned by `(1, z)`. -/
-def tautChart (z : Fin d → ℂ) : CP d := CP.ofVec (tautChartVec z) (sum_normSq_tautChartVec z)
+def tautChart (z : Fin d → ℂ) : CP d :=
+  ⟨rankOneProj (tautChartVec z), rankOneProj_mem_cpSet (tautChartVec_mem_unitVectors z)⟩
 
 @[simp]
-theorem tautChart_mat (z : Fin d → ℂ) (a b : Fin (d + 1)) :
-    (tautChart z).mat a b = tautChartVec z a * conj (tautChartVec z b) :=
-  CP.ofVec_mat _ _ a b
+theorem tautChart_entry (z : Fin d → ℂ) (a b : Fin (d + 1)) :
+    entry (tautChart z) a b = tautChartVec z a * star (tautChartVec z b) := rfl
 
-theorem tautChart_zero (d : ℕ) : tautChart (0 : Fin d → ℂ) = CP.basePoint d := by
+theorem tautChart_zero (d : ℕ) : tautChart (0 : Fin d → ℂ) = basePoint d := by
   refine (dualTautSection_eq_zero_iff _).mp (fun i j => ?_)
-  rw [dualTautSection_apply, tautChart_mat]
+  rw [dualTautSection_apply, tautChart_entry]
   simp [tautChartVec_apply]
 
 /-- **The section in the chart.**  Along the affine chart around its zero, the section
@@ -247,17 +248,16 @@ def sectionChart (z : Fin d → ℂ) : Fin d → ℂ := fun i => dualTautSection
 
 theorem sectionChart_apply (z : Fin d → ℂ) (i : Fin d) :
     sectionChart z i = ((tautChartNorm z)⁻¹ : ℝ) * z i := by
-  have hc : ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ) * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
-      = ((tautChartNorm z)⁻¹ : ℂ) := by
-    rw [← Complex.ofReal_mul, tautChartNorm_inv_sqrt_mul_self]
-  simp only [sectionChart, dualTautSection_apply, tautChart_mat, tautChartVec_apply, Fin.cons_succ,
-    Fin.cons_zero, map_mul, Complex.conj_ofReal, map_one, mul_one]
-  have hre :
-      ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ) * z i * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
-        = (((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)
-            * ((Real.sqrt (tautChartNorm z))⁻¹ : ℂ)) * z i := by
+  have hs : star ((((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) : ℂ) * 1)
+      = (((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) : ℂ) := by simp
+  have hc : (((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) : ℂ)
+      * (((Real.sqrt (tautChartNorm z))⁻¹ : ℝ) : ℂ) = (((tautChartNorm z)⁻¹ : ℝ) : ℂ) := by
+    rw [← Complex.ofReal_mul, ← pow_two, inv_sqrt_tautChartNorm_sq]
+  have hre : ∀ A B : ℂ, A * z i * B = A * B * z i := by
+    intro A B
     ring
-  rw [hre, hc]
+  show tautChartVec z i.succ * star (tautChartVec z 0) = _
+  rw [tautChartVec_apply, tautChartVec_apply, Fin.cons_succ, Fin.cons_zero, hs, hre, hc]
 
 theorem sectionChart_eq_zero_iff (z : Fin d → ℂ) :
     (∀ i, sectionChart z i = 0) ↔ z = 0 := by
@@ -266,7 +266,7 @@ theorem sectionChart_eq_zero_iff (z : Fin d → ℂ) :
     funext i
     have hi := h i
     rw [sectionChart_apply] at hi
-    have hne : ((tautChartNorm z)⁻¹ : ℂ) ≠ 0 := by
+    have hne : (((tautChartNorm z)⁻¹ : ℝ) : ℂ) ≠ 0 := by
       simpa using inv_ne_zero (tautChartNorm_ne_zero z)
     simpa using (mul_eq_zero.mp hi).resolve_left hne
   · intro h i
@@ -321,5 +321,7 @@ theorem tautChartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) 
   · intro h i
     simp only [tautChartHomotopy, h]
     simp
+
+end CPn
 
 end GroupApproximation.AlgTop
