@@ -904,3 +904,92 @@ restrictions and top-degree extraction. It needs powers of two and it needs the
 restriction maps; §12.3 needs neither and is four lines. **Formalize §12.3.** §9 is
 retained as an independent derivation that reached the same conclusion by a
 different route, which is the reason to have some confidence in both.
+
+---
+
+## 13. Lemma 2: the chain, the rank invariant, and one ownership gap
+
+### 13.1 The rank invariant (audit-gate's check, and it passes)
+
+Murray–von Neumann equivalent projections have equal pointwise rank, so a rank
+mismatch would make Lemma 2 provable from the trace with no connection to the
+manuscript. The ranks, at every point:
+
+| projection | pointwise rank |
+|---|---|
+| `F(x) = 1 − x xᴴ` on `S⁵ ⊂ ℂ³` | `3 − 1 = 2` |
+| `1²` | `2` |
+| `p_H`, `H = ⨁_j L_j^{⊕ d_j}` | `m = Σ_j d_j` |
+| `F ⊕ p_H` | `2 + m` |
+| `1² ⊕ p_H` | `2 + m` |
+
+Equal. The statement is **not** rank-refutable, which is exactly what makes it
+the hard statement. Recorded because the failure mode is one character wide: the
+manuscript's `V` is `1³ ⊕ H` while the comparison bundle is `1² ⊕ H`, so a
+`3`-for-`2` slip turns Lemma 2 into a two-line triviality. **State both ranks
+explicitly wherever Lemma 2 appears, and if a short proof ever appears, check the
+ranks before believing it.**
+
+### 13.2 The chain
+
+1. Assume `F ⊕ p_H ∼ 1² ⊕ p_H` (Murray–von Neumann, in the matrix algebra over
+   `C(S⁵ × Y, ℂ)`).
+2. These are the complements of the two unit sections `s = (x,0)` and
+   `e = (e₃,0)` inside `V = 1³ ⊕ H`, since `P − s sᴴ = F ⊕ p_H` and
+   `P − e eᴴ = 1² ⊕ p_H`.
+3. Extend the equivalence by `e ↦ s` to a unitary `g` of the corner with
+   `g e = s`. — **`LIXObstructionComplementUnitary.lean`**, this lane. Pure
+   `*`-ring algebra; the manuscript's polar decomposition costs nothing in the
+   projection model.
+4. Form the mapping torus `W_g` over `S¹ × M` and the section (2.10). —
+   `found-euler-class`.
+5. The section has exactly one zero and it is transverse. — `found-euler-class`
+   (`ManuscriptSectionZeroCount.lean`), with the `S⁵ × [0,1]` half in
+   `MappingTorusSectionZeros.lean`.
+6. **The bridge**: one transverse zero ⟹ `w_{2r}(W_g) ≠ 0`. See §13.3.
+7. `w_{2r}(W_g) = 0` by Lemma 3. — `found-mapping-torus-parity` (integral,
+   green), or §12.3 (mod 2).
+8. Contradiction.
+
+Steps 1–3 and 7 exist. Steps 4–5 exist unprobed. **Step 6 is the only open
+mathematics in target 3.**
+
+### 13.3 Step 6, decomposed so that Poincaré duality is not needed
+
+For `N = S¹ × S⁵ × ∏_j CP^{d_j}` specifically:
+
+* `H^{2r}(N;F₂) ≅ F₂` — Künneth over a field.
+* `N` has a CW structure with exactly **one** top cell (the product of the top
+  cells). Put the zero `z` in its interior; then `N ∖ {z}` deformation retracts
+  onto the `(2r−1)`-skeleton, so `H^{2r}(N ∖ z;F₂) = 0`. This replaces "the top
+  cohomology of a connected noncompact manifold vanishes" by a deformation
+  retraction.
+* Excision to that cell gives `H^{2r}(N, N∖z;F₂) ≅ F₂`.
+* The long exact sequence then makes `H^{2r}(N, N∖z) → H^{2r}(N)` **surjective**,
+  and a surjection `F₂ → F₂` is an isomorphism — so injectivity is free. **No
+  Poincaré duality, no fundamental class, no mod-2 orientation.** Over `ℤ` one
+  needs duality here; over `F₂` with both groups computed, surjectivity suffices.
+* A nowhere-zero section on `N ∖ z` splits off a trivial line, so
+  `w_{2r}(W)|_{N∖z} = 0`. Hence `w_{2r}(W)` is `0` or the generator.
+
+What remains irreducible is *which*: the relative class of a transverse zero must
+generate `H^{2r}(U, U∖z;F₂)`. But after the above it is localized to a single
+chart on which the bundle is trivial, so the statement needed is the **mod-2
+local degree of an invertible real-linear map**, which is `1` — not a global Thom
+isomorphism. Mod 2 one does not even need linearity: any homeomorphism has odd
+degree.
+
+### 13.4 An ownership gap
+
+`audit-gate`'s non-vacuity check names something no lane appears to own: somebody
+must prove **unconditionally** that the inductive limit `A` is simple and unital,
+or the whole chain is an implication into an uninhabited conclusion and says
+nothing about Problem LIX. That is manuscript §5. It is not on the seven
+foundation lanes' list and it is not on this lane's. Flagged as an ownership gap,
+not as a mathematical difficulty — §5's argument is elementary C\*-algebra.
+
+Two related scope notes, both from `found-mapping-torus-parity`: `c_r(V) = 0` is a
+statement about the **rank** of `V` and needs no dimension count, contrary to how
+the manuscript argues it; and Newton's identity is a **theorem** in
+`TotalChern` (`natCast_mul_chernClass`, the degree-`q` coefficient of
+`c·N(c) = X·c'`), not an assumption — no Chern roots, no splitting principle.
