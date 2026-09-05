@@ -146,3 +146,70 @@ mathematical one: finish the HamSandwich v4.32 port so
 `ComplexOddMapCommonZero.lean` elaborates, get the 21 operator-algebra modules
 green, and have the lead wire `STW22NegativeSolution` into
 `GroupApproximation.lean` so the gate runs in CI.
+
+## 6. Addendum: the CCEGSTW vocabulary gap (opened by audit sweep 8)
+
+Sweep 8 (`afbe9310f`) is right that the endpoint's conjuncts never mention
+`IsFactorialTraciallyCompletePair` or `AllTracesUniformTwoContinuous` from
+`GroupApproximation/Analysis/TraciallyCompleteCStar.lean`.  That is a separate
+defect from conditionality: the endpoint is unconditional, but it states
+`T(A) ⊊ T(M)` in the repository's own vocabulary rather than the problem's.
+
+`GroupApproximation/Analysis/STW22DesignatedTraces.lean` closes the half that is
+already proved.  With
+
+```text
+M := BoundedUniformTwoCompletion antipodalAllTracesGauge …
+X := Set.range (canonicalExtension antipodalAllTracesGauge_isCoordinateNormComparison)
+```
+
+`X.Nonempty` is the trace at infinity, and **Question 1.1's second form** —
+`DesignatedTracesAreAllTraces X`, i.e. `X = Set.univ` — is `Set.range_eq_univ`
+away from `¬ Function.Surjective (canonicalExtension …)`, which is proved.
+
+### Route for Question 1.1's first form, `¬ AllTracesUniformTwoContinuous X`
+
+Not yet landed.  The obstacle is not the mathematics but a direction of
+estimate.  Refuting the first form needs a sequence that is
+`uniformTwoNormOn X`-null, and the witness in hand is `uniformTwoNorm G`-null,
+so what is required is `uniformTwoNormOn X ≤ (something)·uniformTwoNorm G` —
+the easy direction (each designated trace is dominated by the gauge), but it
+needs a *pointwise* bound where the repository currently exposes only the
+sequential one.  Concretely:
+
+1. `GroupApproximation/Analysis/STW22CanonicalTraceExtensionModel.lean` proves
+   `norm_modelExtension_le_uniformTwoNorm : ‖modelExtension τ x‖ ≤ uniformTwoNorm (G D) x.1`
+   but declares it `private`; only the sequential corollary
+   `modelExtension_isUniformTwoContinuous` is public, and sequential continuity
+   of each trace separately does not give uniformity over `X`.  The name occurs
+   nowhere else in the repository, so dropping `private` is safe.
+2. For `ρ` a base trace, `canonicalExtension_apply` plus step 1 gives
+   `tracialTwoNorm (canonicalExtension ρ) a ≤ √(uniformTwoNorm G (star y * y))`
+   with `y := realize … a`, and `uniformTwoNorm_mul_left_le`
+   (`STW22CanonicalTraceExtensionEstimates.lean:98`) bounds that by
+   `√(‖y‖ · uniformTwoNorm G y)`.  `uniformTwoNormOn_le` then lifts it over `X`.
+3. The square root is why the witness must be **norm-bounded**, and the current
+   `exists_discontinuous_tracialState_completion` does not say that its witness
+   is.  It is: the witness is `fun N ↦ ⟨tail B.seq N, …⟩`
+   (`STW22CounterexampleAssembly.lean:463`), and `tail x N n = if n ≤ N then 0
+   else x n`, so `‖tail B.seq N‖ ≤ ‖B.seq‖` coordinatewise in `lp ∞`.  What is
+   needed is a bounded-witness variant of that theorem — added alongside the
+   existing one, not by changing it, since its statement is pinned into
+   `stw22_trace_problem_counterexample`.
+
+### Factoriality itself
+
+`IsFactorialTraciallyCompletePair X` has six fields.  Sweep 8 guesses
+`isCompact`, `isConvex`, `isClosed` are free; that is right only up to two
+missing facts about `canonicalExtension`, which are not in the repository:
+
+* `isCompact` needs `Continuous (canonicalExtension hr)` for the weak-star
+  topologies — then `X` is the continuous image of the compact
+  `TracialState (BaseAlgebra …)` (`TraciallyComplete.compactSpace_tracialState`).
+* `isClosed` follows from `isCompact` and `TraciallyComplete`'s
+  `tracialStateWeakStarT2Space`, so it is free *after* `isCompact`.
+* `isConvex` needs affineness, `modelExtension (t·σ + (1-t)·τ) = t·modelExtension σ +
+  (1-t)·modelExtension τ`, which should follow from uniqueness of the limit
+  defining `extensionValue` along a base approximation.
+* `isFace`, `faithful` and `unitBallComplete` are substance.  Sweep 8 is right
+  that `isFace` is the one to look at first.
