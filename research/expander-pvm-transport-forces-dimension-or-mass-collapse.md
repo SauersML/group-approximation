@@ -3,6 +3,8 @@ rg: 2
 id: expander-pvm-transport-forces-dimension-or-mass-collapse
 kind: claim
 title: Expander transport of one PVM forces large dimension or marked-mass collapse
+artifacts:
+  - research/artifacts/expanding-character-multiplicity-rank-audit-2026-09-05.md
 ---
 
 ESTABLISHED.  Let `G=(Omega,E)` be a finite `D`-regular undirected graph

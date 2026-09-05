@@ -62,13 +62,23 @@ non-hyperlinear group.
   (`N = 4` works too, at the cost of routing every statement through
   the finite center `{+-1}` via the chi-face machinery.)
 - **What the cohomology now supplies.**
-  `two-kazhdan-correction-concentrates-normalized-hs-curvature` changes
+  `two-kazhdan-correction-has-quadratic-rank-curvature` changes
   arbitrary approximating tuples by `O(delta)` in normalized HS norm
-  and makes their relator trace-norm errors `o(delta)`, on a subsequence.
-  The remaining curvature lies outside an operator-norm `o(delta)`
-  bound only on subspaces of vanishing relative dimension. Those
-  subspaces need not be invariant, so this does not give `(RC5)` or
-  the exact subgroup holonomy required by the induction route.
+  and removes all small-angle tangent curvature, on a subsequence.
+  For every fixed `epsilon>0`, the corrected relator errors have HS
+  norm at most `epsilon delta` outside supports of relative dimension
+  `C_epsilon delta^2`. The constant need not stay bounded as epsilon
+  tends to zero. The earlier trace-norm `o(delta)` concentration theorem
+  follows as a corollary. These supports need not be invariant, so
+  neither `(RC5)` nor the exact subgroup holonomy required by the
+  induction route follows. Universal frozen-support surgery with the
+  required summable budgets would imply same-dimension HS stability.
+  That conclusion is impossible here: the infinite residually finite
+  property-(T) group `SL_5(Z)` is not HS-stable by
+  [Becker--Lubotzky](https://arxiv.org/abs/1809.00632).
+  Thus that universal surgery assertion is false for this group; a
+  viable correction route must allow dimension enlargement or use a
+  strictly narrower input class with a separately proved justification.
   `scalar-phase-regularization-makes-ui-stability-complete` also shows
   that restricting a qualitative stability claim to uniformly
   integrable input residuals does not avoid the full stability problem.

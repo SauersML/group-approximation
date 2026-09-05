@@ -1,6 +1,12 @@
 # Cairn source-graph health audit, September 5
 
-The full source snapshot passes Cairn's native document validation,
+The latest follow-up snapshot, including the small-angle curvature theorem,
+passes with **14,108 nodes and no errors, warnings, or duplicate candidates**
+in 8.755 seconds. Its record is
+`research/artifacts/quadratic-curvature-cairn-validation-2026-09-05.json`.
+The checker source matched the archived local source byte for byte.
+
+The initial repaired source snapshot passed Cairn's native document validation,
 reference and artifact lint, graph compilation, and unfiltered duplicate
 scan: **14,102 nodes, no errors, no warnings, no duplicate candidates**.
 The remote check took 8.328 seconds. The machine-readable record is
