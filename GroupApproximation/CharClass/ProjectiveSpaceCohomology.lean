@@ -42,6 +42,23 @@ namespace CharClass
 
 open CategoryTheory
 
+/-- **Over `F₂` every additive map is linear**: the only scalars are `0` and `1`.
+This is what lets the Mayer–Vietoris maps, which are additive by construction, be
+turned into `ZMod 2`-linear equivalences. -/
+def toLinearZMod2 {M N : Type} [AddCommGroup M] [Module (ZMod 2) M]
+    [AddCommGroup N] [Module (ZMod 2) N] (f : M →+ N) : M →ₗ[ZMod 2] N where
+  toFun := f
+  map_add' := f.map_add
+  map_smul' s a := by
+    have hcase : ∀ z : ZMod 2, z = 0 ∨ z = 1 := by decide
+    rcases hcase s with rfl | rfl <;> simp
+
+/-- A bijective additive map between `F₂`-modules is a linear equivalence. -/
+noncomputable def linearEquivOfBijective {M N : Type} [AddCommGroup M] [Module (ZMod 2) M]
+    [AddCommGroup N] [Module (ZMod 2) N] (f : M →+ N) (hf : Function.Bijective f) :
+    M ≃ₗ[ZMod 2] N :=
+  LinearEquiv.ofBijective (toLinearZMod2 f) hf
+
 /-- **The mod-2 Mayer–Vietoris sequence of a two-piece cover, in element form.**
 `X` is covered by `U` and `V` with intersection `W`; the maps are the four
 restrictions and the connecting map, and the three `exact_*` fields are exactness
@@ -70,11 +87,11 @@ structure MVSequence (X U V W : TopCat.{0}) where
 
 namespace MVSequence
 
-variable {X U V W : TopCat.{0}} (mv : MVSequence X U V W)
+variable {X U V W : TopCat.{0}}
 
 /-- **Propagation.**  When `H^{n+1}(U)`, `H^n(W)` and `H^{n+1}(W)` all vanish,
 restriction to `V` is an isomorphism in degree `n+1`. -/
-theorem bijective_resV (n : ℕ)
+theorem bijective_resV (mv : MVSequence X U V W) (n : ℕ)
     (hU : ∀ a : Hmod2 U (n + 1), a = 0)
     (hWn : ∀ w : Hmod2 W n, w = 0)
     (hWn1 : ∀ w : Hmod2 W (n + 1), w = 0) :
@@ -94,7 +111,7 @@ theorem bijective_resV (n : ℕ)
 
 /-- **Creation.**  When `U` and `V` both vanish in degrees `n` and `n+1`, the
 connecting map is an isomorphism `H^n(W) ≅ H^{n+1}(X)`. -/
-theorem bijective_delta (n : ℕ)
+theorem bijective_delta (mv : MVSequence X U V W) (n : ℕ)
     (hUn : ∀ a : Hmod2 U n, a = 0) (hVn : ∀ b : Hmod2 V n, b = 0)
     (hUn1 : ∀ a : Hmod2 U (n + 1), a = 0) (hVn1 : ∀ b : Hmod2 V (n + 1), b = 0) :
     Function.Bijective (mv.δ n) := by
@@ -107,14 +124,14 @@ theorem bijective_delta (n : ℕ)
     have hw := hzero (w - w') (by rw [map_sub, hww, sub_self])
     exact sub_eq_zero.mp hw
   · intro x
-    exact (mv.exact_X n x).mp ⟨hUn1 x, hVn1 x⟩
+    exact (mv.exact_X n x).mp ⟨hUn1 (mv.resU (n + 1) x), hVn1 (mv.resV (n + 1) x)⟩
 
 /-- **Vanishing.**  When `U` and `V` vanish in degree `n+1` and `W` vanishes in
 degree `n`, so does `H^{n+1}(X)`. -/
-theorem eq_zero_of_delta (n : ℕ)
+theorem eq_zero_of_delta (mv : MVSequence X U V W) (n : ℕ)
     (hUn1 : ∀ a : Hmod2 U (n + 1), a = 0) (hVn1 : ∀ b : Hmod2 V (n + 1), b = 0)
     (hWn : ∀ w : Hmod2 W n, w = 0) (x : Hmod2 X (n + 1)) : x = 0 := by
-  obtain ⟨w, hw⟩ := (mv.exact_X n x).mp ⟨hUn1 x, hVn1 x⟩
+  obtain ⟨w, hw⟩ := (mv.exact_X n x).mp ⟨hUn1 (mv.resU (n + 1) x), hVn1 (mv.resV (n + 1) x)⟩
   rw [← hw, hWn w, map_zero]
 
 end MVSequence
@@ -190,29 +207,25 @@ theorem hasCPCohomology_succ {X U V W : TopCat.{0}} (mv : MVSequence X U V W) (d
   -- Degree `1` vanishes: the connecting map out of `H^0(W)` is zero.
   have hone : ∀ x : Hmod2 X 1, x = 0 := by
     intro x
-    obtain ⟨w, hw⟩ := (mv.exact_X 0 x).mp ⟨hUz 1 one_ne_zero x, hVodd 1 rfl x⟩
+    obtain ⟨w, hw⟩ := (mv.exact_X 0 x).mp
+      ⟨hUz 1 one_ne_zero (mv.resU 1 x), hVodd 1 rfl (mv.resV 1 x)⟩
     obtain ⟨a, ha⟩ := hres0 w
-    have : mv.δ 0 w = 0 := (mv.exact_W 0 w).mpr ⟨a, 0, by rw [ha, map_zero, add_zero]⟩
-    rw [← hw, this]
+    have hd : mv.δ 0 w = 0 := (mv.exact_W 0 w).mpr ⟨a, 0, by rw [ha, map_zero, add_zero]⟩
+    rw [← hw, hd]
   refine ⟨?_, ?_⟩
   · -- the lines
     intro n hn
-    match n with
-    | 0 => simpa using h0
-    | (m + 1) =>
+    match n, hn with
+    | 0, _ => exact h0
+    | (m + 1), hn =>
       rcases Nat.lt_or_ge m d with hmd | hmd
       · -- an old class, transported from `V`
         have hbij := mv.bijective_resV (2 * m + 1)
           (fun a => hUz (2 * m + 1 + 1) (by omega) a)
           (fun w => hWz (2 * m + 1) (by omega) (by omega) w)
           (fun w => hWz (2 * m + 1 + 1) (by omega) (by omega) w)
-        have e : Hmod2 X (2 * (m + 1)) ≃ₗ[ZMod 2] Hmod2 V (2 * (m + 1)) :=
-          LinearEquiv.ofBijective
-            (LinearMap.mk (mv.resV (2 * (m + 1))).toAddHom
-              (fun s a => by
-                simpa using ((mv.resV (2 * (m + 1))).toIntLinearMap).map_smul_of_tower s a))
-            hbij
-        exact ⟨e.trans (hVline (m + 1) (by omega)).some⟩
+        exact ⟨(linearEquivOfBijective (mv.resV (2 * m + 1 + 1)) hbij).trans
+          (hVline (m + 1) (by omega)).some⟩
       · -- the new top class
         have hmd' : m = d := by omega
         subst hmd'
@@ -221,25 +234,20 @@ theorem hasCPCohomology_succ {X U V W : TopCat.{0}} (mv : MVSequence X U V W) (d
           (fun b => hVodd (2 * m + 1) (by omega) b)
           (fun a => hUz (2 * m + 1 + 1) (by omega) a)
           (fun b => hVbig (2 * m + 1 + 1) (by omega) b)
-        have e : Hmod2 W (2 * m + 1) ≃ₗ[ZMod 2] Hmod2 X (2 * (m + 1)) :=
-          LinearEquiv.ofBijective
-            (LinearMap.mk (mv.δ (2 * m + 1)).toAddHom
-              (fun s a => by
-                simpa using ((mv.δ (2 * m + 1)).toIntLinearMap).map_smul_of_tower s a))
-            hbij
-        exact ⟨e.symm.trans hWtop.some⟩
+        exact ⟨(linearEquivOfBijective (mv.δ (2 * m + 1)) hbij).symm.trans hWtop.some⟩
   · -- the vanishing
     intro k hk a
-    match k with
-    | 0 => exact absurd (by omega : (0 : ℕ) = 2 * 0) (hk 0 (by omega))
-    | 1 => exact hone a
-    | (j + 2) =>
-      refine mv.eq_zero_of_delta (j + 1)
-        (fun a => hUz (j + 2) (by omega) a)
+    match k, hk, a with
+    | 0, hk, _ => exact absurd rfl (hk 0 (Nat.zero_le _))
+    | 1, _, a => exact hone a
+    | (j + 2), hk, a =>
+      have hne : j + 1 ≠ 2 * d + 1 := by
+        intro hcontra
+        exact hk (d + 1) (le_refl _) (by omega)
+      exact mv.eq_zero_of_delta (j + 1)
+        (fun b => hUz (j + 2) (by omega) b)
         (fun b => hVz (j + 2) (fun n hn => hk n (by omega)) b)
-        (fun w => hWz (j + 1) (by omega) ?_ w) a
-      intro hcontra
-      exact hk (d + 1) (le_refl _) (by omega)
+        (fun w => hWz (j + 1) (by omega) hne w) a
 
 end CharClass
 end GroupApproximation

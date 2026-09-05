@@ -42,8 +42,8 @@ def homeomorphCompl (e : X ≃ₜ Y) (a : X) :
   toFun x := ⟨e x, fun h => x.2 (e.injective h)⟩
   invFun y := ⟨e.symm y, fun h =>
     y.2 ((e.apply_symm_apply (y : Y)).symm.trans (congrArg (e : X → Y) h))⟩
-  left_inv x := Subtype.ext (e.symm_apply_apply _)
-  right_inv y := Subtype.ext (e.apply_symm_apply _)
+  left_inv _ := Subtype.ext (e.symm_apply_apply _)
+  right_inv _ := Subtype.ext (e.apply_symm_apply _)
   continuous_toFun := (e.continuous.comp continuous_subtype_val).subtype_mk _
   continuous_invFun := (e.symm.continuous.comp continuous_subtype_val).subtype_mk _
 

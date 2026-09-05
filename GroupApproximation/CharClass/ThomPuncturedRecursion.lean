@@ -1,4 +1,6 @@
 import GroupApproximation.CharClass.ThomPuncturedCover
+import Mathlib.Topology.Homotopy.Equiv
+import Mathlib.Topology.Homotopy.Contractible
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CohomologyCupProduct
 
 /-!

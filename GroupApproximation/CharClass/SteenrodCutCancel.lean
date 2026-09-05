@@ -64,7 +64,7 @@ variable {N : ℕ}
 
 /-! ## 1. Inserting one cut point -/
 
-theorem cutRank_insert_of_le {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (hx : x ≤ c) :
+theorem cutRank_insert_of_le {S : Finset (Fin N)} {c x : Fin N} (hx : x ≤ c) :
     cutRank (insert c S) x = cutRank S x := by
   unfold cutRank
   congr 1
@@ -78,10 +78,10 @@ theorem cutRank_insert_of_lt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (
   rw [Finset.filter_insert, if_pos hx,
     Finset.card_insert_of_notMem (fun h => hc (Finset.mem_filter.1 h).1)]
 
-theorem mem_cutU_insert_of_lt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (hx : x < c) :
+theorem mem_cutU_insert_of_lt {S : Finset (Fin N)} {c x : Fin N} (hx : x < c) :
     x ∈ cutU (insert c S) ↔ x ∈ cutU S := by
   have hne : ¬ (x = c) := ne_of_lt hx
-  rw [mem_cutU, mem_cutU, cutRank_insert_of_le hc hx.le, Finset.mem_insert]
+  rw [mem_cutU, mem_cutU, cutRank_insert_of_le hx.le, Finset.mem_insert]
   simp only [hne, false_or]
 
 theorem mem_cutU_insert_of_gt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (hx : c < x) :
@@ -97,10 +97,10 @@ theorem mem_cutU_insert_of_gt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) 
     · exact Or.inl h
     · exact Or.inr (by omega)
 
-theorem mem_cutV_insert_of_lt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (hx : x < c) :
+theorem mem_cutV_insert_of_lt {S : Finset (Fin N)} {c x : Fin N} (hx : x < c) :
     x ∈ cutV (insert c S) ↔ x ∈ cutV S := by
   have hne : ¬ (x = c) := ne_of_lt hx
-  rw [mem_cutV, mem_cutV, cutRank_insert_of_le hc hx.le, Finset.mem_insert]
+  rw [mem_cutV, mem_cutV, cutRank_insert_of_le hx.le, Finset.mem_insert]
   simp only [hne, false_or]
 
 theorem mem_cutV_insert_of_gt {S : Finset (Fin N)} {c x : Fin N} (hc : c ∉ S) (hx : c < x) :
@@ -229,7 +229,7 @@ theorem cutU_insert_erase_eq_cutLow (hc : c ∉ S) (hcU : c ∈ cutU S) :
     (cutU (insert c S)).erase c = cutLow S c.val := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [Finset.mem_erase, mem_cutU_insert_of_lt hc h, mem_cutLow_of_lt (show x.val < c.val from h)]
+  · rw [Finset.mem_erase, mem_cutU_insert_of_lt h, mem_cutLow_of_lt (show x.val < c.val from h)]
     exact and_iff_right (ne_of_lt h)
   · rw [mem_cutLow_of_ge (le_refl x.val)]
     constructor
@@ -243,7 +243,7 @@ theorem cutV_insert_eq_cutHigh (hc : c ∉ S) (hcU : c ∈ cutU S) :
     cutV (insert c S) = cutHigh S c.val := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [mem_cutV_insert_of_lt hc h, mem_cutHigh_of_lt (show x.val < c.val from h)]
+  · rw [mem_cutV_insert_of_lt h, mem_cutHigh_of_lt (show x.val < c.val from h)]
   · rw [mem_cutHigh_of_ge (le_refl x.val)]
     exact ⟨fun _ => hcU, fun _ => mem_cutV_insert_self S x⟩
   · rw [mem_cutV_insert_of_gt hc h, mem_cutHigh_of_ge (le_of_lt (show c.val < x.val from h))]
@@ -252,7 +252,7 @@ theorem cutU_insert_eq_cutLow_succ (hc : c ∉ S) (hcU : c ∈ cutU S) :
     cutU (insert c S) = cutLow S (c.val + 1) := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [mem_cutU_insert_of_lt hc h,
+  · rw [mem_cutU_insert_of_lt h,
       mem_cutLow_of_lt (by have : x.val < c.val := h; omega : x.val < c.val + 1)]
   · rw [mem_cutLow_of_lt (Nat.lt_succ_self x.val)]
     exact ⟨fun _ => hcU, fun _ => mem_cutU_insert_self S x⟩
@@ -263,7 +263,7 @@ theorem cutV_insert_erase_eq_cutHigh_succ (hc : c ∉ S) (hcU : c ∈ cutU S) :
     (cutV (insert c S)).erase c = cutHigh S (c.val + 1) := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [Finset.mem_erase, mem_cutV_insert_of_lt hc h,
+  · rw [Finset.mem_erase, mem_cutV_insert_of_lt h,
       mem_cutHigh_of_lt (by have : x.val < c.val := h; omega : x.val < c.val + 1)]
     exact and_iff_right (ne_of_lt h)
   · rw [mem_cutHigh_of_lt (Nat.lt_succ_self x.val)]
@@ -278,7 +278,7 @@ theorem cutU_insert_eq_cutLow (hc : c ∉ S) (hcU : c ∉ cutU S) :
     cutU (insert c S) = cutLow S c.val := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [mem_cutU_insert_of_lt hc h, mem_cutLow_of_lt (show x.val < c.val from h)]
+  · rw [mem_cutU_insert_of_lt h, mem_cutLow_of_lt (show x.val < c.val from h)]
   · rw [mem_cutLow_of_ge (le_refl x.val)]
     exact ⟨fun _ => mem_cutV_of_not_mem_cutU hcU, fun _ => mem_cutU_insert_self S x⟩
   · rw [mem_cutU_insert_of_gt hc h, mem_cutLow_of_ge (le_of_lt (show c.val < x.val from h))]
@@ -287,7 +287,7 @@ theorem cutV_insert_erase_eq_cutHigh (hc : c ∉ S) (hcU : c ∉ cutU S) :
     (cutV (insert c S)).erase c = cutHigh S c.val := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [Finset.mem_erase, mem_cutV_insert_of_lt hc h, mem_cutHigh_of_lt (show x.val < c.val from h)]
+  · rw [Finset.mem_erase, mem_cutV_insert_of_lt h, mem_cutHigh_of_lt (show x.val < c.val from h)]
     exact and_iff_right (ne_of_lt h)
   · rw [mem_cutHigh_of_ge (le_refl x.val)]
     constructor
@@ -301,7 +301,7 @@ theorem cutU_insert_erase_eq_cutLow_succ (hc : c ∉ S) (hcU : c ∉ cutU S) :
     (cutU (insert c S)).erase c = cutLow S (c.val + 1) := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [Finset.mem_erase, mem_cutU_insert_of_lt hc h,
+  · rw [Finset.mem_erase, mem_cutU_insert_of_lt h,
       mem_cutLow_of_lt (by have : x.val < c.val := h; omega : x.val < c.val + 1)]
     exact and_iff_right (ne_of_lt h)
   · rw [mem_cutLow_of_lt (Nat.lt_succ_self x.val)]
@@ -316,7 +316,7 @@ theorem cutV_insert_eq_cutHigh_succ (hc : c ∉ S) (hcU : c ∉ cutU S) :
     cutV (insert c S) = cutHigh S (c.val + 1) := by
   ext x
   rcases lt_trichotomy x c with h | rfl | h
-  · rw [mem_cutV_insert_of_lt hc h,
+  · rw [mem_cutV_insert_of_lt h,
       mem_cutHigh_of_lt (by have : x.val < c.val := h; omega : x.val < c.val + 1)]
   · rw [mem_cutHigh_of_lt (Nat.lt_succ_self x.val)]
     exact ⟨fun _ => mem_cutV_of_not_mem_cutU hcU, fun _ => mem_cutV_insert_self S x⟩
@@ -474,6 +474,7 @@ theorem cutU_map_succAbove {n : ℕ} (k : Fin (n + 2)) (S : Finset (Fin (n + 1))
   constructor
   · intro hz
     obtain ⟨y, hy, rfl⟩ := Finset.mem_map.1 hz
+    simp only [succAboveEmb_apply]
     refine Finset.mem_erase.2 ⟨Fin.succAbove_ne k y, ?_⟩
     rw [mem_cutU, cutRank_map_succAbove]
     rcases mem_cutU.1 hy with h | h
@@ -498,6 +499,7 @@ theorem cutV_map_succAbove {n : ℕ} (k : Fin (n + 2)) (S : Finset (Fin (n + 1))
   constructor
   · intro hz
     obtain ⟨y, hy, rfl⟩ := Finset.mem_map.1 hz
+    simp only [succAboveEmb_apply]
     refine Finset.mem_erase.2 ⟨Fin.succAbove_ne k y, ?_⟩
     rw [mem_cutV, cutRank_map_succAbove]
     rcases mem_cutV.1 hy with h | h

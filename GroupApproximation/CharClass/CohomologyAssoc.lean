@@ -59,7 +59,7 @@ def simplexRelabel (X : TopCat.{0}) {m m' : ℕ} (h : m = m')
 @[simp] theorem simplexRelabel_rfl (X : TopCat.{0}) {m : ℕ} (σ : singularSimplices X m) :
     simplexRelabel X (rfl : m = m) σ = σ := by
   unfold simplexRelabel degHom
-  rw [eqToHom_refl, op_id, FunctorToTypes.map_id_apply]
+  rw [eqToHom_refl, op_id, Functor.map_id_apply]
 
 /-- Restricting a singular simplex along two composable `SimplexCategory`
 morphisms is restricting along the composite. -/
@@ -68,7 +68,7 @@ theorem sset_map_comp (X : TopCat.{0}) {a b c : ℕ}
     (σ : singularSimplices X c) :
     (TopCat.toSSet.obj X).map f.op ((TopCat.toSSet.obj X).map g.op σ)
       = (TopCat.toSSet.obj X).map (f ≫ g).op σ := by
-  rw [op_comp, FunctorToTypes.map_comp_apply]
+  rw [op_comp, Functor.map_comp_apply]
 
 /-! ## 2. The degree cast on cochains, evaluated -/
 
@@ -217,6 +217,7 @@ theorem backSimplex_backSimplex (X : TopCat.{0}) (p q r : ℕ)
           (backFace q r ≫ backFace p (q + r) ≫ degHom (Nat.add_assoc p q r).symm).op σ :=
     sset_map_comp X _ _ σ
   rw [h2, h3, ← backFace_comp_backFace]
+  rfl
 
 theorem backSimplex_zero_left (X : TopCat.{0}) (p : ℕ) (σ : singularSimplices X (0 + p)) :
     backSimplex X 0 p σ = simplexRelabel X (Nat.zero_add p).symm σ := by

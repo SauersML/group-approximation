@@ -123,7 +123,7 @@ theorem chernClass_zero [Nontrivial A] (pb : PowerBasis A B) : chernClass pb 0 =
 theorem chernPoly_eq_sum [Nontrivial A] (pb : PowerBasis A B) :
     chernPoly pb = ∑ k ∈ Finset.range (pb.dim + 1), C (chernClass pb k) * X ^ (pb.dim - k) := by
   ext n
-  rw [finset_sum_coeff]
+  rw [finsetSum_coeff]
   by_cases hn : n ≤ pb.dim
   · rw [Finset.sum_eq_single (pb.dim - n)]
     · rw [coeff_C_mul, coeff_X_pow, if_pos (by omega),

@@ -94,6 +94,7 @@ theorem ne_zero_of_surjective_of_linearEquiv {M N : ModuleCat.{0} R}
     {x : M} (hx : x ≠ 0) : f.hom x ≠ 0 :=
   CharClass.ne_zero_of_surjective_of_linearEquiv eM eN hf hx
 
+omit [Finite R] in
 /-- `ModuleCat` restatement of `surjective_of_exact_of_subsingleton`. -/
 theorem hom_surjective_of_exact_of_subsingleton {M N P : ModuleCat.{0} R}
     [Subsingleton P] (f : M ⟶ N) (g : N ⟶ P)

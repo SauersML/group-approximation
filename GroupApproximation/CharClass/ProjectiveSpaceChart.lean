@@ -80,8 +80,11 @@ theorem rankOneProj_normalize {n : Type*} [Fintype n] {u : n → ℂ} (hu : sqNo
   have hs : ((Real.sqrt (sqNorm u) : ℝ) : ℂ) * ((Real.sqrt (sqNorm u) : ℝ) : ℂ)
       = ((sqNorm u : ℝ) : ℂ) := by
     rw [← Complex.ofReal_mul, Real.mul_self_sqrt hpos.le]
-  rw [rankOneProj_apply, normalize, star_div₀, Complex.star_def, Complex.conj_ofReal,
-    div_mul_div_comm, hs]
+  have ha : normalize u a = u a / ((Real.sqrt (sqNorm u) : ℝ) : ℂ) := rfl
+  have hb : star (normalize u b) = star (u b) / ((Real.sqrt (sqNorm u) : ℝ) : ℂ) := by
+    show star (u b / ((Real.sqrt (sqNorm u) : ℝ) : ℂ)) = _
+    rw [star_div₀, Complex.star_def, Complex.conj_ofReal]
+  rw [rankOneProj_apply, ha, hb, div_mul_div_comm, hs]
 
 /-! ## 2. The chart map -/
 
@@ -208,7 +211,8 @@ theorem chartAt_chartInv (x : CP d) (hx : entry x 0 0 ≠ 0) : chartAt (chartInv
     show (∑ c, ‖chartVec (chartInv x) c‖ ^ 2) = 1 / r
     have hterm : ∀ c, ‖chartVec (chartInv x) c‖ ^ 2 = ‖entry x c 0‖ ^ 2 / (r * r) := by
       intro c
-      rw [hvec c, Complex.norm_div, Complex.norm_of_nonneg hrnn, div_pow, sq]
+      rw [hvec c, Complex.norm_div, Complex.norm_of_nonneg hrnn, div_pow]
+      ring
     rw [Finset.sum_congr rfl fun c _ => hterm c, ← Finset.sum_div, ← hrdef]
     field_simp
   refine ext fun a b => ?_

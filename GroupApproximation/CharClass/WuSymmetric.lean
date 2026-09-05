@@ -400,6 +400,79 @@ theorem esymm_antidiagonal_odd_eq_zero (h2 : (2 : A) = 0) (s : Finset σ) (y : �
     ∑ q ∈ range (n + 1), esymmOn s y q * esymmOn s y (n - q) = 0 :=
   sum_antidiagonal_self_eq_zero h2 (esymmOn s y) hn
 
+/-- The datum of a set `B ⊆ s` of size `i` together with an index `k ∈ s \ B` is the
+datum of a set `C ⊆ s` of size `i + 1` together with a subset `B ⊆ C` of size `i`,
+under `C = insert k B`.  This is the shape in which the Steenrod computation of
+`Sq^{2i}` on the squarefree monomials of `e_{i+1}` produces `esymmWuRHS`. -/
+theorem esymmWuRHS_eq_sum_powersetCard_succ [DecidableEq σ] (s : Finset σ) (y : σ → A) (i : ℕ) :
+    esymmWuRHS s y i
+      = ∑ C ∈ s.powersetCard (i + 1), ∑ B ∈ C.powersetCard i,
+          (∏ l ∈ B, y l ^ 2) * ∏ l ∈ C \ B, y l := by
+  have hsdiff : ∀ (B : Finset σ) (k : σ), k ∉ B → insert k B \ B = {k} := by
+    intro B k hk
+    ext x
+    simp only [Finset.mem_sdiff, Finset.mem_insert, Finset.mem_singleton]
+    constructor
+    · rintro ⟨hx | hx, hx'⟩
+      · exact hx
+      · exact absurd hx hx'
+    · rintro rfl
+      exact ⟨Or.inl rfl, hk⟩
+  simp only [esymmWuRHS]
+  rw [Finset.sum_sigma' (s.powersetCard i) (fun B => s \ B)
+      (fun B k => (∏ l ∈ B, y l ^ 2) * y k),
+    Finset.sum_sigma' (s.powersetCard (i + 1)) (fun C => C.powersetCard i)
+      (fun C B => (∏ l ∈ B, y l ^ 2) * ∏ l ∈ C \ B, y l)]
+  refine Finset.sum_bij
+    (fun x _ => (⟨insert x.2 x.1, x.1⟩ : (_ : Finset σ) × Finset σ)) ?_ ?_ ?_ ?_
+  · rintro ⟨B, k⟩ hx
+    rw [Finset.mem_sigma] at hx
+    obtain ⟨hB, hk⟩ := hx
+    rw [Finset.mem_powersetCard] at hB
+    rw [Finset.mem_sdiff] at hk
+    rw [Finset.mem_sigma]
+    refine ⟨?_, ?_⟩
+    · rw [Finset.mem_powersetCard]
+      exact ⟨Finset.insert_subset hk.1 hB.1, by rw [Finset.card_insert_of_notMem hk.2, hB.2]⟩
+    · rw [Finset.mem_powersetCard]
+      exact ⟨Finset.subset_insert _ _, hB.2⟩
+  · rintro ⟨B, k⟩ hx ⟨B', k'⟩ hx' heq
+    rw [Finset.mem_sigma] at hx hx'
+    rw [Finset.mem_sdiff] at hx hx'
+    have hBB : B = B' :=
+      congrArg (fun z : (_ : Finset σ) × Finset σ => z.2) heq
+    have hins : insert k B = insert k' B' :=
+      congrArg (fun z : (_ : Finset σ) × Finset σ => z.1) heq
+    subst hBB
+    have hkmem : k ∈ insert k' B := by rw [← hins]; exact Finset.mem_insert_self k B
+    rcases Finset.mem_insert.mp hkmem with h | h
+    · subst h; rfl
+    · exact absurd h hx.2.2
+  · rintro ⟨C, B⟩ hCB
+    rw [Finset.mem_sigma] at hCB
+    obtain ⟨hC, hB⟩ := hCB
+    rw [Finset.mem_powersetCard] at hC hB
+    have hnsub : ¬ (C ⊆ B) := by
+      intro h
+      have := Finset.card_le_card h
+      omega
+    obtain ⟨k, hkC, hkB⟩ := Finset.not_subset.mp hnsub
+    have hins : insert k B = C := by
+      refine Finset.eq_of_subset_of_card_le (Finset.insert_subset hkC hB.1) ?_
+      rw [Finset.card_insert_of_notMem hkB, hB.2, hC.2]
+    refine ⟨⟨B, k⟩, ?_, ?_⟩
+    · rw [Finset.mem_sigma]
+      refine ⟨?_, ?_⟩
+      · rw [Finset.mem_powersetCard]
+        exact ⟨hB.1.trans hC.1, hB.2⟩
+      · rw [Finset.mem_sdiff]
+        exact ⟨hC.1 hkC, hkB⟩
+    · simp only [hins]
+  · rintro ⟨B, k⟩ hx
+    rw [Finset.mem_sigma, Finset.mem_sdiff] at hx
+    show (∏ l ∈ B, y l ^ 2) * y k = (∏ l ∈ B, y l ^ 2) * ∏ l ∈ insert k B \ B, y l
+    rw [hsdiff B k hx.2.2, Finset.prod_singleton]
+
 end Esymm
 
 /-! ### The identity in `MvPolynomial (Fin n) (ZMod 2)` -/

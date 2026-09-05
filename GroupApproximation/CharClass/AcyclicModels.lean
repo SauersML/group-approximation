@@ -98,20 +98,22 @@ def homotopyOfFamily (e : P ⟶ Q) (s : ∀ k : ℕ, P.X k ⟶ Q.X (k + 1))
   zero i j hij := homFamily_eq_zero s hij
   comm i := by
     rcases i with _ | k
-    · have hd : dNext (0 : ℕ) (homFamily s) = 0 := by
+    · have hz : homFamily s 0 0 = (0 : P.X 0 ⟶ Q.X 0) := homFamily_eq_zero s (by omega)
+      have hd : dNext (0 : ℕ) (homFamily s) = 0 := by
         dsimp [dNext]
-        rw [ChainComplex.next_nat_zero, homFamily_eq_zero s (by omega), comp_zero]
-      have hp : prevD (0 : ℕ) (homFamily s) = s 0 ≫ Q.d 1 0 := by
-        rw [prevD_eq (homFamily s) (show (ComplexShape.down ℕ).Rel 1 0 from rfl),
+        rw [ChainComplex.next_nat_zero, hz, comp_zero]
+      have hp : prevD (0 : ℕ) (homFamily s) = s 0 ≫ Q.d (0 + 1) 0 := by
+        rw [prevD_eq (homFamily s) (show (ComplexShape.down ℕ).Rel (0 + 1) 0 from rfl),
           homFamily_succ]
       rw [hd, hp, HomologicalComplex.zero_f_apply, zero_add, add_zero]
       exact h0
     · have hd : dNext (k + 1) (homFamily s) = P.d (k + 1) k ≫ s k := by
         rw [dNext_eq (homFamily s) (show (ComplexShape.down ℕ).Rel (k + 1) k from rfl),
           homFamily_succ]
-      have hp : prevD (k + 1) (homFamily s) = s (k + 1) ≫ Q.d (k + 2) (k + 1) := by
-        rw [prevD_eq (homFamily s) (show (ComplexShape.down ℕ).Rel (k + 2) (k + 1) from rfl),
-          homFamily_succ]
+      have hp : prevD (k + 1) (homFamily s)
+          = s (k + 1) ≫ Q.d (k + 1 + 1) (k + 1) := by
+        rw [prevD_eq (homFamily s)
+          (show (ComplexShape.down ℕ).Rel (k + 1 + 1) (k + 1) from rfl), homFamily_succ]
       rw [hd, hp, HomologicalComplex.zero_f_apply, add_zero]
       exact hs k
 
@@ -351,9 +353,9 @@ lemma amHom_comm (hF : FreeOnModels M Λ F) (hG : AcyclicOnModels M Λ G) (f g :
               (modelElt hF f g (k + 1) b)
             = amObstruction hF f g k b := by
         intro b
-        have hcyc := d_comp_obstruction hF f g k ih (Y := M (hF.mdl (k + 1) b))
-          (hF.gen (k + 1) b)
-        rw [← amObstruction] at hcyc
+        have hcyc : ((G.obj (M (hF.mdl (k + 1) b))).d (k + 1) k).hom
+            (amObstruction hF f g k b) = 0 :=
+          d_comp_obstruction hF f g k ih (hF.gen (k + 1) b)
         obtain ⟨z, hz⟩ := hG.exists_preimage (hF.mdl (k + 1) b) k _ hcyc
         rw [modelElt_succ]
         exact pickPreimage_spec _ _ ⟨z, hz⟩
@@ -365,7 +367,7 @@ lemma amHom_comm (hF : FreeOnModels M Λ F) (hG : AcyclicOnModels M Λ G) (f g :
       have hstep := amHom_step hF f g k (Y := M (hF.mdl (k + 1) b)) (hF.gen (k + 1) b) φ
         (modelElt hF f g (k + 1) b) (by rw [hspec b, amObstruction])
       rw [ModuleCat.hom_sub, LinearMap.sub_apply, ModuleCat.hom_add, LinearMap.add_apply,
-        ModuleCat.hom_comp, LinearMap.comp_apply, hb, amHom_basis]
+        ModuleCat.hom_comp, LinearMap.comp_apply, amHom_basis, hb]
       exact hstep
 
 end Construction
@@ -385,7 +387,7 @@ structure NaturalHomotopy (F G : C ⥤ ChainComplex (ModuleCat.{0} Λ) ℕ) (f g
   /-- The homotopy operator. -/
   s : ∀ (k : ℕ) (X : C), (F.obj X).X k ⟶ (G.obj X).X (k + 1)
   /-- Naturality of the homotopy operator. -/
-  naturality : ∀ (k : ℕ) {X Y : C} (φ : X ⟶ Y),
+  naturality : ∀ (k : ℕ) (X Y : C) (φ : X ⟶ Y),
     (F.map φ).f k ≫ s k Y = s k X ≫ (G.map φ).f (k + 1)
   /-- The homotopy identity in degree `0`. -/
   comm_zero : ∀ X : C, (f.app X).f 0 - (g.app X).f 0 = s 0 X ≫ (G.obj X).d 1 0
