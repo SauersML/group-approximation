@@ -50,6 +50,8 @@ namespace GroupApproximation
 
 universe u
 
+noncomputable section
+
 section Spectral
 
 variable {A : Type u} [inst : CStarAlgebra A]
@@ -95,5 +97,7 @@ theorem exists_cstarAlgebra_not_k1Inj {P : Type u → Prop} (hP : P A)
   ⟨A, inst, hP, not_k1Inj_of_witness h⟩
 
 end Spectral
+
+end
 
 end GroupApproximation

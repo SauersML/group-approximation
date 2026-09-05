@@ -29,6 +29,8 @@ namespace GroupApproximation
 
 universe u
 
+noncomputable section
+
 variable {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 /-- `diag (u, 1) ∈ U(M_2(A))`: the image of a unitary `u ∈ U(A)` under the 1×1 matrix
@@ -107,5 +109,7 @@ theorem not_k1Injective_of_exists_witness
     ¬ K1Injective A := by
   obtain ⟨u, hu, hdiag⟩ := h
   exact not_k1Injective_of_diagOne_mem hu hdiag
+
+end
 
 end GroupApproximation
