@@ -6,6 +6,7 @@ title: Six specified circle actions give an integral automorphism-loop basis in 
 artifacts:
   - research/artifacts/stw50-six-kirchberg-loops-2026-09-05.md
   - experiments/stw50_six_kirchberg_loops_check.py
+  - research/artifacts/stw50-six-loops-independent-recheck-2026-09-04.md
 ---
 
 Let B and C be the finite graph algebras with adjacency matrices

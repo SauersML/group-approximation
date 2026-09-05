@@ -5,6 +5,7 @@ kind: claim
 title: Published graph K-theory and Kirchberg classification identify primitive-unit loop invariants
 artifacts:
   - research/artifacts/stw50-six-kirchberg-loops-2026-09-05.md
+  - research/artifacts/stw50-six-loops-independent-recheck-2026-09-04.md
 ---
 
 For a unital UCT Kirchberg algebra D with free finitely generated
