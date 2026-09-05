@@ -1919,3 +1919,40 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## 16. Publication receipts and final frontier check
+
+The following mathematical contributions were committed and pushed directly
+to `SauersML/group-approximation:main`:
+
+| Commit | Contribution |
+|---|---|
+| [1279ec82](https://github.com/SauersML/group-approximation/commit/1279ec82ed4ee713be8b15639cf8bf5b154e76ee) | Sharp common-gauge binary selector bounds, exact equality models, and the initial cumulative record. |
+| [ed50e5bc](https://github.com/SauersML/group-approximation/commit/ed50e5bc6a4f9902d09ccd4da3ca8069c11532b3) | Complete cubic spectral proof, stronger Higman collapse basin, exact calibration, and the expanded cumulative record. |
+
+The first attempted reference update for the spectral contribution encountered
+a concurrent main update and was rejected as not a fast-forward. The changes
+were rebuilt on the new main tree, after checking that the changed paths did
+not overlap, and the subsequent non-force update succeeded. The successful
+spectral commit has parent `e6bccb71722cf714c338f4ed0b312f581d7053d0`.
+The committed cumulative artifact was fetched and its blob identity compared
+with the local file before adding these receipts.
+
+A final read of the concurrently added
+[abelian anchor normalizer theorem](https://github.com/SauersML/group-approximation/blob/ed50e5bc6a4f9902d09ccd4da3ca8069c11532b3/research/one-abelian-anchor-and-label-expansion-round-a-normalizer.md)
+confirmed that it assumes both an explicit classical gap and exact actor
+covariance on the atom table. It also requires the anchor target to be
+identified with an actual element of that table. Its own statement says it
+does not impose a Leavitt one-to-two loss or give a nonhyperlinear group.
+Thus this concurrent result does not supply the missing group-to-selector
+implication in the present record. The updated nonhyperlinear root likewise
+continues to state that its September 5 audits leave its target open.
+
+**Final mathematical status:** complete proofs are given for the results
+stated as proved above, including the two quantitative contributions.
+No complete property-T-free non-MF existence proof was obtained. In the
+Leavitt/Jacobson approach the matrix obstruction still lacks the required
+uniform group-level decoder; in the Higman approach the simultaneous
+large-spectrum regime is still uncontrolled. Neither gap is hidden behind
+an assumed lemma, a graph-status change, or a computational check.
