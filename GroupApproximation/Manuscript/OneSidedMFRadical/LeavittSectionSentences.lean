@@ -9,6 +9,10 @@ import GroupApproximation.Leavitt.ElementaryRoots
 import GroupApproximation.Leavitt.ElementaryGroup
 
 /-!
+Historical scope: this module records the earlier rank-twelve presentation.
+The current manuscript proves the same headline through the general
+full-complementary-idempotent criterion; the declarations below are unchanged.
+
 # `non_mf_groups_exist.tex`, section "The binary Leavitt group": sentence-level closure
 
 `non_mf_groups_exist.tex`, tex lines 1034–1336: the section's opening two
@@ -314,7 +318,7 @@ theorem sentence_headlineProof_Y_generation_identities :
     fun i j _ => Fin.exists_ne_and_ne_of_two_lt i j (by omega)⟩
 
 /-- **Key `19f03ca278a6`.**  "Thus `H=⟨Y⟩` is finitely generated, and
-Proposition~\ref{prop:leavitt-compression} gives property~(T)."
+Proposition `prop:leavitt-compression` of the earlier rank-twelve presentation gives property~(T)."
 (`non_mf_groups_exist.tex`, proof of `thm:headline`.) -/
 theorem sentence_headlineProof_H_fg_and_propertyT :
     Group.FG H ∧ HasKazhdanPropertyT.{0, 0} H :=

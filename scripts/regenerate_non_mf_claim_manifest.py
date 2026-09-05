@@ -61,22 +61,10 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/NormalKazhdan",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptNormalKazhdanRadical"),
-    "lem:tau-elementary": (
-        "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
-        "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
-        "printedTauGL_mem"),
-    "prop:leavitt-compression": (
-        "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
-        "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
-        "manuscriptCurrentLeavittCompressionProposition"),
     "prop:simple": (
         "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "manuscriptPropositionSimple"),
-    "prop:defect": (
-        "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
-        "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
-        "manuscriptPropositionDefect"),
     "lem:proper-isometry": (
         "Analysis/ProperIsometryStrictOrder",
         "GroupApproximation.manuscriptProperIsometryStrictOrder"),
@@ -92,18 +80,25 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Analysis/LocallyRFByIntFactorization",
         "GroupApproximation.LocallyRFByIntFactorization."
         "canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt"),
-    "cor:affine-clifford-trace": (
-        "Manuscript/NinetyNineProblems/ProblemXCliffordWitness",
-        "GroupApproximation.NinetyNineProblems."
-        "witnessCanonicalTrace_amenable_not_quasidiagonal"),
+    "prop:clifford-self-embedding": (
+        "Sofic/CliffordWitnessDirectDefect",
+        "GroupApproximation.CliffordWitnessDirectDefect."
+        "manuscriptMapSignEqOneOfIsOperatorMFTarget"),
 }
 
 
-# These three environments deliberately carry no Lean badge.  Their proofs
+# These environments deliberately carry no Lean badge.  Their proofs
 # are complete in the manuscript.  The tuple lists precisely the outside
-# mathematical results used by that proof; an empty tuple means the argument
-# is entirely elementary and self-contained in the paper.
+# mathematical results used by that proof; an empty tuple means there is no
+# additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
+    "thm:full-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
+    "cor:simple-infinite-ring": (),
+    "cor:one-sided-ring-maximal": (
+        "Ershov--Jaikin-Zapirain, Theorem 1.1",),
+    "thm:amenable-trace": (),
+    "prop:clifford-locally-rf": ("Elek--Szabo, Theorem 1",),
+    "cor:affine-clifford-trace": ("Bekka--de la Harpe--Valette, Example 1.7.4(i)",),
     "lem:commutator-in-defect": (),
     "thm:hull": (
         "Hull, Theorem 7.1",),
@@ -115,38 +110,47 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
 }
 
 
-# No single badge in this environment includes every printed clause.  The
-# two declarations printed there are therefore recorded as collective rather
-# than pretending that either is a complete wrapper.
-COLLECTIVE_CLAIMS: set[str] = set()
+# No single badge in these environments includes every printed clause.
+# Their declarations are recorded as collective, with no claim that one
+# declaration is a complete wrapper.
+COLLECTIVE_CLAIMS: set[str] = {
+    "prop:clifford-self-embedding",
+    "thm:factorization-nonmf-trace",
+}
 
 
 # The paper-level dependency graph.  Every name is another live numbered
 # claim, even when the dependent theorem is printed earlier for exposition.
 DEPENDENCIES: dict[str, list[str]] = {
-    "prop:mf-residual-calculus": ["lem:central-corona-corner"],
+    "prop:mf-residual-calculus": [],
     "thm:compression-criterion": [
-        "cor:defect-hs", "thm:normal-kazhdan"],
+        "cor:defect-hs", "thm:normal-kazhdan", "prop:mf-residual-calculus"],
+    "thm:full-defect-ring": ["thm:compression-criterion"],
     "thm:headline": [
-        "thm:compression-criterion", "prop:leavitt-compression",
-        "prop:simple", "prop:defect"],
+        "thm:full-defect-ring", "prop:simple",
+        "cor:one-sided-ring-maximal"],
+    "cor:simple-infinite-ring": ["thm:full-defect-ring"],
+    "cor:one-sided-ring-maximal": [
+        "thm:full-defect-ring", "prop:max-infinite"],
     "lem:stable-finite": [],
     "lem:kazhdan-projection-order": [],
     "thm:transport": ["lem:stable-finite", "lem:kazhdan-projection-order"],
     "cor:defect-hs": ["thm:transport"],
     "lem:central-corona-corner": [],
     "thm:normal-kazhdan": ["lem:central-corona-corner"],
-    "lem:tau-elementary": [],
-    "prop:leavitt-compression": ["lem:tau-elementary"],
     "prop:simple": [],
-    "prop:defect": ["prop:leavitt-compression"],
     "lem:proper-isometry": [],
     "prop:max-infinite": [
         "lem:kazhdan-projection-order", "lem:proper-isometry"],
     "thm:factorization-nonmf-trace": [],
     "prop:locally-rf-by-z-trace": [],
-    "cor:affine-clifford-trace": [
-        "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
+    "prop:clifford-self-embedding": ["thm:compression-criterion"],
+    "prop:clifford-locally-rf": [
+        "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
+        "thm:factorization-nonmf-trace"],
+    "cor:affine-clifford-trace": ["prop:clifford-locally-rf"],
+    "thm:amenable-trace": [
+        "prop:clifford-locally-rf", "cor:affine-clifford-trace"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "lem:commutator-in-defect": [],
