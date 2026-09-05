@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/stw61-toeplitz-defect-bell-shift-test-2026-09-05.md
   - research/artifacts/stw61-mixed-semicircular-defect-complete-obstruction-2026-09-05.md
   - research/artifacts/stw61-circle-and-properly-infinite-coefficient-fock-obstruction-2026-09-05.md
+  - research/artifacts/stw61-finite-rank-side-threshold-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -101,6 +102,22 @@ test representation extends to the original Toeplitz factor.
 The missing coefficient is quantitative: `dist(p,K)=1/2`.
 Thus K is provably proper, arbitrary additional p-dependent
 mixed unitaries remain untreated, and LXI stays open.
+
+The internally reviewed theorem
+`stw61-finite-rank-side-maximal-commutator` removes the unitary
+restriction whenever a unital coefficient representation on an
+infinite-dimensional separable Hilbert space sends p or 1-p
+to nonzero finite rank. A moving diffuse spectral threshold
+forces a zero eigenvalue in the finite compression, giving
+norm one for every mixed unitary. This treats the entire
+classical Toeplitz coefficient algebra, including the
+distinguished range projection: all `W in U(C*(z,s_1))` are
+covered. It also treats every unitary of the full `C(S1)*T2`
+for the defect `e=1-s_1s_1*-s_2s_2*`. That defect is nonfull,
+so this is not the BRR projection pair. For `p=s_1s_1*`, both
+represented sides must be infinite-dimensional when the
+whole T2 is represented unitally. The simultaneous full-T2
+coefficient case for that p remains open, as does LXI.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem

@@ -28,6 +28,8 @@ artifacts:
   - research/artifacts/stw99-lxxvi-universal-small-angle-obstruction-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md
   - research/artifacts/stw99-lxxvi-closed-compact-stratum-realization-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-compact-equality-strata-comparison-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-field-cu-regularity-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -43,7 +45,23 @@ induce an isomorphism
 Cu(iota_A) : Cu(A) -> Cu(A tensor_min Z)?
 ```
 
-This remains open.  The abstract characterization of pureness by
+The general problem remains open. The full real-rank-zero coefficient-field
+case is internally proved in
+`stw99-lxxvi-rr0-simple-pure-field-cu-regularity`: if D is separable,
+simple, stably finite, pure, and real rank zero, then
+
+```text
+Cu(C_0(X,D)) -> Cu(C_0(X,D tensor Z))
+```
+
+is an isomorphism for every second-countable locally compact Hausdorff
+X. There is no base-dimension or nuclearity restriction. The
+[reviewed proof](artifacts/stw99-lxxvi-rr0-field-cu-regularity-2026-09-05.md)
+realizes every target cutoff inside its parent target class while
+retaining the compact bundle data at both ends, then takes increasing
+suprema. It covers arbitrary accumulating compact fibers.
+
+The abstract characterization of pureness by
 `Cu(A) tensor_Cu Cu(Z)` does not itself answer the problem: the missing map is
 the canonical external-product morphism from that abstract Cu tensor product
 to the Cuntz semigroup of the minimal C\*-tensor product.  The exact reduction
@@ -203,9 +221,9 @@ compact-left comparison against an arbitrary positive target, again over
 every compact metrizable base. Its finite-dimensional relative embedding
 proof verifies all hypotheses of Michael's selection theorem using
 uniform polar contractions; projection lifting and Cu continuity remove
-the dimension bound from the compact-left conclusion. Arbitrary mixed
-noncompact source comparison and mixed target realization remain required
-for full Cu regularity in this coefficient class.
+the dimension bound from the compact-left conclusion. Full source
+comparison and mixed target realization are supplied by the subsequent
+theorems below.
 
 The subsequent theorem `stw99-lxxvi-rr0-all-base-full-order-reflection`
 settles the source-comparison part entirely: for these coefficients,
@@ -215,25 +233,27 @@ bound. Exact relative embeddings on the strict-comparison locus are
 proved by compatible projection-frame towers and uniformly controlled
 spectral tails. Closing the equality set of a source cutoff gives a
 compact core on which the earlier projection theorem supplies boundary
-data. The remaining task for full Cu regularity in this coefficient
-class is realization of arbitrary mixed target classes.
+data. The full realization theorem now supplies the complementary
+surjectivity statement for this coefficient class.
 The attached finite-patch reduction places every target cutoff below
 a finite sum of localized target projections inside the same hereditary
 algebra, and each individual localized projection has an exact source
-lift. Their overlapping sum still requires proof. The two-patch audit
+lift. The full realization theorem now also lifts their overlapping
+sum. The earlier two-patch audit
 proves exact realization for nested supports when the orthogonal angle
 remainder is soft or has a uniform angle spectral gap. A transverse
 compression also handles certain nonnested supports with soft remainder.
-These are proved special cases; arbitrary mixed angle remainders and
-general finite-patch realization remain unresolved.
-The subsequent small-angle audit identifies that last difficulty
+These remain useful explicit special constructions; arbitrary mixed
+angle remainders and general finite-patch classes are now covered by
+full surjectivity. The small-angle audit identifies the earlier difficulty
 sharply: every target positive in a constant source projection corner
 is the angle remainder of two globally trivial projections, as close
 in norm as desired. An explicit small unitary homotopy can erase its
 entire Cu class. Increasing source-projection compressions exhaust
 every target class, so arbitrary angle-remainder realization is
 equivalent to full realization here. Projection-space homotopies
-alone, or invertible angle padding, do not supply this missing step.
+alone, or invertible angle padding, do not prove that realization;
+the hereditary sandwich construction now supplies it.
 
 The reviewed theorem `stw99-lxxvi-rr0-compact-summand-cancellation`
 now proves `[p]+[a]<=[p]+[b]` implies `[a]<=[b]` for these
@@ -244,8 +264,8 @@ the first-factor Cu image is also closed under removing compact
 summands. Hence the universal Gram class `[G_t]=[P]+[a]` is in the
 image exactly when `[a]` is. The
 [cancellation proof](artifacts/stw99-lxxvi-rr0-compact-summand-cancellation-2026-09-05.md)
-settles this algebraic step; realizing the arbitrary mixed Gram class
-remains necessary for surjectivity.
+settles this algebraic step. The full theorem now realizes both the
+arbitrary mixed Gram class and its angle remainder.
 
 A mixed realization theorem is now proved in
 `stw99-lxxvi-closed-compact-stratum-realization`. For a finite-dimensional
@@ -256,8 +276,20 @@ the [collar construction](artifacts/stw99-lxxvi-closed-compact-stratum-realizati
 attaches it to a source soft representative on shrinking neighborhoods,
 proves the resulting source classes increase, and verifies that their
 supremum maps to the target by relative cutoff comparison. Arbitrary
-accumulating compact strata remain outside this theorem, so full
-surjectivity and STW LXXVI remain open.
+accumulating compact strata are handled by the stronger full realization
+theorem stated above; the general STW LXXVI question remains open.
+
+The intrinsic comparison theorem
+`stw99-lxxvi-compact-equality-strata-determine-comparison` now identifies
+the exact global order data for these real-rank-zero coefficient fields
+over finite-dimensional second-countable locally compact bases. Fiberwise
+comparison suffices precisely when the support bundles agree on every
+compact subset of each equal nonzero compact-value stratum. Closing a
+source cutoff's equality locus reduces the proof to finitely many
+projection-bundle boundary frames and strict relative embedding elsewhere.
+This is a comparison theorem for actual sections. The full realization
+proof uses it twice to verify the two global inequalities of each
+hereditary sandwich; neither inequality follows merely from fiber ranks.
 
 ## Literature boundary
 

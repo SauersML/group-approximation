@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw58-degree-one-primary-citation-audit-2026-09-05.md
   - research/artifacts/stw58-compatible-split-stable-surjectivity-2026-09-05.md
   - research/artifacts/stw58-small-projection-support-kernel-contraction-2026-09-05.md
+  - research/artifacts/stw58-soft-support-orthogonal-reservoir-contraction-2026-09-05.md
 ---
 
 **Problem LVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -68,6 +69,18 @@ imply this comparison. The support may vary over the base.
 Moving arbitrary families into such supports remains unproved;
 the criterion has no nonzero proper supports in projectionless
 coefficients and does not settle the general kernel question.
+
+[The soft-support extension](stw58-soft-support-reservoir-kernel-vanishing.md)
+removes the projection requirement. For A=C(X,B), dim(X)=d>=1,
+and unital stable-rank-one B, a stably null unitary supported in
+Her(h) contracts if h is full and has an orthogonal positive
+reservoir b with d[h]<=[b]. Cuntz cutdown comparison constructs
+actual hereditary matrix copies; a continuous-field stable-rank
+bound supplies the contraction. For simple finite pure B,
+strict fiber quasitrace size bounds can verify the comparison.
+This includes soft supports in projectionless coefficients.
+Producing such a support and reservoir for an arbitrary kernel
+family remains unproved.
 
 The 2025--26 selflessness examples—reduced group algebras of limit groups and
 their relatives—remain useful tests for the higher `K`-stability maps:
