@@ -159,3 +159,20 @@ beta = 30 or 100, no pin by default, and starts from the MINIMAX COBOUNDARY OPTI
 rescalings, any descent below 0.309 on all relators is a nonabelian improvement.  Gradient verified by finite
 differences (ratio 1.0000).  Runs at d = 4 (beta 30/100, eps 0.05/0.3, pinned variant), 8, 10, 12, 14, 20 and a
 random d = 4 start were launched at 17:13 CDT; results below as they finish.
+
+--- minimax coboundary bar from each finite-dimensionally realized class (abelian_bar_classes.py, 18:45 EDT) ---
+  trivial class (targets omega^k from a genuine rep):   max defect 0.6075 (mean sq 0.0254), long roots move by +-0.123 rad
+  metaplectic class ((-1)^k):                            max defect 0.3090 (mean sq 0.0064), long roots move by -+0.062 rad
+  spin class ((-1)^s, S_6 basic spin) and spin x metaplectic: no relaxation at all (max 2, mean sq 1.98): these classes
+    differ from the sector pattern on about half of all relators, so no coboundary helps.
+  So the metaplectic models are the best abelian seeds among the classes in hand, by a factor two over the trivial class.
+
+--- v7 results so far (smoothed max, no pin, seeds at the coboundary optimum; working set = 20 lifted + n_unl unlifted) ---
+  d=4  beta=30  eps 0.05 / 0.3 (3 restarts each): max unl 0.241 / 0.290, max lift 0.360 (identical across restarts).
+  d=4  beta=100 eps 0.05 (2 restarts): max unl 0.317, max lift 0.297.
+  d=4  beta=300 eps 0.1: max unl 0.295, max lift 0.291 on the working set; on ALL relators max 0.340 (47 relators
+       above 0.3, all unlifted and outside the sample), nonabelian residual 0.007-0.015 per generator: the point is the
+       coboundary optimum up to noise, and the apparent sub-bar value was a sampling artifact.
+  d=4  beta=30 pinned: 0.3085 / 0.3071 (the bar itself).      d=4 random start (beta 30): max 1.67.
+  d=8  beta=30 eps 0.1: max unl 0.292, max lift 0.363 (the d=4 minimum reproduced).
+  d=10 beta=30 eps 0.05 / 0.3: max unl 0.291 / 0.288, max lift 0.354 / 0.357.
