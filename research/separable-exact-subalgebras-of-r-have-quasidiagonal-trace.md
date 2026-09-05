@@ -17,9 +17,11 @@ Let `S` be a separable exact C\*-subalgebra of the hyperfinite II1 factor
 
 **OPEN.**  Two routes, one from each of the open questions it sits under:
 `exact-r-subalgebra-traces-via-exact-x1` and
-`exact-r-subalgebra-traces-via-x2`.  A counterexample would refute both STW
-Problem X(2) and the exact-algebra residual of X(1) at once, so this is the
-common test object for the two.
+`exact-r-subalgebra-traces-via-x2`.  The first is reversible
+(`exact-x1-from-r-exact-subalgebra-traces`), so this claim is equivalent to
+the exact residual of Problem X(1), and through `ix1-from-exact-x1` it
+implies Problem IX(1).  A counterexample would refute both STW Problem X(2)
+and the exact residual of X(1) at once.
 
 ## What is unconditional
 

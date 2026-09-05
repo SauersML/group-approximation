@@ -65,14 +65,20 @@ all its amenable traces are quasidiagonal (Tikuisis--White--Winter, Gabe).
 Hence every candidate counterexample to this claim must be built away from
 group C\*-algebras and away from the UCT class.
 
-## Relation to X(2)
+## Position between X(2) and IX(1)
 
-If this claim holds, then for every separable exact `S` inside the
-hyperfinite II1 factor `R` the restriction of `tau_R` is quasidiagonal,
-because that restriction is faithful with injective GNS closure.  This is the
-exact-subalgebra half of X(2); the converse is not automatic, since
-quasidiagonality of the algebra `pi_tau(A)` does not by itself make the trace
-quasidiagonal.
+The claim is equivalent to `separable-exact-subalgebras-of-r-have-quasidiagonal-trace`
+(routes `exact-r-subalgebra-traces-via-exact-x1` and
+`exact-x1-from-r-exact-subalgebra-traces`): for exact `A` an amenable trace
+has injective GNS closure, which embeds trace-preservingly in `R`, so the
+question is exactly whether `tau_R` is quasidiagonal on every separable
+exact subalgebra.  Consequently Problem X(2) implies this claim
+(`exact-r-subalgebra-traces-via-x2`), and this claim implies Problem IX(1)
+(`ix1-from-exact-x1`): traces on nuclear algebras are amenable, and a
+faithful quasidiagonal trace makes the algebra quasidiagonal.  So the
+exact residual sits strictly between the two STW problems
+`X(2) => exact X(1) => IX(1)`, in the place the universal X(1) occupied
+before its refutation.
 
 ## Attempts
 
