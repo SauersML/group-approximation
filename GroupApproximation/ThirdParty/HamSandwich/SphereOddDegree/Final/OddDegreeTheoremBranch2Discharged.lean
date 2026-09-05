@@ -33,7 +33,26 @@ which depends only on the standard axioms `propext`, `Classical.choice`, `Quot.s
 We use it below to remove `hcmp` entirely, leaving `htop` as the **only** remaining
 open hypothesis.
 
-## Honest status of Prompt 09 (Branches 3+4) — NOT dischargeable
+## Status: superseded — Branches 3+4 ARE discharged
+
+**The account in this section is historical and no longer describes the tree.**
+`Final/OddMapFixesTopClassUnconditional.lean` now proves
+
+```text
+oddMapFixesTopClass_unconditional (n) (hn : 1 ≤ n) : OddMapFixesTopClass n
+```
+
+which this section says does not and cannot exist.  It does not go through
+`RPnCellularCochainStructure n` at all: `oddMapFixesTopClass_of_topVanish`
+derives `OddMapFixesTopClass n` from the single fact
+`IsZero (rpCohomology n (n+1))`, and `rpCohomology_topPlusOne_isZero_direct`
+proves that fact by Kronecker duality.  Feeding it to the theorem below gives
+`odd_degree_of_odd_sphere_self_map_unconditional`
+(`Final/OddDegreeTheoremUnconditional.lean`), exactly as the last paragraph of
+this section anticipated, with no change of proof.  What follows is the record
+of the earlier state.
+
+## Historical: why Branches 3+4 were once thought not dischargeable
 
 Prompt 09 (`Branch34OddMapFixesTopClassAssembly.lean`) does **not** provide a
 parameterless `final_oddMapFixesTopClass (hn : 1 ≤ n) : OddMapFixesTopClass n`, and no

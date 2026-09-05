@@ -49,10 +49,20 @@ htop : OddMapFixesTopClass n         (Branches 3+4: RPⁿ descent + double-cover
   `construct_RPnCupProductStructure` derives it from any
   `c : RPnCellularCochainStructure n`.)
 
-So a *fully unconditional* general odd-map theorem removing **both** `hcmp` and
-`htop` cannot yet be produced honestly — the remaining obstruction is the single
-primitive `RPnCellularCochainStructure n`, and fabricating it would require an
-`axiom`/`sorry`, which is disallowed.  This file therefore exports the strongest
+**Superseded.**  The paragraph that stood here said a fully unconditional
+theorem removing both `hcmp` and `htop` could not be produced honestly, the
+obstruction being `RPnCellularCochainStructure n`.  That is no longer true and
+the build refutes it.  `htop` is supplied by
+`Final/OddMapFixesTopClassUnconditional.oddMapFixesTopClass_unconditional`,
+which bypasses the cellular primitive entirely — it derives
+`OddMapFixesTopClass n` from `IsZero (rpCohomology n (n+1))` alone, and
+`RPnCohomologyDimensionVanishing.rpCohomology_topPlusOne_isZero_direct` proves
+that by Kronecker duality.  `hcmp` was already supplied by
+`final_modTwoTopClassComparison`.  The fully unconditional endpoint is
+`odd_degree_of_odd_sphere_self_map_unconditional`
+(`Final/OddDegreeTheoremUnconditional.lean`), and `BorsukUlam.borsuk_ulam_closed`
+gates it with `#audit_closed_axioms`, so a returning hypothesis binder would be
+a build error rather than a docstring correction.  This file therefore exports the strongest
 honest theorems, with the remaining assumption(s) stated **explicitly** (never
 hidden inside a new structure or instance argument).  Branch 2 being discharged,
 the preferred endpoint is `odd_degree_of_odd_sphere_self_map_branch2_discharged`

@@ -34,7 +34,22 @@ This file records the fully-assembled odd-degree theorem **conditional on that o
 fact**, in both the transfer-orientation and canonical-orientation forms, with no
 `sorry` and only the standard project axioms.
 
-## Honest status of the `*_unconditional` theorem (Prompt 07 audit)
+## Status: superseded — the theorem below is no longer the strongest available
+
+**The account in this section is historical and no longer describes the tree.**
+It was written when `oddMapFixesTopClass_unconditional` did not exist; both of
+the missing ingredients it names were subsequently proved, and both compile.
+`RPnCohomologyDimensionVanishing.rpCohomology_topPlusOne_isZero_direct` proves
+`IsZero (rpCohomology n (n+1))` outright, by Kronecker duality from the
+Mayer--Vietoris homology vanishing rather than by the excision/good-pair route
+this section calls absent; `Final/OddMapFixesTopClassUnconditional.lean` feeds
+it to `oddMapFixesTopClass_of_topVanish` to obtain `OddMapFixesTopClass n` with
+no cellular datum.  `Final/OddDegreeTheoremUnconditional.lean` composes the two
+and exports `odd_degree_of_odd_sphere_self_map_unconditional`, whose only
+hypothesis is `1 ≤ n`, and `BorsukUlam.borsuk_ulam_closed` gates the resulting
+endpoints with `#audit_closed_axioms`, which is a build error if any of them
+regains a hypothesis binder.  Prefer those.  What follows is the record of the
+earlier state.
 
 The prompt asked for a *fully unconditional* theorem
 
