@@ -20,6 +20,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-all-base-compact-k-stability-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-soft-realification-surjectivity-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-residually-stably-projectionless-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-relative-projection-selection-audit-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -188,6 +189,16 @@ a pure sphere-field counterexample to LXXVI. Consequently a positive
 answer to LXXVI would imply the stronger K-stability part of STW LVIII
 for unital separable simple pure algebras. The noncompact higher-dimensional
 wing is not settled by this projection theorem.
+
+For real-rank-zero simple stably finite pure fibers, the stronger theorem
+`stw99-lxxvi-rr0-all-base-compact-left-reflection` now reflects every
+compact-left comparison against an arbitrary positive target, again over
+every compact metrizable base. Its finite-dimensional relative embedding
+proof verifies all hypotheses of Michael's selection theorem using
+uniform polar contractions; projection lifting and Cu continuity remove
+the dimension bound from the compact-left conclusion. Arbitrary mixed
+noncompact source comparison and mixed target realization remain required
+for full Cu regularity in this coefficient class.
 
 ## Literature boundary
 
