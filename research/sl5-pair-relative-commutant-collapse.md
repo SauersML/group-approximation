@@ -6,7 +6,10 @@ title: The rank-four pair carries the whole collapse lane and is the only instan
 distinct_from:
   sl3-pair-relative-commutant-route: that is the n = 3 instance, chosen for property (T) of the subgroup; this is the n = 5 instance, which keeps every established lane theorem verbatim (trivial center, odd n, rank >= 2) and additionally has Bader-Sauer property (T_2) and (T_3) -- degree-2 unitary cohomology vanishing infrastructure that n = 3 PROVABLY lacks (non-vanishing at degree N-1 for N in {3,4}).
   relative-commutant-collapse-for-sl2-pair: that is the rank-one pair where the subgroup is only Haagerup and the Weyl system degenerates to one involution; this is the deepest-rank instance, where every rigidity asset of the lane is simultaneously available.
-  sl3z-regular-microstates-are-congruence-correctable: that is the correctability hole at n = 3; the same hole instantiated here is the one place a cohomological attack (normalized-HS DGLT criterion over reduced (T_2) vanishing) has existing literature footing.
+  sl3z-regular-microstates-are-congruence-correctable: that is the correctability hole at n = 3; here ordinary Hilbert H2 vanishing supplies curvature concentration, but no normalized-HS stability criterion has been established.
+artifacts:
+  - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
+  - research/artifacts/parallel-ui-iteration-audit-2026-09-04.md
 ---
 
 Let `Lambda = SL_5(Z)`, `Gamma = SL_5(Z[1/2])`,
@@ -46,17 +49,29 @@ non-hyperlinear group.
 
 ## Attempts
 
-- **Why add a third instance.**  Bader--Sauer (arXiv:2308.06517):
-  `SL_N(Z)` has property `(T_(N-2))` -- reduced vanishing of unitary
-  cohomology up to degree `N - 2` -- so degree-2 vanishing holds for
-  `N >= 4` and fails to be provable at `N = 3` (sharp non-vanishing
-  at degree `N - 1` for `N in {3, 4}`, arXiv:2410.22310).  The
-  correctability hole and any DGLT-style normalized-HS criterion
-  therefore have literature infrastructure exactly at `N >= 4`; among
-  those, `N = 5` keeps the trivial-center/odd-`n` hypotheses of the
-  established lane theorems, making it the canonical deep instance.
+- **Why add a third instance.**  Bader--Sauer's Theorem A gives
+  ordinary cohomology vanishing through degree `N-2` for unitary
+  representations without invariant vectors. Their Theorem C and
+  equation (1) also give `H^2(SL_N(Z),C)=0` for `N>=4`.
+  Splitting off invariant vectors therefore gives actual Hilbert
+  `H^2=0` for all unitary coefficients in these ranks. See
+  [the primary source](https://arxiv.org/html/2308.06517v3).
+  This is stronger than reduced vanishing, but is not an HS-stability
+  theorem. Among these ranks, `N = 5` keeps the trivial-center/odd-`n`
+  hypotheses of the established lane theorems.
   (`N = 4` works too, at the cost of routing every statement through
   the finite center `{+-1}` via the chi-face machinery.)
+- **What the cohomology now supplies.**
+  `two-kazhdan-correction-concentrates-normalized-hs-curvature` changes
+  arbitrary approximating tuples by `O(delta)` in normalized HS norm
+  and makes their relator trace-norm errors `o(delta)`, on a subsequence.
+  The remaining curvature lies outside an operator-norm `o(delta)`
+  bound only on subspaces of vanishing relative dimension. Those
+  subspaces need not be invariant, so this does not give `(RC5)` or
+  the exact subgroup holonomy required by the induction route.
+  `scalar-phase-regularization-makes-ui-stability-complete` also shows
+  that restricting a qualitative stability claim to uniformly
+  integrable input residuals does not avoid the full stability problem.
 - **All four last-missing holes instantiate.**  The single-average
   isometry, factorial carrier characters, projective transfer and
   congruence correctability each make sense verbatim at `n = 5`, and

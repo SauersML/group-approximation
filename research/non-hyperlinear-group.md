@@ -6,6 +6,9 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
+  - research/artifacts/parallel-group-word-2026-09-04.md
+  - research/artifacts/parallel-ui-iteration-audit-2026-09-04.md
   - research/artifacts/moving-schreier-correction-audit-2026-09-04.md
   - research/artifacts/unitary-expander-nonhyperlinearity-audit-2026-09-04.md
   - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
@@ -15,6 +18,16 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+The September 5 audits leave this target open. Hilbert `H^2` vanishing
+now gives a correction concentrating arbitrary normalized-HS curvature
+on small subspaces, but does not make those subspaces invariant.
+On the group-word route, one character-placement anchor and an
+authenticated expanding action on a finite root table control its
+normalizer uniformly in matrix multiplicity. The actor covariance and
+placement hypotheses, and the eventual finite-matrix obstruction, still
+need to follow from the candidate group's relations. Neither result is
+an existence proof.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly
