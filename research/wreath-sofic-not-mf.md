@@ -66,3 +66,12 @@ fleet kernel build certifying the sofic module (authored in the
 2026-08-15 wave with "validation rides the next fleet build") is
 running at the time of landing; this node's body will record the build
 verdict when it returns.
+
+**Literature (2026-09-05).**  Eckhardt, *Non-MF groups and non-finite full
+group C\*-algebras*, arXiv:2608.28772 (submitted 28 Aug 2026), proves for
+every property (T) group `Γ` with an injective non-surjective endomorphism
+and associated ascending HNN extension `G` that `(⊕_{G/Γ} ℤ/2) ⋊ G` is not
+MF (his Theorem 4.3).  That is the general form of the non-MF half of this
+node, whose group is the case `Γ = ℤ³ ⋊ SL₃(ℤ)` with the doubling
+endomorphism and `G = V`.  The soficity half is not addressed there.  Cited
+in the manuscript's related-work paragraph (commit c156f3d53).

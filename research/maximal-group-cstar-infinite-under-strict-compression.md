@@ -44,3 +44,10 @@ group C-star algebra is not MF" is ambiguous until the completion is named, and
 this endpoint is what makes the two statements coexist rather than contradict.
 It is also why the undecidability lane parameterizes over *five* separate
 recognition predicates rather than one.
+
+**Literature (2026-09-05).**  Eckhardt, arXiv:2608.28772, Theorem 3.1,
+proves the same conclusion for the ascending HNN extension `G` of a property
+(T) group along an injective non-surjective endomorphism: `C*(G)` is not a
+finite C\*-algebra, and neither is `C*(G̃)` for any group `G̃ ≥ G`.  The
+manuscript's `prop:max-infinite` is the statement for any countable group
+containing a Kazhdan subgroup and an element compressing it strictly.
