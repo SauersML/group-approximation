@@ -1,4 +1,5 @@
 import Mathlib.Analysis.CStarAlgebra.Unitary.Connected
+import Mathlib.Topology.Algebra.Star.Unitary
 import Mathlib.Topology.Connected.PathComponentOne
 import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.Algebra.Group.Subgroup.Finite
@@ -143,7 +144,7 @@ groups.  This is how `U_0` is transported along the matrix block inclusions, whi
 homomorphisms of unitary groups but not algebra maps. -/
 def unitaryClassMap {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
     (hf : Continuous f) : UnitaryClass A →* UnitaryClass B :=
-  QuotientGroup.map _ _ f fun _ hg => mapsTo_pathComponentOne f hf hg
+  QuotientGroup.map _ _ f fun g hg => mapsTo_pathComponentOne f hf hg
 
 @[simp] theorem unitaryClassMap_mk {B : Type*} [CStarAlgebra B] (f : unitary A →* unitary B)
     (hf : Continuous f) (v : unitary A) :

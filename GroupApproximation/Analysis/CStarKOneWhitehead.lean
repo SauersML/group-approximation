@@ -101,7 +101,8 @@ theorem permMat_mem_unitary {N : ℕ} (e : Fin N ≃ Fin N) :
 
 theorem isSelfAdjoint_permMat {N : ℕ} {e : Fin N ≃ Fin N} (he : e.symm = e) :
     IsSelfAdjoint (permMat A e) := by
-  rw [IsSelfAdjoint, star_permMat, he]
+  show star (permMat A e) = permMat A e
+  rw [star_permMat, he]
 
 /-- Conjugating a matrix by a permutation matrix reindexes it. -/
 theorem permMat_conj {N : ℕ} (e : Fin N ≃ Fin N) (M : CStarMat N A) :

@@ -42,8 +42,7 @@ theorem sum_eq_sum_castLE {B : Type*} [AddCommMonoid B] (h : n ≤ m) (g : Fin m
     exact Finset.mem_image.mpr ⟨⟨(x : ℕ), hlt⟩, Finset.mem_univ _, rfl⟩
   rw [← key, Finset.sum_image]
   intro a _ b _ hab
-  have hval : (a : ℕ) = (b : ℕ) := congrArg Fin.val hab
-  exact Fin.eq_of_val_eq hval
+  exact (Fin.castLEEmb h).injective hab
 
 /-- Moving an `if` on `Fin n` indices to the corresponding `if` on `Fin m` indices. -/
 theorem ite_mk_eq {B : Type*} (i j : Fin m) (hi : (i : ℕ) < n) (hj : (j : ℕ) < n) {a b : B} :
@@ -52,8 +51,9 @@ theorem ite_mk_eq {B : Type*} (i j : Fin m) (hi : (i : ℕ) < n) (hj : (j : ℕ)
   · have h₁ : (⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩ := Fin.eq_of_val_eq hij
     have h₂ : i = j := Fin.eq_of_val_eq hij
     rw [if_pos h₁, if_pos h₂]
-  · have h₁ : ¬ ((⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩) := fun hc => hij (congrArg Fin.val hc)
-    have h₂ : ¬ (i = j) := fun hc => hij (congrArg Fin.val hc)
+  · have h₁ : ¬ ((⟨(i : ℕ), hi⟩ : Fin n) = ⟨(j : ℕ), hj⟩) := fun hc =>
+      hij (congrArg (Fin.val : Fin n → ℕ) hc)
+    have h₂ : ¬ (i = j) := fun hc => hij (congrArg (Fin.val : Fin m → ℕ) hc)
     rw [if_neg h₁, if_neg h₂]
 
 section Algebra
@@ -94,6 +94,16 @@ theorem blockOne_apply_of_not_lt_of_not_lt (M : CStarMat n A) (i j : Fin m)
     blockOne M m i j = if i = j then 1 else 0 := by
   rw [blockOne_apply, dif_neg hi, if_neg hj]
 
+theorem blockOne_apply_castLE_right (h : n ≤ m) (M : CStarMat n A) (i : Fin m)
+    (hi : (i : ℕ) < n) (l : Fin n) :
+    blockOne M m i (Fin.castLE h l) = M ⟨(i : ℕ), hi⟩ l :=
+  blockOne_apply_of_lt_of_lt M i (Fin.castLE h l) hi l.isLt
+
+theorem blockOne_apply_castLE_left (h : n ≤ m) (M : CStarMat n A) (j : Fin m)
+    (hj : (j : ℕ) < n) (l : Fin n) :
+    blockOne M m (Fin.castLE h l) j = M l ⟨(j : ℕ), hj⟩ :=
+  blockOne_apply_of_lt_of_lt M (Fin.castLE h l) j l.isLt hj
+
 theorem blockOne_castLE (h : n ≤ m) (M : CStarMat n A) (i j : Fin n) :
     blockOne M m (Fin.castLE h i) (Fin.castLE h j) = M i j :=
   blockOne_apply_of_lt_of_lt M (Fin.castLE h i) (Fin.castLE h j) i.isLt j.isLt
@@ -127,8 +137,7 @@ theorem blockOne_mul (h : n ≤ m) (M N : CStarMat n A) :
         sum_eq_sum_castLE h (fun l : Fin m => blockOne M m i l * blockOne N m l j)
           (fun l hl => by rw [blockOne_apply_of_lt_of_not_lt M i l hi hl, zero_mul])]
       refine Finset.sum_congr rfl fun l _ => ?_
-      rw [blockOne_apply_of_lt_of_lt M i (Fin.castLE h l) hi l.isLt,
-        blockOne_apply_of_lt_of_lt N (Fin.castLE h l) j l.isLt hj]
+      rw [blockOne_apply_castLE_right h M i hi l, blockOne_apply_castLE_left h N j hj l]
     · rw [blockOne_apply_of_lt_of_not_lt (M * N) i j hi hj]
       refine (Finset.sum_eq_zero fun l _ => ?_).symm
       by_cases hl : (l : ℕ) < n
@@ -243,16 +252,10 @@ theorem continuous_blockOne (n m : ℕ) :
     · exact continuous_const.congr
         fun M => (blockOne_apply_of_not_lt_of_not_lt M i j hi hj).symm
 
-end Algebra
-
-section Topology
-
-variable [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
-
-theorem continuous_blockOneUnitary (h : n ≤ m) :
+theorem continuous_blockOneUnitary [PartialOrder A] [StarOrderedRing A] (h : n ≤ m) :
     Continuous (blockOneUnitary (A := A) h) :=
   continuous_induced_rng.mpr ((continuous_blockOne n m).comp continuous_subtype_val)
 
-end Topology
+end Algebra
 
 end GroupApproximation

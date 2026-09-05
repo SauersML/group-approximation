@@ -149,7 +149,7 @@ theorem mkAt_mul_mkAt {n m k : ℕ} (x : G n) (y : G m) (hx : n ≤ k) (hy : m �
   refine Quotient.sound ⟨k, max_le hx hy, le_rfl, ?_⟩
   show T.map (max_le hx hy) (T.map (le_max_left n m) x * T.map (le_max_right n m) y)
       = T.map le_rfl (T.map hx x * T.map hy y)
-  rw [map_mul, map_mul, T.map_trans, T.map_trans, T.map_self]
+  simp only [map_mul, T.map_trans, T.map_self]
 
 @[simp] theorem mkAt_one (n : ℕ) : T.mkAt n (1 : G n) = 1 :=
   T.mkAt_eq_mkAt (k := n) le_rfl (Nat.zero_le n) (by rw [map_one, map_one])

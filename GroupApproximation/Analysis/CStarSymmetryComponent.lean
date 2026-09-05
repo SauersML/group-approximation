@@ -61,18 +61,20 @@ theorem one_add_smul_sub_one_mem_unitary (hp : IsStarProjection p) {z : ℂ}
 /-- `1 - 2p` is a unitary for every star projection `p`. -/
 theorem one_sub_two_smul_mem_unitary (hp : IsStarProjection p) :
     (1 : C) - (2 : ℂ) • p ∈ unitary C := by
-  have h := one_add_smul_sub_one_mem_unitary (C := C) hp (z := -1) (by norm_num)
+  have h := one_add_smul_sub_one_mem_unitary (C := C) hp (z := -1) (by simp)
   rwa [show ((-1 : ℂ) - 1) = -(2 : ℂ) by norm_num, neg_smul, ← sub_eq_add_neg] at h
 
 /-- If `u` is a self-adjoint unitary then `(1 - u)/2` is a star projection. -/
 theorem isStarProjection_half_one_sub {u : C} (hu : IsSelfAdjoint u) (hu2 : u * u = 1) :
     IsStarProjection ((2⁻¹ : ℂ) • ((1 : C) - u)) := by
-  have hsq : ((1 : C) - u) * ((1 : C) - u) = (2 : ℂ) • ((1 : C) - u) := by
-    rw [sub_mul, mul_sub, mul_sub, one_mul, mul_one, mul_one, hu2]
-    module
+  have hsq : ((1 : C) - u) * ((1 : C) - u) = ((1 : C) - u) + ((1 : C) - u) := by
+    have expand : ((1 : C) - u) * ((1 : C) - u) = 1 - u - u + u * u := by noncomm_ring
+    rw [expand, hu2]
+    abel
   refine ⟨?_, ?_⟩
   · show (2⁻¹ : ℂ) • ((1 : C) - u) * ((2⁻¹ : ℂ) • ((1 : C) - u)) = (2⁻¹ : ℂ) • ((1 : C) - u)
-    rw [smul_mul_assoc, mul_smul_comm, smul_smul, hsq, smul_smul, smul_smul]
+    rw [smul_mul_assoc, mul_smul_comm, smul_smul, hsq, smul_add, ← add_smul]
+    congr 1
     norm_num
   · show star ((2⁻¹ : ℂ) • ((1 : C) - u)) = (2⁻¹ : ℂ) • ((1 : C) - u)
     rw [star_smul, star_sub, star_one, hu.star_eq]
@@ -84,12 +86,25 @@ section Path
 
 variable {p : C}
 
+theorem star_mul_self_exp (t : ℝ) :
+    star (Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I))
+      * Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I) = 1 := by
+  have harg : (starRingEnd ℂ) ((t : ℂ) * (Real.pi : ℂ) * Complex.I)
+      + (t : ℂ) * (Real.pi : ℂ) * Complex.I = 0 := by
+    simp only [map_mul, Complex.conj_ofReal, Complex.conj_I]
+    ring
+  show (starRingEnd ℂ) (Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I))
+      * Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I) = 1
+  rw [← Complex.exp_conj, ← Complex.exp_add, harg, Complex.exp_zero]
+
 /-- `t ↦ 1 + (e^{iπt} - 1) p` as a family of unitaries. -/
 noncomputable def circleUnitary (hp : IsStarProjection p) (t : ℝ) : unitary C :=
   ⟨1 + (Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I) - 1) • p,
-    one_add_smul_sub_one_mem_unitary hp (by
-      rw [Complex.star_def, ← Complex.exp_conj, ← Complex.exp_add]
-      norm_num)⟩
+    one_add_smul_sub_one_mem_unitary hp (star_mul_self_exp t)⟩
+
+theorem coe_circleUnitary (hp : IsStarProjection p) (t : ℝ) :
+    ((circleUnitary hp t : unitary C) : C)
+      = 1 + (Complex.exp ((t : ℂ) * (Real.pi : ℂ) * Complex.I) - 1) • p := rfl
 
 theorem continuous_circleUnitary (hp : IsStarProjection p) :
     Continuous (circleUnitary hp) := by
@@ -97,17 +112,14 @@ theorem continuous_circleUnitary (hp : IsStarProjection p) :
   exact continuous_const.add
     (((Complex.continuous_exp.comp (by fun_prop)).sub continuous_const).smul continuous_const)
 
-@[simp] theorem circleUnitary_zero (hp : IsStarProjection p) :
-    circleUnitary hp 0 = 1 := by
+theorem circleUnitary_zero (hp : IsStarProjection p) : circleUnitary hp 0 = 1 := by
   refine Subtype.ext ?_
-  show (1 : C) + (Complex.exp (((0 : ℝ) : ℂ) * (Real.pi : ℂ) * Complex.I) - 1) • p = 1
+  rw [coe_circleUnitary]
   norm_num
 
 theorem circleUnitary_one (hp : IsStarProjection p) :
-    (circleUnitary hp 1 : C) = 1 - (2 : ℂ) • p := by
-  show (1 : C) + (Complex.exp (((1 : ℝ) : ℂ) * (Real.pi : ℂ) * Complex.I) - 1) • p
-    = 1 - (2 : ℂ) • p
-  rw [Complex.ofReal_one, one_mul, Complex.exp_pi_mul_I,
+    ((circleUnitary hp 1 : unitary C) : C) = 1 - (2 : ℂ) • p := by
+  rw [coe_circleUnitary, Complex.ofReal_one, one_mul, Complex.exp_pi_mul_I,
     show ((-1 : ℂ) - 1) = -(2 : ℂ) by norm_num, neg_smul, ← sub_eq_add_neg]
 
 /-- **A symmetry lies in the identity component.**  For a star projection `p`, the unitary
@@ -116,17 +128,17 @@ theorem mem_unitaryComponentOne_of_eq_one_sub_two_smul {u : unitary C} (hp : IsS
     (hup : (u : C) = 1 - (2 : ℂ) • p) : u ∈ unitaryComponentOne C := by
   have hend : circleUnitary hp 1 = u :=
     Subtype.ext ((circleUnitary_one hp).trans hup.symm)
-  refine ⟨{ toFun := fun t => circleUnitary hp (t : ℝ)
-            continuous_toFun := (continuous_circleUnitary hp).comp continuous_subtype_val
-            source' := by simpa using circleUnitary_zero hp
-            target' := by simpa using hend }⟩
+  exact ⟨{ toFun := fun t => circleUnitary hp (t : ℝ)
+           continuous_toFun := (continuous_circleUnitary hp).comp continuous_subtype_val
+           source' := by simpa using circleUnitary_zero hp
+           target' := by simpa using hend }⟩
 
 /-- **Every self-adjoint unitary lies in the identity component of the unitary group.** -/
 theorem mem_unitaryComponentOne_of_isSelfAdjoint {u : unitary C} (hu : IsSelfAdjoint (u : C)) :
     u ∈ unitaryComponentOne C := by
   have hu2 : (u : C) * (u : C) = 1 := by
-    conv_lhs => rw [← hu.star_eq]
-    exact u.2.1
+    have h1 : star (u : C) * (u : C) = 1 := u.2.1
+    rwa [hu.star_eq] at h1
   refine mem_unitaryComponentOne_of_eq_one_sub_two_smul
     (isStarProjection_half_one_sub hu hu2) ?_
   rw [smul_smul]
