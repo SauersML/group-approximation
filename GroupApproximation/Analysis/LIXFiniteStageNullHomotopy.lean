@@ -90,7 +90,7 @@ theorem one_mem_unitaryIn (S : StarSubalgebra ℂ B) : (1 : unitary B) ∈ unita
 theorem unitaryIn_mul_subset (S : StarSubalgebra ℂ B) :
     unitaryIn S * unitaryIn S ⊆ unitaryIn S := by
   rintro _ ⟨u, hu, v, hv, rfl⟩
-  exact mul_mem hu hv
+  exact mem_unitaryIn.mpr (mul_mem (mem_unitaryIn.mp hu) (mem_unitaryIn.mp hv))
 
 theorem unitaryIn_mono {S T : StarSubalgebra ℂ B} (h : S ≤ T) : unitaryIn S ⊆ unitaryIn T :=
   fun _ hu => h hu
@@ -201,7 +201,7 @@ theorem exists_ge_selfAdjoint_mem (hmono : Monotone S) (hdense : Dense (⋃ i, (
     exact real_smul_mem (add_mem hzj (star_mem hzj)) _
   · have hsub : ((realPart (z - (x : B)) : selfAdjoint B) : B) = (realPart z : B) - (x : B) := by
       rw [map_sub]
-      simp [x.2.coe_realPart]
+      simp
     rw [← hsub, ← AddSubgroupClass.coe_norm]
     refine lt_of_le_of_lt (realPart.norm_le _) ?_
     rw [← dist_eq_norm]
@@ -226,8 +226,7 @@ theorem exists_ge_joinedIn_prod (hclosed : ∀ i, IsClosed (S i : Set B)) (hmono
       Metric.continuous_iff.mp (selfAdjoint.continuous_expUnitary (A := B)) x (ε / 2) (by linarith)
     obtain ⟨j, hj₀j, y, hyS, hy⟩ := exists_ge_selfAdjoint_mem hmono hdense j₀ x hδ
     have hdist : dist y x < δ := by
-      rw [dist_eq_norm, AddSubgroupClass.coe_norm]
-      simpa using hy
+      simpa [dist_eq_norm] using hy
     have hyx : ‖((selfAdjoint.expUnitary y : unitary B) : B)
         - ((selfAdjoint.expUnitary x : unitary B) : B)‖ < ε / 2 := by
       have hd := hδ' y hdist
@@ -247,7 +246,9 @@ theorem exists_ge_joinedIn_prod (hclosed : ∀ i, IsClosed (S i : Set B)) (hmono
             + (((selfAdjoint.expUnitary y : unitary B) : B)
                 - ((selfAdjoint.expUnitary x : unitary B) : B))
               * (((xs.map selfAdjoint.expUnitary).prod : unitary B) : B) := by
-        push_cast
+        have hcoe : ∀ u v : unitary B, ((u * v : unitary B) : B) = (u : B) * (v : B) :=
+          fun _ _ => rfl
+        rw [hcoe, hcoe]
         ring
       rw [hkey]
       refine lt_of_le_of_lt (norm_add_le _ _) ?_
@@ -286,6 +287,33 @@ theorem exists_ge_joined_one_subUnitary (hclosed : ∀ i, IsClosed (S i : Set B)
     ∃ j, ∃ _ : k ≤ j, ∃ h : (a : B) ∈ S j, Joined (1 : unitary (S j)) (subUnitary a h) := by
   obtain ⟨j, hkj, hj⟩ := exists_ge_joinedIn_one_of_joined hclosed hmono hdense hak ha
   exact ⟨j, hkj, hmono hkj hak, joined_subUnitary_of_joinedIn _ hj⟩
+
+/-! ### Persistence -/
+
+/-- **Persistence of a nontrivial unitary.**  The contrapositive of finite-stage detection, and
+the form in which the argument for Problem LIX consumes it: a unitary of a stage that fails to be
+null-homotopic in *every* later stage fails to be null-homotopic in `B`.
+
+Without this, finite-stage nontriviality would only be evidence for — not a proof of —
+nontriviality in the limit. -/
+theorem not_joined_of_forall_ge (hclosed : ∀ i, IsClosed (S i : Set B)) (hmono : Monotone S)
+    (hdense : Dense (⋃ i, (S i : Set B))) {k : ι} {a : unitary B} (hak : (a : B) ∈ S k)
+    (h : ∀ j, k ≤ j → ¬ JoinedIn (unitaryIn (S j)) 1 a) :
+    ¬ Joined (1 : unitary B) a := by
+  intro ha
+  obtain ⟨j, hkj, hj⟩ := exists_ge_joinedIn_one_of_joined hclosed hmono hdense hak ha
+  exact h j hkj hj
+
+/-- Persistence, with the stage-wise hypothesis read in the unitary group of the stage itself. -/
+theorem not_joined_of_forall_ge_subUnitary (hclosed : ∀ i, IsClosed (S i : Set B))
+    (hmono : Monotone S) (hdense : Dense (⋃ i, (S i : Set B)))
+    {k : ι} {a : unitary B} (hak : (a : B) ∈ S k)
+    (h : ∀ (j : ι), k ≤ j → ∀ h' : (a : B) ∈ S j,
+      ¬ Joined (1 : unitary (S j)) (subUnitary a h')) :
+    ¬ Joined (1 : unitary B) a := by
+  intro ha
+  obtain ⟨j, hkj, hj, hjoin⟩ := exists_ge_joined_one_subUnitary hclosed hmono hdense hak ha
+  exact h j hkj hj hjoin
 
 end
 
