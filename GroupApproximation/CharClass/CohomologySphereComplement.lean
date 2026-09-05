@@ -48,7 +48,6 @@ theorem contractibleSpace_sphere_compl (n : ℕ) (p : Sphere n) :
   have hsrc : (stereographic hv).source = ({p}ᶜ : Set (Sphere n)) := by
     rw [stereographic_source]
     congr 1
-    exact congrArg (fun z => ({z} : Set (Sphere n))) (Subtype.ext rfl)
   exact (Homeomorph.setCongr hsrc).symm.contractibleSpace
 
 /-- **`H^k(S^n ∖ {p}; F₂) = 0` for `k ≥ 1`.** -/

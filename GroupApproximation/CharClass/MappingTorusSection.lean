@@ -44,7 +44,7 @@ section Section
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 variable {M : Type*} [TopologicalSpace M] {Z : Type*} [TopologicalSpace Z]
-variable {V G : M → Matrix n n ℂ} {y t : Z → ℝ} {ξ η : Z × M → n → ℂ}
+variable {V G : M → Matrix n n ℂ} {y t : Z → ℝ} {ξ η : Z × M → n → ℂ} {p : Z × M}
 
 /-- The mapping torus in block normal form. -/
 theorem mappingTorus_eq (V G : M → Matrix n n ℂ) (y t : Z → ℝ) (p : Z × M) :
@@ -177,8 +177,12 @@ theorem mtSection_branches_agree (hd : IsMTSectionData V G y t ξ η)
     rw [show ((1 - (0 : ℝ) ^ 2 : ℝ) : ℂ) = 1 by norm_num, one_smul, Matrix.one_mulVec]
   congr 1
   · rw [hback, hp]
+    congr 1
+    push_cast
     norm_num
   · rw [hseam, hp]
+    congr 1
+    push_cast
     norm_num
 
 /-- **The section is continuous.** -/

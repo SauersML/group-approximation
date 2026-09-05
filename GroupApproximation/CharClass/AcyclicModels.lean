@@ -98,10 +98,10 @@ def homotopyOfFamily (e : P ⟶ Q) (s : ∀ k : ℕ, P.X k ⟶ Q.X (k + 1))
   zero i j hij := homFamily_eq_zero s hij
   comm i := by
     rcases i with _ | k
-    · have hz : homFamily s 0 0 = (0 : P.X 0 ⟶ Q.X 0) := homFamily_eq_zero s (by omega)
-      have hd : dNext (0 : ℕ) (homFamily s) = 0 := by
-        dsimp [dNext]
-        rw [ChainComplex.next_nat_zero, hz, comp_zero]
+    · have hrel : ¬ (ComplexShape.down ℕ).Rel 0 ((ComplexShape.down ℕ).next 0) := by
+        rw [ChainComplex.next_nat_zero]
+        exact Nat.succ_ne_zero 0
+      have hd : dNext (0 : ℕ) (homFamily s) = 0 := dNext_eq_zero _ 0 hrel
       have hp : prevD (0 : ℕ) (homFamily s) = s 0 ≫ Q.d (0 + 1) 0 := by
         rw [prevD_eq (homFamily s) (show (ComplexShape.down ℕ).Rel (0 + 1) 0 from rfl),
           homFamily_succ]
@@ -164,6 +164,7 @@ variable {Λ : Type} [CommRing Λ]
 variable {F G : C ⥤ ChainComplex (ModuleCat.{0} Λ) ℕ}
 
 /-- A classically chosen preimage of `y` under `d`, or `0` if none exists. -/
+open Classical in
 noncomputable def pickPreimage {A B : ModuleCat.{0} Λ} (d : A ⟶ B) (y : B) : A :=
   if h : ∃ z : A, d.hom z = y then h.choose else 0
 

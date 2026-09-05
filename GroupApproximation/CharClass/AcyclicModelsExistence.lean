@@ -125,7 +125,8 @@ lemma amMap_zero (hF : FreeOnModels M Λ F)
   apply (hF.basis X 0).ext
   rintro ⟨b, φ⟩
   rw [amMap_basis, cmElt, hF.basis_apply X 0 b φ, ← LinearMap.comp_apply,
-    ← ModuleCat.hom_comp, hf0 (M (hF.mdl 0 b)) X φ, ModuleCat.hom_comp, LinearMap.comp_apply]
+    ← ModuleCat.hom_comp, ← hf0 (M (hF.mdl 0 b)) X φ, ModuleCat.hom_comp,
+    LinearMap.comp_apply]
 
 /-- The chain-map identity in degree `k+1`, given that the universal elements in
 that degree really are preimages. -/
@@ -153,9 +154,14 @@ lemma amMap_comm_of_spec (hF : FreeOnModels M Λ F)
           (((G.obj (M (hF.mdl (k + 1) b))).d (k + 1) k).hom (cmElt hF f0 (k + 1) b)) := by
     rw [← LinearMap.comp_apply, ← ModuleCat.hom_comp, (G.map φ).comm (k + 1) k,
       ModuleCat.hom_comp, LinearMap.comp_apply]
+  have hnat2 : (amMap hF f0 k X).hom (((F.map φ).f k).hom
+        (((F.obj (M (hF.mdl (k + 1) b))).d (k + 1) k).hom (hF.gen (k + 1) b)))
+      = ((G.map φ).f k).hom ((amMap hF f0 k (M (hF.mdl (k + 1) b))).hom
+        (((F.obj (M (hF.mdl (k + 1) b))).d (k + 1) k).hom (hF.gen (k + 1) b))) := by
+    rw [← LinearMap.comp_apply, ← ModuleCat.hom_comp, amMap_naturality,
+      ModuleCat.hom_comp, LinearMap.comp_apply]
   rw [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_comp, LinearMap.comp_apply,
-    amMap_basis, hGd, hspec b, hb, hdnat, ← LinearMap.comp_apply, ← ModuleCat.hom_comp,
-    amMap_naturality, ModuleCat.hom_comp, LinearMap.comp_apply]
+    amMap_basis, hGd, hspec b, hb, hdnat, hnat2]
 
 /-- **The chain-map identity**, by induction on the degree.  The step from degree
 `0` uses the augmentation; every later step uses positive-degree acyclicity. -/
@@ -222,7 +228,8 @@ noncomputable def acyclicModelsMap {A : ModuleCat.{0} Λ} (hF : FreeOnModels M �
       comm' := by
         rintro i j (rfl : j + 1 = i)
         exact amMap_comm hF hG εF εG hG0 f0 hf0 hf0ε j X }
-  naturality X Y φ := by
+  naturality := by
+    intro X Y φ
     apply HomologicalComplex.hom_ext
     intro k
     rw [HomologicalComplex.comp_f, HomologicalComplex.comp_f]

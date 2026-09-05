@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.AcyclicModels
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Data.Finset.NatAntidiagonal
 
 /-!
 # The Cartan formula
