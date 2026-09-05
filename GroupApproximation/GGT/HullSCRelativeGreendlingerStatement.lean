@@ -40,11 +40,26 @@ structure RelativeBoundaryContiguity
   exterior : List (GGT.RelLetter G Lambda)
   remainder : List (GGT.RelLetter G Lambda)
   relator_decomposition : relator = exterior ++ remainder
+  /-- **The cut at which the boundary word is read.**
+
+  Osin's exterior regions are arcs of a boundary *cycle*, and the designated
+  boundary word is that cycle cut at one point.  A region selected after the
+  cut is fixed may straddle it: koassembly's `ExteriorMergeAvailable` can merge
+  two arcs that each avoid the cut into one that does not.  Forbidding those
+  merges would hole Osin's Lemma `65(a)`, whose simplicity argument needs the
+  merge, so the certificate carries the rotation instead.
+
+  The wrap-free case is `rotation = 0`, where
+  `boundary_decomposition_of_rotation_zero` recovers the previous field
+  verbatim.  Note `exterior_value` is unaffected: it reads `boundaryArc.prod`
+  and never mentions `boundaryWord`. -/
+  rotation : ℕ := 0
   boundaryBefore : List G
   boundaryArc : List G
   boundaryAfter : List G
   boundary_decomposition :
-    boundaryWord = boundaryBefore ++ boundaryArc ++ boundaryAfter
+    boundaryWord.rotate rotation =
+      boundaryBefore ++ boundaryArc ++ boundaryAfter
   leftSide : List (GGT.RelLetter G Lambda)
   rightSide : List (GGT.RelLetter G Lambda)
   leftSide_admissible : RelWord.IsAdmissible D leftSide
@@ -76,8 +91,47 @@ theorem boundaryArc_length_le_boundaryWord
     (C : RelativeBoundaryContiguity D eps boundaryWord relator) :
     C.boundaryArc.length ≤ boundaryWord.length := by
   have hlength := congrArg List.length C.boundary_decomposition
-  simp only [List.length_append] at hlength
+  simp only [List.length_append, List.length_rotate] at hlength
   omega
+
+/-- **At the wrap-free cut the decomposition is the old, unrotated one.**  Every
+construction and every reader that works at `rotation = 0` keeps its previous
+proof through this. -/
+theorem boundary_decomposition_of_rotation_zero
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
+    {relator : List (GGT.RelLetter G Lambda)}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator)
+    (h : C.rotation = 0) :
+    boundaryWord = C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter := by
+  have hdec := C.boundary_decomposition
+  rw [h, List.rotate_zero] at hdec
+  exact hdec
+
+/-- **Every letter of the boundary arc is a letter of the designated boundary
+word.**  Rotation is invisible to membership, so this is what the readers that
+only need the alphabet of the arc should use. -/
+theorem boundaryArc_mem_boundaryWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
+    {relator : List (GGT.RelLetter G Lambda)}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator)
+    {x : G} (hx : x ∈ C.boundaryArc) : x ∈ boundaryWord := by
+  have hmem : x ∈ boundaryWord.rotate C.rotation := by
+    rw [C.boundary_decomposition]
+    exact List.mem_append_left _ (List.mem_append_right _ hx)
+  exact (List.mem_rotate).mp hmem
+
+/-- **The arc occurs as a block of the rotated boundary word.**  This is the
+idiom the Lemma 4.9 branches use, with the rotation absorbed. -/
+theorem exists_boundaryArc_split
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ} {boundaryWord : List G}
+    {relator : List (GGT.RelLetter G Lambda)}
+    (C : RelativeBoundaryContiguity D eps boundaryWord relator) :
+    ∃ pre suf : List G,
+      boundaryWord.rotate C.rotation = pre ++ C.boundaryArc ++ suf :=
+  ⟨C.boundaryBefore, C.boundaryAfter, C.boundary_decomposition⟩
 
 end RelativeBoundaryContiguity
 
