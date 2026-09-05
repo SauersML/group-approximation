@@ -95,22 +95,31 @@ theorem antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam
     (antipodal_allTracesUniformTwoContinuous_iff.1 h)
 
 /-- **STW Problem XXII, refuted as stated.**  The pair `(M, X)` is a *factorial
-tracially complete* C-star algebra whose designated traces are exactly the
-traces induced from `T(A)`, and not every trace on `M` is `‖·‖_{2,X}`-continuous
--- equivalently `X ⊊ T(M)`.
+tracially complete* C-star algebra; its designated traces are exactly the
+`‖·‖_{2,X}`-continuous traces on `M`; and not every trace on `M` is
+`‖·‖_{2,X}`-continuous -- equivalently `X ⊊ T(M)`.
 
 The first conjunct is the hypothesis of the problem.  Without it the remaining
 conjuncts refute a strictly weaker statement, which is why the endpoint needs
-it. -/
+it.
+
+The second conjunct is not decoration.  `X` is *defined* in
+`Analysis/STW22DesignatedTraces` as the range of `canonicalExtension`, so a
+conjunct saying so would be `rfl` and would certify nothing; what needs proof --
+and is CCEGSTW Proposition 3.15 -- is that this range is exactly the set of
+`‖·‖_{2,X}`-continuous traces.  That is what makes the third and fourth
+conjuncts two readings of the *same* failure rather than two unrelated
+statements. -/
 theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
     (hBU : ComplexOddMapCommonZero) :
     IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
-      antipodalDesignatedTraces =
-        Set.range (canonicalExtension
-          antipodalAllTracesGauge_isCoordinateNormComparison) ∧
+      (∀ σ : TracialState AntipodalCompletionAlgebra,
+        σ ∈ antipodalDesignatedTraces ↔
+          IsUniformTwoContinuousOn antipodalDesignatedTraces σ) ∧
       ¬ AllTracesUniformTwoContinuous antipodalDesignatedTraces ∧
       ¬ DesignatedTracesAreAllTraces antipodalDesignatedTraces :=
-  ⟨antipodal_isFactorialTraciallyCompletePair, rfl,
+  ⟨antipodal_isFactorialTraciallyCompletePair,
+    mem_antipodalDesignatedTraces_iff,
     antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam hBU,
     not_designatedTracesAreAllTraces_antipodal hBU⟩
 
