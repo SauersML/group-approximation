@@ -119,7 +119,8 @@ theorem manuscriptSection_zero_exists {v : E} (hv : ‖v‖ = 1) {χ : ℝ → �
     ((1 - (1 / 2 : ℝ)) • v + (1 / 2 : ℝ) • (-v) = 0 ∧
       ∀ j i k, ((χ (1 / 2 : ℝ) : ℝ) : ℂ) *
         productDualTautSection (dd := dd) (fun j => CP.basePoint (dd j)) j i k = 0) := by
-  refine (manuscriptSection_eq_zero_iff hv (by simpa using hv) hχ
+  have hx : ‖(-v : E)‖ = 1 := by simpa using hv
+  exact (manuscriptSection_eq_zero_iff (v := v) (x := -v) (t := 1 / 2) hv hx hχ
     (fun j => CP.basePoint (dd j)) (by norm_num) (by norm_num)).mpr ⟨rfl, rfl, rfl⟩
 
 end GroupApproximation.AlgTop
