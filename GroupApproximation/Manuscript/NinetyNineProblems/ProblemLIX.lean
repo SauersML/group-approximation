@@ -104,8 +104,8 @@ theorem not_problemLIX_of_exists
     (h : ∃ (A : Type) (_inst : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A) :
     ¬ ProblemLIX := by
-  obtain ⟨A, instA, hnt, hsimp, hnk⟩ := h
-  exact fun hLIX => hnk (@hLIX A instA hnt hsimp)
+  obtain ⟨A, _inst, hnt, hsimp, hnk⟩ := h
+  exact fun hLIX => hnk (hLIX A hnt hsimp)
 
 end NinetyNineProblems
 end GroupApproximation
