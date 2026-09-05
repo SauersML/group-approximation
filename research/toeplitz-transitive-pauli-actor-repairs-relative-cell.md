@@ -108,3 +108,16 @@ relative-cell interface.  It replaces the invalid inference that the
 normalizer words themselves are `C_s tensor I`; the only tensor statement
 concluded is `(TPA7)`, after finite-table exactification and four mixed Pauli
 prototype checks.
+
+A second localization argument, on an already exact old Pauli factor,
+avoids exactifying the actor multiplication table.
+`two-pauli-anchors-localize-arbitrary-normalizer-twists` uses coordinate
+covariance for the individual actor generators and just the two mixed
+commutator checks with `X_1,Z_1`.  Each normalizer is rounded separately;
+its multiplicity unitary may be unrelated to the others.  A classical
+label gap applied to norms of Weyl coefficients then gives localization.
+If the coordinate covariance rows and these mixed checks have polynomial
+derived-word loss, `(TAL4)` gives the same polynomial conclusion `(TPA7)`.
+Thus the all-pairs actor table in `(TPA5)` is sufficient but unnecessary
+for this localization step.  Obtaining the exact old Pauli factor and
+the stated covariance rows from presentation microstates remains required.

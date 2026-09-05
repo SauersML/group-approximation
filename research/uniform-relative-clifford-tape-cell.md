@@ -46,3 +46,12 @@ sectors which do not activate the rank jump pay group-relator energy.
   but its multiplication-table derivations still cost `poly(n)`, so it gives
   the polynomial sequential interface rather than the literal
   depth-independent statement here.
+- **A gap in all compact-group representations does not repair the twist.**
+  The September 2026 unitary-expander result in arXiv:2609.01605 has a gap
+  uniform in dimension and representation, but still only off the full
+  invariant space.  `all-representation-expansion-keeps-macroscopic-multiplicity-swap`
+  gives an exact diagonal-normalizer invariant at distance
+  `sqrt(1-1/d^2)` from the old factor's commutant.  Thus this stronger gap
+  cannot substitute for proving that the group-word checks act trivially
+  on multiplicity.  The direct matrix-family group is itself hyperlinear,
+  as checked in `research/artifacts/unitary-expander-nonhyperlinearity-audit-2026-09-04.md`.
