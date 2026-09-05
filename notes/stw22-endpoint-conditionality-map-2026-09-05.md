@@ -213,3 +213,53 @@ missing facts about `canonicalExtension`, which are not in the repository:
   defining `extensionValue` along a base approximation.
 * `isFace`, `faithful` and `unitBallComplete` are substance.  Sweep 8 is right
   that `isFace` is the one to look at first.
+
+## 7. Result: green, with the closed-endpoint gate fired
+
+Probe tag `xxiiEP3`, targets `STW22NegativeSolution` and `STW22DesignatedTraces`:
+
+```text
+Build completed successfully (9103 jobs).
+info: STW22NegativeSolution.lean:71:21:
+  'GroupApproximation.STW22NegativeSolution.negativeSolutionToProblemXXII'
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+Zero errors, zero warnings.  That line is `#audit_closed_axioms`, so it
+certifies both halves at once: the axiom closure is classical, and the
+declaration has no leading input.  The job count moved on every real change
+(3455 → 9102/9103 failing → 9103 succeeding), so this is not a stale-olean
+replay.
+
+Three defects stood between "unconditional as authored" and "machine-checked",
+and none of them was mathematical:
+
+1. **Pinned instance arguments.**  Every declaration of
+   `STW22CanonicalTraceExtension` and `STW22BaseUniformTracialGauge` carries
+   `[∀ n, Nonempty (TracialState (D n))]`, and at the concrete blocks that
+   binder is not synthesized *inside an application* — in the statement as much
+   as in the proof.  A diagnostic module established that the class is
+   perfectly synthesizable standalone (all six of `(∀ n,) CStarAlgebra /
+   Nontrivial / Nonempty (TracialState …)` discharge by `inferInstance` in the
+   same context) and that the `@`-applied form of the very same map elaborates.
+   So findability was never the problem: the elaborator reaches the binder
+   while `D` is undetermined, because the argument that would fix `D` is the
+   comparison datum, whose type is stated through the gauge abbreviation `G D`,
+   and `∀ n, Nonempty (TracialState (?D n))` has no solution however many
+   instances are registered.  `antipodalCanonicalExtensionMap` is the
+   `@`-applied map, an `abbrev`, so it *is* `canonicalExtension …`.
+2. **Two names that did not exist.**  `UniformTracialSequenceCompletion.uniformTwoNorm`
+   (it is `STW22Assembly.uniformTwoNorm`), and `traceZeroSpace` reached through
+   `CuntzPedersenTraceZero` when it lives in `CuntzPedersenCoronaObstruction` —
+   where `autoImplicit` turned the unresolved name into a variable and reported
+   "Function expected at `traceZeroSpace`" instead.
+3. **Three missing `open`s.**  `MetrizableSpace` needs `TopologicalSpace`,
+   `ℝ≥0` needs `open scoped NNReal`, `BoundedUniformTwoCompletion` needs
+   `UniformTracialBoundedCauchyQuotient`.  An `open` never travels through an
+   import, so a name that resolves in the module that declares it can still
+   fail in an importer.
+
+**Still owed, and not a lane's to do:** none of these modules is in the root
+import closure, so CI gates none of it.  The root additions, in dependency
+order, are `GroupApproximation.Analysis.STW22NegativeSolution` and
+`GroupApproximation.Analysis.STW22DesignatedTraces`.
