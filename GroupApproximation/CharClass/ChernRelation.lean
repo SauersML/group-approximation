@@ -157,16 +157,16 @@ the Chern polynomial of `pb'` is the image of that of `pb`.
 Topologically: for `g : X' → X` the projective bundle of `g^* E` is the pullback
 of `P(E)`, the tautological class pulls back to the tautological class, so the
 pulled-back relation still holds and uniqueness identifies the two polynomials. -/
-theorem chernPoly_map [Nontrivial A'] (pb : PowerBasis A B) (pb' : PowerBasis A' B')
-    (f : A →+* A') (hdim : pb'.dim = pb.dim)
+theorem chernPoly_map [Nontrivial A] [Nontrivial A'] (pb : PowerBasis A B)
+    (pb' : PowerBasis A' B') (f : A →+* A') (hdim : pb'.dim = pb.dim)
     (hroot : aeval pb'.gen ((chernPoly pb).map f) = 0) :
     chernPoly pb' = (chernPoly pb).map f := by
   refine (chernPoly_eq_of_monic pb' ((chernPoly_monic pb).map f) ?_ hroot).symm
-  rw [(chernPoly_monic pb).natDegree_map, hdim]
+  rw [(chernPoly_monic pb).natDegree_map, hdim, natDegree_chernPoly]
 
 /-- **Naturality in coefficients.** -/
-theorem chernClass_map [Nontrivial A'] (pb : PowerBasis A B) (pb' : PowerBasis A' B')
-    (f : A →+* A') (hdim : pb'.dim = pb.dim)
+theorem chernClass_map [Nontrivial A] [Nontrivial A'] (pb : PowerBasis A B)
+    (pb' : PowerBasis A' B') (f : A →+* A') (hdim : pb'.dim = pb.dim)
     (hroot : aeval pb'.gen ((chernPoly pb).map f) = 0) (k : ℕ) :
     chernClass pb' k = f (chernClass pb k) := by
   unfold chernClass
@@ -190,7 +190,7 @@ theorem chernPoly_eq_prod_of_root [Nontrivial A] {ι : Type*} (pb : PowerBasis A
     chernPoly pb = ∏ i ∈ s, (X + C (y i)) := by
   refine (chernPoly_eq_of_monic pb ?_ ?_ ?_).symm
   · exact monic_prod_of_monic _ _ fun i _ => monic_X_add_C (y i)
-  · rw [natDegree_prod _ _ fun i _ => (monic_X_add_C (y i)).ne_zero]
+  · rw [natDegree_prod_of_monic _ _ fun i _ => monic_X_add_C (y i)]
     simp only [natDegree_X_add_C]
     rw [Finset.sum_const, smul_eq_mul, mul_one, hcard]
   · rw [map_prod]

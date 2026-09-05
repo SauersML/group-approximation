@@ -1,4 +1,4 @@
-import GroupApproximation.AlgTop.ComplexProjectiveSphere
+import GroupApproximation.CharClass.ProjectiveSpaceSphere
 
 /-!
 # The Mayer–Vietoris cover of complex projective space
@@ -13,7 +13,9 @@ whose three pieces are, up to homotopy, a point, `ℂP^d`, and `S^{2d+1}`.  All 
 the point-set work behind that sentence is in
 `GroupApproximation/AlgTop/ComplexProjective*.lean`, over the same projection
 model `CP d` of `Analysis/LIXProjectiveSpaceModel.lean` (rank-one self-adjoint
-idempotents in `Matrix (Fin (d+1)) (Fin (d+1)) ℂ`).  This file is the bridge:
+idempotents in `Matrix (Fin (d+1)) (Fin (d+1)) ℂ`), re-proved in this lane's own
+`CharClass/ProjectiveSpace{Basic,Chart,Hyperplane,Puncture,Retract,TwoCover,Sphere}.lean`.
+This file is the bridge:
 it presents that cover as a pair of `TopologicalSpace.Opens` of a `TopCat.{0}`
 object, which is the shape the mod-2 Mayer–Vietoris sequence consumes.
 
@@ -35,8 +37,7 @@ namespace CharClass
 
 open TopologicalSpace
 open GroupApproximation.STW59
-open GroupApproximation.AlgTop
-open GroupApproximation.AlgTop.CPn
+open GroupApproximation.CharClass.CPn
 
 /-- Complex projective `d`-space, as an object of `TopCat.{0}`.  The carrier is
 the projection model `CP d`. -/
