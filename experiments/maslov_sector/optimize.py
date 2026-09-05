@@ -121,5 +121,8 @@ for rep in range(restarts):
         if st2[0] < cur[0]: cur, curU = st2, candU
     e, eu, el, mu, ml = cur
     print(f"d={d} m={sector_arg} init={init} w={wlift} eps0={eps0} restart={rep}: E={e:.6f} unlifted={eu:.6f} lifted={el:.6f} maxdef_unl={mu:.4f} maxdef_lift={ml:.4f} t={time.time()-t0:.0f}s", flush=True)
-    if best is None or e < best[0]: best = cur
+    if best is None or e < best[0]:
+        best = cur
+        tag = f"best_m{sector_arg.replace(':','_').replace('/','_')}_{init.replace(':','_').replace('/','_')}_d{d}_eps{eps0}_seed{seed}.npy"
+        np.save(tag, curU)
 print(f"BEST d={d} m={sector_arg} init={init} w={wlift} eps0={eps0}: E={best[0]:.6f} unlifted={best[1]:.6f} lifted={best[2]:.6f} maxdef_unl={best[3]:.4f} maxdef_lift={best[4]:.4f}", flush=True)

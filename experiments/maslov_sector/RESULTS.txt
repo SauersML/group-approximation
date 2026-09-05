@@ -78,3 +78,22 @@ Verification on ALL 304,412 relators: rho(r) is scalar for every relator (nonsca
 k_r the universal-cover lift exponent (phase mismatches 0); no rescaling of generators is needed.
 Order modulo scalars: long-root generators 8, short-root generators 4, so the projective representation factors through level 8.
 The seed has energy exactly 0 in the metaplectic (mod 2) sector.
+
+--- theta-seed controls at d = 10 (thetactl/, 16:20 EDT; restarts=2 each, 600 iterations, 400 sampled unlifted relators) ---
+metaplectic (mod 2) basin test, seed perturbed by exp(i eps H), H random Hermitian of operator norm one:
+  eps 0.5: E = 0 exactly (max defect 0.0000).
+  eps 1.0: restart 0: E = 0.0562 (unlifted 0.0557, lifted 0.0005, maxdef_unl 0.522, maxdef_lift 0.035);
+           restart 1: E = 0.5690 (maxdef_unl 1.274, maxdef_lift 0.106).
+  eps 1.5: restart 0: E = 0.3761 (maxdef_unl 1.165, maxdef_lift 0.209).
+  So the exact d = 10 metaplectic solution has basin radius between 0.5 and 1.0 for this descent, smaller than the
+  d = 4 spin seed (recovered up to eps 1.5).  At d = 10 the descent from a perturbation of size one already lands
+  in a different local minimum.
+mod 3 sector, started from the exact metaplectic seed (perturbed):
+  eps 0.2: both restarts: E = 0.012760 (unlifted 0.012608, lifted 0.000152, maxdef_unl 0.340, maxdef_lift 0.017).
+  eps 0.5: restart 0: the same minimum E = 0.012760; restart 1: E = 0.1278 (maxdef_unl 0.733, maxdef_lift 0.122).
+  eps 1.0: restart 0: E = 0.1373 (maxdef_unl 0.942, maxdef_lift 0.091); restart 1: E = 1.4250.
+  The minimum at E = 0.012760 is reproducible (three independent descents) and is the local minimum of the mod-3
+  energy nearest the metaplectic point: the lifted relators are almost satisfied (max defect 0.017) at the price of
+  a max unlifted defect of 0.34 concentrated on few relators.  It is far below every random-start minimum at d = 4
+  (0.3776) and is the best mod-3 energy seen in the whole experiment.  It is still a local minimum of a heuristic
+  energy on a finite sample of relators: it is not evidence about the normalized-HS gap.

@@ -180,8 +180,21 @@ two which are scalar on all `304,412` relators with scalar exactly
 the metaplectic class, and it factors through level eight
 (`sp4-even-theta-constants-realize-the-metaplectic-class`).  This supplies
 the exact metaplectic seed the control lacked, `seed_theta_d10.json`; its
-energy in the mod-two sector is zero.  Basin and mod-three runs from this
-seed are recorded in `RESULTS.txt` as they finish.
+energy in the mod-two sector is zero.
+
+Controls from this seed (`RESULTS.txt`, section "theta-seed controls").  The
+descent recovers the exact metaplectic solution from a perturbation of size
+`0.5` but not from size `1.0` or `1.5`, so the basin at `d = 10` is smaller
+than the one around the `d = 4` spin seed.  Started in the mod-three sector
+from the metaplectic seed, three independent descents reach the same
+minimum, energy `0.01276`, with the twenty lifted relators satisfied to a
+maximum defect of `0.017` and a maximum unlifted defect of `0.34`.  This is
+the lowest mod-three energy in the experiment, well below every random-start
+minimum, and it is a reproducible local minimum of the heuristic energy, not
+a solution: the nonzero unlifted defect is exactly what the class obstruction
+predicts for any exact scalar-relator solution and says nothing about the
+normalized-HS gap.  Runs from the seed stacked to `d = 20` and `d = 30`
+(tensoring with identities) are recorded in `RESULTS.txt` when they finish.
 
 # Files
 
