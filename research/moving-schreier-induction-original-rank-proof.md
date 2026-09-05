@@ -16,6 +16,9 @@ artifacts:
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
   - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
   - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
+  - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
+  - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
+  - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -646,3 +649,105 @@ zero with eta/epsilon tending to zero. The resulting lower count and
 `||H-I||_(2,d)^2<=1/[b(1-a)]-1->0`. Thus soft mass tends to one half
 and full soft coverage holds. This verifies necessity at the fixed
 universal host without asserting existence of an exact correction.
+
+For `(MSC16)`, the connection block `Delta_(sigma,U)` depends only on
+the G-equivalence class of sigma and on U. Its low-energy multiplicity
+mu_sigma is therefore the same in every quotient containing sigma.
+In a regular quotient host Q,
+
+```text
+r_Q=sum_(sigma in Irr(Q)) dim(sigma) mu_sigma,
+B_Q=sum_(sigma in Irr(Q)) B_sigma,
+B_sigma=dim(sigma) sum_u A_(sigma,u)^*A_(sigma,u)>=0,
+```
+
+where the A_(sigma,u) are an orthonormal basis of its low-energy block.
+This source operator is independent of basis and of unitary realization
+of sigma. If mu_sigma>0, `(MSC14)` bounds
+`dim(sigma)<=r_Q<=d/(1-a)`, hence `dim(sigma)<=M`. The exact universal
+host theorem `(MSC9)` puts sigma into Q_M. The two displayed sums give
+the count and operator inequalities term by term. A quotient containing
+all active Q_M types has equality; in particular a refinement cannot
+add further active types. Taking M=2d works for every a<=1/2.
+
+Every finite-dimensional SL5 unitary irreducible has finite image by
+`(MSC9)`. For one of dimension m>d, let lambda be its smallest connection
+eigenvalue. If lambda>=kappa^2/(2h), the claimed lower bound is immediate.
+Otherwise choose cutoff epsilon^2=lambda in the finite image quotient.
+Its low-energy count is at least m, so `(MSC14)` yields
+`m<=d/(1-2h lambda/kappa^2)`. Rearranging proves the large-type gap.
+
+For `(MSC17)`, put `f(t)=||A_t||_HS` on the scalar coset space. At a
+Schreier transition `s t=t' n`, reverse triangle and unitary holonomy
+give
+`|f(t)-f(t')|<=||pi(n)A_t-A_(t')U_s||_HS`.
+The scalar permutation energy of f is thus at most the connection
+energy of A. Constants are the only invariant vectors of the transitive
+coset action, so the Kazhdan estimate gives
+
+```text
+<Delta A,A> >=(kappa^2/h)
+  (||f||_2^2-m^(-1)|sum_t f(t)|^2).
+```
+
+Support on theta m cosets gives
+`m^(-1)|sum f|^2<=theta ||f||_2^2`, and
+`||f||_2^2=||A||_HS^2`. This proves the Rayleigh floor for arbitrary
+unitary input, regardless of inverse compatibility. Each connection
+transport and its adjoint moves row support by one edge, and
+`Delta=2I-(1/h)sum_s(mathcal A_s+mathcal A_s^*)`.
+A degree-L polynomial starting on v cosets therefore has support at
+most `v sum_(l=0)^L h^l<=v h^(L+1)/(h-1)`. Combining this with the
+support lower bound and taking logarithms proves the degree estimate.
+It does not bound the support of the full spectral projection, which
+is a global operation. The linked artifact also explains why the
+obstruction persists for local positive mixtures while allowing coherent
+combinations that spread over the quotient.
+
+For `(MSC18)`, if r=0 the bound is immediate. Otherwise `(MSC14)`
+extracts an exact representation Theta on C^r and a contraction
+`C:C^d->C^r` with `Tr(C^*C)=min(r,d)` and
+`max_s||Theta(s)C-CV_s||_HS<=xi sqrt(r)`. For r<=d use its polar
+coisometry; for r>d restrict its padded polar unitary to the original
+d input columns. The assumption a<=1/2 gives r<=2d, so Theta factors
+through Q_(2d). An HS-orthonormal basis `(T_a)` of its exact regular
+intertwiner space has source Gram I_r. The positive frame operator
+`A=sum_a |T_a C><T_a C|` on the original rectangular HS space obeys
+`0<=A<=I`, `Tr A=min(r,d)`, and
+
+```text
+Tr(Delta_U A)
+ =(1/h)sum_s ||Theta(s)C-CU_s||_HS^2
+ <=(xi sqrt(r)+eta sqrt(d))^2.
+```
+
+The same spectral Bessel-frame argument as `(MSC15)` gives `(MSC18)`.
+Along vanishing cutoffs epsilon_j and perturbations eta_j->0, choose
+t_j->0 slowly enough that `(xi(epsilon_j)+eta_j)/t_j->0`. Since r_j/d_j
+is at most `1/(1-a_j)`, positive normalized count transfers from V_j
+to U_j. Interchanging the two tuples proves invariance of exclusion.
+
+For the residual assertion, failure of full flexible stability supplies
+a canonical bad sequence by the contrapositive of the required
+residual-finite ucp regularization theorem. Maximize the limiting fraction
+of asymptotically reducing, flexibly correctable corners over every
+subsequence. The diagonal argument already used for `(MSC12)` attains
+its supremum alpha, with alpha=0 handled by the zero projection.
+Necessarily alpha<1, since a fraction-one corner yields a full flexible
+correction after filling its negligible complement trivially. The
+complementary polar tuple is canonical by ICC and has positive relative
+dimension. It can have no further positive-density correctable corner
+on any subsequence, since adjoining one would exceed alpha.
+
+If its normalized low-energy count at some cutoffs t_j->0 were bounded
+below along a subsequence, `(MSC14)` would produce precisely such a
+corner, or a full flexible correction when the count exceeds the input
+dimension. Thus every vanishing-cutoff count tends to zero. Monotonicity
+of the count makes this equivalent to
+`lim_(t down to 0) limsup_j N_j(t)/n_j=0`: a failure of that iterated
+limit permits diagonal selection of a violating vanishing cutoff.
+By `(MSC16)`, N_j(t) in Q_(2n_j) equals the supremum over all finite
+quotients for sufficiently small t. Equation `(MSC18)` then proves
+invariance under vanishing HS changes. The linked residual artifact
+records every subsequence and fixed-cutoff quantifier. Neither the
+iterated limit nor its proof asserts a fixed positive spectral gap.

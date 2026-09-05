@@ -25,6 +25,9 @@ artifacts:
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
   - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
   - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
+  - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
+  - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
+  - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -117,13 +120,26 @@ no sampling error.
 
 The remaining arithmetic question is adequate low-energy count: can
 every canonical approximate SL5 sequence, on a subsequence, be assigned
-quotient hosts and cutoffs tending to zero with r/d bounded below? The
+cutoffs tending to zero with r/d bounded below in Q_(2d)? This fixed
+universal host now provably contains every active finite-dimensional
+type from every quotient at all sufficiently small cutoffs. Refining
+this quotient cannot add low-energy types or change its source Gram. The
 positive-corner bootstrap and constant-one ucp untensoring would then
 give full flexible stability, and the existing thin co-dense HNN route
 would give nonhyperlinear existence. The count criterion is also
 necessary: any flexible correction forces r/d to one and the normalized
 source Gram matrix to I at suitable cutoffs in the fixed universal host
 Q_(2d). These results leave the count existence step and this root open.
+
+A maximal residual of any hypothetical unstable canonical sequence
+would have vanishing low-energy mass uniformly over every finite host.
+The new perturbation estimate preserves this exclusion under all o(1)
+HS changes, including QRC's corrections. A local construction is also
+ruled out: scalar coset expansion forces every low-energy trial map to
+spread across almost all cosets, even when the original tuple is exact.
+Short local polynomial filters therefore cannot produce the missing
+count. The remaining argument must use global information from the
+relations; no contradiction for such a residual has been proved.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

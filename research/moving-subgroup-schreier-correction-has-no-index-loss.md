@@ -14,6 +14,9 @@ artifacts:
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
   - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
   - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
+  - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
+  - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
+  - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -320,6 +323,86 @@ HS norm. Canonicality is unnecessary for this implication. Combining
 low-energy count on a subsequence of every canonical sequence would
 establish full flexible stability. Equation `(MSC15)` proves necessity
 as well. No argument here establishes that count for arbitrary inputs.
+
+The host can now be fixed even before knowing a correction. For any
+inverse-compatible tuple U in dimension d and cutoff with
+`a=2h epsilon^2/kappa^2<1`, put `M=floor(d/(1-a))`. For every finite
+quotient Q, the universal host Q_M satisfies
+
+```text
+r_Q(epsilon)<=r_(Q_M)(epsilon),
+0<=B_Q(epsilon)<=B_(Q_M)(epsilon).                     (MSC16)
+```
+
+It contains every irreducible type with a nonzero low-energy block in
+any finite quotient. Every finite quotient refining Q_M gives exactly
+the same count and source Gram at this cutoff. In particular Q_(2d)
+works simultaneously for all cutoffs with a<=1/2. No relator defect or
+canonical-character assumption is used. The corresponding large-type
+exclusion is explicit: for an irreducible sigma of dimension m>d,
+
+```text
+min Spec(Delta_(sigma,U)) >=(kappa^2/(2h))(1-d/m).
+```
+
+Thus varying finite quotient hosts cannot solve the remaining count
+question once this universal host is used.
+
+There is also an obstruction to constructing low-energy maps locally
+on the coset graph. For any finite-index subgroup N of index m, any
+exact subgroup holonomy, and any nonzero rectangular trial map A
+supported on a fraction theta of the cosets,
+
+```text
+<Delta A,A>/||A||_HS^2 >=(kappa^2/h)(1-theta).          (MSC17)
+```
+
+Consequently a trial map of Rayleigh quotient at most epsilon^2 must
+occupy at least a `1-h epsilon^2/kappa^2` fraction of the cosets.
+A degree-L polynomial in the connection transports or their Laplacian,
+starting on v cosets, therefore needs
+
+```text
+L>=log_h((m/v)(h-1)(1-h epsilon^2/kappa^2))-1
+```
+
+when h>=2 and the logarithm's argument is positive. This holds even for
+exact inputs with global zero-energy frames. It excludes local trials
+and short local filters, not globally spreading linear combinations or
+the full spectral projection. Small curvature alone does not pay this
+growing word length.
+
+The count is stable under HS perturbations with no quotient-size loss.
+Use the fixed host Q_(2d) for two inverse-compatible d-dimensional
+tuples U,V and write N_U(t) for the count below t^2. If
+`eta=max_s||U_s-V_s||_(2,d)`, `r=N_V(epsilon)`,
+`a=2h epsilon^2/kappa^2<=1/2`, and
+`xi=sqrt(h)epsilon+2sqrt(a/(1-a))`, then every t>0 satisfies
+
+```text
+N_U(t)>=min(r,d)-(xi sqrt(r)+eta sqrt(d))^2/t^2.        (MSC18)
+```
+
+Thus vanishing normalized count at every vanishing cutoff is preserved
+by any o(1) normalized-HS change of tuple. This concerns cutoffs tending
+to zero, not equality of counts at a fixed positive threshold.
+
+A failure of SL5 flexible stability would consequently produce a
+canonical residual sequence W_j in dimensions n_j with
+
+```text
+lim_(t down to 0) limsup_j
+ (1/n_j) sup_(Q finite quotient) rank 1_[0,t^2](Delta_(Q,W_j))=0.
+```
+
+Maximize recoverable correctable mass over subsequences and take its
+positive-density complement. Any positive low-energy count on that
+complement would contradict maximality by `(MSC14)`. Host universality
+makes the exclusion uniform over Q, and `(MSC18)` preserves it under
+every vanishing HS perturbation, including QRC changes. This is a
+conditional description of a possible residual, not an existence proof
+for it or a uniform positive spectral gap. A contradiction still needs
+a theorem forcing positive count from its defining relations.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

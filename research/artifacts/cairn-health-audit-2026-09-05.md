@@ -1,6 +1,21 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including the automatic pair-product Gram bound,
+The latest snapshot, including universal spectral-host domination,
+the quotient-support obstruction, the index-free count perturbation
+estimate, and the conditional maximal-residual theorem, passes with
+**14,146 nodes and no errors, warnings, or duplicate candidates** in
+10.413 seconds. Comparison with the pinned commit
+`027c44cb7bc59d699273153feff5871f628720ff` finds no newly dead claims,
+newly detached lane tops, or new open claims lacking attempts. Its record
+is `research/artifacts/universal-spectrum-cairn-validation-2026-09-05.json`.
+All seven edited theorem, root, and proof-artifact files were compared
+byte for byte with the validated archive. An independent mathematical
+review checked type containment, refinement equality, arbitrary-input
+support bounds, the perturbation Bessel frame, and the residual cutoff
+quantifiers. Neither a positive count nor nonhyperlinear existence is
+marked proved.
+
+The preceding snapshot, including the automatic pair-product Gram bound,
 linear-error exact corner construction, deterministic sublinear seeds,
 and the universal-host necessity theorem, passes with **14,144 nodes and
 no errors, warnings, or duplicate candidates** in 9.597 seconds.

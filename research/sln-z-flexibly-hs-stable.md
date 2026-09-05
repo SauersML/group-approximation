@@ -11,6 +11,9 @@ artifacts:
   - research/artifacts/soft-schreier-mass-positive-corner-2026-09-05.md
   - research/artifacts/spectral-pair-products-control-schreier-gram-2026-09-05.md
   - research/artifacts/flexible-correction-forces-universal-schreier-mass-2026-09-05.md
+  - research/artifacts/universal-host-captures-all-low-energy-types-2026-09-05.md
+  - research/artifacts/expansion-blocks-local-schreier-spectral-seeds-2026-09-05.md
+  - research/artifacts/maximal-canonical-residual-has-uniform-spectral-exclusion-2026-09-05.md
 distinct_from:
   sl2-z-inverse-pq-is-hs-stable: that is stability of the three-place S-arithmetic lattice SL_2(Z[1/pq]); this is stability of the plain higher-rank lattice SL_n(Z), a (T) group.
   iwahori-local-global-defect-question: that is (equivalent to) flexible stability of SL_2(Z[1/2]); this is the plain SL_n(Z), covered by neither Dogon nor Dogon-Vigdorovich.
@@ -31,6 +34,21 @@ produces an explicit non-hyperlinear group
 
 ## Attempts
 
+- **Universal spectral host and residual exclusion (2026-09-05).**
+  `(MSC16)` proves that Q_(2d) captures every possible low-energy type
+  from every finite quotient whenever `2h epsilon^2/kappa^2<=1/2`.
+  Counts and unnormalized source Gram matrices dominate those of every
+  other host. Thus no search over larger quotients remains. A maximal
+  residual of a hypothetical unstable canonical sequence has vanishing
+  normalized count uniformly over all finite hosts as the cutoff tends
+  to zero. The index-free perturbation bound `(MSC18)` preserves this
+  exclusion under o(1) HS changes, including QRC. Constructing local
+  word-halo trials cannot close the gap: `(MSC17)` forces low-energy
+  maps to occupy almost all cosets, even in exact examples; a local
+  polynomial filter needs degree at least logarithmic in the quotient
+  index. The remaining task is a global count argument at the fixed
+  universal host, or another contradiction for the residual. No fixed
+  positive spectral gap is claimed.
 - **Source Gram control is automatic; spectral count remains
   (2026-09-05).** `(MSC14)` uses pair-product conjugation and a positive
   weighted spectral trace to prove
