@@ -565,8 +565,13 @@ inverse need be constructed**. Both compactness instances already exist.
 failure mode: both halves keep compiling green about different spaces until
 someone remembers to transport. So **every cohomology fact consumed on the
 C\*-side must be STATED over `sphereFive`**, obtained once through the bridge.
-Auditable form: `SphereModelBridge.lean` must be the **only** LIX-side module
-importing `SphereOddDegree`; a second one means someone is transporting ad hoc.
+Auditable form (phrasing refined by `audit-gate`, and adopted): **no
+`Analysis/LIX*` or `KTheory/*` module may import `SphereOddDegree` except
+through `SphereModelBridge`.** My earlier "LIX-side" was ambiguous — `AlgTop/*`
+legitimately imports it for `CupProduct`, `SingularCohomology`, `CrossProduct`
+and the rest, and would have been caught by the loose phrasing. `audit-gate`
+measured the current state as a genuine **zero** such imports, so the invariant
+is enforced from a clean baseline rather than a grandfathered set.
 
 **C3 — the `CP^n` model.** `found-cpn-cohomology` must use `lix-spaces`' `CPd d`
 (rank-one projections, subspace topology). A quotient-topology `CP^n` is
@@ -817,8 +822,26 @@ outside.
 ```lean
 /-- STW Problem LIX: is every unital simple C⋆-algebra K₁-injective? -/
 def ProblemLIX : Prop :=
-  ∀ (A : Type) [CStarAlgebra A] [Nontrivial A], IsSimpleCStar A → K1Injective A
+  ∀ (A : Type) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A],
+    Nontrivial A → IsSimpleCStar A → K1Injective A
 ```
+
+**The typeclass wrinkle, and why it is not one.** `[PartialOrder A]` and
+`[StarOrderedRing A]` are **forced by Mathlib**, not gratuitous: at the pin every
+`CStarMatrix` instance sits under
+`[NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]`
+(`Analysis/CStarAlgebra/CStarMatrix.lean`, the `NonUnital` section), so
+`CStarMat n A` cannot be formed without them, and `K1Injective` inherits them.
+This *looks* like quantifying over a choice of order, which would weaken
+`¬ ProblemLIX`. It does not: `StarOrderedRing` pins the order completely, since
+it characterises `x ≤ y` by `y - x` lying in the additive closure of
+`{star s * s}`, so any two such structures on the same starred ring coincide.
+Worth landing as a one-line lemma rather than leaving a reader to reconstruct.
+
+**Universe.** `KOne : Type u` is universe-polymorphic, so quantifying over `Type`
+is genuinely weaker than over `Type u`. `Type` is the right choice — we exhibit
+one separable algebra, and it is what STW means — but it must be a *recorded*
+choice in the docstring, not an artefact of what the author typed first.
 
 `K1Injective A` is defined for an **arbitrary** unital C\*-algebra as injectivity
 of `unitary A ⧸ Subgroup.pathComponentOne (unitary A) → KOne A`, where `unitary`
@@ -829,16 +852,39 @@ Mathlib's (`Topology/Connected/PathConnected.lean:375`, with the C\*-specific
 no C\*-K-theory at the pin — but it must be generic: no mention of the
 counterexample, its spaces, or its projections. The target is `¬ ProblemLIX`.
 
-**Status: NOT LANDED.** `audit-gate` reports `grep ProblemLIX` over the corpus
-returns nothing. This is not bookkeeping: every day `KOne` is developed before
-the statement exists is a day it can be shaped, unnoticed, around the
-counterexample it is meant to refute — the one shape that cannot be audited from
-outside. It also interacts with C11: the K-groups must be stated for an
-*arbitrary* C\*-algebra rather than over `BundleAlg X N`, and a `KOne` written
-after the fact is far more likely to have drifted into the concrete model.
-`ktheory-k1` should land `ProblemLIX` and `K1Injective` ahead of any further
-`KOne` lemmas; the signature above is a sketch and is to be replaced by the real
-one on landing.
+**Status.** The K-theory half is **landed and generic** — `audit-gate` measured
+it across `Analysis/{CStarKOne, CStarKOneInjectivityCriterion,
+CStarUnitaryComponent, SequentialGroupColimit}` and `KTheory/*` and found zero
+counterexample-specific names in any declaration, with
+`CStarUnitaryComponent` and `SequentialGroupColimit` importing only Mathlib. I
+checked the declarations and confirm it. Real signatures:
+
+```lean
+Analysis/CStarUnitaryComponent.lean:79   unitaryComponentOne A : Subgroup (unitary A)
+                                           := Subgroup.pathComponentOne (unitary A)
+Analysis/CStarUnitaryComponent.lean:126  abbrev UnitaryClass A := unitary A ⧸ unitaryComponentOne A
+Analysis/CStarKOne.lean:65               abbrev KOne : Type u := (kOneTower A).Colim
+Analysis/CStarKOne.lean:111              def kappa : UnitaryClass A →* KOne A
+Analysis/CStarKOne.lean:118              def K1Injective : Prop := Function.Injective (kappa A)
+Analysis/CStarKOneInjectivityCriterion.lean:84,97,105
+     not_k1Injective_of_diagOne_mem / _of_joined_diagOne / _of_exists_witness
+```
+An earlier revision of this section warned that `KOne` might have been shaped
+around the counterexample. It was not; that is recorded here as a **pass**, in
+the detail a failure would have had.
+
+**`ProblemLIX` is still unstated, and the blocker is a missing simplicity
+predicate.** There is no `IsSimpleCStar`: grepping every
+`def/abbrev/structure/class` matching `*[Ss]imple` across `GroupApproximation`
+returns only `IsPurelyInfiniteSimpleUnitalRing` (manuscript-local,
+`OneSidedMFRadical/PartialClosureAnalysis.lean:601`), one use of Mathlib's
+`IsSimpleGroup`, and Choquet/Bauer simplex material — nothing about closed
+two-sided ideals of a C\*-algebra. So the endpoint is one small generic
+definition away, and **that definition must land before
+`ProblemLIXLimit.lean`'s simplicity theorem**: written afterwards it is exactly
+the kind that gets shaped to fit the specific limit. `IsSimpleCStar` landing
+after the simplicity proof is the same failure mode as the endpoint landing
+after the refutation.
 
 `limitAlg`: Mathlib has no inductive limit of C\*-algebras and building the
 general theory is a trap. Realize every `A_i` concretely inside one fixed
