@@ -35,8 +35,12 @@ variable {p : C}
 /-- The multiplication rule for the elements `1 + w p` attached to an idempotent `p`. -/
 theorem mul_one_add_smul (hpp : p * p = p) (w v : ℂ) :
     ((1 : C) + w • p) * ((1 : C) + v • p) = 1 + (w + v + w * v) • p := by
-  simp only [add_mul, mul_add, one_mul, mul_one, smul_mul_assoc, mul_smul_comm, smul_smul, hpp,
-    add_smul]
+  have e₀ : ((1 : C) + w • p) * ((1 : C) + v • p)
+      = 1 * 1 + 1 * (v • p) + ((w • p) * 1 + (w • p) * (v • p)) := by
+    rw [add_mul, mul_add, mul_add]
+  have e₁ : (w • p) * (v • p) = (w * v) • p := by
+    rw [smul_mul_assoc, mul_smul_comm, smul_smul, hpp]
+  rw [e₀, e₁, one_mul, one_mul, mul_one, add_smul, add_smul]
   abel
 
 theorem star_one_add_smul (hps : star p = p) (w : ℂ) :

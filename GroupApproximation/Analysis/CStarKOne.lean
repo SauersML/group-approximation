@@ -30,6 +30,8 @@ namespace GroupApproximation
 
 universe u
 
+noncomputable section
+
 section OneByOne
 
 variable (A : Type u) [CStarAlgebra A]
@@ -125,5 +127,7 @@ def K1Injective : Prop := Function.Injective (kappa A)
 theorem k1Injective_def : K1Injective A ↔ Function.Injective (kappa A) := Iff.rfl
 
 end Tower
+
+end
 
 end GroupApproximation
