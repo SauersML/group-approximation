@@ -69,6 +69,7 @@ theorem puncturedAcyclic_pi (T : CohomologyToolkit) {n : ℕ} :
   induction n with
   | zero =>
     intro X _ _ d z h
+    haveI : Unique (Fin (0 + 1)) := inferInstanceAs (Unique (Fin 1))
     rw [Fin.sum_univ_one d]
     exact PuncturedAcyclic.congr T (Homeomorph.piUnique X) (h 0)
   | succ m ih =>

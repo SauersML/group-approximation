@@ -223,6 +223,196 @@ theorem betaEntry_eq_zero_iff {p : Bundle X ι} {z : X × Matrix (ι ⊕ Unit) (
   · rintro ⟨z', -, rfl⟩
     rfl
 
+theorem range_projIncl (p : Bundle X ι) :
+    Set.range (projIncl p)
+      = {z : Proj p.plusOne | betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) = 0} := by
+  ext z
+  constructor
+  · rintro ⟨y, rfl⟩
+    rfl
+  · intro hz
+    obtain ⟨z', hz', heq⟩ := (betaEntry_eq_zero_iff z.2).mp hz
+    exact ⟨⟨z', hz'⟩, Subtype.ext heq.symm⟩
+
+/-- **The hyperplane at infinity is closed.** -/
+theorem isClosed_range_projIncl (p : Bundle X ι) : IsClosed (Set.range (projIncl p)) := by
+  rw [range_projIncl]
+  exact isClosed_eq (continuous_betaEntry.comp continuous_subtype_val) continuous_const
+
+/-- The hyperplane at infinity is a closed embedding when the base is compact.
+(The campaign's bases are all compact; without compactness the same statement
+holds but needs the explicit inverse `Matrix.toBlocks₁₁`.) -/
+theorem isClosedEmbedding_projIncl [CompactSpace X] [T2Space X] (p : Bundle X ι) :
+    Topology.IsClosedEmbedding (projIncl p) :=
+  (projIncl p).continuous.isClosedEmbedding (projIncl_injective p)
+
+/-! ### The affine chart `E(p) ≅ P(p ⊕ 1) ∖ P(p)` -/
+
+/-- The complement of the hyperplane at infinity in `P(p ⊕ 1)`. -/
+def chartSet (p : Bundle X ι) : Set (X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) :=
+  {z | z ∈ projSet p.plusOne ∧ betaEntry z ≠ 0}
+
+/-- `P(p ⊕ 1) ∖ P(p)` as a topological space. -/
+abbrev Chart (p : Bundle X ι) : Type := ↥(chartSet p)
+
+theorem chartSet_subset (p : Bundle X ι) : chartSet p ⊆ projSet p.plusOne := fun _ hz => hz.1
+
+/-- The chart is an open subspace of `P(p ⊕ 1)`. -/
+theorem isOpen_chart_in_proj (p : Bundle X ι) :
+    IsOpen {z : Proj p.plusOne | betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) ≠ 0} := by
+  have h : {z : Proj p.plusOne | betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) ≠ 0}
+      = (fun z : Proj p.plusOne => betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)) ⁻¹'
+        ({(0 : ℂ)}ᶜ) := rfl
+  rw [h]
+  exact IsOpen.preimage (continuous_betaEntry.comp continuous_subtype_val) isOpen_compl_singleton
+
+/-- The chart, as a subspace of `P(p ⊕ 1)`. -/
+def chartToProj (p : Bundle X ι) : C(Chart p, Proj p.plusOne) :=
+  ⟨Set.inclusion (chartSet_subset p), continuous_inclusion _⟩
+
+/-- The vector `v` of a fibre, extended by the last coordinate `1`. -/
+def chartVec (v : X × (ι → ℂ)) : ι ⊕ Unit → ℂ := Sum.elim v.2 (fun _ => 1)
+
+@[simp]
+theorem chartVec_inl (v : X × (ι → ℂ)) (i : ι) : chartVec v (Sum.inl i) = v.2 i := rfl
+
+@[simp]
+theorem chartVec_inr (v : X × (ι → ℂ)) (u : Unit) : chartVec v (Sum.inr u) = 1 := rfl
+
+theorem chartVec_ne_zero (v : X × (ι → ℂ)) : chartVec v ≠ 0 := by
+  intro h
+  have := congrFun h (Sum.inr ())
+  simp at this
+
+theorem chartVec_comp_inl (v : X × (ι → ℂ)) : chartVec v ∘ Sum.inl = v.2 := rfl
+
+theorem continuous_chartVec {Z : Type} [TopologicalSpace Z] {f : Z → X × (ι → ℂ)}
+    (hf : Continuous f) : Continuous fun z => chartVec (f z) := by
+  refine continuous_pi fun s => ?_
+  cases s with
+  | inl i => exact (continuous_apply i).comp (continuous_snd.comp hf)
+  | inr u => exact continuous_const
+
+theorem eucNormSq_chartVec_ne_zero (v : X × (ι → ℂ)) :
+    ((eucNormSq (chartVec v) : ℝ) : ℂ) ≠ 0 := by
+  simpa using eucNormSq_ne_zero (chartVec_ne_zero v)
+
+/-- The affine chart `E(p) → P(p ⊕ 1) ∖ P(p)`, `v ↦ [v : 1]`. -/
+def chartOf (p : Bundle X ι) : C(Total p, Chart p) where
+  toFun v :=
+    ⟨((v : X × (ι → ℂ)).1, lineOf (chartVec (v : X × (ι → ℂ)))),
+      mem_projSet_of_lineOf (chartVec_ne_zero _)
+        ((mem_plusOne_fibre_iff p _ _).mpr (mem_totalSet_iff.mp v.2)),
+      by
+        have hN := eucNormSq_chartVec_ne_zero (v : X × (ι → ℂ))
+        show lineOf (chartVec (v : X × (ι → ℂ))) (Sum.inr ()) (Sum.inr ()) ≠ 0
+        rw [lineOf_apply]
+        simpa using inv_ne_zero hN⟩
+  continuous_toFun :=
+    ((continuous_fst.comp continuous_subtype_val).prodMk
+      (continuous_lineOf (continuous_chartVec continuous_subtype_val)
+        fun v => chartVec_ne_zero _)).subtype_mk _
+
+@[simp]
+theorem chartOf_apply (p : Bundle X ι) (v : Total p) :
+    (chartOf p v : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)
+      = ((v : X × (ι → ℂ)).1, lineOf (chartVec (v : X × (ι → ℂ)))) := rfl
+
+/-- The inverse of the chart, read off two entries: `v i = Q_{i*} / Q_{**}`. -/
+def vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) : ι → ℂ :=
+  fun i => z.2 (Sum.inl i) (Sum.inr ()) / betaEntry z
+
+theorem continuous_vecOf {Z : Type} [TopologicalSpace Z]
+    {f : Z → X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ} (hf : Continuous f)
+    (hne : ∀ z, betaEntry (f z) ≠ 0) : Continuous fun z => vecOf (f z) := by
+  refine continuous_pi fun i => ?_
+  exact ((continuous_snd.comp hf).matrix_elem (Sum.inl i) (Sum.inr ())).div
+    (continuous_betaEntry.comp hf) hne
+
+/-- The chart's inverse, computed on a spanning vector. -/
+theorem vecOf_eq_smul {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ} {w : ι ⊕ Unit → ℂ}
+    (hzw : z.2 = rankOneProj w) (hbeta : betaEntry z ≠ 0) :
+    vecOf z = (w (Sum.inr ()))⁻¹ • (w ∘ Sum.inl) := by
+  have hbeta' : betaEntry z = w (Sum.inr ()) * star (w (Sum.inr ())) := by
+    rw [betaEntry, hzw, rankOneProj_apply]
+  have hlam : w (Sum.inr ()) ≠ 0 := by
+    intro h
+    apply hbeta
+    rw [hbeta', h, zero_mul]
+  have hstar : star (w (Sum.inr ())) ≠ 0 := star_ne_zero.mpr hlam
+  funext i
+  show z.2 (Sum.inl i) (Sum.inr ()) / betaEntry z = (w (Sum.inr ()))⁻¹ * w (Sum.inl i)
+  rw [hzw, rankOneProj_apply, hbeta', hzw, rankOneProj_apply]
+  field_simp
+  ring
+
+theorem vecOf_mem_totalSet {p : Bundle X ι} {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ}
+    (hz : z ∈ chartSet p) : ((z.1, vecOf z) : X × (ι → ℂ)) ∈ totalSet p := by
+  obtain ⟨w, hw, hzw, hfix⟩ := exists_unitVector_of_mem_projSet hz.1
+  have hv := vecOf_eq_smul hzw hz.2
+  show p z.1 *ᵥ vecOf z = vecOf z
+  rw [hv, Matrix.mulVec_smul, (mem_plusOne_fibre_iff p z.1 w).mp hfix]
+
+/-- The inverse chart `P(p ⊕ 1) ∖ P(p) → E(p)`. -/
+def totalOf (p : Bundle X ι) : C(Chart p, Total p) where
+  toFun z := ⟨((z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ).1,
+      vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)), vecOf_mem_totalSet z.2⟩
+  continuous_toFun :=
+    ((continuous_fst.comp continuous_subtype_val).prodMk
+      (continuous_vecOf continuous_subtype_val fun z => z.2.2)).subtype_mk _
+
+theorem totalOf_chartOf (p : Bundle X ι) (v : Total p) : totalOf p (chartOf p v) = v := by
+  apply Subtype.ext
+  refine Prod.ext rfl ?_
+  funext i
+  have hN := eucNormSq_chartVec_ne_zero (v : X × (ι → ℂ))
+  have hNi : ((eucNormSq (chartVec (v : X × (ι → ℂ))) : ℝ) : ℂ)⁻¹ ≠ 0 := inv_ne_zero hN
+  show lineOf (chartVec (v : X × (ι → ℂ))) (Sum.inl i) (Sum.inr ()) /
+      lineOf (chartVec (v : X × (ι → ℂ))) (Sum.inr ()) (Sum.inr ()) = (v : X × (ι → ℂ)).2 i
+  rw [lineOf_apply, lineOf_apply]
+  simp only [chartVec_inl, chartVec_inr, star_one, mul_one]
+  field_simp
+
+theorem chartOf_totalOf (p : Bundle X ι) (z : Chart p) : chartOf p (totalOf p z) = z := by
+  obtain ⟨w, hw, hzw, hfix⟩ := exists_unitVector_of_mem_projSet z.2.1
+  have hbeta' : betaEntry (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)
+      = w (Sum.inr ()) * star (w (Sum.inr ())) := by
+    rw [betaEntry, hzw, rankOneProj_apply]
+  have hlam : w (Sum.inr ()) ≠ 0 := by
+    intro h
+    apply z.2.2
+    rw [hbeta', h, zero_mul]
+  have hv := vecOf_eq_smul hzw z.2.2
+  have hcv : chartVec ((z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ).1,
+      vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)) = (w (Sum.inr ()))⁻¹ • w := by
+    funext s
+    cases s with
+    | inl i =>
+        show vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) i
+            = (w (Sum.inr ()))⁻¹ * w (Sum.inl i)
+        rw [hv]
+        rfl
+    | inr u =>
+        cases u
+        show (1 : ℂ) = (w (Sum.inr ()))⁻¹ * w (Sum.inr ())
+        rw [inv_mul_cancel₀ hlam]
+  apply Subtype.ext
+  refine Prod.ext rfl ?_
+  show lineOf (chartVec ((z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ).1,
+      vecOf (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)))
+      = (z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ).2
+  rw [hcv, lineOf_smul (inv_ne_zero hlam), lineOf_of_mem_unitVectors hw, hzw]
+
+/-- **The total space is the complement of the hyperplane at infinity**, and the
+identification is a homeomorphism onto an open subspace of `P(p ⊕ 1)`. -/
+def totalHomeoChart (p : Bundle X ι) : Total p ≃ₜ Chart p where
+  toFun := chartOf p
+  invFun := totalOf p
+  left_inv := totalOf_chartOf p
+  right_inv := chartOf_totalOf p
+  continuous_toFun := (chartOf p).continuous
+  continuous_invFun := (totalOf p).continuous
+
 end Chart
 
 end Bundle

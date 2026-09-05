@@ -147,6 +147,9 @@ noncomputable def lineOf (u : ι → ℂ) : Matrix ι ι ℂ :=
 
 theorem lineOf_def (u : ι → ℂ) : lineOf u = ((eucNormSq u : ℝ) : ℂ)⁻¹ • rankOneProj u := rfl
 
+theorem lineOf_apply (u : ι → ℂ) (i j : ι) :
+    lineOf u i j = ((eucNormSq u : ℝ) : ℂ)⁻¹ * (u i * star (u j)) := rfl
+
 /-- The normalization of a nonzero vector. -/
 noncomputable def normalizeVec (u : ι → ℂ) : ι → ℂ :=
   (((Real.sqrt (eucNormSq u))⁻¹ : ℝ) : ℂ) • u

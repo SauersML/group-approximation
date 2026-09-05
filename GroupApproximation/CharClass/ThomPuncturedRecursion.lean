@@ -56,7 +56,16 @@ namespace GroupApproximation.CharClass
 open CategoryTheory Limits TopologicalSpace
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
-/-- The three facts about mod-2 singular cohomology that the punctured-product
+/-- `IsZero` transports along a linear equivalence.  This is the bridge from
+`cc-cohom-api`'s `pullEquivOfHomeomorph` / `pullEquivOfHomotopyEquiv`, which deliver
+`LinearEquiv`s, to the `IsZero` shape in which `CohomologyToolkit` states its fields. -/
+theorem isZero_of_linearEquiv {R : Type} [Ring R] {M N : ModuleCat.{0} R}
+    (e : M ≃ₗ[R] N) (h : IsZero N) : IsZero M := by
+  haveI : Subsingleton N := ModuleCat.subsingleton_of_isZero h
+  haveI : Subsingleton M := ⟨fun a b => e.injective (Subsingleton.elim _ _)⟩
+  exact ModuleCat.isZero_of_subsingleton M
+
+/-- The five facts about mod-2 singular cohomology that the punctured-product
 recursion consumes.  Each is a `cc-cohom-api` deliverable; see
 `notes/lix-lane-reports/cc-thom.md` §3, needs (A1), (A2), (A3). -/
 structure CohomologyToolkit : Prop where
