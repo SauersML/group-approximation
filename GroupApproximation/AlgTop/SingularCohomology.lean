@@ -162,6 +162,40 @@ theorem cocycleClass_zero (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
     exact (cochainCx R X).i_cyclesMk _ _ _ _
   rw [h, map_zero]
 
+/-- `cyclesMk` is additive. -/
+theorem cyclesMk_add (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
+    (φ ψ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ) (hψ : IsCocycle R X n ψ)
+    (hs : IsCocycle R X n (φ + ψ)) :
+    (cochainCx R X).cyclesMk (φ + ψ) (n + 1) (by simp [ComplexShape.next]) hs
+      = (cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ
+        + (cochainCx R X).cyclesMk ψ (n + 1) (by simp [ComplexShape.next]) hψ := by
+  apply (ModuleCat.mono_iff_injective ((cochainCx R X).iCycles n)).1 inferInstance
+  rw [map_add, iCycles_cyclesMk, iCycles_cyclesMk, iCycles_cyclesMk]
+
+/-- `cyclesMk` is `R`-linear. -/
+theorem cyclesMk_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s : R)
+    (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ)
+    (hs : IsCocycle R X n (s • φ)) :
+    (cochainCx R X).cyclesMk (s • φ) (n + 1) (by simp [ComplexShape.next]) hs
+      = s • (cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ := by
+  apply (ModuleCat.mono_iff_injective ((cochainCx R X).iCycles n)).1 inferInstance
+  rw [map_smul, iCycles_cyclesMk, iCycles_cyclesMk]
+
+/-- Taking the class of a cocycle is additive. -/
+theorem cocycleClass_add (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
+    (φ ψ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ) (hψ : IsCocycle R X n ψ)
+    (hs : IsCocycle R X n (φ + ψ)) :
+    cocycleClass R X n (φ + ψ) hs
+      = cocycleClass R X n φ hφ + cocycleClass R X n ψ hψ := by
+  rw [cocycleClass, cocycleClass, cocycleClass, cyclesMk_add R X n φ ψ hφ hψ hs, map_add]
+
+/-- Taking the class of a cocycle is `R`-linear. -/
+theorem cocycleClass_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s : R)
+    (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ)
+    (hs : IsCocycle R X n (s • φ)) :
+    cocycleClass R X n (s • φ) hs = s • cocycleClass R X n φ hφ := by
+  rw [cocycleClass, cocycleClass, cyclesMk_smul R X n s φ hφ hs, map_smul]
+
 /-- **A coboundary is nullhomologous.** -/
 theorem cocycleClass_coboundary_zero (R : Type) [CommRing R] (X : TopCat.{0}) (m : ℕ)
     (η : singularCochainGroup R X m)

@@ -76,6 +76,28 @@ theorem cochainCast_smul {R : Type} [CommRing R] {Z : TopCat.{0}} {m m' : ℕ} (
   unfold cochainCast
   simp
 
+/-- The two degree casts along an equality and its inverse cancel. -/
+@[simp]
+theorem cochainCast_cast {R : Type} [CommRing R] {Z : TopCat.{0}} {m m' : ℕ} (h : m = m')
+    (φ : singularCochainGroup R Z m) :
+    cochainCast h.symm (cochainCast h φ) = φ := by
+  unfold cochainCast
+  rw [← Category.assoc, eqToHom_trans, eqToHom_refl, Category.id_comp]
+
+/-- A degree cast along a reflexive equality — such as `aw_degree_right_succ`,
+which holds by `rfl` — is the identity. -/
+@[simp]
+theorem cochainCast_self {R : Type} [CommRing R] {Z : TopCat.{0}} {m : ℕ} (h : m = m)
+    (φ : singularCochainGroup R Z m) : cochainCast h φ = φ := by
+  unfold cochainCast
+  rw [eqToHom_refl, Category.id_comp]
+
+/-- `(-1)^p` squares to one. -/
+theorem neg_one_pow_mul_self {R : Type} [CommRing R] (p : ℕ) :
+    ((-1 : R) ^ p) * ((-1 : R) ^ p) = 1 := by
+  rw [← pow_add]
+  exact Even.neg_one_pow ⟨p, rfl⟩
+
 /-! ## 2. The signed splitting lemma
 
 This is `sum_split_char2` of the vendored `AlexanderWhitneyChainMap` with its
@@ -224,13 +246,18 @@ theorem cochainCup_coboundary_left {R : Type} [CommRing R] {X : TopCat.{0}} {m q
     add_zero]
 
 /-- **A cocycle cupped with a coboundary is a coboundary.** If `φ` is a cocycle
-then `(-1)^p φ ⌣ δβ` is, up to the degree cast, `δ(φ ⌣ β)`. -/
+then `(-1)^p (φ ⌣ δβ) = δ(φ ⌣ β)`.
+
+No degree cast appears: `aw_degree_right_succ` holds by `rfl`, so the two sides
+live in definitionally equal degrees `p+(m+1)` and `(p+m)+1`. -/
 theorem cochainCup_coboundary_right {R : Type} [CommRing R] {X : TopCat.{0}} {p m : ℕ}
     {φ : singularCochainGroup R X p} (β : singularCochainGroup R X m)
     (hφ : cochainCoboundary R X p φ = 0) :
-    ((-1 : R) ^ p) • cochainCast (aw_degree_right_succ p m)
-        (cochainCup p (m + 1) φ (cochainCoboundary R X m β))
+    ((-1 : R) ^ p) • cochainCup p (m + 1) φ (cochainCoboundary R X m β)
       = cochainCoboundary R X (p + m) (cochainCup p m φ β) := by
-  rw [aw_cochain_leibniz R p m φ β, hφ, cochainCup_zero_left, cochainCast_zero, zero_add]
+  have h := aw_cochain_leibniz R p m φ β
+  rw [hφ, cochainCup_zero_left, cochainCast_zero, zero_add,
+    cochainCast_self (aw_degree_right_succ p m)] at h
+  exact h.symm
 
 end GroupApproximation.AlgTop
