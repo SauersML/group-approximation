@@ -7,7 +7,12 @@ import Mathlib.LinearAlgebra.Matrix.Hermitian
 import Mathlib.LinearAlgebra.Matrix.Trace
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Data.Matrix.Basic
+import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Algebra.Star.StarProjection
+import Mathlib.Tactic.NoncommRing
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.Linarith
 
 /-!
 # A concrete matrix model of complex projective space
@@ -39,9 +44,10 @@ functions.
   `GroupApproximation.MurrayVonNeumannEquiv` from
   `GroupApproximation/Analysis/FiniteCStarMurrayVonNeumann.lean`.  Neither notion is
   redefined here.
-* `STW59.matEval x` is the evaluation algebra map
-  `Matrix ι ι C(X, ℂ) →ₐ[ℂ] Matrix ι ι ℂ` at a point; it is the bridge between the
-  "matrix over the function algebra" picture and the pointwise linear algebra.
+* `STW59.matEval x : Matrix ι κ C(X, ℂ) → Matrix ι κ ℂ` is evaluation at a point of the
+  base; it is the bridge between the "matrix over the function algebra" picture and the
+  pointwise linear algebra, and it is multiplicative and `star`-preserving
+  (`STW59.matEval_mul`, `STW59.matEval_conjTranspose`).
 * Vectors are plain functions `n → ℂ`, **not** `EuclideanSpace ℂ n`; the unit sphere is
   `STW59.unitVectors n`, cut out by `∑ i, ‖x i‖ ^ 2 = 1`.  This avoids `PiLp` entirely.
 * `CP d` uses matrices of size `d + 1`, i.e. `CP d` models `ℂP^d`.
@@ -141,6 +147,16 @@ theorem proj_column_nonneg (q : Matrix n n ℂ) (j : n) :
     (0 : ℝ) ≤ ∑ k, ‖q k j‖ ^ 2 :=
   Finset.sum_nonneg fun k _ => by positivity
 
+theorem proj_sq_le_column (q : Matrix n n ℂ) (i j : n) :
+    ‖q i j‖ ^ 2 ≤ ∑ k, ‖q k j‖ ^ 2 :=
+  Finset.single_le_sum (f := fun k => ‖q k j‖ ^ 2) (fun k _ => by positivity)
+    (Finset.mem_univ i)
+
+theorem proj_column_le_total (q : Matrix n n ℂ) (j : n) :
+    (∑ k, ‖q k j‖ ^ 2) ≤ ∑ j', ∑ k, ‖q k j'‖ ^ 2 :=
+  Finset.single_le_sum (f := fun j' => ∑ k, ‖q k j'‖ ^ 2)
+    (fun j' _ => proj_column_nonneg q j') (Finset.mem_univ j)
+
 /-- **A projection with vanishing trace is zero.**  This is the elementary substitute
 for the spectral theorem used throughout this file. -/
 theorem proj_eq_zero_of_trace_eq_zero (hq : IsStarProjection q) (h : q.trace = 0) :
@@ -149,13 +165,10 @@ theorem proj_eq_zero_of_trace_eq_zero (hq : IsStarProjection q) (h : q.trace = 0
     rw [← proj_trace_eq hq, h, Complex.ofReal_zero]
   have h2 : (∑ j, ∑ k, ‖q k j‖ ^ 2 : ℝ) = 0 := by exact_mod_cast h1
   ext i j
-  have h3 : ∑ k, ‖q k j‖ ^ 2 = 0 :=
-    le_antisymm
-      (h2 ▸ Finset.single_le_sum (fun j' _ => proj_column_nonneg q j') (Finset.mem_univ j))
-      (proj_column_nonneg q j)
-  have h4 : ‖q i j‖ ^ 2 = 0 :=
-    le_antisymm (h3 ▸ Finset.single_le_sum (fun k _ => by positivity) (Finset.mem_univ i))
-      (by positivity)
+  have h3 : (∑ k, ‖q k j‖ ^ 2) ≤ 0 := by
+    have := proj_column_le_total q j
+    linarith
+  have h4 : ‖q i j‖ ^ 2 ≤ 0 := le_trans (proj_sq_le_column q i j) h3
   have h5 : ‖q i j‖ = 0 := by nlinarith [norm_nonneg (q i j)]
   simpa using h5
 
@@ -163,12 +176,14 @@ theorem proj_eq_zero_of_trace_eq_zero (hq : IsStarProjection q) (h : q.trace = 0
 theorem exists_column_ne_zero (hq : IsStarProjection q) (hne : q ≠ 0) :
     ∃ j : n, (∑ k, ‖q k j‖ ^ 2) ≠ 0 := by
   by_contra hcon
-  push_neg at hcon
   apply hne
   ext i j
-  have h4 : ‖q i j‖ ^ 2 = 0 :=
-    le_antisymm ((hcon j) ▸ Finset.single_le_sum (fun k _ => by positivity) (Finset.mem_univ i))
-      (by positivity)
+  have hzero : (∑ k, ‖q k j‖ ^ 2) = 0 := by
+    by_contra hj
+    exact hcon ⟨j, hj⟩
+  have h4 : ‖q i j‖ ^ 2 ≤ 0 := by
+    have := proj_sq_le_column q i j
+    linarith
   have h5 : ‖q i j‖ = 0 := by nlinarith [norm_nonneg (q i j)]
   simpa using h5
 
@@ -183,11 +198,11 @@ theorem proj_sum_sq_eq_one (hq : IsStarProjection q) (ht : q.trace = 1) :
 that makes the model of `ℂP^d` compact. -/
 theorem proj_norm_entry_le_one (hq : IsStarProjection q) (ht : q.trace = 1) (i j : n) :
     ‖q i j‖ ≤ 1 := by
-  have h1 : (∑ k, ‖q k j‖ ^ 2) ≤ 1 :=
-    (proj_sum_sq_eq_one hq ht) ▸
-      Finset.single_le_sum (fun j' _ => proj_column_nonneg q j') (Finset.mem_univ j)
-  have h2 : ‖q i j‖ ^ 2 ≤ ∑ k, ‖q k j‖ ^ 2 :=
-    Finset.single_le_sum (fun k _ => by positivity) (Finset.mem_univ i)
+  have h1 : (∑ k, ‖q k j‖ ^ 2) ≤ 1 := by
+    have hle := proj_column_le_total q j
+    have := proj_sum_sq_eq_one hq ht
+    linarith
+  have h2 : ‖q i j‖ ^ 2 ≤ 1 := le_trans (proj_sq_le_column q i j) h1
   nlinarith [norm_nonneg (q i j)]
 
 /-- The difference of two projections, one absorbed by the other, is a projection. -/
@@ -272,13 +287,35 @@ theorem isCompact_unitVectors (n : Type*) [Fintype n] : IsCompact (unitVectors n
   intro x hx
   simp only [Set.mem_pi, Set.mem_univ, forall_true_left, Metric.mem_closedBall,
     dist_zero_right]
-  intro i _
+  intro i
   have hsum : ∑ i, ‖x i‖ ^ 2 = 1 := hx
-  have h2 : ‖x i‖ ^ 2 ≤ 1 :=
-    hsum ▸ Finset.single_le_sum (fun k _ => by positivity) (Finset.mem_univ i)
+  have h2 : ‖x i‖ ^ 2 ≤ 1 := by
+    have hle : ‖x i‖ ^ 2 ≤ ∑ k, ‖x k‖ ^ 2 :=
+      Finset.single_le_sum (f := fun k => ‖x k‖ ^ 2) (fun k _ => by positivity)
+        (Finset.mem_univ i)
+    linarith
   nlinarith [norm_nonneg (x i)]
 
 /-! ### Peeling a rank-one subprojection off a projection -/
+
+/-- If a unit vector `x` is fixed by the projection `q`, then `q` absorbs the rank-one
+projection `x xᴴ` on both sides. -/
+theorem rankOneProj_absorbed {n : Type*} [Fintype n] {q : Matrix n n ℂ}
+    (hq : IsStarProjection q) {x : n → ℂ} (hx : x ∈ unitVectors n)
+    (hfix : ∀ i, (∑ k, q i k * x k) = x i) :
+    q * rankOneProj x = rankOneProj x ∧ rankOneProj x * q = rankOneProj x := by
+  have hPproj : IsStarProjection (rankOneProj x) := isStarProjection_rankOneProj hx
+  have hqP : q * rankOneProj x = rankOneProj x := by
+    ext i i'
+    rw [Matrix.mul_apply]
+    have hre : ∀ k, q i k * rankOneProj x k i' = (q i k * x k) * star (x i') := by
+      intro k; rw [rankOneProj_apply]; ring
+    rw [Finset.sum_congr rfl (fun k _ => hre k), ← Finset.sum_mul, hfix i, rankOneProj_apply]
+  refine ⟨hqP, ?_⟩
+  have h1 : (q * rankOneProj x)ᴴ = (rankOneProj x)ᴴ := congrArg _ hqP
+  rw [Matrix.conjTranspose_mul, conjTranspose_eq_of_isStarProjection hPproj,
+    conjTranspose_eq_of_isStarProjection hq] at h1
+  exact h1
 
 /-- **Normalizing a column of a projection produces an absorbed rank-one
 subprojection.**  If the `j`-th column of the projection `q` has nonzero norm, then
@@ -291,42 +328,26 @@ theorem exists_rankOneProj_absorbed {n : Type*} [Fintype n] {q : Matrix n n ℂ}
       rankOneProj x * q = rankOneProj x := by
   have hjpos : 0 < ∑ k, ‖q k j‖ ^ 2 :=
     lt_of_le_of_ne (proj_column_nonneg q j) (Ne.symm hj)
-  have hs0 : 0 < Real.sqrt (∑ k, ‖q k j‖ ^ 2) := Real.sqrt_pos.mpr hjpos
-  have hs2 : Real.sqrt (∑ k, ‖q k j‖ ^ 2) * Real.sqrt (∑ k, ‖q k j‖ ^ 2)
-      = ∑ k, ‖q k j‖ ^ 2 := Real.mul_self_sqrt hjpos.le
-  have hnorms : ‖((Real.sqrt (∑ k, ‖q k j‖ ^ 2) : ℝ) : ℂ)‖
-      = Real.sqrt (∑ k, ‖q k j‖ ^ 2) := Complex.norm_of_nonneg hs0.le
-  set s : ℂ := ((Real.sqrt (∑ k, ‖q k j‖ ^ 2) : ℝ) : ℂ) with hsdef
-  set x : n → ℂ := fun i => q i j / s with hxdef
-  have hxu : x ∈ unitVectors n := by
-    show (∑ i, ‖x i‖ ^ 2) = 1
-    have hterm : ∀ i : n, ‖x i‖ ^ 2 = ‖q i j‖ ^ 2 /
-        (Real.sqrt (∑ k, ‖q k j‖ ^ 2) * Real.sqrt (∑ k, ‖q k j‖ ^ 2)) := by
+  obtain ⟨s, hs0, hs2⟩ : ∃ s : ℝ, 0 < s ∧ s ^ 2 = ∑ k, ‖q k j‖ ^ 2 :=
+    ⟨Real.sqrt (∑ k, ‖q k j‖ ^ 2), Real.sqrt_pos.mpr hjpos, Real.sq_sqrt hjpos.le⟩
+  have hnorms : ‖((s : ℝ) : ℂ)‖ = s := Complex.norm_of_nonneg hs0.le
+  have hx : (fun i => q i j / ((s : ℝ) : ℂ)) ∈ unitVectors n := by
+    show (∑ i, ‖q i j / ((s : ℝ) : ℂ)‖ ^ 2) = 1
+    have hterm : ∀ i : n, ‖q i j / ((s : ℝ) : ℂ)‖ ^ 2 = ‖q i j‖ ^ 2 / s ^ 2 := by
       intro i
-      rw [hxdef, norm_div, hsdef, hnorms, div_pow, ← sq]
-      ring_nf
+      rw [norm_div, hnorms, div_pow]
     rw [Finset.sum_congr rfl (fun i _ => hterm i), ← Finset.sum_div, hs2, div_self hj]
-  have hPproj : IsStarProjection (rankOneProj x) := isStarProjection_rankOneProj hxu
-  have hfix : ∀ i, (∑ k, q i k * x k) = x i := by
+  have hfix : ∀ i, (∑ k, q i k * (q k j / ((s : ℝ) : ℂ)))
+      = q i j / ((s : ℝ) : ℂ) := by
     intro i
     have hcol : (q * q) i j = ∑ k, q i k * q k j := Matrix.mul_apply
     rw [hq.isIdempotentElem.eq] at hcol
-    have hstep : (∑ k, q i k * x k) = (∑ k, q i k * q k j) / s := by
-      rw [hxdef, Finset.sum_div]
-      exact Finset.sum_congr rfl fun k _ => by rw [mul_div_assoc]
-    rw [hstep, ← hcol, hxdef]
-  have hqP : q * rankOneProj x = rankOneProj x := by
-    ext i i'
-    rw [Matrix.mul_apply]
-    have hre : ∀ k, q i k * rankOneProj x k i' = (q i k * x k) * star (x i') := by
-      intro k; rw [rankOneProj_apply]; ring
-    rw [Finset.sum_congr rfl (fun k _ => hre k), ← Finset.sum_mul, hfix i, rankOneProj_apply]
-  have hPq : rankOneProj x * q = rankOneProj x := by
-    have h1 : (q * rankOneProj x)ᴴ = (rankOneProj x)ᴴ := congrArg _ hqP
-    rw [Matrix.conjTranspose_mul, conjTranspose_eq_of_isStarProjection hPproj,
-      conjTranspose_eq_of_isStarProjection hq] at h1
-    exact h1
-  exact ⟨x, hxu, hqP, hPq⟩
+    have hstep : (∑ k, q i k * (q k j / ((s : ℝ) : ℂ)))
+        = (∑ k, q i k * q k j) / ((s : ℝ) : ℂ) := by
+      rw [Finset.sum_div]
+      exact Finset.sum_congr rfl fun k _ => (mul_div_assoc _ _ _).symm
+    rw [hstep, ← hcol]
+  exact ⟨_, hx, rankOneProj_absorbed hq hx hfix⟩
 
 /-- **A trace-one projection is `x xᴴ` for a unit vector `x`.**
 
@@ -445,6 +466,9 @@ theorem isClosed_cpSet (d : ℕ) : IsClosed (cpSet d) := by
     isClosed_eq (continuous_id.matrix_conjTranspose) continuous_id
   have h2 : IsClosed {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q * q = q} :=
     isClosed_eq (continuous_id.matrix_mul continuous_id) continuous_id
+  -- `Continuous.matrix_trace` does not exist at the Mathlib pin: the `Continuous.matrix_*`
+  -- family in `Topology/Instances/Matrix.lean` has no trace member.  Unfold the trace and
+  -- sum the entrywise continuities instead.
   have h3 : IsClosed {q : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ | q.trace = 1} :=
     isClosed_eq
       (by
@@ -468,12 +492,13 @@ theorem isCompact_cpSet (d : ℕ) : IsCompact (cpSet d) := by
 
 theorem cpSet_nonempty (d : ℕ) : (cpSet d).Nonempty := by
   classical
-  refine ⟨rankOneProj (Pi.single 0 1), rankOneProj_mem_cpSet ?_⟩
-  show (∑ i, ‖(Pi.single (0 : Fin (d + 1)) (1 : ℂ)) i‖ ^ 2) = 1
+  refine ⟨rankOneProj (fun i : Fin (d + 1) => if i = 0 then (1 : ℂ) else 0),
+    rankOneProj_mem_cpSet ?_⟩
+  show (∑ i : Fin (d + 1), ‖(if i = 0 then (1 : ℂ) else 0)‖ ^ 2) = 1
   rw [Finset.sum_eq_single (0 : Fin (d + 1))]
   · simp
   · intro b _ hb
-    simp [Pi.single_apply, hb]
+    simp [hb]
   · intro h
     exact absurd (Finset.mem_univ (0 : Fin (d + 1))) h
 
@@ -528,42 +553,38 @@ theorem matEval_apply (x : X) (M : Matrix ι κ C(X, ℂ)) (i : ι) (j : κ) :
 
 /-- Two matrices of continuous functions agree as soon as they agree at every point. -/
 theorem matrix_ext_of_matEval {M N : Matrix ι κ C(X, ℂ)}
-    (h : ∀ x, matEval x M = matEval x N) : M = N := by
-  ext i j
-  exact ContinuousMap.ext fun x => congrFun (congrFun (h x) i) j
+    (h : ∀ x, matEval x M = matEval x N) : M = N :=
+  Matrix.ext fun i j => ContinuousMap.ext fun x => congrFun (congrFun (h x) i) j
 
 theorem matEval_mul [Fintype κ] (x : X) (M : Matrix ι κ C(X, ℂ)) (N : Matrix κ ρ C(X, ℂ)) :
     matEval x (M * N) = matEval x M * matEval x N := by
-  ext i j
-  calc ((M * N) i j) x
+  refine Matrix.ext fun i j => ?_
+  have h1 : matEval x (M * N) i j
       = (ContinuousMap.evalAlgHom ℂ ℂ x) (∑ k, M i k * N k j) := rfl
-    _ = ∑ k, (ContinuousMap.evalAlgHom ℂ ℂ x) (M i k * N k j) :=
-        map_sum (ContinuousMap.evalAlgHom ℂ ℂ x) _ _
-    _ = ∑ k, M i k x * N k j x := by simp
-    _ = (matEval x M * matEval x N) i j := Matrix.mul_apply.symm
+  have h2 : (matEval x M * matEval x N) i j
+      = ∑ k, matEval x M i k * matEval x N k j := Matrix.mul_apply
+  rw [h1, h2, map_sum]
+  exact Finset.sum_congr rfl fun k _ => rfl
 
 @[simp]
 theorem matEval_conjTranspose (x : X) (M : Matrix ι κ C(X, ℂ)) :
-    matEval x Mᴴ = (matEval x M)ᴴ := by
-  ext i j
-  rfl
+    matEval x Mᴴ = (matEval x M)ᴴ :=
+  Matrix.ext fun _ _ => rfl
 
 @[simp]
 theorem matEval_one [DecidableEq ι] (x : X) :
     matEval x (1 : Matrix ι ι C(X, ℂ)) = 1 := by
-  ext i j
+  refine Matrix.ext fun i j => ?_
   by_cases h : i = j <;> simp [Matrix.one_apply, h]
 
 @[simp]
-theorem matEval_zero (x : X) : matEval x (0 : Matrix ι κ C(X, ℂ)) = 0 := by
-  ext i j
-  simp
+theorem matEval_zero (x : X) : matEval x (0 : Matrix ι κ C(X, ℂ)) = 0 :=
+  Matrix.ext fun _ _ => rfl
 
 @[simp]
 theorem matEval_sub (x : X) (M N : Matrix ι κ C(X, ℂ)) :
-    matEval x (M - N) = matEval x M - matEval x N := by
-  ext i j
-  simp
+    matEval x (M - N) = matEval x M - matEval x N :=
+  Matrix.ext fun _ _ => rfl
 
 theorem trace_matEval [Fintype ι] (x : X) (M : Matrix ι ι C(X, ℂ)) :
     (matEval x M).trace = (Matrix.trace M) x := by
@@ -611,9 +632,8 @@ theorem tautMat_apply (d : ℕ) (i j : Fin (d + 1)) (z : CP d) :
     tautMat d i j z = (z : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) i j := rfl
 
 @[simp]
-theorem matEval_tautMat (d : ℕ) (z : CP d) : matEval z (tautMat d) = taut d z := by
-  ext i j
-  rfl
+theorem matEval_tautMat (d : ℕ) (z : CP d) : matEval z (tautMat d) = taut d z :=
+  Matrix.ext fun _ _ => rfl
 
 theorem isStarProjection_tautMat (d : ℕ) : IsStarProjection (tautMat d) := by
   refine isStarProjection_of_forall_matEval fun z => ?_

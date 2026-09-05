@@ -149,7 +149,7 @@ theorem continuous_entry (a b : Fin (d + 1)) : Continuous fun x : CP d => entry 
 /-! ## 4. The base point -/
 
 theorem basePoint_unit (d : ℕ) :
-    (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) ∈ unitVectors (d + 1) := by
+    (Pi.single (0 : Fin (d + 1)) (1 : ℂ)) ∈ unitVectors (Fin (d + 1)) := by
   show (∑ i, ‖(Pi.single (0 : Fin (d + 1)) (1 : ℂ)) i‖ ^ 2) = 1
   rw [Finset.sum_eq_single (0 : Fin (d + 1))]
   · simp
