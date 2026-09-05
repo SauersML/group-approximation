@@ -9,7 +9,7 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 **`Build completed successfully (2996 jobs)`**, probe round 6, with a genuine
 `✔ Built GroupApproximation.Analysis.LIXEndpointStatement (9.1s)` in the same
-log — a build, not a `Replayed`. Targets:
+log — a build, not a `Replayed`.  Targets:
 
 ```
 GroupApproximation.Analysis.CStarKOne
@@ -21,7 +21,7 @@ GroupApproximation.Analysis.CStarKOneWhitehead
 
 All five of the lane's `Analysis/` modules.  Round 5 gave the same count; round
 6 repeats it after a docstring rewrite, so the count is stable across a real
-edit rather than a replay of one measurement.  Per-module `Built` evidence:
+edit rather than one measurement replayed.  Per-module `Built` evidence:
 
 | module | first genuinely built |
 |---|---|
@@ -31,118 +31,121 @@ edit rather than a replay of one measurement.  Per-module `Built` evidence:
 | `Analysis/CStarKOneWhitehead` | round 4, `✔ Built … (18s)` |
 | `Analysis/LIXEndpointStatement` | rounds 4 and 6, `✔ Built … (9.4s / 9.1s)` |
 
-**Root wiring done by the lead** at `GroupApproximation.lean:3311–3320`: all
-five, plus `CStarMatrixBlockInclusion`, `CStarUnitaryComponent` and
-`SequentialGroupColimit`.  `CStarSimple` and `ProblemLIX` are not wired, which
-is correct — the first is red.
+**Already wired into the root by the lead**, `GroupApproximation.lean:3311–3320`:
+all five, plus `CStarMatrixBlockInclusion`, `CStarUnitaryComponent` and
+`SequentialGroupColimit`.  `CStarSimple` and `ProblemLIX` are correctly not
+wired: the first is red.
 
-**Genericity, argued structurally rather than by grep.**  The whole import
+### The two verifications the brief asked for
+
+**Genericity, argued structurally rather than by grep.**  The entire import
 closure of `Analysis/LIXEndpointStatement` is six modules —
 `SequentialGroupColimit`, `CStarUnitaryComponent`, `CStarMatrixBlockInclusion`,
-`CStarKOne`, `CStarKOneInjectivityCriterion` and itself — and not one of them
-is counterexample-specific.  So `KOne`, `kappa`, `K1Injective`, `K1Inj`,
+`CStarKOne`, `CStarKOneInjectivityCriterion` and itself — and not one is
+counterexample-specific.  So `KOne`, `kappa`, `K1Injective`, `K1Inj`,
 `not_k1Inj_of_witness`, `diagOne` and `HasK1InjWitness` *cannot* mention the
-counterexample: there is nothing in scope to mention.  That is stronger than
-the name check, which was also run and also passes —
-
-**reading the code with docstrings and comments stripped,** `KOne`, `kappa`, `K1Injective`, `K1Inj`, `not_k1Inj_of_witness`,
-`diagOne`, `HasK1InjWitness` and every other declaration in
-`Analysis/{CStarKOne, CStarKOneInjectivityCriterion, LIXEndpointStatement,
-CStarUnitaryComponent, SequentialGroupColimit, CStarMatrixBlockInclusion}`
-contain **zero** occurrences of the counterexample's vocabulary
-(`LIX`, `CP`, `Sph`, `cpSet`, `Eproj`, `Hproj`, `Clutch`, `Chern`, `STW`,
-`manuscript`, `counterexample`).  **Three** of the six —
+counterexample: there is nothing in scope to mention.  Three of the six —
 `SequentialGroupColimit`, `CStarUnitaryComponent`, `CStarMatrixBlockInclusion`
-— have zero project imports at all, counted with
-`grep -c '^import GroupApproximation'` rather than from memory.  And
-`K1Inj` does pin the order: `LIXEndpointStatement.lean:63,66` supply
-`CStarAlgebra.spectralOrder` and `CStarAlgebra.spectralOrderedRing` as
-`local instance`s, so `K1Inj A` depends on nothing but `[CStarAlgebra A]`.
+— have no project imports at all, counted with
+`grep -c '^import GroupApproximation'` rather than recalled.
+
+The weaker name check was run as well and also passes: with docstrings and
+comments stripped, no declaration in those six modules contains any of `LIX`,
+`CP`, `Sph`, `cpSet`, `Eproj`, `Hproj`, `Clutch`, `Chern`, `STW`, `manuscript`
+or `counterexample`.
+
+**`K1Inj` does pin the order.**  `LIXEndpointStatement.lean:63,66` supply
+`CStarAlgebra.spectralOrder` and `CStarAlgebra.spectralOrderedRing` as `local
+instance`s, and no global instance can produce a `PartialOrder` for an
+arbitrary `CStarAlgebra`, so those are the only candidates and `K1Inj A`
+depends on nothing but `[CStarAlgebra A]`.  Because they are `local`, they do
+not leak into downstream instance search.
 
 ## 2. AUTHORED, UNVERIFIED
 
-* `Analysis/CStarKOneInjectivityCriterion.lean` — round-3 fix applied:
-  `coe_diagOne_apply` needed the `omit [PartialOrder A] [StarOrderedRing A] in`
-  that its neighbour `coe_diagOne` already had.
-* `Analysis/CStarKOneWhitehead.lean` — round-3 fixes applied, see TRAPS for the
-  `CStarMat` / `Matrix` seam.
-* `Analysis/LIXEndpointStatement.lean` — `HasK1InjWitness` and
-  `not_k1Inj_of_hasWitness` added.
-* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — **landed**, three
-  declarations, each with an `#audit_axioms` line:
-  * `ProblemLIX`, the statement, landed before anything is proved about it
-    (route design §C.7);
-  * `exists_simple_unital_not_k1Inj_of`, the assembly against hypotheses — one
-    algebra plus its nontriviality, simplicity and `HasK1InjWitness` gives the
-    existential;
-  * `not_problemLIX_of_exists`, the existential to the negation of the printed
-    universal.
+Exactly one module, and it is blocked on a peer rather than on anything of
+mine.
 
-  Between them there is no mathematics left, only an application, so the join
-  is two lines.  Nothing in the file asserts `ProblemLIX` is false: all three
-  carry `#audit_axioms` rather than `#audit_closed_axioms`, because each has a
-  leading input.  Not yet compiled — it imports `Analysis/CStarSimple`, which
-  is red.
+* `Manuscript/NinetyNineProblems/ProblemLIX.lean` — landed, three declarations,
+  each with an `#audit_axioms` line.  Not yet compiled, because it imports
+  `Analysis/CStarSimple`, which is red.
 
-`cs-simplicity`'s `Analysis/CStarSimple.lean` landed with exactly the shape
-asked for below — `[CStarAlgebra A]` only, closed two-sided ideals, no
-nontriviality conjunct, universe-polymorphic — so the first NEEDS item is
-**discharged**.
+  * `ProblemLIX` — the statement, landed before anything is proved about it, as
+    the route design's §C.7 requires.
+
+    ```lean
+    def ProblemLIX : Prop :=
+      ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A
+    ```
+
+  * `exists_simple_unital_not_k1Inj_of` — the assembly against hypotheses: one
+    algebra plus its nontriviality, its `IsSimpleCStar` and its
+    `HasK1InjWitness` gives the existential.
+  * `not_problemLIX_of_exists` — the existential to the negation of the printed
+    universal, with no excluded middle in between.
+
+  Between them no mathematics is left, only an application, so the join with
+  the two blocking lanes is two lines.  Nothing in the file asserts
+  `ProblemLIX` is false: all three carry `#audit_axioms` rather than
+  `#audit_closed_axioms`, because each has a leading input.  When the algebra
+  lands, `exists_simple_unital_not_k1Inj` and `not_problemLIX` become two
+  closed statements and two `#audit_closed_axioms` lines.
 
 ## 3. NEEDS
 
-### From `cs-simplicity` — one definition — **DISCHARGED**
+### From `cs-simplicity`, the definition — **DISCHARGED**
 
-Landed as `Analysis/CStarSimple.lean:77`
+Landed at `Analysis/CStarSimple.lean:77` with every constraint met:
 
 ```lean
 def IsSimpleCStar (A : Type u) [CStarAlgebra A] : Prop :=
   ∀ I : Ideal A, I.IsTwoSided → IsClosed (I : Set A) → I = ⊥ ∨ I = ⊤
 ```
 
-with `isSimpleCStar_iff_isSimpleRing` beside it.  All four constraints below
-are met.  Kept in the report because they are the reasons the endpoint reads
-the way it does, not merely a request:
+`[CStarAlgebra A]` and nothing more, so the endpoint quantifies over no order;
+closed two-sided ideals rather than `IsSimpleRing`, with
+`isSimpleCStar_iff_isSimpleRing` beside it; no nontriviality conjunct, so
+`ProblemLIX`'s separate `Nontrivial A →` is not redundant; universe-polymorphic.
+The assembly never unfolds it.
 
-1. **Instance arguments: `[CStarAlgebra A]` and nothing more.**  In particular
-   *not* `[PartialOrder A] [StarOrderedRing A]`.  `ProblemLIX` is stated over
-   `K1Inj`, which has the spectral order baked into its body precisely so the
-   endpoint quantifies over no order; a simplicity predicate carrying order
-   instances would put the quantification straight back and undo sweep 24's
-   fix.  `[Nontrivial A]` as an instance argument is also unwanted — see 3.
-2. **Closed two-sided ideals**, not `IsSimpleRing` (`metadata/THREE_TARGETS_STATUS.md`
-   sweep 23).  The equivalence is true for unital algebras and should be landed
-   as `isSimpleCStar_iff_isSimpleRing`, but the endpoint must *say* what STW
-   asked.
-3. **Nontriviality is not a conjunct.**  The endpoint reads
-   `Nontrivial A → IsSimpleCStar A → K1Inj A`, so `Nontrivial` is a separate
-   hypothesis.  If `IsSimpleCStar` swallowed it, `ProblemLIX` would be
-   redundant in a way a referee has to unfold a definition to see.
-4. Universe-polymorphic (`Type u` / `Type*`); `ProblemLIX` instantiates at
-   `Type 0`.
+### From `cs-simplicity`, the file being green — **BLOCKING**
 
-Nothing else is needed from this lane by me: the assembly never unfolds
-`IsSimpleCStar`.
+`Analysis/CStarSimple.lean` is red with three errors as of `b43b633ed`, and it
+is the only thing between `ProblemLIX` and a compiled endpoint.  Diagnosed
+against the pin and sent to that lane twice:
 
-### From `cs-limit` — the algebra — **STILL OPEN**
+* **`:64`, twice.**  `map_mem_closure` must solve `f x =?= a * b` and takes the
+  first-order splitting `f := (a * ·)`, `x := b`, contradicting the supplied
+  `hx : a ∈ closure I`.  Pin `f`:
+  `map_mem_closure (f := ⇑(AddMonoidHom.mulRight b)) (mulRight_continuous b) hx …`.
+  `⇑(AddMonoidHom.mulRight b) a` reduces to `a * b`, so a term-mode application
+  accepts the conclusion.
+* **`:164`.**  `TwoSidedIdeal.mem_bot.mpr` is not a constant.  The lemma exists
+  (`Mathlib/RingTheory/TwoSidedIdeal/Lattice.lean:122`) and the imports reach
+  it, but that file scopes its `variable {R}` to the `sup` section (lines 28 to
+  60) while `mem_bot` sits at 122, so `R` is **explicit** and dot notation
+  cannot instantiate past it.  Write `(TwoSidedIdeal.mem_bot _).mpr this`.
 
-`Analysis/LIXLimitTower.lean` has landed and carries the general machinery:
-`CStarTower`, `Colim`, `iota`, `iota_injective`, and `instNontrivial` from
-`Nontrivial (A 0)`.  What it does not yet carry is a **`CStarAlgebra` instance**
-— `Colim` is a `NormedRing` and a `CStarRing`, but nothing supplies
-`CompleteSpace`, so it is not a `CStarAlgebra` and cannot be the endpoint's
-algebra.  The completion is the remaining gap on this side.
+### From `cs-limit`, the algebra — **BLOCKING**
+
+`Analysis/LIXLimitTower.lean`, `LIXLimitCompletion.lean` and
+`LIXLimitMatrixTransport.lean` have landed;
+`Limit := UniformSpace.Completion Colim` is the right shape and
+`Analysis/CStarCompletion.lean:198` should supply its `CStarAlgebra` instance.
+What I still need is a concrete algebra rather than the generic tower:
 
 ```lean
--- GroupApproximation/Analysis/LIXLimit*.lean
-def LIXLimit : Type                       -- or whatever the limit algebra is called
+def LIXLimit : Type                       -- Type 0, not Type u
 instance : CStarAlgebra LIXLimit
 instance : Nontrivial LIXLimit
 theorem lixLimit_hasK1InjWitness : HasK1InjWitness LIXLimit
 ```
 
-`HasK1InjWitness` is being landed by me in `Analysis/LIXEndpointStatement.lean`
-as
+`Type 0` is load-bearing: `KOne` is universe-polymorphic, so `ProblemLIX`
+quantified over `Type` is genuinely weaker than over `Type u`, and a universe
+slip there would silently weaken the endpoint.
+
+`HasK1InjWitness` is landed and green in `Analysis/LIXEndpointStatement.lean`:
 
 ```lean
 def HasK1InjWitness (A : Type u) [CStarAlgebra A] : Prop :=
@@ -150,69 +153,59 @@ def HasK1InjWitness (A : Type u) [CStarAlgebra A] : Prop :=
     diagOne u ∈ unitaryComponentOne (CStarMat 2 A)
 ```
 
-**Target that name rather than writing the existential out.**  `diagOne` and
-`CStarMat 2 A` only elaborate under `[PartialOrder A] [StarOrderedRing A]`, and
-`LIXEndpointStatement` fixes those to `CStarAlgebra.spectralOrder` /
-`CStarAlgebra.spectralOrderedRing` through two `local instance`s.  A hypothesis
-written out under a *differently named* pair of local instances is a different
-term, and joining the two then costs a transport lemma.  Re-register the same
-declarations instead:
+Its *statement* needs only `[CStarAlgebra A]` — the order instances live in the
+definition's body — so it can be stated anywhere.  Its *proof* has to produce a
+membership at those instances, which a term-mode `exact` reaches across and a
+`rw` does not.  See TRAPS.
 
-```lean
-attribute [local instance] GroupApproximation.instSpectralPartialOrder
-                           GroupApproximation.instSpectralStarOrderedRing
-```
-
-### From `cs-simplicity` (second item) — still open
+### From `cs-simplicity`, the second item — **BLOCKING**
 
 ```lean
 theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit
 ```
 
-## 3b. ROOT WIRING PROPOSAL (for the lead; this lane does not touch the root)
+## 3b. ROOT WIRING PROPOSAL (this lane does not touch the root)
 
-Computed from the actual `import` lines, not from memory, by
-`notes/lix-lane-reports/cs-endpoint-wiring.py` (walks `GroupApproximation/`, reads the
-leading `import GroupApproximation.…` block of every module, does a coloured
-DFS over the whole project graph, then a post-order over the closure of the
-named targets).
+Computed from the actual `import` lines by
+`notes/lix-lane-reports/cs-endpoint-wiring.py`, which walks
+`GroupApproximation/`, reads each module's leading `import GroupApproximation.…`
+block, runs a coloured DFS over the whole project graph, and post-orders the
+closure of the named targets.
 
-* **Dangling project imports: 0.**  Every `import GroupApproximation.X` in the
-  tree has a source file behind it.
 * **Cycles in the whole `GroupApproximation/` import graph: 0**, checked
-  transitively (grey-node DFS), not by looking at neighbours — a probe is blind
-  to cycles because `lake` builds a DAG of what it can reach.
-* The root imports **none** of the ten modules below yet.
+  transitively rather than at neighbours — a probe is blind to cycles because
+  `lake` only builds the DAG it can reach.  No module imports the root, so the
+  wiring itself cannot create one.
+* **Dangling project imports: 0.**
+* **Duplicate declarations: 0.**  147 top-level declarations across the nine
+  modules below, checked as fully qualified names against every other `.lean`
+  file in the tree.
 
-Append in this order (dependencies first).  Twelve lines, not thirteen: the
-comparison is against the root's **transitive** closure, so `Meta/AxiomGuard`
-is not listed — the root already reaches it through
-`Manuscript/NinetyNineProblems/ProblemX` (root line 2157).  Comparing against
-the root's direct import list alone over-reports.
+The list, dependencies first.  Twelve lines, not thirteen: the comparison is
+against the root's **transitive** closure, so `Meta/AxiomGuard` is absent — the
+root already reaches it through `Manuscript/NinetyNineProblems/ProblemX` at
+root line 2157.  Comparing against the root's direct imports over-reports.
 
 ```
-import GroupApproximation.Analysis.SequentialGroupColimit
-import GroupApproximation.Analysis.CStarUnitaryComponent
-import GroupApproximation.Analysis.CStarMatrixBlockInclusion
-import GroupApproximation.Analysis.CStarKOne
-import GroupApproximation.Analysis.CStarKOneInjectivityCriterion
-import GroupApproximation.Analysis.LIXEndpointStatement
-import GroupApproximation.Analysis.CStarSimple
-import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
-import GroupApproximation.Analysis.CStarSymmetryComponent
-import GroupApproximation.KTheory.MatrixProjection
-import GroupApproximation.KTheory.BlockMoves
-import GroupApproximation.Analysis.CStarKOneWhitehead
+import GroupApproximation.Analysis.SequentialGroupColimit      -- wired
+import GroupApproximation.Analysis.CStarUnitaryComponent       -- wired
+import GroupApproximation.Analysis.CStarMatrixBlockInclusion   -- wired
+import GroupApproximation.Analysis.CStarKOne                   -- wired
+import GroupApproximation.Analysis.CStarKOneInjectivityCriterion -- wired
+import GroupApproximation.Analysis.LIXEndpointStatement        -- wired
+import GroupApproximation.Analysis.CStarSimple                 -- waits: red
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- waits on the line above
+import GroupApproximation.Analysis.CStarSymmetryComponent      -- wired
+import GroupApproximation.KTheory.MatrixProjection             -- wired
+import GroupApproximation.KTheory.BlockMoves                   -- wired
+import GroupApproximation.Analysis.CStarKOneWhitehead          -- wired
 ```
 
-Lines 1 to 6 are green as of round 5 and can be wired now.  Lines 7 and 8 wait
-on `Analysis/CStarSimple` going green.  Lines 9 to 12 are the Whitehead lemma
-and its `KTheory` dependencies, also green as of round 5, and can be wired now
-or last.
-
-`CStarKOneWhitehead` is the Whitehead lemma (`K₁` is abelian).  Nothing in the
-endpoint chain needs it — `not_k1Inj_of_hasWitness` never uses commutativity —
-so it can be wired separately.
+Ten of the twelve are already in the root at lines 3311 to 3320.  The two
+outstanding are `CStarSimple` and `ProblemLIX`, in that order.
+`CStarKOneWhitehead` is the Whitehead lemma, that `K₁` is abelian; nothing in
+the endpoint chain needs it, since `not_k1Inj_of_hasWitness` never uses
+commutativity.
 
 ## 4. TRAPS
 
