@@ -3306,6 +3306,8 @@ import GroupApproximation.GGT.DGOProposition414SecondSeparationTransport
 import GroupApproximation.GGT.VanKampen.SurgeryCutProduct
 import GroupApproximation.GGT.VanKampen.SurgeryCutDiagram
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
+import GroupApproximation.Analysis.STW22NegativeSolution
+import GroupApproximation.Analysis.STW22DesignatedTraces
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
