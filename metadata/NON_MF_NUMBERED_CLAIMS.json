@@ -349,7 +349,7 @@
       "id": "cor:one-sided-ring-maximal",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "e19f34c5c190073ba1d8d77620e8a083e77cdc44afb9dfc3ae1018aca7be4e44",
+      "statement_sha256": "7f02a53215bc097842b6aefa9bf12698a74e114a318a58caa22b8445a4d44051",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
