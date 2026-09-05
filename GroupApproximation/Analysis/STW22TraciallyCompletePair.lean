@@ -16,10 +16,10 @@ other half of CCEGSTW Definition 3.4, so that the pair is a genuine
 * `unitBallUniformTwoComplete_designatedTraces`: the unit ball of the completion
   is `‖·‖_{2,X}`-complete.
 
-Faithfulness cannot be free: it is false for a coordinate algebra with no
-tracial states separating positive elements.  It is therefore taken as the
-hypothesis `HasFaithfulTracialStates D` on the coordinate family, which the
-antipodal blocks satisfy through their fibre traces.
+Faithfulness needs no extra hypothesis: the coordinate norm comparison
+`‖z‖ ≤ r n · q n z`, which is already part of the completion data (it is what
+makes the Cauchy quotient converge coordinatewise in operator norm), forces a
+gauge-null element to vanish at every coordinate.
 
 Completeness of the unit ball is not free either, but it is already available:
 `exists_boundedCStarSequence_uniformTwoLimit` produces the limit inside the
@@ -162,38 +162,23 @@ theorem uniformTwoNormOn_designatedTraces {r : ℕ → ℝ}
 
 /-! ## Faithfulness -/
 
-/-- The coordinate algebras have a jointly faithful family of tracial states.
-Without this the completion gauge is only a seminorm and no set of traces on
-the completion can be faithful. -/
-def HasFaithfulTracialStates (D : ℕ → Type u) [∀ n, CStarAlgebra (D n)] : Prop :=
-  ∀ (n : ℕ) (a : D n),
-    (∀ τ : TracialState (D n), τ (Star.star a * a) = 0) → a = 0
-
-/-- Under coordinatewise faithfulness the completion gauge is a norm. -/
-theorem eq_zero_of_completionGauge_eq_zero (hD : HasFaithfulTracialStates D)
+/-- **The completion gauge is a norm.**  No extra hypothesis is needed: the
+coordinate norm comparison `‖z‖ ≤ r n · q n z`, which is already part of the
+completion data, forces a gauge-null element to vanish coordinatewise. -/
+theorem eq_zero_of_completionGauge_eq_zero
     {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
     {x : BoundedUniformTwoCompletion (G D) r hr}
     (h : completionGauge hr x = 0) : x = 0 := by
   have hcoord : ∀ n : ℕ, (realize (G D) hr x).1 n = 0 := by
     intro n
-    refine hD n _ fun τ ↦ ?_
-    have h1 : tracialTwoNorm τ ((realize (G D) hr x).1 n)
-        ≤ tracialTwoSize n ((realize (G D) hr x).1 n) :=
-      tracialTwoNorm_le_tracialTwoSize n τ _
-    have h2 : tracialTwoSize n ((realize (G D) hr x).1 n)
-        ≤ completionGauge hr x :=
+    have h2 : (G D).q n ((realize (G D) hr x).1 n) ≤ completionGauge hr x :=
       q_le_uniformTwoNorm (G D) ((realize (G D) hr x).1) n
-    have h3 : tracialTwoNorm τ ((realize (G D) hr x).1 n) = 0 := by
-      have hnn := tracialTwoNorm_nonneg τ ((realize (G D) hr x).1 n)
-      linarith
-    have h4 : (τ (Star.star ((realize (G D) hr x).1 n)
-        * (realize (G D) hr x).1 n)).re = 0 := by
-      have := mul_self_tracialTwoNorm τ ((realize (G D) hr x).1 n)
-      rw [h3] at this
-      simpa using this.symm
-    have h5 := Complex.nonneg_iff.mp
-      (τ.map_star_mul_self_nonneg ((realize (G D) hr x).1 n))
-    exact Complex.ext (by simpa using h4) (by simpa using h5.2.symm)
+    rw [h] at h2
+    have h3 : (G D).q n ((realize (G D) hr x).1 n) = 0 :=
+      le_antisymm h2 ((G D).nonneg n _)
+    have h4 := hr n ((realize (G D) hr x).1 n)
+    rw [h3, mul_zero] at h4
+    exact norm_le_zero_iff.1 h4
   have hz : (realize (G D) hr x).1 = 0 := by
     apply Subtype.ext
     funext n
@@ -203,11 +188,11 @@ theorem eq_zero_of_completionGauge_eq_zero (hD : HasFaithfulTracialStates D)
     map_zero (realizationStarAlgEquiv (G D) hr)
   exact realize_injective (G D) hr (by rw [hz', hzero])
 
-theorem isFaithfulTraceSet_designatedTraces (hD : HasFaithfulTracialStates D)
+theorem isFaithfulTraceSet_designatedTraces
     {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r) :
     IsFaithfulTraceSet (designatedTraces hr) := by
   intro a ha
-  refine eq_zero_of_completionGauge_eq_zero hD hr ?_
+  refine eq_zero_of_completionGauge_eq_zero hr ?_
   rw [← uniformTwoNormOn_designatedTraces hr]
   refine le_antisymm ?_ (uniformTwoNormOn_nonneg (designatedTraces_nonempty hr) a)
   refine uniformTwoNormOn_le (designatedTraces_nonempty hr) fun σ hσ ↦ ?_
@@ -277,24 +262,22 @@ theorem unitBallUniformTwoComplete_designatedTraces {r : ℕ → ℝ}
 
 /-- **The uniform tracial completion is a tracially complete C-star algebra**
 in the sense of CCEGSTW Definition 3.4. -/
-theorem isTraciallyCompletePair_designatedTraces
-    (hD : HasFaithfulTracialStates D) {r : ℕ → ℝ}
+theorem isTraciallyCompletePair_designatedTraces {r : ℕ → ℝ}
     (hr : IsCoordinateNormComparison (G D) r) :
     IsTraciallyCompletePair (designatedTraces hr) where
   nonempty := designatedTraces_nonempty hr
   isCompact := isCompact_designatedTraces hr
   isConvex := isConvexTraceSet_designatedTraces hr
-  faithful := isFaithfulTraceSet_designatedTraces hD hr
+  faithful := isFaithfulTraceSet_designatedTraces hr
   unitBallComplete := unitBallUniformTwoComplete_designatedTraces hr
 
 /-- **The uniform tracial completion is a factorial tracially complete C-star
 algebra**, CCEGSTW Definitions 3.4 and 3.13.  This is the hypothesis of STW
 Problem XXII. -/
-theorem isFactorialTraciallyCompletePair_designatedTraces
-    (hD : HasFaithfulTracialStates D) {r : ℕ → ℝ}
+theorem isFactorialTraciallyCompletePair_designatedTraces {r : ℕ → ℝ}
     (hr : IsCoordinateNormComparison (G D) r) :
     IsFactorialTraciallyCompletePair (designatedTraces hr) where
-  toIsTraciallyCompletePair := isTraciallyCompletePair_designatedTraces hD hr
+  toIsTraciallyCompletePair := isTraciallyCompletePair_designatedTraces hr
   isClosed := isClosed_designatedTraces hr
   isFace := isFaceTraceSet_designatedTraces hr
 
