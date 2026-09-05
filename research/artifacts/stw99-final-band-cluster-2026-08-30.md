@@ -32,9 +32,14 @@ the STW list with no Cairn region from any lane.*
   TRIVIALIZES under saturation — so Kirchberg--Rordam's Question 3.1
   sits strictly below the Global Glimm Problem, a reduction we did
   not find stated in the literature.
-* **LXXIX = LXXXII-for-dr + strong-QD bookkeeping**; candidate
-  counterexample quarry: the dr-vs-dimnuc separation families (cf.
-  this lane's LXXXVI Berend frontier).
+* **LXXIX correction (2026-09-04).** The former equality slogan
+  relating LXXIX to LXXXII and strong-QD bookkeeping was not a proved
+  reduction. Strong QD of the simple composition factors is insufficient:
+  matched essential rotation extensions have identical factors and ideal
+  chains but decomposition ranks one and infinity. A precise positive
+  replacement for AF-ideal extensions with totally ordered K-zero is proved in
+  [the index-dichotomy artifact](stw79-index-dichotomy-2026-09-04.md).
+  The full LXXIX characterization remains open.
 * **XCII**: conjectured crossed-product analogue of Ozawa's
   selflessness tensor-permanence (strongly outer + unique trace ⟹
   selfless crossed product); LVI's non-untwistable examples are the
