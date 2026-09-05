@@ -17,5 +17,8 @@ remaining prerequisite supplies an explicit integral basis of that
 kernel, append those four loops to the two explicit rotation loops.
 Every class then has a unique integral expression in these six loops.
 
-This route is conditional. Its kernel-basis prerequisite is open,
-so it does not establish the full problem.
+The kernel-basis prerequisite is now supplied for the Kirchberg
+alternative by `stw50-kirchberg-kernel-loops-proof`. Consequently
+this route answers the root's published alternative, with fixed
+classification identifications as documented there. The stably
+finite six-loop request remains a separate open target.

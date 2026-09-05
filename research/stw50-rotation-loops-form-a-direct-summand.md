@@ -13,5 +13,7 @@ for the action gamma tensor id on A_theta tensor O_infinity.
 
 This is the precise direct-summand question posed immediately before
 STW Problem L. The complete proof and retraction are in the artifact.
-The other four generators requested by Problem L are not supplied.
-The parent problem remains open.
+This splitting proof alone does not supply the other four generators.
+The subsequent `stw50-kirchberg-kernel-loops-proof` supplies them
+for the Kirchberg alternative using fixed classification
+identifications. The stably finite six-loop request remains open.

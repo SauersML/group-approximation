@@ -13,7 +13,11 @@ retraction. The same proof applies after tensoring with O-infinity.
 
 This answers that explicit subsidiary question. It does not exhibit
 the other four generators requested in Problem L, and the full
-Problem L remains open in the graph. Targeted searches on 2026-09-04
+Problem L remained open in the graph at the time of this artifact.
+The follow-up `research/artifacts/stw50-six-kirchberg-loops-2026-09-05.md`
+supplies a six-loop basis and four kernel loops in the Kirchberg
+counterpart using fixed classification identifications; it leaves
+the stably finite alternative open. Targeted searches on 2026-09-04
 found the question still stated in STW v2 and no later resolution of
 this particular assertion; this is not a certification of priority.
 The argument uses standard K-theory and makes no Lean-verification claim.
