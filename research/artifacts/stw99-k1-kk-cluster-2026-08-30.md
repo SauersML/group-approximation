@@ -38,11 +38,18 @@ a structural route.
   frontier is non-simple pure and the non-nuclear selfless wave.
 * **LIX (simple ⟹ K1-injective)**: Villadsen's Crelle machinery
   refutes surjectivity with EVEN (Chern/Euler) obstructions;
-  injectivity failure needs ODD unstable data — a finite-order class
-  in `π_{2n}(U(n))` surviving coordinate-duplication limits while its
-  stable class dies.  Flagged as this cluster's concrete construction
-  target: the odd-torsion analogue of the session's mod-`ell` Euler
-  thresholds; no literature result blocks it.
+  injectivity failure needs a K1-trivial unitary surviving unstable
+  homotopy. **2026-09-05 correction:** ordinary coordinate-diagonal
+  AH limits cannot supply this example: the simple ones have stable
+  rank one by Elliott--Ho--Toms, and Seth (arXiv:2512.04780, Theorem A
+  and Corollary 3.10) proves tensorial K-stability. Twisted homogeneous
+  corners remain outside that result. The explicit `S^4 x CP^2`
+  twisted point-evaluation test and its exact `(Z/24)/D` obstruction
+  are recorded in `stw59-twisted-torsion-finite-test`. The subsequent
+  `stw59-simple-ah-non-k1-injective` construction proves the coset
+  nonzero of order two and preserves it in a simple twisted AH limit,
+  refuting the universal LIX assertion in the research graph after
+  internal review. The exact subgroup D is not needed or computed.
 * **LX**: (1) ⟹ (2) internally (AGOR); the refutation target is a
   non-separative refinement monoid realized as `V(A)` with RR0 — the
   exact C*-wall of the Ara--Pardo realization program.
@@ -54,5 +61,6 @@ a structural route.
 ## Status
 
 Six roots; LXII established (citation); routes LX⟹XXIX, LXI⟹LXII;
-LVII/LVIII/LIX/LX/LXI open with substantive Attempts.  Contiguous
+LIX refuted by the internally reviewed twisted AH counterexample;
+LVII/LVIII/LX/LXI retain their separate current root statuses. Contiguous
 coverage now XVIII--XLIX plus LVII--LXII.
