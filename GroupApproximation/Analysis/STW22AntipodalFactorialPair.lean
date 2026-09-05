@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.STW22TraciallyCompletePair
 import GroupApproximation.Analysis.STW22DesignatedTraces
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The antipodal counterexample is a factorial tracially complete pair
@@ -112,6 +113,11 @@ theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
   ⟨antipodal_isFactorialTraciallyCompletePair, rfl,
     antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam hBU,
     not_designatedTracesAreAllTraces_antipodal hBU⟩
+
+#audit_closed_axioms antipodal_isTraciallyCompletePair
+#audit_closed_axioms antipodal_isFactorialTraciallyCompletePair
+#audit_closed_axioms antipodalDesignatedTraces_eq_designatedTraces
+#audit_axioms antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
 
 end
 
