@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.STW22TraciallyCompletePair
-import GroupApproximation.Analysis.STW22ConditionalNegativeSolution
+import GroupApproximation.Analysis.STW22DesignatedTraces
 
 /-!
 # The antipodal counterexample is a factorial tracially complete pair
@@ -12,22 +12,16 @@ did not assert is the hypothesis of the problem it refutes: that the pair
 counterexample weaker, so without it the endpoint refutes a weaker statement
 than STW Problem XXII.
 
-This file closes that gap for the concrete antipodal family.  It instantiates
-the general theorems of `Analysis/STW22FactorialCore` and
-`Analysis/STW22TraciallyCompletePair` at
+`Analysis/STW22DesignatedTraces` names the pair's `X` as
+`antipodalDesignatedTraces = Set.range (canonicalExtension …)` and records that
+four of the six fields of `IsFactorialTraciallyCompletePair` were not then
+available.  They are now.  This file supplies all six.
 
-    D  = AntipodalCounterexampleBlock,
-    G  = antipodalAllTracesGauge,
-    r  = antipodalCoordinateNormBound,
-    hr = antipodalAllTracesGauge_isCoordinateNormComparison,
-
-and produces the conjunct that the XXII endpoint needs:
-
-    IsFactorialTraciallyCompletePair antipodalDesignatedTraces
-
-together with the identification `antipodalDesignatedTraces = range
-canonicalExtension`, which is what stops the new conjunct from being about some
-other, conveniently chosen, set of traces.
+The bridge is `STW22FactorialCore.designatedTraces_eq_range`: the range of
+`canonicalExtension` is exactly the set of tracial states of the completion
+dominated by the completion gauge, and that description is what makes the
+closed-face argument (CCEGSTW Proposition 3.23(iv), specialised to `X = T(A)`)
+go through.
 -/
 
 namespace GroupApproximation
@@ -42,73 +36,71 @@ noncomputable section
 
 set_option linter.unusedSectionVars false
 
-/-- **The designated traces of the antipodal counterexample.**  By
-`antipodalDesignatedTraces_eq_range` this is exactly the set of traces induced
-from `T(A)`, i.e. the range of `canonicalExtension`. -/
-def antipodalDesignatedTraces :
-    Set (TracialState (BoundedUniformTwoCompletion antipodalAllTracesGauge
-      antipodalCoordinateNormBound
-      antipodalAllTracesGauge_isCoordinateNormComparison)) :=
-  designatedTraces antipodalAllTracesGauge_isCoordinateNormComparison
-
-/-- The designated traces are the traces induced from `T(A)`. -/
-theorem antipodalDesignatedTraces_eq_range :
+/-- The designated trace set of `Analysis/STW22DesignatedTraces` -- the range of
+`canonicalExtension` -- is exactly the set of tracial states of the completion
+dominated by the completion gauge.  Everything below is proved through this
+identification, so the new conjuncts are about the same `X` the rest of the
+endpoint is about. -/
+theorem antipodalDesignatedTraces_eq_designatedTraces :
     antipodalDesignatedTraces =
-      Set.range (canonicalExtension
-        antipodalAllTracesGauge_isCoordinateNormComparison) :=
-  designatedTraces_eq_range antipodalAllTracesGauge_isCoordinateNormComparison
+      designatedTraces antipodalAllTracesGauge_isCoordinateNormComparison :=
+  (designatedTraces_eq_range antipodalAllTracesGauge_isCoordinateNormComparison).symm
 
-/-- The designated traces are exactly the uniform-two-continuous traces. -/
+/-- The designated traces are exactly the `‖·‖_{2,X}`-continuous traces on `M`.
+This is CCEGSTW Proposition 3.15 for this pair. -/
 theorem mem_antipodalDesignatedTraces_iff
-    (σ : TracialState (BoundedUniformTwoCompletion antipodalAllTracesGauge
-      antipodalCoordinateNormBound
-      antipodalAllTracesGauge_isCoordinateNormComparison)) :
+    (σ : TracialState AntipodalCompletionAlgebra) :
     σ ∈ antipodalDesignatedTraces ↔
-      IsUniformTwoContinuousOn antipodalDesignatedTraces σ :=
-  mem_designatedTraces_iff_isUniformTwoContinuousOn
+      IsUniformTwoContinuousOn antipodalDesignatedTraces σ := by
+  rw [antipodalDesignatedTraces_eq_designatedTraces]
+  exact mem_designatedTraces_iff_isUniformTwoContinuousOn
     antipodalAllTracesGauge_isCoordinateNormComparison σ
 
-/-- **The antipodal pair is tracially complete**, CCEGSTW Definition 3.4. -/
+/-- **The antipodal pair is tracially complete**, CCEGSTW Definition 3.4: `X` is
+nonempty, weak-star compact, convex and faithful, and the unit ball of `M` is
+`‖·‖_{2,X}`-complete. -/
 theorem antipodal_isTraciallyCompletePair :
-    IsTraciallyCompletePair antipodalDesignatedTraces :=
-  isTraciallyCompletePair_designatedTraces
+    IsTraciallyCompletePair antipodalDesignatedTraces := by
+  rw [antipodalDesignatedTraces_eq_designatedTraces]
+  exact isTraciallyCompletePair_designatedTraces
     antipodalAllTracesGauge_isCoordinateNormComparison
 
 /-- **The antipodal pair is factorial tracially complete**, CCEGSTW Definitions
-3.4 and 3.13.  This is the hypothesis of STW Problem XXII. -/
+3.4 and 3.13: additionally `X` is a *closed face* of `T(M)`.  This is the
+hypothesis of STW Problem XXII, and it is a theorem here rather than an
+assumption, because `X` is the whole of `T(A)` and a set is a face of itself
+(CCEGSTW Proposition 3.23(iv)). -/
 theorem antipodal_isFactorialTraciallyCompletePair :
-    IsFactorialTraciallyCompletePair antipodalDesignatedTraces :=
-  isFactorialTraciallyCompletePair_designatedTraces
+    IsFactorialTraciallyCompletePair antipodalDesignatedTraces := by
+  rw [antipodalDesignatedTraces_eq_designatedTraces]
+  exact isFactorialTraciallyCompletePair_designatedTraces
     antipodalAllTracesGauge_isCoordinateNormComparison
 
-/-- **The negative answer, in the vocabulary of the problem.**  With the
-complex-coordinate Borsuk--Ulam input, the designated traces of the factorial
-tracially complete pair are a proper subset of `T(M)`. -/
-theorem antipodal_not_designatedTracesAreAllTraces_of_borsukUlam
-    (hBU : ComplexOddMapCommonZero) :
-    ¬ DesignatedTracesAreAllTraces antipodalDesignatedTraces :=
-  not_designatedTracesAreAllTraces_of_not_surjective
+/-- The two forms of CCEGSTW Question 1.1 agree for this pair. -/
+theorem antipodal_allTracesUniformTwoContinuous_iff :
+    AllTracesUniformTwoContinuous antipodalDesignatedTraces
+      ↔ DesignatedTracesAreAllTraces antipodalDesignatedTraces := by
+  rw [antipodalDesignatedTraces_eq_designatedTraces]
+  exact allTracesUniformTwoContinuous_iff_designatedTracesAreAllTraces'
     antipodalAllTracesGauge_isCoordinateNormComparison
-    (antipodalCanonicalExtension_not_surjective_of_borsukUlam hBU)
 
-/-- The same in the first form of CCEGSTW Question 1.1: some trace on `M` is
-not `‖·‖_{2,X}`-continuous. -/
+/-- **CCEGSTW Question 1.1, first form, answered negatively.**  Some trace on
+`M` is not `‖·‖_{2,X}`-continuous. -/
 theorem antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam
     (hBU : ComplexOddMapCommonZero) :
     ¬ AllTracesUniformTwoContinuous antipodalDesignatedTraces := by
   intro h
-  exact antipodal_not_designatedTracesAreAllTraces_of_borsukUlam hBU
-    ((allTracesUniformTwoContinuous_iff_designatedTracesAreAllTraces'
-      antipodalAllTracesGauge_isCoordinateNormComparison).1 h)
+  exact not_designatedTracesAreAllTraces_antipodal hBU
+    (antipodal_allTracesUniformTwoContinuous_iff.1 h)
 
-/-- **STW Problem XXII, refuted as stated.**  There is a pair `(M, X)` which is
-a *factorial tracially complete* C-star algebra, whose designated traces are
-exactly the traces induced from `T(A)`, and on which not every trace is
-`‖·‖_{2,X}`-continuous -- equivalently, `X ⊊ T(M)`.
+/-- **STW Problem XXII, refuted as stated.**  The pair `(M, X)` is a *factorial
+tracially complete* C-star algebra whose designated traces are exactly the
+traces induced from `T(A)`, and not every trace on `M` is `‖·‖_{2,X}`-continuous
+-- equivalently `X ⊊ T(M)`.
 
-This is the conjunction that `STW22NegativeSolution` was missing: the first
-component is the hypothesis of the problem, and without it the remaining
-components refute a strictly weaker statement. -/
+The first conjunct is the hypothesis of the problem.  Without it the remaining
+conjuncts refute a strictly weaker statement, which is why the endpoint needs
+it. -/
 theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
     (hBU : ComplexOddMapCommonZero) :
     IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
@@ -117,10 +109,9 @@ theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
           antipodalAllTracesGauge_isCoordinateNormComparison) ∧
       ¬ AllTracesUniformTwoContinuous antipodalDesignatedTraces ∧
       ¬ DesignatedTracesAreAllTraces antipodalDesignatedTraces :=
-  ⟨antipodal_isFactorialTraciallyCompletePair,
-    antipodalDesignatedTraces_eq_range,
+  ⟨antipodal_isFactorialTraciallyCompletePair, rfl,
     antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam hBU,
-    antipodal_not_designatedTracesAreAllTraces_of_borsukUlam hBU⟩
+    not_designatedTracesAreAllTraces_antipodal hBU⟩
 
 end
 
