@@ -123,11 +123,13 @@ def blockSum (p : Matrix (Fin m) (Fin m) A) (q : Matrix (Fin n) (Fin n) A) :
     Matrix (Fin (m + n)) (Fin (m + n)) A :=
   Matrix.reindex finSumFinEquiv finSumFinEquiv (Matrix.fromBlocks p 0 0 q)
 
+@[simp]
 theorem blockSum_apply_castAdd_castAdd (p : Matrix (Fin m) (Fin m) A)
     (q : Matrix (Fin n) (Fin n) A) (i j : Fin m) :
     blockSum p q (Fin.castAdd n i) (Fin.castAdd n j) = p i j := by
   simp [blockSum, Matrix.submatrix_apply]
 
+@[simp]
 theorem blockSum_apply_natAdd_natAdd (p : Matrix (Fin m) (Fin m) A)
     (q : Matrix (Fin n) (Fin n) A) (i j : Fin n) :
     blockSum p q (Fin.natAdd m i) (Fin.natAdd m j) = q i j := by

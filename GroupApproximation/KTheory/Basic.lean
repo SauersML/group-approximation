@@ -135,9 +135,9 @@ theorem rel_reindex_eq {n m : ℕ} {p : Matrix (Fin n) (Fin n) A}
 
 /-- **The block sum is commutative up to stable isomorphism.** -/
 theorem rel_add_comm (x y : Cycle A) : Rel (x + y) (y + x) :=
-  rel_symm (rel_reindex_eq (isStarProjection_blockSum x.isProj y.isProj)
+  rel_reindex_eq (isStarProjection_blockSum x.isProj y.isProj)
     (isStarProjection_blockSum y.isProj x.isProj) (finSumSwap y.size x.size)
-    (blockSum_comm x.proj y.proj))
+    (blockSum_comm x.proj y.proj)
 
 /-- One elementary move on the left summand survives adding a fixed cycle on
 the right. -/
@@ -149,9 +149,9 @@ theorem Step.rel_add_right {x y : Cycle A} (h : Step x y) (z : Cycle A) :
       exact rel_of_step
         (Step.mvn (murrayVonNeumannEquiv_blockSum hpq (MurrayVonNeumannEquiv.refl hs)))
   | @reindex n m p hp e =>
-      refine rel_symm (rel_reindex_eq (isStarProjection_blockSum hp hs)
+      refine rel_reindex_eq (isStarProjection_blockSum hp hs)
         (isStarProjection_blockSum (isStarProjection_submatrix e hp) hs)
-        (finSumCongr e (Equiv.refl (Fin c))) ?_)
+        (finSumCongr e (Equiv.refl (Fin c))) ?_
       rw [blockSum_submatrix]
       simp
   | @pad n p hp a =>
@@ -198,7 +198,7 @@ theorem rel_add_right {x y : Cycle A} (h : Rel x y) (z : Cycle A) : Rel (x + z) 
   | trans _ _ _ _ _ ih₁ ih₂ => exact rel_trans ih₁ ih₂
 
 theorem rel_add_left {x y : Cycle A} (h : Rel x y) (z : Cycle A) : Rel (z + x) (z + y) :=
-  rel_trans (rel_add_comm z x) (rel_trans (rel_add_right h y) (rel_add_comm y z))
+  rel_trans (rel_add_comm z x) (rel_trans (rel_add_right h z) (rel_add_comm y z))
 
 theorem rel_add {x y x' y' : Cycle A} (hx : Rel x x') (hy : Rel y y') :
     Rel (x + y) (x' + y') :=
@@ -216,6 +216,7 @@ theorem add_zero_cycle (x : Cycle A) : x + 0 = x :=
 theorem rel_zero_add (x : Cycle A) : Rel (0 + x) x := by
   refine rel_trans (rel_add_comm 0 x) ?_
   rw [add_zero_cycle]
+  exact rel_refl x
 
 end Cycle
 
@@ -246,18 +247,11 @@ theorem mk_eq_mk_of_rel {x y : Cycle A} (h : Cycle.Rel x y) : mk x = mk y :=
   Quotient.sound h
 
 instance : AddCommMonoid (VMonoid A) where
-  add_assoc := by
-    rintro ⟨x⟩ ⟨y⟩ ⟨z⟩
-    exact mk_eq_mk_of_rel (Cycle.rel_add_assoc x y z)
-  zero_add := by
-    rintro ⟨x⟩
-    exact mk_eq_mk_of_rel (Cycle.rel_zero_add x)
-  add_zero := by
-    rintro ⟨x⟩
-    exact congrArg mk (Cycle.add_zero_cycle x)
-  add_comm := by
-    rintro ⟨x⟩ ⟨y⟩
-    exact mk_eq_mk_of_rel (Cycle.rel_add_comm x y)
+  add_assoc a b c :=
+    Quotient.inductionOn₃ a b c fun x y z => mk_eq_mk_of_rel (Cycle.rel_add_assoc x y z)
+  zero_add a := Quotient.inductionOn a fun x => mk_eq_mk_of_rel (Cycle.rel_zero_add x)
+  add_zero a := Quotient.inductionOn a fun x => congrArg mk (Cycle.add_zero_cycle x)
+  add_comm a b := Quotient.inductionOn₂ a b fun x y => mk_eq_mk_of_rel (Cycle.rel_add_comm x y)
 
 end VMonoid
 
