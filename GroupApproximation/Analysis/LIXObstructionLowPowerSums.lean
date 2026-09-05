@@ -1,0 +1,105 @@
+import GroupApproximation.AlgTop.ChernPowerSums
+
+/-!
+# `hlow` of Lemma 3, without K-theory
+
+Lane `lix-obstruction`, campaign target 3 (STW Problem LIX).
+
+`AlgTop/MappingTorusParity.lean` proves Lemma 3 from five hypotheses and charges
+
+```text
+hlow : ∀ q, 0 < q → q < 3 → (W / V).powerSum q = 0
+```
+
+to `found-ktheory-bott`, via the manuscript's route: the split restriction sequence
+and the free-case Künneth give
+`ker(K⁰(S¹ × M) → K⁰(M)) = K¹(S¹) ⊗ K¹(S⁵) ⊗ K⁰(Y)`, so `ch(δ) = z · ch(β)` with
+`z = t x` of degree six, and the low Chern-character components vanish for degree
+reasons.
+
+**That is more than `hlow` needs.**  `hlow` follows from the vanishing of the two low
+*Chern classes* of `δ`, by Newton's identity alone — no Chern character, no `K`-theory,
+no Künneth.  That is `powerSum_eq_zero_of_lt_three` below, and it is pure algebra in
+`TotalChern A`.
+
+And the two low Chern classes vanish for a reason much cheaper than the Künneth
+decomposition.  With `N = S¹ × M` and `M = S⁵ × Y`, the `S¹`-Künneth splitting is just
+`H^n(N) = H^n(M) ⊕ t · H^{n-1}(M)`, so the restriction `H^n(N) → H^n(M)` to the slice
+`{1} × M` is **injective for `n ≤ 4`**, because `H^{n-1}(M) = 0` there: `M = S⁵ × Y`
+with `Y` a product of projective spaces has `H^{odd}(M) = x · H^{even}(Y)`, which
+starts in degree five, and `H^{even}` of the relevant degrees pairs against nothing in
+`H^{n-1}` for `n - 1 ≤ 3`.  Since `δ = W / V` restricts to the trivial total Chern
+class on the slice, `c₁(δ)` and `c₂(δ)` restrict to `0` and are therefore `0`.
+
+So the only genuine `K`-theoretic debt in Lemma 3 is `hint` (the integrality
+`n! · ch_{n+3}(δ)`), not `hlow`.
+
+## Main results
+
+* `powerSum_eq_zero_of_chernClass_eq_zero` — if the positive Chern classes vanish up
+  to degree `N`, so do the power sums.
+* `powerSum_eq_zero_of_lt_three` — `hlow` from `c₁(δ) = c₂(δ) = 0`.
+-/
+
+namespace GroupApproximation
+namespace AlgTop
+namespace TotalChern
+
+open Finset (antidiagonal mem_antidiagonal)
+
+variable {A : Type*} [CommRing A]
+
+/-- **Low power sums vanish when the low Chern classes do.**
+
+Newton's identity `q · c_q = ∑_{i+j=q} c_i (-1)^{j+1} p_j` has exactly one term with
+`i = 0`, namely `(-1)^{q+1} p_q`; every other term carries a positive Chern class.  So
+if `c_1, …, c_N` all vanish, reading the identity at `q ≤ N` leaves `p_q = 0`.  No
+splitting hypothesis, no square-zero hypothesis, and no induction. -/
+theorem powerSum_eq_zero_of_chernClass_eq_zero (c : TotalChern A) {N : ℕ}
+    (h : ∀ k, 0 < k → k ≤ N → c.chernClass k = 0) {q : ℕ} (hq : 0 < q) (hqN : q ≤ N) :
+    c.powerSum q = 0 := by
+  have key := natCast_mul_chernClass c q
+  rw [h q hq hqN, mul_zero] at key
+  have hsum : ∑ ij ∈ antidiagonal q,
+      c.chernClass ij.1 * ((-1) ^ (ij.2 + 1) * c.powerSum ij.2)
+      = (-1) ^ (q + 1) * c.powerSum q := by
+    rw [Finset.sum_eq_single ((0 : ℕ), q)]
+    · rw [chernClass_zero, one_mul]
+    · rintro ⟨i, j⟩ hij hne
+      have hij' : i + j = q := mem_antidiagonal.mp hij
+      have hi : i ≠ 0 := by
+        rintro rfl
+        have hjq : j = q := by omega
+        exact hne (by rw [hjq])
+      have hiq : i ≤ q := by omega
+      rw [h i (Nat.pos_of_ne_zero hi) (le_trans hiq hqN), zero_mul]
+    · intro hmem
+      exact absurd (mem_antidiagonal.mpr (by simp)) hmem
+  rw [hsum] at key
+  have hsign : ((-1 : A) ^ (q + 1)) * ((-1 : A) ^ (q + 1)) = 1 := by
+    rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow]
+  calc c.powerSum q
+      = (((-1 : A) ^ (q + 1)) * ((-1 : A) ^ (q + 1))) * c.powerSum q := by
+        rw [hsign, one_mul]
+    _ = (-1 : A) ^ (q + 1) * ((-1 : A) ^ (q + 1) * c.powerSum q) := by ring
+    _ = 0 := by rw [← key]; ring
+
+/-- **`hlow` of `AlgTop/MappingTorusParity.lean`, from the two low Chern classes.**
+
+This is the hypothesis `∀ q, 0 < q → q < 3 → (W / V).powerSum q = 0`, obtained from
+`c₁(δ) = 0` and `c₂(δ) = 0` alone.  In the application `δ = W / V` restricts to the
+trivial class on the slice `{1} × M`, and `H^n(S¹ × M) → H^n(M)` is injective for
+`n ≤ 4`; see the module docstring. -/
+theorem powerSum_eq_zero_of_lt_three (c : TotalChern A)
+    (h1 : c.chernClass 1 = 0) (h2 : c.chernClass 2 = 0) :
+    ∀ q : ℕ, 0 < q → q < 3 → c.powerSum q = 0 := by
+  intro q hq hq3
+  refine powerSum_eq_zero_of_chernClass_eq_zero c (N := 2) ?_ hq (by omega)
+  intro k hk hk2
+  interval_cases k
+  · exact h1
+  · exact h2
+
+end TotalChern
+end AlgTop
+end GroupApproximation
