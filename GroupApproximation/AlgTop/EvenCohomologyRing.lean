@@ -97,9 +97,12 @@ reduce to `2 * m`, so the cast is a transport along a reflexive equation. -/
   rw [evenCup, evenOne, cup_one]
   exact cohCast_self_apply R X _ a
 
-/-- Left unitality on the even part. -/
-@[simp] theorem one_evenCup {n : ℕ} (b : Ev R X n) : evenCup (evenOne R X) b = b := by
-  rw [evenCup, evenOne, one_cup, cohCast_comp]
+/-- Left unitality on the even part.  Unlike the right-hand version this one
+needs a transport: `m + 0` reduces to `m`, but `0 + n` does not reduce to `n`,
+because `Nat.add` recurses on its second argument. -/
+theorem one_evenCup {n : ℕ} (b : Ev R X n) :
+    (cohCast R X (by ring : 2 * (0 + n) = 2 * n)).hom (evenCup (evenOne R X) b) = b := by
+  rw [evenCup, evenOne, one_cup, cohCast_comp, cohCast_comp]
   exact cohCast_self_apply R X _ b
 
 /-- A degree transport on the left factor moves out of a cup product. -/
