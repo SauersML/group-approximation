@@ -804,3 +804,79 @@ recording only because it is the same class of failure the lane exists to
 catch: a check that silently does not run looks exactly like a check that
 passed.  The counts above are from a run that produced output, not from an
 exit code.
+
+## Sweep 7, 2026-09-05 — the port is green, and target 3's mandate changed
+
+Two things moved that change grades, one up and one sideways.
+
+### The Borsuk–Ulam port compiles, and its endpoints are closed
+
+`55ef7702b` reports **build tag 64648: the whole odd-degree closure compiles
+with zero errors**, firing `oddMapFixesTopClass_unconditional_closed`,
+`rpCohomology_dimension_vanishing_closed` and `borsuk_ulam_closed`, each on
+`[propext, Classical.choice, Quot.sound]`.  That is the first real green in
+this campaign.  It means target 2's topological input is not merely
+source-unconditional but machine-checked: `borsuk_ulam` is a theorem of this
+repository at v4.32.
+
+The same commit retracts three docstring headers in `Final/` that asserted an
+unconditional odd-degree theorem *could not be produced honestly*, that
+`OddMapFixesTopClass n` had no unconditional constructor, and that the missing
+`rpCohomology` vanishing was Branch-3 mathematics absent from the project.  A
+build refuted all three.  The route the headers did not consider is
+`rpCohomology_topPlusOne_isZero_direct`, which gets `H^{n+1}(RPⁿ; F₂) = 0` by
+Kronecker duality from the Mayer–Vietoris homology vanishing rather than by the
+excision/good-pair computation the headers called absent — so
+`RPnCellularCochainStructure` is never needed and the whole cellular stack
+drops out of the closure.
+
+Retracting a recorded impossibility claim that a build refuted is the right
+response and is recorded here as such.  **Verified independently:** the commit
+says *"No declaration is touched"*, and the diff is docstrings only — the one
+line in it that starts with the word `theorem` is prose inside a docstring.
+Three files, +50/−6, no declaration and no `#audit` line changed.
+
+Still to confirm: the commit names three `_closed` endpoints, and the one this
+campaign actually consumes is a fourth, `complexOddMapCommonZero_closed`, which
+is the sink of the 199-module port.  A probe of
+`GroupApproximation.Analysis.STW22NegativeSolution` is in flight from this lane
+and will settle it, together with whether
+`#audit_closed_axioms negativeSolutionToProblemXXII` fires.
+
+### Target 3: the residue was withdrawn, and the grade moves sideways, not up
+
+`f125c1846` (LIX design revision 2) changes the mandate to *"build the missing
+foundations"* and **withdraws revision 1's residue ledger**:
+`TwistedCancellationFailure : Prop` and
+`not_k1Injective_of_twistedCancellationFailure` are gone, and `lix-obstruction`
+is to prove the statement rather than name it.  Four scoping results shrink the
+foundation stack: no Steenrod squares or Wu formula (the integral route covers
+`q = 3`, and the note records exactly where the mod-2 route dies — `Sq^{2k}
+c_i(δ) = C(i−1,k) c_{i+k}(δ)` reaches `c₃` from `c₂` but cannot reach `c₄`, and
+for `Y = ℂP¹` the value `γ₁ = 1/6` satisfies every mod-2 constraint while making
+`c₄(δ)` odd); K-theory collapses to one lemma (KT-min); all K-theory is
+C\*-algebraic so Serre–Swan is deleted; and no Poincaré duality.  The earlier
+Wu/Steenrod conflict this file recorded at sweep 4 is therefore resolved — in
+favour of dropping the mod-2 route, with a stated reason.
+
+**The endpoint discipline in revision 2 is correct and this lane endorses it**:
+*"under the new mandate there is no residue `Prop` to hypothesise on, so the
+endpoint is simply unlanded, and must not be registered in the endpoint/audit
+roster or cited in the manuscript."*  There is no conditional theorem wearing a
+clean axiom report, which is the outcome that matters.
+
+But the grade does not improve.  **Target 3 moves from CONDITIONAL-on-one-named-
+`Prop` to NOT-YET-STATED**, and its success now rests on the two items the note
+itself names as the only places the campaign can fail: **Bott periodicity, which
+has never been formalized in Lean** (narrowed to `ch(K̃(S^{2n})) = ℤ`, a real
+reduction but still the deepest item), and **Leray–Hirsch / the projective
+bundle formula** for `H^*(P(E))` free over `H^*(X)`.  Everything else is
+declared not at risk, and reads that way — but it is 4000–6000 lines of
+grinding *plus* two hard theorems.
+
+One recommendation this lane will keep making: **do not let
+`TwistedCancellationFailure` be deleted without being written down somewhere.**
+It is the fallback statement.  If Bott stalls, the honest output reverts to
+revision 1's — "LIX reduces to one sentence about two explicit projections" —
+and that sentence should still exist when it is needed.  A withdrawn residue
+that nobody can quote is worse to audit than a named one.
