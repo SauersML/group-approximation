@@ -6,6 +6,7 @@ title: Kazhdan correction from Schreier holonomy has no subgroup-index loss
 artifacts:
   - research/artifacts/moving-schreier-correction-audit-2026-09-04.md
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
+  - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
 distinct_from:
   subgroup-exact-outliers-do-not-exist: that fixes the subgroup and absorbs its section and index into constants; this allows arbitrary moving finite-index subgroups and gives a root-mean-square edge bound with no index or normal-core factor.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a supplied invariant-corner candidate; this constructs that candidate from exact subgroup holonomy and gives a quantitative correction of the original generator tuple.
@@ -97,6 +98,33 @@ the stacked frame; the same estimates hold. Necessarily
 capacity needed for an almost isometric d-dimensional corner. Supplying
 small beta_rect and zeta and genuine k-dimensional subgroup holonomy is
 essential; curvature concentration alone does not produce these data.
+
+There is a quantitative constraint on selecting the small seed. Suppose
+the input tuple is an exact representation `rho:G->U(d)`, and let R be
+the dimension of the largest common subrepresentation of rho and
+`Pi=Ind_N^G pi`. Then every rectangular frame satisfies
+
+```text
+R=sum_sigma dim(sigma) min(m_rho(sigma),m_Pi(sigma)),
+R/d >= 1-zeta-beta_rect^2/kappa^2.                      (MSC8)
+```
+
+Zero Gram and edge errors are possible exactly when R=d. By Frobenius
+reciprocity this means
+`m_rho(sigma)<=dim Hom_N(Res_N sigma,pi)` for every irreducible sigma.
+For a tuple at generator HS distance eta from rho, replace beta_rect in
+`(MSC8)` by `beta_rect+sqrt(eta^2+4zeta)`. These estimates concern the
+original induced space, before auxiliary trivial padding.
+
+For example, take `G=SL_5(Z)` and the regular quotient representation
+`rho=lambda_(SL_5(F_p))`, of dimension d. At any coprime congruence level
+`N=Gamma(q)`, every seed has `R<=k`, so small Gram and edge errors require
+`k/d>=1-zeta-beta_rect^2/kappa^2`. At the matching level `N=Gamma(p)`,
+the trivial one-dimensional seed and coordinate-row frame give zero
+errors exactly. The distinction persists after removing the single
+trivial line of the regular input, and under vanishing HS perturbations.
+Thus large index is insufficient: the subgroup must match the quotient
+representation content, which arbitrary QRC data do not yet identify.
 
 For presentation applications take `V_t=U(q_t)` for word representatives,
 and express each `n(s,t)` by a word `q_(s,t)` in a chosen subgroup menu.

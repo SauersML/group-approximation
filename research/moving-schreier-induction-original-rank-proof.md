@@ -7,6 +7,7 @@ target: moving-subgroup-schreier-correction-has-no-index-loss
 requires: []
 artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
+  - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
 ---
 
 Let `H=C^d`, `K=direct_sum_(t in T) H`, and form the exact induced
@@ -180,3 +181,48 @@ normalizes the stacked frame once, rather than separately rounding every
 fibre to a unitary; there is no hidden square-fibre or common-range
 assumption. Exact seed holonomy and the two error bounds remain explicit
 inputs to the construction.
+
+To prove `(MSC8)`, let rho be genuine and use the genuine representation
+`T -> Pi(g)T rho(g)^*` on the rectangular HS space. Project J_0
+orthogonally onto its invariant subspace, obtaining an intertwiner T_0.
+The Kazhdan bound gives
+
+```text
+||J_0-T_0||_HS^2<=beta_rect^2 d/kappa^2.
+```
+
+Schur decomposition gives rank(T_0)<=R. If E is projection onto its
+kernel, rank(E)>=d-R, and trace duality gives
+
+```text
+||J_0-T_0||_HS^2>=||(J_0-T_0)E||_HS^2
+ =Tr(EH)>=rank(E)-||H-I||_1>=d-R-d zeta.
+```
+
+This proves the bound. Conversely, when R=d choose an equivariant
+isometry into Pi and use its coordinate maps as the frame. Frobenius
+reciprocity gives the displayed multiplicity criterion.
+
+For a nearby tuple, put B_s=U_s-rho(s). Unitarity gives
+`||B_s||_op<=2`, hence
+
+```text
+||J_0 B_s||_HS^2=Tr(H B_s B_s^*)
+ <=||B_s||_HS^2+4||H-I||_1<=d(eta^2+4zeta).
+```
+
+The triangle inequality reduces this to the exact-input estimate with
+the claimed replacement for beta_rect. No bound on `||J_0||_op` is used.
+
+For the congruence example, reduction `Gamma(q)->SL_5(F_p)` is surjective
+when p and q are coprime: choose an integer coefficient zero modulo q
+and equal to any desired scalar modulo p, and use its elementary matrix.
+Consequently the irreducibles of the quotient remain irreducible and
+pairwise inequivalent on Gamma(q). Their multiplicities a_sigma in the
+seed obey `sum dim(sigma) a_sigma<=k`. Frobenius reciprocity gives
+`m_Pi(sigma)=a_sigma`, so R<=k. At Gamma(p), induction of the trivial
+seed is the regular quotient representation itself. Coordinate rows
+`A_t x=x_t` obey both `sum A_t^*A_t=I` and
+`A_(t')rho(s)=A_t` for every Schreier transition. Restriction to the
+mean-zero input keeps these equalities and the coprime bound. The linked
+artifact records the canonical trace limits as p tends to infinity.

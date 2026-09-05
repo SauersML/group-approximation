@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/quadratic-curvature-flexible-dilation-2026-09-05.md
   - research/artifacts/opposite-root-character-interface-2026-09-05.md
   - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
+  - research/artifacts/rectangular-seed-quotient-alignment-2026-09-05.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -48,6 +49,16 @@ generates the full `EL_3(L_2(F_p))`. The mixed-depth relations therefore
 recover the whole elementary Leavitt problem rather than a larger finite
 packet; no matrix obstruction for that full group has been proved here.
 
+The depth calculation now extends to every pair `r<s`. Prefix expansion
+identifies its generated subgroup with
+`EL_(2^r+2)(L_(1,2^(s-r))(F_p))`. Every adjacent pair generates the full
+binary group; a larger gap gives a proper subgroup. Nevertheless each
+such subgroup contains an embedded copy of the full binary group, using
+the explicit binary corner in the larger-branching Leavitt algebra.
+Thus all depth pairs have exactly the same hyperlinearity status. The
+reverse embedding need not identify the designated marks, so this does
+not give a marked collapse estimate.
+
 The two finite depth groups intersect in exactly `SL_2(F_p) x SL_2(F_p)`.
 Their regular representations can be glued over that intersection while
 keeping the mark at squared HS distance two. Thus compatible restrictions
@@ -62,6 +73,16 @@ index loss, where zeta is its normalized trace-norm Gram error. Finite-index
 induction can therefore supply the required finite-dimensional sector.
 Constructing the genuine seed representation and small frame/edge errors
 from arbitrary approximate representations remains open.
+
+The seed choice now has a quantitative test. For an exact input rho and
+induced candidate Pi, let R be their maximal common representation
+dimension. Every rectangular frame obeys
+`R/d>=1-zeta-beta^2/kappa^2`, with an explicit perturbative extension.
+For the regular `SL_5(F_p)` input, every seed at a coprime congruence level
+must have dimension `(1-o(1))d` if its errors vanish. At the matching
+kernel Gamma(p), a one-dimensional seed and coordinate rows give zero
+errors. Thus the construction must find the quotient content of the
+approximate input; merely increasing the subgroup index cannot do it.
 
 The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 (`tΓt⁻¹ ⪇ Γ`). In every category with a conjugation-invariant strictly

@@ -1,6 +1,14 @@
 # Cairn source-graph health audit, September 5
 
-The latest snapshot, including rectangular Schreier correction and the exact
+The latest snapshot, including the arbitrary-depth Leavitt equivalence and
+rectangular seed alignment bound, passes with **14,130 nodes and no errors,
+warnings, or duplicate candidates** in 12.058 seconds. Comparison with pinned
+commit `027c44cb7bc59d699273153feff5871f628720ff` (14,128 nodes) also finds
+no newly dead claims, newly detached lane tops, or new open claims lacking
+recorded attempts. Its record is
+`research/artifacts/depth-equivalence-seed-alignment-cairn-validation-2026-09-05.json`.
+
+The preceding snapshot, including rectangular Schreier correction and the exact
 two-depth overlap audit, passes with **14,126 nodes and no errors, warnings,
 or duplicate candidates** in 10.888 seconds. It also compares against pinned
 commit `47e34ed2f54d4b41007ae40cf4bae1ef7ac54da3` (14,124 nodes): there

@@ -2,10 +2,12 @@
 rg: 2
 id: weighted-leavitt-opposite-root-packets-have-finite-models
 kind: claim
-title: One Leavitt prefix depth gives a finite group while two depths generate EL3
+title: One Leavitt prefix depth gives a finite group and arbitrary depth pairs generate their Veronese elementary group
 artifacts:
   - research/artifacts/opposite-root-character-interface-2026-09-05.md
   - research/artifacts/two-depth-leavitt-overlap-rank-audit-2026-09-05.md
+  - GroupApproximation/Leavitt/AryCorner.lean
+  - GroupApproximation/Leavitt/LeavittSimplicity.lean
 distinct_from:
   degree-zero-leavitt-core-has-locally-finite-marked-models: that uses gauge degree zero for every coefficient; this allows nonzero coefficient degrees compensated by different root-row weights, including literal opposite roots and native branch arms.
   finite-positive-root-fragments-have-marked-regular-models: that stays in the positive unipotent radical; this permits directed root cycles and negative roots inside a weighted degree-zero matrix ring.
@@ -113,6 +115,57 @@ the Leavitt group. Thus a terminal estimate must use mixed chart placement
 information beyond the complete overlap branching tables. No sufficiency
 or uniform marked collapse is asserted for `(WOP7)` alone, and the finite
 gluing model is not asserted to satisfy the full mixed Leavitt relations.
+
+More generally, for any `1<=r<s`, put `d=s-r`, `N=2^r+2`, and let
+`Phi_r(X)=T_r X S_r` be the prefix expansion for weights `(0,r,0)`.
+This expansion extends to an isomorphism of the full matrix rings and
+restricts to an isomorphism of their elementary groups:
+
+```text
+Phi_r: M_3(L) ~= M_N(L),
+Phi_r: EL_3(L) ~= EL_N(L).
+```
+
+Then, as literal subgroups of `EL_N(L)`,
+
+```text
+Phi_r(<F_r,F_s>)=EL_N(R_d),
+R_d=direct_sum_(k in Z) L_(kd) ~= L_(1,2^d)(F_p).       (WOP8)
+```
+
+Here `L_(1,2^d)(F_p)` is the Leavitt algebra with `2^d` branch pairs,
+embedded by its length-`d` binary prefixes. Thus every pair of consecutive
+depths generates the whole `EL_3(L)`. When the depth gap is greater than
+one, the generated subgroup is proper: its transformed entries belong to
+`R_d`, whereas `Phi_r(x_13(s_0))=x_13(s_0)` has a nonzero coefficient of
+degree one. This describes the exact algebraic extent of arbitrary
+two-depth coupling without asserting a matrix approximation estimate.
+
+All these two-depth groups nevertheless have the same hyperlinearity
+status. For `G=EL_3(L_2(F_p))` and `H=<F_r,F_s>`, there are subgroup
+embeddings in both directions, and therefore
+
+```text
+H is hyperlinear if and only if G is hyperlinear.       (WOP9)
+```
+
+For the reverse embedding, write `q=2^(s-r)` and use the `q`-ary branch
+generators in `L_(1,q)(F_p)`. The explicit nonzero corner
+
+```text
+e=sum_(i<q-1) s_i t_i,       f=e-s_0t_0,
+S_0=s_0 e,                  T_0=e t_0,
+S_1=s_0 s_(q-1)t_0+f,       T_1=s_0 t_(q-1)t_0+f
+```
+
+contains a binary Leavitt family with unit `e`. Its universal map from
+`L_2(F_p)` is injective by binary simplicity. Extending its elementary
+matrices by the identity on `1-e`, and then adding an identity block,
+embeds `G` into `EL_N(L_(1,q)(F_p))`, hence into `H` by `(WOP8)`.
+The corner and simplicity inputs are proved in the two listed Lean source
+artifacts. This equivalence does not decide either hyperlinearity status;
+the reverse construction maps the scalar marked root to a corner root
+`x_13(e)`, rather than asserting an identification of the marked pairs.
 
 DERIVATION
 weighted-leavitt-opposite-root-prefix-proof
