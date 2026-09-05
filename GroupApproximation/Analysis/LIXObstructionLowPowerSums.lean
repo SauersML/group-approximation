@@ -25,11 +25,17 @@ no Künneth.  That is `powerSum_eq_zero_of_lt_three` below, and it is pure algeb
 And the two low Chern classes vanish for a reason much cheaper than the Künneth
 decomposition.  With `N = S¹ × M` and `M = S⁵ × Y`, the `S¹`-Künneth splitting is just
 `H^n(N) = H^n(M) ⊕ t · H^{n-1}(M)`, so the restriction `H^n(N) → H^n(M)` to the slice
-`{1} × M` is **injective for `n ≤ 4`**, because `H^{n-1}(M) = 0` there: `M = S⁵ × Y`
-with `Y` a product of projective spaces has `H^{odd}(M) = x · H^{even}(Y)`, which
-starts in degree five, and `H^{even}` of the relevant degrees pairs against nothing in
-`H^{n-1}` for `n - 1 ≤ 3`.  Since `δ = W / V` restricts to the trivial total Chern
-class on the slice, `c₁(δ)` and `c₂(δ)` restrict to `0` and are therefore `0`.
+`{1} × M` is injective **exactly when `H^{n-1}(M) = 0`**.  For `M = S⁵ × Y` with `Y` a
+product of projective spaces, `H^k(M) = H^k(Y) ⊕ H^{k-5}(Y)` and `Y` has cohomology
+only in even degrees, so `H^1(M) = H^3(M) = 0` and the restriction is injective in the
+two degrees that matter, `n = 2` and `n = 4`.
+
+(It is *not* injective for all `n ≤ 4`: `H^0(M) ≠ 0` and `H^2(M) ≠ 0` make the `t`
+summand nonzero in degrees `1` and `3`.  Chern classes live in even degrees, so only
+`n = 2, 4` are ever used.)
+
+Since `δ = W / V` restricts to the trivial total Chern class on the slice, `c₁(δ)` and
+`c₂(δ)` restrict to `0` and are therefore `0`.
 
 So the only genuine `K`-theoretic debt in Lemma 3 is `hint` (the integrality
 `n! · ch_{n+3}(δ)`), not `hlow`.
