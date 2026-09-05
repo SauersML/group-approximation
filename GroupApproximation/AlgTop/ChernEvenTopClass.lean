@@ -28,6 +28,8 @@ trivial summands `1³` contribute the identity of the group and drop out.
 
 * `TotalChern.chernClass_prod_line_pow_eq_zero_of_lt` — `c_k(⨁_j L_j^{⊕d_j}) = 0`
   for `k > ∑_j d_j`.
+* `TotalChern.chernClass_trivial_mul_prod_line_pow_eq_zero_of_lt` — the same for
+  `1ⁿ ⊕ H`, which is the `hV` hypothesis of the mapping-torus parity lemma.
 * `TotalChern.two_dvd_chernClass_mul` — the evenness inference.
 * `TotalChern.two_dvd_chernClass_of_div` — the same with `δ = W / V` supplied.
 -/
@@ -50,6 +52,26 @@ theorem chernClass_prod_line_pow_eq_zero_of_lt {ι : Type*} (s : Finset ι) (h :
     (∏ j ∈ s, (line (h j)) ^ (d j)).chernClass k = 0 := by
   refine RankLE.prod (fun j => ?_) s k hk
   simpa using (rankLE_line (h j)).pow (d j)
+
+/-- **`c_k(1ⁿ ⊕ H) = 0` for `k > rank H`, packaged.**  `T` is the total Chern
+class of the trivial summands, which is the identity of `TotalChern A`, so it
+drops out and the vanishing is the one above.
+
+This is `hV` of the mapping-torus parity lemma, for `V = 1³ ⊕ H` and
+`r = (∑_j d_j) + 3`: no dimension count, no property of the base, and no
+nilpotence of the `h j`. -/
+theorem chernClass_trivial_mul_prod_line_pow_eq_zero_of_lt {ι : Type*} (s : Finset ι)
+    (h : ι → A) (d : ι → ℕ) (T : TotalChern A) (hT : T = 1) {k : ℕ}
+    (hk : (∑ j ∈ s, d j) < k) :
+    (T * ∏ j ∈ s, (line (h j)) ^ (d j)).chernClass k = 0 := by
+  rw [hT, one_mul]
+  exact chernClass_prod_line_pow_eq_zero_of_lt s h d hk
+
+/-- The same with the trivial summands written as the identity outright. -/
+theorem chernClass_one_mul_prod_line_pow_eq_zero_of_lt {ι : Type*} (s : Finset ι)
+    (h : ι → A) (d : ι → ℕ) {k : ℕ} (hk : (∑ j ∈ s, d j) < k) :
+    (((1 : TotalChern A)) * ∏ j ∈ s, (line (h j)) ^ (d j)).chernClass k = 0 :=
+  chernClass_trivial_mul_prod_line_pow_eq_zero_of_lt s h d 1 rfl hk
 
 /-- If the top Chern class of `V` vanishes and every positive Chern class of `δ`
 is even, then the top Chern class of `V · δ` is even. -/
