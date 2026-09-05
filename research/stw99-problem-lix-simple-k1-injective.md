@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw99-k1-kk-cluster-2026-08-30.md
   - research/artifacts/stw59-twisted-torsion-test-2026-09-05.md
   - research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md
+  - research/artifacts/stw59-factorial-torsion-simple-ah-manuscript-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -22,6 +23,13 @@ research graph: its simple unital nuclear stably finite AH algebra
 has K1=0 and a non-null unitary whose square and first matrix
 stabilization are null-homotopic. This graph status records the
 accompanying proof, not external peer acceptance or formal verification.
+
+The stronger family in `stw59-simple-ah-factorial-unitary-torsion`
+preserves exact order n! for every n>=2, by replacing parity with
+factorial Chern divisibility and testing every power by sphere degree.
+Taking powers gives examples with every prescribed finite cyclic
+component order, still with K1 zero. This strengthens the same LIX
+counterexample; it does not calculate an entire component group.
 
 ## Attempts
 
