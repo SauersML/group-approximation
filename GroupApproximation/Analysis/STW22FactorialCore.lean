@@ -60,20 +60,31 @@ variable {D : ℕ → Type u} [∀ n, CStarAlgebra (D n)]
 
 /-! ## The realization is a star-algebra map -/
 
+/-- `realize` is the underlying map of the realization star-algebra equivalence.
+This is the defeq that `canonicalExtension_apply` already relies on; it is
+isolated here so that the three transport lemmas below fail loudly if it ever
+stops holding. -/
+theorem realize_eq_coe {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
+    (x : BoundedUniformTwoCompletion (G D) r hr) :
+    realize (G D) hr x = realizationStarAlgEquiv (G D) hr x := rfl
+
 theorem realize_sub {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
     (x y : BoundedUniformTwoCompletion (G D) r hr) :
-    realize (G D) hr (x - y) = realize (G D) hr x - realize (G D) hr y :=
-  map_sub (realizationStarAlgEquiv (G D) hr) x y
+    realize (G D) hr (x - y) = realize (G D) hr x - realize (G D) hr y := by
+  rw [realize_eq_coe, realize_eq_coe, realize_eq_coe]
+  exact map_sub (realizationStarAlgEquiv (G D) hr) x y
 
 theorem realize_mul' {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
     (x y : BoundedUniformTwoCompletion (G D) r hr) :
-    realize (G D) hr (x * y) = realize (G D) hr x * realize (G D) hr y :=
-  map_mul (realizationStarAlgEquiv (G D) hr) x y
+    realize (G D) hr (x * y) = realize (G D) hr x * realize (G D) hr y := by
+  rw [realize_eq_coe, realize_eq_coe, realize_eq_coe]
+  exact map_mul (realizationStarAlgEquiv (G D) hr) x y
 
 theorem realize_star' {r : ℕ → ℝ} (hr : IsCoordinateNormComparison (G D) r)
     (x : BoundedUniformTwoCompletion (G D) r hr) :
-    realize (G D) hr (Star.star x) = Star.star (realize (G D) hr x) :=
-  map_star (realizationStarAlgEquiv (G D) hr) x
+    realize (G D) hr (Star.star x) = Star.star (realize (G D) hr x) := by
+  rw [realize_eq_coe, realize_eq_coe]
+  exact map_star (realizationStarAlgEquiv (G D) hr) x
 
 /-! ## The completion gauge -/
 
@@ -151,8 +162,12 @@ theorem tendsto_tracialTwoNorm_modelExtension
     (tau : TracialState (BaseAlgebra D)) (y : M D) (A : BaseApproximation y) :
     Tendsto (fun k ↦ tracialTwoNorm tau (A.seq k)) atTop
       (nhds (tracialTwoNorm (modelExtension tau) y)) := by
-  have hlim := trace_tendsto_extensionValue tau (Star.star y * y) (A.star.mul A)
-  have hre := (Complex.continuous_re.tendsto _).comp hlim
+  have hlim : Tendsto (fun k ↦ tau (Star.star (A.seq k) * A.seq k)) atTop
+      (nhds (modelExtension tau (Star.star y * y))) :=
+    trace_tendsto_extensionValue tau (Star.star y * y) (A.star.mul A)
+  have hre : Tendsto (fun k ↦ (tau (Star.star (A.seq k) * A.seq k)).re) atTop
+      (nhds ((modelExtension tau (Star.star y * y)).re)) :=
+    (Complex.continuous_re.tendsto _).comp hlim
   exact hre.sqrt
 
 /-- **The model extension is dominated by the gauge.**  This is CCEGSTW (3.27):
