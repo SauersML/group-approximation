@@ -224,8 +224,8 @@ theorem chart_mat (z : Fin d → ℂ) (a b : Fin (d + 1)) :
 
 theorem chart_zero (d : ℕ) : chart (0 : Fin d → ℂ) = CP.basePoint d := by
   refine (dualTautSection_eq_zero_iff _).mp (fun i j => ?_)
-  rw [dualTautSection_apply, chart_mat, chartVec_apply]
-  simp
+  rw [dualTautSection_apply, chart_mat]
+  simp [chartVec_apply]
 
 /-- **The section in the chart.**  Along the affine chart around its zero, the section
 is `z ↦ (1 + ‖z‖²)⁻¹ z`: a *positive real* multiple of the identity of `ℂ^d`.  (Only the
