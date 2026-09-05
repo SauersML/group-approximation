@@ -28,10 +28,13 @@ RPⁿ⁺¹ / RPⁿ ≃ Sⁿ⁺¹.
 * `rpFiltration : ℕ ⥤ TopCat` — the whole filtration packaged as a functor from
   the ordered category `ℕ` to `TopCat` (via `Functor.ofSequence`), with
   `rpFiltration_obj` and `rpFiltration_map_succ`.
-* `rpLowerSubspace n : Set (RP (n+1))` — the image of `RPⁿ` inside `RPⁿ⁺¹`, the
-  lower-dimensional projective subspace, with the identification
-  `rpLowerSubspace_eq_image` (it is `proj (n+1)` of the equatorial sphere), and
-  the point-set facts `isCompact_rpLowerSubspace` / `isClosed_rpLowerSubspace`.
+* the lower-dimensional projective subspace — the image of `RPⁿ` inside `RPⁿ⁺¹` —
+  is **not** redefined here. It is `affineRpLowerSubspace n : Set (RP (n+1))` from
+  `RPnFiltrationGeometry.lean`, together with `affineRpLowerSubspace_eq_image`
+  (it is `proj (n+1)` of the equatorial sphere) and the point-set facts
+  `isCompact_affineRpLowerSubspace` / `isClosed_affineRpLowerSubspace`. The last
+  basis vector and its pairing come from the same module: `affineElast n`,
+  `affineElast_norm`, `inner_affineElast`.
 * `rpCofiberSetoid n`, `rpCofiber n : TopCat` — the cofiber `RPⁿ⁺¹ / RPⁿ`, the
   quotient of `RPⁿ⁺¹` collapsing the lower subspace `RPⁿ` to a single point, with
   the collapse identity `rpCofiber_collapse` and the (continuous) quotient
@@ -43,6 +46,28 @@ These are genuine topological objects with no placeholder content. The filtratio
 and the cofiber space are fully constructed and build-clean; the homeomorphism
 `rpQuotientByLowerSkeleton_target` is the precisely-stated target the cofiber
 identification supplies.
+
+Porting changes for Mathlib v4.32 (no statement is changed):
+
+* the skeleton/filtration block listed above (`RPnSkeleton`,
+  `rpInclusion_continuous`, `rpInclusionHom`, `rpInclusionHom_apply`,
+  `rpInclusionHom_mono`, `rpFiltration`, `rpFiltration_obj`,
+  `rpFiltration_map_succ`) was described by this file's header but absent from
+  its body: the vendored copy began at the cofiber section. It is restored here,
+  built on Mathlib's `CategoryTheory.Functor.ofSequence`.
+  `RPnCellularFiltration.lean` consumes `rpFiltration` and
+  `rpFiltration_map_succ` directly, so the gap made that module unbuildable too.
+* the lower-subspace and last-basis-vector references were spelled without the
+  `affine` prefix that `RPnFiltrationGeometry.lean` gives them after namespace
+  isolation (`rpLowerSubspace`, `elast`, `elast_norm`, `inner_elast`,
+  `proj_mem_lowerSubspace_of_last_zero`). With `autoImplicit` on, each unresolved
+  name was bound as a variable of unknown type rather than reported, so the file
+  failed later and obscurely. They now name the declarations that exist. Rather
+  than reintroduce a second copy of the same set under the unprefixed name, the
+  header above records where they live.
+* `inner_affineElast` — the pairing `⟪affineElast n, v⟫ = v (Fin.last (n+1))`,
+  used by `cofiberRawMap_norm` and `cofiberSphereMap_equator` — had no
+  counterpart at all and is added to `RPnFiltrationGeometry.lean`.
 -/
 
 noncomputable section
@@ -51,12 +76,47 @@ open CategoryTheory
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+/-! ### The skeleta and the filtration functor -/
+
+/-- The `n`-skeleton of the projective filtration, as a `TopCat` object. -/
+def RPnSkeleton (n : ℕ) : TopCat.{0} := TopCat.of (RP n)
+
+/-- The equatorial projective inclusion is continuous (it is bundled as a
+`ContinuousMap` in `RealProjectiveSpaceInclusion.lean`). -/
+theorem rpInclusion_continuous (n : ℕ) : Continuous (rpInclusion n) :=
+  (rpInclusion n).continuous
+
+/-- The equatorial inclusion `RPⁿ ↪ RPⁿ⁺¹` as a morphism of `TopCat`. -/
+def rpInclusionHom (n : ℕ) : RPnSkeleton n ⟶ RPnSkeleton (n + 1) :=
+  TopCat.ofHom (rpInclusion n)
+
+@[simp]
+theorem rpInclusionHom_apply (n : ℕ) (x : RP n) :
+    (rpInclusionHom n).hom x = rpInclusion n x := rfl
+
+/-- The skeleton inclusion is a monomorphism: the equatorial inclusion is
+injective (`rpInclusion_injective`). -/
+instance rpInclusionHom_mono (n : ℕ) : Mono (rpInclusionHom n) :=
+  (TopCat.mono_iff_injective (rpInclusionHom n)).mpr (rpInclusion_injective n)
+
+/-- The whole projective filtration `RP⁰ ⊂ RP¹ ⊂ ⋯` as a functor `ℕ ⥤ TopCat`,
+assembled from the equatorial inclusions. -/
+def rpFiltration : ℕ ⥤ TopCat.{0} := Functor.ofSequence rpInclusionHom
+
+@[simp]
+theorem rpFiltration_obj (n : ℕ) : rpFiltration.obj n = RPnSkeleton n := rfl
+
+/-- On a one-step inclusion the filtration functor is the equatorial inclusion. -/
+theorem rpFiltration_map_succ (n : ℕ) :
+    rpFiltration.map (homOfLE (Nat.le_succ n)) = rpInclusionHom n :=
+  Functor.ofSequence_map_homOfLE_succ rpInclusionHom n
+
 /-! ### The cofiber `RPⁿ⁺¹ / RPⁿ` -/
 
 /-- The setoid on `RPⁿ⁺¹` that collapses the lower subspace `RPⁿ` to a single
 point: `x ~ y` iff `x = y` or both lie in the lower subspace. -/
 def rpCofiberSetoid (n : ℕ) : Setoid (RP (n + 1)) where
-  r x y := x = y ∨ (x ∈ rpLowerSubspace n ∧ y ∈ rpLowerSubspace n)
+  r x y := x = y ∨ (x ∈ affineRpLowerSubspace n ∧ y ∈ affineRpLowerSubspace n)
   iseqv :=
     { refl := fun _ => Or.inl rfl
       symm := fun {x y} h =>
@@ -81,7 +141,7 @@ def rpCofiberProj (n : ℕ) : C(RP (n + 1), Quotient (rpCofiberSetoid n)) where
 /-- All points of the lower subspace are collapsed to the same point in the
 cofiber. -/
 theorem rpCofiber_collapse (n : ℕ) {a b : RP (n + 1)}
-    (ha : a ∈ rpLowerSubspace n) (hb : b ∈ rpLowerSubspace n) :
+    (ha : a ∈ affineRpLowerSubspace n) (hb : b ∈ affineRpLowerSubspace n) :
     rpCofiberProj n a = rpCofiberProj n b :=
   Quotient.sound (Or.inr ⟨ha, hb⟩)
 
@@ -113,14 +173,14 @@ Hausdorff sphere it is a homeomorphism (`rpCofiberHomeo`). -/
 
 /-- The raw collapse map `F(x) = 2⟪e,x⟫ • x − e` on the ambient sphere. -/
 def cofiberRawMap (n : ℕ) (x : Sphere (n + 1)) : EuclideanSpace ℝ (Fin (n + 2)) :=
-  (2 * inner ℝ (elast n) (x : EuclideanSpace ℝ (Fin (n + 2)))) •
-      (x : EuclideanSpace ℝ (Fin (n + 2))) - elast n
+  (2 * inner ℝ (affineElast n) (x : EuclideanSpace ℝ (Fin (n + 2)))) •
+      (x : EuclideanSpace ℝ (Fin (n + 2))) - affineElast n
 
 theorem cofiberRawMap_norm (n : ℕ) (x : Sphere (n + 1)) : ‖cofiberRawMap n x‖ = 1 := by
   have hx : ‖(x : EuclideanSpace ℝ (Fin (n + 2)))‖ = 1 := mem_sphere_zero_iff_norm.mp x.2
-  have he : ‖elast n‖ = 1 := elast_norm n
-  have hinner : inner ℝ (elast n) (x : EuclideanSpace ℝ (Fin (n+2)))
-      = (x : EuclideanSpace ℝ (Fin (n+2))) (Fin.last (n+1)) := inner_elast n _
+  have he : ‖affineElast n‖ = 1 := affineElast_norm n
+  have hinner : inner ℝ (affineElast n) (x : EuclideanSpace ℝ (Fin (n+2)))
+      = (x : EuclideanSpace ℝ (Fin (n+2))) (Fin.last (n+1)) := inner_affineElast n _
   have key : ‖cofiberRawMap n x‖ ^ 2 = 1 := by
     rw [cofiberRawMap, norm_sub_sq_real, norm_smul, inner_smul_left]
     simp only [RCLike.conj_to_real]
@@ -155,14 +215,14 @@ theorem cofiberSphereMap_neg (n : ℕ) (x : Sphere (n + 1)) :
 
 /-- The south pole `−e ∈ Sⁿ⁺¹`, the image of the collapsed equator. -/
 def cofiberSouth (n : ℕ) : Sphere (n + 1) :=
-  ⟨-elast n, by rw [mem_sphere_zero_iff_norm, norm_neg]; exact elast_norm n⟩
+  ⟨-affineElast n, by rw [mem_sphere_zero_iff_norm, norm_neg]; exact affineElast_norm n⟩
 
 theorem cofiberSphereMap_equator (n : ℕ) (y : Sphere n) :
     cofiberSphereMap n (sphereInclusion n y) = cofiberSouth n := by
   apply Subtype.ext
   rw [cofiberSphereMap_coe, cofiberRawMap]
-  have ht : inner ℝ (elast n) ((sphereInclusion n y : EuclideanSpace ℝ (Fin (n+2)))) = 0 := by
-    rw [inner_elast, sphereInclusion_apply_coe, inclIso_apply, inclLin_apply_last]
+  have ht : inner ℝ (affineElast n) ((sphereInclusion n y : EuclideanSpace ℝ (Fin (n+2)))) = 0 := by
+    rw [inner_affineElast, sphereInclusion_apply_coe, inclIso_apply, inclLin_apply_last]
   rw [ht]
   simp [cofiberSouth]
 
@@ -180,8 +240,8 @@ theorem rpCollapseToSphere_proj (n : ℕ) (x : Sphere (n + 1)) :
     rpCollapseToSphere n (proj (n + 1) x) = cofiberSphereMap n x := rfl
 
 theorem rpCollapseToSphere_lowerSubspace (n : ℕ) {q : RP (n + 1)}
-    (hq : q ∈ rpLowerSubspace n) : rpCollapseToSphere n q = cofiberSouth n := by
-  rw [rpLowerSubspace_eq_image] at hq
+    (hq : q ∈ affineRpLowerSubspace n) : rpCollapseToSphere n q = cofiberSouth n := by
+  rw [affineRpLowerSubspace_eq_image] at hq
   obtain ⟨w, ⟨z, rfl⟩, rfl⟩ := hq
   rw [rpCollapseToSphere_proj]
   exact cofiberSphereMap_equator n z
@@ -213,11 +273,11 @@ theorem cofiberToSphere_injective (n : ℕ) : Function.Injective (cofiberToSpher
   have h_eq_or_antipodal : (2 * (x₁ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1))) • (x₁ : EuclideanSpace ℝ (Fin (n + 2))) = (2 * (x₂ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1))) • (x₂ : EuclideanSpace ℝ (Fin (n + 2))) := by
     have h_eq_or_antipodal : cofiberRawMap n x₁ = cofiberRawMap n x₂ := by
       convert congr_arg Subtype.val hxy using 1;
-    convert congr_arg ( fun v => v + elast n ) h_eq_or_antipodal using 1 <;> norm_num [ cofiberRawMap ];
-    · rw [ inner_elast ];
-    · rw [ inner_elast ];
+    convert congr_arg ( fun v => v + affineElast n ) h_eq_or_antipodal using 1 <;> norm_num [ cofiberRawMap ];
+    · rw [ inner_affineElast ];
+    · rw [ inner_affineElast ];
   by_cases h : ( x₁ : EuclideanSpace ℝ ( Fin ( n + 2 ) ) ) ( Fin.last ( n + 1 ) ) = 0 <;> by_cases h' : ( x₂ : EuclideanSpace ℝ ( Fin ( n + 2 ) ) ) ( Fin.last ( n + 1 ) ) = 0 <;> simp_all +decide [ mul_eq_zero ];
-  · exact Quotient.sound ( Or.inr ⟨ proj_mem_lowerSubspace_of_last_zero n x₁ h, proj_mem_lowerSubspace_of_last_zero n x₂ h' ⟩ );
+  · exact Quotient.sound ( Or.inr ⟨ proj_mem_affineLowerSubspace_of_last_zero n x₁ h, proj_mem_affineLowerSubspace_of_last_zero n x₂ h' ⟩ );
   · rw [ eq_comm, smul_eq_zero ] at h_eq_or_antipodal ; aesop;
   · have h_eq_or_antipodal : (x₁ : EuclideanSpace ℝ (Fin (n + 2))) = (x₂ : EuclideanSpace ℝ (Fin (n + 2))) ∨ (x₁ : EuclideanSpace ℝ (Fin (n + 2))) = -(x₂ : EuclideanSpace ℝ (Fin (n + 2))) := by
       have h_eq_or_antipodal : (x₁ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) = (x₂ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) ∨ (x₁ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) = -(x₂ : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) := by
@@ -236,10 +296,10 @@ theorem cofiberToSphere_surjective (n : ℕ) : Function.Surjective (cofiberToSph
   intro w
   obtain ⟨x, hx⟩ : ∃ x : Sphere (n + 1), cofiberSphereMap n x = w := by
     by_cases hw : (w : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) = -1;
-    · -- If $c = -1$, then $w = -elast n$.
-      have hw_eq : w = -elast n := by
-        have hw_neg : ‖(w : EuclideanSpace ℝ (Fin (n + 2))) - (-elast n)‖ ^ 2 = 0 := by
-          rw [ @norm_sub_sq ℝ ] ; norm_num [ hw, elast ];
+    · -- If $c = -1$, then $w = -affineElast n$.
+      have hw_eq : w = -affineElast n := by
+        have hw_neg : ‖(w : EuclideanSpace ℝ (Fin (n + 2))) - (-affineElast n)‖ ^ 2 = 0 := by
+          rw [ @norm_sub_sq ℝ ] ; norm_num [ hw, affineElast ];
           rw [ EuclideanSpace.inner_single_right ] ; norm_num [ hw ];
         exact sub_eq_zero.mp ( norm_eq_zero.mp ( sq_eq_zero_iff.mp hw_neg ) );
       use sphereInclusion n ⟨EuclideanSpace.single (Fin.last n) 1, by
@@ -261,16 +321,16 @@ theorem cofiberToSphere_surjective (n : ℕ) : Function.Surjective (cofiberToSph
         rw [ Real.sq_sqrt ];
         · ring;
         · exact le_of_not_gt fun h => ht_pos.ne' <| Real.sqrt_eq_zero_of_nonpos h.le;
-      -- Define `x.1 := (1/(2*t)) • ((w : _) + elast n)`.
-      set x_val : EuclideanSpace ℝ (Fin (n + 2)) := (1 / (2 * t)) • ((w : EuclideanSpace ℝ (Fin (n + 2))) + elast n)
+      -- Define `x.1 := (1/(2*t)) • ((w : _) + affineElast n)`.
+      set x_val : EuclideanSpace ℝ (Fin (n + 2)) := (1 / (2 * t)) • ((w : EuclideanSpace ℝ (Fin (n + 2))) + affineElast n)
       have hx_val_norm : ‖x_val‖ = 1 := by
-        have hx_val_norm : ‖(w : EuclideanSpace ℝ (Fin (n + 2))) + elast n‖^2 = 4 * t^2 := by
-          rw [ @norm_add_sq ℝ ] ; norm_num [ elast ] ; ring_nf;
+        have hx_val_norm : ‖(w : EuclideanSpace ℝ (Fin (n + 2))) + affineElast n‖^2 = 4 * t^2 := by
+          rw [ @norm_add_sq ℝ ] ; norm_num [ affineElast ] ; ring_nf;
           rw [ EuclideanSpace.inner_single_right ] ; norm_num ; linarith!;
-        rw [ norm_smul, Real.norm_of_nonneg ( by positivity ), div_mul_eq_mul_div, div_eq_iff ] <;> nlinarith [ norm_nonneg ( w + elast n ) ];
+        rw [ norm_smul, Real.norm_of_nonneg ( by positivity ), div_mul_eq_mul_div, div_eq_iff ] <;> nlinarith [ norm_nonneg ( w + affineElast n ) ];
       refine' ⟨ ⟨ x_val, _ ⟩, _ ⟩ <;> simp_all +decide;
       ext i; simp [cofiberSphereMap, cofiberRawMap, x_val];
-      simp +decide [ inner_add_right, inner_smul_right, elast ] ; ring_nf;
+      simp +decide [ inner_add_right, inner_smul_right, affineElast ] ; ring_nf;
       split_ifs <;> simp_all +decide [ inner ]; all_goals grind;
   use Quotient.mk _ (proj (n + 1) x);
   convert hx using 1

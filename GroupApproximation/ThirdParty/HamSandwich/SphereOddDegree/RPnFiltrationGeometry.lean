@@ -40,6 +40,12 @@ def affineElast (n : ℕ) : EuclideanSpace ℝ (Fin (n + 2)) :=
 
 theorem affineElast_norm (n : ℕ) : ‖affineElast n‖ = 1 := by simp [affineElast]
 
+/-- Pairing against the last basis vector reads off the last coordinate. -/
+theorem inner_affineElast (n : ℕ) (v : EuclideanSpace ℝ (Fin (n + 2))) :
+    inner ℝ (affineElast n) v = v (Fin.last (n + 1)) := by
+  rw [affineElast, EuclideanSpace.inner_single_left]
+  simp
+
 theorem proj_mem_affineLowerSubspace_of_last_zero (n : ℕ) (x : Sphere (n + 1))
     (hx : (x : EuclideanSpace ℝ (Fin (n + 2))) (Fin.last (n + 1)) = 0) :
     proj (n + 1) x ∈ affineRpLowerSubspace n := by
