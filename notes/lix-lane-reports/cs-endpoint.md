@@ -207,6 +207,69 @@ theorem STW59.isSimpleCStar : LIX.IsSimpleCStar STW59.tower.Limit :=
 
 Full authoritative recipe in `notes/lix-lane-reports/cs-simplicity.md` §3.
 
+### INTERFACE SPECIFICATION for `cs-stages` and `cs-clutching` (2026-09-05 ~19:5x)
+
+Read off the three consumers, all of which are green, so that the join costs
+nothing.  Sent to `cs-stages-s` and `cs-clutching-s` by name.
+
+**`connect`, from `CStarTower.ofInjective` (`Analysis/LIXLimitTower.lean:59`).**
+
+```lean
+def connect : ∀ n : ℕ, StageAlgebra n →⋆ₐ[ℂ] StageAlgebra (n + 1)
+theorem connect_injective : ∀ n, Function.Injective (connect n)
+```
+
+Successor-indexed, and a **unital** `StarAlgHom` — not `→⋆ₙₐ[ℂ]`, not a `k ≤ i`
+family, not a bare function with separate lemmas.  No norm or isometry lemma is
+wanted: `ofInjective` discharges `norm_succHom` from injectivity through
+`NonUnitalStarAlgHom.norm_map`.
+
+**Nontriviality**: `instance : Nontrivial (StageAlgebra 0)` and nothing about
+later stages, because `CStarTower.instNontrivialLimit`
+(`Analysis/LIXLimitCompletion.lean:119`) asks only for `Nontrivial (A 0)`.
+
+**Fullness, from `CStarTower.isSimpleCStar_limit`
+(`Analysis/LIXSimplicityInstance.lean:195`).**  Match the binder shape exactly:
+
+```lean
+theorem fullness (k : ℕ) (a : StageAlgebra k) : 0 ≤ a → a ≠ 0 →
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (tower.climb j k a)
+```
+
+It is `T.climb j k a`, the raw recursion at `LIXLimitTower.lean:69`, not
+`climbHom` and not a hand-rolled composite; `climbHom_apply` makes them `rfl`,
+but stating it at `climb` keeps it syntactically matching.  `IsFull` is the
+concrete finite-sum form at `LIXSimplicity.lean:183`, with no ideal-generation
+API in it.
+
+**The order instances nobody owns.**  `isSimpleCStar_limit` asks for
+`[∀ n, PartialOrder (A n)]`, `[∀ n, StarOrderedRing (A n)]` and the same two on
+`T.Limit`.  None is a global instance and none can be, so a lane must install
+them locally from `CStarAlgebra.spectralOrder`.  Recommended owner:
+`cs-stages`, because `0 ≤ a` in the fullness statement is already relative to
+that choice.
+
+**Lemma 6, from `hasK1InjWitness_limit` (`Analysis/LIXLimitWitness.lean:47`).**
+The hypothesis is
+
+```lean
+hstage : ∀ (j : ℕ) (hj : k ≤ j),
+  unitaryHom (T.climbHom hj) u ∉ unitaryComponentOne (A j)
+```
+
+— about the **tower's** iterated map, with `hj` an explicit argument, not about
+`w_j` and not about a hand-rolled `φ_{k,j}`.  Corollary 4 composed with Lemma 6
+gives it, but only if Lemma 6 is stated over `T.climb` from the start; a
+hand-rolled composite is propositionally equal and not syntactically so, and
+the join then costs a transport lemma plus its induction.
+
+`hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (A k))` lives at stage `k`,
+not at the limit, and **must be produced in term mode**.
+`LIXLimitWitness.lean` works under `GroupApproximation.LIX.instSpectral*` while
+`HasK1InjWitness`'s body was elaborated under `GroupApproximation.instSpectral*`;
+both unfold to `CStarAlgebra.spectralOrder`, so `exact` crosses them and `rw`
+does not.  See TRAPS.
+
 ## 3b. ROOT WIRING PROPOSAL (this lane does not touch the root)
 
 Computed from the actual `import` lines by
