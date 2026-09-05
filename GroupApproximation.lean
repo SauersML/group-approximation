@@ -3318,6 +3318,8 @@ import GroupApproximation.Analysis.LIXEndpointStatement
 import GroupApproximation.KTheory.MatrixProjection
 import GroupApproximation.KTheory.BlockMoves
 import GroupApproximation.Analysis.CStarKOneWhitehead
+import GroupApproximation.Analysis.CStarSimple
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
