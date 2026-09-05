@@ -21,6 +21,8 @@ The witness is the image of a generator S4 -> U(2) of pi4(U(2))=Z/2.
 
 This negates the universal assertion in STW Problem LIX. It asserts an
 order-two subgroup of U(A)/U0(A), not a calculation of the entire group.
+The later claim `stw59-exact-factorial-unitary-component-groups`
+computes that entire group as Z/2 for this same algebra.
 Internal mathematical review was completed on 5 September 2026.
 This does not assert external peer validation, formal verification,
 or publication priority.

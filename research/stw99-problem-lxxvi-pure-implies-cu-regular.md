@@ -21,6 +21,8 @@ artifacts:
   - research/artifacts/stw99-lxxvi-soft-realification-surjectivity-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-residually-stably-projectionless-audit-2026-09-05.md
   - research/artifacts/stw99-lxxvi-rr0-relative-projection-selection-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-cutoff-relative-selection-audit-2026-09-05.md
+  - research/artifacts/stw99-lxxvi-rr0-full-order-reflection-audit-2026-09-05.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -199,6 +201,17 @@ uniform polar contractions; projection lifting and Cu continuity remove
 the dimension bound from the compact-left conclusion. Arbitrary mixed
 noncompact source comparison and mixed target realization remain required
 for full Cu regularity in this coefficient class.
+
+The subsequent theorem `stw99-lxxvi-rr0-all-base-full-order-reflection`
+settles the source-comparison part entirely: for these coefficients,
+the actual first-factor Cu map is an order embedding over every
+second-countable locally compact Hausdorff base, with no dimension
+bound. Exact relative embeddings on the strict-comparison locus are
+proved by compatible projection-frame towers and uniformly controlled
+spectral tails. Closing the equality set of a source cutoff gives a
+compact core on which the earlier projection theorem supplies boundary
+data. The remaining task for full Cu regularity in this coefficient
+class is realization of arbitrary mixed target classes.
 
 ## Literature boundary
 

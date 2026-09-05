@@ -42,6 +42,8 @@ their relatives—remain useful tests for the higher `K`-stability maps:
 pureness need not give `Z`-stability in the nonnuclear setting, even though
 stable rank one has already settled their scalar-unitary `K_1` map.
 
+## Attempts
+
 The attached coefficient-stabilization notes record a full higher-degree
 result under unbounded exact K0 divisibility of the unit and a nonempty
 normalized quasitrace space. Strict comparison realizes the unit roots

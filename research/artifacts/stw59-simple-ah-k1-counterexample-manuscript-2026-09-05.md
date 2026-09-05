@@ -8,6 +8,12 @@ We construct a separable, simple, unital, nuclear, stably finite approximately h
 
 This gives a negative answer to Problem LIX of Schafhauser–Tikuisis–White [STW].
 
+The subsequent [factorial construction](stw59-factorial-torsion-simple-ah-manuscript-2026-09-05.md)
+realizes every prescribed finite cyclic component order. The
+[exact group calculation](stw59-exact-factorial-component-groups-2026-09-05.md)
+further proves that this original algebra has entire component group
+\(U(A)/U_0(A)\cong\mathbb Z/2\).
+
 ## 1. Statement and conventions
 
 For a unital \(C^*\)-algebra \(B\), let \(U(B)\) be its unitary group with the norm topology and let \(U_0(B)\) be the connected component of the identity. The algebra is \(K_1\)-injective if the canonical map

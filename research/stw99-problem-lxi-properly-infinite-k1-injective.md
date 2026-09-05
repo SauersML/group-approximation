@@ -10,6 +10,8 @@ artifacts:
   - research/artifacts/stw61-free-envelope-compression-attack-2026-09-05.md
   - research/artifacts/stw61-mixed-corner-rotation-obstruction-2026-09-05.md
   - research/artifacts/stw61-alternating-conjugate-shift-obstruction-2026-09-05.md
+  - research/artifacts/stw61-functional-letter-flip-obstruction-2026-09-05.md
+  - research/artifacts/stw61-projective-finite-representation-obstruction-2026-09-05.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -42,6 +44,15 @@ families of candidate contraction projections. The shift obstruction
 proves `||[v,w p w*]||=1` for every finite alternating product of integer
 powers of v and arbitrary Toeplitz-factor unitaries, and every nontrivial
 Toeplitz projection p. General mixed unitaries remain outside this result.
+The two-site flip argument further permits arbitrary repeated powers
+of one continuous unitary function f(v), and any family sharing a
+compatible antipodal pair. Independent functions without such a pair
+are not covered by that proof.
+The stronger theorem `stw61-finite-representation-maximal-commutator`
+handles every mixed unitary over any coefficient subalgebra admitting
+a finite-dimensional representation that detects both sides of the
+projection. This includes every two-projection coefficient algebra.
+It does not provide such a representation for the full Toeplitz algebra.
 
 * Szabo's January 2026 solution of KK-uniqueness
   (`stw99-problem-lxii-kk-uniqueness`) went AROUND this problem

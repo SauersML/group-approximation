@@ -289,7 +289,9 @@ This proves the stated corollary. \(\square\)
   Künneth theorem. [Publisher's paper](https://msp.org/pjm/1982/98-2/pjm-v98-n2-p15-s.pdf).
 
 No claim is made that one fixed algebra contains cyclic subgroups
-of every finite order, or that its entire unitary component group
-is cyclic. The construction has dimension-to-rank ratio two at
+of every finite order. The proof above only identifies a subgroup;
+the subsequent [exact group calculation](stw59-exact-factorial-component-groups-2026-09-05.md)
+proves that the entire group for this same family is \(\mathbb Z/n!\).
+The construction has dimension-to-rank ratio two at
 every stage and uses line-twisted endomorphism bundles. It does not
 assert purity or membership in the untwisted diagonal AH class.

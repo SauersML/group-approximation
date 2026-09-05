@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw59-twisted-torsion-test-2026-09-05.md
   - research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md
   - research/artifacts/stw59-factorial-torsion-simple-ah-manuscript-2026-09-05.md
+  - research/artifacts/stw59-exact-factorial-component-groups-2026-09-05.md
 ---
 
 **Problem LIX of Schafhauser--Tikuisis--White, arXiv:2506.10902.** Are
@@ -30,6 +31,11 @@ factorial Chern divisibility and testing every power by sphere degree.
 Taking powers gives examples with every prescribed finite cyclic
 component order, still with K1 zero. This strengthens the same LIX
 counterexample; it does not calculate an entire component group.
+The subsequent theorem `stw59-exact-factorial-unitary-component-groups`
+does compute the entire group for this family: U(A^(n))/U0(A^(n))
+is Z/(n!). In particular, the original example has component group
+exactly Z/2. Its proof uses the one-line gauge fibration and computes
+the image of its Euler map exactly.
 
 ## Attempts
 
