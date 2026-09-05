@@ -3308,6 +3308,16 @@ import GroupApproximation.GGT.VanKampen.SurgeryCutDiagram
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
 import GroupApproximation.Analysis.STW22NegativeSolution
 import GroupApproximation.Analysis.STW22DesignatedTraces
+import GroupApproximation.Analysis.CStarMatrixBlockInclusion
+import GroupApproximation.Analysis.CStarUnitaryComponent
+import GroupApproximation.Analysis.CStarSymmetryComponent
+import GroupApproximation.Analysis.SequentialGroupColimit
+import GroupApproximation.Analysis.CStarKOne
+import GroupApproximation.Analysis.CStarKOneInjectivityCriterion
+import GroupApproximation.Analysis.LIXEndpointStatement
+import GroupApproximation.KTheory.MatrixProjection
+import GroupApproximation.KTheory.BlockMoves
+import GroupApproximation.Analysis.CStarKOneWhitehead
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
