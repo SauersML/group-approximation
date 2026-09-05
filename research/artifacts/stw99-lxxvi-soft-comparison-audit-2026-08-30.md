@@ -57,5 +57,8 @@ The result is deliberately one-sided.  It proves no surjectivity onto soft
 elements of `Cu(A tensor Z)`, since that would require a source-side rank
 realization and gluing theorem.  It also does not protect arbitrary
 noncompact elements: functional softness is the load-bearing hypothesis.
-Thus unrestricted LXXVI remains open, with its soft injectivity corridor
-closed but its nonsoft and surjectivity corridors intact.
+This was the boundary of the one-sided argument. For pure algebras it is
+now strengthened by `stw99-lxxvi-first-factor-soft-cu-isomorphism`:
+canonical realification proves soft surjectivity as well. Unrestricted
+LXXVI remains open on nonsoft classes, including globally noncompact
+classes with compact quotient images.
