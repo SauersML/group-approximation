@@ -1956,3 +1956,240 @@ Leavitt/Jacobson approach the matrix obstruction still lacks the required
 uniform group-level decoder; in the Higman approach the simultaneous
 large-spectrum regime is still uncontrolled. Neither gap is hidden behind
 an assumed lemma, a graph-status change, or a computational check.
+
+
+## 17. Further completion attempt: unitary reconstruction and uniform stability
+
+This continuation responds to the renewed request to complete the existence
+proof. It did not close that theorem. It tested two further possible bridges
+and found precise obstructions to using them. These are additional failed
+attempts, not a replacement definition of success.
+
+The latest main inspected at the start of this continuation was
+`846af7b4fcdba1690a4e93fc2be9144f5b2db1d2`. Comparison with the preceding
+published record found two intervening commits, concerning ordered AF,
+K-theory, and Cuntz-semigroup questions. They did not change the non-MF
+proof nodes under investigation. The primary
+[Eckhardt paper](https://arxiv.org/abs/2608.28772) still states its existence
+theorem with a property-T hypothesis. This is a source check, not a premise
+of any argument below.
+
+### 17.1. A scalar-preserving group embedding can destroy corner orthogonality
+
+A prospective route starts with a properly infinite operator algebra, where
+isometries have a genuine one-to-two range decomposition. It then tries to
+recover that decomposition from the algebra's abstract unitary group inside
+finite matrices. The following exact finite-dimensional counterexample
+shows that even injectivity and preservation of every scalar unitary do not
+justify this recovery.
+
+Let \(E=\mathbb C^3\) and let \(\overline E\) be its conjugate Hilbert
+space. Define
+
+\[
+\Phi:U(E)\longrightarrow U(E\otimes E\otimes\overline E),
+\qquad
+\Phi(u)=u\otimes u\otimes\overline u.
+\tag{17.1}
+\]
+
+**Proposition.** The map \(\Phi\) is an injective group homomorphism and
+\(\Phi(zI)=zI\) for every \(|z|=1\). Nevertheless the induced map on
+projections
+
+\[
+F(p)=\frac{I-\Phi(I-2p)}2
+\tag{17.2}
+\]
+
+does not preserve orthogonality or addition of orthogonal projections.
+
+**Proof.** Tensor products and complex conjugation preserve multiplication,
+so \(\Phi(uv)=\Phi(u)\Phi(v)\). They preserve adjoints as well; hence the
+image is unitary. For a scalar,
+
+\[
+\Phi(zI)=z^2\overline z I=zI.
+\]
+
+To prove injectivity, diagonalize \(u\) with eigenvalues
+\(\lambda_1,\lambda_2,\lambda_3\) and orthonormal eigenvectors \(v_i\).
+For each \(i,j\), the tensor
+\(v_i\otimes v_j\otimes\overline{v_j}\) is an eigenvector of
+\(\Phi(u)\) with eigenvalue
+\(\lambda_i\lambda_j\overline{\lambda_j}=\lambda_i\).
+Thus \(\Phi(u)=I\) implies that all \(\lambda_i=1\), and hence \(u=I\).
+
+For every projection \(p\), its reflection \(r_p=I-2p\) is a unitary
+involution. Therefore \(\Phi(r_p)\) is a unitary involution and (17.2)
+is indeed a projection.
+
+Now take \(p=\operatorname{diag}(1,0,0)\) and
+\(q=\operatorname{diag}(0,1,0)\), so \(pq=0\). In the tensor basis
+\(e_i\otimes e_j\otimes\overline{e_k}\), the eigenvalue of
+\(\Phi(r_p)\) is negative exactly when the number of occurrences of label
+1 among \(i,j,k\) is odd. Similarly, the eigenvalue of \(\Phi(r_q)\)
+is negative exactly when the number of occurrences of label 2 is odd.
+Both happen precisely when the three labels are a permutation of \(1,2,3\).
+There are six such basis vectors. Consequently,
+
+\[
+\operatorname{rank}(F(p)F(q))=6,
+\qquad \operatorname{tr}_{27}(F(p)F(q))=\frac29,
+\qquad \|F(p)F(q)\|=1.
+\tag{17.3}
+\]
+
+For completeness, the number of triples with an odd number of label 1 is
+\(3\cdot2^2+1=13\). Hence
+
+\[
+\operatorname{rank}F(p)=\operatorname{rank}F(q)=13.
+\]
+
+Since \(pq=0\), the source reflections satisfy
+\(r_{p+q}=r_pr_q\). Their images commute, and expanding their product gives
+
+\[
+F(p+q)=F(p)+F(q)-2F(p)F(q).
+\tag{17.4}
+\]
+
+Thus \(\operatorname{rank}F(p+q)=14\), and the additive error in (17.4)
+has operator norm 2 and normalized trace \(4/9\). This proves both failures.
+∎
+
+There is no missing scalar relation to add to this example: all scalar
+unitaries are already preserved, as are all group relations, inverses,
+conjugations, and commutations. In fact, scalar preservation also gives
+\(F(1-p)=1-F(p)\). Complement preservation and commutation still do not
+supply orthogonality or order preservation.
+
+This example rules out the proposed general implication from raw unitary
+group embeddings to corner reconstruction. It does not rule out a special
+finite-coordinate decoder with additional proved hypotheses, and it is not
+a model of the full Leavitt candidate.
+
+### 17.2. Relation to the existing Cairn tensor obstruction
+
+The preceding calculation independently recovers a finite instance of
+Cairn's existing
+[odd tensor obstruction](https://github.com/SauersML/group-approximation/blob/846af7b4fcdba1690a4e93fc2be9144f5b2db1d2/research/odd-tensor-closure-forces-a-threehot-hidden-sector.md).
+It is recorded here as a calibration and failed completion attempt, without
+creating a duplicate claim or asserting novelty.
+
+There is a useful exact count behind the example. Suppose one representation
+contains a table of pairwise orthogonal projections \(P_1,\ldots,P_m\) of
+normalized ranks \(\alpha_1,\ldots,\alpha_m\), with sum \(I\). Put
+\(X_i=I-2P_i\). In the representation
+\(u\mapsto u\otimes u\otimes\overline u\), the literal signs \(X_i\)
+select parity of the three input labels. For distinct \(i,j,k\), the
+three-hot atom has normalized rank exactly
+
+\[
+6\alpha_i\alpha_j\alpha_k.
+\tag{17.5}
+\]
+
+Indeed, its range is the orthogonal sum of the six tensor products
+of the form \(P_a\otimes P_b\otimes\overline{P_c}\), where
+\((a,b,c)\) runs over the permutations of \((i,j,k)\).
+Each summand has normalized rank \(\alpha_i\alpha_j\alpha_k\).
+The sum over all three-hot atoms is therefore
+
+\[
+6\sum_{i<j<k}\alpha_i\alpha_j\alpha_k
+=1-3\sum_i\alpha_i^2+2\sum_i\alpha_i^3.
+\tag{17.6}
+\]
+
+To verify the equality, expand \((\sum_i\alpha_i)^3=1\), separating
+triples with all indices equal, exactly two indices equal, and all indices
+distinct. This is an exact formula for this tensor model. It does not create
+the missing decoder or show that its selected carrier is tensor invariant.
+
+The six basis vectors in (17.3), and the ranks \(13,13,6,14\), were also
+checked by exhaustive enumeration of the 27 triples. The counting proof
+above supplies the full justification.
+
+### 17.3. Uniform Ulam stability does not fill the MF quantifier gap
+
+Fournier-Facio and Rangarajan prove uniform unitary stability for Thompson's
+groups \(F,F',T,V\). Their defect is
+\(\sup_{g,h}\|\phi(gh)-\phi(g)\phi(h)\|\); MF approximation only controls
+each fixed pair as the coordinate varies. The paper explicitly distinguishes
+its uniform results from pointwise approximation questions. Thus its
+Theorem 1.2 cannot be applied directly to arbitrary MF microstates.
+Source: [*Ulam stability of lamplighters and Thompson groups*, Definition 1.1,
+Theorem 1.2, and the introduction's discussion of approximation](https://link.springer.com/article/10.1007/s00208-023-02708-5).
+
+Here is a concrete separation of the two defect hypotheses. Fix an
+irrational number \(\theta\), and for each positive integer \(n\) define
+\(s_n:\mathbb Z\to\{1,-1\}\) by
+
+\[
+s_n(k)=\begin{cases}-1&k=3n,\\1&k\ne3n.\end{cases}
+\]
+
+Set
+
+\[
+f_n(k)=\operatorname{diag}(e^{2\pi i\theta k},s_n(k))\in U(2).
+\tag{17.7}
+\]
+
+For any fixed integers \(k,l\), eventually none of \(k,l,k+l\) is \(3n\).
+The second diagonal entries are then all 1, and the first entries multiply
+exactly. Therefore
+
+\[
+\|f_n(k+l)-f_n(k)f_n(l)\|\longrightarrow0.
+\]
+
+For every fixed nonzero \(k\), irrationality gives
+
+\[
+\liminf_n\|f_n(k)-I\|
+\ge |e^{2\pi i\theta k}-1|>0.
+\]
+
+So this is an MF approximation of \(\mathbb Z\). Yet at the moving pair
+\((n,2n)\), the second diagonal entry of \(f_n(n)f_n(2n)\) is 1 and
+that of \(f_n(3n)\) is \(-1\). Hence for every \(n\),
+
+\[
+\sup_{k,l\in\mathbb Z}\|f_n(k+l)-f_n(k)f_n(l)\|=2.
+\tag{17.8}
+\]
+
+This does not prove that all ways of modifying such an approximation fail;
+indeed this example can be repaired pointwise by replacing its second entry
+by 1. It proves exactly that the uniform defect hypothesis does not follow
+from the MF definition. A theorem that supplies an appropriate uniform
+repair for the intended candidate remains to be proved.
+
+### 17.4. Completion status after these additional tests
+
+The properly infinite unitary-group route fails at orthogonality
+reconstruction. The Thompson stability route fails at passage from fixed-pair
+to uniform defect control. The first failure already has a 27-dimensional
+exact counterexample; the second has the explicit MF sequence (17.7).
+Neither attempt closes the Leavitt/Jacobson decoder gap or the large-spectrum
+Higman case. No new existence theorem, global novelty claim, or proof-assistant
+certification is asserted in this continuation.
+
+
+### 17.5. Validation of this continuation
+
+This continuation changes only the cumulative Markdown artifact. The pinned
+Cairn source check reports the same 81 pre-existing findings as the local
+baseline, with no new findings. Preview reports no added or removed nodes,
+no existing status changes, no duplicate warnings, and no frontier changes;
+its exit remains nonzero because of existing graph errors. No new graph
+claim or route has been inserted for the rediscovered tensor obstruction.
+
+The final write preserves concurrent commit
+`3858adc78c9b56b41a15bebb612087f20f65d3f9`, which attached this cumulative
+record to the spectral and Higman proof nodes through artifact metadata.
+Those metadata additions do not change the theorem statements or close the
+existence gap.
