@@ -6,6 +6,7 @@ title: Square covariance below the fifth-root radius forces approximate cubic to
 artifacts:
   - research/square-covariance-cubic-spectrum-proof.md
   - experiments/verify_cubic_spectral_basin.py
+  - research/artifacts/non-mf-without-property-t.md
 distinct_from:
   one-small-higman-generator-collapses-the-four-cycle: this is a two-unitary spectral theorem with a sharp radius for cubic torsion; the four-cycle claim uses all four Higman relations to deduce collapse to the identity.
   higman-four-cycle-intrinsic-mf-seed: this theorem requires a spectral radius bound on one unitary; the intrinsic seed has no such hypothesis and remains unresolved.

@@ -5,6 +5,9 @@ kind: route
 title: Combine spectral cubic torsion with fixed-power propagation around Higman
 target: one-small-higman-generator-collapses-the-four-cycle
 requires: [unitary-square-covariance-forces-cubic-spectrum]
+artifacts:
+  - research/artifacts/non-mf-without-property-t.md
+  - experiments/verify_cubic_spectral_basin.py
 ---
 
 Write `r=||U_j-1||`.  Choose `z` in the spectrum of `U_j` with

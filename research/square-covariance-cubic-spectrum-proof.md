@@ -7,6 +7,7 @@ target: unitary-square-covariance-forces-cubic-spectrum
 requires: []
 artifacts:
   - experiments/verify_cubic_spectral_basin.py
+  - research/artifacts/non-mf-without-property-t.md
 ---
 
 All norms below are operator norms. The argument applies in every finite

@@ -6,6 +6,7 @@ title: One Higman generator below the fifth-root radius collapses the whole cycl
 artifacts:
   - research/one-small-higman-generator-collapses-the-four-cycle-proof.md
   - experiments/verify_cubic_spectral_basin.py
+  - research/artifacts/non-mf-without-property-t.md
 distinct_from:
   higman-four-cycle-intrinsic-mf-seed: that asks for collapse with no spectral assumption; this proves the collapse with an explicit dimension-free constant as soon as one generator is at operator-norm distance at most any fixed c below 2 sin(2 pi/5) from the identity, provided the relation defect is sufficiently small.
   periodic-higman-bs-clocks-have-three-opnorm-small-seams: that exhibits proper-subcycle clock packets whose conjugators have distance exactly 2 from the identity; this explains quantitatively why any full countermodel must remain outside the small-arc basin at every vertex.
