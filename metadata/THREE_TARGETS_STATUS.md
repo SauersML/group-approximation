@@ -1774,3 +1774,73 @@ lines happen to begin with `theorem`, `class` or `def`.  Fixed by tracking
 truncation, the `pgrep` wrapper over-count, and this — and in each case the raw
 number looked like a finding.  **The rule this lane now applies to itself: no
 count leaves this file without a spot-check of the individual rows behind it.**
+
+## Sweep 18, 2026-09-05 — this lane passed a vacuous guard; the lane caught it
+
+### Self-correction 3, and the worst one
+
+At sweep 14 this file audited `xxii-factoriality`'s four guards and passed all
+four.  **Guard 4 was vacuous and this lane endorsed it in writing** — the
+words used were *"this is the conjunct I would have asked for if you had not
+written it."*
+
+The conjunct was `antipodalDesignatedTraces = Set.range (canonicalExtension …)`.
+But `STW22DesignatedTraces.lean:47` reads
+
+```lean
+abbrev antipodalDesignatedTraces : Set (TracialState AntipodalCompletionAlgebra) :=
+  Set.range (canonicalExtension antipodalAllTracesGauge_isCoordinateNormComparison)
+```
+
+so the conjunct is `rfl`.  It certified **nothing**.  It was there to stop
+"X is a face" being satisfied by a conveniently chosen `X`, and it could not
+have, because it was true by definition of `X`.
+
+`xxii-assembly` found it, not this lane, and replaced it (`fb2907ed1`) with the
+conjunct that has content — CCEGSTW Proposition 3.15:
+
+```lean
+∀ σ : TracialState AntipodalCompletionAlgebra,
+  σ ∈ antipodalDesignatedTraces ↔ IsUniformTwoContinuousOn antipodalDesignatedTraces σ
+```
+
+That one is a two-sided theorem: forward is that every canonical extension is
+2-continuous, backward is that every 2-continuous trace *is* a canonical
+extension by density — and it is exactly what makes "not all traces are
+2-continuous" and "`X` is not all of `T(M)`" two readings of one failure.
+
+**This is the failure mode the lane was explicitly assigned to catch** — *"a
+conjunct that unfolds to something trivially true is worse than an absent
+one"* — and it walked past it on the first reading.  The lesson is specific
+and now standing: **a conjunct of the form `X = <definition of X>` is `rfl`;
+check every equational conjunct against the `def`/`abbrev` of its own left-hand
+side before crediting it.**  An `abbrev` makes this invisible at the use site,
+because the reader sees a name and not its unfolding.
+
+Four self-corrections in eighteen sweeps: `homologyπ` regex truncation, the
+`pgrep` wrapper over-count, the docstring-prose match, and this one.  The first
+three were instruments; this one was judgement, and it is the one that matters,
+because a verification lane that certifies a vacuous guard has done worse than
+not looking.
+
+### The FLT aggregator is gone
+
+Sweep 15's finding is resolved.  `GroupApproximation/ThirdParty/FLT.lean` — the
+file committed with 1220 imports of which 1219 named modules that existed
+nowhere — **no longer exists**.  Tracked under that path now: two files, the
+single `Def_Mathlib_Algebra_IsDirectLimit.lean` and `UPSTREAM.md`
+(`fe45e99f8`, "keep the generic FLT slice packed, with a statement catalogue").
+
+Corpus-wide structural state, re-measured across 4360 project modules on disk:
+
+```
+modules with dangling project imports :  0      (was 1220)
+import cycles                         :  0
+```
+
+Both clean.  The 1219-dangling-import window on main lasted roughly one hour.
+
+### Standing counts
+
+Orphans excluding the untracked FLT tree: **305**.  Gates unchanged at 36 and
+136.  Real concurrent builds, using the corrected predicate: **1**.
