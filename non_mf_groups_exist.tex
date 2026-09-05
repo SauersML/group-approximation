@@ -128,8 +128,9 @@ homomorphism}.  A separable
 $C^*$-algebra is MF if it embeds in a norm matrix corona~\cite{BK}.
 
 We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
-The groups here fail to be MF because they contain a subgroup that is
-conjugated into itself.  For $L\le G$ put
+The groups here fail to be MF because they contain a
+property-\textup{(T)} subgroup that is conjugated into a proper subgroup of
+itself.  For $L\le G$ put
 \[
  \operatorname{Comp}_G(L)=\{u\in G:uLu^{-1}\le L\}.
 \]
@@ -164,18 +165,21 @@ Hilbert--Schmidt inner product.  Here
 $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with
 the norm on the left taken in the operator algebra of this Hilbert space.
 Passing to a Hilbert ultraproduct turns these maps into a genuine unitary
-representation of $G$, to which property~\textup{(T)} applies.  The unitary
-$U$ of the compressor $u$ satisfies
-$U^*PU\le P$ for the Kazhdan projection $P$ of $L$, because $uLu^{-1}\le L$
-has fewer constraints and more fixed vectors, and stable finiteness of the
-matrix corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
+representation of $G$, to which property~\textup{(T)} applies.  Let $U$ be
+the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the Kazhdan projection
+of $L$ for the conjugation maps, both in the norm matrix corona with
+coordinate sizes $d_n^2$.  Then $U^*PU\le P$, because $uLu^{-1}\le L$ has
+fewer constraints and more fixed vectors, and stable finiteness of that
+corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
 Hilbert--Schmidt asymptotic commutant of $L$, and every element of
 $\mathfrak D_G(L)$ tends to $1$ in Hilbert--Schmidt norm in every operator
 norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
-Property~\textup{(T)} of $K$ turns this into triviality in operator norm:
-a corona homomorphism nontrivial on $K$ compresses to the corner where $K$
-has no fixed vectors, and the Kazhdan inequality there contradicts the
-Hilbert--Schmidt triviality (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
+Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
+A corona homomorphism nontrivial on $K$ compresses to a corner where the
+Kazhdan projection of $K$ vanishes.  On that corner, Hilbert--Schmidt
+triviality makes every ultralimit of normalized traces equal to the trivial
+character of $K$, which takes the value $1$ at the Kazhdan projection
+(Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
 apply to sofic or hyperlinear approximations.}
@@ -218,14 +222,25 @@ Section~\ref{sec:torsion-free} builds $Q$ from Fournier-Facio's
 torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} and Hull's small
 cancellation theorem~\cite{Hull}.
 
-We construct an affine--Clifford group $W$ that is an extension of
-$\mathbb Z$ by a locally residually finite group but is not MF.  It is sofic:
-locally residually finite groups are sofic, and soficity passes to
-extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}.
-Its canonical trace on
-$C^*_{\max}(W)$ is amenable and not quasidiagonal.  This answers
-Brown's question whether every amenable trace is
-quasidiagonal~\cite[discussion preceding Proposition~3.5.1]{Brown}.
+\begin{mainthm}[an amenable nonquasidiagonal trace]
+\label{thm:amenable-trace}
+There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
+finite, that is not MF\@.  The canonical trace on $C^*_{\max}(W)$ is
+amenable and not quasidiagonal.
+\end{mainthm}
+
+Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group
+$\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.  The group
+$W$ is sofic because locally residually finite groups are sofic and
+soficity passes to extensions with amenable
+quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
+Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
+Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
+amenable trace is quasidiagonal.  Since $K$ is a direct limit of
+residually finite groups, it is MF~\cite[Corollary~10 and
+Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
+products with $\mathbb Z$, which answers a question of
+Korchagin~\cite[remark following Proposition~12]{Korchagin}.
 
 \subsection*{Relation to prior work}
 
@@ -257,6 +272,15 @@ configuration~\cite{FFF}.  Bachner--Dogon--Lubotzky showed that for groups
 of Deligne type, operator--Hilbert--Schmidt stability would imply that the
 group is not MF~\cite[Proposition~1.5]{BDL}.  The compression relation
 replaces stability.
+
+For a property-\textup{(T)} group $\Gamma$ with a proper self-embedding
+and its ascending HNN extension $G$, Eckhardt~\cite{Eckhardt} shows that
+$C^*_{\max}(G)$ is not finite, as in Proposition~\ref{prop:max-infinite},
+and that the wreath product $(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb
+Z)\rtimes G$ is not MF\@.  In Section~\ref{sec:amenable-nonqd} the lamps
+satisfy Clifford relations, and by these relations a central involution
+lies in the normal subgroup~\eqref{eq:intrinsic-defect}, so
+Theorem~\ref{thm:compression-criterion} applies directly.
 
 Leavitt introduced the algebras $L_K(1,n)$~\cite{Leavitt}.  The binary
 Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, is an
@@ -524,15 +548,11 @@ then every corona homomorphism from \(G\) is trivial on \(K\).
 \begin{proof}
 Suppose that a corona homomorphism
 \(\Theta\colon G\to\U(\mathcal Q_{\mathbf d})\) is nontrivial on \(K\).
-Replace \(G\) by \(\Theta(G)\) and \(K\) by \(\Theta(K)\): the new \(K\)
-is a nontrivial normal property-\textup{(T)} subgroup, since
-property~\textup{(T)} passes to quotients, and it still satisfies the
-hypothesis, because every operator norm asymptotic representation of
-\(\Theta(G)\) pulls back along \(G\to\Theta(G)\) to one of \(G\).
-
-Let \(p\in\mathcal Q_{\mathbf d}\) be the image of the Kazhdan projection
-of \(K\), the projection onto the \(K\)-fixed vectors in any faithful
-representation of the corona.  Since \(gKg^{-1}=K\),
+Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let
+\(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism
+\(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).  In
+any faithful representation of the corona, \(p\) is the projection onto
+the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\),
 \[
  \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
 \]
@@ -540,30 +560,28 @@ and \(q=1-p\) is nonzero, because \(p=1\) would make every element of \(K\)
 act trivially.  Lemma~\ref{lem:central-corona-corner} gives an operator
 norm asymptotic representation \(W_n\colon G\to\U(r_n)\) whose corona
 homomorphism \(\widehat\Theta\) is the coordinate restriction of
-\(g\mapsto q\Theta(g)\).  The Kazhdan projection of \(K\) under
-\(\widehat\Theta\) is the coordinate restriction of \(qp=0\), so
-\(\widehat\Theta|_K\) has no nonzero fixed vectors, and for a finite
-Kazhdan set \(S\subseteq K\) with constant \(\kappa>0\),
+\(g\mapsto q\Theta(g)\).  Let
+\(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism
+induced by \(\widehat\Theta|_K\).  Since \(q\) commutes with \(\Theta(K)\),
+the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\)
+agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate
+restriction of \(qp=0\).
+
+Fix a free ultrafilter \(\omega\).  Since
+\(|\tr_{r_n}(a_n)|\le\opnorm{a_n}\), the formula
 \[
- b=\frac1{|S|}\sum_{s\in S}
-       (\widehat\Theta(s)-1)^*(\widehat\Theta(s)-1)
- \ \ge\ \frac{\kappa^2}{|S|}\,1
+ T_\omega([a_n])=\lim_\omega\tr_{r_n}(a_n)
 \]
-in \(\mathcal Q_{\mathbf r}\).  The coordinates
-\(b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-I_{r_n})^*(W_n(s)-I_{r_n})\)
-represent \(b\), so the negative part of \(b_n-(\kappa^2/|S|)I_{r_n}\)
-tends to zero in operator norm, and taking normalized traces on
-\(M_{r_n}(\C)\) gives
-\[
-\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-I_{r_n}}^{\,2}
- \ge \frac{\kappa^2}{|S|}-o(1).
-\]
-Here the Hilbert--Schmidt norms use $\tr_{r_n}$, the normalized trace of
-the new corner.  The lower bound is independent of $r_n/d_n$, even if
-that ratio tends to zero.  The hypothesis applies to $(W_n)$ itself.
-After passing to a subsequence, one fixed \(s_0\in S\) stays a positive
-Hilbert--Schmidt distance from \(I_{r_n}\), against the hypothesis applied
-to \((W_n)\) and \(s_0\in K\).
+defines a tracial state on \(\mathcal Q_{\mathbf r}\).  The hypothesis
+applies to \((W_n)\) itself, so \(\hsnorm{W_n(k)-I_{r_n}}\to0\) for
+\(k\in K\) in the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\).
+Since \(|\tr_{r_n}(W_n(k))-1|\le\hsnorm{W_n(k)-I_{r_n}}\), it follows
+that \(T_\omega(\pi(k))=1\) for every \(k\in K\).  Then the states
+\(T_\omega\circ\pi\) and the trivial character of \(K\) agree on the
+canonical unitaries, whose span is dense in \(C^*_{\max}(K)\), and
+therefore on all of \(C^*_{\max}(K)\).  The trivial character takes the
+value \(1\) at \(e_K\), while \(\pi(e_K)=0\).  So
+\(0=T_\omega(\pi(e_K))=1\), a contradiction.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -673,13 +691,8 @@ injective.  Put
 \]
 block multiplication with~\eqref{eq:leavitt} gives $Y=X^{-1}$ and
 $X\operatorname{diag}(A,I_3)Y=\operatorname{diag}(\Psi(A),I_3)$.
-In fact $X\in\EL_6(R)$, since $\GL_6(R)=\EL_6(R)$ by
-Khanh--Thanh~\cite[Proposition~4.2]{KhanhThanh}.  Thus the same compression
-can be carried out in $\EL_6(R)$, using $X$ as the compressor and embedding
-$\GL_3(R)$ by $A\mapsto\operatorname{diag}(A,I_3)$.
-We use twelve coordinates
-to establish elementary membership of the compressor directly through
-Whitehead's lemma, without an elementary factorization of $X$: with
+In twelve coordinates the compressor is elementary by Whitehead's lemma:
+for
 \begin{equation}\label{eq:tau}
  \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R)
 \end{equation}
@@ -969,7 +982,9 @@ $a\in\Gamma\setminus\alpha(\Gamma)$.  Put
     \xrightarrow{\alpha}\cdots),
  \qquad V=T_\alpha\rtimes\langle t\rangle,
 \]
-where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$.  Put
+where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that
+$V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and
+$T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.  Put
 $X=V/\Gamma$, the left-coset space.  The Clifford lamp group
 $\operatorname{Cl}(X)$ is presented by generators $\varepsilon$ and $c_x$
 for $x\in X$, with relations
@@ -1112,69 +1127,30 @@ amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it
 nonquasidiagonal.
 \end{proof}
 
-For a concrete instance, use the following six integral affine matrices:
+For a concrete instance, take
 \[
-\begin{gathered}
- x=\begin{pmatrix}0&1&0&0\\0&0&1&0\\1&0&0&0\\0&0&0&1\end{pmatrix},
-\quad
- y=\begin{pmatrix}1&0&1&0\\0&-1&-1&0\\0&1&0&0\\0&0&0&1\end{pmatrix},
-\quad
- z=\begin{pmatrix}0&1&0&0\\1&0&0&0\\-1&-1&-1&0\\0&0&0&1\end{pmatrix},
-\\[4pt]
- v_1=\begin{pmatrix}1&0&0&1\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix},
-\quad
- v_2=\begin{pmatrix}1&0&0&0\\0&1&0&1\\0&0&1&0\\0&0&0&1\end{pmatrix},
-\quad
- v_3=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&1\\0&0&0&1\end{pmatrix}.
-\end{gathered}
-\]
-They generate
-\[
- \bar\Gamma=\langle x,y,z,v_1,v_2,v_3\rangle
+ \bar\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)
  =\left\{
    \begin{pmatrix}A&v\\0&1\end{pmatrix}:
    A\in\mathrm{SL}_3(\mathbb Z),\ v\in\mathbb Z^3
   \right\}
- \cong\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z).
+ \le\GL_4(\mathbb Z).
 \]
-Indeed, the three linear blocks have determinant one.  Using one-based
-indices on these $3\times3$ blocks, direct multiplication gives
-\[
- T:=y^{-1}xz\,y^{-1}x^{-1}=e_{12}(1),\qquad
- xTx^{-1}=e_{31}(1),\qquad x^{-1}Tx=e_{23}(1).
-\]
-Here the block matrices are identified with their affine embeddings.
-The commutator identities
-\[
- \begin{aligned}
- [e_{12}(1),e_{23}(1)]&=e_{13}(1),\\
- [e_{23}(1),e_{31}(1)]&=e_{21}(1),\\
- [e_{31}(1),e_{12}(1)]&=e_{32}(1)
- \end{aligned}
-\]
-give all remaining elementary directions.  Powers give $e_{ij}(m)$ for
-every $m\in\mathbb Z$, and integer row reduction shows that these generate
-$\mathrm{SL}_3(\mathbb Z)$.  The $v_i$ generate the translation lattice,
-proving the asserted equality.
-It is residually finite and has property~\textup{(T)}.  The first assertion
-follows because reduction modulo a suitable integer separates any two
-distinct integral matrices.  The second is the standard property~\textup{(T)}
-theorem for $\mathbb Z^n\rtimes\mathrm{SL}_n(\mathbb Z)$, $n\ge3$
-\cite[Example~1.7.4(i)]{BHV}.
+It is residually finite, since reduction modulo a suitable integer
+separates any two distinct integral matrices, and it has
+property~\textup{(T)}~\cite[Example~1.7.4(i)]{BHV}.
 \leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.gammaBar_hasKazhdanPropertyT}
 \leanverified{Monsters/ExplicitIntegralLinearModel}{GroupApproximation.ExplicitIntegralLinearModel.gammaBar_residuallyFinite}
-
 Let
 \[
  D=\operatorname{diag}(2,2,2,1),\qquad
- \alpha(g)=DgD^{-1}.
+ \alpha(g)=DgD^{-1},
 \]
-Equivalently, $\alpha(v,A)=(2v,A)$.  This is injective and its image consists
-exactly of the affine matrices with even translation coordinate, so
-$[\bar\Gamma:\alpha(\bar\Gamma)]=8$.  If $a$ is translation by the first
-standard basis vector, then $a\notin\alpha(\bar\Gamma)$; equivalently,
-$D^{-1}aD$ has a $1/2$ entry.  Hence the preceding construction applies to
-this $\bar\Gamma$, $\alpha$ and $a$.
+so that $\alpha(v,A)=(2v,A)$.  This is injective, and its image consists
+of the affine matrices whose translation coordinates are all even, so
+$[\bar\Gamma:\alpha(\bar\Gamma)]=8$.  Translation $a$ by the first
+standard basis vector lies outside $\alpha(\bar\Gamma)$.  So the preceding
+construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 
 \begin{corollary}[the affine--Clifford trace]
 \label{cor:affine-clifford-trace}
@@ -1188,6 +1164,12 @@ quasidiagonal.
 \begin{proof}
 The properties of $\bar\Gamma$ and $\alpha$ established above meet the hypotheses
 of Proposition~\ref{prop:clifford-locally-rf}, which gives every assertion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
+Proposition~\ref{prop:clifford-locally-rf} identifies $W$ with
+$K\rtimes\mathbb Z$ for a locally residually finite group $K$, and
+Corollary~\ref{cor:affine-clifford-trace} gives the remaining assertions.
 \end{proof}
 
 \section{A torsion-free finitely presented example}
@@ -1364,6 +1346,12 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
 
+\bibitem[Ec]{Eckhardt}
+C.~Eckhardt,
+\emph{Non-MF groups and non-finite full group $C^*$-algebras},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.28772}{arXiv:2608.28772}.
+
 \bibitem[EJZ]{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
 \emph{Property~\textup{(T)} for noncommutative universal lattices},
@@ -1472,6 +1460,12 @@ products of groups},
 Groups Geom. Dyn. \textbf{20} (2026), no.~2, 607--615,
 \doi{10.4171/GGD/826},
 \href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
+
+\bibitem[STW]{STW}
+C.~Schafhauser, A.~Tikuisis, and S.~White,
+\emph{Nuclear $C^*$-algebras: 99 problems},
+to appear in M\"unster J. Math.,
+\href{https://arxiv.org/abs/2506.10902}{arXiv:2506.10902}.
 
 \end{thebibliography}
 \end{document}
