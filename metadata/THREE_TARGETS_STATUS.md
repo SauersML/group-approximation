@@ -1342,3 +1342,51 @@ so wiring it buys a typecheck and nothing else.  The exceptions —
 caught something.  That is not a coincidence and it is the argument for putting
 a `#audit_closed_axioms` on each layer's public result as it lands, rather than
 at the end.
+
+## Sweep 13, 2026-09-05 — correcting sweep 12, and the orphan gate now reads untracked debris
+
+**Correction to sweep 12.**  Two claims were made there; one holds and one does
+not, and the one that does not changes what the number means.
+
+*Holds.*  `GroupApproximation.lean` really was broken.  `git diff` showed the
+`ProblemXWitness` import appended after the module docstring, which is a syntax
+error in Lean 4.  It has since been repaired — the import now sits at line 3308
+and the docstring begins at 3310 — so the root parses again.
+
+*Does not hold.*  The orphan count going 281 → 2744 was **not** caused by that
+break.  The cause is that a **2344-module vendored FLT tree** now sits at
+`GroupApproximation/ThirdParty/FLT/`.  It is deliberately untracked and
+`.gitignore`d — the ignore rule records that it was assessed on 2026-09-05 and
+found to contain no algebraic topology this campaign needs, and exists so the
+snapshot sweep cannot commit it and the remote-build rsync does not carry it —
+but `scripts/check.py --list-orphans` walks the **filesystem**, not the index,
+so it counts every one of those files as a corpus orphan.
+
+The corpus is 6711 `.lean` files on disk, 2344 of them untracked FLT.  Filtering
+that tree out:
+
+```
+orphans reported by the gate :  2632
+orphans in ThirdParty.FLT    :  2344   (untracked, gitignored, not part of the corpus)
+real orphan count            :   287   (was 281 one sweep earlier)
+```
+
+So nothing catastrophic happened to the wiring; the campaign's orphan trend is
+unchanged.  What happened is that **the gate started measuring something else**,
+and it did so silently, with exit code 0 and a well-formed list.  Any lane
+reading `2632` in the next few hours will draw a false conclusion, and this file
+would have drawn one too had the root break not sent me looking.
+
+Two durable points from this.
+
+* **The orphan gate cannot distinguish a tracked module from local debris.**
+  Any untracked `.lean` under `GroupApproximation/` inflates it.  Until
+  `check.py` filters by `git ls-files`, the number to quote is
+  `--list-orphans` minus anything under an ignored path, and this file will
+  quote it that way from here.  `tmp/nk06.lean`, `tmp/names.lean`,
+  `tmp/names2.lean` and `tmp/diag2.lean` are also loose in the tree.
+* **A gate can break in the direction of alarm as well as reassurance.**  This
+  file has spent twelve sweeps on gates that pass when they should fail.  This
+  is the other kind: a gate that failed loudly, for a reason that had nothing
+  to do with what it was measuring, and would have had a lane rewiring
+  something that was never broken.
