@@ -229,6 +229,28 @@ single blocking item between the cohomology lane and the whole Chern layer is
 `cup_comm`, plus the `DirectSum` packaging.  That is worth saying plainly,
 because it is one theorem and not a programme.
 
+Two refinements that make it cheaper, and one dead end recorded so nobody
+re-walks it:
+
+* **Only the even case is needed.**  Chern classes live in `H^{2n}`, so the sign
+  is always `+1` and the statement that suffices is `cup a b = cup b a` for `a`
+  in degree `2p` and `b` in degree `2q` (modulo the degree cast).
+* **The direct-sum ring may be avoidable.**  `TotalChern A` needs a `CommRing A`,
+  but `A` need not *be* the cohomology.  It can be an explicit quotient
+  `S := ℤ[t, x, h_1..h_ℓ]/(t², x², h_j^{d_j+1})`, a `CommRing` by construction,
+  together with degreewise additive isos `Φ_n : S_n ≃+ H^{2n}(X; ℤ)` satisfying
+  `Φ (u v) = cup (Φ u) (Φ v)`.  Cohomology is then only ever a graded abelian
+  group with a cup pairing.  This is also what `MappingTorusParity` already
+  assumes: it takes `cd : ℕ → S` with `ι : S →+* R` and `S` abstract.
+* **The dead end.**  Relocating to `S` does not remove the commutativity input.
+  A multiplicative `Φ` forces `cup (Φ u) (Φ v) = cup (Φ v) (Φ u)` on the image,
+  and over `Y = ∏_j CP^{d_j}` that includes `h_i ⌣ h_j = h_j ⌣ h_i` for `i ≠ j`,
+  which unfolds to `pr_i^* h ⌣ pr_j^* h = pr_j^* h ⌣ pr_i^* h` — the interchange
+  itself.  Naturality, the diagonal, and factoring through
+  `(pr_i, pr_j) : X → CP^{d_i} × CP^{d_j}` all return to the same two-factor
+  statement.  Some commutativity theorem has to be proved; the even case is the
+  cheapest form of it.
+
 ## 4. Withdrawn
 
 `ChernParityCoefficient.lean` and `ChernNewtonSquareZero.lean` duplicated the
