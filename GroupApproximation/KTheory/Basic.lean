@@ -25,12 +25,19 @@ moves, packaged as the inductive relation `Cycle.Step`:
 * `pad` -- adjoining a zero block, i.e. adding a rank-zero bundle.
 
 `Cycle.Rel` is the equivalence closure `Relation.EqvGen Cycle.Step`.  Taking
-the closure rather than writing the transitive relation by hand is not a
-weakening: the three moves generate exactly stable isomorphism, and every
-consumer below works with the moves, never with a normal form.  It buys the
-equivalence-relation proof for free and leaves the substantive content --
-that the block sum descends and is a commutative monoid -- where it belongs,
-in the reindexing identities of `BlockMoves.lean`.
+the closure rather than writing the transitive relation by hand costs nothing
+here: every consumer below works with the moves, never with a normal form, so
+the closure buys the equivalence-relation proof for free and leaves the
+substantive content -- that the block sum descends and is a commutative monoid
+-- where it belongs, in the reindexing identities of `BlockMoves.lean`.
+
+That these three moves are the classical stable-isomorphism relation is the
+*definition* adopted here, not a theorem proved here: the tree contains no
+second definition of stable isomorphism to compare it against, so there is
+nothing to state.  What is checked is that the relation is an equivalence, that
+the block sum descends along it, and that the quotient is a commutative monoid.
+Should a lane later introduce a rival definition -- a padding-and-cancellation
+form, say -- the agreement becomes a real obligation and belongs in that lane.
 
 `reindex` is a genuine generator and not an instance of `mvn`: an `Equiv`
 `Fin m ≃ Fin n` forces `m = n`, and relabelling is then conjugation by a
