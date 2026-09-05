@@ -248,8 +248,8 @@ theorem exists_ge_joinedIn_prod (hclosed : ∀ i, IsClosed (S i : Set B)) (hmono
               * (((xs.map selfAdjoint.expUnitary).prod : unitary B) : B) := by
         have hcoe : ∀ u v : unitary B, ((u * v : unitary B) : B) = (u : B) * (v : B) :=
           fun _ _ => rfl
-        rw [hcoe, hcoe]
-        ring
+        rw [hcoe, hcoe, mul_sub, sub_mul]
+        abel
       rw [hkey]
       refine lt_of_le_of_lt (norm_add_le _ _) ?_
       rw [CStarRing.norm_coe_unitary_mul, CStarRing.norm_mul_coe_unitary]
