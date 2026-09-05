@@ -94,6 +94,42 @@ attribute [local instance] GroupApproximation.instSpectralPartialOrder
 theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit
 ```
 
+## 3b. ROOT WIRING PROPOSAL (for the lead; this lane does not touch the root)
+
+Computed from the actual `import` lines, not from memory, by
+`notes/lix-lane-reports/cs-endpoint-wiring.py` (walks `GroupApproximation/`, reads the
+leading `import GroupApproximation.…` block of every module, does a coloured
+DFS over the whole project graph, then a post-order over the closure of the
+named targets).
+
+* **Dangling project imports: 0.**  Every `import GroupApproximation.X` in the
+  tree has a source file behind it.
+* **Cycles in the whole `GroupApproximation/` import graph: 0**, checked
+  transitively (grey-node DFS), not by looking at neighbours — a probe is blind
+  to cycles because `lake` builds a DAG of what it can reach.
+* The root imports **none** of the ten modules below yet.
+
+Append in this order (dependencies first); `ProblemLIX` will add two more
+lines once `cs-simplicity` and `cs-limit` land, and this list is regenerated
+then:
+
+```
+import GroupApproximation.Analysis.SequentialGroupColimit
+import GroupApproximation.Analysis.CStarUnitaryComponent
+import GroupApproximation.Analysis.CStarMatrixBlockInclusion
+import GroupApproximation.Analysis.CStarKOne
+import GroupApproximation.Analysis.CStarKOneInjectivityCriterion
+import GroupApproximation.Analysis.LIXEndpointStatement
+import GroupApproximation.Analysis.CStarSymmetryComponent
+import GroupApproximation.KTheory.MatrixProjection
+import GroupApproximation.KTheory.BlockMoves
+import GroupApproximation.Analysis.CStarKOneWhitehead
+```
+
+`CStarKOneWhitehead` is the Whitehead lemma (`K₁` is abelian).  Nothing in the
+endpoint chain needs it — `not_k1Inj_of_hasWitness` never uses commutativity —
+so it can be wired separately or last.
+
 ## 4. TRAPS
 
 * **The brief's error list is stale.**  `fa86fdb1a` ("noncomputable K_1 and a
