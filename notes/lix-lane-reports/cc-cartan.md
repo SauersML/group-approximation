@@ -39,13 +39,11 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
-*(job counts recorded here as probes come back; a green claim without a job
-count is not a green claim)*
-
-## 2. AUTHORED, UNVERIFIED
+Reprobed 2026-09-05 (Sonnet continuation): all six owned modules build clean
+together, `Build completed successfully (1665 jobs)`.
 
 * `GroupApproximation/CharClass/AcyclicModels.lean` — the acyclic-models
-  theorem.  Contents:
+  theorem (uniqueness half).  Contents:
   * `homFamily`, `homotopyOfFamily` — repackage a degreewise family
     `s k : P_k ⟶ Q_{k+1}` plus the two homotopy identities as Mathlib's
     `Homotopy e 0` (generic preadditive `V`, reusable).
@@ -62,6 +60,48 @@ count is not a green claim)*
   * `NaturalHomotopy`, `NaturalHomotopy.homotopy`, `acyclicModelsHomotopy`,
     `acyclicModelsHomotopyApp` — the theorem and its packaging into Mathlib's
     `Homotopy` at each object (so `Homotopy.homologyMap_eq` applies).
+* `GroupApproximation/CharClass/AcyclicModelsContraction.lean` — the
+  `PositiveContraction` package (a chain homotopy of the identity to a map
+  vanishing in positive degrees) and its `exists_preimage` consequence, used by
+  both the tensor-acyclicity file and directly by any model complex that comes
+  with an explicit contraction.
+* `GroupApproximation/CharClass/AcyclicModelsExistence.lean` — the
+  acyclic-models theorem, **existence half**: `Augmentation`,
+  `AcyclicZeroOnModels`, and `acyclicModelsMap`/`acyclicModelsMap_zero`,
+  extending a natural degree-0 map compatible with augmentations to a natural
+  chain map.  Needed by anyone constructing a comparison map `Φ` rather than
+  just comparing two already-given ones.
+* `GroupApproximation/CharClass/AcyclicModelsTensor.lean` — **acyclicity of a
+  tensor product** in the only form ever needed: if `𝟙 C` and `𝟙 D` are each
+  homotopic to a map vanishing in positive degrees, so is `𝟙 (C ⊗ D)` (Mathlib's
+  `HomologicalComplex.mapBifunctor` for the tensor bifunctor).
+  `tensorCx_exists_preimage` is the resulting `AcyclicOnModels`-shaped
+  conclusion for `C ⊗ D`.  This is the generic tool that "acyclicity of the
+  tensor square of the singular chains of a simplex" instantiates once someone
+  supplies the concrete contraction of `S(Δ^n)` (see NEEDS/TRAPS below — that
+  concrete contraction does not exist anywhere in the repo yet).
+* `GroupApproximation/CharClass/AcyclicModelsHomology.lean` — the bridge from
+  "the homology of a model complex vanishes in positive degree" (the form a
+  vanishing-homology theorem naturally supplies) to the element-level
+  `AcyclicOnModels` hypothesis, via `HomologicalComplex.exactAt_iff_isZero_homology`
+  and `ShortComplex.moduleCat_exact_iff`.  This is the *other* route to
+  acyclicity, independent of `AcyclicModelsTensor.lean`'s explicit-contraction
+  route — useful when only a homology computation, not an explicit homotopy,
+  is in hand.
+* `GroupApproximation/CharClass/Cartan.lean` — the two peer-agnostic pieces of
+  the Cartan formula (see the file's own docstring, reproduced accurately
+  above the code): the cochain consequences of a natural homotopy
+  (`NaturalHomotopy.cochain_succ/cochain_zero`), the `DiagonalComparison`
+  package wrapping the acyclic-models hypotheses plus two natural
+  transformations agreeing in degree 0, and — the part that does **not**
+  depend on any construction of `Φ` at all — `sq_mul_of_sq_cross` /
+  `sq_mul_of_sq_cross'`, which derive the cup-product Cartan formula formally
+  from the cross-product one.
+
+## 2. AUTHORED, UNVERIFIED
+
+Nothing.  Every declaration in the six owned modules is covered by the green
+probe above.
 
 ## 3. NEEDS
 
@@ -100,6 +140,41 @@ theorem sq_cup_of_cross :   -- the last mile is mine, this is the input
     ∀ {X Y : TopCat.{0}} (a : H^p X) (b : H^q Y) (k : ℕ),
       Sq k (cross a b) = ∑ i ∈ Finset.range (k+1), cross (Sq i a) (Sq (k - i) b)
 ```
+
+**Status 2026-09-05 (Sonnet continuation):** `Cartan.lean`'s `sq_mul_of_sq_cross`
+already takes exactly `sq_cup_of_cross`'s hypothesis (as `hcart`) and derives the
+cup-product formula, so *that* reduction is done and green — nothing further
+needed from anyone for it.  I re-confirmed with `cc-steenrod-s` (message sent)
+that I want the Finsupp-valued `steenrodDiag` (their report, §"Explicit `Φ`")
+exported with its boundary identity, to build the functor-level `Φ` myself.
+
+**Finding, for the lead and both lanes: the concrete `Φ` is much bigger than a
+wiring step.**  I checked whether the *linearized* Alexander–Whitney/
+Eilenberg–Zilber chain map `Δ : C_•(X) → C_•(X) ⊗ C_•(X)` (or its product
+variant `C_•(X×Y) → C_•(X) ⊗ C_•(Y)`) exists anywhere already — vendored tree
+or Mathlib at `81a5d257` — since either would be the natural scaffold to hang
+`steenrodDiag` on.  It does not.
+`ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/AlexanderWhitney.lean`
+builds only the **object-level** (unlinearized) front/back-face data
+(`awPair`, `frontSimplex`, `backSimplex`) and its own docstring names the
+linearization into a genuine chain map as "the remaining blocker" — nobody has
+built it, in either direction.  So even with `steenrodDiag` in hand, assembling
+the actual functor `Φ : W ⊗ S(-×-) ⟶ (S(-) ⊗ S(-))^{⊗2}` needs, from scratch:
+the periodic resolution `W` (cheap: mod 2, `1 - T ≡ 1 + T`, so the classical
+`⋯ → Λ →^{1-T} Λ →^{1+T} Λ` resolution of `ZMod 2` over `Λ = (ZMod 2)[ℤ/2]`
+collapses to *one* repeated differential — a small, self-contained
+`ChainComplex.of` construction, independent of everything below), the
+Eilenberg–Zilber comparison for a literal product of two different spaces, and
+the verification that evaluating the two sides against a cocycle pair
+reproduces the cross-Cartan sum on the nose.  That is comparable in size to a
+full lane's remaining budget, not a small bridge, and building it myself would
+both duplicate what `cc-steenrod` explicitly declined (for good reason — cost)
+and carry real risk of not finishing cleanly under remote-only, one-probe-at-a-
+time iteration.  I am not attempting it in this session; the six owned modules
+are green and stable regardless, and I will consume `steenrodDiag` the moment
+it lands.  The `W` construction above is cheap enough that I would take it on
+if either lane or the lead wants it split out as a separate, well-defined unit
+of work — say so in this file or by message.
 
 ### For `cc-cohom-api` — graded commutativity comes free, do not wait for me
 
