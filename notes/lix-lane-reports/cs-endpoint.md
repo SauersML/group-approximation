@@ -132,6 +132,36 @@ so it can be wired separately or last.
 
 ## 4. TRAPS
 
+* **The first `ccprobe.sh` run on a fresh clone always fails, and it exits 0.**
+  On a fresh clone the rsync itemizes the whole tree as changed, so the
+  script's `$RM` accumulates four artifact paths per module for ~1300 modules
+  and the remote command line exceeds `ARG_MAX`:
+
+  ```
+     cloned in 746s
+  ==> changed since last sync:   (1300 files)
+  ==> lake build …
+  ccprobe.sh: line 40: /Users/user/msi-node/msi: Argument list too long
+  [exited with code 0]
+  ```
+
+  No build runs, no `Build completed successfully` line appears, and the exit
+  status is **zero** — so a lane checking only the exit code sees a pass.
+  The rerun then failed differently: `$CHANGED` carries newlines and was
+  interpolated into a double-quoted remote command, where a newline ends the
+  `for` list, so any sync touching more than one module died with
+  `syntax error near unexpected token`.  In a shared checkout with thirteen
+  lanes writing, every sync touches more than one module.
+
+  **Both are fixed upstream.**  The lead's `ccprobe.sh` now ships the changed
+  list as a file (`cc-changed.txt`) and clears artifacts remotely from it,
+  syncs by content (`rsync -c`), and exits non-zero unless the log contains
+  `Build completed successfully`.  Recorded because the two failure modes cost
+  a clone cycle each and because the first one is invisible to an exit-code
+  check.
+* **The clone is the bottleneck, not the build.**  Nine lanes ran `cp -al` of
+  the same 25 GB tree at once; this lane's took 746 s and round 1 cost about
+  35 minutes wall clock.
 * **The brief's error list is stale.**  `fa86fdb1a` ("noncomputable K_1 and a
   hand-rolled expansion") already carries a `noncomputable section` in
   `CStarKOne.lean`, so the five "consider marking it as noncomputable" lines
