@@ -3731,6 +3731,8 @@ import GroupApproximation.CharClass.LerayHirschChartClassIso
 import GroupApproximation.CharClass.ChernRootSection
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.CartanTermCases
+import GroupApproximation.CharClass.CartanReindex
+import GroupApproximation.CharClass.RelativeSubspaceIso
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
 import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
