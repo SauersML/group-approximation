@@ -58,8 +58,10 @@ variable {X : TopCat.{0}}
 /-- In a module over `ZMod 2` every element is its own additive inverse. -/
 theorem add_self_eq_zero_two {M : Type*} [AddCommGroup M] [Module (ZMod 2) M] (x : M) :
     x + x = 0 := by
+  have hs : ((1 : ZMod 2) + 1) = 0 := by decide
   have h : ((1 : ZMod 2) + 1) • x = (1 : ZMod 2) • x + (1 : ZMod 2) • x := add_smul _ _ _
-  simpa using h.symm
+  rw [hs, zero_smul, one_smul] at h
+  exact h.symm
 
 theorem neg_eq_self_two {M : Type*} [AddCommGroup M] [Module (ZMod 2) M] (x : M) : -x = x := by
   have h := add_self_eq_zero_two x

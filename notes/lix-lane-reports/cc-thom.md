@@ -73,10 +73,13 @@ theorem isZero_cohomology_of_cover (U V : Opens X) (hUV : U ⊔ V = ⊤) (m : �
 /-- Naturality in a map of covered spaces (not yet written). -/
 theorem mvDelta_naturality  … ; mvResU_naturality … (shapes to follow)
 
-/-- `H^*(X)`-linearity of the connecting map, for a global class `b`. -/
+/-- `H^*(X)`-linearity of the connecting map, for a global class `b`.  This is the
+    δ-square of `LerayHirschAlgebra.bijective_of_ladder`, whose squares are
+    `∀ a, φ (f a) = g (φ a)` with the verticals `cup · b`; the degree cast is
+    `p + q + 1 = p + 1 + q`. -/
 theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmod2 X q) :
-    (mvDelta U V hUV (p + q)).hom (cup a (pull (mvInterIncl U V) q b))
-      = cup ((mvDelta U V hUV p).hom a) b        -- up to the single degree cast
+    (mvDelta U V hUV (p + q)).hom (cup a (pull (inclSubtype _) q b))
+      = cohCast (by omega) (cup ((mvDelta U V hUV p).hom a) b)
 end GroupApproximation.CharClass
 ```
 
