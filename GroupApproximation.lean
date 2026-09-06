@@ -3732,6 +3732,7 @@ import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
 import GroupApproximation.CharClass.ChernRootSection
 import GroupApproximation.CharClass.CupVanishCochain
+import GroupApproximation.CharClass.CupVanishSmallAnn
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.BundleSplitCover
 import GroupApproximation.CharClass.CartanTermCases
