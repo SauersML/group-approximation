@@ -95,6 +95,18 @@ Chern classes and the Euler class
 * `LerayHirschChartClass` (8887) — **the class identification**, and with it
   `LHOver_two_chart_of_trivialization`, the chart step with nothing left open.
   `tautEuler p` is the class `ξ`.  Every transport is `rfl`.
+* `LerayHirschPlusOneClosed` (8892) — **Leray–Hirsch for `P(L ⊕ 1)`, unconditional**.
+  `H^*(P(L ⊕ 1))` is free over `H^*(X)` on `1` and the Euler class of the
+  tautological line, any line bundle, any base, no compactness.  Item 3, first half.
+* `GysinRanged` (2058) — the Gysin step at one degree, hypotheses named rather than
+  bundled.  `GysinData.pair_bijective` asks for every degree and is *false* for this
+  bundle; the proof only ever used degrees `2` through `2d`.
+* `GysinSphere` (8792) — `unitVectors (Fin (d+1))` has the cohomology of `S^{2d+1}`,
+  for every `d`, in five lines.  Route through the *punctured* space, not the sphere:
+  the `WithLp` seam is then crossed by a linear equivalence that need only preserve
+  being nonzero.  The 153-line `n = 3` isometry in `LIXStepESphereModel` is avoidable.
+* `GysinPairTaut` (8810) — **the pair condition in the Gysin range**, `2m+2` for
+  `m < d`.  It genuinely fails at both ends.
 
 ## AUTHORED-UNVERIFIED
 
@@ -102,9 +114,17 @@ None.  Everything in the lane is probed green and pushed.
 
 ## NEEDS
 
-0. **Nothing.**  The class identification is green and pushed (689aef370); the chart
-   step no longer has an open hypothesis.  Remaining work in the lane is mine:
-   the `GysinData` assembly, the ring, `CPGenHyp`, then the slice class and Whitney.
+0. **cc-bundle, two facts, for the last two Gysin fields.**  Requested with shapes.
+   Everything else in the Gysin datum is now green.  The two are the restriction of
+   the tautological line to each piece: on the chart the zero section pulls it back
+   to a trivial line, so its Euler class dies; on the complement of the zero section
+   `tautRestrictIso` reduces it to `tautLine p`, and what is missing is that for a
+   rank-one `p` that *is* `p`, transported along `projRankOneHomeo`.  A third, that
+   `projInclNotZero` is the homotopy inverse the retraction inverts, would save me a
+   homotopy.  Nothing else is blocked.
+
+   After they land: `rA`/`rB`, then `GysinRanged` gives `CPGenHyp`, then the ring,
+   then the slice class and Whitney.
 
    *Not mine, but it will red the root for everyone:* `dupscan` reports four
    fully-qualified duplicates, `slotOne`..`slotFour`, declared in both
