@@ -640,9 +640,97 @@ a single wave rather than four independent events: the two lanes built the same
 fourfold-comparison layer under two prefixes.
 
 Ownership above is read from the leading lane token of each module's commit
-subjects.  `LIXChernSliceValueBridge` is attributed to `cc-projective` on
-`cc-steenrod`'s own account of the pair in row 14; the commit subject there names
-no lane, so that one row rests on a peer's statement rather than on the log.
+subjects.  `LIXChernSliceValueBridge` names no lane in its subject; it is
+`cc-projective`'s, recorded from the board at `3f50a8dde`, batch 180.
 
 Nothing was edited.  Retirement is the lead's to assign, after the endpoint and
 under rule 11.
+
+## 11. Repeated final names in `CharClass` (report only, assigned by the lead)
+
+Same export, same parser.  A group is listed when two or more declarations have
+different **full** names whose last component agrees.  **44 groups**, not the 40 I
+first reported: that count came from a pass whose declaration regex excluded `.`,
+so a dotted declaration such as `theorem Bundle.ext` was recorded under the name
+`Bundle`.  The corrected pass is the one tabled here.
+
+**No two declarations share a full name.**  That is the check worth stating: a
+genuine duplicate declaration would red the root, and there is none.
+
+"Co-open" says whether some module in `CharClass` has both namespaces in scope at
+once, by `open` or by being inside one of them.  That is the condition under which
+the short name is ambiguous and the failure is a type error far from the name,
+which is the shape `cc-cohom-api` and `cc-steenrod` hit with `southPole`.  A group
+with co-open "no" costs nothing today and only matters if some future module opens
+both.
+
+Many groups are structure projections — `.wu`, `.congr`, `.ext`, `.gamma`,
+`.gamma_top_eq_zero` — where the structure namespace is doing exactly its job.
+Those are marked so and are not retirement candidates.
+
+| final name | used | kind | co-open | members (module :: full name) |
+|---|---|---|---|---|
+| `ext` *(structure projection)* | 64 | same | yes | `BundleBasic` :: `GroupApproximation.CharClass.Bundle.ext` (theorem, imp 4)<br>`CartanFourfold` :: `GroupApproximation.CharClass.FreeCxHom.ext` (theorem, imp 3)<br>`ProjectiveSpaceBasic` :: `GroupApproximation.CharClass.CPn.ext` (theorem, imp 1)<br>`SteenrodDiagonalTarget` :: `GroupApproximation.CharClass.Steenrod.PairDeg.ext` (theorem, imp 3) |
+| `homotopy` *(structure projection)* | 56 | same | no | `AcyclicModels` :: `GroupApproximation.CharClass.NaturalHomotopy.homotopy` (def, imp 8)<br>`Cartan` :: `GroupApproximation.CharClass.DiagonalComparison.homotopy` (def, imp 1) |
+| `wu` *(structure projection)* | 30 | same | no | `SqDataInstance` :: `GroupApproximation.CharClass.Wu.SplittingData.wu` (theorem, imp 5)<br>`SqDataInstance` :: `GroupApproximation.CharClass.Wu.HasSplitting.wu` (theorem, imp 5) |
+| `congr` *(structure projection)* | 29 | same | no | `ThomPuncturedPi` :: `GroupApproximation.CharClass.PuncturedAcyclic.congr` (theorem, imp 2)<br>`ThomTopLine` :: `GroupApproximation.CharClass.HasTopLine.congr` (theorem, imp 1) |
+| `puncturedSet` | 18 | **mixed** | yes | `BundleSpace` :: `GroupApproximation.CharClass.Bundle.puncturedSet` (def, imp 5)<br>`RelativeLocalModel` :: `GroupApproximation.CharClass.puncturedSet` (abbrev, imp 5) |
+| `cohCast_zero` | 17 | same | yes | `CohomologyBasic` :: `GroupApproximation.CharClass.cohCast_zero` (theorem, imp 6)<br>`CohomologyKunnethStep` :: `GroupApproximation.CharClass.KnHemi.cohCast_zero` (theorem, imp 2) |
+| `cpTaut` | 16 | same | yes | `BundleSpace` :: `GroupApproximation.CharClass.cpTaut` (def, imp 5)<br>`CohomologyChartRankTwoInterface` :: `GroupApproximation.CharClass.KnCP.cpTaut` (def, imp 2) |
+| `gamma` *(structure projection)* | 16 | same | no | `LerayHirschDegree` :: `GroupApproximation.CharClass.LerayHirschGraded.gamma` (def, imp 2)<br>`WuDiagonal` :: `GroupApproximation.CharClass.SqData.gamma` (def, imp 1) |
+| `WSIndex` | 13 | same | yes | `CartanDiagonalModule` :: `GroupApproximation.CharClass.WSIndex` (abbrev, imp 3)<br>`SteenrodDiagonalLambda` :: `GroupApproximation.CharClass.Steenrod.WSIndex` (abbrev, imp 1) |
+| `compA` | 9 | same | yes | `CartanComposeA` :: `GroupApproximation.CharClass.compA` (def, imp 3)<br>`SteenrodFourfoldA` :: `GroupApproximation.CharClass.Steenrod.compA` (def, imp 1) |
+| `pull_cohCast` | 9 | same | no | `CohomologyKunnethSurj` :: `GroupApproximation.CharClass.KnHemi.pull_cohCast` (theorem, imp 1)<br>`LerayHirschSquares` :: `GroupApproximation.CharClass.LH.pull_cohCast` (theorem, imp 2) |
+| `chartSet` | 6 | same | yes | `BundleChart` :: `GroupApproximation.CharClass.Bundle.chartSet` (def, imp 1)<br>`ProjectiveSpaceChart` :: `GroupApproximation.CharClass.CPn.chartSet` (def, imp 4) |
+| `awHom` | 3 | same | yes | `CartanComposeA` :: `GroupApproximation.CharClass.awHom` (def, imp 3)<br>`SteenrodFourfoldA` :: `GroupApproximation.CharClass.Steenrod.awHom` (def, imp 1) |
+| `dTgt_smul` | 3 | same | yes | `CartanTargetEquivariance` :: `GroupApproximation.CharClass.dTgt_smul` (theorem, imp 2)<br>`SteenrodTargetLinear` :: `GroupApproximation.CharClass.Steenrod.dTgt_smul` (theorem, imp 1) |
+| `inclMat` | 2 | same | yes | `BundleChart` :: `GroupApproximation.CharClass.Bundle.inclMat` (def, imp 1)<br>`ProjectiveSpaceHyperplane` :: `GroupApproximation.CharClass.CPn.inclMat` (def, imp 2) |
+| `chartVec` | 2 | same | yes | `BundleChart` :: `GroupApproximation.CharClass.Bundle.chartVec` (def, imp 1)<br>`ProjectiveSpaceChart` :: `GroupApproximation.CharClass.CPn.chartVec` (def, imp 4) |
+| `chartCP` | 2 | same | yes | `BundleChartTaut` :: `GroupApproximation.CharClass.Bundle.chartCP` (def, imp 1)<br>`LerayHirschChartClass` :: `GroupApproximation.CharClass.LH.chartCP` (def, imp 2) |
+| `rankOneProj_mulVec` | 2 | same | yes | `BundleLineTriv` :: `GroupApproximation.CharClass.Bundle.rankOneProj_mulVec` (theorem, imp 4)<br>`ProjectiveSpaceHomogeneous` :: `GroupApproximation.CharClass.CPn.rankOneProj_mulVec` (theorem, imp 1) |
+| `conj_rankOneProj` | 2 | same | yes | `BundleRankOne` :: `GroupApproximation.CharClass.conj_rankOneProj` (theorem, imp 1)<br>`ProjectiveSpaceHomogeneous` :: `GroupApproximation.CharClass.CPn.conj_rankOneProj` (theorem, imp 1) |
+| `interHomotopyEquivSphere` | 1 | same | yes | `BundleGysinPieces` :: `GroupApproximation.CharClass.Bundle.interHomotopyEquivSphere` (def, imp 4)<br>`ProjectiveSpaceSphere` :: `GroupApproximation.CharClass.CPn.interHomotopyEquivSphere` (def, imp 1) |
+| `restrictTo` | 1 | same | yes | `BundleLocal` :: `GroupApproximation.CharClass.Bundle.restrictTo` (def, imp 6)<br>`CohomologyBridge` :: `GroupApproximation.CharClass.restrictTo` (def, imp 5) |
+| `pairPush` | 1 | same | yes | `CartanMidFourNat` :: `GroupApproximation.CharClass.pairPush` (def, imp 1)<br>`SteenrodDiagonalLambda` :: `GroupApproximation.CharClass.Steenrod.pairPush` (def, imp 1) |
+| `mvCxInclV_comp_g` | 1 | same | yes | `CohomologyDeltaChain` :: `GroupApproximation.CharClass.MVDelta.mvCxInclV_comp_g` (theorem, imp 1)<br>`MayerVietorisPull` :: `GroupApproximation.CharClass.mvCxInclV_comp_g` (theorem, imp 2) |
+| `mvResV_pull_knPrY` | 1 | same | yes | `CohomologyKunnethSurjHelp` :: `GroupApproximation.CharClass.mvResV_pull_knPrY` (theorem, imp 1)<br>`CohomologyKunnethSurjZero` :: `GroupApproximation.CharClass.KnZero.mvResV_pull_knPrY` (theorem, imp 1) |
+| `component_of_mul` | 1 | same | no | `CohomologyParityKunneth` :: `GroupApproximation.CharClass.KnTwo.component_of_mul` (theorem, imp 1)<br>`SqDataInstance` :: `GroupApproximation.CharClass.Wu.component_of_mul` (theorem, imp 5) |
+| `bijective_cupRight` *(structure projection)* | 1 | same | no | `GysinFromLerayHirsch` :: `GroupApproximation.CharClass.GysinData.bijective_cupRight` (theorem, imp 4)<br>`ProjectiveSpaceRing` :: `GroupApproximation.CharClass.GysinSequence.bijective_cupRight` (theorem, imp 9) |
+| `continuous_chartVec` | 0 | same | yes | `BundleChart` :: `GroupApproximation.CharClass.Bundle.continuous_chartVec` (theorem, imp 1)<br>`ProjectiveSpaceChart` :: `GroupApproximation.CharClass.CPn.continuous_chartVec` (theorem, imp 4) |
+| `scaleHomotopy` | 0 | same | yes | `BundleHomotopy` :: `GroupApproximation.CharClass.Bundle.scaleHomotopy` (def, imp 1)<br>`ProjectiveSpaceRetract` :: `GroupApproximation.CharClass.CPn.scaleHomotopy` (def, imp 1) |
+| `instCompactSpace` *(structure projection)* | 0 | same | no | `BundleSpace` :: `GroupApproximation.CharClass.Bundle.Sphere.instCompactSpace` (instance, imp 5)<br>`BundleSpace` :: `GroupApproximation.CharClass.Bundle.Proj.instCompactSpace` (instance, imp 5)<br>`LIXBaseInstances` :: `GroupApproximation.CharClass.sphereOne.instCompactSpace` (instance, imp 3)<br>`LIXBaseInstances` :: `GroupApproximation.CharClass.unitVectorsThree.instCompactSpace` (instance, imp 3) |
+| `cochain_succ` *(structure projection)* | 0 | **mixed** | no | `Cartan` :: `GroupApproximation.CharClass.NaturalHomotopy.cochain_succ` (lemma, imp 1)<br>`Cartan` :: `GroupApproximation.CharClass.DiagonalComparison.cochain_succ` (theorem, imp 1) |
+| `cochain_zero` *(structure projection)* | 0 | **mixed** | no | `Cartan` :: `GroupApproximation.CharClass.NaturalHomotopy.cochain_zero` (lemma, imp 1)<br>`Cartan` :: `GroupApproximation.CharClass.DiagonalComparison.cochain_zero` (theorem, imp 1) |
+| `singHom_single` | 0 | same | yes | `CartanMidFourNat` :: `GroupApproximation.CharClass.singHom_single` (theorem, imp 1)<br>`SteenrodFourfoldA` :: `GroupApproximation.CharClass.Steenrod.singHom_single` (theorem, imp 1) |
+| `linearCombination_add_fun` | 0 | same | yes | `CartanSourceComplex` :: `GroupApproximation.CharClass.linearCombination_add_fun` (theorem, imp 1)<br>`SteenrodFourfoldBChainMap` :: `GroupApproximation.CharClass.Steenrod.linearCombination_add_fun` (theorem, imp 1) |
+| `pushSimplex_faceSimplex` | 0 | same | yes | `CartanTargetFunctorial` :: `GroupApproximation.CharClass.pushSimplex_faceSimplex` (theorem, imp 1)<br>`SteenrodChainMapNat` :: `GroupApproximation.CharClass.Steenrod.pushSimplex_faceSimplex` (theorem, imp 3) |
+| `lineEulerOf_pushforward` | 0 | same | yes | `ChernLineEulerNatural` :: `GroupApproximation.CharClass.LH.lineEulerOf_pushforward` (theorem, imp 0)<br>`SliceLineEulerPush` :: `GroupApproximation.CharClass.lineEulerOf_pushforward` (theorem, imp 0) |
+| `sndMap` | 0 | **mixed** | yes | `CohomologyBridge` :: `GroupApproximation.CharClass.sndMap` (abbrev, imp 5)<br>`RelativeProdContractible` :: `GroupApproximation.CharClass.RelativeSupport.sndMap` (def, imp 1) |
+| `lhDomainCard_le` | 0 | same | yes | `CohomologyLHRingPieces` :: `GroupApproximation.CharClass.LHCast.lhDomainCard_le` (theorem, imp 1)<br>`LerayHirschBridge` :: `GroupApproximation.CharClass.LH.lhDomainCard_le` (theorem, imp 3) |
+| `instNonempty` *(structure projection)* | 0 | same | no | `LIXBaseInstances` :: `GroupApproximation.CharClass.sphereOne.instNonempty` (instance, imp 3)<br>`LIXBaseInstances` :: `GroupApproximation.CharClass.unitVectorsThree.instNonempty` (instance, imp 3) |
+| `rank_vBundleY_lixRank` | 0 | same | yes | `LIXChernSliceValueBridge` :: `GroupApproximation.CharClass.LH.rank_vBundleY_lixRank` (theorem, imp 1)<br>`SliceSplitV` :: `GroupApproximation.CharClass.rank_vBundleY_lixRank` (theorem, imp 0) |
+| `gamma_top_eq_zero` *(structure projection)* | 0 | same | no | `LemmaTwoParity` :: `GroupApproximation.CharClass.LIXParityInput.gamma_top_eq_zero` (theorem, imp 2)<br>`LemmaTwoStepD` :: `GroupApproximation.CharClass.WuStepDData.gamma_top_eq_zero` (theorem, imp 1)<br>`LemmaTwoStepDLix` :: `GroupApproximation.CharClass.WuStepDLix.gamma_top_eq_zero` (theorem, imp 2)<br>`ParityEven` :: `GroupApproximation.CharClass.ParityData.gamma_top_eq_zero` (theorem, imp 2) |
+| `gamma_zero` *(structure projection)* | 0 | same | no | `LerayHirschDegree` :: `GroupApproximation.CharClass.LerayHirschGraded.gamma_zero` (theorem, imp 2)<br>`WuDiagonal` :: `GroupApproximation.CharClass.SqData.gamma_zero` (theorem, imp 1) |
+| `of_linearEquiv` *(structure projection)* | 0 | same | no | `ProjectiveSpaceCohomology` :: `GroupApproximation.CharClass.HasPointCohomology.of_linearEquiv` (theorem, imp 6)<br>`ProjectiveSpaceCohomology` :: `GroupApproximation.CharClass.HasSphereCohomology.of_linearEquiv` (theorem, imp 6)<br>`ProjectiveSpaceCohomology` :: `GroupApproximation.CharClass.HasCPCohomology.of_linearEquiv` (theorem, imp 6) |
+| `ne_zero_of_surjective_of_linearEquiv` | 0 | same | yes | `ThomFieldTwo` :: `GroupApproximation.CharClass.ne_zero_of_surjective_of_linearEquiv` (theorem, imp 1)<br>`ThomFieldTwo` :: `GroupApproximation.CharClass.ModuleCat.ne_zero_of_surjective_of_linearEquiv` (theorem, imp 1) |
+| `congrHomotopy` *(structure projection)* | 0 | same | no | `ThomProjectivePunctured` :: `GroupApproximation.CharClass.KunnethFactor.congrHomotopy` (theorem, imp 1)<br>`ThomTopLine` :: `GroupApproximation.CharClass.HasTopLine.congrHomotopy` (theorem, imp 1) |
+
+Four groups pair two different **kinds**: `puncturedSet` (a `def` in `Bundle`
+against an `abbrev` in `CharClass`, co-open), `sndMap` (an `abbrev` against a
+`def`, co-open), and `cochain_succ` and `cochain_zero` (a `lemma` against a
+`theorem`, both in `Cartan`, not co-open).
+
+Two families account for most of the co-open risk, and both are the same story as
+the content duplicates in section 10.  `Bundle` against `CPn` supplies `chartSet`,
+`chartVec`, `inclMat`, `continuous_chartVec`, `scaleHomotopy`,
+`rankOneProj_mulVec`, `interHomotopyEquivSphere` and `cpTaut`, all co-open in
+`ChernSplitRelation`; the projective space and the projective bundle were built
+with one vocabulary under two namespaces.  `CharClass` against `Steenrod` supplies
+`WSIndex`, `compA`, `awHom`, `dTgt_smul`, `pairPush`, `singHom_single`,
+`linearCombination_add_fun` and `pushSimplex_faceSimplex`, all co-open in
+`SteenrodChainMap`; that is the same `Cartan`-against-`Steenrod` wave.
+
+`LIXChernSliceValueBridge` is `cc-projective`'s, recorded from the board at
+`3f50a8dde`, batch 180; section 10's row 14 is corrected accordingly.
+
+Nothing was edited.
