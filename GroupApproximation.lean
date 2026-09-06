@@ -3733,6 +3733,7 @@ import GroupApproximation.CharClass.LerayHirschChartTautGen
 import GroupApproximation.CharClass.CohomologyLHRingComponent
 import GroupApproximation.CharClass.LIXStepCOddNamed
 import GroupApproximation.CharClass.LemmaTwoStaged
+import GroupApproximation.CharClass.LIXLocalPairClosed
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
 import GroupApproximation.CharClass.ChernRootSection
