@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 33 modules; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 34 modules; `BundleChartTaut` at 8675 jobs; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,30 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleChartTaut.lean` — the chart carries the tautological line, at EVERY rank
+
+```lean
+noncomputable def chartFrame (q) (x₀) (d) (hr) : Matrix ι (Fin (d + 1)) ℂ
+noncomputable def chartCP (q) (x₀) (V) (hV) (d) (hr) : C(Proj (q.restrictTo V), CP d)
+theorem chartCP_coe                                    -- the matrix, in closed form
+noncomputable def tautLineIsoChartCP (q) (x₀) (V) (hV) (d) (hr) :
+    BundleIso (tautLine (q.restrictTo V)) (comap (chartCP q x₀ V hV d hr) (cpTaut d))
+theorem frame_conj_mulVec / base_mulVec_fixed / frame_mulVec_ne_zero
+theorem conjNormalize_mulVec_self
+```
+
+The rank-`r` analogue of `tautLineIsoCPOne`.  **I twice told a consumer this had
+the same obstruction as a general local `BundleIso`.  It does not.**  The
+obstruction there is needing a partial isometry, and `lineIntertIso` removes it,
+because the **tautological line is rank one whatever the rank of the bundle
+is**.  So the rank-one gadget applies at every rank and no polar decomposition
+is needed anywhere.
+
+The intertwiner is the compression of `intert` by the standard frame,
+`A = Wᴴ · intert`.  **The frame was never inaccessible**: `stdFrame` is a named
+`def`, the `.choose` of the existence lemma, with both properties exported, so
+`A` is writable.  Describing it as existential was my error.
 
 ### `BundleProjInclRange.lean` — `P(p)` as a SUBSET of `P(p ⊕ 1)`
 
