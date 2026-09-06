@@ -109,6 +109,81 @@ theorem mvResU_eq_pull (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
   congr 1
   exact hom_apply_of_comp_eq hA _
 
+/-! ## The `V` twin
+
+Identical, with `biprod.inr_desc` in place of `biprod.inl_desc`.  There is no sign to
+absorb: the minus of the chain-level Mayer–Vietoris lives in `mvLeftChainMap`, which is
+`g`, and this is the `f` side. -/
+
+/-- The `V` twin of `subChainCorestrict_comp_toAll`. -/
+theorem subChainCorestrict_comp_toAllV (U V : Opens X) (hUV : U ⊔ V = ⊤) :
+    subChainCorestrict (ZMod 2) X (V : Set X)
+        ≫ (mvInclV_small (ZMod 2) U V hUV
+            ≫ smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))
+      = chainCxFun.map (sInclusion (V : Set X)) := by
+  apply HomologicalComplex.hom_ext
+  intro n
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro c
+  rfl
+
+/-- The `V` twin of `f_comp_mvCxProjU`. -/
+theorem f_comp_mvCxProjV (U V : Opens X) (hUV : U ⊔ V = ⊤) :
+    (mvCoSC U V hUV).f ≫ mvCxProjV U V = dualMap2 (mvInclV_small (ZMod 2) U V hUV) := by
+  show dualMap2 (mvRightChainMap (ZMod 2) U V hUV)
+      ≫ dualMap2 (biprod.inr (X := mvCx U) (Y := mvCx V)) = _
+  rw [mvDualMap_comp]
+  congr 1
+  exact biprod.inr_desc _ _
+
+/-- **The Mayer–Vietoris restriction to the second piece is the honest pullback.**
+`cc-projective` uses this for stability of the degree-two generator along the hyperplane
+inclusion, hence for invariance of the Euler class under isomorphism of line bundles. -/
+theorem mvResV_eq_pull (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    mvResV U V hUV n = cohPullback (sInclusion (V : Set X)) n := by
+  have hA : HomologicalComplex.homologyMap (mvCoSC U V hUV).f n ≫ mvHProjV U V n
+      = HomologicalComplex.homologyMap (dualMap2 (mvInclV_small (ZMod 2) U V hUV)) n := by
+    have hc := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
+      (f_comp_mvCxProjV U V hUV)
+    simp only [HomologicalComplex.homologyMap_comp] at hc
+    exact hc
+  have hB : dualMap2 (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))
+        ≫ dualMap2 (mvInclV_small (ZMod 2) U V hUV)
+        ≫ dualMap2 (subChainCorestrict (ZMod 2) X (V : Set X))
+      = dualMap2 (chainCxFun.map (sInclusion (V : Set X))) := by
+    rw [← Category.assoc, mvDualMap_comp, mvDualMap_comp]
+    exact congrArg (fun φ => dualMap2 φ) (subChainCorestrict_comp_toAllV U V hUV)
+  have hBh : HomologicalComplex.homologyMap
+        (dualMap2 (smallChainsInclusion (ZMod 2) X (twoSetCover U V hUV))) n
+      ≫ (HomologicalComplex.homologyMap (dualMap2 (mvInclV_small (ZMod 2) U V hUV)) n
+          ≫ HomologicalComplex.homologyMap
+              (dualMap2 (subChainCorestrict (ZMod 2) X (V : Set X))) n)
+      = HomologicalComplex.homologyMap
+          (dualMap2 (chainCxFun.map (sInclusion (V : Set X)))) n := by
+    have hc := congrArg (fun φ => HomologicalComplex.homologyMap φ n) hB
+    simp only [HomologicalComplex.homologyMap_comp] at hc
+    exact hc
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  have hBx : (subCxDualHomologyIso (V : Set X) n).hom.hom
+        ((HomologicalComplex.homologyMap (dualMap2 (mvInclV_small (ZMod 2) U V hUV)) n).hom
+          ((mvAmbientIso U V hUV n).inv.hom x))
+      = (HomologicalComplex.homologyMap
+          (dualMap2 (chainCxFun.map (sInclusion (V : Set X)))) n).hom x := by
+    have h := hom_apply_of_comp_eq hBh x
+    rw [hom_apply_comp] at h
+    exact h
+  show (subCxDualHomologyIso (V : Set X) n).hom.hom ((mvHProjV U V n).hom
+      ((HomologicalComplex.homologyMap (mvCoSC U V hUV).f n).hom
+        ((mvAmbientIso U V hUV n).inv.hom x)))
+    = (HomologicalComplex.homologyMap
+        (dualMap2 (chainCxFun.map (sInclusion (V : Set X)))) n).hom x
+  rw [← hBx]
+  congr 1
+  exact hom_apply_of_comp_eq hA _
+
 end
 
 end GroupApproximation.CharClass
