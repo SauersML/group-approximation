@@ -230,6 +230,23 @@ def plusOne (p : Bundle X ι) : Bundle X (ι ⊕ Unit) := blockSum p (triv X Uni
 theorem plusOne_apply (p : Bundle X ι) (x : X) :
     p.plusOne x = Matrix.fromBlocks (p x) 0 0 1 := rfl
 
+/-- Adding a trivial line adds one to the trace. -/
+theorem trace_plusOne (p : Bundle X ι) (x : X) :
+    (p.plusOne x).trace = (p x).trace + 1 := by
+  rw [plusOne, trace_blockSum, triv_apply, Matrix.trace_one]
+  simp
+
+/-- **Adding a trivial line adds one to the rank.**  So the projective
+completion `P(p ⊕ 1)` has fibre dimension `p.rank x`, one less than the rank of
+the ambient bundle; a consumer stating a fibre dimension should derive it from
+here rather than assert it. -/
+theorem rank_plusOne (p : Bundle X ι) (x : X) : p.plusOne.rank x = p.rank x + 1 := by
+  have h : ((p.plusOne.rank x : ℕ) : ℂ) = ((p.rank x + 1 : ℕ) : ℂ) := by
+    rw [← trace_eq_rank, trace_plusOne, trace_eq_rank]
+    push_cast
+    ring
+  exact_mod_cast h
+
 end Constructions
 
 /-! ### The bridge with `Matrix ι ι C(X, ℂ)`
