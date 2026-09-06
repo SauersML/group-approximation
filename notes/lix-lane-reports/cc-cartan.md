@@ -65,6 +65,26 @@ New since the seven-module green:
   consequence for a tensor product.  Coefficients in the application are
   `ZMod 2`, a field, and the model complexes are the singular chains of a
   standard simplex, whose positive homology vanishes.
+* `GroupApproximation/CharClass/CartanSingular.lean` — **the substrate: the mod-2
+  singular chain complex with `Finsupp` carriers.**  `Built (8.6s)`,
+  `Build completed successfully (2074 jobs)`.  Assembled from two Mathlib
+  functors, `TopCat --toSSet--> SSet --(ModuleCat.free (ZMod 2) levelwise)-->
+  SimplicialObject --alternatingFaceMapComplex--> ChainComplex`.  Because
+  `ModuleCat.free R` sends a type `T` to `ModuleCat.of R (T →₀ R)` *on the nose*,
+  the degree-`n` object is literally the free `ZMod 2`-module on
+  `singularSimplices X n` — the same carrier `cc-steenrod`'s `tensorTwo` uses, so
+  the two files meet without a translation lemma — with `Finsupp.basisSingleOne`
+  as its basis (`singFreeBasis`), and `pushSimplex` as the induced map on basis
+  elements (`singFree_map_single`).
+
+  **`∂∂ = 0` comes free**, from `AlternatingFaceMapComplex.d_squared`.  That is
+  the point of the detour: writing the boundary by hand as a face sum would have
+  required proving `∂∂ = 0` from the simplicial identity, a pairing argument over
+  `Fin (n+2) × Fin (n+3)` with all the `Fin.pred`/`Fin.castPred` side conditions.
+  The only cost is one lemma dropping the alternating signs
+  (`ModuleCatZMod2.neg_one_pow_zsmul`, from `f + f = 0`), after which
+  `singFree_d` and `singFree_d_single` give the differential as the *unsigned*
+  sum of the faces.
 * `GroupApproximation/CharClass/CartanDiagonalW.lean` — **the arithmetic core of
   the resolution diagonal.**  `deltaW_chain_identity`: in the tensor square of
   the group ring over `ZMod 2`,
