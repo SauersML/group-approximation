@@ -198,12 +198,23 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomProjectivePunctured.lean` | `isZero_cohomology_CP`, `KunnethFactor.congrHomotopy`, **`puncturedAcyclic_CP`**, **`kunnethFactor_CP_punctured`** — the two projective hypotheses of `cc-lix-odd`'s `puncturedAcyclic_lixBase`, at an arbitrary point via `cc-projective`'s homogeneity |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
+| `CharClass/ThomTopLine.lean` | **`HasTopLine`**, `prodCoverConnecting`, `hasTopLine_sphere`, `hasTopLine_prod_sphere{,_succ}`, `hasTopLine_prod_CP{,_succ}` — the top-line induction for a left-nested product of spheres and projective spaces; **no cup and no cross product** |
+| `CharClass/ThomTopLineCircle.lean` | `sphereZeroProdEquiv`, `ker_mvDelta_circle`, **`circleTopLineStep`** — the one case the connecting isomorphism cannot reach, computed by rank counting over `F₂` |
 
 Job count: 8786 (fourteen modules, one probe).
 
 ## 2. AUTHORED, UNVERIFIED
 
-Nothing outstanding; every cc-thom module is in §1.  What remains is
+`CharClass/ThomTopLineLIX.lean` — `hasTopLine_sphereOne`,
+`hasTopLine_circleTimesFive`, `hasTopLine_lixBase`, **`absEquiv_lixN`**: the
+top-line induction run at `N = S¹ × S⁵ × ∏ⱼ ℂP^{dⱼ}` over `cc-lix-odd`'s
+`baseNilHomeo` / `baseSnocHomeo`, ending in hypothesis 8 of Step C in the shape
+`LemmaTwoStepC.ThomChainData.absEquiv` asks for.  Its only hypothesis is the
+model homeomorphism `↥(unitVectors (Fin 3)) ≃ₜ S⁵`, the same one
+`puncturedAcyclic_unitVectorsThree_of_homeo` carries and which `cc-lix-odd` owns.
+Probe in flight.
+
+Otherwise nothing outstanding; every other cc-thom module is in §1.  What remains is
 *instantiation*: `CohomologyToolkit` and the hypotheses of
 `topChernClass_ne_zero` are `structure` fields / explicit hypotheses, never
 `sorry` and never `axiom`, and §3 says exactly who owes each of them.
@@ -524,6 +535,35 @@ conjuncts; the first is cc-thom's Step C.  Checked against
   `AlgTop/UniversalCoefficients.lean` are worth reading before reproving
   anything about punctured normed spaces or the universal coefficient theorem.
 
+### The top-line induction bottoms out at the circle, not at the zero sphere
+
+Two separate facts, and I reported the first one wrongly before checking.
+
+* `H^n(Sⁿ; F₂) ≃ F₂` is **not** a gap.  The vendored tree proves it through the
+  mod-2 universal coefficient isomorphism, and `CharClass/CohomologySphere.lean`
+  restates it as `sphereTopEquiv n hn`.  Grep before declaring a gap: I nearly
+  built a Mayer–Vietoris computation for something already green.
+* What is genuinely not formal is `H^{p+1}(A × S¹; F₂)`, and **every** step of
+  both inductions descends to it.  The sphere step at `n = 0` would need
+  `H^p(A; F₂) = 0`, which is the line it is producing; the projective step at
+  `d = 1` lands on the same place.  It is one named case, not a family.
+
+The cure is not another connecting isomorphism, because the two arcs covering
+`S¹` meet in a disconnected set.  It is a rank count: the connecting map out of
+`H^p(A × S⁰)` is surjective, its kernel is exactly the image of `pr_A^*`, the
+source is two dimensional and the kernel one.  `ThomTopLineCircle.lean`.
+
+### `cc-cohom-api`'s Künneth-injectivity layer is the naturality this lane needed
+
+`CohomologyKunnethHemi/Band/Zero/Step` and `CohomologyDeltaNatural` are landed.
+`KnHemi.exists_pull_prSub_hemiU` (every class on a hemispherical piece is pulled
+back from the base) and `KnHemi.mvResWU_pull_prSub` (restriction to the band *is*
+the projection) are precisely what the circle rank count needs, and
+`pull_knPrY_injective` (a slice retracts the projection) is the injectivity.  The
+lead's fallback instruction was to duplicate the cover definitions; that turned
+out unnecessary, and duplicating them would have missed the naturality, which is
+the hard part.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -541,3 +581,5 @@ conjuncts; the first is cc-thom's Step C.  Checked against
 | 2026-09-05 | all 13 cc-thom modules, per-factor Künneth | green, 8782 jobs |
 | 2026-09-05 | all 14, with the sphere Künneth instances | green, 8786 jobs |
 | 2026-09-05 | **`MayerVietorisRestriction`** | **green, 8772 jobs, `PROBE GREEN`** |
+| 2026-09-05 | **`ThomTopLine`** | **green, 8791 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-05 | **`ThomTopLineCircle`** | **green, 8811 jobs, `PROBE GREEN`, first probe** |
