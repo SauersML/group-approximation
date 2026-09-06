@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.SteenrodFourfoldBChain
 import GroupApproximation.CharClass.SteenrodChainMapNat
+import GroupApproximation.CharClass.CartanMidFourNat
 
 /-!
 # Naturality of the second composite
@@ -82,6 +83,62 @@ theorem compBPre_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (k i p N : ℕ)
         ((groupRingGen ^ p)
           • phiAtDeg Y (r.1.val.2 + (i - p)) (i - p) (pushSimplex f r.1.val.2 r.2.2))
   rw [tenHom_padFour, pairHom_phiAtDeg, pairHom_smul, pairHom_phiAtDeg]
+
+/-! ## 4. Naturality of `B` itself
+
+Crossing the middle interchange is `cc-cartan`'s `midSwap_pairHom`.  With it the
+rest is bookkeeping: the term is natural, the diagonal `Φ₀` whose basis the sum
+runs over is natural, and a linear combination along a pushed-forward index is a
+linear combination of the pushed-forward summand. -/
+
+theorem compBTerm_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (k i p N : ℕ)
+    (r : PairIdx X N) :
+    tenHom (pairHom f) (pairHom f) k (compBTerm X k i p N r)
+      = compBTerm Y k i p N (pairIdxPush f N r) := by
+  show tenHom (pairHom f) (pairHom f) k
+      (midSwap (singFreeCx X) (singFreeCx X) (singFreeCx X) (singFreeCx X) k
+        (compBPre X k i p N r)) = _
+  rw [midSwap_pairHom, compBPre_naturality]
+  rfl
+
+theorem compBGen_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (k i N : ℕ)
+    (σ : singularSimplices X N) :
+    tenHom (pairHom f) (pairHom f) k (compBGen X k i σ)
+      = compBGen Y k i (pushSimplex f N σ) := by
+  have hz : phiZero Y N (pushSimplex f N σ)
+      = Finsupp.mapDomain (pairIdxPush f N) (phiZero X N σ) :=
+    (phiZero_naturality f N σ).symm
+  unfold compBGen
+  rw [map_sum]
+  refine Finset.sum_congr rfl fun p _ => ?_
+  have hfun : (fun r : PairIdx X N =>
+        tenHom (pairHom f) (pairHom f) k (compBTerm X k i p N r))
+      = fun r : PairIdx X N => compBTerm Y k i p N (pairIdxPush f N r) :=
+    funext fun r => compBTerm_naturality f k i p N r
+  rw [apply_linearCombination', hfun, hz, Finsupp.linearCombination_mapDomain]
+  rfl
+
+/-- **The second composite is natural in the space.** -/
+theorem compB_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ)
+    (y : WTensorSMod X k) :
+    (fourHom f).f k (compB X k y)
+      = compB Y k (Finsupp.lmapDomain GroupRingZ2 GroupRingZ2 (srcMapIdx f k) y) := by
+  classical
+  refine Finsupp.induction_linear y ?_ ?_ ?_
+  · simp
+  · intro u v hu hv
+    rw [map_add, map_add, hu, hv, map_add]
+    exact (map_add (compB Y k) _ _).symm
+  · intro b c
+    have hs : (Finsupp.single b c : WTensorSMod X k)
+        = c • Finsupp.single b (1 : GroupRingZ2) := by
+      rw [Finsupp.smul_single, smul_eq_mul, mul_one]
+    rw [hs, map_smul, fourHom_smul, map_smul, map_smul]
+    refine congrArg (fun w => c • w) ?_
+    rw [compB_single, one_smul, Finsupp.lmapDomain_apply, Finsupp.mapDomain_single,
+      compB_single, one_smul]
+    exact compBGen_naturality f k (k - b.1.val) b.1.val
+      ((simplexEquiv X b.1.val).symm b.2)
 
 end
 
