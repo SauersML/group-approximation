@@ -70,8 +70,15 @@ theorem isZero_cohomology_of_cover (U V : Opens X) (hUV : U ⊔ V = ⊤) (m : �
     (hV : IsZero (Hmod2 (TopCat.of (V : Set X)) (m + 1))) :
     IsZero (Hmod2 X (m + 1))
 
-/-- Naturality in a map of covered spaces (not yet written). -/
-theorem mvDelta_naturality  … ; mvResU_naturality … (shapes to follow)
+/-- Naturality in a map of covered spaces (NOT YET WRITTEN).  For `f : X' ⟶ X` and
+    `U' := (Opens.comap f) U`, `V' := (Opens.comap f) V`, the restriction squares and
+    the δ-square commute. -/
+theorem mvResU_naturality (f : X' ⟶ X) (U V : Opens X) (hUV : U ⊔ V = ⊤) (n) (x) :
+    pull (f.restrict …) n ((mvResU U V hUV n).hom x)
+      = (mvResU _ _ _ n).hom (pull f n x)
+theorem mvDelta_naturality (f : X' ⟶ X) (U V : Opens X) (hUV : U ⊔ V = ⊤) (n) (w) :
+    pull f (n + 1) ((mvDelta U V hUV n).hom w)
+      = (mvDelta _ _ _ n).hom (pull (f.restrict …) n w)
 
 /-- `H^*(X)`-linearity of the connecting map, for a global class `b`.  This is the
     δ-square of `LerayHirschAlgebra.bijective_of_ladder`, whose squares are
@@ -83,14 +90,25 @@ theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmo
 end GroupApproximation.CharClass
 ```
 
-**Still open in the Mayer–Vietoris assignment**: the `H^*(X)`-linearity of the
-connecting map (item 3 of the lead's brief, which Leray–Hirsch needs) and
-naturality in a map of covered spaces (item 2).  The route for linearity is
-Mathlib's `ShortComplex.ShortExact.δ_apply`
-(`Mathlib/Algebra/Homology/ConcreteCategory.lean`), which describes `δ [c]` as
-`[d c̃]` for any lift `c̃`, together with the vendored cochain Leibniz rule
-(`AlgebraicTopology/CochainCupLeibniz.lean`) and the compatibility of
-`cochainCup` with the dual of a chain map when the second factor is global.
+**Still open in the Mayer–Vietoris assignment**, and each is comparable in size to
+the element-level layer that is done; neither is half-started, and both are
+honestly named rather than approximated:
+
+* **(3) `H^*(X)`-linearity of `δ`.**  This is precisely the δ-square of
+  `LerayHirschAlgebra.bijective_of_ladder`, whose verticals are `cup · b`.  Route:
+  Mathlib's `ShortComplex.ShortExact.δ_apply`
+  (`Mathlib/Algebra/Homology/ConcreteCategory.lean`) describes `δ [c]` as `[d c̃]`
+  for any lift `c̃`, and the vendored cochain Leibniz rule
+  (`AlgebraicTopology/CochainCupLeibniz.lean`) then moves `d` across the cup.  The
+  awkward step is the *ambient* end: `coAmbientIso` inverts the homology map of the
+  dual small-chains inclusion, so identifying `δ` with a global cochain needs the
+  compatibility of that quasi-isomorphism with `cochainCup`, which holds because it
+  is induced by a chain map compatible with Alexander–Whitney, but is not written.
+* **(2) Naturality in a map of covered spaces.**  Blocked on a prior gap: the
+  vendored `mvShortComplex` is built from `subChainComplex R X S` for a *fixed* `X`
+  and the vendored tree provides no map `subChainComplex R X' (f⁻¹ S) ⟶ subChainComplex R X S`
+  nor compatibility of the splittings.  That chain-level naturality has to be built
+  first; it is a file of its own.
 
 **Note for `cc-projective`.**  `mvSumIso` turns out not to be needed: the
 element-form `MVSequence` above is derived from the four biproduct identities
@@ -107,9 +125,13 @@ Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 
 ## 1. GREEN
 
-Probe of all nine modules together: **`Build completed successfully (2911 jobs)`**,
-`ERROR_LINES=0`, `LAKE_EXIT=0` (private clone `cc_clones/cc-thom`, 2026-09-05).
+Probe of **all fourteen modules together**:
+**`Build completed successfully (8744 jobs)`**, `ERROR_LINES=0`, `LAKE_EXIT=0`,
+`PROBE GREEN` (private clone `cc_clones/cc-thom`, 2026-09-05, fixed `ccprobe.sh`).
 Every module below has a `Built …` line, not `Replayed`, for its current bytes.
+
+The five `MayerVietoris*` modules are the lead's reassignment of cohomological
+Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 
 | module | content |
 |---|---|
@@ -123,7 +145,7 @@ Every module below has a `Built …` line, not `Replayed`, for its current bytes
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`, `puncturedAcyclic_pi` |
 
-Job count: 2911.
+Job count: 8744 (fourteen modules, one probe).
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -345,6 +367,20 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
   initial rsync reports the whole tree as changed and the script builds one
   `rm -f` argument per changed module.  Re-run once; the second probe syncs only
   what actually changed.
+* **`Functor.map_id` resolves to the monadic `Functor` class**, not
+  `CategoryTheory.Functor.map_id`, even with `open CategoryTheory` in scope; the
+  rewrite then fails against the pattern `fun x => id <$> x`.  This is what red
+  `cc-cohom-api`'s `CohomologyMayerVietoris.lean`.  Write `CategoryTheory.` on
+  `map_id`, `map_comp`, `map_add`, and on `op_id`/`op_comp`/`op_add`.
+* **Morphism-level `rw [Category.assoc]` fails once a type ascription has
+  rewritten an object.**  In `mvPhi`/`mvPsi` the middle term is ascribed from
+  `(coSC U V hUV).X₂` to `coCx (mvCx U ⊞ mvCx V)`; the two are definitionally
+  equal but not equal at `instances` transparency, so reassociating a composite
+  through them fails with an application type mismatch.  Prove the identity
+  pointwise instead (`hom_apply_of_comp_eq` plus a `show`), which checks at full
+  transparency.
+* **`simp` will not evaluate `(1 : ZMod 2) + 1` to `0`** while simplifying a
+  scalar action; supply `((1 : ZMod 2) + 1) = 0 := by decide` and `rw` it.
 * **`git add GroupApproximation/CharClass/` sweeps peers' in-flight files onto
   main.**  cc-thom's commits `05a5fd71a`, `574d4aafe`, `10120c0cc`, `6603e2a7d`,
   `690767b1f` and `fb2d5b958` each carried other lanes' uncommitted work in the
@@ -367,3 +403,6 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | 9 modules, after adding `rankOneOfIso` / `range_eq_ker_of_exact` | **green, 2911 jobs** |
 | 2026-09-05 | 9 modules, after adding `openPartialHomeomorphChartPair` | **green, 2911 jobs** |
 | 2026-09-05 | 9 modules, fixed `ccprobe.sh`, after adding `PuncturedAcyclic.congr'` | **green, 2911 jobs, `PROBE GREEN`** |
+| 2026-09-05 | `CohomologyMayerVietoris` alone (cc-cohom-api's) | red: 1 error, then 8 errors on the next probe |
+| 2026-09-05 | 5 `MayerVietoris*` modules | green after three rounds |
+| 2026-09-05 | **all 14 cc-thom modules** | **green, 8744 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
