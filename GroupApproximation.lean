@@ -3713,6 +3713,10 @@ import GroupApproximation.CharClass.CartanCompBBridge
 import GroupApproximation.CharClass.CartanMasterEval
 import GroupApproximation.CharClass.LIXExcisionChart
 import GroupApproximation.CharClass.LIXChartIso
+import GroupApproximation.CharClass.CartanCochainId
+import GroupApproximation.CharClass.LIXThomLH
+import GroupApproximation.CharClass.LIXThomAssembly
+import GroupApproximation.CharClass.LerayHirschTowerRev
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
 import GroupApproximation.CharClass.SteenrodFourfoldBPackage
 import GroupApproximation.CharClass.CartanCupIVanishing
