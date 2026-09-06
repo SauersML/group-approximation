@@ -147,9 +147,9 @@ theorem projIncl_injective (p : Bundle X ι) : Function.Injective (projIncl p) :
   intro z z' h
   have h' := congrArg (fun w : Proj p.plusOne => (w : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)) h
   rw [projIncl_apply, projIncl_apply] at h'
-  have h1 : (z : X × Matrix ι ι ℂ).1 = (z' : X × Matrix ι ι ℂ).1 := congrArg Prod.fst h'
-  have h2 : inclMat (z : X × Matrix ι ι ℂ).2 = inclMat (z' : X × Matrix ι ι ℂ).2 :=
-    congrArg Prod.snd h'
+  have h1 := congrArg Prod.fst h'
+  have h2 := congrArg Prod.snd h'
+  simp only at h1 h2
   apply Subtype.ext
   exact Prod.ext h1 (inclMat_injective h2)
 

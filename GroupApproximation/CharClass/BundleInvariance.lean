@@ -97,7 +97,7 @@ variable {p : Bundle X ι} {q : Bundle X κ}
 /-- The adjoint implementer is absorbed by the source projection on the left. -/
 theorem conjTranspose_absorb_left (e : BundleIso p q) (x : X) :
     p x * (e.hom x)ᴴ = (e.hom x)ᴴ := by
-  have h := congrArg Matrix.conjTranspose (e.hom_mul_right x)
+  have h := congrArg Matrix.conjTranspose (BundleIso.hom_mul_right e x)
   rwa [Matrix.conjTranspose_mul, p.conjTranspose_eq] at h
 
 theorem conjTranspose_mul_conjTranspose (e : BundleIso p q) (x : X) :
@@ -110,7 +110,7 @@ theorem conjTranspose_mul_conjTranspose (e : BundleIso p q) (x : X) :
 theorem mulVec_mem_totalSet (e : BundleIso p q) {v : X × (ι → ℂ)} (_hv : v ∈ totalSet p) :
     ((v.1, e.hom v.1 *ᵥ v.2) : X × (κ → ℂ)) ∈ totalSet q := by
   show q v.1 *ᵥ (e.hom v.1 *ᵥ v.2) = e.hom v.1 *ᵥ v.2
-  have habs : q v.1 * e.hom v.1 = e.hom v.1 := e.hom_mul_left v.1
+  have habs : q v.1 * e.hom v.1 = e.hom v.1 := BundleIso.hom_mul_left e v.1
   rw [Matrix.mulVec_mulVec, habs]
 
 theorem conjTranspose_mulVec_mem_totalSet (e : BundleIso p q) {w : X × (κ → ℂ)}
@@ -118,16 +118,16 @@ theorem conjTranspose_mulVec_mem_totalSet (e : BundleIso p q) {w : X × (κ → 
   show p w.1 *ᵥ ((e.hom w.1)ᴴ *ᵥ w.2) = (e.hom w.1)ᴴ *ᵥ w.2
   have habs : p w.1 * (e.hom w.1)ᴴ = (e.hom w.1)ᴴ := by
     have h : (e.hom w.1 * p w.1)ᴴ = (e.hom w.1)ᴴ :=
-      congrArg Matrix.conjTranspose (e.hom_mul_right w.1)
+      congrArg Matrix.conjTranspose (BundleIso.hom_mul_right e w.1)
     rwa [Matrix.conjTranspose_mul, p.conjTranspose_eq] at h
   rw [Matrix.mulVec_mulVec, habs]
 
 /-- **Isomorphic bundles have homeomorphic total spaces, over the base.** -/
 def totalHomeo (e : BundleIso p q) : Total p ≃ₜ Total q where
   toFun v := ⟨((v : X × (ι → ℂ)).1, e.hom (v : X × (ι → ℂ)).1 *ᵥ (v : X × (ι → ℂ)).2),
-    e.mulVec_mem_totalSet v.2⟩
+    BundleIso.mulVec_mem_totalSet e v.2⟩
   invFun w := ⟨((w : X × (κ → ℂ)).1, (e.hom (w : X × (κ → ℂ)).1)ᴴ *ᵥ (w : X × (κ → ℂ)).2),
-    e.conjTranspose_mulVec_mem_totalSet w.2⟩
+    BundleIso.conjTranspose_mulVec_mem_totalSet e w.2⟩
   left_inv v := by
     apply Subtype.ext
     refine Prod.ext rfl ?_
@@ -150,27 +150,28 @@ def totalHomeo (e : BundleIso p q) : Total p ≃ₜ Total q where
         ).matrix_mulVec (continuous_snd.comp continuous_subtype_val))).subtype_mk _
 
 theorem totalHomeo_over_base (e : BundleIso p q) (v : Total p) :
-    totalPi q (e.totalHomeo v) = totalPi p v := rfl
+    totalPi q (BundleIso.totalHomeo e v) = totalPi p v := rfl
 
 /-! ### The projective bundles correspond -/
 
 theorem conj_mem_projSet_hom (e : BundleIso p q) {z : X × Matrix ι ι ℂ} (hz : z ∈ projSet p) :
     ((z.1, e.hom z.1 * z.2 * (e.hom z.1)ᴴ) : X × Matrix κ κ ℂ) ∈ projSet q :=
-  conj_mem_projSet (e.conjTranspose_mul z.1) (e.hom_mul_left z.1) hz
+  conj_mem_projSet (e.conjTranspose_mul z.1) (BundleIso.hom_mul_left e z.1) hz
 
 theorem conj_mem_projSet_conjTranspose (e : BundleIso p q) {z : X × Matrix κ κ ℂ}
     (hz : z ∈ projSet q) :
     ((z.1, (e.hom z.1)ᴴ * z.2 * ((e.hom z.1)ᴴ)ᴴ) : X × Matrix ι ι ℂ) ∈ projSet p :=
-  conj_mem_projSet (e.conjTranspose_mul_conjTranspose z.1) (e.conjTranspose_absorb_left z.1) hz
+  conj_mem_projSet (BundleIso.conjTranspose_mul_conjTranspose e z.1)
+    (BundleIso.conjTranspose_absorb_left e z.1) hz
 
 /-- **Isomorphic bundles have homeomorphic projective bundles, over the base.** -/
 def projHomeo (e : BundleIso p q) : Proj p ≃ₜ Proj q where
   toFun z := ⟨((z : X × Matrix ι ι ℂ).1,
       e.hom (z : X × Matrix ι ι ℂ).1 * (z : X × Matrix ι ι ℂ).2
-        * (e.hom (z : X × Matrix ι ι ℂ).1)ᴴ), e.conj_mem_projSet_hom z.2⟩
+        * (e.hom (z : X × Matrix ι ι ℂ).1)ᴴ), BundleIso.conj_mem_projSet_hom e z.2⟩
   invFun z := ⟨((z : X × Matrix κ κ ℂ).1,
       (e.hom (z : X × Matrix κ κ ℂ).1)ᴴ * (z : X × Matrix κ κ ℂ).2
-        * ((e.hom (z : X × Matrix κ κ ℂ).1)ᴴ)ᴴ), e.conj_mem_projSet_conjTranspose z.2⟩
+        * ((e.hom (z : X × Matrix κ κ ℂ).1)ᴴ)ᴴ), BundleIso.conj_mem_projSet_conjTranspose e z.2⟩
   left_inv z := by
     apply Subtype.ext
     refine Prod.ext rfl ?_
@@ -179,7 +180,7 @@ def projHomeo (e : BundleIso p q) : Proj p ≃ₜ Proj q where
     apply Subtype.ext
     refine Prod.ext rfl ?_
     have h := conj_conj (p := q) (a := (e.hom (z : X × Matrix κ κ ℂ).1)ᴴ)
-      (e.conjTranspose_mul_conjTranspose (z : X × Matrix κ κ ℂ).1) z.2
+      (BundleIso.conjTranspose_mul_conjTranspose e (z : X × Matrix κ κ ℂ).1) z.2
     rw [Matrix.conjTranspose_conjTranspose] at h
     exact h
   continuous_toFun :=
@@ -198,12 +199,12 @@ def projHomeo (e : BundleIso p q) : Proj p ≃ₜ Proj q where
             ).matrix_conjTranspose))).subtype_mk _
 
 theorem projHomeo_over_base (e : BundleIso p q) (z : Proj p) :
-    projPi q (e.projHomeo z) = projPi p z := rfl
+    projPi q (BundleIso.projHomeo e z) = projPi p z := rfl
 
 /-- **The tautological lines correspond.**  The implementer is `a x · r`, with no
 normalization: `(a r)ᴴ (a r) = r p r = r` and `(a r)(a r)ᴴ = a r aᴴ`. -/
 def tautIso (e : BundleIso p q) :
-    BundleIso (tautLine p) (comap (e.projHomeo).toContinuousMap (tautLine q)) where
+    BundleIso (tautLine p) (comap (BundleIso.projHomeo e).toContinuousMap (tautLine q)) where
   hom z := e.hom (z : X × Matrix ι ι ℂ).1 * (z : X × Matrix ι ι ℂ).2
   continuous_hom :=
     (e.continuous_hom.comp (continuous_fst.comp continuous_subtype_val)).matrix_mul
