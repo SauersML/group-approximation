@@ -90,10 +90,12 @@ structure ThomChainThom (dd : Fin ℓ → ℕ)
   hsection : piStar ≫ sAbs = 𝟙 (cohomologyZMod2 (lixN dd) (2 * lixRank dd))
   /-- The Thom class. -/
   u : HrelE
-  /-- **Open** (`cc-projective`): `gamma` is the Thom class pulled back.  This is where
-  the Thom class enters, so it is behind the Leray--Hirsch ladder. -/
+  /-- **Open** (`cc-thom`, as their `hclass`): `gamma` is the Thom class pulled back.
+  Earlier text here said `cc-projective`; that was wrong and they were never working on
+  it. -/
   hu : jE.hom u = piStar.hom gamma
-  /-- **Open** (`cc-projective`): the relative Euler class is nonzero. -/
+  /-- Closed by `cc-thom`'s `ThomChainHne`; earlier text here said open and
+  `cc-projective`'s, and both were wrong. -/
   hne : sRel.hom u ≠ 0
 
 /-- `cc-thom`'s conclusion from the Thom-class bundle. -/
