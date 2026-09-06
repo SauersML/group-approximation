@@ -3727,6 +3727,8 @@ import GroupApproximation.CharClass.CartanClassSum
 import GroupApproximation.CharClass.CartanTotalTerm
 import GroupApproximation.CharClass.LerayHirschColSum
 import GroupApproximation.CharClass.LerayHirschLadderClosed
+import GroupApproximation.CharClass.LerayHirschChartClassIso
+import GroupApproximation.CharClass.ChernRootSection
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.CartanTermCases
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
