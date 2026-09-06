@@ -523,6 +523,26 @@ plus two `#audit_closed_axioms` lines.
   `LIXConnectingMap` build, fail at `:222` with byte-identical content at the
   same commit, then build again.  Re-run before reporting a bug in someone
   else's module.
+* **"Light import closure" measured in project modules hides the Mathlib
+  weight.**  `CharClass/LemmaTwoStatement`'s closure is 13 *project* modules
+  and contains no cohomology, relative, Steenrod, Thom, projective-space or
+  bundle module — which is what `cc-lix-odd` promised and what I verified.  But
+  the probe runs at **8671 jobs** against roughly **3000** for the C⋆-side
+  closure, so the mapping-torus and `ℂP` layer costs about 5.7k Mathlib jobs
+  beyond it.  Both numbers are true and only one of them was in my first
+  report.  When relaying "light", say which side it is light on.
+* **I wrote a Mathlib name from memory and it did not exist**, which is the
+  rule I had been holding other lanes to.  `Nat.pos_pow_of_pos` is gone at
+  `81a5d257`; the name is `Nat.pow_pos`, taking base positivity with the
+  exponent implicit.  One error, job 8671 of 8671, with the entire closure
+  below it green.
+* **A stale `cc-last.log` reads as a fix that did not take.**  After relaunching
+  the probe I read the log on the node and saw the *same* error I had just
+  fixed.  It was the previous run's log: the relaunched probe had not yet
+  reached the build phase and had not truncated it.  This is the same aliasing
+  as the entry below, in the opposite direction — there I read a file newer
+  than the log, here a log older than the file.  **Wait on the probe's own
+  completion signal; never conclude from a log you did not watch get written.**
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
