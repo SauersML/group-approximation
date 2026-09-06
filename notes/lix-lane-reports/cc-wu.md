@@ -770,3 +770,168 @@ at `ℕ`, so theirs is strictly the more general statement and the better surviv
 even though mine landed thirty-three minutes earlier.  Their `of_component_esymmOn`
 is the round-trip form and my `exists_esymmOn_of` the existential form; each is one
 line from the other.  Retirement remains the lead's call after the endpoint.
+
+## 13. Single-consumer declarations with no transport lemma (rule 22 candidates, report only)
+
+Export of `origin/main` at `caad23258`, 2026-09-06, all 519 modules of
+`GroupApproximation/CharClass`.  A declaration is listed when it is a `def` or
+`abbrev`, is used in **exactly one** module other than its own, and no declaration
+in its own module or in any module importing it has a name containing `natural`,
+`congr`, `comap`, `pull`, `iso`, `map`, `transport` or `restrict` while mentioning
+it.  Declarations whose own names contain one of those words are skipped, being
+transport lemmas themselves.
+
+**127 candidates.**  This is a candidate list and not a verdict: the companion test
+is name-based by design, so a transport lemma named otherwise reads here as absent.
+The use count is deliberately generous in the other direction — the index splits
+dotted paths, so a module writing `Bundle.Proj` registers a use of `Proj` — which
+means a declaration reaching this list really does have at most one external
+consumer.  Both errors therefore push the same way: **the list is short of the
+truth, not long.**
+
+| module | declaration | owner lane | imported by | single consumer |
+|---|---|---|---|---|
+| `AcyclicModels` | `acyclicModelsHomotopy` | cc-thom | 8 | `Cartan` |
+| `AcyclicModels` | `homotopyOfFamily` | cc-thom | 8 | `AcyclicModelsSplitting` |
+| `AcyclicModels` | `pickPreimage` | cc-thom | 8 | `AcyclicModelsExistence` |
+| `CohomologyAssoc` | `degHom` | cc-cohom-api | 8 | `NeumannAlternatingFamily` |
+| `CartanGroupRing` | `galEnd` | cc-cartan | 6 | `CartanTargetEquivariance` |
+| `CohomologyBasic` | `cupBilin` | cc-cohom-api | 6 | `ThomChernDegreewise` |
+| `CohomologySphere` | `sphereCohZeroEquiv` | cc-thom | 6 | `CohomologyShapes` |
+| `LIXSectionManuscript` | `cVec` | cc-lix-odd | 6 | `LemmaTwoGlue` |
+| `LemmaTwoStepCAbsEquiv` | `absEquivLix` | cc-lix-odd | 6 | `LemmaTwoStepC` |
+| `MayerVietorisElement` | `mvPsi` | cc-thom | 6 | `MayerVietorisPull` |
+| `BundleInvariance` | `toProjHomeo` | cc-bundle | 5 | `ChernOfInvariance` |
+| `BundlePairs` | `prodPuncturedHomotopyEquivSphere` | cc-bundle | 5 | `GysinSphere` |
+| `BundleSpace` | `projHomeoCP` | cc-thom | 5 | `BundleLineTriv` |
+| `BundleSpace` | `projSetCP` | cc-thom | 5 | `BundleLineTriv` |
+| `BundleSpace` | `tautClassifying` | cc-thom | 5 | `BundleLineTriv` |
+| `CohomologyLHDegreewise` | `lhIndexEquiv` | cc-cohom-api | 5 | `CohomologyLHRestrict` |
+| `BundleGysinPieces` | `chartHomeoOpens` | unattributed | 4 | `BundleChartTotal` |
+| `BundleLineTriv` | `lineHom` | cc-bundle | 4 | `BundleLineIntert` |
+| `BundleLineTriv` | `projTrivHomeoCP` | cc-bundle | 4 | `LerayHirschChartBundleGen` |
+| `EulerLocalChart` | `chartPairHomeo` | cc-thom | 4 | `EulerLocalNonvanishing` |
+| `LemmaTwoGlue` | `lixZeroPoint` | cc-lix-odd | 4 | `LemmaTwoStepC` |
+| `BundleFrame` | `projFibreEquivCP` | cc-bundle | 3 | `BundleLocalOn` |
+| `BundleZeroSection` | `NotZero` | cc-bundle | 3 | `BundleGysinPieces` |
+| `BundleZeroSection` | `blockProj` | cc-bundle | 3 | `LanceBlockOperator` |
+| `BundleZeroSection` | `projRetract` | cc-bundle | 3 | `GysinRetract` |
+| `CartanComposeA` | `awTenLambda` | unattributed | 3 | `CartanEvalBasis` |
+| `CartanComposeA` | `compACx` | unattributed | 3 | `SteenrodFourfoldBPackage` |
+| `CartanFourfold` | `tenFreeCxHom` | unattributed | 3 | `SteenrodFourfoldA` |
+| `CartanMidFourChainMap` | `midSwapHom` | unattributed | 3 | `CartanMidFourSlots` |
+| `CartanTargetBoundary` | `coeffPush` | cc-cartan | 3 | `CoefficientReduction` |
+| `CohomologyMayerVietoris` | `cohDualFunctor` | cc-cohom-api | 3 | `CohomologyDeltaValue` |
+| `LIXThomClassTerm` | `thomJmTotal` | unattributed | 3 | `LIXThomResReduction` |
+| `ParityEvenTransport` | `circHomeo` | cc-wu | 3 | `CohomologyLIXSliceBridge` |
+| `ParityEvenTransport` | `splitB` | cc-wu | 3 | `LemmaTwoStepDLix` |
+| `ProjectiveSpaceSymmetry` | `unitPhase` | cc-projective | 3 | `ProjectiveSpaceHomogeneous` |
+| `SteenrodPairCell` | `dTgtL` | cc-steenrod | 3 | `SteenrodChainMap` |
+| `SteenrodPairCell` | `dTgtR` | cc-steenrod | 3 | `SteenrodChainMap` |
+| `SteenrodPairCell` | `padIdx` | cc-steenrod | 3 | `CartanEvalPair` |
+| `WuSymmetric` | `esymmWuRHS` | cc-wu | 3 | `WuDiagonal` |
+| `BundleOneStep` | `sumUnitEquiv` | unattributed | 2 | `BundleReindex` |
+| `CartanEvaluation` | `trivialCoeff` | cc-cartan | 2 | `CartanEvalMor` |
+| `CartanFreeCxTensorAug` | `tensorAug` | unattributed | 2 | `CartanFourfold` |
+| `GysinFromGraded` | `colTwo` | cc-projective | 2 | `LerayHirschRankTwo` |
+| `LIXCircleChart` | `circChart` | cc-lix-odd | 2 | `LIXBaseChartHomeo` |
+| `LIXCircleChart` | `circChartFun` | cc-lix-odd | 2 | `LIXBaseChart` |
+| `LIXCircleChart` | `circChartVec` | cc-lix-odd | 2 | `LIXBaseChart` |
+| `LIXCircleChart` | `circClamp` | cc-lix-odd | 2 | `LIXBaseChart` |
+| `LIXSectionChart` | `sphereChart` | cc-lix-odd | 2 | `LIXSphereChart` |
+| `LIXSphereChart` | `sphereClamp` | cc-lix-odd | 2 | `LIXSphereChartHomeo` |
+| `LIXVDecomposition` | `trivLine` | cc-steenrod | 2 | `LIXVLineBundles` |
+| `LerayHirschChartClass` | `tautCard` | cc-projective | 2 | `GysinTautFields` |
+| `LerayHirschChartClass` | `tautEmb` | cc-projective | 2 | `GysinTautFields` |
+| `ParityInstance` | `parityData_of` | cc-wu | 2 | `SqDataInstance` |
+| `ProjectiveSpaceCharts` | `chartOpenAt` | cc-projective | 2 | `LerayHirschUnion` |
+| `ProjectiveSpaceInputs` | `chartSpace` | cc-projective | 2 | `ProjectiveSpaceComputation` |
+| `RelativeCochains` | `subKeep` | cc-relative | 2 | `RelativeExcision` |
+| `RelativeCochains` | `subKeepAt` | cc-relative | 2 | `RelativeExcision` |
+| `RelativeCochains` | `subKeepComp` | cc-relative | 2 | `RelativeExcision` |
+| `RelativeSmallChains` | `smallAnnD` | cc-thom | 2 | `CupVanishSmallAnn` |
+| `SliceRoots` | `baseYFactor` | unattributed | 2 | `SliceRootsBlock` |
+| `SliceRoots` | `vRoot` | unattributed | 2 | `SliceRootsBlock` |
+| `SteenrodSquare` | `sqHomology` | cc-steenrod | 2 | `SteenrodTotal` |
+| `ThomPuncturedPi` | `piFinSuccHomeo` | cc-thom | 2 | `LIXSectionNesting` |
+| `AcyclicModelsContraction` | `ofHomotopy` | cc-thom | 1 | `AcyclicModelsTensor` |
+| `AcyclicModelsResolution` | `periodicResolution` | cc-cartan | 1 | `CartanGroupRing` |
+| `AcyclicModelsSplitting` | `complProj` | cc-cartan | 1 | `CartanSingularFreeCx` |
+| `AcyclicModelsTensor` | `tensorPositiveContraction` | cc-cartan | 1 | `AcyclicModelsSplitting` |
+| `BundleBlockIncl` | `cpBlockIncl` | cc-bundle | 1 | `BundleBlockIter` |
+| `BundleChartTotal` | `chartOpensHomeoTotal` | unattributed | 1 | `ThomBridgeChart` |
+| `BundleFlag` | `flagOne` | cc-bundle | 1 | `BundleFlagStage` |
+| `BundleHomotopy` | `totalHomotopyEquivBase` | cc-bundle | 1 | `BundleGysinPieces` |
+| `CartanEvalMor` | `fourEvalMor` | unattributed | 1 | `CartanEvalMaster` |
+| `CartanEvalPre` | `fourEvalPre` | unattributed | 1 | `CartanEvalComposeB` |
+| `CartanFreeCxAug` | `tsB` | unattributed | 1 | `CartanFreeCxTensorAug` |
+| `CartanFreeCxAug` | `tsL` | unattributed | 1 | `CartanFreeCxTensorAug` |
+| `CartanReindex` | `cartanTermL` | unattributed | 1 | `CartanFormula` |
+| `CartanReindex` | `cartanTermR` | unattributed | 1 | `CartanFormula` |
+| `CartanRhsSum` | `cartanRhsSum` | unattributed | 1 | `CartanFormula` |
+| `CartanSingularFreeCx` | `singAug` | unattributed | 1 | `CartanFourfold` |
+| `CartanSourceFunctor` | `srcFree` | cc-cartan | 1 | `CartanComparison` |
+| `CartanTargetSwap` | `pairDegSwap` | cc-cartan | 1 | `CartanFreeCxSwap` |
+| `CohomologyChartCover` | `chartHomotopyEquiv` | cc-cohom-api | 1 | `CohomologyProjectiveParity` |
+| `CohomologyChartTowerCollapse` | `PeelFreeAt` | cc-cohom-api | 1 | `CohomologyChartFreeness` |
+| `CohomologyDeltaSpec` | `eltAmb` | cc-cohom-api | 1 | `CohomologyDeltaValue` |
+| `CohomologyDeltaSpec` | `eltU` | cc-cohom-api | 1 | `CohomologyDeltaValue` |
+| `CohomologyDeltaSpec` | `eltV` | cc-cohom-api | 1 | `CohomologyDeltaValue` |
+| `CohomologyKunnethMap` | `KunnethSecondInjective` | cc-cohom-api | 1 | `CohomologyKunnethInjective` |
+| `CohomologyParityKunneth` | `chernSplit_of_noOdd` | cc-cohom-api | 1 | `ParityEvenTransport` |
+| `LIXBaseBall` | `lixBallChart` | cc-lix-odd | 1 | `LIXLocalPair` |
+| `LIXProductChart` | `lixProductChart` | cc-lix-odd | 1 | `LIXFullChart` |
+| `LIXProjectiveChartDeriv` | `conjPiCLE` | cc-lix-odd | 1 | `LIXProductChart` |
+| `LIXProjectiveChartDeriv` | `cpChartSection` | cc-lix-odd | 1 | `LIXProductChart` |
+| `LIXProjectiveTowerChart` | `cpTowerChart` | cc-lix-odd | 1 | `LIXBaseChartHomeo` |
+| `LIXSectionPath` | `manuscriptPath` | cc-lix-odd | 1 | `LemmaTwoZero` |
+| `LIXSphereChartHomeo` | `sphereChartHomeo` | cc-lix-odd | 1 | `LIXBaseChartHomeo` |
+| `LIXThomClassOfTaut` | `lixTopCoeff` | cc-lix-odd | 1 | `LIXThomClassTerm` |
+| `LIXThomLH` | `lhCoeffTop` | cc-thom | 1 | `LIXThomAssembly` |
+| `LemmaTwoStepDPinned` | `toWuStepDLix` | cc-lix-odd | 1 | `ParityEvenStepDClosed` |
+| `LemmaTwoStepDPinned` | `toWuStepDPinned` | cc-lix-odd | 1 | `ParityEvenStepDClosed` |
+| `LerayHirschPeel` | `HasPeel` | cc-projective | 1 | `LerayHirschPeelCP` |
+| `ParityEvenStepDClosed` | `LixSliceValue` | cc-wu | 1 | `ParityEvenVSlice` |
+| `ParityEvenStepDClosed` | `wuStepDLix_of_chernSliceValue` | cc-wu | 1 | `ParityEvenVSlice` |
+| `ProjectiveSpacePerm` | `permMat` | cc-projective | 1 | `CStarKOneWhitehead` |
+| `ProjectiveSpacePuncture` | `diagR` | cc-thom | 1 | `ComplexProjectivePuncture` |
+| `ProjectiveSpacePuncture` | `scaleMat` | cc-thom | 1 | `ComplexProjectivePuncture` |
+| `ProjectiveSpacePuncture` | `scaleVec` | cc-thom | 1 | `ComplexProjectivePuncture` |
+| `ProjectiveSpaceRetract` | `scaleP` | cc-projective | 1 | `ComplexProjectivePunctureRetract` |
+| `ProjectiveSpaceTwoCover` | `subtypeInterHomeo` | cc-projective | 1 | `ComplexProjectiveCover` |
+| `SliceVLinesY` | `vLineYFlat` | unattributed | 1 | `SliceSplitV` |
+| `SteenrodChainMap` | `phiOfS` | cc-steenrod | 1 | `SteenrodChainMapHom` |
+| `SteenrodChainMap` | `phiOfW` | cc-steenrod | 1 | `SteenrodChainMapHom` |
+| `SteenrodDiagonalLambda` | `PairIndex` | cc-steenrod | 1 | `SteenrodDiagonalTarget` |
+| `SteenrodFourfoldBGeneric` | `genB` | unattributed | 1 | `NeumannAlternatingFamily` |
+| `SteenrodPairing` | `pairEval` | cc-steenrod | 1 | `CartanEvalPair` |
+| `SteenrodTargetLinear` | `dTgtLin` | cc-steenrod | 1 | `SteenrodChainMapHom` |
+| `ThomBridgeChart` | `bridgeChart` | cc-thom | 1 | `ThomBridgeTotal` |
+| `ThomBridgeTotal` | `bridgeTotal` | unattributed | 1 | `LIXThomClassTerm` |
+| `ThomPuncturedCover` | `interOpensHomeo` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomPuncturedCover` | `leftOpens` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomPuncturedCover` | `leftOpensHomeo` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomPuncturedCover` | `puncturedProd` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomPuncturedCover` | `rightOpens` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomPuncturedCover` | `rightOpensHomeo` | cc-thom | 1 | `ThomPuncturedRecursion` |
+| `ThomRelativeCokernel` | `relQuotEquiv` | cc-thom | 1 | `ThomSphereSubspace` |
+| `ThomSphereSubspace` | `relQuotEquiv_of_sphere` | cc-thom | 1 | `ThomSectionDetect` |
+| `ThomTopLine` | `CircleTopLineStep` | cc-thom | 1 | `ThomTopLineCircle` |
+| `LIXSectionChartPair` | `lixChartPairHomeo` | cc-lix-odd | 0 | `ThomStepCOdd` |
+
+The ten most-imported candidates are the top ten rows.  Two observations for
+whoever annotates them.
+
+Eight of the ten sit in modules imported by four or more others, which is the
+combination rule 22 is about: a declaration widely available and used once.  That
+is where a second consumer is most likely to arrive and least likely to find what
+it needs.
+
+The concentration is not uniform.  `cc-thom` and `cc-lix-odd` hold fifteen
+candidate modules each and `cc-wu` four; eighteen modules carry no lane token in
+their commit subjects and are marked unattributed rather than guessed.  Lane
+attribution here is the leading lane token of the module's commit subjects, the
+same method as section 10, and it is weaker than that section's because these
+modules are older on average.
+
+Nothing was edited and no owner was messaged.
