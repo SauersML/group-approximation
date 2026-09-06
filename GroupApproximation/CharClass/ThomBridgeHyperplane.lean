@@ -24,20 +24,28 @@ the hyperplane has to be presented as `Set.range (Bundle.projIncl p)` rather tha
 through the map, and it wants the subspace inclusion to be an isomorphism on
 cohomology.
 
-## The single topological input
+## The topological input, and it is discharged in this file
 
 That the inclusion of the hyperplane into the complement of the zero section is a
 homotopy equivalence.  `cc-bundle`'s `notZeroOpensHomotopyEquivProj` is that
 equivalence with `Proj p` on the other side, and their
 `notZeroOpensHomotopyEquivProj_invFun` says its homotopy inverse *is* the
-inclusion — so the content exists, but not yet with the hyperplane presented as a
-subset.
+inclusion.  `hyperplane_hsub` below discharges it, so `bridgeHyperplane`'s named
+hypothesis is not open.
 
-Searched for a Mathlib route at the pin: `IsEmbedding.toHomeomorph`,
-`toHomeomorphOfIsInducing`, `Homeomorph.ofIsEmbedding`, and every `def
-toHomeomorph` in `Mathlib/Topology`.  None produces `X ≃ₜ ↥(Set.range f)` from a
-closed embedding at this revision, so the homeomorphism onto the range is not a
-one-liner and is named here rather than invented.  `cc-bundle` has the request.
+**Correction, and the earlier text was wrong.**  This docstring used to record
+that no Mathlib route at the pin produces `X ≃ₜ ↥(Set.range f)` from a closed
+embedding, and that the homeomorphism onto the range therefore had to be
+requested.  That absence claim is **false**.  `Topology.IsEmbedding.toHomeomorph`
+is exactly that, at `Mathlib/Topology/Homeomorph/Lemmas.lean:412` at the pinned
+revision, and `cc-bundle`'s `projInclHomeoRange` is one application of it.  I
+reached the claim by truncating my own search output and reporting the truncation
+as an absence.
+
+A false absence claim is worse in a docstring than a wrong proof: a wrong proof
+fails at the probe, while this one sends a reader hunting for a lemma that is
+already there.  It is recorded rather than deleted so that the failure is
+attributable.
 
 ## Main declaration
 
