@@ -29,6 +29,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LIXStepEBase.lean` | 8796 | the two sphere factors: `puncturedAcyclic_sphereOne` (**the circle factor with no transport at all**, since `sphereOne` already *is* a metric sphere of an inner product space), `puncturedAcyclic_unitVectorsThree_of_homeo` (the five-sphere factor, modulo one model homeomorphism), `hbase_of_factors` (the join).  So `hbase` is now four factor-level hypotheses plus one homeomorphism |
 | `CharClass/LIXStepEPunctured.lean` | 8795 | **`cc-thom`'s Step E, first piece**: `puncturedAcyclic_lixBase` and `puncturedAcyclic_lixBase_lixTopDegree` — the punctured-product vanishing at `S¹ × S⁵ × ∏ⱼ ℂP^{dⱼ}`, by induction peeling the **last** projective factor.  Four named hypotheses: three for the `ℂP` factor (`cc-projective`), one transporting the two sphere factors into this lane's models |
 | `CharClass/LIXStepESpheresDischarged.lean` | 8854 | **the sphere factors, discharged too**: `isZero_cohomology_sphereOne`/`_sphereFive`, `kunnethFactor_unitVectorsThree` and its punctured companion, `hbase_lix` and `puncturedAcyclic_lixBase_final` (**unconditional** but for positivity of the dimensions), and `stepC_of_thomChain''` — **Step C over `cc-thom`'s chain bundle alone** |
+| `CharClass/LemmaTwoStepCAbsEquiv.lean` | 8876 | **`cc-thom`'s `absEquiv`, discharged**: `unitVectorsThreeHomeoSphere` (this lane's `unitVectorsThreeHomeo` at the vendored `Sphere 5`, which is that type on the nose), `nonempty_absEquiv_lix` and `absEquivLix` (**the top line at `N`, unconditional** but for positivity), `ThomChainOpen` = `ThomChainData` minus `absEquiv` with `toThomChainData`, `ne_zero_of_thomChainOpen`, and `stepC_of_thomChainOpen` — **Step C over the three open Thom-class fields and `cc-relative`'s green ones** |
 | `CharClass/LIXStepEDischarged.lean` | 8853 | **the projective factor, discharged**: `puncturedAcyclic_lixBase'`, `puncturedAcyclic_lixZero'`, `stepC_of_thomChain'`.  All three projective hypotheses come from `cc-thom`'s green `puncturedAcyclic_CP`, `kunnethFactor_CP`, `kunnethFactor_CP_punctured`, so Step C's punctured acyclicity now rests on **four cohomology statements and nothing else** |
 | `CharClass/LemmaTwoStepC.lean` | 8833 | **Step C at the real objects**: `lixZero`, `puncturedAcyclic_lixZero` (the `hacyclic` argument **discharged** from this lane's own recursion), `ThomChainData` (`cc-thom`'s remaining arguments, each field naming its owner: six green from `cc-relative`, one in progress, **three open**), `ne_zero_of_thomChain`, `stepC_of_thomChain` |
 | `CharClass/LemmaTwoTopClass.lean` | 8828 | **the last seam**: `lixN`, `lixRank`, `LixChernDeg`, `lixChernOf` (total, degreewise), `lixTopClass`, `lixChernOf_mappingTorus`, `stepC_of_chain`, `stepD_of_topClass`, and **`lemmaTwoInput_of`** — both steps of Lemma 2 about ONE `topClass` |
@@ -126,6 +127,22 @@ gives the single zero and `hasStrictFDerivAt_trivialBlockChart` gives the strict
 there as a `ContinuousLinearEquiv`, so `HasStrictFDerivAt.toOpenPartialHomeomorph` applies
 directly.  **Confirm the exact shape you want** (an `OpenPartialHomeomorph` from `N` to
 `Fin r → ℂ` carrying `z` to `0`) and I will assemble it against your signature.
+
+### Step C: what is still owed, and by whom
+
+Of `cc-thom`'s ten chain arguments, two are now theorems of this lane and eight are
+supplied elsewhere:
+
+* `hacyclic` — discharged in `CharClass/LIXStepESpheresDischarged.lean`, unconditional.
+* `absEquiv` — discharged in `CharClass/LemmaTwoStepCAbsEquiv.lean`, unconditional.
+  `cc-thom`'s `absEquiv_lixN` needed only this lane's `unitVectorsThreeHomeo`, since the
+  vendored `Sphere 5` *is* the metric sphere of `EuclideanSpace ℝ (Fin 6)`.
+* `j`, `i`, `hexact`, `exc`, `chartIso`, `locEquiv` — green in `cc-relative`.
+* `hsu`, `hg`, `hgamma` — **the three that remain**, all needing the Thom class, with
+  `cc-projective` and `cc-relative`.
+
+`ThomChainOpen` is exactly those remaining fields, so the shape of what is owed is now
+readable off one structure rather than by subtraction.
 
 ### From `cc-cohom-api`, `cc-steenrod`, `cc-projective` — the fields of `LIXParityInput`
 
