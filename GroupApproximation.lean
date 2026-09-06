@@ -3630,6 +3630,7 @@ import GroupApproximation.CharClass.GysinPairTaut
 import GroupApproximation.CharClass.SteenrodFourfoldBRight
 import GroupApproximation.CharClass.SteenrodFourfoldBTransport
 import GroupApproximation.CharClass.CartanEvalPair
+import GroupApproximation.CharClass.ThomSectionDetect
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
