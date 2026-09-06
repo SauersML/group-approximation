@@ -65,7 +65,7 @@ theorem relLES_exact_sub (n) :   -- at H^n(A):        i^* then δ
 
 ## 2. GREEN (job counts)
 
-All eight modules are green; the first six were also built together in one
+All thirteen modules are green; the first six were also built together in one
 probe (8734 jobs, matching the largest individual count — nothing regressed
 cross-module):
 
@@ -76,8 +76,32 @@ cross-module):
 * `RelativeSmallChains.lean` — 8731 jobs
 * `RelativeExcision.lean` — 8734 jobs
 * `RelativeLocal.lean` — 8735 jobs
-* `RelativeLocalModel.lean` — **8776 jobs** (`PROBE GREEN`, `ERROR_LINES=0`,
-  `LAKE_EXIT=0`, with a `Built …` line, not `Replayed`)
+* `RelativeLocalModel.lean` — 8776 jobs
+* `RelativeBundleNonempty.lean` — 2968 jobs (061067844)
+* `RelativeHomotopyInvariance.lean` — 8777 jobs (eebc962bc)
+* `RelativeSubspaceIso.lean` — 8783 jobs (506d31ac8)
+* `RelativeProdContractible.lean` — 8785 jobs (1f27475c1)
+* `RelativeRangeKer.lean` — 8785 jobs (1f27475c1)
+
+Every count is from a log line `Build completed successfully (N jobs)` with
+`ERROR_LINES=0`, `LAKE_EXIT=0`, `PROBE GREEN`, and a `Built …` line for the
+module rather than `Replayed`.
+
+### What the later six deliver, and to whom
+
+| module | consumer | content |
+|---|---|---|
+| `RelativeBundleNonempty` | cc-projective | `nonempty_proj`, `nonempty_proj_of_forall` — `Nonempty (Bundle.Proj p)` from positive rank, the second hypothesis of the rooted Leray–Hirsch that nothing in the tree had. Neither is an instance; introduce with `haveI`. Discharge the rank side with cc-bundle's `rank_flagRest`, which is additive and cast-free |
+| `RelativeHomotopyInvariance` | cc-thom | `relPullback_bijective_of_absolute` — the five lemma over the pair sequence; bijective on both absolute theories ⇒ bijective on the relative one, in degrees `n+1` |
+| `RelativeSubspaceIso` | cc-thom | `relPullback_id_bijective_of_subspace_iso` — changing the subspace by a cohomology isomorphism, **every** degree; the bridge between the two Thom-class models |
+| `RelativeProdContractible` | cc-lix-odd | `relCohomologyProdIso` and `relCohomologyProdIso_hom`, plus the general `relCohomologyProdIsoGen` and the exported `sliceMap` / `slice_mapsTo` |
+| `RelativeRangeKer` | cc-lix-odd, cc-thom | `relLES_range_eq_ker` — exactness at the absolute group as `range j^* = ker i^*` |
+
+**A structural fact worth carrying, from cc-wu and cc-bundle**: the
+`CompactSpace`/`Nonempty` burden of the flag tower is confined to the per-stage
+Leray–Hirsch invocations (cc-projective's) and never reaches the ring-level
+assembly (cc-wu's), whose injectivity lemmas on the direct sum take neither.
+That is why the consumer of `nonempty_proj` is cc-projective, not cc-wu.
 
 The two systematic issues the predecessor (Opus) session flagged before
 hitting its limit — "a nested type-ascription that Lean won't accept, and an
@@ -86,7 +110,7 @@ for the exact mechanism and the general recipe used throughout.
 
 ## 3. AUTHORED, UNVERIFIED
 
-Nothing. (B6) landed green; see §2.
+Nothing. Every module is green and on origin.
 
 Housekeeping still owed, not blocking anyone: under the lead's dualization
 ruling `RelativeDual.lean` is to be retired in favour of `cc-cohom-api`'s
