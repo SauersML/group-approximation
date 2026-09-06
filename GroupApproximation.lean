@@ -3754,6 +3754,7 @@ import GroupApproximation.CharClass.CupVanishIterate
 import GroupApproximation.CharClass.ChernSplitRelation
 import GroupApproximation.CharClass.SliceEsymm
 import GroupApproximation.CharClass.SliceBlocks
+import GroupApproximation.CharClass.SliceReindex
 import GroupApproximation.CharClass.CupVanishSub
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.BundleSplitCover
