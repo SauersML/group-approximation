@@ -3706,6 +3706,9 @@ import GroupApproximation.CharClass.BundleLocalOn
 import GroupApproximation.CharClass.LerayHirschRankVanish
 import GroupApproximation.CharClass.LerayHirschChartHomeo
 import GroupApproximation.CharClass.LerayHirschFreeTuple
+import GroupApproximation.CharClass.LerayHirschFreeTupleExists
+import GroupApproximation.CharClass.CartanCompBBridge
+import GroupApproximation.CharClass.CartanMasterEval
 import GroupApproximation.CharClass.LIXExcisionChart
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
 import GroupApproximation.CharClass.SteenrodFourfoldBPackage
