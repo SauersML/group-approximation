@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 28 modules; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 29 modules; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,32 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleFlagStage.lean` — one stage of the flag tower
+
+```lean
+noncomputable def flagRest (p : Bundle X ι) (n : ℕ) : Bundle (Flag p n) ι
+theorem trace_flagRest / rank_flagRest (p) (n) (w) :
+    (flagRest p n).rank w + n = p.rank (flagProj p n w)
+noncomputable def flagSucc (p) (n) : Flag p (n + 1) ≃ₜ Proj (flagRest p n)
+theorem flagSucc_over_base (p) (n) (w) :
+    projPi (flagRest p n) (flagSucc p n w) = flagForget p n w            -- `rfl`
+theorem flagLine_mul_flagSum / flagLine_mul_flagRest / flagRest_mul_flagLine
+theorem flagLine_flagForget / flagRest_flagForget / flagForget_snd
+```
+
+The rest bundle is the pullback of `p` minus the lines already chosen, and a
+point of the next stage is a point of this one together with a line orthogonal
+to those chosen, which is a point of the projective bundle of the rest.  That is
+what makes the tower a sequence of projective bundles rather than a Type-valued
+recursion.
+
+**`rank_flagRest` is cast-free on purpose**: natural subtraction truncates, so
+`rank = r - n` is false without `n ≤ r` and awkward with it.  A consumer needing
+the difference adds the hypothesis where it is actually used.
+
+`flagOne` is the case `n = 0` and is **not** re-derived; `flagRest p 0` is the
+pullback of `p`.
 
 ### `BundleLineIntert.lean` — an intertwiner becomes an isomorphism, at RANK ONE
 
