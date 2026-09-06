@@ -15,8 +15,9 @@ layer only**: the case tree that produces the constant is not touched here, and
 `existsShortIsolatingCycleAt_one` discharges the `μ = 1` instance from the
 existing theorem so that the restatement is anchored rather than free-floating.
 `DGOQuasiGeodesicFourGonThinness` now proves uniform general-parameter thinness
-on both flanks of the exempt side. The general short-cycle construction still
-has to combine that theorem with the scaled corner offsets and splices.
+on both flanks of the exempt side. `DGOShortIsolatingCycleGeneral` discharges
+the general short-cycle interface below by combining that theorem with scaled
+corner offsets, component normalisation, and the one- and two-connector splices.
 
 ## The four costs, named
 
