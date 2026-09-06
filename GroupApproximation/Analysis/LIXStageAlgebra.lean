@@ -244,6 +244,11 @@ theorem stageAlgebra_one_ne_zero (i : ℕ) : (1 : StageAlgebra i) ≠ 0 := by
   rw [trace_matEval_Eproj, Matrix.trace_zero] at htrace
   exact (Nat.cast_ne_zero.mpr (stageRank_pos i).ne') htrace
 
+/-- The stage algebras as a *family*: `LIX.CStarTower` binds `[∀ n, CStarAlgebra (A n)]`, and
+instance search does not assemble that pi-instance from the per-stage one on its own. -/
+noncomputable instance instCStarAlgebraStageAlgebraPi :
+    ∀ n : ℕ, CStarAlgebra (StageAlgebra n) := fun _ => inferInstance
+
 instance instNontrivialStageAlgebra (i : ℕ) : Nontrivial (StageAlgebra i) :=
   nontrivial_of_ne 1 0 (stageAlgebra_one_ne_zero i)
 
