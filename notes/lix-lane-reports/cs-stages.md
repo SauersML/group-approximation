@@ -60,6 +60,39 @@ STW59.pullMat_injective_of_surjective         -- generic; injectivity's engine
 `Type` (not `Type*`), `CStarAlgebra` instance, and now `Nontrivial` for every stage rather
 than only stage `0`.
 
+### The fullness theorem, added after that probe
+
+| module | job count | commit |
+|---|---|---|
+| `Analysis/LIXConnectingMapFullness` | 2980 | 9b447776c |
+| `Analysis/LIXConnectingMapFullnessSum` | 2981 | 6b4b704d3 |
+
+Both `Build completed successfully (N jobs)`, `ERROR_LINES=0`, `PROBE GREEN`, built and not
+replayed.  What they deliver, in the shape `notes/lix-lane-reports/cs-simplicity.md` asked
+for:
+
+```lean
+-- Analysis/LIXConnectingMapFullness.lean
+compressMat_eq_zero_iff          -- the frame compression is injective on the corner
+stageEval_connect_inl            -- the (1,1) block of φ_i(a) at w is a at π_i(w)
+stageEval_connect_ne_zero_of_pull -- nonvanishing travels up the tower
+stageEval_connect_ne_zero        -- φ_i(b) vanishes in NO fibre once b(x_i) ≠ 0
+sum_single_conj                  -- ∑_{s,t} (P E_st P) X (P E_ts P) = Tr X • P
+-- Analysis/LIXConnectingMapFullnessSum.lean
+isFull_of_forall_stageEval_ne_zero  -- nonzero in every fibre ⇒ LIX.IsFull
+isFull_connect_of_stageEval_ne_zero -- b(x_i) ≠ 0 ⇒ IsFull (connect i b)
+```
+
+**Positivity is not used anywhere.**  The manuscript takes `a ≥ 0` so that the fibre traces
+are nonzero; instead the argument runs on `aᴴ a`, whose trace at `w` is `∑_{s,t} |a(w)_{st}|²`
+(`eq_zero_of_trace_conjTranspose_mul_self`, green in `LIXBlockProjections`).  So
+cs-simplicity's `0 ≤ a` hypothesis is spare.  And the conclusion is exact: the matrix units
+of the ambient homogeneous algebra are global, so `∑ x_l * a * y_l = 1` holds on the nose and
+`LIX.isFull_of_sum_eq_one` applies with no ε.
+
+`LIXConnectingMapFullnessSum` needs `set_option maxHeartbeats 4000000` and takes about 110
+seconds; it is alone in its file so that nothing else waits on it.
+
 ## 2. AUTHORED, UNVERIFIED
 
 Nothing.  All five owned modules build.
