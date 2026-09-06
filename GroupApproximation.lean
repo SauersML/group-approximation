@@ -3339,6 +3339,8 @@ import GroupApproximation.Analysis.LIXStageAlgebraSeparable
 import GroupApproximation.Analysis.LIXLemmaSixShape
 import GroupApproximation.Analysis.LIXLimitMatrixFlatten
 import GroupApproximation.Analysis.LIXLemmaSixClimb
+import GroupApproximation.Analysis.LIXLimitSectionMatrix
+import GroupApproximation.Analysis.LIXLemmaSixGlue
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
