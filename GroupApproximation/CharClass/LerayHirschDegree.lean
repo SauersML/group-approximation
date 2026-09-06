@@ -111,7 +111,59 @@ theorem lhCoeff_unique (n : ℕ) (z : Hmod2 P n)
     (h : lhMap π ξ r n c = z) : c = L.lhCoeff n z :=
   (L.bij n).injective (by rw [h, L.lhMap_lhCoeff])
 
-/-! ## 4. The mod-2 Chern classes -/
+/-! ## 4. The projection is injective on cohomology -/
+
+end LerayHirschGraded
+
+/-- The Leray–Hirsch family concentrated in the `ξ^0` slot. -/
+def concentrated (r n : ℕ) (a : Hmod2 X n) :
+    (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ)) :=
+  fun i => if h : (i : ℕ) = 0 then cohCast (by omega) a else 0
+
+theorem concentrated_zero (r n : ℕ) (a : Hmod2 X n) (hr : 0 < lhDomainCard r n) :
+    concentrated r n a ⟨0, hr⟩ = a := rfl
+
+/-- The Leray–Hirsch combination of the concentrated family is the pullback. -/
+theorem lhMap_concentrated (π : P ⟶ X) (ξ : Hmod2 P 2) (r n : ℕ)
+    (hr : 0 < lhDomainCard r n) (a : Hmod2 X n) :
+    lhMap π ξ r n (concentrated r n a) = pull π n a := by
+  unfold lhMap
+  rw [Finset.sum_eq_single (⟨0, hr⟩ : Fin (lhDomainCard r n))]
+  · show cohCast _ (cup (pull π (n - 2 * 0) (concentrated r n a ⟨0, hr⟩)) (cupPowE ξ 0))
+      = pull π n a
+    rw [concentrated_zero]
+    show cohCast _ (cup (pull π n a) (one P)) = pull π n a
+    rw [cup_one]
+    exact rfl
+  · intro b _ hb
+    have hb0 : (b : ℕ) ≠ 0 := by
+      intro h
+      exact hb (Fin.ext h)
+    show cohCast _ (cup (pull π (n - 2 * (b : ℕ)) (concentrated r n a b)) (cupPowE ξ (b : ℕ)))
+      = 0
+    rw [show concentrated r n a b = 0 from dif_neg hb0, pull_zero, zero_cup, cohCast_zero]
+  · intro h
+    exact absurd (Finset.mem_univ (⟨0, hr⟩ : Fin (lhDomainCard r n))) h
+
+namespace LerayHirschGraded
+
+variable {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ} (L : LerayHirschGraded π ξ r)
+
+/-- **The projection is injective on cohomology.**  This is the half of
+Leray–Hirsch that the splitting principle runs on: pulling back to the flag
+bundle loses nothing. -/
+theorem pull_injective (L : LerayHirschGraded π ξ r) (hr : 0 < r) (n : ℕ) :
+    Function.Injective (pull π n) := by
+  have hcard : 0 < lhDomainCard r n := lt_min hr (Nat.succ_pos _)
+  intro a b hab
+  have h : lhMap π ξ r n (concentrated r n a) = lhMap π ξ r n (concentrated r n b) := by
+    rw [lhMap_concentrated π ξ r n hcard, lhMap_concentrated π ξ r n hcard, hab]
+  have hc := (L.bij n).injective h
+  have hval := congrFun hc (⟨0, hcard⟩ : Fin (lhDomainCard r n))
+  rw [concentrated_zero, concentrated_zero] at hval
+  exact hval
+
+/-! ## 5. The mod-2 Chern classes -/
 
 /-- The Leray–Hirsch coefficients of `ξ^r`.  At degree `2r` the index set is the
 whole of `Fin r` (`lhDomainCard_two_mul`), so this family *is* the Grothendieck
