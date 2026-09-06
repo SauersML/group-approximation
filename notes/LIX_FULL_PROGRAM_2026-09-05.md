@@ -412,6 +412,12 @@ never a `sorry`, never an `axiom`.
     lane-specific goes in the fleet file as one line, appended at the end, never editing another
     lane's line; the lead merges duplicates.  Before a SECOND failed probe on the same error, grep
     the fleet file for a word from the error message.
+19. **An absence claim states the search AND its completeness (issued 05:25 EDT, from cc-thom after
+    their sixth absence claim, whose cause was `| head -8` discarding the ninth hit of a correct
+    search).**  Name the concept, not a file; search the directory, not a plausible file; re-run
+    the status, never carry one forward; and state that no filter, `head`, or truncation stood
+    between the command and the conclusion.  Three defensible searches missed for three different
+    reasons; only the completeness clause covers all of them.
 
 
 

@@ -3741,6 +3741,7 @@ import GroupApproximation.CharClass.ChernSplitFactor
 import GroupApproximation.CharClass.CupVanishCover
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.BundleSplitCover
+import GroupApproximation.CharClass.BundleProjInclRange
 import GroupApproximation.CharClass.CartanTermCases
 import GroupApproximation.CharClass.CartanReindex
 import GroupApproximation.CharClass.CartanFormula
