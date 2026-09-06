@@ -639,3 +639,23 @@ gives it on the hyperplane; `pull_punctIncl_cpGen` moves it across the retractio
 all that is needed); `pull_sInclusion_cpPrCP_cpGen` moves it into the product.
 Both transport lemmas are `rfl` at the level of morphisms, because the product
 cover is the preimage of theirs.
+
+## The bridge to Gysin
+
+`CohomologyChartGenBridge.lean`.  `CPGenHyp` cups the generator on the **left**;
+`GysinData.bijective_cupRight` produces the same statement on the **right**.  Over
+`F₂` the two differ by nothing but a degree cast, and the cast is not the obvious
+one: `cup_comm` emits `cohCast (Nat.add_comm q p)`, so the two sides carry casts
+in opposite directions and it is composing them that collapses to the identity.
+Written once here so no consumer writes it again.
+
+* `cpGenHyp_of_cup_right_surjective` — from the bare surjectivity statement, so no
+  Gysin structure has to be in scope to use it.
+* `cpGenHyp_of_bijective_cupRight` — from the shape `bijective_cupRight` returns.
+* `cpSplit_of_cup_right_surjective` — **the whole chain in one application**:
+  Gysin surjectivity on the fibres gives the product form over every base.
+
+With this the lane's part of the projective Künneth is closed.  What is left is
+one statement about `ℂP^d` alone, with no base in it, and the machinery to prove
+it (`GysinData`, `bijective_cupRight`, the trivialising-cover Leray–Hirsch) is
+already in the repo on cc-projective's side.
