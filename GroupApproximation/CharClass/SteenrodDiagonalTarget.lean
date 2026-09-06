@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.SteenrodDiagonalLambda
+import GroupApproximation.CharClass.CartanTargetBoundary
 
 /-!
 # The target complex `S(X) ⊗ S(X)`, and its differential
@@ -117,6 +118,14 @@ noncomputable def dGen (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k : ℕ)
   dLeft X Λ k q.1.val.1 q.1.val.2 q.1.property q.2.1 q.2.2
     + dRight X Λ k q.1.val.1 q.1.val.2 q.1.property q.2.1 q.2.2
 
+/-- **The two-halves form**, as an equation rather than a definition: the value
+on a basis element is the first-factor half plus the second-factor half. -/
+theorem dGen_eq (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k : ℕ)
+    (q : PairIdx X (k + 1)) :
+    dGen X Λ k q
+      = dLeft X Λ k q.1.val.1 q.1.val.2 q.1.property q.2.1 q.2.2
+        + dRight X Λ k q.1.val.1 q.1.val.2 q.1.property q.2.1 q.2.2 := rfl
+
 /-- **The differential of `S(X) ⊗ S(X)`**, as a `Λ`-linear map. -/
 noncomputable def dTgt (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k : ℕ) :
     (PairIdx X (k + 1) →₀ Λ) →ₗ[Λ] (PairIdx X k →₀ Λ) :=
@@ -132,6 +141,37 @@ theorem dTgt_single_one (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k : ℕ)
     (q : PairIdx X (k + 1)) :
     dTgt X Λ k (Finsupp.single q 1) = dGen X Λ k q := by
   rw [dTgt_single, one_smul]
+
+/-! ## 4. The two halves through `cc-cartan`'s per-factor boundary
+
+The two lanes share one boundary operator: `bdU` of
+`CharClass/CartanTargetBoundary.lean`.  These two lemmas say that each half of
+the pair differential is `bdU` on its factor, pushed into the pair carrier with
+the other factor carried along.  They are what `cc-cartan`'s acyclicity argument
+needs, and they are also what turns `bdU_bdU` into the two square terms of
+`d ∘ d = 0`. -/
+
+theorem dLeft_eq_bdU (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k a' b : ℕ)
+    (h : a' + 1 + b = k + 1) (σ : singularSimplices X (a' + 1))
+    (τ : singularSimplices X b) :
+    dLeft X Λ k (a' + 1) b h σ τ
+      = Finsupp.lmapDomain Λ Λ
+          (fun ρ => (⟨⟨(a', b), by omega⟩, (ρ, τ)⟩ : PairIdx X k))
+          (bdU Λ X a' (Finsupp.single σ (1 : Λ))) := by
+  rw [dLeft_succ, bdU_single, map_sum]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  rw [Finsupp.lmapDomain_apply, Finsupp.mapDomain_single]
+
+theorem dRight_eq_bdU (X : TopCat.{0}) (Λ : Type) [CommRing Λ] (k a b' : ℕ)
+    (h : a + (b' + 1) = k + 1) (σ : singularSimplices X a)
+    (τ : singularSimplices X (b' + 1)) :
+    dRight X Λ k a (b' + 1) h σ τ
+      = Finsupp.lmapDomain Λ Λ
+          (fun ρ => (⟨⟨(a, b'), by omega⟩, (σ, ρ)⟩ : PairIdx X k))
+          (bdU Λ X b' (Finsupp.single τ (1 : Λ))) := by
+  rw [dRight_succ, bdU_single, map_sum]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  rw [Finsupp.lmapDomain_apply, Finsupp.mapDomain_single]
 
 end
 
