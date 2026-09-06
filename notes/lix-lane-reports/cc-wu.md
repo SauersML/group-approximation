@@ -584,3 +584,65 @@ Three points settled by peers rather than guessed, all confirmed by the probe:
   anyway, so nothing of this lane changed.  Two declarations sharing a short name
   at different namespace depths is silent until someone opens both — worth a look
   whenever a lane lands a helper at the bare level.
+
+## 10. Content-duplicate sweep of `CharClass` (report only, assigned by the lead)
+
+Over a clean `git archive` export of `origin/main` at `6aa6a2b79`, all 496 modules
+of `GroupApproximation/CharClass`, 4341 declarations parsed, of which 3236 are
+theorems or lemmas.  A declaration's statement was canonicalised by erasing
+instance binders, erasing sort-valued binders (so that a binder in a `variable`
+block and the same binder written inline compare equal), renaming every local by
+order of first appearance in the conclusion, sorting the remaining hypothesis
+types, and stripping namespace prefixes.  Two declarations are listed when the
+canonical forms agree, whatever their names.
+
+**21 cross-module content duplicates.**  Two further groups the scan returned are
+not duplicates and are excluded: `CartanTargetSwap.pairModule_gen_smul` against
+`pairModule_one_add_gen_smul`, where the conclusion begins with `letI` and the
+source-level parser truncated it, and `BundleFrame.exists_isometry_aux` against
+`exists_isometry_of_isStarProjection`, a private helper restated publicly in the
+same module, which is deliberate.
+
+"Imported by more" counts modules whose `import` line names the containing module.
+"Used" counts modules elsewhere in the tree mentioning the declaration's final
+name; for a same-named pair that count cannot distinguish the two and is shown for
+both.
+
+| # | A | B | owner lanes | imported by more | used A / B |
+|---|---|---|---|---|---|
+| 1 | `CohomologyBasic::cohCast_zero` | `CohomologyKunnethStep::cohCast_zero` | cc-cohom-api / cc-cohom-api | A (6 vs 2) | 18 / 18 |
+| 2 | `SteenrodTargetLinear::dTgt_smul` | `CartanTargetFunctorial::dTgt_smul_tgtModule` | cc-steenrod / cc-cartan | tie (1 vs 1) | 4 / 1 |
+| 3 | `ThomStepCOddIso::topChernClass_ne_zero_odd_iso` | `ThomStepCOddLocal::topChernClass_ne_zero_odd_local_of_iso` | cc-thom / cc-thom | A (3 vs 2) | 4 / 0 |
+| 4 | `MayerVietorisPull::mvCxInclV_comp_g` | `CohomologyDeltaChain::mvCxInclV_comp_g` | cc-thom / cc-cohom-api | A (2 vs 1) | 2 / 2 |
+| 5 | `SqDataInstance::component_of_mul` | `CohomologyParityKunneth::component_of_mul` | cc-wu / cc-cohom-api | A (5 vs 1) | 2 / 2 |
+| 6 | `LerayHirschSquares::add_self` | `ParityInstance::hmod2_add_self` | cc-projective / cc-wu | tie (2 vs 2) | 2 / 0 |
+| 7 | `SteenrodTotal::of_cohCast` | `ParityEvenLixSplitting::of_congr_degree` | cc-steenrod / cc-wu | A (4 vs 1) | 2 / 0 |
+| 8 | `CartanComparison::pairFreeCx_d` | `SteenrodFourfoldBridge::pairFreeCx_d_eq` | cc-cartan / cc-steenrod | A (2 vs 1) | 1 / 0 |
+| 9 | `SteenrodChainMapNat::pushSimplex_faceSimplex` | `CartanTargetFunctorial::pushSimplex_faceSimplex` | cc-steenrod / cc-cartan | A (3 vs 1) | 1 / 1 |
+| 10 | `ChernLineEulerNatural::lineEulerOf_pushforward` | `SliceLineEulerPush::lineEulerOf_pushforward` | cc-projective / cc-steenrod | tie (0 vs 0) | 1 / 1 |
+| 11 | `MayerVietorisPullAmbient::f_comp_mvCxProjU` | `CohomologyDeltaChain::f_comp_projU` | cc-thom / cc-cohom-api | A (3 vs 1) | 0 / 1 |
+| 12 | `MayerVietorisPullAmbient::f_comp_mvCxProjV` | `CohomologyDeltaChain::f_comp_projV` | cc-thom / cc-cohom-api | A (3 vs 1) | 0 / 1 |
+| 13 | `LerayHirschBridge::lhDomainCard_le` | `CohomologyLHRingPieces::lhDomainCard_le` | cc-projective / cc-cohom-api | A (3 vs 1) | 1 / 1 |
+| 14 | `LIXChernSliceValueBridge::rank_vBundleY_lixRank` | `SliceSplitV::rank_vBundleY_lixRank` | cc-projective / cc-steenrod | A (1 vs 0) | 1 / 1 |
+| 15 | `ParityEvenTransport::totalH_map_id` | `ThomChernBasis::totalMap_id` | cc-wu / cc-projective | A (3 vs 1) | 1 / 0 |
+| 16 | `BundleInvariance::conjTranspose_absorb_left` | `BundleClassify::mul_conjTranspose_hom` | cc-bundle / cc-bundle | A (5 vs 2) | 0 / 0 |
+| 17 | `BundleClassify::rot_coeff_pos` | `BundleStabilize::stabCoeff_pos` | cc-bundle / cc-projective | A (2 vs 1) | 0 / 0 |
+| 18 | `CartanComposeA::awDiag_naturality` | `SteenrodFourfoldA::pairPushLin_awDiag` | cc-cartan / cc-steenrod | A (3 vs 1) | 0 / 0 |
+| 19 | `CohomologyBasic::cohCast_congr` | `SteenrodCupOne::cohCast_congr_proof` | cc-cohom-api / cc-steenrod | tie (6 vs 6) | 0 / 0 |
+| 20 | `CohomologyChartTowerTop::cupPowE_pull_eq_zero` | `LerayHirschRankVanish::cupPowE_pull_cpGen_eq_zero` | cc-cohom-api / cc-projective | tie (1 vs 1) | 0 / 0 |
+| 21 | `ThomHabs::range_relToAbs_eq_ker_absToSub` | `RelativeRangeKer::relLES_range_eq_ker'` | cc-thom / cc-relative | A (1 vs 0) | 0 / 0 |
+
+Five pairs cross a lane boundary in the direction the fleet has already been
+bitten by: `component_of_mul`, `of_cohCast`/`of_congr_degree`, `totalH_map_id`,
+`lhDomainCard_le` and `rank_vBundleY_lixRank` all restate a fact about a third
+lane's object.  The `Cartan*` against `Steenrod*` family, rows 2, 8, 9 and 18, is
+a single wave rather than four independent events: the two lanes built the same
+fourfold-comparison layer under two prefixes.
+
+Ownership above is read from the leading lane token of each module's commit
+subjects.  `LIXChernSliceValueBridge` is attributed to `cc-projective` on
+`cc-steenrod`'s own account of the pair in row 14; the commit subject there names
+no lane, so that one row rests on a peer's statement rather than on the log.
+
+Nothing was edited.  Retirement is the lead's to assign, after the endpoint and
+under rule 11.
