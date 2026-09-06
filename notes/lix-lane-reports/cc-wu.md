@@ -21,6 +21,7 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/ParityEvenSplitting.lean` | `Wu.HasSplitting` for a compact rooted base, over the split relation at the flag |
 | `CharClass/ParityEvenFlagRelation.lean` | the split relation at the flag, and so **the splitting principle with nothing left open** |
 | `CharClass/ParityEvenLixSplitting.lean` | concentration of a Chern class with a splitting, and `hsplit` for the LIX mapping torus |
+| `CharClass/ParityEvenStepDClosed.lean` | Step D's data over the slice value alone, and Lemma 2 over two inputs |
 
 ## 1. GREEN
 
@@ -116,6 +117,20 @@ verbatim.  The round trip `TotalH.of ∘ TotalH.component` between the ring-leve
 `chern` and `lixChernOf`'s degreewise form is absorbed by `of_component_chern`,
 which reads the concentration off the splitting's own `chern_split` field rather
 than off any grading of the Chern classes.
+
+`CharClass/ParityEvenStepDClosed.lean`, 2026-09-06:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenStepDClosed
+ERROR_LINES=0
+Build completed successfully (9197 jobs).
+```
+
+`lemmaTwoHolds_of_exists_chernSliceValue : LIX.LemmaTwoHolds` over two inputs,
+`cc-thom`'s Step C chain and `LixSliceValue`, the value of the Chern classes on
+the south slice.  The generators are existentially quantified rather than named by
+the consumer, so nobody can supply generators the value statement was not proved
+for.  Both `#print axioms` report `[propext, Classical.choice, Quot.sound]`.
 
 Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
 integration assembly is green over its named hypotheses, and the even side is
