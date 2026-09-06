@@ -28,10 +28,10 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — all 11 modules, `Build completed successfully (2974 jobs)`
+## GREEN — all 12 modules, `Build completed successfully (2976 jobs)`
 
-Final probe 2026-09-05 late evening (`✔ Built …BundlePairs`); the run before it
-was `Build completed successfully (2973 jobs)` with `✔ Built …BundleZeroSection`
+Final probe 2026-09-05 late evening (`✔ Built …BundleFlag`); before it,
+2974 jobs with `✔ Built …BundlePairs`, and 2973 with `✔ Built …BundleZeroSection`
 and `✔ Built …BundleClassify`.
 
 | module | content |
@@ -159,9 +159,58 @@ the statement "the two classifying maps into `ℂP^{K+K'-1}` are homotopic", in
 the index-free form; compose with `projHomeoCP` and a reindexing to read it in
 `CP`.
 
+### `BundleFlag.lean` — the splitting principle, geometric half
+
+```lean
+-- one step: the complement of the tautological line, rank one less
+noncomputable def flagComplement (p : Bundle X ι) : Bundle (Proj p) ι
+theorem tautLine_add_flagComplement (p) (z) :
+    tautLine p z + flagComplement p z = comap (projPi p) p z
+theorem tautLine_mul_flagComplement / flagComplement_mul_tautLine   -- orthogonality
+theorem trace_flagComplement (p) (z) :
+    (flagComplement p z).trace = (p ((projPi p) z)).trace - 1
+theorem rank_flagComplement (p) (z) :
+    (flagComplement p).rank z + 1 = p.rank ((projPi p) z)
+
+-- the flag bundle, as a subspace of ONE ambient space for every stage at once
+def flagSet (p : Bundle X ι) (n : ℕ) : Set (X × (ℕ → Matrix ι ι ℂ))
+abbrev Flag (p : Bundle X ι) (n : ℕ) : Type := ↥(flagSet p n)
+def flagProj (p) (n) : C(Flag p n, X)
+def flagForget (p) (n) : C(Flag p (n + 1), Flag p n)
+theorem flagProj_comp_flagForget (p) (n) :
+    (flagProj p n).comp (flagForget p n) = flagProj p (n + 1)
+def flagOne (p : Bundle X ι) : Flag p 1 ≃ₜ Proj p        -- the first stage IS P(p)
+
+-- the r tautological lines, rank one and pairwise orthogonal BY CONSTRUCTION
+def flagLine (p : Bundle X ι) (n k : ℕ) : Bundle (Flag p n) ι
+theorem trace_flagLine (hk : k < n) (w) : (flagLine p n k w).trace = 1
+theorem flagLine_mul_flagLine (hk : k < n) (hl : l < n) (hkl : k ≠ l) (w) :
+    flagLine p n k w * flagLine p n l w = 0
+theorem comap_mul_flagLine / flagLine_mul_comap (hk : k < n) (w)   -- each line is ≤ p
+
+-- THE DECOMPOSITION
+theorem flag_decomposition (p : Bundle X ι) (r : ℕ) (hr : ∀ x, (p x).trace = (r : ℂ))
+    (w : Flag p r) :
+    comap (flagProj p r) p w = ∑ l ∈ Finset.range r, flagLine p r l w
+```
+
+The tower is **not** a `Type`-valued recursion.  Iterating `P(-)` literally
+gives a different base space at every stage, so every statement would carry its
+own `TopologicalSpace` instance.  A point of the `n`-th stage is the same thing
+as a point of `X` with an orthogonal `n`-tuple of lines in its fibre, and that
+description lives in `X × (ℕ → Matrix ι ι ℂ)` for all `n` at once.  So the lines
+are the coordinates: rank-one, pairwise orthogonal and continuous by
+construction, with no choice, no local triviality and no induction.  The single
+theorem needing proof is `flag_decomposition`, and it is the trace argument: the
+sum of the lines is a subprojection of `p` of the same trace, and a projection
+of trace zero is zero.
+
 ## NEEDS
 
-Nothing from a peer, and nothing from the roster row is left unstarted.
+Nothing from a peer, and nothing from the roster row is left unstarted.  One
+item is deliberately deferred: the `finSumFinEquiv` reindexing of
+`homotopic_classL_classR` to a statement about `CP (d + d' + 1)`, whose shape
+depends on `cc-projective`'s hyperplane stability.
 
 ## TRAPS (all found the hard way; save the next reader the probes)
 
