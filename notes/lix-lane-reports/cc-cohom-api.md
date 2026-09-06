@@ -376,3 +376,37 @@ fails, and the symptom is `prSub Y n S ... but is expected to have type
 TopCat.of ↑?m ⟶ ?m`, followed by `isDefEq` and `whnf` timeouts in every later
 declaration. Every set and open in `CohomologyKunnethHemi` is therefore declared
 at `Set ↥(prodTop Y n)` and `Opens ↥(prodTop Y n)`.
+
+## Künneth injectivity: DONE
+
+`KnHemi.kunnethSecondInjective (Y) (n) : KunnethSecondInjective Y n` is green and
+unconditional, and `KnHemi.kunnethInjective` gives the two-component statement
+through `kunnethInjective_of_second`.  Five modules, in dependency order:
+
+| module | jobs | content |
+|---|---|---|
+| `CohomologyDeltaNatural` | — | `MVDelta.mvDelta_naturality`, the fifth MV square |
+| `CohomologyKunnethHemi` | 8779 | the cover, both pieces are `Y`, `exists_pull_prSub_of_res` |
+| `CohomologyKunnethBand` | 8780 | the band is `Y × S^n`, both projections compatible |
+| `CohomologyKunnethStep` | 8793 | `KnGen`, `sphereNext`, `knGen_of_injective`, `injective_sphereNext` |
+| `CohomologyKunnethZero` | 8793 | `zeroGen` on `S⁰` and `knGen_zeroGen` |
+| `CohomologyKunnethInjective` | 8797 | the chain, `sphereGen_eq_top`, the goal |
+
+Three things made it short.
+
+**The preimage cover is the product cover definitionally.**
+`opensComap (knPrS Y (n+1)) (upperOpens n) = prodOpen Y (upperOpens n)` is `rfl`,
+because `Opens` carries a `Prop` field and the carriers are the same preimage.
+So `mvDelta_naturality` applies to the pair with no transport at all.
+
+**The inductive predicate allows a pullback on the right.**  `KnGen n t` says
+`pr_S^* t ⌣ pr_Y^* v = pr_Y^* c → v = 0`.  For `n ≥ 1` that is equivalent to
+plain injectivity (a slice forces `c = 0`), and at `n = 0` it is the extra
+strength the two-point base supplies.  Trying to induct on plain injectivity does
+not work: the exactness step produces a pullback from the base that cannot be
+discarded until the degree is positive.
+
+**The predicate forces the class to be nonzero**, so no separate non-vanishing
+argument for the suspended classes is needed: `KnGen n 0` applied to a point with
+the unit class would say `1 = 0` in `H⁰(pt;F₂)`.  Since `H^n(S^n;F₂)` is one
+dimensional, the chain of suspensions is then *equal* to `sphereTopClass`.
