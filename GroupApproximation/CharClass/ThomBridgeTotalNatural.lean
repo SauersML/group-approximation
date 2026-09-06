@@ -36,6 +36,8 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 namespace GroupApproximation.CharClass
 
+open ThomChernDeg
+
 noncomputable section
 
 /-- **A naturality square inverts.**  Pure category algebra. -/
@@ -48,9 +50,74 @@ theorem inv_natural_of_hom_natural {A B C D : ModuleCat.{0} (ZMod 2)}
     _ = e.inv ≫ P := by
         rw [Category.assoc, Category.assoc, f.hom_inv_id, Category.comp_id]
 
+variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
+
+/-- Unfolding `bridgeTotal` at a point: the chart isomorphism inverted, then the
+hyperplane step. -/
+theorem bridgeTotal_apply [CompactSpace X] [T2Space X] (p : Bundle X ι) (n : ℕ)
+    (x : ↥(relCohomology (ZMod 2) (TopCat.of (Bundle.Total p))
+      ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p) n)) :
+    bridgeTotal p n x
+      = (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
+          (fun _ hx => range_projIncl_subset_notZero p hx) n).hom
+            ((bridgeChart p n).inv.hom x) := rfl
+
+/-- **The bridge is natural in the base.**
+
+`hchart` is `ThomBridgeChartHom.bridgeChart_natural` and `hhyp` is
+`ThomBridgeNaturalHyper.relPullback_id_comm`; both are landed, and they are
+arguments here only so that the statement fits without repeating their six and
+four map-of-pairs conditions.  The content is the join across the inverted
+isomorphism, which is `inv_natural_of_hom_natural`. -/
+theorem bridgeTotal_natural [CompactSpace X] [T2Space X] (p : Bundle X ι) (U : Set X)
+    [CompactSpace ↥U] [T2Space ↥U] (n : ℕ)
+    (T : relCohomology (ZMod 2) (TopCat.of (Bundle.Total p))
+        ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p) n ⟶
+      relCohomology (ZMod 2) (TopCat.of (Bundle.Total (p.restrictTo U)))
+        ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+          Bundle.puncturedSet (p.restrictTo U)) n)
+    (Pn : relCohomology (ZMod 2) (TopCat.of (Bundle.Proj p.plusOne))
+        ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)) n ⟶
+      relCohomology (ZMod 2) (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne))
+        ((Gysin.notZeroOpens (p.restrictTo U) :
+            Opens (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          : Set (Bundle.Proj (p.restrictTo U).plusOne)) n)
+    (Pr : relCohomology (ZMod 2) (TopCat.of (Bundle.Proj p.plusOne))
+        (Set.range (Bundle.projIncl p)) n ⟶
+      relCohomology (ZMod 2) (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne))
+        (Set.range (Bundle.projIncl (p.restrictTo U))) n)
+    (hchart : (bridgeChart p n).hom ≫ T = Pn ≫ (bridgeChart (p.restrictTo U) n).hom)
+    (hhyp : (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
+          (fun _ hx => range_projIncl_subset_notZero p hx) n) ≫ Pr
+        = Pn ≫ (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          (fun _ hx => range_projIncl_subset_notZero (p.restrictTo U) hx) n))
+    (x : ↥(relCohomology (ZMod 2) (TopCat.of (Bundle.Total p))
+      ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p) n)) :
+    Pr.hom (bridgeTotal p n x)
+      = bridgeTotal (p.restrictTo U) n (T.hom x) := by
+  have hinv := inv_natural_of_hom_natural (bridgeChart p n)
+    (bridgeChart (p.restrictTo U) n) T Pn hchart
+  have hx : ((relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
+        (fun _ hz => range_projIncl_subset_notZero p hz) n) ≫ Pr).hom
+          ((bridgeChart p n).inv.hom x)
+      = (Pn ≫ (relPullback (ZMod 2)
+          (𝟙 (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          (fun _ hz => range_projIncl_subset_notZero (p.restrictTo U) hz) n)).hom
+          ((bridgeChart p n).inv.hom x) := by
+    rw [hhyp]
+    rfl
+  have hy : (T ≫ (bridgeChart (p.restrictTo U) n).inv).hom x
+      = ((bridgeChart p n).inv ≫ Pn).hom x := by
+    rw [hinv]
+  rw [bridgeTotal_apply, bridgeTotal_apply]
+  simp only [ModuleCat.hom_comp, LinearMap.coe_comp, Function.comp_apply] at hx hy
+  rw [hx, hy]
+  rfl
+
 /-! Printed on every build. -/
 
-#print axioms inv_natural_of_hom_natural
+#print axioms bridgeTotal_natural
 
 end
 
