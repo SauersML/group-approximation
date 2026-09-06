@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 32 modules; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 33 modules; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,28 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleProjInclRange.lean` — `P(p)` as a SUBSET of `P(p ⊕ 1)`
+
+```lean
+noncomputable def projInclHomeoRange [CompactSpace X] [T2Space X] (p) :
+    Proj p ≃ₜ ↥(Set.range (projIncl p))
+theorem projInclHomeoRange_coe / range_projIncl_subset_notZeroOpensSet
+theorem inclusion_projInclHomeoRange (p) (z) :
+    Set.inclusion (range_projIncl_subset_notZeroOpensSet p) (projInclHomeoRange p z)
+      = notZeroHomeoOpens p (projInclNotZero p z)                         -- `rfl`
+```
+
+`projIncl` presents the hyperplane at infinity as a **map**; a relative
+argument comparing two subspaces of one ambient needs it as a **subset**, with
+the comparison being the subset inclusion.  This is assembly, not proof:
+injectivity, closedness of the range and compactness of `Proj p` were all
+present, and `isClosedEmbedding_projIncl` already packaged the first two.
+
+The identification is an **equality**, so a homotopy inverse transports across
+it with no congruence step.  It carries `[CompactSpace X] [T2Space X]`, which
+the closed-embedding statement genuinely needs; the unconditional version would
+go through the explicit block inverse and is not proved.
 
 ### `BundleSplitCover.lean` — the cover of `P(p)` by a splitting
 
