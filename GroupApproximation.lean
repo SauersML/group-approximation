@@ -3336,6 +3336,7 @@ import GroupApproximation.Analysis.LIXLemmaSixGenerator
 import GroupApproximation.Analysis.LIXObstructionComplementUnitary
 import GroupApproximation.Analysis.LIXConnectingMapFullnessTower
 import GroupApproximation.Analysis.LIXStageAlgebraSeparable
+import GroupApproximation.Analysis.LIXLemmaSixShape
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
