@@ -99,8 +99,13 @@ Step C is `cc-thom`'s chain in the Thom-class shape; Step D is `cc-wu`'s data ca
 `lixN`.  Both speak about `lixTopClass chern` on `lixN dd`, so the contradiction is between
 two statements about literally the same class.
 
-The open inputs are three, all `cc-projective`'s: `hu` and `hne` inside `ThomChainThom`,
-and `S` inside `WuStepDLix`. -/
+The open inputs were three when this was written.  `S` is no longer one of them: it has a
+**forced** value, `cc-projective`'s `lixChernSplit`, because `hslice` is stated against
+whichever splitting the assembler chose and only that one is dischargeable.  Use
+`WuStepDPinned` (`CharClass/LemmaTwoStepDPinned.lean`), which removes the choice; this
+structure's free `S` field is kept only because a published signature does not move.
+
+So the open inputs are two, `hu` and `hne` inside `ThomChainThom`, both Thom-class facts. -/
 theorem lemmaTwoInput_lix (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
     (hC : Wu.CartanTotal) (hd : ∀ j, Even (dd j))
     (chain : ∀ (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ) (hGc : Continuous G)
