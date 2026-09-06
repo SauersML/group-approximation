@@ -14,6 +14,9 @@ This module restates the first half at a general `μ`.  It is the **statement
 layer only**: the case tree that produces the constant is not touched here, and
 `existsShortIsolatingCycleAt_one` discharges the `μ = 1` instance from the
 existing theorem so that the restatement is anchored rather than free-floating.
+`DGOQuasiGeodesicFourGonThinness` now proves uniform general-parameter thinness
+on both flanks of the exempt side. The general short-cycle construction still
+has to combine that theorem with the scaled corner offsets and splices.
 
 ## The four costs, named
 
@@ -35,15 +38,14 @@ exactly.  A transcription slip in the breakdown fails that check.
 
 ## Which cost `μ` moves, and which it does not
 
-Only the first.  `GGT/DGOQuasiGeodesicChainAt.lean` records why: at `μ > 1` a
-vertex is not `B`-almost between its side's corners for any `B`, the defect
-growing like `n(1 - 1/μ)`, and `exists_isBetween_near_of_chainAt` replaces the
-whole almost-between step by one application of `Hyperbolic.morseLemma_univ`,
-whose `R` is the `μ`-general between-cost.  The quadrangle's `8δ` is four-point
-hyperbolicity and does not see `μ`.  The half-step and the corner offset are
-metric-to-index conversions and inflate by `μ`; their `μ`-general values are for
-the case tree to fix, which is why only the shape is named here and no formula
-for the total is asserted.
+The elementary almost-between estimate alone has a side-length dependent
+upper bound at `μ > 1`. `exists_isBetween_near_of_chainAt` replaces that step
+with `Hyperbolic.morseLemma_univ`, whose `R` is uniform in the side length.
+`DGOQuasiGeodesicChainHausdorff` proves the reverse proximity at cost `2R + 2δ`.
+The quadrangle's `8δ` is four-point hyperbolicity and does not see `μ`.
+Corner offsets must still convert metric bounds to index bounds with the
+multiplicative parameter retained. The names below record the old `μ = 1`
+costs; the general thinness theorem supplies a separate uniform radius.
 
 ## The interface
 
