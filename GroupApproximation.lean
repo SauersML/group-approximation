@@ -3704,6 +3704,7 @@ import GroupApproximation.CharClass.LIXProjectiveTowerChart
 import GroupApproximation.CharClass.LerayHirschChartClassGen
 import GroupApproximation.CharClass.BundleLocalOn
 import GroupApproximation.CharClass.LerayHirschRankVanish
+import GroupApproximation.CharClass.LerayHirschChartHomeo
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
