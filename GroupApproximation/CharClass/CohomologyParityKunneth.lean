@@ -321,6 +321,14 @@ def chernSplit_of_noOdd (hodd : KnHemi.NoOddCohomology Y)
   exact { alpha := alpha, beta := beta, beta_low := fun k hk => hbeta k hk,
           split := hsplit }
 
+/-- **`ChernSplit` for a degreewise family**, the shape `cc-lix-odd`'s classes come
+in: `γ k` is the ring image of a class of `Hmod2 N (2 * k)`, and nothing else about
+it is used. -/
+def chernSplit_of_hodd (hodd : KnHemi.NoOddCohomology Y)
+    (γ' : ∀ k : ℕ, Hmod2 (NTop Y) (2 * k)) :
+    ChernSplit Y (fun k => TotalH.of (NTop Y) (2 * k) (γ' k)) :=
+  chernSplit_of_noOdd Y hodd _ γ' (fun _ => rfl)
+
 end KnTwo
 
 end
