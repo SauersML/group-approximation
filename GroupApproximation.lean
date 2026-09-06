@@ -3559,6 +3559,21 @@ import GroupApproximation.CharClass.ThomTopLineLIX
 import GroupApproximation.CharClass.LemmaTwoStepCAbsEquiv
 import GroupApproximation.CharClass.LemmaTwoStepCEuler
 import GroupApproximation.CharClass.LemmaTwoStepCThom
+-- LIX CharClass, batches two to four (moved into the import block 2026-09-05 23:50 EDT)
+import GroupApproximation.CharClass.BundleTautRestrict
+import GroupApproximation.CharClass.CohomologyChartTop
+import GroupApproximation.CharClass.CohomologyChartSurj
+import GroupApproximation.CharClass.LerayHirschBundle
+import GroupApproximation.CharClass.ProjectiveSpaceInterVanish
+import GroupApproximation.CharClass.SteenrodFourfoldB
+import GroupApproximation.CharClass.SteenrodFourfoldBoundary
+import GroupApproximation.CharClass.ThomRelativeCokernel
+import GroupApproximation.Analysis.LIXLemmaSixField
+import GroupApproximation.CharClass.CartanComparison
+import GroupApproximation.CharClass.ChernEulerSqOne
+import GroupApproximation.CharClass.CohomologyChartFlat
+import GroupApproximation.CharClass.ParityEvenTransport
+import GroupApproximation.CharClass.SteenrodFourfoldBridge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
@@ -3619,18 +3634,3 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
--- LIX CharClass, second batch (wired 2026-09-05 23:45 EDT)
-import GroupApproximation.CharClass.BundleTautRestrict
-import GroupApproximation.CharClass.CohomologyChartTop
-import GroupApproximation.CharClass.CohomologyChartSurj
-import GroupApproximation.CharClass.LerayHirschBundle
-import GroupApproximation.CharClass.ProjectiveSpaceInterVanish
-import GroupApproximation.CharClass.SteenrodFourfoldB
-import GroupApproximation.CharClass.SteenrodFourfoldBoundary
-import GroupApproximation.CharClass.ThomRelativeCokernel
-import GroupApproximation.Analysis.LIXLemmaSixField
-import GroupApproximation.CharClass.CartanComparison
-import GroupApproximation.CharClass.ChernEulerSqOne
-import GroupApproximation.CharClass.CohomologyChartFlat
-import GroupApproximation.CharClass.ParityEvenTransport
-import GroupApproximation.CharClass.SteenrodFourfoldBridge
