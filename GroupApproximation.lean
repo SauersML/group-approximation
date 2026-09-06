@@ -3664,6 +3664,9 @@ import GroupApproximation.CharClass.CartanEvalComposeB
 import GroupApproximation.CharClass.LIXProductChart
 import GroupApproximation.CharClass.SteenrodFourfoldBAssembly
 import GroupApproximation.CharClass.CohomologyChartLowDegree
+import GroupApproximation.CharClass.LIXFullChart
+import GroupApproximation.CharClass.LerayHirschShiftTerm
+import GroupApproximation.CharClass.SteenrodFourfoldBReindex
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
