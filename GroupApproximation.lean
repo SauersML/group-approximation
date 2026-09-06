@@ -3748,6 +3748,7 @@ import GroupApproximation.CharClass.ParityEvenFlagCompact
 import GroupApproximation.CharClass.ParityEvenSplitting
 import GroupApproximation.CharClass.ParityEvenFlagRelation
 import GroupApproximation.CharClass.ParityEvenLixSplitting
+import GroupApproximation.CharClass.ParityEvenStepDClosed
 import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.ChernTautRestrict
 import GroupApproximation.CharClass.LIXThomClassOfTaut
