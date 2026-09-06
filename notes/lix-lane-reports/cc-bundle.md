@@ -303,6 +303,12 @@ Nothing from a peer, and nothing from the roster row is left unstarted.
   be solved`; `rw [h]` followed by `exact Homotopic.refl _` is a common instance.
 * **`ext` on a `ContinuousMap` equality descends past the map** into `Prod` and
   `Subtype` and leaves a goal about `.1`.  Use `ContinuousMap.ext fun z => …`.
+* **`omit … in` goes above the docstring, not below it.**  Between the docstring
+  and the `theorem` it fails with `unexpected token 'omit'; expected 'lemma'`,
+  once per occurrence.  When an instance is unused throughout a section, the
+  cheaper fix is to drop it from the `variable` line: chasing it declaration by
+  declaration costs one probe round per wave, because the linter only reports
+  the ones it reached.
 * **`open unitInterval` makes `σ` an unusable variable name.**  It is scoped
   notation for the interval's symmetry (`Mathlib/Topology/UnitInterval.lean`),
   so `(σ : ι ⊕ κ ≃ ρ)` fails with `unexpected token 'σ'; expected identifier`,
