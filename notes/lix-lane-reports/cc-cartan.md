@@ -294,6 +294,53 @@ for it, and its acyclicity is then three applications of
 fields — and nowhere else.  Do this first; it is the field that fails to
 typecheck if the models are set up wrongly.
 
+### The source functor: the design, worked out, for whoever builds it next
+
+The remaining objects are the source `W ⊗ S(X)`, the target with the `(13)(24)`
+action, and the two composites.  The source is the next one to build and its
+design is settled; the point below is the one that decides whether it is
+pleasant or miserable.
+
+**Index the degree-`k` carrier by the simplex dimension, not by the `W`-index.**
+Take
+
+```text
+(W ⊗ S(X))_k := (Σ n : Fin (k+1), singularSimplices X ↑n) →₀ Λ
+```
+
+so that the `W`-index is the *derived* quantity `i = k - n`.  With the opposite
+convention (index by `i`, dimension `k - i`) both terms of the differential need
+a transport of `σ` along `(k-1)-(i-1) = k-i`, i.e. a cast in the *definition* —
+and a dependent proof argument in a definition blocks every later `rw`.  With
+this convention there is no cast at all, because:
+
+* the `(1 + T)` term keeps the simplex and lowers only the `W`-index, so it is
+  the same `σ` at the same dimension;
+* the boundary term lowers only the dimension.
+
+**Get both branches from `Fin` eliminators, not from `if`.**  Write the two
+terms as separate functions on the basis:
+
+```lean
+-- present unless the W-index is already 0, i.e. unless n = last
+Fin.lastCases (motive := fun n => singularSimplices X ↑n → _)
+  (fun _ => 0) (fun j σ => (1 + groupRingGen) • Finsupp.single ⟨j, σ⟩ 1)
+
+-- present unless the dimension is 0
+Fin.cases (motive := fun n => singularSimplices X ↑n → _)
+  (fun _ => 0) (fun i σ => ∑ j, Finsupp.single ⟨i, faceSimplex X ↑i j σ⟩ 1)
+```
+
+`↑(j.castSucc) = ↑j` and `↑(i.succ) = ↑i + 1` are both `rfl`, so in each branch
+the simplex already has the dimension the target index wants.  That is what
+removes the casts; an `if` on `↑n < k+1` would not, because the branch would not
+carry the decomposition of `n`.
+
+Then `d ∘ d = 0` is four groups: `(1+T)² = 0`; the two mixed terms are equal and
+cancel in characteristic two; and `∂∂ = 0` for the simplex part, which is now
+available from `CartanSingular.lean` rather than needing the simplicial-identity
+pairing argument.
+
 ### For `cc-cohom-api` — graded commutativity comes free, do not wait for me
 
 Mod-2 commutativity of the cup product does **not** need acyclic models.  It is
