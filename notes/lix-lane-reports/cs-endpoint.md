@@ -26,97 +26,50 @@ Whitehead in round 4 at `✔ Built … (15s / 18s)`; `LIXEndpointStatement` in
 rounds 4 and 6 at `(9.4s / 9.1s)`; `LIXLemmaTwoProp` at `(20s)`; `ProblemLIX`
 in rounds 7, 8 and the last at `(10s / 7.5s / 27s)`.
 
-### THE ENDPOINT TAKES ONE HYPOTHESIS, AND ITS DEPENDENCY IS THREE STATEMENTS
+### LEMMA 2 IS THE SOLE HYPOTHESIS
 
-`Manuscript/NinetyNineProblems/ProblemLIX.lean` is green at **8704 jobs**
-(`01863243b`) with eight declarations.  The two that matter:
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` at `df4f0b872`,
+**`Build completed successfully (8723 jobs)`**, `PROBE GREEN`, zero occurrences
+of `sorryAx` or an allowlist violation.  The count rose from 8706 with the new
+import, which is what identifies the build as this change rather than a replay.
 
 ```lean
-theorem not_problemLIX_of_lemmaTwo_data
-    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
-    (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX
+theorem not_problemLIX_of_lemmaTwo (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX
 
-theorem not_problemLIX_of_lemmaTwoInput_data
-    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+theorem not_problemLIX_of_lemmaTwoInput
     (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) : ¬ ProblemLIX
 ```
 
-Simplicity is not a hypothesis of either: `LIX.lixLimit_isSimpleCStar` is
-hypothesis-free, from `cs-stages`' stagewise fullness through `cs-limit`'s
-reduction.  So the entire C⋆-side — stage algebras, connecting maps, inductive
-limit, simplicity, and the reduction of the printed problem to a single unitary
-— is unconditional.
+plus the separable variants of each.  `cs-clutching`'s
+`LIX.lixLimit_hasK1InjWitness_of` discharged the witness, so **the entire
+C⋆-side is a theorem**: stage algebras, connecting maps, inductive limit,
+simplicity, separability, Lemma 6, Corollary 4, the `K₁` witness, and the
+reduction of the printed problem to a single unitary.
 
-**Exactly three statements in the whole chain are not yet theorems.**
+The second form states the hypothesis unfolded, as `cc-thom`'s Step C and
+`cc-wu`'s Step D at every stage.  So the distance from STW's printed question
+to Lean is **three obligations in one lane behind one ladder**: the Thom class
+datum and the nonvanishing of the relative Euler class on the odd side, and the
+Chern splitting on the even side.
 
-1. `cc-thom`'s Step C: the top class of the mapping torus is **nonzero** for a
-   torus built from a corner unitary that carries one section to the other.
-2. `cc-wu`'s Step D: the same class **vanishes** for *every* corner unitary,
-   with no condition on sections.
-3. `cs-clutching`'s `lixLimit_hasK1InjWitness_of`.  Two of its three pieces are
-   green: `paddedPath` (the `hdiag` mathematics) and
-   `LIX.hasGeneratorShape_climb`, stated over `lixTower.climb` so that
-   `climbHom_apply` makes the join definitional and no transport lemma appears
-   anywhere.  What remains is `hdiag` and the generalised Corollary 4.  The
-   `M₂(M₂(A)) ≅ M₄(A)` flattening is **not** outstanding: `cs-limit` landed it
-   as `LIX.flattenTwoTwo : CStarMat 2 (CStarMat 2 A) ≃⋆ₐ[ℂ] CStarMat 4 A`
-   (`Analysis/LIXLimitMatrixFlatten.lean:83`, 3000 jobs), a star-algebra
-   equivalence with `matrixComp_star` proved and `U₀` transport **both ways**,
-   which settles the direction question I raised and could not settle.
+**Everything here is `#audit_axioms`, deliberately.**  `LemmaTwoHolds` is a
+leading input, so `#audit_closed_axioms` would reject every one of them *by
+design*.  Nothing in this file may advertise itself as closed while the
+topology is unproved, and the lead's instruction to land the closed gate when
+the witness arrived was one step early — the witness discharges the witness,
+not Lemma 2.
 
-   **Their Lemma 6 is an equality, not a homotopy, and that is a strengthening
-   rather than a convenience.**  `connect`'s new block is constant in the `S⁴`
-   coordinate, so the generator's shape reproduces verbatim one level up.  A
-   homotopy-shaped Lemma 6 would have made `hstage` depend on connectivity of a
-   unitary group — a fact about the *ambient* algebra — whereas the equality
-   depends only on the connecting map, which is the object the tower is built
-   from.  Checked rather than taken: `Mathlib/Analysis/CStarAlgebra/Unitary/Connected.lean`
-   is entirely *local* (its title is "locally path connected"; `Unitary.joined`
-   needs `‖v - u‖ < 2`, `isPathConnected_ball` needs radius `< 2`), so global
-   path-connectedness of `U(Mₙ(ℂ))` is genuinely absent at this pin and the
-   homotopy route would have hit a real gap.
+**The closed file is written and held outside the working tree**, as
+`scratchpad/cs-endpoint/closed_endpoint.patch.py`, not as an uncommitted edit.
+The endpoint is root-wired, so an uncommitted edit here is one sweep away from
+taking `main` down; held as a script it applies in one move and cannot land
+early.  It carries `not_problemLIX`, `exists_simple_unital_not_k1Inj` and the
+separable strengthening, all under `#audit_closed_axioms`.
 
-The asymmetry between 1 and 2 is the argument, not an accident of phrasing:
-Step D is quantified over every corner unitary and Step C over one with an
-extra property, so the contradiction needs no comparison between two different
-tori.  Recorded here because a symmetric misreading is the natural one.
-
-`cc-lix-odd` made Step A a theorem rather than a hypothesis, which is what
-keeps Lemma 2 a statement about *every* equivalence rather than a chosen one,
-and their section is unconditional down to the choice of bump function.
-
-The `_data` suffixes are temporary by construction.  When `cs-clutching` lands
-its arrow the hypothesis goes and the names lose `_data`; when Lemma 2 is
-proved they become `exists_simple_unital_not_k1Inj` and `not_problemLIX` with
-`#audit_closed_axioms`.  No statement changes at either step, only which
-arguments are supplied.
-
-**Separability landed** (`ff860a054`, 8706 jobs), as a separate strictly
-stronger theorem and never a fourth conjunct:
-
-```lean
-theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data … :
-    ∃ (A : Type) (_inst : CStarAlgebra A),
-      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
-```
-
-STW's Problem LIX names four things and `exists_simple_unital_not_k1Inj`
-carries exactly those, so a reader sees the question and nothing else.
-Separability is not part of the question and is what makes the answer *sharp*:
-STW cite Villadsen for simple **separable** unital nuclear examples defeating
-the surjectivity analogue, so that is the class the injectivity question lives
-in, and a counterexample needing nonseparability would be weaker than it looks.
-Beside rather than inside keeps both readings available and neither loaded.
-
-**Why every gate here is `#audit_axioms` and not `#audit_closed_axioms`.**
-Every declaration in the file currently has a leading input, so the closed gate
-would reject all of them *by design* — nothing advertises itself as closed
-while the chain still has a hypothesis.  When `cs-clutching`'s arrow lands and
-Lemma 2 is proved, the two final theorems become closed and take
-`#audit_closed_axioms`.  That is precisely the distinction the closed gate
-exists to enforce, and this campaign has already produced the failure it
-catches: a forward reference made Lean fill a proof with `sorryAx`, and the
-gate refused it while the two theorems it was built from both reported clean.
+`cc-lix-odd` has **committed to** `CharClass.lemmaTwoHolds`, no arguments, in a
+**new** module — and it does not exist yet; what exists is `lemmaTwoHolds_of`,
+which still takes the two-step input.  The held patch records that, so nobody
+applying it later goes hunting for a name that is not in the tree.
 
 ### The two verifications the brief asked for
 
@@ -658,6 +611,15 @@ plus two `#audit_closed_axioms` lines.
   the producing lane announce.  A push notification from the lane that made the
   change is strictly cheaper and strictly more reliable than any number of
   lanes polling for it.
+* **A hypothesis that two lanes rely on and neither has checked is the one that
+  fails at the end.**  `cc-lix-odd`'s Step D needs every tower dimension even
+  and Step C needs every one positive.  Those are conditions on *my* `lixDD`
+  consumed by *their* proof, and until they raised it neither side had verified
+  the other's form.  They hold — `LIX.even_lixDD`, `LIX.lixDD_pos`, beside the
+  definition — and I had landed them precisely because Step D runs on evenness,
+  but landing a lemma because you believe it is needed is not the same as
+  confirming it is the one needed.  Cross-lane hypotheses want checking from
+  both ends, and the cost of not doing so is paid at the join.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
