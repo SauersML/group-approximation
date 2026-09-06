@@ -3737,6 +3737,7 @@ import GroupApproximation.CharClass.LemmaTwoStaged
 import GroupApproximation.CharClass.ParityEvenFlag
 import GroupApproximation.CharClass.LIXBaseInstances
 import GroupApproximation.CharClass.LIXChern
+import GroupApproximation.CharClass.LIXChernValue
 import GroupApproximation.CharClass.LIXLocalPairClosed
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
