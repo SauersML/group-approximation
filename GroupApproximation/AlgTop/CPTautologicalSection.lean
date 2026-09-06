@@ -320,6 +320,69 @@ theorem tautChartHomotopy_eq_zero_iff {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) 
     simp only [tautChartHomotopy, h]
     simp
 
+/-! ## 6. The column section: the one fixed by the projection itself
+
+`dualTautSection` above is the `i`-th **row** of the rank-one projection `q`, and
+`dualTautComponent_isSection` shows it is fixed by the *conjugate* projection `q̄`.  That is
+the right normalisation for the dual line `L*`, but a downstream lane building
+`H = ⊕ⱼ Lⱼ^{⊕dⱼ}` out of the projections `q` themselves needs a section fixed by `q`, i.e.
+one satisfying `q *ᵥ σ = σ`.  That is the `i`-th **column**.
+
+The two differ by an entrywise complex conjugation (`entry_symm`), so they have the same
+zero locus; in the affine chart the column model is `z ↦ (1 + ‖z‖²)⁻¹ conj z` where the row
+model is `z ↦ (1 + ‖z‖²)⁻¹ z`, and the two derivatives at the origin differ by complex
+conjugation, a real-linear isomorphism of real determinant `(-1)^d`.  Mod `2` — which is
+all the campaign's parity contradiction uses — they agree, exactly as this file's header
+already records for `L` against `L*`. -/
+
+/-- The section of the tautological line `L` over `CP d` attached to the `i`-th coordinate:
+at the rank-one projection `q` it is the `i`-th **column** of `q`. -/
+def tautColComponent (i : Fin (d + 1)) (x : CP d) : Fin (d + 1) → ℂ :=
+  fun j => entry x j i
+
+@[simp]
+theorem tautColComponent_apply (i : Fin (d + 1)) (x : CP d) (j : Fin (d + 1)) :
+    tautColComponent i x j = entry x j i := rfl
+
+/-- **The column is a section of `L` itself**: `q *ᵥ (q eᵢ) = q eᵢ`, because the sum is the
+`(j, i)` entry of `q * q = q`.  This is the identity `dualTautComponent_isSection` fails to
+provide for the row, and the one a bundle built from `q` (rather than from `q̄`) needs. -/
+theorem tautColComponent_isSection (i : Fin (d + 1)) (x : CP d) (j : Fin (d + 1)) :
+    (∑ k, entry x j k * tautColComponent i x k) = tautColComponent i x j :=
+  entry_sum_mul x j i
+
+/-- The section of `L^{⊕d}` over `CP d` given by the `d` coordinates `1, …, d`. -/
+def tautColSection (x : CP d) : Fin d → Fin (d + 1) → ℂ :=
+  fun i => tautColComponent i.succ x
+
+@[simp]
+theorem tautColSection_apply (x : CP d) (i : Fin d) (j : Fin (d + 1)) :
+    tautColSection x i j = entry x j i.succ := rfl
+
+/-- The column section is the entrywise conjugate of the row section. -/
+theorem tautColSection_eq_star (x : CP d) (i : Fin d) (j : Fin (d + 1)) :
+    tautColSection x i j = star (dualTautSection x i j) := by
+  rw [tautColSection_apply, dualTautSection_apply, entry_symm x j i.succ]
+
+/-- **Exactly one zero, for the column section.**  Same zero locus as the row section, by
+`entry_symm`. -/
+theorem tautColSection_eq_zero_iff (x : CP d) :
+    (∀ i j, tautColSection x i j = 0) ↔ x = basePoint d := by
+  rw [← dualTautSection_eq_zero_iff]
+  constructor
+  · intro h i j
+    have hi : star (dualTautSection x i j) = 0 := by
+      rw [← tautColSection_eq_star]
+      exact h i j
+    simpa using congrArg star hi
+  · intro h i j
+    rw [tautColSection_eq_star, h i j, star_zero]
+
+theorem continuous_tautColSection (d : ℕ) :
+    Continuous fun x : CP d => tautColSection x := by
+  refine continuous_pi fun i => continuous_pi fun j => ?_
+  simpa using continuous_entry j i.succ
+
 end CPn
 
 end GroupApproximation.AlgTop
