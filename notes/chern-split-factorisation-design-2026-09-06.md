@@ -178,3 +178,55 @@ prove that field.
 The recommendation is therefore: land §4.1 now, so that the open obligation is a
 single named Prop rather than a hypothesis buried in three consumers, and take
 the `P(L ⊕ 1)` relation as the next target.
+
+## 7. Built, and the sharp obstruction (added after the first two landings)
+
+### Landed
+
+* `CharClass/ChernFactorBridge.lean`, `7b29c1d5a`, 8871 jobs.  `SplitRelation`,
+  `splitPoly_of_splitRelation`, `hasSplitting_of_splitRelation`.  All three
+  consumers now reduce to `SplitRelation` and nothing else.
+* `CharClass/ChernRootSection.lean`, `984ddc130`, 8872 jobs.
+  `chernPolynomial_isRoot_of_section`, `sub_C_dvd_chernPolynomial_of_section`,
+  `chern_one_add_root_eq_zero`.
+
+### The rank-one identification is now a theorem
+
+Restricting the defining relation along a section of the bundle projection turns
+`aeval` into plain `eval`, because the composite of the two pullbacks is the
+identity.  So a section makes the class it picks out a root.  At rank one that
+gives `γ₁ = e(L)`: the convention is *proved*, not assumed, and §5's caveat that
+the rank-one model test cannot confirm a sign is now moot.
+
+### Why sections do not reach the factorisation
+
+From two roots and one factor extracted, `p = (X - y₁) q` and `p(y₂) = 0` give
+`(y₂ - y₁) q(y₂) = 0`.  Concluding `q(y₂) = 0` needs `y₂ - y₁` to be a
+non-zero-divisor, which it is not in a cohomology ring — take `y₁ = y₂` and it
+fails outright.  So the factor theorem gives exactly one linear factor and no
+iteration reaches the rest.  Getting all `r` at once is the whole content of
+`SplitRelation`.
+
+Worked on `P(L ⊕ 1)`: the section through the trivial summand has root `0` and
+gives `γ₂ = 0`; the section through `L` has root `e(L)` and gives
+`e(L)(e(L) + γ₁) = 0`.  Together `p = X(X + γ₁)`.  What is missing is exactly
+`γ₁ = e(L)`, which by Leray–Hirsch freeness is *equivalent* to `SplitRelation`
+there.  The two are the same obligation, so neither is a route to the other.
+
+### Correction to §2
+
+§2 recorded that `Nontrivial (TotalH X)` is not an instance and nothing proves
+it.  That was true when the survey ran and is now false: `cc-cohom-api` landed
+`CohomologyTotalNontrivial.lean` at `064420a6e`, about three and a half minutes
+later, proving it for a nonempty space and registering the instance.  The
+hypothesis is instance-implicit in both of this lane's statements, so a consumer
+supplies nothing.
+
+### A `rw` trap in this layer
+
+`LerayHirschData.algebra` is a `@[reducible] def`, not an instance, so
+`D.chernPolynomial` is `@chernPoly _ _ _ _ D.algebra D.powerBasis` and is **not**
+syntactically the bare application.  Every `rw` with a `ChernRelation` lemma
+whose left side mentions `chernPoly pb` fails on it; `natDegree_chernPoly`'s
+`.trans` and `hr'.trans hr.symm` cross the defeq where `rw` cannot.  Both red
+rounds in this lane were this one trap.
