@@ -78,4 +78,17 @@ theorem mappingTorus_lixSlice_baseY (G : baseM dd → Matrix (VIdx dd) (VIdx dd)
   rw [mappingTorus_lixSlice G ((negEThree, y) : baseM dd)]
   rw [VmatY_eq ((negEThree, y) : baseM dd)]
 
+/-! ## 3. The ranks match
+
+`cc-cohom-api` observed that the zero block contributes nothing to the trace, so the
+summand inclusion `0 ⊕ V` against `V` preserves the rank and nobody has to renegotiate the
+rank hypothesis when the invariance lands.  Recorded here rather than left as a remark. -/
+
+theorem trace_mappingTorus_lixSlice (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ)
+    (m : baseM dd) :
+    Matrix.trace (mappingTorus Vmat G circHoriz circHeight (southPole, m))
+      = (((∑ j, dd j : ℕ) + 3 : ℕ) : ℂ) := by
+  rw [mappingTorus_lixSlice G m, trace_fromBlocks_gen, Matrix.trace_zero, zero_add,
+    trace_Vmat]
+
 end GroupApproximation.CharClass
