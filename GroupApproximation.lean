@@ -3767,6 +3767,8 @@ import GroupApproximation.CharClass.LIXBaseConnected
 import GroupApproximation.CharClass.LIXStepCOddThom
 import GroupApproximation.CharClass.LIXThomResReduction
 import GroupApproximation.CharClass.ChernGammaBridge
+import GroupApproximation.CharClass.ChernGammaComponent
+import GroupApproximation.CharClass.ThomFibreRestriction
 import GroupApproximation.CharClass.LIXTrivSectionCompare
 import GroupApproximation.CharClass.LerayHirschGammaIso
 import GroupApproximation.CharClass.LerayHirschNatural
