@@ -3668,6 +3668,7 @@ import GroupApproximation.CharClass.LIXFullChart
 import GroupApproximation.CharClass.LerayHirschShiftTerm
 import GroupApproximation.CharClass.SteenrodFourfoldBReindex
 import GroupApproximation.CharClass.SteenrodFourfoldBConnect
+import GroupApproximation.CharClass.LerayHirschPeel
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
