@@ -66,10 +66,22 @@ taking `main` down; held as a script it applies in one move and cannot land
 early.  It carries `not_problemLIX`, `exists_simple_unital_not_k1Inj` and the
 separable strengthening, all under `#audit_closed_axioms`.
 
-`cc-lix-odd` has **committed to** `CharClass.lemmaTwoHolds`, no arguments, in a
-**new** module — and it does not exist yet; what exists is `lemmaTwoHolds_of`,
-which still takes the two-step input.  The held patch records that, so nobody
-applying it later goes hunting for a name that is not in the tree.
+`cc-lix-odd` has confirmed the target, and both halves were checked by them
+against `origin/main` rather than assumed — the file path is free tree-wide and
+the bare declaration name has no hits, so neither collides when it lands:
+
+```lean
+import GroupApproximation.CharClass.LemmaTwoClosed
+theorem GroupApproximation.CharClass.lemmaTwoHolds : LIX.LemmaTwoHolds
+```
+
+It does not exist yet; what exists is `lemmaTwoHolds_of`, which still takes the
+two-step input.  **They are deliberately not creating the module early** with
+the three inputs as hypotheses to stabilise my import path, and their reason is
+worth keeping: a *present* name with the wrong shape fails somewhere else and
+reads as the consumer's bug, whereas an *absent* name fails immediately and
+unmistakably.  So a failed run of the held patch means "not yet", never
+"wrong".
 
 ### The two verifications the brief asked for
 
@@ -620,6 +632,15 @@ plus two `#audit_closed_axioms` lines.
   but landing a lemma because you believe it is needed is not the same as
   confirming it is the one needed.  Cross-lane hypotheses want checking from
   both ends, and the cost of not doing so is paid at the join.
+* **A mechanism that protects the run does not protect the artifact.**  I held
+  the closed endpoint as a patch outside the tree with a guessed name labelled
+  "confirm with cc-lix-odd", reasoning that the guess could only fail loudly on
+  first run with nothing pushed.  True, and `cc-lix-odd` pointed out the gap:
+  the label degrades in a way the mechanism does not catch — someone else
+  applies the patch, or it sits long enough that the label reads as
+  already-confirmed, and the protection is gone while the guess remains.  The
+  guess is now removed rather than annotated.  **Do not let a safe mechanism
+  become a reason to leave an unconfirmed value in an artifact.**
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
