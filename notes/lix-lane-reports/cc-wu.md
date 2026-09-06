@@ -365,13 +365,16 @@ Three of the four hypotheses of `gamma_top_eq_zero_of_splitting` are now closed
 or reduced to one input:
 
 * `htx_inj` — closed outright.
-* `hγ` and `hsq_b` — closed over `cc-cohom-api`'s `ChernSplit`.  That structure's
-  `split` field is **provisional**: it will be a theorem, `chernSplit_of_hodd`,
-  from the four-term decomposition plus `H^{odd}(Y;F₂) = 0` plus the single fact
-  that `γ k` sits in degree `2k`.  Nobody should prove it by hand.  The reason it
-  is a hypothesis today is that the odd vanishing is unlanded; it was reassigned
-  from `cc-thom` to `cc-projective` (the vanishing-form toolkit cannot express
-  it; it is a corollary of the `ℂP`-factor Künneth).
+* `hγ` and `hsq_b` — closed.  `cc-cohom-api`'s `KnTwo.chernSplit_of_noOdd`
+  (8822 jobs) builds `ChernSplit` from exactly two inputs: `γ k` concentrated in
+  degree `2k`, which `cc-projective`'s `LerayHirschGraded.gamma` gives by its
+  type, and `KnHemi.NoOddCohomology Y`.  No fact about Chern classes enters.  The
+  `split` field is no longer a hypothesis anyone proves by hand.
+* `KnHemi.NoOddCohomology Y` — the one genuinely open statement in this part of
+  the chain.  It appears only as a hypothesis (`decomp_even`, `decomp_even_low`,
+  `chernSplit_of_noOdd`) and is proved nowhere for a product of projective
+  spaces.  Owner `cc-projective`, reassigned from `cc-thom` (whose vanishing-form
+  toolkit cannot express it).
 * `hC : CartanTotal` — `cc-cartan`, unchanged.
 * `hsplit : HasSplitting` and `hslice` — `cc-projective`, both behind
   Leray–Hirsch.
@@ -423,11 +426,10 @@ would look wrong there.  That is the one place the corollary can go astray.
   at any boundary between lanes: a statement handed over at `6 + n` forces the
   identical defeq on whoever converts it.  `cc-cohom-api` adopted the convention
   and their `KnTwo.tClass_mul_xClass` is stated at `TotalH.of _ (1 + 5)`.
-* **Latent name ambiguity, deferred by lead ruling.**  There are two
-  `component_of_mul`: `GroupApproximation.CharClass.component_of_mul`
-  (`cc-cohom-api`, arguments `i m w z`) and
-  `GroupApproximation.CharClass.Wu.component_of_mul` (this lane, arguments
-  `m w z n`).  Nothing is broken today — the innermost namespace wins and every
-  cross-use is qualified — but a file that `open`s `Wu` while `CharClass` is also
-  open will get a genuine ambiguity error.  Rule 11 keeps both names as they are;
-  the rename is post-endpoint hygiene.
+* **Name ambiguity, RESOLVED.**  There were briefly two `component_of_mul`, one
+  at the bare `CharClass` level and this lane's in `CharClass.Wu`.  A file
+  `open`ing both would have got a real ambiguity error.  `cc-cohom-api` moved
+  theirs into `CharClass.KnTwo`, which is where the fleet convention puts it
+  anyway, so nothing of this lane changed.  Two declarations sharing a short name
+  at different namespace depths is silent until someone opens both — worth a look
+  whenever a lane lands a helper at the bare level.
