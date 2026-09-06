@@ -187,6 +187,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `KunnethFactor`, `kunnethFactor_of_prodEquiv`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomKunnethSphere.lean` | `kunnethFactor_sphere`, `kunnethFactor_of_contractible`, `kunnethFactor_sphere_compl`, `puncturedAcyclic_sphere` — the Künneth input instantiated from `cc-cohom-api`'s green `isZero_cohomology_prod_sphere` |
+| `CharClass/ThomToolkitInstance.lean` | **`cohomologyToolkit`** — the toolkit as a *term*; `puncturedAcyclic_prod` and `puncturedAcyclic_sphere'` with it discharged |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
@@ -202,6 +203,13 @@ Nothing outstanding; every cc-thom module is in §1.  What remains is
 ## 3. NEEDS
 
 ### From `cc-cohom-api`
+
+**ALL FOUR TOOLKIT FIELDS ARE DISCHARGED.**  `CohomologyToolkit` is now the term
+`ThomToolkitInstance.cohomologyToolkit`, built from their `pullEquivOfHomeomorph`,
+`pullEquivOfHomotopyEquiv` and `cohomology_isZero_of_contractible` together with
+cc-thom's own `isZero_cohomology_of_cover'`.  Everything the punctured-product
+recursion proves is unconditional in it.  The remaining ask of this lane is the
+`CP`-factor Künneth from `cc-projective`, and δ-linearity, which is theirs.
 
 **Already exported and usable** (no action): `Hmod2` (reducibly
 `cohomologyZMod2`), `pullEquivOfHomeomorph`, `pullEquivOfHomotopyEquiv`.  These
