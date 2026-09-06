@@ -60,10 +60,10 @@ theorem isZero_prod_band (A : Type) [TopologicalSpace A] (n m : ℕ)
         ((ContinuousMap.HomotopyEquiv.refl A).prodCongr (sphereBandHomotopyEquiv n)) m)
       hband)
 
+set_option maxHeartbeats 1000000 in
 /-- **The Künneth vanishing step.**  If the cohomology of `A × S^n` vanishes in
 degree `m` and that of `A` vanishes in degree `m+1`, then the cohomology of
 `A × S^{n+1}` vanishes in degree `m+1`. -/
-set_option maxHeartbeats 1000000 in
 theorem isZero_prod_sphere_succ (A : Type) [TopologicalSpace A] (n m : ℕ)
     (hband : IsZero (Hmod2 (TopCat.of (A × Sphere n)) m))
     (hA : IsZero (Hmod2 (TopCat.of A) (m + 1))) :

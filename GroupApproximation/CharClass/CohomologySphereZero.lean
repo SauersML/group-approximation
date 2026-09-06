@@ -49,7 +49,7 @@ theorem sphereZero_ext {p q : Sphere 0}
     (h : (p : EuclideanSpace ℝ (Fin 1)) 0 = (q : EuclideanSpace ℝ (Fin 1)) 0) : p = q := by
   apply Subtype.ext
   ext i
-  rw [Subsingleton.elim i 0]
+  fin_cases i
   exact h
 
 theorem continuous_sphereZeroCoord :
@@ -66,33 +66,39 @@ def sphereZeroNeg : Opens (Sphere 0) where
   carrier := {p | (p : EuclideanSpace ℝ (Fin 1)) 0 < 0}
   is_open' := isOpen_lt continuous_sphereZeroCoord continuous_const
 
+theorem mem_sphereZeroPos {p : Sphere 0} :
+    p ∈ (sphereZeroPos : Set (Sphere 0)) ↔ 0 < (p : EuclideanSpace ℝ (Fin 1)) 0 := Iff.rfl
+
+theorem mem_sphereZeroNeg {p : Sphere 0} :
+    p ∈ (sphereZeroNeg : Set (Sphere 0)) ↔ (p : EuclideanSpace ℝ (Fin 1)) 0 < 0 := Iff.rfl
+
 theorem sphereZero_sup : sphereZeroPos ⊔ sphereZeroNeg = ⊤ := by
   apply Opens.ext
   apply Set.eq_univ_of_forall
   intro p
-  rcases (sphereZero_coord_ne_zero p).lt_or_lt with hlt | hgt
-  · exact Set.mem_union_right _ hlt
-  · exact Set.mem_union_left _ hgt
+  rcases Ne.lt_or_lt (sphereZero_coord_ne_zero p) with hlt | hgt
+  · exact Set.mem_union_right _ (mem_sphereZeroNeg.mpr hlt)
+  · exact Set.mem_union_left _ (mem_sphereZeroPos.mpr hgt)
 
 theorem sphereZero_inter_empty :
     ((sphereZeroPos : Set (Sphere 0)) ∩ (sphereZeroNeg : Set (Sphere 0))) = ∅ := by
   ext p
   simp only [Set.mem_inter_iff, Set.mem_empty_iff_false, iff_false, not_and]
   intro h1 h2
-  exact absurd (h1.trans h2) (lt_irrefl 0)
+  exact absurd (lt_trans (mem_sphereZeroPos.mp h1) (mem_sphereZeroNeg.mp h2)) (lt_irrefl 0)
 
 instance nonempty_sphereZeroPos : Nonempty ↥(sphereZeroPos : Set (Sphere 0)) := by
   refine ⟨⟨⟨EuclideanSpace.single (0 : Fin 1) (1 : ℝ), ?_⟩, ?_⟩⟩
   · rw [mem_sphere_zero_iff_norm, euclidean_one_norm]
     simp
-  · show (0 : ℝ) < _
+  · rw [mem_sphereZeroPos]
     simp
 
 instance nonempty_sphereZeroNeg : Nonempty ↥(sphereZeroNeg : Set (Sphere 0)) := by
   refine ⟨⟨⟨EuclideanSpace.single (0 : Fin 1) (-1 : ℝ), ?_⟩, ?_⟩⟩
   · rw [mem_sphere_zero_iff_norm, euclidean_one_norm]
     simp
-  · show _ < (0 : ℝ)
+  · rw [mem_sphereZeroNeg]
     simp
 
 instance subsingleton_sphereZeroPos : Subsingleton ↥(sphereZeroPos : Set (Sphere 0)) := by
@@ -101,9 +107,11 @@ instance subsingleton_sphereZeroPos : Subsingleton ↥(sphereZeroPos : Set (Sphe
   apply Subtype.ext
   apply sphereZero_ext
   have hp' : (p : EuclideanSpace ℝ (Fin 1)) 0 = 1 := by
-    rw [← abs_of_pos hp]; exact sphereZero_abs p
+    have h1 := sphereZero_abs p
+    rwa [abs_of_pos (mem_sphereZeroPos.mp hp)] at h1
   have hq' : (q : EuclideanSpace ℝ (Fin 1)) 0 = 1 := by
-    rw [← abs_of_pos hq]; exact sphereZero_abs q
+    have h1 := sphereZero_abs q
+    rwa [abs_of_pos (mem_sphereZeroPos.mp hq)] at h1
   rw [hp', hq']
 
 instance subsingleton_sphereZeroNeg : Subsingleton ↥(sphereZeroNeg : Set (Sphere 0)) := by
@@ -112,20 +120,20 @@ instance subsingleton_sphereZeroNeg : Subsingleton ↥(sphereZeroNeg : Set (Sphe
   apply Subtype.ext
   apply sphereZero_ext
   have hp' : (p : EuclideanSpace ℝ (Fin 1)) 0 = -1 := by
-    have := sphereZero_abs p
-    rw [abs_of_neg hp] at this
+    have h1 := sphereZero_abs p
+    rw [abs_of_neg (mem_sphereZeroNeg.mp hp)] at h1
     linarith
   have hq' : (q : EuclideanSpace ℝ (Fin 1)) 0 = -1 := by
-    have := sphereZero_abs q
-    rw [abs_of_neg hq] at this
+    have h1 := sphereZero_abs q
+    rw [abs_of_neg (mem_sphereZeroNeg.mp hq)] at h1
     linarith
   rw [hp', hq']
 
 /-! ## 2. The base case of the Künneth induction -/
 
+set_option maxHeartbeats 1000000 in
 /-- **`H^{m+1}(A × S⁰; F₂) = 0` whenever `H^{m+1}(A; F₂) = 0`.**  The two halves of
 `S⁰` are contractible and disjoint. -/
-set_option maxHeartbeats 1000000 in
 theorem isZero_prod_sphereZero (A : Type) [TopologicalSpace A] (m : ℕ)
     (hA : IsZero (Hmod2 (TopCat.of A) (m + 1))) :
     IsZero (Hmod2 (TopCat.of (A × Sphere 0)) (m + 1)) := by
