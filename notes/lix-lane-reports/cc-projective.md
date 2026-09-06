@@ -596,3 +596,48 @@ may eliminate either side of `b₁ = β`.  Deciding BOTH `by_cases` before any
 name-agnostic.  Isolating the three `hLine` entry cases into their own lemmas kept
 the dependent index out of the main argument entirely, which is what turned three
 errors into none.
+
+## 2026-09-06 — LANE STATE: NOTHING OPEN, EVERYTHING WIRED
+
+Thirteen modules landed this session.  All are on origin byte for byte, nothing of
+this lane is uncommitted, and all thirteen are **reachable from the root** by a
+transitive import walk of `origin/main` (root closure 4801 modules).  That last
+check is the one worth repeating: a module can be green, pushed and byte-verified
+and still be invisible to the root build.
+
+* `ChernSliceNaturality` (cf1f83b6a, 9148) · `LIXChernSlice` (8c7a0e1e5, 9154)
+* `LIXChernSliceNatural` (a501b49a1, 9155) · `LIXChernSplit` (1a6884b8a, 9156)
+* `ChernEulerPushforwardSize` (b8c979497, 8826) · `ChernOfInvariance` (34f43947d, 9150)
+* `LIXChernSliceValueBridge` (3f50a8dde, 9160) · `ChernTautRestrict` (7c4fbb066, 9153)
+* `ChernTautHyperIso` (14adf888f, 9181) · `ChernLineEulerNatural` (37156d57f, 9153)
+* `SliceVLineRoots` (546facd8b, 9162) · `SliceVGenerator` (199e159b0, 9163)
+* `SliceRootsBlock` (fbe438692, 9181)
+
+### The two theorems this session actually consisted of
+
+`chern_map_of_square` with a pullback ring map is NATURALITY; with the identity
+ring map it is INVARIANCE.  `CPn.eulerOfBundle_pushforward_iso` covers the base
+change, the bundle isomorphism, the hyperplane and the block inclusion, because
+all four change the index type and nothing else.  Every module above is one of
+those two at a different instantiation, plus the LIX-side identifications.
+
+### What the fleet adopted from this lane
+
+**Rule 17, strengthened** (lead, 07:49): the producer of a name lands it as a
+properties-free definition on origin FIRST, and the consumer states against the
+name, never against a description.  This came from cc-steenrod landing `vRoot`
+and `baseYFactor` instead of sending them.  It mattered concretely: I had proved
+their statement at my own `evalFactor`, which is their `baseYFactor` written
+twice, and a description would have handed them a lemma crossing by `exact` and
+not by `rw` — discovered inside a rewrite chain rather than at the seam.
+
+### Open, and owned elsewhere
+
+* `hu` / `hclass` — ruled cc-thom's.  This lane's part is by NAME ONLY: if
+  `gammaCoeff` and `chernOf` meet definitionally nowhere at the mapping torus,
+  cc-thom sends that one identity and this lane proves it.  Do not start unasked.
+* `hres`, the Thom-class restriction naturality — accepted from cc-thom under
+  rule 13, awaiting their goal as terms.
+* Post-endpoint hygiene: retire `LH.lineEulerOf_pushforward` by importing
+  cc-steenrod's `CharClass.lineEulerOf_pushforward` (438667a59, landed first).
+  Separate commit, AFTER the endpoint is green, never before.
