@@ -132,6 +132,20 @@ the south slice.  The generators are existentially quantified rather than named 
 the consumer, so nobody can supply generators the value statement was not proved
 for.  Both `#print axioms` report `[propext, Classical.choice, Quot.sound]`.
 
+Re-probed at 9198 jobs after citing `cc-lix-odd`'s
+`unitVectorsThreeHomeoSphere_symm_apply_negEThree` for the point equality, landed
+`bf99deceb`.  Their map-level `lixSliceMap_south_marked` does **not** apply here:
+`chernOf` takes the restricted rank as a proof argument whose type mentions the
+slice map, so moving the map is a dependent rewrite whose motive does not
+typecheck, while substituting the point moves the map and the rank proof together.
+
+### What the even side now rests on
+
+`lemmaTwoHolds_of_exists_chernSliceValue` needs two things and nothing else:
+`cc-thom`'s Step C chain, and `LixSliceValue`, the statement that the mod-2 Chern
+classes of `V` over the projective base are the coefficients of
+`∏_j (1 + gen_j)^{d_j}` for some generators.  The second is `cc-steenrod`'s.
+
 Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
 integration assembly is green over its named hypotheses, and the even side is
 stated at the model of record.  `cc-lix-odd` consumes it in
