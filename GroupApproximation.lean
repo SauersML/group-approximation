@@ -3754,6 +3754,9 @@ import GroupApproximation.CharClass.ThomRestrictSquare
 import GroupApproximation.CharClass.ThomHabs
 import GroupApproximation.CharClass.CohomologyLIXHsliceClosed
 import GroupApproximation.CharClass.ThomDataFromLH
+import GroupApproximation.CharClass.ChernEulerPushforwardSize
+import GroupApproximation.CharClass.CohomologyLIXHsliceSouth
+import GroupApproximation.CharClass.ThomBridgeTotal
 import GroupApproximation.CharClass.LIXLocalPairClosed
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
