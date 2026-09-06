@@ -3662,6 +3662,7 @@ import GroupApproximation.CharClass.CohomologyChartKunnethClosed
 import GroupApproximation.CharClass.CartanEvalPre
 import GroupApproximation.CharClass.CartanEvalComposeB
 import GroupApproximation.CharClass.LIXProductChart
+import GroupApproximation.CharClass.SteenrodFourfoldBAssembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
