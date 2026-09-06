@@ -43,7 +43,7 @@ variable {R : Type} [CommRing R] {X Y Z : TopCat.{0}}
 theorem cochainPullback_id (R : Type) [CommRing R] (W : TopCat.{0}) (n : ℕ)
     (φ : singularCochainGroup R W n) : cochainPullback (𝟙 W) n φ = φ := by
   show ((((singularCochainComplexFunctor R (ModuleCat.of R R)).map (𝟙 W).op).f n).hom) φ = φ
-  rw [show (𝟙 W).op = 𝟙 (Opposite.op W) from rfl, Functor.map_id]
+  rw [show (𝟙 W).op = 𝟙 (Opposite.op W) from rfl, CategoryTheory.Functor.map_id]
   rfl
 
 theorem cochainPullback_comp (R : Type) [CommRing R] (f : X ⟶ Y) (g : Y ⟶ Z) (n : ℕ)
@@ -106,12 +106,13 @@ def relCochainMap (R : Type) [CommRing R] (f : X ⟶ Y) {A : Set X} {B : Set Y}
       fun ψ => cochainPullback_cochainCoboundary' R f i _
     exact Subtype.ext (key φ)
 
-@[simp] theorem relCochainMap_f_val (f : X ⟶ Y) {A : Set X} {B : Set Y}
+theorem relCochainMap_f_val (f : X ⟶ Y) {A : Set X} {B : Set Y}
     (hf : ∀ x ∈ A, (ConcreteCategory.hom f) x ∈ B) (n : ℕ)
     (φ : relCochainSubmodule R Y B n) :
-    ((((relCochainMap R f hf).f n).hom φ : relCochainSubmodule R X A n) :
-        singularCochainGroup R X n)
-      = cochainPullback f n (φ : singularCochainGroup R Y n) := rfl
+    ((relCochainMap R f hf).f n).hom φ =
+      ⟨cochainPullback f n (φ : singularCochainGroup R Y n),
+        cochainPullback_mem_relCochainSubmodule R f hf n (φ : singularCochainGroup R Y n)
+          φ.2⟩ := rfl
 
 /-- The **pullback on relative cohomology** of a map of pairs. -/
 def relPullback (R : Type) [CommRing R] (f : X ⟶ Y) {A : Set X} {B : Set Y}
@@ -146,12 +147,11 @@ theorem relCochainMap_comp (R : Type) [CommRing R] (f : X ⟶ Y) (g : Y ⟶ Z)
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  apply Subtype.ext
-  show cochainPullback (f ≫ g) n ((φ : relCochainSubmodule R Z C n) :
-      singularCochainGroup R Z n)
-    = cochainPullback f n (cochainPullback g n
-      ((φ : relCochainSubmodule R Z C n) : singularCochainGroup R Z n))
-  exact cochainPullback_comp R f g n _
+  have key : ∀ ψ : relCochainSubmodule R Z C n,
+      cochainPullback (f ≫ g) n (ψ : singularCochainGroup R Z n)
+        = cochainPullback f n (cochainPullback g n (ψ : singularCochainGroup R Z n)) :=
+    fun ψ => cochainPullback_comp R f g n _
+  exact Subtype.ext (key φ)
 
 theorem relPullback_id (R : Type) [CommRing R] (W : TopCat.{0}) (A : Set W)
     (h : ∀ x ∈ A, (ConcreteCategory.hom (𝟙 W)) x ∈ A) (n : ℕ) :
@@ -167,6 +167,17 @@ theorem relPullback_comp (R : Type) [CommRing R] (f : X ⟶ Y) (g : Y ⟶ Z)
   rw [relPullback, relPullback, relPullback, relCochainMap_comp R f g hf hg hfg,
     HomologicalComplex.homologyMap_comp]
 
+/-- `relPullback` only depends on the underlying morphism up to propositional
+equality: transporting the map-of-pairs hypothesis along `f = g` gives the same
+pullback.  Proved by `subst`, so that later rewriting the morphism (e.g. via an
+isomorphism's `hom_inv_id`) never has to rewrite *through* the dependent
+hypothesis argument. -/
+theorem relPullback_eq_of_eq (R : Type) [CommRing R] {f g : X ⟶ Y} (hfg : f = g)
+    {A : Set X} {B : Set Y} (hf : ∀ x ∈ A, (ConcreteCategory.hom f) x ∈ B) (n : ℕ) :
+    relPullback R f hf n = relPullback R g (hfg ▸ hf) n := by
+  subst hfg
+  rfl
+
 /-! ## 4. Isomorphisms of pairs -/
 
 /-- An isomorphism of pairs induces an isomorphism on relative cohomology.  For a
@@ -178,13 +189,25 @@ def relPairIso (R : Type) [CommRing R] (e : X ≅ Y) {A : Set X} {B : Set Y}
   hom := relPullback R e.hom h₁ n
   inv := relPullback R e.inv h₂ n
   hom_inv_id := by
-    rw [← relPullback_comp R e.inv e.hom h₂ h₁
-      (by rw [e.inv_hom_id]; exact fun y hy => hy)]
-    rw [relPullback_id]
+    have hp : ∀ x ∈ B, (ConcreteCategory.hom (e.inv ≫ e.hom)) x ∈ B := by
+      intro x hx
+      have hx' : (ConcreteCategory.hom (e.inv ≫ e.hom)) x = x := by
+        rw [e.inv_hom_id, CategoryTheory.id_apply]
+      rw [hx']; exact hx
+    have step1 : relPullback R e.hom h₁ n ≫ relPullback R e.inv h₂ n
+        = relPullback R (e.inv ≫ e.hom) hp n := (relPullback_comp R e.inv e.hom h₂ h₁ hp n).symm
+    have step2 := relPullback_eq_of_eq R e.inv_hom_id hp n
+    exact step1.trans (step2.trans (relPullback_id R Y _ _ n))
   inv_hom_id := by
-    rw [← relPullback_comp R e.hom e.inv h₁ h₂
-      (by rw [e.hom_inv_id]; exact fun x hx => hx)]
-    rw [relPullback_id]
+    have hp : ∀ x ∈ A, (ConcreteCategory.hom (e.hom ≫ e.inv)) x ∈ A := by
+      intro x hx
+      have hx' : (ConcreteCategory.hom (e.hom ≫ e.inv)) x = x := by
+        rw [e.hom_inv_id, CategoryTheory.id_apply]
+      rw [hx']; exact hx
+    have step1 : relPullback R e.inv h₂ n ≫ relPullback R e.hom h₁ n
+        = relPullback R (e.hom ≫ e.inv) hp n := (relPullback_comp R e.hom e.inv h₁ h₂ hp n).symm
+    have step2 := relPullback_eq_of_eq R e.hom_inv_id hp n
+    exact step1.trans (step2.trans (relPullback_id R X _ _ n))
 
 /-! ## 5. Naturality of the long exact sequence -/
 
