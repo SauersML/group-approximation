@@ -98,7 +98,26 @@ theorem dTgt_PhiHom (X) (k) (y : WTensorSMod X (k+1)) :
     dTgt X (ZMod 2) k (PhiHom X (k+1) y) = PhiHom X k (wDiff singularBoundary X k y)
 theorem dTgtLin_comp_PhiHom (X) (k) :
     (dTgtLin X k).comp (PhiHom X (k+1)) = (PhiHom X k).comp (wDiff singularBoundary X k)
+
+def pairIdxPush (f : X ⟶ Y) (k) : PairIdx X k → PairIdx Y k
+def pairPushGRLin (X Y) (f) (k) :
+    (PairIdx X k →₀ ZMod 2) →ₗ[GroupRingZ2] (PairIdx Y k →₀ ZMod 2)
+theorem dTgt_naturality (f : X ⟶ Y) (k) (y) :
+    pairPushLin X Y f k (dTgt X (ZMod 2) k y) = dTgt Y (ZMod 2) k (pairPushLin X Y f (k+1) y)
+theorem PhiHom_naturality (f : X ⟶ Y) (k) (y : WTensorSMod X k) :
+    pairPushLin X Y f k (PhiHom X k y)
+      = PhiHom Y k (Finsupp.lmapDomain GroupRingZ2 GroupRingZ2 (srcMapIdx f k) y)
+theorem smul_of_swap (F : (PairIdx X j →₀ ZMod 2) →ₗ[ZMod 2] (PairIdx Y k →₀ ZMod 2))
+    (hF : ∀ z, F (swapEnd X j z) = swapEnd Y k (F z)) (c : GroupRingZ2) (z) :
+    F (c • z) = c • F z
 ```
+
+So `Φ` is a **natural equivariant chain map**: natural by `PhiHom_naturality`
+against `cc-cartan`'s own `srcMapIdx`, equivariant because it is `Λ`-linear by
+construction (the source is free over `Λ`, so the extension from the basis is the
+whole of `Λ`-linearity), and a chain map by `dTgt_PhiHom`.  `smul_of_swap` is the
+reusable criterion: an `F₂`-linear map between two target modules commuting with
+their swaps is `Λ`-linear.
 
 `dTgt_PhiHom` is **the chain-map condition**.  The source is
 `cc-cartan`'s `WTensorSMod`/`wDiff` on the nose; the single `Equiv.ulift` between
@@ -196,6 +215,10 @@ since:
   generator**, 2085 jobs
 * `CharClass/SteenrodTargetLinear.lean` — the target differential is equivariant
   and group-ring linear, 2085 jobs
+* `CharClass/SteenrodChainMapHom.lean` — the chain-map condition against
+  `wDiff`, 2089 jobs
+* `CharClass/SteenrodChainMapNat.lean` — naturality of `Φ` and of the target
+  differential, 2092 jobs
 
 ## AUTHORED, UNVERIFIED
 
