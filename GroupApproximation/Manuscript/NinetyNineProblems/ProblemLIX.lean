@@ -240,6 +240,34 @@ theorem not_problemLIX_of_lemmaTwoInput_data
     (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) : ¬ ProblemLIX :=
   not_problemLIX_of_lemmaTwo_data hwit (CharClass.lemmaTwoHolds_of h)
 
+/-! ## The sharper statement, separability included
+
+STW's Problem LIX names four things: unital, nontrivial, simple, and
+`K₁`-injective.  `exists_simple_unital_not_k1Inj` carries exactly those and no
+more, so that a reader sees the question and nothing else.
+
+Separability is not part of the question, and it is what makes the answer
+sharp.  STW cite Villadsen for simple **separable** unital nuclear examples
+defeating the *surjectivity* analogue, so the separable class is where the
+injectivity question actually lives, and a counterexample that needed
+nonseparability would be a weaker answer than it appears.  The counterexample
+here is separable --- `LIX.lixLimit_separableSpace`, unconditional --- so that
+is stated **beside** the answer rather than folded into it, which keeps both
+readings available and neither one loaded. -/
+
+/-- **The counterexample is separable**, which is strictly more than Problem LIX
+asks and is the form in which the answer is sharp.
+
+Implies `exists_simple_unital_not_k1Inj_of_lemmaTwo_data` by dropping the first
+conjunct. -/
+theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : LIX.LemmaTwoHolds) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  ⟨LIX.LIXLimit, inferInstance, LIX.lixLimit_separableSpace, inferInstance,
+    LIX.lixLimit_isSimpleCStar, not_k1Inj_of_hasWitness (hwit h)⟩
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -252,4 +280,5 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms not_problemLIX_of_lemmaTwo_data
 #audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwoInput_data
 #audit_axioms not_problemLIX_of_lemmaTwoInput_data
+#audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data
 #audit_axioms not_problemLIX_of_exists
