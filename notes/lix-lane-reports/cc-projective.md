@@ -440,3 +440,52 @@ The last step of `h2` left a goal whose two sides PRINT IDENTICALLY and which
 also the hidden `LerayHirschGraded` proof terms — is not unfolded.  A bare `rfl`
 on the next line closes it at default transparency.  The tell is an unsolved
 goal displayed as `X = X`; do not go looking for a real mismatch.
+
+## 2026-09-06 — hnat, the S field, and the seam audit
+
+* `LIXChernSliceNatural` (a501b49a1, **PROBE GREEN, 9155 jobs**) — `hnat`.
+* `LIXChernSplit` (1a6884b8a, **PROBE GREEN, 9156 jobs**) — the `S` field.
+
+`chernSliceNatural_lixChern` discharges `hslice_of_props`'s naturality hypothesis
+WITHOUT transporting the bundle across `Wu.lixIso`.  The assigned route was to
+carry the bundle to the other model and use the naturality proved there; that is
+unnecessary, because `pull_nSlice_lixIso` already says the composite restriction
+IS restriction along `lixSlice`, and `pull_lixChern_lixSlice` is stated exactly
+there.  One composition, no bundle crosses the isomorphism.
+
+`lixChernSplit` closes one of the three inputs `LemmaTwoStepDLix` records as
+open.  `S` was never open: `Wu.chernSplitOfGraded` builds it from the degree
+concentration alone, and `lixChernOf_mappingTorus` supplies that on a mapping
+torus with the proof arguments already right.  Two remain, `hu` and `hne`, both
+Thom-class facts.
+
+### The seam audit, its findings, and its one wrong line
+
+Two seams clean (the class type needs no coercion, since `Hmod2` is an abbrev
+for `cohomologyZMod2`; every object at Step C is at `2 * lixRank dd`, with no
+r versus r+1 anywhere at that seam).  Four instantiation constraints.  Two real
+mismatches:
+
+* `ThomChainThom.hne` is `sRel.hom u ≠ 0` while `lix_topClass_ne_zero_of_named`
+  asks only `u ≠ 0`.  The structure's field is strictly stronger, so the
+  structure builds the theorem and the theorem does not build the structure.
+* `WuStepDLix.S` looks free and is not, because `hslice` is stated against
+  whichever `S` was chosen and `hslice_of_props` proves it only for
+  `chernSplitOfGraded`.  `lixChernSplit` is now that choice, named.
+
+**I reported one finding wrong and corrected it within the hour.**  I told the
+lead that three endgame inputs were unowned with my name on them, taking
+`LemmaTwoStepDLix`'s docstring at its word.  `S` was not one: it was closable in
+four lines from parts that had been on origin for hours.  The docstring was
+stale and I repeated it instead of checking it.  The rule I already had —
+grep before declaring a gap — applies to a PEER'S CLAIM of a gap exactly as it
+applies to my own, and a docstring naming an owner is a claim, not a fact.
+
+### TRAP: a name free on origin can be taken before you push
+
+dupscan caught `chernSliceNatural_lixChern` colliding with an untracked peer
+file in the shared tree.  I had grepped origin before building and it was free;
+cc-cohom-api derived the same theorem from the same message and gave it the same
+name.  The pre-build grep cannot see in-flight peer work, which is exactly why
+the dupscan gate sits before the push.  Resolution: the name on origin wins and
+the in-flight file drops its copy.
