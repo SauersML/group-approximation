@@ -39,8 +39,20 @@ namespace LIX
 
 noncomputable section
 
-attribute [local instance] GroupApproximation.LIX.instSpectralPartialOrder
-                           GroupApproximation.LIX.instSpectralStarOrderedRing
+/- The stage algebras are subtypes of `C(X_i, CStarMatrix ι ι ℂ)`, and that ambient carries a
+*pointwise* `PartialOrder` inherited from `CStarMatrix.instPartialOrder`.  It reaches
+`STW59.StageAlgebra i` through `Subtype.partialOrder` and shadows the spectral order, so
+`StarOrderedRing` — which is stated relative to `CStarAlgebra.spectralOrder` — then fails to
+synthesize and `CStarMat 2 (STW59.StageAlgebra k)` is not a `CStarAlgebra`.  Raising the
+priority of the spectral pair fixes it, and keeps the *same* two constants the rest of the lane
+uses, so no transport lemma is needed anywhere. -/
+attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrder
+                                  GroupApproximation.LIX.instSpectralStarOrderedRing
+
+example (k : ℕ) : CStarAlgebra (STW59.StageAlgebra k) := inferInstance
+example (k : ℕ) : PartialOrder (STW59.StageAlgebra k) := inferInstance
+example (k : ℕ) : StarOrderedRing (STW59.StageAlgebra k) := inferInstance
+example (k : ℕ) : CStarAlgebra (CStarMat 2 (STW59.StageAlgebra k)) := inferInstance
 
 /-- **The LIX tower**: the stage algebras of `Analysis/LIXStageAlgebra` with the connecting maps
 of `Analysis/LIXConnectingMap`.  Unitality is free (`→⋆ₐ[ℂ]` is unital by definition) and

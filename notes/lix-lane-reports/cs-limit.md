@@ -10,6 +10,8 @@
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
+| `Analysis/LIXLimitAlgebra` | 3013 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
+| `Analysis/LIXLimitSimple` | 3017 | `IsSimpleCStar LIXLimit` reduced to stage-wise fullness |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
 The last four of the original five were built together in one probe, `Build
@@ -118,36 +120,7 @@ slip between this lane and `ProblemLIX`'s quantification over `Type`.
 
 ## 2. AUTHORED, UNVERIFIED
 
-| module | why |
-|---|---|
-| `Analysis/LIXLimitAlgebra` | imports `Analysis/LIXConnectingMap`, which is red |
-| `Analysis/LIXLimitSimple` | imports the above |
-
-**Do not wire either into the root yet.**  They are the concrete instantiation:
-
-```lean
-def lixTower : CStarTower STW59.StageAlgebra :=
-  CStarTower.ofInjective STW59.connect STW59.connect_injective
-abbrev LIXLimit : Type := lixTower.Limit          -- Type 0; CStarAlgebra and Nontrivial by
-                                                   -- inferInstance, checked by two `example`s
-lixIota (i : ℕ) : STW59.StageAlgebra i →⋆ₐ[ℂ] LIXLimit
-lixLimit_hasK1InjWitness : … → HasK1InjWitness LIXLimit
-lixLimit_isSimpleCStar :
-  (∀ k (a : STW59.StageAlgebra k), a ≠ 0 → ∃ j, k ≤ j ∧ IsFull (lixTower.climb j k a)) →
-    IsSimpleCStar LIXLimit
-```
-
-`lixLimit_isSimpleCStar` discharges the `[PartialOrder LIXLimit]` / `[StarOrderedRing LIXLimit]`
-instances that `cs-simplicity`'s `isSimpleCStar_limit_of_ne_zero` asks for, so the obligation
-left for `cs-stages` is order-free.
-
-`STW59.connect` and `STW59.connect_injective` have exactly the right types, but
-`Analysis/LIXConnectingMap` itself fails with 15 errors (probe at 3017 jobs).  Diagnoses sent to
-`cs-stages`: `Matrix.zero_add`/`Matrix.add_zero` do not exist (use the bare names);
-`Matrix.fromBlocks_add`/`fromBlocks_smul` need all four blocks, so rewrite them backwards on the
-right-hand side and clean with `add_zero`/`smul_zero`; `Matrix.mul_kronecker_mul` is being used
-left-to-right where the goal needs right-to-left; and `Algebra.mul_smul_comm` is blocked by the
-left-associativity of `*` and is `protected`.
+(none)
 
 ## 3. NEEDS
 
@@ -263,6 +236,18 @@ without a `sorry` or an `axiom`, which this program forbids.
   `OneMemClass.coe_one`.
 * **`Path.cast` takes the *new* endpoint on the left**: `Path.cast (γ : Path a b) (ha : a' = a)
   (hb : b' = b) : Path a' b'`.  The obvious orientation fails with a `show`-pattern mismatch.
+* **A pointwise order shadows the spectral order on the stage algebras.**  `STW59.StageAlgebra i`
+  is a subtype of `C(X_i, CStarMatrix ι ι ℂ)`, and `CStarMatrix.instPartialOrder` gives that
+  ambient a pointwise `PartialOrder` which reaches the subtype through `Subtype.partialOrder`.
+  `PartialOrder (StageAlgebra k)` then synthesizes, but to the *wrong* order, so
+  `StarOrderedRing` fails and `CStarMat 2 (StageAlgebra k)` is not a `CStarAlgebra`.  The fix is
+  a priority, not a new instance: `attribute [local instance 100000]` on the spectral pair, which
+  keeps the same two constants the rest of the lane uses and needs no transport lemma.  Anyone
+  producing `diagOne u ∈ unitaryComponentOne (CStarMat 2 (StageAlgebra k))` must do the same.
+* **A peer's in-flight edit can red a green dependency mid-probe.**  `LIXConnectingMap` built in
+  one probe and failed at line 222 in the next with byte-identical content at the same commit,
+  then built again.  `ccprobe.sh` syncs the whole shared working tree, uncommitted peer edits
+  included.  Re-run before diagnosing someone else's file.
 * **Do not pipe `ccprobe.sh` through `tail`.**  The script already prints the first 60 error
   lines followed by the last 150 lines of the log; an outer `tail -180` silently drops the
   earliest (and usually causal) errors, which cost one probe cycle here.

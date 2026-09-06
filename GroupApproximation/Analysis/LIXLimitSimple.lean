@@ -28,8 +28,8 @@ namespace LIX
 
 noncomputable section
 
-attribute [local instance] GroupApproximation.LIX.instSpectralPartialOrder
-                           GroupApproximation.LIX.instSpectralStarOrderedRing
+attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrder
+                                  GroupApproximation.LIX.instSpectralStarOrderedRing
 
 /-- **Simplicity of the counterexample algebra**, reduced to stage-wise fullness of nonzero
 elements.  The order instances that `isSimpleCStar_limit_of_ne_zero` needs are discharged here
