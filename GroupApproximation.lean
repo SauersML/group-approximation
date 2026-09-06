@@ -3752,6 +3752,7 @@ import GroupApproximation.CharClass.ParityEvenStepDClosed
 import GroupApproximation.CharClass.ChernLineEulerNatural
 import GroupApproximation.CharClass.ParityEvenVSlice
 import GroupApproximation.CharClass.SliceRoots
+import GroupApproximation.CharClass.SliceHomogeneous
 import GroupApproximation.CharClass.SliceVLineRoots
 import GroupApproximation.CharClass.SliceVGenerator
 import GroupApproximation.CharClass.BundleTotalOver
