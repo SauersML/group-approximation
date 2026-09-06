@@ -81,12 +81,35 @@ Chern classes and the Euler class
 * `ChernEuler`, `ChernEulerBundle` (8799) — **item 2**, `eulerOfBundle` and naturality.
 * `GysinCover` (3343), `GysinFromLerayHirsch` (2057) — the Gysin sequence reduced to
   Leray-Hirsch for a rank-two bundle.
+* `ChernEulerCastSucc` (8822) — the first-block coordinate inclusion fixes the
+  degree-two generator.  `Fin.castSucc` lands in `Fin (d+1+1)` on the nose, where
+  `iterMat` would land in `Fin (1+d+1)`; cc-bundle's `coordIncl_finRotate_mul_castSucc`
+  compares it with the shift, and the topological half is the unitary-conjugation
+  argument (homeomorphism, so bijective on `H^2`, and `H^2` is a line).
+* `ChernEulerIndex` (8825) — **the Euler class across index sizes**.  For an arbitrary
+  finite index the class is defined by pushing into a `Fin`; the injection and the
+  representative are immaterial (`eulerOfBundle_pushforward_congr`), and pushing an
+  already-`Fin` bundle along `iterFin` returns its own class
+  (`eulerOfBundle_pushforward_iterFin`).  `eulerOfBundle_pushforward_eq_of_bundleIso`
+  is the workhorse.
+* `LerayHirschChartClass` (8887) — **the class identification**, and with it
+  `LHOver_two_chart_of_trivialization`, the chart step with nothing left open.
+  `tautEuler p` is the class `ξ`.  Every transport is `rfl`.
 
 ## AUTHORED-UNVERIFIED
 
 None.  Everything in the lane is probed green and pushed.
 
 ## NEEDS
+
+0. **Nothing.**  The class identification is green and pushed (689aef370); the chart
+   step no longer has an open hypothesis.  Remaining work in the lane is mine:
+   the `GysinData` assembly, the ring, `CPGenHyp`, then the slice class and Whitney.
+
+   *Not mine, but it will red the root for everyone:* `dupscan` reports four
+   fully-qualified duplicates, `slotOne`..`slotFour`, declared in both
+   `CartanMidFourSlots.lean` and `CartanPadTen.lean`.  Per-module probes are blind to
+   this.  Reported to the lead.
 
 1. **cc-bundle, to close item 2.**  A general isometric embedding of projective spaces
    is essential on `H^2`.  Three statements, sent with the shapes: composition of
