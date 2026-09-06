@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 20 modules; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 21 modules; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,36 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleProjOver.lean` — the part of `P(p)` over an open set
+
+```lean
+def projOverSet (p : Bundle X ι) (U : Set X) : Set (Proj p) := (projPi p) ⁻¹' U
+def projOverHomeo (p) (U) : Proj (p.restrictTo U) ≃ₜ ↥(projOverSet p U)
+theorem projOverHomeo_over_base / projOverHomeo_snd                     -- both `rfl`
+theorem restrictTo_plusOne (p) (U) :
+    (p.restrictTo U).plusOne = (p.plusOne).restrictTo U                 -- `rfl`
+```
+
+`Proj (p.restrictTo U)` and the part of `Proj p` over `U` are the same space but
+not the same subtype: the first sits in `↥U × Matrix`, the second in
+`X × Matrix`.  Every trivialisation in this lane is stated in the first form and
+a cover induction over the base produces the second, so the comparison has to
+exist somewhere.  It is pure point-set, because the four conditions cutting out
+`projSet` mention the base point only through `p` at it.
+
+`restrictTo_plusOne` holding on the nose is what matters most: it makes
+`Proj ((p.restrictTo U).plusOne)` and `Proj ((p.plusOne).restrictTo U)` the
+**same type**, so no transport appears between this lane's spelling and a
+consumer's.
+
+**The reason the interface takes no contractibility hypothesis.**  A cover
+induction produces intersections of trivialising sets with arbitrary opens.
+Those stay trivialising, because `trivSet` is a determinant non-vanishing
+condition and an intersection of those is another one, but they stop being
+contractible.  So a chart step must be stated over an arbitrary trivialising
+open, never over a contractible one.  Same distinction as the shrinking question
+recorded above, from the other direction.
 
 ### `BundleOneStep.lean` — the one-step comparison of the two embeddings
 
