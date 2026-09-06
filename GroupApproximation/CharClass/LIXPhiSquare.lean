@@ -24,6 +24,23 @@ By `intert_mulVec_lixSection` the trivialised section is the section **projected
 fibre at the zero**, with no intertwiner surviving, which is what makes `lixPhi` writable
 at all.
 
+## Why the square is stated **locally**, and must be
+
+`lixPhi` is built through `(lixFullChart dd).symm`, and a partial homeomorphism's inverse is
+**junk off its target**.  So outside the chart's target `lixPhi` is an arbitrary value, and
+the map-of-pairs condition `v ≠ 0 → φ v ≠ 0` is not merely unproved there but is about a
+value with no meaning.  A square quantified over the whole local model therefore cannot
+hold, however the geometry turns out.
+
+`lixSquare_phi` and `lixPhi_iso` are consequently stated at the **neighbourhood** pairs,
+where `φ` is a genuine homeomorphism of punctured pairs; `pull φ` is an isomorphism there
+by `relCohomologyCongrPoint`, the same transport that built `lixRelModelIso`; and `lixHsq`
+reaches the binder by composing with the two excisions already inside `t` and `loc`.  The
+one-dimensionality step is unaffected, since the global model is still a line.
+
+**Do not restate the square globally.**  It reads as the natural formulation and is the one
+the design was first written in; it is not available.
+
 ## This file so far
 
 * `trace_mappingTorus_lixZero` — the rank at the zero, in the form `fibreEquivPi` takes.
