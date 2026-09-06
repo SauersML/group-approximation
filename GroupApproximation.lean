@@ -3644,6 +3644,9 @@ import GroupApproximation.CharClass.CartanEvalMor
 import GroupApproximation.CharClass.CartanEvalMaster
 import GroupApproximation.CharClass.LIXBundleModel
 import GroupApproximation.CharClass.LIXBundlePair
+import GroupApproximation.CharClass.CartanEvalBasis
+import GroupApproximation.CharClass.CartanEvalCoboundary
+import GroupApproximation.CharClass.GysinTautFields
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
