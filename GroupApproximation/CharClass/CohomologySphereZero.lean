@@ -76,7 +76,7 @@ theorem sphereZero_sup : sphereZeroPos ⊔ sphereZeroNeg = ⊤ := by
   apply Opens.ext
   apply Set.eq_univ_of_forall
   intro p
-  rcases Ne.lt_or_lt (sphereZero_coord_ne_zero p) with hlt | hgt
+  rcases lt_or_gt_of_ne (sphereZero_coord_ne_zero p) with hlt | hgt
   · exact Set.mem_union_right _ (mem_sphereZeroNeg.mpr hlt)
   · exact Set.mem_union_left _ (mem_sphereZeroPos.mpr hgt)
 
