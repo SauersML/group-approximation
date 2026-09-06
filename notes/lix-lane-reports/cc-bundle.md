@@ -197,6 +197,14 @@ theorem flag_decomposition (p : Bundle X ι) (r : ℕ) (hr : ∀ x, (p x).trace 
     comap (flagProj p r) p w = ∑ l ∈ Finset.range r, flagLine p r l w
 ```
 
+The decomposition reaches `cc-wu`'s `SqData` (`CharClass/WuDiagonal.lean`)
+**through `cc-projective`'s Whitney formula, not directly**: `ParityData` has no
+`decomposition` field, and `cc-wu` consumes none of `comap`, `flagLine` or
+`flagProj` (their correction, recorded here so the next reader does not repeat
+my mistake).  The index convention is theirs: sums over `Finset.range r` with
+natural-number indices, so that `esymmOn s y j` needs no coercions; do not
+switch to `Fin r`.
+
 The tower is **not** a `Type`-valued recursion.  Iterating `P(-)` literally
 gives a different base space at every stage, so every statement would carry its
 own `TopologicalSpace` instance.  A point of the `n`-th stage is the same thing
@@ -269,6 +277,15 @@ Nothing from a peer, and nothing from the roster row is left unstarted.
   be solved`; `rw [h]` followed by `exact Homotopic.refl _` is a common instance.
 * **`ext` on a `ContinuousMap` equality descends past the map** into `Prod` and
   `Subtype` and leaves a goal about `.1`.  Use `ContinuousMap.ext fun z => …`.
+* **`open unitInterval` makes `σ` an unusable variable name.**  It is scoped
+  notation for the interval's symmetry (`Mathlib/Topology/UnitInterval.lean`),
+  so `(σ : ι ⊕ κ ≃ ρ)` fails with `unexpected token 'σ'; expected identifier`,
+  eight times over, in a file that otherwise elaborates.  `I` is scoped notation
+  in the same namespace.  This lane uses `eqv` for equivalences.
+* **The rewrite-order trap has a second form.**  `rw [foo_def, foo_conjTranspose]`
+  fails when `foo_def` also rewrites the occurrence under the transpose; put the
+  transpose lemma first.  The same shape bit the trace lemma in
+  `BundleClassify`.
 
 * **Anonymous constructor `⟨(tuple with a bare literal or an existing
   variable), by …⟩` can make Lean throw `unknown free variable
