@@ -21,6 +21,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LemmaTwoParity.lean` | 8667 | `trace_Hmat`/`trace_Vmat` (`rank V = (∑ⱼ dⱼ) + 3`), `LIXParityInput`, `LIXParityInput.gamma_top_eq_zero` = **Step D** at the LIX base |
 | `CharClass/LIXSectionChart.lean` | 8663 | the chart of `S⁵` at `-e₃` on the plain product `ℂ × ℂ × ℝ` (`sphereChartVec`, `sphereChartVec_mem`, `sphereChart_zero`, `continuous_sphereChartVec`), the derivative at the zero with its bijectivity (`eulerLinearModel`, `eulerLinearEquiv`, `eulerContinuousLinearEquiv`), and `trivialBlockChart_eq_zero_iff` |
 | `CharClass/LemmaTwoStatement.lean` | 8667 | `FHmat`/`EHmat` with `FHmat_eq_fromBlocks`, `ContinuousMvNEquiv`, `HasStepAUnitary`, `false_of_stepC_stepD`, `not_continuousMvNEquiv` = **Lemma 2** |
+| `CharClass/LIXSectionDeriv.lean` | 8664 | **the strict derivative at the zero.** `chartLinearCLM`, `sphereChartVec_eq`, `hasStrictFDerivAt_chartQ`/`_chartWeight` (the radial weight has vanishing differential), `hasStrictFDerivAt_sphereChartVec`, and `hasStrictFDerivAt_trivialBlockChart`: the derivative of the section's trivial block at its zero **is** `eulerContinuousLinearEquiv` |
 | `CharClass/LemmaTwoBridge.lean` | 8669 | `toMatC`, `matEval_toMatC`, `continuous_matEval`, `continuousMvNEquiv_of_murrayVonNeumannEquiv`, `continuous_FHmat`/`continuous_EHmat`, `not_murrayVonNeumannEquiv` = **Lemma 2 in the C\*-side vocabulary** |
 
 ## 1a. EXPORTS — the two shapes of Lemma 2
@@ -86,11 +87,11 @@ The direction is the manuscript's own `g e = s`; no adjoint.  `cornerExtend` and
 
 I withdraw the "homotopy through nowhere-vanishing maps" offer of the previous report:
 `EulerLocalChart.openPartialHomeomorphChartPair` consumes an `OpenPartialHomeomorph`, so
-the inverse function theorem is owed and is being supplied.  What is already deliverable:
-`manuscriptSection_eq_zero_iff_concrete` gives the single zero, and
-`eulerContinuousLinearEquiv` gives the derivative there as a `ContinuousLinearEquiv` on
-`(ℂ × ℂ × ℝ) × ℝ`.  What remains on my side is the `HasStrictFDerivAt` of the section read
-in those charts.
+the inverse function theorem is owed, and it is now supplied.  `manuscriptSection_eq_zero_iff_concrete`
+gives the single zero and `hasStrictFDerivAt_trivialBlockChart` gives the strict derivative
+there as a `ContinuousLinearEquiv`, so `HasStrictFDerivAt.toOpenPartialHomeomorph` applies
+directly.  **Confirm the exact shape you want** (an `OpenPartialHomeomorph` from `N` to
+`Fin r → ℂ` carrying `z` to `0`) and I will assemble it against your signature.
 
 ### From `cc-cohom-api`, `cc-steenrod`, `cc-projective` — the fields of `LIXParityInput`
 
