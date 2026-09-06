@@ -30,6 +30,7 @@ peer may mix the two vocabularies freely.
 | `CohomologyKunnethMap.lean` | the Künneth map named, and the one missing statement isolated as `KunnethSecondInjective` |
 | `CohomologyDeltaLift.lean` | the connecting map computed from an arbitrary lift; entry point for δ-linearity |
 | `CohomologyClassOf.lean` | the class of a cocycle for an arbitrary `F₂` cochain complex, with surjectivity and naturality |
+| `CohomologyDeltaChain.lean` | the two maps of `mvCoSC` identified on the chain level, including the `V` twins and the mod-2 sign lemmas |
 
 ## 1. GREEN
 
@@ -55,6 +56,7 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologyBasic.lean` re-green with the cast calculus, 8 modules together | 8771 |
 | `CharClass/CohomologyDeltaLift.lean` | 8769 |
 | `CharClass/CohomologyClassOf.lean` | 8770 |
+| `CharClass/CohomologyDeltaChain.lean` | 8776 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
@@ -156,6 +158,13 @@ theorem isZero_cohomology_prod_sphere (A : Type) [TopologicalSpace A] (p n : ℕ
    small-chain complex, none of them cochain complexes of a space), with
    `clsOf_eq_cocycleClass`, `clsOf_surjective`, `homologyMap_clsOf` and
    `d_map_eq_zero`.
+1c. **DONE, green at 8776 jobs.**  `CohomologyDeltaChain.lean` — the two maps of
+   `mvCoSC` on the chain level: `MVDelta.mvCxInclV_comp_g` (the `V` twin of
+   cc-thom's `mvCxInclU_comp_g`, where the sign in `mvLeftChainMap` disappears by
+   `MVDelta.neg_eq_self_hom` and `MVDelta.mvDualMap_neg`), `MVDelta.f_comp_projU`
+   and `MVDelta.f_comp_projV`, and `MVDelta.subToAllU`/`subToAllV` with
+   `MVDelta.corestrict_comp_subToAllU`/`V`.  So `g` is the sum of the two
+   restrictions and `f` is the pair of restrictions from the ambient space.
 2. `mvDelta_spec` — the cochain characterisation: given a cocycle `α` on `U ∩ V`,
    cochains `α_U` and `α_V` restricting to it, and a cochain `γ` on `X` restricting
    to `d α_U` on `U` and `d α_V` on `V`, `mvDelta [α] = [γ]`.
