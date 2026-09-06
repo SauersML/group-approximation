@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ProjectiveSpaceInputs
 import GroupApproximation.CharClass.ProjectiveSpaceRing
+import GroupApproximation.CharClass.CohomologyDegreeZero
 
 /-!
 # `H^*(ℂP^n; F₂)`, assembled
@@ -76,6 +77,17 @@ def cpGenerator
     (hres : ∀ d : ℕ, Function.Surjective ((mv d).resWU 0))
     (d : ℕ) (hd : 1 ≤ d) : Hmod2 (CPtop d) 2 :=
   lineGen (by simpa using (cohomology_CPtop_line mv hres d 1 hd).some)
+
+/-- **The remaining hypothesis, reduced to one equation.**  Both `H^0` groups are
+lines, so restriction is onto as soon as it does not kill the unit; over `F₂` a
+map hitting the unique nonzero element of a two-element group is onto. -/
+theorem surjective_resWU_zero_of_one {X U V W : TopCat.{0}} (mv : MVSequence X U V W)
+    [Nonempty ↥W] (hW : Nonempty (Hmod2 W 0 ≃ₗ[ZMod 2] ZMod 2))
+    (h1 : mv.resWU 0 (one U) = one W) : Function.Surjective (mv.resWU 0) := by
+  intro w
+  rcases eq_zero_or_eq_of_line hW.some (one_ne_zero_cohZero W) w with hw | hw
+  · exact ⟨0, by rw [map_zero, hw]⟩
+  · exact ⟨one U, by rw [h1, hw]⟩
 
 end
 
