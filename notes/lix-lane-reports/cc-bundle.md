@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 19 modules; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 20 modules; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -158,7 +158,7 @@ original are the same term at the same type and `rw` can move between them.
 ### `BundlePairs.lean` — the trivial bundle's sphere and punctured space
 
 ```lean
-def prodSubtypeHomeo (S : Set B) : ↥{v : A × B | v.2 ∈ S} ≃ₜ A × ↥S
+def sndSubtypeHomeo (S : Set B) : ↥{v : A × B | v.2 ∈ S} ≃ₜ A × ↥S
 theorem sphereSet_triv : sphereSet (triv X ι) = {v : X × (ι → ℂ) | v.2 ∈ unitVectors ι}
 noncomputable def sphereTrivHomeo : Sphere (triv X ι) ≃ₜ X × ↥(unitVectors ι)
 noncomputable def puncturedTrivHomeo : Punctured (triv X ι) ≃ₜ X × ↥({v : ι → ℂ | v ≠ 0})
@@ -184,6 +184,30 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleOneStep.lean` — the one-step comparison of the two embeddings
+
+```lean
+def sumUnitEquiv (d : ℕ) : Fin (d + 1) ⊕ Unit ≃ Fin (d + 1 + 1)   -- THE reindexing
+theorem sumUnitEquiv_inl / sumUnitEquiv_inr
+theorem sumInclLeft_sumUnitEquiv (d) :
+    sumInclLeft (sumUnitEquiv d) = coordIncl (Fin.castSucc : Fin (d+1) → Fin (d+1+1))
+theorem finRotate_castSucc (d) (i) : finRotate (d + 1 + 1) i.castSucc = i.succ
+theorem coordIncl_finRotate_isometry / coordIncl_finRotate_mul_conjTranspose
+theorem coordIncl_finRotate_mul_castSucc (d) :
+    coordIncl (⇑(finRotate (d + 1 + 1))) * coordIncl Fin.castSucc = shiftMat d
+theorem coordIncl_finRotate_mul_sumInclLeft
+```
+
+`projIncl` adds a coordinate at the **front**; the hyperplane inclusion of
+`ℂP^d` adds it at the **back**.  Two injections into the same finite target of
+the same size differ by a permutation of the target, and here it is the one-step
+rotation, with no wraparound because `castSucc` is never the last coordinate.
+`sumUnitEquiv` is the reindexing to use wherever `plusOne`'s `ι ⊕ Unit` meets
+`ℂP`'s `Fin (d+2)`; **do not introduce a second one**.
+
+Matrix level only.  Turning `coordIncl (finRotate _)` into a permutation of
+`ℂP^d` is cc-projective's `permCP`, left to them rather than guessed at.
 
 ### `BundleBlockIter.lean` — the block inclusion IS the iterated hyperplane inclusion
 
