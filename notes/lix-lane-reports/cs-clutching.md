@@ -13,9 +13,14 @@ elapsed time for the module itself, so no green here rests on a replay.
 
 | module | verdict | commit |
 |---|---|---|
-| `Analysis/LIXGeneratorUnitary.lean` | `Build completed successfully (2385 jobs)`, `✔ Built … (11s)` | `f57375d28` |
+| `Analysis/LIXGeneratorUnitary.lean` | `Build completed successfully (2385 jobs)`, `✔ Built … (10s)` | `0a129ee56` |
 | `Analysis/LIXObstructionComplementUnitary.lean` | `Build completed successfully (8656 jobs)`, `✔ Built … (21s)` | `434bd8eae` |
 | `Analysis/LIXClutching.lean` | `Build completed successfully (8655 jobs)`, `✔ Built … (16s)` | as authored |
+
+All three together, after the `clutchingObstruction_of_equiv` repair:
+`Build completed successfully (8658 jobs)` with `✔ Built` lines for
+`LIXClutching` (13s), `LIXGeneratorUnitary` (10s) and
+`LIXObstructionComplementUnitary` (29s), at `3ed42ad32`.
 
 The whole frame construction is in `LIXGeneratorUnitary.lean` and green:
 rank-one toolkit, Householder reflection, phased transport, two-step frame,
@@ -190,6 +195,47 @@ needed exactly this. The `u ⊕ c` generalisation avoids it entirely.
 everything with `dotProduct`. `LIXProjectiveSpaceModel.sum_star_mul_self` is the
 bridge from `unitVectors` membership, and `rankOneProj` there is already the
 rank-one primitive — do not define a second one under another name.
+
+**`Matrix.mulVec_apply_eq_sum` does not exist at pin `81a5d257`.** What exists
+is `mulVec_eq_sum`, the vector-level `M *ᵥ v = ∑ i, op (v i) • Mᵀ i`, which is
+not what an entrywise computation wants. The entrywise form
+`(M *ᵥ v) i = ∑ j, M i j * v j` is `rfl`; state it locally. Two of the three
+defects that made `LIXObstructionComplementUnitary` red were this one name.
+
+**A name clash reads as a cascade of type errors.** `LIXClutching` already
+declares `seamCorrection`; my clashing declaration produced 27 error lines that
+all looked like instance-synthesis and application-type failures, with the one
+informative line ("has already been declared") first and easy to miss. Check
+every new name against the modules you import before the first probe. Renamed
+to `poleRotation`.
+
+**`Continuous.smul` mis-unifies against `continuous_const`.** It produces
+`Continuous (c • fun x => v)`, a scalar action on the *function*, rather than
+the pointwise `fun x => c x • v`, and the error names the wrong term. Bind the
+constant first, `have hpc : Continuous fun _ : X => p := continuous_const`, and
+pass that. Cost two probe rounds across four call sites.
+
+**`abel` fails on scalars that differ only by commutation.** `star μ * μ` and
+`μ * star μ` are distinct atoms to `abel`, so a module identity that is true by
+`mul_comm` in the coefficients will not close. Put the commutation in the
+`simp only` set as a hypothesis (`hcomm : star μ * μ = μ * star μ`) so both
+sides normalise the same way.
+
+**`congrFun` does not elaborate on an equality of `Matrix` values**, because
+the type is not syntactically a Pi. `congrFun₂` is the idiom Mathlib itself
+uses in `Data/Matrix/Mul.lean`.
+
+**A bare lambda for a `Matrix` value breaks entry-level `simp`.** Matrix apply
+lemmas are stated through `Matrix.of`, so `def f : Matrix K K ℂ := fun i j => …`
+gives an apply lemma that will not fire. Use `Matrix.of`; the apply lemma stays
+`rfl`.
+
+**Keep the import list short on purpose.** `LIXGeneratorUnitary` imports only
+`LIXClutching` and `LIXProjectiveSpaceModel`, and states the hemisphere
+trivialisation as `… = 1 - rk1 x x` rather than as `… = matEval x Fproj`. The
+final step to the name `Fproj` is one `rfl`-level rewrite for the consumer, and
+in exchange this module does not go red whenever `LIXBlockProjections` does —
+which, in a shared tree with an active peer lane, it repeatedly did.
 
 **A bare lambda for a `Matrix` value breaks entry-level `simp`.** Matrix apply
 lemmas are stated through `Matrix.of`, so `def f : Matrix K K ℂ := fun i j => …`
