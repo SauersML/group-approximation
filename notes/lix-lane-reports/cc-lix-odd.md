@@ -135,6 +135,24 @@ equality, not an equivalence.
 
 ## 4. TRAPS
 
+* **The lexical `sorry` scan is wrong in both directions.**  It flags docstring prose that
+  *asserts* the absence (three of this lane's files say "never a `sorry`" inside
+  backticks), and it misses the real hazard: an unrelated elaboration failure makes clean
+  declarations report "declaration uses `sorry`" (see the undecidable-`dite` entry below),
+  so a file can pass the grep and fail the build, or fail the grep and be perfectly
+  hygienic.  **The build is the only signal that is not wrong in one direction or the
+  other.**
+* **Two index shifts in one argument is where reconstruction from outside goes wrong.**
+  `cc-wu`'s `b` is indexed by the *total* index while its degree is `2k − 6`, a shift of
+  three; and the ring degree is `6 + n` against the degreewise index `n`, a shift of six.
+  Both appear in the same Künneth argument.  This lane declined to write that argument from
+  outside for exactly this reason, and `cc-wu` independently confirmed it was the right
+  call.
+* **A green lemma in the right area is not the hypothesis it is offered for.**  The
+  two-sphere Künneth injectivity was announced as discharging `tx_inj`; the green statement
+  is for *one* sphere factor in the graded world, the field is for *two* in the ring.  One
+  grep of both statements showed it.  Check before propagating.
+
 * **The Whitehead path does not descend to the circle.**  Its entries are degree-four
   monomials in the quarter angle, polynomial in `(cos πt, sin πt)` but not in
   `(cos 2πt, sin 2πt)`, and running the rotation over the whole circle returns it to `1`,
