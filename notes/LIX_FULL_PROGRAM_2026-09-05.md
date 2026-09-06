@@ -340,7 +340,14 @@ never a `sorry`, never an `axiom`.
    green with job counts, what is authored-unverified, NEEDS from peers, traps
    found).  Your final message to the lead must contain the same four sections.
    Green claims without a job count are not green claims.
-10. **Do not oversubscribe acn112**: the probe already pins you to a bounded
+10. **Namespaces (added 20:55 after a real collision).** Every declaration lives
+    in a lane-specific sub-namespace (`GroupApproximation.CharClass.Bundle`,
+    `…CharClass.CPn`, `…CharClass.Steenrod`, `…CharClass.MV`, `…STW59`, …).  A
+    fully-qualified duplicate across two modules is not a type error, it makes
+    the root import FAIL outright.  The lead runs the fully-qualified duplicate
+    scan before every wiring; four real collisions were found at 20:55
+    (`cohCast_self`, `hasSphereCohomology_sphere`, a bare `of`, a bare `is`).
+11. **Do not oversubscribe acn112**: the probe already pins you to a bounded
     core range.  Never write build output to `/tmp` on the node.  Do not start
     a second probe while one of yours is running.
 
@@ -523,6 +530,7 @@ from completeness), so its closure is a proper closed ideal.
 | cc-lix-odd (20:50) | eleven modules green (4ea51e08c, 8663–8667): mapping torus, section path, `tautColSection` fix, `LIXSectionManuscript` (Step C's single zero, an iff), `LIXSectionChart` (chart on `ℂ × ℂ × ℝ × ℝ`, derivative as a `ContinuousLinearEquiv`), `LemmaTwoParity` (rank arithmetic + `ParityData` skeleton), `LemmaTwoStatement` (Lemma 2 with Steps A, C, D as named hypotheses); remaining: one `HasStrictFDerivAt`, the `matEval` bridge to `MurrayVonNeumannEquiv`, `LemmaTwoUnitary` probe, `ParityData` instantiation |
 | cc-cohom-api (20:50) | eleven modules green (8767–8773); remaining: Künneth with a sphere factor in ISOMORPHISM form |
 | 20:35 batch | `connect` GREEN (cs-stages, 451a97231, 2977 jobs, all five stage modules); the hemisphere frames of `F`, the seam generator `u` and their continuity GREEN (cs-clutching, 69ebc1fdd, 2385 jobs) — the old "Bott, not elementary" claim is refuted in Lean; cc-projective: `CP^d` homogeneous (8659), the three cohomology inputs to the `CP` induction (8782), the projection of a projective bundle is injective on cohomology (8783); cc-steenrod: `SteenrodSquare.lean` authored, probe in flight. C*-side now waits only on the fullness theorem (cs-stages) and the stage-level witness (cs-clutching: `hdiag`, shape lemma, generalized Corollary 4 — the last needs Lemma 2) |
+| cc-bundle (20:55) | eight modules GREEN at 2974 (Sonnet); lane back with Opus for the zero section + retraction `P(p⊕1)∖Z ≃ P(p)` and the classifying map / rotation homotopy |
 | cc-thom phase 1 | GREEN, nine modules, 2911 jobs (19:00 EDT); Step C assembled over a `CohomologyToolkit` awaiting MV/Künneth/relative/LH instantiation |
 | root: K₁ layer + endpoint statement wired | 18:50 EDT, commit fa15b619f (ten modules, cs-endpoint green at 2996 jobs); `LIXEndpointStatement` built in the root build |
 | root build 2 (20:00 EDT) | every wired LIX module BUILT in the root (`LIXSimplicity`, `LIXLimitCompletion`, `LIXLimitSeparable`, `LIXSimplicityInstance`, `LIXLimitMatrixTransport`, `LIXLimitWitness` with `Built` lines); the GGT breakage is WIDER: `fadb6fd6d` edited `HullSCRelativeGreendlingerStatement`, 89 rooted modules are downstream, and each root build surfaces only the next few reds (`…RelativeBoundary`, `…KernelGeodesicCut`, `…PrefixCutRatio`, `HullSCLemma49FromRelativeGreendlinger` in build 2); `ggt-repair-s` now owns every failing rooted consumer and iterates on the 89-module list in its clone |
