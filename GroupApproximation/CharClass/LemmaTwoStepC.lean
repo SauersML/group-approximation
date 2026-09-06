@@ -15,7 +15,8 @@ the punctured acyclicity — is actually discharged rather than assumed.
 
 `ThomChainData` mirrors the arguments of `topChernClass_ne_zero_of_chain` other than
 `hacyclic`.  Of its fields, `j`, `i`, `hexact`, `exc`, `chartIso` and `locEquiv` are
-`cc-relative`'s and green; `absEquiv` `cc-thom` is attempting; and `hsu`, `hg` and `hgamma`
+`cc-relative`'s and green; `absEquiv` is `cc-thom`'s `absEquiv_lixN` and green, discharged
+in `CharClass/LemmaTwoStepCAbsEquiv.lean`; and `hsu`, `hg` and `hgamma`
 are the three genuinely open ones, all behind `cc-projective`'s Leray--Hirsch ladder
 because all three need the Thom class.
 
@@ -74,7 +75,7 @@ theorem puncturedAcyclic_lixZero
 class `gamma` on the LIX base.
 
 Owners: `j`, `i`, `hexact`, `exc`, `chartIso`, `locEquiv` are `cc-relative`'s and green;
-`absEquiv` is `cc-thom`'s and in progress; `hsu`, `hg` and `hgamma` are the three open
+`absEquiv` is `cc-thom`'s and green; `hsu`, `hg` and `hgamma` are the three open
 ones, all behind `cc-projective`'s Leray--Hirsch ladder. -/
 structure ThomChainData (dd : Fin ℓ → ℕ)
     (gamma : cohomologyZMod2 (lixN dd) (2 * lixRank dd)) where
@@ -92,7 +93,8 @@ structure ThomChainData (dd : Fin ℓ → ℕ)
       (2 * lixRank dd)
   /-- Exactness at the absolute group (`cc-relative`). -/
   hexact : LinearMap.range j.hom = LinearMap.ker i.hom
-  /-- The top class of the base is a line (`cc-thom`). -/
+  /-- The top class of the base is a line (`cc-thom`'s `absEquiv_lixN`, green; supplied
+  unconditionally by `absEquivLix`). -/
   absEquiv : cohomologyZMod2 (lixN dd) (2 * lixRank dd) ≃ₗ[ZMod 2] ZMod 2
   /-- Excision to the chart (`cc-relative`). -/
   exc : rel ≅ chart
