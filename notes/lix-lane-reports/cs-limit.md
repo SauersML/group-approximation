@@ -11,6 +11,7 @@
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
 | `Analysis/LIXLimitAlgebra` | 3024 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
+| `Analysis/LIXLimitMatrixFlatten` | 2999 | `M₂(M₂(A)) ≃⋆ₐ[ℂ] M₄(A)` and `U₀` transport both ways |
 | `Analysis/LIXLimitSimple` | 3024 | **`IsSimpleCStar LIXLimit`, unconditional** |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
