@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.DGOProposition414FirstChargedConnectorSeparation
 import GroupApproximation.GGT.DGOProposition414CycleBlocks
-import GroupApproximation.GGT.DGOProposition414ArcChordSeamProofWrapped
+import GroupApproximation.GGT.DGOProposition414ChordArcSeamProofWrapped
 
 /-!
 # Full auxiliary-cycle isolation of charged first-gap targets
