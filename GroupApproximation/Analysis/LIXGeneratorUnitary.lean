@@ -1273,6 +1273,144 @@ end NullHomotopy
 
 end Frames
 
+/-! ## The instantiation over `S⁵ ⊆ ℂ³`
+
+Everything above is stated for an abstract index type and an abstract pole.
+Here it is read at `Fin 3` with the pole `e₃`, against `STW59.unitVectors
+(Fin 3)`, which is `cs-stages`' `sphereFive` unfolded.  The payoff is
+`frameNorth_conj_eq_compl` and `frameSouth_conj_eq_compl`: over each closed
+hemisphere -- in fact over the whole of `S⁵` minus the opposite pole -- an
+explicit unitary carries the CONSTANT projection `1 - e₃ e₃ᴴ` onto
+`1 - x xᴴ`, which is `STW59.Fproj` read at `x`.  That is the hemisphere
+trivialisation of `F`, and the manuscript's "by the usual hemisphere clutching
+description" is discharged.
+
+The final identification with the *name* `Fproj` is left to the consumer, one
+`rfl`-level step through `Fproj_def`, `matEval_hopfProj` and `rk1_self`, so
+that this module keeps its short import list and does not go red when
+`LIXBlockProjections` does. -/
+
+section SphereFive
+
+/-- The pole of the chart on `S⁵`, the third standard basis vector. -/
+def e3 : Fin 3 → ℂ := Pi.single 2 1
+
+theorem star_e3_dotProduct (x : Fin 3 → ℂ) : star e3 ⬝ᵥ x = x 2 := by
+  show (∑ i, star (e3 i) * x i) = x 2
+  rw [Finset.sum_eq_single (2 : Fin 3)]
+  · rw [e3, Pi.single_eq_same, star_one, one_mul]
+  · intro b _ hb
+    rw [e3, Pi.single_eq_of_ne hb, star_zero, zero_mul]
+  · intro hb
+    exact absurd (Finset.mem_univ (2 : Fin 3)) hb
+
+theorem unit_e3 : star e3 ⬝ᵥ e3 = 1 := by
+  rw [star_e3_dotProduct, e3, Pi.single_eq_same]
+
+theorem unit_neg_e3 : star (-e3) ⬝ᵥ (-e3) = 1 := by
+  rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, unit_e3]
+
+theorem star_neg_e3_dotProduct (x : Fin 3 → ℂ) : star (-e3) ⬝ᵥ x = -x 2 := by
+  rw [star_neg_dotProduct, star_e3_dotProduct]
+
+theorem unit_of_mem_unitSphere {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) :
+    star x ⬝ᵥ x = 1 := STW59.sum_star_mul_self hx
+
+/-- Over `S⁵`, the northern frame is defined away from the south pole. -/
+theorem isFrameDatum_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) (h : x 2 ≠ -1) :
+    IsFrameDatum e3 x where
+  unit_p := unit_e3
+  unit_x := unit_of_mem_unitSphere hx
+  not_antipodal := by rw [star_e3_dotProduct]; exact h
+
+/-- Over `S⁵`, the southern frame is defined away from the north pole. -/
+theorem isFrameDatum_neg_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) (h : x 2 ≠ 1) :
+    IsFrameDatum (-e3) x where
+  unit_p := unit_neg_e3
+  unit_x := unit_of_mem_unitSphere hx
+  not_antipodal := by
+    rw [star_neg_e3_dotProduct]
+    intro hc
+    exact h (by linear_combination -hc)
+
+/-- **The northern hemisphere trivialisation of `F`.**  The right-hand side is
+`STW59.Fproj` read at `x`: `STW59.matEval x Fproj = 1 - STW59.rankOneProj x`
+by `Fproj_def` and `matEval_hopfProj`, and `rk1 x x = rankOneProj x` is
+`rk1_self`.  That last step is deliberately left to the consumer, so that this
+module does not depend on `LIXBlockProjections`. -/
+theorem frameNorth_conj_eq_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (h : x 2 ≠ -1) :
+    frameNorth e3 x * (1 - rk1 e3 e3) * (frameNorth e3 x)ᴴ = 1 - rk1 x x := by
+  have hd := isFrameDatum_e3 hx h
+  exact conj_one_sub_rk1 (frameNorth_mul_conjTranspose hd) (frameNorth_mul_rk1 hd)
+
+/-- **The southern hemisphere trivialisation of `F`**, with the *same*
+constant projection on the left, which is what makes the two frames comparable
+on the equator. -/
+theorem frameSouth_conj_eq_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (h : x 2 ≠ 1) :
+    frameSouth e3 x * (1 - rk1 e3 e3) * (frameSouth e3 x)ᴴ = 1 - rk1 x x := by
+  have hd := isFrameDatum_neg_e3 hx h
+  exact conj_one_sub_rk1 (frameSouth_mul_conjTranspose unit_e3 hd)
+    (frameSouth_mul_rk1 unit_e3 hd)
+
+/-- **The generator.**  On the equator `{x : (x 2).re = 0}` both frames are
+defined, and `genU` is their discrepancy: a unitary of `ℂ³` fixing `e₃`, i.e.
+`diag(u, 1)` for a unitary `u` of `e₃^⊥ ≅ ℂ²`. -/
+def genU (x : Fin 3 → ℂ) : Matrix (Fin 3) (Fin 3) ℂ := seamGen e3 x
+
+theorem genU_mul_rk1 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) (v : Fin 3 → ℂ) :
+    genU x * rk1 e3 v = rk1 e3 v :=
+  seamGen_mul_rk1 unit_e3 (isFrameDatum_e3 hx hN) (isFrameDatum_neg_e3 hx hS) v
+
+theorem genU_conjTranspose_mul_self {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) :
+    (genU x)ᴴ * genU x = 1 :=
+  seamGen_conjTranspose_mul_self unit_e3 (isFrameDatum_e3 hx hN)
+    (isFrameDatum_neg_e3 hx hS)
+
+theorem genU_mul_conjTranspose {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) :
+    genU x * (genU x)ᴴ = 1 :=
+  seamGen_mul_conjTranspose unit_e3 (isFrameDatum_e3 hx hN) (isFrameDatum_neg_e3 hx hS)
+
+/-- On the equator, `Re (x 2) = 0`, so `x 2` is neither `1` nor `-1` and both
+hemisphere frames are defined. -/
+theorem isEquator_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (h : ((x 2).re) = 0) : IsEquator e3 x where
+  unit_x := unit_of_mem_unitSphere hx
+  perp := by rw [star_e3_dotProduct]; exact h
+
+theorem ne_one_of_re_eq_zero {z : ℂ} (h : z.re = 0) : z ≠ 1 := by
+  intro hc
+  rw [hc] at h
+  norm_num at h
+
+theorem ne_neg_one_of_re_eq_zero {z : ℂ} (h : z.re = 0) : z ≠ -1 := by
+  intro hc
+  rw [hc] at h
+  norm_num at h
+
+/-- **The generator is null-homotopic.**  `seamPath e3 · x` runs from `genU x`
+at `t = 0` to the identity at `t = 1`, through unitaries, continuously.  This
+is the manuscript's `diag(u,1) ≃ 1` in `U(3)`, with no appeal to
+`π₄(U(3)) = 0`. -/
+theorem seamPath_e3_zero {x : Fin 3 → ℂ} : seamPath e3 0 x = genU x :=
+  seamPath_zero unit_e3 x
+
+theorem seamPath_e3_one {x : Fin 3 → ℂ} : seamPath e3 1 x = 1 :=
+  seamPath_one unit_e3 x
+
+theorem seamPath_e3_unitary {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (h : ((x 2).re) = 0) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
+    (seamPath e3 t x)ᴴ * seamPath e3 t x = 1 ∧
+      seamPath e3 t x * (seamPath e3 t x)ᴴ = 1 :=
+  ⟨seamPath_conjTranspose_mul_self unit_e3 (isEquator_e3 hx h) ht0 ht1,
+    seamPath_mul_conjTranspose unit_e3 (isEquator_e3 hx h) ht0 ht1⟩
+
+end SphereFive
+
 end
 
 end LIX
