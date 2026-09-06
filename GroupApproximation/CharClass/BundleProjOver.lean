@@ -97,6 +97,51 @@ theorem projOverHomeo_snd (p : Bundle X ι) (U : Set X) (w : Proj (p.restrictTo 
     ((projOverHomeo p U w : Proj p) : X × Matrix ι ι ℂ).2
       = (w : ↥U × Matrix ι ι ℂ).2 := rfl
 
+/-! ### The inclusion, as a bundled map -/
+
+theorem projInclOn_mem (p : Bundle X ι) (U : Set X) (w : Proj (p.restrictTo U)) :
+    ((((w : ↥U × Matrix ι ι ℂ).1 : X), (w : ↥U × Matrix ι ι ℂ).2) : X × Matrix ι ι ℂ)
+      ∈ projSet p :=
+  w.2
+
+/-- **The inclusion of the restricted projectivisation**, forgetting that the
+base point lies in `U`.  The mirror of `totalInclOn`. -/
+def projInclOn (p : Bundle X ι) (U : Set X) : C(Proj (p.restrictTo U), Proj p) where
+  toFun w := ⟨(((w : ↥U × Matrix ι ι ℂ).1 : X), (w : ↥U × Matrix ι ι ℂ).2),
+    projInclOn_mem p U w⟩
+  continuous_toFun :=
+    (((continuous_subtype_val.comp (continuous_fst.comp continuous_subtype_val))).prodMk
+      (continuous_snd.comp continuous_subtype_val)).subtype_mk _
+
+theorem projInclOn_apply (p : Bundle X ι) (U : Set X) (w : Proj (p.restrictTo U)) :
+    ((projInclOn p U w : Proj p) : X × Matrix ι ι ℂ)
+      = (((w : ↥U × Matrix ι ι ℂ).1 : X), (w : ↥U × Matrix ι ι ℂ).2) := rfl
+
+theorem projInclOn_over_base (p : Bundle X ι) (U : Set X) (w : Proj (p.restrictTo U)) :
+    projPi p (projInclOn p U w) = ((projPi (p.restrictTo U) w : ↥U) : X) := rfl
+
+theorem projInclOn_mem_projOverSet (p : Bundle X ι) (U : Set X)
+    (w : Proj (p.restrictTo U)) : projInclOn p U w ∈ projOverSet p U :=
+  (w : ↥U × Matrix ι ι ℂ).1.2
+
+theorem projInclOn_injective (p : Bundle X ι) (U : Set X) :
+    Function.Injective (projInclOn p U) := by
+  intro w w' h
+  have h' := congrArg (fun v : Proj p => (v : X × Matrix ι ι ℂ)) h
+  rw [projInclOn_apply, projInclOn_apply] at h'
+  apply Subtype.ext
+  refine Prod.ext (Subtype.ext (congrArg (fun q : X × Matrix ι ι ℂ => q.1) h'))
+    (congrArg (fun q : X × Matrix ι ι ℂ => q.2) h')
+
+/-- **Including into the whole projectivisation commutes with the hyperplane
+inclusion.**  By `rfl`: `restrictTo_plusOne` makes the two sides typecheck
+against each other with no transport, and both carry the same padded matrix over
+the same base point. -/
+theorem projInclOn_projIncl [DecidableEq ι] (p : Bundle X ι) (U : Set X)
+    (w : Proj (p.restrictTo U)) :
+    projInclOn p.plusOne U (projIncl (p.restrictTo U) w)
+      = projIncl p (projInclOn p U w) := rfl
+
 end ProjOver
 
 end Bundle
