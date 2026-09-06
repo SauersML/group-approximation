@@ -3760,6 +3760,7 @@ import GroupApproximation.CharClass.CohomologyLHRingData
 import GroupApproximation.CharClass.CupVanishIterate
 import GroupApproximation.CharClass.ChernSplitRelation
 import GroupApproximation.CharClass.SplitRelationRange
+import GroupApproximation.CharClass.SliceSplitV
 import GroupApproximation.CharClass.SliceEsymm
 import GroupApproximation.CharClass.SliceBlocks
 import GroupApproximation.CharClass.SliceReindex
