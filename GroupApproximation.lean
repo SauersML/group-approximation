@@ -3608,7 +3608,7 @@ import GroupApproximation.CharClass.CartanMidFourChain
 import GroupApproximation.CharClass.BundleGysinPieces
 import GroupApproximation.CharClass.ProjectiveSpaceGenHyp
 import GroupApproximation.CharClass.LerayHirschDiagCover
-import GroupApproximation. CharClass.LerayHirschPlusOne
+import GroupApproximation.CharClass.LerayHirschPlusOne
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
