@@ -58,7 +58,11 @@ with `v ∉ U₀(A)` and `diag(v, 1) ∈ U₀(M₂(A))`
   the seam discrepancy of hemisphere frames of `U(3) → S⁵`
   (`Analysis/LIXGeneratorUnitary.lean`, `Analysis/LIXClutching.lean`): it lands
   in `U(2)`, `diag(u,1)` contracts in `U(3)` for free, and the projection
-  clutched by `u` over `S⁵` is `Fproj`.
+  clutched by `u` over `S⁵` is `Fproj`.  Frames: two Householder reflections
+  through the normalised midpoint `(p+x)/‖p+x‖` give an explicit continuous
+  `σ_p : {x : pᴴx ≠ −1} → U(3)` with `σ_p(x) e₃ = x` on each closed hemisphere
+  (cs-clutching, 20:15 EDT); the old memory that this is "Bott, not
+  elementary" is wrong.
 
 ### 1.2 The C*-side chain (manuscript §3–§6)
 
@@ -137,6 +141,20 @@ notation `γ_i` = mod-2 Chern class we keep):
   the `z`-part, plus **instability** (`Sq^{2k} b_j = 0` for `k > j`), kills every
   even-index `b_n`; Step 3: assemble `γ_r(W) = Σ_k A_{m-k} b_k = 0`.
 * Contradiction ⇒ no `g` ⇒ no MvN equivalence.
+
+**Target statement (fixed 20:20 EDT, cs-clutching):** over `↥sphereFive × baseY i`,
+```lean
+¬ MurrayVonNeumannEquiv
+    (Matrix.fromBlocks (pullMat prS5 Fproj) 0 0 (pullMat prY (HprojY i)))
+    (Matrix.fromBlocks (1 : Matrix (Fin 2) (Fin 2) C(↥sphereFive × baseY i, ℂ)) 0 0
+      (pullMat prY (HprojY i)))
+```
+(index types `Fin 3 ⊕ HIdx i` and `Fin 2 ⊕ HIdx i`; `HprojY`/`Hproj_eq_pullMat`
+are cs-stages' Y-level form of `Hproj`).  Lemma 2 is delivered in THIS shape,
+not as a `ClutchingObstruction`: `LIXClutching.clutchingObstruction_of_equiv`
+had jointly contradictory hypotheses (being repaired), and Corollary 4 glues
+the explicit hemisphere frames directly instead of routing through `clutchMat`,
+whose seam-discrepancy condition the frames do not satisfy.
 
 ### 1.4 What Step C/D need, and the design that makes them cheapest
 
