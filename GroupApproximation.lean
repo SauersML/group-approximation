@@ -3617,9 +3617,9 @@ import GroupApproximation.CharClass.ChernSplittingData
 import GroupApproximation.CharClass.BundlePushforward
 import GroupApproximation.CharClass.ChernEulerEmbed
 import GroupApproximation.CharClass.ChernEulerCastSucc
+import GroupApproximation.CharClass.CartanMidFourSlots
 import GroupApproximation.CharClass.CartanMidFourNat
 import GroupApproximation.CharClass.ChernEulerIndex
-import GroupApproximation.CharClass.CartanPadTen
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
