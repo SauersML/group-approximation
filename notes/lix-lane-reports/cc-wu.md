@@ -13,7 +13,8 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/WuDiagonal.lean` | `SqData`, `wuMonomialOn`, `Sq` of a squarefree monomial, **(Wu-diag)** |
 | `CharClass/ParityEvenSlice.lean` | `sliceClass = ∏_j (1 + h_j)^{d_j}`; its zero coefficient, its Frobenius evenness for `d_j` even, its vanishing above `∑ d_j` |
 | `CharClass/ParityEven.lean` | `ParityData`, the convolution identity, `b_odd_eq_zero`, `gamma_top_eq_zero` |
-| `CharClass/ParityInstance.lean` | `ParityData` assembled at `TotalH Y` / `TotalH N` over seven named hypotheses (namespace `GroupApproximation.CharClass.Wu`) |
+| `CharClass/ParityInstance.lean` | `ParityData` assembled at `TotalH Y` / `TotalH N` over named hypotheses (namespace `GroupApproximation.CharClass.Wu`) |
+| `CharClass/SqDataInstance.lean` | `SplittingData`, the `SqData` of the flag bundle, (Wu-diag) pushed down to `N`, and the endpoint with `hwu` and the per-space Cartan removed |
 
 ## 1. GREEN
 
@@ -40,6 +41,16 @@ Build completed successfully (8783 jobs).
 ```
 
 Freshly elaborated: `ParityInstance.olean` written at 20:13:35 by that run.
+
+`CharClass/SqDataInstance.lean`, 2026-09-05:
+
+```text
+lake build GroupApproximation.CharClass.SqDataInstance
+ERROR_LINES=0
+Build completed successfully (8786 jobs).
+```
+
+Freshly elaborated: `SqDataInstance.olean` written at 20:27:35 by that run.
 
 Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified,
 and the integration assembly is green over its named hypotheses.
@@ -290,7 +301,45 @@ theorem gamma_top_eq_zero_of_slice_totalH … : γ ((∑ j ∈ u, d j) + 3) = 0
 taking only `hcartan`, `htx_inj`, `hγ`, `hsq_b`, `hwu` plus `(u, h, d)`,
 `hd` and `hslice`.  It is rank-free: the rank of `W` is never mentioned.
 
-## 8. TRAPS
+## 8. `SqDataInstance.lean`: `hwu` and the per-space Cartan removed
+
+`hwu` is no longer an input.  `CharClass/SqDataInstance.lean` builds the `SqData`
+of the flag total space, proves (Wu-diag) there by `SqData.wu_diagonal`, and
+pushes it down to `N` along the injective pullback.  What replaces it is one
+bundled input from `cc-projective`:
+
+```lean
+structure SplittingData (N F : TopCat.{0}) (r : ℕ) (γ : ℕ → TotalH N) where
+  proj : F ⟶ N
+  root : ℕ → Hmod2 F 2
+  pull_injective : Function.Injective (TotalH.map proj)
+  sq_one_root : ∀ l : ℕ, Sq 1 (root l) = 0
+  chern_split : ∀ k : ℕ,
+    TotalH.map proj (γ k) = esymmOn (Finset.range r) (fun l => TotalH.of F 2 (root l)) k
+```
+
+`sq_one_root` is the only Steenrod-flavoured field: `H³(ℂP^{K-1}; F₂) = 0` plus
+naturality.  `Sq^0 = id`, `Sq² root = root²` and `Sq^j root = 0` for `j ≥ 3` are
+proved here from `SteenrodTotal`, because `TotalH.of F 2 β` carries its degree.
+
+Two further collapses:
+
+* `CartanTotal := ∀ X, Steenrod.CartanOf X` is `cc-cartan`'s formula quantified
+  over the space; `cartanH_of` turns it into the `cartanH`/`cartan` field at any
+  space through `cc-steenrod`'s `Steenrod.SqH_mul_of_cartanOf`.  So the whole
+  chain has **one** Cartan hypothesis, not one per space.
+* `totalH_map_injective` converts `cc-projective`'s degreewise Leray–Hirsch
+  injectivity (`∀ n, Function.Injective (pull f n)`) into the ring-level
+  `Function.Injective (TotalH.map f)` that `SplittingData` asks for.  Degreewise
+  is the form they actually have, so without this the field could not be
+  discharged.
+
+The endpoint is then `gamma_top_eq_zero_of_splitting`, with **four** hypotheses:
+`hC : CartanTotal` (cc-cartan), `htx_inj` and `hγ` and `hsq_b` (cc-cohom-api),
+plus `S : SplittingData` (cc-projective) and the slice data `(u, h, d, hd,
+hslice)` (cc-projective).
+
+## 9. TRAPS
 
 * **`autoImplicit` silently swallowed a missing `import`.**  `ZMod` was unknown
   in `WuSymmetric.lean` and `autoImplicit` turned it into an implicitly bound
