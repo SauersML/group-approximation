@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOLemma421Proof
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundPolygonGeometry
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundComponentSplit
 
 /-!
@@ -20,8 +21,12 @@ beyond that proposition.
 The second is Ol'shanskii's Lemma 25, which Osin cites under the label
 `N123`.  Its printed hypothesis is on the aggregate: the sides of a geodesic
 `r`-gon split into three classes with `sigma_1 > a * r` and
-`sigma_3 < a * r / 1000`.  Getting from that aggregate to a single long side
-is the pigeonhole `exists_side_gt_of_sum_gt` proved here.
+`sigma_3 < a * r / 1000`.  The full uniform statement is now proved by
+`Olshanskii.threeClassPolygon`, imported through `UnboundPolygonGeometry`.
+That module also supplies the actual polygon constants for the simultaneous
+scale choice and the metric transfer to original arc endpoints. The
+pigeonhole and finite subdivision identities below remain useful counting
+lemmas; they are not substitutes for the general polygon theorem.
 -/
 
 namespace GroupApproximation

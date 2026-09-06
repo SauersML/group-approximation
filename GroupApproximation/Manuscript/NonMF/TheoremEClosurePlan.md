@@ -90,8 +90,32 @@ ambient geometry and quasigeodesic constants; geometric closeness/density
 constants; epsilon; sufficiently large rho; relators; input diagram; output
 diagram with **both** selection and unbound data.
 
-`UnboundParameters.lean` proves the numerical choices after the geometric
-constants are supplied. It does not construct those constants or the regions.
+`OlshanskiiThreeClasses.threeClassPolygon` now proves the full uniform
+three-class polygon lemma (Ol’shanskii Lemma 25, cited by Osin as Lemma 3.7).
+It supplies positive constants `c1 = 12 * (delta + 1)` and
+`c2 = 100000 * (delta + 1)` before the space, polygon, side count, and density
+parameter. Both segments retain the published length `a / 1000`; zero- and
+one-sided polygons are handled as well. The closed literature endpoint
+passes `#audit_closed_axioms` with only the standard three axioms.
+
+The proof uses `OlshanskiiCutPotential` for a linear total diagonal budget,
+`OlshanskiiPolygonClasses` and `OlshanskiiCutClasses` for restriction and
+rotation transport, `OlshanskiiClassifiedBisection` for the actual two closed
+cut polygons and exact class accounting, and `OlshanskiiSmallClassBound` for
+the contrapositive base estimate. The former claim in the sampling module
+that balanced recursion necessarily costs `n log n` was an overestimate:
+each cut is charged at its own shrinking polygon size.
+
+`UnboundParameters.lean` proves simultaneous epsilon/rho choices once these
+constants and a Morse radius are supplied. `UnboundPolygonGeometry.lean`
+uses the proved constants, obtains the actual long pair from the component
+density and short-side estimates, and transfers its four endpoints to the
+original arcs using Morse proximity. This preserves strict connector and
+shortening margins. It also supplies the application in the proved Cayley
+metric realization, with the extra six units of hyperbolicity included in
+the parameter choice. The complementary regions, their boundary polygons,
+and the actual Morse proximity of those replacement arcs remain to be
+constructed; the universal historical unbound output remains refuted.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
@@ -140,8 +164,11 @@ position, each section word, and both quasi-geodesic constants. Producing
 the enclosing region and its at-most-four quasi-geodesic arcs remains open.
 The outstanding proofs are:
 
-1. Derive the geometric constants from the ambient hypotheses and reconcile
-   the published and preprint numbering against the source argument.
+1. Construct the replacement polygons and their Morse proximity in the
+   genuine Cayley metric realization. The full uniform N123 constants and
+   their numeric epsilon/rho choices are now proved; they are no longer
+   missing literature inputs. The published appendix numbers are 9.4 for
+   unbound arcs, 9.6 for the joint induction, and 9.7 for Greendlinger.
 2. Prove the selected incidence graph's planarity and simplicity in the
    source's joint induction on relator-cell count (Appendix Lemma 9.6).
    Simplicity uses the inductive Greendlinger conclusion for the enclosed
