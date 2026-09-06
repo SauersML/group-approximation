@@ -413,6 +413,27 @@ The dimension bookkeeping for `N = S¹ × S⁵ × ∏_j CP(d_j)` is
 `Analysis/LIXBlockProjections`'s `baseY`) followed by two `PuncturedAcyclic.prod`
 steps, or one `puncturedAcyclic_pi` over the whole family.
 
+## 3b. Signature check against the endpoint (2026-09-05)
+
+`cs-endpoint`'s `CharClass.LemmaTwoInput` (`CharClass/LemmaTwoGlue.lean`) bundles a
+coefficient object `K` with `[Zero K]`, a
+`topClass : (↥sphereOne × baseM dd → Matrix (VIdx dd ⊕ VIdx dd) _ ℂ) → K`, and two
+conjuncts; the first is cc-thom's Step C.  Checked against
+`EulerLocalAssembly.topChernClass_ne_zero_of_chain`:
+
+* **compatible.**  `K` is existential, so take `K := ↥(cohomologyZMod2 (TopCat.of (↥sphereOne × baseM dd)) (lixTopDegree dd))`;
+  its module zero is the `0` of the `≠ 0`, matching my `gamma ≠ 0`.
+* **degrees agree.**  `stepD_of_parity` reads `γ` at index `(∑ j, dd j) + 3`, which is
+  the rank `r`; my `twoR` is `lixTopDegree dd = 2 * (∑ j, dd j) + 6 = 2 r`.  A class
+  `γ_r` in degree `2r` is consistent on both sides.
+* **one real seam, unclaimed.**  `topClass` is quantified over *all* matrix-valued maps,
+  not just projection-valued ones, so its definition must be total (junk value off the
+  projection locus).  And my conclusion is about a `gamma` supplied with
+  `hgamma : gamma = j.hom su`, so the glue owes
+  `topClass (mappingTorus …) = j.hom su` for each `G` — the identification of `topClass`
+  with the top Chern class.  Nobody has claimed it; it is the last seam between Step C
+  and the endpoint.
+
 ## 4. TRAPS
 
 * **The vendored Mayer–Vietoris is homology, not cohomology.**
@@ -470,6 +491,17 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
   `CohomologyMayerVietoris` were a stopped Sonnet lane's bytes; the owner's
   committed file was green throughout.  Check `git status` on a peer's file before
   concluding it is red.
+* **Writing a new file against cc-thom's names needs two `open`s that cc-thom's own
+  files already carry**, so the lane never sees the failure: `IsZero` needs
+  `CategoryTheory.Limits` and `cohomologyZMod2` needs the vendored
+  `…SphereOddDegree` namespace.  With `autoImplicit` on, each missing `open` reads as
+  "Function expected at `IsZero`, but this term has type `?m`".  Reported by
+  `cc-lix-odd` after hitting both in consecutive probes.
+* **A theorem inside a `variable` block whose *statement* does not mention those
+  variables does not get them bound**, even though the proof body uses them; the
+  failure is a cluster of "unknown identifier" errors naming hypotheses three lines
+  above.  Also `cc-lix-odd`.  Use explicit binders when the statement quantifies
+  internally.
 * **Duplicate top-level declarations across `CharClass/` modules are an import
   error, not a type error.**  `isZero_of_linearEquiv` existed in both
   `ThomPuncturedRecursion` and `cc-cohom-api`'s `CohomologyProductCover`, and Lean
