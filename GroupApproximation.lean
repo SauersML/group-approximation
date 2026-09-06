@@ -3749,6 +3749,8 @@ import GroupApproximation.CharClass.ParityEvenSplitting
 import GroupApproximation.CharClass.ParityEvenFlagRelation
 import GroupApproximation.CharClass.ParityEvenLixSplitting
 import GroupApproximation.CharClass.ParityEvenStepDClosed
+import GroupApproximation.CharClass.ChernLineEulerNatural
+import GroupApproximation.CharClass.ParityEvenVSlice
 import GroupApproximation.CharClass.BundleTotalOver
 import GroupApproximation.CharClass.ChernTautHyperIso
 import GroupApproximation.CharClass.LIXStepCOddLocal
