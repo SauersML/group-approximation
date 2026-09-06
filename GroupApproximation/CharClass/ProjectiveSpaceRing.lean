@@ -114,6 +114,15 @@ def cupRightE {X : TopCat.{0}} (e : Hmod2 X 2) (n : ℕ) : Hmod2 X n →+ Hmod2 
 theorem cupRightE_cupPowE {X : TopCat.{0}} (e : Hmod2 X 2) (m : ℕ) :
     cupRightE e (2 * m) (cupPowE e m) = cupPowE e (m + 1) := rfl
 
+/-- **Cup powers commute with pullback.** -/
+theorem pull_cupPowE {X Y : TopCat.{0}} (f : X ⟶ Y) (e : Hmod2 Y 2) (m : ℕ) :
+    pull f (2 * m) (cupPowE e m) = cupPowE (pull f 2 e) m := by
+  induction m with
+  | zero => exact pull_one f
+  | succ m ih =>
+    show pull f (2 * m + 2) (cup (cupPowE e m) e) = cup (cupPowE (pull f 2 e) m) (pull f 2 e)
+    rw [pull_cup, ih]
+
 /-! ## 3. The Gysin sequence -/
 
 /-- **The mod-2 Gysin sequence of a circle bundle `S → X` with Euler class `e`,**
