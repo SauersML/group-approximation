@@ -136,6 +136,10 @@ Chern classes and the Euler class
   written as a column term at the reflected index.  Their coefficient degrees grow
   with the index and the power shrinks; `lhTerm` is the other way round.  Neither
   convention is free, so the reindex lives here.  One lemma, four rewrites.
+* `LerayHirschTowerSum` (8923) — **the tower expanded into the column sum**, by
+  induction on its length, against their definition as landed.  Uses the *right*-handed
+  shift, which needs no transport on the ambient degree at all: `cup _ ξ` already lands
+  in `m + 2`.  Indexed by `Fin (k+1)`, not `range (k+1)` — see TRAPS.
 
 ## AUTHORED-UNVERIFIED
 
@@ -288,6 +292,16 @@ The bootstrap that closes it, in order:
    the ring structure, and the machine is closed.
 
 ## TRAPS
+
+* **A `Finset.range` binder cannot carry an index bound, and the summand then fails to
+  *elaborate*.**  The reflected index `k - i` is truncated subtraction, so a cast on the
+  coefficient's degree is valid only under `i ≤ k`.  With `∑ i ∈ Finset.range (k+1)` the
+  summand is a function of every natural `i`, the cast has no hypothesis, and the
+  statement is rejected.  `∑ i : Fin (k+1)` puts `i.2` in scope in the binder.  Same
+  family as the `whnf`-loop-in-the-statement trap: the cost is elaboration, not proof.
+* **Right-handed shifts are cheaper than left-handed ones.**  `cup x ξ` lands in `m + 2`
+  on the nose, so raising a column index by one on the right needs no ambient cast; on
+  the left it needs `cup_comm` and a transport.  `cupPowE_succ` is already right-handed.
 
 * `sInclusion` applied to an open set coerced to a set leaves its source type a
   metavariable, which will not unify with a space whose subtype came from the `SetLike`
