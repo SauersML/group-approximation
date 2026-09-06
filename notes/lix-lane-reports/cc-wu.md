@@ -171,6 +171,15 @@ Because `VSliceValue` mentions no mapping torus, the existential over generators
 per **stage** rather than per mapping torus, a smaller input than the one it
 replaces.
 
+Re-probed at 9208 jobs after adding `lemmaTwoHolds_of_sliceGen`, landed
+`1e76e9be9`.  That endpoint takes the value statement at `cc-projective`'s
+`LH.sliceGen` and introduces the existential itself, so `cc-steenrod`'s theorem
+lands with no introduction step in between.  Positivity at every stage is
+`LIX.lixDD_pos`, a theorem, so it is not a hypothesis.  The family is forced rather
+than chosen: `sliceGen_eq_root` says every line of `V` over factor `j` carries that
+class, so `sliceClass`'s multiplicity is a fact and not a convention.  Both the
+existential and the pinned form stand; the pinned one is the one to cite.
+
 Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
 integration assembly is green over its named hypotheses, and the even side is
 stated at the model of record.  `cc-lix-odd` consumes it in
