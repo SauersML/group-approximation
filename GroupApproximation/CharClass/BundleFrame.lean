@@ -35,6 +35,7 @@ namespace CharClass
 
 open scoped Matrix
 open GroupApproximation.STW59
+open Bundle
 
 section Isometry
 
@@ -96,9 +97,14 @@ private theorem exists_isometry_aux (r : ℕ) (q : Matrix ι ι ℂ) (hq : IsSta
         rwa [Finset.sum_congr rfl (fun i _ => heq i)] at h
       set W : Matrix ι (Fin (r + 1)) ℂ :=
         Matrix.of fun i => Fin.snoc (fun j : Fin r => W' i j) (x i)
-      have hWcastSucc : ∀ (i : ι) (j : Fin r), W i j.castSucc = W' i j := fun i j =>
-        Fin.snoc_castSucc _ _ _
-      have hWlast : ∀ i : ι, W i (Fin.last r) = x i := fun i => Fin.snoc_last _ _
+      have hWcastSucc : ∀ (i : ι) (j : Fin r), W i j.castSucc = W' i j := by
+        intro i j
+        show Fin.snoc (fun j' : Fin r => W' i j') (x i) j.castSucc = W' i j
+        exact Fin.snoc_castSucc _ _ _
+      have hWlast : ∀ i : ι, W i (Fin.last r) = x i := by
+        intro i
+        show Fin.snoc (fun j' : Fin r => W' i j') (x i) (Fin.last r) = x i
+        exact Fin.snoc_last _ _
       refine ⟨W, ?_, ?_⟩
       · ext j k
         have hentry : (Wᴴ * W) j k = ∑ i, star (W i j) * W i k := by
