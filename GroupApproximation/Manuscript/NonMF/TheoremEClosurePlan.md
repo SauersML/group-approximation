@@ -230,10 +230,28 @@ G-face incidence and prescribed corner endpoints.
 the chosen G-face, with exact word and length, both prescribed endpoints,
 legal labels, one additional face, and an O-equivalent disc with the same
 exterior word and ordered relator data. Reducedness is preserved. These
-proofs pass ordinary axiom audits (4,805-job build). The zero-length case,
-freshness and simplicity of the new internal path vertices, transport of
-selected embedded regions, and the general complementary-region surgery
-remain open. No further assembly admission has been discharged.
+proofs pass ordinary axiom audits (4,805-job build).
+
+`DartExpansionInternal.lean` now proves that every internal subdivision
+vertex has its exact two-dart rotation orbit, lies outside the embedded old
+vertices, and is distinct from every other internal vertex on that path.
+The path has no repeated edges. `GFaceSimpleWordInsertion.exists_simple_output`
+constructs the prescribed G-face path with all these properties, as well as
+the previously proved exact word, length, corner endpoints and O-equivalence.
+
+`NonemptyConnectorWord.lean` handles an empty connector by replacing it with
+an admissible two-letter word and its inverse, retaining its ambient value.
+`UnboundNonemptyConnectors.lean` derives `2 < epsilon` from the existing Osin
+scale and takes the legal letter from the actual nonempty source segment.
+Thus both chosen connector words are nonempty and still strictly shorter
+than epsilon, with unchanged endpoint equations, null quadrilateral and
+strict target-prefix shortening. The original geodesic connector records
+are retained. `UnboundComponentNonemptyConnectors.unboundComponentNonemptyConnectors`
+constructs these words at the same uniform parameter choice and passes a
+closed axiom audit (4,853-job build). This resolves the zero-length obstacle
+for these metric connectors without changing constants. Transport of
+selected embedded regions and general complementary-region surgery remain
+open. No further assembly admission has been discharged.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
