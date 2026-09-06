@@ -46,7 +46,7 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ProjectiveSpaceHomogeneous` | 8659 |
 | `ProjectiveSpaceInputs` | 8784 |
 | `LerayHirschDegree` (with `pull_injective`) | 8783 |
-| `ProjectiveSpaceComputation` | 8791 |
+| `ProjectiveSpaceComputation` | 8789 |
 | `ChernTotalRing` | 2464 |
 | `ChernClasses` (over `TotalH`) | 2466 |
 
@@ -59,11 +59,21 @@ construction, their uniqueness, and injectivity of `π^*` — the half of
 Leray–Hirsch the splitting principle runs on; path-connectedness of `ℂP^d`; and
 its homogeneity, which is what cc-thom's punctured recursion needed.
 
-`ProjectiveSpaceComputation.lean` carries the induction itself,
-`hasCPCohomology_CPtop`, with the Mayer–Vietoris sequence and the degree-zero
-surjectivity as explicit hypotheses.  **Item 1 is therefore finished on this
-lane's side**: supplying those two arguments turns it into the unconditional
-`H^*(ℂP^n;F₂)`, with no further work here.
+**Item 1 is DONE, unconditionally.**  `hasCPCohomology_CP (d : ℕ) :
+HasCPCohomology (CPtop d) d` in `ProjectiveSpaceComputation.lean`: a line in
+`H^{2n}(ℂP^d;F₂)` for every `n ≤ d`, and zero in every other degree.  No
+hypotheses, no `sorry`, nothing outstanding from a peer.
+
+The last hypothesis dissolved rather than being discharged.  It had been "every
+class of `H^0` of the intersection is a sum of restrictions", which looked to need
+cc-thom's identification of the Mayer–Vietoris restrictions with honest pullbacks.
+It does not: `exists_sum_eq_of_lines` gets it from exactness at `H^0(U) ⊕ H^0(V)`
+plus all four `H^0` groups being lines, **by counting**.  If restriction from `U`
+hits the generator we are done, likewise for `V`; otherwise both kill their
+generators, exactness produces classes on the ambient space restricting to
+`(gen, 0)` and to `(0, gen)`, both are nonzero hence both are *the* generator of
+`H^0(X)` hence equal, and one restricts to the generator while the other restricts
+to zero.
 
 ## 2. AUTHORED, UNVERIFIED
 

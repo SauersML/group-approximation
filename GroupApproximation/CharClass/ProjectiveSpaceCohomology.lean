@@ -30,9 +30,12 @@ supplied by instantiating it.
 * `MVSequence.eq_zero_of_delta` — the vanishing version of the same.
 
 Degree `1` is the one place where the connecting map is not controlled by
-vanishing: `H^0(W) ≠ 0`.  It is handled by the hypothesis `hres0`, that
-restriction `H^0(U) → H^0(W)` is onto — true because both spaces are connected
-and `1` restricts to `1` — which forces `δ` out of degree `0` to be zero.
+vanishing: `H^0(W) ≠ 0`.  It is handled by the hypothesis `hsum0`, that every
+class of `H^0(W)` is a sum of restrictions from `H^0(U)` and `H^0(V)`, which by
+exactness at `H^0(W)` forces `δ` out of degree `0` to be zero.  That hypothesis
+needs no identification of the Mayer–Vietoris restrictions with honest pullbacks:
+it follows from exactness at `H^0(U) ⊕ H^0(V)` together with all four groups being
+lines, by counting — see `exists_sum_eq_of_lines`.
 -/
 
 set_option autoImplicit false
@@ -191,7 +194,8 @@ from `H^{2d+1}(W)` by `bijective_delta`; and everything else, which dies by
 theorem hasCPCohomology_succ {X U V W : TopCat.{0}} (mv : MVSequence X U V W) (d : ℕ)
     (hU : HasPointCohomology U) (hV : HasCPCohomology V d)
     (hW : HasSphereCohomology W (2 * d + 1))
-    (hres0 : Function.Surjective (mv.resWU 0))
+    (hsum0 : ∀ w : Hmod2 W 0, ∃ (a : Hmod2 U 0) (b : Hmod2 V 0),
+      mv.resWU 0 a + mv.resWV 0 b = w)
     (h0 : Nonempty (Hmod2 X 0 ≃ₗ[ZMod 2] ZMod 2)) :
     HasCPCohomology X (d + 1) := by
   obtain ⟨hU0, hUz⟩ := hU
@@ -209,8 +213,8 @@ theorem hasCPCohomology_succ {X U V W : TopCat.{0}} (mv : MVSequence X U V W) (d
     intro x
     obtain ⟨w, hw⟩ := (mv.exact_X 0 x).mp
       ⟨hUz 1 one_ne_zero (mv.resU 1 x), hVodd 1 rfl (mv.resV 1 x)⟩
-    obtain ⟨a, ha⟩ := hres0 w
-    have hd : mv.δ 0 w = 0 := (mv.exact_W 0 w).mpr ⟨a, 0, by rw [ha, map_zero, add_zero]⟩
+    obtain ⟨a, b, hab⟩ := hsum0 w
+    have hd : mv.δ 0 w = 0 := (mv.exact_W 0 w).mpr ⟨a, b, hab⟩
     rw [← hw, hd]
   refine ⟨?_, ?_⟩
   · -- the lines
