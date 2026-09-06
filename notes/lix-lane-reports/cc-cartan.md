@@ -658,3 +658,49 @@ What is left is one lemma I cannot write. The master identity is stated on
 composite B as a natural transformation applied to a source basis element; the
 evaluation is stated on cc-steenrod's generator-level value. The bridge is the
 exact analogue of `compA_single` and needs their packaging.
+
+## The Cartan formula, at cochain level (2026-09-06, end of session)
+
+`cartan_cochain` is the Cartan formula as an identity of cochains:
+
+    cochainCast (sqCochain (p+q) j (α ⌣ β))
+      = cartanRhsCochain X p q α β d e + cochainCoboundary … (homCochain …)
+
+for cocycles `α`, `β`, with every degree a parameter carrying its defining
+equation. Green, landed, and 62 owned modules build together at 2953 jobs.
+
+The chain behind it, once cc-steenrod's `compBNat` landed: `compB_single_eq`
+crosses from the packaged natural transformation to the generator-level value;
+`compA_eq_compBNat_zero` is the degree-zero agreement and needed no work, because
+the two first composites are the same map and the structures carrying them differ
+only in proof fields; `cartan_master` instantiates the comparison;
+`cartan_cochainEval` is the identity on one simplex; `cartan_cochain` lifts it.
+
+**Exactly one cast survives, and it is structural, not a workaround.**
+`sqCochain` fixes its output degree as a sum, `j + m`; the coboundary fixes the
+simplex degree as a successor, `d + 1`. One number cannot be definitionally both.
+So a cast is forced, and the right one to keep is on the square, because
+`cocycleClass_cast` undoes exactly that when the identity passes to classes. Any
+attempt to place it elsewhere moves it onto the simplex, where it is data.
+
+Three traps, each confirmed by a failed probe.
+
+* A `by omega` bound inside a `Fin.mk` **captures the hypotheses in scope**, so
+  the later `subst` fails with "target depends on". Destructure the index and
+  `cases` the degree equation instead.
+* `omega` cannot see through `Fin.succ`; `Fin.val_succ` has to be simped first.
+* A `rw` whose pattern is **visibly present in the goal** can still fail to
+  match. `congr_arg₂` supplied as a term does the same rewrite with no matching
+  at all, and is the cure whenever the pattern is provably there.
+
+What remains for `CartanOf X`, and neither part is mathematics.
+
+1. Passing to classes. `cocycleClass_add_coboundary` and `cocycleClass_cast` are
+   landed; what they still want are the two cocycle proofs, for the cast square
+   and for the right-hand side. The first needs a lemma that the coboundary of a
+   cast is the cast of the coboundary, which is one `subst` away; the second then
+   follows from the identity itself.
+2. Reindexing the sum into `Sq` shape, `j' ↦ p - j'`. The out-of-range terms
+   vanish by `cochainCupI_self_eq_zero_of_lt`, which is landed. The reindexing
+   itself must happen **after** passing to classes, because at cochain level it
+   needs one number spelled two ways in the type of a cochain.
