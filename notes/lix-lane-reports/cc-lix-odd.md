@@ -22,6 +22,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LIXSectionChart.lean` | 8663 | the chart of `S⁵` at `-e₃` on the plain product `ℂ × ℂ × ℝ` (`sphereChartVec`, `sphereChartVec_mem`, `sphereChart_zero`, `continuous_sphereChartVec`), the derivative at the zero with its bijectivity (`eulerLinearModel`, `eulerLinearEquiv`, `eulerContinuousLinearEquiv`), and `trivialBlockChart_eq_zero_iff` |
 | `CharClass/LemmaTwoStatement.lean` | 8667 | `FHmat`/`EHmat` with `FHmat_eq_fromBlocks`, `ContinuousMvNEquiv`, `HasStepAUnitary`, `false_of_stepC_stepD`, `not_continuousMvNEquiv` = **Lemma 2** |
 | `CharClass/LIXSectionDeriv.lean` | 8664 | **the strict derivative at the zero.** `chartLinearCLM`, `sphereChartVec_eq`, `hasStrictFDerivAt_chartQ`/`_chartWeight` (the radial weight has vanishing differential), `hasStrictFDerivAt_sphereChartVec`, and `hasStrictFDerivAt_trivialBlockChart`: the derivative of the section's trivial block at its zero **is** `eulerContinuousLinearEquiv` |
+| `CharClass/LIXSectionNesting.lean` | 8663 | the base as a **left-nested** chain, for `cc-thom`'s one-factor-at-a-time Künneth: `piFinSnocHomeo` (peel the *last* factor, the end Mathlib and `piFinSuccHomeo` do not), `baseSnocHomeo` (the binary step), `baseNilHomeo` (the base case) |
 | `CharClass/LIXSectionLocalHomeo.lean` | 8665 | **the local homeomorphism at the zero**, in the shape `cc-thom` consumes: `eulerLocalHomeo` from `HasStrictFDerivAt.toOpenPartialHomeomorph`, with `zero_mem_eulerLocalHomeo_source`, `zero_mem_eulerLocalHomeo_target`, `eulerLocalHomeo_zero`; plus `lixTopDegree` = `2 ∑ⱼ dⱼ + 6` with `lixTopDegree_eq_two_mul_rank` |
 | `CharClass/LemmaTwoUnitary.lean` | 8661 | **Step A wired.** `cornerExtend_mulVec_eq`, `exists_isCornerUnitary_of_stepA` — `cs-clutching`'s continuous corner unitary becomes the `IsCornerUnitary` field `mappingTorus` consumes, seam `g e = s` intact |
 | `CharClass/LemmaTwoBridge.lean` | 8669 | `toMatC`, `matEval_toMatC`, `continuous_matEval`, `continuousMvNEquiv_of_murrayVonNeumannEquiv`, `continuous_FHmat`/`continuous_EHmat`, `not_murrayVonNeumannEquiv` = **Lemma 2 in the C\*-side vocabulary** |
@@ -91,13 +92,13 @@ The direction is the manuscript's own `g e = s`; no adjoint.  `cornerExtend` and
 `openPartialHomeomorphChartPair` takes, with the zero in the source, the origin in the
 target and `e z = 0`.  `lixTopDegree` is the single degree index, in added form.
 
-**Open design point.**  `cc-thom`'s punctured-product recursion needs `N` **left-nested**
-binary, `(((S¹ × S⁵) × ℂP d₁) × ℂP d₂) × ⋯`, because Künneth is available one factor at a
-time only.  My `baseM dd = ↥(unitVectors (Fin 3)) × (∀ j : Fin ℓ, CP (dd j))` has a
-dependent product in the second slot, which has no Künneth factor.  The fix is a
-homeomorphism from the dependent product to the left-nested chain, by induction on `ℓ`
-through `Fin.cons`, then `PuncturedAcyclic.congr'`.  That homeomorphism is the next thing
-this lane owes.
+**The left-nesting constraint is discharged.**  `cc-thom`'s punctured-product recursion
+needs `N` left-nested binary because Künneth is available one factor at a time only, while
+`baseM dd` has the dependent product `∀ j : Fin ℓ, CP (dd j)` in its second slot.
+`CharClass/LIXSectionNesting.lean` supplies the translation as the **binary step** rather
+than as a type family: `baseSnocHomeo` peels one `ℂP` off to the right, `baseNilHomeo` is
+the base case, and iterating the first from the second builds any left-nested chain.
+`PuncturedAcyclic.congr'` transports the conclusion back.
 
 ### Historical — the earlier request to `cc-thom`
 
