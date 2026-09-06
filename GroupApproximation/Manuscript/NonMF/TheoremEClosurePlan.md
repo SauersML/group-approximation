@@ -138,6 +138,16 @@ to contradict maximal contiguity or minimal cutting-path length. A null
 quadrilateral word alone does not assert that embedded region. The
 universal historical unbound output remains refuted.
 
+`CactusZeroBoundary.lean` now constructs the inner face traversal of the
+single-polygon case, including a monogon. `NullWordDisc.nullWordDisc` fills
+every nonempty admissible ambient-group null word by an actual planar disc
+with its exact relative boundary, legal dart labels, no relator cells, and
+exactly two faces (one exterior and one G-cell). Its closed audit passes.
+`UnboundConnectorDisc.lean` proves the produced quadrilateral is nonempty
+and instantiates this disc construction. Thus the standalone padding disc
+is proved; gluing it into the original complementary region while
+preserving selected contiguities remains open.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
