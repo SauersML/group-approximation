@@ -1,4 +1,4 @@
-import GroupApproximation.CharClass.RelativeSmallChains
+import GroupApproximation.CharClass.RelativeExcision
 import GroupApproximation.CharClass.CohomologyAssoc
 
 /-!
@@ -25,15 +25,19 @@ subdivides anything.
 * `isSubordinate_frontSimplex`, `isSubordinate_backSimplex` — the two faces stay
   inside whatever the simplex is inside.
 * `cochainCup_eval_eq_zero_of_subordinate` — **the combinatorial core**.
-* `pairCover` — a two-member open cover.
 * `cochainCup_mem_smallAnn` — the product kills every small simplex.
+
+The two-member cover and the fact that a simplex small for it lies in one of the
+two members are `twoSetCover` and `subordinate_or_of_isSmallSimplex`, both already
+on `origin/main`; an earlier version of this file rebuilt both and should not
+have.
 -/
 
 set_option autoImplicit false
 
 namespace GroupApproximation.CharClass
 
-open CategoryTheory AlgebraicTopology Limits
+open CategoryTheory AlgebraicTopology Limits TopologicalSpace
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AffineBarycentricSubdivision
@@ -95,34 +99,17 @@ theorem cochainCup_eval_eq_zero_of_subordinate {U V : Set X} {p q : ℕ}
 
 /-! ## 3. Against a two-member cover -/
 
-/-- The open cover with exactly two members. -/
-def pairCover (U V : Set X) (hU : IsOpen U) (hV : IsOpen V)
-    (hUV : ∀ x : X, x ∈ U ∨ x ∈ V) : OpenCoverData X where
-  sets := {U, V}
-  isOpen_mem := fun W hW => by
-    have hW' : W = U ∨ W = V := hW
-    rcases hW' with rfl | rfl
-    · exact hU
-    · exact hV
-  covers := fun x => by
-    rcases hUV x with h | h
-    · exact ⟨U, Or.inl rfl, h⟩
-    · exact ⟨V, Or.inr rfl, h⟩
-
 /-- **The product kills every small simplex.**  A simplex small for the two-member
-cover lies in one of them, which is exactly the hypothesis of the core. -/
-theorem cochainCup_mem_smallAnn {U V : Set X} (hU : IsOpen U) (hV : IsOpen V)
-    (hUV : ∀ x : X, x ∈ U ∨ x ∈ V) {p q : ℕ}
+cover lies in one of them, which is exactly the hypothesis of the core.  Both the
+cover and that dichotomy are `cc-relative`'s, from `MayerVietorisSES` and
+`RelativeExcision`. -/
+theorem cochainCup_mem_smallAnn (U V : Opens X) (hUV : U ⊔ V = ⊤) {p q : ℕ}
     {α : singularCochainGroup R X p} {β : singularCochainGroup R X q}
-    (hα : α ∈ relCochainSubmodule R X U p) (hβ : β ∈ relCochainSubmodule R X V q) :
-    cochainCup p q α β ∈ smallAnnSubmodule R X (pairCover U V hU hV hUV) (p + q) := by
-  intro σ hσ
-  obtain ⟨W, hW, hsub⟩ := hσ
-  have hW' : W = U ∨ W = V := hW
-  refine cochainCup_eval_eq_zero_of_subordinate hα hβ σ ?_
-  rcases hW' with rfl | rfl
-  · exact Or.inl hsub
-  · exact Or.inr hsub
+    (hα : α ∈ relCochainSubmodule R X (U : Set X) p)
+    (hβ : β ∈ relCochainSubmodule R X (V : Set X) q) :
+    cochainCup p q α β ∈ smallAnnSubmodule R X (twoSetCover U V hUV) (p + q) :=
+  fun _ hσ => cochainCup_eval_eq_zero_of_subordinate hα hβ _
+    (subordinate_or_of_isSmallSimplex U V hUV hσ)
 
 end
 
