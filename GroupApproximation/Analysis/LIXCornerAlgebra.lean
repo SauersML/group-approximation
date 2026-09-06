@@ -309,16 +309,24 @@ example (X : Type*) [TopologicalSpace X] [CompactSpace X] (ι : Type*) [Fintype 
     [DecidableEq ι] : CStarAlgebra C(X, CStarMatrix ι ι ℂ) := inferInstance
 
 example (X : Type*) [TopologicalSpace X] [CompactSpace X] (ι : Type*) [Fintype ι]
-    [DecidableEq ι] (a b c : SectionAlgebra X ι) : a * (b + c) = a * b + a * c :=
-  mul_add a b c
-
-example (X : Type*) [TopologicalSpace X] [CompactSpace X] (ι : Type*) [Fintype ι]
     [DecidableEq ι] (a b c : SectionAlgebra X ι) : a * b * c = a * (b * c) :=
   mul_assoc a b c
 
-example (X : Type*) [TopologicalSpace X] [CompactSpace X] (ι : Type*) [Fintype ι]
-    [DecidableEq ι] (a b : SectionAlgebra X ι) : star (a * b) = star b * star a :=
-  star_mul a b
+/- **Not a diagnostic that can be stated with the generic lemmas.**  `CStarMatrix n n A`
+carries *two* instances of `Mul (CStarMatrix n n A)`: the bespoke one built directly from
+`HMul` (`Mathlib/Analysis/CStarAlgebra/CStarMatrix.lean:302`) and the one buried inside
+`NonUnitalNonAssocSemiring (CStarMatrix n n A) := inferInstanceAs (… (Matrix n n A))`
+(`CStarMatrix.lean:332`), which reuses `Matrix`'s own `Mul` field wholesale through the
+type-synonym's definitional equality.  The two are defeq but not the same term.  A bundled
+query (`Ring`, `StarRing`, `CStarAlgebra`, or `Semigroup` via `mul_assoc` above) commits to
+one internally-consistent instance throughout and succeeds, as the examples above show; a
+bare `Mul (SectionAlgebra X ι)` elaborated fresh for `a * (b + c) = a * b + a * c` or
+`star (a * b) = star b * star a` picks up the *other* branch of the diamond, for which no
+`LeftDistribClass`/compatible `star` instance is registered, and `mul_add`/`star_mul` fail
+outright rather than merely being slow.  Neither `cornerAlgebra` nor `StageAlgebra` (which
+only ever go through the bundled `[CStarAlgebra A]` route) touch this branch, so nothing
+downstream is affected; this is exactly the trap the module docstring above warns about, now
+confirmed by a probe rather than merely anticipated. -/
 
 end Diagnostics
 
@@ -352,6 +360,24 @@ theorem ofFunctionMatrix_star (M : Matrix ι ι C(X, ℂ)) :
   show (matEval x (star M)) i j = ((star (ofFunctionMatrix M)) x) i j
   rw [Matrix.star_eq_conjTranspose, matEval_conjTranspose, Matrix.conjTranspose_apply]
   rfl
+
+theorem ofFunctionMatrix_add (M N : Matrix ι ι C(X, ℂ)) :
+    ofFunctionMatrix (M + N) = ofFunctionMatrix M + ofFunctionMatrix N := by
+  refine ContinuousMap.ext fun x => CStarMatrix.ext fun i j => ?_
+  show (matEval x (M + N)) i j = ((ofFunctionMatrix M + ofFunctionMatrix N) x) i j
+  rfl
+
+theorem ofFunctionMatrix_smul (c : ℂ) (M : Matrix ι ι C(X, ℂ)) :
+    ofFunctionMatrix (c • M) = c • ofFunctionMatrix M := by
+  refine ContinuousMap.ext fun x => CStarMatrix.ext fun i j => ?_
+  show (matEval x (c • M)) i j = ((c • ofFunctionMatrix M) x) i j
+  rfl
+
+theorem ofFunctionMatrix_injective :
+    Function.Injective (ofFunctionMatrix : Matrix ι ι C(X, ℂ) → SectionAlgebra X ι) := by
+  intro M N h
+  refine matrix_ext_of_matEval fun x => ?_
+  exact CStarMatrix.ofMatrix.injective (DFunLike.congr_fun h x)
 
 theorem ofFunctionMatrix_one : ofFunctionMatrix (1 : Matrix ι ι C(X, ℂ)) = 1 := by
   refine ContinuousMap.ext fun x => CStarMatrix.ext fun i j => ?_

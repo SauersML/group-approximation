@@ -144,6 +144,24 @@ theorem constMat_conjTranspose (M : Matrix ι κ ℂ) :
   refine matrix_ext_of_matEval fun x => ?_
   rw [matEval_constMat, matEval_conjTranspose, matEval_constMat]
 
+theorem matEval_add (x : X) (M N : Matrix ι κ C(X, ℂ)) :
+    matEval x (M + N) = matEval x M + matEval x N :=
+  Matrix.ext fun _ _ => rfl
+
+theorem matEval_smul (x : X) (c : ℂ) (M : Matrix ι κ C(X, ℂ)) :
+    matEval x (c • M) = c • matEval x M :=
+  Matrix.ext fun _ _ => rfl
+
+theorem constMat_add (M N : Matrix ι κ ℂ) :
+    constMat X (M + N) = constMat X M + constMat X N := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_add, matEval_constMat, matEval_constMat, matEval_constMat]
+
+theorem constMat_smul (c : ℂ) (M : Matrix ι κ ℂ) :
+    constMat X (c • M) = c • constMat X M := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_smul, matEval_constMat, matEval_constMat]
+
 /-- Pulling a matrix of continuous functions back along a continuous map. -/
 def pullMat (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ)) : Matrix ι κ C(X, ℂ) :=
   M.map fun g => g.comp f
@@ -166,6 +184,27 @@ theorem pullMat_zero (f : C(X, Y)) : pullMat f (0 : Matrix ι κ C(Y, ℂ)) = 0 
   refine matrix_ext_of_matEval fun x => ?_
   rw [matEval_pullMat, matEval_zero, matEval_zero]
 
+theorem pullMat_add (f : C(X, Y)) (M N : Matrix ι κ C(Y, ℂ)) :
+    pullMat f (M + N) = pullMat f M + pullMat f N := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_add, matEval_add, matEval_pullMat, matEval_pullMat]
+
+theorem pullMat_smul (f : C(X, Y)) (c : ℂ) (M : Matrix ι κ C(Y, ℂ)) :
+    pullMat f (c • M) = c • pullMat f M := by
+  refine matrix_ext_of_matEval fun x => ?_
+  rw [matEval_pullMat, matEval_smul, matEval_smul, matEval_pullMat]
+
+/-- **A pullback along a surjective map is injective.**  This is what makes the connecting
+maps of `Analysis/LIXConnectingMap.lean` injective: the (1,1) block of `φ_i(a)` is
+`pullMat π a`, and `π = baseProj i` is surjective (`STW59.basePr_surjective`). -/
+theorem pullMat_injective_of_surjective {f : C(X, Y)} (hf : Function.Surjective f) :
+    Function.Injective (pullMat f : Matrix ι κ C(Y, ℂ) → Matrix ι κ C(X, ℂ)) := by
+  intro M N h
+  refine matrix_ext_of_matEval fun y => ?_
+  obtain ⟨x, rfl⟩ := hf y
+  have h' := congrArg (matEval x) h
+  rwa [matEval_pullMat, matEval_pullMat] at h'
+
 theorem pullMat_conjTranspose (f : C(X, Y)) (M : Matrix ι κ C(Y, ℂ)) :
     pullMat f Mᴴ = (pullMat f M)ᴴ := by
   refine matrix_ext_of_matEval fun x => ?_
@@ -183,6 +222,14 @@ theorem pullMat_fromBlocks {l m n p : Type*} (f : C(X, Y)) (A : Matrix l m C(Y, 
   ext a b
   rcases a with a | a <;> rcases b with b | b <;> rfl
 
+theorem pullMat_comp {Z : Type*} [TopologicalSpace Z] (f : C(X, Y)) (g : C(Y, Z))
+    (M : Matrix ι κ C(Z, ℂ)) : pullMat f (pullMat g M) = pullMat (g.comp f) M := rfl
+
+theorem pullMat_kronecker {l n l' n' : Type*} (f : C(X, Y)) (A : Matrix l l' C(Y, ℂ))
+    (B : Matrix n n' C(Y, ℂ)) :
+    pullMat f (A ⊗ₖ B) = pullMat f A ⊗ₖ pullMat f B :=
+  Matrix.ext fun _ _ => rfl
+
 theorem isStarProjection_pullMat [Fintype ι] [DecidableEq ι] (f : C(X, Y))
     {M : Matrix ι ι C(Y, ℂ)} (h : IsStarProjection M) : IsStarProjection (pullMat f M) := by
   refine isStarProjection_of_forall_matEval fun x => ?_
@@ -190,6 +237,35 @@ theorem isStarProjection_pullMat [Fintype ι] [DecidableEq ι] (f : C(X, Y))
   exact isStarProjection_matEval h _
 
 end Transfer
+
+/-! ### Reindexing along a fixed equivalence, compatibly with `+`, scalars, `*`, and `ᴴ`
+
+`Matrix.reindex e e'` is used (in `Eproj_succ` below, and in `Analysis/LIXConnectingMap.lean`)
+purely as an index relabelling, so every algebraic operation commutes with it; the `+`/smul/`ᴴ`
+cases are `rfl` since `reindex e e' M = M.submatrix e.symm e'.symm` is entrywise, and the `*`
+case (same equivalence on both sides) is Mathlib's `Matrix.reindexRingEquiv`. -/
+
+section Reindex
+
+variable {X : Type*} [TopologicalSpace X] {ι κ ι' κ' : Type*}
+
+theorem reindex_add (e : ι ≃ ι') (e' : κ ≃ κ') (M N : Matrix ι κ C(X, ℂ)) :
+    Matrix.reindex e e' (M + N) = Matrix.reindex e e' M + Matrix.reindex e e' N :=
+  Matrix.ext fun _ _ => rfl
+
+theorem reindex_smul (e : ι ≃ ι') (e' : κ ≃ κ') (c : ℂ) (M : Matrix ι κ C(X, ℂ)) :
+    Matrix.reindex e e' (c • M) = c • Matrix.reindex e e' M :=
+  Matrix.ext fun _ _ => rfl
+
+theorem reindex_conjTranspose (e : ι ≃ κ) (M : Matrix ι ι C(X, ℂ)) :
+    Matrix.reindex e e Mᴴ = (Matrix.reindex e e M)ᴴ :=
+  Matrix.ext fun _ _ => rfl
+
+theorem reindex_mul [Fintype ι] [Fintype κ] (e : ι ≃ κ) (M N : Matrix ι ι C(X, ℂ)) :
+    Matrix.reindex e e (M * N) = Matrix.reindex e e M * Matrix.reindex e e N := by
+  simp
+
+end Reindex
 
 /-! ### An orthonormal frame for the range of a projection
 
@@ -564,6 +640,18 @@ theorem trace_matEval_Eproj (i : ℕ) (w : baseX i) :
     (matEval w (Eproj i)).trace = ((stageRank i : ℕ) : ℂ) := by
   rw [trace_matEval, trace_Eproj, ContinuousMap.natCast_apply]
 
+/-- **`E_i` is not the zero projection**, since its rank `r_i` is positive and `X_i` is
+nonempty.  This is what makes the stage algebra `A_i` nontrivial. -/
+theorem Eproj_ne_zero (i : ℕ) : Eproj i ≠ 0 := by
+  intro h
+  have ht : Matrix.trace (Eproj i) = ((stageRank i : ℕ) : C(baseX i, ℂ)) := trace_Eproj i
+  rw [h, Matrix.trace_zero] at ht
+  obtain ⟨w⟩ : Nonempty (baseX i) := inferInstance
+  have hw := congrArg (fun f : C(baseX i, ℂ) => f w) ht
+  rw [ContinuousMap.zero_apply, ContinuousMap.natCast_apply] at hw
+  have hz : stageRank i = 0 := by exact_mod_cast hw.symm
+  exact (stageRank_pos i).ne' hz
+
 /-! ### The stage decomposition `E_{i+1} = π_i^* E_i ⊕ (𝟏_{r_i} ⊗ L_{i+1})` -/
 
 /-- **The manuscript's global bundle decomposition**
@@ -578,6 +666,60 @@ theorem Eproj_succ (i : ℕ) :
     pullMat_zero]
   ext a b
   rcases a with a | (a | a) <;> rcases b with b | (b | b) <;> rfl
+
+/-! ### The stage unitaries `w_i = u ⊕ 𝟏_{H_i}`
+
+The manuscript's §6 clutches `u`, the generator over `S^4`, with the identity of `H_i`.
+This is the block-sum vocabulary lane `cs-clutching` asked for: `blockUnitary i u` is `w_i`,
+it lies in the corner cut out by `E_i` (`blockUnitary_mem_corner`, so it is an element of the
+stage algebra `A_i`), and it is a unitary of that corner — meaning `w* w = w w* = E_i` — as
+soon as `u` is a unitary of `M₂(C(X_i))`. -/
+
+/-- Multiplication of two block-diagonal matrices.  Also used by
+`Analysis/LIXConnectingMap.lean`; do not restate it there. -/
+theorem fromBlocks_diag_mul {l n R : Type*} [Fintype l] [Fintype n] [Semiring R]
+    (A A' : Matrix l l R) (D D' : Matrix n n R) :
+    Matrix.fromBlocks A 0 0 D * Matrix.fromBlocks A' 0 0 D'
+      = Matrix.fromBlocks (A * A') 0 0 (D * D') := by
+  rw [Matrix.fromBlocks_multiply]
+  ext a b
+  rcases a with a | a <;> rcases b with b | b <;> simp
+
+/-- **`w_i = u ⊕ 𝟏_{H_i}`.** -/
+def blockUnitary (i : ℕ) (u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) :
+    Matrix (EIdx i) (EIdx i) C(baseX i, ℂ) :=
+  Matrix.fromBlocks u 0 0 (Hproj i)
+
+theorem blockUnitary_def (i : ℕ) (u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) :
+    blockUnitary i u = Matrix.fromBlocks u 0 0 (Hproj i) := rfl
+
+theorem conjTranspose_blockUnitary (i : ℕ) (u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) :
+    (blockUnitary i u)ᴴ = Matrix.fromBlocks uᴴ 0 0 (Hproj i) := by
+  rw [blockUnitary_def, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero,
+    Matrix.conjTranspose_zero, conjTranspose_eq_of_isStarProjection (isStarProjection_Hproj i)]
+
+/-- `w_i` is a section of `End E_i`: it lies in the corner cut out by `E_i`. -/
+theorem blockUnitary_mem_corner (i : ℕ) (u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) :
+    Eproj i * blockUnitary i u * Eproj i = blockUnitary i u := by
+  rw [Eproj_def, blockUnitary_def, fromBlocks_diag_mul, fromBlocks_diag_mul,
+    Matrix.one_mul, Matrix.mul_one, (isStarProjection_Hproj i).isIdempotentElem.eq,
+    (isStarProjection_Hproj i).isIdempotentElem.eq]
+
+/-- `w_i* w_i = E_i`: `w_i` is an isometry of the corner. -/
+theorem blockUnitary_star_mul (i : ℕ) {u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)}
+    (hu : uᴴ * u = 1) : (blockUnitary i u)ᴴ * blockUnitary i u = Eproj i := by
+  rw [conjTranspose_blockUnitary, blockUnitary_def, fromBlocks_diag_mul, hu,
+    (isStarProjection_Hproj i).isIdempotentElem.eq, Eproj_def]
+
+/-- `w_i w_i* = E_i`: `w_i` is a unitary of the corner. -/
+theorem blockUnitary_mul_star (i : ℕ) {u : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)}
+    (hu : u * uᴴ = 1) : blockUnitary i u * (blockUnitary i u)ᴴ = Eproj i := by
+  rw [conjTranspose_blockUnitary, blockUnitary_def, fromBlocks_diag_mul, hu,
+    (isStarProjection_Hproj i).isIdempotentElem.eq, Eproj_def]
+
+/-- The unit `E_i` is `w_i` for `u = 1`. -/
+theorem blockUnitary_one (i : ℕ) :
+    blockUnitary i (1 : Matrix (Fin 2) (Fin 2) C(baseX i, ℂ)) = Eproj i := rfl
 
 /-! ### `F` over `S^5 ⊂ ℂ³` -/
 

@@ -72,7 +72,7 @@ def truncate (i : ℕ) : C(baseXinf, baseX i) :=
 
 @[simp]
 theorem truncate_apply (i : ℕ) (w : baseXinf) :
-    truncate i w = (w.1, fun j => w.2 (j : ℕ)) := rfl
+    truncate i w = (w.1, fun j : Fin i => w.2 (j : ℕ)) := rfl
 
 /-- Truncation is compatible with the coordinate projections of the tower. -/
 theorem basePr_truncate {k i : ℕ} (h : k ≤ i) (w : baseXinf) :
