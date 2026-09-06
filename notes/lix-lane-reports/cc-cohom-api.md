@@ -40,15 +40,19 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologySphereComplement.lean` | 8768 |
 | `CharClass/CohomologyMayerVietoris.lean` | 8768 |
 | `CharClass/CohomologyProductCover.lean` | 8769 |
+| `CharClass/CohomologyKunnethSphere.lean` | 8771 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
 
 ## 2. AUTHORED, UNVERIFIED
 
-* `CharClass/CohomologyKunnethSphere.lean` — first probe hit a `maxHeartbeats`
-  timeout in one `isDefEq`; restructured with `refine` and re-probing.
-* `CharClass/CohomologySphereZero.lean` — first probe in flight.
+* `CharClass/CohomologySphereZero.lean` — the two-point cover of `S⁰` and the
+  Künneth induction; second probe in flight after the membership-iff repair.
+* `CharClass/CohomologyShapes.lean` — `cc-projective`'s `HasPointCohomology` for a
+  contractible space and `HasSphereCohomology (TopCat.of (Sphere n)) n`; first
+  probe in flight.  It imports `cc-projective`'s `ProjectiveSpaceCohomology.lean`,
+  so it is green only if theirs is.
 
 ## 3. NEEDS
 
@@ -101,6 +105,16 @@ any of these files.
   Type`: the argument of `TopCat.of` is elaborated with expected type `Type`, so
   the `↥` coercion is attempted around the whole intersection and `∩` is looked
   up at `Type`.  Write `TopCat.of ↥(… ∩ …)`.
+* `p ∈ (U : Set X)` for `U : Opens X` is **not** defeq-visible as the defining
+  inequality to `lt_trans`, `abs_of_pos` or dot notation: state the membership as
+  an `Iff.rfl` lemma and rewrite with it.  Relatedly, `a ≠ b` unfolds to a
+  function type, so `h.lt_or_lt` on a `Ne` resolves to `Function.lt_or_lt` and
+  fails; write `Ne.lt_or_lt h`.
+* `EuclideanSpace ℝ (Fin (n+1))` elements go through `WithLp.ofLp` at this pin,
+  and the index type in `Sphere n` is `Fin (0 + 1)`, not `Fin 1`, so
+  `Subsingleton (Fin 1)` does not fire.  Use `fin_cases`.
+* `set_option … in` must come **before** the docstring, not between it and the
+  declaration; otherwise the parse error is `unexpected token 'set_option'`.
 * A `ShortComplex` built as `F.mapShortComplex.obj S` does **not** reduce: its
   `.X₁` will not unfold to what you think, and every downstream `exact` fails a
   defeq check.  Build the short complex as an explicit structure.  Likewise
