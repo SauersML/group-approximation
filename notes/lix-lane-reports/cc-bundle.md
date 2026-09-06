@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 26 modules; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 27 modules; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,38 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleLocalOn.lean` — local triviality over a SUBSET of a trivialising set
+
+```lean
+noncomputable def projTrivOn (p) (x₀) (V : Set X) (hV : V ⊆ trivSet p x₀) :
+    Proj (p.restrictTo V) ≃ₜ ↥V × ↥(projFibreSet (p x₀))
+noncomputable def Bundle.projTrivStdOn (p) (x₀) (V) (hV) (d) (hr : p.rank x₀ = d + 1) :
+    Proj (p.restrictTo V) ≃ₜ ↥V × CP d
+theorem projTrivOn_over_base / Bundle.projTrivStdOn_over_base            -- both `rfl`
+```
+
+A cover induction's predicate must be closed under intersection, so the chart
+step has to hold over a trivialising set intersected with an **arbitrary** open.
+
+**Shrinking is free, and structurally so**: `trivSet` is a determinant
+non-vanishing locus and the trivialisation is an explicit formula in `intert`,
+not a choice of frame, so every step needs only membership in `trivSet` and a
+subset composes the inclusion.  The entire generalisation was threading `hV`.
+
+**Shrinking does not give contractibility**, and an intersection with an
+arbitrary open is exactly where it fails.  See also the note under
+`BundleProjOver`.
+
+**What is NOT available, and why.** A `BundleIso` from the restriction to a
+trivial bundle at general rank needs a continuous family of *partial
+isometries*.  `intert` is invertible and **not** unitary, and converting it needs
+a continuous inverse square root; `exists_isometry_of_isStarProjection` is purely
+existential, with no continuity in the projection.  That is why every local
+statement in this lane is a homeomorphism of spaces rather than an isomorphism
+of bundles.  Relatedly, "the invertibles are connected" gives a path to the
+identity *pointwise* only; a continuous family of paths is a condition on the
+base and the field, not a general fact.
 
 ### `BundleTautPieces.lean` — the tautological line on the two Gysin pieces
 
