@@ -93,7 +93,9 @@ theorem cut_coboundary_master {M} [AddCommGroup M] (h2 : ∀ x : M, x + x = 0)
 
 ## GREEN
 
-`Build completed successfully (2062 jobs)`, all seven built (not replayed):
+`Build completed successfully (2062 jobs)`.  Every module below has a `Built`
+line (not `Replayed`) in the probe that first compiled it, and none has changed
+since:
 
 * `CharClass/SteenrodCut.lean`
 * `CharClass/SteenrodCutCancel.lean`
