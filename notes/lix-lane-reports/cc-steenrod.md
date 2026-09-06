@@ -143,6 +143,9 @@ since:
 * `CharClass/SteenrodDiagonal.lean` — `steenrodDiag`, naturality, boundary
 * `CharClass/SteenrodSquare.lean` — the Steenrod squares
 * `CharClass/SteenrodTotal.lean` — the total operation on `⨁ n, H^n`, 2135 jobs
+* `CharClass/SteenrodDiagonalLambda.lean` — the group-ring packaging of the
+  diagonal, 2037 jobs
+* `CharClass/SteenrodCartanTotal.lean` — the Cartan transport, 2136 jobs
 
 ## AUTHORED, UNVERIFIED
 
@@ -158,36 +161,30 @@ cohomology, which needs `cc-cohom-api`/`cc-projective`'s direct sum.  My
 
 ## NEEDS
 
-Two inputs, both for `CharClass/SteenrodTotal.lean`; everything else in the lane
-is green without them.
-
-1. **From `cc-cartan`** — the Cartan formula, to give `cc-wu`'s `cartanH` field:
-
-```lean
-theorem cartan {X : TopCat.{0}} (n p q : ℕ) (a : Hmod2 X p) (b : Hmod2 X q) :
-    Sq n (cup a b)
-      = ∑ i ∈ Finset.range (n + 1), cohCast (by omega) (cup (Sq i a) (Sq (n - i) b))
-```
-
-   in whatever degree bookkeeping suits you; I will adapt it to `cc-wu`'s
-   ungraded `SqH n (u * v) = ∑ p ∈ range (n+1), SqH p u * SqH (n-p) v` on
-   `TotalH`, which is then a `DirectSum.induction_on` away.  You have
-   `steenrodDiag` with naturality in `CharClass/SteenrodDiagonal.lean`.
-
-2. **From `cc-projective`** — the vanishing of `H^3` of complex projective
-   space, in any of these forms:
+One input, from `cc-cartan`: the **graded** Cartan formula.  The transport to the
+shape `cc-wu` and `cc-projective` consume is already green and waiting, so what
+they need from `cc-cartan` is exactly
 
 ```lean
-theorem Hmod2_CP_three_eq_zero (d : ℕ) (a : Hmod2 (CPspace d) 3) : a = 0
--- or, more usefully, odd-degree vanishing:
-theorem Hmod2_CP_odd_eq_zero (d n : ℕ) (hn : Odd n) (a : Hmod2 (CPspace d) n) : a = 0
+def CartanOf (X : TopCat.{0}) : Prop :=
+  ∀ (n p q : ℕ) (a : Hmod2 X p) (b : Hmod2 X q),
+    TotalH.of X (n + (p + q)) (Sq n (cup a b))
+      = ∑ i ∈ Finset.range (n + 1),
+          TotalH.of X (i + p) (Sq i a) * TotalH.of X ((n - i) + q) (Sq (n - i) b)
 ```
 
-   With it, the line-class law is immediate: for `y = pull f 2 h` the pullback of
-   the degree-2 generator, `Sq 1 y = pull f 3 (Sq 1 h) = 0` by `Sq_pull` and the
-   vanishing, `Sq 0 y = y` up to the `0 + 2` cast, `Sq 2 y = y ⌣ y` is
-   `Sq_self`, and `Sq k y = 0` for `k > 2` is `Sq_eq_zero_of_lt`.  That is the
-   whole of `Sq(y) = y + y²`.
+and then `Steenrod.SqH_mul_of_cartanOf` gives `cartanH` / `SqData.cartan`
+verbatim.  Note the hypothesis is stated in `TotalH` rather than degreewise **on
+purpose**: the naive graded statement does not typecheck, because the two sides
+have degrees `n + (p+q)` and `(i+p) + ((n-i)+q)`, equal only propositionally and
+only for `i ≤ n`.  `TotalH.of` absorbs the degree and the ring multiplication
+does the bookkeeping.
+
+`cc-wu` has discharged everything else that was on this list: `sqH_t`, `sqH_x`
+and `t_mul_t` come from `SqH_map` plus sphere cohomology at one stroke, and
+`sqH_ι` is `SqH_map` verbatim.  The projective-space input
+(`H^3(ℂP^d; F₂) = 0`) is needed only for their `sq_y_one`; `sq_y_two` is
+`Sq_self` and `sq_y_high` is `Sq_eq_zero_of_lt`, both already green.
 
 ## TRAPS
 
