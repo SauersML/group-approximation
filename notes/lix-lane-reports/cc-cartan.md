@@ -102,6 +102,73 @@ acyclic on the standard simplices.  Those are exactly the hypotheses
 * `CartanTargetComplex.lean` (2861) — the assembly: `tgtCx`, `tgtMap`, the
   functor `tgt`, and `tgt_acyclicOnModels`.
 
+### Later in the session: the comparison itself
+
+Four further modules, each probed on its own.
+
+* `CartanFreeCxSwap.lean` (2087) — the factor swap on a tensor square, in
+  general.  Used twice: on the pair, where it is `cc-steenrod`'s, and on the
+  fourfold, where it is the block swap.
+* `CartanFreeCxHom.lean` (2088) — chain maps of free `F₂`-complexes and their
+  tensor product, with the chain-map property, functoriality, and compatibility
+  with the swap.  This is what the two composites are built from.
+* `CartanFourfold.lean` (2864) — **the fourfold object**: the tensor square of
+  the pair complex, with the block swap acting, as a functor over the group ring,
+  plus its acyclicity on the models.  The `(13)(24)` action is now *forced*: the
+  block swap of a tensor square, with the pair complex as the factor, is exactly
+  that permutation.
+* `CartanMidFour.lean` (2089) — the middle-four interchange, and the conjugation
+  identity that turns `(12)(34)`-equivariance into `(13)(24)`-equivariance.
+
+`CartanComposeA.lean` (2875) also landed, but see the note on duplication below.
+
+## The second composite: design, settled 2026-09-05
+
+**No tensor square of the resolution is needed.**  `CartanDiagonalW.lean` was
+written deliberately without constructing `W ⊗ W`, and that choice survives.  On
+a basis element the second composite collapses to a double sum:
+
+```text
+B(e_i ⊗ σ) = Σ_{p+q=i} Σ_{σ' ⊗ σ'' ∈ Φ₀(σ)}  Φ(e_p ⊗ σ') ⊗ t^p · Φ(e_q ⊗ σ'')
+```
+
+The resolution diagonal `Δ_W(e_n) = Σ_{i+j=n} e_i ⊗ T^i e_j` and the regrouping
+of `(W ⊗ W) ⊗ (S ⊗ S)` into `(W ⊗ S) ⊗ (W ⊗ S)`, taken together, amount to
+nothing more than a power of the generator acting on the second factor, and `Φ`
+is linear over the group ring, so that power comes straight out.
+
+**The outer transposition is not optional, and here is the check.**  The map
+above is equivariant for the permutation that swaps inside each block, `(12)(34)`,
+because `Φ` is equivariant into the pair with its own factor swap.  The first
+composite is equivariant for the block swap `(13)(24)`.  In the symmetric group,
+with `σ = (12)(34)` and `τ = (23)`,
+
+```text
+τσ = (1 3 4 2) = (13)(24) τ ,
+```
+
+so `τ ∘ B` is `(13)(24)`-equivariant.  `CartanMidFour.lean` is that `τ`, and the
+conjugation identity is `rfl` on the index.
+
+What remains for `B`: the explicit double sum as a `Λ`-linear natural
+transformation, and its chain-map identity.  The identity is the one genuine
+computation left in the lane; the telescoping is the standard one and the two
+copies of `Φ(e_p ⊗ σ') ⊗ t^{p+1} Φ(e_q ⊗ σ'')` cancel in characteristic two.
+
+## Duplication with `cc-steenrod`, resolved 2026-09-05
+
+We built the first composite independently and within about twenty minutes of
+each other, and then each started writing the same two naturality lemmas.  The
+resolution, agreed by me and communicated, not arbitrated by the lead:
+`cc-steenrod` owns all of the first composite including its packaging as a
+natural transformation; this lane's `CartanComposeA.lean` is to be deleted once
+theirs is green, so that exactly one definition of the map survives; and this
+lane owns the second composite, the acyclic-models comparison and the evaluation.
+
+The reason it matters is not tidiness.  Two definitionally equal definitions of
+one map are worse than either alone, because no rewrite crosses between them.
+
+
 **Main-tree repair, same session.**  `CartanDiagonalModule.lean` had been
 carrying an uncommitted change of mine that moves `SingularBoundaryData` from
 `ZMod 2` to group-ring coefficients, while the committed

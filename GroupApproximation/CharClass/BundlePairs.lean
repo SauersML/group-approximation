@@ -291,6 +291,67 @@ noncomputable def prodPuncturedHomotopyEquivSphere :
 
 end TrivialSphere
 
+/-! ### The fibre inclusion, as a strict map of pairs -/
+
+section SliceIncl
+
+/-- **The slice `{a} × B` of a product**, as a map `B → A × B`.  For a trivial
+bundle presented as a product this is the inclusion of the fibre over `a`. -/
+def sliceIncl {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (a : A) : C(B, A × B) :=
+  (ContinuousMap.const B a).prodMk (ContinuousMap.id B)
+
+@[simp]
+theorem sliceIncl_apply {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (a : A) (b : B) :
+    sliceIncl a b = (a, b) := rfl
+
+/-- **The second projection retracts the slice inclusion**, on the nose.  This is
+the identity that makes pullback along the projection injective, so that a class
+pulled back from the fibre cannot vanish. -/
+theorem snd_comp_sliceIncl {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (a : A) :
+    (ContinuousMap.snd : C(A × B, B)).comp (sliceIncl a) = ContinuousMap.id B := rfl
+
+/-- **The slice inclusion is a STRICT map of pairs** against any condition on the
+second factor: the preimage of the subspace is that condition itself, not merely
+contained in it.  Stated as a preimage equation rather than a membership, so it
+drops into a relative-cohomology functoriality lemma with no conversion. -/
+theorem sliceIncl_preimage {A B : Type} [TopologicalSpace A] [TopologicalSpace B]
+    (a : A) (S : Set B) : sliceIncl a ⁻¹' {v : A × B | v.2 ∈ S} = S := rfl
+
+/-- The projection is a strict map of pairs the other way. -/
+theorem snd_preimage {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (S : Set B) :
+    (ContinuousMap.snd : C(A × B, B)) ⁻¹' S = {v : A × B | v.2 ∈ S} := rfl
+
+theorem sliceIncl_mapsTo {A B : Type} [TopologicalSpace A] [TopologicalSpace B]
+    (a : A) (S : Set B) : Set.MapsTo (sliceIncl a) S {v : A × B | v.2 ∈ S} :=
+  fun _ hb => hb
+
+theorem snd_mapsTo {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (S : Set B) :
+    Set.MapsTo (ContinuousMap.snd : C(A × B, B)) {v : A × B | v.2 ∈ S} S :=
+  fun _ hv => hv
+
+variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
+
+/-- The fibre inclusion against the trivial bundle's own punctured set, so the
+pair statement is available without first rewriting through
+`puncturedSet_triv`. -/
+theorem sliceIncl_preimage_puncturedSet_triv (x : X) :
+    sliceIncl (B := ι → ℂ) x ⁻¹' puncturedSet (triv X ι) = {w : ι → ℂ | w ≠ 0} := by
+  ext w
+  constructor
+  · intro hw
+    exact hw.2
+  · intro hw
+    refine ⟨?_, hw⟩
+    show (1 : Matrix ι ι ℂ) *ᵥ w = w
+    exact Matrix.one_mulVec _
+
+theorem sliceIncl_preimage_totalSet_triv (x : X) :
+    sliceIncl (B := ι → ℂ) x ⁻¹' totalSet (triv X ι) = (Set.univ : Set (ι → ℂ)) := by
+  rw [totalSet_triv]
+  rfl
+
+end SliceIncl
+
 end Bundle
 
 end CharClass

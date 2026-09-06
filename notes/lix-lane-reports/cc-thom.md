@@ -207,6 +207,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomStepCEuler.lean` | `eq_localGenerator_of_ne_zero`, **`hsu_of_ne_zero`**, `ne_zero_of_hsu`, `topChernClass_ne_zero_of_su_ne_zero{,_line}` — `hsu` **is** `su ≠ 0`, because the local model is a line and excision-then-chart is an iso onto it |
 | `CharClass/ThomStepCSection.lean` | `thomClass_ne_zero` (free, no topology), **`SectionDetectsThom`**, `su_ne_zero_of_section`, `topChernClass_ne_zero_of_section` — `su ≠ 0` split into the Thom class being nonzero and one named predicate about the *section* |
 | `CharClass/ThomBundlePair.lean` | `bundlePairTrivIso` — the bundle pair over a trivialising neighbourhood **is** the product pair, `cc-bundle`'s image equation fed to `cc-relative`'s pair transport; `relPullback_injective_of_retraction` — a retracted map of pairs is injective, which is what makes the trivial-bundle Thom class computable with no Künneth of pairs |
+| `CharClass/ThomKunnethNatural.lean` | `knBaseMap`, `knSigma_natural`, `pull_knBaseMap_knPrY`, **`kunneth_decomposition_natural`** — the absolute Künneth decomposition is natural in the base, the one input `cc-bundle`'s hypothesis-free route still needed |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -653,6 +654,27 @@ not green.
 What worked, all three times: put the narrow claim in the **source**, where the
 next reader hits it, not in a report that has to be remembered.
 
+### The ball route hides local contractibility of the base
+
+`cc-bundle` caught this and I verified it.  Computing the Thom class of a trivial
+bundle over a "small enough" trivialising neighbourhood needs that neighbourhood
+to be contractible, or at least path-connected.  That is a property of the
+**base**, not of the bundle, and it is false in general: `trivSet p x₀` is open
+and contains `x₀` and nothing more follows, while in a Cantor set every nonempty
+open subset is totally disconnected with more than one point, hence not
+path-connected, hence not contractible.  Solenoids are worse.
+
+For the LIX base it happens to hold — a product of spheres and projective spaces
+is a closed manifold, so locally contractible — which is exactly why it would
+have gone unnoticed until someone instantiated at a general `Bundle X ι`.
+
+The hypothesis-free route: replace the punctured fibre by the sphere bundle,
+run the LES of the pair against the **absolute** sphere Künneth, and read two
+consecutive degrees.  The restriction is injective in every degree, so the map
+out of the relative group vanishes, the connecting map is onto with kernel that
+image, and the relative group is the cokernel.  It also gives the fibre-generator
+statement at **every** point rather than at one chosen point.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -685,3 +707,4 @@ next reader hits it, not in a report that has to be remembered.
 | 2026-09-05 | **`ThomStepCSection`** | **green, 8798 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | **`ThomBundlePair`** | **green, 8746 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | **`ThomBundlePair` + `ThomStepCEuler` + `ThomStepCLocal`** | **green, 8806 jobs, `PROBE GREEN`** |
+| 2026-09-05 | **`ThomKunnethNatural`** | **green, 8803 jobs, `PROBE GREEN`, first probe** |

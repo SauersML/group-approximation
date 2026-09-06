@@ -185,6 +185,27 @@ free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
 
+### `BundlePairs.lean` — the fibre inclusion as a strict map of pairs
+
+```lean
+def sliceIncl {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (a : A) : C(B, A × B)
+theorem snd_comp_sliceIncl (a) :
+    (ContinuousMap.snd : C(A × B, B)).comp (sliceIncl a) = ContinuousMap.id B     -- `rfl`
+theorem sliceIncl_preimage (a) (S : Set B) :
+    sliceIncl a ⁻¹' {v : A × B | v.2 ∈ S} = S                                     -- `rfl`
+theorem snd_preimage (S : Set B) :
+    (ContinuousMap.snd : C(A × B, B)) ⁻¹' S = {v : A × B | v.2 ∈ S}               -- `rfl`
+theorem sliceIncl_mapsTo / snd_mapsTo
+theorem sliceIncl_preimage_puncturedSet_triv / sliceIncl_preimage_totalSet_triv
+```
+
+The retraction identity is the whole content of the nonvanishing step in a Thom
+argument: pullback along the projection has a left inverse, so it is injective,
+so a class pulled back from the fibre cannot vanish.  Stated at a general
+product `A × B` rather than at `V × ℂ^r`, because nothing in it uses either
+factor, and as PREIMAGE equations rather than memberships or images, which is
+the hypothesis shape a relative-cohomology functor takes.
+
 ### `BundleClassify.lean` — classifying maps
 
 ```lean
