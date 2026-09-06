@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LIXEndpointStatement
 import GroupApproximation.Analysis.CStarSimple
+import GroupApproximation.Analysis.LIXLimitSimple
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -73,17 +74,33 @@ justify.
 
 The statement lands before anything is proved about it, which is the point: an
 endpoint written after the proof, in the proof's vocabulary, cannot be audited
-from outside.  Two steps follow it and both take the counterexample as input:
-`exists_simple_unital_not_k1Inj_of` assembles the existential from one algebra
-and its witness, and `not_problemLIX_of_exists` carries the existential to the
-negation of the printed universal.  Between them there is no mathematics left,
-only an application.
+from outside.  Three steps follow it and every one takes the counterexample as
+input:
 
-**The counterexample itself is not here yet.**  Nothing in this file asserts
-that `ProblemLIX` is false, and both theorems are audited with `#audit_axioms`,
-not `#audit_closed_axioms`, precisely because each has a leading input.  When
-the algebra lands, `exists_simple_unital_not_k1Inj` and `not_problemLIX` are
-two closed statements and two `#audit_closed_axioms` lines.
+* `exists_simple_unital_not_k1Inj_of` — the existential from *any* algebra with
+  the three properties;
+* `exists_simple_unital_not_k1Inj_of_limit` — the same at the actual algebra
+  `LIX.LIXLimit`, so the only inputs left are its simplicity and its witness;
+* `not_problemLIX_of_exists` — the existential to the negation of the printed
+  universal.
+
+Between them there is no mathematics, only applications.
+
+That the construction is *imported* here does not weaken the statement.  The
+requirement is that `ProblemLIX` be written in generic vocabulary, and it is:
+its definitional closure is `CStarAlgebra`, `Nontrivial`, `IsSimpleCStar` and
+`K1Inj`, none of which mentions the tower, and `K1Inj`'s own module imports
+only the six generic ones.  What an endpoint may not do is be *stated* in the
+proof's vocabulary, and this one is not.
+
+**The counterexample itself is not proved yet.**  Nothing in this file asserts
+that `ProblemLIX` is false, and every theorem here is audited with
+`#audit_axioms`, not `#audit_closed_axioms`, precisely because each has a
+leading input.  What is still owed, by two other lanes, is simplicity of
+`LIX.LIXLimit` (stage-wise fullness) and its witness (the generalized
+Corollary 4 with Lemma 6, and the null-homotopy of `diag (u, 1)`).  When those
+arrive, `exists_simple_unital_not_k1Inj` and `not_problemLIX` are two closed
+statements and two `#audit_closed_axioms` lines.
 -/
 
 namespace GroupApproximation
@@ -117,6 +134,27 @@ theorem exists_simple_unital_not_k1Inj_of
       Nontrivial B ∧ IsSimpleCStar B ∧ ¬ K1Inj B :=
   ⟨A, inferInstance, hnt, hsimp, not_k1Inj_of_hasWitness hw⟩
 
+/-- **The assembly at the counterexample algebra**, modulo the two facts about
+it that the construction still owes.
+
+`LIX.LIXLimit` is the inductive limit of the STW LIX tower
+(`Analysis/LIXLimitAlgebra`), and its `CStarAlgebra` and `Nontrivial` instances
+are found by `inferInstance` — the first through the completion, the second
+from nontriviality of stage zero.  So the only inputs are the two named
+propositions, both of which are stated in this file's own generic vocabulary
+and neither of which mentions an order.
+
+That is not an accident of presentation.  `IsSimpleCStar` takes `[CStarAlgebra A]`
+alone, and `HasK1InjWitness` keeps the spectral order inside its body rather
+than in its statement, which is why the concrete algebra can be plugged in here
+without either lane and this file having to agree on which `PartialOrder` term
+they wrote. -/
+theorem exists_simple_unital_not_k1Inj_of_limit
+    (hsimp : IsSimpleCStar LIX.LIXLimit) (hwit : HasK1InjWitness LIX.LIXLimit) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_simple_unital_not_k1Inj_of LIX.LIXLimit inferInstance hsimp hwit
+
 /-- **A counterexample refutes the printed problem**, and no excluded middle is
 used to get from one to the other.
 
@@ -137,4 +175,5 @@ open GroupApproximation.NinetyNineProblems
 
 #audit_axioms ProblemLIX
 #audit_axioms exists_simple_unital_not_k1Inj_of
+#audit_axioms exists_simple_unital_not_k1Inj_of_limit
 #audit_axioms not_problemLIX_of_exists

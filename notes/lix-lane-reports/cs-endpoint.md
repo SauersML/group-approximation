@@ -447,6 +447,39 @@ recorded under GREEN.  Restore the parked file and probe the moment
   takes only `[CStarAlgebra A]` and the order sits inside the definition's
   body; only a `rw` aimed across the seam would fail, and a term-mode `exact`
   will not.
+* **A *wrong* instance winning at default priority looks exactly like a missing
+  one.**  `STW59.StageAlgebra i` is a subtype of `C(X_i, CStarMatrix ι ι ℂ)`,
+  and `CStarMatrix.instPartialOrder` gives that ambient a **pointwise** order
+  which reaches the subtype through `Subtype.partialOrder`.  So
+  `PartialOrder (STW59.StageAlgebra k)` synthesizes silently, to the wrong
+  order; `StarOrderedRing` then fails and `CStarMat 2 (STW59.StageAlgebra k)`
+  is not a `CStarAlgebra`.  The reported error is
+
+  ```
+  failed to synthesize CStarAlgebra (CStarMat 2 (STW59.StageAlgebra k))
+  ```
+
+  which reads as an absent instance and is caused by a present one.  Found by
+  `cs-limit`; four of their six errors.  The fix is a **priority**, not a new
+  instance:
+
+  ```lean
+  attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrder
+                                    GroupApproximation.LIX.instSpectralStarOrderedRing
+  ```
+
+  Plain `attribute [local instance]` loses to `Subtype.partialOrder`.  Keeping
+  the same two constants means no transport lemma anywhere.  My own diagnosis
+  of this file pointed at elaboration order and a synthesis budget, and both
+  were wrong — the tell I missed is that the diagnostic `example` thirty-four
+  lines earlier *did* synthesize the instance, which should have said "a
+  different instance is being found in the two positions", not "the same search
+  is running out of room".
+* **`ccprobe.sh` syncs uncommitted peer edits.**  It rsyncs the whole shared
+  working tree, so a mid-flight edit by another lane can turn a dependency red
+  that is green at its own commit.  `cs-limit` saw `LIXConnectingMap` build,
+  fail at `:222` with byte-identical content at the same commit, then build
+  again.  Re-run before reporting a bug in someone else's module.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
