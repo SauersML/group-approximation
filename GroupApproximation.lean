@@ -3741,6 +3741,7 @@ import GroupApproximation.CharClass.LIXVBundle
 import GroupApproximation.CharClass.SliceVFlat
 import GroupApproximation.CharClass.SliceVLinesY
 import GroupApproximation.CharClass.LIXVLineBundles
+import GroupApproximation.CharClass.LIXSliceEquation
 import GroupApproximation.CharClass.ParityEvenFlagCompact
 import GroupApproximation.CharClass.LIXChern
 import GroupApproximation.CharClass.LIXChernValue
