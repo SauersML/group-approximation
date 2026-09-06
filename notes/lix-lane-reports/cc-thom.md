@@ -1,8 +1,80 @@
-# cc-thom — Thom class, relative Euler class, punctured-product recursion
+# cc-thom — Thom class, relative Euler class, punctured product, Mayer–Vietoris
 
-Owns `GroupApproximation/CharClass/Thom*.lean` and
-`GroupApproximation/CharClass/EulerLocal*.lean`, namespace
+Owns `GroupApproximation/CharClass/Thom*.lean`,
+`GroupApproximation/CharClass/EulerLocal*.lean` and, from the lead's reassignment
+of 2026-09-05, `GroupApproximation/CharClass/MayerVietoris*.lean`; namespace
 `GroupApproximation.CharClass`.
+
+## 0. Mayer–Vietoris: published signatures (build against these)
+
+Cohomological Mayer–Vietoris moved from `cc-cohom-api` to cc-thom.  `cc-cohom-api`
+keeps the cup product, casts, bridges, spheres, homotopy invariance and
+Künneth-with-spheres, and their `CharClass/CohomologyMayerVietoris.lean` (the
+dualization of the vendored split chain-level sequence, `mvCoSC`,
+`mvCoSC_shortExact`, `mvInterIso`, `mvAmbientIso`, `mvDelta`, the three
+`ShortComplex.Exact`s, `isZero_mvCoX2`, `mvConnectingIso`) stays theirs and is the
+input.  cc-thom adds the element-level layer on top, in
+`CharClass/MayerVietoris*.lean`.
+
+```lean
+namespace GroupApproximation.CharClass
+variable {X : TopCat.{0}}
+
+/-- `U ∩ V` as a space. -/
+abbrev mvInter (U V : Opens X) : TopCat.{0}          -- TopCat.of (↑U ∩ ↑V : Set X)
+
+def mvResU  (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    Hmod2 X n ⟶ Hmod2 (TopCat.of (U : Set X)) n
+def mvResV  (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    Hmod2 X n ⟶ Hmod2 (TopCat.of (V : Set X)) n
+def mvResWU (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    Hmod2 (TopCat.of (U : Set X)) n ⟶ Hmod2 (mvInter U V) n
+def mvResWV (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    Hmod2 (TopCat.of (V : Set X)) n ⟶ Hmod2 (mvInter U V) n
+-- δ is cc-cohom-api's `mvDelta U V hUV n : Hmod2 (mvInter U V) n ⟶ Hmod2 X (n + 1)`
+
+theorem mvExact_X (U V) (hUV) (n : ℕ) (x : Hmod2 X (n + 1)) :
+    ((mvResU U V hUV (n + 1)).hom x = 0 ∧ (mvResV U V hUV (n + 1)).hom x = 0)
+      ↔ ∃ w, (mvDelta U V hUV n).hom w = x
+theorem mvExact_sum (U V) (hUV) (n : ℕ) (a : Hmod2 (TopCat.of (U : Set X)) n)
+    (b : Hmod2 (TopCat.of (V : Set X)) n) :
+    (mvResWU U V hUV n).hom a = (mvResWV U V hUV n).hom b
+      ↔ ∃ x, (mvResU U V hUV n).hom x = a ∧ (mvResV U V hUV n).hom x = b
+theorem mvExact_W (U V) (hUV) (n : ℕ) (w : Hmod2 (mvInter U V) n) :
+    (mvDelta U V hUV n).hom w = 0
+      ↔ ∃ a b, (mvResWU U V hUV n).hom a + (mvResWV U V hUV n).hom b = w
+
+/-- The package `cc-projective`'s `ProjectiveSpaceCohomology` consumes, verbatim. -/
+def mvSequence (U V : Opens X) (hUV : U ⊔ V = ⊤) :
+    MVSequence X (TopCat.of (U : Set X)) (TopCat.of (V : Set X)) (mvInter U V)
+
+/-- The restrictions are the honest pullbacks along the inclusions. -/
+theorem mvResU_eq_pull  … ; mvResV_eq_pull  … ;
+theorem mvResWU_eq_pull … ; mvResWV_eq_pull …
+
+/-- `CohomologyToolkit`'s field (A1), a corollary. -/
+theorem isZero_cohomology_of_cover (U V : Opens X) (hUV : U ⊔ V = ⊤) (m : ℕ)
+    (hI : IsZero (Hmod2 (mvInter U V) m))
+    (hU : IsZero (Hmod2 (TopCat.of (U : Set X)) (m + 1)))
+    (hV : IsZero (Hmod2 (TopCat.of (V : Set X)) (m + 1))) :
+    IsZero (Hmod2 X (m + 1))
+
+/-- Naturality in a map of covered spaces. -/
+theorem mvDelta_naturality  … ; mvResU_naturality … (shapes to follow)
+
+/-- `H^*(X)`-linearity of the connecting map, for a global class `b`. -/
+theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmod2 X q) :
+    (mvDelta U V hUV (p + q)).hom (cup a (pull (mvInterIncl U V) q b))
+      = cup ((mvDelta U V hUV p).hom a) b        -- up to the single degree cast
+end GroupApproximation.CharClass
+```
+
+**Note for `cc-projective`.**  `mvSumIso` turns out not to be needed: the
+element-form `MVSequence` above is derived from the four biproduct identities
+(`dualMap2 biprod.fst ≫ dualMap2 biprod.inl = 𝟙`, the two vanishing cross terms,
+and `biprod.total` carried through the additive `dualCxFunctor`), never from an
+identification of `X₂.homology` with a biproduct.  You get the structure itself,
+which is strictly what you asked the iso for.
 
 Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 `…/AlgebraicTopology/CohomologyCupProduct.lean`; this is `cc-cohom-api`'s
