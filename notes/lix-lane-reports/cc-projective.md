@@ -346,3 +346,61 @@ The bootstrap that closes it, in order:
   ordinary flow is blocked, build the commit against the fetched tip with a
   TEMPORARY index, gate on the changed-path list, and diff the pushed blob
   afterwards; that diff is the only proof of what landed.
+
+## 2026-09-06 — ITEM 5's SLICE HALF IS CLOSED
+
+* `ChernSliceNaturality` (cf1f83b6a, **PROBE GREEN, 9148 jobs**) — naturality of
+  the mod-2 Chern classes, and `KnTwo.ChernSliceNatural` as its instance.
+
+Four named results, in the order they depend on each other:
+
+* `LH.chern_map_of_square` — **naturality with no topology in it**.  Given two
+  `LerayHirschData`, a map `f` of base rings and a map `g` of total rings with
+  `g ∘ π^* = π'^* ∘ f`, `g ξ = ξ'` and equal ranks, `D'.chern k = f (D.chern k)`.
+  The proof is `chernPoly_map`: the image of the defining relation is a monic
+  relation of the right degree for the new generator, and uniqueness identifies
+  it with the new relation.
+* `LH.projComap_square` — `cmap (projComap f q) ≫ projMapOf q =
+  projMapOf (comap f q) ≫ cmap f`, by `TopCat.Hom.ext` and `rfl`.  In the
+  projection model `P(f^*E)` *is* the fibre product, so there is nothing to prove.
+* `LH.tautEulerOf_comap` — `pull (cmap (projComap f q)) 2 (tautEulerOf q) =
+  tautEulerOf (comap f q)`, one application of `eulerOfBundle_comap`.  The
+  pushforward of the tautological line commutes with the base change *definitionally*:
+  both sides are `fun z => coordIncl e * z.val.2 * (coordIncl e)ᴴ`.
+* `LH.chern_comap` — the three assembled, over compact non-empty bases.
+* `LH.chernOf q s hs hs1 k : Hmod2 (TopCat.of X) (2 * k)` — the classes in their
+  own degrees, for a bundle of constant rank `s ≥ 1`.
+* `LH.chernSliceNatural_chernOf` — `KnTwo.ChernSliceNatural Y p5 p1
+  (chernOf q s hs hs1) (chernOf (comap (nSliceMap Y p5 p1) q) s _ hs1)`, for any
+  `q : Bundle (KnTwo.torusBase Y) ι` of constant rank `s ≥ 1` over a compact
+  non-empty `Y`.  Also `LH.nSliceMap` and `LH.cmap_nSliceMap`, which present
+  `KnTwo.nSlice` as a `C(Y, torusBase Y)` so that `Bundle.comap` can eat it, and
+  the instance `LH.nonemptySphere`.
+
+### Why this cost two probes and not six
+
+The scoping said `chernClass_map` needs only two power bases, a ring map, equal
+ranks and a pulled-back relation — **no fibre product**.  That was right, and it
+is the whole reason the file is short.  The temptation was to prove that
+`P(f^*E) ≅ P(E) ×_X Y` and then transport; that theorem is true, is much harder,
+and is never needed, because the only thing the Chern classes see is the square
+of rings.
+
+### TRAPS from this file
+
+* `trace_pushforward_one` lives in `CPn`, not in `Bundle`, even though every
+  other name in the same expression is `Bundle`'s.  `autoImplicit false` reports
+  it as an unknown identifier rather than as a missing open, which is the good
+  case; qualify it rather than opening `CPn` wholesale.
+* `ext` on an equality of `TopCat` morphisms into a product of SPHERES keeps
+  splitting past the point of the proof, all the way into `EuclideanSpace`
+  coordinates, and leaves two `.ofLp` goals that `rfl` will not close because the
+  split has destroyed the shared head.  Stop it by hand:
+  `apply TopCat.Hom.ext; exact ContinuousMap.ext fun _ => rfl`.
+* `LerayHirschData.algebra` is a `def`, not an instance, so every lemma about
+  power bases has to be `@`-pinned — unless you `letI := D.algebra` first, after
+  which `chernClass_map D.powerBasis D'.powerBasis ...` needs no `@` at all: the
+  two power bases are explicit arguments and their types pin every instance by
+  unification.  `rw` still cannot cross between the `letI` fvar and `D.algebra`,
+  so state the intermediate `have`s in the `letI` form and let `exact` do the
+  final defeq.
