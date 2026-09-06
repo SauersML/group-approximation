@@ -443,14 +443,13 @@ end RelativeDehnCut
 /-- Every certificate supplies the strict one-cell cut used by Osin's
 boundary-length induction, provided the quotient kills every relator.
 
-**`hrot` is a residue of the boundary-cycle rotation carried by
-`RelativeBoundaryContiguity` (see its docstring).**  The value-level identity
-this theorem needs only holds at the wrap-free cut; every certificate
-currently produced anywhere in this development fixes the default
-`rotation := 0`, so `hrot` is discharged by `fun _ => rfl` at every present
-call site.  A future certificate builder that actually wraps the cut will
-need to supply a genuine proof here (or this theorem will need the explicit
-conjugation correction instead). -/
+The legacy `hrot` premise below quantifies over all contiguities and is
+uninhabited: an empty boundary admits rotation one
+(`RelativeBoundaryContiguity.not_all_rotation_zero` in
+`HullSCLemma44RelativeDehnRotation`).  For quotient-null boundaries use
+`exists_relativeDehnCut_of_certificate_of_map_eq_one` or
+`exists_relativeDehnCut_of_kernel_rotated` from that module instead; they
+account for the conjugation caused by rotation. -/
 theorem exists_relativeDehnCut_of_certificate
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)

@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesicCut
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesicInduction
+import GroupApproximation.GGT.VanKampen.DiscDiagram
 
 /-!
 # Constructing the kernel-geodesic induction step
@@ -23,6 +24,7 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.WordMetric
+open GroupApproximation.GGT.VanKampen
 
 universe u v w
 

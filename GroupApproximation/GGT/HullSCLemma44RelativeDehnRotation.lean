@@ -18,6 +18,32 @@ universe u v w
 
 namespace RelativeBoundaryContiguity
 
+/-- The zero-rotation premise quantified over every contiguity is impossible:
+even an empty boundary can be read with rotation one. -/
+theorem not_all_rotation_zero
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps : ℕ) :
+    ¬ (∀ {boundaryWord : List G} {relator : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord relator), C.rotation = 0) := by
+  intro h
+  let C : RelativeBoundaryContiguity D eps [] [] := {
+    exterior := []
+    remainder := []
+    relator_decomposition := rfl
+    rotation := 1
+    boundaryBefore := []
+    boundaryArc := []
+    boundaryAfter := []
+    boundary_decomposition := rfl
+    leftSide := []
+    rightSide := []
+    leftSide_admissible := by simp [RelWord.IsAdmissible]
+    rightSide_admissible := by simp [RelWord.IsAdmissible]
+    leftSide_short := Nat.zero_le _
+    rightSide_short := Nat.zero_le _
+    exterior_value := by simp [GGT.RelLetter.listVal] }
+  exact Nat.one_ne_zero (h C)
+
 /-- Read the same contiguity at the boundary basepoint it specifies. -/
 def atRotatedBoundary
     {G : Type u} [Group G] {Lambda : Type w}
