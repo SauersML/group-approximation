@@ -47,9 +47,41 @@ theorem chartOpensHomeoTotal_natural (p : Bundle X ι) (U : Set X)
           ⟨Bundle.projInclOn p.plusOne U (w : Bundle.Proj ((p.restrictTo U).plusOne)),
             (Bundle.projInclOn_mem_chartOpensSet_iff p U _).mpr w.2⟩ := rfl
 
+/-! ## The chart inclusion, and its naturality -/
+
+/-- **The total space, included into the projectivisation as the affine chart.**
+This is the single map that `bridgeChart` is a `relPullback` along, once its two
+factors are composed: identify the total space with the chart, then include the
+chart. -/
+noncomputable def bridgeChartIncl (p : Bundle X ι) :
+    C(Bundle.Total p, Bundle.Proj p.plusOne) where
+  toFun v := ((Bundle.chartOpensHomeoTotal p).symm v : Bundle.Proj p.plusOne)
+  continuous_toFun :=
+    continuous_subtype_val.comp (Bundle.chartOpensHomeoTotal p).symm.continuous
+
+@[simp] theorem bridgeChartIncl_apply (p : Bundle X ι) (v : Bundle.Total p) :
+    bridgeChartIncl p v = ((Bundle.chartOpensHomeoTotal p).symm v : Bundle.Proj p.plusOne) :=
+  rfl
+
+/-- **The chart inclusion is natural in the base.**  The square of
+`chartOpensHomeoTotal_natural`, read through the inverse and forgotten into the
+projectivisation.  This is the space-level content of the first two bridge steps'
+naturality; the cohomological statement is `relPullback_comp` on top of it. -/
+theorem bridgeChartIncl_natural (p : Bundle X ι) (U : Set X)
+    (v : Bundle.Total (p.restrictTo U)) :
+    bridgeChartIncl p (Bundle.totalInclOn p U v)
+      = Bundle.projInclOn p.plusOne U (bridgeChartIncl (p.restrictTo U) v) := by
+  have h := chartOpensHomeoTotal_natural p U
+    ((Bundle.chartOpensHomeoTotal (p.restrictTo U)).symm v)
+  rw [(Bundle.chartOpensHomeoTotal (p.restrictTo U)).apply_symm_apply] at h
+  show ((Bundle.chartOpensHomeoTotal p).symm (Bundle.totalInclOn p U v) :
+      Bundle.Proj p.plusOne) = _
+  rw [h, (Bundle.chartOpensHomeoTotal p).symm_apply_apply]
+  rfl
+
 /-! Printed on every build. -/
 
-#print axioms chartOpensHomeoTotal_natural
+#print axioms bridgeChartIncl_natural
 
 end
 
