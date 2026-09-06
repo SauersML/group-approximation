@@ -3724,6 +3724,8 @@ import GroupApproximation.CharClass.RelativeHomotopyInvariance
 import GroupApproximation.CharClass.CartanClassId
 import GroupApproximation.CharClass.CartanRhsSum
 import GroupApproximation.CharClass.CartanClassSum
+import GroupApproximation.CharClass.CartanTotalTerm
+import GroupApproximation.CharClass.LerayHirschColSum
 import GroupApproximation.CharClass.CohomologyLHRestrict
 import GroupApproximation.CharClass.CohomologyParitySlice
 import GroupApproximation.CharClass.LIXBallNeighbourhood
