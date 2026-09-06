@@ -618,3 +618,43 @@ Recurring cures, all now in `FLEET_TRAPS.md`:
   depends on the open, so rewriting it is a dependent motive.
 * An unknown identifier in this layer is far more often a missing `open` than a
   missing import.
+
+### The slice value is proved (2026-09-06)
+
+`vSliceValue_sliceGen` closes `cc-wu`'s `VSliceValue` at `cc-projective`'s
+`sliceGen`, so the even side's value property is done.  Twelve files:
+
+| commit | file | jobs |
+| --- | --- | --- |
+| `11f3cd441` | `SliceEsymm` | 1552 |
+| `fd6240667` | `SliceBlocks` | 1553 |
+| `511074c5f` | `SliceReindex` | 1554 |
+| `6e4432c70` | `SliceVFlat` | 8833 |
+| `d0ff0c73c` | `SliceVLinesY` | 8836 |
+| `68acdd84c` | `SplitRelationRange` | 9004 |
+| `a2be5bcc9` | `SliceSplitV` | 9039 |
+| `438667a59` | `SliceLineEulerPush` | 8932 |
+| `eb661bad2` | `SliceTrivialEuler` | 8931 |
+| `8ea97fa5a` | `SliceRoots` | 9041 |
+| `5fcbaf1f8` | `SliceHomogeneous` | 2261 |
+| `a1fd5c65c` | `SliceValueV` | 9213 |
+
+### A duplicate of mine, found after the fact
+
+`SliceHomogeneous` duplicates `cc-wu`'s `exists_esymmOn_of` and
+`exists_prod_of_two` in `ParityEvenLixSplitting`, which landed 33 minutes
+earlier.  I did not grep, one hour after appending the fleet-traps line telling
+everyone else to.  Nothing breaks — my `SliceValueV` consumes mine — but it is a
+hygiene row and the right resolution is that mine retires post-endpoint, theirs
+having landed first.
+
+Two lessons, and the second is the one I keep relearning:
+
+* **Reading the term beats reading the description.**  Three mismatches tonight
+  were caught by reading an index type or a binder rather than the sentence
+  describing it: the doubled index in the pinned target, the multiplicity in the
+  block index, and the circle point that was free in a statement and not in
+  practice.
+* **Grep before writing, including for Props, and including when you are the one
+  who wrote the rule.**  Three duplicates of mine tonight: a two-set cover, a
+  rank proof, and this.
