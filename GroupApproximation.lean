@@ -3574,6 +3574,10 @@ import GroupApproximation.CharClass.ChernEulerSqOne
 import GroupApproximation.CharClass.CohomologyChartFlat
 import GroupApproximation.CharClass.ParityEvenTransport
 import GroupApproximation.CharClass.SteenrodFourfoldBridge
+import GroupApproximation.CharClass.CohomologyChartFlatBase
+import GroupApproximation.CharClass.ProjectiveSpaceIterate
+import GroupApproximation.CharClass.CartanEvalFunctional
+import GroupApproximation.CharClass.SteenrodFourfoldAgree
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
