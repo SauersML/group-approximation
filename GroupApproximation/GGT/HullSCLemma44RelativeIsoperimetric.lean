@@ -207,10 +207,14 @@ def RelativeLinearAreaTransferAt
       RelativeLinearKernelArea D W q →
         Nonempty (RelativeIsoperimetricControl D q hq)
 
-/-- Uniform linear-area transfer over hyperbolically embedded source
-families.  This is the remaining relative-presentation input: Osin Theorem
-1.7 supplies quotient hyperbolicity, while the proof of Theorem 4.1 bounds
-the transported peripheral metrics using the finite component support. -/
+/-- Historical unweighted area transfer, refuted by
+`GroupApproximation.HullSC.not_relativeLinearAreaTransferStatement`
+in `HullSCLemma44AreaTransferRefutation`: finite peripheral support and an
+unweighted linear kernel-area bound do not imply quotient hyperbolicity when
+relator lengths are unbounded. The original Prop is retained (issue #201).
+The explicit bounded replacement in `HullSCLemma44BoundedInput` concludes
+hyperbolic embeddedness directly, also avoiding the excessive original-ball
+pullback requirement discussed in issue #202. -/
 def RelativeLinearAreaTransferStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda),

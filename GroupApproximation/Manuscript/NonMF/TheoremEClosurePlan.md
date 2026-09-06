@@ -34,7 +34,7 @@ inputs. A successful build does not establish completion.
 | DGO polygon geometry | `dgoProposition414Uniform`, placeholder line 147 | Both uniform bounds for arbitrary multiplicative quasigeodesic constant and every polygon size; then discharge the existing DGO 4.21(b) and joint-family-selection consumers | Original `DGOProposition414Uniform` and `DGOLemma421b` pass closed axiom audits |
 | Osin diagram construction | `estimatingSelectionConstruction`, line 244 | Construct the reduced O-equivalent diagram, its estimating scaffold, and graph from the source hypotheses | A proved construction at parameters shared with the unbound estimate |
 | Osin uncovered boundary estimate | `estimatingUnboundOutput`, line 254 | Replace the false universal-parameter interface by the actual synchronized parameter choice, then prove complementary-region surgery and the arc budget | Closed relative Greendlinger and Hull 4.9 inputs; original refutation retained |
-| Hull joint-family preservation | `hullLemma44FamilyInclusionJoint`, line 214 | Greendlinger **plus** relative-isoperimetric transfer **plus** relator respelling, with one compatible order of constants | Original joint-family Lemma 4.4, including ball injectivity and all family-preservation clauses, passes the closed audit |
+| Hull joint-family preservation | `hullLemma44FamilyInclusionJoint`, line 214 | Greendlinger **plus** a corrected bounded relative-isoperimetric transfer **plus** relator respelling, with one compatible order of constants | Source-faithful bounded family preservation, retaining every conclusion required by the unchanged printed endpoints; preserve the historical unbounded Props explicitly |
 | Concrete starting group | `kotowskiOllivier`, line 381 | An actual infinite, finitely presented, torsion-free hyperbolic group with property (T) | Original `Hyperbolic.SharpExistence` passes the closed audit |
 
 The first four packages feed Hull's canonical quotient, one-step construction,
@@ -112,11 +112,35 @@ its audited geometric consumer.
 `HullRelatorRespellingStatement`.
 
 The first is supplied by the Osin package. The other two are still mathematical
-work. The relative-area induction already exists, but the passage from its
-linear kernel-area bound to quotient hyperbolicity and proper peripheral
-metrics remains an input (`RelativeLinearAreaTransferStatement`, or the
-equivalent Dehn-transfer route). Prove the relative-presentation argument and
-its finite peripheral-support control.
+work. The relative-area induction already exists, but its historical transfer
+is **false**, not merely unfinished. Issue
+[#201](https://github.com/SauersML/group-approximation/issues/201) now has a
+closed Lean refutation: the quotient F₂ → ℤ², with all quotient-null basis
+words as relators, has the requested area bound and finite peripheral support
+while its image Cayley graph fails every four-point bound. The counterexample
+also satisfies admissibility and the kernel equation.
+
+The source check found that `IsLemma44Input.stronglyBounded` omits the published
+uniform bound on relator lengths. `HullSCLemma44BoundedInput` now preserves that
+historical definition, adds `IsBoundedLemma44Input`, and proves that the actual
+auxiliary one-relator producer supplies it. Its explicit
+`BoundedRelativeLinearAreaTransferStatement` remains to be proved, and the
+bounded condition must be migrated through the family and quotient consumers.
+This is a source-hypothesis repair; the printed Theorem E endpoints stay fixed.
+`HullSCLemma44BoundedFilling` carries this condition through the existing
+area induction and ball-injectivity proof to the actual bounded filling
+conclusion, conditional on Greendlinger and the corrected bounded transfer.
+It uses neither of the refuted transfer/pullback interfaces.
+
+The original-ball pullback certificate is also too strong, even for a bounded
+filling of C₂ * C₂; see
+[#202](https://github.com/SauersML/group-approximation/issues/202). Source
+relative balls can all be `{1}`, while a new quotient base edge reaches a
+nonidentity peripheral element. Properness can still hold. The corrected
+transfer therefore concludes quotient hyperbolic embeddedness directly.
+Its proof should use finite peripheral support where needed, allowing the
+source metric to be enlarged by that finite support. A standalone Lean proof
+of the bounded C₂ * C₂ pullback counterexample remains pending.
 
 For respelling, `HullSCLemma44JointRelabel` proves a joint transport only under
 additional alphabet/base-containment conditions. The original-family
@@ -124,7 +148,8 @@ respelling is still an input, and those conditions must be derived in the
 actual construction. Audit this proposed intermediate statement against the
 source before extending its proof chain. If it is too strong, report the
 counterexample and use a justified direct joint-diagram argument while retaining
-the original final Lemma 4.4 proposition.
+the full required preservation conclusions and explicitly accounting for the
+published boundedness hypothesis.
 
 Finish by assembling ball injectivity and preservation of the selected,
 original, and joint families in the same canonical quotient. Proving just
