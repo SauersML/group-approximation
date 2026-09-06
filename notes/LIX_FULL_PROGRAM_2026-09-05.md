@@ -79,9 +79,16 @@ with `v ∉ U₀(A)` and `diag(v, 1) ∈ U₀(M₂(A))`
    limit norm, then `Analysis/CStarCompletion` — or any other construction that
    yields `CStarAlgebra A`, injective unital *-homs `ι_i : A_i → A` compatible
    with `φ_i`, with dense union of images.  Nothing downstream needs more.
-4. **Lemma 6**: `v_i := φ_{0,i}(u) ≃ w_i` in `U(A_i)` (the extra block
-   `w_i(x_i) ⊗ 1_L` is a unitary of a full matrix algebra, connected to `1`), so
-   `v_i ∉ U₀(A_i)`.
+4. **Lemma 6 is DELETED (cs-clutching, 20:35 EDT).**  Because `connect`'s added
+   block is constant in the `S⁴` coordinate, `tower.climb j 0 u = u ⊕ c_j` holds
+   as an EQUALITY (induction on the tower's recursion) for a unitary `c_j` of
+   `p_{H_j}` over `Y_j` alone; the generalized Corollary 4 — `u ⊕ c ∉ U₀(A_i)`
+   for EVERY unitary `c` of `p_{H_i}` over `Y_i`, by the same hemisphere gluing
+   with `c` carried on the north side — then gives `v_i ∉ U₀(A_i)` with no
+   homotopy at all.  This removes the need for path-connectedness of the unitary
+   group of `Matrix (Fin r) (Fin r) ℂ`, which is NOT in Mathlib at the pin.
+   Load-bearing constraint on `connect`: evaluate at the fixed `stagePoint i`,
+   never reindex through anything depending on the `S⁴` coordinate.
 5. **Lemma 7** (`Analysis/LIXFiniteStageNullHomotopy.lean`): a unitary of a
    stage that is null-homotopic in the limit is null-homotopic in some later
    stage (Mathlib's `Unitary.mem_pathComponentOne_iff` + `Unitary.joined`).  So
@@ -234,7 +241,7 @@ than editing it.
 | `cs-stages` | `Analysis/LIXBlockProjections.lean`, `Analysis/LIXCornerAlgebra.lean`, `Analysis/LIXStageAlgebra*.lean`, `Analysis/LIXConnectingMap*.lean` | repair to green; `A_i` as `CStarAlgebra`; the dense point sequence `x_i`; `φ_i` as injective unital ⋆-homs; `φ_{k,i}`; the point-evaluation summand is nonzero everywhere once `π_{k,i}(x_i) ∈ {a ≠ 0}` |
 | `cs-limit` | `Analysis/LIXLimit*.lean`, `Analysis/LIXFiniteStageNullHomotopy.lean` | the limit `A` (§1.2 item 3) with `ι_i`, density, unitality, nontriviality; Lemma 7 verified; `diag(v,1) ∈ U₀(M₂A)` transport; separability if cheap |
 | `cs-simplicity` | `Analysis/LIXSimplicity.lean`, `Analysis/LIXSimplicityInstance*.lean`, `Analysis/CStarSimple*.lean` | `IsSimpleCStar`, `isSimpleCStar_iff_isSimpleRing`; `LIXSimplicity` verified; fullness for the specific tower; `IsSimpleCStar A` |
-| `cs-clutching` | `Analysis/LIXClutching.lean`, `Analysis/LIXGeneratorUnitary.lean`, `Analysis/LIXObstructionComplementUnitary.lean`, `Analysis/LIXLemmaSix*.lean` | repair to green; `u`, `diag(u,1) ∈ U₀`, the clutched projection of `u ⊕ 1_H` is `F ⊕ H`, `clutchingObstruction_of_equiv`; Step A; Lemma 6 (`v_i ≃ w_i`) |
+| `cs-clutching` | `Analysis/LIXClutching.lean`, `Analysis/LIXGeneratorUnitary.lean`, `Analysis/LIXObstructionComplementUnitary.lean`, `Analysis/LIXLemmaSix*.lean` | repair to green; `u` by Householder frames, `diag(u,1) ∈ U₀` by construction, Step A; the shape lemma `climb j 0 u = u ⊕ c_j` and the generalized Corollary 4 (`u ⊕ c ∉ U₀`) over `tower.climb` — Lemma 6 deleted |
 | `ggt-repair` | the four red GGT consumers of `fadb6fd6d` | a green root (outside LIX) |
 | `cs-endpoint` | `Analysis/CStarKOne*.lean`, `Analysis/CStarSymmetryComponent.lean`, `Analysis/LIXEndpointStatement.lean`, `Manuscript/NinetyNineProblems/ProblemLIX.lean` | repair `CStarKOne` (noncomputable) to green; `ProblemLIX`, `not_problemLIX`, the assembly; `#audit_closed_axioms` lines; the root wiring proposal (lead wires) |
 
@@ -492,6 +499,8 @@ from completeness), so its closure is a proper closed ideal.
 | characteristic-class ring (20:05 EDT) | the FULL graded ring `⨁_n H^n(X;F₂)` (mod 2 no Koszul signs: `mul := cup` with no degree transport), not the even part `EvenH` — cc-wu's `ParityData` needs the degree-1 and degree-5 generators `t`, `x`. `one_cup`/`cup_assoc` green (cc-cohom-api, 8769 jobs); the single missing field is `cup_comm` in ALL degrees, owner `cc-steenrod-s` (recipe: `cochainCupI_coboundary` at `i = 0` + `cochainCupI_zero` + one cast bridge), Opus `cc-steenrod` reviewing. Fallback that needs no ring: `CharClass/LerayHirschDegree.lean` (classes degreewise). Homogeneity of `CP^{d+1}` for cc-thom's zero: a Householder construction inside the projection model (cc-projective) |
 | roster at 20:10 EDT | Opus OWNS: cc-cohom-api (6 modules green 8767–8769; MV + Künneth remaining), cc-cartan (7 modules green 1674; internal Cartan comparison + simplex contraction), cc-steenrod (`cup_comm` first, at 292620dfd + an uncommitted `SteenrodCupOne.lean`), cs-limit (green 3000), cs-simplicity (green 2988), cs-endpoint (green 3002), cs-stages (`LIXCornerAlgebra`, `LIXBlockProjections`). cc-projective (Opus again from 20:25 EDT; all authored modules green 8683). Sonnet OWNS: cc-relative-s, cc-bundle-s, cc-thom-s (toolkit instantiation), cc-lix-odd-s, cs-stages-s (`LIXStageAlgebra`, `LIXConnectingMapPoints`: `connect`), cs-clutching-s, ggt-repair-s. Opus REVIEW-ONLY pairs: cc-relative, cc-bundle, cc-lix-odd, cs-clutching. Done: cc-wu (1553) |
 | Mayer–Vietoris split (20:35 EDT) | cc-cohom-api owns the categorical dualized short exact sequence `mvCoSC`, `mvDelta`, three `ShortComplex.Exact` statements (`CharClass/CohomologyMayerVietoris.lean`); cc-thom-s owns the element-form bridge `CharClass/MayerVietorisBiproduct.lean` + `MayerVietorisElement.lean` (restrictions, exactness at three spots, δ-linearity for global classes, vanishing form A1, the `MVSequence` term cc-projective consumes) |
+| dualization duplicate (20:40 EDT) | `RelativeDual` (cc-relative) and the `cohDualFunctor` block of `CohomologyMayerVietoris` (cc-cohom-api) are the same argument; ruling: first green wins, the other lane deletes its copy and imports |
+| cc-lix-odd | Sonnet finished 20:38 EDT: six modules green (8662/8658), Step B and the combinatorial half of Step C done, `LemmaTwoUnitary` authored (blocked on cs-clutching's red complement-unitary file); lane back with Opus |
 | cc-thom phase 1 | GREEN, nine modules, 2911 jobs (19:00 EDT); Step C assembled over a `CohomologyToolkit` awaiting MV/Künneth/relative/LH instantiation |
 | root: K₁ layer + endpoint statement wired | 18:50 EDT, commit fa15b619f (ten modules, cs-endpoint green at 2996 jobs); `LIXEndpointStatement` built in the root build |
 | root build 2 (20:00 EDT) | every wired LIX module BUILT in the root (`LIXSimplicity`, `LIXLimitCompletion`, `LIXLimitSeparable`, `LIXSimplicityInstance`, `LIXLimitMatrixTransport`, `LIXLimitWitness` with `Built` lines); the GGT breakage is WIDER: `fadb6fd6d` edited `HullSCRelativeGreendlingerStatement`, 89 rooted modules are downstream, and each root build surfaces only the next few reds (`…RelativeBoundary`, `…KernelGeodesicCut`, `…PrefixCutRatio`, `HullSCLemma49FromRelativeGreendlinger` in build 2); `ggt-repair-s` now owns every failing rooted consumer and iterates on the 89-module list in its clone |
