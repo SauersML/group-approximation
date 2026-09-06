@@ -3603,6 +3603,8 @@ import GroupApproximation.CharClass.GysinPair
 import GroupApproximation.CharClass.CohomologyChartInduction
 import GroupApproximation.CharClass.LerayHirschChartBundle
 import GroupApproximation.CharClass.CohomologyChartGenBridge
+import GroupApproximation.CharClass.CartanMidFourChain
+import GroupApproximation.CharClass.BundleGysinPieces
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
