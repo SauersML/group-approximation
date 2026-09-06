@@ -41,6 +41,38 @@ section FlagStage
 
 variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
 
+/-! ### The zeroth stage is the base -/
+
+theorem flagZero_invFun_mem (p : Bundle X ι) (x : X) :
+    ((x, fun _ => 0) : X × (ℕ → Matrix ι ι ℂ)) ∈ flagSet p 0 := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro k hk
+    exact absurd hk (Nat.not_lt_zero k)
+  · intro k l hk hl hkl
+    exact absurd hk (Nat.not_lt_zero k)
+  · intro k hk
+    rfl
+
+/-- **`Fl₀(p) = X`.**  The first two clauses of `flagSet` are vacuous at `n = 0`
+and the third forces the line family to be zero, so a zero-flag is just a point
+of the base.  This is the base case of an induction up the tower; the inductive
+step goes through `flagForget`, not through `flagOne`. -/
+def flagZero (p : Bundle X ι) : Flag p 0 ≃ₜ X where
+  toFun w := (w : X × (ℕ → Matrix ι ι ℂ)).1
+  invFun x := ⟨(x, fun _ => 0), flagZero_invFun_mem p x⟩
+  left_inv w := by
+    apply Subtype.ext
+    refine Prod.ext rfl ?_
+    funext k
+    exact (w.2.2.2 k (Nat.zero_le k)).symm
+  right_inv _ := rfl
+  continuous_toFun := continuous_fst.comp continuous_subtype_val
+  continuous_invFun := (continuous_id.prodMk continuous_const).subtype_mk _
+
+/-- The forward map is the projection, by `rfl`. -/
+theorem flagZero_eq_flagProj (p : Bundle X ι) (w : Flag p 0) :
+    flagZero p w = flagProj p 0 w := rfl
+
 /-! ### The rest bundle -/
 
 /-- **The rest bundle**: the pullback of `p` minus the lines already chosen. -/
