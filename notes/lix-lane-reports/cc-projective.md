@@ -66,6 +66,12 @@ The Leray-Hirsch ladder
   there.
 * `ChernEulerSqOne` (8855) — `Sq^1` kills an Euler class, which is cc-wu's
   `sq_one_root`.
+* `ProjectiveSpaceIterate` (8804) — the iterated hyperplane inclusion and
+  generator stability along it.
+* `ProjectiveSpacePerm` (8812) — permuting homogeneous coordinates fixes the
+  degree-two generator.
+* `LerayHirschRankTwo` (8800) — **the interface a Kunneth statement must supply**:
+  three elementary hypotheses, no cover, no bundle, no projective space.
 
 Chern classes and the Euler class
 
@@ -89,6 +95,23 @@ None.  Everything in the lane is probed green and pushed.
 
 2. **Nothing else is blocked on a peer.**  Both of the two facts I was waiting on,
    `MVDelta.mvDelta_cup` and `MVDelta.mvDelta_naturality`, have landed.
+
+## THE CIRCULARITY, AND WHERE IT IS BROKEN
+
+Worth recording, because two lanes hit it from opposite sides on the same day.
+
+The Kunneth in the form Leray-Hirsch consumes, freeness on POWERS of the
+degree-two class, is at a point exactly the ring structure of `H^*(CP^d)`: at the
+top degree, bijectivity says the top power is nonzero.  So it cannot be proved by
+Mayer-Vietoris on the chart-and-puncture cover, which is silent about the top
+power.  cc-cohom-api reached the same wall from their side: flatness and
+surjectivity are one problem, and chasing it further returns to the Kunneth's own
+injectivity.  Three routes, one circle.
+
+It is broken from OUTSIDE, at rank two, where the change of basis between the
+connecting-map class and the tautological class is triangular and costs nothing.
+That gives rank-two Leray-Hirsch with no ring structure, hence Gysin, hence the
+ring; and with the ring the same triangular argument works at every rank.
 
 ## THE CHAIN IS ONE THEOREM DEEP
 
