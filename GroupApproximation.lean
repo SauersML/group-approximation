@@ -3589,6 +3589,7 @@ import GroupApproximation.CharClass.LerayHirschRankTwo
 import GroupApproximation.CharClass.CohomologyChartSplit
 import GroupApproximation.CharClass.ProjectiveSpaceRingEntry
 import GroupApproximation.CharClass.BundleOneStep
+import GroupApproximation.CharClass.CartanEvalFour
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
