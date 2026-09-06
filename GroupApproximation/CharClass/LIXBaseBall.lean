@@ -80,6 +80,19 @@ theorem lixZero_mem_lixBaseBall (U : Set (↥sphereOne × baseM dd)) (hU : IsOpe
     (hzU : lixZero dd ∈ U) : lixZero dd ∈ lixBaseBall dd U hU hzU :=
   ⟨(0, 0), mem_ball_self (lixBaseEps_pos U hU hzU), lixBC_zero⟩
 
+/-! ## 2a. The neighbourhood sits inside the chart's target
+
+`cc-thom` observed that the two sides of `cc-thom`'s square go through **different**
+neighbourhoods of the section's zero: one excises to the base chart's target, the other
+restricts to this ball.  They are nested rather than incomparable, because the ball is
+chosen inside the chart's source and the chart carries its source onto its target, and that
+containment is what lets the two be compared through the smaller one. -/
+
+theorem lixBaseBall_subset_target (U : Set (↥sphereOne × baseM dd)) (hU : IsOpen U)
+    (hzU : lixZero dd ∈ U) : lixBaseBall dd U hU hzU ⊆ (lixBC dd).target := by
+  rw [lixBaseBall, ← (lixBC dd).image_source_eq_target]
+  exact Set.image_mono fun _ hw => (lixBaseBallPre_subset U hU hzU hw).1
+
 /-! ## 3. Contractibility -/
 
 /-- The chart, cut down to the ball: its source **is** the ball and its target **is** the
