@@ -3656,6 +3656,7 @@ import GroupApproximation.CharClass.SteenrodFourfoldBCancel
 import GroupApproximation.CharClass.SteenrodFourfoldBSplit
 import GroupApproximation.CharClass.CartanEvalPhiAtDeg
 import GroupApproximation.CharClass.LIXProjectiveChartDeriv
+import GroupApproximation.CharClass.SteenrodFourfoldBAtDeg
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
