@@ -41,18 +41,15 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologyMayerVietoris.lean` | 8768 |
 | `CharClass/CohomologyProductCover.lean` | 8769 |
 | `CharClass/CohomologyKunnethSphere.lean` | 8771 |
+| `CharClass/CohomologySphereZero.lean` | 8771 |
+| `CharClass/CohomologyShapes.lean` | 8773 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
 
 ## 2. AUTHORED, UNVERIFIED
 
-* `CharClass/CohomologySphereZero.lean` — the two-point cover of `S⁰` and the
-  Künneth induction; second probe in flight after the membership-iff repair.
-* `CharClass/CohomologyShapes.lean` — `cc-projective`'s `HasPointCohomology` for a
-  contractible space and `HasSphereCohomology (TopCat.of (Sphere n)) n`; first
-  probe in flight.  It imports `cc-projective`'s `ProjectiveSpaceCohomology.lean`,
-  so it is green only if theirs is.
+*(nothing — every module this lane owns is green)*
 
 ## 3. NEEDS
 
@@ -71,6 +68,19 @@ any of these files.
   Mayer–Vietoris layer with the `H^*(X)`-linearity of the connecting map is
   `cc-thom`'s, built on `CohomologyMayerVietoris.lean`; the even total ring is
   `cc-projective`'s `ChernEvenRing.lean`, built on `CohomologyBasic.lean`.
+
+The headline results, all green: `cup`/`one`/`pull` with associativity, unitality,
+bilinearity and naturality; homotopy invariance as a `LinearEquiv`; `H^*(S^n)`,
+`H^*(pt)` and `H^*(contractible)`; the cochain-level Mayer–Vietoris sequence with
+its connecting map, exactness and connecting isomorphism; and Künneth with a
+sphere factor in vanishing form,
+
+```lean
+theorem isZero_cohomology_prod_sphere (A : Type) [TopologicalSpace A] (p n : ℕ)
+    (hA : ∀ a, p < a → IsZero (Hmod2 (TopCat.of A) a))
+    (k : ℕ) (hk : p + n < k) :
+    IsZero (Hmod2 (TopCat.of (A × Sphere n)) k)
+```
 
 * **Künneth with spheres in full (isomorphism) form**, `H^k(X × S^n) ≅ H^k(X) ⊕
   H^{k-n}(X)` via `pr₁^*` and `(-) ⌣ pr₂^* σ_n`, natural in `X`, is *not* done:
