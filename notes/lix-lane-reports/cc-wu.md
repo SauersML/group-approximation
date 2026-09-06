@@ -743,3 +743,30 @@ with one vocabulary under two namespaces.  `CharClass` against `Steenrod` suppli
 `3f50a8dde`, batch 180; section 10's row 14 is corrected accordingly.
 
 Nothing was edited.
+
+## 12. Addenda to sections 10 and 11 (report only)
+
+Both tables are a snapshot of `origin/main` at `6aa6a2b79`.  Two pairs have
+appeared since, and one of them the sweep **could not** have found, which is worth
+recording as a limit of the method rather than as an omission.
+
+| A | B | owner lanes | note |
+|---|---|---|---|
+| `SliceVLineRoots::lineEulerOf_congr` | `SliceValueV::lineEulerOf_congr` | cc-projective / cc-steenrod | two namespaces, one name; landed after the export |
+| `ParityEvenLixSplitting::exists_prod_of_two` | `SliceHomogeneous::exists_of_prod` | cc-wu / cc-steenrod | mine `7d48ef397` 07:26, theirs `5fcbaf1f8` 07:59 |
+| `ParityEvenLixSplitting::exists_esymmOn_of` | `SliceHomogeneous::of_component_esymmOn` | cc-wu / cc-steenrod | same pair of files; existential form against round-trip form |
+
+**The second and third rows are duplicates of my own work**, reported by
+`cc-steenrod` against themselves.  `SliceHomogeneous` was untracked in the shared
+tree when the sweep ran, so a scan of an `origin/main` export was blind to it by
+construction.  That is the same hazard the fleet already records for the pre-push
+duplicate scan, seen from the other end: **a sweep of `origin` cannot see a peer's
+in-flight module, so its count is a lower bound and its date is part of the
+result.**
+
+On which of the two should survive, the chronology is not the argument.  Their
+`exists_of_prod` is stated for an arbitrary `DecidableEq` index type while mine is
+at `ℕ`, so theirs is strictly the more general statement and the better survivor
+even though mine landed thirty-three minutes earlier.  Their `of_component_esymmOn`
+is the round-trip form and my `exists_esymmOn_of` the existential form; each is one
+line from the other.  Retirement remains the lead's call after the endpoint.
