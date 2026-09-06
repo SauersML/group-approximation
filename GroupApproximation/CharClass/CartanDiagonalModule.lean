@@ -79,31 +79,82 @@ variable (data : SingularBoundaryData)
 
 /-- The basis index of `(W ⊗ S(X))_k`: a simplex degree `n ≤ k` together with
 an `n`-simplex of `X`.  The implicit `W`-index is `k - n`. -/
-def WSIndex (k : ℕ) (X : TopCat.{0}) : Type := Σ n : Fin (k + 1), stdSimplexTop n.val ⟶ X
+abbrev WSIndex (k : ℕ) (X : TopCat.{0}) : Type := Σ n : Fin (k + 1), stdSimplexTop n.val ⟶ X
 
-/-- The underlying type of `(W ⊗ S(X))_k`: the free `Λ`-module on `WSIndex`. -/
-noncomputable def WTensorSMod (X : TopCat.{0}) (k : ℕ) : Type := WSIndex k X →₀ GroupRingZ2
+/-- The underlying type of `(W ⊗ S(X))_k`: the free `Λ`-module on `WSIndex`.
 
-noncomputable instance (X : TopCat.{0}) (k : ℕ) : AddCommGroup (WTensorSMod X k) :=
-  inferInstanceAs (AddCommGroup (WSIndex k X →₀ GroupRingZ2))
+Both this and `WSIndex` are `abbrev`, i.e. reducible, deliberately: `rw` checks
+type-correctness at `instances` transparency and will not unfold a plain `def`,
+so a semireducible `WSIndex` makes every goal mentioning `p.1` for
+`p : WSIndex k X` untouchable by `rw`. -/
+abbrev WTensorSMod (X : TopCat.{0}) (k : ℕ) : Type := WSIndex k X →₀ GroupRingZ2
 
-noncomputable instance (X : TopCat.{0}) (k : ℕ) : Module GroupRingZ2 (WTensorSMod X k) :=
-  inferInstanceAs (Module GroupRingZ2 (WSIndex k X →₀ GroupRingZ2))
+/-! ## The differential, split into its two halves
 
-/-- The value of the differential on one generator `e_n ⊗ σ` of degree `k + 1`
-(`n : Fin (k + 2)` is the simplex degree; the `W`-index is `k + 1 - n`). -/
-noncomputable def wDiffGen (X : TopCat.{0}) (k : ℕ) (n : Fin (k + 2))
-    (σ : stdSimplexTop n.val ⟶ X) : WTensorSMod X k :=
-  (if h : (n.val : ℕ) ≤ k then
-      (1 + groupRingGen) •
-        Finsupp.single (⟨⟨n.val, by omega⟩, σ⟩ : WSIndex k X) (1 : GroupRingZ2)
-    else 0)
-  +
-  (if h : 1 ≤ (n.val : ℕ) then
-      Finsupp.mapDomain (fun τ => (⟨⟨n.val - 1, by omega⟩, τ⟩ : WSIndex k X))
-        (Finsupp.mapRange (algebraMap (ZMod 2) GroupRingZ2) (map_zero _)
-          (data.bd X (n.val - 1)
-            (Finsupp.single ((by omega : n.val = n.val - 1 + 1) ▸ σ) (1 : ZMod 2))))
-    else 0)
+Both halves are defined by a `Fin` eliminator rather than by an `if`, and that
+is what keeps them free of casts.  `(Fin.castSucc j).val = j.val` and
+`(Fin.succ m).val = m.val + 1` are both `rfl`, so in each branch the simplex
+already has exactly the degree the target index wants; an `if` on
+`n.val ≤ k` would not carry that information and would force a transport of the
+simplex, i.e. a dependent proof argument inside a definition, which blocks every
+later rewrite. -/
+
+/-- The `W`-half of the differential on a generator: multiply by `1 + t` and drop
+the `W`-index by one, keeping the simplex.  Absent exactly when the `W`-index is
+already `0`, which is the `Fin.last` branch. -/
+noncomputable def wDiffW (X : TopCat.{0}) (k : ℕ) :
+    ∀ n : Fin (k + 2), (stdSimplexTop n.val ⟶ X) → WTensorSMod X k :=
+  Fin.lastCases (motive := fun n : Fin (k + 2) => (stdSimplexTop n.val ⟶ X) → WTensorSMod X k)
+    (fun _ => 0)
+    (fun j σ => (1 + groupRingGen) • Finsupp.single (⟨j, σ⟩ : WSIndex k X) (1 : GroupRingZ2))
+
+@[simp] theorem wDiffW_last (X : TopCat.{0}) (k : ℕ)
+    (σ : stdSimplexTop (Fin.last (k + 1)).val ⟶ X) : wDiffW X k (Fin.last (k + 1)) σ = 0 := by
+  rw [wDiffW, Fin.lastCases_last]
+
+@[simp] theorem wDiffW_castSucc (X : TopCat.{0}) (k : ℕ) (j : Fin (k + 1))
+    (σ : stdSimplexTop (Fin.castSucc j).val ⟶ X) :
+    wDiffW X k (Fin.castSucc j) σ
+      = (1 + groupRingGen) • Finsupp.single (⟨j, σ⟩ : WSIndex k X) (1 : GroupRingZ2) := by
+  rw [wDiffW, Fin.lastCases_castSucc]
+
+/-- The simplicial half of the differential on a generator: the boundary of the
+simplex, keeping the `W`-index.  Absent exactly in simplex degree `0`, which is
+the `Fin.cases` zero branch. -/
+noncomputable def wDiffS (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ) :
+    ∀ n : Fin (k + 2), (stdSimplexTop n.val ⟶ X) → WTensorSMod X k :=
+  Fin.cases (motive := fun n : Fin (k + 2) => (stdSimplexTop n.val ⟶ X) → WTensorSMod X k)
+    (fun _ => 0)
+    (fun m σ => Finsupp.mapDomain (fun τ => (⟨m, τ⟩ : WSIndex k X))
+      (Finsupp.mapRange (algebraMap (ZMod 2) GroupRingZ2) (map_zero _)
+        (data.bd X m.val (Finsupp.single σ (1 : ZMod 2)))))
+
+@[simp] theorem wDiffS_zero (X : TopCat.{0}) (k : ℕ)
+    (σ : stdSimplexTop (0 : Fin (k + 2)).val ⟶ X) : wDiffS data X k 0 σ = 0 := by
+  rw [wDiffS, Fin.cases_zero]
+
+@[simp] theorem wDiffS_succ (X : TopCat.{0}) (k : ℕ) (m : Fin (k + 1))
+    (σ : stdSimplexTop (Fin.succ m).val ⟶ X) :
+    wDiffS data X k (Fin.succ m) σ
+      = Finsupp.mapDomain (fun τ => (⟨m, τ⟩ : WSIndex k X))
+          (Finsupp.mapRange (algebraMap (ZMod 2) GroupRingZ2) (map_zero _)
+            (data.bd X m.val (Finsupp.single σ (1 : ZMod 2)))) := by
+  rw [wDiffS, Fin.cases_succ]
+
+/-- The value of the differential on one generator `e_{k+1-n} ⊗ σ` of degree
+`k + 1`. -/
+noncomputable def wDiffGen (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ)
+    (n : Fin (k + 2)) (σ : stdSimplexTop n.val ⟶ X) : WTensorSMod X k :=
+  wDiffW X k n σ + wDiffS data X k n σ
+
+/-- The differential of `W ⊗ S(X)`, as a `Λ`-linear map. -/
+noncomputable def wDiff (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ) :
+    WTensorSMod X (k + 1) →ₗ[GroupRingZ2] WTensorSMod X k :=
+  Finsupp.linearCombination GroupRingZ2 (fun p : WSIndex (k + 1) X => wDiffGen data X k p.1 p.2)
+
+@[simp] theorem wDiff_single (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ)
+    (p : WSIndex (k + 1) X) :
+    wDiff data X k (Finsupp.single p (1 : GroupRingZ2)) = wDiffGen data X k p.1 p.2 := by
+  rw [wDiff, Finsupp.linearCombination_single, one_smul]
 
 end GroupApproximation.CharClass
