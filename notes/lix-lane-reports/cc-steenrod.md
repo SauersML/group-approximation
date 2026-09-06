@@ -222,6 +222,53 @@ counts below are from the probe that first compiled each:
   differential, 2092 jobs
 * `CharClass/SteenrodComparisonMap.lean` — **`Φ : src ⟶ tgt`**, the natural
   transformation the comparison consumes, 2870 jobs
+* `CharClass/SteenrodFourfoldAW.lean` — `Φ₀`, the Alexander–Whitney diagonal,
+  2093 jobs
+* `CharClass/SteenrodFourfoldA.lean` — composite `A`, all four properties,
+  2874 jobs
+* `CharClass/SteenrodFourfoldB.lean` — composite `B`, defined; `Λ`-linearity and
+  the degree-zero value, 2875 jobs
+* `CharClass/SteenrodFourfoldBoundary.lean` — the boundary identity at a free
+  index, and the Leibniz rule for the fourfold, 2876 jobs
+* `CharClass/SteenrodFourfoldBridge.lean` — the Leibniz rule in consumable form,
+  2877 jobs
+
+## The remaining computation, specified
+
+What is left of composite `B` is its **chain-map property**, then naturality and
+the packaging as `compB : src ⟶ four`.  The design is settled; recording it so it
+is not re-derived.
+
+The statement wanted, at a free index and free total degree, is
+
+```lean
+theorem tensorD_compBGen_succ (X) (k i M : ℕ) (σ : singularSimplices X (M + 1)) :
+    tensorD (pairFreeCx X) (pairFreeCx X) k (compBGen X (k + 1) (i + 1) σ)
+      = (compBGen X k i σ + tenSwap (pairFreeCx X) k (compBGen X k i σ))
+        + ∑ jj : Fin (M + 2), compBGen X k (i + 1) (faceSimplex X M jj σ)
+```
+
+together with its `i = 0` companion, where the `(1 + T)` term is absent for the
+same reason it is absent from `dTgt_phiAtDeg_zero`.
+
+Everything it runs on is green:
+
+* `tensorD_padFour_succ` — differentiate one term of the double sum;
+* `dTgt_phiAtDeg_succ`, `dTgt_phiAtDeg_zero` — the boundary identity applied to
+  each differentiated factor;
+* `dTgt_smul` — to move the differential past the `t^p` on the second factor;
+* `dTgt_phiZero` — `Φ₀` is a chain map, which converts the sum over the faces of
+  `σ` into the two halves of `∂Φ₀(σ)`;
+* `pair_add_self` — the one characteristic-two cancellation.
+
+The shape of the argument: differentiating the `p`-th term gives four families,
+`Φ(e_{p-1} ⊗ σ')` and `T Φ(e_{p-1} ⊗ σ')` against `t^p Φ(e_q ⊗ σ'')`, and
+`Φ(e_p ⊗ σ')` against `t^p Φ(e_{q-1} ⊗ σ'')` and `t^{p+1} Φ(e_{q-1} ⊗ σ'')`.
+Reindexing `p ↦ p + 1` in the second pair makes the two middle families coincide,
+and they cancel in characteristic two; what survives is `(1 + T)` applied to `B`
+one index down, plus `B` of the boundary.  That cancellation is the concrete form
+of `cc-cartan`'s `deltaW_chain_identity`, which never has to be invoked because
+the tensor square of the group ring is never built.
 
 ## AUTHORED, UNVERIFIED
 
@@ -333,3 +380,18 @@ and `t_mul_t` come from `SqH_map` plus sphere cohomology at one stroke, and
   summand that is a function of a bare natural, so `Finset.sum_range_succ` and
   `Finset.sum_nbij'` apply with no transport — which is what makes the
   `a ↦ k - a` reindexing of the equivariance step a three-line `omega`.
+* **`cc-cartan`'s `singFreeCx` is a plain `def`**, so no `rw` with a lemma whose
+  left side mentions `A.ι` can see that the index type is a type of simplices —
+  and neither can the `rfl` that `rw` attempts afterwards.  Four probe rounds
+  went to this in composite `A`.  Work in `calc` closed by `exact`, rewrite only
+  with *closed* equations, and put an explicit `rfl` after each such rewrite.
+* **Never force the structure projection `(pairFreeCx X).d`.**  `tensorFreeCx` is
+  a structure literal whose square-zero field is a large proof, and naming that
+  projection inside a `congrArg` with a dependent motive times out at `whnf` at
+  200000 heartbeats — four timeouts across two attempts.  Route through `tdL` and
+  `tdR` instead.  The projection *can* be named, but only on its own:
+  `pairFreeCx_d_eq` is `rfl` and elaborates fine in a module by itself, which is
+  why `SteenrodFourfoldBridge.lean` exists.
+* A `calc` step ending `(lemma f k _ 1).symm` can fail where the same step with
+  the index element written out succeeds, because the underscore has to be found
+  by higher-order unification through a `def`.
