@@ -336,10 +336,13 @@ Two further collapses:
   space through `cc-steenrod`'s `Steenrod.SqH_mul_of_cartanOf`.  So the whole
   chain has **one** Cartan hypothesis, not one per space.
 * `tx_inj_of_degreewise` converts a **degreewise** two-sphere Künneth statement
-  into the ring-level `tx_inj` field.  `cc-cohom-api`'s `kunnethSecondInjective`
-  is one sphere and one degree; the field is two spheres and the ring, so the
-  iteration is theirs and this crossing is mine.  Nothing is required in the
-  degrees below `1 + (5 + n)`.
+  into the ring-level `tx_inj` field.  **Now redundant**: `cc-cohom-api` proved
+  `KnTwo.htx_inj` directly at the concrete model `(Y × S⁵) × S¹`
+  (`CharClass/CohomologyParityKunneth.lean`, 8816 jobs), which is simpler, and
+  they are right that the field cannot hold for abstract projections.  The lemma
+  is left in place as an unused alternative route; do not build on it.  What did
+  carry over from this lane is `totalH_component_map`, which they use, and the
+  unreduced-index convention.
 * `totalH_map_injective` converts `cc-projective`'s degreewise Leray–Hirsch
   injectivity (`∀ n, Function.Injective (pull f n)`) into the ring-level
   `Function.Injective (TotalH.map f)` that `SplittingData` asks for.  Degreewise
@@ -395,4 +398,13 @@ hslice)` (cc-projective).
   200000 heartbeats, taking the rest of the file with it.  Peel one generator at
   a time and leave the index unreduced as `1 + (5 + n)`.  The same hazard applies
   at any boundary between lanes: a statement handed over at `6 + n` forces the
-  identical defeq on whoever converts it.
+  identical defeq on whoever converts it.  `cc-cohom-api` adopted the convention
+  and their `KnTwo.tClass_mul_xClass` is stated at `TotalH.of _ (1 + 5)`.
+* **Latent name ambiguity, deferred by lead ruling.**  There are two
+  `component_of_mul`: `GroupApproximation.CharClass.component_of_mul`
+  (`cc-cohom-api`, arguments `i m w z`) and
+  `GroupApproximation.CharClass.Wu.component_of_mul` (this lane, arguments
+  `m w z n`).  Nothing is broken today — the innermost namespace wins and every
+  cross-use is qualified — but a file that `open`s `Wu` while `CharClass` is also
+  open will get a genuine ambiguity error.  Rule 11 keeps both names as they are;
+  the rename is post-endpoint hygiene.
