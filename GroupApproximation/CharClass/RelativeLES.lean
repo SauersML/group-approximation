@@ -149,8 +149,7 @@ theorem not_isSubordinate_empty (n : ℕ) (σ : singularSimplices X n) :
 theorem relCochainSubmodule_empty (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
     relCochainSubmodule R X (∅ : Set X) n = ⊤ := by
   refine eq_top_iff.2 ?_
-  intro φ _
-  intro σ hσ
+  intro φ _ σ hσ
   exact ((not_isSubordinate_empty n σ) hσ).elim
 
 instance isIso_relInclusion_empty_f (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
