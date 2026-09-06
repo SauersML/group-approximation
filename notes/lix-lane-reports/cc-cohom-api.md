@@ -284,3 +284,48 @@ to be imported, not rebuilt: `MayerVietorisPull.mvCxInclU_comp_g`,
 * `CohomologyMayerVietoris.lean`'s `cohDualFunctor` block duplicates
   `cc-relative`'s `RelativeDual.lean`.  I wrote my own because
   `RelativeCochains.lean` was red and a red module cannot be imported at all.
+
+## δ-linearity: state as of probe 34/35
+
+**GREEN and pushed (4bf855412):**
+
+| module | jobs | content |
+|---|---|---|
+| `CohomologyDeltaSpec` | 8777 | `eltSub`/`eltU`/`eltV`/`eltAmb`, `g_eltU`, `g_eltV`, `projU_f_eltAmb`, `projV_f_eltAmb`, `mvX2_ext`, `d_eltSub` |
+| `CohomologyDeltaValue` | 8778 | `mvDelta_spec`, `mvDelta_data`, `exists_d_of_clsOf_eq`, `eltAmb_surjective`, `mvSectG`/`mvRetrF`, `mvGmid`/`mvFmid` |
+
+`CohomologyDeltaCup` (`mvDelta_cup`, `mvDelta_cup_inclSubtype`) is authored and
+under probe.
+
+### Two traps that cost four probes
+
+1. **`ModuleCat.comp_apply` produces `ConcreteCategory.hom`.** A goal written
+   with `φ.hom x` carries `ModuleCat.Hom.hom`; after
+   `simp only [HomologicalComplex.comp_f, ModuleCat.comp_apply] at h`, `h`
+   carries `ConcreteCategory.hom`. `rw [h]` then fails. Finish with `exact` or
+   `congrArg … |>.trans`, never `rw`, on a simp-normalised hypothesis.
+
+2. **`(mvCoSC U V hUV).X₂` is semireducible.** It is definitionally
+   `dualCx2 (mvCx U ⊞ mvCx V)`, but instance search (`HAdd`) and `rw`'s
+   `kabstract` work at `instances` transparency and do not unfold it. Symptoms:
+   `failed to synthesize HAdd ↑((mvCoSC …).X₂.X p) ↑((dualCx2 …).X p) ?m`, and
+   `rw` reporting "did not find an occurrence" of a pattern that is visibly
+   present. Cure: type every element and every map at the explicit biproduct
+   dual — `mvGmid`, `mvFmid` and the restatements `mvGmid_eltU`, `mvGmid_eltV`,
+   `projU_mvFmid_eltAmb`, `projV_mvFmid_eltAmb` do exactly that.
+
+Two smaller ones: `TopCat.of ((U : Set X) ∩ (V : Set X))` fails with
+`failed to synthesize Inter Type` — write `TopCat.of ↥(…)`. And `rw [← g_eltU]`
+leaves `hUV` a metavariable, because `hUV` occurs only on the rewritten side;
+pass all arguments explicitly to a backwards rewrite.
+
+### Why `mvDelta_data` needs a correction step
+
+A class of the ambient term `X₁` (the dual of the small-chain complex) is **not**
+the restriction of a global cocycle on the nose. `eltAmb` is surjective, but a
+preimage of a cocycle need not be a cocycle: its coboundary vanishes only on
+small chains. So `mvDelta_data` picks a global cocycle `γ` representing the value
+of `mvDelta`, extracts a coboundary `d w` with `eltAmb γ = x₁ + d w`
+(`exists_d_of_clsOf_eq`), and replaces the lift `x₂` by `x₂ + f w`. That leaves
+`g x₂` unchanged, so `α` is untouched, while `f (eltAmb γ) = d (x₂ + f w)`
+holds exactly — which is what the cup computation needs.
