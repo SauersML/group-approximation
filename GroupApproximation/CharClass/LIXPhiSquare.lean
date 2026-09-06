@@ -127,4 +127,16 @@ theorem continuousOn_lixPhi (hGc : Continuous G)
     exact hcont.comp_continuousOn hbase
   exact hall.congr fun v _ => (lixPhi_eq hGc hGu v).symm
 
+/-- **`lixPhi` carries the origin to the origin.**  At `0` the inverse chart gives the
+chart's own origin, the base chart sends that to the section's zero, and the section
+vanishes there, so every later factor is applied to `0`.  This is the marked-point
+condition the punctured-pair transport needs. -/
+theorem lixPhi_zero (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    (hGe : ∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0)
+    (h0 : (lixFullChart dd).symm (0 : Fin (lixRank dd) → ℂ) = (0, 0)) :
+    lixPhi hGc hGu (0 : Fin (lixRank dd) → ℂ) = 0 := by
+  rw [lixPhi_eq, h0, lixBaseChart_zero]
+  rw [(lixSection_eq_zero_iff hGe (lixZero dd)).mpr rfl]
+  rw [Matrix.mulVec_zero, Matrix.mulVec_zero]
+
 end GroupApproximation.CharClass
