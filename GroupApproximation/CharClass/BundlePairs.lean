@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.BundleZeroSection
 import GroupApproximation.CharClass.BundleFrame
+import GroupApproximation.CharClass.BundleHomotopy
 
 /-!
 # Complex vector bundles in the projection model, X: pairs and pullbacks
@@ -224,6 +225,71 @@ theorem totalTrivStd_image_punctured (p : Bundle X ι) (x₀ : X) (r : ℕ) (hr 
     exact (totalTrivStd_snd_eq_zero_iff p x₀ r hr _).mpr h
 
 end TrivPair
+
+/-! ### The sphere and the punctured space of a trivial bundle -/
+
+section TrivialSphere
+
+variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
+
+/-- A condition on the second factor alone cuts a product out of a subtype. -/
+def prodSubtypeHomeo {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (S : Set B) :
+    ↥{v : A × B | v.2 ∈ S} ≃ₜ A × ↥S where
+  toFun v := ((v : A × B).1, ⟨(v : A × B).2, v.2⟩)
+  invFun q := ⟨(q.1, (q.2 : B)), q.2.2⟩
+  left_inv _ := rfl
+  right_inv _ := rfl
+  continuous_toFun :=
+    (continuous_fst.comp continuous_subtype_val).prodMk
+      ((continuous_snd.comp continuous_subtype_val).subtype_mk _)
+  continuous_invFun :=
+    (continuous_fst.prodMk (continuous_subtype_val.comp continuous_snd)).subtype_mk _
+
+theorem sphereSet_triv :
+    sphereSet (triv X ι) = {v : X × (ι → ℂ) | v.2 ∈ unitVectors ι} := by
+  ext v
+  constructor
+  · intro hv
+    exact hv.2
+  · intro hv
+    refine ⟨?_, hv⟩
+    show (1 : Matrix ι ι ℂ) *ᵥ v.2 = v.2
+    exact Matrix.one_mulVec _
+
+/-- **The sphere bundle of a trivial bundle is the product with the unit
+sphere of the fibre.** -/
+noncomputable def sphereTrivHomeo : Sphere (triv X ι) ≃ₜ X × ↥(unitVectors ι) :=
+  (Homeomorph.setCongr sphereSet_triv).trans (prodSubtypeHomeo (unitVectors ι))
+
+theorem sphereTrivHomeo_fst (v : Sphere (triv X ι)) :
+    (sphereTrivHomeo v).1 = (v : X × (ι → ℂ)).1 := rfl
+
+/-- **The punctured total space of a trivial bundle is the product with the
+punctured fibre.** -/
+noncomputable def puncturedTrivHomeo :
+    Punctured (triv X ι) ≃ₜ X × ↥({v : ι → ℂ | v ≠ 0}) :=
+  (Homeomorph.setCongr puncturedSet_triv).trans (prodSubtypeHomeo {v : ι → ℂ | v ≠ 0})
+
+theorem puncturedTrivHomeo_fst (v : Punctured (triv X ι)) :
+    (puncturedTrivHomeo v).1 = (v : X × (ι → ℂ)).1 := rfl
+
+/-- **`X × (ℂ^ι ∖ 0)` is homotopy equivalent to `X × S(ℂ^ι)`**, for every base
+`X` at once.
+
+This is `puncturedHomotopyEquivSphere` at the trivial bundle, read through the
+two product presentations: the equivalence normalizes the second coordinate and
+leaves the first alone.  It is the input a Gysin or Thom argument needs in order
+to replace the pair `(X × ℂ^r, X × (ℂ^r ∖ 0))` by `(X × ℂ^r, X × S^{2r-1})`, at
+which point the long exact sequence of the pair together with an ABSOLUTE
+Kunneth for a sphere factor computes the pair -- no relative Kunneth and no
+hypothesis on `X` are needed. -/
+noncomputable def prodPuncturedHomotopyEquivSphere :
+    ContinuousMap.HomotopyEquiv (X × ↥({v : ι → ℂ | v ≠ 0})) (X × ↥(unitVectors ι)) :=
+  ((puncturedTrivHomeo (X := X) (ι := ι)).symm.toHomotopyEquiv.trans
+      (puncturedHomotopyEquivSphere (triv X ι))).trans
+    (sphereTrivHomeo (X := X) (ι := ι)).toHomotopyEquiv
+
+end TrivialSphere
 
 end Bundle
 
