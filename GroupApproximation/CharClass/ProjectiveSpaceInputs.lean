@@ -3,6 +3,7 @@ import GroupApproximation.CharClass.ProjectiveSpaceSymmetry
 import GroupApproximation.CharClass.ProjectiveSpaceCohomology
 import GroupApproximation.CharClass.CohomologySphere
 import GroupApproximation.CharClass.CohomologyContractible
+import GroupApproximation.CharClass.CohomologyShapes
 
 /-!
 # The three cohomology inputs to the `ℂP^n` induction
@@ -48,20 +49,15 @@ abbrev interSpace (d : ℕ) : TopCat.{0} := TopCat.of ↥(chartOpen d ⊓ punctO
 
 /-! ## 2. The chart has the cohomology of a point -/
 
-theorem hasPointCohomology_chartSpace (d : ℕ) : HasPointCohomology (chartSpace d) := by
+theorem hasPointCohomology_chartSpace (d : ℕ) : HasPointCohomology (chartSpace d) :=
   haveI : ContractibleSpace ↥(chartOpen d) := contractibleSpace_chartOpen d
-  refine ⟨⟨cohZeroEquivOfContractible ↥(chartOpen d)⟩, fun k hk a => ?_⟩
-  exact cohomology_eq_zero_of_contractible ↥(chartOpen d) k
-    (Nat.one_le_iff_ne_zero.mpr hk) a
+  hasPointCohomology_of_contractible ↥(chartOpen d)
 
-/-! ## 3. The intersection has the cohomology of an odd sphere -/
+/-! ## 3. The intersection has the cohomology of an odd sphere
 
-theorem hasSphereCohomology_sphere (n : ℕ) (hn : 1 ≤ n) :
-    HasSphereCohomology (TopCat.of (Sphere n)) n := by
-  refine ⟨⟨sphereCohZeroEquiv n hn⟩, ⟨sphereTopEquiv n hn⟩, fun k h0 hkn a => ?_⟩
-  have h := sphere_coh_isZero_of_ne n k h0 hkn
-  rw [ModuleCat.isZero_iff_subsingleton] at h
-  exact h.elim a 0
+`hasSphereCohomology_sphere` for the vendored sphere model is `cc-cohom-api`'s, in
+`CharClass/CohomologyShapes.lean`; this lane only transports it along the
+homotopy equivalence of the cover. -/
 
 theorem hasSphereCohomology_interSpace (d : ℕ) :
     HasSphereCohomology (interSpace d) (2 * d + 1) := by
@@ -89,9 +85,7 @@ theorem HasCPCohomology.of_point {X : TopCat.{0}} (h : HasPointCohomology X) :
 
 /-- **`ℂP^0` is a point.** -/
 theorem hasCPCohomology_zero : HasCPCohomology (CPtop 0) 0 :=
-  HasCPCohomology.of_point
-    ⟨⟨cohZeroEquivOfContractible ↥(CPtop 0)⟩, fun k hk a =>
-      cohomology_eq_zero_of_contractible ↥(CPtop 0) k (Nat.one_le_iff_ne_zero.mpr hk) a⟩
+  HasCPCohomology.of_point (hasPointCohomology_of_contractible ↥(CPtop 0))
 
 end
 

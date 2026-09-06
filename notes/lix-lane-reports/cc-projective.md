@@ -44,7 +44,7 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ChernEvenRingComm` | 8683 |
 | `ChernClasses` | 8676 |
 | `ProjectiveSpaceHomogeneous` | 8659 |
-| `ProjectiveSpaceInputs` | 8782 |
+| `ProjectiveSpaceInputs` | 8784 |
 | `LerayHirschDegree` (with `pull_injective`) | 8783 |
 | `ProjectiveSpaceComputation` | 8791 |
 | `ChernTotalRing` | 2464 |
@@ -131,6 +131,19 @@ two members of an open cover have zero cup product — for Whitney.
   Lean fills them from `gnpowRec`, whose synthesis has nothing to find if the
   family has no instance yet.  Supply them by `letI` inside the construction;
   they agree with the `mul`/`one` fields on the nose.
+* **Duplicate declarations across lanes break the root import.**  This lane and
+  `cc-cohom-api` both defined `hasSphereCohomology_sphere`; theirs is the one,
+  mine is deleted and `CohomologyShapes` imported.  Everything in this lane sits
+  directly in `GroupApproximation.CharClass` rather than a sub-namespace, which is
+  what made the collision possible.  New declarations go in a sub-namespace; the
+  *published* names are not being renamed, because `MVSequence`,
+  `HasCPCohomology`, `HasPointCohomology`, `HasSphereCohomology`, `TotalH`,
+  `lineGen`, `toLinearZMod2` and `cupPowE` are already imported by cc-thom,
+  cc-cohom-api and cc-lix-odd, and a rename would break three lanes at once.
+* **A `git add` chained behind a step that can fail silently drops files.**  It
+  cost a dangling import on main: `ChernClasses.lean` landed importing
+  `ChernTotalRing.lean`, which was never committed.  The lane that notices is the
+  one whose *other* file imports them, not the one that wrote them.
 * **`git pull` aborts on a *peer's* uncommitted file** in the shared tree, and
   neither committing nor stashing it is yours to do.  Push and let the peer's own
   push carry your commits, or wait.
