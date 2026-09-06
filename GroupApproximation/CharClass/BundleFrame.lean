@@ -95,7 +95,7 @@ private theorem exists_isometry_aux (r : ℕ) (q : Matrix ι ι ℂ) (hq : IsSta
           rw [star_mul', star_star, mul_comm]
         rwa [Finset.sum_congr rfl (fun i _ => heq i)] at h
       set W : Matrix ι (Fin (r + 1)) ℂ :=
-        Matrix.of fun i => Fin.snoc (fun j : Fin r => W' i j) (x i) with hWdef
+        Matrix.of fun i => Fin.snoc (fun j : Fin r => W' i j) (x i)
       have hWcastSucc : ∀ (i : ι) (j : Fin r), W i j.castSucc = W' i j := fun i j =>
         Fin.snoc_castSucc _ _ _
       have hWlast : ∀ i : ι, W i (Fin.last r) = x i := fun i => Fin.snoc_last _ _
@@ -191,14 +191,17 @@ section StdFibre
 
 variable {ι : Type} [Fintype ι]
 
+theorem fibreEquivPi_invFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (r : ℕ)
+    (hr : q.trace = (r : ℂ)) (u : Fin r → ℂ) : stdFrame hq r hr *ᵥ u ∈ fibreSet q := by
+  show q *ᵥ (stdFrame hq r hr *ᵥ u) = stdFrame hq r hr *ᵥ u
+  rw [Matrix.mulVec_mulVec, ← stdFrame_mul_conjTranspose hq r hr, Matrix.mul_assoc,
+    stdFrame_conjTranspose_mul hq r hr, Matrix.mul_one]
+
 /-- **`fibreSet q` is homeomorphic to `Fin r → ℂ`**, via the standard frame. -/
 noncomputable def fibreEquivPi {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (r : ℕ)
     (hr : q.trace = (r : ℂ)) : ↥(fibreSet q) ≃ₜ (Fin r → ℂ) where
   toFun v := (stdFrame hq r hr)ᴴ *ᵥ (v : ι → ℂ)
-  invFun u := ⟨stdFrame hq r hr *ᵥ u, by
-      show q *ᵥ (stdFrame hq r hr *ᵥ u) = stdFrame hq r hr *ᵥ u
-      rw [Matrix.mulVec_mulVec, ← stdFrame_mul_conjTranspose hq r hr, Matrix.mul_assoc,
-        stdFrame_conjTranspose_mul hq r hr, Matrix.mul_one]⟩
+  invFun u := ⟨stdFrame hq r hr *ᵥ u, fibreEquivPi_invFun_mem hq r hr u⟩
   left_inv v := by
     apply Subtype.ext
     show stdFrame hq r hr *ᵥ ((stdFrame hq r hr)ᴴ *ᵥ (v : ι → ℂ)) = (v : ι → ℂ)
@@ -210,93 +213,103 @@ noncomputable def fibreEquivPi {q : Matrix ι ι ℂ} (hq : IsStarProjection q) 
   continuous_toFun := continuous_const.matrix_mulVec continuous_subtype_val
   continuous_invFun := (continuous_const.matrix_mulVec continuous_id).subtype_mk _
 
+theorem projFibreEquivCP_toFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (d : ℕ)
+    (hr : q.trace = ((d + 1 : ℕ) : ℂ)) (r : ↥(projFibreSet q)) :
+    (stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr ∈ cpSet d := by
+  obtain ⟨hrH, hrr, hrtr, hqr⟩ := r.2
+  refine ⟨?_, ?_, ?_⟩
+  · simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hrH,
+      Matrix.mul_assoc]
+  · have hrq : (r : Matrix ι ι ℂ) * q = r := absorb_right_of_mem_projFibreSet hq r.2
+    calc ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)
+          * ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)
+        = (stdFrame hq (d + 1) hr)ᴴ *
+            ((r : Matrix ι ι ℂ) *
+              ((stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ) *
+                ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr))) := by
+          simp only [Matrix.mul_assoc]
+      _ = (stdFrame hq (d + 1) hr)ᴴ *
+            ((r : Matrix ι ι ℂ) * (q * ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr))) := by
+          rw [stdFrame_mul_conjTranspose hq (d + 1) hr]
+      _ = (stdFrame hq (d + 1) hr)ᴴ *
+            (((r : Matrix ι ι ℂ) * q) * ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)) := by
+          simp only [Matrix.mul_assoc]
+      _ = (stdFrame hq (d + 1) hr)ᴴ *
+            (((r : Matrix ι ι ℂ) * (r : Matrix ι ι ℂ)) * stdFrame hq (d + 1) hr) := by
+          rw [hrq, Matrix.mul_assoc]
+      _ = (stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr := by
+          rw [hrr, Matrix.mul_assoc]
+  · have step : ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) *
+        stdFrame hq (d + 1) hr).trace = (r : Matrix ι ι ℂ).trace := by
+      calc ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr).trace
+          = (stdFrame hq (d + 1) hr *
+              ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ))).trace :=
+            Matrix.trace_mul_comm _ _
+        _ = (stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ *
+              (r : Matrix ι ι ℂ)).trace := by simp only [Matrix.mul_assoc]
+        _ = (q * (r : Matrix ι ι ℂ)).trace := by rw [stdFrame_mul_conjTranspose hq (d + 1) hr]
+        _ = (r : Matrix ι ι ℂ).trace := by rw [hqr]
+    rw [step, hrtr]
+
+theorem projFibreEquivCP_invFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (d : ℕ)
+    (hr : q.trace = ((d + 1 : ℕ) : ℂ)) (s : CP d) :
+    stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+      (stdFrame hq (d + 1) hr)ᴴ ∈ projFibreSet q := by
+  obtain ⟨hsH, hss, hstr⟩ := s.2
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hsH,
+      Matrix.mul_assoc]
+  · calc (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ) *
+          (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ)
+        = stdFrame hq (d + 1) hr *
+            ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              (((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr) *
+                ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ))) := by
+          simp only [Matrix.mul_assoc]
+      _ = stdFrame hq (d + 1) hr *
+            ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              (1 * ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+                (stdFrame hq (d + 1) hr)ᴴ))) := by
+          rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
+      _ = stdFrame hq (d + 1) hr *
+            (((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)) * (stdFrame hq (d + 1) hr)ᴴ) := by
+          simp only [Matrix.one_mul, Matrix.mul_assoc]
+      _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ := by rw [hss, Matrix.mul_assoc]
+  · have step : (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+        (stdFrame hq (d + 1) hr)ᴴ).trace
+          = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by
+      calc (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ).trace
+          = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)).trace := by
+            rw [Matrix.mul_assoc]; exact Matrix.trace_mul_comm _ _
+        _ = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * 1).trace := by
+            rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
+        _ = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by rw [Matrix.mul_one]
+    rw [step, hstr]
+  · calc q * (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+          (stdFrame hq (d + 1) hr)ᴴ)
+        = (q * stdFrame hq (d + 1) hr) * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ := by simp only [Matrix.mul_assoc]
+      _ = (stdFrame hq (d + 1) hr * ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)) *
+            (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ := by
+          rw [← stdFrame_mul_conjTranspose hq (d + 1) hr, Matrix.mul_assoc]
+      _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ := by
+          rw [stdFrame_conjTranspose_mul hq (d + 1) hr, Matrix.mul_one]
+
 /-- **`projFibreSet q` is homeomorphic to `ℂP^{d}`** for `q` of rank `d + 1`,
 via the standard frame. -/
 noncomputable def projFibreEquivCP {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (d : ℕ)
     (hr : q.trace = ((d + 1 : ℕ) : ℂ)) : ↥(projFibreSet q) ≃ₜ CP d where
-  toFun r := ⟨(stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr, by
-      obtain ⟨hrH, hrr, hrtr, hqr⟩ := (r : Matrix ι ι ℂ), r.2
-      refine ⟨?_, ?_, ?_⟩
-      · simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hrH,
-          Matrix.mul_assoc]
-      · have hrq : (r : Matrix ι ι ℂ) * q = r := absorb_right_of_mem_projFibreSet hq r.2
-        calc ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)
-              * ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)
-            = (stdFrame hq (d + 1) hr)ᴴ *
-                ((r : Matrix ι ι ℂ) *
-                  ((stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ) *
-                    ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr))) := by
-              simp only [Matrix.mul_assoc]
-          _ = (stdFrame hq (d + 1) hr)ᴴ *
-                ((r : Matrix ι ι ℂ) * (q * ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr))) := by
-              rw [stdFrame_mul_conjTranspose hq (d + 1) hr]
-          _ = (stdFrame hq (d + 1) hr)ᴴ *
-                (((r : Matrix ι ι ℂ) * q) * ((r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr)) := by
-              simp only [Matrix.mul_assoc]
-          _ = (stdFrame hq (d + 1) hr)ᴴ *
-                (((r : Matrix ι ι ℂ) * (r : Matrix ι ι ℂ)) * stdFrame hq (d + 1) hr) := by
-              rw [hrq, Matrix.mul_assoc]
-          _ = (stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr := by
-              rw [hrr, Matrix.mul_assoc]
-      · have step : ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) *
-            stdFrame hq (d + 1) hr).trace = (r : Matrix ι ι ℂ).trace := by
-          calc ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr).trace
-              = (stdFrame hq (d + 1) hr *
-                  ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ))).trace :=
-                Matrix.trace_mul_comm _ _
-            _ = (stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ *
-                  (r : Matrix ι ι ℂ)).trace := by simp only [Matrix.mul_assoc]
-            _ = (q * (r : Matrix ι ι ℂ)).trace := by rw [stdFrame_mul_conjTranspose hq (d + 1) hr]
-            _ = (r : Matrix ι ι ℂ).trace := by rw [hqr]
-        rw [step, hrtr]⟩
+  toFun r := ⟨(stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) * stdFrame hq (d + 1) hr,
+    projFibreEquivCP_toFun_mem hq d hr r⟩
   invFun s := ⟨stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-      (stdFrame hq (d + 1) hr)ᴴ, by
-      obtain ⟨hsH, hss, hstr⟩ := s.2
-      refine ⟨?_, ?_, ?_, ?_⟩
-      · simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hsH,
-          Matrix.mul_assoc]
-      · calc (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ) *
-              (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ)
-            = stdFrame hq (d + 1) hr *
-                ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                  (((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr) *
-                    ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ))) := by
-              simp only [Matrix.mul_assoc]
-          _ = stdFrame hq (d + 1) hr *
-                ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                  (1 * ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                    (stdFrame hq (d + 1) hr)ᴴ))) := by
-              rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
-          _ = stdFrame hq (d + 1) hr *
-                (((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                  (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)) * (stdFrame hq (d + 1) hr)ᴴ) := by
-              simp only [Matrix.one_mul, Matrix.mul_assoc]
-          _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ := by rw [hss, Matrix.mul_assoc]
-      · have step : (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-            (stdFrame hq (d + 1) hr)ᴴ).trace
-              = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by
-          calc (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ).trace
-              = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                  ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)).trace := by
-                rw [Matrix.mul_assoc]; exact Matrix.trace_mul_comm _ _
-            _ = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * 1).trace := by
-                rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
-            _ = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by rw [Matrix.mul_one]
-        rw [step, hstr]
-      · calc q * (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-              (stdFrame hq (d + 1) hr)ᴴ)
-            = (q * stdFrame hq (d + 1) hr) * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ := by simp only [Matrix.mul_assoc]
-          _ = (stdFrame hq (d + 1) hr * ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)) *
-                (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ := by
-              rw [← stdFrame_mul_conjTranspose hq (d + 1) hr, Matrix.mul_assoc]
-          _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ := by
-              rw [stdFrame_conjTranspose_mul hq (d + 1) hr, Matrix.mul_one]⟩
+      (stdFrame hq (d + 1) hr)ᴴ, projFibreEquivCP_invFun_mem hq d hr s⟩
   left_inv r := by
     apply Subtype.ext
     show stdFrame hq (d + 1) hr * ((stdFrame hq (d + 1) hr)ᴴ * (r : Matrix ι ι ℂ) *
