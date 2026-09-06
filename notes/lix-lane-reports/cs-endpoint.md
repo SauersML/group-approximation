@@ -601,6 +601,20 @@ plus two `#audit_closed_axioms` lines.
   because Lean papered over an error was refused, which is the case
   `#audit_closed_axioms` exists for and the one that is hardest to catch by
   eye.
+* **Do not put a probe at the end of a compound background command.**  I ran
+  `python3 …; grep -c …; bash ccprobe.sh … | tail -30` in one backgrounded
+  call, and the "wait until the output file is non-empty" watcher fired on the
+  first line the *python* printed, not on the probe.  The probe's own stdout
+  then never reached the file, which held six bytes.  I was therefore about to
+  read `cc-last.log` on the node for a verdict, which is the stale-log trap two
+  entries down.
+
+  What settled it instead, and is the general move: **look for something in the
+  log that could only be there if the log is yours.**  I grepped the node's log
+  for the audit line of the theorem I had just added, found it at
+  `ProblemLIX.lean:298`, and only then read `Build completed successfully
+  (8706 jobs)` as mine.  A job count alone would not have distinguished the two
+  runs, because adding one theorem to an existing module changes no job count.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
