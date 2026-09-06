@@ -53,6 +53,8 @@ structure DGO421MinimalityFourGonData
   far_length : far.length ≤ 1
   near_labels : ∀ letter ∈ near, letter.IsCompOf lam
   far_labels : ∀ letter ∈ far, letter.IsCompOf mu
+  near_match : (vertex vp P ip1)⁻¹ * vertex vq Q iq1 ∈ D.fam lam
+  far_match : (vertex vp P ip2)⁻¹ * vertex vq Q iq2 ∈ D.fam mu
   near_value : RelLetter.listVal near = (vertex vq Q iq1)⁻¹ * vertex vp P ip1
   far_value : RelLetter.listVal far = (vertex vp P ip2)⁻¹ * vertex vq Q iq2
   closes : RelLetter.listVal ((Q.drop iq1).take (iq2 - iq1)) =
@@ -103,6 +105,8 @@ theorem exists_minimalityFourGon_at
     far_length := hfLength
     near_labels := heLabels
     far_labels := hfLabels
+    near_match := hm1
+    far_match := hm2
     near_value := heValue
     far_value := hfValue
     closes := hclose
