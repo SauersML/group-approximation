@@ -3641,6 +3641,8 @@ import GroupApproximation.CharClass.LIXSectionChartPair
 import GroupApproximation.CharClass.ThomStepCOdd
 import GroupApproximation.CharClass.ThomStepCOddIso
 import GroupApproximation.CharClass.CartanEvalMor
+import GroupApproximation.CharClass.CartanEvalMaster
+import GroupApproximation.CharClass.LIXBundleModel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
