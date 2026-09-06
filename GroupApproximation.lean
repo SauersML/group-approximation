@@ -3593,6 +3593,7 @@ import GroupApproximation.CharClass.CartanEvalFour
 import GroupApproximation.CharClass.CartanEvalBoundary
 import GroupApproximation.CharClass.ChernEulerIso
 import GroupApproximation.CharClass.LerayHirschShift
+import GroupApproximation.CharClass.SteenrodFourfoldBNat
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
