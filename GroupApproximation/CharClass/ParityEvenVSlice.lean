@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ParityEvenStepDClosed
+import GroupApproximation.CharClass.SliceVGenerator
 
 /-!
 # The even side's last input, stated about `V` and nothing else
@@ -123,9 +124,36 @@ theorem lemmaTwoHolds_of_vSliceValue
     LIX.LemmaTwoHolds :=
   lemmaTwoHolds_staged'' chain (data_of_vSliceValue hval)
 
-/-! ## 4. The axiom report -/
+/-! ## 4. At the named generators -/
+
+/-- **Lemma 2 at `cc-projective`'s generator family.**  `LH.sliceGen dd hdd j` is
+the degree-two generator of the `j`-th projective factor pulled back to the base,
+and `sliceGen_eq_root` says the lines of `V` over that factor all carry it, so the
+slice polynomial sees it with exactly the multiplicity `sliceClass` expects.  It is
+the family `cc-steenrod`'s value statement is written at, so this endpoint takes
+their theorem with no existential introduction in between.
+
+The positivity of every stage's dimensions is `LIX.lixDD_pos`, a theorem, so it is
+not a hypothesis here. -/
+theorem lemmaTwoHolds_of_sliceGen
+    (chain : ∀ j : ℕ,
+      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
+        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
+        (∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0) →
+        ThomChainThom (LIX.lixDD j)
+          (lixChern (LIX.lixDD j) (mappingTorus Vmat G circHoriz circHeight)
+            (continuous_mappingTorus_lix hGc) (isStarProjection_mappingTorus_lix hGu)
+            (lixRank (LIX.lixDD j))))
+    (hval : ∀ j : ℕ,
+      VSliceValue (LIX.lixDD j) (LH.sliceGen (LIX.lixDD j) (LIX.lixDD_pos j))) :
+    LIX.LemmaTwoHolds :=
+  lemmaTwoHolds_of_vSliceValue chain (fun j => ⟨_, hval j⟩)
+
+/-! ## 5. The axiom report -/
 
 #print axioms lemmaTwoHolds_of_vSliceValue
+
+#print axioms lemmaTwoHolds_of_sliceGen
 
 end
 
