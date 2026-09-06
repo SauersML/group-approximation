@@ -71,7 +71,6 @@ theorem tenHom_singHom {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ)
             map_add _ u v
         _ = Steenrod.pairPushLin X Y f k u + Steenrod.pairPushLin X Y f k v := by
             rw [hu, hv]
-            rfl
         _ = Steenrod.pairPushLin X Y f k (u + v) := (map_add _ u v).symm
   | single q c =>
       calc tenHom (singHom f) (singHom f) k (Finsupp.single q c)

@@ -40,7 +40,7 @@ noncomputable section
 /-! ## 1. The singular complex as a `FreeCx` -/
 
 /-- The mod-2 singular chain complex, presented by its degreewise basis. -/
-noncomputable def singFreeCx (X : TopCat.{0}) : FreeCx where
+noncomputable abbrev singFreeCx (X : TopCat.{0}) : FreeCx where
   ι := singularSimplices X
   d := bdU (ZMod 2) X
   d_d k u := bdU_bdU (ZMod 2) X k u
@@ -73,17 +73,14 @@ theorem tensorDGen_eq_dGen (X : TopCat.{0}) (k : ℕ) (q : Steenrod.PairIdx X (k
     cases a with
     | zero =>
         rw [tdL_zero, Steenrod.dLeft_zero]
-        rfl
     | succ a' =>
         rw [tdL_succ, tenElt_single_right, Steenrod.dLeft_eq_bdU]
-        rfl
   have hR : tdR (singFreeCx X) (singFreeCx X) k a b hab
         (Finsupp.single σ 1) (Finsupp.single τ 1)
       = Steenrod.dRight X (ZMod 2) k a b hab σ τ := by
     cases b with
     | zero =>
         rw [tdR_zero, Steenrod.dRight_zero]
-        rfl
     | succ b' =>
         rw [tdR_succ, tenElt_single_left, one_smul, Steenrod.dRight_eq_bdU]
         rfl
@@ -93,7 +90,6 @@ theorem tensorDGen_eq_dGen (X : TopCat.{0}) (k : ℕ) (q : Steenrod.PairIdx X (k
         (Finsupp.single σ 1) (Finsupp.single τ 1)
       = Steenrod.dLeft X (ZMod 2) k a b hab σ τ + Steenrod.dRight X (ZMod 2) k a b hab σ τ
   rw [hL, hR]
-  rfl
 
 /-- **The general tensor differential is `cc-steenrod`'s pair differential.** -/
 theorem tensorD_eq_dTgt (X : TopCat.{0}) (k : ℕ)
@@ -111,7 +107,6 @@ theorem tensorD_eq_dTgt (X : TopCat.{0}) (k : ℕ)
             + tensorD (singFreeCx X) (singFreeCx X) k g := map_add _ f g
         _ = Steenrod.dTgt X (ZMod 2) k f + Steenrod.dTgt X (ZMod 2) k g := by
               rw [hf, hg]
-              rfl
         _ = Steenrod.dTgt X (ZMod 2) k (f + g) := (map_add _ f g).symm
   | single q c =>
       calc tensorD (singFreeCx X) (singFreeCx X) k (Finsupp.single q c)
