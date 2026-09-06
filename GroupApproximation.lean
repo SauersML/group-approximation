@@ -3334,6 +3334,7 @@ import GroupApproximation.Analysis.LIXConnectingMapFullnessSum
 import GroupApproximation.Analysis.LIXGeneratorUnitary
 import GroupApproximation.Analysis.LIXLemmaSixGenerator
 import GroupApproximation.Analysis.LIXObstructionComplementUnitary
+import GroupApproximation.Analysis.LIXConnectingMapFullnessTower
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
