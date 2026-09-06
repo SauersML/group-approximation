@@ -392,6 +392,16 @@ vendored model.  Keeping both is harmless but one of them should be retired once
 the concrete sphere model for `S¹`, `S⁴`, `S⁵` is fixed.  cc-thom will not touch
 a peer's file.
 
+### Delegated to `cc-lix-odd` (lead's split of Step E, 2026-09-05)
+
+`puncturedAcyclic_lixBase`, the punctured-product vanishing instantiated for
+`sphereOne × baseM dd` at degree `2 * (∑ j, dd j) + 6`.  Chosen because it is the
+first hypothesis of `topChernClass_ne_zero_of_chain` and is written entirely in
+`cc-lix-odd`'s vocabulary (`baseM`, `baseSnocHomeo`, `baseNilHomeo`, `sphereOne`).
+They build it against `puncturedAcyclic_prod`, `PuncturedAcyclic.congr'` and
+`cohomologyToolkit`; the three projective hypotheses stay explicit until
+`cc-projective` lands `KunnethFactor (CP d) (2*d)`.  cc-thom keeps the assembly.
+
 ### From `cc-lix-odd` / the lead
 
 Instantiate `CohomologyToolkit` once (five fields, all listed above), then
