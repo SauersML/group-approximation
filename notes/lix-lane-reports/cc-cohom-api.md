@@ -28,6 +28,7 @@ peer may mix the two vocabularies freely.
 | `CohomologyKunnethSplit.lean` | the Künneth map for a sphere factor; the slice half of its injectivity |
 | `CohomologyKunnethNatural.lean` | naturality of the Künneth map in the base |
 | `CohomologyKunnethMap.lean` | the Künneth map named, and the one missing statement isolated as `KunnethSecondInjective` |
+| `CohomologyDeltaLift.lean` | the connecting map computed from an arbitrary lift; entry point for δ-linearity |
 
 ## 1. GREEN
 
@@ -50,6 +51,8 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologyKunnethSplit.lean` | 8768 |
 | `CharClass/CohomologyKunnethNatural.lean` | 8769 |
 | `CharClass/CohomologyKunnethMap.lean` | 8770 |
+| `CharClass/CohomologyBasic.lean` re-green with the cast calculus, 8 modules together | 8771 |
+| `CharClass/CohomologyDeltaLift.lean` | 8769 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
@@ -138,6 +141,25 @@ theorem isZero_cohomology_prod_sphere (A : Type) [TopologicalSpace A] (p n : ℕ
     (k : ℕ) (hk : p + n < k) :
     IsZero (Hmod2 (TopCat.of (A × Sphere n)) k)
 ```
+
+### The plan for δ-linearity (assigned to this lane, in progress)
+
+1. **DONE, green at 8769 jobs.**  `MVDelta.delta_apply` in `CohomologyDeltaLift.lean` — Mathlib's
+   `ShortComplex.ShortExact.δ_apply` specialised to `mvCoSC`: for a cocycle `x₃`,
+   **any** lift `x₂` along `g` and **any** descent `x₁` of `d x₂` along `f` give
+   `δ [x₃] = [x₁]`.  The freedom of both choices is the point.
+2. `mvDelta_spec` — the cochain characterisation: given a cocycle `α` on `U ∩ V`,
+   cochains `α_U` and `α_V` restricting to it, and a cochain `γ` on `X` restricting
+   to `d α_U` on `U` and `d α_V` on `V`, `mvDelta [α] = [γ]`.
+3. δ-linearity then costs four lines: use `α_U ⌣ b|_U`, `α_V ⌣ b|_V` and `γ ⌣ b`,
+   and the mod-2 Leibniz rule `d (φ ⌣ b) = d φ ⌣ b` for a cocycle `b`.
+
+The subproject this avoids: one never has to define a cup product on the dual of
+the small-chain complex, which has no space behind it.  Choose `x₁` to be the
+restriction of a global cochain from the start, and `x₁ ⌣ b` is literally the
+restriction of `γ ⌣ b`.  What step 2 does need is the identification of `mvCoSC`'s
+`f` and `g` with honest restriction maps of cochains — the same chain-level square
+`cc-thom` is building for `mvResWU_one`, to be imported rather than duplicated.
 
 * **`δ`-linearity of the Mayer–Vietoris connecting map**, `δ (a ⌣ b|_{U ⊓ V}) =
   δ a ⌣ b` for a globally defined `b`.  This is the ONE thing between the fleet
