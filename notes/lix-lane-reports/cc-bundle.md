@@ -28,11 +28,11 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — all 10 modules, `Build completed successfully (2973 jobs)`
+## GREEN — all 11 modules, `Build completed successfully (2974 jobs)`
 
-Final probe 2026-09-05 late evening, with `✔ Built …BundleZeroSection` and
-`✔ Built …BundleClassify` in the same run; the eight modules below were green
-at 2974 jobs before those two were added.
+Final probe 2026-09-05 late evening (`✔ Built …BundlePairs`); the run before it
+was `Build completed successfully (2973 jobs)` with `✔ Built …BundleZeroSection`
+and `✔ Built …BundleClassify`.
 
 | module | content |
 |---|---|
@@ -71,9 +71,19 @@ model a rank-one projection-valued map *is* a map to `ℂP^d`), with
 **`homotopic_classL_classR`**, the rotation homotopy `v ↦ ((1-t)·v, t·φ v)`
 that makes `e(L) := f_L^* h` well defined on isomorphism classes.
 
+### `BundlePairs.lean` (new, green)
+
+The four small statements `cc-thom` listed as C1 to C4, each definitional once
+stated: `comapTotal`/`comapProj` with their projection squares (pullback
+naturality on the spaces), `totalSet_triv`/`totalTrivHomeo`/`puncturedSet_triv`
+(the trivial bundle's total space is the product), `chartOf_mem_notZeroSet_iff`
+(the affine chart is a map of PAIRS: `E(p) ∖ 0` corresponds to the part of the
+chart missing the zero section), and `totalTrivStd_snd_eq_zero_iff` (the
+standard local trivialization is a map of pairs).
+
 ## AUTHORED, UNVERIFIED
 
-Nothing — every declaration in all 10 owned modules is green.
+Nothing — every declaration in all 11 owned modules is green.
 
 ## EXPORTS (peers: these are the stable signatures)
 
@@ -154,6 +164,27 @@ the index-free form; compose with `projHomeoCP` and a reindexing to read it in
 Nothing from a peer, and nothing from the roster row is left unstarted.
 
 ## TRAPS (all found the hard way; save the next reader the probes)
+
+* **`omit … in` goes above the attribute as well as above the docstring.**  For
+  `@[simp] theorem foo`, the line order is `omit [Inst] in`, then `@[simp]`,
+  then `theorem`.  The `unusedSectionVars` linter is fatal under
+  `-DwarningAsError=true` and fires on instances that appear in the *statement*
+  but not in the proof term, which is most `[DecidableEq ι]` in this lane.
+* **The `unusedSimpArgs` linter is fatal too**, and it reports the exact
+  argument and column, so fix the one it names rather than pruning the list.
+  Three textually identical `simp [a, b]` branches can differ: only the branch
+  whose goal a `@[simp]` lemma already closes will flag `b`.
+* **`rw` order matters when one rewrite destroys another's pattern.**
+  `rw [conjNormalize_def, rotSq_conj, trace_rotSq_conj …]` fails, because
+  `rotSq_conj` also rewrites the copy of the conjugate *inside* the trace, so
+  the trace lemma no longer matches.  Rewrite the trace first.
+* **`rw` finishes with a `rfl` at reducible transparency only.**  A goal that is
+  `rfl` after unfolding a plain `def` (`infPoint`) needs an explicit `rfl` on
+  the next line.
+* **A `rw` that closes the goal makes the next tactic fail** with `No goals to
+  be solved`; `rw [h]` followed by `exact Homotopic.refl _` is a common instance.
+* **`ext` on a `ContinuousMap` equality descends past the map** into `Prod` and
+  `Subtype` and leaves a goal about `.1`.  Use `ContinuousMap.ext fun z => …`.
 
 * **Anonymous constructor `⟨(tuple with a bare literal or an existing
   variable), by …⟩` can make Lean throw `unknown free variable
