@@ -283,3 +283,4 @@
 33984540351	2026-09-05T18:36:14Z	GroupApproximation/Sofic/ConjExprMatching.lean	map_fst_labelledExpr
 33990980519	2026-09-05T20:44:48Z	GroupApproximation/Analysis/LIXEndpointStatement.lean	k1Inj_iff
 33995684626	2026-09-05T22:22:28Z	GroupApproximation/Analysis/LIXClutching.lean	not_isDiscUnitary_of_clutchingObstruction
+34000749629	2026-09-06T00:14:57Z	GroupApproximation/Analysis/LIXObstructionComplementUnitary.lean	isSelfAdjoint_mul_star_self
