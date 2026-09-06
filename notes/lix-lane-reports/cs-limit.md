@@ -118,7 +118,36 @@ slip between this lane and `ProblemLIX`'s quantification over `Type`.
 
 ## 2. AUTHORED, UNVERIFIED
 
-(none)
+| module | why |
+|---|---|
+| `Analysis/LIXLimitAlgebra` | imports `Analysis/LIXConnectingMap`, which is red |
+| `Analysis/LIXLimitSimple` | imports the above |
+
+**Do not wire either into the root yet.**  They are the concrete instantiation:
+
+```lean
+def lixTower : CStarTower STW59.StageAlgebra :=
+  CStarTower.ofInjective STW59.connect STW59.connect_injective
+abbrev LIXLimit : Type := lixTower.Limit          -- Type 0; CStarAlgebra and Nontrivial by
+                                                   -- inferInstance, checked by two `example`s
+lixIota (i : ℕ) : STW59.StageAlgebra i →⋆ₐ[ℂ] LIXLimit
+lixLimit_hasK1InjWitness : … → HasK1InjWitness LIXLimit
+lixLimit_isSimpleCStar :
+  (∀ k (a : STW59.StageAlgebra k), a ≠ 0 → ∃ j, k ≤ j ∧ IsFull (lixTower.climb j k a)) →
+    IsSimpleCStar LIXLimit
+```
+
+`lixLimit_isSimpleCStar` discharges the `[PartialOrder LIXLimit]` / `[StarOrderedRing LIXLimit]`
+instances that `cs-simplicity`'s `isSimpleCStar_limit_of_ne_zero` asks for, so the obligation
+left for `cs-stages` is order-free.
+
+`STW59.connect` and `STW59.connect_injective` have exactly the right types, but
+`Analysis/LIXConnectingMap` itself fails with 15 errors (probe at 3017 jobs).  Diagnoses sent to
+`cs-stages`: `Matrix.zero_add`/`Matrix.add_zero` do not exist (use the bare names);
+`Matrix.fromBlocks_add`/`fromBlocks_smul` need all four blocks, so rewrite them backwards on the
+right-hand side and clean with `add_zero`/`smul_zero`; `Matrix.mul_kronecker_mul` is being used
+left-to-right where the goal needs right-to-left; and `Algebra.mul_smul_comm` is blocked by the
+left-associativity of `*` and is `protected`.
 
 ## 3. NEEDS
 
