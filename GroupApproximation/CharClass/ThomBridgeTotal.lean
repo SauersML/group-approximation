@@ -27,9 +27,27 @@ Moving the data across is `thomData_transport`, which is pure algebra: an
 injective map with a prescribed range, precomposed with an equivalence, is again
 injective with the same range.
 
+## No naturality is proved here, and that is a defect
+
+`bridgeTotal` is published as a **bare isomorphism**.  Nothing relates it to the
+maps that surround it: not to restriction of the base, not to `relToAbs`, not to
+the projection pullback.  That was enough while the Thom class was the
+deliverable, because the class only had to exist and be nonzero.  It is not
+enough once anything has to be **computed** through the bridge, and both of this
+lane's remaining obligations do exactly that.
+
+Recording it here rather than leaving it to be discovered: a consumer who needs
+to push a class across this isomorphism and then compare it with something on the
+other side will find no lemma to do it with, and will have to build the
+naturality layer first.  `cc-projective` hit the same defect from the other side,
+having published the mod-2 Chern classes in two presentations with nothing
+relating them, and the shared shape is a declaration correct in itself, shaped
+for its first consumer, whose gap is invisible until a second consumer arrives.
+No probe and no duplicate scan sees it.
+
 ## Main declarations
 
-* `bridgeTotal` — the composite, as a linear equivalence.
+* `bridgeTotal` — the composite, as a linear equivalence.  **No naturality.**
 * `thomData_transport` — the algebra.
 * `thomData_total_of_lerayHirsch` — **the Thom data on the total-space pair.**
 -/
