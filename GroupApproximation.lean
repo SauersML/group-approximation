@@ -3744,6 +3744,7 @@ import GroupApproximation.CharClass.LIXVLineBundles
 import GroupApproximation.CharClass.ParityEvenFlagCompact
 import GroupApproximation.CharClass.LIXChern
 import GroupApproximation.CharClass.LIXChernValue
+import GroupApproximation.CharClass.ChernSliceNaturality
 import GroupApproximation.CharClass.LIXLocalPairClosed
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
