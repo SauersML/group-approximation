@@ -606,3 +606,55 @@ Traps confirmed by a failed probe, beyond the ones already listed.
 * A degree that must be the type of a cochain has to be written as the sum it
   is, not as a parameter with an equation to it: `sqCochain m j φ` with
   `hm : p + q = m` does not typecheck for `φ = α ⌣ β`.
+
+## Both sides of the Cartan formula are cochains (2026-09-06, later)
+
+Composite B is evaluated. `fourEvalF2_compBGen` says composite B on a basis
+element, paired against `α ⊗ β ⊗ α ⊗ β`, is the sum over the splittings of the
+resolution index of the cup product of the two cup-`i` squares: the right-hand
+side of the Cartan formula. With composite A already the square of the cup
+product, both sides are now cochains, and the master identity says they differ by
+a coboundary. Green in one probe round at 2907 jobs.
+
+Three steps.
+
+* `fourEvalGen_midIdx`: the interchange carries the `α, β, α, β` functional to
+  the `α, α, β, β` one, so each cochain meets **both factors of one diagonal
+  value**. This is the slot convention cc-steenrod insisted I confirm before
+  building on it, and it is what makes the answer a product of two squares rather
+  than a cross term. The proof is `ring` on four commuting factors; the content
+  is entirely in the statement.
+* `pairEvalIdx_pow_smul`: the resolution's power of the generator is invisible to
+  a pairing whose two cochains are equal, so the second block's twist drops out
+  rather than needing an argument.
+* `pairEvalIdx_phiAtDeg_eq`: the pairing against the diagonal at a **free** cut
+  index is the cup-`i` product, with no degree hypothesis once the pair degree is
+  written as the degree the diagonal actually lands in.
+
+Two general findings worth more than the lemmas.
+
+**The totalisation principle reappears one layer up.** No degree hypothesis
+survives anywhere in composite B's evaluation, because the cup-`i` product of two
+cochains of the wrong degrees is zero and that is the *same condition* as the
+pairing's bidegree selection. Writing each square at the degree it actually has
+makes every off-diagonal term vanish on both sides at once. That is not a
+coincidence; it is the same design principle showing up in the cochain layer.
+
+**And it has a hard boundary, one layer higher still.** Converting my composite-B
+terms into `sqCochain` form needs one number spelled two ways, `p + p - j` and
+`(p - j) + p`, and that number is the *type* of a cochain. So the conversion
+cannot happen at cochain level at all; it has to happen after passing to classes,
+where `cohCast` exists. Anyone who tries it a layer too low will hit what looks
+like a missing lemma and is not one.
+
+Also landed: `cochainCupI_eq_zero_of_lt_left` and its twin, the *second* reason a
+cup-`i` product vanishes — a factor outranking the simplex, which the bidegree
+condition does not cover — and `cochainCupI_self_eq_zero_of_lt`, cochain-level
+instability, which is what removes the out-of-range terms of the Cartan sum. In
+degree zero the simplex is not too small and the bidegree fails instead, so the
+two reasons genuinely have to be combined.
+
+What is left is one lemma I cannot write. The master identity is stated on
+composite B as a natural transformation applied to a source basis element; the
+evaluation is stated on cc-steenrod's generator-level value. The bridge is the
+exact analogue of `compA_single` and needs their packaging.
