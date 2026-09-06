@@ -195,6 +195,27 @@ audits. This is the one-letter operation: the inserted letter must represent
 the chosen prefix. Arbitrary connector-path lengths and preservation of the
 selected embedded regions must still be carried through the construction.
 
+`CombMapDual.lean` now constructs duality and proves that it preserves
+connectedness, Euler characteristic and planarity. `CombMapEdgeSubdivision.lean`
+uses actual dual insertion to subdivide an edge, adding one vertex and one
+edge while retaining every face. Its corner order also handles an initial
+vertex of degree one. `CyclicListExpansion.lean` and
+`CombMapSubdivisionWalks.lean` prove the actual expanded traversals in both
+orientations, their closure and absence of repeated darts.
+`CombMapSubdivisionBoundary.lean` constructs all face boundaries and their
+exact correspondence. `CombMapSubdivisionLabels.lean` factors the chosen
+letter into two letters, proves formal reversal and preservation of every
+based face value, and retains literal words on faces avoiding the edge.
+`GEdgeSubdivision.lean` assembles an actual planar disc and corrected
+`OrderedGRegionReplacement`, preserving the exterior word, ordered relator
+data and reducedness. The two incident G-faces may coincide. Its admissibility
+theorem only requires old labels away from the subdivided edge to be legal,
+so a temporary product letter need not belong to the generating set. These
+proofs pass ordinary axiom audits (4,786-job build). Iteration to arbitrary
+connector paths, including the zero-length case, and preservation of the
+selected embedded regions remain open; this does not remove another assembly
+admission.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
