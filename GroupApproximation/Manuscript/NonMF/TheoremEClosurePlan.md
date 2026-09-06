@@ -178,9 +178,16 @@ map. `CombMapEdgeKeptFaces.lean` and `CombMapEdgeKeptBoundary.lean` now
 construct the unchanged cycles and ordered boundaries of every other face.
 Their face classifier excludes fresh darts from those faces, and retaining
 old dart labels preserves their literal words, including the chosen start.
-All these proofs pass ordinary axiom audits. The two new face words, arbitrary
-connector-path lengths, and preservation of selected embedded regions must
-still be carried through this construction.
+`CyclicFaceBoundary.lean` derives orbit completeness from an actual cyclic
+list. `CombMapEdgeSplitBoundary.lean` now constructs both new boundary cycles,
+including the monogon at index zero, and `CombMapEdgeFacePartition.lean`
+accounts for every new face. `CombMapEdgeBoundaries.lean` gives compatible
+traversals everywhere. `CombMapEdgeLabels.lean` retains old labels, assigns a
+letter and its formal inverse to the new edge, and proves both new face
+values are one when that letter represents the chosen prefix of the old
+G-face boundary. All these proofs pass ordinary axiom audits. The actual
+disc-diagram assembly, arbitrary connector-path lengths, and preservation of
+selected embedded regions must still be carried through this construction.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
