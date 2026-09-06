@@ -3729,6 +3729,8 @@ import GroupApproximation.CharClass.LerayHirschColSum
 import GroupApproximation.CharClass.LerayHirschLadderClosed
 import GroupApproximation.CharClass.LerayHirschRankOne
 import GroupApproximation.CharClass.LerayHirschTrivOpen
+import GroupApproximation.CharClass.CohomologyLHRingComponent
+import GroupApproximation.CharClass.LIXStepCOddNamed
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
 import GroupApproximation.CharClass.ChernRootSection
