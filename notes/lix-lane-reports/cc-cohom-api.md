@@ -29,6 +29,7 @@ peer may mix the two vocabularies freely.
 | `CohomologyKunnethNatural.lean` | naturality of the Künneth map in the base |
 | `CohomologyKunnethMap.lean` | the Künneth map named, and the one missing statement isolated as `KunnethSecondInjective` |
 | `CohomologyDeltaLift.lean` | the connecting map computed from an arbitrary lift; entry point for δ-linearity |
+| `CohomologyClassOf.lean` | the class of a cocycle for an arbitrary `F₂` cochain complex, with surjectivity and naturality |
 
 ## 1. GREEN
 
@@ -53,6 +54,7 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologyKunnethMap.lean` | 8770 |
 | `CharClass/CohomologyBasic.lean` re-green with the cast calculus, 8 modules together | 8771 |
 | `CharClass/CohomologyDeltaLift.lean` | 8769 |
+| `CharClass/CohomologyClassOf.lean` | 8770 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
@@ -148,6 +150,12 @@ theorem isZero_cohomology_prod_sphere (A : Type) [TopologicalSpace A] (p n : ℕ
    `ShortComplex.ShortExact.δ_apply` specialised to `mvCoSC`: for a cocycle `x₃`,
    **any** lift `x₂` along `g` and **any** descent `x₁` of `d x₂` along `f` give
    `δ [x₃] = [x₁]`.  The freedom of both choices is the point.
+1b. **DONE, green at 8770 jobs.**  `CohClass.clsOf` in `CohomologyClassOf.lean` —
+   the class of a cocycle for an **arbitrary** `F₂` cochain complex, which is what
+   the terms of `mvCoSC` are (duals of subordinate-chain complexes and of the
+   small-chain complex, none of them cochain complexes of a space), with
+   `clsOf_eq_cocycleClass`, `clsOf_surjective`, `homologyMap_clsOf` and
+   `d_map_eq_zero`.
 2. `mvDelta_spec` — the cochain characterisation: given a cocycle `α` on `U ∩ V`,
    cochains `α_U` and `α_V` restricting to it, and a cochain `γ` on `X` restricting
    to `d α_U` on `U` and `d α_V` on `V`, `mvDelta [α] = [γ]`.
@@ -159,7 +167,11 @@ the small-chain complex, which has no space behind it.  Choose `x₁` to be the
 restriction of a global cochain from the start, and `x₁ ⌣ b` is literally the
 restriction of `γ ⌣ b`.  What step 2 does need is the identification of `mvCoSC`'s
 `f` and `g` with honest restriction maps of cochains — the same chain-level square
-`cc-thom` is building for `mvResWU_one`, to be imported rather than duplicated.
+`cc-thom` is building for `mvResWU_one`.  It is now **green on their side** and is
+to be imported, not rebuilt: `MayerVietorisPull.mvCxInclU_comp_g`,
+`MayerVietorisPull.dualMap2_subChainCorestrict_naturality`,
+`MayerVietorisRestriction.subChainCorestrict_naturality`, and
+`MayerVietorisBiproduct.mvDualMap_comp/_id/_add/_zero`.
 
 * **`δ`-linearity of the Mayer–Vietoris connecting map**, `δ (a ⌣ b|_{U ⊓ V}) =
   δ a ⌣ b` for a globally defined `b`.  This is the ONE thing between the fleet
