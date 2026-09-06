@@ -206,6 +206,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomStepCLocal.lean` | `topChernClass_ne_zero_of_local`, `..._of_local_naturality`, `..._of_local_line`, `..._of_chain_line` — `locEquiv`, `hg` and `hgamma` discharged, leaving `hsu` alone on the odd side; plus the `Nonempty` forms that spare a consumer the use of choice |
 | `CharClass/ThomStepCEuler.lean` | `eq_localGenerator_of_ne_zero`, **`hsu_of_ne_zero`**, `ne_zero_of_hsu`, `topChernClass_ne_zero_of_su_ne_zero{,_line}` — `hsu` **is** `su ≠ 0`, because the local model is a line and excision-then-chart is an iso onto it |
 | `CharClass/ThomStepCSection.lean` | `thomClass_ne_zero` (free, no topology), **`SectionDetectsThom`**, `su_ne_zero_of_section`, `topChernClass_ne_zero_of_section` — `su ≠ 0` split into the Thom class being nonzero and one named predicate about the *section* |
+| `CharClass/ThomBundlePair.lean` | `bundlePairTrivIso` — the bundle pair over a trivialising neighbourhood **is** the product pair, `cc-bundle`'s image equation fed to `cc-relative`'s pair transport; `relPullback_injective_of_retraction` — a retracted map of pairs is injective, which is what makes the trivial-bundle Thom class computable with no Künneth of pairs |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -632,6 +633,26 @@ by a guessed name, check the recent commit log of the lane that would own it, as
 the owner — and when claiming absence, show the search that was run, so the claim
 is falsifiable by the reader rather than taken on trust.
 
+### A claim true in the case at hand, written as though general
+
+`cc-lix-odd`'s observation, recorded with attribution.  `eq_localGenerator_of_ne_zero`
+rests on `∀ c : ZMod 2, c ≠ 0 → c = 1` by `decide`.  So "the equality half of
+`hsu` is free" is true **because the coefficients are mod 2**.  Over any other
+field a nonzero class is only some multiple of the generator, the multiple
+survives into the statement, and the equality carries content the nonvanishing
+does not.
+
+This is the same failure as the four absence claims, at a different scale: a
+statement true in the case at hand, phrased so that it reads as holding
+generally.  A second instance of mine the same day: I wrote "only `hsu` remains
+open", which was true of one theorem and false as a claim about Step C, and
+`cc-lix-odd` caught the undercount.  The naturality square does not remove the
+content of `hgamma`; it trades it for `hu`, which mentions a Thom class that is
+not green.
+
+What worked, all three times: put the narrow claim in the **source**, where the
+next reader hits it, not in a report that has to be remembered.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -662,3 +683,5 @@ is falsifiable by the reader rather than taken on trust.
 | 2026-09-05 | **`ThomStepCEuler`** | **green, 8795 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomStepCEuler` + `ThomStepCLocal`**, axiom prints | **green, 8795 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomStepCSection`** | **green, 8798 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-05 | **`ThomBundlePair`** | **green, 8746 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-05 | **`ThomBundlePair` + `ThomStepCEuler` + `ThomStepCLocal`** | **green, 8806 jobs, `PROBE GREEN`** |

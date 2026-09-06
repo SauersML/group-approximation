@@ -31,6 +31,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LIXStepESpheresDischarged.lean` | 8854 | **the sphere factors, discharged too**: `isZero_cohomology_sphereOne`/`_sphereFive`, `kunnethFactor_unitVectorsThree` and its punctured companion, `hbase_lix` and `puncturedAcyclic_lixBase_final` (**unconditional** but for positivity of the dimensions), and `stepC_of_thomChain''` — **Step C over `cc-thom`'s chain bundle alone** |
 | `CharClass/LemmaTwoStepCAbsEquiv.lean` | 8876 | **`cc-thom`'s `absEquiv`, discharged**: `unitVectorsThreeHomeoSphere` (this lane's `unitVectorsThreeHomeo` at the vendored `Sphere 5`, which is that type on the nose), `nonempty_absEquiv_lix` and `absEquivLix` (**the top line at `N`, unconditional** but for positivity), `ThomChainOpen` = `ThomChainData` minus `absEquiv` with `toThomChainData`, `ne_zero_of_thomChainOpen`, and `stepC_of_thomChainOpen` — **Step C over the three open Thom-class fields and `cc-relative`'s green ones** |
 | `CharClass/LemmaTwoStepCEuler.lean` | 8887 | **Step C down to two open fields**: `ThomChainEuler` (`ThomChainOpen` with the local model made concrete, so `loc`, `locEquiv` and `hg` are gone and `hsu` has become `hne : su ≠ 0`), `ne_zero_of_thomChainEuler`, `stepC_of_thomChainEuler`.  The collapse is a **`ZMod 2` fact** (`∀ c : ZMod 2, c ≠ 0 → c = 1`, by `decide`) and is recorded as such, since over any other field the equality form carries a scalar the nonvanishing form does not |
+| `CharClass/LemmaTwoStepCThom.lean` | 8888 | **Step C in the shape the Thom class will arrive in**: `ThomChainThom` names the Thom class `u` and trades `hgamma` for the naturality datum `hu`, over `cc-thom`'s combination theorem.  **The count does not improve** — two open before (`hne`, `hgamma`), two after (`hne`, `hu`) — but the shape matches what `cc-projective` will produce, so it can be populated directly instead of manufacturing the identification afterwards |
 | `CharClass/LIXStepEDischarged.lean` | 8853 | **the projective factor, discharged**: `puncturedAcyclic_lixBase'`, `puncturedAcyclic_lixZero'`, `stepC_of_thomChain'`.  All three projective hypotheses come from `cc-thom`'s green `puncturedAcyclic_CP`, `kunnethFactor_CP`, `kunnethFactor_CP_punctured`, so Step C's punctured acyclicity now rests on **four cohomology statements and nothing else** |
 | `CharClass/LemmaTwoStepC.lean` | 8833 | **Step C at the real objects**: `lixZero`, `puncturedAcyclic_lixZero` (the `hacyclic` argument **discharged** from this lane's own recursion), `ThomChainData` (`cc-thom`'s remaining arguments, each field naming its owner: six green from `cc-relative`, one now green from `cc-thom`, **three open**), `ne_zero_of_thomChain`, `stepC_of_thomChain` |
 | `CharClass/LemmaTwoTopClass.lean` | 8828 | **the last seam**: `lixN`, `lixRank`, `LixChernDeg`, `lixChernOf` (total, degreewise), `lixTopClass`, `lixChernOf_mappingTorus`, `stepC_of_chain`, `stepD_of_topClass`, and **`lemmaTwoInput_of`** — both steps of Lemma 2 about ONE `topClass` |
@@ -143,12 +144,15 @@ supplied elsewhere:
   nonvanishing `hne : su ≠ 0`; `hg` is genuinely discharged, `hsu` is renamed content.
 * `hne` and `hgamma` — **the two that remain**, both `cc-projective`'s.
 
-**Accounting note.**  `cc-thom` reported this as leaving `hsu` alone.  That is true of
-`topChernClass_ne_zero_of_local_naturality`, which trades `hgamma` for a Thom-class
-naturality square, but the three improvements — the nonvanishing form, the `Nonempty` top
-line, and the naturality discharge — currently live in three separate theorems and no
-single one carries all three.  The shortest Step C actually available is
-`stepC_of_thomChainEuler`, with two open fields.
+**Accounting note, resolved.**  `cc-thom` first reported this as leaving `hsu` alone.  The
+three improvements — the nonvanishing form, the `Nonempty` top line and the naturality
+discharge — lived in three theorems with no single one carrying all three, so the shortest
+Step C then available had two open fields.  `cc-thom` has since published the combination
+`topChernClass_ne_zero_of_su_ne_zero_naturality_line` and confirmed that the naturality
+data is **not** green: `hu` mentions a Thom class that does not yet exist over the real
+bundle.  So the count is two either way, and the naturality route is a change of shape
+rather than a reduction.  Both shapes are published: `stepC_of_thomChainEuler` for a
+consumer holding `gamma` first, `stepC_of_thomChainThom` for one holding the Thom class.
 
 `ThomChainOpen` is exactly those remaining fields, so the shape of what is owed is now
 readable off one structure rather than by subtraction.

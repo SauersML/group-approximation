@@ -250,5 +250,64 @@ end Invariance
 
 end Bundle
 
+/-! ### Dot notation for the three transport methods
+
+`BundleIso` is declared in `GroupApproximation.CharClass`, but the three
+transport methods above are declared inside `GroupApproximation.CharClass.Bundle`,
+where every other bundle notion lives.  So `e.projHomeo` does not resolve: dot
+notation looks in the structure's own namespace, `CharClass.BundleIso`, and
+finds nothing there.  Worse, a bare `BundleIso.projHomeo` written inside
+`namespace Bundle` resolves to the structure's namespace too, so the only
+spelling that reaches the definitions above is the fully qualified
+`_root_.GroupApproximation.CharClass.Bundle.BundleIso.projHomeo`.
+
+The three aliases below sit in the structure's own namespace under new names, so
+`e.toTotalHomeo`, `e.toProjHomeo` and `e.toTautIso` work.  The originals are
+untouched and remain the reference spellings; each alias is the original by
+`rfl`, and `toTautIso` is stated at the original's type verbatim, so the two are
+interchangeable under `rw` as well as under `exact`.
+-/
+
+section Transport
+
+variable {X : Type} [TopologicalSpace X] {ι κ : Type} [Fintype ι] [Fintype κ]
+variable {p : Bundle X ι} {q : Bundle X κ}
+
+/-- `Bundle.BundleIso.totalHomeo`, placed where dot notation can find it. -/
+def BundleIso.toTotalHomeo (e : BundleIso p q) : Bundle.Total p ≃ₜ Bundle.Total q :=
+  Bundle.BundleIso.totalHomeo e
+
+theorem BundleIso.toTotalHomeo_eq (e : BundleIso p q) :
+    e.toTotalHomeo = Bundle.BundleIso.totalHomeo e := rfl
+
+theorem BundleIso.toTotalHomeo_over_base (e : BundleIso p q) (v : Bundle.Total p) :
+    Bundle.totalPi q (e.toTotalHomeo v) = Bundle.totalPi p v := rfl
+
+/-- `Bundle.BundleIso.projHomeo`, placed where dot notation can find it. -/
+def BundleIso.toProjHomeo (e : BundleIso p q) : Bundle.Proj p ≃ₜ Bundle.Proj q :=
+  Bundle.BundleIso.projHomeo e
+
+theorem BundleIso.toProjHomeo_eq (e : BundleIso p q) :
+    e.toProjHomeo = Bundle.BundleIso.projHomeo e := rfl
+
+theorem BundleIso.toProjHomeo_over_base (e : BundleIso p q) (z : Bundle.Proj p) :
+    Bundle.projPi q (e.toProjHomeo z) = Bundle.projPi p z := rfl
+
+/-- `Bundle.BundleIso.tautIso`, placed where dot notation can find it.  The type
+is the original's, written out, so that the alias and the original are the same
+term at the same type. -/
+def BundleIso.toTautIso (e : BundleIso p q) :
+    BundleIso (Bundle.tautLine p)
+      (Bundle.comap
+        (⟨Bundle.BundleIso.projHomeo e, (Bundle.BundleIso.projHomeo e).continuous⟩ :
+          C(Bundle.Proj p, Bundle.Proj q))
+        (Bundle.tautLine q)) :=
+  Bundle.BundleIso.tautIso e
+
+theorem BundleIso.toTautIso_eq (e : BundleIso p q) :
+    e.toTautIso = Bundle.BundleIso.tautIso e := rfl
+
+end Transport
+
 end CharClass
 end GroupApproximation

@@ -137,7 +137,48 @@ theorem topChernClass_ne_zero_of_su_ne_zero_line (hacyclic : PuncturedAcyclic N 
   exact topChernClass_ne_zero_of_su_ne_zero hacyclic j i hexact absEquiv exc chartIso
     hne hgamma
 
+/-! ## 4. All three improvements in one statement -/
+
+/-- **The combination.**  The nonvanishing form of `hsu`, the top line as a
+`Nonempty`, and the naturality square, in a single theorem.
+
+`cc-lix-odd` pointed out that the three improvements lived in three theorems and
+that no one of them carried all three, so a consumer had to give up one.  This is
+the one to restate against.
+
+Read the reduction honestly: the naturality square does **not** remove
+`hgamma`'s content.  It trades one hypothesis for six arguments plus `hu`, and
+`hu : jE.hom u = piStar.hom gamma` is where the Thom class enters, so it is
+behind the same Leray–Hirsch ladder as everything else.  What it buys is that
+`gamma` is no longer an opaque parameter: it is pinned to the Thom class `u`
+through the section.  A reader auditing what Step C owes should count `hu` and
+`hne`, not `hne` alone. -/
+theorem topChernClass_ne_zero_of_su_ne_zero_naturality_line
+    (hacyclic : PuncturedAcyclic N twoR z)
+    {rel chart HrelE HE : ModuleCat.{0} (ZMod 2)} {r : ℕ}
+    (j : rel ⟶ cohomologyZMod2 (TopCat.of N) twoR)
+    (i : cohomologyZMod2 (TopCat.of N) twoR
+          ⟶ cohomologyZMod2 (TopCat.of ↥({z}ᶜ : Set N)) twoR)
+    (hexact : LinearMap.range j.hom = LinearMap.ker i.hom)
+    (absLine : Nonempty (cohomologyZMod2 (TopCat.of N) twoR ≃ₗ[ZMod 2] ZMod 2))
+    (exc : rel ≅ chart)
+    (chartIso : chart ≅
+      relCohomology (ZMod 2) (TopCat.of (Fin r → ℂ)) (puncturedSet r) (2 * r))
+    (jE : HrelE ⟶ HE) (sRel : HrelE ⟶ rel)
+    (sAbs : HE ⟶ cohomologyZMod2 (TopCat.of N) twoR)
+    (piStar : cohomologyZMod2 (TopCat.of N) twoR ⟶ HE)
+    (hnat : sRel ≫ j = jE ≫ sAbs)
+    (hsection : piStar ≫ sAbs = 𝟙 (cohomologyZMod2 (TopCat.of N) twoR))
+    {u : HrelE} {gamma : cohomologyZMod2 (TopCat.of N) twoR}
+    (hu : jE.hom u = piStar.hom gamma)
+    (hne : sRel.hom u ≠ 0) :
+    gamma ≠ 0 :=
+  topChernClass_ne_zero_of_su_ne_zero_line hacyclic j i hexact absLine exc chartIso hne
+    (topClass_eq_of_naturality' jE j sRel sAbs piStar hnat hsection hu).symm
+
 /-! Printed on every build, for the same reason. -/
+
+#print axioms topChernClass_ne_zero_of_su_ne_zero_naturality_line
 
 #print axioms topChernClass_ne_zero_of_su_ne_zero
 #print axioms topChernClass_ne_zero_of_su_ne_zero_line
