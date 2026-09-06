@@ -91,9 +91,12 @@ The counterexample is
 \]
 the elementary group of $12\times12$ matrices over the binary Leavitt
 algebra.  Khanh--Thanh show that $H$ is isomorphic to the unit group of the
-binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-OpenAI used this group to construct the first nonsofic
-group~\cite[Chapter~3]{OAI}.
+binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh};
+indeed $\GL_n(R)=\EL_n(R)\cong R^\times$ for every $n\ge2$ by the same
+results, so $H$ does not depend on $n$ up to isomorphism, and $n=12$ is
+the rank used in the accompanying Lean development.  OpenAI used this
+group to construct the first nonsofic group~\cite[Chapter~3]{OAI}, so $H$
+is neither sofic nor MF\@.
 
 We work with countable groups throughout.  A countable group $G$ is
 \emph{MF}~\cite{CDE} if there are positive
@@ -129,6 +132,22 @@ since $\prod_nM_{d_n}(\C)$ is its multiplier algebra.  We call a
 homomorphism $G\to\U(\mathcal Q_{\mathbf d})$ a \emph{corona
 homomorphism}.  A separable
 $C^*$-algebra is MF if it embeds in a norm matrix corona~\cite{BK}.
+
+Whether every countable group is MF was a longstanding open
+problem~\cite{CDE,Korchagin,BDL}.  Eckhardt's preprint~\cite{Eckhardt},
+which appeared on 28 August 2026 while this manuscript was being prepared
+and which cites it, answers the question by the same mechanism: for a
+property-\textup{(T)} group $\Gamma$ with a proper self-embedding and its
+ascending HNN extension $G$, the wreath product
+$(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb Z)\rtimes G$ is not MF, and the
+reduced $C^*$-algebra of that group is stably finite and not MF\@.  The
+contribution here is the general criterion of
+Theorem~\ref{thm:compression-criterion}, the ring-theoretic
+Theorem~\ref{thm:full-defect-ring} and the finitely generated simple
+group $H$, the sofic example and its trace in
+Theorem~\ref{thm:amenable-trace}, and the torsion-free finitely presented
+group of Theorem~\ref{thm:torsion-free}; the two arguments are compared
+at the end of this introduction.
 
 We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
 The groups here fail to be MF because they contain a
@@ -250,7 +269,9 @@ soficity passes to extensions with amenable
 quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
 Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
 Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
-amenable trace is quasidiagonal.  Since $K$ is a direct limit of
+amenable trace is quasidiagonal.  Problem~X(2) there, whether the trace on
+the hyperfinite $\mathrm{II}_1$ factor is quasidiagonal, is not addressed
+here.  Since $K$ is a direct limit of
 residually finite groups, it is MF~\cite[Corollary~10 and
 Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
 products with $\mathbb Z$, which answers a question of
@@ -276,8 +297,9 @@ every separable stably finite $C^*$-algebra is MF, the MF
 problem~\cite[\S6]{GoldbringHart}, was answered negatively through the
 failure of the Connes embedding problem~\cite{MIPRE}\cite[Proposition~6.1
 and Remark~6.2]{GoldbringHart}.  Theorem~\ref{thm:headline} gives a
-counterexample among reduced group $C^*$-algebras.  Whether every countable
-group is MF was a longstanding open problem~\cite{BDL}.
+counterexample among reduced group $C^*$-algebras, as does Eckhardt's
+Corollary~4.4~\cite{Eckhardt}.  Whether every countable group is MF was a
+longstanding open problem~\cite{CDE,Korchagin,BDL}.
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
 
 Theorem~\ref{thm:compression-criterion} uses the configuration of the
@@ -299,14 +321,42 @@ of Deligne type, operator--Hilbert--Schmidt stability would imply that the
 group is not MF~\cite[Proposition~1.5]{BDL}.  Here the compression
 relation replaces the stability hypothesis.
 
+Kun and Thom~\cite{KT26} call $\Gamma\le G$ infranormal when
+$\operatorname{Comp}_G(\Gamma)$ generates $G$, and prove that if $\Gamma$
+is infranormal and not normal and both $\Gamma$ and $G$ have
+property~\textup{(T)}, then $(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb
+Z)\rtimes G$ is not sofic.  The group $W$ of
+Section~\ref{sec:amenable-nonqd} has the same shape, but $V$ surjects onto
+$\mathbb Z$ and so does not have property~\textup{(T)}; accordingly $W$ is
+sofic, and the compression alone rules out MF\@.  Alekseev and
+Thom~\cite{AT26} prove that the centralizer of a sofic approximation of a
+Kazhdan group is again an ultraproduct of permutation groups;
+Theorem~\ref{thm:transport} is the operator norm analogue, in which the
+compressor preserves the Hilbert--Schmidt asymptotic commutant.
+
 For a property-\textup{(T)} group $\Gamma$ with a proper self-embedding
 and its ascending HNN extension $G$, Eckhardt~\cite{Eckhardt} shows that
 $C^*_{\max}(G)$ is not finite, as in Proposition~\ref{prop:max-infinite},
 and that the wreath product $(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb
-Z)\rtimes G$ is not MF\@.  In Section~\ref{sec:amenable-nonqd} the lamps
-satisfy Clifford relations, and by these relations a central involution
-lies in the normal subgroup~\eqref{eq:intrinsic-defect}, so
-Theorem~\ref{thm:compression-criterion} applies directly.
+Z)\rtimes G$ is not MF\@.  The first step is the same: the Kazhdan
+projections of $\Gamma$ and of $t\Gamma t^{-1}$ have unitarily equivalent
+nested images in a finite $C^*$-algebra and therefore coincide.  The
+passage from Hilbert--Schmidt norm to operator norm differs.  Eckhardt
+builds a $1$-cocycle for the conjugation representation in a rescaled
+Hilbert--Schmidt ultraproduct and applies the Delorme--Guichardet theorem,
+which uses the lamp structure; Theorem~\ref{thm:normal-kazhdan} uses the
+Kazhdan projection of a normal property-\textup{(T)} subgroup instead,
+which is what allows the simple group $H$, where there are no lamps.  In
+Section~\ref{sec:amenable-nonqd} the lamps satisfy Clifford relations, and
+by these relations a central involution lies in the normal
+subgroup~\eqref{eq:intrinsic-defect}, so
+Theorem~\ref{thm:compression-criterion} applies directly.  When $\Gamma$
+is residually finite and $[\Gamma:t\Gamma t^{-1}]<\infty$, the argument of
+Proposition~\ref{prop:clifford-locally-rf} shows that Eckhardt's wreath
+product is sofic as well, so by
+Theorem~\ref{thm:factorization-nonmf-trace} and
+Proposition~\ref{prop:locally-rf-by-z-trace} its canonical trace is also
+amenable and not quasidiagonal.
 
 Leavitt introduced the algebras $L_K(1,n)$~\cite{Leavitt}.  The binary
 Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, is an
@@ -391,9 +441,10 @@ the matrix $u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary and $\opnorm{u_n-x_n}\to0$;
 after assigning arbitrary unitary values to the finitely many remaining
 coordinates, $(u_n)$ is a unitary lift of $v$, and $vv^*=1$.  So $A$ is
 finite, and so is $M_k(A)$, which is the corona with matrix sizes $km_n$.
-Finally, if $p\le q$ are equivalent projections in a stably finite algebra
+Finally, if $p\le q$ are equivalent projections in a finite algebra
 $B$ and $w$ is a partial isometry with $w^*w=q$ and $ww^*=p$, then
-$w\in qBq$ is an isometry in the finite corner $qBq$, so $p=ww^*=q$.
+$w=qwq$, so $w+(1-q)$ is an isometry of $B$ and hence unitary; therefore
+$p+(1-q)=(w+(1-q))(w+(1-q))^*=1$ and $p=q$.
 \end{proof}
 
 For a group $L$ with property~\textup{(T)}, the Kazhdan projection is the
@@ -513,6 +564,15 @@ elements with this property form a normal subgroup of $G$, so it
 contains $\mathfrak D_G(L)$.
 \end{proof}
 
+The corollary has a finite-dimensional shadow that needs no
+property~\textup{(T)}.  If $\rho\colon G\to\U(d)$ is a unitary
+representation and $uLu^{-1}\le L$, then $x\mapsto\rho(u)^*x\rho(u)$ maps
+the commutant $\rho(L)'$ into itself, hence onto it, because $\rho(L)'$ is
+finite dimensional; so $\rho(ucu^{-1})$ commutes with $\rho(L)$ for every
+$c\in C_G(L)$, and every finite-dimensional unitary representation of $G$
+is trivial on $\mathfrak D_G(L)$.  Property~\textup{(T)} and stable
+finiteness of the corona replace this dimension count.
+
 \subsection{From Hilbert--Schmidt to operator norm}
 
 A corona homomorphism $\rho$ cannot simply be restricted to a corner: a
@@ -573,7 +633,10 @@ Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let
 \(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism
 \(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).  In
 any faithful representation of the corona, \(p\) is the projection onto
-the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\),
+the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\), the range of
+\(\Theta(g)p\Theta(g)^*\) is
+\(\Theta(g)\operatorname{Fix}\Theta(K)
+=\operatorname{Fix}\Theta(gKg^{-1})=\operatorname{Fix}\Theta(K)\), so
 \[
  \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
 \]
@@ -1274,7 +1337,9 @@ The subgroup $N$ is infinite and normal, so it acts non-elementarily on
 $\Gamma(G,A)$ by Osin~\cite[Lemma~7.1]{Osin}; since $G$ is torsion-free,
 $N$ normalizes no nontrivial finite subgroup, so $N$ is suitable.  By Hull~\cite[Corollary~5.7 and Lemma~5.8]{Hull}, $N$ contains
 two elements $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is again
-suitable.  Apply Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
+suitable, possibly with respect to a larger generating set $A'\supseteq A$;
+since every finite subset of $G$ lies in a ball of $\Gamma(G,A')$,
+Theorem~\ref{thm:hull} applies with $A'$ in place of $A$.  Apply Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
 finite generating set of $G$ and with the set $\Omega$.  Then
 $Q=\langle\varphi(g_1),\dots,\varphi(g_m)\rangle\le\varphi(N_0)\le\varphi(N)\le Q$,
 so $Q=\varphi(N_0)=\langle\varphi(h_1),\varphi(h_2)\rangle$ and
@@ -1289,8 +1354,10 @@ property~\textup{(T)}, an element $t\in G_0$ with
 $t\Gamma t^{-1}\le\Gamma$, and a subgroup $J\le G_0$ isomorphic to a
 finitely presented infinite simple group, such that $[\Gamma,J]=1$ and
 $tJt^{-1}\le\Gamma$~\cite[\S2]{FFF}.  The group $G_0$ is obtained there
-from Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, so it is
-acylindrically hyperbolic.  Put $S=tJt^{-1}$.  Since $J$ is simple and
+as a common quotient of two finitely generated acylindrically hyperbolic
+groups by Hull's theorem~\cite[Corollary~7.4]{Hull}, which allows the
+quotient to be chosen acylindrically hyperbolic; we take $G_0$ to be such
+a quotient.  Put $S=tJt^{-1}$.  Since $J$ is simple and
 nonabelian, $J$ and $S$ are perfect.
 
 \begin{lemma}\label{lem:commutator-in-defect}
@@ -1351,7 +1418,14 @@ Large language models were used extensively in mathematical exploration,
 proof development, manuscript drafting, literature navigation, Lean
 formalization, and editorial revision.  The statements that were checked
 in Lean~4 are marked in the \LaTeX{} source with the names of the
-corresponding declarations.
+corresponding declarations; the development uses toolchain
+\texttt{leanprover/lean4:v4.32.0} and Mathlib \texttt{v4.32.0}.  The Lean
+route sometimes differs from the printed one: Proposition~\ref{prop:simple}
+is proved in Lean by direct root extraction rather than through Preusser's
+theorem, and the Ershov--Jaikin-Zapirain theorem is formalized only for
+finite-type algebras over finite fields, which covers $H$ but not
+Theorem~\ref{thm:full-defect-ring} in general.
+Section~\ref{sec:torsion-free} has no Lean counterpart.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}
@@ -1376,6 +1450,12 @@ P.~Ara,
 \emph{The exchange property for purely infinite simple rings},
 Proc. Amer. Math. Soc. \textbf{132} (2004), no.~9, 2543--2547,
 \doi{10.1090/S0002-9939-04-07369-1}.
+
+\bibitem[AT]{AT26}
+V.~Alekseev and A.~Thom,
+\emph{Centralizers of sofic approximations of Kazhdan groups},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.05362}{arXiv:2608.05362}.
 
 \bibitem[BDL]{BDL}
 B.~Bachner, A.~Dogon, and A.~Lubotzky,
@@ -1479,6 +1559,12 @@ G.~Kun and A.~Thom,
 preprint, 2019,
 \href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
 
+\bibitem[KT26]{KT26}
+G.~Kun and A.~Thom,
+\emph{Nonsofic wreath products of residually finite groups},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.06222}{arXiv:2608.06222}.
+
 \bibitem[Kor]{Korchagin}
 A.~I. Korchagin,
 \emph{The MF-property for countable discrete groups},
@@ -1509,7 +1595,8 @@ Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
 R.~Preusser,
 \emph{On general linear groups over exchange rings},
 Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
-\doi{10.1080/03081087.2020.1743636}.
+\doi{10.1080/03081087.2020.1743636},
+\href{https://arxiv.org/abs/1912.11386}{arXiv:1912.11386}.
 
 \bibitem[Sch]{Schafhauser}
 C.~Schafhauser,
