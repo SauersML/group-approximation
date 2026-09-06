@@ -329,3 +329,50 @@ of `mvDelta`, extracts a coboundary `d w` with `eltAmb γ = x₁ + d w`
 (`exists_d_of_clsOf_eq`), and replaces the lift `x₂` by `x₂ + f w`. That leaves
 `g x₂` unchanged, so `α` is untouched, while `f (eltAmb γ) = d (x₂ + f w)`
 holds exactly — which is what the cup computation needs.
+
+## Künneth injectivity: the design (in progress)
+
+`KunnethSecondInjective Y n` is `∀ v, σ_n ⌣ pr_Y^* v = 0 → v = 0`.  There is no
+short route: it is an induction on the sphere dimension through the hemispherical
+cover, and it needs δ-linearity and δ-naturality, both of which are now green.
+
+**The inductive predicate is not the statement itself.**  Write
+
+```text
+KnGen n t : ∀ Y m (v : H^m(Y)) (c : H^{n+m}(Y)),
+    pr_S^* t ⌣ pr_Y^* v = pr_Y^* c → v = 0
+```
+
+For `n ≥ 1` this is equivalent to the plain injectivity statement, because a
+slice `y ↦ (y, p)` kills `pr_S^* t` (`pull_const_eq_zero`, which needs `1 ≤ n`)
+and sends `pr_Y^* c` to `c`, so `c = 0` for free.  At `n = 0` it is genuinely
+stronger, and that is exactly what the base case has to supply.
+
+**The step** `KnGen n t₀ → KnGen (n+1) t₁`, where
+`t₁ = δ_{S^{n+1}} (bandToSphere^* t₀)`:
+
+1. δ-naturality along `knPrS Y (n+1)` turns `t₁` pulled back to the product into
+   `δ` of `τ`, the band class pulled back from the sphere.  The preimage cover of
+   the hemispheres under that projection **is** the product cover on the nose:
+   `opensComap (knPrS Y (n+1)) (upperOpens n) = prodOpen Y (upperOpens n)` is
+   `rfl`, because `Opens` has a `Prop` field and the carriers agree.
+2. δ-linearity turns `σ ⌣ pr^* v` into `δ (τ ⌣ pr^* v)`.
+3. Exactness at the intersection (cc-thom's `mvExactW`) makes `τ ⌣ pr^* v` a sum
+   of restrictions from the two hemispheres.
+4. Both hemispheres are `Y` **through the projection**, so that sum is pulled
+   back from `Y` (`KnHemi.exists_pull_prSub_of_res`).
+5. Transporting along the band equivalence lands in `H^*(Y × S^n)` and gives
+   exactly the hypothesis of `KnGen n t₀`.
+
+**The base** `KnGen 0 t₀` needs `S^0`: with the two-point cover, `H^0(S^0)`
+splits (cc-thom's `mvPairEquiv`), `t₀` is the class that is `1` on one point and
+`0` on the other, and the two slices give `c` twice; adding them and using
+`t₀|_p + t₀|_q = 1` turns the two equations into `v = 0` via `one_cup`.
+
+**Typing trap that cost two probes.**  The ambient `TopCat` of `subInclusion`,
+`sInclusion`, `mvResWU` and `mvU` is an *implicit* argument that Lean cannot
+recover from a `Set (Y × Sphere (n + 1))`: unifying `↥?X` with a product type
+fails, and the symptom is `prSub Y n S ... but is expected to have type
+TopCat.of ↑?m ⟶ ?m`, followed by `isDefEq` and `whnf` timeouts in every later
+declaration. Every set and open in `CohomologyKunnethHemi` is therefore declared
+at `Set ↥(prodTop Y n)` and `Opens ↥(prodTop Y n)`.
