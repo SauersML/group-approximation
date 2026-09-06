@@ -3627,3 +3627,4 @@ import GroupApproximation.CharClass.LerayHirschBundle
 import GroupApproximation.CharClass.ProjectiveSpaceInterVanish
 import GroupApproximation.CharClass.SteenrodFourfoldB
 import GroupApproximation.CharClass.SteenrodFourfoldBoundary
+import GroupApproximation.CharClass.ThomRelativeCokernel
