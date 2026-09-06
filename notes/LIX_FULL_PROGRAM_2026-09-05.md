@@ -411,7 +411,10 @@ never a `sorry`, never an `axiom`.
     report).**  A lane report is read by people already looking at that lane.  Any trap that is not
     lane-specific goes in the fleet file as one line, appended at the end, never editing another
     lane's line; the lead merges duplicates.  Before a SECOND failed probe on the same error, grep
-    the fleet file for a word from the error message.
+    the fleet file for a word from the error message.  Amendment (05:50 EDT, from cc-relative and
+    cc-lix-odd): a lane MAY edit or delete its OWN entry when the cause it names is wrong, with the
+    corrected line in the same commit; never another lane's line, never for style.  A trap naming
+    the wrong cause is worse than none, because the first grep hit is trusted.
 19. **An absence claim states the search AND its completeness (issued 05:25 EDT, from cc-thom after
     their sixth absence claim, whose cause was `| head -8` discarding the ninth hit of a correct
     search).**  Name the concept, not a file; search the directory, not a plausible file; re-run
