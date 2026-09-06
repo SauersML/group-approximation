@@ -30,8 +30,13 @@ Two things, both named rather than assumed silently.
   `lhDomainCard r n`, which equals `r` at the top degree but not definitionally,
   so producing the `ThomDeg` data from the instance needs a dependent transport
   across that equality, where the index sits inside the type of each coefficient.
-  That transport is not built.  Taking the data as a hypothesis keeps this file
-  green and makes the missing step visible instead of burying it.
+  **That transport is now built and this sentence used to say it was not.**
+  `ThomDataFromLH.thomData_of_lerayHirsch` produces the data from the two
+  Leray--Hirsch instances, `ThomBridgeTotal.thomData_total_of_lerayHirsch` carries
+  it onto the vector-bundle pair, and `LIXThomClassTerm.lixThomClassTerm` is the
+  resulting class, unconditional.  The hypotheses below are kept because peers
+  consume this file at these signatures and rule 11 freezes them; a caller who
+  wants the discharged form should use `lixThomClassTerm` instead.
 
 `hu` then comes from `ThomStepCSection.thomClass_ne_zero`, which needs no
 topology at all: it is the degreewise identification read backwards.
