@@ -63,6 +63,18 @@ noncomputable def cartanComparison :
   Φ₂ := compB
   agree_zero := hzero
 
+/-- **The comparison data, from the degree-zero agreement in linear-map form.**
+This is the shape `cc-steenrod`'s `compA_eq_compB_zero` already has: once their
+second composite is packaged as a natural transformation, the right-hand side is
+their degreewise map and the left-hand side is their first composite, both by
+`rfl`, so their lemma discharges this hypothesis with nothing restated. -/
+noncomputable def cartanComparisonOfLin
+    (hzeroLin : ∀ X : TopCat.{0}, compAHom X 0 = ((compB.app X).f 0).hom) :
+    DiagonalComparison stdSimplexTop GroupRingZ2 (src singularBoundary) four :=
+  cartanComparison compB (fun X => by
+    apply ModuleCat.hom_ext
+    exact hzeroLin X)
+
 @[simp] theorem cartanComparison_Φ₁ : (cartanComparison compB hzero).Φ₁ = compA := rfl
 
 @[simp] theorem cartanComparison_Φ₂ : (cartanComparison compB hzero).Φ₂ = compB := rfl
