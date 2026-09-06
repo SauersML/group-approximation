@@ -18,6 +18,25 @@ theorem cup_comm {X : TopCat.{0}} {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q) :
 
 And in `CharClass/SteenrodSquare.lean`, the Steenrod squares:
 
+In `CharClass/SteenrodTotal.lean`, namespace `CharClass.Steenrod`, the shape
+`cc-wu`'s `ParityData` consumes, on `cc-projective`'s `TotalH X = ⨁ n, Hmod2 X n`:
+
+```lean
+def SqH (X : TopCat.{0}) (k : ℕ) : TotalH X →+ TotalH X
+theorem SqH_of (X) (k n) (a) : SqH X k (TotalH.of X n a) = TotalH.of X (k + n) (Sq k a)
+theorem SqH_zero_apply (X) (c) : SqH X 0 c = c
+theorem SqH_of_eq_zero_of_lt (X) (k n) (hk : n < k) (a) : SqH X k (TotalH.of X n a) = 0
+theorem SqH_map (f : X ⟶ Y) (k) (c) : SqH X k (TotalH.map f c) = TotalH.map f (SqH Y k c)
+theorem SqH_of_self (X) (n) (a) :
+    SqH X n (TotalH.of X n a) = TotalH.of X n a * TotalH.of X n a
+theorem Sq_pull (f : X ⟶ Y) (k n) (a) : Sq k (pull f n a) = pull f (k + n) (Sq k a)
+```
+
+`SqH X` **is** `cc-wu`'s `SqH` field; additivity is inherited from the direct
+sum, and `SqH_zero_apply` is their field of the same name.
+
+And the graded squares themselves:
+
 ```lean
 def Sq (k : ℕ) {n : ℕ} (x : Hmod2 X n) : Hmod2 X (k + n)
 theorem Sq_mk (k n : ℕ) (φ) (hφ) :
@@ -123,6 +142,7 @@ since:
 * `CharClass/SteenrodCupOne.lean` — contains `cup_comm`
 * `CharClass/SteenrodDiagonal.lean` — `steenrodDiag`, naturality, boundary
 * `CharClass/SteenrodSquare.lean` — the Steenrod squares
+* `CharClass/SteenrodTotal.lean` — the total operation on `⨁ n, H^n`, 2135 jobs
 
 ## AUTHORED, UNVERIFIED
 
@@ -138,7 +158,36 @@ cohomology, which needs `cc-cohom-api`/`cc-projective`'s direct sum.  My
 
 ## NEEDS
 
-Nothing from a peer.
+Two inputs, both for `CharClass/SteenrodTotal.lean`; everything else in the lane
+is green without them.
+
+1. **From `cc-cartan`** — the Cartan formula, to give `cc-wu`'s `cartanH` field:
+
+```lean
+theorem cartan {X : TopCat.{0}} (n p q : ℕ) (a : Hmod2 X p) (b : Hmod2 X q) :
+    Sq n (cup a b)
+      = ∑ i ∈ Finset.range (n + 1), cohCast (by omega) (cup (Sq i a) (Sq (n - i) b))
+```
+
+   in whatever degree bookkeeping suits you; I will adapt it to `cc-wu`'s
+   ungraded `SqH n (u * v) = ∑ p ∈ range (n+1), SqH p u * SqH (n-p) v` on
+   `TotalH`, which is then a `DirectSum.induction_on` away.  You have
+   `steenrodDiag` with naturality in `CharClass/SteenrodDiagonal.lean`.
+
+2. **From `cc-projective`** — the vanishing of `H^3` of complex projective
+   space, in any of these forms:
+
+```lean
+theorem Hmod2_CP_three_eq_zero (d : ℕ) (a : Hmod2 (CPspace d) 3) : a = 0
+-- or, more usefully, odd-degree vanishing:
+theorem Hmod2_CP_odd_eq_zero (d n : ℕ) (hn : Odd n) (a : Hmod2 (CPspace d) n) : a = 0
+```
+
+   With it, the line-class law is immediate: for `y = pull f 2 h` the pullback of
+   the degree-2 generator, `Sq 1 y = pull f 3 (Sq 1 h) = 0` by `Sq_pull` and the
+   vanishing, `Sq 0 y = y` up to the `0 + 2` cast, `Sq 2 y = y ⌣ y` is
+   `Sq_self`, and `Sq k y = 0` for `k > 2` is `Sq_eq_zero_of_lt`.  That is the
+   whole of `Sq(y) = y + y²`.
 
 ## TRAPS
 
