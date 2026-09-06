@@ -96,6 +96,16 @@ theorem cohCast_eq_iff {X : TopCat.{0}} {m m' : ℕ} (h : m = m') (a : Hmod2 X m
     (b : Hmod2 X m') : cohCast h a = b ↔ a = cohCast h.symm b := by
   subst h; exact Iff.rfl
 
+/-- Two transports along proofs of the same degree identity agree.  This is
+definitional proof irrelevance, and it is what lets a chain of casts finish by
+`rfl`. -/
+theorem cohCast_congr {X : TopCat.{0}} {m n : ℕ} (h h' : m = n) (a : Hmod2 X m) :
+    cohCast h a = cohCast h' a := rfl
+
+/-- A transport along any proof of a trivial degree identity is the identity. -/
+@[simp] theorem cohCast_self {X : TopCat.{0}} {m : ℕ} (h : m = m) (a : Hmod2 X m) :
+    cohCast h a = a := rfl
+
 /-! ## 3. The cup product -/
 
 /-- The mod-2 cup product `H^p(X; F₂) → H^q(X; F₂) → H^{p+q}(X; F₂)`. -/
@@ -169,6 +179,16 @@ def cupBilin (X : TopCat.{0}) (p q : ℕ) :
 
 @[simp] theorem cupBilin_apply {X : TopCat.{0}} {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q) :
     cupBilin X p q a b = cup a b := rfl
+
+theorem cup_cohCast_left {X : TopCat.{0}} {p p' q : ℕ} (h : p = p')
+    (a : Hmod2 X p) (b : Hmod2 X q) :
+    cup (cohCast h a) b = cohCast (by omega) (cup a b) := by
+  subst h; rfl
+
+theorem cup_cohCast_right {X : TopCat.{0}} {p q q' : ℕ} (h : q = q')
+    (a : Hmod2 X p) (b : Hmod2 X q) :
+    cup a (cohCast h b) = cohCast (by omega) (cup a b) := by
+  subst h; rfl
 
 /-! ## 4. The unit -/
 
