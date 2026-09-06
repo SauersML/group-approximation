@@ -291,7 +291,17 @@ theorem cochainCupI_coboundary_zero {X : TopCat.{0}} (a b n : ℕ)
     rw [Finset.card_empty]
     omega
   rw [cochainEval_add, hlhs, hT1, hT2]
-  have hmaster := cut_coboundary_master h2 0 (fun A B => faceVal a α τ A * faceVal b β τ B)
+  have hmaster :
+      (∑ k : Fin (n + 2), ∑ S ∈ cutIndex (0 + 1) n,
+          faceVal a α τ ((cutU (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k)
+            * faceVal b β τ ((cutV (S.map (Fin.succAboveOrderEmb k).toEmbedding)).erase k))
+        = (∑ T ∈ cutIndex (0 + 1) (n + 1), ∑ c ∈ cutU T,
+            faceVal a α τ ((cutU T).erase c) * faceVal b β τ (cutV T))
+          + (∑ T ∈ cutIndex (0 + 1) (n + 1), ∑ c ∈ cutV T,
+            faceVal a α τ (cutU T) * faceVal b β τ ((cutV T).erase c))
+          + (∑ T ∈ cutIndex 0 (n + 1), faceVal a α τ (cutU T) * faceVal b β τ (cutV T))
+          + (∑ T ∈ cutIndex 0 (n + 1), faceVal a α τ (cutV T) * faceVal b β τ (cutU T)) :=
+    cut_coboundary_master h2 0 (fun A B => faceVal a α τ A * faceVal b β τ B)
   rw [hvanish1, hvanish2, add_zero, add_zero] at hmaster
   exact hmaster
 
