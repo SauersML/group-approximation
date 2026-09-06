@@ -18,9 +18,16 @@ is nonzero as soon as the base is nonempty.
 
 So restricting a Leray–Hirsch presentation to a contractible neighbourhood kills
 every coordinate but the top one, and the top one is what the Thom class was
-built to make equal to the unit.  No Leray–Hirsch instance over the neighbourhood
-is needed for this: the statement is about column terms, not about a
-presentation.
+built to make equal to the unit.
+
+**What this does not do**, since I said otherwise to another lane before catching
+it.  The statement is about column terms, so it needs no Leray–Hirsch instance
+over the neighbourhood *to hold*.  But applying it to a restricted class requires
+knowing that class **is** a combination of column terms, and that is surjectivity
+of the combination downstairs, which is exactly a presentation over the
+neighbourhood.  So this removes the final computation and not the instance.  A
+correct statement travelling with an overstated account of what it buys is the
+failure this lane has now met three times, and no probe sees it.
 
 ## Main declarations
 
