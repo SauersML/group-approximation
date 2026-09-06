@@ -163,37 +163,56 @@ needed from anyone for it.  I re-confirmed with `cc-steenrod-s` (message sent)
 that I want the Finsupp-valued `steenrodDiag` (their report, §"Explicit `Φ`")
 exported with its boundary identity, to build the functor-level `Φ` myself.
 
-**Finding, for the lead and both lanes: the concrete `Φ` is much bigger than a
-wiring step.**  I checked whether the *linearized* Alexander–Whitney/
-Eilenberg–Zilber chain map `Δ : C_•(X) → C_•(X) ⊗ C_•(X)` (or its product
-variant `C_•(X×Y) → C_•(X) ⊗ C_•(Y)`) exists anywhere already — vendored tree
-or Mathlib at `81a5d257` — since either would be the natural scaffold to hang
-`steenrodDiag` on.  It does not.
-`ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/AlexanderWhitney.lean`
-builds only the **object-level** (unlinearized) front/back-face data
-(`awPair`, `frontSimplex`, `backSimplex`) and its own docstring names the
-linearization into a genuine chain map as "the remaining blocker" — nobody has
-built it, in either direction.  So even with `steenrodDiag` in hand, assembling
-the actual functor `Φ : W ⊗ S(-×-) ⟶ (S(-) ⊗ S(-))^{⊗2}` needs, from scratch:
-the periodic resolution `W` (cheap: mod 2, `1 - T ≡ 1 + T`, so the classical
-`⋯ → Λ →^{1-T} Λ →^{1+T} Λ` resolution of `ZMod 2` over `Λ = (ZMod 2)[ℤ/2]`
-collapses to *one* repeated differential — a small, self-contained
-`ChainComplex.of` construction, independent of everything below), the
-Eilenberg–Zilber comparison for a literal product of two different spaces, and
-the verification that evaluating the two sides against a cocycle pair
-reproduces the cross-Cartan sum on the nose.  That is comparable in size to a
-full lane's remaining budget, not a small bridge, and building it myself would
-both duplicate what `cc-steenrod` explicitly declined (for good reason — cost)
-and carry real risk of not finishing cleanly under remote-only, one-probe-at-a-
-time iteration.  I am not attempting the full functor in this session; the
-seven owned modules are green and stable regardless, and I will consume
-`steenrodDiag` the moment it lands.  **Update:** I did build the one piece of
-that construction that is cheap and presentation-independent — the periodic
-resolution `W` itself, generically over any `Λ`/`T` (see §1, `AcyclicModelsResolution.lean`,
-green, 1441 jobs).  Whoever assembles `Φ` picks their concrete group-ring
-presentation, supplies `T` and the two one-line hypotheses (`T*T=1`, `(2:Λ)=0`),
-and gets the resolution complex, its `d∘d=0` proof, and termwise freeness for
-free.
+**SUPERSEDED (2026-09-05, Opus back on the lane).**  The paragraph that used to
+stand here said the lane was blocked on an Eilenberg–Zilber comparison for a
+product of two different spaces and on a linearized Alexander–Whitney chain map.
+It is no longer blocked on either.  The lead's **internal** route compares two
+natural equivariant chain maps out of `W ⊗ S(X)` into `S(X)^{⊗4}` on **one**
+space, so no product, no Eilenberg–Zilber and no linearized AW enter.  The
+finding that the vendored `AlexanderWhitney.lean` stops at the object level
+still stands as a fact about the repository; it now blocks nothing.
+
+**The internal route, with the correction the lead has adopted.**  The two maps
+are `A = (Φ₀ ⊗ Φ₀) ∘ Φ` and `B = τ₂₃ ∘ (Φ ⊗ Φ) ∘ (Δ_W ⊗ Φ₀)`, where
+`Δ_W(e_n) = Σ_{i+j=n} e_i ⊗ T^i e_j` and `τ₂₃` transposes the middle two of the
+four tensor factors.  The `ℤ/2`-action on `S(X)^{⊗4}` must be the **block swap
+(13)(24)**, not (12)(34), and this is forced twice over:
+
+* `A` intertwines `T` with (13)(24) (the swap of `Φ`'s two outputs becomes the
+  swap of the two blocks), while the naked second composite intertwines `T` with
+  (12)(34); `τ₂₃` conjugates one to the other.
+* the evaluating functional `u = a ⊗ b ⊗ a ⊗ b` is invariant under (13)(24) but
+  **not** under (12)(34), and `u` has to be `Λ`-linear to be fed to
+  `NaturalHomotopy.cochain_succ`.  Under (12)(34) the evaluation step does not
+  typecheck at all.
+
+Both composites send `e₀ ⊗ x` to `x⊗x⊗x⊗x`, so they agree in degree `0` and the
+uniqueness half applies.  `Φ₀` and `Δ_W` are individually **not** `Λ`-linear;
+only the composites are, so `A` and `B` should be defined by their values on the
+`Λ`-basis of the (free) source and extended with `Module.Basis.constr`, never
+assembled as tensor products of maps.
+
+**Do not build `W ⊗ S(X)` with Mathlib's monoidal tensor of
+`ChainComplex (ModuleCat Λ)`**: that tensors over `Λ`, and the object wanted is
+over `ZMod 2` with the diagonal action.  Since `W_i = Λ` and the action on `S(X)`
+is trivial, `(W ⊗ S(X))_k` is the free `Λ`-module on
+`Σ i : Fin (k+1), Simp_{k-i} X`, a `Finsupp`; that indexing also makes every
+degree side-condition disappear, since both terms of the differential land on
+indices of the same shape.  The **target** `S(X) ⊗ S(X)` *is* a tensor over
+`ZMod 2`, so `AcyclicModelsTensor.tensorCx` at `Λ := ZMod 2` is the right object
+for it, and its acyclicity is then three applications of
+`tensorPositiveContraction` on top of `AcyclicModelsSplitting.splitHomotopy`.
+
+**Concrete obstacle for whoever instantiates, found by reading the pin.**
+`TopCat.toSSet = Presheaf.restrictedULiftYoneda SimplexCategory.toTop`, and
+`restrictedULiftYoneda A = uliftYoneda ⋙ …`, so
+`singularSimplices X n = (TopCat.toSSet.obj X).obj (op [n])` is
+`ULift (SimplexCategory.toTop.obj [n] ⟶ X)`, **not** the hom-set on the nose.
+`FreeOnModels.basis` is indexed by `Σ b, (M (mdl k b) ⟶ X)`, so the basis of the
+`Finsupp` source has to be reindexed along that `ULift` equivalence
+(`Module.Basis.reindex`) in exactly one place — the `basis`/`basis_apply`
+fields — and nowhere else.  Do this first; it is the field that fails to
+typecheck if the models are set up wrongly.
 
 ### For `cc-cohom-api` — graded commutativity comes free, do not wait for me
 
