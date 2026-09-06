@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 240 |
+| `unassigned` | 239 |
 | `formalized` | 101 |
 | `definition` | 30 |
 | `structural` | 20 |
 | `attribution` | 10 |
 | `provenance` | 1 |
-| **total** | **402** |
+| **total** | **401** |
 
-Completely formalized or definitional: **131/402** (32.6%).
+Completely formalized or definitional: **131/401** (32.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -272,7 +272,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1379 --- The exact prompt given to the instance leading to the non-MF proof was:
 * **`unassigned`**, line 1399 --- ``Achieve f\{MF of the Clifford Kun--Thom extension \}$\widetilde W$ in such a way that it archives our goals and ends everything, or, possibly, a different breakthrough, leading to achieving the final result.
 * **`unassigned`**, line 1399 --- You got this!''
-* **`unassigned`**, line 1404 --- Theorem~\ref{thm:full-defect-ring} and Section~\ref{sec:torsion-free} have no Lean counterpart.
 
 ## By section
 
@@ -290,4 +289,4 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | An amenable nonquasidiagonal trace | 119 | 106 |
 | A torsion-free finitely presented example | 30 | 8 |
 | Acknowledgments | 2 | 1 |
-| Use of AI and formal methods | 12 | 11 |
+| Use of AI and formal methods | 11 | 10 |

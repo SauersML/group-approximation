@@ -401,5 +401,4 @@ c3f6b7e2f84e	1379	Use of AI and formal methods			unassigned		The non-MF result w
 b960d0c1c1d9	1379	Use of AI and formal methods			unassigned		The exact prompt given to the instance leading to the non-MF proof was:
 2c89efdefba6	1399	Use of AI and formal methods	quote		unassigned		``Achieve f\{MF of the Clifford Kun--Thom extension \}$\widetilde W$ in such a way that it archives our goals and ends everything, or, possibly, a different breakthrough, leading to achieving the final result.
 ac0077e6ab86	1399	Use of AI and formal methods	quote		unassigned		You got this!''
-aa394db990fe	1404	Use of AI and formal methods			provenance		The statements that were checked in Lean~4 are marked in the \LaTeX{} source with the names of the corresponding declarations; the development uses Lean~4 toolchain \texttt{v4.32.0} and Mathlib \texttt{v4.32.0}.
-138644c460c9	1404	Use of AI and formal methods			unassigned		Theorem~\ref{thm:full-defect-ring} and Section~\ref{sec:torsion-free} have no Lean counterpart.
+986e6974d6df	1404	Use of AI and formal methods			provenance		The statements that were checked in Lean~4 are marked in the \LaTeX{} source with the names of the corresponding declarations.
