@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 23 modules; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 24 modules; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,29 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleGysinData.lean` — two facts a Gysin datum needs
+
+```lean
+omit [DecidableEq ι] in
+theorem chartOpensHomotopyEquivBase_toFun_apply (p) (z) :
+    (chartOpensHomotopyEquivBase p).toFun z = projPi p.plusOne (z : Proj p.plusOne)  -- `rfl`
+theorem rankOneProj_mem_cpSet (hu : u ∈ unitVectors (Fin (d + 1))) : rankOneProj u ∈ cpSet d
+noncomputable def sphereCpTautHomeo (d : ℕ) :
+    Sphere (cpTaut d) ≃ₜ ↥(unitVectors (Fin (d + 1)))
+theorem sphereCpTautHomeo_apply                                                      -- `rfl`
+```
+
+The chart's equivalence to the base has the bundle projection as its forward
+map **on the nose**, not up to homotopy: three homeomorphisms and a scaling
+homotopy go into it and none moves the base point.
+
+The sphere bundle of the tautological line over `ℂP^d` is the unit sphere of
+`ℂ^{d+1}`, that is `S^{2d+1}`.  The map is the second coordinate alone; what
+makes it a homeomorphism is that the line is recovered from the vector
+(`lineOf_eq_of_mem_fibre`).  **Stated at `cpTaut`, not for an abstract line
+bundle, because the general statement is false**: a general line bundle has a
+circle bundle, not a sphere.
 
 ### `BundleReindex.lean` — rank-one projectivisation, and reindexing
 
