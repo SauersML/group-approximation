@@ -107,6 +107,11 @@ Chern classes and the Euler class
   being nonzero.  The 153-line `n = 3` isometry in `LIXStepESphereModel` is avoidable.
 * `GysinPairTaut` (8810) — **the pair condition in the Gysin range**, `2m+2` for
   `m < d`.  It genuinely fails at both ends.
+* `GysinRetract` (8822) — the two pieces retract onto the base, and both readings are
+  sections of the projection.  The hypothesis is `rfl` on each side.  Note that the
+  complement retracts onto `P(p)`, not onto the base; they agree only at rank one.
+* `GysinPairRetract` (8835) — the pair condition transported to those two readings.
+  With it the Gysin datum for the tautological line is complete but for two fields.
 
 ## AUTHORED-UNVERIFIED
 
@@ -123,13 +128,11 @@ None.  Everything in the lane is probed green and pushed.
    `projInclNotZero` is the homotopy inverse the retraction inverts, would save me a
    homotopy.  Nothing else is blocked.
 
-   After they land: `rA`/`rB`, then `GysinRanged` gives `CPGenHyp`, then the ring,
-   then the slice class and Whitney.
+   `rA`/`rB` and the pair condition are built and green, so when the two facts land
+   the only work left is the two `_taut` fields; then `GysinRanged` gives `CPGenHyp`,
+   then the ring, then the slice class and Whitney.
 
-   *Not mine, but it will red the root for everyone:* `dupscan` reports four
-   fully-qualified duplicates, `slotOne`..`slotFour`, declared in both
-   `CartanMidFourSlots.lean` and `CartanPadTen.lean`.  Per-module probes are blind to
-   this.  Reported to the lead.
+   The `slotOne`..`slotFour` duplicates are gone; `dupscan` over `CharClass` is clean.
 
 1. **cc-bundle, to close item 2.**  A general isometric embedding of projective spaces
    is essential on `H^2`.  Three statements, sent with the shapes: composition of
