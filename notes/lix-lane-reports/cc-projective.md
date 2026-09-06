@@ -1,232 +1,115 @@
-# cc-projective — `H^*(ℂP^n)`, Leray–Hirsch, mod-2 Chern classes
+# Lane `cc-projective`
 
-Owns `GroupApproximation/CharClass/{ProjectiveSpace*,LerayHirsch*,Chern*}.lean`,
-namespace `GroupApproximation.CharClass`.  Deliverables: §1.4 items 1–4 of
-`notes/LIX_FULL_PROGRAM_2026-09-05.md`.
+Ownership: `GroupApproximation/CharClass/{ProjectiveSpace*,LerayHirsch*,Chern*}.lean`,
+namespace `GroupApproximation.CharClass` (new declarations in the sub-namespaces
+`LH`, `CPn`, `Gysin`).
 
-## Design in one paragraph
+Probe: `bash scratchpad/cc/ccprobe.sh cc-projective GroupApproximation.CharClass.<Module>`.
 
-The topological inputs enter as **structures in element form** — `MVSequence`,
-`GysinSequence`, `LerayHirschGraded` — so every theorem about them is proved now,
-about any space carrying one, and instantiating them is the only thing that waits
-on peers.  On top of that there are two views of the Chern classes.  The
-**degreewise** one (`LerayHirschDegree.lean`) reads them straight off the
-Leray–Hirsch coefficients of `ξ^r`, giving `γ_k ∈ H^{2k}(X;F₂)` with the degree
-correct by construction and needing no ring at all; it is green and it is what
-peers should consume today.  The **ring** one packages `⨁ H^{2n}` so that
-`Polynomial` and `PowerBasis` apply and Whitney becomes multiplication of
-polynomials; it waits on `cup_comm`, and it is the view cc-wu's `ParityData`
-ultimately needs, over the *full* graded ring rather than the even part.
+## GREEN (job counts from the last probe of each)
 
-## 1. GREEN
+Point-set chain and the additive computation
 
-All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
+* `ProjectiveSpaceBasic/Chart/Hyperplane/Puncture/Retract/TwoCover/Sphere` — the
+  point-set chain, re-proved from the paused fleet's red `AlgTop/ComplexProjective*`.
+* `ProjectiveSpaceCover` — `CPtop`, the two opens, contractibility of the chart,
+  the two homotopy equivalences.
+* `ProjectiveSpaceCohomology` — `MVSequence`, `bijective_resV`, `bijective_delta`,
+  `HasPointCohomology`, `HasSphereCohomology`, `HasCPCohomology`,
+  `hasCPCohomology_succ`.
+* `ProjectiveSpaceSymmetry` (8676) — `PathConnectedSpace (CP d)`.
+* `ProjectiveSpaceHomogeneous` (8659) — `exists_homeomorph_mapsTo_basePoint`, for cc-thom.
+* `ProjectiveSpaceInputs` (8784) — the three cover pieces with their cohomology.
+* `ProjectiveSpaceComputation` (8789) — **item 1**, `hasCPCohomology_CP`, unconditional.
+* `ProjectiveSpaceStable` (8803) — **item 1, second half**: `pull_cpIncl_cpGen`, the
+  hyperplane inclusion carries the degree-2 generator to the degree-2 generator.
+* `ProjectiveSpaceRing` — `lineGen`, `cupPowE`, `GysinSequence`, `cupPowE_ne_zero`.
 
-| module | jobs |
-|---|---|
-| `ProjectiveSpaceBasic` | 8686 |
-| `ProjectiveSpaceChart` | 8686 |
-| `ProjectiveSpaceHyperplane` | 8686 |
-| `ProjectiveSpacePuncture` | 8686 |
-| `ProjectiveSpaceRetract` | 8686 |
-| `ProjectiveSpaceTwoCover` | 8683 |
-| `ProjectiveSpaceSphere` | 8683 |
-| `ProjectiveSpaceCover` | 8683 |
-| `ProjectiveSpaceCohomology` | 8686 |
-| `ProjectiveSpaceRing` | 8686 |
-| `ProjectiveSpaceSymmetry` | 8676 |
-| `LerayHirschAlgebra` | 8686 |
-| `LerayHirschDegree` | 8683 |
-| `ChernRelation` | 8686 |
-| `ChernEuler` | 8686 |
-| `ChernEvenPiece` | 8686 |
-| `ChernEvenRing` | 8683 |
-| `ChernEvenRingComm` | 8683 |
-| `ChernClasses` | 8676 |
-| `ProjectiveSpaceHomogeneous` | 8659 |
-| `ProjectiveSpaceInputs` | 8784 |
-| `LerayHirschDegree` (with `pull_injective`) | 8783 |
-| `ProjectiveSpaceComputation` | 8789 |
-| `ChernTotalRing` | 2464 |
-| `ChernClasses` (over `TotalH`) | 2466 |
-| `ChernEulerBundle` | 8799 |
-| `GysinCover` | 3343 |
-| `GysinFromLerayHirsch` | 2057 |
-| `LerayHirschColumn` | 2056 |
+The Leray-Hirsch ladder
 
-What that amounts to mathematically: the whole point-set chain over the
-projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
-`MVSequence` term and one lemma; the Gysin reduction of the ring to `h^n ≠ 0`;
-the mod-2 Euler class of a line bundle; the Grothendieck relation as pure
-algebra; the degreewise Chern classes with `γ_k ∈ H^{2k}` correct by
-construction, their uniqueness, and injectivity of `π^*` — the half of
-Leray–Hirsch the splitting principle runs on; path-connectedness of `ℂP^d`; and
-its homogeneity, which is what cc-thom's punctured recursion needed.
+* `LerayHirschAlgebra` — `bijective_of_ladder` (the five lemma in element form;
+  Mathlib has none at this pin), `powerBasisOfBijective`.
+* `LerayHirschDegree` (8783) — `lhDomainCard`, `lhMap`, `LerayHirschGraded`, `gamma`.
+* `LerayHirschColumn` (2056) — `MVFacts`, `lhDomain`, the five componentwise maps.
+* `LerayHirschSquares` (2058) — `MVPulls`, `MVLadder`, `lhSum`, `lhSum_pull` (all four
+  restriction squares at once), `lhSum_delta`, and the column's three exactness
+  statements.
+* `LerayHirschInduction` (2454) — `bijective_lhSum`, the Mayer-Vietoris step, by the
+  five lemma, with degree zero done by hand as the four lemma.
+* `LerayHirschBridge` (2456) — `lerayHirschGraded_of_bijective`, the ladder's output in
+  the published interface, and the way back in.
+* `LerayHirschMV` (8792) — **every ladder hypothesis discharged**;
+  `bijective_lhSum_comap` carries none.
 
-**Item 1 is DONE, unconditionally.**  `hasCPCohomology_CP (d : ℕ) :
-HasCPCohomology (CPtop d) d` in `ProjectiveSpaceComputation.lean`: a line in
-`H^{2n}(ℂP^d;F₂)` for every `n ≤ d`, and zero in every other degree.  No
-hypotheses, no `sorry`, nothing outstanding from a peer.
+Chern classes and the Euler class
 
-The last hypothesis dissolved rather than being discharged.  It had been "every
-class of `H^0` of the intersection is a sum of restrictions", which looked to need
-cc-thom's identification of the Mayer–Vietoris restrictions with honest pullbacks.
-It does not: `exists_sum_eq_of_lines` gets it from exactness at `H^0(U) ⊕ H^0(V)`
-plus all four `H^0` groups being lines, **by counting**.  If restriction from `U`
-hits the generator we are done, likewise for `V`; otherwise both kill their
-generators, exactness produces classes on the ambient space restricting to
-`(gen, 0)` and to `(0, gen)`, both are nonzero hence both are *the* generator of
-`H^0(X)` hence equal, and one restricts to the generator while the other restricts
-to zero.
+* `ChernRelation` (8686) — the Grothendieck relation as pure algebra.
+* `ChernTotalRing` (2464) — the FULL graded mod-2 ring, `TotalH`.
+* `ChernClasses` (2466) — `LerayHirschData`, `chern`, `chernPolynomial`.
+* `ChernEuler`, `ChernEulerBundle` (8799) — **item 2**, `eulerOfBundle` and naturality.
+* `GysinCover` (3343), `GysinFromLerayHirsch` (2057) — the Gysin sequence reduced to
+  Leray-Hirsch for a rank-two bundle.
 
-## 2. AUTHORED, UNVERIFIED
+## AUTHORED-UNVERIFIED
 
-*(nothing)*
+None.  Everything in the lane is probed green and pushed.
 
-## 3. NEEDS
+## NEEDS
 
-**From `cc-cohom-api`, the one blocking item:** an `MVSequence` term for a
-two-open cover,
+1. **cc-bundle, to close item 2.**  A general isometric embedding of projective spaces
+   is essential on `H^2`.  Three statements, sent with the shapes: composition of
+   `cpEmbed`s, the one-step shift as a `cpEmbed`, and independence of the embedding.
+   I offered to take the first two myself.
 
-```lean
-def mvSequence (U V : Opens X) (hUV : U ⊔ V = ⊤) :
-    MVSequence X (TopCat.of (U : Set X)) (TopCat.of (V : Set X))
-      (TopCat.of ((U : Set X) ∩ (V : Set X)))
-```
+2. **Nothing else is blocked on a peer.**  Both of the two facts I was waiting on,
+   `MVDelta.mvDelta_cup` and `MVDelta.mvDelta_naturality`, have landed.
 
-The three exactness fields come from their three `ShortComplex.Exact`s through
-`ShortComplex.moduleCat_exact_iff`; cc-thom established that the biproduct
-identification of the middle term is *not* needed, the pair form following from
-the four biproduct identities carried through the additive dualizing functor.
-and, alongside it,
+## THE ONE REMAINING MATHEMATICAL GATE, and why
 
-```lean
-theorem one_ne_zero_cohZero (X : TopCat.{0}) [Nonempty X] : one X ≠ (0 : Hmod2 X 0)
-```
+Leray-Hirsch is complete except for its BASE CASE: the theorem over an open set on
+which the bundle is trivial.  The base case is not a corollary of the ladder, and the
+order it has to be built in is forced by one fact that is worth recording because it
+looks like an obstruction and is not:
 
-which is the whole content of the induction's remaining hypothesis: restriction
-`H^0(U) → H^0(W)` is onto because both are lines and `1` goes to `1`.  Everything
-else downstream of those two is proved.  Later, for Leray–Hirsch and not before:
-the `H^*(X)`-linearity of the connecting map, `mvDelta_cup`.
+**The Mayer-Vietoris cover of `CP^n` by the chart and the punctured space cannot see
+the top power of the generator.**  Restriction to the punctured space is injective only
+up to degree `2n-2`, so it gives `h^m` nonzero for `m` at most `n-1` and says nothing
+about `h^n`.  In `CP^2` the restriction sends `h` to the generator of `H^2(S^2)` and
+`h^2` into `H^4(S^2) = 0`.  So the ring structure genuinely needs the Gysin sequence,
+exactly as the program note says, and no amount of work on the additive side will
+produce it.
 
-**From `cc-cohom-api`, the two blocking the whole remaining chain:** `mvDelta_cup`,
-linearity of the connecting map over classes pulled back from the ambient space;
-and `mvExactZero`, exactness at the left end, `0 → H^0(X) → H^0(U) ⊕ H^0(V)`.  The
-second is needed because the left column of the Leray–Hirsch ladder is the direct
-sum over `i < r` of the base sequence shifted by `2i`, and the summand at shift
-`2i` reaches base degree zero when `n = 2i`, where the incoming term is absent —
-so exactness there is exactly injectivity of the pair of restrictions.  Both
-shapes have been sent by name.
+The bootstrap that closes it, in order:
 
-**From `cc-thom`:** `mvResV_eq_pull`, for stability of the degree-2 generator
-along the hyperplane inclusion, which is the last piece of invariance of the
-Euler class under isomorphism; and Mayer–Vietoris naturality in a map of covered
-spaces, which the ladder's restriction rungs need.
+1. The finite-cover induction, relativized to an open base.  Pure plumbing, mine,
+   unblocked, and the gate for everything below.
+2. The standard `n+1` charts of `CP^n`: contractible, and the tautological line is
+   trivial over each.
+3. Over each chart, `P(taut + 1)` is `chart x CP^1`, and Leray-Hirsch there needs only
+   the ADDITIVE structure of `H^*(CP^1)`, since `h^2 = 0` there.  No circularity.
+4. The cover induction then gives Leray-Hirsch for `P(taut + 1)` over `CP^n`, hence the
+   Gysin sequence, hence the ring `F2[h]/(h^(n+1))`.
+5. With the ring in hand, the Kunneth for a `CP` factor follows by induction on the
+   fibre dimension: `delta_cup` moves the sphere generator across the connecting map and
+   `delta_naturality` identifies its image with `xi^(d+1)`.  Both are now theorems.
+6. General Leray-Hirsch base cases over contractible trivialising opens then reduce to
+   the ring structure, and the machine is closed.
 
-**From `cc-bundle`:** the rotation homotopy reindexed into a `ℂP`-valued
-statement, as `cpBlockIncl (d) : C(CP d, CP (2*d+1))` with its `_apply` lemma and
-`homotopic_classifyOne_blockIncl`; the exact target has been sent.  Everything
-else this lane needed from them is discharged: `classifyOne` and its naturality,
-the zero section with the openness of its complement and the retraction onto
-`P(p)`, and now the flag bundle with `flag_decomposition`, which is what Whitney's
-formula consumes.  Injectivity of `flagProj` on cohomology is this lane's, and is
-`LerayHirschGraded.pull_injective` composed along the tower.
+## TRAPS
 
-**Older, superseded:** `mvResWU_eq_pull`, or just its degree-zero
-corollary `mvResWU_one`, which is the last hypothesis of the projective-space
-induction; and `mvDelta_cup`, linearity of the connecting map over classes pulled
-back from the ambient space, which the Leray–Hirsch ladder and the `CP`-factor
-Künneth both need and which cannot be arranged away.
-
-**Consumed, not owned:** cc-thom's `MayerVietorisSequence`, `MayerVietorisPull`,
-`MayerVietorisRestriction`; cc-cohom-api's `CohomologyBasic`, `CohomologyAssoc`,
-`CohomologyBridge`, `CohomologySphere`, `CohomologyContractible`, `CohomologyShapes`,
-`CohomologyDegreeZero`; cc-steenrod's `SteenrodCupOne`; cc-bundle's
-`BundleClassify`, `BundleZeroSection`.
-
-**Deleted:** `ChernEvenPiece`, `ChernEvenRing`, `ChernEvenRingComm`, superseded by
-`ChernTotalRing` and holding the last four duplicate names.
-
-**Item 2 is DONE.**  `eulerOfBundle` in `ChernEulerBundle.lean`: the mod-2 Euler
-class of a line bundle presented as a rank-one projection-valued map, with
-naturality under pullback, the normalisation `e(taut) = h`, and vanishing when the
-classifying map factors through a space without `H^2`.  No classifying-space
-theory is involved: `cc-bundle`'s `classifyOne` observes that such a map *is* a
-map into `ℂP^d`, and the generator is canonical because an `F₂`-line has one
-nonzero element.  Invariance under isomorphism is stated as
-`eulerOfBundle_eq_of_homotopic` and needs two more inputs, listed below.
-
-**From `cc-bundle`:** the projective bundle `P(p)` with its tautological line,
-`P(p) ⊆ P(p ⊕ 1)`, `E(p) = P(p⊕1) ∖ P(p)`, the zero section, a finite
-trivializing cover with the local homeomorphisms, the classifying map of a
-rank-one projection with the rotation homotopy, and the flag bundle.
-
-**From `cc-relative`:** the vanishing-product lemma — classes vanishing on the
-two members of an open cover have zero cup product — for Whitney.
-
-## 4. TRAPS
-
-* **A definition whose result is a class needs `@[reducible]`**, or nothing
-  downstream unifies against it.  Hit three times in this lane: `CPtop`, the
-  graded ring structure, and the algebra of a projective bundle.
-* **The `DirectSum` semiring diamond, and how it was settled.**  With an even
-  ring plus a commutativity *hypothesis*, the direct sum acquired a `Semiring` by
-  two syntactically different routes, `DirectSum.semiring` from the graded
-  structure and `CommRing.toCommSemiring.toSemiring` from the hypothesis.  They
-  are definitionally equal but not syntactically so, and every type mentioning
-  the ring — `Polynomial`, the `1` of `γ₀ = 1`, the `0` of the rank bound — pins
-  one at elaboration.  Nothing local settled it.  Migrating to the full graded
-  ring did, because there the graded structure is the only source of the ring and
-  the two routes coincide by projection.  General lesson: do not mix a graded-ring
-  instance with a separate `CommRing` hypothesis on the same carrier.
-* **`GradedMonoid.GMonoid`'s `gnpow` defaults need ambient `GMul` and `GOne`.**
-  Lean fills them from `gnpowRec`, whose synthesis has nothing to find if the
-  family has no instance yet.  Supply them by `letI` inside the construction;
-  they agree with the `mul`/`one` fields on the nose.
-* **Duplicate declarations across lanes break the root import.**  This lane and
-  `cc-cohom-api` both defined `hasSphereCohomology_sphere`; theirs is the one,
-  mine is deleted and `CohomologyShapes` imported.  Everything in this lane sits
-  directly in `GroupApproximation.CharClass` rather than a sub-namespace, which is
-  what made the collision possible.  New declarations go in a sub-namespace; the
-  *published* names are not being renamed, because `MVSequence`,
-  `HasCPCohomology`, `HasPointCohomology`, `HasSphereCohomology`, `TotalH`,
-  `lineGen`, `toLinearZMod2` and `cupPowE` are already imported by cc-thom,
-  cc-cohom-api and cc-lix-odd, and a rename would break three lanes at once.
-* **A `git add` chained behind a step that can fail silently drops files.**  It
-  cost a dangling import on main: `ChernClasses.lean` landed importing
-  `ChernTotalRing.lean`, which was never committed.  The lane that notices is the
-  one whose *other* file imports them, not the one that wrote them.
-* **`git pull` aborts on a *peer's* uncommitted file** in the shared tree, and
-  neither committing nor stashing it is yours to do.  Push and let the peer's own
-  push carry your commits, or wait.
-* **`RingHom.toAlgebra` wants a `CommSemiring` target**, and `RingHom.toAlgebra'`
-  wants the image central.  Both are graded commutativity, so the algebra
-  structure of a projective bundle cannot be built before `cup_comm`; taking it
-  as an ambient instance variable does not dodge the diamond above.
-* **`PowerBasis` asks only `[Ring S]`.**  Asking `[CommRing B]` in the Chern
-  algebra was gratuitous and forced commutativity of the total space; it is now
-  `[Ring B]` everywhere except `section Split`, where a `Finset.prod` is taken.
-* **Mathlib names at this pin**: `Matrix.dotProduct` is `dotProduct`;
-  `Polynomial.finset_sum_coeff` is `finsetSum_coeff`; `Polynomial.natDegree_prod`
-  needs `NoZeroDivisors`, so use `natDegree_prod_of_monic`;
-  `PowerBasis.degree_minpolyGen` needs `[Nontrivial A]` on the *source* ring.
-* **`Nat.mul` recurses on its second argument**, so `2 * 0` reduces to `0` and
-  `2 * (m+1)` to `2*m + 2`, definitionally.  Cup powers of a degree-2 class need
-  no transport at all.  `0 + p` does *not* reduce, which is why left unitality
-  does.
-* **Over `F₂` every additive map is linear** (`∀ z : ZMod 2, z = 0 ∨ z = 1` by
-  `decide`), which sidesteps the `CompatibleSMul _ _ (ZMod 2) ℤ` failure when
-  turning a Mayer–Vietoris map into a `LinearEquiv`.  `toLinearZMod2`.
-* **An `F₂`-line has a *unique* nonzero element**, so the degree-2 generator of
-  `H^*(ℂP^n)` needs no orientation choice.  `lineGen`, with `lineGen_eq`.
-* **A section `variable (mv : …)` is not in scope** in a theorem whose statement
-  does not mention it, and `mv.foo` then fails with `Unknown identifier`.
-* **`rw` on a `def` whose body is a nested `dite`** has no equation lemma; use
-  `unfold` or `show`.
-* **`ext` on a `ContinuousMap` into a matrix subtype goes too far**, destructuring
-  into entries; use `ContinuousMap.ext`.
-* **The paused fleet's `AlgTop/ComplexProjective*` is red and unowned** (an
-  unused simp argument in `ComplexProjectiveBasic`, fatal under
-  `-DwarningAsError=true`).  The chain is re-proved here instead.  Two further
-  breakages surfaced in the copy: `rw [normalize]` unfolds only the first of two
-  occurrences, and `rw […, sq]` normalises only the numerator of `‖·‖²/r²`.
+* `sInclusion` applied to an open set coerced to a set leaves its source type a
+  metavariable, which will not unify with a space whose subtype came from the `SetLike`
+  coercion on `Opens`.  Write the inclusion as `TopCat.ofHom` with the expected type
+  given.
+* `pull_congr (subInclusion_comp_sInclusion _)` cannot synthesize the subset proof; pin
+  it with `(s := _) (t := _)`.
+* `MVFacts` is a Prop-valued structure, so its instance is a `theorem`, not a `def`.
+  Lean says so explicitly, which is the only reason it is cheap to find.
+* Proofs inside an anonymous constructor are stated against unreduced applications, so
+  `rw` cannot see the component until `dsimp only` has beta-reduced it.  Building a
+  homomorphism as a `comp` of a Pi-level homomorphism with `AddSubgroup.subtype`, or as
+  an `AddMonoidHom.codRestrict`, avoids the problem entirely and is what the ladder does.
+* A section `variable` is not in scope in a statement that does not mention it, so a
+  structure argument that only the PROOF uses must be explicit.
+* Truncated subtraction: `0 - 2 * i` does not reduce to `0` for a variable `i`, so a
+  degree-zero component still needs a `cohCast`.
