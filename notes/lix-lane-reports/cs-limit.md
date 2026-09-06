@@ -11,7 +11,8 @@
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
 | `Analysis/LIXLimitAlgebra` | 3024 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
-| `Analysis/LIXLimitMatrixFlatten` | 2999 | `M₂(M₂(A)) ≃⋆ₐ[ℂ] M₄(A)` and `U₀` transport both ways |
+| `Analysis/LIXLimitSectionMatrix` | 3012 | `M_ι(C(X,ℂ)) ≃⋆ₐ[ℂ] C(X, M_ι(ℂ))` and `U₀` transport |
+| `Analysis/LIXLimitMatrixFlatten` | 3000 | `M₂(M₂(A)) ≃⋆ₐ[ℂ] M₄(A)` and `U₀` transport both ways |
 | `Analysis/LIXLimitSimple` | 3024 | **`IsSimpleCStar LIXLimit`, unconditional** |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
@@ -258,6 +259,12 @@ without a `sorry` or an `axiom`, which this program forbids.
   `OneMemClass.coe_one`.
 * **`Path.cast` takes the *new* endpoint on the left**: `Path.cast (γ : Path a b) (ha : a' = a)
   (hb : b' = b) : Path a' b'`.  The obvious orientation fails with a `show`-pattern mismatch.
+* **The order shadow has three unrelated-looking faces.**  One cause, `Subtype.partialOrder`
+  and the pointwise `CStarMatrix.instPartialOrder` outranking the spectral order, has now
+  presented as (i) a missing `StarOrderedRing` on a stage algebra, (ii) four instance failures
+  plus a `whnf` heartbeat timeout in the nested `M₂(M₂(A))`, and (iii) a missing `HMul` and a
+  missing `CStarAlgebra` on the section algebra (cs-clutching).  In every case the cure is the
+  priority line below, never a new instance.
 * **A pointwise order shadows the spectral order on the stage algebras.**  `STW59.StageAlgebra i`
   is a subtype of `C(X_i, CStarMatrix ι ι ℂ)`, and `CStarMatrix.instPartialOrder` gives that
   ambient a pointwise `PartialOrder` which reaches the subtype through `Subtype.partialOrder`.
