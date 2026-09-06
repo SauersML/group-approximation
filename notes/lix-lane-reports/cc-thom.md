@@ -209,6 +209,8 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomBundlePair.lean` | `bundlePairTrivIso` — the bundle pair over a trivialising neighbourhood **is** the product pair, `cc-bundle`'s image equation fed to `cc-relative`'s pair transport; `relPullback_injective_of_retraction` — a retracted map of pairs is injective, which is what makes the trivial-bundle Thom class computable with no Künneth of pairs |
 | `CharClass/ThomKunnethNatural.lean` | `knBaseMap`, `knSigma_natural`, `pull_knBaseMap_knPrY`, **`kunneth_decomposition_natural`** — the absolute Künneth decomposition is natural in the base, the one input `cc-bundle`'s hypothesis-free route still needed |
 | `CharClass/ThomRelativeCokernel.lean` | `relDelta_surjective_of_injective`, `ker_relDelta_eq_range_absToSub`, **`relQuotEquiv`** — if the restriction is injective in every degree, the relative group **is** the cokernel of the restriction; the homological core of the hypothesis-free route, with no bundle, sphere or product in it |
+| `CharClass/ThomSphereSubspace.lean` | `absToSub_injective_of_sphere`, `relQuotEquiv_of_sphere` — when the ambient contracts onto a base and the subspace is that base crossed with a sphere, the restriction is split injective, so the relative group is the cokernel |
+| `CharClass/ThomSectionDetect.lean` | `sectionDetectsThom_of_detect`, **`sectionDetectsThom_of_injective`**, **`topChernClass_ne_zero_of_chartInjective`** — the section predicate **is** injectivity of the chart composite; Step C's odd side over that one geometric input |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -676,6 +678,34 @@ out of the relative group vanishes, the connecting map is onto with kernel that
 image, and the relative group is the cokernel.  It also gives the fibre-generator
 statement at **every** point rather than at one chosen point.
 
+### Reporting failures, which were the day's worst
+
+Two after midnight, both worse than the mathematical ones because neither has a
+natural check.
+
+* **A fabricated identifier.**  I wrote a commit hash into a message while saying
+  in the same sentence that I had not yet verified it.  A wrong hash does not
+  break a build; it sends whoever trusts it to the wrong commit.  **Rule, now
+  fleet-wide: an identifier goes into a message only after being read out of
+  command output.**  If it has not been read, write "hash to follow".
+* **A green probe left unread for an hour.**  I set a long blocking wait, the
+  notification arrived, and I did not look.  Nothing needed fixing — only
+  reading — and the lead was blocked the whole time.  Do not set long blocking
+  waits; read the probe log directly when it returns, and send the one-liner at
+  a red rather than waiting for the retry.
+
+`cc-lix-odd`'s framing that the build is the signal and the text is not has a
+second half: the signal is worth nothing if nobody looks at it.
+
+### The ambient of a pair must be a `TopCat`, not a type
+
+`absToSub` takes the ambient implicitly, and Lean cannot recover it from a
+`Set` of a plain type with a topology.  The symptom is an application type
+mismatch naming the *set*, followed by an unrelated `isDefEq` timeout further
+down the file — so the second error points nowhere near the cause.  State the
+ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
+`cc-cohom-api` flagged for `mvResU`/`mvPairEquiv` earlier in the day.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -710,3 +740,6 @@ statement at **every** point rather than at one chosen point.
 | 2026-09-05 | **`ThomBundlePair` + `ThomStepCEuler` + `ThomStepCLocal`** | **green, 8806 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomKunnethNatural`** | **green, 8803 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | **`ThomRelativeCokernel`** | **green, 8730 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-06 | `ThomSphereSubspace` | red: ambient stated as a type, not a `TopCat` |
+| 2026-09-06 | **`ThomSphereSubspace`** | **green, 8807 jobs, `bf27d703`** |
+| 2026-09-06 | **`ThomSectionDetect`** | **green, 8830 jobs, `1b542ffc`, first probe** |
