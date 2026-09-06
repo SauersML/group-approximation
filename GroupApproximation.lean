@@ -3672,6 +3672,7 @@ import GroupApproximation.CharClass.LerayHirschPeel
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeSwap
 import GroupApproximation.CharClass.SteenrodFourfoldBDegen
 import GroupApproximation.CharClass.CohomologyChartPeelUniq
+import GroupApproximation.CharClass.LerayHirschPeelCP
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
