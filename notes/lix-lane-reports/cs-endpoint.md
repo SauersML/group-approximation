@@ -543,6 +543,22 @@ plus two `#audit_closed_axioms` lines.
   as the entry below, in the opposite direction — there I read a file newer
   than the log, here a log older than the file.  **Wait on the probe's own
   completion signal; never conclude from a log you did not watch get written.**
+* **`sorryAx` in an audit line can be Lean's error recovery, not anyone's
+  `sorry`.**  `#audit_closed_axioms` reported
+  `not_problemLIX_of_lemmaTwo_data depends on axioms outside the classical
+  allowlist: [sorryAx]` while the two theorems it is built from both reported
+  clean.  Nothing upstream had a `sorry`.  The real error was twelve lines
+  earlier — `Unknown identifier not_problemLIX_of_exists`, because I had
+  inserted the new section *above* the theorem it applies — and Lean recovered
+  from the failed elaboration by filling the proof with `sorryAx`, which the
+  audit then honestly reported.
+
+  Two things worth keeping.  **Read the first error, not the loudest one**: an
+  axiom-closure violation downstream of a failed elaboration is a symptom.  And
+  the gate behaved exactly as designed — a proof that only *looked* complete
+  because Lean papered over an error was refused, which is the case
+  `#audit_closed_axioms` exists for and the one that is hardest to catch by
+  eye.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
