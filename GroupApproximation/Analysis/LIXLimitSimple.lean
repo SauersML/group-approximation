@@ -48,6 +48,11 @@ theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit :=
   lixLimit_isSimpleCStar_of_full fun k a hne =>
     STW59.isFull_climb_of_ne_zero lixTower_succHom k a hne
 
+/-- `lixLimit_isSimpleCStar` under the name the endpoint wiring uses.  Same theorem; both names
+are kept so that neither `cs-endpoint` nor the root wiring has to be edited to match the other. -/
+theorem lixLimit_isSimpleCStar_unconditional : IsSimpleCStar LIXLimit :=
+  lixLimit_isSimpleCStar
+
 end
 
 end LIX
