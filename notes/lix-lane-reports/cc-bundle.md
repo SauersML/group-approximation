@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 21 modules; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 22 modules; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,32 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleGysinPieces.lean` — the two pieces of the Gysin cover
+
+```lean
+def chartOpensSet (p : Bundle X ι) : Set (Proj p.plusOne)      -- betaEntry ≠ 0
+def notZeroOpensSet (p : Bundle X ι) : Set (Proj p.plusOne)    -- zTrace ≠ 0
+def chartHomeoOpens / notZeroHomeoOpens / interHomeoOpens / puncturedHomeoInter
+noncomputable def chartOpensHomotopyEquivBase (p) : ↥(chartOpensSet p) ≃ₕ X
+noncomputable def notZeroOpensHomotopyEquivProj (p) : ↥(notZeroOpensSet p) ≃ₕ Proj p
+noncomputable def interHomotopyEquivSphere (p) :
+    ↥(chartOpensSet p ∩ notZeroOpensSet p) ≃ₕ Sphere p
+```
+
+**The complement of the zero section retracts onto `P(p)`, NOT onto the base.**
+That is the whole point of the Gysin cover: one piece is the base, the other is
+the hyperplane at infinity, and the sequence relates them.  Both are plausible
+spaces over the same base, so the wrong reading is hard to notice; the signature
+refuses it.
+
+**No new homotopy appears here.**  All three reduce to
+`totalHomotopyEquivBase`, `notZeroHomotopyEquivProj` and
+`puncturedHomotopyEquivSphere`.  What the file actually adds is four flattening
+homeomorphisms: every space in this lane is a subtype of `X × Matrix`, while a
+cover of `Proj p.plusOne` produces subsets of that subtype.  Together with
+`projOverHomeo` this is the third time that mismatch has had to be bridged, so
+expect it again.
 
 ### `BundleProjOver.lean` — the part of `P(p)` over an open set
 
