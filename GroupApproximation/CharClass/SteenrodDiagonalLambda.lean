@@ -57,12 +57,12 @@ variable {X : TopCat.{0}} {Λ : Type} [CommRing Λ] [Algebra (ZMod 2) Λ]
 
 /-- The basis of `(W ⊗ S(X))_k`: an `n`-simplex with `n ≤ k`, the `W`-index being
 the derived `k − n`. -/
-def WSIndex (X : TopCat.{0}) (k : ℕ) : Type :=
+abbrev WSIndex (X : TopCat.{0}) (k : ℕ) : Type :=
   Σ n : Fin (k + 1), singularSimplices X n.val
 
 /-- The basis of `(S(X) ⊗ S(X))_k`: a pair of simplices of dimensions `a` and
 `k − a`. -/
-def PairIndex (X : TopCat.{0}) (k : ℕ) : Type :=
+abbrev PairIndex (X : TopCat.{0}) (k : ℕ) : Type :=
   Σ a : Fin (k + 1), singularSimplices X a.val × singularSimplices X (k - a.val)
 
 /-! ## 2. Injecting one bidegree -/
@@ -82,7 +82,6 @@ theorem injectPair_single (X : TopCat.{0}) (Λ : Type) [CommRing Λ] [Algebra (Z
       = Finsupp.single (⟨a, p⟩ : PairIndex X k) (algebraMap (ZMod 2) Λ c) := by
   unfold injectPair
   rw [Finsupp.mapRange_single, Finsupp.mapDomain_single]
-  rfl
 
 /-! ## 3. The diagonal on the basis -/
 

@@ -42,14 +42,14 @@ noncomputable section
 /-! ## 1. The carrier -/
 
 /-- A pair of degrees summing to `k`, the constraint carried as a proposition. -/
-def PairDeg (k : ℕ) : Type := {p : ℕ × ℕ // p.1 + p.2 = k}
+abbrev PairDeg (k : ℕ) : Type := {p : ℕ × ℕ // p.1 + p.2 = k}
 
 @[ext] theorem PairDeg.ext {k : ℕ} {p q : PairDeg k} (h : p.val = q.val) : p = q :=
   Subtype.ext h
 
 /-- The basis of `(S(X) ⊗ S(X))_k`: a pair of simplices of degrees summing to
 `k`. -/
-def PairIdx (X : TopCat.{0}) (k : ℕ) : Type :=
+abbrev PairIdx (X : TopCat.{0}) (k : ℕ) : Type :=
   Σ p : PairDeg k, singularSimplices X p.val.1 × singularSimplices X p.val.2
 
 /-- The bidegree `(a, k - a)`. -/
