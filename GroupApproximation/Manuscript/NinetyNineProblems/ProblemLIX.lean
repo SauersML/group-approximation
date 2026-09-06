@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.LIXEndpointStatement
 import GroupApproximation.Analysis.CStarSimple
 import GroupApproximation.Analysis.LIXLimitSimple
+import GroupApproximation.Analysis.LIXLemmaTwoProp
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -168,6 +169,44 @@ theorem not_problemLIX_of_exists
   obtain ⟨A, _inst, hnt, hsimp, hnk⟩ := h
   exact fun hLIX => hnk (hLIX A hnt hsimp)
 
+/-! ## Against the single topological input -/
+
+/-- **The endpoint reduced to Lemma 2**, with the two facts about the
+counterexample algebra still explicit.
+
+`LIX.LemmaTwoHolds` (`Analysis/LIXLemmaTwoProp`) is the only thing the whole
+argument takes from algebraic topology: at every stage of the tower, `F ⊕ H`
+and `𝟏² ⊕ H` are not Murray--von Neumann equivalent as continuous fields.
+Everything else --- the stage algebras, the connecting maps, the limit, its
+simplicity, and the reduction of `¬ ProblemLIX` to one unitary --- is
+unconditional.
+
+Simplicity is no longer a hypothesis anywhere: `LIX.lixLimit_isSimpleCStar`
+proves `IsSimpleCStar LIX.LIXLimit` outright, from `cs-stages`' stagewise
+fullness through `cs-limit`'s reduction, with no argument.
+
+**One argument remains in the entire chain**, `cs-clutching`'s
+`lixLimit_hasK1InjWitness_of : LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit`.
+It is a hypothesis here only so that this file stays green while it lands; the
+`_of_lemmaTwo` forms replace it by that name when it arrives, and nothing about
+the statements changes when they do. -/
+theorem exists_simple_unital_not_k1Inj_of_lemmaTwo_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : LIX.LemmaTwoHolds) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_simple_unital_not_k1Inj_of_limit LIX.lixLimit_isSimpleCStar (hwit h)
+
+/-- **Lemma 2 refutes Problem LIX**, with the same two facts still explicit.
+
+When the two hypotheses are discharged this becomes
+`not_problemLIX_of_lemmaTwo : LIX.LemmaTwoHolds → ¬ ProblemLIX`, and the
+endpoint's entire dependency on algebraic topology is that one arrow. -/
+theorem not_problemLIX_of_lemmaTwo_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX :=
+  not_problemLIX_of_exists (exists_simple_unital_not_k1Inj_of_lemmaTwo_data hwit h)
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -176,4 +215,6 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms ProblemLIX
 #audit_axioms exists_simple_unital_not_k1Inj_of
 #audit_axioms exists_simple_unital_not_k1Inj_of_limit
+#audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwo_data
+#audit_axioms not_problemLIX_of_lemmaTwo_data
 #audit_axioms not_problemLIX_of_exists
