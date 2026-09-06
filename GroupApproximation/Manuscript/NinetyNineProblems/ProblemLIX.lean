@@ -3,6 +3,7 @@ import GroupApproximation.Analysis.CStarSimple
 import GroupApproximation.Analysis.LIXLimitSimple
 import GroupApproximation.Analysis.LIXLemmaTwoProp
 import GroupApproximation.CharClass.LemmaTwoGlue
+import GroupApproximation.Analysis.LIXLemmaSixCor4
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -282,6 +283,56 @@ theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
   exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data hwit
     (CharClass.lemmaTwoHolds_of h)
 
+/-! ## Lemma 2 alone
+
+`cs-clutching`'s `LIX.lixLimit_hasK1InjWitness_of` discharges the last argument
+of the `_data` forms above, so from here `LIX.LemmaTwoHolds` is the **only**
+hypothesis: the whole C⋆-side of the counterexample is a theorem.
+
+These still carry `#audit_axioms` rather than `#audit_closed_axioms`, and that
+is not an oversight.  `LemmaTwoHolds` is a leading input, so the closed gate
+would reject them by design, and nothing here may advertise itself as closed
+while the topology is unproved.  When `cc-thom`'s Step C and `cc-wu`'s Step D
+land, `CharClass.lemmaTwoHolds_of` closes `LemmaTwoHolds` and the closed forms
+follow with the closed gate.
+
+The `_data` variants are kept as one-line wrappers rather than deleted: a
+published signature does not change under anyone, even one with no consumer
+yet. -/
+
+/-- **The counterexample, from Lemma 2 alone.** -/
+theorem exists_simple_unital_not_k1Inj_of_lemmaTwo (h : LIX.LemmaTwoHolds) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_simple_unital_not_k1Inj_of_lemmaTwo_data LIX.lixLimit_hasK1InjWitness_of h
+
+/-- **Lemma 2 alone refutes Problem LIX.** -/
+theorem not_problemLIX_of_lemmaTwo (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX :=
+  not_problemLIX_of_lemmaTwo_data LIX.lixLimit_hasK1InjWitness_of h
+
+/-- **The separable counterexample, from Lemma 2 alone.** -/
+theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwo (h : LIX.LemmaTwoHolds) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data LIX.lixLimit_hasK1InjWitness_of h
+
+/-- **Problem LIX fails, given the two cohomological steps at every stage.**
+
+This is the whole dependency of the answer: `cc-thom`'s Step C and `cc-wu`'s
+Step D, and nothing else.  Every other statement between here and STW's printed
+question is a theorem. -/
+theorem not_problemLIX_of_lemmaTwoInput
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) : ¬ ProblemLIX :=
+  not_problemLIX_of_lemmaTwoInput_data LIX.lixLimit_hasK1InjWitness_of h
+
+/-- The separable form of the same. -/
+theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
+    LIX.lixLimit_hasK1InjWitness_of h
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -296,4 +347,9 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms not_problemLIX_of_lemmaTwoInput_data
 #audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data
 #audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
+#audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwo
+#audit_axioms not_problemLIX_of_lemmaTwo
+#audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwo
+#audit_axioms not_problemLIX_of_lemmaTwoInput
+#audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput
 #audit_axioms not_problemLIX_of_exists
