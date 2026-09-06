@@ -1,4 +1,6 @@
 import GroupApproximation.CharClass.RelativeCochains
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.H1ClassifierZMod2
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricSubdivisionChainMap
 
 /-!
 # Dualization of chain complexes over a field, and quasi-isomorphisms
@@ -30,6 +32,7 @@ restricting cochains to small chains is a quasi-isomorphism of cochain complexes
 
 open CategoryTheory Limits AlgebraicTopology
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AffineBarycentricSubdivision
 
 namespace GroupApproximation.CharClass
 
