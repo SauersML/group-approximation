@@ -29,6 +29,23 @@ lexical scan of all ten modules from `CStarSimple` to `LIXLimitSimple` finds no
 `sorry`/`admit`/`axiom`/`opaque`/`native_decide`.  Deliverable 3 of the lane brief
 ("`IsSimpleCStar A` for the LIX limit") is therefore discharged.
 
+**Axiom audit (review task, 2026-09-05).**  Run in my own clone with no file on `main`: a scratch
+`.lean` outside `GroupApproximation/` in the clone root, elaborated with `lake env lean`, then
+deleted.  Both gates pass and agree:
+
+```
+#audit_axioms       GroupApproximation.LIX.lixLimit_isSimpleCStar
+#audit_closed_axioms GroupApproximation.LIX.lixLimit_isSimpleCStar
+-- 'GroupApproximation.LIX.lixLimit_isSimpleCStar' depends on axioms:
+--   [propext, Classical.choice, Quot.sound]
+```
+
+Nothing outside the classical allowlist, and `#audit_closed_axioms` accepts it, which is the
+stronger statement: `auditClosedAxiomsOf` (`Meta/AxiomGuard.lean:81`) rejects any declaration
+whose elaborated type `isForall`, so the theorem is an advertised *closed* proposition and not a
+hypothesis-taking implication whose axiom closure merely happens to be clean.  `IsSimpleCStar
+LIXLimit` is stored as an application, so it passes for the same reason `¬ ProblemLIX` does.
+
 ## 2. What is delivered
 
 * `Analysis/CStarSimple.lean` — `IsSimpleCStar (A : Type u) [CStarAlgebra A]`
