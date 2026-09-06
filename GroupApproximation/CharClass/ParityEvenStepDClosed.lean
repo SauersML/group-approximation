@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LemmaTwoStepDPinned
+import GroupApproximation.CharClass.LIXSlicePoint
 import GroupApproximation.CharClass.CohomologyLIXHsliceSouth
 import GroupApproximation.CharClass.LIXChernSliceValueBridge
 import GroupApproximation.CharClass.LemmaTwoStaged
@@ -37,7 +38,14 @@ homeomorphism, while `cc-steenrod`'s bridge is stated at `negEThree` directly.  
 coordinate really is free, so the two are reconciled by choosing the point and
 moving it, which is `chernSliceValue_congr_point`: a `subst`, so the two spellings
 are never asked to coincide.  Rewriting the round trip in place instead would be a
-dependent rewrite through `chernOf`'s two proof arguments.
+dependent rewrite, because `chernOf`'s rank argument mentions the slice map.
+
+The equality of points it is fed is `cc-lix-odd`'s
+`unitVectorsThreeHomeoSphere_symm_apply_negEThree`, who own the homeomorphism and
+the marked point.  Their `lixSliceMap_south_marked` moves the slice map itself,
+which is the more direct statement but does not help here for the reason just
+given: at this call site the point has to move underneath the rank proof, and only
+substituting the point does that.
 
 ## Main declarations
 
@@ -132,7 +140,7 @@ def wuStepDLix_of_chernSliceValue (dd : Fin ℓ → ℕ)
   exact chernSliceValue_congr_point dd
     _root_.GroupApproximation.CharClass.southPole (lixBundle G hGc hGu)
     (lixRank dd) (fun x => rank_lixBundle G hGc hGu x) (LH.one_le_lixRank dd) gen
-    (unitVectorsThreeHomeoSphere.symm_apply_apply negEThree).symm hval
+    unitVectorsThreeHomeoSphere_symm_apply_negEThree.symm hval
 
 /-! ## 4. The staged shape -/
 
