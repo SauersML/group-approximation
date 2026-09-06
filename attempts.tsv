@@ -286,3 +286,4 @@
 34000749629	2026-09-06T00:14:57Z	GroupApproximation/Analysis/LIXObstructionComplementUnitary.lean	isSelfAdjoint_mul_star_self
 34012449182	2026-09-06T04:49:41Z	GroupApproximation/Analysis/LIXObstructionContradiction.lean	false_of_parity_of_odd_pairing
 34024781124	2026-09-06T09:29:47Z	GroupApproximation/Analysis/LIXObstructionLowPowerSums.lean	powerSum_eq_zero_of_chernClass_eq_zero
+34035314662	2026-09-06T13:11:40Z	GroupApproximation/Sofic/ConsistencyDistance.lean	hsNormSq_eq_normTrace_re
