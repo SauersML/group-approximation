@@ -60,13 +60,12 @@ theorem cocycleClass_add (X : TopCat.{0}) (n : ℕ)
     (hφ : cochainCoboundary (ZMod 2) X n φ = 0) (hψ : cochainCoboundary (ZMod 2) X n ψ = 0)
     (hφψ : cochainCoboundary (ZMod 2) X n (φ + ψ) = 0) :
     cocycleClass X n (φ + ψ) hφψ = cocycleClass X n φ hφ + cocycleClass X n ψ hψ := by
-  have hcyc : (cochainCxZMod2 X).cyclesMk (φ + ψ) (n + 1) (by simp [ComplexShape.next]) hφψ
-      = (cochainCxZMod2 X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ
-        + (cochainCxZMod2 X).cyclesMk ψ (n + 1) (by simp [ComplexShape.next]) hψ := by
-    apply (ModuleCat.mono_iff_injective ((cochainCxZMod2 X).iCycles n)).1 inferInstance
-    rw [map_add, iCycles_cyclesMk, iCycles_cyclesMk, iCycles_cyclesMk]
   unfold cocycleClass
-  rw [hcyc, map_add]
+  rw [← map_add]
+  refine congrArg (fun c => ((cochainCxZMod2 X).homologyπ n).hom c) ?_
+  apply (ModuleCat.mono_iff_injective ((cochainCxZMod2 X).iCycles n)).1 inferInstance
+  simp only [map_add, iCycles_cyclesMk]
+  rfl
 
 /-! ## 2. The cup-1 coboundary formula, specialized to cocycles -/
 
