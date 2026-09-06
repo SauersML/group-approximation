@@ -185,9 +185,15 @@ accounts for every new face. `CombMapEdgeBoundaries.lean` gives compatible
 traversals everywhere. `CombMapEdgeLabels.lean` retains old labels, assigns a
 letter and its formal inverse to the new edge, and proves both new face
 values are one when that letter represents the chosen prefix of the old
-G-face boundary. All these proofs pass ordinary axiom audits. The actual
-disc-diagram assembly, arbitrary connector-path lengths, and preservation of
-selected embedded regions must still be carried through this construction.
+G-face boundary. `GFaceEdgeInsertion.lean` now assembles the actual planar
+`DiscDiagram`, retaining the exact exterior word, relator order, words,
+conjugators and orientations. It constructs the corrected
+`OrderedGRegionReplacement`, so reducedness and O-equivalence follow from the
+proved transport, and it preserves admissibility when the chosen letter is
+legal. The face count increases by one. All these proofs pass ordinary axiom
+audits. This is the one-letter operation: the inserted letter must represent
+the chosen prefix. Arbitrary connector-path lengths and preservation of the
+selected embedded regions must still be carried through the construction.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
