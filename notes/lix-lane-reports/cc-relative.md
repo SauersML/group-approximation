@@ -15,7 +15,8 @@ namespace `GroupApproximation.CharClass`.  Everything is built over the vendored
 | `CharClass/RelativeDual.lean` | dualization of a chain-level quasi-isomorphism over `ZMod 2` (`ZMod 2` is injective as a module over itself) |
 | `CharClass/RelativeSmallChains.lean` | cochains vanishing on all `𝒰`-small chains form an acyclic subcomplex (`smallAnnComplex_acyclic`) — the geometric input excision needs |
 | `CharClass/RelativeExcision.lean` | excision for an open cover, `H^*(X, U) ≅ H^*(V, U ∩ V)` (`excisionIso`); the `Z ⊆ interior A` form |
-| `CharClass/RelativeLocal.lean` | (B3) `excisionIsoPoint`, (B4) `relCohomologyCongr` — both **green**, delivered per `cc-thom`'s exact request (see §6). (B6) the local generator is **not yet attempted**; route verified, see §6. |
+| `CharClass/RelativeLocal.lean` | (B3) `excisionIsoPoint`, (B4) `relCohomologyCongr` — both **green**, delivered per `cc-thom`'s exact request (see §6) |
+| `CharClass/RelativeLocalModel.lean` | (B6) `localEquiv`, `localGenerator`, `localGenerator_ne_zero`, `localEquiv_localGenerator`, `eq_smul_localGenerator`; plus `relCohomologySetCongr`, `ne_zero_of_iso` and `relCohomologyCongrPoint` (the punctured-pair transport `cc-thom` asked for) — **green** |
 
 ## 1. Exported signatures (as authored)
 
@@ -64,8 +65,8 @@ theorem relLES_exact_sub (n) :   -- at H^n(A):        i^* then δ
 
 ## 2. GREEN (job counts)
 
-All six planned modules are green, including built together in one probe
-(8734 jobs, matching the largest individual count — nothing regressed
+All eight modules are green; the first six were also built together in one
+probe (8734 jobs, matching the largest individual count — nothing regressed
 cross-module):
 
 * `RelativeCochains.lean` — 8728 jobs
@@ -74,6 +75,9 @@ cross-module):
 * `RelativeDual.lean` — 8730 jobs
 * `RelativeSmallChains.lean` — 8731 jobs
 * `RelativeExcision.lean` — 8734 jobs
+* `RelativeLocal.lean` — 8735 jobs
+* `RelativeLocalModel.lean` — **8776 jobs** (`PROBE GREEN`, `ERROR_LINES=0`,
+  `LAKE_EXIT=0`, with a `Built …` line, not `Replayed`)
 
 The two systematic issues the predecessor (Opus) session flagged before
 hitting its limit — "a nested type-ascription that Lean won't accept, and an
@@ -82,14 +86,7 @@ for the exact mechanism and the general recipe used throughout.
 
 ## 3. AUTHORED, UNVERIFIED
 
-* `GroupApproximation/CharClass/RelativeLocalModel.lean` — **(B6)**, the local
-  model `H^{2r}(ℂ^r, ℂ^r ∖ 0; F₂) ≅ F₂` with a named generator, executing the
-  §6 route below. Exports `localEquiv`, `localGenerator`,
-  `localGenerator_ne_zero`, `localEquiv_localGenerator`,
-  `eq_smul_localGenerator`, and the reusable
-  `relCohomologySetCongr` (transport of relative cohomology along an equality
-  of subspaces). Probe in flight; import closure is 122 modules, no dangling
-  imports, no cycles.
+Nothing. (B6) landed green; see §2.
 
 Housekeeping still owed, not blocking anyone: under the lead's dualization
 ruling `RelativeDual.lean` is to be retired in favour of `cc-cohom-api`'s
@@ -100,12 +97,12 @@ green as they stand, so this is cleanup rather than repair.
 
 ## 4. NEEDS (from peers)
 
-* For `RelativeLocal.lean`: `H^k(S^n; F₂)` in element form (rank one at
-  `k = 0, n`, vanishing otherwise) from `cc-cohom-api`/`cc-projective`, plus
-  homotopy invariance of `cohomologyZMod2` for a homotopy equivalence (needed
-  to reduce a general open `V` to a ball). If not available in time, prove the
-  sphere facts from the vendored `SphereTopCohomologyRankOne` /
-  `SphereModTwoTopClass` directly.
+Nothing outstanding. The sphere and contractibility inputs (B6) needed —
+`sphereTopEquiv`, `cohomology_isZero_of_contractible`,
+`cohZeroEquivOfContractible`, `pullEquivOfHomotopyEquiv` — are all green in
+`cc-cohom-api`'s `CohomologySphere` / `CohomologyContractible` /
+`CohomologyBridge`, and `AlgTop.complexPuncturedHomotopyEquivSphere` is
+fleet-green and was reused, not reproved.
 
 ## 5. TRAPS
 
