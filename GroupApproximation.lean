@@ -3614,6 +3614,7 @@ import GroupApproximation.CharClass.BundleReindex
 import GroupApproximation.CharClass.ThomSphereSubspace
 import GroupApproximation.CharClass.BundleGysinData
 import GroupApproximation.CharClass.ChernSplittingData
+import GroupApproximation.CharClass.BundlePushforward
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
