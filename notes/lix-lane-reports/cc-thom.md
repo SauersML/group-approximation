@@ -211,6 +211,17 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomRelativeCokernel.lean` | `relDelta_surjective_of_injective`, `ker_relDelta_eq_range_absToSub`, **`relQuotEquiv`** — if the restriction is injective in every degree, the relative group **is** the cokernel of the restriction; the homological core of the hypothesis-free route, with no bundle, sphere or product in it |
 | `CharClass/ThomSphereSubspace.lean` | `absToSub_injective_of_sphere`, `relQuotEquiv_of_sphere` — when the ambient contracts onto a base and the subspace is that base crossed with a sphere, the restriction is split injective, so the relative group is the cokernel |
 | `CharClass/ThomSectionDetect.lean` | `sectionDetectsThom_of_detect`, **`sectionDetectsThom_of_injective`**, **`topChernClass_ne_zero_of_chartInjective`** — the section predicate **is** injectivity of the chart composite; Step C's odd side over that one geometric input |
+| `CharClass/ThomBridgeChart.lean` | `chartExcisedImage`, `bridgeChart` — bridge steps one and two, excision to the affine chart and the chart identified with the total space |
+| `CharClass/ThomBridgeHyperplane.lean` | `range_projIncl_subset_notZero`, `bridgeHyperplane`, `incl_comp_eq_invFun`, `hyperplane_hsub` — bridge step three, with its named input discharged |
+| `CharClass/LIXLerayHirschInstance.lean` | `lixLerayHirschGraded` — `cc-projective`'s compact-base instance at the projectivised mapping-torus bundle, index `lixRank dd + 1` |
+| `CharClass/ThomChernDegreewise.lean` | `cohCast_sum`, `cup_pull_lhTerm{,'}`, `chernCoeff`, `sum_lhTerm_chernCoeff`, `chernMul`, **`lhTerm_top_eq_sum`** — the Chern relation degreewise; no `TotalH` transport is needed, `gammaCoeff` already is the relation |
+| `CharClass/ThomRestrictSquare.lean` | **`absToSub_sum_lhTerm`** — the restriction of the pair at degree `2r` **is** `ThomDeg.restrictMap` in coordinates; produces the `g` that `ThomFreeDegreewise` assumes |
+| `CharClass/ThomHabs.lean` | `range_relToAbs_eq_ker_absToSub`, `range_comp_eq_ker_of_square`, **`range_thomJm_eq_ker_restrictMap`** — **`habs`** discharged |
+| `CharClass/ThomDataFromLH.lean` | `relToAbs_injective_of_graded` (**`hinj0`**), **`thomData_of_lerayHirsch`** — the whole degreewise Thom datum from the two Leray–Hirsch instances plus `1 ≤ r` |
+| `CharClass/ThomBridgeTotal.lean` | **`bridgeTotal`**, `thomData_transport`, **`thomData_total_of_lerayHirsch`** — the three bridge steps as one linear equivalence, and the Thom datum moved onto the vector-bundle pair |
+| `CharClass/LerayHirschGradedIso.lean` | **`LH.lerayHirschGraded_of_iso`** — `cc-projective`'s `bijective_lhSum_of_iso` wrapped by `LerayHirschBridge`'s transfer, at the published `LerayHirschGraded` interface |
+| `CharClass/ThomHyperplaneLH.lean` | `hyperIso`, `hyperProj`, `hyperIso_hom_comp`, **`hyperLH`**, **`thomData_total_of_taut`** — Leray–Hirsch on the hyperplane presented as a subset; the Thom datum over the single input `htaut` |
+| `CharClass/LIXThomClassOfTaut.lean` | `cohCast_ne_zero`, `lixTopCoeff{,_ne_zero}`, **`exists_lixThomClass_ne_zero`** — the `u` and the `hu` of `lix_topClass_ne_zero_of_named`, over `htaut` |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -743,3 +754,13 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | `ThomSphereSubspace` | red: ambient stated as a type, not a `TopCat` |
 | 2026-09-06 | **`ThomSphereSubspace`** | **green, 8807 jobs, `bf27d703`** |
 | 2026-09-06 | **`ThomSectionDetect`** | **green, 8830 jobs, `1b542ffc`, first probe** |
+| 2026-09-06 | `LIXLerayHirschInstance` | red: I redeclared `rank_lixBundle_plusOne`, already landed in `LIXBundleModel`; and `projMapOf`/`tautEulerOf`/`lerayHirschGraded_compact` are in `LH`, not `Bundle` |
+| 2026-09-06 | **`LIXLerayHirschInstance`** | **green, 8999 jobs, `685ddf9a4`** |
+| 2026-09-06 | **`ThomChernDegreewise`** | **green, 8925 jobs, `676d54018`** |
+| 2026-09-06 | **`ThomRestrictSquare`** | **green, 8931 jobs, `4ad0c528e`** |
+| 2026-09-06 | **`ThomHabs`** | **green, 8997 jobs, `a546099e0`** |
+| 2026-09-06 | **`ThomDataFromLH`** | **green, 8998 jobs, `cb38b0268`, first probe** |
+| 2026-09-06 | **`ThomBridgeTotal`** | **green, 9038 jobs, `28ad165df`** |
+| 2026-09-06 | **`LerayHirschGradedIso`** | **green, 2458 jobs, `8d5c0f110`** |
+| 2026-09-06 | **`ThomHyperplaneLH`** | **green, 9040 jobs, `4088f7d7b`** |
+| 2026-09-06 | **`LIXThomClassOfTaut`** | **green, 9042 jobs, `7760be635`** |
