@@ -109,6 +109,21 @@ green as they stand, so this is cleanup rather than repair.
 
 ## 5. TRAPS
 
+* **A bare `{a}ᶜ` under a sort coercion does not elaborate.** Writing
+  `↥({(0 : Fin r → ℂ)}ᶜ)` — as in `Hmod2 (TopCat.of ↥({(0 : Fin r → ℂ)}ᶜ)) k` or
+  `ContinuousMap.HomotopyEquiv ↥({(0 : Fin r → ℂ)}ᶜ) …` — fails with
+  `cannot coerce to sort {0}ᶜ`. The brace notation is overloaded (`Set`,
+  `Finset`, `insert`, …) and in that position there is no expected type to
+  disambiguate it. The same spelling works fine where an expected type *is*
+  present, e.g. as the subspace argument of `relCohomology`, which is why the
+  failure looks inconsistent within one file. Worse, the resulting error term
+  then makes the *next* `isDefEq` blow through the 200000-heartbeat budget, so
+  the visible symptom is a spurious timeout several lines further down —
+  fix the coercion, do not raise `maxHeartbeats`. Cure: give the subset a
+  name (`abbrev puncturedSet r : Set (Fin r → ℂ) := {(0 : Fin r → ℂ)}ᶜ`), which
+  stays reducible so callers' original spelling still unifies, or ascribe
+  `({…}ᶜ : Set _)` at every occurrence.
+
 * **The dominant failure mode this session, by far**: `ModuleCat` objects
   built via `ChainComplex.of`/`HomologicalComplex.Hom` fields (e.g.
   `(subChainComplex R X A).X n`, `(relCochainComplex R X A).X n`) are `rfl`-equal
