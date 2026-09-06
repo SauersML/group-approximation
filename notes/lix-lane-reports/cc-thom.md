@@ -11,18 +11,19 @@ Cohomological Mayer–Vietoris moved from `cc-cohom-api` to cc-thom.  `cc-cohom-
 keeps the cup product, casts, bridges, spheres, homotopy invariance and
 Künneth-with-spheres.
 
-**The whole stack is now cc-thom's and self-contained.**  Their
-`CharClass/CohomologyMayerVietoris.lean` went from one error to eight between two
-probes while I was building on it, so the dualization is ported into
-`CharClass/MayerVietorisDual.lean` under the nested namespace
-`GroupApproximation.CharClass.MV` — no name can collide with theirs, and nothing
-of cc-thom's imports their file any more.  I have told them, and suggested they
-retire theirs; the choice is the lead's.
+**Split, per the lead's ruling.**  `cc-cohom-api` owns the categorical dualized
+short exact sequence (`CharClass/CohomologyMayerVietoris.lean`, green at 8768
+jobs, `1b9601b02`): `dualCx2`, `dualMap2`, `mvCoSC`, `mvCoSC_shortExact`,
+`subCxDualHomologyIso`, `mvInterIso`, `mvAmbientIso`, `mvDelta`, `upRel`, the
+three `ShortComplex.Exact`s.  cc-thom owns the element-form bridge on top of it.
+An earlier cc-thom port of the dualization (`MayerVietorisDual.lean`, namespace
+`CharClass.MV`) was written while their file was red and has been **deleted** on
+the lead's ruling that their copy went green first.  cc-thom's four `dualMap2`
+algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide.
 
 | module | contents |
 |---|---|
-| `CharClass/MayerVietorisDual.lean` | `MV.coDual` (the `Hom(-,F₂)` dualization, exact because `F₂` is self-injective), `MV.coCx`, `MV.coMap` with contravariant functoriality and additivity, `MV.coSC` and `MV.coSC_shortExact` from the vendored degreewise splitting, `MV.coSubHomologyIso`, `MV.coInterIso`, `MV.coAmbientIso`, `MV.coDelta`, `MV.coExact_inter/sum/ambient` |
-| `CharClass/MayerVietorisBiproduct.lean` | the four biproduct identities on the middle term and `mvH_decompose`; the `F₂` sign lemmas |
+| `CharClass/MayerVietorisBiproduct.lean` | `mvDualMap_comp/_id/_add/_zero`, the four biproduct identities on the middle term, `mvH_decompose`, `mvH_eq_zero_iff`; the `F₂` sign lemmas |
 | `CharClass/MayerVietorisElement.lean` | the four restrictions, `mvDelta`, and `mvExactX` / `mvExactSum` / `mvExactW` |
 | `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
@@ -125,12 +126,12 @@ Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 
 ## 1. GREEN
 
-Probe of **all fourteen modules together**:
-**`Build completed successfully (8744 jobs)`**, `ERROR_LINES=0`, `LAKE_EXIT=0`,
+Probe of **all thirteen modules together**:
+**`Build completed successfully (8782 jobs)`**, `ERROR_LINES=0`, `LAKE_EXIT=0`,
 `PROBE GREEN` (private clone `cc_clones/cc-thom`, 2026-09-05, fixed `ccprobe.sh`).
 Every module below has a `Built …` line, not `Replayed`, for its current bytes.
 
-The five `MayerVietoris*` modules are the lead's reassignment of cohomological
+The four `MayerVietoris*` modules are the lead's reassignment of cohomological
 Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 
 | module | content |
@@ -140,12 +141,12 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomPuncturedSphere.lean` | `spherePuncturedHomeo`, `ContractibleSpace ↥({v}ᶜ)` for the unit sphere of any real inner product space |
 | `CharClass/ThomFreeModule.lean` | the Leray–Hirsch linear algebra: `thomGenerator`, `surjective_of_basis`, `ker_eq_span_thomGenerator`, `existsUnique_smul_thomGenerator`, `existsUnique_lift`, `existsUnique_smul_of_injective_of_range` |
 | `CharClass/EulerLocalChart.lean` | `homeomorphCompl`, `compl_singleton_subtype`, `chartPairHomeo`, `openPartialHomeomorphChartPair` |
-| `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
+| `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `KunnethFactor`, `kunnethFactor_of_prodEquiv`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
-| `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`, `puncturedAcyclic_pi` |
+| `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
-Job count: 8744 (fourteen modules, one probe).
+Job count: 8782 (thirteen modules, one probe).
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -180,19 +181,22 @@ theorem isZero_cohomology_of_cover (Z : Type) [TopologicalSpace Z]
     IsZero (cohomologyZMod2 (TopCat.of Z) (m + 1))
 ```
 
-**(A2) Künneth, vanishing form.**  Far weaker than a cohomology cross product,
-and *unconditional* over a field: `H^a(A;F₂) = 0 ↔ H_a(A;F₂) = 0` by the
-universal coefficient theorem (`AlgTop/UniversalCoefficients.lean` has both
-halves), and the homology Künneth theorem over a field has no finiteness
-hypotheses.  Route it that way rather than through a cohomology cross product.
+**(A2) Künneth, vanishing form — CORRECTED, and now much smaller.**
+`cc-cohom-api` established that the route through homology Künneth is **not**
+available: it needs Eilenberg–Zilber, and neither the vendored tree nor Mathlib
+has it.  cc-thom's recursion has been restructured accordingly and no longer asks
+for general Künneth.  The `kunneth` field is gone from `CohomologyToolkit`;
+`ThomPuncturedRecursion.KunnethFactor Y` takes its place, one factor at a time,
+and `PuncturedAcyclic.prod` consumes two instances of it.  With `N` **left-nested**,
+`(((S¹ × S⁵) × CP d₁) × CP d₂) × ⋯`, every second factor is a sphere, a `CP(d)`, a
+punctured sphere (contractible, so `kunnethFactor_of_prodEquiv` applies with no
+Künneth at all, fed by `cohProdContractible`) or a punctured `CP(d)` (homotopy
+equivalent to `CP(d−1)`, so a `CP` again).  So the only outstanding ask is the
+sphere case from `cc-cohom-api` and the `CP` case from `cc-projective`:
 
 ```lean
-theorem isZero_cohomology_prod (A B : Type) [TopologicalSpace A] [TopologicalSpace B]
-    (p q : ℕ)
-    (hA : ∀ a, p < a → IsZero (cohomologyZMod2 (TopCat.of A) a))
-    (hB : ∀ b, q < b → IsZero (cohomologyZMod2 (TopCat.of B) b))
-    (k : ℕ) (hk : p + q < k) :
-    IsZero (cohomologyZMod2 (TopCat.of (A × B)) k)
+theorem kunnethFactor_sphere (n : ℕ) : KunnethFactor (Sphere n)
+theorem kunnethFactor_CP (d : ℕ) : KunnethFactor (CP d)
 ```
 
 **(A5) Contractible spaces.**  *Authored* as
@@ -405,4 +409,6 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | 9 modules, fixed `ccprobe.sh`, after adding `PuncturedAcyclic.congr'` | **green, 2911 jobs, `PROBE GREEN`** |
 | 2026-09-05 | `CohomologyMayerVietoris` alone (cc-cohom-api's) | red: 1 error, then 8 errors on the next probe |
 | 2026-09-05 | 5 `MayerVietoris*` modules | green after three rounds |
-| 2026-09-05 | **all 14 cc-thom modules** | **green, 8744 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
+| 2026-09-05 | all 14 cc-thom modules (with the ported dual) | green, 8744 jobs |
+| 2026-09-05 | MV bridge retargeted onto cc-cohom-api's green file | green, 8776 jobs |
+| 2026-09-05 | **all 13 cc-thom modules, per-factor Künneth** | **green, 8782 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
