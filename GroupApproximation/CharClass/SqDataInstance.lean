@@ -164,6 +164,21 @@ theorem wu {N F : TopCat.{0}} {r : ℕ} {γ : ℕ → TotalH N} (S : SplittingDa
 
 end SplittingData
 
+/-- **The splitting principle with the flag space and its rank hidden.**  A
+consumer whose record does not otherwise mention the flag bundle wants a single
+`Prop`-valued field, not two extra type parameters; this is that field. -/
+def HasSplitting (N : TopCat.{0}) (γ : ℕ → TotalH N) : Prop :=
+  ∃ (F : TopCat.{0}) (r : ℕ), Nonempty (SplittingData N F r γ)
+
+/-- (Wu-diag) from the existentially quantified splitting principle. -/
+theorem HasSplitting.wu {N : TopCat.{0}} {γ : ℕ → TotalH N} (hS : HasSplitting N γ)
+    (hC : CartanTotal) (i : ℕ) :
+    Steenrod.SqH N (2 * i) (γ (i + 1))
+      = ∑ j ∈ Finset.range (i + 1), γ (i - j) * γ (i + 1 + j) := by
+  obtain ⟨F, r, ⟨S⟩⟩ := hS
+  exact S.wu hC i
+
+
 /-! ## 4. The endpoint with `hwu` and `hcartan` collapsed -/
 
 /-- **Lemma 2, the even half, with the Wu relation supplied by the splitting
@@ -190,6 +205,29 @@ theorem gamma_top_eq_zero_of_splitting
     γ ((∑ j ∈ u, d j) + 3) = 0 :=
   gamma_top_eq_zero_of_slice_totalH p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ a b (cartanH_of hC N)
     htx_inj hγ hsq_b (S.wu hC) u h d hd hslice
+
+/-- **Lemma 2, the even half, from the `Prop`-valued splitting principle.**  Same
+as `gamma_top_eq_zero_of_splitting` with the flag space and rank hidden, so that
+`hsplit` is one field of a record rather than two type parameters plus a field. -/
+theorem gamma_top_eq_zero_of_hasSplitting
+    {N Y S₁ S₅ : TopCat.{0}}
+    (p : N ⟶ Y) (q₁ : N ⟶ S₁) (q₅ : N ⟶ S₅)
+    (hS₁ : HasSphereCohomology S₁ 1) (hS₅ : HasSphereCohomology S₅ 5)
+    (σ₁ : Hmod2 S₁ 1) (σ₅ : Hmod2 S₅ 5)
+    (γ : ℕ → TotalH N) (a b : ℕ → TotalH Y)
+    (hC : CartanTotal)
+    (htx_inj : ∀ u v : TotalH Y,
+      TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0)
+    (hγ : ∀ k : ℕ,
+      γ k = TotalH.map p (a k) + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p (b k))
+    (hsq_b : ∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0)
+    (hsplit : HasSplitting N γ)
+    {J : Type} (u : Finset J) (h : J → TotalH Y) (d : J → ℕ)
+    (hd : ∀ j ∈ u, Even (d j))
+    (hslice : ∀ q : ℕ, a q = (sliceClass u h d).coeff q) :
+    γ ((∑ j ∈ u, d j) + 3) = 0 :=
+  gamma_top_eq_zero_of_slice_totalH p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ a b (cartanH_of hC N)
+    htx_inj hγ hsq_b (hsplit.wu hC) u h d hd hslice
 
 end
 

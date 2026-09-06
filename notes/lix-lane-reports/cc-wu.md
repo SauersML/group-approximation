@@ -51,6 +51,13 @@ Build completed successfully (8786 jobs).
 ```
 
 Freshly elaborated: `SqDataInstance.olean` written at 20:27:35 by that run.
+Re-probed jointly with `cc-lix-odd`'s consumer module after adding `HasSplitting`:
+
+```text
+lake build GroupApproximation.CharClass.SqDataInstance GroupApproximation.CharClass.LemmaTwoStepD
+ERROR_LINES=0
+Build completed successfully (8807 jobs).
+```
 
 Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified,
 and the integration assembly is green over its named hypotheses.
@@ -333,6 +340,11 @@ Two further collapses:
   `Function.Injective (TotalH.map f)` that `SplittingData` asks for.  Degreewise
   is the form they actually have, so without this the field could not be
   discharged.
+
+For a consumer whose record does not otherwise mention the flag bundle,
+`HasSplitting N γ` is the same input with `F` and `r` existentially quantified,
+so it is one `Prop`-valued field rather than two type parameters plus a field;
+`gamma_top_eq_zero_of_hasSplitting` is the matching endpoint.
 
 The endpoint is then `gamma_top_eq_zero_of_splitting`, with **four** hypotheses:
 `hC : CartanTotal` (cc-cartan), `htx_inj` and `hγ` and `hsq_b` (cc-cohom-api),
