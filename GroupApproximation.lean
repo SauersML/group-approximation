@@ -3660,6 +3660,7 @@ import GroupApproximation.CharClass.SteenrodFourfoldBAtDeg
 import GroupApproximation.CharClass.ChernWhitneyFlag
 import GroupApproximation.CharClass.CohomologyChartKunnethClosed
 import GroupApproximation.CharClass.CartanEvalPre
+import GroupApproximation.CharClass.CartanEvalComposeB
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
