@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesicCut
 import GroupApproximation.GGT.HullSCLemma44KernelGeodesicInduction
-import GroupApproximation.GGT.VanKampen.DiscDiagram
+import GroupApproximation.GGT.VanKampen.RelativeDiscRealization
 
 /-!
 # Constructing the kernel-geodesic induction step
@@ -76,7 +76,7 @@ theorem KernelGeodesicCutData.reduced
     {hsc : RelWord.IsLemma44Input D W eps mu rho}
     {q : G →* Q} {M area : ℕ} {word : List G}
     (data : KernelGeodesicCutData D W eps rho mu hsc q M area word) :
-    data.diagram.Reduced :=
+    data.realization.diagram.Reduced :=
   data.realization.reduced
 
 /-- The vk realization statement supplies a nonempty planar realization for a
