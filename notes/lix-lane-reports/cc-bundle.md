@@ -188,8 +188,8 @@ hypothesized or supplied by whoever owns the base.
 ### `BundleLineIntert.lean` — an intertwiner becomes an isomorphism, at RANK ONE
 
 ```lean
-noncomputable def lineIntertIso (A : Y → Matrix ι ι ℂ) (hA : Continuous A)
-    (p q : Bundle Y ι) (hp : ∀ y, (p y).trace = 1) (hq : ∀ y, (q y).trace = 1)
+noncomputable def lineIntertIso (A : Y → Matrix κ ι ℂ) (hA : Continuous A)
+    (p : Bundle Y ι) (q : Bundle Y κ) (hp : ∀ y, (p y).trace = 1) (hq : ∀ y, (q y).trace = 1)
     (hfix : ∀ y v, p y *ᵥ v = v → q y *ᵥ (A y *ᵥ v) = A y *ᵥ v)
     (hne  : ∀ y v, p y *ᵥ v = v → v ≠ 0 → A y *ᵥ v ≠ 0) : BundleIso p q
 theorem lineIntertIso_hom (…) (y) :
@@ -208,6 +208,13 @@ continuous.  At general rank the same idea needs the square root of a positive
 `A` need **not** be invertible and need not be unitary: only that it carries the
 fibre of `p` into the fibre of `q` without killing it, the same weakening
 `conjNormalize_mem_projFibreSet'` makes.
+
+**The index types must be allowed to differ**, and a same-index statement is
+useless here: the tautological line of a projective bundle is indexed by the
+bundle's own index type, while the pullback of `cpTaut` along a chart is indexed
+by `Fin (d+1)`.  The proof is unchanged, because `mul_rankOneProj` and
+`conj_rankOneProj` are already rectangular and the Hilbert-Schmidt scalar lives
+in the source index either way.
 
 It also retires an obligation.  A consumer wanting only a homotopy of
 classifying maps had proposed joining the conjugating field to the identity
