@@ -55,6 +55,12 @@ The Leray-Hirsch ladder
   and they cover.
 * `LerayHirschUnion` (8810) — a cover recognised as a fold, and the chart cover of
   `ℂP^d` in that shape.
+* `LerayHirschChart` (8835) — odd-degree vanishing for `ℂP^d`, `H^3 = 0` for
+  cc-wu, and `LHOver_of_chart`, the base case over a trivialising open.
+* `GysinFromGraded` (2459) — the two `GysinData` fields read off
+  `LerayHirschGraded` at rank two.
+* `LerayHirschBundle` (8846) — **Leray-Hirsch for a bundle over a compact base**,
+  over one hypothesis, plus `noOddCohomology_baseY`.
 
 Chern classes and the Euler class
 
@@ -78,6 +84,28 @@ None.  Everything in the lane is probed green and pushed.
 
 2. **Nothing else is blocked on a peer.**  Both of the two facts I was waiting on,
    `MVDelta.mvDelta_cup` and `MVDelta.mvDelta_naturality`, have landed.
+
+## THE CHAIN IS ONE THEOREM DEEP
+
+`lerayHirschGraded_of_trivializing_cover` gives Leray-Hirsch for a
+projection-model bundle over a compact base from a single hypothesis: the theorem
+over one trivialising open.  The trivialising sets are open and cover, compactness
+makes the cover finite, and the predicate "contained in a trivialising set" is
+closed under intersection with anything, which is what the induction demands and
+what a trivialisation supplies for free.
+
+That hypothesis is cc-cohom-api's projective-factor Kunneth over an arbitrary
+base, read through cc-bundle's chart trivialisation.  It is assigned and it is
+the only thing between here and the mapping-torus instance that cc-thom's `su`
+and cc-lix-odd's Chern-class parameter wait on.
+
+**A correction to my own earlier bootstrap, worth keeping.**  I had argued the
+Gysin route could run on the standard charts because those are contractible.
+That is not sufficient, and the reason is the induction rather than the charts:
+its predicate must be closed under intersection with an arbitrary open, so it
+produces intersections of a chart with arbitrary opens, which are still
+trivialising but not contractible.  So the Kunneth over an arbitrary base is
+needed even for the projective-space case.
 
 ## WHAT IS LEFT
 
