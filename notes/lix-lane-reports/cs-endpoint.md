@@ -644,6 +644,20 @@ plus two `#audit_closed_axioms` lines.
   the pieces.  The first answer was right; the endorsement was not, and nothing
   about the first licensed the second.  **Re-run the search before encouraging
   work, not only before answering a question.**
+* **A polling watcher must not `git pull` into a shared working tree.**  I ran
+  two background watchers that pulled every 30 to 45 seconds so they would see
+  a peer's declaration land.  The lead stopped them: in a tree five lanes write
+  to, a pull on a loop is the abort-on-a-peer's-uncommitted-file hazard
+  repeated indefinitely, and it can sweep in-flight bytes into another lane's
+  probe — which is the same aliasing that has already cost this lane two false
+  diagnoses, industrialised.
+
+  A watcher over a shared checkout may only *read*.  If it needs to see remote
+  commits, `git fetch` and inspect `origin/main` with `git show`, never
+  updating the working tree.  Better still, and what replaced them here: have
+  the producing lane announce.  A push notification from the lane that made the
+  change is strictly cheaper and strictly more reliable than any number of
+  lanes polling for it.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
