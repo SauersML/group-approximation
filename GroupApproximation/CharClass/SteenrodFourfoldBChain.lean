@@ -103,6 +103,49 @@ theorem tensorD_compBGen (X : TopCat.{0}) (k i N : ℕ) (σ : singularSimplices 
     apply_linearCombination' (tensorD (pairFreeCx X) (pairFreeCx X) k)
       (compBTerm X (k + 1) i p N) (phiZero X N σ)
 
+/-! ## 4. Which terms of the double sum survive
+
+Two vanishing lemmas cut the case analysis of the computation in half.  A block
+of the Leibniz rule is zero as soon as the factor it differentiates is zero, and
+the factor is zero as soon as the resolution index exceeds the dimension of the
+face it is applied to.  So in the left block only the terms whose front face is
+at least as big as its share of the index survive, and dually on the right. -/
+
+theorem padFourL_of_zero_left (X : TopCat.{0}) (k a b : ℕ)
+    (v : PairIdx X b →₀ ZMod 2) :
+    padFourL X k a b 0 v = 0 := by
+  cases a with
+  | zero => exact padFourL_zero_deg X k b 0 v
+  | succ a' =>
+      rw [padFourL_succ_eq', map_zero]
+      exact padFour_zero_left k a' b v
+
+theorem padFourR_of_zero_right (X : TopCat.{0}) (k a b : ℕ)
+    (u : PairIdx X a →₀ ZMod 2) :
+    padFourR X k a b u 0 = 0 := by
+  cases b with
+  | zero => exact padFourR_zero_deg X k a u 0
+  | succ b' =>
+      rw [padFourR_succ_eq', map_zero]
+      exact padFour_zero_right k a b' u
+
+/-- **The left block dies when the front face is too small** to carry its share
+of the resolution index. -/
+theorem padFourL_term_eq_zero (X : TopCat.{0}) (k c p b : ℕ)
+    (σ' : singularSimplices X c) (v : PairIdx X b →₀ ZMod 2) (hc : c < p) :
+    padFourL X k (c + p) b (phiAtDeg X (c + p) p σ') v = 0 := by
+  rw [phiAtDeg_eq_zero_of_lt X (c + p) p c σ' hc]
+  exact padFourL_of_zero_left X k (c + p) b v
+
+/-- **The right block dies when the back face is too small.**  The power of the
+generator does not save it: the group ring acts by a linear involution, so it
+sends `0` to `0`. -/
+theorem padFourR_term_eq_zero (X : TopCat.{0}) (k a d p q : ℕ)
+    (u : PairIdx X a →₀ ZMod 2) (σ'' : singularSimplices X d) (hd : d < q) :
+    padFourR X k a (d + q) u ((groupRingGen ^ p) • phiAtDeg X (d + q) q σ'') = 0 := by
+  rw [phiAtDeg_eq_zero_of_lt X (d + q) q d σ'' hd, smul_zero]
+  exact padFourR_of_zero_right X k a (d + q) u
+
 end
 
 end Steenrod
