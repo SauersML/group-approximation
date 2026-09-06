@@ -60,8 +60,22 @@ ERROR_LINES=0
 Build completed successfully (8807 jobs).
 ```
 
-Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified,
-and the integration assembly is green over its named hypotheses.
+`CharClass/ParityEvenTransport.lean`, 2026-09-05:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenTransport
+ERROR_LINES=0
+Build completed successfully (8896 jobs).
+```
+
+Freshly elaborated: olean written 22:46:04.  Landed as `6efca320d`, verified by
+`git merge-base --is-ancestor` against `origin/main`, not by the push message.
+
+Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
+integration assembly is green over its named hypotheses, and the even side is
+stated at the model of record.  `cc-lix-odd` consumes it in
+`CharClass/LemmaTwoStepDLix.lean` (8900 jobs), where Step C and Step D are now
+statements about **one class on one space**.
 
 ## 2. AUTHORED, UNVERIFIED
 
