@@ -3743,6 +3743,7 @@ import GroupApproximation.CharClass.SliceVFlat
 import GroupApproximation.CharClass.SliceVLinesY
 import GroupApproximation.CharClass.LIXVLineBundles
 import GroupApproximation.CharClass.LIXSliceEquation
+import GroupApproximation.CharClass.LIXSlicePoint
 import GroupApproximation.CharClass.ParityEvenFlagCompact
 import GroupApproximation.CharClass.ParityEvenSplitting
 import GroupApproximation.CharClass.ParityEvenFlagRelation
