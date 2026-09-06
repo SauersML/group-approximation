@@ -27,7 +27,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisElement.lean` | the four restrictions, `mvDelta`, and `mvExactX` / `mvExactSum` / `mvExactW` |
 | `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
 | `CharClass/MayerVietorisRestriction.lean` | `subInclusion`, `subInclusion_comp_sInclusion`, `subChainCorestrict_naturality` — the chain-level half of `mvResWU_eq_pull` |
-| `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWU_one`** — the Mayer–Vietoris restriction to the intersection is the honest pullback, and the unit restricts to the unit |
+| `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWV_eq_pull`**, **`mvResWU_one`**, `neg_eq_self_chainHom`, `mvCxInclV_comp_g` — the restrictions to the intersection are honest pullbacks, and the unit restricts to the unit |
 | `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`**, **`mvResV_eq_pull`** and their `V` twins — the restrictions from the ambient space are the pullbacks along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
@@ -146,9 +146,13 @@ pinned precisely:
   restriction is a `cohPullback`, so each restriction square of naturality is
   functoriality of `pull` and needs no chain-level map at all.  Only the **δ-square**
   still needs the missing `subChainComplex R X' (f⁻¹ S) ⟶ subChainComplex R X S`
-  with compatibility of the splittings.  `mvResV_eq_pull` is now **green** (there is no sign on the `f` side; the minus lives
-  in `g`).  `mvResWV_eq_pull` is the only one of the four not written, and it is the
-  one that does need `neg_eq_self_two`.
+  with compatibility of the splittings.  **All four restriction identifications are now green**: `mvResU_eq_pull`,
+  `mvResV_eq_pull`, `mvResWU_eq_pull`, `mvResWV_eq_pull`.  Only the last needed the
+  characteristic-two absorption, via `neg_eq_self_chainHom`, because the minus of the
+  chain-level sequence lives in `g` and the two ambient restrictions go through `f`.
+  So **every restriction square of naturality is functoriality of `pull`**, and the
+  missing subordinate-chain map over different spaces is needed for the δ-square
+  alone, which is `cc-cohom-api`'s side of the split.
 
 **Note for `cc-projective`.**  `mvSumIso` turns out not to be needed: the
 element-form `MVSequence` above is derived from the four biproduct identities
