@@ -192,6 +192,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomKunnethSphere.lean` | `kunnethFactor_sphere`, `kunnethFactor_of_contractible`, `kunnethFactor_sphere_compl`, `puncturedAcyclic_sphere` — the Künneth input instantiated from `cc-cohom-api`'s green `isZero_cohomology_prod_sphere` |
 | `CharClass/EulerLocalAssembly.lean` | `rankOneOfIsoChain`, `su_ne_zero_of_chain`, **`topChernClass_ne_zero_of_chain`** — Step C in a single application, chaining excision, the chart isomorphism and the local model |
 | `CharClass/ThomToolkitInstance.lean` | **`cohomologyToolkit`** — the toolkit as a *term*; `puncturedAcyclic_prod` and `puncturedAcyclic_sphere'` with it discharged |
+| `CharClass/ThomKunnethProjective.lean` | `prodOpen_inf`, `isZero_prodOpen_of_homotopyEquiv`, **`kunnethFactor_CP`** — `KunnethFactor (CP d) (2*d)` by Mayer–Vietoris induction on `d`; **no δ-linearity involved** |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
@@ -247,16 +248,14 @@ and `PuncturedAcyclic.prod` consumes two instances of it.  With `N` **left-neste
 `(((S¹ × S⁵) × CP d₁) × CP d₂) × ⋯`, every second factor is a sphere, a `CP(d)`, a
 punctured sphere (contractible, so `kunnethFactor_of_prodEquiv` applies with no
 Künneth at all, fed by `cohProdContractible`) or a punctured `CP(d)` (homotopy
-equivalent to `CP(d−1)`, so a `CP` again).  The sphere case is **done**: `cc-cohom-api`'s green `isZero_cohomology_prod_sphere`
+equivalent to `CP(d−1)`, so a `CP` again).  **Both cases are now done and nothing is owed here.**  The projective case is
+`ThomKunnethProjective.kunnethFactor_CP`, built in cc-thom's own vocabulary by
+Mayer–Vietoris induction on `d` over cc-projective's green cover; it needs only the
+*vanishing* form of Mayer–Vietoris, so it did **not** wait on δ-linearity.  The
+sphere case is: `cc-cohom-api`'s green `isZero_cohomology_prod_sphere`
 gives `kunnethFactor_sphere (n) : KunnethFactor (Sphere n) n` in
 `CharClass/ThomKunnethSphere.lean`, and punctured spheres need no Künneth at all
-since they are contractible.  The only outstanding ask is the projective case
-from `cc-projective`:
-
-```lean
-theorem kunnethFactor_CP (d : ℕ) : KunnethFactor (CP d) (2 * d)
-```
-
+since they are contractible.  
 **(A5) Contractible spaces.**  *Authored* as
 `CohomologyContractible.cohomology_isZero_of_contractible`; once it is green the
 `contractible` field of `CohomologyToolkit` is filled by it directly.
