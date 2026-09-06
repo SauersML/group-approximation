@@ -29,6 +29,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisRestriction.lean` | `subInclusion`, `subInclusion_comp_sInclusion`, `subChainCorestrict_naturality` — the chain-level half of `mvResWU_eq_pull` |
 | `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWV_eq_pull`**, **`mvResWU_one`**, `neg_eq_self_chainHom`, `mvCxInclV_comp_g` — the restrictions to the intersection are honest pullbacks, and the unit restricts to the unit |
 | `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`**, **`mvResV_eq_pull`** and their `V` twins — the restrictions from the ambient space are the pullbacks along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
+| `CharClass/MayerVietorisZero.lean` | `mono_homologyMap_zero`, **`mvExactZero`**, `mvResPair_injective` — the left end of the sequence: the pair of restrictions is injective on `H⁰` |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
