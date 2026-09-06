@@ -335,6 +335,11 @@ Two further collapses:
   over the space; `cartanH_of` turns it into the `cartanH`/`cartan` field at any
   space through `cc-steenrod`'s `Steenrod.SqH_mul_of_cartanOf`.  So the whole
   chain has **one** Cartan hypothesis, not one per space.
+* `tx_inj_of_degreewise` converts a **degreewise** two-sphere Künneth statement
+  into the ring-level `tx_inj` field.  `cc-cohom-api`'s `kunnethSecondInjective`
+  is one sphere and one degree; the field is two spheres and the ring, so the
+  iteration is theirs and this crossing is mine.  Nothing is required in the
+  degrees below `1 + (5 + n)`.
 * `totalH_map_injective` converts `cc-projective`'s degreewise Leray–Hirsch
   injectivity (`∀ n, Function.Injective (pull f n)`) into the ring-level
   `Function.Injective (TotalH.map f)` that `SplittingData` asks for.  Degreewise
@@ -383,3 +388,11 @@ hslice)` (cc-projective).
   which is only definitionally `range (n + 1)`; finish with `exact`, not `rw`.
 * Deprecated `not_mem` spellings: at this pin the names are
   `Finset.card_insert_of_notMem`, `Finset.insert_sdiff_of_notMem`.
+* **Never add two degrees inside a `TotalH.of`.**  Writing the product of the
+  degree-1 and degree-5 generators as one class in degree `6` asks Lean for
+  `Hmod2 N (1 + 5) = Hmod2 N 6`; it unfolds the cohomology construction instead
+  of reducing the index first and dies on a deterministic `isDefEq` timeout at
+  200000 heartbeats, taking the rest of the file with it.  Peel one generator at
+  a time and leave the index unreduced as `1 + (5 + n)`.  The same hazard applies
+  at any boundary between lanes: a statement handed over at `6 + n` forces the
+  identical defeq on whoever converts it.

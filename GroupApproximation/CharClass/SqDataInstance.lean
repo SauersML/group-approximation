@@ -99,6 +99,59 @@ theorem totalH_map_injective {X Y : TopCat.{0}} (f : X ⟶ Y)
   show pull f n (TotalH.component Y n c) = pull f n (TotalH.component Y n c')
   rw [← totalH_component_map, ← totalH_component_map, hcc]
 
+/-! ## 2b. Ring-level Künneth uniqueness from the degreewise statement -/
+
+/-- The degree-`m + n` component of a product with a class concentrated in degree
+`m`. -/
+theorem component_of_mul {X : TopCat.{0}} (m : ℕ) (w : TotalPiece X m) (z : TotalH X) (n : ℕ) :
+    TotalH.component X (m + n) (TotalH.of X m w * z) = cup w (TotalH.component X n z) := by
+  induction z using DirectSum.induction_on with
+  | zero => rw [mul_zero, map_zero, map_zero, cup_zero]
+  | of k a =>
+    show TotalH.component X (m + n) (TotalH.of X m w * TotalH.of X k a)
+      = cup w (TotalH.component X n (TotalH.of X k a))
+    rw [← TotalH.of_mul]
+    rcases eq_or_ne n k with rfl | hnk
+    · rw [TotalH.component_of, TotalH.component_of]
+    · rw [component_of_ne (by omega : m + n ≠ m + k), component_of_ne hnk, cup_zero]
+  | add z₁ z₂ h₁ h₂ => rw [mul_add, map_add, map_add, h₁, h₂, cup_add_right]
+
+/-- The degree-one generator, as a class concentrated in degree one. -/
+theorem tClass_eq_of {N S₁ : TopCat.{0}} (q₁ : N ⟶ S₁) (σ₁ : Hmod2 S₁ 1) :
+    tClass q₁ σ₁ = TotalH.of N 1 (pull q₁ 1 σ₁) := TotalH.map_of q₁ 1 σ₁
+
+/-- The degree-five generator, as a class concentrated in degree five. -/
+theorem xClass_eq_of {N S₅ : TopCat.{0}} (q₅ : N ⟶ S₅) (σ₅ : Hmod2 S₅ 5) :
+    xClass q₅ σ₅ = TotalH.of N 5 (pull q₅ 5 σ₅) := TotalH.map_of q₅ 5 σ₅
+
+/-- **`cc-wu`'s `tx_inj` field from the degreewise Künneth statement.**  The ring
+equation splits into one equation per degree; peeling the two generators one at a
+time reads, in degree `1 + (5 + n)`, exactly the degreewise hypothesis at `n`.
+Nothing is required in the degrees below that.
+
+The index is written `1 + (5 + n)` rather than `6 + n` deliberately.  Forming a
+single degree-six class out of the degree-one and degree-five generators asks
+Lean for the definitional equality `Hmod2 N (1 + 5) = Hmod2 N 6`, and that
+unfolds the cohomology construction rather than reducing the index first; it
+exhausts the heartbeat budget.  Peeling one generator at a time never adds two
+degrees inside a `TotalH.of`, so the whole proof is cast-free and cheap. -/
+theorem tx_inj_of_degreewise {N Y S₁ S₅ : TopCat.{0}} (p : N ⟶ Y)
+    (q₁ : N ⟶ S₁) (q₅ : N ⟶ S₅) (σ₁ : Hmod2 S₁ 1) (σ₅ : Hmod2 S₅ 5)
+    (h : ∀ (n : ℕ) (α : Hmod2 Y (1 + (5 + n))) (β : Hmod2 Y n),
+      pull p (1 + (5 + n)) α
+          + cup (pull q₁ 1 σ₁) (cup (pull q₅ 5 σ₅) (pull p n β)) = 0 → β = 0) :
+    ∀ u v : TotalH Y,
+      TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0 := by
+  intro u v huv
+  rw [mul_assoc, tClass_eq_of, xClass_eq_of] at huv
+  ext n
+  show TotalH.component Y n v = 0
+  refine h n (TotalH.component Y (1 + (5 + n)) u) (TotalH.component Y n v) ?_
+  have hc := congrArg (TotalH.component N (1 + (5 + n))) huv
+  rw [map_add, map_zero, totalH_component_map, component_of_mul, component_of_mul,
+    totalH_component_map] at hc
+  exact hc
+
 /-! ## 3. The splitting principle, as one bundled input -/
 
 /-- **The splitting principle for `γ`, as a single input from `cc-projective`.**
