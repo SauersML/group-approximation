@@ -3624,6 +3624,7 @@ import GroupApproximation.CharClass.LerayHirschChartClass
 import GroupApproximation.CharClass.SteenrodFourfoldBLeft
 import GroupApproximation.CharClass.LerayHirschPlusOneClosed
 import GroupApproximation.CharClass.GysinRanged
+import GroupApproximation.CharClass.BundleTautPieces
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
