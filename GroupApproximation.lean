@@ -3706,6 +3706,7 @@ import GroupApproximation.CharClass.BundleLocalOn
 import GroupApproximation.CharClass.LerayHirschRankVanish
 import GroupApproximation.CharClass.LerayHirschChartHomeo
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
+import GroupApproximation.CharClass.SteenrodFourfoldBPackage
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
