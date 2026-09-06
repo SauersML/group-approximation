@@ -1391,13 +1391,16 @@ theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
           · simpa [List.getElem?_eq_getElem hzero] using hzeroLetter
           · simpa [List.getElem?_eq_getElem hone] using honeLetter
 
-/-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
-theorem dgoLemma421a_of_uniform414
-    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
-  intro G _ Λ D hhyp hbase
-  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp hbase 1 1
-    le_rfl (by norm_num)
-  refine ⟨50 * C, ?_⟩
+/-- The sum bound at `(1,1)` alone makes every sufficiently deep `W` word
+`(4,1)`-quasi-geodesic. No general multiplicative-parameter bound is needed. -/
+theorem wWord_quasiGeodesic_of_uniformBound
+    {D : RelGenSet G Λ} {C : ℕ} (hC : 0 < C)
+    (hbound : DGOUniformSumBound D 1 1 C) :
+    ∀ (v : G) (word : List (RelLetter G Λ)), (∀ a ∈ word, D.IsLetter a) →
+      WWord.IsWOne word → WWord.IsWTwo D (50 * C) word → WWord.IsWThree D word →
+        ∀ i j : ℕ, i ≤ j → j ≤ word.length →
+          j - i ≤ 4 * wordDist D.alphabet.carrier
+            (vertex v word i) (vertex v word j) + 4 := by
   intro v word hlet hW1 hW2 hW3 i j hij hj
   let segment := (word.drop i).take (j - i)
   have hsegmentLength : segment.length = j - i := by
@@ -1434,6 +1437,14 @@ theorem dgoLemma421a_of_uniform414
           _ = vertex v word j := by rw [show i + (j - i) = j by omega]
       rw [hend] at hwhole
       omega
+
+/-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
+theorem dgoLemma421a_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp hbase 1 1
+    le_rfl (by norm_num)
+  exact ⟨50 * C, wWord_quasiGeodesic_of_uniformBound hC hbound⟩
 
 /-! ## The mixed quadrilateral used in clause (b) -/
 
@@ -3462,3 +3473,5 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
 end OsinComponents
 end GGT
 end GroupApproximation
+
+#audit_axioms GroupApproximation.GGT.OsinComponents.wWord_quasiGeodesic_of_uniformBound
