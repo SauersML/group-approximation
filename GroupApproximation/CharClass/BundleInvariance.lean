@@ -181,7 +181,7 @@ def projHomeo (e : BundleIso p q) : Proj p ≃ₜ Proj q where
     refine Prod.ext rfl ?_
     have h := conj_conj (p := q) (a := (e.hom (z : X × Matrix κ κ ℂ).1)ᴴ)
       (BundleIso.conjTranspose_mul_conjTranspose e (z : X × Matrix κ κ ℂ).1) z.2
-    rw [Matrix.conjTranspose_conjTranspose] at h
+    simp only [Matrix.conjTranspose_conjTranspose] at h ⊢
     exact h
   continuous_toFun :=
     ((continuous_fst.comp continuous_subtype_val).prodMk
@@ -204,7 +204,9 @@ theorem projHomeo_over_base (e : BundleIso p q) (z : Proj p) :
 /-- **The tautological lines correspond.**  The implementer is `a x · r`, with no
 normalization: `(a r)ᴴ (a r) = r p r = r` and `(a r)(a r)ᴴ = a r aᴴ`. -/
 def tautIso (e : BundleIso p q) :
-    BundleIso (tautLine p) (comap (BundleIso.projHomeo e).toContinuousMap (tautLine q)) where
+    BundleIso (tautLine p)
+      (comap (⟨BundleIso.projHomeo e, (BundleIso.projHomeo e).continuous⟩ : C(Proj p, Proj q))
+        (tautLine q)) where
   hom z := e.hom (z : X × Matrix ι ι ℂ).1 * (z : X × Matrix ι ι ℂ).2
   continuous_hom :=
     (e.continuous_hom.comp (continuous_fst.comp continuous_subtype_val)).matrix_mul

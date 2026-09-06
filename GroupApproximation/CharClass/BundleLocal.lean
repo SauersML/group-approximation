@@ -45,6 +45,8 @@ namespace Bundle
 
 section Local
 
+set_option linter.unusedSectionVars false
+
 variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
 
 /-! ### The intertwiner -/
@@ -265,6 +267,23 @@ def restrictTo (p : Bundle X ι) (U : Set X) : Bundle ↥U ι :=
 theorem restrictTo_apply (p : Bundle X ι) (U : Set X) (x : ↥U) :
     p.restrictTo U x = p (x : X) := rfl
 
+theorem totalTriv_toFun_mem (p : Bundle X ι) (x₀ : X)
+    (w : Total (p.restrictTo (trivSet p x₀))) :
+    intert p x₀ ((w : ↥(trivSet p x₀) × (ι → ℂ)).1 : X)
+        *ᵥ (w : ↥(trivSet p x₀) × (ι → ℂ)).2 ∈ fibreSet (p x₀) := by
+  show p x₀ *ᵥ (intert p x₀ _ *ᵥ _) = intert p x₀ _ *ᵥ _
+  have hw := mem_totalSet_iff.mp w.2
+  rw [restrictTo_apply] at hw
+  rw [Matrix.mulVec_mulVec, ← intert_mul, ← Matrix.mulVec_mulVec, hw]
+
+theorem totalTriv_invFun_mem (p : Bundle X ι) (x₀ : X)
+    (w : ↥(trivSet p x₀) × ↥(fibreSet (p x₀))) :
+    (w.1, (intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ)) ∈
+      totalSet (p.restrictTo (trivSet p x₀)) := by
+  show p (w.1 : X) *ᵥ ((intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ))
+    = (intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ)
+  rw [Matrix.mulVec_mulVec, ← inv_intert_mul w.1.2, ← Matrix.mulVec_mulVec, w.2.2]
+
 /-- **Local triviality of the total space.**  Over the open set `trivSet p x₀`
 the total space is the product of the base with the single fibre over `x₀`, by a
 homeomorphism over the base. -/
@@ -272,14 +291,8 @@ def totalTriv (p : Bundle X ι) (x₀ : X) :
     Total (p.restrictTo (trivSet p x₀)) ≃ₜ ↥(trivSet p x₀) × ↥(fibreSet (p x₀)) where
   toFun w := ((w : ↥(trivSet p x₀) × (ι → ℂ)).1,
     ⟨intert p x₀ ((w : ↥(trivSet p x₀) × (ι → ℂ)).1 : X)
-        *ᵥ (w : ↥(trivSet p x₀) × (ι → ℂ)).2, by
-      show p x₀ *ᵥ (intert p x₀ _ *ᵥ _) = intert p x₀ _ *ᵥ _
-      rw [Matrix.mulVec_mulVec, ← intert_mul, ← Matrix.mulVec_mulVec,
-        mem_totalSet_iff.mp w.2]⟩)
-  invFun w := ⟨(w.1, (intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ)), by
-      show p (w.1 : X) *ᵥ ((intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ))
-        = (intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ)
-      rw [Matrix.mulVec_mulVec, ← inv_intert_mul w.1.2, ← Matrix.mulVec_mulVec, w.2.2]⟩
+        *ᵥ (w : ↥(trivSet p x₀) × (ι → ℂ)).2, totalTriv_toFun_mem p x₀ w⟩)
+  invFun w := ⟨(w.1, (intert p x₀ (w.1 : X))⁻¹ *ᵥ (w.2 : ι → ℂ)), totalTriv_invFun_mem p x₀ w⟩
   left_inv w := by
     apply Subtype.ext
     refine Prod.ext rfl ?_
@@ -309,6 +322,12 @@ theorem totalTriv_over_base (p : Bundle X ι) (x₀ : X)
     (w : Total (p.restrictTo (trivSet p x₀))) :
     (p.totalTriv x₀ w).1 = totalPi (p.restrictTo (trivSet p x₀)) w := rfl
 
+theorem projTriv_invFun_mem (p : Bundle X ι) (x₀ : X)
+    (z : ↥(trivSet p x₀) × ↥(projFibreSet (p x₀))) :
+    (z.1, conjNormalize (intert p x₀ (z.1 : X))⁻¹ (z.2 : Matrix ι ι ℂ)) ∈
+      projSet (p.restrictTo (trivSet p x₀)) :=
+  conjNormalize_mem_projFibreSet (isUnit_det_inv_intert z.1.2) (inv_intert_mul z.1.2) z.2.2
+
 /-- **Local triviality of the projective bundle.**  Over `trivSet p x₀` it is the
 product of the base with the projective fibre over `x₀`. -/
 def projTriv (p : Bundle X ι) (x₀ : X) :
@@ -319,9 +338,8 @@ def projTriv (p : Bundle X ι) (x₀ : X) :
       conjNormalize_mem_projFibreSet
         (isUnit_det_intert (z : ↥(trivSet p x₀) × Matrix ι ι ℂ).1.2)
         (intert_mul p x₀ _) z.2⟩)
-  invFun z := ⟨(z.1, conjNormalize (intert p x₀ (z.1 : X))⁻¹ (z.2 : Matrix ι ι ℂ)), by
-      refine conjNormalize_mem_projFibreSet (isUnit_det_inv_intert z.1.2) ?_ z.2.2
-      exact (inv_intert_mul z.1.2).symm⟩
+  invFun z := ⟨(z.1, conjNormalize (intert p x₀ (z.1 : X))⁻¹ (z.2 : Matrix ι ι ℂ)),
+    projTriv_invFun_mem p x₀ z⟩
   left_inv z := by
     apply Subtype.ext
     refine Prod.ext rfl ?_
@@ -344,7 +362,7 @@ def projTriv (p : Bundle X ι) (x₀ : X) :
         (fun z => by
           have hz := z.2
           obtain ⟨u, hu, hru, -⟩ := exists_unitVector_of_mem_projFibreSet hz
-          rw [hru]
+          simp only [Function.comp_apply, hru]
           exact (trace_conj_ne_zero_iff _ _).mpr
             (mulVec_ne_zero_of_isUnit
               (isUnit_det_intert (z : ↥(trivSet p x₀) × Matrix ι ι ℂ).1.2)
@@ -355,7 +373,7 @@ def projTriv (p : Bundle X ι) (x₀ : X) :
         (continuous_subtype_val.comp continuous_snd)
         (fun z => by
           obtain ⟨u, hu, hru, -⟩ := exists_unitVector_of_mem_projFibreSet z.2.2
-          rw [hru]
+          simp only [Function.comp_apply, hru]
           exact (trace_conj_ne_zero_iff _ _).mpr
             (mulVec_ne_zero_of_isUnit (isUnit_det_inv_intert z.1.2)
               (ne_zero_of_eucNormSq_eq_one hu))))).subtype_mk _
