@@ -50,6 +50,7 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ChernTotalRing` | 2464 |
 | `ChernClasses` (over `TotalH`) | 2466 |
 | `ChernEulerBundle` | 8799 |
+| `GysinCover` | 3343 |
 
 What that amounts to mathematically: the whole point-set chain over the
 projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
@@ -106,7 +107,26 @@ which is the whole content of the induction's remaining hypothesis: restriction
 else downstream of those two is proved.  Later, for Leray–Hirsch and not before:
 the `H^*(X)`-linearity of the connecting map, `mvDelta_cup`.
 
-**From `cc-thom`, the two remaining:** `mvResWU_eq_pull`, or just its degree-zero
+**From `cc-cohom-api`, the two blocking the whole remaining chain:** `mvDelta_cup`,
+linearity of the connecting map over classes pulled back from the ambient space;
+and `mvExactZero`, exactness at the left end, `0 → H^0(X) → H^0(U) ⊕ H^0(V)`.  The
+second is needed because the left column of the Leray–Hirsch ladder is the direct
+sum over `i < r` of the base sequence shifted by `2i`, and the summand at shift
+`2i` reaches base degree zero when `n = 2i`, where the incoming term is absent —
+so exactness there is exactly injectivity of the pair of restrictions.  Both
+shapes have been sent by name.
+
+**From `cc-thom`:** `mvResV_eq_pull`, for stability of the degree-2 generator
+along the hyperplane inclusion, which is the last piece of invariance of the
+Euler class under isomorphism; and Mayer–Vietoris naturality in a map of covered
+spaces, which the ladder's restriction rungs need.
+
+**From `cc-bundle`:** the rotation homotopy reindexed into a `ℂP`-valued
+statement; the exact target has been sent.  Everything else this lane needed from
+them is discharged: `classifyOne` and its naturality, the zero section, the
+openness of its complement, and the retraction onto `P(p)`.
+
+**Older, superseded:** `mvResWU_eq_pull`, or just its degree-zero
 corollary `mvResWU_one`, which is the last hypothesis of the projective-space
 induction; and `mvDelta_cup`, linearity of the connecting map over classes pulled
 back from the ambient space, which the Leray–Hirsch ladder and the `CP`-factor
