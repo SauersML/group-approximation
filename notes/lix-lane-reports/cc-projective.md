@@ -116,6 +116,11 @@ Chern classes and the Euler class
 * `ProjectiveSpaceRingBootstrap` (8913) — **the ring**, from the Gysin sequence.
 * `ProjectiveSpaceRingClosed` (8914) — **`CPGenHyp` and the frozen interface,
   unconditionally**.  Items 1, 2 and the ring of §1.4 item 3 are closed.
+* `ChernWhitneyFlag` (8866) — **Whitney on the flag bundle**, `cc-wu`'s last
+  `SplittingData` field.  Stated as an identity of polynomials, at which point there
+  is no geometry in it: Chern classes are coefficients, pullback maps coefficients,
+  and Vieta reads a product of linear factors.  Holds for every `k`, since both sides
+  vanish above the rank for two different reasons.
 
 ## AUTHORED-UNVERIFIED
 
@@ -134,8 +139,10 @@ None.  Everything in the lane is probed green and pushed.
    identification is free.
 
    Remaining in the lane, none of it blocked: §1.4 item 4 (Leray–Hirsch at higher
-   rank, Künneth with `ℂP^n` and finite products), item 5 (Whitney on the flag
-   bundle, the last `SplittingData` field), and the slice class.
+   rank, Künneth with `ℂP^n` and finite products) and the slice class.  Item 5's
+   Whitney field is done; what `cc-wu` still needs from a *geometric* source is the
+   flag bundle itself, namely a Leray–Hirsch instance on it and the split form of the
+   relation, and that is item 4's business.
 
 1. **cc-bundle, to close item 2.**  A general isometric embedding of projective spaces
    is essential on `H^2`.  Three statements, sent with the shapes: composition of
