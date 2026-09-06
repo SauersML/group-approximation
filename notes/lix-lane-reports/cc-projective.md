@@ -123,9 +123,13 @@ Euler class under isomorphism; and Mayer–Vietoris naturality in a map of cover
 spaces, which the ladder's restriction rungs need.
 
 **From `cc-bundle`:** the rotation homotopy reindexed into a `ℂP`-valued
-statement; the exact target has been sent.  Everything else this lane needed from
-them is discharged: `classifyOne` and its naturality, the zero section, the
-openness of its complement, and the retraction onto `P(p)`.
+statement, as `cpBlockIncl (d) : C(CP d, CP (2*d+1))` with its `_apply` lemma and
+`homotopic_classifyOne_blockIncl`; the exact target has been sent.  Everything
+else this lane needed from them is discharged: `classifyOne` and its naturality,
+the zero section with the openness of its complement and the retraction onto
+`P(p)`, and now the flag bundle with `flag_decomposition`, which is what Whitney's
+formula consumes.  Injectivity of `flagProj` on cohomology is this lane's, and is
+`LerayHirschGraded.pull_injective` composed along the tower.
 
 **Older, superseded:** `mvResWU_eq_pull`, or just its degree-zero
 corollary `mvResWU_one`, which is the last hypothesis of the projective-space
