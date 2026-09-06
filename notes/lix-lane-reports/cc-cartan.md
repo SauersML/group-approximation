@@ -320,6 +320,23 @@ same conclusion.
 * `dNext`/`prevD` are best evaluated with `dNext_eq` / `prevD_eq`, which take an
   explicit `c.Rel` witness (`rfl` in every case here), rather than with the
   `_nat` variants, which force `ℕ` truncated subtraction into the goal.
+* **`rw` refuses goals that are only defeq after unfolding a functor
+  composition.**  `(singFree.obj X).X (n+1)` and
+  `singFreeSimplicial.obj X _⦋n+1⦌` are definitionally equal, but only after
+  unfolding `Functor.comp`, `alternatingFaceMapComplex` and `ChainComplex.of`,
+  which `rw`'s type-correctness check does not do (it works at `instances`
+  transparency).  Rewriting with a lemma whose right-hand side is a sum of
+  `δ i`'s therefore produces a goal `rw` will not touch again, with the message
+  "the target expression is not type-correct under the `instances` transparency
+  level".  `congrArg` at an ascribed type does not fix it either, because the
+  term's *inferred* type is what matters.  The fix that works: introduce the
+  morphisms you need **named at the target type** (`singFace X n i :
+  (singFree.obj X).X (n+1) ⟶ (singFree.obj X).X n`), prove they are the ones you
+  mean by `rfl` at definition time where full defeq is available, and never let
+  the other presentation into a `rw`.
+* `(ModuleCat.ofHom L).hom` is `rfl`-equal to `L`, so a goal about it is best
+  opened with `show` (full defeq) rather than `rw [ModuleCat.hom_ofHom]`, which
+  has to match the `ModuleCat.of ↑M` roundtrip syntactically and often will not.
 * **Mathlib has no braiding for `HomologicalComplex` monoidal at this pin.**
   `Mathlib/Algebra/Homology/Monoidal.lean` provides `MonoidalCategory` but no
   `BraidedCategory`/`SymmetricCategory` instance (there is a braiding for graded
