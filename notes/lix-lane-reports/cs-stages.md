@@ -60,6 +60,34 @@ STW59.pullMat_injective_of_surjective         -- generic; injectivity's engine
 `Type` (not `Type*`), `CStarAlgebra` instance, and now `Nontrivial` for every stage rather
 than only stage `0`.
 
+### The tower-level fullness, the last deliverable (green, 2986 jobs, 5fa1c8f8c)
+
+`Analysis/LIXConnectingMapFullnessTower.lean`, `Build completed successfully (2986 jobs)`,
+`ERROR_LINES=0`, all of `LIXStageAlgebra`, `LIXConnectingMap`, `LIXConnectingMapFullness`,
+`LIXConnectingMapFullnessSum` and `LIXConnectingMapFullnessTower` genuinely built.
+
+```lean
+theorem STW59.isFull_climb_of_ne_zero {T : LIX.CStarTower STW59.StageAlgebra}
+    (hT : ∀ i, T.succHom i = STW59.connect i) (k : ℕ) (a : STW59.StageAlgebra k) (hne : a ≠ 0) :
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (T.climb j k a)
+```
+
+This is the hypothesis of `LIX.CStarTower.isSimpleCStar_limit_of_ne_zero` verbatim: raw
+`T.climb` with the target index first, `IsFull` the finite-sum predicate, no positivity.
+cs-limit's `lixTower_succHom` discharges `hT` by `rfl`, so their `hfull` is
+`STW59.isFull_climb_of_ne_zero lixTower_succHom`.  The tower is a parameter rather than
+`lixTower` itself so that this file does not import cs-limit's and there is no cycle.
+
+Supporting: `STW59.stageEval_climb_ne_zero` carries nonvanishing up the tower through the
+pulled-back block; `continuous_stageEval` and `isOpen_stageEval_ne_zero` open the
+nonvanishing set.  No transport appears anywhere, because `basePr h w = w` for `h : k ≤ k`
+and `basePr h' (baseProj i w) = basePr h w` are both `rfl` by structure eta on `Fin.castLE`.
+
+`LIXStageAlgebra` also gains `instCStarAlgebraStageAlgebraPi : ∀ n, CStarAlgebra (StageAlgebra n)`.
+`LIX.CStarTower` binds that as a family and instance search does **not** assemble it from the
+per-stage instance; without it `CStarTower STW59.StageAlgebra` fails to elaborate, which is a
+trap cs-limit hits too.
+
 ### The fullness theorem, added after that probe
 
 | module | job count | commit |
