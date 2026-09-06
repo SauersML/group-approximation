@@ -218,7 +218,63 @@ no `Sq n 1 = 0` field is needed — the latter is **derived** from `cartan` and
    because matching "one member of each pair" to "`a ≤ i`" needs a bijection
    through unordered pairs, which is more Lean work than the induction.
 
-## 7. TRAPS
+## 7. `ParityInstance.lean`: the checklist for the topology lanes
+
+`CharClass/ParityInstance.lean` (namespace `GroupApproximation.CharClass.Wu`)
+instantiates `ParityData` at `R := TotalH Y`, `H := TotalH N` — the mod-2
+cohomology rings of `ChernTotalRing.lean` — through
+
+```lean
+def parityData_of
+    (p : N ⟶ Y) (q₁ : N ⟶ S₁) (q₅ : N ⟶ S₅)
+    (hS₁ : HasSphereCohomology S₁ 1) (hS₅ : HasSphereCohomology S₅ 5)
+    (σ₁ : Hmod2 S₁ 1) (σ₅ : Hmod2 S₅ 5)
+    (γ : ℕ → TotalH N) (a b : ℕ → TotalH Y)
+    (hcartan …) (htx_inj …) (hγ …) (ha_zero …) (ha_odd …) (hsq_b …) (hwu …) :
+    ParityData (TotalH Y) (TotalH N)
+```
+
+with `t := tClass q₁ σ₁ = TotalH.map q₁ (TotalH.of S₁ 1 σ₁)` and
+`x := xClass q₅ σ₅ = TotalH.map q₅ (TotalH.of S₅ 5 σ₅)`.
+
+**Discharged today** (no hypothesis): `two_eq_zero` (`totalH_two_eq_zero`),
+`ι = TotalH.map p`, `t`, `x`, `t_mul_t` (`mul_self_pull_sphere_eq_zero`),
+`SqH = Steenrod.SqH N`, `SqR = Steenrod.SqH Y`, `sqH_zero_apply`
+(`Steenrod.SqH_zero_apply`), `sqH_t` and `sqH_x`
+(`sq_pull_sphere_eq_zero`: naturality plus the sphere's vanishing — neither
+needs instability nor Cartan), `sqH_ι` (`Steenrod.SqH_map`, on the nose).
+
+**The seven remaining hypotheses**, name, statement, owner:
+
+| name | statement | owner |
+|---|---|---|
+| `hcartan` | `∀ (n : ℕ) (u v : TotalH N), Steenrod.SqH N n (u * v) = ∑ i ∈ Finset.range (n+1), Steenrod.SqH N i u * Steenrod.SqH N (n-i) v` | `cc-cartan` (formula), `cc-steenrod` (transport to `SqH` on `TotalH`) |
+| `htx_inj` | `∀ u v : TotalH Y, TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0` | `cc-cohom-api` (Künneth for the two sphere factors) |
+| `hγ` | `∀ k : ℕ, γ k = TotalH.map p (a k) + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p (b k)` | `cc-cohom-api` (Künneth split) + `cc-projective` (`γ` = the Chern classes) |
+| `ha_zero` | `a 0 = 1` | `cc-projective` (slice restriction); free from `hslice` below |
+| `ha_odd` | `∀ q : ℕ, Odd q → a q = 0` | `cc-projective`; free from `hslice` below |
+| `hsq_b` | `∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0` | `cc-cohom-api` (the degree of the `t x`-component), through `sq_b_of_grading` |
+| `hwu` | `∀ i : ℕ, Steenrod.SqH N (2*i) (γ (i+1)) = ∑ j ∈ Finset.range (i+1), γ (i-j) * γ (i+1+j)` | `cc-projective` (splitting principle) + `cc-steenrod`/`cc-cartan`, through `SqData.wu_diagonal` |
+
+Two helpers make two of these mechanical:
+
+* `sq_b_of_grading (b) (hlow : ∀ k < 3, b k = 0) (hdeg : ∀ k c, 2*k = c+6 → ∃ β : Hmod2 Y c, b k = TotalH.of Y c β) : hsq_b`.
+  Note the `k < 3` clause: `t x` already carries degree six, so `b 0 = b 1 = b 2`
+  are forced to vanish and the `sq_b` field asserts exactly that at `j = 0`.
+* `ha_zero` and `ha_odd` both follow from the slice hypothesis
+  `hslice : ∀ q, a q = (sliceClass u h d).coeff q` with `∀ j ∈ u, Even (d j)`,
+  via `sliceClass_coeff_zero` and `sliceClass_coeff_odd_eq_zero`.
+
+The endpoint delivered to `cc-lix-odd` is
+
+```lean
+theorem gamma_top_eq_zero_of_slice_totalH … : γ ((∑ j ∈ u, d j) + 3) = 0
+```
+
+taking the seven hypotheses plus `(u, h, d)`, `hd : ∀ j ∈ u, Even (d j)` and
+`hslice`.  It is rank-free: the rank of `W` is never mentioned.
+
+## 8. TRAPS
 
 * **`autoImplicit` silently swallowed a missing `import`.**  `ZMod` was unknown
   in `WuSymmetric.lean` and `autoImplicit` turned it into an implicitly bound
