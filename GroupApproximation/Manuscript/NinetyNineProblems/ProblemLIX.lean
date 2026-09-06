@@ -2,6 +2,7 @@ import GroupApproximation.Analysis.LIXEndpointStatement
 import GroupApproximation.Analysis.CStarSimple
 import GroupApproximation.Analysis.LIXLimitSimple
 import GroupApproximation.Analysis.LIXLemmaTwoProp
+import GroupApproximation.CharClass.LemmaTwoGlue
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -207,6 +208,38 @@ theorem not_problemLIX_of_lemmaTwo_data
     (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX :=
   not_problemLIX_of_exists (exists_simple_unital_not_k1Inj_of_lemmaTwo_data hwit h)
 
+/-! ## Against the two cohomological steps
+
+`cc-lix-odd`'s `CharClass.lemmaTwoHolds_of` reduces `LIX.LemmaTwoHolds` to
+`CharClass.LemmaTwoInput` at every stage, and that predicate bundles exactly
+two statements: the top class of the mapping torus is nonzero for a torus built
+from a Step A unitary (`cc-thom`'s Step C), and zero for *every* mapping torus
+(`cc-wu`'s Step D).  Nothing else survives from the topology --- Step A is a
+theorem, and the manuscript's section is unconditional down to the choice of
+bump function.
+
+The two statements below exist so that those two obligations can be read as the
+endpoint's literal hypotheses rather than as something several modules away. -/
+
+/-- **The counterexample from the two cohomological steps.** -/
+theorem exists_simple_unital_not_k1Inj_of_lemmaTwoInput_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_simple_unital_not_k1Inj_of_lemmaTwo_data hwit (CharClass.lemmaTwoHolds_of h)
+
+/-- **Step C and Step D at every stage refute Problem LIX.**
+
+This is the whole of the answer, with its dependency spelled out: one arrow from
+`cs-clutching` turning Lemma 2 into the `K₁` witness, and, at each stage, the
+nonvanishing and the vanishing of the same top class.  When those three land the
+statement below is `¬ ProblemLIX` outright. -/
+theorem not_problemLIX_of_lemmaTwoInput_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) : ¬ ProblemLIX :=
+  not_problemLIX_of_lemmaTwo_data hwit (CharClass.lemmaTwoHolds_of h)
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -217,4 +250,6 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms exists_simple_unital_not_k1Inj_of_limit
 #audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwo_data
 #audit_axioms not_problemLIX_of_lemmaTwo_data
+#audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwoInput_data
+#audit_axioms not_problemLIX_of_lemmaTwoInput_data
 #audit_axioms not_problemLIX_of_exists
