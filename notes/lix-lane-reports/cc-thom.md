@@ -27,6 +27,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisElement.lean` | the four restrictions, `mvDelta`, and `mvExactX` / `mvExactSum` / `mvExactW` |
 | `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
 | `CharClass/MayerVietorisRestriction.lean` | `subInclusion`, `subInclusion_comp_sInclusion`, `subChainCorestrict_naturality` — the chain-level half of `mvResWU_eq_pull` |
+| `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWU_one`** — the Mayer–Vietoris restriction to the intersection is the honest pullback, and the unit restricts to the unit |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
@@ -92,7 +93,11 @@ theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmo
 end GroupApproximation.CharClass
 ```
 
-**`mvResWU_eq_pull` — half done, and the remaining half is pinned.**
+**`mvResWU_eq_pull` — DONE, green in `CharClass/MayerVietorisPull.lean` (8773 jobs),
+together with its degree-zero corollary `mvResWU_one`, which `cc-projective` reports
+is the last hypothesis of the projective-space induction.**  The record of how it
+was assembled, kept because the same three steps recur for the other three
+restrictions:
 `cc-projective` reports that this, in its degree-zero form `mvResWU_one`, is the
 *last* hypothesis of the projective-space induction, so it outranks δ-linearity in
 what it unblocks.  Its mathematical content is the naturality of
@@ -112,7 +117,8 @@ pinned precisely:
 
 **Still open**, and each comparable in size to the element-level layer:
 
-* **(3) `H^*(X)`-linearity of `δ` — HANDED TO `cc-cohom-api` at their request**, since
+* **(3) `H^*(X)`-linearity of `δ` — OWNED BY `cc-cohom-api`**, by the lead's
+  reassignment and at their request, since
   they need it for `tx_inj` and `ParityData` and it is on cc-projective's critical
   path twice over.  The full analysis went to them, including cc-projective's
   simplification that `b` is always pulled back from the ambient space, so the lift
