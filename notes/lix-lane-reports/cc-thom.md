@@ -223,6 +223,8 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomHyperplaneLH.lean` | `hyperIso`, `hyperProj`, `hyperIso_hom_comp`, **`hyperLH`**, **`thomData_total_of_taut`** — Leray–Hirsch on the hyperplane presented as a subset; the Thom datum over the single input `htaut` |
 | `CharClass/LIXThomClassOfTaut.lean` | `cohCast_ne_zero`, `lixTopCoeff{,_ne_zero}`, **`exists_lixThomClass_ne_zero`** — the `u` and the `hu` of `lix_topClass_ne_zero_of_named`, over `htaut` |
 | `CharClass/ThomStepCOddLocal.lean` | `injective_comp_of_square`, **`topChernClass_ne_zero_odd_local`**, `topChernClass_ne_zero_odd_local_of_iso` — Step C's odd side over an **injective** local restriction plus one square, strictly weaker than the isomorphism form, which it recovers |
+| `CharClass/ThomChainHne.lean` | `injective_of_comp_injective`, **`ne_zero_of_injective_comp`**, `ne_zero_of_local` — `ThomChainThom.hne` (`sRel.hom u ≠ 0`) from the same `hinj` the odd side already needs; closes `cc-projective`'s seam finding C5 with no new obligation |
+| `CharClass/LIXThomClassTerm.lean` | `range_comp_linearEquiv`, `injective_thomJm`, `hyperLH_range`, `thomJmTotal{,_apply}`, `injective_thomJmTotal`, `range_thomJmTotal`, `one_le_lixRank_dd`, `lixLHplus`, `lixLHhyper`, **`lixThomClassTerm`**, **`lixThomClassTerm_ne_zero`** — the Thom class as an **unconditional term**, `htaut` discharged by `cc-projective`'s `pull_sInclusion_tautEulerOf` |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -766,3 +768,6 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`ThomHyperplaneLH`** | **green, 9040 jobs, `4088f7d7b`** |
 | 2026-09-06 | **`LIXThomClassOfTaut`** | **green, 9042 jobs, `7760be635`** |
 | 2026-09-06 | **`ThomStepCOddLocal`** | **green, 8833 jobs, `e6d7eb609`, first probe** |
+| 2026-09-06 | **`ThomChainHne`** | **green, 8834 jobs, `fdfd2dae3`, first probe** |
+| 2026-09-06 | `LIXThomClassTerm` | red x3: `isDefEq`/`whnf` timeouts from unpinned `TopCat` implicits and restated types; then `g` elaborated to a metavariable because `M` comes later |
+| 2026-09-06 | **`LIXThomClassTerm`** | **green, 9183 jobs, `ee784cb87`** |
