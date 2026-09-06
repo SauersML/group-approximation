@@ -22,6 +22,7 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/ParityEvenFlagRelation.lean` | the split relation at the flag, and so **the splitting principle with nothing left open** |
 | `CharClass/ParityEvenLixSplitting.lean` | concentration of a Chern class with a splitting, and `hsplit` for the LIX mapping torus |
 | `CharClass/ParityEvenStepDClosed.lean` | Step D's data over the slice value alone, and Lemma 2 over two inputs |
+| `CharClass/ParityEvenVSlice.lean` | `VSliceValue`, the last input stated about `V` alone, and the bridge to the assembly |
 
 ## 1. GREEN
 
@@ -141,10 +142,34 @@ typecheck, while substituting the point moves the map and the rank proof togethe
 
 ### What the even side now rests on
 
-`lemmaTwoHolds_of_exists_chernSliceValue` needs two things and nothing else:
-`cc-thom`'s Step C chain, and `LixSliceValue`, the statement that the mod-2 Chern
-classes of `V` over the projective base are the coefficients of
-`∏_j (1 + gen_j)^{d_j}` for some generators.  The second is `cc-steenrod`'s.
+`lemmaTwoHolds_of_vSliceValue` needs two things and nothing else: `cc-thom`'s
+Step C chain, and `VSliceValue`, the statement that the mod-2 Chern classes of `V`
+over the projective base are the coefficients of `∏_j (1 + gen_j)^{d_j}` for some
+generators.  The second is `cc-steenrod`'s, who have confirmed it is the statement
+they will prove.
+
+`CharClass/ParityEvenVSlice.lean`, 2026-09-06:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenVSlice
+ERROR_LINES=0
+Build completed successfully (9199 jobs).
+```
+
+### The rule-17 comparison (assigned by the lead, done before `cc-steenrod` landed)
+
+`VSliceValue` against `LixSliceValue`, binder by binder: the generators agree, both
+being a parameter the bridge passes through untouched; the base space agrees; the
+coefficient convention agrees, both sides being `KnTwo.ChernSliceValue` whose
+right-hand side is the slice polynomial's *coefficient*, so reciprocal Vieta never
+crosses the interface; the rank arguments differ in spelling and cannot matter,
+being proofs.  The one real gap is the index type and the bundle,
+`VIdx dd ⊕ VIdx dd` against `VIdx dd`, closed by `cc-steenrod`'s own
+`LH.chernOf_lixSlice_eq_vBundleY` in a single `congrArg`.
+
+Because `VSliceValue` mentions no mapping torus, the existential over generators is
+per **stage** rather than per mapping torus, a smaller input than the one it
+replaces.
 
 Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
 integration assembly is green over its named hypotheses, and the even side is
