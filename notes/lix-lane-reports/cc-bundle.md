@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 25 modules; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 26 modules; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,35 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleTautPieces.lean` — the tautological line on the two Gysin pieces
+
+```lean
+theorem comap_zeroSectionProj_tautLine_apply (p) (x) :
+    comap (zeroSectionProj p) (tautLine p.plusOne) x = infPoint ι            -- `rfl`
+noncomputable def tautLineZeroSectionIso (p) :
+    BundleIso (comap (zeroSectionProj p) (tautLine p.plusOne)) (triv X (Fin 1))
+noncomputable def projRankOneSection (p) (hp : ∀ x, (p x).trace = 1) : C(X, Proj p)
+theorem comap_projRankOneSection_tautLine (p) (hp) :
+    comap (projRankOneSection p hp) (tautLine p) = p                          -- `rfl`
+noncomputable def tautLineProjRankOneIso (p) (hp) : BundleIso (comap _ (tautLine p)) p
+theorem notZeroOpensHomotopyEquivProj_invFun (p) (z) :
+    (notZeroOpensHomotopyEquivProj p).invFun z
+      = notZeroHomeoOpens p (projInclNotZero p z)                             -- `rfl`
+```
+
+On the zero section the tautological line is the constant `infPoint`, so
+`lineIso` trivialises it with a constant implementer.
+
+On the hyperplane at infinity the pullback of the tautological line **equals**
+`p`, not merely up to isomorphism, and by `rfl`.  The rank-one-subprojection
+argument a consumer expects to need here is already spent inside
+`projRankOneHomeo`, whose inverse sends `x` to the point carrying the matrix
+`p x`; so pulling back along it returns `p` definitionally, and
+`tautLineProjRankOneIso` is literally `BundleIso.refl p` at the stated type.
+
+The third is `rfl` because the equivalence was assembled as a `trans`, and a
+`trans` composes inverse maps in the obvious way.
 
 ### `BundlePushforward.lean` — pushing along an INJECTION of index types
 
