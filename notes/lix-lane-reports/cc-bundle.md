@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 35 modules; `BundleTotalOver` at 2970 jobs; `BundleChartTaut` at 8675 jobs; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 36 modules; `BundleProjInclPairs` at 2978 jobs; `BundleTotalOver` at 2970 jobs; `BundleChartTaut` at 8675 jobs; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -185,6 +185,25 @@ free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
 
+### `BundleProjInclPairs.lean` — the restricted projectivisation as a map of Gysin pairs
+
+```lean
+theorem projInclOn_mem_notZeroOpensSet_iff / projInclOn_mem_chartOpensSet_iff   -- `Iff.rfl`
+theorem projInclOn_preimage_notZeroOpensSet / projInclOn_preimage_chartOpensSet -- `rfl`
+```
+
+Both Gysin opens are conditions on the **matrix coordinate alone**, and
+`projInclOn` carries the matrix unchanged and moves only the base point, so both
+are definitional.
+
+**Asymmetry worth knowing:** the chart pair needs **no** `DecidableEq ι`
+(`betaEntry` is one entry lookup); the not-zero pair does (`zTrace` is the trace
+of a block, through `blockProj`).
+
+A **leaf** module on purpose: `projInclOn` lives in `BundleProjOver` (two
+consumers) and the sets in `BundleGysinPieces` (four), so importing either into
+the other would rebuild a chain for two `Iff.rfl`s.
+
 ### `BundleTotalOver.lean` — the total space over an open set, as a SUBSET
 
 ```lean
@@ -196,6 +215,11 @@ noncomputable def totalOverHomeo (p) (U) : Total (p.restrictTo U) ≃ₜ ↥(tot
 theorem totalOverHomeo_over_base                                          -- `rfl`
 theorem totalInclOn_mem_puncturedSet_iff / totalInclOn_preimage_puncturedSet
 ```
+
+Its projectivisation mirror is `projInclOn` in `BundleProjOver`, with
+`projInclOn_projIncl` saying it commutes with the hyperplane inclusion, by
+`rfl`.  The two sides of the lane were asymmetric until 09-06; that was a defect
+independent of who needed it.
 
 The total-space twin of `BundleProjOver`.  Presenting it as a subset, open when
 `U` is, is what lets a relative argument reach it at all: an injective map is
