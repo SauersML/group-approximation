@@ -3578,6 +3578,11 @@ import GroupApproximation.CharClass.CohomologyChartFlatBase
 import GroupApproximation.CharClass.ProjectiveSpaceIterate
 import GroupApproximation.CharClass.CartanEvalFunctional
 import GroupApproximation.CharClass.SteenrodFourfoldAgree
+import GroupApproximation.CharClass.CohomologyChartRankTwo
+import GroupApproximation.CharClass.LemmaTwoStepDLix
+import GroupApproximation.CharClass.ProjectiveSpacePerm
+import GroupApproximation.CharClass.CartanEvalCocycle
+import GroupApproximation.CharClass.SteenrodPairing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
