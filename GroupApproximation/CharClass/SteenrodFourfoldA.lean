@@ -134,6 +134,97 @@ theorem compA_zero (X : TopCat.{0})
   rw [hz]
   exact awPairHom_phiZero_zero X _
 
+/-! ## 4. Naturality -/
+
+theorem singHom_single {X Y : TopCat.{0}} (f : X ⟶ Y) (a : ℕ)
+    (x : singularSimplices X a) :
+    (singHom f).f a (Finsupp.single x (1 : ZMod 2))
+      = Finsupp.single (pushSimplex f a x) 1 := by
+  show Finsupp.mapDomain (pushSimplex f a) (Finsupp.single x (1 : ZMod 2)) = _
+  exact Finsupp.mapDomain_single
+
+/-- The pushforward on the pair complex, in this lane's vocabulary.  The two
+presentations agree because a decomposable of two singles is a single.
+
+`singFreeCx` is a plain `def`, so `rw` with a lemma whose left side mentions
+`A.ι` cannot see that the index type is a type of simplices; everything below is
+therefore `calc` closed by `exact`, and the only rewrites are with closed
+equations. -/
+theorem pairHom_f_eq {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ) :
+    (pairHom f).f k = pairPushLin X Y f k := by
+  apply Finsupp.lhom_ext'
+  intro q
+  apply LinearMap.ext_ring
+  obtain ⟨⟨⟨a, b⟩, hab⟩, x, y⟩ := q
+  show (pairHom f).f k
+      (Finsupp.single (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) (1 : ZMod 2))
+    = pairPushLin X Y f k
+      (Finsupp.single (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) (1 : ZMod 2))
+  calc (pairHom f).f k
+        (Finsupp.single (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) (1 : ZMod 2))
+      = tenElt (singFreeCx Y) (singFreeCx Y) (⟨(a, b), hab⟩ : PairDeg k)
+          ((singHom f).f a (Finsupp.single x 1))
+          ((singHom f).f b (Finsupp.single y 1)) :=
+        (tenHom_single (singHom f) (singHom f) k
+          (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) 1).trans (one_smul _ _)
+    _ = tenElt (singFreeCx Y) (singFreeCx Y) (⟨(a, b), hab⟩ : PairDeg k)
+          (Finsupp.single (pushSimplex f a x) 1)
+          (Finsupp.single (pushSimplex f b y) 1) := by
+        have hx := singHom_single f a x
+        have hy := singHom_single f b y
+        rw [hx, hy]
+        rfl
+    _ = Finsupp.single
+          (⟨⟨(a, b), hab⟩, (pushSimplex f a x, pushSimplex f b y)⟩ : PairIdx Y k) 1 :=
+        tenElt_single_single (singFreeCx Y) (singFreeCx Y) _ _ _
+    _ = pairPushLin X Y f k
+          (Finsupp.single (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) 1) :=
+        (pairPushLin_single f k (⟨⟨(a, b), hab⟩, (x, y)⟩ : PairIdx X k) 1).symm
+
+theorem pairPushLin_awDiag {X Y : TopCat.{0}} (f : X ⟶ Y) (m : ℕ)
+    (u : singularSimplices X m →₀ ZMod 2) :
+    pairPushLin X Y f m (awDiag X m u)
+      = awDiag Y m (Finsupp.mapDomain (pushSimplex f m) u) := by
+  induction u using Finsupp.induction_linear with
+  | zero => simp
+  | add p q hp hq =>
+      rw [map_add (awDiag X m), map_add (pairPushLin X Y f m), hp, hq,
+        Finsupp.mapDomain_add, map_add (awDiag Y m)]
+  | single σ c =>
+      rw [awDiag_single, map_smul, phiZero_naturality, Finsupp.mapDomain_single,
+        awDiag_single]
+
+/-- `Φ₀` is natural, as an equation of chain maps. -/
+theorem awHom_natural {X Y : TopCat.{0}} (f : X ⟶ Y) :
+    (pairHom f).comp (awHom X) = (awHom Y).comp (singHom f) := by
+  refine FreeCxHom.ext (funext fun m => ?_)
+  apply LinearMap.ext
+  intro u
+  show (pairHom f).f m (awDiag X m u) = awDiag Y m ((singHom f).f m u)
+  rw [pairHom_f_eq]
+  show pairPushLin X Y f m (awDiag X m u)
+      = awDiag Y m (Finsupp.mapDomain (pushSimplex f m) u)
+  exact pairPushLin_awDiag f m u
+
+theorem awPairHom_natural {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ)
+    (z : PairIdx X k →₀ ZMod 2) :
+    (fourHom f).f k ((awPairHom X).f k z) = (awPairHom Y).f k ((pairHom f).f k z) := by
+  show tenHom (pairHom f) (pairHom f) k (tenHom (awHom X) (awHom X) k z)
+      = tenHom (awHom Y) (awHom Y) k (tenHom (singHom f) (singHom f) k z)
+  rw [← tenHom_comp, ← tenHom_comp, awHom_natural]
+
+/-- **The first composite is natural in the space.** -/
+theorem fourHom_compA {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ) (y : WTensorSMod X k) :
+    (fourHom f).f k (compA X k y)
+      = compA Y k (Finsupp.lmapDomain GroupRingZ2 GroupRingZ2 (srcMapIdx f k) y) := by
+  have h2 : (pairHom f).f k (PhiHom X k y)
+      = PhiHom Y k (Finsupp.lmapDomain GroupRingZ2 GroupRingZ2 (srcMapIdx f k) y) := by
+    rw [pairHom_f_eq]
+    exact PhiHom_naturality f k y
+  show (fourHom f).f k ((awPairHom X).f k (PhiHom X k y)) = _
+  rw [awPairHom_natural, h2]
+  rfl
+
 end
 
 end Steenrod
