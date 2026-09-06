@@ -53,7 +53,24 @@ limit, simplicity, and the reduction of the printed problem to a single unitary
    torus built from a corner unitary that carries one section to the other.
 2. `cc-wu`'s Step D: the same class **vanishes** for *every* corner unitary,
    with no condition on sections.
-3. `cs-clutching`'s `lixLimit_hasK1InjWitness_of`.
+3. `cs-clutching`'s `lixLimit_hasK1InjWitness_of`.  Two of its three pieces are
+   green: `paddedPath` (the `hdiag` mathematics) and
+   `LIX.hasGeneratorShape_climb`, stated over `lixTower.climb` so that
+   `climbHom_apply` makes the join definitional and no transport lemma appears
+   anywhere.  What remains is the `M₂(M₂(C(X))) ≅ M₄(C(X))` flattening and the
+   generalised Corollary 4.
+
+   **Their Lemma 6 is an equality, not a homotopy, and that is a strengthening
+   rather than a convenience.**  `connect`'s new block is constant in the `S⁴`
+   coordinate, so the generator's shape reproduces verbatim one level up.  A
+   homotopy-shaped Lemma 6 would have made `hstage` depend on connectivity of a
+   unitary group — a fact about the *ambient* algebra — whereas the equality
+   depends only on the connecting map, which is the object the tower is built
+   from.  Checked rather than taken: `Mathlib/Analysis/CStarAlgebra/Unitary/Connected.lean`
+   is entirely *local* (its title is "locally path connected"; `Unitary.joined`
+   needs `‖v - u‖ < 2`, `isPathConnected_ball` needs radius `< 2`), so global
+   path-connectedness of `U(Mₙ(ℂ))` is genuinely absent at this pin and the
+   homotopy route would have hit a real gap.
 
 The asymmetry between 1 and 2 is the argument, not an accident of phrasing:
 Step D is quantified over every corner unitary and Step C over one with an
