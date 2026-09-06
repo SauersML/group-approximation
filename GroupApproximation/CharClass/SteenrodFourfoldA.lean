@@ -170,10 +170,14 @@ theorem pairHom_f_eq {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ) :
     _ = tenElt (singFreeCx Y) (singFreeCx Y) (⟨(a, b), hab⟩ : PairDeg k)
           (Finsupp.single (pushSimplex f a x) 1)
           (Finsupp.single (pushSimplex f b y) 1) := by
-        have hx := singHom_single f a x
-        have hy := singHom_single f b y
-        rw [hx, hy]
-        rfl
+        -- `exact`-terminated on purpose: whether `rw` would close this itself
+        -- depends on whether `singFreeCx` is reducible, so relying on its
+        -- trailing `rfl` would make this proof break either way round.
+        exact (congrArg (fun w => tenElt (singFreeCx Y) (singFreeCx Y)
+              (⟨(a, b), hab⟩ : PairDeg k) w ((singHom f).f b (Finsupp.single y 1)))
+            (singHom_single f a x)).trans
+          (congrArg (tenElt (singFreeCx Y) (singFreeCx Y) (⟨(a, b), hab⟩ : PairDeg k)
+              (Finsupp.single (pushSimplex f a x) 1)) (singHom_single f b y))
     _ = Finsupp.single
           (⟨⟨(a, b), hab⟩, (pushSimplex f a x, pushSimplex f b y)⟩ : PairIdx Y k) 1 :=
         tenElt_single_single (singFreeCx Y) (singFreeCx Y) _ _ _
