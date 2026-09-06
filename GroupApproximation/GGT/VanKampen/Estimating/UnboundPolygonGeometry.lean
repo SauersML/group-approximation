@@ -101,6 +101,48 @@ theorem nearby_endpoints_keep_shortening_margin
   · linarith [dist_triangle q y y', dist_triangle q y' q']
 
 /-- A pair supplied by N123 can be transferred to indexed endpoints on the
+original quasi-geodesic arcs using Morse proximity on the two retained
+classes. Short connector sides need no quasi-geodesic hypothesis. -/
+theorem OsinUnboundScale.exists_originalArcPair_of_class_near
+    {X : Type v} [PseudoMetricSpace X] {δ lambda c mu kappa : ℝ}
+    {eps rho : ℕ}
+    (scale : OsinUnboundScale lambda c mu kappa (12 * (δ + 1))
+      (100000 * (δ + 1)) eps rho)
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    {n : ℕ} {vs : ℕ → X} {sides : ℕ → ℝ → X}
+    (hpoly : IsClosedPolygonAt vs sides 0 n) (A B : Set ℕ)
+    (arc : ℕ → ℕ → X) (arcLength : ℕ → ℕ)
+    (hnear : ∀ i < n, i ∈ A ∨ i ∈ B → ∀ t ∈ Set.Icc (0 : ℝ) (dist (vs i) (vs (i + 1))),
+      ∃ k ≤ arcLength i, dist (sides i t) (arc i k) ≤ kappa)
+    (hfirst : (lambda * Real.sqrt (rho : ℝ) / 240 - c) * n < classLength vs n A)
+    (hshort : classLength vs n Bᶜ ≤ (eps : ℝ) * n) :
+    ∃ i < n, ∃ j < n, i ∈ A ∧ j ∈ B ∧ i ≠ j ∧
+      ∃ u ≤ arcLength i, ∃ u' ≤ arcLength i, ∃ v ≤ arcLength j, ∃ v' ≤ arcLength j,
+        dist (arc i u) (arc j v) < eps ∧ dist (arc i u') (arc j v') < eps ∧
+          (eps : ℝ) < dist (arc i u) (arc i u') ∧
+          (eps : ℝ) < dist (arc j v) (arc j v') := by
+  obtain ⟨i, hi, j, hj, hiA, hjB, hne,
+    u, hu, u', hu', t, ht, t', ht', hlen, hlen', hc, hc'⟩ :=
+      scale.exists_polygonPair hδ hδ0 hgeo hpoly A B hfirst hshort
+  obtain ⟨a, ha, hpa⟩ := hnear i hi (Or.inl hiA) u hu
+  obtain ⟨a', ha', hpa'⟩ := hnear i hi (Or.inl hiA) u' hu'
+  obtain ⟨b, hb, hqb⟩ := hnear j hj (Or.inr hjB) t ht
+  obtain ⟨b', hb', hqb'⟩ := hnear j hj (Or.inr hjB) t' ht'
+  have hgi := (hpoly.1 i (Nat.zero_le i) (by simpa using hi)).1
+  have hgj := (hpoly.1 j (Nat.zero_le j) (by simpa using hj)).1
+  have hlenI : (lambda * Real.sqrt (rho : ℝ) / 240 - c) / 1000 ≤
+      dist (sides i u) (sides i u') := by
+    rw [hgi u hu u' hu', abs_sub_comm]
+    exact hlen
+  have hlenJ : (lambda * Real.sqrt (rho : ℝ) / 240 - c) / 1000 ≤
+      dist (sides j t) (sides j t') := by
+    rw [hgj t ht t' ht', abs_sub_comm]
+    exact hlen'
+  exact ⟨i, hi, j, hj, hiA, hjB, hne, a, ha, a', ha', b, hb, b', hb',
+    nearby_endpoints_keep_shortening_margin hlenI hlenJ hc hc'
+      hpa hpa' hqb hqb' scale.epsilon_large scale.shortcut_shortens⟩
+
+/-- A pair supplied by N123 can be transferred to indexed endpoints on the
 original quasi-geodesic arcs using their Morse proximity. -/
 theorem OsinUnboundScale.exists_originalArcPair
     {X : Type v} [PseudoMetricSpace X] {δ lambda c mu kappa : ℝ}
@@ -120,26 +162,8 @@ theorem OsinUnboundScale.exists_originalArcPair
         dist (arc i u) (arc j v) < eps ∧ dist (arc i u') (arc j v') < eps ∧
           (eps : ℝ) < dist (arc i u) (arc i u') ∧
           (eps : ℝ) < dist (arc j v) (arc j v') := by
-  obtain ⟨i, hi, j, hj, hiA, hjB, hne,
-    u, hu, u', hu', t, ht, t', ht', hlen, hlen', hc, hc'⟩ :=
-      scale.exists_polygonPair hδ hδ0 hgeo hpoly A B hfirst hshort
-  obtain ⟨a, ha, hpa⟩ := hnear i hi u hu
-  obtain ⟨a', ha', hpa'⟩ := hnear i hi u' hu'
-  obtain ⟨b, hb, hqb⟩ := hnear j hj t ht
-  obtain ⟨b', hb', hqb'⟩ := hnear j hj t' ht'
-  have hgi := (hpoly.1 i (Nat.zero_le i) (by simpa using hi)).1
-  have hgj := (hpoly.1 j (Nat.zero_le j) (by simpa using hj)).1
-  have hlenI : (lambda * Real.sqrt (rho : ℝ) / 240 - c) / 1000 ≤
-      dist (sides i u) (sides i u') := by
-    rw [hgi u hu u' hu', abs_sub_comm]
-    exact hlen
-  have hlenJ : (lambda * Real.sqrt (rho : ℝ) / 240 - c) / 1000 ≤
-      dist (sides j t) (sides j t') := by
-    rw [hgj t ht t' ht', abs_sub_comm]
-    exact hlen'
-  exact ⟨i, hi, j, hj, hiA, hjB, hne, a, ha, a', ha', b, hb, b', hb',
-    nearby_endpoints_keep_shortening_margin hlenI hlenJ hc hc'
-      hpa hpa' hqb hqb' scale.epsilon_large scale.shortcut_shortens⟩
+  exact scale.exists_originalArcPair_of_class_near hδ hδ0 hgeo hpoly A B arc arcLength
+    (fun i hi _ => hnear i hi) hfirst hshort
 
 end GroupApproximation.GGT.VanKampen.UnboundEstimate
 
@@ -147,3 +171,5 @@ end GroupApproximation.GGT.VanKampen.UnboundEstimate
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_polygonPair
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_cayleyPolygonPair
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_originalArcPair
+
+#audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_originalArcPair_of_class_near
