@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LIXSectionLocalHomeo
 import GroupApproximation.CharClass.EulerLocalChart
 import GroupApproximation.CharClass.RelativeLocalModel
+import GroupApproximation.CharClass.MayerVietorisElement
 
 /-!
 # The section's zero as a homeomorphism of punctured pairs
@@ -76,5 +77,16 @@ def lixLocalRelIso (n : ℕ) :
   relCohomologyCongrPoint eulerLocalHomeo.toHomeomorphSourceTarget
     zero_mem_eulerLocalHomeo_source zero_mem_eulerLocalHomeo_target
     (Subtype.ext (by simp [eulerLocalHomeo_zero])) n
+
+/-! ## 3. Injectivity, which is what the residual consumes -/
+
+/-- **The chart isomorphism is injective.**  Whatever morphism plays the role of the
+restriction in `cc-thom`'s `hinj`, the injectivity ultimately comes from this: the chart
+transport is an isomorphism because a homeomorphism of pairs induces one mod 2. -/
+theorem injective_lixLocalRelIso (n : ℕ) :
+    Function.Injective (lixLocalRelIso n).hom.hom := by
+  intro a b hab
+  rw [← iso_inv_hom_apply (lixLocalRelIso n) a, ← iso_inv_hom_apply (lixLocalRelIso n) b,
+    hab]
 
 end GroupApproximation.CharClass
