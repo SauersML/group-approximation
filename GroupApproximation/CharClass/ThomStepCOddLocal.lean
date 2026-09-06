@@ -16,9 +16,20 @@ needs, and this file asks for less.
 Two things, and each is a one-application target rather than a construction.
 
 * `res` — the restriction of the pair to a trivialising neighbourhood of the
-  section's zero, together with `hres`, that it is **injective**.  Excision makes
-  it an isomorphism, but only injectivity is used.
+  section's zero, together with `hres`, that it is **injective**.
 * `hsq` — that sectioning then charting agrees with restricting then trivialising.
+
+**`hres` is not excision, and saying so was a mistake this docstring exists to
+undo.**  Excision would need the part of the total space over the complement of
+the neighbourhood to have its closure inside the punctured set; it does not,
+because that part contains zero-section points, which are exactly what the
+punctured set omits.  The Thom class does not localise to a ball: the relative
+group of the full pair has rank the number of components of the base, and the
+local one has rank one.  What is true is that under the Thom isomorphism on each
+side `res` becomes restriction of degree-zero cohomology from the base to the
+neighbourhood, and that is injective exactly when the base is **connected**.  For
+the LIX base — a circle times a five-sphere times a product of complex projective
+spaces — it is.
 
 The identification `loc` of the restricted pair with the local model is already
 unconditional: it is `cc-lix-odd`'s `lixLocalPairIsoClosed`.
@@ -64,7 +75,8 @@ variable {N : Type} [TopologicalSpace N] {twoR : ℕ} {z : N}
 `res` restricts the bundle pair to a trivialising neighbourhood of the section's
 zero and `loc` identifies that with the local model; `hsq` says sectioning then
 charting is restricting then trivialising.  Only **injectivity** of `res` is
-used, so excision is more than enough for it. -/
+used; see the header for why that is a connectedness statement about the base
+and not an excision. -/
 theorem topChernClass_ne_zero_odd_local (hacyclic : PuncturedAcyclic N twoR z)
     {rel chart HrelE HE W HlocE : ModuleCat.{0} (ZMod 2)} {r : ℕ}
     (j : rel ⟶ cohomologyZMod2 (TopCat.of N) twoR)
