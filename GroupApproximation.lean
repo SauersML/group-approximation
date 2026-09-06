@@ -3696,6 +3696,7 @@ import GroupApproximation.CharClass.CohomologyChartTowerTop
 import GroupApproximation.CharClass.LerayHirschChartGeneral
 import GroupApproximation.CharClass.LIXSphereChartHomeo
 import GroupApproximation.CharClass.SteenrodFourfoldBFaces
+import GroupApproximation.CharClass.LerayHirschChartBundleGen
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
