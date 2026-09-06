@@ -3748,6 +3748,8 @@ import GroupApproximation.CharClass.ParityEvenSplitting
 import GroupApproximation.CharClass.ParityEvenFlagRelation
 import GroupApproximation.CharClass.ParityEvenLixSplitting
 import GroupApproximation.CharClass.ThomHyperplaneLH
+import GroupApproximation.CharClass.ChernTautRestrict
+import GroupApproximation.CharClass.LIXThomClassOfTaut
 import GroupApproximation.CharClass.LIXChern
 import GroupApproximation.CharClass.LIXChernValue
 import GroupApproximation.CharClass.ChernSliceNaturality
