@@ -25,6 +25,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LIXSectionNesting.lean` | 8663 | the base as a **left-nested** chain, for `cc-thom`'s one-factor-at-a-time Künneth: `piFinSnocHomeo` (peel the *last* factor, the end Mathlib and `piFinSuccHomeo` do not), `baseSnocHomeo` (the binary step), `baseNilHomeo` (the base case) |
 | `CharClass/LIXSectionLocalHomeo.lean` | 8665 | **the local homeomorphism at the zero**, in the shape `cc-thom` consumes: `eulerLocalHomeo` from `HasStrictFDerivAt.toOpenPartialHomeomorph`, with `zero_mem_eulerLocalHomeo_source`, `zero_mem_eulerLocalHomeo_target`, `eulerLocalHomeo_zero`; plus `lixTopDegree` = `2 ∑ⱼ dⱼ + 6` with `lixTopDegree_eq_two_mul_rank` |
 | `CharClass/LemmaTwoUnitary.lean` | 8661 | **Step A wired.** `cornerExtend_mulVec_eq`, `exists_isCornerUnitary_of_stepA` — `cs-clutching`'s continuous corner unitary becomes the `IsCornerUnitary` field `mappingTorus` consumes, seam `g e = s` intact |
+| `CharClass/LemmaTwoStepA.lean` | 8673 | **Step A as a theorem.** `colAt_mul_conjTranspose_eq_rankOneProj`, `mul_source_of_isStarProjection`, `isStarProjection_FHmat`/`_EHmat`, `hasStepAUnitary_of_continuousMvNEquiv`, and **`lemmaTwo_of_stepC_stepD`** / `lemmaTwo_matrix_of_stepC_stepD` — Lemma 2 with `stepA` discharged, only the two cohomological steps left |
 | `CharClass/LemmaTwoBridge.lean` | 8669 | `toMatC`, `matEval_toMatC`, `continuous_matEval`, `continuousMvNEquiv_of_murrayVonNeumannEquiv`, `continuous_FHmat`/`continuous_EHmat`, `not_murrayVonNeumannEquiv` = **Lemma 2 in the C\*-side vocabulary** |
 
 ## 1a. EXPORTS — the two shapes of Lemma 2
@@ -79,9 +80,16 @@ with `e = (e₃, 0)` and `s = (x, 0)`.  That is `FHmat` and `EHmat` in
 `CharClass/LemmaTwoStatement.lean`, and `FHmat_eq_fromBlocks` shows the first block is
 `𝟏³ − x xᴴ`, i.e. `STW59.Fproj`.
 
-### From `cs-clutching` — Step A
+### From `cs-clutching` — Step A: DISCHARGED
 
-Target `HasStepAUnitary dd`: a continuous `G` on `baseM dd` with
+`hasStepAUnitary_of_continuousMvNEquiv` in `CharClass/LemmaTwoStepA.lean` proves
+`ContinuousMvNEquiv (FHmat) EHmat → HasStepAUnitary dd` outright, so Lemma 2 no longer
+carries `stepA`: `lemmaTwo_of_stepC_stepD` takes only the two cohomological steps.  The
+implementer is used **adjointed**, since `ContinuousMvNEquiv` as stated has the
+`s`-complement as its source while `exists_continuous_corner_unitary_apply_eq` starts from
+the `e`-complement.
+
+Historical target, for reference: `HasStepAUnitary dd`: a continuous `G` on `baseM dd` with
 `IsCornerUnitary (Vmat m) (G m)` and `G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0`.
 The direction is the manuscript's own `g e = s`; no adjoint.  `cornerExtend` and
 `isCornerUnitary_cornerExtend` do the extension by `1 − V`.
