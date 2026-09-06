@@ -3590,6 +3590,7 @@ import GroupApproximation.CharClass.CohomologyChartSplit
 import GroupApproximation.CharClass.ProjectiveSpaceRingEntry
 import GroupApproximation.CharClass.BundleOneStep
 import GroupApproximation.CharClass.CartanEvalFour
+import GroupApproximation.CharClass.CartanEvalBoundary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
