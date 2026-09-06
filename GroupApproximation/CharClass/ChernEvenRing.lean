@@ -30,7 +30,7 @@ theorem evenOne_evenMul {X : TopCat.{0}} {n : ℕ} (a : EvenPiece X n)
     (h : 2 * (0 + n) = 2 * n) :
     cohCast h (evenMul (evenOne X) a) = a := by
   show cohCast h (cohCast (two_mul_add 0 n) (cup (one X) a)) = a
-  rw [one_cup, cohCast_cohCast, cohCast_cohCast]
+  rw [one_cup', cohCast_cohCast, cohCast_cohCast]
   exact cohCast_self _ a
 
 /-- **Associativity**, transported. -/
@@ -41,7 +41,7 @@ theorem evenMul_assoc {X : TopCat.{0}} {i j k : ℕ}
   show cohCast h (cohCast (two_mul_add (i + j) k)
       (cup (cohCast (two_mul_add i j) (cup a b)) c))
     = cohCast (two_mul_add i (j + k)) (cup a (cohCast (two_mul_add j k) (cup b c)))
-  rw [cup_cohCast_left, cup_cohCast_right, cup_assoc, cohCast_cohCast, cohCast_cohCast,
+  rw [cup_cohCast_left, cup_cohCast_right, cup_assoc', cohCast_cohCast, cohCast_cohCast,
     cohCast_cohCast, cohCast_cohCast]
 
 /-! ## 3. The graded ring -/

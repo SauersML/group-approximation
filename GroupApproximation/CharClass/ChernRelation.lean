@@ -54,7 +54,11 @@ open Polynomial
 
 section Relation
 
-variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
+-- `B` needs only `Ring`: `PowerBasis` and `aeval` do, and requiring `CommRing` here would
+-- force a `CommSemiring` on the total space of a projective bundle, which is exactly the
+-- graded-ring instance that is not available until `cup_comm` lands.  Commutativity of `B`
+-- is needed only in `section Split`, where a `Finset.prod` is taken in `B`.
+variable {A B : Type*} [CommRing A] [Ring B] [Algebra A B]
 
 /-- The **Chern polynomial** of a Leray–Hirsch presentation `pb : PowerBasis A B`:
 the monic polynomial `X^r + γ₁ X^{r-1} + ⋯ + γ_r` of degree `r = pb.dim` that
@@ -147,8 +151,8 @@ end Relation
 
 section Naturality
 
-variable {A A' B B' : Type*} [CommRing A] [CommRing B] [Algebra A B]
-variable [CommRing A'] [CommRing B'] [Algebra A' B']
+variable {A A' B B' : Type*} [CommRing A] [Ring B] [Algebra A B]
+variable [CommRing A'] [Ring B'] [Algebra A' B']
 
 /-- **Naturality.**  If a ring map `f : A → A'` carries the Chern relation of `pb`
 to a relation satisfied by the generator of `pb'`, and the two ranks agree, then
@@ -211,8 +215,7 @@ end Split
 
 section Whitney
 
-variable {A A' B B' : Type*} [CommRing A] [CommRing B] [Algebra A B]
-variable [CommRing A'] [CommRing B'] [Algebra A' B']
+variable {A A' : Type*} [CommRing A] [CommRing A']
 
 /-- **The Whitney sum formula, reduced to the splitting principle.**
 

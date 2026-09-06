@@ -102,7 +102,10 @@ section PowerBasis
 
 open Module
 
-variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
+-- `B` needs only `Ring`, which is what `PowerBasis` itself asks for.  Demanding
+-- `CommRing B` here would force a commutative graded ring on the total space of a
+-- projective bundle, which is exactly the structure that waits on `cup_comm`.
+variable {A B : Type*} [CommRing A] [Ring B] [Algebra A B]
 
 /-- **Leray–Hirsch, repackaged.**  If `c ↦ ∑_{i<r} c i • ξ^i` is a bijection
 `(Fin r → A) → B`, then `1, ξ, …, ξ^{r-1}` is an `A`-basis of `B`, i.e. `ξ`

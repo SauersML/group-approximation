@@ -39,8 +39,42 @@ one statement.  It is what makes `γ_i(E)` live in `H^{2i}(X;F₂)` rather than
 merely in the total ring, which is what lane `cc-thom` needs in order to compare
 `γ_r` with a Thom class in `H^{2r}`.
 
-This file is downstream of graded commutativity of the cup product
-(`cup_comm`, needed for `EvenH X` to be a `CommRing`); see this lane's report.
+## What is here, and what waits
+
+**Here:** the Leray–Hirsch combination `lhFun` and the structure `LerayHirschData`
+packaging a Leray–Hirsch presentation.  Neither needs any commutativity: `lhFun`
+uses only the ring structure of `EvenH P`, which `evenGRing` supplies
+unconditionally, so peers can build against this interface today.
+
+**Deferred to the full-graded-ring migration:** the `PowerBasis`, and with it
+`γ_i` as an element of `EvenH X`.  The obstruction is not mathematical but an
+instance diamond, and it is worth stating exactly, because it decides the shape
+of that migration.
+
+## Why the `PowerBasis` cannot be stated yet
+
+`Algebra (EvenH X) (EvenH P)` cannot be *built* here: `RingHom.toAlgebra` wants a
+`CommSemiring` target and `RingHom.toAlgebra'` wants the image of `EvenH.map π`
+to be central, and both are graded commutativity of the cup product, which waits
+on `cc-steenrod`'s `cup_comm`.
+
+Taking it as an ambient instance variable does not help either, and the reason is
+worth recording.  `EvenH X` acquires a `Semiring` by **two** routes:
+`DirectSum.semiring`, because `evenGRing` is an instance, and
+`CommRing.toCommSemiring.toSemiring`, from any commutativity hypothesis.  The two
+are definitionally equal but not syntactically so, and every type that mentions
+the ring structure — `Polynomial (EvenH X)`, the `1` of `γ₀ = 1`, the `0` of the
+rank bound — pins one of them at elaboration time.  A statement written here
+picks `DirectSum.semiring`; a lemma imported from `ChernRelation.lean`, whose
+section variable is `[CommRing A]`, produces the other.  Nothing local fixes
+this: it has to be settled by having a single route to the ring structure, which
+is precisely what the migration to the full graded ring `⨁_n H^n(X;F₂)` will do,
+since there the multiplication is `cup` with no degree transport and the graded
+structure is the only source of the ring.
+
+Until then the classes come from `CharClass/LerayHirschDegree.lean`, which
+defines them degreewise straight off the Leray–Hirsch coefficients of `ξ^r`, with
+`γ_k ∈ H^{2k}(X;F₂)` correct by construction and no ring anywhere.
 -/
 
 set_option autoImplicit false
@@ -52,11 +86,6 @@ open CategoryTheory
 
 noncomputable section
 
-/-- The `EvenH X`-algebra structure on `EvenH P` induced by `π : P ⟶ X`.  It is a
-`def` and not an instance because it depends on the map. -/
-def evenAlgebra {X P : TopCat.{0}} (π : P ⟶ X) : Algebra (EvenH X) (EvenH P) :=
-  (EvenH.map π).toAlgebra
-
 /-- The Leray–Hirsch combination `c ↦ ∑_{i<r} π^*(c i) · ξ^i`, written without a
 scalar action so that its type does not mention the non-canonical `Algebra`
 instance.  It is *definitionally* the scalar combination, because the algebra map
@@ -67,7 +96,10 @@ def lhFun {X P : TopCat.{0}} (π : P ⟶ X) (r : ℕ) (ξ : EvenPiece P 1)
 
 /-- **Leray–Hirsch data** for a rank-`r` projective bundle over `X`: the
 projection, the tautological degree-2 class, the statement that its powers form a
-basis, and the grading of that basis. -/
+basis, and the grading of that basis.
+
+No commutativity is needed anywhere in this structure: `lhFun` uses only the ring
+structure of `EvenH P`, which `evenGRing` supplies unconditionally. -/
 structure LerayHirschData (X P : TopCat.{0}) where
   /-- The bundle projection. -/
   proj : P ⟶ X
@@ -85,43 +117,6 @@ structure LerayHirschData (X P : TopCat.{0}) where
   coeff_homogeneous : ∀ (n : ℕ) (c : Fin rank → EvenH X) (z : EvenPiece P n),
       lhFun proj rank taut c = EvenH.of P n z →
       ∀ i : Fin rank, ∃ a : EvenPiece X (n - i), c i = EvenH.of X (n - i) a
-
-namespace LerayHirschData
-
-variable {X P : TopCat.{0}} (D : LerayHirschData X P)
-
-/-- The `PowerBasis` presented by Leray–Hirsch data.  This is the input of
-`CharClass/ChernRelation.lean`. -/
-def powerBasis : @PowerBasis (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) :=
-  @powerBasisOfBijective' (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj)
-    (EvenH.of P 1 D.taut) D.rank (by exact D.free)
-
-/-- The **mod-2 Chern classes** of the bundle, as elements of the even cohomology
-ring of the base: the coefficients of the unique monic degree-`rank` relation
-satisfied by the tautological class. -/
-def chern (i : ℕ) : EvenH X :=
-  @chernClass (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis i
-
-/-- The **total Chern polynomial** `X^r + γ_1 X^{r-1} + ⋯ + γ_r`. -/
-def chernPolynomial : Polynomial (EvenH X) :=
-  @chernPoly (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis
-
-/-- `γ_0 = 1`. -/
-theorem chern_zero [Nontrivial (EvenH X)] : D.chern 0 = 1 :=
-  @chernClass_zero (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) _ D.powerBasis
-
-/-- `γ_i = 0` above the rank. -/
-theorem chern_eq_zero_of_lt {i : ℕ} (hi : D.rank < i) : D.chern i = 0 :=
-  @chernClass_eq_zero_of_lt (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis i
-    (by simpa using hi)
-
-/-- **The defining relation** `ξ^r + γ_1 ξ^{r-1} + ⋯ + γ_r = 0`. -/
-theorem aeval_taut_chernPolynomial :
-    @Polynomial.aeval (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj)
-      (EvenH.of P 1 D.taut) D.chernPolynomial = 0 :=
-  @aeval_gen_chernPoly (EvenH X) (EvenH P) _ _ (evenAlgebra D.proj) D.powerBasis
-
-end LerayHirschData
 
 end
 
