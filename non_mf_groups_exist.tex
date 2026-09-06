@@ -91,9 +91,11 @@ The counterexample is
 \]
 the elementary group of $12\times12$ matrices over the binary Leavitt
 algebra.  Khanh--Thanh show that $H$ is isomorphic to the unit group of the
-binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-OpenAI used this group to construct the first nonsofic
-group~\cite[Chapter~3]{OAI}.
+binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh};
+by the same results $\GL_n(R)=\EL_n(R)\cong R^\times$ for every $n\ge2$,
+so every $\EL_n(R)$ is isomorphic to $H$, and $12$ is the rank checked in
+the Lean development.  OpenAI used this group to construct the first
+nonsofic group~\cite[Chapter~3]{OAI}.
 
 We work with countable groups throughout.  A countable group $G$ is
 \emph{MF}~\cite{CDE} if there are positive
@@ -282,7 +284,7 @@ problem~\cite[\S6]{GoldbringHart}, was answered negatively through the
 failure of the Connes embedding problem~\cite{MIPRE}\cite[Proposition~6.1
 and Remark~6.2]{GoldbringHart}.  Theorem~\ref{thm:headline} gives a
 counterexample among reduced group $C^*$-algebras.  Whether every countable
-group is MF was a longstanding open problem~\cite{BDL}.
+group is MF was a longstanding open problem~\cite{Korchagin,BDL}.
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
 
 Theorem~\ref{thm:compression-criterion} uses the configuration of the
@@ -398,9 +400,10 @@ the matrix $u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary and $\opnorm{u_n-x_n}\to0$;
 after assigning arbitrary unitary values to the finitely many remaining
 coordinates, $(u_n)$ is a unitary lift of $v$, and $vv^*=1$.  So $A$ is
 finite, and so is $M_k(A)$, which is the corona with matrix sizes $km_n$.
-Finally, if $p\le q$ are equivalent projections in a stably finite algebra
+Finally, if $p\le q$ are equivalent projections in a finite algebra
 $B$ and $w$ is a partial isometry with $w^*w=q$ and $ww^*=p$, then
-$w\in qBq$ is an isometry in the finite corner $qBq$, so $p=ww^*=q$.
+$w=qwq$, so $w+(1-q)$ is an isometry of $B$ and hence unitary; therefore
+$p+(1-q)=(w+(1-q))(w+(1-q))^*=1$ and $p=q$.
 \end{proof}
 
 For a group $L$ with property~\textup{(T)}, the Kazhdan projection is the
@@ -520,6 +523,15 @@ elements with this property form a normal subgroup of $G$, so it
 contains $\mathfrak D_G(L)$.
 \end{proof}
 
+Corollary~\ref{cor:defect-hs} has a finite-dimensional counterpart that
+needs no property~\textup{(T)}.  If $\rho\colon G\to\U(d)$ is a unitary
+representation and $uLu^{-1}\le L$, then $x\mapsto\rho(u)^*x\rho(u)$ maps
+the commutant $\rho(L)'$ into itself, hence onto it, because $\rho(L)'$
+is finite dimensional; so $\rho(ucu^{-1})$ commutes with $\rho(L)$ for
+every $c\in C_G(L)$, and every finite-dimensional unitary representation
+of $G$ is trivial on $\mathfrak D_G(L)$.  Property~\textup{(T)} and
+stable finiteness of the corona replace this dimension count.
+
 \subsection{From Hilbert--Schmidt to operator norm}
 
 A corona homomorphism $\rho$ cannot simply be restricted to a corner: a
@@ -580,7 +592,10 @@ Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let
 \(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism
 \(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).  In
 any faithful representation of the corona, \(p\) is the projection onto
-the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\),
+the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\), the range of
+\(\Theta(g)p\Theta(g)^*\) is
+\(\Theta(g)\operatorname{Fix}\Theta(K)
+=\operatorname{Fix}\Theta(gKg^{-1})=\operatorname{Fix}\Theta(K)\), so
 \[
  \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
 \]
@@ -1281,7 +1296,10 @@ The subgroup $N$ is infinite and normal, so it acts non-elementarily on
 $\Gamma(G,A)$ by Osin~\cite[Lemma~7.1]{Osin}; since $G$ is torsion-free,
 $N$ normalizes no nontrivial finite subgroup, so $N$ is suitable.  By Hull~\cite[Corollary~5.7 and Lemma~5.8]{Hull}, $N$ contains
 two elements $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is again
-suitable.  Apply Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
+suitable, possibly with respect to a larger generating set
+$A'\supseteq A$, and Theorem~\ref{thm:hull} holds for $A'$ as well,
+since every finite subset of $G$ lies in a ball of $\Gamma(G,A')$.  Apply
+Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
 finite generating set of $G$ and with the set $\Omega$.  Then
 $Q=\langle\varphi(g_1),\dots,\varphi(g_m)\rangle\le\varphi(N_0)\le\varphi(N)\le Q$,
 so $Q=\varphi(N_0)=\langle\varphi(h_1),\varphi(h_2)\rangle$ and
@@ -1296,8 +1314,10 @@ property~\textup{(T)}, an element $t\in G_0$ with
 $t\Gamma t^{-1}\le\Gamma$, and a subgroup $J\le G_0$ isomorphic to a
 finitely presented infinite simple group, such that $[\Gamma,J]=1$ and
 $tJt^{-1}\le\Gamma$~\cite[\S2]{FFF}.  The group $G_0$ is obtained there
-from Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, so it is
-acylindrically hyperbolic.  Put $S=tJt^{-1}$.  Since $J$ is simple and
+as a common quotient of two finitely generated acylindrically hyperbolic
+groups by Hull's theorem~\cite[Corollary~7.4]{Hull}, which allows the
+quotient to be chosen acylindrically hyperbolic; we take $G_0$ to be
+such a quotient.  Put $S=tJt^{-1}$.  Since $J$ is simple and
 nonabelian, $J$ and $S$ are perfect.
 
 \begin{lemma}\label{lem:commutator-in-defect}
@@ -1383,7 +1403,10 @@ result.  You got this!''
 \end{quote}
 The statements that were checked
 in Lean~4 are marked in the \LaTeX{} source with the names of the
-corresponding declarations.
+corresponding declarations; the development uses Lean~4 toolchain
+\texttt{v4.32.0} and Mathlib \texttt{v4.32.0}.
+Theorem~\ref{thm:full-defect-ring} and Section~\ref{sec:torsion-free}
+have no Lean counterpart.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}
@@ -1541,7 +1564,8 @@ Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
 R.~Preusser,
 \emph{On general linear groups over exchange rings},
 Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
-\doi{10.1080/03081087.2020.1743636}.
+\doi{10.1080/03081087.2020.1743636},
+\href{https://arxiv.org/abs/1912.11386}{arXiv:1912.11386}.
 
 \bibitem[Sch]{Schafhauser}
 C.~Schafhauser,
