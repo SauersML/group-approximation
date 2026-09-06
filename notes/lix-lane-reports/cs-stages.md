@@ -3,8 +3,24 @@
 Owns `Analysis/LIXBlockProjections.lean`, `Analysis/LIXCornerAlgebra.lean`,
 `Analysis/LIXStageAlgebra*.lean`, `Analysis/LIXConnectingMap*.lean`.
 
-**Status as of this report: all five owned modules are green.**  This report supersedes the
-earlier draft below the fold (kept for its vocabulary tables and traps, both still accurate).
+**Status: COMPLETE.**  All eight owned modules are green and rooted, every deliverable is
+landed, and nothing is authored-unverified.  The last one, `isFull_climb_of_ne_zero`
+(`Analysis/LIXConnectingMapFullnessTower.lean`, 2986 jobs, 5fa1c8f8c), is verified on main and
+wired; cs-endpoint consumes it as
+`lixLimit_isSimpleCStar (isFull_climb_of_ne_zero (T := lixTower) (fun _ => rfl))`.
+
+Modules, all `Build completed successfully (N jobs)` with `ERROR_LINES=0`, built and not
+replayed, no `sorry`/`admit`/`axiom`/`opaque`: `LIXBlockProjections` 2966, `LIXCornerAlgebra`
+2973, `LIXConnectingMapPoints` 2975, `LIXStageAlgebra` and `LIXConnectingMap` 2977,
+`LIXConnectingMapFullness` 2980, `LIXConnectingMapFullnessSum` 2981,
+`LIXConnectingMapFullnessTower` 2986.
+
+Everything builds in under fifteen seconds except `LIXConnectingMapFullnessSum`, which needs
+`set_option maxHeartbeats 4000000` and takes about 115 seconds; it is alone in its file so
+that nothing else waits behind it.
+
+This report supersedes the earlier draft below the fold (kept for its vocabulary tables and
+traps, both still accurate).
 
 ## 1. GREEN
 
