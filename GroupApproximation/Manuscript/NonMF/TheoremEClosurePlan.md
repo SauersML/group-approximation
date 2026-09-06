@@ -211,10 +211,29 @@ based face value, and retains literal words on faces avoiding the edge.
 data and reducedness. The two incident G-faces may coincide. Its admissibility
 theorem only requires old labels away from the subdivided edge to be legal,
 so a temporary product letter need not belong to the generating set. These
-proofs pass ordinary axiom audits (4,786-job build). Iteration to arbitrary
-connector paths, including the zero-length case, and preservation of the
-selected embedded regions remain open; this does not remove another assembly
-admission.
+proofs pass ordinary axiom audits (4,786-job build).
+
+`DartExpansion.lean` and `DiscExpansion.lean` now compose actual expansions,
+including formal path reversal, face-walk closure, no repeated darts, exact
+face traversals and ordered relator data. `GEdgeRelabel.lean` handles a
+one-letter word without adding an edge. `GEdgeSubdivisionExpansion.lean`
+proves that the remaining temporary edge still avoids the exterior and every
+listed relator face, and that all labels away from it are legal.
+`GEdgeWordSubdivision.exists_output` then constructs the actual subdivision
+for every nonempty admissible word of the required ambient value. The chosen
+path reads that exact word, all other edge words remain single letters, and
+every final label is legal. `DartExpansionVertices.lean` proves the induced
+map on old vertices is injective and identifies both endpoints of every
+expanded path. `GFaceInsertionDart.lean` supplies the inserted edge's actual
+G-face incidence and prescribed corner endpoints.
+`GFaceWordInsertion.exists_output` combines them into an actual path across
+the chosen G-face, with exact word and length, both prescribed endpoints,
+legal labels, one additional face, and an O-equivalent disc with the same
+exterior word and ordered relator data. Reducedness is preserved. These
+proofs pass ordinary axiom audits (4,805-job build). The zero-length case,
+freshness and simplicity of the new internal path vertices, transport of
+selected embedded regions, and the general complementary-region surgery
+remain open. No further assembly admission has been discharged.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
