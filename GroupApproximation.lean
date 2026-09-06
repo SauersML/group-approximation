@@ -3733,6 +3733,8 @@ import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.CartanTermCases
 import GroupApproximation.CharClass.CartanReindex
 import GroupApproximation.CharClass.RelativeSubspaceIso
+import GroupApproximation.CharClass.LIXLocalPair
+import GroupApproximation.CharClass.ThomBridgeChart
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
 import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
