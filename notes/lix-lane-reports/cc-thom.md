@@ -232,6 +232,8 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomFibreRestriction.lean` | `Bundle.totalInclOnComp{,_apply,_mem_puncturedSet_iff}`, **`relPullback_totalInclOn_comp`** — restricting a bundle pair twice needs no `restrictTo` transitivity; the direct restriction never appears, so no subtype is identified |
 | `CharClass/LIXChernTopGamma.lean` | **`lixChern_top_eq_gamma`** — the endgame's `gamma` is `lixLHhyper`'s top Chern class; the half of `hclass` that mentions no free binder, finished |
 | `CharClass/ThomBridgeNatural.lean` | **`chartOpensHomeoTotal_natural`**, `bridgeChartIncl{,_apply}`, **`bridgeChartIncl_natural`** — the naturality layer's space-level content; `bridgeChart` is one `relPullback` along the chart inclusion, so its naturality is one square, not two |
+| `CharClass/ThomBridgeNaturalHyper.lean` | **`relPullback_id_comm`** — shrinking a subspace commutes with pulling back; the hyperplane step's square, no geometry |
+| `CharClass/ThomBridgeNaturalSquare.lean` | **`relPullback_comm_of_map_eq`** — a commuting square of SPACES gives one of relative pullbacks; the tool the whole naturality layer runs on |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -790,3 +792,5 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | `ThomBridgeNatural` | red: stray `open CategoryTheory` with no import, and an unused `DecidableEq` section variable |
 | 2026-09-06 | **`ThomBridgeNatural`** | **green, 2981 jobs, `0f3b21b72`** |
 | 2026-09-06 | **`ThomBridgeNatural`** (chart inclusion) | **green, 2981 jobs, `696c51b97`** |
+| 2026-09-06 | **`ThomBridgeNaturalHyper`** | **green, 8748 jobs, `298a03787`, first probe** |
+| 2026-09-06 | **`ThomBridgeNaturalSquare`** | **green, 8749 jobs, `bb8836643`, first probe** |
