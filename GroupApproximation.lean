@@ -3764,6 +3764,7 @@ import GroupApproximation.CharClass.ThomBridgeNatural
 import GroupApproximation.CharClass.LIXPhiSquare
 import GroupApproximation.CharClass.ThomBridgeNaturalHyper
 import GroupApproximation.CharClass.ThomBridgeNaturalSquare
+import GroupApproximation.CharClass.ThomBridgeChartHom
 import GroupApproximation.CharClass.ChernTautHyperIso
 import GroupApproximation.CharClass.LIXStepCOddLocal
 import GroupApproximation.CharClass.LIXRestrictionMap
