@@ -1,165 +1,252 @@
-# cc-wu
+# Lane `cc-wu`
 
-Owns `GroupApproximation/CharClass/Wu*.lean` and `CharClass/ParityEven*.lean`.
-This session continued a terminated Opus session; the four owned files were
-already fully authored (mathematically complete, matching the winning
-`§12.3` route of `research/artifacts/stw59-obstruction-lean-routes-2026-09-05.md`,
-which supersedes the power-of-two induction of `§9`) but had never been
-probed together. This session probed them, found and fixed four Lean bugs,
-and landed the result.
+Owns `GroupApproximation/CharClass/Wu*.lean` and
+`GroupApproximation/CharClass/ParityEven*.lean`, namespace
+`GroupApproximation.CharClass`.  Deliverables: the `MvPolynomial` half-antidiagonal
+identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 2).
+
+## 0. Modules
+
+| module | contents |
+|---|---|
+| `CharClass/WuSymmetric.lean` | `esymmOn`, `esymmHalf`, `esymmWuRHS`, the half-antidiagonal identity, the odd-antidiagonal vanishing, the pair reindexing, and the `MvPolynomial (Fin n) (ZMod 2)` corollaries |
+| `CharClass/WuDiagonal.lean` | `SqData`, `wuMonomialOn`, `Sq` of a squarefree monomial, **(Wu-diag)** |
+| `CharClass/ParityEvenSlice.lean` | `sliceClass = ∏_j (1 + h_j)^{d_j}`; its zero coefficient, its Frobenius evenness for `d_j` even, its vanishing above `∑ d_j` |
+| `CharClass/ParityEven.lean` | `ParityData`, the convolution identity, `b_odd_eq_zero`, `gamma_top_eq_zero` |
 
 ## 1. GREEN
 
-All four owned modules, built together:
+All four modules, one probe, 2026-09-05:
 
-* `GroupApproximation.CharClass.WuSymmetric`
-* `GroupApproximation.CharClass.WuDiagonal`
-* `GroupApproximation.CharClass.ParityEvenSlice`
-* `GroupApproximation.CharClass.ParityEven`
+```text
+lake build GroupApproximation.CharClass.WuSymmetric GroupApproximation.CharClass.WuDiagonal \
+           GroupApproximation.CharClass.ParityEvenSlice GroupApproximation.CharClass.ParityEven
+ERROR_LINES=0
+Build completed successfully (1553 jobs).
+```
 
-`Build completed successfully (1553 jobs)`, commit `a411945c8`.
+Freshly elaborated, not replayed: the four `.olean` files in the `cc-wu` clone
+carry the timestamps of that run (`WuSymmetric` 18:44:07, `WuDiagonal` 18:44:15,
+`ParityEvenSlice` 18:47:21, `ParityEven` 18:50:17).  No `sorry`, `admit`,
+`axiom`, `opaque` or `native_decide` anywhere in the lane.
 
-Deliverables, all landed and green:
-
-1. **The `MvPolynomial` half-antidiagonal identity** (`WuSymmetric.lean`,
-   `esymm_halfAntidiagonal_mvPolynomial`) — exactly the routes-doc §10.3
-   statement, proved by induction on the index set (both sides obey the same
-   recursion under adjoining a variable), not by the generating-function
-   halving route the doc suggested (that route needs a division step in
-   `ℤ[y]`; the induction avoids it). Also delivers the full-antidiagonal
-   vanishing in odd degree (`esymm_antidiagonal_odd_eq_zero_mvPolynomial`)
-   and `esymmWuRHS_eq_sum_powersetCard_succ`, the pair-indexed form the
-   Steenrod computation produces.
-2. **(Wu-diag)** (`WuDiagonal.lean`, `SqData.wu_diagonal`) — proved over an
-   abstract `SqData` structure (commutative ring of characteristic two, `Sq`
-   additive with `Sq^0 = id` and Cartan, a finite family of degree-two roots
-   with `Sq^1 y = 0`, `Sq^2 y = y²`, `Sq^{≥3} y = 0`). The instability axiom
-   is used only in this specialized form, so it isn't a separate field.
-3. **Step D, the even side** (`ParityEven.lean` + `ParityEvenSlice.lean`,
-   `ParityData.gamma_top_eq_zero` / `gamma_top_eq_zero_of_slice`) — proved
-   over an element-level `ParityData R H` structure. **This uses the general
-   "every `d_j` even" route (§12.3 of the routes doc), not the "every `d_j`
-   a power of two" route of §9** that `notes/LIX_FULL_PROGRAM_2026-09-05.md`
-   §4's design note describes: the mechanism here never restricts to a
-   sub-product, so it needs only that the slice class `a` is supported in
-   even indices and `a_0 = 1` — both of which hold for any even `d_j`, not
-   just powers of two. This is confirmed correct and cheaper by the routes
-   doc's own §12.3/§12.4 verdict ("Formalize §12.3... needs neither [powers
-   of two nor restriction maps] and is four lines"). Documented in both
-   files' module docstrings.
+Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified.
 
 ## 2. AUTHORED, UNVERIFIED
 
-Nothing. All owned deliverables are green.
+Nothing.
 
 ## 3. NEEDS
 
-Nothing outstanding from peers. `cc-lix-odd`'s report (§"From `cc-wu`") asked
-that the `ParityData` interface stay **element-level** (a type `H` with `+`,
-`*`, a Künneth decomposition via an explicit ring map `ι : R →+* H`, `Sq`,
-and the listed identities) rather than a bundled `GradedAlgebra`, so it can
-be fed by `cc-cohom-api`'s `cohomologyZMod2` API through explicit ring maps.
-**This is exactly the shape `ParityData` already has** — no change needed.
+Nothing from a peer for deliverables 1–3: the whole lane is Mathlib-only plus its
+own files.  The consumers of this lane need to supply the `ParityData` fields in
+§4 and the `SqData` fields in §5.
 
-The exact `ParityData` fields to instantiate, for `cc-lix-odd` and
-`cc-projective`:
+## 4. `ParityData`, the exact fields (for `cc-lix-odd` and the lead)
+
+`GroupApproximation.CharClass.ParityData R H` with `[CommRing R] [CommRing H]`.
+`R` is `H^*(Y; F₂)` for `Y = ∏_j CP(d_j)`, `H` is `H^*(N; F₂)` for
+`N = S¹ × S⁵ × Y`, both as **single ungraded rings** (the grading enters only
+through the `sq_b` field, see the note after the table).
 
 ```lean
 structure ParityData (R H : Type*) [CommRing R] [CommRing H] where
-  two_eq_zero : (2 : R) = 0
-  ι : R →+* H                              -- H^*(Y) → H^*(N), Künneth inclusion
-  t x : H                                  -- degree-1 (S¹) and degree-5 (S⁵) generators
-  t_mul_t : t * t = 0
-  tx_inj : ∀ u v : R, ι u + t * x * ι v = 0 → v = 0   -- Künneth uniqueness
-  SqH : ℕ → H →+ H
-  SqR : ℕ → R →+ R
+  two_eq_zero  : (2 : R) = 0
+  ι            : R →+* H
+  t            : H
+  x            : H
+  t_mul_t      : t * t = 0
+  tx_inj       : ∀ u v : R, ι u + t * x * ι v = 0 → v = 0
+  SqH          : ℕ → H →+ H
+  SqR          : ℕ → R →+ R
   sqH_zero_apply : ∀ c : H, SqH 0 c = c
-  cartanH : ∀ (n : ℕ) (u v : H), SqH n (u * v) = ∑ p ∈ Finset.range (n + 1), SqH p u * SqH (n - p) v
-  sqH_t : ∀ n : ℕ, 0 < n → SqH n t = 0
-  sqH_x : ∀ n : ℕ, 0 < n → SqH n x = 0
-  sqH_ι : ∀ (n : ℕ) (r : R), SqH n (ι r) = ι (SqR n r)
-  γ : ℕ → H                                -- mod-2 Chern classes of the bundle W
-  a b : ℕ → R                              -- Künneth components: γ k = ι (a k) + t * x * ι (b k)
-  γ_eq : ∀ k : ℕ, γ k = ι (a k) + t * x * ι (b k)
-  a_zero : a 0 = 1
-  a_odd : ∀ q : ℕ, Odd q → a q = 0         -- Frobenius evenness of the slice class
-  sq_b : ∀ k j : ℕ, 2 * k < j + 6 → SqR j (b k) = 0   -- instability, in the only form used
-  wu : ∀ i : ℕ, SqH (2 * i) (γ (i + 1)) = ∑ j ∈ Finset.range (i + 1), γ (i - j) * γ (i + 1 + j)
+  cartanH      : ∀ (n : ℕ) (u v : H),
+                   SqH n (u * v) = ∑ p ∈ Finset.range (n + 1), SqH p u * SqH (n - p) v
+  sqH_t        : ∀ n : ℕ, 0 < n → SqH n t = 0
+  sqH_x        : ∀ n : ℕ, 0 < n → SqH n x = 0
+  sqH_ι        : ∀ (n : ℕ) (r : R), SqH n (ι r) = ι (SqR n r)
+  γ            : ℕ → H
+  a            : ℕ → R
+  b            : ℕ → R
+  γ_eq         : ∀ k : ℕ, γ k = ι (a k) + t * x * ι (b k)
+  a_zero       : a 0 = 1
+  a_odd        : ∀ q : ℕ, Odd q → a q = 0
+  sq_b         : ∀ k j : ℕ, 2 * k < j + 6 → SqR j (b k) = 0
+  wu           : ∀ i : ℕ, SqH (2 * i) (γ (i + 1))
+                   = ∑ j ∈ Finset.range (i + 1), γ (i - j) * γ (i + 1 + j)
 ```
 
-The two consumable endpoints:
+What each field is, concretely:
+
+* `ι` — the Künneth inclusion `H^*(Y) → H^*(N)`, i.e. pullback along the
+  projection `N → Y`.  A ring map, so `map_mul`/`map_add`/`map_sum` are free.
+* `t`, `x` — the degree-1 generator of `H^*(S¹)` and the degree-5 generator of
+  `H^*(S⁵)`, pulled back to `N`.  Note `z := t * x` has degree 6, so
+  `γ_k = ι(a k) + z ι(b k)` puts `a k` in degree `2k` and `b k` in degree
+  `2k − 6`; **`b k` is indexed by the total index `k`, not by its own degree.**
+  In particular `b 0 = b 1 = b 2 = 0`, which is forced by `γ_eq` at `k < 3`
+  together with the decomposition, and is *not* a separate field.
+* `t_mul_t` — `t ⌣ t ∈ H²(S¹) = 0`.  Only `t² = 0` is needed; `x² = 0` is not
+  used anywhere, so it is not a field.
+* `tx_inj` — the only Künneth input: the `t x`-coordinate of
+  `ι u + t x ι v` determines `v`.  Weaker than a full four-fold splitting, and
+  it is what a Künneth isomorphism gives immediately.
+* `sqH_t`, `sqH_x` — naturality plus vanishing of `H^{>1}(S¹)`, `H^{>5}(S⁵)`.
+  Together with `cartanH` and `sqH_zero_apply` they give
+  `SqH n (t x ι r) = t x ι (SqR n r)` (`ParityData.sqH_tx_mul`, proved here).
+* `sq_b` — **the only place a grading on `R` is used.**  The statement is
+  instability, `Sq^j = 0` above the degree, applied to `b k` of degree `2k − 6`:
+  `2k − 6 < j` is written `2 * k < j + 6` to keep natural subtraction out of it.
+  For `k ≤ 2` the hypothesis is vacuously satisfiable because `b k = 0` there.
+  An instantiator with a graded `R` proves this in one line.
+* `a_zero`, `a_odd` — supplied by `ParityEvenSlice.lean` when
+  `a q = (sliceClass u h d).coeff q` with every `d j` even:
+  `sliceClass_coeff_zero` and `sliceClass_coeff_odd_eq_zero`.
+* `wu` — (Wu-diag), supplied by `WuDiagonal.SqData.wu_diagonal` after the
+  splitting principle transports it from the flag bundle.
+
+Conclusions available:
 
 ```lean
-theorem ParityData.gamma_top_eq_zero {m : ℕ} (hm : Even m)
-    (ha : ∀ q : ℕ, m < q → P.a q = 0) : P.γ (m + 3) = 0
-
-theorem ParityData.gamma_top_eq_zero_of_slice {J : Type*} (u : Finset J) (h : J → R) (d : J → ℕ)
-    (hd : ∀ j ∈ u, Even (d j))
+theorem ParityData.sum_a_mul_b_eq_zero (P : ParityData R H) (i : ℕ) :
+    ∑ q ∈ Finset.range (2 * i + 1 + 1), P.a q * P.b (2 * i + 1 - q) = 0
+theorem ParityData.b_odd_eq_zero (P : ParityData R H) : ∀ N : ℕ, Odd N → P.b N = 0
+theorem ParityData.gamma_top_eq_zero (P : ParityData R H) {m : ℕ}
+    (hm : Even m) (ha : ∀ q : ℕ, m < q → P.a q = 0) : P.γ (m + 3) = 0
+theorem ParityData.gamma_top_eq_zero_of_slice (P : ParityData R H) {J : Type*}
+    (u : Finset J) (h : J → R) (d : J → ℕ) (hd : ∀ j ∈ u, Even (d j))
     (hslice : ∀ q : ℕ, P.a q = (sliceClass u h d).coeff q) :
     P.γ ((∑ j ∈ u, d j) + 3) = 0
 ```
 
-`sliceClass u h d : Polynomial R` (`ParityEvenSlice.lean`) packages
-`∏_j (1 + h_j)^{d_j}` with its `q`-th coefficient being the degree-`2q`
-component; only `Even (d j)` is required, not "power of two".
+The last one is the intended entry point: it needs only that the slice class of
+`W` is `∏_j (1 + h_j)^{d_j}` with each `d_j` even, and returns `γ_r(W) = 0` for
+`r = (∑_j d_j) + 3`.  **The statement is rank-free**: the rank of `W` is never
+mentioned.
 
-To instantiate: supply `H := cohomologyZMod2 N`, `R := cohomologyZMod2 Y`,
-`ι` from `cc-cohom-api`'s pullback along `Y ↪ N` (basepoint inclusion at
-`t = x = 0`), `t, x` the pullbacks of the `S¹`/`S⁵` generators, `SqH`/`SqR`
-from `cc-steenrod`, and `γ` from `cc-projective`'s mod-2 Chern classes of
-`W`/`p^*V`. `a`, `b` are then *defined* (not further hypothesized) as the
-Künneth components of `γ`, which requires `cc-cohom-api`'s Künneth splitting
-`H^{even}(N) = H_Y ⊕ tx·H_Y` to produce `tx_inj` and the projections
-supplying `a`/`b`.
+## 5. `SqData`, the exact fields (for `cc-projective`, `cc-steenrod`, `cc-cartan`)
 
-## 4. TRAPS
+`GroupApproximation.CharClass.SqData σ A` with `[CommRing A]`; `A` is the mod-2
+cohomology ring of the flag bundle and `y` is the family of Chern roots.
 
-* **`rw [Finset.sum_range_reflect]` (or any lemma whose LHS pattern is
-  `?f (?n - 1 - j)`) fails through an unreduced beta-redex.** If the sum's
-  summand was produced by `Finset.sum_congr rfl key` with `key`'s RHS stated
-  as `(fun q => body) (shift j)` (left as an explicit lambda application
-  rather than beta-reduced), `rw` cannot unify the metavariable-headed
-  pattern `?f (?n - 1 - j)` against it — `kabstract` apparently reduces the
-  redex before matching, at which point there is no longer a literal
-  application for `?f` to bind to, and inverting a compound argument like
-  `i + 1 - 1 - j` out of the reduced expression is not a Miller pattern.
-  Fix: never leave the shifted form as a bare `(fun q => ...) (arg)`; either
-  state the target of a `show ... from (lemma args).symm` ascription with
-  the shift **already beta-reduced** (elaboration's `isDefEq` handles beta
-  freely, unlike `rw`'s syntactic matching) and finish with a pointwise
-  `Finset.sum_congr` + `omega`-driven index rewrites, or close the sum
-  equality with a direct `exact lemma_with_explicit_args` rather than `rw`.
-  Hit twice (`WuSymmetric.esymmHalf_eq_sum_sub`, `ParityEven.sum_a_mul_b_eq_zero`'s
-  `hB1`); same fix both times.
-* **A `theorem` inside a `variable (P : Foo)` section that doesn't mention
-  `P` in its *stated type* does not get `P` bound**, even though the proof
-  body uses `P` freely and even though later declarations in the same
-  section do get `P` auto-included. The error surfaces as "unknown
-  identifier `P.field`" *inside the proof*, plus (at every downstream call
-  site written as `P.thatLemma`) "Invalid field notation: does not have a
-  usable parameter of type `Foo`". Fix: give the theorem an explicit `(P :
-  Foo)` binder in its own signature, shadowing the ambient `variable`.
-* **`map_ofNat` (`RingHom`/`MonoidHom` applied to a numeral `≥ 2`) is
-  deliberately not `@[simp]`** (documented in Mathlib as a discrimination-tree
-  performance tradeoff: its LHS key would just be `DFunLike.coe`). A bare
-  `simp` proving `(2 : H) = f 2` or similar silently fails ("no progress");
-  use `(map_ofNat f 2).symm` or add it explicitly to the `simp` set.
-* **`Polynomial.eval_prod` and `Polynomial.natDegree_X_le` are not
-  `@[simp]`** either (the latter because the equality version `natDegree_X`
-  needs `[Nontrivial R]` and this file works over a general `CommRing`; the
-  unconditional inequality lives in the general `Semiring` section under a
-  different, non-simp name). A bare `simp` after unfolding a product/degree
-  goal reports "no progress" or leaves an unsolved inequality; name the
-  lemma explicitly.
-* **A duplicated `rw` item that already had no more work to do fails, not
-  no-ops.** `rw [map_zero, map_zero, ...]` errors on the second `map_zero`
-  once the first already rewrote every syntactically-identical occurrence of
-  `f 0` in one pass (`kabstract` abstracts all matching occurrences of the
-  *same instantiation* together, not just the first). If a rewrite target
-  might have two occurrences of the same pattern, one call handles both;
-  listing it twice is not defensive, it is a guaranteed later failure.
-* General note for the next lane touching this material: probe early. All
-  four bugs above were latent since the file was authored (predecessor's
-  session ended before a first probe); none were visible from re-reading the
-  source, all four were one-line-context obvious once the actual Lean error
-  was in hand.
+```lean
+structure SqData (σ : Type*) (A : Type*) [CommRing A] where
+  two_eq_zero   : (2 : A) = 0
+  Sq            : ℕ → A →+ A
+  sq_zero_apply : ∀ a : A, Sq 0 a = a
+  cartan        : ∀ (n : ℕ) (u v : A),
+                    Sq n (u * v) = ∑ p ∈ Finset.range (n + 1), Sq p u * Sq (n - p) v
+  s             : Finset σ
+  y             : σ → A
+  sq_y_one      : ∀ k : σ, Sq 1 (y k) = 0
+  sq_y_two      : ∀ k : σ, Sq 2 (y k) = y k ^ 2
+  sq_y_high     : ∀ (k : σ) (n : ℕ), 3 ≤ n → Sq n (y k) = 0
+```
+
+with `SqData.gamma D j := esymmOn D.s D.y j` and
+
+```lean
+theorem SqData.wu_diagonal (D : SqData σ A) [DecidableEq σ] (i : ℕ) :
+    D.Sq (2 * i) (D.gamma (i + 1))
+      = ∑ j ∈ Finset.range (i + 1), D.gamma (i - j) * D.gamma (i + 1 + j)
+```
+
+`sq_y_one`/`sq_y_two`/`sq_y_high` are exactly "`y k` has degree 2 and
+`Sq(y k) = y k + y k ^ 2`" with the grading forgotten; no instability field and
+no `Sq n 1 = 0` field is needed — the latter is **derived** from `cartan` and
+`sq_zero_apply` (`SqData.sq_one_eq_zero`).
+
+## 6. Mathematics: where this departs from the design source
+
+1. **`d_j` even suffices; the power-of-two hypothesis is not needed.**
+   `research/artifacts/stw59-obstruction-lean-routes-2026-09-05.md` §9.6 insists
+   that "`d_j` a power of two is load-bearing, not cosmetic", because its
+   induction on `|J|` restricts to sub-products and needs each `a_q` to be a
+   single squarefree monomial `μ_S`.  That is an artefact of *that* induction.
+   The route taken here never restricts to a sub-product.  Reading the
+   `t x`-component of (Wu-diag) at every `i` and reindexing both halves by the
+   total index turns the whole family of relations into the single statement
+
+   > `(a ⋆ b)_N = 0` for every odd `N`,   `⋆` = convolution of sequences,
+
+   after which `a_0 = 1` and `a_q = 0` for odd `q` give `b_N = 0` for every odd
+   `N` by strong induction on `N` (the terms with `q ≥ 2` even have `N − q` odd
+   and smaller).  Only "`a` is supported in even indices and `a_0 = 1`" is used,
+   and that is exactly Frobenius evenness, which holds for every even `d_j`
+   (`(1+h)^d = ((1+h)^{d/2})²`).  Checked by hand at `d = 6`, where §9's
+   sparsity fails and this argument still closes.
+   This matches `notes/LIX_FULL_PROGRAM_2026-09-05.md` §1.3, which already
+   states Lemma 2 for `d j` merely even and positive.  (Positivity is not used
+   either.)
+
+2. **Index convention.**  The route document writes `γ(W) = a + t x b` and calls
+   the top component `b_m` with `m = ∑ d_j`, indexing `b` by *its own* degree
+   halved.  The Lean here indexes `b` by the **total** index: `γ_k = ι(a_k) + z
+   ι(b_k)` with `deg(b_k) = 2k − 6`.  The two differ by 3, and the target is
+   `b_r` with `r = m + 3`, which is odd exactly because `m` is even.  With the
+   document's convention the relation is not a convolution and the bookkeeping
+   of §9.3 has to carry the shift by hand; with the total index it is.
+
+3. **The Wu instance to use.**  The document's §9.3 instantiates at
+   `n = m`, `i = m/2 + 1`.  The program note's §1.3 phrases the same instance as
+   `(j, k) = (n/2 − 1, n/2 + 1)`, i.e. "kill `b_n` for even `n`".  Both are the
+   `i = m/2 + 1` instance of (Wu-diag).  In the total-index convention no
+   instance has to be selected at all: *every* `i` is used, and the family of
+   relations is equivalent to the convolution statement.
+
+4. **The `MvPolynomial` identity is proved by induction on the index set, not by
+   the generating function.**  §10.3 proposes `∏_k (1 + 2 y_k T + y_k² T²)` over
+   `ℤ`, halving the coefficient of `T^{2i+1}`.  In Lean that costs a coefficient
+   extraction from a `Finset` product of three-term factors plus a division in
+   `ℤ[y]`.  Both sides of the identity satisfy the *same* recursion under
+   `s ↦ insert w s`,
+
+   ```text
+   F (insert w s) (c+1) = F s (c+1) + y_w · (e_{c+1}(s))² + y_w² · F s c,
+   ```
+
+   agree at `i = 0` (both are `e_1`) and at `s = ∅` (both are `0`); that is the
+   whole proof, entirely inside characteristic two.  The `2^{|U|−1}` step of
+   §10.3 disappears.  The full antidiagonal `∑_{a+b=2i+1} e_a e_b = 0` is a
+   separate three-line pairing argument (`sum_antidiagonal_self_eq_zero`).
+
+5. **The derivative identity.**  A third proof of the same identity is
+   `E · ∂_T E = ∑_k y_k (1 + y_k T) ∏_{l ≠ k} (1 + y_l² T²)`, whose `T^{2i}`
+   coefficient is the right-hand side while the left-hand side is the half
+   antidiagonal (mod 2, `b · e_b` selects one member of each pair `{a, b}` with
+   `a + b = 2i + 1`).  Recorded because it is short on paper; not formalized,
+   because matching "one member of each pair" to "`a ≤ i`" needs a bijection
+   through unordered pairs, which is more Lean work than the induction.
+
+## 7. TRAPS
+
+* **`autoImplicit` silently swallowed a missing `import`.**  `ZMod` was unknown
+  in `WuSymmetric.lean` and `autoImplicit` turned it into an implicitly bound
+  variable, so the error surfaced as `Function expected at ZMod`, followed by two
+  `isDefEq`/`whnf` heartbeat timeouts and a cascade of `Unknown identifier`s for
+  declarations later in the same file.  Fix: `import Mathlib.Data.ZMod.Basic`,
+  and `set_option autoImplicit false` at the top of every file in this lane so
+  the next such slip is a one-line error instead of a cascade.
+* **Read the whole probe log, not its tail.**  The first probe was piped through
+  `tail -80`, which cut off the error list the helper prints *before* the log
+  tail; the visible part was entirely cascade damage.  Use `CC_TAIL` and capture
+  the full output.
+* **`Nat.succ` versus `n + 1` after `cases`.**  Several rewrites here need the
+  index in the literal form `n + 2` (for `sqShift`) or `2 * c' + 2` (for the
+  induction hypotheses).  Every branch of a `cases`/`rcases` on `ℕ` opens with a
+  `show` in the intended literal form; `show` checks up to definitional
+  equality, so `2 * (c' + 1)` and `2 * c' + 2` are interchangeable there but not
+  under `rw`.
+* **A tactic-mode `match` on a variable that a hypothesis mentions is wrong.**
+  `match p with | 0 => …` substitutes in the goal but not in `hp : ¬p = 0 ∧ …`,
+  so the branch cannot use `hp`.  Nested `rcases p with _ | p` does substitute.
+  (`interval_cases` would too, but `Mathlib.Tactic.IntervalCases` is not in the
+  transitive import closure of this lane's files.)
+* **`Finset.sum_image` takes `Set.InjOn`, not the pairwise form** at this pin,
+  and `Finset.powersetCard_succ_insert` is stated with `n.succ`, so its instance
+  has to be produced as a `have` with `a + 1` written out before it can be
+  `rw`-ed into a goal that shows `a + 1`.
+* **`Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk` lands on `range n.succ`**,
+  which is only definitionally `range (n + 1)`; finish with `exact`, not `rw`.
+* Deprecated `not_mem` spellings: at this pin the names are
+  `Finset.card_insert_of_notMem`, `Finset.insert_sdiff_of_notMem`.
