@@ -40,6 +40,17 @@ The Leray-Hirsch ladder
   the published interface, and the way back in.
 * `LerayHirschMV` (8792) — **every ladder hypothesis discharged**;
   `bijective_lhSum_comap` carries none.
+* `LerayHirschTransport` (2457) — moving the theorem across an isomorphism.
+* `LerayHirschHomotopy` (2883) — the same over a square that commutes only in
+  cohomology, which is what a contractible open set gives.
+* `LerayHirschRel` (8796) — an open set viewed inside a larger one; every lemma
+  is `rfl`.
+* `LerayHirschCover` (8797) — `LHOver`, and the two-set step relativized.
+* `LerayHirschFinite` (8798) — **Leray-Hirsch over a finite cover**.
+* `LerayHirschPoint` (8744) — **the base case**, over a base with the cohomology
+  of a point.
+* `LerayHirschBase` (8745) — the base case over bundled hypotheses, and the
+  rank-two case, which needs no ring structure.
 
 Chern classes and the Euler class
 
@@ -64,6 +75,16 @@ None.  Everything in the lane is probed green and pushed.
 2. **Nothing else is blocked on a peer.**  Both of the two facts I was waiting on,
    `MVDelta.mvDelta_cup` and `MVDelta.mvDelta_naturality`, have landed.
 
+## WHAT IS LEFT
+
+The Leray-Hirsch machine is complete end to end: base case over a point,
+transport to a trivialising open set, the two-set Mayer-Vietoris step, the finite
+cover induction, and the bridge to the published `LerayHirschGraded`.  Producing
+an actual instance now needs only bundle-side geometry, not cohomology: a finite
+trivialising cover of the base together with the local isomorphisms.  For the
+Gysin bootstrap that means the `n+1` standard charts of `CP^n` and the
+identification of `P(taut + 1)` over each with `chart x CP^1`.
+
 ## THE ONE REMAINING MATHEMATICAL GATE, and why
 
 Leray-Hirsch is complete except for its BASE CASE: the theorem over an open set on
@@ -81,8 +102,7 @@ produce it.
 
 The bootstrap that closes it, in order:
 
-1. The finite-cover induction, relativized to an open base.  Pure plumbing, mine,
-   unblocked, and the gate for everything below.
+1. The finite-cover induction, relativized to an open base.  DONE.
 2. The standard `n+1` charts of `CP^n`: contractible, and the tautological line is
    trivial over each.
 3. Over each chart, `P(taut + 1)` is `chart x CP^1`, and Leray-Hirsch there needs only
