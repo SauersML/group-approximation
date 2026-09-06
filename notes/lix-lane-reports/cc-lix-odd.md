@@ -32,6 +32,7 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LemmaTwoStepCAbsEquiv.lean` | 8876 | **`cc-thom`'s `absEquiv`, discharged**: `unitVectorsThreeHomeoSphere` (this lane's `unitVectorsThreeHomeo` at the vendored `Sphere 5`, which is that type on the nose), `nonempty_absEquiv_lix` and `absEquivLix` (**the top line at `N`, unconditional** but for positivity), `ThomChainOpen` = `ThomChainData` minus `absEquiv` with `toThomChainData`, `ne_zero_of_thomChainOpen`, and `stepC_of_thomChainOpen` — **Step C over the three open Thom-class fields and `cc-relative`'s green ones** |
 | `CharClass/LemmaTwoStepCEuler.lean` | 8887 | **Step C down to two open fields**: `ThomChainEuler` (`ThomChainOpen` with the local model made concrete, so `loc`, `locEquiv` and `hg` are gone and `hsu` has become `hne : su ≠ 0`), `ne_zero_of_thomChainEuler`, `stepC_of_thomChainEuler`.  The collapse is a **`ZMod 2` fact** (`∀ c : ZMod 2, c ≠ 0 → c = 1`, by `decide`) and is recorded as such, since over any other field the equality form carries a scalar the nonvanishing form does not |
 | `CharClass/LemmaTwoStepCThom.lean` | 8888 | **Step C in the shape the Thom class will arrive in**: `ThomChainThom` names the Thom class `u` and trades `hgamma` for the naturality datum `hu`, over `cc-thom`'s combination theorem.  **The count does not improve** — two open before (`hne`, `hgamma`), two after (`hne`, `hu`) — but the shape matches what `cc-projective` will produce, so it can be populated directly instead of manufacturing the identification afterwards |
+| `CharClass/LemmaTwoStepDLix.lean` | 8900 | **Step D at the geometric model, and both steps about one class**: `WuStepDLix` (Step D's data at `lixN` — the four space parameters, two sphere generators, three projections and the `a`/`b` fields all gone), `stepD_of_wuLix`, and **`lemmaTwoInput_lix`**, which assembles Step C and Step D about the SAME class on the SAME space.  Three open inputs remain in it, all `cc-projective`'s: `hu` and `hne` in `ThomChainThom`, and `S` in `WuStepDLix` |
 | `CharClass/LIXStepEDischarged.lean` | 8853 | **the projective factor, discharged**: `puncturedAcyclic_lixBase'`, `puncturedAcyclic_lixZero'`, `stepC_of_thomChain'`.  All three projective hypotheses come from `cc-thom`'s green `puncturedAcyclic_CP`, `kunnethFactor_CP`, `kunnethFactor_CP_punctured`, so Step C's punctured acyclicity now rests on **four cohomology statements and nothing else** |
 | `CharClass/LemmaTwoStepC.lean` | 8833 | **Step C at the real objects**: `lixZero`, `puncturedAcyclic_lixZero` (the `hacyclic` argument **discharged** from this lane's own recursion), `ThomChainData` (`cc-thom`'s remaining arguments, each field naming its owner: six green from `cc-relative`, one now green from `cc-thom`, **three open**), `ne_zero_of_thomChain`, `stepC_of_thomChain` |
 | `CharClass/LemmaTwoTopClass.lean` | 8828 | **the last seam**: `lixN`, `lixRank`, `LixChernDeg`, `lixChernOf` (total, degreewise), `lixTopClass`, `lixChernOf_mappingTorus`, `stepC_of_chain`, `stepD_of_topClass`, and **`lemmaTwoInput_of`** — both steps of Lemma 2 about ONE `topClass` |
@@ -142,7 +143,21 @@ supplied elsewhere:
 * `j`, `i`, `hexact`, `exc`, `chartIso`, `locEquiv` — green in `cc-relative`.
 * `hsu` and `hg` — collapsed by `cc-thom`'s `ThomStepCEuler.lean` into the single
   nonvanishing `hne : su ≠ 0`; `hg` is genuinely discharged, `hsu` is renamed content.
-* `hne` and `hgamma` — **the two that remain**, both `cc-projective`'s.
+* `hne` and `hgamma` — the two that remained on the odd side; `hgamma` becomes the Thom
+  class datum `hu` in `ThomChainThom`.
+
+**Lemma 2 as a whole now rests on three inputs, all `cc-projective`'s**: `hu` and `hne` on
+the odd side, and the `ChernSplit` field `S` on the even side.  `lemmaTwoInput_lix` in
+`CharClass/LemmaTwoStepDLix.lean` puts both steps about one class on one space, so the
+contradiction no longer crosses a model boundary.
+
+**The model seam, and why no probe could have caught it.**  Until 2026-09-05 the even side
+was green at `KnTwo.NTop Y = (Y × S⁵) × S¹` while this lane was green at
+`lixN dd = S¹ × (S⁵ × Y)`.  Both sides were correct proofs about *different spaces*, and a
+build certifies that a file proves what it says, never that what it says is what another
+lane needs — so the usual signal is not merely weak here, it is structurally incapable of
+firing on either side.  `cc-wu`'s `ParityEvenTransport.lean` closed it after the mismatch
+was found by reading two statements side by side.
 
 **Accounting note, resolved.**  `cc-thom` first reported this as leaving `hsu` alone.  The
 three improvements — the nonvanishing form, the `Nonempty` top line and the naturality
