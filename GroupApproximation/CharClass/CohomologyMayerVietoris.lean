@@ -85,6 +85,16 @@ instance cohDualFunctor_preservesEpimorphisms : cohDualFunctor.PreservesEpimorph
 instance cohDualFunctor_preservesHomology : cohDualFunctor.PreservesHomology :=
   Functor.preservesHomology_of_preservesEpis_and_kernels _
 
+/-- `cohDualFunctor` is additive: it is `(linearYoneda (ZMod 2) (ModuleCat (ZMod 2))).obj M` for
+`M := ModuleCat.of (ZMod 2) (ZMod 2)`, and every object of `linearYoneda` is additive
+(`linearYoneda_obj_additive`). Cited directly (via `inferInstanceAs` at the exact pattern the
+Mathlib instance is stated for) rather than through generic search, since `PreservesZeroMorphisms`
+search on a functor composite has several competing candidate instances
+(`isLeftAdjoint`/`isRightAdjoint`/`full`/`additive`) and can fail to find this one. -/
+instance cohDualFunctor_additive : cohDualFunctor.Additive :=
+  inferInstanceAs (((linearYoneda (ZMod 2) (ModuleCat.{0} (ZMod 2))).obj
+    (ModuleCat.of (ZMod 2) (ZMod 2))).Additive)
+
 /-- The dualizing functor on complexes, `K ↦ Hom(K, F₂)`. -/
 abbrev dualCxFunctor : (ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ)ᵒᵖ ⥤
     CochainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
@@ -95,6 +105,22 @@ abbrev dualCxFunctor : (ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ)ᵒᵖ ⥤
 abbrev dualCx2 (K : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ) :
     CochainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
   dualCxFunctor.obj (Opposite.op K)
+
+/-- `dualCxFunctor` is additive: it is a composite of `HomologicalComplex.opFunctor` (additive
+whenever the underlying category is preadditive) and the prolongation of the additive
+`cohDualFunctor` to homological complexes (`Functor.map_homogical_complex_additive`). Cited
+directly at the fully unfolded pattern, for the same reason as `cohDualFunctor_additive`. -/
+instance dualCxFunctor_additive : dualCxFunctor.Additive :=
+  inferInstanceAs
+    ((HomologicalComplex.opFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.down ℕ) ⋙
+      (cohDualFunctor.mapHomologicalComplex _)).Additive)
+
+/-- `dualCxFunctor` preserves zero morphisms, directly from additivity
+(`Functor.preservesZeroMorphisms_of_additive`) rather than generic instance search: search for
+`PreservesZeroMorphisms` on a functor composite has several competing candidate instances
+(`isLeftAdjoint`/`isRightAdjoint`/`full`/`additive`) and can fail to find this one. -/
+instance dualCxFunctor_preservesZeroMorphisms : dualCxFunctor.PreservesZeroMorphisms :=
+  Functor.preservesZeroMorphisms_of_additive dualCxFunctor
 
 /-- The dual of a chain map. -/
 abbrev dualMap2 {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f : K ⟶ L) :
@@ -107,6 +133,27 @@ instance dualMap2_quasiIso {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f 
   inferInstanceAs (QuasiIso ((cohDualFunctor.mapHomologicalComplex _).map
     ((HomologicalComplex.opFunctor (ModuleCat.{0} (ZMod 2))
       (ComplexShape.down ℕ)).map f.op)))
+
+/-- `dualMap2` sends identities to identities. Stated and proved once, in isolation, so that
+later rewrites can cite it directly rather than fighting `simp`'s matching on the fully
+unfolded `dualCxFunctor.map ((𝟙 _).op)` term inside a larger goal. -/
+@[simp] theorem dualMap2_id (K : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ) :
+    dualMap2 (𝟙 K) = 𝟙 (dualCx2 K) := by
+  show dualCxFunctor.map (𝟙 K).op = 𝟙 _
+  rw [op_id, Functor.map_id]
+
+/-- `dualMap2` is contravariant: dualizing reverses composition. -/
+theorem dualMap2_comp {K L M : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ}
+    (f : K ⟶ L) (g : L ⟶ M) :
+    dualMap2 (f ≫ g) = dualMap2 g ≫ dualMap2 f := by
+  show dualCxFunctor.map (f ≫ g).op = dualCxFunctor.map g.op ≫ dualCxFunctor.map f.op
+  rw [op_comp, Functor.map_comp]
+
+/-- `dualMap2` is additive. -/
+theorem dualMap2_add {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f g : K ⟶ L) :
+    dualMap2 (f + g) = dualMap2 f + dualMap2 g := by
+  show dualCxFunctor.map (f + g).op = dualCxFunctor.map f.op + dualCxFunctor.map g.op
+  rw [op_add, Functor.map_add]
 
 /-- The singular cochain complex is the dual of the singular chain complex. -/
 theorem cochainCxZMod2_eq_dualCx2 (Y : TopCat.{0}) :
@@ -147,7 +194,7 @@ singular cochain complex of `S`: the corestriction of the inclusion is an
 isomorphism of chain complexes. -/
 def subCxDualIso (S : Set X) :
     dualCx2 (subChainComplex (ZMod 2) X S) ≅ cochainCxZMod2 (TopCat.of S) :=
-  dualCxFunctor.mapIso (asIso (subChainCorestrict (ZMod 2) X S)).op.symm
+  dualCxFunctor.mapIso (asIso (subChainCorestrict (ZMod 2) X S)).op
 
 /-- The `H^n` of the dual subordinate-chain complex is `H^n(S; F₂)`. -/
 def subCxDualHomologyIso (S : Set X) (n : ℕ) :
@@ -158,7 +205,7 @@ def subCxDualHomologyIso (S : Set X) (n : ℕ) :
 /-- The third term of the dual Mayer–Vietoris sequence computes `H^n(U ∩ V; F₂)`. -/
 def mvInterIso (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
     (mvCoSC U V hUV).X₃.homology n
-      ≅ Hmod2 (TopCat.of ((U : Set X) ∩ (V : Set X))) n :=
+      ≅ Hmod2 (TopCat.of (((U : Set X) ∩ (V : Set X) : Set X))) n :=
   subCxDualHomologyIso ((U : Set X) ∩ (V : Set X)) n
 
 /-- The dual of the small-chain inclusion is a quasi-isomorphism, so the first term
@@ -175,7 +222,7 @@ def mvAmbientIso (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
 
 /-- **The Mayer–Vietoris connecting map** `δ : H^n(U ∩ V; F₂) ⟶ H^{n+1}(X; F₂)`. -/
 def mvDelta (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
-    Hmod2 (TopCat.of ((U : Set X) ∩ (V : Set X))) n ⟶ Hmod2 X (n + 1) :=
+    Hmod2 (TopCat.of (((U : Set X) ∩ (V : Set X) : Set X))) n ⟶ Hmod2 X (n + 1) :=
   (mvInterIso U V hUV n).inv
     ≫ (mvCoSC_shortExact U V hUV).δ n (n + 1) (by simp)
     ≫ (mvAmbientIso U V hUV (n + 1)).hom
@@ -220,36 +267,44 @@ theorem isZero_mvCoX2 (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ)
     IsZero.of_iso hU (subCxDualHomologyIso (U : Set X) n)
   have hV' : IsZero ((dualCx2 (subChainComplex (ZMod 2) X (V : Set X))).homology n) :=
     IsZero.of_iso hV (subCxDualHomologyIso (V : Set X) n)
-  rw [IsZero.iff_id_eq_zero]
   have htot :
       (biprod.fst ≫ biprod.inl + biprod.snd ≫ biprod.inr :
         (subChainComplex (ZMod 2) X (U : Set X) ⊞ subChainComplex (ZMod 2) X (V : Set X)) ⟶
           (subChainComplex (ZMod 2) X (U : Set X) ⊞ subChainComplex (ZMod 2) X (V : Set X)))
       = 𝟙 _ := biprod.total
-  have hid : 𝟙 ((mvCoSC U V hUV).X₂.homology n)
-      = HomologicalComplex.homologyMap (dualMap2
-            (biprod.inl (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
-          ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.fst
-              (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
-        + HomologicalComplex.homologyMap (dualMap2 (biprod.inr
-              (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
-          ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.snd
-              (X := subChainComplex (ZMod 2) X (U : Set X))
-              (Y := subChainComplex (ZMod 2) X (V : Set X)))) n := by
-    rw [← HomologicalComplex.homologyMap_comp, ← HomologicalComplex.homologyMap_comp,
-      ← Functor.map_comp, ← Functor.map_comp, ← op_comp, ← op_comp,
-      ← HomologicalComplex.homologyMap_add, ← Functor.map_add, ← op_add, htot]
+  -- All of the bookkeeping below is phrased purely in terms of `dualCx2`, never
+  -- `(mvCoSC U V hUV).X₂` (they are definitionally equal, via `ShortComplex.map`/`.op`
+  -- unfolding to `rfl`, but that unfolding is too deep for `rw`/`simp` to see through
+  -- reliably); the bridge to the stated goal at the very end is a single `exact`, which
+  -- checks the goal at full transparency.
+  have key : IsZero ((dualCx2 (subChainComplex (ZMod 2) X (U : Set X) ⊞
+      subChainComplex (ZMod 2) X (V : Set X))).homology n) := by
+    rw [IsZero.iff_id_eq_zero]
+    have hid : 𝟙 ((dualCx2 (subChainComplex (ZMod 2) X (U : Set X) ⊞
+        subChainComplex (ZMod 2) X (V : Set X))).homology n)
+        = HomologicalComplex.homologyMap (dualMap2
+              (biprod.inl (X := subChainComplex (ZMod 2) X (U : Set X))
+                (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+            ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.fst
+                (X := subChainComplex (ZMod 2) X (U : Set X))
+                (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+          + HomologicalComplex.homologyMap (dualMap2 (biprod.inr
+                (X := subChainComplex (ZMod 2) X (U : Set X))
+                (Y := subChainComplex (ZMod 2) X (V : Set X)))) n
+            ≫ HomologicalComplex.homologyMap (dualMap2 (biprod.snd
+                (X := subChainComplex (ZMod 2) X (U : Set X))
+                (Y := subChainComplex (ZMod 2) X (V : Set X)))) n := by
+      rw [← HomologicalComplex.homologyMap_comp, ← HomologicalComplex.homologyMap_comp,
+        ← dualMap2_comp, ← dualMap2_comp, ← HomologicalComplex.homologyMap_add,
+        ← dualMap2_add, htot, dualMap2_id, HomologicalComplex.homologyMap_id]
+    rw [hid, hU'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
+        (biprod.fst (X := subChainComplex (ZMod 2) X (U : Set X))
+          (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0,
+      hV'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
+        (biprod.snd (X := subChainComplex (ZMod 2) X (U : Set X))
+          (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0]
     simp
-  rw [hid, hU'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
-      (biprod.fst (X := subChainComplex (ZMod 2) X (U : Set X))
-        (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0,
-    hV'.eq_of_src (HomologicalComplex.homologyMap (dualMap2
-      (biprod.snd (X := subChainComplex (ZMod 2) X (U : Set X))
-        (Y := subChainComplex (ZMod 2) X (V : Set X)))) n) 0]
-  simp
+  exact key
 
 /-- **The Mayer–Vietoris connecting isomorphism.**  If `H^n(U)`, `H^n(V)`,
 `H^{n+1}(U)` and `H^{n+1}(V)` all vanish, then
@@ -259,17 +314,18 @@ def mvConnectingIso (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ)
     (hVn : IsZero (Hmod2 (TopCat.of (V : Set X)) n))
     (hUn' : IsZero (Hmod2 (TopCat.of (U : Set X)) (n + 1)))
     (hVn' : IsZero (Hmod2 (TopCat.of (V : Set X)) (n + 1))) :
-    Hmod2 (TopCat.of ((U : Set X) ∩ (V : Set X))) n ≅ Hmod2 X (n + 1) :=
-  haveI hmono : Mono ((mvCoSC_shortExact U V hUV).δ n (n + 1) (by simp)) :=
-    ((mvCoSC_shortExact U V hUV).homology_exact₃ n (n + 1) (by simp)).mono_g
+    Hmod2 (TopCat.of (((U : Set X) ∩ (V : Set X) : Set X))) n ≅ Hmod2 X (n + 1) :=
+  have hij : (ComplexShape.up ℕ).Rel n (n + 1) := by simp
+  haveI hmono : Mono ((mvCoSC_shortExact U V hUV).δ n (n + 1) hij) :=
+    ((mvCoSC_shortExact U V hUV).homology_exact₃ n (n + 1) hij).mono_g
       ((isZero_mvCoX2 U V hUV n hUn hVn).eq_of_src _ _)
-  haveI hepi : Epi ((mvCoSC_shortExact U V hUV).δ n (n + 1) (by simp)) :=
-    ((mvCoSC_shortExact U V hUV).homology_exact₁ n (n + 1) (by simp)).epi_f
+  haveI hepi : Epi ((mvCoSC_shortExact U V hUV).δ n (n + 1) hij) :=
+    ((mvCoSC_shortExact U V hUV).homology_exact₁ n (n + 1) hij).epi_f
       ((isZero_mvCoX2 U V hUV (n + 1) hUn' hVn').eq_of_tgt _ _)
-  haveI : IsIso ((mvCoSC_shortExact U V hUV).δ n (n + 1) (by simp)) :=
+  haveI : IsIso ((mvCoSC_shortExact U V hUV).δ n (n + 1) hij) :=
     isIso_of_mono_of_epi _
   (mvInterIso U V hUV n).symm
-    ≪≫ asIso ((mvCoSC_shortExact U V hUV).δ n (n + 1) (by simp))
+    ≪≫ asIso ((mvCoSC_shortExact U V hUV).δ n (n + 1) hij)
     ≪≫ mvAmbientIso U V hUV (n + 1)
 
 end

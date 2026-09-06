@@ -23,8 +23,10 @@ Everything then reduces to three identities between morphisms of
 * `frontFace_comp_frontFace`, `backFace_comp_frontFace`, `backFace_comp_backFace` —
   the three vertex computations.
 * `cochainCup_assoc` — strict associativity of `cochainCup`, up to the cast.
-* `cup_assoc` — `(a ⌣ b) ⌣ c = cohCast _ (a ⌣ (b ⌣ c))`.
-* `cochainCup_one_left`, `one_cup` — left unitality, up to the cast `0 + p = p`.
+* `cup_assoc'`, `one_cup'` — the cohomology statements with the cast on the right.
+* `cup_assoc`, `one_cup` — the same with the cast on the left, the form the even
+  total ring of `cc-projective` consumes.
+* `cohCast_symm_cohCast`, `cohCast_cohCast_symm` — the cast cancellation laws.
 -/
 
 open CategoryTheory Simplicial
@@ -227,6 +229,16 @@ theorem backSimplex_zero_left (X : TopCat.{0}) (p : ℕ) (σ : singularSimplices
 
 /-! ## 5. Associativity and left unitality -/
 
+/-- Casting along `h` and then back along `h.symm` is the identity. -/
+@[simp] theorem cohCast_symm_cohCast {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
+    (a : Hmod2 X m) : cohCast h.symm (cohCast h a) = a := by
+  subst h; rfl
+
+/-- Casting along `h.symm` and then back along `h` is the identity. -/
+@[simp] theorem cohCast_cohCast_symm {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
+    (a : Hmod2 X m') : cohCast h (cohCast h.symm a) = a := by
+  subst h; rfl
+
 /-- **Associativity of the cochain cup product**, up to the degree cast
 `p + (q + r) = p + q + r`. -/
 theorem cochainCup_assoc {R : Type} [CommRing R] {X : TopCat.{0}} (p q r : ℕ)
@@ -248,8 +260,8 @@ theorem cochainCup_one_left {R : Type} [CommRing R] {X : TopCat.{0}} (p : ℕ)
   apply cochain_ext; intro σ
   rw [cochainCup_eval, cochainOne_eval, one_mul, cochainCast_eval, backSimplex_zero_left]
 
-/-- **Associativity of the cup product on cohomology.** -/
-theorem cup_assoc {X : TopCat.{0}} {p q r : ℕ}
+/-- **Associativity of the cup product on cohomology**, with the cast on the right. -/
+theorem cup_assoc' {X : TopCat.{0}} {p q r : ℕ}
     (a : Hmod2 X p) (b : Hmod2 X q) (c : Hmod2 X r) :
     cup (cup a b) c = cohCast (Nat.add_assoc p q r).symm (cup a (cup b c)) := by
   obtain ⟨φ, hφ, rfl⟩ := exists_cocycle a
@@ -265,8 +277,8 @@ theorem cup_assoc {X : TopCat.{0}} {p q r : ℕ}
     cohCast_cocycleClass (Nat.add_assoc p q r).symm _ _ hcc]
   exact cocycleClass_congr X (p + q + r) (cochainCup_assoc p q r φ ψ χ) _ _
 
-/-- **Left unitality on cohomology**, up to the degree cast `0 + p = p`. -/
-theorem one_cup {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
+/-- **Left unitality on cohomology**, with the cast on the right. -/
+theorem one_cup' {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
     cup (one X) a = cohCast (Nat.zero_add p).symm a := by
   obtain ⟨φ, hφ, rfl⟩ := exists_cocycle a
   have hcc : cochainCoboundary (ZMod 2) X (0 + p)
@@ -275,6 +287,18 @@ theorem one_cup {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
     exact cochainCupZMod2_respects_cocycles 0 p _ φ (cochainCoboundary_cochainOne X) hφ
   rw [one_eq_cocycleClass, cup_mk, cohCast_cocycleClass (Nat.zero_add p).symm _ _ hcc]
   exact cocycleClass_congr X (0 + p) (cochainCup_one_left p φ) _ _
+
+/-- **Associativity of the cup product**, with the cast on the left: this is the
+form the even total ring of `cc-projective` consumes. -/
+theorem cup_assoc {X : TopCat.{0}} {p q r : ℕ}
+    (a : Hmod2 X p) (b : Hmod2 X q) (c : Hmod2 X r) :
+    cohCast (Nat.add_assoc p q r) (cup (cup a b) c) = cup a (cup b c) := by
+  rw [cup_assoc', cohCast_cohCast_symm]
+
+/-- **Left unitality**, with the cast on the left. -/
+theorem one_cup {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
+    cohCast (Nat.zero_add p) (cup (one X) a) = a := by
+  rw [one_cup', cohCast_cohCast_symm]
 
 end
 
