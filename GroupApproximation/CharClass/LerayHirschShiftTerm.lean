@@ -47,6 +47,24 @@ theorem cup_cupPowE_succ (π : P ⟶ X) (ξ : Hmod2 P 2) (k i : ℕ) (a : Hmod2 
       = cup (pull π k a) (cupPowE ξ (i + 1)) := by
   rw [cup_comm ξ, cohCast_cohCast, cupPowE_succ, ← cup_assoc]
 
+/-- **The same in column form.**  The coefficient crosses unchanged, and the cast
+that says so is written out rather than left to unification, which is what keeps
+the statement elaborable. -/
+theorem lhTerm_succ (π : P ⟶ X) (ξ : Hmod2 P 2) (m j : ℕ) (a : Hmod2 X (m - 2 * j)) :
+    lhTerm π ξ (m + 2) (j + 1) (cohCast (by omega : m - 2 * j = m + 2 - 2 * (j + 1)) a)
+      = cohCast (Nat.add_comm 2 m) (cup ξ (lhTerm π ξ m j a)) := by
+  by_cases h : 2 * j ≤ m
+  · rw [lhTerm_of_le π ξ h a,
+      lhTerm_of_le π ξ (show 2 * (j + 1) ≤ m + 2 by omega)
+        (cohCast (by omega : m - 2 * j = m + 2 - 2 * (j + 1)) a),
+      pull_cohCast, cup_cohCast_left, cup_cohCast_right, cohCast_cohCast,
+      ← cup_cupPowE_succ π ξ (m - 2 * j) j a]
+    simp only [cohCast_cohCast]
+  · rw [lhTerm_of_gt π ξ h a,
+      lhTerm_of_gt π ξ (show ¬ 2 * (j + 1) ≤ m + 2 by omega)
+        (cohCast (by omega : m - 2 * j = m + 2 - 2 * (j + 1)) a),
+      cup_zero, cohCast_zero]
+
 end
 
 end LH
