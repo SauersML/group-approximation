@@ -49,6 +49,7 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ProjectiveSpaceComputation` | 8789 |
 | `ChernTotalRing` | 2464 |
 | `ChernClasses` (over `TotalH`) | 2466 |
+| `ChernEulerBundle` | 8799 |
 
 What that amounts to mathematically: the whole point-set chain over the
 projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
@@ -111,8 +112,23 @@ induction; and `mvDelta_cup`, linearity of the connecting map over classes pulle
 back from the ambient space, which the Leray–Hirsch ladder and the `CP`-factor
 Künneth both need and which cannot be arranged away.
 
-**Superseded, nothing imports them:** `ChernEvenPiece`, `ChernEvenRing`,
-`ChernEvenRingComm`.  Green but dead; recommend not wiring them into the root.
+**Consumed, not owned:** cc-thom's `MayerVietorisSequence`, `MayerVietorisPull`,
+`MayerVietorisRestriction`; cc-cohom-api's `CohomologyBasic`, `CohomologyAssoc`,
+`CohomologyBridge`, `CohomologySphere`, `CohomologyContractible`, `CohomologyShapes`,
+`CohomologyDegreeZero`; cc-steenrod's `SteenrodCupOne`; cc-bundle's
+`BundleClassify`, `BundleZeroSection`.
+
+**Deleted:** `ChernEvenPiece`, `ChernEvenRing`, `ChernEvenRingComm`, superseded by
+`ChernTotalRing` and holding the last four duplicate names.
+
+**Item 2 is DONE.**  `eulerOfBundle` in `ChernEulerBundle.lean`: the mod-2 Euler
+class of a line bundle presented as a rank-one projection-valued map, with
+naturality under pullback, the normalisation `e(taut) = h`, and vanishing when the
+classifying map factors through a space without `H^2`.  No classifying-space
+theory is involved: `cc-bundle`'s `classifyOne` observes that such a map *is* a
+map into `ℂP^d`, and the generator is canonical because an `F₂`-line has one
+nonzero element.  Invariance under isomorphism is stated as
+`eulerOfBundle_eq_of_homotopic` and needs two more inputs, listed below.
 
 **From `cc-bundle`:** the projective bundle `P(p)` with its tautological line,
 `P(p) ⊆ P(p ⊕ 1)`, `E(p) = P(p⊕1) ∖ P(p)`, the zero section, a finite
