@@ -28,8 +28,8 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 13 modules; `BundleStabilize` at 2974 jobs, the other twelve
-together at 2978
+## GREEN — 14 modules; `BundleBlockIncl` at 2975 jobs, `BundleStabilize` at
+2974, the other twelve together at 2978
 
 Final probe 2026-09-05 late evening naming **all twelve modules in one build**,
 so the lane is green as a whole and not only module by module.  The individual
@@ -248,8 +248,34 @@ theorem sumInclLeft_conjTranspose_mul_right / sumInclRight_conjTranspose_mul_lef
 ```
 
 `homotopic_cpEmbed_same` is obtained by rotating twice, once along the
-isomorphism and once along the identity of `q`.  For `N = 2d + 1` take
-`eqv := finSumFinEquiv.trans (finCongr (by omega))`.
+isomorphism and once along the identity of `q`.
+
+### `BundleBlockIncl.lean` — the concrete instance `cc-projective` states over
+
+```lean
+def blockEquiv (d : ℕ) : Fin (d + 1) ⊕ Fin (d + 1) ≃ Fin (2 * d + 1 + 1)
+noncomputable def cpBlockIncl (d : ℕ) : C(CP d, CP (2 * d + 1))
+
+theorem cpBlockIncl_apply (d) (z) :                       -- the matrix, in closed form
+    (cpBlockIncl d z : Matrix _ _ ℂ)
+      = sumInclLeft (blockEquiv d) * (z : Matrix _ _ ℂ) * (sumInclLeft (blockEquiv d))ᴴ
+theorem cpBlockIncl_apply_left (d) (z) (i j : Fin (d+1)) :
+    (cpBlockIncl d z : Matrix _ _ ℂ) (blockEquiv d (.inl i)) (blockEquiv d (.inl j))
+      = (z : Matrix _ _ ℂ) i j
+theorem cpBlockIncl_apply_row (d) (z) (k) (t) :
+    (cpBlockIncl d z : Matrix _ _ ℂ) (blockEquiv d (.inr k)) t = 0
+theorem cpBlockIncl_apply_col (d) (z) (s) (k) :
+    (cpBlockIncl d z : Matrix _ _ ℂ) s (blockEquiv d (.inr k)) = 0
+
+theorem homotopic_classifyOne_blockIncl (hp) (hq) (e : BundleIso p q) :
+    ((cpBlockIncl d).comp (classifyOne p hp)).Homotopic
+      ((cpBlockIncl d).comp (classifyOne q hq))
+```
+
+The three entry lemmas determine the matrix, because `blockEquiv d` is a
+bijection: an index is `Sum.inl i` or `Sum.inr k`, giving the entry of `z` or
+zero.  `CP (2*d+1)` has matrices indexed by `Fin (2*d+1+1)`, which is `Fin (2*d+2)`
+definitionally.
 
 ## NEEDS
 
