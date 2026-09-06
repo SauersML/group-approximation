@@ -2,11 +2,11 @@ import GroupApproximation.Sofic.LiteralSoficConsequences
 import GroupApproximation.Sofic.SoficByAmenablePermanence
 
 /-!
-# `thm:Esofic` along the route it prints: `E₀` is LEF, and `E = E₀ ⋊ ℤ`
+# Soficity of `E` along the route it prints: `E₀` is LEF, and `E = E₀ ⋊ ℤ`
 
 `non_mf_group_notes.tex`, `\begin{mainthm}[a finitely presented sofic non-MF
-group]` (`\label{thm:Esofic}`) and its proof in
-`\subsection{Soficity of the literal group}` (`\label{sec:Esofic}`).  Grep the
+group]` and its proof in
+`\subsection{Soficity of the literal group}`.  Grep the
 phrase "the kernel of the exponent sum", never a line number.  The printed
 argument is four sentences:
 

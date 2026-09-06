@@ -1,10 +1,9 @@
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 
 /-!
-# The realization reduction of `rem:ff-realization`
+# The realization reduction of the small-cancellation remark
 
-`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`
-(`\label{rem:ff-realization}`), reads:
+`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`, reads:
 
 > Fournier-Facio has pointed out (personal communication, 2026) that the affine
 > base of Sections 3-4 can be replaced by a small-cancellation construction as
@@ -257,7 +256,7 @@ involution `c` instead, and this docstring recorded the resulting mismatch of
 witness (ledger row `KC.23`).  An external audit found that reason to be a
 non-sequitur in its own right — a presentation relation `c ^ 2 = 1` does not
 show `c ≠ 1`, since the presented quotient may collapse `c` — and
-`\ref{rem:ff-realization}` now attributes the torsion to the nontrivial central
+the remark now attributes the torsion to the nontrivial central
 involution `w` that the Kazhdan--Clifford construction produces.  That `w` is exactly
 the marked word exhibited below, so the printed witness and this one are the
 same element and `KC.23` is `EXACT` in both columns.

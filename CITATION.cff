@@ -4,6 +4,7 @@ title: "An explicit sofic group that is not MF"
 type: software
 authors:
   - family-names: "Sauers"
+    given-names: "M."
 version: 0.4.0
 date-released: 2026-08-30
 license: Apache-2.0

@@ -2,11 +2,11 @@ import GroupApproximation.Analysis.PrintedReverseTransport
 import GroupApproximation.Sofic.LiteralRouteTransport
 
 /-!
-# `cor:generaltransport`, both halves on the printed route
+# Reverse transport, both halves on the printed route
 
-Proof-ledger row `ID.06`.  The printed proof of
-`\begin{corollary}[one-sided conjugators preserve the commutant under
-conjugation and inverse conjugation]` (`\label{cor:generaltransport}`) reads
+Proof-ledger row `ID.06`.  The printed proof of the notes' corollary
+"one-sided conjugators preserve the commutant under conjugation and inverse conjugation"
+(subsumed by `\ref{thm:transport}`) reads
 
 > For a one-sided conjugator `s`, Theorem 3.1 gives the conclusion for
 > `V_{g,n} x_n V_{g,n}^*`, and the equality `P = VPV^*` established in its proof

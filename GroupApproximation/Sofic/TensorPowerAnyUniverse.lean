@@ -12,7 +12,7 @@ quotation below is kept as a record.  The paragraph read
 > Invariant tensors of type `(p,q)` may be identified with Hilbert--Schmidt
 > intertwiners from the `q`th to the `p`th tensor power. … tensor powers of an
 > operator-norm asymptotic representation are again operator-norm asymptotic
-> representations, and Theorem~\ref{thm:transport-variants}(2) applies to every
+> representations, and the weighted transport theorem (clause 2) applies to every
 > pair of them: at each fixed tensor type and each weight, a sequence
 > asymptotically invariant for the conjugate copy of the Kazhdan image is
 > already asymptotically invariant for the whole of it.

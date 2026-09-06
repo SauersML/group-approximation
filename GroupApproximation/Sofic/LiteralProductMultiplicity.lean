@@ -4,18 +4,17 @@ import GroupApproximation.Sofic.LiteralNonMFEndpoint
 /-!
 # The multiplicity family over the literal `E`
 
-The multiplicity paragraph of `\ref{sec:marked-horn}` prints
+The multiplicity paragraph of the notes' section "Quasi-identities and undecidability" prints
 
 > the groups `E × ℤ^k` for `k ≥ 0` are finitely presented, pairwise
-> nonisomorphic and non-MF, each containing `E` (Lemma
-> \ref{lem:permanence}(1)).
+> nonisomorphic and non-MF, each containing `E` (the permanence lemma, clause 1).
 
 Ledger row `UN.06` graded that MISMATCH/MISMATCH over **substituted** objects,
 for two reasons its note states exactly:
 
 1. `ProductMultiplicity.manuscriptInfiniteMultiplicity` builds the family over
    `ChosenMarkedPresentation.MarkedGroup`, the *Chosen* presentation, while the
-   printed sentence names the literal eight-generator `E` of `\ref{def:E}`;
+   printed sentence names the literal eight-generator `E` of the presentation definition;
 2. the clause "each containing `E`" is not among the conjuncts — injectivity of
    `MonoidHom.inl` is used *inside* `not_isOperatorMF_family` and never stated.
 
@@ -35,7 +34,7 @@ than an argument: the injectivity was already being proved, inside
 that a proof already establishes and the statement omits is precisely the
 defect class this row was recording, so it is stated.
 
-`lem:permanence(1)` — MF passes to subgroups — is what makes the printed
+The permanence lemma (clause 1) — MF passes to subgroups — is what makes the printed
 sentence's parenthesis a *reason*; here the same fact enters as
 `IsOperatorMF.comap` inside `not_isOperatorMF_family`, which is the direction
 the argument actually uses.

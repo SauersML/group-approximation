@@ -4,8 +4,8 @@ import GroupApproximation.Sofic.ManuscriptExactWrappers
 /-!
 # `thm:normal-kazhdan`, `cor:intrinsic-nk` and `p:nk-join` in any universe
 
-Three statements of `\section{Obstructions from a one-sided conjugation datum}`
-(`\label{sec:conj}`) name no universe for their Kazhdan source, and the
+Three statements of the section "Obstructions from a one-sided conjugation datum"
+(\S\ref{sec:compression-radical}) name no universe for their Kazhdan source, and the
 formalized forms fixed it at `Type 0`.  Those are ledger rows `NK.00`, `NK.16`
 and `NK.17`:
 

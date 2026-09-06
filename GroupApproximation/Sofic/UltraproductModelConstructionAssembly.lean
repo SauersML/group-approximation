@@ -32,7 +32,7 @@ Nothing else is assumed.
 ## The weight
 
 The construction of `K_ω` is written at an arbitrary nonnegative weight `w`,
-because `\ref{thm:transport-variants}` needs it at a rank weight.  The
+because the weighted transport theorem needs it at a rank weight.  The
 unweighted interface is the **dimension weight** `w n = d_n`, at which the
 renormalized coordinate norm `matMass x / w n` is literally the manuscript's
 normalized Hilbert--Schmidt norm `hsNormSq`.  `weightBounded_dimWeight_iff` and

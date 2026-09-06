@@ -108,7 +108,7 @@ abbrev UltraproductTransportFor (Γ E : Type) [Group Γ] [Group E] : Prop :=
         (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ)
 
 /-- **The IT.06 input — an UNPROVED hypothesis, not a theorem of this file.**
-Part (1) of `\ref{thm:transport-variants}`: the same transport at an arbitrary
+Part (1) of the weighted transport theorem: the same transport at an arbitrary
 nonnegative Hilbertian weight `w`, again by the ultraproduct argument --- "the
 ultraproduct proof of the Kazhdan transport result applies with
 `\tr_{d_n}` replaced by `\operatorname{Tr}(\,\cdot\,)/\nu_n`", in the printed
@@ -290,7 +290,7 @@ What is *not* proved: `hUP`.  The manuscript discharges it by the
 ultraproduct argument printed under the Kazhdan transport result in
 the former transport argument, which is not yet available in this
 repository.  Until it is, this declaration does not certify
-`\ref{thm:transport-variants}`(2) and must not be badged. -/
+the weighted transport theorem (part 2) and must not be badged. -/
 theorem it_05_intertwiner_transport
     (hUP : UltraproductTransportFor Γ E)
     (B₁ B₂ : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
