@@ -153,6 +153,14 @@ theorem esymmOn_empty_of_pos (y : σ → A) {a : ℕ} (ha : 0 < a) :
     Finset.powersetCard_eq_empty.mpr (by simpa using ha)
   rw [esymmOn_def, h, Finset.sum_empty]
 
+/-- `esymmOn` vanishes above the size of the index set: there are no subsets that
+large.  This is what discharges the splitting-principle identity `π^* γ_k = e_k`
+at the indices `k` above the rank, where both sides are zero. -/
+theorem esymmOn_eq_zero_of_card_lt (s : Finset σ) (y : σ → A) {a : ℕ} (ha : s.card < a) :
+    esymmOn s y a = 0 := by
+  have h : s.powersetCard a = ∅ := Finset.powersetCard_eq_empty.mpr ha
+  rw [esymmOn_def, h, Finset.sum_empty]
+
 /-- `esymmOn` shifted up by one, with the value `0` in degree zero.  This is the
 coefficient of a newly adjoined variable in `esymmOn_insert`, and its definition
 by cases is what keeps natural-number subtraction out of the recursions below. -/
