@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 22 modules; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 23 modules; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,33 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleReindex.lean` — rank-one projectivisation, and reindexing
+
+```lean
+theorem eq_of_mem_projSet_of_trace_one (hp : ∀ x, (p x).trace = 1) (z : Proj p) :
+    (z : X × Matrix ι ι ℂ).2 = p (z : X × Matrix ι ι ℂ).1
+def projRankOneHomeo (p) (hp : ∀ x, (p x).trace = 1) : Proj p ≃ₜ X
+theorem projRankOneHomeo_over_base                                       -- `rfl`
+
+def reindex (e : ι ≃ κ) (p : Bundle X ι) : Bundle X κ
+theorem reindex_apply_entry (e) (p) (x) (i j) : reindex e p x (e i) (e j) = p x i j
+theorem trace_reindex (e) (p) (x) : (reindex e p x).trace = (p x).trace
+def reindexIso (e : ι ≃ κ) (p : Bundle X ι) : BundleIso p (reindex e p)
+```
+
+The projectivisation of a rank-one bundle is the base, and in this model that is
+sharp rather than approximate: a point of `P(p)` is a subprojection of `p` of
+trace one, so when `p` has trace one the difference is a projection of trace
+zero, hence zero.  Same argument as `flag_decomposition`.
+
+`reindex` is defined by **conjugation with `coordIncl e`**, not as a submatrix.
+Same object, entries stay definitional, and the gain is that `reindexIso` is
+then two lines.  That is the piece that matters: with a `BundleIso` in hand,
+every space attached to `p` and the tautological line transport through the
+existing `projHomeo` and `tautIso`, so there is no new naturality statement to
+state or to trust.  Composed with `sumUnitEquiv` it puts `p.plusOne` at
+`Fin (d + 2)`, where `classifyOne` and an Euler class apply.
 
 ### `BundleGysinPieces.lean` — the two pieces of the Gysin cover
 
