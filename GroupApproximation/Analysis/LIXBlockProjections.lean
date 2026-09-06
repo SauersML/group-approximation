@@ -391,6 +391,28 @@ theorem exists_frame {n : Type*} [Fintype n] [DecidableEq n] :
           Matrix.sub_apply]
         ring
 
+/-- **`Aᴴ A` has zero trace only for `A = 0`**: the trace is the sum of the squared norms
+of the entries.  This is what makes a section with a nowhere-zero `aᴴ a` trace full. -/
+theorem eq_zero_of_trace_conjTranspose_mul_self {ι κ : Type*} [Fintype ι] [Fintype κ]
+    {A : Matrix ι κ ℂ} (h : (Aᴴ * A).trace = 0) : A = 0 := by
+  have hd : (Aᴴ * A).trace = ∑ s : κ, (Aᴴ * A) s s := rfl
+  have hterm : ∀ s : κ, (Aᴴ * A) s s = ((∑ u : ι, ‖A u s‖ ^ 2 : ℝ) : ℂ) := by
+    intro s
+    rw [Matrix.mul_apply, Complex.ofReal_sum]
+    refine Finset.sum_congr rfl fun u _ => ?_
+    rw [Matrix.conjTranspose_apply, star_mul_self_eq_normSq]
+  rw [hd, Finset.sum_congr rfl (fun s _ => hterm s), ← Complex.ofReal_sum] at h
+  have hreal : (∑ s : κ, ∑ u : ι, ‖A u s‖ ^ 2 : ℝ) = 0 := by exact_mod_cast h
+  refine Matrix.ext fun u s => ?_
+  have h1 : (∑ u' : ι, ‖A u' s‖ ^ 2) = 0 :=
+    (Finset.sum_eq_zero_iff_of_nonneg
+      (fun s' _ => Finset.sum_nonneg fun u' _ => by positivity)).mp hreal s (Finset.mem_univ s)
+  have h2 : ‖A u s‖ ^ 2 = 0 :=
+    (Finset.sum_eq_zero_iff_of_nonneg (fun u' _ => by positivity)).mp h1 u (Finset.mem_univ u)
+  have h3 : ‖A u s‖ = 0 := by nlinarith [norm_nonneg (A u s)]
+  rw [Matrix.zero_apply]
+  exact norm_eq_zero.mp h3
+
 /-! ### The base spaces -/
 
 /-- `S^4`, the unit sphere of `ℝ^5`. -/
@@ -666,6 +688,128 @@ theorem Eproj_succ (i : ℕ) :
     pullMat_zero]
   ext a b
   rcases a with a | (a | a) <;> rcases b with b | (b | b) <;> rfl
+
+/-! ### The `Y`-level form of `H_i`
+
+Lemma 2 lives over `S⁵ × Y_i`, not over `X_i = S⁴ × Y_i`, so the topology lanes need `H_i`
+as a projection over `Y_i` alone, to be pulled back along whatever map into `Y_i` the
+situation provides (`prY : C(↥sphereFive × baseY i, baseY i)` for Lemma 2 itself).
+`HprojY` is that projection and `Hproj_eq_pullMat` identifies it with `Hproj`; the two run
+the same block recursion, so nothing has to be proved twice. -/
+
+/-- The projection `X_i → Y_i`. -/
+def baseYproj (i : ℕ) : C(baseX i, baseY i) := ⟨Prod.snd, continuous_snd⟩
+
+/-- The truncation `Y_{i+1} → Y_i`. -/
+def baseYtrunc (i : ℕ) : C(baseY (i + 1), baseY i) :=
+  ⟨fun y j => y (Fin.castSucc j), continuous_pi fun j => continuous_apply (Fin.castSucc j)⟩
+
+theorem baseYproj_comp_baseProj (i : ℕ) :
+    (baseYproj i).comp (baseProj i) = (baseYtrunc i).comp (baseYproj (i + 1)) := rfl
+
+/-- The tautological line of the `j`-th projective factor, over `Y_i`. -/
+def lineProjY (i : ℕ) (j : Fin i) :
+    Matrix (Fin (stageRank (j : ℕ) + 1)) (Fin (stageRank (j : ℕ) + 1)) C(baseY i, ℂ) :=
+  Matrix.of fun a b =>
+    ⟨fun y => ((y j : CP (stageRank (j : ℕ))) :
+        Matrix (Fin (stageRank (j : ℕ) + 1)) (Fin (stageRank (j : ℕ) + 1)) ℂ) a b,
+      (continuous_subtype_val.comp (continuous_apply j)).matrix_elem a b⟩
+
+theorem lineProj_eq_pullMat (i : ℕ) (j : Fin i) :
+    lineProj i j = pullMat (baseYproj i) (lineProjY i j) := rfl
+
+@[simp]
+theorem matEval_lineProjY (i : ℕ) (j : Fin i) (y : baseY i) :
+    matEval y (lineProjY i j) = taut (stageRank (j : ℕ)) (y j) := by
+  ext a b
+  rfl
+
+theorem isStarProjection_lineProjY (i : ℕ) (j : Fin i) :
+    IsStarProjection (lineProjY i j) := by
+  refine isStarProjection_of_forall_matEval fun y => ?_
+  rw [matEval_lineProjY]
+  exact isStarProjection_taut _ _
+
+theorem trace_lineProjY (i : ℕ) (j : Fin i) : Matrix.trace (lineProjY i j) = 1 := by
+  refine ContinuousMap.ext fun y => ?_
+  rw [← trace_matEval, matEval_lineProjY, trace_taut]
+  rfl
+
+/-- `L_{i+1}` over `Y_{i+1}`. -/
+def newLineY (i : ℕ) :
+    Matrix (Fin (stageRank i + 1)) (Fin (stageRank i + 1)) C(baseY (i + 1), ℂ) :=
+  lineProjY (i + 1) (Fin.last i)
+
+theorem newLine_eq_pullMat (i : ℕ) :
+    newLine i = pullMat (baseYproj (i + 1)) (newLineY i) := rfl
+
+theorem isStarProjection_newLineY (i : ℕ) : IsStarProjection (newLineY i) :=
+  isStarProjection_lineProjY _ _
+
+theorem trace_newLineY (i : ℕ) : Matrix.trace (newLineY i) = 1 :=
+  trace_lineProjY _ _
+
+/-- `L_{i+1}^{⊕ r_i}` over `Y_{i+1}`. -/
+def newBlockY (i : ℕ) : Matrix (NIdx i) (NIdx i) C(baseY (i + 1), ℂ) :=
+  (1 : Matrix (Fin (stageRank i)) (Fin (stageRank i)) C(baseY (i + 1), ℂ)) ⊗ₖ newLineY i
+
+theorem isStarProjection_newBlockY (i : ℕ) : IsStarProjection (newBlockY i) :=
+  isStarProjection_kronecker (IsStarProjection.one _) (isStarProjection_newLineY i)
+
+theorem newBlock_eq_pullMat (i : ℕ) :
+    newBlock i = pullMat (baseYproj (i + 1)) (newBlockY i) := by
+  rw [newBlock, newBlockY, pullMat_kronecker, pullMat_one, newLine_eq_pullMat]
+
+/-- **`H_i` as a projection over `Y_i` alone.** -/
+def HprojY : (i : ℕ) → Matrix (HIdx i) (HIdx i) C(baseY i, ℂ)
+  | 0 => 0
+  | (i + 1) =>
+      Matrix.fromBlocks (pullMat (baseYtrunc i) (HprojY i)) 0 0 (newBlockY i)
+
+theorem HprojY_zero : HprojY 0 = 0 := rfl
+
+theorem HprojY_succ (i : ℕ) : HprojY (i + 1) =
+    Matrix.fromBlocks (pullMat (baseYtrunc i) (HprojY i)) 0 0 (newBlockY i) := rfl
+
+theorem isStarProjection_HprojY : ∀ i, IsStarProjection (HprojY i)
+  | 0 => IsStarProjection.zero _
+  | (i + 1) => by
+      rw [HprojY_succ]
+      exact isStarProjection_fromBlocks_diag
+        (isStarProjection_pullMat _ (isStarProjection_HprojY i)) (isStarProjection_newBlockY i)
+
+theorem trace_HprojY : ∀ i : ℕ,
+    Matrix.trace (HprojY i) = ((hrank i : ℕ) : C(baseY i, ℂ))
+  | 0 => by rw [HprojY_zero, Matrix.trace_zero, hrank_zero, Nat.cast_zero]
+  | (i + 1) => by
+      have hblocks : Matrix.trace (HprojY (i + 1))
+          = Matrix.trace (pullMat (baseYtrunc i) (HprojY i)) + Matrix.trace (newBlockY i) :=
+        trace_fromBlocks _ _ _ _
+      have hpull : Matrix.trace (pullMat (baseYtrunc i) (HprojY i))
+          = ((hrank i : ℕ) : C(baseY (i + 1), ℂ)) := by
+        refine ContinuousMap.ext fun y => ?_
+        rw [← trace_matEval, matEval_pullMat, trace_matEval, trace_HprojY i]
+        rw [ContinuousMap.natCast_apply, ContinuousMap.natCast_apply]
+      have hnew : Matrix.trace (newBlockY i) = ((stageRank i : ℕ) : C(baseY (i + 1), ℂ)) := by
+        rw [newBlockY, Matrix.trace_kronecker, Matrix.trace_one, trace_newLineY, mul_one,
+          Fintype.card_fin]
+      rw [hblocks, hpull, hnew, hrank_succ]
+      push_cast
+      ring
+
+/-- **`H_i` does not see the `S^4` factor**: it is pulled back from `Y_i`. -/
+theorem Hproj_eq_pullMat : ∀ i : ℕ, Hproj i = pullMat (baseYproj i) (HprojY i)
+  | 0 => by rw [Hproj_zero, HprojY_zero, pullMat_zero]
+  | (i + 1) => by
+      have key : pullMat (baseYproj (i + 1)) (HprojY (i + 1))
+          = Matrix.fromBlocks
+              (pullMat (baseYproj (i + 1)) (pullMat (baseYtrunc i) (HprojY i)))
+              (pullMat (baseYproj (i + 1)) (0 : Matrix (HIdx i) (NIdx i) C(baseY (i + 1), ℂ)))
+              (pullMat (baseYproj (i + 1)) (0 : Matrix (NIdx i) (HIdx i) C(baseY (i + 1), ℂ)))
+              (pullMat (baseYproj (i + 1)) (newBlockY i)) :=
+        pullMat_fromBlocks _ _ _ _ _
+      rw [Hproj_succ, key, pullMat_zero, pullMat_zero, ← newBlock_eq_pullMat,
+        Hproj_eq_pullMat i, pullMat_comp, baseYproj_comp_baseProj, ← pullMat_comp]
 
 /-! ### The stage unitaries `w_i = u ⊕ 𝟏_{H_i}`
 
