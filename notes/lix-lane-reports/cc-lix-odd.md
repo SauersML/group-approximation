@@ -41,6 +41,41 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LemmaTwoStepA.lean` | 8673 | **Step A as a theorem.** `colAt_mul_conjTranspose_eq_rankOneProj`, `mul_source_of_isStarProjection`, `isStarProjection_FHmat`/`_EHmat`, `hasStepAUnitary_of_continuousMvNEquiv`, and **`lemmaTwo_of_stepC_stepD`** / `lemmaTwo_matrix_of_stepC_stepD` — Lemma 2 with `stepA` discharged, only the two cohomological steps left |
 | `CharClass/LemmaTwoBridge.lean` | 8669 | `toMatC`, `matEval_toMatC`, `continuous_matEval`, `continuousMvNEquiv_of_murrayVonNeumannEquiv`, `continuous_FHmat`/`continuous_EHmat`, `not_murrayVonNeumannEquiv` = **Lemma 2 in the C\*-side vocabulary** |
 
+## 1b. The final instantiation (overnight 09-05/06)
+
+Step C's odd side needed concrete objects at `lixN dd` that **nobody had built**: there was
+no `Bundle` over the LIX base, no `relCohomology` at `lixN`, and no map from chart
+coordinates *into* the base.  The chain below is those objects, in dependency order, each
+green and each hash read from the file's last commit.
+
+| module | hash | jobs | content |
+|---|---|---|---|
+| `LIXBundleModel` | `5e4fdec0d` | 8830 | the mapping torus **as a `Bundle`**; `rank_lixBundle` (deliverable 1 of the brief); `rank_lixBundle_plusOne`, so `cc-cohom-api`'s fibre dimension is derived, not a numeral |
+| `LIXBundlePair` | `32a35d1c3` | 8841 | the pair `(E, E∖0)`, the section into the total space, the map-of-pairs proof, and `lixSRel` |
+| `LIXProjectiveChartSection` | `1b6d6aba9` | 8660 | the H-block section in the affine chart; **the leading behaviour is complex conjugation** |
+| `LIXProjectiveChartDeriv` | `56dcb97a8` | 8668 | its strict derivative at the base point |
+| `LIXProductChart` | `782c68b05` | 8670 | the product chart, both factors |
+| `LIXFullChart` | `e7bb3c8d7` | 8834 | the chart at the full rank, by a **dimension count** rather than index plumbing |
+| `LIXCircleChart` | `28622411c` | 8656 | circle factor of the base chart |
+| `LIXSphereChart` / `LIXSphereChartHomeo` | `a8dc29bd4` / `78449113b` | 8664 / 8665 | five-sphere factor, then its inverse and partial-homeomorphism structure |
+| `LIXProjectiveBaseChart` / `LIXProjectiveTowerChart` | `79f6af162` / `fb429ae1f` | 8665 / 8666 | projective factor, then the tower |
+| `LIXBaseChart` / `LIXBaseChartHomeo` | `eaf9f57ed` / `3698ae1e7` | 8839 / 8842 | **the base chart**, then as a partial homeomorphism |
+| `LIXExcisionChart` | `24831f6e7` | 8852 | excision at the section's zero, onto chart coordinates |
+| `LIXChartIso` | `103ce8e56` | 8857 | **`H(lixN, lixN∖z) ≅ H(ℂ^r, ℂ^r∖0)`**, i.e. `exc ≫ chartIso` as one object |
+| `LIXBallNeighbourhood` / `LIXBaseBall` | `985bcd072` / `7ca948e29` | 8858 / 8859 | a convex ball, then a **contractible** neighbourhood inside any prescribed open set |
+| `LIXLocalPair` | `85686d12b` | 8871 | the bundle pair over that neighbourhood, **identified with the local model** |
+
+**What is left on the odd side, and it is in two other lanes.**  `cc-relative`'s
+contractible-base corollary (carried in `LIXLocalPair` as the named hypothesis `hprod`) and
+`cc-thom`'s bridge `H^*(E, E∖0) ≅ H^*(P(E⊕1), P(E))`, without which the Thom class datum
+`u`/`hu` stays open.  Everything geometric is green.
+
+**Three corrections I made to instructions rather than working around them**, each verified
+first: the injectivity was never one application (the base chart did not exist); the chart
+covered only the section's trivial block, three of the four conjuncts of its zero condition;
+and `u`/`hu` were reported as supplied when `cc-thom`'s two files were about different
+spaces.
+
 ## 1a. EXPORTS — the two shapes of Lemma 2
 
 Both are green and both are available; pick by vocabulary.
