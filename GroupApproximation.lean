@@ -3685,6 +3685,9 @@ import GroupApproximation.CharClass.CohomologyLHDegreewise
 import GroupApproximation.CharClass.CohomologyChartTowerFree
 import GroupApproximation.CharClass.CohomologyChartTowerCollapse
 import GroupApproximation.CharClass.LIXSphereChart
+import GroupApproximation.CharClass.SteenrodFourfoldBBranch
+import GroupApproximation.CharClass.SteenrodFourfoldBJunction
+import GroupApproximation.CharClass.SteenrodFourfoldBDegenCase
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
