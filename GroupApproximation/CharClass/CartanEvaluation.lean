@@ -92,4 +92,49 @@ lemma trivialCoeff_gen_smul (r : ZMod 2) :
 
 end Coefficients
 
+/-! ## The comparison, evaluated -/
+
+section Evaluated
+
+universe u v w
+
+variable {C : Type u} [Category.{v} C] {ι : Type w} {M : ι → C}
+variable {Λ : Type} [CommRing Λ]
+variable {F G : C ⥤ ChainComplex (ModuleCat.{0} Λ) ℕ}
+
+/-- **The internal Cartan comparison, evaluated.**
+
+This is the exact shape the final extraction uses.  `u` is the evaluating
+functional (in the application, `a ⊗ b ⊗ a ⊗ b` for a pair of cocycles), which
+must annihilate boundaries and be `Λ`-linear — the latter is why the action on
+the fourfold tensor has to be the block swap.  `x` is a basis element of the
+source, `e_n ⊗ σ`, whose differential splits as `(1 + t)·(e_{n-1} ⊗ σ)` plus the
+term `z = e_n ⊗ ∂σ`.  The conclusion says the two evaluations differ by `v z`
+alone: the `(1 + t)` half of the differential contributes nothing, because `v`
+is `Λ`-linear into a module with trivial action and `2 = 0`.  So the difference
+of the two cochains is literally `δ` of `σ ↦ v (e_n ⊗ σ)`. -/
+theorem DiagonalComparison.eval_sub_eq (D : DiagonalComparison M Λ F G) (X : C) (n : ℕ)
+    {R : ModuleCat.{0} Λ} (u : (G.obj X).X (n + 1) ⟶ R)
+    (hu : (G.obj X).d (n + 2) (n + 1) ≫ u = 0)
+    (t : Λ) (htriv : ∀ r : R, t • r = r) (h2 : (2 : Λ) = 0)
+    (x : (F.obj X).X (n + 1)) (y z : (F.obj X).X n)
+    (hx : ((F.obj X).d (n + 1) n).hom x = (1 + t) • y + z) :
+    ((D.Φ₁.app X).f (n + 1) ≫ u).hom x
+      = ((D.Φ₂.app X).f (n + 1) ≫ u).hom x + (D.homotopy.s n X ≫ u).hom z := by
+  have hco := D.homotopy.cochain_succ X n u hu
+  -- Both reassociations below are definitional for `ModuleCat` morphisms.
+  have happ : ((D.Φ₁.app X).f (n + 1) ≫ u).hom x
+      = ((D.Φ₂.app X).f (n + 1) ≫ u).hom x
+        + ((F.obj X).d (n + 1) n ≫ (D.homotopy.s n X ≫ u)).hom x :=
+    congrArg (fun w : (F.obj X).X (n + 1) ⟶ R => w.hom x) hco
+  have hsplit : ((F.obj X).d (n + 1) n ≫ (D.homotopy.s n X ≫ u)).hom x
+      = (D.homotopy.s n X ≫ u).hom z := by
+    have h1 : ((F.obj X).d (n + 1) n ≫ (D.homotopy.s n X ≫ u)).hom x
+        = (D.homotopy.s n X ≫ u).hom (((F.obj X).d (n + 1) n).hom x) := rfl
+    rw [h1, hx]
+    exact map_eq_of_split t htriv h2 (D.homotopy.s n X ≫ u).hom rfl
+  rw [happ, hsplit]
+
+end Evaluated
+
 end GroupApproximation.CharClass

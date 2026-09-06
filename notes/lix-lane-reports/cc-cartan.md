@@ -39,8 +39,46 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
-Reprobed 2026-09-05 (Sonnet continuation): all seven owned modules build clean
-together, `Build completed successfully (1674 jobs)`.
+Reprobed 2026-09-05 (Opus, lane returned): **all ten owned modules build clean
+together, `Build completed successfully (1700 jobs)`**, `LAKE_EXIT=0`,
+`PROBE GREEN`, with `CartanEvaluation` shown as `Built (6.8s)`; the log's
+`lake build` line names all ten targets and `clone cc-cartan` (see TRAPS on why
+that check is not optional).  The earlier seven-module figure of 1674 jobs was
+independently reconfirmed from this side before the three new modules landed.
+
+New since the seven-module green:
+
+* `GroupApproximation/CharClass/AcyclicModelsSplitting.lean` — **over a field,
+  positive-degree acyclicity IS a contraction.**  This closes the gap that
+  `AcyclicModelsTensor.lean` left open: nothing in the repository produced a
+  homotopy from the identity of a model complex to a map vanishing in positive
+  degrees, only the vanishing of homology, and the tensor result needs the
+  homotopy.  One choice of complement `U j` of the boundaries in each degree
+  suffices, because (i) `d_{j+1}` restricted to `U (j+1)` is injective — its
+  kernel lands in `im d_{j+2}`, which meets `U (j+1)` trivially, and this is the
+  *only* use of acyclicity — and (ii) that restriction is onto `im d_{j+1}`,
+  since the `im d_{j+2}` part of any preimage is killed.  `splitHomotopy` is the
+  resulting `Homotopy (𝟙 K) (splitAlpha K)` with `splitAlpha` concentrated in
+  degree `0`; `tensorSplitContraction` and `tensorSplit_exists_preimage` are the
+  consequence for a tensor product.  Coefficients in the application are
+  `ZMod 2`, a field, and the model complexes are the singular chains of a
+  standard simplex, whose positive homology vanishes.
+* `GroupApproximation/CharClass/CartanGroupRing.lean` (written by the Sonnet
+  continuation) — `GroupRingZ2 := MonoidAlgebra (ZMod 2) (Multiplicative (ZMod 2))`,
+  its generator with `T*T=1` and `(2:Λ)=0`, the bridge `moduleOfInvolution`
+  turning an `F₂`-linear involution into a group-ring module structure, and `W`,
+  the periodic resolution at the concrete ring.
+* `GroupApproximation/CharClass/CartanEvaluation.lean` — **the `1 + T` term
+  dies.**  A `Λ`-linear map into a module on which the generator acts trivially
+  kills `(1 + T) • x`, because the two summands coincide and `2 = 0`
+  (`map_one_add_smul_eq_zero`, `map_eq_of_split`, and their instances at the
+  concrete group ring).  `DiagonalComparison.eval_sub_eq` assembles this with
+  `NaturalHomotopy.cochain_succ` into the exact shape the final extraction uses:
+  for a functional `u` annihilating boundaries and a source element whose
+  differential splits as `(1 + T)•y + z`, the two evaluations differ by `v z`
+  alone — so the difference of the two cochains is literally `δ` of a cochain on
+  the space, with no leftover term.  `trivialCoeff` is the coefficient module
+  `ZMod 2` with the generator acting as the identity.
 
 * `GroupApproximation/CharClass/AcyclicModels.lean` — the acyclic-models
   theorem (uniqueness half).  Contents:
@@ -240,6 +278,36 @@ same conclusion.
 * `dNext`/`prevD` are best evaluated with `dNext_eq` / `prevD_eq`, which take an
   explicit `c.Rel` witness (`rfl` in every case here), rather than with the
   `_nat` variants, which force `ℕ` truncated subtraction into the goal.
+* **Probe logs cross between lanes.**  Concurrent lanes share the ssh control
+  socket, and a probe can come back containing another lane's build *verbatim*
+  and none of its own — with that lane's `lake build` line, its clone name and
+  its verdict.  A stolen log reads `PROBE GREEN` just as easily as
+  `PROBE FAILED`.  Always confirm that the `==> lake build …` line names your
+  targets and `clone <your-lane>` before believing anything.  Also: piping a
+  probe through `tail` buffers everything until the pipeline ends, so a running
+  probe looks like an empty output file; redirect to a per-lane file name
+  instead.
+* `Submodule.linearProjOfIsCompl` is a **deprecated alias** at pin `81a5d257`
+  (`Mathlib/LinearAlgebra/Projection.lean:792`), and deprecations are hard
+  errors under `-DwarningAsError=true`.  The live names are
+  `Submodule.projectionOnto` (into the subtype), `Submodule.projection` (into
+  the ambient module), `Submodule.projection_add_projection_eq_self`,
+  `projection_apply_of_mem_left`, `projection_apply_eq_zero_iff`.
+  `Submodule.exists_isCompl` lives in `Mathlib/LinearAlgebra/Basis/VectorSpace.lean`
+  and needs a `DivisionRing`.
+* `rw [add_comm]` in a goal mentioning `K.X (k + 1)` rewrites the **`ℕ`
+  addition** `k + 1` first, and fails with "motive is not type correct" because
+  the module element's type then depends on the rewritten term.  Close such a
+  goal with `(h.symm).trans (add_comm _ _)` instead of a bare `rw`.
+* A `def` whose type is a class and which takes **no arguments** must be marked
+  `@[reducible]` (`noncomputable abbrev` works); the same definition with an
+  explicit argument is accepted unmarked.  This is why `moduleOfInvolution`
+  compiles as a plain `def` but `trivialCoeff` does not.
+* `((f ≫ g).hom) x = g.hom (f.hom x)` and `((a + b).hom) x = a.hom x + b.hom x`
+  are **`rfl`** for `ModuleCat`.  Stating those reassociations as `have … := rfl`
+  is far more robust than `rw [ModuleCat.hom_comp, LinearMap.comp_apply]`, which
+  picks whichever occurrence `kabstract` finds first and will silently fold the
+  wrong side of the equation.
 * Acyclicity must be stated for *positive* degrees only: the singular chain
   complex of a contractible space is **not** contractible (its `H_0` is the
   coefficient ring), only its augmentation is.  A "null-homotopy of the
