@@ -3750,6 +3750,7 @@ import GroupApproximation.CharClass.ParityEvenLixSplitting
 import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.ChernTautRestrict
 import GroupApproximation.CharClass.LIXThomClassOfTaut
+import GroupApproximation.CharClass.ThomStepCOddLocal
 import GroupApproximation.CharClass.LIXChern
 import GroupApproximation.CharClass.LIXChernValue
 import GroupApproximation.CharClass.ChernSliceNaturality
