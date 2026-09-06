@@ -39,159 +39,61 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
-Reprobed 2026-09-05 (Opus, lane returned): **all eleven owned modules build
-clean together, `Build completed successfully (1701 jobs)`**, `LAKE_EXIT=0`,
-`PROBE GREEN`; the log's `lake build` line names all eleven targets and
-`clone cc-cartan` (see TRAPS on why that check is not optional).  Individual
-`Built` lines this session: `AcyclicModelsSplitting` 8.0s (1626 jobs),
-`CartanEvaluation` 6.8s (1700 jobs), `CartanDiagonalW` 5.4s (1574 jobs).  The
-earlier seven-module figure of 1674 jobs was independently reconfirmed from this
-side before the four new modules landed.
+**All fifteen owned modules build clean together:
+`Build completed successfully (2111 jobs)`, `LAKE_EXIT=0`, `PROBE GREEN`**, log
+verified to name all fifteen targets and `clone cc-cartan` (see TRAPS on why
+that check is not optional).
 
-New since the seven-module green:
+The comparison machinery, complete:
 
-* `GroupApproximation/CharClass/AcyclicModelsSplitting.lean` — **over a field,
-  positive-degree acyclicity IS a contraction.**  This closes the gap that
-  `AcyclicModelsTensor.lean` left open: nothing in the repository produced a
-  homotopy from the identity of a model complex to a map vanishing in positive
-  degrees, only the vanishing of homology, and the tensor result needs the
-  homotopy.  One choice of complement `U j` of the boundaries in each degree
-  suffices, because (i) `d_{j+1}` restricted to `U (j+1)` is injective — its
-  kernel lands in `im d_{j+2}`, which meets `U (j+1)` trivially, and this is the
-  *only* use of acyclicity — and (ii) that restriction is onto `im d_{j+1}`,
-  since the `im d_{j+2}` part of any preimage is killed.  `splitHomotopy` is the
-  resulting `Homotopy (𝟙 K) (splitAlpha K)` with `splitAlpha` concentrated in
-  degree `0`; `tensorSplitContraction` and `tensorSplit_exists_preimage` are the
-  consequence for a tensor product.  Coefficients in the application are
-  `ZMod 2`, a field, and the model complexes are the singular chains of a
-  standard simplex, whose positive homology vanishes.
-* `GroupApproximation/CharClass/CartanSingular.lean` — **the substrate: the mod-2
-  singular chain complex with `Finsupp` carriers.**  `Built (8.6s)`,
-  `Build completed successfully (2074 jobs)`.  Assembled from two Mathlib
-  functors, `TopCat --toSSet--> SSet --(ModuleCat.free (ZMod 2) levelwise)-->
-  SimplicialObject --alternatingFaceMapComplex--> ChainComplex`.  Because
-  `ModuleCat.free R` sends a type `T` to `ModuleCat.of R (T →₀ R)` *on the nose*,
-  the degree-`n` object is literally the free `ZMod 2`-module on
-  `singularSimplices X n` — the same carrier `cc-steenrod`'s `tensorTwo` uses, so
-  the two files meet without a translation lemma — with `Finsupp.basisSingleOne`
-  as its basis (`singFreeBasis`), and `pushSimplex` as the induced map on basis
-  elements (`singFree_map_single`).
+* `AcyclicModels.lean` — the acyclic-models theorem, uniqueness half:
+  `FreeOnModels`, `AcyclicOnModels`, `acyclicModelsHomotopy`, `NaturalHomotopy`
+  and its packaging into Mathlib's `Homotopy`.  Over an arbitrary commutative
+  ring, category and family of models, so the `ℤ/2`-equivariant case is the
+  theorem at `Λ =` the group ring and the bifunctor case is the theorem over a
+  product category; neither is a separate theorem.
+* `AcyclicModelsExistence.lean` — the existence half, with augmentations.
+* `AcyclicModelsContraction.lean`, `AcyclicModelsHomology.lean` — the two routes
+  into the acyclicity hypothesis, from a contraction and from vanishing
+  homology.
+* `AcyclicModelsSplitting.lean` — **over a field, positive-degree acyclicity IS
+  a contraction** (one complement of the boundaries per degree), and
+  `fourfoldTensor_ker_le_range`: the fourfold tensor power of a positive-degree
+  acyclic complex is positive-degree acyclic.  That is the acyclicity hypothesis
+  for `S(X)^{⊗4}`, since `ZMod 2` is a field.
+* `AcyclicModelsTensor.lean` — acyclicity of a tensor product from a
+  null-homotopy of each factor's identity.
+* `AcyclicModelsResolution.lean`, `CartanGroupRing.lean` — the periodic
+  resolution mod 2, the concrete group ring `(ZMod 2)[ℤ/2]`, and
+  `moduleOfInvolution`, which turns an `F₂`-linear involution into a group-ring
+  module structure.
+* `Cartan.lean`, `CartanEvaluation.lean`, `CartanDiagonalW.lean` — the cochain
+  consequences of a natural homotopy, the evaluated comparison
+  (`DiagonalComparison.eval_sub_eq`), the fact that a `Λ`-linear functional into
+  a trivial-action module kills the `(1 + T)` half of the source differential,
+  and the arithmetic core of the resolution diagonal.
 
-  **`∂∂ = 0` comes free**, from `AlternatingFaceMapComplex.d_squared`.  That is
-  the point of the detour: writing the boundary by hand as a face sum would have
-  required proving `∂∂ = 0` from the simplicial identity, a pairing argument over
-  `Fin (n+2) × Fin (n+3)` with all the `Fin.pred`/`Fin.castPred` side conditions.
-  The only cost is one lemma dropping the alternating signs
-  (`ModuleCatZMod2.neg_one_pow_zsmul`, from `f + f = 0`), after which
-  `singFree_d` and `singFree_d_single` give the differential as the *unsigned*
-  sum of the faces.
-* `GroupApproximation/CharClass/CartanDiagonalW.lean` — **the arithmetic core of
-  the resolution diagonal.**  `deltaW_chain_identity`: in the tensor square of
-  the group ring over `ZMod 2`,
-  `(1+T) ⊗ T^{i+1} + 1 ⊗ (T^i + T^{i+1}) = 1 ⊗ T^i + T ⊗ T^{i+1}`, because the
-  two copies of `1 ⊗ T^{i+1}` produced on the left cancel in characteristic two.
-  This is the one piece of mathematics in "`Δ_W` is a chain map".  The object
-  `W ⊗ W` is deliberately **not** constructed: the source of the comparison is
-  free over the group ring, so both composites are defined on that basis and
-  `Δ_W` enters only as the index sum `∑_{i+j=n}` with coefficient `T^i`;
-  building `W ⊗ W` would mean a tensor **over `ZMod 2`** of two complexes of
-  `Λ`-modules with the diagonal action, a different operation from Mathlib's
-  monoidal product over `Λ`, and none of it would be used.
-* `AcyclicModelsSplitting.lean` also carries **the acyclicity half of item (2)**:
-  `ker_le_range_of_positiveContraction` turns a contraction back into the
-  `ker ≤ range` form so the tensor construction iterates, `tensorCx_ker_le_range`
-  is the one-step version, and `fourfoldTensor_ker_le_range` is the conclusion —
-  over a field, the fourfold tensor power of a positive-degree acyclic complex is
-  positive-degree acyclic.  With `ZMod 2` a field and the singular chains of a
-  standard simplex acyclic above degree zero, that is exactly the acyclicity
-  hypothesis the internal comparison needs of `S(X)^{⊗4}`.
-* `GroupApproximation/CharClass/CartanGroupRing.lean` (written by the Sonnet
-  continuation) — `GroupRingZ2 := MonoidAlgebra (ZMod 2) (Multiplicative (ZMod 2))`,
-  its generator with `T*T=1` and `(2:Λ)=0`, the bridge `moduleOfInvolution`
-  turning an `F₂`-linear involution into a group-ring module structure, and `W`,
-  the periodic resolution at the concrete ring.
-* `GroupApproximation/CharClass/CartanEvaluation.lean` — **the `1 + T` term
-  dies.**  A `Λ`-linear map into a module on which the generator acts trivially
-  kills `(1 + T) • x`, because the two summands coincide and `2 = 0`
-  (`map_one_add_smul_eq_zero`, `map_eq_of_split`, and their instances at the
-  concrete group ring).  `DiagonalComparison.eval_sub_eq` assembles this with
-  `NaturalHomotopy.cochain_succ` into the exact shape the final extraction uses:
-  for a functional `u` annihilating boundaries and a source element whose
-  differential splits as `(1 + T)•y + z`, the two evaluations differ by `v z`
-  alone — so the difference of the two cochains is literally `δ` of a cochain on
-  the space, with no leftover term.  `trivialCoeff` is the coefficient module
-  `ZMod 2` with the generator acting as the identity.
+The concrete objects, new:
 
-* `GroupApproximation/CharClass/AcyclicModels.lean` — the acyclic-models
-  theorem (uniqueness half).  Contents:
-  * `homFamily`, `homotopyOfFamily` — repackage a degreewise family
-    `s k : P_k ⟶ Q_{k+1}` plus the two homotopy identities as Mathlib's
-    `Homotopy e 0` (generic preadditive `V`, reusable).
-  * `FreeOnModels`, `AcyclicOnModels` — the two hypotheses.
-  * `pickPreimage` — a classical boundary preimage, `0` when none exists.  The
-    definition of the universal elements is deliberately separated from the
-    proof that the choice succeeds; the invariant is established afterwards,
-    inside the same induction that proves the homotopy identity.
-  * `modelHom`, `modelElt`, `amHom`, `amObstruction`, `amPrev` — the
-    construction.
-  * `amHom_naturality` — naturality of the homotopy operator, which holds *by
-    construction*, before any homotopy identity is available.
-  * `d_comp_obstruction`, `amHom_step`, `amHom_comm` — the induction.
-  * `NaturalHomotopy`, `NaturalHomotopy.homotopy`, `acyclicModelsHomotopy`,
-    `acyclicModelsHomotopyApp` — the theorem and its packaging into Mathlib's
-    `Homotopy` at each object (so `Homotopy.homologyMap_eq` applies).
-* `GroupApproximation/CharClass/AcyclicModelsContraction.lean` — the
-  `PositiveContraction` package (a chain homotopy of the identity to a map
-  vanishing in positive degrees) and its `exists_preimage` consequence, used by
-  both the tensor-acyclicity file and directly by any model complex that comes
-  with an explicit contraction.
-* `GroupApproximation/CharClass/AcyclicModelsExistence.lean` — the
-  acyclic-models theorem, **existence half**: `Augmentation`,
-  `AcyclicZeroOnModels`, and `acyclicModelsMap`/`acyclicModelsMap_zero`,
-  extending a natural degree-0 map compatible with augmentations to a natural
-  chain map.  Needed by anyone constructing a comparison map `Φ` rather than
-  just comparing two already-given ones.
-* `GroupApproximation/CharClass/AcyclicModelsTensor.lean` — **acyclicity of a
-  tensor product** in the only form ever needed: if `𝟙 C` and `𝟙 D` are each
-  homotopic to a map vanishing in positive degrees, so is `𝟙 (C ⊗ D)` (Mathlib's
-  `HomologicalComplex.mapBifunctor` for the tensor bifunctor).
-  `tensorCx_exists_preimage` is the resulting `AcyclicOnModels`-shaped
-  conclusion for `C ⊗ D`.  This is the generic tool that "acyclicity of the
-  tensor square of the singular chains of a simplex" instantiates once someone
-  supplies the concrete contraction of `S(Δ^n)` (see NEEDS/TRAPS below — that
-  concrete contraction does not exist anywhere in the repo yet).
-* `GroupApproximation/CharClass/AcyclicModelsHomology.lean` — the bridge from
-  "the homology of a model complex vanishes in positive degree" (the form a
-  vanishing-homology theorem naturally supplies) to the element-level
-  `AcyclicOnModels` hypothesis, via `HomologicalComplex.exactAt_iff_isZero_homology`
-  and `ShortComplex.moduleCat_exact_iff`.  This is the *other* route to
-  acyclicity, independent of `AcyclicModelsTensor.lean`'s explicit-contraction
-  route — useful when only a homology computation, not an explicit homotopy,
-  is in hand.
-* `GroupApproximation/CharClass/AcyclicModelsResolution.lean` — **the periodic
-  free resolution, mod 2.**  Over `ℤ`, the standard resolution of `ℤ` by the
-  group ring `ℤ[ℤ/2]` alternates differentials `(1−T)`/`(1+T)`; mod `2` these
-  coincide (`−1 = 1`), so the resolution collapses to `Λ` in every degree with
-  the *single* repeated differential `(1+T)·`.  `periodicResolution T hT h2`
-  builds this for any commutative ring `Λ` of characteristic `2` (`h2`) with an
-  involution `T` (`hT : T*T=1`); `periodicDiff_comp_periodicDiff` is the
-  `d∘d=0` check (`(1+T)² = 1+2T+T² = 1+0+1 = 2 = 0`, via `linear_combination hT
-  + (1+T)*h2`); `periodicResolutionBasis` records termwise freeness of rank
-  one.  Deliberately generic in `Λ`/`T` rather than committing to a specific
-  presentation of `(ZMod 2)[ℤ/2]` (`MonoidAlgebra`, `AddMonoidAlgebra`, …) —
-  that choice belongs to whoever builds the concrete `Φ` (see NEEDS).  This is
-  the "cheap, standalone" piece I flagged as available on request; built it
-  proactively since it blocks nobody and is needed regardless of the final
-  presentation chosen.
-* `GroupApproximation/CharClass/Cartan.lean` — the two peer-agnostic pieces of
-  the Cartan formula (see the file's own docstring, reproduced accurately
-  above the code): the cochain consequences of a natural homotopy
-  (`NaturalHomotopy.cochain_succ/cochain_zero`), the `DiagonalComparison`
-  package wrapping the acyclic-models hypotheses plus two natural
-  transformations agreeing in degree 0, and — the part that does **not**
-  depend on any construction of `Φ` at all — `sq_mul_of_sq_cross` /
-  `sq_mul_of_sq_cross'`, which derive the cup-product Cartan formula formally
-  from the cross-product one.
+* `CartanSingular.lean` — the mod-2 singular chain complex with `Finsupp`
+  carriers, assembled as `toSSet`, then `ModuleCat.free (ZMod 2)` levelwise,
+  then `alternatingFaceMapComplex`.  Degree `n` is literally the free module on
+  `singularSimplices X n`, the same carrier `cc-steenrod`'s `tensorTwo` uses,
+  and **`∂∂ = 0` comes free** from `AlternatingFaceMapComplex.d_squared`; the
+  only cost is one lemma dropping the alternating signs.
+* `CartanDiagonalModule.lean` — the degreewise carrier of `W ⊗ S(X)`,
+  `WSIndex k X = Σ n : Fin (k+1), (stdSimplexTop n.val ⟶ X)` and
+  `WTensorSMod X k = WSIndex k X →₀ Λ`, with the differential split into its
+  `(1+T)` half and its boundary half, each defined by a `Fin` eliminator so that
+  no transport of the simplex ever appears.
+* `CartanSourceComplex.lean` — **`d ∘ d = 0`**.  Four pieces: `(1+T)² = 0`;
+  `∂∂ = 0`; and the two mixed terms, which are the same element and cancel in
+  characteristic two.
+* `CartanSourceFunctor.lean` — **the source functor `src` and its freeness
+  `srcFree : FreeOnModels stdSimplexTop GroupRingZ2 (src data)`.**  Freeness
+  costs nothing: the index `FreeOnModels` wants is `WSIndex k X` on the nose, so
+  the basis is `Finsupp.basisSingleOne` with no reindexing and `basis_apply` is
+  `Category.id_comp`.
 
 ## 2. AUTHORED, UNVERIFIED
 
