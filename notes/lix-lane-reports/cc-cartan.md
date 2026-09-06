@@ -552,3 +552,57 @@ failed on the mathematics.  The lesson is worth stating in general terms.
   root imports everything and dies.  When a redesign supersedes a definition,
   retire the old module in the same wave, and check the root's import list
   rather than the probe.
+
+## Evaluating the Cartan comparison (2026-09-06)
+
+Composite A now evaluates to the left-hand side of the Cartan formula, and the
+descent that turns the comparison into a statement about cohomology classes is
+built as far as it can go without composite B.  Nine modules, all green, all
+landed; 53 owned modules build together at 2914 jobs.
+
+The chain, in order.
+
+* `pairEvalIdx` pairs two cochains against the whole degree-`k` pair module,
+  agreeing with cc-steenrod's fixed-bidegree `pairEval` on the matching bidegree
+  and vanishing on every other.  `pairEvalIdx_phiPair`: pairing against
+  Steenrod's diagonal is evaluating the cup-`i` product.
+* `pairEvalIdx_phiZero_eq_evAt`: pairing against the Alexander-Whitney diagonal
+  is evaluating the cup product, in **every degree at once**, with no side
+  condition, because both sides vanish off degree `p + q` for the same reason.
+  Statements of that shape are what let a lemma be used inside an induction over
+  a chain whose degrees are not known.
+* `fourEvalF2_tenElt_pair`: the fourfold functional is the product of the two
+  pair functionals, on the nose (`fourEvalGen_eq` is `rfl`).
+* `fourEvalF2_compA_sqCochain` and `fourEval_compA_single`: composite A,
+  evaluated against `α ⊗ β ⊗ α ⊗ β`, is `sqCochain (p+q) j (α ⌣ β)`.
+* `fourEvalMor`: the functional as a morphism of group-ring modules, with
+  `trivialCoeffMod` as the coefficient object; it annihilates boundaries when
+  the two cochains are cocycles.
+* `fourEval_compA_eq_compB`: the master identity.  Two of the three terms of the
+  homotopy identity die — the `d ∘ s` term because the functional annihilates
+  boundaries, and the `1 + t` half of the source differential because the
+  functional is group-ring linear into a trivial-action module and `2 = 0`.
+* `fourEval_s_wDiffS`: the one surviving term is the coboundary of the homotopy
+  cochain.
+
+Degrees settle themselves throughout.  Two cochains of degree `p + q` pair
+against a bidegree of the tensor square only in total degree twice that, so the
+total degree is forced rather than chosen, and the simplex degree and cup index
+that come out are exactly the ones the Steenrod square construction uses.  No
+transport appears anywhere in the chain.
+
+Traps confirmed by a failed probe, beyond the ones already listed.
+
+* `map_sum` does not match under `instances` transparency when the summand's
+  type is a `ModuleCat` carrier rather than the raw `Finsupp`.  Supply it as a
+  term, through `congrArg` and `Eq.trans`; the same cure works for
+  `Finset.sum_congr`, which as a rewrite hits the same wall.
+* Rewriting a complex's differential inside a composition fails with "motive is
+  not type correct", because the two sides of the `_d` lemma have syntactically
+  different morphism types.  State the differential's action on an **element**
+  and rewrite that.
+* `(Fin.succ m).val` is definitionally `m.val + 1` but not syntactically; a
+  `show` is needed before the rewrite that mentions it.
+* A degree that must be the type of a cochain has to be written as the sum it
+  is, not as a parameter with an equation to it: `sqCochain m j φ` with
+  `hm : p + q = m` does not typecheck for `φ = α ⌣ β`.
