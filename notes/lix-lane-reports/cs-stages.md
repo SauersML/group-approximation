@@ -12,8 +12,18 @@ wired; cs-endpoint consumes it as
 Modules, all `Build completed successfully (N jobs)` with `ERROR_LINES=0`, built and not
 replayed, no `sorry`/`admit`/`axiom`/`opaque`: `LIXBlockProjections` 2966, `LIXCornerAlgebra`
 2973, `LIXConnectingMapPoints` 2975, `LIXStageAlgebra` and `LIXConnectingMap` 2977,
-`LIXConnectingMapFullness` 2980, `LIXConnectingMapFullnessSum` 2981,
-`LIXConnectingMapFullnessTower` 2986.
+`LIXStageAlgebraSeparable` 2978, `LIXConnectingMapFullness` 2980,
+`LIXConnectingMapFullnessSum` 2981, `LIXConnectingMapFullnessTower` 2986.
+
+`LIXStageAlgebraSeparable` (5195146e5) is the bonus conjunct: `SeparableSpace (StageAlgebra i)`
+and its family form, the hypothesis of `CStarTower.separableSpace_limit`.  Twelve lines of
+instance plumbing, no proof — `X_n` second countable, `CStarMatrix`'s topology
+`inferInstanceAs` the entrywise one, `ContinuousMap.instSecondCountableTopology` for the
+function space, then the subtype.  Going through second countability rather than separability
+is what makes the subtype step work, since separability is not hereditary.  The step that
+could have failed is that `C(X, Y)` carries the compact-open topology while the C-star
+structure on `C(X, A)` for compact `X` is the uniform one; Mathlib builds the metric so the
+instances agree.
 
 Everything builds in under fifteen seconds except `LIXConnectingMapFullnessSum`, which needs
 `set_option maxHeartbeats 4000000` and takes about 115 seconds; it is alone in its file so
@@ -157,6 +167,12 @@ Nothing blocking.  For whoever wires the fullness theorem next: the recipe alrea
 this lane.
 
 ## 4. TRAPS
+
+**A red dependency may be another lane's uncommitted edit, not a real error** (cs-limit's
+finding).  `ccprobe.sh` rsyncs the whole shared working tree at the start of a run, so an
+in-flight edit by another lane can red a green import for the duration of one probe.  Re-run
+before reporting a peer's module broken.
+
 
 New, from assembling `connect`:
 
