@@ -232,8 +232,14 @@ section TrivialSphere
 
 variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
 
-/-- A condition on the second factor alone cuts a product out of a subtype. -/
-def prodSubtypeHomeo {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (S : Set B) :
+/-- A condition on the second factor alone cuts a product out of a subtype.
+
+Named for the second projection rather than for the product, because
+`CharClass.prodSubtypeHomeo` is cc-cohom-api's older declaration of the same
+theorem in the preimage vocabulary (`Prod.snd ⁻¹' S`), and a file at bare
+`CharClass` that opens `Bundle` would otherwise see the bare name as
+ambiguous. -/
+def sndSubtypeHomeo {A B : Type} [TopologicalSpace A] [TopologicalSpace B] (S : Set B) :
     ↥{v : A × B | v.2 ∈ S} ≃ₜ A × ↥S where
   toFun v := ((v : A × B).1, ⟨(v : A × B).2, v.2⟩)
   invFun q := ⟨(q.1, (q.2 : B)), q.2.2⟩
@@ -259,7 +265,7 @@ theorem sphereSet_triv :
 /-- **The sphere bundle of a trivial bundle is the product with the unit
 sphere of the fibre.** -/
 noncomputable def sphereTrivHomeo : Sphere (triv X ι) ≃ₜ X × ↥(unitVectors ι) :=
-  (Homeomorph.setCongr sphereSet_triv).trans (prodSubtypeHomeo (unitVectors ι))
+  (Homeomorph.setCongr sphereSet_triv).trans (sndSubtypeHomeo (unitVectors ι))
 
 theorem sphereTrivHomeo_fst (v : Sphere (triv X ι)) :
     (sphereTrivHomeo v).1 = (v : X × (ι → ℂ)).1 := rfl
@@ -268,7 +274,7 @@ theorem sphereTrivHomeo_fst (v : Sphere (triv X ι)) :
 punctured fibre.** -/
 noncomputable def puncturedTrivHomeo :
     Punctured (triv X ι) ≃ₜ X × ↥({v : ι → ℂ | v ≠ 0}) :=
-  (Homeomorph.setCongr puncturedSet_triv).trans (prodSubtypeHomeo {v : ι → ℂ | v ≠ 0})
+  (Homeomorph.setCongr puncturedSet_triv).trans (sndSubtypeHomeo {v : ι → ℂ | v ≠ 0})
 
 theorem puncturedTrivHomeo_fst (v : Punctured (triv X ι)) :
     (puncturedTrivHomeo v).1 = (v : X × (ι → ℂ)).1 := rfl
