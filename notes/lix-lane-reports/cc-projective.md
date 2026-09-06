@@ -111,7 +111,11 @@ Chern classes and the Euler class
   sections of the projection.  The hypothesis is `rfl` on each side.  Note that the
   complement retracts onto `P(p)`, not onto the base; they agree only at rank one.
 * `GysinPairRetract` (8835) — the pair condition transported to those two readings.
-  With it the Gysin datum for the tautological line is complete but for two fields.
+* `GysinTautFields` (8896) — the tautological class on the two pieces.  It dies on the
+  chart; on the complement nothing is computed, and that is the trick.
+* `ProjectiveSpaceRingBootstrap` (8913) — **the ring**, from the Gysin sequence.
+* `ProjectiveSpaceRingClosed` (8914) — **`CPGenHyp` and the frozen interface,
+  unconditionally**.  Items 1, 2 and the ring of §1.4 item 3 are closed.
 
 ## AUTHORED-UNVERIFIED
 
@@ -119,20 +123,19 @@ None.  Everything in the lane is probed green and pushed.
 
 ## NEEDS
 
-0. **cc-bundle, two facts, for the last two Gysin fields.**  Requested with shapes.
-   Everything else in the Gysin datum is now green.  The two are the restriction of
-   the tautological line to each piece: on the chart the zero section pulls it back
-   to a trivial line, so its Euler class dies; on the complement of the zero section
-   `tautRestrictIso` reduces it to `tautLine p`, and what is missing is that for a
-   rank-one `p` that *is* `p`, transported along `projRankOneHomeo`.  A third, that
-   `projInclNotZero` is the homotopy inverse the retraction inverts, would save me a
-   homotopy.  Nothing else is blocked.
+0. **Nothing.**  cc-bundle landed all three facts (`BundleTautPieces`), the ring is
+   unconditional, and `cc-cohom-api` has been told the commit (8c80f2e07).
 
-   `rA`/`rB` and the pair condition are built and green, so when the two facts land
-   the only work left is the two `_taut` fields; then `GysinRanged` gives `CPGenHyp`,
-   then the ring, then the slice class and Whitney.
+   The general "Euler class is independent of the coordinate embedding" statement that
+   stood in NEEDS item 1 below is **no longer needed** and should be considered
+   withdrawn.  Identifying the Gysin class with the generator up front would have
+   required it; running the argument against whatever class the construction produces
+   proves that class nonzero in its own first power, and `H²` is a line, so the
+   identification is free.
 
-   The `slotOne`..`slotFour` duplicates are gone; `dupscan` over `CharClass` is clean.
+   Remaining in the lane, none of it blocked: §1.4 item 4 (Leray–Hirsch at higher
+   rank, Künneth with `ℂP^n` and finite products), item 5 (Whitney on the flag
+   bundle, the last `SplittingData` field), and the slice class.
 
 1. **cc-bundle, to close item 2.**  A general isometric embedding of projective spaces
    is essential on `H^2`.  Three statements, sent with the shapes: composition of
