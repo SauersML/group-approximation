@@ -195,8 +195,24 @@ def parityData_of
     (parityData_of p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ a b hcartan htx_inj hγ ha_zero ha_odd
       hsq_b hwu).γ k = γ k := rfl
 
-/-- **Lemma 2, the even half, at the real objects.**  Under the seven hypotheses
-of `parityData_of` and the slice class `∏_j (1 + h_j)^{d_j}` with every `d_j`
+/-- **`a_zero` and `a_odd` from the slice class.**  Both `a`-hypotheses of
+`parityData_of` are consequences of the single statement that `a` is the
+coefficient sequence of `∏_j (1 + h_j)^{d_j}` with every `d_j` even. -/
+theorem a_zero_of_slice (a : ℕ → TotalH Y) {J : Type} (u : Finset J) (h : J → TotalH Y)
+    (d : J → ℕ) (hslice : ∀ q : ℕ, a q = (sliceClass u h d).coeff q) : a 0 = 1 := by
+  rw [hslice 0, sliceClass_coeff_zero]
+
+theorem a_odd_of_slice (a : ℕ → TotalH Y) {J : Type} (u : Finset J) (h : J → TotalH Y)
+    (d : J → ℕ) (hd : ∀ j ∈ u, Even (d j))
+    (hslice : ∀ q : ℕ, a q = (sliceClass u h d).coeff q) :
+    ∀ q : ℕ, Odd q → a q = 0 := by
+  intro q hq
+  rw [hslice q]
+  exact sliceClass_coeff_odd_eq_zero (totalH_two_eq_zero Y) u h d hd hq
+
+/-- **Lemma 2, the even half, at the real objects.**  Under five hypotheses of
+`parityData_of` — `ha_zero` and `ha_odd` are *not* among them, being consequences
+of the slice class — and the slice class `∏_j (1 + h_j)^{d_j}` with every `d_j`
 even, the top mod-2 Chern class of `W` vanishes in `H^*(N; F₂)`:
 `γ_r(W) = 0` for `r = (∑_j d_j) + 3`.  Rank-free. -/
 theorem gamma_top_eq_zero_of_slice_totalH
@@ -211,7 +227,6 @@ theorem gamma_top_eq_zero_of_slice_totalH
       TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0)
     (hγ : ∀ k : ℕ,
       γ k = TotalH.map p (a k) + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p (b k))
-    (ha_zero : a 0 = 1) (ha_odd : ∀ q : ℕ, Odd q → a q = 0)
     (hsq_b : ∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0)
     (hwu : ∀ i : ℕ, Steenrod.SqH N (2 * i) (γ (i + 1))
       = ∑ j ∈ Finset.range (i + 1), γ (i - j) * γ (i + 1 + j))
@@ -219,7 +234,8 @@ theorem gamma_top_eq_zero_of_slice_totalH
     (hd : ∀ j ∈ u, Even (d j))
     (hslice : ∀ q : ℕ, a q = (sliceClass u h d).coeff q) :
     γ ((∑ j ∈ u, d j) + 3) = 0 :=
-  (parityData_of p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ a b hcartan htx_inj hγ ha_zero ha_odd
+  (parityData_of p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ a b hcartan htx_inj hγ
+    (a_zero_of_slice a u h d hslice) (a_odd_of_slice a u h d hd hslice)
     hsq_b hwu).gamma_top_eq_zero_of_slice u h d hd hslice
 
 end

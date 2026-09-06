@@ -256,7 +256,10 @@ with `t := tClass q₁ σ₁ = TotalH.map q₁ (TotalH.of S₁ 1 σ₁)` and
 (`sq_pull_sphere_eq_zero`: naturality plus the sphere's vanishing — neither
 needs instability nor Cartan), `sqH_ι` (`Steenrod.SqH_map`, on the nose).
 
-**The seven remaining hypotheses**, name, statement, owner:
+**The remaining hypotheses**, name, statement, owner.  Seven for
+`parityData_of`, but `ha_zero` and `ha_odd` are consequences of the slice
+hypothesis, so the endpoint `gamma_top_eq_zero_of_slice_totalH` asks for only
+**five**:
 
 | name | statement | owner |
 |---|---|---|
@@ -268,14 +271,15 @@ needs instability nor Cartan), `sqH_ι` (`Steenrod.SqH_map`, on the nose).
 | `hsq_b` | `∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0` | `cc-cohom-api` (the degree of the `t x`-component), through `sq_b_of_grading` |
 | `hwu` | `∀ i : ℕ, Steenrod.SqH N (2*i) (γ (i+1)) = ∑ j ∈ Finset.range (i+1), γ (i-j) * γ (i+1+j)` | `cc-projective` (splitting principle) + `cc-steenrod`/`cc-cartan`, through `SqData.wu_diagonal` |
 
-Two helpers make two of these mechanical:
+Helpers that make three of these mechanical:
 
 * `sq_b_of_grading (b) (hlow : ∀ k < 3, b k = 0) (hdeg : ∀ k c, 2*k = c+6 → ∃ β : Hmod2 Y c, b k = TotalH.of Y c β) : hsq_b`.
   Note the `k < 3` clause: `t x` already carries degree six, so `b 0 = b 1 = b 2`
   are forced to vanish and the `sq_b` field asserts exactly that at `j = 0`.
-* `ha_zero` and `ha_odd` both follow from the slice hypothesis
-  `hslice : ∀ q, a q = (sliceClass u h d).coeff q` with `∀ j ∈ u, Even (d j)`,
-  via `sliceClass_coeff_zero` and `sliceClass_coeff_odd_eq_zero`.
+* `a_zero_of_slice` and `a_odd_of_slice` derive `ha_zero` and `ha_odd` from
+  `hslice : ∀ q, a q = (sliceClass u h d).coeff q` together with
+  `hd : ∀ j ∈ u, Even (d j)`, via `sliceClass_coeff_zero` and
+  `sliceClass_coeff_odd_eq_zero`.
 
 The endpoint delivered to `cc-lix-odd` is
 
@@ -283,8 +287,8 @@ The endpoint delivered to `cc-lix-odd` is
 theorem gamma_top_eq_zero_of_slice_totalH … : γ ((∑ j ∈ u, d j) + 3) = 0
 ```
 
-taking the seven hypotheses plus `(u, h, d)`, `hd : ∀ j ∈ u, Even (d j)` and
-`hslice`.  It is rank-free: the rank of `W` is never mentioned.
+taking only `hcartan`, `htx_inj`, `hγ`, `hsq_b`, `hwu` plus `(u, h, d)`,
+`hd` and `hslice`.  It is rank-free: the rank of `W` is never mentioned.
 
 ## 8. TRAPS
 
