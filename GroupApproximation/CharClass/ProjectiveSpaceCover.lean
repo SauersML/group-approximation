@@ -40,8 +40,12 @@ open GroupApproximation.STW59
 open GroupApproximation.CharClass.CPn
 
 /-- Complex projective `d`-space, as an object of `TopCat.{0}`.  The carrier is
-the projection model `CP d`. -/
-def CPtop (d : ℕ) : TopCat.{0} := TopCat.of (CP d)
+the projection model `CP d`.  Marked `@[reducible]` so that the coercion
+`↥(CPtop d) → CP d` used implicitly throughout this file (e.g. in `coe_chartOpen`)
+unfolds during the "instances"-level transparency that coercion insertion uses;
+a plain `def` here blocks exactly that unfolding. -/
+@[reducible]
+noncomputable def CPtop (d : ℕ) : TopCat.{0} := TopCat.of (CP d)
 
 /-- The affine chart `{x : entry x 0 0 ≠ 0}` of `ℂP^{d+1}`, as an open set. -/
 def chartOpen (d : ℕ) : Opens (CPtop (d + 1)) :=
@@ -51,11 +55,9 @@ def chartOpen (d : ℕ) : Opens (CPtop (d + 1)) :=
 def punctOpen (d : ℕ) : Opens (CPtop (d + 1)) :=
   ⟨punctured d, isOpen_punctured⟩
 
-@[simp] theorem coe_chartOpen (d : ℕ) :
-    ((chartOpen d : Opens (CPtop (d + 1))) : Set (CP (d + 1))) = chartSet (d + 1) := rfl
+@[simp] theorem coe_chartOpen (d : ℕ) : ↑(chartOpen d) = chartSet (d + 1) := rfl
 
-@[simp] theorem coe_punctOpen (d : ℕ) :
-    ((punctOpen d : Opens (CPtop (d + 1))) : Set (CP (d + 1))) = punctured d := rfl
+@[simp] theorem coe_punctOpen (d : ℕ) : ↑(punctOpen d) = punctured d := rfl
 
 /-- **The two opens cover.** -/
 theorem chartOpen_sup_punctOpen (d : ℕ) : chartOpen d ⊔ punctOpen d = ⊤ := by
@@ -65,7 +67,7 @@ theorem chartOpen_sup_punctOpen (d : ℕ) : chartOpen d ⊔ punctOpen d = ⊤ :=
 
 /-- The intersection of the two opens, as a set. -/
 theorem coe_chartOpen_inf_punctOpen (d : ℕ) :
-    ((chartOpen d ⊓ punctOpen d : Opens (CPtop (d + 1))) : Set (CP (d + 1)))
+    ↑(chartOpen d ⊓ punctOpen d)
       = chartSet (d + 1) ∩ {x : CP (d + 1) | x ≠ basePoint (d + 1)} := rfl
 
 /-- **The chart is contractible.**  It is homeomorphic to `ℂ^{d+1}`. -/
@@ -74,13 +76,13 @@ theorem contractibleSpace_chartOpen (d : ℕ) : ContractibleSpace ↥(chartOpen 
 
 /-- **The punctured projective space is the hyperplane.**  `ℂP^{d+1} ∖ {pt}`
 deformation retracts onto `ℂP^d`. -/
-def punctOpenHomotopyEquiv (d : ℕ) :
+noncomputable def punctOpenHomotopyEquiv (d : ℕ) :
     ContinuousMap.HomotopyEquiv ↥(punctOpen d) (CPtop d) :=
   punctureHomotopyEquiv d
 
 /-- **The intersection is an odd sphere.**  The chart minus its origin is
 `ℂ^{d+1} ∖ {0} ≃ S^{2d+1}`. -/
-def interSphereHomotopyEquiv (d : ℕ) :
+noncomputable def interSphereHomotopyEquiv (d : ℕ) :
     ContinuousMap.HomotopyEquiv ↥(chartOpen d ⊓ punctOpen d)
       (TopCat.of ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (2 * (d + 1)))) 1)) :=
   interHomotopyEquivSphere d

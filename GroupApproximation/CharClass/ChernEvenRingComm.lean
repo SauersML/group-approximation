@@ -27,22 +27,36 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 noncomputable section
 
-/-- **Commutativity of the even cup product**, transported. -/
-theorem evenMul_comm {X : TopCat.{0}} {m n : ℕ} (a : EvenPiece X m) (b : EvenPiece X n)
-    (h : 2 * (m + n) = 2 * (n + m)) :
+/-- The signature `cc-steenrod`/`cc-cartan` are to deliver for graded commutativity
+of the cup product: the shape recorded in `notes/lix-lane-reports/cc-projective.md`.
+Everything below is a theorem about any space equipped with such a fact — nothing
+here is a `sorry` or an `axiom` — and the eventual `instance` gluing it to a real
+proof of `CupComm` is one line, added once that proof exists. -/
+def CupComm (X : TopCat.{0}) : Prop :=
+  ∀ {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q), cup a b = cohCast (Nat.add_comm q p) (cup b a)
+
+/-- **Commutativity of the even cup product**, transported, given `CupComm X`. -/
+theorem evenMul_comm {X : TopCat.{0}} (hcc : CupComm X) {m n : ℕ}
+    (a : EvenPiece X m) (b : EvenPiece X n) (h : 2 * (m + n) = 2 * (n + m)) :
     cohCast h (evenMul a b) = evenMul b a := by
   show cohCast h (cohCast (two_mul_add m n) (cup a b)) = cohCast (two_mul_add n m) (cup b a)
-  rw [cup_comm a b, cohCast_cohCast, cohCast_cohCast, cohCast_cohCast]
+  rw [hcc a b, cohCast_cohCast, cohCast_cohCast]
 
-/-- **The even mod-2 cohomology of a space is a graded commutative ring.** -/
-instance instGCommRing (X : TopCat.{0}) :
+/-- **The even mod-2 cohomology of a space is a graded commutative ring**, given
+`CupComm X`.  This is a `def` and not an `instance`: `cc-steenrod` has not yet
+delivered a proof of `CupComm X`, and until it does there is nothing to apply
+this to.  Once it does, `instance : DirectSum.GCommRing (fun n => EvenPiece X n) :=
+gCommRing X thatProof` is the whole remaining step. -/
+@[reducible]
+def gCommRing (X : TopCat.{0}) (hcc : CupComm X) :
     DirectSum.GCommRing (fun n : ℕ => EvenPiece X n) where
   __ := evenGRing X
   mul_comm a b := by
     obtain ⟨m, a⟩ := a
     obtain ⟨n, b⟩ := b
+    have hdeg : 2 * (m + n) = 2 * (n + m) := by omega
     exact Sigma.ext (Nat.add_comm m n)
-      (heq_of_evenCast (by omega) _ _ (evenMul_comm a b (by omega)))
+      (heq_of_evenCast hdeg (evenMul a b) (evenMul b a) (evenMul_comm hcc a b hdeg))
 
 theorem EvenH.of_mul (X : TopCat.{0}) (m n : ℕ) (a : EvenPiece X m) (b : EvenPiece X n) :
     EvenH.of X (m + n) (evenMul a b) = EvenH.of X m a * EvenH.of X n b :=
@@ -53,7 +67,10 @@ theorem EvenH.of_mul (X : TopCat.{0}) (m n : ℕ) (a : EvenPiece X m) (b : EvenP
 /-- **Pullback as a ring homomorphism.** -/
 def EvenH.map {X Y : TopCat.{0}} (f : X ⟶ Y) : EvenH Y →+* EvenH X :=
   DirectSum.toSemiring (fun n => (EvenH.of X n).comp (pullEven f n))
-    (by simp [EvenH.of, DirectSum.of])
+    (by
+      show EvenH.of X 0 (pullEven f 0 (evenOne Y)) = 1
+      rw [pullEven_evenOne]
+      exact EvenH.of_one X)
     (fun {m n} a b => by
       show EvenH.of X (m + n) (pullEven f (m + n) (evenMul a b))
         = EvenH.of X m (pullEven f m a) * EvenH.of X n (pullEven f n b)

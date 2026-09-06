@@ -41,7 +41,7 @@ open CategoryTheory
 
 /-- **The mod-2 Euler class** of the line bundle classified by `f`, relative to a
 chosen degree-2 class `hgen` on the target projective space. -/
-def eulerClass {X : TopCat.{0}} {d : ℕ} (hgen : Hmod2 (CPtop d) 2) (f : X ⟶ CPtop d) :
+noncomputable def eulerClass {X : TopCat.{0}} {d : ℕ} (hgen : Hmod2 (CPtop d) 2) (f : X ⟶ CPtop d) :
     Hmod2 X 2 :=
   pull f 2 hgen
 
