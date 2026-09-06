@@ -57,6 +57,13 @@ sent `cs-simplicity` a heads-up so they lose no time on the collision.  `hasK1In
 unaffected and re-probed green standalone (2999 jobs) once the now-unneeded
 `LIXSimplicityInstance` import was dropped.
 
+**The C⋆-side is closed.**  `cs-clutching`'s `lixLimit_hasK1InjWitness_of (h : LemmaTwoHolds) :
+HasK1InjWitness LIXLimit` discharges both hypotheses of this lane's
+`lixLimit_hasK1InjWitness` — `hstage` from Corollary 4, `hdiag` through the flattening and the
+section–matrix identification built here.  Verified **in this lane's own clone**:
+`Build completed successfully (8723 jobs)` with `LIXLemmaSixCor4` and `ProblemLIX` both built.
+Every remaining obligation in the chain is topological.
+
 **Axiom audit, not a lexical scan.**  `Meta.AxiomGuard`'s `#audit_axioms` *fails the build* when
 the transitive closure leaves the classical allowlist, and `#audit_closed_axioms` additionally
 rejects a leading hypothesis, so a conditional theorem cannot pass for an endpoint by having a
