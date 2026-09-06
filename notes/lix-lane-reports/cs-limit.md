@@ -55,6 +55,11 @@ sent `cs-simplicity` a heads-up so they lose no time on the collision.  `hasK1In
 unaffected and re-probed green standalone (2999 jobs) once the now-unneeded
 `LIXSimplicityInstance` import was dropped.
 
+The endpoint builds on top of all of this: `Manuscript/NinetyNineProblems/ProblemLIX` was
+verified **in this lane's own clone** at `Build completed successfully (3019 jobs)`, so the join
+between this lane's algebra and `cs-endpoint`'s statement is confirmed independently of their
+probe, not taken on report.
+
 Peer modules that also built clean inside cs-limit probes:
 `Analysis/CStarCompletion`, `Analysis/CStarCompletionCoe`,
 `Analysis/CStarKOne`, `Analysis/CStarKOneInjectivityCriterion`,
@@ -244,6 +249,12 @@ without a `sorry` or an `axiom`, which this program forbids.
   a priority, not a new instance: `attribute [local instance 100000]` on the spectral pair, which
   keeps the same two constants the rest of the lane uses and needs no transport lemma.  Anyone
   producing `diagOne u ∈ unitaryComponentOne (CStarMat 2 (StageAlgebra k))` must do the same.
+* **Never read absence from an error list as success, and never `sed` a peer's file to explain
+  their error.**  `ccprobe.sh` rsyncs the shared tree at the *start* of a run, so by the time the
+  log is read the file on disk may already differ from the bytes that were built.  `cs-endpoint`
+  diagnosed a failure of mine from a `sed` of the current file plus an error list from the older
+  build, and concluded that four `example`s "passed" when in fact they did not yet exist.
+  Reconstruct the built version with `git show <commit>:<path>` first.
 * **A peer's in-flight edit can red a green dependency mid-probe.**  `LIXConnectingMap` built in
   one probe and failed at line 222 in the next with byte-identical content at the same commit,
   then built again.  `ccprobe.sh` syncs the whole shared working tree, uncommitted peer edits
