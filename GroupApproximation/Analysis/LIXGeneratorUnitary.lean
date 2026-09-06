@@ -758,6 +758,187 @@ theorem frameRot_mul_conjTranspose {p x : n → ℂ} (h : IsFrameDatum p x) :
     transportRot_mul_conjTranspose h.transportDatum_fst, Matrix.one_mul,
     transportRot_mul_conjTranspose h.transportDatum_snd]
 
+/-! ### Continuity
+
+Every ingredient is a rational expression in the entries, so continuity is
+routine once the denominators are known to be nonzero.  The statements are
+given over a parameter space on which the non-vanishing holds *everywhere*,
+because that is how they are used: the hemispheres are subtypes cut out by
+exactly that condition. -/
+
+section Continuity
+
+variable {X : Type*} [TopologicalSpace X]
+
+theorem continuous_star_dotProduct {a b : X → n → ℂ} (ha : Continuous a)
+    (hb : Continuous b) : Continuous fun t => star (a t) ⬝ᵥ b t := by
+  show Continuous fun t => ∑ i, star (a t i) * b t i
+  exact continuous_finsetSum _ fun i _ =>
+    (((continuous_apply i).comp ha).star).mul ((continuous_apply i).comp hb)
+
+theorem continuous_reflMat {v : X → n → ℂ} (hv : Continuous v)
+    (hne : ∀ t, star (v t) ⬝ᵥ v t ≠ 0) : Continuous fun t => reflMat (v t) := by
+  have h1 : Continuous fun t => (2 : ℂ) / (star (v t) ⬝ᵥ v t) :=
+    continuous_const.div (continuous_star_dotProduct hv hv) hne
+  exact continuous_const.sub (h1.smul (continuous_rk1 hv hv))
+
+theorem continuous_transPhase {a b : X → n → ℂ} (ha : Continuous a) (hb : Continuous b)
+    (hne : ∀ t, star (a t) ⬝ᵥ b t ≠ 0) :
+    Continuous fun t => transPhase (a t) (b t) := by
+  refine Continuous.div (continuous_star_dotProduct ha hb) ?_ ?_
+  · exact Complex.continuous_ofReal.comp (continuous_star_dotProduct ha hb).norm
+  · intro t
+    simpa using hne t
+
+theorem continuous_transTarget {a b : X → n → ℂ} (ha : Continuous a) (hb : Continuous b)
+    (hne : ∀ t, star (a t) ⬝ᵥ b t ≠ 0) :
+    Continuous fun t => transTarget (a t) (b t) :=
+  Continuous.smul (continuous_transPhase ha hb hne).star hb
+
+theorem continuous_transportRot {a b : X → n → ℂ} (ha : Continuous a) (hb : Continuous b)
+    (hd : ∀ t, IsTransportDatum (a t) (b t)) :
+    Continuous fun t => transportRot (a t) (b t) := by
+  have hne : ∀ t, star (a t) ⬝ᵥ b t ≠ 0 := fun t => (hd t).inner_ne
+  have haa : ∀ t, star (a t) ⬝ᵥ a t ≠ 0 := fun t => by
+    rw [(hd t).unit_a]; exact one_ne_zero
+  refine Continuous.smul (continuous_transPhase ha hb hne) (Continuous.mul ?_ ?_)
+  · exact continuous_reflMat (ha.add (continuous_transTarget ha hb hne))
+      fun t => (hd t).inner_sum_ne
+  · exact continuous_reflMat ha haa
+
+theorem continuous_midNorm {p x : X → n → ℂ} (hp : Continuous p) (hx : Continuous x) :
+    Continuous fun t => midNorm (p t) (x t) :=
+  Complex.continuous_ofReal.comp (Real.continuous_sqrt.comp
+    (continuous_const.add (continuous_const.mul
+      (Complex.continuous_re.comp (continuous_star_dotProduct hp hx)))))
+
+theorem continuous_midVec {p x : X → n → ℂ} (hp : Continuous p) (hx : Continuous x)
+    (hne : ∀ t, midNorm (p t) (x t) ≠ 0) :
+    Continuous fun t => midVec (p t) (x t) :=
+  Continuous.smul ((continuous_midNorm hp hx).inv₀ hne) (hp.add hx)
+
+theorem continuous_frameRot {p x : X → n → ℂ} (hp : Continuous p) (hx : Continuous x)
+    (hd : ∀ t, IsFrameDatum (p t) (x t)) :
+    Continuous fun t => frameRot (p t) (x t) := by
+  have hmid : Continuous fun t => midVec (p t) (x t) :=
+    continuous_midVec hp hx fun t => (hd t).midNorm_ne_zero
+  exact Continuous.mul (continuous_transportRot hmid hx fun t => (hd t).transportDatum_snd)
+    (continuous_transportRot hp hmid fun t => (hd t).transportDatum_fst)
+
+end Continuity
+
+/-! ### The two hemisphere frames and the seam generator
+
+`frameRot p ·` is defined on the whole sphere minus `-p`, so it trivialises
+the tautological complement over the closed hemisphere around `p`; the same
+formula based at `-p` does the other one, corrected by the reflection that
+carries `p` to `-p`, so that both satisfy the *same* identity
+`σ * rk1 p v = rk1 x v`.  Their seam discrepancy fixes `p`, which is exactly
+the statement that it is `diag(u, 1)`. -/
+
+section Seam
+
+variable {p : n → ℂ}
+
+theorem star_neg_dotProduct (a b : n → ℂ) : star (-a) ⬝ᵥ b = -(star a ⬝ᵥ b) := by
+  rw [star_neg, neg_dotProduct]
+
+theorem star_dotProduct_neg (a b : n → ℂ) : star a ⬝ᵥ (-b) = -(star a ⬝ᵥ b) :=
+  dotProduct_neg _ _
+
+/-- The southern frame datum: `-p` is a unit vector, and `x` is not its
+antipode exactly when `pᴴ x ≠ 1`. -/
+theorem isFrameDatum_neg {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (hx : star x ⬝ᵥ x = 1)
+    (hne : star p ⬝ᵥ x ≠ 1) : IsFrameDatum (-p) x where
+  unit_p := by rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, hp]
+  unit_x := hx
+  not_antipodal := by
+    rw [star_neg_dotProduct]
+    intro hc
+    exact hne (by linear_combination -hc)
+
+/-- The northern hemisphere frame. -/
+def frameNorth (p x : n → ℂ) : Matrix n n ℂ := frameRot p x
+
+/-- The southern hemisphere frame: the same construction based at the
+antipode, corrected by the reflection carrying `p` to `-p`, so that it obeys
+the same transport identity. -/
+def frameSouth (p x : n → ℂ) : Matrix n n ℂ := frameRot (-p) x * reflMat p
+
+/-- **The seam generator.**  On the equator both frames are defined, and their
+discrepancy is a unitary fixing `p`. -/
+def seamGen (p x : n → ℂ) : Matrix n n ℂ := (frameNorth p x)ᴴ * frameSouth p x
+
+theorem frameNorth_mul_rk1 {x : n → ℂ} (h : IsFrameDatum p x) (v : n → ℂ) :
+    frameNorth p x * rk1 p v = rk1 x v := frameRot_mul_rk1 h v
+
+theorem frameSouth_mul_rk1 {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (h : IsFrameDatum (-p) x) (v : n → ℂ) : frameSouth p x * rk1 p v = rk1 x v := by
+  have hpne : star p ⬝ᵥ p ≠ 0 := by rw [hp]; exact one_ne_zero
+  have hneg : reflMat p * rk1 p v = rk1 (-p) v := by
+    rw [reflMat_mul_rk1_self hpne, rk1_neg_left]
+  rw [frameSouth, Matrix.mul_assoc, hneg, frameRot_mul_rk1 h v]
+
+theorem frameNorth_conjTranspose_mul_self {x : n → ℂ} (h : IsFrameDatum p x) :
+    (frameNorth p x)ᴴ * frameNorth p x = 1 := frameRot_conjTranspose_mul_self h
+
+theorem frameNorth_mul_conjTranspose {x : n → ℂ} (h : IsFrameDatum p x) :
+    frameNorth p x * (frameNorth p x)ᴴ = 1 := frameRot_mul_conjTranspose h
+
+theorem frameSouth_conjTranspose_mul_self {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (h : IsFrameDatum (-p) x) : (frameSouth p x)ᴴ * frameSouth p x = 1 := by
+  have hpne : star p ⬝ᵥ p ≠ 0 := by rw [hp]; exact one_ne_zero
+  rw [frameSouth, Matrix.conjTranspose_mul, reflMat_conjTranspose, Matrix.mul_assoc,
+    ← Matrix.mul_assoc ((frameRot (-p) x)ᴴ), frameRot_conjTranspose_mul_self h,
+    Matrix.one_mul, reflMat_mul_self hpne]
+
+theorem frameSouth_mul_conjTranspose {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (h : IsFrameDatum (-p) x) : frameSouth p x * (frameSouth p x)ᴴ = 1 := by
+  have hpne : star p ⬝ᵥ p ≠ 0 := by rw [hp]; exact one_ne_zero
+  rw [frameSouth, Matrix.conjTranspose_mul, reflMat_conjTranspose, Matrix.mul_assoc,
+    ← Matrix.mul_assoc (reflMat p), reflMat_mul_self hpne, Matrix.one_mul,
+    frameRot_mul_conjTranspose h]
+
+/-- **The seam generator fixes `p`.**  This is the statement that `seamGen` is
+`diag(u, 1)` for a unitary `u` of the orthogonal complement, expressed without
+any submatrix surgery. -/
+theorem seamGen_mul_rk1 {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (hN : IsFrameDatum p x)
+    (hS : IsFrameDatum (-p) x) (v : n → ℂ) : seamGen p x * rk1 p v = rk1 p v := by
+  have hkey : (frameNorth p x)ᴴ * rk1 x v = rk1 p v := by
+    conv_lhs => rw [← frameNorth_mul_rk1 hN v]
+    rw [← Matrix.mul_assoc, frameNorth_conjTranspose_mul_self hN, Matrix.one_mul]
+  rw [seamGen, Matrix.mul_assoc, frameSouth_mul_rk1 hp hS v, hkey]
+
+theorem seamGen_conjTranspose_mul_self {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (hN : IsFrameDatum p x) (hS : IsFrameDatum (-p) x) :
+    (seamGen p x)ᴴ * seamGen p x = 1 := by
+  rw [seamGen, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
+    Matrix.mul_assoc, ← Matrix.mul_assoc (frameNorth p x),
+    frameNorth_mul_conjTranspose hN, Matrix.one_mul,
+    frameSouth_conjTranspose_mul_self hp hS]
+
+theorem seamGen_mul_conjTranspose {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (hN : IsFrameDatum p x) (hS : IsFrameDatum (-p) x) :
+    seamGen p x * (seamGen p x)ᴴ = 1 := by
+  rw [seamGen, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
+    Matrix.mul_assoc, ← Matrix.mul_assoc (frameSouth p x),
+    frameSouth_mul_conjTranspose hp hS, Matrix.one_mul,
+    frameNorth_conjTranspose_mul_self hN]
+
+/-- **A frame of the tautological complement.**  A unitary obeying the
+transport identity conjugates the complement of `p pᴴ` onto the complement of
+`x xᴴ`; over `S⁵ ⊆ ℂ³` with `p = e₃` the right-hand side is exactly
+`STW59.Fproj` read pointwise. -/
+theorem conj_one_sub_rk1 {σ : Matrix n n ℂ} {x : n → ℂ}
+    (hu : σ * σᴴ = 1) (hv : ∀ v, σ * rk1 p v = rk1 x v) :
+    σ * (1 - rk1 p p) * σᴴ = 1 - rk1 x x := by
+  have h3 : rk1 x p * σᴴ = rk1 x x := by
+    have h2 := congrArg Matrix.conjTranspose (hv x)
+    rwa [Matrix.conjTranspose_mul, rk1_conjTranspose, rk1_conjTranspose] at h2
+  rw [mul_sub, Matrix.mul_one, sub_mul, hu, hv p, h3]
+
+end Seam
+
 end Frames
 
 end
