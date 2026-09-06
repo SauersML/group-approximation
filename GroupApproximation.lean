@@ -3652,6 +3652,7 @@ import GroupApproximation.CharClass.ProjectiveSpaceRingBootstrap
 import GroupApproximation.CharClass.SteenrodFourfoldBDecomp
 import GroupApproximation.CharClass.CartanCohomologous
 import GroupApproximation.CharClass.ProjectiveSpaceRingClosed
+import GroupApproximation.CharClass.SteenrodFourfoldBCancel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
