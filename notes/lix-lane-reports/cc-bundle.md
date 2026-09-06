@@ -197,13 +197,19 @@ theorem totalOverHomeo_over_base                                          -- `rf
 theorem totalInclOn_mem_puncturedSet_iff / totalInclOn_preimage_puncturedSet
 ```
 
-The total-space twin of `BundleProjOver`.  **Presenting it as an OPEN subset,
-not as the image of an injective map, is the point**: excision applies to an
-open subspace, not to a map that happens to be injective.
+The total-space twin of `BundleProjOver`.  Presenting it as a subset, open when
+`U` is, is what lets a relative argument reach it at all: an injective map is
+not a subspace inclusion, and the transport lemmas take the latter.
 
-Injectivity on relative cohomology is **not** here and is not this lane's:
-there is no cohomology anywhere in `Bundle*`, and importing it would invert the
-dependency direction.  What this supplies is the point-set input excision wants.
+**Correction, and it was in this file's docstring until 09-06: excision does
+NOT apply to the punctured pair here.**  It would need the part of the total
+space over the complement of `U` to have its closure inside the punctured set,
+and that set contains zero-section points, which the punctured set omits.  The
+Thom class does not localise to a neighbourhood, and the two relative groups are
+not abstractly isomorphic in general.  Injectivity of the restriction, where it
+holds, is connectedness of the base read through the Thom isomorphism on each
+side — cohomology, and the consumer's lane.  Diagnosis due to `cc-thom`, who
+retracted the excision framing after I had repeated it back to them as correct.
 
 ### `BundleChartTaut.lean` — the chart carries the tautological line, at EVERY rank
 

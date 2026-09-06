@@ -10,8 +10,20 @@ first sits inside `↥U × (ι → ℂ)` and the second inside `Total p`, hence 
 `X × (ι → ℂ)`.
 
 Presenting it as a **subset**, and as an **open** one when `U` is open, is what
-lets a relative-cohomology argument reach it: excision applies to an open
-subspace, not to the image of a map that happens to be injective.
+lets a relative-cohomology argument reach it at all: a map that happens to be
+injective is not a subspace inclusion, and the transport lemmas take the latter.
+
+**Not** for excision.  Excision does not apply to the punctured pair here: it
+would need the excised set, the part of the total space over the complement of
+`U`, to have its closure inside the punctured set, and that set contains
+zero-section points, which are exactly what the punctured set omits.  The Thom
+class does not localise to a neighbourhood, and the two relative groups are not
+abstractly isomorphic in general — the full pair's has rank the number of
+components of the base.  Injectivity of the restriction, where it holds, is
+connectedness of the base read through the Thom isomorphism on each side, which
+is a cohomological statement and lives in the consumer's lane, not here.
+(Diagnosis due to `cc-thom`, correcting an earlier shared error of theirs and
+mine.)
 
 ## Manuscript status
 
