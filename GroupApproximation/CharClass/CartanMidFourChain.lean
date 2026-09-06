@@ -33,6 +33,8 @@ lemmas; that keeps every step small and the projection out of all of them.
 * `tensorFreeCx_d` — the differential of a tensor, without forcing the projection.
 * `tdL_nested`, `tdR_nested` — the two halves of the differential of a nested
   tensor, on a decomposable inner factor, with the projection spent once.
+* `midSwap_tenElt4'` — the interchange on a fourfold decomposable, restated so
+  that it can actually be used as a rewrite rule.
 -/
 
 namespace GroupApproximation.CharClass
@@ -75,7 +77,23 @@ theorem tdR_nested (k P Q' a3 a4 : ℕ) (h : P + (Q' + 1) = k + 1) (h2 : a3 + a4
             (tdR C D Q' a3 a4 h2 w3 w4) := by
   rw [tdR_succ, tensorFreeCx_d, tensorD_tenElt, tenElt_add_right]
 
-/-! ## The chain-map property -/
+/-- The interchange on a fourfold decomposable, with the outer degree of the
+result derived rather than supplied.  `midSwap_tenElt4` takes that degree
+equation as an argument, and it occurs only on the right-hand side, so as a
+rewrite rule it can never be instantiated; this restatement is the usable one. -/
+theorem midSwap_tenElt4' (k P Q a1 a2 a3 a4 : ℕ)
+    (h : P + Q = k) (h1 : a1 + a2 = P) (h2 : a3 + a4 = Q)
+    (w1 : A.ι a1 →₀ ZMod 2) (w2 : B.ι a2 →₀ ZMod 2)
+    (w3 : C.ι a3 →₀ ZMod 2) (w4 : D.ι a4 →₀ ZMod 2) :
+    midSwap A B C D k
+        (tenElt (tensorFreeCx A B) (tensorFreeCx C D) (⟨(P, Q), h⟩ : Steenrod.PairDeg k)
+          (tenElt A B (⟨(a1, a2), h1⟩ : Steenrod.PairDeg P) w1 w2)
+          (tenElt C D (⟨(a3, a4), h2⟩ : Steenrod.PairDeg Q) w3 w4))
+      = tenElt (tensorFreeCx A C) (tensorFreeCx B D)
+          (⟨(a1 + a3, a2 + a4), by omega⟩ : Steenrod.PairDeg k)
+          (tenElt A C (⟨(a1, a3), rfl⟩ : Steenrod.PairDeg (a1 + a3)) w1 w3)
+          (tenElt B D (⟨(a2, a4), rfl⟩ : Steenrod.PairDeg (a2 + a4)) w2 w4) :=
+  midSwap_tenElt4 A B C D k P Q a1 a2 a3 a4 h h1 h2 (by omega) w1 w2 w3 w4
 
 end
 
