@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LemmaTwoStepDLix
 import GroupApproximation.CharClass.LemmaTwoGlue
+import GroupApproximation.CharClass.CartanFormula
 
 /-!
 # The endgame, staged over its remaining inputs
@@ -28,6 +29,9 @@ everything else was green, since Step D runs on evenness.
 ## Main result
 
 * `lemmaTwoHolds_staged` — **`LIX.LemmaTwoHolds`**, over those four.
+* `lemmaTwoHolds_staged'` — the same over **three**: `Wu.CartanTotal` unfolds to
+  `∀ X, Steenrod.CartanOf X`, which is `cc-cartan`'s `cartanOf_holds` at every space, so
+  the Cartan formula is discharged rather than assumed.
 -/
 
 noncomputable section
@@ -63,5 +67,26 @@ theorem lemmaTwoHolds_staged
   lemmaTwoHolds_of fun j =>
     lemmaTwoInput_lix (chern j) (fun i => LIX.lixDD_pos j i) hC
       (fun i => LIX.even_lixDD j i) (chain j) (data j)
+
+/-- **The same over three hypotheses.**  `Wu.CartanTotal` is by definition
+`∀ X : TopCat.{0}, Steenrod.CartanOf X`, and `cc-cartan`'s `cartanOf_holds` proves exactly
+that at every space, so the Cartan formula never had to be carried. -/
+theorem lemmaTwoHolds_staged'
+    (chern : ∀ j : ℕ, LixChernDeg (LIX.lixDD j))
+    (chain : ∀ j : ℕ,
+      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
+        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
+        (∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0) →
+        ThomChainThom (LIX.lixDD j)
+          (chern j (mappingTorus Vmat G circHoriz circHeight)
+            (continuous_mappingTorus_lix hGc) (isStarProjection_mappingTorus_lix hGu)
+            (lixRank (LIX.lixDD j))))
+    (data : ∀ j : ℕ,
+      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ),
+        Continuous G → (∀ m, IsCornerUnitary (Vmat m) (G m)) →
+        WuStepDLix (LIX.lixDD j)
+          (lixChernOf (chern j) (mappingTorus Vmat G circHoriz circHeight))) :
+    LIX.LemmaTwoHolds :=
+  lemmaTwoHolds_staged chern (fun X => cartanOf_holds X) chain data
 
 end GroupApproximation.CharClass
