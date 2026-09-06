@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.DGOLemma421FromUniform414
+import GroupApproximation.GGT.DGOProposition414General
 import GroupApproximation.Higman.OmegaSharedProof
 import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
@@ -134,7 +134,7 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **Open input.**  Dahmani--Guirardel--Osin Proposition 4.14 with the
+/-- Dahmani--Guirardel--Osin Proposition 4.14, proved with the
 constant uniform in the number of sides (`GGT/DGOLemma421Proof.lean`): in a
 weakly relatively hyperbolic group, an isolated component of a quasi-geodesic
 polygon has relative length bounded by a constant times the number of sides.
@@ -143,8 +143,8 @@ original and selected auxiliary families (`GGT/DGOProposition435JointPrescribed.
 whose hyperbolicity half is the cone-off of the relative Cayley graph along the
 selected cyclic subgroups). -/
 theorem dgoProposition414Uniform :
-    GGT.OsinComponents.DGOProposition414Uniform.{0, 0} := by
-  sorry
+    GGT.OsinComponents.DGOProposition414Uniform.{0, 0} :=
+  GGT.OsinComponents.dgoProposition414Uniform
 
 /-- Dahmani–Guirardel–Osin, Lemma 4.21(b), derived from uniform Proposition
 4.14: the located counting certificate yields separated forward matches, and
@@ -153,6 +153,9 @@ consecutive order. The conclusion retains the two actual basepoints and the
 start-coset identities of `GGT/DGOLemma421Statement.lean`. -/
 theorem dgoLemma421b : GGT.OsinComponents.DGOLemma421b.{0, 0} :=
   GGT.OsinComponents.dgoLemma421b_of_uniform414 dgoProposition414Uniform
+
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.dgoProposition414Uniform
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.dgoLemma421b
 
 /-- Hull's Lemmas 5.4–5.6 in the local finite-avoidance form, proved from
 DGO Lemma 4.21(b) alone: the orientation-pure detector, the pairwise
@@ -168,6 +171,9 @@ avoidance producer by the proved finite induction. -/
 theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} :=
   HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr
     hullYiSuitablePairAvoidingFiniteOneSided
+
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullYiSuitablePairAvoidingFiniteOneSided
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullYiSuitableFiniteFamily
 
 /-- **Open proof.**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
 subgroups and rotating families*, Theorem 5.3(b): for a separated very rotating

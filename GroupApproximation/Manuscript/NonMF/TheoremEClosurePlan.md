@@ -20,9 +20,9 @@ certificate structure without an inhabitant, an extra leading hypothesis, or
 moving an admission to another file does not discharge an obligation.
 
 The current combined lane build passes. A fresh Lean traversal of the actual
-proof dependencies of both endpoints finds exactly the five direct admissions
+proof dependencies of both endpoints finds exactly the four direct admissions
 below; their axiom closures contain the three permitted axioms and `sorryAx`.
-The strict source scan independently reports the same five placeholders.
+The strict source scan independently reports the same four placeholders.
 Thus there are no additional admission leaves hidden in the current imported
 endpoint proofs, although the proposed reductions below have further unproved
 inputs. A successful build does not establish completion.
@@ -31,56 +31,50 @@ inputs. A successful build does not establish completion.
 
 | Package | Current assembly admission | What must actually be proved | Completion evidence |
 |---|---|---|---|
-| DGO polygon geometry | `dgoProposition414Uniform`, placeholder line 147 | Both uniform bounds for arbitrary multiplicative quasigeodesic constant and every polygon size; then discharge the existing DGO 4.21(b) and joint-family-selection consumers | Original `DGOProposition414Uniform` and `DGOLemma421b` pass closed axiom audits |
-| Osin diagram construction | `estimatingSelectionConstruction`, line 244 | Construct the reduced O-equivalent diagram, its estimating scaffold, and graph from the source hypotheses | A proved construction at parameters shared with the unbound estimate |
-| Osin uncovered boundary estimate | `estimatingUnboundOutput`, line 254 | Replace the false universal-parameter interface by the actual synchronized parameter choice, then prove complementary-region surgery and the arc budget | Closed relative Greendlinger and Hull 4.9 inputs; original refutation retained |
-| Hull joint-family preservation | `hullLemma44FamilyInclusionJoint`, line 214 | Greendlinger **plus** a corrected bounded relative-isoperimetric transfer **plus** relator respelling, with one compatible order of constants | Source-faithful bounded family preservation, retaining every conclusion required by the unchanged printed endpoints; preserve the historical unbounded Props explicitly |
-| Concrete starting group | `kotowskiOllivier`, line 381 | An actual infinite, finitely presented, torsion-free hyperbolic group with property (T) | Original `Hyperbolic.SharpExistence` passes the closed audit |
+| Osin diagram construction | `estimatingSelectionConstruction`, line 250 | Construct the reduced O-equivalent diagram, its estimating scaffold, and graph from the source hypotheses | A proved construction at parameters shared with the unbound estimate |
+| Osin uncovered boundary estimate | `estimatingUnboundOutput`, line 260 | Replace the false universal-parameter interface by the actual synchronized parameter choice, then prove complementary-region surgery and the arc budget | Closed relative Greendlinger and Hull 4.9 inputs; original refutation retained |
+| Hull joint-family preservation | `hullLemma44FamilyInclusionJoint`, line 220 | Greendlinger **plus** a corrected bounded relative-isoperimetric transfer **plus** relator respelling, with one compatible order of constants | Source-faithful bounded family preservation, retaining every conclusion required by the unchanged printed endpoints; preserve the historical unbounded Props explicitly |
+| Concrete starting group | `kotowskiOllivier`, line 387 | An actual infinite, finitely presented, torsion-free hyperbolic group with property (T) | Original `Hyperbolic.SharpExistence` passes the closed audit |
 
-The first four packages feed Hull's canonical quotient, one-step construction,
+The first three packages feed Hull's canonical quotient, one-step construction,
 Theorem 7.1, and the common-quotient and Fournier-Facio inputs. The last package
 supplies their starting group. Together with the existing Chiodo/Higman and
 Minasyan–Osin proofs, these feed `literatureInputs`, `hullInputs`, and both printed
 endpoints. All of these consumers must be audited when their inputs close.
 
-## DGO: extend the completed geometry to the actual uniform theorem
+## DGO: the complete package is proved
 
-Already proved: the full additive case of Proposition 4.14, closed Lemma
-4.21(a), the conditional full proof of 4.21(b), and the general-parameter
-short-isolating-cycle construction for four-gons. The general-parameter
-extension now also proves the uniform logarithmic balanced chord, finiteness
-and extremality of the genuine least-cost function, preservation of both
-parameters on the first/wrapped arcs and every auxiliary child, and charging
-of arbitrary supplied child radii by the existing disjoint factor slots.
-These proofs are in `DGOAssemblySubdivisionGeneral`,
-`DGOProposition414GeneralInput`, `DGOProposition414GeneralFinite`,
-`DGOProposition414GeneralArcQuasi`, `DGOAssemblyChargeGeneral`,
-`DGOProposition414GeneralChildren`, and `DGOProposition414SuppliedRadii`.
-Each passes its ordinary axiom audit with only the three permitted axioms.
-The general child-cost subdivision inequality and final linear bound still
-need assembly; this checkpoint removes no additional assembly admission.
+`GGT/DGOProposition414General.lean` proves the **original**
+`OsinComponents.DGOProposition414Uniform` at arbitrary `mu ≥ 1`, with one
+positive constant chosen before the polygon size, for both the sum and
+individual-component conclusions. It also closes the original full
+`DGOLemma421b`. Both pass `#audit_closed_axioms` with exactly the three
+permitted axioms. The additive API and closed Lemma 4.21(a) remain available.
 
-The missing step is the arbitrary-polygon **linear sum bound** at general
-multiplicative constant. `DGOPolygonSideCountAll` gives a quadratic individual
-bound from a four-gon base case; this alone cannot discharge Proposition 4.14.
+The general proof uses the completed short isolating-cycle construction to
+prove finiteness of the least sum cost. Morse stability selects a uniformly
+logarithmic chord using the genuine parameters. The same finite polygon is
+exposed to the old combinatorial records with a word-length bookkeeping error,
+but that error never chooses a geometric constant or a child radius.
+The first and wrapped second arcs, every restricted arc, and every auxiliary
+child retain the genuine parameters exactly. Existing isolated-component
+families and disjoint factor slots charge witnesses from the general child
+costs. An extremal polygon supplies the numerical subdivision inequality;
+the proved logarithmic-square overhead and numerical linearity theorem give
+the uniform sum bound. Component collapse and recutting give the individual
+bound with the same enlarged constant.
 
-1. Parameterize the existing balanced-surgery development coherently. Carry
-   the original quasigeodesic inequalities through cuts, recuts, connector
-   bounds, and the complete isolated-component families. Retain the additive
-   API as a specialization; do not duplicate the entire module chain.
-2. Use `DGOShortIsolatingCycleGeneral` for the general base cases and the
-   existing Morse-based chord selection for the balanced split. Prove the
-   subdivision recurrence and its linear bound with a constant chosen before
-   the polygon size. Derive the individual bound using the existing collapse
-   and recut argument.
-3. Instantiate both original consumers and audit them. The finite-size bound
-   needed by 4.21(b) can close earlier: its counting proof uses polygons with
-   at most six sides and the already proved `(1,1)` sum bound. Treat that as
-   an integration checkpoint, not as completion of general 4.14.
+The assembly's DGO placeholder has been replaced by that proof. Its DGO
+4.14 and 4.21(b) declarations, Hull's finite-avoidance pair producer, and
+Hull's full finite-family Corollary 5.7 all pass closed axiom audits.
+The assembly build succeeds (10,369 jobs). A fresh traversal of both printed
+endpoints finds exactly the four admissions in the table above; the strict
+source scan independently reports the same four. The printed endpoints are
+unchanged and remain incomplete because those four inputs are still open.
 
-The proposed additive comparison for multiplicative constant greater than one
-is refuted in [#199](https://github.com/SauersML/group-approximation/issues/199).
-It must not re-enter this route under another name.
+The impossible additive comparison for multiplicative constant greater than
+one remains refuted in [#199](https://github.com/SauersML/group-approximation/issues/199).
+The completed general proof does not use that premise.
 
 ## Osin: prove selection and the budget as one construction
 
@@ -224,9 +218,9 @@ design checkpoint: each must have its exact hypotheses, existing reusable
 lemmas, missing constructive steps, and a source-backed mathematical argument.
 A new name for the same missing conclusion does not pass it.
 
-Then close complete packages: general DGO geometry; the synchronized Osin
-construction and its Greendlinger/Hull 4.9 consumers; Hull 4.4's remaining
-controls; the concrete seed; the final assembly. These have distinct proof
+General DGO geometry is now closed. Next close the synchronized Osin
+construction and its Greendlinger/Hull 4.9 consumers, Hull 4.4's remaining
+controls, the concrete seed, and the final assembly. These have distinct proof
 boundaries suitable for coordinated contributors, but this plan does not
 assume additional agents or assign anyone work.
 
