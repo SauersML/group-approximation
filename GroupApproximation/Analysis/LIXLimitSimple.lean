@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.LIXLimitAlgebra
 import GroupApproximation.Analysis.LIXSimplicityInstance
 import GroupApproximation.Analysis.LIXConnectingMapFullnessTower
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Simplicity of the counterexample algebra, reduced to stage-wise fullness
@@ -52,6 +53,15 @@ theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit :=
 are kept so that neither `cs-endpoint` nor the root wiring has to be edited to match the other. -/
 theorem lixLimit_isSimpleCStar_unconditional : IsSimpleCStar LIXLimit :=
   lixLimit_isSimpleCStar
+
+/-! ### Axiom audit
+
+Simplicity of the counterexample algebra is unconditional, so it takes the stronger gate:
+`#audit_closed_axioms` additionally rejects a leading hypothesis, which is what stops a
+conditional theorem from passing for an endpoint merely by having a clean closure. -/
+
+#audit_closed_axioms lixLimit_isSimpleCStar
+#audit_closed_axioms lixLimit_isSimpleCStar_unconditional
 
 end
 

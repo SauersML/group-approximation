@@ -10,8 +10,8 @@
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
-| `Analysis/LIXLimitAlgebra` | 3013 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
-| `Analysis/LIXLimitSimple` | 3020 | **`IsSimpleCStar LIXLimit`, unconditional** |
+| `Analysis/LIXLimitAlgebra` | 3021 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
+| `Analysis/LIXLimitSimple` | 3021 | **`IsSimpleCStar LIXLimit`, unconditional** |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
 The last four of the original five were built together in one probe, `Build
@@ -54,6 +54,20 @@ limit at all.  Removed this lane's version and pushed (`a03804f50`) rather than 
 sent `cs-simplicity` a heads-up so they lose no time on the collision.  `hasK1InjWitness_limit` is
 unaffected and re-probed green standalone (2999 jobs) once the now-unneeded
 `LIXSimplicityInstance` import was dropped.
+
+**Axiom audit, not a lexical scan.**  `Meta.AxiomGuard`'s `#audit_axioms` *fails the build* when
+the transitive closure leaves the classical allowlist, and `#audit_closed_axioms` additionally
+rejects a leading hypothesis, so a conditional theorem cannot pass for an endpoint by having a
+clean closure.  Five gates are wired and all report exactly
+`[propext, Classical.choice, Quot.sound]`:
+
+```
+#audit_axioms        lixTower, lixIota, lixLimit_hasK1InjWitness
+#audit_closed_axioms lixLimit_isSimpleCStar, lixLimit_isSimpleCStar_unconditional
+```
+
+The two closed audits also certify that simplicity of the counterexample algebra really is
+hypothesis-free, rather than a conditional theorem wearing an unconditional name.
 
 The endpoint builds on top of all of this: `Manuscript/NinetyNineProblems/ProblemLIX` was
 verified **in this lane's own clone** at `Build completed successfully (3019 jobs)`, so the join

@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LIXLimitWitness
 import GroupApproximation.Analysis.LIXConnectingMap
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The counterexample algebra for STW Problem LIX
@@ -95,6 +96,17 @@ theorem lixLimit_hasK1InjWitness {k : ℕ} (u : unitary (STW59.StageAlgebra k))
     (hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (STW59.StageAlgebra k))) :
     HasK1InjWitness LIXLimit :=
   CStarTower.hasK1InjWitness_limit lixTower u hstage hdiag
+
+/-! ### Axiom audit
+
+`#audit_axioms` fails the build when the transitive closure leaves the classical allowlist, so
+these lines are gates, not log output.  `lixLimit_hasK1InjWitness` is conditional by design — it
+consumes `cs-clutching`'s two facts about the generator — so it gets the plain audit rather than
+`#audit_closed_axioms`. -/
+
+#audit_axioms lixTower
+#audit_axioms lixIota
+#audit_axioms lixLimit_hasK1InjWitness
 
 end
 
