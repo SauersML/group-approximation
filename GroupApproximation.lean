@@ -3627,6 +3627,7 @@ import GroupApproximation.CharClass.GysinRanged
 import GroupApproximation.CharClass.BundleTautPieces
 import GroupApproximation.CharClass.GysinSphere
 import GroupApproximation.CharClass.GysinPairTaut
+import GroupApproximation.CharClass.SteenrodFourfoldBRight
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
