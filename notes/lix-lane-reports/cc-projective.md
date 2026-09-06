@@ -126,7 +126,12 @@ Chern classes and the Euler class
 * `LerayHirschPeel` (8808) — **the ladder's spanning half**.  Every class is a
   column, every degree, every rank, over two named hypotheses.
 * `LerayHirschPeelCP` (8920) — `HasPeel` discharged against `cc-cohom-api`'s
-  `cpSplit_closed`, with no cast.  The floor is the only hypothesis left.
+  `cpSplit_closed`, with no cast.
+* `LerayHirschPeelClosed` (8922) — **the spanning half, unconditional**.  Their
+  `lhLow_general` discharged the floor, also with no cast.
+* `LerayHirschColumnPack` (8923) — `HasFreeTuple`, the free-module statement in the
+  producer's vocabulary, repackaged into the column shape `LHOver` consumes.
+* `LerayHirschLadder` (8924) — **the ladder at general rank**, over `HasFreeTuple`.
 
 ## AUTHORED-UNVERIFIED
 
