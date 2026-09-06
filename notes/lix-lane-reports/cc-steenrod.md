@@ -496,3 +496,50 @@ Three spellings and their status:
   trailing `rfl` failed on three goals whose only remainder was `0 - 0`, `M + 0`
   and an unfolded `def`.  Ending with an explicit `rfl` is the fix, but it is an
   error when the chain *did* close, so it costs one probe round either way.
+
+## Chern factorisation, in cc-projective's name (2026-09-06)
+
+Assigned after composite B.  Two files landed, both green, and the open
+obligation is now a single named Prop instead of a hypothesis buried in three
+consumers.
+
+| commit | file | jobs |
+| --- | --- | --- |
+| `7b29c1d5a` | `ChernFactorBridge.lean` | 8871 |
+| `984ddc130` | `ChernRootSection.lean` | 8872 |
+
+Design note: `notes/chern-split-factorisation-design-2026-09-06.md`.
+
+### What the survey settled
+
+* The **algebra is complete**: `chernPoly_eq_prod_of_root` and `chernPoly_map`
+  compose to the factorisation.  Nothing to add.
+* The **tensor route is blocked**: there is no tensor product of bundles in the
+  projection model and no dual.  The route needs the tensor, its classifying
+  map, and additivity of the Euler class under tensor of lines, the last of which
+  is a real theorem.
+* **Nothing constructs a `LerayHirschData`** anywhere in the tree.
+
+### The sharp obstruction
+
+A section of the projective bundle gives a Chern root, by pure functoriality; at
+rank one that proves `γ₁ = e(L)`.  It does not iterate: `p = (X - y₁)q` and
+`p(y₂) = 0` give `(y₂ - y₁)q(y₂) = 0`, and `y₂ - y₁` is not a non-zero-divisor
+in a cohomology ring.  On `P(L ⊕ 1)` the two sections give `γ₂ = 0` and
+`e(L)(e(L) + γ₁) = 0`, leaving exactly `γ₁ = e(L)`, which is *equivalent* to
+`SplitRelation` there.  The two are one obligation.
+
+### The `rw` trap of this layer
+
+`LerayHirschData.algebra` is a `@[reducible] def` and not an instance, so
+`D.chernPolynomial` carries a pinned instance and is never syntactically
+`chernPoly D.powerBasis`.  Every `rw` with a `ChernRelation` lemma fails on it;
+cross the junction with a term (`.trans`) instead.  Both red rounds here were
+this.
+
+### A survey can go stale under you
+
+The survey recorded that `Nontrivial (TotalH X)` was unproved.  `cc-cohom-api`
+landed it three and a half minutes later.  Re-check a negative claim about the
+tree before repeating it in a second message, not only before making it the
+first time.
