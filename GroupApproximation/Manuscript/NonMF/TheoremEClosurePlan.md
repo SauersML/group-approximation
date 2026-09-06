@@ -148,6 +148,19 @@ and instantiates this disc construction. Thus the standalone padding disc
 is proved; gluing it into the original complementary region while
 preserving selected contiguities remains open.
 
+The padding operation now has an explicit map construction in
+`CombMapEdgeInsertion.lean`. It retains every old dart, inserts the two
+new darts at the chosen corners, preserves the actual vertex quotient,
+adds exactly one edge, and preserves connectedness. `PermOrbitInsert.lean`
+proves the required orbit equivalence. `CombMapEdgeFaces.lean` identifies
+the resulting face permutation for both distinct and equal corners.
+`FiniteCycleSplit.lean` proves that cutting a finite cycle into two
+nonempty consecutive blocks gives exactly two cycles. Relating the chosen
+face of an arbitrary map to those finite coordinates, while retaining
+all other face orbits, remains necessary before asserting planarity of
+the general insertion. Labels, arbitrary connector-path lengths, and the
+preservation of selected embedded regions must then be carried through it.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
