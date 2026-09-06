@@ -54,6 +54,16 @@ about the source now on `main` and not about a cached artifact.
     a)`. This is exactly the shape a stage lane naturally proves (no reference to the limit's
     order or to `T.limIota` needed in the hypothesis at all — `nonneg_iff_of_injective` and
     `isFullIn_of_isFull_map` absorb all of the cross-algebra bookkeeping inside the proof).
+  * `CStarTower.stagewiseFullTowerOfNeZero` / `CStarTower.isSimpleCStar_limit_of_ne_zero` — the
+    **positivity-free** entry point, for a tower (like the LIX one) whose fullness argument never
+    uses positivity: the hypothesis is `∀ k (a : A k), a ≠ 0 → ∃ j ≥ k, IsFull (T.climb j k a)`.
+    Formally weaker as a theorem, since it demands more of the tower; what it buys is that the
+    finite stages then need **no order instances at all**, because `nonneg_iff_of_injective` was
+    the only reason `stagewiseFullTower` asked for `[∀ n, PartialOrder (A n)]` and
+    `[∀ n, StarOrderedRing (A n)]`.  Both entry points are kept: `isSimpleCStar_limit` demands
+    less of the tower, this one demands less of the ambient setup.  cs-stages reports that their
+    fullness proof does not use positivity, so either will do; pitfall three of the interface
+    review (uniform order instances on every stage) simply disappears with this one.
 
 ## 3. NEEDS
 

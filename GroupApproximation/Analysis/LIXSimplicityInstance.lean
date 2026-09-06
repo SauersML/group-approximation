@@ -200,6 +200,50 @@ theorem CStarTower.isSimpleCStar_limit {A : ℕ → Type u} [∀ n, CStarAlgebra
     IsSimpleCStar T.Limit :=
   (T.stagewiseFullTower hfull).isSimpleCStar
 
+/-! ### The positivity-free variant
+
+A tower whose fullness argument does not use positivity — the LIX tower is one, since a section
+nonzero in every fibre generates the whole corner whether or not it is positive — can supply the
+hypothesis for *every* nonzero element of a stage.  That is a stronger hypothesis, so the
+theorem below is formally weaker than `isSimpleCStar_limit`; what it buys is that the finite
+stages then need no order at all.  `nonneg_iff_of_injective` was the only reason
+`stagewiseFullTower` asked for `[∀ n, PartialOrder (A n)] [∀ n, StarOrderedRing (A n)]`, and with
+positivity gone there is nothing to transport, so a stage lane using this entry point never has
+to install an order on its stages.
+
+Both entry points are kept.  `isSimpleCStar_limit` demands less of the tower and is the right
+default; this one demands less of the *ambient setup*. -/
+
+/-- `StagewiseFullTower` from fullness of every nonzero element of a stage, with no order on the
+stages.  See the section note for why both this and `stagewiseFullTower` exist. -/
+noncomputable def CStarTower.stagewiseFullTowerOfNeZero {A : ℕ → Type u} [∀ n, CStarAlgebra (A n)]
+    (T : CStarTower A) [PartialOrder T.Limit] [StarOrderedRing T.Limit]
+    (hfull : ∀ (k : ℕ) (a : A k), a ≠ 0 → ∃ j, k ≤ j ∧ IsFull (T.climb j k a)) :
+    StagewiseFullTower T.Limit where
+  stage := T.stage
+  isClosed_stage := T.isClosed_stage
+  mono_stage := T.stage_mono
+  dense_stage := T.dense_iUnion_stage
+  full_stage := by
+    intro k x hxk _ hxne
+    obtain ⟨a, rfl⟩ := T.mem_stage_iff.mp hxk
+    have hane : a ≠ 0 := by
+      intro h
+      apply hxne
+      rw [h, map_zero]
+    obtain ⟨j, hkj, hfullj⟩ := hfull k a hane
+    refine ⟨j, hkj, ?_⟩
+    have hpush := isFullIn_of_isFull_map (T.limIota j) (fun c => T.limIota_mem_stage j c) hfullj
+    rwa [T.limIota_climb hkj] at hpush
+
+/-- **`IsSimpleCStar` for the limit, from fullness of every nonzero element of a stage.**  The
+positivity-free entry point: the finite stages carry no order. -/
+theorem CStarTower.isSimpleCStar_limit_of_ne_zero {A : ℕ → Type u} [∀ n, CStarAlgebra (A n)]
+    (T : CStarTower A) [PartialOrder T.Limit] [StarOrderedRing T.Limit] [Nontrivial T.Limit]
+    (hfull : ∀ (k : ℕ) (a : A k), a ≠ 0 → ∃ j, k ≤ j ∧ IsFull (T.climb j k a)) :
+    IsSimpleCStar T.Limit :=
+  (T.stagewiseFullTowerOfNeZero hfull).isSimpleCStar
+
 end LIX
 
 end GroupApproximation
