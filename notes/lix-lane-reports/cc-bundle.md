@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 17 modules; `BundleLineTriv` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 17 modules; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -135,6 +135,55 @@ theorem conjNormalize_mem_projFibreSet' {κ} [Fintype κ] [DecidableEq κ]
     (hr : r ∈ projFibreSet q) (hne : (a * r * aᴴ).trace ≠ 0) :
     conjNormalize a r ∈ projFibreSet q'
 ```
+
+### `BundleInvariance.lean` — dot notation for the transport methods
+
+```lean
+def BundleIso.toTotalHomeo (e : BundleIso p q) : Bundle.Total p ≃ₜ Bundle.Total q
+def BundleIso.toProjHomeo  (e : BundleIso p q) : Bundle.Proj p  ≃ₜ Bundle.Proj q
+def BundleIso.toTautIso    (e : BundleIso p q) : BundleIso (Bundle.tautLine p) (…)
+theorem BundleIso.toTotalHomeo_eq / toProjHomeo_eq / toTautIso_eq      -- each `rfl`
+theorem BundleIso.toTotalHomeo_over_base / toProjHomeo_over_base       -- each `rfl`
+```
+
+`BundleIso` is declared in `CharClass` while `totalHomeo`, `projHomeo` and
+`tautIso` are declared in `CharClass.Bundle`, so dot notation never reached
+them: it looks in the structure's own namespace and finds nothing, and even a
+bare `BundleIso.projHomeo` written inside `namespace Bundle` resolves to the
+structure's namespace rather than the enclosing one.  The aliases sit in the
+structure's namespace under new names; the originals are untouched.
+`toTautIso` is stated at the original's type **verbatim**, so alias and
+original are the same term at the same type and `rw` can move between them.
+
+### `BundlePairs.lean` — the trivial bundle's sphere and punctured space
+
+```lean
+def prodSubtypeHomeo (S : Set B) : ↥{v : A × B | v.2 ∈ S} ≃ₜ A × ↥S
+theorem sphereSet_triv : sphereSet (triv X ι) = {v : X × (ι → ℂ) | v.2 ∈ unitVectors ι}
+noncomputable def sphereTrivHomeo : Sphere (triv X ι) ≃ₜ X × ↥(unitVectors ι)
+noncomputable def puncturedTrivHomeo : Punctured (triv X ι) ≃ₜ X × ↥({v : ι → ℂ | v ≠ 0})
+theorem sphereTrivHomeo_fst / puncturedTrivHomeo_fst                   -- over the base
+noncomputable def prodPuncturedHomotopyEquivSphere :
+    ContinuousMap.HomotopyEquiv (X × ↥({v : ι → ℂ | v ≠ 0})) (X × ↥(unitVectors ι))
+```
+
+The replacement step for a Thom or Gysin argument: over any base at once,
+`X × (ℂ^ι ∖ 0)` is homotopy equivalent to `X × S(ℂ^ι)`, by normalizing the
+second coordinate and leaving the first alone.  With it the pair
+`(X × ℂ^r, X × (ℂ^r ∖ 0))` becomes `(X × ℂ^r, X × S^{2r-1})`, and the long exact
+sequence of the pair plus an **absolute** Kunneth for a sphere factor computes
+it: no relative Kunneth, and no hypothesis on the base.  The map of pairs is the
+identity on the total space and the retraction on the subspace, so it is not a
+homeomorphism of pairs; the five lemma is the way in, and `cc-projective`'s
+`bijective_of_ladder` is that five lemma in element form.
+
+**`trivSet p x₀` carries no contractibility and cannot be made to.**  It is
+`{x | (intert p x₀ x).det ≠ 0}`, open and containing `x₀`, and nothing more is
+true of it because nothing more is true of a compact Hausdorff space: a Cantor
+set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
+free, since the trivialization is an explicit formula in `intert` rather than a
+choice, but a contractible shrink is a property of the BASE and has to be
+hypothesized or supplied by whoever owns the base.
 
 ### `BundleClassify.lean` — classifying maps
 
