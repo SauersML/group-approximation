@@ -54,6 +54,41 @@ theorem jm_thomEquiv_symm {P : Type} [AddCommGroup P] [Module R P]
 
 end ThomDeg
 
+/-! ## At the mapping-torus bundle -/
+
+open ThomChernDeg LH
+
+variable {ℓ : ℕ} {dd : Fin ℓ → ℕ} {G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ}
+
+set_option linter.unusedSectionVars false
+
+/-- **The coordinates of the LIX Thom class.**  Its top coordinate is the unit of
+the base in degree zero, and the rest are the Chern coefficients of the
+hyperplane's presentation acting on it.  Every later step of `hres` computes with
+this and nothing else about the class. -/
+theorem thomJmTotal_lixThomClassTerm (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
+    thomJmTotal (lixBundle G hGc hGu) (lixLHplus hGc hGu) (lixThomClassTerm hGc hGu)
+      = ThomDeg.thomLift
+          (fun i => chernMul (hyperLH_range (lixBundle G hGc hGu) (lixRank dd)
+            (rank_lixBundle G hGc hGu) (one_le_lixRank_dd dd)) i)
+          (lixTopCoeff dd) :=
+  ThomDeg.jm_thomEquiv_symm
+    (M := fun i : Fin (lixRank dd + 1) =>
+      Hmod2 (TopCat.of (↥sphereOne × baseM dd)) (2 * lixRank dd - 2 * (i : ℕ)))
+    (fun i => chernMul (hyperLH_range (lixBundle G hGc hGu) (lixRank dd)
+      (rank_lixBundle G hGc hGu) (one_le_lixRank_dd dd)) i)
+    (thomJmTotal (lixBundle G hGc hGu) (lixLHplus hGc hGu))
+    (injective_thomJmTotal (lixBundle G hGc hGu) (one_le_lixRank_dd dd)
+      (rank_lixBundle G hGc hGu) (lixLHplus hGc hGu))
+    (range_thomJmTotal (lixBundle G hGc hGu) (rank_lixBundle G hGc hGu)
+      (one_le_lixRank_dd dd) (lixLHplus hGc hGu))
+    (lixTopCoeff dd)
+
+/-! Printed on every build. -/
+
+#print axioms thomJmTotal_lixThomClassTerm
+
 end
 
 end GroupApproximation.CharClass
