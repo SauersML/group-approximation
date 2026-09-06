@@ -469,3 +469,45 @@ because it already produces both coefficients in **named degrees**.
 The moral for the whole build: state the decomposition with the coefficients
 named in their own degrees and the parity arguments become bookkeeping.  A
 ring-level identity would have given neither (L), (M) nor `hsq_b`.
+
+## The projective factor
+
+`CohomologyChartCover.lean` and `CohomologyProjectiveParity.lean`.
+
+The projective-factor Künneth is **not** the sphere pattern verbatim, and the
+difference matters for scoping.  In the sphere case both pieces of the cover are
+the base, so the two restrictions of a class come from one class and subtracting
+it lands in the image of the connecting map.  Over `U × ℂP^{d+1}` one piece is
+`U × ℂP^d`, so that step has no analogue; that asymmetry is what cc-projective's
+`MVLadder` exists for, and their `bijective_lhSum` already does the induction.  I
+built the chart cover (`KnCP.*`) and stopped there rather than duplicate it.
+
+What was genuinely missing, and is now green: `KnCP.noOddCohomology_prod_CP`.
+cc-projective's `noOddCohomology_CP` is the statement for **one** `ℂP^d`; cc-wu's
+base is a **product**, and nothing in the tree spanned the two.  The proof is the
+chart-cover Mayer–Vietoris plus the parity corollary `(L)`: in odd degree both
+pieces vanish, so the class is a `δ`-image from the intersection `U × S^{2d+1}` in
+**even** degree, where `(L)` makes it a pullback from `U`, which `δ` kills.
+
+## Landing on a diverged shared checkout
+
+Twice the ordinary push was rejected: the shared branch had four local commits
+against two remote, with several lanes holding uncommitted work, so `rebase` was
+unavailable and `stash`/`reset` are forbidden.  The recipe that worked, and that
+loses nothing:
+
+```text
+git fetch
+BLOB=$(git rev-parse <mycommit>:<path>)
+GIT_INDEX_FILE=<temp> git read-tree origin/main
+GIT_INDEX_FILE=<temp> git update-index --add --cacheinfo 100644,$BLOB,<path>
+TREE=$(GIT_INDEX_FILE=<temp> git write-tree)
+COMMIT=$(git commit-tree $TREE -p origin/main -F <msg>)
+git push origin $COMMIT:main
+```
+
+Two things it needs.  A **retry loop**: the first attempt lost a race to another
+lane pushing between the `fetch` and the `push`, and the error is
+`cannot lock ref`, not a conflict.  And a **verification diff** of
+`git show origin/main:<path>` against the working copy afterwards, because the
+index is built by hand and nothing else checks it.
