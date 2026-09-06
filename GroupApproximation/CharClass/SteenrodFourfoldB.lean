@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.SteenrodFourfoldA
+import GroupApproximation.CharClass.CartanMidFour
 
 /-!
 # The second composite, `B`
@@ -120,14 +121,28 @@ theorem padFour_add_right {X : TopCat.{0}} (k a b : ℕ) (u : PairIdx X a →₀
 
 /-! ## 3. The second composite -/
 
-/-- One term of `B`: the `p`-th summand, on one basis element `σ' ⊗ σ''` of
-`Φ₀(σ)`.  The power of the generator on the second factor is what the middle
-transposition and the resolution's diagonal collapse to. -/
-def compBTerm (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
+/-- One term of `B` **before the middle interchange**: the `p`-th summand, on one
+basis element `σ' ⊗ σ''` of `Φ₀(σ)`.  The power of the generator on the second
+factor is what the resolution's diagonal collapses to. -/
+def compBPre (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
     TensorIdx (pairFreeCx X) (pairFreeCx X) k →₀ ZMod 2 :=
   padFour X k (r.1.val.1 + p) (r.1.val.2 + (i - p))
     (phiAtDeg X (r.1.val.1 + p) p r.2.1)
     ((groupRingGen ^ p) • phiAtDeg X (r.1.val.2 + (i - p)) (i - p) r.2.2)
+
+/-- One term of `B`.
+
+**The middle interchange is not optional.**  Without it the four slots are
+grouped as the two factors of `Φ(e_p ⊗ σ')` against the two of
+`t^p Φ(e_q ⊗ σ'')`, and the resulting map intertwines the generator with the
+permutation that swaps *inside* each block rather than with the block swap the
+fourfold carries.  The two are told apart by the chain-map property and by
+nothing weaker, which is why an earlier version of this definition survived four
+green probes.  `cc-cartan`'s `midSwap` supplies the conjugation. -/
+def compBTerm (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
+    TensorIdx (pairFreeCx X) (pairFreeCx X) k →₀ ZMod 2 :=
+  midSwap (singFreeCx X) (singFreeCx X) (singFreeCx X) (singFreeCx X) k
+    (compBPre X k i p N r)
 
 /-- **`B` on a basis element** `e_i ⊗ σ`, read in total degree `k`. -/
 noncomputable def compBGen (X : TopCat.{0}) (k i : ℕ) {N : ℕ}
@@ -154,6 +169,15 @@ theorem compB_single (X : TopCat.{0}) (k : ℕ)
 
 /-! ## 4. The degree-zero value -/
 
+/-- `Φ₀` on a `0`-simplex, written as a decomposable of the pair complex. -/
+theorem phiZero_degree_zero_tenElt (X : TopCat.{0}) (σ : singularSimplices X 0) :
+    phiZero X 0 σ
+      = tenElt (singFreeCx X) (singFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+          (Finsupp.single σ 1) (Finsupp.single σ 1) := by
+  rw [phiZero_degree_zero]
+  exact (tenElt_single_single (singFreeCx X) (singFreeCx X)
+    (⟨(0, 0), rfl⟩ : PairDeg 0) σ σ).symm
+
 theorem compBGen_degree_zero (X : TopCat.{0}) (σ : singularSimplices X 0) :
     compBGen X 0 0 σ = fourDiagZero X σ := by
   unfold compBGen
@@ -162,10 +186,29 @@ theorem compBGen_degree_zero (X : TopCat.{0}) (σ : singularSimplices X 0) :
       (Finsupp.single (⟨⟨(0, 0), rfl⟩, (σ, σ)⟩ : PairIdx X 0) 1)
       = compBTerm X 0 0 0 0 (⟨⟨(0, 0), rfl⟩, (σ, σ)⟩ : PairIdx X 0) := by
     simp
+  have hpre : compBPre X 0 0 0 0 (⟨⟨(0, 0), rfl⟩, (σ, σ)⟩ : PairIdx X 0)
+      = tenElt (pairFreeCx X) (pairFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+          (tenElt (singFreeCx X) (singFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+            (Finsupp.single σ 1) (Finsupp.single σ 1))
+          (tenElt (singFreeCx X) (singFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+            (Finsupp.single σ 1) (Finsupp.single σ 1)) := by
+    show padFour X 0 (0 + 0) (0 + (0 - 0)) (phiAtDeg X (0 + 0) 0 σ)
+        ((groupRingGen ^ 0) • phiAtDeg X (0 + (0 - 0)) (0 - 0) σ) = _
+    rw [pow_zero, one_smul, padFour_of_eq (show 0 + 0 = 0 from rfl)]
+    show tenElt (pairFreeCx X) (pairFreeCx X) (⟨(0, 0), show 0 + 0 = 0 from rfl⟩ : PairDeg 0)
+        (phiZero X 0 σ) (phiZero X 0 σ) = _
+    rw [phiZero_degree_zero_tenElt]
   rw [hlc]
-  show padFour X 0 (0 + 0) (0 + (0 - 0)) (phiAtDeg X (0 + 0) 0 σ)
-      ((groupRingGen ^ 0) • phiAtDeg X (0 + (0 - 0)) (0 - 0) σ) = _
-  rw [pow_zero, one_smul, padFour_of_eq (show 0 + 0 = 0 from rfl)]
+  show midSwap (singFreeCx X) (singFreeCx X) (singFreeCx X) (singFreeCx X) 0
+      (compBPre X 0 0 0 0 (⟨⟨(0, 0), rfl⟩, (σ, σ)⟩ : PairIdx X 0)) = _
+  rw [hpre, midSwap_tenElt4_single (singFreeCx X) (singFreeCx X) (singFreeCx X)
+      (singFreeCx X) 0 0 0 0 0 0 0 rfl rfl rfl rfl σ σ σ σ]
+  show tenElt (pairFreeCx X) (pairFreeCx X) (⟨(0, 0), show 0 + 0 = 0 from rfl⟩ : PairDeg 0)
+      (tenElt (singFreeCx X) (singFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+        (Finsupp.single σ 1) (Finsupp.single σ 1))
+      (tenElt (singFreeCx X) (singFreeCx X) (⟨(0, 0), rfl⟩ : PairDeg 0)
+        (Finsupp.single σ 1) (Finsupp.single σ 1)) = _
+  rw [← phiZero_degree_zero_tenElt]
   rfl
 
 /-- **The degree-zero normalisation.**  `B(e₀ ⊗ x) = x ⊗ x ⊗ x ⊗ x`, the same

@@ -71,22 +71,24 @@ theorem apply_linearCombination' {α M N : Type} [AddCommGroup M] [Module (ZMod 
 
 /-! ## 3. The differential, carried inside the double sum -/
 
-theorem compBTerm_eq (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
-    compBTerm X k i p N r
+theorem compBPre_eq (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
+    compBPre X k i p N r
       = padFour X k (r.1.val.1 + p) (r.1.val.2 + (i - p))
           (phiAtDeg X (r.1.val.1 + p) p r.2.1)
           ((groupRingGen ^ p) • phiAtDeg X (r.1.val.2 + (i - p)) (i - p) r.2.2) := rfl
 
-/-- **The Leibniz rule on one term** of the double sum defining `B`. -/
-theorem tensorD_compBTerm (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
-    tensorD (pairFreeCx X) (pairFreeCx X) k (compBTerm X (k + 1) i p N r)
+/-- **The Leibniz rule on one term** of the double sum defining `B`, before the
+middle interchange.  Pushing the differential through the interchange itself is
+`cc-cartan`'s `midSwap` chain-map property. -/
+theorem tensorD_compBPre (X : TopCat.{0}) (k i p N : ℕ) (r : PairIdx X N) :
+    tensorD (pairFreeCx X) (pairFreeCx X) k (compBPre X (k + 1) i p N r)
       = padFourL X k (r.1.val.1 + p) (r.1.val.2 + (i - p))
             (phiAtDeg X (r.1.val.1 + p) p r.2.1)
             ((groupRingGen ^ p) • phiAtDeg X (r.1.val.2 + (i - p)) (i - p) r.2.2)
         + padFourR X k (r.1.val.1 + p) (r.1.val.2 + (i - p))
             (phiAtDeg X (r.1.val.1 + p) p r.2.1)
             ((groupRingGen ^ p) • phiAtDeg X (r.1.val.2 + (i - p)) (i - p) r.2.2) := by
-  rw [compBTerm_eq, tensorD_padFour]
+  rw [compBPre_eq, tensorD_padFour]
 
 /-- **The differential of `B`, carried inside the double sum.**  Everything the
 rest of the computation says is a statement about the summand. -/
