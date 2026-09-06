@@ -391,10 +391,12 @@ theorems (`exists_simple_unital_not_k1Inj`, `not_problemLIX`) remain gated on
 `HasK1InjWitness LIXLimit` and `IsSimpleCStar LIXLimit`, neither of which exists yet. Will
 add them and probe the moment both peer lanes report those two names green.
 
-## 3c. PARKED WORK (restore when `LIXLimitAlgebra` is green)
+## 3c. THE CONCRETE ASSEMBLY IS GREEN
 
-The concrete assembly is written and parked outside the tree at
-`scratchpad/cs-endpoint/ProblemLIX.with-limit-import.lean`:
+`Build completed successfully (3019 jobs)`, with
+`ℹ Built GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX (9.4s)`.
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` now imports
+`Analysis/LIXLimitSimple` and carries
 
 ```lean
 theorem exists_simple_unital_not_k1Inj_of_limit
@@ -404,25 +406,53 @@ theorem exists_simple_unital_not_k1Inj_of_limit
   exists_simple_unital_not_k1Inj_of LIX.LIXLimit inferInstance hsimp hwit
 ```
 
-It needs `import GroupApproximation.Analysis.LIXLimitSimple`, and
-`Manuscript/NinetyNineProblems/ProblemLIX.lean` is **root-wired**, so that
-import would put the root build behind `cs-limit`'s `LIXLimitAlgebra` — whose
-own commit message reads *"AUTHORED, UNVERIFIED - do not wire yet"* and which
-is red at `:83`:
+`CStarAlgebra LIX.LIXLimit` and `Nontrivial LIX.LIXLimit` are resolved by
+`inferInstance` at the endpoint rather than asserted, so the plumbing between
+the construction and the endpoint is **proved**, not assumed.  All four
+`#audit_axioms` lines report exactly `[propext, Classical.choice, Quot.sound]`.
 
+**Neither hypothesis mentions an order**, and that is the design paying for
+itself.  `IsSimpleCStar` takes `[CStarAlgebra A]` alone and `HasK1InjWitness`
+keeps the spectral order inside its body, so `cs-limit`'s module can work under
+`GroupApproximation.LIX.instSpectral*` and this one under
+`GroupApproximation.instSpectral*` with no transport lemma and no agreement
+about which `PartialOrder` term either wrote.
+
+**Sequencing note that was briefly load-bearing.**  This edit was written, then
+*parked outside the tree* for half an hour, because `ProblemLIX` is root-wired
+and `cs-limit`'s `LIXLimitAlgebra` was red and flagged
+*"AUTHORED, UNVERIFIED - do not wire yet"* in its own commit message.  Landing
+the import then would have taken `main` down through the lead's periodic sweep,
+not merely left a red orphan.  The rule: **once a module is root-wired, an
+import is a commitment of the root build, and an in-flight peer module may not
+be imported until it is green.**
+
+**What is left in the whole chain**: two hypotheses, neither mine.
+
+```lean
+-- cs-stages
+theorem STW59.fullness : ∀ (k : ℕ) (a : STW59.StageAlgebra k), a ≠ 0 →
+  ∃ j, k ≤ j ∧ LIX.IsFull (LIX.lixTower.climb j k a)
+
+-- cs-clutching, for some k and some u : unitary (STW59.StageAlgebra k)
+hstage : ∀ (j : ℕ) (hj : k ≤ j),
+  unitaryHom (LIX.lixTower.climbHom hj) u ∉ unitaryComponentOne (STW59.StageAlgebra j)
+hdiag  : diagOne u ∈ unitaryComponentOne (CStarMat 2 (STW59.StageAlgebra k))
 ```
-error: failed to synthesize CStarAlgebra (CStarMat 2 (STW59.StageAlgebra k))
+
+Then this lane's remaining work is exactly:
+
+```lean
+theorem exists_simple_unital_not_k1Inj : … :=
+  exists_simple_unital_not_k1Inj_of_limit
+    (LIX.lixLimit_isSimpleCStar STW59.fullness)
+    (LIX.lixLimit_hasK1InjWitness u hstage hdiag)
+
+theorem not_problemLIX : ¬ ProblemLIX :=
+  not_problemLIX_of_exists exists_simple_unital_not_k1Inj
 ```
 
-Landing it would therefore have broken `main` through the lead's periodic
-sweep, not merely left a red orphan.  The rule this is an instance of: **once a
-module is root-wired, an import is a commitment of the root build, and an
-in-flight peer module may not be imported until it is green.**  Before wiring,
-a red import costs only the lane; after, it costs everyone.
-
-`ProblemLIX.lean` is back at its green committed state, which is the version
-recorded under GREEN.  Restore the parked file and probe the moment
-`LIXLimitAlgebra` and `LIXLimitSimple` build.
+plus two `#audit_closed_axioms` lines.
 
 ## 4. TRAPS
 
