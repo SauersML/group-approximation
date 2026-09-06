@@ -355,6 +355,12 @@ never a `sorry`, never an `axiom`.
     core range.  Never write build output to `/tmp` on the node.  Do not start
     a second probe while one of yours is running.
 
+11. **A published signature never changes.**  Once a peer consumes a name, its statement
+    is frozen; a slimmer or stronger form goes under a NEW name (old one may become a
+    one-line wrapper).  Consumers switch when convenient.  (Ruled 22:58 after cc-wu slimmed
+    `gamma_top_eq_zero_of_slice_totalH` while cc-lix-odd's `LemmaTwoStepD` was already green
+    against it.)
+
 ## 4. Lane-specific design notes
 
 ### cc-cohom-api
