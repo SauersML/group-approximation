@@ -6,30 +6,28 @@ import GroupApproximation.CharClass.SliceVLinesY
 
 Lane `cc-lix-odd`, for `cc-steenrod`'s split relation.
 
-`LIXVDecomposition` gives the lines as matrix families with their traces.
-`splitRelation_of_sum` wants them as `Bundle` values, so each needs continuity and the
-projection property as well.  `cc-steenrod` spotted that; the traces alone are half of what
-a rank-one line has to carry.
+`splitRelation_of_sum` consumes the **summands** as `Bundle` values, not only the total
+bundle, so each line needs continuity and the projection property.  `LIXVDecomposition`
+gave the lines and their traces; those are half of what a rank-one line carries.
+`cc-steenrod` spotted the gap.
 
-Like `V` itself, every line factors through the projective base, so they all live over
-`baseY dd` and no pullback appears anywhere.
+## One definition of the lines, and it is not this file's
 
-**On the name.**  `cc-steenrod` landed `vLineY` for the same object in `SliceVLinesY`,
-rooted first, while our messages crossed.  Two definitions of one name in one namespace is
-a duplicate declaration, not an ambiguity, so the root would have failed outright.  The
-definitions here are renamed to `vLineProj`, and the two facts are restated about **their**
-`vLineY` at the foot, which is defeq to mine.  The name belongs to the file that claimed it
-first.
+`cc-steenrod`'s `SliceVLinesY.vLineY` is the lines over the projective base, landed and
+root-wired first.  This file had its own, under the same name and in the same namespace,
+which in one environment is a **duplicate declaration**: the root fails outright rather
+than choosing.  Both probed green because neither imported the other.
 
-**Each obligation is a separate lemma and the structures are assembled last.**  That is
-`cc-steenrod`'s observation about this layer, and it matches the one failure in the
-previous file: proving a structure's fields inline is what fights elaboration.
+The definition is theirs.  This file keeps none of its own, imports theirs, and proves the
+two obligations about it directly, going through `vLine` per block, since `vLineY b y` is
+`vLine b (negEThree, y)` by definition.  Anything else would leave two spellings of one
+object, which is the failure this fleet has spent the night avoiding.
 
 ## Main results
 
-* `trivLineY`, `hLineY`, `vLineProj` — the lines over the projective base.
-* `isStarProjection_vLineProj`, `continuous_vLineProj` — the two obligations, separately.
-* `vLineBundle` — **the lines as bundles**, with `sum_vLineBundle` the decomposition.
+* `isStarProjection_vLineY`, `continuous_vLineY` — the two obligations, separately, about
+  `cc-steenrod`'s lines.
+* `vLineYBundle` — **the lines as bundles**.
 -/
 
 noncomputable section
@@ -44,24 +42,7 @@ set_option linter.unusedSectionVars false
 
 variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
 
-/-! ## 1. The lines over the projective base -/
-
-/-- The `b`-th tautological line's `H`-block, over the projective base. -/
-def hLineProjBlock (b : HBlk dd) (y : baseY dd) : Matrix (HIdx dd) (HIdx dd) ℂ :=
-  Matrix.blockDiagonal' fun b' : HBlk dd =>
-    if b' = b then ((y b'.1 : CP (dd b'.1)) :
-      Matrix (Fin (dd b'.1 + 1)) (Fin (dd b'.1 + 1)) ℂ) else 0
-
-/-- The lines of `V`, over the projective base. -/
-def vLineProj (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) : Matrix (VIdx dd) (VIdx dd) ℂ :=
-  match b with
-  | Sum.inl i => Matrix.fromBlocks (trivLine i) 0 0 0
-  | Sum.inr b => Matrix.fromBlocks 0 0 0 (hLineProjBlock b y)
-
-theorem vLineY_eq (b : Fin 3 ⊕ HBlk dd) (m : baseM dd) : vLineProj b m.2 = vLine b m := by
-  cases b <;> rfl
-
-/-! ## 2. The projection property -/
+/-! ## 1. The trivial summand -/
 
 theorem isStarProjection_trivLine (i : Fin 3) : IsStarProjection (trivLine i) := by
   constructor
@@ -79,34 +60,49 @@ theorem isStarProjection_trivLine (i : Fin 3) : IsStarProjection (trivLine i) :=
     simp only [Matrix.conjTranspose_apply, trivLine]
     by_cases h : c = i <;> by_cases h' : a = i <;> simp [h, h']
 
-theorem isStarProjection_hLineYblock (b : HBlk dd) (y : baseY dd) :
-    IsStarProjection (hLineProjBlock b y) := by
+/-! ## 2. The `H` block at a constant sphere coordinate -/
+
+theorem isStarProjection_hLine (b : HBlk dd) (m : baseM dd) :
+    IsStarProjection (hLine b m) := by
   constructor
-  · show hLineProjBlock b y * hLineProjBlock b y = hLineProjBlock b y
-    rw [hLineProjBlock, ← Matrix.blockDiagonal'_mul]
+  · show hLine b m * hLine b m = hLine b m
+    rw [hLine, ← Matrix.blockDiagonal'_mul]
     refine congrArg Matrix.blockDiagonal' (funext fun b' => ?_)
     by_cases h : b' = b
     · rw [if_pos h]
-      exact (isStarProjection_coe (y b'.1)).isIdempotentElem.eq
+      exact (isStarProjection_coe (m.2 b'.1)).isIdempotentElem.eq
     · rw [if_neg h, Matrix.mul_zero]
-  · show star (hLineProjBlock b y) = hLineProjBlock b y
-    rw [Matrix.star_eq_conjTranspose, hLineProjBlock, Matrix.blockDiagonal'_conjTranspose]
+  · show star (hLine b m) = hLine b m
+    rw [Matrix.star_eq_conjTranspose, hLine, Matrix.blockDiagonal'_conjTranspose]
     refine congrArg Matrix.blockDiagonal' (funext fun b' => ?_)
     by_cases h : b' = b
     · rw [if_pos h]
-      exact conjTranspose_eq_of_isStarProjection (isStarProjection_coe (y b'.1))
+      exact conjTranspose_eq_of_isStarProjection (isStarProjection_coe (m.2 b'.1))
     · rw [if_neg h, Matrix.conjTranspose_zero]
 
-/-- Both lines are `fromBlocks` with one projection block and zeros; the two cases run the
-same way, mirroring `isStarProjection_Vmat`. -/
-theorem isStarProjection_vLineProj (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) :
-    IsStarProjection (vLineProj b y) := by
+theorem continuous_hLine_const (b : HBlk dd) :
+    Continuous fun y : baseY dd => hLine b ((negEThree, y) : baseM dd) := by
+  show Continuous fun y : baseY dd => Matrix.blockDiagonal' fun b' : HBlk dd =>
+    if b' = b then ((y b'.1 : CP (dd b'.1)) :
+      Matrix (Fin (dd b'.1 + 1)) (Fin (dd b'.1 + 1)) ℂ) else 0
+  refine continuous_blockDiagonal' fun b' => ?_
+  by_cases h : b' = b
+  · simp only [if_pos h]
+    exact (continuous_coe (d := dd b'.1)).comp (continuous_apply b'.1)
+  · simp only [if_neg h]
+    exact continuous_const
+
+/-! ## 3. The two obligations, about `cc-steenrod`'s lines -/
+
+/-- **Each line is a star projection.**  Both cases are `fromBlocks` with one projection
+block and zeros, run exactly as `isStarProjection_Vmat`. -/
+theorem isStarProjection_vLineY (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) :
+    IsStarProjection (vLineY b y) := by
   cases b with
   | inl i =>
       have hP := isStarProjection_trivLine i
       constructor
-      · show vLineProj (Sum.inl i) y * vLineProj (Sum.inl i) y = vLineProj (Sum.inl i) y
-        show Matrix.fromBlocks (trivLine i) 0 0 (0 : Matrix (HIdx dd) (HIdx dd) ℂ) *
+      · show Matrix.fromBlocks (trivLine i) 0 0 (0 : Matrix (HIdx dd) (HIdx dd) ℂ) *
             Matrix.fromBlocks (trivLine i) 0 0 0 = _
         rw [Matrix.fromBlocks_multiply]
         refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, ?_, ?_⟩
@@ -114,8 +110,7 @@ theorem isStarProjection_vLineProj (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) :
         · simp
         · simp
         · simp
-      · show star (vLineProj (Sum.inl i) y) = vLineProj (Sum.inl i) y
-        show star (Matrix.fromBlocks (trivLine i) 0 0
+      · show star (Matrix.fromBlocks (trivLine i) 0 0
           (0 : Matrix (HIdx dd) (HIdx dd) ℂ)) = _
         rw [Matrix.star_eq_conjTranspose, Matrix.fromBlocks_conjTranspose]
         refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, ?_, ?_⟩
@@ -125,40 +120,32 @@ theorem isStarProjection_vLineProj (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) :
         · exact Matrix.conjTranspose_zero
         · exact Matrix.conjTranspose_zero
   | inr b =>
-      have hP := isStarProjection_hLineYblock b y
+      have hP := isStarProjection_hLine b ((negEThree, y) : baseM dd)
       constructor
-      · show vLineProj (Sum.inr b) y * vLineProj (Sum.inr b) y = vLineProj (Sum.inr b) y
-        show Matrix.fromBlocks (0 : Matrix (Fin 3) (Fin 3) ℂ) 0 0 (hLineProjBlock b y) *
-            Matrix.fromBlocks 0 0 0 (hLineProjBlock b y) = _
+      · show Matrix.fromBlocks (0 : Matrix (Fin 3) (Fin 3) ℂ) 0 0
+            (hLine b ((negEThree, y) : baseM dd)) *
+            Matrix.fromBlocks 0 0 0 (hLine b ((negEThree, y) : baseM dd)) = _
         rw [Matrix.fromBlocks_multiply]
         refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, ?_, ?_⟩
         · simp
         · simp
         · simp
         · simpa using hP.isIdempotentElem.eq
-      · show star (vLineProj (Sum.inr b) y) = vLineProj (Sum.inr b) y
-        show star (Matrix.fromBlocks (0 : Matrix (Fin 3) (Fin 3) ℂ) 0 0
-          (hLineProjBlock b y)) = _
+      · show star (Matrix.fromBlocks (0 : Matrix (Fin 3) (Fin 3) ℂ) 0 0
+          (hLine b ((negEThree, y) : baseM dd))) = _
         rw [Matrix.star_eq_conjTranspose, Matrix.fromBlocks_conjTranspose]
         refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, ?_, ?_⟩
         · exact Matrix.conjTranspose_zero
         · exact Matrix.conjTranspose_zero
         · exact Matrix.conjTranspose_zero
-        · have : star (hLineProjBlock b y) = hLineProjBlock b y := hP.isSelfAdjoint.star_eq
+        · have : star (hLine b ((negEThree, y) : baseM dd))
+              = hLine b ((negEThree, y) : baseM dd) := hP.isSelfAdjoint.star_eq
           rwa [Matrix.star_eq_conjTranspose] at this
 
-/-! ## 3. Continuity -/
-
-theorem continuous_hLineYblock (b : HBlk dd) :
-    Continuous (hLineProjBlock b (dd := dd)) :=
-  continuous_blockDiagonal' fun b' => by
-    by_cases h : b' = b
-    · simp only [if_pos h]
-      exact (continuous_coe (d := dd b'.1)).comp (continuous_apply b'.1)
-    · simp only [if_neg h]
-      exact continuous_const
-
-theorem continuous_vLineProj (b : Fin 3 ⊕ HBlk dd) : Continuous (vLineProj b (dd := dd)) := by
+/-- **Each line is continuous.**  The trivial summand is constant; the block one is the
+block-diagonal of a single tautological coordinate. -/
+theorem continuous_vLineY (b : Fin 3 ⊕ HBlk dd) :
+    Continuous (vLineY (dd := dd) b) := by
   cases b with
   | inl i => exact continuous_const
   | inr b =>
@@ -168,45 +155,17 @@ theorem continuous_vLineProj (b : Fin 3 ⊕ HBlk dd) : Continuous (vLineProj b (
       | inr a =>
           cases q with
           | inl c => exact continuous_const
-          | inr c =>
-              exact (continuous_hLineYblock b).matrix_elem a c
+          | inr c => exact (continuous_hLine_const b).matrix_elem a c
 
 /-! ## 4. The bundles -/
 
-/-- **The lines of `V`, as bundles.** -/
-def vLineBundle (b : Fin 3 ⊕ HBlk dd) : Bundle (baseY dd) (VIdx dd) where
-  toFun := vLineProj b
-  continuous_toFun := continuous_vLineProj b
-  isStarProjection_toFun := isStarProjection_vLineProj b
-
-@[simp] theorem coe_vLineBundle (b : Fin 3 ⊕ HBlk dd) :
-    ⇑(vLineBundle b) = vLineProj (dd := dd) b := rfl
-
-/-- **The decomposition, in bundle form.** -/
-theorem sum_vLineBundle (y : baseY dd) :
-    VmatY y = ∑ b : Fin 3 ⊕ HBlk dd, vLineBundle b y := by
-  have h := Vmat_eq_sum_lines ((negEThree, y) : baseM dd)
-  have hv : VmatY y = Vmat ((negEThree, y) : baseM dd) :=
-    VmatY_eq ((negEThree, y) : baseM dd)
-  rw [hv, h]
-  refine Finset.sum_congr rfl fun b _ => ?_
-  exact (vLineY_eq b ((negEThree, y) : baseM dd)).symm
-
-/-! ## 5. The same two facts, about `cc-steenrod`'s `vLineY`
-
-Their `vLineY b y` is `vLine b (negEThree, y)`, which is definitionally the lines above, so
-each of these is the corresponding fact with no transport. -/
-
-theorem continuous_vLineY (b : Fin 3 ⊕ HBlk dd) :
-    Continuous (vLineY (dd := dd) b) := continuous_vLineProj b
-
-theorem isStarProjection_vLineY (b : Fin 3 ⊕ HBlk dd) (y : baseY dd) :
-    IsStarProjection (vLineY b y) := isStarProjection_vLineProj b y
-
-/-- **`cc-steenrod`'s lines as bundles**, under their name. -/
+/-- **The lines of `V`, as bundles**, over the same base as `vBundleY`. -/
 def vLineYBundle (b : Fin 3 ⊕ HBlk dd) : Bundle (baseY dd) (VIdx dd) where
   toFun := vLineY b
   continuous_toFun := continuous_vLineY b
   isStarProjection_toFun := isStarProjection_vLineY b
+
+@[simp] theorem coe_vLineYBundle (b : Fin 3 ⊕ HBlk dd) :
+    ⇑(vLineYBundle b) = vLineY (dd := dd) b := rfl
 
 end GroupApproximation.CharClass
