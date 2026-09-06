@@ -3691,6 +3691,7 @@ import GroupApproximation.CharClass.SteenrodFourfoldBDegenCase
 import GroupApproximation.CharClass.LIXProjectiveBaseChart
 import GroupApproximation.CharClass.LIXBaseChart
 import GroupApproximation.CharClass.LerayHirschTowerSum
+import GroupApproximation.CharClass.SteenrodFourfoldBGeneric
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
