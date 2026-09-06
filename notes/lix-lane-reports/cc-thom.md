@@ -187,6 +187,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `KunnethFactor`, `kunnethFactor_of_prodEquiv`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
 | `CharClass/ThomKunnethSphere.lean` | `kunnethFactor_sphere`, `kunnethFactor_of_contractible`, `kunnethFactor_sphere_compl`, `puncturedAcyclic_sphere` — the Künneth input instantiated from `cc-cohom-api`'s green `isZero_cohomology_prod_sphere` |
+| `CharClass/EulerLocalAssembly.lean` | `rankOneOfIsoChain`, `su_ne_zero_of_chain`, **`topChernClass_ne_zero_of_chain`** — Step C in a single application, chaining excision, the chart isomorphism and the local model |
 | `CharClass/ThomToolkitInstance.lean` | **`cohomologyToolkit`** — the toolkit as a *term*; `puncturedAcyclic_prod` and `puncturedAcyclic_sphere'` with it discharged |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
