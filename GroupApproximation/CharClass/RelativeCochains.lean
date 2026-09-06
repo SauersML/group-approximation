@@ -239,9 +239,18 @@ theorem subKeep_generator (S : Set X) (n : ℕ) {σ : singularSimplices X n}
     rw [one_smul]
   rw [h4]
 
+/-- The submodule inclusion `(subChainSubmodule R X S n).subtype`, stated with
+domain `(subChainComplex R X S).X n` (the `rfl`-equal native codomain of
+`(subChainCorestrict R X S).f n`) so that it composes with `.f n` at a
+syntactically matching middle object; see `subChainCorestrictInv` for the same
+device used the other way round. -/
+def subChainSubtypeAt (R : Type) [CommRing R] (X : TopCat.{0}) (S : Set X) (n : ℕ) :
+    (subChainComplex R X S).X n ⟶ singularChainGroup R X n :=
+  ModuleCat.ofHom (subChainSubmodule R X S n).subtype
+
 /-- The projection restricts to the identity on the chains supported in `S`. -/
 theorem subtype_comp_subKeep (S : Set X) (n : ℕ) :
-    ModuleCat.ofHom (subChainSubmodule R X S n).subtype ≫ subKeep R X S n = 𝟙 _ := by
+    subChainSubtypeAt R X S n ≫ subKeep R X S n = 𝟙 _ := by
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   rintro ⟨c, hc⟩
@@ -275,8 +284,7 @@ theorem subtype_comp_subKeep (S : Set X) (n : ℕ) :
 chains supported in `A`. -/
 theorem singularChainMap_sInclusion_eq (A : Set X) (n : ℕ) :
     singularChainMap R (sInclusion A) n
-      = (subChainCorestrict R X A).f n
-          ≫ ModuleCat.ofHom (subChainSubmodule R X A n).subtype := by
+      = (subChainCorestrict R X A).f n ≫ subChainSubtypeAt R X A n := by
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro c
@@ -289,8 +297,10 @@ instance subChainCorestrict_f_isIso (R : Type) [CommRing R] (X : TopCat.{0}) (A 
   (ConcreteCategory.isIso_iff_bijective _).mpr (subChainCorestrict_bijective A n)
 
 /-- The inverse of the vendored corestriction, in degree `n`.  Stated with the
-domain written as `(subChainComplex R X A).X n` so that instance search sees the
-morphism at its native type. -/
+domain written as `(subChainComplex R X A).X n` so that instance search finds
+the `IsIso` instance for `(subChainCorestrict R X A).f n` at its native shape
+(the codomain `subKeep` needs for `relRetract` is bridged instead, on the
+`subKeep` side, by `subKeepAt` below). -/
 def subChainCorestrictInv (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :
     (subChainComplex R X A).X n ⟶ singularChainGroup R (TopCat.of A) n :=
   inv ((subChainCorestrict R X A).f n)
@@ -299,16 +309,27 @@ theorem subChainCorestrict_comp_inv (R : Type) [CommRing R] (X : TopCat.{0}) (A 
     (n : ℕ) : (subChainCorestrict R X A).f n ≫ subChainCorestrictInv R X A n = 𝟙 _ := by
   rw [subChainCorestrictInv, IsIso.hom_inv_id]
 
+/-- `subKeep`, stated with codomain `(subChainComplex R X S).X n` (the `rfl`-equal
+native domain of `subChainCorestrictInv`) so that it composes with
+`subChainCorestrictInv` at a syntactically matching middle object. -/
+def subKeepAt (R : Type) [CommRing R] (X : TopCat.{0}) (S : Set X) (n : ℕ) :
+    singularChainGroup R X n ⟶ (subChainComplex R X S).X n :=
+  subKeep R X S n
+
+theorem subtype_comp_subKeepAt (S : Set X) (n : ℕ) :
+    subChainSubtypeAt R X S n ≫ subKeepAt R X S n = 𝟙 _ :=
+  subtype_comp_subKeep S n
+
 /-- A retraction of the chain map induced by the inclusion `A ↪ X`. -/
 def relRetract (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :
     singularChainGroup R X n ⟶ singularChainGroup R (TopCat.of A) n :=
-  subKeep R X A n ≫ subChainCorestrictInv R X A n
+  subKeepAt R X A n ≫ subChainCorestrictInv R X A n
 
 theorem singularChainMap_comp_relRetract (A : Set X) (n : ℕ) :
     singularChainMap R (sInclusion A) n ≫ relRetract R X A n = 𝟙 _ := by
   rw [relRetract, singularChainMap_sInclusion_eq, Category.assoc,
-    ← Category.assoc (ModuleCat.ofHom (subChainSubmodule R X A n).subtype),
-    subtype_comp_subKeep, Category.id_comp, subChainCorestrict_comp_inv]
+    ← Category.assoc (subChainSubtypeAt R X A n), subtype_comp_subKeepAt, Category.id_comp,
+    subChainCorestrict_comp_inv]
 
 /-! ## 5. The short exact sequence of the pair -/
 
