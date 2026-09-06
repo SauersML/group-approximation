@@ -31,6 +31,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`**, **`mvResV_eq_pull`** and their `V` twins — the restrictions from the ambient space are the pullbacks along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
 | `CharClass/MayerVietorisZero.lean` | `mono_homologyMap_zero`, **`mvExactZero`**, `mvResPair_injective` — the left end of the sequence: the pair of restrictions is injective on `H⁰` |
 | `CharClass/MayerVietorisNaturality.lean` | `opensComap_sup_eq_top`, `opensRestrict`, `interRestrict`, **`mvResU_naturality`**, **`mvResV_naturality`**, **`mvResWU_naturality`**, **`mvResWV_naturality`** — the four restriction squares for a map of covered spaces |
+| `CharClass/MayerVietorisDisjoint.lean` | `mvResPair_eq_zero_of_disjoint`, `mvResPair_surjective_of_disjoint`, **`mvPairEquiv`** — a cover by two *disjoint* opens splits `H^n`; the `S⁰` base of the top-degree Künneth, with no cross product |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
