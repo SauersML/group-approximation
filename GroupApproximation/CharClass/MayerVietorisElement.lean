@@ -86,12 +86,17 @@ theorem mvPsi_mvPhi (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) (y : Hmod2 X
       ≫ HomologicalComplex.homologyMap (coSC U V hUV).g n = 0 := by
     rw [← HomologicalComplex.homologyMap_comp, (coSC U V hUV).zero,
       HomologicalComplex.homologyMap_zero]
-  have hcomp : mvPhi U V hUV n ≫ mvPsi U V hUV n = 0 := by
-    rw [mvPhi, mvPsi, Category.assoc,
-      ← Category.assoc (HomologicalComplex.homologyMap (coSC U V hUV).f n),
-      hFG, zero_comp, comp_zero]
-  have h := hom_apply_of_comp_eq hcomp y
-  rw [h]; rfl
+  have hpt : ∀ e : (coSC U V hUV).X₁.homology n,
+      (HomologicalComplex.homologyMap (coSC U V hUV).g n).hom
+        ((HomologicalComplex.homologyMap (coSC U V hUV).f n).hom e) = 0 := by
+    intro e
+    have h := hom_apply_of_comp_eq hFG e
+    rw [h]; rfl
+  show (coInterIso U V hUV n).hom.hom
+    ((HomologicalComplex.homologyMap (coSC U V hUV).g n).hom
+      ((HomologicalComplex.homologyMap (coSC U V hUV).f n).hom
+        ((coAmbientIso U V hUV n).inv.hom y))) = 0
+  rw [hpt, map_zero]
 
 /-- The Mayer–Vietoris connecting map, under the name published in
 `notes/lix-lane-reports/cc-thom.md`. -/
