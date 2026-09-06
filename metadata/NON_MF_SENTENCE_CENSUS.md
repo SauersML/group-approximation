@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 239 |
+| `unassigned` | 238 |
 | `formalized` | 101 |
 | `definition` | 30 |
 | `structural` | 20 |
 | `attribution` | 10 |
 | `provenance` | 1 |
-| **total** | **401** |
+| **total** | **400** |
 
-Completely formalized or definitional: **131/401** (32.7%).
+Completely formalized or definitional: **131/400** (32.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -30,255 +30,254 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 66 --- We also construct a sofic non-MF group $W=K\rtimes\mathbb Z$ with $K$ locally residually finite, whose canonical trace on $C^*_{\max}(W)$ is amenable but not quasidiagonal, and a two-generated, finitely presented, torsion-free, acylindrically hyperbolic property-\textup{(T)} group with no nontrivial homomorphism to an MF group.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 92 --- Khanh--Thanh show that $H$ is isomorphic to the unit group of the binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}; by the same results $\GL_n(R)=\EL_n(R)\cong R^\times$ for every $n\ge2$, so every $\EL_n(R)$ is isomorphic to $H$, and $12$ is the rank checked in the Lean development.
-* **`unassigned`**, line 92 --- OpenAI used this group to construct the first nonsofic group~\cite[Chapter~3]{OAI}.
-* **`unassigned`**, line 100 --- We work with countable groups throughout.
-* **`unassigned`**, line 112 --- In other words, $G$ is MF if there are finite unitary matrices, one for each element of $G$, that multiply correctly up to an error tending to zero in operator norm while no nonidentity element converges to the identity matrix.
-* **`unassigned`**, line 112 --- For countable $G$, the separation may equivalently be required along the full sequence with a constant independent of $g$~\cite[Propositions~2 and~7]{Korchagin}.
-* **`unassigned`**, line 127 --- Here and below, products of $C^*$-algebras mean bounded products, and $\bigoplus$ denotes the ideal of norm-null sequences.
-* **`unassigned`**, line 135 --- We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
-* **`unassigned`**, line 166 --- Asymptotic multiplicativity in operator norm makes the conjugation maps $\operatorname{Ad}(V_n(g))\colon x\mapsto V_n(g)xV_n(g)^*$ an asymptotically multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized Hilbert--Schmidt inner product.
-* **`unassigned`**, line 166 --- Here $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with the norm on the left taken in the operator algebra of this Hilbert space.
-* **`unassigned`**, line 166 --- Passing to a Hilbert ultraproduct turns these maps into a genuine unitary representation of $G$, to which property~\textup{(T)} applies.
-* **`unassigned`**, line 166 --- Let $U$ be the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the Kazhdan projection of $L$ for the conjugation maps, both in the norm matrix corona with coordinate sizes $d_n^2$.
-* **`unassigned`**, line 166 --- Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
-* **`unassigned`**, line 166 --- A corona homomorphism nontrivial on $K$ compresses to a corner where the Kazhdan projection of $K$ vanishes.
-* **`unassigned`**, line 166 --- On that corner, Hilbert--Schmidt triviality makes every ultralimit of normalized traces equal to the trivial character of $K$, which takes the value $1$ at the Kazhdan projection (Theorem~\ref{thm:normal-kazhdan}).\footnote{A Hilbert--Schmidt bound on the multiplicative defect does not give an operator norm bound on the conjugation maps, so this argument does not apply to sofic or hyperlinear approximations.}
+* **`unassigned`**, line 92 --- Khanh--Thanh show that $H$ is isomorphic to the unit group of the binary Leavitt algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.\footnote{By the same results $\GL_n(R)=\EL_n(R)\cong R^\times$ for every $n\ge2$, so every $\EL_n(R)$ is isomorphic to $H$; the rank $12$ is the one checked in the Lean development.} OpenAI used this group to construct the first nonsofic group~\cite[Chapter~3]{OAI}.
+* **`unassigned`**, line 101 --- We work with countable groups throughout.
+* **`unassigned`**, line 113 --- In other words, $G$ is MF if there are finite unitary matrices, one for each element of $G$, that multiply correctly up to an error tending to zero in operator norm while no nonidentity element converges to the identity matrix.
+* **`unassigned`**, line 113 --- For countable $G$, the separation may equivalently be required along the full sequence with a constant independent of $g$~\cite[Propositions~2 and~7]{Korchagin}.
+* **`unassigned`**, line 128 --- Here and below, products of $C^*$-algebras mean bounded products, and $\bigoplus$ denotes the ideal of norm-null sequences.
+* **`unassigned`**, line 136 --- We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
+* **`unassigned`**, line 167 --- Asymptotic multiplicativity in operator norm makes the conjugation maps $\operatorname{Ad}(V_n(g))\colon x\mapsto V_n(g)xV_n(g)^*$ an asymptotically multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized Hilbert--Schmidt inner product.
+* **`unassigned`**, line 167 --- Here $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with the norm on the left taken in the operator algebra of this Hilbert space.
+* **`unassigned`**, line 167 --- Passing to a Hilbert ultraproduct turns these maps into a genuine unitary representation of $G$, to which property~\textup{(T)} applies.
+* **`unassigned`**, line 167 --- Let $U$ be the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the Kazhdan projection of $L$ for the conjugation maps, both in the norm matrix corona with coordinate sizes $d_n^2$.
+* **`unassigned`**, line 167 --- Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
+* **`unassigned`**, line 167 --- A corona homomorphism nontrivial on $K$ compresses to a corner where the Kazhdan projection of $K$ vanishes.
+* **`unassigned`**, line 167 --- On that corner, Hilbert--Schmidt triviality makes every ultralimit of normalized traces equal to the trivial character of $K$, which takes the value $1$ at the Kazhdan projection (Theorem~\ref{thm:normal-kazhdan}).\footnote{A Hilbert--Schmidt bound on the multiplicative defect does not give an operator norm bound on the conjugation maps, so this argument does not apply to sofic or hyperlinear approximations.}
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 193 --- A one-sided inverse $ts=1$ in $R$ is a compressor in the same way: an explicit element $u\in\EL_4(R)$ conjugates $\EL_3(R)$ into itself by $e_{ij}(a)\mapsto e_{ij}(sat)$, and if $1-st$ generates $R$ as a two-sided ideal, then one commutator $[ucu^{-1},\ell]$ normally generates all of $\EL_n(R)$.
-* **`unassigned`**, line 204 --- Let $R$ be a countable unital associative ring.
-* **`unassigned`**, line 204 --- Suppose that $s,t\in R$ satisfy
-* **`unassigned`**, line 209 --- For every $n\ge4$, every homomorphism from $\EL_n(R)$ to an MF group is trivial.
-* **`unassigned`**, line 213 --- Here $R(1-st)R$ is the two-sided ideal generated by $1-st$, so the hypothesis says that $\sum_ja_j(1-st)b_j=1$ for finitely many $a_j,b_j\in R$; we call such an idempotent $1-st$ \emph{full}.
-* **`unassigned`**, line 213 --- A unital ring is \emph{directly finite} if $ts=1$ implies $st=1$.
-* **`unassigned`**, line 213 --- The hypothesis holds in every countable simple unital ring that is not directly finite and in every Leavitt algebra $L_k(1,m)$ over a countable field $k$, $m\ge2$ (Corollary~\ref{cor:simple-infinite-ring}), and $R$ need not be finitely generated. Simplicity of $\EL_n(R)$ is a separate matter; it holds in the following example.
-* **`unassigned`**, line 230 --- Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.
+* **`unassigned`**, line 194 --- A one-sided inverse $ts=1$ in $R$ is a compressor in the same way: an explicit element $u\in\EL_4(R)$ conjugates $\EL_3(R)$ into itself by $e_{ij}(a)\mapsto e_{ij}(sat)$, and if $1-st$ generates $R$ as a two-sided ideal, then one commutator $[ucu^{-1},\ell]$ normally generates all of $\EL_n(R)$.
+* **`unassigned`**, line 205 --- Let $R$ be a countable unital associative ring.
+* **`unassigned`**, line 205 --- Suppose that $s,t\in R$ satisfy
+* **`unassigned`**, line 210 --- For every $n\ge4$, every homomorphism from $\EL_n(R)$ to an MF group is trivial.
+* **`unassigned`**, line 214 --- Here $R(1-st)R$ is the two-sided ideal generated by $1-st$, so the hypothesis says that $\sum_ja_j(1-st)b_j=1$ for finitely many $a_j,b_j\in R$; we call such an idempotent $1-st$ \emph{full}.
+* **`unassigned`**, line 214 --- A unital ring is \emph{directly finite} if $ts=1$ implies $st=1$.
+* **`unassigned`**, line 214 --- The hypothesis holds in every countable simple unital ring that is not directly finite and in every Leavitt algebra $L_k(1,m)$ over a countable field $k$, $m\ge2$ (Corollary~\ref{cor:simple-infinite-ring}), and $R$ need not be finitely generated. Simplicity of $\EL_n(R)$ is a separate matter; it holds in the following example.
+* **`unassigned`**, line 231 --- Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 243 --- There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually finite, that is not MF\@.
-* **`unassigned`**, line 248 --- Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.
-* **`unassigned`**, line 248 --- The group $W$ is sofic because locally residually finite groups are sofic and soficity passes to extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}.
-* **`unassigned`**, line 248 --- The trace answers the question of Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every amenable trace is quasidiagonal. Since $K$ is a direct limit of residually finite groups, it is MF~\cite[Corollary~10 and Proposition~13]{Korchagin}.
-* **`unassigned`**, line 248 --- So MF groups are not closed under semidirect products with $\mathbb Z$, which answers a question of Korchagin~\cite[remark following Proposition~12]{Korchagin}.
-* **`unassigned`**, line 273 --- For the shortest route to a non-MF group, the reader may start with Eckhardt's expository note~\cite{Eckhardt} and return here for the compression criterion, the simple and torsion-free examples, and the amenable trace.
-* **`unassigned`**, line 290 --- The group $H$ is isomorphic to the unit group of the binary Leavitt algebra, the group of~\cite{OAI}, and Theorem~\ref{thm:torsion-free} reuses Fournier-Facio's configuration~\cite{FFF}.
-* **`unassigned`**, line 309 --- For a property-\textup{(T)} group $\Gamma$ with a proper self-embedding and its ascending HNN extension $G$, the non-finiteness of $C^*_{\max}(G)$ in Proposition~\ref{prop:max-infinite} also appears in Eckhardt's note~\cite{Eckhardt}, which further proves that the wreath product $(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb Z)\rtimes G$ is not MF\@.
-* **`unassigned`**, line 309 --- His note gives a short elementary route to a non-MF group and is a good first read on the compression mechanism.
-* **`unassigned`**, line 309 --- In Section~\ref{sec:amenable-nonqd} the lamps satisfy Clifford relations, and by these relations a central involution lies in the normal subgroup~\eqref{eq:intrinsic-defect}, so Theorem~\ref{thm:compression-criterion} applies directly.
-* **`unassigned`**, line 332 --- If $G$ is countable, the image of a corona homomorphism from $G$ is a countable subgroup of the unitary group of a norm matrix corona, so it is MF\@.
-* **`unassigned`**, line 332 --- Every MF group embeds in the unitary group of a norm matrix corona.
-* **`unassigned`**, line 346 --- The image of a corona homomorphism is a countable MF group.
-* **`unassigned`**, line 346 --- Conversely, compose a homomorphism to an MF group with a corona embedding of its image; the resulting corona homomorphism has the same kernel.
-* **`unassigned`**, line 358 --- An \emph{operator norm asymptotic representation} of a group $G$ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
-* **`unassigned`**, line 454 --- where the norm on the left is the operator norm on this Hilbert space, so the maps $\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative in operator norm, and
-* **`unassigned`**, line 467 --- a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the Hilbert--Schmidt Hilbert space.
-* **`unassigned`**, line 467 --- Coordinatewise action induces a representation $\pi_\omega\colon\mathcal B\to B(\mathcal K_\omega)$, which we suppress from the notation.
-* **`unassigned`**, line 467 --- Moreover, $\mathcal B$ is a norm matrix corona with coordinate sizes $d_n^2$ after a choice of matrix units.
-* **`unassigned`**, line 515 --- Since $c$ commutes with $L$, $(V_n(c))\in\mathcal C_2$, so $(V_n(u)V_n(c)V_n(u)^*)\in\mathcal C_2$ by Theorem~\ref{thm:transport}, and then $(V_n(ucu^{-1}))\in\mathcal C_2$ because $\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.
-* **`unassigned`**, line 515 --- So $\hsnorm{V_n(\ell)V_n(ucu^{-1})-V_n(ucu^{-1})V_n(\ell)}\to0$, and by asymptotic multiplicativity $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.
-* **`unassigned`**, line 526 --- Corollary~\ref{cor:defect-hs} has a finite-dimensional counterpart that needs no property~\textup{(T)}.
-* **`unassigned`**, line 526 --- If $\rho\colon G\to\U(d)$ is a unitary representation and $uLu^{-1}\le L$, then $x\mapsto\rho(u)^*x\rho(u)$ maps the commutant $\rho(L)'$ into itself, hence onto it, because $\rho(L)'$ is finite dimensional; so $\rho(ucu^{-1})$ commutes with $\rho(L)$ for every $c\in C_G(L)$, and every finite-dimensional unitary representation of $G$ is trivial on $\mathfrak D_G(L)$.
-* **`unassigned`**, line 526 --- Property~\textup{(T)} and stable finiteness of the corona replace this dimension count.
-* **`unassigned`**, line 537 --- A corona homomorphism $\rho$ cannot simply be restricted to a corner: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that only asymptotically commute with chosen unitary lifts $U_n(g)$ of $\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the matrix corners.
-* **`unassigned`**, line 589 --- Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let \(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism \(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).
-* **`unassigned`**, line 602 --- Let \(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism induced by \(\widehat\Theta|_K\).
-* **`unassigned`**, line 602 --- Since \(q\) commutes with \(\Theta(K)\), the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\) agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate restriction of \(qp=0\).
-* **`unassigned`**, line 613 --- Fix a free ultrafilter \(\omega\).
-* **`unassigned`**, line 613 --- Since \(|\tr_{r_n}(a_n)|\le\opnorm{a_n}\), the formula
-* **`unassigned`**, line 618 --- defines a tracial state on \(\mathcal Q_{\mathbf r}\).
-* **`unassigned`**, line 618 --- The hypothesis applies to \((W_n)\) itself, so
-* **`unassigned`**, line 624 --- with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and therefore \(T_\omega(\pi(k))=1\) for every \(k\in K\).
-* **`unassigned`**, line 624 --- Then the states \(T_\omega\circ\pi\) and the trivial character of \(K\) agree on the canonical unitaries, whose span is dense in \(C^*_{\max}(K)\), and therefore on all of \(C^*_{\max}(K)\).
-* **`unassigned`**, line 624 --- The trivial character takes the value \(1\) at \(e_K\), while \(\pi(e_K)=0\).
-* **`unassigned`**, line 624 --- So \(0=T_\omega(\pi(e_K))=1\), a contradiction.
-* **`unassigned`**, line 664 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since $\operatorname{diag}(s,1,\ldots,1)$ is a nonunitary isometry in $M_k(A)$.
-* **`unassigned`**, line 703 --- The proof of Theorem~\ref{thm:full-defect-ring} uses four coordinates: three for the property-\textup{(T)} subgroup $\EL_3(R)$ and one for its centralizer.
-* **`unassigned`**, line 703 --- The compressor needs only $ts=1$; the ideal condition on $1-st$ enters in the final normal-generation step.
-* **`unassigned`**, line 703 --- Indices run over $1,\ldots,n$ throughout this section.
-* **`unassigned`**, line 713 --- Write $e=1-st$.
-* **`unassigned`**, line 713 --- Then $e^2=e$, $es=te=0$, and there are finitely many $a_j,b_j\in R$ with $\sum_j a_jeb_j=1$.
-* **`unassigned`**, line 713 --- First suppose that $R$ is finitely generated as a unital ring.
-* **`unassigned`**, line 713 --- Put $G=\EL_n(R)$ and let $L=\EL_3(R)$ occupy coordinates $1,2,3$.
-* **`unassigned`**, line 713 --- Both groups have property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}.
-* **`unassigned`**, line 713 --- All displayed $4\times4$ matrices below are extended by $I_{n-4}$.
-* **`unassigned`**, line 720 --- For $i=1,2,3$, set
-* **`unassigned`**, line 724 --- Its block on coordinates $(i,4)$ is $s&e\\0&t$, so $u=u_3u_2u_1\in\EL_4(R)$ is the first of the two matrices
-* **`unassigned`**, line 744 --- In block form $u=sI_3&v\\0&t^3$ with $v=(e,et,et^2)^{\mathsf T}$.
-* **`unassigned`**, line 744 --- Put $w=(e,se,s^2e)$.
-* **`unassigned`**, line 744 --- Since $es=te=0$, one has $vw=eI_3$, $vs^3=0$, and $t^3w=0$, so the second matrix is the inverse of $u$, and for $A\in M_3(R)$
-* **`unassigned`**, line 753 --- In particular $ue_{ij}(a)u^{-1}=e_{ij}(sat)$ for $1\le i\ne j\le3$, because $e+st=1$, so $uLu^{-1}\le L$.
-* **`unassigned`**, line 756 --- The element
-* **`unassigned`**, line 761 --- is computed in the block on coordinates $(1,4)$ using $te=0$, and a diagonal matrix of this shape commutes with every $\operatorname{diag}(A,1)$, so $c\in C_G(L)$.
-* **`unassigned`**, line 761 --- Since $t^3e=0$, the matrix $uc$ differs from $u$ only in its last column, which is $(e+et,et,et^2,t^3)^{\mathsf T}$, and multiplying by $u^{-1}$ gives
-* **`unassigned`**, line 769 --- For $\ell=e_{23}(1)$ the Steinberg relation $[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives
-* **`unassigned`**, line 775 --- Let $N$ be the normal closure of $d$ in $G$.
-* **`unassigned`**, line 775 --- For arbitrary $a,b\in R$, the Steinberg relations give
-* **`unassigned`**, line 781 --- It follows that $e_{42}(1)=\prod_j e_{42}(a_jeb_j)\in N$.
-* **`unassigned`**, line 781 --- Elementary signed permutation matrices conjugate this root to every root position, up to a sign, so $e_{ij}(1)\in N$ whenever $i\ne j$.
-* **`unassigned`**, line 781 --- For distinct $i,j,k$ and every $r\in R$,
-* **`unassigned`**, line 789 --- Hence $N=G$, and therefore $\mathfrak D_G(L)=G$.
-* **`unassigned`**, line 789 --- By Theorem~\ref{thm:compression-criterion} with $K=G$, every homomorphism from $G$ to an MF group is trivial.
-* **`unassigned`**, line 793 --- For general countable $R$, every element of $\EL_n(R)$ is a product of finitely many elementary matrices, so it lies in $\EL_n(S)$ for some finitely generated unital subring $S$ of $R$ containing $s$, $t$, and the $a_j,b_j$.
-* **`unassigned`**, line 793 --- The hypotheses hold in $S$, so a homomorphism from $\EL_n(R)$ to an MF group is trivial on each such $\EL_n(S)$, and these subgroups cover $\EL_n(R)$.
-* **`unassigned`**, line 801 --- The same argument applies when finitely many pairs $t_\nu s_\nu=1$ have complementary idempotents $1-s_\nu t_\nu$ that together generate the unit ideal: each pair gives a compressor and a centralizer for the same $L$, so each $e_{13}(1-s_\nu t_\nu)$ lies in $\mathfrak D_G(L)$, and the two Steinberg relations above put $e_{42}(1)$ in their normal closure.
-* **`unassigned`**, line 808 --- If $R$ is a countable simple unital ring that is not directly finite, then every homomorphism from $\EL_n(R)$ to an MF group is trivial for every $n\ge4$.
-* **`unassigned`**, line 808 --- The same conclusion holds for $R=L_k(1,m)$, for every countable field $k$ and every $m\ge2$.
-* **`unassigned`**, line 816 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
-* **`unassigned`**, line 824 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
-* **`unassigned`**, line 828 --- If a countable unital ring $R$ is not directly finite, then $C^*_{\max}(\EL_n(R))$ contains a proper isometry for every $n\ge4$.
-* **`unassigned`**, line 828 --- If $R\ne0$ also satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, then $C^*_{\mathrm r}(\EL_n(R))$ is separable, stably finite, and not MF.
-* **`unassigned`**, line 836 --- Choose $s,t\in R$ with $ts=1\ne st$, and let $S$ be the unital subring they generate.
-* **`unassigned`**, line 836 --- The compressor $u$ from the proof of Theorem~\ref{thm:full-defect-ring} lies in $\EL_4(S)$ and conjugates $L=\EL_3(S)$ into itself, and $L$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.
-* **`unassigned`**, line 836 --- The compression is strict: every off-diagonal entry of a matrix in $uLu^{-1}$ has the form $sat$, and $e(sat)=0$ while $e\cdot1=e\ne0$, so $e_{12}(1)\in L\setminus uLu^{-1}$.
-* **`unassigned`**, line 836 --- By Proposition~\ref{prop:max-infinite} applied to $L\le\EL_n(R)$ and $u$, $C^*_{\max}(\EL_n(R))$ contains a proper isometry.
-* **`unassigned`**, line 847 --- For the second assertion, $G=\EL_n(R)$ is countable and nontrivial, and by Theorem~\ref{thm:full-defect-ring} it is not MF\@.
-* **`unassigned`**, line 847 --- The algebra $C^*_{\mathrm r}(G)$ is separable, and stably finite because its canonical trace is faithful.
-* **`unassigned`**, line 847 --- If an embedding $\iota\colon C^*_{\mathrm r}(G)\to\mathcal Q_{\mathbf d}$ existed and $p=\iota(1)$, then $g\mapsto\iota(\lambda_g)+(1-p)$ would embed $G$ in $\U(\mathcal Q_{\mathbf d})$, contradicting that $G$ is not MF\@.
-* **`unassigned`**, line 858 --- Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.
-* **`unassigned`**, line 858 --- By~\eqref{eq:leavitt}, the maps $x\mapsto(t_0x,t_1x)$ and $(y,z)\mapsto s_0y+s_1z$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R\oplus R$.
-* **`unassigned`**, line 858 --- With $s=s_0$ and $t=t_0$, the relations give $t_0s_0=1$ and
-* **`unassigned`**, line 865 --- so $R$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, and every homomorphism from $H$ to an MF group is trivial. It remains to prove that $H$ is simple.
-* **`unassigned`**, line 875 --- Since $e_{12}(1)\ne1$, the group $H$ is nontrivial. Let $N$ be a normal subgroup of $H$.
-* **`unassigned`**, line 883 --- where $\EL_{12}(R,I)$ is the normal closure in $\EL_{12}(R)$ of the elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_{12}(R,I)$ is the preimage of the center of $\GL_{12}(R/I)$.
-* **`unassigned`**, line 895 --- The ring $R$ is finitely generated, so $H$ has property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and hence is finitely generated~\cite[Theorem~1.3.1]{BHV}.
-* **`unassigned`**, line 895 --- By Theorem~\ref{thm:full-defect-ring}, every homomorphism from $H$ to an MF group is trivial, and by Proposition~\ref{prop:simple}, $H$ is nontrivial and simple.
-* **`unassigned`**, line 895 --- Since $t_0s_0=1$ and $s_0t_0\ne1$, the ring $R$ is not directly finite, so by Corollary~\ref{cor:one-sided-ring-maximal} the algebra $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and $C^*_{\max}(H)$ contains a proper isometry.
-* **`unassigned`**, line 910 --- For a separable unital $C^*$-algebra $A$ we use the sequential form of his definitions.
-* **`unassigned`**, line 910 --- A tracial state $\tau$ on $A$ is \emph{amenable} if there are u.c.p.
-* **`unassigned`**, line 910 --- maps $\phi_n\colon A\to M_{d_n}(\C)$ such that
-* **`unassigned`**, line 921 --- It is \emph{quasidiagonal} if the first limit holds in operator norm instead of normalized Hilbert--Schmidt norm, with the same trace convergence.
-* **`unassigned`**, line 933 --- Let $G$ be a countable group.
+* **`unassigned`**, line 244 --- There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually finite, that is not MF\@.
+* **`unassigned`**, line 249 --- Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.
+* **`unassigned`**, line 249 --- The group $W$ is sofic because locally residually finite groups are sofic and soficity passes to extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}.
+* **`unassigned`**, line 249 --- The trace answers the question of Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every amenable trace is quasidiagonal. Since $K$ is a direct limit of residually finite groups, it is MF~\cite[Corollary~10 and Proposition~13]{Korchagin}.
+* **`unassigned`**, line 249 --- So MF groups are not closed under semidirect products with $\mathbb Z$, which answers a question of Korchagin~\cite[remark following Proposition~12]{Korchagin}.
+* **`unassigned`**, line 274 --- For the shortest route to a non-MF group, the reader may start with Eckhardt's expository note~\cite{Eckhardt} and return here for the compression criterion, the simple and torsion-free examples, and the amenable trace.
+* **`unassigned`**, line 291 --- The group $H$ is isomorphic to the unit group of the binary Leavitt algebra, the group of~\cite{OAI}, and Theorem~\ref{thm:torsion-free} reuses Fournier-Facio's configuration~\cite{FFF}.
+* **`unassigned`**, line 310 --- For a property-\textup{(T)} group $\Gamma$ with a proper self-embedding and its ascending HNN extension $G$, the non-finiteness of $C^*_{\max}(G)$ in Proposition~\ref{prop:max-infinite} also appears in Eckhardt's note~\cite{Eckhardt}, which further proves that the wreath product $(\bigoplus_{G/\Gamma}\mathbb Z/2\mathbb Z)\rtimes G$ is not MF\@.
+* **`unassigned`**, line 310 --- His note gives a short elementary route to a non-MF group and is a good first read on the compression mechanism.
+* **`unassigned`**, line 310 --- In Section~\ref{sec:amenable-nonqd} the lamps satisfy Clifford relations, and by these relations a central involution lies in the normal subgroup~\eqref{eq:intrinsic-defect}, so Theorem~\ref{thm:compression-criterion} applies directly.
+* **`unassigned`**, line 333 --- If $G$ is countable, the image of a corona homomorphism from $G$ is a countable subgroup of the unitary group of a norm matrix corona, so it is MF\@.
+* **`unassigned`**, line 333 --- Every MF group embeds in the unitary group of a norm matrix corona.
+* **`unassigned`**, line 347 --- The image of a corona homomorphism is a countable MF group.
+* **`unassigned`**, line 347 --- Conversely, compose a homomorphism to an MF group with a corona embedding of its image; the resulting corona homomorphism has the same kernel.
+* **`unassigned`**, line 359 --- An \emph{operator norm asymptotic representation} of a group $G$ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
+* **`unassigned`**, line 455 --- where the norm on the left is the operator norm on this Hilbert space, so the maps $\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative in operator norm, and
+* **`unassigned`**, line 468 --- a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the Hilbert--Schmidt Hilbert space.
+* **`unassigned`**, line 468 --- Coordinatewise action induces a representation $\pi_\omega\colon\mathcal B\to B(\mathcal K_\omega)$, which we suppress from the notation.
+* **`unassigned`**, line 468 --- Moreover, $\mathcal B$ is a norm matrix corona with coordinate sizes $d_n^2$ after a choice of matrix units.
+* **`unassigned`**, line 516 --- Since $c$ commutes with $L$, $(V_n(c))\in\mathcal C_2$, so $(V_n(u)V_n(c)V_n(u)^*)\in\mathcal C_2$ by Theorem~\ref{thm:transport}, and then $(V_n(ucu^{-1}))\in\mathcal C_2$ because $\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.
+* **`unassigned`**, line 516 --- So $\hsnorm{V_n(\ell)V_n(ucu^{-1})-V_n(ucu^{-1})V_n(\ell)}\to0$, and by asymptotic multiplicativity $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.
+* **`unassigned`**, line 527 --- Corollary~\ref{cor:defect-hs} has a finite-dimensional counterpart that needs no property~\textup{(T)}.
+* **`unassigned`**, line 527 --- If $\rho\colon G\to\U(d)$ is a unitary representation and $uLu^{-1}\le L$, then $x\mapsto\rho(u)^*x\rho(u)$ maps the commutant $\rho(L)'$ into itself, hence onto it, because $\rho(L)'$ is finite dimensional; so $\rho(ucu^{-1})$ commutes with $\rho(L)$ for every $c\in C_G(L)$, and every finite-dimensional unitary representation of $G$ is trivial on $\mathfrak D_G(L)$.
+* **`unassigned`**, line 527 --- Property~\textup{(T)} and stable finiteness of the corona replace this dimension count.
+* **`unassigned`**, line 538 --- A corona homomorphism $\rho$ cannot simply be restricted to a corner: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that only asymptotically commute with chosen unitary lifts $U_n(g)$ of $\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the matrix corners.
+* **`unassigned`**, line 590 --- Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let \(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism \(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).
+* **`unassigned`**, line 603 --- Let \(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism induced by \(\widehat\Theta|_K\).
+* **`unassigned`**, line 603 --- Since \(q\) commutes with \(\Theta(K)\), the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\) agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate restriction of \(qp=0\).
+* **`unassigned`**, line 614 --- Fix a free ultrafilter \(\omega\).
+* **`unassigned`**, line 614 --- Since \(|\tr_{r_n}(a_n)|\le\opnorm{a_n}\), the formula
+* **`unassigned`**, line 619 --- defines a tracial state on \(\mathcal Q_{\mathbf r}\).
+* **`unassigned`**, line 619 --- The hypothesis applies to \((W_n)\) itself, so
+* **`unassigned`**, line 625 --- with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and therefore \(T_\omega(\pi(k))=1\) for every \(k\in K\).
+* **`unassigned`**, line 625 --- Then the states \(T_\omega\circ\pi\) and the trivial character of \(K\) agree on the canonical unitaries, whose span is dense in \(C^*_{\max}(K)\), and therefore on all of \(C^*_{\max}(K)\).
+* **`unassigned`**, line 625 --- The trivial character takes the value \(1\) at \(e_K\), while \(\pi(e_K)=0\).
+* **`unassigned`**, line 625 --- So \(0=T_\omega(\pi(e_K))=1\), a contradiction.
+* **`unassigned`**, line 665 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since $\operatorname{diag}(s,1,\ldots,1)$ is a nonunitary isometry in $M_k(A)$.
+* **`unassigned`**, line 704 --- The proof of Theorem~\ref{thm:full-defect-ring} uses four coordinates: three for the property-\textup{(T)} subgroup $\EL_3(R)$ and one for its centralizer.
+* **`unassigned`**, line 704 --- The compressor needs only $ts=1$; the ideal condition on $1-st$ enters in the final normal-generation step.
+* **`unassigned`**, line 704 --- Indices run over $1,\ldots,n$ throughout this section.
+* **`unassigned`**, line 714 --- Write $e=1-st$.
+* **`unassigned`**, line 714 --- Then $e^2=e$, $es=te=0$, and there are finitely many $a_j,b_j\in R$ with $\sum_j a_jeb_j=1$.
+* **`unassigned`**, line 714 --- First suppose that $R$ is finitely generated as a unital ring.
+* **`unassigned`**, line 714 --- Put $G=\EL_n(R)$ and let $L=\EL_3(R)$ occupy coordinates $1,2,3$.
+* **`unassigned`**, line 714 --- Both groups have property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}.
+* **`unassigned`**, line 714 --- All displayed $4\times4$ matrices below are extended by $I_{n-4}$.
+* **`unassigned`**, line 721 --- For $i=1,2,3$, set
+* **`unassigned`**, line 725 --- Its block on coordinates $(i,4)$ is $s&e\\0&t$, so $u=u_3u_2u_1\in\EL_4(R)$ is the first of the two matrices
+* **`unassigned`**, line 745 --- In block form $u=sI_3&v\\0&t^3$ with $v=(e,et,et^2)^{\mathsf T}$.
+* **`unassigned`**, line 745 --- Put $w=(e,se,s^2e)$.
+* **`unassigned`**, line 745 --- Since $es=te=0$, one has $vw=eI_3$, $vs^3=0$, and $t^3w=0$, so the second matrix is the inverse of $u$, and for $A\in M_3(R)$
+* **`unassigned`**, line 754 --- In particular $ue_{ij}(a)u^{-1}=e_{ij}(sat)$ for $1\le i\ne j\le3$, because $e+st=1$, so $uLu^{-1}\le L$.
+* **`unassigned`**, line 757 --- The element
+* **`unassigned`**, line 762 --- is computed in the block on coordinates $(1,4)$ using $te=0$, and a diagonal matrix of this shape commutes with every $\operatorname{diag}(A,1)$, so $c\in C_G(L)$.
+* **`unassigned`**, line 762 --- Since $t^3e=0$, the matrix $uc$ differs from $u$ only in its last column, which is $(e+et,et,et^2,t^3)^{\mathsf T}$, and multiplying by $u^{-1}$ gives
+* **`unassigned`**, line 770 --- For $\ell=e_{23}(1)$ the Steinberg relation $[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives
+* **`unassigned`**, line 776 --- Let $N$ be the normal closure of $d$ in $G$.
+* **`unassigned`**, line 776 --- For arbitrary $a,b\in R$, the Steinberg relations give
+* **`unassigned`**, line 782 --- It follows that $e_{42}(1)=\prod_j e_{42}(a_jeb_j)\in N$.
+* **`unassigned`**, line 782 --- Elementary signed permutation matrices conjugate this root to every root position, up to a sign, so $e_{ij}(1)\in N$ whenever $i\ne j$.
+* **`unassigned`**, line 782 --- For distinct $i,j,k$ and every $r\in R$,
+* **`unassigned`**, line 790 --- Hence $N=G$, and therefore $\mathfrak D_G(L)=G$.
+* **`unassigned`**, line 790 --- By Theorem~\ref{thm:compression-criterion} with $K=G$, every homomorphism from $G$ to an MF group is trivial.
+* **`unassigned`**, line 794 --- For general countable $R$, every element of $\EL_n(R)$ is a product of finitely many elementary matrices, so it lies in $\EL_n(S)$ for some finitely generated unital subring $S$ of $R$ containing $s$, $t$, and the $a_j,b_j$.
+* **`unassigned`**, line 794 --- The hypotheses hold in $S$, so a homomorphism from $\EL_n(R)$ to an MF group is trivial on each such $\EL_n(S)$, and these subgroups cover $\EL_n(R)$.
+* **`unassigned`**, line 802 --- The same argument applies when finitely many pairs $t_\nu s_\nu=1$ have complementary idempotents $1-s_\nu t_\nu$ that together generate the unit ideal: each pair gives a compressor and a centralizer for the same $L$, so each $e_{13}(1-s_\nu t_\nu)$ lies in $\mathfrak D_G(L)$, and the two Steinberg relations above put $e_{42}(1)$ in their normal closure.
+* **`unassigned`**, line 809 --- If $R$ is a countable simple unital ring that is not directly finite, then every homomorphism from $\EL_n(R)$ to an MF group is trivial for every $n\ge4$.
+* **`unassigned`**, line 809 --- The same conclusion holds for $R=L_k(1,m)$, for every countable field $k$ and every $m\ge2$.
+* **`unassigned`**, line 817 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
+* **`unassigned`**, line 825 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
+* **`unassigned`**, line 829 --- If a countable unital ring $R$ is not directly finite, then $C^*_{\max}(\EL_n(R))$ contains a proper isometry for every $n\ge4$.
+* **`unassigned`**, line 829 --- If $R\ne0$ also satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, then $C^*_{\mathrm r}(\EL_n(R))$ is separable, stably finite, and not MF.
+* **`unassigned`**, line 837 --- Choose $s,t\in R$ with $ts=1\ne st$, and let $S$ be the unital subring they generate.
+* **`unassigned`**, line 837 --- The compressor $u$ from the proof of Theorem~\ref{thm:full-defect-ring} lies in $\EL_4(S)$ and conjugates $L=\EL_3(S)$ into itself, and $L$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.
+* **`unassigned`**, line 837 --- The compression is strict: every off-diagonal entry of a matrix in $uLu^{-1}$ has the form $sat$, and $e(sat)=0$ while $e\cdot1=e\ne0$, so $e_{12}(1)\in L\setminus uLu^{-1}$.
+* **`unassigned`**, line 837 --- By Proposition~\ref{prop:max-infinite} applied to $L\le\EL_n(R)$ and $u$, $C^*_{\max}(\EL_n(R))$ contains a proper isometry.
+* **`unassigned`**, line 848 --- For the second assertion, $G=\EL_n(R)$ is countable and nontrivial, and by Theorem~\ref{thm:full-defect-ring} it is not MF\@.
+* **`unassigned`**, line 848 --- The algebra $C^*_{\mathrm r}(G)$ is separable, and stably finite because its canonical trace is faithful.
+* **`unassigned`**, line 848 --- If an embedding $\iota\colon C^*_{\mathrm r}(G)\to\mathcal Q_{\mathbf d}$ existed and $p=\iota(1)$, then $g\mapsto\iota(\lambda_g)+(1-p)$ would embed $G$ in $\U(\mathcal Q_{\mathbf d})$, contradicting that $G$ is not MF\@.
+* **`unassigned`**, line 859 --- Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.
+* **`unassigned`**, line 859 --- By~\eqref{eq:leavitt}, the maps $x\mapsto(t_0x,t_1x)$ and $(y,z)\mapsto s_0y+s_1z$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R\oplus R$.
+* **`unassigned`**, line 859 --- With $s=s_0$ and $t=t_0$, the relations give $t_0s_0=1$ and
+* **`unassigned`**, line 866 --- so $R$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, and every homomorphism from $H$ to an MF group is trivial. It remains to prove that $H$ is simple.
+* **`unassigned`**, line 876 --- Since $e_{12}(1)\ne1$, the group $H$ is nontrivial. Let $N$ be a normal subgroup of $H$.
+* **`unassigned`**, line 884 --- where $\EL_{12}(R,I)$ is the normal closure in $\EL_{12}(R)$ of the elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_{12}(R,I)$ is the preimage of the center of $\GL_{12}(R/I)$.
+* **`unassigned`**, line 896 --- The ring $R$ is finitely generated, so $H$ has property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and hence is finitely generated~\cite[Theorem~1.3.1]{BHV}.
+* **`unassigned`**, line 896 --- By Theorem~\ref{thm:full-defect-ring}, every homomorphism from $H$ to an MF group is trivial, and by Proposition~\ref{prop:simple}, $H$ is nontrivial and simple.
+* **`unassigned`**, line 896 --- Since $t_0s_0=1$ and $s_0t_0\ne1$, the ring $R$ is not directly finite, so by Corollary~\ref{cor:one-sided-ring-maximal} the algebra $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and $C^*_{\max}(H)$ contains a proper isometry.
+* **`unassigned`**, line 911 --- For a separable unital $C^*$-algebra $A$ we use the sequential form of his definitions.
+* **`unassigned`**, line 911 --- A tracial state $\tau$ on $A$ is \emph{amenable} if there are u.c.p.
+* **`unassigned`**, line 911 --- maps $\phi_n\colon A\to M_{d_n}(\C)$ such that
+* **`unassigned`**, line 922 --- It is \emph{quasidiagonal} if the first limit holds in operator norm instead of normalized Hilbert--Schmidt norm, with the same trace convergence.
+* **`unassigned`**, line 934 --- Let $G$ be a countable group.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 933 --- If $G$ is not MF, then its canonical trace $\tau_G$ on $C^*_{\max}(G)$ is not quasidiagonal. In particular, if $\tau_G$ is amenable, then $\tau_G$ is an amenable trace that is not quasidiagonal.
+* **`unassigned`**, line 934 --- If $G$ is not MF, then its canonical trace $\tau_G$ on $C^*_{\max}(G)$ is not quasidiagonal. In particular, if $\tau_G$ is amenable, then $\tau_G$ is an amenable trace that is not quasidiagonal.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 942 --- Suppose that $\tau_G$ is quasidiagonal, and let $\phi_n$ be u.c.p.
-* **`unassigned`**, line 942 --- maps as in the definition, with the first limit in operator norm.
-* **`unassigned`**, line 942 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
-* **`unassigned`**, line 950 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
-* **`unassigned`**, line 950 --- If $g\ne1$, then $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$, so $V_n(g)$ does not converge to $1$ in operator norm, which would force $\tr_{d_n}(\phi_n(u_g))\to1$.
-* **`unassigned`**, line 950 --- So $G$ is MF, contrary to the hypothesis.
-* **`unassigned`**, line 972 --- Write $g=x_gt^{k_g}$, where $x_g\in N$, $k_g\in\mathbb Z$, and $t=(1,1)$, so $txt^{-1}=\beta(x)$ for $x\in N$.
-* **`unassigned`**, line 972 --- Call $k_g$ the height of $g$.
-* **`unassigned`**, line 972 --- Fix a finite set $F\subseteq G$ and a positive integer $L$, and put $I_L=\{0,\ldots,L-1\}$.
-* **`unassigned`**, line 972 --- Define
-* **`unassigned`**, line 980 --- and put $N_{F,L}=\langle a_{g,j}:g\in F,\ j\in I_L\rangle$.
-* **`unassigned`**, line 980 --- This finitely generated subgroup of $N$ is residually finite, so there is a finite quotient
-* **`unassigned`**, line 986 --- that separates every nonidentity $a_{g,j}$: take the product of finitely many finite quotients, one separating each $a_{g,j}$, and restrict to the image.
-* **`unassigned`**, line 986 --- Let $H_{F,L}\leq G$ be the image of $\ker\theta_{F,L}\leq N_{F,L}$ under the inclusion $N\hookrightarrow G$.
-* **`unassigned`**, line 986 --- Choose a representative $r_q\in N_{F,L}$ for each $q\in Q_{F,L}$ and set
-* **`unassigned`**, line 996 --- These cosets are pairwise distinct.
-* **`unassigned`**, line 996 --- Let $\lambda_{F,L}$ be the quasi-regular representation of $G$ on $\ell^2(G/H_{F,L})$ and let $P_{F,L}$ be the projection onto $\ell^2(S_{F,L})$.
-* **`unassigned`**, line 996 --- Put
-* **`unassigned`**, line 1003 --- This map is u.c.p., being the compression of a unitary representation.
-* **`unassigned`**, line 1003 --- For $g\in F$ and $j+k_g\in I_L$, the action satisfies
-* **`unassigned`**, line 1010 --- So for $s=t^jr_qH_{F,L}$, the point $g\cdot s$ lies in $S_{F,L}$ if and only if $j+k_g\in I_L$.
-* **`unassigned`**, line 1013 --- Let $g,h\in F$, and let $\delta_s$ be the basis vector of $\ell^2(S_{F,L})$ at $s=t^jr_qH_{F,L}$.
-* **`unassigned`**, line 1013 --- If $j+k_h\in I_L$, then $h\cdot s\in S_{F,L}$, so $\phi_{F,L}(u_g)\phi_{F,L}(u_h)\delta_s=P_{F,L}\delta_{gh\cdot s} =\phi_{F,L}(u_{gh})\delta_s$.
-* **`unassigned`**, line 1013 --- If $j+k_h\notin I_L$, then $h\cdot s\notin S_{F,L}$, so $\phi_{F,L}(u_h)\delta_s=0$, while $\phi_{F,L}(u_{gh})\delta_s$ has norm at most one.
-* **`unassigned`**, line 1013 --- There are at most $|k_h|$ heights $j\in I_L$ with $j+k_h\notin I_L$, and there are $|Q_{F,L}|$ basis vectors of each height, out of $L|Q_{F,L}|$ in all.
-* **`unassigned`**, line 1013 --- So the normalized Hilbert--Schmidt norm satisfies
-* **`unassigned`**, line 1028 --- which tends to zero as $L\to\infty$ for fixed $h$.
-* **`unassigned`**, line 1030 --- The normalized trace of $\phi_{F,L}(u_g)$ is the fraction of points of $S_{F,L}$ fixed by $g$.
-* **`unassigned`**, line 1030 --- If $g$ fixed $wH_{F,L}$, then $w^{-1}gw\in H_{F,L}\leq N$, and hence $k_g=0$.
-* **`unassigned`**, line 1030 --- Thus an element of nonzero height fixes no point of $S_{F,L}$.
-* **`unassigned`**, line 1030 --- If $g\in F\setminus\{1\}$ and $k_g=0$, fixing $t^jr_qH_{F,L}$ would give
-* **`unassigned`**, line 1038 --- Since $H_{F,L}=\ker\theta_{F,L}$ is normal in $N_{F,L}$ and $r_q\in N_{F,L}$, this implies $a_{g,j}\in\ker\theta_{F,L}$.
-* **`unassigned`**, line 1038 --- But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.
-* **`unassigned`**, line 1038 --- Thus
-* **`unassigned`**, line 1047 --- Take a finite exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ with $1\in F_1$, and choose $L_n\ge n(1+\max_{g\in F_n}|k_g|)$.
-* **`unassigned`**, line 1047 --- The maps $\phi_{F_n,L_n}$ are asymptotically multiplicative in normalized Hilbert--Schmidt norm and their traces converge to $\tau_G$ on every canonical unitary.
-* **`unassigned`**, line 1047 --- Since the canonical unitaries span a dense subspace of $C^*_{\max}(G)$ and all the maps involved are contractive, both limits hold for all $a,b\in C^*_{\max}(G)$.
-* **`unassigned`**, line 1047 --- So $\tau_G$ is amenable.
-* **`unassigned`**, line 1057 --- Let $\Gamma$ be a countable group with property~\textup{(T)}, let $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
-* **`unassigned`**, line 1057 --- Put
-* **`unassigned`**, line 1071 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that $V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and $T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.
-* **`unassigned`**, line 1071 --- Put $X=V/\Gamma$, the left-coset space.
-* **`unassigned`**, line 1071 --- The Clifford lamp group $\operatorname{Cl}(X)$ is the group with generators $\varepsilon$ and $c_x$, $x\in X$, and relations
-* **`unassigned`**, line 1081 --- We check that $\varepsilon\ne1$ by building a model.
-* **`unassigned`**, line 1081 --- Fix a total order on $X$, let $E$ be the $\F_2$-vector space of finitely supported functions $X\to\F_2$, and for $f,g\in E$ put $B(f,g)=\sum_{x>y}f(x)g(y)$, a finite sum.
-* **`unassigned`**, line 1081 --- Then
-* **`unassigned`**, line 1088 --- defines a group structure on $\F_2\times E$: the product is associative because $B$ is bilinear, so that either way of multiplying $(a,f)$, $(b,g)$, $(c,h)$ has first coordinate $a+b+c+B(f,g)+B(f,h)+B(g,h)$; the identity is $(0,0)$; and $(a+B(f,f),f)$ is inverse to $(a,f)$.
-* **`unassigned`**, line 1088 --- In this group $(1,0)$ is a central involution, and each $(0,\delta_x)$ is an involution because $B(\delta_x,\delta_x)=0$.
-* **`unassigned`**, line 1088 --- For $x\ne y$ exactly one of $B(\delta_x,\delta_y)$ and $B(\delta_y,\delta_x)$ equals $1$, so the commutator of $(0,\delta_x)$ and $(0,\delta_y)$ is $(1,0)$.
-* **`unassigned`**, line 1088 --- So $\varepsilon\mapsto(1,0)$, $c_x\mapsto(0,\delta_x)$ extends to a homomorphism $\operatorname{Cl}(X)\to\F_2\times E$, and $\varepsilon\ne1$.
-* **`unassigned`**, line 1088 --- The relations let us write every element of $\operatorname{Cl}(X)$ as
-* **`unassigned`**, line 1104 --- and this word maps to $(a,\delta_{x_1}+\cdots+\delta_{x_r})$, so the expression is unique and the homomorphism is an isomorphism.
-* **`unassigned`**, line 1104 --- In particular, for a finite subset $Y\subseteq X$, the subgroup generated by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$; so $\operatorname{Cl}(X)$ is countable and locally finite.
-* **`unassigned`**, line 1104 --- The relations are invariant under permutations of $X$, so every permutation of $X$ induces an automorphism of $\operatorname{Cl}(X)$ that permutes the $c_x$ accordingly and fixes $\varepsilon$.
-* **`unassigned`**, line 1104 --- In this way $V$ acts on $\operatorname{Cl}(X)$ through its action on $X$, and we put
-* **`unassigned`**, line 1119 --- The group $W$ is not MF.
+* **`unassigned`**, line 943 --- Suppose that $\tau_G$ is quasidiagonal, and let $\phi_n$ be u.c.p.
+* **`unassigned`**, line 943 --- maps as in the definition, with the first limit in operator norm.
+* **`unassigned`**, line 943 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
+* **`unassigned`**, line 951 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
+* **`unassigned`**, line 951 --- If $g\ne1$, then $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$, so $V_n(g)$ does not converge to $1$ in operator norm, which would force $\tr_{d_n}(\phi_n(u_g))\to1$.
+* **`unassigned`**, line 951 --- So $G$ is MF, contrary to the hypothesis.
+* **`unassigned`**, line 973 --- Write $g=x_gt^{k_g}$, where $x_g\in N$, $k_g\in\mathbb Z$, and $t=(1,1)$, so $txt^{-1}=\beta(x)$ for $x\in N$.
+* **`unassigned`**, line 973 --- Call $k_g$ the height of $g$.
+* **`unassigned`**, line 973 --- Fix a finite set $F\subseteq G$ and a positive integer $L$, and put $I_L=\{0,\ldots,L-1\}$.
+* **`unassigned`**, line 973 --- Define
+* **`unassigned`**, line 981 --- and put $N_{F,L}=\langle a_{g,j}:g\in F,\ j\in I_L\rangle$.
+* **`unassigned`**, line 981 --- This finitely generated subgroup of $N$ is residually finite, so there is a finite quotient
+* **`unassigned`**, line 987 --- that separates every nonidentity $a_{g,j}$: take the product of finitely many finite quotients, one separating each $a_{g,j}$, and restrict to the image.
+* **`unassigned`**, line 987 --- Let $H_{F,L}\leq G$ be the image of $\ker\theta_{F,L}\leq N_{F,L}$ under the inclusion $N\hookrightarrow G$.
+* **`unassigned`**, line 987 --- Choose a representative $r_q\in N_{F,L}$ for each $q\in Q_{F,L}$ and set
+* **`unassigned`**, line 997 --- These cosets are pairwise distinct.
+* **`unassigned`**, line 997 --- Let $\lambda_{F,L}$ be the quasi-regular representation of $G$ on $\ell^2(G/H_{F,L})$ and let $P_{F,L}$ be the projection onto $\ell^2(S_{F,L})$.
+* **`unassigned`**, line 997 --- Put
+* **`unassigned`**, line 1004 --- This map is u.c.p., being the compression of a unitary representation.
+* **`unassigned`**, line 1004 --- For $g\in F$ and $j+k_g\in I_L$, the action satisfies
+* **`unassigned`**, line 1011 --- So for $s=t^jr_qH_{F,L}$, the point $g\cdot s$ lies in $S_{F,L}$ if and only if $j+k_g\in I_L$.
+* **`unassigned`**, line 1014 --- Let $g,h\in F$, and let $\delta_s$ be the basis vector of $\ell^2(S_{F,L})$ at $s=t^jr_qH_{F,L}$.
+* **`unassigned`**, line 1014 --- If $j+k_h\in I_L$, then $h\cdot s\in S_{F,L}$, so $\phi_{F,L}(u_g)\phi_{F,L}(u_h)\delta_s=P_{F,L}\delta_{gh\cdot s} =\phi_{F,L}(u_{gh})\delta_s$.
+* **`unassigned`**, line 1014 --- If $j+k_h\notin I_L$, then $h\cdot s\notin S_{F,L}$, so $\phi_{F,L}(u_h)\delta_s=0$, while $\phi_{F,L}(u_{gh})\delta_s$ has norm at most one.
+* **`unassigned`**, line 1014 --- There are at most $|k_h|$ heights $j\in I_L$ with $j+k_h\notin I_L$, and there are $|Q_{F,L}|$ basis vectors of each height, out of $L|Q_{F,L}|$ in all.
+* **`unassigned`**, line 1014 --- So the normalized Hilbert--Schmidt norm satisfies
+* **`unassigned`**, line 1029 --- which tends to zero as $L\to\infty$ for fixed $h$.
+* **`unassigned`**, line 1031 --- The normalized trace of $\phi_{F,L}(u_g)$ is the fraction of points of $S_{F,L}$ fixed by $g$.
+* **`unassigned`**, line 1031 --- If $g$ fixed $wH_{F,L}$, then $w^{-1}gw\in H_{F,L}\leq N$, and hence $k_g=0$.
+* **`unassigned`**, line 1031 --- Thus an element of nonzero height fixes no point of $S_{F,L}$.
+* **`unassigned`**, line 1031 --- If $g\in F\setminus\{1\}$ and $k_g=0$, fixing $t^jr_qH_{F,L}$ would give
+* **`unassigned`**, line 1039 --- Since $H_{F,L}=\ker\theta_{F,L}$ is normal in $N_{F,L}$ and $r_q\in N_{F,L}$, this implies $a_{g,j}\in\ker\theta_{F,L}$.
+* **`unassigned`**, line 1039 --- But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.
+* **`unassigned`**, line 1039 --- Thus
+* **`unassigned`**, line 1048 --- Take a finite exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ with $1\in F_1$, and choose $L_n\ge n(1+\max_{g\in F_n}|k_g|)$.
+* **`unassigned`**, line 1048 --- The maps $\phi_{F_n,L_n}$ are asymptotically multiplicative in normalized Hilbert--Schmidt norm and their traces converge to $\tau_G$ on every canonical unitary.
+* **`unassigned`**, line 1048 --- Since the canonical unitaries span a dense subspace of $C^*_{\max}(G)$ and all the maps involved are contractive, both limits hold for all $a,b\in C^*_{\max}(G)$.
+* **`unassigned`**, line 1048 --- So $\tau_G$ is amenable.
+* **`unassigned`**, line 1058 --- Let $\Gamma$ be a countable group with property~\textup{(T)}, let $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
+* **`unassigned`**, line 1058 --- Put
+* **`unassigned`**, line 1072 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that $V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and $T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.
+* **`unassigned`**, line 1072 --- Put $X=V/\Gamma$, the left-coset space.
+* **`unassigned`**, line 1072 --- The Clifford lamp group $\operatorname{Cl}(X)$ is the group with generators $\varepsilon$ and $c_x$, $x\in X$, and relations
+* **`unassigned`**, line 1082 --- We check that $\varepsilon\ne1$ by building a model.
+* **`unassigned`**, line 1082 --- Fix a total order on $X$, let $E$ be the $\F_2$-vector space of finitely supported functions $X\to\F_2$, and for $f,g\in E$ put $B(f,g)=\sum_{x>y}f(x)g(y)$, a finite sum.
+* **`unassigned`**, line 1082 --- Then
+* **`unassigned`**, line 1089 --- defines a group structure on $\F_2\times E$: the product is associative because $B$ is bilinear, so that either way of multiplying $(a,f)$, $(b,g)$, $(c,h)$ has first coordinate $a+b+c+B(f,g)+B(f,h)+B(g,h)$; the identity is $(0,0)$; and $(a+B(f,f),f)$ is inverse to $(a,f)$.
+* **`unassigned`**, line 1089 --- In this group $(1,0)$ is a central involution, and each $(0,\delta_x)$ is an involution because $B(\delta_x,\delta_x)=0$.
+* **`unassigned`**, line 1089 --- For $x\ne y$ exactly one of $B(\delta_x,\delta_y)$ and $B(\delta_y,\delta_x)$ equals $1$, so the commutator of $(0,\delta_x)$ and $(0,\delta_y)$ is $(1,0)$.
+* **`unassigned`**, line 1089 --- So $\varepsilon\mapsto(1,0)$, $c_x\mapsto(0,\delta_x)$ extends to a homomorphism $\operatorname{Cl}(X)\to\F_2\times E$, and $\varepsilon\ne1$.
+* **`unassigned`**, line 1089 --- The relations let us write every element of $\operatorname{Cl}(X)$ as
+* **`unassigned`**, line 1105 --- and this word maps to $(a,\delta_{x_1}+\cdots+\delta_{x_r})$, so the expression is unique and the homomorphism is an isomorphism.
+* **`unassigned`**, line 1105 --- In particular, for a finite subset $Y\subseteq X$, the subgroup generated by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$; so $\operatorname{Cl}(X)$ is countable and locally finite.
+* **`unassigned`**, line 1105 --- The relations are invariant under permutations of $X$, so every permutation of $X$ induces an automorphism of $\operatorname{Cl}(X)$ that permutes the $c_x$ accordingly and fixes $\varepsilon$.
+* **`unassigned`**, line 1105 --- In this way $V$ acts on $\operatorname{Cl}(X)$ through its action on $X$, and we put
+* **`unassigned`**, line 1120 --- The group $W$ is not MF.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1119 --- More precisely, every homomorphism from $W$ to an MF group kills $\varepsilon$.
+* **`unassigned`**, line 1120 --- More precisely, every homomorphism from $W$ to an MF group kills $\varepsilon$.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1126 --- Then $tct^{-1}$ is the lamp at $t\Gamma$ and $a(tct^{-1})a^{-1}$ is the lamp at $at\Gamma$.
-* **`unassigned`**, line 1126 --- These cosets are distinct, because $t\Gamma=at\Gamma$ would mean $a\in t\Gamma t^{-1}=\alpha(\Gamma)$.
-* **`unassigned`**, line 1126 --- So
-* **`unassigned`**, line 1135 --- Set
-* **`unassigned`**, line 1139 --- Both $x$ and $y$ are involutions, and hence
-* **`unassigned`**, line 1145 --- Since $t\in\operatorname{Comp}_W(\Gamma)$, $c\in C_W(\Gamma)$ and $a\in\Gamma$, the element $d=[tct^{-1},a]$ is one of the generators of $\mathfrak D_W(\Gamma)$.
-* **`unassigned`**, line 1145 --- Thus
-* **`unassigned`**, line 1151 --- The subgroup $\langle\varepsilon\rangle$ is central, so normal, and it is finite, so it has property~\textup{(T)}.
-* **`unassigned`**, line 1151 --- The group $W$ is countable, since $T_\alpha$, $V$, $X$, and $\operatorname{Cl}(X)$ are countable.
-* **`unassigned`**, line 1151 --- So Theorem~\ref{thm:compression-criterion} applies with $L=\Gamma$ and $K=\langle\varepsilon\rangle$: every homomorphism from $W$ to an MF group is trivial on $\varepsilon$.
-* **`unassigned`**, line 1151 --- In particular, $W$ is not MF\@.
-* **`unassigned`**, line 1161 --- Suppose in addition that $\Gamma$ is residually finite and that $[\Gamma:\alpha(\Gamma)]<\infty$.
-* **`unassigned`**, line 1161 --- Then
-* **`unassigned`**, line 1167 --- where $K$ is locally residually finite.
-* **`unassigned`**, line 1167 --- Consequently $W$ is sofic but not MF, and the canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
-* **`unassigned`**, line 1179 --- For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th copy of $\Gamma$ in $T_\alpha$.
-* **`unassigned`**, line 1179 --- Successive telescope copies have finite relative index because $[\Gamma:\alpha(\Gamma)]<\infty$, so all the $\Gamma_n$ are commensurable.
-* **`unassigned`**, line 1179 --- In fact $\Gamma$ is commensurated by $V$: every element of $T_\alpha$ lies in some telescope copy, and conjugation by $t$ shifts the copies.
-* **`unassigned`**, line 1179 --- Hence the stabilizer in $\Gamma_n$ of every point $v\Gamma\in V/\Gamma$ has finite index, and every $\Gamma_n$-orbit in $X$ is finite.
-* **`unassigned`**, line 1188 --- A finite subset of $K$ involves only finitely many lamps $c_x$, and its $T_\alpha$-coordinates lie in one $\Gamma_n$.
-* **`unassigned`**, line 1188 --- Let $Y$ be the union of the $\Gamma_n$-orbits of these finitely many $x$.
-* **`unassigned`**, line 1188 --- Then $Y$ is finite and $\Gamma_n$-invariant, and the finite subset is contained in
-* **`unassigned`**, line 1195 --- where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the normal form above.
-* **`unassigned`**, line 1195 --- This semidirect product is residually finite.
-* **`unassigned`**, line 1195 --- Indeed, an element with nontrivial $\Gamma_n$-component survives in a finite quotient of $\Gamma_n$.
-* **`unassigned`**, line 1195 --- For a nontrivial element of $C_Y$, let $J$ be the kernel of the action $\Gamma_n\to\operatorname{Aut}(C_Y)$.
-* **`unassigned`**, line 1195 --- The quotient $\Gamma_n/J$ is finite, and the finite semidirect product $C_Y\rtimes(\Gamma_n/J)$ retains that element.
-* **`unassigned`**, line 1206 --- Each finitely generated subgroup of $K$ is residually finite and hence sofic.
-* **`unassigned`**, line 1206 --- The group $K$ is their directed union, and $W/K\cong\mathbb Z$ is amenable.
-* **`unassigned`**, line 1206 --- Soficity passes to directed unions and to extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
-* **`unassigned`**, line 1206 --- Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
-* **`unassigned`**, line 1206 --- By Proposition~\ref{prop:locally-rf-by-z-trace} the canonical trace is amenable, and by Theorem~\ref{thm:factorization-nonmf-trace} it is not quasidiagonal.
-* **`unassigned`**, line 1216 --- For a concrete instance, take
-* **`unassigned`**, line 1225 --- It is residually finite, since reduction modulo a suitable integer separates any two distinct integral matrices, and it has property~\textup{(T)}~\cite[Example~1.7.4(i)]{BHV}.
-* **`unassigned`**, line 1225 --- Let
+* **`unassigned`**, line 1127 --- Then $tct^{-1}$ is the lamp at $t\Gamma$ and $a(tct^{-1})a^{-1}$ is the lamp at $at\Gamma$.
+* **`unassigned`**, line 1127 --- These cosets are distinct, because $t\Gamma=at\Gamma$ would mean $a\in t\Gamma t^{-1}=\alpha(\Gamma)$.
+* **`unassigned`**, line 1127 --- So
+* **`unassigned`**, line 1136 --- Set
+* **`unassigned`**, line 1140 --- Both $x$ and $y$ are involutions, and hence
+* **`unassigned`**, line 1146 --- Since $t\in\operatorname{Comp}_W(\Gamma)$, $c\in C_W(\Gamma)$ and $a\in\Gamma$, the element $d=[tct^{-1},a]$ is one of the generators of $\mathfrak D_W(\Gamma)$.
+* **`unassigned`**, line 1146 --- Thus
+* **`unassigned`**, line 1152 --- The subgroup $\langle\varepsilon\rangle$ is central, so normal, and it is finite, so it has property~\textup{(T)}.
+* **`unassigned`**, line 1152 --- The group $W$ is countable, since $T_\alpha$, $V$, $X$, and $\operatorname{Cl}(X)$ are countable.
+* **`unassigned`**, line 1152 --- So Theorem~\ref{thm:compression-criterion} applies with $L=\Gamma$ and $K=\langle\varepsilon\rangle$: every homomorphism from $W$ to an MF group is trivial on $\varepsilon$.
+* **`unassigned`**, line 1152 --- In particular, $W$ is not MF\@.
+* **`unassigned`**, line 1162 --- Suppose in addition that $\Gamma$ is residually finite and that $[\Gamma:\alpha(\Gamma)]<\infty$.
+* **`unassigned`**, line 1162 --- Then
+* **`unassigned`**, line 1168 --- where $K$ is locally residually finite.
+* **`unassigned`**, line 1168 --- Consequently $W$ is sofic but not MF, and the canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
+* **`unassigned`**, line 1180 --- For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th copy of $\Gamma$ in $T_\alpha$.
+* **`unassigned`**, line 1180 --- Successive telescope copies have finite relative index because $[\Gamma:\alpha(\Gamma)]<\infty$, so all the $\Gamma_n$ are commensurable.
+* **`unassigned`**, line 1180 --- In fact $\Gamma$ is commensurated by $V$: every element of $T_\alpha$ lies in some telescope copy, and conjugation by $t$ shifts the copies.
+* **`unassigned`**, line 1180 --- Hence the stabilizer in $\Gamma_n$ of every point $v\Gamma\in V/\Gamma$ has finite index, and every $\Gamma_n$-orbit in $X$ is finite.
+* **`unassigned`**, line 1189 --- A finite subset of $K$ involves only finitely many lamps $c_x$, and its $T_\alpha$-coordinates lie in one $\Gamma_n$.
+* **`unassigned`**, line 1189 --- Let $Y$ be the union of the $\Gamma_n$-orbits of these finitely many $x$.
+* **`unassigned`**, line 1189 --- Then $Y$ is finite and $\Gamma_n$-invariant, and the finite subset is contained in
+* **`unassigned`**, line 1196 --- where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the normal form above.
+* **`unassigned`**, line 1196 --- This semidirect product is residually finite.
+* **`unassigned`**, line 1196 --- Indeed, an element with nontrivial $\Gamma_n$-component survives in a finite quotient of $\Gamma_n$.
+* **`unassigned`**, line 1196 --- For a nontrivial element of $C_Y$, let $J$ be the kernel of the action $\Gamma_n\to\operatorname{Aut}(C_Y)$.
+* **`unassigned`**, line 1196 --- The quotient $\Gamma_n/J$ is finite, and the finite semidirect product $C_Y\rtimes(\Gamma_n/J)$ retains that element.
+* **`unassigned`**, line 1207 --- Each finitely generated subgroup of $K$ is residually finite and hence sofic.
+* **`unassigned`**, line 1207 --- The group $K$ is their directed union, and $W/K\cong\mathbb Z$ is amenable.
+* **`unassigned`**, line 1207 --- Soficity passes to directed unions and to extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
+* **`unassigned`**, line 1207 --- Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
+* **`unassigned`**, line 1207 --- By Proposition~\ref{prop:locally-rf-by-z-trace} the canonical trace is amenable, and by Theorem~\ref{thm:factorization-nonmf-trace} it is not quasidiagonal.
+* **`unassigned`**, line 1217 --- For a concrete instance, take
+* **`unassigned`**, line 1226 --- It is residually finite, since reduction modulo a suitable integer separates any two distinct integral matrices, and it has property~\textup{(T)}~\cite[Example~1.7.4(i)]{BHV}.
+* **`unassigned`**, line 1226 --- Let
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1235 --- so that $\alpha(v,A)=(2v,A)$.
-* **`unassigned`**, line 1235 --- This is injective, and its image consists of the affine matrices whose translation coordinates are all even, so $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.
-* **`unassigned`**, line 1235 --- Translation $a$ by the first standard basis vector lies outside $\alpha(\bar\Gamma)$.
-* **`unassigned`**, line 1235 --- So the preceding construction applies to $\bar\Gamma$, $\alpha$ and $a$.
-* **`unassigned`**, line 1243 --- The affine--Clifford group $W$ is sofic but not MF.
-* **`unassigned`**, line 1243 --- Its canonical trace $\tau_W$ on $C^*_{\max}(W)$ is amenable but not quasidiagonal.
-* **`unassigned`**, line 1249 --- By the properties of $\bar\Gamma$ and $\alpha$ just established, Proposition~\ref{prop:clifford-locally-rf} applies to $\bar\Gamma$, $\alpha$, and $a$.
-* **`unassigned`**, line 1257 --- By Proposition~\ref{prop:clifford-locally-rf}, $W\cong K\rtimes\mathbb Z$ with $K$ locally residually finite, and the remaining assertions are Corollary~\ref{cor:affine-clifford-trace}.
-* **`unassigned`**, line 1311 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
-* **`unassigned`**, line 1344 --- Let $N$ be the normal closure of $S$ in $G_0$; it is nontrivial because $S$ is.
-* **`unassigned`**, line 1344 --- By Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and $\Omega=\varnothing$, there is a surjective homomorphism $\varphi\colon G_0\to Q$ with $Q$ two-generated, finitely presented, torsion-free, and acylindrically hyperbolic, and $\varphi(N)=Q$.
-* **`unassigned`**, line 1344 --- The group $Q$ is infinite, being acylindrically hyperbolic, and it has property~\textup{(T)} as a quotient of $G_0$.
-* **`unassigned`**, line 1352 --- By Lemma~\ref{lem:commutator-in-defect} applied to $\varphi$, $\varphi(S)\le\mathfrak D_Q(\varphi(\Gamma))$.
-* **`unassigned`**, line 1352 --- The subgroup $\mathfrak D_Q(\varphi(\Gamma))$ is normal in $Q$, and the normal closure of $\varphi(S)$ is $\varphi(N)=Q$, so
-* **`unassigned`**, line 1359 --- Both $Q$ and $\varphi(\Gamma)$ have property~\textup{(T)}, as quotients of $G_0$ and $\Gamma$, respectively.
-* **`unassigned`**, line 1359 --- By the last assertion of Theorem~\ref{thm:compression-criterion}, every homomorphism from $Q$ to an MF group is trivial. A homomorphism from a quotient of $Q$ composes to one from $Q$, so no nontrivial quotient of $Q$ is MF\@.
-* **`unassigned`**, line 1368 --- The author also thanks Tatiana Shulman for clarifying the terminology and historical context of the MF question, Caleb Eckhardt for discussions of MF representations and matrix norms and for generously writing and sharing the expository note~\cite{Eckhardt}, and Bruce Blackadar for correspondence on the origin of the MF and NF problems.
-* **`unassigned`**, line 1379 --- A supercomputer was used to rule out possible approaches but did not contribute to the mathematics used in this paper.
-* **`unassigned`**, line 1379 --- GPT-5.6 Sol and Claude Fable~5 were used in Claude Code, Codex, and on the ChatGPT and Claude websites over multiple days, across thousands of user prompts, and Claude Opus~5 also with formalization and operational coding tasks.
-* **`unassigned`**, line 1379 --- A custom informal proof tool was used to provide scaffolding to the AIs.
-* **`unassigned`**, line 1379 --- The non-MF result was first formulated by GPT-5.6 Sol (``high'' thinking effort, ChatGPT web) while working on a separate but related problem, after the author mentioned the possibility of the existing work applying to MF groups instead of the other problem.
-* **`unassigned`**, line 1379 --- This instance was given thousands of pages of informal notes accumulated from multiple days of work on other related problems.
-* **`unassigned`**, line 1379 --- Other parallel agents without the MF idea (including ``Pro'' mode) did not discover the key MF result.
-* **`unassigned`**, line 1379 --- The construction entered the public repository between August~8 and~12, 2026, the first manuscript draft is dated August~12, experts were consulted from August~13, and the Lean development was registered at Palomar on August~24 (PALOMAR-2026-08-24-000006).
-* **`unassigned`**, line 1379 --- The exact prompt given to the instance leading to the non-MF proof was:
-* **`unassigned`**, line 1399 --- ``Achieve f\{MF of the Clifford Kun--Thom extension \}$\widetilde W$ in such a way that it archives our goals and ends everything, or, possibly, a different breakthrough, leading to achieving the final result.
-* **`unassigned`**, line 1399 --- You got this!''
+* **`unassigned`**, line 1236 --- so that $\alpha(v,A)=(2v,A)$.
+* **`unassigned`**, line 1236 --- This is injective, and its image consists of the affine matrices whose translation coordinates are all even, so $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.
+* **`unassigned`**, line 1236 --- Translation $a$ by the first standard basis vector lies outside $\alpha(\bar\Gamma)$.
+* **`unassigned`**, line 1236 --- So the preceding construction applies to $\bar\Gamma$, $\alpha$ and $a$.
+* **`unassigned`**, line 1244 --- The affine--Clifford group $W$ is sofic but not MF.
+* **`unassigned`**, line 1244 --- Its canonical trace $\tau_W$ on $C^*_{\max}(W)$ is amenable but not quasidiagonal.
+* **`unassigned`**, line 1250 --- By the properties of $\bar\Gamma$ and $\alpha$ just established, Proposition~\ref{prop:clifford-locally-rf} applies to $\bar\Gamma$, $\alpha$, and $a$.
+* **`unassigned`**, line 1258 --- By Proposition~\ref{prop:clifford-locally-rf}, $W\cong K\rtimes\mathbb Z$ with $K$ locally residually finite, and the remaining assertions are Corollary~\ref{cor:affine-clifford-trace}.
+* **`unassigned`**, line 1312 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
+* **`unassigned`**, line 1345 --- Let $N$ be the normal closure of $S$ in $G_0$; it is nontrivial because $S$ is.
+* **`unassigned`**, line 1345 --- By Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and $\Omega=\varnothing$, there is a surjective homomorphism $\varphi\colon G_0\to Q$ with $Q$ two-generated, finitely presented, torsion-free, and acylindrically hyperbolic, and $\varphi(N)=Q$.
+* **`unassigned`**, line 1345 --- The group $Q$ is infinite, being acylindrically hyperbolic, and it has property~\textup{(T)} as a quotient of $G_0$.
+* **`unassigned`**, line 1353 --- By Lemma~\ref{lem:commutator-in-defect} applied to $\varphi$, $\varphi(S)\le\mathfrak D_Q(\varphi(\Gamma))$.
+* **`unassigned`**, line 1353 --- The subgroup $\mathfrak D_Q(\varphi(\Gamma))$ is normal in $Q$, and the normal closure of $\varphi(S)$ is $\varphi(N)=Q$, so
+* **`unassigned`**, line 1360 --- Both $Q$ and $\varphi(\Gamma)$ have property~\textup{(T)}, as quotients of $G_0$ and $\Gamma$, respectively.
+* **`unassigned`**, line 1360 --- By the last assertion of Theorem~\ref{thm:compression-criterion}, every homomorphism from $Q$ to an MF group is trivial. A homomorphism from a quotient of $Q$ composes to one from $Q$, so no nontrivial quotient of $Q$ is MF\@.
+* **`unassigned`**, line 1369 --- The author also thanks Tatiana Shulman for clarifying the terminology and historical context of the MF question, Caleb Eckhardt for discussions of MF representations and matrix norms and for generously writing and sharing the expository note~\cite{Eckhardt}, and Bruce Blackadar for correspondence on the origin of the MF and NF problems.
+* **`unassigned`**, line 1380 --- A supercomputer was used to rule out possible approaches but did not contribute to the mathematics used in this paper.
+* **`unassigned`**, line 1380 --- GPT-5.6 Sol and Claude Fable~5 were used in Claude Code, Codex, and on the ChatGPT and Claude websites over multiple days, across thousands of user prompts, and Claude Opus~5 also with formalization and operational coding tasks.
+* **`unassigned`**, line 1380 --- A custom informal proof tool was used to provide scaffolding to the AIs.
+* **`unassigned`**, line 1380 --- The non-MF result was first formulated by GPT-5.6 Sol (``high'' thinking effort, ChatGPT web) while working on a separate but related problem, after the author mentioned the possibility of the existing work applying to MF groups instead of the other problem.
+* **`unassigned`**, line 1380 --- This instance was given thousands of pages of informal notes accumulated from multiple days of work on other related problems.
+* **`unassigned`**, line 1380 --- Other parallel agents without the MF idea (including ``Pro'' mode) did not discover the key MF result.
+* **`unassigned`**, line 1380 --- The construction entered the public repository between August~8 and~12, 2026, the first manuscript draft is dated August~12, experts were consulted from August~13, and the Lean development was registered at Palomar on August~24 (PALOMAR-2026-08-24-000006).
+* **`unassigned`**, line 1380 --- The exact prompt given to the instance leading to the non-MF proof was:
+* **`unassigned`**, line 1400 --- ``Achieve f\{MF of the Clifford Kun--Thom extension \}$\widetilde W$ in such a way that it archives our goals and ends everything, or, possibly, a different breakthrough, leading to achieving the final result.
+* **`unassigned`**, line 1400 --- You got this!''
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 7 | 4 |
-| Introduction | 53 | 28 |
+| Introduction | 52 | 27 |
 | Related work | 16 | 4 |
 | Corona homomorphisms | 6 | 4 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 51 | 10 |
