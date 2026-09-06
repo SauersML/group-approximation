@@ -3607,6 +3607,7 @@ import GroupApproximation.CharClass.CohomologyChartGenBridge
 import GroupApproximation.CharClass.CartanMidFourChain
 import GroupApproximation.CharClass.BundleGysinPieces
 import GroupApproximation.CharClass.ProjectiveSpaceGenHyp
+import GroupApproximation.CharClass.LerayHirschDiagCover
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
