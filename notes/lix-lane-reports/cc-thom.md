@@ -227,6 +227,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/LIXThomClassTerm.lean` | `range_comp_linearEquiv`, `injective_thomJm`, `hyperLH_range`, `thomJmTotal{,_apply}`, `injective_thomJmTotal`, `range_thomJmTotal`, `one_le_lixRank_dd`, `lixLHplus`, `lixLHhyper`, **`lixThomClassTerm`**, **`lixThomClassTerm_ne_zero`** — the Thom class as an **unconditional term**, `htaut` discharged by `cc-projective`'s `pull_sInclusion_tautEulerOf` |
 | `CharClass/LIXBaseConnected.lean` | `pathConnectedSpace_sphereOne`, `pathConnectedSpace_unitVectorsThree`, **`pathConnectedSpace_lixN`**, `nonempty_lixN`, **`lixCohZeroEquiv`** — the base is path-connected and its `H^0` is a line, which is the whole content of `hres` once the two Thom isomorphisms are in place |
 | `CharClass/LIXThomResReduction.lean` | `cohCastEquiv`, `injective_of_line`, **`lixRelLine`**, **`injective_lixRes_of_ne_zero`**, `ne_zero_of_injective_lixRes` — `hres` **is** one nonvanishing statement, because the source of `lixRes` is a line |
+| `CharClass/LerayHirschGammaIso.lean` | `LH.lhMap_eq_sum_lhDomain`, `LH.lhMap_of_iso`, **`LH.gammaCoeff_of_iso`**, **`LH.gamma_of_iso`** — the mod-2 Chern classes survive a transport of the total space; the half of `hclass` that mentions no free binder |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -776,3 +777,5 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`LIXBaseConnected`** | **green, 8887 jobs, `73bc9b919`, first probe** |
 | 2026-09-06 | `LIXThomResReduction` | red: `omega` cannot see through `↑(Fin.last r)`; needs `rw [Fin.val_last]` first |
 | 2026-09-06 | **`LIXThomResReduction`** | **green, 9206 jobs, `71b55c4d3`** |
+| 2026-09-06 | `LerayHirschGammaIso` | red: `LHCast.pull_lhTerm` unknown, `CohomologyLHRestrict` not in the import chain |
+| 2026-09-06 | **`LerayHirschGammaIso`** | **green, 8929 jobs, `1da909618`** |
