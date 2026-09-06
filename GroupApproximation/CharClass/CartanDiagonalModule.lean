@@ -63,16 +63,24 @@ identified on the nose with Mathlib's categorical-coproduct presentation of
 that complex, so that the construction below can be checked without first
 resolving that identification (see the lane report). -/
 structure SingularBoundaryData where
-  /-- The boundary map `C_{n+1}(X; F₂) → C_n(X; F₂)`, in the Finsupp
-  presentation of the free module on singular simplices. -/
+  /-- The boundary map `C_{n+1}(X) → C_n(X)`, in the Finsupp presentation of the
+  free module on singular simplices, with **group-ring** coefficients.
+
+  Coefficients in `Λ` rather than in `ZMod 2` is a deliberate choice: the
+  boundary then composes with the `Λ`-linear differential of `W ⊗ S(X)` with no
+  `Finsupp.mapRange` along the structure map in between, and every later proof
+  is plain `Λ`-linear algebra.  The price is paid once, at instantiation:
+  `Λ` has characteristic two, so `∂∂ = 0` over `ZMod 2` transfers, each
+  cancelling pair of composite faces cancelling for the same reason. -/
   bd : ∀ (X : TopCat.{0}) (n : ℕ),
-    ((stdSimplexTop (n + 1) ⟶ X) →₀ ZMod 2) →ₗ[ZMod 2] ((stdSimplexTop n ⟶ X) →₀ ZMod 2)
+    ((stdSimplexTop (n + 1) ⟶ X) →₀ GroupRingZ2) →ₗ[GroupRingZ2]
+      ((stdSimplexTop n ⟶ X) →₀ GroupRingZ2)
   /-- Naturality in the space. -/
   bd_natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (n : ℕ)
-      (c : (stdSimplexTop (n + 1) ⟶ X) →₀ ZMod 2),
+      (c : (stdSimplexTop (n + 1) ⟶ X) →₀ GroupRingZ2),
       bd Y n (Finsupp.mapDomain (· ≫ f) c) = Finsupp.mapDomain (· ≫ f) (bd X n c)
   /-- `∂ ∘ ∂ = 0`. -/
-  bd_bd : ∀ (X : TopCat.{0}) (n : ℕ) (c : (stdSimplexTop (n + 2) ⟶ X) →₀ ZMod 2),
+  bd_bd : ∀ (X : TopCat.{0}) (n : ℕ) (c : (stdSimplexTop (n + 2) ⟶ X) →₀ GroupRingZ2),
       bd X n (bd X (n + 1) c) = 0
 
 variable (data : SingularBoundaryData)
@@ -125,9 +133,9 @@ noncomputable def wDiffS (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ
     ∀ n : Fin (k + 2), (stdSimplexTop n.val ⟶ X) → WTensorSMod X k :=
   Fin.cases (motive := fun n : Fin (k + 2) => (stdSimplexTop n.val ⟶ X) → WTensorSMod X k)
     (fun _ => 0)
-    (fun m σ => Finsupp.mapDomain (fun τ => (⟨m, τ⟩ : WSIndex k X))
-      (Finsupp.mapRange (algebraMap (ZMod 2) GroupRingZ2) (map_zero _)
-        (data.bd X m.val (Finsupp.single σ (1 : ZMod 2)))))
+    (fun m σ => Finsupp.lmapDomain GroupRingZ2 GroupRingZ2
+      (fun τ => (⟨m, τ⟩ : WSIndex k X))
+      (data.bd X m.val (Finsupp.single σ (1 : GroupRingZ2))))
 
 @[simp] theorem wDiffS_zero (X : TopCat.{0}) (k : ℕ)
     (σ : stdSimplexTop (0 : Fin (k + 2)).val ⟶ X) : wDiffS data X k 0 σ = 0 := by
@@ -136,9 +144,8 @@ noncomputable def wDiffS (data : SingularBoundaryData) (X : TopCat.{0}) (k : ℕ
 @[simp] theorem wDiffS_succ (X : TopCat.{0}) (k : ℕ) (m : Fin (k + 1))
     (σ : stdSimplexTop (Fin.succ m).val ⟶ X) :
     wDiffS data X k (Fin.succ m) σ
-      = Finsupp.mapDomain (fun τ => (⟨m, τ⟩ : WSIndex k X))
-          (Finsupp.mapRange (algebraMap (ZMod 2) GroupRingZ2) (map_zero _)
-            (data.bd X m.val (Finsupp.single σ (1 : ZMod 2)))) := by
+      = Finsupp.lmapDomain GroupRingZ2 GroupRingZ2 (fun τ => (⟨m, τ⟩ : WSIndex k X))
+          (data.bd X m.val (Finsupp.single σ (1 : GroupRingZ2))) := by
   rw [wDiffS, Fin.cases_succ]
 
 /-- The value of the differential on one generator `e_{k+1-n} ⊗ σ` of degree
