@@ -199,8 +199,8 @@ The last step, that a section vanishing in no fibre is full, is the matrix-unit 
 of `sum_single_conj` applied to `X := aᴴ a`, whose trace is nowhere zero and therefore
 invertible in `C(X_j, ℂ)`; scaling the left coefficients by that inverse turns the
 averaging into an exact `∑ x_l * a * y_l = 1`, which `LIX.isFull_of_sum_eq_one` consumes.
-It is in `Analysis/LIXConnectingMapFullnessSum.lean` rather than here because the assembly
-elaborates slowly and should not hold this module back.
+It is in `Analysis/LIXConnectingMapFullnessSum.lean` rather than here, green, because the
+assembly elaborates slowly and should not hold this module back.
 -/
 
 end

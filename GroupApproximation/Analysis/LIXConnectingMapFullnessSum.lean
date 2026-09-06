@@ -5,10 +5,10 @@ set_option autoImplicit false
 /-!
 # A section nonzero in every fibre is full
 
-**AUTHORED, UNVERIFIED — do not wire into the root.**  The statement is settled and the
-proof is complete on paper, but the final assembly currently exceeds one million
-heartbeats; it is being restructured into smaller lemmas.  Everything it depends on is
-green.
+This module is slow — about 110 seconds, under a four-million heartbeat budget — because
+the assembly carries the whole ambient algebra `M_{E_j}(C(X_j))` through a sum indexed by
+`EIdx j × EIdx j`.  It is deliberately alone in its own file so that nothing else waits on
+it.
 
 The second half of the manuscript's §5 fullness step.  See
 `Analysis/LIXConnectingMapFullness.lean` for the first half and for the matrix-unit
@@ -22,7 +22,7 @@ open scoped Matrix Kronecker ComplexOrder CStarAlgebra
 
 noncomputable section
 
-set_option maxHeartbeats 1000000 in
+set_option maxHeartbeats 4000000 in
 /-- **A section of `End E_j` that vanishes in no fibre is full in `A_j`.**
 
 `X := aᴴ a` lies in the corner and `Tr X : C(X_j, ℂ)` is nowhere zero, hence invertible;
@@ -106,7 +106,7 @@ theorem isFull_of_forall_stageEval_ne_zero (j : ℕ) {c : StageAlgebra j}
     intro st
     show Eproj j * ((tinv • (Eproj j * Matrix.single st.1 st.2 1 * Eproj j)) * Mcᴴ) * Eproj j
       = (tinv • (Eproj j * Matrix.single st.1 st.2 1 * Eproj j)) * Mcᴴ
-    rw [Matrix.mul_smul, Matrix.smul_mul, Matrix.smul_mul]
+    rw [Matrix.smul_mul, Matrix.mul_smul, Matrix.smul_mul]
     congr 1
     calc Eproj j * ((Eproj j * Matrix.single st.1 st.2 1 * Eproj j) * Mcᴴ) * Eproj j
         = (Eproj j * Eproj j) * Matrix.single st.1 st.2 1 * Eproj j * (Mcᴴ * Eproj j) := by
@@ -142,8 +142,15 @@ theorem isFull_of_forall_stageEval_ne_zero (j : ℕ) {c : StageAlgebra j}
       = ofFunctionMatrix (Xco ((Fintype.equivFin (EIdx j × EIdx j)).symm k) * Mc
           * Yco ((Fintype.equivFin (EIdx j × EIdx j)).symm k)) := by
     intro k
-    rw [coe_corner_mul, coe_corner_mul, ofFunctionMatrix_mul, ofFunctionMatrix_mul]
-    rfl
+    show ofFunctionMatrix (Xco ((Fintype.equivFin (EIdx j × EIdx j)).symm k))
+        * (c : SectionAlgebra (baseX j) (EIdx j))
+        * ofFunctionMatrix (Yco ((Fintype.equivFin (EIdx j × EIdx j)).symm k))
+      = ofFunctionMatrix (Xco ((Fintype.equivFin (EIdx j × EIdx j)).symm k) * Mc
+          * Yco ((Fintype.equivFin (EIdx j × EIdx j)).symm k))
+    rw [ofFunctionMatrix_mul (Xco ((Fintype.equivFin (EIdx j × EIdx j)).symm k) * Mc)
+        (Yco ((Fintype.equivFin (EIdx j × EIdx j)).symm k)),
+      ofFunctionMatrix_mul (Xco ((Fintype.equivFin (EIdx j × EIdx j)).symm k)) Mc,
+      hMcdef, ofFunctionMatrix_toFunctionMatrix]
   rw [Finset.sum_congr rfl fun k _ => hterm k, ← ofFunctionMatrix_sum,
     Fintype.sum_equiv (Fintype.equivFin (EIdx j × EIdx j)).symm _
       (fun st => Xco st * Mc * Yco st) (fun _ => rfl), hsum]
