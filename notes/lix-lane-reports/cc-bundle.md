@@ -28,11 +28,13 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — all 12 modules, `Build completed successfully (2976 jobs)`
+## GREEN — all 12 modules together, `Build completed successfully (2978 jobs)`
 
-Final probe 2026-09-05 late evening (`✔ Built …BundleFlag`); before it,
-2974 jobs with `✔ Built …BundlePairs`, and 2973 with `✔ Built …BundleZeroSection`
-and `✔ Built …BundleClassify`.
+Final probe 2026-09-05 late evening naming **all twelve modules in one build**,
+so the lane is green as a whole and not only module by module.  The individual
+runs before it: 2976 jobs with `✔ Built …BundleFlag`, 2974 with
+`✔ Built …BundlePairs`, 2973 with `✔ Built …BundleZeroSection` and
+`✔ Built …BundleClassify`.
 
 | module | content |
 |---|---|
