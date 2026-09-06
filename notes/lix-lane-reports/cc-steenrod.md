@@ -232,6 +232,39 @@ counts below are from the probe that first compiled each:
   index, and the Leibniz rule for the fourfold, 2876 jobs
 * `CharClass/SteenrodFourfoldBridge.lean` — the Leibniz rule in consumable form,
   2877 jobs
+* `CharClass/SteenrodFourfoldAgree.lean` — the two composites agree in degree
+  zero, `cc-cartan`'s `hzero`, 2876 jobs
+* `CharClass/SteenrodPairing.lean` — pairing the diagonal against two cochains
+  is the cup-`i` product, 2037 jobs
+* `CharClass/SteenrodFourfoldBChain.lean` — the chain map's first two layers,
+  2878 jobs
+* `CharClass/SteenrodFourfoldBNat.lean` — naturality up to the interchange,
+  2880 jobs
+
+## A correction, and what it cost
+
+`compBTerm` was wrong for its first four green probes.  It grouped the four slots
+of the fourfold as the two factors of `Φ(e_p ⊗ σ')` against the two of
+`t^p Φ(e_q ⊗ σ'')` — the second composite **without** the middle transposition —
+so it intertwined the generator with the permutation that swaps *inside* each
+block rather than with the block swap the fourfold carries.  Corrected in
+`ca1cebf87` by applying `cc-cartan`'s `midSwap`; the un-transposed value is kept
+as `compBPre`, since the Leibniz rule is stated on it and does not care how the
+slots are grouped.
+
+Two things about how it survived, both worth generalising.
+
+* **Every property proved before it was true of the wrong map too.**  Group-ring
+  linearity, the degree-zero value, the Leibniz rule, the vanishing — all hold of
+  the un-transposed grouping.  The chain-map property is the first statement that
+  separates them.  A definition is pinned down only by the first property that
+  distinguishes it from its plausible neighbours; until that one is proved, green
+  probes are evidence about the proofs and not about the definition.
+* **I had identified the exact hazard in advance and then walked into it.**  The
+  argument for retiring the transposition — that `B` is defined on a free basis
+  so the regrouping can be written into the value — is correct, and I wrote the
+  un-transposed value anyway.  Retiring an object because its effect can be
+  inlined only works if the effect is actually inlined.
 
 ## The remaining computation, specified
 
