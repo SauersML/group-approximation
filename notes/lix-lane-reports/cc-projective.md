@@ -641,3 +641,51 @@ not by `rw` — discovered inside a rewrite chain rather than at the seam.
 * Post-endpoint hygiene: retire `LH.lineEulerOf_pushforward` by importing
   cc-steenrod's `CharClass.lineEulerOf_pushforward` (438667a59, landed first).
   Separate commit, AFTER the endpoint is green, never before.
+
+## 2026-09-06 — THE TWO CHERN CLASSES WERE THE SAME CLASS, AND NOBODY KNEW
+
+* `LerayHirschNatural` (40450ebe2, **GREEN, 2060**) — naturality in the base.
+* `LerayHirschNaturalCoeff` (b9d0a9eb1, **GREEN, 2061**) — the computing form.
+* `LerayHirschCoeffComap` (babb9fe9f, **GREEN, 9151**) — at a base change of bundles.
+* `ChernGammaBridge` (43d20b48a, **GREEN, 8944**) — the ring relation as an `lhFun`.
+* `ChernGammaComponent` (9741d4b2d, **GREEN, 8945**) — **the bridge.**
+
+### A defect in this lane's own layer
+
+This lane produced the mod-2 Chern classes TWICE and never noticed.
+`LerayHirschGraded.gamma` reads them off the Leray–Hirsch coordinates of `ξ^r` and
+keeps their degrees; `LerayHirschData.chern` reads them off the Chern polynomial of
+a `PowerBasis` and forgets them.  Same classes, same relation, different routes,
+meeting nowhere definitionally.  It was invisible until cc-thom needed both at
+once, because no single consumer had ever held the two.
+
+`component_chern_eq_gamma` is the bridge and the proof is uniqueness of
+Leray–Hirsch coordinates: the degree-`2r` component of the ring relation is an
+`lhMap` statement, and the coordinates of `ξ^r` ARE `gammaCoeff` by definition.
+
+### The other thing nobody had said
+
+Everything this lane had proved about `lhMap` was at ONE base.  Naturality in the
+base did not exist, and it is what every restriction argument needs.  Three forms
+are now landed: as a uniqueness principle, as a computation, and at a base change
+of bundles where the square and the class transport are supplied rather than
+hypothesised.
+
+### TRAP, twice in my own files after I wrote it down
+
+`fun i => f (i : ℕ) …` with the binder type still being inferred makes `(i : ℕ)` a
+type ASCRIPTION on the binder, not a coercion out of `Fin`.  It compiles where an
+argument position pins the binder first and fails where the expected type arrives
+later, so the same expression works in one statement and not the next.  The
+resulting whnf timeout is a consequence, not the cause.  I hit it in
+`LerayHirschNatural` and again in `ChernGammaComponent` AFTER recording it.
+
+### The failure mode no gate catches
+
+cc-thom counted three occasions tonight where a CORRECT declaration travelled with
+an OVERSTATED justification.  A wrong statement dies at the probe; a wrong reason
+attached to a right statement survives every gate we have and reaches whoever
+reads the message instead of the file.  Both of my own wrong lines tonight were of
+that kind: a stale docstring I repeated as fact, and a live duplicate I described
+as a near miss.  The only fix that worked was saying the reason out loud so the
+other lane could check it, which is how cc-thom caught their own.
