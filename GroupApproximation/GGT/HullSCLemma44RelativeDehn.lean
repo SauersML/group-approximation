@@ -440,78 +440,8 @@ theorem length_lt
 
 end RelativeDehnCut
 
-/-- Every certificate supplies the strict one-cell cut used by Osin's
-boundary-length induction, provided the quotient kills every relator.
-
-The legacy `hrot` premise below quantifies over all contiguities and is
-uninhabited: an empty boundary admits rotation one
-(`RelativeBoundaryContiguity.not_all_rotation_zero` in
-`HullSCLemma44RelativeDehnRotation`).  For quotient-null boundaries use
-`exists_relativeDehnCut_of_certificate_of_map_eq_one` or
-`exists_relativeDehnCut_of_kernel_rotated` from that module instead; they
-account for the conjugation caused by rotation. -/
-theorem exists_relativeDehnCut_of_certificate
-    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {R eps rho : ℕ} {mu : ℝ}
-    {Z : RelativeReducedDiagram D W R}
-    (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
-    (K : RelativeDiagramCertificate D W eps mu Z)
-    (q : G →* Q)
-    (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1)
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
-    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
-  obtain ⟨i, C, _hcontiguity, hshort⟩ :=
-    replacementWord_length_lt_boundaryArc_of_certificate D hsc hmu hrho K
-  have hboundary : IsWord D.alphabet.carrier K.boundaryWord
-      K.boundaryWord.prod := by
-    refine ⟨?_, ?_⟩
-    · intro x hx
-      apply Z.boundaryWord_isWord.letters x
-      rwa [← K.boundaryWord_eq]
-    · exact rfl
-  have hrelatorAdmissible : RelWord.IsAdmissible D (K.cellLabel i) :=
-    hsc.admissible (K.cellLabel i) (K.cellLabel_mem i)
-  refine ⟨{
-    relator := K.cellLabel i
-    relator_mem := K.cellLabel_mem i
-    contiguity := C
-    shortenedWord_isWord := C.shortenedBoundaryWord_isWord hboundary
-      hrelatorAdmissible
-    quotient_value := C.map_shortenedBoundaryWord_prod_eq q
-      (hkill (K.cellLabel i) (K.cellLabel_mem i)) (hrot C)
-    replacement_length_lt := hshort }⟩
-
-/-- The normal-closure kernel equation supplies the relator-killing premise
-of the packaged cut.  See `exists_relativeDehnCut_of_certificate` for `hrot`. -/
-theorem exists_relativeDehnCut_of_kernel
-    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    {R eps rho : ℕ} {mu : ℝ}
-    {Z : RelativeReducedDiagram D W R}
-    (hsc : RelWord.IsLemma44Input D W eps mu rho)
-    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
-    (K : RelativeDiagramCertificate D W eps mu Z)
-    (q : G →* Q)
-    (hker : q.ker =
-      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
-    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
-  apply exists_relativeDehnCut_of_certificate D hsc hmu hrho K q
-  · intro relator hrelator
-    apply MonoidHom.mem_ker.mp
-    rw [hker]
-    exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
-  · exact hrot
+/-! Certificate cut constructors are in `HullSCLemma44RelativeDehnRotation`,
+where cyclic boundary products are handled by conjugation. -/
 
 end HullSC
 end GroupApproximation

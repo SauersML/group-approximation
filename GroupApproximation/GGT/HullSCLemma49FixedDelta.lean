@@ -25,10 +25,6 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) :
     ∃ (eps rho : ℕ),
@@ -44,8 +40,8 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
   have hmuCertPos : (0 : ℝ) < 1 / 1000 := by norm_num
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
-    exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
+    exists_rebasedLemma49Cell_of_relativeGreendlinger
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant delta epsCert
   let b := 8 * delta + 2
@@ -67,14 +63,18 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
   have hcertInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
       epsCert (1 / 1000) rho :=
     hfinalSym.mono_parameters hepsCert hmuMono le_rfl
-  obtain ⟨C⟩ := hcertificate rho hrho₀ v g n hcertInput Z
-  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v g n rho Z C N
-    inferInstance hdelta hcertInput hshort hlongPeriod
-  apply false_of_longPeriod_powerDiagram_of_cell D Z C Sh hdelta hshort
+  obtain ⟨rotated, Zrot, conjugator, hconjugate, hlengthRot, hshortRot, ⟨C⟩⟩ :=
+    hcertificate rho hrho₀ v g n hcertInput Z hshort
+  have hlongRot : 8 * delta + 2 ≤ Zrot.boundaryWord.length := by
+    rw [hlengthRot]
+    exact hlongPeriod
+  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v rotated n rho Zrot C N
+    inferInstance hdelta hcertInput hshortRot hlongRot
+  apply false_of_longPeriod_powerDiagram_of_cell D Zrot C Sh hdelta hshortRot
     hcertInput hfinalSym
   · simpa only [b, scale] using hrhoScale
   · exact hconnectors
-  · exact hlongPeriod
+  · exact hlongRot
 
 /-- The short-loxodromic contradiction with the same caller-supplied
 four-point hyperbolicity constant. -/
@@ -82,10 +82,6 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
@@ -129,8 +125,8 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
   have hmuCertPos : (0 : ℝ) < 1 / 1000 := by norm_num
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
-    exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
+    exists_rebasedLemma49Cell_of_relativeGreendlinger
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant_of_powerChain
       delta epsCert M b hM
@@ -168,38 +164,47 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
   have hcertInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
       epsCert (1 / 1000) rho :=
     hfinalSym.mono_parameters hepsCert hmuCert le_rfl
-  obtain ⟨C⟩ := hcertificate rho hrho₀ v g n hcertInput Z
-  have hlongArc : 4 * Z.boundaryWord.length ≤
+  obtain ⟨rotated, Zrot, conjugator, hconjugate, hlengthRot, hshortRot, ⟨C⟩⟩ :=
+    hcertificate rho hrho₀ v g n hcertInput Z hshort
+  have hshortPeriodRot : Zrot.boundaryWord.length ≤ 8 * delta + 1 := by
+    rw [hlengthRot]
+    exact hshortPeriod
+  have hloxRot : IsLoxodromic rotated (Cayley.base D.alphabet) := by
+    rw [hconjugate]
+    simpa only [inv_inv] using
+      (isLoxodromic_conj (isIsometricAction_cayley D.alphabet)
+        (a := conjugator⁻¹) hlox)
+  have hlongArc : 4 * Zrot.boundaryWord.length ≤
       3 * C.boundaryArc.length :=
-    four_mul_period_le_three_mul_arc C hcertInput hshortScale hshort
-  have hwordNe : Z.boundaryWord ≠ [] := by
+    four_mul_period_le_three_mul_arc C hcertInput hshortScale hshortRot
+  have hwordNe : Zrot.boundaryWord ≠ [] := by
     intro hnil
-    have hg : g = 1 := by
-      have hvalue : GGT.RelLetter.listVal Z.boundaryWord = g := by
-        simpa using Z.boundary_geodesic.2.1
+    have hg : rotated = 1 := by
+      have hvalue : GGT.RelLetter.listVal Zrot.boundaryWord = rotated := by
+        simpa using Zrot.boundary_geodesic.2.1
       rw [hnil] at hvalue
       calc
-        g = GGT.RelLetter.listVal
+        rotated = GGT.RelLetter.listVal
             ([] : List (GGT.RelLetter G Lambda)) := hvalue.symm
         _ = 1 := GGT.RelLetter.listVal_nil
-    exact Z.power_ne_one (by simp [hg])
-  have hperiodPos : 0 < Z.boundaryWord.length :=
+    exact Zrot.power_ne_one (by simp [hg])
+  have hperiodPos : 0 < Zrot.boundaryWord.length :=
     List.length_pos_iff.mpr hwordNe
   have harcInfix : C.boundaryArc <:+:
-      lemma49BoundaryPower Z.boundaryWord n :=
+      lemma49BoundaryPower Zrot.boundaryWord n :=
     ⟨C.boundaryBefore, C.boundaryAfter, C.boundary_decomposition.symm⟩
   obtain ⟨B⟩ := exists_scaledRepeatedBoundaryBlocks_of_lemma49PowerArc
-    Z.exponent_pos harcInfix hperiodPos hdivisorSix hlongArc
-  have hlength : Z.boundaryWord.length ≤ L := by
-    simpa only [L] using hshortPeriod
-  have hdStable : d ≤ stableTranslation g (Cayley.base D.alphabet) :=
-    le_trans hdd₀ (hgapAll g hlox)
+    Zrot.exponent_pos harcInfix hperiodPos hdivisorSix hlongArc
+  have hlength : Zrot.boundaryWord.length ≤ L := by
+    simpa only [L] using hshortPeriodRot
+  have hdStable : d ≤ stableTranslation rotated (Cayley.base D.alphabet) :=
+    le_trans hdd₀ (hgapAll rotated hloxRot)
   have hLOne : 1 ≤ L := hLPos
   have hOneL : (1 : ℝ) ≤ (L : ℕ) := by exact_mod_cast hLOne
   have hdL : d ≤ (L : ℕ) := le_trans hdOne hOneL
   have hPowerGlobal := isQuasiGeodesicChainAt_power_of_stableTranslation
-    (n := n) D Z.boundary_geodesic hperiodPos hlength hM hd hdStable hdL hLM
-  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v g n rho Z C hdelta
+    (n := n) D Zrot.boundary_geodesic hperiodPos hlength hM hd hdStable hdL hLM
+  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v rotated n rho Zrot C hdelta
     hcertInput hPowerGlobal
   have hRel := C.exterior_isQuasiGeodesicChainAt hcertInput
   have hPow := C.powerArc_isQuasiGeodesicChainAt hPowerGlobal

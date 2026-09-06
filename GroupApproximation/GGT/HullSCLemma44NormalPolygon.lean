@@ -115,8 +115,10 @@ structure NormalTriangleCornerCut
   boundaryArc : List G
   boundaryAfter : List G
   replacement : List G
+  /-- The selected arc may cross the triangle word's basepoint. -/
+  rotation : ℕ
   boundary_decomposition :
-    quotientNormalTriangleWord D q hq x y z =
+    (quotientNormalTriangleWord D q hq x y z).rotate rotation =
       boundaryBefore ++ boundaryArc ++ boundaryAfter
   replacement_isWord :
     IsWord D.alphabet.carrier replacement replacement.prod
@@ -145,10 +147,6 @@ theorem exists_normalTriangleCornerCut_of_prod_ne_one
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0)
     (x y z : Q)
     (hne : (quotientNormalTriangleWord D q hq x y z).prod ≠ 1) :
     Nonempty (NormalTriangleCornerCut D W hsc q hq x y z) := by
@@ -169,9 +167,10 @@ theorem exists_normalTriangleCornerCut_of_prod_ne_one
       D hsc hmu hrho K q hq hker
   have hKboundary : K.boundaryWord = boundaryWord :=
     K.boundaryWord_eq.trans hZboundary
-  have hboundaryDecomposition : boundaryWord =
+  have hboundaryDecomposition : boundaryWord.rotate C.rotation =
       C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter :=
-    hKboundary.symm.trans (C.boundary_decomposition_of_rotation_zero (hrot C))
+    (congrArg (fun word : List G => word.rotate C.rotation) hKboundary.symm).trans
+      C.boundary_decomposition
   have hrelatorAdmissible : RelWord.IsAdmissible D (K.cellLabel i) :=
     hsc.admissible (K.cellLabel i) (K.cellLabel_mem i)
   have hreplacement :
@@ -194,6 +193,7 @@ theorem exists_normalTriangleCornerCut_of_prod_ne_one
     boundaryArc := C.boundaryArc
     boundaryAfter := C.boundaryAfter
     replacement := C.replacementWord
+    rotation := C.rotation
     boundary_decomposition := hboundaryDecomposition
     replacement_isWord := hreplacement
     replacement_map := hreplacementMap
@@ -215,10 +215,6 @@ theorem source_eq_one_or_normalTriangleCornerCut
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0)
     (x y z : Q) :
     (quotientNormalTriangleWord D q hq x y z).prod = 1 ∨
       Nonempty (NormalTriangleCornerCut D W hsc q hq x y z) := by
@@ -226,7 +222,7 @@ theorem source_eq_one_or_normalTriangleCornerCut
       (quotientNormalTriangleWord D q hq x y z).prod = 1
   · exact Or.inl hsource
   · exact Or.inr (exists_normalTriangleCornerCut_of_prod_ne_one
-      D hsc hmu hrho q hq hker hcert hrot x y z hsource)
+      D hsc hmu hrho q hq hker hcert x y z hsource)
 
 end HullSC
 end GroupApproximation

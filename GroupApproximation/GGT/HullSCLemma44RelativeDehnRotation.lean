@@ -181,5 +181,51 @@ theorem exists_relativeDehnCut_of_kernel_rotated
     exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
   · exact map_certificate_boundaryWord_prod_eq_one K q hker
 
+/-- Killing the relators also kills every certificate boundary, which is a
+product of conjugate relator values. -/
+theorem map_certificate_boundaryWord_prod_eq_one_of_kills_relators
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps : ℕ} {mu : ℝ} {Z : RelativeReducedDiagram D W R}
+    (K : RelativeDiagramCertificate D W eps mu Z) (q : G →* Q)
+    (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1) :
+    q K.boundaryWord.prod = 1 := by
+  rw [K.boundaryWord_eq, Z.boundaryWord_isWord.prod_eq, ← Z.cell_values_prod,
+    map_list_prod, List.map_map]
+  apply List.prod_eq_one
+  intro x hx
+  obtain ⟨C, _, rfl⟩ := List.mem_map.mp hx
+  change q (C.conjugator * GGT.RelLetter.listVal C.relator * C.conjugator⁻¹) = 1
+  rw [map_mul, map_mul, map_inv, hkill C.relator C.relator_mem]
+  group
+
+/-- Every certificate supplies a strict Dehn cut when the quotient kills its
+relators, with no restriction on the contiguity's rotation. -/
+theorem exists_relativeDehnCut_of_certificate
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps rho : ℕ} {mu : ℝ} {Z : RelativeReducedDiagram D W R}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (K : RelativeDiagramCertificate D W eps mu Z) (q : G →* Q)
+    (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1) :
+    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) :=
+  exists_relativeDehnCut_of_certificate_of_map_eq_one D hsc hmu hrho K q hkill
+    (map_certificate_boundaryWord_prod_eq_one_of_kills_relators K q hkill)
+
+/-- The kernel form of the rotation-independent certificate cut. -/
+theorem exists_relativeDehnCut_of_kernel
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {R eps rho : ℕ} {mu : ℝ} {Z : RelativeReducedDiagram D W R}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (K : RelativeDiagramCertificate D W eps mu Z) (q : G →* Q)
+    (hker : q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
+    Nonempty (RelativeDehnCut D W eps q K.boundaryWord) :=
+  exists_relativeDehnCut_of_kernel_rotated D hsc hmu hrho K q hker
+
 end HullSC
 end GroupApproximation

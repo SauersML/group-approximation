@@ -63,12 +63,7 @@ shortest-geodesic power-diagram statement.  Bowditch Lemma 2.2 is discharged
 from the supplied acylindricity, and all other inputs are consequences of the
 same final `C₁` parameters. -/
 theorem hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger
-    (hgeom : RelativeGreendlingerStatement.{u, w})
-    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
-      (D : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (hgeom : RelativeGreendlingerStatement.{u, w}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
   intro G _ Lambda _ D hemb hacylindrical
   obtain ⟨delta, hdelta⟩ :=
@@ -78,11 +73,11 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger
       D hemb hacylindrical
   obtain ⟨epsLong, rhoLong, hlong⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
-      hgeom D hemb (hrot D) hdelta
+      hgeom D hemb hdelta
   obtain ⟨epsShort, rhoShort, muShort, hmuShort,
       _hmuShortUpper, hshortLox⟩ :=
     exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
-      hgeom D hemb (hrot D) hdelta hgap
+      hgeom D hemb hdelta hgap
   let radius : ℕ := 8 * delta + 1
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
       hinjective⟩ :=

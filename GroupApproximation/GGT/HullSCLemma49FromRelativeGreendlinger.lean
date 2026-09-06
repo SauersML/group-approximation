@@ -112,8 +112,9 @@ theorem RelativeBoundaryContiguity.exterior_eq_boundaryCast
   subst boundary'
   rfl
 
-/-- A certificate on the common reduced diagram yields the preceding literal
-power-word cell data. -/
+/-- A certificate whose selected contiguities are based at the chosen cut
+yields literal power-word cell data.  For a general cyclic certificate, use
+`exists_rebasedLemma49Cell_of_relativeGreendlinger` instead. -/
 theorem exists_lemma49RelativeGreendlingerCell
     {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -121,12 +122,11 @@ theorem exists_lemma49RelativeGreendlingerCell
     (Z : Lemma49GeodesicPowerDiagram D v g n)
     (K : RelativeDiagramCertificate D (RelWord.symmetrized v) eps mu
       Z.toRelativeReducedDiagram)
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (hrot : ∀ (i : Fin Z.toRelativeReducedDiagram.cells.length)
+      (C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)),
+      K.contiguity i = some C → C.rotation = 0) :
     Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
-  obtain ⟨i, C, _, hlarge⟩ := K.largeCell
+  obtain ⟨i, C, hselected, hlarge⟩ := K.largeCell
   let Cpower : RelativeBoundaryContiguity D eps
       ((lemma49BoundaryPower Z.boundaryWord n).map GGT.RelLetter.val)
       (K.cellLabel i) := by
@@ -143,7 +143,15 @@ theorem exists_lemma49RelativeGreendlingerCell
     exact hlarge
   obtain ⟨pre, arc, suf, hsplit, _, _, _, harcValue⟩ :=
     exists_boundaryArc_source Cpower
-  rw [hrot Cpower, List.rotate_zero] at hsplit
+  have hrotation : Cpower.rotation = 0 := by
+    have hcast : ∀ {boundary : List G} (h : K.boundaryWord = boundary),
+        (h ▸ C : RelativeBoundaryContiguity D eps boundary (K.cellLabel i)).rotation =
+          C.rotation := by
+      intro boundary h
+      cases h
+      rfl
+    exact (hcast K.boundaryWord_eq).trans (hrot i C hselected)
+  rw [hrotation, List.rotate_zero] at hsplit
   exact ⟨{
     relator := K.cellLabel i
     relator_mem := K.cellLabel_mem i
@@ -336,33 +344,6 @@ theorem four_mul_period_le_three_mul_arc
       Z.exponent_pos hwordNe harcInfix hperiod C.contiguity
       hrelatorAdmissible hrelatorMem C.boundaryArc_value
     omega
-
-/-! ## Applying the one shared Greendlinger proposition -/
-
-/-- The shared relative Greendlinger proposition supplies a large literal
-cell on every nontrivial geodesic power diagram. -/
-theorem exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-    (hgeom : RelativeGreendlingerStatement.{u, w})
-    {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16)
-    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
-    ∃ eps rho0 : ℕ, ∀ rho : ℕ, rho0 ≤ rho →
-      ∀ (v : List (GGT.RelLetter G Lambda))
-        (g : G) (n : ℕ),
-        RelWord.IsLemma49Input D (RelWord.symmetrized v) eps mu rho →
-        ∀ Z : Lemma49GeodesicPowerDiagram D v g n,
-          Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
-  obtain ⟨eps, rho0, hgood⟩ := hgeom D hemb mu hmu hmuUpper
-  refine ⟨eps, rho0, ?_⟩
-  intro rho hrho v g n hinput Z
-  obtain ⟨K⟩ := hgood rho hrho (RelWord.symmetrized v)
-    (lemma49BoundaryPower Z.boundaryWord n).length
-    hinput.toIsLemma44Input Z.toRelativeReducedDiagram
-  exact exists_lemma49RelativeGreendlingerCell Z K hrot
 
 /-! ## Model check -/
 
