@@ -77,4 +77,15 @@ theorem rank_lixBundle (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ) (hGc : 
   rw [htr] at h
   exact_mod_cast h.symm
 
+/-- **The fibre dimension of the projectivised sum, derived.**  `cc-cohom-api`'s
+Leray--Hirsch instance over `lixN dd` has fibre `ℂP^(lixRank dd)`, because the
+projectivised sum is of a bundle of rank one more than this one.  Routing through
+`cc-bundle`'s `rank_plusOne` makes that a derivation rather than a numeral restated at the
+call site. -/
+theorem rank_lixBundle_plusOne (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ)
+    (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    (p : ↥sphereOne × baseM dd) :
+    (lixBundle G hGc hGu).plusOne.rank p = lixRank dd + 1 := by
+  rw [Bundle.rank_plusOne, rank_lixBundle]
+
 end GroupApproximation.CharClass
