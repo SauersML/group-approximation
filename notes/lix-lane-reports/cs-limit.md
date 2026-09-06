@@ -70,9 +70,11 @@ The two closed audits also certify that simplicity and separability of the count
 really are hypothesis-free, rather than conditional theorems wearing unconditional names.
 
 The endpoint builds on top of all of this: `Manuscript/NinetyNineProblems/ProblemLIX` was
-verified **in this lane's own clone** at `Build completed successfully (3019 jobs)`, so the join
-between this lane's algebra and `cs-endpoint`'s statement is confirmed independently of their
-probe, not taken on report.
+verified **in this lane's own clone**, most recently at `Build completed successfully
+(8706 jobs)` after this lane added imports beneath it, so the join between this lane's algebra
+and `cs-endpoint`'s statement is confirmed independently of their probe rather than taken on
+report.  (The count grew from 3019 because `ProblemLIX` now pulls in `LIXLemmaTwoProp` and with
+it the algebraic-topology tree.)
 
 Peer modules that also built clean inside cs-limit probes:
 `Analysis/CStarCompletion`, `Analysis/CStarCompletionCoe`,
