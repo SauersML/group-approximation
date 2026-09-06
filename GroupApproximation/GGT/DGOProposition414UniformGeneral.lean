@@ -1,15 +1,19 @@
 import GroupApproximation.GGT.DGOProposition414Uniform
 
 /-!
-# The quasi-geodesic parameter conversion for Proposition 4.14
+# A conditional quasi-geodesic parameter bridge with an impossible premise
 
 The balanced-surgery chain supplies `SumBound D b n K`, whose side inequality
-is `(q-p)-b ≤ d`.  Lemma 4.20 supplies arbitrary `(μ,c)`-quasi-geodesic
-sides.  This file isolates the missing arithmetic comparison between those
-two inequalities and proves the radius-witness conversion from that smaller
-input.  The comparison is the single geometric estimate still needed before
-the exact `DGOUniformSumBound` interface can be connected without importing the
-proof-layer module that defines it.
+is `(q-p)-b ≤ d`. This file's arithmetic comparison was intended to convert
+arbitrary `(mu,c)` inequalities to that form. It cannot do so: for every
+`mu > 1`, `c ≥ 0`, and finite `b`, `QuasiGeodesicComparison mu c b` is false.
+`DGOProposition414ComparisonCounterexample` proves this, including a closed
+refutation for all natural `b` at the `(4,1)` parameters used in Lemma 4.21.
+
+The original proposition and conditional bridge remain unchanged. The bridge
+is usable at multiplicative constant one, but is vacuous for `mu > 1` in the
+source's parameter range. A geometric conversion or surgery retaining the
+multiplicative parameter is still required for uniform Proposition 4.14.
 -/
 
 namespace GroupApproximation
@@ -25,8 +29,9 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- The arithmetic comparison needed to replace a `(μ,c)` side inequality by
-the `(1,b)` inequality used by the balanced-surgery `SumBound`. -/
+/-- The proposed arithmetic comparison with the `(1,b)` surgery inequality.
+It is impossible for `mu > 1` and `c ≥ 0`; see the checked refutation in
+`DGOProposition414ComparisonCounterexample`. The definition is retained. -/
 def QuasiGeodesicComparison (mu c b : ℝ) : Prop :=
   ∀ (_hmu : 1 ≤ mu) (_hc : 0 ≤ c) (t d : ℝ),
     0 ≤ t → 0 ≤ d → t / mu - c ≤ d → t - b ≤ d
@@ -71,7 +76,9 @@ theorem zeroSideRadiusWitness
 
 /-- A linear family of fixed-parameter `SumBound`s gives the radius-witness
 bound for `(μ,c)`-quasi-geodesic sides whenever
-`QuasiGeodesicComparison μ c b` is available. -/
+`QuasiGeodesicComparison μ c b` is available. This premise is impossible
+for `mu > 1` and `c ≥ 0`, so this theorem does not provide the general
+parameter conversion required by uniform Proposition 4.14. -/
 theorem exists_general_radius_bound_of_linearSumBound
     (D : RelGenSet G Λ) (b : ℕ)
     (hlin : ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n →
