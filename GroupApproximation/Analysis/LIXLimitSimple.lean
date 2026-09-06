@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LIXLimitAlgebra
 import GroupApproximation.Analysis.LIXSimplicityInstance
+import GroupApproximation.Analysis.LIXConnectingMapFullnessTower
 
 /-!
 # Simplicity of the counterexample algebra, reduced to stage-wise fullness
@@ -34,11 +35,18 @@ attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrde
 /-- **Simplicity of the counterexample algebra**, reduced to stage-wise fullness of nonzero
 elements.  The order instances that `isSimpleCStar_limit_of_ne_zero` needs are discharged here
 from `CStarAlgebra.spectralOrder`, so the remaining hypothesis is order-free. -/
-theorem lixLimit_isSimpleCStar
+theorem lixLimit_isSimpleCStar_of_full
     (hfull : ∀ (k : ℕ) (a : STW59.StageAlgebra k), a ≠ 0 →
       ∃ j, k ≤ j ∧ IsFull (lixTower.climb j k a)) :
     IsSimpleCStar LIXLimit :=
   lixTower.isSimpleCStar_limit_of_ne_zero hfull
+
+/-- **The counterexample algebra is simple.**  Unconditional: the fullness hypothesis is
+discharged by `cs-stages`' `STW59.isFull_climb_of_ne_zero`, whose tower argument is matched to
+`lixTower` by `lixTower_succHom`, which holds by `rfl`. -/
+theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit :=
+  lixLimit_isSimpleCStar_of_full fun k a hne =>
+    STW59.isFull_climb_of_ne_zero lixTower_succHom k a hne
 
 end
 

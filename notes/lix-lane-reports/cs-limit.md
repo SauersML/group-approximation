@@ -11,7 +11,7 @@
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
 | `Analysis/LIXLimitAlgebra` | 3013 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
-| `Analysis/LIXLimitSimple` | 3017 | `IsSimpleCStar LIXLimit` reduced to stage-wise fullness |
+| `Analysis/LIXLimitSimple` | 3020 | **`IsSimpleCStar LIXLimit`, unconditional** |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
 The last four of the original five were built together in one probe, `Build
