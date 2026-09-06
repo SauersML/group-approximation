@@ -89,6 +89,16 @@ The concrete objects, new:
 * `CartanSourceComplex.lean` — **`d ∘ d = 0`**.  Four pieces: `(1+T)² = 0`;
   `∂∂ = 0`; and the two mixed terms, which are the same element and cancel in
   characteristic two.
+* `CartanTargetBoundary.lean` — the singular boundary with coefficients in any
+  `ZMod 2`-algebra, and **`∂∂ = 0` over those coefficients**, `Built (9.1s)`,
+  `Build completed successfully (2078 jobs)`.  The proof is a *transfer*, not a
+  computation: pushing coefficients along `algebraMap` is additive and sends a
+  basis element to the corresponding basis element, so a vanishing sum of basis
+  elements over `ZMod 2` pushes forward to a vanishing sum over `Λ`, and the
+  `ZMod 2` statement is Mathlib's `d_comp_d`.  This is the differential the
+  target of the diagonal needs on `cc-steenrod`'s ruled carrier.  The same
+  transfer discharges any characteristic-two identity between sums of basis
+  elements, which is why it is stated as a lemma about `coeffPush`.
 * `CartanSourceFunctor.lean` — **the source functor `src` and its freeness
   `srcFree : FreeOnModels stdSimplexTop GroupRingZ2 (src data)`.**  Freeness
   costs nothing: the index `FreeOnModels` wants is `WSIndex k X` on the nose, so
