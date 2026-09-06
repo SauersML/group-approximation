@@ -3623,6 +3623,7 @@ import GroupApproximation.CharClass.ChernEulerIndex
 import GroupApproximation.CharClass.LerayHirschChartClass
 import GroupApproximation.CharClass.SteenrodFourfoldBLeft
 import GroupApproximation.CharClass.LerayHirschPlusOneClosed
+import GroupApproximation.CharClass.GysinRanged
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
