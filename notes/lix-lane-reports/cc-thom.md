@@ -9,12 +9,23 @@ of 2026-09-05, `GroupApproximation/CharClass/MayerVietoris*.lean`; namespace
 
 Cohomological Mayer–Vietoris moved from `cc-cohom-api` to cc-thom.  `cc-cohom-api`
 keeps the cup product, casts, bridges, spheres, homotopy invariance and
-Künneth-with-spheres, and their `CharClass/CohomologyMayerVietoris.lean` (the
-dualization of the vendored split chain-level sequence, `mvCoSC`,
-`mvCoSC_shortExact`, `mvInterIso`, `mvAmbientIso`, `mvDelta`, the three
-`ShortComplex.Exact`s, `isZero_mvCoX2`, `mvConnectingIso`) stays theirs and is the
-input.  cc-thom adds the element-level layer on top, in
-`CharClass/MayerVietoris*.lean`.
+Künneth-with-spheres.
+
+**The whole stack is now cc-thom's and self-contained.**  Their
+`CharClass/CohomologyMayerVietoris.lean` went from one error to eight between two
+probes while I was building on it, so the dualization is ported into
+`CharClass/MayerVietorisDual.lean` under the nested namespace
+`GroupApproximation.CharClass.MV` — no name can collide with theirs, and nothing
+of cc-thom's imports their file any more.  I have told them, and suggested they
+retire theirs; the choice is the lead's.
+
+| module | contents |
+|---|---|
+| `CharClass/MayerVietorisDual.lean` | `MV.coDual` (the `Hom(-,F₂)` dualization, exact because `F₂` is self-injective), `MV.coCx`, `MV.coMap` with contravariant functoriality and additivity, `MV.coSC` and `MV.coSC_shortExact` from the vendored degreewise splitting, `MV.coSubHomologyIso`, `MV.coInterIso`, `MV.coAmbientIso`, `MV.coDelta`, `MV.coExact_inter/sum/ambient` |
+| `CharClass/MayerVietorisBiproduct.lean` | the four biproduct identities on the middle term and `mvH_decompose`; the `F₂` sign lemmas |
+| `CharClass/MayerVietorisElement.lean` | the four restrictions, `mvDelta`, and `mvExactX` / `mvExactSum` / `mvExactW` |
+| `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
+| `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
 namespace GroupApproximation.CharClass
@@ -59,7 +70,7 @@ theorem isZero_cohomology_of_cover (U V : Opens X) (hUV : U ⊔ V = ⊤) (m : �
     (hV : IsZero (Hmod2 (TopCat.of (V : Set X)) (m + 1))) :
     IsZero (Hmod2 X (m + 1))
 
-/-- Naturality in a map of covered spaces. -/
+/-- Naturality in a map of covered spaces (not yet written). -/
 theorem mvDelta_naturality  … ; mvResU_naturality … (shapes to follow)
 
 /-- `H^*(X)`-linearity of the connecting map, for a global class `b`. -/
@@ -68,6 +79,15 @@ theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmo
       = cup ((mvDelta U V hUV p).hom a) b        -- up to the single degree cast
 end GroupApproximation.CharClass
 ```
+
+**Still open in the Mayer–Vietoris assignment**: the `H^*(X)`-linearity of the
+connecting map (item 3 of the lead's brief, which Leray–Hirsch needs) and
+naturality in a map of covered spaces (item 2).  The route for linearity is
+Mathlib's `ShortComplex.ShortExact.δ_apply`
+(`Mathlib/Algebra/Homology/ConcreteCategory.lean`), which describes `δ [c]` as
+`[d c̃]` for any lift `c̃`, together with the vendored cochain Leibniz rule
+(`AlgebraicTopology/CochainCupLeibniz.lean`) and the compatibility of
+`cochainCup` with the dual of a chain map when the second factor is global.
 
 **Note for `cc-projective`.**  `mvSumIso` turns out not to be needed: the
 element-form `MVSequence` above is derived from the four biproduct identities

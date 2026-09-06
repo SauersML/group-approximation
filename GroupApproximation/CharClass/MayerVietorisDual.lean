@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.CohomologyBasic
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.MayerVietoris
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.H1ClassifierZMod2
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SubChainSubspaceBridge
 
 /-!
 # The Mayer–Vietoris short exact sequence of cochain complexes
@@ -149,7 +150,9 @@ theorem coMap_zero {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} :
     coMap (0 : K ⟶ L) = 0 := by
   have h := coMap_add (0 : K ⟶ L) 0
   rw [add_zero] at h
-  exact self_eq_add_left.mp h
+  have h3 : (0 : coCx L ⟶ coCx K) + coMap (0 : K ⟶ L)
+      = coMap (0 : K ⟶ L) + coMap (0 : K ⟶ L) := by rw [zero_add, ← h]
+  exact ((add_left_inj (coMap (0 : K ⟶ L))).mp h3).symm
 
 /-! ## 3. The Mayer–Vietoris short exact sequence of cochain complexes -/
 
