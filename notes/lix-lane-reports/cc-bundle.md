@@ -28,8 +28,8 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 14 modules; `BundleBlockIncl` at 2975 jobs, `BundleStabilize` at
-2974, the other twelve together at 2978
+## GREEN — 15 modules; `BundleRank` at 2970 jobs, `BundleBlockIncl` at 2975,
+`BundleStabilize` at 2974, the other twelve together at 2978
 
 Final probe 2026-09-05 late evening naming **all twelve modules in one build**,
 so the lane is green as a whole and not only module by module.  The individual
@@ -276,6 +276,30 @@ The three entry lemmas determine the matrix, because `blockEquiv d` is a
 bijection: an index is `Sum.inl i` or `Sum.inr k`, giving the entry of `z` or
 zero.  `CP (2*d+1)` has matrices indexed by `Fin (2*d+1+1)`, which is `Fin (2*d+2)`
 definitionally.
+
+### `BundleRank.lean` — one global rank on a connected base
+
+New names; nothing published is changed (fleet rule 11).
+
+```lean
+theorem isLocallyConstant_rank (p : Bundle X ι) : IsLocallyConstant p.rank
+theorem rank_eq_of_isPreconnected (p) (hs : IsPreconnected s) (hx : x ∈ s) (hy : y ∈ s) :
+    p.rank x = p.rank y
+theorem rank_eq_of_preconnectedSpace [PreconnectedSpace X] (p) (x y) : p.rank x = p.rank y
+theorem rank_eq_of_preconnectedSpace_of_eq [PreconnectedSpace X] (p) (hr : p.rank x₀ = r) (x) :
+    p.rank x = r
+theorem trace_eq_of_preconnectedSpace [PreconnectedSpace X] (p) (hr : p.rank x₀ = r) (x) :
+    (p x).trace = (r : ℂ)                       -- the hypothesis shape of flag_decomposition
+theorem exists_trace_eq_of_preconnectedSpace [PreconnectedSpace X] [Nonempty X] (p) :
+    ∃ r : ℕ, ∀ x, (p x).trace = (r : ℂ)
+theorem rank_eq_succ_of_preconnectedSpace [PreconnectedSpace X] (p) (hd : p.rank x₀ = d + 1) (x) :
+    p.rank x = d + 1                            -- the rank convention of projTrivStd
+```
+
+`BundleLocal.exists_open_rank_eq` is exactly the right-hand side of
+`IsLocallyConstant.iff_exists_open`, so the upgrade is three lines and all the
+content is in the local statement.  Every base in the programme is connected, so
+the connected form is the one that gets used.
 
 ## NEEDS
 
