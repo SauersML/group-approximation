@@ -22,14 +22,24 @@ The re-nesting is `cc-lix-odd`'s `baseNilHomeo` / `baseSnocHomeo`, the same pair
 that carried `puncturedAcyclic_lixBase`: the projective factors are peeled from
 the **last** index, so every second factor of the induction is a single `ℂP^d`.
 
-## The one remaining input
+## The one input, and where it is discharged
 
-`unitVectors (Fin 3)` is the Hermitian unit sphere of the sup-normed `Fin 3 → ℂ`,
-not the metric sphere of a real inner product space, so the statements below take
-the model homeomorphism `↥(unitVectors (Fin 3)) ≃ₜ S⁵` as a hypothesis.  It is
-exactly the same obligation `puncturedAcyclic_unitVectorsThree_of_homeo` already
-carries, and it belongs to `cc-lix-odd`.  Nothing else is assumed: the circle
-step is discharged in `ThomTopLineCircle.lean`.
+`unitVectors (Fin 3)` is `{x : Fin 3 → ℂ | ∑ᵢ ‖xᵢ‖² = 1}`, a subset of the plain
+function type, while `Sphere 5` is the unit sphere of
+`EuclideanSpace ℝ (Fin 6) = WithLp 2 (Fin 6 → ℝ)`, a one-field structure over a
+*real* six-coordinate space.  The two are **not** definitionally equal, so the
+statements below take the model homeomorphism `↥(unitVectors (Fin 3)) ≃ₜ S⁵` as a
+hypothesis and it is genuine content: `cc-lix-odd`'s
+`CharClass/LIXStepESphereModel.lean` pays the norm identity, the two round trips
+and continuity across the structure seam.
+
+It is **discharged**, not outstanding.  `unitVectorsThreeHomeo` supplies it, and
+`LemmaTwoStepCAbsEquiv.unitVectorsThreeHomeoSphere` retypes it at `Sphere 5` with
+no transport — that last step *is* free, because `Sphere` is a reducible
+abbreviation and `5 + 1` and `6` are the same literal, but only that step is.
+
+Nothing else is assumed: the circle step is discharged in
+`ThomTopLineCircle.lean`.
 
 ## Main declarations
 

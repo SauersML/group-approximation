@@ -203,6 +203,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomTopLineLIX.lean` | `hasTopLine_sphereOne`, `hasTopLine_circleTimesFive`, `hasTopLine_lixBase`, **`absEquiv_lixN`** — hypothesis 8 of Step C at the real `N`, modulo the one model homeomorphism `cc-lix-odd` owes |
 | `CharClass/ThomChernBasis.lean` | `ThomChern.genPow_dim_eq_neg_sum/_finSum/_basisSum`, `totalMap_comp`, `totalMap_id` — the Chern relation solved for the top power and written in the Leray–Hirsch basis, which is `ThomClassChain`'s `hlast`; pure `PowerBasis` algebra, no topology |
 | `CharClass/ThomFreeDegreewise.lean` | `ThomDeg.restrictMap`, `thomLift`, **`ker_restrictMap`**, `kerEquiv`, **`thomEquiv`** — the Thom-class linear algebra in Leray–Hirsch *coordinates*, over a product of different groups rather than a `Module.Basis`; §1.4 item 5 at `k = 0` |
+| `CharClass/ThomStepCLocal.lean` | `topChernClass_ne_zero_of_local`, `..._of_local_naturality`, `..._of_local_line`, `..._of_chain_line` — `locEquiv`, `hg` and `hgamma` discharged, leaving `hsu` alone on the odd side; plus the `Nonempty` forms that spare a consumer the use of choice |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -577,6 +578,27 @@ and let the final defeq check do the arithmetic.  The same `rw` **succeeds** in
 the goal (`hasTopLine_lixBase` rewrites `2 * (∑ …) + 6` there without complaint);
 it is only `rw … at h` that breaks.
 
+### The two sphere models are not definitionally equal; only the index is
+
+I nearly committed a docstring saying the model homeomorphism
+`↥(unitVectors (Fin 3)) ≃ₜ S⁵` had never been a real obligation.  `cc-lix-odd`
+stopped it, and they were right.  Two different things:
+
+* **Free.**  `Sphere 5` against the `EuclideanSpace ℝ (Fin 6)` form.  `Sphere` is
+  a reducible abbreviation and `5 + 1` and `6` are the same literal, so
+  `unitVectorsThreeHomeoSphere` is `unitVectorsThreeHomeo` with no transport.
+* **Not free.**  The models.  `STW59.unitVectors n` is
+  `{x : n → ℂ | ∑ᵢ ‖xᵢ‖² = 1}`, a subset of the plain function type;
+  `EuclideanSpace ℝ (Fin 6)` is `WithLp 2 (Fin 6 → ℝ)`, and at the pin `WithLp`
+  is `structure WithLp (p) (V) where toLp :: ofLp : V`, a one-field wrapper.
+  Three complex coordinates in a bare Pi type against six real ones behind a
+  structure.  `LIXStepESphereModel.lean` is 153 lines paying the norm identity,
+  the round trips and continuity across that seam.
+
+The wording that matters is **discharged by name**, never *never owed*: a reader
+told the models are defeq will try `rfl`, which fails as an unrelated instance or
+elaboration error rather than as a type mismatch.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -602,3 +624,5 @@ it is only `rw … at h` that breaks.
 | 2026-09-05 | **`ThomChernBasis`** | **green, 2467 jobs, `PROBE GREEN`** |
 | 2026-09-05 | `ThomFreeDegreewise` | red: `abel` not imported, two `Fin.snoc` lemmas needing a `show`, one unused binder |
 | 2026-09-05 | **`ThomFreeDegreewise`** | **green, 1170 jobs, `PROBE GREEN`** |
+| 2026-09-05 | `ThomStepCLocal` | red: missing `open …SphereOddDegree`, so `cohomologyZMod2` was unresolved and autoImplicit reported it as fourteen `Function expected at` |
+| 2026-09-05 | **`ThomStepCLocal` + `ThomTopLineLIX`** | **green, 8871 jobs, `PROBE GREEN`** |
