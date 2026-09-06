@@ -282,11 +282,11 @@ hypothesis, so the endpoint `gamma_top_eq_zero_of_slice_totalH` asks for only
 | name | statement | owner |
 |---|---|---|
 | `hcartan` | `∀ (n : ℕ) (u v : TotalH N), Steenrod.SqH N n (u * v) = ∑ i ∈ Finset.range (n+1), Steenrod.SqH N i u * Steenrod.SqH N (n-i) v` | `cc-cartan` (formula), `cc-steenrod` (transport to `SqH` on `TotalH`) |
-| `htx_inj` | `∀ u v : TotalH Y, TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0` | `cc-cohom-api` (Künneth for the two sphere factors) |
-| `hγ` | `∀ k : ℕ, γ k = TotalH.map p (a k) + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p (b k)` | `cc-cohom-api` (Künneth split) + `cc-projective` (`γ` = the Chern classes) |
+| `htx_inj` | `∀ u v : TotalH Y, TotalH.map p u + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0` | **CLOSED**: `cc-cohom-api`'s `KnTwo.htx_inj` (8816 jobs), at the concrete model `(Y × S⁵) × S¹` |
+| `hγ` | `∀ k : ℕ, γ k = TotalH.map p (a k) + tClass q₁ σ₁ * xClass q₅ σ₅ * TotalH.map p (b k)` | **CLOSED over `ChernSplit`**: `cc-cohom-api`'s `KnTwo.hgamma_and_hsq_b` (8821 jobs) |
 | `ha_zero` | `a 0 = 1` | `cc-projective` (slice restriction); free from `hslice` below |
 | `ha_odd` | `∀ q : ℕ, Odd q → a q = 0` | `cc-projective`; free from `hslice` below |
-| `hsq_b` | `∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0` | `cc-cohom-api` (the degree of the `t x`-component), through `sq_b_of_grading` |
+| `hsq_b` | `∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0` | **CLOSED over `ChernSplit`**: same theorem, through this lane's `sq_b_of_grading` |
 | `hwu` | `∀ i : ℕ, Steenrod.SqH N (2*i) (γ (i+1)) = ∑ j ∈ Finset.range (i+1), γ (i-j) * γ (i+1+j)` | `cc-projective` (splitting principle) + `cc-steenrod`/`cc-cartan`, through `SqData.wu_diagonal` |
 
 Helpers that make three of these mechanical:
@@ -358,6 +358,29 @@ The endpoint is then `gamma_top_eq_zero_of_splitting`, with **four** hypotheses:
 `hC : CartanTotal` (cc-cartan), `htx_inj` and `hγ` and `hsq_b` (cc-cohom-api),
 plus `S : SplittingData` (cc-projective) and the slice data `(u, h, d, hd,
 hslice)` (cc-projective).
+
+## 8b. Where the even side actually stands
+
+Three of the four hypotheses of `gamma_top_eq_zero_of_splitting` are now closed
+or reduced to one input:
+
+* `htx_inj` — closed outright.
+* `hγ` and `hsq_b` — closed over `cc-cohom-api`'s `ChernSplit`.  That structure's
+  `split` field is **provisional**: it will be a theorem, `chernSplit_of_hodd`,
+  from the four-term decomposition plus `H^{odd}(Y;F₂) = 0` plus the single fact
+  that `γ k` sits in degree `2k`.  Nobody should prove it by hand.  The reason it
+  is a hypothesis today is that the odd vanishing is unlanded; it was reassigned
+  from `cc-thom` to `cc-projective` (the vanishing-form toolkit cannot express
+  it; it is a corollary of the `ℂP`-factor Künneth).
+* `hC : CartanTotal` — `cc-cartan`, unchanged.
+* `hsplit : HasSplitting` and `hslice` — `cc-projective`, both behind
+  Leray–Hirsch.
+
+**Range remark for whoever writes `chernSplit_of_hodd`.**  The degree-five
+coordinate exists only for total degree `≥ 5` and the degree-one coordinate only
+for `≥ 1`.  Below those the term is *absent*, not sitting in a truncated ℕ
+degree — `m - 5` at `m = 4` is `0`, which is even, and the odd-degree argument
+would look wrong there.  That is the one place the corollary can go astray.
 
 ## 9. TRAPS
 
