@@ -61,9 +61,56 @@ theorem bridgeChart_hom_eq (p : Bundle X ι) (n : ℕ)
       exact (congrArg (fun g => (ConcreteCategory.hom g) v) this) ▸ h v hv) n]
   exact relPullback_eq_of_eq (ZMod 2) (bridgeChartIncl_map_eq p) _ n
 
+/-! ## The square for the first two steps -/
+
+/-- **The first two bridge steps are natural in the base.**  One application of
+`relPullback_comm_of_map_eq` on top of `bridgeChartIncl_natural`, now that both
+steps are a single pullback.  The six map-of-pairs conditions are arguments; at
+the bridge they are `cc-bundle`'s two membership equivalences and the two
+composites. -/
+theorem bridgeChart_natural (p : Bundle X ι) (U : Set X) (n : ℕ)
+    (ha : ∀ v ∈ ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p),
+      (ConcreteCategory.hom (cmap (bridgeChartIncl p))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hd : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (bridgeChartIncl (p.restrictTo U)))) v
+        ∈ ((Gysin.notZeroOpens (p.restrictTo U) :
+            Opens (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          : Set (Bundle.Proj (p.restrictTo U).plusOne)))
+    (hb : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (Bundle.totalInclOn p U))) v
+        ∈ ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p))
+    (hc : ∀ z ∈ ((Gysin.notZeroOpens (p.restrictTo U) :
+          Opens (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+        : Set (Bundle.Proj (p.restrictTo U).plusOne)),
+      (ConcreteCategory.hom (cmap (Bundle.projInclOn p.plusOne U))) z
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hba : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (Bundle.totalInclOn p U) ≫ cmap (bridgeChartIncl p))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hdc : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom
+        (cmap (bridgeChartIncl (p.restrictTo U)) ≫ cmap (Bundle.projInclOn p.plusOne U))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne))) :
+    (bridgeChart p n).hom ≫ relPullback (ZMod 2) (cmap (Bundle.totalInclOn p U)) hb n
+      = relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U)) hc n
+        ≫ (bridgeChart (p.restrictTo U) n).hom := by
+  rw [bridgeChart_hom_eq p n ha, bridgeChart_hom_eq (p.restrictTo U) n hd]
+  refine relPullback_comm_of_map_eq _ _ _ _ ?_ ha hb hc hd hba hdc n
+  apply TopCat.Hom.ext
+  exact ContinuousMap.ext fun v => bridgeChartIncl_natural p U v
+
 /-! Printed on every build. -/
 
-#print axioms bridgeChart_hom_eq
+#print axioms bridgeChart_natural
 
 end
 
