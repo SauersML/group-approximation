@@ -3616,7 +3616,6 @@ import GroupApproximation.CharClass.BundleGysinData
 import GroupApproximation.CharClass.ChernSplittingData
 import GroupApproximation.CharClass.BundlePushforward
 import GroupApproximation.CharClass.ChernEulerEmbed
-import GroupApproximation.CharClass.CartanMidFourSlots
 import GroupApproximation.CharClass.ChernEulerCastSucc
 import GroupApproximation.CharClass.CartanMidFourNat
 import GroupApproximation.CharClass.ChernEulerIndex
