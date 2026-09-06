@@ -198,6 +198,52 @@ theorem decomp_top (m : ℕ) (z : Hmod2 (NTop Y) (1 + 5 + m)) :
   rw [hAB, e1, e2, cup_add_right, cohCast_add, cup_assoc']
   abel
 
+/-! ## 5. `cc-wu`'s `hγ` and `hsq_b`
+
+`decomp_top` shows that the general class on the base has four coordinates, so the
+two-term form that `hγ` asserts is *not* a consequence of Künneth: it needs the
+`t`- and `x`-coordinates of the Chern classes to vanish, which is a fact about
+`γ` and belongs to `cc-projective`.  `ChernSplit` is exactly that input, with the
+degrees the grading forces written in, and from it both `hγ` and `hsq_b` are
+immediate. -/
+
+theorem totalH_of_cohCast {X : TopCat.{0}} {n n' : ℕ} (h : n = n')
+    (a : Hmod2 X n) : TotalH.of X n' (cohCast h a) = TotalH.of X n a := by
+  subst h
+  rw [cohCast_self]
+
+/-- **What `cc-projective` supplies.**  Each mod-2 Chern class of `W` splits with no
+`t`- and no `x`-coordinate, and its two coefficients sit in the degrees the grading
+forces: `2k` for the pullback part and `2k - 6` for the `t x` part, the latter
+vanishing while `2k < 6` because `t x` already carries degree six. -/
+structure ChernSplit (γ : ℕ → TotalH (NTop Y)) where
+  /-- The pullback coefficient, in degree `2k`. -/
+  alpha : ∀ k : ℕ, Hmod2 (YTop Y) (2 * k)
+  /-- The `t x` coefficient, in degree `2k - 6`. -/
+  beta : ∀ k : ℕ, Hmod2 (YTop Y) (2 * k - 6)
+  /-- There is no room for a `t x` part below total degree six. -/
+  beta_low : ∀ k : ℕ, 2 * k < 6 → beta k = 0
+  /-- The splitting itself. -/
+  split : ∀ k : ℕ, γ k
+      = TotalH.map (prY Y) (TotalH.of (YTop Y) (2 * k) (alpha k))
+        + Wu.tClass (prS1 Y) (sphereTopClass 1 (by omega))
+          * Wu.xClass (prS5 Y) (sphereTopClass 5 (by omega))
+          * TotalH.map (prY Y) (TotalH.of (YTop Y) (2 * k - 6) (beta k))
+
+/-- **`cc-wu`'s `hγ` and `hsq_b` fields, from the split.** -/
+theorem hgamma_and_hsq_b (γ : ℕ → TotalH (NTop Y)) (S : ChernSplit Y γ) :
+    ∃ a b : ℕ → TotalH (YTop Y),
+      (∀ k : ℕ, γ k = TotalH.map (prY Y) (a k)
+          + Wu.tClass (prS1 Y) (sphereTopClass 1 (by omega))
+            * Wu.xClass (prS5 Y) (sphereTopClass 5 (by omega))
+            * TotalH.map (prY Y) (b k))
+        ∧ (∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH (YTop Y) j (b k) = 0) := by
+  refine ⟨fun k => TotalH.of (YTop Y) (2 * k) (S.alpha k),
+    fun k => TotalH.of (YTop Y) (2 * k - 6) (S.beta k), S.split, ?_⟩
+  refine Wu.sq_b_of_grading _ (fun k hk => ?_) (fun k c hc => ?_)
+  · rw [S.beta_low k (by omega), map_zero]
+  · exact ⟨cohCast (show 2 * k - 6 = c by omega) (S.beta k), (totalH_of_cohCast _ _).symm⟩
+
 end KnTwo
 
 end

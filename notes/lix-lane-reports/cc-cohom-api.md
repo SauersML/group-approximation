@@ -410,3 +410,39 @@ discarded until the degree is positive.
 argument for the suspended classes is needed: `KnGen n 0` applied to a point with
 the unit class would say `1 = 0` in `H⁰(pt;F₂)`.  Since `H^n(S^n;F₂)` is one
 dimensional, the chain of suspensions is then *equal* to `sphereTopClass`.
+
+## cc-wu's three even-side fields
+
+| field | where | status |
+|---|---|---|
+| `htx_inj` | `KnTwo.htx_inj` in `CohomologyParityKunneth` | GREEN, unconditional |
+| `hγ` | `KnTwo.hgamma_and_hsq_b` | GREEN, over `KnTwo.ChernSplit` |
+| `hsq_b` | same theorem | GREEN, over `KnTwo.ChernSplit` |
+
+`htx_inj` is the one-factor injectivity applied twice.  The base is written
+left-nested as `(Y × S⁵) × S¹`, because the one-factor lemma always puts the new
+sphere on the right; a slice of the circle kills `t`, which forces the `ι u`
+summand to vanish, and the rest is two applications of
+`KnHemi.kunnethSecondInjective`.
+
+`hγ` and `hsq_b` are **not** consequences of Künneth, and building the
+decomposition confirmed it.  `KnTwo.decomp_top` is the general shape:
+
+```text
+z = ι a + t ⌣ ι a₁ + x ⌣ ι a₅ + t ⌣ x ⌣ ι b
+```
+
+All four coordinates are needed: `t ⌣ ι β` for `β` of degree two is a class of
+degree three, and the `t x` part starts only in degree six.  So the two-term form
+`hγ` asserts needs the `t`- and `x`-coordinates of the Chern classes to vanish,
+which is a fact about `γ` and belongs to `cc-projective`.  `KnTwo.ChernSplit` is
+exactly that input, with the forced degrees written in, and `hγ` and `hsq_b` both
+fall out of it.
+
+Getting there needed the **surjectivity** half of Künneth, which did not exist:
+`CohomologyKunnethSurjHelp`, `CohomologyKunnethSurj`, `CohomologyKunnethSurjStep`,
+`CohomologyKunnethSurjZero`, `CohomologyKunnethDecomp`.  The predicate that
+propagates is `KnTop`, and it carries its degree as an **explicit equation**
+rather than as `n + m`: at `n + 1` the degree that comes out of
+`exists_delta_of_sub` is `(n + m) + 1`, which is not `(n + 1) + m` on the nose,
+and the equation form lets the witness be produced at the degree it already has.
