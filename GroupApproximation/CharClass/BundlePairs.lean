@@ -62,6 +62,16 @@ def projComap (f : C(Y, X)) (p : Bundle X ι) : C(Proj (comap f p), Proj p) wher
 theorem projPi_comp_projComap (f : C(Y, X)) (p : Bundle X ι) :
     (projPi p).comp (projComap f p) = f.comp (projPi (comap f p)) := rfl
 
+/-- **The tautological line is natural in the base.**  A point of `P(f^* p)`
+carries the same matrix as its image in `P(p)`; only the base point moves.  By
+`rfl`, so a naturality square built from it discharges with no congruence
+step. -/
+theorem tautLine_projComap (f : C(Y, X)) (p : Bundle X ι) :
+    tautLine (comap f p) = comap (projComap f p) (tautLine p) := rfl
+
+theorem tautLine_projComap_apply (f : C(Y, X)) (p : Bundle X ι) (z : Proj (comap f p)) :
+    tautLine (comap f p) z = tautLine p (projComap f p z) := rfl
+
 /-- The map of total spaces preserves the zero section in both directions. -/
 theorem totalComap_snd_eq_zero_iff (f : C(Y, X)) (p : Bundle X ι) (v : Total (comap f p)) :
     (totalComap f p v : X × (ι → ℂ)).2 = 0 ↔ (v : Y × (ι → ℂ)).2 = 0 := Iff.rfl
