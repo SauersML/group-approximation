@@ -208,6 +208,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomStepCSection.lean` | `thomClass_ne_zero` (free, no topology), **`SectionDetectsThom`**, `su_ne_zero_of_section`, `topChernClass_ne_zero_of_section` — `su ≠ 0` split into the Thom class being nonzero and one named predicate about the *section* |
 | `CharClass/ThomBundlePair.lean` | `bundlePairTrivIso` — the bundle pair over a trivialising neighbourhood **is** the product pair, `cc-bundle`'s image equation fed to `cc-relative`'s pair transport; `relPullback_injective_of_retraction` — a retracted map of pairs is injective, which is what makes the trivial-bundle Thom class computable with no Künneth of pairs |
 | `CharClass/ThomKunnethNatural.lean` | `knBaseMap`, `knSigma_natural`, `pull_knBaseMap_knPrY`, **`kunneth_decomposition_natural`** — the absolute Künneth decomposition is natural in the base, the one input `cc-bundle`'s hypothesis-free route still needed |
+| `CharClass/ThomRelativeCokernel.lean` | `relDelta_surjective_of_injective`, `ker_relDelta_eq_range_absToSub`, **`relQuotEquiv`** — if the restriction is injective in every degree, the relative group **is** the cokernel of the restriction; the homological core of the hypothesis-free route, with no bundle, sphere or product in it |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -708,3 +709,4 @@ statement at **every** point rather than at one chosen point.
 | 2026-09-05 | **`ThomBundlePair`** | **green, 8746 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | **`ThomBundlePair` + `ThomStepCEuler` + `ThomStepCLocal`** | **green, 8806 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomKunnethNatural`** | **green, 8803 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-05 | **`ThomRelativeCokernel`** | **green, 8730 jobs, `PROBE GREEN`, first probe** |
