@@ -546,3 +546,30 @@ general rank.
 Moral, and it generalises: when a Mayer–Vietoris induction stalls, check whether
 the statement at a point is a ring-structure statement.  If it is, the induction
 cannot produce it and the missing input is downstream, not upstream.
+
+## The general rank, over the ring as a hypothesis
+
+`CohomologyChartSplit.lean`.  The circle is broken by assuming the ring; the
+induction then closes, and the assumption pays for **exactly one thing**.
+
+`KnCP.CPGenHyp d` is **generation, not a basis**: every class of positive even
+degree on the fibre is the degree-two generator cupped with a class two degrees
+lower.  `KnCP.CPSplit d` is its product form.  Over it:
+
+| name | content |
+|---|---|
+| `flat_of_cpSplit` | restrictions to the intersection are pullbacks from the base |
+| `mvResV_surjective_of_cpSplit` | flatness *is* surjectivity, via `mvExactSum` |
+| `cpTop_cup_injective` | the `cpTop` coefficient is unique |
+| `exists_of_mvResV_eq_zero` | the kernel is `cpTop` cupped with pullbacks |
+
+Together: the restriction to the punctured piece is a split surjection with kernel
+free of rank one on `cpTop`, at every rank.
+
+**The hypothesis pays only for flatness.**  `cpTop_cup_injective` was the step
+that looked circular from all three directions, and it does not need the ring
+directly: δ-linearity moves the vanishing to the intersection, exactness makes it
+a sum of restrictions, *flatness* makes both of those pullbacks from the base, and
+the sphere Künneth's own uniqueness finishes.  Everything downstream of flatness
+was already green.  Worth knowing before anyone proves a stronger ring statement
+than is needed.
