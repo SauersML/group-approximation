@@ -371,6 +371,9 @@ theorem rk1_mul (u v p w : n → ℂ) :
 theorem rk1_smul_left (c : ℂ) (u v : n → ℂ) : rk1 (c • u) v = c • rk1 u v := by
   simp only [rk1, Matrix.smul_vecMulVec]
 
+theorem rk1_smul_right (c : ℂ) (u v : n → ℂ) : rk1 u (c • v) = star c • rk1 u v := by
+  simp only [rk1, star_smul, Matrix.vecMulVec_smul]
+
 theorem rk1_add_left (u u' v : n → ℂ) : rk1 (u + u') v = rk1 u v + rk1 u' v :=
   Matrix.add_vecMulVec _ _ _
 
@@ -429,6 +432,9 @@ theorem star_add_dotProduct (a b c : n → ℂ) :
 theorem star_dotProduct_add (a b c : n → ℂ) :
     star a ⬝ᵥ (b + c) = star a ⬝ᵥ b + star a ⬝ᵥ c := dotProduct_add _ _ _
 
+theorem star_dotProduct_sub (a b c : n → ℂ) :
+    star a ⬝ᵥ (b - c) = star a ⬝ᵥ b - star a ⬝ᵥ c := dotProduct_sub _ _ _
+
 theorem star_smul_dotProduct (c : ℂ) (a b : n → ℂ) :
     star (c • a) ⬝ᵥ b = star c * (star a ⬝ᵥ b) := by
   rw [star_smul, smul_dotProduct, smul_eq_mul]
@@ -476,6 +482,18 @@ theorem reflMat_mul_self {v : n → ℂ} (hv : star v ⬝ᵥ v ≠ 0) :
 theorem reflMat_conjTranspose_mul_self {v : n → ℂ} (hv : star v ⬝ᵥ v ≠ 0) :
     (reflMat v)ᴴ * reflMat v = 1 := by
   rw [reflMat_conjTranspose, reflMat_mul_self hv]
+
+/-- Rescaling the normal vector does not change the reflection. -/
+theorem reflMat_smul {c : ℂ} (hc : c ≠ 0) (v : n → ℂ) :
+    reflMat (c • v) = reflMat v := by
+  have hsc : star c ≠ 0 := star_ne_zero.mpr hc
+  have h1 : star (c • v) ⬝ᵥ (c • v) = star c * c * (star v ⬝ᵥ v) := by
+    rw [star_smul_dotProduct, star_dotProduct_smul, ← mul_assoc]
+  have h2 : rk1 (c • v) (c • v) = (c * star c) • rk1 v v := by
+    rw [rk1_smul_left, rk1_smul_right, smul_smul]
+  rw [reflMat, reflMat, h1, h2, smul_smul]
+  congr 1
+  field_simp
 
 /-! ### The unitary transport -/
 
@@ -938,6 +956,320 @@ theorem conj_one_sub_rk1 {σ : Matrix n n ℂ} {x : n → ℂ}
   rw [mul_sub, Matrix.mul_one, sub_mul, hu, hv p, h3]
 
 end Seam
+
+/-! ### The null-homotopy of the seam generator
+
+The seam generator is null-homotopic for a reason with no homotopy theory in
+it: each hemisphere frame is defined on a set containing that whole
+hemisphere, and each hemisphere contracts to its pole along great circles.
+Pushing both arguments along their contractions moves `seamGen p ·` to a
+constant, and the constant is `reflMat p`, which a phase rotation of the
+rank-one projection joins to `1`.  Folding that rotation into the same
+parameter gives a single path from `seamGen p x` to `1`.
+
+The equator is where the two hemispheres meet, `Re (pᴴx) = 0`; that condition
+is exactly real-orthogonality of `x` and `p`, which is what makes
+`cos θ · x ± sin θ · p` a unit vector. -/
+
+section NullHomotopy
+
+variable {p : n → ℂ}
+
+/-- A point of the unit circle. -/
+def circlePt (θ : ℝ) : ℂ :=
+  ((Real.cos θ : ℝ) : ℂ) + ((Real.sin θ : ℝ) : ℂ) * Complex.I
+
+theorem circlePt_zero : circlePt 0 = 1 := by
+  simp [circlePt]
+
+theorem circlePt_pi : circlePt Real.pi = -1 := by
+  simp [circlePt]
+
+theorem circlePt_mul_star (θ : ℝ) : circlePt θ * star (circlePt θ) = 1 := by
+  rw [Complex.star_def, Complex.mul_conj, circlePt, Complex.normSq_add_mul_I,
+    show Real.cos θ ^ 2 + Real.sin θ ^ 2 = 1 from Real.cos_sq_add_sin_sq θ,
+    Complex.ofReal_one]
+
+theorem star_circlePt_mul (θ : ℝ) : star (circlePt θ) * circlePt θ = 1 := by
+  rw [mul_comm]; exact circlePt_mul_star θ
+
+theorem continuous_circlePt : Continuous circlePt := by
+  refine Continuous.add ?_ (Continuous.mul ?_ continuous_const)
+  · exact Complex.continuous_ofReal.comp Real.continuous_cos
+  · exact Complex.continuous_ofReal.comp Real.continuous_sin
+
+/-- The rotation joining `reflMat p` (at `t = 0`) to `1` (at `t = 1`). -/
+def poleRotation (p : n → ℂ) (t : ℝ) : Matrix n n ℂ :=
+  1 - (1 - circlePt ((1 - t) * Real.pi)) • rk1 p p
+
+theorem poleRotation_zero (hp : star p ⬝ᵥ p = 1) : poleRotation p 0 = reflMat p := by
+  rw [poleRotation, reflMat, hp, sub_zero, one_mul, circlePt_pi]
+  norm_num
+
+theorem poleRotation_one : poleRotation p 1 = 1 := by
+  rw [poleRotation, sub_self, zero_mul, circlePt_zero, sub_self, zero_smul, sub_zero]
+
+theorem poleRotation_conjTranspose (t : ℝ) :
+    (poleRotation p t)ᴴ = 1 - star (1 - circlePt ((1 - t) * Real.pi)) • rk1 p p := by
+  rw [poleRotation, Matrix.conjTranspose_sub, Matrix.conjTranspose_one,
+    Matrix.conjTranspose_smul, rk1_conjTranspose]
+
+theorem poleRotation_unitary (hp : star p ⬝ᵥ p = 1) (t : ℝ) :
+    (poleRotation p t)ᴴ * poleRotation p t = 1 := by
+  have hP : rk1 p p * rk1 p p = rk1 p p := by rw [rk1_mul, hp, one_smul]
+  have key : ∀ μ : ℂ, μ + star μ - μ * star μ = 0 →
+      (1 - star μ • rk1 p p) * (1 - μ • rk1 p p) = 1 := by
+    intro μ hμ
+    have hcomm : star μ * μ = μ * star μ := mul_comm _ _
+    have e : (1 - star μ • rk1 p p) * (1 - μ • rk1 p p)
+        = 1 - (μ + star μ - μ * star μ) • rk1 p p := by
+      simp only [sub_mul, mul_sub, Matrix.one_mul, Matrix.mul_one, Matrix.smul_mul,
+        Matrix.mul_smul, smul_smul, hP, hcomm, sub_smul, add_smul]
+      abel
+    rw [e, hμ, zero_smul, sub_zero]
+  rw [poleRotation_conjTranspose, poleRotation]
+  refine key _ ?_
+  have h1 : circlePt ((1 - t) * Real.pi) * star (circlePt ((1 - t) * Real.pi)) = 1 :=
+    circlePt_mul_star _
+  rw [star_sub, star_one]
+  linear_combination -h1
+
+theorem poleRotation_mul_rk1 (t : ℝ) (hp : star p ⬝ᵥ p = 1) (v : n → ℂ) :
+    poleRotation p t * rk1 p v = circlePt ((1 - t) * Real.pi) • rk1 p v := by
+  rw [poleRotation, sub_mul, Matrix.one_mul, Matrix.smul_mul, rk1_mul, hp, one_smul,
+    sub_smul, one_smul]
+  abel
+
+theorem continuous_poleRotation (p : n → ℂ) :
+    Continuous fun t : ℝ => poleRotation p t := by
+  have h1 : Continuous fun t : ℝ => 1 - circlePt ((1 - t) * Real.pi) :=
+    continuous_const.sub (continuous_circlePt.comp
+      ((continuous_const.sub continuous_id).mul continuous_const))
+  have hP : Continuous fun _ : ℝ => rk1 p p := continuous_const
+  exact continuous_const.sub (h1.smul hP)
+
+/-! #### The two hemisphere contractions -/
+
+/-- The equator of the chart with pole `p`: unit vectors real-orthogonal to
+`p`. -/
+structure IsEquator (p x : n → ℂ) : Prop where
+  unit_x : star x ⬝ᵥ x = 1
+  perp : (star p ⬝ᵥ x).re = 0
+
+/-- The great-circle contraction of the northern hemisphere to its pole. -/
+def contractNorth (p : n → ℂ) (t : ℝ) (x : n → ℂ) : n → ℂ :=
+  ((Real.cos (t * (Real.pi / 2)) : ℝ) : ℂ) • x + ((Real.sin (t * (Real.pi / 2)) : ℝ) : ℂ) • p
+
+/-- The great-circle contraction of the southern hemisphere to its pole. -/
+def contractSouth (p : n → ℂ) (t : ℝ) (x : n → ℂ) : n → ℂ :=
+  ((Real.cos (t * (Real.pi / 2)) : ℝ) : ℂ) • x - ((Real.sin (t * (Real.pi / 2)) : ℝ) : ℂ) • p
+
+theorem contractNorth_zero (p x : n → ℂ) : contractNorth p 0 x = x := by
+  simp [contractNorth]
+
+theorem contractSouth_zero (p x : n → ℂ) : contractSouth p 0 x = x := by
+  simp [contractSouth]
+
+theorem contractNorth_one (p x : n → ℂ) : contractNorth p 1 x = p := by
+  simp [contractNorth]
+
+theorem contractSouth_one (p x : n → ℂ) : contractSouth p 1 x = -p := by
+  simp [contractSouth]
+
+/-- Real-orthogonality is what makes the great circle stay on the sphere: the
+cross terms cancel because they add up to twice the real part. -/
+theorem unit_contract {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (h : IsEquator p x)
+    (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
+    star (((a : ℝ) : ℂ) • x + ((b : ℝ) : ℂ) • p) ⬝ᵥ (((a : ℝ) : ℂ) • x + ((b : ℝ) : ℂ) • p)
+      = 1 := by
+  have hcross : (star p ⬝ᵥ x) + star (star p ⬝ᵥ x) = 0 := by
+    rw [Complex.star_def, Complex.add_conj, h.perp]
+    norm_num
+  have hxp : star x ⬝ᵥ p = star (star p ⬝ᵥ x) := star_dotProduct_comm p x
+  rw [star_add_dotProduct, star_dotProduct_add, star_dotProduct_add,
+    star_smul_dotProduct, star_smul_dotProduct, star_smul_dotProduct, star_smul_dotProduct,
+    star_dotProduct_smul, star_dotProduct_smul, star_dotProduct_smul, star_dotProduct_smul,
+    h.unit_x, hp, hxp]
+  simp only [Complex.star_def, Complex.conj_ofReal]
+  have hab' : ((a : ℝ) : ℂ) * ((a : ℝ) : ℂ) + ((b : ℝ) : ℂ) * ((b : ℝ) : ℂ) = 1 := by
+    have h2 : a * a + b * b = 1 := by nlinarith [hab]
+    exact_mod_cast h2
+  linear_combination hab' + ((a : ℝ) : ℂ) * ((b : ℝ) : ℂ) * hcross
+
+theorem isEquator_neg {x : n → ℂ} (h : IsEquator p x) : IsEquator (-p) x where
+  unit_x := h.unit_x
+  perp := by rw [star_neg_dotProduct]; simp [h.perp]
+
+theorem unit_contractNorth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (h : IsEquator p x) (t : ℝ) :
+    star (contractNorth p t x) ⬝ᵥ contractNorth p t x = 1 :=
+  unit_contract hp h _ _ (Real.cos_sq_add_sin_sq _)
+
+theorem unit_contractSouth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (h : IsEquator p x) (t : ℝ) :
+    star (contractSouth p t x) ⬝ᵥ contractSouth p t x = 1 := by
+  have hpn : star (-p) ⬝ᵥ (-p) = 1 := by
+    rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, hp]
+  have hcs : contractSouth p t x
+      = ((Real.cos (t * (Real.pi / 2)) : ℝ) : ℂ) • x
+        + ((Real.sin (t * (Real.pi / 2)) : ℝ) : ℂ) • (-p) := by
+    rw [contractSouth, smul_neg, sub_eq_add_neg]
+  rw [hcs]
+  exact unit_contract hpn (isEquator_neg h) _ _ (Real.cos_sq_add_sin_sq _)
+
+theorem inner_contractNorth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (t : ℝ) :
+    star p ⬝ᵥ contractNorth p t x
+      = ((Real.cos (t * (Real.pi / 2)) : ℝ) : ℂ) * (star p ⬝ᵥ x)
+        + ((Real.sin (t * (Real.pi / 2)) : ℝ) : ℂ) := by
+  rw [contractNorth, star_dotProduct_add, star_dotProduct_smul, star_dotProduct_smul, hp,
+    mul_one]
+
+theorem inner_contractSouth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (t : ℝ) :
+    star (-p) ⬝ᵥ contractSouth p t x
+      = -(((Real.cos (t * (Real.pi / 2)) : ℝ) : ℂ) * (star p ⬝ᵥ x))
+        + ((Real.sin (t * (Real.pi / 2)) : ℝ) : ℂ) := by
+  rw [contractSouth, star_neg_dotProduct, star_dotProduct_sub, star_dotProduct_smul,
+    star_dotProduct_smul, hp, mul_one]
+  ring
+
+/-- Along the contraction the pole-component's real part is `sin (tπ/2) ≥ 0`,
+so the moving point never reaches the antipode. -/
+theorem isFrameDatum_contractNorth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (h : IsEquator p x)
+    {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : IsFrameDatum p (contractNorth p t x) where
+  unit_p := hp
+  unit_x := unit_contractNorth hp h t
+  not_antipodal := by
+    intro hc
+    have hre := congrArg Complex.re hc
+    rw [inner_contractNorth hp t] at hre
+    simp only [Complex.add_re, Complex.re_ofReal_mul, Complex.ofReal_re, Complex.neg_re,
+      Complex.one_re] at hre
+    rw [h.perp, mul_zero, zero_add] at hre
+    have hs : 0 ≤ Real.sin (t * (Real.pi / 2)) := by
+      apply Real.sin_nonneg_of_nonneg_of_le_pi
+      · positivity
+      · nlinarith [Real.pi_pos]
+    linarith
+
+theorem isFrameDatum_contractSouth {x : n → ℂ} (hp : star p ⬝ᵥ p = 1) (h : IsEquator p x)
+    {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : IsFrameDatum (-p) (contractSouth p t x) where
+  unit_p := by rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, hp]
+  unit_x := unit_contractSouth hp h t
+  not_antipodal := by
+    intro hc
+    have hre := congrArg Complex.re hc
+    rw [inner_contractSouth hp t] at hre
+    simp only [Complex.add_re, Complex.neg_re, Complex.re_ofReal_mul, Complex.ofReal_re,
+      Complex.one_re] at hre
+    rw [h.perp, mul_zero, neg_zero, zero_add] at hre
+    have hs : 0 ≤ Real.sin (t * (Real.pi / 2)) := by
+      apply Real.sin_nonneg_of_nonneg_of_le_pi
+      · positivity
+      · nlinarith [Real.pi_pos]
+    linarith
+
+/-! #### The frame at its own base point -/
+
+theorem midNorm_self (hp : star p ⬝ᵥ p = 1) : midNorm p p = 2 := by
+  have h4 : (2 : ℝ) + 2 * ((1 : ℂ).re) = 2 ^ 2 := by norm_num
+  rw [midNorm, hp, h4, Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 2)]
+  norm_num
+
+theorem midVec_self (hp : star p ⬝ᵥ p = 1) : midVec p p = p := by
+  rw [midVec, midNorm_self hp, ← two_smul ℂ p, smul_smul, inv_mul_cancel₀ (two_ne_zero),
+    one_smul]
+
+theorem transPhase_self (hp : star p ⬝ᵥ p = 1) : transPhase p p = 1 := by
+  rw [transPhase, hp]
+  norm_num
+
+theorem transTarget_self (hp : star p ⬝ᵥ p = 1) : transTarget p p = p := by
+  rw [transTarget, transPhase_self hp, star_one, one_smul]
+
+theorem transportRot_self (hp : star p ⬝ᵥ p = 1) : transportRot p p = 1 := by
+  have hpne : star p ⬝ᵥ p ≠ 0 := by rw [hp]; exact one_ne_zero
+  have hsum : p + transTarget p p = (2 : ℂ) • p := by
+    rw [transTarget_self hp, two_smul]
+  rw [transportRot, transPhase_self hp, one_smul, hsum,
+    reflMat_smul (two_ne_zero) p, reflMat_mul_self hpne]
+
+theorem frameRot_self (hp : star p ⬝ᵥ p = 1) : frameRot p p = 1 := by
+  rw [frameRot, midVec_self hp, transportRot_self hp, Matrix.one_mul]
+
+/-! #### The path -/
+
+/-- **The null-homotopy of the seam generator.**  At `t = 0` it is
+`seamGen p x`; at `t = 1` it is the identity; and every value is unitary. -/
+def seamPath (p : n → ℂ) (t : ℝ) (x : n → ℂ) : Matrix n n ℂ :=
+  (frameRot p (contractNorth p t x))ᴴ *
+    (frameRot (-p) (contractSouth p t x) * poleRotation p t)
+
+theorem seamPath_zero (hp : star p ⬝ᵥ p = 1) (x : n → ℂ) :
+    seamPath p 0 x = seamGen p x := by
+  rw [seamPath, contractNorth_zero, contractSouth_zero, poleRotation_zero hp, seamGen,
+    frameNorth, frameSouth]
+
+theorem seamPath_one (hp : star p ⬝ᵥ p = 1) (x : n → ℂ) : seamPath p 1 x = 1 := by
+  have hpn : star (-p) ⬝ᵥ (-p) = 1 := by
+    rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, hp]
+  rw [seamPath, contractNorth_one, contractSouth_one, poleRotation_one,
+    frameRot_self hp, frameRot_self hpn, Matrix.mul_one, Matrix.mul_one,
+    Matrix.conjTranspose_one]
+
+theorem seamPath_conjTranspose_mul_self {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (h : IsEquator p x) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
+    (seamPath p t x)ᴴ * seamPath p t x = 1 := by
+  have hN := isFrameDatum_contractNorth hp h ht0 ht1
+  have hS := isFrameDatum_contractSouth hp h ht0 ht1
+  set A := frameRot p (contractNorth p t x) with hA
+  set B := frameRot (-p) (contractSouth p t x) with hB
+  set C := poleRotation p t with hC
+  have hAu : A * Aᴴ = 1 := frameRot_mul_conjTranspose hN
+  have hBu : Bᴴ * B = 1 := frameRot_conjTranspose_mul_self hS
+  have hCu : Cᴴ * C = 1 := poleRotation_unitary hp t
+  rw [seamPath, ← hA, ← hB, ← hC, Matrix.conjTranspose_mul,
+    Matrix.conjTranspose_conjTranspose]
+  calc (B * C)ᴴ * A * (Aᴴ * (B * C))
+      = (B * C)ᴴ * (A * Aᴴ) * (B * C) := by simp only [Matrix.mul_assoc]
+    _ = (B * C)ᴴ * (B * C) := by rw [hAu, Matrix.mul_one]
+    _ = Cᴴ * (Bᴴ * B) * C := by
+        rw [Matrix.conjTranspose_mul]; simp only [Matrix.mul_assoc]
+    _ = 1 := by rw [hBu, Matrix.mul_one, hCu]
+
+theorem seamPath_mul_conjTranspose {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
+    (h : IsEquator p x) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
+    seamPath p t x * (seamPath p t x)ᴴ = 1 :=
+  mul_eq_one_comm.mpr (seamPath_conjTranspose_mul_self hp h ht0 ht1)
+
+theorem continuous_contractNorth {X : Type*} [TopologicalSpace X] {τ : X → ℝ}
+    {ξ : X → n → ℂ} (hτ : Continuous τ) (hξ : Continuous ξ) :
+    Continuous fun s => contractNorth p (τ s) (ξ s) := by
+  have hc : Continuous fun s => ((Real.cos (τ s * (Real.pi / 2)) : ℝ) : ℂ) :=
+    Complex.continuous_ofReal.comp (Real.continuous_cos.comp (hτ.mul continuous_const))
+  have hs : Continuous fun s => ((Real.sin (τ s * (Real.pi / 2)) : ℝ) : ℂ) :=
+    Complex.continuous_ofReal.comp (Real.continuous_sin.comp (hτ.mul continuous_const))
+  have hpc : Continuous fun _ : X => p := continuous_const
+  exact (hc.smul hξ).add (hs.smul hpc)
+
+theorem continuous_contractSouth {X : Type*} [TopologicalSpace X] {τ : X → ℝ}
+    {ξ : X → n → ℂ} (hτ : Continuous τ) (hξ : Continuous ξ) :
+    Continuous fun s => contractSouth p (τ s) (ξ s) := by
+  have hc : Continuous fun s => ((Real.cos (τ s * (Real.pi / 2)) : ℝ) : ℂ) :=
+    Complex.continuous_ofReal.comp (Real.continuous_cos.comp (hτ.mul continuous_const))
+  have hs : Continuous fun s => ((Real.sin (τ s * (Real.pi / 2)) : ℝ) : ℂ) :=
+    Complex.continuous_ofReal.comp (Real.continuous_sin.comp (hτ.mul continuous_const))
+  have hpc : Continuous fun _ : X => p := continuous_const
+  exact (hc.smul hξ).sub (hs.smul hpc)
+
+theorem continuous_seamPath {X : Type*} [TopologicalSpace X] {τ : X → ℝ} {ξ : X → n → ℂ}
+    (hτ : Continuous τ) (hξ : Continuous ξ)
+    (hN : ∀ s, IsFrameDatum p (contractNorth p (τ s) (ξ s)))
+    (hS : ∀ s, IsFrameDatum (-p) (contractSouth p (τ s) (ξ s))) :
+    Continuous fun s => seamPath p (τ s) (ξ s) := by
+  refine Continuous.mul (Continuous.matrix_conjTranspose ?_) (Continuous.mul ?_ ?_)
+  · exact continuous_frameRot continuous_const (continuous_contractNorth hτ hξ) hN
+  · exact continuous_frameRot continuous_const (continuous_contractSouth hτ hξ) hS
+  · exact (continuous_poleRotation p).comp hτ
+
+end NullHomotopy
 
 end Frames
 
