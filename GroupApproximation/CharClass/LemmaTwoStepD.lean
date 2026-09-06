@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LemmaTwoGlue
 import GroupApproximation.CharClass.ParityInstance
+import GroupApproximation.CharClass.SqDataInstance
 
 /-!
 # Step D at the real objects: the even side wired to `cc-wu`
@@ -23,16 +24,22 @@ complete.
 
 ## Two conveniences over calling `cc-wu` directly
 
-* `WuStepDData` bundles the seven remaining hypotheses as one record, so that the even
-  side can be quantified over the tower.  `a_zero` and `a_odd` are not among them:
-  `cc-wu`'s endpoint derives both from the slice hypothesis.
+* `WuStepDData` bundles the remaining hypotheses as one record, so that the even side can
+  be quantified over the tower.  Three things are deliberately *not* in it.  `a_zero` and
+  `a_odd` are derived by `cc-wu`'s endpoint from the slice.  The Wu relation is replaced by
+  the splitting principle, `Wu.HasSplitting`, which subsumes it.  And the Cartan formula is
+  a hypothesis of the *theorems* rather than a field, because `Wu.CartanTotal` is
+  quantified over the space and so depends on neither the corner unitary nor the tower
+  stage: carrying it inside a record that is itself quantified over every corner unitary
+  would mean proving it once per unitary.
 * `ne_zero_of_degree_ne_zero` is the bridge `cc-wu` points at: Step C produces
   nonvanishing in the single graded piece `H^{2r}(N; F₂)`, while the even side speaks in
   the ring `TotalH N`, and `TotalH.of_eq_zero_iff` identifies the two.
 
 ## Main results
 
-* `WuStepDData`, `WuStepDData.gamma_top_eq_zero` — the even side, seven hypotheses.
+* `WuStepDData`, `WuStepDData.gamma_top_eq_zero` — the even side, four hypotheses in the
+  record plus the space-independent Cartan formula outside it.
 * `stepD_of_wu` — **the Step D half of `LemmaTwoInput`**.
 -/
 
@@ -70,10 +77,6 @@ structure WuStepDData (dd : Fin ℓ → ℕ) (p : N ⟶ Y) (q₁ : N ⟶ S₁) (
   b : ℕ → TotalH Y
   /-- The degree-two generators `hⱼ = e(Lⱼ)`. -/
   gen : Fin ℓ → TotalH Y
-  /-- The Cartan formula (owner `cc-cartan`). -/
-  cartan : ∀ (n : ℕ) (u v : TotalH N),
-    Steenrod.SqH N n (u * v)
-      = ∑ i ∈ Finset.range (n + 1), Steenrod.SqH N i u * Steenrod.SqH N (n - i) v
   /-- Künneth uniqueness (owner `cc-cohom-api`). -/
   tx_inj : ∀ u v : TotalH Y,
     TotalH.map p u + Wu.tClass q₁ σ₁ * Wu.xClass q₅ σ₅ * TotalH.map p v = 0 → v = 0
@@ -82,9 +85,9 @@ structure WuStepDData (dd : Fin ℓ → ℕ) (p : N ⟶ Y) (q₁ : N ⟶ S₁) (
     γ k = TotalH.map p (a k) + Wu.tClass q₁ σ₁ * Wu.xClass q₅ σ₅ * TotalH.map p (b k)
   /-- Instability, in the only form used (owner `cc-cohom-api`). -/
   sq_b : ∀ k j : ℕ, 2 * k < j + 6 → Steenrod.SqH Y j (b k) = 0
-  /-- The diagonal Wu relation (owner `cc-projective`). -/
-  wu : ∀ i : ℕ, Steenrod.SqH N (2 * i) (γ (i + 1))
-    = ∑ j ∈ Finset.range (i + 1), γ (i - j) * γ (i + 1 + j)
+  /-- The splitting principle (owner `cc-projective`), which subsumes the diagonal Wu
+  relation: `cc-wu` derives (Wu-diag) on the flag total space and pushes it down. -/
+  split : Wu.HasSplitting N γ
   /-- The slice class of `W` is `∏ⱼ (1 + hⱼ)^{dⱼ}` (owner `cc-projective`).  This one
   hypothesis also supplies `a_zero` and `a_odd`. -/
   slice : ∀ q : ℕ, a q = (sliceClass Finset.univ gen dd).coeff q
@@ -95,11 +98,12 @@ variable {p : N ⟶ Y} {q₁ : N ⟶ S₁} {q₅ : N ⟶ S₅} {σ₁ : Hmod2 S�
 /-- **The even side.**  `γ_{(∑ⱼ dⱼ)+3}(W) = 0` whenever every `dⱼ` is even.  Only evenness
 is used, never the tower's powers of two. -/
 theorem WuStepDData.gamma_top_eq_zero (D : WuStepDData dd p q₁ q₅ σ₁ σ₅ γ)
+    (hC : Wu.CartanTotal)
     (hS₁ : HasSphereCohomology S₁ 1) (hS₅ : HasSphereCohomology S₅ 5)
     (hd : ∀ j, Even (dd j)) :
     γ ((∑ j, dd j) + 3) = 0 :=
-  Wu.gamma_top_eq_zero_of_slice_totalH p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ D.a D.b
-    D.cartan D.tx_inj D.gamma_eq D.sq_b D.wu Finset.univ D.gen dd
+  Wu.gamma_top_eq_zero_of_hasSplitting p q₁ q₅ hS₁ hS₅ σ₁ σ₅ γ D.a D.b
+    hC D.tx_inj D.gamma_eq D.sq_b D.split Finset.univ D.gen dd
     (fun j _ => hd j) D.slice
 
 /-! ## 3. The Step D half of `LemmaTwoInput` -/
@@ -108,6 +112,7 @@ theorem WuStepDData.gamma_top_eq_zero (D : WuStepDData dd p q₁ q₅ σ₁ σ�
 `γ_{(∑ⱼ dⱼ)+3}(W)` in `TotalH N`, the even side gives exactly the `stepD` hypothesis of
 `LemmaTwoInput`. -/
 theorem stepD_of_wu (p : N ⟶ Y) (q₁ : N ⟶ S₁) (q₅ : N ⟶ S₅)
+    (hC : Wu.CartanTotal)
     (hS₁ : HasSphereCohomology S₁ 1) (hS₅ : HasSphereCohomology S₅ 5)
     (σ₁ : Hmod2 S₁ 1) (σ₅ : Hmod2 S₅ 5)
     (γfun : (↥sphereOne × baseM dd →
@@ -119,6 +124,6 @@ theorem stepD_of_wu (p : N ⟶ Y) (q₁ : N ⟶ S₁) (q₅ : N ⟶ S₅)
     ∀ G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ, Continuous G →
       (∀ m, IsCornerUnitary (Vmat m) (G m)) →
       γfun (mappingTorus Vmat G circHoriz circHeight) ((∑ j, dd j) + 3) = 0 :=
-  fun G hc hu => (data G hc hu).gamma_top_eq_zero hS₁ hS₅ hd
+  fun G hc hu => (data G hc hu).gamma_top_eq_zero hC hS₁ hS₅ hd
 
 end GroupApproximation.CharClass
