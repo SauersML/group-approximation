@@ -17,12 +17,12 @@ namespace GroupApproximation
 namespace GGT
 namespace VanKampen
 
-universe u
+universe u w
 
 /-! ## Powers of a sum -/
 
 /-- A power of a sum of permutations is the sum of the powers. -/
-theorem sumCongr_zpow {α β : Type u} (a : Equiv.Perm α) (b : Equiv.Perm β)
+theorem sumCongr_zpow {α : Type u} {β : Type w} (a : Equiv.Perm α) (b : Equiv.Perm β)
     (i : ℤ) :
     (Equiv.sumCongr a b) ^ i = Equiv.sumCongr (a ^ i) (b ^ i) := by
   have hprod : ((a, b) : Equiv.Perm α × Equiv.Perm β) ^ i = (a ^ i, b ^ i) := rfl
@@ -35,7 +35,7 @@ theorem sumCongr_zpow {α β : Type u} (a : Equiv.Perm α) (b : Equiv.Perm β)
 
 /-- Two left elements are in the same cycle of the sum exactly when they are in
 the same cycle of the left permutation. -/
-theorem sameCycle_sumCongr_inl {α β : Type u} (a : Equiv.Perm α)
+theorem sameCycle_sumCongr_inl {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) (x y : α) :
     Equiv.Perm.SameCycle a x y ↔
       Equiv.Perm.SameCycle (Equiv.sumCongr a b) (Sum.inl x) (Sum.inl y) := by
@@ -50,7 +50,7 @@ theorem sameCycle_sumCongr_inl {α β : Type u} (a : Equiv.Perm α)
 
 /-- Two right elements are in the same cycle of the sum exactly when they are
 in the same cycle of the right permutation. -/
-theorem sameCycle_sumCongr_inr {α β : Type u} (a : Equiv.Perm α)
+theorem sameCycle_sumCongr_inr {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) (x y : β) :
     Equiv.Perm.SameCycle b x y ↔
       Equiv.Perm.SameCycle (Equiv.sumCongr a b) (Sum.inr x) (Sum.inr y) := by
@@ -65,7 +65,7 @@ theorem sameCycle_sumCongr_inr {α β : Type u} (a : Equiv.Perm α)
 
 /-- A left element and a right element are never in the same cycle of the
 sum. -/
-theorem not_sameCycle_sumCongr_inl_inr {α β : Type u} (a : Equiv.Perm α)
+theorem not_sameCycle_sumCongr_inl_inr {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) (x : α) (y : β) :
     ¬ Equiv.Perm.SameCycle (Equiv.sumCongr a b) (Sum.inl x) (Sum.inr y) := by
   rintro ⟨i, hi⟩
@@ -74,7 +74,7 @@ theorem not_sameCycle_sumCongr_inl_inr {α β : Type u} (a : Equiv.Perm α)
 
 /-- A right element and a left element are never in the same cycle of the
 sum. -/
-theorem not_sameCycle_sumCongr_inr_inl {α β : Type u} (a : Equiv.Perm α)
+theorem not_sameCycle_sumCongr_inr_inl {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) (x : β) (y : α) :
     ¬ Equiv.Perm.SameCycle (Equiv.sumCongr a b) (Sum.inr x) (Sum.inl y) := by
   intro h
@@ -82,7 +82,7 @@ theorem not_sameCycle_sumCongr_inr_inl {α β : Type u} (a : Equiv.Perm α)
 
 /-! ## The orbit decomposition -/
 
-private noncomputable def orbitSumToFun {α β : Type u} (a : Equiv.Perm α)
+private noncomputable def orbitSumToFun {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) :
     CombMap.Orbit (Equiv.sumCongr a b) →
       CombMap.Orbit a ⊕ CombMap.Orbit b := by
@@ -106,7 +106,7 @@ private noncomputable def orbitSumToFun {α β : Type u} (a : Equiv.Perm α)
         (sameCycle_sumCongr_inr a b x y).2 hzw
       exact congrArg Sum.inr (Quotient.sound hxy)
 
-private noncomputable def orbitSumInvFun {α β : Type u} (a : Equiv.Perm α)
+private noncomputable def orbitSumInvFun {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) :
     CombMap.Orbit a ⊕ CombMap.Orbit b →
       CombMap.Orbit (Equiv.sumCongr a b) :=
@@ -118,7 +118,7 @@ private noncomputable def orbitSumInvFun {α β : Type u} (a : Equiv.Perm α)
 
 /-- The orbits of a sum of two permutations are the orbits of the two
 summands. -/
-noncomputable def orbitSumCongr {α β : Type u} (a : Equiv.Perm α)
+noncomputable def orbitSumCongr {α : Type u} {β : Type w} (a : Equiv.Perm α)
     (b : Equiv.Perm β) :
     CombMap.Orbit (Equiv.sumCongr a b) ≃
       CombMap.Orbit a ⊕ CombMap.Orbit b where

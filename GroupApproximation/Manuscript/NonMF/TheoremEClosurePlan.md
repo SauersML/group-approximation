@@ -167,11 +167,16 @@ adds exactly one edge, and preserves connectedness. `PermOrbitInsert.lean`
 proves the required orbit equivalence. `CombMapEdgeFaces.lean` identifies
 the resulting face permutation for both distinct and equal corners.
 `FiniteCycleSplit.lean` proves that cutting a finite cycle into two
-nonempty consecutive blocks gives exactly two cycles. Relating the chosen
-face of an arbitrary map to those finite coordinates, while retaining
-all other face orbits, remains necessary before asserting planarity of
-the general insertion. Labels, arbitrary connector-path lengths, and the
-preservation of selected embedded regions must then be carried through it.
+nonempty consecutive blocks gives exactly two cycles.
+`PermCycleCoordinates.lean` now identifies an arbitrary chosen cycle with
+finite rotation coordinates and retains its invariant complement;
+`PermOrbitSplit.lean` proves that the transposition therefore adds exactly one
+orbit to the whole permutation. `CombMapEdgePlanarity.lean` completes the
+actual insertion: any two corners of one face, including coincident corners,
+give exactly one extra face, unchanged Euler characteristic, and a planar
+map. All these proofs pass ordinary axiom audits. Labels, arbitrary
+connector-path lengths, and preservation of selected embedded regions must
+still be carried through this construction.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
