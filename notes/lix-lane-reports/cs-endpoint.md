@@ -391,6 +391,39 @@ theorems (`exists_simple_unital_not_k1Inj`, `not_problemLIX`) remain gated on
 `HasK1InjWitness LIXLimit` and `IsSimpleCStar LIXLimit`, neither of which exists yet. Will
 add them and probe the moment both peer lanes report those two names green.
 
+## 3c. PARKED WORK (restore when `LIXLimitAlgebra` is green)
+
+The concrete assembly is written and parked outside the tree at
+`scratchpad/cs-endpoint/ProblemLIX.with-limit-import.lean`:
+
+```lean
+theorem exists_simple_unital_not_k1Inj_of_limit
+    (hsimp : IsSimpleCStar LIX.LIXLimit) (hwit : HasK1InjWitness LIX.LIXLimit) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_simple_unital_not_k1Inj_of LIX.LIXLimit inferInstance hsimp hwit
+```
+
+It needs `import GroupApproximation.Analysis.LIXLimitSimple`, and
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` is **root-wired**, so that
+import would put the root build behind `cs-limit`'s `LIXLimitAlgebra` — whose
+own commit message reads *"AUTHORED, UNVERIFIED - do not wire yet"* and which
+is red at `:83`:
+
+```
+error: failed to synthesize CStarAlgebra (CStarMat 2 (STW59.StageAlgebra k))
+```
+
+Landing it would therefore have broken `main` through the lead's periodic
+sweep, not merely left a red orphan.  The rule this is an instance of: **once a
+module is root-wired, an import is a commitment of the root build, and an
+in-flight peer module may not be imported until it is green.**  Before wiring,
+a red import costs only the lane; after, it costs everyone.
+
+`ProblemLIX.lean` is back at its green committed state, which is the version
+recorded under GREEN.  Restore the parked file and probe the moment
+`LIXLimitAlgebra` and `LIXLimitSimple` build.
+
 ## 4. TRAPS
 
 * **Duplicate-declaration scan for the root wiring: clean.**  147 top-level
