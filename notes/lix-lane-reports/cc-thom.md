@@ -200,21 +200,13 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 | `CharClass/ThomTopLine.lean` | **`HasTopLine`**, `prodCoverConnecting`, `hasTopLine_sphere`, `hasTopLine_prod_sphere{,_succ}`, `hasTopLine_prod_CP{,_succ}` — the top-line induction for a left-nested product of spheres and projective spaces; **no cup and no cross product** |
 | `CharClass/ThomTopLineCircle.lean` | `sphereZeroProdEquiv`, `ker_mvDelta_circle`, **`circleTopLineStep`** — the one case the connecting isomorphism cannot reach, computed by rank counting over `F₂` |
+| `CharClass/ThomTopLineLIX.lean` | `hasTopLine_sphereOne`, `hasTopLine_circleTimesFive`, `hasTopLine_lixBase`, **`absEquiv_lixN`** — hypothesis 8 of Step C at the real `N`, modulo the one model homeomorphism `cc-lix-odd` owes |
 
 Job count: 8786 (fourteen modules, one probe).
 
 ## 2. AUTHORED, UNVERIFIED
 
-`CharClass/ThomTopLineLIX.lean` — `hasTopLine_sphereOne`,
-`hasTopLine_circleTimesFive`, `hasTopLine_lixBase`, **`absEquiv_lixN`**: the
-top-line induction run at `N = S¹ × S⁵ × ∏ⱼ ℂP^{dⱼ}` over `cc-lix-odd`'s
-`baseNilHomeo` / `baseSnocHomeo`, ending in hypothesis 8 of Step C in the shape
-`LemmaTwoStepC.ThomChainData.absEquiv` asks for.  Its only hypothesis is the
-model homeomorphism `↥(unitVectors (Fin 3)) ≃ₜ S⁵`, the same one
-`puncturedAcyclic_unitVectorsThree_of_homeo` carries and which `cc-lix-odd` owns.
-Probe in flight.
-
-Otherwise nothing outstanding; every other cc-thom module is in §1.  What remains is
+Nothing outstanding; every cc-thom module is in §1.  What remains is
 *instantiation*: `CohomologyToolkit` and the hypotheses of
 `topChernClass_ne_zero` are `structure` fields / explicit hypotheses, never
 `sorry` and never `axiom`, and §3 says exactly who owes each of them.
@@ -564,6 +556,25 @@ lead's fallback instruction was to duplicate the cover definitions; that turned
 out unnecessary, and duplicating them would have missed the naturality, which is
 the hard part.
 
+### `rw` on the degree of a `HasTopLine` hypothesis is a motive error
+
+`HasTopLine Z d` carries an instance argument `[TopologicalSpace Z]`, and
+rewriting the *numeric* index in a hypothesis re-abstracts the whole application:
+
+```text
+Tactic `rewrite` failed: motive is not type correct:
+  fun _a => HasTopLine (↑sphereOne × Sphere 5) _a
+Error: Application type mismatch: The argument instTopologicalSpaceSubtype …
+```
+
+The motive that is printed abstracts only the `ℕ`, so the message is misleading:
+what actually fails is the synthesized `TopologicalSpace` instance in the space
+argument, not the degree.  The cure is not to rewrite at all.  Numeric indices
+like `1 + 5` and `6` are definitionally equal, so state the result in term mode
+and let the final defeq check do the arithmetic.  The same `rw` **succeeds** in
+the goal (`hasTopLine_lixBase` rewrites `2 * (∑ …) + 6` there without complaint);
+it is only `rw … at h` that breaks.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -583,3 +594,5 @@ the hard part.
 | 2026-09-05 | **`MayerVietorisRestriction`** | **green, 8772 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomTopLine`** | **green, 8791 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | **`ThomTopLineCircle`** | **green, 8811 jobs, `PROBE GREEN`, first probe** |
+| 2026-09-05 | `ThomTopLineLIX` | red: one `rw … at h` motive error, localized |
+| 2026-09-05 | **`ThomTopLineLIX`**, term-mode fix | **green, 8859 jobs, `PROBE GREEN`** |
