@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.SqDataInstance
 import GroupApproximation.CharClass.CohomologyParityKunneth
 import GroupApproximation.CharClass.LemmaTwoTopClass
 import GroupApproximation.CharClass.LemmaTwoStepCAbsEquiv
+import GroupApproximation.CharClass.LerayHirschBundle
 
 /-!
 # The even side at the geometric model of the mapping-torus base
@@ -204,6 +205,22 @@ theorem splitB_sq (dd : Fin ℓ → ℕ) {γN : ℕ → TotalH (KnTwo.NTop (base
     subst hc
     exact ⟨S.beta k, rfl⟩
 
+/-! ## 5b. The `ChernSplit`, from the degree concentration alone -/
+
+/-- **`cc-cohom-api`'s `ChernSplit`, from the one fact `cc-projective` gives by
+construction.**  `chernSplit_of_noOdd` takes the odd-degree vanishing, which is
+landed (`noOddCohomology_baseY`), together with the degree concentration of the
+Chern classes, which `LerayHirschGraded.gamma` supplies by its type.  So the
+splitting is not an obligation for anyone: it follows from `γ k` being the ring
+image of a graded family. -/
+def chernSplitOfGraded (dd : Fin ℓ → ℕ) (γ : ℕ → TotalH (lixN dd))
+    (g : ∀ k : ℕ, Hmod2 (lixN dd) (2 * k))
+    (hg : ∀ k : ℕ, γ k = TotalH.of (lixN dd) (2 * k) (g k)) :
+    KnTwo.ChernSplit (baseY dd) (fun k => TotalH.map (lixIso dd).inv (γ k)) :=
+  KnTwo.chernSplit_of_noOdd (baseY dd) (noOddCohomology_baseY dd) _
+    (fun k => pull (lixIso dd).inv (2 * k) (g k))
+    (fun k => by rw [hg k, TotalH.map_of])
+
 /-! ## 6. The even side of Lemma 2, at the geometric model -/
 
 /-- **Lemma 2, the even half, at `lixN`.**  Every class here is a class on the
@@ -225,6 +242,23 @@ theorem lix_gamma_top_eq_zero (dd : Fin ℓ → ℕ) (hC : CartanTotal)
     (lix_htx_inj dd)
     (lix_gamma_eq dd γ (splitA dd S) (splitB dd S) S.split)
     (splitB_sq dd S) hsplit Finset.univ gen dd (fun j _ => hd j) hslice
+
+/-- **Step D, pre-staged against `cc-cartan`'s shape.**  Every input except the
+Cartan formula is either landed or produced by `cc-projective`'s construction.
+`hC` is exactly `∀ X, Steenrod.CartanOf X`, the statement `cc-cartan` is
+finishing; when it lands the discharge is one application and nothing here
+changes. -/
+theorem lix_stepD (dd : Fin ℓ → ℕ) (hC : CartanTotal)
+    (γ : ℕ → TotalH (lixN dd))
+    (g : ∀ k : ℕ, Hmod2 (lixN dd) (2 * k))
+    (hg : ∀ k : ℕ, γ k = TotalH.of (lixN dd) (2 * k) (g k))
+    (hsplit : HasSplitting (lixN dd) γ)
+    (gen : Fin ℓ → TotalH (KnTwo.YTop (baseY dd)))
+    (hd : ∀ j, Even (dd j))
+    (hslice : ∀ q : ℕ, splitA dd (chernSplitOfGraded dd γ g hg) q
+      = (sliceClass (Finset.univ : Finset (Fin ℓ)) gen dd).coeff q) :
+    γ ((∑ j, dd j) + 3) = 0 :=
+  lix_gamma_top_eq_zero dd hC γ (chernSplitOfGraded dd γ g hg) hsplit gen hd hslice
 
 end
 
