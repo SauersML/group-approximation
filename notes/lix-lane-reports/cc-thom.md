@@ -235,6 +235,8 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomBridgeNaturalHyper.lean` | **`relPullback_id_comm`** — shrinking a subspace commutes with pulling back; the hyperplane step's square, no geometry |
 | `CharClass/ThomBridgeNaturalSquare.lean` | **`relPullback_comm_of_map_eq`** — a commuting square of SPACES gives one of relative pullbacks; the tool the whole naturality layer runs on |
 | `CharClass/ThomBridgeChartHom.lean` | `bridgeChartIncl_map_eq`, **`bridgeChart_hom_eq`** (the first two bridge steps are ONE `relPullback`, along the chart inclusion), **`bridgeChart_natural`** (their square, one application of the general tool) |
+| `CharClass/ThomBridgeTotalNatural.lean` | `inv_natural_of_hom_natural`, `bridgeTotal_apply`, **`bridgeTotal_natural`** — the bridge is natural in the base; docstring records that `bridgeTotal` needs a COMPACT Hausdorff base, so it does not exist over a ball, which is why the route restricts to a point |
+| `CharClass/ThomCoordinates.lean` | **`ThomDeg.jm_thomEquiv_symm`**, **`thomJmTotal_lixThomClassTerm`** — the Thom class's coordinates: top is the unit, the rest are the Chern coefficients acting on it |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -798,3 +800,7 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | `ThomBridgeChartHom` | red x3: missing import for `cmap` and `open` for `sInclusion`; unused `DecidableEq`; `omit` placed AFTER the docstring (a trap already in my own notes) |
 | 2026-09-06 | **`ThomBridgeChartHom`** | **green, 8760 jobs, `02c9e0494`** |
 | 2026-09-06 | **`ThomBridgeChartHom`** (square) | **green, 8760 jobs, `c79141c57`, first probe** |
+| 2026-09-06 | **`ThomBridgeTotalNatural`** (inversion) | **green, 9045 jobs, `1b84115ad`, first probe** |
+| 2026-09-06 | `ThomBridgeTotalNatural` (composite) | red x3: `bridgeTotal` needs `open ThomChernDeg`; `congrArg (fun g : _ ⟶ _ => g.hom …)` cannot project; `rw` left a proof-irrelevant `X = X` |
+| 2026-09-06 | **`ThomBridgeTotalNatural`** (composite) | **green, 9045 jobs, `66bc6eeb6`** |
+| 2026-09-06 | **`ThomCoordinates`** | **green, 9184 jobs, `fd3da3cc1` then `e3cd62615`** |
