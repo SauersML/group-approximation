@@ -3731,6 +3731,7 @@ import GroupApproximation.CharClass.LerayHirschRankOne
 import GroupApproximation.CharClass.LerayHirschTrivOpen
 import GroupApproximation.CharClass.CohomologyLHRingComponent
 import GroupApproximation.CharClass.LIXStepCOddNamed
+import GroupApproximation.CharClass.LemmaTwoStaged
 import GroupApproximation.CharClass.CohomologyLHRingTerm
 import GroupApproximation.CharClass.LerayHirschChartClassIso
 import GroupApproximation.CharClass.ChernRootSection
