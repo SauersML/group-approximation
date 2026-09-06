@@ -40,13 +40,20 @@ def KnLow (n : ℕ) : Prop :=
       ∃ a : Hmod2 (TopCat.of Y) k, z = pull (knPrY Y n) k a
 
 /-- In degree `n + m` every class splits into a pullback and a multiple of the
-sphere class. -/
+sphere class.  The degree is carried as an explicit equation rather than as
+`n + m`, so that the induction step never has to transport `z` itself: at `n + 1`
+the degree is `(n + m) + 1`, which is not `(n + 1) + m` on the nose. -/
 def KnTop (n : ℕ) (t : Hmod2 (TopCat.of (Sphere n)) n) : Prop :=
-  ∀ (Y : Type) [TopologicalSpace Y] (m : ℕ)
-    (z : Hmod2 (TopCat.of (Y × Sphere n)) (n + m)),
-    ∃ (a : Hmod2 (TopCat.of Y) (n + m)) (b : Hmod2 (TopCat.of Y) m),
-      z = pull (knPrY Y n) (n + m) a
-        + cup (pull (knPrS Y n) n t) (pull (knPrY Y n) m b)
+  ∀ (Y : Type) [TopologicalSpace Y] (k m : ℕ) (hk : n + m = k)
+    (z : Hmod2 (TopCat.of (Y × Sphere n)) k),
+    ∃ (a : Hmod2 (TopCat.of Y) k) (b : Hmod2 (TopCat.of Y) m),
+      z = pull (knPrY Y n) k a
+        + cohCast hk (cup (pull (knPrS Y n) n t) (pull (knPrY Y n) m b))
+
+theorem pull_cohCast {X Z : TopCat.{0}} (f : X ⟶ Z) {m m' : ℕ} (h : m = m')
+    (a : Hmod2 Z m) : pull f m' (cohCast h a) = cohCast h (pull f m a) := by
+  subst h
+  rfl
 
 /-! ## 2. The two restrictions come from one class on the base -/
 
