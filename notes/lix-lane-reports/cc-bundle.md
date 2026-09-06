@@ -373,6 +373,12 @@ Nothing from a peer, and nothing from the roster row is left unstarted.
   cheaper fix is to drop it from the `variable` line: chasing it declaration by
   declaration costs one probe round per wave, because the linter only reports
   the ones it reached.
+* **A metavariable source type will not unify with a `SetLike` coercion.**
+  `cc-projective` hit this with `sInclusion` on an open set: the source type
+  stays a metavariable and does not meet a subtype that came from the coercion
+  on `Opens`.  Writing the map with its expected type given, as `TopCat.ofHom`
+  with the type ascribed, fixes it.  Same shape as the rewrite-order trap: the
+  elaborator has no reason to pick the form you meant unless you write it.
 * **`open unitInterval` makes `σ` an unusable variable name.**  It is scoped
   notation for the interval's symmetry (`Mathlib/Topology/UnitInterval.lean`),
   so `(σ : ι ⊕ κ ≃ ρ)` fails with `unexpected token 'σ'; expected identifier`,
