@@ -222,6 +222,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/LerayHirschGradedIso.lean` | **`LH.lerayHirschGraded_of_iso`** — `cc-projective`'s `bijective_lhSum_of_iso` wrapped by `LerayHirschBridge`'s transfer, at the published `LerayHirschGraded` interface |
 | `CharClass/ThomHyperplaneLH.lean` | `hyperIso`, `hyperProj`, `hyperIso_hom_comp`, **`hyperLH`**, **`thomData_total_of_taut`** — Leray–Hirsch on the hyperplane presented as a subset; the Thom datum over the single input `htaut` |
 | `CharClass/LIXThomClassOfTaut.lean` | `cohCast_ne_zero`, `lixTopCoeff{,_ne_zero}`, **`exists_lixThomClass_ne_zero`** — the `u` and the `hu` of `lix_topClass_ne_zero_of_named`, over `htaut` |
+| `CharClass/ThomStepCOddLocal.lean` | `injective_comp_of_square`, **`topChernClass_ne_zero_odd_local`**, `topChernClass_ne_zero_odd_local_of_iso` — Step C's odd side over an **injective** local restriction plus one square, strictly weaker than the isomorphism form, which it recovers |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -764,3 +765,4 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`LerayHirschGradedIso`** | **green, 2458 jobs, `8d5c0f110`** |
 | 2026-09-06 | **`ThomHyperplaneLH`** | **green, 9040 jobs, `4088f7d7b`** |
 | 2026-09-06 | **`LIXThomClassOfTaut`** | **green, 9042 jobs, `7760be635`** |
+| 2026-09-06 | **`ThomStepCOddLocal`** | **green, 8833 jobs, `e6d7eb609`, first probe** |
