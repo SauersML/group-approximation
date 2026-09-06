@@ -140,6 +140,12 @@ Chern classes and the Euler class
   induction on its length, against their definition as landed.  Uses the *right*-handed
   shift, which needs no transport on the ambient degree at all: `cup _ ξ` already lands
   in `m + 2`.  Indexed by `Fin (k+1)`, not `range (k+1)` — see TRAPS.
+* `LerayHirschChartGeneral` (8924) — **the chart step at any rank**.  The transport
+  never cared about the rank; only the rank-two product instance did.
+* `LerayHirschChartBundleGen` (8925) — the same for a projectivised bundle, over a
+  local trivialisation.  The square over the base is `rfl` again.
+* `LerayHirschChartClassGen` (8926) — **the class identification at general rank**,
+  over `cc-bundle`'s rank-`r` tautological-line isomorphism.
 
 ## AUTHORED-UNVERIFIED
 
@@ -292,6 +298,13 @@ The bootstrap that closes it, in order:
    the ring structure, and the machine is closed.
 
 ## TRAPS
+
+* **Solving for an index size is a truncated subtraction, so the application times out
+  rather than failing to typecheck.**  Applying the index-crossing Euler workhorse needs
+  `a + k + 1` to be the class's own index size; `k := N - a` makes that true only
+  propositionally, and the application is an `isDefEq` timeout.  The fix is a variant
+  taking the common size as an equation and discharging it by `subst`.  Third member of
+  the family, after the `whnf`-in-the-statement and `range`-binder traps.
 
 * **A `Finset.range` binder cannot carry an index bound, and the summand then fails to
   *elaborate*.**  The reflected index `k - i` is truncated subtraction, so a cast on the
