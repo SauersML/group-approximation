@@ -287,7 +287,7 @@ theorem totalTriv_invFun_mem (p : Bundle X ι) (x₀ : X)
 /-- **Local triviality of the total space.**  Over the open set `trivSet p x₀`
 the total space is the product of the base with the single fibre over `x₀`, by a
 homeomorphism over the base. -/
-def totalTriv (p : Bundle X ι) (x₀ : X) :
+noncomputable def totalTriv (p : Bundle X ι) (x₀ : X) :
     Total (p.restrictTo (trivSet p x₀)) ≃ₜ ↥(trivSet p x₀) × ↥(fibreSet (p x₀)) where
   toFun w := ((w : ↥(trivSet p x₀) × (ι → ℂ)).1,
     ⟨intert p x₀ ((w : ↥(trivSet p x₀) × (ι → ℂ)).1 : X)
@@ -330,7 +330,7 @@ theorem projTriv_invFun_mem (p : Bundle X ι) (x₀ : X)
 
 /-- **Local triviality of the projective bundle.**  Over `trivSet p x₀` it is the
 product of the base with the projective fibre over `x₀`. -/
-def projTriv (p : Bundle X ι) (x₀ : X) :
+noncomputable def projTriv (p : Bundle X ι) (x₀ : X) :
     Proj (p.restrictTo (trivSet p x₀)) ≃ₜ ↥(trivSet p x₀) × ↥(projFibreSet (p x₀)) where
   toFun z := ((z : ↥(trivSet p x₀) × Matrix ι ι ℂ).1,
     ⟨conjNormalize (intert p x₀ ((z : ↥(trivSet p x₀) × Matrix ι ι ℂ).1 : X))
