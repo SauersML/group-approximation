@@ -13,6 +13,7 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/WuDiagonal.lean` | `SqData`, `wuMonomialOn`, `Sq` of a squarefree monomial, **(Wu-diag)** |
 | `CharClass/ParityEvenSlice.lean` | `sliceClass = ∏_j (1 + h_j)^{d_j}`; its zero coefficient, its Frobenius evenness for `d_j` even, its vanishing above `∑ d_j` |
 | `CharClass/ParityEven.lean` | `ParityData`, the convolution identity, `b_odd_eq_zero`, `gamma_top_eq_zero` |
+| `CharClass/ParityInstance.lean` | `ParityData` assembled at `TotalH Y` / `TotalH N` over seven named hypotheses (namespace `GroupApproximation.CharClass.Wu`) |
 
 ## 1. GREEN
 
@@ -30,7 +31,18 @@ carry the timestamps of that run (`WuSymmetric` 18:44:07, `WuDiagonal` 18:44:15,
 `ParityEvenSlice` 18:47:21, `ParityEven` 18:50:17).  No `sorry`, `admit`,
 `axiom`, `opaque` or `native_decide` anywhere in the lane.
 
-Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified.
+`CharClass/ParityInstance.lean`, one probe, 2026-09-05:
+
+```text
+lake build GroupApproximation.CharClass.ParityInstance
+ERROR_LINES=0
+Build completed successfully (8783 jobs).
+```
+
+Freshly elaborated: `ParityInstance.olean` written at 20:13:35 by that run.
+
+Deliverables 1, 2 and 3 of the lane brief are therefore complete and verified,
+and the integration assembly is green over its named hypotheses.
 
 ## 2. AUTHORED, UNVERIFIED
 

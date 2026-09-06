@@ -15,7 +15,7 @@ namespace `GroupApproximation.CharClass`.  Everything is built over the vendored
 | `CharClass/RelativeDual.lean` | dualization of a chain-level quasi-isomorphism over `ZMod 2` (`ZMod 2` is injective as a module over itself) |
 | `CharClass/RelativeSmallChains.lean` | cochains vanishing on all `𝒰`-small chains form an acyclic subcomplex (`smallAnnComplex_acyclic`) — the geometric input excision needs |
 | `CharClass/RelativeExcision.lean` | excision for an open cover, `H^*(X, U) ≅ H^*(V, U ∩ V)` (`excisionIso`); the `Z ⊆ interior A` form |
-| `CharClass/RelativeLocal.lean` | `H^n(V, V ∖ {0}) ≅ F₂` for open `0 ∈ V ⊆ ℝⁿ`, independence of `V` |
+| `CharClass/RelativeLocal.lean` | (B3) `excisionIsoPoint`, (B4) `relCohomologyCongr` — both **green**, delivered per `cc-thom`'s exact request (see §6). (B6) the local generator is **not yet attempted**; route verified, see §6. |
 
 ## 1. Exported signatures (as authored)
 
@@ -164,3 +164,78 @@ for the exact mechanism and the general recipe used throughout.
 * `(ConcreteCategory.hom (𝟙 X)) x = x` is **not** `rfl` in general (it goes
   through `CategoryTheory.id_apply`, `@[simp]`); don't assume identity
   morphisms reduce definitionally on points.
+
+## 6. `RelativeLocal.lean`: what's delivered and the verified route for (B6)
+
+Delivered (green, 8735 jobs), reading `cc-thom`'s exact request
+(`notes/lix-lane-reports/cc-thom.md` §"From `cc-relative`"):
+
+* **(B3)** `excisionIsoPoint X z V hV hz n` — `pointComplementOpen X z : Opens X`
+  is `{z}ᶜ` (needs `[T1Space X]` for `IsOpen`), `pointComplement_sup` shows it
+  covers `X` with any open `V ∋ z`, and the whole thing is a one-line
+  application of `RelativeExcision.excisionIso`.
+* **(B4)** `relCohomologyCongr e A B hAB n` — apply `RelativeFunctorial.relPairIso`
+  to `TopCat.isoOfHomeo e.symm` (note the `.symm`: `relPairIso`'s conclusion is
+  `H^*(target) ≅ H^*(source)` for `e : source ≅ target`, so to land
+  `H^*(X,A) ≅ H^*(Y,B)` the iso must go `Y ≅ X`); the two membership
+  hypotheses are one-liners from `hAB : e '' A = B`.
+* (B5) functoriality was already `relToAbs_naturality` — no action needed.
+
+**(B6) — not attempted, but the route is fully verified and every piece it
+needs is confirmed to exist and line up:**
+
+```lean
+def localGenerator (r : ℕ) :
+    relCohomology (ZMod 2) (TopCat.of (Fin r → ℂ)) ({(0 : Fin r → ℂ)}ᶜ) (2 * r)
+theorem localGenerator_ne_zero (r : ℕ) : localGenerator r ≠ 0
+def localEquiv (r : ℕ) : … ≃ₗ[ZMod 2] ZMod 2
+```
+
+For `r ≥ 1` (write `r = d + 1`):
+
+1. `↥({(0:Fin r→ℂ)}ᶜ)` is definitionally `{w : Fin r → ℂ // w ≠ 0}` (both
+   unfold `Set.mem_compl_iff`/`Set.mem_singleton_iff`, `Iff.rfl` all the way).
+2. `AlgTop/PuncturedNormedSphere.lean`'s `complexPuncturedHomotopyEquivSphere d`
+   (fleet-green, 8664 jobs, **do not reprove**) is a `ContinuousMap.HomotopyEquiv`
+   from that subtype to `↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (2*(d+1)))) 1)`,
+   which **is** `SphereOddDegree.Basic.Sphere (2*d+1)` up to the `Nat` identity
+   `2*(d+1) = (2*d+1)+1` (true by `rfl`: `Nat.add` recurses on the second
+   argument, so `a+2 = Nat.succ (a+1) = (a+1)+1`). So this is homotopy
+   equivalent to `Sphere (2*r - 1)`.
+3. `cc-cohom-api`'s `CohomologySphere.lean` (green) has exactly the needed
+   facts on `Sphere (2*r-1)` in its **top** degree `2*r-1`:
+   `sphere_coh_top_finrank`, `sphereTopClass`, `sphereTopClass_ne_zero`,
+   `sphereTopEquiv : Hmod2 (Sphere (2r-1)) (2r-1) ≃ₗ[ZMod 2] ZMod 2`. `Hmod2`
+   is reducibly `cohomologyZMod2`, itself `rfl`-equal to
+   `(cochainCx (ZMod 2) X).homology n` (this file's `cochainCx`) — so a
+   homotopy-equivalence-induced isomorphism on `Hmod2` transports directly to
+   `(cochainCx (ZMod 2) _).homology (2r-1)`, the absolute term the LES needs.
+   (Homotopy invariance itself: check `cc-cohom-api`'s `CohomologyBridge.lean`
+   for the exact induced-isomorphism statement to cite, rather than reproving.)
+4. `Fin r → ℂ` is contractible (it's a vector space), so
+   `(cochainCx (ZMod 2) (TopCat.of (Fin r → ℂ))).homology k` is zero for
+   `k = 2r-1` **and** `k = 2r` — cite `cc-cohom-api`'s `CohomologyContractible.lean`.
+5. With both those vanishing, `RelativeLES.isIso_relDelta`/`relDeltaIso` (this
+   file, green) gives `relDelta _ _ _ (2r-1) : (cochainCx _ (TopCat.of ↥({0}ᶜ))).homology (2r-1)
+     ≅ relCohomology (ZMod 2) (Fin r→ℂ) ({0}ᶜ) (2r)` — exactly the target type,
+   with degree `(2r-1)+1 = 2r` matching by `rfl` for the same `Nat.add` reason
+   as step 2.
+6. Chase the nonzero class `sphereTopClass (2*r-1) (by omega)` backward through
+   steps 3→2→1 (transport along the homotopy-equivalence iso, defeq-identify
+   the subtype, then apply) to land in `(cochainCx _ (TopCat.of ↥({0}ᶜ))).homology (2r-1)`,
+   then push forward through `relDeltaIso.hom` from step 5 to define
+   `localGenerator r`. `localGenerator_ne_zero` and `localEquiv` follow since
+   every step in the chain is an isomorphism (or, for step 6's forward push,
+   `relDeltaIso` itself).
+
+The `r = 0` edge case (not excluded by `cc-thom`'s signature) is a **different,
+easier** argument: `({(0:Fin 0→ℂ)}ᶜ) = ∅` (the only element of `Fin 0 → ℂ` is
+`0`), so `relEmptyIso` (`RelativeLES.lean`, green) gives
+`relCohomology (ZMod 2) (Fin 0→ℂ) ∅ 0 ≅ (cochainCx (ZMod 2) (Fin 0→ℂ)).homology 0`,
+nonzero since `Fin 0 → ℂ` is a nonempty (one-point) path-connected space
+(`cc-cohom-api`'s `cohZero_finrank`/`cohZeroEquiv`). Whoever picks this up:
+handle `r = 0` and `r ≥ 1` as two separate cases from the start rather than
+trying to unify them.
+
+None of steps 1–6 were executed or probed; this is a plan, not a claim of
+partial progress.
