@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 24 modules; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 25 modules; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,36 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundlePushforward.lean` — pushing along an INJECTION of index types
+
+```lean
+def pushforward (f : ι → κ) (hf : Function.Injective f) (p : Bundle X ι) : Bundle X κ
+theorem pushforward_apply_entry (f) (hf) (p) (x) (i j) :
+    pushforward f hf p x (f i) (f j) = p x i j
+theorem trace_pushforward (f) (hf) (p) (x) : (pushforward f hf p x).trace = (p x).trace
+def pushforwardIso (f) (hf) (p) : BundleIso p (pushforward f hf p)
+theorem reindex_eq_pushforward (e : ι ≃ κ) (p) :
+    reindex e p = pushforward (e : ι → κ) e.injective p                  -- `rfl`
+theorem classifyOne_pushforward (p) (hp) (hf) (hq) :
+    classifyOne (pushforward f hf p) hq
+      = (cpEmbed (coordIncl f) (coordIncl_isometry hf)).comp (classifyOne p hp)
+theorem trace_pushforward_eq_one
+```
+
+`reindex` moves a bundle along an *equivalence*; comparing two rank-one bundles
+whose index types have different **sizes** needs less, namely pushing both into
+a common larger index by an injection, where a same-index invariance applies.
+
+**The `BundleIso` generalises, which is not obvious and was not expected.**
+The isomorphism uses only `(coordIncl f)ᴴ * coordIncl f = 1` and never the other
+side, and that identity holds for any injection; only the reverse composite
+needs surjectivity.  So the pushforward really is isomorphic to the original as
+a bundle, not merely related by a classifying-map identity.
+
+`homotopic_cpEmbed_of_iso` genuinely requires both bundles and both embeddings
+at one index, so the widening had to happen on the bundle side rather than
+inside the rotation.
 
 ### `BundleGysinData.lean` — two facts a Gysin datum needs
 
