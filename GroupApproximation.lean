@@ -3613,6 +3613,7 @@ import GroupApproximation.CharClass.ProjectiveSpaceRingGysin
 import GroupApproximation.CharClass.BundleReindex
 import GroupApproximation.CharClass.ThomSphereSubspace
 import GroupApproximation.CharClass.BundleGysinData
+import GroupApproximation.CharClass.ChernSplittingData
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
