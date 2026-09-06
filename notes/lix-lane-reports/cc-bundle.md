@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 18 modules; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 19 modules; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,40 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleBlockIter.lean` — the block inclusion IS the iterated hyperplane inclusion
+
+```lean
+def iterFin (d : ℕ) : (k : ℕ) → Fin (d + 1) → Fin (d + k + 1)      -- i ↦ i + k
+theorem iterFin_val (d k) (i) : (iterFin d k i).val = i.val + k
+noncomputable def iterMat (d : ℕ) : (k : ℕ) → Matrix (Fin (d + k + 1)) (Fin (d + 1)) ℂ
+theorem iterMat_isometry / iterMat_eq_coordIncl / cpEmbed_iterMat_succ
+
+def blockEquivIter (d) : Fin (d + 1) ⊕ Fin (d + 1) ≃ Fin (d + (d + 1) + 1)
+noncomputable def cpBlockInclIter (d : ℕ) : C(CP d, CP (d + (d + 1)))
+theorem blockEquivIter_ne_iterFin (d) (i k) :
+    blockEquivIter d (Sum.inl i) ≠ iterFin d (d + 1) k
+theorem homotopic_cpBlockInclIter (d) :
+    (cpBlockInclIter d).Homotopic (cpEmbed (iterMat d (d + 1)) _)
+theorem homotopic_classifyOne_blockInclIter (hp) (hq) (e : BundleIso p q) :
+    ((cpBlockInclIter d).comp (classifyOne p hp)).Homotopic
+      ((cpBlockInclIter d).comp (classifyOne q hq))
+```
+
+**The obstacle was arithmetic, not conceptual.**  The `(d+1)`-fold hyperplane
+iterate lands in `Fin (d + (d + 1) + 1)` while `cpBlockIncl` lands in
+`Fin (2 * d + 1 + 1)`.  Those are equal for every `d` but **not**
+definitionally, because `2 * d` does not reduce for a variable `d`.  Casting
+between them would have built a parallel `Fin`-congruence layer beside the clean
+one.  Instead the block inclusion is restated at the iterate's index:
+`blockEquivIter` is `blockEquiv` with its `finCongr` aimed at
+`d + (d + 1) + 1`, everything downstream is the existing `sumInclLeft` suite
+applied to it, and no cast appears anywhere.  `cpBlockIncl` at `2 * d + 1` is
+untouched, per rule 11.
+
+The bridge itself is `homotopic_cpEmbed_of_orthogonal`, and the orthogonality is
+a value comparison: the left block occupies the first `d + 1` coordinates and
+the iterate shifts past all of them.
 
 ### `BundleTautRestrict.lean` — the tautological line along the hyperplane
 
