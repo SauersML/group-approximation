@@ -370,7 +370,25 @@ noncomputable def projPlusOneHomeoCPOne (p) (hp : ∀ x, (p x).trace = 1) (i : �
     (hi : ∀ x, p x i i ≠ 0) : Proj p.plusOne ≃ₜ X × CP 1
 theorem projPlusOneHomeoCPOne_over_base (p) (hp) (i) (hi) (z) :
     (projPlusOneHomeoCPOne p hp i hi z).1 = projPi p.plusOne z
+
+-- the tautological line is identified too, not only the spaces
+def comapIso (f : C(Y, X)) (e : BundleIso p q) : BundleIso (comap f p) (comap f q)
+theorem tautLine_eq_comap_cpTaut (p : Bundle X (Fin (d + 1))) :
+    tautLine p = comap (tautClassifying p) (cpTaut d)          -- by `rfl`
+noncomputable def tautClassifyPlusOne (p) (hp) (i) (hi) : C(Proj p.plusOne, CP 1)
+theorem tautClassifyPlusOne_apply (p) (hp) (i) (hi) (z) :
+    tautClassifyPlusOne p hp i hi z = (projPlusOneHomeoCPOne p hp i hi z).2
+noncomputable def tautLineIsoCPOne (p) (hp) (i) (hi) :
+    BundleIso (tautLine p.plusOne) (comap (tautClassifyPlusOne p hp i hi) (cpTaut 1))
 ```
+
+`projPlusOneHomeoCPOne` alone identifies the space and, by `_over_base`, the map
+to `X`.  `tautLineIsoCPOne` adds the third piece of data, the line, so the
+identification is one of triples and a consumer needs no separate argument that
+the degree-two generator is carried to the degree-two generator.  The chain is
+`tautIso` along each of the two bundle isomorphisms, pulled back along the first
+`projHomeo` by `comapIso`, then `tautLine_eq_comap_cpTaut` at the trivial
+rank-two bundle; every step after the two `tautIso`s is definitional.
 
 A line bundle is trivial as soon as it has a nowhere-vanishing section, and on a
 projection-valued map the section is free: the `i`-th **column** of `p x` lies in
