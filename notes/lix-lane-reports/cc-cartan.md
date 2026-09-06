@@ -39,12 +39,14 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
-Reprobed 2026-09-05 (Opus, lane returned): **all ten owned modules build clean
-together, `Build completed successfully (1700 jobs)`**, `LAKE_EXIT=0`,
-`PROBE GREEN`, with `CartanEvaluation` shown as `Built (6.8s)`; the log's
-`lake build` line names all ten targets and `clone cc-cartan` (see TRAPS on why
-that check is not optional).  The earlier seven-module figure of 1674 jobs was
-independently reconfirmed from this side before the three new modules landed.
+Reprobed 2026-09-05 (Opus, lane returned): **all eleven owned modules build
+clean together, `Build completed successfully (1701 jobs)`**, `LAKE_EXIT=0`,
+`PROBE GREEN`; the log's `lake build` line names all eleven targets and
+`clone cc-cartan` (see TRAPS on why that check is not optional).  Individual
+`Built` lines this session: `AcyclicModelsSplitting` 8.0s (1626 jobs),
+`CartanEvaluation` 6.8s (1700 jobs), `CartanDiagonalW` 5.4s (1574 jobs).  The
+earlier seven-module figure of 1674 jobs was independently reconfirmed from this
+side before the four new modules landed.
 
 New since the seven-module green:
 
@@ -63,6 +65,26 @@ New since the seven-module green:
   consequence for a tensor product.  Coefficients in the application are
   `ZMod 2`, a field, and the model complexes are the singular chains of a
   standard simplex, whose positive homology vanishes.
+* `GroupApproximation/CharClass/CartanDiagonalW.lean` — **the arithmetic core of
+  the resolution diagonal.**  `deltaW_chain_identity`: in the tensor square of
+  the group ring over `ZMod 2`,
+  `(1+T) ⊗ T^{i+1} + 1 ⊗ (T^i + T^{i+1}) = 1 ⊗ T^i + T ⊗ T^{i+1}`, because the
+  two copies of `1 ⊗ T^{i+1}` produced on the left cancel in characteristic two.
+  This is the one piece of mathematics in "`Δ_W` is a chain map".  The object
+  `W ⊗ W` is deliberately **not** constructed: the source of the comparison is
+  free over the group ring, so both composites are defined on that basis and
+  `Δ_W` enters only as the index sum `∑_{i+j=n}` with coefficient `T^i`;
+  building `W ⊗ W` would mean a tensor **over `ZMod 2`** of two complexes of
+  `Λ`-modules with the diagonal action, a different operation from Mathlib's
+  monoidal product over `Λ`, and none of it would be used.
+* `AcyclicModelsSplitting.lean` also carries **the acyclicity half of item (2)**:
+  `ker_le_range_of_positiveContraction` turns a contraction back into the
+  `ker ≤ range` form so the tensor construction iterates, `tensorCx_ker_le_range`
+  is the one-step version, and `fourfoldTensor_ker_le_range` is the conclusion —
+  over a field, the fourfold tensor power of a positive-degree acyclic complex is
+  positive-degree acyclic.  With `ZMod 2` a field and the singular chains of a
+  standard simplex acyclic above degree zero, that is exactly the acyclicity
+  hypothesis the internal comparison needs of `S(X)^{⊗4}`.
 * `GroupApproximation/CharClass/CartanGroupRing.lean` (written by the Sonnet
   continuation) — `GroupRingZ2 := MonoidAlgebra (ZMod 2) (Multiplicative (ZMod 2))`,
   its generator with `T*T=1` and `(2:Λ)=0`, the bridge `moduleOfInvolution`
@@ -278,6 +300,18 @@ same conclusion.
 * `dNext`/`prevD` are best evaluated with `dNext_eq` / `prevD_eq`, which take an
   explicit `c.Rel` witness (`rfl` in every case here), rather than with the
   `_nat` variants, which force `ℕ` truncated subtraction into the goal.
+* **Mathlib has no braiding for `HomologicalComplex` monoidal at this pin.**
+  `Mathlib/Algebra/Homology/Monoidal.lean` provides `MonoidalCategory` but no
+  `BraidedCategory`/`SymmetricCategory` instance (there is a braiding for graded
+  objects, `CategoryTheory/GradedObject/Braiding.lean`, but it is not transported
+  to complexes).  So the block-swap involution `(13)(24)` on `S(X)^{⊗4}` — the
+  `ℤ/2`-action the whole comparison is equivariant for — is **not** available off
+  the shelf and has to be built by hand.  The pattern that works in this codebase
+  is `HomologicalComplex.mapBifunctorDesc` to define a map out of a tensor by its
+  values on the summands and `HomologicalComplex.mapBifunctor.hom_ext` to compare
+  two such maps summandwise; that is how `AcyclicModelsTensor.lean` was proved.
+  The alternative is a `Finsupp` model of the target, where the involution is a
+  permutation of the index type.  Mod 2 there is no sign to get wrong either way.
 * **Probe logs cross between lanes.**  Concurrent lanes share the ssh control
   socket, and a probe can come back containing another lane's build *verbatim*
   and none of its own — with that lane's `lake build` line, its clone name and

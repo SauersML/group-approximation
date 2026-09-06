@@ -262,6 +262,36 @@ theorem tensorSplit_exists_preimage (L : ChainComplex (ModuleCat.{0} F) ℕ)
     ∃ z : (tensorCx K L).X (k + 2), ((tensorCx K L).d (k + 2) (k + 1)).hom z = y :=
   (tensorSplitContraction K L hK hL).exists_preimage k y hy
 
+/-- A contraction above degree zero gives back the `ker ≤ range` form of
+positive-degree acyclicity, so the tensor construction can be iterated. -/
+lemma ker_le_range_of_positiveContraction {J : ChainComplex (ModuleCat.{0} F) ℕ}
+    (h : PositiveContraction J) (k : ℕ) :
+    LinearMap.ker (J.d (k + 1) k).hom ≤ LinearMap.range (J.d (k + 2) (k + 1)).hom :=
+  fun _ hy => h.exists_preimage k _ hy
+
+/-- Positive-degree acyclicity passes to a tensor product over a field. -/
+lemma tensorCx_ker_le_range (L : ChainComplex (ModuleCat.{0} F) ℕ)
+    (hK : ∀ k : ℕ, LinearMap.ker (K.d (k + 1) k).hom
+      ≤ LinearMap.range (K.d (k + 2) (k + 1)).hom)
+    (hL : ∀ k : ℕ, LinearMap.ker (L.d (k + 1) k).hom
+      ≤ LinearMap.range (L.d (k + 2) (k + 1)).hom) (k : ℕ) :
+    LinearMap.ker ((tensorCx K L).d (k + 1) k).hom
+      ≤ LinearMap.range ((tensorCx K L).d (k + 2) (k + 1)).hom :=
+  ker_le_range_of_positiveContraction (tensorSplitContraction K L hK hL) k
+
+/-- **The fourfold tensor power of a positive-degree acyclic complex over a field
+is positive-degree acyclic.**  This is the acyclicity hypothesis the internal
+Cartan comparison needs of its target `S(X)^{⊗4}`: the four factors are the
+singular chains of a standard simplex, whose positive homology vanishes, and the
+coefficient ring `ZMod 2` is a field. -/
+lemma fourfoldTensor_ker_le_range
+    (hK : ∀ k : ℕ, LinearMap.ker (K.d (k + 1) k).hom
+      ≤ LinearMap.range (K.d (k + 2) (k + 1)).hom) (k : ℕ) :
+    LinearMap.ker ((tensorCx (tensorCx K K) (tensorCx K K)).d (k + 1) k).hom
+      ≤ LinearMap.range ((tensorCx (tensorCx K K) (tensorCx K K)).d (k + 2) (k + 1)).hom :=
+  tensorCx_ker_le_range (K := tensorCx K K) (tensorCx K K)
+    (tensorCx_ker_le_range (K := K) K hK hK) (tensorCx_ker_le_range (K := K) K hK hK) k
+
 /-- The acyclicity hypothesis of the acyclic-models theorem, in the form in which
 a vanishing-homology computation supplies it. -/
 lemma acyclicOnModels_of_ker_le_range {C : Type u} [Category.{v} C] {ι : Type w}
