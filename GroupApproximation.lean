@@ -3619,6 +3619,7 @@ import GroupApproximation.CharClass.ChernEulerEmbed
 import GroupApproximation.CharClass.CartanMidFourSlots
 import GroupApproximation.CharClass.ChernEulerCastSucc
 import GroupApproximation.CharClass.CartanMidFourNat
+import GroupApproximation.CharClass.ChernEulerIndex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
