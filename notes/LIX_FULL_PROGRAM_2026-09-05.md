@@ -302,7 +302,22 @@ never a `sorry`, never an `axiom`.
    `CStarMatrix` needs `[PartialOrder A] [StarOrderedRing A]` — supply
    `CStarAlgebra.spectralOrder` locally; state lemmas at the reducible form;
    an instance timeout usually means a missing binder; an `ext` on a sphere
-   subtype should be `ContinuousMap.ext`; `Module.Basis` not `Basis` at this pin.
+   subtype should be `ContinuousMap.ext`; `Module.Basis` not `Basis` at this pin;
+   a definition whose result is a CLASS (`evenAlgebra`, a graded-ring structure, an
+   `Opens` carrier) must be `@[reducible]` or nothing downstream unifies against it;
+   `DirectSum` carries two syntactically different `Semiring` paths, so build an
+   `Algebra` structure directly rather than through `RingHom.toAlgebra`;
+   `first | ring | …` never reaches later alternatives because `ring` falls back to
+   `ring_nf` and "succeeds" without closing the goal — use `ring1`; `ring` is
+   commutative-only (`rw [mul_sub, sub_mul]; abel` in a noncommutative ring);
+   `Matrix ι ι ℂ` has NO norm instance at this pin, so local triviality of a
+   projection-valued map comes from the invertible intertwiner
+   `p x₀ · p x + (1 − p x₀)(1 − p x)` (open determinant condition), not from
+   `‖p x − p x₀‖ < 1`; at `C(X, CStarMatrix ι ι ℂ)` bare `Mul`/`Star` resolve to
+   `ContinuousMap.instMul`/`instStar`, not the `Semiring`/`StarRing` ones — state
+   arithmetic over an abstract `[CStarAlgebra A]` and cross once by application;
+   `NonUnitalStarAlgHom.isometry` needs an explicit `import Mathlib.Analysis.CStarAlgebra.Hom`;
+   `mulRight_continuous` is a deprecated alias (use `continuous_mul_const`).
 9. **Report**: keep `notes/lix-lane-reports/<your-lane>.md` current (what is
    green with job counts, what is authored-unverified, NEEDS from peers, traps
    found).  Your final message to the lead must contain the same four sections.
