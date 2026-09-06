@@ -205,6 +205,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomFreeDegreewise.lean` | `ThomDeg.restrictMap`, `thomLift`, **`ker_restrictMap`**, `kerEquiv`, **`thomEquiv`** — the Thom-class linear algebra in Leray–Hirsch *coordinates*, over a product of different groups rather than a `Module.Basis`; §1.4 item 5 at `k = 0` |
 | `CharClass/ThomStepCLocal.lean` | `topChernClass_ne_zero_of_local`, `..._of_local_naturality`, `..._of_local_line`, `..._of_chain_line` — `locEquiv`, `hg` and `hgamma` discharged, leaving `hsu` alone on the odd side; plus the `Nonempty` forms that spare a consumer the use of choice |
 | `CharClass/ThomStepCEuler.lean` | `eq_localGenerator_of_ne_zero`, **`hsu_of_ne_zero`**, `ne_zero_of_hsu`, `topChernClass_ne_zero_of_su_ne_zero{,_line}` — `hsu` **is** `su ≠ 0`, because the local model is a line and excision-then-chart is an iso onto it |
+| `CharClass/ThomStepCSection.lean` | `thomClass_ne_zero` (free, no topology), **`SectionDetectsThom`**, `su_ne_zero_of_section`, `topChernClass_ne_zero_of_section` — `su ≠ 0` split into the Thom class being nonzero and one named predicate about the *section* |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -615,6 +616,22 @@ not.  Four permanent `#print axioms` lines now sit in `ThomStepCLocal.lean` and
 Syntax gotcha from `cc-lix-odd`: a `/-- -/` docstring cannot precede
 `#print axioms`; the error says "expected 'lemma'".  Use `/-! -/`.
 
+### Four wrong absence claims in one session
+
+Four times today I wrote that something was not in the tree when the true
+statement was that my grep did not match: the sphere base (`sphereTopEquiv`), the
+total cohomology ring (`TotalH`), the surjective half of Künneth
+(`CohomologyKunnethDecomp`), and the chart trivialisation wired to the relative
+pair (`BundlePairs`, `BundleLocal`, `Bundle.totalTrivStd`).  Three were caught by
+a peer, one by my own second look.  Every one cost a message or a retraction.
+
+The rule already in this repo's memory is "grep before declaring a gap".  What
+that rule does not say, and what cost the time, is that **a failed grep is
+evidence about the search, not about the tree.**  So: search by concept and not
+by a guessed name, check the recent commit log of the lane that would own it, ask
+the owner — and when claiming absence, show the search that was run, so the claim
+is falsifiable by the reader rather than taken on trust.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -644,3 +661,4 @@ Syntax gotcha from `cc-lix-odd`: a `/-- -/` docstring cannot precede
 | 2026-09-05 | **`ThomStepCLocal` + `ThomTopLineLIX`** | **green, 8871 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomStepCEuler`** | **green, 8795 jobs, `PROBE GREEN`** |
 | 2026-09-05 | **`ThomStepCEuler` + `ThomStepCLocal`**, axiom prints | **green, 8795 jobs, `PROBE GREEN`** |
+| 2026-09-05 | **`ThomStepCSection`** | **green, 8798 jobs, `PROBE GREEN`, first probe** |
