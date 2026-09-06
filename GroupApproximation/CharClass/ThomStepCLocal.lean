@@ -62,7 +62,15 @@ theorem topChernClass_ne_zero_of_local (hacyclic : PuncturedAcyclic N twoR z)
 
 /-- **Step C with the naturality square discharged too.**  The relative Euler
 class is `σ^* u` for the Thom class `u`, and `hgamma` is then
-`topClass_eq_of_naturality'`.  Only `hsu` remains open. -/
+`topClass_eq_of_naturality'`.
+
+**Do not read this as reducing the count to one.**  The square trades `hgamma`
+for six arguments plus `hu : jE.hom u = piStar.hom gamma`, and `hu` is where the
+Thom class enters, so it sits behind the same Leray–Hirsch ladder as everything
+else.  What it buys is that `gamma` stops being an opaque parameter and is pinned
+to the Thom class through the section.  Someone auditing what Step C owes should
+count `hu` alongside `hsu`.  (`cc-lix-odd` caught this reading; the earlier
+wording here said "only `hsu` remains open", which invites an undercount.) -/
 theorem topChernClass_ne_zero_of_local_naturality (hacyclic : PuncturedAcyclic N twoR z)
     {rel chart HrelE HE : ModuleCat.{0} (ZMod 2)} {r : ℕ}
     (j : rel ⟶ cohomologyZMod2 (TopCat.of N) twoR)
