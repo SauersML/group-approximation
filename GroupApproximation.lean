@@ -3748,6 +3748,7 @@ import GroupApproximation.CharClass.LIXChernValue
 import GroupApproximation.CharClass.ChernSliceNaturality
 import GroupApproximation.CharClass.LIXChernSlice
 import GroupApproximation.CharClass.LIXChernSliceNatural
+import GroupApproximation.CharClass.LIXChernSplit
 import GroupApproximation.CharClass.ThomRestrictSquare
 import GroupApproximation.CharClass.ThomHabs
 import GroupApproximation.CharClass.LIXLocalPairClosed
