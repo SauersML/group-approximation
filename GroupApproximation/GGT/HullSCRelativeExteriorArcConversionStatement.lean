@@ -3,8 +3,9 @@ import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
 /-!
 # Exterior-arc conversion at a supplied boundary word
 
-The statement is isolated from its consumers so it can be checked independently
-of the power-word adapters.  Its definition is unchanged.
+The original fixed-relator statement is retained for the counterexample in
+`VanKampen/ExteriorArcCounterexample`.  The repaired statement permits the
+cyclic rotation needed to make the source arc a prefix.
 -/
 
 namespace GroupApproximation.HullSC
@@ -33,6 +34,24 @@ def RelativeExteriorArcConversionAtWordStatement : Prop :=
         (relator : List (GGT.RelLetter G Lambda)),
         (GGT.VanKampen.Embedded.cell Delta j).word = relator →
           ∃ C : RelativeBoundaryContiguity D eps boundaryWord relator,
+            Gamma.region.sourceArc.length ≤ C.exterior.length
+
+/-- A cyclic source arc becomes a prefix of a rotated relator.  The boundary
+rotation is already stored in `RelativeBoundaryContiguity`; this additional
+rotation records the independent choice of basepoint on the source cell. -/
+def RelativeExteriorArcConversionAtWordRotatedStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (eps : ℕ) (Delta : DiscDiagram.{u, w, 0} W) (boundaryWord : List G)
+    (outer : List (GGT.RelLetter G Lambda)),
+    Delta.boundaryWord = outer →
+    outer.map GGT.RelLetter.val = boundaryWord →
+      ∀ (j : Fin Delta.rCellCount)
+        (Gamma : EmbeddedBoundaryContiguity D eps Delta j)
+        (relator : List (GGT.RelLetter G Lambda)),
+        (GGT.VanKampen.Embedded.cell Delta j).word = relator →
+          ∃ n : ℕ, ∃ C : RelativeBoundaryContiguity D eps boundaryWord (relator.rotate n),
             Gamma.region.sourceArc.length ≤ C.exterior.length
 
 end GroupApproximation.HullSC

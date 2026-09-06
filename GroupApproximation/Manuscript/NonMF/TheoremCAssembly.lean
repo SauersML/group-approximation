@@ -251,12 +251,13 @@ theorem estimatingUnboundOutput :
     GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
   sorry
 
-/-- **Open input.**  Conversion of a planar exterior arc into the algebraic
-boundary contiguity at a supplied word
-(`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
+/-- Conversion of a planar exterior arc into the algebraic boundary
+contiguity at a supplied word, retaining the source relator rotation.  The
+fixed-relator predecessor is refuted by `ExteriorArcCounterexample`; the
+rotated statement follows from the region's shelling and short sides. -/
 theorem relativeExteriorArcConversionAtWord :
-    HullSC.RelativeExteriorArcConversionAtWordStatement.{0, 0} := by
-  sorry
+    HullSC.RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0} :=
+  HullSC.relativeExteriorArcConversionAtWordRotatedStatement
 
 /-- Hull's Lemma 4.9 for a nontrivial power of a shortest representative,
 from Osin's three estimating propositions (the piece construction is the
