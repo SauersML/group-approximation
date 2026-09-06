@@ -511,3 +511,38 @@ lane pushing between the `fetch` and the `push`, and the error is
 `cannot lock ref`, not a conflict.  And a **verification diff** of
 `git show origin/main:<path>` against the working copy afterwards, because the
 index is built by hand and nothing else checks it.
+
+## The projective-factor Künneth stops at rank two, and why
+
+Landed, over `CohomologyChartCover`: `CohomologyChartRestrict`,
+`CohomologyChartTop` (`KnCP.cpTop`, `exists_of_mvResV_eq_zero`),
+`CohomologyChartSurj`, `CohomologyChartFlat`, `CohomologyChartFlatBase`,
+`CohomologyChartRankTwo` (`KnCP.decomposition_zero`).
+
+**The closed sum in powers is not provable here, and the peeling form is.**
+cc-projective's argument: the powers form evaluated at a point *is* the ring
+structure of `H^*(ℂP^d)`, since at rank `r` it says the top power is nonzero, and
+the ring is not reachable by Mayer–Vietoris on this cover because the restriction
+to the punctured piece is injective only up to degree `2d − 2` and is silent about
+the top power.
+
+**The same wall from the other side, which is worth recording because it looks
+like three different problems.**  `KnCP.exists_flat_of_mvResV` shows a class in
+the image of the restriction is automatically flat, since its restriction to the
+intersection factors through the chart piece and the chart piece **is** the base.
+So flatness for a general class *is* surjectivity — not an independent lemma.
+Chasing it one step further, surjectivity at level `d` reduces to the connecting
+map being injective on the sphere part of the intersection, which reduces to
+`cpTop` cupped with a pullback being injective, which is the projective Künneth
+injectivity again.  Three routes, one circle.
+
+**What breaks the circle is outside this lane.**  At `d = 0` it does not close:
+the punctured piece is `U × ℂP^0`, which is `U`, so surjectivity is immediate.
+That is `decomposition_zero`, the rank-two base case, from which cc-projective
+gets the powers form by a triangular change of basis (both classes sit in degree
+two and differ by a pullback from the base), then Gysin, then the ring, then the
+general rank.
+
+Moral, and it generalises: when a Mayer–Vietoris induction stalls, check whether
+the statement at a point is a ring-structure statement.  If it is, the induction
+cannot produce it and the missing input is downstream, not upstream.
