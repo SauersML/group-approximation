@@ -26,37 +26,56 @@ Whitehead in round 4 at `✔ Built … (15s / 18s)`; `LIXEndpointStatement` in
 rounds 4 and 6 at `(9.4s / 9.1s)`; `LIXLemmaTwoProp` at `(20s)`; `ProblemLIX`
 in rounds 7, 8 and the last at `(10s / 7.5s / 27s)`.
 
-### THE ENDPOINT TAKES ONE HYPOTHESIS
+### THE ENDPOINT TAKES ONE HYPOTHESIS, AND ITS DEPENDENCY IS THREE STATEMENTS
 
-`Manuscript/NinetyNineProblems/ProblemLIX.lean` carries six declarations, and
-the last of them is
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` is green at **8704 jobs**
+(`01863243b`) with eight declarations.  The two that matter:
 
 ```lean
 theorem not_problemLIX_of_lemmaTwo_data
     (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
     (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX
+
+theorem not_problemLIX_of_lemmaTwoInput_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) : ¬ ProblemLIX
 ```
 
-`hwit` is `cs-clutching`'s, and it is the **only** hypothesis left anywhere in
-the chain.  Simplicity is no longer one: `LIX.lixLimit_isSimpleCStar` is
+Simplicity is not a hypothesis of either: `LIX.lixLimit_isSimpleCStar` is
 hypothesis-free, from `cs-stages`' stagewise fullness through `cs-limit`'s
-reduction.  So the whole C⋆-side — stage algebras, connecting maps, the
-inductive limit, its simplicity, and the reduction of the printed problem to a
-single unitary — is unconditional, and `LIX.LemmaTwoHolds` is the one thing the
-answer takes from algebraic topology.
+reduction.  So the entire C⋆-side — stage algebras, connecting maps, inductive
+limit, simplicity, and the reduction of the printed problem to a single unitary
+— is unconditional.
 
-Behind that, `cc-lix-odd`'s `lemmaTwoHolds_of` reduces `LemmaTwoHolds` to two
-cohomological statements per stage, with Step A a theorem rather than a
-hypothesis — which is what keeps Lemma 2 a statement about *every* equivalence
-rather than a chosen one.
+**Exactly three statements in the whole chain are not yet theorems.**
 
-The `_data` suffix is temporary by construction.  When `cs-clutching` lands
-`lixLimit_hasK1InjWitness_of` both theorems lose their hypothesis and become
-`exists_simple_unital_not_k1Inj_of_lemmaTwo` and `not_problemLIX_of_lemmaTwo`;
-when `LemmaTwoHolds` is itself proved they become
-`exists_simple_unital_not_k1Inj` and `not_problemLIX` with
+1. `cc-thom`'s Step C: the top class of the mapping torus is **nonzero** for a
+   torus built from a corner unitary that carries one section to the other.
+2. `cc-wu`'s Step D: the same class **vanishes** for *every* corner unitary,
+   with no condition on sections.
+3. `cs-clutching`'s `lixLimit_hasK1InjWitness_of`.
+
+The asymmetry between 1 and 2 is the argument, not an accident of phrasing:
+Step D is quantified over every corner unitary and Step C over one with an
+extra property, so the contradiction needs no comparison between two different
+tori.  Recorded here because a symmetric misreading is the natural one.
+
+`cc-lix-odd` made Step A a theorem rather than a hypothesis, which is what
+keeps Lemma 2 a statement about *every* equivalence rather than a chosen one,
+and their section is unconditional down to the choice of bump function.
+
+The `_data` suffixes are temporary by construction.  When `cs-clutching` lands
+its arrow the hypothesis goes and the names lose `_data`; when Lemma 2 is
+proved they become `exists_simple_unital_not_k1Inj` and `not_problemLIX` with
 `#audit_closed_axioms`.  No statement changes at either step, only which
 arguments are supplied.
+
+**Separability** is queued: `cs-stages`' per-stage instance is green (2978) and
+waits on `cs-limit` lifting it to `SeparableSpace LIX.LIXLimit`.  It lands as a
+separate strictly stronger theorem, never a fourth conjunct — the answer should
+carry exactly the hypotheses STW's problem names, and separability is not one
+of them, though it is what makes the answer sharp, since that is the class the
+injectivity question lives in.
 
 ### The two verifications the brief asked for
 
