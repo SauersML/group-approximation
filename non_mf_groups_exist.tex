@@ -550,14 +550,15 @@ elements with this property form a normal subgroup of $G$, so it
 contains $\mathfrak D_G(L)$.
 \end{proof}
 
-Corollary~\ref{cor:defect-hs} has a finite-dimensional counterpart that
-needs no property~\textup{(T)}.  If $\rho\colon G\to\U(d)$ is a unitary
-representation and $uLu^{-1}\le L$, then $x\mapsto\rho(u)^*x\rho(u)$ maps
-the commutant $\rho(L)'$ into itself, hence onto it, because $\rho(L)'$
-is finite dimensional; so $\rho(ucu^{-1})$ commutes with $\rho(L)$ for
-every $c\in C_G(L)$, and every finite-dimensional unitary representation
-of $G$ is trivial on $\mathfrak D_G(L)$.  Property~\textup{(T)} and
-stable finiteness of the corona replace this dimension count.
+For a finite-dimensional unitary representation
+$\rho\colon G\to\U(d)$ the same conclusion holds without
+property~\textup{(T)}.  If $uLu^{-1}\le L$, then conjugation by
+$\rho(u)^*$ is an injective linear map of the commutant $\rho(L)'$ into
+itself, so it is onto.  For $c\in C_G(L)$ the element
+$\rho(ucu^{-1})=\rho(u)\rho(c)\rho(u)^*$ therefore lies in $\rho(L)'$,
+and $\rho$ is trivial on $\mathfrak D_G(L)$.  In a norm matrix corona
+this dimension count is not available, and Theorem~\ref{thm:transport}
+uses property~\textup{(T)} and stable finiteness in its place.
 
 \subsection{From Hilbert--Schmidt to operator norm}
 
