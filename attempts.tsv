@@ -289,3 +289,4 @@
 34035314662	2026-09-06T13:11:40Z	GroupApproximation/Sofic/ConsistencyDistance.lean	hsNormSq_eq_normTrace_re
 34045054654	2026-09-06T16:19:45Z	GroupApproximation/Sofic/ContinuumFromNormalSubgroups.lean	ker_comp_equiv
 34052428273	2026-09-06T18:40:26Z	GroupApproximation/Sofic/ContinuumMultiplicityCore.lean	countable_of_fg
+34059295235	2026-09-06T20:52:39Z	GroupApproximation/Sofic/CoordinateTransfer.lean	lampEmbedding_injective
