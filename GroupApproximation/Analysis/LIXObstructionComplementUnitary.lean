@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Analysis.LIXClutching
 
 /-!
 # From "the complements are isomorphic" to a unitary automorphism carrying `e` to `s`
@@ -35,6 +36,11 @@ Nothing here is analytic: the statements hold in a bare `Ring` with a
 
 namespace GroupApproximation
 namespace STW59
+
+open scoped Matrix
+
+set_option linter.unusedSimpArgs false
+set_option linter.unusedSectionVars false
 
 variable {A : Type*} [Ring A] [StarRing A]
 
@@ -229,6 +235,244 @@ theorem mvn_complement_unitary_apply_eq
       _ = 0 := by rw [hPe, hePi, sub_self, mul_zero]
   calc (s * star e + w₁) * e = s * (star e * e) + w₁ * e := by rw [add_mul, mul_assoc]
     _ = s := by rw [heSrc, hsr, hw₁e, add_zero]
+
+/-! ### The continuous-family form (Step A)
+
+`mvn_complement_unitary_apply_eq` is pointwise algebra.  The mapping-torus lane (`cc-lix-odd`)
+consumes it over a *parameter space* `M`: `V`, `e`, `s`, `w₁` are all continuous families, and the
+corner unitary `g` produced has to be continuous too, since it feeds a continuous bundle
+construction downstream.  The premise records the equivalence of the complementary projections
+via an *explicit continuous* implementer `w₁` rather than the bare existential
+`MurrayVonNeumannEquiv`: an equivalence produced by a discontinuous choice of partial isometry
+could not be fed to a continuous construction anyway, so nothing is lost by asking for the
+witness up front, and this is recorded against the plainer reading in the lane report. -/
+
+section ContinuousFamily
+
+variable {A : Type*} [Ring A] [StarRing A] [TopologicalSpace A] [ContinuousStar A]
+  [ContinuousAdd A] [ContinuousMul A] {M : Type*} [TopologicalSpace M]
+
+/-- **Step A, generic continuous-family form.**  If the ring-level hypotheses of
+`mvn_complement_unitary_apply_eq` hold at every point of `M`, with `P`, `e`, `s`, `w₁` all
+continuous, then the corner unitary `g = s * star e + w₁` is continuous too. -/
+theorem exists_continuous_unitary_corner_apply_eq
+    {P r e s w₁ : M → A}
+    (hecont : Continuous e) (hscont : Continuous s) (hw₁cont : Continuous w₁)
+    (hPstar : ∀ m, star (P m) = P m)
+    (hePi : ∀ m, e m * star (e m) * e m = e m) (hsPi : ∀ m, s m * star (s m) * s m = s m)
+    (heSrc : ∀ m, star (e m) * e m = r m) (hsSrc : ∀ m, star (s m) * s m = r m)
+    (hPe : ∀ m, P m * e m = e m) (hPs : ∀ m, P m * s m = s m)
+    (hsP : ∀ m, s m * star (s m) * P m = s m * star (s m))
+    (h₁src : ∀ m, star (w₁ m) * w₁ m = P m - e m * star (e m))
+    (h₁rng : ∀ m, w₁ m * star (w₁ m) = P m - s m * star (s m))
+    (h₁pi : ∀ m, w₁ m * star (w₁ m) * w₁ m = w₁ m) :
+    ∃ g : M → A, Continuous g ∧
+      (∀ m, star (g m) * g m = P m) ∧ (∀ m, g m * star (g m) = P m) ∧
+      (∀ m, g m * e m = s m) :=
+  ⟨fun m => s m * star (e m) + w₁ m, (hscont.mul hecont.star).add hw₁cont,
+    fun m => (mvn_complement_unitary_apply_eq (hPstar m) (hePi m) (hsPi m) (heSrc m)
+      (hsSrc m) (hPe m) (hPs m) (hsP m) (h₁src m) (h₁rng m) (h₁pi m)).1,
+    fun m => (mvn_complement_unitary_apply_eq (hPstar m) (hePi m) (hsPi m) (heSrc m)
+      (hsSrc m) (hPe m) (hPs m) (hsP m) (h₁src m) (h₁rng m) (h₁pi m)).2.1,
+    fun m => (mvn_complement_unitary_apply_eq (hPstar m) (hePi m) (hsPi m) (heSrc m)
+      (hsSrc m) (hPe m) (hPs m) (hsP m) (h₁src m) (h₁rng m) (h₁pi m)).2.2⟩
+
+end ContinuousFamily
+
+/-! ### Step A, the vector form the mapping-torus lane consumes
+
+`e`, `s` there are unit *vectors* of `ℂ^K`, not ring elements: `colAt` is the embedding of a
+vector into the matrix ring `Matrix K K ℂ` supported on one column, which turns a vector-level
+unit section into the ring element `mvn_complement_unitary_apply_eq` needs, and every algebraic
+hypothesis of Step A's vector form reduces to a fact about `colAt` proved below. -/
+
+section VectorForm
+
+variable {K : Type*} [Fintype K] [DecidableEq K]
+
+/-- The matrix supported on column `k0`, whose column `k0` is the vector `v` and every other
+column is zero. -/
+def colAt (k0 : K) (v : K → ℂ) : Matrix K K ℂ :=
+  Matrix.of fun i j => if j = k0 then v i else 0
+
+theorem colAt_apply (k0 : K) (v : K → ℂ) (i j : K) :
+    colAt k0 v i j = if j = k0 then v i else 0 := rfl
+
+/-- The entrywise form of `M *ᵥ v`.  Mathlib at this pin has no `mulVec_apply_eq_sum`:
+`mulVec_eq_sum` is the vector-level identity `M *ᵥ v = ∑ i, op (v i) • Mᵀ i`, which is not
+what an entrywise computation wants.  This is the definitional unfolding of `mulVec`
+through `dotProduct`. -/
+theorem mulVec_apply_sum (M : Matrix K K ℂ) (v : K → ℂ) (i : K) :
+    (M *ᵥ v) i = ∑ j, M i j * v j := rfl
+
+omit [Fintype K] in
+theorem continuous_colAt {M : Type*} [TopologicalSpace M] (k0 : K) {v : M → K → ℂ}
+    (hv : Continuous v) : Continuous fun m => colAt k0 (v m) := by
+  refine continuous_matrix fun i j => ?_
+  simp only [colAt_apply]
+  by_cases h : j = k0
+  · simp only [if_pos h]
+    exact (continuous_apply i).comp hv
+  · simp only [if_neg h]
+    exact continuous_const
+
+/-- `colAt` turns left multiplication by a matrix into the matrix-vector product. -/
+theorem mul_colAt (k0 : K) (M : Matrix K K ℂ) (v : K → ℂ) :
+    M * colAt k0 v = colAt k0 (M *ᵥ v) := by
+  ext i j
+  simp only [Matrix.mul_apply, colAt_apply, mulVec_apply_sum]
+  by_cases h : j = k0 <;> simp [h]
+
+theorem mul_colAt_of_mulVec_eq {M : Matrix K K ℂ} {v : K → ℂ} (h : M *ᵥ v = v) (k0 : K) :
+    M * colAt k0 v = colAt k0 v := by rw [mul_colAt, h]
+
+theorem colAt_conjTranspose_apply (k0 : K) (v : K → ℂ) (i j : K) :
+    (colAt k0 v)ᴴ i j = if i = k0 then star (v j) else 0 := by
+  rw [Matrix.conjTranspose_apply, colAt_apply]
+  by_cases h : i = k0 <;> simp [h]
+
+theorem colAt_mul_colAt_conjTranspose_apply (k0 : K) (v : K → ℂ) (i j : K) :
+    (colAt k0 v * (colAt k0 v)ᴴ) i j = v i * star (v j) := by
+  simp only [Matrix.mul_apply, colAt_apply, colAt_conjTranspose_apply]
+  rw [Finset.sum_eq_single k0]
+  · simp
+  · intro b _ hb; simp [hb]
+  · intro hb; exact absurd (Finset.mem_univ k0) hb
+
+/-- **The Gram identity is the same for two unit vectors.**  This is `heSrc = hsSrc` (both equal
+`r := (colAt k0 e)ᴴ * colAt k0 e`) in `mvn_complement_unitary_apply_eq`, proved directly rather
+than by computing a closed form for either side. -/
+theorem colAt_conjTranspose_mul_colAt_eq_of_normSq_eq {v w : K → ℂ}
+    (h : ∑ i, star (v i) * v i = ∑ i, star (w i) * w i) (k0 : K) :
+    (colAt k0 v)ᴴ * colAt k0 v = (colAt k0 w)ᴴ * colAt k0 w := by
+  ext i j
+  simp only [Matrix.mul_apply, colAt_conjTranspose_apply, colAt_apply]
+  by_cases hi : i = k0
+  · by_cases hj : j = k0
+    · have e1 : (∑ l : K, (if i = k0 then star (v l) else 0) * if j = k0 then v l else 0)
+          = ∑ l : K, star (v l) * v l :=
+        Finset.sum_congr rfl fun l _ => by rw [if_pos hi, if_pos hj]
+      have e2 : (∑ l : K, (if i = k0 then star (w l) else 0) * if j = k0 then w l else 0)
+          = ∑ l : K, star (w l) * w l :=
+        Finset.sum_congr rfl fun l _ => by rw [if_pos hi, if_pos hj]
+      rw [e1, e2, h]
+    · have e1 : (∑ l : K, (if i = k0 then star (v l) else 0) * if j = k0 then v l else 0) = 0 :=
+        Finset.sum_eq_zero fun l _ => by rw [if_neg hj, mul_zero]
+      have e2 : (∑ l : K, (if i = k0 then star (w l) else 0) * if j = k0 then w l else 0) = 0 :=
+        Finset.sum_eq_zero fun l _ => by rw [if_neg hj, mul_zero]
+      rw [e1, e2]
+  · have e1 : (∑ l : K, (if i = k0 then star (v l) else 0) * if j = k0 then v l else 0) = 0 :=
+      Finset.sum_eq_zero fun l _ => by rw [if_neg hi, zero_mul]
+    have e2 : (∑ l : K, (if i = k0 then star (w l) else 0) * if j = k0 then w l else 0) = 0 :=
+      Finset.sum_eq_zero fun l _ => by rw [if_neg hi, zero_mul]
+    rw [e1, e2]
+
+theorem colAt_pi_of_normSq_one {v : K → ℂ} (hv : ∑ i, star (v i) * v i = 1) (k0 : K) :
+    colAt k0 v * (colAt k0 v)ᴴ * colAt k0 v = colAt k0 v := by
+  ext i j
+  rw [Matrix.mul_apply]
+  simp only [colAt_mul_colAt_conjTranspose_apply, colAt_apply]
+  by_cases hj : j = k0
+  · rw [if_pos hj]
+    have e1 : (∑ l : K, v i * star (v l) * if j = k0 then v l else 0)
+        = v i * ∑ l : K, star (v l) * v l := by
+      rw [Finset.mul_sum]
+      exact Finset.sum_congr rfl fun l _ => by rw [if_pos hj]; ring
+    rw [e1, hv, mul_one]
+  · rw [if_neg hj]
+    exact Finset.sum_eq_zero fun l _ => by rw [if_neg hj, mul_zero]
+
+/-- **The corner absorption identity `s · star s · P = s · star s`.**  Needs `P` self-adjoint
+and `P *ᵥ v = v`; this is `hsP` at the vector level. -/
+theorem colAt_mul_colAt_conjTranspose_mul_of_selfAdjoint_of_mulVec_eq {M : Matrix K K ℂ}
+    {v : K → ℂ} (hM : Mᴴ = M) (h : M *ᵥ v = v) (k0 : K) :
+    colAt k0 v * (colAt k0 v)ᴴ * M = colAt k0 v * (colAt k0 v)ᴴ := by
+  ext i j
+  rw [Matrix.mul_apply]
+  simp only [colAt_mul_colAt_conjTranspose_apply]
+  have hcol : ∀ l : K, M l j = star (M j l) := fun l =>
+    (congrFun₂ hM l j).symm.trans (Matrix.conjTranspose_apply M j l)
+  have hsum : (∑ l : K, star (v l) * M l j) = star (v j) := by
+    calc ∑ l : K, star (v l) * M l j
+        = ∑ l : K, star (v l * M j l) :=
+          Finset.sum_congr rfl fun l _ => by rw [hcol l, star_mul']
+      _ = star (∑ l : K, v l * M j l) := (star_sum _ _).symm
+      _ = star (∑ l : K, M j l * v l) := by
+          congr 1; exact Finset.sum_congr rfl fun l _ => mul_comm _ _
+      _ = star ((M *ᵥ v) j) := by rw [mulVec_apply_sum]
+      _ = star (v j) := by rw [h]
+  calc ∑ l : K, v i * star (v l) * M l j
+      = v i * ∑ l : K, star (v l) * M l j := by
+        rw [Finset.mul_sum]
+        exact Finset.sum_congr rfl fun l _ => by ring
+    _ = v i * star (v j) := by rw [hsum]
+
+theorem colAt_injective (k0 : K) {v w : K → ℂ} (h : colAt k0 v = colAt k0 w) : v = w := by
+  funext i
+  have h2 := congrFun₂ h i k0
+  rwa [colAt_apply, colAt_apply, if_pos rfl, if_pos rfl] at h2
+
+/-- **Step A, the exact continuous-family shape the mapping-torus lane (`cc-lix-odd`) asked
+for.**  `V` a continuous projection-valued map on `M`; `e`, `s` continuous unit vector fields
+fixed by `V`; and a continuous field of partial isometries `w₁` implementing a Murray--von
+Neumann equivalence, at every point, of the two complementary projections `V - e eᴴ` and
+`V - s sᴴ`.  Conclusion: a continuous field of unitaries `g` of the corner determined by `V`,
+with `g *ᵥ e = s`. -/
+theorem exists_continuous_corner_unitary_apply_eq
+    {M : Type*} [TopologicalSpace M] (k0 : K)
+    {V : M → Matrix K K ℂ} {e s : M → K → ℂ}
+    (hVproj : ∀ m, IsStarProjection (V m))
+    (hVe : ∀ m, V m *ᵥ e m = e m) (hVs : ∀ m, V m *ᵥ s m = s m)
+    (hecont : Continuous e) (hscont : Continuous s)
+    (he1 : ∀ m, ∑ i, star (e m i) * e m i = 1) (hs1 : ∀ m, ∑ i, star (s m i) * s m i = 1)
+    (w₁ : M → Matrix K K ℂ) (hw₁cont : Continuous w₁)
+    (hw₁src : ∀ m, (w₁ m)ᴴ * w₁ m = V m - colAt k0 (e m) * (colAt k0 (e m))ᴴ)
+    (hw₁rng : ∀ m, w₁ m * (w₁ m)ᴴ = V m - colAt k0 (s m) * (colAt k0 (s m))ᴴ)
+    (hw₁pi : ∀ m, w₁ m * (w₁ m)ᴴ * w₁ m = w₁ m) :
+    ∃ g : M → Matrix K K ℂ, Continuous g ∧
+      (∀ m, g m * V m = g m) ∧ (∀ m, V m * g m = g m) ∧
+      (∀ m, (g m)ᴴ * g m = V m) ∧ (∀ m, g m * (g m)ᴴ = V m) ∧
+      (∀ m, g m *ᵥ e m = s m) := by
+  have hmain : ∀ m : M,
+      (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m)ᴴ *
+          (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m) = V m ∧
+        (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m) *
+          (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m)ᴴ = V m ∧
+        (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m) * colAt k0 (e m) = colAt k0 (s m) :=
+    fun m => mvn_complement_unitary_apply_eq (A := Matrix K K ℂ)
+      (P := V m) (r := (colAt k0 (e m))ᴴ * colAt k0 (e m))
+      (e := colAt k0 (e m)) (s := colAt k0 (s m)) (w₁ := w₁ m)
+      (hVproj m).isSelfAdjoint.star_eq
+      (colAt_pi_of_normSq_one (he1 m) k0) (colAt_pi_of_normSq_one (hs1 m) k0)
+      rfl
+      (colAt_conjTranspose_mul_colAt_eq_of_normSq_eq ((hs1 m).trans (he1 m).symm) k0)
+      (mul_colAt_of_mulVec_eq (hVe m) k0) (mul_colAt_of_mulVec_eq (hVs m) k0)
+      (colAt_mul_colAt_conjTranspose_mul_of_selfAdjoint_of_mulVec_eq
+        (hVproj m).isSelfAdjoint.star_eq (hVs m) k0)
+      (hw₁src m) (hw₁rng m) (hw₁pi m)
+  refine ⟨fun m => colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact ((continuous_colAt k0 hscont).mul
+      (continuous_colAt k0 hecont).matrix_conjTranspose).add hw₁cont
+  · intro m
+    exact GroupApproximation.LIX.mul_source_of_partialIsometry (hmain m).1
+      ((hVproj m).isIdempotentElem.eq)
+  · intro m
+    have hq' : ((colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m)ᴴ)ᴴ *
+        (colAt k0 (s m) * (colAt k0 (e m))ᴴ + w₁ m)ᴴ = V m := by
+      rw [Matrix.conjTranspose_conjTranspose]; exact (hmain m).2.1
+    have h2 := GroupApproximation.LIX.mul_source_of_partialIsometry hq'
+      ((hVproj m).isIdempotentElem.eq)
+    have h3 := congrArg Matrix.conjTranspose h2
+    have hVstar : (V m)ᴴ = V m := (hVproj m).isSelfAdjoint.star_eq
+    rwa [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, hVstar] at h3
+  · exact fun m => (hmain m).1
+  · exact fun m => (hmain m).2.1
+  · intro m
+    refine colAt_injective k0 ?_
+    rw [← mul_colAt]
+    exact (hmain m).2.2
+
+end VectorForm
 
 end STW59
 end GroupApproximation
