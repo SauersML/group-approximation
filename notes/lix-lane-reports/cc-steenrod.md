@@ -220,6 +220,8 @@ counts below are from the probe that first compiled each:
   `wDiff`, 2089 jobs
 * `CharClass/SteenrodChainMapNat.lean` — naturality of `Φ` and of the target
   differential, 2092 jobs
+* `CharClass/SteenrodComparisonMap.lean` — **`Φ : src ⟶ tgt`**, the natural
+  transformation the comparison consumes, 2870 jobs
 
 ## AUTHORED, UNVERIFIED
 
@@ -227,7 +229,24 @@ Nothing.
 
 ## STILL OWED
 
-Nothing from the original brief, and the chain-map condition is now green too.  The `Sq^k` layer is green; what remains for
+**Nothing.**  All four original deliverables are green, and so is everything
+added since: `cup_comm`, the total operation `SqH`, the Cartan transport, the
+target carrier and its differential, the corrected `PhiSwap`/`PhiHom`, the
+chain-map condition, naturality, and
+
+```lean
+noncomputable def Steenrod.PhiNat : src singularBoundary ⟶ tgt
+```
+
+which is `Φ` in the shape the acyclic-models comparison consumes.  `d ∘ d = 0`
+for the pair differential was ruled to be `cc-cartan`'s and is theirs
+(`CartanSingularFreeCx.dTgt_dTgt`); this lane never wrote it.
+
+One duplication is outstanding and is a decision, not a gap: `cc-cartan`'s
+`pairIdxMap`/`pairMapF2`/`pairMapLambda` and this lane's
+`pairIdxPush`/`pairPushLin`/`pairPushGRLin` are the same terms.  Theirs is the
+one wired into the functor, so theirs should stay and these should be retired;
+proposed to them, not yet actioned.  The `Sq^k` layer is green; what remains for
 the program is the **Cartan formula**, which is `cc-cartan`'s to prove from
 `steenrodDiag`, and the assembly of the graded `SqH : ℕ → H →+ H` on the total
 cohomology, which needs `cc-cohom-api`/`cc-projective`'s direct sum.  My
