@@ -3601,6 +3601,7 @@ import GroupApproximation.CharClass.LerayHirschChartTwo
 import GroupApproximation.CharClass.BundleProjOver
 import GroupApproximation.CharClass.GysinPair
 import GroupApproximation.CharClass.CohomologyChartInduction
+import GroupApproximation.CharClass.LerayHirschChartBundle
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
