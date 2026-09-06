@@ -3740,6 +3740,7 @@ import GroupApproximation.CharClass.CartanCoverRep
 import GroupApproximation.CharClass.ChernSplitFactor
 import GroupApproximation.CharClass.CupVanishCover
 import GroupApproximation.CharClass.CohomologyLHRingInj
+import GroupApproximation.CharClass.CohomologyLHRingSurj
 import GroupApproximation.CharClass.CupVanishSub
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.BundleSplitCover
