@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 16 modules; `BundleCoordEmbed` at 8669 jobs (it imports
+## GREEN — 17 modules; `BundleLineTriv` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -341,6 +341,44 @@ This is the lane's only module that imports a peer's file
 (`ProjectiveSpaceHyperplane`, to state `cpEmbed_shiftMat`); nothing of theirs
 imports it, so there is no cycle.
 
+### `BundleLineTriv.lean` — trivializing a line, and the Leray-Hirsch base case
+
+```lean
+theorem rankOneProj_mulVec (w v) : rankOneProj w *ᵥ v = (∑ k, star (w k) * v k) • w
+theorem lineOf_eq_of_mem_fibre (hq : IsStarProjection q) (htr : q.trace = 1)
+    (hv : v ≠ 0) (hfix : q *ᵥ v = v) : lineOf v = q
+
+def colOf (p : Bundle X ι) (i : ι) (x : X) : ι → ℂ          -- the i-th column of p x
+theorem colOf_mem_fibre (p) (i) (x) : p x *ᵥ colOf p i x = colOf p i x
+theorem colOf_ne_zero (p) (hi : p x i i ≠ 0) : colOf p i x ≠ 0
+theorem continuous_colOf (p) (i) : Continuous (colOf p i)
+
+noncomputable def lineIso (p : Bundle X ι) (hp : ∀ x, (p x).trace = 1) (i : ι)
+    (hi : ∀ x, p x i i ≠ 0) : BundleIso p (triv X (Fin 1))
+
+def isoPlusOne (e : BundleIso p q) : BundleIso p.plusOne q.plusOne
+def plusOneTrivIso (X) (e : (ι ⊕ Unit) ≃ κ) : BundleIso ((triv X ι).plusOne) (triv X κ)
+theorem coordIncl_mul_conjTranspose_of_bijective (hf : Function.Bijective f) :
+    coordIncl f * (coordIncl f)ᴴ = 1
+
+theorem projSetCP_triv : projSetCP (triv X (Fin (d+1))) = Set.univ
+noncomputable def projTrivHomeoCP : Proj (triv X (Fin (d + 1))) ≃ₜ X × CP d
+theorem projTrivHomeoCP_over_base (z) : (projTrivHomeoCP z).1 = projPi _ z
+
+def sumUnitEquivTwo : (Fin 1 ⊕ Unit) ≃ Fin 2
+noncomputable def projPlusOneHomeoCPOne (p) (hp : ∀ x, (p x).trace = 1) (i : ι)
+    (hi : ∀ x, p x i i ≠ 0) : Proj p.plusOne ≃ₜ X × CP 1
+theorem projPlusOneHomeoCPOne_over_base (p) (hp) (i) (hi) (z) :
+    (projPlusOneHomeoCPOne p hp i hi z).1 = projPi p.plusOne z
+```
+
+A line bundle is trivial as soon as it has a nowhere-vanishing section, and on a
+projection-valued map the section is free: the `i`-th **column** of `p x` lies in
+the fibre because `p` is idempotent, and it is nonzero exactly where the
+diagonal entry is.  So no choice and no local triviality argument is needed;
+`lineOf_eq_of_mem_fibre` then says a nonzero vector of a rank-one fibre spans it,
+which is what turns the section into an isomorphism.
+
 ## NEEDS
 
 Nothing from a peer, and nothing from the roster row is left unstarted.
@@ -373,6 +411,21 @@ Nothing from a peer, and nothing from the roster row is left unstarted.
   cheaper fix is to drop it from the `variable` line: chasing it declaration by
   declaration costs one probe round per wave, because the linter only reports
   the ones it reached.
+* **A method in `Bundle.BundleIso` is unreachable by dot notation.**  `BundleIso`
+  itself lives in `CharClass`, so `e.projHomeo` on `e : BundleIso p q` looks for
+  `CharClass.BundleIso.projHomeo`, which does not exist; and writing
+  `BundleIso.projHomeo` inside `namespace Bundle` resolves the same way, because
+  `BundleIso` resolves as a *constant* first and its namespace wins.  Only the
+  fully-qualified `_root_.….Bundle.BundleIso.projHomeo` works.  Affects
+  `projHomeo`, `totalHomeo` and `tautIso`; peers must call them qualified.
+* **Transitive reach is not import, and it bites twice.**  `BundleInvariance` is
+  not in the import closure of `BundleZeroSection`, so a file importing the
+  latter sees none of it.  The symptom is `Unknown constant` on a name that
+  visibly exists in the tree.
+* **`rw [foo_apply]` rewrites every occurrence of the instantiation it picks.**
+  A second `rw [foo_apply]` for the *same* arguments then fails with "did not
+  find the pattern"; for *different* arguments it is required.  Both shapes
+  occur within three lines of each other in `BundleLineTriv`.
 * **A metavariable source type will not unify with a `SetLike` coercion.**
   `cc-projective` hit this with `sInclusion` on an open set: the source type
   stays a metavariable and does not meet a subtype that came from the coercion
