@@ -3768,6 +3768,7 @@ import GroupApproximation.CharClass.LIXStepCOddThom
 import GroupApproximation.CharClass.LIXThomResReduction
 import GroupApproximation.CharClass.LerayHirschGammaIso
 import GroupApproximation.CharClass.LerayHirschNatural
+import GroupApproximation.CharClass.LerayHirschContractible
 import GroupApproximation.CharClass.ThomChainHne
 import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.ChernTautRestrict
