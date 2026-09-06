@@ -45,6 +45,9 @@ the design was first written in; it is not available.
 
 * `trace_mappingTorus_lixZero` — the rank at the zero, in the form `fibreEquivPi` takes.
 * `lixPhi` — **the discrepancy map**.
+* `lixPhi_eq` — the map without the subtype, which is the form everything downstream uses.
+* `continuousOn_lixPhi` — it is continuous **on the chart's target**, which is the largest
+  set on which it means anything.
 
 `lixSquare_phi`, `lixPhi_iso` and `lixHsq` follow.
 -/
@@ -85,5 +88,43 @@ def lixPhi (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
     ⟨mappingTorus Vmat G circHoriz circHeight (lixZero dd) *ᵥ
         lixSection G (lixBaseChart dd ((lixFullChart dd).symm v)),
       lixSectionFibre_mem hGc hGu _⟩
+
+/-- **`lixPhi` written without the subtype.**  `fibreEquivPi` is multiplication by the
+adjoint of a frame, so the whole map is a composite of linear maps and the section, and no
+subtype appears.  Everything downstream uses this form. -/
+theorem lixPhi_eq (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    (v : Fin (lixRank dd) → ℂ) :
+    lixPhi hGc hGu v
+      = (stdFrame (isStarProjection_mappingTorus_lix hGu (lixZero dd)) (lixRank dd)
+          (trace_mappingTorus_lixZero hGu))ᴴ *ᵥ
+        (mappingTorus Vmat G circHoriz circHeight (lixZero dd) *ᵥ
+          lixSection G (lixBaseChart dd ((lixFullChart dd).symm v))) := rfl
+
+/-- **`lixPhi` is continuous on the chart's target.**  Not globally: off that set the
+inverse chart is junk, so there is nothing to be continuous about.  The only factor that is
+merely `ContinuousOn` is the inverse chart. -/
+theorem continuousOn_lixPhi (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    (hGe : ∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0) :
+    ContinuousOn (lixPhi hGc hGu) (lixFullChart dd).target := by
+  have hbase : ContinuousOn
+      (fun v : Fin (lixRank dd) → ℂ => lixBaseChart dd ((lixFullChart dd).symm v))
+      (lixFullChart dd).target :=
+    continuous_lixBaseChartFun.comp_continuousOn (lixFullChart dd).continuousOn_symm
+  have hall : ContinuousOn
+      (fun v : Fin (lixRank dd) → ℂ =>
+        (stdFrame (isStarProjection_mappingTorus_lix hGu (lixZero dd)) (lixRank dd)
+          (trace_mappingTorus_lixZero hGu))ᴴ *ᵥ
+          (mappingTorus Vmat G circHoriz circHeight (lixZero dd) *ᵥ
+            lixSection G (lixBaseChart dd ((lixFullChart dd).symm v))))
+      (lixFullChart dd).target := by
+    have hcont : Continuous (fun m : ↥sphereOne × baseM dd =>
+        (stdFrame (isStarProjection_mappingTorus_lix hGu (lixZero dd)) (lixRank dd)
+          (trace_mappingTorus_lixZero hGu))ᴴ *ᵥ
+          (mappingTorus Vmat G circHoriz circHeight (lixZero dd) *ᵥ lixSection G m)) :=
+      continuous_const.matrix_mulVec
+        (continuous_const.matrix_mulVec (lixSection_continuous hGc hGu hGe))
+    exact hcont.comp_continuousOn hbase
+  exact hall.congr fun v _ => (lixPhi_eq hGc hGu v).symm
 
 end GroupApproximation.CharClass
