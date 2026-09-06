@@ -197,16 +197,11 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
     hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-      hgeom hkernel htransfer hrot
+      hgeom hkernel htransfer
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   have hquasi :
