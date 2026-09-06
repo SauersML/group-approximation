@@ -16,6 +16,11 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/ParityInstance.lean` | `ParityData` assembled at `TotalH Y` / `TotalH N` over named hypotheses (namespace `GroupApproximation.CharClass.Wu`) |
 | `CharClass/SqDataInstance.lean` | `SplittingData`, the `SqData` of the flag bundle, (Wu-diag) pushed down to `N`, and the endpoint with `hwu` and the per-space Cartan removed |
 | `CharClass/ParityEvenTransport.lean` | functoriality of `TotalH.map`, the one model homeomorphism `lixN dd ≅ KnTwo.NTop (baseY dd)`, and the even side carried to the geometric model |
+| `CharClass/ParityEvenFlag.lean` | pullback injectivity along the flag tower, composed from the per-stage projections |
+| `CharClass/ParityEvenFlagCompact.lean` | compactness and non-emptiness of every stage, and the flag pullback injective unconditionally |
+| `CharClass/ParityEvenSplitting.lean` | `Wu.HasSplitting` for a compact rooted base, over the split relation at the flag |
+| `CharClass/ParityEvenFlagRelation.lean` | the split relation at the flag, and so **the splitting principle with nothing left open** |
+| `CharClass/ParityEvenLixSplitting.lean` | concentration of a Chern class with a splitting, and `hsplit` for the LIX mapping torus |
 
 ## 1. GREEN
 
@@ -70,6 +75,47 @@ Build completed successfully (8896 jobs).
 
 Freshly elaborated: olean written 22:46:04.  Landed as `6efca320d`, verified by
 `git merge-base --is-ancestor` against `origin/main`, not by the push message.
+
+`CharClass/ParityEvenFlag.lean`, 2026-09-05: 9039 jobs, landed `aba9f26c3`.
+
+`CharClass/ParityEvenFlagCompact.lean`, 2026-09-05: 9140 jobs, landed `c8f2bbec2`.
+
+`CharClass/ParityEvenSplitting.lean`, 2026-09-06:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenSplitting
+ERROR_LINES=0
+Build completed successfully (9170 jobs).
+```
+
+Landed `2bb3ca080`.
+
+`CharClass/ParityEvenFlagRelation.lean`, 2026-09-06:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenFlagRelation
+ERROR_LINES=0
+Build completed successfully (9172 jobs).
+```
+
+Landed `aed680f94`.  With it `Wu.hasSplitting_flag` is unconditional: over a
+compact non-empty base a bundle of constant positive rank has a `SplittingData`,
+with no hypothesis of any kind beyond that.
+
+`CharClass/ParityEvenLixSplitting.lean`, 2026-09-06:
+
+```text
+lake build GroupApproximation.CharClass.ParityEvenLixSplitting
+ERROR_LINES=0
+Build completed successfully (9177 jobs).
+```
+
+`Wu.hasSplitting_lix G hGc hGu : Wu.HasSplitting (lixN dd) (lixChernOf (lixChern
+dd) (mappingTorus Vmat G circHoriz circHeight))`, which is `WuStepDPinned.hsplit`
+verbatim.  The round trip `TotalH.of ∘ TotalH.component` between the ring-level
+`chern` and `lixChernOf`'s degreewise form is absorbed by `of_component_chern`,
+which reads the concentration off the splitting's own `chern_split` field rather
+than off any grading of the Chern classes.
 
 Deliverables 1, 2, 3 and 4 of the lane brief are complete and verified, the
 integration assembly is green over its named hypotheses, and the even side is
