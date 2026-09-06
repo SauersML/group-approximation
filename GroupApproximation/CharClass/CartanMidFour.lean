@@ -115,6 +115,84 @@ theorem midSwap_blockSwap (A : FreeCx) (k : ℕ)
         tenSwap_single]
       rfl
 
+/-! ## 4. The interchange on a fourfold decomposable -/
+
+/-- The interchange on a fourfold basis element. -/
+theorem midSwap_tenElt4_single (k P Q a1 a2 a3 a4 : ℕ)
+    (h : P + Q = k) (h1 : a1 + a2 = P) (h2 : a3 + a4 = Q)
+    (h' : a1 + a3 + (a2 + a4) = k)
+    (x1 : A.ι a1) (x2 : B.ι a2) (x3 : C.ι a3) (x4 : D.ι a4) :
+    midSwap A B C D k
+        (tenElt (tensorFreeCx A B) (tensorFreeCx C D) (⟨(P, Q), h⟩ : Steenrod.PairDeg k)
+          (tenElt A B (⟨(a1, a2), h1⟩ : Steenrod.PairDeg P)
+            (Finsupp.single x1 1) (Finsupp.single x2 1))
+          (tenElt C D (⟨(a3, a4), h2⟩ : Steenrod.PairDeg Q)
+            (Finsupp.single x3 1) (Finsupp.single x4 1)))
+      = tenElt (tensorFreeCx A C) (tensorFreeCx B D)
+          (⟨(a1 + a3, a2 + a4), h'⟩ : Steenrod.PairDeg k)
+          (tenElt A C (⟨(a1, a3), rfl⟩ : Steenrod.PairDeg (a1 + a3))
+            (Finsupp.single x1 1) (Finsupp.single x3 1))
+          (tenElt B D (⟨(a2, a4), rfl⟩ : Steenrod.PairDeg (a2 + a4))
+            (Finsupp.single x2 1) (Finsupp.single x4 1)) := by
+  rw [tenElt_single_single, tenElt_single_single, tenElt_single_single, midSwap_single,
+    tenElt_single_single, tenElt_single_single, tenElt_single_single]
+  rfl
+
+/-- **The interchange on a fourfold decomposable element.**  This is the form the
+chain-map property is proved in: every element of the nested tensor is a sum of
+these, with the four degrees fixed. -/
+theorem midSwap_tenElt4 (k P Q a1 a2 a3 a4 : ℕ)
+    (h : P + Q = k) (h1 : a1 + a2 = P) (h2 : a3 + a4 = Q)
+    (h' : a1 + a3 + (a2 + a4) = k)
+    (w1 : A.ι a1 →₀ ZMod 2) (w2 : B.ι a2 →₀ ZMod 2)
+    (w3 : C.ι a3 →₀ ZMod 2) (w4 : D.ι a4 →₀ ZMod 2) :
+    midSwap A B C D k
+        (tenElt (tensorFreeCx A B) (tensorFreeCx C D) (⟨(P, Q), h⟩ : Steenrod.PairDeg k)
+          (tenElt A B (⟨(a1, a2), h1⟩ : Steenrod.PairDeg P) w1 w2)
+          (tenElt C D (⟨(a3, a4), h2⟩ : Steenrod.PairDeg Q) w3 w4))
+      = tenElt (tensorFreeCx A C) (tensorFreeCx B D)
+          (⟨(a1 + a3, a2 + a4), h'⟩ : Steenrod.PairDeg k)
+          (tenElt A C (⟨(a1, a3), rfl⟩ : Steenrod.PairDeg (a1 + a3)) w1 w3)
+          (tenElt B D (⟨(a2, a4), rfl⟩ : Steenrod.PairDeg (a2 + a4)) w2 w4) := by
+  induction w1 using Finsupp.induction_linear with
+  | zero => simp
+  | add f g hf hg =>
+      rw [tenElt_add_left, tenElt_add_left, map_add, hf, hg,
+        tenElt_add_left, tenElt_add_left]
+  | single x1 c1 =>
+      rcases zmod2_eq_zero_or_one c1 with rfl | rfl
+      · rw [Finsupp.single_zero]
+        simp
+      · induction w2 using Finsupp.induction_linear with
+        | zero => simp
+        | add f g hf hg =>
+            rw [tenElt_add_right, tenElt_add_left, map_add, hf, hg,
+              tenElt_add_left, tenElt_add_right]
+        | single x2 c2 =>
+            rcases zmod2_eq_zero_or_one c2 with rfl | rfl
+            · rw [Finsupp.single_zero]
+              simp
+            · induction w3 using Finsupp.induction_linear with
+              | zero => simp
+              | add f g hf hg =>
+                  rw [tenElt_add_left, tenElt_add_right, map_add, hf, hg,
+                    tenElt_add_right, tenElt_add_left]
+              | single x3 c3 =>
+                  rcases zmod2_eq_zero_or_one c3 with rfl | rfl
+                  · rw [Finsupp.single_zero]
+                    simp
+                  · induction w4 using Finsupp.induction_linear with
+                    | zero => simp
+                    | add f g hf hg =>
+                        rw [tenElt_add_right, tenElt_add_right, map_add, hf, hg,
+                          tenElt_add_right, tenElt_add_right]
+                    | single x4 c4 =>
+                        rcases zmod2_eq_zero_or_one c4 with rfl | rfl
+                        · rw [Finsupp.single_zero]
+                          simp
+                        · exact midSwap_tenElt4_single A B C D k P Q a1 a2 a3 a4
+                            h h1 h2 h' x1 x2 x3 x4
+
 end
 
 end GroupApproximation.CharClass
