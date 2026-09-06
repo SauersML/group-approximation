@@ -501,15 +501,28 @@ plus two `#audit_closed_axioms` lines.
   Plain `attribute [local instance]` loses to `Subtype.partialOrder`.  Keeping
   the same two constants means no transport lemma anywhere.  My own diagnosis
   of this file pointed at elaboration order and a synthesis budget, and both
-  were wrong — the tell I missed is that the diagnostic `example` thirty-four
-  lines earlier *did* synthesize the instance, which should have said "a
-  different instance is being found in the two positions", not "the same search
-  is running out of room".
-* **`ccprobe.sh` syncs uncommitted peer edits.**  It rsyncs the whole shared
-  working tree, so a mid-flight edit by another lane can turn a dependency red
-  that is green at its own commit.  `cs-limit` saw `LIXConnectingMap` build,
-  fail at `:222` with byte-identical content at the same commit, then build
-  again.  Re-run before reporting a bug in someone else's module.
+  were wrong.
+* **A probe log and a `sed` of the same path can be about different bytes**, and
+  I drew a false conclusion from exactly that.  `ccprobe.sh` rsyncs the whole
+  shared working tree at the *start* of the run, uncommitted peer edits
+  included.  I launched a probe, then read `LIXLimitAlgebra.lean` off disk and
+  saw four diagnostic `example`s at lines 46 to 49 that were absent from the
+  error list, and inferred that they had *passed* — which would have meant the
+  instance was found in one position and not another.  They had not passed.
+  `cs-limit` added them after the sync, so the built bytes never contained
+  them, and the file I read was not the file that was compiled.  Verified after
+  the fact: `git show 3079cad5e:…` has no such lines, `git show 6b56f0491:…`
+  does.
+
+  Two rules out of this.  **Reconstruct the built version before reasoning
+  about which lines did or did not error** — `git show <commit>:<path>`, not a
+  read of the working tree.  And **absence from an error list is not evidence
+  of success**; it is equally evidence that the line was not there.
+
+  The same aliasing bites in the other direction: `cs-limit` saw
+  `LIXConnectingMap` build, fail at `:222` with byte-identical content at the
+  same commit, then build again.  Re-run before reporting a bug in someone
+  else's module.
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
