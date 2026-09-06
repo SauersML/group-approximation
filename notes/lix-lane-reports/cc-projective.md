@@ -547,3 +547,52 @@ Omitting `open scoped Matrix` made `ᴴ` a parse error, and Lean then reported
 `declaration uses 'sorry'` sixty lines below, in a declaration containing no such
 thing.  The banned-token scan on the SOURCE was clean throughout.  Do not chase
 the reported `sorry`; fix the first parse error and it goes.
+
+## 2026-09-06 — THE ROOTS, THE GENERATOR, AND cc-thom's LAST INPUT
+
+* `ChernTautRestrict` (7c4fbb066, **GREEN, 9153**) — the tautological class
+  restricts along the hyperplane.
+* `ChernTautHyperIso` (14adf888f, **GREEN, 9181**) — the same in cc-thom's spelling.
+* `ChernLineEulerNatural` (37156d57f, **GREEN, 9153**) — `lineEulerOf` is natural
+  and normalised.
+* `SliceVLineRoots` (546facd8b, **GREEN, 9162**) — **the roots of `V`.**
+* `SliceVGenerator` (199e159b0, **GREEN, 9163**) — the generator, stated once.
+
+`LH.pull_tautEulerOf_of_iso` is the general fact and it subsumes THREE uses: the
+base change, the bundle isomorphism, and the hyperplane.  A map of
+projectivisations carrying tautological line to tautological line up to
+isomorphism carries the class to the class, and the isomorphism may change the
+index type.  That last clause is the entire difficulty, and it is paid for once
+by `CPn.eulerOfBundle_pushforward_iso`.
+
+`LH.lineEulerOf_vLineYBundle_inr` is the root: the line in block `β` has Euler
+class the generator of the `β.1`-th factor, pulled back.  Since `HBlk dd` is
+`Σ j, Fin (dd j)`, all `dd j` blocks over one factor carry the SAME class, which
+is why the multiplicity is `dd j` copies of one generator rather than `dd j`
+unrelated roots.
+
+### The pattern this session settled into
+
+Every one of tonight's five modules is `eulerOfBundle_pushforward_iso` or
+`chern_map_of_square` at a different instantiation.  Naturality is the square with
+a pullback ring map; invariance is the same square with the IDENTITY ring map; the
+hyperplane, the base change and the block inclusion are all one lemma about the
+tautological line at unrelated index sizes.  Pre-empting the general form each
+time cost one extra lemma and saved four.
+
+### TRAP: `blockDiagonal'_apply_ne` with `_` for the block family
+
+Passing `_` for `M` leaves `o`, `m'` and `n'` as metavariables, and Lean solves
+them against the explicit `i j` instead, reporting the block inequality as an
+inequality of `Fin` SIZES (`dd b₁.fst + 1 ≠ dd b₂.fst + 1`).  The expected type
+never drives it, because the term elaborates bottom-up.  Fix: pin
+`(m' := fun b => Fin (dd b.1 + 1))` and `(n' := ...)`; `_` for `M` is then fine.
+
+### TRAP: a dependent Sigma index leaks through `subst`
+
+`by_cases` on two block equalities then `subst` renames unpredictably, since Lean
+may eliminate either side of `b₁ = β`.  Deciding BOTH `by_cases` before any
+`subst`, and writing `_` for every block argument afterwards, makes the proof
+name-agnostic.  Isolating the three `hLine` entry cases into their own lemmas kept
+the dependent index out of the main argument entirely, which is what turned three
+errors into none.
