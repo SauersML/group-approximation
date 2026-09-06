@@ -59,7 +59,7 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 /-- `IsZero` transports along a linear equivalence.  This is the bridge from
 `cc-cohom-api`'s `pullEquivOfHomeomorph` / `pullEquivOfHomotopyEquiv`, which deliver
 `LinearEquiv`s, to the `IsZero` shape in which `CohomologyToolkit` states its fields. -/
-theorem isZero_of_linearEquiv {R : Type} [Ring R] {M N : ModuleCat.{0} R}
+theorem thomIsZero_of_linearEquiv {R : Type} [Ring R] {M N : ModuleCat.{0} R}
     (e : M ≃ₗ[R] N) (h : IsZero N) : IsZero M := by
   haveI : Subsingleton N := ModuleCat.subsingleton_of_isZero h
   haveI : Subsingleton M := ⟨fun a b => e.injective (Subsingleton.elim _ _)⟩
@@ -103,14 +103,22 @@ time, and never for a product of two general spaces.
 Arranging `N` as a **left-nested** product `(((S¹ × S⁵) × CP(d₁)) × CP(d₂)) × ⋯` makes
 every second factor either a sphere, a `CP(d)`, a punctured sphere (contractible, and
 then `kunnethFactor_of_prodEquiv` applies with no Künneth at all) or a punctured
-`CP(d)` (homotopy equivalent to `CP(d−1)`, so again a `CP`). -/
-structure KunnethFactor (Y : Type) [TopologicalSpace Y] : Prop where
-  /-- Cohomology of `A × Y` vanishes above the sum of two degrees above which the
-  cohomology of `A` and of `Y` vanish. -/
-  prod : ∀ (A : Type) [TopologicalSpace A] (p q : ℕ),
+`CP(d)` (homotopy equivalent to `CP(d−1)`, so again a `CP`).
+
+The factor carries its own dimension `q` as an index rather than as a hypothesis,
+because that is the shape in which the theorem is provable: `cc-cohom-api`'s green
+`isZero_cohomology_prod_sphere` fixes `q` to the sphere's dimension. -/
+structure KunnethFactor (Y : Type) [TopologicalSpace Y] (q : ℕ) : Prop where
+  /-- Cohomology of `A × Y` vanishes above `p + q` whenever that of `A` vanishes above
+  `p`. -/
+  prod : ∀ (A : Type) [TopologicalSpace A] (p : ℕ),
     (∀ a, p < a → IsZero (cohomologyZMod2 (TopCat.of A) a)) →
-    (∀ b, q < b → IsZero (cohomologyZMod2 (TopCat.of Y) b)) →
     ∀ k, p + q < k → IsZero (cohomologyZMod2 (TopCat.of (A × Y)) k)
+
+/-- A Künneth factor of dimension `q` is one of any larger dimension. -/
+theorem KunnethFactor.mono {Y : Type} [TopologicalSpace Y] {q q' : ℕ}
+    (h : KunnethFactor Y q) (hq : q ≤ q') : KunnethFactor Y q' :=
+  ⟨fun A _ p hA k hk => h.prod A p hA k (by omega)⟩
 
 /-- **A cohomologically invisible factor is a Künneth factor.**  If `H^n(A × Y) ≅ H^n(A)`
 naturally in `A` and `n` — which is `cc-cohom-api`'s `cohProdContractible` whenever `Y`
@@ -119,8 +127,8 @@ spheres, where no Künneth theorem is needed at all. -/
 theorem kunnethFactor_of_prodEquiv (Y : Type) [TopologicalSpace Y]
     (e : ∀ (A : Type) [TopologicalSpace A] (n : ℕ),
       cohomologyZMod2 (TopCat.of A) n ≃ₗ[ZMod 2] cohomologyZMod2 (TopCat.of (A × Y)) n) :
-    KunnethFactor Y :=
-  ⟨fun A _ p q hA _ k hk => isZero_of_linearEquiv (e A k).symm (hA k (by omega))⟩
+    KunnethFactor Y 0 :=
+  ⟨fun A _ p hA k hk => thomIsZero_of_linearEquiv (e A k).symm (hA k (by omega))⟩
 
 /-- **Top-punctured acyclicity.**  `Z` has formal dimension `d ≥ 1`, its mod-2
 cohomology vanishes strictly above `d`, and the mod-2 cohomology of the complement of
@@ -184,25 +192,22 @@ Note where positivity of `dX` and `dY` is used: it is exactly the `−1` in the 
 Künneth exponent, i.e. the fact that puncturing drops the top degree. -/
 theorem prod [T1Space X] [T1Space Y] (T : CohomologyToolkit)
     {dX dY : ℕ} {x₀ : X} {y₀ : Y}
-    (kY : KunnethFactor Y) (kY' : KunnethFactor ↥({y₀}ᶜ : Set Y))
+    (kY : KunnethFactor Y dY) (kY' : KunnethFactor ↥({y₀}ᶜ : Set Y) (dY - 1))
     (hX : PuncturedAcyclic X dX x₀) (hY : PuncturedAcyclic Y dY y₀) :
     PuncturedAcyclic (X × Y) (dX + dY) (x₀, y₀) := by
   have hxpos := hX.pos
   have hypos := hY.pos
-  refine ⟨by omega, fun k hk => kY.prod X dX dY hX.vanish hY.vanish k hk, ?_⟩
+  refine ⟨by omega, fun k hk => kY.prod X dX hX.vanish k hk, ?_⟩
   intro k hk
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
   refine T.mv (puncturedProd x₀ y₀) (leftOpens x₀ y₀) (rightOpens x₀ y₀)
     (leftOpens_sup_rightOpens x₀ y₀) m ?_ ?_ ?_
   · refine T.homeo _ _ (interOpensHomeo x₀ y₀) m ?_
-    refine kY'.prod _ (dX - 1) (dY - 1) (fun a ha => hX.puncturedVanish a (by omega))
-      (fun b hb => hY.puncturedVanish b (by omega)) m (by omega)
+    refine kY'.prod _ (dX - 1) (fun a ha => hX.puncturedVanish a (by omega)) m (by omega)
   · refine T.homeo _ _ (leftOpensHomeo x₀ y₀) (m + 1) ?_
-    refine kY.prod _ (dX - 1) dY (fun a ha => hX.puncturedVanish a (by omega))
-      hY.vanish (m + 1) (by omega)
+    refine kY.prod _ (dX - 1) (fun a ha => hX.puncturedVanish a (by omega)) (m + 1) (by omega)
   · refine T.homeo _ _ (rightOpensHomeo x₀ y₀) (m + 1) ?_
-    refine kY'.prod X dX (dY - 1) hX.vanish
-      (fun b hb => hY.puncturedVanish b (by omega)) (m + 1) (by omega)
+    refine kY'.prod X dX hX.vanish (m + 1) (by omega)
 
 /-- The conclusion Step C consumes: the punctured space has no cohomology in the top
 degree of the unpunctured one. -/
