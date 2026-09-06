@@ -42,28 +42,28 @@ variable {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y] {ι : Type} [Fin
 
 /-- The map of total spaces covering `f`.  The membership proof is the identity:
 `comap f p y` is `p (f y)` by definition. -/
-def comapTotal (f : C(Y, X)) (p : Bundle X ι) : C(Total (comap f p), Total p) where
+def totalComap (f : C(Y, X)) (p : Bundle X ι) : C(Total (comap f p), Total p) where
   toFun v := ⟨(f (v : Y × (ι → ℂ)).1, (v : Y × (ι → ℂ)).2), v.2⟩
   continuous_toFun :=
     ((f.continuous.comp (continuous_fst.comp continuous_subtype_val)).prodMk
       (continuous_snd.comp continuous_subtype_val)).subtype_mk _
 
-theorem totalPi_comp_comapTotal (f : C(Y, X)) (p : Bundle X ι) :
-    (totalPi p).comp (comapTotal f p) = f.comp (totalPi (comap f p)) := rfl
+theorem totalPi_comp_totalComap (f : C(Y, X)) (p : Bundle X ι) :
+    (totalPi p).comp (totalComap f p) = f.comp (totalPi (comap f p)) := rfl
 
 /-- The map of projective bundles covering `f`. -/
-def comapProj (f : C(Y, X)) (p : Bundle X ι) : C(Proj (comap f p), Proj p) where
+def projComap (f : C(Y, X)) (p : Bundle X ι) : C(Proj (comap f p), Proj p) where
   toFun z := ⟨(f (z : Y × Matrix ι ι ℂ).1, (z : Y × Matrix ι ι ℂ).2), z.2⟩
   continuous_toFun :=
     ((f.continuous.comp (continuous_fst.comp continuous_subtype_val)).prodMk
       (continuous_snd.comp continuous_subtype_val)).subtype_mk _
 
-theorem projPi_comp_comapProj (f : C(Y, X)) (p : Bundle X ι) :
-    (projPi p).comp (comapProj f p) = f.comp (projPi (comap f p)) := rfl
+theorem projPi_comp_projComap (f : C(Y, X)) (p : Bundle X ι) :
+    (projPi p).comp (projComap f p) = f.comp (projPi (comap f p)) := rfl
 
 /-- The map of total spaces preserves the zero section in both directions. -/
-theorem comapTotal_snd_eq_zero_iff (f : C(Y, X)) (p : Bundle X ι) (v : Total (comap f p)) :
-    (comapTotal f p v : X × (ι → ℂ)).2 = 0 ↔ (v : Y × (ι → ℂ)).2 = 0 := Iff.rfl
+theorem totalComap_snd_eq_zero_iff (f : C(Y, X)) (p : Bundle X ι) (v : Total (comap f p)) :
+    (totalComap f p v : X × (ι → ℂ)).2 = 0 ↔ (v : Y × (ι → ℂ)).2 = 0 := Iff.rfl
 
 end Pullback
 
@@ -94,6 +94,24 @@ theorem puncturedSet_triv :
     refine ⟨?_, hv⟩
     show (1 : Matrix ι ι ℂ) *ᵥ v.2 = v.2
     exact Matrix.one_mulVec _
+
+/-- `Unit × Y` is `Y`.  (Mathlib has no `Homeomorph` for this at the pin.) -/
+def unitProdHomeo (Y : Type) [TopologicalSpace Y] : Unit × Y ≃ₜ Y where
+  toFun q := q.2
+  invFun y := ((), y)
+  left_inv q := by
+    cases q with
+    | mk u y => cases u; rfl
+  right_inv _ := rfl
+  continuous_toFun := continuous_snd
+  continuous_invFun := continuous_const.prodMk continuous_id
+
+/-- **The trivial bundle over a point**: its total space is `ℂ^r`. -/
+noncomputable def totalTrivUnit (r : ℕ) : Total (triv Unit (Fin r)) ≃ₜ (Fin r → ℂ) :=
+  (totalTrivHomeo).trans (unitProdHomeo (Fin r → ℂ))
+
+theorem totalTrivUnit_eq_zero_iff (r : ℕ) (w : Total (triv Unit (Fin r))) :
+    totalTrivUnit r w = 0 ↔ (w : Unit × (Fin r → ℂ)).2 = 0 := Iff.rfl
 
 end Trivial
 
@@ -131,6 +149,16 @@ theorem chartOf_mem_notZeroSet_iff (p : Bundle X ι) (v : Total p) :
       rw [chartVec_comp_inl]
       exact hv
     exact zTrace_lineOf_ne_zero _ (chartVec_ne_zero _) hcv
+
+/-- **(C1b) the excision pair.**  The affine chart carries `E(p) ∖ 0` onto the
+part of the chart that misses the zero section, so
+`(E(p), E(p) ∖ 0) ⊆ (P(p ⊕ 1), P(p ⊕ 1) ∖ Z)` is a pair of opens. -/
+theorem totalHomeoChart_mem_notZeroSet_iff (p : Bundle X ι) (w : Total p) :
+    ((totalHomeoChart p w : Chart p) : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) ∈ notZeroSet p
+      ↔ (w : X × (ι → ℂ)) ∈ puncturedSet p := by
+  show (chartOf p w : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ) ∈ notZeroSet p ↔ _
+  rw [chartOf_mem_notZeroSet_iff]
+  exact ⟨fun h => ⟨w.2, h⟩, fun h => h.2⟩
 
 end ChartPair
 
@@ -176,6 +204,24 @@ theorem totalTrivStd_snd_eq_zero_iff (p : Bundle X ι) (x₀ : X) (r : ℕ) (hr 
     show intert p x₀ ((w : ↥(trivSet p x₀) × (ι → ℂ)).1 : X)
       *ᵥ (w : ↥(trivSet p x₀) × (ι → ℂ)).2 = 0
     rw [h, Matrix.mulVec_zero]
+
+/-- **(C3) the trivializing chart as a pair.** -/
+theorem totalTrivStd_image_punctured (p : Bundle X ι) (x₀ : X) (r : ℕ) (hr : p.rank x₀ = r) :
+    (totalTrivStd p x₀ r hr) ''
+        {w : Total (p.restrictTo (trivSet p x₀)) |
+          (w : ↥(trivSet p x₀) × (ι → ℂ)) ∈ puncturedSet (p.restrictTo (trivSet p x₀))}
+      = {q : ↥(trivSet p x₀) × (Fin r → ℂ) | q.2 ≠ 0} := by
+  ext q
+  constructor
+  · rintro ⟨w, hw, rfl⟩
+    exact fun h => hw.2 ((totalTrivStd_snd_eq_zero_iff p x₀ r hr w).mp h)
+  · intro hq
+    refine ⟨(totalTrivStd p x₀ r hr).symm q, ⟨((totalTrivStd p x₀ r hr).symm q).2, ?_⟩,
+      (totalTrivStd p x₀ r hr).apply_symm_apply q⟩
+    intro h
+    refine hq ?_
+    rw [← (totalTrivStd p x₀ r hr).apply_symm_apply q]
+    exact (totalTrivStd_snd_eq_zero_iff p x₀ r hr _).mpr h
 
 end TrivPair
 
