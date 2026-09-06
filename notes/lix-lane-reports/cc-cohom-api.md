@@ -573,3 +573,69 @@ a sum of restrictions, *flatness* makes both of those pullbacks from the base, a
 the sphere Künneth's own uniqueness finishes.  Everything downstream of flatness
 was already green.  Worth knowing before anyone proves a stronger ring statement
 than is needed.
+
+## Rank two, in cc-projective's interface shape
+
+`CohomologyChartRankTwoInterface.lean` (landed 5738db9ad).  The three hypotheses
+of `LH.bijective_lhSum_two` for `U × ℂP^1 → U`, with the class the tautological
+generator pulled back:
+
+| name | content |
+|---|---|
+| `lhLow` | `pull (cpPrU U 0) n` is bijective for `n < 2` |
+| `lhSurj` | every class in degree `n+2` is `pull a + (pull b) ⌣ ξ` |
+| `lhUniq` | both coefficients are determined |
+
+`cpTop_zero_eq_cpTaut` says the connecting class **is**
+`pull (cpPrCP U 0) 2 (cpGen 1 _)`, so the decomposition is in cc-projective's own
+basis.  Their triangular change of basis (`LerayHirschShift`) is not needed at
+rank two; it is kept for the higher ranks, where the two do differ.  The
+instantiation is theirs: `LH.bijective_lhSum_cpProd`.
+
+**Two traps.**  `cup_comm` lives in `SteenrodCupOne`, which is not in the chart
+chain's import closure — a missing import reads as `Unknown identifier`, not as a
+missing module.  And a backwards `rw [← mvResV_eq_pull]` leaves the ambient
+open-set arguments as metavariables, because `pull_cup` has already split the
+degree: state the restriction fact once in the `pull (sInclusion …)` form,
+forwards, and rewrite the goal with that instead.
+
+## The induction over generation
+
+`CohomologyChartInduction.lean`.  `CPGenHyp` at every rank gives `CPSplit` at
+every rank, so the hypothesis of the previous section is discharged from a
+statement about the **fibre alone**, with no base anywhere in it.
+
+* `cpSplit_one` — the base, from `lhSurj`.  Unconditional.
+* `cpSplit_succ` — Mayer–Vietoris for the chart cover of `U × ℂP^{d+1}`.
+* `cpSplit_of_cpGenHyp` — `(∀ e, 2 ≤ e → CPGenHyp e) → ∀ e, 1 ≤ e → CPSplit e`.
+  The hypothesis starts at rank two because rank one is the base case, so nobody
+  has to prove `CPGenHyp 1`.
+* `mvResV_surjective_of_cpGenHyp`, `cpTop_cup_injective_of_cpGenHyp` — the two
+  endpoints with `CPGenHyp` the only hypothesis left: over an arbitrary base and
+  at every rank, the restriction to the punctured piece is a split surjection
+  whose kernel is free of rank one on `cpTop`.
+
+**The step uses the inductive hypothesis twice, and that is the whole
+difficulty.**  Once to split the restriction on the punctured piece, which is
+`U × ℂP^d`.  Once to *lift* the coefficient of the generator back to the total
+space, which is surjectivity of the restriction in degree `m`:
+`mvResV_surjective_of_lt` below `2d+1`, `mvResV_surjective_of_cpSplit` above it.
+`mvResV_surjective_of_cpSplit_all` glues the two, and it is what makes the
+induction close at all — the lifting degree `m` is unconstrained, so neither half
+suffices alone.
+
+**`CPGenHyp` is spent exactly once, on the residue.**  After subtracting the model
+class the difference restricts to zero on the punctured piece, so below degree
+`2d+2` it vanishes outright (`eq_zero_of_mvResV_eq_zero_of_lt`) and above it is
+`cpTop ⌣ pull b`.  `cpTop` carries no base factor (`cpTop_eq_pull_cpTopPt`), so
+`CPGenHyp (d+1)` — which knows nothing about a base — applies to it verbatim and
+turns it into the generator cupped with something.  That is `exists_cup_gen_cpTop`.
+
+**Generator stability is cc-projective's, and it is the other outside input.**
+The restriction of `cpGen (d+1)` to the punctured piece has to *be* `cpGen d`, or
+the two ends of the induction are about different classes.  `pull_cpIncl_cpGen`
+gives it on the hyperplane; `pull_punctIncl_cpGen` moves it across the retraction
+(pullback along `cpInclP` is the inverse of the retraction's, so injectivity is
+all that is needed); `pull_sInclusion_cpPrCP_cpGen` moves it into the product.
+Both transport lemmas are `rfl` at the level of morphisms, because the product
+cover is the preimage of theirs.
