@@ -27,7 +27,7 @@ of it, which is the `u` of the manuscript's §3.
 namespace GroupApproximation
 namespace LIX
 
-open scoped Matrix
+open scoped Matrix ComplexOrder CStarAlgebra
 
 set_option linter.unusedSectionVars false
 
@@ -214,6 +214,91 @@ theorem continuous_paddedPath :
   · exact isFrameDatum_contractSouth unit_e3 (isEquator_equatorEmb q.2.2) q.1.2.1 q.1.2.2
 
 end Padded
+
+/-! ## The generator as a unitary of the stage-zero algebra
+
+`STW59.blockUnitary 0` is the manuscript's `w₀ = u ⊕ 1_{H₀}`, and at stage
+zero `H₀ = 0`, so it is `u` itself.  Packaging it as an element of the corner
+needs nothing but `blockUnitary_mem_corner`, since `Eproj 0` is the unit of
+that corner. -/
+
+section StageZero
+
+theorem continuous_genMatFun :
+    Continuous fun w : STW59.baseX 0 =>
+      genU2 (equatorEmb (w.1 : EuclideanSpace ℝ (Fin 5))) :=
+  continuous_genU2
+    (continuous_equatorEmb.comp (continuous_subtype_val.comp continuous_fst))
+    (fun w => equatorEmb_mem w.1.2)
+    (fun _ => equatorEmb_ne_neg_one _)
+    (fun _ => equatorEmb_ne_one _)
+
+/-- The generator as a `2 × 2` matrix of continuous functions on `X₀`. -/
+def genMat : Matrix (Fin 2) (Fin 2) C(STW59.baseX 0, ℂ) :=
+  Matrix.of fun i j =>
+    ⟨fun w => genU2 (equatorEmb (w.1 : EuclideanSpace ℝ (Fin 5))) i j,
+      continuous_genMatFun.matrix_elem i j⟩
+
+@[simp]
+theorem matEval_genMat (w : STW59.baseX 0) :
+    STW59.matEval w genMat = genU2 (equatorEmb (w.1 : EuclideanSpace ℝ (Fin 5))) := rfl
+
+theorem genMat_conjTranspose_mul : genMatᴴ * genMat = 1 := by
+  refine STW59.matrix_ext_of_matEval fun w => ?_
+  rw [STW59.matEval_mul, STW59.matEval_conjTranspose, matEval_genMat, STW59.matEval_one]
+  exact genU2_conjTranspose_mul_self (equatorEmb_mem w.1.2) (equatorEmb_ne_neg_one _)
+    (equatorEmb_ne_one _)
+
+theorem genMat_mul_conjTranspose : genMat * genMatᴴ = 1 := by
+  refine STW59.matrix_ext_of_matEval fun w => ?_
+  rw [STW59.matEval_mul, STW59.matEval_conjTranspose, matEval_genMat, STW59.matEval_one]
+  exact genU2_mul_conjTranspose (equatorEmb_mem w.1.2) (equatorEmb_ne_neg_one _)
+    (equatorEmb_ne_one _)
+
+/-- `w₀ = u ⊕ 1_{H₀}` as an element of the stage-zero algebra. -/
+def genStage : STW59.StageAlgebra 0 :=
+  ⟨STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat), by
+    rw [STW59.mem_stageAlgebra_iff]
+    show STW59.ofFunctionMatrix (STW59.Eproj 0) *
+        STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat) *
+        STW59.ofFunctionMatrix (STW59.Eproj 0)
+      = STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat)
+    rw [← STW59.ofFunctionMatrix_mul, ← STW59.ofFunctionMatrix_mul,
+      STW59.blockUnitary_mem_corner]⟩
+
+theorem coe_genStage :
+    (genStage : STW59.SectionAlgebra (STW59.baseX 0) (STW59.EIdx 0))
+      = STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat) := rfl
+
+theorem genStage_star_mul : star genStage * genStage = 1 := by
+  refine STW59.corner_ext ?_
+  show star (STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat)) *
+      STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat) = STW59.stageProj 0
+  rw [← STW59.ofFunctionMatrix_star, ← STW59.ofFunctionMatrix_mul,
+    Matrix.star_eq_conjTranspose,
+    STW59.blockUnitary_star_mul 0 genMat_conjTranspose_mul]
+  rfl
+
+theorem genStage_mul_star : genStage * star genStage = 1 := by
+  refine STW59.corner_ext ?_
+  show STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat) *
+      star (STW59.ofFunctionMatrix (STW59.blockUnitary 0 genMat)) = STW59.stageProj 0
+  rw [← STW59.ofFunctionMatrix_star, ← STW59.ofFunctionMatrix_mul,
+    Matrix.star_eq_conjTranspose,
+    STW59.blockUnitary_mul_star 0 genMat_mul_conjTranspose]
+  rfl
+
+/-- **The generator, as a unitary of `A₀`.**  This is the `u` of the
+manuscript's §3 and the `u` that `LIX.lixLimit_hasK1InjWitness` consumes at
+`k = 0`. -/
+def genUnitary : unitary (STW59.StageAlgebra 0) :=
+  ⟨genStage, genStage_star_mul, genStage_mul_star⟩
+
+@[simp]
+theorem coe_genUnitary :
+    (genUnitary : STW59.StageAlgebra 0) = genStage := rfl
+
+end StageZero
 
 end
 
