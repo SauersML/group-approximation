@@ -121,6 +121,12 @@ Chern classes and the Euler class
   is no geometry in it: Chern classes are coefficients, pullback maps coefficients,
   and Vieta reads a product of linear factors.  Holds for every `k`, since both sides
   vanish above the rank for two different reasons.
+* `LerayHirschShiftTerm` (2066) — the index shift, in two forms.  See TRAPS: the
+  natural `lhTerm` statement is a `whnf` loop in the *statement*, not the proof.
+* `LerayHirschPeel` (8808) — **the ladder's spanning half**.  Every class is a
+  column, every degree, every rank, over two named hypotheses.
+* `LerayHirschPeelCP` (8920) — `HasPeel` discharged against `cc-cohom-api`'s
+  `cpSplit_closed`, with no cast.  The floor is the only hypothesis left.
 
 ## AUTHORED-UNVERIFIED
 
