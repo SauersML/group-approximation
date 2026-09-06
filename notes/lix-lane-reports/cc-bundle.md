@@ -199,7 +199,18 @@ noncomputable def tautLineProjRankOneIso (p) (hp) : BundleIso (comap _ (tautLine
 theorem notZeroOpensHomotopyEquivProj_invFun (p) (z) :
     (notZeroOpensHomotopyEquivProj p).invFun z
       = notZeroHomeoOpens p (projInclNotZero p z)                             -- `rfl`
+theorem chartOpensHomotopyEquivBase_invFun_apply (p) (x) :
+    (((chartOpensHomotopyEquivBase p).invFun x : ↥(chartOpensSet p)) : Proj p.plusOne)
+      = zeroSectionProj p x
 ```
+
+The last of those is the mirror of `chartOpensHomotopyEquivBase_toFun_apply` and
+is **not** definitional, where the forward one is.  The forward map only ever
+reads the first component, and nothing in this lane touches the first component,
+so it is `rfl`; the inverse has to go through the chart, because the equivalence
+is assembled from `Homeomorph.symm`s and the `invFun` of a `trans` composes
+those.  Inside the lane the computation is one step: the chart sends the zero
+vector of a fibre to the line spanned by the `Unit` coordinate, `infPoint`.
 
 On the zero section the tautological line is the constant `infPoint`, so
 `lineIso` trivialises it with a constant implementer.
