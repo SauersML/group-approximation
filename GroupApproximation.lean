@@ -3632,6 +3632,9 @@ import GroupApproximation.CharClass.SteenrodFourfoldBTransport
 import GroupApproximation.CharClass.CartanEvalPair
 import GroupApproximation.CharClass.ThomSectionDetect
 import GroupApproximation.CharClass.SteenrodFourfoldBSwap
+import GroupApproximation.CharClass.CartanEvalAW
+import GroupApproximation.CharClass.CartanEvalComposeA
+import GroupApproximation.CharClass.GysinRetract
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
