@@ -3,253 +3,176 @@
 Owns `Analysis/LIXClutching.lean`, `Analysis/LIXGeneratorUnitary.lean`,
 `Analysis/LIXObstructionComplementUnitary.lean`, `Analysis/LIXLemmaSix*.lean`.
 
-Written by the Opus owner during the review-only pairing with `cs-clutching-s`;
-the Lean files are `cs-clutching-s`'s until the lead hands them back.
+**The lane is closed.** Corollary 4 and the endpoint are proved and pushed; the
+only thing between `LemmaTwoHolds` and `HasK1InjWitness LIXLimit` is
+`Analysis/LIXLemmaSixCor4.lean`, which is green.
 
-## 1. GREEN
-
-Measured on this lane's own clone. Every count comes with a `Built` line and an
-elapsed time for the module itself, so no green here rests on a replay.
-
-| module | verdict | commit |
-|---|---|---|
-| `Analysis/LIXGeneratorUnitary.lean` | `Build completed successfully (2385 jobs)`, `✔ Built … (10s)` | `0a129ee56` |
-| `Analysis/LIXObstructionComplementUnitary.lean` | `Build completed successfully (8656 jobs)`, `✔ Built … (21s)` | `434bd8eae` |
-| `Analysis/LIXClutching.lean` | `Build completed successfully (8655 jobs)`, `✔ Built … (16s)` | as authored |
-
-All three together, after the `clutchingObstruction_of_equiv` repair:
-`Build completed successfully (8658 jobs)` with `✔ Built` lines for
-`LIXClutching` (13s), `LIXGeneratorUnitary` (10s) and
-`LIXObstructionComplementUnitary` (29s), at `3ed42ad32`.
-
-The whole frame construction is in `LIXGeneratorUnitary.lean` and green:
-rank-one toolkit, Householder reflection, phased transport, two-step frame,
-continuity, both hemisphere frames, the seam generator, and its explicit
-null-homotopy. Details in §2.
-
-`LIXObstructionComplementUnitary.lean` was red for a while and blocking
-`cc-lix-odd`'s `LemmaTwoUnitary`, on three defects in the vector-form Step A;
-see TRAPS. Restored at `434bd8eae`. Note the earlier 8657-job green of that
-file was of the 234-line version carrying only the ring-level Step A, not of
-the vector form.
-
-## 2. AUTHORED, UNVERIFIED
-
-What remains is gated on peers, not on this lane:
-
-* `HasGeneratorShape` and its three obligations over `tower.climb j 0` — needs
-  `cs-stages`' `connect`.
-* The generalised Corollary 4 — needs `cc-lix-odd`'s Lemma 2 in the target
-  shape below, and `cs-stages`' `HprojY` to state it.
-* `hdiag` against `LIXEndpointStatement.diagOne` — needs `StageAlgebra 0`.
-
-The mathematics for all three is settled and recorded here.
-
-### The lane's recorded negative finding is wrong
-
-`research/artifacts/stw59-clutching-layer-and-generator-cost-2026-09-05.md` §3
-concludes that `clutch u ≅ F` and the null-homotopy of `diag(u,1)` are Bott's
-unstable computation and not elementary. It rules out one ansatz — the planar
-rotation with a phase, singular on the great `S³ = {x₃ = 0}` — and then
-over-generalises. The correct statement is that no *one-step* transport works,
-because `{pᴴx = 0}` is a 3-sphere meeting both closed hemispheres for every base
-point `p` and every equator. Two steps work.
-
-**The transport.** A Householder reflection `reflMat v = 1 − (2/(vᴴv))·v vᴴ` is
-self-adjoint and squares to `1`, so it is unitary, and
-
-```text
-reflMat (a + b) * reflMat a    carries a to b
-```
-
-whenever `a`, `b` are unit vectors with `aᴴb` real and not `−1`. Rephasing the
-target by `w = aᴴb/‖aᴴb‖` removes the reality condition, giving `transportRot a b`
-defined whenever `aᴴb ≠ 0`. It acts as the scalar `w`, not as the identity, off
-`span{a,b}`; that is harmless and is what keeps it continuous.
-
-**The frame.** Composing two transports through the normalised midpoint,
-
-```text
-frameRot p x  :=  transportRot (midVec p x) x * transportRot p (midVec p x),
-midVec p x    :=  (p + x)/‖p + x‖
-```
-
-gives a continuous unitary with `frameRot p x * rk1 p v = rk1 x v`. Both inner
-products that must be nonzero are the *same* number `(1 + pᴴx)/‖p + x‖`, and
-`‖p + x‖ = 0` iff `pᴴx = −1`, so the single hypothesis `pᴴx ≠ −1` covers both
-steps and the domain is the sphere minus one point — far more than a closed
-hemisphere needs.
-
-**What it buys.** With `e₃ = Pi.single 2 1`, `sigmaPlus x := frameRot e₃ x` on
-`{x₂ ≠ −1} ⊇ D₊` and `sigmaMinus x := frameRot (−e₃) x * reflMat e₃` on
-`{x₂ ≠ 1} ⊇ D₋` satisfy the same identity `σ_± x * rk1 e₃ e₃ = rk1 x e₃`, hence
-`σ_± (1 − rankOneProj e₃) σ_±ᴴ = 1 − rankOneProj x = Fproj`. The generator
-`genU x := (sigmaPlus x)ᴴ * sigmaMinus x` fixes `e₃`, so it *is* `diag(u,1)`
-with no submatrix surgery. Its null-homotopy is explicit: contract each
-hemisphere along great circles, which stay in their hemisphere because the
-equator condition `(x₂).re = 0` is exactly real-orthogonality to `e₃`; the
-homotopy ends at the constant `reflMat e₃ = diag(1,1,−1)`, joined to `1` by
-`diag(1,1,exp(iπs))`. No `π₄(U(3))` anywhere.
-
-`frameRot p p = 1` is the sanity lemma the endpoints of that homotopy need: the
-midpoint of `p` with itself is `p`, and `reflMat (2p) = reflMat p` because the
-scalar absorbs the square of the scale.
-
-### Lemma 6 is deleted
-
-Every block that `connect` adds is constant in the `S⁴` coordinate:
-`φ_i(a)(x,z) = a(π_i x) ⊕ (a(x_i) ⊗ 1_{L_{i+1}})`, `π_i` is the identity on `S⁴`,
-`a(x_i)` is a constant matrix, and `1_L` depends only on the new `CP` factor.
-So
-
-```text
-tower.climb j 0 u  =  u ⊕ c_j     for a unitary c_j of p_{H_j} over Y_j alone
-```
-
-as an **equality**, by induction on the tower's own recursion — not a homotopy.
-Package it as a predicate so the induction and Corollary 4 meet syntactically:
+## 1. THE ENDPOINT
 
 ```lean
-def HasGeneratorShape (i : ℕ) (u : Matrix (Fin 2) (Fin 2) C(↥sphereFour, ℂ))
-    (a : StageAlgebra i) : Prop :=
-  ∃ c : Matrix (HIdx i) (HIdx i) C(baseY i, ℂ),
-    toFunctionMatrix a = Matrix.fromBlocks (pullMat prS4 u) 0 0 (pullMat prY c)
+theorem lixLimit_hasK1InjWitness_of (h : LemmaTwoHolds) : HasK1InjWitness LIXLimit
+theorem climb_genUnitary_notMem (h : LemmaTwoHolds) (j : ℕ) (hj : 0 ≤ j) :
+    unitaryHom (lixTower.climbHom hj) genUnitary ∉ unitaryComponentOne (STW59.StageAlgebra j)
 ```
 
-Then the **generalised Corollary 4** — for every unitary `c` of `p_{H_i}` over
-`Y_i`, `u ⊕ c ∉ unitaryComponentOne (StageAlgebra i)` — closes `cs-endpoint`'s
-`hstage` at `c := c_j`. Same hemisphere gluing, with `c` carried on the north
-side; the seam then demands that `diag(u,1) ⊕ cᴴ` extend over the disc, and
-since `c ↦ cᴴ` is a bijection of those unitaries, quantifying over all `c` makes
-the orientation a non-issue. `i = 0` with the empty `c` gives
-`u ∉ U₀(StageAlgebra 0)` as a special case rather than a separate argument.
+both in `Analysis/LIXLemmaSixCor4.lean`, namespace `GroupApproximation.LIX`.
+The second is Corollary 4 and is the `hstage` hypothesis of
+`lixLimit_hasK1InjWitness`; the first feeds it and `hdiag_genUnitary` to that
+theorem. No `sorry`, no `axiom`, no `opaque` anywhere in the lane.
 
-State the shape lemma at `tower.climb j 0` from the start, per `cs-endpoint`:
-`climbHom_apply` makes `climbHom` and `climb` `rfl`, but a hand-rolled composite
-is only propositionally equal and costs a transport lemma plus its induction.
+## 2. GREEN
 
-## 3. NEEDS
+Measured on this lane's own clone; every count comes with a `Built` line for the
+module itself, so no green here rests on a replay.
 
-**From `cc-lix-odd` — Lemma 2**, over `↥sphereFive × baseY i`, arbitrated by the
-lead as the fixed target statement and recorded in the program note §1.3:
+| module | jobs |
+|---|---|
+| `LIXClutching`, `LIXGeneratorUnitary`, `LIXObstructionComplementUnitary` | 8658 (jointly) |
+| `LIXLemmaSixGenerator` | 2981 |
+| `LIXLemmaSixShape` | 2982 |
+| `LIXLemmaSixClimb` | 3023 |
+| `LIXLemmaSixGlue` | 2983 |
+| `LIXLemmaSixDiagPath`, `LIXLemmaSixStageZero` | 2982 |
+| `LIXLemmaSixDiag` | 3021 |
+| `LIXLemmaSixDiagEnd` | 3022 |
+| `LIXLemmaSixSouth` | 2984 |
+| `LIXLemmaSixEquator` | 2985 |
+| `LIXLemmaSixCompare` | 8682 |
+| `LIXLemmaSixField` | 2986 |
+| `LIXLemmaSixHIdx` | 8672 |
+| `LIXLemmaSixCor4` | 8711 |
 
-```lean
-¬ MurrayVonNeumannEquiv
-    (Matrix.fromBlocks (pullMat prS5 Fproj) 0 0 (pullMat prY (HprojY i)))
-    (Matrix.fromBlocks (1 : Matrix (Fin 2) (Fin 2) C(↥sphereFive × baseY i, ℂ)) 0 0
-      (pullMat prY (HprojY i)))
-```
+## 3. HOW COROLLARY 4 IS PROVED
 
-Index types `Fin 3 ⊕ HIdx i` and `Fin 2 ⊕ HIdx i`, reconciled downstream by
-`murrayVonNeumannEquiv_blockSum` and `murrayVonNeumannEquiv_submatrix`. **Not**
-as a `ClutchingObstruction` instance.
+Four modules, in dependency order.
 
-**From `cs-stages` — `HprojY`**, which blocks even stating the above. `Hproj i`
-lives over `C(baseX i, ℂ)` with `baseX i = sphereFour × baseY i`, and cannot be
-typed over `sphereFive × baseY i`. Since `lineProj i j` reads only `z.2 j`, the
-Y-level version is immediate by the same recursion:
+**`LIXLemmaSixField.lean` — the unitary field.** Abstract in the `H` block: for a
+continuous field of projections `P` over any base `Y`, a continuous path `W` of
+unitaries of the corner `E = 𝟏² ⊕ P` running from `E` to `u ⊕ c` produces a
+continuous unitary field `G` over `S⁵ × Y` with
+`G · (𝟏³ − e₃e₃ᴴ) ⊕ P · Gᴴ = (𝟏³ − x xᴴ) ⊕ P`. Northern cap: the northern frame
+padded by `𝟏_H`. Southern cap: the southern frame, corrected by `W` read at the
+cone coordinates, and by the constant `H`-block unitary. On the equator the
+correction is the seam discrepancy itself, so the two agree and
+`continuous_if_le` glues them.
 
-```lean
-def HprojY : (i : ℕ) → Matrix (HIdx i) (HIdx i) C(baseY i, ℂ)
-theorem Hproj_eq_pullMat (i) : Hproj i = pullMat (baseY-projection) (HprojY i)
-```
+**No analysis at the pole, and no quotient map.** The cone radius is
+`capTime x = max 0 (1 + 2 Re x₂)`, which is **clamped**: it vanishes on the whole
+collar `{Re x₂ ≤ −1/2}`, where the correction is therefore the constant `W 0 = 1`
+whatever the direction is. So the southern field is continuous on the collar
+because it is locally the southern frame alone, and continuous off the collar
+because the direction `dirPt` is continuous there; those two open sets cover the
+cap. That removes the quotient-map descent, the surjectivity of the cone, the
+`arcsin`, *and* the `continuousAt_of_norm_le` damping estimate that was the
+approved route: none of them is needed.
 
-Assigned to `cs-stages` by the lead.
+**`ext3`.** The homotopy lives in `M_{Fin 2 ⊕ H}` and the field has to be a
+unitary of `M_{Fin 3 ⊕ H}`. With `jIncl = incl ⊕ 𝟏`,
+`ext3 P y A = jIncl A jInclᴴ + (1 − bigE P y)` carries corner unitaries to
+unitaries, is multiplicative on them, and commutes with the constant complement.
+`ext3` of the endpoint is `genU x ⊕ 𝟏` times a block-diagonal `𝟏³ ⊕ (c + 1 − P)`,
+and those two commute, which is exactly what makes the seam close.
 
-**From `cs-stages` — a constraint on `connect`, load-bearing.** The added block
-must be constant in the `S⁴` coordinate: evaluate at a fixed point of `baseX i`
-(their `stagePoint i` already is one) and do not reindex the first block through
-anything `x`-dependent. It costs them nothing, but if `connect` lands otherwise
-the shape lemma fails and Lemma 6 comes back — with a Mathlib input that does
-not exist (see TRAPS).
+**`LIXLemmaSixHIdx.lean` — the two `H`-indexings.** The manuscript indexes `H` by
+a sigma type `Σ (i,k), Fin (r_i + 1)` and the tower by an iterated `⊕`.
+`hIdxEquiv j` is the reindexing, defined by the recursion the two sides are
+defined by (`Fin.lastCases` on the block index), and `hMatY_reindex` says the two
+projections agree. The only step with content is `hMatY_castSucc`: weakening a
+block index does not change the entry.
 
-## 4. TRAPS
+**`LIXLemmaSixCor4.lean` — the assembly.** The path from
+`unitaryComponentOne` is clamped to `ℝ` by `Set.projIcc`, evaluated fibrewise
+(`stageEval`), and transported along `hIdxEquiv`; `HasGeneratorShape` at
+`lixTower.climb j 0 genStage` identifies its endpoint as
+`genU2 ⊕ c`; the field theorem produces `G`; `LIXLemmaSixCompare`'s
+`not_exists_unitary_field` contradicts Lemma 2.
+
+## 4. NEEDS
+
+Nothing. Every input this lane was waiting on has landed:
+`cs-stages`' `HprojY` and the `S⁴`-constancy of `connect`'s new block,
+`cs-limit`'s flattening and second Fubini, `cc-lix-odd`'s `LemmaTwoHolds`.
+
+Lemma 6 was **deleted**, not proved: `lixTower.climb j 0 genStage = u ⊕ c_j` is an
+equality (`HasGeneratorShape`), so no path between `v_i` and `w_i` is needed, and
+the unitary group of `M_r(ℂ)` is never asked to be path connected — which is just
+as well, since Mathlib does not know it at pin `81a5d257`.
+
+## 5. TRAPS
+
+**Instance search runs at reducible transparency, so a coercion through a
+non-reducible abbreviation fails.** `((y b.1 : CP (lixDD j b.1)) : Matrix …)`
+does not elaborate: the subtype coercion produces
+`Matrix (Fin (stageRank ↑b.1 + 1)) …`, and unifying that with the ascribed
+`Matrix (Fin (lixDD j b.1 + 1)) …` needs `lixDD` unfolded, which instance search
+will not do. Cure: never coerce across such a boundary — use the reducible
+`CPn.entry`, or name the block family in a `def` and let `rfl` do the work.
+
+**`ContinuousAt.mul` is the Pi-product `f * g`, and needs `Mul` on the
+codomain.** Rectangular matrix products have only `HMul`, so `ContinuousAt.mul`
+cannot state them at all, and for square ones it produces `(f * g)` where the
+goal has a lambda — which unifies only when no metavariable is left. For a
+constant-times-variable product, build the continuous map once
+(`(continuous_const.matrix_mul continuous_id).matrix_mul continuous_const`) and
+`comp` it.
+
+**`rw [h] at h1 h2` rewrites the first occurrence only.** Conjugating a
+`fromBlocks` gives *two* `0ᴴ`s; `rw [Matrix.conjTranspose_zero]` clears one and
+the next rewrite then fails to match. Use `simp only` for anything that appears
+more than once.
+
+**`Matrix.blockDiagonal'_apply_ne`'s block indices are not determined by the
+row/column arguments.** State the wrapper with the `≠` hypothesis *before* the
+two indices, so the implicit block indices are fixed by it; otherwise every call
+site fails with "expected `Fin (lixDD (j+1) ?b.fst + 1)`".
+
+**An ambiguous numeral picks up `CStarMatrix`'s `HMul`.** `incl * 1 * inclᴴ`
+elaborates the `1` at `ℕ`, and the error surfaces as
+`HMul (Matrix (Fin 3) (Fin 2) ℂ) ℕ ?m` followed by a `CStarMatrix.instHMul…`
+mismatch. Annotate the unit.
+
+**`rw` closes a goal by `rfl` only at reducible transparency.** Chains that end
+in a definitional identity (`matEval y (HprojY j) a b` versus
+`matEval y (HprojY (j+1)) (inl a) (inl b)`, or `baseYtrunc j y i` versus
+`y (castSucc i)`) need an explicit `rfl` after the `rw`.
+
+**`injection` on `⟨a, k⟩ = ⟨a, k'⟩` gives `k = k'`, not `HEq k k'`,** when the
+first components are syntactically equal, so `eq_of_heq` is a type error there.
+And do not reach for `simp [hk]`: `lixDD_apply` is a simp lemma, so simp rewrites
+the *type* `Fin (lixDD (j+1) …)` to `Fin (2 ^ (j+1))` and the hypothesis no
+longer applies.
+
+**`Set.projIcc_left` takes the order proof explicitly**, and its right-hand side
+must be ascribed at `unitInterval`: `(0 : ↥(Set.Icc (0:ℝ) 1))` finds no `Zero`
+instance, because the instance is stated for `unitInterval` and that def is not
+reducible.
 
 **`ring` inside `first` never fails.** Mathlib's `ring` falls back to `ring_nf`
-and *succeeds* with a "Try this: ring_nf" info message without closing the goal,
-so the later alternatives of a `first | ring | …` block are never tried and the
-failure surfaces as "unsolved goals" at the end of the block. Two of the five
-reds in `LIXGeneratorUnitary` were this. Use `ring1`.
-
-**`clutchingObstruction_of_equiv` is unusable as stated.** It assumes
-`hΩ : IsDiscUnitary Ω` and concludes `ClutchingObstruction t ν Ω`, which
-`not_isDiscUnitary_of_clutchingObstruction` turns straight back into
-`¬ IsDiscUnitary Ω`. Its hypotheses are jointly contradictory, so the file's
-advertised bridge — "the obstruction lane may deliver Lemma 2 in whatever
-concrete model it prefers" — is dead code. The proof uses `hΩ` once, for
-`isClutchDatum_coneMat`; weakening the hypothesis to
-`∀ x, IsClutchDatum (t x) (coneMat Ω (ν x))` repairs it, and that is satisfiable
-from unitarity on the unit sphere alone. Repair assigned to `cs-clutching-s`.
-
-**The unitary group of `Matrix (Fin r) (Fin r) ℂ` is not known path-connected in
-Mathlib at pin `81a5d257`.** `Analysis/Matrix/Spectrum.lean` carries only the
-Hermitian spectral theorem, `LinearAlgebra/Matrix/UnitaryGroup.lean` has no
-connectedness result, and `Unitary.mem_pathComponentOne_iff` only characterises
-the component of `1` as products of exponentials, leaving you to prove that every
-unitary matrix is such a product — cheapest via finiteness of the spectrum, a
-rotating scalar, `Unitary.norm_sub_one_lt_two_iff` and
-`expUnitary_argSelfAdjoint`, over `CStarMatrix`. Lemma 6 as originally specified
-needed exactly this. The `u ⊕ c` generalisation avoids it entirely.
+and *succeeds* without closing the goal, so later alternatives are never tried.
+Use `ring1`.
 
 **`Fin 3 → ℂ` carries the sup norm.** `‖x‖ = 1` is the wrong condition; state
-everything with `dotProduct`. `LIXProjectiveSpaceModel.sum_star_mul_self` is the
-bridge from `unitVectors` membership, and `rankOneProj` there is already the
-rank-one primitive — do not define a second one under another name.
+everything with `dotProduct`. `sum_star_mul_self` is the bridge from
+`unitVectors` membership, and `rankOneProj` is already the rank-one primitive.
 
-**`Matrix.mulVec_apply_eq_sum` does not exist at pin `81a5d257`.** What exists
-is `mulVec_eq_sum`, the vector-level `M *ᵥ v = ∑ i, op (v i) • Mᵀ i`, which is
-not what an entrywise computation wants. The entrywise form
-`(M *ᵥ v) i = ∑ j, M i j * v j` is `rfl`; state it locally. Two of the three
-defects that made `LIXObstructionComplementUnitary` red were this one name.
+**A name clash reads as a cascade of type errors.** A clashing `seamCorrection`
+produced 27 error lines that all looked like instance-synthesis failures, with
+the one informative line first and easy to miss. Check every new name against
+the modules you import before the first probe.
 
-**A name clash reads as a cascade of type errors.** `LIXClutching` already
-declares `seamCorrection`; my clashing declaration produced 27 error lines that
-all looked like instance-synthesis and application-type failures, with the one
-informative line ("has already been declared") first and easy to miss. Check
-every new name against the modules you import before the first probe. Renamed
-to `poleRotation`.
+**`Continuous.smul` mis-unifies against `continuous_const`**, producing a scalar
+action on the *function*. Bind the constant with a `have` first.
 
-**`Continuous.smul` mis-unifies against `continuous_const`.** It produces
-`Continuous (c • fun x => v)`, a scalar action on the *function*, rather than
-the pointwise `fun x => c x • v`, and the error names the wrong term. Bind the
-constant first, `have hpc : Continuous fun _ : X => p := continuous_const`, and
-pass that. Cost two probe rounds across four call sites.
-
-**`abel` fails on scalars that differ only by commutation.** `star μ * μ` and
-`μ * star μ` are distinct atoms to `abel`, so a module identity that is true by
-`mul_comm` in the coefficients will not close. Put the commutation in the
-`simp only` set as a hypothesis (`hcomm : star μ * μ = μ * star μ`) so both
-sides normalise the same way.
-
-**`congrFun` does not elaborate on an equality of `Matrix` values**, because
-the type is not syntactically a Pi. `congrFun₂` is the idiom Mathlib itself
-uses in `Data/Matrix/Mul.lean`.
+**`congrFun` does not elaborate on an equality of `Matrix` values**, because the
+type is not syntactically a Pi; `congrFun₂` is the idiom Mathlib itself uses.
 
 **A bare lambda for a `Matrix` value breaks entry-level `simp`.** Matrix apply
-lemmas are stated through `Matrix.of`, so `def f : Matrix K K ℂ := fun i j => …`
-gives an apply lemma that will not fire. Use `Matrix.of`; the apply lemma stays
-`rfl`.
+lemmas are stated through `Matrix.of`. Use it.
 
-**Keep the import list short on purpose.** `LIXGeneratorUnitary` imports only
-`LIXClutching` and `LIXProjectiveSpaceModel`, and states the hemisphere
-trivialisation as `… = 1 - rk1 x x` rather than as `… = matEval x Fproj`. The
-final step to the name `Fproj` is one `rfl`-level rewrite for the consumer, and
-in exchange this module does not go red whenever `LIXBlockProjections` does —
-which, in a shared tree with an active peer lane, it repeatedly did.
-
-**A bare lambda for a `Matrix` value breaks entry-level `simp`.** Matrix apply
-lemmas are stated through `Matrix.of`, so `def f : Matrix K K ℂ := fun i j => …`
-gives an apply lemma that will not fire where it is needed. Use `Matrix.of`.
-Relatedly, `congrFun` on an equality of `Matrix` values can fail to elaborate,
-because the type is not syntactically a Pi; `congrFun₂` is the idiom Mathlib
-itself uses.
+**`clutchingObstruction_of_equiv` was unusable as stated** — its hypotheses were
+jointly contradictory. Repaired to take `∀ x, IsClutchDatum (t x) (coneMat Ω (ν x))`.
 
 **The shared scratchpad is shared.** Two lanes wrote `scratchpad/probe1.log` and
-truncated each other. Use a lane-specific directory, and read `cc-last.log`
-inside your own clone as the authoritative copy.
-
-**`ccprobe.sh` died with "Argument list too long"** on a fresh clone — the whole
-tree counts as changed on the first sync, and the artifact-clearing list is
-passed on the command line — and still exited 0 with no build attempted. Fixed
-in place by the lead since; a lane copy that ships the changed-file list in a
-file is at `scratchpad/cs-clutching/ccprobe2.sh`.
+truncated each other. Use a lane-specific directory; this lane's probe is
+`scratchpad/cs-clutching/ccprobe2.sh`, which ships the changed-file list in a
+file rather than on the command line.
