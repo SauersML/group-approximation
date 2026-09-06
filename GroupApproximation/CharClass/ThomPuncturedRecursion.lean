@@ -65,8 +65,9 @@ theorem isZero_of_linearEquiv {R : Type} [Ring R] {M N : ModuleCat.{0} R}
   haveI : Subsingleton M := ⟨fun a b => e.injective (Subsingleton.elim _ _)⟩
   exact ModuleCat.isZero_of_subsingleton M
 
-/-- The five facts about mod-2 singular cohomology that the punctured-product
-recursion consumes.  Each is a `cc-cohom-api` deliverable; see
+/-- The four facts about mod-2 singular cohomology that the punctured-product
+recursion consumes.  The Künneth input is *not* here: it is `KunnethFactor`, taken one
+factor at a time (see its docstring for why fully general Künneth is unreachable).  Each is a `cc-cohom-api` deliverable; see
 `notes/lix-lane-reports/cc-thom.md` §3, needs (A1), (A2), (A3). -/
 structure CohomologyToolkit : Prop where
   /-- **Mayer–Vietoris, vanishing form** (need (A1)).  For a two-element open cover of
@@ -77,12 +78,6 @@ structure CohomologyToolkit : Prop where
     IsZero (cohomologyZMod2 (TopCat.of ↥U) (m + 1)) →
     IsZero (cohomologyZMod2 (TopCat.of ↥V) (m + 1)) →
     IsZero (cohomologyZMod2 (TopCat.of Z) (m + 1))
-  /-- **Künneth, vanishing form** (need (A2)).  Cohomology of a product vanishes above
-  the sum of two degrees above which the factors' cohomology vanishes. -/
-  kunneth : ∀ (A B : Type) [TopologicalSpace A] [TopologicalSpace B] (p q : ℕ),
-    (∀ a, p < a → IsZero (cohomologyZMod2 (TopCat.of A) a)) →
-    (∀ b, q < b → IsZero (cohomologyZMod2 (TopCat.of B) b)) →
-    ∀ k, p + q < k → IsZero (cohomologyZMod2 (TopCat.of (A × B)) k)
   /-- **Homeomorphism invariance** (need (A3)), in transport form. -/
   homeo : ∀ (A B : Type) [TopologicalSpace A] [TopologicalSpace B], (A ≃ₜ B) → ∀ n : ℕ,
     IsZero (cohomologyZMod2 (TopCat.of B) n) → IsZero (cohomologyZMod2 (TopCat.of A) n)
@@ -95,6 +90,37 @@ structure CohomologyToolkit : Prop where
   base case `S^n ∖ pt ≃ pt`. -/
   contractible : ∀ (A : Type) [TopologicalSpace A], ContractibleSpace A → ∀ n : ℕ, 0 < n →
     IsZero (cohomologyZMod2 (TopCat.of A) n)
+
+/-- **Künneth vanishing for one fixed second factor `Y`.**
+
+`cc-cohom-api` established that fully general Künneth is *not* reachable here: it needs
+Eilenberg–Zilber, a chain equivalence `C_*(A × B) ≃ C_*(A) ⊗ C_*(B)`, which neither the
+vendored tree nor Mathlib has.  What is reachable is the statement with the second
+factor fixed to a sphere (`cc-cohom-api`, by Mayer–Vietoris on the hemispheres) or to a
+`CP(d)` (`cc-projective`).  So the recursion asks for exactly that, one factor at a
+time, and never for a product of two general spaces.
+
+Arranging `N` as a **left-nested** product `(((S¹ × S⁵) × CP(d₁)) × CP(d₂)) × ⋯` makes
+every second factor either a sphere, a `CP(d)`, a punctured sphere (contractible, and
+then `kunnethFactor_of_prodEquiv` applies with no Künneth at all) or a punctured
+`CP(d)` (homotopy equivalent to `CP(d−1)`, so again a `CP`). -/
+structure KunnethFactor (Y : Type) [TopologicalSpace Y] : Prop where
+  /-- Cohomology of `A × Y` vanishes above the sum of two degrees above which the
+  cohomology of `A` and of `Y` vanish. -/
+  prod : ∀ (A : Type) [TopologicalSpace A] (p q : ℕ),
+    (∀ a, p < a → IsZero (cohomologyZMod2 (TopCat.of A) a)) →
+    (∀ b, q < b → IsZero (cohomologyZMod2 (TopCat.of Y) b)) →
+    ∀ k, p + q < k → IsZero (cohomologyZMod2 (TopCat.of (A × Y)) k)
+
+/-- **A cohomologically invisible factor is a Künneth factor.**  If `H^n(A × Y) ≅ H^n(A)`
+naturally in `A` and `n` — which is `cc-cohom-api`'s `cohProdContractible` whenever `Y`
+is contractible — then `Y` is a Künneth factor.  This is what covers the punctured
+spheres, where no Künneth theorem is needed at all. -/
+theorem kunnethFactor_of_prodEquiv (Y : Type) [TopologicalSpace Y]
+    (e : ∀ (A : Type) [TopologicalSpace A] (n : ℕ),
+      cohomologyZMod2 (TopCat.of A) n ≃ₗ[ZMod 2] cohomologyZMod2 (TopCat.of (A × Y)) n) :
+    KunnethFactor Y :=
+  ⟨fun A _ p q hA _ k hk => isZero_of_linearEquiv (e A k).symm (hA k (by omega))⟩
 
 /-- **Top-punctured acyclicity.**  `Z` has formal dimension `d ≥ 1`, its mod-2
 cohomology vanishes strictly above `d`, and the mod-2 cohomology of the complement of
@@ -158,23 +184,24 @@ Note where positivity of `dX` and `dY` is used: it is exactly the `−1` in the 
 Künneth exponent, i.e. the fact that puncturing drops the top degree. -/
 theorem prod [T1Space X] [T1Space Y] (T : CohomologyToolkit)
     {dX dY : ℕ} {x₀ : X} {y₀ : Y}
+    (kY : KunnethFactor Y) (kY' : KunnethFactor ↥({y₀}ᶜ : Set Y))
     (hX : PuncturedAcyclic X dX x₀) (hY : PuncturedAcyclic Y dY y₀) :
     PuncturedAcyclic (X × Y) (dX + dY) (x₀, y₀) := by
   have hxpos := hX.pos
   have hypos := hY.pos
-  refine ⟨by omega, fun k hk => T.kunneth X Y dX dY hX.vanish hY.vanish k hk, ?_⟩
+  refine ⟨by omega, fun k hk => kY.prod X dX dY hX.vanish hY.vanish k hk, ?_⟩
   intro k hk
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
   refine T.mv (puncturedProd x₀ y₀) (leftOpens x₀ y₀) (rightOpens x₀ y₀)
     (leftOpens_sup_rightOpens x₀ y₀) m ?_ ?_ ?_
   · refine T.homeo _ _ (interOpensHomeo x₀ y₀) m ?_
-    refine T.kunneth _ _ (dX - 1) (dY - 1) (fun a ha => hX.puncturedVanish a (by omega))
+    refine kY'.prod _ (dX - 1) (dY - 1) (fun a ha => hX.puncturedVanish a (by omega))
       (fun b hb => hY.puncturedVanish b (by omega)) m (by omega)
   · refine T.homeo _ _ (leftOpensHomeo x₀ y₀) (m + 1) ?_
-    refine T.kunneth _ _ (dX - 1) dY (fun a ha => hX.puncturedVanish a (by omega))
+    refine kY.prod _ (dX - 1) dY (fun a ha => hX.puncturedVanish a (by omega))
       hY.vanish (m + 1) (by omega)
   · refine T.homeo _ _ (rightOpensHomeo x₀ y₀) (m + 1) ?_
-    refine T.kunneth _ _ dX (dY - 1) hX.vanish
+    refine kY'.prod X dX (dY - 1) hX.vanish
       (fun b hb => hY.puncturedVanish b (by omega)) (m + 1) (by omega)
 
 /-- The conclusion Step C consumes: the punctured space has no cohomology in the top

@@ -1,7 +1,6 @@
 import GroupApproximation.CharClass.ThomPuncturedRecursion
 import GroupApproximation.CharClass.EulerLocalChart
 import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # Top-punctured acyclicity of a `Fin`-indexed product
@@ -16,8 +15,7 @@ over `Fin (n + 1)`.
 
 * `piFinSuccHomeo` — `(∀ i : Fin (n+1), X i) ≃ₜ X 0 × (∀ i : Fin n, X i.succ)`.
 * `PuncturedAcyclic.congr` — top-punctured acyclicity transports along a homeomorphism.
-* `puncturedAcyclic_pi` — a nonempty finite product of top-punctured acyclic spaces is
-  top-punctured acyclic, of the summed dimension.
+* there is deliberately no `Fin`-indexed recursion; see the last section for why.
 -/
 
 namespace GroupApproximation.CharClass
@@ -73,26 +71,26 @@ theorem congr' (T : CohomologyToolkit) {Z W : Type} [TopologicalSpace Z]
 
 end PuncturedAcyclic
 
-/-- **A nonempty finite product of top-punctured acyclic spaces is top-punctured
-acyclic**, of the summed dimension.  This is the form in which Step C uses the
-recursion for `N = S¹ × S⁵ × ∏_j CP(d_j)`: apply it to the projective part and then
-two binary steps, or apply it once to the whole family. -/
-theorem puncturedAcyclic_pi (T : CohomologyToolkit) {n : ℕ} :
-    ∀ (X : Fin (n + 1) → Type) [∀ i, TopologicalSpace (X i)] [∀ i, T1Space (X i)]
-      (d : Fin (n + 1) → ℕ) (z : ∀ i, X i),
-      (∀ i, PuncturedAcyclic (X i) (d i) (z i)) →
-      PuncturedAcyclic (∀ i, X i) (∑ i, d i) z := by
-  induction n with
-  | zero =>
-    intro X _ _ d z h
-    rw [Fin.sum_univ_one d]
-    exact PuncturedAcyclic.congr T (piFinOneHomeo X) (h 0)
-  | succ m ih =>
-    intro X _ _ d z h
-    rw [Fin.sum_univ_succ]
-    refine PuncturedAcyclic.congr T (piFinSuccHomeo X) ?_
-    exact PuncturedAcyclic.prod T (h 0)
-      (ih (fun i => X (Fin.succ i)) (fun i => d (Fin.succ i)) (fun i => z (Fin.succ i))
-        (fun i => h (Fin.succ i)))
+/-! ## Iterating the binary step
+
+There is deliberately no `Fin`-indexed version of `PuncturedAcyclic.prod` here.  The
+Künneth input is per-factor (`KunnethFactor Y`, see `ThomPuncturedRecursion.lean`), and
+only spheres, complex projective spaces and cohomologically invisible factors are
+available as Künneth factors — a *product* of them is not.  So an iterated product must
+be nested with the simple factor on the right,
+
+```text
+N = (((S¹ × S⁵) × CP d₁) × CP d₂) × ⋯,
+```
+
+and built by chaining `PuncturedAcyclic.prod` one factor at a time, each step supplying
+the two `KunnethFactor` instances for that step's right-hand factor.  A `Fin`-indexed
+statement splitting off the *first* factor would put the tail product in the second
+slot, where no Künneth factor exists.
+
+`piFinSuccHomeo`, `piFinOneHomeo` and `PuncturedAcyclic.congr`/`congr'` remain, since
+they are what transports the result onto a dependent product such as
+`Analysis/LIXBlockProjections`'s `baseY` once it has been built by chaining.
+-/
 
 end GroupApproximation.CharClass
