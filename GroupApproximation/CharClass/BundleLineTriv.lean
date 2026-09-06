@@ -256,6 +256,77 @@ theorem projPlusOneHomeoCPOne_over_base (p : Bundle X ι) (hp : ∀ x, (p x).tra
 
 end Chart
 
+/-! ### The tautological line under the chart trivialization -/
+
+section ComapIso
+
+variable {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y]
+variable {ι κ : Type} [Fintype ι] [Fintype κ]
+
+/-- **An isomorphism pulls back.**  Nothing is transported: the implementer at
+`y` is the implementer at `f y`. -/
+def comapIso (f : C(Y, X)) {p : Bundle X ι} {q : Bundle X κ} (e : BundleIso p q) :
+    BundleIso (comap f p) (comap f q) where
+  hom y := e.hom (f y)
+  continuous_hom := e.continuous_hom.comp f.continuous
+  conjTranspose_mul y := e.conjTranspose_mul (f y)
+  mul_conjTranspose y := e.mul_conjTranspose (f y)
+
+end ComapIso
+
+section TautComap
+
+variable {X : Type} [TopologicalSpace X] {d : ℕ}
+
+/-- **The tautological line of `P(p)` is the pullback of the tautological line of
+`ℂP^d` along the classifying map.**  In this model that is a definitional
+identity: both sides carry the same matrix, the one the point of `P(p)` is. -/
+theorem tautLine_eq_comap_cpTaut (p : Bundle X (Fin (d + 1))) :
+    tautLine p = comap (tautClassifying p) (cpTaut d) := rfl
+
+end TautComap
+
+section TautChartOne
+
+variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
+
+/-- The `ℂP¹` component of the chart trivialization `projPlusOneHomeoCPOne`. -/
+noncomputable def tautClassifyPlusOne (p : Bundle X ι) (hp : ∀ x, (p x).trace = 1)
+    (i : ι) (hi : ∀ x, p x i i ≠ 0) : C(Proj p.plusOne, CP 1) :=
+  ⟨fun z => (projPlusOneHomeoCPOne p hp i hi z).2,
+    continuous_snd.comp (projPlusOneHomeoCPOne p hp i hi).continuous⟩
+
+@[simp]
+theorem tautClassifyPlusOne_apply (p : Bundle X ι) (hp : ∀ x, (p x).trace = 1)
+    (i : ι) (hi : ∀ x, p x i i ≠ 0) (z : Proj p.plusOne) :
+    tautClassifyPlusOne p hp i hi z = (projPlusOneHomeoCPOne p hp i hi z).2 := rfl
+
+/-- **The chart trivialization carries the tautological line to the tautological
+line of `ℂP¹`.**
+
+`projPlusOneHomeoCPOne` identifies the spaces and, by
+`projPlusOneHomeoCPOne_over_base`, commutes with the projection to `X`.  This
+adds the third and last piece of data: the tautological line of `P(p ⊕ 1)` is
+the pullback of the tautological line of `ℂP¹` along the `ℂP¹` component of that
+homeomorphism.  So the identification is one of triples, base map included, and
+a consumer needs no separate argument that the degree-two generator goes to the
+degree-two generator.
+
+The chain is `tautIso` along each of the two bundle isomorphisms, pulled back
+along the first `projHomeo`, and then the definitional identity
+`tautLine_eq_comap_cpTaut` at the trivial rank-two bundle. -/
+noncomputable def tautLineIsoCPOne (p : Bundle X ι) (hp : ∀ x, (p x).trace = 1)
+    (i : ι) (hi : ∀ x, p x i i ≠ 0) :
+    BundleIso (tautLine p.plusOne) (comap (tautClassifyPlusOne p hp i hi) (cpTaut 1)) :=
+  (_root_.GroupApproximation.CharClass.Bundle.BundleIso.tautIso
+      (isoPlusOne (lineIso p hp i hi))).trans
+    (comapIso _
+      (_root_.GroupApproximation.CharClass.Bundle.BundleIso.tautIso
+        (plusOneTrivIso X sumUnitEquivTwo)))
+
+end TautChartOne
+
+
 end Bundle
 
 end CharClass
