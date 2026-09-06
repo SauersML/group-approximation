@@ -156,19 +156,23 @@ notation `γ_i` = mod-2 Chern class we keep):
   even-index `b_n`; Step 3: assemble `γ_r(W) = Σ_k A_{m-k} b_k = 0`.
 * Contradiction ⇒ no `g` ⇒ no MvN equivalence.
 
-**Target statement (fixed 20:20 EDT, cs-clutching):** over `↥sphereFive × baseY i`,
+**Target statement (corrected 20:40 by cc-lix-odd, green at 8667 jobs in
+`CharClass/LemmaTwoStatement.lean`):** the earlier `fromBlocks` form with blocks
+over `Fin 3 ⊕ HIdx` and `Fin 2 ⊕ HIdx` was ILL-TYPED (`MurrayVonNeumannEquiv`
+needs both elements in one type).  The manuscript's own form is used: inside the
+single algebra over `VIdx = Fin 3 ⊕ HIdx`, with `V = 1³ ⊕ H` and the unit
+sections `e = (e₃, 0)`, `s = (x, 0)`,
 ```lean
-¬ MurrayVonNeumannEquiv
-    (Matrix.fromBlocks (pullMat prS5 Fproj) 0 0 (pullMat prY (HprojY i)))
-    (Matrix.fromBlocks (1 : Matrix (Fin 2) (Fin 2) C(↥sphereFive × baseY i, ℂ)) 0 0
-      (pullMat prY (HprojY i)))
+FHmat := V − s sᴴ      -- F ⊕ H   (first block 1 − x xᴴ = STW59.Fproj, `FHmat_eq_fromBlocks`)
+EHmat := V − e eᴴ      -- 1² ⊕ H  (the constant complement of e₃ inside 1³)
+theorem …  : ¬ ContinuousMvNEquiv FHmat EHmat
 ```
-(index types `Fin 3 ⊕ HIdx i` and `Fin 2 ⊕ HIdx i`; `HprojY`/`Hproj_eq_pullMat`
-are cs-stages' Y-level form of `Hproj`).  Lemma 2 is delivered in THIS shape,
-not as a `ClutchingObstruction`: `LIXClutching.clutchingObstruction_of_equiv`
-had jointly contradictory hypotheses (being repaired), and Corollary 4 glues
-the explicit hemisphere frames directly instead of routing through `clutchMat`,
-whose seam-discrepancy condition the frames do not satisfy.
+with a bridge to `MurrayVonNeumannEquiv` over `Matrix VIdx VIdx C(M, ℂ)` via
+cs-stages' green `matEval` (cc-lix-odd, separate module).  Step A targets
+`HasStepAUnitary` (continuous `G` on `baseM`, `IsCornerUnitary (Vmat m) (G m)`,
+`G (Sum.elim (aVec m) 0) = Sum.elim (bVec m) 0`).  Lemma 2 is delivered in this
+shape, not as a `ClutchingObstruction`; Corollary 4 glues the explicit hemisphere
+frames inside `V` rather than routing through `clutchMat`.
 
 ### 1.4 What Step C/D need, and the design that makes them cheapest
 
