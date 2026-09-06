@@ -3754,6 +3754,7 @@ import GroupApproximation.CharClass.ParityEvenVSlice
 import GroupApproximation.CharClass.SliceRoots
 import GroupApproximation.CharClass.SliceHomogeneous
 import GroupApproximation.CharClass.SliceRootsBlock
+import GroupApproximation.CharClass.SliceValueV
 import GroupApproximation.CharClass.SliceVLineRoots
 import GroupApproximation.CharClass.SliceVGenerator
 import GroupApproximation.CharClass.BundleTotalOver
