@@ -15,6 +15,7 @@ identity, (Wu-diag) for mod-2 Chern classes, and Step D (the even side of Lemma 
 | `CharClass/ParityEven.lean` | `ParityData`, the convolution identity, `b_odd_eq_zero`, `gamma_top_eq_zero` |
 | `CharClass/ParityInstance.lean` | `ParityData` assembled at `TotalH Y` / `TotalH N` over named hypotheses (namespace `GroupApproximation.CharClass.Wu`) |
 | `CharClass/SqDataInstance.lean` | `SplittingData`, the `SqData` of the flag bundle, (Wu-diag) pushed down to `N`, and the endpoint with `hwu` and the per-space Cartan removed |
+| `CharClass/ParityEvenTransport.lean` | functoriality of `TotalH.map`, the one model homeomorphism `lixN dd ≅ KnTwo.NTop (baseY dd)`, and the even side carried to the geometric model |
 
 ## 1. GREEN
 
@@ -385,6 +386,34 @@ for `≥ 1`.  Below those the term is *absent*, not sitting in a truncated ℕ
 degree — `m - 5` at `m = 4` is `0`, which is even, and the odd-degree argument
 would look wrong there.  That is the one place the corollary can go astray.
 
+## 8c. The model seam, and the transport
+
+The even and odd sides were each green over a **different** model of `N`:
+`cc-cohom-api`'s Künneth work at `KnTwo.NTop Y = (Y × Sphere 5) × Sphere 1` with
+the vendored spheres, and `cc-thom`/`cc-lix-odd` at
+`lixN dd = ↥sphereOne × baseM dd`, that is `S¹ × (S⁵ × Y)`, with the Hermitian
+unit sphere of `ℂ³`.  Both correct, about different spaces.  By the lead's
+ruling the geometric model wins and `CharClass/ParityEvenTransport.lean` carries
+the even side across (green, 8896 jobs).
+
+What made it one homeomorphism rather than four transports: pullback along an
+isomorphism is injective on `TotalH` (`totalH_map_injective_of_iso`), which
+follows from functoriality alone, so each statement crosses by applying
+`TotalH.map` and cancelling.  `totalH_map_comp` and `totalH_map_id` did not
+exist and are proved here.  **`hsq_b` needs no transport at all**: neither `N`
+nor the model occurs in it.
+
+Three points settled by peers rather than guessed, all confirmed by the probe:
+
+* `↥sphereOne` and the vendored `Sphere 1` are the same subtype, so the circle
+  bridge is `Homeomorph.refl`.  Evidence `cc-lix-odd` gave: `hasTopLine_sphereOne`
+  is the vendored lemma applied with nothing between.
+* No `prodAssoc` is needed — `baseM` already carries the pair on the inside, so
+  two commutations and a congruence do it.
+* The two `baseY` in the repo (`CharClass.baseY` on a dimension vector,
+  `STW59.baseY` on a stage number) do **not** collide in practice: they take
+  different argument types and elaboration disambiguates.
+
 ## 9. TRAPS
 
 * **`autoImplicit` silently swallowed a missing `import`.**  `ZMod` was unknown
@@ -417,6 +446,14 @@ would look wrong there.  That is the one place the corollary can go astray.
   which is only definitionally `range (n + 1)`; finish with `exact`, not `rw`.
 * Deprecated `not_mem` spellings: at this pin the names are
   `Finset.card_insert_of_notMem`, `Finset.insert_sdiff_of_notMem`.
+* **A degree written as a sum never matches a lemma stated at a literal.**
+  The general form of the hazard below, found independently by `cc-projective`:
+  `Sq^1` of a degree-two class has degree `1 + 2`, and handing that to a lemma
+  stated at the literal `3` sends the elaborator into a deterministic `isDefEq`
+  timeout at 200000 heartbeats.  Their fix is the right general one and is better
+  than "leave indices unreduced": **state the vanishing at an arbitrary degree
+  with the side condition as a hypothesis**, so no literal is ever matched
+  against a sum.
 * **Never add two degrees inside a `TotalH.of`.**  Writing the product of the
   degree-1 and degree-5 generators as one class in degree `6` asks Lean for
   `Hmod2 N (1 + 5) = Hmod2 N 6`; it unfolds the cohomology construction instead
