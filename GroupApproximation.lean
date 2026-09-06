@@ -3719,6 +3719,7 @@ import GroupApproximation.CharClass.LIXThomLH
 import GroupApproximation.CharClass.LIXThomAssembly
 import GroupApproximation.CharClass.LerayHirschTowerRev
 import GroupApproximation.CharClass.LerayHirschFreeExists
+import GroupApproximation.CharClass.RelativeBundleNonempty
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
 import GroupApproximation.CharClass.SteenrodFourfoldBPackage
 import GroupApproximation.CharClass.CartanCupIVanishing
