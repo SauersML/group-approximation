@@ -195,6 +195,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomToolkitInstance.lean` | **`cohomologyToolkit`** — the toolkit as a *term*; `puncturedAcyclic_prod` and `puncturedAcyclic_sphere'` with it discharged |
 | `CharClass/ThomKunnethProjective.lean` | `prodOpen_inf`, `isZero_prodOpen_of_homotopyEquiv`, **`kunnethFactor_CP`** — `KunnethFactor (CP d) (2*d)` by Mayer–Vietoris induction on `d`; **no δ-linearity involved** |
 | `CharClass/ThomClassChain.lean` | **`thomClass`**, `jm_thomClass`, `thomClass_unique`, `existsUnique_smul_thomClass` — the Thom class as a *term* over Leray–Hirsch as a hypothesis; §1.4 item 5's `H^{k+2r}(pair) ≅ H^k(X)` |
+| `CharClass/ThomProjectivePunctured.lean` | `isZero_cohomology_CP`, `KunnethFactor.congrHomotopy`, **`puncturedAcyclic_CP`**, **`kunnethFactor_CP_punctured`** — the two projective hypotheses of `cc-lix-odd`'s `puncturedAcyclic_lixBase`, at an arbitrary point via `cc-projective`'s homogeneity |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
