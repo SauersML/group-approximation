@@ -19,6 +19,16 @@ rebuild** rather than a replay — the log carries `Built GroupApproximation.Ana
 `Built … LIXSimplicity` and `Built … LIXSimplicityInstance`, not `Replayed`, so the green is
 about the source now on `main` and not about a cached artifact.
 
+**The lane's endpoint is reached.**  `GroupApproximation.LIX.lixLimit_isSimpleCStar :
+IsSimpleCStar LIXLimit` is proved **unconditionally** in cs-limit's `Analysis/LIXLimitSimple.lean`
+(not my file; I did not duplicate it), by composing my `CStarTower.isSimpleCStar_limit_of_ne_zero`
+with cs-stages' `STW59.isFull_climb_of_ne_zero`, matched to `lixTower` by `lixTower_succHom`,
+which is `rfl`.  Probed the whole chain end to end: `Build completed successfully (3020 jobs)`,
+`ERROR_LINES=0`, `PROBE GREEN`, every module in the chain `Built` rather than `Replayed`, and a
+lexical scan of all ten modules from `CStarSimple` to `LIXLimitSimple` finds no
+`sorry`/`admit`/`axiom`/`opaque`/`native_decide`.  Deliverable 3 of the lane brief
+("`IsSimpleCStar A` for the LIX limit") is therefore discharged.
+
 ## 2. What is delivered
 
 * `Analysis/CStarSimple.lean` — `IsSimpleCStar (A : Type u) [CStarAlgebra A]`
