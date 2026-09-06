@@ -577,3 +577,44 @@ mine to land.
 commit later.  The check that failed: I grepped for the `OpenCoverData`
 *declaration*, not for *constructions* of it, and the duplicate had a different
 name so no name-based scan could catch it.  Grep for uses, not declarations.
+
+### The split relation is proved (2026-09-06)
+
+`splitRelation_of_sum`: for a bundle over a compact non-empty base that is a sum
+of `r` line bundles, the split relation holds on its projectivisation with the
+Euler classes of the summands as roots.  With `hasSplitting_of_splitRelation`
+that is `cc-wu`'s `hsplit`.  The obligation named nine files earlier is
+discharged, not reduced.
+
+| commit | file | jobs |
+| --- | --- | --- |
+| `7b29c1d5a` | `ChernFactorBridge` | 8871 |
+| `984ddc130` | `ChernRootSection` | 8872 |
+| `a87e86482` | `CupVanishCochain` | 8737 |
+| `f5f91f6ce` | `CupVanishSmallAnn` | 8741 |
+| `0776b8f07` | `CupVanishCover` | 8747 |
+| `20a672ac3` | `CupVanishSub` | 8814 |
+| `aea58b65c` | `CupVanishIterate` | 8816 |
+| `2db32b7e6` | `ChernSplitFactor` | 8930 |
+| `f5f34d6a8` | `ChernSplitRelation` | 9003 |
+
+### What the shape of the failures says
+
+Once the survey established that the algebra was complete and the tensor route
+dead, **every** remaining failure was a spelling, a namespace or an import — not
+one was a mathematical gap.  The two substantive lemmas of the final file
+elaborated first try and both red rounds were bookkeeping around them.
+
+Recurring cures, all now in `FLEET_TRAPS.md`:
+
+* Cross a definitional junction with a **term**, never a rewrite, wherever an
+  instance is pinned by an `@`-application.
+* Keep every degree the **same term** and destructure a successor inside a
+  wrapper where the degree is a variable; a successor written into the statement
+  looks equivalent and dies at `whnf`.
+* Do an induction whose degrees grow in the **total ring**, where degrees are
+  plain naturals; the graded version needs a transport at every step.
+* Supply a changing ambient as an **equation**, not a rewrite: the subspace type
+  depends on the open, so rewriting it is a dependent motive.
+* An unknown identifier in this layer is far more often a missing `open` than a
+  missing import.
