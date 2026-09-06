@@ -3650,6 +3650,8 @@ import GroupApproximation.CharClass.GysinTautFields
 import GroupApproximation.CharClass.LIXProjectiveChartSection
 import GroupApproximation.CharClass.ProjectiveSpaceRingBootstrap
 import GroupApproximation.CharClass.SteenrodFourfoldBDecomp
+import GroupApproximation.CharClass.CartanCohomologous
+import GroupApproximation.CharClass.ProjectiveSpaceRingClosed
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
