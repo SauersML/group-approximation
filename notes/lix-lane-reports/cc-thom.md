@@ -30,6 +30,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWV_eq_pull`**, **`mvResWU_one`**, `neg_eq_self_chainHom`, `mvCxInclV_comp_g` — the restrictions to the intersection are honest pullbacks, and the unit restricts to the unit |
 | `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`**, **`mvResV_eq_pull`** and their `V` twins — the restrictions from the ambient space are the pullbacks along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
 | `CharClass/MayerVietorisZero.lean` | `mono_homologyMap_zero`, **`mvExactZero`**, `mvResPair_injective` — the left end of the sequence: the pair of restrictions is injective on `H⁰` |
+| `CharClass/MayerVietorisNaturality.lean` | `opensComap_sup_eq_top`, `opensRestrict`, `interRestrict`, **`mvResU_naturality`**, **`mvResV_naturality`**, **`mvResWU_naturality`**, **`mvResWV_naturality`** — the four restriction squares for a map of covered spaces |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
@@ -142,8 +143,9 @@ pinned precisely:
   dual small-chains inclusion, so identifying `δ` with a global cochain needs the
   compatibility of that quasi-isomorphism with `cochainCup`, which holds because it
   is induced by a chain map compatible with Alexander–Whitney, but is not written.
-* **(2) Naturality in a map of covered spaces — the restriction squares are now
-  free.**  With `mvResU_eq_pull` and `mvResWU_eq_pull`, every Mayer–Vietoris
+* **(2) Naturality — the four restriction squares are DONE**
+  (`CharClass/MayerVietorisNaturality.lean`, green at 8775).  Historical note on why
+  they were cheap:  With `mvResU_eq_pull` and `mvResWU_eq_pull`, every Mayer–Vietoris
   restriction is a `cohPullback`, so each restriction square of naturality is
   functoriality of `pull` and needs no chain-level map at all.  Only the **δ-square**
   still needs the missing `subChainComplex R X' (f⁻¹ S) ⟶ subChainComplex R X S`
