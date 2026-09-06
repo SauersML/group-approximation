@@ -52,10 +52,8 @@ theorem nonempty_proj (p : Bundle X ι) (x : X) (hx : 0 < p.rank x) :
     Nonempty (Bundle.Proj p) := by
   classical
   have hne : p x ≠ 0 := ne_zero_of_rank_pos p x hx
-  obtain ⟨i₀, j₀, hij⟩ : ∃ i j, p x i j ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
-    exact hne (by ext i j; simpa using hcon i j)
+  obtain ⟨i₀, hi₀⟩ := Function.ne_iff.mp hne
+  obtain ⟨j₀, hij⟩ := Function.ne_iff.mp hi₀
   refine ⟨⟨(x, lineOf fun i => p x i j₀), ?_⟩⟩
   refine Bundle.mem_projSet_of_lineOf (fun hu => hij (congrFun hu i₀)) ?_
   funext i
