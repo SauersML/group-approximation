@@ -193,23 +193,24 @@ theorem smallAnn_comp (R : Type) [CommRing R] (X : TopCat.{0}) (𝒰 : OpenCover
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  have key : ModuleCat.ofHom (smallChainSubmodule R X 𝒰 n).subtype
-      ≫ ((φ : smallAnnSubmodule R X 𝒰 n) : singularCochainGroup R X n) = 0 := by
+  have key : ∀ ψ : smallAnnSubmodule R X 𝒰 n,
+      ModuleCat.ofHom (smallChainSubmodule R X 𝒰 n).subtype
+        ≫ (ψ : singularCochainGroup R X n) = 0 := by
+   intro ψ
    apply ModuleCat.hom_ext
    apply LinearMap.ext
    rintro ⟨c, hc⟩
-   show ((φ : smallAnnSubmodule R X 𝒰 n) : singularCochainGroup R X n).hom c = 0
+   show (ψ : singularCochainGroup R X n).hom c = 0
    refine smallChainSubmodule_induction (𝒰 := 𝒰)
-    (p := fun x => ((φ : smallAnnSubmodule R X 𝒰 n) :
-      singularCochainGroup R X n).hom x = 0) ?_ ?_ ?_ ?_ hc
+    (p := fun x => (ψ : singularCochainGroup R X n).hom x = 0) ?_ ?_ ?_ ?_ hc
    · intro σ hσ
-     exact (φ : smallAnnSubmodule R X 𝒰 n).2 σ hσ
+     exact ψ.2 σ hσ
    · exact map_zero _
    · intro x y hx hy
      rw [map_add, hx, hy, add_zero]
    · intro a x hx
      rw [map_smul, hx, smul_zero]
-  exact key
+  exact key φ
 
 /-- The short complex `smallAnn → C^*(X) → Hom(C_*^𝒰(X), R)`. -/
 def smallAnnShortComplex (R : Type) [CommRing R] (X : TopCat.{0}) (𝒰 : OpenCoverData X) :
@@ -227,10 +228,12 @@ theorem ker_smallRestriction (𝒰 : OpenCoverData X) (n : ℕ)
     (φ : singularCochainGroup R X n)
     (hφ : ((smallRestriction R X 𝒰).f n).hom φ = 0) : φ ∈ smallAnnSubmodule R X 𝒰 n := by
   intro σ hσ
+  have hφ' : ModuleCat.ofHom (smallChainSubmodule R X 𝒰 n).subtype ≫ φ = 0 := hφ
   have h := congrArg
     (fun (g : ModuleCat.of R (smallChainSubmodule R X 𝒰 n) ⟶ ModuleCat.of R R) =>
-      g.hom ⟨chainGenerator R X n σ, chainGenerator_mem_smallChainSubmodule hσ⟩) hφ
-  simpa using h
+      g.hom ⟨chainGenerator R X n σ, chainGenerator_mem_smallChainSubmodule hσ⟩) hφ'
+  show φ.hom (chainGenerator R X n σ) = 0
+  simpa [ModuleCat.hom_comp, LinearMap.comp_apply] using h
 
 theorem smallAnnShortComplex_degreewise_shortExact (R : Type) [CommRing R] (X : TopCat.{0})
     (𝒰 : OpenCoverData X) (n : ℕ) :
