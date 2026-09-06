@@ -3776,6 +3776,7 @@ import GroupApproximation.CharClass.RelativeRangeKer
 import GroupApproximation.CharClass.LIXLocalPair
 import GroupApproximation.CharClass.ThomBridgeChart
 import GroupApproximation.CharClass.ThomBridgeHyperplane
+import GroupApproximation.CharClass.LIXLerayHirschInstance
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
 import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
