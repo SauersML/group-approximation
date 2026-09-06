@@ -943,6 +943,14 @@ theorem seamGen_mul_conjTranspose {x : n → ℂ} (hp : star p ⬝ᵥ p = 1)
     frameSouth_mul_conjTranspose hp hS, Matrix.one_mul,
     frameNorth_conjTranspose_mul_self hN]
 
+theorem continuous_seamGen {X : Type*} [TopologicalSpace X] {ξ : X → n → ℂ}
+    (hξ : Continuous ξ) (hN : ∀ s, IsFrameDatum p (ξ s))
+    (hS : ∀ s, IsFrameDatum (-p) (ξ s)) :
+    Continuous fun s => seamGen p (ξ s) := by
+  simp only [seamGen, frameNorth, frameSouth]
+  exact ((continuous_frameRot continuous_const hξ hN).matrix_conjTranspose).mul
+    ((continuous_frameRot continuous_const hξ hS).mul continuous_const)
+
 /-- **A frame of the tautological complement.**  A unitary obeying the
 transport identity conjugates the complement of `p pᴴ` onto the complement of
 `x xᴴ`; over `S⁵ ⊆ ℂ³` with `p = e₃` the right-hand side is exactly
@@ -1374,6 +1382,33 @@ theorem genU_mul_conjTranspose {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors
     (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) :
     genU x * (genU x)ᴴ = 1 :=
   seamGen_mul_conjTranspose unit_e3 (isFrameDatum_e3 hx hN) (isFrameDatum_neg_e3 hx hS)
+
+theorem continuous_genU {X : Type*} [TopologicalSpace X] {ξ : X → Fin 3 → ℂ}
+    (hξ : Continuous ξ) (hmem : ∀ s, ξ s ∈ STW59.unitVectors (Fin 3))
+    (hN : ∀ s, ξ s 2 ≠ -1) (hS : ∀ s, ξ s 2 ≠ 1) :
+    Continuous fun s => genU (ξ s) :=
+  continuous_seamGen hξ (fun s => isFrameDatum_e3 (hmem s) (hN s))
+    (fun s => isFrameDatum_neg_e3 (hmem s) (hS s))
+
+/-- `genU` commutes with the rank-one projection onto the pole, so it is
+block-diagonal for the splitting `ℂ³ = e₃^⊥ ⊕ ℂ e₃`. -/
+theorem rk1_e3_mul_genU {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (hN : x 2 ≠ -1) (hS : x 2 ≠ 1) : rk1 e3 e3 * genU x = rk1 e3 e3 := by
+  have h1 := genU_mul_rk1 hx hN hS e3
+  have h2 := genU_conjTranspose_mul_self hx hN hS
+  have h3 : (genU x)ᴴ * rk1 e3 e3 = rk1 e3 e3 := by
+    calc (genU x)ᴴ * rk1 e3 e3
+        = (genU x)ᴴ * (genU x * rk1 e3 e3) := by rw [h1]
+      _ = (genU x)ᴴ * genU x * rk1 e3 e3 := by rw [Matrix.mul_assoc]
+      _ = rk1 e3 e3 := by rw [h2, Matrix.one_mul]
+  have h4 := congrArg Matrix.conjTranspose h3
+  rwa [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, rk1_conjTranspose] at h4
+
+theorem genU_comm_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
+    (hN : x 2 ≠ -1) (hS : x 2 ≠ 1) :
+    genU x * (1 - rk1 e3 e3) = (1 - rk1 e3 e3) * genU x := by
+  rw [mul_sub, sub_mul, Matrix.mul_one, Matrix.one_mul, genU_mul_rk1 hx hN hS e3,
+    rk1_e3_mul_genU hx hN hS]
 
 /-- On the equator, `Re (x 2) = 0`, so `x 2` is neither `1` nor `-1` and both
 hemisphere frames are defined. -/
