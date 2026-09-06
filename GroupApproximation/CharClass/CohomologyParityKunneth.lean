@@ -1,4 +1,4 @@
-import GroupApproximation.CharClass.CohomologyKunnethDecomp
+import GroupApproximation.CharClass.CohomologyKunnethParity
 import GroupApproximation.CharClass.SqDataInstance
 
 /-!
@@ -35,9 +35,14 @@ namespace GroupApproximation.CharClass
 
 noncomputable section
 
+namespace KnTwo
+
 /-! ## 0. The component of a product -/
 
-/-- **The component of `of i w * z` at `i + m` is `w ⌣ (component m z)`.** -/
+/-- **The component of `of i w * z` at `i + m` is `w ⌣ (component m z)`.**  In the
+lane sub-namespace: `cc-wu` has a differently-shaped `component_of_mul` in
+`GroupApproximation.CharClass.Wu`, and two short names at different depths are an
+ambiguity waiting to happen. -/
 theorem component_of_mul {X : TopCat.{0}} (i m : ℕ) (w : TotalPiece X i) (z : TotalH X) :
     TotalH.component X (i + m) (TotalH.of X i w * z) = cup w (TotalH.component X m z) := by
   induction z using DirectSum.induction_on with
@@ -51,8 +56,6 @@ theorem component_of_mul {X : TopCat.{0}} (i m : ℕ) (w : TotalPiece X i) (z : 
     · rw [Wu.component_of_ne (show i + m ≠ i + j by omega), Wu.component_of_ne hjm.symm,
         cup_zero]
   | add z₁ z₂ h₁ h₂ => rw [mul_add, map_add, map_add, h₁, h₂, cup_add_right]
-
-namespace KnTwo
 
 variable (Y : Type) [TopologicalSpace Y]
 
@@ -243,6 +246,80 @@ theorem hgamma_and_hsq_b (γ : ℕ → TotalH (NTop Y)) (S : ChernSplit Y γ) :
   refine Wu.sq_b_of_grading _ (fun k hk => ?_) (fun k c hc => ?_)
   · rw [S.beta_low k (by omega), map_zero]
   · exact ⟨cohCast (show 2 * k - 6 = c by omega) (S.beta k), (totalH_of_cohCast _ _).symm⟩
+
+/-! ## 6. The even-degree two-term decomposition -/
+
+set_option maxHeartbeats 1000000 in
+/-- **The two-term decomposition in even degree.**  The two middle coordinates of the
+four-term split sit in the odd degrees `m - 1` and `m - 5` of `Y`, so they vanish as
+soon as `Y` has no odd cohomology.  No extra fact about the class is needed: its
+even degree is what excludes them. -/
+theorem decomp_even (hodd : KnHemi.NoOddCohomology Y) (k m : ℕ)
+    (hm : 1 + 5 + m = k) (hk : Even k) (z : Hmod2 (NTop Y) k) :
+    ∃ (a : Hmod2 (YTop Y) k) (b : Hmod2 (YTop Y) m),
+      z = pull (prY Y) k a
+        + cohCast hm (cup (cup (sig1 Y) (sig5 Y)) (pull (prY Y) m b)) := by
+  subst hm
+  obtain ⟨a, a₁, a₅, b, hz⟩ := decomp_top Y m z
+  rw [Nat.even_iff] at hk
+  have h1 : a₁ = 0 :=
+    KnHemi.eq_zero_of_noOdd hodd (by rw [Nat.odd_iff]; omega) a₁
+  have h5 : a₅ = 0 :=
+    KnHemi.eq_zero_of_noOdd hodd (by rw [Nat.odd_iff]; omega) a₅
+  refine ⟨a, b, ?_⟩
+  rw [hz, h1, h5]
+  simp only [pull_zero, cup_zero, cohCast_zero, add_zero, cohCast_self]
+
+set_option maxHeartbeats 1000000 in
+/-- Below total degree six there is no `t x` part at all, and in even degree the
+`t`-coordinate is odd, so an even class is simply a pullback. -/
+theorem decomp_even_low (hodd : KnHemi.NoOddCohomology Y) (k : ℕ) (hk : Even k)
+    (hlt : k < 1 + 5) (z : Hmod2 (NTop Y) k) :
+    ∃ a : Hmod2 (YTop Y) k, z = pull (prY Y) k a := by
+  rcases Nat.eq_zero_or_pos k with rfl | hpos
+  · obtain ⟨A, hA⟩ := KnHemi.kunneth_low (midBase Y) 1 0 (by omega) z
+    obtain ⟨a, ha⟩ := KnHemi.kunneth_low Y 5 0 (by omega) A
+    exact ⟨a, by rw [hA, ha, pull_prY_comp]⟩
+  · rw [Nat.even_iff] at hk
+    obtain ⟨j, hj⟩ : ∃ j, 1 + j = k := ⟨k - 1, by omega⟩
+    obtain ⟨A, B, hAB⟩ := KnHemi.kunneth_decomposition (midBase Y) 1 (by omega) k j hj z
+    obtain ⟨a, ha⟩ := KnHemi.kunneth_low Y 5 k (by omega) A
+    obtain ⟨a₁, ha₁⟩ := KnHemi.kunneth_low Y 5 j (by omega) B
+    have h1 : a₁ = 0 :=
+      KnHemi.eq_zero_of_noOdd hodd (by rw [Nat.odd_iff]; omega) a₁
+    refine ⟨a, ?_⟩
+    rw [hAB, ha, ha₁, h1]
+    simp only [pull_zero, cup_zero, cohCast_zero, add_zero]
+    rw [pull_prY_comp]
+
+set_option maxHeartbeats 1000000 in
+/-- **`ChernSplit` from the parity of the degrees.**  Nothing about the Chern classes
+is used beyond their degree: `γ k` lives in the even degree `2k`, so in the
+four-term split its `t`- and `x`-coordinates sit in the odd degrees `2k - 1` and
+`2k - 5` of `Y` and vanish. -/
+def chernSplit_of_noOdd (hodd : KnHemi.NoOddCohomology Y)
+    (γ : ℕ → TotalH (NTop Y)) (c : ∀ k : ℕ, Hmod2 (NTop Y) (2 * k))
+    (hc : ∀ k : ℕ, γ k = TotalH.of (NTop Y) (2 * k) (c k)) :
+    ChernSplit Y γ := by
+  have hex : ∀ k : ℕ, ∃ (α : Hmod2 (YTop Y) (2 * k)) (β : Hmod2 (YTop Y) (2 * k - 6)),
+      (2 * k < 6 → β = 0) ∧
+      γ k = TotalH.map (prY Y) (TotalH.of (YTop Y) (2 * k) α)
+        + Wu.tClass (prS1 Y) (sphereTopClass 1 (by omega))
+          * Wu.xClass (prS5 Y) (sphereTopClass 5 (by omega))
+          * TotalH.map (prY Y) (TotalH.of (YTop Y) (2 * k - 6) β) := by
+    intro k
+    rcases Nat.lt_or_ge (2 * k) 6 with hlt | hge
+    · obtain ⟨a, ha⟩ := decomp_even_low Y hodd (2 * k) ⟨k, by omega⟩ hlt (c k)
+      refine ⟨a, 0, fun _ => rfl, ?_⟩
+      rw [hc, ha, map_zero, map_zero, mul_zero, add_zero, ← TotalH.map_of]
+    · obtain ⟨a, b, hab⟩ := decomp_even Y hodd (2 * k) (2 * k - 6) (by omega)
+        ⟨k, by omega⟩ (c k)
+      refine ⟨a, b, fun h => absurd h (by omega), ?_⟩
+      rw [hc, hab, map_add, totalH_of_cohCast, TotalH.of_mul, ← tClass_mul_xClass,
+        ← TotalH.map_of, ← TotalH.map_of]
+  choose alpha beta hbeta hsplit using hex
+  exact { alpha := alpha, beta := beta, beta_low := fun k hk => hbeta k hk,
+          split := hsplit }
 
 end KnTwo
 

@@ -425,8 +425,14 @@ sphere on the right; a slice of the circle kills `t`, which forces the `ι u`
 summand to vanish, and the rest is two applications of
 `KnHemi.kunnethSecondInjective`.
 
-`hγ` and `hsq_b` are **not** consequences of Künneth, and building the
-decomposition confirmed it.  `KnTwo.decomp_top` is the general shape:
+`hγ` and `hsq_b` need one input beyond Künneth, and it is **parity, not a fact
+about `γ`** — cc-wu's correction, which was right.  `γ k` has even degree `2k`, so
+in the four-term split its `t`- and `x`-coordinates sit in degrees `2k − 1` and
+`2k − 5` of `Y`, both odd, and `Y = ∏ ℂP^{d_j}` has no odd cohomology.  So
+`KnTwo.chernSplit_of_noOdd` builds `ChernSplit` from `KnHemi.NoOddCohomology Y`
+plus the degree concentration of `γ`, and nothing about Chern classes is used.
+My earlier counterexample (`t ⌣ ι β` in degree three) is an odd-degree class and
+is excluded by the degree hypothesis.  `KnTwo.decomp_top` is the general shape:
 
 ```text
 z = ι a + t ⌣ ι a₁ + x ⌣ ι a₅ + t ⌣ x ⌣ ι b
@@ -446,3 +452,20 @@ propagates is `KnTop`, and it carries its degree as an **explicit equation**
 rather than as `n + m`: at `n + 1` the degree that comes out of
 `exists_delta_of_sub` is `(n + m) + 1`, which is not `(n + 1) + m` on the nose,
 and the equation form lets the witness be produced at the degree it already has.
+
+## Parity corollaries (for cc-thom's projective-space induction)
+
+`CohomologyKunnethParity.lean`.  cc-thom expected a mutual induction of four to
+six hundred lines; both statements are two-line corollaries of the decomposition,
+because it already produces both coefficients in **named degrees**.
+
+* `KnHemi.even_pulled_back_of_odd_sphere` — (L): no odd cohomology on the base and
+  an odd sphere, then every even class of the product is a pullback, because the
+  second coefficient sits in an odd degree.
+* `KnHemi.eq_zero_odd_of_even_sphere`, `isZero_odd_prod_sphere`,
+  `noOddCohomology_prod_sphere` — (M): even sphere, then both coefficients of an
+  odd-degree class are odd and vanish.
+
+The moral for the whole build: state the decomposition with the coefficients
+named in their own degrees and the parity arguments become bookkeeping.  A
+ring-level identity would have given neither (L), (M) nor `hsq_b`.
