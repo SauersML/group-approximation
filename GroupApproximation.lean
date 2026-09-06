@@ -3591,6 +3591,7 @@ import GroupApproximation.CharClass.ProjectiveSpaceRingEntry
 import GroupApproximation.CharClass.BundleOneStep
 import GroupApproximation.CharClass.CartanEvalFour
 import GroupApproximation.CharClass.CartanEvalBoundary
+import GroupApproximation.CharClass.ChernEulerIso
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
