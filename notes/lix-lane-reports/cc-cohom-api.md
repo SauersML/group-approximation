@@ -26,6 +26,8 @@ peer may mix the two vocabularies freely.
 | `CohomologyShapes.lean` | `cc-projective`'s `HasPointCohomology` / `HasSphereCohomology` discharged |
 | `CohomologyDegreeZero.lean` | `cocycleClass` is injective in degree 0; `one X ≠ 0` |
 | `CohomologyKunnethSplit.lean` | the Künneth map for a sphere factor; the slice half of its injectivity |
+| `CohomologyKunnethNatural.lean` | naturality of the Künneth map in the base |
+| `CohomologyKunnethMap.lean` | the Künneth map named, and the one missing statement isolated as `KunnethSecondInjective` |
 
 ## 1. GREEN
 
@@ -46,6 +48,8 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologyShapes.lean` | 8773 |
 | `CharClass/CohomologyDegreeZero.lean` | 8730 |
 | `CharClass/CohomologyKunnethSplit.lean` | 8768 |
+| `CharClass/CohomologyKunnethNatural.lean` | 8769 |
+| `CharClass/CohomologyKunnethMap.lean` | 8770 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
@@ -53,6 +57,11 @@ any of these files.
 ## 2. AUTHORED, UNVERIFIED
 
 *(nothing — every module this lane owns is green)*
+
+`CharClass/CohomologySphereComplement.lean` was **deleted** on the lead's ruling:
+`grep -rn CohomologySphereComplement GroupApproximation notes` showed no importer,
+and `cc-thom`'s `ThomPuncturedSphere` proves the same thing for any real inner
+product space rather than only for the vendored `Sphere n`.
 
 ## 2b. EXPORTS (frozen; other lanes build against these)
 
@@ -130,11 +139,27 @@ theorem isZero_cohomology_prod_sphere (A : Type) [TopologicalSpace A] (p n : ℕ
     IsZero (Hmod2 (TopCat.of (A × Sphere n)) k)
 ```
 
-* **Künneth with spheres in full (isomorphism) form**, `H^k(X × S^n) ≅ H^k(X) ⊕
-  H^{k-n}(X)` via `pr₁^*` and `(-) ⌣ pr₂^* σ_n`, natural in `X`, is *not* done:
-  only the vanishing form is.  The vanishing form is what `cc-thom`'s recursion
-  consumes; the isomorphism form additionally needs the splitting of the
-  Mayer–Vietoris sequence by the retraction `X × S^n → X`.
+* **`δ`-linearity of the Mayer–Vietoris connecting map**, `δ (a ⌣ b|_{U ⊓ V}) =
+  δ a ⌣ b` for a globally defined `b`.  This is the ONE thing between the fleet
+  and the Künneth **isomorphism** with a sphere factor, hence between the fleet
+  and `cc-wu`'s `tx_inj`.  The lead's split gave it to `cc-thom` with the
+  element-form Mayer–Vietoris layer; I have asked them and offered to take it.
+  It is isolated in this lane as `KunnethSecondInjective Y n`
+  (`CohomologyKunnethMap.lean`), so a consumer can take it as an explicit
+  hypothesis today and become unconditional later with no restructuring.
+  The route is written out in that module's footer: Mathlib's
+  `ShortComplex.ShortExact.δ_eq` gives `δ` the "lift along `g`, differentiate,
+  descend along `f`" description, the lift exists because `mvCoSC` is degreewise
+  split, and mod 2 the Leibniz rule gives `d (x₂ ⌣ b) = d x₂ ⌣ b` for a cocycle
+  `b`; the work is transporting cup products across `subCxDualIso`.
+
+* **Künneth with spheres in full (isomorphism) form** is therefore not finished.
+  What IS finished: the map (`kunnethMap`), its naturality in the base
+  (`kunnethMap_natural`), the split injection `pr_Y^*` with its slice retraction,
+  the vanishing of the sphere class on a slice, the first-component injectivity
+  (`kunneth_fst_eq_zero`), the reduction of full injectivity to the one missing
+  statement (`kunnethInjective_of_second`), and the vanishing form
+  (`isZero_cohomology_prod_sphere`).
 
 * **Künneth for an arbitrary pair of factors** is out of reach here and should not
   be promised to anyone: it needs Eilenberg–Zilber, a chain equivalence
