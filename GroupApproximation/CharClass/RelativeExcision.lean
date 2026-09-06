@@ -77,16 +77,14 @@ basis chain of that simplex. -/
 theorem relRetract_generator (A : Set X) (n : ℕ) (τ : singularSimplices (TopCat.of A) n) :
     (relRetract R X A n).hom (chainGenerator R X n (pushSimplex (sInclusion A) n τ))
       = chainGenerator R (TopCat.of A) n τ := by
-  have hsub : IsSubordinate A (pushSimplex (sInclusion A) n τ) :=
-    isSubordinate_pushSimplex_sInclusion A n τ
-  have h1 : (subKeep R X A n).hom (chainGenerator R X n (pushSimplex (sInclusion A) n τ))
-      = ((subChainCorestrict R X A).f n).hom (chainGenerator R (TopCat.of A) n τ) := by
-    apply Subtype.ext
-    rw [subKeep_generator A n hsub]
-    show _ = (singularChainMap R (sInclusion A) n).hom (chainGenerator R (TopCat.of A) n τ)
-    rw [singularChainMap_generator]
-  rw [relRetract, ModuleCat.comp_apply, h1, ← ModuleCat.comp_apply, IsIso.hom_inv_id]
-  rfl
+  have h1 : (relRetract R X A n).hom
+      ((singularChainMap R (sInclusion A) n).hom (chainGenerator R (TopCat.of A) n τ))
+      = chainGenerator R (TopCat.of A) n τ :=
+    congrArg
+      (fun f : singularChainGroup R (TopCat.of A) n ⟶ singularChainGroup R (TopCat.of A) n =>
+        f.hom (chainGenerator R (TopCat.of A) n τ))
+      (singularChainMap_comp_relRetract A n)
+  rwa [singularChainMap_generator] at h1
 
 /-- The retraction kills the basis chain of a simplex not supported in `A`. -/
 theorem relRetract_generator_of_not (A : Set X) (n : ℕ) {σ : singularSimplices X n}
@@ -104,7 +102,9 @@ theorem relRetract_generator_of_not (A : Set X) (n : ℕ) {σ : singularSimplice
   have h4 : (subKeep R X A n).hom (chainGenerator R X n σ) = 0 := by
     refine h2.trans ?_
     rfl
-  rw [relRetract, ModuleCat.comp_apply, h4, map_zero]
+  have h5 : (subKeepAt R X A n).hom (chainGenerator R X n σ) = 0 := h4
+  show (subChainCorestrictInv R X A n).hom ((subKeepAt R X A n).hom (chainGenerator R X n σ)) = 0
+  rw [h5, map_zero]
 
 /-- A simplex of the subspace `V` whose image in `X` lies in `U` is a simplex of the
 subspace `V` supported in `U ∩ V`. -/
@@ -118,6 +118,7 @@ theorem isSubordinate_excisedSub (U V : Set X) (n : ℕ)
   obtain ⟨t, rfl⟩ := hy
   have h3 := h2 (Set.mem_range_self t)
   rw [pushSimplex_continuousMap (sInclusion V) n τ] at h3
+  show (ConcreteCategory.hom (sInclusion V)) (mvSimplexMap τ t) ∈ U
   simpa only [ContinuousMap.comp_apply] using h3
 
 /-! ## 3. The excision short exact sequence -/
@@ -161,16 +162,15 @@ theorem smallAnnToRel_comp (R : Type) [CommRing R] :
   apply ModuleCat.hom_ext
   apply LinearMap.ext
   intro φ
-  have key : cochainPullback (sInclusion (V : Set X)) n
-      ((φ : smallAnnSubmodule R X (twoSetCover U V hUV) n) :
-        singularCochainGroup R X n) = 0 := by
+  have key : ∀ ψ : smallAnnSubmodule R X (twoSetCover U V hUV) n,
+      cochainPullback (sInclusion (V : Set X)) n (ψ : singularCochainGroup R X n) = 0 := by
+    intro ψ
     apply cochain_ext
     intro τ
     rw [cochainPullback_eval, cochainEval_zero]
-    exact (φ : smallAnnSubmodule R X (twoSetCover U V hUV) n).2 _
-      (isSmallSimplex_of_subordinate_right U V hUV
-        (isSubordinate_pushSimplex_sInclusion (V : Set X) n τ))
-  exact Subtype.ext key
+    exact ψ.2 _ (isSmallSimplex_of_subordinate_right U V hUV
+      (isSubordinate_pushSimplex_sInclusion (V : Set X) n τ))
+  exact Subtype.ext (key φ)
 
 /-- The excision short complex `smallAnn → C^*(X, U) → C^*(V, U ∩ V)`. -/
 def excisionShortComplex (R : Type) [CommRing R] :
@@ -202,15 +202,14 @@ theorem excisionCochainMap_surjective (R : Type) [CommRing R] (n : ℕ) :
   intro χ
   refine ⟨⟨_, excisionCochainMap_preimage U V R n χ⟩, ?_⟩
   refine Subtype.ext ?_
-  show singularChainMap R (sInclusion (V : Set X)) n
-      ≫ (relRetract R X (V : Set X) n
-        ≫ ((χ : relCochainSubmodule R (TopCat.of (V : Set X))
-          (excisedSub (U : Set X) (V : Set X)) n) :
-          singularCochainGroup R (TopCat.of (V : Set X)) n))
-    = ((χ : relCochainSubmodule R (TopCat.of (V : Set X))
-        (excisedSub (U : Set X) (V : Set X)) n) :
-        singularCochainGroup R (TopCat.of (V : Set X)) n)
-  rw [← Category.assoc, singularChainMap_comp_relRetract, Category.id_comp]
+  have key : ∀ ψ : relCochainSubmodule R (TopCat.of (V : Set X))
+      (excisedSub (U : Set X) (V : Set X)) n,
+      singularChainMap R (sInclusion (V : Set X)) n
+          ≫ (relRetract R X (V : Set X) n ≫ (ψ : singularCochainGroup R (TopCat.of (V : Set X)) n))
+        = (ψ : singularCochainGroup R (TopCat.of (V : Set X)) n) := by
+    intro ψ
+    rw [← Category.assoc, singularChainMap_comp_relRetract, Category.id_comp]
+  exact key χ
 
 theorem ker_excisionCochainMap (R : Type) [CommRing R] (n : ℕ)
     (φ : relCochainSubmodule R X (U : Set X) n)
@@ -234,13 +233,12 @@ theorem excisionShortComplex_degreewise_shortExact (R : Type) [CommRing R] (n : 
   refine ShortComplex.ShortExact.mk' ?_ ?_ ?_
   · rw [ShortComplex.moduleCat_exact_iff]
     intro x₂ hx₂
-    have hval : cochainPullback (sInclusion (V : Set X)) n
-        ((x₂ : relCochainSubmodule R X (U : Set X) n) : singularCochainGroup R X n) = 0 :=
-      congrArg Subtype.val hx₂
-    exact ⟨⟨((x₂ : relCochainSubmodule R X (U : Set X) n) : singularCochainGroup R X n),
-      ker_excisionCochainMap U V hUV R n x₂ hval⟩, Subtype.ext rfl⟩
+    have hval := congrArg Subtype.val hx₂
+    exact ⟨⟨_, ker_excisionCochainMap U V hUV R n x₂ hval⟩, Subtype.ext rfl⟩
   · rw [ModuleCat.mono_iff_injective]
-    exact fun a b hab => Subtype.ext (congrArg Subtype.val hab)
+    intro a b hab
+    have h2 := congrArg Subtype.val hab
+    exact Subtype.ext h2
   · rw [ModuleCat.epi_iff_surjective]
     exact excisionCochainMap_surjective U V R n
 
@@ -255,7 +253,7 @@ theorem excisionShortExact (R : Type) [CommRing R] :
 /-- **Excision for an open cover.**  For opens `U, V` with `U ∪ V = X`, the inclusion
 of pairs `(V, U ∩ V) → (X, U)` induces an isomorphism on mod-2 relative cohomology
 in every degree. -/
-theorem isIso_excision (n : ℕ) :
+theorem isIso_excision (hUV : U ⊔ V = ⊤) (n : ℕ) :
     IsIso (relPullback (ZMod 2) (sInclusion (V : Set X)) (excision_mapsTo U V) n) := by
   have hS := excisionShortExact U V hUV (ZMod 2)
   have h₁ : IsZero (((excisionShortComplex U V hUV (ZMod 2)).X₁).homology n) :=
@@ -268,10 +266,11 @@ theorem isIso_excision (n : ℕ) :
   have hepi : Epi (HomologicalComplex.homologyMap
       (excisionShortComplex U V hUV (ZMod 2)).g n) :=
     (hS.homology_exact₃ n (n + 1) rfl).epi_f (h₂.eq_of_tgt _ _)
+  show IsIso (HomologicalComplex.homologyMap (excisionShortComplex U V hUV (ZMod 2)).g n)
   exact isIso_of_mono_of_epi _
 
 /-- The excision isomorphism `H^n(X, U; F₂) ≅ H^n(V, U ∩ V; F₂)`. -/
-def excisionIso (n : ℕ) :
+def excisionIso (hUV : U ⊔ V = ⊤) (n : ℕ) :
     relCohomology (ZMod 2) X (U : Set X) n ≅
       relCohomology (ZMod 2) (TopCat.of (V : Set X))
         (excisedSub (U : Set X) (V : Set X)) n :=
