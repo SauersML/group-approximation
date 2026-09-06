@@ -3707,6 +3707,8 @@ import GroupApproximation.CharClass.LerayHirschRankVanish
 import GroupApproximation.CharClass.LerayHirschChartHomeo
 import GroupApproximation.CharClass.LerayHirschFreeTuple
 import GroupApproximation.CharClass.LerayHirschFreeTupleExists
+import GroupApproximation.CharClass.BundleLineIntert
+import GroupApproximation.CharClass.ChernSplittingInjective
 import GroupApproximation.CharClass.CartanCompBBridge
 import GroupApproximation.CharClass.CartanMasterEval
 import GroupApproximation.CharClass.LIXExcisionChart
