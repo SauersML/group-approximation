@@ -3639,6 +3639,8 @@ import GroupApproximation.CharClass.GysinPairRetract
 import GroupApproximation.CharClass.CartanEvalSquare
 import GroupApproximation.CharClass.LIXSectionChartPair
 import GroupApproximation.CharClass.ThomStepCOdd
+import GroupApproximation.CharClass.ThomStepCOddIso
+import GroupApproximation.CharClass.CartanEvalMor
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
