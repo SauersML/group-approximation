@@ -41,8 +41,19 @@ variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
   unitVectorsThreeHomeoSphere.symm_apply_apply negEThree
 
 /-- **The slice map at the transported marked point** is the slice map at the marked point.
-This is the form `cc-wu`'s assembly consumes, so the round trip never has to surface at the
-call site. -/
+
+**Cite the point lemma above, not this one, wherever the slice map appears inside the type
+of a later argument.**  `cc-wu` found that at their call site `chernOf` takes the restricted
+rank as a proof argument mentioning the slice map, so rewriting the map there is a dependent
+rewrite whose motive does not typecheck.  Substituting the *point* moves the map and the
+rank proof together; rewriting the *map* moves only one of them.
+
+The general shape, and it is the same one this lane has been collecting all night: when two
+spellings meet definitionally nowhere, move the thing everything else depends on, not the
+thing you are looking at.
+
+This statement is still the right one for a consumer whose slice map is not under a
+dependent argument. -/
 theorem lixSliceMap_south_marked (dd : Fin ℓ → ℕ) :
     lixSliceMap dd southPole
         (unitVectorsThreeHomeoSphere.symm (unitVectorsThreeHomeoSphere negEThree))
