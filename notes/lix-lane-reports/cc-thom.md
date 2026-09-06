@@ -230,6 +230,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/LerayHirschGammaIso.lean` | `LH.lhMap_eq_sum_lhDomain`, `LH.lhMap_of_iso`, **`LH.gammaCoeff_of_iso`**, **`LH.gamma_of_iso`** — the mod-2 Chern classes survive a transport of the total space; the half of `hclass` that mentions no free binder |
 | `CharClass/LerayHirschContractible.lean` | `LH.lhTerm_eq_zero_of_contractible`, **`LH.sum_lhTerm_eq_top_of_contractible`** — over a contractible base only the top column survives at degree `2r`; needs no Leray–Hirsch instance over the neighbourhood |
 | `CharClass/ThomFibreRestriction.lean` | `Bundle.totalInclOnComp{,_apply,_mem_puncturedSet_iff}`, **`relPullback_totalInclOn_comp`** — restricting a bundle pair twice needs no `restrictTo` transitivity; the direct restriction never appears, so no subtype is identified |
+| `CharClass/LIXChernTopGamma.lean` | **`lixChern_top_eq_gamma`** — the endgame's `gamma` is `lixLHhyper`'s top Chern class; the half of `hclass` that mentions no free binder, finished |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -784,3 +785,4 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | `LerayHirschContractible` | red x2: `omega` blind to `↑(i.castSucc)`; then `Fin.coe_castSucc` deprecated, and a deprecation is an error under the probe's flags |
 | 2026-09-06 | **`LerayHirschContractible`** | **green, 8925 jobs, `ecd83acb3`** |
 | 2026-09-06 | **`ThomFibreRestriction`** | **green, 8742 jobs, `6b64c1b88`, first probe** |
+| 2026-09-06 | **`LIXChernTopGamma`** | **green, 9189 jobs, `8c65148ed`, first probe** |
