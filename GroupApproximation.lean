@@ -3678,6 +3678,7 @@ import GroupApproximation.CharClass.LerayHirschColumnPack
 import GroupApproximation.CharClass.LIXThomDatum
 import GroupApproximation.CharClass.LerayHirschLadder
 import GroupApproximation.CharClass.SteenrodFourfoldBFree
+import GroupApproximation.CharClass.CohomologyChartTower
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
