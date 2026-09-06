@@ -108,8 +108,16 @@ notation `γ_i` = mod-2 Chern class we keep):
   unitary `g` of the corner of `V = 1³ ⊕ p_H` with `g e = s`
   (`Analysis/LIXObstructionComplementUnitary.lean`).
 * **Step B (mapping torus).**  `W_g` over `N := S¹ × M` restricting to `V` on
-  the slice, realized as a projection over `S¹ × M` via a Whitehead path
-  `h_t(m) ∈ U(2K)` from `1` to `diag(g(m), g(m)ᴴ)` (§4, lane `cc-lix-odd`).
+  the slice, realized as a projection over `S¹ × M`.  **Settled 20:15 EDT
+  (cc-lix-odd, `CharClass/MappingTorusProjection.lean`, green 8662):** the
+  Whitehead-path model does NOT descend to the circle (the rotation run over
+  the whole circle returns to `1` and trivialises the bundle), so the module
+  CLUTCHES over the two-point equator of `S¹` — identity at one seam, `g` at
+  the other — giving `W_g|_{north} = V ⊕ 0` on the nose (`mappingTorus_north`),
+  with no Murray–von Neumann transport for Step D.  Gluing direction is the
+  manuscript's own: northern field constant `e`, southern field the path
+  (2.10) from `e` to `s`, descent condition `g e = s`; if Step A hands over `g`
+  with `g s = e`, instantiate with `gᴴ`.
 * **Step C (odd side).**  The manuscript's section (2.10), transported into
   `W_g`, has exactly ONE zero `z`, and near `z` the section is a **local
   homeomorphism** onto a neighbourhood of `0 ∈ ℂ^r` (inverse function theorem
