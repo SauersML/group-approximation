@@ -325,28 +325,36 @@ theorem Sq_eq_zero_of_lt (k n : ℕ) (hk : n < k) (x : Hmod2 X n) : Sq k x = 0 :
 theorem Sq_add (k n : ℕ) (x y : Hmod2 X n) : Sq k (x + y) = Sq k x + Sq k y :=
   map_add (sqHomology X n k).hom x y
 
+/-- The output-degree cast passes through `cochainCupI`. -/
+theorem cochainCast_cochainCupI (i a b m m' : ℕ) (h : m = m')
+    (α : singularCochainGroup (ZMod 2) X a) (β : singularCochainGroup (ZMod 2) X b) :
+    cochainCast h (cochainCupI i a b m α β) = cochainCupI i a b m' α β := by
+  subst h
+  exact cochainCast_rfl _
+
 /-- **`Sq^n` is the cup square.**  At `k = n` the cup index is `0`, which is the
-Alexander–Whitney cup product on the nose. -/
-theorem Sq_self (n : ℕ) (x : Hmod2 X n) : Sq n x = cohCast (Nat.add_comm n n) (cup x x) := by
+Alexander–Whitney cup product on the nose, and the target degree `n + n` needs
+no transport. -/
+theorem Sq_self (n : ℕ) (x : Hmod2 X n) : Sq n x = cup x x := by
   obtain ⟨φ, hφ, rfl⟩ := exists_cocycle x
-  rw [Sq_mk, cup_mk, cohCast_cocycleClass (Nat.add_comm n n) (cochainCup n n φ φ)
-    (cochainCupZMod2_respects_cocycles n n φ φ hφ hφ)
-    (by rw [cochainCast_cochainCupI_zero n n (n + n) (Nat.add_comm n n) φ φ]
-        exact cochainCupI_zero_cocycle n n (n + n) φ hφ φ hφ)]
+  rw [Sq_mk, cup_mk]
   refine cocycleClass_congr X (n + n) ?_ _ _
-  rw [cochainCast_cochainCupI_zero n n (n + n) (Nat.add_comm n n) φ φ]
   unfold sqCochain
   rw [Nat.sub_self]
+  exact cochainCupI_zero n n φ φ
 
 /-- **`Sq^0` is the identity.**  At `k = 0` the cup index is `n`, and the only
-`n`-cut of an `n`-simplex uses every vertex for both families. -/
-theorem Sq_zero (n : ℕ) (x : Hmod2 X n) : Sq 0 x = x := by
+`n`-cut of an `n`-simplex uses every vertex for both families.  The cast is
+unavoidable here: `0 + n` does not reduce to `n`. -/
+theorem Sq_zero (n : ℕ) (x : Hmod2 X n) : Sq 0 x = cohCast (Nat.zero_add n).symm x := by
   obtain ⟨φ, hφ, rfl⟩ := exists_cocycle x
-  rw [Sq_mk]
-  refine cocycleClass_congr X (0 + n) ?_ _ _
-  unfold sqCochain
-  rw [Nat.sub_zero]
-  exact cochainCupI_self n φ
+  have hcast : cochainCast (Nat.zero_add n).symm φ = sqCochain n 0 φ := by
+    unfold sqCochain
+    rw [Nat.sub_zero, ← cochainCupI_self n φ,
+      cochainCast_cochainCupI n n n n (0 + n) (Nat.zero_add n).symm φ φ, cochainCupI_self n φ]
+  rw [Sq_mk, cohCast_cocycleClass (Nat.zero_add n).symm φ hφ
+    (by rw [hcast]; exact sqCochain_cocycle n 0 φ hφ)]
+  exact cocycleClass_congr X (0 + n) hcast.symm _ _
 
 end
 

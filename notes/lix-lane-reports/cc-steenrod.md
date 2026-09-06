@@ -16,6 +16,24 @@ theorem cup_comm {X : TopCat.{0}} {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q) :
     cup a b = cohCast (Nat.add_comm q p) (cup b a)
 ```
 
+And in `CharClass/SteenrodSquare.lean`, the Steenrod squares:
+
+```lean
+def Sq (k : ℕ) {n : ℕ} (x : Hmod2 X n) : Hmod2 X (k + n)
+theorem Sq_mk (k n : ℕ) (φ) (hφ) :
+    Sq k (cocycleClass X n φ hφ) = cocycleClass X (k + n) (sqCochain n k φ) _
+theorem Sq_add (k n : ℕ) (x y : Hmod2 X n) : Sq k (x + y) = Sq k x + Sq k y
+theorem Sq_self (n : ℕ) (x : Hmod2 X n) : Sq n x = cup x x
+theorem Sq_zero (n : ℕ) (x : Hmod2 X n) : Sq 0 x = cohCast (Nat.zero_add n).symm x
+theorem Sq_eq_zero_of_lt (k n : ℕ) (hk : n < k) (x : Hmod2 X n) : Sq k x = 0
+```
+
+`Sq k` lands in degree `k + n`, not `n + k`, deliberately: the cokernel
+condition needs the predecessor of the output degree, and `k + (j+1)` reduces to
+`(k+j)+1` definitionally while `(j+1)+k` does not reduce for a variable `k`.
+`cohCast` converts in one step.  Instability is free from
+`cochainCupI_of_degree_ne`, so there is no `dite` in the definition of `Sq`.
+
 **All degrees, no evenness hypothesis.**  Mod 2 the proof never inspects
 parity: for cocycles `φ, ψ` the identity `φ ⌣ ψ + ψ ⌣ φ = δ(φ ⌣₁ ψ)` is
 `cochainCupI_coboundary` at `i = 0` with the two Leibniz terms killed, and the
@@ -93,7 +111,7 @@ theorem cut_coboundary_master {M} [AddCommGroup M] (h2 : ∀ x : M, x + x = 0)
 
 ## GREEN
 
-`Build completed successfully (2062 jobs)`.  Every module below has a `Built`
+`Build completed successfully (2131 jobs)`.  Every module below has a `Built`
 line (not `Replayed`) in the probe that first compiled it, and none has changed
 since:
 
@@ -104,8 +122,7 @@ since:
 * `CharClass/SteenrodCoboundary.lean`
 * `CharClass/SteenrodCupOne.lean` — contains `cup_comm`
 * `CharClass/SteenrodDiagonal.lean` — `steenrodDiag`, naturality, boundary
-  (built at 7.0s in the immediately preceding probe of the same clone, unchanged
-  since, replayed in the 2062-job run)
+* `CharClass/SteenrodSquare.lean` — the Steenrod squares
 
 ## AUTHORED, UNVERIFIED
 
@@ -113,16 +130,11 @@ Nothing.
 
 ## STILL OWED
 
-The `Sq^k` layer (deliverable 3).  `Sq k x : Hmod2 X (n+k)` can be defined with
-no `dite` as the class of `cochainCupI (n-k) n n (n+k) r r` for a chosen cocycle
-representative `r`, and instability `Sq^k = 0` for `k > n` is then free from
-`cochainCupI_of_degree_ne`.  Everything else (`Sq_mk`, naturality, additivity,
-`Sq^0 = id`, `Sq^n x = x ⌣ x`) needs one lemma the vendored tree does not have:
-`cocycleClass X n χ hχ = 0 → χ` is a coboundary.  Route:
-`ShortComplex.moduleCatHomologyIso` plus
-`ShortComplex.moduleCatLeftHomologyData` present the homology as
-`ker g ⧸ range f'`, so `Submodule.Quotient.mk_eq_zero` gives it; the work is
-transporting `HomologicalComplex.homologyπ` through `π_moduleCatCyclesIso_hom`.
+Nothing from the original brief.  The `Sq^k` layer is green; what remains for
+the program is the **Cartan formula**, which is `cc-cartan`'s to prove from
+`steenrodDiag`, and the assembly of the graded `SqH : ℕ → H →+ H` on the total
+cohomology, which needs `cc-cohom-api`/`cc-projective`'s direct sum.  My
+`Sq k : Hmod2 X n → Hmod2 X (k + n)` is the graded piece it is assembled from.
 
 ## NEEDS
 

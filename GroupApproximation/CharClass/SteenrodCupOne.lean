@@ -110,16 +110,14 @@ theorem cochainCast_cochainCupI_zero {X : TopCat.{0}} (a b n : ℕ) (h : a + b =
 
 /-! ## 4. Degree-equality casts of cohomology classes are proof-irrelevant -/
 
+namespace Steenrod
+
 /-- Two casts of the same class along (possibly different) proofs of the same
-degree equation agree, by proof irrelevance of the equation. -/
+degree equation agree, by proof irrelevance of the equation.  Lane-local: the
+`cohCast` calculus proper belongs to `cc-cohom-api`. -/
 theorem cohCast_congr_proof {X : TopCat.{0}} {m m' : ℕ} (h h' : m = m') (a : Hmod2 X m) :
     cohCast h a = cohCast h' a := by
   rw [Subsingleton.elim h h']
-
-/-- Casting along a proof of `m = m` is the identity, for *any* such proof. -/
-theorem cohCast_self {X : TopCat.{0}} {m : ℕ} (h : m = m) (a : Hmod2 X m) : cohCast h a = a := by
-  rw [cohCast_congr_proof h rfl]
-  exact cohCast_rfl a
 
 /-- Casting out along `h` and back along a *different* route `h'` to the same
 target as a third proof `h''` agrees with casting directly along `h''`. -/
@@ -127,6 +125,8 @@ theorem cohCast_trans_congr {X : TopCat.{0}} {m k m' : ℕ} (h : m = k) (h' : k 
     (h'' : m = m') (a : Hmod2 X m) :
     cohCast h' (cohCast h a) = cohCast h'' a := by
   rw [cohCast_cohCast]
+
+end Steenrod
 
 /-! ## 5. Characteristic two -/
 
@@ -175,7 +175,7 @@ theorem cup_comm {X : TopCat.{0}} {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q) :
     have hcomm : cochainCup 0 0 φ ψ = cochainCup 0 0 ψ φ := by
       rw [← cochainCupI_zero 0 0 φ ψ, ← cochainCupI_zero 0 0 ψ φ]
       exact cochainCupI_zero_zero_comm φ ψ
-    rw [cup_mk, cup_mk, cohCast_self]
+    rw [cup_mk, cup_mk, Steenrod.cohCast_congr_proof (Nat.add_comm 0 0) rfl, cohCast_rfl]
     exact cocycleClass_congr X 0 hcomm _ _
   · -- General case: p + q ≥ 1, via cup-1.
     obtain ⟨n, hn⟩ := Nat.exists_eq_succ_of_ne_zero hpos.ne'
@@ -228,7 +228,7 @@ theorem cup_comm {X : TopCat.{0}} {p q : ℕ} (a : Hmod2 X p) (b : Hmod2 X q) :
             (cup (cocycleClass X q ψ hψ) (cocycleClass X p φ hφ)) = 0 := by
       have hcong := congrArg (cohCast hn.symm) hzero'
       rw [cohCast_add, cohCast_zero, cohCast_symm_cohCast hn,
-        cohCast_trans_congr hn' hn.symm (Nat.add_comm q p)] at hcong
+        Steenrod.cohCast_trans_congr hn' hn.symm (Nat.add_comm q p)] at hcong
       exact hcong
     exact eq_of_add_eq_zero_hmod2 _ _ hfin
 

@@ -27,8 +27,9 @@ structure on chain complexes.
 
 The identity is `cut_coboundary_master` of `SteenrodCoboundary.lean` instantiated
 at `M := (pairs of simplices) →₀ ZMod 2` and `Θ A B := facePair a b σ A B`.  That
-lemma is stated over an arbitrary abelian group of exponent two precisely so that
-the cochain formula and this chain-level formula are two readings of one proof.
+master identity carries an arbitrary abelian group of exponent two precisely so
+that the cochain formula and this chain-level formula are two readings of one
+proof.
 The involution `T` is `Finsupp.mapDomain Prod.swap`, and the master's two low
 terms are already the two orders of the same cut, which is what `T` exchanges.
 -/
