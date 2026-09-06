@@ -384,6 +384,12 @@ never a `sorry`, never an `axiom`.
     peer names things differently.  `git grep <concept> origin/main -- GroupApproximation/CharClass`
     or `git ls-tree origin/main -- <path>` is the check; every one of the day's four crossings
     was a request for something already on the remote.
+15. **Absence claims carry the check time; landing replies carry the commit time (issued 02:51 EDT,
+    from cc-bundle after the sixth same-direction crossing).**  A grep and a push race, and
+    neither party can tell from the result alone; `git log -1 --format='%h %cI %s' <commit>`
+    against the time of the message settles it.  A "does not exist on origin" claim also
+    names the search that was run (rule 14).
+
 
 
 
