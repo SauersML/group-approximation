@@ -106,16 +106,37 @@ the contrapositive base estimate. The former claim in the sampling module
 that balanced recursion necessarily costs `n log n` was an overestimate:
 each cut is charged at its own shrinking polygon size.
 
-`UnboundParameters.lean` proves simultaneous epsilon/rho choices once these
-constants and a Morse radius are supplied. `UnboundPolygonGeometry.lean`
-uses the proved constants, obtains the actual long pair from the component
-density and short-side estimates, and transfers its four endpoints to the
-original arcs using Morse proximity. This preserves strict connector and
-shortening margins. It also supplies the application in the proved Cayley
-metric realization, with the extra six units of hyperbolicity included in
-the parameter choice. The complementary regions, their boundary polygons,
-and the actual Morse proximity of those replacement arcs remain to be
-constructed; the universal historical unbound output remains refuted.
+`CayleyGeodesicMorse.lean` now proves uniform proximity between the actual
+word chains and every geodesic replacement in the Cayley metric realization.
+It uses the exact vertex distance, the proved discrete Morse theorem, and a
+nearby discrete vertex on each replacement. `WordGeodesicReplacement.lean`
+derives the chain hypotheses from the original word's quasigeodesic
+inequality. `WordPolygonReplacement.lean` constructs all replacement sides
+and proves both class-length estimates. Only the retained classes need
+quasigeodesicity; the short connector class needs admissibility and its
+length bound. The extra six units of realized hyperbolicity are included
+in the constants.
+
+`UnboundWordPolygon.unboundWordPolygon` chooses the Morse radius, epsilon,
+and rho threshold before the word polygon and produces its actual original
+endpoint indices. It passes a closed axiom audit. The radius, replacement
+polygon, and proximity witnesses are no longer geometric input oracles.
+`UnboundDenseComponent.lean` uses `53 < 60` to select a component **strictly**
+above the `1/240` density threshold from a non-strict global lower bound.
+`WordSegmentConnectors.lean` and `UnboundWordConnectors.lean` construct the
+oriented original subwords and short geodesic connector words, prove the
+quadrilateral label is trivial in the ambient group, and give a strictly
+shorter target prefix to an actual source endpoint in either target
+orientation.
+
+`UnboundComponentWordPolygons.unboundComponentWordPolygons` combines all
+these metric and finite-selection producers with one uniform parameter
+choice and passes a closed axiom audit. The remaining input is the actual
+family of complementary-region word polygons with its arc and cutting
+bounds. Its new connector words must be embedded in an O-equivalent diagram
+to contradict maximal contiguity or minimal cutting-path length. A null
+quadrilateral word alone does not assert that embedded region. The
+universal historical unbound output remains refuted.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
@@ -164,19 +185,24 @@ position, each section word, and both quasi-geodesic constants. Producing
 the enclosing region and its at-most-four quasi-geodesic arcs remains open.
 The outstanding proofs are:
 
-1. Construct the replacement polygons and their Morse proximity in the
-   genuine Cayley metric realization. The full uniform N123 constants and
-   their numeric epsilon/rho choices are now proved; they are no longer
-   missing literature inputs. The published appendix numbers are 9.4 for
-   unbound arcs, 9.6 for the joint induction, and 9.7 for Greendlinger.
+1. Construct the complementary-region boundary word polygons and their
+   finite incidence partition, including the `53n` total arc bound and
+   fourfold side bound for actual cutting systems. Their replacement
+   polygons, Morse proximity, strict dense-component selection, short
+   connector words, and word-length shortening are proved. The published
+   appendix numbers are 9.4 for unbound arcs, Corollary 9.6 for the large
+   cell under assumption (*), and Lemma 9.7 for the joint induction and
+   Greendlinger conclusion.
 2. Prove the selected incidence graph's planarity and simplicity in the
-   source's joint induction on relator-cell count (Appendix Lemma 9.6).
+   source's joint induction on relator-cell count (Appendix Lemma 9.7).
    Simplicity uses the inductive Greendlinger conclusion for the enclosed
    diagram, so the historical face-drop reduction is not the whole argument.
-3. Construct the complementary regions and their actual boundary incidence
-   partition; prove cutting-path shortening, the density estimate, and the
-   unbound-arc count. Preserve O-equivalence, reduction, boundary words, and
-   the required nonempty relator-cell condition throughout.
+3. Realize the new connector words by G-cell padding and region surgery;
+   prove that they either enlarge the distinguished contiguity family or
+   replace an actual cutting system by a shorter one. Preserve
+   O-equivalence, reduction, boundary words, selected regions, and the
+   required nonempty relator-cell condition throughout. Derive the unbound
+   budget from these topological contradictions and the proved metric input.
 4. Feed the same chosen parameters to the estimating-data assembly, the
    relative Greendlinger theorem, and Hull 4.9. Keep the proved cyclic-rotation
    correction in the exterior-arc consumers.
