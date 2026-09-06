@@ -39,10 +39,20 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
-**All fifteen owned modules build clean together:
-`Build completed successfully (2111 jobs)`, `LAKE_EXIT=0`, `PROBE GREEN`**, log
-verified to name all fifteen targets and `clone cc-cartan` (see TRAPS on why
+**All seventeen owned modules build clean together:
+`Build completed successfully (2113 jobs)`, `LAKE_EXIT=0`, `PROBE GREEN`**, log
+verified to name all seventeen targets and `clone cc-cartan` (see TRAPS on why
 that check is not optional).
+
+`CartanSourceBoundary.lean` (`Built (10s)`, 2080 jobs) supplies
+`singularBoundary : SingularBoundaryData`, so `src` and `srcFree` are **concrete
+functors, not ones parameterized by a hypothesis**.  It is also the single place
+in the lane where the two presentations of a singular simplex meet:
+`singularSimplices` (Mathlib's and `cc-steenrod`'s) is the `ULift` of the bare
+hom-set out of the standard simplex, and the source index uses the bare hom-set
+because that is what `FreeOnModels` wants.  `bdHom` is the boundary conjugated by
+that one `Equiv`, and both `∂∂ = 0` and naturality come across along the
+conjugation.
 
 The comparison machinery, complete:
 
