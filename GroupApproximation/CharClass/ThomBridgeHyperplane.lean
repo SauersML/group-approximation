@@ -1,5 +1,7 @@
 import GroupApproximation.CharClass.RelativeSubspaceIso
 import GroupApproximation.CharClass.BundleGysinPieces
+import GroupApproximation.CharClass.BundleProjInclRange
+import GroupApproximation.CharClass.BundleTautPieces
 
 /-!
 # The Thom bridge, step three: the hyperplane replaces the punctured space
@@ -74,9 +76,49 @@ theorem bridgeHyperplane (p : Bundle X ι)
   RelativeSupport.relPullback_id_bijective_of_subspace_iso
     (range_projIncl_subset_notZero p) hsub n
 
+/-! ## Discharging the input -/
+
+/-- The subspace inclusion, precomposed with `cc-bundle`'s homeomorphism onto the
+range, **is** the homotopy inverse of their equivalence.  Both identifications
+hold by `rfl`, so the morphism equality is definitional. -/
+theorem incl_comp_eq_invFun [CompactSpace X] [T2Space X] (p : Bundle X ι) :
+    (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun
+        ≫ subInclusion (range_projIncl_subset_notZero p))
+      = cmap (Bundle.notZeroOpensHomotopyEquivProj p).symm.toFun := rfl
+
+/-- **The named input of `bridgeHyperplane`, discharged.**  The inclusion is a
+homotopy equivalence because it is the homotopy inverse composed with a
+homeomorphism, so its pullback is bijective in every degree. -/
+theorem hyperplane_hsub [CompactSpace X] [T2Space X] (p : Bundle X ι) (k : ℕ) :
+    Function.Bijective (pull (subInclusion (range_projIncl_subset_notZero p)) k) := by
+  have hcomp : ∀ a, pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k
+      (pull (subInclusion (range_projIncl_subset_notZero p)) k a)
+      = pull (cmap (Bundle.notZeroOpensHomotopyEquivProj p).symm.toFun) k a := by
+    intro a
+    rw [← pull_comp]
+    exact congrArg (fun f => pull f k a) (incl_comp_eq_invFun p)
+  have hhomeo := (pullEquivOfHomeomorph (Bundle.projInclHomeoRange p) k).bijective
+  have hinv := (pullEquivOfHomotopyEquiv
+    (Bundle.notZeroOpensHomotopyEquivProj p).symm k).bijective
+  constructor
+  · intro a b hab
+    have h1 := congrArg (pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k) hab
+    rw [hcomp, hcomp] at h1
+    exact hinv.1 h1
+  · intro b
+    obtain ⟨a, ha⟩ := hinv.2 (pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k b)
+    refine ⟨a, hhomeo.1 ?_⟩
+    show pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k
+        (pull (subInclusion (range_projIncl_subset_notZero p)) k a)
+      = pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k b
+    rw [hcomp]
+    exact ha
+
 /-! Printed on every build. -/
 
 #print axioms bridgeHyperplane
+
+#print axioms hyperplane_hsub
 
 end
 
