@@ -3621,13 +3621,9 @@ for what the kernel cannot see, including files that are never compiled.
 -/
 -- LIX CharClass, second batch (wired 2026-09-05 23:45 EDT)
 import GroupApproximation.CharClass.BundleTautRestrict
-import GroupApproximation.CharClass.ChernEulerSqOne
 import GroupApproximation.CharClass.CohomologyChartTop
 import GroupApproximation.CharClass.CohomologyChartSurj
 import GroupApproximation.CharClass.LerayHirschBundle
-import GroupApproximation.CharClass.ParityEvenTransport
 import GroupApproximation.CharClass.ProjectiveSpaceInterVanish
-import GroupApproximation.CharClass.CohomologyChartFlat
 import GroupApproximation.CharClass.SteenrodFourfoldB
 import GroupApproximation.CharClass.SteenrodFourfoldBoundary
-import GroupApproximation.CharClass.ThomRelativeCokernel
