@@ -43,18 +43,29 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ChernEvenRing` | 8683 |
 | `ChernEvenRingComm` | 8683 |
 | `ChernClasses` | 8676 |
+| `ProjectiveSpaceHomogeneous` | 8659 |
+| `ProjectiveSpaceInputs` | 8782 |
+| `LerayHirschDegree` (with `pull_injective`) | 8783 |
+| `ProjectiveSpaceComputation` | 8782 |
 
 What that amounts to mathematically: the whole point-set chain over the
 projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
-`MVSequence` term; the Gysin reduction of the ring to `h^n ≠ 0`; the mod-2 Euler
-class of a line bundle; the Grothendieck relation as pure algebra; the degreewise
-Chern classes; and path-connectedness of `ℂP^d`.
+`MVSequence` term and one lemma; the Gysin reduction of the ring to `h^n ≠ 0`;
+the mod-2 Euler class of a line bundle; the Grothendieck relation as pure
+algebra; the degreewise Chern classes with `γ_k ∈ H^{2k}` correct by
+construction, their uniqueness, and injectivity of `π^*` — the half of
+Leray–Hirsch the splitting principle runs on; path-connectedness of `ℂP^d`; and
+its homogeneity, which is what cc-thom's punctured recursion needed.
+
+`ProjectiveSpaceComputation.lean` carries the induction itself,
+`hasCPCohomology_CPtop`, with the Mayer–Vietoris sequence and the degree-zero
+surjectivity as explicit hypotheses.  **Item 1 is therefore finished on this
+lane's side**: supplying those two arguments turns it into the unconditional
+`H^*(ℂP^n;F₂)`, with no further work here.
 
 ## 2. AUTHORED, UNVERIFIED
 
-* `ProjectiveSpaceHomogeneous.lean` — the homeomorphism of `ℂP^d` carrying an
-  arbitrary point to the base point, by a Householder reflection, for cc-thom's
-  punctured recursion.  Probe in flight.
+*(nothing)*
 
 ## 3. NEEDS
 
@@ -71,8 +82,16 @@ The three exactness fields come from their three `ShortComplex.Exact`s through
 `ShortComplex.moduleCat_exact_iff`; cc-thom established that the biproduct
 identification of the middle term is *not* needed, the pair form following from
 the four biproduct identities carried through the additive dualizing functor.
-Everything downstream of that term is proved.  Later, for Leray–Hirsch and not
-before: the `H^*(X)`-linearity of the connecting map, `mvDelta_cup`.
+and, alongside it,
+
+```lean
+theorem one_ne_zero_cohZero (X : TopCat.{0}) [Nonempty X] : one X ≠ (0 : Hmod2 X 0)
+```
+
+which is the whole content of the induction's remaining hypothesis: restriction
+`H^0(U) → H^0(W)` is onto because both are lines and `1` goes to `1`.  Everything
+else downstream of those two is proved.  Later, for Leray–Hirsch and not before:
+the `H^*(X)`-linearity of the connecting map, `mvDelta_cup`.
 
 **From `cc-steenrod`:** `cup_comm` in **all** degrees, not just even ones —
 cc-wu's `ParityData` carries degree-1 and degree-5 generators, so the ring is
