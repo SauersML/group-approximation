@@ -52,6 +52,7 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ChernEulerBundle` | 8799 |
 | `GysinCover` | 3343 |
 | `GysinFromLerayHirsch` | 2057 |
+| `LerayHirschColumn` | 2056 |
 
 What that amounts to mathematically: the whole point-set chain over the
 projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
