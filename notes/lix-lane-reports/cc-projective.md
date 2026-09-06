@@ -132,6 +132,10 @@ Chern classes and the Euler class
 * `LerayHirschColumnPack` (8923) — `HasFreeTuple`, the free-module statement in the
   producer's vocabulary, repackaged into the column shape `LHOver` consumes.
 * `LerayHirschLadder` (8924) — **the ladder at general rank**, over `HasFreeTuple`.
+* `LerayHirschTowerBridge` (2067) — a summand of `cc-cohom-api`'s Horner tower,
+  written as a column term at the reflected index.  Their coefficient degrees grow
+  with the index and the power shrinks; `lhTerm` is the other way round.  Neither
+  convention is free, so the reindex lives here.  One lemma, four rewrites.
 
 ## AUTHORED-UNVERIFIED
 
