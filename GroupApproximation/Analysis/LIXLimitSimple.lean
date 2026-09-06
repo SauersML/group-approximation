@@ -49,11 +49,6 @@ theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit :=
   lixLimit_isSimpleCStar_of_full fun k a hne =>
     STW59.isFull_climb_of_ne_zero lixTower_succHom k a hne
 
-/-- `lixLimit_isSimpleCStar` under the name the endpoint wiring uses.  Same theorem; both names
-are kept so that neither `cs-endpoint` nor the root wiring has to be edited to match the other. -/
-theorem lixLimit_isSimpleCStar_unconditional : IsSimpleCStar LIXLimit :=
-  lixLimit_isSimpleCStar
-
 /-! ### Axiom audit
 
 Simplicity of the counterexample algebra is unconditional, so it takes the stronger gate:
@@ -61,7 +56,6 @@ Simplicity of the counterexample algebra is unconditional, so it takes the stron
 conditional theorem from passing for an endpoint merely by having a clean closure. -/
 
 #audit_closed_axioms lixLimit_isSimpleCStar
-#audit_closed_axioms lixLimit_isSimpleCStar_unconditional
 
 end
 

@@ -1,5 +1,7 @@
 import GroupApproximation.Analysis.LIXLimitWitness
 import GroupApproximation.Analysis.LIXConnectingMap
+import GroupApproximation.Analysis.LIXLimitSeparable
+import GroupApproximation.Analysis.LIXStageAlgebraSeparable
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -97,6 +99,14 @@ theorem lixLimit_hasK1InjWitness {k : ℕ} (u : unitary (STW59.StageAlgebra k))
     HasK1InjWitness LIXLimit :=
   CStarTower.hasK1InjWitness_limit lixTower u hstage hdiag
 
+/-! ### Separability
+
+The bonus conjunct of the endpoint.  `cs-stages`' `STW59.instSeparableSpaceStageAlgebraPi` gives
+the levels, `CStarTower.separableSpace_limit` gives the limit, and the two compose by instance
+search alone, so this is a naming theorem rather than a proof. -/
+
+theorem lixLimit_separableSpace : TopologicalSpace.SeparableSpace LIXLimit := inferInstance
+
 /-! ### Axiom audit
 
 `#audit_axioms` fails the build when the transitive closure leaves the classical allowlist, so
@@ -107,6 +117,7 @@ consumes `cs-clutching`'s two facts about the generator — so it gets the plain
 #audit_axioms lixTower
 #audit_axioms lixIota
 #audit_axioms lixLimit_hasK1InjWitness
+#audit_closed_axioms lixLimit_separableSpace
 
 end
 

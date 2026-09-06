@@ -10,8 +10,8 @@
 | `Analysis/LIXLimitMatrixTransport` | 2999 | new: `M_n(−)` functorial, `diag(u,1)` transport, the witness |
 | `Analysis/LIXLimitSeparable` | 2999 | new: separability of the limit (bonus item 4) |
 | `Analysis/LIXLimitWitness` | 3000 | `hasK1InjWitness_limit`, the endpoint's named predicate |
-| `Analysis/LIXLimitAlgebra` | 3021 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
-| `Analysis/LIXLimitSimple` | 3021 | **`IsSimpleCStar LIXLimit`, unconditional** |
+| `Analysis/LIXLimitAlgebra` | 3024 | the concrete instantiation: `lixTower`, `LIXLimit`, `lixIota` |
+| `Analysis/LIXLimitSimple` | 3024 | **`IsSimpleCStar LIXLimit`, unconditional** |
 | `Analysis/LIXLimitWitness` | 2999 | new: packages the tower's witness for `cs-endpoint` |
 
 The last four of the original five were built together in one probe, `Build
@@ -63,11 +63,11 @@ clean closure.  Five gates are wired and all report exactly
 
 ```
 #audit_axioms        lixTower, lixIota, lixLimit_hasK1InjWitness
-#audit_closed_axioms lixLimit_isSimpleCStar, lixLimit_isSimpleCStar_unconditional
+#audit_closed_axioms lixLimit_isSimpleCStar, lixLimit_separableSpace
 ```
 
-The two closed audits also certify that simplicity of the counterexample algebra really is
-hypothesis-free, rather than a conditional theorem wearing an unconditional name.
+The two closed audits also certify that simplicity and separability of the counterexample algebra
+really are hypothesis-free, rather than conditional theorems wearing unconditional names.
 
 The endpoint builds on top of all of this: `Manuscript/NinetyNineProblems/ProblemLIX` was
 verified **in this lane's own clone** at `Build completed successfully (3019 jobs)`, so the join
