@@ -96,6 +96,45 @@ None.  Everything in the lane is probed green and pushed.
 2. **Nothing else is blocked on a peer.**  Both of the two facts I was waiting on,
    `MVDelta.mvDelta_cup` and `MVDelta.mvDelta_naturality`, have landed.
 
+## THE STATE, AND THE ONE THING LEFT
+
+The bootstrap is green above and below the class identification, and the class
+enters at exactly one place.
+
+Above it: `lerayHirschGraded_of_diagCover` (no compactness; the diagonal sets of a
+projection of trace one cover, and are finite because the index type is),
+`LHOver_two_chart` (the chart step, geometry fully discharged),
+`lerayHirschGraded_plusOne` (the whole cover induction, over the class as a
+parameter).
+
+Below it: `ProjectiveSpaceRingGysin` takes a `GysinData` for the tautological line
+to the ring, and `cpGenHyp_of_gysin` carries that to cc-cohom-api's generation
+hypothesis.  `GysinPair.bijective_resPair` is the Mayer-Vietoris half of the
+Gysin step.
+
+**The one thing left is Euler-class naturality ACROSS INDEX SIZES.**  Over a chart
+the tautological line of the projectivised sum is indexed by size `d+2` and the
+pullback of the projective line's tautological bundle by size `2`; `BundleIso`
+allows that, and must, because the same line sits in spaces of different
+dimensions.  `eulerOfBundle_eq_of_bundleIso` requires a common index, so it does
+not apply.  The fix is the rotation with two embeddings of different domains,
+which is cc-bundle's; the generator half is `pull_cpBlockInclIter_cpGen` and is
+green.
+
+I should have seen this when I first wrote the four-field chart interface: the
+index sizes were visible in `tautLineIsoCPOne`'s type.  I read it as an
+isomorphism and did not read the indices.
+
+## THE CROSS-LANE RULE, EARNED FIVE TIMES
+
+Every cross-lane friction in this lane has been an index or a subtype written at
+the producer's convenience rather than the consumer's, and every one dissolved
+when the PRODUCER restated rather than when the consumer cast.  cc-bundle's
+sharpening is the right statement of why: the producer already has the supporting
+suite at an arbitrary index, so restating costs a few lines, whereas the consumer
+would build a cast layer that then propagates through every later step.  The tell
+that the direction was right is that the resulting transports are `rfl`.
+
 ## THE CIRCULARITY, AND WHERE IT IS BROKEN
 
 Worth recording, because two lanes hit it from opposite sides on the same day.
