@@ -3680,6 +3680,7 @@ import GroupApproximation.CharClass.LerayHirschLadder
 import GroupApproximation.CharClass.SteenrodFourfoldBFree
 import GroupApproximation.CharClass.CohomologyChartTower
 import GroupApproximation.CharClass.LerayHirschTowerBridge
+import GroupApproximation.CharClass.LIXCircleChart
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
