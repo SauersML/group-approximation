@@ -28,11 +28,11 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 9 modules
+## GREEN — all 10 modules, `Build completed successfully (2973 jobs)`
 
-`BundleZeroSection.lean` is green as of the probe of 2026-09-05 late evening
-(`✔ [2972/2973] Built GroupApproximation.CharClass.BundleZeroSection`); the
-eight modules below were green at 2974 jobs before it.
+Final probe 2026-09-05 late evening, with `✔ Built …BundleZeroSection` and
+`✔ Built …BundleClassify` in the same run; the eight modules below were green
+at 2974 jobs before those two were added.
 
 | module | content |
 |---|---|
@@ -51,7 +51,7 @@ bundle, `P(p) ⊂ X × CP(K-1)` with tautological line, `p ⊕ q`, pullback,
 finite trivializing cover, **literal** `P(p)|_U ≅ U × CP^{r-1}` and
 `E(p)|_U ≅ U × ℂ^r`, invariance under MvN equivalence.
 
-### `BundleZeroSection.lean` (new)
+### `BundleZeroSection.lean` (new, green)
 
 `infPoint` (the point at infinity `Q∞`), `zeroSectionProj`, `zTrace` and
 `notZeroSet` (the complement of the zero section, cut out by the trace of the
@@ -62,11 +62,18 @@ NotZero p ≃ₕ Proj p`** — the deformation retraction `P(p⊕1) ∖ Z ≃ₕ
 `conjNormalize_mem_projFibreSet'`, the generalization of `BundleLocal`'s
 conjugation lemma that drops both invertibility and squareness.
 
+### `BundleClassify.lean` (new, green)
+
+`classifyOne : X → CP d`, the classifying map of a rank-one bundle (in this
+model a rank-one projection-valued map *is* a map to `ℂP^d`), with
+`classifyOne_cpTaut` and `classifyOne_comap`; the block embeddings `blockL`,
+`blockR` and the sections `classL`, `classR` into `Proj (triv X (ι ⊕ κ))`; and
+**`homotopic_classL_classR`**, the rotation homotopy `v ↦ ((1-t)·v, t·φ v)`
+that makes `e(L) := f_L^* h` well defined on isomorphism classes.
+
 ## AUTHORED, UNVERIFIED
 
-`BundleClassify.lean` — the classifying map `classifyOne : X → CP d` of a
-rank-one bundle and the rotation homotopy `homotopic_classL_classR`.  Probe in
-flight.
+Nothing — every declaration in all 10 owned modules is green.
 
 ## EXPORTS (peers: these are the stable signatures)
 
