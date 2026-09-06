@@ -41,7 +41,7 @@ runs before it: 2976 jobs with `✔ Built …BundleFlag`, 2974 with
 
 | module | content |
 |---|---|
-| `BundleBasic.lean` | `Bundle`, `FunLike`, `rank`, `triv`, `comap` (pullback), `blockSum`, `plusOne`, the bridge `Matrix ι ι C(X,ℂ) ↔ Bundle X ι`, `BundleIso` (rectangular MvN) and its equivalence with `MurrayVonNeumannEquiv` |
+| `BundleBasic.lean` | `Bundle`, `FunLike`, `rank`, `triv`, `comap` (pullback), `blockSum`, `plusOne`, `trace_plusOne`/`rank_plusOne` (`p.plusOne.rank x = p.rank x + 1`, so a fibre dimension for `P(p ⊕ 1)` is DERIVED, not asserted), the bridge `Matrix ι ι C(X,ℂ) ↔ Bundle X ι`, `BundleIso` (rectangular MvN) and its equivalence with `MurrayVonNeumannEquiv` |
 | `BundleRankOne.lean` | `eucNormSq`, `lineOf`, `normalizeVec`, `conjNormalize`, `conj_rankOneProj` — the rank-one calculus everything else runs on |
 | `BundleSpace.lean` | `totalSet`/`sphereSet`/`puncturedSet`/`projSet`, compactness of `Sphere`/`Proj`, zero section, `totalPi`/`projPi`, `tautLine`, `projSetCP`/`projHomeoCP` (comparison with `STW59.CP`), the campaign bundles `cpTaut`, `hopfLine`, `hopfPerp` |
 | `BundleChart.lean` | `projIncl : Proj p ↪ Proj (p.plusOne)` (closed embedding), the affine chart `chartOf : Total p ≃ₜ Chart p` where `Chart p = {z ∈ Proj(p.plusOne) : betaEntry z ≠ 0}` — i.e. **`E(p) ≅ P(p⊕1) ∖ P(p)`, open** |
