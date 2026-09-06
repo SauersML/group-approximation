@@ -28,7 +28,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
 | `CharClass/MayerVietorisRestriction.lean` | `subInclusion`, `subInclusion_comp_sInclusion`, `subChainCorestrict_naturality` — the chain-level half of `mvResWU_eq_pull` |
 | `CharClass/MayerVietorisPull.lean` | `mvCxInclU_comp_g`, `dualMap2_subChainCorestrict_naturality`, **`mvResWU_eq_pull`**, **`mvResWU_one`** — the Mayer–Vietoris restriction to the intersection is the honest pullback, and the unit restricts to the unit |
-| `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`** — the restriction from the ambient space is the pullback along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
+| `CharClass/MayerVietorisPullAmbient.lean` | `subChainCorestrict_comp_toAll`, `f_comp_mvCxProjU`, **`mvResU_eq_pull`**, **`mvResV_eq_pull`** and their `V` twins — the restrictions from the ambient space are the pullbacks along `sInclusion`, through the small-chain end without inverting the quasi-isomorphism |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
@@ -146,9 +146,9 @@ pinned precisely:
   restriction is a `cohPullback`, so each restriction square of naturality is
   functoriality of `pull` and needs no chain-level map at all.  Only the **δ-square**
   still needs the missing `subChainComplex R X' (f⁻¹ S) ⟶ subChainComplex R X S`
-  with compatibility of the splittings.  `mvResV_eq_pull` and `mvResWV_eq_pull` are
-  the same proofs with `biprod.inr_desc` / `biprod.lift_snd` and the minus absorbed
-  by `neg_eq_self_two`; not written.
+  with compatibility of the splittings.  `mvResV_eq_pull` is now **green** (there is no sign on the `f` side; the minus lives
+  in `g`).  `mvResWV_eq_pull` is the only one of the four not written, and it is the
+  one that does need `neg_eq_self_two`.
 
 **Note for `cc-projective`.**  `mvSumIso` turns out not to be needed: the
 element-form `MVSequence` above is derived from the four biproduct identities
