@@ -3765,6 +3765,7 @@ import GroupApproximation.CharClass.LIXRestrictionMap
 import GroupApproximation.CharClass.LIXThomClassTerm
 import GroupApproximation.CharClass.LIXBaseConnected
 import GroupApproximation.CharClass.LIXStepCOddThom
+import GroupApproximation.CharClass.LIXThomResReduction
 import GroupApproximation.CharClass.ThomChainHne
 import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.ChernTautRestrict
