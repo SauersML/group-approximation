@@ -3,6 +3,7 @@ import GroupApproximation.CharClass.CohomologyParityKunneth
 import GroupApproximation.CharClass.LemmaTwoTopClass
 import GroupApproximation.CharClass.LemmaTwoStepCAbsEquiv
 import GroupApproximation.CharClass.LerayHirschBundle
+import GroupApproximation.CharClass.CartanFormula
 
 /-!
 # The even side at the geometric model of the mapping-torus base
@@ -273,6 +274,30 @@ theorem lix_stepD (dd : Fin ℓ → ℕ) (hC : CartanTotal)
       = (sliceClass (Finset.univ : Finset (Fin ℓ)) gen dd).coeff q) :
     γ ((∑ j, dd j) + 3) = 0 :=
   lix_gamma_top_eq_zero dd hC γ (chernSplitOfGraded dd γ g hg) hsplit gen hd hslice
+
+/-! ## 8. The Cartan formula, discharged -/
+
+/-- **`cc-cartan`'s universal Cartan formula, in this lane's shape.**  `CartanTotal`
+was defined as `∀ X, Steenrod.CartanOf X` precisely so that one theorem would
+discharge the Cartan field at every space at once — the mapping-torus base and the
+flag total space together — with no per-space work and no adapter. -/
+theorem cartanTotal : CartanTotal := fun X => cartanOf_holds X
+
+/-- **Step D at the geometric model, with the Cartan formula discharged.**  What
+remains are exactly `cc-projective`'s inputs: the Chern classes as a graded family,
+the splitting principle, the degree-two generators and the slice class, together
+with evenness of the exponents. -/
+theorem lix_stepD_closed (dd : Fin ℓ → ℕ)
+    (γ : ℕ → TotalH (lixN dd))
+    (g : ∀ k : ℕ, Hmod2 (lixN dd) (2 * k))
+    (hg : ∀ k : ℕ, γ k = TotalH.of (lixN dd) (2 * k) (g k))
+    (hsplit : HasSplitting (lixN dd) γ)
+    (gen : Fin ℓ → TotalH (KnTwo.YTop (baseY dd)))
+    (hd : ∀ j, Even (dd j))
+    (hslice : ∀ q : ℕ, splitA dd (chernSplitOfGraded dd γ g hg) q
+      = (sliceClass (Finset.univ : Finset (Fin ℓ)) gen dd).coeff q) :
+    γ ((∑ j, dd j) + 3) = 0 :=
+  lix_stepD dd cartanTotal γ g hg hsplit gen hd hslice
 
 end
 
