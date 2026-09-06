@@ -404,3 +404,39 @@ of rings.
   unification.  `rw` still cannot cross between the `letI` fvar and `D.algebra`,
   so state the intermediate `have`s in the `letI` form and let `exact` do the
   final defeq.
+
+## 2026-09-06 — THE SAME NATURALITY, AT THE MODEL THE CLASSES LIVE ON
+
+* `LIXChernSlice` (8c7a0e1e5, **PROBE GREEN, 9154 jobs**) — `lixChern` is natural
+  along `cc-cohom-api`'s `lixSlice`.
+
+```lean
+theorem pull_lixChern_lixSlice (dd : Fin ℓ → ℕ) (p1 : ↥sphereOne)
+    (q5 : ↥(unitVectors (Fin 3))) (P : LixFamily dd) (hcont : Continuous P)
+    (hproj : ∀ p, IsStarProjection (P p)) (s : ℕ) (hs1 : 1 ≤ s)
+    (hs : ∀ x, (⟨P, hcont, hproj⟩ :
+      Bundle (↥sphereOne × baseM dd) (VIdx dd ⊕ VIdx dd)).rank x = s) (k : ℕ) :
+    pull (lixSlice dd p1 q5) (2 * k) (lixChern dd P hcont hproj k)
+      = LH.chernOf (comap (lixSliceMap dd p1 q5)
+          (⟨P, hcont, hproj⟩ :
+            Bundle (↥sphereOne × baseM dd) (VIdx dd ⊕ VIdx dd))) s
+          (fun y => hs (lixSliceMap dd p1 q5 y)) hs1 k
+```
+
+Also `lixSliceMap`, the same slice as a `C(baseY dd, ↥sphereOne × baseM dd)`,
+which is the shape `Bundle.comap` eats, and `cmap_lixSliceMap`, which is `rfl`.
+
+The proof is two steps and no new mathematics: `lixChern_eq_of_rank` takes the
+branch that the constant-rank hypothesis names, and `LH.chern_comap` — proved
+generically the same day — does the rest.  That the generic statement was proved
+at an ARBITRARY map of compact non-empty bases rather than at the slice is the
+whole reason this file is thirty lines.
+
+### TRAP: `rw` closes with `with_reducible rfl`, and `lixN` is a plain `def`
+
+The last step of `h2` left a goal whose two sides PRINT IDENTICALLY and which
+`rw` refused to close.  The cause is not the printed terms: `rw` finishes with
+`with_reducible rfl`, so a `def` that is not `@[reducible]` — here `lixN`, and
+also the hidden `LerayHirschGraded` proof terms — is not unfolded.  A bare `rfl`
+on the next line closes it at default transparency.  The tell is an unsolved
+goal displayed as `X = X`; do not go looking for a real mismatch.
