@@ -61,6 +61,11 @@ The Leray-Hirsch ladder
   `LerayHirschGraded` at rank two.
 * `LerayHirschBundle` (8846) — **Leray-Hirsch for a bundle over a compact base**,
   over one hypothesis, plus `noOddCohomology_baseY`.
+* `ProjectiveSpaceInterVanish` (8836) — the cover's intersection carries no
+  positive even classes, so every positive power of the tautological class dies
+  there.
+* `ChernEulerSqOne` (8855) — `Sq^1` kills an Euler class, which is cc-wu's
+  `sq_one_root`.
 
 Chern classes and the Euler class
 
@@ -167,3 +172,17 @@ The bootstrap that closes it, in order:
   structure argument that only the PROOF uses must be explicit.
 * Truncated subtraction: `0 - 2 * i` does not reduce to `0` for a variable `i`, so a
   degree-zero component still needs a `cohCast`.
+* A class whose degree is written as a SUM handed to a lemma stated at a literal
+  is not a cheap unification: it is a deterministic `isDefEq` timeout.  State the
+  lemma at an arbitrary degree with the side condition as a hypothesis.  `Sq^1` of
+  a degree-two class has degree `1 + 2`, which is where this bites.
+* A `have` whose statement mentions the coercion of a `Fin` literal gets that
+  coercion reduced during elaboration, so a rewrite phrased with the unreduced
+  form does not match; reach it through `show` instead.
+* `Homeomorph.contractibleSpace` transports contractibility from the TARGET to
+  the source, so the homeomorphism is used without `.symm`.
+* Landing: check a peer's file with `git show origin/main:<path>`, never the
+  working tree, since plumbing pushes leave the shared checkout behind.  When the
+  ordinary flow is blocked, build the commit against the fetched tip with a
+  TEMPORARY index, gate on the changed-path list, and diff the pushed blob
+  afterwards; that diff is the only proof of what landed.
