@@ -3732,6 +3732,8 @@ import GroupApproximation.CharClass.ChernRootSection
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.CartanTermCases
 import GroupApproximation.CharClass.CartanReindex
+import GroupApproximation.CharClass.CartanFormula
+import GroupApproximation.CharClass.CohomologyLHRingPieces
 import GroupApproximation.CharClass.RelativeSubspaceIso
 import GroupApproximation.CharClass.LIXLocalPair
 import GroupApproximation.CharClass.ThomBridgeChart
