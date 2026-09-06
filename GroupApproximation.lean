@@ -3594,6 +3594,10 @@ import GroupApproximation.CharClass.CartanEvalBoundary
 import GroupApproximation.CharClass.ChernEulerIso
 import GroupApproximation.CharClass.LerayHirschShift
 import GroupApproximation.CharClass.SteenrodFourfoldBNat
+import GroupApproximation.CharClass.CohomologyChartTautClass
+import GroupApproximation.CharClass.CohomologyChartRankTwoInterface
+import GroupApproximation.CharClass.LerayHirschProduct
+import GroupApproximation.CharClass.LerayHirschChartTwo
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
