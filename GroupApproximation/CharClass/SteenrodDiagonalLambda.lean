@@ -138,6 +138,65 @@ theorem phiBasis_degree_zero (X : TopCat.{0}) (Λ : Type) [CommRing Λ] [Algebra
   rw [map_one] at hval
   exact hval
 
+/-! ## 5. Naturality -/
+
+/-- `Finsupp.mapRange` along an additive function is additive. -/
+theorem mapRange_add' {ι M N : Type*} [AddCommMonoid M] [AddCommMonoid N]
+    (g : M → N) (hg : g 0 = 0) (hadd : ∀ x y, g (x + y) = g x + g y) (w₁ w₂ : ι →₀ M) :
+    Finsupp.mapRange g hg (w₁ + w₂)
+      = Finsupp.mapRange g hg w₁ + Finsupp.mapRange g hg w₂ := by
+  ext x
+  simp [Finsupp.mapRange_apply, Finsupp.add_apply, hadd]
+
+/-- `Finsupp.mapDomain` and `Finsupp.mapRange` commute.  Mathlib does not appear
+to carry this under an obvious name, and `injectPair` is exactly a `mapDomain`
+after a `mapRange`, so naturality needs it. -/
+theorem mapDomain_mapRange {α β M N : Type*} [AddCommMonoid M] [AddCommMonoid N]
+    (f : α → β) (g : M → N) (hg : g 0 = 0) (hadd : ∀ x y, g (x + y) = g x + g y)
+    (v : α →₀ M) :
+    Finsupp.mapDomain f (Finsupp.mapRange g hg v)
+      = Finsupp.mapRange g hg (Finsupp.mapDomain f v) := by
+  classical
+  refine Finsupp.induction_linear v ?_ ?_ ?_
+  · simp
+  · intro v₁ v₂ h₁ h₂
+    rw [mapRange_add' g hg hadd, Finsupp.mapDomain_add, Finsupp.mapDomain_add, h₁, h₂]
+    exact (mapRange_add' g hg hadd _ _).symm
+  · intro a m
+    rw [Finsupp.mapRange_single, Finsupp.mapDomain_single, Finsupp.mapDomain_single,
+      Finsupp.mapRange_single]
+
+/-- Pushing a pair of simplices forward along a continuous map. -/
+def pairPush {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ) (p : PairIndex X k) : PairIndex Y k :=
+  ⟨p.1, (pushSimplex f p.1.val p.2.1, pushSimplex f (k - p.1.val) p.2.2)⟩
+
+/-- Pushing a basis element of the source forward. -/
+def wsPush {X Y : TopCat.{0}} (f : X ⟶ Y) (k : ℕ) (b : WSIndex X k) : WSIndex Y k :=
+  ⟨b.1, pushSimplex f b.1.val b.2⟩
+
+theorem injectPair_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (Λ : Type) [CommRing Λ]
+    [Algebra (ZMod 2) Λ] {k : ℕ} (a : Fin (k + 1)) (z : tensorTwo X a.val (k - a.val)) :
+    Finsupp.mapDomain (pairPush f k) (injectPair X Λ a z)
+      = injectPair Y Λ a
+          (Finsupp.mapDomain
+            (Prod.map (pushSimplex f a.val) (pushSimplex f (k - a.val))) z) := by
+  unfold injectPair
+  rw [← Finsupp.mapDomain_comp,
+    ← mapDomain_mapRange (Prod.map (pushSimplex f a.val) (pushSimplex f (k - a.val)))
+      (algebraMap (ZMod 2) Λ) (map_zero _) (fun x y => map_add (algebraMap (ZMod 2) Λ) x y),
+    ← Finsupp.mapDomain_comp]
+  rfl
+
+/-- **`Φ` is natural in the space**, on the basis. -/
+theorem phiBasis_naturality {X Y : TopCat.{0}} (f : X ⟶ Y) (Λ : Type) [CommRing Λ]
+    [Algebra (ZMod 2) Λ] {k : ℕ} (b : WSIndex X k) :
+    Finsupp.mapDomain (pairPush f k) (phiBasis X Λ b) = phiBasis Y Λ (wsPush f k b) := by
+  unfold phiBasis
+  rw [mapDomain_finset_sum]
+  refine Finset.sum_congr rfl fun a _ => ?_
+  rw [injectPair_naturality f Λ a, steenrodDiag_naturality f (k - b.1.val) a.val (k - a.val) b.2]
+  rfl
+
 end
 
 end Steenrod
