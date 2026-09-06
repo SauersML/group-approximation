@@ -704,3 +704,43 @@ What remains for `CartanOf X`, and neither part is mathematics.
    vanish by `cochainCupI_self_eq_zero_of_lt`, which is landed. The reindexing
    itself must happen **after** passing to classes, because at cochain level it
    needs one number spelled two ways in the type of a cochain.
+
+## The Cartan formula (2026-09-06, closed)
+
+`cartanOf_holds X : Steenrod.CartanOf X`, for every space. Green at 2964, landed
+`fb47e0d0a`. All 69 owned modules build together at 2966 jobs.
+
+The chain, end to end: the interchange is a chain map; both composites evaluate,
+A to the square of the cup product and B to the sum of the cup products of the
+two squares; the comparison makes them differ by a coboundary; the coboundary
+dies on passing to classes; and the sum reindexes to the Cartan shape.
+
+Three cases in the last step. The generic one needs the total degree positive,
+because the coboundary the comparison produces lives one degree down. When every
+degree is zero the formula is the statement that the zeroth square is the
+identity. When the square's index exceeds the product's degree both sides vanish,
+the left by instability and the right because every term has a factor out of
+range.
+
+**The one thing worth carrying to another lane** is where the reindexing had to
+happen. In the graded cohomology groups it is impossible: it needs one number
+spelled two ways inside the type of a class, and no lemma can bridge that. In the
+total ring it is routine, because degrees there are plain naturals, equal values
+name the same component, and `of_cohCast` absorbs every transport. The general
+rule: when a reindexing fights the type checker, look for a layer where the index
+is data rather than a type, and do it there.
+
+Traps added this session, beyond those already listed.
+
+* `map_add` and `map_sum` do not fire on the cochain coboundary or on `TotalH.of`
+  at every spelling; `cochainCoboundary_add` and a term-level `map_sum` do.
+* An induction whose statement carries a proof about the thing being inducted on
+  must quantify that proof, or the rewrite reads as a motive failure.
+* A `by omega` inside a `Fin.mk` captures the ambient hypotheses and blocks a
+  later `subst`.
+* A `rw` whose pattern is visibly in the goal can still fail; `congr_arg₂` as a
+  term does the same rewrite with no matching.
+* `Finset.sum_bij'` wants the two index sets already cut down to the surviving
+  range; do the two `Finset.sum_subset` steps first, and prove the vanishing from
+  a negated conjunction rather than from filter membership, which `omega` cannot
+  read.
