@@ -1092,11 +1092,20 @@ and `P` is not equivalent to the untwisted projection, then the clutching
 function carries the obstruction.  This is how the obstruction lane may
 deliver the manuscript's Lemma 2 in whatever concrete model it prefers -- for
 instance for `F ⊕ H` over `S⁵ × Y` with `F x = 1 - x xᴴ` -- without having to
-speak the clutching vocabulary at all. -/
+speak the clutching vocabulary at all.
+
+The hypothesis on `Ω` is exactly what the proof consumes: that the cone of `Ω`
+is a clutching datum at every point.  It must NOT be strengthened to
+`IsDiscUnitary Ω`, which is what an earlier version asked for: that version
+was unusable, because `not_isDiscUnitary_of_clutchingObstruction` turns this
+theorem's own conclusion back into `¬ IsDiscUnitary Ω`, so its hypotheses were
+jointly contradictory and no instance of it could ever be applied.  When a
+disc unitary *is* in hand, `isClutchDatum_coneMat` supplies `hcd`; but the
+intended callers have only unitarity on the sphere, which is enough. -/
 theorem clutchingObstruction_of_equiv {t : X → ℝ} {ν : X → E}
     {Ω : E → Matrix n n ℂ}
     {P : X → Matrix (n ⊕ n) (n ⊕ n) ℂ}
-    (hc : IsSuspensionChart t ν) (hΩ : IsDiscUnitary Ω)
+    (hcd : ∀ x, IsClutchDatum (t x) (coneMat Ω (ν x)))
     (W : X → Matrix (n ⊕ n) (n ⊕ n) ℂ) (hW : Continuous W)
     (hW1 : ∀ x, (W x)ᴴ * W x = clutchMat (t x) (coneMat Ω (ν x)))
     (hW2 : ∀ x, W x * (W x)ᴴ = P x)
@@ -1108,7 +1117,7 @@ theorem clutchingObstruction_of_equiv {t : X → ℝ} {ν : X → E}
   rintro ⟨V, hVc, hV1, hV2⟩
   have hidem : ∀ x, clutchMat (t x) (coneMat Ω (ν x)) * clutchMat (t x) (coneMat Ω (ν x))
       = clutchMat (t x) (coneMat Ω (ν x)) :=
-    fun x => clutchMat_mul_self (isClutchDatum_coneMat hΩ (hc.sphere x))
+    fun x => clutchMat_mul_self (hcd x)
   refine hP ⟨fun x => V x * (W x)ᴴ, hVc.mul hW.star, fun x => ?_, fun x => ?_⟩
   · have hWabs : W x * clutchMat (t x) (coneMat Ω (ν x)) = W x :=
       mul_source_of_partialIsometry (hW1 x) (hidem x)

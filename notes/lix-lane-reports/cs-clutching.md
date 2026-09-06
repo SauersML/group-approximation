@@ -8,32 +8,37 @@ the Lean files are `cs-clutching-s`'s until the lead hands them back.
 
 ## 1. GREEN
 
-Measured on this lane's own clone, probe round 1.
+Measured on this lane's own clone. Every count comes with a `Built` line and an
+elapsed time for the module itself, so no green here rests on a replay.
 
-| module | verdict | what was probed |
+| module | verdict | commit |
 |---|---|---|
-| `Analysis/LIXClutching.lean` | `Build completed successfully (8655 jobs)`, `✔ Built … (16s)` | the file as it now stands in the tree, 1185 lines, unchanged since |
-| `Analysis/LIXObstructionComplementUnitary.lean` | `Build completed successfully (8657 jobs)`, `✔ Built … (40s)` | the file **as authored at 234 lines**, ring-level Step A only |
-| `Analysis/LIXGeneratorUnitary.lean` | red, five errors; repaired and committed green by `cs-clutching-s` at `0f65b8a7e` | job count for the green not measured by this lane |
+| `Analysis/LIXGeneratorUnitary.lean` | `Build completed successfully (2385 jobs)`, `✔ Built … (11s)` | `f57375d28` |
+| `Analysis/LIXObstructionComplementUnitary.lean` | `Build completed successfully (8656 jobs)`, `✔ Built … (21s)` | `434bd8eae` |
+| `Analysis/LIXClutching.lean` | `Build completed successfully (8655 jobs)`, `✔ Built … (16s)` | as authored |
 
-Two cautions on the second row, so that nothing here is read as more than it is.
+The whole frame construction is in `LIXGeneratorUnitary.lean` and green:
+rank-one toolkit, Householder reflection, phased transport, two-step frame,
+continuity, both hemisphere frames, the seam generator, and its explicit
+null-homotopy. Details in §2.
 
-**The 8657 was not a measurement of the current file.** At probe time
-`LIXObstructionComplementUnitary.lean` was the committed 234-line version
-carrying only the ring-level Step A (`mvn_complement_unitary_apply_eq` and its
-neighbours). It is now 466 lines in the working tree, with a continuous-family
-form and a vector form added, and in that state it is **RED** — reported by
-`cc-lix-odd`, whose `LemmaTwoUnitary` imports it. So the green above tells you
-the ring-level half is sound and localises the breakage entirely inside the
-added material; it is not a fallback state for the file as it stands.
-
-**No green claim here rests on a replay.** Both counts come with a `Built` line
-and an elapsed time for the module itself.
+`LIXObstructionComplementUnitary.lean` was red for a while and blocking
+`cc-lix-odd`'s `LemmaTwoUnitary`, on three defects in the vector-form Step A;
+see TRAPS. Restored at `434bd8eae`. Note the earlier 8657-job green of that
+file was of the 234-line version carrying only the ring-level Step A, not of
+the vector form.
 
 ## 2. AUTHORED, UNVERIFIED
 
-Nothing in Lean from this lane. What follows is worked out and hand-checked,
-and has been handed to `cs-clutching-s` in transcribable form.
+What remains is gated on peers, not on this lane:
+
+* `HasGeneratorShape` and its three obligations over `tower.climb j 0` — needs
+  `cs-stages`' `connect`.
+* The generalised Corollary 4 — needs `cc-lix-odd`'s Lemma 2 in the target
+  shape below, and `cs-stages`' `HprojY` to state it.
+* `hdiag` against `LIXEndpointStatement.diagOne` — needs `StageAlgebra 0`.
+
+The mathematics for all three is settled and recorded here.
 
 ### The lane's recorded negative finding is wrong
 
