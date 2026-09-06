@@ -201,6 +201,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomTopLine.lean` | **`HasTopLine`**, `prodCoverConnecting`, `hasTopLine_sphere`, `hasTopLine_prod_sphere{,_succ}`, `hasTopLine_prod_CP{,_succ}` — the top-line induction for a left-nested product of spheres and projective spaces; **no cup and no cross product** |
 | `CharClass/ThomTopLineCircle.lean` | `sphereZeroProdEquiv`, `ker_mvDelta_circle`, **`circleTopLineStep`** — the one case the connecting isomorphism cannot reach, computed by rank counting over `F₂` |
 | `CharClass/ThomTopLineLIX.lean` | `hasTopLine_sphereOne`, `hasTopLine_circleTimesFive`, `hasTopLine_lixBase`, **`absEquiv_lixN`** — hypothesis 8 of Step C at the real `N`, modulo the one model homeomorphism `cc-lix-odd` owes |
+| `CharClass/ThomChernBasis.lean` | `ThomChern.genPow_dim_eq_neg_sum/_finSum/_basisSum`, `totalMap_comp`, `totalMap_id` — the Chern relation solved for the top power and written in the Leray–Hirsch basis, which is `ThomClassChain`'s `hlast`; pure `PowerBasis` algebra, no topology |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -596,3 +597,5 @@ it is only `rw … at h` that breaks.
 | 2026-09-05 | **`ThomTopLineCircle`** | **green, 8811 jobs, `PROBE GREEN`, first probe** |
 | 2026-09-05 | `ThomTopLineLIX` | red: one `rw … at h` motive error, localized |
 | 2026-09-05 | **`ThomTopLineLIX`**, term-mode fix | **green, 8859 jobs, `PROBE GREEN`** |
+| 2026-09-05 | `ThomChernBasis` | red twice: `eq_neg_of_add_eq_zero_left` orients `a + b = 0 → a = -b`, and `simp only` applied the second index rewrite first |
+| 2026-09-05 | **`ThomChernBasis`** | **green, 2467 jobs, `PROBE GREEN`** |
