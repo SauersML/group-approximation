@@ -84,6 +84,24 @@ noncomputable def tautLineProjRankOneIso (p : Bundle X ι) (hp : ∀ x, (p x).tr
     BundleIso (comap (projRankOneSection p hp) (tautLine p)) p :=
   BundleIso.refl p
 
+/-! ### The chart's homotopy inverse is the zero section -/
+
+omit [DecidableEq ι] in
+/-- **The homotopy inverse of the chart's equivalence to the base is the zero
+section**, the mirror of `chartOpensHomotopyEquivBase_toFun_apply`.
+
+Unlike the forward map this is not definitional on a consumer's side, because
+the equivalence is assembled from `Homeomorph.symm`s and the `invFun` of a
+`trans` composes those; so the `invFun` side needs the chart computation that
+the `toFun` side does not.  Here it is one step: the chart sends the zero vector
+of a fibre to the line spanned by the `Unit` coordinate, which is `infPoint`. -/
+theorem chartOpensHomotopyEquivBase_invFun_apply (p : Bundle X ι) (x : X) :
+    (((chartOpensHomotopyEquivBase p).invFun x : ↥(chartOpensSet p)) : Proj p.plusOne)
+      = zeroSectionProj p x := by
+  apply Subtype.ext
+  refine Prod.ext rfl ?_
+  exact lineOf_of_mem_unitVectors infVec_mem_unitVectors
+
 /-! ### The section the retraction inverts -/
 
 /-- **The homotopy inverse of `notZeroOpensHomotopyEquivProj` is
