@@ -225,6 +225,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomStepCOddLocal.lean` | `injective_comp_of_square`, **`topChernClass_ne_zero_odd_local`**, `topChernClass_ne_zero_odd_local_of_iso` — Step C's odd side over an **injective** local restriction plus one square, strictly weaker than the isomorphism form, which it recovers |
 | `CharClass/ThomChainHne.lean` | `injective_of_comp_injective`, **`ne_zero_of_injective_comp`**, `ne_zero_of_local` — `ThomChainThom.hne` (`sRel.hom u ≠ 0`) from the same `hinj` the odd side already needs; closes `cc-projective`'s seam finding C5 with no new obligation |
 | `CharClass/LIXThomClassTerm.lean` | `range_comp_linearEquiv`, `injective_thomJm`, `hyperLH_range`, `thomJmTotal{,_apply}`, `injective_thomJmTotal`, `range_thomJmTotal`, `one_le_lixRank_dd`, `lixLHplus`, `lixLHhyper`, **`lixThomClassTerm`**, **`lixThomClassTerm_ne_zero`** — the Thom class as an **unconditional term**, `htaut` discharged by `cc-projective`'s `pull_sInclusion_tautEulerOf` |
+| `CharClass/LIXBaseConnected.lean` | `pathConnectedSpace_sphereOne`, `pathConnectedSpace_unitVectorsThree`, **`pathConnectedSpace_lixN`**, `nonempty_lixN`, **`lixCohZeroEquiv`** — the base is path-connected and its `H^0` is a line, which is the whole content of `hres` once the two Thom isomorphisms are in place |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -771,3 +772,4 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`ThomChainHne`** | **green, 8834 jobs, `fdfd2dae3`, first probe** |
 | 2026-09-06 | `LIXThomClassTerm` | red x3: `isDefEq`/`whnf` timeouts from unpinned `TopCat` implicits and restated types; then `g` elaborated to a metavariable because `M` comes later |
 | 2026-09-06 | **`LIXThomClassTerm`** | **green, 9183 jobs, `ee784cb87`** |
+| 2026-09-06 | **`LIXBaseConnected`** | **green, 8887 jobs, `73bc9b919`, first probe** |
