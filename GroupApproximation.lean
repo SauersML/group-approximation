@@ -3345,6 +3345,7 @@ import GroupApproximation.Analysis.LIXLemmaSixDiagPath
 import GroupApproximation.Analysis.LIXLemmaSixStageZero
 import GroupApproximation.Analysis.LIXLemmaSixDiag
 import GroupApproximation.Analysis.LIXLemmaSixDiagEnd
+import GroupApproximation.Analysis.LIXLemmaSixSouth
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
