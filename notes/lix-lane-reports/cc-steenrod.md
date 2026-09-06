@@ -428,3 +428,71 @@ and `t_mul_t` come from `SqH_map` plus sphere cohomology at one stroke, and
 * A `calc` step ending `(lemma f k _ 1).symm` can fail where the same step with
   the index element written out succeeds, because the underscore has to be found
   by higher-order unification through a `def`.
+
+## Composite B is finished (2026-09-06)
+
+`compBNat : src singularBoundary ⟶ four` is green and landed at `ea7ff6a92`
+(2913 jobs).  It is built exactly like `cc-cartan`'s `compA`, so the comparison
+consumes the two composites the same way.
+
+Landing order, one file per step, each green before the next was written:
+
+| file | what it adds |
+| --- | --- |
+| `SteenrodFourfoldBBranch` | every branch of the Leibniz expansion, four degrees free |
+| `SteenrodFourfoldBJunction` | the back-index junction, and the two live block splits |
+| `SteenrodFourfoldBDegenCase` | the two degenerate bidegrees |
+| `SteenrodFourfoldBGeneric` | the generic bidegree, with the cancellation |
+| `SteenrodFourfoldBFaces` | the faces are the pair differential; the three branches assembled |
+| `SteenrodFourfoldBChainMap` | the identity summed over the diagonal |
+| `SteenrodFourfoldBEdgeCases` | resolution index `0`, simplex degree `0`, and the interchange |
+| `SteenrodFourfoldBPackage` | the condition against `wDiff`, then `compBCx` and `compBNat` |
+
+### What the collapsed formula hides
+
+* **The cancellation is not uniform.**  Where both simplices are
+  positive-dimensional the left block at index `p + 1` cancels the right block at
+  index `p`, and that is `sum_cancelA_cancelB`.  Where either simplex is a point
+  that pairing does not exist: the surviving family comes from the other block
+  entirely, and the identity holds because the involution fixes a cochain of a
+  point.  Three bidegrees, three proofs, and the two degenerate ones are not
+  mirror images of each other.
+* **Total degree zero needs the same fact.**  On a point `B` vanishes in positive
+  resolution index but not in degree `0`, and there the `(1 + t)` half of the
+  source differential dies only because the block swap fixes
+  `x ⊗ x ⊗ x ⊗ x`.  Without `compBGen_add_tenSwap_pt` the chain map is false at
+  the bottom of the complex.
+
+### The junction recipe, which is what made the big proof cheap
+
+Wherever the same number arrives spelled two ways, state the reconciliation as a
+one-line lemma with the degrees free and the equation as a hypothesis, and cross
+it with `congrArg` **before** any block lemma fires.  The abstraction has to be a
+genuine function of the index whose *result* type does not mention it — `bBack`,
+`padFourLBack`, `padFourRBack`, `faceLBack`, `faceRBack` — so `congrArg` applies
+with no dependent motive.  Four such declarations, and afterwards the generic
+branch compiled without one failed rewrite.
+
+Three spellings and their status:
+
+* `c + (p + 1)` versus `c + p + 1` — the same term; `exact` crosses it, `rw` does
+  not.  No lemma needed, but never `rw`.
+* `i + 1 - (p + 1)` versus `i - p` — **not** the same term (`Nat.sub` recurses on
+  its second argument), and the number sits in the type of a cochain.  Needs
+  `congrArg` along one of the abstractions above.
+* `M + 1 + p` versus `M + (p + 1)` — **not** the same term either
+  (`Nat.succ_add` is a theorem, not `rfl`).  Same treatment.
+
+### Two more traps
+
+* `Nat.succ_add M i` states its left side as `M.succ + i`, so a `congrArg` built
+  from it carries the successor spelling and the rewrite will not fire on a goal
+  written `M + 1 + i`.  Use `show M + 1 + i = M + (i + 1) by omega` so the proof
+  carries the goal's spelling.
+* A junction lemma stated on an abstraction (`bBack`) cannot fire on a goal in
+  which the abstraction is not visible.  State it a second time on the term the
+  goal actually contains (`bTerm_back_congr`).
+* A `rw` chain that ends definitionally equal does **not** always close: `rw`'s
+  trailing `rfl` failed on three goals whose only remainder was `0 - 0`, `M + 0`
+  and an unfolded `def`.  Ending with an explicit `rfl` is the fix, but it is an
+  error when the chain *did* close, so it costs one probe round either way.
