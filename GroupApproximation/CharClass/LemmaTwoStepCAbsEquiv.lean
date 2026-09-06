@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXStepESpheresDischarged
 import GroupApproximation.CharClass.ThomTopLineLIX
+import GroupApproximation.CharClass.ThomStepCLocal
 
 /-!
 # Step C with the top line discharged too
@@ -22,11 +23,25 @@ supplies.  Supplying it here closes the `absEquiv` field of `ThomChainData`.
 ## The one mismatch, and why choice appears
 
 `HasTopLine.line` concludes a `Nonempty` of the linear equivalence, while
-`ThomChainData.absEquiv` is a *data* field.  So the bridge is `Nonempty.some`, and this
-is the only place in the lane where `Classical.choice` is used.  It is harmless *here*,
-because the field is reached only through `topChernClass_ne_zero_of_chain`, whose
-conclusion is a `Prop` — but that is a property of the current consumer, not of the
-interface, so `cc-thom` is publishing a `Nonempty`-taking variant and this will move to it.
+`HasTopLine.line` concludes a `Nonempty`, while `ThomChainData.absEquiv` is a *data*
+field.  `cc-thom` has published `topChernClass_ne_zero_of_chain_line`, which takes the top
+line as a `Nonempty` and eliminates it internally, and `ne_zero_of_thomChainOpen` now
+feeds `nonempty_absEquiv_lix` straight into that.
+
+**This does not make anything choice-free, and the `#print axioms` lines at the foot of
+the file are kept to say so.**  Both Step C theorems still report
+
+```text
+[propext, Classical.choice, Quot.sound]
+```
+
+because the mod-2 cohomology development and Mathlib use choice throughout; no rearranging
+of this interface could change that.  What the switch actually buys is narrower and worth
+stating exactly: **this lane no longer introduces a `Nonempty.some` of its own** on the
+path to Step C.  That is a hygiene gain, not a foundational one.
+
+`absEquivLix` and `ThomChainOpen.toThomChainData` remain published for a consumer that
+wants the equivalence or the longer bundle, and those two do call `Nonempty.some`.
 
 ## What is left after this file
 
@@ -149,11 +164,14 @@ def ThomChainOpen.toThomChainData (hdd : ∀ j, 0 < dd j)
   hgamma := D.hgamma
 
 /-- `cc-thom`'s conclusion from the shorter bundle: both `hacyclic` and `absEquiv` are
-now theorems of this lane. -/
+now theorems of this lane, and the top line enters as a `Nonempty` rather than being
+extracted with `Nonempty.some` here. -/
 theorem ne_zero_of_thomChainOpen (hdd : ∀ j, 0 < dd j)
     {gamma : cohomologyZMod2 (lixN dd) (2 * lixRank dd)} (D : ThomChainOpen dd gamma) :
     gamma ≠ 0 :=
-  ne_zero_of_thomChain (puncturedAcyclic_lixZero' hbase_lix hdd) (D.toThomChainData hdd)
+  topChernClass_ne_zero_of_chain_line (puncturedAcyclic_lixZero' hbase_lix hdd)
+    D.j D.i D.hexact (nonempty_absEquiv_lix dd hdd) D.exc D.chartIso D.locEquiv
+    D.hsu D.hg D.hgamma
 
 /-! ## 4. Step C -/
 
@@ -174,5 +192,14 @@ theorem stepC_of_thomChainOpen (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
       lixTopClass chern (mappingTorus Vmat G circHoriz circHeight) ≠ 0 :=
   stepC_of_chain chern fun G hGc hGu hGe =>
     ne_zero_of_thomChainOpen hdd (chain G hGc hGu hGe)
+
+/-! ## 5. The axiom report, kept in the file
+
+Both lines below print `[propext, Classical.choice, Quot.sound]`.  That is the point of
+keeping them: see the header for what the `Nonempty` variant does and does not buy. -/
+
+#print axioms ne_zero_of_thomChainOpen
+
+#print axioms stepC_of_thomChainOpen
 
 end GroupApproximation.CharClass
