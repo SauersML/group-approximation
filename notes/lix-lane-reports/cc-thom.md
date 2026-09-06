@@ -26,6 +26,7 @@ algebra lemmas are kept locally and prefixed `mvDualMap_` so they cannot collide
 | `CharClass/MayerVietorisBiproduct.lean` | `mvDualMap_comp/_id/_add/_zero`, the four biproduct identities on the middle term, `mvH_decompose`, `mvH_eq_zero_iff`; the `F₂` sign lemmas |
 | `CharClass/MayerVietorisElement.lean` | the four restrictions, `mvDelta`, and `mvExactX` / `mvExactSum` / `mvExactW` |
 | `CharClass/MayerVietorisVanishing.lean` | `isZero_cohomology_of_cover`, and `isZero_cohomology_of_cover'` in the `CohomologyToolkit` shape: **need (A1) is discharged** |
+| `CharClass/MayerVietorisRestriction.lean` | `subInclusion`, `subInclusion_comp_sInclusion`, `subChainCorestrict_naturality` — the chain-level half of `mvResWU_eq_pull` |
 | `CharClass/MayerVietorisSequence.lean` | `mvSequence`, cc-projective's `MVSequence` package |
 
 ```lean
@@ -91,11 +92,32 @@ theorem mvDelta_cup (U V) (hUV) {p q : ℕ} (a : Hmod2 (mvInter U V) p) (b : Hmo
 end GroupApproximation.CharClass
 ```
 
-**Still open in the Mayer–Vietoris assignment**, and each is comparable in size to
-the element-level layer that is done; neither is half-started, and both are
-honestly named rather than approximated:
+**`mvResWU_eq_pull` — half done, and the remaining half is pinned.**
+`cc-projective` reports that this, in its degree-zero form `mvResWU_one`, is the
+*last* hypothesis of the projective-space induction, so it outranks δ-linearity in
+what it unblocks.  Its mathematical content is the naturality of
+`subChainCorestrict` for subspace inclusions, and that is **green** in
+`CharClass/MayerVietorisRestriction.lean`.  What remains is bookkeeping, now
+pinned precisely:
 
-* **(3) `H^*(X)`-linearity of `δ`.**  This is precisely the δ-square of
+* `mvResWU` unfolds to `(subCxDualHomologyIso ↑U n).inv ≫ homologyMap (dualMap2 (subChainInclusion (↑U∩↑V) ↑U _)) n ≫ mvInterIso.hom`,
+  because `mvHInclU ≫ homologyMap (mvCoSC).g = homologyMap (dualMap2 (mvInclUV_U))`
+  by `mvDualMap_comp` and `biprod.lift_fst`;
+* `cohPullback f n` is `(singularCohomologyZMod2 n).map f.op`, which unfolds to
+  `homologyMap (dualMap2 (chainCxFun.map f)) n`;
+* so the identification is `subChainCorestrict_naturality` dualized by
+  `mvDualMap_comp` and pushed through `homologyMap`, then conjugated by
+  `subCxDualHomologyIso`, whose `hom` is `dualCxFunctor.map` of the *op* of an
+  `asIso` — getting that direction right is the one fiddly step left.
+
+**Still open**, and each comparable in size to the element-level layer:
+
+* **(3) `H^*(X)`-linearity of `δ` — HANDED TO `cc-cohom-api` at their request**, since
+  they need it for `tx_inj` and `ParityData` and it is on cc-projective's critical
+  path twice over.  The full analysis went to them, including cc-projective's
+  simplification that `b` is always pulled back from the ambient space, so the lift
+  can be taken to be `c̃ ⌣ b` with the same `b` throughout.  Better framing than the
+  one first recorded here:  This is precisely the δ-square of
   `LerayHirschAlgebra.bijective_of_ladder`, whose verticals are `cup · b`.  Route:
   Mathlib's `ShortComplex.ShortExact.δ_apply`
   (`Mathlib/Algebra/Homology/ConcreteCategory.lean`) describes `δ [c]` as `[d c̃]`
@@ -388,6 +410,18 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
   transparency.
 * **`simp` will not evaluate `(1 : ZMod 2) + 1` to `0`** while simplifying a
   scalar action; supply `((1 : ZMod 2) + 1) = 0 := by decide` and `rw` it.
+* **`singularChainMap R f n` takes the degree.**  Writing it without `n` in an
+  equality of chain-*complex* maps does not fail with an arity error: `autoImplicit`
+  binds the whole application and it surfaces as "Function expected at
+  `singularChainMap` … this term has type `x✝`", which reads like a missing import.
+  Use `chainCxFun.map f` for the complex-level map.  Relatedly,
+  `singularChainComplexFunctor` needs its `AlgebraicTopology.` prefix even with the
+  vendored namespace open.
+* **A probe syncs the shared working tree, so it tests a *stopped* agent's
+  uncommitted edits as if they were the owner's.**  The eight errors I saw in
+  `CohomologyMayerVietoris` were a stopped Sonnet lane's bytes; the owner's
+  committed file was green throughout.  Check `git status` on a peer's file before
+  concluding it is red.
 * **Duplicate top-level declarations across `CharClass/` modules are an import
   error, not a type error.**  `isZero_of_linearEquiv` existed in both
   `ThomPuncturedRecursion` and `cc-cohom-api`'s `CohomologyProductCover`, and Lean
@@ -422,4 +456,5 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | all 14 cc-thom modules (with the ported dual) | green, 8744 jobs |
 | 2026-09-05 | MV bridge retargeted onto cc-cohom-api's green file | green, 8776 jobs |
 | 2026-09-05 | all 13 cc-thom modules, per-factor Künneth | green, 8782 jobs |
-| 2026-09-05 | **all 14, with the sphere Künneth instances** | **green, 8786 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
+| 2026-09-05 | all 14, with the sphere Künneth instances | green, 8786 jobs |
+| 2026-09-05 | **`MayerVietorisRestriction`** | **green, 8772 jobs, `PROBE GREEN`** |
