@@ -242,11 +242,12 @@ theorem estimatingSelectionConstruction :
     GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
 
-/-- **Open input.**  Osin's Lemmas 61 and 62: after passing to an
-`O`-equivalent diagram, the unbound arc partition satisfies the strict
-square-root budget and its numerical threshold
-(`GGT/VanKampen/Estimating/UnboundRepaired.lean`; Lemma 61's arc count is
-proved, the residue is the component decomposition). -/
+/-- **Refuted input; interface repair required.** The universal unbound-budget
+statement below omits Osin's geometric scale assumptions. Its closed
+refutation in `Estimating/UnboundSmallMuCounterexample.lean` persists under
+Cayley hyperbolicity and the source's strict parameter ranges. This `sorry`
+cannot be filled at its current type; selection and unbound construction
+must share the source's parameter choice. See issue #198. -/
 theorem estimatingUnboundOutput :
     GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
   sorry
