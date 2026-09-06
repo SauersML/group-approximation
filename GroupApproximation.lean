@@ -3714,6 +3714,7 @@ import GroupApproximation.CharClass.CartanMasterEval
 import GroupApproximation.CharClass.LIXExcisionChart
 import GroupApproximation.CharClass.LIXChartIso
 import GroupApproximation.CharClass.CartanCochainId
+import GroupApproximation.CharClass.CartanCochainFormula
 import GroupApproximation.CharClass.LIXThomLH
 import GroupApproximation.CharClass.LIXThomAssembly
 import GroupApproximation.CharClass.LerayHirschTowerRev
