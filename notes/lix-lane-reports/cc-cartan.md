@@ -511,3 +511,44 @@ same conclusion.
   robust than a manual `rw`-then-`ring` chain, which silently leaves a residual
   numeral goal (`⊢ 2 = 0`) that plain `ring` cannot close since `ring` never
   consults hypotheses.
+
+## The middle-four interchange is a chain map (2026-09-06)
+
+`tensorD_midSwap` and `midSwapHom` in `CartanMidFourChainMap`, green, landed.
+Five modules: `CartanPadTen`, `CartanMidFourGroup`, `CartanMidFourTgt`,
+`CartanMidFourSrc`, `CartanMidFourChainMap`, reached from the root through
+`CartanMidFourSlots`, which is now the entry point and defines nothing.
+
+Twenty-six probes failed on this before the design changed, and none of them
+failed on the mathematics.  The lesson is worth stating in general terms.
+
+* **Never let a degree be an expression in the inputs.**  Carry every degree of
+  the result as a free parameter and absorb the constraint into a constructor
+  that returns `0` off the diagonal.  `padTen A B k a b u v` is the decomposable
+  `u ⊗ v` in total degree `k`, or `0` when `a + b ≠ k`.  Two `padTen`s at the
+  same three degrees are literally the same term whatever route produced them.
+  The recipe is cc-steenrod's; it is what removed every degree cast from their
+  lane, and it removed the whole difficulty here.
+* What it fixes: `a + 1 + b` and `(a + b) + 1` are propositionally but not
+  definitionally equal for a variable `b`, because addition on the naturals
+  recurses on its second argument.  `Nat.succ_add` does not fire, because the
+  successor is spelled as an addition.  Closing the gap definitionally is shut
+  off too, because any such check unfolds the tensor's structure literal and
+  exceeds the heartbeat budget.
+* **A predecessor degree wants truncated subtraction, not a successor
+  equation.**  `hf : f = e - 1` and `hf : f + 1 = e` differ exactly at `e = 0`,
+  where the second makes the statement vacuous.  Both grouping lemmas need that
+  case, so the second form fails by proving nothing.
+* `split_ifs` on the padded generator times out at `whnf` inside 200k
+  heartbeats: deciding the degree equation unfolds the structure literal.
+  `by_cases` plus two projection lemmas costs nothing.  Four of the nine errors
+  in the first round were this.
+* `rw [← tenElt_single_single]` cannot find its own right-hand side when the
+  complexes are left to be inferred: the pattern's index type is a metavariable
+  applied to a structure projection.  Restating the three nested rewrites as one
+  lemma with every argument explicit makes the same rewrite fire.
+* **Two modules declaring the same name in one namespace is a root-only
+  failure.**  Probes never see it, because no single probe imports both; the
+  root imports everything and dies.  When a redesign supersedes a definition,
+  retire the old module in the same wave, and check the root's import list
+  rather than the probe.
