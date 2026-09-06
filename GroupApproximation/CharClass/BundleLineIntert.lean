@@ -39,27 +39,27 @@ namespace Bundle
 
 section Scalar
 
-variable {ι : Type} [Fintype ι]
+variable {ι κ : Type} [Fintype ι] [Fintype κ]
 
 theorem sum_star_mul_self_eq_eucNormSq (v : ι → ℂ) :
     ∑ k, star (v k) * v k = ((eucNormSq v : ℝ) : ℂ) := by
   rw [eucNormSq_def, Complex.ofReal_sum]
   exact Finset.sum_congr rfl fun k _ => star_mul_self_eq_normSq (v k)
 
-omit [Fintype ι] in
-theorem conjTranspose_vecMulVec (x y : ι → ℂ) :
+omit [Fintype ι] [Fintype κ] in
+theorem conjTranspose_vecMulVec (x : κ → ℂ) (y : ι → ℂ) :
     (Matrix.vecMulVec x y)ᴴ = Matrix.vecMulVec (star y) (star x) := by
   ext i j
   simp [Matrix.vecMulVec_apply, mul_comm]
 
-omit [Fintype ι] in
-theorem vecMulVec_smul_right (x y : ι → ℂ) (c : ℂ) :
+omit [Fintype ι] [Fintype κ] in
+theorem vecMulVec_smul_right (x : κ → ℂ) (y : ι → ℂ) (c : ℂ) :
     Matrix.vecMulVec x (c • y) = c • Matrix.vecMulVec x y := by
   ext i j
   simp [Matrix.vecMulVec_apply, mul_left_comm]
 
 /-- **The rank-one identity.**  `(A P)ᴴ (A P) = ‖A u‖² P` when `P = u uᴴ`. -/
-theorem conjTranspose_mul_self_rankOneProj (a : Matrix ι ι ℂ) (u : ι → ℂ) :
+theorem conjTranspose_mul_self_rankOneProj (a : Matrix κ ι ℂ) (u : ι → ℂ) :
     (a * rankOneProj u)ᴴ * (a * rankOneProj u)
       = ((eucNormSq (a *ᵥ u) : ℝ) : ℂ) • rankOneProj u := by
   rw [mul_rankOneProj, conjTranspose_vecMulVec, star_star,
@@ -69,15 +69,16 @@ theorem conjTranspose_mul_self_rankOneProj (a : Matrix ι ι ℂ) (u : ι → �
   rw [hdot, vecMulVec_smul_right]
   rfl
 
-theorem trace_conjTranspose_mul_self_rankOneProj (a : Matrix ι ι ℂ) {u : ι → ℂ}
+theorem trace_conjTranspose_mul_self_rankOneProj (a : Matrix κ ι ℂ) {u : ι → ℂ}
     (hu : u ∈ unitVectors ι) :
     ((a * rankOneProj u)ᴴ * (a * rankOneProj u)).trace
       = ((eucNormSq (a *ᵥ u) : ℝ) : ℂ) := by
   rw [conjTranspose_mul_self_rankOneProj, Matrix.trace_smul, trace_rankOneProj hu,
     smul_eq_mul, mul_one]
 
+omit [Fintype κ] in
 /-- `(A P)(A P)ᴴ` is the rank-one projection on `A u`. -/
-theorem mul_rankOneProj_mul_conjTranspose (a : Matrix ι ι ℂ) {u : ι → ℂ}
+theorem mul_rankOneProj_mul_conjTranspose (a : Matrix κ ι ℂ) {u : ι → ℂ}
     (hu : u ∈ unitVectors ι) :
     (a * rankOneProj u) * (a * rankOneProj u)ᴴ = rankOneProj (a *ᵥ u) := by
   have hH : (rankOneProj u)ᴴ = rankOneProj u :=
@@ -118,18 +119,18 @@ theorem inv_sqrt_sq_eq {c : ℝ} (hc : 0 < c) :
 
 section LineIntert
 
-variable {Y : Type} [TopologicalSpace Y] {ι : Type} [Fintype ι]
+variable {Y : Type} [TopologicalSpace Y] {ι κ : Type} [Fintype ι] [Fintype κ]
 
 /-- The Hilbert-Schmidt norm of `A y * p y`, a continuous real scalar. -/
-noncomputable def intertScale (A : Y → Matrix ι ι ℂ) (p : Bundle Y ι) (y : Y) : ℝ :=
+noncomputable def intertScale (A : Y → Matrix κ ι ℂ) (p : Bundle Y ι) (y : Y) : ℝ :=
   Real.sqrt ((((A y * p y)ᴴ * (A y * p y)).trace).re)
 
 /-- The normalised intertwiner. -/
-noncomputable def lineIntertHom (A : Y → Matrix ι ι ℂ) (p : Bundle Y ι) (y : Y) :
-    Matrix ι ι ℂ :=
+noncomputable def lineIntertHom (A : Y → Matrix κ ι ℂ) (p : Bundle Y ι) (y : Y) :
+    Matrix κ ι ℂ :=
   ((intertScale A p y : ℝ) : ℂ)⁻¹ • (A y * p y)
 
-variable {A : Y → Matrix ι ι ℂ} {p q : Bundle Y ι}
+variable {A : Y → Matrix κ ι ℂ} {p : Bundle Y ι} {q : Bundle Y κ}
 
 theorem intertScale_eq (y : Y) {u : ι → ℂ}
     (hu : u ∈ unitVectors ι) (hpu : p y = rankOneProj u) :
@@ -176,8 +177,9 @@ of `p` into the fibre of `q` without killing it.  The implementer is `A * p`
 normalised by its Hilbert-Schmidt norm, so the only square root taken anywhere
 is that of a positive real, which is continuous.  At general rank the same
 statement needs a continuous polar decomposition and is not available. -/
-noncomputable def lineIntertIso (A : Y → Matrix ι ι ℂ) (hA : Continuous A)
-    (p q : Bundle Y ι) (hp : ∀ y, (p y).trace = 1) (hq : ∀ y, (q y).trace = 1)
+noncomputable def lineIntertIso (A : Y → Matrix κ ι ℂ) (hA : Continuous A)
+    (p : Bundle Y ι) (q : Bundle Y κ) (hp : ∀ y, (p y).trace = 1)
+    (hq : ∀ y, (q y).trace = 1)
     (hfix : ∀ (y : Y) (v : ι → ℂ), p y *ᵥ v = v → q y *ᵥ (A y *ᵥ v) = A y *ᵥ v)
     (hne : ∀ (y : Y) (v : ι → ℂ), p y *ᵥ v = v → v ≠ 0 → A y *ᵥ v ≠ 0) :
     BundleIso p q where
@@ -205,8 +207,8 @@ noncomputable def lineIntertIso (A : Y → Matrix ι ι ℂ) (hA : Continuous A)
       (hne y u hfibre (ne_zero_of_eucNormSq_eq_one hu))
       (q.isStarProjection y) (hq y) (hfix y u hfibre)
 
-theorem lineIntertIso_hom (A : Y → Matrix ι ι ℂ) (hA : Continuous A) (p q : Bundle Y ι)
-    (hp : ∀ y, (p y).trace = 1) (hq : ∀ y, (q y).trace = 1)
+theorem lineIntertIso_hom (A : Y → Matrix κ ι ℂ) (hA : Continuous A) (p : Bundle Y ι)
+    (q : Bundle Y κ) (hp : ∀ y, (p y).trace = 1) (hq : ∀ y, (q y).trace = 1)
     (hfix : ∀ (y : Y) (v : ι → ℂ), p y *ᵥ v = v → q y *ᵥ (A y *ᵥ v) = A y *ᵥ v)
     (hne : ∀ (y : Y) (v : ι → ℂ), p y *ᵥ v = v → v ≠ 0 → A y *ᵥ v ≠ 0) (y : Y) :
     (lineIntertIso A hA p q hp hq hfix hne).hom y
