@@ -70,12 +70,32 @@ proved they become `exists_simple_unital_not_k1Inj` and `not_problemLIX` with
 `#audit_closed_axioms`.  No statement changes at either step, only which
 arguments are supplied.
 
-**Separability** is queued: `cs-stages`' per-stage instance is green (2978) and
-waits on `cs-limit` lifting it to `SeparableSpace LIX.LIXLimit`.  It lands as a
-separate strictly stronger theorem, never a fourth conjunct — the answer should
-carry exactly the hypotheses STW's problem names, and separability is not one
-of them, though it is what makes the answer sharp, since that is the class the
-injectivity question lives in.
+**Separability landed** (`ff860a054`, 8706 jobs), as a separate strictly
+stronger theorem and never a fourth conjunct:
+
+```lean
+theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data … :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
+```
+
+STW's Problem LIX names four things and `exists_simple_unital_not_k1Inj`
+carries exactly those, so a reader sees the question and nothing else.
+Separability is not part of the question and is what makes the answer *sharp*:
+STW cite Villadsen for simple **separable** unital nuclear examples defeating
+the surjectivity analogue, so that is the class the injectivity question lives
+in, and a counterexample needing nonseparability would be weaker than it looks.
+Beside rather than inside keeps both readings available and neither loaded.
+
+**Why every gate here is `#audit_axioms` and not `#audit_closed_axioms`.**
+Every declaration in the file currently has a leading input, so the closed gate
+would reject all of them *by design* — nothing advertises itself as closed
+while the chain still has a hypothesis.  When `cs-clutching`'s arrow lands and
+Lemma 2 is proved, the two final theorems become closed and take
+`#audit_closed_axioms`.  That is precisely the distinction the closed gate
+exists to enforce, and this campaign has already produced the failure it
+catches: a forward reference made Lean fill a proof with `sorryAx`, and the
+gate refused it while the two theorems it was built from both reported clean.
 
 ### The two verifications the brief asked for
 
