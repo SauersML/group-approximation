@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 34 modules; `BundleChartTaut` at 8675 jobs; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 35 modules; `BundleTotalOver` at 2970 jobs; `BundleChartTaut` at 8675 jobs; `BundleProjInclRange` at 2977 jobs; `BundleSplitCover` at 8675 jobs; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,26 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleTotalOver.lean` — the total space over an open set, as a SUBSET
+
+```lean
+def totalOverSet (p : Bundle X ι) (U : Set X) : Set (Total p) := (totalPi p) ⁻¹' U
+theorem isOpen_totalOverSet (p) (hU : IsOpen U) : IsOpen (totalOverSet p U)
+def totalInclOn (p) (U) : C(Total (p.restrictTo U), Total p)
+theorem totalInclOn_injective
+noncomputable def totalOverHomeo (p) (U) : Total (p.restrictTo U) ≃ₜ ↥(totalOverSet p U)
+theorem totalOverHomeo_over_base                                          -- `rfl`
+theorem totalInclOn_mem_puncturedSet_iff / totalInclOn_preimage_puncturedSet
+```
+
+The total-space twin of `BundleProjOver`.  **Presenting it as an OPEN subset,
+not as the image of an injective map, is the point**: excision applies to an
+open subspace, not to a map that happens to be injective.
+
+Injectivity on relative cohomology is **not** here and is not this lane's:
+there is no cohomology anywhere in `Bundle*`, and importing it would invert the
+dependency direction.  What this supplies is the point-set input excision wants.
 
 ### `BundleChartTaut.lean` — the chart carries the tautological line, at EVERY rank
 
