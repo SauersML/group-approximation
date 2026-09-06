@@ -57,8 +57,12 @@ limit, simplicity, and the reduction of the printed problem to a single unitary
    green: `paddedPath` (the `hdiag` mathematics) and
    `LIX.hasGeneratorShape_climb`, stated over `lixTower.climb` so that
    `climbHom_apply` makes the join definitional and no transport lemma appears
-   anywhere.  What remains is the `M₂(M₂(C(X))) ≅ M₄(C(X))` flattening and the
-   generalised Corollary 4.
+   anywhere.  What remains is `hdiag` and the generalised Corollary 4.  The
+   `M₂(M₂(A)) ≅ M₄(A)` flattening is **not** outstanding: `cs-limit` landed it
+   as `LIX.flattenTwoTwo : CStarMat 2 (CStarMat 2 A) ≃⋆ₐ[ℂ] CStarMat 4 A`
+   (`Analysis/LIXLimitMatrixFlatten.lean:83`, 3000 jobs), a star-algebra
+   equivalence with `matrixComp_star` proved and `U₀` transport **both ways**,
+   which settles the direction question I raised and could not settle.
 
    **Their Lemma 6 is an equality, not a homotopy, and that is a strengthening
    rather than a convenience.**  `connect`'s new block is constant in the `S⁴`
@@ -632,6 +636,14 @@ plus two `#audit_closed_axioms` lines.
   `ProblemLIX.lean:298`, and only then read `Build completed successfully
   (8706 jobs)` as mine.  A job count alone would not have distinguished the two
   runs, because adding one theorem to an existing module changes no job count.
+* **"I checked an hour ago" is not a check, in a tree five lanes commit to.**
+  Asked whether the `M₂(M₂) ≅ M₄` flattening existed, I searched, found nothing,
+  and said so — correctly, at the time.  Later I thanked `cs-clutching` for
+  building it as a `StarAlgEquiv`, endorsing a duplicate: `cs-limit` had landed
+  exactly that at 21:40, and had even told me they were sending `cs-clutching`
+  the pieces.  The first answer was right; the endorsement was not, and nothing
+  about the first licensed the second.  **Re-run the search before encouraging
+  work, not only before answering a question.**
 * **A correct diagnosis can still carry a wrong fix, and this one did.**  My
   reading of `CStarSimple.lean:64` was right — `map_mem_closure` was solving
   `f x =?= a * b` with the first-order splitting `f := (a * ·)`, contradicting
