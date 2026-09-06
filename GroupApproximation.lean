@@ -3741,6 +3741,8 @@ import GroupApproximation.CharClass.ChernSplitFactor
 import GroupApproximation.CharClass.CupVanishCover
 import GroupApproximation.CharClass.CohomologyLHRingInj
 import GroupApproximation.CharClass.CohomologyLHRingSurj
+import GroupApproximation.CharClass.CohomologyLHRingData
+import GroupApproximation.CharClass.CupVanishIterate
 import GroupApproximation.CharClass.CupVanishSub
 import GroupApproximation.CharClass.BundleTotalOn
 import GroupApproximation.CharClass.BundleSplitCover
