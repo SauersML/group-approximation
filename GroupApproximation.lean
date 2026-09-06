@@ -3611,6 +3611,7 @@ import GroupApproximation.CharClass.LerayHirschDiagCover
 import GroupApproximation.CharClass.LerayHirschPlusOne
 import GroupApproximation.CharClass.ProjectiveSpaceRingGysin
 import GroupApproximation.CharClass.BundleReindex
+import GroupApproximation.CharClass.ThomSphereSubspace
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
