@@ -23,8 +23,10 @@ supplies.  Supplying it here closes the `absEquiv` field of `ThomChainData`.
 
 `HasTopLine.line` concludes a `Nonempty` of the linear equivalence, while
 `ThomChainData.absEquiv` is a *data* field.  So the bridge is `Nonempty.some`, and this
-is the only place in the lane where `Classical.choice` is used.  That is harmless: the
-field is used only through `topChernClass_ne_zero_of_chain`, whose conclusion is a `Prop`.
+is the only place in the lane where `Classical.choice` is used.  It is harmless *here*,
+because the field is reached only through `topChernClass_ne_zero_of_chain`, whose
+conclusion is a `Prop` — but that is a property of the current consumer, not of the
+interface, so `cc-thom` is publishing a `Nonempty`-taking variant and this will move to it.
 
 ## What is left after this file
 
@@ -57,9 +59,21 @@ variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
 
 /-! ## 1. The model homeomorphism, at the vendored type -/
 
-/-- **This lane's five-sphere is the vendored `Sphere 5`.**  `Sphere n` is a reducible
-abbreviation for `↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n+1))) 1)`, which at `n = 5`
-is the target of `unitVectorsThreeHomeo` on the nose, so there is nothing to prove. -/
+/-- **`unitVectorsThreeHomeo`, restated at the vendored index.**
+
+Read the claim narrowly.  What is free is the *index*: `Sphere n` is a reducible
+abbreviation for `↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n+1))) 1)`, and `5 + 1` and
+`6` are the same literal, so the target of `unitVectorsThreeHomeo` already **is** `Sphere
+5` and this restatement is `rfl`.
+
+What is **not** free is the homeomorphism itself, and the two five-spheres are **not**
+definitionally equal.  `unitVectors n` is a subset of the plain function type `n → ℂ` with
+its Pi norm, while `EuclideanSpace ℝ (Fin 6)` is `WithLp 2 (Fin 6 → ℝ)`, and at this pin
+`WithLp` is a one-field *structure* over a real function type in six coordinates.  The map
+between them is the 153 lines of `CharClass/LIXStepESphereModel.lean`: a norm identity in
+three complex coordinates, two round trips, and continuity in both directions across the
+`WithLp` seam.  Anyone reading this as "the models agree, so use `rfl`" will get an
+elaboration failure that does not look like a type mismatch. -/
 def unitVectorsThreeHomeoSphere : ↥(unitVectors (Fin 3)) ≃ₜ Sphere 5 :=
   unitVectorsThreeHomeo
 
