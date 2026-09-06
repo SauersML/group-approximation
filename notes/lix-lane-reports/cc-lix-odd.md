@@ -2,110 +2,172 @@
 
 Owns `GroupApproximation/CharClass/MappingTorus*.lean`,
 `GroupApproximation/CharClass/LIXSection*.lean`,
-`GroupApproximation/CharClass/LemmaTwo*.lean`; namespace `GroupApproximation.CharClass`.
+`GroupApproximation/CharClass/LemmaTwo*.lean`, plus (per the lead's continuation
+briefing) the two never-verified section modules
+`GroupApproximation/AlgTop/{ManuscriptSectionZeroCount,CPTautologicalSection}.lean`
+and their transitive dependency `AlgTop/ComplexProjectiveBasic.lean`, now repaired
+in place. Namespace `GroupApproximation.CharClass` (`GroupApproximation.AlgTop` for
+the two AlgTop files).
 
 ## 1. GREEN
 
 *(job counts appear here only after a probe prints `Build completed successfully (N jobs)`
 with a `Built …` line for the module.)*
 
+| module | job count | content |
+|---|---|---|
+| `CharClass/MappingTorusProjection.lean` | 8662 | `IsCornerUnitary`, `cornerExtend`, `mtSym`/`mtProj` (clutched projection), `mtTrans`, `IsCircleChart`, `sphereOne`/`northPole`/`southPole`, `mappingTorus` = `W_g`, `mappingTorus_isStarProjection`, `mappingTorus_continuous`, `mappingTorus_north` (`V ⊕ 0` on the nose), `mappingTorus_south`, `trace_mappingTorus` |
+| `CharClass/MappingTorusSection.lean` | 8662 | `mappingTorus_eq` (block normal form), `IsMTSectionData`, `mtSection`, `mtSection_continuous`, `mtSection_mem`, `mtSection_eq_zero_iff`, `mtSection_eq_zero_iff_of_north_ne_zero` |
+| `CharClass/LIXSectionPath.lean` | 8662 | `unitVectors_seam_eq_zero_iff`, `manuscriptPath`/`southParam`, `isMTSectionData_manuscript` (the manuscript's pair descends, seam = `g e = s`), `manuscriptPath_eq_zero_iff_split` |
+| `AlgTop/ManuscriptSectionZeroCount.lean` | 8662 | `productDualTautSection_eq_zero_iff`, `manuscriptSection_eq_zero_iff`/`_zero_unique`/`_zero_exists` — repaired: two `basePoint_entry_of_*_ne_zero` proofs and an `hne` cast lemma in the sibling `CPTautologicalSection.lean` |
+| `AlgTop/CPTautologicalSection.lean` | 8662 | `dualTautSection_eq_zero_iff`, `tautChartHomotopy_eq_zero_iff` (mod-2 transversality) — repaired |
+| `AlgTop/ComplexProjectiveBasic.lean` | 8662 | one unused-simp-arg fix (`baseVec_apply_of_ne`); this file blocked `cc-thom`/`cc-projective` too (see their reports) and is now green |
+| `CharClass/LemmaTwoZero.lean` | 8658 | **Step C, transported.** `blockNorth`/`blockSouth` (the manuscript's pair in block-split form), `sumElim_eq_zero_iff'`/`continuous_sumElim_left'`/`continuous_sumElim_right'` (mixed-type `ι ⊕ κ` analogues of `MappingTorusSection`'s same-type `n ⊕ n` lemmas), `isMTSectionData_blockSplit`, `height_eq_neg_one_of_horiz_eq_zero`, **`mtSection_manuscript_eq_zero_iff`**: the transported section vanishes iff the circle point is the south pole and `b = -a`, `c = 0` at the base point |
+
+Six commits: `256bca90b`, `c9de38ba0`, `addd8ebc6` (see git log for the intermediate
+fix commits folded into the first of these).
+
 ## 2. AUTHORED, UNVERIFIED
 
-* `CharClass/MappingTorusProjection.lean` — `IsCornerUnitary`, `cornerExtend`,
-  `mtSym`/`mtProj` (clutched projection), `mtTrans` (transition matrix), `IsCircleChart`,
-  `sphereOne` with `northPole`/`southPole`, `mappingTorus` = `W_g`, with
-  `mappingTorus_isStarProjection`, `mappingTorus_continuous`, `mappingTorus_north`
-  (`W_g` on the north-pole slice is `V ⊕ 0` **on the nose**), `mappingTorus_south`,
-  `trace_mappingTorus` (`rank W_g = rank V`).
-* `CharClass/MappingTorusSection.lean` — `mappingTorus_eq` (block normal form),
-  `IsMTSectionData`, `mtSection`, `mtSection_continuous`, `mtSection_mem`,
-  `mtSection_eq_zero_iff`, `mtSection_eq_zero_iff_of_north_ne_zero`.
+* `CharClass/LemmaTwoUnitary.lean` — `cornerExtend_mulVec_eq` is **verified green
+  standalone** (checked in isolation against `LemmaTwoZero`'s dependency tree,
+  8659 jobs, then folded back in). `exists_isCornerUnitary_of_stepA` wires
+  `cs-clutching`'s `STW59.exists_continuous_corner_unitary_apply_eq`
+  (`Analysis/LIXObstructionComplementUnitary.lean`) into `cornerExtend`/
+  `isCornerUnitary_cornerExtend`, discharging `mappingTorus`'s `IsCornerUnitary`
+  hypothesis directly from a continuous Murray–von Neumann equivalence of
+  complements. **Cannot be probed**: its only non-Mathlib import,
+  `LIXObstructionComplementUnitary.lean`, is itself red at the pin (see TRAPS).
+  Not a `sorry`/`axiom`; it is a real proof blocked on a real dependency.
 
-## 3. NEEDS (signatures wanted from peers)
+## 3. NEEDS
 
-### From `cc-thom` (Step C consumer side)
+### From `cs-clutching` — Step A (UPDATE: mostly resolved, one file still red)
 
-I can deliver the odd side in the following shape, and **not** in a shape that requires a
-derivative or an orientation.  Please state the Thom/Euler interface so that it consumes:
+**Resolved, exactly as asked.** `Analysis/LIXObstructionComplementUnitary.lean`
+now has `STW59.exists_continuous_corner_unitary_apply_eq`, matching my prior
+request almost verbatim (its own docstring says so): a continuous field `V`, unit
+vector fields `e, s` fixed by `V`, and a continuous field of partial isometries
+`w₁` implementing the equivalence of the complements (via the `colAt` column
+embedding) ⇒ a continuous corner unitary `g` with `g *ᵥ e = s`. `CharClass/
+LemmaTwoUnitary.lean`'s `exists_isCornerUnitary_of_stepA` consumes it directly.
 
-```lean
--- `N` a compact space, `W : N → Matrix (n ⊕ n) (n ⊕ n) ℂ` a continuous projection-valued
--- map of constant trace `r`, `S : N → (n ⊕ n) → ℂ` continuous with `W z *ᵥ S z = S z`.
--- (a) exactly one zero:
---        ∃! z₀, S z₀ = 0
--- (b) a local model at that zero: a homeomorphism `φ` of a neighbourhood `U ∋ z₀` onto an
---     open `Ω ∋ 0` in `ℂ^r` (equivalently `ℝ^{2r}`) and a homotopy
---        H : [0,1] × Ω → ℂ^r,  H 0 = (S read in a local trivialisation of W over U),
---        H 1 = a linear isomorphism,  ∀ τ w, H τ w = 0 ↔ w = 0
--- ⊢ γ_r(W) ≠ 0.
-```
+**Blocking**: `LIXObstructionComplementUnitary.lean` is currently **red** —
+`colAt_apply`'s proof (`Matrix.vecMulVec_apply v (Pi.single k0 1) i j`) fails with
+a type mismatch at line 295, and every downstream use of `colAt_apply` then fails
+with "unknown identifier" (11 occurrences), cascading into unsolved goals in
+`colAt_conjTranspose`, `colAt_mul_colAt_conjTranspose`,
+`colAt_conjTranspose_mul_colAt_of_normSq_one`, `colAt_pi_of_normSq_one`,
+`vecMulVec_mul_of_selfAdjoint_of_mulVec_eq`, `colAt_injective`, and finally two
+`rewrite` failures inside `exists_continuous_corner_unitary_apply_eq` itself
+(lines 417, 438 as of this report — the exact line numbers moved between my two
+probes today, so the file is being actively edited; last probe still red).
+**This is `cs-clutching`'s file, not touched.** Once it is green, probe
+`CharClass.LemmaTwoUnitary` — I expect it to go green on the first try, since the
+interface match was checked by eye against the current (red) source.
 
-The homotopy form (b) is the one the paused fleet's `AlgTop/CPTautologicalSection.lean`
-already produces for the `ℂP` factors (`tautChartHomotopy_eq_zero_iff`), and it is the one
-a **mod-2** local index consumes: no derivative, no sign, no orientation.  If `cc-thom`
-insists on `HasStrictFDerivAt` + `HasStrictFDerivAt.toPartialHomeomorph`, say so in your
-report and I will differentiate the chart formulas instead; but the extra work is real
-(`Real.arccos`, `Real.sqrt` of `1 - ‖w‖²`, and the affine `ℂP` charts all have to be
-differentiated) and it buys nothing mod 2.
+### From `cc-thom` / the toolkit lanes — Step C's odd-side nonvanishing
 
-### From `cs-clutching` (Step A)
+`cc-thom`'s `topChernClass_ne_zero` (`CharClass/EulerLocalNonvanishing.lean`,
+green, 2911 jobs) needs a `CohomologyToolkit` instance plus relative-cohomology
+exactness/excision/homeomorphism-invariance/a one-dimensional local generator —
+still awaiting, by cc-thom's own report: (A1)/(A2) Mayer–Vietoris and Künneth
+vanishing from `cc-cohom-api`; (B3)/(B4)/(B6) excision, pair-homeomorphism
+invariance, and the local generator from `cc-relative`; (C1)–(C4) the projective-
+bundle pair and trivializing charts from `cc-bundle`; (D1)/(D2)/(D3)/(D5) Leray–
+Hirsch, `CP^d` cohomology, and the puncture-homotopy-equivalence from
+`cc-projective`. None of this is close enough to assemble yet. My own
+contribution to Step C — the *combinatorial* content ("exactly one zero, at an
+explicit point, with an explicit local chart") — is fully delivered in
+`LemmaTwoZero.lean` and `AlgTop/{ManuscriptSectionZeroCount,CPTautologicalSection}
+.lean`; what remains is purely the cohomological machinery that turns "one zero,
+local homeomorphism" into "class nonzero," which is not this lane's vocabulary
+to build (it is items 1–5 of the program note's §1.4, owned by five other lanes).
 
-```lean
--- over `M`, `V` a continuous projection-valued map, `e s : M → ℂ^K` continuous unit
--- sections of `V` (`V m *ᵥ e m = e m`, `‖e m‖ = 1`, likewise `s`), and
---   MurrayVonNeumannEquiv (complement of e in V) (complement of s in V)
--- ⊢ ∃ g : M → Matrix (Fin K) (Fin K) ℂ, Continuous g ∧
---     (∀ m, g m * V m = g m) ∧ (∀ m, V m * g m = g m) ∧
---     (∀ m, (g m)ᴴ * g m = V m) ∧ (∀ m, g m * (g m)ᴴ = V m) ∧
---     (∀ m, g m *ᵥ e m = s m)
-```
+### From `cc-wu` — Step D's even-side vanishing
 
-**Direction check (done, recorded here).**  My mapping torus glues the southern field to
-the northern one by `η = G *ᵥ ξ` at `y = 1`.  With the northern field constant `= e` and
-the southern field the manuscript's path from `e` (at `y = -1`) to `s` (at `y = 1`), the
-descent condition is `G *ᵥ e = s`, i.e. **the manuscript's own `g e = s`**.  No adjoint is
-needed anywhere.  If Step A delivers `g` with `g s = e` instead, I instantiate with `gᴴ`.
+No `cc-wu` lane report file exists yet (`notes/lix-lane-reports/` has none named
+`cc-wu.md`). `CharClass/{ParityEven,ParityEventSlice,WuDiagonal,WuSymmetric}.lean`
+exist and are being actively edited (appeared in nearly every probe's "changed"
+sync list today) but I have not read them in detail; I need the final
+`ParityData`-consuming conclusion `γ_r(W) = 0` for a bundle restricting to `V` on
+the slice, in element form, to state the final assembly.
 
-`cornerExtend V g = g + (1 - V)` turns that `g` into the unitary `G` of the full matrix
-algebra that `mappingTorus` consumes (`isCornerUnitary_cornerExtend`).
+### Assembly, once the above land
 
-### From `cc-wu` (Step D)
-
-I own the instantiation of your `ParityData` from the concrete cohomology of
-`N = S¹ × S⁵ × Y`.  Please keep the interface *element-level* (a type `H` with `+`, `*`,
-a grading predicate or graded pieces, `Sq`, and the listed identities) so it can be fed by
-`cc-cohom-api`'s `cohomologyZMod2` API through explicit ring maps; a bundled
-`GradedAlgebra` would cost me a transport layer.
-
-### From `cs-stages`
-
-`Analysis/LIXBlockProjections.lean`'s `Hproj`/`Eproj` live over `baseX i = S⁴ × Y_i`.
-Lemma 2 needs the **`S⁵`** base.  I define the general-`d` projections over
-`↥sphereFive × ∏ⱼ CP (dd j)` in my own files rather than editing yours; if you want a
-shared `Hproj` over a general base, say so and I will use it.
+The final `LemmaTwoZero.lean`/`LemmaTwoUnitary.lean` pair plus `cc-thom`'s odd
+nonvanishing and `cc-wu`'s even vanishing assemble by direct contradiction:
+Step A (`LemmaTwoUnitary`) turns an assumed `MurrayVonNeumannEquiv` of the
+complements into a corner unitary; Step B (`MappingTorusProjection`) turns it
+into `W_g`; Step C (`LemmaTwoZero` + the toolkit) gives `γ_r(W_g) ≠ 0`; Step D
+(`cc-wu`, applied to `W_g`, which restricts to `V` on the slice by
+`mappingTorus_north`) gives `γ_r(W_g) = 0`. I have not written this final
+contradiction lemma yet because two of its four inputs (odd nonvanishing,
+even vanishing) do not exist in usable form yet; writing the shell now against
+unstable, still-changing peer signatures would need to be rewritten anyway. I
+will write it as soon as either lands in a form I can cite by name.
 
 ## 4. TRAPS
 
-* **The Whitehead path does not descend.**  `h t = diag(G,1) R t diag(Gᴴ,1) (R t)ᵀ` with
-  `R t` the rotation by `π t / 2` is a genuine path from `1` to `diag(G, Gᴴ)`, and
-  `t ↦ h t (V ⊕ 0) (h t)ᴴ` really is a loop (I computed the entries: they are the degree-4
-  monomials in `(cos(π t/2), sin(π t/2))` applied to `V, g, gᴴ, g², (gᴴ)²`, and both ends
-  give `V ⊕ 0`).  But the loop only descends through the quotient `[0,1]/(0∼1)`: the
-  entries are polynomial in `(cos π t, sin π t)`, **not** in `(cos 2π t, sin 2π t)`, and
-  running the rotation over the full circle sends `h` back to `1`, which trivialises
-  `h (V⊕0) hᴴ` outright.  Do not try to reparametrise; clutch instead.
-* **Clutching over the two-point equator is strictly better.**  `S¹ = {y² + t² = 1}` with
-  transition `G` at `y = 1` and `1` at `y = -1`; the transition matrix
-  `f y = if 0 ≤ y then y • G else (-y) • 1` is continuous because both branches vanish at
-  `y = 0`, and `fᴴ f = f fᴴ = (1 - t²) • 1` is exactly the clutching normalisation.  The
-  north-pole slice then gives `V ⊕ 0` **on the nose**, with no Murray--von Neumann
-  transport to carry through Step D.
-* **`Continuous.if_le` needs both branches continuous globally**, not just on their half.
-  So the section must be `W *ᵥ (ξ, 0)` and `W *ᵥ (0, η)` — with no `1/(1+t)` normalisation,
-  which would blow up at the far pole.  The zero analysis still works because the surviving
-  component carries the factor `(1 ± t)/2 ≥ 1/2` on its own half.
-* `Matrix.trace_fromBlocks` does **not** exist at the pin; `trace_fromBlocks'` in
-  `MappingTorusProjection.lean` is a two-line replacement.
-* `WithLp` is a **structure** at this pin, so `EuclideanSpace ℝ (Fin 2)` is not defeq to
-  `Fin 2 → ℝ`; build points with `WithLp.toLp 2 ![a, b]` and read coordinates through the
-  `CoeFun`, with `PiLp.continuous_apply` for continuity.
+* **The Whitehead path does not descend**; clutching over the two-point equator
+  does. (Recorded in full in the previous version of this report; still the
+  right call, and `MappingTorusProjection.lean`'s green build confirms it.)
+* **`MappingTorusSection.lean`'s `Sum.elim`/continuity lemmas (`sumElim_eq_zero_iff`,
+  `continuous_sumElim_left`/`_right`) are specialized to the *doubled* index
+  `n ⊕ n`** that the clutching construction itself produces (north/south copies of
+  the *same* ambient type `n`). They do **not** apply to the *different*-typed
+  split `ι ⊕ κ` (trivial block `⊕` transverse block) that `V = 1³ ⊕ H` actually
+  needs for Lemma 2 — instantiating them there is a silent type-domain mismatch
+  that surfaces as "Type mismatch… `Continuous.{max u_3 ?u.38, u_1}`" with no
+  obvious pointer to the real cause. `LemmaTwoZero.lean` restates mixed-type
+  versions (`sumElim_eq_zero_iff'`, `continuous_sumElim_left'`/`_right'`) rather
+  than trying to force the same-type ones; do this again for any future ambient
+  splitting into differently-typed blocks.
+* **A bare `0` on one side of an `=` inside a hypothesis needs its own type
+  ascription even when the other side already pins the ambient ring.**
+  `Sum.elim (0 : ι → ℂ) (c m) = Sum.elim 0 (c m)` (RHS unannotated) fails with
+  "numerals are data in Lean, but the expected type is universe polymorphic and
+  may be a proposition" — annotate both sides.
+* **`omit [...] in` must precede the docstring, not follow it** (already in
+  memory as `omit-and-rw-placement-traps.md`; re-confirmed twice today —
+  `/-- doc -/\nomit [...] in\ntheorem …` is a parse error, "unexpected token
+  'omit'; expected 'lemma'"; the correct order is `omit [...] in\n/-- doc -/\ntheorem …`).
+* **Do not omit a typeclass instance just because a *later*, simpler-looking
+  lemma in the same file does not need it.** `blockSouth_eq_zero_iff`'s
+  *statement* needs `Fintype ι`/`Fintype κ`/`DecidableEq ι`/`DecidableEq κ`
+  (transitively, because `manuscriptPath`'s ambient index is `ι ⊕ κ`), even
+  though the sibling `blockNorth_eq_zero_iff` (built from my own
+  `sumElim_eq_zero_iff'`, which needs no Fintype at all) does not. Trust the
+  linter's *specific* list per theorem, not a pattern copied from a neighbour.
+* `Complex.norm_real : ‖(↑r : ℂ)‖ = ‖r‖` lands you in the **real** norm, not
+  `|r|` directly — `Real.norm_eq_abs` is a second, separate rewrite that must be
+  in the same `simp only` list as `sq_abs`, or `sq_abs` silently reports
+  "unused" and the goal is left with `‖1 - τ‖ ^ 2` instead of `(1 - τ) ^ 2`.
+* **A term-mode combinator chain (`(h1.add h2).add h3`) can fail to unify
+  against a goal that needs the SAME arithmetic expression unfolded from a
+  different `def`** (here, `manuscriptPath_apply`), even though the two sides
+  are genuinely defeq — the safe pattern is `simp only [manuscriptPath_apply]`
+  (or whatever the unfolding lemma is) **first**, then `refine Continuous.add
+  (Continuous.add ?_ ?_) ?_` goal-directed, never a bottom-up term.
+  `southParam`'s own continuity needed `unfold southParam` before
+  `Continuous.div_const`, same root cause.
+* `Complex.ofReal_ne_zero : (z : ℂ) ≠ 0 ↔ z ≠ 0` exists at this pin
+  (`Mathlib/Data/Complex/Basic.lean:140`); prefer it over `simpa using ne_of_gt …`
+  for casting a real strict-positivity fact to a complex nonvanishing fact — the
+  `simpa` route can leave a real/complex type mismatch depending on how eagerly
+  the default simp set distributes the outer cast through `+`/`-`/`*` inside the
+  hypothesis versus the goal.
+* `AlgTop/ComplexProjectiveBasic.lean`'s `basePoint_entry_of_row_ne_zero`/
+  `_of_col_ne_zero` were provable in one `rw` chain via
+  `basePoint_entry, baseVec_apply_of_ne, {zero_mul, star_zero, mul_zero}` —
+  the original `simp [Pi.single_apply, ha]` failed because `baseVec` is a plain
+  `def` (`Pi.single 0 1`), not reducible/simp-unfoldable, so `Pi.single_apply`
+  never got the chance to fire on it.
+* **`LIXObstructionComplementUnitary.lean` (`cs-clutching`) is genuinely red at
+  the pin right now**, not merely "never probed" as the program note said this
+  morning — it has been under heavy concurrent edit all day (present in nearly
+  every one of my probes' "N module(s) changed since last sync" lists) and the
+  break has moved between probes (line 295 → later, line 417 → 438). Do not
+  build against it without re-probing first; it only imports `Mathlib` and
+  `Analysis/LIXClutching.lean`, so it is otherwise a safe, self-contained import
+  once fixed.
