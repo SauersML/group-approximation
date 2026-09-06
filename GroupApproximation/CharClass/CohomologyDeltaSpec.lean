@@ -21,8 +21,12 @@ dual of the small-chain complex is ever needed.
 
 * `MVDelta.eltSub`, `MVDelta.eltU`, `MVDelta.eltV`, `MVDelta.eltAmb` — cochains as
   elements of the three terms.
-* `MVDelta.g_eltU`, `MVDelta.g_eltV`, `MVDelta.f_eltAmb` — the two maps on them.
-* `MVDelta.mvDelta_spec` — the characterisation.
+* `MVDelta.g_eltU`, `MVDelta.g_eltV` — the second map on them.
+* `MVDelta.projU_f_eltAmb`, `MVDelta.projV_f_eltAmb` — the first map, followed by
+  either component projection, on the restriction of a global cochain.
+
+`MVDelta.mvDelta_spec`, the characterisation these feed, is in
+`CohomologyDeltaValue.lean`.
 -/
 
 open CategoryTheory Limits TopologicalSpace
