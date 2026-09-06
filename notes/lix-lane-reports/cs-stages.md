@@ -3,34 +3,129 @@
 Owns `Analysis/LIXBlockProjections.lean`, `Analysis/LIXCornerAlgebra.lean`,
 `Analysis/LIXStageAlgebra*.lean`, `Analysis/LIXConnectingMap*.lean`.
 
-Written by the Opus lane after its third probe (2026-09-05, ~19:00 CDT).  While the lane
-was out, the lead handed the four files to `cs-stages-s`; from that point this lane is a
-reviewer and does not edit them.  Everything below is measured, not expected.
+**Status as of this report: all five owned modules are green.**  This report supersedes the
+earlier draft below the fold (kept for its vocabulary tables and traps, both still accurate).
 
 ## 1. GREEN
 
-| module | evidence |
-|---|---|
-| `Analysis/LIXBlockProjections` | `Build completed successfully (2966 jobs)`, `ERROR_LINES=0`, `PROBE GREEN`, `✔ Built … LIXBlockProjections (13s)` — built, not replayed. Commit bfc4fce7f. |
-| `Analysis/LIXCornerAlgebra` | `Build completed successfully (2975 jobs)`, `ERROR_LINES=0`, `PROBE GREEN`, `✔ Built … LIXCornerAlgebra (13s)`. Commit c598f543c. |
-| `Analysis/LIXConnectingMapPoints` | same run, `✔ Built … LIXConnectingMapPoints (9.3s)`. Commit c598f543c. |
+**`Build completed successfully (2977 jobs)`**, probe targets
 
-The two counts differ only because the target sets differ: 2966 for the block file alone,
-2975 for the three together.  No `sorry`, `admit`, `axiom` or `opaque`; no warnings, under
+```
+GroupApproximation.Analysis.LIXBlockProjections
+GroupApproximation.Analysis.LIXCornerAlgebra
+GroupApproximation.Analysis.LIXStageAlgebra
+GroupApproximation.Analysis.LIXConnectingMapPoints
+GroupApproximation.Analysis.LIXConnectingMap
+```
+
+with `ERROR_LINES=0` and `✔ [2977/2977] Built GroupApproximation.Analysis.LIXConnectingMap
+(12s)` — genuinely built in this probe, not replayed.  Landed at `451a97231` (this session's
+`LIXStageAlgebra` additions and the new `LIXConnectingMap.lean`) on top of `3e640942b` /
+`bfc4fce7f` / `c598f543c` (`LIXBlockProjections`, `LIXCornerAlgebra`,
+`LIXConnectingMapPoints`, landed earlier in the shared tree by the parallel `cs-stages`
+session — same lane, same ownership, no conflict).  No `sorry`/`admit`/`axiom`/`opaque`;
 `-DwarningAsError=true`.
+
+### The connecting map, as delivered
+
+```lean
+-- Analysis/LIXConnectingMap.lean
+STW59.connect (i : ℕ) : StageAlgebra i →⋆ₐ[ℂ] StageAlgebra (i + 1)
+STW59.connect_injective (i : ℕ) : Function.Injective (connect i)
+STW59.connect_apply (i : ℕ) (a : StageAlgebra i) : connect i a = connectFun i a  -- @[simp], rfl
+```
+
+This is exactly `cs-limit`'s NEEDS (`notes/lix-lane-reports/cs-limit.md` §3): unital by
+construction (`StarAlgHom`), injective, and `CStarTower.ofInjective connect connect_injective`
+should build directly against it.  `connect_apply` being `rfl` is deliberate and load-bearing
+(a downstream peer flagged this): it lets `stageEval (i+1) w (connect i b)` unfold
+definitionally to `matEval w (connectMatrix i (toFunctionMatrix ↑b))`, which the fullness
+argument below needs.
+
+Also delivered, all in the `STW59` namespace:
+
+```lean
+Nontrivial (STW59.StageAlgebra i)              -- instance, all i, not just i = 0
+STW59.toFunctionMatrix_mem_corner {i} (a : StageAlgebra i) :
+    Eproj i * toFunctionMatrix ↑a * Eproj i = toFunctionMatrix ↑a
+STW59.stageFrame, .stageFrame_isometry, .stageFrame_mul_conjTranspose
+STW59.compressMat, .compressMat_add/_smul/_mul/_Eproj/_conjTranspose
+STW59.connectMatrix, .connectMatrix_add/_smul/_mul/_Eproj/_conjTranspose
+STW59.eproj_mul_connectMatrix_mul_eproj      -- the membership lemma
+STW59.connectFun, .connectFun_one/_mul/_add/_smul/_star/_injective
+STW59.pullMat_injective_of_surjective         -- generic; injectivity's engine
+```
+
+`STW59.StageAlgebra i` continues to satisfy exactly the NEEDS recorded by `cs-limit`:
+`Type` (not `Type*`), `CStarAlgebra` instance, and now `Nontrivial` for every stage rather
+than only stage `0`.
 
 ## 2. AUTHORED, UNVERIFIED
 
-| module | state |
-|---|---|
-| `Analysis/LIXStageAlgebra` | owned by `cs-stages-s` since the 20:10 roster; `A_i` as a unital C⋆-algebra, `stageEval`, `toFunctionMatrix` |
-| `Analysis/LIXConnectingMap` | `cs-stages-s`, 404 lines, no `sorry`, `connect` and `connect_injective` complete; reviewed by this lane against the draft, architecture correct |
-| the fullness theorem | drafted at `/private/tmp/claude-501/-Users-user-nonsofic-existence/0d670c23-df04-42d0-9de1-e659ef71184e/scratchpad/LIXConnectingMap_draft.lean`, waiting for the files to come back |
+Nothing.  All five owned modules build.
 
-## 3. What is delivered, and the exported vocabulary
+The **fullness input for `cs-simplicity`** (§4 of the earlier draft below) is designed but
+not yet landed in this lane's files: a peer session drafted it against `connect`/`connect_apply`
+while this session was closing out `LIXConnectingMap`, and it is expected back for wiring
+next (composites `φ_{k,i}` are not needed from this lane — `cs-limit`'s
+`CStarTower.climb`/`climbHom` already supplies them generically once `connect` is in hand).
 
-Peers should build against these names.  The index design is what makes the connecting map
-free, so it is spelled out.
+## 3. NEEDS
+
+Nothing blocking.  For whoever wires the fullness theorem next: the recipe already sketched
+(matrix-unit averaging on `Tr(aᴴa) • P = ∑ P E_{st} P · aᴴa · P E_{ts} P`, applied after using
+`connect_apply`'s `rfl` to reduce a fibre value of `connect i b` to `connectMatrix i
+(toFunctionMatrix b)`) needs no positivity hypothesis and should be provable entirely inside
+`Analysis/LIXConnectingMap.lean` or a sibling `LIXConnectingMapFullness.lean`, both owned by
+this lane.
+
+## 4. TRAPS
+
+New, from assembling `connect`:
+
+* **Kronecker/fromBlocks distributivity lemmas run in *both* directions across Mathlib, and
+  guessing wrong compiles as a `rw` pattern-match failure, not a type error.**
+  `Matrix.mul_kronecker_mul : (A*B) ⊗ₖ (A'*B') = A ⊗ₖ A' * B ⊗ₖ B'` — going from a *product of
+  Kronecker terms* to a *Kronecker of products* needs `←`, not the forward direction (the
+  forward direction goes the other way).  `Matrix.fromBlocks_add : fromBlocks A B C D +
+  fromBlocks A' B' C' D' = fromBlocks (A+A') …` is forward-oriented the way its name suggests
+  (sum of blocks → block of sums), but `Matrix.fromBlocks_smul : x • fromBlocks A B C D =
+  fromBlocks (x•A) …` has the smul *outside* on the LHS — so distributing a smul *into* the
+  blocks is the forward direction too, the opposite of what the `add`/`mul_kronecker_mul`
+  pattern would suggest.  Read the actual `:=`-body before choosing `←`; the signature line
+  alone (as returned by a `grep -n` truncated to the `theorem` line) does not show which side
+  states which.
+* **`Matrix.zero_add`/`Matrix.add_zero` do not exist.**  `Matrix`'s additive structure is the
+  generic `AddCommMonoid`, so the cleanup after `fromBlocks_multiply`/`_add` introduces
+  `0 + 0`-shaped cross terms that only the *unprefixed* `zero_add`/`add_zero` close;
+  `Matrix.mul_zero`/`Matrix.zero_mul` (the rectangular-multiplication ones) **do** need the
+  prefix, since those are restated for `HMul` and not derivable from a generic monoid lemma.
+* **Generic `mul_smul_comm`/`smul_mul_assoc` at the *matrix* type can fail to find their
+  instance chain even though the fact is true.**  Asking for `SMulCommClass ℂ (Matrix n n ℂ)
+  (Matrix n n ℂ)` directly is a different (and apparently less reliably found) search than
+  asking for `Matrix.mul_smul`/`Matrix.smul_mul` (`Mathlib/Data/Matrix/Mul.lean`), which are
+  stated with the scalar acting on the *entry* ring (`[DistribMulAction R α]`, `α` = the
+  matrix's entries) rather than on the whole matrix type, and resolve without incident. Prefer
+  the `Matrix.`-namespaced versions over the bare `Algebra`/`Group.Action` ones whenever both
+  sides of a smul-through-multiplication identity are matrices.
+* **`rw`'s automatic trailing `rfl` does not always fire across a `def` unfold.**  Closing a
+  goal of the shape `reindex (…) (block-diagonal literal 1 ⊗ₖ L) = reindex (…) (newBlock i)`
+  (or `ofFunctionMatrix (Eproj (i+1)) = stageProj (i+1)`) needs an explicit trailing `rfl`
+  after the `rw` chain even though the two sides are definitionally equal by unfolding a
+  plain, non-irreducible `def` (`newBlock`, `stageProj`); `rw` did not discharge it on its own.
+* **A bare `ext` after `Matrix.ext`-shaped goals over `C(X, ℂ)`-valued entries recurses one
+  level too far**, additionally invoking `ContinuousMap.ext` and landing on a goal about point
+  values rather than about the matrix entries (`C(X, ℂ)` elements) — which then does not match
+  a hypothesis stated as an equality of the entries themselves.  Use `refine Matrix.ext fun x y
+  => ?_` to stop exactly at the entry level.
+
+Everything from the previous draft (vocabulary tables for `LIXBlockProjections`,
+`LIXStageAlgebra`, `LIXConnectingMapPoints`, and traps 1–6) remains accurate and is kept
+below.
+
+---
+
+## Earlier draft (2026-09-05, ~19:00–20:20 CDT), kept for its vocabulary tables
 
 ### Base spaces and index types (`LIXBlockProjections`, green)
 
@@ -55,14 +150,15 @@ newLine i, newBlock i = 1 ⊗ₖ newLine i       -- L_{i+1}, L_{i+1}^{⊕ r_i}
 exists_frame                                 -- a star projection of trace k over ℂ is s sᴴ
                                              -- for an isometry s : ℂ^k → ℂ^n
 eq_zero_of_trace_conjTranspose_mul_self      -- trace (Aᴴ A) = 0 → A = 0
-Eproj_ne_zero                                -- so Nontrivial (StageAlgebra i)
 blockUnitary i u = fromBlocks u 0 0 (Hproj i)   -- the manuscript's w_i = u ⊕ 1_H, with
    blockUnitary_mem_corner, blockUnitary_star_mul, blockUnitary_mul_star, blockUnitary_one
 HprojY i : Matrix (HIdx i) (HIdx i) C(baseY i, ℂ)   -- H_i over Y_i alone, for Lemma 2
    Hproj_eq_pullMat : Hproj i = pullMat (baseYproj i) (HprojY i)
    isStarProjection_HprojY, trace_HprojY, lineProjY, newLineY, newBlockY, baseYtrunc
 pullMat_comp, pullMat_kronecker, fromBlocks_diag_mul
-pullMat f, constMat X, and their mul/one/star/trace lemmas
+pullMat f, constMat X, and their mul/one/star/add/smul/trace lemmas,
+  pullMat_injective_of_surjective (new: pullback along a surjection is injective)
+reindex_add/_smul/_mul/_conjTranspose (new: `Matrix.reindex e e'` compatibility lemmas)
 Fproj, hopfProj, hopfCol, murrayVonNeumannEquiv_Fproj   -- for cs-clutching, unchanged
 isLocallyConstant_trace
 ```
@@ -76,20 +172,22 @@ point of making `HIdx` recursive.
 are definitional, so `w_i := Matrix.fromBlocks u 0 0 (Hproj i)` is the block sum you want,
 and `F ⊕ p_H` over `S⁵ × Y_i` lives on `Fin 3 ⊕ HIdx i`.
 
-### Stage algebras (`LIXStageAlgebra`, unverified)
+### Stage algebras (`LIXStageAlgebra`, green)
 
 ```lean
 stageProj i : SectionAlgebra (baseX i) (EIdx i)   -- ofFunctionMatrix (Eproj i)
-StageAlgebra i = Corner (stageProj i) (isStarProjection_stageProj i)   -- A_i
-   -- CStarAlgebra / Ring / StarRing / NormedAlgebra ℂ instances, unit E_i
+StageAlgebra i = Corner (stageProj i) (isStarProjection_stageProj i)   -- A_i, a `Type`
+   -- CStarAlgebra / Ring / StarRing / NormedAlgebra ℂ / Nontrivial instances, unit E_i
 sectionEval w a, stageEval i w a : Matrix (EIdx i) (EIdx i) ℂ
    -- ⋆-hom to the fibre; stageEval_mul/_add/_star/_one are all `rfl`
 stageAlgebra_eq_zero_iff : a = 0 ↔ ∀ w, stageEval i w a = 0
 stageEval_mem_corner, trace_stageEval_one
-toFunctionMatrix / ofFunctionMatrix : mutually inverse, `rfl` both ways
+toFunctionMatrix / ofFunctionMatrix : mutually inverse, `rfl` both ways;
+   toFunctionMatrix_add/_mul/_star/_smul and toFunctionMatrix_injective (new)
+toFunctionMatrix_mem_corner (new): the corner condition read back at the matrix level
 ```
 
-### The points (`LIXConnectingMapPoints`, unverified)
+### The points (`LIXConnectingMapPoints`, green)
 
 ```lean
 baseXinf = ↥sphereFour × (∀ j : ℕ, CP (stageRank j))   -- X_∞
@@ -102,79 +200,31 @@ dense_stagePoint_tail (k) : Dense {y | ∃ i (h : k ≤ i), basePr h (stagePoint
 
 The repetition is the Cantor pairing, and the dense sequence lives on the FIXED space
 `X_∞`, so that `(Nat.unpair (Nat.pair k n)).2 = n` is only ever used in the index of a
-sequence and never has to be transported across a dependent type.  That is the difference
-between a ten-line proof and a cast swamp.
+sequence and never has to be transported across a dependent type.
 
-### The connecting map (drafted, handed to cs-stages-s)
-
-```lean
-exists_stageFrame i, stageFrame i, stageFrame_isometry, stageFrame_range
-stageCompress i M = (stageFrame i)ᴴ * matEval (stagePoint i) M * stageFrame i
-connectBlock i M = constMat _ (stageCompress i M) ⊗ₖ newLine i
-connectMat i M = Matrix.reindex (eIdxSucc i) (eIdxSucc i)
-                   (Matrix.fromBlocks (pullMat (baseProj i) M) 0 0 (connectBlock i M))
-connectMat_Eproj : connectMat i (Eproj i) = Eproj (i + 1)     -- Eproj_succ backwards
-connect i : StageAlgebra i →⋆ₐ[ℂ] StageAlgebra (i + 1)
-connect_injective i : Function.Injective (connect i)
-```
-
-### Fullness, for cs-simplicity
-
-The shape in `notes/lix-lane-reports/cs-simplicity.md` is met, and **positivity is not
-needed anywhere**:
-
-1. `a ≠ 0` in `A_k` gives a nonempty open `U = {w | stageEval k w a ≠ 0}`;
-   `exists_stagePoint_mem_of_isOpen` gives `i ≥ k` with `π_{k,i}(x_i) ∈ U`; the pulled-back
-   block of `connect` gives `stageEval i (stagePoint i) (climb i k a) ≠ 0`.
-2. `stageEval_connect_ne_zero`: if `b(x_i) ≠ 0` then `connect i b` is nonzero in **every**
-   fibre, because the new block is `sᴴ b(x_i) s ⊗ taut(w)`, the compression is injective on
-   the fibre corner (`b(x_i) = s sᴴ b(x_i) s sᴴ`), and `taut(w)` is a rank-one projection.
-3. `isFull_of_forall_stageEval_ne_zero`: nonzero in every fibre implies full, by the
-   matrix-unit averaging `∑_{s,t} (P E_{st} P) X (P E_{ts} P) = Tr(X) • P` applied to
-   `X := aᴴ a`, whose trace is the nowhere-zero continuous function
-   `w ↦ ∑_{s,t} |a(w)_{st}|²`, invertible in `C(X_{i+1}, ℂ)`.  Scaling the left coefficients
-   by that inverse produces `∑ x_l * a * y_l = 1` exactly, so `LIX.isFull_of_sum_eq_one`
-   closes it with no ε.
-
-So `fullness (k) (a) (h0 : 0 ≤ a) (hne : a ≠ 0) : ∃ j, k ≤ j ∧ IsFull (T.climb j k a)`
-holds with `h0` unused; cs-simplicity can keep it in the signature.
-
-## 4. NEEDS
-
-Nothing from a peer.  Two things from the lead:
-
-* the two `example` deletions in `LIXCornerAlgebra` (lines 313 and 321), or the file back
-  for sixty seconds;
-* the four files back after `cs-stages-s` lands `connect`, for the composites `φ_{k,i}`,
-  the fullness theorem, and the `w_i`/`v_i` export for cs-clutching.
-
-## 5. TRAPS
+## Traps from the earlier draft (all still accurate)
 
 1. **`C(X, CStarMatrix ι ι ℂ)` breaks `mul_add`, `star_mul` and (before abstraction)
    `mul_assoc`.**  A bare instance search for `Mul`/`Star` returns `ContinuousMap.instMul` /
    `ContinuousMap.instStar`, which are not the instances inside `Semiring`/`StarRing`; the
    lemma then fails to apply, with either "failed to synthesize LeftDistribClass" or a
    `@star _ ContinuousMap.instStar` versus `@star _ StarMul.toInvolutiveStar.toStar`
-   mismatch.  This cost about thirty errors in one probe.  **Fix**: develop the corner over
-   an abstract `{A : Type*} [CStarAlgebra A]`, where every instance comes from one chain, and
-   cross to `SectionAlgebra` exactly once, by application (`ofFunctionMatrix_mul` and
-   friends).  This is a sharper form of the `CStarMat` trap cs-endpoint reported: the seam is
-   not only `CStarMat`, it is any `C(X, -)` over a `CStarMatrix`.
+   mismatch.  **Fix**: develop the corner over an abstract `{A : Type*} [CStarAlgebra A]`,
+   where every instance comes from one chain, and cross to `SectionAlgebra` exactly once, by
+   application (`ofFunctionMatrix_mul` and friends).  Confirmed again live: the two
+   `Diagnostics` `example`s that tried this directly on `SectionAlgebra` are now documented
+   (not deleted) as the negative case, since `LIXCornerAlgebra`'s own `Corner`/`StageAlgebra`
+   construction never needs it.
 2. **A recursive `def` index type makes `rw` fail at successor indices.**  `HIdx` is
    semireducible, so `Fintype (HIdx (i+1))` elaborates to `instFintypeHIdx (i+1)` and not to
    `Sum.instFintype`; a `rw` with a block lemma then dies with "not type-correct under the
-   instances transparency level".  **Fix**: cross by application, never by `rw` —
-   `have h : Matrix.trace (Hproj (i+1)) = _ := trace_fromBlocks _ _ _ _`.  Making `HIdx`
-   reducible does not fix it (it moves the mismatch, because a general-`i` lemma still
-   carries `instFintypeHIdx`).
-3. **`IsStarProjection.one` and `.zero` take the carrier explicitly** at this pin
-   (`variable (R) in` before them in `Mathlib/Algebra/Star/StarProjection.lean`), so it is
+   instances transparency level".  **Fix**: cross by application, never by `rw`.
+3. **`IsStarProjection.one` and `.zero` take the carrier explicitly** at this pin, so it is
    `IsStarProjection.one _`, never `IsStarProjection.one`.
-4. **`rw [Fin.succ_inj]` inside an `ite` fails** with "motive is not type correct", because
-   the `Decidable` instance depends on the rewritten term.  Case-split with `by_cases` and
-   use `Matrix.one_apply_eq` / `Matrix.one_apply_ne` instead.
+4. **`rw [Fin.succ_inj]` inside an `ite` fails** with "motive is not type correct".
+   Case-split with `by_cases` and use `Matrix.one_apply_eq` / `Matrix.one_apply_ne` instead.
 5. **`rw [h]` with `h : ∀ a, f a = g a` rewrites every occurrence with the same
    instantiation**, so a second `rw [h]` for the same argument errors.  Pass the argument
-   explicitly (`rw [hs0 a, hs0 b]`) whenever two different instantiations are in play.
+   explicitly whenever two different instantiations are in play.
 6. **The first `ccprobe.sh` run on a fresh clone died with "Argument list too long"** after
-   the clone step, exit 0, no build.  The lead has fixed the helper; if you see it, rerun.
+   the clone step, exit 0, no build.  Fixed upstream; rerun if seen.
