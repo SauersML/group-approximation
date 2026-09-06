@@ -39,7 +39,22 @@ instance sphereOne.instCompactSpace : CompactSpace ↥sphereOne :=
 
 instance sphereOne.instNonempty : Nonempty ↥sphereOne := ⟨southPole⟩
 
-/-! ## 2. The Hermitian five-sphere -/
+/-! ## 2. The Hermitian five-sphere
+
+**These two duplicate existing instances, and that is safe here.**
+`STW59.sphereFive` is an `abbrev` for `unitVectors (Fin 3)`, and
+`Analysis/LIXBlockProjections.lean` already registers `sphereFive.instCompactSpace` and
+`sphereFive.instNonempty` on it.  That module is not in this file's import closure, so the
+two below are needed for this file to elaborate, and at the root both pairs are visible at
+once.
+
+Duplicate instances would normally be the "second spelling" hazard this fleet has spent the
+night avoiding.  They are harmless in this one case because `CompactSpace` and `Nonempty`
+are both **`Prop`-valued classes**: any two instances are equal by proof irrelevance, so no
+diamond can form and no elaboration can depend on which is picked.  The same duplication
+for a data-valued class would be a real defect.
+
+Found by `cc-projective`, who had grepped the underlying term but not the abbreviation. -/
 
 instance unitVectorsThree.instCompactSpace : CompactSpace ↥(unitVectors (Fin 3)) :=
   isCompact_iff_compactSpace.mp (isCompact_unitVectors (Fin 3))
