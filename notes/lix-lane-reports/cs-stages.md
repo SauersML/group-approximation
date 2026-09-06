@@ -11,31 +11,21 @@ reviewer and does not edit them.  Everything below is measured, not expected.
 
 | module | evidence |
 |---|---|
-| `Analysis/LIXBlockProjections` | `✔ [2973/2975] Built GroupApproximation.Analysis.LIXBlockProjections (11s)` — **built, not replayed** |
+| `Analysis/LIXBlockProjections` | `Build completed successfully (2966 jobs)`, `ERROR_LINES=0`, `PROBE GREEN`, `✔ Built … LIXBlockProjections (13s)` — built, not replayed. Commit bfc4fce7f. |
+| `Analysis/LIXCornerAlgebra` | `Build completed successfully (2975 jobs)`, `ERROR_LINES=0`, `PROBE GREEN`, `✔ Built … LIXCornerAlgebra (13s)`. Commit c598f543c. |
+| `Analysis/LIXConnectingMapPoints` | same run, `✔ Built … LIXConnectingMapPoints (9.3s)`. Commit c598f543c. |
 
-No job count is quoted because the same `lake build` stopped on `LIXCornerAlgebra`
-(see §2); the count will be 2975 for the three-module target set once that file passes.
-A green claim with a count follows the next probe.
+The two counts differ only because the target sets differ: 2966 for the block file alone,
+2975 for the three together.  No `sorry`, `admit`, `axiom` or `opaque`; no warnings, under
+`-DwarningAsError=true`.
 
 ## 2. AUTHORED, UNVERIFIED
 
 | module | state |
 |---|---|
-| `Analysis/LIXCornerAlgebra` | **two errors, both in `example`s I added on purpose** (below). Every real declaration compiles, including the whole unital C⋆ ladder. |
-| `Analysis/LIXStageAlgebra` | never reached by `lean` — lake stopped at the corner file |
-| `Analysis/LIXConnectingMapPoints` | same |
-| `Analysis/LIXConnectingMap` | drafted in full at `/private/tmp/claude-501/-Users-user-nonsofic-existence/0d670c23-df04-42d0-9de1-e659ef71184e/scratchpad/LIXConnectingMap_draft.lean`, handed to `cs-stages-s`; contains scratchpad `sorry` markers that must be discharged before it enters the repo |
-
-The two corner-file errors, verbatim from the probe log:
-
-* `LIXCornerAlgebra.lean:313:2` — the `mul_add` example — `failed to synthesize LeftDistribClass (SectionAlgebra X ι)`
-* `LIXCornerAlgebra.lean:321:2` — the `star_mul` example — `star_mul a b` has
-  `@star _ StarMul.toInvolutiveStar.toStar (a * b) = …` but is expected to have
-  `@star _ ContinuousMap.instStar (a * b) = …`
-
-Deleting those two `example` blocks (keeping the `mul_assoc` one, which passes) makes the
-file green.  They are kept in the source until then because they are the cheapest possible
-record of TRAP 1 below.
+| `Analysis/LIXStageAlgebra` | owned by `cs-stages-s` since the 20:10 roster; `A_i` as a unital C⋆-algebra, `stageEval`, `toFunctionMatrix` |
+| `Analysis/LIXConnectingMap` | `cs-stages-s`, 404 lines, no `sorry`, `connect` and `connect_injective` complete; reviewed by this lane against the draft, architecture correct |
+| the fullness theorem | drafted at `/private/tmp/claude-501/-Users-user-nonsofic-existence/0d670c23-df04-42d0-9de1-e659ef71184e/scratchpad/LIXConnectingMap_draft.lean`, waiting for the files to come back |
 
 ## 3. What is delivered, and the exported vocabulary
 
@@ -64,6 +54,14 @@ Eproj_succ i : Eproj (i+1) = Matrix.reindex (eIdxSucc i) (eIdxSucc i)
 newLine i, newBlock i = 1 ⊗ₖ newLine i       -- L_{i+1}, L_{i+1}^{⊕ r_i}
 exists_frame                                 -- a star projection of trace k over ℂ is s sᴴ
                                              -- for an isometry s : ℂ^k → ℂ^n
+eq_zero_of_trace_conjTranspose_mul_self      -- trace (Aᴴ A) = 0 → A = 0
+Eproj_ne_zero                                -- so Nontrivial (StageAlgebra i)
+blockUnitary i u = fromBlocks u 0 0 (Hproj i)   -- the manuscript's w_i = u ⊕ 1_H, with
+   blockUnitary_mem_corner, blockUnitary_star_mul, blockUnitary_mul_star, blockUnitary_one
+HprojY i : Matrix (HIdx i) (HIdx i) C(baseY i, ℂ)   -- H_i over Y_i alone, for Lemma 2
+   Hproj_eq_pullMat : Hproj i = pullMat (baseYproj i) (HprojY i)
+   isStarProjection_HprojY, trace_HprojY, lineProjY, newLineY, newBlockY, baseYtrunc
+pullMat_comp, pullMat_kronecker, fromBlocks_diag_mul
 pullMat f, constMat X, and their mul/one/star/trace lemmas
 Fproj, hopfProj, hopfCol, murrayVonNeumannEquiv_Fproj   -- for cs-clutching, unchanged
 isLocallyConstant_trace
