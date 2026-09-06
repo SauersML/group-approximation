@@ -268,6 +268,20 @@ theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data
   ⟨LIX.LIXLimit, inferInstance, LIX.lixLimit_separableSpace, inferInstance,
     LIX.lixLimit_isSimpleCStar, not_k1Inj_of_hasWitness (hwit h)⟩
 
+/-- **The sharper statement from the two cohomological steps.**
+
+`exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data` with Lemma 2
+replaced by the two statements it reduces to, so that `cc-thom`'s Step C and
+`cc-wu`'s Step D can be read against the strongest conclusion the construction
+supports rather than against the weakest one that answers the problem. -/
+theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : ∀ j : ℕ, CharClass.LemmaTwoInput (LIX.lixDD j)) :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data hwit
+    (CharClass.lemmaTwoHolds_of h)
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -281,4 +295,5 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms exists_simple_unital_not_k1Inj_of_lemmaTwoInput_data
 #audit_axioms not_problemLIX_of_lemmaTwoInput_data
 #audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwo_data
+#audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
 #audit_axioms not_problemLIX_of_exists
