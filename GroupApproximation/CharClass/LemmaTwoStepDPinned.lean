@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LemmaTwoStepDLix
 import GroupApproximation.CharClass.LIXChernSplit
+import GroupApproximation.CharClass.ParityEvenLixSplitting
 
 /-!
 # Step D's data with the splitting pinned
@@ -25,6 +26,9 @@ anything already built against it is unaffected.
 * `WuStepDPinned` — Step D's data with `S` forced.
 * `WuStepDPinned.toWuStepDLix` — hence the published form.
 * `stepD_of_wuPinned` — **Step D** over it.
+* `WuStepDSlice` — the same with the **splitting principle** discharged too, by
+  `cc-wu`'s `hasSplitting_lix`, leaving only the generators and the slice identification.
+* `stepD_of_wuSlice` — **Step D** over that.
 -/
 
 noncomputable section
@@ -73,5 +77,45 @@ theorem stepD_of_wuPinned (hd : ∀ j, Even (dd j))
       lixTopClass (lixChern dd) (mappingTorus Vmat G circHoriz circHeight) = 0 :=
   stepD_of_wuLix (lixChern dd) (fun X => cartanOf_holds X) hd
     fun G hGc hGu => (data G hGc hGu).toWuStepDLix
+
+/-! ## The splitting principle, discharged
+
+`cc-wu`'s `hasSplitting_lix` is `WuStepDPinned.hsplit`'s type character for character, over
+exactly the three arguments the structure already takes, so the field is not an input at
+all.  Behind it the splitting principle is now unconditional: over a compact non-empty base
+a bundle of constant positive rank has a splitting, and the flag tower's own compactness
+and non-emptiness are derived rather than assumed.
+
+What is left is the generators, which are a choice rather than an obligation, and the slice
+identification. -/
+
+/-- **Step D's data with both forced fields gone.** -/
+structure WuStepDSlice (dd : Fin ℓ → ℕ)
+    (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ) (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) where
+  /-- The generators of the projective factors. -/
+  gen : Fin ℓ → TotalH (KnTwo.YTop (baseY dd))
+  /-- The slice identification, against the pinned splitting. -/
+  hslice : ∀ q : ℕ,
+    Wu.splitA dd (lixChernSplit dd G hGc hGu) q
+      = (sliceClass (Finset.univ : Finset (Fin ℓ)) gen dd).coeff q
+
+/-- The slice data gives the pinned data, the splitting principle coming from `cc-wu`. -/
+def WuStepDSlice.toWuStepDPinned
+    {G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ} {hGc : Continuous G}
+    {hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)} (D : WuStepDSlice dd G hGc hGu) :
+    WuStepDPinned dd G hGc hGu where
+  hsplit := Wu.hasSplitting_lix G hGc hGu
+  gen := D.gen
+  hslice := D.hslice
+
+/-- **Step D**, over the generators and the slice identification alone. -/
+theorem stepD_of_wuSlice (hd : ∀ j, Even (dd j))
+    (data : ∀ (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ) (hGc : Continuous G)
+      (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)), WuStepDSlice dd G hGc hGu) :
+    ∀ G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ, Continuous G →
+      (∀ m, IsCornerUnitary (Vmat m) (G m)) →
+      lixTopClass (lixChern dd) (mappingTorus Vmat G circHoriz circHeight) = 0 :=
+  stepD_of_wuPinned hd fun G hGc hGu => (data G hGc hGu).toWuStepDPinned
 
 end GroupApproximation.CharClass
