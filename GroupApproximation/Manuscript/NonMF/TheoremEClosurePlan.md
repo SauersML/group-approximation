@@ -92,6 +92,22 @@ diagram with **both** selection and unbound data.
 
 `UnboundParameters.lean` proves the numerical choices after the geometric
 constants are supplied. It does not construct those constants or the regions.
+
+The graph audit found two further proved obstructions. The historical
+`InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
+dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
+More seriously, `HasHereditaryPlanarEdgeBound` uses one-endpoint coverage and
+is equivalent to **no incidences**, so `EstimatingGraphData` forces its
+interior-edge type to be empty
+([#204](https://github.com/SauersML/group-approximation/issues/204)).
+`HereditaryPlanarRefutation.lean` proves both defects, including a concrete
+closed refutation of the realization. `EndpointClosedDeletion.lean` restores
+the all-endpoints invariant, proves its preservation under deletion and the
+five-deletion-order consequence, and verifies a nonempty one-edge model.
+These are checked repairs of the finite graph input, not a completed Osin
+construction. Next migrate the graph/data/weighted consumers to that invariant
+and prove the actual selected graph geometry, treating isolated vertices and
+tree components explicitly. Preserve the old records and refutations.
 The outstanding proofs are:
 
 1. Derive the geometric constants from the ambient hypotheses and reconcile
