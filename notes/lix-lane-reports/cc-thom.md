@@ -94,8 +94,15 @@ end GroupApproximation.CharClass
 ```
 
 **`mvResWU_eq_pull` — DONE, green in `CharClass/MayerVietorisPull.lean` (8773 jobs),
-together with its degree-zero corollary `mvResWU_one`, which `cc-projective` reports
-is the last hypothesis of the projective-space induction.**  The record of how it
+together with `mvResWU_one`.**  Postscript: `cc-projective` then found they did not
+need it.  Their degree-zero hypothesis was only ever used as "every class of
+`H^0(U ∩ V)` is a sum of restrictions", which follows from `mvExactSum` by counting
+on lines with no identification of the maps at all; they weakened
+`hasCPCohomology_succ` to that and `H^*(ℂP^n; F₂)` is unconditional at 8789 jobs.
+The general statement is still wanted for Leray–Hirsch, so the work stands, but the
+lesson is worth recording: **check what a hypothesis is used for before building the
+strongest thing that would discharge it.**  `cc-cohom-api` does consume
+`mvCxInclU_comp_g` from this file for δ-linearity step 2.  The record of how it
 was assembled, kept because the same three steps recur for the other three
 restrictions:
 `cc-projective` reports that this, in its degree-zero form `mvResWU_one`, is the
@@ -304,6 +311,12 @@ together with the real-linear homeomorphism `ℂ^n ≃ ℝ^{2n}`.  The subtype
 long exact sequence of `(ℂ^r, ℂ^r ∖ 0)`.  Do not reprove it.
 
 ### From `cc-bundle`
+
+Status: **(C1)** first half green (`BundleZeroSection.notZeroHomotopyEquivProj`);
+second half and **(C2)** pullback naturality requested.  **(C3) and (C4) withdrawn** —
+`cc-lix-odd` has a free explicit trivialisation of the fibre at Step C's zero (over the
+southern half of the circle), so the trivializing chart is not consumed, and the trivial
+bundle over a point needs no named lemma.
 
 **(C1)** the pair `(P(p ⊕ 1), P(p ⊕ 1) ∖ Z)` with `Z` the zero section, the
 homotopy equivalence `P(p ⊕ 1) ∖ Z ≃ P(p)`, and the open inclusion of pairs
