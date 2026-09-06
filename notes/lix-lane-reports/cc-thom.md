@@ -204,6 +204,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomChernBasis.lean` | `ThomChern.genPow_dim_eq_neg_sum/_finSum/_basisSum`, `totalMap_comp`, `totalMap_id` — the Chern relation solved for the top power and written in the Leray–Hirsch basis, which is `ThomClassChain`'s `hlast`; pure `PowerBasis` algebra, no topology |
 | `CharClass/ThomFreeDegreewise.lean` | `ThomDeg.restrictMap`, `thomLift`, **`ker_restrictMap`**, `kerEquiv`, **`thomEquiv`** — the Thom-class linear algebra in Leray–Hirsch *coordinates*, over a product of different groups rather than a `Module.Basis`; §1.4 item 5 at `k = 0` |
 | `CharClass/ThomStepCLocal.lean` | `topChernClass_ne_zero_of_local`, `..._of_local_naturality`, `..._of_local_line`, `..._of_chain_line` — `locEquiv`, `hg` and `hgamma` discharged, leaving `hsu` alone on the odd side; plus the `Nonempty` forms that spare a consumer the use of choice |
+| `CharClass/ThomStepCEuler.lean` | `eq_localGenerator_of_ne_zero`, **`hsu_of_ne_zero`**, `ne_zero_of_hsu`, `topChernClass_ne_zero_of_su_ne_zero{,_line}` — `hsu` **is** `su ≠ 0`, because the local model is a line and excision-then-chart is an iso onto it |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -599,6 +600,21 @@ The wording that matters is **discharged by name**, never *never owed*: a reader
 told the models are defeq will try `rfl`, which fails as an unrelated instance or
 elaboration error rather than as a type mismatch.
 
+### The `Nonempty` variant is hygiene, not foundations
+
+I told three parties that taking the top line as a `Nonempty` "removes the use of
+choice".  `cc-lix-odd` ran `#print axioms` and both Step C theorems still report
+`[propext, Classical.choice, Quot.sound]`, because the mod-2 cohomology
+development and the Mathlib beneath it use choice throughout.  No arrangement of
+this interface changes that.
+
+The true claim is narrower: the *consumer* no longer performs a `Nonempty.some`
+of its own, which is the consumer's responsibility in a way that Mathlib's use is
+not.  Four permanent `#print axioms` lines now sit in `ThomStepCLocal.lean` and
+`ThomStepCEuler.lean` so the build states the answer rather than a docstring.
+Syntax gotcha from `cc-lix-odd`: a `/-- -/` docstring cannot precede
+`#print axioms`; the error says "expected 'lemma'".  Use `/-! -/`.
+
 ## 5. Probe log
 
 | date | targets | result |
@@ -626,3 +642,5 @@ elaboration error rather than as a type mismatch.
 | 2026-09-05 | **`ThomFreeDegreewise`** | **green, 1170 jobs, `PROBE GREEN`** |
 | 2026-09-05 | `ThomStepCLocal` | red: missing `open …SphereOddDegree`, so `cohomologyZMod2` was unresolved and autoImplicit reported it as fourteen `Function expected at` |
 | 2026-09-05 | **`ThomStepCLocal` + `ThomTopLineLIX`** | **green, 8871 jobs, `PROBE GREEN`** |
+| 2026-09-05 | **`ThomStepCEuler`** | **green, 8795 jobs, `PROBE GREEN`** |
+| 2026-09-05 | **`ThomStepCEuler` + `ThomStepCLocal`**, axiom prints | **green, 8795 jobs, `PROBE GREEN`** |

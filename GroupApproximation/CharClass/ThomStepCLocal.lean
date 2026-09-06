@@ -90,8 +90,16 @@ theorem topChernClass_ne_zero_of_local_naturality (hacyclic : PuncturedAcyclic N
 
 The conclusion is a `Prop`, so the equivalence is only ever used to prove one and
 `Nonempty.elim` suffices: a consumer holding a `HasTopLine`, whose `line` field is
-a `Nonempty`, need not extract a representative with choice.  Published under a
-new name because `topChernClass_ne_zero_of_chain` is already consumed. -/
+a `Nonempty`, need not perform a `Nonempty.some` of its own.  Published under a
+new name because `topChernClass_ne_zero_of_chain` is already consumed.
+
+This is **hygiene, not foundations.**  It does not make anything choice-free:
+the mod-2 cohomology development and the Mathlib beneath it use `Classical.choice`
+throughout, and `#print axioms` reports it for every theorem here.  What it
+removes is a gratuitous `Nonempty.some` in the *consumer's* own code, which is
+the consumer's responsibility in a way that Mathlib's use is not.  `cc-lix-odd`
+measured this rather than assuming it, and the narrow claim is one word away from
+a wide false one. -/
 theorem topChernClass_ne_zero_of_local_line (hacyclic : PuncturedAcyclic N twoR z)
     {rel chart : ModuleCat.{0} (ZMod 2)} {r : ℕ}
     (j : rel ⟶ cohomologyZMod2 (TopCat.of N) twoR)
@@ -124,6 +132,12 @@ theorem topChernClass_ne_zero_of_chain_line (hacyclic : PuncturedAcyclic N twoR 
   obtain ⟨absEquiv⟩ := absLine
   exact topChernClass_ne_zero_of_chain hacyclic j i hexact absEquiv exc chartIso
     locEquiv hsu hg hgamma
+
+/-! The axiom list, printed on every build so the narrow claim above cannot drift
+into the wide one.  Both report `[propext, Classical.choice, Quot.sound]`. -/
+
+#print axioms topChernClass_ne_zero_of_local
+#print axioms topChernClass_ne_zero_of_local_line
 
 end
 
