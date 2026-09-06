@@ -1,4 +1,4 @@
-import GroupApproximation.CharClass.CohomologyKunnethInjective
+import GroupApproximation.CharClass.CohomologyKunnethDecomp
 import GroupApproximation.CharClass.SqDataInstance
 
 /-!
@@ -156,6 +156,47 @@ theorem htx_inj (u v : TotalH (YTop Y))
     Wu.totalH_component_map] at hc
   exact tx_inj_degree Y m (TotalH.component (YTop Y) (1 + 5 + m) u)
     (TotalH.component (YTop Y) m v) hc
+
+/-! ## 4. The four-term decomposition -/
+
+theorem pull_prY_comp (k : ℕ) (c : Hmod2 (YTop Y) k) :
+    pull (knPrY (midBase Y) 1) k (pull (knPrY Y 5) k c) = pull (prY Y) k c := by
+  rw [prY, pull_comp]
+
+set_option maxHeartbeats 1000000 in
+/-- **The four-term Künneth decomposition of the mapping-torus base.**  A class of
+degree `1 + 5 + m` on `(Y × S⁵) × S¹` is a pullback from `Y` plus a `t`-multiple,
+plus an `x`-multiple, plus a `t x`-multiple.  The two middle terms are genuinely
+there: `t ⌣ ι β` for `β` of degree two is a class of degree three, and the `t x`
+part starts only in degree six. -/
+theorem decomp_top (m : ℕ) (z : Hmod2 (NTop Y) (1 + 5 + m)) :
+    ∃ (a : Hmod2 (YTop Y) (1 + 5 + m)) (a₁ : Hmod2 (YTop Y) (5 + m))
+      (a₅ : Hmod2 (YTop Y) (1 + m)) (b : Hmod2 (YTop Y) m),
+      z = pull (prY Y) (1 + 5 + m) a
+        + cohCast (show 1 + (5 + m) = 1 + 5 + m by omega)
+            (cup (sig1 Y) (pull (prY Y) (5 + m) a₁))
+        + cohCast (show 5 + (1 + m) = 1 + 5 + m by omega)
+            (cup (sig5 Y) (pull (prY Y) (1 + m) a₅))
+        + cup (cup (sig1 Y) (sig5 Y)) (pull (prY Y) m b) := by
+  obtain ⟨A, B, hAB⟩ := KnHemi.kunneth_decomposition (midBase Y) 1 (by omega)
+    (1 + 5 + m) (5 + m) (by omega) z
+  obtain ⟨a, a₅, hA⟩ := KnHemi.kunneth_decomposition Y 5 (by omega)
+    (1 + 5 + m) (1 + m) (by omega) A
+  obtain ⟨a₁, b, hB⟩ := KnHemi.kunneth_decomposition Y 5 (by omega)
+    (5 + m) m (by omega) B
+  refine ⟨a, a₁, a₅, b, ?_⟩
+  have e1 : pull (knPrY (midBase Y) 1) (1 + 5 + m) A
+      = pull (prY Y) (1 + 5 + m) a
+        + cohCast (show 5 + (1 + m) = 1 + 5 + m by omega)
+            (cup (sig5 Y) (pull (prY Y) (1 + m) a₅)) := by
+    rw [hA, pull_add, pull_prY_comp, KnHemi.pull_cohCast, pull_cup, pull_prY_comp]
+    rfl
+  have e2 : pull (knPrY (midBase Y) 1) (5 + m) B
+      = pull (prY Y) (5 + m) a₁ + cup (sig5 Y) (pull (prY Y) m b) := by
+    rw [hB, cohCast_self, pull_add, pull_prY_comp, pull_cup, pull_prY_comp]
+    rfl
+  rw [hAB, e1, e2, cup_add_right, cohCast_add, cup_assoc']
+  abel
 
 end KnTwo
 
