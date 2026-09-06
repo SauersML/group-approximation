@@ -3759,6 +3759,7 @@ import GroupApproximation.CharClass.ParityEvenLemmaTwoClosed
 import GroupApproximation.CharClass.SliceVLineRoots
 import GroupApproximation.CharClass.SliceVGenerator
 import GroupApproximation.CharClass.BundleTotalOver
+import GroupApproximation.CharClass.BundleProjInclPairs
 import GroupApproximation.CharClass.ChernTautHyperIso
 import GroupApproximation.CharClass.LIXStepCOddLocal
 import GroupApproximation.CharClass.LIXRestrictionMap
