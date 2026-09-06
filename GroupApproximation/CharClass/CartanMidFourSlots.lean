@@ -1,4 +1,4 @@
-import GroupApproximation.CharClass.CartanMidFourChain
+import GroupApproximation.CharClass.CartanMidFourChainMap
 
 /-!
 # The four slot terms of the fourfold differential
@@ -8,85 +8,25 @@ with no signs, and the middle-four interchange does not touch the slots.  So bot
 sides of the interchange's chain-map property are the same four terms, grouped
 differently.
 
-This file names those four terms and proves the two groupings.  Naming them is
-what makes the proof tractable: each slot is a dependent match on its own degree,
-each grouping lemma splits only the two degrees it needs, and the structure
-projection of `tensorFreeCx` never appears, because the only route to the outer
-half is `tdL_nested`, which spent it once.
+This module named those four terms.  It no longer defines them, and the reason
+is worth recording, because it was the whole difficulty of the interchange.
 
-The four grouping lemmas are not proved yet.  What blocks them is not the
-mathematics, which is a term-by-term matching, but that the two sides spell the
-same degree two ways: after splitting `a₁` and `a₃`, one side carries
-`a₁' + 1 + a₃` and the other `(a₁' + a₃) + 1`, and no ordinary normalisation
-lemma bridges those, because the successor is written as an addition rather than
-as `Nat.succ`.  Closing the gap by definitional equality is not an option
-either: any such check unfolds the tensor's structure literal and exceeds the
-budget.  The next attempt should carry the post-differential degree as an
-explicit parameter rather than compute it, so that both sides are built from the
-same expression and no normalisation is needed.
+The first definitions computed each slot's output degree from the input degrees.
+That made the two sides of the identity spell the same number two ways: after
+splitting `a₁` and `a₃`, one side carried `a₁' + 1 + a₃` and the other
+`(a₁' + a₃) + 1`.  Those are propositionally but not definitionally equal for a
+variable summand, because addition on the naturals recurses on its second
+argument; no normalisation lemma bridges them, since the successor is written as
+an addition rather than as `Nat.succ`; and the definitional escape is shut,
+because any such check unfolds the tensor's structure literal and exceeds the
+budget.  Twenty-six probes failed on that and none of them failed on the
+mathematics.
 
-## Main results
-
-* `slotOne`, `slotTwo`, `slotThree`, `slotFour` — the four terms of the
-  differential of a nested tensor, regrouped.
+The definitions now live in `CartanPadTen`, carrying every degree of the result
+as a parameter and absorbing the constraints into `padTen`, which returns `0` off
+the diagonal.  Then neither side spells a sum at all, and both reach the same
+term.  This module is the entry point for the chain that follows:
+`CartanPadTen`, `CartanMidFourGroup`, `CartanMidFourTgt`, `CartanMidFourSrc`,
+and `CartanMidFourChainMap`, whose endpoints are `tensorD_midSwap` and
+`midSwapHom`.
 -/
-
-namespace GroupApproximation.CharClass
-
-noncomputable section
-
-variable (A B C D : FreeCx)
-
-/-! ## 1. The four slot terms -/
-
-/-- The boundary in the first slot, regrouped. -/
-noncomputable def slotOne (k : ℕ) :
-    ∀ (a1 a2 a3 a4 : ℕ), a1 + a2 + (a3 + a4) = k + 1 →
-      (A.ι a1 →₀ ZMod 2) → (B.ι a2 →₀ ZMod 2) → (C.ι a3 →₀ ZMod 2) →
-      (D.ι a4 →₀ ZMod 2) → (TensorIdx (tensorFreeCx A C) (tensorFreeCx B D) k →₀ ZMod 2)
-  | 0, _, _, _, _, _, _, _, _ => 0
-  | a1' + 1, a2, a3, a4, h, w1, w2, w3, w4 =>
-      tenElt (tensorFreeCx A C) (tensorFreeCx B D)
-        (⟨(a1' + a3, a2 + a4), by omega⟩ : Steenrod.PairDeg k)
-        (tenElt A C (⟨(a1', a3), rfl⟩ : Steenrod.PairDeg (a1' + a3)) (A.d a1' w1) w3)
-        (tenElt B D (⟨(a2, a4), rfl⟩ : Steenrod.PairDeg (a2 + a4)) w2 w4)
-
-/-- The boundary in the second slot, regrouped. -/
-noncomputable def slotTwo (k : ℕ) :
-    ∀ (a1 a2 a3 a4 : ℕ), a1 + a2 + (a3 + a4) = k + 1 →
-      (A.ι a1 →₀ ZMod 2) → (B.ι a2 →₀ ZMod 2) → (C.ι a3 →₀ ZMod 2) →
-      (D.ι a4 →₀ ZMod 2) → (TensorIdx (tensorFreeCx A C) (tensorFreeCx B D) k →₀ ZMod 2)
-  | _, 0, _, _, _, _, _, _, _ => 0
-  | a1, a2' + 1, a3, a4, h, w1, w2, w3, w4 =>
-      tenElt (tensorFreeCx A C) (tensorFreeCx B D)
-        (⟨(a1 + a3, a2' + a4), by omega⟩ : Steenrod.PairDeg k)
-        (tenElt A C (⟨(a1, a3), rfl⟩ : Steenrod.PairDeg (a1 + a3)) w1 w3)
-        (tenElt B D (⟨(a2', a4), rfl⟩ : Steenrod.PairDeg (a2' + a4)) (B.d a2' w2) w4)
-
-/-- The boundary in the third slot, regrouped. -/
-noncomputable def slotThree (k : ℕ) :
-    ∀ (a1 a2 a3 a4 : ℕ), a1 + a2 + (a3 + a4) = k + 1 →
-      (A.ι a1 →₀ ZMod 2) → (B.ι a2 →₀ ZMod 2) → (C.ι a3 →₀ ZMod 2) →
-      (D.ι a4 →₀ ZMod 2) → (TensorIdx (tensorFreeCx A C) (tensorFreeCx B D) k →₀ ZMod 2)
-  | _, _, 0, _, _, _, _, _, _ => 0
-  | a1, a2, a3' + 1, a4, h, w1, w2, w3, w4 =>
-      tenElt (tensorFreeCx A C) (tensorFreeCx B D)
-        (⟨(a1 + a3', a2 + a4), by omega⟩ : Steenrod.PairDeg k)
-        (tenElt A C (⟨(a1, a3'), rfl⟩ : Steenrod.PairDeg (a1 + a3')) w1 (C.d a3' w3))
-        (tenElt B D (⟨(a2, a4), rfl⟩ : Steenrod.PairDeg (a2 + a4)) w2 w4)
-
-/-- The boundary in the fourth slot, regrouped. -/
-noncomputable def slotFour (k : ℕ) :
-    ∀ (a1 a2 a3 a4 : ℕ), a1 + a2 + (a3 + a4) = k + 1 →
-      (A.ι a1 →₀ ZMod 2) → (B.ι a2 →₀ ZMod 2) → (C.ι a3 →₀ ZMod 2) →
-      (D.ι a4 →₀ ZMod 2) → (TensorIdx (tensorFreeCx A C) (tensorFreeCx B D) k →₀ ZMod 2)
-  | _, _, _, 0, _, _, _, _, _ => 0
-  | a1, a2, a3, a4' + 1, h, w1, w2, w3, w4 =>
-      tenElt (tensorFreeCx A C) (tensorFreeCx B D)
-        (⟨(a1 + a3, a2 + a4'), by omega⟩ : Steenrod.PairDeg k)
-        (tenElt A C (⟨(a1, a3), rfl⟩ : Steenrod.PairDeg (a1 + a3)) w1 w3)
-        (tenElt B D (⟨(a2, a4'), rfl⟩ : Steenrod.PairDeg (a2 + a4')) w2 (D.d a4' w4))
-
-end
-
-end GroupApproximation.CharClass
