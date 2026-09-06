@@ -82,9 +82,21 @@ for the exact mechanism and the general recipe used throughout.
 
 ## 3. AUTHORED, UNVERIFIED
 
-* `GroupApproximation/CharClass/RelativeLocal.lean` — not yet started
-  (`H^n(V, V ∖ {0}) ≅ F₂` for open `0 ∈ V ⊆ ℝⁿ`). Everything it needs
-  (excision, the LES, homeomorphism invariance) is now green and available.
+* `GroupApproximation/CharClass/RelativeLocalModel.lean` — **(B6)**, the local
+  model `H^{2r}(ℂ^r, ℂ^r ∖ 0; F₂) ≅ F₂` with a named generator, executing the
+  §6 route below. Exports `localEquiv`, `localGenerator`,
+  `localGenerator_ne_zero`, `localEquiv_localGenerator`,
+  `eq_smul_localGenerator`, and the reusable
+  `relCohomologySetCongr` (transport of relative cohomology along an equality
+  of subspaces). Probe in flight; import closure is 122 modules, no dangling
+  imports, no cycles.
+
+Housekeeping still owed, not blocking anyone: under the lead's dualization
+ruling `RelativeDual.lean` is to be retired in favour of `cc-cohom-api`'s
+`dualCx2`/`dualMap2`, which means re-pointing `RelativeSmallChains`'s import
+and specializing its eight `CommRing R`-generic declarations that touch the
+dual to `ZMod 2`. `RelativeExcision` needs no change. Both files are currently
+green as they stand, so this is cleanup rather than repair.
 
 ## 4. NEEDS (from peers)
 
