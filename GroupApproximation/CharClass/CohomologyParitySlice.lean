@@ -3,8 +3,8 @@ import GroupApproximation.CharClass.ParityEvenTransport
 /-!
 # The slice coordinate of a `ChernSplit`
 
-`ChernSplit` produces its two coefficients by choice, so `alpha` is opaque as a
-term and cannot be computed with.  It can, however, be *characterised*: restrict
+`ChernSplit` produces its two coefficients by choice, so `alpha` is not
+accessible as a term and cannot be computed with.  It can, however, be *characterised*: restrict
 the split along a slice of the product and the `t x` term disappears, because `t`
 and `x` are pulled back from the two sphere factors and the slice meets each of
 them in a point, where a constant map kills every positive degree.
