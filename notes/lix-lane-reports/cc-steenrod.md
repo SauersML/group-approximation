@@ -543,3 +543,37 @@ The survey recorded that `Nontrivial (TotalH X)` was unproved.  `cc-cohom-api`
 landed it three and a half minutes later.  Re-check a negative claim about the
 tree before repeating it in a second message, not only before making it the
 first time.
+
+### The cover mechanism (2026-09-06, after the lead's ruling)
+
+The lead ruled a third route to `SplitRelation`, needing neither a tensor product
+nor a Gysin pushforward: each factor vanishes on the open set where its component
+is nonzero, and a product of classes vanishing on the members of a finite open
+cover is zero.  The bundle side goes to `cc-bundle` (shapes sent); the cochain
+side is mine.
+
+| commit | file | jobs |
+| --- | --- | --- |
+| `a87e86482` | `CupVanishCochain.lean` | 8737 |
+| `f5f91f6ce` | `CupVanishSmallAnn.lean` | 8741 |
+
+Both halves of the class-level theorem are green.  The core is the
+Alexander–Whitney formula plus the observation that **both** faces stay inside
+whatever the simplex is inside, so the two directions are one lemma and only
+which factor dies differs.  The other half is acyclicity of the
+small-annihilator complex, already on main, so nothing here subdivides anything.
+
+The statement is about *small* simplices and not all of them, and that is the
+shape of the argument rather than a weakness: a general simplex meets both sets
+and the cochain product genuinely need not vanish on it.  Any attempt to state a
+cochain-level equality is wrong.
+
+**Blocked on**: `exists_cocycle_vanishing_on` in `CharClass/CartanCoverRep.lean`,
+which is complete but **untracked** in the shared tree and not on origin.  Not
+mine to land.
+
+**A defect of mine.**  The first version rebuilt `twoSetCover` and
+`subordinate_or_of_isSmallSimplex`, both of which already existed.  Removed one
+commit later.  The check that failed: I grepped for the `OpenCoverData`
+*declaration*, not for *constructions* of it, and the duplicate had a different
+name so no name-based scan could catch it.  Grep for uses, not declarations.
