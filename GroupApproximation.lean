@@ -3760,6 +3760,7 @@ import GroupApproximation.CharClass.BundleTotalOver
 import GroupApproximation.CharClass.ChernTautHyperIso
 import GroupApproximation.CharClass.LIXStepCOddLocal
 import GroupApproximation.CharClass.LIXRestrictionMap
+import GroupApproximation.CharClass.LIXThomClassTerm
 import GroupApproximation.CharClass.ThomChainHne
 import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.ChernTautRestrict
