@@ -28,8 +28,10 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 15 modules; `BundleRank` at 2970 jobs, `BundleBlockIncl` at 2975,
-`BundleStabilize` at 2974, the other twelve together at 2978
+## GREEN — 16 modules; `BundleCoordEmbed` at 8669 jobs (it imports
+`cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
+`BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
+together at 2978
 
 Final probe 2026-09-05 late evening naming **all twelve modules in one build**,
 so the lane is green as a whole and not only module by module.  The individual
@@ -300,6 +302,44 @@ theorem rank_eq_succ_of_preconnectedSpace [PreconnectedSpace X] (p) (hd : p.rank
 `IsLocallyConstant.iff_exists_open`, so the upgrade is three lines and all the
 content is in the local statement.  Every base in the programme is connected, so
 the connected form is the one that gets used.
+
+### `BundleCoordEmbed.lean` — identifying a `cpEmbed`
+
+The three facts `cc-projective` needs to make the Euler class invariant.
+
+```lean
+def coordIncl (f : ι → ρ) : Matrix ρ ι ℂ                      -- the matrix [s = f i]
+theorem coordIncl_isometry (hf : Function.Injective f) : (coordIncl f)ᴴ * coordIncl f = 1
+theorem coordIncl_conj_apply (hf) (z) (i j) :
+    (coordIncl f * z * (coordIncl f)ᴴ) (f i) (f j) = z i j
+theorem coordIncl_conj_apply_row / coordIncl_conj_apply_col      -- zero off the image
+theorem coordIncl_conjTranspose_mul_of_disjoint (h : ∀ i k, f i ≠ g k) :
+    (coordIncl f)ᴴ * coordIncl g = 0
+theorem coordIncl_mul_coordIncl (f) (g) : coordIncl g * coordIncl f = coordIncl (g ∘ f)
+theorem sumInclLeft_eq_coordIncl (eqv) : sumInclLeft eqv = coordIncl (fun i => eqv (Sum.inl i))
+
+theorem isometry_mul (hA) (hB) : (B * A)ᴴ * (B * A) = 1
+theorem cpEmbed_comp (hA) (hB) :
+    (cpEmbed B hB).comp (cpEmbed A hA) = cpEmbed (B * A) (isometry_mul hA hB)
+theorem homotopic_cpEmbed_of_orthogonal (hA) (hB) (hAB : Aᴴ * B = 0) (hBA : Bᴴ * A = 0) :
+    (cpEmbed A hA).Homotopic (cpEmbed B hB)
+
+def shiftMat (d : ℕ) : Matrix (Fin (d + 2)) (Fin (d + 1)) ℂ
+theorem shiftMat_isometry (d) : (shiftMat d)ᴴ * shiftMat d = 1
+theorem cpEmbed_shiftMat (d : ℕ) :
+    cpEmbed (shiftMat d) (shiftMat_isometry d)
+      = (⟨CPn.incl, CPn.continuous_incl⟩ : C(CP d, CP (d + 1)))
+```
+
+**`homotopic_cpEmbed_of_orthogonal` needs orthogonality and that is not a
+technicality.**  Two arbitrary isometries into the same space do give homotopic
+maps, but that is the connectivity of a Stiefel manifold and is not proved here.
+The orthogonal case is enough for the Euler class, because the block isometry
+lands in the first block and the iterated hyperplane inclusion lands in the last.
+
+This is the lane's only module that imports a peer's file
+(`ProjectiveSpaceHyperplane`, to state `cpEmbed_shiftMat`); nothing of theirs
+imports it, so there is no cycle.
 
 ## NEEDS
 
