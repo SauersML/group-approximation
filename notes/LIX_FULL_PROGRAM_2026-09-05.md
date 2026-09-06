@@ -406,6 +406,12 @@ never a `sorry`, never an `axiom`.
     space, the map, the class and the index each one carries; the verdict goes to the lead one
     line per seam.  A file visible on the shared disk is not a file landed on the branch:
     `git cat-file -e origin/main:<path>` distinguishes them.
+18. **Cross-lane traps live in `notes/lix-lane-reports/FLEET_TRAPS.md`, append-only (issued 04:52 EDT,
+    from cc-thom after cc-relative lost a probe round to a trap already written in cc-thom's lane
+    report).**  A lane report is read by people already looking at that lane.  Any trap that is not
+    lane-specific goes in the fleet file as one line, appended at the end, never editing another
+    lane's line; the lead merges duplicates.  Before a SECOND failed probe on the same error, grep
+    the fleet file for a word from the error message.
 
 
 
