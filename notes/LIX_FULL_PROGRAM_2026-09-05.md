@@ -336,6 +336,10 @@ never a `sorry`, never an `axiom`.
    arithmetic over an abstract `[CStarAlgebra A]` and cross once by application;
    `NonUnitalStarAlgHom.isometry` needs an explicit `import Mathlib.Analysis.CStarAlgebra.Hom`;
    `mulRight_continuous` is a deprecated alias (use `continuous_mul_const`).
+   A `git add` chained behind a command that can fail silently drops files and
+   leaves a DANGLING IMPORT on main (add each file explicitly, check `git status`
+   before pushing); a probe syncs the tree at LAUNCH, so reason about the built
+   bytes via `git show <commit>:<path>`, not the file on disk.
 9. **Report**: keep `notes/lix-lane-reports/<your-lane>.md` current (what is
    green with job counts, what is authored-unverified, NEEDS from peers, traps
    found).  Your final message to the lead must contain the same four sections.
