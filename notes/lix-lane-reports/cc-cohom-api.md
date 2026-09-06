@@ -19,11 +19,13 @@ peer may mix the two vocabularies freely.
 | `CohomologyBridge.lean` | `TopCat.of` plumbing for concrete `Type`s, subspace restriction, products, homotopy invariance, `H^*(X × [0,1])`, `H^*(X × ℝ^k)` |
 | `CohomologySphere.lean` | `H^k(S^n; F₂)`: vanishing range, top-degree generator, `H^0` of a path-connected space |
 | `CohomologyContractible.lean` | `H^k(pt) = 0` for `k ≥ 1`, hence `H^k(Y) = 0` for contractible `Y`, and `H^0(Y) ≃ₗ F₂` |
-| `CohomologySphereComplement.lean` | `S^n ∖ {p}` is contractible (stereographic projection) and its cohomology |
-| `CohomologyMayerVietoris.lean` | the cochain-level Mayer–Vietoris short exact sequence, `δ`, exactness, the connecting isomorphism |
+| `CohomologyMayerVietoris.lean` | the canonical `Hom(-, F₂)` dualization, and the cochain-level Mayer–Vietoris short exact sequence with `δ`, exactness and the connecting isomorphism |
 | `CohomologyProductCover.lean` | `isZero_mvAmbient`, opens of a product, the empty space |
 | `CohomologyKunnethSphere.lean` | the Künneth vanishing step and the cohomology suspension isomorphism |
 | `CohomologySphereZero.lean` | the two-point structure of `S⁰` and Künneth with a sphere factor |
+| `CohomologyShapes.lean` | `cc-projective`'s `HasPointCohomology` / `HasSphereCohomology` discharged |
+| `CohomologyDegreeZero.lean` | `cocycleClass` is injective in degree 0; `one X ≠ 0` |
+| `CohomologyKunnethSplit.lean` | the Künneth map for a sphere factor; the slice half of its injectivity |
 
 ## 1. GREEN
 
@@ -37,12 +39,13 @@ with a `Built …` line for the module (never `Replayed`).
 | `CharClass/CohomologySphere.lean` | 8769 |
 | `CharClass/CohomologyAssoc.lean` | 8769, re-green at 2055 after the cast-shape change |
 | `CharClass/CohomologyContractible.lean` | 8769 |
-| `CharClass/CohomologySphereComplement.lean` | 8768 |
 | `CharClass/CohomologyMayerVietoris.lean` | 8768 |
 | `CharClass/CohomologyProductCover.lean` | 8769 |
 | `CharClass/CohomologyKunnethSphere.lean` | 8771 |
 | `CharClass/CohomologySphereZero.lean` | 8771 |
 | `CharClass/CohomologyShapes.lean` | 8773 |
+| `CharClass/CohomologyDegreeZero.lean` | 8730 |
+| `CharClass/CohomologyKunnethSplit.lean` | 8768 |
 
 No `sorry`, `admit`, `axiom`, `opaque` or `native_decide` has ever appeared in
 any of these files.
@@ -50,6 +53,51 @@ any of these files.
 ## 2. AUTHORED, UNVERIFIED
 
 *(nothing — every module this lane owns is green)*
+
+## 2b. EXPORTS (frozen; other lanes build against these)
+
+The dualization layer, canonical per the lead's ruling and consumed by cc-thom's
+`MayerVietorisBiproduct`/`MayerVietorisElement`, in `CohomologyMayerVietoris.lean`:
+`cohDualFunctor` with `cohDualFunctor_preservesLimits`,
+`cohDualFunctor_preservesEpimorphisms`, `cohDualFunctor_preservesHomology`;
+`dualCxFunctor` with `dualCxFunctor_additive`; `dualCx2`; `dualMap2`;
+`dualMap2_quasiIso`; `cochainCxZMod2_eq_dualCx2`; `upRel`.
+
+The Mayer–Vietoris layer, same module: `mvCoSC`, `mvCoSplittingAux`,
+`mvCoSplitting`, `mvCoSC_degreewise_shortExact`, `mvCoSC_shortExact`,
+`subCxDualIso`, `subCxDualHomologyIso`, `mvInterIso`, `mvAmbientIso`, `mvDelta`,
+`mvExact_inter`, `mvExact_sum`, `mvExact_ambient`, `isZero_mvCoX2`,
+`mvConnectingIso`.
+
+The cup layer, in `CohomologyBasic.lean` and `CohomologyAssoc.lean`: `Hmod2`,
+`cohCast` with its calculus, `cup` (`⌣`), `one`, `pull`, `pullLinear`, `cupBilin`,
+`cup_mk`, the bilinearity lemmas, `cup_one` (strict), `one_cup` and `cup_assoc`
+(cast on the left, cc-projective's shape), `one_cup'` and `cup_assoc'` (cast on
+the right), `cohCast_symm_cohCast`, `cohCast_cohCast_symm`, `pull_id`,
+`pull_comp`, `pull_cup`, `pull_one`, `pull_mk`.
+
+Künneth with a sphere factor, in `CohomologyKunnethSplit.lean` and
+`CohomologySphereZero.lean`:
+
+```lean
+abbrev knPrY (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    TopCat.of (Y × Sphere n) ⟶ TopCat.of Y
+abbrev knPrS (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    TopCat.of (Y × Sphere n) ⟶ TopCat.of (Sphere n)
+def knSlice (Y) (n) (p : Sphere n) : TopCat.of Y ⟶ TopCat.of (Y × Sphere n)
+def knSigma (Y) (n) (hn : 1 ≤ n) : Hmod2 (TopCat.of (Y × Sphere n)) n
+theorem pull_knSlice_knPrY / pull_knPrY_injective / pull_knSlice_knSigma
+theorem kunneth_fst_eq_zero (Y) (n) (hn : 1 ≤ n) (p : Sphere n) (m : ℕ)
+    (u : Hmod2 (TopCat.of Y) (n + m)) (v : Hmod2 (TopCat.of Y) m)
+    (h : pull (knPrY Y n) (n + m) u + cup (knSigma Y n hn) (pull (knPrY Y n) m v) = 0) :
+    u = 0
+def prodSwapEquiv (A B) (k) : Hmod2 (TopCat.of (B × A)) k ≃ₗ[ZMod 2] Hmod2 (TopCat.of (A × B)) k
+theorem isZero_cohomology_prod_sphere (A) (p n) (hA) (k) (hk : p + n < k) :
+    IsZero (Hmod2 (TopCat.of (A × Sphere n)) k)
+```
+
+Degree zero, in `CohomologyDegreeZero.lean`: `cocycleClass_zero_injective`,
+`one_ne_zero_cohZero`.
 
 ## 3. NEEDS
 
