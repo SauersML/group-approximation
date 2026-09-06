@@ -7,53 +7,56 @@ Owns `Analysis/CStarKOne.lean`, `Analysis/CStarKOneInjectivityCriterion.lean`,
 
 ## 1. GREEN
 
-**`Build completed successfully (2999 jobs)`**, probe round 7, targets
+**`Build completed successfully (8698 jobs)`**, with
+`ℹ Built GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX (27s)` and
+all six `#audit_axioms` lines reporting exactly
+`[propext, Classical.choice, Quot.sound]`.
 
-```
-GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
-GroupApproximation.Analysis.CStarKOne
-GroupApproximation.Analysis.CStarSymmetryComponent
-GroupApproximation.Analysis.CStarKOneInjectivityCriterion
-GroupApproximation.Analysis.LIXEndpointStatement
-GroupApproximation.Analysis.CStarKOneWhitehead
-```
+Everything this lane owns is green:
 
-**All six modules of this lane are green**, including the endpoint.  The log
-ends
-
-```
-✔ [2998/2999] Built GroupApproximation.Analysis.CStarSimple (10s)
-ℹ [2999/2999] Built GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX (10s)
-Build completed successfully (2999 jobs).
-```
-
-and the three `#audit_axioms` lines each report exactly the classical three:
-
-```
-'ProblemLIX' depends on axioms: [propext, Classical.choice, Quot.sound]
-'exists_simple_unital_not_k1Inj_of' depends on axioms: [propext, Classical.choice, Quot.sound]
-'not_problemLIX_of_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
-```
-
-Per-module `Built` evidence, so that no green here rests on a replay:
-
-| module | genuinely built in |
+| module | job count |
 |---|---|
-| `Analysis/CStarKOne` | round 3 (job ≤ 2993 of 2996; not among the two `✖`) |
-| `Analysis/CStarSymmetryComponent` | round 3, same |
-| `Analysis/CStarKOneInjectivityCriterion` | round 4, `✔ Built … (15s)` |
-| `Analysis/CStarKOneWhitehead` | round 4, `✔ Built … (18s)` |
-| `Analysis/LIXEndpointStatement` | rounds 4 and 6, `✔ Built … (9.4s / 9.1s)` |
-| `Manuscript/…/ProblemLIX` | round 7, `ℹ Built … (10s)` |
+| `Manuscript/NinetyNineProblems/ProblemLIX` | 8698 |
+| `Analysis/LIXLemmaTwoProp` | 8671 |
+| `Analysis/{CStarKOne, CStarSymmetryComponent, CStarKOneInjectivityCriterion, LIXEndpointStatement, CStarKOneWhitehead}` | 2996, twice, before and after a real edit |
 
-Rounds 5 and 6 each gave `2996 jobs` for the five `Analysis/` modules, before
-and after a real docstring edit, so that count is stable across an edit rather
-than one measurement replayed.
+Per-module `Built` evidence, so that no green rests on a replay: `CStarKOne` and
+`CStarSymmetryComponent` in round 3 below the two `✖`; the criterion and
+Whitehead in round 4 at `✔ Built … (15s / 18s)`; `LIXEndpointStatement` in
+rounds 4 and 6 at `(9.4s / 9.1s)`; `LIXLemmaTwoProp` at `(20s)`; `ProblemLIX`
+in rounds 7, 8 and the last at `(10s / 7.5s / 27s)`.
 
-**Root wiring**: the lead has `GroupApproximation.lean:3311–3320` carrying all
-five `Analysis/` modules plus `CStarMatrixBlockInclusion`,
-`CStarUnitaryComponent` and `SequentialGroupColimit`.  `CStarSimple` and
-`ProblemLIX` are now green and can be added.
+### THE ENDPOINT TAKES ONE HYPOTHESIS
+
+`Manuscript/NinetyNineProblems/ProblemLIX.lean` carries six declarations, and
+the last of them is
+
+```lean
+theorem not_problemLIX_of_lemmaTwo_data
+    (hwit : LIX.LemmaTwoHolds → HasK1InjWitness LIX.LIXLimit)
+    (h : LIX.LemmaTwoHolds) : ¬ ProblemLIX
+```
+
+`hwit` is `cs-clutching`'s, and it is the **only** hypothesis left anywhere in
+the chain.  Simplicity is no longer one: `LIX.lixLimit_isSimpleCStar` is
+hypothesis-free, from `cs-stages`' stagewise fullness through `cs-limit`'s
+reduction.  So the whole C⋆-side — stage algebras, connecting maps, the
+inductive limit, its simplicity, and the reduction of the printed problem to a
+single unitary — is unconditional, and `LIX.LemmaTwoHolds` is the one thing the
+answer takes from algebraic topology.
+
+Behind that, `cc-lix-odd`'s `lemmaTwoHolds_of` reduces `LemmaTwoHolds` to two
+cohomological statements per stage, with Step A a theorem rather than a
+hypothesis — which is what keeps Lemma 2 a statement about *every* equivalence
+rather than a chosen one.
+
+The `_data` suffix is temporary by construction.  When `cs-clutching` lands
+`lixLimit_hasK1InjWitness_of` both theorems lose their hypothesis and become
+`exists_simple_unital_not_k1Inj_of_lemmaTwo` and `not_problemLIX_of_lemmaTwo`;
+when `LemmaTwoHolds` is itself proved they become
+`exists_simple_unital_not_k1Inj` and `not_problemLIX` with
+`#audit_closed_axioms`.  No statement changes at either step, only which
+arguments are supplied.
 
 ### The two verifications the brief asked for
 
