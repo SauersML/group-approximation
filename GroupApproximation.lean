@@ -3785,6 +3785,7 @@ import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
 import GroupApproximation.CharClass.CohomologyParitySlice
 import GroupApproximation.CharClass.CohomologyLIXSliceBridge
+import GroupApproximation.CharClass.CohomologyLIXHslice
 import GroupApproximation.CharClass.LIXBallNeighbourhood
 import GroupApproximation.CharClass.LerayHirschColTower
 import GroupApproximation.CharClass.LerayHirschColRead
