@@ -148,6 +148,18 @@ and instantiates this disc construction. Thus the standalone padding disc
 is proved; gluing it into the original complementary region while
 preserving selected contiguities remains open.
 
+The historical surgery cell transport is also too strong: it requires a
+bijection of all potential relator records, including records on unlisted
+G-faces. Issue [#205](https://github.com/SauersML/group-approximation/issues/205)
+now has a closed Lean counterexample in `SurgeryRCellEquivCounterexample.lean`:
+two actual reduced O-equivalent discs with identical empty relator lists and
+the same boundary, but no full-type `RCellEquiv`. The historical interface is
+preserved. `SurgeryOrderedCells.lean` instead preserves the actual ordered
+word and based-value lists and proves finite-index O-equivalence and
+reducedness transport. The counterexample admits this corrected replacement.
+`Estimating/OrderedReplacement.lean` supplies its explicit selection face-drop
+consumers. These transport proofs do not construct the missing local surgery.
+
 The padding operation now has an explicit map construction in
 `CombMapEdgeInsertion.lean`. It retains every old dart, inserts the two
 new darts at the chosen corners, preserves the actual vertex quotient,
