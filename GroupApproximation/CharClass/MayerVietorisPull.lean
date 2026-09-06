@@ -95,6 +95,76 @@ theorem mvResWU_one (U V : Opens X) (hUV : U ⊔ V = ⊤) :
   rw [mvResWU_eq_pull]
   exact pull_one _
 
+/-! ## The `V` twin, where the sign lives
+
+`mvResWV` goes through `g`, which is `biprod.lift ι (-ι')`, so this is the one of the
+four restriction identifications that has a minus to absorb.  Over `F₂` a morphism of
+chain complexes is its own negative, and that is the only extra ingredient. -/
+
+/-- **A morphism of chain complexes of `F₂`-modules is its own negative.** -/
+theorem neg_eq_self_chainHom {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (φ : K ⟶ L) :
+    -φ = φ := by
+  have h : φ + φ = 0 := by
+    apply HomologicalComplex.hom_ext
+    intro n
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    show (φ.f n).hom x + (φ.f n).hom x = 0
+    exact add_self_eq_zero_two _
+  have h2 : -φ + (φ + φ) = -φ + 0 := by rw [h]
+  rw [← add_assoc, neg_add_cancel, zero_add, add_zero] at h2
+  exact h2.symm
+
+/-- The `V` twin of `mvCxInclU_comp_g`; the minus of `mvLeftChainMap` disappears. -/
+theorem mvCxInclV_comp_g (U V : Opens X) (hUV : U ⊔ V = ⊤) :
+    mvCxInclV U V ≫ (mvCoSC U V hUV).g
+      = dualMap2 (subChainInclusion ((U : Set X) ∩ (V : Set X)) (V : Set X)
+          Set.inter_subset_right) := by
+  have hlift : mvLeftChainMap (ZMod 2) U V hUV ≫ biprod.snd
+      = subChainInclusion ((U : Set X) ∩ (V : Set X)) (V : Set X) Set.inter_subset_right := by
+    show biprod.lift (mvInclUV_U (ZMod 2) U V) (-(mvInclUV_V (ZMod 2) U V)) ≫ biprod.snd = _
+    rw [biprod.lift_snd, neg_eq_self_chainHom]
+    rfl
+  show dualMap2 (biprod.snd (X := mvCx U) (Y := mvCx V))
+      ≫ dualMap2 (mvLeftChainMap (ZMod 2) U V hUV) = _
+  rw [mvDualMap_comp, hlift]
+
+/-- **The Mayer–Vietoris restriction of the second piece to the intersection is the
+honest pullback.**  The last of the four restriction identifications. -/
+theorem mvResWV_eq_pull (U V : Opens X) (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    mvResWV U V hUV n
+      = cohPullback (subInclusion (Set.inter_subset_right (s := (U : Set X))
+          (t := (V : Set X)))) n := by
+  have key : mvHInclV U V n ≫ mvPsi U V hUV n
+      = (subCxDualHomologyIso (V : Set X) n).hom
+          ≫ cohPullback (subInclusion (Set.inter_subset_right (s := (U : Set X))
+              (t := (V : Set X)))) n := by
+    have h2 : mvHInclV U V n ≫ HomologicalComplex.homologyMap (mvCoSC U V hUV).g n
+        = HomologicalComplex.homologyMap
+            (dualMap2 (subChainInclusion ((U : Set X) ∩ (V : Set X)) (V : Set X)
+              Set.inter_subset_right)) n := by
+      have hc := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
+        (mvCxInclV_comp_g U V hUV)
+      simp only [HomologicalComplex.homologyMap_comp] at hc
+      exact hc
+    show mvHInclV U V n ≫ HomologicalComplex.homologyMap (mvCoSC U V hUV).g n
+        ≫ HomologicalComplex.homologyMap
+            (dualMap2 (subChainCorestrict (ZMod 2) X ((U : Set X) ∩ (V : Set X)))) n
+      = HomologicalComplex.homologyMap
+            (dualMap2 (subChainCorestrict (ZMod 2) X (V : Set X))) n
+        ≫ HomologicalComplex.homologyMap
+            (dualMap2 (chainCxFun.map (subInclusion (Set.inter_subset_right
+              (s := (U : Set X)) (t := (V : Set X)))))) n
+    rw [← Category.assoc, h2]
+    have hnat := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
+      (dualMap2_subChainCorestrict_naturality
+        (Set.inter_subset_right (s := (U : Set X)) (t := (V : Set X))))
+    simp only [HomologicalComplex.homologyMap_comp] at hnat
+    exact hnat
+  show (subCxDualHomologyIso (V : Set X) n).inv ≫ mvHInclV U V n ≫ mvPsi U V hUV n = _
+  rw [key, ← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+
 end
 
 end GroupApproximation.CharClass
