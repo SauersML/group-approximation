@@ -3643,6 +3643,7 @@ import GroupApproximation.CharClass.ThomStepCOddIso
 import GroupApproximation.CharClass.CartanEvalMor
 import GroupApproximation.CharClass.CartanEvalMaster
 import GroupApproximation.CharClass.LIXBundleModel
+import GroupApproximation.CharClass.LIXBundlePair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
