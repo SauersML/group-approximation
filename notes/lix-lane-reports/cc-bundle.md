@@ -28,7 +28,8 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — all 12 modules together, `Build completed successfully (2978 jobs)`
+## GREEN — 13 modules; `BundleStabilize` at 2974 jobs, the other twelve
+together at 2978
 
 Final probe 2026-09-05 late evening naming **all twelve modules in one build**,
 so the lane is green as a whole and not only module by module.  The individual
@@ -207,12 +208,44 @@ theorem needing proof is `flag_decomposition`, and it is the trace argument: the
 sum of the lines is a subprojection of `p` of the same trace, and a projection
 of trace zero is zero.
 
+### `BundleStabilize.lean` — the stabilised classifying map
+
+The form `cc-projective`'s Euler class consumes.  In `ℂP^d` itself isomorphic
+line bundles need **not** have homotopic classifying maps; they do after one
+stabilisation along a linear isometric embedding with room for two disjoint
+copies.
+
+```lean
+def cpEmbed (V : Matrix (Fin (N+1)) (Fin (d+1)) ℂ) (hV : Vᴴ * V = 1) : C(CP d, CP N)
+theorem cpEmbed_apply : (cpEmbed V hV z : Matrix _ _ ℂ) = V * (z : Matrix _ _ ℂ) * Vᴴ
+
+noncomputable def stabRot (e : BundleIso p q) (A B) (t : ℝ) (x : X)
+    -- = ((1-t : ℝ) : ℂ) • A + ((t : ℝ) : ℂ) • (B * e.hom x)
+
+theorem homotopic_cpEmbed_of_iso (e : BundleIso p q)
+    (hA : Aᴴ * A = 1) (hB : Bᴴ * B = 1) (hAB : Aᴴ * B = 0) (hBA : Bᴴ * A = 0)
+    (hp : ∀ x, (p x).trace = 1) (hq : ∀ x, (q x).trace = 1) :
+    ((cpEmbed A hA).comp (classifyOne p hp)).Homotopic
+      ((cpEmbed B hB).comp (classifyOne q hq))
+
+theorem homotopic_cpEmbed_same (e : BundleIso p q) (hA hB hAB hBA hp hq) :
+    ((cpEmbed A hA).comp (classifyOne p hp)).Homotopic
+      ((cpEmbed A hA).comp (classifyOne q hq))       -- SAME embedding both sides
+
+-- a splitting of ℂ^{N+1} from any equivalence of index types
+def sumInclLeft (eqv : ι ⊕ κ ≃ ρ) : Matrix ρ ι ℂ
+def sumInclRight (eqv : ι ⊕ κ ≃ ρ) : Matrix ρ κ ℂ
+theorem sumInclLeft_isometry / sumInclRight_isometry
+theorem sumInclLeft_conjTranspose_mul_right / sumInclRight_conjTranspose_mul_left
+```
+
+`homotopic_cpEmbed_same` is obtained by rotating twice, once along the
+isomorphism and once along the identity of `q`.  For `N = 2d + 1` take
+`eqv := finSumFinEquiv.trans (finCongr (by omega))`.
+
 ## NEEDS
 
-Nothing from a peer, and nothing from the roster row is left unstarted.  One
-item is deliberately deferred: the `finSumFinEquiv` reindexing of
-`homotopic_classL_classR` to a statement about `CP (d + d' + 1)`, whose shape
-depends on `cc-projective`'s hyperplane stability.
+Nothing from a peer, and nothing from the roster row is left unstarted.
 
 ## TRAPS (all found the hard way; save the next reader the probes)
 
