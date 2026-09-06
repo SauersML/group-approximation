@@ -3720,6 +3720,7 @@ import GroupApproximation.CharClass.LIXThomAssembly
 import GroupApproximation.CharClass.LerayHirschTowerRev
 import GroupApproximation.CharClass.LerayHirschFreeExists
 import GroupApproximation.CharClass.RelativeBundleNonempty
+import GroupApproximation.CharClass.RelativeHomotopyInvariance
 import GroupApproximation.CharClass.CartanClassId
 import GroupApproximation.CharClass.CartanRhsSum
 import GroupApproximation.CharClass.CohomologyParitySlice
