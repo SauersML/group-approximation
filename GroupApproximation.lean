@@ -3772,6 +3772,7 @@ import GroupApproximation.CharClass.ThomFibreRestriction
 import GroupApproximation.CharClass.LIXTrivSectionCompare
 import GroupApproximation.CharClass.LerayHirschGammaIso
 import GroupApproximation.CharClass.LerayHirschNatural
+import GroupApproximation.CharClass.LerayHirschNaturalCoeff
 import GroupApproximation.CharClass.LerayHirschContractible
 import GroupApproximation.CharClass.ThomChainHne
 import GroupApproximation.CharClass.ThomHyperplaneLH
