@@ -21,6 +21,36 @@ CPTautologicalSection, ManuscriptSectionZeroCount}.lean` (and their dependency
 | `CharClass/LemmaTwoParity.lean` | 8667 | `trace_Hmat`/`trace_Vmat` (`rank V = (∑ⱼ dⱼ) + 3`), `LIXParityInput`, `LIXParityInput.gamma_top_eq_zero` = **Step D** at the LIX base |
 | `CharClass/LIXSectionChart.lean` | 8663 | the chart of `S⁵` at `-e₃` on the plain product `ℂ × ℂ × ℝ` (`sphereChartVec`, `sphereChartVec_mem`, `sphereChart_zero`, `continuous_sphereChartVec`), the derivative at the zero with its bijectivity (`eulerLinearModel`, `eulerLinearEquiv`, `eulerContinuousLinearEquiv`), and `trivialBlockChart_eq_zero_iff` |
 | `CharClass/LemmaTwoStatement.lean` | 8667 | `FHmat`/`EHmat` with `FHmat_eq_fromBlocks`, `ContinuousMvNEquiv`, `HasStepAUnitary`, `false_of_stepC_stepD`, `not_continuousMvNEquiv` = **Lemma 2** |
+| `CharClass/LemmaTwoBridge.lean` | 8669 | `toMatC`, `matEval_toMatC`, `continuous_matEval`, `continuousMvNEquiv_of_murrayVonNeumannEquiv`, `continuous_FHmat`/`continuous_EHmat`, `not_murrayVonNeumannEquiv` = **Lemma 2 in the C\*-side vocabulary** |
+
+## 1a. EXPORTS — the two shapes of Lemma 2
+
+Both are green and both are available; pick by vocabulary.
+
+**Continuous-field model** (`CharClass/LemmaTwoStatement.lean`), which the whole
+`CharClass` layer speaks:
+
+```lean
+theorem not_continuousMvNEquiv (topClass) (stepA) (stepC) (stepD) :
+    ¬ ContinuousMvNEquiv (FHmat (dd := dd)) EHmat
+```
+
+**Matrix-over-functions model** (`CharClass/LemmaTwoBridge.lean`), which the C*-side
+speaks:
+
+```lean
+theorem not_murrayVonNeumannEquiv (topClass) (stepA) (stepC) (stepD) :
+    ¬ MurrayVonNeumannEquiv (toMatC (FHmat (dd := dd)) continuous_FHmat)
+      (toMatC (EHmat (dd := dd)) continuous_EHmat)
+```
+
+`toMatC P hP` is the continuous field `P` read as a matrix over `C(M, ℂ)`, and
+`matEval_toMatC` says the translation is the identity on points.  The bridge itself is
+`continuousMvNEquiv_of_murrayVonNeumannEquiv`: evaluation at a point is multiplicative and
+star-preserving, so the implementer transports verbatim.  **The bridge does not depend on
+the cohomology layer**, so `cs-clutching` can join as soon as Steps A, C and D land.
+
+Step A's target is `HasStepAUnitary dd`.
 
 ## 2. AUTHORED, UNVERIFIED
 
