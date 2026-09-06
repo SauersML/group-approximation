@@ -187,9 +187,10 @@ theorem cut_coboundary_master {M} [AddCommGroup M] (h2 : ∀ x : M, x + x = 0)
 
 ## GREEN
 
-`Build completed successfully (2131 jobs)`.  Every module below has a `Built`
-line (not `Replayed`) in the probe that first compiled it, and none has changed
-since:
+**All nineteen owned modules build clean together:
+`Build completed successfully (2192 jobs)`, `LAKE_EXIT=0`, `PROBE GREEN`**, log
+verified to name all nineteen targets and `clone cc-steenrod`.  Per-module job
+counts below are from the probe that first compiled each:
 
 * `CharClass/SteenrodCut.lean`
 * `CharClass/SteenrodCutCancel.lean`

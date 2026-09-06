@@ -111,6 +111,28 @@ def pairPushGRLin (X Y : TopCat.{0}) (f : X ⟶ Y) (k : ℕ) :
   map_add' u v := map_add (pairPushLin X Y f k) u v
   map_smul' c z := pairPushLin_smul f k c z
 
+/-- The pushforward along the identity is the identity. -/
+theorem pairIdxPush_id (X : TopCat.{0}) (k : ℕ) (q : PairIdx X k) :
+    pairIdxPush (𝟙 X) k q = q := by
+  obtain ⟨p, ρ, τ⟩ := q
+  show (⟨p, (pushSimplex (𝟙 X) p.val.1 ρ, pushSimplex (𝟙 X) p.val.2 τ)⟩ : PairIdx X k)
+      = ⟨p, (ρ, τ)⟩
+  unfold pushSimplex
+  rw [CategoryTheory.Functor.map_id]
+  rfl
+
+/-- The pushforward respects composition. -/
+theorem pairIdxPush_comp {X Y Z : TopCat.{0}} (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ)
+    (q : PairIdx X k) :
+    pairIdxPush g k (pairIdxPush f k q) = pairIdxPush (f ≫ g) k q := by
+  obtain ⟨p, ρ, τ⟩ := q
+  show (⟨p, (pushSimplex g p.val.1 (pushSimplex f p.val.1 ρ),
+      pushSimplex g p.val.2 (pushSimplex f p.val.2 τ))⟩ : PairIdx Z k)
+    = ⟨p, (pushSimplex (f ≫ g) p.val.1 ρ, pushSimplex (f ≫ g) p.val.2 τ)⟩
+  unfold pushSimplex
+  rw [CategoryTheory.Functor.map_comp]
+  rfl
+
 /-! ## 3. The target differential is natural -/
 
 theorem pushSimplex_faceSimplex {X Y : TopCat.{0}} (f : X ⟶ Y) (n : ℕ) (j : Fin (n + 2))
