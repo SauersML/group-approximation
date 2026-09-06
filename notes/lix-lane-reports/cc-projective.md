@@ -489,3 +489,61 @@ cc-cohom-api derived the same theorem from the same message and gave it the same
 name.  The pre-build grep cannot see in-flight peer work, which is exactly why
 the dupscan gate sits before the push.  Resolution: the name on origin wins and
 the in-flight file drops its copy.
+
+## 2026-09-06 — THE INVARIANCE LAYER, AND THE BRIDGE TO V
+
+* `ChernEulerPushforwardSize` (b8c979497, **PROBE GREEN, 8826 jobs**)
+* `ChernOfInvariance` (34f43947d, **PROBE GREEN, 9150 jobs**)
+* `LIXChernSliceValueBridge` (3f50a8dde, **PROBE GREEN, 9160 jobs**)
+
+The chain, and where the only real content sits:
+
+* `CPn.eulerOfBundle_pushforward_size` / `eulerOfBundle_pushforward_iso` — the
+  Euler class does not see the SIZE of the index it is pushed into.
+  `ChernEulerIndex` already had independence of the injection and the `iterFin`
+  descent, but both fix the target size, and comparing two bundles with different
+  index types needs the size free.  The obstruction is arithmetic, not geometric:
+  `M + N` and `N + M` are not the same term.  Fixed by giving the common size as
+  an EQUATION `a + k = N` and discharging it by `subst`, so a caller instantiates
+  it both ways round.
+* `LH.tautEulerOf_eq_of_bundleIso` — the generator transports.  This is the only
+  step of invariance with content, because `tautEulerOf` reads its `Fin` size off
+  the index type.
+* `LH.chernOf_eq_of_bundleIso` — invariance, as `chern_map_of_square` with the
+  IDENTITY ring map.  Naturality and invariance are the same theorem with a
+  different ring map, which is why neither needed a new idea.
+* `LH.chernOf_pushforward`, `LH.chernOf_congr` — the two corollaries the endgame
+  consumes.
+* `LH.chernOf_lixSlice_eq_vBundleY` — the bridge: the classes of the restricted
+  mapping torus are the classes of `V`.
+
+Everything is stated at an arbitrary injection and degreewise, so a LINE is the
+rank-one case rather than a separate lemma.  cc-steenrod asked for the line-level
+statement and I declined to write it separately for exactly that reason; the
+second-summand inclusion is one instantiation, not the hypothesis.
+
+### Why the bridge is cheap, and it was nearly not
+
+The two bundles are not isomorphic-up-to-a-unitary-field, they are EQUAL in a
+block: `mappingTorus_lixSlice_baseY` says the restriction at the marked points is
+`fromBlocks 0 0 0 (VmatY y)`, because the clutching field is annihilated at the
+pole.  So the bridge is `chernOf_congr` then `chernOf_pushforward`, and the
+differing index sizes are absorbed by the invariance lemma rather than by any
+reindexing at the LIX layer.
+
+### TRAP, third occurrence tonight: `ext` recurses past the point of the proof
+
+`ext x` on an equality of `Bundle`s does not stop at `Bundle.ext`; it continues
+into the matrix entries and hands back `p x i j = q x i j`, which the pointwise
+hypothesis does not close.  Same shape as `ext` on a morphism into a product of
+spheres running into `EuclideanSpace` coordinates.  The rule that covers both:
+when a target has a chain of `@[ext]` lemmas, name the top one as a TERM rather
+than invoking the tactic — `DFunLike.ext _ _ h` here, `ContinuousMap.ext fun _ =>
+rfl` there.  `ext x : n` also works but requires guessing the depth.
+
+### TRAP: a parse error manufactures a `sorry`
+
+Omitting `open scoped Matrix` made `ᴴ` a parse error, and Lean then reported
+`declaration uses 'sorry'` sixty lines below, in a declaration containing no such
+thing.  The banned-token scan on the SOURCE was clean throughout.  Do not chase
+the reported `sorry`; fix the first parse error and it goes.
