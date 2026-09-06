@@ -3570,6 +3570,7 @@ import GroupApproximation.CharClass.SteenrodFourfoldBoundary
 import GroupApproximation.CharClass.ThomRelativeCokernel
 import GroupApproximation.Analysis.LIXLemmaSixField
 import GroupApproximation.Analysis.LIXLemmaSixHIdx
+import GroupApproximation.Analysis.LIXLemmaSixCor4
 import GroupApproximation.CharClass.CartanComparison
 import GroupApproximation.CharClass.ChernEulerSqOne
 import GroupApproximation.CharClass.CohomologyChartFlat
