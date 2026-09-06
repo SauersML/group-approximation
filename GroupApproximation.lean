@@ -3730,6 +3730,8 @@ import GroupApproximation.CharClass.LIXBallNeighbourhood
 import GroupApproximation.CharClass.LerayHirschColTower
 import GroupApproximation.CharClass.LerayHirschColRead
 import GroupApproximation.CharClass.BundleFlagStage
+import GroupApproximation.CharClass.BundleChartTotal
+import GroupApproximation.CharClass.ChernFactorBridge
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeCases
 import GroupApproximation.CharClass.SteenrodFourfoldBPackage
 import GroupApproximation.CharClass.CartanCupIVanishing
