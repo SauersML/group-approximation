@@ -91,6 +91,27 @@ theorem murrayVonNeumannEquiv_conj {A : Type*} [Monoid A] [StarMul A] {p q u : A
       _ = u * (v * star v) * star u := by rw [hu, mul_one]
       _ = u * q * star u := by rw [hv₂]
 
+/-! ### Corner units, over a bare monoid
+
+`STW59.corner_left_unit` and `corner_right_unit` below are stated in a C-star algebra, but
+the same two lines hold in any monoid and are needed there: the matrix algebra
+`Matrix ι ι C(X, ℂ)`, where `Analysis/LIXConnectingMap.lean` does its arithmetic, is not a
+C-star algebra. -/
+
+theorem idem_left_unit {A : Type*} [Monoid A] {p a : A} (hp : IsIdempotentElem p)
+    (ha : p * a * p = a) : p * a = a := by
+  calc p * a = p * (p * a * p) := by rw [ha]
+    _ = (p * p) * a * p := by simp only [mul_assoc]
+    _ = p * a * p := by rw [hp.eq]
+    _ = a := ha
+
+theorem idem_right_unit {A : Type*} [Monoid A] {p a : A} (hp : IsIdempotentElem p)
+    (ha : p * a * p = a) : a * p = a := by
+  calc a * p = (p * a * p) * p := by rw [ha]
+    _ = p * a * (p * p) := by simp only [mul_assoc]
+    _ = p * a * p := by rw [hp.eq]
+    _ = a := ha
+
 /-! ### The corner of a projection in a unital C-star algebra -/
 
 section Corner
@@ -212,6 +233,14 @@ theorem coe_corner_smul (p : A) (hp : IsStarProjection p) (c : ℂ) (a : Corner 
 
 theorem corner_ext {p : A} {hp : IsStarProjection p} {a b : Corner p hp}
     (h : (a : A) = (b : A)) : a = b := Subtype.ext h
+
+theorem coe_corner_sum {p : A} {hp : IsStarProjection p} {κ : Type*} (s : Finset κ)
+    (f : κ → Corner p hp) :
+    ((∑ k ∈ s, f k : Corner p hp) : A) = ∑ k ∈ s, ((f k : A)) := by
+  classical
+  induction s using Finset.induction with
+  | empty => rw [Finset.sum_empty, Finset.sum_empty, coe_corner_zero]
+  | insert k s hk ih => rw [Finset.sum_insert hk, Finset.sum_insert hk, coe_corner_add, ih]
 
 /-- The corner is a ring with unit `p`. -/
 noncomputable instance cornerRing (p : A) (hp : IsStarProjection p) : Ring (Corner p hp) :=
@@ -371,6 +400,12 @@ theorem ofFunctionMatrix_smul (c : ℂ) (M : Matrix ι ι C(X, ℂ)) :
     ofFunctionMatrix (c • M) = c • ofFunctionMatrix M := by
   refine ContinuousMap.ext fun x => CStarMatrix.ext fun i j => ?_
   show (matEval x (c • M)) i j = ((c • ofFunctionMatrix M) x) i j
+  rfl
+
+theorem ofFunctionMatrix_zero : ofFunctionMatrix (0 : Matrix ι ι C(X, ℂ)) = 0 := by
+  refine ContinuousMap.ext fun x => CStarMatrix.ext fun i j => ?_
+  show (matEval x (0 : Matrix ι ι C(X, ℂ))) i j = ((0 : SectionAlgebra X ι) x) i j
+  rw [matEval_zero]
   rfl
 
 theorem ofFunctionMatrix_injective :
