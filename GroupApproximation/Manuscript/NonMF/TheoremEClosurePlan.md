@@ -104,16 +104,36 @@ interior-edge type to be empty
 closed refutation of the realization. `EndpointClosedDeletion.lean` restores
 the all-endpoints invariant, proves its preservation under deletion and the
 five-deletion-order consequence, and verifies a nonempty one-edge model.
-These are checked repairs of the finite graph input, not a completed Osin
-construction. Next migrate the graph/data/weighted consumers to that invariant
-and prove the actual selected graph geometry, treating isolated vertices and
-tree components explicitly. Preserve the old records and refutations.
+`EndpointClosedAssembly.lean` now carries that invariant through the actual
+interior incidence graph, five-owner orientation, O52 charges, the unchanged
+`10 * mu` budget, and the original embedded estimating system and Greendlinger
+conclusions. Its joint construction interface selects the graph and Lemma 62
+output on one diagram at one pair of parameters, bypassing both historical
+records. All these conditional reductions pass ordinary axiom audits; the
+joint geometric producer remains unproved. The actual selected graph geometry
+must still handle isolated vertices and tree components.
+
+`ShortSection.lean` proves the source arc's quasi-geodesic lower bound and
+the pasted-region upper bound from its two connectors and target. It derives
+Osin's `lambda⁻¹ * (3 * eps + c)` estimate for an admissible short section;
+the admissibility follows directly for actual `BoundarySections`. The old
+`Lemma65Inputs.sideArcSourceLength` quantifies over arbitrary dart lists and
+does not supply that alphabet hypothesis, so it must not be treated as the
+source statement without checking its geometric callers.
+
+The face classification is already proved in `SurgeryFacePartition`, and
+`SurgeryCutDiagram` constructs the enclosed disc from `RegionCutData`.
+`SurgeryCutLemma65` had a stale non-elaborating adapter that omitted the
+current cut record's quasi-geodesic sections. That adapter is repaired and
+audited; actual section and region production remain geometric obligations.
 The outstanding proofs are:
 
 1. Derive the geometric constants from the ambient hypotheses and reconcile
    the published and preprint numbering against the source argument.
-2. Prove the local replacement underlying `SelectionFaceDropOracle`; use the
-   existing well-founded face-count descent to build the scaffold.
+2. Prove the selected incidence graph's planarity and simplicity in the
+   source's joint induction on relator-cell count (Appendix Lemma 9.6).
+   Simplicity uses the inductive Greendlinger conclusion for the enclosed
+   diagram, so the historical face-drop reduction is not the whole argument.
 3. Construct the complementary regions and their actual boundary incidence
    partition; prove cutting-path shortening, the density estimate, and the
    unbound-arc count. Preserve O-equivalence, reduction, boundary words, and
