@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LIXBlockProjections
 import GroupApproximation.Analysis.LIXCornerAlgebra
+import GroupApproximation.Analysis.LIXConnectingMapPoints
 
 set_option autoImplicit false
 
@@ -108,6 +109,33 @@ theorem toFunctionMatrix_ofFunctionMatrix (M : Matrix ι ι C(X, ℂ)) :
 theorem ofFunctionMatrix_toFunctionMatrix (a : SectionAlgebra X ι) :
     ofFunctionMatrix (toFunctionMatrix a) = a := rfl
 
+theorem toFunctionMatrix_injective :
+    Function.Injective (toFunctionMatrix : SectionAlgebra X ι → Matrix ι ι C(X, ℂ)) := by
+  intro a b h
+  rw [← ofFunctionMatrix_toFunctionMatrix a, ← ofFunctionMatrix_toFunctionMatrix b, h]
+
+theorem toFunctionMatrix_add (a b : SectionAlgebra X ι) :
+    toFunctionMatrix (a + b) = toFunctionMatrix a + toFunctionMatrix b := by
+  apply ofFunctionMatrix_injective
+  rw [ofFunctionMatrix_toFunctionMatrix, ofFunctionMatrix_add, ofFunctionMatrix_toFunctionMatrix,
+    ofFunctionMatrix_toFunctionMatrix]
+
+theorem toFunctionMatrix_mul (a b : SectionAlgebra X ι) :
+    toFunctionMatrix (a * b) = toFunctionMatrix a * toFunctionMatrix b := by
+  apply ofFunctionMatrix_injective
+  rw [ofFunctionMatrix_toFunctionMatrix, ofFunctionMatrix_mul, ofFunctionMatrix_toFunctionMatrix,
+    ofFunctionMatrix_toFunctionMatrix]
+
+theorem toFunctionMatrix_star (a : SectionAlgebra X ι) :
+    toFunctionMatrix (star a) = star (toFunctionMatrix a) := by
+  apply ofFunctionMatrix_injective
+  rw [ofFunctionMatrix_toFunctionMatrix, ofFunctionMatrix_star, ofFunctionMatrix_toFunctionMatrix]
+
+theorem toFunctionMatrix_smul (c : ℂ) (a : SectionAlgebra X ι) :
+    toFunctionMatrix (c • a) = c • toFunctionMatrix a := by
+  apply ofFunctionMatrix_injective
+  rw [ofFunctionMatrix_toFunctionMatrix, ofFunctionMatrix_smul, ofFunctionMatrix_toFunctionMatrix]
+
 end Bridge
 
 /-! ### The stage algebras -/
@@ -193,6 +221,31 @@ theorem stageEval_mem_corner {i : ℕ} (w : baseX i) (a : StageAlgebra i) :
 theorem trace_stageEval_one (i : ℕ) (w : baseX i) :
     (stageEval i w (1 : StageAlgebra i)).trace = ((stageRank i : ℕ) : ℂ) :=
   trace_matEval_Eproj i w
+
+/-- The membership condition of `StageAlgebra i`, read back at the `Matrix (EIdx i) (EIdx i)
+C(baseX i, ℂ)` level: `Analysis/LIXConnectingMap.lean` needs exactly this shape to check that
+the connecting map lands in the next corner. -/
+theorem toFunctionMatrix_mem_corner {i : ℕ} (a : StageAlgebra i) :
+    Eproj i * toFunctionMatrix (a : SectionAlgebra (baseX i) (EIdx i)) * Eproj i
+      = toFunctionMatrix (a : SectionAlgebra (baseX i) (EIdx i)) := by
+  have h := coe_corner_mem a
+  have h' := congrArg toFunctionMatrix h
+  rwa [toFunctionMatrix_mul, toFunctionMatrix_mul, toFunctionMatrix_stageProj] at h'
+
+/-- **`A_i` is nontrivial**: its unit `E_i` is a nonzero projection (it has rank `r_i > 0`),
+so `1 ≠ 0` in the corner. -/
+theorem stageAlgebra_one_ne_zero (i : ℕ) : (1 : StageAlgebra i) ≠ 0 := by
+  intro h
+  have h' : stageEval i (stagePoint i) (1 : StageAlgebra i)
+      = stageEval i (stagePoint i) (0 : StageAlgebra i) := congrArg (stageEval i (stagePoint i)) h
+  rw [stageEval_one, stageEval_zero] at h'
+  have htrace : (matEval (stagePoint i) (Eproj i)).trace
+      = (0 : Matrix (EIdx i) (EIdx i) ℂ).trace := congrArg Matrix.trace h'
+  rw [trace_matEval_Eproj, Matrix.trace_zero] at htrace
+  exact (Nat.cast_ne_zero.mpr (stageRank_pos i).ne') htrace
+
+instance instNontrivialStageAlgebra (i : ℕ) : Nontrivial (StageAlgebra i) :=
+  nontrivial_of_ne 1 0 (stageAlgebra_one_ne_zero i)
 
 end
 
