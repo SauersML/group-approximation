@@ -174,7 +174,11 @@ finite rotation coordinates and retains its invariant complement;
 orbit to the whole permutation. `CombMapEdgePlanarity.lean` completes the
 actual insertion: any two corners of one face, including coincident corners,
 give exactly one extra face, unchanged Euler characteristic, and a planar
-map. All these proofs pass ordinary axiom audits. Labels, arbitrary
+map. `CombMapEdgeKeptFaces.lean` and `CombMapEdgeKeptBoundary.lean` now
+construct the unchanged cycles and ordered boundaries of every other face.
+Their face classifier excludes fresh darts from those faces, and retaining
+old dart labels preserves their literal words, including the chosen start.
+All these proofs pass ordinary axiom audits. The two new face words, arbitrary
 connector-path lengths, and preservation of selected embedded regions must
 still be carried through this construction.
 
