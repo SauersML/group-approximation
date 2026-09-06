@@ -113,6 +113,15 @@ records. All these conditional reductions pass ordinary axiom audits; the
 joint geometric producer remains unproved. The actual selected graph geometry
 must still handle isolated vertices and tree components.
 
+The finite-map part now does handle these cases: `CombMapSimpleEuler.lean`
+derives the edge bound from absence of loops and multiple edges. A two-dart
+face forces a single-edge component; all other components satisfy the usual
+face-degree estimate. `EndpointClosedRealization.lean` combines these maps,
+allowing omitted isolated vertices and an empty family of maps for an edgeless
+state. `EndpointClosedRealizationModel.lean` constructs every required
+subgraph realization for one edge on three vertices and passes its closed
+nonvacuity audits. Realizing the actual contiguity graph remains open.
+
 `ShortSection.lean` proves the source arc's quasi-geodesic lower bound and
 the pasted-region upper bound from its two connectors and target. It derives
 Osin's `lambda⁻¹ * (3 * eps + c)` estimate for an admissible short section;
@@ -125,7 +134,10 @@ The face classification is already proved in `SurgeryFacePartition`, and
 `SurgeryCutDiagram` constructs the enclosed disc from `RegionCutData`.
 `SurgeryCutLemma65` had a stale non-elaborating adapter that omitted the
 current cut record's quasi-geodesic sections. That adapter is repaired and
-audited; actual section and region production remain geometric obligations.
+audited. `SurgeryCutSections.lean` now constructs the actual cut's sections
+from an exact partition of its ambient enclosing walk, preserving the base
+position, each section word, and both quasi-geodesic constants. Producing
+the enclosing region and its at-most-four quasi-geodesic arcs remains open.
 The outstanding proofs are:
 
 1. Derive the geometric constants from the ambient hypotheses and reconcile
