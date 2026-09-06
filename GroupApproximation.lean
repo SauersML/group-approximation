@@ -3661,6 +3661,7 @@ import GroupApproximation.CharClass.ChernWhitneyFlag
 import GroupApproximation.CharClass.CohomologyChartKunnethClosed
 import GroupApproximation.CharClass.CartanEvalPre
 import GroupApproximation.CharClass.CartanEvalComposeB
+import GroupApproximation.CharClass.LIXProductChart
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
