@@ -51,6 +51,10 @@ The Leray-Hirsch ladder
   of a point.
 * `LerayHirschBase` (8745) — the base case over bundled hypotheses, and the
   rank-two case, which needs no ring structure.
+* `ProjectiveSpaceCharts` (8665) — the `d+1` standard charts: open, contractible,
+  and they cover.
+* `LerayHirschUnion` (8810) — a cover recognised as a fold, and the chart cover of
+  `ℂP^d` in that shape.
 
 Chern classes and the Euler class
 
@@ -80,10 +84,12 @@ None.  Everything in the lane is probed green and pushed.
 The Leray-Hirsch machine is complete end to end: base case over a point,
 transport to a trivialising open set, the two-set Mayer-Vietoris step, the finite
 cover induction, and the bridge to the published `LerayHirschGraded`.  Producing
-an actual instance now needs only bundle-side geometry, not cohomology: a finite
-trivialising cover of the base together with the local isomorphisms.  For the
-Gysin bootstrap that means the `n+1` standard charts of `CP^n` and the
-identification of `P(taut + 1)` over each with `chart x CP^1`.
+an actual instance now needs only bundle-side geometry, not cohomology.  For the
+Gysin bootstrap the base side of that is DONE: the `d+1` standard charts of
+`CP^d` are built, shown open and contractible, shown to cover, and packaged in
+the fold shape the induction consumes.  What is left is one bundle fact, which is
+cc-bundle's: the tautological line is trivial over each chart, and `P(taut + 1)`
+over a chart is that chart times `CP^1`.
 
 ## THE ONE REMAINING MATHEMATICAL GATE, and why
 
