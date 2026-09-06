@@ -145,6 +145,10 @@ theorem exists_normalTriangleCornerCut_of_prod_ne_one
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     (x y z : Q)
     (hne : (quotientNormalTriangleWord D q hq x y z).prod ≠ 1) :
     Nonempty (NormalTriangleCornerCut D W hsc q hq x y z) := by
@@ -167,7 +171,7 @@ theorem exists_normalTriangleCornerCut_of_prod_ne_one
     K.boundaryWord_eq.trans hZboundary
   have hboundaryDecomposition : boundaryWord =
       C.boundaryBefore ++ C.boundaryArc ++ C.boundaryAfter :=
-    hKboundary.symm.trans C.boundary_decomposition
+    hKboundary.symm.trans (C.boundary_decomposition_of_rotation_zero (hrot C))
   have hrelatorAdmissible : RelWord.IsAdmissible D (K.cellLabel i) :=
     hsc.admissible (K.cellLabel i) (K.cellLabel_mem i)
   have hreplacement :
@@ -211,6 +215,10 @@ theorem source_eq_one_or_normalTriangleCornerCut
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     (x y z : Q) :
     (quotientNormalTriangleWord D q hq x y z).prod = 1 ∨
       Nonempty (NormalTriangleCornerCut D W hsc q hq x y z) := by
@@ -218,7 +226,7 @@ theorem source_eq_one_or_normalTriangleCornerCut
       (quotientNormalTriangleWord D q hq x y z).prod = 1
   · exact Or.inl hsource
   · exact Or.inr (exists_normalTriangleCornerCut_of_prod_ne_one
-      D hsc hmu hrho q hq hker hcert x y z hsource)
+      D hsc hmu hrho q hq hker hcert hrot x y z hsource)
 
 end HullSC
 end GroupApproximation

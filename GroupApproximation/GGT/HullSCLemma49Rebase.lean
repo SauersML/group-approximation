@@ -334,7 +334,7 @@ theorem Lemma49EmbeddedExteriorArc.exists_rebasedGreendlingerCell
     boundaryAfter := E.boundaryAfter.map GGT.RelLetter.val
     boundary_decomposition := by
       have h := congrArg (List.map GGT.RelLetter.val) hpower
-      simpa only [List.map_append, List.nil_append] using h
+      simpa only [List.map_append, List.nil_append, List.rotate_zero] using h
     leftSide := E.leftSide
     rightSide := E.rightSide
     leftSide_admissible := E.leftSide_admissible

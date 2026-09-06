@@ -63,7 +63,12 @@ shortest-geodesic power-diagram statement.  Bowditch Lemma 2.2 is discharged
 from the supplied acylindricity, and all other inputs are consequences of the
 same final `C₁` parameters. -/
 theorem hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger
-    (hgeom : RelativeGreendlingerStatement.{u, w}) :
+    (hgeom : RelativeGreendlingerStatement.{u, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{u, w} := by
   intro G _ Lambda _ D hemb hacylindrical
   obtain ⟨delta, hdelta⟩ :=
@@ -73,11 +78,11 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger
       D hemb hacylindrical
   obtain ⟨epsLong, rhoLong, hlong⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
-      hgeom D hemb hdelta
+      hgeom D hemb (hrot D) hdelta
   obtain ⟨epsShort, rhoShort, muShort, hmuShort,
       _hmuShortUpper, hshortLox⟩ :=
     exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
-      hgeom D hemb hdelta hgap
+      hgeom D hemb (hrot D) hdelta hgap
   let radius : ℕ := 8 * delta + 1
   obtain ⟨epsInjective, rhoInjective, muInjective, hmuInjective,
       hinjective⟩ :=
@@ -192,11 +197,16 @@ theorem hullLemma49GeodesicPowerDiagram_of_inputs
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
+    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
   have _hcanonical : HullLemma44CanonicalQuotientStatement.{0} :=
     hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-      hgeom hkernel htransfer
+      hgeom hkernel htransfer hrot
   have hinjective : HullLemma49InjectivityCallback.{0, 0} :=
     hullLemma49InjectivityCallback_of_relativeGreendlinger hgeom
   have hquasi :

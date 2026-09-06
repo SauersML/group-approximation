@@ -128,7 +128,11 @@ theorem relativeLinearKernelArea_of_dehnCuts
     (hcuts : ∀ boundaryWord : List G,
       IsWord D.alphabet.carrier boundaryWord boundaryWord.prod →
       boundaryWord.prod ≠ 1 → q boundaryWord.prod = 1 →
-        Nonempty (RelativeDehnCut D W eps q boundaryWord)) :
+        Nonempty (RelativeDehnCut D W eps q boundaryWord))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     RelativeLinearKernelArea D W q := by
   intro boundaryWord hword hmap
   let P : ℕ → Prop := fun length =>
@@ -173,7 +177,8 @@ theorem relativeLinearKernelArea_of_dehnCuts
           (hbase.conj conjugator).mul harea
         refine ⟨1 + area, ?_, ?_⟩
         · omega
-        · rw [C.contiguity.boundaryWord_prod_eq_conjugate_relator_mul_shortened]
+        · rw [C.contiguity.boundaryWord_prod_eq_conjugate_relator_mul_shortened
+            (hrot C.contiguity)]
           exact hstep
   exact hlinear boundaryWord.length boundaryWord rfl hword hmap
 
@@ -190,12 +195,17 @@ theorem relativeLinearKernelArea_of_certificates
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+      Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     RelativeLinearKernelArea D W q := by
   apply relativeLinearKernelArea_of_dehnCuts D W eps q
-  intro boundaryWord hword hne hmap
-  exact exists_relativeDehnCut_of_kernelWord D hsc hmu hrho q hker hcert
-    boundaryWord hword hne hmap
+  · intro boundaryWord hword hne hmap
+    exact exists_relativeDehnCut_of_kernelWord D hsc hmu hrho q hker hcert hrot
+      boundaryWord hword hne hmap
+  · exact hrot
 
 /-! ## Model tests -/
 

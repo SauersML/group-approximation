@@ -118,10 +118,14 @@ theorem kernelConeLocalFinitenessAt_of_prefixKernelTransfer
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+      Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     KernelConeLocalFinitenessAt D W eps rho mu hsc q := by
   have harea : RelativeLinearKernelArea D W q :=
-    relativeLinearKernelArea_of_certificates D hsc hmu hrho q hker hcert
+    relativeLinearKernelArea_of_certificates D hsc hmu hrho q hker hcert hrot
   have hcone := htransfer D hD W eps rho mu hsc q hq harea
   intro lam n
   exact hcone.locallyFinite lam n
@@ -129,12 +133,17 @@ theorem kernelConeLocalFinitenessAt_of_prefixKernelTransfer
 /-- The local-finiteness interface is a theorem at the exact small-cancellation
 parameter range used by the relative-area induction. -/
 theorem kernelConeLocalFinitenessStatement_of_prefixKernelTransfer
-    (htransfer : PrefixKernelConeTransferStatement.{u, v, w}) :
+    (htransfer : PrefixKernelConeTransferStatement.{u, v, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     KernelConeLocalFinitenessStatement.{u, v, w} := by
   refine ⟨?_⟩
   intro G _ Lambda D hD W eps rho mu hsc hmu hrho Q _ q hq hker hcert
   exact kernelConeLocalFinitenessAt_of_prefixKernelTransfer htransfer D hD W
-    eps rho mu hsc q hq hmu hrho hker hcert
+    eps rho mu hsc q hq hmu hrho hker hcert (hrot D)
 
 /-- Certificates at one radius give injectivity on the full relative ball. -/
 theorem relativeBallInjectivity_of_certificate
@@ -326,7 +335,12 @@ enough to supply the local-finiteness input pointwise. -/
 theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
     (hgeom : RelativeGreendlingerStatement.{u, 0})
     (hkernel : KernelGeodesicEstimateStatement.{u, u, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0}) :
+    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type 0}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
   let mu : ℝ := 1 / 1000
@@ -373,6 +387,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelG
   have hlocAt : KernelConeLocalFinitenessAt D.rel W eps rho mu hsc q :=
     kernelConeLocalFinitenessAt_of_prefixKernelTransfer htransfer D.rel
       D.embedded W eps rho mu hsc q hsurj hmuThousand hrhoDehn hker hcert
+      (hrot D.rel)
   exact quotientPeripheralPreservation_of_kernelBounds_at_of_pointwise D hsc
     hmuNinetyTwo hthreshold q hsurj hker hcert hkernelAt hlocAt
 
@@ -380,10 +395,15 @@ theorem hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelG
 theorem hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
     (hgeom : RelativeGreendlingerStatement.{0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
+    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-    hgeom hkernel htransfer
+    hgeom hkernel htransfer hrot
 
 /-! ## Empty-family model of the two estimate interfaces -/
 

@@ -275,20 +275,30 @@ theorem prefixRelativeIsoperimetricControl_of_weightedAreaTransfer
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+      Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     Nonempty (PrefixRelativeIsoperimetricControl D W
       hsc.toIsSmallCancellation q hq) := by
   apply htransfer D hD W eps rho mu hsc q hq
   exact relativeWeightedKernelArea_of_certificates D hsc hmu hrho q hker hcert
+    hrot
 
 /-- Linear area follows from the local cuts, so the relative-presentation
 transfer implies the local Dehn transfer. -/
 theorem relativeDehnTransferStatement_of_linearAreaTransfer
-    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w}) :
+    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     RelativeDehnTransferStatement.{u, v, w} := by
   intro G _ Lambda D hD W eps Q _ q hq hsupport hcuts
   apply htransfer D hD W q hq hsupport
-  exact relativeLinearKernelArea_of_dehnCuts D W eps q hcuts
+  exact relativeLinearKernelArea_of_dehnCuts D W eps q hcuts (hrot D)
 
 /-! ## Certificate bridge for the prefix presentation -/
 
@@ -320,13 +330,18 @@ def PrefixRelativeIsoperimetricBridgeStatement : Prop :=
 /-- The proved certificate-to-linear-area induction reduces the prefix bridge
 to the DGO relative-presentation transfer. -/
 theorem prefixRelativeIsoperimetricBridgeStatement_of_linearAreaTransfer
-    (htransfer : PrefixRelativeLinearAreaTransferStatement.{u, v, w}) :
+    (htransfer : PrefixRelativeLinearAreaTransferStatement.{u, v, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     PrefixRelativeIsoperimetricBridgeStatement.{u, v, w} := by
   intro G _ Lambda D hD eps rho mu W Q _ q hq hmu hmuUpper hrho
     hsc hker hcert
   apply htransfer D hD W eps rho mu hsc q hq
   exact relativeLinearKernelArea_of_certificates D hsc hmuUpper hrho q hker
-    hcert
+    hcert (hrot D)
 
 /-- Osin Lemma 5.1, phrased as the bridge consumed by Hull Lemma 4.4.
 
@@ -361,22 +376,32 @@ def RelativeIsoperimetricBridgeStatement : Prop :=
 The only diagram use is the prescribed-boundary construction and certificate
 cut; all quotient geometry is delegated to Osin Lemma 5.1's exact transfer. -/
 theorem relativeIsoperimetricBridgeStatement_of_dehnTransfer
-    (htransfer : RelativeDehnTransferStatement.{u, v, w}) :
+    (htransfer : RelativeDehnTransferStatement.{u, v, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     RelativeIsoperimetricBridgeStatement.{u, v, w} := by
   intro G _ Lambda D hD eps rho mu W Q _ q hq hmu hmuUpper hrho
     hsc hker hcert
   apply htransfer D hD W eps q hq hsc.stronglyBounded
   intro boundaryWord hword hne hmap
   exact exists_relativeDehnCut_of_kernelWord D hsc hmuUpper hrho q hker
-    hcert boundaryWord hword hne hmap
+    hcert (hrot D) boundaryWord hword hne hmap
 
 /-- The linear relative-area transfer consumes the full certificate bridge
 through the proved boundary-length induction. -/
 theorem relativeIsoperimetricBridgeStatement_of_linearAreaTransfer
-    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w}) :
+    (htransfer : RelativeLinearAreaTransferStatement.{u, v, w})
+    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type w}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0) :
     RelativeIsoperimetricBridgeStatement.{u, v, w} :=
   relativeIsoperimetricBridgeStatement_of_dehnTransfer
-    (relativeDehnTransferStatement_of_linearAreaTransfer htransfer)
+    (relativeDehnTransferStatement_of_linearAreaTransfer htransfer hrot) hrot
 
 /-- The bridge statement, followed by its elementary consumer, proves
 hyperbolic embeddedness of the concrete quotient image family. -/

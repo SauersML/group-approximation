@@ -130,10 +130,7 @@ theorem exists_ratio_bounded_cut_of_certificate
         K.boundaryWord Z.boundary := by
       rw [K.boundaryWord_eq]
       exact Z.boundaryWord_isWord
-    apply hboundaryWord.letters x
-    rw [C.boundary_decomposition]
-    exact List.mem_append_left C.boundaryAfter
-      (List.mem_append_right C.boundaryBefore hx)
+    exact hboundaryWord.letters x (C.boundaryArc_mem_boundaryWord hx)
   have harcRel : wordNorm D.alphabet.carrier C.boundaryArc.prod ≤
       C.boundaryArc.length := wordNorm_le_length harcWord
   have hmulOne := wordNorm_mul_le D.alphabet.symmetricGenerating

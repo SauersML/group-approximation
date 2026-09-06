@@ -120,7 +120,11 @@ theorem exists_lemma49RelativeGreendlingerCell
     {v : List (GGT.RelLetter G Lambda)} {g : G} {n eps : ℕ} {mu : ℝ}
     (Z : Lemma49GeodesicPowerDiagram D v g n)
     (K : RelativeDiagramCertificate D (RelWord.symmetrized v) eps mu
-      Z.toRelativeReducedDiagram) :
+      Z.toRelativeReducedDiagram)
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     Nonempty (Lemma49RelativeGreendlingerCell D v g n eps mu Z) := by
   obtain ⟨i, C, _, hlarge⟩ := K.largeCell
   let Cpower : RelativeBoundaryContiguity D eps
@@ -139,6 +143,7 @@ theorem exists_lemma49RelativeGreendlingerCell
     exact hlarge
   obtain ⟨pre, arc, suf, hsplit, _, _, _, harcValue⟩ :=
     exists_boundaryArc_source Cpower
+  rw [hrot Cpower, List.rotate_zero] at hsplit
   exact ⟨{
     relator := K.cellLabel i
     relator_mem := K.cellLabel_mem i
@@ -340,7 +345,11 @@ theorem exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) :
+    (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     ∃ eps rho0 : ℕ, ∀ rho : ℕ, rho0 ≤ rho →
       ∀ (v : List (GGT.RelLetter G Lambda))
         (g : G) (n : ℕ),
@@ -353,7 +362,7 @@ theorem exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
   obtain ⟨K⟩ := hgood rho hrho (RelWord.symmetrized v)
     (lemma49BoundaryPower Z.boundaryWord n).length
     hinput.toIsLemma44Input Z.toRelativeReducedDiagram
-  exact exists_lemma49RelativeGreendlingerCell Z K
+  exact exists_lemma49RelativeGreendlingerCell Z K hrot
 
 /-! ## Model check -/
 

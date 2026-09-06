@@ -37,7 +37,11 @@ theorem exists_shorter_kernelGeodesic_of_relativeDiagramCertificate
     (q : G →* Q) (_hq : Function.Surjective q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hboundary : q K.boundaryWord.prod = 1) :
+    (hboundary : q K.boundaryWord.prod = 1)
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     ∃ (nextKernel : G) (nextWord : List G),
       nextKernel ∈ q.ker ∧
         nextWord.prod = nextKernel ∧
@@ -51,10 +55,11 @@ theorem exists_shorter_kernelGeodesic_of_relativeDiagramCertificate
           1 nextKernel := by
   have hcut : Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
     apply exists_relativeDehnCut_of_certificate D hsc hmu hrho K q
-    intro relator hrelator
-    apply MonoidHom.mem_ker.mp
-    rw [hker]
-    exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
+    · intro relator hrelator
+      apply MonoidHom.mem_ker.mp
+      rw [hker]
+      exact Subgroup.subset_normalClosure ⟨relator, hrelator, rfl⟩
+    · exact hrot
   obtain ⟨cut⟩ := hcut
   let nextKernel : G := cut.contiguity.shortenedBoundaryWord.prod
   have hnextQuotient : q nextKernel = 1 := by

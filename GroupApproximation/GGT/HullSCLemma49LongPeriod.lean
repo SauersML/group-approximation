@@ -94,6 +94,10 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_at
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) :
     ∃ (eps rho : ℕ),
@@ -110,7 +114,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_at
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
     exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant delta epsCert
   let b := 8 * delta + 2
@@ -146,7 +150,11 @@ hyperbolically embedded relative Cayley graph. -/
 theorem exists_parameters_false_of_longPeriod_powerDiagram
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded) :
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     ∃ (eps rho delta : ℕ),
       Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
@@ -162,7 +170,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨eps, rho, hgood⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_at
-      hgeom D hemb hdelta
+      hgeom D hemb hrot hdelta
   exact ⟨eps, rho, delta, hdelta, hgood⟩
 
 /-! ## Model check -/

@@ -25,6 +25,10 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) :
     ∃ (eps rho : ℕ),
@@ -41,7 +45,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
     exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant delta epsCert
   let b := 8 * delta + 2
@@ -78,6 +82,10 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
@@ -122,7 +130,7 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
     exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant_of_powerChain
       delta epsCert M b hM

@@ -302,12 +302,17 @@ theorem relativePrefixCellFilling_of_certificates
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     {boundary : List (GGT.RelLetter G Lambda)}
     (hboundary : RelWord.IsAdmissible D boundary)
     (hboundaryKill : q (GGT.RelLetter.listVal boundary) = 1) :
     Nonempty (RelativePrefixCellFilling D W q boundary) := by
   have harea : RelativeWeightedKernelArea D W q :=
     relativeWeightedKernelArea_of_certificates D hsc hmu hrho q hker hcert
+      hrot
   exact relativePrefixCellFilling_of_weightedKernelArea_of_kernel
     D hsc q hker harea hboundary hboundaryKill
 

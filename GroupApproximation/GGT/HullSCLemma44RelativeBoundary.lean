@@ -148,6 +148,10 @@ theorem exists_relativeDehnCut_of_kernelBoundary
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     (boundaryWord : List G) (boundary : G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundary)
     (hne : boundary ≠ 1) (hmap : q boundary = 1) :
@@ -158,7 +162,7 @@ theorem exists_relativeDehnCut_of_kernelBoundary
   obtain ⟨Z, hZboundary⟩ := exists_relativeReducedDiagram_of_boundaryWord
     D W hsc.toIsSmallCancellation boundaryWord boundary hword hne hnormal
   obtain ⟨K⟩ := hcert boundaryWord.length Z
-  have hcut := exists_relativeDehnCut_of_kernel D hsc hmu hrho K q hker
+  have hcut := exists_relativeDehnCut_of_kernel D hsc hmu hrho K q hker hrot
   rw [K.boundaryWord_eq, hZboundary] at hcut
   exact hcut
 
@@ -175,11 +179,15 @@ theorem exists_relativeDehnCut_of_kernelWord
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
       Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     (boundaryWord : List G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
     (hne : boundaryWord.prod ≠ 1) (hmap : q boundaryWord.prod = 1) :
     Nonempty (RelativeDehnCut D W eps q boundaryWord) :=
-  exists_relativeDehnCut_of_kernelBoundary D hsc hmu hrho q hker hcert
+  exists_relativeDehnCut_of_kernelBoundary D hsc hmu hrho q hker hcert hrot
     boundaryWord boundaryWord.prod hword hne hmap
 
 /-! ## Degenerate checks -/

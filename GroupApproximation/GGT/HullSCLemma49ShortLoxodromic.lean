@@ -145,6 +145,10 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_at
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
@@ -189,7 +193,7 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram_at
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
     exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant_of_powerChain
       delta epsCert M b hM
@@ -284,6 +288,10 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
+    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0)
     (hgap : CayleyUniformLoxodromicTranslationGap D.alphabet) :
     ∃ (eps rho delta : ℕ) (mu : ℝ),
       0 < mu ∧ mu ≤ 1 / 1000 ∧
@@ -302,7 +310,7 @@ theorem exists_parameters_false_of_shortLoxodromic_powerDiagram
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨eps, rho, mu, hmu, hmuUpper, hgood⟩ :=
     exists_parameters_false_of_shortLoxodromic_powerDiagram_at
-      hgeom D hemb hdelta hgap
+      hgeom D hemb hrot hdelta hgap
   exact ⟨eps, rho, delta, mu, hmu, hmuUpper, hdelta, hgood⟩
 
 /-! ## Model checks for the numerical choices -/

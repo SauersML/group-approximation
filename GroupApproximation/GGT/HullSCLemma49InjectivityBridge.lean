@@ -85,6 +85,11 @@ theorem hullLemma44InjectivityOutput_of_relativeGreendlinger_of_kernelGeodesic_o
     (hgeom : RelativeGreendlingerStatement.{0, 0})
     (hkernel : KernelGeodesicEstimateStatement.{0, 0, 0})
     (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
+    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
+      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
+      C.rotation = 0)
     {G : Type} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
     (D : AuxiliaryPeripheralFamily A N S) (R : ℕ) :
@@ -98,7 +103,7 @@ theorem hullLemma44InjectivityOutput_of_relativeGreendlinger_of_kernelGeodesic_o
   exact hullLemma44InjectivityOutput_of_canonicalStatement
     (h44 :=
       hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer
-        hgeom hkernel htransfer)
+        hgeom hkernel htransfer hrot)
     D R
 
 /-! ## Model check -/

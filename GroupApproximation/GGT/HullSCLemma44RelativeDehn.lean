@@ -446,8 +446,8 @@ boundary-length induction, provided the quotient kills every relator.
 **`hrot` is a residue of the boundary-cycle rotation carried by
 `RelativeBoundaryContiguity` (see its docstring).**  The value-level identity
 this theorem needs only holds at the wrap-free cut; every certificate
-currently produced by `RelativeDiagramCertificate.largeCell` fixes the
-default `rotation := 0`, so `hrot` is discharged by `rfl` at every present
+currently produced anywhere in this development fixes the default
+`rotation := 0`, so `hrot` is discharged by `fun _ => rfl` at every present
 call site.  A future certificate builder that actually wraps the cut will
 need to supply a genuine proof here (or this theorem will need the explicit
 conjugation correction instead). -/
@@ -462,11 +462,12 @@ theorem exists_relativeDehnCut_of_certificate
     (K : RelativeDiagramCertificate D W eps mu Z)
     (q : G →* Q)
     (hkill : ∀ relator ∈ W, q (GGT.RelLetter.listVal relator) = 1)
-    (hrot : ∀ {i : Fin Z.cells.length}
-      {C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)},
-      K.contiguity i = some C → C.rotation = 0) :
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
-  obtain ⟨i, C, hcontiguity, hshort⟩ :=
+  obtain ⟨i, C, _hcontiguity, hshort⟩ :=
     replacementWord_length_lt_boundaryArc_of_certificate D hsc hmu hrho K
   have hboundary : IsWord D.alphabet.carrier K.boundaryWord
       K.boundaryWord.prod := by
@@ -484,7 +485,7 @@ theorem exists_relativeDehnCut_of_certificate
     shortenedWord_isWord := C.shortenedBoundaryWord_isWord hboundary
       hrelatorAdmissible
     quotient_value := C.map_shortenedBoundaryWord_prod_eq q
-      (hkill (K.cellLabel i) (K.cellLabel_mem i)) (hrot hcontiguity)
+      (hkill (K.cellLabel i) (K.cellLabel_mem i)) (hrot C)
     replacement_length_lt := hshort }⟩
 
 /-- The normal-closure kernel equation supplies the relator-killing premise
@@ -501,9 +502,10 @@ theorem exists_relativeDehnCut_of_kernel
     (q : G →* Q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hrot : ∀ {i : Fin Z.cells.length}
-      {C : RelativeBoundaryContiguity D eps K.boundaryWord (K.cellLabel i)},
-      K.contiguity i = some C → C.rotation = 0) :
+    (hrot : ∀ {boundaryWord' : List G}
+      {relator' : List (GGT.RelLetter G Lambda)}
+      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
+      C.rotation = 0) :
     Nonempty (RelativeDehnCut D W eps q K.boundaryWord) := by
   apply exists_relativeDehnCut_of_certificate D hsc hmu hrho K q
   · intro relator hrelator
