@@ -147,8 +147,11 @@ theorem projIncl_injective (p : Bundle X ι) : Function.Injective (projIncl p) :
   intro z z' h
   have h' := congrArg (fun w : Proj p.plusOne => (w : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ)) h
   rw [projIncl_apply, projIncl_apply] at h'
+  have h1 : (z : X × Matrix ι ι ℂ).1 = (z' : X × Matrix ι ι ℂ).1 := congrArg Prod.fst h'
+  have h2 : inclMat (z : X × Matrix ι ι ℂ).2 = inclMat (z' : X × Matrix ι ι ℂ).2 :=
+    congrArg Prod.snd h'
   apply Subtype.ext
-  refine Prod.ext (congrArg Prod.fst h') (inclMat_injective (congrArg Prod.snd h'))
+  exact Prod.ext h1 (inclMat_injective h2)
 
 /-! ### The spanning vector of a point of the projective bundle -/
 
@@ -354,7 +357,6 @@ theorem vecOf_eq_smul {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ} {w : ι 
   show z.2 (Sum.inl i) (Sum.inr ()) / betaEntry z = (w (Sum.inr ()))⁻¹ * w (Sum.inl i)
   rw [hzw, rankOneProj_apply, hbeta']
   field_simp
-  ring
 
 theorem vecOf_mem_totalSet {p : Bundle X ι} {z : X × Matrix (ι ⊕ Unit) (ι ⊕ Unit) ℂ}
     (hz : z ∈ chartSet p) : ((z.1, vecOf z) : X × (ι → ℂ)) ∈ totalSet p := by

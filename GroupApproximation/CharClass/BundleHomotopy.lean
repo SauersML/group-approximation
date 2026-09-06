@@ -104,7 +104,9 @@ theorem normalizeVec_of_mem_unitVectors {u : ι → ℂ} (hu : u ∈ unitVectors
 
 theorem sphereRetract_comp_sphereToPunctured (p : Bundle X ι) :
     (sphereRetract p).comp (sphereToPunctured p) = ContinuousMap.id (Sphere p) := by
-  ext v
+  apply ContinuousMap.ext
+  intro v
+  apply Subtype.ext
   show ((v : X × (ι → ℂ)).1, normalizeVec (v : X × (ι → ℂ)).2) = (v : X × (ι → ℂ))
   rw [normalizeVec_of_mem_unitVectors (v.2).2]
 

@@ -110,7 +110,8 @@ theorem conjTranspose_mul_conjTranspose (e : BundleIso p q) (x : X) :
 theorem mulVec_mem_totalSet (e : BundleIso p q) {v : X × (ι → ℂ)} (_hv : v ∈ totalSet p) :
     ((v.1, e.hom v.1 *ᵥ v.2) : X × (κ → ℂ)) ∈ totalSet q := by
   show q v.1 *ᵥ (e.hom v.1 *ᵥ v.2) = e.hom v.1 *ᵥ v.2
-  rw [Matrix.mulVec_mulVec, e.hom_mul_left]
+  have habs : q v.1 * e.hom v.1 = e.hom v.1 := e.hom_mul_left v.1
+  rw [Matrix.mulVec_mulVec, habs]
 
 theorem conjTranspose_mulVec_mem_totalSet (e : BundleIso p q) {w : X × (κ → ℂ)}
     (_hw : w ∈ totalSet q) : ((w.1, (e.hom w.1)ᴴ *ᵥ w.2) : X × (ι → ℂ)) ∈ totalSet p := by
