@@ -46,7 +46,9 @@ All at the pin, per-lane clone `cc-projective`, `Build completed successfully`.
 | `ProjectiveSpaceHomogeneous` | 8659 |
 | `ProjectiveSpaceInputs` | 8782 |
 | `LerayHirschDegree` (with `pull_injective`) | 8783 |
-| `ProjectiveSpaceComputation` | 8782 |
+| `ProjectiveSpaceComputation` | 8791 |
+| `ChernTotalRing` | 2464 |
+| `ChernClasses` (over `TotalH`) | 2466 |
 
 What that amounts to mathematically: the whole point-set chain over the
 projection model; the Mayer–Vietoris computation of `H^*(ℂP^n;F₂)` reduced to one
@@ -93,10 +95,14 @@ which is the whole content of the induction's remaining hypothesis: restriction
 else downstream of those two is proved.  Later, for Leray–Hirsch and not before:
 the `H^*(X)`-linearity of the connecting map, `mvDelta_cup`.
 
-**From `cc-steenrod`:** `cup_comm` in **all** degrees, not just even ones —
-cc-wu's `ParityData` carries degree-1 and degree-5 generators, so the ring is
-`⨁_n H^n`, not the even part.  Confirmed by that lane as falling out of
-`cochainCupI_coboundary` at `i = 0`, with no parity in the argument.
+**From `cc-thom`, the two remaining:** `mvResWU_eq_pull`, or just its degree-zero
+corollary `mvResWU_one`, which is the last hypothesis of the projective-space
+induction; and `mvDelta_cup`, linearity of the connecting map over classes pulled
+back from the ambient space, which the Leray–Hirsch ladder and the `CP`-factor
+Künneth both need and which cannot be arranged away.
+
+**Superseded, nothing imports them:** `ChernEvenPiece`, `ChernEvenRing`,
+`ChernEvenRingComm`.  Green but dead; recommend not wiring them into the root.
 
 **From `cc-bundle`:** the projective bundle `P(p)` with its tautological line,
 `P(p) ⊆ P(p ⊕ 1)`, `E(p) = P(p⊕1) ∖ P(p)`, the zero section, a finite
@@ -111,17 +117,23 @@ two members of an open cover have zero cup product — for Whitney.
 * **A definition whose result is a class needs `@[reducible]`**, or nothing
   downstream unifies against it.  Hit three times in this lane: `CPtop`, the
   graded ring structure, and the algebra of a projective bundle.
-* **The `DirectSum` semiring diamond.**  `EvenH X` acquires a `Semiring` by two
-  syntactically different routes, `DirectSum.semiring` because `evenGRing` is an
-  instance and `CommRing.toCommSemiring.toSemiring` from any commutativity
-  hypothesis.  They are definitionally equal but not syntactically so, and every
-  type mentioning the ring — `Polynomial (EvenH X)`, the `1` of `γ₀ = 1`, the `0`
-  of the rank bound — pins one at elaboration time.  A statement written locally
-  picks the first; a lemma imported from a file whose section variable is
-  `[CommRing A]` produces the second.  Nothing local settles it.  The migration
-  to the full graded ring does, because there the graded structure is the only
-  source of the ring.  Meanwhile `ChernClasses.lean` keeps only what needs no
-  commutativity and records the diagnosis.
+* **The `DirectSum` semiring diamond, and how it was settled.**  With an even
+  ring plus a commutativity *hypothesis*, the direct sum acquired a `Semiring` by
+  two syntactically different routes, `DirectSum.semiring` from the graded
+  structure and `CommRing.toCommSemiring.toSemiring` from the hypothesis.  They
+  are definitionally equal but not syntactically so, and every type mentioning
+  the ring — `Polynomial`, the `1` of `γ₀ = 1`, the `0` of the rank bound — pins
+  one at elaboration.  Nothing local settled it.  Migrating to the full graded
+  ring did, because there the graded structure is the only source of the ring and
+  the two routes coincide by projection.  General lesson: do not mix a graded-ring
+  instance with a separate `CommRing` hypothesis on the same carrier.
+* **`GradedMonoid.GMonoid`'s `gnpow` defaults need ambient `GMul` and `GOne`.**
+  Lean fills them from `gnpowRec`, whose synthesis has nothing to find if the
+  family has no instance yet.  Supply them by `letI` inside the construction;
+  they agree with the `mul`/`one` fields on the nose.
+* **`git pull` aborts on a *peer's* uncommitted file** in the shared tree, and
+  neither committing nor stashing it is yours to do.  Push and let the peer's own
+  push carry your commits, or wait.
 * **`RingHom.toAlgebra` wants a `CommSemiring` target**, and `RingHom.toAlgebra'`
   wants the image central.  Both are graded commutativity, so the algebra
   structure of a projective bundle cannot be built before `cup_comm`; taking it
