@@ -3670,6 +3670,7 @@ import GroupApproximation.CharClass.SteenrodFourfoldBReindex
 import GroupApproximation.CharClass.SteenrodFourfoldBConnect
 import GroupApproximation.CharClass.LerayHirschPeel
 import GroupApproximation.CharClass.SteenrodFourfoldBEdgeSwap
+import GroupApproximation.CharClass.SteenrodFourfoldBDegen
 import GroupApproximation.CharClass.CartanCupIVanishing
 import GroupApproximation.CharClass.SteenrodFourfoldBEdge
 
