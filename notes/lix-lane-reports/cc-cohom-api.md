@@ -659,3 +659,24 @@ With this the lane's part of the projective Künneth is closed.  What is left is
 one statement about `ℂP^d` alone, with no base in it, and the machinery to prove
 it (`GysinData`, `bijective_cupRight`, the trivialising-cover Leray–Hirsch) is
 already in the repo on cc-projective's side.
+
+## Closed
+
+`CohomologyChartKunnethClosed.lean`.  cc-projective's `CPn.cpGenHyp` discharges
+the one hypothesis the chart layer was stated over, so the layer is now
+unconditional: `cpSplit_closed`, `flat_closed`, `mvResV_surjective_closed`,
+`cpTop_cup_injective_closed`, each one application, no cast anywhere.  They
+delivered `cpGenHyp` in exactly the shape `cpSplit_of_cpGenHyp` asks for, which
+is why there is no adapter layer.
+
+**Only half the ring is consumed.**  `cpGenHyp` is generation.  The
+non-vanishing of the top power, `cupPowE_cpGen_ne_zero`, is never used on this
+side.  That is the earlier reading of the circle confirmed from the far end: the
+hypothesis paid for flatness, and flatness needs only divisibility by the
+generator, never that a power survives.  Both lanes reached that conclusion
+independently, which is the second time today the two ends met in the middle.
+
+**The parity consumers needed no instantiation.**  `noOddCohomology_prod_CP` and
+`noOddCohomology_piCP` were already unconditional; they run on the sphere Künneth
+and the connecting map, not on the product form.  Worth recording so nobody looks
+for an instantiation that was never owed.
