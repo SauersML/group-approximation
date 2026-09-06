@@ -47,7 +47,18 @@ endpoints. All of these consumers must be audited when their inputs close.
 
 Already proved: the full additive case of Proposition 4.14, closed Lemma
 4.21(a), the conditional full proof of 4.21(b), and the general-parameter
-short-isolating-cycle construction for four-gons.
+short-isolating-cycle construction for four-gons. The general-parameter
+extension now also proves the uniform logarithmic balanced chord, finiteness
+and extremality of the genuine least-cost function, preservation of both
+parameters on the first/wrapped arcs and every auxiliary child, and charging
+of arbitrary supplied child radii by the existing disjoint factor slots.
+These proofs are in `DGOAssemblySubdivisionGeneral`,
+`DGOProposition414GeneralInput`, `DGOProposition414GeneralFinite`,
+`DGOProposition414GeneralArcQuasi`, `DGOAssemblyChargeGeneral`,
+`DGOProposition414GeneralChildren`, and `DGOProposition414SuppliedRadii`.
+Each passes its ordinary axiom audit with only the three permitted axioms.
+The general child-cost subdivision inequality and final linear bound still
+need assembly; this checkpoint removes no additional assembly admission.
 
 The missing step is the arbitrary-polygon **linear sum bound** at general
 multiplicative constant. `DGOPolygonSideCountAll` gives a quadratic individual
