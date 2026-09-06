@@ -228,6 +228,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/LIXBaseConnected.lean` | `pathConnectedSpace_sphereOne`, `pathConnectedSpace_unitVectorsThree`, **`pathConnectedSpace_lixN`**, `nonempty_lixN`, **`lixCohZeroEquiv`** — the base is path-connected and its `H^0` is a line, which is the whole content of `hres` once the two Thom isomorphisms are in place |
 | `CharClass/LIXThomResReduction.lean` | `cohCastEquiv`, `injective_of_line`, **`lixRelLine`**, **`injective_lixRes_of_ne_zero`**, `ne_zero_of_injective_lixRes` — `hres` **is** one nonvanishing statement, because the source of `lixRes` is a line |
 | `CharClass/LerayHirschGammaIso.lean` | `LH.lhMap_eq_sum_lhDomain`, `LH.lhMap_of_iso`, **`LH.gammaCoeff_of_iso`**, **`LH.gamma_of_iso`** — the mod-2 Chern classes survive a transport of the total space; the half of `hclass` that mentions no free binder |
+| `CharClass/LerayHirschContractible.lean` | `LH.lhTerm_eq_zero_of_contractible`, **`LH.sum_lhTerm_eq_top_of_contractible`** — over a contractible base only the top column survives at degree `2r`; needs no Leray–Hirsch instance over the neighbourhood |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -779,3 +780,5 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`LIXThomResReduction`** | **green, 9206 jobs, `71b55c4d3`** |
 | 2026-09-06 | `LerayHirschGammaIso` | red: `LHCast.pull_lhTerm` unknown, `CohomologyLHRestrict` not in the import chain |
 | 2026-09-06 | **`LerayHirschGammaIso`** | **green, 8929 jobs, `1da909618`** |
+| 2026-09-06 | `LerayHirschContractible` | red x2: `omega` blind to `↑(i.castSucc)`; then `Fin.coe_castSucc` deprecated, and a deprecation is an error under the probe's flags |
+| 2026-09-06 | **`LerayHirschContractible`** | **green, 8925 jobs, `ecd83acb3`** |
