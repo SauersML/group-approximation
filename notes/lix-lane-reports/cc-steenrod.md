@@ -76,6 +76,44 @@ The `(13)(24)` action convention concerns `S(X)^{⊗4}` and does not touch this
 interface: `Φ`'s own identity is the two-factor one, and `cut_insert_cancel`
 delivers it as the two orders of the same cut, which is what `T` exchanges.
 
+And, for the acyclic-models comparison itself, in namespace
+`CharClass.Steenrod`, the target complex, the diagonal and the chain-map
+condition:
+
+```lean
+abbrev PairIdx (X : TopCat.{0}) (k : ℕ) : Type          -- both degrees, sum as a Prop
+def swapEnd (X) (k) : Module.End (ZMod 2) (PairIdx X k →₀ ZMod 2)
+instance tgtModule (X) (k) : Module GroupRingZ2 (PairIdx X k →₀ ZMod 2)
+def dTgt (X) (Λ) [CommRing Λ] (k) :
+    (PairIdx X (k+1) →₀ Λ) →ₗ[Λ] (PairIdx X k →₀ Λ)
+def dTgtLin (X) (k) :
+    (PairIdx X (k+1) →₀ ZMod 2) →ₗ[GroupRingZ2] (PairIdx X k →₀ ZMod 2)
+def PhiHom (X) (k) : WTensorSMod X k →ₗ[GroupRingZ2] (PairIdx X k →₀ ZMod 2)
+
+theorem swapEnd_dTgt (X) (k) (y) :
+    swapEnd X k (dTgt X (ZMod 2) k y) = dTgt X (ZMod 2) k (swapEnd X (k+1) y)
+theorem dTgt_smul (X) (k) (c : GroupRingZ2) (y) :
+    dTgt X (ZMod 2) k (c • y) = c • dTgt X (ZMod 2) k y
+theorem dTgt_PhiHom (X) (k) (y : WTensorSMod X (k+1)) :
+    dTgt X (ZMod 2) k (PhiHom X (k+1) y) = PhiHom X k (wDiff singularBoundary X k y)
+theorem dTgtLin_comp_PhiHom (X) (k) :
+    (dTgtLin X k).comp (PhiHom X (k+1)) = (PhiHom X k).comp (wDiff singularBoundary X k)
+```
+
+`dTgt_PhiHom` is **the chain-map condition**.  The source is
+`cc-cartan`'s `WTensorSMod`/`wDiff` on the nose; the single `Equiv.ulift` between
+`singularSimplices X n` and `stdSimplexTop n ⟶ X` is spent in
+`SteenrodChainMapHom.lean` and nowhere else.
+
+The target is the free `F₂`-module on pairs with `Λ` acting **through the
+geometric swap**, not the free `Λ`-module on pairs.  On the free `Λ`-module the
+chain-map condition is *false*: the source differential's first half is
+`(1 + t) •`, so the condition demands `t • y = T y` with `T` the index swap, and
+in the free module the generator moves coefficients instead of data.  The
+published `Phi` of `SteenrodDiagonalLambda.lean` lands in the free module and is
+kept only because its signature was consumed; `PhiSwap` and `PhiHom` are the
+corrected maps.
+
 ## Design
 
 `cutIndex m n` is the set of `m`-element cut sets among the `n+1` vertices, and
@@ -146,6 +184,18 @@ since:
 * `CharClass/SteenrodDiagonalLambda.lean` — the group-ring packaging of the
   diagonal, 2037 jobs
 * `CharClass/SteenrodCartanTotal.lean` — the Cartan transport, 2136 jobs
+* `CharClass/SteenrodDiagonalTarget.lean` — the pair carrier and its
+  differential, 2082 jobs
+* `CharClass/SteenrodDiagonalPhi.lean` — `swapEnd`, `tgtModule`, `PhiSwap`,
+  2082 jobs
+* `CharClass/SteenrodPairBoundary.lean` — `tenBdL`/`tenBdR` and the boundary
+  identity in operator form, 2036 jobs
+* `CharClass/SteenrodPairCell.lean` — `cellPair`, `dTgtL`/`dTgtR`, the
+  equivariance step, 2084 jobs
+* `CharClass/SteenrodChainMap.lean` — **the chain-map condition on a
+  generator**, 2085 jobs
+* `CharClass/SteenrodTargetLinear.lean` — the target differential is equivariant
+  and group-ring linear, 2085 jobs
 
 ## AUTHORED, UNVERIFIED
 
@@ -153,7 +203,7 @@ Nothing.
 
 ## STILL OWED
 
-Nothing from the original brief.  The `Sq^k` layer is green; what remains for
+Nothing from the original brief, and the chain-map condition is now green too.  The `Sq^k` layer is green; what remains for
 the program is the **Cartan formula**, which is `cc-cartan`'s to prove from
 `steenrodDiag`, and the assembly of the graded `SqH : ℕ → H →+ H` on the total
 cohomology, which needs `cc-cohom-api`/`cc-projective`'s direct sum.  My
@@ -211,3 +261,32 @@ and `t_mul_t` come from `SqH_map` plus sphere cohomology at one stroke, and
 * `cc-cohom-api`'s `cohCast` is `Eq.rec`, while the vendored `cocycleClass_cast`
   is stated with `eqToHom`.  `CharClass/CohomologyAssoc.lean` already bridges
   them with `cohCast_cocycleClass`; do not re-derive it.
+* **An index type used inside `rw` must be reducible.**  `rw` checks
+  type-correctness at `instances` transparency and will not unfold a plain
+  `def`, so a goal mentioning `⟨⟨(a,b),h⟩,p⟩ : PairIdx X k` is untouchable while
+  `PairIdx`/`PairDeg` are `def`s — every rewrite fails with "did not find an
+  occurrence" plus a note about `↑p` having type `PairDeg k` rather than the
+  subtype.  That cost six failures in one probe.  `abbrev` fixes it, changes no
+  signature, and has one knock-on: a `rw` that used to leave a goal for a
+  trailing `rfl` now closes it itself, so the `rfl` becomes "no goals to be
+  solved".
+* `attribute [local reducible]` **cannot** be set for a declaration from an
+  imported module ("failed to set `[local reducible]`"), so the fix has to be
+  made at the definition.
+* End every `rw` chain whose two sides become syntactically identical with an
+  `exact`, not by relying on the trailing `rfl`: whether `rw` closes such a goal
+  depends on reducibility, so the same proof text can fail either as "unsolved
+  goals" or as "no goals to be solved" depending on an unrelated `abbrev`.
+* `subst h` with `h : J = k` where **both** sides are local variables eliminates
+  `k`, not `J`, and every later mention of `k` in the proof becomes an unknown
+  identifier.  For an index hypothesis whose right side is a variable, use
+  `rw [h]`; keep `subst` for hypotheses whose right side is a literal, and for
+  the one hypothesis (`N = 0`) that occurs in a simplex's type.
+* `MonoidAlgebra.induction_on` cannot infer its motive from the goal; pass
+  `(p := fun c : GroupRingZ2 => …)` explicitly.
+* Totalising removes the casts twice over.  `faceVal` returns `0` on a vertex set
+  of the wrong size; `padIdx` returns `0` unless the two degrees sum to the total
+  one.  With the second, every sum over bidegrees runs over `Finset.range` with a
+  summand that is a function of a bare natural, so `Finset.sum_range_succ` and
+  `Finset.sum_nbij'` apply with no transport — which is what makes the
+  `a ↦ k - a` reindexing of the equivariance step a three-line `omega`.
