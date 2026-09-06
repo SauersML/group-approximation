@@ -200,8 +200,11 @@ variable {ι : Type} [Fintype ι]
 theorem fibreEquivPi_invFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (r : ℕ)
     (hr : q.trace = (r : ℂ)) (u : Fin r → ℂ) : stdFrame hq r hr *ᵥ u ∈ fibreSet q := by
   show q *ᵥ (stdFrame hq r hr *ᵥ u) = stdFrame hq r hr *ᵥ u
-  rw [Matrix.mulVec_mulVec, ← stdFrame_mul_conjTranspose hq r hr, Matrix.mul_assoc,
-    stdFrame_conjTranspose_mul hq r hr, Matrix.mul_one]
+  have key : (stdFrame hq r hr * (stdFrame hq r hr)ᴴ) *ᵥ (stdFrame hq r hr *ᵥ u)
+      = stdFrame hq r hr *ᵥ u := by
+    rw [Matrix.mulVec_mulVec, Matrix.mul_assoc, stdFrame_conjTranspose_mul hq r hr,
+      Matrix.mul_one]
+  rwa [stdFrame_mul_conjTranspose hq r hr] at key
 
 /-- **`fibreSet q` is homeomorphic to `Fin r → ℂ`**, via the standard frame. -/
 noncomputable def fibreEquivPi {q : Matrix ι ι ℂ} (hq : IsStarProjection q) (r : ℕ)
@@ -276,8 +279,9 @@ theorem projFibreEquivCP_invFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjectio
           simp only [Matrix.mul_assoc]
       _ = stdFrame hq (d + 1) hr *
             ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-              (1 * ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-                (stdFrame hq (d + 1) hr)ᴴ))) := by
+              ((1 : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+                ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+                  (stdFrame hq (d + 1) hr)ᴴ))) := by
           rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
       _ = stdFrame hq (d + 1) hr *
             (((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
@@ -290,23 +294,32 @@ theorem projFibreEquivCP_invFun_mem {q : Matrix ι ι ℂ} (hq : IsStarProjectio
           = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by
       calc (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
             (stdFrame hq (d + 1) hr)ᴴ).trace
-          = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-              ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)).trace := by
-            rw [Matrix.mul_assoc]; exact Matrix.trace_mul_comm _ _
-        _ = ((s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * 1).trace := by
+          = ((stdFrame hq (d + 1) hr)ᴴ *
+              (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ))).trace :=
+            Matrix.trace_mul_comm _ _
+        _ = ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr *
+              (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)).trace := by
+            simp only [Matrix.mul_assoc]
+        _ = ((1 : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ)).trace := by
             rw [stdFrame_conjTranspose_mul hq (d + 1) hr]
-        _ = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by rw [Matrix.mul_one]
+        _ = (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ).trace := by rw [Matrix.one_mul]
     rw [step, hstr]
-  · calc q * (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+  · have key : (stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ) *
+        (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
           (stdFrame hq (d + 1) hr)ᴴ)
-        = (q * stdFrame hq (d + 1) hr) * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
-            (stdFrame hq (d + 1) hr)ᴴ := by simp only [Matrix.mul_assoc]
-      _ = (stdFrame hq (d + 1) hr * ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)) *
-            (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ := by
-          rw [← stdFrame_mul_conjTranspose hq (d + 1) hr, Matrix.mul_assoc]
-      _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+        = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
             (stdFrame hq (d + 1) hr)ᴴ := by
-          rw [stdFrame_conjTranspose_mul hq (d + 1) hr, Matrix.mul_one]
+      calc (stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ) *
+          (stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+            (stdFrame hq (d + 1) hr)ᴴ)
+          = (stdFrame hq (d + 1) hr * ((stdFrame hq (d + 1) hr)ᴴ * stdFrame hq (d + 1) hr)) *
+              (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) * (stdFrame hq (d + 1) hr)ᴴ := by
+            simp only [Matrix.mul_assoc]
+        _ = stdFrame hq (d + 1) hr * (s : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ) *
+              (stdFrame hq (d + 1) hr)ᴴ := by
+            rw [stdFrame_conjTranspose_mul hq (d + 1) hr, Matrix.mul_one]
+    rwa [stdFrame_mul_conjTranspose hq (d + 1) hr] at key
 
 /-- **`projFibreSet q` is homeomorphic to `ℂP^{d}`** for `q` of rank `d + 1`,
 via the standard frame. -/
@@ -328,7 +341,7 @@ noncomputable def projFibreEquivCP {q : Matrix ι ι ℂ} (hq : IsStarProjection
             (stdFrame hq (d + 1) hr * (stdFrame hq (d + 1) hr)ᴴ) := by
           simp only [Matrix.mul_assoc]
       _ = q * (r : Matrix ι ι ℂ) * q := by rw [stdFrame_mul_conjTranspose hq (d + 1) hr]
-      _ = r * q := by rw [Matrix.mul_assoc, hqr]
+      _ = r * q := by rw [hqr]
       _ = r := hrq
   right_inv s := by
     apply Subtype.ext
