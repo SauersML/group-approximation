@@ -39,6 +39,80 @@ equivariant and non-equivariant readings.
 
 ## 1. GREEN
 
+**Session update 2026-09-05 (later).**  Nine further modules landed green and
+pushed.  Each was probed on its own; the job counts below are from the probe
+that built it.  The lane now owns twenty-six modules.
+
+**The geometric input of the Cartan formula is proved and the target side of the
+comparison is complete.**  What that means concretely: the target functor
+`X ↦ S(X) ⊗ S(X)` over the group ring exists with `map_id` and `map_comp`, its
+differential is `cc-steenrod`'s, that differential squares to zero, and it is
+acyclic on the standard simplices.  Those are exactly the hypotheses
+`AcyclicOnModels` consumes.
+
+* `CartanTargetSwap.lean` (2082) — the factor swap on the pair index, cast-free
+  because the index carries both degrees as data with the sum as a proposition.
+  Superseded in name by `cc-steenrod`'s `swapIdx`/`swapEnd`/`tgtModule`, which
+  are the same objects and which this lane has adopted; the bridges are `rfl`.
+* `CartanTargetEquivariance.lean` (2083) — the pair differential commutes with
+  the swap, so it is linear over the group ring.  The two halves of the
+  differential exchange places under the swap exactly, with no signs, because we
+  are in characteristic two.  `galAlgHom_comm` is the reusable general fact: an
+  `F₂`-linear map commuting with two involutions is linear over the mod-2 group
+  ring of `ℤ/2`, stated at the level of the algebra map so that it applies before
+  any module instance is in scope.
+* `CartanTargetFunctorial.lean` (2087) — pushing a pair of simplices forward is
+  functorial, commutes with the swap, and commutes with the differential.  All
+  of it rests on one naturality statement about faces, which is `rfl` in the bare
+  hom-set model: a face is precomposition with a coface, a pushforward is
+  postcomposition, and the two commute by associativity.
+* `CartanSimplexContractible.lean` (2068) — the models are contractible and a
+  contractible space has no mod-2 homology in positive degrees.  **No cone
+  operator on singular chains of a convex set had to be built**: the topological
+  simplex is a `ULift` of a convex set, Mathlib's homotopy invariance of singular
+  homology holds over any coefficient object and so at mod 2, and a point is
+  totally disconnected.
+* `CartanSimplexExact.lean` (2841) — the degreewise isomorphism between the
+  coproduct carrier of the repo's singular complex and the finitely supported
+  functions this lane uses, shown to be a chain map because the alternating signs
+  collapse in characteristic two.  Conclusion: **over a standard simplex every
+  positive-degree cycle for `bdU` is a boundary.**  That is the only geometric
+  input in the whole Cartan formula.
+* `CartanFreeCx.lean` (2082) — the tensor product of complexes of free
+  `F₂`-modules, done once for an abstract complex presented by its degreewise
+  index.  Indexed by `cc-steenrod`'s `PairDeg`, so the tensor square of the
+  singular complex **is** their `PairIdx`, definitionally, and the fourfold
+  object is the tensor of the pair with itself with no reindexing.  Includes
+  `tensorD_tensorD`: the two square terms die because each factor is a complex,
+  the two mixed terms are equal and cancel because two is zero.
+* `CartanFreeCxAug.lean` (2083) — augmented contractions, and the operator
+  `s ⊗ 1 + π ⊗ s` they induce on a tensor product.  The degree-zero residue is
+  an idempotent rather than a naive augmentation, because the residue of a tensor
+  is the product of the two residues.
+* `CartanFreeCxTensorAug.lean` (2084) — **the tensor product of two contractible
+  complexes is contractible**, hence positive-degree cycles are boundaries.  Two
+  cancellations carry it and both are characteristic two.  Because the tensor is
+  again a `FreeCx`, the construction iterates, so the fourfold object's
+  acyclicity is this theorem applied twice.
+* `CartanSingularFreeCx.lean` (2855) — the instantiation.  The singular complex
+  is a `FreeCx`; the general tensor differential **is** `cc-steenrod`'s `dTgt`,
+  proved through their own `dLeft_eq_bdU` and `dRight_eq_bdU`; hence `dTgt_dTgt`,
+  which they no longer owe anyone; and the field-splitting machinery gives an
+  augmented contraction of a model, so the pair complex is acyclic on the models.
+* `CartanTargetComplex.lean` (2861) — the assembly: `tgtCx`, `tgtMap`, the
+  functor `tgt`, and `tgt_acyclicOnModels`.
+
+**Main-tree repair, same session.**  `CartanDiagonalModule.lean` had been
+carrying an uncommitted change of mine that moves `SingularBoundaryData` from
+`ZMod 2` to group-ring coefficients, while the committed
+`CartanSourceBoundary.lean` already supplies one at group-ring coefficients.
+The two do not typecheck together, so `main` was red on this lane's source chain
+for as long as that went uncommitted.  Landed after a joint probe of
+`CartanSourceFunctor`, `CartanSourceBoundary` and `CartanDiagonalModule`
+together, green at 2082 jobs.
+
+### Earlier in the session
+
 **All seventeen owned modules build clean together:
 `Build completed successfully (2113 jobs)`, `LAKE_EXIT=0`, `PROBE GREEN`**, log
 verified to name all seventeen targets and `clone cc-cartan` (see TRAPS on why
