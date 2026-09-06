@@ -86,6 +86,20 @@ theorem totalH_map_injective_of_iso {X Y : TopCat.{0}} (e : X ≅ Y) :
   intro c c' hcc
   rw [← hinv c, ← hinv c', hcc]
 
+/-- **Injectivity of the pullback composes.**  Each stage of a flag tower is a
+projective bundle over the previous one, so Leray–Hirsch gives injectivity one
+stage at a time; this is what turns that into injectivity for the whole tower
+projection.  It is the only thing `Wu.SplittingData.pull_injective` actually
+needs — a `LerayHirschGraded` for the tower projection itself does not exist,
+because an iterated projectivisation is not a projective bundle. -/
+theorem totalH_map_injective_comp {X Y Z : TopCat.{0}} (f : X ⟶ Y) (g : Y ⟶ Z)
+    (hf : Function.Injective (TotalH.map f))
+    (hg : Function.Injective (TotalH.map g)) :
+    Function.Injective (TotalH.map (f ≫ g)) := by
+  intro c c' hcc
+  rw [totalH_map_comp, totalH_map_comp] at hcc
+  exact hg (hf hcc)
+
 /-! ## 2. The one model homeomorphism -/
 
 variable {ℓ : ℕ}
