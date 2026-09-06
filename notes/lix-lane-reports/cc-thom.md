@@ -126,8 +126,8 @@ Notation: `H^n X := cohomologyZMod2 X n : ModuleCat.{0} (ZMod 2)` (vendored,
 
 ## 1. GREEN
 
-Probe of **all thirteen modules together**:
-**`Build completed successfully (8782 jobs)`**, `ERROR_LINES=0`, `LAKE_EXIT=0`,
+Probe of **all fourteen modules together**:
+**`Build completed successfully (8786 jobs)`**, `ERROR_LINES=0`, `LAKE_EXIT=0`,
 `PROBE GREEN` (private clone `cc_clones/cc-thom`, 2026-09-05, fixed `ccprobe.sh`).
 Every module below has a `Built …` line, not `Replayed`, for its current bytes.
 
@@ -143,10 +143,11 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/EulerLocalChart.lean` | `homeomorphCompl`, `compl_singleton_subtype`, `chartPairHomeo`, `openPartialHomeomorphChartPair` |
 | `CharClass/ThomPuncturedRecursion.lean` | `isZero_of_linearEquiv`, `CohomologyToolkit`, `KunnethFactor`, `kunnethFactor_of_prodEquiv`, `PuncturedAcyclic`, the two base-case constructors, `PuncturedAcyclic.prod`, `isZero_punctured_top` |
 | `CharClass/EulerLocalNonvanishing.lean` | `ne_zero_of_map_ne_zero`, `rankOneOfIso`, `range_eq_ker_of_exact`, `surjective_of_punctured_acyclic`, `topChernClass_ne_zero` |
+| `CharClass/ThomKunnethSphere.lean` | `kunnethFactor_sphere`, `kunnethFactor_of_contractible`, `kunnethFactor_sphere_compl`, `puncturedAcyclic_sphere` — the Künneth input instantiated from `cc-cohom-api`'s green `isZero_cohomology_prod_sphere` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
-Job count: 8782 (thirteen modules, one probe).
+Job count: 8786 (fourteen modules, one probe).
 
 ## 2. AUTHORED, UNVERIFIED
 
@@ -191,12 +192,14 @@ and `PuncturedAcyclic.prod` consumes two instances of it.  With `N` **left-neste
 `(((S¹ × S⁵) × CP d₁) × CP d₂) × ⋯`, every second factor is a sphere, a `CP(d)`, a
 punctured sphere (contractible, so `kunnethFactor_of_prodEquiv` applies with no
 Künneth at all, fed by `cohProdContractible`) or a punctured `CP(d)` (homotopy
-equivalent to `CP(d−1)`, so a `CP` again).  So the only outstanding ask is the
-sphere case from `cc-cohom-api` and the `CP` case from `cc-projective`:
+equivalent to `CP(d−1)`, so a `CP` again).  The sphere case is **done**: `cc-cohom-api`'s green `isZero_cohomology_prod_sphere`
+gives `kunnethFactor_sphere (n) : KunnethFactor (Sphere n) n` in
+`CharClass/ThomKunnethSphere.lean`, and punctured spheres need no Künneth at all
+since they are contractible.  The only outstanding ask is the projective case
+from `cc-projective`:
 
 ```lean
-theorem kunnethFactor_sphere (n : ℕ) : KunnethFactor (Sphere n)
-theorem kunnethFactor_CP (d : ℕ) : KunnethFactor (CP d)
+theorem kunnethFactor_CP (d : ℕ) : KunnethFactor (CP d) (2 * d)
 ```
 
 **(A5) Contractible spaces.**  *Authored* as
@@ -385,6 +388,13 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
   transparency.
 * **`simp` will not evaluate `(1 : ZMod 2) + 1` to `0`** while simplifying a
   scalar action; supply `((1 : ZMod 2) + 1) = 0 := by decide` and `rw` it.
+* **Duplicate top-level declarations across `CharClass/` modules are an import
+  error, not a type error.**  `isZero_of_linearEquiv` existed in both
+  `ThomPuncturedRecursion` and `cc-cohom-api`'s `CohomologyProductCover`, and Lean
+  refused the import outright.  Mine is renamed `thomIsZero_of_linearEquiv`.  A
+  sweep of every top-level name in `CharClass/` found twelve further candidate
+  pairs, all between peers; they are listed in the message to the lead, and any
+  pair sharing a namespace will break the root the same way.
 * **`git add GroupApproximation/CharClass/` sweeps peers' in-flight files onto
   main.**  cc-thom's commits `05a5fd71a`, `574d4aafe`, `10120c0cc`, `6603e2a7d`,
   `690767b1f` and `fb2d5b958` each carried other lanes' uncommitted work in the
@@ -411,4 +421,5 @@ steps, or one `puncturedAcyclic_pi` over the whole family.
 | 2026-09-05 | 5 `MayerVietoris*` modules | green after three rounds |
 | 2026-09-05 | all 14 cc-thom modules (with the ported dual) | green, 8744 jobs |
 | 2026-09-05 | MV bridge retargeted onto cc-cohom-api's green file | green, 8776 jobs |
-| 2026-09-05 | **all 13 cc-thom modules, per-factor Künneth** | **green, 8782 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
+| 2026-09-05 | all 13 cc-thom modules, per-factor Künneth | green, 8782 jobs |
+| 2026-09-05 | **all 14, with the sphere Künneth instances** | **green, 8786 jobs, `ERROR_LINES=0`, `PROBE GREEN`** |
