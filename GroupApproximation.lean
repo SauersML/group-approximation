@@ -3599,6 +3599,7 @@ import GroupApproximation.CharClass.CohomologyChartRankTwoInterface
 import GroupApproximation.CharClass.LerayHirschProduct
 import GroupApproximation.CharClass.LerayHirschChartTwo
 import GroupApproximation.CharClass.BundleProjOver
+import GroupApproximation.CharClass.GysinPair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
