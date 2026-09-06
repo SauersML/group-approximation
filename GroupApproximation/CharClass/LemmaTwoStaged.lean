@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LemmaTwoStepDLix
 import GroupApproximation.CharClass.LemmaTwoGlue
 import GroupApproximation.CharClass.CartanFormula
+import GroupApproximation.CharClass.LIXChern
 
 /-!
 # The endgame, staged over its remaining inputs
@@ -32,6 +33,8 @@ everything else was green, since Step D runs on evenness.
 * `lemmaTwoHolds_staged'` — the same over **three**: `Wu.CartanTotal` unfolds to
   `∀ X, Steenrod.CartanOf X`, which is `cc-cartan`'s `cartanOf_holds` at every space, so
   the Cartan formula is discharged rather than assumed.
+* `lemmaTwoHolds_staged''` — the same over **two**, `chain` and `data`, with the Chern
+  assignment discharged by `cc-projective`'s `lixChern`.
 -/
 
 noncomputable section
@@ -88,5 +91,27 @@ theorem lemmaTwoHolds_staged'
           (lixChernOf (chern j) (mappingTorus Vmat G circHoriz circHeight))) :
     LIX.LemmaTwoHolds :=
   lemmaTwoHolds_staged chern (fun X => cartanOf_holds X) chain data
+
+/-- **The same over two hypotheses.**  `cc-projective`'s `lixChern` inhabits
+`LixChernDeg dd` at every stage, so the Chern assignment is supplied rather than assumed.
+
+What is left is exactly the two steps of the manuscript's proof, per mapping torus. -/
+theorem lemmaTwoHolds_staged''
+    (chain : ∀ j : ℕ,
+      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
+        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
+        (∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0) →
+        ThomChainThom (LIX.lixDD j)
+          (lixChern (LIX.lixDD j) (mappingTorus Vmat G circHoriz circHeight)
+            (continuous_mappingTorus_lix hGc) (isStarProjection_mappingTorus_lix hGu)
+            (lixRank (LIX.lixDD j))))
+    (data : ∀ j : ℕ,
+      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ),
+        Continuous G → (∀ m, IsCornerUnitary (Vmat m) (G m)) →
+        WuStepDLix (LIX.lixDD j)
+          (lixChernOf (lixChern (LIX.lixDD j))
+            (mappingTorus Vmat G circHoriz circHeight))) :
+    LIX.LemmaTwoHolds :=
+  lemmaTwoHolds_staged' (fun j => lixChern (LIX.lixDD j)) chain data
 
 end GroupApproximation.CharClass
