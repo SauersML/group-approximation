@@ -361,6 +361,14 @@ never a `sorry`, never an `axiom`.
     `gamma_top_eq_zero_of_slice_totalH` while cc-lix-odd's `LemmaTwoStepD` was already green
     against it.)
 
+12. **Push protocol (issued 23:36 EDT after three divergences in an hour).**  Commit locally,
+    plain `git push origin main`; if rejected, `git fetch origin && git merge --no-edit
+    origin/main` then push — if the merge aborts on an untracked/modified file that is
+    byte-equal to `origin/main`'s, `git add` it and retry (adopting already-pushed content);
+    ONLY if blocked by another lane's genuinely different in-flight file, land by the
+    private-index `commit-tree` route and TELL THE LEAD (it creates a divergence the lead
+    reconciles).  Never move the branch pointer.
+
 ## 4. Lane-specific design notes
 
 ### cc-cohom-api
