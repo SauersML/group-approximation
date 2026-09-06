@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 29 modules; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 31 modules; `BundleTotalOn` at 2976, `BundleChartTotal` at 2977; `BundleFlagStage` at 2978 jobs; `BundleLineIntert` at 8672 jobs; `BundleLocalOn` at 2971 jobs; `BundleTautPieces` at 8679 jobs; `BundlePushforward` at 8674 jobs; `BundleGysinData` at 8678 jobs; `BundleReindex` at 8673 jobs; `BundleGysinPieces` at 2976 jobs; `BundleProjOver` at 2970 jobs; `BundleOneStep` at 8672 jobs; `BundleBlockIter` at 8808 jobs; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -185,12 +185,47 @@ free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
 
+### `BundleTotalOn.lean` — the total space over a SUBSET of a trivialising set
+
+```lean
+noncomputable def totalTrivOn (p) (x₀) (V) (hV : V ⊆ trivSet p x₀) :
+    Total (p.restrictTo V) ≃ₜ ↥V × ↥(fibreSet (p x₀))
+noncomputable def Bundle.totalTrivStdOn (p) (x₀) (V) (hV) (r) (hr : p.rank x₀ = r) :
+    Total (p.restrictTo V) ≃ₜ ↥V × (Fin r → ℂ)
+theorem totalTrivOn_over_base / Bundle.totalTrivStdOn_over_base          -- both `rfl`
+theorem totalTrivStdOn_snd_eq_zero_iff
+theorem totalTrivStdOn_image_punctured                                   -- an IMAGE equation
+```
+
+The total-space twin of `BundleLocalOn`.  **Why a subset is needed and not just
+`trivSet`:** a pair identification pinned to `trivSet p x₀` cannot be fed to a
+corollary that wants a **contractible** base, and `trivSet` is a determinant
+non-vanishing locus carrying no contractibility.  Shrinking lets a consumer
+intersect with a chart and take a ball inside.
+
+The pair statement is an image equation, not a membership, because that is the
+form a relative-cohomology congruence consumes.
+
+### `BundleChartTotal.lean` — the chart open IS the total space
+
+```lean
+noncomputable def chartOpensHomeoTotal (p) : ↥(chartOpensSet p) ≃ₜ Total p
+theorem chartOpensHomeoTotal_zeroSectionProj / _mem_puncturedSet
+theorem zeroSectionProj_mem_chartOpensSet
+```
+
+`chartOpensHomotopyEquivBase` was assembled **over** this homeomorphism without
+ever naming it.  The two companion lemmas are what make it a map of **pairs**,
+which is what a Thom bridge needs rather than the homotopy equivalence built on
+it.
+
 ### `BundleFlagStage.lean` — one stage of the flag tower
 
 ```lean
 noncomputable def flagRest (p : Bundle X ι) (n : ℕ) : Bundle (Flag p n) ι
 theorem trace_flagRest / rank_flagRest (p) (n) (w) :
     (flagRest p n).rank w + n = p.rank (flagProj p n w)
+def flagZero (p) : Flag p 0 ≃ₜ X        theorem flagZero_eq_flagProj      -- `rfl`
 noncomputable def flagSucc (p) (n) : Flag p (n + 1) ≃ₜ Proj (flagRest p n)
 theorem flagSucc_over_base (p) (n) (w) :
     projPi (flagRest p n) (flagSucc p n w) = flagForget p n w            -- `rfl`
