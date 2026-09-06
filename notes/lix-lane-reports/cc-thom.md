@@ -234,6 +234,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/ThomBridgeNatural.lean` | **`chartOpensHomeoTotal_natural`**, `bridgeChartIncl{,_apply}`, **`bridgeChartIncl_natural`** — the naturality layer's space-level content; `bridgeChart` is one `relPullback` along the chart inclusion, so its naturality is one square, not two |
 | `CharClass/ThomBridgeNaturalHyper.lean` | **`relPullback_id_comm`** — shrinking a subspace commutes with pulling back; the hyperplane step's square, no geometry |
 | `CharClass/ThomBridgeNaturalSquare.lean` | **`relPullback_comm_of_map_eq`** — a commuting square of SPACES gives one of relative pullbacks; the tool the whole naturality layer runs on |
+| `CharClass/ThomBridgeChartHom.lean` | `bridgeChartIncl_map_eq`, **`bridgeChart_hom_eq`** — the first two bridge steps are ONE `relPullback`, along the chart inclusion |
 
 Job count: 8786 (fourteen modules, one probe).
 
@@ -794,3 +795,5 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | **`ThomBridgeNatural`** (chart inclusion) | **green, 2981 jobs, `696c51b97`** |
 | 2026-09-06 | **`ThomBridgeNaturalHyper`** | **green, 8748 jobs, `298a03787`, first probe** |
 | 2026-09-06 | **`ThomBridgeNaturalSquare`** | **green, 8749 jobs, `bb8836643`, first probe** |
+| 2026-09-06 | `ThomBridgeChartHom` | red x3: missing import for `cmap` and `open` for `sInclusion`; unused `DecidableEq`; `omit` placed AFTER the docstring (a trap already in my own notes) |
+| 2026-09-06 | **`ThomBridgeChartHom`** | **green, 8760 jobs, `02c9e0494`** |
