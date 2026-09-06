@@ -28,7 +28,7 @@ abbrev Total p := ↥(totalSet p)   abbrev Sphere p := ↥(sphereSet p)
 abbrev Punctured p := ↥(puncturedSet p)   abbrev Proj p := ↥(projSet p)
 ```
 
-## GREEN — 17 modules; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
+## GREEN — 18 modules; `BundleTautRestrict` at 8671 jobs; `BundleLineTriv` and `BundleInvariance` at 8671 jobs, `BundleCoordEmbed` at 8669 (both import
 `cc-projective`'s `ProjectiveSpaceHyperplane`), `BundleRank` at 2970,
 `BundleBlockIncl` at 2975, `BundleStabilize` at 2974, the other twelve
 together at 2978
@@ -184,6 +184,28 @@ set has a neighbourhood basis of Cantor sets.  Shrinking the trivializing set is
 free, since the trivialization is an explicit formula in `intert` rather than a
 choice, but a contractible shrink is a property of the BASE and has to be
 hypothesized or supplied by whoever owns the base.
+
+### `BundleTautRestrict.lean` — the tautological line along the hyperplane
+
+```lean
+def inlMat (ι : Type) [Fintype ι] [DecidableEq ι] : Matrix (ι ⊕ Unit) ι ℂ
+theorem inlMat_isometry (ι) : (inlMat ι)ᴴ * inlMat ι = 1
+theorem inlMat_conj (ι) (q) : inlMat ι * q * (inlMat ι)ᴴ = inclMat q
+theorem inclMat_apply_inl_inr / inclMat_apply_inr_inl                  -- both `rfl`
+
+def tautRestrictIso (p : Bundle X ι) :
+    BundleIso (comap (projIncl p) (tautLine p.plusOne)) (tautLine p)
+theorem tautRestrictIso_hom (p) (z) :
+    (tautRestrictIso p).hom z = (z : X × Matrix ι ι ℂ).2 * (inlMat ι)ᴴ     -- `rfl`
+```
+
+The hyperplane at infinity carries the tautological line to the tautological
+line.  The two sides are indexed by `ι ⊕ Unit` and by `ι`, so the comparison is
+the block padding rather than an identity, and a `BundleIso` being rectangular
+is exactly what absorbs it.  The implementer is the point's own matrix followed
+by the block row, and both identities use only that the point is a self-adjoint
+idempotent and that `inlMat` is an isometry: `aᴴ a = inclMat r` because
+`r r = r`, and `a aᴴ = r` because `inlMatᴴ inlMat = 1`.
 
 ### `BundlePairs.lean` — the fibre inclusion as a strict map of pairs
 
