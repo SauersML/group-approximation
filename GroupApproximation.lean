@@ -3328,6 +3328,12 @@ import GroupApproximation.Analysis.LIXLimitSeparable
 import GroupApproximation.Analysis.LIXLimitWitness
 import GroupApproximation.Analysis.LIXSimplicity
 import GroupApproximation.Analysis.LIXSimplicityInstance
+import GroupApproximation.Analysis.LIXClutching
+import GroupApproximation.Analysis.LIXConnectingMapFullness
+import GroupApproximation.Analysis.LIXConnectingMapFullnessSum
+import GroupApproximation.Analysis.LIXGeneratorUnitary
+import GroupApproximation.Analysis.LIXLemmaSixGenerator
+import GroupApproximation.Analysis.LIXObstructionComplementUnitary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
