@@ -194,6 +194,7 @@ Mayer–Vietoris; the nine `Thom*`/`EulerLocal*` modules are the original lane.
 | `CharClass/EulerLocalAssembly.lean` | `rankOneOfIsoChain`, `su_ne_zero_of_chain`, **`topChernClass_ne_zero_of_chain`** — Step C in a single application, chaining excision, the chart isomorphism and the local model |
 | `CharClass/ThomToolkitInstance.lean` | **`cohomologyToolkit`** — the toolkit as a *term*; `puncturedAcyclic_prod` and `puncturedAcyclic_sphere'` with it discharged |
 | `CharClass/ThomKunnethProjective.lean` | `prodOpen_inf`, `isZero_prodOpen_of_homotopyEquiv`, **`kunnethFactor_CP`** — `KunnethFactor (CP d) (2*d)` by Mayer–Vietoris induction on `d`; **no δ-linearity involved** |
+| `CharClass/ThomClassChain.lean` | **`thomClass`**, `jm_thomClass`, `thomClass_unique`, `existsUnique_smul_thomClass` — the Thom class as a *term* over Leray–Hirsch as a hypothesis; §1.4 item 5's `H^{k+2r}(pair) ≅ H^k(X)` |
 | `CharClass/ThomEulerNaturality.lean` | `hom_apply_comp`, `topClass_eq_of_naturality`, `topClass_eq_of_naturality'` |
 | `CharClass/ThomPuncturedPi.lean` | `piFinSuccHomeo`, `piFinOneHomeo`, `PuncturedAcyclic.congr`, `PuncturedAcyclic.congr'`; the `Fin`-indexed recursion is deliberately absent, see the file's last section |
 
