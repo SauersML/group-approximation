@@ -2385,15 +2385,22 @@ and its `-proof` route node.
 **Every row of sweep 25's standing table has moved, and the design changed
 underneath two of them:**
 
-* **`ProblemLIX` — landed.** `Manuscript/NinetyNineProblems/ProblemLIX.lean`
-  states exactly `∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A
-  → K1Inj A`, over generic vocabulary as sweep 21–23 required. Its own
-  `not_problemLIX` (the audited, reader-facing form) was still unlanded as of
-  this writing — see "still open" below — but `GroupApproximation.CharClass.
-  not_problemLIX : ¬ NinetyNineProblems.ProblemLIX` (`CharClass/
-  LemmaTwoOfHsqHresHclass.lean`, commit `1c3237f2c`) already proves the
-  identical statement with **zero hypotheses**, wired into the root at
-  `GroupApproximation.lean:3888`.
+* **`ProblemLIX` — landed, and so is its own `not_problemLIX`.**
+  `Manuscript/NinetyNineProblems/ProblemLIX.lean` states exactly
+  `∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A`,
+  over generic vocabulary as sweep 21–23 required, and (as of commit
+  `aa9ba0148`, "STW Problem LIX: answered unconditionally — not_problemLIX
+  and the separable form", confirmed an ancestor of `origin/main` at fetch
+  `77e050e10`) proves `not_problemLIX : ¬ ProblemLIX` and
+  `exists_separable_simple_unital_not_k1Inj` in its own namespace, both zero
+  hypotheses, both `#audit_closed_axioms`. **Corrects this section's first
+  version**, written minutes earlier against commit `1c3237f2c`, which cited
+  an internal `GroupApproximation.CharClass.not_problemLIX`
+  (`CharClass/LemmaTwoOfHsqHresHclass.lean`) as the zero-hypothesis closure;
+  `aa9ba0148` deleted that declaration to fix an import cycle (that file now
+  proves only `lemmaTwoHolds`), so it should no longer be cited under that
+  name. See `notes/lix-lane-reports/lix-lemma-two-lean-closure-2026-09-07.md`
+  for the full correction.
 * **`IsSimpleCStar` / `isSimpleCStar_iff_isSimpleRing` — both landed**,
   `Analysis/CStarSimple.lean:93,158`, exactly the closed-ideal notion sweep 24
   asked for (not Mathlib's `IsSimpleRing`).
@@ -2437,21 +2444,18 @@ underneath two of them:**
   25's own "compiled" bar (an `#audit` macro reading oleans off a stale or
   orphan module is not this).
 
-**Still open, honestly stated.** The reader-facing wrapper
-`GroupApproximation.NinetyNineProblems.not_problemLIX`, meant to carry
-`#audit_closed_axioms` for the STW-99-problems endpoint roster, was HELD as
-of this writing pending a from-clean-export fresh compile of `lixHsq` on the
-fleet lead's side (`notes/lix-lane-reports/cs-endpoint.md`); it is a one-line
-application of the already-unconditional `CharClass.not_problemLIX`, not open
-mathematics. `K1(A) = 0` for the counterexample algebra and the exact order
-of the witness unitary are not computed anywhere in the chain and are not
-part of the LIX answer (`notes/LIX_FULL_PROGRAM_2026-09-05.md` §0). The
-orphan count and the general import-hygiene sweep were not re-run for this
-entry — `lix-meta`'s brief was the metadata/graph record, not a fresh
-`check_import_regression.py` pass — so that row is left blank rather than
-guessed.
+**Still open, honestly stated.** Nothing about the reader-facing wrapper any
+more — it landed at `aa9ba0148`, above. `K1(A) = 0` for the counterexample
+algebra and the exact order of the witness unitary are not computed anywhere
+in the chain and are not part of the LIX answer
+(`notes/LIX_FULL_PROGRAM_2026-09-05.md` §0). The orphan count and the general
+import-hygiene sweep were not re-run for this entry — `lix-meta`'s brief was
+the metadata/graph record, not a fresh `check_import_regression.py` pass —
+so that row is left blank rather than guessed.
 
 ### Updated standing rows
+
+(as of `origin/main` fetch `77e050e10059e619e5c0c59c0e7cafbdf6a58374`)
 
 | row | state |
 |---|---|
@@ -2459,6 +2463,6 @@ guessed.
 | `IsSimpleCStar` / `isSimpleCStar_iff_isSimpleRing` | landed, `Analysis/CStarSimple.lean` |
 | `Topology/SphereModelBridge.lean` / `sphereFiveHomeoSphere` | superseded — direct `unitVectors (Fin 3)` model, no bridge built or needed |
 | `Analysis/LIX*` importing `SphereOddDegree` | retired invariant — now deliberate (mod-2 cohomology route); 0 `KTheory/*` importers |
-| target 3 open mathematics | **none** — `CharClass.not_problemLIX`, zero hypotheses, `1c3237f2c` |
+| target 3 open mathematics | **none** — `CharClass.lemmaTwoHolds`, zero hypotheses, `1c3237f2c` |
 | target 3 compiled | **yes** — clean-export root build, 13822 jobs, `sorryAx: none`, `bc9632ea0` |
-| reader-facing `NinetyNineProblems.not_problemLIX` (`#audit_closed_axioms`) | pending, lane `lix-wire` |
+| `NinetyNineProblems.not_problemLIX` / `exists_separable_simple_unital_not_k1Inj` (`#audit_closed_axioms`) | **landed**, `aa9ba0148` |

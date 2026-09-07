@@ -39,17 +39,19 @@ one topological input, `LIX.LemmaTwoHolds` -- at every stage of the tower, a
 rank-`(2+m)` and a rank-`(3+m)`-minus-one bundle over `S^5 x (a product of
 complex projective spaces)` are not Murray-von Neumann equivalent as
 continuous fields -- and that input is now itself a theorem with no remaining
-hypothesis, `GroupApproximation.CharClass.lemmaTwoHolds`, closing the chain.
+hypothesis, `GroupApproximation.CharClass.lemmaTwoHolds`. Assembled with the
+rest of the C\*-side chain this closes
+`GroupApproximation.NinetyNineProblems.not_problemLIX : ¬ ProblemLIX` and the
+sharper `exists_separable_simple_unital_not_k1Inj`
+(`Manuscript/NinetyNineProblems/ProblemLIX.lean`), both unconditional and both
+carrying `#audit_closed_axioms`, landed at commit `aa9ba0148` -- confirmed an
+ancestor of `origin/main` as of fetch `77e050e10`. See the route node for the
+exact chain and for a correction: an earlier internal declaration,
+`GroupApproximation.CharClass.not_problemLIX`, was removed at that same
+commit to fix an import cycle and no longer exists.
 
-**What is not yet claimed here.** `K1(A)` is not computed (not zero, not any
+**What is not claimed here.** `K1(A)` is not computed (not zero, not any
 other group); the order of `v` in `U(A)/U0(A)` is not computed (not shown to
 be exactly two); nuclearity and stable finiteness of `A` are not asserted.
 None of these is part of the answer to Problem LIX -- see the route document's
-scope note -- and none is proved by the cited declarations. The reader-facing
-wrapper theorem, `GroupApproximation.NinetyNineProblems.not_problemLIX` in
-`Manuscript/NinetyNineProblems/ProblemLIX.lean`, restating the same fact under
-`#audit_closed_axioms` for citation from the STW-99-problems endpoint roster,
-was not yet landed as of 2026-09-07 (lane `lix-wire`); the underlying result
-this claim records does not depend on that wrapper landing, since
-`GroupApproximation.CharClass.not_problemLIX` already proves
-`¬ GroupApproximation.NinetyNineProblems.ProblemLIX` with zero hypotheses.
+scope note -- and none is proved by the cited declarations.

@@ -49,28 +49,54 @@ mapping-torus's top class) -- were the open residues this campaign closed:
 `hclass` as its own three arguments.
 `GroupApproximation/CharClass/LemmaTwoOfHsqHresHclass.lean`, commit
 `1c3237f2c` ("CharClass: hsq discharged -- Lemma 2 and not-Problem-LIX are
-unconditional"), instantiates all three from the theorems above (no
+unconditional"), instantiated all three from the theorems above (no
 adjustment for `hsq` and `hres`; two pinned proof arguments for `hclass`),
-proving:
+proving `lemmaTwoHolds` and, at that commit, also its own
+`CharClass.not_problemLIX`.
+
+**Correction, superseding the paragraph above's `not_problemLIX` as first
+landed.** Commit `aa9ba0148` ("STW Problem LIX: answered unconditionally --
+not_problemLIX and the separable form"; confirmed an ancestor of
+`origin/main` as of fetch `77e050e10`) removed `CharClass.not_problemLIX`:
+importing `Manuscript/NinetyNineProblems/ProblemLIX.lean` back into this file
+so that file could state its own bare `not_problemLIX`, on top of
+`ProblemLIX.lean` already importing this file for `lemmaTwoHolds`, closed a
+build cycle -- caught by the probe, not by inspection. The fix is
+directional: `LemmaTwoOfHsqHresHclass.lean` now proves only
 
 ```lean
 theorem lemmaTwoHolds : LIX.LemmaTwoHolds
-theorem not_problemLIX : ¬ NinetyNineProblems.ProblemLIX
 ```
 
-both in `namespace GroupApproximation.CharClass`, both with **zero
-hypotheses**. `not_problemLIX` follows via
-`NinetyNineProblems.not_problemLIX_of_lemmaTwo`
-(`Manuscript/NinetyNineProblems/ProblemLIX.lean`), which unwinds through
-`LIX.lixLimit_hasK1InjWitness_of` (Corollary 4 plus the generalized clutching
-argument, `Analysis/LIXLemmaSixCor4.lean`), `LIX.lixLimit_isSimpleCStar`
-(stagewise fullness, `Analysis/LIXLimitSimple.lean`,
-`#audit_closed_axioms`-clean) and `not_k1Inj_of_hasWitness`
-(`Analysis/LIXEndpointStatement.lean`) to the witness claimed by the target
-node. `ProblemLIX` itself is
+in `namespace GroupApproximation.CharClass`, zero hypotheses, and
+`ProblemLIX.lean` is the sole place `¬ ProblemLIX` is derived from it:
+
+```lean
+theorem not_problemLIX : ¬ ProblemLIX
+theorem exists_separable_simple_unital_not_k1Inj :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
+```
+
+both in `namespace GroupApproximation.NinetyNineProblems`
+(`Manuscript/NinetyNineProblems/ProblemLIX.lean`), both **zero hypotheses**
+and both carrying `#audit_closed_axioms` as landed at `aa9ba0148` -- whose
+commit message records the axiom lines read by hand off the raw remote log,
+per standing instruction for this one irreversible step:
+`[propext, Classical.choice, Quot.sound]` for both declarations, nothing
+else. `not_problemLIX` follows via `not_problemLIX_of_lemmaTwo`, which
+unwinds through `LIX.lixLimit_hasK1InjWitness_of` (Corollary 4 plus the
+generalized clutching argument, `Analysis/LIXLemmaSixCor4.lean`),
+`LIX.lixLimit_isSimpleCStar` (stagewise fullness,
+`Analysis/LIXLimitSimple.lean`, `#audit_closed_axioms`-clean) and
+`not_k1Inj_of_hasWitness` (`Analysis/LIXEndpointStatement.lean`) to the
+witness claimed by the target node; `exists_separable_simple_unital_not_k1Inj`
+is the same chain with `LIX.lixLimit_separableSpace` carried through rather
+than dropped. `ProblemLIX` itself is
 `∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A`
-(`Manuscript/NinetyNineProblems/ProblemLIX.lean`), so `not_problemLIX`'s type
-is exactly the negation of STW's printed problem.
+(same file), so `not_problemLIX`'s type is exactly the negation of STW's
+printed problem, and the separable form is strictly sharper than what the
+target node claims (separability there is only a bonus conjunct).
 
 ## Wiring and build verification
 
@@ -108,8 +134,20 @@ forced fresh compile.
 Nothing in this chain computes `K1(A)`, computes the order of the witness
 unitary in `U(A)/U0(A)`, or asserts nuclearity or stable finiteness of `A`;
 none of those is needed by `ProblemLIX`, and none is claimed by the target
-node. The reader-facing wrapper `NinetyNineProblems.not_problemLIX`, intended
-to carry the `#audit_closed_axioms` badge for the STW-99-problems roster, was
-still unlanded as of this writing (lane `lix-wire`); the mathematics recorded
-here does not depend on that wrapper, only on `CharClass.not_problemLIX`
-above, which is unconditional today.
+node.
+
+## Note on this node's own history
+
+This route was first written citing `GroupApproximation.CharClass.not_problemLIX`
+as the zero-hypothesis closure, with the reader-facing
+`NinetyNineProblems.not_problemLIX` recorded as pending. Both statements were
+accurate at the `origin/main` SHA they were read at, and both were overtaken
+within the same session: `aa9ba0148` landed the reader-facing wrapper (with
+the stronger, separable form alongside it) and, to fix the import cycle that
+caused, deleted the internal declaration this node first cited. The
+"Wiring and build verification" `#`-section above and the two root-wiring
+commits it cites (`6785a5dd2`, `bc9632ea0`) are unaffected -- they wire and
+build the thirteen residue-carrying modules, none of which `aa9ba0148`
+touched. Recorded here, rather than silently overwritten, per the fleet rule
+that a claim about the state of `origin/main` carries the SHA it was read at:
+this correction was made at fetch `77e050e10`.
