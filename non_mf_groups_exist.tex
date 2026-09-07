@@ -236,11 +236,10 @@ multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized
 Hilbert--Schmidt inner product.  Here
 $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with
 the norm on the left taken in the operator algebra of this Hilbert space.
-Passing to a Hilbert ultraproduct turns these maps into a genuine unitary
-representation of $G$, to which property~\textup{(T)} applies.  Let $U$ be
-the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the Kazhdan projection
-of $L$ for the conjugation maps, both in the norm matrix corona with
-coordinate sizes $d_n^2$.  Then $U^*PU\le P$, because $uLu^{-1}\le L$ has
+The classes of these maps form a homomorphism of $G$ into the unitary
+group of the norm matrix corona with coordinate sizes $d_n^2$.  Let $U$
+be the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the image of the
+Kazhdan projection of $L$ in that corona.  Then $U^*PU\le P$, because $uLu^{-1}\le L$ has
 fewer constraints and more fixed vectors, and stable finiteness of that
 corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
 Hilbert--Schmidt asymptotic commutant of $L$, and the matrices assigned to an element of
@@ -248,9 +247,10 @@ $\mathfrak D_G(L)$ tend to $1$ in Hilbert--Schmidt norm in every operator
 norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
 Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
 A corona homomorphism nontrivial on $K$ compresses to a corner where the
-Kazhdan projection of $K$ vanishes.  On that corner, Hilbert--Schmidt
-triviality makes every ultralimit of normalized traces equal to the trivial
-character of $K$, which takes the value $1$ at the Kazhdan projection
+Kazhdan projection of $K$ vanishes.  On that corner, a group-algebra
+element within $\tfrac14$ of the Kazhdan projection has operator norm
+below $\tfrac14$, while Hilbert--Schmidt triviality sends its normalized
+traces to the sum of its coefficients, which exceeds $\tfrac34$
 (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
@@ -405,8 +405,9 @@ For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with
 $uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$
 satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two
 spaces have the same finite dimension, so the inclusion is an equality;
-if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$.
-An asymptotic representation has no exact commutant to count.
+if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$,
+and $\rho$ is trivial on $\mathfrak D_G(L)$.  An asymptotic
+representation has no exact commutant to count.
 Property~\textup{(T)} supplies a Kazhdan projection in its place, and
 stable finiteness of the corona replaces the dimension count.
 
@@ -435,13 +436,13 @@ For $L\le G$, let
  \mathcal C_2(V,L)
  =\left\{(x_n)\ \middle|\
    \begin{aligned}
-    &\sup_n\opnorm{x_n}<\infty,\\
+    &\sup_n\hsnorm{x_n}<\infty,\\
     &\hsnorm{V_n(\ell)x_n-x_nV_n(\ell)}\longrightarrow0 &&(\ell\in L)
    \end{aligned}\right\}
 \]
-be the bounded Hilbert--Schmidt asymptotic commutant of $V(L)$.  Coordinatewise
+be the Hilbert--Schmidt asymptotic commutant of $V(L)$.  Coordinatewise
 conjugation by $V_n(g)$ defines a bijection, denoted $\operatorname{Ad}(V(g))$,
-of the bounded matrix sequences.
+of the Hilbert--Schmidt bounded matrix sequences.
 A unital $C^*$-algebra is finite if each of its isometries is unitary,
 and stably finite if all matrix algebras over it are finite.
 
@@ -528,12 +529,19 @@ $L$~\cite{AkemannWalter} under $C^*_{\max}(L)\to\mathcal B$, and lift
 $P$ to orthogonal projections $P_n$ on
 $(M_{d_n}(\C),\hsnorm{\,\cdot\,})$ by functional calculus.
 
-A bounded sequence $(x_n)$ lies in $\mathcal C_2(V,L)$ if and only if
-$\hsnorm{P_nx_n-x_n}\to0$.  In one direction, fix $\varepsilon>0$ and,
+A Hilbert--Schmidt bounded sequence $(x_n)$ lies in $\mathcal C_2(V,L)$
+if and only if
+\[
+ \hsnorm{P_nx_n-x_n}\longrightarrow0 .
+\]
+In one direction, fix $\varepsilon>0$ and,
 by density of the group algebra in $C^*_{\max}(L)$, a finite set
 $F\subseteq L$ and scalars $(a_\ell)_{\ell\in F}$ with
-$\opnorm{\sum_{\ell\in F}a_\ell u_\ell-e_L}<\varepsilon$, where $u_\ell$
-is the canonical unitary of $\ell$; the trivial character gives
+\[
+ \Bigl\|\sum_{\ell\in F}a_\ell u_\ell-e_L\Bigr\|<\varepsilon,
+\]
+where $u_\ell$ is the canonical unitary of $\ell$; the trivial
+character gives
 $\bigl|\sum_{\ell\in F}a_\ell-1\bigr|<\varepsilon$.  The element
 $\sum_{\ell\in F}a_\ell\widetilde\sigma(\ell)$ of $\mathcal B$ is within
 $\varepsilon$ of $P$, so
@@ -541,7 +549,7 @@ $\varepsilon$ of $P$, so
  \limsup_n\opnorm{P_n-\sum_{\ell\in F}a_\ell\operatorname{Ad}(V_n(\ell))}
  \le\varepsilon .
 \]
-If $(x_n)\in\mathcal C_2(V,L)$ and $\sup_n\opnorm{x_n}\le c$, then
+If $(x_n)\in\mathcal C_2(V,L)$ and $\sup_n\hsnorm{x_n}\le c$, then
 $\operatorname{Ad}(V_n(\ell))x_n=x_n+o(1)$ in $\hsnorm{\,\cdot\,}$ for
 each $\ell\in F$, so
 \[
@@ -601,15 +609,7 @@ because $\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.  So
 $\hsnorm{V_n(\ell)V_n(ucu^{-1})-V_n(ucu^{-1})V_n(\ell)}\to0$, and by
 asymptotic multiplicativity $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.  The
 elements with this property form a normal subgroup of $G$, so it
-contains $\mathfrak D_G(L)$.\footnote{For a finite-dimensional unitary
-representation $\rho\colon G\to\U(d)$ the same conclusion holds without
-property~\textup{(T)}.  If $uLu^{-1}\le L$, then conjugation by
-$\rho(u)^*$ is an injective linear map of the commutant $\rho(L)'$ into
-itself, so it is onto.  For $c\in C_G(L)$ the element
-$\rho(ucu^{-1})=\rho(u)\rho(c)\rho(u)^*$ therefore lies in $\rho(L)'$,
-and $\rho$ is trivial on $\mathfrak D_G(L)$.  In a norm matrix corona
-this dimension count is not available, and Theorem~\ref{thm:transport}
-uses property~\textup{(T)} and stable finiteness in its place.}
+contains $\mathfrak D_G(L)$.
 \end{proof}
 
 \subsection{From Hilbert--Schmidt to operator norm}
