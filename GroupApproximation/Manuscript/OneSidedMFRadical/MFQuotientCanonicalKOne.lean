@@ -39,8 +39,6 @@ theorem matrixKappa_diagAt (n : ℕ) (hn : 0 < n) (u : Rˣ) :
   rw [glColimOf_glStab]
   rfl
 
-variable [Countable R]
-
 /-- The corner-unit subgroup itself has full MF radical: restrict a map
 from it to each of its defining elementary-group sources. -/
 theorem cornerUnitSubgroup_full_mf_radical :
@@ -61,6 +59,8 @@ theorem cornerUnitSubgroup_full_mf_radical :
   obtain ⟨z, hz, heq⟩ := hle x.property
   have hzx : z = x := Subtype.ext heq
   exact hzx ▸ hz
+
+variable [Countable R]
 
 theorem cornerUnitSubgroup_eq_commutator (hR : IsPurelyInfiniteSimpleRing R) :
     cornerUnitSubgroup R = commutator Rˣ := by
