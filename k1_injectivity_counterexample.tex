@@ -559,22 +559,50 @@ The third residue is the square saying that sectioning and then charting agrees
 with restricting and then trivialising.  Both outer legs are relative
 pullbacks, but the charting side contains an \emph{inverse} excision, so the
 square cannot be checked pointwise from end to end.  Composing that excision's
-forward map onto both sides removes the inverse, and restricting further --
-which loses nothing, by excision at the origin -- makes both sides pullbacks
-along explicit maps of pairs: on the left, a point goes to the section at its
-chart image; on the right, to the point of the fibre over the section's zero
-with the given frame coordinate.  The two are joined by a homotopy through maps
-of pairs, whose far end is the right leg precomposed with a linear
-automorphism, and the homotopy is cut at either end because the relative group
-in question is a line over $\F_2$; the automorphism's own pullback is the
-identity for the same reason.
+forward map onto both sides removes the inverse.  One then restricts to a
+smaller neighbourhood of the zero, and that restriction does two things: it
+brings the two legs, which reach the local model through \emph{different}
+neighbourhoods of the zero, onto a common one; and it puts the comparison
+inside the region where the chart genuinely reads the section, which its clamps
+guarantee only near the zero.  Only injectivity of that restriction is used,
+never that it is an isomorphism.  What remains are two pullbacks along explicit
+maps of pairs: on the left, a point goes to the section at its chart image; on
+the right, to the point of the fibre over the section's zero with the given
+frame coordinate.
+
+The two are joined by a homotopy through maps of pairs, whose far end is the
+right leg precomposed with a linear automorphism, and the homotopy is cut at
+either end because the relative group in question is a line over $\F_2$; the
+automorphism's own pullback is the identity for the same reason.  That cut is
+not a shortcut through relative homotopy invariance -- it is a substitute for
+it.  This development has no prism operator, so relative homotopy invariance is
+not available as a tool at all, and cutting a homotopy over a line is what
+takes its place.  The mod-2 coefficients are load-bearing here: over any other
+field two isomorphisms between lines differ by a scalar and the argument fails.
 \leanverified{sec:hsq}{GroupApproximation.CharClass.lixHsq}
 
-What keeps this out of a circle is that the two legs are shown \emph{equal},
-not both nonzero.  The right leg is the map of Section~\ref{sec:hres}, so an
-argument that established the two legs separately would have needed that
-section's conclusion on the right and Step~C's own conclusion on the left, and
-would have assumed what it set out to prove.
+What keeps this honest is that the two legs are shown \emph{equal}, not both
+nonzero.  Equality would also follow from both being nonzero, since both are
+maps between $\F_2$-lines, and that route exists; it was not taken.  On the
+right, ``nonzero'' is exactly the conclusion of Section~\ref{sec:hres}, a map
+out of a line being nonzero precisely when it is injective.  On the left,
+``nonzero'' is not Step~C's conclusion -- that is the nonvanishing of
+$\gamma_r$ -- but the injectivity hypothesis which Step~C's odd side
+\emph{consumes}, which is to say the very thing this square together with
+Section~\ref{sec:hres} exists to produce.  So an argument establishing the two
+legs separately would have had to supply the reduction's own output by
+independent means: not a circular proof, but a reduction assuming what it was
+introduced to give.
+
+Four things not to infer.  The section is not linear in the base point; what is
+linear is the reconstruction in the chart's \emph{value} at a fixed point, and
+the far end of the homotopy, where the base is pinned at the zero.  The chart
+itself is the local homeomorphism supplied by the inverse function theorem, and
+only its derivative at the zero is linear.  Nondegeneracy of the section's zero
+is not proved here; it is paid for once, upstream, by the product chart being a
+partial homeomorphism.  Nothing here is naturality of excision, which is not
+proved anywhere in the development -- the design avoids crossing the inverse
+excision by composing it away instead.
 
 \section{What is formalised}
 \label{sec:formal}
@@ -632,7 +660,12 @@ further namespace shown.
   writes $\gamma_r$ and means ``the top Chern class'', that lemma is what makes
   the two agree.
 \item Section~\ref{sec:hsq}:
-  \textsf{CharClass.\allowbreak lixHsq}, \textsf{LIXHsq.lean:269}.
+  \textsf{CharClass.\allowbreak lixHsq}, \textsf{LIXHsq.lean:278}; the cut of a
+  homotopy over a line, which stands in for the relative homotopy invariance
+  this development does not have, is
+  \textsf{RelativeSupport.\allowbreak relPullback\_\allowbreak
+  eq\_\allowbreak of\_\allowbreak homotopy\_\allowbreak of\_\allowbreak line},
+  \textsf{RelativeLineHomotopy.lean:112}.
 \item Thom coordinates under a base restriction:
   \textsf{CharClass.\allowbreak thomJmTotal\_\allowbreak restrict},
   \textsf{ThomJmNatural.lean:153}; naturality of the Thom bridge in the base:
@@ -738,5 +771,17 @@ every class.
 \emph{Nothing is computed over the trivialising neighbourhood.}  There is no
 Thom isomorphism over it in the development, and none is used or claimed; see
 Section~\ref{sec:hres}.
+
+\emph{Relative homotopy invariance is not available.}  The development has no
+prism operator, so the tool does not exist in it; where an argument appears to
+use it, what is used instead is the cut of a homotopy over an $\F_2$-line
+described in Section~\ref{sec:hsq}.  Nor is naturality of excision proved
+anywhere, and nothing relies on it.
+
+\emph{The mod-2 coefficients are not a convenience.}  Besides
+Section~\ref{sec:modtwo}, where they replace an integral Künneth theorem the
+development does not have, they are load-bearing in
+Section~\ref{sec:hsq}: over a field other than $\F_2$ two isomorphisms between
+lines differ by a scalar and that argument fails.
 
 \end{document}

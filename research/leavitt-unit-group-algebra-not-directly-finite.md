@@ -73,16 +73,17 @@ left is the two that ask for an explicit element:
   the corner lane — in particular
   `leavitt-rank-three-lift-inverse-support-thirteen` constrains the
   whole-algebra form and is not known to transfer into the corner.
-* **Added 2026-09-07, and the one to work.**  Absorb a proper sub-corner:
-  `leavitt-nested-idempotent-corner-module-equivalence`, padded up by
-  `nested-idempotent-padding-refutes-direct-finiteness`.  It differs from the
-  other two in kind — no lift is corrected and no element is searched for.
-  The two idempotents are canonical and every degree-zero obstruction has
-  been checked to vanish on them, so what is left is one projective-module
-  isomorphism.
 
 **Dead.**
 
+* *The trace-balanced nested pair, refuted 2026-09-07.*
+  `leavitt-balanced-corners-separated-modulo-four` excludes
+  `leavitt-nested-idempotent-corner-module-equivalence` at all supports
+  and after every common projective stabilization. Characteristic-two
+  cocenter traces vanish, but the idempotent lifts have identity
+  coefficients 2 and 0 modulo four. Thus
+  `nested-idempotent-padding-refutes-direct-finiteness` has a false
+  prerequisite.
 * *The radical hypothesis.*  `leavitt-corner-kernel-is-jacobson-radical` is
   **false**: `ker(pi_e)` contains a nonzero idempotent of augmentation zero
   (`leavitt-corner-kernel-not-jacobson-radical`), and a Jacobson radical
@@ -208,16 +209,19 @@ subject to odd intersection, lift a full Leavitt family into the unit corner,
 or construct a one-sided inverse pair by a genuinely different finite-support
 mechanism.  The tempting `e~f` branch is impossible and must not be reused.
 
-The prohibition in the preceding sentence concerns the old trace-mismatched
-pair only.  `leavitt-trace-balanced-nested-idempotents` constructs a different
-proper nested pair `f<e` for which augmentation and the full universal
-conjugacy-class trace both vanish, so
-`group-algebra-coefficient-trace-separates-leavitt-corners` cannot run against
-it.  For that pair the single equivalence `eF_2[Q] ~= fF_2[Q]` is a live,
-trace-compatible Hilbert-hotel target — carried as
-`leavitt-nested-idempotent-corner-module-equivalence` — and proving it gives
-the one-sided inverse by explicit corner padding, through the route
-`nested-idempotent-padding-refutes-direct-finiteness`.
+The newer pair of `leavitt-trace-balanced-nested-idempotents` also fails,
+by `leavitt-balanced-corners-separated-modulo-four`. Its construction
+and characteristic-two trace calculations are correct, but the lifted
+2-adic traces are 2/3 and 4/9. The difference 2/9 detects a nonzero
+K_0 class, so neither arbitrary cross-atlas intertwiners nor stabilization
+can identify the modules.
+
+More generally, `lifted-trace-detects-finite-subgroup-projectives` shows
+that a hypothetical nonzero inverse defect cannot be supported in any
+finite subgroup, or be a nonzero finite sum of induced finite-subgroup
+projectives. A computational construction using a finite-state boundary
+idempotent must check this restriction even when its transition operators
+generate the whole ambient group.
 
 ## Cross-atlas affine update (2026-09-07)
 
@@ -252,11 +256,10 @@ is a scheduler here, not an algebraic amplifier.
 
 **Do not search these again.**  The support-three lift and its corner
 compression (virtually free support), the locally finite recursive packets,
-symmetric compressor sums, the *original* `e ~ f` Murray--von Neumann branch,
+symmetric compressor sums, both proposed `e ~ f` Murray--von Neumann pairs,
 and blind growth of the partner universe by word radius have all failed
-structurally rather than for want of compute.  The nested pair of
-`leavitt-trace-balanced-nested-idempotents` is not on that list and is the
-lane to work.  The next exact gate should vary both affine
+structurally rather than for want of compute. The modulo-four obstruction
+adds the trace-balanced nested pair to this list. The next exact gate should vary both affine
 factors while keeping a literal cross-atlas relation, certify the support
 subgroup of the `t_0` lift to be `Q` rather than merely mixed-chart, grow the
 `A`-support universe by multiplication-collision class instead of word radius,

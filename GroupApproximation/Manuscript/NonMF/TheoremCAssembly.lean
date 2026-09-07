@@ -74,6 +74,14 @@ load-bearing for a second lane, and one of them is not debt awaiting a proof —
 it is a contradiction being held at arm's length.  Counting them alongside
 ordinary open lemmas misreports the state of the development.
 
+Since 2026-09-07 the four admissions and both endpoints carry `#audit_axioms`
+lines of their own, so a probe of this file **reports `sorryAx` on them** instead
+of reporting nothing.  Before that the file emitted axiom lines only for four
+clean leaves, so any per-file check saw those, found no `sorryAx`, and passed the
+file: a report on part of the evidence read as a report on all of it.  The lines
+are deliberately `#audit_axioms` and never `#audit_closed_axioms` — these
+declarations are not closed and must not be asserted to be.
+
 Three gates would flag this and none of them bites today:
 `scripts/TheoremCCompletionAudit.lean` applies `#audit_closed_axioms` to both
 endpoints but is not a `lake` root and is not run by CI; the source-side
@@ -257,6 +265,10 @@ theorem hullLemma44FamilyInclusionJoint :
     HullSC.HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{0, 0} := by
   sorry
 
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44FamilyInclusionJoint
+
 /-- **Open proof.**  Hull, Lemma 4.4, in the form Hull prints it: the natural
 quotient by a relator family satisfying the small cancellation condition is
 injective on the requested Cayley ball and preserves both the simultaneously
@@ -287,6 +299,10 @@ theorem estimatingSelectionConstruction :
     GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
 
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingSelectionConstruction
+
 /-- **Refuted input; interface repair required.** The universal unbound-budget
 statement below omits Osin's geometric scale assumptions. Its closed
 refutation in `Estimating/UnboundSmallMuCounterexample.lean` persists under
@@ -296,6 +312,10 @@ must share the source's parameter choice. See issue #198. -/
 theorem estimatingUnboundOutput :
     GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
   sorry
+
+/-! Reports `sorryAx`.  This one stands for a REFUTED statement, so the line can never read otherwise. -/
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingUnboundOutput
 
 /-- Conversion of a planar exterior arc into the algebraic boundary
 contiguity at a supplied word, retaining the source relator rotation.  The
@@ -424,6 +444,10 @@ presented torsion-free hyperbolic group with property (T). -/
 theorem kotowskiOllivier : KotowskiOllivierStatement := by
   sorry
 
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
+
 /-- **Fournier-Facio et al., Proposition 2.3, no longer a citation of its
 own.**  Osin's Theorem 2.4 at the relatively hyperbolic pair `(U * H₀, U)` is
 Hull's one-step small cancellation over the free product
@@ -510,6 +534,13 @@ Same four open admissions as the radical form, reached by the same two input
 bundles. -/
 theorem manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimplified :=
   manuscriptTorsionFreeSimplified literatureInputs TorsionFree.hullInputs
+
+/-! **The two endpoints report `sorryAx`.**  They are not closed; see the module
+header.  These lines exist so that the file reports on the declarations that
+matter rather than only on its four clean leaves. -/
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions
+#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_openAdmissions
 
 end TheoremC
 end NonMF

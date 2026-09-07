@@ -77,7 +77,7 @@ theorem uniformTwoNormOn_designatedTraces_le {r : ℕ → ℝ}
     (hr : IsCoordinateNormComparison (G D) r)
     (x : BoundedUniformTwoCompletion (G D) r hr) :
     uniformTwoNormOn (designatedTraces hr) x ≤ completionGauge hr x :=
-  uniformTwoNormOn_le (designatedTraces_nonempty hr) (fun σ hσ ↦ hσ x)
+  uniformTwoNormOn_le (designatedTraces_nonempty hr) (fun _σ hσ ↦ hσ x)
 
 theorem completionGauge_le_uniformTwoNormOn {r : ℕ → ℝ}
     (hr : IsCoordinateNormComparison (G D) r)

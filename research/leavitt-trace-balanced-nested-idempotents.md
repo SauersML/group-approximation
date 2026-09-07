@@ -49,7 +49,7 @@ required equivalence.  This removes not only the canonical coefficient-trace
 obstruction that killed the earlier pair, but the universal additive trace
 obstruction for a group algebra.
 
-The remaining gate is a single projective-module equivalence:
+The proposed next gate was a single projective-module equivalence:
 
 ```text
 eS ~= fS.                                                (TBN6)
@@ -63,8 +63,10 @@ padding gives
 X=x+(1-e),       Y=y+(1-e),       XY=1,       YX=f+(1-e)!=1.
 ```
 
-The equivalence itself is `leavitt-nested-idempotent-corner-module-equivalence`,
-and it is open.  No equivalence is asserted here.  The point is that `(TBN2)` supplies a
-canonical trace-perfect Hilbert-hotel pair, so subsequent work can attack a
-projective-module isomorphism rather than search blindly over two arbitrary
-group-algebra elements.
+The equivalence itself, `leavitt-nested-idempotent-corner-module-equivalence`,
+is now refuted by `leavitt-balanced-corners-separated-modulo-four`.
+The construction and all characteristic-two trace calculations above
+remain valid. However, lifted traces distinguish the two projectives:
+their 2-adic values are 2/3 and 4/9, and modulo-four lifts already have
+distinct identity coefficients. Thus characteristic-two trace balance
+does not remove all additive projective-module obstructions.
