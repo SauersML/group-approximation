@@ -3415,10 +3415,6 @@ import GroupApproximation.GGT.VanKampen.WordSegmentConnectors
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
 import GroupApproximation.Analysis.STW22NegativeSolution
 import GroupApproximation.Analysis.STW22DesignatedTraces
-import GroupApproximation.Analysis.STW22FactorialCore
-import GroupApproximation.Analysis.STW22TraciallyCompletePair
-import GroupApproximation.Analysis.STW22AntipodalGaugeFactorial
-import GroupApproximation.Analysis.STW22AntipodalFactorialPair
 -- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
 -- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
 --  says "UNPROBED, do not import yet")
