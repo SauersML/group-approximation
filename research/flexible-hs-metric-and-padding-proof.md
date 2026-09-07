@@ -7,6 +7,8 @@ target: flexible-hs-metric-controls-words-and-padding
 requires: []
 artifacts:
   - research/artifacts/flexible-hs-metric-and-padding.md
+  - experiments/flexible_hs_metric_audit.py
+  - research/artifacts/flexible-hs-metric-replay.json
 ---
 
 Sections 1--4 of the artifact give the complete argument. Hilbert-space

@@ -281,3 +281,26 @@ the dimension charge (7), and the conversion (10) do not supply it. The
 attempt to obtain it from dimension control alone stops at (7): that
 inequality assumes a close exact comparison, whose existence is precisely
 what must still be proved.
+
+## 6. Exact finite replay
+
+Run from the repository root:
+
+```sh
+python experiments/flexible_hs_metric_audit.py --compare-report research/artifacts/flexible-hs-metric-replay.json
+python -m unittest discover -s experiments -p test_flexible_hs_metric_audit.py -v
+```
+
+The replay uses rational arithmetic and all signed permutation matrices in
+dimensions one through three, together with a rational planar rotation.
+It checks every ordered triangle on that set, the exact compression and
+dimension identities, noncommuting word tuples across dimensions, and the
+three branches of the sharpness example on a stated finite range. A square
+root comparison is decided by an exact rational inequality after isolating
+its nonnegative cross term; there are no numerical tolerances.
+
+The regression tests specifically cover smaller-dimension normalization,
+the empty word, nonzero compression leakage, the attained factor two, and
+rejection of an invalid triangle or nonunitary sample. The report records
+its source hashes. These checks audit finite examples and transcription;
+Sections 1--4, not the sample size, justify the general theorem.
