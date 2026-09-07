@@ -29,9 +29,18 @@ automorphism's own pullback is the identity for the same reason.
 
 `lixHsq` is the `hsq` binder of `lix_topClass_ne_zero_of_thom`, character for character, over
 `hGc`, `hGu`, `hGe` and nothing else.  It does **not** prove `hres`, and the argument never
-needs it: the two legs are shown **equal**, not both nonzero, which is what kept this route
-out of the circle the earlier reductions fell into — "both nonzero" would have needed `hres`
-on the right and Step C's own conclusion on the left.
+needs it: the two legs are shown **equal**, not both nonzero.
+
+That distinction is worth stating precisely, because the loose version of it overstates.
+Both legs are maps between `F₂`-lines — the source by `ThomChernDeg.lixRelLine`, the target
+by `localEquiv` — so equality *would* also follow from both being nonzero, and that is the
+route this lane did not take.  On the right, "nonzero" is `hres` exactly, since a map out of
+a line is nonzero iff injective.  On the left it is injectivity of `lixSRel ≫ t`, which is
+**not** Step C's conclusion — that is `gamma ≠ 0` — but the hypothesis `hinj` that Step C's
+odd side consumes, and so precisely the statement the square together with `hres` exists to
+produce.  A "both nonzero" proof would therefore have had to supply the reduction's own
+output by independent means: not a logical circle, but a reduction that assumes what it was
+introduced to give.  Shown equal, neither leg's nonvanishing is needed at all.
 
 `lix_topClass_ne_zero_of_thom` is deliberately not imported: the square mentions none of its
 Thom-class layer, and importing it would drag the whole Leray–Hirsch closure into a module
