@@ -187,12 +187,27 @@ def rational_checks():
             "zero_mark": "linear inequality is immediate; no exponent is chosen"}
 
 
+def negative_control():
+    # C2 is finite (hence hyperlinear): a passing amplifier replay is not a gap.
+    swap = Monomial((1, 0), (0, 0))
+    relator_energy = evaluate((swap,), (1, 1)).hs_energy()
+    word_energy = evaluate((swap,), (1,)).hs_energy()
+    require(relator_energy == 0 and word_energy == 2, "C2 control failed")
+    for n in (1, 2, 17, 1000):
+        require(n * relator_energy - word_energy == -2, "wrong regular trace")
+    return {"presentation": "<x | x^2=1>", "marked_word": "x",
+            "relator_energy": str(relator_energy), "marked_word_energy": str(word_energy),
+            "candidate_polynomial_trace": "-2 for every coefficient N",
+            "purpose": "A hyperlinear group passes the amplifier replay and refutes its own gap."}
+
+
 def main():
     result = {
         "schema_version": 1,
         "arithmetic": "exact integers and fractions.Fraction",
         "matrix_replay": matrix_checks(),
         "scalar_replay": rational_checks(),
+        "negative_control": negative_control(),
         "scope": "Finite replay of amplifier identities and bounds only.",
         "group_specific_gap_established": False,
         "nonhyperlinear_group_constructed": False,

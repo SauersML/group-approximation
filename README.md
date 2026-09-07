@@ -17,6 +17,13 @@ records the unresolved global operator-norm step in the independent search for
 a property-(T)-free non-MF proof. This note supplies no new existence theorem
 or Lean verification claim.
 
+The [scalar-sensitive HS gap reduction](research/artifacts/hs-word-gap-linearization-2026-09-07.md)
+and [finite word-certificate criterion](research/artifacts/hyperlinear-word-certificate-2026-09-07.md)
+sharpen the nonhyperlinear research route in Cairn. The exact amplifier
+replay is `python3 experiments/hs_word_gap_amplification_check.py`.
+The group-specific matrix bound and nonhyperlinear existence remain open;
+these research proofs carry no new Lean verification claim.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

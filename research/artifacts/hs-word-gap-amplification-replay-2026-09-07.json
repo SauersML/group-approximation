@@ -8,6 +8,14 @@
     "noncommuting_and_scalar_phase_controls": "passed",
     "words": 187
   },
+  "negative_control": {
+    "candidate_polynomial_trace": "-2 for every coefficient N",
+    "marked_word": "x",
+    "marked_word_energy": "2",
+    "presentation": "<x | x^2=1>",
+    "purpose": "A hyperlinear group passes the amplifier replay and refutes its own gap.",
+    "relator_energy": "0"
+  },
   "nonhyperlinear_group_constructed": false,
   "scalar_replay": {
     "rational_mark_checks": 2080,
