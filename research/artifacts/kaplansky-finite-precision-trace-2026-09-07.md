@@ -11,8 +11,9 @@ for finite-subgroup projectives, and examples proving that no fixed precision
 works for all nonzero scalar idempotents.
 
 The lifted-trace construction is established mathematics, not a new method:
-D. R. Farkas, *Lifting idempotents in group rings*, J. Pure Appl. Algebra 25
-(1982), https://doi.org/10.1016/0022-4049(82)90093-7; see also
+Daniel R. Farkas and Zbigniew S. Marciniak, *Lifting idempotents in group
+rings*, J. Pure Appl. Algebra 25(1) (1982), 25--32,
+https://doi.org/10.1016/0022-4049(82)90093-7; see also
 Farrell--Linnell, *Whitehead groups and the Bass conjecture*, Section 5,
 https://arxiv.org/abs/math/0301205. The repository already gives the p-adic
 construction and finite-subgroup rank formula in
@@ -172,6 +173,13 @@ finite-subgroup class and any other d with a computed nonzero trace residue.
 It supplies no detection bound, trace-faithfulness theorem, or substitute
 invariant for all remaining projectives. Increasing precision or passing
 finite tests cannot be presented as a proof that those projectives vanish.
+
+The follow-up [full-proof gap audit](../../notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md)
+proves the exact general-ring equivalence between stable finiteness and
+vanishing of projectives with zero K_0 class. It also gives a finite-group
+counterexample to injectivity of the entire lifted-trace invariant on K_0,
+and checks the finite-support and completion gaps. The equivalence identifies
+the missing assertion; it does not establish it for arbitrary group algebras.
 
 ## Exact replay and integration
 
