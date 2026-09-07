@@ -66,8 +66,8 @@
 \addtolength{\leftskip}{1.5pc}\addtolength{\rightskip}{1.5pc}
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Some groups are not MF.  We construct groups for which every homomorphism
-to an MF group is trivial; the obstruction is a one-sided compression of
-a property-\textup{(T)} subgroup.  If a countable unital ring $R$
+to an MF group is trivial; the obstruction is a property-\textup{(T)}
+subgroup conjugated into a proper subgroup of itself.  If a countable unital ring $R$
 contains $s,t$ with $ts=1$ and $R(1-st)R=R$, then every homomorphism
 from $\EL_n(R)$ to an MF group is trivial for all $n\ge4$.  In
 particular, $H=\EL_4(L_{\F_2}(1,2))$ is a finitely generated simple
@@ -191,8 +191,9 @@ $C^*$-algebra is MF if it embeds in a norm matrix corona~\cite{BK}.
 
 We use the group commutator convention $[g,h]=ghg^{-1}h^{-1}$.
 The groups here fail to be MF because they contain a
-property-\textup{(T)} subgroup that is conjugated into a proper subgroup of
-itself.  For $L\le G$ put
+property-\textup{(T)} subgroup that is conjugated into a proper subgroup
+of itself, together with an element that commutes with the subgroup while
+its conjugate does not.  For $L\le G$ put
 \[
  \operatorname{Comp}_G(L)=\{u\in G:uLu^{-1}\le L\}.
 \]
@@ -374,17 +375,12 @@ Ershov--Jaikin-Zapirain's theorem~\cite[Theorem~1.1]{EJZ}.
 
 \subsection{Corona homomorphisms}
 
-If $G$ is countable, the image of a corona homomorphism from $G$ is a
-countable subgroup of the unitary group of a norm matrix corona, so it
-is MF\@.  Every MF group embeds
-in the unitary group of a norm matrix corona.
-\leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
-
 \begin{lemma}\label{prop:mf-residual-calculus}
 Let $G$ be countable and $K\le G$.  Every homomorphism from $G$ to an MF
 group is trivial on $K$ if and only if every corona homomorphism from $G$
 is trivial on $K$.
 \leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
+\leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
 \end{lemma}
 
 \begin{proof}
@@ -394,6 +390,15 @@ the resulting corona homomorphism has the same kernel.
 \end{proof}
 
 \subsection{Kazhdan transport in normalized Hilbert--Schmidt norm}
+
+For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with
+$uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$
+satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two
+spaces have the same finite dimension, so the inclusion is an equality;
+if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$.
+An asymptotic representation has no exact commutant to count.
+Property~\textup{(T)} supplies a Kazhdan projection in its place, and
+stable finiteness of the corona replaces the dimension count.
 
 For $a\in M_d(\C)$ write
 \[
@@ -492,59 +497,76 @@ representation of $G$.  Then
 \end{theorem}
 
 \begin{proof}
-Fix $x=(x_n)\in\mathcal C_2(V,L)$ and a free ultrafilter $\omega$, and let
-$\mathcal K_\omega$ be the ultraproduct of the Hilbert spaces
-$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$.  For unitaries $A,B$,
+For unitaries $A,B$,
 \[
  \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B},
 \]
-where the norm on the left is the operator norm on this Hilbert space,
-so the maps $\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative
-in operator norm, and
-\[
- \sigma(g)=\lim_\omega\operatorname{Ad}(V_n(g))
-\]
-is a unitary representation of $G$ on $\mathcal K_\omega$ with
-$\xi=[x_n]_\omega\in\operatorname{Fix}\sigma(L)$.  By the same estimate,
+where the norm on the left is the operator norm on the Hilbert space
+$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$, so the maps
+$\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative in
+operator norm and
 \[
  \widetilde\sigma(g)=[\operatorname{Ad}(V_n(g))]_n\in\U(\mathcal B),
  \qquad
  \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)),
 \]
 is a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the
-Hilbert--Schmidt Hilbert space.  Coordinatewise action induces a
-representation $\pi_\omega\colon\mathcal B\to B(\mathcal K_\omega)$, which
-we suppress from the notation.  Moreover, $\mathcal B$ is a norm matrix
-corona with coordinate sizes $d_n^2$ after a choice of matrix units.  Let
-$P\in\mathcal B$ be the image of the Kazhdan projection of
-$L$~\cite{AkemannWalter} under
-$C^*_{\max}(L)\to\mathcal B$.  On $\mathcal K_\omega$ its range is
-$\operatorname{Fix}\sigma(L)$.  Put $U=\widetilde\sigma(u)$.  Since
-$uLu^{-1}\le L$,
+Hilbert--Schmidt Hilbert space.  The algebra $\mathcal B$ is a norm
+matrix corona with coordinate sizes $d_n^2$ after a choice of matrix
+units.  Let $P\in\mathcal B$ be the image of the Kazhdan projection of
+$L$~\cite{AkemannWalter} under $C^*_{\max}(L)\to\mathcal B$, and lift
+$P$ to orthogonal projections $P_n$ on
+$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$ by functional calculus.
+
+A bounded sequence $(x_n)$ lies in $\mathcal C_2(V,L)$ if and only if
+$\hsnorm{P_nx_n-x_n}\to0$.  In one direction, fix $\varepsilon>0$ and,
+by density of the group algebra in $C^*_{\max}(L)$, a finite set
+$F\subseteq L$ and scalars $(a_\ell)_{\ell\in F}$ with
+$\opnorm{\sum_{\ell\in F}a_\ell u_\ell-e_L}<\varepsilon$, where $u_\ell$
+is the canonical unitary of $\ell$; the trivial character gives
+$\bigl|\sum_{\ell\in F}a_\ell-1\bigr|<\varepsilon$.  The element
+$\sum_{\ell\in F}a_\ell\widetilde\sigma(\ell)$ of $\mathcal B$ is within
+$\varepsilon$ of $P$, so
 \[
- U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L),
- \qquad\text{so}\qquad
- U^*PU\le P
+ \limsup_n\opnorm{P_n-\sum_{\ell\in F}a_\ell\operatorname{Ad}(V_n(\ell))}
+ \le\varepsilon .
 \]
-by Lemma~\ref{lem:kazhdan-projection-order}, and
+If $(x_n)\in\mathcal C_2(V,L)$ and $\sup_n\opnorm{x_n}\le c$, then
+$\operatorname{Ad}(V_n(\ell))x_n=x_n+o(1)$ in $\hsnorm{\,\cdot\,}$ for
+each $\ell\in F$, so
 \[
- U^*PU=P
+ \limsup_n\hsnorm{P_nx_n-x_n}
+ \le\varepsilon c+\Bigl|\sum_{\ell\in F}a_\ell-1\Bigr|c
+ \le2\varepsilon c,
 \]
-by Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
-equivalent.  So $U$ commutes with $P$, and
+and $\varepsilon$ was arbitrary.  In the other direction,
+$u_\ell e_L=e_L$ in $C^*_{\max}(L)$, so $\widetilde\sigma(\ell)P=P$ and
+$\opnorm{\operatorname{Ad}(V_n(\ell))P_n-P_n}\to0$; if
+$\hsnorm{P_nx_n-x_n}\to0$, then
 \[
 \begin{aligned}
- &U\xi,\ U^*\xi\in\operatorname{Fix}\sigma(L),\qquad\text{that is,}\\
- &\lim_\omega\hsnorm{V_n(\ell)V_n(u)^{\pm1}x_nV_n(u)^{\mp1}
- -V_n(u)^{\pm1}x_nV_n(u)^{\mp1}V_n(\ell)}=0
- \qquad(\ell\in L).
+ \hsnorm{\operatorname{Ad}(V_n(\ell))x_n-x_n}
+ &\le2\hsnorm{x_n-P_nx_n}\\
+ &\quad+\opnorm{\operatorname{Ad}(V_n(\ell))P_n-P_n}\,\hsnorm{x_n}
+ \longrightarrow0 .
 \end{aligned}
 \]
-Since $\omega$ was arbitrary, the limits hold along the full sequence:
-if one of these norms stayed above some $\varepsilon>0$ on an infinite
-set of indices, a free ultrafilter containing that set would give a
-nonzero ultralimit.  So $\operatorname{Ad}(V(u))$ and its inverse both
-preserve $\mathcal C_2(V,L)$.
+
+Put $U=\widetilde\sigma(u)$.  Since $uLu^{-1}\le L$,
+$U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L)$, so $U^*PU\le P$
+by Lemma~\ref{lem:kazhdan-projection-order}, and $U^*PU=P$ by
+Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
+equivalent.  So $[U,P]=0$ and
+$\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.  For
+$(x_n)\in\mathcal C_2(V,L)$,
+\[
+ \hsnorm{P_n\operatorname{Ad}(V_n(u))^{\pm1}x_n
+ -\operatorname{Ad}(V_n(u))^{\pm1}x_n}
+ \le\opnorm{[P_n,\operatorname{Ad}(V_n(u))^{\pm1}]}\,\hsnorm{x_n}
+ +\hsnorm{P_nx_n-x_n}\longrightarrow0,
+\]
+so $\operatorname{Ad}(V(u))^{\pm1}x\in\mathcal C_2(V,L)$ by the
+displayed equivalence.
 \end{proof}
 
 \begin{corollary}\label{cor:defect-hs}
@@ -605,22 +627,22 @@ unit \(q\).
 \end{lemma}
 
 \begin{proof}
-Lift \(q\) to projections \(q_n\) by functional calculus, and lift each
-\(\rho(g)\) to unitaries \(U_n(g)\) by polar decomposition, with
-\(U_n(1)=I_{d_n}\).  Since \(q\ne0\), infinitely many \(q_n\) are nonzero.
-Retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).  Since
-\(q\) commutes with \(\rho(G)\), \(\opnorm{q_nU_n(g)-U_n(g)q_n}\to0\)
-for each \(g\), so by \cite[Proposition~2.4]{BDL} with \(p=\infty\)
-there is an operator norm asymptotic representation \(\widetilde W_n\)
-of \(G\) by unitaries of the corner \(q_nM_{d_n}(\C)q_n\) with
-\(\opnorm{\widetilde W_n(g)-q_nU_n(g)q_n}\to0\).  Replacing
-\(\widetilde W_n(1)\) by \(q_n\) changes it by \(o(1)\).  Choose unitaries
-\(J_n\colon\C^{r_n}\to q_n\C^{d_n}\) and put
-\(W_n(g)=J_n^*\widetilde W_n(g)J_n\).  Conjugation by \(J_n\) preserves
-operator norms and multiplicative defects, so \((W_n)\) is an operator
-norm asymptotic representation with \(W_n(1)=I_{r_n}\), and since
-\(\opnorm{J_nW_n(g)J_n^*-q_nU_n(g)q_n}\to0\), the class of
-\((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
+Lift \(q\) to projections \(q_n\in M_{d_n}(\C)\) by functional calculus.
+Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those
+coordinates and put \(r_n=\operatorname{rank}(q_n)\).  Unitary
+identifications \(J_n\colon\C^{r_n}\to q_n\C^{d_n}\) identify each
+corner \(q_nM_{d_n}(\C)q_n\) with \(M_{r_n}(\C)\), and then the corner
+\(q\mathcal Q_{\mathbf d}q\) with the corona \(\mathcal Q_{\mathbf r}\):
+a bounded sequence \((z_n)\) representing \(z\in\mathcal Q_{\mathbf d}\)
+gives the representative \((q_nz_nq_n)\) of \(qzq\).  Since \(q\)
+commutes with \(\rho(G)\), the map \(g\mapsto q\rho(g)\) is a
+homomorphism from \(G\) to the unitary group of the corner, with unit
+\(q\).  Each value is a unitary of \(\mathcal Q_{\mathbf r}\), so, as in
+the proof of Lemma~\ref{lem:stable-finite}, it lifts to unitaries
+\(W_n(g)\in\U(r_n)\), with \(W_n(1)=I_{r_n}\).  Multiplicativity in the
+corona makes \((W_n)\) an operator norm asymptotic representation, and
+the class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of
+\(q\rho(g)\).
 \end{proof}
 
 \begin{theorem}[normal Kazhdan subgroups]\label{thm:normal-kazhdan}
@@ -874,7 +896,7 @@ For $i=1,2,3$, set
 \]
 Its block on coordinates $(i,4)$ is
 $\begin{psmallmatrix}s&e\\0&t\end{psmallmatrix}$, so
-$u=u_3u_2u_1\in\EL_4(R)$ is the first of the two matrices
+$u=u_3u_2u_1\in\EL_4(R)$ is the matrix
 \[
  u=
  \begin{pmatrix}
@@ -883,26 +905,16 @@ $u=u_3u_2u_1\in\EL_4(R)$ is the first of the two matrices
  0&0&s&et^2\\
  0&0&0&t^3
  \end{pmatrix},
- \qquad
- u^{-1}=
- \begin{pmatrix}
- t&0&0&0\\
- 0&t&0&0\\
- 0&0&t&0\\
- e&se&s^2e&s^3
- \end{pmatrix}.
 \]
-In block form $u=\begin{psmallmatrix}sI_3&v\\0&t^3\end{psmallmatrix}$
-with $v=(e,et,et^2)^{\mathsf T}$.  Put $w=(e,se,s^2e)$.  Since $es=te=0$,
-one has $vw=eI_3$, $vs^3=0$, and $t^3w=0$, so the second matrix is the
-inverse of $u$, and for $A\in M_3(R)$
-\[
- u\operatorname{diag}(A,1)u^{-1}
-   =\begin{pmatrix}sAt+vw&vs^3\\t^3w&t^3s^3\end{pmatrix}
-   =\operatorname{diag}(eI_3+sAt,1).
-\]
-In particular $ue_{ij}(a)u^{-1}=e_{ij}(sat)$ for $1\le i\ne j\le3$,
-because $e+st=1$, so $uLu^{-1}\le L$.
+invertible as a product of elementary matrices.  For $1\le i\ne j\le3$
+and $a\in R$,
+\begin{equation}\label{eq:intertwine}
+ u\,e_{ij}(a)=e_{ij}(sat)\,u:
+\end{equation}
+both sides differ from $u$ by one entry, $sa$ in position $(i,j)$, since
+on the right the increment $sat\cdot(s,\ldots,et^{j-1})$ from row $j$ of
+$u$ contributes $sa\,ts=sa$ in position $(i,j)$ and
+$sa\,te\,t^{j-1}=0$ in position $(i,4)$.  So $uLu^{-1}\le L$.
 
 The element
 \[
@@ -911,9 +923,10 @@ The element
 \]
 is computed in the block on coordinates $(1,4)$ using $te=0$, and a
 diagonal matrix of this shape commutes with every
-$\operatorname{diag}(A,1)$, so $c\in C_G(L)$.  Since $t^3e=0$, the
-matrix $uc$ differs from $u$ only in its last column, which is
-$(e+et,et,et^2,t^3)^{\mathsf T}$, and multiplying by $u^{-1}$ gives
+$\operatorname{diag}(A,1)$, so $c\in C_G(L)$.  Both $uc$ and
+$e_{12}(e)u$ equal $u+et\,E_{14}$: the last column of $uc$ is
+$(e,et,et^2,t^3)^{\mathsf T}(1+et)$ and $e^2=e$, $te=0$, while
+$e_{12}(e)u=u+e\,(s,0,0,et)E_{1\ast}$ and $es=0$.  So
 \[
  ucu^{-1}=e_{12}(e).
 \]
@@ -1124,83 +1137,83 @@ where $N$ is locally residually finite.  Then $\tau_G$ is amenable.
 Write $g=x_gt^{k_g}$, where $x_g\in N$, $k_g\in\mathbb Z$, and
 $t$ is the generator of the $\mathbb Z$ factor, so $txt^{-1}=\beta(x)$
 for $x\in N$.  Call $k_g$ the height
-of $g$.  Fix a finite set $F\subseteq G$ and a positive integer $L$, and
-put $I_L=\{0,\ldots,L-1\}$.  Define
+of $g$.  Fix a finite set $F\subseteq G$ and a positive integer $M$, and
+put $I_M=\{0,\ldots,M-1\}$.  Define
 \[
  a_{g,j}=t^{-(j+k_g)}gt^j=\beta^{-(j+k_g)}(x_g)\in N,
- \qquad g\in F,\quad j\in I_L,
+ \qquad g\in F,\quad j\in I_M,
 \]
-and put $N_{F,L}=\langle a_{g,j}:g\in F,\ j\in I_L\rangle$.
+and put $N_{F,M}=\langle a_{g,j}:g\in F,\ j\in I_M\rangle$.
 This finitely generated subgroup of $N$ is residually finite, so there
 is a finite quotient
 \[
- \theta_{F,L}\colon N_{F,L}\longrightarrow Q_{F,L}
+ \theta_{F,M}\colon N_{F,M}\longrightarrow Q_{F,M}
 \]
 that separates every nonidentity $a_{g,j}$: take the product of
 finitely many finite quotients, one separating each $a_{g,j}$, and
 restrict to the image.  Let
-$H_{F,L}\leq G$ be the image of $\ker\theta_{F,L}\leq N_{F,L}$ under the
-inclusion $N\hookrightarrow G$.  Choose a representative $r_q\in N_{F,L}$
-for each $q\in Q_{F,L}$ and set
+$H_{F,M}\leq G$ be the image of $\ker\theta_{F,M}\leq N_{F,M}$ under the
+inclusion $N\hookrightarrow G$.  Choose a representative $r_q\in N_{F,M}$
+for each $q\in Q_{F,M}$ and set
 \[
- S_{F,L}=\{t^jr_qH_{F,L}:j\in I_L,\ q\in Q_{F,L}\}
- \subseteq G/H_{F,L}.
+ S_{F,M}=\{t^jr_qH_{F,M}:j\in I_M,\ q\in Q_{F,M}\}
+ \subseteq G/H_{F,M}.
 \]
-These cosets are pairwise distinct.  Let $\lambda_{F,L}$ be the
-quasi-regular representation of $G$ on $\ell^2(G/H_{F,L})$ and let
-$P_{F,L}$ be the projection onto $\ell^2(S_{F,L})$.  Put
+These cosets are pairwise distinct.  Let $\lambda_{F,M}$ be the
+quasi-regular representation of $G$ on $\ell^2(G/H_{F,M})$ and let
+$P_{F,M}$ be the projection onto $\ell^2(S_{F,M})$.  Put
 \[
- \phi_{F,L}(b)=P_{F,L}\lambda_{F,L}(b)P_{F,L}\big|_{\ell^2(S_{F,L})}
+ \phi_{F,M}(b)=P_{F,M}\lambda_{F,M}(b)P_{F,M}\big|_{\ell^2(S_{F,M})}
  \qquad(b\in C^*_{\max}(G)).
 \]
 This map is u.c.p., since it is the compression of a unitary
 representation.
-For $g\in F$ and $j+k_g\in I_L$, the action satisfies
+For $g\in F$ and $j+k_g\in I_M$, the action satisfies
 \[
- g(t^jr_qH_{F,L})
- =t^{j+k_g}a_{g,j}r_qH_{F,L}
- =t^{j+k_g}r_{\theta_{F,L}(a_{g,j})q}H_{F,L}.
+ g(t^jr_qH_{F,M})
+ =t^{j+k_g}a_{g,j}r_qH_{F,M}
+ =t^{j+k_g}r_{\theta_{F,M}(a_{g,j})q}H_{F,M}.
 \]
-So for $s=t^jr_qH_{F,L}$, the point $g\cdot s$ lies in $S_{F,L}$ if and
-only if $j+k_g\in I_L$.
+So for $s=t^jr_qH_{F,M}$, the point $g\cdot s$ lies in $S_{F,M}$ if and
+only if $j+k_g\in I_M$.
 
 Let $g,h\in F$, and let $\delta_s$ be the basis vector of
-$\ell^2(S_{F,L})$ at $s=t^jr_qH_{F,L}$.  If $j+k_h\in I_L$, then
-$h\cdot s\in S_{F,L}$, so
-$\phi_{F,L}(u_g)\phi_{F,L}(u_h)\delta_s=P_{F,L}\delta_{gh\cdot s}
-=\phi_{F,L}(u_{gh})\delta_s$.  If $j+k_h\notin I_L$, then
-$h\cdot s\notin S_{F,L}$, so $\phi_{F,L}(u_h)\delta_s=0$, while
-$\phi_{F,L}(u_{gh})\delta_s$ has norm at most one.  There are at most
-$|k_h|$ heights $j\in I_L$ with $j+k_h\notin I_L$, and there are
-$|Q_{F,L}|$ basis vectors of each height, out of $L|Q_{F,L}|$ in all.
+$\ell^2(S_{F,M})$ at $s=t^jr_qH_{F,M}$.  If $j+k_h\in I_M$, then
+$h\cdot s\in S_{F,M}$, so
+$\phi_{F,M}(u_g)\phi_{F,M}(u_h)\delta_s=P_{F,M}\delta_{gh\cdot s}
+=\phi_{F,M}(u_{gh})\delta_s$.  If $j+k_h\notin I_M$, then
+$h\cdot s\notin S_{F,M}$, so $\phi_{F,M}(u_h)\delta_s=0$, while
+$\phi_{F,M}(u_{gh})\delta_s$ has norm at most one.  There are at most
+$|k_h|$ heights $j\in I_M$ with $j+k_h\notin I_M$, and there are
+$|Q_{F,M}|$ basis vectors of each height, out of $M|Q_{F,M}|$ in all.
 So the normalized Hilbert--Schmidt norm satisfies
 \[
- \hsnorm{\phi_{F,L}(u_{gh})-
-   \phi_{F,L}(u_g)\phi_{F,L}(u_h)}^2
+ \hsnorm{\phi_{F,M}(u_{gh})-
+   \phi_{F,M}(u_g)\phi_{F,M}(u_h)}^2
  \leq \frac{|k_h|}{L},
 \]
-which tends to zero as $L\to\infty$ for fixed $h$.
+which tends to zero as $M\to\infty$ for fixed $h$.
 
-The normalized trace of $\phi_{F,L}(u_g)$ is the fraction of points of
-$S_{F,L}$ fixed by $g$.  If $g$ fixed $wH_{F,L}$, then
-$w^{-1}gw\in H_{F,L}\leq N$, and hence $k_g=0$.  Thus an element of nonzero
-height fixes no point of $S_{F,L}$.  If $g\in F\setminus\{1\}$ and $k_g=0$,
-fixing $t^jr_qH_{F,L}$ would give
+The normalized trace of $\phi_{F,M}(u_g)$ is the fraction of points of
+$S_{F,M}$ fixed by $g$.  If $g$ fixed $wH_{F,M}$, then
+$w^{-1}gw\in H_{F,M}\leq N$, and hence $k_g=0$.  Thus an element of nonzero
+height fixes no point of $S_{F,M}$.  If $g\in F\setminus\{1\}$ and $k_g=0$,
+fixing $t^jr_qH_{F,M}$ would give
 \[
- r_q^{-1}a_{g,j}r_q\in H_{F,L}.
+ r_q^{-1}a_{g,j}r_q\in H_{F,M}.
 \]
-Since $H_{F,L}=\ker\theta_{F,L}$ is normal in $N_{F,L}$ and
-$r_q\in N_{F,L}$, this implies $a_{g,j}\in\ker\theta_{F,L}$.
+Since $H_{F,M}=\ker\theta_{F,M}$ is normal in $N_{F,M}$ and
+$r_q\in N_{F,M}$, this implies $a_{g,j}\in\ker\theta_{F,M}$.
 But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.  Thus
 \[
- \tr_{L|Q_{F,L}|}(\phi_{F,L}(u_g))=0
+ \tr_{M|Q_{F,M}|}(\phi_{F,M}(u_g))=0
  \quad(g\in F\setminus\{1\}),
  \qquad
- \tr_{L|Q_{F,L}|}(\phi_{F,L}(1))=1.
+ \tr_{M|Q_{F,M}|}(\phi_{F,M}(1))=1.
 \]
 Take a finite exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ with
-$1\in F_1$, and choose $L_n\ge n(1+\max_{g\in F_n}|k_g|)$.
-The maps $\phi_{F_n,L_n}$ are asymptotically
+$1\in F_1$, and choose $M_n\ge n(1+\max_{g\in F_n}|k_g|)$.
+The maps $\phi_{F_n,M_n}$ are asymptotically
 multiplicative in normalized Hilbert--Schmidt norm and their traces converge
 to $\tau_G$ on every canonical unitary.  Since the canonical unitaries
 span a dense subspace of $C^*_{\max}(G)$ and all the maps involved are
@@ -1392,25 +1405,15 @@ $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.  Translation $a$ by the first
 standard basis vector lies outside $\alpha(\bar\Gamma)$.  So the preceding
 construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 
-\begin{corollary}[the affine--Clifford trace]
-\label{cor:affine-clifford-trace}
-The affine--Clifford group $W$ is sofic but not MF.  Its canonical trace
-$\tau_W$ on $C^*_{\max}(W)$ is amenable but not
-quasidiagonal.
-\end{corollary}
-
-\begin{proof}
-By the properties of $\bar\Gamma$ and $\alpha$ just established,
-Proposition~\ref{prop:clifford-locally-rf} applies to $\bar\Gamma$,
-$\alpha$, and $a$.
+\begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
+The group $\bar\Gamma$, the map $\alpha$, and the element $a$ satisfy
+the hypotheses just established, so
+Proposition~\ref{prop:clifford-locally-rf} applies:
+$W\cong K\rtimes\mathbb Z$ with $K$ locally residually finite, the
+group $W$ is sofic and not MF, and the canonical trace $\tau_W$ on
+$C^*_{\max}(W)$ is amenable and not quasidiagonal.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
 \leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
-By Proposition~\ref{prop:clifford-locally-rf}, $W\cong K\rtimes\mathbb Z$
-with $K$ locally residually finite, and the remaining assertions are
-Corollary~\ref{cor:affine-clifford-trace}.
 \end{proof}
 
 \section{A torsion-free finitely presented example}
