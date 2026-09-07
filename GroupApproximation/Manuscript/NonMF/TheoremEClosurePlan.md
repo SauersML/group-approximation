@@ -434,6 +434,21 @@ self-contiguities, before using maximality in that branch. The source's loop
 argument belongs to the induction in Lemma 9.7(a), not to the candidate
 definition. Preserve the restricted interfaces and their proofs during repair.
 
+`ContiguityGeometry.lean` begins that repair with a geometric record retaining
+the actual boundary, arcs, side bounds and shelling, without a distinct-target
+field or O52 certificate. It proves finiteness of these witnesses, injective
+projection from the historical interface, and both round trips when the
+separate `O52Data` certificate is supplied. Boundary simplicity proves that
+the source and target cell arcs are disjoint even without distinct cells.
+These helper proofs pass ordinary axiom audits with only the standard three
+axioms. This checkpoint does not discharge an assembly admission or close
+#207. Next construct a positive-length self-contiguity model, extend actual
+selection and insertion transport to this pool, and prove the source's
+loop-cut induction. Cell-arc counting must use the union of both contributions
+when source and target coincide; the geometric disjointness theorem supplies
+the required additivity. Existing selection consumers still use the historical
+restricted type and have not been silently migrated.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
