@@ -92,3 +92,18 @@ and prove injectivity for every malformed certificate while retaining one
 nonsurjective fiber. The translation lets that problem be designed as a
 computer with conditional linear updates and then encoded algebraically.
 No such update rule is currently exhibited.
+
+`finite-pattern-orbit-closure-forces-surjunctivity` supplies a separate
+test for genuinely nonlinear rules. If the encoder and a decoder preserve
+the span of constants and finitely many rational pattern-monomial orbits
+containing all one-site observables, the encoder must be surjective over
+every group. Those nonconstant pattern orbits are projective modules over
+Q[G], where stable finiteness is known in characteristic zero.
+
+A proposed finite verification loop must therefore distinguish a finite
+description from finite closure of its pattern observables: they are not
+the same condition. A counterexample necessarily has unbounded orbit
+growth under this closure process, but an explicit reversible two-track
+rule already has such growth, so growth by itself proves nothing. The
+remaining task is still to construct a strict full-shift embedding and
+prove injectivity on every configuration.

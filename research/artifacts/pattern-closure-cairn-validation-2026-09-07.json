@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on the three touched nodes. This checks the research graph rather than a proof assistant formalization.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "finite-pattern-orbit-closure-forces-surjunctivity": "ESTABLISHED",
+    "finite-pattern-projective-decoder-proof": "COMPLETE",
+    "leavitt-unit-group-nonsurjunctive": "OPEN"
+  },
+  "elapsed_seconds": 16.308
+}
