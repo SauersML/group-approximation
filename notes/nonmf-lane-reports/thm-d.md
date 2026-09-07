@@ -12,32 +12,33 @@ corollary `cor:affine-clifford-trace` (merged by the tex owner into Theorem 4's 
 Lean.  This lane assembled the exact printed carriers.  Mid-lane, `e51f655d2` generalized
 `prop:locally-rf-by-z-trace` from a `⋊ ℤ` extension to a general amenable extension and added a
 new clause to both it, `prop:clifford-locally-rf`, and Theorem 4: **the canonical trace of
-`C*_max(K)` is quasidiagonal** (`K` the locally-residually-finite kernel).  That clause is not
-yet in the repository; lane `ring-b-alg` is proving it in general as
-`GroupApproximation.AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`
-in `Analysis/LocallyRFQuasidiagonalTrace.lean` (not yet landed).  Every other clause of every
-theorem in this lane's brief is proved unconditionally.  The open clause is isolated as a named
-hypothesis, exactly matching the Prop ring-b-alg will produce, so that landing their module
-closes everything here in one line each (given below).
+`C*_max(K)` is quasidiagonal** (`K` the locally-residually-finite kernel).  That clause was
+isolated as a named hypothesis, exactly matching the Prop lane `ring-b-alg` was going to produce.
+`ring-b-alg` landed it (`AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`,
+`origin/main` commit `d4e4c824a`), and this lane discharged every reduction against it: **every
+printed statement in this lane's brief is now closed and unconditional.**  A second, reopened
+task then added per-sentence carriers for `prop:clifford-locally-rf`'s printed proof (and Theorem
+4's one-sentence proof), following the `NormalKazhdanPrintedRoute.lean` pattern; see §3 for the
+sentence-to-lemma table.
 
 ## 1. Modules landed
 
-| module | commit | job count |
+| module | commit(s) | job count |
 | --- | --- | --- |
-| `GroupApproximation/Sofic/CliffordWitnessSoficPrinted.lean` | `433d886ce83de060ba00935d6b854953feb4e942` | 4317 |
-| `GroupApproximation/Manuscript/OneSidedMFRadical/AffineCliffordTrace.lean` | `fe47ff6982cd3df59d521eda4ec84cc947f04a23` | 4323 |
-| `GroupApproximation/Manuscript/OneSidedMFRadical/AmenableTraceTheorem.lean` | `55fca1029cef72f1aad6fe158d5b5c9c65af148e` | 4324 |
+| `GroupApproximation/Sofic/CliffordWitnessSoficPrinted.lean` | `433d886ce83de060ba00935d6b854953feb4e942` (statement + reduction), `171122f528a2307008001c971c6cbaa3ab8007fa` (discharge) | 4317, 4319 |
+| `GroupApproximation/Manuscript/OneSidedMFRadical/AffineCliffordTrace.lean` | `fe47ff6982cd3df59d521eda4ec84cc947f04a23` (statement + reduction), `2b6a0fdcb5512f9f46a8cbeb4898974203f89240` (discharge) | 4323, 4325 |
+| `GroupApproximation/Manuscript/OneSidedMFRadical/AmenableTraceTheorem.lean` | `55fca1029cef72f1aad6fe158d5b5c9c65af148e` (statement + reduction), `a978a2b191765773ef3ccd74ded7f348c9cb8325` (discharge) | 4324, 4326 |
+| `GroupApproximation/Sofic/CliffordWitnessSoficSentences.lean` | (landing) | |
 
 Note: a probe of `Sofic/CliffordWitnessSoficPrinted.lean` initially failed the audit macro
 (`#audit_closed_axioms` on a theorem whose *stated* type is a bare arrow `A → B` is rejected as
 "has a leading input" even though the value is closed) --- fixed by wrapping the reduction in a
 named `def ... : Prop := A → B` first, matching the pattern already used by
-`PropertyT/EJZIntegralReduction.lean`.  Also, `GroupApproximation/Analysis/LocallyRFQuasidiagonalTrace.lean`
-already exists in the shared local tree (ring-b-alg's in-progress file, not yet on
-`origin/main`) with exactly the expected `PrintedLocallyRFCanonicalTraceQuasidiagonal` and a
-complete (no open obligation) `manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal` proof
-visible by inspection --- not depended on here since it is not yet landed, but the one-line
-discharge is expected to apply as soon as it is.
+`PropertyT/EJZIntegralReduction.lean`.  Also, before it landed,
+`GroupApproximation/Analysis/LocallyRFQuasidiagonalTrace.lean` was visible in the shared local
+tree (ring-b-alg's in-progress file) with exactly the expected
+`PrintedLocallyRFCanonicalTraceQuasidiagonal` and a complete proof by inspection --- it was not
+depended on until it actually landed on `origin/main`.
 
 ## 2. Declarations, by printed statement
 
@@ -70,12 +71,11 @@ discharge is expected to apply as soon as it is.
   residually finite and `α` has finite-index range, via `SoficMarkedCompression.isSofic_ambient`
   fed by `isSofic_of_isLEF isLEF_of_residuallyFinite`. Unconditional.
 
-**Discharge, when `Analysis/LocallyRFQuasidiagonalTrace.lean` lands:**
-```lean
-theorem manuscriptCliffordLocallyRF : PrintedCliffordLocallyRF :=
-  manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal
-    AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
-```
+* `manuscriptCliffordLocallyRF : PrintedCliffordLocallyRF` --- **discharged, unconditional,
+  closed.**  `ring-b-alg` landed `Analysis/LocallyRFQuasidiagonalTrace.lean`
+  (`origin/main` `d4e4c824a`), and this theorem is exactly
+  `manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`.
+  `prop:clifford-locally-rf` is now closed with no open hypothesis anywhere.
 
 ### The former `cor:affine-clifford-trace` --- `Manuscript/OneSidedMFRadical/AffineCliffordTrace.lean`
 
@@ -90,7 +90,11 @@ owner merged its content into the proof of Theorem 4).
 * `PrintedAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal` and
   `manuscriptAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal` --- the concrete instance
   of `PrintedCliffordLocallyRFFromLocallyRFTraceQuasidiagonal` at `Γ̄ = gammaBar`, `α = alpha`,
-  `a = v1G`.  Same one-line discharge shape as above, applied here.
+  `a = v1G`.
+* `manuscriptAffineCliffordConclusions` --- **discharged, unconditional, closed.**  The seven
+  conclusions at the concrete instance, applying
+  `manuscriptAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal` to `ring-b-alg`'s landed
+  theorem.
 * `manuscriptAffineCliffordConclusionsCore` --- **unconditional, closed**: the four conclusions
   that do not need the open clause (`WitnessGroup` sofic, `¬ IsOperatorMF WitnessGroup`, its
   canonical trace amenable, its canonical trace not quasidiagonal), assembled from
@@ -104,7 +108,10 @@ owner merged its content into the proof of Theorem 4).
   shape as `prop:clifford-locally-rf`, instantiated at `∃ W K`).
 * `PrintedAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal` and
   `manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal` --- closed,
-  unconditional reduction, same one-line discharge shape.
+  unconditional reduction.
+* `manuscriptAmenableNonquasidiagonalTrace` --- **discharged, unconditional, closed.**  The full
+  printed existential of Theorem `thm:amenable-trace`, applying the reduction above to
+  `ring-b-alg`'s landed theorem.  Theorem 4 is now closed with no open hypothesis anywhere.
 * `manuscriptAmenableNonquasidiagonalTraceCore` --- **unconditional, closed**: the three
   conclusions not needing the open clause (the reassociation, `K` locally residually finite,
   `W` sofic and not operator-MF, `W`'s trace amenable and not quasidiagonal).
@@ -123,22 +130,45 @@ owner merged its content into the proof of Theorem 4).
   `SoficByAmenablePermanence.isSofic_int_semidirectProduct` (Elek--Szabó, Theorem 1) composed
   with `isSofic_of_locallyResiduallyFinite`.
 
-## 3. What remains
+## 3. Sentence-level carriers (`Sofic/CliffordWitnessSoficSentences.lean`)
 
-The single open obligation, everywhere in this lane, is the same Prop:
+Reopened task, directed by the lead: the census work order (`notes/nonmf-lane-reports/census.md`,
+"work order for the remaining ~320 unassigned sentences") listed `prop:clifford-locally-rf`
+(proof) as needing sentence wrappers.  Following `NormalKazhdanPrintedRoute.lean`'s pattern, one
+`manuscriptSentence_<slug>` lemma per printed sentence that asserts a checkable fact, quoting the
+sentence in its docstring, proved from already-landed declarations.  The current tex (§4
+shortened since the census's "28" count) has 18 proof sentences for `prop:clifford-locally-rf`
+plus the theorem's own one-sentence proof ("Apply Proposition `prop:clifford-locally-rf` to
+`Γ̄`, `α`, and `a`.") --- 19 rows total in `metadata/NON_MF_SENTENCE_CENSUS.tsv` at label
+`prop:clifford-locally-rf`, env `proof` (the census script anchors Theorem 4's short proof to the
+same, nearest-preceding label).
 
-```lean
-def PrintedLocallyRFCanonicalTraceQuasidiagonal : Prop :=
-  ∀ (N : Type) [Group N] [Countable N],
-    LocallyRFByIntAmenableTrace.IsLocallyResiduallyFinite N →
-      Quasidiagonal.IsQuasidiagonalTrace
-        (fun a : MaximalGroupCStar N ↦ canonicalMaximalTrace N a)
-```
+| # | printed sentence (abbreviated) | lemma | note |
+| --- | --- | --- | --- |
+| 1 | "Reassociating the semidirect products yields `W≅K⋊ℤ`." | `manuscriptSentence_reassociation` | projected from `manuscriptCliffordLocallyRF`'s 1st conjunct |
+| 2 | "For `n≥0`, write `Γ_n=t^{-n}Γt^n`..." | --- (`definition`) | the object is `(MappingTelescope.level α hα n).range`; no independent content |
+| 3 | "Since `[Γ:α(Γ)]<∞`... so `Γ` is commensurated by `V`." | `manuscriptSentence_commensuration` | `MappingTelescopeFiniteOrbits.level_relIndex_ne_zero` + `exists_level_repr` + `.vertical_le_commensurator` |
+| 4 | "Hence the stabilizer... every `Γ_n`-orbit in `X` is finite." | `manuscriptSentence_stabilizerAndOrbitFinite` | `MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` + orbit-stabilizer |
+| 5 | "A finite subset of `K` involves only finitely many lamps..." | `manuscriptSentence_finiteSubsetOneLevel` | the `F.sup lvl` argument already inline in `shiftKernelFor_isLocallyResiduallyFinite` |
+| 6 | "Let `Y` be the union of the `Γ_n`-orbits..." | --- (`definition`) | `Y`/`C_Y` are not named separately; see row 7 |
+| 7 | "Then `Y` is finite and `Γ_n`-invariant, and the finite subset is contained in `C_Y⋊Γ_n`." | `manuscriptSentence_finiteInvariantSubgroup` | `CliffordLamp.exists_finite_invariant_clifford_subgroup` |
+| 8 | "where `C_Y=⟨ε,c_y:y∈Y⟩` is finite by the normal form above." | `manuscriptSentence_finiteInvariantSubgroup` | same lemma as row 7 |
+| 9 | "This semidirect product is residually finite." | `manuscriptSentence_semidirectResiduallyFinite` | `residuallyFinite_semidirectProduct_of_finite_range` |
+| 10 | "Indeed, an element with nontrivial `Γ_n`-component survives in a finite quotient." | `manuscriptSentence_semidirectResiduallyFinite` | internal to the same lemma's own proof |
+| 11 | "For a nontrivial element of `C_Y`, let `J` be the kernel of the action..." | `manuscriptSentence_semidirectResiduallyFinite` | `J = φ.ker` inside the same lemma |
+| 12 | "The quotient `Γ_n/J` is finite, and the element has nontrivial image..." | `manuscriptSentence_semidirectResiduallyFinite` | same lemma |
+| 13 | "Therefore every finitely generated subgroup of `K` is residually finite." | `manuscriptSentence_locallyResiduallyFinite` | projected from `manuscriptCliffordLocallyRF`'s 2nd conjunct |
+| 14 | "Each finitely generated subgroup of `K` is residually finite and hence sofic." | `manuscriptSentence_fgSubgroupSofic` | `isSofic_of_isLEF isLEF_of_residuallyFinite` |
+| 15 | "The group `K` is their directed union, and `W/K≅ℤ` is amenable." | `manuscriptSentence_quotientAmenable` | `SoficByAmenablePermanence.isAmenable_int`; "directed union" is structural |
+| 16 | "Soficity passes to directed unions and to extensions with amenable quotient, so `W` is sofic." | `manuscriptSentence_wSoficMechanism` | `isSofic_of_locallyResiduallyFinite` + `SoficByAmenablePermanence.isSofic_int_semidirectProduct` |
+| 17 | "Proposition `prop:clifford-self-embedding` shows that it is not MF." | `manuscriptSentence_notMF` | `CliffordWitnessDirectDefect.not_isOperatorMF` |
+| 18 | "By Proposition `prop:locally-rf-by-z-trace`... quasidiagonal... amenable... not quasidiagonal." | `manuscriptSentence_traceConclusions` | projected from `manuscriptCliffordLocallyRF`'s last 3 conjuncts |
+| 19 (thm 4) | "Apply Proposition `prop:clifford-locally-rf` to `Γ̄`, `α`, and `a`." | `manuscriptSentence_theorem4Application` | `manuscriptAffineCliffordConclusions` |
 
-owned by lane `ring-b-alg` (`Analysis/LocallyRFQuasidiagonalTrace.lean`,
-`Analysis/AmenableExtensionAmenableTrace.lean`).  Once it lands, three one-line theorems close
-every remaining printed endpoint in this lane (shown in each section above).  Nothing else in
-this lane's brief is open.
+Nothing in this table depends on an open hypothesis; every lemma is proved outright. Rows 6/8 and
+10--12 reuse the same lemma as their block's primary row rather than getting an artificial
+separate lemma, matching `NormalKazhdanPrintedRoute.lean`'s own treatment of its one purely-naming
+sentence.
 
 ## 4. Note on the ℤ-specific step (per the lead's 2026-09-07 heads-up)
 
