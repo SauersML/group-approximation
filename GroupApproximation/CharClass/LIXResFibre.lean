@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.CharClass.ThomJmNatural
 import GroupApproximation.CharClass.ThomCoordinates
 import GroupApproximation.CharClass.LIXThomResReduction
@@ -254,9 +255,11 @@ theorem injective_lixRes (hGc : Continuous G)
   ThomChernDeg.injective_lixRes_of_ne_zero hGc hGu
     (lixRes_lixThomClassTerm_ne_zero hGc hGu)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the axiom closure and
+**fails the build** if it leaves the classical allowlist, which `#print axioms`
+does not. -/
 
-#print axioms injective_lixRes
+#audit_axioms injective_lixRes
 
 end
 

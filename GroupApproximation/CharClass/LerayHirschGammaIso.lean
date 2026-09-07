@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LerayHirschGradedIso
 import GroupApproximation.CharClass.CohomologyLHRestrict
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The mod-2 Chern classes are unchanged by a transport of the total space
@@ -87,9 +88,10 @@ theorem gamma_of_iso (e : Q ≅ P) (π : P ⟶ X) (πQ : Q ⟶ X) (hπ : e.hom �
     · rw [LerayHirschGraded.gamma_eq_zero_of_gt L (by omega),
         LerayHirschGraded.gamma_eq_zero_of_gt _ (by omega)]
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms gamma_of_iso
+#audit_axioms gamma_of_iso
 
 end LH
 

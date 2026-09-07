@@ -18,12 +18,28 @@ CCEGSTW Question 1.1** -- the inclusion `X ⊆ T(M)` is an equality -- is false.
 That form is exactly non-surjectivity of the canonical extension map, which is
 what the counterexample establishes.
 
-What is deliberately *not* claimed here is `IsFactorialTraciallyCompletePair X`.
-Four of its six fields need work that is not yet in the repository:
-`isCompact` and `isConvex` need continuity and affineness of
-`canonicalExtension`, and `faithful` and `unitBallComplete` are the substance
-of calling `M` a completion at all.  Naming that Prop without proving it is
-exactly what this campaign forbids, so it is absent rather than assumed.
+`IsFactorialTraciallyCompletePair X` is not claimed here either, but the reason
+has changed and the note that used to stand in this place is no longer true.  It
+recorded four of the six fields as work "not yet in the repository":
+`isCompact` and `isConvex` waiting on continuity and affineness of
+`canonicalExtension`, `faithful` and `unitBallComplete` on the substance of
+calling `M` a completion at all.  All four are now proved, and the Prop itself
+is a theorem for exactly the `X` this file names:
+
+* `STW22FactorialCore.isCompact_designatedTraces`,
+  `isConvexTraceSet_designatedTraces`, `isClosed_designatedTraces` and
+  `isFaceTraceSet_designatedTraces` -- compactness through weak-star compactness
+  of the trace space, and the face condition through CCEGSTW Proposition
+  3.23(iv) at `X = T(A)`;
+* `STW22TraciallyCompletePair.isFaithfulTraceSet_designatedTraces` and
+  `unitBallUniformTwoComplete_designatedTraces` -- faithfulness turned out to
+  need no extra hypothesis, because the coordinate norm comparison already
+  forces a gauge-null element to vanish coordinatewise;
+* `STW22AntipodalFactorialPair.antipodal_isFactorialTraciallyCompletePair` --
+  the assembled Prop, for `antipodalDesignatedTraces` as defined below.
+
+So the Prop is absent from this file because it belongs upstream of it, not
+because it is open.  This file's job is to name `X`.
 -/
 
 namespace GroupApproximation

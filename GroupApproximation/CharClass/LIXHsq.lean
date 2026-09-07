@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LIXHsqLegs
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hsq`, the compatibility square of Step C's odd side
@@ -289,8 +290,9 @@ theorem lixHsq (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)
   rw [hassoc, h]
   simp only [Category.assoc, Iso.hom_inv_id, Category.comp_id]
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixHsq
+#audit_axioms lixHsq
 
 end GroupApproximation.CharClass

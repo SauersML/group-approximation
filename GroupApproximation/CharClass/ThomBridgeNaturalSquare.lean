@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomBridgeNaturalHyper
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # A commuting square of spaces gives a commuting square of relative pullbacks
@@ -51,9 +52,10 @@ theorem relPullback_comm_of_map_eq (a : Y ⟶ X) (b : W ⟶ Y) (c : Z ⟶ X) (d 
     ← relPullback_comp (ZMod 2) d c hd hc hdc n]
   exact relPullback_eq_of_eq (ZMod 2) hcomm hba n
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms relPullback_comm_of_map_eq
+#audit_axioms relPullback_comm_of_map_eq
 
 end
 

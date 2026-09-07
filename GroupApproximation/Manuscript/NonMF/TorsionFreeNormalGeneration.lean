@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Manuscript.NonMF.SimpleInDefect
 
 /-!
@@ -81,4 +82,4 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
-#print axioms GroupApproximation.Manuscript.NonMF.normalClosure_image_eq_range_and_printedDefect_eq_top
+#audit_axioms GroupApproximation.Manuscript.NonMF.normalClosure_image_eq_range_and_printedDefect_eq_top
