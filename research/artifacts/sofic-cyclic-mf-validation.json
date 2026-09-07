@@ -1,0 +1,86 @@
+{
+  "date": "2026-09-07",
+  "proof_commit": "05a169a8ed6e2af4a9a2536d3f5d69739d3c2a65",
+  "manuscript_commit": "472eb2b4e6844e98d36207d45e2065c864fdbfee",
+  "pdf_commit": "fa6260dd8ff136e6119babd4f26eb3e6d5a98d18",
+  "validated_checkout": "fa6260dd8ff136e6119babd4f26eb3e6d5a98d18",
+  "new_numbered_claims": [
+    "thm:sofic-cyclic-mf",
+    "prop:cyclic-hnn-absorption"
+  ],
+  "checks": [
+    {
+      "command": "python3 scripts/check_non_mf_claim_manifest.py",
+      "exit_code": 0,
+      "output": "non-MF numbered-claim manifest: 35/35 claims validated"
+    },
+    {
+      "command": "python3 scripts/check_non_mf_refs.py",
+      "exit_code": 0,
+      "output": "check-non-mf-refs: 49 verified references all resolve"
+    },
+    {
+      "command": "python3 scripts/check_non_mf_zero_input.py --tex non_mf_groups_exist.tex",
+      "exit_code": 0,
+      "output": "check-non-mf-zero-input: 49 cited declarations are closed"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "exact_arithmetic": {
+    "method": "Dependency-free Python integer matrix multiplication",
+    "identities_checked": [
+      "x e_12 x^-1 = e_31",
+      "x e_31 x^-1 = e_23",
+      "[e_12,e_23] = e_13"
+    ],
+    "result": "passed"
+  },
+  "cairn": {
+    "check_changed_exit_code": 0,
+    "preview_exit_code": 0,
+    "new_claims_established": [
+      "cyclic-hnn-radical-absorption",
+      "sofic-cyclic-mf-quotient-with-full-radical"
+    ],
+    "existing_claim_integrated": "cyclic-mf-quotient-phase-transition",
+    "integration_route": "cyclic-mf-phase-transition-via-sofic-hnn",
+    "status_meaning": "Dependency-graph validation, not proof-assistant validation of prose."
+  },
+  "mathematical_inputs_checked": [
+    "Theorem F's affine finite-block construction and exact MF radical",
+    "Normal generation of V by t x^-1 using elementary matrices",
+    "Infinite order of the two-block word d by free-product normal form",
+    "Normal generation of B by d using its coprime-order letters",
+    "Intrinsic full radical of the HNN kernel from r_(i+1)=d_i",
+    "Exact radical formula for every normal quotient",
+    "Failure of finite generation from proper finite-interval amalgams",
+    "Collins--Dykema Corollary 3.6: cyclic edge group and sofic base",
+    "Bryder--Ivanov--Omland Proposition 4.12: proper edge groups, trivial intersection, faithful tree action",
+    "Minasyan--Osin Corollary 2.3: proper associated subgroups and weak malnormality; erratum checked"
+  ],
+  "pdf": {
+    "path": "non_mf_groups_exist.pdf",
+    "pages": 33,
+    "sha256": "577d97ca03e82bd5b1d996a3b109076d3a7004fa33f4d09bd15fdcc06c2acb75",
+    "tex_sha256": "9e8cf47e4330b1e35e214f35d1e1a6d8e882dafc31b8436c802aa5a259724cfc",
+    "workflow": "https://github.com/SauersML/group-approximation/actions/runs/34170932145",
+    "workflow_conclusion": "success",
+    "format": "PDF 2.0, canonical tagged build",
+    "canonical_source_matches_validated_manuscript": true,
+    "local_preview": "Three LaTeX passes; no unresolved references or overfull boxes.",
+    "canonical_detail_pages": [1, 5, 26, 27, 28, 29],
+    "canonical_visual_review": "Passed: abstract, complete Theorem G statement, all of Proposition 6.1 and the construction proof, and the transition to Section 7. No clipping or overlap."
+  },
+  "proof_boundary": {
+    "new_proofs": "Complete written proofs relative to the named classical inputs and existing manuscript dependencies.",
+    "new_manifest_status": "paper-proof",
+    "new_lean_endpoints_compiled": false,
+    "new_lean_badges_added": false,
+    "whole_manuscript_lean_verified": false,
+    "literature_priority_claimed": false,
+    "kernel_limitation": "N is not finitely generated and contains A_5; this does not establish the separate torsion-free sofic property-T radical target."
+  }
+}
