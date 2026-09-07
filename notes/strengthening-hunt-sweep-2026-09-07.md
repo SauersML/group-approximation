@@ -171,37 +171,87 @@ repository has neither X nor Y," and none has an unconnected discharge sitting
 elsewhere (single-consumer, single-file for the last two; the others checked
 by name across the whole tree).
 
-## Still open: the rest of the `*Input` list, and untouched directories
+## Addendum: the rest of the `*Input` list, checked
 
-Not yet checked in depth (structure/def name, declaring file):
+Completed the sweep of every remaining `*Input`-named `: Prop` structure/def
+found by the same grep, at the lead's request. Read at `origin/main`
+`24db72a029e8516e7cd1334d8e67d56d85445029`. Method for each: grep every file
+that mentions the name for a zero-remaining-hypothesis term of the exact
+type, then read context rather than trust the keyword. Two looked like
+discharges and were not; the rest showed no discharge signal at all
+(confirmed by grepping for `theorem`/`def <name> : <Input>` with no leading
+binder across the whole tree -- zero hits for every name below except the two
+discussed).
 
-* `AmenableMFInput` -- `Analysis/AmenableMFInput.lean`
-* `StabilizationInput` -- `Analysis/CStarStabilization.lean`
-* `DadarlatEilersInput` -- `Analysis/DadarlatEilers.lean`
-* `WinterZachariasInput`, `CoronaOrderZeroLiftInput` -- `Analysis/KirchbergRordamOrderZeroLift.lean`
-* `AmenableUCTInput` -- `Analysis/TikuisisWhiteWinter.lean`
-* `TikuisisWhiteWinterCoreInput` -- `Analysis/TikuisisWhiteWinterCore.lean`
-* `CoronaEmbeddingInput` -- `Analysis/TikuisisWhiteWinterDerivation.lean`
-* `RosenbergSchochetInput` -- `Analysis/UniversalCoefficientTheorem.lean`
-* `SumBoundInput`, `QuasiSumBoundInput`, `AuxiliaryCyclePathInput`,
-  `TwoHalfPathInput` -- `GGT/DGOProposition414*.lean`
-* `FreeProductInput` -- `GGT/HullSCCommonQuotient.lean`
-* `IsBoundedLemma44Input` -- `GGT/HullSCLemma44BoundedInput.lean`
-* `OmegaInput`, `OmegaTowerInput` -- `Higman/OmegaClosure.lean`, `Higman/OmegaTower.lean`
-* `HalfLineInput` -- `Higman/OmegaHalfLineReduction.lean`
-* `RightTailASubInput` -- `Higman/OmegaHalfLineSemanticGraphWitness.lean`
-* `RandomGroupInput`, `LatticeRouteInput`, `SpectralRouteInput` -- `Kazhdan/SharpExistenceRoutes.lean`, `Kazhdan/SharpExistenceSpectralRoute.lean`
-* `TarskiInput` -- `Manuscript/MFRecognition/PrintedTarskiCertificateSyntax.lean`
-* `RopeInput` -- `Manuscript/MFRecognition/RopeObjects.lean`
-* `BlackadarKirchbergNFConverseInput` -- `Manuscript/NonMF/PriorWorkBlackadarKirchberg.lean`
-* `OperativePureInfinitenessInput` -- `Manuscript/OneSidedMFRadical/SentenceOperativePureInfinitenessClosure.lean`
-* `CactusBoundaryInput`, `StarLayerConstructionCertificateInput` (two
-  declaring files, `GGT/KazhdanHypGirthEightBuild.lean` and
-  `GGT/KazhdanHypGirthEightStarProducer.lean` -- possible duplicate, not yet
-  compared), `FreeGroupPFFBaseInput` -- `Computability/FreeEdgeTowerCode.lean`,
-  `SkeletonAH3Input` -- `GGT/WPDMinasyanOsinSkeleton.lean`
+* **`SkeletonAH3Input`** (`GGT/WPDMinasyanOsinSkeleton.lean`) --
+  **discharged and already wired, not a gap.** `GGT.TreeWPDAxis`'s
+  `skeletonAH3Input_unconditional : SkeletonAH3Input.{0}` is a genuine
+  zero-hypothesis proof, consumed by `minasyanOsinStatement_of` in the same
+  file, whose result feeds `GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12`,
+  which `Manuscript/NonMF/TheoremCAssembly.lean:480-491` applies directly to
+  `osinTheorem12 : GGT.OsinTheorem12` in the manuscript's own Theorem C
+  assembly. All of `WPDMinasyanOsinSkeleton`, `TreeWPDAxis`,
+  `BassSerreDoubleHNN`, `BassSerreHNNAxisWPD` are wired
+  (`GroupApproximation.lean:2317,2320,2321,2388`). Fully connected end to end;
+  the file's own docstring even warns against recording it as debt.
+* **`CactusBoundaryInput`, `StarLayerConstructionCertificateInput`**
+  (`GGT/KazhdanHypGirthEightBuild.lean`) -- the `(T := emptyTriangleTableBuild)`
+  instances that looked like discharges are the corpus's own
+  `*ModelTest`-style sanity checks at the trivial/`PEmpty` group (the
+  standing order lix-orphans already documented for a different cluster:
+  every hypothesis-bearing `Prop` gets a non-vacuous concrete instance), not
+  proofs of the general statement. The one real reduction present,
+  `cactusBoundaryInput_of_orientedCactusBoundaryProducer`, still carries a
+  hypothesis (`OrientedCactusBoundaryProducer`) -- it moves the goalpost, it
+  does not discharge it. Both remain genuinely open.
+* **Every other name below**: no discharge signal of any kind found --
+  `AmenableMFInput`, `WinterZachariasInput`, `CoronaOrderZeroLiftInput`,
+  `AmenableUCTInput`, `TikuisisWhiteWinterCoreInput`, `CoronaEmbeddingInput`,
+  `RosenbergSchochetInput`, `DadarlatEilersInput`, `OmegaTowerInput`,
+  `HalfLineInput`, `RightTailASubInput`, `BlackadarKirchbergNFConverseInput`,
+  `OperativePureInfinitenessInput`, `FreeGroupPFFBaseInput`. Where a name
+  reappears in several "Derivation"/"Proof"-suffixed files (e.g.
+  `AmenableUCTInput` in six), that is the expected shape of a genuinely open
+  hypothesis threaded unchanged through a composition chain, not a sign of
+  hidden progress -- confirmed for a sample of these by reading the actual
+  binder lists, not just counting file hits.
 
-Directories not swept at all: `Leavitt/`, `Computability/` (beyond the one
-name above), most of `Higman/`, the GGT small-cancellation corpus beyond the
-files named above, and `.md` files under `notes/` (the docstring-pattern grep
-covered `GroupApproximation/**/*.lean` only).
+`AmenableMFInput` (`Analysis/AmenableMFInput.lean`) deserves its own line:
+its docstring is unusually explicit that it is a genuinely irreducible gap --
+"the gap ... is not slack in the estimates; it is the whole of
+Tikuisis--White--Winter" -- and separately explains a **tooling trap**
+worth flagging on its own: a producer of this input stated from bare
+`∀`-premises would enter the "discharge fixpoint" of
+`scripts/check_non_mf_unconditional.py` and be silently marked inhabited by
+that script even though nothing constructs it. That script is the mechanism
+this whole hunt is a manual stand-in for, on this corpus; if a second XXII
+exists via *that* particular failure mode rather than an orphan import, this
+script's own discharge-fixpoint logic is where to look, not another grep pass
+over `*Input` names. Flagging for whoever owns `check_non_mf_unconditional.py`
+rather than chasing it further here, since it is a claim about a script's
+behaviour, not about this corpus's mathematics.
+
+## Still open: directories not swept by name at all
+
+Not checked by this pass, beyond the `*Input`-name grep above (structure/def
+name, declaring file, for completeness of the original list):
+
+Every `*Input`-named `structure`/`def : Prop` the original grep found is now
+checked (addendum above); none remain from that list. Excluded from the
+pattern on inspection, not overlooked: `StabilizationInput`, `SumBoundInput`,
+`QuasiSumBoundInput`, `AuxiliaryCyclePathInput`, `TwoHalfPathInput`,
+`FreeProductInput`, `IsBoundedLemma44Input`, `OmegaInput`, `RandomGroupInput`,
+`LatticeRouteInput`, `SpectralRouteInput`, `TarskiInput`, `RopeInput` are all
+data-bundling structures (route/certificate parameters, not `Prop`), confirmed
+by reading their declarations directly -- the `*Input` naming convention is
+not exclusive to unproved-literature-citation hypotheses, and grepping the
+name alone overcounts unless each hit is read.
+
+Directories not swept by any method in this report: `Leavitt/`, most of
+`Higman/` (beyond the two `*Input` names above and their neighbours),
+`Computability/` (beyond `FreeGroupPFFBaseInput`'s file), the GGT
+small-cancellation corpus beyond the files the `*Input` and docstring-pattern
+greps surfaced, and `.md` files under `notes/` (the docstring-pattern grep
+covered `GroupApproximation/**/*.lean` only). A `*Input`-name grep is
+necessarily blind to a genuinely open hypothesis that carries no such suffix;
+these directories have not been checked by any method that would catch one.
