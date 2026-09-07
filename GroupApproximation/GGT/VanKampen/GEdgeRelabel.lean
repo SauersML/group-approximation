@@ -102,12 +102,18 @@ noncomputable def expansion : DiscExpansion Delta (diagram Delta a letter houter
     change Delta.relatorCells.map RelatorCell.face = (Delta.relatorCells.map RelatorCell.face).map id
     exact (List.map_id _).symm
 
+theorem label_admissible_of_inv (D : RelGenSet G Lambda)
+    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
+    (hletter : D.IsLetter letter) (hinv : D.IsLetter (RelWord.inv letter))
+    (d : Delta.toCombMap.Dart) : D.IsLetter (label Delta a letter d) :=
+  subdivideLabel_admissible_of_inv Delta.toCombMap a Delta.label letter letter D hlabel
+    hletter hinv hletter hinv (embed Delta.toCombMap d)
+
 theorem label_admissible (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
     (hletter : D.IsLetter letter) (d : Delta.toCombMap.Dart) :
     D.IsLetter (label Delta a letter d) :=
-  subdivideLabel_admissible Delta.toCombMap a Delta.label letter letter D hsymm hlabel
-    hletter hletter (embed Delta.toCombMap d)
+  label_admissible_of_inv Delta a letter D hlabel hletter (isLetter_relWordInv D hsymm hletter) d
 
 end GroupApproximation.GGT.VanKampen.GEdgeRelabel
 

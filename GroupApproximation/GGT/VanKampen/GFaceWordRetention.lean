@@ -110,19 +110,22 @@ structure CellOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v} W)
     (word : List (RelLetter G Lambda)) extends RetainedOutput D Delta f k word where
   cellMap : Surgery.OrderedRCellMap Delta diagram embedding.faces
 
-theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+/-- Insert the prescribed word when both orientations of its letters are
+legal, without requiring the whole relative base to be inverse-closed. -/
+theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
     (Delta : DiscDiagram.{u, w, v} W) (hlabel : ∀ d, D.IsLetter (Delta.label d))
     (f : Delta.toCombMap.Face) (k : Fin (Delta.faceBoundary f).darts.length)
     (hf : f ≠ Delta.outerFace) (hcells : ∀ C ∈ Delta.relatorCells, C.face ≠ f)
     (word : List (RelLetter G Lambda)) (hne : word ≠ [])
     (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (hinv : ∀ letter ∈ word, D.IsLetter (RelWord.inv letter))
     (hvalue : RelLetter.listVal word =
       RelLetter.listVal (((Delta.faceBoundary f).darts.take k.val).map Delta.label)) :
     Nonempty (CellOutput D Delta f k word) := by
   let letter : RelLetter G Lambda := .base (RelLetter.listVal word)
   let Xi := GFaceEdgeInsertion.diagram Delta f k hf hcells letter hvalue
   let p : Xi.toCombMap.Dart := some none
-  obtain ⟨rich⟩ := GEdgeWordSubdivision.exists_cell_output D hsymm word hne hword Xi p
+  obtain ⟨rich⟩ := GEdgeWordSubdivision.exists_cell_output_of_reversible D word hne hword hinv Xi p
     (GFaceEdgeInsertion.inserted_outer Delta f k hf)
     (GFaceEdgeInsertion.inserted_cells Delta f k hf hcells letter hvalue)
     (GFaceEdgeInsertion.label_away_inserted Delta f k hf hcells letter hvalue D hlabel) rfl
@@ -177,6 +180,18 @@ theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x
     have heq := E.block_eq_of_mem hx hmem
     change (some none : EdgeInsertion.Dart Delta.toCombMap) = some (some d) at heq
     cases heq
+
+theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (Delta : DiscDiagram.{u, w, v} W) (hlabel : ∀ d, D.IsLetter (Delta.label d))
+    (f : Delta.toCombMap.Face) (k : Fin (Delta.faceBoundary f).darts.length)
+    (hf : f ≠ Delta.outerFace) (hcells : ∀ C ∈ Delta.relatorCells, C.face ≠ f)
+    (word : List (RelLetter G Lambda)) (hne : word ≠ [])
+    (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (hvalue : RelLetter.listVal word =
+      RelLetter.listVal (((Delta.faceBoundary f).darts.take k.val).map Delta.label)) :
+    Nonempty (CellOutput D Delta f k word) :=
+  exists_cell_output_of_reversible D Delta hlabel f k hf hcells word hne hword
+    (fun l hl => isLetter_relWordInv D hsymm (hword l hl)) hvalue
 
 /-- The original retained-output interface follows from the stronger actual producer. -/
 theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)

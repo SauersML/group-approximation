@@ -66,9 +66,9 @@ theorem remaining_label :
   change subdivideLabel Delta.toCombMap a Delta.label left right (embed Delta.toCombMap a) = right
   simp [subdivideLabel, embed, EdgeInsertion.embed]
 
-theorem label_away_remaining (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+theorem label_away_remaining_of_inv (D : RelGenSet G Lambda)
     (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
-    (hleft : D.IsLetter left) (d : (map Delta a).Dart)
+    (hleft : D.IsLetter left) (hinv : D.IsLetter (RelWord.inv left)) (d : (map Delta a).Dart)
     (ha : d ≠ embed Delta.toCombMap a)
     (hb : d ≠ (map Delta a).alpha (embed Delta.toCombMap a)) :
     D.IsLetter ((diagram Delta a houter hcells left right hfactor).label d) := by
@@ -76,13 +76,22 @@ theorem label_away_remaining (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base,
   change EdgeSubdivision.Dart Delta.toCombMap at d
   rcases d with _ | (_ | d)
   · exact hleft
-  · exact isLetter_relWordInv D hsymm hleft
+  · exact hinv
   · have hda : d ≠ a := fun h => ha (congrArg (embed Delta.toCombMap) h)
     have hdb : d ≠ Delta.toCombMap.alpha a := fun h => hb (congrArg (embed Delta.toCombMap) h)
     change D.IsLetter (subdivideLabel Delta.toCombMap a Delta.label left right (embed Delta.toCombMap d))
     simp only [subdivideLabel, embed, EdgeInsertion.embed]
     rw [if_neg hda, if_neg hdb]
     exact hlabel d hda hdb
+
+theorem label_away_remaining (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
+    (hleft : D.IsLetter left) (d : (map Delta a).Dart)
+    (ha : d ≠ embed Delta.toCombMap a)
+    (hb : d ≠ (map Delta a).alpha (embed Delta.toCombMap a)) :
+    D.IsLetter ((diagram Delta a houter hcells left right hfactor).label d) :=
+  label_away_remaining_of_inv Delta a houter hcells left right hfactor D hlabel
+    hleft (isLetter_relWordInv D hsymm hleft) d ha hb
 
 end GroupApproximation.GGT.VanKampen.GEdgeSubdivision
 

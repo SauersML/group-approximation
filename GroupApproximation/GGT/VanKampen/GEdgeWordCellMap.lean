@@ -64,9 +64,12 @@ structure CellOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v} W)
     extends Output D Delta a word where
   cells : Surgery.OrderedRCellMap Delta diagram expansion.faceEquiv
 
-theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+/-- Only the inserted word and its formal inverse need be legal. No
+inverse-closure hypothesis on the whole base alphabet is required. -/
+theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
     (word : List (RelLetter G Lambda)) (hne : word ≠ [])
     (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (hinv : ∀ letter ∈ word, D.IsLetter (RelWord.inv letter))
     (Delta : DiscDiagram.{u, w, v} W) (a : Delta.toCombMap.Dart)
     (houter : Delta.toCombMap.faceOf a ≠ Delta.outerFace ∧
       Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ Delta.outerFace)
@@ -80,6 +83,7 @@ theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x
   | nil => exact (hne rfl).elim
   | cons letter tail ih =>
       have hletter : D.IsLetter letter := hword letter List.mem_cons_self
+      have hletterInv : D.IsLetter (RelWord.inv letter) := hinv letter List.mem_cons_self
       by_cases htail : tail = []
       · subst tail
         have hv : letter.val = (Delta.label a).val := by simpa [RelLetter.listVal] using hvalue
@@ -89,7 +93,8 @@ theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x
           cells := GEdgeRelabel.orderedCellMap Delta a letter houter hcells hv
           word_eq := ?_
           other_word := ?_
-          label_admissible := GEdgeRelabel.label_admissible Delta a letter D hsymm hlabel hletter }⟩
+          label_admissible := GEdgeRelabel.label_admissible_of_inv Delta a letter D hlabel
+            hletter hletterInv }⟩
         · change [GEdgeRelabel.label Delta a letter a] = [letter]
           exact congrArg List.singleton (GEdgeRelabel.label_at Delta a letter)
         · intro d ha hb
@@ -103,11 +108,12 @@ theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x
         have hbvalue : RelLetter.listVal tail = (Xi.label b).val :=
           (congrArg RelLetter.val
             (GEdgeSubdivision.remaining_label Delta a houter hcells letter right hfactor)).symm
-        obtain ⟨R⟩ := ih htail (fun l hl => hword l (List.mem_cons_of_mem letter hl)) Xi b
+        obtain ⟨R⟩ := ih htail (fun l hl => hword l (List.mem_cons_of_mem letter hl))
+          (fun l hl => hinv l (List.mem_cons_of_mem letter hl)) Xi b
           (GEdgeSubdivision.remaining_outer Delta a houter)
           (GEdgeSubdivision.remaining_cells Delta a houter hcells letter right hfactor)
-          (GEdgeSubdivision.label_away_remaining Delta a houter hcells letter right hfactor
-            D hsymm hlabel hletter) hbvalue
+          (GEdgeSubdivision.label_away_remaining_of_inv Delta a houter hcells letter right hfactor
+            D hlabel hletter hletterInv) hbvalue
         let E := GEdgeSubdivision.expansion Delta a houter hcells letter right hfactor
         let expandR : EdgeSubdivision.Dart Delta.toCombMap → List R.diagram.toCombMap.Dart := R.expansion.darts
         refine ⟨{
@@ -138,9 +144,24 @@ theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x
           change [subdivideLabel Delta.toCombMap a Delta.label letter right (embed Delta.toCombMap d)] = [Delta.label d]
           simp only [subdivideLabel, embed, EdgeInsertion.embed, if_neg ha, if_neg hb]
 
+theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (word : List (RelLetter G Lambda)) (hne : word ≠ [])
+    (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (Delta : DiscDiagram.{u, w, v} W) (a : Delta.toCombMap.Dart)
+    (houter : Delta.toCombMap.faceOf a ≠ Delta.outerFace ∧
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ Delta.outerFace)
+    (hcells : ∀ C ∈ Delta.relatorCells, Delta.toCombMap.faceOf a ≠ C.face ∧
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ C.face)
+    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
+    (hvalue : RelLetter.listVal word = (Delta.label a).val) :
+    Nonempty (CellOutput D Delta a word) :=
+  exists_cell_output_of_reversible D word hne hword
+    (fun l hl => isLetter_relWordInv D hsymm (hword l hl)) Delta a houter hcells hlabel hvalue
+
 end GEdgeWordSubdivision
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeRelabel.orderedCellMap
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeSubdivision.orderedCellMap
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeWordSubdivision.exists_cell_output
+#audit_axioms GroupApproximation.GGT.VanKampen.GEdgeWordSubdivision.exists_cell_output_of_reversible

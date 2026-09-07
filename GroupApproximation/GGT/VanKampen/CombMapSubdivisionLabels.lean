@@ -91,20 +91,29 @@ theorem expanded_word_kept (l : List M.Dart) (ha : a ∉ l) (hb : M.alpha a ∉ 
       simp only [List.flatMap_cons, expand, if_neg hda, if_neg hdb, List.singleton_append,
         List.map_cons, subdivideLabel, embed, EdgeInsertion.embed, ih hla hlb]
 
-theorem subdivideLabel_admissible (D : RelGenSet G Lambda)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+theorem subdivideLabel_admissible_of_inv (D : RelGenSet G Lambda)
     (hlabel : ∀ d, d ≠ a → d ≠ M.alpha a → D.IsLetter (oldLabel d))
-    (hleft : D.IsLetter left) (hright : D.IsLetter right) (d : Dart M) :
+    (hleft : D.IsLetter left) (hleftInv : D.IsLetter (RelWord.inv left))
+    (hright : D.IsLetter right) (hrightInv : D.IsLetter (RelWord.inv right)) (d : Dart M) :
     D.IsLetter (subdivideLabel M a oldLabel left right d) := by
   classical
   rcases d with _ | (_ | d)
   · exact hleft
-  · exact isLetter_relWordInv D hsymm hleft
+  · exact hleftInv
   · change D.IsLetter (if d = a then right else if d = M.alpha a then RelWord.inv right else oldLabel d)
     split_ifs with ha hb
     · exact hright
-    · exact isLetter_relWordInv D hsymm hright
+    · exact hrightInv
     · exact hlabel d ha hb
+
+theorem subdivideLabel_admissible (D : RelGenSet G Lambda)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (hlabel : ∀ d, d ≠ a → d ≠ M.alpha a → D.IsLetter (oldLabel d))
+    (hleft : D.IsLetter left) (hright : D.IsLetter right) (d : Dart M) :
+    D.IsLetter (subdivideLabel M a oldLabel left right d) :=
+  subdivideLabel_admissible_of_inv M a oldLabel left right D hlabel
+    hleft (isLetter_relWordInv D hsymm hleft)
+    hright (isLetter_relWordInv D hsymm hright) d
 
 theorem allBoundary_value (FB : ∀ f : M.Face, FaceBoundary M f)
     (hlabel : ∀ d, oldLabel (M.alpha d) = RelWord.inv (oldLabel d))

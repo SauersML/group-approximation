@@ -340,14 +340,26 @@ with weight between two and four. The model passes closed audits and the
 general helpers pass ordinary audits (4,621-job combined build). No assembly
 admission has been discharged by this consumer migration and global selection.
 
-Before applying word insertion to the global optimum, account explicitly for
-its alphabet hypotheses. `RealizedGeometricFamily` records reducedness and
-O-equivalence, but does not assert that every dart label is a `D.IsLetter` or
-that `D.base` is inverse-closed; `GFaceWordInsertion.exists_family_output`
-requires both. Restrict the optimization to an appropriate eligible class
-with a constructed inhabitant, or prove the required normalization and its
-preservation properties. The unrestricted maximum theorem alone supplies
-neither label legality nor base symmetry.
+The base-symmetry requirement has now been removed from insertion of chosen
+connectors. `ReversibleSpelling.lean` reuses the existing reversible-substitute
+theorem to retain length and all group vertices while making both formal
+edge orientations legal. The stronger word-subdivision and G-face producers
+now require only this local inverse-letter condition, and
+`GFaceReversibleInsertion.lean` constructs the actual insertion and full
+family transport without assuming `D.base` inverse-closed. It also constructs
+such an insertion from any nonempty legal connector by respelling that new
+connector; the original exterior and relator words stay literal. Existing
+producer signatures are preserved as corollaries. Ordinary audits and the
+combined insertion build pass (4,821 jobs).
+
+The global optimum still needs its surrounding-diagram label hypotheses.
+`RealizedGeometricFamily` records reducedness and O-equivalence, but does not
+assert every dart label is a `D.IsLetter`. Restrict optimization to a justified
+eligible class with a constructed inhabitant, or prove the required diagram
+normalization and its preservation properties. The unrestricted maximum
+theorem alone does not supply label legality. Account for the fixed boundary's
+formal inverse when choosing that class; admissibility of one orientation
+alone need not imply admissibility of the other at an asymmetric base.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
