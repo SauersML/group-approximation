@@ -250,8 +250,24 @@ are retained. `UnboundComponentNonemptyConnectors.unboundComponentNonemptyConnec
 constructs these words at the same uniform parameter choice and passes a
 closed axiom audit (4,853-job build). This resolves the zero-length obstacle
 for these metric connectors without changing constants. Transport of
-selected embedded regions and general complementary-region surgery remain
-open. No further assembly admission has been discharged.
+the full selected-contiguity records and general complementary-region surgery
+remain open. No further assembly admission has been discharged.
+
+`GEdgeWordRetention.lean` derives the actual single-dart expansion of every
+edge outside the subdivided edge, with exact label, reversal and face-step
+preservation. `GFaceWordRetention.exists_retained_output` constructs a stronger
+insertion output retaining every old dart and every untouched ordered face
+cycle, with their vertex incidence. Its new path shares no old edge in either
+orientation. `DiscEmbeddingAway.lean` proves exact transport of boundary
+incidence, internal boundary moves, cyclic face-set boundaries and actual face
+shellings for every selected region avoiding the insertion face. It also
+preserves face-set cardinalities and disjointness. The concrete insertion
+supplies this embedding, and its `region_pasting` consumer transports the old
+region's pasting witness. These pass ordinary axiom audits (4,810-job build).
+This proves preservation of the region boundary and shelling; the full
+`Contiguity` transport still needs its cyclic carrier arcs and ordered O52
+certificate data. The weak ordered word/value transport alone does not expose
+the individual cell conjugators and orientations needed for that step.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
