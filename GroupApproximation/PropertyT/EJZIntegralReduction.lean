@@ -16,9 +16,12 @@ finite type `X`.  The induced map of elementary groups is surjective, so
 property `(T)` for the integral free source descends to the given ring.
 
 This file formalizes precisely that reduction.  It does not assume a
-literature theorem and does not claim the still-missing integral source
-statement: that statement occurs explicitly as the antecedent of the proved
-implication.
+literature theorem: the integral source statement occurs explicitly as the
+antecedent of the proved implication.  That antecedent was open when this file
+was written and is now a theorem,
+`IntegralColumnPlaneClosure.integralFreeColumnPlaneMassBounds`, so
+`IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT`
+discharges the conclusion outright.
 -/
 
 namespace GroupApproximation
