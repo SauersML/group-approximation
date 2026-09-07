@@ -50,11 +50,11 @@ theorem Embedded.GeometricCandidate.unbound_total_le_two_mu
     _ = 2 * mu * ((Delta.rCellCount : ℝ) * (rho : ℝ)) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hp (mul_nonneg (by norm_num) hmu)
 
-/-- Once the geometric producer supplies its three missing conclusions on
-the attained global optimum, all remaining Greendlinger counting is proved.
-The O52 equations are derived from this optimum's own reduced diagram. -/
-theorem GloballyDistinguishedGeometricFamily.exists_large_exterior
-    (S : GloballyDistinguishedGeometricFamily D eps Delta)
+/-- The counting step works on any actual reduced O-equivalent selection,
+including an optimum in the legal-label class. The three geometric outputs
+are still required; its own reduced diagram supplies the O52 equations. -/
+theorem RealizedGeometricFamily.exists_large_exterior
+    (S : RealizedGeometricFamily D eps Delta)
     {rho : ℕ} {mu lambda c : ℝ}
     (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hrho : 0 < rho) (hcells : 0 < Delta.rCellCount)
@@ -88,7 +88,29 @@ theorem GloballyDistinguishedGeometricFamily.exists_large_exterior
     S.pairwise hunique hmu hmuUpper hpositive hinterior hunbound
   exact ⟨a.1, a.2, ht, hlarge⟩
 
+/-- Preserve the original global-optimum consumer as a corollary. -/
+theorem GloballyDistinguishedGeometricFamily.exists_large_exterior
+    (S : GloballyDistinguishedGeometricFamily D eps Delta)
+    {rho : ℕ} {mu lambda c : ℝ}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hrho : 0 < rho) (hcells : 0 < Delta.rCellCount)
+    (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16)
+    (hplanar : HasEndpointClosedPlanarEdgeBound
+      (GeometricCandidate.InteriorEdge.Incident (selected := S.family)))
+    (hunique : GeometricCandidate.ExteriorUnique S.family)
+    (hlemma62 : (∑ i : Fin S.diagram.rCellCount,
+      ((GeometricCandidate.unboundDarts S.family i).card : ℝ)) <
+        (S.diagram.rCellCount : ℝ) * Real.sqrt (rho : ℝ))
+    (hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ)) :
+    ∃ (faces : Finset S.diagram.toCombMap.Face) (Gamma : Contiguity D eps S.diagram faces),
+      Gamma.target = none ∧
+        (1 - 13 * mu) * ((cell S.diagram Gamma.source).word.length : ℝ) <
+          (Gamma.sourceArc.length : ℝ) :=
+  S.toRealizedGeometricFamily.exists_large_exterior hcondition hrho hcells hmu hmuUpper
+    hplanar hunique hlemma62 hthreshold
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.GeometricCandidate.unbound_total_le_two_mu
+#audit_axioms GroupApproximation.GGT.VanKampen.RealizedGeometricFamily.exists_large_exterior
 #audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedGeometricFamily.exists_large_exterior

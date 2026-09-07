@@ -352,14 +352,34 @@ connector; the original exterior and relator words stay literal. Existing
 producer signatures are preserved as corollaries. Ordinary audits and the
 combined insertion build pass (4,821 jobs).
 
-The global optimum still needs its surrounding-diagram label hypotheses.
-`RealizedGeometricFamily` records reducedness and O-equivalence, but does not
-assert every dart label is a `D.IsLetter`. Restrict optimization to a justified
-eligible class with a constructed inhabitant, or prove the required diagram
-normalization and its preservation properties. The unrestricted maximum
-theorem alone does not supply label legality. Account for the fixed boundary's
-formal inverse when choosing that class; admissibility of one orientation
-alone need not imply admissibility of the other at an asymmetric base.
+The missing label eligibility is now constructed explicitly.
+`GEdgeWordCellMap.exists_raw_output` separates actual subdivision from global
+label legality. `GEdgeLabelRepair` proves that repairing one illegal edge
+strictly decreases the finite number of illegal darts. Strong induction in
+`DiscLabelNormalization` then produces a fully legal diagram over a symmetric
+base, preserving the literal exterior word, the complete ordered cell map,
+reducedness and O-equivalence. Only the exterior and listed relator words
+need initially be admissible; every other illegal edge lies between G-faces.
+
+For an arbitrary original base, `SymmetricLabelAlphabet` adjoins inverse
+base spellings and proves equality of the total generator carrier and word
+metric. The normalized diagram uses this auxiliary label alphabet, while
+the geometric candidates and the original `OsinCCondition` still use `D`.
+No relative-ball or deep-relator hypothesis is transported to the auxiliary
+alphabet. `GeometricLegalSelection` constructs an eligible empty seed and
+then attains maximum weight and minimum cardinality inside this legal class.
+`GFaceLegalSelectionInsertion` performs actual word insertion away from the
+selected regions and proves the transported family remains a legal global
+optimum with exactly the same weight and cardinality. The unrestricted
+maximum still does not assert legal labels; it is not silently substituted
+for the new legal optimum.
+
+`GeometricGreendlinger` now proves its counting step for any actual reduced
+O-equivalent family, so it also applies to this legal optimum; its original
+global-optimum signature is retained as a corollary. The complementary-region
+cuts, planar incidence realization, exterior uniqueness and synchronized
+unbound argument remain open. This normalization and insertion connection
+does not discharge another assembly admission.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
