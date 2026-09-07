@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
   - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
   - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
+  - research/artifacts/qpcp-fixed-term-chain-2026-09-07.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
@@ -76,6 +77,13 @@ must have uniformly bounded nonzero spectra. A fixed finite term collection
 with bounded neighborhood size supplies the spectral part only. The
 resolution is not implied by spanning or generic normalization. No such
 uniform resolution and complete amplifier are constructed here.
+
+The fixed-term spin-chain audit further excludes an unconditional inference
+from local spectra and a finite collection of term matrices to such a
+resolution. For that family, a finite-cost construction requires
+`R(L+1)^4 >= (n-1)/16`. The family has vanishing combinatorial gap and
+does not refute the amplified constant-gap construction. No full QPCP
+proof is claimed by this obstruction.
 
 ## Attempts
 

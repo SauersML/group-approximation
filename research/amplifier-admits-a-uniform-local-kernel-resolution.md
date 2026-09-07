@@ -5,6 +5,7 @@ kind: claim
 title: The same amplifier's NO outputs admit feasible input support resolutions with uniform local spectra
 artifacts:
   - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
+  - research/artifacts/qpcp-fixed-term-chain-2026-09-07.md
 distinct_from:
   kernel-resolutions-and-local-spectra-bound-rounder-cost: that proves a conditional cost bound once a resolution and local spectra are supplied; this asks for those data on the NO outputs of the actual common amplifier and is not established by the conditional theorem.
   amplifier-has-compatible-local-syndrome-effects: that requires an actual bounded-horizon physical port realization as well as compatible effects; this asks for an unrestricted kernel resolution with uniform local spectra and need not give an efficient measurement.
@@ -39,6 +40,11 @@ input-preserving recovery; the bare rounder interface does not need them.
 - **Use a finite term collection to get everything.** This supplies the
   local spectral bound only. The globally feasible identity resolution and
   the completeness-preserving amplifier are still missing.
+  `fixed-term-chain-defeats-bounded-syndrome-neighborhoods` now gives a
+  fixed-matrix counterexample to this generic inference, even allowing
+  arbitrary global measurements and any finite local charge constant.
+  Its gap is not a constant combinatorial gap, so the actual amplifier
+  construction remains open.
 - **Prepare independent random flags.** A nonzero marginal `p_a I` needs
   `A_a` invertible. If all neighborhood sums are singular in a frustrated
   instance, this forces all flags to vanish and fails joint feasibility.

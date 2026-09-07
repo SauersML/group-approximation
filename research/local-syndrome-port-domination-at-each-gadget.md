@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
   - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
   - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
+  - research/artifacts/qpcp-fixed-term-chain-2026-09-07.md
 distinct_from:
   bounded-overlap-syndrome-energy-accounting: that is the finite incidence-counting lemma which sums local charges once they are supplied, and it is used unchanged by this region; this is the supply problem -- constructing the commuting local projectors and proving the per-port operator inequality against the neighbouring Hamiltonian terms.
   common-higher-rank-context-projections-are-syndrome-cylinders: that identifies syndrome cylinders among the common projections of a higher-rank context in the normalized-HS microstate atlas; this asks for tensor-site fault projectors dominated by a state-weighted local Hamiltonian energy, in a fixed finite-dimensional tensor product.
@@ -51,6 +52,12 @@ depth and `C_0` is again not constant.
 
 ## Attempts
 
+- **Infer a construction from fixed local matrices.** The fixed-term chain
+  obstruction rules out this generic inference for any prescribed bounded
+  neighborhood size and occurrence, despite uniform local positive
+  spectra. It does not have constant combinatorial gap and therefore does
+  not refute the amplifier-specific port claim. A construction must use
+  additional global structure of the amplified outputs.
 - **Supply one compatible construction.** The open claim
   `amplifier-has-compatible-local-syndrome-effects` binds these physical
   ports and local bounds to the joint support condition for recovery.
