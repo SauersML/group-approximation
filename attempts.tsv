@@ -291,3 +291,4 @@
 34052428273	2026-09-06T18:40:26Z	GroupApproximation/Sofic/ContinuumMultiplicityCore.lean	countable_of_fg
 34059295235	2026-09-06T20:52:39Z	GroupApproximation/Sofic/CoordinateTransfer.lean	lampEmbedding_injective
 34065361427	2026-09-06T22:55:17Z	GroupApproximation/Sofic/CornerDilutionInvariance.lean	cornerProj_conjTranspose
+34071791183	2026-09-07T01:04:46Z	GroupApproximation/Sofic/CoronaRadicalPullback.lean	coronaMFResidual_eq_comap
