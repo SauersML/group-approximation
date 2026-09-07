@@ -1,3 +1,5 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKappaProof
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientCanonicalKOne
 import GroupApproximation.Manuscript.OneSidedMFRadical.KappaFiniteWitness
 import GroupApproximation.Algebra.CoweightCoinvariants
 import GroupApproximation.Algebra.FaithfulRadicalCocycle

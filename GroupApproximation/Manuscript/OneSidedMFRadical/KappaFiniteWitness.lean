@@ -56,7 +56,7 @@ theorem exists_diagonal_mem_commutator (hR : IsPurelyInfiniteSimpleRing R)
     apply iSup_le
     intro n
     exact (Subgroup.map_mono (elementary_le_commutator R hR n)).trans (le_iSup D n)
-  have hmem := hle ((kappa_eq_one_iff u).mp hu)
+  have hmem := hle ((kappa_eq_one_iff R u).mp hu)
   obtain ⟨n, hn⟩ := (Subgroup.mem_iSup_of_directed hmono.directed_le).mp hmem
   obtain ⟨v, hv, heq⟩ := hn
   obtain ⟨m, hnm, h1m, hvm⟩ := Quotient.exact heq
