@@ -47,13 +47,13 @@
 # `conditional-debt` findings for `TheoremC.kazhdan_map_coreRange`,
 # `TheoremC.manuscriptWitnessCommutatorInDefect`, and
 # `TheoremC.manuscriptTorsionFreeFullMFRadical` -- all `LiteratureInputs`- or
-# `Configuration`-conditional, inhabited only through the three `sorry`s at
-# `TheoremCDebts.lean`.  All three are now stale: their only citing map rows
+# `Configuration`-conditional, inhabited only through the three placeholders
+# -- `sorry`s -- at `TheoremCDebts.lean`.  All three are now stale: their only citing map rows
 # (`e77f50531f0f`, `51799cd48a23`, `907cd2df4f8a`) are themselves orphaned
 # (stale overlay keys, no live sentence -- the whole `lem:commutator-in-defect`
 # passage they narrate is gone from the tex).  Note the underlying situation
 # has NOT improved: `TheoremCDebts.lean` no longer exists,
-# `TheoremCAssembly.lean` inherited its four `sorry`s, and
+# `TheoremCAssembly.lean` inherited its four `sorry`s -- and
 # `--verify-unconditional` reports no finding at all for
 # `manuscriptTorsionFreeFullMFRadical` any more -- a confirmed blind spot in
 # `classify` after a file rename, not a fix, flagged to the lead. These three
