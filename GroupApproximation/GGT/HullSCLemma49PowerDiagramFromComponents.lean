@@ -53,6 +53,27 @@ theorem hullLemma49InjectivityCallback_of_geodesicLengthGreendlinger
 
 /-! ## The composite -/
 
+/-- Hull's Lemma 4.9 power-diagram leaf at the narrow waist.  The estimating
+inputs are used for one thing only — building
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement` — so that statement
+is the hypothesis here, and either route to it is admissible: the historical
+`relativeGreendlingerQuasiGeodesic_of_components`, or the corrected
+`relativeGreendlingerQuasiGeodesic_of_joint`, which avoids the refuted
+`EstimatingGraphData` interface of issue #204.
+
+Pure refactor: `..._of_components` below keeps the old name and hypothesis
+list, and every existing call site is unaffected. -/
+theorem hullLemma49ShortestGeodesicPowerDiagramStatement_of_greendlinger
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
+    (hreal : RelativeDiscRealizationSpellingStatement.{0, 0})
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0}) :
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
+  hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger hgreendlinger
+    (hullLemma49InjectivityCallback_of_geodesicLengthGreendlinger
+      (relativeGreendlingerGeodesicLengthStatement_of_greendlinger
+        hgreendlinger hreal hconv))
+
 /-- **Hull's Lemma 4.9 power-diagram leaf, from five named inputs.**
 
 The three estimating construction propositions are est's; the realization at a

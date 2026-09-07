@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.SliceValueV
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Lemma 2 over Step C alone
@@ -54,7 +55,7 @@ theorem lemmaTwoHolds_of_chain
 
 /-! ## The axiom report -/
 
-#print axioms lemmaTwoHolds_of_chain
+#audit_axioms lemmaTwoHolds_of_chain
 
 end
 

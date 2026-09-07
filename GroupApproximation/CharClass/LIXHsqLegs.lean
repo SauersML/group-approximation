@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXHsqHomotopy
 import GroupApproximation.CharClass.LIXRestrictionMap
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The two legs of the compatibility square, as maps out of `lixU`
@@ -382,8 +383,9 @@ theorem lixHomotopy_end_zero (hGc : Continuous G)
   intro v
   exact (lixHomotopy_at_zero hGc hGu v).trans (lixFarMap_apply hGc hGu v).symm
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixGRmap_eq
+#audit_axioms lixGRmap_eq
 
 end GroupApproximation.CharClass

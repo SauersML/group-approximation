@@ -99,8 +99,8 @@ def Lemma65aDichotomyStatement : Prop :=
       ∀ lambda c mu : ℝ,
         0 < lambda → lambda ≤ 1 → 0 ≤ c →
         0 < mu → mu ≤ 1 / 16 →
-          ∃ eps rho : ℕ, 0 < rho ∧
-            1 ≤ 2 * mu * Real.sqrt (rho : ℝ) ∧
+          ∃ (eps rho : ℕ) (kappa c1 c2 : ℝ),
+            UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               OsinCCondition D W eps mu lambda c rho →
                 ∀ Delta : DiscDiagram.{u, w, v} W,
@@ -126,9 +126,9 @@ theorem estimatingSelectionConstruction_of_lemma65aDichotomy
     EstimatingSelectionConstructionStatement.{u, w, v} := by
   apply estimatingSelectionConstruction_of_faceDropOracles
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  obtain ⟨eps, rho, hrho, hthreshold, hdich⟩ :=
+  obtain ⟨eps, rho, kappa, c1, c2, hscale, hdich⟩ :=
     hdichotomy D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  refine ⟨eps, rho, hrho, hthreshold, ?_⟩
+  refine ⟨eps, rho, kappa, c1, c2, hscale, ?_⟩
   intro W hcondition
   apply selectionFaceDropOracle_of_gRegionReplacements
   intro Delta hred hcells hboundary

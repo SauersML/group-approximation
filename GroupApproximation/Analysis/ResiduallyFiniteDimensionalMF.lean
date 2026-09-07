@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.ResiduallyFiniteDimensional
 import GroupApproximation.Analysis.ShulmanFillNormingProductMF
 import GroupApproximation.Analysis.ShulmanFillNormingScalarMF
@@ -178,4 +179,4 @@ end
 
 end GroupApproximation
 
-#print axioms GroupApproximation.ResiduallyFiniteDimensionalMF.isMFAlgebra
+#audit_axioms GroupApproximation.ResiduallyFiniteDimensionalMF.isMFAlgebra

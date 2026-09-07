@@ -168,7 +168,26 @@ Blackadar--Kirchberg converse makes it NF.
 The bundled `TracialState` that Problem X(1) quantifies over is
 `FaithfulTracialState.toTracialState`, whose underlying function is `τ`'s by
 `FaithfulTracialState.coe_toTracialState` --- a definitional equality, so the
-two amenability statements are the same proposition. -/
+two amenability statements are the same proposition.
+
+**`ProblemX1Statement` is refuted at universe 1.**
+`NinetyNineProblems.ProblemX.not_problemX1Statement` proves
+`¬ ProblemX1Statement.{1}` closed, and `ProblemXWitness` adds a second,
+conditional refutation from an amenable non-quasidiagonal trace.  So this
+repository answers Problem X(1) negatively, and at `u = 1` the `hX` binder here
+can never be supplied.
+
+The binders are polymorphic (`.{u}`), so the refutation reaches them exactly at
+`u = 1` and leaves other universes formally open; this is not a blanket vacuity.
+
+**What this theorem is still good for.**  It is a faithful transcription of the
+remark STW print before Problem X, and it stays correct as that record: the
+implication is proved, and the header is right that neither statement is
+asserted here.  What it is not is a route to Problem IX(1) — `ProblemIX1Statement`
+is *not* refuted in this repository, nothing consumes
+`problemIX1Statement_of_problemX1Statement`, and a false antecedent transports
+nothing.  Proving `ProblemX1Statement.{1}` discharges no debt, because it is
+false. -/
 theorem isNFAlgebra_of_faithfulTracialState_of_problemX1Statement
     (connes : QuasidiagonalMF.NuclearAmenableTraceInput.{u})
     (bk : Manuscript.NonMF.PriorWork.BlackadarKirchbergNFConverseInput.{u})

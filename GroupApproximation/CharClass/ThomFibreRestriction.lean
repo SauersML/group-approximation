@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.BundleTotalOver
 import GroupApproximation.CharClass.RelativeFunctorial
 import GroupApproximation.CharClass.CohomologyBridge
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Restricting a bundle pair twice, without comparing to a direct restriction
@@ -98,9 +99,10 @@ theorem relPullback_totalInclOn_comp (p : Bundle X ι) (U : Set X) (V : Set ↥U
         ≫ relPullback (ZMod 2) (cmap (Bundle.totalInclOn (p.restrictTo U) V)) hV n :=
   relPullback_comp (ZMod 2) _ _ hV hU hVU n
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms relPullback_totalInclOn_comp
+#audit_axioms relPullback_totalInclOn_comp
 
 end
 

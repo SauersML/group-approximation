@@ -265,7 +265,11 @@ theorem unitBallUniformTwoComplete_designatedTraces {r : ℕ → ℝ}
     have hlt := hK k hk l hl
     rw [uniformTwoNormOn_designatedTraces hr, hgaugeSub] at hlt
     refine lt_of_le_of_lt ?_ hlt
-    exact q_le_uniformTwoNorm (G D) _ n
+    -- the coordinate difference is the coordinate of the difference, but the
+    -- sequence argument has to be given: it is not determined by the left-hand
+    -- side of `q_le_uniformTwoNorm`, which mentions it only under `lp`'s coercion.
+    exact q_le_uniformTwoNorm (G D)
+      ((realize (G D) hr (x k)).1 - (realize (G D) hr (x l)).1) n
   obtain ⟨y, hycoord, hyconv⟩ :=
     exists_boundedCStarSequence_uniformTwoLimit (G D) hr
       (fun k ↦ (realize (G D) hr (x k)).1) hu_norm hu_cauchy

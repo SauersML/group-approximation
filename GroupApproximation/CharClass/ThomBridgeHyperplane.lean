@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.RelativeSubspaceIso
 import GroupApproximation.CharClass.BundleGysinPieces
 import GroupApproximation.CharClass.BundleProjInclRange
 import GroupApproximation.CharClass.BundleTautPieces
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom bridge, step three: the hyperplane replaces the punctured space
@@ -122,11 +123,12 @@ theorem hyperplane_hsub [CompactSpace X] [T2Space X] (p : Bundle X ι) (k : ℕ)
     rw [hcomp]
     exact ha
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms bridgeHyperplane
+#audit_axioms bridgeHyperplane
 
-#print axioms hyperplane_hsub
+#audit_axioms hyperplane_hsub
 
 end
 
