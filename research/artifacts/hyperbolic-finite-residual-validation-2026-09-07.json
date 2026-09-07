@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-07",
+  "scope": "Finite-residual reductions for the hyperbolic residual-finiteness problem; no resolution claimed.",
+  "base_commit": "7b46916e4ec935e8cf99561fec0bf2de9fb65988",
+  "cairn_version": "2.13.1",
+  "checks": {
+    "cairn check --changed": {
+      "exit_code": 0,
+      "findings": []
+    },
+    "cairn preview": {
+      "exit_code": 0,
+      "added": [
+        "finite-hyperbolic-residual-iff-persistent-class",
+        "finite-hyperbolic-residual-iff-persistent-class-proof",
+        "finite-kernel-nonrf-has-central-prime-reduction",
+        "finite-kernel-nonrf-has-central-prime-reduction-proof"
+      ],
+      "status_changed": [],
+      "duplicate_warnings": [],
+      "frontier_added": [],
+      "frontier_removed": []
+    },
+    "git diff --check": {
+      "exit_code": 0
+    }
+  },
+  "compiled_statuses": {
+    "finite-normal-quotient-residual-formula": "ESTABLISHED",
+    "finite-kernel-nonrf-has-central-prime-reduction": "ESTABLISHED",
+    "finite-hyperbolic-residual-iff-persistent-class": "ESTABLISHED",
+    "persistent-degree-two-class-on-hyperbolic-group": "OPEN",
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "non-rf-hyperbolic-via-persistent-central-extension": "OPEN"
+  },
+  "persistent_class_remains_frontier_hole": true,
+  "mathematical_verification": "Complete written arguments reviewed manually; Cairn checks graph structure and declared dependencies, not mathematical truth.",
+  "lean_verification": {
+    "run": false,
+    "new_lean_modules": [],
+    "note": "The new reductions are written proofs, not new kernel-checked Lean theorems."
+  },
+  "proof_note_sha256": "df9cb3a8311d2825317386a59112b0c3590c1e7531d4bf14934aeb949a3b5c1d"
+}

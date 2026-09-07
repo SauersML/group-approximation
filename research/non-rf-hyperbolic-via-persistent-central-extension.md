@@ -6,9 +6,10 @@ title: A persistent finite cohomology class gives a hyperbolic non-residually-fi
 target: non-residually-finite-hyperbolic-group
 requires:
   - persistent-degree-two-class-on-hyperbolic-group
-  - finite-central-extension-rf-iff-virtually-splits
+  - finite-hyperbolic-residual-iff-persistent-class
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
+  - notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md
 ---
 
 Take `H` residually finite hyperbolic, `p` prime, and `0 ≠ α ∈ H^2(H; C_p)`
@@ -19,11 +20,18 @@ extension
 1 -> C_p -> E_α -> H -> 1.
 ```
 
-By `finite-central-extension-rf-iff-virtually-splits`, `E_α` is residually
-finite if and only if `α` dies on some finite-index subgroup, which
-persistence forbids.  So `E_α` is not residually finite.  And `E_α` is
-hyperbolic: it is a finite extension of a hyperbolic group, hence
-quasi-isometric to it.
+The direction (4) implies (3) of
+`finite-hyperbolic-residual-iff-persistent-class` gives the stronger
+conclusion `R(E_α)=C_p`: the virtual-splitting criterion makes the
+residual nontrivial, and residual finiteness of `H` bounds it by the
+prime central kernel. Thus `E_α` is not residually finite. It is
+hyperbolic because its finite-kernel map to `H` is a quasi-isometry.
+
+The reverse direction of that equivalence shows the exact scope of this
+route: every hyperbolic group with finite nontrivial residual gives a
+persistent prime class after passing to finite index and quotienting a
+finite central subgroup. The equivalence is established, while the
+existence input remains open.
 
 That is the whole route; its content is entirely in the input claim.
 
