@@ -246,8 +246,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/TransportCommutantEquality",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportCommutantEquality",
+          "module": "Manuscript/OneSidedMFRadical/TransportPrintedRoute",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.TransportPrintedRoute.manuscriptPrintedTransportHS",
           "covers": "the complete printed proposition"
         }
       ]
