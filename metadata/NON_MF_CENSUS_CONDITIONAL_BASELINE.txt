@@ -165,3 +165,21 @@ open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_ka
 open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_menalMoncasiReduction  -- sentence 7, over AGPMenalMoncasiReduction (Ara-Goodearl-Pardo Theorem 2.4, Step 2, with Menal-Moncasi's elementary reduction); a literature citation, not a reduction this repository is closing
 open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_stepOneGivesKerKappaLeRadical  -- sentence 10, over AGPStepOne (Ara-Goodearl-Pardo Theorem 2.4, Step 1); a literature citation, not a reduction this repository is closing
 open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_conclusion  -- the closing sentence of thm:mf-quotient-units's printed proof, which composes all four Ara-Goodearl-Pardo citations above
+#
+# thm-e's sentence-level carriers of thm:torsion-free/cor:relative-quotient/
+# cor:regular-nonmf-algebra's printed proofs
+# (Manuscript/NonMF/TorsionFreePrintedSentences.lean), one citation of each
+# already-registered literature Prop, one sentence at a time.
+conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremApplySaturation  -- sentence 2 of thm:torsion-free's printed proof, over HullPrintedInputs (Hull Theorem 7.1 with Osin Lemma 7.1); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_relativeQuotientCommonQuotient  -- sentence 2 of cor:relative-quotient's printed proof, over HullCommonQuotientPrinted (Hull Corollary 7.4); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraSimpleUniqueTraceStableRank  -- sentence 2 of cor:regular-nonmf-algebra's printed proof, over DGOTheorem235Printed (Dahmani-Guirardel-Osin Theorem 2.35) and GerasimovaOsinTheorem11Printed (Gerasimova-Osin Theorem 1.1); literature citations, not reductions this repository is closing
+#
+# `manuscriptSentence_theoremQuotientTrivial` takes "every homomorphism from Q
+# to an MF group is trivial" as an explicit inline premise rather than a named
+# Prop -- classify() reads this as a suspicious inlined statement, but the
+# census row that cites this declaration also cites
+# `manuscriptSentence_theoremHomsTrivial` (the immediately preceding printed
+# sentence), which proves exactly that premise unconditionally.  The
+# modularization is internal to this lane's proof, not an external citation;
+# accepted as such.
+inlined-statement GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial  -- premise "every homomorphism from Q to an MF group is trivial" is proved unconditionally by the sibling carrier manuscriptSentence_theoremHomsTrivial, cited in the same census row; internal proof modularization, not an external citation
