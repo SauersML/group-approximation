@@ -456,23 +456,36 @@
       "environment": "corollary",
       "title": "",
       "statement_sha256": "f006d747da7cd1a7d27babcdc5c6cfb0d9d1a5ebed32eb471702ec4849757ab3",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
         "thm:full-defect-ring"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptSimpleInfiniteRingRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
     },
     {
       "id": "cor:one-sided-ring-maximal",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "d13ba2bda69986da3a902eca27fe71a6531ce94bc94f6bddbbf4f1c8d3809a1d",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "statement_sha256": "33ccb99cc4171b3553f2a904b4ad423fa7da89dc5c1a56d861b4449b57428484",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
         "thm:full-defect-ring",
         "prop:max-infinite"
@@ -480,7 +493,32 @@
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptUnitGroupNotMFAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
     },
     {
       "id": "thm:mf-quotient-units",

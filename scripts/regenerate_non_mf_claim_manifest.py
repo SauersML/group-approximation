@@ -85,6 +85,16 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "FullDefectRingEJZUnconditional."
         "manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics"),
+    "cor:simple-infinite-ring": (
+        "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "FullDefectRingEJZUnconditional."
+        "manuscriptSimpleInfiniteRingRankTwoAllCharacteristics"),
+    "cor:one-sided-ring-maximal": (
+        "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "FullDefectRingEJZUnconditional."
+        "manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics"),
     "thm:amenable-trace": (
         "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
         "GroupApproximation.AmenableTraceTheorem."
@@ -118,9 +128,9 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # (commit 343a1c4a4), and `FullDefectRingEJZUnconditional.lean` spends it,
     # so the corollaries below no longer carry any external input either --
     # both proofs just say "Theorem thm:full-defect-ring applies", which is
-    # now unconditional.
-    "cor:simple-infinite-ring": (),
-    "cor:one-sided-ring-maximal": (),
+    # now unconditional.  `cor:simple-infinite-ring` and
+    # `cor:one-sided-ring-maximal` moved to EXACT_TARGETS the same day, once
+    # badge batch 3 gave both hypothesis-free n>=2 carriers.
     # `thm:amenable-trace` and `prop:clifford-locally-rf` moved to
     # EXACT_TARGETS 2026-09-07 (badges landed:
     # AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace,
@@ -179,6 +189,15 @@ COLLECTIVE_CLAIMS: set[str] = {
     # manuscriptLinearCollapseConverse); neither alone is the whole
     # proposition.
     "prop:linear-collapse",
+    # `cor:simple-infinite-ring` prints one badge per sentence
+    # (manuscriptSimpleInfiniteRingRankTwoAllCharacteristics /
+    # manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics).
+    "cor:simple-infinite-ring",
+    # `cor:one-sided-ring-maximal` prints four badges: the n>=4 isometry
+    # clause, the n>=2 isometry clause, the n>=2 reduced-C*-algebra clause,
+    # and the unit-group-not-MF clause; no single one is the whole
+    # corollary.
+    "cor:one-sided-ring-maximal",
 }
 
 
