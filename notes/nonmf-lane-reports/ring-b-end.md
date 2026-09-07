@@ -20,6 +20,7 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `38e6a49c7aaf05385ce1c668813a655f8a22faf1` | 4273 | `FullDefectRingUnconditional.lean` (group-level non-MF) |
 | `a66cb4c87bb853d5e84e865c3530c0fd4ac9d0f6` | — | deletion of the duplicate `Leavitt/OneSidedCompressorStrict.lean` |
 | `9c4fcae31bf2c2b76111ac3de71bb089b2d2ac48` | 4470 | `UnitGroupHeadline.lean` |
+| `c7d010bf2409c0be9671ce23eaf86954dab2ac2b` | 4470 | `UnitGroupHeadline.lean`, identification inside the printed theorem |
 
 ## The printed clauses, and what each still assumes
 
@@ -132,15 +133,26 @@ The compression calculation (`FullDefectAtFixedRing`, discharged by
 
 `UnitGroupHeadline.lean` carries `thm:headline` with the headline group taken
 to be `R^× = L_{𝔽₂}(1,2)^×`.  `PrintedUnitGroupHeadline` /
-`manuscriptPrintedUnitGroupHeadline` (`#audit_closed_axioms`).
+`manuscriptUnitGroupHeadline` (`#audit_closed_axioms`).  The printed theorem
+opens with the identification, so `Nonempty (R^× ≃* ElementaryBase 4)` is the
+first conjunct, ahead of the nine clauses transported from the rank-four
+headline.
 
-**The identification needs no citation.**  `BinaryLeavitt.elementaryGroup_eq_top`
-proves `EL_n = GL_n` over every field in every rank `n ≥ 2`, hypothesis-free,
-and `LeavittFamily.prefixUnitsEquiv` at `leftCombCode 3` gives `GL₄(R) ≅ R^×`.
-So the Ara--Goodearl--Pardo `GE`-ring theorem and the vanishing of
-`K₁(L_{𝔽₂}(1,2))` are the literature route to something already proved here; a
-citation records priority, not a dependency.  No `PrintedGLEqualsELBinaryLeavitt`
-was written, and none should be.
+**The identification is proved, not cited.**
+`BinaryLeavitt.elementaryGroup_eq_top` proves `EL_n = GL_n` over every field in
+every rank `n ≥ 2`, hypothesis-free, and `LeavittFamily.prefixUnitsEquiv` at
+`leftCombCode 3` gives `GL₄(R) ≅ R^×`.  The manuscript attributes the statement
+to Khanh--Thanh, Propositions 4.2 and Corollary 4.4; the Ara--Goodearl--Pardo
+`GE`-ring theorem is a second route to it.  Both are **attribution, not
+dependency**: no proposition in the module takes either as a hypothesis.  No
+literature `Prop` was written, and none should be — a conditional lemma sitting
+next to an unconditional theorem of the same content is what later gets
+mistaken for the real dependency.
+
+The arXiv number for the Khanh--Thanh citation has **not** been checked against
+the paper by this lane; it is recorded on the lead's word.  This repository has
+shipped a fabricated citation before, so it should be verified before the tex
+goes out.
 
 ### Tracing an axiom closure under `ccprobe`
 
