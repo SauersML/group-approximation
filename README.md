@@ -8,6 +8,15 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 [`non_mf_groups_exist.pdf`](non_mf_groups_exist.pdf) at the repository root is the distribution PDF, rebuilt from the root TeX source by the draft PDF workflow. The obsolete duplicate under `output/pdf/` has been removed. A draft PDF build does not certify the manuscript's Lean coverage.
 
+## Research notes
+
+[A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
+gives an elementary obstruction to controlling a nontrivial word by relation
+errors on individual vectors, with linked research claims and proofs. It also
+records the unresolved global operator-norm step in the independent search for
+a property-(T)-free non-MF proof. This note supplies no new existence theorem
+or Lean verification claim.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.
