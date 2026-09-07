@@ -60,12 +60,30 @@ namespace RelHyp
 
 /-- **`FournierFacioQuotientStatement`, discharged.**
 
-The literature debt of the Fournier-Facio quotient sentence is exactly the four
-`Prop`s in the binder list; everything the paragraph asserts on the strength of
-them is proved.  Non-elementarity of `H₀` -- which Osin's theorem needs and the
+This reduction carries the Fournier-Facio quotient sentence on the four `Prop`s
+in the binder list, and everything the paragraph asserts on the strength of them
+is proved.  It formerly said those four `Prop`s **are** the sentence's literature
+debt.  That was wrong when written: one of them is refuted, so they are not a
+debt anyone can pay.  Non-elementarity of `H₀` -- which Osin's theorem needs and the
 printed sentence does not state -- is derived here from infinitude and property
 `(T)`, through the repository's own theorem that an amenable Kazhdan group is
-finite. -/
+finite.
+
+**VACUOUS: `OsinTheorem24` is refuted.**  `RelHypOsinTheorem24Refuted.not_osinTheorem24`
+proves `¬ OsinTheorem24`, so the `hOsin` binder can never be supplied and this
+reduction can never fire.  It is retained because it records what Osin's
+Theorem 2.4 *would* give at that statement, and because deleting a reduction
+whose hypothesis is refuted destroys the record of which sentence was tried.
+It is **not** a debt: nothing is discharged by proving `OsinTheorem24`, because
+it is false.
+
+Nothing on the manuscript path depends on this.  Theorem C reaches
+`FournierFacioQuotientStatement` through
+`RelHypProp23FromHullOsin24.fournierFacioQuotientStatement_of_hull_osin24`,
+whose binders are the three Hull leaves only; the `osin24` in that name is the
+technique, not this `Prop`.  The unrefuted route at the sharp boundary is
+`RelHypOsin24CayleyEndpoint.fournierFacioQuotientStatement_of_osin_cayley`,
+over `OsinTheorem24Cayley`. -/
 theorem fournierFacioQuotientStatement_of_osin
     (hOsin : OsinTheorem24) (hDesign : OsinRelatorDesign)
     (hRelHyp : FreeProductRelativelyHyperbolicStatement)
