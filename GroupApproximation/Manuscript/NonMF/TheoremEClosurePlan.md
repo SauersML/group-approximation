@@ -419,6 +419,21 @@ strengthening changes no relator small-cancellation hypothesis. The final
 selected-cell descent must still construct one region of degree greater than
 `1 - 13 * mu`; the historical conditional single-region consumer is retained.
 
+A further source-case audit is tracked in
+[#207](https://github.com/SauersML/group-approximation/issues/207).
+`Contiguity.target_ne_source` excludes every self-contiguity before selection.
+Consequently `SelectionSelfIncidence.selfIncidenceSeparated_of_target_ne_source`
+and `PhiRealization.interiorEdge_source_ne_target` are valid restricted-type
+results with an impossible self-incidence antecedent; they do not construct
+Osin's loop exclusion. The newer full-witness candidate still uses the same
+restricted `Contiguity` type. Its checked optimization and transport theorems
+remain valid, but comparison with every geometric region in the source has
+not been proved. Separate geometric candidates from the distinct-cell O52
+certificate, or construct a justified restriction handling all excluded
+self-contiguities, before using maximality in that branch. The source's loop
+argument belongs to the induction in Lemma 9.7(a), not to the candidate
+definition. Preserve the restricted interfaces and their proofs during repair.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
