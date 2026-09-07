@@ -183,3 +183,40 @@ general amenable quotient.  The lead confirmed on 2026-09-07 that this carrier s
 as-is for this lane's amenability clause (`W`'s trace is amenable), since `W/K ≅ ℤ`
 concretely — no action needed here unless the tex is changed to ask for the amenable-trace
 clause at a base group other than `ℤ`.
+
+## 5. The concrete Clifford construction sentences (`Sofic/CliffordConstructionSentences.lean`)
+
+Second reopened task, directed by the lead: three census pockets whose printed sentences
+describe the *concrete* Clifford lamp construction (generators/relations, the `𝔽₂`-cocycle
+argument, the order computation, the automorphism action) while the repository's route to the
+same conclusions is the abstract `MarkedCompressionGroup`/`Ambient` model.  Checked
+`Sofic/CliffordLampGroup.lean` (and the modules built on it) before writing anything: it already
+realizes the printed construction essentially verbatim.  Landed `bf343f3b92aae39b729a68d37e9c8ab419d98bb1`, PROBE GREEN, 2823 jobs.
+
+| # | pocket | printed sentence (abbreviated) | carrier | status |
+| --- | --- | --- | --- | --- |
+| 1 | preamble | "Let `Γ` be a countable group with property (T)... choose `a∈Γ∖α(Γ)`." | --- | `definition` (same `Γ,α,a` used throughout) |
+| 2 | preamble | "Put `T_α=lim(...)`, `V=T_α⋊⟨t⟩`." | --- | `definition` (`T_α`=`Telescope α hα`, `V`=`Vertical α hα`) |
+| 3 | preamble | "where `tgt^{-1}=α(g)`... `T_α=⋃_{n≥0}t^{-n}Γt^n`." | `manuscriptSentence_hnnExtension` | **unconditional**: `vertical_compress` + `exists_level_repr` |
+| 4 | preamble | "Put `X=V/Γ`, the left-coset space." | --- | `definition` (`X`=`Cosets α hα`) |
+| 5 | preamble | "The Clifford lamp group `Cl(X)` is the group with generators `ε`,`c_x` and relations..." | `manuscriptSentence_cliffordLampPresentation` | **unconditional**: `sign_sq`,`lamp_sq`,`sign_commute_lamp`,`commutator_lamp_lamp` (`CliffordLamp X := PresentedGroup (relators X)` realizes exactly this presentation) |
+| 6 | preamble | "To see that `ε≠1`, fix a total order... let `E` be the `𝔽₂`-vector space... `B(f,g)=Σ_{x>y}f(x)g(y)`." | --- | `definition` (`E`=`X →₀ ZMod 2`, `B`=`crossing`) |
+| 7 | preamble | "Since `B` is bilinear,... is a group law on `𝔽₂×E`,... central involution... `(0,δ_x)` involution... exactly one of `B(δ_x,δ_y)`,`B(δ_y,δ_x)`=1... commutator=`(1,0)`." | `manuscriptSentence_signedModelGroupLaw` | **unconditional**: `mul_def`, `modelSign_commute`+`modelSign_sq`, `modelLamp_sq`, `crossing_single_add_swap`, `modelLamp_commutator` |
+| 8 | preamble | "So `ε↦(1,0)`, `c_x↦(0,δ_x)` defines a homomorphism `Cl(X)→𝔽₂×E`." | `manuscriptSentence_toModelHomomorphism` | **unconditional**: `toModel`, `toModel_sign`, `toModel_lamp` |
+| 9 | preamble | "The relations let us write every element of `Cl(X)` as `ε^a c_{x1}...c_{xr}`..." | --- | **gap** (see below) |
+| 10 | preamble | "...and this word maps to `(a,δ_{x1}+...+δ_{xr})`, so the expression is unique and the homomorphism is an isomorphism." | --- | **gap**: `toModel` is proved onto (`modelGenerator_kills`) but never proved injective; no normal-form theorem for `PresentedGroup (relators X)` exists in the repository. Building it would need an explicit inverse (`SignedModel X → CliffordLamp X`, `(a,f) ↦ sign^a·∏_{x∈f.support} lamp x` in order, well-defined and two-sided) --- a genuine independent development, not a one-line wrapper, so not built here. |
+| 11 | preamble | "In particular,... order `2^{|Y|+1}`, so `Cl(X)` is countable and locally finite." | `manuscriptSentence_cliffordLampCountableLocallyFinite` (countable+locally-finite half only) | **split**: countability/local finiteness unconditional, via `Countable (CliffordLamp X)` and `isLocallyFiniteGroup_cliffordLamp` (`Sofic/CentralInvolutionFinite.lean`'s unrelated central-involution route). The exact order `2^{|Y|+1}` is a **gap**, a direct consequence of the same missing injectivity as row 10 (finite `Y` gives a bijection with `𝔽₂ × (Y →₀ ZMod 2)`, cardinality `2·2^{|Y|}`). |
+| 12 | preamble | "The relations are invariant under permutations of `X`, so every permutation... induces an automorphism... fixes `ε`." | `manuscriptSentence_permutationAutomorphism` | **unconditional**: `permHom`, `permHom_apply_sign`, `permHom_apply_lamp` |
+| 13 | preamble | "In this way `V` acts on `Cl(X)` through its action on `X`, and we put `W=Cl(X)⋊V`." | `manuscriptSentence_verticalActsOnLamp` | **unconditional**: `lampAction`, `lampAction_apply_lamp`, `lampAction_apply_sign`; `W` is `MarkedCompression.Ambient`, definitionally |
+| 14 | `prop:clifford-self-embedding` | "Then `tct^{-1}` is the lamp at `tΓ` and `a(tct^{-1})a^{-1}` is the lamp at `atΓ`." | `manuscriptSentence_conjugatedLampsAtCosets` | **unconditional**: `conj_inl_lamp` (applied twice); `c`=`cAmbient`=the lamp at `rootCoset` |
+| 15 | `prop:clifford-self-embedding` | "These cosets are distinct, because `tΓ=atΓ` would mean `a∈tΓt^{-1}=α(Γ)`." | `manuscriptSentence_movedCosetsDistinct` | **unconditional**: `moved_cosets_ne`, whose own proof runs exactly this contradiction |
+| 16 | `prop:clifford-locally-rf` | "so that `α(v,A)=(2v,A)`." | `manuscriptSentence_alphaDoublesTranslation` | **unconditional**, but in a *different* (mathematically equivalent) concrete model: `Monsters/AffineSL3Doubling.lean`'s `Gamma = (Fin 3 → ℤ) ⋊ SL(3,ℤ)`, independent of `ExplicitLinearModel`/`gammaBar`'s six-generator presentation but already used by the *same* proof for the index-eight computation (`LiteralAffineRangeIndexEight.lean`'s `latticeDouble := AffineSL3Doubling.doubleMul`).  `alpha_left`/`alpha_right` are literally "`α(v,A)=(2v,A)`" (the module's own docstring quotes this). |
+
+**Gaps reported, exactly two, both the same root cause**: rows 10 and (half of) 11.  What would be
+needed: a normal-form/injectivity theorem for `CliffordLamp.toModel : CliffordLamp X →* SignedModel X`
+(`Sofic/CliffordLampGroup.lean`), i.e. `Function.Injective (toModel X)` given `[LinearOrder X]` ---
+equivalently, an explicit inverse built from the finite-support decomposition of `f : X →₀ ZMod 2`
+by descending order.  This is a self-contained combinatorial argument over the existing model (no
+second construction of `Cl(X)` needed, contrary to my first guess), but is not a small lemma: it
+is a genuine induction/rewriting proof, on the order of the `FreeRootPlaneMass`-style
+developments elsewhere in this repository, not attempted in this bounded task.

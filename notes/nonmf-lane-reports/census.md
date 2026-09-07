@@ -577,3 +577,104 @@ round). Still open: `prop:locally-rf-by-z-trace`'s 14-sentence combinatorial
 preamble (mathematics not in the tree in that literal form) and
 `thm:compression-criterion`'s 9-sentence dense analytic proof (still needs a
 lane table), plus the smaller proof-detail pockets listed in Round 6.
+
+## Round 9: dispatch of the 19-group remainder, self-closable groups
+
+Landed: `637443f39` (route-different rows corrected), `b72a226d8` (groups 5,
+11, 17), `8a688f642` (groups 7, 8, 12, 13, 16).
+
+The lead dispatched the 19 groups from Round 8's grouped report: some to
+reopened lanes (thm-d, printed-route, ring-b-alg, ring-b-end), and eight
+(5, 7, 8, 11, 12, 13, 16, 17) with verified pointers to close directly.
+
+**Route-difference correction**: per exact pointers, cited
+`Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` and
+`ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal` as the tree's
+replacement for `thm:factorization-nonmf-trace`'s polar-decomposition step on
+every clause mentioning `V_n`, framed as a route difference rather than a
+gap. Three of the four affected rows upgraded from partial to formalized;
+the fourth (sentence 2's near-isometry clause) stays partial for the
+star-free substitution the lead's grading actually named.
+
+**Group 17**: attribution, no decls, per instruction.
+
+**Group 11**: the functoriality sentence and its lead-in both cite
+`manuscriptPrintedDefectFunctorial` (proof matches the printed justification
+clause for clause); the "H isomorphic to GL_n(R)=EL_n(R) for n>=2" sentence
+cites `BinaryLeavitt.elementaryGroup_eq_top` for that one clause, partial
+since the compound sentence's other clauses (H is the automorphism group,
+simple, hom-to-MF trivial) aren't independently verified at general n here.
+
+**Group 5**: the congruence-subgroup case split's Lean docstrings confirm
+the correspondence outright -- `congruenceSubgroup_bot` is commented "Second
+endpoint of the manuscript's case split" and
+`exists_central_scalar_of_mem_center` "This is the combination of the two
+printed steps." All four sentences formalized or definitional.
+
+**Groups 7, 8, 12, 13, 16**: see the Round 9 landing message to the lead for
+full detail. Group 8 needed a fresh conditional-baseline register line
+(`carrier-data GroupApproximation.MFQuotientUnits.AGPStepOne`, a literature
+citation nothing in the corpus proves) after a live verify-unconditional
+check confirmed the detector name. Group 12's declarations
+(`PrintedDefectParagraph.lean`, `SimpleInDefect.lean`) quote the printed
+sentences verbatim in their own docstrings -- the strongest kind of match
+available.
+
+Verify-decls 0 missing of 599 named throughout. Verify-unconditional 0 new
+findings at every checkpoint. Summary after this round: formalized 296,
+unassigned 40, definition 52, structural 32, provenance 19, partial 21,
+attribution 17, total 477.
+
+All groups the lead assigned me directly are now closed. Remaining
+unassigned sentences belong to groups dispatched to other lanes (thm-d,
+printed-route, ring-b-alg already delivered, ring-b-end sizing).
+
+## Round 10: thm-d's and printed-route's tables, 9 sentences left
+
+Landed: `a6eccd150` (both tables assigned, 31 census keys total).
+
+thm-d's `CliffordConstructionSentences.lean` (`bf343f3b9`) covers
+`prop:locally-rf-by-z-trace`'s combinatorial preamble, `prop:clifford-self-
+embedding`'s lamp-at-coset rows, and `prop:clifford-locally-rf`'s alpha
+formula -- the same "mathematics not in the tree in this form" gap flagged
+back in Round 6 turned out to have a direct wrapper for all but two
+sentences: `Sofic/CliffordLampGroup.lean` realizes the printed construction
+essentially verbatim. Matched the lane's 16-row table onto 17 census keys
+(one merge: `dc43ec6b23ed`+`3fb2eb77a578` share `manuscriptSentence_
+signedModelGroupLaw`). 15 keys assigned (4 definition, 10 formalized, 1
+partial for the order-`2^{|Y|+1}` sentence, split between an unconditional
+countable/locally-finite half via a different route and a genuine gap for
+the exact order). 2 keys stay unassigned exactly where the lane's own report
+says the gap is: injectivity of `CliffordLamp.toModel`, a self-contained but
+nontrivial normal-form theorem not attempted in that bounded task.
+
+printed-route's `CompressionCriterionSentences.lean` (`62a88a3d4`,
+`74b6532cd`) closed `thm:compression-criterion`'s dense 7-sentence intro
+outline (the other gap flagged in Round 6), the Kazhdan-transport setup, and
+`cor:defect-hs`'s proof, all keyed directly to census ids by the lane. Two
+Introduction roadmap sentences needed content-matching against a list of
+candidate carriers rather than a 1:1 mapping: the general-R compressor
+mechanism cites `FullDefectRingSentences.{compressorMatrix,intertwine,
+defectIsEverything}` (the same mechanism worked out concretely for `C`), and
+the ring `C` definition/normally-generating-map sentence cites
+`FullDefectRingSentences.{ringRelations,imageOfB}` and
+`UniversalGroupB.exists_hom_normallyGenerating`.
+
+Verify-decls 0 missing of 629 named. Verify-unconditional 0 new findings.
+Summary after this round: formalized 321, unassigned 9, definition 56,
+structural 33, provenance 19, partial 22, attribution 17, total 477.
+
+**The 9 remaining sentences, in full**: `thm:headline`'s two "K_1(R) is MF /
+unit-group quotient formula" sentences and "The binary example"'s K_1(R)
+definition -- all the one recorded K_1 gap (row `6d3ca647302e`'s note), no
+Lean counterpart for algebraic K-theory of a ring in this sense.
+`prop:locally-rf-by-z-trace`'s two `toModel`-injectivity sentences -- thm-d's
+flagged genuine gap. `prop:max-infinite`'s four-sentence converse remark (a
+concrete residually-finite MF group satisfying the hypothesis, illustrating
+it doesn't force non-MF) -- dispatched to ring-b-end, sizing first.
+
+This is very likely close to the floor for this manuscript: every remaining
+row is either the single acknowledged K_1 gap repeated across its mentions,
+a lane-flagged genuine mathematical gap with a clear description of what
+would be needed, or a converse/illustrative remark not yet sized by its
+assigned lane.

@@ -206,3 +206,4 @@ inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCo
 # inclusions (Theorem B at rank d, and the countable-abelian-implies-MF
 # step) are unconditional.
 open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral  -- cor:leavitt-mf-quotient's general-d clause over PrintedKhanhThanhCommutatorInElementary (Khanh-Thanh's commutator-in-elementary inclusion); a literature citation, not a reduction this repository is closing
+carrier-data GroupApproximation.MFQuotientUnits.AGPStepOne  -- Ara-Goodearl-Pardo Theorem 2.4 Step 1, the printed last paragraph (diag(v,1,...,1) in EL_n(R), the idempotent decomposition and ring isomorphism theta); a literature citation nothing in the corpus produces, not a reduction this repository is closing

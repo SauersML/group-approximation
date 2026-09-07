@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 281 |
-| `unassigned` | 61 |
-| `definition` | 51 |
-| `structural` | 32 |
+| `formalized` | 321 |
+| `definition` | 56 |
+| `structural` | 33 |
+| `partial` | 22 |
 | `provenance` | 19 |
-| `partial` | 17 |
-| `attribution` | 16 |
+| `attribution` | 17 |
+| `unassigned` | 9 |
 | **total** | **477** |
 
-Completely formalized or definitional: **332/477** (69.6%).
+Completely formalized or definitional: **377/477** (79.0%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,30 +23,10 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`unassigned`**, line 148 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-* **`unassigned`**, line 216 --- since compressors, centralizing elements, and commutators of $L$ map to compressors, centralizing elements, and commutators of $f(L)$, and conjugates map to conjugates.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 234 --- Asymptotic multiplicativity in operator norm makes the conjugation maps $\operatorname{Ad}(V_n(g))\colon x\mapsto V_n(g)xV_n(g)^*$ an asymptotically multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized Hilbert--Schmidt inner product.
-* **`unassigned`**, line 234 --- Here $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with the norm on the left taken in the operator algebra of this Hilbert space.
-* **`unassigned`**, line 234 --- The classes of these maps form a homomorphism of $G$ into the unitary group of the norm matrix corona with coordinate sizes $d_n^2$.
-* **`unassigned`**, line 234 --- Let $U$ be the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the image of the Kazhdan projection of $L$ in that corona.
-* **`unassigned`**, line 234 --- Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
-* **`unassigned`**, line 234 --- A corona homomorphism nontrivial on $K$ compresses to a corner where the Kazhdan projection of $K$ vanishes.
-* **`unassigned`**, line 234 --- On that corner, a group-algebra element within $\tfrac14$ of the Kazhdan projection has operator norm below $\tfrac14$, while Hilbert--Schmidt triviality sends its normalized traces to the sum of its coefficients, which exceeds $\tfrac34$ (Theorem~\ref{thm:normal-kazhdan}).\footnote{A Hilbert--Schmidt bound on the multiplicative defect does not give an operator norm bound on the conjugation maps, so this argument does not apply to sofic or hyperlinear approximations.}
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 261 --- A pair $s,t\in R$ with $ts=1$ gives a compressor in the same way: an explicit element $u\in\EL_4(R)$ conjugates $\EL_3(R)$ into itself by $e_{ij}(a)\mapsto e_{ij}(sat)$, and if $1-st$ generates $R$ as a two-sided ideal, then one commutator $[ucu^{-1},\ell]$ normally generates all of $\EL_4(R)$.
-* **`unassigned`**, line 261 --- This happens once, in the ring $\mathcal C$ with generators $s_0,s_1,t_0,t_1$ and relations $t_is_j=\delta_{ij}$, and the group $B=\EL_4(\mathcal C)$ then maps to every $\EL_n(R)$ below with normally generating image.
+* **`partial`**, line 148 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
+  * The unit group of the binary Leavitt algebra... GL_n(R)=EL_n(R) for every n>=2 (R=L_F2(1,2)): the GL_n=EL_n clause is proved for every n>=2, hypothesis-free (BinaryLeavitt.elementaryGroup_eq_top, via LeavittFamily.elementaryGroup_eq_top_of_rankTwo transporting the n=2 case). The H is simple / every hom to MF group trivial clauses and the H=Aut(R_R)=~GL_n(R) identification for general n are not independently verified here (UnitGroupHeadline.lean carries them for the specific n=4 instance used later in The binary example section, but this Introduction sentence asserts them for general n as a foreshadowing summary). New row (2026-09-07).
 * **`unassigned`**, line 325 --- For a countable purely infinite simple ring $R$ and $n\ge1$, Theorem~\ref{thm:mf-quotient-units} identifies the intersection of the kernels of all homomorphisms from $\GL_n(R)$ to MF groups with the commutator subgroup, and the quotient with $K_1(R)$, which is MF\@.
 * **`unassigned`**, line 325 --- For the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
-* **`unassigned`**, line 340 --- The trace answers the question of Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every amenable trace is quasidiagonal. Tikuisis, White, and Winter proved that faithful traces on separable nuclear $C^*$-algebras satisfying the universal coefficient theorem are quasidiagonal~\cite{TWW}; here $C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 431 --- For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with $uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$ satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two spaces have the same finite dimension, so the inclusion is an equality; if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$, and $\rho$ is trivial on $\mathfrak D_G(L)$.
-* **`unassigned`**, line 431 --- An asymptotic representation has no exact commutant to count.
-* **`unassigned`**, line 431 --- Property~\textup{(T)} supplies a Kazhdan projection in its place, and stable finiteness of the corona replaces the dimension count.
-* **`unassigned`**, line 631 --- Since $c$ commutes with $L$, $(V_n(c))\in\mathcal C_2$, so $(V_n(u)V_n(c)V_n(u)^*)\in\mathcal C_2$ by Theorem~\ref{thm:transport}, and then $(V_n(ucu^{-1}))\in\mathcal C_2$ because $\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.
-* **`unassigned`**, line 631 --- So $\hsnorm{V_n(\ell)V_n(ucu^{-1})-V_n(ucu^{-1})V_n(\ell)}\to0$, and by asymptotic multiplicativity $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.
-* **`unassigned`**, line 631 --- The elements with this property form a normal subgroup of $G$, so it contains $\mathfrak D_G(L)$.
-* **`unassigned`**, line 644 --- Restricting a corona homomorphism $\rho$ to a corner requires a correction: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that commute only asymptotically with unitary lifts $U_n(g)$ of $\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the matrix corners.
 * **`partial`**, line 670 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
   * Same printed proof, sentence 2: q!=0 gives infinitely many nonzero q_n, retained as the corner coordinates -- proved. Partial per the lane's own report: "r_n=rank(q_n) is not claimed by either statement -- here r_n is the number of retained corner coordinates and only 0<r_n is proved", so the sentence's own notation r_n=rank(q_n) is not literally what the carrier establishes.
 * **`unassigned`**, line 818 --- A group can satisfy the hypothesis of Proposition~\ref{prop:max-infinite} and be MF\@.
@@ -57,8 +37,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * Same printed proof: a word a of length |a| has ||a(U)-1||<=|a|D(U) (wordLengthBound), and the commutator estimate ||[A,B]-1||<=2||A-1||||B-1|| (commutatorEstimate). Partial per the lane's own docstring: wordLengthBound gives a constant from the free-group induction, not literally the length of a particular spelling, though it is all the printed argument uses.
 * **`partial`**, line 901 --- The set of $m$-marked groups satisfying $r_1=\cdots=r_s=1$ is open and closed in the space of marked groups, and every group in it has the property; so the property is open.
   * The consequence paragraph: every countable m-marked group satisfying r_1=...=r_s=1 has the property. Partial per the lane's own docstring: only this middle clause is carried; "open and closed in the space of marked groups" is not claimed by any Lean statement, since no space of marked groups is formalized in this development.
-* **`unassigned`**, line 901 --- For the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many words in two unitary matrices, uniformly over the matrix size, while the left regular representation solves the same equations exactly with $U,V\ne1$.
-* **`unassigned`**, line 901 --- Applied to the group $B$ of Theorem~\ref{thm:full-defect-ring}, the same construction gives one finitely presented group with the property that maps into every $\EL_n(R)$ of that theorem with normally generating image.
 * **`partial`**, line 1049 --- Elementary signed permutation matrices conjugate this element to every off-diagonal position, up to a sign, so $e_{ij}(1)\in N$ whenever $i\ne j$.
   * Row 19, per the lead: conclusion carried (FullIdempotent.elementaryGroup_normal_eq_top_of_full), route not -- that lemma uses exists_two_further_indices and Steinberg conjugation; ElementaryWeyl.weyl exists but the full-defect proof does not spend it. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
 * **`partial`**, line 1056 --- By Theorem~\ref{thm:compression-criterion} with $K=G$, every homomorphism from $G$ to an MF group is trivial. The element $\sigma=e_{12}(1)e_{21}(-1)e_{12}(1)$ of $B$ has order four, and $\sigma e_{13}(-r)\sigma^{-1}=e_{23}(r)$ for $r\in\mathcal C$, so
@@ -69,12 +47,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * Rows 27+28 merged by the census sentence-splitter. Both partial per the lead. Row 27: the corestriction to the subring S is not carried in Lean -- the formal map goes into R itself and S is never named; every later step uses only the S_i,T_j built from v_i,w_i, so the rest goes through at R. Row 28: the Lean target is EL4(R), not EL4(S) (route difference, not a gap), and needs [Countable R] -- per the lead, this is NOT a printed-proof gap, since thm:full-defect-ring's own header already says countable R; the countability the subring step spends is that same top-level hypothesis, not an extra assumption. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
 * **`partial`**, line 1100 --- \emph{All ranks.} For $n\ge3$, signed permutation matrices conjugate $e_{12}(r)$ to $e_{ij}(\pm r)$ for all $i\ne j$, so the copy of $\EL_2(R)$ on coordinates $1,2$ normally generates $\EL_n(R)$.
   * Row 40, per the lead: conclusion carried inside FullDefectRankTwo.hom_eq_one_of_rankFour; route not. Steinberg conjugation replaces the printed signed-permutation-matrices argument, as in row 19. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
-* **`unassigned`**, line 1119 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
-* **`unassigned`**, line 1127 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
-* **`unassigned`**, line 1196 --- Let $N$ be a normal subgroup of $H$.
-* **`unassigned`**, line 1203 --- where $\EL_4(R,I)$ is the normal closure in $\EL_4(R)$ of the elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_4(R,I)$ is the preimage of the center of $\GL_4(R/I)$.
-* **`unassigned`**, line 1203 --- Since $R$ is simple, either $I=R$, and then $N\ge\EL_4(R)=H$, or $I=0$, and then every $g\in N$ is central in $\GL_4(R)$.
-* **`unassigned`**, line 1203 --- In the second case, commuting with each $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all $a\in R$.
 * **`partial`**, line 1220 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
   * The printed sentence claims purely-infinite-simple for L_k(1,d) generally (every countable field k, every d); the cited carrier proves only the one instance in scope here, R=L_F2(1,2) (k=F_2, d=2). The general family is not covered. New row (2026-09-07).
 * **`unassigned`**, line 1220 --- Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along $A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$ for the canonical map.
@@ -82,60 +54,43 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * First conjunct (N_n = [GL_n(R),GL_n(R)]) and the existence of some countable abelian MF quotient are proved, conditional on the four named Ara-Goodearl-Pardo Props (AGPMatrixReduction, AGPUnitK1, AGPMenalMoncasiReduction, AGPStepOne) and on thm:full-defect-ring's own rank-two form (FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo), which is itself unconditionally closed. Partial, not formalized: the printed identification of the quotient with K_1(R) specifically is not carried -- only "some countable abelian group" with an isomorphism onto it (the module's own docstring says so explicitly: naming it K_1(R) needs the colimit lim GL_n/EL_n and Morita invariance, neither built).
 * **`partial`**, line 1238 --- The ring $M_n(R)$ is again countable, purely infinite, and simple~\cite[Corollary~1.7]{AGP}, and $K_1(M_n(R))\cong K_1(R)$ by Morita invariance, so it suffices to treat $n=1$.
   * thm:mf-quotient-units's printed proof (ring-b-alg lane), sentence 1, conditional on AGPMatrixReduction (AGP Corollary 1.7). Partial by the lane's own docstring: the Morita-invariance half (K_1(M_n(R))~=K_1(R)) is not carried, since the conclusion never names K_1(R) on the nose.
-* **`unassigned`**, line 1287 --- By the definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for some $n\ge2$.
-* **`unassigned`**, line 1287 --- Following the proof of~\cite[Theorem~2.4]{AGP} again, choose an idempotent $f<e$ equivalent to $e$ and orthogonal idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put $r_1=1-e+f$ and $P=r_1+\dots+r_n$.
-* **`unassigned`**, line 1287 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
+* **`partial`**, line 1287 --- By the definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for some $n\ge2$.
+  * By the definition of K_1, diag(v,1,...,1) in EL_n(R) for some n>=2. This is background context for AGPStepOne, the module docstring says outright: This is the printed last paragraph: diag(v,1,...,1) in EL_n(R) for some n>=2, and the idempotent decomposition and ring isomorphism theta that carry it back to v=1-P+theta(diag(v,...,1)). AGPStepOne is a literature-citation input (Ara-Goodearl-Pardo Thm 2.4 Step 1), not internally proven -- the Lean development takes it as a hypothesis of printedMFQuotientUnits_of_agp, mirroring the same weakest-form-needed pattern as the Khanh-Thanh citation. New row (2026-09-07).
+* **`partial`**, line 1287 --- Following the proof of~\cite[Theorem~2.4]{AGP} again, choose an idempotent $f<e$ equivalent to $e$ and orthogonal idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put $r_1=1-e+f$ and $P=r_1+\dots+r_n$.
+  * Following the proof of AGP Theorem 2.4 again, choose an idempotent f<e... and put P=r_1+...+r_n. Same literature-citation input as 16df92a11bc9 -- the idempotent-construction detail of AGPStepOne, not internally proven. New row (2026-09-07).
+* **`partial`**, line 1287 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
+  * There is a ring isomorphism theta:M_n(R)->PRP under which diag(v,1,...,1) corresponds to v-(1-P). Same literature-citation input as 16df92a11bc9 -- the ring-isomorphism detail of AGPStepOne, not internally proven. New row (2026-09-07).
 * **`partial`**, line 1301 --- Then $H\cong\GL_d(R)$, the intersection of the kernels of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
   * cor:leavitt-mf-quotient's general-d clause (rank-four lane, Manuscript/OneSidedMFRadical/LeavittMFQuotientGeneral.lean): H isomorphic to GL_d(R) (unconditional, CompleteMatrixFamily.unitsEquiv), and the intersection of kernels = [H,H] = EL_d(R) for every d>=2 (conditional on PrintedKhanhThanhCommutatorInElementary k d, deliberately weaker than the printed Khanh-Thanh citation GL_d=EL_d.D_d(k); register line added). Partial, not formalized: the printed sentence's continuation (not shown in this row) asks for the K_1(R) identification, which this carrier does not name.
-* **`unassigned`**, line 1310 --- The maps $x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.
-* **`unassigned`**, line 1310 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
-* **`unassigned`**, line 1310 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
-* **`unassigned`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
+* **`partial`**, line 1310 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
+  * Roadmap sentence pointing to thm:mf-quotient-units. The intersection with [H,H] and EL_d(R) is carried (conditional on PrintedKhanhThanhCommutatorInElementary, already registered). The quotient with K_1(R) is NOT carried -- per the modules own docstring, naming the quotient is not needed for the three inclusions and is not asserted. New row (2026-09-07).
+* **`partial`**, line 1310 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
+  * Khanh-Thanhs GL_d(R)=EL_d(R)D_d(k) decomposition, in the weakest form the chain needs (commutator subgroup of GL_d(R) lies in EL_d(R)): the hypothesis manuscriptLeavittMFQuotientGeneral consumes, already registered as open-predicate conditional (matching row 93e54ae1c51e, same wrapper). The K_1(R)=~k^x/(k^x)^(d-1) computation, the other half of the same citation, is NOT carried. New row (2026-09-07).
+* **`partial`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
+  * [H,H]<=EL_d(R) and EL_d(R)<=[H,H] because every hom from EL_d(R) to MF group trivial (thm:full-defect-ring): both directions of the equality commutator=EL_d(R), conditional on PrintedKhanhThanhCommutatorInElementary (already registered). New row (2026-09-07).
 * **`partial`**, line 1323 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
   * UPDATED 2026-09-07: first clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, unconditionally -- BinaryLeavitt.elementaryGroup_eq_top makes K_1 vanish at d=2, so there is no Khanh-Thanh input here at all, per the lead. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is still not covered now that general-d has landed (LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral, cited at 93e54ae1c51e): that carrier proves the kernel-intersection=EL_d(R) identification, conditional on the Khanh-Thanh commutator citation, but not the K_1(R) computation the cyclic-order formula needs. Remains a real, separate gap, not a landing-status one.
 * **`partial`**, line 1362 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
-  * Printed sentence 2, first clause (phi_n(u_g)^*phi_n(u_g) and phi_n(u_g)phi_n(u_g)^* converge to 1 in operator norm) is carried, in the star-free form the model actually gives. NOT carried, by design: the polar decomposition of phi_n(u_g) and its unitary part V_n(g) -- Mathlib has no polar decomposition of a bounded operator (Analysis.CalkinSchauder notes neither polarDecomposition nor polar_decomposition occurs in the library), so building V_n would mean a second proof route. New row (2026-09-07).
-* **`partial`**, line 1370 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
-  * Printed sentence 2, third clause (V_n(1)=1 because phi_n is unital) is carried at the underlying fact phi_n(1)=1; the reference to V_n itself is not, since V_n is not constructed on this route. Printed sentence 3 (The maps V_n:G->U(d_n) are asymptotically multiplicative in operator norm) merges into this same census key and has NO carrier at all -- entirely a V_n statement. New row (2026-09-07).
-* **`partial`**, line 1370 --- If $g\ne1$ and $\opnorm{V_n(g)-1}\to0$, then $\tr_{d_n}(\phi_n(u_g))\to1$, contradicting $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$.
-  * Printed sentence 4: the hypothesis-and-consequent about V_n (if g!=1 and ||V_n(g)-1||->0, then tr_dn(phi_n(u_g))->1) has no carrier, entirely V_n-dependent. Only the final clause (contradicting tr_dn(phi_n(u_g))->tau_G(u_g)=0) is carried. New row (2026-09-07).
-* **`partial`**, line 1370 --- So $\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$, and $G$ is MF, contrary to the hypothesis.
-  * Printed sentence 5: the limsup_n ||V_n(g)-1||>0 clause has no carrier (V_n-dependent). Only the conclusion G is MF, contrary to the hypothesis is carried -- the sentence where the two routes rejoin: the tree reaches IsOperatorMF G via Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace and ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal instead of via V_n nondegeneracy. New row (2026-09-07).
-* **`unassigned`**, line 1448 --- Let $\Gamma$ be a countable group with property~\textup{(T)}, let $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
-* **`unassigned`**, line 1448 --- Put
-* **`unassigned`**, line 1462 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that $V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and $T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.
-* **`unassigned`**, line 1462 --- Put $X=V/\Gamma$, the left-coset space.
-* **`unassigned`**, line 1462 --- The Clifford lamp group $\operatorname{Cl}(X)$ is the group with generators $\varepsilon$ and $c_x$, $x\in X$, and relations
-* **`unassigned`**, line 1472 --- To see that $\varepsilon\ne1$, fix a total order on $X$, let $E$ be the $\F_2$-vector space of finitely supported functions $X\to\F_2$, and for $f,g\in E$ put $B(f,g)=\sum_{x>y}f(x)g(y)$.
-* **`unassigned`**, line 1472 --- Since $B$ is bilinear,
-* **`unassigned`**, line 1478 --- is a group law on $\F_2\times E$, in which $(1,0)$ is a central involution, each $(0,\delta_x)$ is an involution, and for $x\ne y$ exactly one of $B(\delta_x,\delta_y)$ and $B(\delta_y,\delta_x)$ equals $1$, so the commutator of $(0,\delta_x)$ and $(0,\delta_y)$ is $(1,0)$.
-* **`unassigned`**, line 1478 --- So $\varepsilon\mapsto(1,0)$, $c_x\mapsto(0,\delta_x)$ defines a homomorphism $\operatorname{Cl}(X)\to\F_2\times E$.
+  * UPDATED 2026-09-07 per the lead. Printed sentence 2, first clause (phi_n(u_g)^*phi_n(u_g) and phi_n(u_g)phi_n(u_g)^* converge to 1 in operator norm): PARTIAL, proved only in the star-free form phi_n(u_g^-1)phi_n(u_g)->1 and its mirror, since QuasidiagonalTraceModel carries no star-preservation clause (its positivity field is a form-positivity condition nothing consumes), so the printed adjoint cannot be identified with phi_n(u_g^-1) -- a genuine, if minor, gap from the literal printed statement. Second clause (the polar decomposition of phi_n(u_g) and its unitary part V_n(g) satisfying the displayed norm limit): a route difference, not a gap -- Mathlib has no polar decomposition of a bounded operator at all (Analysis.CalkinSchauder), so the tree reaches IsOperatorMF G via isMFTrace_of_isQuasidiagonalTrace then isOperatorMF_of_isMFTrace_canonicalMaximal instead of ever forming V_n; those two theorems are cited as the tree's replacement for this printed step. Row stays partial on the first clause's substitution alone.
 * **`unassigned`**, line 1478 --- The relations let us write every element of $\operatorname{Cl}(X)$ as
 * **`unassigned`**, line 1489 --- and this word maps to $(a,\delta_{x_1}+\cdots+\delta_{x_r})$, so the expression is unique and the homomorphism is an isomorphism.
-* **`unassigned`**, line 1489 --- In particular, for a finite subset $Y\subseteq X$, the subgroup generated by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$, so $\operatorname{Cl}(X)$ is countable and locally finite.
-* **`unassigned`**, line 1489 --- The relations are invariant under permutations of $X$, so every permutation of $X$ induces an automorphism of $\operatorname{Cl}(X)$ that permutes the $c_x$ accordingly and fixes $\varepsilon$.
-* **`unassigned`**, line 1489 --- In this way $V$ acts on $\operatorname{Cl}(X)$ through its action on $X$, and we put
-* **`unassigned`**, line 1511 --- Then $tct^{-1}$ is the lamp at $t\Gamma$ and $a(tct^{-1})a^{-1}$ is the lamp at $at\Gamma$.
-* **`unassigned`**, line 1511 --- These cosets are distinct, because $t\Gamma=at\Gamma$ would mean $a\in t\Gamma t^{-1}=\alpha(\Gamma)$.
-* **`unassigned`**, line 1622 --- so that $\alpha(v,A)=(2v,A)$.
-* **`unassigned`**, line 1685 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
-* **`unassigned`**, line 1697 --- For $c\in J$ and $\ell\in S$, the commutator $[tct^{-1},\ell]$ lies in $\mathfrak D_{G_0}(\Gamma)$ by~\eqref{eq:intrinsic-defect}, since $t$ conjugates $\Gamma$ into itself, $c$ centralizes $\Gamma$, and $S\le\Gamma$.
-* **`unassigned`**, line 1697 --- As $c$ ranges over $J$, the element $tct^{-1}$ ranges over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
+* **`partial`**, line 1489 --- In particular, for a finite subset $Y\subseteq X$, the subgroup generated by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$, so $\operatorname{Cl}(X)$ is countable and locally finite.
+  * Row 11, split per the lane: In particular, for a finite subset Y of X, the subgroup generated by epsilon and the c_y with y in Y has order 2^(|Y|+1), so Cl(X) is countable and locally finite. Only the countable+locally-finite half is carried (via a DIFFERENT route, central-involution finiteness, Sofic/CentralInvolutionFinite.lean -- not the order formula). The exact order 2^(|Y|+1) is a genuine gap: it needs injectivity of CliffordLamp.toModel : CliffordLamp X ->* SignedModel X (the normal-form theorem), which the repository does not have -- the same root cause as rows 9 and 10 (left unassigned). thm-d's Clifford construction table, landed bf343f3b9 (Lean) / 314b22975 (report), assigned 2026-09-07.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 7 | 0 |
-| Introduction | 84 | 14 |
+| Introduction | 84 | 2 |
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
-| Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
-| From Hilbert--Schmidt to operator norm | 31 | 1 |
+| Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 0 |
+| From Hilbert--Schmidt to operator norm | 31 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
-| A finite certificate | 19 | 2 |
-| One-sided inverses and elementary groups | 75 | 2 |
-| The binary example | 46 | 12 |
-| An amenable nonquasidiagonal trace | 90 | 17 |
-| A torsion-free finitely presented example | 35 | 3 |
+| A finite certificate | 19 | 0 |
+| One-sided inverses and elementary groups | 75 | 0 |
+| The binary example | 46 | 1 |
+| An amenable nonquasidiagonal trace | 90 | 2 |
+| A torsion-free finitely presented example | 35 | 0 |
 | Acknowledgments | 2 | 0 |
