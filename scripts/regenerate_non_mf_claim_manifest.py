@@ -98,8 +98,14 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
     "thm:amenable-trace": (),
     "prop:clifford-locally-rf": ("Elek--Szabo, Theorem 1",),
-    "cor:affine-clifford-trace": ("Bekka--de la Harpe--Valette, Example 1.7.4(i)",),
-    "lem:commutator-in-defect": (),
+    # `cor:affine-clifford-trace` and `lem:commutator-in-defect` were
+    # removed as separate numbered environments in the 2026-09-07 rewrite:
+    # the trace corollary's content moved into `thm:amenable-trace`'s own
+    # proof (which now derives everything from `prop:clifford-locally-rf`
+    # directly), and the defect-containment step is now cited inline in
+    # `thm:torsion-free`'s proof via `\eqref{eq:defect-functorial}` rather
+    # than a separate lemma.  Their entries here and in DEPENDENCIES were
+    # dropped to match; neither claim id is printed any more.
     "thm:hull": (
         "Hull, Theorem 7.1",),
     "lem:saturation": (
@@ -107,6 +113,11 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Hull, Corollary 5.7 and Lemma 5.8"),
     "thm:torsion-free": (
         "Fournier-Facio, Section 2", "Hull, Corollary 7.4"),
+    "prop:linear-collapse": (),
+    "cor:relative-quotient": ("Hull, Corollary 7.4",),
+    "cor:regular-nonmf-algebra": (
+        "Osin, Theorem 1.2", "Dahmani--Guirardel--Osin, Theorem 2.35",
+        "Gerasimova--Osin, Theorem 1.1"),
 }
 
 
@@ -148,15 +159,14 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:clifford-locally-rf": [
         "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"],
-    "cor:affine-clifford-trace": ["prop:clifford-locally-rf"],
-    "thm:amenable-trace": [
-        "prop:clifford-locally-rf", "cor:affine-clifford-trace"],
+    "thm:amenable-trace": ["prop:clifford-locally-rf"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
-    "lem:commutator-in-defect": [],
     "thm:torsion-free": [
-        "thm:compression-criterion", "lem:saturation",
-        "lem:commutator-in-defect"],
+        "thm:compression-criterion", "lem:saturation"],
+    "prop:linear-collapse": ["prop:mf-residual-calculus"],
+    "cor:relative-quotient": ["thm:torsion-free", "thm:hull"],
+    "cor:regular-nonmf-algebra": ["thm:torsion-free"],
 }
 
 

@@ -7,7 +7,7 @@
       "id": "thm:compression-criterion",
       "environment": "mainthm",
       "title": "one-sided compression criterion",
-      "statement_sha256": "08f4c7b3ee1a4f96403b9ffd38886f9d8efa5f2c24601a8a2a03b05bb6d1e59c",
+      "statement_sha256": "6a12cc5c9da9a89f40e055c2b6b5f44c93087c2d02a7efc22c04ab007c9f7da6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -54,7 +54,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "b6147b9750a37bb816c7182e6ef2186fd921a0d4200bf814a936bc43cf3569a7",
+      "statement_sha256": "1e2582e9a68978d94730587056dc2650acadcef7addacc2c6d1d2fe1c95bdb34",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -96,12 +96,11 @@
       "id": "thm:amenable-trace",
       "environment": "mainthm",
       "title": "an amenable nonquasidiagonal trace",
-      "statement_sha256": "99e8de0e21246558f2dc5ee18b595f56ca7c6fa952e43c012d698e07e22a850c",
+      "statement_sha256": "518f78f3710fba60cb37532c0600fbfa15f68baa47c429ed3015c977e9766423",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [
-        "prop:clifford-locally-rf",
-        "cor:affine-clifford-trace"
+        "prop:clifford-locally-rf"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -117,8 +116,7 @@
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
         "thm:compression-criterion",
-        "lem:saturation",
-        "lem:commutator-in-defect"
+        "lem:saturation"
       ],
       "extra_assumptions": [],
       "external_inputs": [
@@ -145,6 +143,12 @@
           "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedDefinitions",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -331,6 +335,21 @@
       ]
     },
     {
+      "id": "prop:linear-collapse",
+      "environment": "proposition",
+      "title": "linear collapse",
+      "statement_sha256": "edb8de396d62fa9a69c400e85857056b5409513b9ca854ec12da7fa00caef024",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "cor:simple-infinite-ring",
       "environment": "corollary",
       "title": "",
@@ -367,7 +386,7 @@
       "id": "prop:simple",
       "environment": "proposition",
       "title": "",
-      "statement_sha256": "d756a14fb63a07f8fafa6796911dfdae943499b6e97dc9f1287c8e5c306e9ce2",
+      "statement_sha256": "e99df5754a75a9b76f655693cfb068d66c1dfd14334e31f8de2c982d39106249",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -412,8 +431,8 @@
     {
       "id": "prop:locally-rf-by-z-trace",
       "environment": "proposition",
-      "title": "extensions of $\\mathbb Z$ by locally residually finite groups",
-      "statement_sha256": "e2f406f095c7e508ecb2a81bca883111f5837ba81252c319e678784a8dae1e7e",
+      "title": "amenable extensions of locally residually finite groups",
+      "statement_sha256": "b47f20fe0f7619d450dc6c727c84c32272181fa452592f1a309fe2f17b7c87c0",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -461,7 +480,7 @@
       "id": "prop:clifford-locally-rf",
       "environment": "proposition",
       "title": "the locally residually finite case",
-      "statement_sha256": "099d66d53e99861ad87d268a47470c9923db21168e38cff417509949c14914a1",
+      "statement_sha256": "4f7df5964e5043d8c53d842d28997ff8118d18469df3ae457c750567acf16d94",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -472,23 +491,6 @@
       "extra_assumptions": [],
       "external_inputs": [
         "Elek--Szabo, Theorem 1"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "cor:affine-clifford-trace",
-      "environment": "corollary",
-      "title": "the affine--Clifford trace",
-      "statement_sha256": "042b72ae23bb2d7736c9aafcab6df1a72a3e1efdb7a316c1e87849aa9a8faae6",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [
-        "prop:clifford-locally-rf"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Bekka--de la Harpe--Valette, Example 1.7.4(i)"
       ],
       "coverage_gap": "",
       "lean": []
@@ -528,15 +530,39 @@
       "lean": []
     },
     {
-      "id": "lem:commutator-in-defect",
-      "environment": "lemma",
+      "id": "cor:relative-quotient",
+      "environment": "corollary",
       "title": "",
-      "statement_sha256": "8202b4e88cca46ee5691f0b1b98763213d1182a7bb708cf952fdaadec9b5279a",
+      "statement_sha256": "04234a25017e6f022fc3c4f87486bdc04f55ef1aff2e87f077373d501d242e85",
       "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
-      "dependencies": [],
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:torsion-free",
+        "thm:hull"
+      ],
       "extra_assumptions": [],
-      "external_inputs": [],
+      "external_inputs": [
+        "Hull, Corollary 7.4"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:regular-nonmf-algebra",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "9930780730b10195d3f2ecbd5f139e5b64e02917a9b357a3a50689d2670413d0",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:torsion-free"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Osin, Theorem 1.2",
+        "Dahmani--Guirardel--Osin, Theorem 2.35",
+        "Gerasimova--Osin, Theorem 1.1"
+      ],
       "coverage_gap": "",
       "lean": []
     }
