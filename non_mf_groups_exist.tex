@@ -317,10 +317,11 @@ $C^*_{\max}(H)$ is not finite: it contains a proper isometry.
 \leanverified{Manuscript/OneSidedMFRadical/RankFourSimplicity}{GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.manuscriptPropositionSimple}
 \end{mainthm}
 
-Theorem~\ref{thm:leavitt-mf-quotient} treats the unit group of
-$L_k(1,d)$ for every countable field $k$ and every $d\ge2$: every
-homomorphism from it to an MF group factors through its abelianization
-$k^\times/(k^\times)^{d-1}$, and this quotient is MF\@.
+For a countable purely infinite simple ring $R$ and $n\ge1$,
+Theorem~\ref{thm:mf-quotient-units} identifies the intersection of the
+kernels of all homomorphisms from $\GL_n(R)$ to MF groups with the
+commutator subgroup, and the quotient with $K_1(R)$, which is MF\@.  For
+the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
 
 \begin{mainthm}[an amenable nonquasidiagonal trace]
 \label{thm:amenable-trace}
@@ -1192,45 +1193,107 @@ $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and
 $C^*_{\max}(H)$ contains a proper isometry.
 \end{proof}
 
-\begin{theorem}[MF quotients of Leavitt unit groups]
-\label{thm:leavitt-mf-quotient}
-Let $k$ be a countable field, let $d\ge2$, let $R=L_k(1,d)$, and let
-$H=R^\times$.  Then $H\cong\GL_d(R)$, and $\EL_d(R)=[H,H]$ is the
-intersection of the kernels of all homomorphisms from $H$ to MF groups.
-Moreover
-\[
- H/\EL_d(R)\cong k^\times/(k^\times)^{d-1},
-\]
-the group $K_1(R)$, so every homomorphism from $H$ to an MF group
-factors through $H\to k^\times/(k^\times)^{d-1}$, and this quotient is
-MF\@.
+Two idempotents $e,f$ of a ring are \emph{equivalent} if $e=xy$ and
+$f=yx$ for some $x,y$; an idempotent $e$ is \emph{infinite} if
+$e=f+g$ for orthogonal idempotents $f,g$ with $f$ equivalent to $e$ and
+$g\ne0$; and a simple ring is \emph{purely infinite} if every nonzero
+right ideal contains an infinite idempotent~\cite[Definitions~1.2]{AGP}.
+The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
+Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along
+$A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$
+for the canonical map.
+
+\begin{theorem}[MF quotients of unit groups]\label{thm:mf-quotient-units}
+Let $R$ be a countable purely infinite simple ring, let $n\ge1$, and let
+$N_n$ be the intersection of the kernels of all homomorphisms from
+$\GL_n(R)$ to MF groups.  Then $N_n=[\GL_n(R),\GL_n(R)]$ and
+$\GL_n(R)/N_n\cong K_1(R)$, a countable abelian group, which is MF\@.
 \end{theorem}
 
 \begin{proof}
-Write $s_1,\dots,s_d,t_1,\dots,t_d$ for the generators of $R$, with
-$t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$.  The maps
-$x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$
-are mutually inverse isomorphisms of right $R$-modules between $R$ and
-$R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.  With $s=s_1$ and
-$t=t_1$ the hypothesis of Theorem~\ref{thm:full-defect-ring} holds, as
-in the proof of Corollary~\ref{cor:simple-infinite-ring}, so every
-homomorphism from $\EL_d(R)$ to an MF group is trivial.  Khanh--Thanh
-show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the group of
-diagonal matrices with entries in $k^\times$, and that
-$H/[H,H]\cong K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of
-Theorem~7.2]{KhanhThanh}.  The group $D_d(k)$ is abelian and normalizes
-$\EL_d(R)$, so $\GL_d(R)/\EL_d(R)$ is abelian and $[H,H]\le\EL_d(R)$.
-A countable abelian group $A$ is MF: $C^*_{\max}(A)$ is commutative and
-separable, hence residually finite-dimensional and MF~\cite{BK}, and an
-embedding $\iota$ of $C^*_{\max}(A)$ in a norm matrix corona restricts
-to the embedding $a\mapsto\iota(u_a)+1-\iota(1)$ of $A$ in its unitary
-group.  So $H\to H/[H,H]$ is a homomorphism to an MF group, while every
-homomorphism from $H$ to an MF group is trivial on $\EL_d(R)$, which
-gives
+The ring $M_n(R)$ is again countable, purely infinite, and
+simple~\cite[Corollary~1.7]{AGP}, and $K_1(M_n(R))\cong K_1(R)$ by
+Morita invariance, so it suffices to treat $n=1$.  Write $H=R^\times$
+and $N=N_1$.  Ara, Goodearl, and Pardo show that $\kappa$ is surjective
+with kernel $[H,H]$~\cite[Theorem~2.4]{AGP}.  A countable abelian group
+$A$ is MF: $C^*_{\max}(A)$ is commutative and separable, hence
+residually finite-dimensional and MF~\cite{BK}, and an embedding
+$\iota$ of $C^*_{\max}(A)$ in a norm matrix corona restricts to the
+embedding $a\mapsto\iota(u_a)+1-\iota(1)$ of $A$ in its unitary group.
+So $\kappa$ is a homomorphism to an MF group, and $N\le\ker\kappa$.
+
+For the converse we use Theorem~\ref{thm:full-defect-ring} in the
+following form.  Every nonzero idempotent $e$ of $R$ is
+infinite~\cite[Proposition~1.5]{AGP}, so $eRe$ contains $s,t$ with
+$ts=e\ne st$, and $eRe$ is simple, so $e-st$ generates $eRe$ as a
+two-sided ideal; hence every homomorphism from $\EL_m(eRe)$, $m\ge2$,
+to an MF group is trivial.  Consequently, if $e$ and $P$ are nonzero
+idempotents and $\theta\colon M_m(eRe)\to PRP$ is a ring isomorphism,
+then
+\begin{equation}\label{eq:corner-units}
+ 1-P+\theta(A)\in N\qquad(A\in\EL_m(eRe)),
+\end{equation}
+since these units form the image of $\EL_m(eRe)$ under a homomorphism
+to $H$.
+
+Let $u\in\ker\kappa$.  Following the proof
+of~\cite[Theorem~2.4]{AGP}, choose orthogonal idempotents
+$e_1,\dots,e_m$ with sum $1$, $m\ge4$, such that $e_1,\dots,e_{m-1}$
+are pairwise equivalent and $e_m$ is equivalent to an idempotent
+$f\le e_1$.  Then $R$ is the ring of $m\times m$ matrices over
+$T=e_1Re_1$ whose last column has entries in $Tf$ and whose last row
+has entries in $fT$, and the argument of Menal and
+Moncasi~\cite[proof of Theorem~2.2 and the Remark after
+Corollary~2.3]{MenalMoncasi} transforms the matrix of $u$ by elementary
+row and column operations into one of the form
+$\operatorname{diag}(1,\ast)$.  So $u=PvQ$, where $P$ and $Q$ are
+products of elementary matrices $e_{ij}(x)$ of this matrix ring and
+$v=e_1+(1-e_1)v(1-e_1)$.  The elementary matrices with $i,j\le m-1$
+form $\EL_{m-1}(T)$ inside $(1-e_m)R(1-e_m)\cong M_{m-1}(T)$, so they
+lie in $N$ by~\eqref{eq:corner-units}; for distinct $i,j\le m-1$,
 \[
- \EL_d(R)\le\bigcap_\rho\ker\rho\le[H,H]\le\EL_d(R),
+ e_{im}(x)=[e_{ij}(1),e_{jm}(x)],\qquad
+ e_{mj}(x)=[e_{mi}(x),e_{ij}(1)]
 \]
-the intersection over all homomorphisms $\rho$ from $H$ to MF groups.
+are products of an element of $\EL_{m-1}(T)$ and a conjugate of its
+inverse, so they lie in the normal subgroup $N$ as well.  Hence
+$u\equiv v$ modulo $N$, and $\kappa(v)=\kappa(u)=0$ because
+$N\le\ker\kappa$.
+
+Finally let $v=e+(1-e)v(1-e)$ with $e\ne0$ and $\kappa(v)=0$.  By the
+definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for
+some $n\ge2$.  Following the proof of~\cite[Theorem~2.4]{AGP} again,
+choose an idempotent $f<e$ equivalent to $e$ and orthogonal
+idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put
+$r_1=1-e+f$ and $P=r_1+\dots+r_n$.  There is a ring isomorphism
+$\theta\colon M_n(R)\to PRP$ under which
+$\operatorname{diag}(v,1,\dots,1)$ corresponds to
+$(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.  So
+$v=1-P+\theta(\operatorname{diag}(v,1,\dots,1))\in N$
+by~\eqref{eq:corner-units}.  Hence $\ker\kappa\le N$.
+\end{proof}
+
+\begin{corollary}[Leavitt unit groups]\label{cor:leavitt-mf-quotient}
+Let $k$ be a countable field, let $d\ge2$, let $R=L_k(1,d)$, and let
+$H=R^\times$.  Then $H\cong\GL_d(R)$, the intersection of the kernels
+of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
+\[
+ H/\EL_d(R)\cong K_1(R)\cong k^\times/(k^\times)^{d-1}.
+\]
+\end{corollary}
+
+\begin{proof}
+The maps $x\mapsto(t_1x,\dots,t_dx)$ and
+$(y_1,\dots,y_d)\mapsto\sum_is_iy_i$ are mutually inverse isomorphisms
+of right $R$-modules between $R$ and $R^d$, so $R\cong M_d(R)$ and
+$H\cong\GL_d(R)$.  Theorem~\ref{thm:mf-quotient-units} identifies the
+intersection with $[H,H]$ and the quotient with $K_1(R)$.  Khanh--Thanh
+show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group
+of diagonal matrices with entries in $k^\times$, which normalizes
+$\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof
+of Theorem~7.2]{KhanhThanh}.  So $[H,H]\le\EL_d(R)$, while
+$\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF
+group is trivial (Theorem~\ref{thm:full-defect-ring}).
 \end{proof}
 
 For $d=2$ the quotient is trivial for every countable field $k$, so
@@ -1699,6 +1762,12 @@ G.~Abrams and G.~Aranda Pino,
 J. Pure Appl. Algebra \textbf{207} (2006), no.~3, 553--563,
 \doi{10.1016/j.jpaa.2005.10.010}.
 
+\bibitem[AGP]{AGP}
+P.~Ara, K.~R. Goodearl, and E.~Pardo,
+\emph{$K_0$ of purely infinite simple regular rings},
+$K$-Theory \textbf{26} (2002), 69--100,
+\href{https://arxiv.org/abs/math/0111066}{arXiv:math/0111066}.
+
 \bibitem[AW]{AkemannWalter}
 C.~A. Akemann and M.~E. Walter,
 \emph{Unbounded negative definite functions},
@@ -1844,6 +1913,12 @@ W.~G.~Leavitt,
 \emph{The module type of a ring},
 Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130,
 \doi{10.1090/S0002-9947-1962-0132764-X}.
+
+\bibitem[MM]{MenalMoncasi}
+P.~Menal and J.~Moncasi,
+\emph{$K_1$ of von Neumann regular rings},
+J. Pure Appl. Algebra \textbf{33} (1984), no.~3, 295--312,
+\doi{10.1016/0022-4049(84)90064-1}.
 
 \bibitem[OAI]{OAI}
 OpenAI,
