@@ -31,8 +31,11 @@ fatal.  What has to be supplied instead is
 `leavitt-corner-one-sided-lift-exists`, or one of the stronger conditions
 recorded there.
 
-**The one direction that does work,** and the reason
+**One sufficient quotient hypothesis,** and the reason
 `leavitt-corner-kernel-is-jacobson-radical` is stated at all: direct
 finiteness *does* descend modulo an ideal contained in the Jacobson radical.
-That is the exact hypothesis under which a quotient argument becomes legal,
-and it is a hypothesis about `ker(pi_e)`, not a free gift.
+That is a sufficient hypothesis, and it is a condition on `ker(pi_e)`,
+not a free gift. Another sufficient hypothesis for lifting from a quotient
+is separation of ideal powers, established in
+`residually-p-kernels-preserve-modular-stable-finiteness`. Neither
+hypothesis is established here for the Leavitt evaluation kernel.

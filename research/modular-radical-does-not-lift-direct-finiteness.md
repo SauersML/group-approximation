@@ -2,10 +2,10 @@
 rg: 2
 id: modular-radical-does-not-lift-direct-finiteness
 kind: claim
-title: The lamp augmentation ideal is not radical, so direct finiteness does not lift along it
+title: The lamp augmentation ideal need not lie in the Jacobson radical
 distinct_from:
-  direct-finiteness-not-inherited-by-quotients: that is the general permanence failure, and it names descent modulo an ideal inside the Jacobson radical as the one legal quotient argument; this shows that legal argument's hypothesis fails for the lamp kernel of a modular wreath product, which is exactly where one wanted to use it.
-  kun-thom-wreath-stably-finite: that is the open dividend question for the Kun--Thom groups; this is one named bridge to it, proved dead, and says nothing about whether the answer is yes.
+  direct-finiteness-not-inherited-by-quotients: that is the general permanence failure; this shows that one sufficient radical-containment hypothesis fails for the lamp kernel, without excluding other lifting arguments.
+  kun-thom-wreath-stably-finite: that is the all-field question for the Kun--Thom groups; this excludes only the radical-containment proof, and the characteristic-two case is now proved by separated ideal powers.
 artifacts:
   - research/artifacts/sofic-dividends-audit-2026-08-17.md
 ---
@@ -33,8 +33,8 @@ residually finite, so `k[G]` is stably finite over every field.  Direct
 finiteness does not travel backwards along a quotient in general
 (`direct-finiteness-not-inherited-by-quotients`), with one standard
 exception: it does descend modulo an ideal contained in the Jacobson radical,
-since `1 + J` consists of units.  That exception is the whole reason one
-hopes the locally finite lamp kernel is harmless, and it is most plausible in
+since `1 + J` consists of units. That exception was one reason to
+hope the locally finite lamp kernel is harmless, and it is most plausible in
 the lamp characteristic, where `omega(k[N])` is a nil ideal of `k[N]`.  It is
 false there.
 
@@ -47,8 +47,20 @@ instance is the lamplighter `Z/2Z wr Z` over `F_2` with `u = y_0 t`.
 ## What it does not say
 
 It does not say `k[W]` fails to be stably finite, and it does not say
-`J(k[W])` is small.  It says the one-line lifting argument is unavailable and
-that a replacement must control `1 + M_n(omega(k[N])k[W])` on its own terms.
+`J(k[W])` is small. It excludes only this radical-containment argument.
+There is no requirement that a replacement invert every element of
+`1 + M_n(omega(k[N])k[W])`.
+
+**Correction, 2026-09-07.**
+`residually-p-kernels-preserve-modular-stable-finiteness` supplies the
+replacement: the lamp augmentation powers have zero intersection, so
+an inverse defect, being an idempotent in all those powers, must vanish.
+Thus k[W] is stably finite whenever k[G] is, in characteristic p for these
+p-lamps. In particular,
+`kun-thom-binary-wreaths-stably-finite-in-characteristic-two` settles the
+characteristic-two Kun--Thom case. The nonradical witness proved here
+remains valid; the earlier suggestion that it prevented all modular
+lifting was too strong.
 
 The other standard route is blocked by a theorem already in this graph: for
 `char k != p` the lamp algebra is the algebra of locally constant functions on
@@ -56,4 +68,4 @@ The other standard route is blocked by a theorem already in this graph: for
 generalized Bernoulli action of `G` on `G/Gamma`, and Kun--Thom's Corollary D
 (`kun-thom-nonsofic-wreath`) says that action is not sofic.  Modular
 characteristic loses the radical, non-modular characteristic loses the
-approximation.
+approximation. The modular radical failure has now been bypassed as above.

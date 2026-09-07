@@ -1,5 +1,16 @@
 # 2026-08-17 — Sofic dividends for the first explicit nonsofic groups (ingestion audit)
 
+**Status correction, 2026-09-07.** The historical audit below predates
+`kun-thom-binary-wreaths-stably-finite-in-characteristic-two`, which proves
+stable finiteness over every characteristic-two field for the binary
+permutational wreath products with residually finite base. The radical
+noncontainment calculation remains correct, but it does not prevent
+lifting through an ideal whose powers have zero intersection. The general
+proof is `residually-p-kernels-preserve-modular-stable-finiteness`.
+The all-field Kun--Thom question remains open in odd positive
+characteristics. Read the original unsettled-modular and bridge-exhaustion
+statements below with this correction; they are retained as audit history.
+
 Source: a user-supplied external audit, "Sofic dividends for the first
 explicit non-sofic groups: proof audit, rigorous partial settlement, and the
 exact remaining frontier", dated 2026-08-17, unrefereed, written against an
