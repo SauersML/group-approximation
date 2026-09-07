@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomStepCOddIso
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hinj` from a local restriction, which need only be injective
@@ -131,9 +132,10 @@ theorem topChernClass_ne_zero_odd_local_of_iso (hacyclic : PuncturedAcyclic N tw
       simpa [iso_inv_hom_apply] using h)
     hu hclass
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_odd_local
+#audit_axioms topChernClass_ne_zero_odd_local
 
 end
 

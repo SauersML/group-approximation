@@ -157,6 +157,18 @@ the three cases of Hull's Lemma 4.9.  The face-pasting certificate is the
 exact cellular callback consumed by the source power-diagram certificate, and
 the injectivity callback is the exact hull44 output needed by the
 non-loxodromic case. -/
+theorem hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger
+    (hgeom : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
+    (hinjective : HullLemma49InjectivityCallback.{0, 0}) :
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
+  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
+  · exact hgeom
+  · exact hullLemma49SourceFacePastingStatement_holds
+  · exact hinjective
+
+/-- The historical route, from est's three construction propositions.
+Unchanged in name, hypotheses and conclusion; it now factors through the
+waist. -/
 theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
     (hselection :
       GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
@@ -165,15 +177,10 @@ theorem hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hinjective : HullLemma49InjectivityCallback.{0, 0}) :
-    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} := by
-  have hgeom :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} :=
-    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
-      hselection hpieces hunbound
-  apply hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches
-  · exact hgeom
-  · exact hullLemma49SourceFacePastingStatement_holds
-  · exact hinjective
+    HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
+  hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger
+    (GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound) hinjective
 
 /-- End-to-end input leaf for the manuscript power-diagram statement.
 

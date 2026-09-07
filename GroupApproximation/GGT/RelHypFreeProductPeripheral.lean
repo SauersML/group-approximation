@@ -636,7 +636,23 @@ weakened.**
 `fournierFacioQuotientStatement_of_osin'` runs on `OsinTheorem24`,
 `OsinRelatorDesign` and the full `FreeProductRelativelyHyperbolicStatement`.
 Here the third is `FreeProductConedHyperbolicStatement` -- Farb's clause alone,
-because the Dahmani--Guirardel--Osin clause is now a theorem. -/
+because the Dahmani--Guirardel--Osin clause is now a theorem.
+
+**VACUOUS: `OsinTheorem24` is refuted.**  `RelHypOsinTheorem24Refuted.not_osinTheorem24`
+proves `¬ OsinTheorem24`, so the `hOsin` binder can never be supplied and this
+reduction can never fire.  It is retained because it records what Osin's
+Theorem 2.4 *would* give at that statement, and because deleting a reduction
+whose hypothesis is refuted destroys the record of which sentence was tried.
+It is **not** a debt: nothing is discharged by proving `OsinTheorem24`, because
+it is false.
+
+Nothing on the manuscript path depends on this.  Theorem C reaches
+`FournierFacioQuotientStatement` through
+`RelHypProp23FromHullOsin24.fournierFacioQuotientStatement_of_hull_osin24`,
+whose binders are the three Hull leaves only; the `osin24` in that name is the
+technique, not this `Prop`.  The unrefuted route at the sharp boundary is
+`RelHypOsin24CayleyEndpoint.fournierFacioQuotientStatement_of_osin_cayley`,
+over `OsinTheorem24Cayley`. -/
 theorem fournierFacioQuotientStatement_of_coned
     (hOsin : OsinTheorem24) (hDesign : OsinRelatorDesign)
     (hCone : FreeProductConedHyperbolicStatement) :

@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.CohomologyContractible
 import GroupApproximation.CharClass.CohomologyLHDegreewise
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Over a contractible base, only the top Leray–Hirsch coordinate survives
@@ -69,9 +70,10 @@ theorem sum_lhTerm_eq_top_of_contractible (π : P ⟶ TopCat.of Y) (ξ : Hmod2 P
   rw [hzero, zero_add]
   rfl
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms sum_lhTerm_eq_top_of_contractible
+#audit_axioms sum_lhTerm_eq_top_of_contractible
 
 end LH
 

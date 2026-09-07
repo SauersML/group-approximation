@@ -14,11 +14,19 @@ import GroupApproximation.Sofic.CDEOperatorMF
 
 This module follows the printed proof literally.  `E` is the group of
 Theorem C (`TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions`), which
-is **not closed**: it rests on the four `sorry`s of `TheoremCAssembly`, one of
-which (`estimatingUnboundOutput`) is refuted, so `E` is a group this development
-does not yet have.  This docstring said "closed on the explicit inputs of
-`TheoremCAssembly`" until 2026-09-07, which was false and was read off the
-theorem's own former name.  Everything below is therefore conditional, and
+is **not closed**: it rests on the five `sorry`s of `TheoremCAssembly`, so `E`
+is a group this development does not yet have.  **None of the five is refuted.**
+This docstring said "closed on the explicit inputs of `TheoremCAssembly`" until
+2026-09-07, which was false and was read off the theorem's own former name; the
+correction then said "four", and that `estimatingUnboundOutput` was among them
+refuted, and both halves were false.  `EstimatingUnboundOutputStatement` has
+denoted the repaired statement carrying `UnboundEstimate.OsinUnboundScale` since
+`c685697b9`; the refuted form kept the mathematics and lost the name, as
+`EstimatingUnboundOutputHistoricalStatement`.  Enumerated on `origin/main`:
+every `¬ Estimating…Statement` and `¬ Lemma62…Statement` names that historical
+form, `EstimatingUnboundRepairedStatement`, or
+`Lemma62ComponentPartitionStatement`, and none of the three is admitted in
+`TheoremCAssembly`.  Everything below is therefore conditional, and
 `E`'s existence is exactly as open as Theorem C is; it is nontrivial because it is
 acylindrically hyperbolic; it is not MF because its MF radical is everything;
 and `seedCodeC` is one finite presentation code for it, chosen by the adequacy

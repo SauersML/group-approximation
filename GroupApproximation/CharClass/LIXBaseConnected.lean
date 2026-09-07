@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.CohomologySphere
 import GroupApproximation.CharClass.LemmaTwoStepCAbsEquiv
 import GroupApproximation.CharClass.LIXBaseInstances
 import GroupApproximation.CharClass.ProjectiveSpaceSymmetry
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The LIX base is path-connected, and its degree-zero cohomology is a line
@@ -85,9 +86,10 @@ lines, so it is injective as soon as it is nonzero. -/
 def lixCohZeroEquiv (dd : Fin ℓ → ℕ) : Hmod2 (lixN dd) 0 ≃ₗ[ZMod 2] ZMod 2 :=
   cohZeroEquiv (lixN dd)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixCohZeroEquiv
+#audit_axioms lixCohZeroEquiv
 
 end
 

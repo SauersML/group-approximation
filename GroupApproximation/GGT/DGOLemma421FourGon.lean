@@ -1,4 +1,6 @@
 import GroupApproximation.GGT.DGOLemma421Proof
+import GroupApproximation.GGT.OsinTheorem54SepTriangle
+import GroupApproximation.Algebra.WordMetric
 
 /-!
 # The endpoint-close mixed quadrilateral for Lemma 4.21(b)
@@ -15,6 +17,7 @@ namespace GGT
 namespace OsinComponents
 
 open GroupApproximation.GGT.DGOPolygonCut
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -43,20 +46,18 @@ theorem isQuasiGeodesicPolygon_of_endpoint_connectors
     IsQuasiGeodesicPolygon D 4 1 4 vp
       (u ++ q ++ r ++ revWord p) := by
   have huone : IsGeodesicWord D 1 (RelLetter.listVal u) u :=
-    isGeodesicWord_one_of D hu
+    isGeodesicWord_one_of_isGeodesicWord hu
   have hrone : IsGeodesicWord D 1 (RelLetter.listVal r) r :=
-    isGeodesicWord_one_of D hr
+    isGeodesicWord_one_of_isGeodesicWord hr
   have hletu : ∀ a ∈ u, D.IsLetter a := hu.1
   have hletr : ∀ a ∈ r, D.IsLetter a := hr.1
   have hclose : RelLetter.listVal p =
       RelLetter.listVal u * RelLetter.listVal q * RelLetter.listVal r := by
     have huval : vp * RelLetter.listVal u = vq := hu.2.1
     have hpval : vp * RelLetter.listVal p =
-        vertex vp p p.length := by
-      exact vertex_length vp p
+        vertex vp p p.length := (vertex_length vp p).symm
     have hqval : vq * RelLetter.listVal q =
-        vertex vq q q.length := by
-      exact vertex_length vq q
+        vertex vq q q.length := (vertex_length vq q).symm
     have hrval : (vertex vq q q.length) * RelLetter.listVal r =
         vertex vp p p.length := hr.2.1
     calc
@@ -74,13 +75,16 @@ theorem isQuasiGeodesicPolygon_of_endpoint_connectors
         group
   have hlet : ∀ a ∈ u ++ q ++ r ++ revWord p, D.IsLetter a := by
     intro a ha
-    rcases List.mem_append.mp ha with hau | haqr
-    · exact hletu a hau
-    · rcases List.mem_append.mp haqr with haq | harp
-      · exact hletq a haq
-      · rcases List.mem_append.mp harp with har | harev
-        · exact hletr a har
-        · exact isLetter_of_mem_revWord D hsymm hletp a harev
+    -- `u ++ q ++ r ++ revWord p` associates as `((u ++ q) ++ r) ++ revWord p`,
+    -- so `List.mem_append` peels off `revWord p` first, then `r`, then splits
+    -- `u`/`q` last -- the reverse of the source order.
+    rcases List.mem_append.mp ha with huqr | harev
+    · rcases List.mem_append.mp huqr with huq | har
+      · rcases List.mem_append.mp huq with hau | haq
+        · exact hletu a hau
+        · exact hletq a haq
+      · exact hletr a har
+    · exact isLetter_of_mem_revWord D hsymm hletp a harev
   have hpoly_one := isQuasiGeodesicPolygon_fourGon_of_mixed D u q r p
     huone hrone hqq hpq hlet hclose
   exact isQuasiGeodesicPolygon_translate D vp hpoly_one
