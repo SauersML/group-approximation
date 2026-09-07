@@ -79,7 +79,7 @@ so all of its positive Chern classes and all of its positive power sums lie in a
 square-zero ideal.  See
 `GroupApproximation.AlgTop.squareZero_of_dvd_squareZero`. -/
 theorem natCast_mul_chern_eq_of_squareZero (c p : ℕ → A) (hc0 : c 0 = 1)
-    (hnewton : ∀ k, 0 < k → (k : A) * c k
+    (hnewton : ∀ k : ℕ, 0 < k → (k : A) * c k
       = (-1) ^ (k + 1) *
         ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
           (-1) ^ a.1 * c a.1 * p a.2)
@@ -113,7 +113,7 @@ theorem natCast_mul_chern_eq_of_squareZero (c p : ℕ → A) (hc0 : c 0 = 1)
 `(q : A)` happens to be a unit.  The caller supplies the factorization
 `p_q = q · v`; in the intended instance `v = (q-1)! ch_q`. -/
 theorem chern_eq_of_squareZero_of_isUnit (c p : ℕ → A) (hc0 : c 0 = 1)
-    (hnewton : ∀ k, 0 < k → (k : A) * c k
+    (hnewton : ∀ k : ℕ, 0 < k → (k : A) * c k
       = (-1) ^ (k + 1) *
         ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
           (-1) ^ a.1 * c a.1 * p a.2)
@@ -138,7 +138,7 @@ Newton step gives `c_q = (-1)^{q+1} (q-1)! ch_q`.
 Note `(-1)^{q+1} = (-1)^{q-1}`, so this is the manuscript's display verbatim. -/
 theorem chern_eq_of_squareZero {A : Type*} [CommRing A] [Algebra ℚ A]
     (c ch : ℕ → A) (hc0 : c 0 = 1)
-    (hnewton : ∀ k, 0 < k → (k : A) * c k
+    (hnewton : ∀ k : ℕ, 0 < k → (k : A) * c k
       = (-1) ^ (k + 1) *
         ∑ a ∈ Finset.filter (fun a : ℕ × ℕ => a.1 < k) (antidiagonal k),
           (-1) ^ a.1 * c a.1 * ((a.2 ! : A) * ch a.2))
