@@ -3,26 +3,47 @@ import GroupApproximation.CharClass.LIXProductChart
 import GroupApproximation.CharClass.LemmaTwoGlue
 
 /-!
-# The section's blocks are linear in the chart's coordinates
+# The section is a fixed linear function of the chart's *value*, at each chart point
 
 Lane `lix-hsq`.
 
 The comparison homotopy of `hsq` contracts a chart-coordinate point `q` to the origin while
 holding the **chart's reading of the section** fixed.  For that to be a homotopy of maps of
-pairs, and for its far end to be a linear map, the section must be recoverable from its
-chart coordinates by a map that is linear in those coordinates and depends only continuously
-on `q`.  It is, and this file writes that map down.
+pairs, and for its far end to be a linear map, the section must be recoverable from the
+chart's value by a map that is linear in that value and depends only continuously on `q`.
+It is, and `lixEtaLin` is that map.
+
+## What is linear here, and what is not
+
+`lixEtaLin q ab` is linear in `ab` — **the chart's value** — for each fixed `q`.  Read it as
+a family of linear maps indexed by the point, not as a linear map of the point.
+
+Three things are **not** linear, and confusing any of them with the above would make this
+file's role in `hsq` a fiction:
+
+* `q ↦ lixEtaLin q ab` is not linear.  The coefficients are `χ(τ q)` and `chartVec (q.2 j)`,
+  neither of which is linear in `q`.
+* The section in coordinates, `q ↦ lixEtaLin q (lixProductChart dd q)`, is not linear
+  either — in the trivial block it **is** `eulerLocalHomeo`, which is the inverse-function-
+  theorem local homeomorphism `fun p => trivialBlockChart p.1 p.2`, honestly nonlinear;
+  what is linear is only its *derivative* at the zero, `eulerContinuousLinearEquiv`.
+* The transverse block, as a function of the base coordinate, is a product of two
+  `wⱼ`-dependent factors and so is not even affine in it.
+
+Linearity is consumed at exactly one place downstream: `LIXHsqLinear.lixEtaZeroMap`, the
+specialisation `q = 0`, where the base is pinned at the section's zero and only the second
+argument moves.  Nothing in `hsq` needs `q ↦ ⋯` to be linear, and nothing claims it is.
 
 ## The two blocks
 
-* The trivial block of the section, read in the charts, **is** `eulerLocalHomeo`: that is
-  what `LIXSectionChart.trivialBlockChart` is, and the identification is a matter of
-  unfolding once the two clamps are inactive (`LIXHsqNeighbourhood`'s cap).
+* The trivial block of the section, read in the charts, is `eulerLocalHomeo` applied to the
+  point — that is what `LIXSectionChart.trivialBlockChart` is — and the identification is a
+  matter of unfolding once the two clamps are inactive (`LIXHsqNeighbourhood`'s cap).
 * The transverse block is `cVec`, the `(i+1)`-st column of the `j`-th projection.  In the
   affine chart that column is `chartVec (wⱼ) * conj (wⱼ)ᵢ / (1 + ‖wⱼ‖²)`
   (`tautColSection_chartAt`), i.e. the chart coordinate `cpChartSection (wⱼ)ᵢ` **times the
-  vector `chartVec wⱼ`**.  So it is linear in the chart coordinate, with a coefficient that
-  depends on the base point.
+  vector `chartVec wⱼ`**.  So it is linear in the chart's value, with a coefficient that
+  depends — nonlinearly — on the base point.
 
 The path's weight `χ(τ)` multiplies the transverse block and is carried in the coefficient
 too; it is strictly positive on the ball, which is why the reconstruction stays injective.
@@ -35,7 +56,7 @@ nondegeneracy reusable at every point of the contraction rather than at the zero
 ## Main definitions
 
 * `lixTau` — the path parameter at a chart point.
-* `lixEtaLin` — **the reconstruction**, linear in the chart coordinates.
+* `lixEtaLin` — **the reconstruction**, linear in its second argument only.
 
 ## Main results
 
