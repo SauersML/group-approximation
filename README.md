@@ -23,6 +23,15 @@ The proof and [exact replay](scripts/check_unique_games_noisy_direction.py)
 are integrated with Cairn; UGC remains open. Reproduce with
 `python3 scripts/check_unique_games_noisy_direction.py --check`.
 
+[The affine test soundness obstruction](research/artifacts/unique-games-affine-test-soundness-2026-09-07.md)
+gives explicit 2-to-1 games of value at most `2/sqrt(N)` whose folded
+long-code test outputs have high value. The proof, dependencies, and
+[exact finite checks](scripts/check_unique_games_affine_soundness.py) are
+integrated with Cairn and the Unique Games replay workflow. This rules out
+that test's uniform soundness under only affine richness; it does not prove
+or disprove UGC. Reproduce with
+`python3 scripts/check_unique_games_affine_soundness.py --check`.
+
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
 gives an elementary obstruction to controlling a nontrivial word by relation
 errors on individual vectors, with linked research claims and proofs. It also
