@@ -74,13 +74,20 @@ load-bearing for a second lane, and one of them is not debt awaiting a proof —
 it is a contradiction being held at arm's length.  Counting them alongside
 ordinary open lemmas misreports the state of the development.
 
-Since 2026-09-07 the four admissions and both endpoints carry `#audit_axioms`
+Since 2026-09-07 the four admissions and both endpoints carry `#print axioms`
 lines of their own, so a probe of this file **reports `sorryAx` on them** instead
 of reporting nothing.  Before that the file emitted axiom lines only for four
 clean leaves, so any per-file check saw those, found no `sorryAx`, and passed the
-file: a report on part of the evidence read as a report on all of it.  The lines
-are deliberately `#audit_axioms` and never `#audit_closed_axioms` — these
-declarations are not closed and must not be asserted to be.
+file: a report on part of the evidence read as a report on all of it.
+
+The directive has to be `#print axioms` and not `#audit_axioms`.  Both
+`#audit_axioms` and `#audit_closed_axioms` are **gates, not reporters**: they
+reject any declaration whose axioms fall outside `propext`, `Classical.choice`
+and `Quot.sound`, so either one on a `sorry`-backed declaration is a build
+error, not a report.  `#print axioms` emits the same line as an informational
+message and lets the build proceed, which is what a file carrying deliberate
+debt needs.  Do not "upgrade" these to `#audit_axioms`: the file will stop
+building, and the honest report will be lost rather than strengthened.
 
 Three gates would flag this and none of them bites today:
 `scripts/TheoremCCompletionAudit.lean` applies `#audit_closed_axioms` to both
@@ -267,7 +274,7 @@ theorem hullLemma44FamilyInclusionJoint :
 
 /-! Reports `sorryAx`, which is the truth about this declaration. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44FamilyInclusionJoint
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44FamilyInclusionJoint
 
 /-- **Open proof.**  Hull, Lemma 4.4, in the form Hull prints it: the natural
 quotient by a relator family satisfying the small cancellation condition is
@@ -301,7 +308,7 @@ theorem estimatingSelectionConstruction :
 
 /-! Reports `sorryAx`, which is the truth about this declaration. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingSelectionConstruction
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingSelectionConstruction
 
 /-- **Refuted input; interface repair required.** The universal unbound-budget
 statement below omits Osin's geometric scale assumptions. Its closed
@@ -315,7 +322,7 @@ theorem estimatingUnboundOutput :
 
 /-! Reports `sorryAx`.  This one stands for a REFUTED statement, so the line can never read otherwise. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingUnboundOutput
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingUnboundOutput
 
 /-- Conversion of a planar exterior arc into the algebraic boundary
 contiguity at a supplied word, retaining the source relator rotation.  The
@@ -446,7 +453,7 @@ theorem kotowskiOllivier : KotowskiOllivierStatement := by
 
 /-! Reports `sorryAx`, which is the truth about this declaration. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
 
 /-- **Fournier-Facio et al., Proposition 2.3, no longer a citation of its
 own.**  Osin's Theorem 2.4 at the relatively hyperbolic pair `(U * H₀, U)` is
@@ -539,8 +546,8 @@ theorem manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimpl
 header.  These lines exist so that the file reports on the declarations that
 matter rather than only on its four clean leaves. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_openAdmissions
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_openAdmissions
 
 end TheoremC
 end NonMF

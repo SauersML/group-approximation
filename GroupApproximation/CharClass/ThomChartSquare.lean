@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.CharClass.ThomBridgeTotalNatural
 import GroupApproximation.CharClass.ThomHyperSquare
 
@@ -118,9 +119,11 @@ theorem bridgeTotalRestrict [CompactSpace X] [T2Space X] (p : Bundle X ι)
       (fun z hz => projInclOn_range_mapsTo p U z hz) n)
     (chartSquare p U n) (hyperSquare p U n) x
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the axiom closure and
+**fails the build** if it leaves the classical allowlist, which `#print axioms`
+does not. -/
 
-#print axioms bridgeTotalRestrict
+#audit_axioms bridgeTotalRestrict
 
 end
 
