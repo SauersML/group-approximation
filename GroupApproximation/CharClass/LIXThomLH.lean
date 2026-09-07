@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXThomDatum
 import GroupApproximation.CharClass.CohomologyLHDegreewise
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Leray–Hirsch coefficients at the top degree, as a linear equivalence
@@ -79,9 +80,10 @@ noncomputable def lhTopEquiv {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ}
     ((i : Fin (r + 1)) → lhCoeffTop X r i) ≃ₗ[ZMod 2] Hmod2 P (2 * r) :=
   LinearEquiv.ofBijective (lhSumTop π ξ r) (LHCast.bijective_sum_lhTerm_top L)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lhTopEquiv
+#audit_axioms lhTopEquiv
 
 end
 

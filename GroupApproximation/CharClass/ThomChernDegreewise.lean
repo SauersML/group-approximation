@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.CohomologyLHDegreewise
 import GroupApproximation.CharClass.CohomologyAssoc
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Chern relation, degreewise
@@ -140,9 +141,10 @@ theorem lhTerm_top_eq_sum {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ}
   refine Finset.sum_congr rfl (fun i _ => ?_)
   exact cup_pull_lhTerm' π ξ (by have := i.isLt; omega) hp a (chernCoeff L i)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lhTerm_top_eq_sum
+#audit_axioms lhTerm_top_eq_sum
 
 end ThomChernDeg
 

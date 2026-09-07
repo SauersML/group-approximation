@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ParityEvenStepDClosed
 import GroupApproximation.CharClass.SliceVGenerator
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The even side's last input, stated about `V` and nothing else
@@ -151,9 +152,9 @@ theorem lemmaTwoHolds_of_sliceGen
 
 /-! ## 5. The axiom report -/
 
-#print axioms lemmaTwoHolds_of_vSliceValue
+#audit_axioms lemmaTwoHolds_of_vSliceValue
 
-#print axioms lemmaTwoHolds_of_sliceGen
+#audit_axioms lemmaTwoHolds_of_sliceGen
 
 end
 
