@@ -211,6 +211,7 @@ Namespace for everything new: `GroupApproximation.MFQuotientUnits`.
 | `4ad72a2780398b46331a74d9fd90f119c55b2a44` | `GroupApproximation/Manuscript/OneSidedMFRadical/MFHomKernel.lean` | 4280 |
 | `b4c2533508b665e1ff026a76e041552e284c9e9f` | `GroupApproximation/Algebra/CornerRing.lean` | 975 |
 | `6a9aaf05fcd2b441b3ab83e56efd6b1f28702d1e` | `GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnits.lean` | 4282 |
+| `e4e2f12d85191ddaa0f951529776e4fe4af9d8f3` | `GroupApproximation/Algebra/FinitelyGeneratedAbelianResiduallyFinite.lean` (+ endpoint discharge) | 2810 / 4283 |
 
 The printed theorem is `PrintedMFQuotientUnits`, proved by
 `printedMFQuotientUnits_of_inputs` from five named hypotheses:
@@ -231,32 +232,36 @@ The printed theorem is `PrintedMFQuotientUnits`, proved by
   stated in terms of the other and no bridge is assumed, because the printed
   proof needs none.
 
-### THE ONE OPEN OBLIGATION
+### The countable-abelian clause, closed
 
-    def CountableAbelianMF : Prop :=
-      ∀ (A : Type) [CommGroup A] [Countable A], IsOperatorMF A
+`CountableAbelianMF` is no longer a hypothesis: `countableAbelianMF` proves it,
+and `printedMFQuotientUnits_of_agp` is the endpoint depending only on
+`thm:full-defect-ring` in its rank-two form and the four Ara--Goodearl--Pardo
+propositions.
 
-Provable, not a literature input.  rank-four confirmed they have not started it
-and handed it over.  The route, so it need not be re-derived:
+The print argues analytically (`C*_max(A)` commutative and separable, hence
+residually finite-dimensional and MF, citing Brown--Kirchberg).  The proof used
+instead is group-theoretic and quotes nothing: countable abelian implies LEF
+implies MF.  Mathlib has residual finiteness for finite groups, subgroups and
+binary products but not for finitely generated abelian groups, and the
+structure theorem is additive while the target is multiplicative, so everything
+runs on the class-free predicate `AddSeparated` and converts once at the end.
+The free part needs no induction: a nonzero element of `Fin n →₀ ℤ` is nonzero
+in some coordinate, separated in `ℤ` by reduction modulo `|g i| + 1`.
 
-1. `isOperatorMF_of_isLEF` (Algebra/AmenableMFProof) reduces it to LEF.
-2. `isLEF_of_forall_finset_residuallyFinite` (Sofic/LEFSofic) reduces LEF to:
-   every finite subset lies in a residually finite subgroup.  Take
-   `Subgroup.closure ↑s`, which is finitely generated abelian.
-3. So the whole content is: **a finitely generated abelian group is residually
-   finite**, which is NOT in Mathlib at the pin.  Mathlib has only
-   `Finite ⇒ ResiduallyFinite`, `ResiduallyFinite` for subgroups, for binary
-   products, and `residuallyFinite_of_forall_exists_finite_monoidHom`.
-4. It has to go through the structure theorem
-   `AddCommGroup.equiv_free_prod_directSum_zmod` (Mathlib
-   `GroupTheory/FiniteAbelian/Basic.lean`): transport along the additive
-   equivalence, note the torsion factor is finite hence residually finite, and
-   get the free factor `Fin n →₀ ℤ` by induction on `n` from residual
-   finiteness of `ℤ` (via `ZMod (|g|+1)`) and the binary product instance.
-   Additive-to-multiplicative transport goes through `Multiplicative` and the
-   repository's `residuallyFinite_of_mulEquiv`.
+### Open obligations
 
-Estimated at 120--200 lines with several Mathlib names to pin down
-(`DirectSum` finiteness over a `Fintype`, `Finsupp.equivFunOnFinite`, the
-additive form of the transport).  Isolated as a hypothesis so that nothing else
-waits on it.
+None.
+
+### One landed module that nothing imports
+
+`Algebra/CornerRing.lean` (`b4c2533508b665e1ff026a76e041552e284c9e9f`) was
+built on an explicit instruction, and a later instruction --- which crossed with
+the build --- said it was not needed after all, because
+`range_le_mfHomKernel` is the whole content of `eq:corner-units` and the corner
+never has to be constructed.  The module is correct and self-contained, its
+import has been removed from `MFQuotientUnits.lean`, and nothing else in the
+tree uses it.  It is reusable infrastructure (the plain algebraic corner `eRe`
+as a `Ring` with unit `e`, which the tree otherwise has only for C⋆-algebras at
+a projection), so it is left in place rather than deleted; that is the lead's
+call, not this lane's.
