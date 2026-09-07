@@ -51,6 +51,7 @@ theorem chainCx_X_eq_sigma (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
 /-- **The singular chain groups are free.** -/
 theorem free_chainCx_X (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
     Module.Free R ((chainCx R X).X n) :=
+  haveI := Classical.decEq (singularSimplices X n)
   Module.Free.of_equiv
     ((ModuleCat.coprodIsoDirectSum
       (fun (_ : singularSimplices X n) => ModuleCat.of R R)).symm.toLinearEquiv)

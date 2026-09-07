@@ -6,6 +6,8 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/hs-word-gap-linearization-2026-09-07.md
+  - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
   - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
   - research/artifacts/parallel-group-word-2026-09-04.md
   - research/artifacts/parallel-ui-iteration-audit-2026-09-04.md
@@ -38,6 +40,18 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+The September 7 scalar-sensitive amplification proves that a fixed
+distance-one HS word gap implies a global linear bound, with constant
+2/eta. Combined with radical compactness, one finite relator list and
+one integer multiplying its squared HS energy characterize a killed
+hyperlinear-radical word. These are reductions: no nontrivial word with
+the required matrix-only inequality has been supplied. Its candidate
+energy polynomial has trace -2 in the canonical group representation,
+so universal tracial SOS or moment reasoning cannot prove that
+inequality. The saturated-group HS gap and this existence goal remain
+open. See the two linked September 7 artifacts for the proof, exact
+finite replay, and the remaining obligation.
 
 The September 5 audits leave this target open. Hilbert `H^2` vanishing
 now gives uniform fixed-tolerance correction concentrating arbitrary

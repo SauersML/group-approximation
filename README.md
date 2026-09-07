@@ -10,12 +10,66 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 ## Research notes
 
+[Cyclic attachments for one-relator groups](research/artifacts/mixed-conjugator-one-relator-proof-2026-09-07.md)
+give written soficity proofs for all nested Baumslag presentations with
+conjugator `w=b^p a^s b^q`, including the asymmetric example asked about in
+Berlai's paper, and for a broader family with one-sided indexed support.
+The proofs and their dependencies are integrated into Cairn. The general
+one-relator question remains open here, and these results are not Lean-certified.
+
+[A noisy direction counterexample](research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md)
+refutes the proposed affine glue lemma in the Unique Games research track.
+The proof and [exact replay](scripts/check_unique_games_noisy_direction.py)
+are integrated with Cairn; UGC remains open. Reproduce with
+`python3 scripts/check_unique_games_noisy_direction.py --check`.
+
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
 gives an elementary obstruction to controlling a nontrivial word by relation
 errors on individual vectors, with linked research claims and proofs. It also
 records the unresolved global operator-norm step in the independent search for
 a property-(T)-free non-MF proof. This note supplies no new existence theorem
 or Lean verification claim.
+
+The [scalar-sensitive HS gap reduction](research/artifacts/hs-word-gap-linearization-2026-09-07.md)
+and [finite word-certificate criterion](research/artifacts/hyperlinear-word-certificate-2026-09-07.md)
+sharpen the nonhyperlinear research route in Cairn. The exact amplifier
+replay is `python3 experiments/hs_word_gap_amplification_check.py`.
+The group-specific matrix bound and nonhyperlinear existence remain open;
+these research proofs carry no new Lean verification claim.
+
+[Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
+gives a rational qubit-projector family with combinatorial gap `1/2` and
+unbounded optimal rounder cost, plus an obstruction to flags charged only
+to individual terms. Run `python3 scripts/check_qpcp_rounding.py` for exact
+algebraic replay. The linked Cairn target remains open; these results do not
+prove quantum PCP.
+
+[Finite-context relator energy](research/artifacts/finite-context-relator-energy.md)
+extends that obstruction to arbitrary fixed polynomial contexts and proves
+that the resulting quadratic certificates characterize ordinary identity
+words. Its [continuation](research/artifacts/local-context-and-global-norm-hierarchies.md)
+computes the limit of increasing vector-context tests as the full group
+C-star norm, and distinguishes it from the global norm test for the MF
+radical. Complete written proofs and exact finite certificate replays are
+included; these results do not settle the non-MF research goals.
+
+[Gottschalk surjunctivity research](notes/GOTTSCHALK_RESEARCH_2026-09-07.md)
+records a complete proof of a conditional observable-growth criterion and
+an exact reversible example showing why its hypothesis is not universal.
+The [positive conjecture goal](research/gottschalk-surjunctivity-conjecture.md)
+remains open in Cairn. Replay the accompanying exact checks with:
+
+```sh
+python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py
+bin/cairn why gottschalk-surjunctivity-conjecture
+```
+
+[Fixed-list relation-energy certificates](notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md)
+are characterized exactly by subgroup membership in a free group. The note
+gives a linear bound on finite permutation counterexamples and an
+[exact certificate generator and verifier](experiments/word_energy_certificate.py).
+This is a proved limitation of the proposed certificate method; the requested
+property-(T)-free non-MF existence theorem remains open in this work.
 
 ## Lean library
 

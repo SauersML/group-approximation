@@ -9,6 +9,8 @@ distinct_from:
   effective-transport-modulus: that asks for explicit operator-norm numbers on the literal group's displayed relators; this asks for a normalized Hilbert--Schmidt constant for the saturated group and does not ask for it to be computable.
 artifacts:
   - research/artifacts/hs-defect-gap-and-padding-2026-09-07.md
+  - research/artifacts/hs-word-gap-linearization-2026-09-07.md
+  - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
   - non_mf_groups_exist.tex
 ---
 
@@ -29,7 +31,23 @@ D_2(U) >= 1  ==>  d_2(U) >= eta                        (HSG)
 
 for every `d` and every `U in U(d)^S`.
 
+The established `fixed-hs-word-gap-is-linear-domination` identifies this
+with the existence of a global linear bound `D_2(U)<=C d_2(U)`.
+Specifically (HSG) gives `C=2/eta`, while a positive linear constant C
+gives (HSG) with `eta=1/C`. This is a quantitative equivalence; neither
+side has been proved for Q.
+
 ## Attempts
+
+**Linearization succeeds; a universal tracial SOS certificate cannot.**
+The fixed-gap amplifier proves equivalence to global linear HS collapse.
+For a nontrivial generator s, however, the candidate polynomial
+`N sum_r (r-1)^*(r-1) - (s-1)^*(s-1)` has trace -2 at the canonical
+regular representation of Q. A sum-of-squares or moment proof valid in
+all tracial algebras therefore cannot establish its nonnegativity.
+The required inequality must use matrix-specific information. The
+artifact `hyperlinear-word-certificate-2026-09-07.md` gives the exact
+argument; it does not refute the matrix-only gap.
 
 **The operator-norm certificate is not enough.**
 `full-mf-radical-linear-relator-inequality` gives `D_infty <= C d_infty`.

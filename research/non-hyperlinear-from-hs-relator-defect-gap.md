@@ -2,19 +2,24 @@
 rg: 2
 id: non-hyperlinear-from-hs-relator-defect-gap
 kind: route
-title: A normalized-HS relator defect gap refutes every microstate sequence
+title: Linearize the normalized-HS relator gap and exclude canonical microstates
 target: non-hyperlinear-group
 requires:
   - saturated-group-hs-relator-defect-gap
   - defect-saturation-full-mf-radical
+  - fixed-hs-word-gap-is-linear-domination
 artifacts:
   - research/artifacts/hs-defect-gap-and-padding-2026-09-07.md
+  - research/artifacts/hs-word-gap-linearization-2026-09-07.md
 ---
 
 ## Why sufficient
 
 The prerequisites supply the explicit two-generated finitely presented group
 `Q=<S|R>` and the constant `eta>0` of `(HSG)`.
+
+The established linearization prerequisite turns this into the global
+bound `D_2(U) <= (2/eta)d_2(U)` in every matrix dimension.
 
 Suppose `Q` is hyperlinear.  Then `L(Q)` embeds in `R^omega`, so the
 restriction of the trace to the canonical unitaries kills every nonidentity
@@ -23,12 +28,16 @@ unitary tuples `U^((n)) in U(d_n)^S` with
 
 ```text
 d_2(U^((n))) -> 0,
-||U_s^((n)) - I||_2 -> sqrt 2   for each s.
+||U_s^((n)) - I||_2 -> sqrt 2   for each nontrivial generator s.
 ```
 
-The generators of `Q` are nontrivial because `Q` is infinite and torsion-free,
-so `D_2(U^((n))) -> sqrt 2`, and `D_2(U^((n))) >= 1` for large `n`.  Then
-`(HSG)` gives `d_2(U^((n))) >= eta` for those `n`, against
-`d_2(U^((n))) -> 0`.
+Since `Q` is infinite it is nontrivial, so at least one of its generators
+is nontrivial. Identity generators, if present, have distance tending to
+zero. Therefore `D_2(U^((n))) -> sqrt 2`, whereas the global linear
+bound and `d_2(U^((n))) -> 0` force `D_2(U^((n))) -> 0`, a contradiction.
 
 So `Q` is not hyperlinear, and it is explicit.
+
+By `fixed-hs-word-gap-is-linear-domination`, the still-open (HSG)
+prerequisite is equivalently a global bound `D_2 <= C d_2`.
+The conversion is a proved reduction, not a source of the missing gap.

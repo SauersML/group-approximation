@@ -32,8 +32,9 @@ dimension, and the reduction is polynomial time from a QMA verifier.  That is
 
 ## What this route does and does not concede
 
-It does **not** claim progress by itself.  Its third prerequisite is, taken
-bare, equivalent to its target -- see the converse in
+It does **not** claim progress by itself. Conditional on the first
+prerequisite, its third prerequisite is equivalent to the NO-side energy
+floor, not to the entire target -- see the corrected converse in
 `combinatorial-gap-and-rounder-give-energy-gap`.  The route is written so
 that the equivalence is visible at the interface rather than hidden inside a
 proof, and so that the genuinely new obligations are the ones reached through

@@ -15,12 +15,22 @@ counts Lemma 61 consumes.  Its arc-count conclusion is then proved outright
 from the already landed arithmetic `lemma61_arcCount_le`, so no inequality
 that arithmetic can close is left inside the remaining geometric producer.
 
-What stays open is `Lemma62ComponentDecompositionStatement`: the decomposition
+`Lemma62ComponentDecompositionStatement` states the rest: the decomposition
 exists and every one of its components stays below the `1/60` density
 threshold.  That is the contradiction argument of Lemma 62, which cuts each
 component into a disc along at most `n_i` minimal paths, applies Proposition
 4.14 to the type (A1) arcs, and contradicts either the maximality of the
 distinguished family or the minimality of the cutting paths.
+
+**It is not open: as stated, it is false.**  It carries no scale hypothesis, and
+`lemma62ComponentPartition_of_decomposition` maps it to
+`Lemma62ComponentPartitionStatement`, which
+`UnboundSmallMuCounterexample.not_lemma62ComponentPartitionStatement` refutes.
+`UnboundSmallMuCounterexample.not_lemma62ComponentDecompositionStatement` is the
+composite.  The live target is the same conclusion with `hhyper` and
+`UnboundEstimate.OsinUnboundScale` added — the shape
+`EstimatingUnboundOutputStatement` was repaired to at `c685697b9` — and that
+statement does not exist yet.
 -/
 
 namespace GroupApproximation
@@ -185,8 +195,20 @@ theorem componentPartition_of_components
 
 /-- The geometric residue of Osin Appendix Lemma 62: the complementary
 decomposition exists, and no component reaches the `1/60` density threshold.
-The averaging inequality and Lemma 61's counting are already proved, so this
-is the whole remaining content. -/
+The averaging inequality and Lemma 61's counting are already proved.
+
+**This statement is FALSE and must not be assigned.**  It quantifies `rho` with
+no scale premise, so
+`UnboundSmallMuCounterexample.not_lemma62ComponentDecompositionStatement`
+refutes it, through
+`lemma62ComponentPartition_of_decomposition` and the refutation of
+`Lemma62ComponentPartitionStatement` at `eps = 0`, `mu = 1/32`, `rho = 1089`.
+
+It is retained because it is the exact shape the counterexample rules out, and
+because the chain through it is what carries that refutation back to the
+decomposition producer.  **The remaining content of Lemma 62 is this conclusion
+with `hhyper` and `UnboundEstimate.OsinUnboundScale` added**; nobody has written
+that statement, and it is what a producer lane should be given. -/
 def Lemma62ComponentDecompositionStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
@@ -221,11 +243,18 @@ theorem estimatingUnboundRepaired_of_decomposition
   estimatingUnboundRepaired_of_componentPartition
     (lemma62ComponentPartition_of_decomposition hdecomposition)
 
-/-- The decomposition producer discharges the statement that
-`estimatingDataConstruction_of_components` consumes. -/
+/-- The decomposition producer discharges the **historical** output statement.
+
+It cannot reach the current `EstimatingUnboundOutputStatement`, and should not:
+that one carries `UnboundEstimate.OsinUnboundScale`, which the same-diagram
+repaired form does not supply.  The chain
+`Lemma62ComponentDecompositionStatement → EstimatingUnboundRepairedStatement →
+EstimatingUnboundOutputHistoricalStatement` is retained because it is what
+carries the counterexamples' refutation back to the decomposition producer, in
+`UnboundSmallMuCounterexample.not_lemma62ComponentPartitionStatement`. -/
 theorem estimatingUnboundOutput_of_decomposition
     (hdecomposition : Lemma62ComponentDecompositionStatement.{u, w, v}) :
-    EstimatingUnboundOutputStatement.{u, w, v} :=
+    EstimatingUnboundOutputHistoricalStatement.{u, w, v} :=
   estimatingUnboundOutput_of_repaired
     (estimatingUnboundRepaired_of_decomposition hdecomposition)
 

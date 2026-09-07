@@ -3,8 +3,6 @@ rg: 2
 id: coherent-shear-is-combinatorially-invisible
 kind: claim
 title: A coherent frame shear costs inverse-depth energy but cannot be exactified faithfully at constant cost
-invalidates:
-  - qpcp-rounder-from-combinatorial-soundness-alone
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
 distinct_from:
@@ -49,16 +47,20 @@ exactification of `rho_D` can have `S` empty.  Comparing `|S| >= 1` with
 C >= 2D / theta^2  -->  infinity.                               (CSI4)
 ```
 
-**What this fences.**  Soft energy and exact fault count are decoupled by a
+**What this fences.** Soft energy and endpoint-faithful fault count are decoupled by a
 factor growing with the depth as soon as the exactifier is required to
 preserve constant-scale logical data.  A rounder therefore cannot be produced
 by any argument whose only input is a conversion of energy into a count of
 violated constraints: on this family the count is `1` and the energy is
 `Theta(1/D)`, and a purely combinatorial assignment cannot perform the
-infinitesimal rotation that a quantum state performs for free.  The
-combinatorial gap of this family is `0`, so combinatorial soundness is
-vacuous here -- which is precisely the point: it is not a hypothesis that any
-exactification argument may quietly rely on.
+infinitesimal rotation that a quantum state performs for free.
+The combinatorial gap of this family is `0`. Consequently this example
+alone does not refute an unrestricted rounder theorem whose hypothesis is
+a positive constant combinatorial gap. Its former invalidation edge to
+`qpcp-rounder-from-combinatorial-soundness-alone` was too broad and was
+removed on 2026-09-07. The appropriate unconditional counterexample is now
+`qubit-pairs-have-half-gap-and-unbounded-rounder-cost`, which has
+combinatorial gap `1/2` and needs no input-preservation clause.
 
 Note also that dropping endpoint faithfulness makes the statement false and
 uninteresting: the constant instrument of

@@ -1,5 +1,10 @@
 # Approximation and complexity root audit — 2026-08-31
 
+**UGC update, 2026-09-07:** the [noisy direction counterexample](unique-games-noisy-direction-counterexample-2026-09-07.md)
+refutes the proposed affine glue and star-density statements. The UGC
+inventory and analytic discussion below record the earlier attack; only
+their conditional averaging result survives as a theorem. UGC remains open.
+
 ## Verdict ledger
 
 The six requested high-impact targets remain open after a primary-literature
@@ -12,7 +17,7 @@ check and a proof audit:
 | `one-relator-groups-sofic` | **OPEN** | The nonabelian derived Linton radical / free-edge Magnus-chain approximation remains. |
 | `nonsofic-one-relator-group` | **OPEN** | No locally indicable, primitivity-rank-two witness with an action-sensitive nonsofic obstruction is known. |
 | `quantum-pcp-constant-gap-local-hamiltonian` | **OPEN** | The proposed Cairn lane still needs state-weighted local syndrome-port domination at bounded horizon. |
-| `unique-games-conjecture` | **OPEN** | The Rich 2-to-1 equivalent formulation still lacks the analytic affine-star density estimate and the written hardness endgame. |
+| `unique-games-conjecture` | **OPEN** | Update 2026-09-07: the proposed affine glue and star-density lemmas are refuted by the noisy direction counterexample; a replacement proof route is needed. |
 
 No root was promoted.  One intermediate lemma in the UGC lane is newly
 established: `triangle-defect-globalizes-to-a-bounded-label-list`, with the

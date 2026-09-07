@@ -5,6 +5,7 @@ kind: claim
 title: Produce the manuscript's explicit corona-invisible group element without Property T
 artifacts:
   - research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md
+  - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
 distinct_from:
   property-t-free-manuscript-results: that also demands binary-Leavitt full collapse, the full radical calculus, and a torsion-free finitely presented endpoint; this is exactly its first explicit-group obligation.
   perfect-lcs-gap-implies-weak-non-mf: that is a conditional theorem for a hypothetical perfect LCS gap; this asks for an unconditional explicitly specified group and element.
@@ -36,3 +37,11 @@ source-specific route through a central sign is isolated at
 - Conditional perfect-LCS and selected signed-Hecke corners do not establish
   this claim: the first lacks an instance, while the second does not
   authenticate its chosen finite-subgroup type in every corona map.
+- The independent finite relation-energy attempt has an exact boundary:
+  `finite-context-energy-certificate-iff-word-trivial` shows that allowing any
+  fixed finite word contexts still certifies only ordinary word triviality.
+  Polynomial contexts do not repair this for a nontrivial mark. This does
+  not exclude a global scalar operator-norm estimate or a matrix-dependent
+  construction, and leaves the existence target open. The sharper fixed-list
+  criterion and linear counterexample-size bound are proved in
+  `word-energy-domination-is-free-subgroup-membership`.

@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.BundleCalculusTransport
+import GroupApproximation.KTheory.MatrixProjection
 import Mathlib.Topology.Homotopy.Basic
 
 /-!
@@ -74,6 +75,8 @@ theorem murrayVonNeumannEquiv_pullback (f : C(X, Z)) {P Q : C(Z, CStarMatrix ι 
 theorem unitaryConj_pullback (f : C(X, Z)) {P Q : C(Z, CStarMatrix ι ι ℂ)}
     (h : UnitaryConj P Q) :
     UnitaryConj (pullback (ι := ι) f P) (pullback f Q) :=
+  haveI := AlgHomClass.toRingHomClass
+    (F := C(Z, CStarMatrix ι ι ℂ) →⋆ₐ[ℂ] C(X, CStarMatrix ι ι ℂ)) (R := ℂ)
   h.map (pullback f)
 
 end Pullback
@@ -111,15 +114,14 @@ theorem unitaryConj_pullback_of_homotopy {f₀ f₁ : C(X, Z)}
     intro t
     constructor
     · show F.curry t * F.curry t = F.curry t
-      ext x
-      rw [ContinuousMap.mul_apply, hFapply]
-      exact hmul _
+      ext x i j
+      rw [ContinuousMap.mul_apply, hFapply, hmul]
     · show star (F.curry t) = F.curry t
-      ext x
-      rw [ContinuousMap.star_apply, hFapply]
-      exact hstar _
+      ext x i j
+      rw [ContinuousMap.star_apply, hFapply, hstar]
   have hcont : Continuous (fun t : unitInterval => F.curry t) := map_continuous F.curry
-  have key := unitaryConj_of_preconnected hcont hproj 0 1
+  have key := unitaryConj_of_preconnected (f := fun t : unitInterval => F.curry t)
+    hcont hproj (0 : unitInterval) (1 : unitInterval)
   have h0 : F.curry (0 : unitInterval) = pullback (ι := ι) f₀ P := by
     ext x
     rw [hFapply, pullback_apply, H.apply_zero]
@@ -128,6 +130,7 @@ theorem unitaryConj_pullback_of_homotopy {f₀ f₁ : C(X, Z)}
     rw [hFapply, pullback_apply, H.apply_one]
   rwa [h0, h1] at key
 
+set_option maxHeartbeats 1000000 in
 /-- Bundle-isomorphism form: **homotopic maps pull back isomorphic bundles.**
 This is the statement every characteristic-class argument in the campaign
 ultimately rests on. -/
@@ -135,8 +138,12 @@ theorem murrayVonNeumannEquiv_pullback_of_homotopy {f₀ f₁ : C(X, Z)}
     (H : ContinuousMap.Homotopy f₀ f₁) {P : C(Z, CStarMatrix ι ι ℂ)}
     (hP : IsStarProjection P) :
     MurrayVonNeumannEquiv (pullback (ι := ι) f₀ P) (pullback f₁ P) :=
-  (unitaryConj_pullback_of_homotopy H hP).murrayVonNeumannEquiv
-    (isStarProjection_pullback f₀ hP)
+  -- `R` must be pinned: without it the elaborator meets `UnitaryConj`'s
+  -- `Ring.toSemiring.toMonoid` instance argument while the carrier is still a
+  -- metavariable, and reports an application type mismatch against
+  -- `ContinuousMap.instMonoidOfContinuousMul` before any unification runs.
+  UnitaryConj.murrayVonNeumannEquiv (R := C(X, CStarMatrix ι ι ℂ))
+    (isStarProjection_pullback f₀ hP) (unitaryConj_pullback_of_homotopy H hP)
 
 /-- The `Homotopic` form, for callers who have only the existence of a
 homotopy. -/

@@ -7,6 +7,7 @@ target: fp-simple-nonhyperlinearity-is-one-word-domination
 requires:
   - hyperlinear-radical-presentation-compactness
   - character-domination-collapse-equivalences
+  - hyperlinear-radical-has-linear-word-certificate
 ---
 
 Write `F=F(S)`, let `p:F ->> G` be the presentation map, and put
@@ -126,3 +127,12 @@ Equation `(FS6)` is also the reason no direct comparison between conditions
 the ordinary normalized-HS defect does not.  Both conditions characterize
 the same radical membership, but the character route first passes to the
 conjugate double, where every scalar phase cancels.
+
+## The scalar-sensitive linear certificate
+
+Apply `hyperlinear-radical-has-linear-word-certificate` to this finite
+presentation and take the full relator list. It identifies (FS1-HS),
+condition 4, with wbar in Rad_hyp(G). Equation (FS2) therefore proves
+the equivalence with condition 1. The ordinary HS result uses identity
+blocks and conjugate direct sums before tensoring; it does not infer
+ordinary HS control from a pointwise comparison with q_U.

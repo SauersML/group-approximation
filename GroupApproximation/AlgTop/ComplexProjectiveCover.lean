@@ -122,10 +122,12 @@ theorem inter_eq_setOf (d : ℕ) :
 
 theorem entry_zero_zero_eq_one (x : CP 0) : entry x 0 0 = 1 := by
   have h := trace_coe x
-  simp only [Matrix.trace, Matrix.diag_apply, Fin.sum_univ_one] at h
+  simp only [Matrix.trace, Matrix.diag_apply, Fin.sum_univ_succ, Fin.sum_univ_zero,
+    add_zero] at h
   exact h
 
 theorem eq_basePoint_zero (x : CP 0) : x = basePoint 0 := by
+  haveI : Subsingleton (Fin (0 + 1)) := inferInstanceAs (Subsingleton (Fin 1))
   refine ext fun a b => ?_
   have ha : a = 0 := Subsingleton.elim a 0
   have hb : b = 0 := Subsingleton.elim b 0

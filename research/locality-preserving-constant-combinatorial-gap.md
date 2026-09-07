@@ -39,6 +39,16 @@ two reasons recorded in
 
 Update this node, do not weaken it, when the preprint appears.
 
+**Provenance update, checked 2026-09-07.** The official
+[FOCS 2026 accepted-paper list](https://focs.computer.org/2026/accepted-papers/)
+now lists this title with authors **Mitali Bafna, Quynh T. Nguyen, and Tina
+Zhang**. This resolves the author-attribution uncertainty above; the earlier
+audit accurately records what was checked on its date. The
+[Simons talk page](https://simons.berkeley.edu/talks/quynh-t-nguyen-harvard-university-2026-07-23)
+still supplies only an abstract. The searches performed on 2026-09-07 did
+not locate a full text specifying the iterated alphabet bound. An accepted
+title and author list do not discharge (LPC1), so this claim remains OPEN.
+
 ## Attempts
 
 - **Ordinary energy amplification then reinterpretation.**  Fails before it

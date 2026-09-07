@@ -37,7 +37,7 @@
       "id": "thm:full-defect-ring",
       "environment": "mainthm",
       "title": "full complementary idempotents",
-      "statement_sha256": "04d80cd1615222ab2edf271720cd1c9c0fb3d0b725d5e20dfed9cf5f4e0efa40",
+      "statement_sha256": "4b2799b6df96a4a41fdfc6890a212c7951d3e8f6d4727a232cfc9040853774ee",
       "status": "exact",
       "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
@@ -173,7 +173,7 @@
       "id": "prop:mf-residual-calculus",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "e5dd2676a98da1a54758f0d3f6768d4dcbe3860bd320e763ce7df766cad73d71",
+      "statement_sha256": "9adc70ee9d5dd74f3e359e53db855d4bd5d1e4dd91b0069775eed254c2918cb2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -290,7 +290,7 @@
       "id": "lem:central-corona-corner",
       "environment": "lemma",
       "title": "central corona corners",
-      "statement_sha256": "515084ab069f7d5baceb948defdb9369786defa38aaa3e75590bc45172deaa17",
+      "statement_sha256": "614df5f41a8af65c0a0ef802463c51cd6e1dbded03d3aae67bc0c5330b802a23",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -341,26 +341,6 @@
       ]
     },
     {
-      "id": "lem:proper-isometry",
-      "environment": "lemma",
-      "title": "strictly dominated projections",
-      "statement_sha256": "bfb4661ad1f7d475d60ae15d6f6507da6728dc30c84b7a915791dd8b235615e9",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/ProperIsometryStrictOrder",
-          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "prop:max-infinite",
       "environment": "proposition",
       "title": "proper one-sided compression",
@@ -368,8 +348,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:kazhdan-projection-order",
-        "lem:proper-isometry"
+        "lem:kazhdan-projection-order"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -386,8 +365,44 @@
           "module": "Analysis/QuasiRegularWitness",
           "declaration": "GroupApproximation.QuasiRegularWitness.baseVector_apply_base",
           "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/ProperIsometryStrictOrder",
+          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
+    },
+    {
+      "id": "lem:linear-tensor-amplification",
+      "environment": "lemma",
+      "title": "tensor amplification",
+      "statement_sha256": "456d586de68391ad05ed671ad066d9d4d37b7274da7ff48950d17d0b366943f1",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:word-linear-certificate",
+      "environment": "theorem",
+      "title": "linear certificates for MF-invisible words",
+      "statement_sha256": "a2e5428309945007472223667d012c350a65c346e84aa813a0af7a1f71ae8997",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:linear-tensor-amplification",
+        "prop:mf-residual-calculus",
+        "lem:stable-finite"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
     },
     {
       "id": "prop:linear-collapse",
@@ -397,7 +412,7 @@
       "status": "exact",
       "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
-        "prop:mf-residual-calculus"
+        "thm:word-linear-certificate"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -530,7 +545,7 @@
       "id": "thm:mf-quotient-units",
       "environment": "theorem",
       "title": "MF quotients of unit groups",
-      "statement_sha256": "0e8b11cc6be62dd60888cd04d3bbb8def194e03dfa9d823c6d41c58247d4f11e",
+      "statement_sha256": "c424b75ebb91b431a9bd3a1672e2e2c4ece543ef73d9612b36edf6cc47b8dde0",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [

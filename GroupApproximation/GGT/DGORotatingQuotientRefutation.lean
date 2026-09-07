@@ -3,8 +3,12 @@ import GroupApproximation.GGT.HullSCDGO
 /-!
 # The finite-order clause was not DGO's, and the statement carrying it is false
 
-`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` records DGO's Theorem 5.3 as a
-literature debt.  Until issue #50 the conclusion it recorded --
+`Manuscript.NonMF.TheoremCAssembly.dgoTheorem53` recorded DGO's Theorem 5.3 as a
+literature debt when this module was written.  **It is no longer a debt**: it is
+proved, by `DGOWindmill.dgoQuotientStatementGeodesic`, through the windmill
+campaign.  What is proved is Theorem 5.3(b), the dichotomy; 5.3(a), the free
+splitting, is *not* a field of `HullSC.RotatingQuotient` — see the note there.
+Until issue #50 the conclusion it recorded --
 `HullSC.RotatingQuotient` -- carried a clause saying that every element of
 finite order of the quotient lifts to an element of `G` of the same order.
 `DGOQuotientStatementGeodesicWithLift` below is that statement, and **it is

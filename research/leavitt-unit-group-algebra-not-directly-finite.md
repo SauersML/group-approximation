@@ -58,6 +58,14 @@ that reason.
 
 ## The lanes
 
+An exact obstruction filter is available in
+`finite-precision-lifted-trace-obstruction`: polynomial idempotent lifting
+modulo p^k turns a nonzero trace residue into a finite rejection certificate,
+with a sufficient precision for finite-subgroup defects. The sharp cyclic
+examples in `no-fixed-trace-precision-detects-all-idempotents` show why one
+fixed modulus cannot replace the full invariant. Passing a finite trace
+check supplies no inverse pair and leaves this target open.
+
 The all-field positive result for the Kun--Thom wreath family now extends
 to a recursive hierarchy at
 `recursive-wreath-libraries-have-stably-finite-group-algebras`. It does
