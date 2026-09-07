@@ -64,6 +64,13 @@ python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py
 bin/cairn why gottschalk-surjunctivity-conjecture
 ```
 
+[Fixed-list relation-energy certificates](notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md)
+are characterized exactly by subgroup membership in a free group. The note
+gives a linear bound on finite permutation counterexamples and an
+[exact certificate generator and verifier](experiments/word_energy_certificate.py).
+This is a proved limitation of the proposed certificate method; the requested
+property-(T)-free non-MF existence theorem remains open in this work.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

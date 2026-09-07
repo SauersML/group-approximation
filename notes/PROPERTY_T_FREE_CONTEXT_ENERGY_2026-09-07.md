@@ -209,6 +209,27 @@ part. Evaluating the purported inequality yields `2<=0`, or `2<=alpha`.
 No assertion about approximate satisfaction in full operator norm is used.
 `square`
 
+There is also an effective construction avoiding membership computations
+in `G`. Generate the free subgroup `H` by the finitely many words
+`q^{-1}r_jq` over the polynomial supports. The promise `w!=1` in `G`
+implies `w notin H`, since `H` lies in the relator normal closure.
+The fixed-list theorem and its folding implementation then give a witness
+of dimension at most
+
+\[
+ 1+|w|+\sum_j\sum_{q\in\operatorname{supp}p_j}(2|q|+|r_j|).
+\]
+
+The identity `E_(q^{-1}r_jq)=((r_j-I)q)^*((r_j-I)q)` shows that the
+witness kills each individual support-word residual, hence their linear
+combination. This alternative proof is wired into the existing Cairn
+polynomial-context claim through
+`polynomial-context-witness-via-free-subgroup`. Without the nontriviality
+promise, the counterexample still refutes the fixed inequality but does not
+decide the quotient word problem. A member report for this enlarged word
+list need not imply domination by the original polynomial contexts, whose
+coefficients may cancel.
+
 ## 5. What remains to prove for non-MF existence
 
 The MF convention here is group embedding in the unitary group of
@@ -227,3 +248,69 @@ are outside the theorem, and no successful instance is supplied here.
 In particular, this result does not disprove the requested existence
 theorem, does not claim that property (T) is necessary, and does not remove
 any dependency from the current non-MF manuscript.
+
+## 6. Exact certificate generation and replay
+
+The stdlib-only
+[certificate builder](../experiments/word_energy_certificate.py) constructs
+finite permutation witnesses for the fixed-list theorem. Its JSON input
+contains `generator_count`, `subgroup_words`, and `target_word`; each word
+is a list of signed generator indices. For example, `[ -2, 1, 2 ]` means
+`b^{-1}ab`. The output uses the convention
+`U_i delta_x=delta_(permutations[i-1][x])`.
+
+The construction is the usual finite inverse-graph folding method. Begin
+with a based loop for each inverse subgroup word and a based path for the
+inverse target word. Include the inverse of every labelled edge. Fold two
+edges with the same label and initial vertex by identifying their terminal
+vertices. Each nontrivial identification decreases the vertex count, so
+the process terminates.
+
+Folding does not change the subgroup of reduced loop labels: the two
+identified endpoints were connected by a path labelled `s^{-1}s`, whose
+free-group value is the identity. A path across an identified vertex can
+be lifted by inserting such paths; the inserted labels contribute no
+group element. Conversely every original based loop maps to a based loop.
+After folding, paths with a given starting point and word label are unique.
+Since inverse edges are present, deleting an adjacent inverse-letter pair
+does not change a path's endpoint. Thus the target endpoint equals the
+basepoint exactly when the target belongs to the original subgroup.
+This is standard Stallings folding; see
+[Kapovich--Myasnikov, *Stallings foldings and the subgroup structure of free
+groups*](https://arxiv.org/abs/math/0202285).
+
+If the endpoint is different, complete each partial labelled permutation
+by matching its unused source and target vertices. Take the inverses of
+these completed permutations as the matrices' tables: right-to-left matrix
+evaluation of `w` then follows the constructed path labelled `w^{-1}`.
+Folding and completion add no vertices, so (3) holds. The implementation
+also preserves the original input words for replay, including free
+cancellations.
+
+The separate verification function checks bijectivity, all word endpoints,
+the dimension bound, and target displacement using only integer arithmetic.
+It does not trust the graph construction. A `member` report is explicitly
+an algorithmic result; the replay verifier accepts only explicit permutation
+counterexamples, not those reports.
+
+Replay the committed four-dimensional example with:
+
+```sh
+python3 experiments/word_energy_certificate.py verify \
+  research/artifacts/word-energy-fixed-list-certificate.json
+python3 -m unittest discover -s experiments -p test_word_energy_certificate.py -v
+```
+
+In that example `v_1=a` and `w=b^{-1}ab`. The basepoint is `0`,
+`a` swaps `1,2`, and `b` swaps `0,1` and `2,3`. Thus `a` fixes
+`delta_0`, while `b^{-1}ab` sends it to `delta_3`. In particular, the
+global operator norm `||a(U)-I||` is `2`, even though its displacement
+on the chosen vector is zero. This is a witness against the fixed-list
+inequality, not a proof that `w` is nontrivial in a presented quotient:
+indeed `w=1` in `<a,b | a>`.
+
+The tests include cyclic membership, inverse factors and cancellation,
+150 explicitly generated subgroup products, and independent finite-action
+oracles for nonmembership. Malformed and tampered certificates are rejected.
+These are exact computational checks of the implementation; the general
+mathematical theorem is proved above.

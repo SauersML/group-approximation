@@ -8,6 +8,9 @@ distinct_from:
   finite-context-energy-certificate-iff-word-trivial: that allows the finite contextual test list to vary and characterizes normal-closure membership; this fixes the list and characterizes subgroup membership, including when a trivial quotient word still has no certificate on the specified tests.
 artifacts:
   - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
+  - experiments/word_energy_certificate.py
+  - experiments/test_word_energy_certificate.py
+  - research/artifacts/word-energy-fixed-list-certificate.json
 ---
 
 For words `v_1,...,v_k,w` in a finite-rank free group `F`, set
@@ -26,3 +29,8 @@ squared displacement exactly `2`.
 
 This is an elementary written theorem. It has no Lean certification claim
 and supplies no non-MF existence theorem.
+
+The linked implementation constructs a witness by free-subgroup folding and
+partial-permutation completion. Its separate integer-only replay verifier
+checks the returned tables without trusting the folding algorithm. It does
+not decide nontriviality in a quotient presentation.

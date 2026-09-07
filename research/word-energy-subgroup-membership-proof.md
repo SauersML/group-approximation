@@ -7,6 +7,9 @@ target: word-energy-domination-is-free-subgroup-membership
 requires: []
 artifacts:
   - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
+  - experiments/word_energy_certificate.py
+  - experiments/test_word_energy_certificate.py
+  - research/artifacts/word-energy-fixed-list-certificate.json
 ---
 
 For membership, write the target as `L` subgroup-generator factors.
