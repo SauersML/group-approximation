@@ -40,6 +40,17 @@ C-star norm, and distinguishes it from the global norm test for the MF
 radical. Complete written proofs and exact finite certificate replays are
 included; these results do not settle the non-MF research goals.
 
+[Gottschalk surjunctivity research](notes/GOTTSCHALK_RESEARCH_2026-09-07.md)
+records a complete proof of a conditional observable-growth criterion and
+an exact reversible example showing why its hypothesis is not universal.
+The [positive conjecture goal](research/gottschalk-surjunctivity-conjecture.md)
+remains open in Cairn. Replay the accompanying exact checks with:
+
+```sh
+python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py
+bin/cairn why gottschalk-surjunctivity-conjecture
+```
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

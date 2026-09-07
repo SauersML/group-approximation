@@ -36,8 +36,9 @@
   "gottschalk_proved": false,
   "integration_check": {
     "command": "bin/cairn check --changed --json",
+    "conjecture_status": "OPEN",
     "findings": [],
-    "remote_base_commit": "80b6e065dda5cb79a941610ba534107f61dad135",
+    "remote_base_commit": "0a7c5cacdf511d1bccec637ed4fb4ea8b3e48b1d",
     "resolution": "Preserved concurrent commits; regenerated the dashboard from the combined canonical graph and rechecked it.",
     "status": "ok"
   },
@@ -49,7 +50,7 @@
   ],
   "session_date": "2026-09-07",
   "source_sha256": {
-    "README.md": "2504ba037fe3e5fb10fc35e629c5b27108b242e0971816a6dffc818ace846071",
+    "README.md": "7e0ba8617c9bd62b670d4d9ecad6e19bbe6d3645ca9e8ffe4a38b9359daeae61",
     "notes/GOTTSCHALK_RESEARCH_2026-09-07.md": "94b66663336ba40fd12a814e0659a6c4c46ca9363b2aa2620154f965983c9456",
     "research/artifacts/check-gottschalk-observable-growth-2026-09-07.py": "a2a463eeda85faff5941c6afc754d58d9198043b966c27a72559e385c33f2747",
     "research/artifacts/gottschalk-observable-growth-2026-09-07.md": "4181e0e9ace36806264c40d33fe8baa19b5d0c70bf370814d1a7586a0199448e",
@@ -62,5 +63,12 @@
     "research/reversible-xor-rank-count-proof.md": "f2a7150cb8d67158fc07ac20695f70e1803eed356ca721254a5fcfab58a9c123",
     "research/split-ca-defect-rank-proof.md": "4b03987c5c2fb64cea563d5acf08844416a125b884acbe9299c2b9f43b8f751c",
     "research/split-ca-defects-force-linear-observable-rank.md": "732fe836d169082ea281a72f31e79797974f5e3845a9744f5b6969494960b62c"
+  },
+  "documentation_publish_base": "4be36e5d04226f09c99175106aca3d74b0d65e7f",
+  "dashboard_observed_on_main": {
+    "commit": "c9e6a7766028045cdeaf0e04bdd480f91cafe1a5",
+    "conjecture_status": "OPEN",
+    "fixed_host_status": "OPEN",
+    "note": "The concurrent generated dashboard already includes the new goal; preserve that newer refresh."
   }
 }
