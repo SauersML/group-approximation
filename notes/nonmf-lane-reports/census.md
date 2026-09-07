@@ -459,3 +459,20 @@ Landed: `d4e682e9a` (`cor:one-sided-ring-maximal` first pass), `90dc84f85` (abst
 | (no anchor — Introduction prose, unnumbered discussion) | ~54 | — | not investigated at all this round; likely a mix of already-classifiable `structural`/`definition`/`attribution` and genuine gaps |
 
 The pattern across most of this table: the *theorem statement* is landed and unconditional (or conditionally-registered), and what is missing is purely the sentence-level `manuscriptSentence_*` wrapper work the printed-route lane pioneered for `thm:normal-kazhdan` — mechanical but real work, one module per row above. The two rows marked **genuinely open** (`thm:transport`, `lem:central-corona-corner`) and the two marked **no Lean carrier at all** (`thm:mf-quotient-units`, `cor:leavitt-mf-quotient`) are actual mathematical/formalization gaps, not bookkeeping.
+
+## Round 5: d=2 note correction and independent triage (post-compaction)
+
+Landed: `1cbb80afe3b` (d=2 note fix), `1d373fc072c` (5-row independent triage), `3cb665bf2e1` (lem:proper-isometry proof sentence).
+
+**d=2 note correction**: row `6d3ca647302e` (`cor:leavitt-mf-quotient`, d=2 clause) already had the right status (`partial`) and carrier (`FullDefectRingEJZUnconditional.manuscriptLeavittMFQuotientTwoAllCharacteristics`), but its note called the general-d form "in flight, not yet landed" -- stale, since `LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral` had landed and was already cited at `93e54ae1c51e`. Per the lead: `BinaryLeavitt.elementaryGroup_eq_top` makes K_1 vanish at d=2, so the d=2 clause needs no Khanh-Thanh input at all and is unconditionally formalized; the note now says so directly. The row stays `partial` only because the k=F_q general-d clause's K_1(R) cyclic-order computation remains a real, separate gap that the general-d carrier's kernel-intersection identification doesn't touch.
+
+**Independent triage, no lane table needed** (5 rows against declarations already on `main`, then a 6th in a follow-up landing):
+- Acknowledgments sentence -> `attribution`.
+- "we use the sequential form of his [Brown's] definitions" (`sec:amenable-nonqd`) -> `attribution`, continues the existing Brown-credit row.
+- The printed amenable-trace definition, split into two census sentences by a false break at the abbreviation period in "u.c.p." -> `definition` x2, both citing `GroupApproximation.Quasidiagonal.IsAmenableTrace`/`AmenableTraceModel` (`Analysis/TikuisisWhiteWinterCore.lean`), field-matched against the printed clauses.
+- The printed quasidiagonal-trace definition -> `definition`, citing `GroupApproximation.Quasidiagonal.IsQuasidiagonalTrace`/`QuasidiagonalTraceModel` (`Analysis/QuasidiagonalTrace.lean`).
+- `lem:proper-isometry`'s proof-internal general fact ("a unital C*-algebra with a nonunitary isometry is not finite, and neither is any matrix algebra over it") -> `formalized`, citing `GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing`: `IsStablyFiniteRing` already quantifies over every matrix amplification, so its negation is exactly the printed clause, even though the Lean proof takes the logically-equivalent n=1 shortcut instead of literally amplifying via `diag(s,1,...,1)`.
+
+Deliberately left unassigned rather than forced: the two `sec:one-sided-inverses` roadmap sentences (describe `thm:full-defect-ring`'s rank-four architecture, including a property-(T)-for-`EL_3(C)` claim I could not pin to a specific declaration after a targeted grep) and one corona-corner compression setup sentence (`c9d3bf1f96b3`, `From Hilbert--Schmidt to operator norm` section). These, plus the long-flagged ~35-47 sentence gaps in the Round 4 work-order table above that still lack sentence-level `manuscriptSentence_*` wrappers (`lem:rank-two`'s own proof chief among them), remain the real outstanding work, pending either a lane's table or further independent digging.
+
+Verify-decls 0 missing of 477 named. Verify-unconditional 0 new findings across all three landings (51 accepted, 0 new). Summary after this round: formalized 204, unassigned 165, definition 43, structural 23, provenance 19, attribution 16, partial 7, total 477.
