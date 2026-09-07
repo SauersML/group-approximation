@@ -145,33 +145,48 @@ only because both sets are open neighbourhoods of the marked point and both
 subspaces are that point's complement.  The header now says which hypotheses may
 not be dropped.
 
-**F5 — RESOLVED, by the lead reading the printed paper.**  I raised this as the
-one thing I could not check and the one that would cost most: `ProblemLIX`
-omits **nuclearity**, in a paper titled *Nuclear C⋆-algebras: 99 problems*.  Had
-the printed problem been posed inside the nuclear class, our `ProblemLIX` would
-be a *weaker* universal and refuting it *weaker* than answering the question —
-the one direction in which an omitted hypothesis is not safe.
+**F5 — CLOSED.**  Raised by this lane as the one thing it could not verify;
+checked against the printed paper by the lead.  The concern is kept above the
+resolution rather than deleted, because the shape of it is the reusable part.
 
-The lead extracted arXiv:2506.10902 and read it.  Line 2858:
+*The concern.*  `ProblemLIX` omits **nuclearity**, in a paper titled *Nuclear
+C⋆-algebras: 99 problems*.  Had the printed problem been posed inside the
+nuclear class, our `ProblemLIX` would be a *weaker* universal and refuting it
+*weaker* than answering the printed question — the one direction in which an
+omitted hypothesis is not safe.  This lane could not read the paper and said so
+rather than reasoning past it.
 
-> **Problem LIX.** Are all unital simple C∗-algebras K1-injective?
+*The check.*  The lead fetched arXiv:2506.10902 and extracted its text.  At line
+2858:
 
-No nuclearity clause, and the evidence is **positive rather than merely
-absent**: the same paragraph reads "Villadsen constructs a simple separable
-unital *nuclear* C⋆-algebra A…", and Problem XLIX reads "…a unital simple
-separable *nuclear* C⋆-algebra A…".  These authors write "nuclear" where they
-mean it, in the sentences around Problem LIX, and no standing convention makes
-it implicit.  The surrounding discussion also matches `ProblemLIX.lean`'s
-docstring in detail — Villadsen defeating K₁-*surjectivity*, injectivity called
-open, Rieffel at stable rank one and Lin at real rank zero.
+> Problem LIX. Are all unital simple C ∗ -algebras K1 -injective?
 
-So the quotation in the file is exact, `ProblemLIX` is faithful to the printed
-problem, and the refutation answers the question as asked.  Recorded here rather
-than left as an open worry, because this note is what a later reader will find.
+No nuclearity clause.  Three further observations make the absence **positive
+evidence rather than a silence**:
 
-(Unchanged and still true: the counterexample is an AH limit and so nuclear in
-fact, but nuclearity is nowhere proved in Lean, so the repository could not
-today state the stronger form even though the algebra satisfies it.)
+* the *same paragraph*, immediately before it, reads "…for any n0 ∈ N, Villadsen
+  constructs a simple separable unital **nuclear** C ∗ -algebra A such that…";
+* Problem XLIX, at line 2472, reads "Does there exist a unital simple separable
+  **nuclear** C ∗ -algebra A…";
+* a search of the extracted text for a standing convention — "all algebras are
+  nuclear", "throughout", "unless otherwise" — found none.
+
+So these authors write "nuclear" where they mean it, including in the sentence
+adjacent to Problem LIX, and nothing elsewhere makes it implicit.  The
+surrounding discussion also matches `ProblemLIX.lean`'s docstring in detail:
+Villadsen defeating K₁-*surjectivity*, the injectivity question called open,
+Rieffel at stable rank one and Lin at real rank zero.
+
+*The conclusion.*  The quotation in `ProblemLIX.lean` is exact, `ProblemLIX` is
+faithful to the printed problem, and the refutation answers the question as
+asked.
+
+*Still true, and worth keeping.*  The counterexample is an AH limit — corners of
+matrix algebras over `C(X)` — and so nuclear in fact.  But nuclearity is nowhere
+proved in Lean, so the repository could not today state the stronger, nuclear
+form even though its algebra satisfies it.  That is a gap in what can be
+*stated*, not in what is *proved*, and it costs nothing here only because the
+printed problem does not ask for it.
 
 ## 5. The generic pieces
 
