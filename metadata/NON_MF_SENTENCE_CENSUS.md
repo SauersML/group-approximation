@@ -7,15 +7,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | status | sentences |
 | --- | --- |
 | `formalized` | 203 |
-| `unassigned` | 171 |
-| `definition` | 40 |
+| `unassigned` | 166 |
+| `definition` | 43 |
 | `structural` | 23 |
 | `provenance` | 19 |
-| `attribution` | 14 |
+| `attribution` | 16 |
 | `partial` | 7 |
 | **total** | **477** |
 
-Completely formalized or definitional: **243/477** (50.9%).
+Completely formalized or definitional: **246/477** (51.6%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -160,10 +160,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
 * **`partial`**, line 1323 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
   * UPDATED 2026-09-07: first clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, unconditionally -- BinaryLeavitt.elementaryGroup_eq_top makes K_1 vanish at d=2, so there is no Khanh-Thanh input here at all, per the lead. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is still not covered now that general-d has landed (LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral, cited at 93e54ae1c51e): that carrier proves the kernel-intersection=EL_d(R) identification, conditional on the Khanh-Thanh commutator citation, but not the K_1(R) computation the cyclic-order formula needs. Remains a real, separate gap, not a landing-status one.
-* **`unassigned`**, line 1330 --- For a separable unital $C^*$-algebra $A$ we use the sequential form of his definitions.
-* **`unassigned`**, line 1330 --- A tracial state $\tau$ on $A$ is \emph{amenable} if there are u.c.p.
-* **`unassigned`**, line 1330 --- maps $\phi_n\colon A\to M_{d_n}(\C)$ such that
-* **`unassigned`**, line 1341 --- It is \emph{quasidiagonal} if the first limit holds in operator norm instead of normalized Hilbert--Schmidt norm, with the same trace convergence.
 * **`unassigned`**, line 1353 --- Let $G$ be a countable group.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 1353 --- If $G$ is not MF, then its canonical trace $\tau_G$ on $C^*_{\max}(G)$ is not quasidiagonal. In particular, if $\tau_G$ is amenable, then $\tau_G$ is an amenable trace that is not quasidiagonal.
@@ -224,7 +220,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1685 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
 * **`unassigned`**, line 1697 --- For $c\in J$ and $\ell\in S$, the commutator $[tct^{-1},\ell]$ lies in $\mathfrak D_{G_0}(\Gamma)$ by~\eqref{eq:intrinsic-defect}, since $t$ conjugates $\Gamma$ into itself, $c$ centralizes $\Gamma$, and $S\le\Gamma$.
 * **`unassigned`**, line 1697 --- As $c$ ranges over $J$, the element $tct^{-1}$ ranges over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
-* **`unassigned`**, line 1774 --- The author also thanks Tatiana Shulman for clarifying the terminology and historical context of the MF question, Caleb Eckhardt for discussions of MF representations and matrix norms and for generously writing and sharing the expository note~\cite{Eckhardt}, and Bruce Blackadar for correspondence on the origin of the MF and NF problems.
 
 ## By section
 
@@ -240,6 +235,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 51 |
 | The binary example | 46 | 21 |
-| An amenable nonquasidiagonal trace | 90 | 50 |
+| An amenable nonquasidiagonal trace | 90 | 46 |
 | A torsion-free finitely presented example | 35 | 3 |
-| Acknowledgments | 2 | 1 |
+| Acknowledgments | 2 | 0 |
