@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.ShulmanFillNormingFamily
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceCitations
 
@@ -125,6 +126,6 @@ end
 end ShulmanFill
 end GroupApproximation
 
-#print axioms GroupApproximation.ShulmanFill.isMFAlgebra_of_norming_representations
-#print axioms GroupApproximation.ShulmanFill.shulmanTheorem16_of_compatibleCoronaNorming
-#print axioms GroupApproximation.ShulmanFill.shulmanTheorem16_of_compatibleCoronaDomination
+#audit_axioms GroupApproximation.ShulmanFill.isMFAlgebra_of_norming_representations
+#audit_axioms GroupApproximation.ShulmanFill.shulmanTheorem16_of_compatibleCoronaNorming
+#audit_axioms GroupApproximation.ShulmanFill.shulmanTheorem16_of_compatibleCoronaDomination

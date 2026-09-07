@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LemmaTwoStepCEuler
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C in the shape the Thom class will actually arrive in
@@ -131,8 +132,8 @@ theorem stepC_of_thomChainThom (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
 Both print `[propext, Classical.choice, Quot.sound]`.  Kept for the reason in
 `CharClass/LemmaTwoStepCAbsEquiv.lean`. -/
 
-#print axioms ne_zero_of_thomChainThom
+#audit_axioms ne_zero_of_thomChainThom
 
-#print axioms stepC_of_thomChainThom
+#audit_axioms stepC_of_thomChainThom
 
 end GroupApproximation.CharClass

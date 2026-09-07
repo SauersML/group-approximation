@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ParityEvenTransport
 import GroupApproximation.CharClass.LemmaTwoStepCThom
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step D at the geometric model, and both steps about one class
@@ -124,8 +125,8 @@ theorem lemmaTwoInput_lix (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
 
 /-! ## 4. The axiom report -/
 
-#print axioms stepD_of_wuLix
+#audit_axioms stepD_of_wuLix
 
-#print axioms lemmaTwoInput_lix
+#audit_axioms lemmaTwoInput_lix
 
 end GroupApproximation.CharClass

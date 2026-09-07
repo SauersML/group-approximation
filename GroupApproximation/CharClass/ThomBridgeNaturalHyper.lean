@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomBridgeNatural
 import GroupApproximation.CharClass.RelativeFunctorial
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The hyperplane step is natural in the base
@@ -54,9 +55,10 @@ theorem relPullback_id_comm (f : Y ⟶ X) {A B : Set X} {A' B' : Set Y}
   exact relPullback_eq_of_eq (ZMod 2)
     ((Category.comp_id f).trans (Category.id_comp f).symm) hfid n
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms relPullback_id_comm
+#audit_axioms relPullback_id_comm
 
 end
 

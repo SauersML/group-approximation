@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXThomClassOfTaut
 import GroupApproximation.CharClass.ChernTautRestrict
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom class as a term, unconditionally
@@ -215,9 +216,10 @@ theorem lixThomClassTerm_ne_zero (hGc : Continuous G)
       (one_le_lixRank_dd dd) (lixLHplus hGc hGu))
     (lixTopCoeff_ne_zero dd)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixThomClassTerm_ne_zero
+#audit_axioms lixThomClassTerm_ne_zero
 
 end
 
