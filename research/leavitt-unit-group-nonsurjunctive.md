@@ -10,6 +10,7 @@ distinct_from:
   kl-violating-equation-over-leavitt-unit-group: that asks for a Kervaire--Laudenbach violation over the same group, which would refute its hyperlinearity; this asks for an injective non-surjective cellular automaton, which would refute Gottschalk's conjecture
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
+  - research/artifacts/conservative-syndrome-update-audit-2026-09-07.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -177,3 +178,14 @@ the same obstruction. A design that uses data-dependent certificate
 updates lies outside this theorem; no such counterexample is currently
 constructed. This reduction supplies neither a strict CA on Q nor a
 general surjunctivity proof.
+
+The attached conservative-syndrome audit examines one data-dependent
+update strategy. Exact particle-number conservation on finite binary
+configurations preserves the one-site expectation under every invariant
+probability measure, by a finite-pattern coefficient calculation. For
+an injective such rule, every two-particle configuration is attained.
+Neither statement supplies surjectivity on arbitrary configurations:
+the higher-particle induction does not close, and conserving one-site
+expectation does not preserve the whole Bernoulli measure. The audit
+records this gap and the relevant stronger post-surjectivity hypothesis
+instead of treating conservation as a completed full-shift decoder.

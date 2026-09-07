@@ -339,3 +339,27 @@ lamp group, in particular for every finitely generated RF lamp. These
 are positive permanence results, not an inverse pair for Q. A program
 that escapes them needs an operation outside their precise construction
 classes; self-reference alone supplies no such operation.
+
+## Exact cancellation circuits beyond bounded support search
+
+`cyclotomic-liftable-cancellation-pairs-have-no-inverse-defect` gives
+a finite lattice filter for a proposed F_2 inverse rectangle. If its
+equal-product cell pairing has no odd integral dependence among row
+and column difference vectors, roots of unity lift the entire forward
+identity to characteristic zero and force the reverse identity as well.
+An odd dependence merely modulo two is insufficient; the attached
+C_4 example needs eighth roots even though real signs fail.
+
+The stronger `central-sign-survival-forces-reverse-cancellation` permits
+noncommuting coefficient lifts. Introduce a central involution J and
+require each paired product to differ by J in the coefficient group.
+If J survives, a characteristic-zero corner again reverses the lifted
+identity and reduction gives AB=1. A strict template therefore needs
+J to collapse, equivalently an odd closed identity among its normalized
+matching relators. In particular an aspherical matching presentation
+is excluded. A D_8 coefficient example demonstrates that this test
+extends strictly beyond all scalar phase assignments.
+
+These are unrestricted-support necessary conditions for construction,
+not a new inverse pair in Q. Surviving the tests still requires proving
+a literal nonzero reverse defect in the ordinary group algebra.
