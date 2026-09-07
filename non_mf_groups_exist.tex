@@ -772,6 +772,81 @@ residually finite and MF~\cite[Corollary~10]{Korchagin}.  So the lamps
 of Section~\ref{sec:amenable-nonqd} are necessary for the non-MF
 conclusion there.
 
+\subsection{A finite certificate}
+
+\begin{proposition}[linear collapse]\label{prop:linear-collapse}
+Let $G=\langle g_1,\ldots,g_m\rangle$ be a finitely generated group
+such that every homomorphism from $G$ to an MF group is trivial.  Then
+there are finitely many words $r_1,\ldots,r_s$ in the free group $F_m$
+with $r_j(g_1,\ldots,g_m)=1$ in $G$, and a constant $C$, such that all
+unitaries $U_1,\ldots,U_m\in\U(d)$, for every $d\ge1$, satisfy
+\[
+ \max_i\opnorm{U_i-1}\le C\max_j\opnorm{r_j(U_1,\ldots,U_m)-1}.
+\]
+Conversely, if such words and such a constant exist and $G$ is
+countable, then every homomorphism from $G$ to an MF group is trivial.
+\end{proposition}
+
+\begin{proof}
+The group $G$ is perfect: a nontrivial abelianization of a finitely
+generated group has a nontrivial finite quotient, and finite groups are
+MF\@.  So there are words $a_{ik},b_{ik}\in F_m$ with
+\[
+ g_i=\prod_{k=1}^{q_i}[a_{ik}(g_1,\ldots,g_m),b_{ik}(g_1,\ldots,g_m)]
+ \qquad(1\le i\le m),
+\]
+and the words $w_i=x_i^{-1}\prod_{k=1}^{q_i}[a_{ik},b_{ik}]$ are
+relations of $G$.  For a tuple $U=(U_1,\ldots,U_m)$ of unitaries put
+$D(U)=\max_i\opnorm{U_i-1}$.  A word $a$ of length $|a|$ has
+$\opnorm{a(U)-1}\le|a|\,D(U)$, and unitaries $A,B$ satisfy
+\[
+ \opnorm{[A,B]-1}=\opnorm{AB-BA}\le2\opnorm{A-1}\,\opnorm{B-1},
+\]
+since $AB-BA=(A-1)(B-1)-(B-1)(A-1)$.  So there is a constant $B_0$,
+determined by the chosen words, with
+\begin{equation}\label{eq:bootstrap}
+ D(U)\le\max_i\opnorm{w_i(U)-1}+B_0\,D(U)^2 .
+\end{equation}
+Enumerate the relations of $G$ as $r_1,r_2,\ldots$ with
+$w_1,\ldots,w_m$ first, and put
+$\mathcal R_n=\{r_1,\ldots,r_n\}$.  If no $\mathcal R_n$ works with
+the constant $n$, there are $d_n$ and tuples $U^{(n)}$ in $\U(d_n)$
+with
+\[
+ D(U^{(n)})>n\,\delta_n,
+ \qquad
+ \delta_n=\max_{r\in\mathcal R_n}\opnorm{r(U^{(n)})-1}.
+\]
+Since $D(U^{(n)})\le2$, $\delta_n\to0$, so
+$g_i\mapsto[U_i^{(n)}]_n$ is a homomorphism from $G$ to the unitary
+group of $\prod_nM_{d_n}(\C)/\bigoplus_nM_{d_n}(\C)$, trivial by
+hypothesis; so $D(U^{(n)})\to0$.  For $n\ge m$, the
+inequality~\eqref{eq:bootstrap} gives
+$D(U^{(n)})\le\delta_n+B_0\,D(U^{(n)})^2$, and division by
+$D(U^{(n)})$ gives $1\le\tfrac1n+B_0\,D(U^{(n)})$, which fails for
+large $n$.
+
+Conversely, a corona homomorphism has unitary coordinate lifts whose
+relation defects tend to zero, so the displayed inequality forces every
+generator lift to the identity, and the homomorphism is trivial;
+Lemma~\ref{prop:mf-residual-calculus} extends this to every
+homomorphism to an MF group.
+\end{proof}
+
+With $r_1,\ldots,r_s$ as in Proposition~\ref{prop:linear-collapse},
+put $P=\langle x_1,\ldots,x_m\mid r_1,\ldots,r_s\rangle$.  The
+inequality holds verbatim for $P$, so every finitely generated group
+all of whose homomorphisms to MF groups are trivial is a quotient of a
+finitely presented group with the same property and the same number of
+generators.  The set of $m$-marked groups satisfying
+$r_1=\cdots=r_s=1$ is open and closed in the space of marked groups,
+and every group in it has the property; so the property is open.  For
+the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the
+inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects
+of finitely many words in two unitary matrices, uniformly over the
+matrix size, while the left regular representation solves the same
+equations exactly with $U,V\ne1$.
+
 \section{One-sided inverses and elementary groups}
 \label{sec:one-sided-inverses}
 
@@ -1378,7 +1453,7 @@ $N$ normalizes no nontrivial finite subgroup, so $N$ is suitable.  By Hull~\cite
 two elements $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is again
 suitable, possibly with respect to a larger generating set
 $A'\supseteq A$, and Theorem~\ref{thm:hull} holds for $A'$ as well,
-since every finite subset of $G$ lies in a ball of $\Gamma(G,A')$.  Apply
+since every finite subset of $G$ lies in a ball of $\operatorname{Cay}(G,A')$.  Apply
 Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
 finite generating set of $G$ and with the set $\Omega$.  Then
 $Q=\langle\varphi(g_1),\dots,\varphi(g_m)\rangle\le\varphi(N_0)\le\varphi(N)\le Q$,
@@ -1441,6 +1516,50 @@ $G_0$ and $\Gamma$, respectively.  By the last assertion of
 Theorem~\ref{thm:compression-criterion}, every homomorphism from $Q$ to
 an MF group is trivial.  If a quotient $\bar Q$ of $Q$ is MF, then the
 quotient map $Q\to\bar Q$ is trivial, so $\bar Q=1$.
+\end{proof}
+
+\begin{corollary}\label{cor:relative-quotient}
+Let $G$ be finitely presented, torsion-free, and acylindrically
+hyperbolic, and let $\Omega\subseteq G$ be finite.  Then $G$ has a
+two-generated, finitely presented, torsion-free, acylindrically
+hyperbolic quotient $P$ with property~\textup{(T)} such that the
+quotient map is injective on $\Omega$ and every homomorphism from $P$
+to an MF group is trivial.
+\end{corollary}
+
+\begin{proof}
+Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, applied to
+$G$ and to the group $Q$ of Theorem~\ref{thm:torsion-free}, gives a
+common quotient $P$ that is acylindrically hyperbolic, with the map
+from $G$ injective on a prescribed finite subset, since a torsion-free
+acylindrically hyperbolic group has no nontrivial finite normal
+subgroup.  For finitely generated inputs, the proof of that corollary
+consists of two applications of Theorem~\ref{thm:hull} to the free
+product $G*Q$, so $P$ is torsion-free and finitely presented, as in the
+remark after Theorem~\ref{thm:hull}.  As a quotient of $Q$, the group
+$P$ is two-generated and has property~\textup{(T)}, and every
+homomorphism from $P$ to an MF group pulls back to one from $Q$, so it
+is trivial.
+\end{proof}
+
+\begin{corollary}\label{cor:regular-nonmf-algebra}
+The algebra $C^*_{\mathrm r}(Q)$ is separable, unital, generated by two
+unitaries, simple, has a unique tracial state, has stable rank one, is
+stably finite, and is not MF\@.
+\end{corollary}
+
+\begin{proof}
+The group $Q$ is countable, torsion-free, and acylindrically
+hyperbolic, so it contains a non-degenerate hyperbolically embedded
+subgroup~\cite[Theorem~1.2]{Osin} and has no nontrivial finite normal
+subgroup.  Dahmani, Guirardel, and Osin give simplicity and uniqueness
+of the trace~\cite[Theorem~2.35]{DGO}, and Gerasimova and Osin give
+density of the invertible elements, which is stable rank
+one~\cite[Theorem~1.1]{GO}.  The algebra is separable and generated by
+the canonical unitaries of the two generators; its canonical trace is
+faithful, so it is stably finite; and an embedding into a norm matrix
+corona would embed $Q$ into the corona's unitary group, against
+Theorem~\ref{thm:torsion-free}.
 \end{proof}
 
 \section*{Acknowledgments}
@@ -1510,6 +1629,13 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
 
+\bibitem[DGO]{DGO}
+F.~Dahmani, V.~Guirardel, and D.~Osin,
+\emph{Hyperbolically embedded subgroups and rotating families in groups
+acting on hyperbolic spaces},
+Mem. Amer. Math. Soc. \textbf{245} (2017), no.~1156,
+\doi{10.1090/memo/1156}.
+
 \bibitem[Ec]{Eckhardt}
 C.~Eckhardt,
 \emph{Non-MF groups and non-finite full group $C^*$-algebras},
@@ -1540,6 +1666,13 @@ D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
 \emph{A new source of purely finite matricial fields},
 preprint, 2026,
 \href{https://arxiv.org/abs/2603.24502}{arXiv:2603.24502}.
+
+\bibitem[GO]{GO}
+M.~Gerasimova and D.~Osin,
+\emph{On invertible elements in reduced $C^*$-algebras of acylindrically
+hyperbolic groups},
+preprint, 2019,
+\href{https://arxiv.org/abs/1910.14524}{arXiv:1910.14524}.
 
 \bibitem[GH]{GoldbringHart}
 I.~Goldbring and B.~Hart,
