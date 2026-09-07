@@ -5,6 +5,7 @@ import GroupApproximation.CharClass.LIXChernTopGamma
 import GroupApproximation.CharClass.LIXStepCOddRelative
 import GroupApproximation.CharClass.CohomologyLHRestrict
 import GroupApproximation.CharClass.MayerVietorisBiproduct
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hclass`: the Thom class restricts to the top Chern class
@@ -231,9 +232,10 @@ theorem lixHclass (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G
     neg_eq_self_two, lixChern_top_eq_gamma hGc hGu hcont hproj]
   exact chernMul_top_unit _ hR
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixHclass
+#audit_axioms lixHclass
 
 end
 

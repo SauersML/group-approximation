@@ -40,7 +40,7 @@ forgotten, written out rather than coerced: the coercion from a `StarAlgHom`
 runs through `NonUnitalAlgHomClass F R A B`, whose scalar ring `R` is a
 non-out-param and would have to be guessed by instance search.  Every field
 below is `rfl` except the zero, exactly as in the Mathlib definition. -/
-def pullbackCoeffHom {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+noncomputable def pullbackCoeffHom {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     (f : C(X, Y)) : C(Y, ℂ) →⋆ₙ+* C(X, ℂ) where
   toFun g := g.comp f
   map_mul' _ _ := rfl

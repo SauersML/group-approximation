@@ -372,6 +372,7 @@ def FamilyInclusionRelativeControlStatement : Prop :=
     (selected : AuxiliaryPeripheralFamily A N S)
     {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
     (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    original.alphabet.carrier ⊆ A.alphabet.carrier →
     original.IsHyperbolicallyEmbedded →
     joint.IsHyperbolicallyEmbedded →
     (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
@@ -522,6 +523,7 @@ def HullRelatorRespellingStatement : Prop :=
     (selected : AuxiliaryPeripheralFamily A N S)
     {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
     (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    original.alphabet.carrier ⊆ A.alphabet.carrier →
     original.IsHyperbolicallyEmbedded →
     joint.IsHyperbolicallyEmbedded →
     (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
@@ -545,7 +547,7 @@ theorem familyInclusionRelativeControlStatement_of_greendlinger_of_isoperimetric
     (hbridge : RelativeIsoperimetricBridgeStatement.{u, u, w})
     (hrespell : HullRelatorRespellingStatement.{u, w}) :
     FamilyInclusionRelativeControlStatement.{u, w} := by
-  intro G _ A N k S selected Lambda original joint horiginal hjoint hinl hinr
+  intro G _ A N k S selected Lambda original joint hA horiginal hjoint hinl hinr
   let mu : ℝ := 1 / 1000
   have hmuPos : 0 < mu := by
     dsimp [mu]
@@ -558,7 +560,7 @@ theorem familyInclusionRelativeControlStatement_of_greendlinger_of_isoperimetric
     hgeom original horiginal mu hmuPos hmuSixteen
   obtain ⟨epsJ, rho0J, hcertJ⟩ := hgeom joint hjoint mu hmuPos hmuSixteen
   obtain ⟨epsS, rhoS, hres⟩ :=
-    hrespell selected original joint horiginal hjoint hinl hinr mu hmuPos
+    hrespell selected original joint hA horiginal hjoint hinl hinr mu hmuPos
       hmuThousand (max epsO epsJ) (max rho0O rho0J)
   refine ⟨epsS, rhoS, mu, hmuPos, ?_⟩
   intro W Q _ q hq hsc hker
@@ -609,7 +611,7 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_o
     hjointOriginal hjointSelected hjointEmbedded hjointSub R
   obtain ⟨epsP, rhoP, muP, hmuP, hgood⟩ := h44 selected (max R 1)
   obtain ⟨epsC, rhoC, muC, hmuC, hcontrol⟩ :=
-    hcontrols selected original joint horiginal hjointEmbedded hjointOriginal
+    hcontrols selected original joint hA horiginal hjointEmbedded hjointOriginal
       hjointSelected
   refine ⟨max epsP epsC, max rhoP rhoC, min muP muC, lt_min hmuP hmuC, ?_⟩
   intro W Q _ q hsc hsurj hker

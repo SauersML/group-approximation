@@ -133,7 +133,9 @@ theorem backFace_zero_eq (q : ℕ) : backFace 0 q = awCastZeroAdd q := by
   ext x : 3
   apply Fin.ext
   have hL : (((backFace 0 q).toOrderHom x : Fin (0 + q + 1)) : ℕ) = x.val := by
-    rw [backFace_apply]
+    -- `backFace_apply` leaves `↑x + 0`, and `rw`'s closing `rfl` runs at reducible
+    -- transparency, which does not reduce `HAdd.hAdd ↑x 0`.
+    rw [backFace_apply, Nat.add_zero]
   have hR : (((awCastZeroAdd q).toOrderHom x : Fin (0 + q + 1)) : ℕ) = x.val :=
     awCastZeroAdd_val q x
   omega

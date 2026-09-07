@@ -236,8 +236,8 @@ theorem cocycleClass_cup_d_left_zero (X : TopCat.{0}) (q i p : ℕ)
     exact cocycleClass_cup_coboundary_left_zero R X i q η ψ hψ hcoc
   · have hz : cochainCup p q (((cochainCx R X).d i p).hom η) ψ = 0 := by
       rw [(cochainCx R X).shape i p h]; simp
-    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc (by simp)
-      (cocycleClass_zero R X (p + q) (by simp))
+    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc rfl
+      (cocycleClass_zero R X (p + q) rfl)
 
 /-- The cup of a cocycle with an element in the image of a differential (right
 factor) has zero class, for any source index. -/
@@ -250,8 +250,8 @@ theorem cocycleClass_cup_d_right_zero (X : TopCat.{0}) (p i q : ℕ)
     exact cocycleClass_cup_coboundary_right_zero R X p i φ hφ η hcoc
   · have hz : cochainCup p q φ (((cochainCx R X).d i q).hom η) = 0 := by
       rw [(cochainCx R X).shape i q h]; simp
-    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc (by simp)
-      (cocycleClass_zero R X (p + q) (by simp))
+    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc rfl
+      (cocycleClass_zero R X (p + q) rfl)
 
 /-- The cup-with-right-cocycle map kills coboundaries (cokernel condition). -/
 theorem cupLeftMor_toCycles (X : TopCat.{0}) (p q : ℕ)
