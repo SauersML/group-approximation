@@ -31,3 +31,12 @@ the ring.  In particular `R^x` has full MF radical if and only if
 
 Consistency: `K_1(L_(F_2)(1,2)) = 0` recovers the total collapse recorded in
 `binary-leavitt-all-ranks-full-mf-radical`.
+
+## Direct higher-rank proof
+
+`purely-infinite-matrix-mf-quotient` proves the exact elementary/commutator
+MF kernel, its intrinsic full radical, and unique factorization through
+abelianization for every GL_n(R), n >= 2, without the AGP inputs. Its Lean
+endpoint is `MFQuotientMatrices.manuscriptMFQuotientMatrices`. This is a
+separate proof of that scope; the rank-one classification and identification
+with algebraic K1 in this claim still require their own arguments.

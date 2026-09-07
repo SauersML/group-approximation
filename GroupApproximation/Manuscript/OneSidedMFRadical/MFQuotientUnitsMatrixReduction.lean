@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
 import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientMatrices
 
 /-!
 # `AGPMatrixReduction` is closed
