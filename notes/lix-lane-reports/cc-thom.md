@@ -804,3 +804,454 @@ ambient as `{Z : TopCat.{0}}` and take `A : Set Z`.  Same inference failure
 | 2026-09-06 | `ThomBridgeTotalNatural` (composite) | red x3: `bridgeTotal` needs `open ThomChernDeg`; `congrArg (fun g : _ ⟶ _ => g.hom …)` cannot project; `rw` left a proof-irrelevant `X = X` |
 | 2026-09-06 | **`ThomBridgeTotalNatural`** (composite) | **green, 9045 jobs, `66bc6eeb6`** |
 | 2026-09-06 | **`ThomCoordinates`** | **green, 9184 jobs, `fd3da3cc1` then `e3cd62615`** |
+
+## 2026-09-07 — lane `lix-hres`: `hres` closed, by the fibre and not by the ball
+
+`hres` is the injectivity of `cc-lix-odd`'s `lixRes`, one of the three residues of
+`lix_topClass_ne_zero_of_three`.  `LIXThomResReduction` had already reduced it to
+one nonvanishing, because the source of `lixRes` is a line:
+
+```text
+(lixRes hGc hGu (2 * lixRank dd)).hom (lixThomClassTerm hGc hGu) ≠ 0.
+```
+
+That nonvanishing is now `LIXResFibre.lixRes_lixThomClassTerm_ne_zero`, and `hres`
+itself is `LIXResFibre.injective_lixRes`, over `hGc` and `hGu` and **nothing
+else** — no `hdd`, no `hGe`, no property of the particular `G`, and no positivity
+of the index family.
+
+### The finding: "the whole of its content" was wrong, and the signatures say so
+
+`LIXBaseConnected`'s docstring said injectivity becomes, "under the Thom
+isomorphism on each side", the restriction of `H^0` from the base to the ball, so
+that connectedness of `N` is "the whole of `hres`'s content"; `lix-wire`'s
+model-test cited that as its strongest evidence and graded `hres` "bookkeeping,
+not open mathematics".  **There is no Thom isomorphism over the ball.**  The Thom
+isomorphism here is `thomJmTotal`, which is built from `bridgeTotal`, and both
+carry `[CompactSpace X] [T2Space X]` — `ThomBridgeTotal.lean:74` and
+`LIXThomClassTerm.lean:89`.  A ball is not compact, so the ball side of that
+sentence does not exist in Lean at all.
+
+Connectedness is a genuine prerequisite — it is what makes the source of `lixRes`
+rank one, through `lixRelLine` — but it does not give the nonvanishing.  The lead
+corrected the docstring on main at `e341f09e3`.
+
+The honest statement was already in the tree, in `LerayHirschContractible`'s own
+postscript: over a contractible neighbourhood only the top column survives, but
+applying that to a *restricted class* needs a Leray–Hirsch presentation over the
+neighbourhood, and a ball has none.  That postscript is what turned the route.
+
+This is the repository's recorded failure mode "correct declaration, wrong
+justification": three separate sources — a docstring, a peer's audit and the
+lane brief — agreed that the obligation was bookkeeping, and no gate could see
+otherwise, because every declaration involved is true.
+
+### The route
+
+The class is followed one step further, to the **fibre over `lixZero dd`**.
+`{lixZero dd}` is a singleton subset of the base, hence compact
+(`isCompact_singleton`), Hausdorff (the subtype instance) and nonempty by hand;
+over a one-point base `lerayHirschGraded_compact` applies with nothing added and
+the coordinates are computable.
+
+The point lies in the ball, so restricting to the point **factors through**
+restricting to the ball.  The direction is used one way only and is easy to state
+backwards: a class killed by `lixRes` is killed over the point, therefore
+**surviving over the point suffices**.  It is *not* claimed that the two
+restrictions have the same kernel, that the point restriction is injective, or
+that it detects every class.
+
+Over the point the top Leray–Hirsch coordinate of the Thom class is
+`lixTopCoeff dd`, the unit of `H^0` of the base, and the unit restricts to the
+unit, which is nonzero because a point is nonempty.  Only linearity of
+`thomJmTotal` is used — its injectivity over the point is never needed, so
+`pull_sInclusion_tautEulerOf` does not have to be re-established there.
+
+### Stage 0 (the empty index family) is not a special case
+
+`lixDD j : Fin j → ℕ`, so at `j = 0` the family is empty, the base is `S¹ × S⁵`,
+and `lixRank (lixDD 0) = 3`.  `LIX.lixDD_pos` and any `hdd` binder are vacuous
+there.  Checked rather than assumed: this lane's proof uses **no** positivity, no
+CP computation, peels no projective factor, and inducts over nothing, so ℓ = 0 is
+uniform with the rest.  `lixRank dd = (∑ j, dd j) + 3` is `3` there, which is all
+that the two landed general-`dd` facts `one_le_lixRank_dd` and
+`two_le_two_mul_lixRank` need; and `LIXBaseConnected.pathConnectedSpace_lixN` is a
+single `inferInstanceAs`, so the `Pi` instance over `Fin 0` applies unchanged.
+
+### The modules
+
+| module | content |
+|---|---|
+| `CharClass/ThomChartSquare.lean` | `totalInclOn_mapsTo`, `bridgeChartIncl_mapsTo`, **`chartSquare`** (the six map-of-pairs conditions of `bridgeChart_natural`, discharged at the bundle's own objects), **`bridgeTotalRestrict`** (the Thom bridge is natural in the base, with nothing left to supply) |
+| `CharClass/ThomJmNatural.lean` | **`LH.pull_lhTerm_base`** (a Leray–Hirsch column term under a BASE CHANGE, one `pull_comp` on top of `LHCast.pull_lhTerm`), `projInclOn_eq_projComap`, `projInclOn_proj_square`, `pull_projInclOn_tautEulerOf`, **`thomJm_natural`**, **`thomJmTotal_restrict`** |
+| `CharClass/LIXResFibre.lean` | `Bundle.totalInclSub{,_mem,_mem_puncturedSet_iff}`, `totalInclOn_comp_totalInclSub`, `totalInclSub_mapsTo`, `cmap_totalInclSub_comp`, **`relPullback_totalInclOn_sub`**, `pull_lixTopCoeff_ne_zero`, **`lixRes_lixThomClassTerm_ne_zero`**, **`injective_lixRes`** |
+
+`ThomHyperSquare.hyperSquare` was already landed and is the *second* of
+`bridgeTotal_natural`'s two squares; the first, the chart square, was the missing
+half and had never been written because it had no consumer.
+`thomJmTotal_restrict` is exactly what `ThomBridgeTotal`'s docstring predicted:
+"a consumer who needs to push a class across this isomorphism and then compare it
+with something on the other side will find no lemma to do it with, and will have
+to build the naturality layer first."  That prediction was right, and the
+naturality layer is now built.
+
+The useful surprise is that cc-projective's two inputs, `projComap_square` and
+`LH.tautEulerOf_comap`, are **already general base change** rather than
+restriction: `projInclOn p U` *is* `projComap ⟨Subtype.val, _⟩ p` on the nose, by
+`rfl`.  So no new geometry was needed for either the projection square or the
+tautological class.
+
+### What none of it does
+
+* Nothing here excises anything.  The refutation stands: the excised set would be
+  the part of the total space over the complement of the ball, its closure
+  contains zero-section points, and those are exactly what the punctured set
+  omits.
+* Nothing is computed over the ball, and no Thom isomorphism over the ball is
+  used or claimed.
+* `thomJmTotal_restrict` computes coordinates only; that a restricted class is
+  nonzero is the consumer's business.
+* Nothing here bears on `hsq` or `hclass`.
+
+### Traps
+
+* **The session scratchpad is shared by every lane**, not per-lane.  A peer
+  writing a generic log filename (`probe2.log`) overwrote mine mid-run, and I
+  watched its contents change from my own `== lake build` header to another
+  lane's.  This is a *different* failure from the shared remote `.cc-last.log`
+  and strictly worse: the existing rule — check that the build line names your
+  targets — catches the remote case, but a clobbered local log is entirely
+  self-consistent, header included, so the rule gives false comfort exactly where
+  the danger is highest.  A lane can read a peer's `PROBE GREEN` and land red
+  code.  Use a per-lane subdirectory.
+* **Killing a probe locally does not kill it remotely.**  The `flock`/`lake` pair
+  keeps running and keeps the clone's lock, so a lane that relaunches after a
+  local kill ends up queued behind itself.  I had four runs stacked on one clone
+  before the lead spotted it from the node.  Kill the remote PIDs, and probe the
+  full target list once rather than launching a narrow probe and then a wider one.
+* `omit` precedes the docstring; `totalInclOn_mapsTo` needs no `DecidableEq` but
+  `bridgeChartIncl_mapsTo` does, through `chartOpensHomeoTotal`.
+* Unused section variables: `pull_lixTopCoeff_ne_zero` is fenced inside its own
+  `section` so that the `{X} [TopologicalSpace X] {ι} [Fintype ι]` line of the
+  bundle-plumbing section cannot follow it and leave unresolvable binders.
+
+### Probe rows
+
+| date | targets | result |
+|---|---|---|
+| 2026-09-07 | `ThomChartSquare` + `ThomJmNatural` | **contaminated** — local log clobbered by a peer, remote `.cc-last.log` shared; result discarded |
+| 2026-09-07 | same, three targets | never ran: queued behind three of my own stale remote builds on `.cc.lock` |
+| 2026-09-07 | three targets | red: `ThomJmNatural` — `(i : ℕ)` ascription solved the binder as `ℕ`; cascade at the `simpa` |
+| 2026-09-07 | three targets | red: `Unknown identifier ThomChernDeg.thomJmTotal` ×3 — `LIXThomClassTerm` not imported |
+| 2026-09-07 | three targets | red: `rw` motive ill-typed at `instances` transparency, `(p.restrictTo U).plusOne` vs `(p.plusOne).restrictTo U` |
+| 2026-09-07 | three targets | red: `linter.unusedTactic` on the unexecuted branch of a `first`; `sorryAx: none` |
+| 2026-09-07 | **three targets** | **green, 9217 jobs, `sorryAx: none`, 39 axiom lines, `59796080e`** |
+
+Axiom lines checked by name at the green, all exactly
+`[propext, Classical.choice, Quot.sound]`: `bridgeTotalRestrict`,
+`thomJmTotal_restrict`, `injective_lixRes`.
+
+## 2026-09-07 — lane `lix-hclass`: `hclass` discharged
+
+`lix_topClass_ne_zero_of_thom`'s `hclass` is now a theorem.  Three new modules,
+all **PROBE GREEN on cs-endpoint (acn116)**; the third at 9203 jobs, `sorryAx`
+absent from the whole log.
+
+| module | contents |
+|---|---|
+| `CharClass/ThomChartTautZero.lean` | `eulerOfBundle_comap_const_eq_zero`, `eulerOfBundle_pushforward_eq_zero_of_trivIso`, `LH.pull_zeroSectionProj_tautEulerOf`, `chartInclMap`, `chartSymmMap`, `bridgeChartIncl_eq`, `LH.pull_chartInclMap_tautEulerOf`, **`LH.pull_bridgeChartIncl_tautEulerOf`**, `bridgeChartIncl_comp_projMapOf` — **`ξ` restricts to zero on the affine chart** |
+| `CharClass/ThomBridgeRelToAbs.lean` | `pull_eq_absPull`, **`relToAbs_bridgeTotal`** — the bridge commutes with `relToAbs`; the naturality `ThomBridgeTotal`'s own docstring flagged as missing |
+| `CharClass/LIXHclass.lean` | `gammaCoeff_eq_of_val`, `gamma_top_eq_chernCoeff`, `chernMul_top_unit`, `lhTerm_zero_class`, `lhTerm_at_index_zero`, `pull_bridgeChartIncl_lhSum`, **`lixHclass`** |
+
+### The proof, and where the geometry actually is
+
+`jE(u) = π^*(γ_r)` comes out of four steps and only the first is topology.
+
+1. **`ξ` dies on the affine chart.**  Classically this is the nowhere-zero
+   section `v ↦ (v,1)` of the tautological line over `E ⊆ P(E⊕1)`.  No section is
+   built here: `cc-bundle` had already proved that the chart's homotopy inverse
+   **is** the zero section (`chartOpensHomotopyEquivBase_invFun_apply`) and that
+   on the zero section the tautological line is the *constant* line `infPoint`
+   (`tautLineZeroSectionIso`).  A constant line is pulled back from a point and a
+   point has no `H^2`, so the whole statement is homotopy invariance plus
+   `cohomology_unit_isZero`.  Two lemmas of cc-bundle's that had no consumer
+   until now turned the one piece of real geometry into bookkeeping.
+2. **The bridge commutes with `relToAbs`.**  `bridgeChart_hom_eq` says the first
+   two bridge steps are one `relPullback`, and the third is a `relPullback` along
+   the **identity**; `relToAbs_naturality` applies to both, and the second
+   square's ambient pullback is `absPull (𝟙 _) = 𝟙`.  So `jE(u)` is the
+   restriction to the chart of `relToAbs` of `u`'s partner upstairs.
+3. **The coordinates.**  `thomJmTotal` is by definition `lhTopEquiv⁻¹ ∘ relToAbs`
+   across the bridge, so `relToAbs (bridgeTotal u)` **is** the Leray–Hirsch
+   combination of `u`'s coordinates, and `thomJmTotal_lixThomClassTerm` says
+   those are `thomLift` of the unit.  Restricting to the chart sends column `i`
+   to `lhTerm π' 0 (2r) i`, which vanishes for `i ≥ 1` because `cupPowE 0 (j+1) = 0`,
+   and the `i = 0` column is `π^*` of the coefficient.
+4. **The coefficient is `γ_r`.**  `thomLift`'s zeroth entry is `-γ_r ⌣ 1`; the
+   sign is invisible over `F₂` (`neg_eq_self_two`) and the cup with the unit is
+   three degree transports collapsing.  `lixChern_top_eq_gamma` then closes.
+
+### What these files do NOT do
+
+* Nothing about `hsq`, and nothing about the **section**: the class compared here
+  is the one the *projection* pulls back.  `gamma ≠ 0` is still the consumer's
+  conclusion from `hres` **and** this equation, not from this equation alone.
+* `pull_bridgeChartIncl_tautEulerOf` says nothing about `ξ` off the zero section,
+  where it does not vanish and where the Gysin sequence lives.  And it is about
+  the **class**, not the line: the tautological line is not trivial over the
+  chart on the nose, only up to the homotopy that contracts the chart.
+* `relToAbs_bridgeTotal` relates the two `relToAbs` and nothing else — not
+  `absToSub`, not `δ`, not naturality in the base (that is `bridgeTotal_natural`,
+  a different square).
+
+### The join with the consumer, checked before probing
+
+`CharClass/LemmaTwoOfHsqHresHclass.lean` (already on origin/main) states `hclass`
+as its second hypothesis.  `lixHclass hGc hGu (continuous_mappingTorus_lix hGc)
+(isStarProjection_mappingTorus_lix hGu)` is that statement character for
+character.  `hcont`/`hproj` are arguments here exactly as in
+`lixChern_top_eq_gamma`, so a caller with different proofs of them still fits.
+**`hdd` is not needed**, and no input was added.
+
+### Traps
+
+* **`absPull` lives in `RelativeSupport`, not `CharClass`.**  Without
+  `open RelativeSupport` the error is `Function expected at absPull … this term
+  has type ?m.1`, i.e. autoImplicit reports a missing `open` as a type error at
+  the *use* site.  Same shape as the `cohomologyZMod2` trap already in this file.
+* **Rewrite the hypothesis, not the goal, when a `relPullback` proof is in the
+  way.**  `rw [← hnat2]` in the goal failed with *"the target expression is not
+  type-correct under the `instances` transparency level"*, with a nested
+  *"function expected: `range_projIncl_subset_notZero p`"*.  The abstraction has
+  to pass through `relPullback`'s map-of-pairs argument.  `rw [hnat2] at hnat1`
+  and then `exact hnat1.symm` touches no dependent argument and works.
+* **`calc` cannot cross two spellings of one object; `Eq.trans` can.**  The chain
+  starts in `↥(lixHE …)` and ends in `↥(Hmod2 (TopCat.of (Bundle.Total …)) …)`.
+  These are defeq, but `calc` needs `Trans Eq Eq ?r` and instance search runs at
+  reducible transparency, where `lixTotalPair` (a plain `def`) does not unfold.
+  The error is the unhelpful `failed to synthesize Trans Eq Eq ?m`, reported at
+  the *last* step.  `refine h.trans ?_` unifies instead of searching, and works.
+* **`congrArg (fun f : _ ⟶ _ => f.hom u) h` does not elaborate**; the ascription
+  leaves the category a metavariable and the field projection then fails.  Bind
+  the equation to a `have` first and write `congrArg (fun t => t.hom u) h`, which
+  is the spelling already green in `RelativeProdContractible`.
+* **`rw`'s closing `rfl` is weaker than the `rfl` tactic.**  Three goals of the
+  form `cohCast ⋯ a = a` and one `lhTopEquiv⁻¹ (…) = thomJmTotal …` survived a
+  `rw` chain and needed an explicit `exact cohCast_self _ _` / an explicit
+  `thomJmTotal_apply, thomJm_apply` step.  `GysinFromGraded.lhTerm_index_zero`
+  already ends in `exact cohCast_self _ _` for exactly this reason.
+* **Name the coefficient family before feeding it to `lhTerm`.**  Writing
+  `ThomDeg.thomLift (fun i => chernMul …) x i` inline inside a `lhTerm` argument
+  makes `M` a metavariable — the trap `LIXThomClassTerm` records — and the error
+  is an application type mismatch naming `?m.192 i`.  `set a := thomJmTotal … u`
+  once and use `a i` everywhere; it also spares the `(M := …)` pin.
+* **`warningAsError=true` is on for the `GroupApproximation` lib** (`lakefile.toml`),
+  so the `unusedSectionVars` linter is a hard build failure, not a warning.
+
+### Duplicate-name coordination
+
+Lane `lix-hres`'s in-flight `CharClass/ThomChartSquare.lean` declares
+`bridgeChartIncl_mapsTo` with the identical statement.  My copy was deleted and
+is now a `have` inside `relToAbs_bridgeTotal`, so the duplicate baseline stays 0
+whichever of the two lands first.  `lhTerm_index_zero` was likewise renamed to
+`lhTerm_at_index_zero`: `LH.lhTerm_index_zero` already exists in
+`GysinFromGraded.lean`, at the degrees `n + 2` only, and with `open LH` the bare
+name would have been ambiguous.
+
+### Probe log
+
+| date | targets | result |
+|---|---|---|
+| 2026-09-07 | `ThomChartTautZero` | red: `rw [← eulerOfBundle_comap]` cannot see through the `tautEulerOf` def; two `unusedSectionVars` errors |
+| 2026-09-07 | **`ThomChartTautZero`** | **green** (built 9186/9203, 41s) |
+| 2026-09-07 | `ThomBridgeRelToAbs` + `LIXHclass` | red: `absPull` unknown (namespace `RelativeSupport`), and the `_ ⟶ _` ascription in `congrArg` |
+| 2026-09-07 | `ThomBridgeRelToAbs` + `LIXHclass` | red: `rw [← hnat2]` motive not type-correct at `instances` transparency |
+| 2026-09-07 | **`ThomBridgeRelToAbs`** green; `LIXHclass` red | `chernMul_top_unit` left `cohCast ⋯ a = a`; `thomLift` inline left `M` a metavariable |
+| 2026-09-07 | `LIXHclass` | red: `Trans Eq Eq ?m` at the last `calc` step |
+| 2026-09-07 | **`LIXHclass`** | **green, 9203 jobs, `PROBE GREEN`, no `sorryAx` in the log** |
+| 2026-09-07 | all three, `lixprobe6.sh` | **green, 9203 jobs, `axiom lines seen: 38`, `sorryAx: none`** |
+
+### Axiom lines, by name
+
+Read out of `lixprobe6.sh cs-endpoint` (the older `lixprobe.sh` filters whole
+`info:` lines, so it printed none of these):
+
+```text
+'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerOf' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'GroupApproximation.CharClass.relToAbs_bridgeTotal' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'GroupApproximation.CharClass.lixHclass' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+```
+
+**A `grep` for `sorryAx` over a filtered probe log is not evidence about a given
+theorem.**  The filter drops whole `info:` lines but keeps their continuations,
+so an axiom list that WRAPS leaks ` Classical.choice,` / ` Quot.sound]` while one
+that fits on a single line vanishes entirely.  `lixHclass`'s list is short and
+left no trace; `pull_bridgeChartIncl_tautEulerOf`'s wraps and did.  A clean grep
+across such a log therefore says nothing about the short ones — and unsolved
+goals close a proof with `sorryAx` while leaving **no literal token** for
+`ccland.sh`'s lexical gate to catch.  `relToAbs_bridgeTotal` was in exactly that
+state for one probe round.  Read the axiom line by name, or read nothing.
+
+## 2026-09-07 — lane `lix-hsq`: `hsq` closed, by cutting a homotopy over a line
+
+`lixHsq` (`CharClass/LIXHsq.lean`) is the `hsq` binder of
+`lix_topClass_ne_zero_of_thom`, character for character, over `hGc`, `hGu`, `hGe`
+and nothing else.  `#print axioms lixHsq` reports
+`[propext, Classical.choice, Quot.sound]`.
+
+### The obstruction, and why the two obvious routes are both closed
+
+`hsq` compares two composites of relative pullbacks into the local model.  Both
+outer legs are pullbacks, but `lixRelModelIso` contains an **inverse** excision,
+so the square is not an equation between induced maps and cannot be checked
+pointwise end to end.  Composing that excision's forward map onto both sides
+removes the inverse and leaves an equation between two honest pullbacks — along
+two maps of pairs out of a neighbourhood of the origin:
+
+* left, `v ↦ the section at the chart point of v`;
+* right, `v ↦ the point of the fibre over the section's zero with frame
+  coordinate v`.
+
+**These agree nowhere.**  The base coordinate varies on the left and is constant
+on the right, so no amount of unfolding makes them equal, and the pointwise route
+`RelativeProdContractible`'s docstring recommends stops here.
+
+The other obvious route also fails, and it fails for a reason worth keeping.
+Both sides of `hsq` are maps between `F₂`-**lines** — the source by
+`ThomChernDeg.lixRelLine`, the target by `localEquiv` — and two maps between
+lines are equal as soon as both are nonzero.  But "right leg nonzero" **is**
+`hres`, and "left leg nonzero" is the conclusion Step C is trying to reach.  That
+is the circle the 08:42–08:45 reductions fell into, and it is why this lane never
+proves either leg nonzero: it proves them **equal**.
+
+### The route: cut a homotopy at either end
+
+Relative cohomology in this tree has no prism operator.
+`RelativeHomotopyInvariance` gives **bijectivity** through the five lemma and
+never an **equality** of two pullbacks, which is what the comparison needs.
+
+Over `F₂` the equality is free once the source pair is one dimensional.
+`Hom(L, L')` between two `F₂`-lines has exactly two elements, so two injective
+maps into a line are the same map; and the two endpoint slices `x ↦ (b, x)` and
+`x ↦ (b', x)` of a contractible parameter space both induce bijections by
+`cc-relative`'s `relPullback_slice_bijective`.  So they induce the *same* map, and
+any homotopy through maps of pairs may be **cut at either end**.  That is
+`RelativeSupport.relPullback_eq_of_homotopy_of_line`, stated at no LIX object and
+in no fixed degree.
+
+The homotopy contracts the chart-coordinate point `q` to the origin along `s · q`
+while **holding fixed the chart's reading of the section**, moving only the point
+at which the reconstruction's coefficients are evaluated.  At `s = 1` the value is
+the section; at `s = 0` the base point is the zero and the fibre vector is an
+`ℝ`-linear automorphism of `ℂ^r` read through the standard frame.  A linear
+automorphism is a homeomorphism of the punctured pair, so its own pullback is an
+isomorphism of the local model — and the local model is a line, so that
+isomorphism is the identity.
+
+Three facts make the homotopy exist, and none of them is a degree computation.
+
+### 1. `lixTrivBall` is a metric ball in chart coordinates, and that is load-bearing
+
+`lixBaseBall` is **defined** as the base chart's image of `Metric.ball 0 ε`, so it
+is star-shaped about the origin in chart coordinates.  That is the only property
+of it the contraction uses.  A neighbourhood produced by an abstract "small
+enough" argument would not do, and the ball is not an implementation detail of
+`LIXBaseBall`; anyone rewriting that file must keep it.
+
+### 2. The section's blocks are **linear** in the chart's coordinates
+
+The trivial block of the section, read in the charts, *is* `eulerLocalHomeo`.  The
+transverse block is `cVec`, the `(i+1)`-st column of the `j`-th projection, and in
+the affine chart that column is `chartVec (wⱼ)` **times** the chart coordinate
+`cpChartSection (wⱼ)ᵢ` (`tautColSection_chartAt`).  So the section is recovered
+from its chart coordinates by a map linear in them whose coefficients depend only
+continuously on the point: `lixEtaLin`.  The path's weight `χ(τ) = sin(πτ)` rides
+in the coefficient and is strictly positive on the ball, which keeps the
+reconstruction injective.
+
+**The nondegeneracy of the zero is paid for exactly once**, when `lixProductChart`
+was built from the inverse function theorem, and never again.  What `lixEtaLin`
+adds is that the nondegeneracy is then usable at *every* point of the
+contraction rather than at the zero alone.
+
+### 3. TRAP — the chart is a **clamped** map, so "the chart reads the section" is FALSE off a small ball
+
+Both chart factors are total maps made total by clamping: the sphere chart
+rescales through `sphereClamp`, the circle chart through `circClamp`.  Off the
+clamp's fixed region the chart reads the section **of a rescaled point**, so the
+identity "the chart is the section's blocks" is not merely unproved there, it is
+false.  `LIXHsqNeighbourhood` caps the comparison radius at `1/2`, which makes
+both clamps inactive (the product norm bounds every coordinate, so `sphereQ ≤ 1`
+and the circle coordinate lies in the open interval).  The cap costs nothing,
+because the excision shrink says any smaller neighbourhood carries the same
+relative group.  **Anyone building on `lixProductChart` or `lixFullChart` against
+the section needs the same cap.**
+
+### TRAP — `lixFullChart` was never connected to `lixSection` anywhere in the tree
+
+`grep -rn trivialBlockChart GroupApproximation/` returns hits only inside the
+three files that define it (`LIXSectionChart`, `LIXSectionDeriv`,
+`LIXSectionLocalHomeo`).  So the sentence "`lixFullChart` charts the section",
+true of the intent since 2026-09-05, was **unproved in Lean** until
+`lixEtaLin_eq_blockSouth`.  A docstring is not a lemma; grep for the identity, not
+for the noun.
+
+### TRAPS met while building
+
+* **`Homeomorph.toContinuousMap` does not exist at the pin.**  Use
+  `TopCat.isoOfHomeo`, and name the iso as a `def` so its `TopCat` implicits are
+  pinned: `relPairIso` cannot infer them from a `ConcreteCategory.hom`
+  application and reports an application type mismatch full of metavariables.
+* **A `have`-bound iso is opaque.**  `have hiso := relPairIso …` and then
+  `hiso.hom.hom a = …` will not reduce to the pullback `hiso` is *defined* as; the
+  error is a type mismatch between two visibly identical `relPullback`s.  Write
+  the iso out at the use site, or make it a `def`.
+* **`mtSection_south_form'` has no `ξ` parameter** even though `ξ` is a section
+  variable of `MappingTorusSection`: a section variable the *statement* does not
+  mention is not a parameter, and `(ξ := …)` is an "invalid argument name" error
+  that names `n`, `M`, `Z`, `hmem` as the near misses.
+* **`subInclusion` and `sInclusion` take their ambient implicitly** and cannot
+  recover a `TopCat` from a `Set` of a plain type.  Pin it: `subInclusion
+  (X := TopCat.of (Fin r → ℂ)) h`.  Same failure `cc-thom` recorded for `absToSub`.
+* **`Matrix.dotProduct` is `dotProduct`** (root namespace), and `simp only
+  [Matrix.mulVec, dotProduct]` unfolds `mulVec` into `⬝ᵥ` without unfolding
+  `⬝ᵥ`; a following `rw` then fails to find its sum.  State the sum with `show`
+  instead.
+* **One `rfl` too many is a build that never returns.**  `LIXHsq` in its first
+  form discharged all seven "this iso's `hom` is that pullback" identifications
+  inside the theorems that used them.  Elaboration went past the heartbeat limit
+  in `whnf` with errors naming the whole theorem, and one earlier form ran for
+  half an hour in the kernel with no output at all.  Stated one at a time as
+  their own `rfl` lemmas (`LIXHsqLegs` §4) each is a small delta-reduction, every
+  one compiles in seconds, and a failure names the factor that moved.
+* **An import can cost more than the module.**  `LIXHsq`'s first version imported
+  `LIXStepCOddThom` for a corollary it did not contain; that import alone pulls in
+  the whole Leray–Hirsch and Thom closure and turned a 20-second module into a
+  build of several hundred.  The corollary lives in its own module,
+  `LIXStepCOddHsq`, so the square itself stays cheap.
+
+### The check that no probe of this lane could make
+
+A lane can prove a theorem whose statement has drifted from the binder it was
+written for, and no probe of the lane's own modules will see it, because the lane
+never mentions the consumer.  `CharClass/LIXStepCOddHsq.lean` applies
+`lix_topClass_ne_zero_of_thom` **at the binder** with `lixHsq` supplied.  That is
+the only thing that catches the drift, and it is why the corollary exists at all.
+
+### Probe log
+
+| date | targets | result |
+|---|---|---|
+| 2026-09-07 | `RelativeLineHomotopy` | **green, 8785 jobs, `PROBE GREEN`, first probe**, `0f79b48cf` |
+| 2026-09-07 | `LIXHsqNeighbourhood` | red: `congrArg (fun t : _ ⟶ _ => t.hom a)` cannot project; `subInclusion` ambient not pinned |
+| 2026-09-07 | **`LIXHsqNeighbourhood`** | **green, 8878 jobs**, `56fd504b9`; radius capped at `1/2` at `3de02c2c3` |
+| 2026-09-07 | `LIXHsqEta` | red: one `ring` after a `simp` that had already closed the goal |
+| 2026-09-07 | **`LIXHsqEta`** | **green, 8879 jobs**, `91e737744` |
+| 2026-09-07 | `LIXHsqLinear` | red x3: `(ξ := …)`, `Matrix.dotProduct`, `Homeomorph.toContinuousMap`, then the opaque `have`-bound iso |
+| 2026-09-07 | **`LIXHsqLinear` + `LIXHsqHomotopy`** | **green, 8887 jobs**, `e6ea9a93c` |
+| 2026-09-07 | `LIXHsq` (one file, seven inline `rfl`s) | 28 minutes with no output, then heartbeat timeouts in `whnf` naming whole theorems |
+| 2026-09-07 | **`LIXHsqLegs`** (identifications split out) | **green, 8890 jobs** |
+| 2026-09-07 | **all seven** | **green, 8891 jobs, `sorryAx: none`**, `lixHsq` on `[propext, Classical.choice, Quot.sound]`, `ef0b678cb` |

@@ -1,6 +1,9 @@
 import GroupApproximation.CharClass.LIXStepCOddWired
 import GroupApproximation.CharClass.LemmaTwoOddNonvanishing
 import GroupApproximation.CharClass.LemmaTwoTopClass
+import GroupApproximation.CharClass.LIXResFibre
+import GroupApproximation.CharClass.LIXHclass
+import GroupApproximation.CharClass.LIXHsq
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
 import GroupApproximation.Meta.AxiomGuard
 
@@ -14,20 +17,26 @@ Lane `cs-endpoint` of the STW Problem LIX program.
 `lemmaTwoHolds_of_oddNonvanishing` consumes an already-`lixTopClass`-wrapped
 nonvanishing.  Between them sits `LemmaTwoTopClass.lean`'s `stepC_of_chain`, which
 takes the raw, per-`G` nonvanishing and wraps it.  This file threads all three into
-one theorem, taking exactly `hsq`, `hres`, `hclass` (universally quantified over
-every stage `j` and every Step A unitary `G`) and concluding `LIX.LemmaTwoHolds`,
-then `¬ ProblemLIX`.
+one theorem.
 
-**Why this is worth building before the three land, not after.**  `lix-hsq`,
-`lix-hres` and `lix-hclass` are proving these three obligations independently; if
-their shapes disagree with what `lix_topClass_ne_zero_of_three` actually consumes
-by so much as a degree cast or a `lixChernOf`/`lixTopClass` unfolding, elaborating
-this file is where that surfaces.  It did surface once already in this program —
-two lanes were green about different spaces for a day — so the composition is
-tested here, with `hsq`/`hres`/`hclass` as open hypotheses, rather than left for the
-day the three obligations land.
+**All three of `hsq`, `hres`, `hclass` are now discharged.**  `lix-hsq`'s `lixHsq`
+(`LIXHsq.lean`), `lix-hres`'s `injective_lixRes` (`LIXResFibre.lean`) and
+`lix-hclass`'s `lixHclass` (`LIXHclass.lean`) each proved exactly the residue they
+were aimed at.  `lixHsq` matches this file's former `hsq` binder character for
+character (same three hypotheses, same order, at `dd := LIX.lixDD j`), so its
+discharge needed no instantiation at all — the plainest of the three joins.  What
+follows are `LIX.LemmaTwoHolds` and `¬ ProblemLIX`, unconditionally.
 
-One check this file settles on its own: `LixChernDeg`'s codomain `Hmod2 (lixN dd) n`
+**Why the composition was worth building before any of the three landed.**
+`lix-hsq`, `lix-hres` and `lix-hclass` were proving these obligations
+independently; if their shapes disagreed with what `lix_topClass_ne_zero_of_three`
+actually consumes by so much as a degree cast or a `lixChernOf`/`lixTopClass`
+unfolding, elaborating this file is where that would have surfaced.  It did surface
+once already in this program — two lanes were green about different spaces for a
+day.  All three discharges plugged in with no or minimal adjustment, across three
+independent landings.
+
+One check this file settled on its own: `LixChernDeg`'s codomain `Hmod2 (lixN dd) n`
 and `lix_topClass_ne_zero_of_three`'s implicit `gamma : cohomologyZMod2 (lixN dd) n`
 are the same object — `Hmod2 X n` is `abbrev`-equal to `cohomologyZMod2 X n`
 (`CohomologyBasic.lean:48`), so no cast is needed when `gamma` is instantiated at
@@ -35,11 +44,23 @@ are the same object — `Hmod2 X n` is `abbrev`-equal to `cohomologyZMod2 X n`
 
 ## Main results
 
-* `lemmaTwoHolds_of_hsq_hres_hclass` --- **`LIX.LemmaTwoHolds`, over the three.**
-* `not_problemLIX_of_hsq_hres_hclass` --- **`¬ ProblemLIX`, over the three.**
+* `lemmaTwoHolds` --- **`LIX.LemmaTwoHolds`, unconditionally.**
+* `not_problemLIX` --- **`¬ ProblemLIX`, unconditionally.**
 
-**Kept at `#audit_axioms`.**  All three hypotheses are open, so nothing here may
-claim `#audit_closed_axioms` until `lix-hsq`, `lix-hres` and `lix-hclass` land.
+**Kept at `#audit_axioms` here by choice, not because `#audit_closed_axioms`
+would reject either declaration.**  `auditClosedAxiomsOf` (`AxiomGuard.lean:83`)
+checks `(stripMData ci.type).isForall`, and `stripMData` strips only `.mdata`
+wrappers — it does not unfold definitions (its own docstring says so).  So both
+`lemmaTwoHolds : LIX.LemmaTwoHolds` and `not_problemLIX : ¬ ProblemLIX` here
+*would* pass the closed gate: their elaborated types are, syntactically, an
+application (`LIX.LemmaTwoHolds` a constant reference, `¬ ProblemLIX` a `Not`
+application), not a `.forallE`, regardless of what `LIX.LemmaTwoHolds` unfolds
+to.  The weaker `#audit_axioms` line is used here anyway, deliberately: this
+file is internal wiring, and the single point of closed-axioms certification for
+this result is the endpoint's own `¬`/`∃`-shaped statements in `ProblemLIX.lean`
+— `not_problemLIX` there is a distinct declaration
+(`GroupApproximation.NinetyNineProblems.not_problemLIX`) from this file's
+`GroupApproximation.CharClass.not_problemLIX`.  That is the next and last step.
 -/
 
 noncomputable section
@@ -53,75 +74,32 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 set_option linter.unusedSectionVars false
 
-/-- **`LIX.LemmaTwoHolds`, from `hsq`, `hres` and `hclass` at every stage.**  `hres`
-and `hclass` do not depend on the Step A witness `hGe`, matching exactly what
-`lix_topClass_ne_zero_of_three` itself asks of them. -/
-theorem lemmaTwoHolds_of_hsq_hres_hclass
-    (hsq : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
-        (hGe : ∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0),
-        lixSRel hGc hGu hGe (2 * lixRank (LIX.lixDD j))
-            ≫ (lixRelModelIso (LIX.lixDD j) (2 * lixRank (LIX.lixDD j))).hom
-          = lixRes hGc hGu (2 * lixRank (LIX.lixDD j))
-              ≫ (lixLocalPairIsoClosed hGc hGu).hom)
-    (hres : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
-        Function.Injective (lixRes hGc hGu (2 * lixRank (LIX.lixDD j))).hom)
-    (hclass : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
-        (RelativeSupport.lixJE hGc hGu (2 * lixRank (LIX.lixDD j))).hom
-            (lixThomClassTerm hGc hGu)
-          = (RelativeSupport.lixPiStar hGc hGu (2 * lixRank (LIX.lixDD j))).hom
-              (lixChern (LIX.lixDD j) (mappingTorus Vmat G circHoriz circHeight)
-                (continuous_mappingTorus_lix hGc) (isStarProjection_mappingTorus_lix hGu)
-                (lixRank (LIX.lixDD j)))) :
-    LIX.LemmaTwoHolds :=
+/-- **`LIX.LemmaTwoHolds`, unconditionally.** -/
+theorem lemmaTwoHolds : LIX.LemmaTwoHolds :=
   lemmaTwoHolds_of_oddNonvanishing fun j G hGc hGu hGe =>
     stepC_of_chain (lixChern (LIX.lixDD j))
-      (fun G' hGc' hGu' hGe' =>
+      (fun _G' hGc' hGu' hGe' =>
         lix_topClass_ne_zero_of_three (LIX.lixDD_pos j) hGc' hGu' hGe'
-          (hsq j G' hGc' hGu' hGe') (hres j G' hGc' hGu') (hclass j G' hGc' hGu'))
+          (lixHsq hGc' hGu' hGe') (injective_lixRes hGc' hGu')
+          (lixHclass hGc' hGu' (continuous_mappingTorus_lix hGc')
+            (isStarProjection_mappingTorus_lix hGu')))
       G hGc hGu hGe
 
-/-- **`¬ ProblemLIX`, from `hsq`, `hres` and `hclass` at every stage.**  The whole
-dependency of the answer on algebraic topology, threaded through
-`not_problemLIX_of_lemmaTwo`. -/
-theorem not_problemLIX_of_hsq_hres_hclass
-    (hsq : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
-        (hGe : ∀ m, G m *ᵥ Sum.elim (aVec m) 0 = Sum.elim (bVec m) 0),
-        lixSRel hGc hGu hGe (2 * lixRank (LIX.lixDD j))
-            ≫ (lixRelModelIso (LIX.lixDD j) (2 * lixRank (LIX.lixDD j))).hom
-          = lixRes hGc hGu (2 * lixRank (LIX.lixDD j))
-              ≫ (lixLocalPairIsoClosed hGc hGu).hom)
-    (hres : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
-        Function.Injective (lixRes hGc hGu (2 * lixRank (LIX.lixDD j))).hom)
-    (hclass : ∀ j : ℕ,
-      ∀ (G : baseM (LIX.lixDD j) → Matrix (VIdx (LIX.lixDD j)) (VIdx (LIX.lixDD j)) ℂ)
-        (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)),
-        (RelativeSupport.lixJE hGc hGu (2 * lixRank (LIX.lixDD j))).hom
-            (lixThomClassTerm hGc hGu)
-          = (RelativeSupport.lixPiStar hGc hGu (2 * lixRank (LIX.lixDD j))).hom
-              (lixChern (LIX.lixDD j) (mappingTorus Vmat G circHoriz circHeight)
-                (continuous_mappingTorus_lix hGc) (isStarProjection_mappingTorus_lix hGu)
-                (lixRank (LIX.lixDD j)))) :
-    ¬ NinetyNineProblems.ProblemLIX :=
-  NinetyNineProblems.not_problemLIX_of_lemmaTwo
-    (lemmaTwoHolds_of_hsq_hres_hclass hsq hres hclass)
+/-- **`¬ ProblemLIX`, unconditionally.**  What remains of the answer's
+dependency on algebraic topology, threaded through `not_problemLIX_of_lemmaTwo`
+— nothing: it is now a theorem. -/
+theorem not_problemLIX : ¬ NinetyNineProblems.ProblemLIX :=
+  NinetyNineProblems.not_problemLIX_of_lemmaTwo lemmaTwoHolds
 
 /-! ## The axiom report
 
-Both hypotheses are open, so these stay at `#audit_axioms`: neither may claim
-`#audit_closed_axioms` until `lix-hsq`, `lix-hres` and `lix-hclass` land. -/
+Both are unconditional now, but stay at `#audit_axioms` here for the reason in
+the module docstring: `#audit_closed_axioms` cannot accept a bare-`∀`-shaped
+type, and the switch for the reader-facing statements belongs in
+`ProblemLIX.lean`. -/
 
-#audit_axioms lemmaTwoHolds_of_hsq_hres_hclass
+#audit_axioms lemmaTwoHolds
 
-#audit_axioms not_problemLIX_of_hsq_hres_hclass
+#audit_axioms not_problemLIX
 
 end GroupApproximation.CharClass

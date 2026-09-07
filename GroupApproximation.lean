@@ -3491,6 +3491,7 @@ import GroupApproximation.CharClass.ChernRelation
 import GroupApproximation.CharClass.CohomologyBasic
 import GroupApproximation.CharClass.CohomologyAssoc
 import GroupApproximation.CharClass.CohomologyBridge
+import GroupApproximation.CharClass.BundleTotalPiCohIso
 import GroupApproximation.CharClass.CohomologyDegreeZero
 import GroupApproximation.CharClass.CohomologySphere
 import GroupApproximation.CharClass.CohomologyContractible
@@ -3862,6 +3863,7 @@ import GroupApproximation.CharClass.SliceRoots
 import GroupApproximation.CharClass.SliceHomogeneous
 import GroupApproximation.CharClass.SliceRootsBlock
 import GroupApproximation.CharClass.SliceValueV
+import GroupApproximation.CharClass.LemmaTwoOddNonvanishing
 import GroupApproximation.CharClass.ParityEvenLemmaTwoClosed
 import GroupApproximation.CharClass.SliceVLineRoots
 import GroupApproximation.CharClass.SliceVGenerator
@@ -3882,6 +3884,8 @@ import GroupApproximation.CharClass.LIXThomClassTerm
 import GroupApproximation.CharClass.LIXBaseConnected
 import GroupApproximation.CharClass.LIXStepCOddThom
 import GroupApproximation.CharClass.LIXStepCOddRelative
+import GroupApproximation.CharClass.LIXStepCOddWired
+import GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass
 import GroupApproximation.CharClass.LIXChernTopGamma
 import GroupApproximation.CharClass.LerayHirschCoeffComap
 import GroupApproximation.CharClass.LIXThomResReduction
@@ -3956,6 +3960,19 @@ import GroupApproximation.CharClass.ThomChernDegreewise
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
 import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
+import GroupApproximation.CharClass.ThomChartSquare
+import GroupApproximation.CharClass.ThomJmNatural
+import GroupApproximation.CharClass.LIXResFibre
+import GroupApproximation.CharClass.ThomChartTautZero
+import GroupApproximation.CharClass.ThomBridgeRelToAbs
+import GroupApproximation.CharClass.LIXHclass
+import GroupApproximation.CharClass.LIXHsqNeighbourhood
+import GroupApproximation.CharClass.LIXHsqEta
+import GroupApproximation.CharClass.LIXHsqLinear
+import GroupApproximation.CharClass.LIXHsqHomotopy
+import GroupApproximation.CharClass.LIXHsqLegs
+import GroupApproximation.CharClass.LIXHsq
+import GroupApproximation.CharClass.LIXStepCOddHsq
 import GroupApproximation.CharClass.CohomologyParitySlice
 import GroupApproximation.CharClass.CohomologyLIXSliceBridge
 import GroupApproximation.CharClass.CohomologyLIXHslice

@@ -141,6 +141,10 @@ theorem relPullback_eq_of_homotopy_of_line {X : Type} [TopologicalSpace X] {A : 
 
 end
 
+/-! Printed on every build. -/
+
+#print axioms RelativeSupport.relPullback_eq_of_homotopy_of_line
+
 end RelativeSupport
 
 end GroupApproximation.CharClass
