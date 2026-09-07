@@ -4,6 +4,7 @@ import GroupApproximation.CharClass.ChernTautRestrict
 import GroupApproximation.CharClass.LerayHirschChartClassGen
 import GroupApproximation.CharClass.CohomologyBridge
 import GroupApproximation.CharClass.CohomologyContractible
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The tautological class vanishes on the affine chart
@@ -184,9 +185,10 @@ theorem bridgeChartIncl_comp_projMapOf (p : Bundle X ι) :
   apply TopCat.Hom.ext
   exact ContinuousMap.ext fun _ => rfl
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms LH.pull_bridgeChartIncl_tautEulerOf
+#audit_axioms LH.pull_bridgeChartIncl_tautEulerOf
 
 end
 
