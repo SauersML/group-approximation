@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute
 import GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerPrintedRoute
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanTransportSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.TransportCommutantEquality
+import GroupApproximation.Manuscript.OneSidedMFRadical.TransportPrintedCommutant
 import GroupApproximation.Manuscript.OneSidedMFRadical.DefectHS
 import GroupApproximation.Manuscript.OneSidedMFRadical.FiniteDimensionalCommutant
 import GroupApproximation.Manuscript.OneSidedMFRadical.StableFiniteness
@@ -45,6 +46,7 @@ open KazhdanAsymptoticCommutant
 open KazhdanCornerMatrices
 open PrintedCornerCompression
 open NormalKazhdanPrintedRoute
+open TransportPrintedCommutant
 open scoped Matrix.Norms.L2Operator commutatorElement
 
 noncomputable section
@@ -429,7 +431,14 @@ Hilbert--Schmidt asymptotic commutant `boundedHSCommutant` of
 clause is `centralizerSequence_mem_boundedHSCommutant`, the second is
 `manuscriptOneSidedKazhdanTransportCommutantEquality` applied to it, and the
 third is `IsAsymptoticCommutant.congr_hs` fed by `HSSqVanishing.of_opNormVanishing`
-and the new `conjugatedMap_opNormVanishing` above. -/
+and the new `conjugatedMap_opNormVanishing` above.
+
+The three memberships are proved at `boundedHSCommutant`, whose bound is the
+operator norm, because that is where `thm:transport` is available as a set
+equality.  The printed `C₂(V, L)` is now the Hilbert--Schmidt-bounded
+`printedCTwo`, a *larger* set, so the fourth conjunct carries all three
+memberships across `boundedHSCommutant_subset` and the sentence is matched at
+the printed definition as well. -/
 theorem manuscriptSentence_conjugatedCentralizerStaysInPrintedCommutant
     {G : Type} [Group G] (L : Subgroup G)
     (hL : HasKazhdanPropertyT.{0, 0} ↥L)
@@ -441,7 +450,14 @@ theorem manuscriptSentence_conjugatedCentralizerStaysInPrintedCommutant
           (fun n ↦ (B.map n c : Matrix (B.model n) (B.model n) ℂ))
         ∈ boundedHSCommutant B L ∧
       (fun n ↦ (B.map n (u * c * u⁻¹) : Matrix (B.model n) (B.model n) ℂ))
-        ∈ boundedHSCommutant B L := by
+        ∈ boundedHSCommutant B L ∧
+      ((fun n ↦ (B.map n c : Matrix (B.model n) (B.model n) ℂ))
+          ∈ printedCTwo B L ∧
+        adjointSequence B u
+            (fun n ↦ (B.map n c : Matrix (B.model n) (B.model n) ℂ))
+          ∈ printedCTwo B L ∧
+        (fun n ↦ (B.map n (u * c * u⁻¹) : Matrix (B.model n) (B.model n) ℂ))
+          ∈ printedCTwo B L) := by
   have hcmem := centralizerSequence_mem_boundedHSCommutant B L c hc
   have heq := manuscriptOneSidedKazhdanTransportCommutantEquality G L hL B u hu
   have hadj : adjointSequence B u
@@ -449,11 +465,19 @@ theorem manuscriptSentence_conjugatedCentralizerStaysInPrintedCommutant
         ∈ boundedHSCommutant B L := by
     have hmem := Set.mem_image_of_mem (adjointSequence B u) hcmem
     rwa [heq] at hmem
-  refine ⟨hcmem, hadj, ⟨1, zero_le_one, fun n ↦ ?_⟩, ?_⟩
-  · letI : Nonempty (B.model n) := Fintype.card_pos_iff.mp (B.modelNonempty n)
-    exact (CStarRing.norm_of_mem_unitary (B.map n (u * c * u⁻¹)).2).le
-  · refine IsAsymptoticCommutant.congr_hs hadj.2 ?_
-    exact HSSqVanishing.of_opNormVanishing (conjugatedMap_opNormVanishing B u c)
+  have hconj : (fun n ↦
+      (B.map n (u * c * u⁻¹) : Matrix (B.model n) (B.model n) ℂ))
+        ∈ boundedHSCommutant B L := by
+    refine ⟨⟨1, zero_le_one, fun n ↦ ?_⟩, ?_⟩
+    · letI : Nonempty (B.model n) := Fintype.card_pos_iff.mp (B.modelNonempty n)
+      exact (CStarRing.norm_of_mem_unitary (B.map n (u * c * u⁻¹)).2).le
+    · refine IsAsymptoticCommutant.congr_hs hadj.2 ?_
+      exact HSSqVanishing.of_opNormVanishing
+        (conjugatedMap_opNormVanishing B u c)
+  exact ⟨hcmem, hadj, hconj,
+    boundedHSCommutant_subset B L hcmem,
+    boundedHSCommutant_subset B L hadj,
+    boundedHSCommutant_subset B L hconj⟩
 
 /-- **`cor:defect-hs`, sentence `a6988bc68f49`.**
 
@@ -485,7 +509,7 @@ theorem manuscriptSentence_hsCommutatorVanishesAndDefectIsHSTrivial
   refine ⟨?_, manuscriptSentence_commutatorHilbertSchmidtVanishing L hL u hu
     c hc ell hell B⟩
   have hd := (manuscriptSentence_conjugatedCentralizerStaysInPrintedCommutant
-    L hL B u hu c hc).2.2.2 ⟨ell, hell⟩
+    L hL B u hu c hc).2.2.1.2 ⟨ell, hell⟩
   have hfactor : ∀ n : ℕ,
       (B.map n ell : Matrix (B.model n) (B.model n) ℂ) *
             (B.map n (u * c * u⁻¹) : Matrix (B.model n) (B.model n) ℂ) -
