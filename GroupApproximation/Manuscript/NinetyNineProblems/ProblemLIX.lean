@@ -3,6 +3,7 @@ import GroupApproximation.Analysis.CStarSimple
 import GroupApproximation.Analysis.LIXLimitSimple
 import GroupApproximation.Analysis.LIXLemmaTwoProp
 import GroupApproximation.CharClass.LemmaTwoGlue
+import GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass
 import GroupApproximation.Analysis.LIXLemmaSixCor4
 import GroupApproximation.Meta.AxiomGuard
 
@@ -333,6 +334,26 @@ theorem exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput
   exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput_data
     LIX.lixLimit_hasK1InjWitness_of h
 
+/-! ## Problem LIX is answered
+
+`CharClass.lemmaTwoHolds` (`CharClass/LemmaTwoOfHsqHresHclass.lean`) is
+`LIX.LemmaTwoHolds` with no hypothesis: `lix-hsq`'s, `lix-hres`'s and
+`lix-hclass`'s three discharges of `CharClass.lix_topClass_ne_zero_of_three`
+are all theorems now.  Applying it to the two conditional forms above closes
+them. -/
+
+/-- **Problem LIX is answered: no.**  Unconditional. -/
+theorem not_problemLIX : ¬ ProblemLIX :=
+  not_problemLIX_of_lemmaTwo CharClass.lemmaTwoHolds
+
+/-- **The sharper, unconditional form**: the counterexample is separable,
+which is strictly more than Problem LIX asks and the form in which the
+answer is sharp (see the module docstring). -/
+theorem exists_separable_simple_unital_not_k1Inj :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A :=
+  exists_separable_simple_unital_not_k1Inj_of_lemmaTwo CharClass.lemmaTwoHolds
+
 end NinetyNineProblems
 end GroupApproximation
 
@@ -353,3 +374,6 @@ open GroupApproximation.NinetyNineProblems
 #audit_axioms not_problemLIX_of_lemmaTwoInput
 #audit_axioms exists_separable_simple_unital_not_k1Inj_of_lemmaTwoInput
 #audit_axioms not_problemLIX_of_exists
+
+#audit_closed_axioms not_problemLIX
+#audit_closed_axioms exists_separable_simple_unital_not_k1Inj
