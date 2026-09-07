@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 335 |
-| `formalized` | 83 |
+| `unassigned` | 334 |
+| `formalized` | 84 |
 | `definition` | 26 |
 | `structural` | 17 |
 | `attribution` | 11 |
 | `partial` | 4 |
 | **total** | **476** |
 
-Completely formalized or definitional: **109/476** (22.9%).
+Completely formalized or definitional: **110/476** (23.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -228,9 +228,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * cor:simple-infinite-ring, second sentence ("The same conclusion holds for R=L_k(1,m)..."), inheriting the first sentence's n>=2. Same n>=4-vs-n>=2 gap as 97fcf1f9add1; both carriers are at `4 <= n`. UPDATE 2026-09-07: PropertyT/IntegralColumnPlaneClosure.lean's finitelyGeneratedRingGeneralRankElementaryPropertyT (commit 343a1c4a4) is a hypothesis-free proof of the EJZ premise this row's FromEJZ carrier takes -- if it holds up under #audit_closed_axioms this row's clause is fully unconditional, not just prime-char; not independently audited by this lane, flagged to the lead.
 * **`unassigned`**, line 1116 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
 * **`unassigned`**, line 1124 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
-* **`unassigned`**, line 1128 --- If a countable unital ring $R$ is not directly finite, then $C^*_{\max}(\EL_n(R))$ contains a proper isometry for every $n\ge4$, and for every $n\ge2$ if $R$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}.
 * **`partial`**, line 1128 --- If $R\ne0$ satisfies that hypothesis, then $C^*_{\mathrm r}(\EL_n(R))$ is separable, stably finite, and not MF for every $n\ge2$, and the unit group $R^\times$ is not MF\@.
-  * cor:one-sided-ring-maximal, the reduced-C*-algebra clause ("...separable, stably finite, and not MF for every n>=2, and the unit group R^x is not MF"). PrintedOneSidedRingMaximalReducedCStar is at `4 <= n`, same gap as 97fcf1f9add1: n>=4 proved (EJZ-conditional / prime-char-unconditional), n=2,3 open. The closing clause "the unit group R^x is not MF" is additionally uncovered here -- not searched for a carrier this pass. UPDATE 2026-09-07: PropertyT/IntegralColumnPlaneClosure.lean's finitelyGeneratedRingGeneralRankElementaryPropertyT (commit 343a1c4a4) is a hypothesis-free proof of the EJZ premise this row's FromEJZ carrier takes -- if it holds up under #audit_closed_axioms this row's clause is fully unconditional, not just prime-char; not independently audited by this lane, flagged to the lead.
+  * UPGRADED 2026-09-07: unconditional in every characteristic now (EJZ closed). manuscriptOneSidedRingMaximalReducedCStarAllCharacteristics covers the reduced-C* clause at n>=4; manuscriptUnitGroupNotMFAllCharacteristics covers "the unit group R^x is not MF" hypothesis-free. Still partial: no n>=2 form of the reduced-C* clause exists yet (checked: no PrintedOneSidedRingMaximalReducedCStarRankTwo in the tree), so the sentence's own "for every n>=2" is not fully covered.
 * **`unassigned`**, line 1138 --- Choose $s,t\in R$ with $ts=1\ne st$, and let $S$ be the unital subring they generate.
 * **`unassigned`**, line 1138 --- The compressor $u$ from the proof of Theorem~\ref{thm:full-defect-ring} lies in $\EL_4(S)$ and conjugates $L=\EL_3(S)$ into itself, and $L$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.
 * **`unassigned`**, line 1138 --- The compression is strict: every off-diagonal entry of a matrix in $uLu^{-1}$ has the form $sat$, and $e(sat)=0$ while $e\cdot1=e\ne0$, so $e_{12}(1)\in L\setminus uLu^{-1}$.
@@ -406,7 +405,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | From Hilbert--Schmidt to operator norm | 31 | 17 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
 | A finite certificate | 19 | 19 |
-| One-sided inverses and elementary groups | 74 | 71 |
+| One-sided inverses and elementary groups | 74 | 70 |
 | The binary example | 46 | 44 |
 | An amenable nonquasidiagonal trace | 90 | 79 |
 | A torsion-free finitely presented example | 35 | 16 |
