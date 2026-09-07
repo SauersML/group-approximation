@@ -4081,6 +4081,11 @@ import GroupApproximation.Algebra.PurelyInfiniteSimpleRing
 import GroupApproximation.Leavitt.UniversalOneSidedPairRing
 import GroupApproximation.Manuscript.OneSidedMFRadical.HilbertSchmidtAdMatrix
 import GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupB
+import GroupApproximation.Algebra.CornerRing
+import GroupApproximation.Leavitt.ElementaryFinitelyGeneratedRing
+import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingRankTwoIsometry
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFHomKernel
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnits
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
