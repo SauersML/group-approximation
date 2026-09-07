@@ -7,9 +7,10 @@ never against a docstring; where I could not check something I say so.
 
 **Verdict: I found nothing that breaks the result.**  The chain compiles end to
 end, its endpoint is unconditional and classically clean, and the statement is a
-faithful reading of the printed problem *given* the quotation in
-`ProblemLIX.lean`, which is the one thing here I could not verify and the one
-thing a human must.
+faithful reading of the printed problem.  The one thing I could not verify from
+here — the quotation of the printed problem, and specifically whether it carries
+a nuclearity clause — was checked against the paper by the lead and is
+**resolved favourably**; see F5.
 
 ## 0. The end-to-end check
 
@@ -144,19 +145,33 @@ only because both sets are open neighbourhoods of the marked point and both
 subspaces are that point's complement.  The header now says which hypotheses may
 not be dropped.
 
-**F5 — the one thing I could not check, and the one that would cost most.**
-`ProblemLIX` omits **nuclearity**.  The paper is titled *Nuclear C⋆-algebras: 99
-problems*, and `ProblemLIX.lean` quotes the problem as "Are all unital simple
-C*-algebras K1-injective?" with no nuclearity clause.  If that quotation is
-exact we are fine.  If the printed problem is posed inside the nuclear class,
-then our `ProblemLIX` is a *weaker* universal and refuting it is *weaker* than
-answering the printed question — the one direction in which this kind of
-omission is not safe.  I cannot check a quotation against arXiv:2506.10902 from
-here.  Mitigation, unformalised: the counterexample is an AH limit — corners of
-matrix algebras over `C(X)` — hence nuclear in fact, so the mathematics would
-survive the stricter reading; but nuclearity is nowhere proved in Lean, so the
-repository could not today state the stronger form.  **A human should check the
-quotation.**
+**F5 — RESOLVED, by the lead reading the printed paper.**  I raised this as the
+one thing I could not check and the one that would cost most: `ProblemLIX`
+omits **nuclearity**, in a paper titled *Nuclear C⋆-algebras: 99 problems*.  Had
+the printed problem been posed inside the nuclear class, our `ProblemLIX` would
+be a *weaker* universal and refuting it *weaker* than answering the question —
+the one direction in which an omitted hypothesis is not safe.
+
+The lead extracted arXiv:2506.10902 and read it.  Line 2858:
+
+> **Problem LIX.** Are all unital simple C∗-algebras K1-injective?
+
+No nuclearity clause, and the evidence is **positive rather than merely
+absent**: the same paragraph reads "Villadsen constructs a simple separable
+unital *nuclear* C⋆-algebra A…", and Problem XLIX reads "…a unital simple
+separable *nuclear* C⋆-algebra A…".  These authors write "nuclear" where they
+mean it, in the sentences around Problem LIX, and no standing convention makes
+it implicit.  The surrounding discussion also matches `ProblemLIX.lean`'s
+docstring in detail — Villadsen defeating K₁-*surjectivity*, injectivity called
+open, Rieffel at stable rank one and Lin at real rank zero.
+
+So the quotation in the file is exact, `ProblemLIX` is faithful to the printed
+problem, and the refutation answers the question as asked.  Recorded here rather
+than left as an open worry, because this note is what a later reader will find.
+
+(Unchanged and still true: the counterexample is an AH limit and so nuclear in
+fact, but nuclearity is nowhere proved in Lean, so the repository could not
+today state the stronger form even though the algebra satisfies it.)
 
 ## 5. The generic pieces
 
