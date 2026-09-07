@@ -2,6 +2,8 @@
 rg: 2
 id: one-invertible-certificate-fiber-forces-global-invertibility
 kind: claim
+artifacts:
+  - research/artifacts/finite-rank-literature-and-section-audit-2026-09-07.md
 title: One invertible fiber of a locally split linear family forces every full-shift certificate fiber to be invertible
 distinct_from:
   certificate-linear-automata-have-local-linear-decoders: that constructs a local left inverse; this proves that a globally split family cannot mix invertible and strictly one-sided fibers.
@@ -53,3 +55,7 @@ cellular automata*, https://arxiv.org/abs/2209.06002. The route gives the
 specific full-certificate argument directly, without assuming a theorem
 about arbitrary nonuniform systems or claiming novelty for the
 finite-rank linear algebra.
+
+The attached audit records the inspected source statements, the related
+finite-support section criterion, and the exact limits of the literature
+comparison and independent proof checks.

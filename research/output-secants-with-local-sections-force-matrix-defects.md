@@ -2,6 +2,8 @@
 rg: 2
 id: output-secants-with-local-sections-force-matrix-defects
 kind: claim
+artifacts:
+  - research/artifacts/finite-rank-literature-and-section-audit-2026-09-07.md
 title: Output-pair certificates retain decoder collisions and turn local sections of their secants into strict matrix inverse pairs
 distinct_from:
   injective-automata-have-local-stable-secant-dilations: that uses certified input differences and still needs a separate reverse defect; this uses arbitrary output pairs so a missing image point supplies that defect automatically.
@@ -68,3 +70,9 @@ An invertible fiber would force all fibers to be invertible, contradicting
 (OSC3). Thus a diagonal normalization Q_(a,a)=I is incompatible with a
 locally split family for a noninjective decoder. Its one-sided defect
 must already survive in the constant-certificate operators over F_p[G].
+
+The attached audit gives an equivalent finite-support formulation of
+(OSC2): every Q_c must map finitely supported configurations onto finitely
+supported configurations. Clopen patching then supplies a uniform local
+section, even when the original choices have no common support bound.
+Surjectivity on the full configuration space alone is insufficient.
