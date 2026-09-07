@@ -46,3 +46,26 @@ uniform-`2`-continuous extension.
 
 Thus STW Problem XXII has a negative answer, already within separable unital
 nuclear type I algebras with compact metrizable extreme trace boundary.
+
+## Lean carrier (wired 2026-09-07)
+
+`GroupApproximation.Analysis.STW22AntipodalFactorialPair`, theorem
+`antipodalFactorialNegativeSolutionToProblemXXII`, hypothesis-free and gated by
+`#audit_closed_axioms`.  It is a four-fold conjunction: the pair is
+**factorial** tracially complete (CCEGSTW Definitions 3.4 and 3.10), its
+designated traces are exactly the `||.||_(2,X)`-continuous traces (CCEGSTW
+Proposition 3.15, not a definitional restatement), not every trace is
+`||.||_(2,X)`-continuous, and `X ( T(M)`.  The Borsuk--Ulam input is discharged
+by `complexOddMapCommonZero_unconditional`, so nothing is assumed.
+
+Worth recording why this took a second module.  The endpoint that had been
+wired into the root, `STW22UnconditionalCore`, asserts unitality, separability,
+nuclearity, type I, the gauge identity, Bauer-ness, compact metrizability of
+the boundary, and the injective-not-surjective extension — but **not** that the
+pair is factorial tracially complete, which is the hypothesis of the problem
+being refuted.  Dropping a hypothesis makes a counterexample weaker, so that
+endpoint refuted something strictly weaker than Problem XXII as stated.  The
+missing conjunct was proved on 2026-09-05 and then sat unreachable from the
+root for two days; the orphan sweep of `notes/orphan-module-sweep-2026-09-07.md`
+found it and it is now imported.  The mathematics above never changed — this is
+a formalization-coverage note, not a correction to the claim.

@@ -1,0 +1,17 @@
+research/notes: polish — separable carrier named, gate framing precise, stale title fixed
+
+Three follow-ups from review: (1) the claim node now names
+NinetyNineProblems.exists_separable_simple_unital_not_k1Inj explicitly as the
+carrier of its "separable" conjunct, rather than resting on an unnamed
+composite. (2) the route node and campaign note both restate why
+CharClass.lemmaTwoHolds stays at #audit_axioms with the precise mechanism --
+#audit_closed_axioms checks the elaborated type's syntactic shape without
+unfolding defs, so it would accept lemmaTwoHolds on a technicality -- rather
+than the vaguer "on syntactic grounds" phrasing, and explicitly not as a gate
+limitation. (3) the route node's title no longer says "the wired composition
+proves not_problemLIX" (LemmaTwoOfHsqHresHclass.lean only proves
+lemmaTwoHolds now; ProblemLIX.lean proves not_problemLIX). Read at origin/main
+fetch 308c01bdb7b3b83044ccdd371844affdbb4634a9. bin/cairn check clean.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

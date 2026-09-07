@@ -179,6 +179,27 @@ Lemma~\ref{lem:two} runs on, and they are positive; both are recorded formally
 as \textsf{GroupApproximation.LIX.even\_lixDD} and
 \textsf{GroupApproximation.LIX.lixDD\_pos}.
 
+Two arithmetic checks are worth having in view, because they say why the
+construction is tight rather than merely available.  Since $L_i$ has rank one
+and appears with multiplicity $d_i$,
+\[
+  \rank E_j \;=\; 2 + \sum_{i<j} d_i \;=\; 2^{\,j+1},
+  \qquad
+  \dim X_j \;=\; 4 + 2\sum_{i<j} d_i \;=\; 2^{\,j+2} ,
+\]
+so the rank of the bundle and the dimension of the base grow together, the
+second always exactly twice the first.
+
+The same balance, for a different pair of objects, is what makes
+Section~\ref{sec:modtwo} work.  There the space is not $X_j$ but
+$N = S^1 \times S^5 \times \prod_i \CP^{d_i}$ and the bundle is not $E_j$ but
+$V$ of rank $r = 3+m$, and one has $\dim N = 6 + 2m = 2r$ again.  The two
+computations are parallel instances rather than the same one -- the $S^4$ of
+the tower is replaced by the $S^1 \times S^5$ of the mapping torus, and the
+rank goes up by one -- but in both the top Chern class of a rank-$r$ bundle
+lands in the top cohomology of a $2r$-dimensional space, where there is room
+for it to be nonzero and nothing above it to obstruct.
+
 \subsection{The connecting maps and the limit}
 
 The connecting map $\varphi_j \colon A_j \to A_{j+1}$ is a twisted point
@@ -507,12 +528,29 @@ $\xi$, so every column except $i = 0$ dies and the surviving one is
 $\pi^{*}(1 \smile \gamma_r) = \pi^{*}\gamma_r$.
 \leanverified{sec:hclass}{GroupApproximation.CharClass.lixHclass}
 
-Two things this does not do, both worth stating because the statement invites
-the opposite reading.  It proves nothing about the \emph{section}: the class
-compared here is the one the projection pulls back, not the one the section
-detects.  And it does not on its own make $\gamma_r$ nonzero -- that is the
+The chart here \emph{is} the total space: the map in question includes $E$ into
+$P(E \oplus \mathbf 1)$ as the affine chart, so restricting to the chart and
+restricting to $E$ are one operation, and the argument has returned to where it
+started.
+
+It is worth saying that the identity is not a formal consequence of naturality
+and splitting alone.  For arbitrary maps satisfying only those two conditions
+it is false, so it has to be proved at the concrete $j_E$ and $\pi^{*}$ rather
+than at a general pair, and a reader who tries to state this subsection
+abstractly will lose time discovering that.
+
+Three things this does not say, all three worth stating because the argument
+invites the opposite reading.  It proves nothing about the \emph{section}: the
+class compared here is the one the projection pulls back, not the one the
+section detects.  It does not on its own make $\gamma_r$ nonzero -- that is the
 consumer's conclusion, from this identity together with
-Section~\ref{sec:hres}, and not from this identity alone.
+Section~\ref{sec:hres}, and not from this identity alone.  And it says nothing
+about $\xi$ away from the chart: on the complement of the zero section $\xi$
+does not vanish, which is where the Gysin sequence lives, so the slogan above
+must not be read as making $\xi$ zero -- that would trivialise the whole
+argument.  In the other direction, the identity holds for \emph{every}
+continuous corner-unitary $G$ and not only for the clutching one, so nothing in
+it is special to the construction.
 
 \subsection{The compatibility square}
 \label{sec:hsq}
@@ -576,7 +614,23 @@ further namespace shown.
   \textsf{CharClass.\allowbreak injective\_\allowbreak lixRes},
   \textsf{LIXResFibre.lean:251}.
 \item Section~\ref{sec:hclass}:
-  \textsf{CharClass.\allowbreak lixHclass}, \textsf{LIXHclass.lean:175}.
+  \textsf{CharClass.\allowbreak lixHclass}, \textsf{LIXHclass.lean:175}; and
+  its four inputs, in dependency order --
+  \textsf{CharClass.LH.\allowbreak pull\_\allowbreak bridgeChartIncl\_%
+  \allowbreak tautEulerOf}, \textsf{ThomChartTautZero.lean:169}, that $\xi$
+  dies on the chart;
+  \textsf{CharClass.\allowbreak relToAbs\_\allowbreak bridgeTotal},
+  \textsf{ThomBridgeRelToAbs.lean:68}, that the two relative-to-absolute maps
+  differ by that restriction;
+  \textsf{CharClass.\allowbreak pull\_\allowbreak bridgeChartIncl\_%
+  \allowbreak lhSum}, \textsf{LIXHclass.lean:132}, the column collapse; and
+  \textsf{CharClass.\allowbreak lixChern\_\allowbreak top\_\allowbreak
+  eq\_\allowbreak gamma}, \textsf{LIXChernTopGamma.lean:58}.  The last of these
+  is not bookkeeping: it identifies two \emph{different} definitions of the top
+  Chern class, the degree-$2r$ component of a ring-level class and the top
+  degreewise coefficient of the Leray--Hirsch presentation.  Where this note
+  writes $\gamma_r$ and means ``the top Chern class'', that lemma is what makes
+  the two agree.
 \item Section~\ref{sec:hsq}:
   \textsf{CharClass.\allowbreak lixHsq}, \textsf{LIXHsq.lean:269}.
 \item Thom coordinates under a base restriction:
@@ -630,14 +684,21 @@ the three axioms of Lean's own logic and nothing else.  This was read three
 times independently, on two different clones, by three different readers, each
 from a forced fresh compile with build artifacts cleared rather than from a
 replay, and from a clean export of the commit rather than from a working tree.
-The readings agree.
+All three readings were taken from the raw build log, not from any tool's
+summary of it.  They agree.
 
-One caution about provenance, since it nearly defeated the last of those
-readings: the axiom lines must be read from the build log itself and not from a
-tool's summary of it.  A summary that truncates its own report is
-indistinguishable from a complete one, and in the run behind this section the
-summary omitted precisely the two endpoint declarations while reporting a
-plausible non-zero count.
+That last point is provenance rather than pedantry, and it tells a later reader
+which artefact to re-derive the claim from.  A summary that truncates its own
+report is indistinguishable from a complete one: in the run behind this
+section, the summarising tool omitted precisely the two endpoint declarations
+while reporting a plausible and truthful count of the lines it had gathered.
+The failure that invites is not a reader who sees nothing and stops.  It is a
+reader who sees nothing for the endpoint, concludes that the build did not
+reach it, and then finds one row above it the clean-looking axiom line of
+\textsf{not\_\allowbreak problemLIX\_\allowbreak of\_\allowbreak lemmaTwo} --
+a different theorem, and a conditional one -- and cites that instead.  A
+truncated report does not produce an obvious absence; it produces a plausible
+wrong answer.
 
 \section{Divergences and non-claims}
 \label{sec:divergences}

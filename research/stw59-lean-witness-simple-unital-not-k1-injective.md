@@ -14,10 +14,14 @@ There is a nontrivial, unital, separable, simple C\*-algebra `A` (Lean:
 `GroupApproximation.LIX.LIXLimit`, the inductive limit of the STW LIX tower)
 and a unitary `v` of `A` such that `v` is not null-homotopic in `U(A)` but
 `diag(v,1)` is null-homotopic in `U(M2(A))`; hence `A` is not `K1`-injective.
-This refutes STW Problem LIX (`stw99-problem-lix-simple-k1-injective`), the
-same conclusion as `stw59-simple-ah-non-k1-injective`, by an independent route:
-proved in Lean 4 / Mathlib, mechanically checked, rather than reviewed on
-paper.
+This exact conjunction -- separable, nontrivial, unital, simple, not
+`K1`-injective -- is the type of the named, hypothesis-free theorem
+`GroupApproximation.NinetyNineProblems.exists_separable_simple_unital_not_k1Inj`
+(carrier for the "separable" clause; see below), so nothing here rests on an
+unnamed composite. This refutes STW Problem LIX
+(`stw99-problem-lix-simple-k1-injective`), the same conclusion as
+`stw59-simple-ah-non-k1-injective`, by an independent route: proved in
+Lean 4 / Mathlib, mechanically checked, rather than reviewed on paper.
 
 `stw59-twisted-section-parity-counterexample-proof` establishes the sibling
 claim over the **integers**: an odd mapping-torus Chern number against an even

@@ -3419,6 +3419,16 @@ import GroupApproximation.Analysis.STW22FactorialCore
 import GroupApproximation.Analysis.STW22TraciallyCompletePair
 import GroupApproximation.Analysis.STW22AntipodalGaugeFactorial
 import GroupApproximation.Analysis.STW22AntipodalFactorialPair
+-- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
+-- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
+--  says "UNPROBED, do not import yet")
+import GroupApproximation.Analysis.STW22CounterexampleCompactnessRoute
+import GroupApproximation.Analysis.STW22FibreEvaluation
+import GroupApproximation.GGT.DGOLemma421FourGon
+import GroupApproximation.GGT.DGOProposition414SecondSeparationHalfWord
+import GroupApproximation.GGT.HullSCLemma44PrefixKernelCutConstruction
+import GroupApproximation.GGT.KazhdanHypGirthEightGenericProducers
+import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
 import GroupApproximation.Analysis.CStarMatrixBlockInclusion
 import GroupApproximation.Analysis.CStarUnitaryComponent
 import GroupApproximation.Analysis.CStarSymmetryComponent

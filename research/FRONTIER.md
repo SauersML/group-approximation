@@ -9037,7 +9037,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-07 · stw59-lean-witness-simple-unital-not-k1-injective-proof [COMPLETE] Three residues (hres, hclass, hsq) close Step C's odd side, and the wired composition proves not_problemLIX in Lean
+- 2026-09-07 · stw59-lean-witness-simple-unital-not-k1-injective-proof [COMPLETE] Three residues (hres, hclass, hsq) close Step C's odd side; not_problemLIX and its separable form follow, unconditionally, in Lean
 - 2026-09-07 · stw59-lean-witness-simple-unital-not-k1-injective [ESTABLISHED] A Lean-verified nontrivial simple unital C*-algebra that is not K1-injective (STW LIX)
 - 2026-09-07 · stw99-problem-lix-simple-k1-injective [REFUTED] Unital simple C*-algebras are K1-injective (STW Problem LIX)
 - 2026-09-07 · stw59-simple-ah-non-k1-injective [ESTABLISHED] A simple unital nuclear stably finite AH algebra has K1 zero and a nontrivial order-two unitary component

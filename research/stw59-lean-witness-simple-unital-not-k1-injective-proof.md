@@ -2,7 +2,7 @@
 rg: 2
 id: stw59-lean-witness-simple-unital-not-k1-injective-proof
 kind: route
-title: Three residues (hres, hclass, hsq) close Step C's odd side, and the wired composition proves not_problemLIX in Lean
+title: Three residues (hres, hclass, hsq) close Step C's odd side; not_problemLIX and its separable form follow, unconditionally, in Lean
 target: stw59-lean-witness-simple-unital-not-k1-injective
 requires: []
 artifacts:
@@ -84,7 +84,22 @@ and both carrying `#audit_closed_axioms` as landed at `aa9ba0148` -- whose
 commit message records the axiom lines read by hand off the raw remote log,
 per standing instruction for this one irreversible step:
 `[propext, Classical.choice, Quot.sound]` for both declarations, nothing
-else. `not_problemLIX` follows via `not_problemLIX_of_lemmaTwo`, which
+else.
+
+`CharClass.lemmaTwoHolds`, upstream of both, stays at the weaker
+`#audit_axioms` rather than `#audit_closed_axioms` -- not because the two
+reader-facing theorems above are somehow better-checked than it is, and not a
+limitation of the gate. `#audit_closed_axioms` rejects a leading hypothesis by
+checking the *syntactic* shape of the elaborated type (no unfolding of `def`s
+such as `LIX.LemmaTwoHolds`), so `lemmaTwoHolds : LIX.LemmaTwoHolds` would
+pass it on a technicality -- its type is a bare constant application, not a
+`∀`, regardless of what that constant unfolds to. The single point of
+`#audit_closed_axioms` certification for this result was placed deliberately
+at the two genuinely `Not`/`Exists`-shaped statements in `ProblemLIX.lean`,
+where the check means what it is meant to mean, rather than at every
+declaration along the way that happens to pass it.
+
+`not_problemLIX` follows via `not_problemLIX_of_lemmaTwo`, which
 unwinds through `LIX.lixLimit_hasK1InjWitness_of` (Corollary 4 plus the
 generalized clutching argument, `Analysis/LIXLemmaSixCor4.lean`),
 `LIX.lixLimit_isSimpleCStar` (stagewise fullness,
