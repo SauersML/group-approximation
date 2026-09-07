@@ -139,4 +139,25 @@ theorem lixPhi_zero (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) 
   rw [(lixSection_eq_zero_iff hGe (lixZero dd)).mpr rfl]
   rw [Matrix.mulVec_zero, Matrix.mulVec_zero]
 
+/-- **Injectivity of `lixPhi` reduces to injectivity of the trivialised section.**
+
+The frame half is free: `fibreEquivPi` is a homeomorphism whose forward map is exactly
+multiplication by the frame's adjoint, so it is injective on the fibre and contributes
+nothing to prove.  What is left is the geometric half, that the section projected into the
+fibre at the zero separates points of the chart's target, which is the local
+homeomorphism property and is taken here as the hypothesis `hgeo`. -/
+theorem injOn_lixPhi_of_injOn (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    (hgeo : Set.InjOn
+      (fun v : Fin (lixRank dd) → ℂ =>
+        mappingTorus Vmat G circHoriz circHeight (lixZero dd) *ᵥ
+          lixSection G (lixBaseChart dd ((lixFullChart dd).symm v)))
+      (lixFullChart dd).target) :
+    Set.InjOn (lixPhi hGc hGu) (lixFullChart dd).target := by
+  intro v hv w hw hvw
+  refine hgeo hv hw ?_
+  have h := (fibreEquivPi (isStarProjection_mappingTorus_lix hGu (lixZero dd))
+    (lixRank dd) (trace_mappingTorus_lixZero hGu)).injective hvw
+  exact congrArg Subtype.val h
+
 end GroupApproximation.CharClass

@@ -29,52 +29,36 @@
 # see them.
 #
 # ---------------------------------------------------------------------------
-# conditional-data: the Fournier-Facio citation.
-#
-# Every one of these is a theorem about an arbitrary `PrintedFournierFacioData`,
-# the datum recording the package the manuscript cites at tex 831-841: Gamma,
-# t, and a finitely presented infinite simple J with [Gamma,J] = 1 and
-# tJt^-1 <= Gamma.  Nothing in the corpus inhabits that structure and nothing
-# should: its existence is Fournier-Facio's theorem, not ours.  The printed
-# lemma is conditional in exactly the same way and says so.  These lines go
-# when the FFF construction is formalized, and not before.
-conditional-data GroupApproximation.Manuscript.NonMF.manuscriptLemmaCommutatorInDefect  -- lem:commutator-in-defect over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.normalClosure_image_eq_range_and_printedDefect_eq_top  -- torsion-free normal-generation step over the same cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_conjFactor_eq  -- S is perfect, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_eq  -- S-bar is perfect as a quotient of S, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_le_printedDefect  -- [S-bar,S-bar] <= D, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_simpleFactor_eq  -- J is perfect from simple and nonabelian, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.conjFactor_def  -- S = tJt^-1, notation over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.defect_generator_mem  -- eq:intrinsic-defect at the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conj_core_mem  -- t-bar compresses Gamma-bar, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conjFactor_le_map_core  -- S-bar <= Gamma-bar, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conjFactor_le_printedDefect  -- the printed lemma's conclusion, over the cited FFF package
-conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_simpleFactor_centralizes  -- J-bar centralizes Gamma-bar, over the cited FFF package
+# REMOVED 2026-09-07 (lead-authorized): this section registered twelve
+# `PrintedFournierFacioData`/commutator-in-defect declarations, all conditional
+# on the same cited FFF package.  Every one of them is now stale: verified for
+# each that its only citing map row(s) are themselves orphaned (stale overlay
+# keys, matching no live sentence -- `lem:commutator-in-defect` is no longer a
+# printed environment, folded into `thm:torsion-free`'s proof).  One,
+# `PrintedFournierFacioData.conjFactor_def`, is still cited by a LIVE row
+# (`02b6bf87400f`, "Put S=tJt^{-1}."), but `--verify-unconditional` reports no
+# finding for it regardless -- checked directly, not assumed -- so a line for
+# it would itself be stale.  Flagged to the lead rather than silently
+# resolved: worth checking whether `conjFactor_def`'s signature changed to no
+# longer take `PrintedFournierFacioData` as a hypothesis the classifier scans.
 #
 # ---------------------------------------------------------------------------
-# conditional-debt: Theorem C's inputs are inhabited only through the placeholder -- `sorry`.
-#
-# These take `LiteratureInputs` or `Configuration`, and the corpus does produce
-# both -- `TheoremCDebts.literatureInputs` and `exists_configuration` -- but
-# only through the three literature debts at TheoremCDebts.lean
-# (kotowskiOllivier, smallCancellationQuotient, osinTheorem12), each of which
-# is a `sorry` -- this is the finding the detector was written for: before the
-# split these read as unconditional, because the gate asked whether a producer
-# existed and not whether it was honest.  Each line goes as its debt lands.
-conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.kazhdan_map_coreRange  -- over Configuration, inhabited only through the three TheoremCDebts sorries
-conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptWitnessCommutatorInDefect  -- the free-witness variant, over Configuration, same debt
-# `TheoremC.manuscriptTorsionFreeFullMFRadical` was here too (still cited by
-# tex row 907cd2df4f8a), but as of 2026-09-07 `--verify-unconditional`
-# reports NO finding for it at all, not even under a different detector --
-# checked directly, it is not a rename.  `TheoremCDebts.lean` (the file that
-# used to house the three literature `sorry`s) no longer exists -- see below;
-# `TheoremCAssembly.lean` now assembles `literatureInputs` and still has four
-# `sorry`s in it -- `kotowskiOllivier`, `smallCancellationQuotient`,
-# `minasyanOsin`, and one more -- so `manuscriptTorsionFreeFullMFRadical` is
-# almost certainly still sorry-backed -- and this reads as a blind spot in
-# `classify` after the sorries moved file, not as a genuine fix.  Removing
-# the line rather than leaving a line that matches nothing; flagged to the
-# lead separately.  A fix belongs in `scripts/check_non_mf_unconditional.py`.
+# REMOVED 2026-09-07 (lead-authorized): this section registered
+# `conditional-debt` findings for `TheoremC.kazhdan_map_coreRange`,
+# `TheoremC.manuscriptWitnessCommutatorInDefect`, and
+# `TheoremC.manuscriptTorsionFreeFullMFRadical` -- all `LiteratureInputs`- or
+# `Configuration`-conditional, inhabited only through the three `sorry`s at
+# `TheoremCDebts.lean`.  All three are now stale: their only citing map rows
+# (`e77f50531f0f`, `51799cd48a23`, `907cd2df4f8a`) are themselves orphaned
+# (stale overlay keys, no live sentence -- the whole `lem:commutator-in-defect`
+# passage they narrate is gone from the tex).  Note the underlying situation
+# has NOT improved: `TheoremCDebts.lean` no longer exists,
+# `TheoremCAssembly.lean` inherited its four `sorry`s, and
+# `--verify-unconditional` reports no finding at all for
+# `manuscriptTorsionFreeFullMFRadical` any more -- a confirmed blind spot in
+# `classify` after a file rename, not a fix, flagged to the lead. These three
+# declarations are removed here purely because nothing live cites them any
+# more, not because they became sound.
 #
 # ---------------------------------------------------------------------------
 # open-predicate: pre-existing, and the only finding this gate reported before

@@ -84,6 +84,16 @@ theorem manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal :
   exact ⟨WitnessGroup, ShiftKernel, inferInstance, inferInstance, shiftAction,
     hEquiv, hKlocRF, hSofic, hNotMF, hKQD, hAmen, hNotQD⟩
 
+/-- **Theorem `thm:amenable-trace`, discharged.**  `ring-b-alg` landed the
+still-open half of `prop:locally-rf-by-z-trace`
+(`AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`,
+`origin/main` commit `d4e4c824a`), so the printed theorem holds
+unconditionally. -/
+theorem manuscriptAmenableNonquasidiagonalTrace :
+    PrintedAmenableNonquasidiagonalTrace :=
+  manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal
+    AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
+
 /-- **The three conclusions that do not depend on the still-open trace
 clause**, proved directly and unconditionally: `WitnessGroup ≅ ShiftKernel ⋊
 ℤ` with `ShiftKernel` locally residually finite, `WitnessGroup` sofic and
@@ -153,6 +163,7 @@ open GroupApproximation
 open GroupApproximation.AmenableTraceTheorem
 
 #audit_closed_axioms manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal
+#audit_closed_axioms manuscriptAmenableNonquasidiagonalTrace
 #audit_closed_axioms manuscriptAmenableNonquasidiagonalTraceCore
 #audit_closed_axioms manuscriptShiftKernelIsOperatorMF
 #audit_closed_axioms manuscriptMFNotClosedUnderIntSemidirect

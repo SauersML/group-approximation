@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.STW22AntipodalGaugeFactorial
 import GroupApproximation.Analysis.STW22DesignatedTraces
+import GroupApproximation.Analysis.STW22UnconditionalCore
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -102,9 +103,23 @@ theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
     antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam hBU,
     not_designatedTracesAreAllTraces_antipodal hBU⟩
 
+/-- **STW Problem XXII, refuted as stated, with no hypotheses.**  The
+Borsuk--Ulam input is discharged by `complexOddMapCommonZero_unconditional`, so
+this is a closed proposition and is gated as one. -/
+theorem antipodalFactorialNegativeSolutionToProblemXXII :
+    IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
+      (∀ σ : TracialState AntipodalCompletionAlgebra,
+        σ ∈ antipodalDesignatedTraces ↔
+          IsUniformTwoContinuousOn antipodalDesignatedTraces σ) ∧
+      ¬ AllTracesUniformTwoContinuous antipodalDesignatedTraces ∧
+      ¬ DesignatedTracesAreAllTraces antipodalDesignatedTraces :=
+  antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
+    complexOddMapCommonZero_unconditional
+
 #audit_closed_axioms antipodal_isTraciallyCompletePair
 #audit_closed_axioms antipodal_isFactorialTraciallyCompletePair
 #audit_axioms antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
+#audit_closed_axioms antipodalFactorialNegativeSolutionToProblemXXII
 
 end
 

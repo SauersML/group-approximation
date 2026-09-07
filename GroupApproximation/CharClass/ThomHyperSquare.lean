@@ -41,9 +41,27 @@ theorem projInclOn_range_mapsTo (p : Bundle X ι) (U : Set X)
   obtain ⟨w, rfl⟩ := hz
   exact ⟨Bundle.projInclOn p U w, (Bundle.projInclOn_projIncl p U w).symm⟩
 
+/-- **The hyperplane square at the bundle's own objects.**  All four map-of-pairs
+conditions of `relPullback_id_comm` discharged, so `bridgeTotal_natural`'s second
+hypothesis is one application. -/
+theorem hyperSquare (p : Bundle X ι) (U : Set X) (n : ℕ) :
+    (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
+        (fun _ hz => range_projIncl_subset_notZero p hz) n)
+        ≫ relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U))
+          (fun z hz => projInclOn_range_mapsTo p U z hz) n
+      = relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U))
+          (fun z hz => (Bundle.projInclOn_mem_notZeroOpensSet_iff p U z).mpr hz) n
+        ≫ (relPullback (ZMod 2)
+          (𝟙 (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          (fun _ hz => range_projIncl_subset_notZero (p.restrictTo U) hz) n) :=
+  relPullback_id_comm (cmap (Bundle.projInclOn p.plusOne U)) _ _ _ _
+    (fun z hz => projInclOn_range_mapsTo p U z hz)
+    (fun z hz => range_projIncl_subset_notZero p
+      (projInclOn_range_mapsTo p U z hz)) n
+
 /-! Printed on every build. -/
 
-#print axioms projInclOn_range_mapsTo
+#print axioms hyperSquare
 
 end
 

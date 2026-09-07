@@ -81,6 +81,28 @@ theorem manuscriptAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal :
     alpha conjD_injective v1G v1G_not_mem_range
     CommutingLampCollapse.gammaBar_hasKazhdanPropertyT
 
+/-- **Discharged.**  `ring-b-alg` landed the still-open half of
+`prop:locally-rf-by-z-trace`
+(`AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`,
+`origin/main` commit `d4e4c824a`), so the concrete conclusions hold
+unconditionally. -/
+theorem manuscriptAffineCliffordConclusions :
+    Nonempty (WitnessGroup ≃* (ShiftKernel ⋊[shiftAction] Multiplicative ℤ)) ∧
+      IsLocallyResiduallyFinite ShiftKernel ∧
+      IsSofic WitnessGroup ∧
+      ¬ IsOperatorMF WitnessGroup ∧
+      Quasidiagonal.IsQuasidiagonalTrace
+        (fun x : MaximalGroupCStar ShiftKernel ↦
+          canonicalMaximalTrace ShiftKernel x) ∧
+      Quasidiagonal.IsAmenableTrace
+        (fun x : MaximalGroupCStar WitnessGroup ↦
+          canonicalMaximalTrace WitnessGroup x) ∧
+      ¬ Quasidiagonal.IsQuasidiagonalTrace
+        (fun x : MaximalGroupCStar WitnessGroup ↦
+          canonicalMaximalTrace WitnessGroup x) :=
+  manuscriptAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal
+    AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
+
 /-- **The four conclusions that do not depend on the still-open trace
 clause**, proved directly and unconditionally: `WitnessGroup` is sofic but
 not operator-MF, and its canonical maximal trace is amenable but not
@@ -109,4 +131,5 @@ open GroupApproximation.AmenableTraceTheorem
 
 #audit_closed_axioms manuscriptAffineCliffordHypotheses
 #audit_closed_axioms manuscriptAffineCliffordConclusionsFromLocallyRFTraceQuasidiagonal
+#audit_closed_axioms manuscriptAffineCliffordConclusions
 #audit_closed_axioms manuscriptAffineCliffordConclusionsCore
