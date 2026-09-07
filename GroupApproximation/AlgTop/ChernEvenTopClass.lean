@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ChernSeries
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Evenness of a top Chern class from an even virtual correction
@@ -98,6 +99,19 @@ theorem two_dvd_chernClass_of_div (W V : TotalChern A) (r : ℕ)
   have hW : W = V * (W / V) := (mul_div_cancel_virtual W V).symm
   rw [hW]
   exact two_dvd_chernClass_mul V (W / V) r hV hδ
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms two_dvd_chernClass_of_div
+
 
 end
 

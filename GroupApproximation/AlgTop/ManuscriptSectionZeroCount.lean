@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.CPTautologicalSection
 import GroupApproximation.AlgTop.MappingTorusSectionZeros
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The manuscript's mapping-torus section has exactly one zero
@@ -129,5 +130,20 @@ theorem manuscriptSection_zero_exists {v : E} (hv : ‖v‖ = 1) {χ : ℝ → �
   have hx : ‖(-v : E)‖ = 1 := by simpa using hv
   exact (manuscriptSection_eq_zero_iff (v := v) (x := -v) (t := 1 / 2) hv hx hχ
     (fun j => basePoint (dd j)) (by norm_num) (by norm_num)).mpr ⟨rfl, rfl, rfl⟩
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms manuscriptSection_eq_zero_iff
+#audit_axioms manuscriptSection_zero_unique
+#audit_axioms manuscriptSection_zero_exists
+
 
 end GroupApproximation.AlgTop

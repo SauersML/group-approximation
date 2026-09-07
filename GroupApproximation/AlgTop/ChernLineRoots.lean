@@ -2,6 +2,7 @@ import GroupApproximation.AlgTop.ChernPowerSums
 
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 /-!
 # The power sums of a line class are the powers of its Chern root
 
@@ -106,6 +107,19 @@ theorem powerSum_prod_line {ι : Type*} (s : Finset ι) (a : ι → A) {q : ℕ}
   | insert j s hj ih =>
       rw [Finset.prod_insert hj, Finset.sum_insert hj, powerSum_mul,
         powerSum_line (a j) hq, ih]
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms powerSum_prod_line
+
 
 end
 

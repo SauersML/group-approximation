@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ChernPowerSums
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Naturality of a total Chern class in the coefficient ring
@@ -88,6 +89,19 @@ theorem newtonSeries_map (f : A →+* B) (c : TotalChern A) :
     (map f c).powerSum q = f (c.powerSum q) := by
   rw [powerSum, powerSum, newtonSeries_map, PowerSeries.coeff_map, map_mul, map_pow,
     map_neg, map_one]
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms powerSum_map
+
 
 end
 

@@ -1,6 +1,7 @@
 import GroupApproximation.AlgTop.BundleCalculusTransport
 import Mathlib.LinearAlgebra.Matrix.Trace
 import Mathlib.Topology.LocallyConstant.Basic
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus IV: unitary invariants are homotopy invariants, and rank
@@ -131,6 +132,19 @@ theorem rankAt_eq_of_preconnectedSpace [PreconnectedSpace X]
     {P : C(X, CStarMatrix ι ι ℂ)} (hP : ∀ x, IsStarProjection (P x)) (x₀ x₁ : X) :
     rankAt P x₀ = rankAt P x₁ :=
   eq_of_preconnected (A := CStarMatrix ι ι ℂ) Matrix.trace trace_unitaryInvariant (map_continuous P) hP x₀ x₁
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms rankAt_eq_of_preconnectedSpace
+
 
 end Rank
 

@@ -4,6 +4,7 @@ import Mathlib.Analysis.CStarAlgebra.ContinuousMap
 import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Isometric
 import Mathlib.Topology.ContinuousMap.Ordered
 import Mathlib.Topology.ContinuousMap.ContinuousSqrt
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus II: ordering the section algebra, and transport
@@ -139,6 +140,19 @@ theorem unitaryConj_of_isPreconnected_sectionAlgebra {Y : Type*} [TopologicalSpa
     {y₀ y₁ : Y} (h₀ : y₀ ∈ s) (h₁ : y₁ ∈ s) :
     UnitaryConj (P y₀) (P y₁) :=
   unitaryConj_of_isPreconnected hs (f := P) hP hproj h₀ h₁
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms unitaryConj_of_isPreconnected_sectionAlgebra
+
 
 end SectionAlgebra
 

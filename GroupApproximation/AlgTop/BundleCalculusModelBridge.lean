@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.BundleCalculusTransport
 import GroupApproximation.KTheory.MatrixProjection
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus V: the two ambient models are one algebra
@@ -222,6 +223,19 @@ theorem murrayVonNeumannEquiv_of_path_block {P : ℝ → Matrix ι ι C(X, ℂ)}
       fun t => isStarProjection_toSection (hproj t)
   have h' := murrayVonNeumannEquiv_ofSection h
   rwa [ofSection_toSection, ofSection_toSection] at h'
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms murrayVonNeumannEquiv_of_path_block
+
 
 end HomotopyInBlockModel
 

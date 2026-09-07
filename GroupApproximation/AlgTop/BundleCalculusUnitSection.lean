@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
 import Mathlib.Data.Matrix.Basis
 import Mathlib.LinearAlgebra.Matrix.ConjTranspose
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus VI: unit sections and the complementary bundle
@@ -207,6 +208,19 @@ theorem murrayVonNeumannEquiv_rankOneProj_single (i₀ : ι) (hξ : IsUnitSectio
         simp [hu, Matrix.vecMulVec_apply]
       · simp [hu, Matrix.vecMulVec_apply, hj, Ne.symm hj]
     · simp [hu, Matrix.vecMulVec_apply, hi, Ne.symm hi]
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms murrayVonNeumannEquiv_rankOneProj_single
+
 
 end Perp
 

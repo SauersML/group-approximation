@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.ChernEvenTopClass
 import Mathlib.Algebra.MvPolynomial.CommRing
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # A worked instantiation of the Chern-class layer
@@ -50,6 +51,19 @@ theorem chernClass_bundleH_eq_zero {k : ℕ} (hk : (∑ j ∈ s, d j) < k) :
 of the group. -/
 theorem trivial_mul_bundleH : (1 : TotalChern (MvPolynomial ι ℤ)) * bundleH s d = bundleH s d :=
   one_mul _
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms trivial_mul_bundleH
+
 
 end
 

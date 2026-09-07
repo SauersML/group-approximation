@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveBasic
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # An explicit section of `(L*)^{⊕d}` over `ℂP^d` with exactly one zero
@@ -382,6 +383,22 @@ theorem continuous_tautColSection (d : ℕ) :
     Continuous fun x : CP d => tautColSection x := by
   refine continuous_pi fun i => continuous_pi fun j => ?_
   simpa using continuous_entry j i.succ
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms dualTautSection_eq_zero_iff
+#audit_axioms sectionChart_apply
+#audit_axioms tautChartHomotopy_eq_zero_iff
+#audit_axioms continuous_tautColSection
+
 
 end CPn
 

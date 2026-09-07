@@ -2,6 +2,7 @@ import GroupApproximation.AlgTop.ChernNewtonIdentity
 
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 /-!
 # Equation (2.7) with no Newton hypothesis
 
@@ -97,6 +98,20 @@ theorem chernClass_eq_of_chernChar_sq_zero (c : TotalChern A)
     refine (isUnit_natCast_pos (A := A) (k := n + 1) (by omega)).mul_left_cancel ?_
     linear_combination (-((-1 : A) ^ n)) * hnewton
       + (-(((n + 1 : ℕ) : A) * c.chernClass (n + 1))) * hs
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms isUnit_natCast_pos
+#audit_axioms chernClass_eq_of_chernChar_sq_zero
+
 
 end
 

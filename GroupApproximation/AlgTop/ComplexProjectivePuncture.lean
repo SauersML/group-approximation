@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveHyperplane
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Pushing `ℂP^{d+1}` off its base point onto the hyperplane
@@ -373,6 +374,19 @@ theorem continuous_scale : Continuous (scale (d := d)) := by
           (Complex.continuous_ofReal.comp ((continuous_scaleVec b).comp hfst)))
   · intro p
     exact scaleTrace_ne_zero p.2.2
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms continuous_scale
+
 
 end CPn
 

@@ -4,6 +4,7 @@ import Mathlib.Algebra.Algebra.Rat
 import Mathlib.Data.Nat.Factorial.Basic
 
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 /-!
 # Chern classes from the Chern character in the square-zero case
 
@@ -151,6 +152,21 @@ theorem chern_eq_of_squareZero {A : Type*} [CommRing A] [Algebra ℚ A]
   simp only [Nat.add_sub_cancel, Nat.factorial_succ]
   push_cast
   ring
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms chern_eq_of_squareZero_of_isUnit
+#audit_axioms isUnit_natCast_of_pos
+#audit_axioms chern_eq_of_squareZero
+
 
 end AlgTop
 end GroupApproximation
