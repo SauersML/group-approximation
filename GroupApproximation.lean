@@ -4093,6 +4093,11 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.TransportPrintedRoute
 import GroupApproximation.Manuscript.OneSidedMFRadical.TransportProjectionCharacterization
 import GroupApproximation.Manuscript.OneSidedMFRadical.TransportProjectionCommutation
 import GroupApproximation.Manuscript.OneSidedMFRadical.TransportSigmaTilde
+import GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma
+import GroupApproximation.Analysis.AmenableExtensionSentences
+import GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsSentences
+import GroupApproximation.Sofic.CliffordWitnessSoficSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
