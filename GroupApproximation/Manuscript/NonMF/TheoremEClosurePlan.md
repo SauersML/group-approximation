@@ -381,6 +381,16 @@ cuts, planar incidence realization, exterior uniqueness and synchronized
 unbound argument remain open. This normalization and insertion connection
 does not discharge another assembly admission.
 
+`FaceBoundaryRotation` and `GFaceRebase` also construct a change of the
+initial dart of an actual G-face traversal. The rotated G-word remains null;
+the planar map, dart labels, literal exterior word and complete ordered
+relator data are retained. Its identity embedding transports full candidates
+and compatible families away from that face with exact cardinality and
+weight. The new initial dart is proved to be the prescribed original corner.
+This supplies the rebasing operation needed to apply prefix-based word
+insertion at polygon-derived endpoints; the endpoint adapter and subsequent
+complementary-region cuts still need to be assembled.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
