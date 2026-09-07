@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LIXBaseInstances
 import GroupApproximation.CharClass.LIXBundleModel
 import GroupApproximation.CharClass.LerayHirschCompact
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Leray–Hirsch at the mapping-torus bundle
@@ -52,9 +53,10 @@ theorem lixLerayHirschGraded (G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ)
   LH.lerayHirschGraded_compact (lixBundle G hGc hGu).plusOne (lixRank dd + 1)
     (rank_lixBundle_plusOne G hGc hGu) (Nat.succ_le_succ (Nat.zero_le _))
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixLerayHirschGraded
+#audit_axioms lixLerayHirschGraded
 
 end
 

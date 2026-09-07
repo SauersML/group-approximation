@@ -50,7 +50,25 @@ metrizable, the completion gauge is literally the supremum over all base
 traces, and canonical extension from base traces to completion traces is
 injective but not surjective.  There are no parameters or mathematical
 hypotheses; Type I is asserted for an independent arbitrary Hilbert-space
-universe `v`. -/
+universe `v`.
+
+**This is not the whole of Problem XXII.  To cite the refutation, cite
+`STW22ProblemXXII.factorialNegativeSolutionToProblemXXII`.**  The printed
+problem is posed for a *factorial tracially complete* pair `(M, X)`, and no
+conjunct here says that the pair is one.  Omitting a hypothesis makes a
+counterexample refute a weaker statement than the one that was asked, so this
+theorem on its own is strictly less than the problem.
+
+`Analysis/STW22ProblemXXIIFactorialEndpoint` carries the stronger form: it adds
+`IsFactorialTraciallyCompletePair antipodalDesignatedTraces` -- a theorem there
+rather than an assumption -- together with CCEGSTW Proposition 3.15 for this
+pair and both forms of the negative answer.  The added conjuncts are about the
+*completion* `M` and its designated traces `X`; the conjuncts here are about the
+base algebra `A`, which is the one that is unital, separable, nuclear and Type
+I.
+
+This declaration keeps its statement because a published signature does not
+move, not because it is the one to quote. -/
 theorem negativeSolutionToProblemXXII :
     Nonempty (CStarAlgebra AntipodalCounterexampleAlgebra) ∧
       TopologicalSpace.SeparableSpace AntipodalCounterexampleAlgebra ∧

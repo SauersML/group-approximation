@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomStepCOddLocal
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hne` from the injectivity the odd side already needs
@@ -62,9 +63,10 @@ theorem ne_zero_of_local (sRel : A ⟶ B) (t : B ⟶ D) (res : A ⟶ C) (loc : C
     {u : A} (hu : u ≠ 0) : sRel.hom u ≠ 0 :=
   ne_zero_of_injective_comp sRel t (injective_comp_of_square sRel t res loc hsq hres) hu
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms ne_zero_of_local
+#audit_axioms ne_zero_of_local
 
 end
 

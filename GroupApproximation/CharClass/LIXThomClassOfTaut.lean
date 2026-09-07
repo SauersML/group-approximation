@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.ThomHyperplaneLH
 import GroupApproximation.CharClass.LIXBaseInstances
 import GroupApproximation.CharClass.LIXBundleModel
 import GroupApproximation.CharClass.LIXThomDatum
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom class at `cc-lix-odd`'s objects, over one named input
@@ -88,9 +89,10 @@ theorem exists_lixThomClass_ne_zero (hGc : Continuous G)
     lixThomClass_ne_zero hGc hGu (2 * lixRank dd) (lixRank dd) _ jm hinj hrange
       (lixTopCoeff_ne_zero dd)⟩
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms exists_lixThomClass_ne_zero
+#audit_axioms exists_lixThomClass_ne_zero
 
 end ThomChernDeg
 

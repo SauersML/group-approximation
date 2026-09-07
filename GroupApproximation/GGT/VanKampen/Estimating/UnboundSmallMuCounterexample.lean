@@ -307,7 +307,7 @@ theorem exists_counterexample :
   norm_num at hlt
 
 theorem not_estimatingUnboundOutputStatement :
-    ¬ EstimatingUnboundOutputStatement.{0, 0, 0} := by
+    ¬ EstimatingUnboundOutputHistoricalStatement.{0, 0, 0} := by
   intro h
   obtain ⟨Delta, hred, hcount, hb, scaffold, ⟨graph⟩, hbad⟩ := exists_counterexample
   obtain ⟨Delta', ⟨equiv⟩, _, scaffold', _, budget⟩ :=
@@ -322,6 +322,18 @@ theorem not_estimatingUnboundRepairedStatement :
 theorem not_lemma62ComponentPartitionStatement :
     ¬ Lemma62ComponentPartitionStatement.{0, 0, 0} :=
   fun h => not_estimatingUnboundRepairedStatement (estimatingUnboundRepaired_of_componentPartition h)
+
+
+/-! **What is refuted is the HISTORICAL statement, checked by the build.**
+
+`EstimatingUnboundOutputStatement` denoted this file's target until 2026-09-07
+and now denotes the repaired form carrying Osin's scale certificate.  The
+elaboration below fails unless the refutation above is about the historical
+statement, so the build — not a docstring — is what rules out the reading in
+which this repository appears to disprove its own repair. -/
+
+example : ¬ EstimatingUnboundOutputHistoricalStatement.{0, 0, 0} :=
+  not_estimatingUnboundOutputStatement
 
 end GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample
 
