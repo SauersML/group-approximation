@@ -69,8 +69,33 @@ theorem faceOf_mem (E : DiscExpansion Delta Xi) (d : Delta.toCombMap.Dart)
   rw [E.boundary_darts]
   exact List.mem_flatMap.mpr ⟨d, ((Delta.faceBoundary (Delta.toCombMap.faceOf d)).mem_iff d).mpr rfl, hx⟩
 
+/-- The face-boundary correspondence ensures every new dart belongs to an
+actual old dart's expansion, including darts introduced by subdivision. -/
+theorem exists_old_dart (E : DiscExpansion Delta Xi) (x : Xi.toCombMap.Dart) :
+    ∃ d : Delta.toCombMap.Dart, x ∈ E.darts d := by
+  let f := E.faceEquiv.symm (Xi.toCombMap.faceOf x)
+  have hx : x ∈ (Xi.faceBoundary (E.faceEquiv f)).darts := by
+    apply ((Xi.faceBoundary (E.faceEquiv f)).mem_iff x).mpr
+    exact (E.faceEquiv.apply_symm_apply _).symm
+  rw [E.boundary_darts] at hx
+  obtain ⟨d, _hd, hx⟩ := List.mem_flatMap.mp hx
+  exact ⟨d, hx⟩
+
+/-- The expanded reverse edge reads the formal inverse of the forward word. -/
+theorem word_alpha (E : DiscExpansion Delta Xi) (d : Delta.toCombMap.Dart) :
+    (E.darts (Delta.toCombMap.alpha d)).map Xi.label =
+      HullSC.RelWord.revInv ((E.darts d).map Xi.label) := by
+  rw [E.reverse]
+  simp only [HullSC.RelWord.revInv, List.map_map, List.map_reverse]
+  apply congrArg List.reverse
+  apply List.map_congr_left
+  intro x _
+  exact Xi.label_alpha x
+
 end DiscExpansion
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.DiscExpansion.trans
 #audit_axioms GroupApproximation.GGT.VanKampen.DiscExpansion.faceOf_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.DiscExpansion.exists_old_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.DiscExpansion.word_alpha

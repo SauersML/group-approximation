@@ -59,31 +59,37 @@ end GEdgeSubdivision
 
 namespace GEdgeWordSubdivision
 
+/-- The actual subdivision geometry and exact words, before imposing
+legality on all labels elsewhere in the diagram. -/
+structure RawOutput (Delta : DiscDiagram.{u, w, v} W)
+    (a : Delta.toCombMap.Dart) (word : List (RelLetter G Lambda)) where
+  diagram : DiscDiagram.{u, w, v} W
+  expansion : DiscExpansion Delta diagram
+  word_eq : (expansion.darts a).map diagram.label = word
+  other_word : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a →
+    (expansion.darts d).map diagram.label = [Delta.label d]
+  cells : Surgery.OrderedRCellMap Delta diagram expansion.faceEquiv
+
 structure CellOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v} W)
     (a : Delta.toCombMap.Dart) (word : List (RelLetter G Lambda))
     extends Output D Delta a word where
   cells : Surgery.OrderedRCellMap Delta diagram expansion.faceEquiv
 
-/-- Only the inserted word and its formal inverse need be legal. No
-inverse-closure hypothesis on the whole base alphabet is required. -/
-theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
+/-- Subdivide the edge into an arbitrary nonempty word of the same value.
+All other edges retain their exact single-letter words. -/
+theorem exists_raw_output
     (word : List (RelLetter G Lambda)) (hne : word ≠ [])
-    (hword : ∀ letter ∈ word, D.IsLetter letter)
-    (hinv : ∀ letter ∈ word, D.IsLetter (RelWord.inv letter))
     (Delta : DiscDiagram.{u, w, v} W) (a : Delta.toCombMap.Dart)
     (houter : Delta.toCombMap.faceOf a ≠ Delta.outerFace ∧
       Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ Delta.outerFace)
     (hcells : ∀ C ∈ Delta.relatorCells, Delta.toCombMap.faceOf a ≠ C.face ∧
       Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ C.face)
-    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
     (hvalue : RelLetter.listVal word = (Delta.label a).val) :
-    Nonempty (CellOutput D Delta a word) := by
+    Nonempty (RawOutput Delta a word) := by
   classical
   induction word generalizing Delta with
   | nil => exact (hne rfl).elim
   | cons letter tail ih =>
-      have hletter : D.IsLetter letter := hword letter List.mem_cons_self
-      have hletterInv : D.IsLetter (RelWord.inv letter) := hinv letter List.mem_cons_self
       by_cases htail : tail = []
       · subst tail
         have hv : letter.val = (Delta.label a).val := by simpa [RelLetter.listVal] using hvalue
@@ -92,9 +98,7 @@ theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
           expansion := GEdgeRelabel.expansion Delta a letter houter hcells hv
           cells := GEdgeRelabel.orderedCellMap Delta a letter houter hcells hv
           word_eq := ?_
-          other_word := ?_
-          label_admissible := GEdgeRelabel.label_admissible_of_inv Delta a letter D hlabel
-            hletter hletterInv }⟩
+          other_word := ?_ }⟩
         · change [GEdgeRelabel.label Delta a letter a] = [letter]
           exact congrArg List.singleton (GEdgeRelabel.label_at Delta a letter)
         · intro d ha hb
@@ -108,12 +112,9 @@ theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
         have hbvalue : RelLetter.listVal tail = (Xi.label b).val :=
           (congrArg RelLetter.val
             (GEdgeSubdivision.remaining_label Delta a houter hcells letter right hfactor)).symm
-        obtain ⟨R⟩ := ih htail (fun l hl => hword l (List.mem_cons_of_mem letter hl))
-          (fun l hl => hinv l (List.mem_cons_of_mem letter hl)) Xi b
+        obtain ⟨R⟩ := ih htail Xi b
           (GEdgeSubdivision.remaining_outer Delta a houter)
-          (GEdgeSubdivision.remaining_cells Delta a houter hcells letter right hfactor)
-          (GEdgeSubdivision.label_away_remaining_of_inv Delta a houter hcells letter right hfactor
-            D hlabel hletter hletterInv) hbvalue
+          (GEdgeSubdivision.remaining_cells Delta a houter hcells letter right hfactor) hbvalue
         let E := GEdgeSubdivision.expansion Delta a houter hcells letter right hfactor
         let expandR : EdgeSubdivision.Dart Delta.toCombMap → List R.diagram.toCombMap.Dart := R.expansion.darts
         refine ⟨{
@@ -121,8 +122,7 @@ theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
           expansion := E.trans R.expansion
           cells := (GEdgeSubdivision.orderedCellMap Delta a houter hcells letter right hfactor).trans R.cells
           word_eq := ?_
-          other_word := ?_
-          label_admissible := R.label_admissible }⟩
+          other_word := ?_ }⟩
         · change ((expand Delta.toCombMap a a).flatMap expandR).map R.diagram.label = _
           have hexpand : expand Delta.toCombMap a a = [none, embed Delta.toCombMap a] := by simp [expand]
           rw [hexpand, List.flatMap_cons, List.flatMap_cons, List.flatMap_nil, List.append_nil, List.map_append]
@@ -143,6 +143,55 @@ theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
           refine (R.other_word (embed Delta.toCombMap d) hda hdb).trans ?_
           change [subdivideLabel Delta.toCombMap a Delta.label letter right (embed Delta.toCombMap d)] = [Delta.label d]
           simp only [subdivideLabel, embed, EdgeInsertion.embed, if_neg ha, if_neg hb]
+
+/-- The geometry covers every new dart, so local word legality plus legality
+of untouched old edges gives legality of the whole output. -/
+theorem RawOutput.label_admissible (D : RelGenSet G Lambda)
+    {Delta : DiscDiagram.{u, w, v} W} {a : Delta.toCombMap.Dart}
+    {word : List (RelLetter G Lambda)} (R : RawOutput Delta a word)
+    (hword : ∀ l ∈ word, D.IsLetter l)
+    (hinv : ∀ l ∈ word, D.IsLetter (RelWord.inv l))
+    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
+    (x : R.diagram.toCombMap.Dart) : D.IsLetter (R.diagram.label x) := by
+  obtain ⟨d, hd⟩ := R.expansion.exists_old_dart x
+  have hx : R.diagram.label x ∈ (R.expansion.darts d).map R.diagram.label :=
+    List.mem_map.mpr ⟨x, hd, rfl⟩
+  by_cases ha : d = a
+  · subst d
+    rw [R.word_eq] at hx
+    exact hword _ hx
+  · by_cases hb : d = Delta.toCombMap.alpha a
+    · subst d
+      rw [R.expansion.word_alpha, R.word_eq] at hx
+      obtain ⟨l, hl, hleq⟩ := List.mem_map.mp (List.mem_reverse.mp hx)
+      rw [← hleq]
+      exact hinv l hl
+    · rw [R.other_word d ha hb] at hx
+      rw [List.mem_singleton.mp hx]
+      exact hlabel d ha hb
+
+/-- Only the inserted word and its formal inverse need be legal. No
+inverse-closure hypothesis on the whole base alphabet is required. -/
+theorem exists_cell_output_of_reversible (D : RelGenSet G Lambda)
+    (word : List (RelLetter G Lambda)) (hne : word ≠ [])
+    (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (hinv : ∀ letter ∈ word, D.IsLetter (RelWord.inv letter))
+    (Delta : DiscDiagram.{u, w, v} W) (a : Delta.toCombMap.Dart)
+    (houter : Delta.toCombMap.faceOf a ≠ Delta.outerFace ∧
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ Delta.outerFace)
+    (hcells : ∀ C ∈ Delta.relatorCells, Delta.toCombMap.faceOf a ≠ C.face ∧
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ≠ C.face)
+    (hlabel : ∀ d, d ≠ a → d ≠ Delta.toCombMap.alpha a → D.IsLetter (Delta.label d))
+    (hvalue : RelLetter.listVal word = (Delta.label a).val) :
+    Nonempty (CellOutput D Delta a word) := by
+  obtain ⟨R⟩ := exists_raw_output word hne Delta a houter hcells hvalue
+  exact ⟨{
+    diagram := R.diagram
+    expansion := R.expansion
+    word_eq := R.word_eq
+    other_word := R.other_word
+    cells := R.cells
+    label_admissible := R.label_admissible D hword hinv hlabel }⟩
 
 theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (word : List (RelLetter G Lambda)) (hne : word ≠ [])
@@ -165,3 +214,4 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeSubdivision.orderedCellMap
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeWordSubdivision.exists_cell_output
 #audit_axioms GroupApproximation.GGT.VanKampen.GEdgeWordSubdivision.exists_cell_output_of_reversible
+#audit_axioms GroupApproximation.GGT.VanKampen.GEdgeWordSubdivision.exists_raw_output
