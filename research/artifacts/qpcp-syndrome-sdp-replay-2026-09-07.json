@@ -1,0 +1,631 @@
+{
+  "arithmetic": "exact rational PSD and kernel certificates",
+  "frustration_free_boundary": {
+    "false_positive_dual_rejected": "dual slack for label 0: matrix is not positive semidefinite",
+    "primal_C0": "0"
+  },
+  "instances": [
+    {
+      "N": 2,
+      "feasible_fault_labels": [
+        1,
+        2,
+        3
+      ],
+      "negative_controls": {
+        "invalid_dual_bound_rejected": "dual slack for label 1: matrix is not positive semidefinite",
+        "smaller_primal_constant_rejected": "local primal slack 0: matrix is not positive semidefinite"
+      },
+      "paired_neighborhoods": {
+        "X": [
+          [
+            [
+              "4/5",
+              "-2/5"
+            ],
+            [
+              "-2/5",
+              "1/5"
+            ]
+          ],
+          [
+            [
+              "4/5",
+              "-2/5"
+            ],
+            [
+              "-2/5",
+              "1/5"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "4/5",
+            "-2/5"
+          ],
+          [
+            "-2/5",
+            "1/5"
+          ]
+        ],
+        "denominator": "4/5",
+        "effects_by_label": [
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        ],
+        "global_C": "5/2",
+        "occurrence_R": 2,
+        "optimal_C0": "5/4",
+        "prepared_states": {
+          "1": [
+            [
+              "9/25",
+              "-12/25"
+            ],
+            [
+              "-12/25",
+              "16/25"
+            ]
+          ],
+          "2": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "trace_Y": "1"
+      },
+      "singleton_neighborhoods": {
+        "X": [
+          [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "9/25",
+              "-12/25"
+            ],
+            [
+              "-12/25",
+              "16/25"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "7/25",
+            "-6/25"
+          ],
+          [
+            "-6/25",
+            "-2/25"
+          ]
+        ],
+        "conclusion": "infeasible for every finite local charge constant",
+        "denominator": "0",
+        "trace_Y": "1/5"
+      }
+    },
+    {
+      "N": 3,
+      "feasible_fault_labels": [
+        1,
+        2,
+        3
+      ],
+      "negative_controls": {
+        "invalid_dual_bound_rejected": "dual slack for label 1: matrix is not positive semidefinite",
+        "smaller_primal_constant_rejected": "local primal slack 0: matrix is not positive semidefinite"
+      },
+      "paired_neighborhoods": {
+        "X": [
+          [
+            [
+              "9/10",
+              "-3/10"
+            ],
+            [
+              "-3/10",
+              "1/10"
+            ]
+          ],
+          [
+            [
+              "9/10",
+              "-3/10"
+            ],
+            [
+              "-3/10",
+              "1/10"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "9/10",
+            "-3/10"
+          ],
+          [
+            "-3/10",
+            "1/10"
+          ]
+        ],
+        "denominator": "2/5",
+        "effects_by_label": [
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        ],
+        "global_C": "5",
+        "occurrence_R": 2,
+        "optimal_C0": "5/2",
+        "prepared_states": {
+          "1": [
+            [
+              "16/25",
+              "-12/25"
+            ],
+            [
+              "-12/25",
+              "9/25"
+            ]
+          ],
+          "2": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "trace_Y": "1"
+      },
+      "singleton_neighborhoods": {
+        "X": [
+          [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "16/25",
+              "-12/25"
+            ],
+            [
+              "-12/25",
+              "9/25"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "13/25",
+            "-6/25"
+          ],
+          [
+            "-6/25",
+            "-3/25"
+          ]
+        ],
+        "conclusion": "infeasible for every finite local charge constant",
+        "denominator": "0",
+        "trace_Y": "2/5"
+      }
+    },
+    {
+      "N": 5,
+      "feasible_fault_labels": [
+        1,
+        2,
+        3
+      ],
+      "negative_controls": {
+        "invalid_dual_bound_rejected": "dual slack for label 1: matrix is not positive semidefinite",
+        "smaller_primal_constant_rejected": "local primal slack 0: matrix is not positive semidefinite"
+      },
+      "paired_neighborhoods": {
+        "X": [
+          [
+            [
+              "25/26",
+              "-5/26"
+            ],
+            [
+              "-5/26",
+              "1/26"
+            ]
+          ],
+          [
+            [
+              "25/26",
+              "-5/26"
+            ],
+            [
+              "-5/26",
+              "1/26"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "25/26",
+            "-5/26"
+          ],
+          [
+            "-5/26",
+            "1/26"
+          ]
+        ],
+        "denominator": "2/13",
+        "effects_by_label": [
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        ],
+        "global_C": "13",
+        "occurrence_R": 2,
+        "optimal_C0": "13/2",
+        "prepared_states": {
+          "1": [
+            [
+              "144/169",
+              "-60/169"
+            ],
+            [
+              "-60/169",
+              "25/169"
+            ]
+          ],
+          "2": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "trace_Y": "1"
+      },
+      "singleton_neighborhoods": {
+        "X": [
+          [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "144/169",
+              "-60/169"
+            ],
+            [
+              "-60/169",
+              "25/169"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "124/169",
+            "-30/169"
+          ],
+          [
+            "-30/169",
+            "-20/169"
+          ]
+        ],
+        "conclusion": "infeasible for every finite local charge constant",
+        "denominator": "0",
+        "trace_Y": "8/13"
+      }
+    },
+    {
+      "N": 17,
+      "feasible_fault_labels": [
+        1,
+        2,
+        3
+      ],
+      "negative_controls": {
+        "invalid_dual_bound_rejected": "dual slack for label 1: matrix is not positive semidefinite",
+        "smaller_primal_constant_rejected": "local primal slack 0: matrix is not positive semidefinite"
+      },
+      "paired_neighborhoods": {
+        "X": [
+          [
+            [
+              "289/290",
+              "-17/290"
+            ],
+            [
+              "-17/290",
+              "1/290"
+            ]
+          ],
+          [
+            [
+              "289/290",
+              "-17/290"
+            ],
+            [
+              "-17/290",
+              "1/290"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "289/290",
+            "-17/290"
+          ],
+          [
+            "-17/290",
+            "1/290"
+          ]
+        ],
+        "denominator": "2/145",
+        "effects_by_label": [
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        ],
+        "global_C": "145",
+        "occurrence_R": 2,
+        "optimal_C0": "145/2",
+        "prepared_states": {
+          "1": [
+            [
+              "20736/21025",
+              "-2448/21025"
+            ],
+            [
+              "-2448/21025",
+              "289/21025"
+            ]
+          ],
+          "2": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "trace_Y": "1"
+      },
+      "singleton_neighborhoods": {
+        "X": [
+          [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "20736/21025",
+              "-2448/21025"
+            ],
+            [
+              "-2448/21025",
+              "289/21025"
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            "19648/21025",
+            "-1224/21025"
+          ],
+          [
+            "-1224/21025",
+            "-1088/21025"
+          ]
+        ],
+        "conclusion": "infeasible for every finite local charge constant",
+        "denominator": "0",
+        "trace_Y": "128/145"
+      }
+    }
+  ],
+  "label_bit_order": "bit 0 flags P; bit 1 flags Q",
+  "lean_checked": false,
+  "orthogonal_N1_boundary": {
+    "singleton_optimal_C0": "1"
+  },
+  "physical_locality_of_generic_sdp_solution_proved": false,
+  "quantum_pcp_proved": false,
+  "source_sha256": {
+    "check_qpcp_rounding.py": "c5d35a004737a328e0908947489594e8d388134af74a7eb3910ea60b7b687b5b",
+    "check_qpcp_syndrome_sdp.py": "e399b6f52083419af80142103ca7cc5a6e5b2208d26189affa23855388a35dcc",
+    "check_qpcp_syndrome_support.py": "9a98cd2a295d3a5e1909146b55f9342e34e4eb363c00fdded77b9bc493edf94b"
+  },
+  "status": "passed",
+  "verification_scope": "Explicit finite certificates; universal inequalities are proved in the artifact."
+}

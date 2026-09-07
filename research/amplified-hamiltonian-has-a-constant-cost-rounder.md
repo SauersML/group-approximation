@@ -5,10 +5,12 @@ kind: claim
 title: The amplified Hamiltonian admits a constant-cost exactification rounder
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
+  - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
 ---
 
-Criterion (A) of the attack.  The output `H'` of the amplifier of
-`locality-preserving-constant-combinatorial-gap` admits a `C`-rounder with
+Criterion (A) of the attack. Each NO-instance output `H'` of the same
+amplifier used in `locality-preserving-constant-combinatorial-gap` and
+`amplifier-preserves-yes-energy-below-the-floor` admits a `C`-rounder with
 `C = O(1)` in the sense of
 `combinatorial-gap-and-rounder-give-energy-gap`.
 
@@ -26,7 +28,10 @@ The whole content therefore lives in the route
 `rounder-from-local-ports-and-exactifier`, whose prerequisites demand that
 the fault set be the outcome of a joint measurement of **commuting local**
 projectors of **bounded overlap**, and that exactification be conditional on
-that outcome.
+that outcome. These are now bound to a single tuple by the open claim
+`amplifier-has-compatible-local-syndrome-effects`; separate existential
+constructions do not discharge this interface. The rounder is needed on
+NO outputs for soundness. Completeness uses the separate YES energy bound.
 
 ## Attempts
 

@@ -9,7 +9,8 @@ artifacts:
 
 Criterion (C) of the attack.  There is a polynomial-time reduction from a QMA
 verifier to a Hamiltonian `H' = (1/m) sum_a h'_a` of **constant** locality and
-**constant** local dimension such that in every NO instance the combinatorial
+**constant** local dimension, with `0 <= h'_a <= I`, polynomially many
+terms, and polynomial-bit descriptions, such that in every NO instance the combinatorial
 gap is a universal constant:
 
 ```text

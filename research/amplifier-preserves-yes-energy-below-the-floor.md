@@ -11,19 +11,21 @@ The completeness half of the attack.  For the reduction of
 `locality-preserving-constant-combinatorial-gap`, a YES instance yields
 
 ```text
-lambda_min(H'_YES) <= a  <  beta/C,                             (YES1)
+lambda_min(H'_YES) <= a,       beta/C - a >= epsilon > 0,       (YES1)
 ```
 
 where `beta` is the combinatorial gap of (LPC1) and `C` the rounder constant
-of `amplified-hamiltonian-has-a-constant-cost-rounder`.  Without (YES1) the
+of `amplified-hamiltonian-has-a-constant-cost-rounder`. The constants,
+including the positive margin `epsilon`, are uniform and refer to this
+same reduction. Without (YES1) the
 NO-side floor `beta/C` is a bound with nothing on the other side of it and
 the promise gap is empty.
 
 The requirement is quantitative, not qualitative: an amplifier which
 preserves a YES witness only up to energy density `beta/C` or above produces
 no promise gap however good its soundness is.  So `a`, `beta` and `C` must be
-tracked jointly through the amplification, and the honest reading of the
-criterion is that the three constants are one constant.
+tracked jointly through the same amplification. A pointwise strict
+inequality whose margin vanishes with instance size does not suffice.
 
 ## Attempts
 
