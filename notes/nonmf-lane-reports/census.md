@@ -419,3 +419,43 @@ Landed: `27d4e75e1fad924edc66df95c781bbf94bea1c63` (baseline cleanup, `cor:regul
 **Census rows for the newly-closed carriers**: `thm:headline`'s two sentences assigned to `UnitGroupHeadline.manuscriptUnitGroupHeadline` — the setup as `definition`, the whole conclusion (isomorphism included) as `formalized`, closing the gap flagged `partial` earlier this session. `thm:full-defect-ring`'s two still-valid setup sentences upgraded to the new unconditional carrier; its conclusion sentence, now merged with the "group B" material, is `partial` — the `n≥2` clause is covered, group B's own properties are not verified against a carrier this pass (likely `RankDescentPrintedLemmas` territory, not checked).
 
 Net this round: overlay errors 159 → 0. `--verify-decls` and `--verify-unconditional` clean after every landing (0 missing declarations, 0 new and 0 stale conditional findings at time of landing). The five sections named in the original brief, and fresh triage of the substantial new content from this round's rewrites (the unit-group headline, Theorem 4's amenable-trace changes, `thm:mf-quotient-units`/`cor:leavitt-mf-quotient`, the "group B" material), remain open — not started this round, given how much of it went to keeping the manifest and the stale-row backlog correct under continuous concurrent editing.
+
+## Round 4: carrier refinements from the lead's message, section triage, and a work order
+
+Landed: `d4e682e9a` (`cor:one-sided-ring-maximal` first pass), `90dc84f85` (abstract, Related work, `cor:one-sided-ring-maximal` fully closed after a further carrier landed mid-batch), `54ae1cecb` (`thm:normal-kazhdan`'s ten printed-proof sentences).
+
+**Carrier refinements**: `cor:one-sided-ring-maximal`'s proper-isometry clause (`2da15f45da27`) — left unassigned in round 3 for want of a registered `OneSidedCompressorStrictContainment` hypothesis — is `formalized`: the lead's message named `FullDefectRingStrictness.lean`, where that hypothesis is now a *proved theorem*, not an assumption, and `FullDefectRankTwo.manuscriptOneSidedRingMaximalIsometryRankTwoFromEJZ` covers the `n≥2` clause (checked live against `classify()`: its only finding is `header-binder`, badge-surface hygiene, not a counted detector — effectively unconditional now that EJZ is closed). Mid-batch the tex changed again and a further carrier landed
+(`manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics`), closing the `n=2,3` reduced-C\*-algebra gap flagged `partial` twice already — `cor:one-sided-ring-maximal` is now fully `formalized`, hypothesis-free, every characteristic, all three sentences.
+
+**Section triage**: the abstract's three most-specific sentences assigned to the same carriers as their corresponding numbered claims; its opening mechanism-preview sentence left unassigned rather than forced onto one theorem. "Related work"'s remaining sentence is attribution. `thm:normal-kazhdan`'s ten printed-proof sentences assigned from the printed-route lane's own sentence-to-lemma table (recorded earlier this session), not re-derived — nine to named `manuscriptSentence_*` carriers, one bare naming sentence to `definition` citing the carrier that constructs the object it names.
+
+**Work order for the remaining ~320 unassigned sentences**, grouped by anchor (counts at time of writing; the tex keeps moving). Not attempted further this round for lack of time, handed off as the lead requested:
+
+| anchor | count | home module | status |
+| --- | --- | --- | --- |
+| `lem:rank-two` (proof) | 47 | `RankDescentPrintedLemmas.lean` | landed, unconditional; needs sentence-level `manuscriptSentence_*` wrappers around the existing calculation (the commutator `D`, the involution `z`, the `diag(z,z⁻¹)` factorization) |
+| `prop:locally-rf-by-z-trace` (proof) | 28 | `Analysis/AmenableExtensionAmenableTrace.lean` | landed, unconditional; needs sentence wrappers |
+| `prop:clifford-locally-rf` (proof) | 28 | `Sofic/CliffordWitnessSoficPrinted.lean` | landed, unconditional; needs sentence wrappers |
+| `thm:mf-quotient-units` | 23 | none | **no Lean carrier at all** — genuinely open formalization (Ara–Goodearl–Pardo Theorem 2.4, Corollary 1.7, Proposition 1.5; Menal–Moncasi's elementary-row-reduction argument), not sentence-wrapping. The largest real gap found this round. |
+| `cor:leavitt-mf-quotient` | 7 | none | same as above, depends on `thm:mf-quotient-units` landing first |
+| `prop:linear-collapse` (proof) | 19 | `QuantitativeCollapse.lean` | landed, unconditional; needs sentence wrappers for the enumeration/bootstrap-inequality argument |
+| `thm:transport` (proof) | 14 | `TransportCommutantEquality.lean` (old route) / printed-route's open obligation | **genuinely open**: the printed-route lane's own report names the missing piece exactly — `hsMatrixUnitsEquiv`, identifying `B(M_{d_n}(ℂ))` with `M_{d_n²}(ℂ)` as a `FiniteModel` — not landed as of this session |
+| `lem:central-corona-corner` (proof) | 6 | printed-route's open obligation | **genuinely open**: the report names `cornerCoronaEquiv` (a `⋆`-isomorphism onto the corner) as the one missing piece, with its exact Lean signature written out in that report |
+| `prop:clifford-self-embedding` (proof) | 11 | `Sofic/CliffordWitnessDirectDefect.lean` | statement-level carrier landed; needs sentence wrappers |
+| `cor:one-sided-ring-maximal` (proof) | 11 | `FullDefectRingEJZUnconditional.lean` / `FullDefectRingStrictness.lean` | statement fully closed this round; proof-sentence wrappers not yet written |
+| `lem:saturation` (proof) | 10 | `Manuscript/NonMF/Saturation.lean`, `TorsionFreePrintedTheorem.lean` | statement-level carrier landed (conditional, register lines exist); needs sentence wrappers |
+| `thm:normal-kazhdan` (proof) | 0 | — | **done this round** |
+| `thm:compression-criterion` (proof) | 9 | `PrintedCriterion.lean` | statement-level carrier landed, unconditional; needs sentence wrappers |
+| `thm:factorization-nonmf-trace` (proof) | 8 | `Manuscript/NinetyNineProblems/ProblemXGroups.lean` | statement-level carrier landed; needs sentence wrappers |
+| `thm:amenable-trace` (proof) | 8 | `AmenableTraceTheorem.lean` | statement-level carrier landed, unconditional; needs sentence wrappers |
+| `lem:two-copies` (proof) | 8 | `RankDescentPrintedLemmas.lean` | landed, unconditional (self-contained algebra); needs sentence wrappers |
+| `lem:central-corona-corner`, `thm:full-defect-ring` (proof) | 5 | `FullDefectRingEJZUnconditional.lean` | statement fully closed; sentence wrappers not yet written; some sentences may be the "group B" clauses this lane flagged as not yet independently carried |
+| `sec:amenable-nonqd`, `prop:max-infinite` (proof) | 4 each | `Analysis/StrictCompressionFromPrinted.lean` and the `V`/HNN-extension remark this lane flagged in round 1 (no carrier found, likely genuinely open) | mixed |
+| `cor:relative-quotient`, `cor:regular-nonmf-algebra` (proof) | 3 each | `TorsionFreeRelativeQuotient.lean`, `RegularNonMFAlgebra.lean` | statement-level carriers landed (conditional, register lines exist); needs sentence wrappers |
+| `cor:defect-hs` (proof) | 3 | `DefectHS.lean` | statement-level carrier landed; needs sentence wrappers |
+| `thm:headline`, `cor:simple-infinite-ring` (proof) | 2 each | `UnitGroupHeadline.lean`, `FullDefectRingEJZUnconditional.lean` | statement-level carriers landed; needs sentence wrappers |
+| `sec:one-sided-inverses` | 2 | — | not investigated |
+| `lem:proper-isometry` (proof) | 1 | `ProperIsometryStrictOrder.lean` | statement-level carrier landed; needs sentence wrapper |
+| (no anchor — Introduction prose, unnumbered discussion) | ~54 | — | not investigated at all this round; likely a mix of already-classifiable `structural`/`definition`/`attribution` and genuine gaps |
+
+The pattern across most of this table: the *theorem statement* is landed and unconditional (or conditionally-registered), and what is missing is purely the sentence-level `manuscriptSentence_*` wrapper work the printed-route lane pioneered for `thm:normal-kazhdan` — mechanical but real work, one module per row above. The two rows marked **genuinely open** (`thm:transport`, `lem:central-corona-corner`) and the two marked **no Lean carrier at all** (`thm:mf-quotient-units`, `cor:leavitt-mf-quotient`) are actual mathematical/formalization gaps, not bookkeeping.
