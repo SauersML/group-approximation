@@ -209,6 +209,13 @@ $ucu^{-1}$ with elements of $L$ is
    u\in\operatorname{Comp}_G(L),\ c\in C_G(L),\ \ell\in L
  }_G.
 \end{equation}
+For every homomorphism $f\colon G\to H$,
+\begin{equation}\label{eq:defect-functorial}
+ f(\mathfrak D_G(L))\le\mathfrak D_H(f(L)),
+\end{equation}
+since compressors, centralizing elements, and commutators of $L$ map to
+compressors, centralizing elements, and commutators of $f(L)$, and
+conjugates map to conjugates.
 
 \begin{mainthm}[one-sided compression criterion]
 \label{thm:compression-criterion}
@@ -301,8 +308,9 @@ $C^*_{\max}(H)$ is not finite: it contains a proper isometry.
 \begin{mainthm}[an amenable nonquasidiagonal trace]
 \label{thm:amenable-trace}
 There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
-finite, that is not MF\@.  The canonical trace on $C^*_{\max}(W)$ is
-amenable and not quasidiagonal.
+finite, that is not MF\@.  The canonical trace on $C^*_{\max}(K)$ is
+quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable
+and not quasidiagonal.
 \end{mainthm}
 
 Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group
@@ -315,7 +323,9 @@ Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
 amenable trace is quasidiagonal.  Tikuisis, White, and Winter proved
 that faithful traces on separable nuclear $C^*$-algebras satisfying the
 universal coefficient theorem are quasidiagonal~\cite{TWW}; here
-$C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  Since $K$ is a direct limit of
+$C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  The canonical
+trace of $C^*_{\max}(K)$ is quasidiagonal, so the crossed product by
+$\mathbb Z$ destroys quasidiagonality of the canonical trace.  Since $K$ is a direct limit of
 residually finite groups, it is MF~\cite[Corollary~10 and
 Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
 products with $\mathbb Z$, which answers a question of
@@ -560,10 +570,12 @@ equivalent.  So $[U,P]=0$ and
 $\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.  For
 $(x_n)\in\mathcal C_2(V,L)$,
 \[
+\begin{aligned}
  \hsnorm{P_n\operatorname{Ad}(V_n(u))^{\pm1}x_n
  -\operatorname{Ad}(V_n(u))^{\pm1}x_n}
- \le\opnorm{[P_n,\operatorname{Ad}(V_n(u))^{\pm1}]}\,\hsnorm{x_n}
- +\hsnorm{P_nx_n-x_n}\longrightarrow0,
+ &\le\opnorm{[P_n,\operatorname{Ad}(V_n(u))^{\pm1}]}\,\hsnorm{x_n}\\
+ &\quad+\hsnorm{P_nx_n-x_n}\longrightarrow0,
+\end{aligned}
 \]
 so $\operatorname{Ad}(V(u))^{\pm1}x\in\mathcal C_2(V,L)$ by the
 displayed equivalence.
@@ -1123,102 +1135,70 @@ to the hypothesis.  The last assertion follows.
 A group $N$ is \emph{locally residually finite} if each of its finitely
 generated subgroups is residually finite.
 
-\begin{proposition}[extensions of $\mathbb Z$ by locally residually finite groups]
+\begin{proposition}[amenable extensions of locally residually finite groups]
 \label{prop:locally-rf-by-z-trace}
-Suppose that $G$ is countable and
-\[
- G\cong N\rtimes_\beta\mathbb Z,
-\]
-where $N$ is locally residually finite.  Then $\tau_G$ is amenable.
+Let $1\to N\to G\to A\to1$ be an extension of countable groups with $N$
+locally residually finite and $A$ amenable.  Then the canonical trace
+of $C^*_{\max}(N)$ is quasidiagonal, and the canonical trace of
+$C^*_{\max}(G)$ is amenable.
 \leanverified{Analysis/LocallyRFByIntFactorization}{GroupApproximation.LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt}
 \end{proposition}
 
 \begin{proof}
-Write $g=x_gt^{k_g}$, where $x_g\in N$, $k_g\in\mathbb Z$, and
-$t$ is the generator of the $\mathbb Z$ factor, so $txt^{-1}=\beta(x)$
-for $x\in N$.  Call $k_g$ the height
-of $g$.  Fix a finite set $F\subseteq G$ and a positive integer $M$, and
-put $I_M=\{0,\ldots,M-1\}$.  Define
-\[
- a_{g,j}=t^{-(j+k_g)}gt^j=\beta^{-(j+k_g)}(x_g)\in N,
- \qquad g\in F,\quad j\in I_M,
-\]
-and put $N_{F,M}=\langle a_{g,j}:g\in F,\ j\in I_M\rangle$.
-This finitely generated subgroup of $N$ is residually finite, so there
-is a finite quotient
-\[
- \theta_{F,M}\colon N_{F,M}\longrightarrow Q_{F,M}
-\]
-that separates every nonidentity $a_{g,j}$: take the product of
-finitely many finite quotients, one separating each $a_{g,j}$, and
-restrict to the image.  Let
-$H_{F,M}\leq G$ be the image of $\ker\theta_{F,M}\leq N_{F,M}$ under the
-inclusion $N\hookrightarrow G$.  Choose a representative $r_q\in N_{F,M}$
-for each $q\in Q_{F,M}$ and set
-\[
- S_{F,M}=\{t^jr_qH_{F,M}:j\in I_M,\ q\in Q_{F,M}\}
- \subseteq G/H_{F,M}.
-\]
-These cosets are pairwise distinct.  Let $\lambda_{F,M}$ be the
-quasi-regular representation of $G$ on $\ell^2(G/H_{F,M})$ and let
-$P_{F,M}$ be the projection onto $\ell^2(S_{F,M})$.  Put
-\[
- \phi_{F,M}(b)=P_{F,M}\lambda_{F,M}(b)P_{F,M}\big|_{\ell^2(S_{F,M})}
- \qquad(b\in C^*_{\max}(G)).
-\]
-This map is u.c.p., since it is the compression of a unitary
-representation.
-For $g\in F$ and $j+k_g\in I_M$, the action satisfies
-\[
- g(t^jr_qH_{F,M})
- =t^{j+k_g}a_{g,j}r_qH_{F,M}
- =t^{j+k_g}r_{\theta_{F,M}(a_{g,j})q}H_{F,M}.
-\]
-So for $s=t^jr_qH_{F,M}$, the point $g\cdot s$ lies in $S_{F,M}$ if and
-only if $j+k_g\in I_M$.
+For the first assertion, let $E\subseteq N$ be finite, put
+$N_0=\langle E\rangle$, and choose a finite quotient
+$\theta\colon N_0\to Q$ with $\theta(x)\ne1$ for $x\in E\setminus\{1\}$;
+put $H=\ker\theta$.  In the quasi-regular representation of $N$ on
+$\ell^2(N/H)$, the finite-dimensional subspace $\ell^2(N_0/H)$ is
+$N_0$-invariant, and compression to it is a u.c.p.\ map $\phi_E$ on
+$C^*_{\max}(N)$ that restricts to a representation of
+$C^*_{\max}(N_0)$.  For $x\in E\setminus\{1\}$, the element $x$ fixes no
+coset $nH$ with $n\in N_0$, because $n^{-1}xn\in H$ would give $x\in H$
+by normality of $H$ in $N_0$; so $\tr(\phi_E(u_x))=0$.  Along an
+exhaustion of $N$ by finite sets $E$, the maps $\phi_E$ are eventually
+multiplicative on each pair of canonical unitaries, and their traces
+converge to $\tau_N$ on every canonical unitary; density of the group
+algebra and contractivity extend both limits to $C^*_{\max}(N)$.
 
-Let $g,h\in F$, and let $\delta_s$ be the basis vector of
-$\ell^2(S_{F,M})$ at $s=t^jr_qH_{F,M}$.  If $j+k_h\in I_M$, then
-$h\cdot s\in S_{F,M}$, so
-$\phi_{F,M}(u_g)\phi_{F,M}(u_h)\delta_s=P_{F,M}\delta_{gh\cdot s}
-=\phi_{F,M}(u_{gh})\delta_s$.  If $j+k_h\notin I_M$, then
-$h\cdot s\notin S_{F,M}$, so $\phi_{F,M}(u_h)\delta_s=0$, while
-$\phi_{F,M}(u_{gh})\delta_s$ has norm at most one.  There are at most
-$|k_h|$ heights $j\in I_M$ with $j+k_h\notin I_M$, and there are
-$|Q_{F,M}|$ basis vectors of each height, out of $M|Q_{F,M}|$ in all.
-So the normalized Hilbert--Schmidt norm satisfies
+For the second assertion, write $g\mapsto\bar g$ for the quotient map
+$G\to A$, and fix a finite set $E\subseteq G$, a finite F\o lner set
+$F\subseteq A$, and a section $\sigma\colon A\to G$.  For $g\in E$ and
+$x\in F$ put
 \[
- \hsnorm{\phi_{F,M}(u_{gh})-
-   \phi_{F,M}(u_g)\phi_{F,M}(u_h)}^2
- \leq \frac{|k_h|}{L},
+ b(g,x)=\sigma(\bar gx)^{-1}g\sigma(x)\in N .
 \]
-which tends to zero as $M\to\infty$ for fixed $h$.
-
-The normalized trace of $\phi_{F,M}(u_g)$ is the fraction of points of
-$S_{F,M}$ fixed by $g$.  If $g$ fixed $wH_{F,M}$, then
-$w^{-1}gw\in H_{F,M}\leq N$, and hence $k_g=0$.  Thus an element of nonzero
-height fixes no point of $S_{F,M}$.  If $g\in F\setminus\{1\}$ and $k_g=0$,
-fixing $t^jr_qH_{F,M}$ would give
+The subgroup $N_0$ generated by these finitely many elements is
+residually finite; choose a finite quotient $\theta\colon N_0\to Q$
+with $\theta(b(g,x))\ne1$ whenever $b(g,x)\ne1$, put $H=\ker\theta$,
+and choose representatives $r_q\in N_0$ of the cosets of $H$ in $N_0$.
+The cosets $\sigma(x)r_qH$, $x\in F$, $q\in Q$, are pairwise distinct,
+since equality forces $x=x'$ in $A$ and then $q=q'$; let $T$ be their
+set, let $P$ be the projection of $\ell^2(G/H)$ onto $\ell^2(T)$, and
+put $\Phi(b)=P\lambda(b)P|_{\ell^2(T)}$ for $b\in C^*_{\max}(G)$, where
+$\lambda$ is the quasi-regular representation.  This map is u.c.p., and
+for $g\in E$ and $\bar gx\in F$,
 \[
- r_q^{-1}a_{g,j}r_q\in H_{F,M}.
+ g\,\sigma(x)r_qH=\sigma(\bar gx)\,r_{\theta(b(g,x))q}H\in T .
 \]
-Since $H_{F,M}=\ker\theta_{F,M}$ is normal in $N_{F,M}$ and
-$r_q\in N_{F,M}$, this implies $a_{g,j}\in\ker\theta_{F,M}$.
-But $a_{g,j}=t^{-j}gt^j\ne1$, contrary to separation.  Thus
+So for $g,h\in E$ the identity
+$\Phi(u_{gh})-\Phi(u_g)\Phi(u_h)=P\lambda(g)(1-P)\lambda(h)P$ and the
+rank of $(1-P)\lambda(h)P$, at most $|\{x\in F:\bar hx\notin F\}|\,|Q|$,
+give
 \[
- \tr_{M|Q_{F,M}|}(\phi_{F,M}(u_g))=0
- \quad(g\in F\setminus\{1\}),
- \qquad
- \tr_{M|Q_{F,M}|}(\phi_{F,M}(1))=1.
+ \hsnorm{\Phi(u_{gh})-\Phi(u_g)\Phi(u_h)}^2
+ \le\frac{|\{x\in F:\bar hx\notin F\}|}{|F|}.
 \]
-Take a finite exhaustion $F_1\subseteq F_2\subseteq\cdots$ of $G$ with
-$1\in F_1$, and choose $M_n\ge n(1+\max_{g\in F_n}|k_g|)$.
-The maps $\phi_{F_n,M_n}$ are asymptotically
-multiplicative in normalized Hilbert--Schmidt norm and their traces converge
-to $\tau_G$ on every canonical unitary.  Since the canonical unitaries
-span a dense subspace of $C^*_{\max}(G)$ and all the maps involved are
-contractive, both limits hold for all $a,b\in C^*_{\max}(G)$.  So
-$\tau_G$ is amenable.
+The normalized trace of $\Phi(u_g)$ is the fraction of points of $T$
+fixed by $g$, and for $g\in E\setminus\{1\}$ it is zero: if
+$\bar g\ne1$, then $g$ moves the $F$-coordinate of every point, and if
+$\bar g=1$, then $g\sigma(x)r_qH=\sigma(x)r_{\theta(b(g,x))q}H$ with
+$b(g,x)=\sigma(x)^{-1}g\sigma(x)\ne1$, so $\theta(b(g,x))q\ne q$.
+Taking F\o lner sets with $|\{x\in F:\bar hx\notin F\}|/|F|\to0$ for
+the finitely many $h\in E$, along an exhaustion of $G$ by finite sets
+$E$, the maps $\Phi$ are asymptotically multiplicative in normalized
+Hilbert--Schmidt norm and their traces converge to $\tau_G$ on the
+canonical unitaries; density and contractivity extend both limits to
+$C^*_{\max}(G)$.
 \end{proof}
 
 We now construct $W$.  For $W$ to be non-MF, $\Gamma$ may be any
@@ -1332,8 +1312,8 @@ $[\Gamma:\alpha(\Gamma)]<\infty$.  Then
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
 \]
 where $K$ is locally residually finite.  Consequently $W$ is sofic but not
-MF, and the canonical trace on
-$C^*_{\max}(W)$ is amenable and not quasidiagonal.
+MF, the canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the
+canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
 \end{proposition}
 
 \begin{proof}
@@ -1375,9 +1355,11 @@ sofic.  The group $K$ is their directed union, and $W/K\cong\mathbb Z$
 is amenable.  Soficity passes to directed unions and to extensions with
 amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
 Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
-By Proposition~\ref{prop:locally-rf-by-z-trace} the canonical trace is
-amenable, and by Theorem~\ref{thm:factorization-nonmf-trace} it is not
-quasidiagonal.
+By Proposition~\ref{prop:locally-rf-by-z-trace}, applied to the
+extension $1\to K\to W\to\mathbb Z\to1$, the canonical trace of
+$C^*_{\max}(K)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
+amenable; by Theorem~\ref{thm:factorization-nonmf-trace} the latter is
+not quasidiagonal.
 \end{proof}
 
 For a concrete instance, take
@@ -1410,8 +1392,9 @@ The group $\bar\Gamma$, the map $\alpha$, and the element $a$ satisfy
 the hypotheses just established, so
 Proposition~\ref{prop:clifford-locally-rf} applies:
 $W\cong K\rtimes\mathbb Z$ with $K$ locally residually finite, the
-group $W$ is sofic and not MF, and the canonical trace $\tau_W$ on
-$C^*_{\max}(W)$ is amenable and not quasidiagonal.
+group $W$ is sofic and not MF, the canonical trace on $C^*_{\max}(K)$
+is quasidiagonal, and the canonical trace $\tau_W$ on $C^*_{\max}(W)$
+is amenable and not quasidiagonal.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
 \leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
 \end{proof}
@@ -1478,25 +1461,14 @@ quotient to be chosen acylindrically hyperbolic; we take $G_0$ to be
 such a quotient.  Put $S=tJt^{-1}$.  Since $J$ is simple and
 nonabelian, $J$ and $S$ are perfect.
 
-\begin{lemma}\label{lem:commutator-in-defect}
-For every homomorphism $\rho\colon G_0\to\bar G$,
+For $c\in J$ and $\ell\in S$, the commutator $[tct^{-1},\ell]$ lies in
+$\mathfrak D_{G_0}(\Gamma)$ by~\eqref{eq:intrinsic-defect}, since $t$
+conjugates $\Gamma$ into itself, $c$ centralizes $\Gamma$, and
+$S\le\Gamma$.  As $c$ ranges over $J$, the element $tct^{-1}$ ranges
+over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
 \[
- \rho(S)\le\mathfrak D_{\bar G}(\rho(\Gamma)).
+ S\le\mathfrak D_{G_0}(\Gamma).
 \]
-\end{lemma}
-
-\begin{proof}
-Write $\bar\Gamma=\rho(\Gamma)$, $\bar t=\rho(t)$, $\bar J=\rho(J)$, and
-$\bar S=\rho(S)=\bar t\bar J\bar t^{-1}$.  Then
-$\bar t\bar\Gamma\bar t^{-1}\le\bar\Gamma$, $\bar J$ centralizes
-$\bar\Gamma$, and $\bar S\le\bar\Gamma$.  For $c\in\bar J$ and
-$\ell\in\bar S$, the commutator $[\bar tc\bar t^{-1},\ell]$ lies in
-$\mathfrak D_{\bar G}(\bar\Gamma)$ by~\eqref{eq:intrinsic-defect}.  As $c$
-ranges over $\bar J$, the element $\bar tc\bar t^{-1}$ ranges over
-$\bar S$, so $[\bar S,\bar S]\le\mathfrak D_{\bar G}(\bar\Gamma)$.  The
-group $\bar S$ is perfect as a quotient of $S$, so
-$\bar S\le\mathfrak D_{\bar G}(\bar\Gamma)$.
-\end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:torsion-free}]
 Let $N$ be the normal closure of $S$ in $G_0$; it is nontrivial because
@@ -1507,8 +1479,7 @@ torsion-free, and acylindrically hyperbolic, and $\varphi(N)=Q$.  The
 group $Q$ is infinite because it is acylindrically hyperbolic, and it has
 property~\textup{(T)} as a quotient of $G_0$.
 
-By Lemma~\ref{lem:commutator-in-defect} applied to $\varphi$,
-$\varphi(S)\le\mathfrak D_Q(\varphi(\Gamma))$.  The subgroup
+By~\eqref{eq:defect-functorial}, $\varphi(S)\le\mathfrak D_Q(\varphi(\Gamma))$.  The subgroup
 $\mathfrak D_Q(\varphi(\Gamma))$ is normal in $Q$, and the normal
 closure of $\varphi(S)$ is $\varphi(N)=Q$, so
 \[
