@@ -442,12 +442,30 @@ separate `O52Data` certificate is supplied. Boundary simplicity proves that
 the source and target cell arcs are disjoint even without distinct cells.
 These helper proofs pass ordinary axiom audits with only the standard three
 axioms. This checkpoint does not discharge an assembly admission or close
-#207. Next construct a positive-length self-contiguity model, extend actual
-selection and insertion transport to this pool, and prove the source's
-loop-cut induction. Cell-arc counting must use the union of both contributions
-when source and target coincide; the geometric disjointness theorem supplies
-the required additivity. Existing selection consumers still use the historical
-restricted type and have not been silently migrated.
+#207. `SelfContiguityModel.lean` now supplies a six-dart reduced planar diagram
+with two length-one arcs from the same relator cell to an actual G-cell digon.
+It proves that this witness is absent from the historical interface's image.
+This model makes no small-cancellation claim and passes closed axiom audits.
+
+`RegionCandidate`, `RegionPartition` and `RegionWeightBound` extend finite
+selection and the exact three-way perimeter partition to the larger pool.
+Cell-arc counting takes the union of both ends, using geometric disjointness
+to prove additivity even on a self-contiguity. The same uniform perimeter
+bound yields attained global and legal optima in `RegionGlobalSelection` and
+`RegionLegalSelection`, with an actual normalized eligible seed.
+`ContiguityGeometryTransport` preserves and reflects self-targets;
+`RegionCandidateTransport` retains complete witnesses and compatible family
+cardinality and weight. `GFaceCornerRegionSelection` constructs actual
+prescribed-word insertion at original corners and retains legal optimality
+over this enlarged pool. The checked `SelfContiguitySelectionModel` counts
+two interior darts and one unbound dart, and constructs a legal optimum of
+weight between two and four. Its model endpoints pass closed audits.
+
+The historical restricted interfaces remain available. The assembly's Osin
+producer is still open: the next missing construction is the source's
+loop-cut induction, alongside the complementary-region cutting systems and
+the distinct-cell piece argument at its proper use site. Neither the new
+selection existence proof nor its transport supplies those conclusions.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
