@@ -6,6 +6,151 @@ Landed commits (in order):
   `metadata/NON_MF_SENTENCE_CENSUS.tsv`, `metadata/NON_MF_SENTENCE_CENSUS.md`.
 * `b2e32987609b009c0769933b4a3bab73ba7ab7e1` — `scripts/regenerate_non_mf_claim_manifest.py`,
   `metadata/NON_MF_NUMBERED_CLAIMS.json`.
+* `8782906e8d724599a7f94f5a01dd2c308e1981dc` — this report, first version.
+* `e2f1c33fa89bdb95da19dc97805af6eff53de79f` — `scripts/regenerate_non_mf_claim_manifest.py`,
+  `metadata/NON_MF_NUMBERED_CLAIMS.json`: rank-four `EXACT_TARGETS` switch, EJZ
+  prime-characteristic note. Round 2, directed by the lead's message with the
+  rank-four carrier names and the pre-approved EJZ/torsion-free register
+  lines.
+* `0c8bc71c17b3b4ef66ad004be3ee5f0ffe890555` — `metadata/NON_MF_SENTENCE_MAP.tsv`,
+  `metadata/NON_MF_SENTENCE_CENSUS.tsv`, `metadata/NON_MF_SENTENCE_CENSUS.md`,
+  `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`: full-defect-ring and
+  torsion-free family census rows, conditional register lines.
+
+## Round 2 (this section), directed by the lead
+
+The lead's message gave: (a) the landed rank-four carriers for `thm:headline`
+and `prop:simple`; (b) `thm:full-defect-ring` and its corollaries, exact in
+prime characteristic and conditional elsewhere on
+`FinitelyGeneratedRingGeneralRankElementaryPropertyT`, with a pre-approved
+register-line shape; (c) `thm:torsion-free`/`cor:relative-quotient`,
+conditional on the cited Hull/Fournier-Facio Props, same pre-approval; (d) a
+note that the tex changed again at `e51f655d2`, already folded into my prior
+landing before the lead's message arrived (confirmed by commit timestamp:
+`e51f655d2` predates `c5d812b81`).
+
+**Manifest switch.** `EXACT_TARGETS["thm:headline"]` and `["prop:simple"]` now
+name `ReducedCStarConsequenceRankFour.manuscriptPrintedHeadlineRankFour` and
+`RankFourSimplicity.RankFourEndpoint.manuscriptPropositionSimple`. This was
+possible immediately: between my two landings, the tex owner had already
+repointed the printed `\leanverified` badges on both environments to the
+rank-four declarations (in response to the "Badge lines owed" section of this
+report's first version) — confirmed with a byte diff against the tex at my
+prior landing, showing exactly and only that badge change.  Also added a
+prime-characteristic-exactness note to `thm:full-defect-ring` and
+`cor:one-sided-ring-maximal`'s `external_inputs` text, per the lead's
+instruction; both stay `PAPER_PROOFS` since neither carries a badge.
+26/26 claims validate.
+
+**Census rows for the full-defect-ring family.** `thm:full-defect-ring`'s
+own statement sentences, both `cor:simple-infinite-ring` sentences, and
+`cor:one-sided-ring-maximal`'s reduced-C\*-algebra clause are assigned to the
+`FullDefectRing.*FromEJZ` carriers (conditional on the one printed EJZ
+citation, cited alongside the unconditional `*PrimeCharUnconditional`
+sibling in every row's `decls`).
+
+Three of these four are `partial`, not `formalized` — a second thing this
+round's careful reading caught, in the same spirit as the rank-twelve/rank-
+four mistake from round 1. All four printed statements are now at `n ≥ 2`: a
+margin note two paragraphs before `thm:full-defect-ring` says "an embedding
+of `EL_4` into `EL_2` carries the conclusion to every `n ≥ 2`." But I read
+the actual `def` of every relevant `Printed*` Prop (not just its docstring,
+which in one case still says `n ≥ 4` even though the tex it quotes has moved
+to `n ≥ 2`), and every one of them is literally `4 ≤ n`. The `n = 2, 3`
+extension has no carrier I could find — I grepped for it
+(`Leavitt/RankTwoCompression.lean` looked promising by name but proves a
+different theorem, `thm:2x2`, about `GL_2(A)` and soficity via a Kazhdan pair
+on `Aˣ`, not this embedding argument). So the `n ≥ 4` clause is `partial`
+with a note naming exactly what is and is not covered, not `formalized`.
+`cor:one-sided-ring-maximal`'s proper-isometry clause is left `unassigned`
+outright rather than force a `partial`: its own carrier
+(`manuscriptOneSidedRingMaximalIsometry`) needs a second hypothesis,
+`OneSidedCompressorStrictContainment`, that the lead did not pre-approve a
+register line for, and I did not want to guess whether it is already
+discharged elsewhere.
+
+**`thm:torsion-free` upgraded, `cor:relative-quotient` newly assigned.** The
+pre-existing row for `thm:torsion-free`'s own mainthm sentence
+(`0f22bdbc4184`) cited two `TheoremC.*` declarations conditional on a
+different, older structure (`TheoremC.LiteratureInputs`). Upgraded to the
+single declaration `TorsionFreePrinted.manuscriptTorsionFreeTheorem`, which
+proves the sentence's own two clauses — including "no nontrivial quotient of
+`Q` is MF" as its last conjunct — along the printed proof, conditional on the
+two Props the lead named (`FournierFacioParagraph`, `HullPrintedInputs`).
+`cor:relative-quotient`'s two sentences are newly assigned to
+`TorsionFreePrinted.manuscriptRelativeQuotient`, conditional on those same
+two plus `HullCommonQuotientPrinted`.
+
+**Register lines: the lead's detector name needed a correction.** The lead's
+pre-approved line used `conditional-data` as the detector for the EJZ
+citation; the classifier actually reports `open-predicate` for that
+declaration. Baseline matching is by exact `(detector, declaration)` pair,
+so a line with the wrong detector matches nothing and the intended
+citation would fail as an unregistered new finding. I used the detector
+names `--verify-unconditional` actually reports throughout (checked live,
+not guessed), keeping the lead's justification text. Eight lines total: four
+for the `*FromEJZ` family (later three removed — see below — one remains
+moot since the EJZ closure means none of the four report a finding any
+more), and four for `thm:torsion-free`/`cor:relative-quotient` (two
+declarations × two detectors each, since each cites two literature Props
+under different detector names).
+
+**Live discovery: the EJZ residue may already be closed, unconditionally.**
+While drafting the EJZ register lines, `--verify-unconditional` stopped
+reporting any finding at all for the four `*FromEJZ` declarations, mid-
+session, between two consecutive runs of the same command against the same
+tex. Traced it to `GroupApproximation/PropertyT/IntegralColumnPlaneClosure.lean`,
+commit `343a1c4a4` ("Prove the Ershov--Jaikin-Zapirain theorem in every
+characteristic"): `finitelyGeneratedRingGeneralRankElementaryPropertyT` is a
+**hypothesis-free** proof of exactly the Prop
+(`FinitelyGeneratedRingGeneralRankElementaryPropertyT`) that thm:full-defect-
+ring's general-characteristic case has always needed. No `sorry` -- checked directly -- in that file
+or its two direct dependencies (`EJZIntegralGeneralRankReduction.lean`,
+`EJZIntegralReduction.lean`); I did not chase the chain further than that
+(`printedEJZColumnPlaneReduction`, `integralColumnPlaneMassBound`, and
+whatever they in turn depend on), and no `#audit_closed_axioms` line exists
+on this declaration yet.
+
+**This needs verification, not action from me.** If it holds up,
+`thm:full-defect-ring`, `cor:simple-infinite-ring`, and (for the reduced-C*
+clause) `cor:one-sided-ring-maximal` are no longer conditional at all, and
+belong in `EXACT_TARGETS` once badged — the same two-step process as
+`thm:headline`/`prop:simple` this round. I did not act on it myself: I found
+it because the checker went quiet, not because I audited the proof, and this
+same session already caught the checker in one confirmed blind spot (next
+paragraph) — so "the checker reports nothing" is not proof of soundness by
+itself here, only a strong, worth-checking signal. Whoever owns
+`ejz-integral`'s residue or CI should confirm with `#audit_closed_axioms`
+and a real build.
+
+**Confirmed checker blind spot, not acted on beyond removing the stale
+line.** Separately, `TheoremC.manuscriptTorsionFreeFullMFRadical` — still
+cited by an untouched pre-existing row, `907cd2df4f8a` — also stopped
+producing any finding, but for a different and less happy reason:
+`TheoremCDebts.lean` -- the file housing three literature `sorry`s -- no longer
+exists on `origin/main`. `TheoremCAssembly.lean` now assembles
+`literatureInputs`, and still has four `sorry`s in it -- so the declaration is
+almost certainly still exactly as conditional as before; the classifier
+just lost track of the producer when the file was renamed/merged. This is a
+real bug in `scripts/check_non_mf_unconditional.py` -- a `sorry`-backed
+declaration reading as clean -- not a second welcome discovery — flagging
+prominently since it means the checker's silence cannot be trusted without
+checking the actual producer chain, which is exactly what happened with
+the EJZ case above and why I did not act on that one either.
+
+**One correction of my own round-1 work, mid-round.** While fixing the
+baseline file's stale entries I initially removed
+`conditional-debt TheoremC.manuscriptTorsionFreeFullMFRadical` (right call,
+since `0f22bdbc4184` no longer cites it after the upgrade above) without
+checking that `907cd2df4f8a` still does — restored it, then found the blind
+spot above and removed it again with a note this time, rather than leave
+either an inaccurate registration or an unexplained gap.
+
+Everything in this round validated before landing:
+`--verify-decls` (0 missing of 296 named) and `--verify-unconditional`
+against the landed baseline (0 new findings; 5 stale entries remain, all
+pre-existing debt from before this session, unrelated to this round, listed
+in the baseline file's own comments).
 
 The manuscript kept changing under me for the whole pass (multiple full
 re-fetches during a single deliverable each showed a different tex); every
