@@ -212,30 +212,10 @@ theorem exists_saturatedQuotient (hFFF : FournierFacioParagraph)
   haveI := hfp
   haveI := hacyl
   haveI : Countable G₀ := ChiodoBelegradek.countable_of_isFinitelyPresented G₀
-  -- "Put `S = tJt⁻¹`."  `S ≠ 1` because `J ≠ 1`: a simple group is nontrivial.
-  haveI := F.simple
-  obtain ⟨j, hjmem, hjne⟩ : ∃ j : G₀, j ∈ F.simpleFactor ∧ j ≠ 1 := by
-    obtain ⟨jj, hjj⟩ := exists_ne (1 : ↥F.simpleFactor)
-    exact ⟨(jj : G₀), jj.2, fun h => hjj (Subtype.ext (by simpa using h))⟩
-  have hmemS : F.t * j * F.t⁻¹ ∈ F.conjFactor := by
-    rw [F.conjFactor_def]
-    exact Subgroup.mem_map.mpr ⟨j, hjmem, by simp⟩
-  have hneS : F.t * j * F.t⁻¹ ≠ 1 := by
-    intro h
-    apply hjne
-    have hj : j = F.t⁻¹ * (F.t * j * F.t⁻¹) * F.t := by group
-    rw [hj, h]
-    group
-  -- "Let `N` be the normal closure of `S` in `G₀`; it is nontrivial because
-  -- `S` is."
-  have hNne : Subgroup.normalClosure (F.conjFactor : Set G₀) ≠ ⊥ := by
-    intro hbot
-    apply hneS
-    have hmem : F.t * j * F.t⁻¹ ∈
-        Subgroup.normalClosure (F.conjFactor : Set G₀) :=
-      Subgroup.subset_normalClosure (SetLike.mem_coe.mpr hmemS)
-    rw [hbot, Subgroup.mem_bot] at hmem
-    exact hmem
+  -- "Put `S = tJt⁻¹`. …  Let `N` be the normal closure of `S` in `G₀`; it is
+  -- nontrivial because `S` is."
+  have hNne : Subgroup.normalClosure (F.conjFactor : Set G₀) ≠ ⊥ :=
+    normalClosure_conjFactor_ne_bot F
   -- "By Lemma `lem:saturation` applied to `G₀`, `N`, and `Ω = ∅` …"
   obtain ⟨SQ⟩ := manuscriptSaturation hHull G₀ htf
     (Subgroup.normalClosure (F.conjFactor : Set G₀)) hNne
