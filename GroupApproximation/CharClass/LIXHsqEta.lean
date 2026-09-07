@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LIXHsqNeighbourhood
 import GroupApproximation.CharClass.LIXProductChart
 import GroupApproximation.CharClass.LemmaTwoGlue
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The section is a fixed linear function of the chart's *value*, at each chart point
@@ -328,8 +329,9 @@ theorem lixEtaLin_eq_zero_iff {q : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → 
     | inl k => simp [lixEtaLin_inl]
     | inr h => simp [lixEtaLin_inr]
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixSection_eq_mulVec
+#audit_axioms lixSection_eq_mulVec
 
 end GroupApproximation.CharClass

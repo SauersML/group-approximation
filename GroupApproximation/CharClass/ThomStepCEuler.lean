@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomStepCLocal
 import GroupApproximation.CharClass.MayerVietorisElement
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hsu` is exactly the nonvanishing of the relative Euler class
@@ -176,12 +177,13 @@ theorem topChernClass_ne_zero_of_su_ne_zero_naturality_line
   topChernClass_ne_zero_of_su_ne_zero_line hacyclic j i hexact absLine exc chartIso hne
     (topClass_eq_of_naturality' jE j sRel sAbs piStar hnat hsection hu).symm
 
-/-! Printed on every build, for the same reason. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_of_su_ne_zero_naturality_line
+#audit_axioms topChernClass_ne_zero_of_su_ne_zero_naturality_line
 
-#print axioms topChernClass_ne_zero_of_su_ne_zero
-#print axioms topChernClass_ne_zero_of_su_ne_zero_line
+#audit_axioms topChernClass_ne_zero_of_su_ne_zero
+#audit_axioms topChernClass_ne_zero_of_su_ne_zero_line
 
 end
 

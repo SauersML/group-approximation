@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.ThomBridgeChart
 import GroupApproximation.CharClass.ThomBridgeHyperplane
 import GroupApproximation.CharClass.ThomDataFromLH
 import GroupApproximation.CharClass.LerayHirschCompact
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom bridge, assembled, and the Thom data on the total-space pair
@@ -131,9 +132,10 @@ theorem thomData_total_of_lerayHirsch [CompactSpace X] [T2Space X] (p : Bundle X
       π' hπ (tautEulerOf p.plusOne) ξ' hξ hr L L'
   exact thomData_transport (bridgeTotal p (2 * r)) jm hinj hrange
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms thomData_total_of_lerayHirsch
+#audit_axioms thomData_total_of_lerayHirsch
 
 end ThomChernDeg
 

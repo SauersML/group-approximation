@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LemmaTwoStepCAbsEquiv
 import GroupApproximation.CharClass.ThomStepCEuler
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C down to one open hypothesis
@@ -125,8 +126,8 @@ theorem stepC_of_thomChainEuler (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
 Both print `[propext, Classical.choice, Quot.sound]`.  Kept for the reason in
 `CharClass/LemmaTwoStepCAbsEquiv.lean`. -/
 
-#print axioms ne_zero_of_thomChainEuler
+#audit_axioms ne_zero_of_thomChainEuler
 
-#print axioms stepC_of_thomChainEuler
+#audit_axioms stepC_of_thomChainEuler
 
 end GroupApproximation.CharClass

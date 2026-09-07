@@ -264,7 +264,7 @@ theorem unboundTotal_eq_one {Delta : DiscDiagram.{0, 0, 0} W}
 /-- An O-equivalent output cannot satisfy the strict budget: its single
 relator dart remains unbound, so the asserted inequality is `1 < 1`. -/
 theorem not_estimatingUnboundOutputStatement :
-    ¬ EstimatingUnboundOutputStatement.{0, 0, 0} := by
+    ¬ EstimatingUnboundOutputHistoricalStatement.{0, 0, 0} := by
   intro h
   obtain ⟨realization⟩ := relativeDiscRealizationSpellingStatement D W 1 Z outer rfl
   have hcount : realization.diagram.rCellCount = 1 := by
@@ -282,6 +282,18 @@ theorem not_estimatingUnboundOutputStatement :
   have hlt := budget.unbound_lt
   rw [unboundTotal_eq_one hc hb scaffold', hc] at hlt
   norm_num at hlt
+
+
+/-! **What is refuted is the HISTORICAL statement, checked by the build.**
+
+`EstimatingUnboundOutputStatement` denoted this file's target until 2026-09-07
+and now denotes the repaired form carrying Osin's scale certificate.  The
+elaboration below fails unless the refutation above is about the historical
+statement, so the build — not a docstring — is what rules out the reading in
+which this repository appears to disprove its own repair. -/
+
+example : ¬ EstimatingUnboundOutputHistoricalStatement.{0, 0, 0} :=
+  not_estimatingUnboundOutputStatement
 
 end GroupApproximation.GGT.VanKampen.Estimating.UnboundConjugateCounterexample
 

@@ -23,6 +23,8 @@ programme needs. Nothing here is `ZMod 2`-specific.
 * `cohomology R X n` — `Hⁿ(X; R)`; `cohomologyℤ X n` for `R = ℤ`.
 * `IsCocycle R X n φ` — the cocycle condition `δφ = 0` (reducible).
 * `cocycleClass R X n φ hφ` — the class of a cocycle.
+* `cyclesMk' R X n φ hφ` — `HomologicalComplex.cyclesMk` retyped at the carrier
+  of the `ModuleCat` object `(cochainCx R X).cycles n`; see below.
 * `classRepr R X n a` — a chosen cocycle representative of a class.
 * `cohPullback R f n` — the pullback `f^* : Hⁿ(Y; R) ⟶ Hⁿ(X; R)`.
 * `cohCast R X h` — degree transport along an equality of degrees.
@@ -36,6 +38,29 @@ programme needs. Nothing here is `ZMod 2`-specific.
   pullback cochain.
 * `cohPullback_id`, `cohPullback_comp` — contravariant functoriality.
 * `cohPullback_eq_of_homotopy` — homotopy invariance.
+
+## Why `cyclesMk'` exists
+
+`HomologicalComplex.cyclesMk` lands in `(forget₂ (ModuleCat R) Ab).obj (K.cycles n)`
+rather than in the carrier `↥(K.cycles n)`. The two are *definitionally* the same
+type — `ModuleCat.forget₂_obj` is `rfl` — but they are not syntactically the
+same, and instance search does not unfold `forget₂`, so no `SMul R` is found on
+the first and `s • (cochainCx R X).cyclesMk φ ...` does not elaborate at all:
+the failure is in the statement of `cyclesMk_smul`, not in its proof.
+
+A type ascription does not repair this, in either position: `(s • e : _)` and
+`s • (e : _)` both still report
+`failed to synthesize HSMul R ↑((forget₂ (ModuleCat R) Ab).obj _) ?m`, because an
+ascription elaborates to the bare term and `•` then re-infers the `forget₂` type.
+Fixing the type in a *declaration header*, where it is checked once against the
+body, is what makes the module structure visible; that is all `cyclesMk'` is, and
+everything downstream of it is ordinary. Nothing is transported along the
+forgetful functor, and no other declaration in this file changes shape.
+
+`Kronecker` uses `cyclesMk'` for a second, unrelated reason: it carries its own
+`ComplexShape.next` proof, and writing that proof out inline as
+`by simp [ComplexShape.next]` unfolds `next` to its `dif` and strands the goal on
+a bare `Exists.choose`.
 -/
 
 open CategoryTheory Limits AlgebraicTopology
@@ -173,15 +198,40 @@ theorem cyclesMk_add (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
   apply (ModuleCat.mono_iff_injective ((cochainCx R X).iCycles n)).1 inferInstance
   rw [map_add, iCycles_cyclesMk, iCycles_cyclesMk, iCycles_cyclesMk]
 
+/-- `HomologicalComplex.cyclesMk` for a cocycle, **retyped at the carrier of the
+`ModuleCat` object** `(cochainCx R X).cycles n`.
+
+`cyclesMk` lands in `(forget₂ (ModuleCat R) Ab).obj ((cochainCx R X).cycles n)`.
+That type is *definitionally* the carrier `↥((cochainCx R X).cycles n)` —
+`ModuleCat.forget₂_obj` is `rfl` — but it is not syntactically it, and instance
+search does not unfold `forget₂`, so `SMul R` is not found on it and `s • _`
+does not elaborate at all: the failure is in the statement, not the proof.
+
+Ascribing the type does **not** fix that, in either position: a type ascription
+elaborates to the bare term, so `•` re-infers the `forget₂` type and reports
+`failed to synthesize HSMul R ↑((forget₂ (ModuleCat R) Ab).obj _) ?m`. Fixing
+the type in a *declaration header*, where it is checked once against the body,
+is what makes the module structure visible; everything below is then ordinary.
+No transport along the forgetful functor is needed. -/
+def cyclesMk' (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
+    (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ) :
+    (cochainCx R X).cycles n :=
+  (cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ
+
+theorem iCycles_cyclesMk' (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
+    (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ) :
+    ((cochainCx R X).iCycles n).hom (cyclesMk' R X n φ hφ) = φ :=
+  (cochainCx R X).i_cyclesMk _ _ _ _
+
 /-- `cyclesMk` is `R`-linear. -/
 theorem cyclesMk_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s : R)
     (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ)
     (hs : IsCocycle R X n (s • φ)) :
-    (cochainCx R X).cyclesMk (s • φ) (n + 1) (by simp [ComplexShape.next]) hs
-      = s • (cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ := by
+    cyclesMk' R X n (s • φ) hs = s • cyclesMk' R X n φ hφ := by
   apply (ModuleCat.mono_iff_injective ((cochainCx R X).iCycles n)).1 inferInstance
-  show ((cochainCx R X).iCycles n).hom _ = ((cochainCx R X).iCycles n).hom _
-  rw [map_smul, iCycles_cyclesMk, iCycles_cyclesMk]
+  show ((cochainCx R X).iCycles n).hom (cyclesMk' R X n (s • φ) hs)
+      = ((cochainCx R X).iCycles n).hom (s • cyclesMk' R X n φ hφ)
+  rw [map_smul, iCycles_cyclesMk', iCycles_cyclesMk']
 
 /-- Taking the class of a cocycle is additive. -/
 theorem cocycleClass_add (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
@@ -196,7 +246,9 @@ theorem cocycleClass_smul (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) (s 
     (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ)
     (hs : IsCocycle R X n (s • φ)) :
     cocycleClass R X n (s • φ) hs = s • cocycleClass R X n φ hφ := by
-  rw [cocycleClass, cocycleClass, cyclesMk_smul R X n s φ hφ hs, map_smul]
+  show ((cochainCx R X).homologyπ n).hom (cyclesMk' R X n (s • φ) hs)
+      = s • ((cochainCx R X).homologyπ n).hom (cyclesMk' R X n φ hφ)
+  rw [cyclesMk_smul R X n s φ hφ hs, map_smul]
 
 /-- **A coboundary is nullhomologous.** -/
 theorem cocycleClass_coboundary_zero (R : Type) [CommRing R] (X : TopCat.{0}) (m : ℕ)

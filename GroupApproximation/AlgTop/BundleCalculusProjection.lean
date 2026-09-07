@@ -144,23 +144,23 @@ theorem unitaryConj_of_norm_sub_lt_one {p q : A}
   have hzz : star z * z = a := by
     rw [hzs, hzdef, hadef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hqq, hp2, hq2]
     try abel
   have hzz' : z * star z = a := by
     rw [hzs, hzdef, hadef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hpp, hp2, hq2]
     try abel
   have hzp : z * p = q * z := by
     rw [hzdef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hqq, hp2, hq2]
     try abel
   have hap : Commute a p := by
     refine (commute_iff_eq _ _).mpr ?_
     rw [hadef]
-    simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+    simp only [sub_mul, mul_sub, one_mul, mul_one, mul_assoc,
+      hpp, hp2, hq2]
     try abel
   -- `z` is normal, so `a` commutes with `z` and with `z*`.
   have haz : Commute a z := by
@@ -283,7 +283,6 @@ theorem unitaryConj_of_preconnected {Y : Type*} [TopologicalSpace Y] [Preconnect
   have hne : ({y : Y | UnitaryConj (f y₀) (f y)}).Nonempty := by
     refine ⟨y₀, ?_⟩
     rw [Set.mem_setOf_eq]
-    exact UnitaryConj.refl _
   have huniv : {y : Y | UnitaryConj (f y₀) (f y)} = Set.univ :=
     IsClopen.eq_univ ⟨⟨hcompl⟩, hopen⟩ hne
   have hmem : y₁ ∈ {y : Y | UnitaryConj (f y₀) (f y)} := by
