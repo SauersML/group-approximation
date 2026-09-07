@@ -401,6 +401,198 @@ theorem wordPairRegion_upperGenerator_eq_A_or_D
   · left
     exact wordPairRegionOfDegrees_eq_A_of_pos_of_lt m _ _ (by omega) (by omega)
 
+/-! ### Placement of the unit shears: `A → B` and `C → B`
+
+The generator shears above move a character one degree down; the unit shears
+move nothing, but they *fold* the two off-diagonal regions onto the diagonal
+one.  These two placements are what makes the endgame arithmetic close: with
+`A ≤ B`, `C ≤ B`, `2B ≤ 2D` and the torus bound on `D`, the total nontrivial
+mass is bounded by `4D` plus the shear errors.  They are the integral
+analogues of `FreeRootPlaneMassBase.sum_planeMass_A_le_sum_B` and
+`sum_planeMass_C_le_sum_B`. -/
+
+omit [Fintype X] in
+theorem lowerCharacterAction_one_eq
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra) :
+    lowerCharacterAction rho 1 chi = lowerUnitCharacterAction rho chi :=
+  rfl
+
+omit [Fintype X] in
+theorem upperCharacterAction_one_eq
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra) :
+    upperCharacterAction rho 1 chi = upperUnitCharacterAction rho chi :=
+  rfl
+
+/-- **No cancellation when the copied term is the earlier one.**  If the
+second-coordinate valuation is strictly the smaller, the lower unit shear
+copies it into the first coordinate unchanged. -/
+theorem leastRootWordDegreeWithin_lowerUnit_zero_of_gt
+    (n : ℕ) (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hvis : chi ∈ rootWordVisibleSet rho 1 n)
+    (hlt : leastRootWordDegreeWithin rho 1 n chi <
+      leastRootWordDegreeWithin rho 0 n chi) :
+    leastRootWordDegreeWithin rho 0 n (lowerUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 1 n chi := by
+  obtain ⟨w, hlen, hne⟩ :=
+    exists_word_freeWordLength_eq_degreeWithin rho 1 n chi hvis
+  have hvisible : lowerUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 0 (freeWordLength X w) := by
+    refine (mem_rootWordVisibleSet_iff rho 0 _ _).mpr ⟨w, le_rfl, ?_⟩
+    rw [← lowerCharacterAction_one_eq,
+      coordinateAngle_lowerCharacterAction_zero, one_mul,
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 0 n chi (by omega),
+      add_zero]
+    exact hne
+  have hmin : ∀ e, e < freeWordLength X w →
+      lowerUnitCharacterAction rho chi ∉ rootWordVisibleSet rho 0 e := by
+    intro e he hmem
+    obtain ⟨u, hu, hune⟩ := (mem_rootWordVisibleSet_iff rho 0 e _).mp hmem
+    apply hune
+    rw [← lowerCharacterAction_one_eq,
+      coordinateAngle_lowerCharacterAction_zero, one_mul,
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 1 n chi (by omega),
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 0 n chi (by omega),
+      add_zero]
+  have hstage : freeWordLength X w ≤ n := by
+    have hale := leastRootWordDegreeWithin_le_succ rho 0 n chi
+    omega
+  have hstep := leastRootWordDegreeWithin_eq_of_visible_of_min rho 0 n
+    (freeWordLength X w) _ hstage hvisible hmin
+  omega
+
+/-- The mirror statement for the upper unit shear. -/
+theorem leastRootWordDegreeWithin_upperUnit_one_of_gt
+    (n : ℕ) (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hvis : chi ∈ rootWordVisibleSet rho 0 n)
+    (hlt : leastRootWordDegreeWithin rho 0 n chi <
+      leastRootWordDegreeWithin rho 1 n chi) :
+    leastRootWordDegreeWithin rho 1 n (upperUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 0 n chi := by
+  obtain ⟨w, hlen, hne⟩ :=
+    exists_word_freeWordLength_eq_degreeWithin rho 0 n chi hvis
+  have hvisible : upperUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 1 (freeWordLength X w) := by
+    refine (mem_rootWordVisibleSet_iff rho 1 _ _).mpr ⟨w, le_rfl, ?_⟩
+    rw [← upperCharacterAction_one_eq,
+      coordinateAngle_upperCharacterAction_one, one_mul,
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 1 n chi (by omega),
+      add_zero]
+    exact hne
+  have hmin : ∀ e, e < freeWordLength X w →
+      upperUnitCharacterAction rho chi ∉ rootWordVisibleSet rho 1 e := by
+    intro e he hmem
+    obtain ⟨u, hu, hune⟩ := (mem_rootWordVisibleSet_iff rho 1 e _).mp hmem
+    apply hune
+    rw [← upperCharacterAction_one_eq,
+      coordinateAngle_upperCharacterAction_one, one_mul,
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 0 n chi (by omega),
+      coordinateAngle_eq_zero_of_lt_degreeWithin rho 1 n chi (by omega),
+      add_zero]
+  have hstage : freeWordLength X w ≤ n := by
+    have hble := leastRootWordDegreeWithin_le_succ rho 1 n chi
+    omega
+  have hstep := leastRootWordDegreeWithin_eq_of_visible_of_min rho 1 n
+    (freeWordLength X w) _ hstage hvisible hmin
+  omega
+
+/-- **Region `A` folds onto region `B` under the lower unit shear.** -/
+theorem wordPairRegion_lowerUnit_eq_B_of_eq_A
+    (n : ℕ) (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hregion : wordPairRegion rho n chi = .A) :
+    wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .B := by
+  rw [wordPairRegion] at hregion
+  obtain ⟨ha, hb, hlt⟩ := wordPairRegionOfDegrees_A_data n _ _ hregion
+  have hale := leastRootWordDegreeWithin_le_succ rho 0 n chi
+  have hble : leastRootWordDegreeWithin rho 1 n chi ≤ n := by omega
+  have hvis : chi ∈ rootWordVisibleSet rho 1 n := by
+    by_contra hnot
+    have hsentinel :=
+      leastRootWordDegreeWithin_eq_succ_of_not_mem rho 1 n chi hnot
+    omega
+  have hzero := leastRootWordDegreeWithin_lowerUnit_zero_of_gt rho n chi
+    hvis (by omega)
+  have hone := leastRootWordDegreeWithin_lowerUnit_one rho n chi
+  rw [wordPairRegion, hzero, hone]
+  exact wordPairRegionOfDegrees_eq_B_of_pos_of_eq_of_le n _ _ hb rfl hble
+
+/-- **Region `C` folds onto region `B` under the upper unit shear.** -/
+theorem wordPairRegion_upperUnit_eq_B_of_eq_C
+    (n : ℕ) (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hregion : wordPairRegion rho n chi = .C) :
+    wordPairRegion rho n (upperUnitCharacterAction rho chi) = .B := by
+  rw [wordPairRegion] at hregion
+  obtain ⟨ha, hb, hlt⟩ := wordPairRegionOfDegrees_C_data n _ _ hregion
+  have hble := leastRootWordDegreeWithin_le_succ rho 1 n chi
+  have hale : leastRootWordDegreeWithin rho 0 n chi ≤ n := by omega
+  have hvis : chi ∈ rootWordVisibleSet rho 0 n := by
+    by_contra hnot
+    have hsentinel :=
+      leastRootWordDegreeWithin_eq_succ_of_not_mem rho 0 n chi hnot
+    omega
+  have hone := leastRootWordDegreeWithin_upperUnit_one_of_gt rho n chi
+    hvis (by omega)
+  have hzero := leastRootWordDegreeWithin_upperUnit_zero rho n chi
+  rw [wordPairRegion, hzero, hone]
+  exact wordPairRegionOfDegrees_eq_B_of_pos_of_eq_of_le n _ _ ha rfl hale
+
+/-! ### Region `D` is exactly the unit-detected part of the spectrum -/
+
+/-- A root coordinate has least visible degree zero exactly when the
+character is nontrivial at the unit coefficient of that root. -/
+theorem leastRootWordDegreeWithin_eq_zero_iff
+    (b : Fin 2) (n : ℕ)
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra) :
+    leastRootWordDegreeWithin rho b n chi = 0 ↔
+      chi ((representedColumnPlane rho).coordinate (b, 1)) ≠ 1 := by
+  have hzeroVisible : chi ∈ rootWordVisibleSet rho b 0 ↔
+      chi ((representedColumnPlane rho).coordinate (b, 1)) ≠ 1 := by
+    rw [mem_rootWordVisibleSet_iff]
+    constructor
+    · rintro ⟨w, hw, hne⟩
+      have hw1 : w = 1 := (freeWordLength_eq_zero_iff X w).mp (by omega)
+      subst hw1
+      rw [wordMonomial_one] at hne
+      exact fun hone ↦ hne ((coordinateAngle_eq_zero_iff rho (b, 1) chi).mpr hone)
+    · intro hne
+      refine ⟨1, by simp [freeWordLength_eq_zero_iff], ?_⟩
+      rw [wordMonomial_one]
+      exact fun hzero ↦ hne ((coordinateAngle_eq_zero_iff rho (b, 1) chi).mp hzero)
+  constructor
+  · intro hzero
+    refine hzeroVisible.mp ?_
+    have hvis : chi ∈ rootWordVisibleSet rho b n := by
+      by_contra hnot
+      rw [leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n chi hnot] at hzero
+      omega
+    have := leastRootWordDegreeWithin_mem rho b n chi hvis
+    rwa [hzero] at this
+  · intro hne
+    have hvis0 : chi ∈ rootWordVisibleSet rho b 0 := hzeroVisible.mpr hne
+    exact leastRootWordDegreeWithin_eq_of_visible_of_min rho b n 0 chi
+      (Nat.zero_le n) hvis0 (fun e he ↦ absurd he (Nat.not_lt_zero e))
+
+/-- **Region `D` does not depend on the stage: it is the part of the
+spectrum the two unit column roots already detect.**  Consequently the
+already-proved scalar torus estimate
+`IntegralColumnPlaneSpectralMassBound.scalarTorusMeasure_punctured_mass_le`
+bounds its mass. -/
+theorem wordPairRegionSet_D_eq_unitRootNontrivialSet (n : ℕ) :
+    wordPairRegionSet rho n .D = unitRootNontrivialSet rho := by
+  ext chi
+  constructor
+  · intro hchi
+    have hdata := wordPairRegionOfDegrees_D_data n _ _ hchi
+    rcases hdata with h0 | h1
+    · exact Or.inl ((leastRootWordDegreeWithin_eq_zero_iff rho 0 n chi).mp h0)
+    · exact Or.inr ((leastRootWordDegreeWithin_eq_zero_iff rho 1 n chi).mp h1)
+  · intro hchi
+    change wordPairRegionOfDegrees n _ _ = _
+    rcases hchi with h0 | h1
+    · exact wordPairRegionOfDegrees_eq_D_of_left_zero n _ _
+        ((leastRootWordDegreeWithin_eq_zero_iff rho 0 n chi).mpr h0)
+    · exact wordPairRegionOfDegrees_eq_D_of_right_zero n _ _
+        ((leastRootWordDegreeWithin_eq_zero_iff rho 1 n chi).mpr h1)
+
 end
 
 end IntegralGeneratorShearDescent
