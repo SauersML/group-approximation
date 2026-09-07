@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/cancellation-phase-lift-literature-audit-2026-09-07.md
   - research/artifacts/c4-cancellation-needs-eighth-root-phases-2026-09-07.md
+  - research/artifacts/seven-face-central-sign-collapse-2026-09-07.md
 ---
 
 Suppose B=sum_i[t_i] and A=sum_j[s_j] in F_2[G] satisfy BA=1.
@@ -57,3 +58,12 @@ Neither collapse of J nor (CSI1) suffices to show AB!=1. These tests
 identify required algebraic feedback in a proposed closed verification
 circuit; a surviving counterexample still needs a literal reverse
 defect. No such counterexample is constructed here.
+
+The seven-face artifact supplies an explicit boundary example: seven
+disjoint pairs in a complete 7-by-7 inverse rectangle force J=1. Yet
+the ordinary universal group of that completed matching is exactly
+C_2^3, and its two universal factors coincide and square to one. This
+proves directly that passing the central-sign-collapse requirement is
+insufficient, even with all support labels still distinct. The rejected
+candidate is completely classified, not merely checked in a finite
+quotient or bounded word ball.

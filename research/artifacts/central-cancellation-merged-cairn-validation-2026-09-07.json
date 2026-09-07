@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "scope": "Combined committed research graph compilation and artifact/reference lint; duplicate checks on six cancellation-lane nodes. Generated frontier resolves concurrent main changes; no proof-assistant formalization.",
+  "merge_tree": "2d8ce161147d1ccdb1b9e3699a1f87f08fa97afe",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "central-double-cover-coefficient-lift-proof": "COMPLETE",
+    "central-sign-survival-forces-reverse-cancellation": "ESTABLISHED",
+    "cyclotomic-liftable-cancellation-pairs-have-no-inverse-defect": "ESTABLISHED",
+    "integer-pairing-lattice-cyclotomic-lift-proof": "COMPLETE",
+    "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
+    "leavitt-unit-group-nonsurjunctive": "OPEN"
+  },
+  "elapsed_seconds": 16.506
+}
