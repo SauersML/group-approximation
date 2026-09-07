@@ -186,3 +186,99 @@ Seven modules, all PROBE GREEN and landed, all in their own sub-namespaces.
 
 All three printed proofs in scope now have printed-route carriers.  Nothing in
 this lane's brief remains.
+
+## Reopened lane, 2026-09-07: per-sentence carriers for four analytic blocks
+
+`Manuscript/OneSidedMFRadical/CompressionCriterionSentences.lean`, sub-namespace
+`CompressionCriterionSentences`.  Fourteen `manuscriptSentence_*` declarations,
+one per printed sentence, each with the sentence quoted in its docstring and
+each carrying `#audit_axioms`.  Every one is a wrapper over lemmas already on
+`origin/main` except `conjugatedMap_opNormVanishing`, which is new.
+
+### `thm:compression-criterion`, the introduction's outline paragraph
+
+| census id | printed sentence | carrier | status |
+| --- | --- | --- | --- |
+| `5c4b238d20db` | "Asymptotic multiplicativity … makes the conjugation maps `Ad(V_n(g))` an asymptotically multiplicative family of unitaries on `M_{d_n}(ℂ)` with its normalized Hilbert--Schmidt inner product" | `manuscriptSentence_adIsAsymptoticallyMultiplicativeUnitaryFamily` | unconditional |
+| `b529b81ba1b5` | "`‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖`" | `manuscriptSentence_adIsTwoLipschitz` | unconditional (both arguments unitary, the printed context) |
+| `7cb15e1cfb7c` | "The classes of these maps form a homomorphism of `G` into the unitary group of the norm matrix corona with coordinate sizes `d_n^2`" | `manuscriptSentence_adClassesFormCoronaHomomorphism` | unconditional |
+| `8c90718559ac` | "Let `U` be the class of `(Ad(V_n(u)))` and `P` the image of the Kazhdan projection of `L` in that corona" | `manuscriptSentence_compressorClassAndKazhdanProjectionImage` | unconditional (a naming sentence: both objects exist and `P` is a projection) |
+| `3669402cc535` | "Property (T) of `K` turns this into triviality in operator norm" | `manuscriptSentence_propertyTUpgradesHSTrivialityToOperatorNorm` | unconditional (the closed `NormalKazhdanRadical`, proved by the printed route) |
+| `77affad8cafd` | "A corona homomorphism nontrivial on `K` compresses to a corner where the Kazhdan projection of `K` vanishes" | `manuscriptSentence_nontrivialCoronaHomCompressesToKillingCorner` | unconditional |
+| `72532c7673ac` | "On that corner, a group-algebra element within `1/4` … has operator norm below `1/4`, while Hilbert--Schmidt triviality sends its normalized traces to the sum of its coefficients, which exceeds `3/4`" | `manuscriptSentence_cornerNormBelowQuarterTraceAboveThreeQuarters` | unconditional, but a proof step: it consumes the printed corner data (`PrintedCornerData` and the class identity), as the sentence itself does |
+
+### The "Kazhdan transport" setup paragraph
+
+| census id | printed sentence | carrier | status |
+| --- | --- | --- | --- |
+| `fd2cafafd8fa` | "For an actual representation `ρ : G → U(d)` … the two spaces have the same finite dimension, so the inclusion is an equality; … and `ρ` is trivial on `𝔇_G(L)`" | `manuscriptSentence_exactRepresentationCommutantDimensionCount` | unconditional, and stated under a weaker hypothesis than printed |
+| `b1b62a9e3c06` | "An asymptotic representation has no exact commutant to count" | `manuscriptSentence_asymptoticRepresentationHasNoExactCommutant` | **structural** |
+| `240357aed76a` | "Property (T) supplies a Kazhdan projection in its place, and stable finiteness of the corona replaces the dimension count" | `manuscriptSentence_kazhdanProjectionAndStableFinitenessReplaceTheCount` | unconditional |
+
+### `cor:defect-hs`, the printed proof
+
+| census id | printed sentence | carrier | status |
+| --- | --- | --- | --- |
+| `310f6df94cdf` | "Since `c` commutes with `L`, `(V_n(c)) ∈ 𝒞₂`, so `(V_n(u)V_n(c)V_n(u)*) ∈ 𝒞₂` … and then `(V_n(ucu⁻¹)) ∈ 𝒞₂` because `‖…‖ → 0`" | `manuscriptSentence_conjugatedCentralizerStaysInPrintedCommutant` (new helper `conjugatedMap_opNormVanishing`) | unconditional |
+| `a6988bc68f49` | "So `‖V_n(ℓ)V_n(ucu⁻¹) − V_n(ucu⁻¹)V_n(ℓ)‖₂ → 0`, and by asymptotic multiplicativity `‖V_n([ucu⁻¹, ℓ]) − 1‖₂ → 0`" | `manuscriptSentence_hsCommutatorVanishesAndDefectIsHSTrivial` | unconditional |
+| `acc79ac4eb5f` | "The elements with this property form a normal subgroup of `G`, so it contains `𝔇_G(L)`" | `manuscriptSentence_hsTrivialElementsFormNormalSubgroupWithDefect` | unconditional |
+
+### "From Hilbert--Schmidt to operator norm", the setup sentence
+
+| census id | printed sentence | carrier | status |
+| --- | --- | --- | --- |
+| `c9d3bf1f96b3` | "Restricting a corona homomorphism `ρ` to a corner requires a correction: … the compressions `q_n U_n(g) q_n` are only approximately unitary in the matrix corners" | `manuscriptSentence_cornerCompressionsAreOnlyApproximatelyUnitary` | unconditional |
+
+### The one new lemma, and why it had to be new
+
+`conjugatedMap_opNormVanishing` is `‖V_n(u)V_n(c)V_n(u)* − V_n(ucu⁻¹)‖ → 0`.
+Grepping `OpNormVanishing` over `origin/main` turns up the same shape only
+inside `Sofic/KazhdanCompressorCorner.lean`, where `conj_defect_vanishing`
+proves it against the *adjoint* almost representation, for a compressed
+generator, and as one step of the rotated-corner argument.  Nothing states it
+for a conjugated centralizer element of the ambient group, which is what the
+printed "because `‖V_n(u)V_n(c)V_n(u)* − V_n(ucu⁻¹)‖ → 0`" needs.  It is three
+vanishing pieces: the multiplicative defects of `u · c` and `(uc) · u⁻¹`, and
+the inversion defect `V_n(u⁻¹) − V_n(u)*`, each multiplied by a contraction.
+
+### Departures the census should know about
+
+1. `b1b62a9e3c06` is a negative prose remark with no mathematical claim.  Its
+   carrier is the unfolding of `boundedHSCommutant`, true by `rfl`, recording
+   that the printed `C₂` is cut out by two limit conditions and by no exact
+   commutation relation.  It is a **structural** carrier, not a theorem.
+2. `fd2cafafd8fa` is carried by `manuscriptFiniteDimensionalCommutantRigidity`,
+   which asks only for a finite-dimensional representation over a field, not
+   for a unitary representation in `U(d)`.  That is a weaker hypothesis than
+   printed, so the carrier proves more, not less.  The "same finite dimension,
+   so the inclusion is an equality" clause is a map *equality*
+   (`fixedSubmodule_map_eq`), not an inclusion.
+3. `310f6df94cdf` is proved at `boundedHSCommutant`, the operator-norm-bounded
+   asymptotic commutant, because that is where `thm:transport` is available as
+   a set equality.  The printed `C₂` is now the larger Hilbert--Schmidt-bounded
+   `printedCTwo`, so the carrier's fourth conjunct pushes all three memberships
+   across `boundedHSCommutant_subset` and the sentence is matched at the
+   printed definition too.
+4. `77affad8cafd`'s carrier is stated for `B : Type` rather than `B : Type v`,
+   because `manuscriptSentence_complementNonzero` is a `Type 0` statement.  The
+   corona is `Type 0`, so nothing printed is lost.
+5. The footnote of `72532c7673ac` (a Hilbert--Schmidt bound on the
+   multiplicative defect does not give an operator-norm bound on the
+   conjugation maps, so the argument does not apply to sofic or hyperlinear
+   approximations) is `manuscriptFullRadicalsDoNotEntailNonsoficity` and is not
+   restated here; the census already cites it on that row.
+
+### Two sentences of the block that are not this lane's
+
+The lead counted nine census sentences for `thm:compression-criterion`.  Seven
+are the outline paragraph above.  The other two, `6b5d4b5c3081` (the pair
+`ts = 1`, the explicit `u ∈ EL₄(R)` conjugating `EL₃(R)`, and one commutator
+normally generating `EL₄(R)`) and `4489913ea11c` (the ring `𝒞` and
+`B = EL₄(𝒞)` mapping onto every `EL_n(R)` with normally generating image), are
+ring-theoretic and already have carriers in the ring lane's
+`FullDefectRingSentences.lean` and `UniversalGroupB.lean`:
+`manuscriptSentence_compressorMatrix`, `manuscriptSentence_intertwine`,
+`manuscriptSentence_defectIsEverything` for the first, and
+`manuscriptSentence_ringRelations`, `manuscriptSentence_imageOfB`,
+`UniversalGroupB.exists_hom_normallyGenerating` for the second.  I have not
+duplicated them.
