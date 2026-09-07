@@ -1,0 +1,66 @@
+{
+  "base_commit": "c8e386d10cce8fb2f90da74918b3aff18b66a62b",
+  "cairn_check_status": "ok",
+  "cairn_findings": [],
+  "cairn_preview": {
+    "added": [
+      "fixed-gottschalk-test-group-is-surjunctive",
+      "gottschalk-surjunctivity-conjecture",
+      "gottschalk-via-surjunctive-fixed-host",
+      "reversible-xor-has-linear-observable-rank",
+      "reversible-xor-rank-count-proof",
+      "split-ca-defect-rank-proof",
+      "split-ca-defects-force-linear-observable-rank"
+    ],
+    "direct_proof_assertions": [
+      "reversible-xor-rank-count-proof",
+      "split-ca-defect-rank-proof"
+    ],
+    "dup_warnings": [],
+    "frontier_added": [
+      "fixed-gottschalk-test-group-is-surjunctive"
+    ],
+    "frontier_removed": [],
+    "removed": [],
+    "status": "ok",
+    "status_changed": []
+  },
+  "commands": [
+    "python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py",
+    "bin/cairn check --changed --json",
+    "bin/cairn preview --json",
+    "bin/cairn why gottschalk-surjunctivity-conjecture --json",
+    "git diff --check"
+  ],
+  "conjecture_status": "OPEN",
+  "gottschalk_proved": false,
+  "integration_check": {
+    "command": "bin/cairn check --changed --json",
+    "findings": [],
+    "remote_base_commit": "80b6e065dda5cb79a941610ba534107f61dad135",
+    "resolution": "Preserved concurrent commits; regenerated the dashboard from the combined canonical graph and rechecked it.",
+    "status": "ok"
+  },
+  "lean_verified": false,
+  "mathematical_review": "Handwritten proof; finite Hilbert-module factorizations reviewed.",
+  "new_established_claims": [
+    "reversible-xor-has-linear-observable-rank",
+    "split-ca-defects-force-linear-observable-rank"
+  ],
+  "session_date": "2026-09-07",
+  "source_sha256": {
+    "README.md": "2504ba037fe3e5fb10fc35e629c5b27108b242e0971816a6dffc818ace846071",
+    "notes/GOTTSCHALK_RESEARCH_2026-09-07.md": "94b66663336ba40fd12a814e0659a6c4c46ca9363b2aa2620154f965983c9456",
+    "research/artifacts/check-gottschalk-observable-growth-2026-09-07.py": "a2a463eeda85faff5941c6afc754d58d9198043b966c27a72559e385c33f2747",
+    "research/artifacts/gottschalk-observable-growth-2026-09-07.md": "4181e0e9ace36806264c40d33fe8baa19b5d0c70bf370814d1a7586a0199448e",
+    "research/artifacts/gottschalk-observable-growth-replay-2026-09-07.json": "06fe73fb4137b6709bdbbaadcc9344f5bd2b21094ff174e683186409d55e5dcd",
+    "research/finite-pattern-orbit-closure-forces-surjunctivity.md": "37bc1c3a938a7cfd10ffcf0808b70116a0f17ba637051847e418b0ae3e591961",
+    "research/fixed-gottschalk-test-group-is-surjunctive.md": "9b699d70ebadbfba903506a0f4e318253650603c831290d21ed506e6fb167deb",
+    "research/gottschalk-surjunctivity-conjecture.md": "fa4864de8cda4134cd5584adf10e6afdcb958f9739ecde2b8975ff9504a346ab",
+    "research/gottschalk-via-surjunctive-fixed-host.md": "1fade60d032f13e710aabd02d3f85f2a392a146bb55c4c250925d1fe1a6e1212",
+    "research/reversible-xor-has-linear-observable-rank.md": "1b2a14fb54000d5861963f7137d920a306449f763c67f9cff788635ebec7a9e3",
+    "research/reversible-xor-rank-count-proof.md": "f2a7150cb8d67158fc07ac20695f70e1803eed356ca721254a5fcfab58a9c123",
+    "research/split-ca-defect-rank-proof.md": "4b03987c5c2fb64cea563d5acf08844416a125b884acbe9299c2b9f43b8f751c",
+    "research/split-ca-defects-force-linear-observable-rank.md": "732fe836d169082ea281a72f31e79797974f5e3845a9744f5b6969494960b62c"
+  }
+}

@@ -40,3 +40,11 @@ has unbounded rational pattern growth. Its inverse is
 The condition concerns closure of rational observables modulo translation,
 not merely a finite gate list, finite memory, or a finite cyclic verifier
 description. It does not prove surjunctivity of arbitrary cellular automata.
+
+The quantitative extension is
+`split-ca-defects-force-linear-observable-rank`: a strict encoder has a
+defect tower of dimension exactly n delta, giving a lower bound on the
+unsaturated observable span. Bounded finite-orbit closure is recovered as
+a special case. `reversible-xor-has-linear-observable-rank` computes the
+displayed example's rank exactly as 2n+3 and explains why a universal
+sublinear upper bound cannot complete the argument.
