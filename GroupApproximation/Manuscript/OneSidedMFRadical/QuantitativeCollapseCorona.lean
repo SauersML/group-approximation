@@ -3,7 +3,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapsePerfe
 /-!
 # Quantitative collapse: from vanishing relation defects to a corona homomorphism
 
-`non_mf_groups_exist.tex`, `thm:quantitative-collapse`, the analytic half of
+`non_mf_groups_exist.tex`, `prop:linear-collapse`, the analytic half of
 step (iv).
 
 A tuple of unitary sequences whose relation defects vanish along the cofinite

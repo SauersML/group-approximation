@@ -4,9 +4,9 @@ import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 /-!
 # Quantitative collapse: the elementary unitary estimates
 
-`non_mf_groups_exist.tex`, the quantitative strengthening of the sentence
-"a full MF radical kills every homomorphism to an MF group"
-(`thm:quantitative-collapse`).  This module carries step (iii) of its proof:
+`non_mf_groups_exist.tex`, Proposition `prop:linear-collapse` in the section
+"A finite certificate".  This module carries the elementary estimates of its
+proof:
 the three elementary estimates for unitary matrices, in the operator norm the
 corona modules use.
 
@@ -19,7 +19,7 @@ corona modules use.
   spelling the induction meets; no claim of minimality is made.
 * `exists_commutatorList_bound` — the quadratic bound for a product of
   commutators of words.
-* `exists_collapse_constant` — **inequality (1)** of the printed proof: if
+* `exists_collapse_constant` — the printed inequality `eq:bootstrap`: if
   `w i` is the relation `x_i⁻¹ ∏_k ⁅a_{ik}, b_{ik}⁆`, then every generator
   defect is at most `δ + B · t²`, where `δ` bounds the relation defects and
   `t` bounds the generator defects.
@@ -169,7 +169,7 @@ theorem exists_commutatorList_bound
 
 /-! ## Inequality (1) -/
 
-/-- **Inequality (1) of the printed proof.**  Suppose each generator `x_i` of
+/-- **`eq:bootstrap` of the printed proof.**  Suppose each generator `x_i` of
 the free group is written as `w i · ∏_k ⁅a_{ik}, b_{ik}⁆` up to the relation
 `w i`, that is `w i = x_i⁻¹ ∏_k ⁅a_{ik}, b_{ik}⁆`.  Then there is a constant
 `B ≥ 0`, depending only on the chosen words, such that in every coordinate

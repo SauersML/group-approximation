@@ -6,7 +6,7 @@ import Mathlib.SetTheory.Cardinal.Free
 /-!
 # Quantitative collapse: perfectness and the commutator decomposition
 
-`non_mf_groups_exist.tex`, `thm:quantitative-collapse`, steps (i) and (ii).
+`non_mf_groups_exist.tex`, `prop:linear-collapse`, steps (i) and (ii).
 
 Step (i).  A finitely generated group whose homomorphisms into countable MF
 groups are all trivial is perfect.  The route is the printed one: were `G` not

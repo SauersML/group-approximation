@@ -1,14 +1,18 @@
-# Lane `quant-collapse` — the quantitative collapse proposition
+# Lane `quant-collapse` — `prop:linear-collapse`
 
-Formalizes a new proposition for `non_mf_groups_exist.tex`: a full MF radical is
-equivalent, for a marked group, to a *finite, checkable inequality* about tuples
-of unitary matrices.
+Carries Proposition `prop:linear-collapse` of `non_mf_groups_exist.tex` (the
+section "A finite certificate") and the two unlabelled consequences printed
+after its proof: a full MF radical is equivalent, for a marked group, to a
+*finite, checkable inequality* about tuples of unitary matrices.
+
+The files and the namespace are still called `QuantitativeCollapse`, from the
+working title; only the printed Props are named after the label.
 
 ## Statement as landed
 
 ```lean
 def CollapseInequality (m : ℕ) (s : Finset (FreeGroup (Fin m))) (C : ℝ) : Prop :=
-  ∀ (d : ℕ) (U : Fin m → Matrix.unitaryGroup (Fin d) ℂ) (δ : ℝ),
+  ∀ (d : ℕ), 1 ≤ d → ∀ (U : Fin m → Matrix.unitaryGroup (Fin d) ℂ) (δ : ℝ),
     (∀ r ∈ s, ‖((FreeGroup.lift U r : Matrix.unitaryGroup (Fin d) ℂ) :
         Matrix (Fin d) (Fin d) ℂ) - 1‖ ≤ δ) →
       ∀ i, ‖((U i : Matrix (Fin d) (Fin d) ℂ)) - 1‖ ≤ C * δ
@@ -25,9 +29,21 @@ Printed endpoints, all in
 
 | Prop | theorem |
 | --- | --- |
-| `PrintedQuantitativeCollapse` | `manuscriptQuantitativeCollapse` |
-| `PrintedQuantitativeCollapseConverse` | `manuscriptQuantitativeCollapseConverse` |
-| `PrintedFinitelyPresentedFullRadicalCover` | `manuscriptFinitelyPresentedFullRadicalCover` |
+| `PrintedLinearCollapse` | `manuscriptLinearCollapse` |
+| `PrintedLinearCollapseConverse` | `manuscriptLinearCollapseConverse` |
+| `PrintedLinearCollapseCover` | `manuscriptLinearCollapseCover` |
+| `PrintedLinearCollapseMarkedGroups` | `manuscriptLinearCollapseMarkedGroups` |
+
+The converse carries `[Countable G]` exactly as printed, and countability is
+load-bearing: the converse proves `manuscriptCoronaMFResidual G = ⊤` (that half
+needs no countability and is exposed as
+`manuscriptCoronaMFResidual_eq_top_of_collapseInequality`) and then applies
+`manuscriptFullRadicalKillsMFTargets`, which is `prop:mf-residual-calculus`.
+
+`PrintedLinearCollapseMarkedGroups` says the same finite family works for every
+countable `m`-marked group satisfying it.  That is the content of the printed
+openness sentence; the topology on the space of marked groups is **not**
+formalized and no openness claim is made.
 
 ## Modules
 
@@ -49,14 +65,16 @@ Printed endpoints, all in
 2. **Commutator words.**  Perfectness plus surjectivity of `FreeGroup.lift g`
    writes each generator as a product of commutators of *words*, giving the
    relations `w i = x_i⁻¹ ∏_k ⁅a_{ik}, b_{ik}⁆`.
-3. **Inequality (1).**  `‖AB - 1‖ ≤ ‖A-1‖ + ‖B-1‖` and
+3. **`eq:bootstrap`.**  `‖AB - 1‖ ≤ ‖A-1‖ + ‖B-1‖` and
    `‖⁅A,B⁆ - 1‖ ≤ 2‖A-1‖‖B-1‖` give `D(U) ≤ δ + B·D(U)²` with `B` depending
    only on the chosen words.
 4. **The contradiction.**  If no finite family and constant worked, pick for
    each `n` a counterexample against the first `n` relations of an exhaustion,
    with constant `n+1`.  Then `δ_n → 0`, the tuples define a corona
    homomorphism, the hypothesis kills it, so `D(U⁽ⁿ⁾) → 0`; but (1) gives
-   `1 < 1/(n+1) + B·D(U⁽ⁿ⁾)` for every `n`.
+   `1 < 1/(n+1) + B·D(U⁽ⁿ⁾)` for every `n`.  Positivity of the matrix size is
+   not assumed: the counterexample is taken against `d ≥ 1` because that is what
+   the printed inequality quantifies over.
 
 The converse lifts the images of the generators to unitary sequences, notes
 that relation defects vanish, and applies the inequality with a shrinking `δ`.
