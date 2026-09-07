@@ -1310,25 +1310,19 @@ $c_x$, $x\in X$, and relations
  \varepsilon^2=c_x^2=1,\qquad [\varepsilon,c_x]=1,\qquad
  [c_x,c_y]=\varepsilon\quad(x\ne y).
 \]
-We check that $\varepsilon\ne1$ by building a model.  Fix a total order
-on $X$, let $E$ be the $\F_2$-vector space of finitely supported
-functions $X\to\F_2$, and for $f,g\in E$ put
-$B(f,g)=\sum_{x>y}f(x)g(y)$, a finite sum.  Then
+To see that $\varepsilon\ne1$, fix a total order on $X$, let $E$ be
+the $\F_2$-vector space of finitely supported functions $X\to\F_2$, and
+for $f,g\in E$ put $B(f,g)=\sum_{x>y}f(x)g(y)$.  Since $B$ is bilinear,
 \[
  (a,f)(b,g)=\bigl(a+b+B(f,g),\ f+g\bigr)
 \]
-defines a group structure on $\F_2\times E$: the product is associative
-because $B$ is bilinear, so that either way of multiplying $(a,f)$,
-$(b,g)$, $(c,h)$ has first coordinate $a+b+c+B(f,g)+B(f,h)+B(g,h)$; the
-identity is $(0,0)$; and $(a+B(f,f),f)$ is inverse to $(a,f)$.  In this
-group $(1,0)$ is a central involution, and each $(0,\delta_x)$ is an
-involution because $B(\delta_x,\delta_x)=0$.  For $x\ne y$ exactly one
-of $B(\delta_x,\delta_y)$ and $B(\delta_y,\delta_x)$ equals $1$, so the
-commutator of $(0,\delta_x)$ and $(0,\delta_y)$ is $(1,0)$.  So
-$\varepsilon\mapsto(1,0)$, $c_x\mapsto(0,\delta_x)$ extends to a
-homomorphism $\operatorname{Cl}(X)\to\F_2\times E$, and
-$\varepsilon\ne1$.  The relations let us write every element of
-$\operatorname{Cl}(X)$ as
+is a group law on $\F_2\times E$, in which $(1,0)$ is a central
+involution, each $(0,\delta_x)$ is an involution, and for $x\ne y$
+exactly one of $B(\delta_x,\delta_y)$ and $B(\delta_y,\delta_x)$ equals
+$1$, so the commutator of $(0,\delta_x)$ and $(0,\delta_y)$ is $(1,0)$.
+So $\varepsilon\mapsto(1,0)$, $c_x\mapsto(0,\delta_x)$ defines a
+homomorphism $\operatorname{Cl}(X)\to\F_2\times E$.  The relations let
+us write every element of $\operatorname{Cl}(X)$ as
 \[
  \varepsilon^a c_{x_1}\cdots c_{x_r},
  \qquad a\in\F_2,\quad x_1<\cdots<x_r,
@@ -1381,11 +1375,11 @@ $\mathfrak D_W(\Gamma)$.  Thus
  \langle\varepsilon\rangle\leq\mathfrak D_W(\Gamma).
 \]
 The subgroup $\langle\varepsilon\rangle$ is central, so normal, and it
-is finite, so it has property~\textup{(T)}.  The group $W$ is countable,
-since $T_\alpha$, $V$, $X$, and $\operatorname{Cl}(X)$ are countable.
-So Theorem~\ref{thm:compression-criterion} applies with $L=\Gamma$ and
-$K=\langle\varepsilon\rangle$: every homomorphism from $W$ to an MF
-group is trivial on $\varepsilon$.  In particular, $W$ is not MF\@.
+is finite, so it has property~\textup{(T)}.  So
+Theorem~\ref{thm:compression-criterion} applies to the countable group
+$W$ with $L=\Gamma$ and $K=\langle\varepsilon\rangle$: every
+homomorphism from $W$ to an MF group is trivial on $\varepsilon$.  In
+particular, $W$ is not MF\@.
 \end{proof}
 
 \begin{proposition}[the locally residually finite case]
@@ -1410,12 +1404,11 @@ Reassociating the semidirect products yields
 \]
 For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
 copy of $\Gamma$ in $T_\alpha$.  Since $[\Gamma:\alpha(\Gamma)]<\infty$,
-each $\Gamma_n$ has finite index in $\Gamma_{n+1}$, so all the $\Gamma_n$
-are commensurable.  In fact $\Gamma$ is commensurated by $V$: every
-element of $T_\alpha$ lies in some $\Gamma_m$, and conjugation by $t$
-maps $\Gamma_{m+1}$ onto $\Gamma_m$.  Hence the stabilizer in $\Gamma_n$ of every point
-$v\Gamma\in V/\Gamma$ has finite index, and every $\Gamma_n$-orbit in $X$
-is finite.
+each $\Gamma_n$ has finite index in $\Gamma_{n+1}$; every element of
+$T_\alpha$ lies in some $\Gamma_m$, and conjugation by $t$ maps
+$\Gamma_{m+1}$ onto $\Gamma_m$, so $\Gamma$ is commensurated by $V$.
+Hence the stabilizer in $\Gamma_n$ of every point of $X=V/\Gamma$ has
+finite index, and every $\Gamma_n$-orbit in $X$ is finite.
 
 A finite subset of $K$ involves only finitely many lamps $c_x$, and its
 $T_\alpha$-coordinates lie in one $\Gamma_n$.  Let $Y$ be the union of
@@ -1473,13 +1466,8 @@ standard basis vector lies outside $\alpha(\bar\Gamma)$.  So the preceding
 construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
-The group $\bar\Gamma$, the map $\alpha$, and the element $a$ satisfy
-the hypotheses just established, so
-Proposition~\ref{prop:clifford-locally-rf} applies:
-$W\cong K\rtimes\mathbb Z$ with $K$ locally residually finite, the
-group $W$ is sofic and not MF, the canonical trace on $C^*_{\max}(K)$
-is quasidiagonal, and the canonical trace $\tau_W$ on $C^*_{\max}(W)$
-is amenable and not quasidiagonal.
+Apply Proposition~\ref{prop:clifford-locally-rf} to $\bar\Gamma$,
+$\alpha$, and $a$.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
 \leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
 \end{proof}
