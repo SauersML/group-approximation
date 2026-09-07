@@ -42,3 +42,13 @@ The binary Leavitt unit group is a reasonable place to look only because it
 is unusually concrete for equation-solving — explicit generators and
 relations, a prefix-code normal form — and because it is the one group now
 known to be nonsofic whose hyperlinearity is open.
+
+**Additional necessary condition from the 2026-09-07 matrix-root argument.**
+`nonsingular-adjunction-preserves-approximation-radicals` proves that any
+nontrivial coefficient killed by such an equation must lie in both the MF
+and hyperlinear radicals of the coefficient group. Moreover,
+`nonsingular-equations-preserve-matrix-certificates` shows that a finite
+normal-closure identity using `A` old-relator factors must already furnish
+the old coefficient norm bound with constant `A`; occurrences of the new
+nonsingular equation contribute zero after exact matrix root substitution.
+These are necessary conditions, not a construction of a violating word.
