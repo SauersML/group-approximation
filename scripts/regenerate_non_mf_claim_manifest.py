@@ -34,9 +34,9 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptOneSidedCompressionCriterion"),
     "thm:headline": (
-        "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptPrintedHeadlineRankFour"),
+        "Manuscript/OneSidedMFRadical/UnitGroupHeadline",
+        "GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline."
+        "manuscriptUnitGroupHeadline"),
     "lem:stable-finite": (
         "Manuscript/OneSidedMFRadical/StableFiniteness",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -54,17 +54,13 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptCompressionDefectHSInvisible"),
     "lem:central-corona-corner": (
-        "Manuscript/OneSidedMFRadical/CentralCoronaCorner",
+        "Manuscript/OneSidedMFRadical/CentralCoronaCornerPrintedRoute",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptCentralCoronaCorner"),
+        "CentralCoronaCornerPrintedRoute.manuscriptPrintedCentralCoronaCorner"),
     "thm:normal-kazhdan": (
-        "Manuscript/OneSidedMFRadical/NormalKazhdan",
+        "Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptNormalKazhdanRadical"),
-    "prop:simple": (
-        "Manuscript/OneSidedMFRadical/RankFourSimplicity",
-        "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint."
-        "manuscriptPropositionSimple"),
+        "NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute"),
     "lem:proper-isometry": (
         "Analysis/ProperIsometryStrictOrder",
         "GroupApproximation.manuscriptProperIsometryStrictOrder"),
@@ -77,13 +73,37 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.NinetyNineProblems."
         "canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF"),
     "prop:locally-rf-by-z-trace": (
-        "Analysis/LocallyRFByIntFactorization",
-        "GroupApproximation.LocallyRFByIntFactorization."
-        "canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt"),
+        "Analysis/AmenableExtensionAmenableTrace",
+        "GroupApproximation.AmenableExtensionTrace."
+        "manuscriptPrintedAmenableExtensionTrace"),
     "prop:clifford-self-embedding": (
         "Sofic/CliffordWitnessDirectDefect",
         "GroupApproximation.CliffordWitnessDirectDefect."
         "manuscriptMapSignEqOneOfIsOperatorMFTarget"),
+    "thm:full-defect-ring": (
+        "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "FullDefectRingEJZUnconditional."
+        "manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics"),
+    "thm:amenable-trace": (
+        "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
+        "GroupApproximation.AmenableTraceTheorem."
+        "manuscriptAmenableNonquasidiagonalTrace"),
+    "prop:clifford-locally-rf": (
+        "Sofic/CliffordWitnessSoficPrinted",
+        "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
+    "prop:linear-collapse": (
+        "Manuscript/OneSidedMFRadical/QuantitativeCollapse",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "QuantitativeCollapse.manuscriptLinearCollapse"),
+    "lem:two-copies": (
+        "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
+        "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
+        "manuscriptTwoCopiesLemma"),
+    "lem:rank-two": (
+        "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
+        "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
+        "manuscriptRankTwoNormalGeneration"),
 }
 
 
@@ -92,23 +112,20 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    "thm:full-defect-ring": (
-        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime "
-        "characteristic, via FullDefectRing."
-        "manuscriptFullComplementaryIdempotentsPrimeCharUnconditional; open "
-        "in this repository at other characteristics, where the printed "
-        "theorem is FullDefectRing.manuscriptFullComplementaryIdempotentsFromEJZ, "
-        "conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)",),
+    # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
+    # `PropertyT/IntegralColumnPlaneClosure.lean` closed
+    # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
+    # (commit 343a1c4a4), and `FullDefectRingEJZUnconditional.lean` spends it,
+    # so the corollaries below no longer carry any external input either --
+    # both proofs just say "Theorem thm:full-defect-ring applies", which is
+    # now unconditional.
     "cor:simple-infinite-ring": (),
-    "cor:one-sided-ring-maximal": (
-        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime "
-        "characteristic, via FullDefectRing."
-        "manuscriptOneSidedRingMaximalReducedCStarPrimeCharUnconditional; open "
-        "in this repository at other characteristics, where the printed "
-        "corollary is FullDefectRing.manuscriptOneSidedRingMaximalReducedCStarFromEJZ, "
-        "conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)",),
-    "thm:amenable-trace": (),
-    "prop:clifford-locally-rf": ("Elek--Szabo, Theorem 1",),
+    "cor:one-sided-ring-maximal": (),
+    # `thm:amenable-trace` and `prop:clifford-locally-rf` moved to
+    # EXACT_TARGETS 2026-09-07 (badges landed:
+    # AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace,
+    # AmenableTraceTheorem.manuscriptCliffordLocallyRF in
+    # Sofic/CliffordWitnessSoficPrinted.lean).
     # `cor:affine-clifford-trace` and `lem:commutator-in-defect` were
     # removed as separate numbered environments in the 2026-09-07 rewrite:
     # the trace corollary's content moved into `thm:amenable-trace`'s own
@@ -124,11 +141,23 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Hull, Corollary 5.7 and Lemma 5.8"),
     "thm:torsion-free": (
         "Fournier-Facio, Section 2", "Hull, Corollary 7.4"),
-    "prop:linear-collapse": (),
+    # `prop:linear-collapse` moved to EXACT_TARGETS 2026-09-07 (badges
+    # landed: QuantitativeCollapse.manuscriptLinearCollapse /
+    # .manuscriptLinearCollapseConverse, one per direction -- collective).
     "cor:relative-quotient": ("Hull, Corollary 7.4",),
     "cor:regular-nonmf-algebra": (
         "Osin, Theorem 1.2", "Dahmani--Guirardel--Osin, Theorem 2.35",
         "Gerasimova--Osin, Theorem 1.1"),
+    # `lem:two-copies` and `lem:rank-two` are EXACT_TARGETS, not here (both
+    # badged: RankDescentPrintedLemmas.manuscriptTwoCopiesLemma /
+    # .manuscriptRankTwoNormalGeneration).
+    # `thm:leavitt-mf-quotient` was replaced 2026-09-07 by the general
+    # `thm:mf-quotient-units` plus the Leavitt-specific `cor:leavitt-mf-quotient`.
+    "thm:mf-quotient-units": (
+        "Ara--Goodearl--Pardo, Corollary 1.7, Proposition 1.5, and Theorem 2.4",
+        "Menal--Moncasi, proof of Theorem 2.2 and the remark after Corollary 2.3",
+        "Blackadar--Kirchberg"),
+    "cor:leavitt-mf-quotient": ("Khanh--Thanh, proof of Theorem 7.2",),
 }
 
 
@@ -138,6 +167,18 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
 COLLECTIVE_CLAIMS: set[str] = {
     "prop:clifford-self-embedding",
     "thm:factorization-nonmf-trace",
+    # `thm:full-defect-ring` prints two badges: the n>=4 statement
+    # (manuscriptFullComplementaryIdempotentsAllCharacteristics) and the
+    # n>=2 rank-two descent (manuscriptFullComplementaryIdempotentsRankTwoAll
+    # Characteristics), together covering the printed n>=2 conclusion; the
+    # "group B" clauses added by the 2026-09-07 rewrite are not independently
+    # named by either badge alone.
+    "thm:full-defect-ring",
+    # `prop:linear-collapse` prints one badge per direction of its "Then ...
+    # Conversely ..." statement (manuscriptLinearCollapse /
+    # manuscriptLinearCollapseConverse); neither alone is the whole
+    # proposition.
+    "prop:linear-collapse",
 }
 
 
@@ -147,10 +188,10 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:mf-residual-calculus": [],
     "thm:compression-criterion": [
         "cor:defect-hs", "thm:normal-kazhdan", "prop:mf-residual-calculus"],
-    "thm:full-defect-ring": ["thm:compression-criterion"],
+    "thm:full-defect-ring": [
+        "thm:compression-criterion", "lem:two-copies", "lem:rank-two"],
     "thm:headline": [
-        "thm:full-defect-ring", "prop:simple",
-        "cor:one-sided-ring-maximal"],
+        "thm:full-defect-ring", "cor:one-sided-ring-maximal"],
     "cor:simple-infinite-ring": ["thm:full-defect-ring"],
     "cor:one-sided-ring-maximal": [
         "thm:full-defect-ring", "prop:max-infinite"],
@@ -160,7 +201,10 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:defect-hs": ["thm:transport"],
     "lem:central-corona-corner": [],
     "thm:normal-kazhdan": ["lem:central-corona-corner"],
-    "prop:simple": [],
+    "lem:two-copies": [],
+    "lem:rank-two": [],
+    "thm:mf-quotient-units": ["thm:full-defect-ring"],
+    "cor:leavitt-mf-quotient": ["thm:mf-quotient-units"],
     "lem:proper-isometry": [],
     "prop:max-infinite": [
         "lem:kazhdan-projection-order", "lem:proper-isometry"],
