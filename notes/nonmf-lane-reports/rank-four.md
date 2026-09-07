@@ -10,6 +10,7 @@ Task: re-create at rank four everything the rank-twelve modules prove for
 | `bd0e81062f43b5189f5433777249ad70bdc80d76` | `RankFourEndpoints.lean`, `RankFourSimplicity.lean` | 4383 / 4450 |
 | `7908cd9bcd9ea4ed1f1fce22955948536334a472` | `RankFourConfiguration.lean`, `RankFourEJZInstance.lean` | 4389 |
 | `81202607aa74ff1ea93b5801ade49bf98a454ac0` | `HeadlineTheoremRankFour.lean`, `ReducedCStarConsequenceRankFour.lean`, `RankFourAudit.lean` | 4464 / 4470 |
+| `acea48a28f00f7edda9877000c114d1adb600d5a` | `RankFourOneSidedBridge.lean` | 4388 |
 
 All under `GroupApproximation/Manuscript/OneSidedMFRadical/`, namespace
 `GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint` (the
@@ -56,10 +57,15 @@ C⋆ clauses all ask only for three indices or for nothing at all.
    configuration.
 2. The configuration was built directly on `Leavitt/RankFourCompressors.lean`
    rather than on lane `ring-b-alg`'s `OneSidedCompressor.lean`, which had not
-   landed.  The generic parts are stated over an arbitrary ring carrying a
-   `LeavittFamily` inside `RankFourConfiguration` itself, in the same
-   namespace, so a later reconciliation with `ring-b-alg`'s one-sided-pair
-   version is a matter of replacing those `have`s, not of restructuring.
+   landed at the time.  It has since landed, and `RankFourOneSidedBridge.lean`
+   reconciles the two: `corner = OneSidedCompressor.core R`,
+   `u = OneSidedCompressor.compressor (ofLeavittFamily leavittFamily)`,
+   `c = centralMark …`, `ell = printedEll R`, `defect = printedDefectRoot …`.
+   All five are definitional except the two involving the complementary
+   idempotent, which the two developments spell `s₁t₁` and `1 - s₀t₀`.  So
+   there is one rank-four corner under two names, not two corners, and
+   `printedDefect_core_eq_top` states the saturation in
+   `OneSidedCompressor`'s own vocabulary.
 3. The maximal-C⋆ clause is *inside* `PrintedHeadlineRankFour`.  At rank twelve
    it was proved (in `PrintedLeavittEquations`) but left out of the headline
    package, which the manifest wrongly called complete.
@@ -84,7 +90,8 @@ C⋆ clauses all ask only for three indices or for nothing at all.
 
 ## Open
 
-Nothing in the brief is open.  The one thing outside it: the `\leanverified`
+Nothing in the brief is open, and the lead's follow-up bridging lemma
+(`compressor_eq_oneSidedCompressor`) is landed.  The one thing outside it: the `\leanverified`
 lines of `thm:headline` in `non_mf_groups_exist.tex` still name the
 rank-twelve declarations, and the manifest and census rows still point there.
 Those are the lead's and the tex peer's to repoint at the names in the table
