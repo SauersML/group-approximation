@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.ZeroConnectorObstruction
 import GroupApproximation.GGT.HullSCRelativeGreendlingerSpelling
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundRepaired
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundComponentSplit
 
 /-!
 # The unbound obstruction persists at small mu
@@ -323,6 +324,25 @@ theorem not_lemma62ComponentPartitionStatement :
     ¬ Lemma62ComponentPartitionStatement.{0, 0, 0} :=
   fun h => not_estimatingUnboundRepairedStatement (estimatingUnboundRepaired_of_componentPartition h)
 
+/-- **The decomposition producer is refuted too**, and until this theorem existed
+nothing on `origin/main` said so.
+
+`Lemma62ComponentDecompositionStatement` carries no scale premise, and
+`lemma62ComponentPartition_of_decomposition` maps it into the statement refuted
+directly above, so it is false at the same parameters — `eps = 0`, `mu = 1/32`,
+`rho = 1089`, `lambda = 1`, `c = 1089`.
+
+It matters that this is written down rather than merely derivable.  A scan for
+`¬ P` finds only statements whose refutation someone *stated*; a `Prop` that maps
+into a refuted one is exactly as dead and completely invisible to that scan.
+`Lemma62ComponentDecompositionStatement` was in that position while its own
+docstring called it "the geometric residue" and "the whole remaining content",
+which is a description of an assignable open problem, not of a false one. -/
+theorem not_lemma62ComponentDecompositionStatement :
+    ¬ Lemma62ComponentDecompositionStatement.{0, 0, 0} :=
+  fun h => not_lemma62ComponentPartitionStatement
+    (lemma62ComponentPartition_of_decomposition h)
+
 
 /-! **What is refuted is the HISTORICAL statement, checked by the build.**
 
@@ -337,6 +357,7 @@ example : ¬ EstimatingUnboundOutputHistoricalStatement.{0, 0, 0} :=
 
 end GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample
 
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample.not_lemma62ComponentDecompositionStatement
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample.condition
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample.hyperbolic
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample.valid_parameters
