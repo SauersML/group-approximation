@@ -1,5 +1,5 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFHomKernel
-import GroupApproximation.Algebra.CornerRing
+import GroupApproximation.Algebra.FinitelyGeneratedAbelianResiduallyFinite
 
 /-!
 # `thm:mf-quotient-units`: MF quotients of unit groups
@@ -30,8 +30,10 @@ Quoted, each as one named proposition with its provenance:
   `N`".
 * `AGPStepOne` --- AGP Theorem 2.4 Step 1, the printed last paragraph.
 * `CountableAbelianMF` --- the printed "a countable abelian group `A` is MF".
-  This one is a *provable* statement, not a literature input; it is carried as
-  a hypothesis here only so that this module does not wait on it.
+  This one is *not* a literature input: it is discharged below by
+  `countableAbelianMF`, from
+  `Algebra.FinitelyGeneratedAbelianResiduallyFinite`.  It survives as a named
+  proposition only because the `n = 1` theorem is stated with it explicit.
 
 Proved here: everything else, including the two containments that make up the
 theorem.  `eq:corner-units` is `MFHomKernel.cornerUnitSubgroup_le_mfHomKernel`,
@@ -105,10 +107,17 @@ def AGPStepOne : Prop :=
           (v : R) = e + (1 - e) * (v : R) * (1 - e) → κ v = 1 →
             v ∈ cornerUnitSubgroup R
 
-/-- **The printed "a countable abelian group `A` is MF".**  Provable, and
-carried as a hypothesis only so that this module does not wait on it. -/
+/-- **The printed "a countable abelian group `A` is MF".**  Not a literature
+input: `countableAbelianMF` below proves it. -/
 def CountableAbelianMF : Prop :=
   ∀ (A : Type) [CommGroup A] [Countable A], IsOperatorMF A
+
+/-- The printed sentence, proved.  The print argues through residual
+finite-dimensionality of `C*_max(A)` and Brown--Kirchberg; the proof used here
+runs through LEF and residual finiteness of finitely generated abelian groups,
+so it quotes nothing. -/
+theorem countableAbelianMF : CountableAbelianMF := fun A _ _ ↦
+  isOperatorMF_of_commGroup_countable A
 
 /-! ### The theorem at `n = 1` -/
 
@@ -185,6 +194,17 @@ theorem printedMFQuotientUnits_of_inputs
     infer_instance
   exact mfHomKernel_units_eq_commutator hB hK1 hMM hS1 hAb
     (Matrix (Fin n) (Fin n) R) (hMat R hR n hn)
+
+/-- **The printed theorem from the Ara--Goodearl--Pardo inputs alone.**  The
+countable-abelian clause is discharged, so the only remaining hypotheses are
+Theorem `thm:full-defect-ring` in its rank-two form and the four propositions
+quoted from Ara--Goodearl--Pardo. -/
+theorem printedMFQuotientUnits_of_agp
+    (hB : FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo)
+    (hMat : AGPMatrixReduction) (hK1 : AGPUnitK1)
+    (hMM : AGPMenalMoncasiReduction) (hS1 : AGPStepOne) :
+    PrintedMFQuotientUnits :=
+  printedMFQuotientUnits_of_inputs hB hMat hK1 hMM hS1 countableAbelianMF
 
 end MFQuotientUnits
 end GroupApproximation
