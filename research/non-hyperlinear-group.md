@@ -7,6 +7,7 @@ root: true
 goal: true
 artifacts:
   - research/artifacts/higman-qutrit-coefficient-bound.md
+  - research/artifacts/higman-u2-bound.md
   - research/artifacts/hs-word-gap-linearization-2026-09-07.md
   - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
   - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
@@ -47,6 +48,10 @@ a rational three-dimensional tuple has marked energy above 16/7 and
 total relator energy below 1/7. This refutes the proposed coefficient
 two that survived the earlier bounded search in dimensions at most two.
 It supplies no valid all-dimensions upper bound and leaves this root open.
+The complementary complete rational certificate proves coefficient two
+on all of U(2)^4, so dimension three is minimal for its failure.
+Common sums of one- and two-dimensional blocks obey that same bound;
+arbitrary higher-dimensional blocks remain uncontrolled.
 
 The September 7 scalar-sensitive amplification proves that a fixed
 distance-one HS word gap implies a global linear bound, with constant

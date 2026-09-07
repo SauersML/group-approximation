@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/higman-cycle-bs-stability-gate-2026-08-21.md
   - research/artifacts/higman-hs-word-coefficient-lower-bound.md
   - research/artifacts/higman-qutrit-coefficient-bound.md
+  - research/artifacts/higman-u2-bound.md
 distinct_from:
   split-higman-cycle-has-haar-marginals-and-maximal-role-gap: that exhibits exact independent edge packets whose occurrence seams stay maximally large; this proves the quantitative equivalence after the seams tend to zero.
   one-product-holonomy-does-not-sew-four-bs-clocks: that refutes one scalar replacement for the four seams; this identifies the full four-seam problem with marked HS collapse for the actual Higman group.
@@ -101,3 +102,13 @@ all-dimensions coefficient must therefore exceed sixteen. In particular,
 the earlier finite search at coefficient two missed a counterexample
 in dimension three. These are still positive-defect tuples, with no
 separating zero-defect limit.
+
+The complete polynomial certificate `higman-u2-word-energy-bound`
+proves coefficient two for every U(2) tuple and every common direct sum
+of blocks of size at most two. Thus three is the smallest dimension
+in which that coefficient fails. Any canonical Higman microstate
+sequence must remain a positive HS distance from this common-block
+class, and the lower limit of its dimension fraction in larger blocks
+must be at least one half, as made precise in the artifact. The proof
+places no energy bound on those larger blocks and leaves the four-seam
+collapse question open.

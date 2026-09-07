@@ -7,6 +7,7 @@ target: higman-hs-microstates-are-near-glued-exact-bs-cycles
 requires:
   - higman-hs-word-coefficient-exceeds-nine-fifths
   - higman-hs-word-coefficient-exceeds-sixteen
+  - higman-u2-word-energy-bound
 ---
 
 Levit--Vigdorovich, arXiv:2206.02268, Corollary D(3), prove normalized-HS
@@ -41,3 +42,9 @@ its marked energy exceeds 16/7 while its total relator energy is below
 1/7. Hence a valid all-dimensions coefficient must exceed sixteen. This
 also refutes the proposed next coefficient two without claiming collapse
 or a noncollapsing seam sequence.
+
+The U(2) prerequisite supplies the complementary upper bound and its
+common-block extension. Combined with the explicit U(3) witness, it
+shows that dimension three is minimal for failure of coefficient two.
+The perturbation and dimension-fraction conclusions follow exactly as
+stated in that prerequisite; they do not exactify any larger block.

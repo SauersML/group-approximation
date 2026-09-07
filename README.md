@@ -64,6 +64,13 @@ Nonhyperlinear existence remains open. Replay the earlier witness with
 `python3 experiments/hs_word_certificate.py verify research/artifacts/higman-hs-word-coefficient-witness.json`.
 Replay the stronger witness with `python3 experiments/higman_qutrit_witness.py`.
 
+The [complete two-dimensional bound](research/artifacts/higman-u2-bound.md)
+proves coefficient `2` for every U(2) tuple using 56 exact Bernstein
+certificate cells. Hence dimension `3` is minimal for its failure.
+Run `python3 experiments/higman_u2_certificate.py verify`.
+The Hyperlinear word research replay workflow checks both certificates,
+the scalar-sensitive amplifier, and their Cairn dependencies on pushes.
+
 [Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
 gives a rational qubit-projector family with combinatorial gap `1/2` and
 unbounded optimal rounder cost, plus an obstruction to flags charged only
