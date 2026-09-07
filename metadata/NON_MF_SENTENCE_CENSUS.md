@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 284 |
-| `unassigned` | 61 |
-| `definition` | 51 |
+| `formalized` | 288 |
+| `unassigned` | 54 |
+| `definition` | 52 |
 | `structural` | 32 |
 | `provenance` | 19 |
-| `attribution` | 16 |
-| `partial` | 14 |
+| `attribution` | 17 |
+| `partial` | 15 |
 | **total** | **477** |
 
-Completely formalized or definitional: **335/477** (70.2%).
+Completely formalized or definitional: **340/477** (71.3%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,9 +23,8 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`unassigned`**, line 148 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-* **`unassigned`**, line 216 --- since compressors, centralizing elements, and commutators of $L$ map to compressors, centralizing elements, and commutators of $f(L)$, and conjugates map to conjugates.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`partial`**, line 148 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
+  * The unit group of the binary Leavitt algebra... GL_n(R)=EL_n(R) for every n>=2 (R=L_F2(1,2)): the GL_n=EL_n clause is proved for every n>=2, hypothesis-free (BinaryLeavitt.elementaryGroup_eq_top, via LeavittFamily.elementaryGroup_eq_top_of_rankTwo transporting the n=2 case). The H is simple / every hom to MF group trivial clauses and the H=Aut(R_R)=~GL_n(R) identification for general n are not independently verified here (UnitGroupHeadline.lean carries them for the specific n=4 instance used later in The binary example section, but this Introduction sentence asserts them for general n as a foreshadowing summary). New row (2026-09-07).
 * **`unassigned`**, line 234 --- Asymptotic multiplicativity in operator norm makes the conjugation maps $\operatorname{Ad}(V_n(g))\colon x\mapsto V_n(g)xV_n(g)^*$ an asymptotically multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized Hilbert--Schmidt inner product.
 * **`unassigned`**, line 234 --- Here $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$, with the norm on the left taken in the operator algebra of this Hilbert space.
 * **`unassigned`**, line 234 --- The classes of these maps form a homomorphism of $G$ into the unitary group of the norm matrix corona with coordinate sizes $d_n^2$.
@@ -38,8 +37,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 261 --- This happens once, in the ring $\mathcal C$ with generators $s_0,s_1,t_0,t_1$ and relations $t_is_j=\delta_{ij}$, and the group $B=\EL_4(\mathcal C)$ then maps to every $\EL_n(R)$ below with normally generating image.
 * **`unassigned`**, line 325 --- For a countable purely infinite simple ring $R$ and $n\ge1$, Theorem~\ref{thm:mf-quotient-units} identifies the intersection of the kernels of all homomorphisms from $\GL_n(R)$ to MF groups with the commutator subgroup, and the quotient with $K_1(R)$, which is MF\@.
 * **`unassigned`**, line 325 --- For the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
-* **`unassigned`**, line 340 --- The trace answers the question of Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every amenable trace is quasidiagonal. Tikuisis, White, and Winter proved that faithful traces on separable nuclear $C^*$-algebras satisfying the universal coefficient theorem are quasidiagonal~\cite{TWW}; here $C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 431 --- For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with $uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$ satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two spaces have the same finite dimension, so the inclusion is an equality; if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$, and $\rho$ is trivial on $\mathfrak D_G(L)$.
 * **`unassigned`**, line 431 --- An asymptotic representation has no exact commutant to count.
 * **`unassigned`**, line 431 --- Property~\textup{(T)} supplies a Kazhdan projection in its place, and stable finiteness of the corona replaces the dimension count.
@@ -71,10 +68,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * Row 40, per the lead: conclusion carried inside FullDefectRankTwo.hom_eq_one_of_rankFour; route not. Steinberg conjugation replaces the printed signed-permutation-matrices argument, as in row 19. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
 * **`unassigned`**, line 1119 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
 * **`unassigned`**, line 1127 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
-* **`unassigned`**, line 1196 --- Let $N$ be a normal subgroup of $H$.
-* **`unassigned`**, line 1203 --- where $\EL_4(R,I)$ is the normal closure in $\EL_4(R)$ of the elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_4(R,I)$ is the preimage of the center of $\GL_4(R/I)$.
-* **`unassigned`**, line 1203 --- Since $R$ is simple, either $I=R$, and then $N\ge\EL_4(R)=H$, or $I=0$, and then every $g\in N$ is central in $\GL_4(R)$.
-* **`unassigned`**, line 1203 --- In the second case, commuting with each $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all $a\in R$.
 * **`partial`**, line 1220 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
   * The printed sentence claims purely-infinite-simple for L_k(1,d) generally (every countable field k, every d); the cited carrier proves only the one instance in scope here, R=L_F2(1,2) (k=F_2, d=2). The general family is not covered. New row (2026-09-07).
 * **`unassigned`**, line 1220 --- Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along $A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$ for the canonical map.
@@ -121,7 +114,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 7 | 0 |
-| Introduction | 84 | 14 |
+| Introduction | 84 | 11 |
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
@@ -129,7 +122,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 2 |
-| The binary example | 46 | 12 |
+| The binary example | 46 | 8 |
 | An amenable nonquasidiagonal trace | 90 | 17 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 0 |
