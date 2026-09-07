@@ -911,3 +911,62 @@ Confidence ranking `hres > hsq > hclass`; the remaining risk in all three
 reads as formalization effort (Thom-isomorphism bookkeeping, an
 excision-naturality chase, pinning a general naturality argument to concrete
 terms), not soundness of the stated targets.
+
+### `π*` is an isomorphism, generically — LANDED, `534281c73`, `BundleTotalPiCohIso.lean`
+
+The lead's assignment: `RelativeSupport.lixPiStar` was already a split mono
+(`lixHsection : piStar ≫ sAbs = 𝟙`, landed); what was missing for the Euler-
+naturality argument (`ThomEulerNaturality.lean`) to actually apply was
+**surjectivity**, i.e. upgrading split mono to iso.  Built generically at
+`Bundle X ι`, not at any LIX object, per the standing rule that a helper is
+stated about the property it needs, not the structure that happens to supply
+it.
+
+`totalPiCohIso (p) (n) : Hmod2 (TopCat.of X) n ≃ₗ[ZMod 2] Hmod2 (TopCat.of
+(Total p)) n` composes two already-landed facts: `Bundle.totalHomotopyEquivBase`
+(`BundleHomotopy.lean:66`, the `(x,v) ↦ (x,t·v)` zero-section scaling
+retraction — elementary in this repo's model, since the fibre is a linear
+map's fixed-point set) with `pullEquivOfHomotopyEquiv`
+(`CohomologyBridge.lean:102`, homotopy invariance of `H^*`).  Note for
+anyone chasing this later: the retraction is spelled `totalHomotopyEquivBase`,
+not `totalHomeoEquivBase` — I transcribed it wrong in an earlier report and
+the first probe caught it (`unknown identifier`) before it landed.
+
+Probe: `Build completed successfully (3394 jobs)`, `PROBE GREEN` — small
+footprint since the file only needs `BundleHomotopy`+`CohomologyBridge`, not
+the deep LIX/Thom chain.
+
+**Explicit in the docstring, and worth restating here**: this does **not**
+close `hclass`.  It gives `jE.hom u` a unique `π*`-preimage; identifying that
+preimage as the top Chern class is the entire remaining content of `hclass`
+and is `lix-hclass`'s work.
+
+### Degenerate-`G` check on `hsq`/`hres` — no failure mode found
+
+The lead's sharper version of the model-testing ask: `hsq`/`hres` are
+universally quantified over *every* continuous corner-unitary `G` at every
+stage, not just the intended clutching one — test whether either survives a
+degenerate `G` (trivial mapping torus, a `lixTrivBall` that degenerates),
+since a hypothesis true for the intended `G` and false for some other legal
+`G` is unprovable as stated.
+
+Neither shows this failure mode, and the reason is structural rather than a
+case-by-case check: **both proof strategies are uniform across every `G`
+satisfying `hGc`/`hGu`, not tuned to the clutching construction.**
+
+* `hres`'s truth (per `ThomStepCOddLocal.lean`'s docstring) reduces to
+  connectedness of `N` alone, via the Thom isomorphism.  `pathConnectedSpace_lixN`
+  doesn't mention `G`, and the Thom-isomorphism reduction holds for *any*
+  vector bundle (mod-2-orientability is automatic) — so `hres` is the same
+  claim about `N` regardless of which `G` builds the bundle.
+* `hsq`'s only failure mode would be the two neighbourhoods (excision-chart
+  target vs. trivialising ball) failing to nest for some `G`.  The excision
+  side, `lixRelModelIso`, takes no `G` parameter at all.  The nesting theorem,
+  `lixBaseBall_subset_target`, doesn't mention `G` either.  And `lixTrivBall
+  hGc hGu` is never empty or degenerate for *any* continuous `G`: its radius
+  comes from `exists_ball_image_subset`, which needs only that `lixTrivSet
+  hGc hGu` is open and contains `lixZero` — automatic from
+  `Bundle.isOpen_trivSet`/`Bundle.self_mem_trivSet` for any continuous
+  corner-unitary `G`, trivial or not.
+
+So no evidence of a `G`-dependent gap in either statement.
