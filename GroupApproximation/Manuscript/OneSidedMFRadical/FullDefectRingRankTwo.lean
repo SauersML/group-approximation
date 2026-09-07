@@ -19,14 +19,24 @@ black box at `n = 4` and everything else is the ring calculation of
 
 ## How the two remaining ranks are reached
 
-Rank two is the note's own argument.  Rank three needs one further step, since
-the rank-four theorem does not apply there either: the block embedding
-`EL₂(R) → EL_n(R)` on the first two coordinates carries `e₁₂(v₀)` to a root of
-`EL_n(R)`, and `v₀` is unit-sandwiched by `w₀v₀ = 1`, so
-`elementaryGroup_normal_eq_top_of_elementaryRoot_mem` finishes at every rank
-`n ≥ 3` at once.  That route also re-derives the printed ranks `n ≥ 4`, so the
-statement below is uniform in `n` rather than a case split visible to the
-reader.
+Rank two is the note's own argument.
+
+Rank three needs a further step, since the rank-four theorem does not apply
+there either, and the printed proof and the Lean proof take different routes to
+it.  **The printed route** is that every root of `EL_n(R)` lies in the image of
+the block homomorphism `EL₂(R) → EL_n(R)` on its own coordinate pair, and the
+rank-two theorem kills every homomorphism out of `EL₂(R)`, hence kills `ρ` on
+that image; no normal generation is needed.  **The route taken here** uses only
+the block homomorphism on the *first* two coordinates: it carries `e₁₂(v₀)` to
+a single root of `EL_n(R)` whose coefficient `v₀` is unit-sandwiched by
+`w₀v₀ = 1`, and `elementaryGroup_normal_eq_top_of_elementaryRoot_mem` then
+gives `ker ρ = ⊤` at every rank `n ≥ 3` at once.
+
+The two routes prove the same statement.  The one below is taken because it
+needs the block homomorphism at one fixed coordinate pair rather than at every
+pair, which costs no permutation of `Fin n`; it also re-derives the printed
+ranks `n ≥ 4`, so the theorem is uniform in `n` rather than a case split
+visible to the reader.
 
 ## What is *not* claimed
 
