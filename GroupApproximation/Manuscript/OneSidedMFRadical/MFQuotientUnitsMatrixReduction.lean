@@ -68,7 +68,7 @@ theorem abstractUnitAbelianization : AGPUnitK1 := by
   haveI : Countable (Abelianization Rˣ) :=
     (QuotientGroup.mk'_surjective (commutator Rˣ)).countable
   exact ⟨Abelianization Rˣ, inferInstance, inferInstance, Abelianization.of,
-    QuotientGroup.mk'_surjective (commutator Rˣ), Abelianization.ker_of⟩
+    QuotientGroup.mk'_surjective (commutator Rˣ), Abelianization.ker_of Rˣ⟩
 
 /-- The all-rank group-theoretic classification now requires only the step
 that moves arbitrary units to supported form. Rank one is the remaining case. -/
