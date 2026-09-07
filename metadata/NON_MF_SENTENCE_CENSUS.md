@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 278 |
-| `unassigned` | 67 |
+| `formalized` | 281 |
+| `unassigned` | 61 |
 | `definition` | 51 |
-| `structural` | 33 |
+| `structural` | 32 |
 | `provenance` | 19 |
+| `partial` | 17 |
 | `attribution` | 16 |
-| `partial` | 13 |
 | **total** | **477** |
 
-Completely formalized or definitional: **329/477** (69.0%).
+Completely formalized or definitional: **332/477** (69.6%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -93,12 +93,14 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
 * **`partial`**, line 1323 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
   * UPDATED 2026-09-07: first clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, unconditionally -- BinaryLeavitt.elementaryGroup_eq_top makes K_1 vanish at d=2, so there is no Khanh-Thanh input here at all, per the lead. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is still not covered now that general-d has landed (LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral, cited at 93e54ae1c51e): that carrier proves the kernel-intersection=EL_d(R) identification, conditional on the Khanh-Thanh commutator citation, but not the K_1(R) computation the cyclic-order formula needs. Remains a real, separate gap, not a landing-status one.
-* **`unassigned`**, line 1362 --- Suppose that $\tau_G$ is quasidiagonal, and let $\phi_n$ be u.c.p.
-* **`unassigned`**, line 1362 --- maps as in the definition, with the first limit in operator norm.
-* **`unassigned`**, line 1362 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
-* **`unassigned`**, line 1370 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
-* **`unassigned`**, line 1370 --- If $g\ne1$ and $\opnorm{V_n(g)-1}\to0$, then $\tr_{d_n}(\phi_n(u_g))\to1$, contradicting $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$.
-* **`unassigned`**, line 1370 --- So $\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$, and $G$ is MF, contrary to the hypothesis.
+* **`partial`**, line 1362 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
+  * Printed sentence 2, first clause (phi_n(u_g)^*phi_n(u_g) and phi_n(u_g)phi_n(u_g)^* converge to 1 in operator norm) is carried, in the star-free form the model actually gives. NOT carried, by design: the polar decomposition of phi_n(u_g) and its unitary part V_n(g) -- Mathlib has no polar decomposition of a bounded operator (Analysis.CalkinSchauder notes neither polarDecomposition nor polar_decomposition occurs in the library), so building V_n would mean a second proof route. New row (2026-09-07).
+* **`partial`**, line 1370 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
+  * Printed sentence 2, third clause (V_n(1)=1 because phi_n is unital) is carried at the underlying fact phi_n(1)=1; the reference to V_n itself is not, since V_n is not constructed on this route. Printed sentence 3 (The maps V_n:G->U(d_n) are asymptotically multiplicative in operator norm) merges into this same census key and has NO carrier at all -- entirely a V_n statement. New row (2026-09-07).
+* **`partial`**, line 1370 --- If $g\ne1$ and $\opnorm{V_n(g)-1}\to0$, then $\tr_{d_n}(\phi_n(u_g))\to1$, contradicting $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$.
+  * Printed sentence 4: the hypothesis-and-consequent about V_n (if g!=1 and ||V_n(g)-1||->0, then tr_dn(phi_n(u_g))->1) has no carrier, entirely V_n-dependent. Only the final clause (contradicting tr_dn(phi_n(u_g))->tau_G(u_g)=0) is carried. New row (2026-09-07).
+* **`partial`**, line 1370 --- So $\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$, and $G$ is MF, contrary to the hypothesis.
+  * Printed sentence 5: the limsup_n ||V_n(g)-1||>0 clause has no carrier (V_n-dependent). Only the conclusion G is MF, contrary to the hypothesis is carried -- the sentence where the two routes rejoin: the tree reaches IsOperatorMF G via Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace and ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal instead of via V_n nondegeneracy. New row (2026-09-07).
 * **`unassigned`**, line 1448 --- Let $\Gamma$ be a countable group with property~\textup{(T)}, let $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
 * **`unassigned`**, line 1448 --- Put
 * **`unassigned`**, line 1462 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that $V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and $T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.
@@ -134,6 +136,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 2 |
 | The binary example | 46 | 12 |
-| An amenable nonquasidiagonal trace | 90 | 23 |
+| An amenable nonquasidiagonal trace | 90 | 17 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 0 |
