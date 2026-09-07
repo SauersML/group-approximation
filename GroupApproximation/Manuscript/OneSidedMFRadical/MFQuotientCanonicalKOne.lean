@@ -138,7 +138,7 @@ theorem manuscriptMFQuotientUnitsKOneAtBaseRing : PrintedMFQuotientUnitsKOneAtBa
 
 /-- The complete canonical classification, including the quotient map and
 the universal property, rather than only an abstract quotient isomorphism. -/
-theorem manuscriptCanonicalKOne (hR : IsPurelyInfiniteSimpleRing R)
+theorem canonicalKOne (hR : IsPurelyInfiniteSimpleRing R)
     (n : ℕ) (hn : 1 ≤ n) :
     Function.Surjective (matrixKappa R n) ∧
       (matrixKappa R n).ker = commutator (Matrix (Fin n) (Fin n) R)ˣ ∧
@@ -150,6 +150,22 @@ theorem manuscriptCanonicalKOne (hR : IsPurelyInfiniteSimpleRing R)
   ⟨matrixKappa_surjective R hR n hn, matrixKappa_ker R hR n hn,
     mfHomKernel_eq_matrixKappa_ker R hR n hn, countableAbelianMF _,
     fun M _ hM f => factors_uniquely_through_matrixKappa R hR n hn M hM f⟩
+
+/-- The complete canonical classification as a closed manuscript statement. -/
+def PrintedCanonicalKOne : Prop :=
+  ∀ (R : Type) [Ring R] [Countable R], IsPurelyInfiniteSimpleRing R →
+    ∀ (n : ℕ), 1 ≤ n →
+      Function.Surjective (matrixKappa R n) ∧
+        (matrixKappa R n).ker = commutator (Matrix (Fin n) (Fin n) R)ˣ ∧
+        mfHomKernel (Matrix (Fin n) (Fin n) R)ˣ = (matrixKappa R n).ker ∧
+        IsOperatorMF (AlgebraicKOne R) ∧
+        (∀ (M : Type) [Group M], IsOperatorMF M →
+          ∀ f : (Matrix (Fin n) (Fin n) R)ˣ →* M,
+            ∃! g : AlgebraicKOne R →* M, g.comp (matrixKappa R n) = f)
+
+theorem manuscriptCanonicalKOne : PrintedCanonicalKOne := by
+  intro R _ _ hR n hn
+  exact canonicalKOne R hR n hn
 
 end MFQuotientUnitsKOne
 end GroupApproximation

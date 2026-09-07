@@ -18,7 +18,7 @@ equality at the original rank.
 namespace GroupApproximation
 namespace KappaProof
 
-open AlgebraicK RankNElimination
+open AlgebraicK RankNElimination MFQuotientUnits
 
 theorem map_mem_commutator {G H : Type*} [Group G] [Group H]
     (f : G →* H) {u : G} (hu : u ∈ commutator G) : f u ∈ commutator H := by
@@ -67,4 +67,4 @@ theorem exists_diagonal_mem_commutator (hR : IsPurelyInfiniteSimpleRing R)
 end KappaProof
 end GroupApproximation
 
-#audit_closed_axioms GroupApproximation.KappaProof.exists_diagonal_mem_commutator
+#audit_axioms GroupApproximation.KappaProof.exists_diagonal_mem_commutator
