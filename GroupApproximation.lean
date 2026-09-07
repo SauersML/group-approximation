@@ -3420,11 +3420,8 @@ import GroupApproximation.Analysis.STW22DesignatedTraces
 --  says "UNPROBED, do not import yet")
 import GroupApproximation.Analysis.STW22CounterexampleCompactnessRoute
 import GroupApproximation.Analysis.STW22FibreEvaluation
-import GroupApproximation.GGT.DGOLemma421FourGon
 import GroupApproximation.GGT.DGOProposition414SecondSeparationHalfWord
 import GroupApproximation.GGT.HullSCLemma44PrefixKernelCutConstruction
-import GroupApproximation.GGT.KazhdanHypGirthEightGenericProducers
-import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
 import GroupApproximation.Analysis.CStarMatrixBlockInclusion
 import GroupApproximation.Analysis.CStarUnitaryComponent
 import GroupApproximation.Analysis.CStarSymmetryComponent
