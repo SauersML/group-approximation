@@ -13,8 +13,9 @@ artifacts:
   - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
-Two independent statements, both negative, which together retire the
-self-referential attack on `leavitt-unit-group-algebra-not-directly-finite`.
+Two independent statements which exclude the two built recursive support
+families and classify the particular compiler below. They do not prove
+a no-go for every computational construction of a counterexample.
 
 **Recursion confined to the built families cannot carry a counterexample.**
 The elementary two-compressor core is LEF
@@ -30,9 +31,12 @@ drawn from anywhere in `F_2[Q]` can help it.
 compiler for direct finiteness* a total computable map sending a machine index
 `e` to a finite pair `(P_e, Q_e)` of subsets of `Q` which is a genuine
 one-sided inverse pair whenever `e` halts.  Such a compiler exists **if and
-only if** a counterexample already exists.  So the diagonal argument that
-works elsewhere in this repository has nothing to bite on here: self-reference
-is a scheduler, not an algebraic amplifier.
+only if** a counterexample exists. This existence equivalence alone does
+not exclude a constructive compiler proof. It says that the compiler
+still owes an exact algebraic construction. The asymmetric specification
+of `asymmetric-kaplansky-compiler-has-halting-witness` separates its two
+guarantees and gives a terminating extraction, but that compiler has not
+been constructed either.
 
 The usable output is a constraint on what is left.  A surviving compiler must
 force a collision that genuinely crosses the two atlas charts — it may not
