@@ -57,19 +57,30 @@ that is not, and it does so without assuming anything that is not proved here.
   commutator relation bounds displacement by the root element of a word
   monomial of length `m` by `(3 * 2 ^ m - 2) * δ`.
 
-## What is not proved, and why
+## What is not proved here, and why the reason once given was wrong
 
-`ColumnPlaneMassBound` over `FreeAlgebra ℤ X` is **not** proved here, and no
-statement in this file assumes it silently.  The finite-field proof of it
-factors through `CharacterMass.sum_dual_apply`, a sum over the finite dual of a
-finite stage; over `ℤ` the corresponding object is a Haar integral over the
-torus `IntegralDegree.finrank_degreeLE_int` identifies, and the estimate needed
-is an equidistribution statement for the shear action on that torus.  There is
-no such statement in this repository, and the author of this file did not find
-the machinery for it in Mathlib either.  The monomial bound
-`norm_displacement_wordMonomial_le` is exactly what the elementary commutator
-calculus gives on its own, and its constant grows with the degree, which is
-precisely the uniformity that the torus estimate would have to supply.
+`ColumnPlaneMassBound` over `FreeAlgebra ℤ X` is **not** proved in this file,
+and no statement here assumes it silently.  It is proved elsewhere:
+`IntegralColumnPlaneClosure.integralColumnPlaneMassBound`, with the explicit
+constant `2 * 13 * (√|X| + 7)`.
+
+**Corrected 2026-09-07.**  The paragraph this replaces predicted both a
+different proof and a different obstruction: that the finite-field argument
+factors through a sum over the finite dual of a finite stage, that over `ℤ` the
+corresponding object is a Haar integral over the torus
+`IntegralDegree.finrank_degreeLE_int` identifies, and that what was missing was
+an equidistribution statement for the shear action on that torus, present in
+neither this repository nor Mathlib.  That diagnosis was wrong on the point that
+mattered.  The real obstruction was that the integral development analysed only
+the *unit* shears `x₀₁(1)` and `x₁₀(1)`, and multiplication by `1` cannot lower
+a word degree; the *generator* shears `x₀₁(ι x)` and `x₁₀(ι x)` lower it by
+exactly one, and the resulting valuation descent is characteristic-free.  No
+equidistribution statement is used anywhere in the proof.
+
+The monomial bound `norm_displacement_wordMonomial_le` below is still exactly
+what the elementary commutator calculus gives on its own, and its constant still
+grows with the degree.  Making that constant uniform in the degree is what the
+descent does.
 
 The other half of the certificate, `IsKazhdanSubset` for the root set, is also
 left as an explicit hypothesis here: it is the exponent-free class-two
@@ -101,10 +112,14 @@ theorem in the generality Ershov and Jaikin-Zapirain state it.  So the
 `A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`
 carries ONE hypothesis where the version below carries two.
 
-So the genuinely open half over `ℤ` is the character-mass half described above,
-and only that half.  It is exactly the input Ershov and Jaikin-Zapirain
-themselves import rather than prove -- Kassabov's relative property (T) for
-`(EL₂(R) ⋉ R², R²)` -- and it is in neither this repository nor Mathlib.
+**Both halves are now closed.**  The character-mass half is
+`IntegralColumnPlaneClosure.integralColumnPlaneMassBound`, and the two together
+give
+`IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT`:
+property `(T)` for `EL_n` of every finitely generated unital ring, in every
+characteristic and every rank `n ≥ 3`.  At this point in their argument Ershov
+and Jaikin-Zapirain import Kassabov's relative property (T) for
+`(EL₂(R) ⋉ R², R²)`; this repository imports nothing and proves the estimate.
 -/
 
 namespace GroupApproximation
@@ -243,11 +258,12 @@ theorem integral_controlsRootSet_of_columnPlaneMassBound
 explicit hypotheses: the plane estimate on the left, the Kazhdan-subset
 property of the root set on the right.
 
-Only the first is still open.  The second is now a theorem --
+Neither is open.  The second is
 `A2MagicExponentFree.elementary_exists_rootSet_isKazhdan`, for every ring and
 with no hypothesis at all -- so a caller should prefer
 `A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`,
-which asks only for the plane estimate. -/
+which asks only for the plane estimate -- and the plane estimate itself is
+`IntegralColumnPlaneClosure.integralColumnPlaneMassBound`. -/
 theorem integral_isKazhdanPair_of_columnPlaneMassBound
     (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
     (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
@@ -264,12 +280,12 @@ theorem integral_isKazhdanPair_of_columnPlaneMassBound
 on the same two hypotheses.  This is the statement the general
 Ershov--Jaikin-Zapirain theorem needs as its base case.
 
-**Only one of the two hypotheses is open.**  This docstring used to say both
-were.  `hroot` is now discharged for every ring by
+**Neither hypothesis is open any longer.**  This docstring used to say both
+were, and later that one was.  `hroot` is discharged for every ring by
 `A2MagicExponentFree.elementary_exists_rootSet_isKazhdan`; the one-hypothesis
 form is `A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`.
-What remains open is `hplane`, the `ColumnPlaneMassBound` over `ℤ⟨X⟩`, which is
-the input Ershov and Jaikin-Zapirain import rather than prove. -/
+`hplane`, the `ColumnPlaneMassBound` over `ℤ⟨X⟩`, is
+`IntegralColumnPlaneClosure.integralColumnPlaneMassBound`. -/
 theorem integral_hasKazhdanPropertyT_of_columnPlaneMassBound
     (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
     (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
