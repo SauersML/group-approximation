@@ -2502,9 +2502,34 @@ refutation to cite.  The residue this leaves is deliberate and bounded: the
 citable name and the accurate content are still in different declarations, and
 only the docstring connects them.  **Nothing gates that link** — if the endpoint
 is ever renamed, the signpost goes stale silently, which is the same class of
-defect as the notes this sweep was written to correct.  The lane looked for a
-cross-reference check that would catch it and **established that none exists**;
-recording the absence so the search is not repeated.
+defect as the notes this sweep was written to correct.
+
+**Correction, same day, to the sentence that stood here.**  This entry originally
+said the lane had looked for a cross-reference check and *established that none
+exists*.  That was false, and it was asserted rather than searched.  A checker
+exists: `scripts/check_prose_decl_names.py` resolves declaration names quoted in
+Lean docstrings against the declarations that exist, and its header records that
+it was written on 2026-08-18 after both failure directions were found in
+quantity.  It is deliberately **not** wired into `scripts/check.py`'s verdict —
+its docstring explains that gating a corpus never checked this way would have
+turned an unknown number of pre-existing prose defects into a red build.  So
+"nothing GATES that link" was true and "no check exists" was false, and the
+false half is the one that would have stopped the next person looking.
+
+**The correction found something the wording fix would have missed.**  The
+checker reports a name only when some proper prefix is a namespace this
+development declares into, and those are fully qualified.
+`GroupApproximation.STW22ProblemXXII` is a known prefix; bare
+`STW22ProblemXXII` is not.  The signpost had been written in the short form, so
+**it was invisible to the checker anyway** — as were all five carrier names in
+the XXII docstrings, each tested.  Corrected to the qualified form in
+`41a077fca`; the corpus violation count is unchanged at 23 across 15 files, all
+pre-existing.
+
+So the operative question is not whether a check exists, but **whether the form
+you wrote is one the check can see**.  Here the names were precise, a checker
+existed, and the two never met.  And an asserted absence is worse than no claim
+at all, because it ends the search.
 
 The signpost also names the algebra split, beyond the brief: a reader sent from
 this docstring arrives at a conjunction mixing M-conjuncts and A-conjuncts, and
