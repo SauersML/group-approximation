@@ -1,4 +1,6 @@
-# Lane `ring-b-alg` — the algebraic core of `thm:full-defect-ring`
+# Lane `ring-b-alg`
+
+## Task 1 — the algebraic core of `thm:full-defect-ring`
 
 Task: the compressor, the centralizer element, the printed defect and its
 normal generation, over an arbitrary unital ring, at rank 4 and at every rank
@@ -138,3 +140,62 @@ printed ones and are supplied elsewhere: fullness of `e` by `ring-b-end`
 (`FullDefectRing.exists_sum_eq_one_of_isSimpleRing`, `leavittFamily_full`,
 `completeMatrixFamily_full`) and property `(T)` for `EL₃(R)` and `EL_n(R)` by
 `ejz-integral`.
+
+
+## Task 2 — `prop:locally-rf-by-z-trace`, amenable extensions
+
+Assigned after task 1, when the tex owner generalized the proposition
+(`e51f655d2`) to: for every extension `1 → N → G → A → 1` of countable groups
+with `N` locally residually finite and `A` amenable, the canonical trace of
+`C*_max(N)` is quasidiagonal and the canonical trace of `C*_max(G)` is
+amenable.  Namespace for everything new: `GroupApproximation.AmenableExtensionTrace`.
+
+| commit | module | jobs |
+|---|---|---|
+| `88ba267526f1b2ca896fe61dbb53fcbf4889a5a5` | `GroupApproximation/Analysis/QuasidiagonalTraceGeneratorDense.lean` | 3184 |
+| `d4e4c824a95725de53b17fe67790699f468dede1` | `GroupApproximation/Analysis/LocallyRFQuasidiagonalTrace.lean` | 3197 |
+| `cb11520d8944b0a7cdd0615559bc2f89e8b43f24` | `GroupApproximation/Analysis/AmenableExtensionWindow.lean` | 3313 |
+| `2a7488abaf306fe8ba322a4027dac2425850c9a1` | `GroupApproximation/Analysis/AmenableExtensionAmenableTrace.lean` (+ window fix) | 3314 |
+| `17a2fc794862853a83f3895dfdade0b34ea22a29` | `GroupApproximation/Analysis/AmenableExtensionIntCorollary.lean` | 3315 |
+
+### The closed endpoints
+
+* `PrintedLocallyRFCanonicalTraceQuasidiagonal` /
+  `manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal` — clause (i).
+* `PrintedAmenableExtensionCanonicalTraceAmenable` /
+  `manuscriptPrintedAmenableExtensionCanonicalTraceAmenable` — clause (ii).
+* `PrintedAmenableExtensionTrace` / `manuscriptPrintedAmenableExtensionTrace`
+  — the printed proposition, both clauses.
+
+All three carry `#audit_closed_axioms` with the classical closure.
+
+### Three things worth knowing
+
+* Clause (i) needs asymptotic multiplicativity in **operator** norm, and the
+  corpus only had the Hilbert--Schmidt propagation.  The missing propagation is
+  `AmenableExtensionTrace.tendsto_mul_op_of_dense_generators`, landed first; it
+  reuses the existing bilinear defect lemmas and
+  `Quasidiagonal.norm_denseGeneratorDefect_sub_le`, which was already stated in
+  operator norm.
+* Clause (i) is *exact* twice over: once the right-hand generator is tested
+  nothing escapes the selected window, and a tested nonidentity element fixes
+  no selected coset because the packet kernel is normal in the stage subgroup.
+  No Følner set appears in clause (i) at all.
+* `extModel` must **not** be `@[reducible]`.  Reducibility makes instance search
+  unfold it to the underlying product and then fail to find `DecidableEq`,
+  because the Følner factor lives in a quotient group with no decidable
+  equality.  With the model opaque, the `FiniteModel` instances apply and the
+  classical equality packaged in the model is the one used.
+
+### Reused rather than rebuilt
+
+The printed section `σ` and cocycle `b(g,x)` are
+`SoficByAmenablePermanence.sect` and `esCocycleN`; the Følner set is
+`AmenableActionSofic.exists_folner` at tolerance `1/(n+1)`; the residual packet
+and finite quotient are `ResidualFinitePacket.Packet` and
+`LocallyRFByIntAmenableTrace.exists_packet_of_fg`; the compression and its
+escape estimate are `QuasiRegularCompression`.  No existing module was edited.
+
+### Open obligations
+
+None.
