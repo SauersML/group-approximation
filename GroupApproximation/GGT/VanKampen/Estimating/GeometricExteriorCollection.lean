@@ -22,7 +22,7 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 
 namespace Embedded.GeometricCandidate
 
-def exteriorAt (selected : Finset (GeometricCandidate D eps Delta))
+noncomputable def exteriorAt (selected : Finset (GeometricCandidate D eps Delta))
     (i : Fin Delta.rCellCount) : Finset (GeometricCandidate D eps Delta) :=
   (ofKind selected false).filter fun a => a.2.source = i
 
@@ -37,7 +37,8 @@ theorem card_exterior_sum (selected : Finset (GeometricCandidate D eps Delta))
   intro a ha
   have ht : a.2.target ≠ some i := by
     rw [target_eq_none_of_mem_ofKind_false ha]
-    exact Option.none_ne_some
+    intro h
+    cases h
   simp only [card_cellArcDarts, if_neg ht, Nat.add_zero]
 
 theorem exists_large_exterior_collection (selected : Finset (GeometricCandidate D eps Delta))
