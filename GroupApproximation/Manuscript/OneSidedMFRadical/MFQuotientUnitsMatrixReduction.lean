@@ -4,7 +4,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientMatrices
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
 
 /-!
-# `AGPMatrixReduction` is closed
+# Matrix reduction and the supported-unit step are closed
 
 `non_mf_groups_exist.tex`, inside the proof of `thm:mf-quotient-units`:
 
@@ -13,9 +13,11 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
 
 `MFQuotientUnits.lean` quoted that sentence as the hypothesis
 `AGPMatrixReduction`.  `Algebra/PurelyInfiniteSimpleMatrix.lean` proves it, so
-this module discharges the hypothesis wherever the printed theorem took it, and
-`thm:mf-quotient-units` now rests on **three** Ara--Goodearl--Pardo propositions
-rather than four.
+this module discharges that hypothesis wherever the printed theorem took it.
+It also exports the supported-unit proof and the abstract abelianization
+construction. The new all-rank group-theoretic entry point therefore has only
+the Menal--Moncasi reduction left as input; the earlier three-input entry
+points remain available to existing callers.
 
 Of the sentence's three adjectives, all three are now the tree's own:
 
