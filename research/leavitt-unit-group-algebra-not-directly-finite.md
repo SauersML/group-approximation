@@ -249,6 +249,18 @@ they do not supply unbounded coherent matrix capacity at the fixed e.
 
 ## Cross-atlas affine update (2026-09-07)
 
+An additional computational translation is now available, with a change
+of group made explicit. In
+`certificate-linear-counterexamples-compile-to-lamp-algebras`, an
+injective nonsurjective full-shift rule with certificate-controlled linear
+data compiles into a prime-field matrix inverse pair on a finite-abelian
+regular wreath product over the source group. This permits arbitrary
+finite certificate predicates and data mixing; compactness constructs a
+local linear decoder, and Fourier lamp idempotents encode the predicates.
+It is a possible route to the headline conjectures on an enlarged group,
+not a solution of this fixed-Q claim. No source counterexample has yet
+been constructed.
+
 `binary-leavitt-unit-group-four-generated` replaces the twelve individual
 atlas transvections by four explicit units generating the full group.  After
 forcing these four terms, `leavitt-cross-atlas-eleven-term-s0-lift` constructs

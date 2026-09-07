@@ -74,3 +74,21 @@ outside this finite factorization, such as a rule combining several input
 values whose global injectivity is not inherited stage by stage. This is
 a remaining design requirement, not a constructed counterexample or a
 proof that every computational route is impossible.
+
+There is now a precise translation for one larger construction class.
+`certificate-linear-counterexamples-compile-to-lamp-algebras` allows
+arbitrary local certificate predicates to choose linear combinations of
+data. If such a rule is injective and nonsurjective on the full shift,
+`certificate-linear-automata-have-local-linear-decoders` supplies a local
+linear decoder, and finite Fourier identities turn the pair into
+`B A=I`, `A B!=I` over a prime-field group algebra of a regular finite-lamp
+wreath product over G. For characteristic two, cubic lamps suffice and
+the data matrix size doubles. This would reach Gottschalk on G and the
+finite-field algebraic obstruction on the larger group; it is not a proof
+of the Kaplansky claim for G itself.
+
+The remaining construction problem is to specify the coefficient predicates
+and prove injectivity for every malformed certificate while retaining one
+nonsurjective fiber. The translation lets that problem be designed as a
+computer with conditional linear updates and then encoded algebraically.
+No such update rule is currently exhibited.
