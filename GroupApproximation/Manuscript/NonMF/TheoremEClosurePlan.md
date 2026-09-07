@@ -408,6 +408,17 @@ assert exterior uniqueness simultaneously at every cell of an arbitrary
 distinguished family. Keep that selected-cell descent explicit when connecting
 the counting lemmas to the final single-region Greendlinger conclusion.
 
+`GeometricExteriorCollection` now proves the intermediate source count.
+`exteriorAt` retains every exterior witness at the selected cell, and its
+sum of arc lengths is exactly that cell's exterior dart count. The strict
+Lemma 62 budget and the planar interior estimate yield a cell with total
+exterior degree greater than `1 - 11 * mu`, without exterior uniqueness.
+The required stronger threshold `1 ≤ mu * sqrt rho` is constructed together
+with all `OsinUnboundScale` inequalities at a fixed epsilon. This numerical
+strengthening changes no relator small-cancellation hypothesis. The final
+selected-cell descent must still construct one region of degree greater than
+`1 - 13 * mu`; the historical conditional single-region consumer is retained.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
