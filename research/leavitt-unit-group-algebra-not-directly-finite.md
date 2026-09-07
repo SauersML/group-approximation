@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
   - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
   - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
+  - research/artifacts/kaplansky-cross-atlas-affine-lift-2026-09-07.md
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its
@@ -199,3 +200,44 @@ The current target is therefore precise: solve the two-packet equation
 subject to odd intersection, lift a full Leavitt family into the unit corner,
 or construct a one-sided inverse pair by a genuinely different finite-support
 mechanism.  The tempting `e~f` branch is impossible and must not be reused.
+
+## Cross-atlas affine update (2026-09-07)
+
+`binary-leavitt-unit-group-four-generated` replaces the twelve individual
+atlas transvections by four explicit units generating the full group.  After
+forcing these four terms, `leavitt-cross-atlas-eleven-term-s0-lift` constructs
+an exact eleven-term lift of `s_0`; its seven correction terms are minimum in
+the anchored radius-three universe.  Unlike the support-three lift, its
+support is not trapped in a directly finite virtually free subgroup: it
+generates all of `Q`.
+
+The accompanying joint solver fixes an affine lift `B` of `t_0` and imposes
+both `BA=1` in the literal group algebra and `evaluation(A)=s_0` in one exact
+linear system.  A hit would be automatically strict after reversal, by
+`leavitt-direct-finiteness-failure-from-left-invertible-lift`.  What the
+searches found is recorded, negatively, in
+`eleven-term-s0-lift-has-no-radius-four-left-inverse`: no partner in the
+radius-four ball for the eleven-term `A`, none for the displayed five-term
+mixed-chart `B`, and none in the radius-three ball for the superseded
+25-term lift.  **These are bounded fences, not a solution and not an
+obstruction** — and unlike `leavitt-rank-three-lift-has-no-one-sided-inverse`
+they cannot be upgraded, precisely because the support now generates all of
+`Q` and `subgroup-supported-one-sided-inverse-rigidity` has nothing to bite
+on.  Losing the unbounded no-go is the price of escaping it.
+
+`recursive-quine-route-to-kaplansky-is-closed` retires two classes of attack
+at once: a candidate supported in the LEF two-compressor core or in the
+locally finite recursive packet tower is dead at any support, and a
+reverse-Kleene compiler for direct finiteness exists exactly when a
+counterexample does, so the fixed point cannot manufacture one.  Self-reference
+is a scheduler here, not an algebraic amplifier.
+
+**Do not search these again.**  The support-three lift and its corner
+compression (virtually free support), the locally finite recursive packets,
+symmetric compressor sums, the `e ~ f` Murray--von Neumann branch, and blind
+growth of the partner universe by word radius have all failed structurally
+rather than for want of compute.  The next exact gate should vary both affine
+factors while keeping a literal cross-atlas relation, certify the support
+subgroup of the `t_0` lift to be `Q` rather than merely mixed-chart, grow the
+`A`-support universe by multiplication-collision class instead of word radius,
+and carry blocking clauses learned from the failed Gaussian systems.
