@@ -1,5 +1,11 @@
 # Lemma 2 closes: hres, hclass, hsq, and an unconditional `not_problemLIX` (2026-09-07)
 
+Corrected 2026-09-07, same day, after `aa9ba0148` landed the reader-facing
+wrapper and removed an internal declaration this file first cited (see "What
+is now landed" below). Every fact in this revision was read at `origin/main`
+fetch `77e050e10059e619e5c0c59c0e7cafbdf6a58374`; per the fleet's SHA-stamping
+rule, treat anything below not carrying its own SHA as read at that fetch.
+
 Cross-lane campaign summary, not a per-lane report (`README.md`'s four-section
 schema is per-lane; this is written by `lix-meta` to record the closing wave
 across `lix-hres`, `lix-hclass`, `lix-hsq` and `cs-endpoint`/wiring). Every
@@ -30,24 +36,41 @@ separate declaration, `lix_topClass_ne_zero_of_hsq` in
 
 `CharClass/LemmaTwoOfHsqHresHclass.lean`, commit `1c3237f2c`, threads all
 three into `lix_topClass_ne_zero_of_three` and `LemmaTwoOddNonvanishing.lean`'s
-`lemmaTwoHolds_of_oddNonvanishing`, producing, with **zero hypotheses**:
+`lemmaTwoHolds_of_oddNonvanishing`, producing, with **zero hypotheses**,
+`GroupApproximation.CharClass.lemmaTwoHolds : LIX.LemmaTwoHolds` -- and, at
+that commit, its own `CharClass.not_problemLIX` alongside it.
+
+## What is now landed (corrects the paragraph above)
+
+Commit `aa9ba0148` ("STW Problem LIX: answered unconditionally --
+not_problemLIX and the separable form") removed `CharClass.not_problemLIX`:
+wiring `ProblemLIX.lean` to import `LemmaTwoOfHsqHresHclass.lean` for
+`lemmaTwoHolds`, while that file also imported `ProblemLIX.lean` back to
+state its own `not_problemLIX`, is a cycle -- caught by the probe. The fix is
+directional: `LemmaTwoOfHsqHresHclass.lean` supplies only `lemmaTwoHolds` now,
+and `ProblemLIX.lean` is the sole place `¬ ProblemLIX` is derived from it,
+proving, with **zero hypotheses each**:
 
 ```lean
-theorem GroupApproximation.CharClass.lemmaTwoHolds : LIX.LemmaTwoHolds
-theorem GroupApproximation.CharClass.not_problemLIX : ¬ NinetyNineProblems.ProblemLIX
+theorem GroupApproximation.NinetyNineProblems.not_problemLIX : ¬ ProblemLIX
+theorem GroupApproximation.NinetyNineProblems.exists_separable_simple_unital_not_k1Inj :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
 ```
 
 `not_problemLIX` here is the negation of exactly STW Problem LIX as stated in
 `Manuscript/NinetyNineProblems/ProblemLIX.lean`
 (`∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A → K1Inj A`).
-It is kept at `#audit_axioms` rather than `#audit_closed_axioms` in this file
-deliberately (documented in the file's own module docstring: the closed gate
-would in fact accept it on syntactic grounds, but the one point of
-`#audit_closed_axioms` certification for this result is reserved for the
-reader-facing wrapper in `ProblemLIX.lean` itself) -- **not** because anything
-is still conditional. Full research-graph record of the claim and its proof
-chain: `research/stw59-lean-witness-simple-unital-not-k1-injective.md` and
-`research/stw59-lean-witness-simple-unital-not-k1-injective-proof.md`.
+Both declarations carry `#audit_closed_axioms`, landed at `aa9ba0148`, whose
+own commit message records the axiom lines read by hand off the raw remote
+log (per standing instruction for this one irreversible step) as exactly
+`[propext, Classical.choice, Quot.sound]` for each. `CharClass.lemmaTwoHolds`
+stays at `#audit_axioms` deliberately -- the closed gate would accept it on
+syntactic grounds too, but the file's own docstring reserves the one point of
+`#audit_closed_axioms` certification for these two reader-facing statements.
+Full research-graph record of the claim and its proof chain, including this
+same correction: `research/stw59-lean-witness-simple-unital-not-k1-injective.md`
+and `research/stw59-lean-witness-simple-unital-not-k1-injective-proof.md`.
 
 ## Wiring
 
@@ -94,16 +117,10 @@ cleared, per `cs-endpoint.md`.
 
 ## What is still open
 
-The reader-facing wrapper `GroupApproximation.NinetyNineProblems.not_problemLIX`
-in `Manuscript/NinetyNineProblems/ProblemLIX.lean`, intended to carry
-`#audit_closed_axioms` for the STW-99-problems endpoint roster, was not yet
-landed as of this writing -- `cs-endpoint.md` records it HELD pending a
-from-clean-export fresh compile of `lixHsq`. This is bookkeeping, not open
-mathematics: `CharClass.not_problemLIX` above already proves the same
-statement with zero hypotheses, and the wrapper is a one-line application of
-it under a different audit macro. Lane `lix-wire` owns landing it.
+Nothing about the wrapper: it landed at `aa9ba0148` (see above), closing what
+this file's first revision recorded as pending.
 
-Also still open, and out of scope for the LIX answer itself (see
+Still open, and out of scope for the LIX answer itself (see
 `notes/LIX_FULL_PROGRAM_2026-09-05.md` §0): `K1(A) = 0` for the counterexample
 algebra, and the exact order of the witness unitary in `U(A)/U0(A)`. Neither
 is computed anywhere in this chain.

@@ -1,0 +1,18 @@
+research/notes: correct staleness — CharClass.not_problemLIX was removed at aa9ba0148
+
+My prior landing (d69ba838e) cited GroupApproximation.CharClass.not_problemLIX
+as the zero-hypothesis closure of ProblemLIX, current at commit 1c3237f2c. In
+the interval before this landing, aa9ba0148 landed the reader-facing
+NinetyNineProblems.not_problemLIX and exists_separable_simple_unital_not_k1Inj
+(both zero hypotheses, both #audit_closed_axioms) and, to fix the import cycle
+that created, deleted CharClass.not_problemLIX -- that file now proves only
+lemmaTwoHolds.
+
+Corrects the claim node, its route node, and the campaign note to cite the
+now-landed NinetyNineProblems declarations instead, records the deleted
+declaration's history rather than silently dropping it, and stamps every
+current-state claim with the origin/main SHA it was read at (fetch
+2466fad6b99cccb74e827ba55e92130c5d88bd62), per the fleet's new SHA-stamping rule. bin/cairn check clean.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

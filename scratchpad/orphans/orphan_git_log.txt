@@ -1,0 +1,101 @@
+GroupApproximation/AlgTop/BundleCalculusInvariant.lean | 2026-09-05 16:27:34 -0400 bundle calculus: prove homotopy invariance once for every unitary invariant
+GroupApproximation/AlgTop/BundleCalculusModelBridge.lean | 2026-09-05 16:38:52 -0400 bundle calculus: the bridge -- the two ambient models are one star algebra
+GroupApproximation/AlgTop/BundleCalculusProjection.lean | 2026-09-05 16:15:22 -0400 bundle calculus: drop the duplicate MvN vocabulary, and order the section algebra
+GroupApproximation/AlgTop/BundleCalculusPullback.lean | 2026-09-05 16:21:27 -0400 bundle calculus: pullback is free, and homotopic maps pull back isomorphic bundles
+GroupApproximation/AlgTop/BundleCalculusTransport.lean | 2026-09-05 16:15:22 -0400 bundle calculus: drop the duplicate MvN vocabulary, and order the section algebra
+GroupApproximation/AlgTop/BundleCalculusUnitSection.lean | 2026-09-05 16:49:25 -0400 bundle calculus: make rankOneProj mergeable with STW59's by construction
+GroupApproximation/AlgTop/ChernEvenTopClass.lean | 2026-09-05 16:39:50 -0400 chern: export hV packaged -- c_k(1^n + H) = 0 above the rank of H
+GroupApproximation/AlgTop/ChernLineRoots.lean | 2026-09-05 16:27:01 -0400 chern: power sums of a split class, and two rewrites that would not have matched
+GroupApproximation/AlgTop/ChernMap.lean | 2026-09-05 16:24:25 -0400 chern: restore the two modules MappingTorusParity imports, and add naturality
+GroupApproximation/AlgTop/ChernNewtonDischarge.lean | 2026-09-05 16:19:35 -0400 chern: ChernSeries, ChernSplitNewton, ChernEvenTopClass, ChernSquareZeroIdeal are green
+GroupApproximation/AlgTop/ChernNewtonIdentity.lean | 2026-09-05 16:27:01 -0400 chern: power sums of a split class, and two rewrites that would not have matched
+GroupApproximation/AlgTop/ChernNewtonSquareZero.lean | 2026-09-05 16:24:25 -0400 chern: restore the two modules MappingTorusParity imports, and add naturality
+GroupApproximation/AlgTop/ChernParityCoefficient.lean | 2026-09-05 16:24:25 -0400 chern: restore the two modules MappingTorusParity imports, and add naturality
+GroupApproximation/AlgTop/ChernPolynomialModel.lean | 2026-09-05 16:37:35 -0400 chern: a worked instantiation of the layer at MvPolynomial, as an interface check
+GroupApproximation/AlgTop/ChernPowerSums.lean | 2026-09-05 16:19:35 -0400 chern: ChernSeries, ChernSplitNewton, ChernEvenTopClass, ChernSquareZeroIdeal are green
+GroupApproximation/AlgTop/ChernSeries.lean | 2026-09-05 16:19:35 -0400 chern: ChernSeries, ChernSplitNewton, ChernEvenTopClass, ChernSquareZeroIdeal are green
+GroupApproximation/AlgTop/ChernSplitNewton.lean | 2026-09-05 16:11:35 -0400 audit: sweep 9 -- autoImplicit is on across all 4331 files
+GroupApproximation/AlgTop/ChernSquareZeroIdeal.lean | 2026-09-05 16:19:35 -0400 chern: ChernSeries, ChernSplitNewton, ChernEvenTopClass, ChernSquareZeroIdeal are green
+GroupApproximation/AlgTop/CochainLeibniz.lean | 2026-09-05 16:19:03 -0400 algtop: fix the Leibniz sign-distribution step; add the free-submodule theorem
+GroupApproximation/AlgTop/ComplexProjectiveChart.lean | 2026-09-05 16:48:52 -0400 algtop: fix the six real errors the first full CP^n probe found
+GroupApproximation/AlgTop/ComplexProjectiveCover.lean | 2026-09-05 16:48:52 -0400 algtop: fix the six real errors the first full CP^n probe found
+GroupApproximation/AlgTop/ComplexProjectiveHyperplane.lean | 2026-09-05 16:45:17 -0400 algtop: pin the element types in the padded matrix of the hyperplane inclusion
+GroupApproximation/AlgTop/ComplexProjectiveProduct.lean | 2026-09-05 16:48:52 -0400 algtop: fix the six real errors the first full CP^n probe found
+GroupApproximation/AlgTop/ComplexProjectivePuncture.lean | 2026-09-05 16:48:52 -0400 algtop: fix the six real errors the first full CP^n probe found
+GroupApproximation/AlgTop/ComplexProjectivePunctureRetract.lean | 2026-09-05 16:37:28 -0400 algtop: drop two unused interval hypotheses from the CP^d deformation
+GroupApproximation/AlgTop/ComplexProjectiveSphere.lean | 2026-09-05 16:34:59 -0400 algtop: split the model-independent sphere input into its own module
+GroupApproximation/AlgTop/CrossProduct.lean | 2026-09-05 16:03:56 -0400 algtop: the external cross product on singular cohomology
+GroupApproximation/AlgTop/CupAssoc.lean | 2026-09-05 16:12:47 -0400 algtop: harden four proof steps against dependent-rewrite and self-rewrite traps
+GroupApproximation/AlgTop/CupCommutativitySign.lean | 2026-09-05 16:49:58 -0400 algtop: the sign algebra of the vertex-reversal operator
+GroupApproximation/AlgTop/CupProduct.lean | 2026-09-05 16:47:52 -0400 algtop: second probe -- Basis is Module.Basis at this pin, and rw does not see through the IsCocycle abbrev
+GroupApproximation/AlgTop/EulerLocalModel.lean | 2026-09-05 16:13:54 -0400 algtop: move the Euler lane's chart vocabulary out of found-cpn-cohomology's way
+GroupApproximation/AlgTop/EulerParityBridge.lean | 2026-09-05 16:26:13 -0400 algtop: use Mathlib's Nat.not_even_one rather than a local decide
+GroupApproximation/AlgTop/EvenCohomologyRing.lean | 2026-09-05 16:44:37 -0400 algtop: fix an ill-typed left-unitality statement in the even reindex
+GroupApproximation/AlgTop/FreeSubmodulePID.lean | 2026-09-05 16:47:52 -0400 algtop: second probe -- Basis is Module.Basis at this pin, and rw does not see through the IsCocycle abbrev
+GroupApproximation/AlgTop/Kronecker.lean | 2026-09-05 16:40:26 -0400 algtop: make the Kronecker linearity proofs order-independent
+GroupApproximation/AlgTop/ManuscriptSectionZeroCount.lean | 2026-09-05 16:23:25 -0400 algtop: port the Euler lane's CP section onto the surviving projection model
+GroupApproximation/AlgTop/MappingTorusParity.lean | 2026-09-05 16:35:59 -0400 LIX Lemma 3: discharge c_r(V) = 0 without the manuscript's dimension count
+GroupApproximation/AlgTop/MappingTorusParityCore.lean | 2026-09-05 16:24:55 -0400 LIX Lemma 3: prove the mapping-torus parity without the multinomial expansion
+GroupApproximation/AlgTop/MappingTorusSectionZeros.lean | 2026-09-05 16:06:34 -0400 algtop: harden the Euler-half proofs, and withdraw the dual-line amendment
+GroupApproximation/AlgTop/OddDegreeOfHomeomorphism.lean | 2026-09-05 16:46:05 -0400 algtop: ext is the wrong tactic on a sphere subtype -- use ContinuousMap.ext
+GroupApproximation/AlgTop/SingularChainFree.lean | 2026-09-05 16:47:52 -0400 algtop: second probe -- Basis is Module.Basis at this pin, and rw does not see through the IsCocycle abbrev
+GroupApproximation/AlgTop/SingularCohomology.lean | 2026-09-05 16:47:52 -0400 algtop: second probe -- Basis is Module.Basis at this pin, and rw does not see through the IsCocycle abbrev
+GroupApproximation/AlgTop/Spheres.lean | 2026-09-05 16:51:30 -0400 algtop: the sphere generator and the normalized top-degree pairing
+GroupApproximation/AlgTop/SteenrodCut.lean | 2026-09-05 19:33:49 -0400 LIX: snapshot of every lane's in-flight edits at the 18:52 Opus session limit
+GroupApproximation/AlgTop/UniversalCoefficients.lean | 2026-09-05 16:44:30 -0400 algtop: complete the universal coefficient theorem with the injectivity half
+GroupApproximation/AlgTop/WuBinomialGap.lean | 2026-09-05 18:03:12 -0400 LIX: full-program note, lane-report directory, and the fleet's in-flight edits at handover
+GroupApproximation/Analysis/ChernCommonZeroBridge.lean | 2026-08-31 00:41:06 -0500 Land CP^N common-zero lane: rank-one proved, general case one named Prop
+GroupApproximation/Analysis/CuntzPedersenJordanMatrixTest.lean | 2026-08-31 01:17:00 -0500 Third probe-fix round: calc le_rfl step, push Not, explicit singleton membership
+GroupApproximation/Analysis/CuntzPedersenJordanModelTest.lean | 2026-08-31 01:17:00 -0500 Third probe-fix round: calc le_rfl step, push Not, explicit singleton membership
+GroupApproximation/Analysis/FiniteDimensionalFactorialTraceCore.lean | 2026-08-30 19:55:13 -0500 Fix XXII gap-value quantifier in Lean
+GroupApproximation/Analysis/LIXObstructionContradiction.lean | 2026-09-05 16:49:52 -0400 LIX: the closing contradiction of Lemma 2, against the green parity endpoint
+GroupApproximation/Analysis/LIXObstructionLowPowerSums.lean | 2026-09-05 17:50:32 -0400 LIX: fix the two errors from the lead batch probe
+GroupApproximation/Analysis/STW22AntipodalFactorialPair.lean | 2026-09-07 02:54:44 -0400 snapshot: in-flight lane work from the shared tree
+GroupApproximation/Analysis/STW22AntipodalGaugeFactorial.lean | 2026-09-05 16:44:24 -0400 xxii: pin every instance argument in the antipodal instantiation
+GroupApproximation/Analysis/STW22CounterexampleAssemblyModelTest.lean | 2026-08-31 01:44:07 -0500 push Not in re-cut assembly model test
+GroupApproximation/Analysis/STW22CounterexampleCompactnessRoute.lean | 2026-08-31 15:50:11 -0500 document total canonical trace extension
+GroupApproximation/Analysis/STW22FactorialCore.lean | 2026-09-05 16:38:50 -0400 xxii: three probe fixes in the factorial core
+GroupApproximation/Analysis/STW22FibreEvaluation.lean | 2026-08-31 01:32:44 -0500 FibreEvaluation: import CStarAlgebra.ContinuousLinearMap for the CLM StarRing
+GroupApproximation/Analysis/STW22TraciallyCompletePair.lean | 2026-09-05 16:36:25 -0400 xxii: route realize 0 = 0 through the isolated defeq lemma
+GroupApproximation/Analysis/SequentialGroupColimitDirectLimit.lean | 2026-09-05 16:23:56 -0400 thirdparty: vendor a generic 2,344-module slice of Anthropic's FLT formalization
+GroupApproximation/GGT/DGOLemma421FourGon.lean | 2026-09-02 01:16:59 -0500 lean: build endpoint-close DGO quadrilateral
+GroupApproximation/GGT/DGOProposition414SecondSeparationHalfWord.lean | 2026-09-02 10:14:38 -0500 lean: isolate a retained wrapped source against an arbitrary half-word letter
+GroupApproximation/GGT/HullSCLemma44PrefixKernelCutConstruction.lean | 2026-09-02 03:26:17 -0500 Add trivial prefix cone cut model
+GroupApproximation/GGT/KazhdanHypGirthEightGenericProducers.lean | 2026-09-02 03:38:13 -0500 Construct concrete double seam geometry
+GroupApproximation/GGT/KazhdanHypGirthEightGeodesicWord.lean | 2026-09-02 03:38:07 -0500 Add Cayley geodesic word certificate
+GroupApproximation/KTheory/Basic.lean | 2026-09-05 16:37:14 -0400 ktheory: do not claim in prose what the file does not prove
+GroupApproximation/KTheory/Functorial.lean | 2026-09-05 16:18:44 -0400 ktheory: make the block entry lemmas simp, and add functoriality in the coefficients
+GroupApproximation/KTheory/Spaces.lean | 2026-09-05 16:45:23 -0400 ktheory: hand-build the pullback star ring hom instead of coercing
+GroupApproximation/ThirdParty/FLT/Definitions/Def_Mathlib_Algebra_IsDirectLimit.lean | 2026-09-05 16:22:27 -0400 root: fix import placement; trim vendored FLT from 2344 files to the 1 that is used
+GroupApproximation/ThirdParty/HamSandwich.lean | 2026-08-31 22:20:56 -0500 split deleted-north RP deformation chain
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4RPnTopClassTransfer.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferAPI.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferNonvanishing.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferNonvanishingUnconditional.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferNonzero.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferTopClass.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/Branch4TransferWitness.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/Branch34OddMapFixesTopClassAssembly.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/Branch3RPnGeneratorIdentificationFromCellular.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnActualAlphaPowerEqGeneratorNoCup.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnActualAlphaPowersGenerate.lean | 2026-09-05 16:15:47 -0400 hamsandwich: supply two imports autoImplicit was hiding
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCellularCochain.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCellularCupProduct.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCellularDiagonal.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCellularFiltration.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCupProductNonvanishing.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCupProductNonvanishingTarget.lean | 2026-09-05 16:40:11 -0400 hamsandwich: second v4.32 wave on the four still-red RPn modules
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCupProductStructureConstruction.lean | 2026-09-05 16:19:18 -0400 hamsandwich: port RPnCupProductStructureConstruction to v4.32
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnCupProductStructureFinal.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnFiltrationCofiber.lean | 2026-09-05 16:40:11 -0400 hamsandwich: second v4.32 wave on the four still-red RPn modules
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnGeneratorCupNoCup.lean | 2026-09-05 16:40:11 -0400 hamsandwich: second v4.32 wave on the four still-red RPn modules
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnGeneratorIdentification.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnHomologyNotation.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnSingularCellularCupComparison.lean | 2026-08-31 13:58:55 -0500 land local work: Hull SC separation-2 rework, STW22 nuclear layer, HamSandwich SphereOddDegree port, manuscript sync
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnTopClassTransferAssembly.lean | 2026-09-05 16:15:47 -0400 hamsandwich: supply two imports autoImplicit was hiding
+GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnTopClassTransferNonzero.lean | 2026-09-05 16:40:11 -0400 hamsandwich: second v4.32 wave on the four still-red RPn modules
+GroupApproximation/Topology/AntipodalObstructionFromOddDegree.lean | 2026-09-05 15:53:16 -0400 topology: gate both antipodal endpoints with #audit_closed_axioms
+GroupApproximation/Topology/OddMapNormalization.lean | 2026-09-05 15:50:34 -0400 topology: reduce CommonZeroProperty to the complex-coordinate Borsuk--Ulam theorem
+GroupApproximation/Topology/TautologicalAntipodal.lean | 2026-08-31 00:45:04 -0500 Land TautologicalAntipodal: Borsuk-Ulam joint for the common-zero lane
+GroupApproximation/Topology/TautologicalCommonZero.lean | 2026-08-31 01:03:22 -0500 Fix four compile-probe errors in XXII modules
+GroupApproximation/Topology/TautologicalLineWinding.lean | 2026-08-31 01:18:05 -0500 Structural fix for LineWinding whnf timeout (no maxHeartbeats)

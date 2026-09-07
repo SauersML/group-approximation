@@ -42,6 +42,44 @@ This module assembles the two printed statements of Theorem C.  Every theorem
 used by the assembly has its own declaration, and unfinished proofs remain
 ordinary explicit proof holes until their Lean implementations are complete.
 
+## The four `sorry`s must stay literal `sorry` tokens
+
+This is the only file in the corpus with `sorry`s, and they carry more weight
+than ordinary debt.  All four reach both printed endpoints, and one of them,
+`estimatingUnboundOutput`, stands for a statement **this repository disproves**:
+`Estimating/UnboundSmallMuCounterexample.not_estimatingUnboundOutputStatement`
+and `Estimating/UnboundConjugateCounterexample`'s twin both prove
+`¬ EstimatingUnboundOutputStatement.{0, 0, 0}`, independently, at the same
+universes, in files that are themselves in the root import closure and contain
+no `sorry` token.  So the environment already contains
+`not_estimatingUnboundOutputStatement estimatingUnboundOutput : False` modulo
+`sorryAx`.  Lean is not unsound and the corpus is not inconsistent — `sorryAx`
+is precisely what absorbs this — but that hole can never be filled at its
+present type, by anyone.
+
+**Do not convert any of these to an unsolved goal, and do not `set_option
+maxHeartbeats` or otherwise coax a tactic into "closing" one.**  An unsolved
+goal is discharged by `sorryAx` with **no literal token in the source**, which
+both the landing gate's lexical scan and a `grep` for `sorry` are blind to; a
+refuted claim would then be held behind a gate that cannot see it.  The literal
+token is the only thing keeping this file honest.
+
+## What "the corpus has four `sorry`s and is otherwise clean" understates
+
+That sentence is true and its significance is not what it sounds like.  This
+module is reachable from the root (`GroupApproximation.lean`), and
+`MFRecognition.SeedFromTheoremC` defines the paper's group `E` by `.choose` from
+`manuscriptTorsionFreeFullMFRadical_openAdmissions`.  So the four holes are
+load-bearing for a second lane, and one of them is not debt awaiting a proof —
+it is a contradiction being held at arm's length.  Counting them alongside
+ordinary open lemmas misreports the state of the development.
+
+Three gates would flag this and none of them bites today:
+`scripts/TheoremCCompletionAudit.lean` applies `#audit_closed_axioms` to both
+endpoints but is not a `lake` root and is not run by CI; the source-side
+`scripts/check_non_mf_unconditional.py` rejects `sorry` only under `--strict`,
+which CI does not pass; and that CI step is `continue-on-error: true`.
+
 ## The Chiodo field is no longer one of them
 
 `ChiodoOfHigman.chiodo_of_omega` proves Chiodo's Theorem 3.10 from Higman's
@@ -449,16 +487,28 @@ theorem literatureInputs : LiteratureInputs :=
     minasyanOsin := minasyanOsin
     hullCommonQuotient := hullCommonQuotient }
 
-/-! ## Theorem C, closed -/
+/-! ## Theorem C, assembled over four open admissions -/
 
-/-- **Theorem C (`thm:torsion-free`), in radical form, as a closed
-declaration**. -/
-theorem manuscriptTorsionFreeFullMFRadical_closed : PrintedTorsionFreeFullMFRadical :=
+/-- **Theorem C (`thm:torsion-free`), in radical form, assembled — NOT closed.**
+
+The suffix is `_openAdmissions` and not `_closed` because this declaration
+depends, through `literatureInputs` and `TorsionFree.hullInputs`, on all four of
+this file's `sorry`s: `hullLemma44FamilyInclusionJoint`,
+`estimatingSelectionConstruction`, `estimatingUnboundOutput` and
+`kotowskiOllivier`.  It was named `_closed` until 2026-09-07, and
+`MFRecognition.SeedFromTheoremC` reads it by name to define the paper's `E`, so
+the old name asserted to every reader and every by-name audit that Theorem C was
+proved when it is not.
+
+`estimatingUnboundOutput` in particular is **refuted**, so this declaration can
+never be closed on its present route; see this module's header. -/
+theorem manuscriptTorsionFreeFullMFRadical_openAdmissions : PrintedTorsionFreeFullMFRadical :=
   manuscriptTorsionFreeFullMFRadical literatureInputs TorsionFree.hullInputs
 
-/-- **Theorem C, in the simplified printed statement, as a closed
-declaration**. -/
-theorem manuscriptTorsionFreeSimplified_closed : PrintedTorsionFreeSimplified :=
+/-- **Theorem C, in the simplified printed statement, assembled — NOT closed.**
+Same four open admissions as the radical form, reached by the same two input
+bundles. -/
+theorem manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimplified :=
   manuscriptTorsionFreeSimplified literatureInputs TorsionFree.hullInputs
 
 end TheoremC

@@ -13,8 +13,13 @@ import GroupApproximation.Sofic.CDEOperatorMF
 > MF radical is not MF.  Fix one finite presentation code `P₋` for this group.
 
 This module follows the printed proof literally.  `E` is the group of
-Theorem C (`TheoremC.manuscriptTorsionFreeFullMFRadical_closed`, closed on
-the explicit inputs of `TheoremCAssembly`); it is nontrivial because it is
+Theorem C (`TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions`), which
+is **not closed**: it rests on the four `sorry`s of `TheoremCAssembly`, one of
+which (`estimatingUnboundOutput`) is refuted, so `E` is a group this development
+does not yet have.  This docstring said "closed on the explicit inputs of
+`TheoremCAssembly`" until 2026-09-07, which was false and was read off the
+theorem's own former name.  Everything below is therefore conditional, and
+`E`'s existence is exactly as open as Theorem C is; it is nontrivial because it is
 acylindrically hyperbolic; it is not MF because its MF radical is everything;
 and `seedCodeC` is one finite presentation code for it, chosen by the adequacy
 of the coding (`exists_code_mulEquiv`).
@@ -66,9 +71,9 @@ open PresentationCodes
 noncomputable section
 
 /-- **The paper's `E`**: the group of Theorem C. -/
-def E : Type := manuscriptTorsionFreeFullMFRadical_closed.choose
+def E : Type := manuscriptTorsionFreeFullMFRadical_openAdmissions.choose
 
-instance instGroupE : Group E := manuscriptTorsionFreeFullMFRadical_closed.choose_spec.choose
+instance instGroupE : Group E := manuscriptTorsionFreeFullMFRadical_openAdmissions.choose_spec.choose
 
 /-- The printed clauses of Theorem C, at `E`. -/
 theorem E_spec :
@@ -79,7 +84,7 @@ theorem E_spec :
         Nontrivial L → manuscriptCoronaMFResidual L = ⊤) ∧
       (∀ (L : Type) (_ : Group L) (r : E →* L),
         Function.Surjective r → Nontrivial L → ¬ IsOperatorMF L) :=
-  manuscriptTorsionFreeFullMFRadical_closed.choose_spec.choose_spec
+  manuscriptTorsionFreeFullMFRadical_openAdmissions.choose_spec.choose_spec
 
 instance instFinitelyPresentedE : Group.IsFinitelyPresented E := E_spec.2.1
 

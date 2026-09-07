@@ -11,8 +11,8 @@ It does not claim that the formalization is complete.
 Both existing endpoints in `TheoremCAssembly.lean` must pass
 `#audit_closed_axioms` without changing their advertised propositions:
 
-- `TheoremC.manuscriptTorsionFreeFullMFRadical_closed : PrintedTorsionFreeFullMFRadical`;
-- `TheoremC.manuscriptTorsionFreeSimplified_closed : PrintedTorsionFreeSimplified`.
+- `TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions : PrintedTorsionFreeFullMFRadical`;
+- `TheoremC.manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimplified`.
 
 Their full namespace is `GroupApproximation.Manuscript.NonMF`. The permitted
 axioms are exactly `propext`, `Classical.choice`, and `Quot.sound`. A new
