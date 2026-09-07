@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 204 |
-| `unassigned` | 165 |
-| `definition` | 43 |
-| `structural` | 23 |
+| `formalized` | 212 |
+| `unassigned` | 152 |
+| `definition` | 45 |
+| `structural` | 25 |
 | `provenance` | 19 |
 | `attribution` | 16 |
-| `partial` | 7 |
+| `partial` | 8 |
 | **total** | **477** |
 
-Completely formalized or definitional: **247/477** (51.8%).
+Completely formalized or definitional: **257/477** (53.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -79,8 +79,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * The consequence paragraph: every countable m-marked group satisfying r_1=...=r_s=1 has the property. Partial per the lane's own docstring: only this middle clause is carried; "open and closed in the space of marked groups" is not claimed by any Lean statement, since no space of marked groups is formalized in this development.
 * **`unassigned`**, line 901 --- For the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many words in two unitary matrices, uniformly over the matrix size, while the left regular representation solves the same equations exactly with $U,V\ne1$.
 * **`unassigned`**, line 901 --- Applied to the group $B$ of Theorem~\ref{thm:full-defect-ring}, the same construction gives one finitely presented group with the property that maps into every $\EL_n(R)$ of that theorem with normally generating image.
-* **`unassigned`**, line 923 --- The proof of Theorem~\ref{thm:full-defect-ring} runs in rank four over the ring $\mathcal C$, with three coordinates for the subgroup $\EL_3(\mathcal C)$, which has property~\textup{(T)} because $\mathcal C$ is finitely generated, and one for its centralizer; two lemmas then carry the conclusion from $B$ to every $\EL_n(R)$.
-* **`unassigned`**, line 923 --- The compressor needs only $ts=1$; the ideal condition on $1-st$ enters in the last step of the rank-four argument and in the first lemma.
 * **`unassigned`**, line 990 --- \emph{The group $B$.} In $\mathcal C$ put $s=s_0$, $t=t_0$, and $e=1-st$.
 * **`unassigned`**, line 990 --- Then $ts=1$, $e^2=e$, $es=te=0$, and $t_1es_1=1$.
 * **`unassigned`**, line 990 --- Put $G=B=\EL_4(\mathcal C)$ and $L=\EL_3(\mathcal C)$ on coordinates $1,2,3$.
@@ -130,19 +128,12 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1166 --- If an embedding $\iota\colon C^*_{\mathrm r}(G)\to\mathcal Q_{\mathbf d}$ existed and $p=\iota(1)$, then $g\mapsto\iota(\lambda_g)+(1-p)$ would embed $G$ in $\U(\mathcal Q_{\mathbf d})$, contradicting that $G$ is not MF\@.
 * **`unassigned`**, line 1166 --- Finally, $\jmath$ embeds $\EL_4(S)$ in $R^\times$; the group $\EL_4(S)$ is nontrivial with every homomorphism to an MF group trivial, so it is not MF, and restricting the maps $V_n$ shows that MF passes to subgroups.
 * **`unassigned`**, line 1166 --- So $R^\times$ is not MF\@.
-* **`unassigned`**, line 1181 --- Put $R=L_{\F_2}(1,2)$ and $H=R^\times$.
-* **`unassigned`**, line 1181 --- By~\eqref{eq:leavitt}, the maps $x\mapsto(t_0x,t_1x)$ and $(y,z)\mapsto s_0y+s_1z$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R\oplus R$, and $H\cong\GL_4(R)=\EL_4(R)$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-* **`unassigned`**, line 1181 --- We identify $H$ with $\EL_4(R)$.
-* **`unassigned`**, line 1188 --- The relations give $t_0s_0=1$ and $t_1(1-s_0t_0)s_1=1$, so $R$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, and every homomorphism from $H$ to an MF group is trivial. The ring $R$ is finitely generated, so $H$ has property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and hence is finitely generated~\cite[Theorem~1.3.1]{BHV}.
-* **`unassigned`**, line 1188 --- Since $e_{12}(1)\ne1$, the group $H$ is nontrivial.
 * **`unassigned`**, line 1196 --- Let $N$ be a normal subgroup of $H$.
 * **`unassigned`**, line 1203 --- where $\EL_4(R,I)$ is the normal closure in $\EL_4(R)$ of the elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_4(R,I)$ is the preimage of the center of $\GL_4(R/I)$.
 * **`unassigned`**, line 1203 --- Since $R$ is simple, either $I=R$, and then $N\ge\EL_4(R)=H$, or $I=0$, and then every $g\in N$ is central in $\GL_4(R)$.
 * **`unassigned`**, line 1203 --- In the second case, commuting with each $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all $a\in R$.
-* **`unassigned`**, line 1203 --- So $H$ is simple, and in particular not MF\@.
-* **`unassigned`**, line 1214 --- Since $R\ne0$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, Corollary~\ref{cor:one-sided-ring-maximal} shows that $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and that $C^*_{\max}(H)$ contains a proper isometry.
-* **`unassigned`**, line 1220 --- Two idempotents $e,f$ of a ring are \emph{equivalent} if $e=xy$ and $f=yx$ for some $x,y$; an idempotent $e$ is \emph{infinite} if $e=f+g$ for orthogonal idempotents $f,g$ with $f$ equivalent to $e$ and $g\ne0$; and a simple ring is \emph{purely infinite} if every nonzero right ideal contains an infinite idempotent~\cite[Definitions~1.2]{AGP}.
-* **`unassigned`**, line 1220 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
+* **`partial`**, line 1220 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
+  * The printed sentence claims purely-infinite-simple for L_k(1,d) generally (every countable field k, every d); the cited carrier proves only the one instance in scope here, R=L_F2(1,2) (k=F_2, d=2). The general family is not covered. New row (2026-09-07).
 * **`unassigned`**, line 1220 --- Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along $A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$ for the canonical map.
 * **`partial`**, line 1231 --- Then $N_n=[\GL_n(R),\GL_n(R)]$ and $\GL_n(R)/N_n\cong K_1(R)$, a countable abelian group, which is MF\@.
   * First conjunct (N_n = [GL_n(R),GL_n(R)]) and the existence of some countable abelian MF quotient are proved, conditional on the four named Ara-Goodearl-Pardo Props (AGPMatrixReduction, AGPUnitK1, AGPMenalMoncasiReduction, AGPStepOne) and on thm:full-defect-ring's own rank-two form (FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo), which is itself unconditionally closed. Partial, not formalized: the printed identification of the quotient with K_1(R) specifically is not carried -- only "some countable abelian group" with an isomorphism onto it (the module's own docstring says so explicitly: naming it K_1(R) needs the colimit lim GL_n/EL_n and Morita invariance, neither built).
@@ -169,10 +160,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1370 --- and $V_n(1)=1$ because $\phi_n$ is unital. The maps $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator norm.
 * **`unassigned`**, line 1370 --- If $g\ne1$ and $\opnorm{V_n(g)-1}\to0$, then $\tr_{d_n}(\phi_n(u_g))\to1$, contradicting $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$.
 * **`unassigned`**, line 1370 --- So $\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$, and $G$ is MF, contrary to the hypothesis.
-* **`unassigned`**, line 1384 --- Let $1\to N\to G\to A\to1$ be an extension of countable groups with $N$ locally residually finite and $A$ amenable.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1384 --- Then the canonical trace of $C^*_{\max}(N)$ is quasidiagonal, and the canonical trace of $C^*_{\max}(G)$ is amenable.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 1448 --- Let $\Gamma$ be a countable group with property~\textup{(T)}, let $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.
 * **`unassigned`**, line 1448 --- Put
 * **`unassigned`**, line 1462 --- where $tgt^{-1}=\alpha(g)$ on the level-zero copy of $\Gamma$, so that $V$ is the ascending HNN extension of $\Gamma$ along $\alpha$ and $T_\alpha=\bigcup_{n\ge0}t^{-n}\Gamma t^n$.
@@ -232,8 +219,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | From Hilbert--Schmidt to operator norm | 31 | 1 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
 | A finite certificate | 19 | 2 |
-| One-sided inverses and elementary groups | 75 | 51 |
-| The binary example | 46 | 21 |
-| An amenable nonquasidiagonal trace | 90 | 46 |
+| One-sided inverses and elementary groups | 75 | 49 |
+| The binary example | 46 | 12 |
+| An amenable nonquasidiagonal trace | 90 | 44 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 0 |
