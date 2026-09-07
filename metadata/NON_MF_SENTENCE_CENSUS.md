@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 238 |
-| `unassigned` | 122 |
+| `formalized` | 245 |
+| `unassigned` | 113 |
 | `definition` | 47 |
-| `structural` | 27 |
+| `structural` | 29 |
 | `provenance` | 19 |
 | `attribution` | 16 |
 | `partial` | 8 |
 | **total** | **477** |
 
-Completely formalized or definitional: **285/477** (59.7%).
+Completely formalized or definitional: **292/477** (61.2%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -49,17 +49,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 291 --- The ring $R$ need not be finitely generated. In the following example $\EL_n(R)$ is moreover simple.
 * **`unassigned`**, line 325 --- For a countable purely infinite simple ring $R$ and $n\ge1$, Theorem~\ref{thm:mf-quotient-units} identifies the intersection of the kernels of all homomorphisms from $\GL_n(R)$ to MF groups with the commutator subgroup, and the quotient with $K_1(R)$, which is MF\@.
 * **`unassigned`**, line 325 --- For the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
-* **`unassigned`**, line 333 --- There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually finite, that is not MF\@.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 333 --- The canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 340 --- Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.
-* **`unassigned`**, line 340 --- The group $W$ is sofic because locally residually finite groups are sofic and soficity passes to extensions with amenable quotient~\cite[Theorem~1]{ElekSzabo}.
 * **`unassigned`**, line 340 --- The trace answers the question of Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every amenable trace is quasidiagonal. Tikuisis, White, and Winter proved that faithful traces on separable nuclear $C^*$-algebras satisfying the universal coefficient theorem are quasidiagonal~\cite{TWW}; here $C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 340 --- The canonical trace of $C^*_{\max}(K)$ is quasidiagonal, so the crossed product by $\mathbb Z$ destroys quasidiagonality of the canonical trace.
-* **`unassigned`**, line 340 --- Since $K$ is a direct limit of residually finite groups, it is MF~\cite[Corollary~10 and Proposition~13]{Korchagin}.
-* **`unassigned`**, line 340 --- So MF groups are not closed under semidirect products with $\mathbb Z$, which answers a question of Korchagin~\cite[remark following Proposition~12]{Korchagin}.
 * **`unassigned`**, line 431 --- For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with $uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$ satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two spaces have the same finite dimension, so the inclusion is an equality; if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$, and $\rho$ is trivial on $\mathfrak D_G(L)$.
 * **`unassigned`**, line 431 --- An asymptotic representation has no exact commutant to count.
 * **`unassigned`**, line 431 --- Property~\textup{(T)} supplies a Kazhdan projection in its place, and stable finiteness of the corona replaces the dimension count.
@@ -139,10 +130,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
 * **`partial`**, line 1323 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
   * UPDATED 2026-09-07: first clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, unconditionally -- BinaryLeavitt.elementaryGroup_eq_top makes K_1 vanish at d=2, so there is no Khanh-Thanh input here at all, per the lead. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is still not covered now that general-d has landed (LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral, cited at 93e54ae1c51e): that carrier proves the kernel-intersection=EL_d(R) identification, conditional on the Khanh-Thanh commutator citation, but not the K_1(R) computation the cyclic-order formula needs. Remains a real, separate gap, not a landing-status one.
-* **`unassigned`**, line 1353 --- Let $G$ be a countable group.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1353 --- If $G$ is not MF, then its canonical trace $\tau_G$ on $C^*_{\max}(G)$ is not quasidiagonal. In particular, if $\tau_G$ is amenable, then $\tau_G$ is an amenable trace that is not quasidiagonal.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 1362 --- Suppose that $\tau_G$ is quasidiagonal, and let $\phi_n$ be u.c.p.
 * **`unassigned`**, line 1362 --- maps as in the definition, with the first limit in operator norm.
 * **`unassigned`**, line 1362 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
@@ -175,7 +162,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 7 | 1 |
-| Introduction | 84 | 30 |
+| Introduction | 84 | 23 |
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
@@ -184,6 +171,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 38 |
 | The binary example | 46 | 12 |
-| An amenable nonquasidiagonal trace | 90 | 25 |
+| An amenable nonquasidiagonal trace | 90 | 23 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 0 |
