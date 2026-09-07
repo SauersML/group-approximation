@@ -1,3 +1,4 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.KappaFiniteWitness
 import GroupApproximation.Algebra.CoweightCoinvariants
 import GroupApproximation.Algebra.FaithfulRadicalCocycle
 import GroupApproximation.Algebra.MappingTelescope
