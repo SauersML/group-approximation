@@ -27,3 +27,9 @@ Property-(T) input.
 - The infimum still ranges over unbounded multiplicities of arbitrary
   representations where both factors act on the same summand. No
   positive lower bound for that remaining class has been proved.
+- The stronger exact mixed example
+  `jacobson-mixed-packet-attains-rank-eight-below-two` supplies an
+  overlap-central involution on dimension twelve with marked rank eight
+  and both braid defects strictly below two. Thus the infimum is strictly
+  less than two and the rank-eight restriction is sharp. Positivity of
+  the infimum remains undecided.

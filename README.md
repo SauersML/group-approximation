@@ -10,6 +10,13 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 ## Research notes
 
+[The Jacobson two-braid reduction](research/artifacts/jacobson-two-braid-reduction-2026-09-07.md)
+gives an explicit marked candidate and proves that its mark is MF-invisible
+exactly when one matrix infimum is positive. The finite-packet reductions,
+sharp rank restrictions, and an [exact mixed example](research/artifacts/jacobson-mixed-packet-certificate-2026-09-07.md)
+are integrated with Cairn and have executable arithmetic checks. The
+positive lower bound and the property-(T)-free existence goal remain open.
+
 [Cyclic attachments for one-relator groups](research/artifacts/mixed-conjugator-one-relator-proof-2026-09-07.md)
 give written soficity proofs for all nested Baumslag presentations with
 conjugator `w=b^p a^s b^q`, including the asymmetric example asked about in

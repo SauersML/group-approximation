@@ -18,10 +18,13 @@ max(||(H pi(b))^3-I||, ||(H pi(d_P))^3-I||)
 
 over all dimensions, exact representations `pi:F->U(d)` retaining the
 mark, and self-adjoint unitary `H` commuting with `pi(K)`.
-Then `0<=gamma<=2`, and `gamma>0` if and only if every norm-corona
+Then `0<=gamma<2`, and `gamma>0` if and only if every norm-corona
 homomorphism from this joint group kills the mark.
 
 The theorem does not assert positivity. Its proof exactifies a finite
 group representation by a regular dilation and spectral cut, then
 averages the involution over the finite overlap. Both corrections keep
 the original dimension and use no Property-(T) input.
+
+The strict upper bound uses the explicit mixed packet in
+`jacobson-mixed-packet-attains-rank-eight-below-two`.

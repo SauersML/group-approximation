@@ -331,3 +331,9 @@ do not establish a positive value of (10).
 The unresolved step is therefore an all-dimensions positive lower bound
 in (10), allowing representations with both factors acting on the same
 summands. A finite unsuccessful search cannot establish that bound.
+
+A subsequent [exact cyclotomic construction](jacobson-mixed-packet-certificate-2026-09-07.md)
+improves the mixed-type check: it supplies an actual admissible involution
+on dimension twelve with both defects strictly below two and marked rank
+eight. Thus `0<=gamma<2`, and the necessary rank divisibility is sharp.
+It does not determine whether `gamma` is positive or zero.

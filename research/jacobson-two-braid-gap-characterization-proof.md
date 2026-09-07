@@ -6,6 +6,7 @@ title: Correct finite packet lifts and diagonalize marked packets with vanishing
 target: jacobson-two-braid-gap-characterizes-mark-collapse
 requires:
   - jacobson-joint-cells-are-two-braids
+  - jacobson-mixed-packet-attains-rank-eight-below-two
 artifacts:
   - research/artifacts/jacobson-two-braid-reduction-2026-09-07.md
 ---
@@ -16,3 +17,4 @@ whose marked distance is two. Conversely a surviving corona mark lifts,
 on a subsequence, to marked exact finite packets with overlap-central
 involutions and braid defects tending to zero. No faithfulness of a
 mark-retaining homomorphism from the joint quotient is assumed.
+The second prerequisite sharpens the elementary upper bound to `gamma<2`.
