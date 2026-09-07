@@ -1094,3 +1094,164 @@ across such a log therefore says nothing about the short ones — and unsolved
 goals close a proof with `sorryAx` while leaving **no literal token** for
 `ccland.sh`'s lexical gate to catch.  `relToAbs_bridgeTotal` was in exactly that
 state for one probe round.  Read the axiom line by name, or read nothing.
+
+## 2026-09-07 — lane `lix-hsq`: `hsq` closed, by cutting a homotopy over a line
+
+`lixHsq` (`CharClass/LIXHsq.lean`) is the `hsq` binder of
+`lix_topClass_ne_zero_of_thom`, character for character, over `hGc`, `hGu`, `hGe`
+and nothing else.  `#print axioms lixHsq` reports
+`[propext, Classical.choice, Quot.sound]`.
+
+### The obstruction, and why the two obvious routes are both closed
+
+`hsq` compares two composites of relative pullbacks into the local model.  Both
+outer legs are pullbacks, but `lixRelModelIso` contains an **inverse** excision,
+so the square is not an equation between induced maps and cannot be checked
+pointwise end to end.  Composing that excision's forward map onto both sides
+removes the inverse and leaves an equation between two honest pullbacks — along
+two maps of pairs out of a neighbourhood of the origin:
+
+* left, `v ↦ the section at the chart point of v`;
+* right, `v ↦ the point of the fibre over the section's zero with frame
+  coordinate v`.
+
+**These agree nowhere.**  The base coordinate varies on the left and is constant
+on the right, so no amount of unfolding makes them equal, and the pointwise route
+`RelativeProdContractible`'s docstring recommends stops here.
+
+The other obvious route also fails, and it fails for a reason worth keeping.
+Both sides of `hsq` are maps between `F₂`-**lines** — the source by
+`ThomChernDeg.lixRelLine`, the target by `localEquiv` — and two maps between
+lines are equal as soon as both are nonzero.  But "right leg nonzero" **is**
+`hres`, and "left leg nonzero" is the conclusion Step C is trying to reach.  That
+is the circle the 08:42–08:45 reductions fell into, and it is why this lane never
+proves either leg nonzero: it proves them **equal**.
+
+### The route: cut a homotopy at either end
+
+Relative cohomology in this tree has no prism operator.
+`RelativeHomotopyInvariance` gives **bijectivity** through the five lemma and
+never an **equality** of two pullbacks, which is what the comparison needs.
+
+Over `F₂` the equality is free once the source pair is one dimensional.
+`Hom(L, L')` between two `F₂`-lines has exactly two elements, so two injective
+maps into a line are the same map; and the two endpoint slices `x ↦ (b, x)` and
+`x ↦ (b', x)` of a contractible parameter space both induce bijections by
+`cc-relative`'s `relPullback_slice_bijective`.  So they induce the *same* map, and
+any homotopy through maps of pairs may be **cut at either end**.  That is
+`RelativeSupport.relPullback_eq_of_homotopy_of_line`, stated at no LIX object and
+in no fixed degree.
+
+The homotopy contracts the chart-coordinate point `q` to the origin along `s · q`
+while **holding fixed the chart's reading of the section**, moving only the point
+at which the reconstruction's coefficients are evaluated.  At `s = 1` the value is
+the section; at `s = 0` the base point is the zero and the fibre vector is an
+`ℝ`-linear automorphism of `ℂ^r` read through the standard frame.  A linear
+automorphism is a homeomorphism of the punctured pair, so its own pullback is an
+isomorphism of the local model — and the local model is a line, so that
+isomorphism is the identity.
+
+Three facts make the homotopy exist, and none of them is a degree computation.
+
+### 1. `lixTrivBall` is a metric ball in chart coordinates, and that is load-bearing
+
+`lixBaseBall` is **defined** as the base chart's image of `Metric.ball 0 ε`, so it
+is star-shaped about the origin in chart coordinates.  That is the only property
+of it the contraction uses.  A neighbourhood produced by an abstract "small
+enough" argument would not do, and the ball is not an implementation detail of
+`LIXBaseBall`; anyone rewriting that file must keep it.
+
+### 2. The section's blocks are **linear** in the chart's coordinates
+
+The trivial block of the section, read in the charts, *is* `eulerLocalHomeo`.  The
+transverse block is `cVec`, the `(i+1)`-st column of the `j`-th projection, and in
+the affine chart that column is `chartVec (wⱼ)` **times** the chart coordinate
+`cpChartSection (wⱼ)ᵢ` (`tautColSection_chartAt`).  So the section is recovered
+from its chart coordinates by a map linear in them whose coefficients depend only
+continuously on the point: `lixEtaLin`.  The path's weight `χ(τ) = sin(πτ)` rides
+in the coefficient and is strictly positive on the ball, which keeps the
+reconstruction injective.
+
+**The nondegeneracy of the zero is paid for exactly once**, when `lixProductChart`
+was built from the inverse function theorem, and never again.  What `lixEtaLin`
+adds is that the nondegeneracy is then usable at *every* point of the
+contraction rather than at the zero alone.
+
+### 3. TRAP — the chart is a **clamped** map, so "the chart reads the section" is FALSE off a small ball
+
+Both chart factors are total maps made total by clamping: the sphere chart
+rescales through `sphereClamp`, the circle chart through `circClamp`.  Off the
+clamp's fixed region the chart reads the section **of a rescaled point**, so the
+identity "the chart is the section's blocks" is not merely unproved there, it is
+false.  `LIXHsqNeighbourhood` caps the comparison radius at `1/2`, which makes
+both clamps inactive (the product norm bounds every coordinate, so `sphereQ ≤ 1`
+and the circle coordinate lies in the open interval).  The cap costs nothing,
+because the excision shrink says any smaller neighbourhood carries the same
+relative group.  **Anyone building on `lixProductChart` or `lixFullChart` against
+the section needs the same cap.**
+
+### TRAP — `lixFullChart` was never connected to `lixSection` anywhere in the tree
+
+`grep -rn trivialBlockChart GroupApproximation/` returns hits only inside the
+three files that define it (`LIXSectionChart`, `LIXSectionDeriv`,
+`LIXSectionLocalHomeo`).  So the sentence "`lixFullChart` charts the section",
+true of the intent since 2026-09-05, was **unproved in Lean** until
+`lixEtaLin_eq_blockSouth`.  A docstring is not a lemma; grep for the identity, not
+for the noun.
+
+### TRAPS met while building
+
+* **`Homeomorph.toContinuousMap` does not exist at the pin.**  Use
+  `TopCat.isoOfHomeo`, and name the iso as a `def` so its `TopCat` implicits are
+  pinned: `relPairIso` cannot infer them from a `ConcreteCategory.hom`
+  application and reports an application type mismatch full of metavariables.
+* **A `have`-bound iso is opaque.**  `have hiso := relPairIso …` and then
+  `hiso.hom.hom a = …` will not reduce to the pullback `hiso` is *defined* as; the
+  error is a type mismatch between two visibly identical `relPullback`s.  Write
+  the iso out at the use site, or make it a `def`.
+* **`mtSection_south_form'` has no `ξ` parameter** even though `ξ` is a section
+  variable of `MappingTorusSection`: a section variable the *statement* does not
+  mention is not a parameter, and `(ξ := …)` is an "invalid argument name" error
+  that names `n`, `M`, `Z`, `hmem` as the near misses.
+* **`subInclusion` and `sInclusion` take their ambient implicitly** and cannot
+  recover a `TopCat` from a `Set` of a plain type.  Pin it: `subInclusion
+  (X := TopCat.of (Fin r → ℂ)) h`.  Same failure `cc-thom` recorded for `absToSub`.
+* **`Matrix.dotProduct` is `dotProduct`** (root namespace), and `simp only
+  [Matrix.mulVec, dotProduct]` unfolds `mulVec` into `⬝ᵥ` without unfolding
+  `⬝ᵥ`; a following `rw` then fails to find its sum.  State the sum with `show`
+  instead.
+* **One `rfl` too many is a build that never returns.**  `LIXHsq` in its first
+  form discharged all seven "this iso's `hom` is that pullback" identifications
+  inside the theorems that used them.  Elaboration went past the heartbeat limit
+  in `whnf` with errors naming the whole theorem, and one earlier form ran for
+  half an hour in the kernel with no output at all.  Stated one at a time as
+  their own `rfl` lemmas (`LIXHsqLegs` §4) each is a small delta-reduction, every
+  one compiles in seconds, and a failure names the factor that moved.
+* **An import can cost more than the module.**  `LIXHsq`'s first version imported
+  `LIXStepCOddThom` for a corollary it did not contain; that import alone pulls in
+  the whole Leray–Hirsch and Thom closure and turned a 20-second module into a
+  build of several hundred.  The corollary lives in its own module,
+  `LIXStepCOddHsq`, so the square itself stays cheap.
+
+### The check that no probe of this lane could make
+
+A lane can prove a theorem whose statement has drifted from the binder it was
+written for, and no probe of the lane's own modules will see it, because the lane
+never mentions the consumer.  `CharClass/LIXStepCOddHsq.lean` applies
+`lix_topClass_ne_zero_of_thom` **at the binder** with `lixHsq` supplied.  That is
+the only thing that catches the drift, and it is why the corollary exists at all.
+
+### Probe log
+
+| date | targets | result |
+|---|---|---|
+| 2026-09-07 | `RelativeLineHomotopy` | **green, 8785 jobs, `PROBE GREEN`, first probe**, `0f79b48cf` |
+| 2026-09-07 | `LIXHsqNeighbourhood` | red: `congrArg (fun t : _ ⟶ _ => t.hom a)` cannot project; `subInclusion` ambient not pinned |
+| 2026-09-07 | **`LIXHsqNeighbourhood`** | **green, 8878 jobs**, `56fd504b9`; radius capped at `1/2` at `3de02c2c3` |
+| 2026-09-07 | `LIXHsqEta` | red: one `ring` after a `simp` that had already closed the goal |
+| 2026-09-07 | **`LIXHsqEta`** | **green, 8879 jobs**, `91e737744` |
+| 2026-09-07 | `LIXHsqLinear` | red x3: `(ξ := …)`, `Matrix.dotProduct`, `Homeomorph.toContinuousMap`, then the opaque `have`-bound iso |
+| 2026-09-07 | **`LIXHsqLinear` + `LIXHsqHomotopy`** | **green, 8887 jobs**, `e6ea9a93c` |
+| 2026-09-07 | `LIXHsq` (one file, seven inline `rfl`s) | 28 minutes with no output, then heartbeat timeouts in `whnf` naming whole theorems |
+| 2026-09-07 | **`LIXHsqLegs`** (identifications split out) | **green, 8890 jobs** |
+| 2026-09-07 | **all seven** | **green, 8891 jobs, `sorryAx: none`**, `lixHsq` on `[propext, Classical.choice, Quot.sound]`, `ef0b678cb` |
