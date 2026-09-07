@@ -109,11 +109,11 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- The instance ladder of the campaign's section algebra, compile-checked.
 The third of these is what `instContinuousSqrtOfCStarAlgebra` above supplies and
 what the pin does not. -/
-example : CStarAlgebra C(X, CStarMatrix ι ι ℂ) := inferInstance
+noncomputable example : CStarAlgebra C(X, CStarMatrix ι ι ℂ) := inferInstance
 
-example : PartialOrder C(X, CStarMatrix ι ι ℂ) := inferInstance
+noncomputable example : PartialOrder C(X, CStarMatrix ι ι ℂ) := inferInstance
 
-example : StarOrderedRing C(X, CStarMatrix ι ι ℂ) := inferInstance
+noncomputable example : StarOrderedRing C(X, CStarMatrix ι ι ℂ) := inferInstance
 
 /-- **Homotopy invariance in the campaign's section algebra.**  A continuous path
 of projection-valued matrix functions over `X` has unitarily conjugate ends, so
@@ -123,12 +123,12 @@ resolves. -/
 theorem unitaryConj_of_path_sectionAlgebra {P : ℝ → C(X, CStarMatrix ι ι ℂ)}
     (hP : Continuous P) (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
     UnitaryConj (P 0) (P 1) :=
-  unitaryConj_of_path hP hproj
+  unitaryConj_of_path (f := P) hP hproj
 
 theorem murrayVonNeumannEquiv_of_path_sectionAlgebra {P : ℝ → C(X, CStarMatrix ι ι ℂ)}
     (hP : Continuous P) (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
     MurrayVonNeumannEquiv (P 0) (P 1) :=
-  murrayVonNeumannEquiv_of_path hP hproj
+  murrayVonNeumannEquiv_of_path (f := P) hP hproj
 
 /-- The form the consumers want: the index space is a parameter, so
 `s := Set.Icc 0 1` is homotopy invariance and `s := Set.univ` over a connected
@@ -138,7 +138,7 @@ theorem unitaryConj_of_isPreconnected_sectionAlgebra {Y : Type*} [TopologicalSpa
     (hP : Continuous P) (hproj : ∀ y, IsStarProjection (P y))
     {y₀ y₁ : Y} (h₀ : y₀ ∈ s) (h₁ : y₁ ∈ s) :
     UnitaryConj (P y₀) (P y₁) :=
-  unitaryConj_of_isPreconnected hs hP hproj h₀ h₁
+  unitaryConj_of_isPreconnected hs (f := P) hP hproj h₀ h₁
 
 end SectionAlgebra
 

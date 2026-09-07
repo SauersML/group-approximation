@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomStepCOdd
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Discharging `hinj` from an isomorphism, in one application
@@ -77,9 +78,10 @@ theorem topChernClass_ne_zero_odd_iso (hacyclic : PuncturedAcyclic N twoR z)
   topChernClass_ne_zero_odd hacyclic j i hexact absLine exc chartIso jE sRel sAbs
     piStar hnat hsection t (injective_of_hom_eq_iso (sRel ≫ t) e hcomp) hu hclass
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_odd_iso
+#audit_axioms topChernClass_ne_zero_odd_iso
 
 end
 

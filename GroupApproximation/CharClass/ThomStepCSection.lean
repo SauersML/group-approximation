@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomStepCEuler
 import GroupApproximation.CharClass.ThomFreeDegreewise
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The residual of Step C, named exactly
@@ -113,9 +114,10 @@ theorem topChernClass_ne_zero_of_section (hacyclic : PuncturedAcyclic N twoR z)
   topChernClass_ne_zero_of_su_ne_zero_line hacyclic j i hexact absLine exc chartIso
     (su_ne_zero_of_section sRel hdetect) hgamma
 
-/-! The axiom list, printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_of_section
+#audit_axioms topChernClass_ne_zero_of_section
 
 end
 

@@ -131,10 +131,16 @@ theorem estimatingUnboundRepaired_of_componentPartition
 
 /-- The same-diagram form gives the source's `O`-equivalent output form, by
 the reflexive `O`-equivalence.  A producer that never has to move the diagram
-can be written at this stronger statement. -/
+can be written at this stronger statement.
+
+The target is the **historical** output statement, which is refuted; this
+implication is what carries that refutation back to the repaired form in
+`UnboundSmallMuCounterexample.not_estimatingUnboundRepairedStatement`.  It is
+deliberately not stated at the current `EstimatingUnboundOutputStatement`, whose
+scale certificate the same-diagram form does not supply. -/
 theorem estimatingUnboundOutput_of_repaired
     (hrepaired : EstimatingUnboundRepairedStatement.{u, w, v}) :
-    EstimatingUnboundOutputStatement.{u, w, v} := by
+    EstimatingUnboundOutputHistoricalStatement.{u, w, v} := by
   intro G _ Lambda D eps rho mu lambda c hthreshold W hcondition Delta hred
     hcells scaffold graph hboundary
   exact ⟨Delta, ⟨OEquivalentDiscDiagram.refl Delta⟩, hred, scaffold, ⟨graph⟩,

@@ -64,6 +64,7 @@ section RankOne
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {R : Type*} [CommRing R] [StarRing R]
 
+omit [DecidableEq ι] [StarRing R] in
 /-- **Rank-one matrices multiply by contracting the inner pair.**  Every other
 computation in this file is this one with different vectors substituted. -/
 theorem vecMulVec_mul_vecMulVec (a b c d : ι → R) :
@@ -74,10 +75,12 @@ theorem vecMulVec_mul_vecMulVec (a b c d : ι → R) :
     Finset.sum_mul]
   exact Finset.sum_congr rfl fun k _ => by ring
 
+omit [Fintype ι] [DecidableEq ι] in
 theorem star_vecMulVec (a b : ι → R) :
     star (Matrix.vecMulVec a b) = Matrix.vecMulVec (star b) (star a) := by
   rw [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_vecMulVec]
 
+omit [Fintype ι] [DecidableEq ι] in
 theorem isSelfAdjoint_rankOneProj (ξ : ι → R) : IsSelfAdjoint (rankOneProj ξ) := by
   show star (rankOneProj ξ) = rankOneProj ξ
   show star (Matrix.vecMulVec ξ (star ξ)) = Matrix.vecMulVec ξ (star ξ)
@@ -92,8 +95,9 @@ structure IsUnitSection (P : Matrix ι ι R) (ξ : ι → R) : Prop where
 
 variable {P : Matrix ι ι R} {ξ : ι → R}
 
-/-- Idempotence needs only the unit-length equation, not the bundle: this is the
-shape `STW59.isStarProjection_rankOneProj` also has, so the two merge. -/
+-- Idempotence needs only the unit-length equation, not the bundle: this is the
+-- shape `STW59.isStarProjection_rankOneProj` also has, so the two merge.
+omit [DecidableEq ι] in
 theorem isIdempotentElem_rankOneProj (h : ∑ k, star (ξ k) * ξ k = 1) :
     IsIdempotentElem (rankOneProj ξ) := by
   show Matrix.vecMulVec ξ (star ξ) * Matrix.vecMulVec ξ (star ξ)
@@ -102,12 +106,14 @@ theorem isIdempotentElem_rankOneProj (h : ∑ k, star (ξ k) * ξ k = 1) :
   simp only [Pi.star_apply]
   rw [h, one_smul]
 
+omit [DecidableEq ι] in
 theorem isStarProjection_rankOneProj (h : ∑ k, star (ξ k) * ξ k = 1) :
     IsStarProjection (rankOneProj ξ) where
   isIdempotentElem := isIdempotentElem_rankOneProj h
   isSelfAdjoint := isSelfAdjoint_rankOneProj ξ
 
-/-- A bundle absorbs the line spanned by one of its sections. -/
+-- A bundle absorbs the line spanned by one of its sections.
+omit [DecidableEq ι] in
 theorem mul_rankOneProj (hξ : Matrix.mulVec P ξ = ξ) :
     P * rankOneProj ξ = rankOneProj ξ := by
   ext i j
@@ -115,6 +121,7 @@ theorem mul_rankOneProj (hξ : Matrix.mulVec P ξ = ξ) :
   congr 1
   exact congrFun hξ i
 
+omit [DecidableEq ι] in
 theorem rankOneProj_mul (hP : IsStarProjection P) (hξ : Matrix.mulVec P ξ = ξ) :
     rankOneProj ξ * P = rankOneProj ξ := by
   have h := congrArg star (mul_rankOneProj (P := P) hξ)
@@ -133,29 +140,34 @@ line spanned by `ξ` is removed.  A definition rather than an existential,
 because it is the object the Euler-class argument is about. -/
 def perp (P : Matrix ι ι R) (ξ : ι → R) : Matrix ι ι R := P - rankOneProj ξ
 
+omit [Fintype ι] [DecidableEq ι] in
 @[simp]
 theorem perp_apply (P : Matrix ι ι R) (ξ : ι → R) (i j : ι) :
     perp P ξ i j = P i j - ξ i * star (ξ j) := rfl
 
-/-- The decomposition, stated *inside* `M_ι(R)`: no stabilisation. -/
+-- The decomposition, stated *inside* `M_ι(R)`: no stabilisation.
+omit [Fintype ι] [DecidableEq ι] in
 theorem perp_add_rankOneProj (P : Matrix ι ι R) (ξ : ι → R) :
     perp P ξ + rankOneProj ξ = P := by
   show P - rankOneProj ξ + rankOneProj ξ = P
   abel
 
+omit [DecidableEq ι] in
 theorem perp_mul_rankOneProj (hξ : IsUnitSection P ξ) :
     perp P ξ * rankOneProj ξ = 0 := by
   show (P - rankOneProj ξ) * rankOneProj ξ = 0
   rw [sub_mul, mul_rankOneProj hξ.mulVec_eq,
     (isIdempotentElem_rankOneProj hξ.sum_star_mul_self).eq, sub_self]
 
+omit [DecidableEq ι] in
 theorem rankOneProj_mul_perp (hP : IsStarProjection P) (hξ : IsUnitSection P ξ) :
     rankOneProj ξ * perp P ξ = 0 := by
   show rankOneProj ξ * (P - rankOneProj ξ) = 0
   rw [mul_sub, rankOneProj_mul hP hξ.mulVec_eq,
     (isIdempotentElem_rankOneProj hξ.sum_star_mul_self).eq, sub_self]
 
-/-- The complement of a unit section inside a bundle is again a bundle. -/
+-- The complement of a unit section inside a bundle is again a bundle.
+omit [DecidableEq ι] in
 theorem isStarProjection_perp (hP : IsStarProjection P) (hξ : IsUnitSection P ξ) :
     IsStarProjection (perp P ξ) where
   isIdempotentElem := by
@@ -190,11 +202,11 @@ theorem murrayVonNeumannEquiv_rankOneProj_single (i₀ : ι) (hξ : IsUnitSectio
     ext i j
     by_cases hi : i = i₀
     · subst hi
-      by_cases hj : j = i₀
+      by_cases hj : j = i
       · subst hj
-        simp [hu, Matrix.vecMulVec_apply, Matrix.single_apply]
-      · simp [hu, Matrix.vecMulVec_apply, Matrix.single_apply, hj, Ne.symm hj]
-    · simp [hu, Matrix.vecMulVec_apply, Matrix.single_apply, hi, Ne.symm hi]
+        simp [hu, Matrix.vecMulVec_apply]
+      · simp [hu, Matrix.vecMulVec_apply, hj, Ne.symm hj]
+    · simp [hu, Matrix.vecMulVec_apply, hi, Ne.symm hi]
 
 end Perp
 

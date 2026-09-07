@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXBundlePair
 import GroupApproximation.CharClass.ThomStepCOddIso
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom-class datum at the mapping-torus bundle
@@ -88,9 +89,10 @@ theorem lixThomClass_ne_zero (hGc : Continuous G)
     lixThomClass hGc hGu n r g jm hinj hrange x ≠ 0 :=
   thomClass_ne_zero g jm hinj hrange hx
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixThomClass_ne_zero
+#audit_axioms lixThomClass_ne_zero
 
 end
 
