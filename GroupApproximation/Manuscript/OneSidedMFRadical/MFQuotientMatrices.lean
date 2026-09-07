@@ -47,6 +47,8 @@ section MatrixGroups
 variable (R : Type) [Ring R] [Countable R]
 variable (hR : IsPurelyInfiniteSimpleRing R) (n : ℕ) (hn : 2 ≤ n)
 
+include hR hn
+
 /-- The elementary group itself has full MF radical, in all characteristics. -/
 theorem elementary_full_mf_radical :
     mfHomKernel (elementaryGroup (Fin n) R) = ⊤ := by
@@ -156,5 +158,5 @@ theorem manuscriptMFQuotientMatrices : PrintedMFQuotientMatrices := by
 end MFQuotientMatrices
 end GroupApproximation
 
-#audit_axioms GroupApproximation.MFQuotientMatrices.manuscriptMFQuotientMatrices
+#audit_closed_axioms GroupApproximation.MFQuotientMatrices.manuscriptMFQuotientMatrices
 #audit_axioms GroupApproximation.MFQuotientMatrices.commutator_full_mf_radical
