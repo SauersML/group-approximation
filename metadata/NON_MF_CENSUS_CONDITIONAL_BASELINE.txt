@@ -197,3 +197,12 @@ inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCo
 inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_generatorDefectsVanish  -- same as manuscriptSentence_perfect
 inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_presentedCover  -- same as manuscriptSentence_perfect
 inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_markedGroupsSatisfyingRelations  -- same as manuscriptSentence_perfect
+#
+# cor:leavitt-mf-quotient's general-d clause (Manuscript/OneSidedMFRadical/
+# LeavittMFQuotientGeneral.lean, rank-four lane) is conditional on
+# PrintedKhanhThanhCommutatorInElementary k d, deliberately weaker than the
+# printed Khanh-Thanh citation (GL_d(R)=EL_d(R).D_d(k)): it states only
+# commutator(GL_d(R)) <= elementaryGroup (Fin d) R.  The other two
+# inclusions (Theorem B at rank d, and the countable-abelian-implies-MF
+# step) are unconditional.
+open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral  -- cor:leavitt-mf-quotient's general-d clause over PrintedKhanhThanhCommutatorInElementary (Khanh-Thanh's commutator-in-elementary inclusion); a literature citation, not a reduction this repository is closing

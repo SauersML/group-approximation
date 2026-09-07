@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 191 |
-| `formalized` | 186 |
-| `definition` | 38 |
+| `formalized` | 203 |
+| `unassigned` | 171 |
+| `definition` | 40 |
 | `structural` | 23 |
 | `provenance` | 19 |
 | `attribution` | 14 |
-| `partial` | 6 |
+| `partial` | 7 |
 | **total** | **477** |
 
-Completely formalized or definitional: **224/477** (47.0%).
+Completely formalized or definitional: **243/477** (50.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -82,31 +82,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 901 --- Applied to the group $B$ of Theorem~\ref{thm:full-defect-ring}, the same construction gives one finitely presented group with the property that maps into every $\EL_n(R)$ of that theorem with normally generating image.
 * **`unassigned`**, line 923 --- The proof of Theorem~\ref{thm:full-defect-ring} runs in rank four over the ring $\mathcal C$, with three coordinates for the subgroup $\EL_3(\mathcal C)$, which has property~\textup{(T)} because $\mathcal C$ is finitely generated, and one for its centralizer; two lemmas then carry the conclusion from $B$ to every $\EL_n(R)$.
 * **`unassigned`**, line 923 --- The compressor needs only $ts=1$; the ideal condition on $1-st$ enters in the last step of the rank-four argument and in the first lemma.
-* **`unassigned`**, line 932 --- Let $R$ be a unital ring with $s,t\in R$ such that $ts=1$ and $R(1-st)R=R$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 932 --- Then there are $v_0,v_1,w_0,w_1\in R$ with $w_iv_j=\delta_{ij}$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 932 --- Conversely, such elements satisfy $w_0v_0=1$ and $w_1(1-v_0w_0)v_1=1$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 940 --- Put $e=1-st$, so that $es=te=0$, and choose $a_j,b_j\in R$, $0\le j<m$, with $\sum_ja_jeb_j=1$.
-* **`unassigned`**, line 940 --- Put
-* **`unassigned`**, line 945 --- For all $i,j\ge0$, $et^is^je=\delta_{ij}e$: for $j>i$ the middle factor is $s^{j-i}$, which $e$ kills on the left, and for $i>j$ it is $t^{i-j}$, which $e$ kills on the right.
-* **`unassigned`**, line 945 --- So $w_0v_0=t^ms^m=1$, $w_1v_1=\sum_ja_jeb_j=1$, $w_0v_1=\sum_jt^{m-j}eb_j=0$, and $w_1v_0=\sum_ja_jes^{m-j}=0$.
-* **`unassigned`**, line 945 --- Conversely, $w_1(1-v_0w_0)v_1=w_1v_1-(w_1v_0)(w_0v_1)=1$.
-* **`unassigned`**, line 954 --- Let $R$ be a unital ring and let $v,w,a,b\in R$ satisfy $wv=1$, $ba=1$, and $bv=0$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 954 --- Then
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 959 --- normally generates $\EL_2(R)$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 964 --- The matrix $e_{12}(v)e_{21}(b)e_{12}(-v)$ has rows $(1+vb,\,-vbv)$ and $(b,\,1-bv)$, so for $bv=0$ it is $1+vb&0\\b&1$, and multiplying by $e_{21}(-b)$ gives $D=\operatorname{diag}(1+vb,1)$.
-* **`unassigned`**, line 964 --- Let $N$ be the normal closure of $D$ in $\EL_2(R)$.
-* **`unassigned`**, line 964 --- For $r\in R$, $[D,e_{12}(ar)]=e_{12}((1+vb)ar-ar)=e_{12}(vr)$, since $ba=1$; so $e_{12}(vR)\le N$.
-* **`unassigned`**, line 964 --- Put $f=1-vw$, an idempotent with $fv=0=wf$, and
-* **`unassigned`**, line 974 --- Expanding $z^2$ with $wv=1$ and $fv=wf=0$, every term cancels except $1$, so $z^2=1$; likewise $zf=vf$.
-* **`unassigned`**, line 974 --- The factorization
-* **`unassigned`**, line 980 --- puts $h=\operatorname{diag}(z,z)$ in $\EL_2(R)$, and $he_{12}(fr)h^{-1}=e_{12}(zfrz)=e_{12}(v\,frz)\in N$.
-* **`unassigned`**, line 980 --- So $e_{12}(r)=e_{12}(vwr)\,e_{12}(fr)\in N$ for every $r\in R$, and conjugating by $e_{12}(1)e_{21}(-1)e_{12}(1)$ gives $e_{21}(R)\le N$.
 * **`unassigned`**, line 990 --- \emph{The group $B$.} In $\mathcal C$ put $s=s_0$, $t=t_0$, and $e=1-st$.
 * **`unassigned`**, line 990 --- Then $ts=1$, $e^2=e$, $es=te=0$, and $t_1es_1=1$.
 * **`unassigned`**, line 990 --- Put $G=B=\EL_4(\mathcal C)$ and $L=\EL_3(\mathcal C)$ on coordinates $1,2,3$.
@@ -177,7 +152,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1287 --- By the definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for some $n\ge2$.
 * **`unassigned`**, line 1287 --- Following the proof of~\cite[Theorem~2.4]{AGP} again, choose an idempotent $f<e$ equivalent to $e$ and orthogonal idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put $r_1=1-e+f$ and $P=r_1+\dots+r_n$.
 * **`unassigned`**, line 1287 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
-* **`unassigned`**, line 1301 --- Then $H\cong\GL_d(R)$, the intersection of the kernels of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
+* **`partial`**, line 1301 --- Then $H\cong\GL_d(R)$, the intersection of the kernels of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
+  * cor:leavitt-mf-quotient's general-d clause (rank-four lane, Manuscript/OneSidedMFRadical/LeavittMFQuotientGeneral.lean): H isomorphic to GL_d(R) (unconditional, CompleteMatrixFamily.unitsEquiv), and the intersection of kernels = [H,H] = EL_d(R) for every d>=2 (conditional on PrintedKhanhThanhCommutatorInElementary k d, deliberately weaker than the printed Khanh-Thanh citation GL_d=EL_d.D_d(k); register line added). Partial, not formalized: the printed sentence's continuation (not shown in this row) asks for the K_1(R) identification, which this carrier does not name.
 * **`unassigned`**, line 1310 --- The maps $x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.
 * **`unassigned`**, line 1310 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
 * **`unassigned`**, line 1310 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
@@ -262,8 +238,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | From Hilbert--Schmidt to operator norm | 31 | 1 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
 | A finite certificate | 19 | 2 |
-| One-sided inverses and elementary groups | 75 | 70 |
-| The binary example | 46 | 22 |
+| One-sided inverses and elementary groups | 75 | 51 |
+| The binary example | 46 | 21 |
 | An amenable nonquasidiagonal trace | 90 | 50 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 1 |
