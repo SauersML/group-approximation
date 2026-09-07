@@ -24,6 +24,13 @@ replay is `python3 experiments/hs_word_gap_amplification_check.py`.
 The group-specific matrix bound and nonhyperlinear existence remain open;
 these research proofs carry no new Lean verification claim.
 
+[Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
+gives a rational qubit-projector family with combinatorial gap `1/2` and
+unbounded optimal rounder cost, plus an obstruction to flags charged only
+to individual terms. Run `python3 scripts/check_qpcp_rounding.py` for exact
+algebraic replay. The linked Cairn target remains open; these results do not
+prove quantum PCP.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

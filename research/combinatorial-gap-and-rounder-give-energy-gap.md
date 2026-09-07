@@ -63,13 +63,14 @@ concerns the NO-side energy floor, not the full QMA-hardness reduction or
 its YES-side promise.
 
 Definition (CR1) imposes no locality, no efficiency, and no
-closeness-to-input requirement on the instrument, and without one of those
-(CR2) renames its own conclusion.  Any route which supplies a rounder by
-bare existence is a restatement.  The content of the attack therefore lies
-entirely in the *structure* demanded of the rounder by
+closeness-to-input requirement on the instrument. Bare existence supplies
+no uniform cost bound: using the minimizing constant instrument requires
+exactly the energy floor one is trying to establish. A successful argument
+must prove a uniform bound, for example through the structure demanded by
 `commuting-syndrome-domination-gives-a-rounder`: the fault set must be the
 outcome of a joint measurement of commuting local projectors of bounded
-overlap.  That structured statement is
-`local-syndrome-port-domination-at-each-gadget`, and it is the only node in
-this region whose truth is not already equivalent to
-`quantum-pcp-constant-gap-local-hamiltonian`.
+overlap. The relevant construction problems are
+`local-syndrome-port-domination-at-each-gadget` and
+`syndrome-conditioned-exactifier-exists`. This identity does not prove
+those statements equivalent to QPCP, nor does it discharge the separate
+amplifier and completeness obligations.

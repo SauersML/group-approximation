@@ -5,15 +5,17 @@ kind: claim
 title: Each amplification gadget exposes a syndrome port dominated by the neighbouring energy
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
+  - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
 distinct_from:
   bounded-overlap-syndrome-energy-accounting: that is the finite incidence-counting lemma which sums local charges once they are supplied, and it is used unchanged by this region; this is the supply problem -- constructing the commuting local projectors and proving the per-port operator inequality against the neighbouring Hamiltonian terms.
   common-higher-rank-context-projections-are-syndrome-cylinders: that identifies syndrome cylinders among the common projections of a higher-rank context in the normalized-HS microstate atlas; this asks for tensor-site fault projectors dominated by a state-weighted local Hamiltonian energy, in a fixed finite-dimensional tensor product.
 ---
 
-The load-bearing hole of the attack, and by the converse in
-`combinatorial-gap-and-rounder-give-energy-gap` the only node in this region
-whose truth is not already equivalent to
-`quantum-pcp-constant-gap-local-hamiltonian`.
+A load-bearing construction problem of the attack. The corrected converse in
+`combinatorial-gap-and-rounder-give-energy-gap` identifies bare uniform
+rounder cost with a NO-side energy floor only after positive constant
+combinatorial gap has been supplied. That equivalence neither constructs
+these ports nor supplies the hardness reduction, the YES bound, or (EX).
 
 For the amplified Hamiltonian `H' = (1/m) sum_a h'_a`, construct an isometry
 `W : H -> H_syn tensor H_data` and **mutually commuting** projectors `B_j` on
@@ -42,6 +44,13 @@ depth and `C_0` is again not constant.
 
 ## Attempts
 
+- **Charge each flag only to its own term.** Ruled out on nonorthogonal
+  qubit projector pairs by
+  `nonorthogonal-pair-forbids-single-term-syndrome-ports`: finite domination
+  forces each marginal flag effect below its own projector, while exactness
+  forces the two effects to cover the identity. Their projector sum has
+  an eigenvalue below one. This diagnoses singleton neighborhoods; the
+  larger neighborhoods permitted in (LSP1) remain open.
 - **Import a tracial outlier cut.**  Recorded dead as
   `syndrome-domination-by-tracial-outlier-cut-import` and killed by
   `tracial-domination-is-not-state-domination`: the corpus's cuts and

@@ -1,0 +1,108 @@
+{
+  "arithmetic": "integer polynomial coefficients and exact rational matrices",
+  "boundary": {
+    "all_size_instrument_argument": "ordinary proof in the accompanying artifact",
+    "finite_exhaustion_max_N": 3,
+    "lean_checked": false,
+    "quantum_pcp_proved": false,
+    "wolfram_executed": false
+  },
+  "checker_sha256": "c5d35a004737a328e0908947489594e8d388134af74a7eb3910ea60b7b687b5b",
+  "complete_finite_fault_exhaustions": [
+    {
+      "N": 1,
+      "fault_sets_examined": 4,
+      "feasible_counts_by_cardinality": {
+        "1": 2,
+        "2": 1
+      },
+      "hilbert_space_dimension": 2,
+      "minimum_fault_count": 1
+    },
+    {
+      "N": 2,
+      "fault_sets_examined": 16,
+      "feasible_counts_by_cardinality": {
+        "2": 4,
+        "3": 4,
+        "4": 1
+      },
+      "hilbert_space_dimension": 4,
+      "minimum_fault_count": 2
+    },
+    {
+      "N": 3,
+      "fault_sets_examined": 64,
+      "feasible_counts_by_cardinality": {
+        "3": 8,
+        "4": 12,
+        "5": 6,
+        "6": 1
+      },
+      "hilbert_space_dimension": 8,
+      "minimum_fault_count": 3
+    }
+  ],
+  "exact_instance_checks": [
+    {
+      "N": 1,
+      "energy_density": "1/2",
+      "optimal_rounder_cost": "1",
+      "singleton_port_cover_deficit": "0"
+    },
+    {
+      "N": 2,
+      "energy_density": "1/5",
+      "optimal_rounder_cost": "5/2",
+      "singleton_port_cover_deficit": "3/5"
+    },
+    {
+      "N": 3,
+      "energy_density": "1/10",
+      "optimal_rounder_cost": "5",
+      "singleton_port_cover_deficit": "4/5"
+    },
+    {
+      "N": 8,
+      "energy_density": "1/65",
+      "optimal_rounder_cost": "65/2",
+      "singleton_port_cover_deficit": "63/65"
+    },
+    {
+      "N": 31,
+      "energy_density": "1/962",
+      "optimal_rounder_cost": "481",
+      "singleton_port_cover_deficit": "480/481"
+    },
+    {
+      "N": 100,
+      "energy_density": "1/10001",
+      "optimal_rounder_cost": "10001/2",
+      "singleton_port_cover_deficit": "9999/10001"
+    }
+  ],
+  "status": "passed",
+  "universal_polynomial_identities": [
+    "unit-vector numerator",
+    "P is a projector",
+    "Q projector identity",
+    "ground eigenvector",
+    "upper eigenvector",
+    "eigenvectors orthogonal",
+    "ground vector norm",
+    "upper vector norm",
+    "complete spectral decomposition",
+    "positive pair determinant numerator"
+  ],
+  "zero_energy_regression": {
+    "fault_sets_examined": 4,
+    "feasible_counts_by_cardinality": {
+      "0": 1,
+      "1": 2,
+      "2": 1
+    },
+    "hilbert_space_dimension": 2,
+    "minimum_fault_count": 0,
+    "optimal_rounder_cost": "0"
+  }
+}
