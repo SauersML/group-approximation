@@ -340,6 +340,15 @@ with weight between two and four. The model passes closed audits and the
 general helpers pass ordinary audits (4,621-job combined build). No assembly
 admission has been discharged by this consumer migration and global selection.
 
+Before applying word insertion to the global optimum, account explicitly for
+its alphabet hypotheses. `RealizedGeometricFamily` records reducedness and
+O-equivalence, but does not assert that every dart label is a `D.IsLetter` or
+that `D.base` is inverse-closed; `GFaceWordInsertion.exists_family_output`
+requires both. Restrict the optimization to an appropriate eligible class
+with a constructed inhabitant, or prove the required normalization and its
+preservation properties. The unrestricted maximum theorem alone supplies
+neither label legality nor base symmetry.
+
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
 dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
