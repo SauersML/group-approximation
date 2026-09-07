@@ -117,3 +117,15 @@ with those inputs held as certificates. Ordinary formal derivatives
 do not fix the gap, since they do not descend to the Boolean function
 algebra. These are restrictions on those specific linearization methods,
 not a proof against all nonlinear computation routes.
+
+The locality issue has a positive stabilized answer in
+`injective-automata-have-local-stable-secant-dilations`: two local
+additive shears and a track swap give an explicit reversible operator
+carrying each genuine input difference to its output difference. This
+implements the proposed preservation of an error syndrome. The remaining
+condition is precise: the syndrome must vanish on every arbitrary data
+vector with the certificate fixed, not just on the certified execution
+difference. That condition is QP=I. Without it the ambient construction
+is reversible and has no missing configuration; with it a strict
+zero-auxiliary restriction requires the further reverse defect PQ!=I.
+No such pair is currently produced.

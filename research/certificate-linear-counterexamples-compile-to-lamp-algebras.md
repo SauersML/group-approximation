@@ -63,3 +63,12 @@ disagreement. Even for a reversible gate that matrix can be singular on
 other vectors. The resulting certificate-linear family therefore need
 not satisfy the injectivity hypothesis used here. A different nonlinear
 compiler would have to establish that hypothesis separately.
+
+`injective-automata-have-local-stable-secant-dilations` gives local
+invertible block operators for every nonlinear inverse pair over a
+finite-field alphabet, after adding an auxiliary data track. The full
+compiled family is always reversible. Restricting it to the entire
+zero-auxiliary data subspace requires QP=I for every certificate, and
+a strict restriction additionally requires PQ!=I for some certificate.
+The construction only clears the auxiliary component on genuine
+execution differences, so it does not yet supply those hypotheses.

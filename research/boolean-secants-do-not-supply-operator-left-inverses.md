@@ -59,3 +59,12 @@ with an exact composition law can be chosen for every permutation by
 choosing a frame for each nonzero disagreement vector. This latter
 construction is a finite-space fact; it supplies no uniform finite-memory
 construction for arbitrary cellular automata.
+
+`injective-automata-have-local-stable-secant-dilations` now supplies a
+different positive extension: after adding one auxiliary data track,
+local secants fit into an explicitly invertible local block operator.
+It transports all genuine execution differences correctly. Restricting
+back to arbitrary data with the auxiliary track zero requires QP=I,
+which is exactly the additional identity not supplied by the secant
+calculation here. Thus locality can be obtained after stabilization,
+while the desired strict full-shift embedding remains unconstructed.
