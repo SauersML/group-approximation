@@ -44,3 +44,7 @@ proof, and so that the genuinely new obligations are the ones reached through
 `amplifier-has-compatible-local-syndrome-effects`, which binds the ports
 and exactifier to the same construction. This is a remaining obligation,
 not a consequence of the two component claims being asserted separately.
+Alternatively, `rounder-from-uniform-kernel-resolution` gives the bare
+rounder through a global identity resolution and uniform local spectra.
+That alternative still requires an open construction for the same
+amplifier and does not supply the YES margin or reduction.

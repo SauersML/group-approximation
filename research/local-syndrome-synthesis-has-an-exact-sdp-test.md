@@ -25,3 +25,9 @@ For any `X_a>=0` and Hermitian `Y` satisfying
 exclude all finite constants. These statements are proved without strong
 duality. Neither SDP feasibility nor its generic dilation supplies physical
 locality, efficient construction, or preservation of a logical algebra.
+
+The continuation `finite-syndrome-cost-is-a-kernel-support-cone-test`
+removes the prescribed constant and characterizes whether any finite one
+can work. It also proves that failure always has a zero-denominator dual
+certificate in this special synthesis setting; the weak-duality statement
+above alone did not assert completeness of such certificates.

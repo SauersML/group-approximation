@@ -6,6 +6,7 @@ title: The amplified Hamiltonian admits a constant-cost exactification rounder
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
+  - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
 ---
 
 Criterion (A) of the attack. Each NO-instance output `H'` of the same
@@ -24,7 +25,7 @@ an argument; bare existence does not provide it. Nor does the equivalence
 establish the hardness reduction or its YES-side promise. This node is the
 interface where structured constructions meet the transfer theorem.
 
-The whole content therefore lives in the route
+One construction route is
 `rounder-from-local-ports-and-exactifier`, whose prerequisites demand that
 the fault set be the outcome of a joint measurement of **commuting local**
 projectors of **bounded overlap**, and that exactification be conditional on
@@ -32,6 +33,12 @@ that outcome. These are now bound to a single tuple by the open claim
 `amplifier-has-compatible-local-syndrome-effects`; separate existential
 constructions do not discharge this interface. The rounder is needed on
 NO outputs for soundness. Completeness uses the separate YES energy bound.
+
+The alternative `rounder-from-uniform-kernel-resolution` needs feasible
+input support resolutions, uniform local positive spectral bounds, and
+bounded occurrence. It can supply the bare rounder without an efficient
+physical measurement. Its resolution construction is also open; neither
+spanning the permitted subspaces nor normalizing their projectors proves it.
 
 ## Attempts
 
