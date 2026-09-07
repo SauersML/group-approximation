@@ -161,6 +161,42 @@ theorem not_phiVertexRotationBundle :
   exact not_interiorIncidencePlanarRealization
     (Embedded.interiorIncidencePlanarRealization_of_vertexRotation hrotation)
 
+/-- **Model test: the obligation is satisfiable.**  At the empty distinguished
+family `InteriorEdge` is an empty type, so every covered endpoint-closed
+subgraph is edgeless and the empty family of maps realizes it.
+
+**This model is DEGENERATE and the docstring says so on purpose.**  What it
+establishes: `InteriorIncidenceComponentRealization` is not refuted — it has a
+model, so no consumer rests on a false hypothesis, and the standing
+model-test requirement is met rather than skipped.  What it does **not**
+establish: anything about non-vacuity in the regime that matters.  It never
+builds a single `CombMap`, never uses `EdgesEndpointClosed`, and never touches
+planarity, so it cannot distinguish this obligation from one that is true only
+because it is empty.
+
+**The non-degenerate model is open**: an instantiation at a `selected` with at
+least one interior edge, where a real map must be produced and counted.  The
+generic hypothesis shape does have such a model —
+`EndpointClosedRealizationModel.edgeWithIsolate_componentRealizations`, at one
+real edge and one real isolated cell — but at a different incidence relation,
+so it is a template rather than a substitute. -/
+theorem interiorIncidenceComponentRealization_empty
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda} {eps : ℕ}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} :
+    InteriorIncidenceComponentRealization.{u, w, v, z}
+      (∅ : Finset (Embedded.Candidate D eps Delta)) := by
+  classical
+  intro vertices edges _hcovered _hclosed
+  have hempty : edges = ∅ := by
+    apply Finset.eq_empty_of_forall_notMem
+    intro e _
+    exact absurd e.2.1 (Finset.notMem_empty _)
+  subst hempty
+  exact ⟨0, Fin.elim0, (fun i => Fin.elim0 i), (fun i => Fin.elim0 i),
+    (fun i => Fin.elim0 i), by simp, by simp⟩
+
 /-! Checked on every build, and checked BY NAME by the landing gate.  `#print
 axioms` would report the same closure passively; `#audit_axioms` refuses the
 build if this declaration ever acquires a non-classical dependency, and it is
@@ -169,6 +205,7 @@ theorem is conditional on `hrealization`, which nothing produces. -/
 
 #audit_axioms GroupApproximation.GGT.VanKampen.hasEndpointClosedPlanarEdgeBound_of_interiorIncidenceComponents
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.not_phiVertexRotationBundle
+#audit_axioms GroupApproximation.GGT.VanKampen.interiorIncidenceComponentRealization_empty
 
 end VanKampen
 end GGT
