@@ -156,3 +156,5 @@ end GroupApproximation
 
 #audit_closed_axioms GroupApproximation.MFQuotientUnitsKOne.manuscriptCanonicalKOne
 #audit_closed_axioms GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAtBaseRing
+
+#audit_axioms GroupApproximation.MFQuotientUnitsKOne.matrixMFQuotientEquiv_mk
