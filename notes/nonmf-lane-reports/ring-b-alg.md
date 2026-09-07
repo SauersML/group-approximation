@@ -265,3 +265,72 @@ tree uses it.  It is reusable infrastructure (the plain algebraic corner `eRe`
 as a `Ring` with unit `e`, which the tree otherwise has only for C⋆-algebras at
 a projection), so it is left in place rather than deleted; that is the lead's
 call, not this lane's.
+
+
+## Task 4 — sentence carriers for the two printed proofs
+
+| commit | module | jobs |
+|---|---|---|
+| `1fe5908303fb4efc742f664f674de6edf7f696e6` | `GroupApproximation/Analysis/AmenableExtensionSentences.lean` | 3315 |
+| `6625282d2f13d0d6b060f79614c64898b1a4735e` | `GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsSentences.lean` | 4284 |
+
+Pattern followed: `Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute.lean`
+— one `manuscriptSentence_*` per printed sentence, the sentence quoted verbatim
+in its docstring, proved from already-landed pieces.  No new mathematics.
+
+### `prop:locally-rf-by-z-trace` (proof) → `Analysis/AmenableExtensionSentences.lean`
+
+All unconditional.  Namespace `GroupApproximation.AmenableExtensionSentences`.
+
+| printed sentence | carrier |
+| --- | --- |
+| 1. "let `E ⊆ N` be finite, put `N₀ = ⟨E⟩`, and choose a finite quotient `θ`… put `H = ker θ`" | `manuscriptSentence_stagePacketSeparates` |
+| 2. "the finite-dimensional subspace `ℓ²(N₀/H)` is `N₀`-invariant, and compression to it is a u.c.p. map `φ_E`… that restricts to a representation of `C*_max(N₀)`" | `manuscriptSentence_stageCompressionUCP` |
+| 3. "`x` fixes no coset `nH`… by normality of `H` in `N₀`; so `tr(φ_E(u_x)) = 0`" | `manuscriptSentence_stageTraceZero` |
+| 4. "Along an exhaustion… density of the group algebra and contractivity extend both limits" | `manuscriptSentence_stageLimitsExtend` |
+| 5. "fix a finite set `E`, a finite Følner set `F`, and a section `σ`… put `b(g,x) = σ(ḡx)⁻¹gσ(x) ∈ N`" | `manuscriptSentence_cocycleValues` |
+| 6. "The subgroup `N₀`… is residually finite; choose a finite quotient `θ`… representatives `r_q`" | `manuscriptSentence_cocyclePacketSeparates` |
+| 7. "The cosets `σ(x)r_qH`… are pairwise distinct… let `T` be their set… put `Φ(b) = Pλ(b)P`" | `manuscriptSentence_cosetsDistinct` |
+| 8. "This map is u.c.p., and for `g ∈ E` and `ḡx ∈ F`, `gσ(x)r_qH = σ(ḡx)r_{θ(b(g,x))q}H ∈ T`" | `manuscriptSentence_compressionUCPAndTranslation` |
+| 9. "the rank of `(1-P)λ(h)P`, at most `\|{x ∈ F : h̄x ∉ F}\|·\|Q\|`, give `‖·‖₂² ≤ …`" | `manuscriptSentence_rankBoundGivesHS` |
+| 10. "The normalized trace of `Φ(u_g)` is the fraction of points of `T` fixed by `g`… it is zero" | `manuscriptSentence_traceIsFixedPointFraction` |
+| 11. "Taking Følner sets with… → 0… density and contractivity extend both limits" | `manuscriptSentence_folnerLimitsExtend` |
+
+Sentence 10's printed case split (`ḡ ≠ 1` versus `ḡ = 1`) is not reproduced:
+`ext_no_fixed_coset` shows a fixed coset forces `w⁻¹g⁻¹w ∈ H ≤ N`, and reading
+that in `G/N` already gives `ḡ = 1`, so the first printed case cannot occur.
+The carrier has the sentence's conclusion, not its case structure.
+
+### `thm:mf-quotient-units` (proof) → `Manuscript/OneSidedMFRadical/MFQuotientUnitsSentences.lean`
+
+Namespace `GroupApproximation.MFQuotientUnitsSentences`.
+
+| printed sentence | carrier | conditional on |
+| --- | --- | --- |
+| 1. "`M_n(R)` is again countable, purely infinite, and simple… so it suffices to treat `n = 1`" | `manuscriptSentence_matrixRingAgainPurelyInfinite` | `AGPMatrixReduction` |
+| 2. "`κ` is surjective with kernel `[H,H]`" | `manuscriptSentence_kappaSurjectiveKernelCommutator` | `AGPUnitK1` |
+| 3. "A countable abelian group `A` is MF" | `manuscriptSentence_countableAbelianIsMF` | — |
+| 4. "So `κ` is a homomorphism to an MF group, and `N ≤ ker κ`" | `manuscriptSentence_radicalLeKerKappa` | — |
+| 5. "every homomorphism from `EL_m(eRe)`, `m ≥ 2`, to an MF group is trivial" | `manuscriptSentence_cornerElementaryKillsMFTargets` | `thm:full-defect-ring`, rank-two form |
+| 6. `eq:corner-units` | `manuscriptSentence_cornerUnitsLieInRadical` | — |
+| 7. "`u = PvQ`… `v = e_1 + (1-e_1)v(1-e_1)`" | `manuscriptSentence_menalMoncasiReduction` | `AGPMenalMoncasiReduction` |
+| 8. "…products of an element of `EL_{m-1}(T)` and a conjugate of its inverse, so they lie in the normal subgroup `N`" | `manuscriptSentence_normalAbsorbsConjugateOfInverse` (reason only) | — |
+| 9. "Hence `u ≡ v` modulo `N`, and `κ(v) = κ(u) = 0`" | `manuscriptSentence_kappaVEqOne` | — |
+| 10. "…`v = 1 - P + θ(diag(v,1,…,1)) ∈ N`… Hence `ker κ ≤ N`" | `manuscriptSentence_stepOneGivesKerKappaLeRadical`, `manuscriptSentence_conclusion` | `AGPStepOne` (body only) |
+
+Two clauses have no carrier, by design and stated in the docstrings: the Morita
+half of sentence 1 (the conclusion never names `K_1(R)`, so nothing has to
+identify `K_1(M_n R)` with it), and the identification in sentence 8 of the two
+Steinberg displays with elements of `EL_{m-1}(T)`, which is internal to
+`AGPMenalMoncasiReduction`.
+
+### A stale census row
+
+The census work order lists `thm:mf-quotient-units` (23 sentences) as
+"**no Lean carrier at all** — genuinely open formalization… The largest real
+gap found this round."  That was true when written and is not now: the
+statement landed at `6a9aaf05f`, the countable-abelian input at `e4e2f12d8`,
+and the sentence carriers above.  What remains quoted is four
+Ara--Goodearl--Pardo propositions, each a named Prop with provenance, not an
+open formalization.  `cor:leavitt-mf-quotient` is rank-four's and is unblocked
+by this.
