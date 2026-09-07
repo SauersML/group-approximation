@@ -720,3 +720,74 @@ plus two `#audit_closed_axioms` lines.
   `isForall`.  `¬ ProblemLIX` is stored as `Not ProblemLIX`, an application,
   not a `.forallE`, so it passes — `ProblemX.lean:287` is the precedent.  A
   statement written as `ProblemLIX → False` would *not* pass.
+
+## 5. 2026-09-07: lane `lix-wire`, three-lane strike on Step C's odd side
+
+Distinct from the `cs-endpoint` clone/node named in the probe table above; this
+lane builds on `cs-stages` (acn112).  Task assignment: collapse
+`LIXStepCOddThom.lean`'s `lix_topClass_ne_zero_of_thom` (eleven binders) to
+three, using `LIXStepCOddRelative.lean`'s eight relative-cohomology terms;
+then reduce `LIX.LemmaTwoHolds` to that raw nonvanishing directly, bypassing
+the `ThomChainThom` record route; then, once `lix-hclass`/`lix-hres`/`lix-hsq`
+land, close `ProblemLIX.lean`'s two hypothesis-free forms.
+
+### Task 1 — LANDED, `f2c3145b9`, `GroupApproximation/CharClass/LIXStepCOddWired.lean`
+
+`lix_topClass_ne_zero_of_three` plugs `RelativeSupport.{lixJ, lixI, lixHexact,
+lixJE, lixSAbs, lixPiStar, lixHnat, lixHsection}` into
+`lix_topClass_ne_zero_of_thom`'s matching eleven slots, leaving exactly three
+open: `hsq`, `hres`, `hclass` (types in the module docstring and in the
+`lix-hsq`/`lix-hres`/`lix-hclass` handoff message).  Probe: `Build completed
+successfully (9211 jobs)`, `PROBE GREEN`, on `cs-stages`/acn112.
+
+**Trap hit and worked around**: the first probe on this clone failed with
+zero genuine Lean errors and ~20 `failed to open file '....olean': No such
+file or directory` for modules totally unrelated to this file (`SteenrodCupOne`,
+`ProjectiveSpaceChart`, `LIXClutching`, `CohomologyBridge`, HamSandwich
+`AlexanderWhitney`, ...) — a stale-artifact race from a very large sync (801
+changed modules, from other lanes' concurrent landings reaching this
+hardlink clone), not a defect in the new file.  A bare retry, with the clone
+now warm, built clean (9211 jobs, no `Some required targets logged failures`
+line).  Consistent with the standing `Hardlink clone stale olean` /
+`Stale artifact trap` entries: **a `PROBE FAILED` whose only errors are
+missing `.olean` files for modules you never touched is a clone-sync race,
+not a compile error — retry before diagnosing the new file.**
+
+**Also found**: `GroupApproximation.lean:3884` already imports
+`LIXStepCOddRelative` (landed `eba58e254e`, 2026-09-06), contradicting the
+handoff note that nothing imports it yet — harmless (the module still needed
+writing regardless), but worth a grep before trusting a "nothing imports X
+yet" claim in a handoff, per the standing `Grep before declaring a gap` rule.
+
+### Task 2 — LANDED, `633e85025`, `GroupApproximation/CharClass/LemmaTwoOddNonvanishing.lean`
+
+`lemmaTwoHolds_of_oddNonvanishing` takes Step C already in `lixTopClass`-
+wrapped form (`stepC_of_chain`'s conclusion shape — what Task 1's theorem
+produces once its three hypotheses land and `gamma` is instantiated at a
+mapping torus's Chern class) and discharges Step D unconditionally, exactly
+as `ParityEvenLemmaTwoClosed.lean`/`ParityEvenVSlice.lean` already do:
+`Wu.cartanTotal`, `LIX.even_lixDD`, and `vSliceValue_sliceGen` at
+`LH.sliceGen`/`LIX.lixDD_pos`.  This sidesteps the `ThomChainThom` record
+that `LemmaTwoStepCThom.lean`/`LemmaTwoStepDLix.lean`/`LemmaTwoStaged.lean`
+route through, since `stepC_of_thomChainThom` is provably just
+`stepC_of_chain` composed with `ne_zero_of_thomChainThom`, and Task 1's
+`lix_topClass_ne_zero_of_thom`-based route is a *different* proof of the same
+odd-side nonvanishing that never builds a `ThomChainThom` value.  Probe:
+`Build completed successfully (9214 jobs)`, `PROBE GREEN`, on
+`cs-stages`/acn112.
+
+**Trap hit**: the hypothesis `h`'s type first named its `Continuous G` and
+`IsCornerUnitary` binders `hGc`/`hGu`.  Inside a bare Pi-type telescope
+(no proof term of its own — it is the *type* of a hypothesis, not a theorem)
+Lean's `unusedVariables` linter flags a named binder that no later binder in
+the same telescope references by name, and under this build's flags that is
+an error, not a warning:
+`Variable name 'hGc' is not explicitly referenced.`  `LemmaTwoInput`'s own
+definition (`LemmaTwoGlue.lean`) already avoids this by leaving exactly
+these three hypotheses anonymous (`Continuous G → (∀ m, ...) → ... →`); the
+fix here was to match that style rather than name binders that are only
+needed for their existence.  A **theorem** signature with the same-looking
+named binders is fine as long as the proof *term* uses them (as
+`lixStepD_unconditional` in the same file does) — the linter is checking
+"referenced anywhere in this declaration", and a bare hypothesis type has no
+proof term to reference them in.
