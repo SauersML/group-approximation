@@ -129,6 +129,12 @@ theorem manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics :
     FullDefectRankTwo.PrintedOneSidedRingMaximalReducedCStarRankTwo :=
   FullDefectRankTwo.manuscriptOneSidedRingMaximalReducedCStarRankTwoFromEJZ ejz
 
+/-- **`cor:one-sided-ring-maximal`, the whole second printed sentence**, in
+every characteristic, with nothing assumed. -/
+theorem manuscriptOneSidedRingMaximalRankTwoAllCharacteristics :
+    FullDefectRankTwo.PrintedOneSidedRingMaximalRankTwo :=
+  FullDefectRankTwo.manuscriptOneSidedRingMaximalRankTwoFromEJZ ejz
+
 /-! ## Theorem B at `d = 2` -/
 
 /-- **The binary Leavitt unit group at `d = 2`**, in every characteristic,
@@ -163,4 +169,5 @@ open GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditio
 #audit_closed_axioms manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics
 #audit_closed_axioms
   manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics
+#audit_closed_axioms manuscriptOneSidedRingMaximalRankTwoAllCharacteristics
 #audit_closed_axioms manuscriptLeavittMFQuotientTwoAllCharacteristics

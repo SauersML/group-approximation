@@ -1,6 +1,8 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSimple
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingMaximal
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingRankTwo
+import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingRankTwoIsometry
+import GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupRankDescent
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -26,6 +28,21 @@ name two distinct indices, so that `EL_n(R)` is nontrivial.  Since it is
 private it cannot be reused, and `reducedCStarClauseRankTwo` below is the same
 argument at `2 ≤ n`.  If that theorem is ever made public with the weaker
 hypothesis, this one should be deleted in favour of it.
+
+## The printed sentences
+
+`cor:one-sided-ring-maximal` prints three sentences.  The first, at `n ≥ 4`
+under "not directly finite", is `FullDefectRing`'s
+`PrintedOneSidedRingMaximalIsometry` and is not restated here.  The second and
+third are one conditional in print — "If `R ≠ 0` satisfies the hypothesis of
+Theorem B, then for every `n ≥ 2` … contains a proper isometry and `C*_r` is
+separable, stably finite, and not MF, and the unit group `R^×` is not MF" — and
+`PrintedOneSidedRingMaximalRankTwo` below is that conditional, whole.  The
+three clauses are also available separately, which is what the individual
+propositions in this file are for.
+
+`cor:simple-infinite-ring` prints two sentences, and they are
+`PrintedSimpleInfiniteRingRankTwo` and `PrintedLeavittAlgebraFullDefectRankTwo`.
 
 ## Naming
 
@@ -134,6 +151,40 @@ theorem manuscriptOneSidedRingMaximalReducedCStarRankTwoFromEJZ
   exact reducedCStarClauseRankTwo hn fun M _ hM f x ↦
     manuscriptFullComplementaryIdempotentsRankTwoFromEJZ hEJZ R s t hts hfull n
       hn M hM f x
+
+/-! ## `cor:one-sided-ring-maximal`, second printed sentence, whole -/
+
+/-- **`cor:one-sided-ring-maximal`, the whole second sentence.**
+
+> If `R ≠ 0` satisfies the hypothesis of Theorem B, then for every `n ≥ 2` the
+> algebra `C*_max(EL_n(R))` contains a proper isometry and `C*_r(EL_n(R))` is
+> separable, stably finite, and not MF, and the unit group `R^×` is not MF.
+
+The unit-group clause does not mention `n`, so it sits outside the rank
+quantifier, exactly as the printed sentence has it. -/
+def PrintedOneSidedRingMaximalRankTwo : Prop :=
+  ∀ (R : Type) [Ring R] [Nontrivial R] [Countable R] (s t : R), t * s = 1 →
+    (∃ (m : ℕ) (a b : Fin m → R), ∑ k, a k * (1 - s * t) * b k = 1) →
+      (∀ (n : ℕ), 2 ≤ n →
+          (∃ v : MaximalGroupCStar (elementaryGroup (Fin n) R),
+              star v * v = 1 ∧ ¬ IsUnit v) ∧
+            TopologicalSpace.SeparableSpace
+              (ReducedGroupCStar (elementaryGroup (Fin n) R)) ∧
+            IsStablyFiniteCStarAlgebra
+              (ReducedGroupCStar (elementaryGroup (Fin n) R)) ∧
+            ¬ IsMFAlgebra (ReducedGroupCStar (elementaryGroup (Fin n) R))) ∧
+        ¬ IsOperatorMF Rˣ
+
+theorem manuscriptOneSidedRingMaximalRankTwoFromEJZ
+    (hEJZ : FinitelyGeneratedRingGeneralRankElementaryPropertyT) :
+    PrintedOneSidedRingMaximalRankTwo := by
+  intro R _ _ _ s t hts hfull
+  refine ⟨fun n hn ↦ ?_, ?_⟩
+  · refine ⟨(manuscriptOneSidedRingMaximalIsometryRankTwoFromEJZ hEJZ R s t hts
+      hfull n hn).1, ?_⟩
+    exact manuscriptOneSidedRingMaximalReducedCStarRankTwoFromEJZ hEJZ R s t hts
+      hfull n hn
+  · exact manuscriptUnitGroupNotMFFromEJZ hEJZ R s t hts hfull
 
 end FullDefectRankTwo
 end OneSidedMFRadical
