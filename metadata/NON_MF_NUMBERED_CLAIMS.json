@@ -60,6 +60,12 @@
           "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsAllCharacteristics",
           "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/UniversalGroupSigma",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal",
+          "covers": "one printed clause; the listed declarations are collective"
         }
       ]
     },
