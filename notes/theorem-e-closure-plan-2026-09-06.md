@@ -530,6 +530,25 @@ orbit or topology hypothesis. These proofs pass ordinary axiom audits.
 Euler preservation for a general enclosing region still needs the planar
 deletion/counting argument; the vertex correspondence alone is not that proof.
 
+The single-edge step is now constructed in `CombMapEdgeDeletion`.
+`PermOrbitErasePoint` deletes a point by actual first return and proves the
+exact loss of a fixed-point cycle; `PermOrbitJoin` supplies the missing
+two-cycle joining case complementary to the existing split theorem.
+The deleted map retains precisely the other darts, restricts edge reversal,
+and deletes both edge darts from vertex rotation. Its face rotation is proved
+to be the corresponding deletion of the transposed old face permutation.
+The exact vertex/face count balance includes vertices that disappear entirely.
+`CombMapEdgeDeletionEuler` proves that, from a connected map with at least
+one retained dart, this operation cannot lower Euler characteristic. If the
+two sides of the deleted edge are different faces, every vertex survives
+and Euler characteristic is unchanged. The proof handles the exceptional
+whole-edge components explicitly. `CombMapEdgeEuler` also supplies the exact
+Euler change for arbitrary-corner insertion: equality within one face and a
+drop of two between distinct faces. These actual construction and count
+theorems pass ordinary axiom audits. Connectedness of the edge-deleted map,
+iteration over the chosen region, and the general planar restriction argument
+still need proofs; the single-step inequality does not establish them.
+
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
 `RelatorFaceSingletonProducer` demands the complete stored face boundary even
