@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 228 |
-| `unassigned` | 136 |
-| `definition` | 45 |
-| `structural` | 25 |
+| `formalized` | 238 |
+| `unassigned` | 122 |
+| `definition` | 47 |
+| `structural` | 27 |
 | `provenance` | 19 |
 | `attribution` | 16 |
 | `partial` | 8 |
 | **total** | **477** |
 
-Completely formalized or definitional: **273/477** (57.2%).
+Completely formalized or definitional: **285/477** (59.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -165,26 +165,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1489 --- In this way $V$ acts on $\operatorname{Cl}(X)$ through its action on $X$, and we put
 * **`unassigned`**, line 1511 --- Then $tct^{-1}$ is the lamp at $t\Gamma$ and $a(tct^{-1})a^{-1}$ is the lamp at $at\Gamma$.
 * **`unassigned`**, line 1511 --- These cosets are distinct, because $t\Gamma=at\Gamma$ would mean $a\in t\Gamma t^{-1}=\alpha(\Gamma)$.
-* **`unassigned`**, line 1520 --- Set
-* **`unassigned`**, line 1524 --- Both $x$ and $y$ are involutions, and hence
-* **`unassigned`**, line 1530 --- Since $t\in\operatorname{Comp}_W(\Gamma)$, $c\in C_W(\Gamma)$ and $a\in\Gamma$, the element $d=[tct^{-1},a]$ is one of the generators of $\mathfrak D_W(\Gamma)$.
-* **`unassigned`**, line 1530 --- Thus
-* **`unassigned`**, line 1546 --- Suppose in addition that $\Gamma$ is residually finite and that $[\Gamma:\alpha(\Gamma)]<\infty$.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1546 --- Then
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1552 --- where $K$ is locally residually finite.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1552 --- Consequently $W$ is sofic but not MF, the canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1603 --- For a concrete instance, take
-* **`unassigned`**, line 1612 --- It is residually finite, since reduction modulo a suitable integer separates any two distinct integral matrices, and it has property~\textup{(T)}~\cite[Example~1.7.4(i)]{BHV}.
-* **`unassigned`**, line 1612 --- Let
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 1622 --- so that $\alpha(v,A)=(2v,A)$.
-* **`unassigned`**, line 1622 --- This is injective, and its image consists of the affine matrices whose translation coordinates are all even, so $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.
-* **`unassigned`**, line 1622 --- Translation $a$ by the first standard basis vector lies outside $\alpha(\bar\Gamma)$.
-* **`unassigned`**, line 1622 --- So the preceding construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 * **`unassigned`**, line 1685 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
 * **`unassigned`**, line 1697 --- For $c\in J$ and $\ell\in S$, the commutator $[tct^{-1},\ell]$ lies in $\mathfrak D_{G_0}(\Gamma)$ by~\eqref{eq:intrinsic-defect}, since $t$ conjugates $\Gamma$ into itself, $c$ centralizes $\Gamma$, and $S\le\Gamma$.
 * **`unassigned`**, line 1697 --- As $c$ ranges over $J$, the element $tct^{-1}$ ranges over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
@@ -203,6 +184,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 38 |
 | The binary example | 46 | 12 |
-| An amenable nonquasidiagonal trace | 90 | 39 |
+| An amenable nonquasidiagonal trace | 90 | 25 |
 | A torsion-free finitely presented example | 35 | 3 |
 | Acknowledgments | 2 | 0 |
