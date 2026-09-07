@@ -159,3 +159,21 @@ G-set X and finite nonempty B. This covers independently chosen symbols
 on a permutation G-set, even with infinite stabilizers. It does not
 cover arbitrary constrained subshifts or data-dependent updates to the
 certificate. The full-shift construction problem remains open.
+
+The strongest current certificate reduction no longer assumes linearity.
+`nonlinear-certificate-fibers-are-all-surjective-or-all-strict` proves
+that any injective full-shift automaton E(x,c)=(T_c(x),c) has either
+all bijective data fibers or all strict data fibers. In the strict case,
+EVERY constant certificate gives an ordinary injective nonsurjective
+CA on the original data alphabet over the original group. The proof
+counts the finitely many completions of a fixed outside output pattern,
+then uses locality and compactness to pass from finite certificate
+changes to arbitrary certificates. No linearization is used.
+
+Thus preserving arbitrary malformed certificates cannot conceal the
+entire defect in the valid computational sector, even for nonlinear
+programs. Evolving the certificate by an autonomous reversible CA has
+the same obstruction. A design that uses data-dependent certificate
+updates lies outside this theorem; no such counterexample is currently
+constructed. This reduction supplies neither a strict CA on Q nor a
+general surjunctivity proof.

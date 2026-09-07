@@ -2,6 +2,8 @@
 rg: 2
 id: residual-lamp-quotients-handle-monomial-actions
 kind: claim
+artifacts:
+  - research/artifacts/lamp-and-nonlinear-fiber-literature-audit-2026-09-07.md
 title: Invariant finite lamp quotients preserve stable finiteness under monomial actions
 distinct_from:
   rf-lamps-preserve-stable-finiteness-for-arbitrary-actions: that only permutes lamp sites; this also transforms each lamp value by an internal automorphism and tracks the resulting stabilizer actions.

@@ -67,3 +67,10 @@ C_lc(B^X,k) semidirect G is stably finite iff k[G] is. That theorem
 permits infinite stabilizers but does not assert the stronger single-
 fiber propagation proved here for B^G. Neither statement covers
 arbitrary constrained certificate subshifts.
+
+For finite alphabets, the fiber dichotomy now extends beyond linear
+data rules in `nonlinear-certificate-fibers-are-all-surjective-or-all-strict`.
+Finite-output counting replaces finite-rank linear algebra, and no
+local decoder is required. The present linear theorem remains stronger
+in a different direction: it allows infinite fields and supplies the
+fixed-size group-algebra evaluation statement.

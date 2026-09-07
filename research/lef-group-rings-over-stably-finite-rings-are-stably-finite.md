@@ -2,6 +2,8 @@
 rg: 2
 id: lef-group-rings-over-stably-finite-rings-are-stably-finite
 kind: claim
+artifacts:
+  - research/artifacts/lamp-and-nonlinear-fiber-literature-audit-2026-09-07.md
 title: LEF group rings preserve stable finiteness of arbitrary coefficient rings
 distinct_from:
   rf-lamps-preserve-stable-finiteness-for-arbitrary-actions: that uses separating global finite lamp quotients; this transfers a hypothetical finite inverse witness through a partial multiplication table and only assumes LEF lamps.
