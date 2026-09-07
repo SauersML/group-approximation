@@ -359,7 +359,128 @@ theorem norm_columnRoot_displacement_le_of_unit
     positivity
   nlinarith [norm_nonneg (rho (columnRoot ((b, a))) z - z), hbound, hrhs]
 
+/-! ### Dropping the unit-vector normalization -/
+
+/-- The displacement bound for an arbitrary vector, by homogeneity. -/
+theorem norm_columnRoot_displacement_le
+    (z : E) (b : Fin 2) (a : FreeAlgebra ℤ X) (delta : ℝ) (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    ‖rho (columnRoot ((b, a))) z - z‖ ≤
+      13 * (Real.sqrt (Fintype.card X) + 7) * delta := by
+  have hCnn : (0 : ℝ) ≤ 13 * (Real.sqrt (Fintype.card X) + 7) := by
+    have : (0 : ℝ) ≤ Real.sqrt (Fintype.card X) := Real.sqrt_nonneg _
+    positivity
+  rcases eq_or_ne z 0 with rfl | hz0
+  · simp only [map_zero, sub_zero, norm_zero]
+    positivity
+  · have hc : 0 < ‖z‖ := norm_pos_iff.mpr hz0
+    have hne : ‖z‖ ≠ 0 := ne_of_gt hc
+    have hz' : ‖(‖z‖⁻¹ : ℝ) • z‖ = 1 := by
+      rw [norm_smul, norm_inv, norm_norm]
+      field_simp
+    have hsmul : ∀ g : elementaryGroup (Fin 3) (FreeAlgebra ℤ X),
+        rho g ((‖z‖⁻¹ : ℝ) • z) - (‖z‖⁻¹ : ℝ) • z =
+          (‖z‖⁻¹ : ℝ) • (rho g z - z) := by
+      intro g
+      rw [map_smul, smul_sub]
+    have hnear' : ∀ s ∈ integralControlSet X,
+        ‖rho s ((‖z‖⁻¹ : ℝ) • z) - (‖z‖⁻¹ : ℝ) • z‖ < delta / ‖z‖ := by
+      intro s hs
+      rw [hsmul s, norm_smul, norm_inv, norm_norm, div_eq_inv_mul]
+      exact mul_lt_mul_of_pos_left (hnear s hs) (by positivity)
+    have hmain := norm_columnRoot_displacement_le_of_unit rho _ hz' b a
+      (delta / ‖z‖) (by positivity) hnear'
+    rw [hsmul (columnRoot ((b, a))), norm_smul, norm_inv, norm_norm,
+      div_eq_inv_mul] at hmain
+    have h1 : ‖z‖ * (‖z‖⁻¹ * ‖rho (columnRoot ((b, a))) z - z‖) ≤
+        ‖z‖ * (13 * (Real.sqrt (Fintype.card X) + 7) *
+          (‖z‖⁻¹ * delta)) := by
+      exact mul_le_mul_of_nonneg_left hmain hc.le
+    have h2 : ‖z‖ * (‖z‖⁻¹ * ‖rho (columnRoot ((b, a))) z - z‖) =
+        ‖rho (columnRoot ((b, a))) z - z‖ := by
+      field_simp
+    have h3 : ‖z‖ * (13 * (Real.sqrt (Fintype.card X) + 7) *
+        (‖z‖⁻¹ * delta)) =
+        13 * (Real.sqrt (Fintype.card X) + 7) * delta := by
+      field_simp
+    linarith
+
+/-! ### The fixed root, by the reindexing symmetry -/
+
+/-- The estimate at the fixed root `(0,1)`, obtained from the column root
+`(0,2)` by the transposition of the last two matrix coordinates. -/
+theorem integralFixedRootCoefficientDisplacementBound
+    (Y : Type u) [Fintype Y] :
+    IntegralFixedRootCoefficientDisplacementBound.{u, v} Y
+      (13 * (Real.sqrt (Fintype.card Y) + 7)) := by
+  intro F _ _ _ sigma z delta hdelta hnear a
+  let e : Equiv.Perm (Fin 3) := Equiv.swap 1 2
+  let sigma' : elementaryGroup (Fin 3) (FreeAlgebra ℤ Y) →* (F ≃ₗᵢ[ℝ] F) :=
+    sigma.comp (elementaryReindexEquiv (R := FreeAlgebra ℤ Y) e).toMonoidHom
+  have hnear' : ∀ s ∈ integralControlSet Y, ‖sigma' s z - z‖ < delta := by
+    intro s hs
+    exact hnear _ (elementaryReindexEquiv_mem_integralControlSet Y e hs)
+  have hbound := norm_columnRoot_displacement_le sigma' z 0 a delta hdelta hnear'
+  have hmap : elementaryReindexEquiv (R := FreeAlgebra ℤ Y) e
+      (columnRoot ((0 : Fin 2), a)) =
+      elementaryRoot (0 : Fin 3) 1 (by decide) a := by
+    have hroot : columnRoot ((0 : Fin 2), a) =
+        elementaryRoot (0 : Fin 3) 2 (by decide) a := rfl
+    rw [hroot, elementaryReindexEquiv_elementaryRoot]
+    congr 1
+  have hrewrite : sigma' (columnRoot ((0 : Fin 2), a)) =
+      sigma (elementaryRoot (0 : Fin 3) 1 (by decide) a) := by
+    change sigma (elementaryReindexEquiv (R := FreeAlgebra ℤ Y) e
+      (columnRoot ((0 : Fin 2), a))) = _
+    rw [hmap]
+  rw [hrewrite] at hbound
+  exact hbound
+
+/-! ### The column-plane mass bound, and the printed theorem -/
+
+/-- The explicit constant of the integral column-plane estimate. -/
+def integralColumnPlaneConstant (Y : Type u) [Fintype Y] : ℝ :=
+  2 * (13 * (Real.sqrt (Fintype.card Y) + 7))
+
+theorem integralColumnPlaneConstant_nonneg (Y : Type u) [Fintype Y] :
+    0 ≤ integralColumnPlaneConstant Y := by
+  have : (0 : ℝ) ≤ Real.sqrt (Fintype.card Y) := Real.sqrt_nonneg _
+  unfold integralColumnPlaneConstant
+  positivity
+
+/-- **The integral column-plane mass bound.**  This is the estimate
+`IntegralCharacterMass.ColumnPlaneMassBound` names and that the tree left
+open over `ℤ⟨X⟩`. -/
+theorem integralColumnPlaneMassBound (Y : Type u) [Fintype Y] :
+    ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ Y) (integralControlSet Y)
+      (integralColumnPlaneConstant Y) :=
+  columnPlaneMassBound_of_displacementBound
+    (columnPlaneDisplacementBound_of_rootCoefficientDisplacementBound
+      (rootCoefficientDisplacementBound_of_fixedRootBound Y
+        (integralFixedRootCoefficientDisplacementBound.{u, v} Y)))
+
 end
+
+/-- **The remaining analytic family of the integral reduction is proved.** -/
+theorem integralFreeColumnPlaneMassBounds :
+    IntegralFreeColumnPlaneMassBounds := by
+  intro Y _
+  exact ⟨integralColumnPlaneConstant Y, integralColumnPlaneConstant_nonneg Y,
+    integralColumnPlaneMassBound.{0, 0} Y⟩
+
+/-- **Property `(T)` for every elementary group of rank at least three over
+every finitely generated unital ring, in every characteristic.**  This is the
+statement Theorem 2 of the manuscript cites from Ershov--Jaikin-Zapirain. -/
+theorem finitelyGeneratedRingGeneralRankElementaryPropertyT :
+    FinitelyGeneratedRingGeneralRankElementaryPropertyT :=
+  printedEJZColumnPlaneReduction integralFreeColumnPlaneMassBounds
 
 end IntegralColumnPlaneClosure
 end GroupApproximation
+
+open GroupApproximation
+
+#audit_closed_axioms
+  IntegralColumnPlaneClosure.integralFreeColumnPlaneMassBounds
+#audit_closed_axioms
+  IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT
