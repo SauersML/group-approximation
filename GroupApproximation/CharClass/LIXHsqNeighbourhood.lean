@@ -283,4 +283,8 @@ theorem injective_lixShrink (hGc : Continuous G)
     zero_mem_lixFC_target (lixU_subset_target hGc hGu) (lixShrink_mapsTo hGc hGu)
     (2 * lixRank dd)
 
+/-! Printed on every build. -/
+
+#print axioms injective_lixShrink
+
 end GroupApproximation.CharClass

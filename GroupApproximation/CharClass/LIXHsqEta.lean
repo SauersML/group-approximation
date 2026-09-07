@@ -307,4 +307,8 @@ theorem lixEtaLin_eq_zero_iff {q : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → 
     | inl k => simp [lixEtaLin_inl]
     | inr h => simp [lixEtaLin_inr]
 
+/-! Printed on every build. -/
+
+#print axioms lixSection_eq_mulVec
+
 end GroupApproximation.CharClass

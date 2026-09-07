@@ -320,4 +320,8 @@ theorem relPullback_lixKHomeo_eq_id (hGc : Continuous G)
       (lixKHomeo_mapsTo hGc hGu) (lixKHomeo_symm_mapsTo hGc hGu) (2 * lixRank dd)) x
   rw [← key a, ← key b, hab]
 
+/-! Printed on every build. -/
+
+#print axioms relPullback_lixKHomeo_eq_id
+
 end GroupApproximation.CharClass

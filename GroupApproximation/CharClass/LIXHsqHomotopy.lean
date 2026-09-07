@@ -271,4 +271,8 @@ theorem lixHomotopy_at_zero (hGc : Continuous G)
       lixProductChart_lixQ hGc hGu v, lixBaseChartFun_zero]
     rfl
 
+/-! Printed on every build. -/
+
+#print axioms lixHomotopy_mapsTo
+
 end GroupApproximation.CharClass
