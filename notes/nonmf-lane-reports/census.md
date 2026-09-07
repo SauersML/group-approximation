@@ -537,3 +537,43 @@ lane table). `thm:factorization-nonmf-trace`'s 6-sentence polar-decomposition
 proof also has a fresh carrier as of this round
 (`FactorizationTraceSentences.lean`, `e60d09eb2`, landed independently while
 this round was in flight) -- next to assign.
+
+## Round 8: thm:factorization-nonmf-trace's proof, closed independently
+
+Landed: `3c7db87bd` (all 6 open sentences assigned, plus one pre-existing row upgraded).
+
+`FactorizationTraceSentences.lean` (`e60d09eb2`) landed while Round 7 was in
+flight, closing the polar-decomposition proof gap flagged in Round 6's
+grouped report. Its docstring states the route difference up front: the
+printed proof builds `V_n` as the unitary part of a polar decomposition of
+`phi_n(u_g)`; Mathlib has no polar decomposition of a bounded operator at all
+(`Analysis.CalkinSchauder` confirms it), so the tree proves the same theorem
+via `Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` and
+`ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal` instead, never
+forming `V_n`.
+
+Assigned: printed sentence 1 (2 census keys, split at the "u.c.p."
+abbreviation period) formalized; sentence 2's near-isometry clause partial
+(star-free form carried, the polar-decomposition/`V_n` construction itself
+is not, by design); sentence 2's third clause merged with sentence 3 partial
+(`phi_n(1)=1` carried, the `V_n`-asymptotic-multiplicativity claim is not);
+sentence 4 partial (only the trace-vanishing tail carried); sentence 5
+partial (only the final "G is MF" conclusion carried -- the point where the
+two proof routes rejoin). Also upgraded a pre-existing row, `e32d25f07efc`
+("The last assertion follows"), from `structural` to `formalized` now that
+`manuscriptSentence_lastAssertion` exists as a direct carrier.
+
+This closes a genuine "mathematics not formalizable by the printed method"
+gap (no polar decomposition in Mathlib), not a bookkeeping one -- every
+partial row's note names exactly which clause lacks a carrier and why.
+
+Verify-decls 0 missing of 564 named. Verify-unconditional 0 new findings.
+Summary: formalized 281, unassigned 61, definition 51, structural 32,
+provenance 19, partial 17, attribution 16, total 477.
+
+What remains from Round 6's grouped report: `lem:rank-two` is now fully
+closed (Round 7); `thm:factorization-nonmf-trace` is now fully closed (this
+round). Still open: `prop:locally-rf-by-z-trace`'s 14-sentence combinatorial
+preamble (mathematics not in the tree in that literal form) and
+`thm:compression-criterion`'s 9-sentence dense analytic proof (still needs a
+lane table), plus the smaller proof-detail pockets listed in Round 6.
