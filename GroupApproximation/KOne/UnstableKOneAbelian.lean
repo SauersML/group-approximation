@@ -12,6 +12,14 @@ both sides, and at any rank with two distinct coordinates:
 
       `⁅GL_ι(R), GL_ι(R)⁆ ≤ EL_ι(R)`   (`commutator_le_elementaryGroup`).
 
+`elementaryGroup_normal_of_division` shares its short name with
+`MatrixDiagonalization.elementaryGroup_normal_of_division`
+(`Leavitt/DiagonalClassGroup.lean`), which is the rank-two case of it; the two
+full names differ, the hypotheses are the same predicate, and at `ι = Fin 2`
+the statement below is exactly the older one.  Nothing here edits or replaces
+it --- new consumers at arbitrary rank should use this one, rank-two consumers
+either.
+
 Both come from the two facts proved in this directory and nothing else:
 Gaussian elimination at every rank (`RankNElimination`) writes every invertible
 matrix as `E · diagAt l u · F` with `E`, `F` elementary, so the quotient is
