@@ -31,6 +31,15 @@ to individual terms. Run `python3 scripts/check_qpcp_rounding.py` for exact
 algebraic replay. The linked Cairn target remains open; these results do not
 prove quantum PCP.
 
+[Finite-context relator energy](research/artifacts/finite-context-relator-energy.md)
+extends that obstruction to arbitrary fixed polynomial contexts and proves
+that the resulting quadratic certificates characterize ordinary identity
+words. Its [continuation](research/artifacts/local-context-and-global-norm-hierarchies.md)
+computes the limit of increasing vector-context tests as the full group
+C-star norm, and distinguishes it from the global norm test for the MF
+radical. Complete written proofs and exact finite certificate replays are
+included; these results do not settle the non-MF research goals.
+
 ## Lean library
 
 The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.

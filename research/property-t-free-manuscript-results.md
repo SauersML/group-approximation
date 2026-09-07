@@ -92,3 +92,12 @@ relator tests and additive slack below two. Increasing the finite context
 depth therefore cannot detect a nontrivial MF-radical element. The remaining
 operator-norm estimate must supply global control; it does not follow from
 these vector tests. This observation leaves the present goal open.
+
+Passing to all context depths does not change this conclusion.
+`local-context-hierarchy-converges-to-full-group-norm` proves that the
+corresponding vector optimization converges to the full group C-star norm;
+every nontrivial word retains squared displacement at least two. The
+companion proof identifies the global operator-norm limit with the supremum
+over norm-corona representations, whose word kernel is the MF radical.
+The missing step is still a global collapse estimate for a specific
+nontrivial word, not convergence of the vector-context hierarchy.

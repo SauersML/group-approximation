@@ -204,3 +204,38 @@ argument as a new property-(T)-free proof.
 
 Wolfram's context endpoint returned HTTP 404 during this session. No
 Wolfram evaluation or certification is claimed.
+
+## Continuation and exact replay
+
+[Local context limits and global norm limits](local-context-and-global-norm-hierarchies.md)
+proves that increasing the context depth all the way to infinity recovers
+the full group C-star norm. It separately proves that the global
+operator-norm hierarchy has the MF radical as its word kernel. Thus even
+the limit of the vector hierarchy is the wrong invariant for the proposed
+nontrivial-radical certificate.
+
+The exact replay constructs a complete 1,199-point Heisenberg word ball and
+checks 2,954 prescribed partial-permutation edges, 33 word-context pairs,
+and nine polynomial-context pairs. All tested defect vectors vanish and
+the target displacement squared is two. The three relators move 502, 250,
+and 263 points elsewhere in the model, respectively. These nonzero defects
+are why the witness does not claim an operator-norm approximation.
+
+Five supplied normal-closure expressions, including inverse relators and
+the empty expression, replay as exact free-group-ring identities. The
+complete witness and certificate output are committed as
+[`finite-context-heisenberg-witness.json`](finite-context-heisenberg-witness.json)
+and [`finite-context-energy-replay.json`](finite-context-energy-replay.json).
+
+From the repository root:
+
+```sh
+python -m unittest discover -s experiments -p test_finite_context_energy_audit.py -v
+python experiments/finite_context_energy_audit.py \
+  --verify-witness research/artifacts/finite-context-heisenberg-witness.json
+```
+
+The tests include rejection of a false word product, an incorrect inverse
+sign, a nonbijective map, a changed internal edge, and an insufficient ball
+radius. These finite checks supplement the proofs; they do not establish a
+general theorem by sampling.
