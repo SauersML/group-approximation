@@ -22,6 +22,40 @@ theorem reclosedMap_facePerm_eq (M : CombMap.{v}) (faces : Finset M.Face)
   (reclosedMap_facePerm M faces boundary).trans
     (reclosedFacePerm_eq_permCongr M faces boundary)
 
+/-- On a dart based outside the region, the reclosed face rotation is the old
+face rotation. -/
+theorem reclosedMap_facePerm_val_of_notMem (M : CombMap.{v})
+    (faces : Finset M.Face) (boundary : BoundaryCycle M faces)
+    (d : KeptDart M faces) (hd : M.faceOf d.1 ∉ faces) :
+    ((reclosedMap M faces boundary).facePerm d).1 = M.facePerm d.1 := by
+  have hbase : ((reclosedMap M faces boundary).facePerm d).1 =
+      ((keptSplitEquiv M faces).symm
+        (Equiv.sumCongr (outsideFacePerm M faces)
+          boundary.boundaryPerm
+          (keptSplitEquiv M faces d))).1 :=
+    congrArg (fun p : Equiv.Perm (KeptDart M faces) => (p d).1)
+      (reclosedMap_facePerm_eq M faces boundary)
+  rw [keptSplitEquiv_apply_of_notMem M faces d hd] at hbase
+  exact hbase
+
+/-- On a dart based inside the region, the reclosed face rotation is the
+boundary rotation. -/
+theorem reclosedMap_facePerm_val_of_mem (M : CombMap.{v})
+    (faces : Finset M.Face) (boundary : BoundaryCycle M faces)
+    (d : KeptDart M faces) (hd : M.faceOf d.1 ∈ faces) :
+    ((reclosedMap M faces boundary).facePerm d).1 =
+      (boundary.boundaryPerm
+        ⟨d.1, isBoundaryDart_of_mem M faces d hd⟩).1 := by
+  have hbase : ((reclosedMap M faces boundary).facePerm d).1 =
+      ((keptSplitEquiv M faces).symm
+        (Equiv.sumCongr (outsideFacePerm M faces)
+          boundary.boundaryPerm
+          (keptSplitEquiv M faces d))).1 :=
+    congrArg (fun p : Equiv.Perm (KeptDart M faces) => (p d).1)
+      (reclosedMap_facePerm_eq M faces boundary)
+  rw [keptSplitEquiv_apply_of_mem M faces d hd] at hbase
+  exact hbase
+
 /-- The faces of the replaced map are the old faces outside the region together
 with the one new face. -/
 noncomputable def reclosedFaceEquiv (M : CombMap.{v})

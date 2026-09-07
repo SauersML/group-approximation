@@ -512,6 +512,31 @@ audited. `SurgeryCutSections.lean` now constructs the actual cut's sections
 from an exact partition of its ambient enclosing walk, preserving the base
 position, each section word, and both quasi-geodesic constants. Producing
 the enclosing region and its at-most-four quasi-geodesic arcs remains open.
+
+`SurgeryReclosedFaces` now exposes the exact face classification and count
+before assuming `IsDiscRegion`. `SurgeryReclosedConnected` proves that
+reclosing along any supplied nonempty boundary cycle preserves ambient
+connectedness. It lifts ambient dual paths through the actual retained darts;
+the connectedness field of the cut's region is no longer an input oracle.
+Euler preservation for a general enclosing region still needs a proof using
+the genuine boundary walk.
+
+The singleton audit found another false auxiliary producer, reported in
+[#208](https://github.com/SauersML/group-approximation/issues/208).
+`RelatorFaceSingletonProducer` demands the complete stored face boundary even
+when that face contains both darts of a bridge; the region-boundary predicate
+excludes those internally paired darts. `SingletonCollapseCounterexample`
+refutes the original proposition on the existing six-dart planar diagram,
+with a closed axiom audit. `SingletonReclosed` proves the exact repair: on a
+connected map an exact singleton collapse exists if and only if the face has
+no internally paired dart. Its actual dart equivalence preserves both map
+permutations and every count, proving Euler preservation and constructing the
+historical `SingletonDiscRegionData` without either topological input.
+`SingletonCollapseModel` constructs a planar exact collapse of the triangle
+in the self-contiguity model and passes a closed audit. The false universal
+producer remains available with its refutation. These results do not assert
+that every relator face is unpinched or supply the general loop-cut region.
+
 The outstanding proofs are:
 
 1. Construct the complementary-region boundary word polygons and their
