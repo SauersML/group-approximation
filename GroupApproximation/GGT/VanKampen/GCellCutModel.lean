@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GCellCutSourceModel
 import GroupApproximation.GGT.VanKampen.SurgeryGCellCutSections
+import GroupApproximation.GGT.VanKampen.SurgeryGCellCutContiguity
 import GroupApproximation.GGT.VanKampen.SurgeryReclosedPlanarity
 
 /-!
@@ -152,6 +153,44 @@ theorem cut_cell_count : cut.diagram.rCellCount = 1 :=
 theorem cut_outer_walk : (outerDarts cut.diagram).map Subtype.val = [(4 : Fin 8)] :=
   cut.diagram_outerDarts_map_val
 
+noncomputable def retainedIndex : Fin cut.diagram.rCellCount :=
+  ⟨0, by rw [cut_cell_count]; decide⟩
+
+/-- The retained cell was second in the source, so its inclusion is not
+the identity on positions. -/
+theorem retainedIndex_source : cut.cellInclusion retainedIndex =
+    (⟨1, by change 1 < 2; decide⟩ : Fin diagram.rCellCount) := by
+  apply Fin.ext
+  rfl
+
+theorem actual_retained_carrier :
+    (cellDarts cut.diagram retainedIndex).map cut.inclusion.darts =
+      [(0 : Fin 8), 2, 1] := by
+  change (cellDarts cut.diagram retainedIndex).map Subtype.val = _
+  rw [← cut.cellDarts_eq, retainedIndex_source]
+  exact boundary_face_darts 0
+
+noncomputable def cutExteriorArc : CyclicArc (targetDarts cut.diagram none) where
+  start := ⟨0, Nat.zero_lt_succ _⟩
+  length := (targetDarts cut.diagram none).length
+  length_le := le_rfl
+
+/-- The cut's exterior is the second dart of the original exterior. -/
+def ambientExteriorArc : CyclicArc (targetDarts diagram none) where
+  start := ⟨1, by decide⟩
+  length := 1
+  length_le := by decide
+
+/-- The exact oriented arc premise of ambient transport is inhabited on
+the actual reduced two-to-one cut. -/
+theorem actual_exterior_arc_match :
+    targetBoundaryDarts diagram none ambientExteriorArc =
+      (targetBoundaryDarts cut.diagram none cutExteriorArc).map cut.inclusion.darts := by
+  change [(4 : Fin 8)] = cutExteriorArc.darts.map cut.inclusion.darts
+  simp only [CyclicArc.darts, CyclicArc.rotated, cutExteriorArc,
+    List.drop_zero, List.take_zero, List.append_nil, List.take_length]
+  exact cut_outer_walk.symm
+
 theorem section_quasi : IsLambdaCQuasiGeodesicWord D 1 1 (dartWord diagram [4]) := by
   refine ⟨?_, ?_⟩
   · change GroupApproximation.HullSC.RelWord.IsAdmissible D [RelLetter.base a]
@@ -186,3 +225,6 @@ end GroupApproximation.GGT.VanKampen.GCellCutModel
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.no_historical_cut_shelling
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.exists_lemma65_cut
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_reduced_cut
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.retainedIndex_source
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_retained_carrier
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_exterior_arc_match

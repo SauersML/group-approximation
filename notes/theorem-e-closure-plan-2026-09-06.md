@@ -720,11 +720,23 @@ contiguity geometry, side bounds, arc lengths, and degree when the exact
 oriented ambient target arc is supplied. These three modules build and their
 audits use only the three permitted axioms.
 
+The reduced two-to-one model in `GCellCutModel` also exhibits the nontrivial
+index shift (cut position zero returns to source position one), retains the
+literal source relator carrier, and supplies the exact exterior-arc match
+inside the longer source boundary. These are closed model checks of those
+specific inputs, not a claim that all required cuts or contiguities exist.
+
 This removes the inclusion and cell-identification inputs for an actual cut.
 It does not construct the ambient target arc, the enclosing boundary used to
 select that cut, or the gluing after an arbitrary O-equivalent replacement.
 The Lemma 6.5 induction still needs those constructions; none of the four
 assembly admissions has been discharged by this checkpoint.
+
+Validation after rebasing onto main `67f1db2a8`: the combined cut-model and
+unchanged theorem-assembly build passes. The strict non-MF source scan still
+fails at precisely the four listed placeholders. The repository-wide source
+scan has additional existing findings outside this lane, so this checkpoint
+does not claim that the global root or its certification gates are green.
 
 ## Hull 4.4: discharge the additional geometry, not just the wrapper
 
