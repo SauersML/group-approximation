@@ -220,13 +220,19 @@ inputs (`manuscriptTorsionFreeFullMFRadicalFromParagraph`).
 | `Manuscript/NonMF/TorsionFreePrintedTheorem.lean` | `PrintedSaturation`, `manuscriptSaturation`, `PrintedTorsionFreeTheorem`, `manuscriptTorsionFreeTheorem`, `manuscriptTorsionFreeFullMFRadicalFromParagraph` | `40756d73a1d4f57d7e9655fae3e82e0bacb4fcf3` | 4440 |
 | `Manuscript/NonMF/TorsionFreeRelativeQuotient.lean` | `HasTrivialFiniteRadical`, `hasTrivialFiniteRadical_of_torsionFree`, `HullCommonQuotientPrinted`, `PrintedRelativeQuotient`, `manuscriptRelativeQuotient` | `5aba8488403b5696b406fe7ce94e740d480527e2` | 4441 |
 | `Manuscript/NonMF/RegularNonMFAlgebra.lean` | `infinite_of_acylHyperbolic`, `IsStableRankOne`, `HasUniqueTracialState`, `unitary_leftRegularOperator`, `leftRegularPreimage`, `topologicalClosure_adjoin_pair`, `DGOTheorem235Printed`, `GerasimovaOsinTheorem11Printed`, `PrintedRegularNonMFAlgebra`, `manuscriptRegularNonMFAlgebra` | `80b748885c21f9d191ebc7093175885295577513` | 4451 |
+| `Manuscript/OneSidedMFRadical/PrintedDefectFunctorial.lean` | `PrintedDefectFunctorial`, `manuscriptPrintedDefectFunctorial` | `7479aaeecc97bef572b8d3b5305b5a1fabfe9870` | 4069 |
+| `Manuscript/NonMF/PrintedDefectParagraph.lean`, with `TorsionFreePrintedTheorem.lean` rewired | `defect_generator_mem_of_simpleFactor`, `commutator_conjFactor_le_printedDefect`, `conjFactor_le_printedDefect`, `PrintedSimpleFactorInDefect`, `manuscriptSimpleFactorInDefect`, `map_conjFactor_le_printedDefect_of_functorial` | `d67dd4e47308018cce7854de3d65bf8a89c33887` | 4455 |
 
-None of the five modules edits an existing file, so nothing downstream had to
-move.  All new declarations live in the sub-namespace
-`GroupApproximation.Manuscript.NonMF.TorsionFreePrinted`.
+Only one existing file was edited: `TorsionFreePrintedTheorem.lean`, this
+lane's own, rewired to the new printed route and landed in the same commit as
+the module it consumes.  New declarations live in the sub-namespace
+`GroupApproximation.Manuscript.NonMF.TorsionFreePrinted`, except the two in
+`PrintedDefectFunctorial.lean`, which sit beside `printedDefect` in
+`Manuscript.OneSidedMFRadical` because that is where the printed display and
+its consumers live.
 
 **For the lead.**  Two housekeeping consequences, neither of them this lane's to
-act on.  The root import list needs the five new modules.  And the sentence
+act on.  The root import list needs the seven new modules.  And the sentence
 census may classify the new endpoints as `conditional-data`, since they quantify
 over or consume `PrintedFournierFacioData`; if it does, they belong in
 `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` beside the twelve rows already
@@ -297,6 +303,47 @@ cost of a new dependency from `Manuscript/NonMF` into `GGT`.
 Also proved on the way, closing a sentence of Theorem 5's own proof that nothing
 carried before: `infinite_of_acylHyperbolic`, *"The group `Q` is infinite because
 it is acylindrically hyperbolic."*
+
+## 3b.  `lem:commutator-in-defect` is gone; `eq:defect-functorial` replaces it
+
+The print changed under this lane (origin/main `e51f655d2`).  The lemma
+
+> For every homomorphism `ρ : G₀ → Ḡ`, `ρ(S) ≤ 𝔇_Ḡ(ρ(Γ))`
+
+is **deleted**.  In its place a displayed inequality follows
+`eq:intrinsic-defect`,
+
+> for every homomorphism `f : G → H`, `f(𝔇_G(L)) ≤ 𝔇_H(f(L))`,
+
+and section 5 argues inside `G₀`: `[tct⁻¹, ℓ] ∈ 𝔇_{G₀}(Γ)` for `c ∈ J` and
+`ℓ ∈ S` straight from the definition, so `[S,S] ≤ 𝔇_{G₀}(Γ)`, and `S` is
+perfect, so `S ≤ 𝔇_{G₀}(Γ)`.  Theorem 5 then cites the display for
+`φ(S) ≤ 𝔇_Q(φ(Γ))`.
+
+Three consequences for the tree.
+
+1. **The display already existed as a theorem.**  `map_printedDefect_le` in
+   `Manuscript/OneSidedMFRadical/DefectSaturation.lean` is exactly
+   `f(𝔇_G(L)) ≤ 𝔇_H(f(L))`, proved by the printed clauses one for one.  What
+   was missing is a closed named proposition for the display, so
+   `PrintedDefectFunctorial.lean` wraps it as
+   `manuscriptPrintedDefectFunctorial` with an axiom audit, and re-proves
+   nothing.  The older module's docstring calls the display
+   `eq:defect-functoriality`; the tex labels it `eq:defect-functorial`.
+2. **The section-5 paragraph is now carried sentence by sentence** in
+   `PrintedDefectParagraph.lean`, and its closed conclusion is
+   `manuscriptSimpleFactorInDefect : S ≤ 𝔇_{G₀}(Γ)`.  Perfectness is unchanged:
+   it is still `PrintedFournierFacioData.commutator_conjFactor_eq` from
+   simplicity and nonabelianness of `J`.  What moved is *where* the containment
+   is proved and *how* it reaches the quotient.
+3. **`manuscriptLemmaCommutatorInDefect` is kept and untouched.**  It is still
+   true; it is no longer the printed route.  But the census register
+   `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` carries a
+   `conditional-data` row naming it for `lem:commutator-in-defect`, and that
+   label no longer exists in the tex.  Twelve further rows in that register name
+   the `PrintedFournierFacioData` theorems the deleted lemma's proof used.  The
+   register is metadata and this lane does not edit it; the lead should decide
+   whether those rows now point at a sentence that is not printed.
 
 ## 4.  What discharging Hull's Theorem 7.1 would take
 
