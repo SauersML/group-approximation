@@ -5,7 +5,7 @@ kind: claim
 title: The binary Leavitt unit group is not surjunctive
 root: true
 distinct_from:
-  openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; this is a different property of it, neither implied by nonsoficity nor implying it
+  openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; nonsurjunctivity implies nonsoficity, but nonsoficity supplies no converse implication
   leavitt-unit-group-algebra-not-directly-finite: that is the Kaplansky question for the same group's modular group algebra, a statement about elements of a ring; this is a statement about cellular automata on a full shift, and while the first implies the second the converse is not available
   kl-violating-equation-over-leavitt-unit-group: that asks for a Kervaire--Laudenbach violation over the same group, which would refute its hyperlinearity; this asks for an injective non-surjective cellular automaton, which would refute Gottschalk's conjecture
 artifacts:
@@ -31,7 +31,7 @@ the graph should say where the Leavitt code does and does not reach.*
 Sofic groups are surjunctive (Gromov--Weiss), so any candidate must be
 nonsofic, and `G` is the one group for which nonsoficity has been announced
 (`openai-leavitt-unit-nonsofic`).  That is the **whole** of the connection.
-Nonsoficity neither implies nor is implied by non-surjunctivity, and every
+Non-surjunctivity implies nonsoficity; the converse is not established. Every
 statement in the routes below is unconditional — none uses the announcement,
 and all would read the same if `G` turned out to be sofic.
 
@@ -53,3 +53,24 @@ free group, which is surjunctive
 (`subshift-self-embedding-carries-no-surjunctivity-content`).  It is the
 dynamical twin of `direct-finiteness-not-inherited-by-quotients`, and both
 kill the same shortcut.
+
+## Attempts: a computer that preserves its malformed certificates
+
+The user's proposed totalization uses certificate and syndrome tracks to
+avoid losing malformed computational histories. A precise subclass is
+now excluded by `certificate-controlled-routing-is-surjunctive`: keep the
+certificate, and locally route each output datum from one input datum.
+This class is surjunctive over every group, including with multiple data
+tracks and finitely many intervening reversible computation stages.
+
+The reason is exact Bernoulli balance of incoming and outgoing reads.
+Duplicating an input on a valid certificate forces an unread input on
+another certificate, which destroys full-shift injectivity. The excluded
+class includes arbitrary complexity of the local routing decision; a
+self-aware program does not change this balance.
+
+A further computational construction must therefore explain a mechanism
+outside this finite factorization, such as a rule combining several input
+values whose global injectivity is not inherited stage by stage. This is
+a remaining design requirement, not a constructed counterexample or a
+proof that every computational route is impossible.
