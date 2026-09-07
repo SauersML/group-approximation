@@ -5,6 +5,7 @@ kind: claim
 title: Conditioned on the measured syndrome set, a channel returns a state exact off that set
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
+  - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
 ---
 
 Hypothesis (EX) of `commuting-syndrome-domination-gives-a-rounder`, for the
@@ -29,6 +30,22 @@ Two clauses that are easy to lose.
   every measurement outcome.
 
 ## Attempts
+
+**Exact criterion for a fixed candidate.** Put `E_S = W^* Pi_S W`, where
+`Pi_S` is the joint syndrome projector for the same `W,B` used in the local
+cost estimate. By `joint-syndrome-support-characterizes-exactifiability`,
+the unrestricted recovery in this claim exists exactly when
+
+```text
+E_S = 0 whenever intersection_(a not in S) ker h'_a = {0}.
+```
+
+This is a global support requirement, not an estimate of the marginal flag
+probabilities. `identical-flag-marginals-can-disagree-on-exactifiability`
+shows that even exactly matching marginal cost bounds cannot certify it.
+The criterion does not find the kernel vectors efficiently or preserve the
+logical witness; those stronger recovery demands require separate proofs
+if a proposed construction uses them.
 
 - **Knill--Laflamme recovery.**  For a correctable error family `{E_alpha}`
   with code projector `P`, the condition `P E_alpha^* E_beta P = c_(alpha beta) P`

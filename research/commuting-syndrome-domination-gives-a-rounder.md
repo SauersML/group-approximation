@@ -5,6 +5,7 @@ kind: claim
 title: Commuting syndrome projectors dominated by the energy, plus exactification, are a rounder
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
+  - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
 distinct_from:
   common-higher-rank-context-projections-are-syndrome-cylinders: that identifies which common projections of a higher-rank context deserve the name syndrome cylinder inside the microstate atlas; this assembles an already-given commuting family plus a domination inequality into the instrument of definition (CR1).
 ---
@@ -43,9 +44,18 @@ E|S| = sum_a Tr(B_a W rho W^*) = Tr[ W^*(sum_a B_a)W rho ].     (SD1)
 ```
 
 So (SD) *is* the cost clause quantified over all inputs, written operator
-side.  The two genuine additions are therefore commutativity -- which is what
-makes `E|S|` a cardinality rather than a sequence of disturbing measurements
--- and (EX).
+side. The present construction obtains a joint classical label from commuting
+projections. However, commutativity on an unrestricted dilation is not an
+extra restriction on the input measurement: every joint POVM has a dilation
+with commuting single-bit flag tests, as proved in
+`joint-syndrome-support-characterizes-exactifiability`.
+Locality and implementation bounds for the isometry, the local energy
+neighborhoods, and (EX) for that same joint measurement remain substantive.
+
+In particular, identical marginal effects `W^* B_a W` can have opposite
+exactifiability verdicts; see
+`identical-flag-marginals-can-disagree-on-exactifiability`.
+This does not alter the sufficiency theorem, which assumes (EX) explicitly.
 
 **Local form.**  It suffices to have, for each port `j`,
 

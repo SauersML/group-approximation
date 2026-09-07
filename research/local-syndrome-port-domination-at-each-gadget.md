@@ -6,6 +6,7 @@ title: Each amplification gadget exposes a syndrome port dominated by the neighb
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
+  - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
 distinct_from:
   bounded-overlap-syndrome-energy-accounting: that is the finite incidence-counting lemma which sums local charges once they are supplied, and it is used unchanged by this region; this is the supply problem -- constructing the commuting local projectors and proving the per-port operator inequality against the neighbouring Hamiltonian terms.
   common-higher-rank-context-projections-are-syndrome-cylinders: that identifies syndrome cylinders among the common projections of a higher-rank context in the normalized-HS microstate atlas; this asks for tensor-site fault projectors dominated by a state-weighted local Hamiltonian energy, in a fixed finite-dimensional tensor product.
@@ -44,6 +45,13 @@ depth and `C_0` is again not constant.
 
 ## Attempts
 
+- **Commuting flags by an unrestricted dilation.** Every joint POVM has
+  commuting one-bit flags on a larger space. This supplies no bound on the
+  physical realization of `W`; see
+  `joint-syndrome-support-characterizes-exactifiability`.
+  Even zero flags obey the displayed domination inequalities, but on a
+  frustrated instance they produce an impossible empty fault set. The
+  construction must also pass the joint support test for the same `W,B`.
 - **Charge each flag only to its own term.** Ruled out on nonorthogonal
   qubit projector pairs by
   `nonorthogonal-pair-forbids-single-term-syndrome-ports`: finite domination
