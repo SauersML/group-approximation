@@ -1120,3 +1120,76 @@ stated bare in `ProblemLIX.lean`, proved by applying `not_problemLIX_of_hsq`
 theorem, with `#audit_closed_axioms` on those two lines only — and the axiom
 line for `not_problemLIX` read by hand off the raw log, not trusted from any
 summary, per the lead's standing instruction for that one irreversible step.
+
+### `hsq` discharged — LANDED, `1c3237f2c`.  All three hypotheses are gone.
+
+`origin/main` landing: `ef0b678cb`, `LIX lix-hsq: hsq, the compatibility
+square of Step C's odd side` — six new files (`LIXHsq.lean` and five support
+modules), zero deletions anywhere in the diff.  The lead held the discharge
+for two extra confirmations before clearing it, both worth recording since
+they are the general pattern for the last hypothesis of any chain: (1) a
+`FORCE_STALE=1` push that turned out to be a genuine ledger-split bookkeeping
+false positive (two `ccland.sh` copies with divergent `landed.tsv` history,
+not a bypass — the lane had diffed every one of its five affected paths
+against `origin/main` first), and (2) `LIXStepCOddHsq.lean`
+(`db39e594e`), the lane's own idea: apply `lix_topClass_ne_zero_of_thom` with
+`lixHsq` AT the binder, under the ambient variables — the one check that
+catches a statement drifted from its binder, which no probe of `LIXHsq`
+alone (mine or the lead's) could see.  Both cleared before I was told to go.
+
+`lixHsq (hGc) (hGu) (hGe)` matched this file's `hsq` parameter character for
+character (`dd := LIX.lixDD j`, same three hypotheses, same order) — the
+plainest of the three discharges, no instantiation needed at all, unlike
+`hclass`'s two pinned proof arguments.
+
+**One real bug, caught by the probe, unrelated to the landing itself**: the
+inner lambda's `G'` binder became genuinely unused once `hsq`/`hres`/`hclass`
+were all replaced by closed terms (`lixHsq`, `injective_lixRes`, `lixHclass`)
+that infer `G` from `hGc`'s type rather than needing `G` applied explicitly —
+so `unusedVariables` fired *inside a proof term*, not just inside a bare
+hypothesis-type telescope as in the two earlier incidents this lane logged.
+**Extends the earlier rule**: the linter checks "referenced anywhere in this
+declaration" full stop: a lambda-bound term-level variable is exactly as
+exposed as a Pi-bound one once nothing in its body actually uses it — the
+"a theorem's own signature is safe because the proof term uses every
+parameter" observation from before is about the *outer* declaration, not a
+blanket exemption for every nested lambda inside it.  Fixed by renaming to
+`_G'`.
+
+Landed with `ccland-ax.sh cs-stages` this time (not `ccland.sh` alone) — its
+axiom-gate step printed both declarations' lines *before* delegating to
+`ccland2.sh`, so the by-name check was structurally part of the landing
+itself rather than a separate manual step.  `axiom lines seen: 90`, `sorryAx:
+none`, `PROBE GREEN` at 9346 jobs, genuine build (`Built LIXHsq`, `LIXHsqEta`,
+`LIXHsqLinear`, `LIXHsqHomotopy`, `LIXHsqLegs`, `LemmaTwoOfHsqHresHclass` —
+not replays, so `LIXHsq` really was pulled into this lane's own closure and
+independently re-verified, not merely relayed).
+
+`GroupApproximation.CharClass.lemmaTwoHolds : LIX.LemmaTwoHolds` and
+`GroupApproximation.CharClass.not_problemLIX : ¬ ProblemLIX` are both now
+**unconditional**.  Kept at `#audit_axioms` deliberately, not because the
+closed gate would reject them — it would not; `auditClosedAxiomsOf`
+(`AxiomGuard.lean:83`) checks `(stripMData ci.type).isForall`, and
+`stripMData` strips only `.mdata`, never unfolding a `def`, so both pass on
+their syntactic shape regardless of what `LIX.LemmaTwoHolds` unfolds to.
+(An earlier draft of this file's docstring claimed the opposite — that the
+gate *would* reject `lemmaTwoHolds` because its type unfolds to a `∀` — and
+the lead caught it by reading the gate's source before it reached the repo.
+**Rule, restated because it is the same one from the `hres`/`LIXBaseConnected`
+correction, applied to gate mechanics instead of geometry**: read the
+declaration a claim is about, not the prose describing it, even when the
+claim is about how a *tool* behaves.)  The weaker line stays here on
+purpose: this file is internal wiring, and the one point of
+`#audit_closed_axioms` certification for this result belongs at the
+endpoint, in `ProblemLIX.lean`, on statements that are genuinely `Not`/`Exists`
+applications rather than passing on a technicality.
+
+**Endpoint switch (`ProblemLIX.lean`) is HELD**, per the lead's explicit
+instruction, pending a from-clean-export fresh compile of `lixHsq` on the
+lead's side (their first verification was an accidental replay, not a fresh
+compile, and they declined to hold this lane's own work to a lower standard
+than they held `hres`/`hclass` to).  Both the zero-hypothesis discharge (now
+landed) and the `ProblemLIX.lean` patch are staged at
+`scratchpad/wire/LemmaTwoOfHsqHresHclass.0hyp.draft.lean` (now applied) and
+`scratchpad/wire/ProblemLIX.endpoint-patch.draft.txt` (still pending), ready
+the moment the lead confirms.
