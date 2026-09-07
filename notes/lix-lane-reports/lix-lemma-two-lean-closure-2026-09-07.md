@@ -65,9 +65,15 @@ Both declarations carry `#audit_closed_axioms`, landed at `aa9ba0148`, whose
 own commit message records the axiom lines read by hand off the raw remote
 log (per standing instruction for this one irreversible step) as exactly
 `[propext, Classical.choice, Quot.sound]` for each. `CharClass.lemmaTwoHolds`
-stays at `#audit_axioms` deliberately -- the closed gate would accept it on
-syntactic grounds too, but the file's own docstring reserves the one point of
-`#audit_closed_axioms` certification for these two reader-facing statements.
+stays at the weaker `#audit_axioms` deliberately, and not as a limitation of
+the gate: `#audit_closed_axioms` rejects a leading hypothesis by checking the
+elaborated type's *syntactic* shape without unfolding `def`s, so
+`lemmaTwoHolds : LIX.LemmaTwoHolds` -- a bare constant application, not a
+`∀` -- would pass it on a technicality regardless of what `LemmaTwoHolds`
+unfolds to. The file's own docstring places the one point of
+`#audit_closed_axioms` certification for this result at the two genuinely
+`Not`/`Exists`-shaped statements in `ProblemLIX.lean` instead, where the
+check means what it is meant to mean.
 Full research-graph record of the claim and its proof chain, including this
 same correction: `research/stw59-lean-witness-simple-unital-not-k1-injective.md`
 and `research/stw59-lean-witness-simple-unital-not-k1-injective-proof.md`.
