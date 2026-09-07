@@ -26,3 +26,9 @@ A microstate sequence for a hyperlinear `Q` has `d_2 -> 0` and
 `D_2 -> sqrt 2`, so its dimensions grow at least like `d_2^(-2)`.  Microstate
 dimensions are unconstrained, so this refutes nothing; it is the exact
 quantitative residue that the operator-norm certificate leaves.
+
+**Editorial position (2026-09-07).**  Recorded as a research fact and
+recommended against for the manuscript: it adds a formula without moving the
+approximation problem, and the finite operator-norm certificate carries the
+consequences worth printing.  See
+`research/artifacts/rank-one-headline-review-2026-09-07.md`.
