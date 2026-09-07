@@ -1,4 +1,5 @@
 import GroupApproximation.KOne.StableWhitehead
+import GroupApproximation.Algebra.CountableMatrixUnits
 
 /-!
 # `K₁(R)` for an arbitrary ring, and the canonical map `κ : Rˣ → K₁(R)`
@@ -104,21 +105,16 @@ theorem kappa_eq_one_iff (u : Rˣ) :
 
 /-! ### Countability -/
 
-/-- Units of a countable monoid are countable.  Stated as a theorem rather than
-an instance, so that nothing outside this file changes shape. -/
-theorem countable_units {M : Type*} [Monoid M] [Countable M] : Countable Mˣ :=
-  Units.val_injective.countable
-
 /-- **The stable general linear group of a countable ring is countable.**  Every
 class is represented at some finite rank, so the sigma type of all ranks
-surjects onto it. -/
+surjects onto it.
+
+The two countability facts are `Algebra/CountableMatrixUnits.lean`'s; before
+that module the tree re-derived them inline in five places, because the oldest
+copy (`Leavitt/FamilyRankFour.lean`) is `private`. -/
 instance classicalGLColim_countable [Countable R] : Countable (ClassicalGLColim R) := by
-  haveI hmat : ∀ n : ℕ, Countable (Matrix (Fin n) (Fin n) R) := by
-    intro n
-    show Countable (Fin n → Fin n → R)
-    infer_instance
   haveI hunits : ∀ n : ℕ, Countable ((Matrix (Fin n) (Fin n) R)ˣ) := fun n =>
-    countable_units
+    CountableMatrixUnits.countable_matrix_units n
   have hsurj : Function.Surjective
       (fun p : Σ n : ℕ, (Matrix (Fin n) (Fin n) R)ˣ =>
         (⟦p⟧ : ClassicalGLColim R)) := by

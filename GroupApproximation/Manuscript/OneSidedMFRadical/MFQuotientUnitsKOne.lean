@@ -171,9 +171,7 @@ theorem printedMFQuotientUnitsKOneAllRanks_of_agp
     (hMM : AGPMenalMoncasiReduction) (hS1 : AGPStepOne) :
     PrintedMFQuotientUnitsKOneAllRanks := by
   intro R _ _ hR n hn
-  haveI : Countable (Matrix (Fin n) (Fin n) R) := by
-    show Countable (Fin n → Fin n → R)
-    infer_instance
+  haveI := CountableMatrixUnits.countable_matrix (A := R) n
   obtain ⟨-, hMF, hcomm, hiso⟩ :=
     printedMFQuotientUnitsKOne_of_agp hK hMM hS1
       (Matrix (Fin n) (Fin n) R) (hMat R hR n hn)
