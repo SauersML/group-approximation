@@ -6,6 +6,7 @@ title: Unital simple C*-algebras are K1-injective (STW Problem LIX)
 root: true
 refuted_by:
   - stw59-simple-ah-non-k1-injective
+  - stw59-lean-witness-simple-unital-not-k1-injective
 distinct_from:
   stw99-problem-lxi-properly-infinite-k1-injective: that asks K1-injectivity from proper infiniteness without simplicity; this asks it from simplicity without any regularity, and Villadsen's Crelle examples already kill the surjectivity analogue here.
 artifacts:
@@ -29,7 +30,19 @@ presents this as open. The internally reviewed construction
 research graph: its simple unital nuclear stably finite AH algebra
 has K1=0 and a non-null unitary whose square and first matrix
 stabilization are null-homotopic. This graph status records the
-accompanying proof, not external peer acceptance or formal verification.
+accompanying proof, not external peer acceptance.
+
+As of 2026-09-07 this refutation is also backed by an independent,
+machine-checked route: `stw59-lean-witness-simple-unital-not-k1-injective`,
+proved entirely in Lean 4 over Mathlib (see its route node for the exact
+declaration and commit chain). That route works mod 2, over a vendored
+singular-cohomology development, rather than over the integers as the
+manuscript route above does, and it proves a weaker witness -- a simple
+unital nontrivial not-K1-injective algebra, without computing K1(A) or the
+exact order of the witness unitary. The two routes are independent
+verifications of the same finite bundle obstruction; neither supersedes the
+other, and the formal one does not yet cover everything the manuscript route
+asserts.
 
 The stronger family in `stw59-simple-ah-factorial-unitary-torsion`
 preserves exact order n! for every n>=2, by replacing parity with

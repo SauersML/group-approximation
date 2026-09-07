@@ -4,7 +4,6 @@ import GroupApproximation.CharClass.LemmaTwoTopClass
 import GroupApproximation.CharClass.LIXResFibre
 import GroupApproximation.CharClass.LIXHclass
 import GroupApproximation.CharClass.LIXHsq
-import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -25,7 +24,17 @@ one theorem.
 were aimed at.  `lixHsq` matches this file's former `hsq` binder character for
 character (same three hypotheses, same order, at `dd := LIX.lixDD j`), so its
 discharge needed no instantiation at all — the plainest of the three joins.  What
-follows are `LIX.LemmaTwoHolds` and `¬ ProblemLIX`, unconditionally.
+follows is `LIX.LemmaTwoHolds`, unconditionally.
+
+**No `¬ ProblemLIX` corollary here, deliberately.**  An earlier version of this
+file also derived `not_problemLIX` by applying `NinetyNineProblems.not_problemLIX_of_lemmaTwo`
+to `lemmaTwoHolds`, which needed importing `Manuscript/NinetyNineProblems/ProblemLIX.lean`.
+Once that file was edited to import `lemmaTwoHolds` back (to state its own bare
+`not_problemLIX`), the two imports formed a build cycle — caught by the probe, not
+by inspection.  The fix is directional: this file supplies `LIX.LemmaTwoHolds`
+and nothing about `ProblemLIX`, and `ProblemLIX.lean` is the only place that
+combines the two, exactly as `not_problemLIX_of_lemmaTwo`'s own signature already
+implied it should be.
 
 **Why the composition was worth building before any of the three landed.**
 `lix-hsq`, `lix-hres` and `lix-hclass` were proving these obligations
@@ -42,25 +51,22 @@ are the same object — `Hmod2 X n` is `abbrev`-equal to `cohomologyZMod2 X n`
 (`CohomologyBasic.lean:48`), so no cast is needed when `gamma` is instantiated at
 `lixChern (LIX.lixDD j) (mappingTorus ...) ... (lixRank (LIX.lixDD j))`.
 
-## Main results
+## Main result
 
 * `lemmaTwoHolds` --- **`LIX.LemmaTwoHolds`, unconditionally.**
-* `not_problemLIX` --- **`¬ ProblemLIX`, unconditionally.**
 
 **Kept at `#audit_axioms` here by choice, not because `#audit_closed_axioms`
-would reject either declaration.**  `auditClosedAxiomsOf` (`AxiomGuard.lean:83`)
-checks `(stripMData ci.type).isForall`, and `stripMData` strips only `.mdata`
-wrappers — it does not unfold definitions (its own docstring says so).  So both
-`lemmaTwoHolds : LIX.LemmaTwoHolds` and `not_problemLIX : ¬ ProblemLIX` here
-*would* pass the closed gate: their elaborated types are, syntactically, an
-application (`LIX.LemmaTwoHolds` a constant reference, `¬ ProblemLIX` a `Not`
-application), not a `.forallE`, regardless of what `LIX.LemmaTwoHolds` unfolds
-to.  The weaker `#audit_axioms` line is used here anyway, deliberately: this
-file is internal wiring, and the single point of closed-axioms certification for
-this result is the endpoint's own `¬`/`∃`-shaped statements in `ProblemLIX.lean`
-— `not_problemLIX` there is a distinct declaration
-(`GroupApproximation.NinetyNineProblems.not_problemLIX`) from this file's
-`GroupApproximation.CharClass.not_problemLIX`.  That is the next and last step.
+would reject it.**  `auditClosedAxiomsOf` (`AxiomGuard.lean:83`) checks
+`(stripMData ci.type).isForall`, and `stripMData` strips only `.mdata`
+wrappers — it does not unfold definitions (its own docstring says so).  So
+`lemmaTwoHolds : LIX.LemmaTwoHolds` *would* pass the closed gate: its
+elaborated type is, syntactically, a constant reference, not a `.forallE`,
+regardless of what `LIX.LemmaTwoHolds` unfolds to.  The weaker `#audit_axioms`
+line is used here anyway, deliberately: this file is internal wiring, and the
+single point of closed-axioms certification for this result is the endpoint's
+own `¬`/`∃`-shaped statements in `ProblemLIX.lean`, which is also the only
+place `¬ ProblemLIX` is derived from `lemmaTwoHolds` — see the note above on
+why that combination does not live here.
 -/
 
 noncomputable section
@@ -85,21 +91,12 @@ theorem lemmaTwoHolds : LIX.LemmaTwoHolds :=
             (isStarProjection_mappingTorus_lix hGu')))
       G hGc hGu hGe
 
-/-- **`¬ ProblemLIX`, unconditionally.**  What remains of the answer's
-dependency on algebraic topology, threaded through `not_problemLIX_of_lemmaTwo`
-— nothing: it is now a theorem. -/
-theorem not_problemLIX : ¬ NinetyNineProblems.ProblemLIX :=
-  NinetyNineProblems.not_problemLIX_of_lemmaTwo lemmaTwoHolds
-
 /-! ## The axiom report
 
-Both are unconditional now, but stay at `#audit_axioms` here for the reason in
-the module docstring: `#audit_closed_axioms` cannot accept a bare-`∀`-shaped
-type, and the switch for the reader-facing statements belongs in
-`ProblemLIX.lean`. -/
+Unconditional now, but stays at `#audit_axioms` here for the reason in the
+module docstring: the switch for the reader-facing statements belongs in
+`ProblemLIX.lean`, which derives `¬ ProblemLIX` from this theorem. -/
 
 #audit_axioms lemmaTwoHolds
-
-#audit_axioms not_problemLIX
 
 end GroupApproximation.CharClass
