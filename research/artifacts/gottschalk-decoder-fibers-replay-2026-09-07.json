@@ -1,0 +1,38 @@
+{
+  "alphabet_sizes": {
+    "encoder_input": 2,
+    "encoder_output": 4
+  },
+  "distinct_preimages_per_context": 32,
+  "general_conjecture_proved": false,
+  "idempotence_and_decoder_collision_cases": 1024,
+  "infinite_packing_and_genericity": "proved in Markdown; not inferred from this replay",
+  "lean_verified": false,
+  "noncommuting_memories_checked": true,
+  "not_a_gottschalk_counterexample": true,
+  "outside_contexts": 8,
+  "packed_preimage_checks": 256,
+  "projection_one_site_fiber_sizes": {
+    "0": 2,
+    "1": 2
+  },
+  "reduced_word_inverse_checks": 161,
+  "scope": "exact finite-support calculations in the infinite free group F_2",
+  "section_conditional_support_sizes": {
+    "0": 1,
+    "1": 1
+  },
+  "sets": {
+    "D": 3,
+    "H": 15,
+    "K": 5,
+    "K_K_inverse": 17,
+    "M": 3,
+    "N": 2,
+    "W": 23
+  },
+  "simultaneous_sites": 5,
+  "split_identity_cases": 32,
+  "status": "passed",
+  "unguarded_patch_counterexample_checked": true
+}
