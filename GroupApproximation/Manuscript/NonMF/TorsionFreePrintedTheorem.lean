@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.FournierFacioParagraph
+import GroupApproximation.Manuscript.NonMF.PrintedDefectParagraph
 import GroupApproximation.Manuscript.NonMF.HullPrintedInputs
 import GroupApproximation.Manuscript.NonMF.Saturation
 import GroupApproximation.Manuscript.NonMF.TorsionFreeTheoremC
@@ -23,7 +24,7 @@ and its proof:
 > group `Q` is infinite because it is acylindrically hyperbolic, and it has
 > property (T) as a quotient of `G₀`.
 >
-> By Lemma `lem:commutator-in-defect` applied to `φ`, `φ(S) ≤ 𝔇_Q(φ(Γ))`.  The
+> By `eq:defect-functorial`, `φ(S) ≤ 𝔇_Q(φ(Γ))`.  The
 > subgroup `𝔇_Q(φ(Γ))` is normal in `Q`, and the normal closure of `φ(S)` is
 > `φ(N) = Q`, so `𝔇_Q(φ(Γ)) = Q`.  Both `Q` and `φ(Γ)` have property (T), as
 > quotients of `G₀` and `Γ` respectively.  By the last assertion of Theorem
@@ -42,9 +43,10 @@ Two hypotheses, and nothing else:
   Osin's Lemma 7.1.
 
 Everything between them and the conclusion is proved here or is already in the
-repository: `lem:saturation` is `TorsionFree.saturation`,
-`lem:commutator-in-defect` is `SimpleInDefect.manuscriptLemmaCommutatorInDefect`
-by the printed perfectness proof, and the last assertion of
+repository: `lem:saturation` is `TorsionFree.saturation`, the containment
+`S ≤ 𝔇_{G₀}(Γ)` is `PrintedDefectParagraph.manuscriptSimpleFactorInDefect` and
+reaches the quotient through
+`OneSidedMFRadical.manuscriptPrintedDefectFunctorial`, and the last assertion of
 `thm:compression-criterion` is
 `OneSidedMFRadical.manuscriptOneSidedCompressionCriterion` together with
 `OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets`.
@@ -75,6 +77,17 @@ No `#audit_closed_axioms` appears below: the macro refuses a declaration with a
 leading input, and every endpoint here takes the two citations as hypotheses,
 which is the point.  The macro becomes available for these names on the day
 something inhabits `FournierFacioParagraph` and `HullPrintedInputs`.
+
+## The route through the defect changed with the print
+
+The manuscript used to prove `lem:commutator-in-defect` — *for every
+homomorphism `ρ : G₀ → Ḡ`, `ρ(S) ≤ 𝔇_Ḡ(ρ(Γ))`* — and apply it to `φ`.  That
+lemma is deleted from the print.  The argument is now made once inside `G₀`
+(`PrintedDefectParagraph`, three theorems for the paragraph's three sentences)
+and transported by the displayed inequality `eq:defect-functorial`
+(`OneSidedMFRadical.manuscriptPrintedDefectFunctorial`), which is what this
+module now cites.  `SimpleInDefect.manuscriptLemmaCommutatorInDefect` is
+untouched and still true; it is simply no longer the printed route.
 -/
 
 namespace GroupApproximation
@@ -122,7 +135,7 @@ theorem manuscriptSaturation (hHull : HullPrintedInputs.{u}) :
 an arbitrary surjection `ρ` under which the normal closure of `S` maps onto the
 target.
 
-> By Lemma `lem:commutator-in-defect` applied to `φ`, `φ(S) ≤ 𝔇_Q(φ(Γ))`.  The
+> By `eq:defect-functorial`, `φ(S) ≤ 𝔇_Q(φ(Γ))`.  The
 > subgroup `𝔇_Q(φ(Γ))` is normal in `Q`, and the normal closure of `φ(S)` is
 > `φ(N) = Q`, so `𝔇_Q(φ(Γ)) = Q`.  Both `Q` and `φ(Γ)` have property (T), as
 > quotients of `G₀` and `Γ` respectively.  By the last assertion of Theorem
@@ -140,10 +153,10 @@ theorem coronaMFResidual_eq_top_of_map_normalClosure_eq_top {G₀ : Type}
     (htop : (Subgroup.normalClosure (F.conjFactor : Set G₀)).map rho = ⊤) :
     manuscriptCoronaMFResidual L = ⊤ := by
   letI : Countable L := hrho.countable
-  -- "By Lemma `lem:commutator-in-defect` applied to `φ`, `φ(S) ≤ 𝔇_Q(φ(Γ))`."
+  -- "By `eq:defect-functorial`, `φ(S) ≤ 𝔇_Q(φ(Γ))`."
   have hS : F.conjFactor.map rho ≤
       OneSidedMFRadical.printedDefect (F.core.map rho) :=
-    manuscriptLemmaCommutatorInDefect F rho
+    map_conjFactor_le_printedDefect_of_functorial F rho
   -- "The subgroup `𝔇_Q(φ(Γ))` is normal in `Q`, and the normal closure of
   -- `φ(S)` is `φ(N) = Q`, so `𝔇_Q(φ(Γ)) = Q`."
   have hNle : Subgroup.normalClosure (F.conjFactor : Set G₀) ≤
