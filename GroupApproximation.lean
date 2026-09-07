@@ -4101,6 +4101,7 @@ import GroupApproximation.Sofic.CliffordWitnessSoficSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotientGeneral
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.FactorizationTraceSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
