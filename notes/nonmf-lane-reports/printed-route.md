@@ -132,72 +132,57 @@ sub-namespace `HilbertSchmidtAdMatrix`.
 | "For unitaries `A, B`, `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖`, where the norm on the left is the operator norm on the Hilbert space `(M_{d_n}(ℂ), ‖·‖₂)`" | `hsNormSq_conj_sub_conj_le` and `norm_adMatrix_sub_le` |
 | the printed normalization `tr_d = d⁻¹ Tr` | `norm_sq_eq_card_mul_hsNormSq`: the Euclidean norm of a vectorization is `(card Y)^{1/2}` times the printed `‖·‖₂`, so the normalization costs nothing |
 
+### The `thm:transport` chain
+
+Seven modules, all PROBE GREEN and landed, all in their own sub-namespaces.
+
+| commit | module | jobs | what it carries |
+| --- | --- | --- | --- |
+| `0e482802f` | `HilbertSchmidtAdMatrix.lean` | 3294 | the printed choice of matrix units (`adMatrix`) and `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖` |
+| `c27107027` | `HilbertSchmidtOperatorAction.lean` | 3295 | the action `applyOp M a`, `‖M x‖₂ ≤ ‖M‖‖x‖₂`, and the triangle inequality for `‖·‖₂` with no constant |
+| `0fa6cad2e` | `TransportPrintedCommutant.lean` | 3330 | the printed `𝒞₂(V,L)` (Hilbert--Schmidt bounded) and `PrintedTransportHS` |
+| `586410f4e` | `TransportSigmaTilde.lean` | 3296 | `σ̃(g) = [Ad(V_n(g))]_n ∈ U(𝓑)` |
+| `3a12c7c53` | `TransportKazhdanProjection.lean` | 3315 | `exists_combination_close` at arbitrary `ε`, and `limsup_n ‖P_n − Σ a_ℓ Ad(V_n(ℓ))‖ < ε` |
+| `a91fa6849` | `TransportProjectionCommutation.lean` | 3433 | `P`, `P_n`, and `[U, P] = 0` |
+| `2cfea8185` | `TransportProjectionCharacterization.lean` | 3433 | `(x_n) ∈ 𝒞₂(V,L) ↔ ‖P_nx_n − x_n‖₂ → 0`, both directions |
+| `cea8aa4fd` | `TransportPrintedRoute.lean` | 3434 | the closing estimate and the endpoint `manuscriptPrintedTransportHS : PrintedTransportHS` |
+
+### Sentence to lemma table (`thm:transport`, current printed proof)
+
+| printed sentence | carrier |
+| --- | --- |
+| "For unitaries `A, B`, `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖`" | `HilbertSchmidtAdMatrix.norm_adMatrix_sub_le` |
+| "The algebra `𝓑` is a norm matrix corona with coordinate sizes `d_n²` after a choice of matrix units" | `HilbertSchmidtAdMatrix.adMatrix` with `adMatrix_one`, `adMatrix_mul`, `adMatrix_conjTranspose`, `adMatrix_mem_unitary` |
+| "the maps `Ad(V_n(g))` are asymptotically multiplicative in operator norm and `σ̃(g) = [Ad(V_n(g))]_n ∈ U(𝓑)` is a homomorphism" | `TransportSigmaTilde.tendsto_adMatrix_defect`, `TransportSigmaTilde.sigmaTilde` |
+| "Let `P ∈ 𝓑` be the image of the Kazhdan projection … and lift `P` to orthogonal projections `P_n` … by functional calculus" | `TransportProjectionCommutation.exists_projectionData` |
+| "by density of the group algebra … `‖Σ a_ℓ u_ℓ − e_L‖ < ε`; the trivial character gives `\|Σ a_ℓ − 1\| < ε`" | `TransportKazhdanProjection.exists_combination_close` |
+| "`Σ a_ℓ σ̃(ℓ)` is within `ε` of `P`, so `limsup_n ‖P_n − Σ a_ℓ Ad(V_n(ℓ))‖ ≤ ε`" | `TransportKazhdanProjection.limsup_norm_sub_combSeq_lt` |
+| "`(x_n) ∈ 𝒞₂(V,L)` … so `limsup_n ‖P_nx_n − x_n‖₂ ≤ 2εc`, and `ε` was arbitrary" | `TransportProjectionCharacterization.tendsto_hsNorm_applyOp_projection_sub` |
+| "`u_ℓ e_L = e_L` … so `σ̃(ℓ)P = P` and `‖Ad(V_n(ℓ))P_n − P_n‖ → 0`" | `TransportProjectionCharacterization.tendsto_norm_adMatrix_mul_projection_sub` |
+| "if `‖P_nx_n − x_n‖₂ → 0`, then `‖Ad(V_n(ℓ))x_n − x_n‖₂ ≤ 2‖x_n − P_nx_n‖₂ + ‖Ad(V_n(ℓ))P_n − P_n‖‖x_n‖₂ → 0`" | `TransportProjectionCharacterization.isHSAsymptoticallyCentral_of_tendsto` |
+| "Put `U = σ̃(u)` … `U*PU ≤ P` … `U*PU = P` … So `[U, P] = 0`" | `TransportProjectionCommutation.commute_sigmaB_projection` |
+| "`‖[Ad(V_n(u)), P_n]‖ → 0`" | `TransportPrintedRoute.tendsto_norm_commutator` |
+| "`‖P_n Ad(V_n(u))^{±1}x_n − Ad(V_n(u))^{±1}x_n‖₂ ≤ … → 0`, so `Ad(V(u))^{±1}x ∈ 𝒞₂(V,L)`" | `TransportPrintedRoute.tendsto_hsNorm_applyOp_projection_sub_of` |
+| the theorem | `TransportPrintedRoute.manuscriptPrintedTransportHS` |
+
+### Three departures from the printed words, for the census
+
+1. The printed definition of `𝒞₂` changed to the Hilbert--Schmidt bound.
+   `PrintedTransportHS` is stated at the new definition; the old carrier
+   `manuscriptOneSidedKazhdanTransportCommutantEquality` is about
+   `boundedHSCommutant`, whose bound is the operator norm.  The old set is
+   contained in the new one (`boundedHSCommutant_subset`), so the new
+   statement is the stronger one, and the old module is untouched.
+2. The order relation is taken in the conjugated form `P ≤ U P U*` rather
+   than the printed `U*PU ≤ P`.  They are the same statement conjugated by
+   `U`, and `conj_image_mul_image` states the first directly, so no order
+   structure has to be installed on the corona.
+3. The printed `‖·‖₂` is the normalized Hilbert--Schmidt norm.  The
+   vectorization used to reach `EuclideanSpace` is isometric only up to the
+   factor `(card Y)^{1/2}`; `HilbertSchmidtOperatorAction.norm_vecE` is that
+   bookkeeping, and the factor cancels in every estimate.
+
 ## Not done, with the exact open obligations
 
-`thm:transport` is the only printed proof of the three still without a
-printed-route carrier.
-
-### `thm:transport` (`Manuscript/OneSidedMFRadical/TransportCommutantEquality.lean`)
-
-The current printed proof runs entirely inside a second corona: it forms
-`σ̃(g) = [Ad(V_n(g))]_n` in
-`∏_n B(M_{d_n}(ℂ)) / ⊕_n B(M_{d_n}(ℂ))`, notes that this is a norm matrix
-corona with coordinate sizes `d_n²` after a choice of matrix units, puts the
-image `P` of the Kazhdan projection there, lifts `P` to projections `P_n` on
-the Hilbert--Schmidt Hilbert spaces, and proves
-
-> `(x_n) ∈ 𝒞₂(V,L)` if and only if `‖P_n x_n − x_n‖₂ → 0`
-
-by the same density-plus-trivial-character estimate this lane already
-formalizes for `thm:normal-kazhdan`.  The one-sided order and stable finiteness
-then give `U*PU = P`, hence `[U,P] = 0`.
-
-The identification of `B(M_{d_n}(ℂ))` with `M_{d_n²}(ℂ)` is **done**, in
-`HilbertSchmidtAdMatrix.lean` above: `adMatrix` is the choice of matrix units
-and `norm_adMatrix_sub_le` is the printed estimate.  Two observations made it
-smaller than it looked, and they are worth keeping.
-
-* **The normalization is free.**  The printed norm is
-  `‖a‖₂ = tr_d(a*a)^{1/2}`, the *normalized* Hilbert--Schmidt norm, which is
-  `d^{-1/2}` times the Frobenius norm.  Scaling an inner product by a positive
-  constant changes neither the unitary group nor the operator norm on `B(·)`,
-  so the identification may be built over the plain Frobenius inner product,
-  for which Mathlib already has
-  `Matrix.frobeniusSeminormedAddCommGroup` / `Matrix.frobeniusNormedSpace`
-  (scoped, in `Mathlib/Analysis/Matrix/Normed.lean`).  Only the final estimates
-  need the factor put back, and they are estimates about `‖·‖₂` of matrices,
-  which the corpus already has as `hsNorm`.
-* **The matrix-units step is Mathlib's.**  `Matrix Y Y ℂ` with the Frobenius
-  inner product is `EuclideanSpace ℂ (Y × Y)` after uncurrying, and
-  `Matrix.toEuclideanCLM` (`Mathlib/Analysis/InnerProductSpace/PiL2.lean`) is
-  already a `⋆`-algebra equivalence `Matrix (Y × Y) (Y × Y) ℂ ≃⋆ₐ[ℂ]
-  EuclideanSpace ℂ (Y × Y) →L[ℂ] EuclideanSpace ℂ (Y × Y)` that the
-  `L2Operator` norm is *defined* through.  What has to be written is the
-  linear isometry equivalence `Matrix Y Y ℂ (Frobenius) ≃ₗᵢ[ℂ]
-  EuclideanSpace ℂ (Y × Y)` and the conjugation it induces on the bounded
-  operators.
-
-What is left, in order:
-
-1. `σ̃(g) = [Ad(V_n(g))]` as a homomorphism into `U(𝓑)`, `𝓑` the corona over
-   the square models `sqModel (X n)`.  Both ingredients are landed:
-   `adMatrix_mem_unitary` puts the values in the unitary group, and
-   `norm_adMatrix_sub_le` turns the asymptotic multiplicativity of `(V_n)`
-   into that of `(Ad(V_n))`;
-2. the image `P` of the Kazhdan projection of `L` in `𝓑` and a projection lift
-   `P_n` (`CollapseProjectionLift.exists_projection_lift`, as used above);
-3. `(x_n) ∈ 𝒞₂(V,L) ↔ ‖P_n x_n − x_n‖₂ → 0`.  The forward direction is
-   *exactly* the density-plus-trivial-character estimate this lane already
-   carries: `NormalKazhdanPrintedRoute.exists_generatorCombination_close`
-   plus `manuscriptSentence_denseCombinationAndCharacter` (with `1/4` replaced
-   by an arbitrary `ε`), and the reverse direction is
-   `MaximalCStarKazhdanProjection.generator_mul_projection` transported by
-   `rep_mul_image`;
-4. `U*PU ≤ P` from `manuscriptLiteralMaximalCStarKazhdanProjectionOrder`, and
-   `U*PU = P` from `manuscriptNormMatrixCoronaStableFinite`, hence `[U,P] = 0`;
-5. the closing two-line estimate.
-
-Steps 2 and 4 and most of 3 are already in the corpus, and the matrix-unit
-identification is now landed.  What is genuinely new is the corona `𝓑` over
-the square models, the two directions of the `𝒞₂(V,L)` characterization, and
-the closing estimate.
+All three printed proofs in scope now have printed-route carriers.  Nothing in
+this lane's brief remains.
