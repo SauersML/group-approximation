@@ -480,6 +480,104 @@ theorem hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_quasiGeodes
     (familyInclusionRelativeControlStatement_of_quasiGeodesic_of_respelling
       hgeom hbridge hrespell)
 
+/-! ## The boundary hypothesis is decided by the designated word alone
+
+Osin's Lemma 5.1 splits on whether a path is quasi-geodesic, and the restricted
+bridge above splits on whether a diagram has `HasQuasiGeodesicSpelling`.  Those
+have to be the same split, or the case analysis cannot be run: the first is a
+statement about a `List G` word, the second an existential over relative
+spellings of it.  This section proves they are. -/
+
+/-- **A letterwise spelling reads Osin's vertices as prefix products of the word
+it spells.**  `vertex 1 outer i` is `listVal (outer.take i)`, and `listVal` is
+the product of the letter values, so the map hypothesis carries it to
+`(l.take i).prod` with no trace of which letters were chosen. -/
+theorem vertex_one_eq_prod_take_of_letterwise
+    {G : Type u} [Group G] {Lambda : Type w}
+    {outer : List (GGT.RelLetter G Lambda)} {l : List G}
+    (hmap : outer.map GGT.RelLetter.val = l) (i : ℕ) :
+    GGT.OsinComponents.vertex 1 outer i = (l.take i).prod := by
+  rw [lemma49_vertex_one_eq_listVal_take]
+  unfold GGT.RelLetter.listVal
+  rw [List.map_take, hmap]
+
+/-- Every designated boundary word has a letterwise admissible spelling: its
+letters are alphabet letters, which is the `letters` field of
+`RelativeReducedDiagram.boundaryWord_isWord`. -/
+theorem exists_letterwiseSpelling_boundaryWord
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    ∃ outer : List (GGT.RelLetter G Lambda),
+      RelWord.IsAdmissible D outer ∧
+        outer.map GGT.RelLetter.val = Z.boundaryWord :=
+  exists_letterwise_spelling D Z.boundaryWord Z.boundaryWord_isWord.letters
+
+/-- **The existential in `HasQuasiGeodesicSpelling` is decided by any one
+letterwise spelling.**
+
+The metric clause of `IsLambdaCQuasiGeodesicWord` is read at
+`GGT.OsinComponents.vertex 1 outer i`, which the lemma above identifies with
+`(Z.boundaryWord.take i).prod`.  So the clause is a statement about the
+designated `List G` word and not about the spelling; admissibility comes free
+from `boundaryWord_isWord`; and the lengths agree.  Hence the hypothesis holds
+for one letterwise spelling exactly when it holds for all of them, and exactly
+when the designated word is `(1/4, 1)`-quasi-geodesic.
+
+**This is the hinge Osin's Lemma 5.1 needs.**  It says his case split on the
+boundary path and the case split on `HasQuasiGeodesicSpelling` are the same
+split, so the quasi-geodesic branch really does hand the restricted certificate
+its hypothesis, and the other branch really does yield a statement about
+`Z.boundaryWord` alone — with no diagram in it, which is what lets a metric
+shortcut consume it. -/
+theorem hasQuasiGeodesicSpelling_iff_of_letterwise
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R)
+    {outer : List (GGT.RelLetter G Lambda)}
+    (hadm : RelWord.IsAdmissible D outer)
+    (hmap : outer.map GGT.RelLetter.val = Z.boundaryWord) :
+    Z.HasQuasiGeodesicSpelling ↔
+      GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 outer := by
+  constructor
+  · rintro ⟨outer', hmap', _, hqg'⟩
+    refine ⟨hadm, ?_⟩
+    intro i j hij hj
+    have hlen : outer.length = outer'.length := by
+      rw [length_of_letterwise_spelling hmap, length_of_letterwise_spelling hmap']
+    have hj' : j ≤ outer'.length := by
+      rw [← hlen]
+      exact hj
+    have h := hqg'.2 i j hij hj'
+    rwa [vertex_one_eq_prod_take_of_letterwise hmap' i,
+      vertex_one_eq_prod_take_of_letterwise hmap' j,
+      ← vertex_one_eq_prod_take_of_letterwise hmap i,
+      ← vertex_one_eq_prod_take_of_letterwise hmap j] at h
+  · intro h
+    refine ⟨outer, hmap, ?_, h⟩
+    rw [listVal_of_letterwise_spelling hmap, Z.boundaryWord_isWord.prod_eq]
+
+/-- **The case split, in the form Osin's induction consumes it.**  Either the
+diagram carries the restricted certificate's hypothesis, or its designated
+boundary word has a witnessed failure of quasi-geodesicity — and the second
+branch mentions no diagram, no relator and no quotient. -/
+theorem hasQuasiGeodesicSpelling_or_notQuasiGeodesicSpelling
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    Z.HasQuasiGeodesicSpelling ∨
+      ∃ outer : List (GGT.RelLetter G Lambda),
+        RelWord.IsAdmissible D outer ∧
+          outer.map GGT.RelLetter.val = Z.boundaryWord ∧
+            ¬ GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 outer := by
+  obtain ⟨outer, hadm, hmap⟩ := exists_letterwiseSpelling_boundaryWord Z
+  by_cases h : GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 outer
+  · exact Or.inl ((hasQuasiGeodesicSpelling_iff_of_letterwise Z hadm hmap).mpr h)
+  · exact Or.inr ⟨outer, hadm, hmap, h⟩
+
 /-! ## A recorded gap in the joint-family binder
 
 `HullRelatorRespellingStatement` is left exactly as it stands; it is not touched
