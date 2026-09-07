@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.DenseRationalStarPolynomialExtension
 import GroupApproximation.Analysis.ReducedProductMFBlockDiagonal
 
@@ -268,5 +269,5 @@ end
 end ReducedProductMFPermanence
 end GroupApproximation
 
-#print axioms GroupApproximation.ReducedProductMFPermanence.hasMFEmbedding_of_denseRange
-#print axioms GroupApproximation.ReducedProductMFPermanence.isMFAlgebra_of_injective_reducedProduct
+#audit_axioms GroupApproximation.ReducedProductMFPermanence.hasMFEmbedding_of_denseRange
+#audit_axioms GroupApproximation.ReducedProductMFPermanence.isMFAlgebra_of_injective_reducedProduct

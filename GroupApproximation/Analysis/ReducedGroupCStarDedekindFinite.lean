@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.ReducedGroupCStarStablyFinite
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
 import Mathlib.Data.Matrix.Mul
@@ -154,6 +155,6 @@ instance reducedGroupCStar_isStablyFiniteRing (G : Type u) [Group G] :
 
 end GroupApproximation
 
-#print axioms GroupApproximation.mul_eq_one_comm_of_isometry_unitary
-#print axioms GroupApproximation.IsStablyFiniteCStarAlgebra.isStablyFiniteRing
-#print axioms GroupApproximation.reducedGroupCStar_isStablyFiniteRing
+#audit_axioms GroupApproximation.mul_eq_one_comm_of_isometry_unitary
+#audit_axioms GroupApproximation.IsStablyFiniteCStarAlgebra.isStablyFiniteRing
+#audit_axioms GroupApproximation.reducedGroupCStar_isStablyFiniteRing
