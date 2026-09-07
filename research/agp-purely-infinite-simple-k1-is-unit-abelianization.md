@@ -21,3 +21,14 @@ records that a purely infinite simple ring is a GE-ring, so the natural map
 algebra `V_(1,n)` of type `(1,n)` is purely infinite simple for `n >= 2`.
 
 So `K_1(R) = 0` makes `R^x` perfect for such a ring.
+
+## Internal proof for the countable subcase
+
+`MFQuotientUnitsKOne.agpUnitKappa`, in
+`GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean`,
+now proves surjectivity and the exact commutator kernel for countable R
+using finite stabilized commutators and explicit supported-unit compression.
+`purely-infinite-canonical-k1-all-ranks` integrates this with the complete
+canonical MF classification. The present claim still covers uncountable
+rings, so its citation route is retained; the countable proof is not
+asserted to discharge that larger quantifier scope.

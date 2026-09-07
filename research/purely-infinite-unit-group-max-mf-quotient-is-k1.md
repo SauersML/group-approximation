@@ -8,6 +8,9 @@ distinct_from:
   full-defect-ring-non-mf-at-rank-two: that is total collapse for the elementary groups under a weaker ring hypothesis; this is a classification for the whole unit group, where the collapse is total exactly when K_1 vanishes.
   agp-purely-infinite-simple-k1-is-unit-abelianization: that identifies K_1 with the unit-group abelianization, an algebraic fact with no approximation content; this identifies the same group as the maximal MF quotient.
 artifacts:
+  - research/artifacts/canonical-k1-mf-quotient-proof.md
+  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean
+  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean
   - research/artifacts/k1-classification-and-extension-bridge-2026-09-07.md
   - non_mf_groups_exist.tex
 ---
@@ -46,6 +49,13 @@ step as `MFQuotientUnits.agpStepOne`. Together with the abstract
 abelianization package and the explicit Peirce reduction in
 `purely-infinite-all-rank-mf-quotient`, it closes the all-rank group-theoretic
 endpoint `MFQuotientUnits.manuscriptMFQuotientUnits`, including rank one.
-There are no AGP input propositions in that endpoint. This does not
-discharge `AGPUnitKappa`, which identifies the constructed canonical
-algebraic K1, or the general `MoritaKOne` interface.
+There are no AGP input propositions in that endpoint.
+
+`purely-infinite-canonical-k1-all-ranks` now closes the canonical gap:
+`MFQuotientUnitsKOne.agpUnitKappa` identifies the constructed algebraic K1,
+and `manuscriptCanonicalKOne` gives the actual canonical quotient map,
+unique factorization, and intrinsic full radical of its kernel at every
+positive rank. The existing printed base-ring endpoint is discharged as
+`manuscriptMFQuotientUnitsKOneAtBaseRing`. This route uses no AGP citation
+or general Morita input proposition. The separate general `MoritaKOne`
+interface, which quantifies over all rings, is outside its scope.

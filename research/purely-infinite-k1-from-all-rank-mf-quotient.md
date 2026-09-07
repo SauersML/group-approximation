@@ -2,29 +2,23 @@
 rg: 2
 id: purely-infinite-k1-from-all-rank-mf-quotient
 kind: route
-title: The explicit MF-kernel proof leaves only the canonical K1 identification
+title: The canonical all-rank proof closes the unit K1 headline without an AGP import
 target: purely-infinite-unit-group-max-mf-quotient-is-k1
 requires:
-  - purely-infinite-all-rank-mf-quotient
-  - agp-purely-infinite-simple-k1-is-unit-abelianization
+  - purely-infinite-canonical-k1-all-ranks
 artifacts:
-  - research/purely-infinite-all-rank-mf-quotient-proof.md
-  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsMatrixReduction.lean
-  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaResidue.lean
+  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean
+  - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean
 ---
 
-The first prerequisite gives Rad_MF(R^x)=[R^x,R^x], intrinsic full MF radical
-of that commutator subgroup, and unique factorization through abelianization.
-It also proves that the quotient is countable abelian and MF. Its MF-kernel
-proof uses the explicit arbitrary-unit and supported-unit constructions;
-it does not require the canonical algebraic K1 identification.
+The prerequisite explicitly includes R^x and its canonical kappa, with
+commutator kernel, intrinsic full radical of that kernel, and unique
+factorization to MF targets. Its quotient is the constructed algebraic K1.
+The rank-one Lean endpoint is `manuscriptMFQuotientUnitsKOne`; the
+intrinsic kernel conclusion is `unit_commutator_full_mf_radical` together
+with `agpUnitKappa`.
 
-The second prerequisite identifies the canonical map kappa:R^x -> K1(R)
-as surjective with kernel [R^x,R^x]. The quotient theorem therefore identifies
-R^x/Rad_MF(R^x) with K1(R), and the universal property transports to kappa.
-It also follows that R^x has full MF radical exactly when K1(R) is trivial.
+If K1 is trivial, every MF-target homomorphism is trivial by factorization.
+Conversely, if the unit group has full MF radical, its surjective map to
+the countable abelian MF group K1 is trivial, so K1 is trivial.
 
-This route separates two kinds of evidence: the all-rank group-theoretic
-kernel endpoint is implemented in Lean, while the canonical K1 prerequisite
-remains the graph's explicit literature import of AGP Theorem 2.4. It does
-not treat an arbitrary abelian quotient as the constructed canonical K1.

@@ -1,0 +1,82 @@
+{
+  "additional_results": [
+    "GroupApproximation.MFQuotientUnitsKOne.matrixMFQuotientEquiv_mk",
+    "GroupApproximation.MFQuotientUnitsKOne.factors_uniquely_through_matrixKappa",
+    "GroupApproximation.MFQuotientUnitsKOne.unit_commutator_full_mf_radical",
+    "GroupApproximation.MFQuotientUnitsKOne.matrixKappa_ker_full_mf_radical"
+  ],
+  "cairn": {
+    "claim": "purely-infinite-canonical-k1-all-ranks",
+    "proof_route": "purely-infinite-canonical-k1-proof",
+    "status": "passed",
+    "updated_headline_route": "purely-infinite-k1-from-all-rank-mf-quotient",
+    "claims": 7189,
+    "routes": 7339,
+    "downstream_route": "purely-infinite-k1-from-canonical-proof",
+    "downstream_target": "mf-representations-of-units-extend-under-stabilization",
+    "scope": "Graph compilation and change validation passed. Mathematical proof verification is recorded separately under lean."
+  },
+  "claim": "Canonical algebraic K1 is the maximal operator MF quotient of GL_n(R) for every countable unital purely infinite simple ring R and n >= 1; its kernel itself has full MF radical.",
+  "closed_endpoints": [
+    "GroupApproximation.MFQuotientUnitsKOne.agpUnitKappa",
+    "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne",
+    "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAllRanks",
+    "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAtBaseRing",
+    "GroupApproximation.MFQuotientUnitsKOne.manuscriptCanonicalKOne"
+  ],
+  "date_utc": "2026-09-07",
+  "lean": {
+    "axiom_allowlist": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "closed_endpoint_audits": true,
+    "full_repository_build_claimed": false,
+    "job_id": 101885962068,
+    "run_id": 34169142693,
+    "scope": "All three new proof files elaborated, with their transitive imports built or replayed from content-addressed caches.",
+    "selected_targets": [
+      "GroupApproximation/Manuscript/OneSidedMFRadical/KappaFiniteWitness.lean",
+      "GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean",
+      "GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean"
+    ],
+    "status": "passed",
+    "url": "https://github.com/SauersML/group-approximation/actions/runs/34169142693",
+    "workflow": "Lean dev compile (fast)"
+  },
+  "merged_to_main_commit": "4b34d78aaeb5d948772929592f639e6a758a4a58",
+  "repository": "SauersML/group-approximation",
+  "root_imports": {
+    "run_id": 34169142681,
+    "status": "passed",
+    "url": "https://github.com/SauersML/group-approximation/actions/runs/34169142681"
+  },
+  "schema": 1,
+  "scope_limits": [
+    "The formal canonical kernel theorem assumes countability, matching the MF manuscript.",
+    "General MoritaKOne for arbitrary rings is not asserted; the printed base-ring theorem is proved directly.",
+    "The uncountable AGP statement retains its separate literature proof.",
+    "This record reports targeted Lean and root-import verification, not a successful full-corpus build."
+  ],
+  "sources": [
+    {
+      "blob_sha": "a3b0c1e50b758dca6772be9bf53224a077c9c322",
+      "path": "GroupApproximation/Manuscript/OneSidedMFRadical/KappaFiniteWitness.lean"
+    },
+    {
+      "blob_sha": "15140c5619411f58f7259487f2a3a662dcab355b",
+      "path": "GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean"
+    },
+    {
+      "blob_sha": "5f4e94366991f8437f312e658db2d08124652ce4",
+      "path": "GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean"
+    }
+  ],
+  "verified_commit": "fa1742f1ff612d750ff7383c1efbdceb2d005cf3",
+  "wolfram": {
+    "error": "MCP SSE probe returned HTTP 404",
+    "status": "unavailable",
+    "used_as_proof_evidence": false
+  }
+}
