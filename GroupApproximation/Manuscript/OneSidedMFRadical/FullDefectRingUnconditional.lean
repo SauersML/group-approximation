@@ -27,10 +27,14 @@ the two forms that remain.
   free case and which is open in this repository in characteristic zero and at
   non-prime positive characteristic.
 
-Nothing is proved here.  Each declaration is an existing theorem of this lane
-with its first argument supplied, and the reason to name the results is that a
-badge should point at a declaration whose elaborated type is the printed
-sentence and nothing else.
+Almost nothing is proved here.  Each declaration is an existing theorem of this
+lane with its first argument supplied, and the reason to name the results is
+that a badge should point at a declaration whose elaborated type is the printed
+sentence and nothing else.  The one exception is the group-level failure of
+MF-ness at the end, which had no name of its own: `thm:full-defect-ring` is
+stated as the triviality of every homomorphism to an MF group, and "so
+`EL_n(R)` is not MF" is the reading a reader draws from it, by taking the
+target to be `EL_n(R)` itself.
 
 The one printed clause still carrying a different hypothesis is the first
 sentence of `cor:one-sided-ring-maximal`, the proper isometry in
@@ -121,6 +125,73 @@ theorem manuscriptPrintedFullDefectRingProgrammeFromEJZ
     PrintedFullDefectRingProgramme :=
   manuscriptPrintedFullDefectRingProgramme fullDefectAtFixedRing hEJZ
 
+/-! ## The group-level reading: `EL_n(R)` is not MF -/
+
+/-- **`EL_n(R)` is itself not MF.**
+
+`thm:full-defect-ring` is printed as the triviality of every homomorphism from
+`EL_n(R)` to an MF group.  The reading the manuscript draws from it — the one
+that makes `EL_n(R)` an example rather than an obstruction theorem — is that
+the group is not MF, and that is this proposition.
+
+It is a one-line consequence, and the line is where `R ≠ 0` is spent: if
+`EL_n(R)` were MF then the identity homomorphism would be a homomorphism to an
+MF group, so every element would be trivial, and `EL_n(R)` is not trivial
+because `R` is not.
+
+The countability instance is supplied inside the statement, because
+`IsCDEOperatorMF` asks for it and `EL_n(R)` carries it only through
+`countable_elementaryGroup`. -/
+def PrintedElementaryGroupNotMFPrimeChar : Prop :=
+  ∀ (p : ℕ), p.Prime → ∀ (R : Type) [Ring R] [Nontrivial R] [Countable R]
+    [CharP R p] (s t : R), t * s = 1 →
+      (∃ (m : ℕ) (a b : Fin m → R), ∑ k, a k * (1 - s * t) * b k = 1) →
+        ∀ (n : ℕ), 4 ≤ n →
+          letI : Countable (elementaryGroup (Fin n) R) := countable_elementaryGroup
+          ¬ IsCDEOperatorMF (elementaryGroup (Fin n) R)
+
+/-- **`EL_n(R)` is not MF, over a coefficient ring of prime characteristic, with
+no hypothesis.** -/
+theorem manuscriptElementaryGroupNotMFPrimeChar :
+    PrintedElementaryGroupNotMFPrimeChar := by
+  intro p hp R _ _ _ _ s t hts hfull n hn
+  haveI : Countable (elementaryGroup (Fin n) R) := countable_elementaryGroup
+  have h0 : 0 < n := by omega
+  have h1 : 1 < n := by omega
+  have hne : (⟨0, h0⟩ : Fin n) ≠ ⟨1, h1⟩ := by
+    intro hcon
+    exact absurd (congrArg Fin.val hcon) (by norm_num)
+  haveI : Nontrivial (elementaryGroup (Fin n) R) :=
+    nontrivial_elementaryGroup (R := R) hne
+  exact not_isCDEOperatorMF_of_killsMFTargets fun M _ hM f x ↦
+    manuscriptFullComplementaryIdempotentsPrimeCharUnconditional p hp R s t hts
+      hfull n hn M hM f x
+
+/-- **`EL_n(R)` is not MF, as printed**, with the Ershov--Jaikin-Zapirain
+theorem as its only hypothesis. -/
+def PrintedElementaryGroupNotMF : Prop :=
+  ∀ (R : Type) [Ring R] [Nontrivial R] [Countable R] (s t : R), t * s = 1 →
+    (∃ (m : ℕ) (a b : Fin m → R), ∑ k, a k * (1 - s * t) * b k = 1) →
+      ∀ (n : ℕ), 4 ≤ n →
+        letI : Countable (elementaryGroup (Fin n) R) := countable_elementaryGroup
+        ¬ IsCDEOperatorMF (elementaryGroup (Fin n) R)
+
+theorem manuscriptElementaryGroupNotMFFromEJZ
+    (hEJZ : FinitelyGeneratedRingGeneralRankElementaryPropertyT) :
+    PrintedElementaryGroupNotMF := by
+  intro R _ _ _ s t hts hfull n hn
+  haveI : Countable (elementaryGroup (Fin n) R) := countable_elementaryGroup
+  have h0 : 0 < n := by omega
+  have h1 : 1 < n := by omega
+  have hne : (⟨0, h0⟩ : Fin n) ≠ ⟨1, h1⟩ := by
+    intro hcon
+    exact absurd (congrArg Fin.val hcon) (by norm_num)
+  haveI : Nontrivial (elementaryGroup (Fin n) R) :=
+    nontrivial_elementaryGroup (R := R) hne
+  exact not_isCDEOperatorMF_of_killsMFTargets fun M _ hM f x ↦
+    manuscriptFullComplementaryIdempotentsFromEJZ hEJZ R s t hts hfull n hn M hM
+      f x
+
 end FullDefectRing
 end OneSidedMFRadical
 end Manuscript
@@ -137,3 +208,4 @@ open GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing
   manuscriptOneSidedRingMaximalReducedCStarPrimeCharUnconditional
 #audit_closed_axioms
   manuscriptPrintedFullDefectRingProgrammePrimeCharUnconditional
+#audit_closed_axioms manuscriptElementaryGroupNotMFPrimeChar
