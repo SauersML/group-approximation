@@ -179,3 +179,9 @@ different bound using a real-part gap; those files do not by themselves
 formally verify the linear spectral bound or the new wordwise theorem.
 This artifact supplies the complete mathematical argument. Cairn checks
 the claim graph and references, not the correctness of this prose proof.
+
+The concurrently developed `hyperlinear-radical-has-linear-word-certificate`
+is the squared normalized-HS counterpart. Its trace-amplification argument
+and norm are different. The present proof keeps scalar phases and uses an
+eigenvalue attaining the operator norm, so it gives a linear bound in the
+unsquared operator-norm defects.

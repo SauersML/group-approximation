@@ -9,6 +9,7 @@ distinct_from:
   hyperlinear-radical-is-finitely-witnessed: That concerns the hyperlinear radical and finite-prefix witnesses; this proves a linear operator-norm inequality for the MF radical.
 artifacts:
   - research/artifacts/mf-word-linear-certificates.md
+  - non_mf_groups_exist.tex
 ---
 
 For `G=F_m/N` with `m` finite and any word `w in F_m`, the following are
