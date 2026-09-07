@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.FaceSetBoundaryReclosed
 import GroupApproximation.GGT.VanKampen.SurgeryReclosedConnected
+import GroupApproximation.GGT.VanKampen.SurgeryReclosedPlanarity
 import GroupApproximation.GGT.VanKampen.SingletonCollapseCounterexample
 
 /-!
@@ -112,7 +113,8 @@ theorem euler_preserved : reclosed.eulerCharacteristic = M.eulerCharacteristic :
 /-- The bridge is removed using the actual boundary, without an unpinched-face
 assumption and without supplying Euler preservation as an input. -/
 noncomputable def actualRegion : IsDiscRegion M {face 0} :=
-  BoundaryCycle.toDiscRegion_of_euler M {face 0} actualBoundary planar.1 euler_preserved
+  BoundaryCycle.toDiscRegion_of_followsBoundary M {face 0} actualBoundary
+    actualBoundary_follows planar
 
 theorem exists_planar_actual_collapse :
     ∃ region : IsDiscRegion M {face 0},

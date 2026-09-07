@@ -527,8 +527,8 @@ at least one retained dart, and gives the exact vertex count.
 `FaceSetBoundaryReclosed` derives the required walk from the chain and closing
 step already stored in every embedded `FaceSetBoundary`, without an additional
 orbit or topology hypothesis. These proofs pass ordinary axiom audits.
-Euler preservation for a general enclosing region still needs the planar
-deletion/counting argument; the vertex correspondence alone is not that proof.
+The general planar restriction argument below now supplies the additional
+Euler preservation proof; the vertex correspondence alone was insufficient.
 
 The single-edge step is now constructed in `CombMapEdgeDeletion`.
 `PermOrbitErasePoint` deletes a point by actual first return and proves the
@@ -554,14 +554,51 @@ deleted map when the edge sides are distinct faces. Its connectedness theorem
 also covers an empty remainder; combining it with the exact Euler count gives
 planarity when at least one dart remains. The construction and both topology
 theorems pass ordinary axiom audits with only the three permitted axioms.
-Iteration over the chosen region and the general planar restriction argument
-remain open; this single-edge result does not establish them.
 
-This is a self-contained checkpoint for the current topology work. The next
-proposed step is a general Euler upper bound for connected combinatorial maps,
-followed by a justified order of deletion and identification of the resulting
-map with the actual reclosed map. Neither step is yet proved. The assembly
-still has the same four admissions; no endpoint obligation closes in this batch.
+The general topology argument is now complete. `CombMapUnderlyingGraph`
+constructs the actual simple graph on map vertices, proves every simple edge
+comes from a map edge, and derives `V ≤ E + 1` from connectedness without
+planarity, looplessness or absence of parallel edges. `CombMapEulerUpperBound`
+then proves Euler characteristic at most two for every connected map. It
+deletes edges between distinct faces by induction on edge count; the exact
+deletion balances handle the exceptional empty remainder. This also proves
+that any edge deletion with a connected nonempty remainder preserves planarity.
+
+`PermFirstReturnComposition` proves uniqueness, composition and factorization
+of first-return permutations, and constructs first return on every embedded
+finite set by successive actual point erasures. `CombMapRestriction` builds
+the actual map on any edge-invariant retained dart subset, and proves that
+both single-edge deletion and genuine region reclosure are restrictions in
+this full cyclic-order sense. No topology field is part of that interface.
+
+`CombMapRestrictionPaths` proves that a proper nonempty restriction of a
+connected map has a missing dart immediately after a retained dart in vertex
+rotation. `CombMapRestrictionGrowth` adjoins its actual edge pair, preserves
+connectedness at the chosen vertex, and proves that deleting the new pair
+recovers the old core via an actual surjective dart embedding. The second
+endpoint may be a new vertex. The step adds exactly two darts and cannot
+increase Euler characteristic. `CombMapRestrictionPlanarity` iterates this
+constructed growth by the number of omitted darts, proving that every
+connected nonempty restriction of a planar map is planar. A connected
+deletion order is therefore no longer an unproved input.
+
+`SurgeryReclosedPlanarity` applies that theorem to the existing genuine
+boundary walk. It proves general reclosed planarity and Euler preservation,
+and constructs `BoundaryCycle.toDiscRegion_of_followsBoundary`.
+`Embedded.FaceSetBoundary.toDiscRegion` consumes the chain and closing walk
+already stored in the embedded boundary and the source diagram's planarity,
+producing both historical `IsDiscRegion` topology fields. All these proofs
+pass ordinary axiom audits with only the three permitted axioms. The bridge
+model now consumes this general constructor, while retaining its independent
+explicit count calculation and the original false-producer refutation.
+
+The remaining cut producer must construct the actual enclosing faces and
+boundary walk, ordered/rebased cell shelling, and at-most-four quasigeodesic
+sections. Once its genuine face-set boundary is available, reclosed topology
+is proved. The graph loop/multiple-edge induction, complementary regions with
+holes and minimal cutting systems, and the unbound budget remain open.
+The assembly still has the same four admissions; this batch removes the
+general topology input but closes no additional assembly admission.
 
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
