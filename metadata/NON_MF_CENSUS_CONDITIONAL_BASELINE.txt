@@ -52,19 +52,29 @@ conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.ma
 conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_simpleFactor_centralizes  -- J-bar centralizes Gamma-bar, over the cited FFF package
 #
 # ---------------------------------------------------------------------------
-# conditional-debt: Theorem C's inputs are inhabited only through `sorry`.
+# conditional-debt: Theorem C's inputs are inhabited only through the placeholder -- `sorry`.
 #
 # These take `LiteratureInputs` or `Configuration`, and the corpus does produce
 # both -- `TheoremCDebts.literatureInputs` and `exists_configuration` -- but
 # only through the three literature debts at TheoremCDebts.lean
 # (kotowskiOllivier, smallCancellationQuotient, osinTheorem12), each of which
-# is a `sorry`.  This is the finding the detector was written for: before the
+# is a `sorry` -- this is the finding the detector was written for: before the
 # split these read as unconditional, because the gate asked whether a producer
 # existed and not whether it was honest.  Each line goes as its debt lands.
 conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.kazhdan_map_coreRange  -- over Configuration, inhabited only through the three TheoremCDebts sorries
-conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical  -- Theorem C, over LiteratureInputs, inhabited only through the three TheoremCDebts sorries
-conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified  -- Theorem C simplified, same debt as manuscriptTorsionFreeFullMFRadical
 conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptWitnessCommutatorInDefect  -- the free-witness variant, over Configuration, same debt
+# `TheoremC.manuscriptTorsionFreeFullMFRadical` was here too (still cited by
+# tex row 907cd2df4f8a), but as of 2026-09-07 `--verify-unconditional`
+# reports NO finding for it at all, not even under a different detector --
+# checked directly, it is not a rename.  `TheoremCDebts.lean` (the file that
+# used to house the three literature `sorry`s) no longer exists -- see below;
+# `TheoremCAssembly.lean` now assembles `literatureInputs` and still has four
+# `sorry`s in it -- `kotowskiOllivier`, `smallCancellationQuotient`,
+# `minasyanOsin`, and one more -- so `manuscriptTorsionFreeFullMFRadical` is
+# almost certainly still sorry-backed -- and this reads as a blind spot in
+# `classify` after the sorries moved file, not as a genuine fix.  Removing
+# the line rather than leaving a line that matches nothing; flagged to the
+# lead separately.  A fix belongs in `scripts/check_non_mf_unconditional.py`.
 #
 # ---------------------------------------------------------------------------
 # open-predicate: pre-existing, and the only finding this gate reported before
@@ -91,11 +101,45 @@ carrier-data GroupApproximation.Manuscript.NonMF.TorsionFree.HullBallFormStateme
 # visibly a citation, and this one reads as settled -- so each line names the
 # debt it waits on.
 carrier-debt GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.HullQuotientNG  -- tex rows 0478b96dfcaf and c3246ffe1961; produced only through the TheoremCDebts sorries, and the rows also cite HullInputsCorrected and torsionFree_of_finiteOrder_lift
-carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeFullMFRadical  -- tex rows 0f22bdbc4184 and 907cd2df4f8a; the statement Prop of Theorem C, produced only through manuscriptTorsionFreeFullMFRadical_closed over the three debts, which the rows also cite
-carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeSimplified  -- tex row 0f22bdbc4184; same debt as PrintedTorsionFreeFullMFRadical
+carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeFullMFRadical  -- tex row 907cd2df4f8a; the statement Prop of Theorem C, produced only through manuscriptTorsionFreeFullMFRadical_closed over the three debts, which the row also cites.  (2026-09-07: tex row 0f22bdbc4184, which used to cite this too, was upgraded to TorsionFreePrinted.manuscriptTorsionFreeTheorem instead -- see below -- so this line now covers only 907cd2df4f8a.)
 #
 # ---------------------------------------------------------------------------
 # open-predicate: uncovered by the refutation fix.  `IsStronglyOperatorMF` used
 # to count as discharged because `not_isStronglyOperatorMF_of_not_isOperatorMF`
 # -- a proof that a group does NOT satisfy it -- registered as a producer.
 open-predicate GroupApproximation.IsStronglyOperatorMF.isOperatorMF  -- the projection's premise is the strong-convergence datum itself, which nothing produces; the row's assertion is carried by the refutation, not by this projection
+#
+# ---------------------------------------------------------------------------
+# Opened 2026-09-07 by census-lane, lead-approved (the lead pre-approved these
+# exact citations for thm:full-defect-ring and its two corollaries, over the
+# single printed Ershov--Jaikin-Zapirain citation
+# FinitelyGeneratedRingGeneralRankElementaryPropertyT, with the
+# PrimeCharUnconditional siblings unconditional).  No lines are needed here,
+# though: while drafting this register, `--verify-unconditional` stopped
+# reporting any finding at all for the four `...FromEJZ` declarations,
+# apparently because `PropertyT/IntegralColumnPlaneClosure.lean`'s
+# `finitelyGeneratedRingGeneralRankElementaryPropertyT` (commit 343a1c4a4,
+# "Prove the Ershov--Jaikin-Zapirain theorem in every characteristic") is a
+# hypothesis-free -- and free of the placeholder tactic in that file and its
+# two direct dependencies, not independently audited further -- producer of
+# the premise.  If that holds
+# up under `#audit_closed_axioms` and CI, thm:full-defect-ring and its
+# corollaries are no longer conditional at all and belong in
+# `scripts/regenerate_non_mf_claim_manifest.py`'s `EXACT_TARGETS` once badged
+# -- see notes/nonmf-lane-reports/census.md.  Flagged to the lead rather than
+# acted on here: this lane found it in a shared, concurrently-edited tree by
+# `classify` going quiet, not by auditing the proof, and `classify` has at
+# least one known blind spot already (see the removed
+# `TheoremC.manuscriptTorsionFreeFullMFRadical` line above).
+#
+# thm:torsion-free and cor:relative-quotient, along the printed proof
+# (TorsionFreePrintedTheorem.lean, TorsionFreeRelativeQuotient.lean), are
+# conditional on the manuscript's own cited literature: Fournier-Facio's
+# construction (Section 2) and Hull's Theorem 7.1 with Osin's Lemma 7.1
+# (both packaged as closed Props the manuscript cites, not reductions this
+# repository is closing), and cor:relative-quotient additionally on Hull's
+# common quotient theorem (Corollary 7.4).
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem  -- thm:torsion-free over the printed Fournier-Facio construction (FournierFacioParagraph, Fournier-Facio Section 2); a literature citation, not a reduction this repository is closing
+conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem  -- thm:torsion-free over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs; a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient  -- cor:relative-quotient over the same Fournier-Facio construction (FournierFacioParagraph) and over Hull's common quotient theorem (HullCommonQuotientPrinted, Hull Corollary 7.4); literature citations, not reductions this repository is closing
+conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient  -- cor:relative-quotient over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
