@@ -96,6 +96,19 @@ theorem initial_dart (k : Fin (Delta.faceBoundary f).darts.length) :
   simp only [boundary]
   exact (Delta.faceBoundary f).rotate_head k
 
+def cornerIndex (start finish : Fin (Delta.faceBoundary f).darts.length) :
+    Fin ((diagram Delta f start.val hf hcells).faceBoundary f).darts.length :=
+  ⟨(Delta.faceBoundary f).forwardOffset start finish, by
+    change _ < (boundary Delta f start.val f).darts.length
+    simpa only [boundary, ite_true, FaceBoundary.rotate, List.length_rotate] using
+      (Delta.faceBoundary f).forwardOffset_lt start finish⟩
+
+theorem terminal_dart (start finish : Fin (Delta.faceBoundary f).darts.length) :
+    ((diagram Delta f start.val hf hcells).faceBoundary f).darts.get
+      (cornerIndex Delta f hf hcells start finish) = (Delta.faceBoundary f).darts.get finish := by
+  simp only [diagram, boundary, ite_true, cornerIndex, FaceBoundary.rotate,
+    List.get_eq_getElem, List.getElem_rotate, FaceBoundary.forwardOffset_add_mod]
+
 /-- The actual identity embedding preserves all full candidate data away
 from the rebased G-face, and therefore preserves the family's exact weight. -/
 theorem exists_retained_family (D : RelGenSet G Lambda) (eps : ℕ)
@@ -120,4 +133,5 @@ end GroupApproximation.GGT.VanKampen.GFaceRebase
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceRebase.replacement
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceRebase.embedding
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceRebase.initial_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.GFaceRebase.terminal_dart
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceRebase.exists_retained_family

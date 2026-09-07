@@ -387,9 +387,26 @@ the planar map, dart labels, literal exterior word and complete ordered
 relator data are retained. Its identity embedding transports full candidates
 and compatible families away from that face with exact cardinality and
 weight. The new initial dart is proved to be the prescribed original corner.
-This supplies the rebasing operation needed to apply prefix-based word
-insertion at polygon-derived endpoints; the endpoint adapter and subsequent
-complementary-region cuts still need to be assembled.
+`FaceBoundary.forwardOffset` and `GFaceRebase.cornerIndex` now identify both
+prescribed original corners, including cyclic wraparound and coincident
+corners. `GFaceCornerInsertion.exists_corner_output` performs the actual
+rebasing and word insertion. Its full output retains path simplicity, fresh
+internal vertices, the original ordered cell map and the embedding; checked
+identities express both endpoints against the original diagram.
+`GFaceCornerLegalSelection` transports the actual compatible family through
+this construction and retains the legal global optimum with exactly the same
+weight and cardinality. Complementary-region cuts still need construction.
+
+Source check: [Osin's appendix, Lemma 9.4 in arXiv v3](https://arxiv.org/html/math/0411039#S9)
+first chooses a minimum-total-length cutting system for each complementary
+region, which may have holes. This is a separate minimization from
+Definition M's contiguity-family optimum. Its cutting paths must be produced
+and transported through shortening surgery; the family optimum alone does
+not supply that invariant. Lemma 9.7(b) later minimizes enclosed relator-cell
+counts to obtain one exterior region at the chosen large cell. It does not
+assert exterior uniqueness simultaneously at every cell of an arbitrary
+distinguished family. Keep that selected-cell descent explicit when connecting
+the counting lemmas to the final single-region Greendlinger conclusion.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
