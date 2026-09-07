@@ -10,6 +10,13 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 ## Research notes
 
+[Cyclic attachments for one-relator groups](research/artifacts/mixed-conjugator-one-relator-proof-2026-09-07.md)
+give written soficity proofs for all nested Baumslag presentations with
+conjugator `w=b^p a^s b^q`, including the asymmetric example asked about in
+Berlai's paper, and for a broader family with one-sided indexed support.
+The proofs and their dependencies are integrated into Cairn. The general
+one-relator question remains open here, and these results are not Lean-certified.
+
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
 gives an elementary obstruction to controlling a nontrivial word by relation
 errors on individual vectors, with linked research claims and proofs. It also

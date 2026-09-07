@@ -31,9 +31,8 @@ and extensions with sofic kernel and amenable quotient are sofic.
 
 The amalgam result is Theorem 1 of Elek--Szabo,
 [Sofic representations of amenable groups](https://arxiv.org/html/1010.3424v2).
-The HNN version and its application to Baumslag-Solitar groups are used in
-Section 2 of Berlai,
-[A new family of sofic one-relator groups](https://arxiv.org/html/2502.05064v1).
+The HNN version is Proposition 3.2 of Ciobanu--Holt--Rees,
+[Sofic groups: graph products and graphs of groups](https://arxiv.org/html/1212.2739v2).
 These are inputs, not new results of this note.
 
 For completeness, all parameters needed for a Baumslag-Solitar block are
@@ -131,12 +130,13 @@ specific triangular presentations above: it adjoins a single earlier
 generator by an infinite cyclic edge. It does not replace a free edge by
 a cyclic edge without proving equality of presentations.
 
-The next application is the shift-invariant kernel of
+An application is the shift-invariant kernel of
 
     <a,b | (a^l)^(a^w) = a^k>,       x^y = y^(-1)xy,
 
 when `w=b^d V(a_1,...,a_M)`, `a_j=b^(-j)ab^j`, `d>0`, and `V` uses only
 strictly positive indices. In particular, the identity
 `b^(-1)ab^2 = b a_2` points to the mixed-conjugator example asked about in
-Berlai's introduction. The application requires a separate check of the
-kernel presentation and will be recorded separately.
+Berlai's introduction. The exact kernel identification, this application,
+and an extension to every single-block conjugator are proved in the
+[companion artifact](mixed-conjugator-one-relator-proof-2026-09-07.md).

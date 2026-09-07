@@ -71,7 +71,10 @@ a much smaller class, and the one-relator origin is the only leverage available.
    **two distinct** embeddings of the free associated subgroup into the base,
    and nothing identifies them or supplies the separability hypothesis.  This is
    the same wall Berlai reports, and the same one the earlier Magnus/HNN
-   experiments in this corpus keep meeting.
+   experiments in this corpus keep meeting. This is a failure of that
+   general shortcut, not a negative conclusion about each example:
+   [[berlai-mixed-conjugator-example-is-sofic]] now closes the asymmetric
+   three-index example through a different sequence of cyclic amalgams.
 5. **Turn the obstruction into a witness.**  *Deferred, and the negative
    counterpart.*  Rather than prove the chain sofic, show for a specific
    `π(w) = 2` relator that the finite permutation models of the free-edge
@@ -85,3 +88,18 @@ a much smaller class, and the one-relator origin is the only leverage available.
    coupling that remains here is therefore genuinely second-order and cannot
    be removed by iterating abelian relation modules in the `k = 1` perfect
    regime.
+
+## Additional positive families (2026-09-07)
+
+[[triangular-conjugate-bs-chains-are-sofic]] proves that every strictly
+triangular chain of conjugated Baumslag-Solitar relations is sofic by
+processing finite relator sets backwards. The conjugator must be a
+conjugate of a nonzero power of a later generator; this ensures every
+cyclic attaching map is injective.
+
+[[one-sided-conjugator-one-relator-groups-are-sofic]] applies that theorem
+to cyclic kernels. [[single-block-conjugator-one-relator-groups-are-sofic]]
+also handles all orders and collisions of the three indices arising from
+`w=b^p a^s b^q`, using cyclic HNN extensions and root adjunctions where
+needed. These results close concrete higher-overlap cases. The assertion
+about all staggered kernels remains open.

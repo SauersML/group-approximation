@@ -41,5 +41,8 @@ second-order comparison the problem is now asking for.
 On the sub-family where every Magnus overlap has rank at most one, the edge
 groups are amenable, existing amalgamation/HNN permanence over amenable edge
 groups applies, and the prerequisite holds.  The route is therefore not a stub:
-it closes an infinite family already, and the open part is exactly
-`rank C_i >= 2`.
+it closes an infinite family already. Some `rank C_i >= 2` cases are now
+also closed: [[triangular-conjugate-bs-chains-are-sofic]] and
+[[single-block-conjugator-one-relator-groups-are-sofic]] prove alternative
+constructions using only cyclic edges. There is still no such construction
+for every Magnus kernel; rank alone no longer describes the positive boundary.
