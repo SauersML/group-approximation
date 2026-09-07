@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 288 |
-| `unassigned` | 54 |
+| `formalized` | 296 |
 | `definition` | 52 |
+| `unassigned` | 40 |
 | `structural` | 32 |
+| `partial` | 21 |
 | `provenance` | 19 |
 | `attribution` | 17 |
-| `partial` | 15 |
 | **total** | **477** |
 
-Completely formalized or definitional: **340/477** (71.3%).
+Completely formalized or definitional: **348/477** (73.0%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -54,8 +54,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * Same printed proof: a word a of length |a| has ||a(U)-1||<=|a|D(U) (wordLengthBound), and the commutator estimate ||[A,B]-1||<=2||A-1||||B-1|| (commutatorEstimate). Partial per the lane's own docstring: wordLengthBound gives a constant from the free-group induction, not literally the length of a particular spelling, though it is all the printed argument uses.
 * **`partial`**, line 901 --- The set of $m$-marked groups satisfying $r_1=\cdots=r_s=1$ is open and closed in the space of marked groups, and every group in it has the property; so the property is open.
   * The consequence paragraph: every countable m-marked group satisfying r_1=...=r_s=1 has the property. Partial per the lane's own docstring: only this middle clause is carried; "open and closed in the space of marked groups" is not claimed by any Lean statement, since no space of marked groups is formalized in this development.
-* **`unassigned`**, line 901 --- For the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many words in two unitary matrices, uniformly over the matrix size, while the left regular representation solves the same equations exactly with $U,V\ne1$.
-* **`unassigned`**, line 901 --- Applied to the group $B$ of Theorem~\ref{thm:full-defect-ring}, the same construction gives one finitely presented group with the property that maps into every $\EL_n(R)$ of that theorem with normally generating image.
 * **`partial`**, line 1049 --- Elementary signed permutation matrices conjugate this element to every off-diagonal position, up to a sign, so $e_{ij}(1)\in N$ whenever $i\ne j$.
   * Row 19, per the lead: conclusion carried (FullIdempotent.elementaryGroup_normal_eq_top_of_full), route not -- that lemma uses exists_two_further_indices and Steinberg conjugation; ElementaryWeyl.weyl exists but the full-defect proof does not spend it. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
 * **`partial`**, line 1056 --- By Theorem~\ref{thm:compression-criterion} with $K=G$, every homomorphism from $G$ to an MF group is trivial. The element $\sigma=e_{12}(1)e_{21}(-1)e_{12}(1)$ of $B$ has order four, and $\sigma e_{13}(-r)\sigma^{-1}=e_{23}(r)$ for $r\in\mathcal C$, so
@@ -66,8 +64,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * Rows 27+28 merged by the census sentence-splitter. Both partial per the lead. Row 27: the corestriction to the subring S is not carried in Lean -- the formal map goes into R itself and S is never named; every later step uses only the S_i,T_j built from v_i,w_i, so the rest goes through at R. Row 28: the Lean target is EL4(R), not EL4(S) (route difference, not a gap), and needs [Countable R] -- per the lead, this is NOT a printed-proof gap, since thm:full-defect-ring's own header already says countable R; the countability the subring step spends is that same top-level hypothesis, not an extra assumption. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
 * **`partial`**, line 1100 --- \emph{All ranks.} For $n\ge3$, signed permutation matrices conjugate $e_{12}(r)$ to $e_{ij}(\pm r)$ for all $i\ne j$, so the copy of $\EL_2(R)$ on coordinates $1,2$ normally generates $\EL_n(R)$.
   * Row 40, per the lead: conclusion carried inside FullDefectRankTwo.hom_eq_one_of_rankFour; route not. Steinberg conjugation replaces the printed signed-permutation-matrices argument, as in row 19. Rank-four's Theorem B proof table, landed 7d876ae10 (Lean) / d379ff3ba (report), assigned 2026-09-07.
-* **`unassigned`**, line 1119 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
-* **`unassigned`**, line 1127 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
 * **`partial`**, line 1220 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
   * The printed sentence claims purely-infinite-simple for L_k(1,d) generally (every countable field k, every d); the cited carrier proves only the one instance in scope here, R=L_F2(1,2) (k=F_2, d=2). The general family is not covered. New row (2026-09-07).
 * **`unassigned`**, line 1220 --- Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along $A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$ for the canonical map.
@@ -75,15 +71,20 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * First conjunct (N_n = [GL_n(R),GL_n(R)]) and the existence of some countable abelian MF quotient are proved, conditional on the four named Ara-Goodearl-Pardo Props (AGPMatrixReduction, AGPUnitK1, AGPMenalMoncasiReduction, AGPStepOne) and on thm:full-defect-ring's own rank-two form (FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo), which is itself unconditionally closed. Partial, not formalized: the printed identification of the quotient with K_1(R) specifically is not carried -- only "some countable abelian group" with an isomorphism onto it (the module's own docstring says so explicitly: naming it K_1(R) needs the colimit lim GL_n/EL_n and Morita invariance, neither built).
 * **`partial`**, line 1238 --- The ring $M_n(R)$ is again countable, purely infinite, and simple~\cite[Corollary~1.7]{AGP}, and $K_1(M_n(R))\cong K_1(R)$ by Morita invariance, so it suffices to treat $n=1$.
   * thm:mf-quotient-units's printed proof (ring-b-alg lane), sentence 1, conditional on AGPMatrixReduction (AGP Corollary 1.7). Partial by the lane's own docstring: the Morita-invariance half (K_1(M_n(R))~=K_1(R)) is not carried, since the conclusion never names K_1(R) on the nose.
-* **`unassigned`**, line 1287 --- By the definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for some $n\ge2$.
-* **`unassigned`**, line 1287 --- Following the proof of~\cite[Theorem~2.4]{AGP} again, choose an idempotent $f<e$ equivalent to $e$ and orthogonal idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put $r_1=1-e+f$ and $P=r_1+\dots+r_n$.
-* **`unassigned`**, line 1287 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
+* **`partial`**, line 1287 --- By the definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for some $n\ge2$.
+  * By the definition of K_1, diag(v,1,...,1) in EL_n(R) for some n>=2. This is background context for AGPStepOne, the module docstring says outright: This is the printed last paragraph: diag(v,1,...,1) in EL_n(R) for some n>=2, and the idempotent decomposition and ring isomorphism theta that carry it back to v=1-P+theta(diag(v,...,1)). AGPStepOne is a literature-citation input (Ara-Goodearl-Pardo Thm 2.4 Step 1), not internally proven -- the Lean development takes it as a hypothesis of printedMFQuotientUnits_of_agp, mirroring the same weakest-form-needed pattern as the Khanh-Thanh citation. New row (2026-09-07).
+* **`partial`**, line 1287 --- Following the proof of~\cite[Theorem~2.4]{AGP} again, choose an idempotent $f<e$ equivalent to $e$ and orthogonal idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put $r_1=1-e+f$ and $P=r_1+\dots+r_n$.
+  * Following the proof of AGP Theorem 2.4 again, choose an idempotent f<e... and put P=r_1+...+r_n. Same literature-citation input as 16df92a11bc9 -- the idempotent-construction detail of AGPStepOne, not internally proven. New row (2026-09-07).
+* **`partial`**, line 1287 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
+  * There is a ring isomorphism theta:M_n(R)->PRP under which diag(v,1,...,1) corresponds to v-(1-P). Same literature-citation input as 16df92a11bc9 -- the ring-isomorphism detail of AGPStepOne, not internally proven. New row (2026-09-07).
 * **`partial`**, line 1301 --- Then $H\cong\GL_d(R)$, the intersection of the kernels of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
   * cor:leavitt-mf-quotient's general-d clause (rank-four lane, Manuscript/OneSidedMFRadical/LeavittMFQuotientGeneral.lean): H isomorphic to GL_d(R) (unconditional, CompleteMatrixFamily.unitsEquiv), and the intersection of kernels = [H,H] = EL_d(R) for every d>=2 (conditional on PrintedKhanhThanhCommutatorInElementary k d, deliberately weaker than the printed Khanh-Thanh citation GL_d=EL_d.D_d(k); register line added). Partial, not formalized: the printed sentence's continuation (not shown in this row) asks for the K_1(R) identification, which this carrier does not name.
-* **`unassigned`**, line 1310 --- The maps $x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.
-* **`unassigned`**, line 1310 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
-* **`unassigned`**, line 1310 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
-* **`unassigned`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
+* **`partial`**, line 1310 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
+  * Roadmap sentence pointing to thm:mf-quotient-units. The intersection with [H,H] and EL_d(R) is carried (conditional on PrintedKhanhThanhCommutatorInElementary, already registered). The quotient with K_1(R) is NOT carried -- per the modules own docstring, naming the quotient is not needed for the three inclusions and is not asserted. New row (2026-09-07).
+* **`partial`**, line 1310 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
+  * Khanh-Thanhs GL_d(R)=EL_d(R)D_d(k) decomposition, in the weakest form the chain needs (commutator subgroup of GL_d(R) lies in EL_d(R)): the hypothesis manuscriptLeavittMFQuotientGeneral consumes, already registered as open-predicate conditional (matching row 93e54ae1c51e, same wrapper). The K_1(R)=~k^x/(k^x)^(d-1) computation, the other half of the same citation, is NOT carried. New row (2026-09-07).
+* **`partial`**, line 1310 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
+  * [H,H]<=EL_d(R) and EL_d(R)<=[H,H] because every hom from EL_d(R) to MF group trivial (thm:full-defect-ring): both directions of the equality commutator=EL_d(R), conditional on PrintedKhanhThanhCommutatorInElementary (already registered). New row (2026-09-07).
 * **`partial`**, line 1323 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
   * UPDATED 2026-09-07: first clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, unconditionally -- BinaryLeavitt.elementaryGroup_eq_top makes K_1 vanish at d=2, so there is no Khanh-Thanh input here at all, per the lead. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is still not covered now that general-d has landed (LeavittMFQuotientGeneral.manuscriptLeavittMFQuotientGeneral, cited at 93e54ae1c51e): that carrier proves the kernel-intersection=EL_d(R) identification, conditional on the Khanh-Thanh commutator citation, but not the K_1(R) computation the cyclic-order formula needs. Remains a real, separate gap, not a landing-status one.
 * **`partial`**, line 1362 --- Then $\phi_n(u_g)^*\phi_n(u_g)$ and $\phi_n(u_g)\phi_n(u_g)^*$ converge to $1$ in operator norm, so for large $n$ the unitary part $V_n(g)$ of the polar decomposition of $\phi_n(u_g)$ satisfies
@@ -105,9 +106,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1511 --- Then $tct^{-1}$ is the lamp at $t\Gamma$ and $a(tct^{-1})a^{-1}$ is the lamp at $at\Gamma$.
 * **`unassigned`**, line 1511 --- These cosets are distinct, because $t\Gamma=at\Gamma$ would mean $a\in t\Gamma t^{-1}=\alpha(\Gamma)$.
 * **`unassigned`**, line 1622 --- so that $\alpha(v,A)=(2v,A)$.
-* **`unassigned`**, line 1685 --- Since $J$ is simple and nonabelian, $J$ and $S$ are perfect.
-* **`unassigned`**, line 1697 --- For $c\in J$ and $\ell\in S$, the commutator $[tct^{-1},\ell]$ lies in $\mathfrak D_{G_0}(\Gamma)$ by~\eqref{eq:intrinsic-defect}, since $t$ conjugates $\Gamma$ into itself, $c$ centralizes $\Gamma$, and $S\le\Gamma$.
-* **`unassigned`**, line 1697 --- As $c$ ranges over $J$, the element $tct^{-1}$ ranges over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
 
 ## By section
 
@@ -120,9 +118,9 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
 | From Hilbert--Schmidt to operator norm | 31 | 1 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
-| A finite certificate | 19 | 2 |
-| One-sided inverses and elementary groups | 75 | 2 |
-| The binary example | 46 | 8 |
+| A finite certificate | 19 | 0 |
+| One-sided inverses and elementary groups | 75 | 0 |
+| The binary example | 46 | 1 |
 | An amenable nonquasidiagonal trace | 90 | 17 |
-| A torsion-free finitely presented example | 35 | 3 |
+| A torsion-free finitely presented example | 35 | 0 |
 | Acknowledgments | 2 | 0 |
