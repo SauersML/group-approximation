@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 258 |
-| `formalized` | 125 |
+| `unassigned` | 238 |
+| `formalized` | 143 |
 | `definition` | 35 |
-| `structural` | 22 |
+| `structural` | 23 |
 | `provenance` | 19 |
 | `attribution` | 14 |
-| `partial` | 4 |
+| `partial` | 5 |
 | **total** | **477** |
 
-Completely formalized or definitional: **160/477** (33.5%).
+Completely formalized or definitional: **178/477** (37.3%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -65,30 +65,12 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 430 --- For an actual representation $\rho\colon G\to\U(d)$ and $u\in G$ with $uLu^{-1}\le L$, the commutant $\mathcal C=\rho(L)'\subseteq M_d(\C)$ satisfies $\rho(u)^*\mathcal C\rho(u)\subseteq\mathcal C$, and the two spaces have the same finite dimension, so the inclusion is an equality; if $c$ commutes with $L$, then $\rho(ucu^{-1})$ commutes with $\rho(L)$, and $\rho$ is trivial on $\mathfrak D_G(L)$.
 * **`unassigned`**, line 430 --- An asymptotic representation has no exact commutant to count.
 * **`unassigned`**, line 430 --- Property~\textup{(T)} supplies a Kazhdan projection in its place, and stable finiteness of the corona replaces the dimension count.
-* **`unassigned`**, line 541 --- where the norm on the left is the operator norm on the Hilbert space $(M_{d_n}(\C),\hsnorm{\,\cdot\,})$, so the maps $\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative in operator norm and
-* **`unassigned`**, line 550 --- is a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the Hilbert--Schmidt Hilbert space.
-* **`unassigned`**, line 550 --- Let $P\in\mathcal B$ be the image of the Kazhdan projection of $L$~\cite{AkemannWalter} under $C^*_{\max}(L)\to\mathcal B$, and lift $P$ to orthogonal projections $P_n$ on $(M_{d_n}(\C),\hsnorm{\,\cdot\,})$ by functional calculus.
-* **`unassigned`**, line 558 --- A Hilbert--Schmidt bounded sequence $(x_n)$ lies in $\mathcal C_2(V,L)$ if and only if
-* **`unassigned`**, line 563 --- In one direction, fix $\varepsilon>0$ and, by density of the group algebra in $C^*_{\max}(L)$, a finite set $F\subseteq L$ and scalars $(a_\ell)_{\ell\in F}$ with
-* **`unassigned`**, line 569 --- where $u_\ell$ is the canonical unitary of $\ell$; the trivial character gives $\bigl|\sum_{\ell\in F}a_\ell-1\bigr|<\varepsilon$.
-* **`unassigned`**, line 569 --- The element $\sum_{\ell\in F}a_\ell\widetilde\sigma(\ell)$ of $\mathcal B$ is within $\varepsilon$ of $P$, so
-* **`unassigned`**, line 578 --- If $(x_n)\in\mathcal C_2(V,L)$ and $\sup_n\hsnorm{x_n}\le c$, then $\operatorname{Ad}(V_n(\ell))x_n=x_n+o(1)$ in $\hsnorm{\,\cdot\,}$ for each $\ell\in F$, so
-* **`unassigned`**, line 586 --- and $\varepsilon$ was arbitrary.
-* **`unassigned`**, line 586 --- In the other direction, $u_\ell e_L=e_L$ in $C^*_{\max}(L)$, so $\widetilde\sigma(\ell)P=P$ and $\opnorm{\operatorname{Ad}(V_n(\ell))P_n-P_n}\to0$; if $\hsnorm{P_nx_n-x_n}\to0$, then
-* **`unassigned`**, line 599 --- Since $uLu^{-1}\le L$, $U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L)$, so $U^*PU\le P$ by Lemma~\ref{lem:kazhdan-projection-order}, and $U^*PU=P$ by Lemma~\ref{lem:stable-finite}, since the two projections are unitarily equivalent.
-* **`unassigned`**, line 599 --- So $[U,P]=0$ and $\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.
-* **`unassigned`**, line 599 --- For $(x_n)\in\mathcal C_2(V,L)$,
-* **`unassigned`**, line 614 --- so $\operatorname{Ad}(V(u))^{\pm1}x\in\mathcal C_2(V,L)$ by the displayed equivalence.
 * **`unassigned`**, line 630 --- Since $c$ commutes with $L$, $(V_n(c))\in\mathcal C_2$, so $(V_n(u)V_n(c)V_n(u)^*)\in\mathcal C_2$ by Theorem~\ref{thm:transport}, and then $(V_n(ucu^{-1}))\in\mathcal C_2$ because $\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.
 * **`unassigned`**, line 630 --- So $\hsnorm{V_n(\ell)V_n(ucu^{-1})-V_n(ucu^{-1})V_n(\ell)}\to0$, and by asymptotic multiplicativity $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.
 * **`unassigned`**, line 630 --- The elements with this property form a normal subgroup of $G$, so it contains $\mathfrak D_G(L)$.
 * **`unassigned`**, line 643 --- Restricting a corona homomorphism $\rho$ to a corner requires a correction: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that commute only asymptotically with unitary lifts $U_n(g)$ of $\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the matrix corners.
-* **`unassigned`**, line 669 --- Lift \(q\) to projections \(q_n\in M_{d_n}(\C)\) by functional calculus.
-* **`unassigned`**, line 669 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
-* **`unassigned`**, line 669 --- Unitary identifications \(J_n\colon\C^{r_n}\to q_n\C^{d_n}\) identify each corner \(q_nM_{d_n}(\C)q_n\) with \(M_{r_n}(\C)\), and then the corner \(q\mathcal Q_{\mathbf d}q\) with the corona \(\mathcal Q_{\mathbf r}\): a bounded sequence \((z_n)\) representing \(z\in\mathcal Q_{\mathbf d}\) gives the representative \((q_nz_nq_n)\) of \(qzq\).
-* **`unassigned`**, line 669 --- Since \(q\) commutes with \(\rho(G)\), the map \(g\mapsto q\rho(g)\) is a homomorphism from \(G\) to the unitary group of the corner, with unit \(q\).
-* **`unassigned`**, line 669 --- Each value is a unitary of \(\mathcal Q_{\mathbf r}\), so, as in the proof of Lemma~\ref{lem:stable-finite}, it lifts to unitaries \(W_n(g)\in\U(r_n)\), with \(W_n(1)=I_{r_n}\).
-* **`unassigned`**, line 669 --- Multiplicativity in the corona makes \((W_n)\) an operator norm asymptotic representation, and the class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
+* **`partial`**, line 669 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
+  * Same printed proof, sentence 2: q!=0 gives infinitely many nonzero q_n, retained as the corner coordinates -- proved. Partial per the lane's own report: "r_n=rank(q_n) is not claimed by either statement -- here r_n is the number of retained corner coordinates and only 0<r_n is proved", so the sentence's own notation r_n=rank(q_n) is not literally what the carrier establishes.
 * **`unassigned`**, line 781 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since $\operatorname{diag}(s,1,\ldots,1)$ is a nonunitary isometry in $M_k(A)$.
 * **`unassigned`**, line 817 --- A group can satisfy the hypothesis of Proposition~\ref{prop:max-infinite} and be MF\@.
 * **`unassigned`**, line 817 --- The ascending HNN extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along $(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the faithful matrix realization
@@ -323,8 +305,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Introduction | 84 | 30 |
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
-| Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 20 |
-| From Hilbert--Schmidt to operator norm | 31 | 7 |
+| Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
+| From Hilbert--Schmidt to operator norm | 31 | 1 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
 | A finite certificate | 19 | 19 |
 | One-sided inverses and elementary groups | 75 | 70 |
