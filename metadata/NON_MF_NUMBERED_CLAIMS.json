@@ -170,6 +170,25 @@
       "lean": []
     },
     {
+      "id": "thm:fp-sofic-radical",
+      "environment": "mainthm",
+      "title": "a finitely presented sofic group with exact MF radical",
+      "statement_sha256": "835e5ceb7b02b41b8cff7a15511dc997482305622e207ee2a87ff48be90c23db",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:perfect-block-radical"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
+        "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
+        "Simplicity and perfection of A_5; free-product center theorem"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "prop:mf-residual-calculus",
       "environment": "lemma",
       "title": "",
@@ -674,6 +693,45 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "thm:finite-algebra-transport",
+      "environment": "theorem",
+      "title": "finite-dimensional fixed-point transport",
+      "statement_sha256": "1766d4d6fd8238bab6a56feff3b1a86c0ab09cd9ac4042fa68e48a803f7a4448",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:transport",
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Finite-dimensional C*-algebra structure and compact Haar integration"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:perfect-block-radical",
+      "environment": "theorem",
+      "title": "perfect finite-block radical",
+      "statement_sha256": "a408850899ca6c066c47be067632dae5691d6c00c944ba48196803cb1b9404cc",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:finite-algebra-transport",
+        "prop:mf-residual-calculus",
+        "prop:locally-rf-by-z-trace",
+        "thm:factorization-nonmf-trace"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Free-product normal form, free tree actions, and residual finiteness of free groups",
+        "Elek--Szabo, Theorem 1"
+      ],
+      "coverage_gap": "",
+      "lean": []
     },
     {
       "id": "thm:hull",

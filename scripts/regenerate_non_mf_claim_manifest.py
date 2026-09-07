@@ -123,6 +123,17 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # have complete written proofs, without new Lean verification badges.
     "lem:linear-tensor-amplification": (),
     "thm:word-linear-certificate": (),
+    # The finite-block theorem has a full written proof. Its new analytic
+    # step is not yet a compiled Lean endpoint; do not inherit older badges.
+    "thm:finite-algebra-transport": (
+        "Finite-dimensional C*-algebra structure and compact Haar integration",),
+    "thm:perfect-block-radical": (
+        "Free-product normal form, free tree actions, and residual finiteness of free groups",
+        "Elek--Szabo, Theorem 1"),
+    "thm:fp-sofic-radical": (
+        "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
+        "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
+        "Simplicity and perfection of A_5; free-product center theorem"),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -237,6 +248,12 @@ DEPENDENCIES: dict[str, list[str]] = {
         "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"],
     "thm:amenable-trace": ["prop:clifford-locally-rf"],
+    "thm:finite-algebra-transport": [
+        "thm:transport", "prop:mf-residual-calculus"],
+    "thm:perfect-block-radical": [
+        "thm:finite-algebra-transport", "prop:mf-residual-calculus",
+        "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
+    "thm:fp-sofic-radical": ["thm:perfect-block-radical"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [

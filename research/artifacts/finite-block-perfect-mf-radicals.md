@@ -319,6 +319,11 @@ trivial because it is a free product of at least two nontrivial groups.
 
 ## 5. What this adds, and the proof boundary
 
+The fixed-algebra theorem and perfect-lamp construction are printed, with
+proofs, in `non_mf_groups_exist.tex` at `thm:finite-algebra-transport`,
+`thm:perfect-block-radical`, and the main theorem `thm:fp-sofic-radical`.
+The arbitrary finite-lamp quotient (5)--(6) is proved in this artifact.
+
 * The finite-dimensional fixed-point theorem extends
   `finite-noncommutative-packet-compression-collapse` to an invariant
   finite-dimensional C*-algebra and gives it a proof without the older

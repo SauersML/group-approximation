@@ -77,8 +77,13 @@ $L_{\F_2}(1,2)$ is a finitely generated simple
 property-\textup{(T)} group that is not MF, and $C^*_{\mathrm r}(H)$ is
 separable, stably finite, and not MF.  We also construct a sofic non-MF
 group $W=K\rtimes\mathbb Z$ with $K$ locally residually finite, whose
-canonical trace on $C^*_{\max}(W)$ is amenable but not quasidiagonal,
-and a two-generated, finitely presented, torsion-free, acylindrically
+canonical trace on $C^*_{\max}(W)$ is amenable but not quasidiagonal.
+A finite-block construction gives a finitely presented, centerless,
+sofic group whose MF radical is exactly its perfect, residually finite
+lamp subgroup $\mathop{*}_{j\ge1}(A_5)^8$, with residually finite
+quotient.  Its proof extends Kazhdan transport to fixed points in
+finite-dimensional invariant $C^*$-subalgebras.  Finally, we construct
+a two-generated, finitely presented, torsion-free, acylindrically
 hyperbolic property-\textup{(T)} group with no nontrivial homomorphism
 to an MF group.
 \end{abstract}
@@ -340,6 +345,34 @@ nontrivial quotient of $Q$ is MF\@.
 Section~\ref{sec:torsion-free} builds $Q$ from Fournier-Facio's
 torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} and Hull's small
 cancellation theorem~\cite{Hull}.
+
+\begin{mainthm}[a finitely presented sofic group with exact MF radical]
+\label{thm:fp-sofic-radical}
+There is a finitely presented, centerless, sofic group $E$ in a split
+exact sequence
+\[
+ 1\longrightarrow B\longrightarrow E\longrightarrow V\longrightarrow1,
+ \qquad B\cong\mathop{*}_{j\ge1}(A_5)^8,
+\]
+where $V$ is residually finite and
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(E)
+ =\bigcap_{\substack{N\trianglelefteq E\\{}[E:N]<\infty}}N=B\ne1.
+\]
+The subgroup $B$ is perfect and residually finite, and any nonidentity
+element of one coordinate $A_5$ normally generates it in $E$.
+Moreover, $E=J\rtimes\mathbb Z$ with $J$ locally residually finite.
+The canonical trace on $C^*_{\max}(E)$ is amenable and not quasidiagonal.
+\end{mainthm}
+
+Section~\ref{sec:finite-blocks} gives a finite presentation and computes
+the radical.  Thus both the kernel $B$ and the quotient $V$ are
+residually finite, although $E$ is not MF.  The construction uses
+commuting lamps within blocks of eight sites.  Keeping different blocks
+in a free product makes finite presentability possible.  The analytic
+step is Theorem~\ref{thm:finite-algebra-transport}: a finite-dimensional
+invariant algebra has the same fixed points under a Kazhdan subgroup
+and its conjugate compressed copy.
 
 \subsection*{Related work}
 
@@ -1655,6 +1688,306 @@ $\alpha$, and $a$.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
 \leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
 \end{proof}
+
+\section{Finitely presented sofic groups with exact MF radical}
+\label{sec:finite-blocks}
+
+The normal Kazhdan subgroup in Theorem~\ref{thm:compression-criterion}
+provides a central corner on which to upgrade Hilbert--Schmidt collapse.
+A finite-dimensional invariant algebra permits a different upgrade:
+correct its covariance first, then normalize the component orthogonal
+to the fixed vectors.  This will allow finite perfect lamp groups whose
+normal closure in the ambient group is itself residually finite.
+
+\subsection{Finite-dimensional fixed points}
+
+For a subalgebra $A$ normalized by a unitary representation $\rho(L)$,
+write $A^L=\{a\in A:\rho(g)a\rho(g)^*=a\text{ for all }g\in L\}$.
+
+\begin{theorem}[finite-dimensional fixed-point transport]
+\label{thm:finite-algebra-transport}
+Let $G$ be countable, let $L\le G$ have property~\textup{(T)}, and let
+$tLt^{-1}\le L$.  If $\rho\colon G\to\U(\mathcal Q_{\mathbf d})$ is a
+homomorphism and $A\le\mathcal Q_{\mathbf d}$ is a finite-dimensional
+unital $C^*$-subalgebra normalized by $\rho(L)$, then
+\[
+ A^{tLt^{-1}}=A^L.
+\]
+In particular, if a finite subgroup $F\le G$ is normalized by $L$ and
+$f\in F$ centralizes $tLt^{-1}$, every homomorphism from $G$ to an MF
+group sends $f$ to an element centralizing the image of $L$.
+\end{theorem}
+
+\begin{proof}
+We first give the finite-dimensional lifting and correction used in the
+proof.  A unital homomorphism from
+$A\cong\bigoplus_iM_{r_i}(\mathbb C)$ to a norm matrix corona lifts,
+on a cofinite set of coordinates, to unital $*$-homomorphisms
+$\phi_n\colon A\to M_{d_n}(\mathbb C)$.  Indeed, lift its diagonal
+matrix units and round them successively to orthogonal projections,
+using the complement of their sum for the last one.  The corrections
+tend to zero.  In each summand, compress a lift of $e_{j1}$ between
+the chosen projections $p_j,p_1$.  Its products with its adjoint tend
+to $p_j,p_1$, so, on a common tail, its polar partial isometry $v_j$
+has precisely these final and initial projections.  Then $v_jv_k^*$
+are exact matrix units lifting $e_{jk}$.  A summand may be zero at
+some coordinates; injectivity of $\phi_n$ is not required.
+
+Suppose $\beta\in\operatorname{Aut}(A)$ and unitaries $U_n$ satisfy
+$\operatorname{Ad}(U_n)\phi_n(a)-\phi_n(\beta(a))\to0$ in norm for
+every $a\in A$.  Put $f_n=\operatorname{Ad}(U_n)\phi_n$ and
+$g_n=\phi_n\beta$.  Finite dimensionality gives uniform convergence
+of $f_n-g_n$ on the unit ball.  With normalized Haar measure on
+$\U(A)$, the matrices
+\[
+ T_n=\int_{\U(A)}g_n(u)f_n(u)^*\,du
+\]
+satisfy $\opnorm{T_n-1}\to0$ and $T_nf_n(a)=g_n(a)T_n$.
+The latter identity follows first for unitaries by left invariance
+of Haar measure and then for all $a$ by linearity.  The polar unitary
+$Z_n=T_n(T_n^*T_n)^{-1/2}$ has the same intertwining property and
+$\opnorm{Z_n-1}\to0$.  Thus $Z_nU_n$ implements $\beta$ exactly on
+$\phi_n(A)$ while differing from $U_n$ by a norm-null sequence.
+
+Lift $\rho$ to an operator norm asymptotic representation $U_n$ of
+$G$.  Choose a finite symmetric generating Kazhdan set $S$ for $L$
+with constant $\kappa>0$, and put
+$\beta_g=\operatorname{Ad}(\rho(g))|_A$.  Apply the correction just
+proved to each $s\in S$, obtaining unitaries $V_n(s)$ with
+\[
+ V_n(s)\phi_n(a)V_n(s)^*=\phi_n(\beta_s(a)),\qquad
+ \opnorm{V_n(s)-U_n(s)}\longrightarrow0.
+\]
+On a common tail, $\ker\phi_n$ and the trace
+$\tr_{d_n}\phi_n$ are invariant under each $\beta_s$, hence under
+$L$.  Therefore
+\[
+ \pi_n(g)\phi_n(a)=\phi_n(\beta_g(a))
+\]
+is a genuine unitary representation of $L$ on the finite-dimensional
+Hilbert space $A_n=\phi_n(A)$ with normalized Hilbert--Schmidt inner
+product.  For a fixed $g\in L$, a word in $S$ supplies a unitary
+$V_n(g)$ implementing $\pi_n(g)$ on $A_n$.  Asymptotic
+multiplicativity gives $\opnorm{V_n(g)-U_n(g)}\to0$, so
+\begin{equation}\label{eq:finite-algebra-covariance}
+ \hsnorm{\operatorname{Ad}(U_n(g))x-\pi_n(g)x}
+ \le2\opnorm{U_n(g)-V_n(g)}\,\hsnorm{x}
+ \qquad(x\in A_n).
+\end{equation}
+
+Put $L'=tLt^{-1}$ and suppose $a\in A^{L'}\setminus A^L$.
+Let $P_n$ be the orthogonal projection in $A_n$ onto its
+$\pi_n(L)$-fixed vectors.  Infinitely many
+$b_n=\phi_n(a)-P_n\phi_n(a)$ are nonzero; otherwise every
+$\phi_n(\beta_g(a)-a)$ would eventually be zero, making $a$ fixed
+by $L$ in the corona.  Retain those coordinates and set
+$x_n=b_n/\hsnorm{b_n}$.  Then $\hsnorm{x_n}=1$, the vector $x_n$
+is orthogonal to the $L$-fixed subspace, and $\pi_n(h)x_n=x_n$ for
+$h\in L'$.  Equation~\eqref{eq:finite-algebra-covariance} gives
+\[
+ \hsnorm{\operatorname{Ad}(U_n(h))x_n-x_n}\longrightarrow0
+ \qquad(h\in L').
+\]
+Consequently $y_n=U_n(t)^*x_nU_n(t)$ is asymptotically $L$-fixed.
+Theorem~\ref{thm:transport} transports $y_n$ forward by $t$, so
+$x_n$ is asymptotically $L$-fixed as well.  By
+\eqref{eq:finite-algebra-covariance},
+\[
+ \max_{s\in S}\hsnorm{\pi_n(s)x_n-x_n}\longrightarrow0.
+\]
+The Kazhdan inequality bounds this maximum below by $\kappa$, since
+$x_n$ is a unit vector orthogonal to the fixed subspace.  This
+contradiction proves $A^{L'}\subseteq A^L$; the reverse containment
+follows from $L'\le L$.
+
+For the last assertion use $A=C^*(\rho(F))$, which is finite
+dimensional and normalized by $\rho(L)$, and apply the result to
+$a=\rho(f)$.  Homomorphisms to MF groups reduce to this case by
+Lemma~\ref{prop:mf-residual-calculus}.
+\end{proof}
+
+The order of correction and normalization matters: the error in
+\eqref{eq:finite-algebra-covariance} is proportional to the norm of
+$x$, so it remains small for the normalized vectors even when the
+original $b_n$ have vanishing Hilbert--Schmidt mass.
+
+\subsection{Perfect finite blocks}
+
+Let $\Gamma$ be finitely presented with property~(T), let
+$\alpha\colon\Gamma\to\Gamma$ be injective of finite index $m>1$,
+and suppose the ascending HNN extension
+\[
+ V=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)
+                         \ (\gamma\in\Gamma)\rangle
+\]
+is residually finite.  Define
+\[
+ \Gamma^+=t^{-1}\Gamma t,\qquad X=V/\Gamma,
+ \qquad Y=V/\Gamma^+,\qquad
+ p\colon X\to Y,\quad v\Gamma\mapsto v\Gamma^+.
+\]
+Each fiber of $p$ has $m$ points.  For a finite group $K$, let $K_x$
+be a labeled copy of $K$ at $x\in X$ and put
+\begin{equation}\label{eq:finite-block-group}
+ B_K=\mathop{*}_{y\in Y}
+          \left(\prod_{x\in p^{-1}(y)}K_x\right),
+ \qquad E_K=B_K\rtimes V,
+\end{equation}
+where $V$ acts by permuting the labeled coordinates.  This is an
+ordinary free product of the finite block groups.  Its normal form
+embeds every coordinate and every block.
+
+\begin{theorem}[perfect finite-block radical]
+\label{thm:perfect-block-radical}
+If $K$ is a nontrivial finite perfect group, then $E_K$ is finitely
+presented and sofic, and
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(E_K)
+ =\bigcap_{\substack{N\trianglelefteq E_K\\{}[E_K:N]<\infty}}N
+ =B_K\ne1.
+\]
+The subgroup $B_K$ is perfect and residually finite, and
+$E_K/B_K\cong V$.  Also $E_K=J_K\rtimes\mathbb Z$ with $J_K$
+locally residually finite, and the canonical trace on
+$C^*_{\max}(E_K)$ is amenable and not quasidiagonal.  If $K$ is
+nonabelian simple, any nonidentity element of a coordinate $K_x$
+normally generates $B_K$ in $E_K$.
+\end{theorem}
+
+\begin{proof}
+We first verify finite presentability directly.  Choose finite
+presentations $\Gamma=\langle S\mid R\rangle$ and
+$K=\langle Z\mid T\rangle$, and representatives
+$b_1\Gamma=\Gamma,b_2\Gamma,\ldots,b_m\Gamma$ for
+$\Gamma^+/\Gamma$.  Regard $b_i$ and $\alpha(s)$ as words in
+$S,t$.  A finite presentation for $E_K$ has generators $S,t,Z$
+and relations
+\begin{equation}\label{eq:finite-block-presentation}
+\begin{gathered}
+ R,\quad T,\quad
+ t s t^{-1}=\alpha(s)\quad(s\in S),\qquad
+ [z,s]=1\quad(z\in Z,\ s\in S),\\
+ [z,b_i z'b_i^{-1}]=1
+ \quad(z,z'\in Z,\ 2\le i\le m).
+\end{gathered}
+\end{equation}
+Before the last family is imposed, the group is
+$V*_{\Gamma}(\Gamma\times K)$.  Its retraction to $V$ has kernel
+$\mathop{*}_{x\in X}K_x$: conjugating the root copy of $K$ gives
+the coordinate $K_{v\Gamma}$, well defined because the root copy
+commutes with $\Gamma$.  These assignments and the map in the
+opposite direction between the two presentations are inverse.
+The last family makes the root coordinate commute with every other
+coordinate in its $p$-fiber.  Its $V$-conjugates impose exactly
+commutation within each fiber: any pair of distinct points of one
+fiber has the form $v\Gamma,vb_i\Gamma$ for some $v$ and $i>1$.
+The resulting presentation is precisely
+\eqref{eq:finite-block-group}.
+
+Now let $\rho$ be a corona homomorphism from $E_K$.  The block
+above $t\Gamma^+\in Y$ consists of
+$\{\gamma t\Gamma:\gamma\in\Gamma\}$ and is
+$\Gamma$-invariant.  Its finite group $F\cong K^m$ is normalized
+by $\Gamma$.  For $k\in K$, the element $k_{t\Gamma}$ is fixed
+by $t\Gamma t^{-1}$.  Theorem~\ref{thm:finite-algebra-transport}
+therefore gives
+\[
+ \rho(k_{\gamma t\Gamma})=\rho(k_{t\Gamma})
+ \qquad(\gamma\in\Gamma).
+\]
+Conjugation by $V$ identifies the images of the copies of $k$
+throughout any fiber of $p$.  Since $m>1$, two distinct coordinates
+in that fiber commute.  Their identified image is therefore an
+abelian image of $K$, hence trivial by perfection.  Thus $\rho$
+kills every coordinate and consequently $B_K$.  All MF
+homomorphisms kill $B_K$ by Lemma~\ref{prop:mf-residual-calculus}.
+Conversely, the residually finite quotient $V$ is MF and separates
+every element outside $B_K$.  This proves
+$\operatorname{Rad}_{\mathrm{MF}}(E_K)=B_K$.  Finite groups are MF,
+and the finite quotients of $V$ give the same two containments for
+the intersection of finite-index normal subgroups.
+
+A finite free product of finite groups is residually finite.  One
+way to see this is to map it to the direct product of the factors.
+The kernel has finite index and meets each conjugate factor
+trivially; its action on the free-product tree is free, so it is a
+free group.  Free groups are residually finite, and so are their
+finite-index overgroups.  For the latter assertion, separate an
+element in a finite-index normal subgroup, then intersect the
+finitely many conjugates of the separating finite-index normal
+subgroup.  Every nontrivial element of $B_K$ survives the
+retraction onto a finite sub-free-product, proving that $B_K$ is
+residually finite.  It is perfect because all its factors $K^m$
+are perfect and they generate it.
+
+Write $\Gamma_n=t^{-n}\Gamma t^n$ and
+$T_\alpha=\bigcup_{n\ge0}\Gamma_n$.  Then
+\[
+ V=T_\alpha\rtimes\mathbb Z,
+ \qquad E_K=J_K\rtimes\mathbb Z,
+ \qquad J_K=B_K\rtimes T_\alpha.
+\]
+As in Proposition~\ref{prop:clifford-locally-rf}, finite index of
+$\alpha(\Gamma)$ makes $\Gamma$ commensurated by $V$, so every
+$\Gamma_n$-orbit in $X$ and in $Y$ is finite.  A finite subset of
+$J_K$ uses finitely many blocks and actor coordinates in one
+$\Gamma_n$.  Saturating those blocks under $\Gamma_n$ gives a
+finite invariant set $I\subseteq Y$.  The finite subset lies in
+\[
+ M_I\rtimes\Gamma_n,
+ \qquad M_I=\mathop{*}_{y\in I}K^m.
+\]
+The action of $\Gamma_n$ on $M_I$ factors through its permutations
+of the $m|I|$ labeled sites.  Its kernel $\Lambda$ has finite
+index and centralizes $M_I$.  Thus $M_I\times\Lambda$ is a
+residually finite subgroup of finite index in
+$M_I\rtimes\Gamma_n$, proving that $J_K$ is locally residually
+finite.  Soficity now follows from the directed-union and
+amenable-extension permanence theorems~\cite[Theorem~1]{ElekSzabo}.
+Proposition~\ref{prop:locally-rf-by-z-trace} makes the canonical
+trace amenable, and Theorem~\ref{thm:factorization-nonmf-trace}
+makes it nonquasidiagonal, since $B_K\ne1$ and $E_K$ is not MF.
+
+Finally, for nonabelian simple $K$, the normal closure of a
+nonidentity $k\in K_x$ contains $K_x$, then all its $V$-conjugates
+$K_{vx}$, and hence $B_K$.  The reverse containment follows from
+normality of $B_K$.
+\end{proof}
+
+\subsection{The centerless affine example}
+
+\begin{proof}[Proof of Theorem~\ref{thm:fp-sofic-radical}]
+Take $\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$,
+$\alpha(v,A)=(2v,A)$, and $K=A_5$ in
+Theorem~\ref{thm:perfect-block-radical}.  The affine group $\Gamma$
+has property~(T)~\cite[Example~1.7.4(i)]{BHV} and is finitely
+presented.  For the latter fact one may use a finite presentation
+of $\mathrm{SL}_3(\mathbb Z)$ and its action on the three commuting
+translation generators; an explicit twenty-relator presentation
+and its identification with this affine group are also proved in
+the repository at
+\href{https://github.com/SauersML/group-approximation/blob/main/GroupApproximation/Monsters/LiteralBaseCompleteness.lean}{\texttt{LiteralBaseCompleteness.baseAffineEquiv}}.
+Here $m=8$, and the faithful matrix model for $V$ displayed after
+Proposition~\ref{prop:max-infinite} is residually finite by reduction
+modulo odd integers.  The height map $V\to\mathbb Z$ vanishes on
+$\Gamma^+$, so $Y=V/\Gamma^+$ is countably infinite.  Hence
+$B_{A_5}\cong\mathop{*}_{j\ge1}(A_5)^8$, and all the claimed
+properties except centerlessness follow from the theorem.
+
+In the affine matrix model, an element of $Z(V)$ commuting with
+all translations has $2^hA=I_3$.  Taking determinants gives $h=0$
+and $A=I_3$.  Its translation vector must then be fixed by every
+integral elementary matrix, so is zero.  Thus $Z(V)=1$.  A central
+element of $E_{A_5}$ consequently lies in $B_{A_5}$, whose center
+is trivial by the normal form for a free product of at least two
+nontrivial groups.  Therefore $E=E_{A_5}$ is centerless.
+\end{proof}
+
+The radical in this example is an MF group in its own right, since
+it is residually finite.  Every MF representation of the ambient
+finitely presented group nevertheless annihilates it.  No central
+marked element or normal property-(T) subgroup is needed in this
+construction.
 
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
