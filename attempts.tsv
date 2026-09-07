@@ -294,3 +294,4 @@
 34071791183	2026-09-07T01:04:46Z	GroupApproximation/Sofic/CoronaRadicalPullback.lean	coronaMFResidual_eq_comap
 34089566033	2026-09-07T06:10:02Z	GroupApproximation/Sofic/CoronaSubsequence.lean	alt_nonneg
 34123285973	2026-09-07T12:42:33Z	GroupApproximation/Sofic/CliffordConstructionSentences.lean	manuscriptSentence_hnnExtension
+34149671747	2026-09-07T17:57:49Z	GroupApproximation/Sofic/CliffordWitnessSoficPrinted.lean	manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal
