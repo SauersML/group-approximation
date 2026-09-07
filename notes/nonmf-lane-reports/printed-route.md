@@ -77,56 +77,53 @@ combination.  The two readings differ only by the identification
 `q 𝒬_d q ≅ 𝒬_r`, which the printed proof of `lem:central-corona-corner` makes
 and which the corona norm makes unnecessary here.
 
+### `Manuscript/OneSidedMFRadical/CornerCoronaEmbedding.lean`
+
+Commit `333bf6f528d05c351e732f01c6509b27f8299be7`, PROBE GREEN, 3294 jobs.
+The printed sentence "unitary identifications `J_n` identify each corner
+`q_n M_{d_n}(C) q_n` with `M_{r_n}(C)`, and then the corner `q 𝒬_d q` with the
+corona `𝒬_r`", which the tree carried only coordinatewise:
+
+| declaration | what it supplies |
+| --- | --- |
+| `cornerEmbed_one`, `cornerEmbed_mem_corner` | completes the coordinatewise identification: `J_n 1 J_n* = q_n`, image of `J_n` is the corner |
+| `cornerModel`, `cornerModel_nonempty`, `cornerModel_card_pos` | the corner as a finite matrix model, nonempty exactly at retained coordinates |
+| `cornerEmbedSeq`, `cornerCompressSeq`, `cornerEmbedSeq_cornerCompressSeq_apply` | the two sequence-level maps and the printed representative `(q_n z_n q_n)` |
+| `cornerEmbedSeq_mul` / `_sub` / `_star` / `_one_apply` | it is a star-embedding sending the corner unit to `(q_n)` |
+| `norm_mk_cornerEmbedSeq`, `mk_eq_of_mk_cornerEmbedSeq_eq`, `mk_cornerEmbedSeq_congr` | the class of `(J_n c_n J_n*)` has the same norm as the class of `(c_n)`, so the passage is two-way |
+
+### `Manuscript/OneSidedMFRadical/CentralCoronaCornerPrintedRoute.lean`
+
+Commit `9091ae72eff1ddc537333cccbc871d8f9a797547`, PROBE GREEN, 3297 jobs.
+Endpoint
+`GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerPrintedRoute.manuscriptPrintedCentralCoronaCorner : PrintedCentralCoronaCorner`
+with `#audit_closed_axioms`.
+
+| printed sentence | carrier |
+| --- | --- |
+| "Lift `q` to projections `q_n` by functional calculus." | `CollapseProjectionLift.exists_projection_lift` (existing) |
+| "Since `q ≠ 0`, infinitely many `q_n` are nonzero; retain those coordinates." | `manuscriptSentence_retainedCoordinatesInfinite` |
+| "Unitary identifications `J_n` identify each corner with `M_{r_n}(C)`, and then the corner `q 𝒬_d q` with the corona `𝒬_r`." | `CornerCoronaEmbedding` (module above) |
+| "Since `q` commutes with `ρ(G)`, `g ↦ q ρ(g)` is a homomorphism into the unitary group of the corner ... it lifts to unitaries `W_n(g)`, with `W_n(1) = I`. Multiplicativity in the corona makes `(W_n)` an operator norm asymptotic representation, and the class of `(J_n W_n(g) J_n*)` is the coordinate restriction of `q ρ(g)`." | `exists_cornerUnitaries` |
+| the whole lemma | `manuscriptPrintedCentralCoronaCorner` |
+
+`PrintedCentralCoronaCorner` is a *new* closed Prop, not the existing
+`CentralCoronaCorner`.  The existing one is strictly stronger: it additionally
+pins `D.V` to the polar-decomposition lifts of `ρ(g)` and states the corner
+maps as polar corrections of the compressions `q_n V_n(g) q_n`, which is the
+old route's data and does not appear in the printed lemma at all.  Both are
+faithful readings of the printed *statement*; only the new one has a proof
+that follows the printed *sentences*.  `CentralCoronaCorner.lean` and
+`CornerCoronaClass.lean` are untouched.
+
+`r_n = rank(q_n)` is not claimed by either statement: here `r_n` is the number
+of retained corner coordinates and only `0 < r_n` is proved, exactly as the
+existing carrier does with `0 < Fintype.card (D.cornerModel k)`.
+
 ## Not done, with the exact open obligations
 
-The tex owner has landed ultrafilter-free proofs of `thm:transport` and
-`lem:central-corona-corner` as well, so both are in scope; neither is done.
-
-### `lem:central-corona-corner` (`Manuscript/OneSidedMFRadical/CentralCoronaCorner.lean`)
-
-The Lean carrier `manuscriptCentralCoronaCorner` proves the exact printed
-statement, but by the *old* route: `CollapseNormalizedSetup.exists_projection_lift_and_ultrafilter`
-(a free ultrafilter), a polar-decomposition unitary lift of `ρ(g)`, and
-BDL Proposition 2.4 to correct the compressions `q_n U_n(g) q_n`.  The current
-printed proof does none of that.  It instead
-
-1. lifts `q` to projections `q_n` (available: `CollapseProjectionLift.exists_projection_lift`);
-2. observes that `q ≠ 0` forces infinitely many `q_n ≠ 0` (easy from
-   `normMatrixCStarCoronaMk_eq_zero_iff`; no ultrafilter);
-3. identifies `q 𝒬_d q` with the corona `𝒬_r` over the corners, via
-   `(z_n) ↦ (q_n z_n q_n)` in the corner coordinates;
-4. notes that `g ↦ q ρ(g)` is a homomorphism into the unitary group of that
-   corner, with unit `q`;
-5. lifts each of its values to unitaries `W_n(g) ∈ U(r_n)` "as in the proof of
-   `lem:stable-finite`" (available: `CollapseUnitaryLift.liftFam` /
-   `CollapseUnitaryLift.coronaAlmostRep`, which already produces an
-   `OpAlmostRepresentation` from a corona homomorphism);
-6. reads off the corona class of `(J_n W_n(g) J_n*)`.
-
-Step 3 is the whole gap and the only new mathematics.  The open obligation, as
-a Lean statement, is a `⋆`-isomorphism onto the corner:
-
-```lean
-def cornerCoronaEquiv
-    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-    (Q : BoundedMatrixSequence (fun n ↦ X n))
-    (hQ : ∀ n, IsOrthogonalProjectionMatrix (Q n))
-    (hQne : ∀ n, (Q : ∀ n, Matrix (X n) (X n) ℂ) n ≠ 0) :
-    NormMatrixCStarCorona (fun n ↦ X n) →⋆ₙₐ[ℂ]
-      NormMatrixCStarCorona (fun n ↦ cornerModelOf (hQ n))
-```
-carrying `z ↦ [cornerCompression (hQ n) (z n)]`, together with
-
-```lean
-theorem norm_cornerCoronaEquiv_of_corner
-    (z : NormMatrixCStarCorona (fun n ↦ X n)) :
-    ‖cornerCoronaEquiv X Q hQ hQne (q * z * q)‖ = ‖q * z * q‖
-```
-(`q = [Q]`), which is the injectivity on the corner that makes the printed
-"identify the corner with the corona" legitimate.  Steps 1, 2, 4, 5, 6 are then
-short.  Everything else needed is already in `Analysis/CornerMatrixEmbedding`
-(`cornerEmbed`, `norm_cornerEmbed`, `cornerEmbed_mul`,
-`cornerEmbed_cornerCompression`) and `Analysis/CollapseUnitaryLift`.
+`thm:transport` is the only printed proof of the three still without a
+printed-route carrier.
 
 ### `thm:transport` (`Manuscript/OneSidedMFRadical/TransportCommutantEquality.lean`)
 
@@ -143,17 +140,56 @@ by the same density-plus-trivial-character estimate this lane already
 formalizes for `thm:normal-kazhdan`.  The one-sided order and stable finiteness
 then give `U*PU = P`, hence `[U,P] = 0`.
 
-Missing: the identification of `B(M_{d_n}(ℂ))` (Hilbert--Schmidt inner product)
-with `M_{d_n²}(ℂ)` as a `FiniteModel`, i.e.
+Missing: the identification of `B(M_{d_n}(ℂ))`, the operators on the
+Hilbert--Schmidt Hilbert space, with `M_{d_n²}(ℂ)` as a `FiniteModel`, i.e. a
+`⋆`-isomorphism
 
 ```lean
 def hsMatrixUnitsEquiv (Y : FiniteModel) :
-    (Matrix Y Y ℂ →L[ℂ] Matrix Y Y ℂ) ≃⋆ₐ[ℂ] Matrix (Y × Y) (Y × Y) ℂ
+    (HS Y →L[ℂ] HS Y) ≃⋆ₐ[ℂ] Matrix (Y × Y) (Y × Y) ℂ
 ```
-carrying the operator norm of the normalized Hilbert--Schmidt inner product to
-the `L2Operator` norm of `Matrix (Y × Y) (Y × Y) ℂ`.  Without it the printed
-`𝓑` is not a `NormMatrixCStarCorona` and none of the corona API applies.  The
-density/trivial-character half of the printed proof is exactly the estimate
-`manuscriptSentence_denseCombinationAndCharacter` and
-`manuscriptSentence_limsupCombinationLtQuarter` already carry, so it should be
-reusable once `𝓑` is a norm matrix corona.
+carrying the operator norm of the Hilbert--Schmidt inner product to the
+`L2Operator` norm of `Matrix (Y × Y) (Y × Y) ℂ`.  Without it the printed `𝓑`
+is not a `NormMatrixCStarCorona` and no corona API applies.
+
+Two things make this smaller than it looks.
+
+* **The normalization is free.**  The printed norm is
+  `‖a‖₂ = tr_d(a*a)^{1/2}`, the *normalized* Hilbert--Schmidt norm, which is
+  `d^{-1/2}` times the Frobenius norm.  Scaling an inner product by a positive
+  constant changes neither the unitary group nor the operator norm on `B(·)`,
+  so the identification may be built over the plain Frobenius inner product,
+  for which Mathlib already has
+  `Matrix.frobeniusSeminormedAddCommGroup` / `Matrix.frobeniusNormedSpace`
+  (scoped, in `Mathlib/Analysis/Matrix/Normed.lean`).  Only the final estimates
+  need the factor put back, and they are estimates about `‖·‖₂` of matrices,
+  which the corpus already has as `hsNorm`.
+* **The matrix-units step is Mathlib's.**  `Matrix Y Y ℂ` with the Frobenius
+  inner product is `EuclideanSpace ℂ (Y × Y)` after uncurrying, and
+  `Matrix.toEuclideanCLM` (`Mathlib/Analysis/InnerProductSpace/PiL2.lean`) is
+  already a `⋆`-algebra equivalence `Matrix (Y × Y) (Y × Y) ℂ ≃⋆ₐ[ℂ]
+  EuclideanSpace ℂ (Y × Y) →L[ℂ] EuclideanSpace ℂ (Y × Y)` that the
+  `L2Operator` norm is *defined* through.  What has to be written is the
+  linear isometry equivalence `Matrix Y Y ℂ (Frobenius) ≃ₗᵢ[ℂ]
+  EuclideanSpace ℂ (Y × Y)` and the conjugation it induces on the bounded
+  operators.
+
+After that the printed proof needs, in order:
+
+1. `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖` on the Hilbert--Schmidt space, hence
+   `σ̃(g) = [Ad(V_n(g))]` is a homomorphism into `U(𝓑)`;
+2. the image `P` of the Kazhdan projection of `L` in `𝓑` and a projection lift
+   `P_n` (`CollapseProjectionLift.exists_projection_lift`, as used above);
+3. `(x_n) ∈ 𝒞₂(V,L) ↔ ‖P_n x_n − x_n‖₂ → 0`.  The forward direction is
+   *exactly* the density-plus-trivial-character estimate this lane already
+   carries: `NormalKazhdanPrintedRoute.exists_generatorCombination_close`
+   plus `manuscriptSentence_denseCombinationAndCharacter` (with `1/4` replaced
+   by an arbitrary `ε`), and the reverse direction is
+   `MaximalCStarKazhdanProjection.generator_mul_projection` transported by
+   `rep_mul_image`;
+4. `U*PU ≤ P` from `manuscriptLiteralMaximalCStarKazhdanProjectionOrder`, and
+   `U*PU = P` from `manuscriptNormMatrixCoronaStableFinite`, hence `[U,P] = 0`;
+5. the closing two-line estimate.
+
+Steps 2, 4 and most of 3 are already in the corpus; steps 1 and the
+identification are the new work.
