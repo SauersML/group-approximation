@@ -59,3 +59,11 @@ finite-rank linear algebra.
 The attached audit records the inspected source statements, the related
 finite-support section criterion, and the exact limits of the literature
 comparison and independent proof checks.
+
+There is also a stable-finiteness equivalence for certificates indexed
+by an arbitrary G-set X, proved separately in
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions`:
+C_lc(B^X,k) semidirect G is stably finite iff k[G] is. That theorem
+permits infinite stabilizers but does not assert the stronger single-
+fiber propagation proved here for B^G. Neither statement covers
+arbitrary constrained certificate subshifts.

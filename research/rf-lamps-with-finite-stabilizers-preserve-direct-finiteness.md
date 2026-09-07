@@ -34,6 +34,8 @@ becomes two-sided in every such representation whenever it does so in
 k[G], forcing the identity in k[W].
 
 Finite stabilizers are used to make the exceptional output rows finite.
-The theorem does not cover arbitrary infinite stabilizers and therefore
-does not replace the earlier all-action theorem for residually finite
-bases. No counterexample to either headline conjecture is constructed.
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` now removes
+that condition for stable finiteness, using diagonal tensor algebras and
+stabilizer corners. The fixed-matrix-size equivalence proved here is
+stronger in that respect and is not asserted for arbitrary stabilizers.
+No counterexample to either headline conjecture is constructed.

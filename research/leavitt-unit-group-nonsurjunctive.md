@@ -150,3 +150,12 @@ to retain its one-sided defect even at a constant diagonal certificate.
 Setting Q_(a,a)=I at one certificate is incompatible with a locally split
 family and a nonlinear collision. The actual original-group inverse pair
 must therefore already appear in that constant specialization.
+
+Replacing the certificate index set G by cosets or other replicated
+positions does not remove the algebraic restriction:
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` proves that
+C_lc(B^X,k) semidirect G is stably finite exactly when k[G] is, for any
+G-set X and finite nonempty B. This covers independently chosen symbols
+on a permutation G-set, even with infinite stabilizers. It does not
+cover arbitrary constrained subshifts or data-dependent updates to the
+certificate. The full-shift construction problem remains open.

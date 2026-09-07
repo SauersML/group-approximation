@@ -47,3 +47,11 @@ matrix size suffices, and is also necessary. That theorem uses induced
 finite-dimensional lamp representations whose errors relative to lamp
 augmentation have finite rank. It includes all regular wreath products
 but does not cover the arbitrary infinite stabilizers permitted here.
+
+The subsequent diagonal-tensor proof in
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` removes
+residual finiteness of G without imposing any stabilizer condition:
+k[G] stably finite suffices. It proves only the diagonal crossed
+products needed to separate the wreath algebra, so the induction
+never introduces independent powers of G. The older tensor-power
+proof here remains valid under its stated RF-base hypothesis.

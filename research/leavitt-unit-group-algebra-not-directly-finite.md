@@ -320,10 +320,11 @@ does not exhibit the pair for Q; it shows that any successful local
 verification program in this class must already retain the algebraic
 defect in every constant specialization.
 
-`rf-lamps-with-finite-stabilizers-preserve-direct-finiteness` supplies a
-separate positive permanence theorem. For regular wreath products with
-residually finite lamps, or more generally permutation actions with finite
-stabilizers, direct finiteness at each matrix size is equivalent to that
-of the base group algebra. Building such a wreath library cannot create
-a new inverse defect if the base algebra has none. Infinite stabilizers
-are outside this theorem's scope.
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` supplies a
+separate positive permanence theorem. For residually finite lamps and
+arbitrary permutation actions, stable finiteness of the wreath group
+algebra is equivalent to stable finiteness of the base group algebra.
+Building such a wreath library cannot create failure of stable finiteness
+over a stably finite base. The earlier finite-stabilizer theorem retains
+the stronger equivalence at each fixed matrix size; the arbitrary-action
+extension does not assert that extra conclusion.

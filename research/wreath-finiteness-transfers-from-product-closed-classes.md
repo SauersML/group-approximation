@@ -23,3 +23,11 @@ It is not enough to know only that k[A] and k[G] are stably finite;
 the proof also needs coefficient rings coming from finite mixed products
 of A, G, and stabilizers. No general tensor-product permanence theorem for
 stably finite rings is asserted.
+
+`rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` isolates a
+sharper sufficient hypothesis using a diagonal crossed-product induction:
+it suffices that k[A^j x H] is stably finite for all finite j and H<=G.
+Residual finiteness of A and stable finiteness of k[G] alone verify
+this condition. For more general lamps this remains a hypothesis on
+the mixed coefficient algebras, not an inference from separate stable
+finiteness of k[A] and k[G].
