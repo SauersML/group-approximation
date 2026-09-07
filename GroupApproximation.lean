@@ -4104,6 +4104,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.FactorizationTraceSentences
 import GroupApproximation.Sofic.CliffordConstructionSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.CompressionCriterionSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.MaxInfiniteConverseRemark
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
