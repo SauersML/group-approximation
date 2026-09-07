@@ -188,3 +188,38 @@ No unconditional route to the full conjecture is added. Cairn's graph
 validation checks dependency integrity, not the truth of a prose proof.
 The missing result remains (*), or another argument that excludes all
 nonzero inverse defects in arbitrary positive-characteristic group algebras.
+
+## 6. Continuation: coefficient cancellation over every prime
+
+The newer repository cancellation argument does yield a further conditional
+theorem: [prime cyclic cancellation lifts](../research/artifacts/kaplansky-prime-cyclic-cancellation-2026-09-07.md).
+Expand each coefficient over F_p into occurrences, and divide each vanishing
+product fiber into blocks of p cells. A central element J of order p labels
+the positions within a block. If J survives in the resulting presentation,
+the identity lifts to a characteristic-zero coefficient corner and reverses.
+An exact scalar lattice criterion and a finite phase-order bound are proved.
+
+The accompanying F_3[C_3] example has explicit ninth-root phases but no
+cube-root phases for its specified ordered blocks. Its fixed replay verifies
+the partition, the polynomial identities, and all 243 normalized cube-root
+assignments. This extends the usable criterion beyond characteristic two;
+it does not establish that every inverse pair admits such a lift. The Cairn
+claim `prime-cyclic-cancellation-lifts-force-reverse-inverses` records only
+the proved implication and the finite example.
+
+Two other possible closing arguments were checked. The August 2026 version
+of [Jaikin-Zapirain--Linton--Sanchez-Peralta](https://arxiv.org/html/2510.23518v2)
+proves the K_0 base-ring result for the stated Cohen--Lyndon class. Its
+hypotheses do not cover arbitrary groups. Moreover an isomorphism of
+Grothendieck groups alone does not supply the zero-reflection property of
+the projective monoid required in Section 1; no such additional argument
+was obtained here.
+
+[Seward, *Krieger's finite generator theorem for actions of countable groups
+II*, Corollaries 4.1 and 7.8](https://arxiv.org/pdf/1501.03367)
+supplies another genuine sufficient condition: the prescribed Bernoulli
+Rokhlin entropy equalities imply surjunctivity and direct finiteness, and a
+positive-entropy hypothesis for all countably infinite groups implies those
+equalities. These hypotheses are explicit inputs in the paper. The current
+work has not proved them for arbitrary groups, so importing the conclusions
+without their hypotheses would leave an unsupported step.

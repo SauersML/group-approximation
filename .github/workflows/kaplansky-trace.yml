@@ -6,6 +6,10 @@ on:
     paths:
       - 'experiments/kaplansky_trace_certificate.py'
       - 'experiments/test_kaplansky_trace_certificate.py'
+      - 'experiments/kaplansky_prime_cancellation.py'
+      - 'research/artifacts/kaplansky-prime-cancellation-c3.json'
+      - 'research/artifacts/kaplansky-prime-cyclic-cancellation-2026-09-07.md'
+      - 'research/prime-cyclic-cancellation-*.md'
       - 'research/artifacts/kaplansky-trace-certificates.json'
       - 'research/artifacts/kaplansky-finite-precision-trace-2026-09-07.md'
       - 'research/finite-precision-lifted-trace-*.md'
@@ -16,6 +20,10 @@ on:
     paths:
       - 'experiments/kaplansky_trace_certificate.py'
       - 'experiments/test_kaplansky_trace_certificate.py'
+      - 'experiments/kaplansky_prime_cancellation.py'
+      - 'research/artifacts/kaplansky-prime-cancellation-c3.json'
+      - 'research/artifacts/kaplansky-prime-cyclic-cancellation-2026-09-07.md'
+      - 'research/prime-cyclic-cancellation-*.md'
       - 'research/artifacts/kaplansky-trace-certificates.json'
       - 'research/artifacts/kaplansky-finite-precision-trace-2026-09-07.md'
       - 'research/finite-precision-lifted-trace-*.md'
@@ -41,6 +49,8 @@ jobs:
         run: python3 -m unittest discover -s experiments -p 'test_kaplansky_trace_certificate.py' -v
       - name: Replay the committed witnesses
         run: python3 experiments/kaplansky_trace_certificate.py --verify research/artifacts/kaplansky-trace-certificates.json
+      - name: Replay the characteristic-three cancellation lift
+        run: python3 experiments/kaplansky_prime_cancellation.py --verify research/artifacts/kaplansky-prime-cancellation-c3.json
       - name: Check that the complete example suite is reproducible
         run: |
           python3 experiments/kaplansky_trace_certificate.py --examples --output research/artifacts/kaplansky-trace-certificates.json
