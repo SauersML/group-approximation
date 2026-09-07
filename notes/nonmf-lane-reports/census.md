@@ -678,3 +678,44 @@ row is either the single acknowledged K_1 gap repeated across its mentions,
 a lane-flagged genuine mathematical gap with a clear description of what
 would be needed, or a converse/illustrative remark not yet sized by its
 assigned lane.
+
+## Round 11: prop:max-infinite's converse remark, the 19-group dispatch closed
+
+Landed: `ee6f57252` (all 4 sentences assigned, one new baseline register line).
+
+ring-b-end's `MaxInfiniteConverseRemark.lean` (`465bc8fd6`, `5a344e59b`) closes
+the last group from Round 9's 19-group dispatch. Assigned all four sentences
+of the converse-remark paragraph: the literal existential
+(`manuscriptMaxInfiniteConverseRemark`), the V-has-a-faithful-matrix-
+realization sentence as an explicit route difference (`residuallyFinite`,
+per the module's own docstring -- the literal embedding into `GL_4(Z[1/2])`
+is a device the paper uses, not part of the claim, and the tree reaches
+residual finiteness directly via congruence quotients over Z instead), the
+residually-finite-and-MF conclusion (`manuscriptAscendingHNNIsMF`, all five
+conjuncts), and the closing "so the lamps are necessary" sentence as a
+comparison of two already-proved facts (`isOperatorMF` for V unlamped,
+`CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF` for
+the lamped witness).
+
+One new conditional finding surfaced on the last row: `classify()` found a
+buried premise on the corpus-defined predicate `IsStronglyOperatorMF`
+somewhere inside `isOperatorMF`'s transitive proof chain
+(`isOperatorMF_of_residuallyFinite` -> `IsWeakMF.isOperatorMF`), even though
+the declaration's own stated type is hypothesis-free and closed. Registered
+a fresh `open-predicate` baseline line for this exact declaration after
+confirming live with `verify-unconditional`.
+
+Verify-decls 0 missing of 634 named. Verify-unconditional 0 new findings
+after the register line. Summary after this round: formalized 325,
+unassigned 5, definition 56, structural 33, provenance 19, partial 22,
+attribution 17, total 477.
+
+**This closes the entire 19-group dispatch from Round 9.** The 5 sentences
+remaining are exactly the two genuine gaps already fully described:
+`thm:headline`'s two K_1-is-MF/quotient-formula sentences plus "The binary
+example"'s K_1(R) definition (the one recorded K_1 gap, no Lean counterpart
+for algebraic K-theory of a ring in this sense), and
+`prop:locally-rf-by-z-trace`'s two `toModel`-injectivity sentences (a
+self-contained but nontrivial normal-form theorem thm-d flagged as not
+attempted). Nothing here is a bookkeeping gap; every remaining row has a
+clear, named piece of missing or absent mathematics.
