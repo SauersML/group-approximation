@@ -9,6 +9,7 @@ distinct_from:
   effective-transport-modulus: that asks for explicit operator-norm numbers on the literal group's displayed relators; this asks for a normalized Hilbert--Schmidt constant for the saturated group and does not ask for it to be computable.
 artifacts:
   - research/artifacts/hs-defect-gap-and-padding-2026-09-07.md
+  - research/artifacts/hs-word-gap-linearization-2026-09-07.md
   - non_mf_groups_exist.tex
 ---
 
@@ -28,6 +29,12 @@ D_2(U) >= 1  ==>  d_2(U) >= eta                        (HSG)
 ```
 
 for every `d` and every `U in U(d)^S`.
+
+The established `fixed-hs-word-gap-is-linear-domination` identifies this
+with the existence of a global linear bound `D_2(U)<=C d_2(U)`.
+Specifically (HSG) gives `C=2/eta`, while a positive linear constant C
+gives (HSG) with `eta=1/C`. This is a quantitative equivalence; neither
+side has been proved for Q.
 
 ## Attempts
 
