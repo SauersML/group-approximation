@@ -183,3 +183,17 @@ open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.m
 # modularization is internal to this lane's proof, not an external citation;
 # accepted as such.
 inlined-statement GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial  -- premise "every homomorphism from Q to an MF group is trivial" is proved unconditionally by the sibling carrier manuscriptSentence_theoremHomsTrivial, cited in the same census row; internal proof modularization, not an external citation
+#
+# quant-collapse's sentence-level carriers of prop:linear-collapse's printed
+# proof (Manuscript/OneSidedMFRadical/QuantitativeCollapseSentences.lean) take
+# the proposition's own printed hypothesis, "every homomorphism from G to an
+# MF group is trivial", as an explicit inline binder rather than a named
+# Prop -- classify() reads this as a suspicious inlined statement, but it is
+# the sentence's own printed premise, carried forward exactly as printed, not
+# an external citation.  Per the lane: unconditional proof-modularization,
+# gated by #audit_axioms rather than #audit_closed_axioms because the
+# hypothesis is a genuine printed binder, not a stand-in for an unproved step.
+inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_perfect  -- carries prop:linear-collapse's own printed hypothesis as an inline binder, not an external citation
+inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_generatorDefectsVanish  -- same as manuscriptSentence_perfect
+inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_presentedCover  -- same as manuscriptSentence_perfect
+inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_markedGroupsSatisfyingRelations  -- same as manuscriptSentence_perfect

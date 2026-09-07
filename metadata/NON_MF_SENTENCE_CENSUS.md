@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 208 |
-| `formalized` | 172 |
-| `definition` | 37 |
+| `unassigned` | 191 |
+| `formalized` | 186 |
+| `definition` | 38 |
 | `structural` | 23 |
 | `provenance` | 19 |
 | `attribution` | 14 |
-| `partial` | 4 |
+| `partial` | 6 |
 | **total** | **477** |
 
-Completely formalized or definitional: **209/477** (43.8%).
+Completely formalized or definitional: **224/477** (47.0%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -74,25 +74,10 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 818 --- The ascending HNN extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along $(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the faithful matrix realization
 * **`unassigned`**, line 833 --- and reduction modulo odd integers separates its elements, so $V$ is residually finite and MF~\cite[Corollary~10]{Korchagin}.
 * **`unassigned`**, line 833 --- So the lamps of Section~\ref{sec:amenable-nonqd} are necessary for the non-MF conclusion there.
-* **`unassigned`**, line 841 --- Let $G=\langle g_1,\ldots,g_m\rangle$ be a finitely generated group such that every homomorphism from $G$ to an MF group is trivial. Then there are finitely many words $r_1,\ldots,r_s$ in the free group $F_m$ with $r_j(g_1,\ldots,g_m)=1$ in $G$, and a constant $C$, such that all unitaries $U_1,\ldots,U_m\in\U(d)$, for every $d\ge1$, satisfy
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 849 --- Conversely, if such words and such a constant exist and $G$ is countable, then every homomorphism from $G$ to an MF group is trivial.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 856 --- The group $G$ is perfect: a nontrivial abelianization of a finitely generated group has a nontrivial finite quotient, and finite groups are MF\@.
-* **`unassigned`**, line 856 --- So there are words $a_{ik},b_{ik}\in F_m$ with
-* **`unassigned`**, line 863 --- and the words $w_i=x_i^{-1}\prod_{k=1}^{q_i}[a_{ik},b_{ik}]$ are relations of $G$.
-* **`unassigned`**, line 863 --- For a tuple $U=(U_1,\ldots,U_m)$ of unitaries put $D(U)=\max_i\opnorm{U_i-1}$.
-* **`unassigned`**, line 863 --- A word $a$ of length $|a|$ has $\opnorm{a(U)-1}\le|a|\,D(U)$, and unitaries $A,B$ satisfy
-* **`unassigned`**, line 870 --- since $AB-BA=(A-1)(B-1)-(B-1)(A-1)$.
-* **`unassigned`**, line 870 --- So there is a constant $B_0$, determined by the chosen words, with
-* **`unassigned`**, line 875 --- Enumerate the relations of $G$ as $r_1,r_2,\ldots$ with $w_1,\ldots,w_m$ first, and put $\mathcal R_n=\{r_1,\ldots,r_n\}$.
-* **`unassigned`**, line 875 --- If no $\mathcal R_n$ works with the constant $n$, there are $d_n$ and tuples $U^{(n)}$ in $\U(d_n)$ with
-* **`unassigned`**, line 885 --- Since $D(U^{(n)})\le2$, $\delta_n\to0$, so $g_i\mapsto[U_i^{(n)}]_n$ is a homomorphism from $G$ to the unitary group of $\prod_nM_{d_n}(\C)/\bigoplus_nM_{d_n}(\C)$, trivial by hypothesis; so $D(U^{(n)})\to0$.
-* **`unassigned`**, line 885 --- For $n\ge m$, the inequality~\eqref{eq:bootstrap} gives $D(U^{(n)})\le\delta_n+B_0\,D(U^{(n)})^2$, and division by $D(U^{(n)})$ gives $1\le\tfrac1n+B_0\,D(U^{(n)})$, which fails for large $n$.
-* **`unassigned`**, line 894 --- Conversely, a corona homomorphism has unitary coordinate lifts whose relation defects tend to zero, so the displayed inequality forces every generator lift to the identity, and the homomorphism is trivial; Lemma~\ref{prop:mf-residual-calculus} extends this to every homomorphism to an MF group.
-* **`unassigned`**, line 901 --- With $r_1,\ldots,r_s$ as in Proposition~\ref{prop:linear-collapse}, put $P=\langle x_1,\ldots,x_m\mid r_1,\ldots,r_s\rangle$.
-* **`unassigned`**, line 901 --- The inequality holds verbatim for $P$, so every finitely generated group all of whose homomorphisms to MF groups are trivial is a quotient of a finitely presented group with the same property and the same number of generators.
-* **`unassigned`**, line 901 --- The set of $m$-marked groups satisfying $r_1=\cdots=r_s=1$ is open and closed in the space of marked groups, and every group in it has the property; so the property is open.
+* **`partial`**, line 863 --- A word $a$ of length $|a|$ has $\opnorm{a(U)-1}\le|a|\,D(U)$, and unitaries $A,B$ satisfy
+  * Same printed proof: a word a of length |a| has ||a(U)-1||<=|a|D(U) (wordLengthBound), and the commutator estimate ||[A,B]-1||<=2||A-1||||B-1|| (commutatorEstimate). Partial per the lane's own docstring: wordLengthBound gives a constant from the free-group induction, not literally the length of a particular spelling, though it is all the printed argument uses.
+* **`partial`**, line 901 --- The set of $m$-marked groups satisfying $r_1=\cdots=r_s=1$ is open and closed in the space of marked groups, and every group in it has the property; so the property is open.
+  * The consequence paragraph: every countable m-marked group satisfying r_1=...=r_s=1 has the property. Partial per the lane's own docstring: only this middle clause is carried; "open and closed in the space of marked groups" is not claimed by any Lean statement, since no space of marked groups is formalized in this development.
 * **`unassigned`**, line 901 --- For the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many words in two unitary matrices, uniformly over the matrix size, while the left regular representation solves the same equations exactly with $U,V\ne1$.
 * **`unassigned`**, line 901 --- Applied to the group $B$ of Theorem~\ref{thm:full-defect-ring}, the same construction gives one finitely presented group with the property that maps into every $\EL_n(R)$ of that theorem with normally generating image.
 * **`unassigned`**, line 923 --- The proof of Theorem~\ref{thm:full-defect-ring} runs in rank four over the ring $\mathcal C$, with three coordinates for the subgroup $\EL_3(\mathcal C)$, which has property~\textup{(T)} because $\mathcal C$ is finitely generated, and one for its centralizer; two lemmas then carry the conclusion from $B$ to every $\EL_n(R)$.
@@ -276,7 +261,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
 | From Hilbert--Schmidt to operator norm | 31 | 1 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
-| A finite certificate | 19 | 19 |
+| A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 70 |
 | The binary example | 46 | 22 |
 | An amenable nonquasidiagonal trace | 90 | 50 |
