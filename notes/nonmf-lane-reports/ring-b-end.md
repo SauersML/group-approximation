@@ -15,6 +15,8 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `1dd5b6630fcab4116b709f1d0625e8c718be6b5a` | 4257 | `FullDefectRingMaximal.lean` |
 | `0c2cfacd517265f4df77bb30863b356694dbb881` | 4262 | `FullDefectRingEndpoints.lean` |
 | `aabd8e02b344687e0de71d79fe4c478d512d0700` | 4267 | `FullDefectRingProperIsometry.lean` |
+| `bdd935ede3ef52efd781cfc0deadbc4618020b42` | 4273 | `FullDefectRingUnconditional.lean` |
+| `c1bf110bff38c4ccf861f2f14641b643bd5cd3e3` | 4277 | `FullDefectRingStrictness.lean` |
 
 ## The printed clauses, and what each still assumes
 
@@ -30,7 +32,7 @@ carries a single named hypothesis.
 | `cor:simple-infinite-ring`, 1st | `PrintedSimpleInfiniteRing` | over prime characteristic |
 | `cor:simple-infinite-ring`, 2nd | `PrintedLeavittAlgebraFullDefect` | over prime characteristic |
 | `cor:one-sided-ring-maximal`, 2nd | `PrintedOneSidedRingMaximalReducedCStar` | over prime characteristic |
-| `cor:one-sided-ring-maximal`, 1st | `PrintedOneSidedRingMaximalIsometry` | no; see below |
+| `cor:one-sided-ring-maximal`, 1st | `PrintedOneSidedRingMaximalIsometry` | over prime characteristic |
 
 Outside prime characteristic each carries exactly one leading hypothesis,
 `FinitelyGeneratedRingGeneralRankElementaryPropertyT`, which is lane
@@ -91,43 +93,36 @@ its `...PrimeChar` form.
 (`#audit_closed_axioms`); `PrintedFullDefectRingProgramme` and its
 `...PrimeChar` form.
 
+### `FullDefectRingStrictness`
+
+`leftFixSubgroup E` — the elementary matrices with `E g = E`, a subgroup for
+reasons unrelated to elementary matrices — together with
+`coreOverHom S hn`, the image of `EL₃(S)` in `EL_n(R)`, and `defectCorner`, the
+complementary idempotent at the first compressor coordinate.  One induction
+(`conj_mem_range_inf`) puts every conjugate simultaneously in the range and in
+`leftFixSubgroup`, which gives `compressorOf_strict` and then
+`manuscriptOneSidedCompressorStrictContainment` (`#audit_closed_axioms`).
+Property `(T)` for the image is free from `MonoidHom.rangeRestrict_surjective`,
+which is what makes `S` rather than `R` costless.
+
 ### `FullDefectRingUnconditional`
 
 Spends `fullDefectAtFixedRing` once, and names each printed clause in its two
 remaining forms: `manuscript...PrimeCharUnconditional` (hypothesis-free, all
-audited closed) and `manuscript...FromEJZ` (one hypothesis).
+audited closed) and `manuscript...FromEJZ` (one hypothesis).  The
+proper-isometry clause is spent the same way inside `FullDefectRingStrictness`,
+because that is where its input is proved.
 
 ## Open obligations
 
-Two, and neither is this lane's mathematics.
+One, and it is not this lane's mathematics:
+`FinitelyGeneratedRingGeneralRankElementaryPropertyT`, lane `ejz-integral`.
+Every clause outside prime characteristic carries it, and nothing else.
 
-1. `FinitelyGeneratedRingGeneralRankElementaryPropertyT`, lane `ejz-integral`.
-   Every clause outside prime characteristic carries it.
-
-2. The strictness of the compression, which is the first sentence of
-   `cor:one-sided-ring-maximal` and is *not* a consequence of
-   `thm:full-defect-ring`:
-
-```lean
-def OneSidedCompressorStrictContainment : Prop :=
-  ∀ (R : Type) [Ring R] [Countable R] (s t : R), t * s = 1 → s * t ≠ 1 →
-    (∀ (S : Subring R), IsFinitelyGeneratedRing ↥S → ∀ (k : ℕ), 3 ≤ k →
-        HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin k) ↥S)) →
-      ∀ (n : ℕ), 4 ≤ n →
-        ∃ (Γ : Subgroup (elementaryGroup (Fin n) R))
-          (u : elementaryGroup (Fin n) R),
-          HasKazhdanPropertyT.{0, 0} ↥Γ ∧
-            Γ.map (MulAut.conj u).toMonoidHom < Γ
-```
-
-   At rank four the whole content is
-   `(core R).map (MulAut.conj (compressor P)).toMonoidHom < core R` when
-   `P.e ≠ 0`; the `≤` half is `compressor_compresses_core`.  A route for the
-   strict half: the units `u` with `E * u = E`, for `E = diag(e,e,e,0)`, form a
-   subgroup (from `E u = E` and `E v = E` one gets `E (u v) = E`, and
-   `E = E u⁻¹`); every conjugated core root `e_{ij}(sat)` lies in it because
-   `E * single i j c = single i j (e c)` and `es = 0`; and `e_{01}(1)` does not,
-   because `E * (1 + single 1) = E + single e ≠ E` exactly when `e ≠ 0`.
+The compression calculation (`FullDefectAtFixedRing`, discharged by
+`ring-b-alg`'s `fullDefectAtFixedRing`) and the strictness of the compression
+(`OneSidedCompressorStrictContainment`, discharged here by
+`manuscriptOneSidedCompressorStrictContainment`) are both closed.
 
 ## Coordination note
 
