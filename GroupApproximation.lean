@@ -3970,6 +3970,9 @@ import GroupApproximation.CharClass.LIXHsqNeighbourhood
 import GroupApproximation.CharClass.LIXHsqEta
 import GroupApproximation.CharClass.LIXHsqLinear
 import GroupApproximation.CharClass.LIXHsqHomotopy
+import GroupApproximation.CharClass.LIXHsqLegs
+import GroupApproximation.CharClass.LIXHsq
+import GroupApproximation.CharClass.LIXStepCOddHsq
 import GroupApproximation.CharClass.CohomologyParitySlice
 import GroupApproximation.CharClass.CohomologyLIXSliceBridge
 import GroupApproximation.CharClass.CohomologyLIXHslice
