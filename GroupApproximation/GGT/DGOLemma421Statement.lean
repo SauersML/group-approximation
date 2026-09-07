@@ -186,8 +186,9 @@ alone, being their `50 D(1,0)`.
 This is *not* free once the words are known to satisfy `(W1)`--`(W3)`: its proof
 counts the components of the path that are isolated in the geodesic
 `(2m+2)`-gon obtained by closing the path with a geodesic, and bounds their
-number by Proposition 4.14 with the constant uniform in the side count.  So
-clause (a) is blocked on the same input as clause (b). -/
+number by Proposition 4.14 with the constant uniform in the side count.
+`DGOLemma421a.lean` now proves this proposition from the completed additive
+quasi-geodesic surgery. Clause (b) still needs multiplicative constant four. -/
 def DGOLemma421a : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →

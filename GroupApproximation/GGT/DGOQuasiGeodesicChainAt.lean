@@ -5,7 +5,7 @@ import GroupApproximation.GGT.MorseLemmaDischarge
 # Quasi-geodesic chains at a general `μ`, and the between-point they still give
 
 `GGT/DGOThinPolygonVertex.lean` carries the `μ = 1` chain, `IsQuasiGeodesicChain
-S b y n`, and the two steps the isolated-component case tree runs on:
+S b y n`, and the first proximity step of the isolated-component case tree:
 
 * `IsQuasiGeodesicChain.isAlmostBetween` --- a `(1,b)`-chain's interior vertex is
   `b`-almost between its endpoints;
@@ -13,19 +13,21 @@ S b y n`, and the two steps the isolated-component case tree runs on:
   within `b + 2δ` of a genuine between-point.
 
 Their composition is the first of the four cost items of
-`DGOIsolatedComponentBoundFourGon`'s constant, and it is **the only one that
-breaks at `μ > 1`**.  The other three inflate: an offset measured along a
-`(μ,b)`-side yields `μ(· + b)` rather than `· + b` in index distance, and the
-quadrangle's own `8δ` is four-point hyperbolicity and does not see `μ` at all.
+`DGOIsolatedComponentBoundFourGon`'s constant. At general `μ`, both directions
+of chain/between-point proximity use Morse; the reverse direction is proved in
+`DGOQuasiGeodesicChainHausdorff`. An offset measured along a `(μ,b)`-side
+yields `μ(· + b)` rather than `· + b` in index distance. The quadrangle's own
+`8δ` is four-point hyperbolicity and does not see `μ` at all.
 
-## Why the first item breaks, and why no constant fixes it
+## Why the elementary almost-between estimate does not suffice
 
 For a point `y i` on a `(μ,b)`-chain from `y 0` to `y n`, the upper bound gives
 `d(y 0, y i) + d(y i, y n) ≤ n` while the lower bound gives only
-`d(y 0, y n) ≥ n/μ - b`.  So the between-defect is at least `n(1 - 1/μ) - b`,
-which **grows with the side length**.  At `μ = 1` it collapses to `b`, which is
-why `IsQuasiGeodesicChain.isAlmostBetween` needs no geometry; at any `μ > 1`
-there is no `B` with `IsAlmostBetween S B (y 0) (y i) (y n)` for every chain.
+`d(y 0, y n) ≥ n/μ - b`. These estimates bound the between-defect above by
+`n(1 - 1/μ) + b`, which grows with the side length when `μ > 1`. Thus this
+elementary calculation alone gives no uniform bound. At `μ = 1` it gives
+`b`, which is why `IsQuasiGeodesicChain.isAlmostBetween` needs no geometry.
+Hyperbolicity and Morse supply uniform proximity at general `μ`.
 
 ## The replacement, and a correction to a recorded obstruction
 

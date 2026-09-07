@@ -32,34 +32,23 @@ backwards.  Counting the samples fibrewise over the recorded index gives
 `(N+1) Δ` exceeds its length.  The hypothesis is exactly the gap between
 these two, and the two cases are exhaustive.
 
-**This is not the route the plan called for, and the divergence is
-deliberate.**  The planned route was Ol'shanskii's own: bisect recursively
-until every piece has at most eight sides, then run a bounded number of thin
-quadrilaterals inside a piece.  That route buys the printed closeness
-constant `13δ` -- which is exactly the eight-gon chord constant, `3δ·4 = 12δ`
-plus slack -- but it pays for it in the short class: each cut becomes a new
-short side, there are between `(n-8)/4` and `n-5` cuts (a cut adds exactly
-four to the total side count, and every piece it produces has at least five
-sides), and summing the per-cut chord bound over the recursion tree is of
-order `n log n` in the worst case.  The hypothesis `θ > ξ n` with `ξ` an
-absolute multiple of `δ` pays only order `n`.  Spelled out at the printed
-constants, the recursion needs `2·10³ δ n (2 + log₂ n) < 3·10⁴ δ n`, that is
-`n < 2¹³`; no absolute `ξ` repairs it, since the slack `10³/10⁴` is a
-constant and the deficit is a logarithm.
+This sampling result has a closeness constant depending on the dyadic depth.
+It is a useful intermediate estimate, but it does not by itself prove the
+uniform three-class statement that Osin cites as Lemma 3.7 (`N123`).
 
-So the reconstruction keeps Ol'shanskii's hypothesis *shape* and his numeral
-`3·10⁴`, and moves the logarithm into the constant instead of into the
-budget: `ξ ≥ 3·10⁴ δ` becomes `ξ ≥ 3·10⁴ δ (c+1)` for `n - 1 ≤ 2 ^ c`, and
-the closeness `13δ` becomes `3δ(c+1)` between the endpoints of the two
-segments, or `3δ(c+1) + 6δ` between the segments themselves
-(`exists_close_of_subsegments`).  Consumers take `c := Nat.clog 2 (n-1)`.
-Every other feature of the printed statement -- the linear `ξ n`, the factor
-`10³` on `ρ`, the segment length `ξ/1000` -- comes out unchanged; see
-`exists_long_close_pair_of_short_complement`.
+The uniform argument uses balanced cuts and applies the sampling estimate to
+polygons with at most eight sides. Its total cut cost is linear: each cut is
+charged at the size of its own polygon, and balanced recursion makes those
+sizes shrink. `OlshanskiiCutPotential` proves the accounting with the
+potential `40000(n-4) - 20000 sqrt(n-4)`. The former claim here that balanced
+recursion necessarily costs `n log n` charged every cut at the original
+size and was incorrect. Actual cut polygons are constructed in
+`VanKampen.Estimating.UnboundPolygonCut`; the class and segment transport
+lemmas are in `OlshanskiiPolygonClasses`.
 
-The balanced-cut theorem of the second module is not used here: it is the
-input to Lemma 23's consumer, the linear isolated-component bound, and not to
-this one.
+The packaged theorem `exists_long_close_pair_of_short_complement` below
+retains its explicit logarithmic hypothesis and conclusion. It is not a
+replacement for the uniform three-class result.
 
 ## Conventions
 

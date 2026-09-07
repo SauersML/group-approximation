@@ -44,7 +44,14 @@ and interior edges that covers, the incidence graph is realized by a connected
 planar combinatorial map with face degrees at least three, on the same number
 of vertices and edges.  This is the only remaining input to the hereditary
 planar edge bound; the Euler estimate itself is already proved as
-`CombMap.edgeCount_le_three_mul_vertex_sub_one`. -/
+`CombMap.edgeCount_le_three_mul_vertex_sub_one`.
+
+**Refuted (#203).** A single isolated cell and no edges would require a
+`CombMap` with one vertex and zero darts. The closed refutation is
+`VanKampen.not_interiorIncidencePlanarRealization` in
+`Estimating/HereditaryPlanarRefutation.lean`. The target hereditary bound also
+has the separate endpoint defect #204. Preserve this historical proposition
+and handle isolated vertices and endpoint-closed subgraphs explicitly. -/
 def InteriorIncidencePlanarRealization : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     {D : GGT.RelGenSet G Lambda}
@@ -63,7 +70,8 @@ def InteriorIncidencePlanarRealization : Prop :=
 /-- **The hereditary planar edge bound from the realization.**  Osin's Lemma
 `Eul` inequality is `CombMap.edgeCount_le_three_mul_vertex_sub_one`, already
 proved; realizing the incidence graph as a planar map is the whole remaining
-content. -/
+content. The realization premise below is refuted; this conditional reduction
+is retained only with its historical interface. -/
 theorem hasHereditaryPlanarEdgeBound_of_realization
     (hrealization : InteriorIncidencePlanarRealization.{u, w, v})
     {G : Type u} [Group G] {Lambda : Type w}

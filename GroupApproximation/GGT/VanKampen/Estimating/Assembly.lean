@@ -67,7 +67,13 @@ theorem exists_estimatingScaffold
 /-- The conclusions of Appendix Lemma 65(a) needed by the estimating count.
 The selected interior regions form a hereditary simple planar graph, no
 position belongs to two incidences, and the two-gon condition leaves at most
-one exterior region at each cell. -/
+one exterior region at each cell.
+
+**Historical defective interface (#204).** `planarEdgeBound` forces all
+interior edges to be absent, as `EstimatingGraphData.no_interiorEdge` proves
+in `Estimating/HereditaryPlanarRefutation.lean`. The corrected graph must use
+`HasEndpointClosedPlanarEdgeBound`; migrate its construction and estimating
+consumers together. This record is preserved for the existing refutations. -/
 structure EstimatingGraphData
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -731,15 +737,17 @@ theorem estimatingPieceConstruction_of_planarPeelOracle
   exact edge.candidate.contiguity.targetBoundary_value_of_pasting
     peeling.to_homotopy
 
-/-- The local Lemmas `61` and `62` input, at the hypotheses the source states.
-Osin runs Lemma 62 on a reduced diagram with at least one relator cell, under
-the graph condition `(*)`, and with `rho` chosen after `mu`; the closing line
-of Lemma 63 reads `rho > mu^{-2}`.  The conclusion is the one the source
-proves, "up to passing to an `O`-equivalent diagram", so the strict budget is
-asserted on an `O`-equivalent diagram with its own scaffold and graph data.
+/-- **Refuted universal unbound-budget input, retained for regression checks.**
+The cell count and numerical threshold repair an earlier empty-disc failure,
+but do not restore Osin's standing geometric scale assumptions. The closed
+counterexample in `Estimating.UnboundSmallMuCounterexample` satisfies the
+source's parameter ranges and Cayley hyperbolicity, yet every O-equivalent
+output violates the strict square-root budget. See issue #198.
 
-The earlier form of this statement, which dropped the cell count and the
-parameter choice, is refuted in `Estimating.UnboundEmptyDisc`. -/
+A corrected producer must synchronize epsilon and rho with the geometric
+constants and selection construction. `Estimating.UnboundParameters` proves
+the simultaneous numerical choice, not the missing geometric producer.
+The still earlier form is refuted in `Estimating.UnboundEmptyDisc`. -/
 def EstimatingUnboundOutputStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)

@@ -1,0 +1,657 @@
+# Closing the complete Theorem E formalization
+
+Baseline: 2026-09-06, proof tip `02d72c87f78aca950507f38483f740e28908e0c2`,
+based on main `0767babffd2d32e5745a6bc49b3ba6ebddd21c8a`.
+Working draft: [PR #195](https://github.com/SauersML/group-approximation/pull/195).
+This plan covers the entire Theorem E dependency chain, called Theorem C in Lean.
+It does not claim that the formalization is complete.
+
+## The finish line
+
+Both existing endpoints in `TheoremCAssembly.lean` must pass
+`#audit_closed_axioms` without changing their advertised propositions:
+
+- `TheoremC.manuscriptTorsionFreeFullMFRadical_closed : PrintedTorsionFreeFullMFRadical`;
+- `TheoremC.manuscriptTorsionFreeSimplified_closed : PrintedTorsionFreeSimplified`.
+
+Their full namespace is `GroupApproximation.Manuscript.NonMF`. The permitted
+axioms are exactly `propext`, `Classical.choice`, and `Quot.sound`. A new
+certificate structure without an inhabitant, an extra leading hypothesis, or
+moving an admission to another file does not discharge an obligation.
+
+The current combined lane build passes. A fresh Lean traversal of the actual
+proof dependencies of both endpoints finds exactly the four direct admissions
+below; their axiom closures contain the three permitted axioms and `sorryAx`.
+The strict source scan independently reports the same four placeholders.
+Thus there are no additional admission leaves hidden in the current imported
+endpoint proofs, although the proposed reductions below have further unproved
+inputs. A successful build does not establish completion.
+
+## All remaining work, including the hidden inputs
+
+| Package | Current assembly admission | What must actually be proved | Completion evidence |
+|---|---|---|---|
+| Osin diagram construction | `estimatingSelectionConstruction`, line 250 | Construct the reduced O-equivalent diagram, its estimating scaffold, and graph from the source hypotheses | A proved construction at parameters shared with the unbound estimate |
+| Osin uncovered boundary estimate | `estimatingUnboundOutput`, line 260 | Replace the false universal-parameter interface by the actual synchronized parameter choice, then prove complementary-region surgery and the arc budget | Closed relative Greendlinger and Hull 4.9 inputs; original refutation retained |
+| Hull joint-family preservation | `hullLemma44FamilyInclusionJoint`, line 220 | Greendlinger **plus** a corrected bounded relative-isoperimetric transfer **plus** relator respelling, with one compatible order of constants | Source-faithful bounded family preservation, retaining every conclusion required by the unchanged printed endpoints; preserve the historical unbounded Props explicitly |
+| Concrete starting group | `kotowskiOllivier`, line 387 | An actual infinite, finitely presented, torsion-free hyperbolic group with property (T) | Original `Hyperbolic.SharpExistence` passes the closed audit |
+
+The first three packages feed Hull's canonical quotient, one-step construction,
+Theorem 7.1, and the common-quotient and Fournier-Facio inputs. The last package
+supplies their starting group. Together with the existing Chiodo/Higman and
+Minasyan–Osin proofs, these feed `literatureInputs`, `hullInputs`, and both printed
+endpoints. All of these consumers must be audited when their inputs close.
+
+## DGO: the complete package is proved
+
+`GGT/DGOProposition414General.lean` proves the **original**
+`OsinComponents.DGOProposition414Uniform` at arbitrary `mu ≥ 1`, with one
+positive constant chosen before the polygon size, for both the sum and
+individual-component conclusions. It also closes the original full
+`DGOLemma421b`. Both pass `#audit_closed_axioms` with exactly the three
+permitted axioms. The additive API and closed Lemma 4.21(a) remain available.
+
+The general proof uses the completed short isolating-cycle construction to
+prove finiteness of the least sum cost. Morse stability selects a uniformly
+logarithmic chord using the genuine parameters. The same finite polygon is
+exposed to the old combinatorial records with a word-length bookkeeping error,
+but that error never chooses a geometric constant or a child radius.
+The first and wrapped second arcs, every restricted arc, and every auxiliary
+child retain the genuine parameters exactly. Existing isolated-component
+families and disjoint factor slots charge witnesses from the general child
+costs. An extremal polygon supplies the numerical subdivision inequality;
+the proved logarithmic-square overhead and numerical linearity theorem give
+the uniform sum bound. Component collapse and recutting give the individual
+bound with the same enlarged constant.
+
+The assembly's DGO placeholder has been replaced by that proof. Its DGO
+4.14 and 4.21(b) declarations, Hull's finite-avoidance pair producer, and
+Hull's full finite-family Corollary 5.7 all pass closed axiom audits.
+The assembly build succeeds (10,369 jobs). A fresh traversal of both printed
+endpoints finds exactly the four admissions in the table above; the strict
+source scan independently reports the same four. The printed endpoints are
+unchanged and remain incomplete because those four inputs are still open.
+
+The impossible additive comparison for multiplicative constant greater than
+one remains refuted in [#199](https://github.com/SauersML/group-approximation/issues/199).
+The completed general proof does not use that premise.
+
+## Osin: prove selection and the budget as one construction
+
+The present unbound-output proposition is false even with the advertised
+hyperbolicity, small-cancellation, and numerical range hypotheses; see the
+closed counterexamples in
+[#198](https://github.com/SauersML/group-approximation/issues/198).
+Filling that literal proof hole is impossible in a consistent formalization.
+
+The repair must preserve the final theorem and the original proposition with
+its refutation. Add a source-faithful producer with this order of choices:
+ambient geometry and quasigeodesic constants; geometric closeness/density
+constants; epsilon; sufficiently large rho; relators; input diagram; output
+diagram with **both** selection and unbound data.
+
+`OlshanskiiThreeClasses.threeClassPolygon` now proves the full uniform
+three-class polygon lemma (Ol’shanskii Lemma 25, cited by Osin as Lemma 3.7).
+It supplies positive constants `c1 = 12 * (delta + 1)` and
+`c2 = 100000 * (delta + 1)` before the space, polygon, side count, and density
+parameter. Both segments retain the published length `a / 1000`; zero- and
+one-sided polygons are handled as well. The closed literature endpoint
+passes `#audit_closed_axioms` with only the standard three axioms.
+
+The proof uses `OlshanskiiCutPotential` for a linear total diagonal budget,
+`OlshanskiiPolygonClasses` and `OlshanskiiCutClasses` for restriction and
+rotation transport, `OlshanskiiClassifiedBisection` for the actual two closed
+cut polygons and exact class accounting, and `OlshanskiiSmallClassBound` for
+the contrapositive base estimate. The former claim in the sampling module
+that balanced recursion necessarily costs `n log n` was an overestimate:
+each cut is charged at its own shrinking polygon size.
+
+`CayleyGeodesicMorse.lean` now proves uniform proximity between the actual
+word chains and every geodesic replacement in the Cayley metric realization.
+It uses the exact vertex distance, the proved discrete Morse theorem, and a
+nearby discrete vertex on each replacement. `WordGeodesicReplacement.lean`
+derives the chain hypotheses from the original word's quasigeodesic
+inequality. `WordPolygonReplacement.lean` constructs all replacement sides
+and proves both class-length estimates. Only the retained classes need
+quasigeodesicity; the short connector class needs admissibility and its
+length bound. The extra six units of realized hyperbolicity are included
+in the constants.
+
+`UnboundWordPolygon.unboundWordPolygon` chooses the Morse radius, epsilon,
+and rho threshold before the word polygon and produces its actual original
+endpoint indices. It passes a closed axiom audit. The radius, replacement
+polygon, and proximity witnesses are no longer geometric input oracles.
+`UnboundDenseComponent.lean` uses `53 < 60` to select a component **strictly**
+above the `1/240` density threshold from a non-strict global lower bound.
+`WordSegmentConnectors.lean` and `UnboundWordConnectors.lean` construct the
+oriented original subwords and short geodesic connector words, prove the
+quadrilateral label is trivial in the ambient group, and give a strictly
+shorter target prefix to an actual source endpoint in either target
+orientation.
+
+`UnboundComponentWordPolygons.unboundComponentWordPolygons` combines all
+these metric and finite-selection producers with one uniform parameter
+choice and passes a closed axiom audit. The remaining input is the actual
+family of complementary-region word polygons with its arc and cutting
+bounds. Its new connector words must be embedded in an O-equivalent diagram
+to contradict maximal contiguity or minimal cutting-path length. A null
+quadrilateral word alone does not assert that embedded region. The
+universal historical unbound output remains refuted.
+
+`CactusZeroBoundary.lean` now constructs the inner face traversal of the
+single-polygon case, including a monogon. `NullWordDisc.nullWordDisc` fills
+every nonempty admissible ambient-group null word by an actual planar disc
+with its exact relative boundary, legal dart labels, no relator cells, and
+exactly two faces (one exterior and one G-cell). Its closed audit passes.
+`UnboundConnectorDisc.lean` proves the produced quadrilateral is nonempty
+and instantiates this disc construction. Thus the standalone padding disc
+is proved; gluing it into the original complementary region while
+preserving selected contiguities remains open.
+
+The historical surgery cell transport is also too strong: it requires a
+bijection of all potential relator records, including records on unlisted
+G-faces. Issue [#205](https://github.com/SauersML/group-approximation/issues/205)
+now has a closed Lean counterexample in `SurgeryRCellEquivCounterexample.lean`:
+two actual reduced O-equivalent discs with identical empty relator lists and
+the same boundary, but no full-type `RCellEquiv`. The historical interface is
+preserved. `SurgeryOrderedCells.lean` instead preserves the actual ordered
+word and based-value lists and proves finite-index O-equivalence and
+reducedness transport. The counterexample admits this corrected replacement.
+`Estimating/OrderedReplacement.lean` supplies its explicit selection face-drop
+consumers. These transport proofs do not construct the missing local surgery.
+
+The padding operation now has an explicit map construction in
+`CombMapEdgeInsertion.lean`. It retains every old dart, inserts the two
+new darts at the chosen corners, preserves the actual vertex quotient,
+adds exactly one edge, and preserves connectedness. `PermOrbitInsert.lean`
+proves the required orbit equivalence. `CombMapEdgeFaces.lean` identifies
+the resulting face permutation for both distinct and equal corners.
+`FiniteCycleSplit.lean` proves that cutting a finite cycle into two
+nonempty consecutive blocks gives exactly two cycles.
+`PermCycleCoordinates.lean` now identifies an arbitrary chosen cycle with
+finite rotation coordinates and retains its invariant complement;
+`PermOrbitSplit.lean` proves that the transposition therefore adds exactly one
+orbit to the whole permutation. `CombMapEdgePlanarity.lean` completes the
+actual insertion: any two corners of one face, including coincident corners,
+give exactly one extra face, unchanged Euler characteristic, and a planar
+map. `CombMapEdgeKeptFaces.lean` and `CombMapEdgeKeptBoundary.lean` now
+construct the unchanged cycles and ordered boundaries of every other face.
+Their face classifier excludes fresh darts from those faces, and retaining
+old dart labels preserves their literal words, including the chosen start.
+`CyclicFaceBoundary.lean` derives orbit completeness from an actual cyclic
+list. `CombMapEdgeSplitBoundary.lean` now constructs both new boundary cycles,
+including the monogon at index zero, and `CombMapEdgeFacePartition.lean`
+accounts for every new face. `CombMapEdgeBoundaries.lean` gives compatible
+traversals everywhere. `CombMapEdgeLabels.lean` retains old labels, assigns a
+letter and its formal inverse to the new edge, and proves both new face
+values are one when that letter represents the chosen prefix of the old
+G-face boundary. `GFaceEdgeInsertion.lean` now assembles the actual planar
+`DiscDiagram`, retaining the exact exterior word, relator order, words,
+conjugators and orientations. It constructs the corrected
+`OrderedGRegionReplacement`, so reducedness and O-equivalence follow from the
+proved transport, and it preserves admissibility when the chosen letter is
+legal. The face count increases by one. All these proofs pass ordinary axiom
+audits. This is the one-letter operation: the inserted letter must represent
+the chosen prefix. Arbitrary connector-path lengths and preservation of the
+selected embedded regions must still be carried through the construction.
+
+`CombMapDual.lean` now constructs duality and proves that it preserves
+connectedness, Euler characteristic and planarity. `CombMapEdgeSubdivision.lean`
+uses actual dual insertion to subdivide an edge, adding one vertex and one
+edge while retaining every face. Its corner order also handles an initial
+vertex of degree one. `CyclicListExpansion.lean` and
+`CombMapSubdivisionWalks.lean` prove the actual expanded traversals in both
+orientations, their closure and absence of repeated darts.
+`CombMapSubdivisionBoundary.lean` constructs all face boundaries and their
+exact correspondence. `CombMapSubdivisionLabels.lean` factors the chosen
+letter into two letters, proves formal reversal and preservation of every
+based face value, and retains literal words on faces avoiding the edge.
+`GEdgeSubdivision.lean` assembles an actual planar disc and corrected
+`OrderedGRegionReplacement`, preserving the exterior word, ordered relator
+data and reducedness. The two incident G-faces may coincide. Its admissibility
+theorem only requires old labels away from the subdivided edge to be legal,
+so a temporary product letter need not belong to the generating set. These
+proofs pass ordinary axiom audits (4,786-job build).
+
+`DartExpansion.lean` and `DiscExpansion.lean` now compose actual expansions,
+including formal path reversal, face-walk closure, no repeated darts, exact
+face traversals and ordered relator data. `GEdgeRelabel.lean` handles a
+one-letter word without adding an edge. `GEdgeSubdivisionExpansion.lean`
+proves that the remaining temporary edge still avoids the exterior and every
+listed relator face, and that all labels away from it are legal.
+`GEdgeWordSubdivision.exists_output` then constructs the actual subdivision
+for every nonempty admissible word of the required ambient value. The chosen
+path reads that exact word, all other edge words remain single letters, and
+every final label is legal. `DartExpansionVertices.lean` proves the induced
+map on old vertices is injective and identifies both endpoints of every
+expanded path. `GFaceInsertionDart.lean` supplies the inserted edge's actual
+G-face incidence and prescribed corner endpoints.
+`GFaceWordInsertion.exists_output` combines them into an actual path across
+the chosen G-face, with exact word and length, both prescribed endpoints,
+legal labels, one additional face, and an O-equivalent disc with the same
+exterior word and ordered relator data. Reducedness is preserved. These
+proofs pass ordinary axiom audits (4,805-job build).
+
+`DartExpansionInternal.lean` now proves that every internal subdivision
+vertex has its exact two-dart rotation orbit, lies outside the embedded old
+vertices, and is distinct from every other internal vertex on that path.
+The path has no repeated edges. `GFaceSimpleWordInsertion.exists_simple_output`
+constructs the prescribed G-face path with all these properties, as well as
+the previously proved exact word, length, corner endpoints and O-equivalence.
+
+`NonemptyConnectorWord.lean` handles an empty connector by replacing it with
+an admissible two-letter word and its inverse, retaining its ambient value.
+`UnboundNonemptyConnectors.lean` derives `2 < epsilon` from the existing Osin
+scale and takes the legal letter from the actual nonempty source segment.
+Thus both chosen connector words are nonempty and still strictly shorter
+than epsilon, with unchanged endpoint equations, null quadrilateral and
+strict target-prefix shortening. The original geodesic connector records
+are retained. `UnboundComponentNonemptyConnectors.unboundComponentNonemptyConnectors`
+constructs these words at the same uniform parameter choice and passes a
+closed axiom audit (4,853-job build). This resolves the zero-length obstacle
+for these metric connectors without changing constants. Full local contiguity
+and family transport are now proved below; general complementary-region
+surgery remains open. No further assembly admission has been discharged.
+
+`GEdgeWordRetention.lean` derives the actual single-dart expansion of every
+edge outside the subdivided edge, with exact label, reversal and face-step
+preservation. `GFaceWordRetention.exists_retained_output` constructs a stronger
+insertion output retaining every old dart and every untouched ordered face
+cycle, with their vertex incidence. Its new path shares no old edge in either
+orientation. `DiscEmbeddingAway.lean` proves exact transport of boundary
+incidence, internal boundary moves, cyclic face-set boundaries and actual face
+shellings for every selected region avoiding the insertion face. It also
+preserves face-set cardinalities and disjointness. The concrete insertion
+supplies this embedding, and its `region_pasting` consumer transports the old
+region's pasting witness. These pass ordinary axiom audits (4,810-job build).
+`SurgeryCellMap.lean` now constructs and composes an ordered old-to-new cell
+map retaining individual words, conjugators and orientations, without a
+bijection of all potential records. `GEdgeWordCellMap.lean` proves the actual
+arbitrary-word subdivision with these stronger data. The stronger
+`GFaceWordRetention.exists_cell_output` constructs them for G-face insertion;
+the historical weaker output propositions remain unchanged.
+`Estimating/CyclicArcMap.lean` retains the original arc start and length.
+`Estimating/ContiguityTransport.lean` now transports every field of an actual
+`Contiguity`, including both cyclic carriers, side words and bounds, the
+ordered O52 certificate and the pasting witness.
+`GFaceContiguityInsertion.exists_contiguity_output` supplies one actual
+insertion output retaining all old contiguities avoiding the insertion face,
+with exact arc lengths and side/boundary lists. These proofs pass ordinary
+axiom audits. The general complementary-region construction remains open.
+
+Connecting this transport to the selected-family optimization exposed another
+interface defect, reported immediately as
+[#206](https://github.com/SauersML/group-approximation/issues/206).
+The historical `Candidate` stores only a face set with `Nonempty Contiguity`,
+and its weight uses an arbitrary `Classical.choice` of contiguity data.
+`Estimating/CandidateWeightCounterexample.lean` proves that the same actual
+G-cell digon at epsilon two has witnesses of weights two and zero, which
+become the identical face-set candidate. The claimed recovery of every
+constructed witness's weight is therefore false; its refutation passes a
+closed axiom audit (4,599-job build).
+
+`Estimating/ContiguityFinite.lean` now proves that the full contiguity type is
+finite: an injective code retains the duplicate-free boundary and side lists,
+carrier indices, and arc starts and lengths; the remaining fields are proofs.
+`Estimating/GeometricCandidate.lean` retains the actual witness in each
+candidate and constructs a distinguished family maximizing all realizable
+arc weights, with minimal cardinality among maximizers. The historical
+face-only definitions and their refutation are preserved.
+`Estimating/GeometricCandidateTransport.lean` proves injectivity of full
+contiguity transport and transports every compatible geometric family away
+from the insertion face, preserving cardinality and exact total arc weight.
+`GFaceContiguityInsertion.exists_family_output` constructs the actual
+O-equivalent insertion supplying this family transport. The six-dart model
+also proves that the corrected candidates retain their distinct weights and
+that a corrected distinguished family exists with weight at least two.
+The model passes a closed audit; the construction helpers pass ordinary
+audits (combined 4,821-job build).
+
+`Estimating/GeometricPartition.lean` now counts the retained witnesses' actual
+cell-arc darts. It proves the exact exterior/interior/unbound perimeter
+partition and identifies the total interior count with the sum of the actual
+selected interior weights. `Estimating/GeometricIncidence.lean` constructs the
+corresponding edge type and derives O52 charges from the same witnesses and
+reducedness, without a separate piece-construction input. The existing
+endpoint-closed deletion theorem then gives the `10 * mu` interior bound.
+These helpers pass ordinary axiom audits (4,611-job build). The planar edge
+inequality is still an input, and exterior uniqueness, complementary-region
+construction and the unbound budget still need their geometric producers.
+
+`GeometricWeightBound.lean` bounds the actual weight of every compatible
+family by the sum of relator perimeters and the outer perimeter, counting
+both ends of interior regions and both arcs of exterior regions. This bound
+is preserved by O-equivalence. `GeometricGlobalSelection.lean` uses it to
+construct an attained maximum over all reduced O-equivalent diagrams in the
+same dart universe, followed by an attained minimum family cardinality among
+all maximizers. Restriction to the selected diagram gives its actual finite
+distinguished family. Neither optimum is a supplied certificate.
+
+`GeometricExterior.lean` identifies the exterior count with the retained
+witness under exterior uniqueness. `GeometricGreendlinger.lean` combines the
+actual global selection, O52, endpoint-closed deletion and the same-scale
+unbound conversion to prove the original strict `1 - 13 * mu` conclusion.
+The three remaining geometric inputs on that selected diagram are the
+planar edge bound, exterior uniqueness and the Lemma 62 unbound estimate;
+their synchronized construction is still open. The six-dart model checks
+different exterior counts (one versus zero) and unbound counts (two versus
+three) for the formerly erased witnesses, and constructs a global optimum
+with weight between two and four. The model passes closed audits and the
+general helpers pass ordinary audits (4,621-job combined build). No assembly
+admission has been discharged by this consumer migration and global selection.
+
+The base-symmetry requirement has now been removed from insertion of chosen
+connectors. `ReversibleSpelling.lean` reuses the existing reversible-substitute
+theorem to retain length and all group vertices while making both formal
+edge orientations legal. The stronger word-subdivision and G-face producers
+now require only this local inverse-letter condition, and
+`GFaceReversibleInsertion.lean` constructs the actual insertion and full
+family transport without assuming `D.base` inverse-closed. It also constructs
+such an insertion from any nonempty legal connector by respelling that new
+connector; the original exterior and relator words stay literal. Existing
+producer signatures are preserved as corollaries. Ordinary audits and the
+combined insertion build pass (4,821 jobs).
+
+The missing label eligibility is now constructed explicitly.
+`GEdgeWordCellMap.exists_raw_output` separates actual subdivision from global
+label legality. `GEdgeLabelRepair` proves that repairing one illegal edge
+strictly decreases the finite number of illegal darts. Strong induction in
+`DiscLabelNormalization` then produces a fully legal diagram over a symmetric
+base, preserving the literal exterior word, the complete ordered cell map,
+reducedness and O-equivalence. Only the exterior and listed relator words
+need initially be admissible; every other illegal edge lies between G-faces.
+
+For an arbitrary original base, `SymmetricLabelAlphabet` adjoins inverse
+base spellings and proves equality of the total generator carrier and word
+metric. The normalized diagram uses this auxiliary label alphabet, while
+the geometric candidates and the original `OsinCCondition` still use `D`.
+No relative-ball or deep-relator hypothesis is transported to the auxiliary
+alphabet. `GeometricLegalSelection` constructs an eligible empty seed and
+then attains maximum weight and minimum cardinality inside this legal class.
+`GFaceLegalSelectionInsertion` performs actual word insertion away from the
+selected regions and proves the transported family remains a legal global
+optimum with exactly the same weight and cardinality. The unrestricted
+maximum still does not assert legal labels; it is not silently substituted
+for the new legal optimum.
+
+`GeometricGreendlinger` now proves its counting step for any actual reduced
+O-equivalent family, so it also applies to this legal optimum; its original
+global-optimum signature is retained as a corollary. The complementary-region
+cuts, planar incidence realization, exterior uniqueness and synchronized
+unbound argument remain open. This normalization and insertion connection
+does not discharge another assembly admission.
+
+`FaceBoundaryRotation` and `GFaceRebase` also construct a change of the
+initial dart of an actual G-face traversal. The rotated G-word remains null;
+the planar map, dart labels, literal exterior word and complete ordered
+relator data are retained. Its identity embedding transports full candidates
+and compatible families away from that face with exact cardinality and
+weight. The new initial dart is proved to be the prescribed original corner.
+`FaceBoundary.forwardOffset` and `GFaceRebase.cornerIndex` now identify both
+prescribed original corners, including cyclic wraparound and coincident
+corners. `GFaceCornerInsertion.exists_corner_output` performs the actual
+rebasing and word insertion. Its full output retains path simplicity, fresh
+internal vertices, the original ordered cell map and the embedding; checked
+identities express both endpoints against the original diagram.
+`GFaceCornerLegalSelection` transports the actual compatible family through
+this construction and retains the legal global optimum with exactly the same
+weight and cardinality. Complementary-region cuts still need construction.
+
+Source check: [Osin's appendix, Lemma 9.4 in arXiv v3](https://arxiv.org/html/math/0411039#S9)
+first chooses a minimum-total-length cutting system for each complementary
+region, which may have holes. This is a separate minimization from
+Definition M's contiguity-family optimum. Its cutting paths must be produced
+and transported through shortening surgery; the family optimum alone does
+not supply that invariant. Lemma 9.7(b) later minimizes enclosed relator-cell
+counts to obtain one exterior region at the chosen large cell. It does not
+assert exterior uniqueness simultaneously at every cell of an arbitrary
+distinguished family. Keep that selected-cell descent explicit when connecting
+the counting lemmas to the final single-region Greendlinger conclusion.
+
+`GeometricExteriorCollection` now proves the intermediate source count.
+`exteriorAt` retains every exterior witness at the selected cell, and its
+sum of arc lengths is exactly that cell's exterior dart count. The strict
+Lemma 62 budget and the planar interior estimate yield a cell with total
+exterior degree greater than `1 - 11 * mu`, without exterior uniqueness.
+The required stronger threshold `1 ≤ mu * sqrt rho` is constructed together
+with all `OsinUnboundScale` inequalities at a fixed epsilon. This numerical
+strengthening changes no relator small-cancellation hypothesis. The final
+selected-cell descent must still construct one region of degree greater than
+`1 - 13 * mu`; the historical conditional single-region consumer is retained.
+
+A further source-case audit is tracked in
+[#207](https://github.com/SauersML/group-approximation/issues/207).
+`Contiguity.target_ne_source` excludes every self-contiguity before selection.
+Consequently `SelectionSelfIncidence.selfIncidenceSeparated_of_target_ne_source`
+and `PhiRealization.interiorEdge_source_ne_target` are valid restricted-type
+results with an impossible self-incidence antecedent; they do not construct
+Osin's loop exclusion. The newer full-witness candidate still uses the same
+restricted `Contiguity` type. Its checked optimization and transport theorems
+remain valid, but comparison with every geometric region in the source has
+not been proved. Separate geometric candidates from the distinct-cell O52
+certificate, or construct a justified restriction handling all excluded
+self-contiguities, before using maximality in that branch. The source's loop
+argument belongs to the induction in Lemma 9.7(a), not to the candidate
+definition. Preserve the restricted interfaces and their proofs during repair.
+
+`ContiguityGeometry.lean` begins that repair with a geometric record retaining
+the actual boundary, arcs, side bounds and shelling, without a distinct-target
+field or O52 certificate. It proves finiteness of these witnesses, injective
+projection from the historical interface, and both round trips when the
+separate `O52Data` certificate is supplied. Boundary simplicity proves that
+the source and target cell arcs are disjoint even without distinct cells.
+These helper proofs pass ordinary axiom audits with only the standard three
+axioms. This checkpoint does not discharge an assembly admission or close
+#207. Next construct a positive-length self-contiguity model, extend actual
+selection and insertion transport to this pool, and prove the source's
+loop-cut induction. Cell-arc counting must use the union of both contributions
+when source and target coincide; the geometric disjointness theorem supplies
+the required additivity. Existing selection consumers still use the historical
+restricted type and have not been silently migrated.
+
+The graph audit found two further proved obstructions. The historical
+`InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
+dart-only map ([#203](https://github.com/SauersML/group-approximation/issues/203)).
+More seriously, `HasHereditaryPlanarEdgeBound` uses one-endpoint coverage and
+is equivalent to **no incidences**, so `EstimatingGraphData` forces its
+interior-edge type to be empty
+([#204](https://github.com/SauersML/group-approximation/issues/204)).
+`HereditaryPlanarRefutation.lean` proves both defects, including a concrete
+closed refutation of the realization. `EndpointClosedDeletion.lean` restores
+the all-endpoints invariant, proves its preservation under deletion and the
+five-deletion-order consequence, and verifies a nonempty one-edge model.
+`EndpointClosedAssembly.lean` now carries that invariant through the actual
+interior incidence graph, five-owner orientation, O52 charges, the unchanged
+`10 * mu` budget, and the original embedded estimating system and Greendlinger
+conclusions. Its joint construction interface selects the graph and Lemma 62
+output on one diagram at one pair of parameters, bypassing both historical
+records. All these conditional reductions pass ordinary axiom audits; the
+joint geometric producer remains unproved. The actual selected graph geometry
+must still handle isolated vertices and tree components.
+
+The finite-map part now does handle these cases: `CombMapSimpleEuler.lean`
+derives the edge bound from absence of loops and multiple edges. A two-dart
+face forces a single-edge component; all other components satisfy the usual
+face-degree estimate. `EndpointClosedRealization.lean` combines these maps,
+allowing omitted isolated vertices and an empty family of maps for an edgeless
+state. `EndpointClosedRealizationModel.lean` constructs every required
+subgraph realization for one edge on three vertices and passes its closed
+nonvacuity audits. Realizing the actual contiguity graph remains open.
+
+`ShortSection.lean` proves the source arc's quasi-geodesic lower bound and
+the pasted-region upper bound from its two connectors and target. It derives
+Osin's `lambda⁻¹ * (3 * eps + c)` estimate for an admissible short section;
+the admissibility follows directly for actual `BoundarySections`. The old
+`Lemma65Inputs.sideArcSourceLength` quantifies over arbitrary dart lists and
+does not supply that alphabet hypothesis, so it must not be treated as the
+source statement without checking its geometric callers.
+
+The face classification is already proved in `SurgeryFacePartition`, and
+`SurgeryCutDiagram` constructs the enclosed disc from `RegionCutData`.
+`SurgeryCutLemma65` had a stale non-elaborating adapter that omitted the
+current cut record's quasi-geodesic sections. That adapter is repaired and
+audited. `SurgeryCutSections.lean` now constructs the actual cut's sections
+from an exact partition of its ambient enclosing walk, preserving the base
+position, each section word, and both quasi-geodesic constants. Producing
+the enclosing region and its at-most-four quasi-geodesic arcs remains open.
+The outstanding proofs are:
+
+1. Construct the complementary-region boundary word polygons and their
+   finite incidence partition, including the `53n` total arc bound and
+   fourfold side bound for actual cutting systems. Their replacement
+   polygons, Morse proximity, strict dense-component selection, short
+   connector words, and word-length shortening are proved. The published
+   appendix numbers are 9.4 for unbound arcs, Corollary 9.6 for the large
+   cell under assumption (*), and Lemma 9.7 for the joint induction and
+   Greendlinger conclusion.
+2. Prove the selected incidence graph's planarity and simplicity in the
+   source's joint induction on relator-cell count (Appendix Lemma 9.7).
+   Simplicity uses the inductive Greendlinger conclusion for the enclosed
+   diagram, so the historical face-drop reduction is not the whole argument.
+3. Realize the new connector words by G-cell padding and region surgery;
+   prove that they either enlarge the distinguished contiguity family or
+   replace an actual cutting system by a shorter one. Preserve
+   O-equivalence, reduction, boundary words, selected regions, and the
+   required nonempty relator-cell condition throughout. Derive the unbound
+   budget from these topological contradictions and the proved metric input.
+4. Feed the same chosen parameters to the estimating-data assembly, the
+   relative Greendlinger theorem, and Hull 4.9. Keep the proved cyclic-rotation
+   correction in the exterior-arc consumers.
+
+A package accepting the missing partition or face-drop oracle as a hypothesis
+is an intermediate reduction only. The milestone is the actual producer and
+its audited geometric consumer.
+
+## Hull 4.4: discharge the additional geometry, not just the wrapper
+
+`HullSCLemma44FamilyAssembly` reduces the joint statement to three inputs:
+`RelativeGreendlingerStatement`, `RelativeIsoperimetricBridgeStatement`, and
+`HullRelatorRespellingStatement`.
+
+The first is supplied by the Osin package. The other two are still mathematical
+work. The relative-area induction already exists, but its historical transfer
+is **false**, not merely unfinished. Issue
+[#201](https://github.com/SauersML/group-approximation/issues/201) now has a
+closed Lean refutation: the quotient F₂ → ℤ², with all quotient-null basis
+words as relators, has the requested area bound and finite peripheral support
+while its image Cayley graph fails every four-point bound. The counterexample
+also satisfies admissibility and the kernel equation.
+
+The source check found that `IsLemma44Input.stronglyBounded` omits the published
+uniform bound on relator lengths. `HullSCLemma44BoundedInput` now preserves that
+historical definition, adds `IsBoundedLemma44Input`, and proves that the actual
+auxiliary one-relator producer supplies it. Its explicit
+`BoundedRelativeLinearAreaTransferStatement` remains to be proved, and the
+bounded condition must be migrated through the family and quotient consumers.
+This is a source-hypothesis repair; the printed Theorem E endpoints stay fixed.
+`HullSCLemma44BoundedFilling` carries this condition through the existing
+area induction and ball-injectivity proof to the actual bounded filling
+conclusion, conditional on Greendlinger and the corrected bounded transfer.
+It uses neither of the refuted transfer/pullback interfaces.
+
+The original-ball pullback certificate is also too strong, even for a bounded
+filling of C₂ * C₂; see
+[#202](https://github.com/SauersML/group-approximation/issues/202). Source
+relative balls can all be `{1}`, while a new quotient base edge reaches a
+nonidentity peripheral element. Properness can still hold. The corrected
+transfer therefore concludes quotient hyperbolic embeddedness directly.
+Its proof should use finite peripheral support where needed, allowing the
+source metric to be enlarged by that finite support. A standalone Lean proof
+of the bounded C₂ * C₂ pullback counterexample remains pending.
+
+For respelling, `HullSCLemma44JointRelabel` proves a joint transport only under
+additional alphabet/base-containment conditions. The original-family
+respelling is still an input, and those conditions must be derived in the
+actual construction. Audit this proposed intermediate statement against the
+source before extending its proof chain. If it is too strong, report the
+counterexample and use a justified direct joint-diagram argument while retaining
+the full required preservation conclusions and explicitly accounting for the
+published boundedness hypothesis.
+
+Finish by assembling ball injectivity and preservation of the selected,
+original, and joint families in the same canonical quotient. Proving just
+the selected-family special case leaves the downstream Osin construction open.
+
+## Starting group: validate a concrete candidate before investing further
+
+Recommended candidate for feasibility work: the explicit group
+`G_HB₂^(2)(7)` from Caprace–Conder–Kaluba–Witzel, followed by a torsion-free
+finite-index subgroup. Their Theorem 3.1, Proposition 7.3, Corollary 7.8, and
+Proposition 7.15 supply the relevant geometry, angle criterion, and finite
+matrix representation. See the [primary paper](https://arxiv.org/abs/2011.09276).
+
+The accompanying [exact Python experiment](../experiments/theorem_e_triangle_seed.py)
+checks all 11 defining relators in four-by-four matrices over F₇ and computes
+the three pair-image orders as 343, 2401, and 2401. This is reproducible
+exploration, **not a Lean certificate or a proof of a torsion-free kernel**.
+
+The finite-index transfer of property (T), finite presentation, and
+hyperbolicity is already proved in
+`Kazhdan/SharpExistenceLatticeUnconditional.lean`. Despite its name,
+`Hyperbolic.LatticeRouteInput` does not require a Lie lattice: an appropriate
+concrete group and subgroup suffice. Its unconditional assembly therefore
+reuses all three permanence results.
+
+The candidate still needs substantial formal work:
+
+- Prove its finite vertex-group presentations, the matrix homomorphism, and
+  injectivity on those vertex groups from exact finite data.
+- Prove the relevant triangle-of-groups developability and curvature results,
+  infinitude, and conjugacy of finite-order elements into vertex groups.
+  Existing disc-diagram and slim-triangle work may help, but no complete
+  applicable triangle-of-groups/CAT(-1) theorem was located. A specialized
+  combinatorial proof is worth evaluating before building general metric
+  foundations; it is not an already available shortcut.
+- Prove the three-subgroup property-(T) criterion and the required finite
+  angle bounds, reusing the fixed-space/orthogonality machinery; alternatively
+  produce and replay an actual exact Hodge certificate. Neither certificate
+  production nor the complete criterion has been discharged for this group.
+- Construct the finite-index kernel, prove it torsion-free and infinite, and
+  instantiate `LatticeRouteInput` to obtain the unchanged `SharpExistence`.
+
+This route has concrete finite data, but its full Lean feasibility is not yet
+established. Its geometry and analytic criterion need explicit proof outlines
+before committing to a large implementation. The existing generalized-
+quadrangle table route also lacks an exhibited suitable table; moreover its
+legacy degree-only torsion-freeness certificate is false, reported immediately
+as [#200](https://github.com/SauersML/group-approximation/issues/200).
+
+Changing the starting group to merely acylindrically hyperbolic is not a
+drop-in replacement: current Fournier-Facio and common-quotient inputs consume
+a hyperbolic group. Preserve the existing target by default. Any different
+mathematical route needs an explicit replacement proof and review by Sauers.
+
+## Execution order and evidence of progress
+
+First settle the routes that could invalidate the entire schedule: the joint
+Osin parameter interface, the Hull respelling/transfer hypotheses, and the
+concrete seed's geometry and property-(T) proof outlines. This is a bounded
+design checkpoint: each must have its exact hypotheses, existing reusable
+lemmas, missing constructive steps, and a source-backed mathematical argument.
+A new name for the same missing conclusion does not pass it.
+
+General DGO geometry is now closed. Next close the synchronized Osin
+construction and its Greendlinger/Hull 4.9 consumers, Hull 4.4's remaining
+controls, the concrete seed, and the final assembly. These have distinct proof
+boundaries suitable for coordinated contributors, but this plan does not
+assume additional agents or assign anyone work.
+
+For every implementation session, report the specific unproved input removed,
+the assembly consumer it reaches, and that consumer's remaining axiom closure.
+Supporting lemmas are valuable when their connection to a listed obligation
+is explicit. Module counts and successful incremental builds are not measures
+of completed formalization. Keep all work on the tip draft PR; immediately file
+new counterexamples and update this ledger when a route changes.
+
+Coordinate with Sauers before editing outside the handoff's `GGT/` and
+`Manuscript/NonMF/` ownership scope. In particular, the shared completion script
+needs a small coordinated repair: it still names `hullHypEmbeddedConeOff` and
+`hullSection6Relator`, which are absent from the current assembly.
+
+Final acceptance requires the repaired completion audit, the strict source
+scan, a build at the published commit, and closed audits of both unchanged
+printed endpoints and the literature/Hull bundles. Keep refutations as
+regressions and check that new geometric hypotheses admit the intended models.
+There is no defensible completion date until the seed and repaired geometric
+interfaces pass the first checkpoint. Those uncertainties are part of the
+plan, not work to discover after everything else is finished.

@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCRelativeExteriorArcConversion
 import GroupApproximation.GGT.HullSCRelativeGreendlingerFromComponents
 import GroupApproximation.GGT.HullSCLemma44OriginalExpansion
 
@@ -273,28 +274,6 @@ theorem relativeDiscRealizationSpelling_baseReadingModel
 
 /-! ## The conversion residue at a supplied outer word -/
 
-/-- **The arc-conversion residue, at a supplied letterwise spelling.**  The
-planar outer word is `outer`, the algebraic boundary word is `boundaryWord`,
-and `outer.map GGT.RelLetter.val = boundaryWord` matches them letter by letter,
-so an arc of one is an arc of the other.  Apart from that the statement is
-`RelativeExteriorArcConversionStatement`: one planar exterior region, one
-algebraic boundary contiguity, an exterior arc no shorter than the planar
-source arc. -/
-def RelativeExteriorArcConversionAtWordStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda)
-    {W : Set (List (GGT.RelLetter G Lambda))}
-    (eps : ℕ) (Delta : DiscDiagram.{u, w, 0} W) (boundaryWord : List G)
-    (outer : List (GGT.RelLetter G Lambda)),
-    Delta.boundaryWord = outer →
-    outer.map GGT.RelLetter.val = boundaryWord →
-      ∀ (j : Fin Delta.rCellCount)
-        (Gamma : EmbeddedBoundaryContiguity D eps Delta j)
-        (relator : List (GGT.RelLetter G Lambda)),
-        (GGT.VanKampen.Embedded.cell Delta j).word = relator →
-          ∃ C : RelativeBoundaryContiguity D eps boundaryWord relator,
-            Gamma.region.sourceArc.length ≤ C.exterior.length
-
 /-- **Model test for the supplied-word conversion residue**, at a region whose
 planar source arc is empty: the empty-exterior contiguity discharges it. -/
 theorem exists_relativeBoundaryContiguity_atWord_of_sourceArc_length_zero
@@ -359,7 +338,7 @@ theorem relativeGreendlingerGeodesicLengthStatement_of_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{u, w})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{u, w}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w}) :
     RelativeGreendlingerGeodesicLengthStatement.{u, w} := by
   intro G _ Lambda D hD mu hmu hmuUpper
   have hhyper : ∃ delta : ℕ,
@@ -400,14 +379,15 @@ theorem relativeGreendlingerGeodesicLengthStatement_of_components
       (Z.cells.get
         (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source))).relator :=
     cellWord_eq_relator_of_oEquivalent_atWord Creal hequiv Gamma.source
-  obtain ⟨C, hC⟩ :=
+  obtain ⟨n, C, hC⟩ :=
     hconv D eps Delta Z.boundaryWord outer hboundaryWord hmap Gamma.source
       packaged
       ((Z.cells.get
         (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source))).relator)
       hword
-  refine ⟨RelativeDiagramCertificate.ofLargeCell
-    (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source)) C ?_⟩
+  refine ⟨RelativeDiagramCertificate.ofLargeCellRotated hinput.rotate_mem
+    (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source)) n C ?_⟩
+  simp only [List.length_rotate]
   have hlengthEq :
       (((Z.cells.get
           (Creal.cellIndex.symm

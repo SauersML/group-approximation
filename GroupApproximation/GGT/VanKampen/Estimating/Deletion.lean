@@ -289,8 +289,15 @@ theorem sum_incidentEdges_card_le_two_mul
     _ = 2 * edges.card := by simp [Nat.mul_comm]
 
 /-- The edge inequality for every nonempty covered deletion state.  For the
-simple planar estimating graph this is Euler's inequality
-`|E| ≤ 3 * (|V| - 1)`, applied componentwise when the state is disconnected. -/
+simple planar estimating graph the intended inequality is
+`|E| ≤ 3 * (|V| - 1)`.
+
+**Refuted encoding (#204).** `EdgesCovered` retains only one endpoint, so
+this predicate actually forbids every incidence; see
+`VanKampen.hereditaryPlanarEdgeBound_iff_no_incidence` in
+`Estimating/HereditaryPlanarRefutation.lean`.
+`EndpointClosedDeletion` supplies the explicitly corrected subgraph invariant
+and proves its deletion induction. The historical predicate is preserved. -/
 def HasHereditaryPlanarEdgeBound
     {V : Type u} {E : Type v} [DecidableEq V] [DecidableEq E]
     (incident : V → E → Prop) [DecidableRel incident] : Prop :=

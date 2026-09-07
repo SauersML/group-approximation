@@ -132,7 +132,7 @@ theorem exists_relativeBallInjectivityParameters_of_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{u, w})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{u, w})
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
     (R : ℕ) :

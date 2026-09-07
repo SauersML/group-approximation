@@ -151,7 +151,10 @@ theorem RelWord.publishedPiecesSmall_symmetrized_of_piecesSmall_of_sameWord
       exact hraw
     exact max_lt hlu hlu'
 
-/-- The full hypotheses used by Hull's Lemma 4.4. -/
+/-- Historical Lemma 4.4 input. Its `stronglyBounded` field records finite
+peripheral-letter support but omits the published uniform relator-length
+bound. The original definition is preserved; `HullSCLemma44BoundedInput`
+provides the explicit strengthening `IsBoundedLemma44Input` (issue #201). -/
 structure RelWord.IsLemma44Input {G : Type u} [Group G] {Λ : Type*}
     (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
     (eps : ℕ) (mu : ℝ) (rho : ℕ) : Prop extends
@@ -175,8 +178,8 @@ structure RelWord.IsLemma49Input {G : Type u} [Group G] {Λ : Type*}
     max (u.length : ℝ) (u'.length : ℝ) < mu * v.length
 
 /-- The component-letter support of the symmetrized closure of one finite word
-is finite.  Thus Hull's strong-boundedness field is automatic for the one-
-relator family used by Theorem 7.1; it is not a remaining geometric input. -/
+is finite. This supplies the support half of published strong boundedness.
+`HullSCLemma44BoundedInput` also proves its uniform relator-length bound. -/
 theorem RelWord.finite_componentLetters_symmetrized
     {G : Type u} [Group G] {Λ : Type*}
     (v : List (GGT.RelLetter G Λ)) :

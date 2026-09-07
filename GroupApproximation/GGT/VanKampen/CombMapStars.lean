@@ -272,7 +272,7 @@ theorem faceStarLayer_subset_ball (M : CombMap.{u})
   classical
   by_cases hn : n = 0
   · subst n
-    simp [faceStarLayer]
+    simp [faceStarLayer, faceStarBall]
   · rw [faceStarLayer, if_neg hn]
     exact Finset.sdiff_subset
 
@@ -294,7 +294,7 @@ theorem faceStarLayer_disjoint (M : CombMap.{u})
     Disjoint (M.faceStarLayer seed i) (M.faceStarLayer seed j) := by
   classical
   wlog hlt : i < j generalizing i j with H
-  · exact (H M seed hij.symm (by omega)).symm
+  · exact (H hij.symm (by omega)).symm
   have hjpos : j ≠ 0 := by omega
   rw [Finset.disjoint_left]
   intro f hfi hfj
@@ -304,7 +304,7 @@ theorem faceStarLayer_disjoint (M : CombMap.{u})
   have hfpred : f ∈ M.faceStarBall seed (j - 1) :=
     M.faceStarBall_mono seed hijpred hfiBall
   rw [faceStarLayer, if_neg hjpos] at hfj
-  exact hfj.2 hfpred
+  exact (Finset.mem_sdiff.mp hfj).2 hfpred
 
 /-- Pairwise-disjoint star layers contained in a finite face set have total
 cardinality at most the cardinality of that set.  This is the exact counting

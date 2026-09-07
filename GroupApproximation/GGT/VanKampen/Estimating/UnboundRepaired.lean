@@ -1,30 +1,19 @@
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundEmptyDisc
 
 /-!
-# The repaired Lemma 62 construction statement
+# The earlier attempted repair of Lemma 62
 
-`UnboundEmptyDisc` refutes the pre-repair statement, kept there as
-`RefutedUnboundConstructionStatement`, twice over.  This file states the form that matches Osin's Appendix Lemma 62
-(arXiv `math/0411039`) and reduces it to a single geometric producer.
+This file retains the positive-cell and numerical-threshold repair of the
+empty-disc failure, together with its valid conditional reductions and
+counting lemmas. Its universal geometric producer statements are still
+false: `UnboundSmallMuCounterexample` gives closed refutations of both
+`EstimatingUnboundRepairedStatement` and `Lemma62ComponentPartitionStatement`.
+The counterexample satisfies Cayley hyperbolicity and the source's strict
+parameter ranges; epsilon and rho must also be chosen at the geometric
+scales omitted here. See issue #198 and `UnboundParameters`.
 
-The source runs Lemma 62 on a reduced diagram with `n >= 1` R-cells, under
-the hypothesis `(*)` that the estimating graph is simple with the two-gon
-condition, and with `rho` chosen after `mu`; the closing line of Lemma 63
-reads `rho > mu^{-2}`.  Three binders are added here for those three
-readings: `0 < Delta.rCellCount`, `EstimatingGraphData`, and the numerical
-threshold.  All three are already in scope at the one call site of the
-statement, `estimatingDataConstruction_of_components`, except that the
-threshold has to travel down from the parameter selection.
-
-`exists_rho_threshold` proves the parameter choice is available: for every
-positive `mu` there is a positive `rho` with `1 <= 2 * mu * sqrt rho`.
-
-What is left after this file is `Lemma62ComponentPartitionStatement`: the
-complementary components of the selected exterior arcs carry a Lemma 62
-averaging certificate.  That is the contradiction argument of Osin's proof,
-which cuts each component into a disc, applies Proposition 4.14 to the type
-(A1) arcs, and contradicts either the maximality of the distinguished family
-or the minimality of the cutting paths.
+`exists_rho_threshold` and the partition-to-budget implications below remain
+valid. They do not construct a partition certificate for every input.
 -/
 
 namespace GroupApproximation
@@ -88,12 +77,10 @@ theorem unboundTotal_add_covered_eq_perimeterTotal
   intro i _
   exact ((scaffold.partition i).perimeter_eq_kindLengths).symm
 
-/-! ## The repaired statement -/
+/-! ## The retained attempted repair -/
 
-/-- Osin Appendix Lemma 62 with the three hypotheses the source states and
-the refuted form dropped: the diagram has a relator
-cell, the estimating graph satisfies `(*)`, and `rho` was chosen against
-`mu`. -/
+/-- The earlier same-diagram repair, now refuted by
+`UnboundSmallMuCounterexample.not_estimatingUnboundRepairedStatement`. -/
 def EstimatingUnboundRepairedStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
@@ -107,7 +94,9 @@ def EstimatingUnboundRepairedStatement : Prop :=
     IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
       Nonempty (Lemma62Data D eps mu rho Delta scaffold)
 
-/-- The geometric core of Osin Appendix Lemma 62: cutting off the relator
+/-- The attempted universal partition producer, now refuted by
+`UnboundSmallMuCounterexample.not_lemma62ComponentPartitionStatement`.
+Its intended geometric interpretation was: cutting off the relator
 cells and the distinguished contiguity subdiagrams leaves complementary
 components carrying a Lemma 62 averaging certificate at the parameter
 `t = sqrt rho`.  Its arc-count field is Lemma 61 and its density field is the

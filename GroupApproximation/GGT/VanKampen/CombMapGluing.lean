@@ -390,36 +390,6 @@ theorem lift_innerPath
   | trans a b c hab hbc ih₁ ih₂ =>
       exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
-/-! The source interior paths and one seam crossing are precisely the data
-needed to prove connectedness of the double.  The constructor below derives
-the target `DoubleConnectivityData`; no connectedness field is copied by
-hand. -/
-
-def DoubleConnectivityData.of_innerPath
-    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
-    (cross : Relation.EqvGen S.closedMap.Adjacent
-      (0, C.base) (1, C.base)) :
-    DoubleConnectivityData S where
-  base := C.base
-  sameCopy := by
-    intro copy d
-    exact lift_innerPath S copy (C.path d)
-  crossCopy := cross
-
-theorem connected_of_innerPathData
-    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
-    (cross : Relation.EqvGen S.closedMap.Adjacent
-      (0, C.base) (1, C.base)) :
-    S.closedMap.IsConnected := by
-  exact connected_of_doubleConnectivityData
-    (DoubleConnectivityData.of_innerPath S C cross)
-
-theorem innerPathConnectedData_of_subsingleton
-    [Subsingleton (InnerDart Delta)] (base : InnerDart Delta) :
-    InnerPathConnectedData Delta where
-  base := base
-  path := by intro d; exact Relation.EqvGen.refl _
-
 /-- Copy number attached to a retained dart. -/
 def dartCopy (d : CopiedInnerDart Delta n) : Fin n := d.1
 
@@ -623,6 +593,38 @@ theorem connected_of_doubleConnectivityData
   exact Relation.EqvGen.trans _ _ _ (toZero d)
     (Relation.EqvGen.symm _ _ (toZero e))
 
+/-! The source interior paths and one seam crossing are precisely the data
+needed to prove connectedness of the double.  The constructor below derives
+the target `DoubleConnectivityData`; no connectedness field is copied by
+hand. -/
+
+def DoubleConnectivityData.of_innerPath
+    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
+    (cross : Relation.EqvGen S.closedMap.Adjacent
+      (0, C.base) (1, C.base)) :
+    DoubleConnectivityData S where
+  base := (0, C.base)
+  sameCopy := by
+    intro copy d
+    exact lift_innerPath S copy (C.path d)
+  crossCopy := cross
+
+theorem connected_of_innerPathData
+    (S : Pairing Delta 2) (C : InnerPathConnectedData Delta)
+    (cross : Relation.EqvGen S.closedMap.Adjacent
+      (0, C.base) (1, C.base)) :
+    S.closedMap.IsConnected := by
+  exact connected_of_doubleConnectivityData
+    (DoubleConnectivityData.of_innerPath S C cross)
+
+def innerPathConnectedData_of_subsingleton
+    [Subsingleton (InnerDart Delta)] (base : InnerDart Delta) :
+    InnerPathConnectedData Delta where
+  base := base
+  path := fun d => by
+    obtain rfl := Subsingleton.elim d base
+    exact Relation.EqvGen.refl _
+
 /-- The corrected incidence equations for the double of a disc.  `boundary`
 is the number of darts on the outer face, so gluing two copies identifies one
 boundary cycle in vertices and edges and removes the two outer faces. -/
@@ -658,43 +660,40 @@ structure DoubleIncidenceEquivalences (S : Pairing Delta 2) where
     Fin 2 × Delta.toCombMap.Face
 
 theorem DoubleIncidenceEquivalences.vertex_count_eq
-    (C : DoubleIncidenceEquivalences S) :
+    {S : Pairing Delta 2} (C : DoubleIncidenceEquivalences S) :
     (S.closedMap.vertexCount : ℤ) + (C.boundary : ℤ) =
       2 * (Delta.toCombMap.vertexCount : ℤ) := by
   have hnat : S.closedMap.vertexCount + C.boundary =
       2 * Delta.toCombMap.vertexCount := by
-    change Nat.card S.closedMap.Vertex + C.boundary =
-      2 * Nat.card Delta.toCombMap.Vertex
-    rw [← Nat.card_congr C.vertexEquiv]
-    simp [CombMap.vertexCount]
+    have h := Nat.card_congr C.vertexEquiv
+    simp only [Nat.card_sum, Nat.card_prod, Nat.card_fin] at h
+    exact h
   exact_mod_cast hnat
 
 theorem DoubleIncidenceEquivalences.edge_count_eq
-    (C : DoubleIncidenceEquivalences S) :
+    {S : Pairing Delta 2} (C : DoubleIncidenceEquivalences S) :
     (S.closedMap.edgeCount : ℤ) + (C.boundary : ℤ) =
       2 * (Delta.toCombMap.edgeCount : ℤ) := by
   have hnat : S.closedMap.edgeCount + C.boundary =
       2 * Delta.toCombMap.edgeCount := by
-    change Nat.card S.closedMap.Edge + C.boundary =
-      2 * Nat.card Delta.toCombMap.Edge
-    rw [← Nat.card_congr C.edgeEquiv]
-    simp [CombMap.edgeCount]
+    have h := Nat.card_congr C.edgeEquiv
+    simp only [Nat.card_sum, Nat.card_prod, Nat.card_fin] at h
+    exact h
   exact_mod_cast hnat
 
 theorem DoubleIncidenceEquivalences.face_count_eq
-    (C : DoubleIncidenceEquivalences S) :
+    {S : Pairing Delta 2} (C : DoubleIncidenceEquivalences S) :
     (S.closedMap.faceCount : ℤ) + 2 =
       2 * (Delta.toCombMap.faceCount : ℤ) := by
   have hnat : S.closedMap.faceCount + 2 =
       2 * Delta.toCombMap.faceCount := by
-    change Nat.card S.closedMap.Face + Nat.card (Fin 2) =
-      2 * Nat.card Delta.toCombMap.Face
-    rw [← Nat.card_congr C.faceEquiv]
-    simp [CombMap.faceCount]
+    have h := Nat.card_congr C.faceEquiv
+    simp only [Nat.card_sum, Nat.card_prod, Nat.card_fin] at h
+    exact h
   exact_mod_cast hnat
 
 def DoubleIncidenceEquivalences.toEulerCountData
-    (C : DoubleIncidenceEquivalences S)
+    {S : Pairing Delta 2} (C : DoubleIncidenceEquivalences S)
     (connectivity : DoubleConnectivityData S) :
     DoubleEulerCountData S where
   connectivity := connectivity

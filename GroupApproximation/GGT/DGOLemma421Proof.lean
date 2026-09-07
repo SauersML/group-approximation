@@ -19,7 +19,9 @@ radius-witness form used by `DGOPolygonCut.SumBound`, and
 `DGOProposition414Uniform` keeps the source's quantifier order while retaining
 the pointwise isolated-component projection used by Lemma 4.21.
 
-The rest of this module proves DGO Lemma 4.21(b) from that uniform bound.
+This module proves clause (a) and the located counting step for clause (b).
+`DGOLemma421FromUniform414` completes clause (b) using the minimal-gap and
+forward-match arguments.
 -/
 
 namespace GroupApproximation
@@ -1389,13 +1391,16 @@ theorem length_le_one_of_isEmpty_of_isWOne [IsEmpty Λ]
           · simpa [List.getElem?_eq_getElem hzero] using hzeroLetter
           · simpa [List.getElem?_eq_getElem hone] using honeLetter
 
-/-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
-theorem dgoLemma421a_of_uniform414
-    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
-  intro G _ Λ D hhyp hbase
-  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp hbase 1 1
-    le_rfl (by norm_num)
-  refine ⟨50 * C, ?_⟩
+/-- The sum bound at `(1,1)` alone makes every sufficiently deep `W` word
+`(4,1)`-quasi-geodesic. No general multiplicative-parameter bound is needed. -/
+theorem wWord_quasiGeodesic_of_uniformBound
+    {D : RelGenSet G Λ} {C : ℕ} (hC : 0 < C)
+    (hbound : DGOUniformSumBound D 1 1 C) :
+    ∀ (v : G) (word : List (RelLetter G Λ)), (∀ a ∈ word, D.IsLetter a) →
+      WWord.IsWOne word → WWord.IsWTwo D (50 * C) word → WWord.IsWThree D word →
+        ∀ i j : ℕ, i ≤ j → j ≤ word.length →
+          j - i ≤ 4 * wordDist D.alphabet.carrier
+            (vertex v word i) (vertex v word j) + 4 := by
   intro v word hlet hW1 hW2 hW3 i j hij hj
   let segment := (word.drop i).take (j - i)
   have hsegmentLength : segment.length = j - i := by
@@ -1432,6 +1437,14 @@ theorem dgoLemma421a_of_uniform414
           _ = vertex v word j := by rw [show i + (j - i) = j by omega]
       rw [hend] at hwhole
       omega
+
+/-- DGO Lemma 4.21(a) follows from the uniform Proposition 4.14 bound. -/
+theorem dgoLemma421a_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) : DGOLemma421a.{u, w} := by
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC, hbound⟩ := dgoUniformSumBound_of_uniform414 h D hhyp hbase 1 1
+    le_rfl (by norm_num)
+  exact ⟨50 * C, wWord_quasiGeodesic_of_uniformBound hC hbound⟩
 
 /-! ## The mixed quadrilateral used in clause (b) -/
 
@@ -2608,6 +2621,17 @@ structure DGO421FiniteAbsorptionCertificate
       ∃ h : G, h ∈ D.fam (label i) ∧
         pre * vertex (1 : G) p (source i) * h = vertex (1 : G) q j
 
+/-- The counting proof also locates its selected ranks near the beginning
+of the source word and assigns distinct short-side slots to all unmatched
+sources. Keeping this information permits matches to be found in two widely
+separated windows, rather than only in one unspecified block. -/
+structure DGO421LocatedAbsorptionCertificate
+    (D : RelGenSet G Λ) (p q : List (RelLetter G Λ)) (N M K : ℕ)
+    extends DGO421FiniteAbsorptionCertificate D p q N M K where
+  rank_le : ∀ i, (rank i).val ≤ i.val + 1
+  short : Fin N → Fin M
+  short_injective : ∀ i j, ¬ matched i → ¬ matched j → short i = short j → i = j
+
 /-- The strict finite-absorption conclusion supplied by the counting part of
 DGO Lemma 4.21(b), before the iterative consecutive-target step.
 
@@ -2634,19 +2658,31 @@ def DGO421FiniteAbsorptionConclusion : Prop :=
 
 /-! ## Assembly of Lemma 4.21(b) -/
 
-/-- **The counting half of DGO Lemma 4.21(b) from the uniform Proposition 4.14
-bound.**
+/-- **The located counting half of DGO Lemma 4.21(b) from uniform
+Proposition 4.14.**
 
-The second path is replaced at once by the substitute of
-`exists_reversibleSubstitute`: it reads the same path, so it carries the
-quasi-geodesic estimate of clause (a) and closes the same quadrilateral, and
-its reversal is admissible, which is what the fourth side of that
-quadrilateral needs.  So Dahmani--Guirardel--Osin's standing convention
-`X = X⁻¹` is not assumed anywhere below; the substitution is the exact place
-where it would have been used. -/
-theorem dgoLemma421b_finiteAbsorption_of_uniform414
+Base symmetry makes the reversed second word admissible. The quadrilateral
+projection matches every distinguished source either to the opposite word or
+to a short-side slot. The certificate retains the source ranks near the
+initial vertex and the injection of unmatched sources into those slots, in
+addition to the consecutive matched block supplied by finite absorption. -/
+theorem dgoLemma421b_locatedAbsorption_of_uniform414
     (h : DGOProposition414Uniform.{u, w}) :
-    DGO421FiniteAbsorptionConclusion.{u, w} := by
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      DGO421BaseSymmetric D →
+      ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
+      0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
+      ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
+        (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
+        WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
+        WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
+        R ≤ p.length →
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) : ℝ) ≤ eps →
+        ∃ cert : DGO421LocatedAbsorptionCertificate D p q
+          (K * (2 * ⌈eps⌉₊ + 1)) (2 * ⌈eps⌉₊) K, cert.pre = vq⁻¹ * vp := by
   classical
   intro G _ Λ D hhyp hbase
   obtain ⟨C414, hC414, _hsum414, hproj414⟩ :=
@@ -2875,6 +2911,49 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
     have hleftVal : i.val < (Eord.symm ez).val := hleft'
     have hrightVal : (Eord.symm ez).val < i.val + 1 := hright'
     omega
+  have hNpos : 0 < N := Nat.mul_pos hK (Nat.succ_pos M)
+  have hoccZero : (occ ⟨0, hNpos⟩).val ≤ 1 := by
+    by_contra hnot
+    let z : Fin N := ⟨0, hNpos⟩
+    have hfirst : 1 < (occ z).val := by
+      change 1 < (occ ⟨0, hNpos⟩).val
+      omega
+    let c : Fin (peripheralPositions P).card := ⟨1, by have := (occ z).isLt; omega⟩
+    have hcBefore : c < occ z := hfirst
+    have hcPos : 0 < (peripheralOccurrence P c).pos := by
+      have hzeroBound : 0 < (peripheralPositions P).card := by have := c.isLt; omega
+      have hpos := peripheralOccurrence_pos_lt P
+        (show (⟨0, hzeroBound⟩ : Fin (peripheralPositions P).card) < c by
+          change 0 < 1; omega)
+      omega
+    have hcEnd : (peripheralOccurrence P c).pos + 1 < P.length := by
+      have hbefore := peripheralOccurrence_pos_lt P hcBefore
+      have hend := hsourceEnd z
+      change (peripheralOccurrence P (occ z)).pos + 1 < P.length at hend
+      omega
+    have hcS : c ∈ S := mem_strictInteriorOccurrences.mpr ⟨hcPos, hcEnd⟩
+    let Eord := S.orderIsoOfFin rfl
+    have hbefore : (⟨c, hcS⟩ : S) < Eord ⟨0, by omega⟩ := hcBefore
+    have hbefore' := Eord.symm.strictMono hbefore
+    rw [Eord.symm_apply_apply] at hbefore'
+    have : (Eord.symm ⟨c, hcS⟩).val < 0 := hbefore'
+    omega
+  have hoccLe : ∀ i : Fin N, (occ i).val ≤ i.val + 1 := by
+    have haux : ∀ k : ℕ, ∀ hk : k < N, (occ ⟨k, hk⟩).val ≤ k + 1 := by
+      intro k
+      induction k with
+      | zero =>
+        intro hk
+        exact hoccZero
+      | succ k ih =>
+        intro hk
+        have hk' : k < N := by omega
+        have hprev := ih hk'
+        have hnext := hoccSucc ⟨k, hk'⟩ hk
+        change (occ ⟨k + 1, hk⟩).val = (occ ⟨k, hk'⟩).val + 1 at hnext
+        omega
+    intro i
+    exact haux i.val i.isLt
   have hsourceDeep : ∀ i : Fin N,
       (vertex (1 : G) P (source i))⁻¹ *
           vertex (1 : G) P (source i + 1) ∉
@@ -3369,9 +3448,30 @@ theorem dgoLemma421b_finiteAbsorption_of_uniform414
       rcases hi with ⟨j, hj, hstartQ, ⟨hh, hmem, heq⟩⟩
       obtain ⟨hjpos, hcompQ⟩ :=
         exists_isComp_of_matched_fourGonStart hj hstartQ
-      exact ⟨j, hj, hjpos, hcompQ, hh, hmem, heq⟩ }, ?_⟩
+      exact ⟨j, hj, hjpos, hcompQ, hh, hmem, heq⟩
+    rank_le := hoccLe
+    short := short
+    short_injective := hshortInj }, ?_⟩
   exact hpcVal
+
+/-- Forgetting the located rank and short-slot data recovers the original
+finite-absorption conclusion with its unchanged type. -/
+theorem dgoLemma421b_finiteAbsorption_of_uniform414
+    (h : DGOProposition414Uniform.{u, w}) :
+    DGO421FiniteAbsorptionConclusion.{u, w} := by
+  intro G _ Λ D hhyp hbase
+  obtain ⟨C, hC⟩ := dgoLemma421b_locatedAbsorption_of_uniform414 h G Λ D hhyp hbase
+  refine ⟨C, ?_⟩
+  intro eps K heps hK
+  obtain ⟨R, hR, hall⟩ := hC eps K heps hK
+  refine ⟨R, hR, ?_⟩
+  intro vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q hRlen hstart hend
+  obtain ⟨cert, hpre⟩ := hall vp vq P Q hletP hletQ hW1P hW2P hW3P hW1Q hW2Q hW3Q
+    hRlen hstart hend
+  exact ⟨cert.toDGO421FiniteAbsorptionCertificate, hpre⟩
 
 end OsinComponents
 end GGT
 end GroupApproximation
+
+#audit_axioms GroupApproximation.GGT.OsinComponents.wWord_quasiGeodesic_of_uniformBound

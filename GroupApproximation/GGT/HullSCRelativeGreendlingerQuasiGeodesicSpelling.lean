@@ -116,7 +116,7 @@ theorem relativeGreendlingerQuasiGeodesicSpellingStatement_of_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{u, w})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{u, w}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w}) :
     RelativeGreendlingerQuasiGeodesicSpellingStatement.{u, w} := by
   intro G _ Lambda D hD mu hmu hmuUpper
   have hhyper : ∃ delta : ℕ,
@@ -154,14 +154,15 @@ theorem relativeGreendlingerQuasiGeodesicSpellingStatement_of_components
       (Z.cells.get
         (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source))).relator :=
     cellWord_eq_relator_of_oEquivalent_atWord Creal hequiv Gamma.source
-  obtain ⟨C, hC⟩ :=
+  obtain ⟨n, C, hC⟩ :=
     hconv D eps Delta Z.boundaryWord outer hboundaryWord hmap Gamma.source
       packaged
       ((Z.cells.get
         (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source))).relator)
       hword
-  refine ⟨RelativeDiagramCertificate.ofLargeCell
-    (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source)) C ?_⟩
+  refine ⟨RelativeDiagramCertificate.ofLargeCellRotated hinput.rotate_mem
+    (Creal.cellIndex.symm (hequiv.cellIndex.symm Gamma.source)) n C ?_⟩
+  simp only [List.length_rotate]
   have hlengthEq :
       (((Z.cells.get
           (Creal.cellIndex.symm

@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.DGOProposition414General
 import GroupApproximation.Higman.OmegaSharedProof
 import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
@@ -133,13 +134,28 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **Open geometric proof.**  Dahmani–Guirardel–Osin, Lemma 4.21(b), in the
-corrected start-coset form of `GGT/DGOLemma421Statement.lean`: two long words
-satisfying (W1)–(W3) with `ε`-close endpoints share `K` consecutive matched
-components.  Its proof is the uniform Proposition 4.14 (isolated components
-of a quasi-geodesic polygon), under construction in `GGT/DGOProposition414*`. -/
-theorem dgoLemma421b : GGT.OsinComponents.DGOLemma421b.{0, 0} := by
-  sorry
+/-- Dahmani--Guirardel--Osin Proposition 4.14, proved with the
+constant uniform in the number of sides (`GGT/DGOLemma421Proof.lean`): in a
+weakly relatively hyperbolic group, an isolated component of a quasi-geodesic
+polygon has relative length bounded by a constant times the number of sides.
+It is the geometric input of Lemma 4.21(b) and of the joint embedding of the
+original and selected auxiliary families (`GGT/DGOProposition435JointPrescribed.lean`,
+whose hyperbolicity half is the cone-off of the relative Cayley graph along the
+selected cyclic subgroups). -/
+theorem dgoProposition414Uniform :
+    GGT.OsinComponents.DGOProposition414Uniform.{0, 0} :=
+  GGT.OsinComponents.dgoProposition414Uniform
+
+/-- Dahmani–Guirardel–Osin, Lemma 4.21(b), derived from uniform Proposition
+4.14: the located counting certificate yields separated forward matches, and
+the minimal-gap quadrilateral fills the intervening component ranks in
+consecutive order. The conclusion retains the two actual basepoints and the
+start-coset identities of `GGT/DGOLemma421Statement.lean`. -/
+theorem dgoLemma421b : GGT.OsinComponents.DGOLemma421b.{0, 0} :=
+  GGT.OsinComponents.dgoLemma421b_of_uniform414 dgoProposition414Uniform
+
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.dgoProposition414Uniform
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.dgoLemma421b
 
 /-- Hull's Lemmas 5.4–5.6 in the local finite-avoidance form, proved from
 DGO Lemma 4.21(b) alone: the orientation-pure detector, the pairwise
@@ -155,6 +171,9 @@ avoidance producer by the proved finite induction. -/
 theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} :=
   HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr
     hullYiSuitablePairAvoidingFiniteOneSided
+
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullYiSuitablePairAvoidingFiniteOneSided
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullYiSuitableFiniteFamily
 
 /-- **Open proof.**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
 subgroups and rotating families*, Theorem 5.3(b): for a separated very rotating
@@ -186,18 +205,6 @@ every element of the kernel, the identity being neither conjugate into a
 rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
-
-/-- **Open input.**  Dahmani--Guirardel--Osin Proposition 4.14 with the
-constant uniform in the number of sides (`GGT/DGOLemma421Proof.lean`): in a
-weakly relatively hyperbolic group, an isolated component of a quasi-geodesic
-polygon has relative length bounded by a constant times the number of sides.
-It is the geometric input of Lemma 4.21(b) and of the joint embedding of the
-original and selected auxiliary families (`GGT/DGOProposition435JointPrescribed.lean`,
-whose hyperbolicity half is the cone-off of the relative Cayley graph along the
-selected cyclic subgroups). -/
-theorem dgoProposition414Uniform :
-    GGT.OsinComponents.DGOProposition414Uniform.{0, 0} := by
-  sorry
 
 /-- **Open exact geometric proof.**  Hull's Lemma 4.4 in its family form with
 the source joint family bound explicitly
@@ -242,21 +249,23 @@ theorem estimatingSelectionConstruction :
     GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
 
-/-- **Open input.**  Osin's Lemmas 61 and 62: after passing to an
-`O`-equivalent diagram, the unbound arc partition satisfies the strict
-square-root budget and its numerical threshold
-(`GGT/VanKampen/Estimating/UnboundRepaired.lean`; Lemma 61's arc count is
-proved, the residue is the component decomposition). -/
+/-- **Refuted input; interface repair required.** The universal unbound-budget
+statement below omits Osin's geometric scale assumptions. Its closed
+refutation in `Estimating/UnboundSmallMuCounterexample.lean` persists under
+Cayley hyperbolicity and the source's strict parameter ranges. This placeholder
+cannot be filled at its current type; selection and unbound construction
+must share the source's parameter choice. See issue #198. -/
 theorem estimatingUnboundOutput :
     GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
   sorry
 
-/-- **Open input.**  Conversion of a planar exterior arc into the algebraic
-boundary contiguity at a supplied word
-(`GGT/HullSCRelativeGreendlingerSpelling.lean`). -/
+/-- Conversion of a planar exterior arc into the algebraic boundary
+contiguity at a supplied word, retaining the source relator rotation.  The
+fixed-relator predecessor is refuted by `ExteriorArcCounterexample`; the
+rotated statement follows from the region's shelling and short sides. -/
 theorem relativeExteriorArcConversionAtWord :
-    HullSC.RelativeExteriorArcConversionAtWordStatement.{0, 0} := by
-  sorry
+    HullSC.RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0} :=
+  HullSC.relativeExteriorArcConversionAtWordRotatedStatement
 
 /-- Hull's Lemma 4.9 for a nontrivial power of a shortest representative,
 from Osin's three estimating propositions (the piece construction is the

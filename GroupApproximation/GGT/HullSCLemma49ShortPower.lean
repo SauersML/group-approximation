@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCLemma49LongPeriod
+import GroupApproximation.GGT.HullSCLemma49PowerChain
 import GroupApproximation.GGT.HullSCLemma44CertificateInjectivity
 
 /-!

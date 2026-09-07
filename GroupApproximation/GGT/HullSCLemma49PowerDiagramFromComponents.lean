@@ -68,7 +68,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{0, 0})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
   hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components
     hselection hpieces hunbound
@@ -85,7 +85,7 @@ theorem hullLemma49KernelPowerStatement_of_components
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{0, 0})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0}) :
     HullLemma49KernelPowerStatement.{0, 0} :=
   hullLemma49KernelPowerStatement_of_geodesicPowerDiagram
     (hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
@@ -106,7 +106,7 @@ theorem hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating
       GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0}) :
     HullLemma49ShortestGeodesicPowerDiagramStatement.{0, 0} :=
   hullLemma49ShortestGeodesicPowerDiagramStatement_of_components
     hselection hpieces hunbound relativeDiscRealizationSpellingStatement hconv
@@ -119,7 +119,7 @@ theorem hullLemma49KernelPowerStatement_of_estimating
       GGT.VanKampen.EstimatingPieceConstructionStatement.{0, 0, 0})
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{0, 0}) :
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{0, 0}) :
     HullLemma49KernelPowerStatement.{0, 0} :=
   hullLemma49KernelPowerStatement_of_components
     hselection hpieces hunbound relativeDiscRealizationSpellingStatement hconv
@@ -132,7 +132,7 @@ theorem exists_relativeBallInjectivityParameters_of_estimating
       GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
     (hunbound :
       GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
-    (hconv : RelativeExteriorArcConversionAtWordStatement.{u, w})
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
     (R : ℕ) :

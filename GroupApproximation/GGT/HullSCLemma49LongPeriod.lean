@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCLemma49RebasedCertificate
 import GroupApproximation.GGT.HullSCLemma49PrimePiece
 
 /-!
@@ -94,10 +95,6 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_at
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0)
     {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) :
     ∃ (eps rho : ℕ),
@@ -113,8 +110,8 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_at
   have hmuCertPos : (0 : ℝ) < 1 / 1000 := by norm_num
   have hmuCertUpper : (1 / 1000 : ℝ) ≤ 1 / 16 := by norm_num
   obtain ⟨epsCert, rho₀, hcertificate⟩ :=
-    exists_lemma49RelativeGreendlingerCell_of_relativeGreendlinger
-      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper hrot
+    exists_rebasedLemma49Cell_of_relativeGreendlinger
+      hgeom D hemb (1 / 1000) hmuCertPos hmuCertUpper
   obtain ⟨K, hshadow⟩ :=
     exists_lemma49ContiguityShadow_constant delta epsCert
   let b := 8 * delta + 2
@@ -136,25 +133,25 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram_at
   have hcertInput : RelWord.IsLemma49Input D (RelWord.symmetrized v)
       epsCert (1 / 1000) rho :=
     hfinalSym.mono_parameters hepsCert hmuMono le_rfl
-  obtain ⟨C⟩ := hcertificate rho hrho₀ v g n hcertInput Z
-  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v g n rho Z C N
-    inferInstance hdelta hcertInput hshort hlongPeriod
-  apply false_of_longPeriod_powerDiagram_of_cell D Z C Sh hdelta hshort
+  obtain ⟨rotated, Zrot, conjugator, hconjugate, hlengthRot, hshortRot, ⟨C⟩⟩ :=
+    hcertificate rho hrho₀ v g n hcertInput Z hshort
+  have hlongRot : 8 * delta + 2 ≤ Zrot.boundaryWord.length := by
+    rw [hlengthRot]
+    exact hlongPeriod
+  obtain ⟨Sh⟩ := hshadow G inferInstance Lambda D v rotated n rho Zrot C N
+    inferInstance hdelta hcertInput hshortRot hlongRot
+  apply false_of_longPeriod_powerDiagram_of_cell D Zrot C Sh hdelta hshortRot
     hcertInput hfinalSym
   · simpa only [b, scale] using hrhoScale
   · exact hconnectors
-  · exact hlongPeriod
+  · exact hlongRot
 
 /-- The caller-independent form chooses a four-point constant from the
 hyperbolically embedded relative Cayley graph. -/
 theorem exists_parameters_false_of_longPeriod_powerDiagram
     (hgeom : RelativeGreendlingerStatement.{u, w})
     {G : Type u} [Group G] {Lambda : Type w}
-    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded)
-    (hrot : ∀ {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (D : GGT.RelGenSet G Lambda) (hemb : D.IsHyperbolicallyEmbedded) :
     ∃ (eps rho delta : ℕ),
       Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta ∧
       ∀ (W : Set (List (GGT.RelLetter G Lambda)))
@@ -170,7 +167,7 @@ theorem exists_parameters_false_of_longPeriod_powerDiagram
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨eps, rho, hgood⟩ :=
     exists_parameters_false_of_longPeriod_powerDiagram_at
-      hgeom D hemb hrot hdelta
+      hgeom D hemb hdelta
   exact ⟨eps, rho, delta, hdelta, hgood⟩
 
 /-! ## Model check -/

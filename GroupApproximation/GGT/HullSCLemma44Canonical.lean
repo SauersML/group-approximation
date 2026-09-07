@@ -302,81 +302,48 @@ theorem hullLemma44CanonicalQuotientStatement_zero_of_prefixIsoperimetric
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixIsoperimetric
     hgeom hbridge
 
-/-- Form using Osin Lemma 5.1's local Dehn transfer directly.
-
-**`hrot` is the boundary-cycle rotation residue of `RelativeBoundaryContiguity`
-(see its docstring in `HullSCRelativeGreendlingerStatement`).**  Every
-certificate currently produced anywhere in this development fixes the
-default `rotation := 0`, so `hrot` is discharged by `fun _ _ => rfl` at every
-present call site. -/
+/-- Form using Osin Lemma 5.1's local Dehn transfer directly. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (htransfer : RelativeDehnTransferStatement.{u, u, 0})
-    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : RelativeDehnTransferStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric
-    hgeom
-    (relativeIsoperimetricBridgeStatement_of_dehnTransfer htransfer hrot)
+    hgeom (relativeIsoperimetricBridgeStatement_of_dehnTransfer htransfer)
 
 /-- Universe-zero form with the two source lemmas separated. -/
 theorem hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer
     (hgeom : RelativeGreendlingerStatement.{0, 0})
-    (htransfer : RelativeDehnTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : RelativeDehnTransferStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
-    hgeom htransfer hrot
+    hgeom htransfer
 
 /-- Form using the proved linear-area induction and the relative-presentation
 transfer. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (htransfer : RelativeLinearAreaTransferStatement.{u, u, 0})
-    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : RelativeLinearAreaTransferStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer
-    hgeom (relativeDehnTransferStatement_of_linearAreaTransfer htransfer hrot)
-    hrot
+    hgeom (relativeDehnTransferStatement_of_linearAreaTransfer htransfer)
 
 /-- Universe-zero form at the final two source interfaces. -/
 theorem hullLemma44CanonicalQuotientStatement_zero_of_linearAreaTransfer
     (hgeom : RelativeGreendlingerStatement.{0, 0})
-    (htransfer : RelativeLinearAreaTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : RelativeLinearAreaTransferStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
-    hgeom htransfer hrot
+    hgeom htransfer
 
 /-- Universe-zero endpoint using the triangular-prefix relative-presentation
 transfer. -/
 theorem hullLemma44CanonicalQuotientStatement_zero_of_prefixLinearAreaTransfer
     (hgeom : RelativeGreendlingerStatement.{0, 0})
-    (htransfer : PrefixRelativeLinearAreaTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixRelativeLinearAreaTransferStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_zero_of_prefixIsoperimetric hgeom
     (prefixRelativeIsoperimetricBridgeStatement_of_linearAreaTransfer
-      htransfer hrot)
+      htransfer)
 
 /-! ## Assembly through weighted prefix area -/
 
@@ -385,12 +352,7 @@ Hull's canonical quotient statement.  The stronger `rho` threshold is the one
 used by the factor-two cut estimate. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_weightedTransfer
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (htransfer : PrefixRelativeWeightedAreaTransferStatement.{u, u, 0})
-    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixRelativeWeightedAreaTransferStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
   let mu : ℝ := 1 / 1000
@@ -454,7 +416,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_weightedTransfe
     · exact hxy
   obtain ⟨C⟩ := prefixRelativeIsoperimetricControl_of_weightedAreaTransfer
     htransfer D.rel D.embedded W eps rho mu hsc hmuThousand hrhoWeighted
-      q hsurj hker hcert (hrot D.rel)
+      q hsurj hker hcert
   refine ⟨hinject.1, ?_⟩
   exact quotientPeripheralPreservation_of_prefixIsoperimetricControl D
     hsc.toIsSmallCancellation q hsurj C hinjectCores
@@ -462,15 +424,10 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_weightedTransfe
 /-- Universe-zero endpoint at the weighted relative-presentation frontier. -/
 theorem hullLemma44CanonicalQuotientStatement_zero_of_weightedTransfer
     (hgeom : RelativeGreendlingerStatement.{0, 0})
-    (htransfer : PrefixRelativeWeightedAreaTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixRelativeWeightedAreaTransferStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_weightedTransfer
-    hgeom htransfer hrot
+    hgeom htransfer
 
 /-! ## Assembly through the kernel-coned prefix family -/
 
@@ -478,12 +435,7 @@ theorem hullLemma44CanonicalQuotientStatement_zero_of_weightedTransfer
 transfer imply Hull's canonical quotient statement. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixKernelCone
     (hgeom : RelativeGreendlingerStatement.{u, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0})
-    (hrot : ∀ {G : Type u} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixKernelConeTransferStatement.{u, u, 0}) :
     HullLemma44CanonicalQuotientStatement.{u} := by
   intro G _ A N k S D R
   let mu : ℝ := 1 / 1000
@@ -547,7 +499,7 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixKernelCon
     · exact hxy
   have harea : RelativeLinearKernelArea D.rel W q :=
     relativeLinearKernelArea_of_certificates D.rel hsc hmuThousand
-      hrhoDehn q hker hcert (hrot D.rel)
+      hrhoDehn q hker hcert
   have hcone := htransfer D.rel D.embedded W eps rho mu hsc q hsurj harea
   refine ⟨hinject.1, ?_⟩
   exact quotientPeripheralPreservation_of_prefixKernelCone D hsc q hsurj
@@ -557,15 +509,10 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixKernelCon
 certificate theorem and Osin kernel-cone transfer are supplied. -/
 theorem hullLemma44CanonicalQuotientStatement_zero_of_prefixKernelCone
     (hgeom : RelativeGreendlingerStatement.{0, 0})
-    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0})
-    (hrot : ∀ {G : Type} [Group G] {Lambda : Type}
-      (D' : GGT.RelGenSet G Lambda) {eps : ℕ} {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D' eps boundaryWord' relator'),
-      C.rotation = 0) :
+    (htransfer : PrefixKernelConeTransferStatement.{0, 0, 0}) :
     HullLemma44CanonicalQuotientStatement.{0} :=
   hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixKernelCone
-    hgeom htransfer hrot
+    hgeom htransfer
 
 end HullSC
 end GroupApproximation

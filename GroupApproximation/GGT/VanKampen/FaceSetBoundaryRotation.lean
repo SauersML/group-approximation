@@ -84,7 +84,7 @@ private theorem head_congr
   subst right
   rfl
 
-private theorem isChain_rotate_of_isChain_closes
+theorem isChain_rotate_of_isChain_closes
     {α : Type*} {R : α → α → Prop} {cycle : List α}
     (hne : cycle ≠ []) (hchain : cycle.IsChain R)
     (hclose : R (cycle.getLast hne) (cycle.head hne)) (n : ℕ) :
@@ -131,7 +131,7 @@ private theorem isChain_rotate_of_isChain_closes
   rw [hrot]
   exact hrot_chain
 
-private theorem isChain_rotate_closing
+theorem isChain_rotate_closing
     {α : Type*} {R : α → α → Prop} {cycle : List α}
     (hne : cycle ≠ []) (hchain : cycle.IsChain R)
     (hclose : R (cycle.getLast hne) (cycle.head hne)) (n : ℕ)

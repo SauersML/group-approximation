@@ -154,11 +154,7 @@ theorem relativeWeightedKernelArea_of_ratioCuts
     (hcuts : ∀ boundaryWord : List G,
       IsWord D.alphabet.carrier boundaryWord boundaryWord.prod →
       boundaryWord.prod ≠ 1 → q boundaryWord.prod = 1 →
-        Nonempty (RatioRelativeDehnCut D W eps q boundaryWord))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+        Nonempty (RatioRelativeDehnCut D W eps q boundaryWord)) :
     RelativeWeightedKernelArea D W q := by
   intro boundaryWord hword hmap
   let P : ℕ → Prop := fun length =>
@@ -207,9 +203,13 @@ theorem relativeWeightedKernelArea_of_ratioCuts
         simp only [List.length_append, List.length_rotate] at hboundaryLength
         refine ⟨C.cut.relator.length + weight, ?_, ?_⟩
         · omega
-        · rw [C.cut.contiguity.boundaryWord_prod_eq_conjugate_relator_mul_shortened
-            (hrot C.cut.contiguity)]
-          exact hstep
+        · have hrotated : RelatorLengthBudget.IsWeightedRelatorProduct W
+              (C.cut.relator.length + weight)
+              (word.rotate C.cut.contiguity.rotation).prod := by
+            rw [C.cut.contiguity.rotatedBoundaryWord_prod_eq_conjugate_relator_mul_shortened]
+            exact hstep
+          rw [word_prod_eq_conj_rotate_prod word C.cut.contiguity.rotation]
+          exact hrotated.conj _
   exact hlinear boundaryWord.length boundaryWord rfl hword hmap
 
 /-! ## Certificate construction -/
@@ -227,11 +227,7 @@ theorem exists_ratioRelativeDehnCut_of_certificate
     (K : RelativeDiagramCertificate D W eps mu Z)
     (q : G →* Q)
     (hker : q.ker =
-      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W)) :
     Nonempty (RatioRelativeDehnCut D W eps q K.boundaryWord) := by
   obtain ⟨i, C, _, hratio, hrelator, harcPos⟩ :=
     RelativeBoundaryContiguity.exists_ratio_bounded_cut_of_certificate
@@ -258,7 +254,8 @@ theorem exists_ratioRelativeDehnCut_of_certificate
       contiguity := C
       shortenedWord_isWord := C.shortenedBoundaryWord_isWord hboundary
         hrelatorAdmissible
-      quotient_value := C.map_shortenedBoundaryWord_prod_eq q hkill (hrot C)
+      quotient_value := C.map_shortenedBoundaryWord_prod_eq_of_map_eq_one q hkill
+        (map_certificate_boundaryWord_prod_eq_one K q hker)
       replacement_length_lt := hshort }
     replacement_twice_le := hratio
     relator_length_le := hrelator }⟩
@@ -276,26 +273,20 @@ theorem relativeWeightedKernelArea_of_certificates
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
     (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Nonempty (RelativeDiagramCertificate D W eps mu Z))
-    (hrot : ∀ {boundaryWord' : List G}
-      {relator' : List (GGT.RelLetter G Lambda)}
-      (C : RelativeBoundaryContiguity D eps boundaryWord' relator'),
-      C.rotation = 0) :
+      Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
     RelativeWeightedKernelArea D W q := by
   apply relativeWeightedKernelArea_of_ratioCuts D W eps q
-  · intro boundaryWord hword hne hmap
-    have hnormal : boundaryWord.prod ∈
-        Subgroup.normalClosure (GGT.RelLetter.listVal '' W) :=
-      mem_normalClosure_of_map_eq_one q hker hmap
-    obtain ⟨Z, hZboundary⟩ := exists_relativeReducedDiagram_of_boundaryWord
-      D W hsc.toIsSmallCancellation boundaryWord boundaryWord.prod hword hne
-        hnormal
-    obtain ⟨K⟩ := hcert boundaryWord.length Z
-    have hcut := exists_ratioRelativeDehnCut_of_certificate
-      D hsc hmu hrho K q hker hrot
-    rw [K.boundaryWord_eq, hZboundary] at hcut
-    exact hcut
-  · exact hrot
+  intro boundaryWord hword hne hmap
+  have hnormal : boundaryWord.prod ∈
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W) :=
+    mem_normalClosure_of_map_eq_one q hker hmap
+  obtain ⟨Z, hZboundary⟩ := exists_relativeReducedDiagram_of_boundaryWord
+    D W hsc.toIsSmallCancellation boundaryWord boundaryWord.prod hword hne hnormal
+  obtain ⟨K⟩ := hcert boundaryWord.length Z
+  have hcut := exists_ratioRelativeDehnCut_of_certificate
+    D hsc hmu hrho K q hker
+  rw [K.boundaryWord_eq, hZboundary] at hcut
+  exact hcut
 
 end HullSC
 end GroupApproximation
