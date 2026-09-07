@@ -220,3 +220,74 @@ by descending order.  This is a self-contained combinatorial argument over the e
 second construction of `Cl(X)` needed, contrary to my first guess), but is not a small lemma: it
 is a genuine induction/rewriting proof, on the order of the `FreeRootPlaneMass`-style
 developments elsewhere in this repository, not attempted in this bounded task.
+
+## 6. Third reopened task: the normal-form proof (`toModel` injective) --- scoped, not built
+
+The lead asked for the normal-form theorem itself, following a specific route (an explicit
+section `SignedModel X → CliffordLamp X`, a key lemma for right-multiplication by a generator,
+and a closure induction).  Worked the route through completely by hand before writing any Lean,
+confirmed it is mathematically correct, and found every piece of Mathlib/repository API it needs
+--- no missing eliminator anywhere.  Attempted a first module
+(`Sofic/CliffordLampNormalForm.lean`) covering the `ZMod 2`/sign-power arithmetic and the
+"swap a lamp past a word" lemmas; even that easiest quarter needed real care with noncommutative
+associativity rewriting.  Did not probe or land it (removed the scratch file; nothing landed this
+round) --- a candid estimate of the *remaining* three-quarters, below, showed the total would run
+well past the "few hundred lines" budget, so stopping here to report the route precisely, as
+instructed, rather than spend an open-ended number of probe/fix cycles against that estimate.
+
+**The route, in full, with the exact obstruction at each stage:**
+
+1. **The section.** `wordOfList (l : List X) := l.foldr (fun x acc => lamp X x * acc) 1` and
+   `wordOfSupport s := wordOfList (s.sort (· ≤ ·))`; `section' ⟨a,f⟩ := (if a=0 then 1 else sign X)
+   * wordOfSupport f.support`. Straightforward.
+2. **Swapping.** `lamp_mul_lamp_swap {x≠y} : lamp x * lamp y = sign * (lamp y * lamp x)`, derived
+   from `commutator_lamp_lamp` plus the involution facts; then `lamp_mul_wordOfList` (a fresh lamp
+   commutes past a list of other distinct lamps, picking up `sign ^ length`), by list induction
+   using the swap lemma and `sign_commute_lamp`/`sign_commute` to walk the accumulated sign to the
+   front.  Both are "small" in the sense of being self-contained, but every step is a
+   noncommutative-group identity that has to be assembled by hand (`calc` + targeted `mul_assoc`
+   rewrites) --- no `group`/`ring_nf`-style tactic closes them automatically once a hypothesis like
+   `a*a=1` has to be *used*, not just generic associativity. Real, but genuinely small (my draft:
+   ~70 lines, and it plausibly still has a bug in exactly this kind of rewrite --- not probed).
+3. **Splicing a point into the sorted word --- the actual size driver.**  The key lemma is
+   `wordOfSupport (insert x s) = sign ^ ((s.filter (x < ·)).card) * wordOfSupport s * lamp X x` for
+   `x ∉ s`.  Proving it requires building the explicit spliced list `L := (s.filter (·<x)).sort
+   (≤) ++ x :: (s.filter (x<·)).sort (≤)` and showing (a) `L.Nodup`, (b) `L.toFinset = insert x s`,
+   (c) `L.Pairwise (≤)` (via `List.pairwise_append`, twice, plus per-element membership facts
+   connecting the two filtered pieces), then invoking `List.toFinset_sort`'s uniqueness-of-sorted-
+   permutation direction to conclude `(insert x s).sort (≤) = L`, and finally applying
+   `lamp_mul_wordOfList` to move `lamp X x` from the middle of `wordOfSupport L` to the end.  Every
+   piece of API needed exists (`List.toFinset_sort`, `List.pairwise_append`, `Finset.sort_toFinset`,
+   `List.toFinset_append`) but assembling them is a genuine ~100--150 line development, not a
+   one-line wrapper.
+4. **The round trip, both directions.**  `toModel (section' m) = m` is the "easy" direction (unfold
+   the group law on `SignedModel X` against the definition, an induction on `f.support` via
+   `wordOfSupport_insert` from step 3) --- maybe 40--60 lines.  The hard direction,
+   `section' (toModel g) = g` for every `g`, is where the induction principle has to be chosen
+   carefully: the naive property `P(g) := section'(toModel g) = g` is **not** closed under
+   multiplication (`P(g)`, `P(h)` do not obviously give `P(g*h)`, since `section'` is not a group
+   homomorphism), so `mem_subgroup_of_sign_mem_of_lamp_mem`/`PresentedGroup.generated_by` cannot be
+   applied to `P` directly --- this is the one place a naive reading of "closure induction on the
+   generating set" fails.  The fix (no missing eliminator, just a different choice of induction
+   target): prove instead `Q(h) := ∀ n, section' (n * toModel h) = section' n * h`, universally
+   quantified over `n`.  `Q` genuinely *is* closed under multiplication and inverse (a two-line
+   computation each, using that `toModel` is a homomorphism), holds at `1`, and holds at each
+   generator by step 3's key lemma read as a statement about arbitrary `n`.  Packaging `{h | Q h}`
+   as an actual `Subgroup` (proving `one_mem'`, `mul_mem'`, `inv_mem'` from the three facts just
+   listed) and applying `mem_subgroup_of_sign_mem_of_lamp_mem` gives `Q(g)` for every `g`;
+   specializing at `n = 1` gives `section' (toModel g) = g`.  This is conceptually clean but is
+   itself another ~80--120 lines (the `Subgroup` bundling plus the `Q`-closure algebra).
+5. **Wiring.** `Function.Bijective toModel` from the two round-trip identities, the order formula
+   `Nat.card (Subgroup.closure ({sign X} ∪ lamp X '' Y)) = 2 ^ (Y.card + 1)` for finite `Y` by
+   transporting `Fintype.card (ZMod 2 × {f : X →₀ ZMod 2 // f.support ⊆ Y})` --- another ~50--80
+   lines connecting a subgroup-of-a-presented-group cardinality statement to the bijection.
+
+**Total honest estimate: 500--800 lines**, not "a few hundred," concentrated almost entirely in
+steps 3 and 4 (the sort-splicing combinatorics and the closure-induction bundling), neither of
+which reduces to an existing lemma or a short calculation --- both are real, self-contained proofs
+that would need their own careful construction and multiple probe/fix rounds against
+associativity-heavy `calc` blocks (as directly demonstrated by step 2 above, the *smallest* piece,
+already needing hand-verified `calc` chains rather than one-line automation).  No blocking
+capability gap: every mathlib/repository lemma named above exists at the pin and was checked by
+reading it, not guessed.  Standing by to build it in full if the lead wants to authorize the
+larger budget; otherwise the two gap rows (10, and half of 11) in §5's table stand as recorded.
