@@ -1069,3 +1069,28 @@ name would have been ambiguous.
 | 2026-09-07 | **`ThomBridgeRelToAbs`** green; `LIXHclass` red | `chernMul_top_unit` left `cohCast ⋯ a = a`; `thomLift` inline left `M` a metavariable |
 | 2026-09-07 | `LIXHclass` | red: `Trans Eq Eq ?m` at the last `calc` step |
 | 2026-09-07 | **`LIXHclass`** | **green, 9203 jobs, `PROBE GREEN`, no `sorryAx` in the log** |
+| 2026-09-07 | all three, `lixprobe6.sh` | **green, 9203 jobs, `axiom lines seen: 38`, `sorryAx: none`** |
+
+### Axiom lines, by name
+
+Read out of `lixprobe6.sh cs-endpoint` (the older `lixprobe.sh` filters whole
+`info:` lines, so it printed none of these):
+
+```text
+'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerOf' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'GroupApproximation.CharClass.relToAbs_bridgeTotal' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'GroupApproximation.CharClass.lixHclass' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+```
+
+**A `grep` for `sorryAx` over a filtered probe log is not evidence about a given
+theorem.**  The filter drops whole `info:` lines but keeps their continuations,
+so an axiom list that WRAPS leaks ` Classical.choice,` / ` Quot.sound]` while one
+that fits on a single line vanishes entirely.  `lixHclass`'s list is short and
+left no trace; `pull_bridgeChartIncl_tautEulerOf`'s wraps and did.  A clean grep
+across such a log therefore says nothing about the short ones — and unsolved
+goals close a proof with `sorryAx` while leaving **no literal token** for
+`ccland.sh`'s lexical gate to catch.  `relToAbs_bridgeTotal` was in exactly that
+state for one probe round.  Read the axiom line by name, or read nothing.
