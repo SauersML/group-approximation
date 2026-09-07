@@ -311,6 +311,11 @@ $C^*_{\max}(H)$ is not finite: it contains a proper isometry.
 \leanverified{Manuscript/OneSidedMFRadical/RankFourSimplicity}{GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.manuscriptPropositionSimple}
 \end{mainthm}
 
+Theorem~\ref{thm:leavitt-mf-quotient} treats the unit group of
+$L_k(1,d)$ for every countable field $k$ and every $d\ge2$: every
+homomorphism from it to an MF group factors through its abelianization
+$k^\times/(k^\times)^{d-1}$, and this quotient is MF\@.
+
 \begin{mainthm}[an amenable nonquasidiagonal trace]
 \label{thm:amenable-trace}
 There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
@@ -1164,6 +1169,51 @@ so by Corollary~\ref{cor:one-sided-ring-maximal} the algebra
 $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and
 $C^*_{\max}(H)$ contains a proper isometry.
 \end{proof}
+
+\begin{theorem}[MF quotients of Leavitt unit groups]
+\label{thm:leavitt-mf-quotient}
+Let $k$ be a countable field, let $d\ge2$, let $R=L_k(1,d)$, and let
+$H=R^\times$.  Then $H\cong\GL_d(R)$, and $\EL_d(R)=[H,H]$ is the
+intersection of the kernels of all homomorphisms from $H$ to MF groups.
+Moreover
+\[
+ H/\EL_d(R)\cong k^\times/(k^\times)^{d-1},
+\]
+the group $K_1(R)$, so every homomorphism from $H$ to an MF group
+factors through $H\to k^\times/(k^\times)^{d-1}$, and this quotient is
+MF\@.
+\end{theorem}
+
+\begin{proof}
+Write $s_1,\dots,s_d,t_1,\dots,t_d$ for the generators of $R$, with
+$t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$.  The maps
+$x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$
+are mutually inverse isomorphisms of right $R$-modules between $R$ and
+$R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.  With $s=s_1$ and
+$t=t_1$ the hypothesis of Theorem~\ref{thm:full-defect-ring} holds, as
+in the proof of Corollary~\ref{cor:simple-infinite-ring}, so every
+homomorphism from $\EL_d(R)$ to an MF group is trivial.  Khanh--Thanh
+show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the group of
+diagonal matrices with entries in $k^\times$, and that
+$H/[H,H]\cong K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of
+Theorem~7.2]{KhanhThanh}.  The group $D_d(k)$ is abelian and normalizes
+$\EL_d(R)$, so $\GL_d(R)/\EL_d(R)$ is abelian and $[H,H]\le\EL_d(R)$.
+A countable abelian group $A$ is MF: $C^*_{\max}(A)$ is commutative and
+separable, hence residually finite-dimensional and MF~\cite{BK}, and an
+embedding $\iota$ of $C^*_{\max}(A)$ in a norm matrix corona restricts
+to the embedding $a\mapsto\iota(u_a)+1-\iota(1)$ of $A$ in its unitary
+group.  So $H\to H/[H,H]$ is a homomorphism to an MF group, while every
+homomorphism from $H$ to an MF group is trivial on $\EL_d(R)$, which
+gives
+\[
+ \EL_d(R)\le\bigcap_\rho\ker\rho\le[H,H]\le\EL_d(R),
+\]
+the intersection over all homomorphisms $\rho$ from $H$ to MF groups.
+\end{proof}
+
+For $d=2$ the quotient is trivial for every countable field $k$, so
+every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial.
+For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
 
 \section{An amenable nonquasidiagonal trace}
 \label{sec:amenable-nonqd}
