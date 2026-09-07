@@ -4,12 +4,25 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # `HullRelatorRespellingStatement` is too strong as printed
 
-`HullSCLemma44FamilyAssembly` states the residual re-spelling input as a
-statement about an **arbitrary** hyperbolically embedded `original`, with no
-relation to Hull's alphabet `A`.  Its own reduction does not: both
-`OriginalRelatorRespellingStatement` and `relatorRespellings_of_original` carry
-`original.alphabet.carrier ⊆ A.alphabet.carrier`.  This file shows that the
-missing containment is not bookkeeping.
+`HullRelatorRespellingStatement` used to quantify over an **arbitrary**
+hyperbolically embedded `original`, with no relation to Hull's alphabet `A`,
+while its own reduction carried `original.alphabet.carrier ⊆ A.alphabet.carrier`
+throughout.  This file is the evidence that the missing containment was not
+bookkeeping, and the commit that lands it threads the containment back in.
+
+The containment was never a new hypothesis.
+`HullLemma44CanonicalQuotientFamilyInclusionJointStatement` -- the statement the
+Theorem C assembly actually consumes -- has carried it all along;
+`hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_canonical_of_controls`
+binds it and uses it, and simply did not pass it down to
+`FamilyInclusionRelativeControlStatement`, which in turn did not pass it to the
+re-spelling statement.  A hypothesis dropped twice on the way down.
+
+Because the repair lands with this file, the collapse below is stated against
+`HullRelatorRespellingStatementUnguarded`, a named copy of the statement as it
+stood before.  The witness does not satisfy the repaired statement -- that is
+what makes the repair the right one -- so keeping the copy is what keeps the
+defect on the record.
 
 The witness is `coneEverythingRelGenSet`: everything in the base, and **no
 peripheral family at all**.  Its relative Cayley graph is the complete graph on
@@ -206,7 +219,39 @@ theorem coneEverythingJoint_isHyperbolicallyEmbedded {G : Type u} [Group G]
   relGenSetReindex_isHyperbolicallyEmbedded selected.rel (emptyJointIndexEquiv k)
     selected.embedded
 
-/-- **`HullRelatorRespellingStatement` collapses.**  Whatever thresholds it
+/-- **The re-spelling statement as it stood before the containment was threaded
+in.**  This is `HullRelatorRespellingStatement` verbatim at `026b80ae`, minus
+nothing: at that revision it carried no relation between `original` and Hull's
+alphabet `A`.
+
+It is kept as a named copy for one reason.  The repair landed with this file
+adds `original.alphabet.carrier ⊆ A.alphabet.carrier` to the live statement, and
+the witness below does not satisfy it -- `A.alphabet.carrier` is never all of
+`G`, because `HullGeneratingSet.nonElementary` needs two independent loxodromics
+and a bounded graph has none.  So the collapse can no longer be stated against
+the live statement, which is exactly the point of the repair.  Stating it
+against this copy keeps the defect on the record instead of deleting the
+evidence along with the bug. -/
+def HullRelatorRespellingStatementUnguarded : Prop :=
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G}
+    (selected : AuxiliaryPeripheralFamily A N S)
+    {Lambda : Type w} (original : GGT.RelGenSet G Lambda)
+    (joint : GGT.RelGenSet G (Sum Lambda (AuxiliaryPeripheralIndex k))),
+    original.IsHyperbolicallyEmbedded →
+    joint.IsHyperbolicallyEmbedded →
+    (∀ lam : Lambda, joint.fam (Sum.inl lam) = original.fam lam) →
+    (∀ i : AuxiliaryPeripheralIndex k,
+      joint.fam (Sum.inr i) = selected.cores.peripheral i) →
+    ∀ mu : ℝ, 0 < mu → mu ≤ 1 / 1000 →
+      ∀ eps0 rho0 : ℕ,
+        ∃ eps rho : ℕ,
+          ∀ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
+            RelWord.IsLemma44Input selected.rel W eps mu rho →
+              RelatorRespellingAt original W eps0 rho0 mu ∧
+                RelatorRespellingAt joint W eps0 rho0 mu
+
+/-- **The unguarded re-spelling statement collapses.**  Whatever thresholds it
 returns, every Lemma 4.4 input over the selected auxiliary family at those
 thresholds has trivial normal closure.
 
@@ -215,8 +260,8 @@ such input with nontrivial normal closure is exhibited, and none is constructed
 in this development.  What it does show is that the statement's `original` is
 unguarded -- the printed form admits an `original` no re-spelling can survive,
 and the containment its own reduction carries is what excludes it. -/
-theorem normalClosure_eq_bot_of_hullRelatorRespelling
-    (h : HullRelatorRespellingStatement.{u, 0})
+theorem normalClosure_eq_bot_of_hullRelatorRespellingUnguarded
+    (h : HullRelatorRespellingStatementUnguarded.{u, 0})
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G} (selected : AuxiliaryPeripheralFamily A N S)
     (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000) :
@@ -243,7 +288,7 @@ The hypothesis is exactly what this development does not supply, which is why
 the refutation is stated conditionally rather than asserted.  It is stated at
 all so that anyone who later builds such a family gets the refutation by
 application rather than by repeating the argument. -/
-theorem not_hullRelatorRespellingStatement_of_nontrivialInput
+theorem not_hullRelatorRespellingStatementUnguarded_of_nontrivialInput
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G} (selected : AuxiliaryPeripheralFamily A N S)
     (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000)
@@ -251,10 +296,10 @@ theorem not_hullRelatorRespellingStatement_of_nontrivialInput
       ∃ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
         RelWord.IsLemma44Input selected.rel W eps mu rho ∧
           Subgroup.normalClosure (GGT.RelLetter.listVal '' W) ≠ ⊥) :
-    ¬ HullRelatorRespellingStatement.{u, 0} := by
+    ¬ HullRelatorRespellingStatementUnguarded.{u, 0} := by
   intro h
   obtain ⟨eps, rho, hcollapse⟩ :=
-    normalClosure_eq_bot_of_hullRelatorRespelling h selected mu hmu hmuUpper
+    normalClosure_eq_bot_of_hullRelatorRespellingUnguarded h selected mu hmu hmuUpper
   obtain ⟨W, hW, hne⟩ := hinput eps rho
   exact hne (hcollapse W hW)
 
@@ -262,8 +307,8 @@ end Statement
 
 #audit_axioms isHyperbolicallyEmbedded_coneEverything
 #audit_axioms eq_empty_of_isLemma44Input_coneEverything
-#audit_axioms normalClosure_eq_bot_of_hullRelatorRespelling
-#audit_axioms not_hullRelatorRespellingStatement_of_nontrivialInput
+#audit_axioms normalClosure_eq_bot_of_hullRelatorRespellingUnguarded
+#audit_axioms not_hullRelatorRespellingStatementUnguarded_of_nontrivialInput
 
 end HullSC
 end GroupApproximation

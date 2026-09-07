@@ -411,7 +411,7 @@ theorem familyInclusionRelativeControlStatement_of_quasiGeodesic_of_respelling
     (hbridge : RelativeIsoperimetricBridgeQuasiGeodesicStatement.{u, u, w})
     (hrespell : HullRelatorRespellingStatement.{u, w}) :
     FamilyInclusionRelativeControlStatement.{u, w} := by
-  intro G _ A N k S selected Lambda original joint horiginal hjoint hinl hinr
+  intro G _ A N k S selected Lambda original joint hA horiginal hjoint hinl hinr
   let mu : ℝ := 1 / 1000
   have hmuPos : 0 < mu := by
     dsimp [mu]
@@ -424,7 +424,7 @@ theorem familyInclusionRelativeControlStatement_of_quasiGeodesic_of_respelling
     hgeom original horiginal mu hmuPos hmuSixteen
   obtain ⟨epsJ, rho0J, hcertJ⟩ := hgeom joint hjoint mu hmuPos hmuSixteen
   obtain ⟨epsS, rhoS, hres⟩ :=
-    hrespell selected original joint horiginal hjoint hinl hinr mu hmuPos
+    hrespell selected original joint hA horiginal hjoint hinl hinr mu hmuPos
       hmuThousand (max epsO epsJ) (max rho0O rho0J)
   refine ⟨epsS, rhoS, mu, hmuPos, ?_⟩
   intro W Q _ q hq hsc hker
