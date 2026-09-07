@@ -20,9 +20,36 @@ re-spelling statement.  A hypothesis dropped twice on the way down.
 
 Because the repair lands with this file, the collapse below is stated against
 `HullRelatorRespellingStatementUnguarded`, a named copy of the statement as it
-stood before.  The witness does not satisfy the repaired statement -- that is
-what makes the repair the right one -- so keeping the copy is what keeps the
-defect on the record.
+stood before.  The witness was built to exhibit an `original` that no re-spelling
+can survive; the repaired statement excludes precisely that `original` and
+nothing else that could be found; so the collapse no longer follows from it.  A
+repair that left the witness still going through would have been the worrying
+outcome, because it would have meant the added hypothesis did not bite on the
+pathology it was chosen for.
+
+## Two tooling hazards this chain is exposed to
+
+Both were hit while making the repair, and both belong here rather than in a
+commit message, because this is where the next person editing the chain will be.
+
+`git grep PAT -- '*.lean'` searches the LOCAL INDEX, and under this repository's
+plumbing-push protocol the local HEAD lags `origin/main`, so files landed since
+then are untracked locally and invisible to it.  Asking it which files consume
+`FamilyInclusionRelativeControlStatement` returned one; the answer is two.  The
+one it hid, `GGT/HullSCLemma44QuasiGeodesicBridge`, holds
+`familyInclusionRelativeControlStatement_of_quasiGeodesic_of_respelling` -- the
+producer the Theorem C assembly actually routes through.  Ask
+`git grep PAT origin/main -- '*.lean'` for what is landed, or `grep -r` for the
+tree you are about to build; the bare form answers neither question.
+
+The working tree is shared with other live sessions, and an in-flight edit can be
+replaced by `origin/main`'s copy without warning.  That happened here to
+`HullSCLemma44QuasiGeodesicBridge` -- the file on the live path -- while the edits
+to `HullSCLemma44FamilyAssembly`, holding the route nothing consumes, survived.
+The failure mode was therefore: statements edited, unused producer threaded, used
+producer silently reverted.  It surfaced only because both producers prove the
+same `Prop`.  Re-verify that your edits are still present immediately before
+building, not only after making them.
 
 The witness is `coneEverythingRelGenSet`: everything in the base, and **no
 peripheral family at all**.  Its relative Cayley graph is the complete graph on
@@ -231,7 +258,14 @@ the witness below does not satisfy it -- `A.alphabet.carrier` is never all of
 and a bounded graph has none.  So the collapse can no longer be stated against
 the live statement, which is exactly the point of the repair.  Stating it
 against this copy keeps the defect on the record instead of deleting the
-evidence along with the bug. -/
+evidence along with the bug.
+
+**The live statement is `HullRelatorRespellingStatement`, in
+`GGT/HullSCLemma44FamilyAssembly`.**  Use that one.  This copy is retained
+history: nothing proves it, and NOTHING SHOULD CONSUME IT.  A declaration taking
+`HullRelatorRespellingStatementUnguarded` as a hypothesis would be assuming the
+form that the witness below refutes, which is a defect rather than a weakening;
+if one ever appears, it is a bug and not a convenience. -/
 def HullRelatorRespellingStatementUnguarded : Prop :=
   ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G}
