@@ -40,3 +40,10 @@ abelianization for every GL_n(R), n >= 2, without the AGP inputs. Its Lean
 endpoint is `MFQuotientMatrices.manuscriptMFQuotientMatrices`. This is a
 separate proof of that scope; the rank-one classification and identification
 with algebraic K1 in this claim still require their own arguments.
+
+`supported-unit-commutators-lie-in-corner-units` supplies the supported-unit
+step as `MFQuotientUnits.agpStepOne`. Together with the abstract
+abelianization package, this leaves `AGPMenalMoncasiReduction` as the sole
+input of the all-rank group-theoretic endpoint
+`printedMFQuotientUnits_of_menalMoncasi`. This does not discharge
+`AGPUnitKappa`, which is about the constructed canonical algebraic K1.

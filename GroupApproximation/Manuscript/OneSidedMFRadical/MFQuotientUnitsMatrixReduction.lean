@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
 import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientMatrices
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
 
 /-!
 # `AGPMatrixReduction` is closed
@@ -24,11 +25,17 @@ Of the sentence's three adjectives, all three are now the tree's own:
 
 ## What remains cited
 
-`AGPUnitK1` / `AGPUnitKappa` (AGP Theorem 2.4), `AGPMenalMoncasiReduction`
-(Theorem 2.4 Step 2 with Menal--Moncasi) and `AGPStepOne` (Theorem 2.4 Step 1).
-Those are the substance of AGP §2 and are not touched here.  `MoritaKOne` also
-remains open in general; `AlgebraicK.moritaKOne_of_selfSimilar` closes it for the
-self-similar rings the manuscript actually uses.
+`MFQuotientUnitsStepOne` now proves `AGPStepOne`. The abstract `AGPUnitK1`
+package is supplied below by abelianization: its definition asks only for an
+abstract countable abelian quotient with commutator kernel, so it does not
+assert anything about the constructed algebraic K₁. Consequently
+`printedMFQuotientUnits_of_menalMoncasi` has just the Menal--Moncasi reduction
+left as input. `MFQuotientMatrices` already proves the group-theoretic
+classification at every rank at least two with no such input.
+
+The canonical `AGPUnitKappa` and general `MoritaKOne` remain separate
+obligations. `AlgebraicK.moritaKOne_of_selfSimilar` closes Morita invariance
+for the self-similar rings the manuscript uses.
 -/
 
 namespace GroupApproximation
@@ -49,6 +56,23 @@ theorem printedMFQuotientUnits_of_agpThree
     (hK1 : AGPUnitK1) (hMM : AGPMenalMoncasiReduction) (hS1 : AGPStepOne) :
     PrintedMFQuotientUnits :=
   printedMFQuotientUnits_of_agpOnly agpMatrixReduction hK1 hMM hS1
+
+/-- The abstract quotient package is abelianization. This does not identify
+that quotient with the separately constructed canonical algebraic K₁. -/
+theorem abstractUnitAbelianization : AGPUnitK1 := by
+  intro R _ _ _
+  haveI : Countable Rˣ := Function.Injective.countable
+    (f := (Units.val : Rˣ → R)) (fun _ _ h ↦ Units.ext h)
+  haveI : Countable (Abelianization Rˣ) :=
+    (QuotientGroup.mk'_surjective (commutator Rˣ)).countable
+  exact ⟨Abelianization Rˣ, inferInstance, inferInstance, Abelianization.of,
+    QuotientGroup.mk'_surjective (commutator Rˣ), Abelianization.ker_of⟩
+
+/-- The all-rank group-theoretic classification now requires only the step
+that moves arbitrary units to supported form. Rank one is the remaining case. -/
+theorem printedMFQuotientUnits_of_menalMoncasi
+    (hMM : AGPMenalMoncasiReduction) : PrintedMFQuotientUnits :=
+  printedMFQuotientUnits_of_agpThree abstractUnitAbelianization hMM agpStepOne
 
 end MFQuotientUnits
 
@@ -78,6 +102,8 @@ end GroupApproximation
 /-! ### Axiom audit -/
 
 #audit_closed_axioms GroupApproximation.MFQuotientUnits.agpMatrixReduction
+#audit_closed_axioms GroupApproximation.MFQuotientUnits.abstractUnitAbelianization
+#audit_axioms GroupApproximation.MFQuotientUnits.printedMFQuotientUnits_of_menalMoncasi
 #audit_axioms GroupApproximation.MFQuotientUnits.printedMFQuotientUnits_of_agpThree
 #audit_axioms
   GroupApproximation.MFQuotientUnitsKOne.printedMFQuotientUnitsKOneAllRanks_of_agpThree
