@@ -22,6 +22,8 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `9c4fcae31bf2c2b76111ac3de71bb089b2d2ac48` | 4470 | `UnitGroupHeadline.lean` |
 | `c7d010bf2409c0be9671ce23eaf86954dab2ac2b` | 4470 | `UnitGroupHeadline.lean`, identification inside the printed theorem |
 | `e3d919491628918ee39cd738706d519ccaa56afc` | 4552 | `UniversalGroupSigma.lean` |
+| `465bc8fd6d95a59ec93ad7c771ff6fd86a5213a7` | 3095 | `MaxInfiniteConverseRemark.lean`, hypothesis clauses and congruence quotients |
+| `5a344e59b13b3efd76dc92b89c8f100e0a543ca0` | 3095 | `MaxInfiniteConverseRemark.lean`, residual finiteness and MF |
 
 ## The printed clauses, and what each still assumes
 
@@ -199,6 +201,32 @@ red — the peer was editing it in the shared checkout while the probe synced, s
 line numbers did not match the file on disk.  Before reporting a red `main` from
 a peer's module, check both: that the local blob still matches origin, and that
 the error line numbers match the file as it now stands.
+
+## The converse remark after `prop:max-infinite`
+
+`MaxInfiniteConverseRemark.lean` carries the paragraph "A group can satisfy the
+hypothesis of Proposition `prop:max-infinite` and be MF".  `V` is
+`MarkedCompression.Vertical conjD conjD_injective`, the same ascending HNN
+extension Section `sec:amenable-nonqd` builds its witness over before the lamps.
+
+* `PrintedMaxInfiniteConverseRemark` / `manuscriptMaxInfiniteConverseRemark`
+  (`#audit_closed_axioms`) — the printed sentence, as an existential.
+* `PrintedAscendingHNNIsMF` / `manuscriptAscendingHNNIsMF`
+  (`#audit_closed_axioms`) — the same content named at `V`.
+
+**Route difference, not a gap.**  The printed matrix realization of `V` in
+`GL₄(ℤ[1/2])` is *not* formalized.  It is the paper's device for residual
+finiteness, and the Lean proof reaches residual finiteness by congruence
+quotients over the integers instead.  Formalizing the embedding would cost a
+separate injectivity argument, recovering the stable-letter exponent from the
+`2`-adic valuation of the determinant.  The census row for that sentence should
+say route difference.
+
+**Reusable infrastructure.**  No reduction of an integral unit to a finite
+matrix unit group existed in the tree, so this module builds one: the subring
+of integer rationals, the transported reduction to `ZMod m`, the entrywise
+lift, and the passage to units (`redMat`, `redUnit`, `redHom`, `redMat_apply`).
+Roughly ninety lines, generic, and available to any lane that needs it.
 
 ## Coordination note
 
