@@ -82,3 +82,13 @@ finite-matrix calculations.
 Neither fence establishes that Property `(T)` is necessary for non-MF
 existence. They locate two mechanisms which cannot by themselves provide the
 requested proof.
+
+The vector-energy alternative has also been tested with arbitrary fixed
+polynomial right contexts. `finite-context-energy-certificate-iff-word-trivial`
+proves that this entire class of universal positive-operator certificates
+detects precisely words already equal to the identity in the presented
+group. Its countermodel direction allows any finite collection of translated
+relator tests and additive slack below two. Increasing the finite context
+depth therefore cannot detect a nontrivial MF-radical element. The remaining
+operator-norm estimate must supply global control; it does not follow from
+these vector tests. This observation leaves the present goal open.
