@@ -21,11 +21,15 @@ The two groups are the same group, and this repository proves it outright:
   `leftCombCode 3` — `GL₄(R) ≅ R^×`, an instance of the self-similarity
   `M_r(A) ≅ A` of Proposition `prop:selfsim`.
 
-So `R^× ≅ GL₄(R) = EL₄(R) = H`, and nothing in this module is assumed.  In
-particular the identification needs neither the Ara--Goodearl--Pardo
-`GE`-ring theorem nor the vanishing of `K₁(L_{𝔽₂}(1,2))` as inputs: those are
-the literature route to a statement the development already has.  A citation
-here records priority, not a dependency.
+So `R^× ≅ GL₄(R) = EL₄(R) = H`, and nothing in this module is assumed.
+
+The manuscript attributes the identification to Khanh--Thanh, Proposition 4.2
+and Corollary 4.4 — `K₁(L) = 0`, perfectness of `L^×`, and `GL_n(L) = E_n(L)`
+for every `n ≥ 2`.  That citation is **attribution, not dependency**: the
+statement is proved here, and no proposition in this module takes it, or any
+other literature fact, as a hypothesis.  The same goes for the
+Ara--Goodearl--Pardo `GE`-ring route; it is a second path to something the
+development already has.
 
 ## What is transported, and what is not
 
@@ -116,17 +120,19 @@ theorem unitCorner_conj_lt :
 
 /-- **`thm:headline` with `H = L_{𝔽₂}(1,2)^×`, as one proposition.**
 
-`H` is finitely generated, nontrivial, simple, has property `(T)`, and
+`H ≅ EL₄(R)`, and `H` is finitely generated, nontrivial, simple, has property `(T)`, and
 `Rad_MF(H) = H` — equivalently every homomorphism from `H` to an MF group is
 trivial, so in particular `H` is not MF.  Its reduced group C⋆-algebra is
 separable and stably finite but is not MF, and its maximal group C⋆-algebra is
 not finite: it contains a proper isometry, witnessed by the Kazhdan projection
 that the canonical unitary of the printed compressor moves strictly.
 
-The clauses are in printed order, and each is the same clause
-`PrintedHeadlineRankFour` carries at `EL₄(R)`. -/
+The clauses are in printed order.  The first is the identification the printed
+theorem opens with; each of the rest is the clause `PrintedHeadlineRankFour`
+carries at `EL₄(R)`, transported across it. -/
 def PrintedUnitGroupHeadline : Prop :=
-  Group.FG Rˣ ∧
+  Nonempty (Rˣ ≃* H) ∧
+    Group.FG Rˣ ∧
     Nontrivial Rˣ ∧
     IsSimpleGroup Rˣ ∧
     HasKazhdanPropertyT.{0, 0} Rˣ ∧
@@ -150,7 +156,7 @@ def PrintedUnitGroupHeadline : Prop :=
       ¬ IsStablyFiniteRing (MaximalGroupCStar Rˣ))
 
 /-- **The printed theorem at the unit group, proved, hypothesis-free.** -/
-theorem manuscriptPrintedUnitGroupHeadline : PrintedUnitGroupHeadline := by
+theorem manuscriptUnitGroupHeadline : PrintedUnitGroupHeadline := by
   obtain ⟨hFG, hconc, -, -⟩ := manuscriptPrintedHeadlineRankFour
   obtain ⟨hnt, hsimple, hT, hres, hkill, -⟩ := hconc
   haveI : Group.FG H := hFG
@@ -184,8 +190,8 @@ theorem manuscriptPrintedUnitGroupHeadline : PrintedUnitGroupHeadline := by
     MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses
       Rˣ unitCorner unitCompressor unitCorner_hasKazhdanPropertyT
       unitCorner_conj_lt
-  exact ⟨hFGu, hntu, hsimpleu, hTu, hresu, hkillu, hnotu, hred,
-    hmax.1, hmax.2.1, hmax.2.2.1⟩
+  exact ⟨⟨unitsEquivHeadline⟩, hFGu, hntu, hsimpleu, hTu, hresu, hkillu, hnotu,
+    hred, hmax.1, hmax.2.1, hmax.2.2.1⟩
 
 end UnitGroupHeadline
 end OneSidedMFRadical
@@ -195,4 +201,4 @@ end GroupApproximation
 open GroupApproximation
 
 #audit_closed_axioms
-  Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptPrintedUnitGroupHeadline
+  Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline
