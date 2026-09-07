@@ -1125,13 +1125,13 @@ Theorem~\ref{thm:full-defect-ring} applies in both cases.
 \end{proof}
 
 \begin{corollary}\label{cor:one-sided-ring-maximal}
-If a countable unital ring $R$ is not directly finite, then
-$C^*_{\max}(\EL_n(R))$ contains a proper isometry for every $n\ge4$,
-and for every $n\ge2$ if $R$ satisfies the hypothesis of
-Theorem~\ref{thm:full-defect-ring}.  If $R\ne0$ satisfies that
-hypothesis, then $C^*_{\mathrm r}(\EL_n(R))$ is separable, stably
-finite, and not MF for every $n\ge2$, and the unit group $R^\times$ is
-not MF\@.
+Let $R$ be a countable unital ring.  If $R$ is not directly finite,
+then $C^*_{\max}(\EL_n(R))$ contains a proper isometry for every
+$n\ge4$.  If $R\ne0$ satisfies the hypothesis of
+Theorem~\ref{thm:full-defect-ring}, then for every $n\ge2$ the algebra
+$C^*_{\max}(\EL_n(R))$ contains a proper isometry and
+$C^*_{\mathrm r}(\EL_n(R))$ is separable, stably finite, and not MF,
+and the unit group $R^\times$ is not MF\@.
 \end{corollary}
 
 \begin{proof}
@@ -1144,8 +1144,9 @@ strict: every off-diagonal entry of a matrix in $uLu^{-1}$ has the form
 $sat$, and $e(sat)=0$ while $e\cdot1=e\ne0$, so
 $e_{12}(1)\in L\setminus uLu^{-1}$.  By
 Proposition~\ref{prop:max-infinite} applied to $L\le\EL_n(R)$ and $u$,
-$C^*_{\max}(\EL_n(R))$ contains a proper isometry.  Under the
-hypothesis of Theorem~\ref{thm:full-defect-ring}, take instead the subring
+$C^*_{\max}(\EL_n(R))$ contains a proper isometry.  If $R\ne0$
+satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, take
+instead the subring
 $S$ and the map $\Psi$ from the rank-two part of its proof, with
 $L=\EL_3(S)$ and $u$ the image in $\EL_4(S)$ of the compressor of
 $B$; here $v_0w_0\ne1$, since $w_1v_0=0$ and $w_1v_1=1$.  Then $\Psi$
@@ -1155,7 +1156,7 @@ compressed strictly by $\Psi(u)$, and
 Proposition~\ref{prop:max-infinite} gives the proper isometry for every
 $n\ge2$.
 
-For the second assertion, $G=\EL_n(R)$ is countable and nontrivial, and
+For the remaining assertions, $G=\EL_n(R)$ is countable and nontrivial, and
 by Theorem~\ref{thm:full-defect-ring} it is not MF\@.  The algebra
 $C^*_{\mathrm r}(G)$ is separable, and stably finite because its
 canonical trace is faithful.  If an embedding
@@ -1203,10 +1204,10 @@ $a\in R$.  So $\lambda$ lies in
 $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, and $N=1$.  So $H$ is
 simple, and in particular not MF\@.
 
-Since $t_0s_0=1$ and $s_0t_0\ne1$, the ring $R$ is not directly finite,
-so by Corollary~\ref{cor:one-sided-ring-maximal} the algebra
-$C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and
-$C^*_{\max}(H)$ contains a proper isometry.
+Since $R\ne0$ satisfies the hypothesis of
+Theorem~\ref{thm:full-defect-ring}, Corollary~\ref{cor:one-sided-ring-maximal}
+shows that $C^*_{\mathrm r}(H)$ is separable, stably finite, and not
+MF, and that $C^*_{\max}(H)$ contains a proper isometry.
 \end{proof}
 
 Two idempotents $e,f$ of a ring are \emph{equivalent} if $e=xy$ and
