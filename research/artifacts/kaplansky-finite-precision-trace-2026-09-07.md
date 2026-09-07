@@ -172,3 +172,45 @@ finite-subgroup class and any other d with a computed nonzero trace residue.
 It supplies no detection bound, trace-faithfulness theorem, or substitute
 invariant for all remaining projectives. Increasing precision or passing
 finite tests cannot be presented as a proof that those projectives vanish.
+
+## Exact replay and integration
+
+`experiments/kaplansky_trace_certificate.py` uses integer arithmetic only.
+It validates a finite group's multiplication table, lifts matrix idempotents,
+checks idempotence and reduction exactly, and compares each resulting trace
+with an independently computed regular-representation rank over F_p.
+The JSON input consists of `group.table`, `group.identity`, prime `p`,
+positive `precision`, positive `matrix_size`, and lists `e` and `f` of
+`[row, column, group_index, coefficient]` terms. Repeated terms are added;
+zero terms are removed. The two input matrices have the same specified size.
+The committed certificate includes complete examples of this format.
+
+The output is either `obstructed` (different lifted traces) or `inconclusive`
+(equal traces). It never reports equivalence or direct finiteness from an
+equal trace. Its finite table alone does not certify an embedding into Q;
+the existing Cairn claim `leavitt-trace-balanced-nested-idempotents` supplies
+that embedding for the C_3 x C_3 example.
+
+Reproduce and verify the 17 certificates:
+
+```sh
+python3 experiments/kaplansky_trace_certificate.py --examples \
+  --output research/artifacts/kaplansky-trace-certificates.json
+python3 experiments/kaplansky_trace_certificate.py \
+  --verify research/artifacts/kaplansky-trace-certificates.json
+python3 -m unittest discover -s experiments \
+  -p 'test_kaplansky_trace_certificate.py' -v
+```
+
+The regressions include the known Leavitt pair (inconclusive modulo two,
+separated modulo four), the sharp scalar families at p=2 and p=3, all 64
+elements of F_2[S_3] screened for idempotence, noncommuting matrix examples,
+arbitrary coefficient lifts, equal-trace negative controls, malformed input,
+and tampered certificates. The exhaustive 64-element test validates only
+this finite regression universe, not the general theorem.
+
+`.github/workflows/kaplansky-trace.yml` runs these tests, exact replay, and
+deterministic regeneration on relevant pushes and pull requests. The Cairn
+route `leavitt-balanced-corners-finite-trace-proof` connects the general
+invariant to the existing corner refutation. The theorem is proved in prose;
+these files add no Lean theorem and make no Lean kernel-verification claim.

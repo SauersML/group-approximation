@@ -8,6 +8,9 @@ distinct_from:
   leavitt-balanced-corners-separated-modulo-four: that treats one designated pair at precision two; this works for every prime, group, matrix size, and positive precision.
 artifacts:
   - research/artifacts/kaplansky-finite-precision-trace-2026-09-07.md
+  - experiments/kaplansky_trace_certificate.py
+  - experiments/test_kaplansky_trace_certificate.py
+  - research/artifacts/kaplansky-trace-certificates.json
 ---
 
 For every prime p, group G, and k>=1 there is an additive invariant
