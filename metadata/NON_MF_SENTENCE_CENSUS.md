@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 330 |
-| `formalized` | 88 |
-| `definition` | 27 |
+| `unassigned` | 320 |
+| `formalized` | 97 |
+| `definition` | 28 |
 | `structural` | 17 |
 | `attribution` | 12 |
 | `partial` | 3 |
 | **total** | **477** |
 
-Completely formalized or definitional: **115/477** (24.1%).
+Completely formalized or definitional: **125/477** (26.2%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -116,16 +116,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 669 --- Since \(q\) commutes with \(\rho(G)\), the map \(g\mapsto q\rho(g)\) is a homomorphism from \(G\) to the unitary group of the corner, with unit \(q\).
 * **`unassigned`**, line 669 --- Each value is a unitary of \(\mathcal Q_{\mathbf r}\), so, as in the proof of Lemma~\ref{lem:stable-finite}, it lifts to unitaries \(W_n(g)\in\U(r_n)\), with \(W_n(1)=I_{r_n}\).
 * **`unassigned`**, line 669 --- Multiplicativity in the corona makes \((W_n)\) an operator norm asymptotic representation, and the class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
-* **`unassigned`**, line 697 --- Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let \(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism \(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).
-* **`unassigned`**, line 710 --- Let \(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism induced by \(\widehat\Theta|_K\).
-* **`unassigned`**, line 710 --- Since \(q\) commutes with \(\Theta(K)\), the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\) agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate restriction of \(qp=0\).
-* **`unassigned`**, line 721 --- The group algebra \(\C[K]\) is dense in \(C^*_{\max}(K)\), so there are a finite set \(F\subseteq K\) and scalars \((\alpha_k)_{k\in F}\) with
-* **`unassigned`**, line 727 --- where \(u_k\) is the canonical unitary of \(k\).
-* **`unassigned`**, line 727 --- The trivial character \(\chi\) of \(K\), the state of \(C^*_{\max}(K)\) with \(\chi(u_k)=1\) for every \(k\), has \(\chi(e_K)=1\), so
-* **`unassigned`**, line 733 --- Since \(\pi(e_K)=0\),
-* **`unassigned`**, line 738 --- The hypothesis applies to \((W_n)\) itself, so
-* **`unassigned`**, line 743 --- with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and then
-* **`unassigned`**, line 748 --- Since \(|\tr_{r_n}(x)|\le\opnorm{x}\), the limit has absolute value at most \(\tfrac14\), while \(|\sum_{k\in F}\alpha_k|>\tfrac34\), a contradiction.
 * **`unassigned`**, line 781 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since $\operatorname{diag}(s,1,\ldots,1)$ is a nonunitary isometry in $M_k(A)$.
 * **`unassigned`**, line 817 --- A group can satisfy the hypothesis of Proposition~\ref{prop:max-infinite} and be MF\@.
 * **`unassigned`**, line 817 --- The ascending HNN extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along $(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the faithful matrix realization
@@ -393,7 +383,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 20 |
-| From Hilbert--Schmidt to operator norm | 31 | 17 |
+| From Hilbert--Schmidt to operator norm | 31 | 7 |
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
 | A finite certificate | 19 | 19 |
 | One-sided inverses and elementary groups | 75 | 70 |
