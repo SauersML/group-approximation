@@ -745,3 +745,25 @@ definition, all one recorded gap by the lead's explicit decision -- no
 stable K_1 object is being built for a definitional sentence and two clauses
 that rest on the cited Khanh-Thanh identification; the corollary is
 paper-proof with that citation, not a formalization target.
+
+## Round 13: the order formula closes row 11, only K_1 left
+
+Landed: `fa27735f1` (row 11 upgraded).
+
+thm-d's `Sofic/CliffordLampOrderFormula.lean` (`523920a52`) proves
+`nat_card_closure`, the printed order `2^{|Y|+1}` computation, and the
+re-landed `CliffordConstructionSentences.lean` (`8fef7d824`) folds it into
+`manuscriptSentence_cliffordLampCountableLocallyFinite` alongside the
+already-carried countability and local finiteness. Row `51284d178433`
+upgraded partial -> formalized, dropping the old note about the missing
+order formula.
+
+Verify-decls 0 missing of 636 named. Verify-unconditional 0 new findings.
+Summary after this round: formalized 328, unassigned 3, definition 56,
+structural 33, provenance 19, partial 21, attribution 17, total 477.
+
+**Confirmed: only the 3 K_1-gap sentences remain unassigned in the entire
+manuscript.** `thm:headline`'s two K_1-is-MF/quotient-formula sentences and
+"The binary example"'s K_1(R) definition -- recorded as one gap by the
+lead's decision, not a formalization target. Every other printed sentence
+in `non_mf_groups_exist.tex` now has a census row.
