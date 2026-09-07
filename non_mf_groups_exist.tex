@@ -70,7 +70,7 @@ to an MF group is trivial; the obstruction is a one-sided compression of
 a property-\textup{(T)} subgroup.  If a countable unital ring $R$
 contains $s,t$ with $ts=1$ and $R(1-st)R=R$, then every homomorphism
 from $\EL_n(R)$ to an MF group is trivial for all $n\ge4$.  In
-particular, $H=\EL_{12}(L_{\F_2}(1,2))$ is a finitely generated simple
+particular, $H=\EL_4(L_{\F_2}(1,2))$ is a finitely generated simple
 property-\textup{(T)} group that is not MF, and $C^*_{\mathrm r}(H)$ is
 separable, stably finite, and not MF.  We also construct a sofic non-MF
 group $W=K\rtimes\mathbb Z$ with $K$ locally residually finite, whose
@@ -142,9 +142,9 @@ Lean proof was registered at Palomar on August~24, 2026:
 \url{https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1}.}
 This paper focuses on a different counterexample,
 \[
- H=\EL_{12}(L_{\F_2}(1,2)),
+ H=\EL_4(L_{\F_2}(1,2)),
 \]
-the elementary group of $12\times12$ matrices over the binary Leavitt
+the elementary group of $4\times4$ matrices over the binary Leavitt
 algebra, because $H$ is simple and every homomorphism from $H$ to an
 MF group is trivial.  Khanh--Thanh show that $H$ is isomorphic to the unit group of the
 binary Leavitt algebra~\cite[Proposition~4.2 and
@@ -286,7 +286,7 @@ $s_0,s_1,t_0,t_1$ subject to
 \end{equation}
 
 \begin{mainthm}[the binary Leavitt group]\label{thm:headline}
-Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is finitely
+Put $R=L_{\F_2}(1,2)$ and $H=\EL_4(R)$.  Then $H$ is finitely
 generated, nontrivial, simple, has property~\textup{(T)}, and every
 homomorphism from $H$ to an MF group is trivial.  So $H$ is not MF, and
 $C^*_{\mathrm r}(H)$ is separable and stably finite but not MF, while
@@ -896,7 +896,7 @@ $\U(\mathcal Q_{\mathbf d})$, contradicting that $G$ is not MF\@.
 
 \subsection{The binary example}
 
-Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  By~\eqref{eq:leavitt}, the
+Put $R=L_{\F_2}(1,2)$ and $H=\EL_4(R)$.  By~\eqref{eq:leavitt}, the
 maps $x\mapsto(t_0x,t_1x)$ and $(y,z)\mapsto s_0y+s_1z$ are mutually
 inverse isomorphisms of right $R$-modules between $R$ and $R\oplus R$.
 With $s=s_0$ and $t=t_0$, the relations give $t_0s_0=1$ and
@@ -908,7 +908,7 @@ and every homomorphism from $H$ to an MF group is trivial.  It remains
 to prove that $H$ is simple.
 
 \begin{proposition}\label{prop:simple}
-The group $H=\EL_{12}(R)$ is nontrivial and simple.
+The group $H=\EL_4(R)$ is nontrivial and simple.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveSimplicity}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple}
 \end{proposition}
 
@@ -919,14 +919,14 @@ simple~\cite{AbramsAranda} and therefore an exchange
 ring~\cite{AraExchange}, so by Preusser's sandwich
 theorem~\cite[Theorem~3]{Preusser} there is an ideal $I$ of $R$ with
 \[
- \EL_{12}(R,I)\le N\le C_{12}(R,I),
+ \EL_4(R,I)\le N\le C_4(R,I),
 \]
-where $\EL_{12}(R,I)$ is the normal closure in $\EL_{12}(R)$ of the
-elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_{12}(R,I)$ is the
-preimage of the center of $\GL_{12}(R/I)$.  Since $R$ is simple, either
-$I=R$, and then $N\ge\EL_{12}(R)=H$, or $I=0$, and then every $g\in N$ is
-central in $\GL_{12}(R)$.  In the second case, commuting with each
-$e_{ij}(1)$ forces $g=\lambda I_{12}$ with $\lambda\in R^\times$, and
+where $\EL_4(R,I)$ is the normal closure in $\EL_4(R)$ of the
+elementary matrices $e_{ij}(a)$ with $a\in I$, and $C_4(R,I)$ is the
+preimage of the center of $\GL_4(R/I)$.  Since $R$ is simple, either
+$I=R$, and then $N\ge\EL_4(R)=H$, or $I=0$, and then every $g\in N$ is
+central in $\GL_4(R)$.  In the second case, commuting with each
+$e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and
 commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all
 $a\in R$.  So $\lambda$ lies in
 $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, and $N=1$.
