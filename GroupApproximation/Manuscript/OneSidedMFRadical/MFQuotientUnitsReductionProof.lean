@@ -32,6 +32,7 @@ theorem refl (N : Subgroup Rˣ) (u : Rˣ) : Congr N u u := by
   exact N.one_mem
 
 theorem trans (h : Congr N u v) (h' : Congr N v w) : Congr N u w := by
+  change u * w⁻¹ ∈ N
   have hm := N.mul_mem h h'
   have heq : (u * v⁻¹) * (v * w⁻¹) = u * w⁻¹ := by group
   simpa only [heq] using hm
@@ -91,7 +92,7 @@ theorem coeff_mul_root (u : Rˣ) (a b : Fin 2) (hab : a ≠ b) (c : R)
     F.coeff (u * F.root a b hab c) i j =
       F.coeff u i j + if b = j then F.coeff u i a * c else 0 := by
   dsimp [coeff]
-  rw [Units.val_mul, F.root_val]
+  rw [F.root_val]
   have h : F.t i * ((u : R) * (1 + F.s a * c * F.t b)) * F.s j =
       F.t i * (u : R) * F.s j + (F.t i * (u : R) * F.s a * c) * (F.t b * F.s j) := by
     noncomm_ring
@@ -105,7 +106,7 @@ theorem coeff_root_mul (u : Rˣ) (a b : Fin 2) (hab : a ≠ b) (c : R)
     F.coeff (F.root a b hab c * u) i j =
       F.coeff u i j + if i = a then c * F.coeff u b j else 0 := by
   dsimp [coeff]
-  rw [Units.val_mul, F.root_val]
+  rw [F.root_val]
   have h : F.t i * ((1 + F.s a * c * F.t b) * (u : R)) * F.s j =
       F.t i * (u : R) * F.s j + (F.t i * F.s a) * c * (F.t b * (u : R) * F.s j) := by
     noncomm_ring
@@ -125,10 +126,12 @@ theorem exists_pivot (u : Rˣ) :
   let e := F.e 0
   have he : e * e = e := F.e_idem 0
   have hene : e ≠ 0 := F.e_ne_zero 0
+  have huinv : (u : R) * ((u⁻¹ : Rˣ) : R) = 1 :=
+    congrArg (Units.val : Rˣ → R) (mul_inv_cancel u)
   have heu : e * (u : R) ≠ 0 := by
     intro hz
     apply hene
-    calc e = (e * (u : R)) * (u⁻¹ : Rˣ) := by rw [mul_assoc, u.val_inv, mul_one]
+    calc e = (e * (u : R)) * (u⁻¹ : Rˣ) := by rw [mul_assoc, huinv, mul_one]
       _ = 0 := by rw [hz, zero_mul]
   have hcorner : ∃ v : Rˣ, Congr (cornerUnitSubgroup R) u v ∧ e * (v : R) * e ≠ 0 := by
     by_cases hz : e * (u : R) * e = 0
@@ -236,7 +239,7 @@ theorem exists_supported (u : Rˣ) :
   refine ⟨result, huv.trans ((Congr.right _ v w hw).trans (Congr.left _ d z hz)), ?_⟩
   change (result : R) = f + (1 - f) * (result : R) * (1 - f)
   have hfrf : f * (result : R) * f = f := by rw [hfr, hf]
-  noncomm_ring [hfr, hrf, hfrf]
+  noncomm_ring [hfr, hrf, hfrf, hf]
 
 end Frame
 end Peirce
