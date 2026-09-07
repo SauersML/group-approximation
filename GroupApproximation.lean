@@ -3449,6 +3449,13 @@ import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
 import GroupApproximation.Algebra.PurelyInfiniteBridge
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsMatrixReduction
 import GroupApproximation.Manuscript.OneSidedMFRadical.BinaryLeavittPurelyInfiniteIdempotent
+import GroupApproximation.Leavitt.LeavittPurelyInfinite
+-- orphan repairs landed 2026-09-07 (lanes lix-wire, xxii-fix): four modules that
+-- had never compiled, plus the respelling witness.
+import GroupApproximation.Analysis.SequentialGroupColimitDirectLimit
+import GroupApproximation.GGT.DGOLemma421FourGon
+import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
+import GroupApproximation.GGT.HullSCLemma44RespellingWitness
 -- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
 -- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
 --  says "UNPROBED, do not import yet")
