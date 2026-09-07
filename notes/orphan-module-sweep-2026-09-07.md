@@ -274,103 +274,109 @@ literally named `*ModelTest` but is the same genre, explicitly the
 
 ## WIRE (14)
 
-**Caveat, corrected twice now and load-bearing — read before wiring anything
-below.** A WIRE verdict in this report means exactly three checked claims:
-*this file has its own dependencies already inside the root closure*, *it
-introduces no duplicate top-level declaration name*, and *a lexical scan of
-its own source text found no `sorry`/`admit`/`axiom` token*. **It does NOT
-mean "compiles."** A fourth claim — *building it introduces no new admitted
-debt reachable from the root* — was never checked at all, by me or anyone,
-until the lead built it. I was not permitted to build and did not; that
-limitation was stated in the original report, but not stated as bluntly as
-this paragraph states it now, and two separate wiring attempts on this
-bucket's say-so broke `origin/main` as a result:
+**Superseded by an actual, comprehensive build-test — read this first.** Lane
+`lix-wire` built all 14 WIRE/NEEDS-PROBE candidates as explicit `lake build`
+targets (never through the root) and reported results in
+`notes/orphan-buildtest-2026-09-07.md` (commit `f604cda72`). That table is now
+the authoritative source for compile status and sorry count in this bucket;
+everything below is reconciled against it. **10 of 14 compile clean, 4 fail,
+and the true sorry count (Lean's own `declaration uses 'sorry'` diagnostic,
+not a source grep) is exactly 2, both in one file.**
 
-* The four STW22 factorial-pair files (below) were wired at `6111d2d08`
-  (accidentally — a peer's snapshot picked up the lead's uncommitted test
-  edit) and do not compile: `STW22TraciallyCompletePair.lean:80` unreferenced
-  `σ`, `:268` type mismatch. Unwired at `091795e61`.
-* Three of the other seven — `GGT/KazhdanHypGirthEightGeodesicWord.lean`,
-  `GGT/KazhdanHypGirthEightGenericProducers.lean`, and
-  `GGT/DGOLemma421FourGon.lean` — were wired at `20e64a97c` and **do not
-  compile either**: `GeodesicWord.lean:115` a `rewrite` tactic whose pattern is
-  not found in the goal; `GenericProducers.lean:63,78,160` type mismatches;
-  `GenericProducers.lean:84,87` **the compiler reports `declaration uses
-  sorry`**. Unwired at `dcee3ff04`. The other four of that seven
-  (`STW22CounterexampleCompactnessRoute`, `STW22FibreEvaluation`,
-  `GGT/DGOProposition414SecondSeparationHalfWord`,
-  `GGT/HullSCLemma44PrefixKernelCutConstruction`) built clean and stay wired.
+**Caveat, corrected three times now and load-bearing — read before wiring
+anything below.** A WIRE verdict in this report originally meant exactly
+three checked claims: *dependencies already in the root closure*, *no
+duplicate top-level declaration name*, and *no `sorry`/`admit`/`axiom` token
+found by a lexical scan of the file's own source text*. **It never meant
+"compiles."** A fourth claim — *building it introduces no new admitted debt
+reachable from the root* — was never checked by me, static analysis cannot
+check it, and it took two rounds of the lead building this bucket by hand to
+find out where that claim held and where it didn't:
 
-**On the `sorry`, since that is the more serious finding — CONFIRMED, not a
-hypothesis.** I re-ran a literal grep for `sorry`/`admit` against the source
-text of all 14 WIRE-bucket files, GenericProducers.lean included — zero hits
-in every one, table below. The lead checked this against the actual build
-log and confirms: `grep -c sorry` over the file's source is independently 0,
-matching a hand-read of all 217 lines; and the log's own line ordering settles
-the mechanism — the type errors at 63 and 78 come *before* the `declaration
-uses 'sorry'` diagnostics at 84 and 87 (with a further pair at 160), and all of
-63–87 sit inside the same two theorems
-(`cactusBaseCellDeletionForPower_of_foldStepSource`,
-`cactusRelatorRetypingForPower_of_foldChainSource`). Lean elaborated a failing
-term, inserted `sorryAx` to recover, and reported the declaration as using
-`sorry`. **Nobody wrote it.** This is API drift against
-`VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both actively
-developed, on a file dated 2026-09-02 — a repair with an owner, not two
-admissions someone wrote and walked away from, and that distinction is worth
-making because it changes what someone does about it next. **It does not
-change what the lead needs to know about wiring**: doing so today would still
-make `#print axioms`-style tooling report two more declarations depending on
-`sorryAx`, silently, exactly as first reported.
+* The four STW22 factorial-pair files were wired at `6111d2d08` (accidentally)
+  and failed: `STW22TraciallyCompletePair.lean:80` unreferenced `σ`, `:268`
+  type mismatch. Unwired at `091795e61`. **Since fixed** — see the TOP
+  PRIORITY section below, now retitled FIXED AND CONFIRMED.
+* Of the other ten, `KazhdanHypGirthEightGeodesicWord`,
+  `KazhdanHypGirthEightGenericProducers`, and `DGOLemma421FourGon` fail;
+  `KTheory.Spaces` fails; the remaining six compile clean. Detail for each is
+  in its own section below.
 
-**General rule, stated once here and repeated at its point of use below:
-`declaration uses 'sorry'` does not imply anyone wrote `sorry`.** Lean emits
-it whenever a proof term's kernel closure contains `sorryAx`, including the
-term the elaborator's own error-recovery synthesizes after a genuine type
-error. A `sorry` count taken purely from build output can therefore
-*overstate* admitted debt, exactly as a lexical `grep` for the token over
-source can *understate* it. Neither number is the answer alone: only the
-source grep, the build diagnostic, and the actual error list — which lines are
-type errors versus bare `sorry` reports, and their order — together tell you
-which kind of debt is actually present.
+**On the `sorry`: confirmed by two independent builds (the lead's isolated
+build and `lix-wire`'s explicit-target probe), not a hypothesis.** Lean's own
+error-log grep (`grep -n "declaration uses" <log>`, restricted to lines Lean
+itself emitted as `error:` under this project's `-DwarningAsError=true`) finds
+**exactly 2** occurrences across all 14 files, both in
+`GenericProducers.lean` (lines 84, 87). A **lexical grep of source text**
+finds **0** in all 14 files, `GenericProducers.lean` included — my original
+scan checked for exactly that token and correctly found none, and both builds
+independently confirm the file's source truly contains no literal `sorry`.
+The log's own line ordering settles the mechanism: the type errors
+`lix-wire` isolated (63, 78, 146, 160, 162, 179, 181, 185 — eight sites, more
+than either build first reported individually) surround the two `sorry`
+diagnostics (84, 87), and all of it sits inside the same handful of
+declarations. Lean elaborated failing terms, inserted `sorryAx` to recover,
+and reported those declarations as using `sorry`. **Nobody wrote it.** This is
+API drift against `VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both
+actively developed, on a file dated 2026-09-02 — a repair with an owner, not
+an admission someone wrote and walked away from. **It does not change what
+wiring the file today would do**: `#print axioms`-style tooling would still
+report two declarations depending on `sorryAx`, reachable from root, exactly
+as first reported.
 
-**Literal `sorry`/`admit` count in each WIRE-bucket file's own source (grep,
-not a build):**
+**General rule, worth carrying past this one file: `declaration uses 'sorry'`
+does not imply anyone wrote `sorry`.** Lean emits it whenever a proof term's
+kernel closure contains `sorryAx`, including the term the elaborator's own
+error-recovery synthesizes after a genuine type error. A `sorry` count taken
+purely from build output can therefore *overstate* admitted debt relative to
+what an author actually typed, exactly as a lexical `grep` for the token over
+source text can *miss* one reached only through a macro or generated code
+(not the case here — both counts agree the source has none). Neither number
+is the answer alone: the source grep, Lean's own build diagnostic, and the
+full error list with its line ordering, together, tell you which kind of debt
+is actually present. Two builds and a source grep were needed to settle one
+file; budget for that when the next `sorry` count is quoted from either
+source alone.
 
-| File | sorry | admit |
-|---|---|---|
-| Analysis/STW22FactorialCore.lean | 0 | 0 |
-| Analysis/STW22TraciallyCompletePair.lean | 0 | 0 |
-| Analysis/STW22AntipodalGaugeFactorial.lean | 0 | 0 |
-| Analysis/STW22AntipodalFactorialPair.lean | 0 | 0 |
-| Analysis/STW22CounterexampleCompactnessRoute.lean | 0 | 0 |
-| Analysis/STW22FibreEvaluation.lean | 0 | 0 |
-| GGT/DGOLemma421FourGon.lean | 0 | 0 |
-| GGT/DGOProposition414SecondSeparationHalfWord.lean | 0 | 0 |
-| GGT/HullSCLemma44PrefixKernelCutConstruction.lean | 0 | 0 |
-| GGT/KazhdanHypGirthEightGenericProducers.lean | 0 | 0 |
-| GGT/KazhdanHypGirthEightGeodesicWord.lean | 0 | 0 |
-| KTheory/Basic.lean | 0 | 0 |
-| KTheory/Functorial.lean | 0 | 0 |
-| KTheory/Spaces.lean | 0 | 0 |
+**Compile status and sorry count, all 14, from `lix-wire`'s explicit-target
+build (`notes/orphan-buildtest-2026-09-07.md`, commit `f604cda72`), reconciled
+with the source-text grep:**
 
-Zero across the board, including the two files the build flagged — which is
-the point of the paragraph above: a lexical scan cannot see a `sorry` the
-compiler synthesizes at elaboration time, only one an author typed. That is a
-real gap in what "sorry-free" can mean from static analysis alone, not a
-contradiction of the build result.
+| File | Compiles | Sorry (Lean diagnostic) | Sorry (source grep) |
+|---|---|---|---|
+| Analysis/STW22FactorialCore.lean | YES | 0 | 0 |
+| Analysis/STW22TraciallyCompletePair.lean | YES (fixed `e8e613608`) | 0 | 0 |
+| Analysis/STW22AntipodalGaugeFactorial.lean | YES | 0 | 0 |
+| Analysis/STW22AntipodalFactorialPair.lean | YES | 0 | 0 |
+| Analysis/STW22CounterexampleCompactnessRoute.lean | YES | 0 | 0 |
+| Analysis/STW22FibreEvaluation.lean | YES | 0 | 0 |
+| GGT/DGOLemma421FourGon.lean | **NO** | 0 | 0 |
+| GGT/DGOProposition414SecondSeparationHalfWord.lean | YES | 0 | 0 |
+| GGT/HullSCLemma44PrefixKernelCutConstruction.lean | YES | 0 | 0 |
+| GGT/KazhdanHypGirthEightGenericProducers.lean | **NO** | **2** (lines 84, 87) | 0 |
+| GGT/KazhdanHypGirthEightGeodesicWord.lean | **NO** | 0 | 0 |
+| KTheory/Basic.lean | YES | 0 | 0 |
+| KTheory/Functorial.lean | YES | 0 | 0 |
+| KTheory/Spaces.lean | **NO** | 0 | 0 |
 
-Bottom line, restated plainly since it is the thing to act on: **treat every
-"Recommended import" line below as unbuilt and unverified for admitted debt
-until a green build confirms it, file by file** — three of eleven wired
-attempts so far have failed that test, and one failure carried a compiler-
-reported `sorry`.
+**10 of 14 compile. 4 fail. Total admitted debt introduced by this whole
+bucket, if wired as-is: exactly 2 `sorryAx`-dependent declarations, both in
+one already-identified, already-diagnosed file.** Every other failure
+(`DGOLemma421FourGon`, `GeodesicWord`, `KTheory.Spaces`) is a genuine compile
+error with zero sorry involvement — see each file's own section for the
+specific cause, none of which is "unfinished mathematics."
 
-## TOP PRIORITY, NEEDS-BUILD — changes what the repository proves, not hygiene, but does not compile as landed
+Bottom line: **the ten files marked YES above are now confirmed compiling as
+explicit targets and are safe to wire; the four marked NO need the fix named
+in their own section first.**
+
+## TOP PRIORITY, FIXED AND CONFIRMED — changes what the repository proves, and now compiles
 
 ### Analysis/STW22FactorialCore.lean → STW22TraciallyCompletePair.lean → STW22AntipodalGaugeFactorial.lean → STW22AntipodalFactorialPair.lean
 
-**Status: does NOT compile as landed. Wired and reverted 2026-09-07.** The
-lead's clean-export root build failed with:
+**Status: FIXED, confirmed compiling, ready to wire.** Original failure (this
+section's history, kept for the record): the lead's clean-export root build
+failed with
 
 ```
 STW22TraciallyCompletePair.lean:80:58: Variable name `σ` is not explicitly
@@ -378,15 +384,25 @@ STW22TraciallyCompletePair.lean:80:58: Variable name `σ` is not explicitly
 STW22TraciallyCompletePair.lean:268:4: Type mismatch
 ```
 
-The first is `uniformTwoNormOn_le (designatedTraces_nonempty hr) (fun σ hσ ↦
-hσ x)` (line 80) — `σ` bound but not referenced, promoted to a build error by
-`moreLeanArgs = ["-DwarningAsError=true"]`. Both are real compile failures,
-not classification errors: the file's *content* is exactly what I read it as
-(zero sorry, zero axiom, the missing-conjunct claim below is still true as
-mathematics), but it does not currently typecheck against this repository's
-Mathlib pin / surrounding API as landed. Unwired again at `091795e61`. **The
-gap this section describes is real and still open** — the fix is fixing these
-two errors in the landed file, then re-wiring, not a new proof.
+Both were real compile failures, not classification errors — the file's
+*content* was always exactly what I read it as (zero sorry, zero axiom, the
+missing-conjunct claim below always true as mathematics), it just did not
+typecheck against the repository's Mathlib pin / surrounding API as landed.
+Unwired at `091795e61`. **Since fixed**, by a separate lane (`xxii-fix`) at
+`e8e6136083f66c2bea79e6858add7a5ea7883878`: line 80's unused binder is now
+`_σ`; line 268's unification-order failure (a subtype coercion the elaborator
+couldn't pattern-match through) is fixed by passing the sequence explicitly.
+The fix commit reports the chain green under an isolated probe: *"PROBE
+GREEN, 9106 jobs, sorryAx none"*, with both
+`antipodal_isFactorialTraciallyCompletePair` and
+`antipodalFactorialNegativeSolutionToProblemXXII` reporting axiom closure
+`[propext, Classical.choice, Quot.sound]`. Independently confirmed by lane
+`lix-wire`'s explicit-target build (`notes/orphan-buildtest-2026-09-07.md`,
+`f604cda72`): all four files in the chain compile clean, including
+`STW22TraciallyCompletePair` itself and the two files downstream of it that
+could only build if it is now sound. **The gap this section describes is real
+and the fix is now landed on origin/main — only the root import is
+missing.**
 
 **Team lead independently verified the mathematical content** (the missing
 conjunct itself, not the compile status) before building. `STW22AntipodalFactorialPair.lean:56`
@@ -438,8 +454,8 @@ back to back; insert directly after line 3417, before
 (`STW22UnconditionalCore` via `STW22NegativeSolution`,
 `STW22AntipodalNormComparison` via `STW22ConditionalNegativeSolution`,
 `Meta.AxiomGuard` via the Manuscript block) is already reachable by that point.
-**Do not act on this until `STW22TraciallyCompletePair.lean:80` and `:268` are
-fixed and the chain has a green build.**
+**The fix is landed and confirmed by two independent builds — this is now
+ready to wire.**
 
 ### Analysis/STW22CounterexampleCompactnessRoute.lean, Analysis/STW22FibreEvaluation.lean, and the 5 GGT files below
 
@@ -497,10 +513,11 @@ alternative is `STW22RealProjectiveBlockTypeI.lean`.
 **Recommended import**: `import GroupApproximation.Analysis.STW22FibreEvaluation`,
 same position as CompactnessRoute above (after line 1126).
 
-### GGT/* — 5 files, DGO/Kazhdan lemma pieces — 3 of 5 BROKEN as landed, wired and reverted
+### GGT/* — 5 files, DGO/Kazhdan lemma pieces — 3 of 5 BROKEN, 2 confirmed compiling
 
-**Status as of `dcee3ff04`: 3 of these 5 do not compile and were wired, then
-unwired, at the lead's hand. The other 2 built clean and stay wired.**
+**Status, converged across two builds (the lead's isolated build and
+`lix-wire`'s explicit-target probe, `notes/orphan-buildtest-2026-09-07.md`):
+3 of these 5 do not compile. The other 2 built clean and stay wired.**
 
 None of these import each other or any other orphan (checked — zero internal
 edges among them). Each extends a *reachable* file with real content (not
@@ -516,129 +533,149 @@ Prop 4.14, Hull SC Lemma 4.4, the girth-8 Kazhdan construction) — and it turns
 out three of the five don't even build against their own repo as landed,
 independent of manuscript fidelity.
 
-- `GGT/DGOLemma421FourGon.lean` — **BROKEN as reported, but very likely a
-  build-graph artifact, not an independent failure — recommend an isolated
-  confirmation build before treating it as broken content.** Wired at
-  `20e64a97c`, unwired at `dcee3ff04` ("fails with them" in the lead's build
-  log, grouped with the two Kazhdan failures). Checked this directly: computed
-  this file's full transitive import closure (837 local files) and it
-  contains **none** of the modules the two real failures actually touch —
-  `VanKampen.CombMapReduction`, `VanKampen.CombMapGluing`,
-  `KazhdanHypGirthEightTorsionExtraction`, `KazhdanHypGirthEightPrimitives2`,
-  `KazhdanHypGirthEightVKInterface` are all absent from its closure. Its only
-  point of contact with the other broken file's dependencies is
-  `OsinGeodesicWord` (shared with `KazhdanHypGirthEightGeodesicWord.lean`),
-  which is itself an ordinary, already-landed, direct root import (line 2394)
-  that nobody has reported as broken. Grepped the entire 837-file closure for
-  `sorry`: zero hits. Its own direct import chain
-  (`DGOLemma421Proof.lean` and the 9 files it imports) is dated 2026-08-29
-  to 2026-09-06, nothing suspiciously fresh or unstable. All of this points to
-  the same conclusion the lead's build log implies for the `GenericProducers`
-  `sorry` diagnostic below: a Lake batch build reporting "some required
-  targets logged failures" can attribute failure to targets that never had a
-  chance to be individually checked, not only to the ones with actual content
-  errors. I cannot run the isolated build to close this out myself — that is
-  the one remaining check. Imports `DGOLemma421Proof`, root line 3125. Do not
-  re-wire without that confirmation, but treat it as the likely exception
-  among the three, not a fourth confirmed content bug.
+- `GGT/DGOLemma421FourGon.lean` — **BROKEN, confirmed independently. My
+  "build-graph artifact" hypothesis was tested and REFUTED — recorded here
+  as a refuted prediction, not corrected quietly.** I predicted, from a
+  transitive-closure argument (zero overlap with what the two Kazhdan
+  failures actually touch), that this file was probably fine and had only
+  been swept up in a batch-failure report. The lead ran it as a single
+  explicit `lake build` target with nothing else in the invocation — the
+  exact test I had named as the one that would settle it — and it produced
+  eight of its own errors, all in lines 35–79, none inherited:
+  `Function expected` at 35, 39; `Unknown identifier
+  isGeodesicWord_one_of` at 46, 48; `Type mismatch` at 56, 59; `Application
+  type mismatch` at 78, 79. `lix-wire`'s independent explicit-target probe
+  confirms the same failure and adds detail: the line-35/39 error is
+  specifically `wordDist` reported as an unknown identifier (not merely a
+  function-expected mismatch), and a further unknown identifier
+  `isQuasiGeodesicPolygon_translate` at line 86. **My closure analysis was
+  right about the cause even though my conclusion was wrong**: the one
+  dependency this file shares with the broken Kazhdan cluster is
+  `OsinGeodesicWord`, and `isGeodesicWord_one_of` is exactly a name this file
+  expects `OsinGeodesicWord` to still provide — checked directly,
+  `OsinGeodesicWord.lean` no longer has a declaration by that name (it now
+  has `exists_relWord`, `existsGeodesicWord`, `sepSet_finite'`). So this is
+  the same disease as `GenericProducers` below — bit-rot against a moving
+  dependency — contracted from `OsinGeodesicWord` rather than from
+  `VanKampen.CombMapReduction`, and the reasoning that identified which
+  dependency mattered was sound; only the inference that it hadn't caused a
+  break was not. Zero sorry, per both builds. Imports `DGOLemma421Proof`,
+  root line 3125. Do not re-wire until the identifier drift against
+  `OsinGeodesicWord` is repaired.
 - `GGT/DGOProposition414SecondSeparationHalfWord.lean` — **built clean, stays
   wired.** Imports `DGOProposition414SecondSeparationTransport`, root line
   3305.
 - `GGT/HullSCLemma44PrefixKernelCutConstruction.lean` — **built clean, stays
   wired.** Imports `HullSCLemma44KernelGeodesicInductionConstruction`, root
   line 3318, and `HullSCLemma44PrefixKernelTransferInduction`, root line 3215.
-- `GGT/KazhdanHypGirthEightGenericProducers.lean` — **BROKEN**, wired at
-  `20e64a97c`, unwired at `dcee3ff04`. Reported errors: type mismatches at
-  lines 63, 78, 160; `declaration uses sorry` at lines 84, 87. **This is
-  confirmed bit-rot, not admitted debt — checked against the actual build
-  log, not left as a hypothesis.** Literal grep of this file's own source
-  text finds zero `sorry`/`admit` tokens (table above), and the lead's build
-  log confirms `grep -c sorry` over the file is also 0. Ordering in the log,
-  sorted by line, settles it: the type errors at 63 and 78 come **before**
-  the `declaration uses 'sorry'` diagnostics at 84 and 87 (with a further
-  pair at 160), and lines 63–87 all sit inside the same two theorems
+- `GGT/KazhdanHypGirthEightGenericProducers.lean` — **BROKEN, confirmed
+  bit-rot, not admitted debt.** `lix-wire`'s explicit-target build isolates
+  eight error sites, not the three or four either earlier build report named
+  individually: lines 63, 78, 146, 160, 162, 179, 181 and 185 — type
+  mismatches, an argument expecting a `Prop` given a non-`Prop`, and two
+  `omega` failures — plus `declaration uses 'sorry'` at lines 84 and 87.
+  **Confirmed against the actual build log, not left as a hypothesis**:
+  literal grep of the file's own source text finds zero `sorry`/`admit`
+  tokens (table above), matching both a hand-read of all 217 lines and the
+  lead's own `grep -c sorry` on the source. The log's own line ordering
+  settles the mechanism — the type-mismatch sites bracket the two `sorry`
+  diagnostics, all within the same two theorems
   (`cactusBaseCellDeletionForPower_of_foldStepSource`,
-  `cactusRelatorRetypingForPower_of_foldChainSource`) as the type errors.
-  Lean elaborated a failing term, inserted `sorryAx` to recover, and reported
-  the declaration as using `sorry` — nobody wrote it. This is API drift
-  against `VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both
-  actively developed, on a file dated 2026-09-02. **This does not change the
+  `cactusRelatorRetypingForPower_of_foldChainSource`). Lean elaborated a
+  failing term, inserted `sorryAx` to recover, and reported the declaration
+  as using `sorry` — nobody wrote it. This is API drift against
+  `VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both actively
+  developed, on a file dated 2026-09-02, and it is deeper drift than my first
+  reading suggested (eight sites, not three). **This does not change the
   practical bottom line**: wiring the file today would still make
-  `#print axioms`-style tooling report new `sorryAx`-dependent declarations
+  `#print axioms`-style tooling report two `sorryAx`-dependent declarations
   reachable from root, exactly as first reported — it changes only what kind
   of bug it is (a repair against a moving dependency, with an owner) versus
-  what it first looked like (an admission someone wrote and walked away
-  from). Its own direct dependencies (`KazhdanHypGirthEightTorsionExtraction`,
-  `VanKampen.CombMapReduction`, `VanKampen.CombMapGluing`) are also clean by
-  the same grep. Imports `KazhdanHypGirthEightTorsionExtraction`, root line
-  3168, and `VanKampen.CombMapReduction`/`CombMapGluing`, both reachable but
-  not direct root imports.
-- `GGT/KazhdanHypGirthEightGeodesicWord.lean` — **BROKEN**, wired at
-  `20e64a97c`, unwired at `dcee3ff04`. Reported error: a `rewrite` tactic at
-  line 115 whose pattern is not found in the goal — most likely API drift
-  against a dependency that has moved since this file was written
-  (2026-09-02). Imports `KazhdanHypGirthEightVKInterface`, root line 3118, and
-  `OsinGeodesicWord`, root line 2394.
+  what it first looked like. Imports `KazhdanHypGirthEightTorsionExtraction`,
+  root line 3168, and `VanKampen.CombMapReduction`/`CombMapGluing`, both
+  reachable but not direct root imports.
+- `GGT/KazhdanHypGirthEightGeodesicWord.lean` — **BROKEN, confirmed by two
+  independent builds.** A single `rewrite` tactic at line 115 fails: the
+  pattern `wordDist ?S ?x ?x` is not found in the goal
+  `OsinComponents.IsGeodesicWord D x.val x.val word`. Shallow — one error
+  site, no sorry — and, per `lix-wire`'s note, the same missing name
+  (`wordDist`) that breaks `DGOLemma421FourGon` above, which is worth
+  investigating as one shared root cause (drift in how `IsGeodesicWord` and
+  `wordDist` relate to each other now, versus when both files were written
+  on 2026-09-02) rather than two unrelated breaks, even though each fails
+  independently as its own explicit build target. Imports
+  `KazhdanHypGirthEightVKInterface`, root line 3118, and `OsinGeodesicWord`,
+  root line 2394.
 
-**General rule, worth stating for whoever reads this report next: `declaration
-uses 'sorry'` does not imply anyone wrote `sorry`.** Lean emits that diagnostic
-whenever a proof term's kernel closure contains `sorryAx`, and that includes
-the term the elaborator's own error-recovery synthesizes after a genuine type
-error — not only a hand-typed token. A `sorry` count taken purely from build
-output can therefore *overstate* admitted debt, exactly as a `grep` for the
-literal token over source text can *understate* it (a real `sorry` reached only
-through a macro, `Function.rfl`-style tactic combinator, or generated code
-would not show up lexically at all, though none of that applies to this
-repository's plain-tactic style). Neither number is the answer on its own: the
-source grep counts words, the build diagnostic counts recoveries, and only the
-two together with the actual error list — which of the flagged lines are type
-errors versus bare `sorry` diagnostics, and their relative order — tell you
-which kind of debt you are looking at.
+**Net for this section: three files need the same kind of repair (identifier
+drift against `OsinGeodesicWord` or `VanKampen.CombMapReduction`/
+`CombMapGluing`), not three unrelated deletions or three admissions. See the
+general rule at the top of the WIRE section for what the `sorry` count does
+and does not mean.**
 
-### KTheory/Basic.lean → Functorial.lean → Spaces.lean — NEEDS-PROBE, not a WIRE recommendation
+### KTheory/Basic.lean → Functorial.lean → Spaces.lean — PROBED: 2 of 3 compile, 1 has a one-line fix
 
-**Per the lead: leave as NEEDS-PROBE, do not recommend wiring; the lead will build it.**
+**The probe the author asked for has now happened** (`lix-wire`'s
+explicit-target build, `notes/orphan-buildtest-2026-09-07.md`), so this is no
+longer NEEDS-PROBE for two of the three files.
 
 Chain: `Basic.lean` (imports the reachable `KTheory/BlockMoves.lean`, root
 line 3426) builds `K₀` of a `*`-ring in the projection picture;
 `Functorial.lean` makes it functorial in the coefficient ring;
 `Spaces.lean` specializes to `K⁰(X) := K₀(C(X))` per "`lix-design`'s §B.4".
-Zero sorry/axiom. **But** the last commit to this chain
+Zero sorry/axiom in all three (confirmed both by source grep and by the
+probe's Lean-diagnostic count). The last commit to this chain
 (2026-09-05 16:45:23, "ktheory: hand-build the pullback star ring hom instead
 of coercing") is titled, in full: *"ktheory: K0 of a space and its
-contravariance -- UNPROBED, do not import yet."* That's the author's own
-instruction, not my inference. I'm not overriding it. Per your rules I'm not
-building anything myself — flagging that this needs a probe build before
-anyone wires it, and after 2 days untouched it's worth finding out whether it
-was probed and forgotten, or abandoned. Note also: there is a *separate*,
-already-landed K-theory apparatus under `Analysis/` (`KKTheoryKGroups.lean`,
-`KKTheoryKasparov.lean`, `KasparovBimodule.lean`,
-`UniversalCoefficientTheorem.lean`, `CStarKOneWhitehead.lean`) built on
-KK-theory/Kasparov modules rather than the elementary projection picture here
-— I did not find evidence either way on whether that made this chain
-redundant; that's part of what the probe should settle.
+contravariance -- UNPROBED, do not import yet"* — that caution turns out to
+have been **partially warranted, and precisely so**:
 
-**If it probes clean, recommended import**: `import GroupApproximation.KTheory.Spaces`
-(pulls in `Functorial` and `Basic`), inserted after line 3426
-(`KTheory.BlockMoves`, its transitive dependency).
+- `Basic.lean` — **compiles clean.** Safe to wire on its own.
+- `Functorial.lean` — **compiles clean.** Safe to wire (pulls in `Basic`).
+- `Spaces.lean` — **fails, shallow and specific**: line 43 defines something
+  that needs `noncomputable` because it transitively depends on
+  `instCommCStarAlgebraComplex`, itself noncomputable. This is the ordinary,
+  one-keyword fix for this exact Lean message (`noncomputable def` /
+  `noncomputable instance`) — not a sorry, not a type-theoretic gap, not drift
+  against a moved dependency. It reads like the file was written and never
+  run through the compiler even once, which is exactly what "UNPROBED" said
+  it was. Note also: there is a *separate*, already-landed K-theory apparatus
+  under `Analysis/` (`KKTheoryKGroups.lean`, `KKTheoryKasparov.lean`,
+  `KasparovBimodule.lean`, `UniversalCoefficientTheorem.lean`,
+  `CStarKOneWhitehead.lean`) built on KK-theory/Kasparov modules rather than
+  the elementary projection picture here — whether that makes this chain
+  redundant is a judgment call a compiler cannot answer, unchanged from the
+  original report.
+
+**Recommended import**: `import GroupApproximation.KTheory.Functorial` now
+(pulls in `Basic`), inserted after line 3426 (`KTheory.BlockMoves`, its
+transitive dependency) — both compile clean and are safe to wire today.
+`Spaces` should follow once someone adds `noncomputable` at line 43 and
+confirms the fix compiles; at that point the single import becomes
+`import GroupApproximation.KTheory.Spaces` in the same position, which
+transitively pulls in the other two.
 
 ---
 
-## Build status of the WIRE bucket (updated after the lead's second build)
+## Build status of the WIRE bucket (final, reconciled with `lix-wire`'s explicit-target probe)
 
-| Files | Wired at | Compiles? |
+| Files | Status | Compiles? |
 |---|---|---|
-| STW22FactorialCore/TraciallyCompletePair/AntipodalGaugeFactorial/AntipodalFactorialPair (4) | `6111d2d08` (accidental), unwired `091795e61` | **NO** — `STW22TraciallyCompletePair.lean:80` unreferenced `σ`, `:268` type mismatch |
-| STW22CounterexampleCompactnessRoute, STW22FibreEvaluation, DGOProposition414SecondSeparationHalfWord, HullSCLemma44PrefixKernelCutConstruction (4) | `20e64a97c` | **YES**, confirmed, stay wired |
-| DGOLemma421FourGon, KazhdanHypGirthEightGenericProducers, KazhdanHypGirthEightGeodesicWord (3) | `20e64a97c`, unwired `dcee3ff04` | **NO** — see GGT section for the three sets of errors; GenericProducers additionally reports `declaration uses sorry` at two lines, though the literal token is not in this file's source (see caveat below) |
-| KTheory/{Basic,Functorial,Spaces} (3) | not wired | NEEDS-PROBE, not recommended |
+| STW22FactorialCore/TraciallyCompletePair/AntipodalGaugeFactorial/AntipodalFactorialPair (4) | broke main at `6111d2d08`, unwired `091795e61`, **fixed at `e8e613608`** | **YES**, confirmed by two builds — ready to wire |
+| STW22CounterexampleCompactnessRoute, STW22FibreEvaluation, DGOProposition414SecondSeparationHalfWord, HullSCLemma44PrefixKernelCutConstruction (4) | wired `20e64a97c` | **YES**, confirmed, stay wired |
+| KazhdanHypGirthEightGenericProducers, KazhdanHypGirthEightGeodesicWord, DGOLemma421FourGon (3) | wired `20e64a97c`, unwired `dcee3ff04` | **NO** — each is API drift against a moved dependency (`VanKampen.CombMapReduction`/`CombMapGluing` for the first, `OsinGeodesicWord` for the other two); GenericProducers additionally has 2 compiler-reported `sorryAx` recoveries from its own type errors, not hand-written admissions — see GGT section |
+| KTheory.Basic, KTheory.Functorial (2) | not wired | **YES**, confirmed — safe to wire now |
+| KTheory.Spaces (1) | not wired | **NO** — one missing `noncomputable` keyword, line 43 |
 
-**Net result of two build attempts against this report's WIRE bucket: 7 of 11
-wired-and-tested files broke `origin/main`; the other 3 (of 14 total) were
-never attempted.** WIRE = "has its dependencies, no duplicate declarations, no
-literal sorry/admit token in its own source" — three checked claims, not four
-— see the caveat at the top of the WIRE section for the full statement and
-for why a lexical scan cannot see a compiler-synthesized `sorry`.
+**Final tally: 10 of 14 wired-or-tested files compile clean, 4 do not. Every
+failure has a named, specific cause** (API drift against two dependencies, or
+one missing keyword) **and none is unfinished mathematics** — the corpus's
+admitted-debt count from wiring this entire bucket, once the four are fixed,
+would be exactly what it is today. WIRE in this report always meant "has its
+dependencies, no duplicate declarations, no literal sorry/admit token in its
+own source" — three checked claims, not "compiles" — see the caveat at the
+top of the WIRE section for the full statement and for why a lexical scan
+cannot see a compiler-synthesized `sorry`.
 
 ## Summary table
 
@@ -646,9 +683,11 @@ for why a lexical scan cannot see a compiler-synthesized `sorry`.
 |---|---|---|
 | DEAD | 81 | AlgTop/* (46), ThirdParty/HamSandwich Branch3/4 (27), LIXObstruction{Contradiction,LowPowerSums} (2), ChernCommonZeroBridge + Topology/* (6) |
 | INTENTIONAL | 6 | FLT vendor pair (2), FiniteDimensionalFactorialTraceCore (1), ModelTest/MatrixTest trio (3) |
-| WIRE | 14 | STW22 factorial-pair chain (4, BROKEN as landed), STW22CounterexampleCompactnessRoute + STW22FibreEvaluation (2, confirmed compiling), GGT/* (5: 2 confirmed compiling, 3 BROKEN as landed), KTheory/* (3, pending probe) |
+| WIRE | 14 | STW22 factorial-pair chain (4, FIXED, confirmed compiling), STW22CounterexampleCompactnessRoute + STW22FibreEvaluation (2, confirmed compiling), GGT/* (5: 2 confirmed compiling, 3 BROKEN — API drift, named cause each), KTheory/* (3: Basic + Functorial confirmed compiling, Spaces needs one `noncomputable` keyword) |
 
 No file was deleted or edited by this lane. `GroupApproximation.lean` was not
 touched by this lane at any point — the lead wired and unwired it directly
-(`6111d2d08`, `20e64a97c`, `091795e61`, `dcee3ff04`) to test WIRE
-recommendations against two real builds, per the "Build status" note above.
+(`6111d2d08`, `20e64a97c`, `091795e61`, `dcee3ff04`) and a separate lane
+(`xxii-fix`) fixed and lane `lix-wire` build-tested the bucket
+(`e8e613608`, `notes/orphan-buildtest-2026-09-07.md`), per the "Build status"
+note above.
