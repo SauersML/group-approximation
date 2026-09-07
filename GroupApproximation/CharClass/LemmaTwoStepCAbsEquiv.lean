@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LIXStepESpheresDischarged
 import GroupApproximation.CharClass.ThomTopLineLIX
 import GroupApproximation.CharClass.ThomStepCLocal
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C with the top line discharged too
@@ -198,8 +199,8 @@ theorem stepC_of_thomChainOpen (chern : LixChernDeg dd) (hdd : ∀ j, 0 < dd j)
 Both lines below print `[propext, Classical.choice, Quot.sound]`.  That is the point of
 keeping them: see the header for what the `Nonempty` variant does and does not buy. -/
 
-#print axioms ne_zero_of_thomChainOpen
+#audit_axioms ne_zero_of_thomChainOpen
 
-#print axioms stepC_of_thomChainOpen
+#audit_axioms stepC_of_thomChainOpen
 
 end GroupApproximation.CharClass

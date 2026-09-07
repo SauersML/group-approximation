@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.ThomBridgeChart
 import GroupApproximation.CharClass.ThomBridgeNaturalSquare
 import GroupApproximation.CharClass.CohomologyBridge
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The first two bridge steps are a single relative pullback
@@ -108,9 +109,10 @@ theorem bridgeChart_natural (p : Bundle X ι) (U : Set X) (n : ℕ)
   apply TopCat.Hom.ext
   exact ContinuousMap.ext fun v => bridgeChartIncl_natural p U v
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms bridgeChart_natural
+#audit_axioms bridgeChart_natural
 
 end
 

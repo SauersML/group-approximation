@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomRestrictSquare
 import GroupApproximation.CharClass.LIXThomAssembly
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `habs`: the coordinate image of the relative group is the Thom kernel
@@ -138,9 +139,10 @@ theorem range_thomJm_eq_ker_restrictMap (Z : Set P)
     rw [hx] at hsq
     exact hsq.symm
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms range_thomJm_eq_ker_restrictMap
+#audit_axioms range_thomJm_eq_ker_restrictMap
 
 end ThomChernDeg
 

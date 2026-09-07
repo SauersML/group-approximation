@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.ThomChernDegreewise
 import GroupApproximation.CharClass.ThomFreeDegreewise
 import GroupApproximation.CharClass.CohomologyLHRestrict
 import GroupApproximation.CharClass.CohomologyKunnethHemi
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The restriction of a pair, in Leray–Hirsch coordinates
@@ -83,9 +84,10 @@ theorem absToSub_sum_lhTerm (Z : Set P)
   exact (lhTerm_add π' ξ' (2 * r) (i : ℕ) (a i.castSucc)
     (chernMul L' i (a (Fin.last r)))).symm
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms absToSub_sum_lhTerm
+#audit_axioms absToSub_sum_lhTerm
 
 end ThomChernDeg
 

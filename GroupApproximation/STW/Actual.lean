@@ -1,6 +1,6 @@
-import STW.Actual.Flow
-import STW.Actual.FockPair
-import STW.Actual.CuntzCalkin
+import GroupApproximation.STW.Actual.Flow
+import GroupApproximation.STW.Actual.FockPair
+import GroupApproximation.STW.Actual.CuntzCalkin
 
 /-!
 # Actual operator-algebra formalization root for the STW problems

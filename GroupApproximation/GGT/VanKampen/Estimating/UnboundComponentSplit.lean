@@ -221,11 +221,18 @@ theorem estimatingUnboundRepaired_of_decomposition
   estimatingUnboundRepaired_of_componentPartition
     (lemma62ComponentPartition_of_decomposition hdecomposition)
 
-/-- The decomposition producer discharges the statement that
-`estimatingDataConstruction_of_components` consumes. -/
+/-- The decomposition producer discharges the **historical** output statement.
+
+It cannot reach the current `EstimatingUnboundOutputStatement`, and should not:
+that one carries `UnboundEstimate.OsinUnboundScale`, which the same-diagram
+repaired form does not supply.  The chain
+`Lemma62ComponentDecompositionStatement → EstimatingUnboundRepairedStatement →
+EstimatingUnboundOutputHistoricalStatement` is retained because it is what
+carries the counterexamples' refutation back to the decomposition producer, in
+`UnboundSmallMuCounterexample.not_lemma62ComponentPartitionStatement`. -/
 theorem estimatingUnboundOutput_of_decomposition
     (hdecomposition : Lemma62ComponentDecompositionStatement.{u, w, v}) :
-    EstimatingUnboundOutputStatement.{u, w, v} :=
+    EstimatingUnboundOutputHistoricalStatement.{u, w, v} :=
   estimatingUnboundOutput_of_repaired
     (estimatingUnboundRepaired_of_decomposition hdecomposition)
 

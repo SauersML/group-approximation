@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.CompatibleCoronaSupportCorner
 import GroupApproximation.Analysis.ShulmanFillTheorem16
 
@@ -83,5 +84,4 @@ end
 end ShulmanFill
 end GroupApproximation
 
-#print axioms
-  GroupApproximation.ShulmanFill.shulmanTheorem16_of_unitalCompatibleCoronaNorming
+#audit_axioms GroupApproximation.ShulmanFill.shulmanTheorem16_of_unitalCompatibleCoronaNorming
