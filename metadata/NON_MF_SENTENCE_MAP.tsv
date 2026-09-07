@@ -363,3 +363,28 @@ a7997fb95c84	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.NormalKa
 54db830af92e	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptSentence_traceOfCombinationTendsTo	thm:normal-kazhdan's printed proof (printed-route lane): the hypothesis applied to (W_n) gives the trace estimate; part of the same sentence-group as bf534e05ae16.
 bf534e05ae16	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptSentence_traceOfCombinationTendsTo	Same carrier and sentence-group as 54db830af92e: the normalized Hilbert-Schmidt norm of M_{r_n}(C) and the resulting trace convergence.
 299213267fe2	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute	thm:normal-kazhdan's printed proof (printed-route lane): the closing contradiction is assembled directly in the closed endpoint, using PrintedPreliminaryEstimates.norm_normTrace_le_l2_opNorm and Filter.eventually_lt_of_limsup_lt (per the lane's own report table).
+5b0dfc92ce36	provenance		Resource-usage disclosure: dates when the author began using AI models on the nonsofic-group questions. Quotes rather than asserts.
+caa4a447fef4	provenance		Resource-usage disclosure: names the model and conversation that worked on weak MF approximations. Quotes rather than asserts.
+d98a9f3bb3ce	provenance		Resource-usage disclosure: narrates an earlier exchange in the conversation. Quotes rather than asserts.
+bb595263240a	provenance		Resource-usage disclosure: describes what the author sent to the model. Quotes rather than asserts.
+2c89efdefba6	provenance		Resource-usage disclosure: the quoted prompt itself, verbatim.
+ac0077e6ab86	provenance		Resource-usage disclosure: the quoted prompt itself, verbatim.
+3113d5d90053	provenance		Resource-usage disclosure: narrates what the model produced and when. Quotes rather than asserts as a claim of this paper.
+0d76683f5cc3	provenance		Resource-usage disclosure: a date.
+2b5a42f87cb2	provenance		Resource-usage disclosure: narrates what the models proved and when. Quotes rather than asserts as a claim of this paper.
+9e77bf4d76f1	provenance		Resource-usage disclosure: narrates which parallel efforts did not find the result.
+1778c11e19e3	provenance		Resource-usage disclosure: narrates the reduction process and its date.
+b979c19c02c5	provenance		Resource-usage disclosure: narrates when the first draft was written.
+6187b892c7ed	provenance		Resource-usage disclosure: the author's role in the collaboration.
+5f4cf5ab340e	provenance		Resource-usage disclosure: the author's role in the collaboration.
+cebd0d623085	provenance		Resource-usage disclosure: division of drafting labor between models and author.
+4be79ce5e187	provenance		Resource-usage disclosure: names which models wrote the Lean proofs.
+50a16d3d04fe	provenance		Resource-usage disclosure: points to the public commit history.
+b8638d2cb81d	provenance		Resource-usage disclosure: names when experts were consulted.
+d9c00d8083d7	provenance		Resource-usage disclosure: credits Astra's reviews with shortening the paper and simplifying a proof; no mathematical assertion of its own.
+72af66964b20	attribution		Recommends Eckhardt's writeup as a short elementary proof; credits rather than asserts independently.
+209e00821502	structural		Bare lead-in to the display naming Sol's original counterexample; asserts nothing independently.
+374637bc6ac7	attribution		Credits OpenAI with using this group to construct the first nonsofic group.
+ea4f4705fc47	definition		States the standing convention that groups are countable throughout; asserts nothing beyond the convention.
+2ea4158fe2b2	definition		Restates the MF definition in words; fixes notation, asserts nothing new.
+be1769283b2f	definition		Fixes notation: bounded products and the norm-null ideal; asserts nothing.
