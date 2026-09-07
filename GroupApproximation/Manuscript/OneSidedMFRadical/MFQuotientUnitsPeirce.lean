@@ -205,16 +205,16 @@ def pair (i j : Fin 2) (hij : i ≠ j) : Pair R where
   f := F.e j
   a := F.s i * F.t j
   b := F.s j * F.t i
-  ee := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  ff := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
+  ee := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  ff := by simp only [e, mul_assoc, F.ts_action, ite_true]
   ef := by simp only [e, mul_assoc, F.ts_action, if_neg hij, mul_zero]
   fe := by simp only [e, mul_assoc, F.ts_action, if_neg hij.symm, mul_zero]
-  ab := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  ba := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  ea := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  af := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  fb := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
-  be := by simp only [e, mul_assoc, F.ts_action, if_pos rfl]
+  ab := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  ba := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  ea := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  af := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  fb := by simp only [e, mul_assoc, F.ts_action, ite_true]
+  be := by simp only [e, mul_assoc, F.ts_action, ite_true]
 
 noncomputable def root (i j : Fin 2) (hij : i ≠ j) (c : R) : Rˣ :=
   matrixCornerUnitHom F.s F.t F.ts F.cross (elementaryUnit i j hij c)

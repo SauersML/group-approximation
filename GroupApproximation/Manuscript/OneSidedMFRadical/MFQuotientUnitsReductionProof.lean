@@ -73,7 +73,7 @@ namespace Frame
 variable (F : Frame R)
 
 theorem e_idem (i : Fin 2) : F.e i * F.e i = F.e i := by
-  simp only [e, mul_assoc, F.ts_action, if_pos rfl]
+  simp only [e, mul_assoc, F.ts_action, ite_true]
 
 theorem e_ne_zero [Nontrivial R] (i : Fin 2) : F.e i ≠ 0 := by
   intro hz
@@ -115,6 +115,8 @@ theorem coeff_root_mul (u : Rˣ) (a b : Fin 2) (hab : a ≠ b) (c : R)
   · rw [F.cross i a hia, zero_mul, zero_mul]
 
 variable [Countable R] (hR : IsPurelyInfiniteSimpleRing R)
+
+include hR
 
 /-- One Peirce operation suffices to make the first corner nonzero. -/
 theorem exists_pivot (u : Rˣ) :

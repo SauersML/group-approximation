@@ -5,7 +5,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsReductionProof
 
 /-!
-# Matrix reduction and the supported-unit step are closed
+# The group-theoretic MF quotient theorem is closed at every rank
 
 `non_mf_groups_exist.tex`, inside the proof of `thm:mf-quotient-units`:
 
@@ -15,10 +15,11 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsReductionP
 `MFQuotientUnits.lean` quoted that sentence as the hypothesis
 `AGPMatrixReduction`.  `Algebra/PurelyInfiniteSimpleMatrix.lean` proves it, so
 this module discharges that hypothesis wherever the printed theorem took it.
-It also exports the supported-unit proof and the abstract abelianization
-construction. The new all-rank group-theoretic entry point therefore has only
-the Menal--Moncasi reduction left as input; the earlier three-input entry
-points remain available to existing callers.
+It also exports the supported-unit proof, the explicit arbitrary-unit
+reduction, and the abstract abelianization construction. The all-rank
+group-theoretic entry point `manuscriptMFQuotientUnits` has no remaining
+literature input propositions. Earlier conditional entry points remain
+available to existing callers.
 
 Of the sentence's three adjectives, all three are now the tree's own:
 
@@ -31,10 +32,10 @@ Of the sentence's three adjectives, all three are now the tree's own:
 `MFQuotientUnitsStepOne` now proves `AGPStepOne`. The abstract `AGPUnitK1`
 package is supplied below by abelianization: its definition asks only for an
 abstract countable abelian quotient with commutator kernel, so it does not
-assert anything about the constructed algebraic K₁. Consequently
-`printedMFQuotientUnits_of_menalMoncasi` has just the Menal--Moncasi reduction
-left as input. `MFQuotientMatrices` already proves the group-theoretic
-classification at every rank at least two with no such input.
+assert anything about the constructed algebraic K₁.
+`MFQuotientUnitsReductionProof` discharges the Menal--Moncasi interface by
+explicit Peirce operations. `MFQuotientMatrices` also provides a separate
+direct elementary-group proof at every rank at least two.
 
 The canonical `AGPUnitKappa` and general `MoritaKOne` remain separate
 obligations. `AlgebraicK.moritaKOne_of_selfSimilar` closes Morita invariance
@@ -53,8 +54,7 @@ theorem agpMatrixReduction : AGPMatrixReduction := by
   intro R _ _ hR n hn
   exact isPurelyInfiniteSimpleRing_matrix hR n hn
 
-/-- **`thm:mf-quotient-units` from the three remaining Ara--Goodearl--Pardo
-inputs.**  The matrix-reduction hypothesis is discharged. -/
+/-- Compatibility endpoint with three explicit AGP arguments. -/
 theorem printedMFQuotientUnits_of_agpThree
     (hK1 : AGPUnitK1) (hMM : AGPMenalMoncasiReduction) (hS1 : AGPStepOne) :
     PrintedMFQuotientUnits :=
@@ -71,8 +71,7 @@ theorem abstractUnitAbelianization : AGPUnitK1 := by
   exact ⟨Abelianization Rˣ, inferInstance, inferInstance, Abelianization.of,
     QuotientGroup.mk'_surjective (commutator Rˣ), Abelianization.ker_of Rˣ⟩
 
-/-- The all-rank group-theoretic classification now requires only the step
-that moves arbitrary units to supported form. Rank one is the remaining case. -/
+/-- Compatibility endpoint with the arbitrary-unit reduction explicit. -/
 theorem printedMFQuotientUnits_of_menalMoncasi
     (hMM : AGPMenalMoncasiReduction) : PrintedMFQuotientUnits :=
   printedMFQuotientUnits_of_agpThree abstractUnitAbelianization hMM agpStepOne
