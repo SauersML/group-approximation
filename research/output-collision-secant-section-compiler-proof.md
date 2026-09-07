@@ -57,10 +57,18 @@ if P_c z=d then z=Q_c P_c z=Q_c d=0 and hence d=0, a contradiction.
 This proves strictness on the entire full shift, without restricting
 the certificate space to valid computations or image pairs.
 
-Apply `certificate-linear-counterexamples-compile-to-lamp-algebras`
-with |B|=p^(2n) to obtain the stated finite-lamp group and matrix sizes.
-The claim concerns stable finiteness of this larger group's algebra;
-it does not assert direct or stable finiteness failure of F_p[G] itself.
+Apply the strengthened
+`certificate-linear-counterexamples-compile-to-lamp-algebras` to E.
+Constant evaluation retains QP=I and PQ!=I over F_p[G] at size n.
+Its additional Fourier realization, with |B|=p^(2n), gives the stated
+finite-lamp group and matrix sizes as well.
+
+The fiber theorem also explains why normalizing Q at a diagonal pair
+does not repair the construction. If any Q_c is invertible, Q_c P_c=I
+makes P_c its inverse. One invertible fiber then forces PQ=I globally,
+contradicting the collision witness. Therefore any successful secant
+family must already contain strictly one-sided operators at every
+certificate, including every constant diagonal pair.
 
 ## A missing encoder output supplies the collision
 

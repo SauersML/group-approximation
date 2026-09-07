@@ -148,10 +148,10 @@ out for different reasons.**
   and the whole problem reduces to one equation `ab = e`, whose defect lies in
   `ker(pi_e)` — see the attempts under `leavitt-corner-one-sided-lift-exists`.
   Dies on having no handle on that kernel.
-* *Lift the whole Leavitt family.*  Strictly harder: five relations instead of
-  one, each contributing its own kernel element.  Notably it is not *refuted*
-  in the corner, because `eps(e) = 0` switches off the only no-go available;
-  it is simply unconstrained.
+* *Lift the whole Leavitt family.* Refuted in the designated corner by
+  the lifted 2-adic trace: the family would force [eS]=2[eS], while
+  its trace is 2/3. Vanishing ordinary augmentation does not remove
+  this obstruction. The weaker single-pair lifting problem remains open.
 * *Use the radical.*  **Refuted 2026-08-17.**  `ker(pi_e) = J(eAe)` would have
   made the quotient argument legal without exhibiting anything.  It is false:
   the kernel contains a nonzero idempotent.  What is worth keeping from this
@@ -310,3 +310,20 @@ factors while keeping a literal cross-atlas relation, certify the support
 subgroup of the `t_0` lift to be `Q` rather than merely mixed-chart, grow the
 `A`-support universe by multiplication-collision class instead of word radius,
 and carry blocking clauses learned from the failed Gaussian systems.
+
+The computational lane now has a stronger exact reduction:
+`one-invertible-certificate-fiber-forces-global-invertibility` proves that
+any strict certificate-controlled linear full-shift embedding yields a
+strict matrix inverse pair over the original group algebra by freezing
+any constant certificate. No finite-lamp enlargement is needed. This
+does not exhibit the pair for Q; it shows that any successful local
+verification program in this class must already retain the algebraic
+defect in every constant specialization.
+
+`rf-lamps-with-finite-stabilizers-preserve-direct-finiteness` supplies a
+separate positive permanence theorem. For regular wreath products with
+residually finite lamps, or more generally permutation actions with finite
+stabilizers, direct finiteness at each matrix size is equivalent to that
+of the base group algebra. Building such a wreath library cannot create
+a new inverse defect if the base algebra has none. Infinite stabilizers
+are outside this theorem's scope.

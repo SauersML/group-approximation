@@ -39,3 +39,11 @@ The exact induction hypotheses are isolated in
 iteration after the first wreath product has ceased to be residually
 finite; `recursive-wreath-libraries-have-stably-finite-group-algebras`
 records the resulting hierarchy and infinite-depth residual extension.
+
+For actions with finite point stabilizers,
+`rf-lamps-with-finite-stabilizers-preserve-direct-finiteness` removes the
+residual-finiteness hypothesis on G: finiteness of k[G] at the relevant
+matrix size suffices, and is also necessary. That theorem uses induced
+finite-dimensional lamp representations whose errors relative to lamp
+augmentation have finite rank. It includes all regular wreath products
+but does not cover the arbitrary infinite stabilizers permitted here.

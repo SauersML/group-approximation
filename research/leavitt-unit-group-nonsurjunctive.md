@@ -79,18 +79,23 @@ There is now a precise translation for one larger construction class.
 arbitrary local certificate predicates to choose linear combinations of
 data. If such a rule is injective and nonsurjective on the full shift,
 `certificate-linear-automata-have-local-linear-decoders` supplies a local
-linear decoder, and finite Fourier identities turn the pair into
-`B A=I`, `A B!=I` over a prime-field group algebra of a regular finite-lamp
-wreath product over G. For characteristic two, cubic lamps suffice and
-the data matrix size doubles. This would reach Gottschalk on G and the
-finite-field algebraic obstruction on the larger group; it is not a proof
-of the Kaplansky claim for G itself.
+linear decoder. The strengthened constant-fiber theorem turns the pair
+into `B A=I`, `A B!=I` over the prime-field group algebra of G itself,
+at the original data matrix size: freeze any constant certificate and
+evaluate all coefficients there. A Fourier realization in a larger lamp
+group remains available, but is no longer needed to retain the defect.
 
 The remaining construction problem is to specify the coefficient predicates
 and prove injectivity for every malformed certificate while retaining one
 nonsurjective fiber. The translation lets that problem be designed as a
 computer with conditional linear updates and then encoded algebraically.
-No such update rule is currently exhibited.
+No such update rule is currently exhibited. Moreover,
+`one-invertible-certificate-fiber-forces-global-invertibility` shows
+that its defect would have to occur at every certificate, including
+each constant one. Finite changes to any certificate perturb the linear
+operator by finite rank; an invertible fiber would therefore force
+invertibility on a dense set and then on the whole family. Complicated
+certificate logic cannot confine a strict defect to selected computations.
 
 `finite-pattern-orbit-closure-forces-surjunctivity` supplies a separate
 test for genuinely nonlinear rules. If the encoder and a decoder preserve
@@ -139,3 +144,9 @@ may be designed as a nonlinear local program: once it is valid on all
 data and all certificates, single-coordinate responses linearize it
 without increasing its memory. Constructing that right inverse is still
 open; the encoder tau itself does not automatically provide it.
+
+The same fiber theorem forces any successful output-secant construction
+to retain its one-sided defect even at a constant diagonal certificate.
+Setting Q_(a,a)=I at one certificate is incompatible with a locally split
+family and a nonlinear collision. The actual original-group inverse pair
+must therefore already appear in that constant specialization.

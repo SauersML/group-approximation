@@ -31,7 +31,13 @@ the nonzero configuration d=b-a satisfies
 
     Q_(a,b)d=0,              (I-P_(a,b)Q_(a,b))d=d.      (OSC3)
 
-The known finite-lamp compiler embeds this inverse pair into F_p[L wr G]:
+More strongly, evaluating P,Q at any constant certificate gives the same
+strict inverse identities in M_n(F_p[G]), by
+`one-invertible-certificate-fiber-forces-global-invertibility`. The
+original group algebra therefore fails stable finiteness, without a
+change of group or matrix size.
+
+The finite-lamp compiler also embeds the entire family into F_p[L wr G]:
 one may take L=(C_2)^r with 2^r>=p^(2n) for odd p, and L=(C_3)^r with
 3^r>=2^(2n) for p=2. Here r>=1; the matrix sizes are respectively n and
 2n. Thus the displayed group algebra fails stable finiteness, and the
@@ -55,3 +61,10 @@ even when sigma is reversible: the three-bit example in
 `boolean-secants-do-not-supply-operator-left-inverses` has a singular
 secant. A surviving construction must choose different secants or another
 representation; existence of local secants alone is insufficient.
+
+There is a stronger restriction on any proposed replacement. It cannot
+make Q invertible at even one certificate, including one with a=b.
+An invertible fiber would force all fibers to be invertible, contradicting
+(OSC3). Thus a diagonal normalization Q_(a,a)=I is incompatible with a
+locally split family for a noninjective decoder. Its one-sided defect
+must already survive in the constant-certificate operators over F_p[G].

@@ -7,6 +7,7 @@ target: certificate-linear-counterexamples-compile-to-lamp-algebras
 requires:
   - certificate-linear-automata-have-local-linear-decoders
   - stable-finiteness-failure-refutes-surjunctivity
+  - one-invertible-certificate-fiber-forces-global-invertibility
 ---
 
 ## The operator algebra with certificate-dependent coefficients
@@ -39,6 +40,16 @@ for every c. Faithfulness detects A B_0-I in at least one fiber; in that
 fiber T_c cannot be onto, since a surjective map with a left inverse has
 that map as a right inverse too. This proves the stated stable-finiteness
 equivalence for R_B.
+
+## Freeze a constant certificate to keep the defect over G
+
+For any constant c_b, evaluation of coefficients is a unital ring map
+R_B->F_p[G]. It therefore sends B_0 A=I to B_b A_b=I. If A_b B_b=I,
+`one-invertible-certificate-fiber-forces-global-invertibility` would force
+A B_0=I throughout the full certificate shift, contradicting its nonzero
+defect. Hence A_b B_b!=I at every constant certificate. This proves the
+strengthened original-group conclusion, at the original matrix size n.
+The same theorem identifies stable finiteness of R_B with that of F_p[G].
 
 ## Encode every certificate by characters of finite lamps
 
@@ -110,7 +121,12 @@ The reduction does not prove that a suitable T exists. Nor does it extend
 a decoder valid only on a proper certificate subshift to arbitrary garbage:
 the decoder lemma uses injectivity for all c in the entire compact full
 shift, and the faithful pullback uses the onto map q onto that full shift.
-It also supplies no unwarranted transfer of stable finiteness from G to W.
+The original-group conclusion uses the finite-rank fiber theorem above;
+the Fourier embedding by itself does not prove it. A separate induced-
+representation argument in
+`rf-lamps-with-finite-stabilizers-preserve-direct-finiteness` now proves
+the relevant regular-wreath permanence directly, including nonabelian
+residually finite lamps and every characteristic.
 
 The Fourier construction is the standard one, with the splitting-field
 hypotheses made explicit; see Ara--Claramunt, Proposition 5.8,
