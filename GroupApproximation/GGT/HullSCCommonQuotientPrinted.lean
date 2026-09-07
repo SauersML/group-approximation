@@ -58,9 +58,20 @@ subgroup that has to stay suitable across the first quotient is the image of the
 and the injectivity radius of the composite is uncontrolled without the alphabet
 clause.  So the reduction here is to Hull's Theorem 7.1 **as his construction
 produces it**, `HullSC.HullOneStepStatement`, which is also what
-`HullSC.hullBallFormNG_of_oneStep` reduces the printed form to.  That is a
-statement about the same theorem of the same paper, and it is the section's
-other citation; it is not the printed sentence.
+`HullSC.hullBallFormNG_of_oneStep` reduces the printed form to.
+
+**State the cost in the words that make it checkable.**
+`cor:relative-quotient`'s dependency has moved from *Hull, Corollary 7.4* to
+*Hull, Theorem 7.1 as his construction produces it*, and that is a **different
+literature statement** from the one the section cites as `thm:hull`.  It is the
+same theorem of the same paper in a stronger reading — with `alphabet_image`,
+`suitable_map_family` and the kernel clause, none of which the printed sentence
+records — so what this module does is **trade an input for a stronger form of an
+already cited theorem**, not remove an input outright.  A census row reading
+"discharged" without that qualification would be false, and the phrase
+`HullSC.HullOneStepStatement` standing in the type of
+`manuscriptRelativeQuotient_of_oneStep` is what keeps it honest: the trade is
+visible in the signature and cannot be lost by a docstring going stale.
 
 ## The delta from `TheoremC.HullCommonQuotientStatement`
 

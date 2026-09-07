@@ -123,8 +123,13 @@ theorem manuscriptTorsionFreeFullMFRadical_of_citations (I : LiteratureInputs)
 
 Neither of the corollary's two printed citations — Fournier-Facio §2 and Hull's
 Corollary 7.4 — appears.  `hOne` is Hull's Theorem 7.1 for one relator, which
-`hullCommonQuotientPrinted_of_oneStep` turns into Corollary 7.4; see the module
-header for why it cannot be merged with `hHull`. -/
+`hullCommonQuotientPrinted_of_oneStep` turns into Corollary 7.4.
+
+That is a **trade, not a removal**: `HullSC.HullOneStepStatement` is Hull's
+Theorem 7.1 *as his construction produces it*, a different literature statement
+from the one the section cites as `thm:hull`, and a stronger reading of it.  See
+the header of `GGT/HullSCCommonQuotientPrinted.lean`, and the module header here
+for why it cannot be merged with `hHull`. -/
 theorem manuscriptRelativeQuotient_of_citations (I : LiteratureInputs)
     (hW : FinitelyPresentedInfiniteSimpleStatement)
     (hHull : HullPrintedInputs.{0}) (hOne : HullSC.HullOneStepStatement.{0}) :
