@@ -14,6 +14,7 @@ normal generation, over an arbitrary unital ring, at rank 4 and at every rank
 | `1ead28fc06db6c8eb40d46017a44881fc1eb9582` | `GroupApproximation/Leavitt/OneSidedCompressorDefect.lean` | 4056 |
 | `6175d1cc29bbb90f9bc3711ed3f020df2386a0a8` | `GroupApproximation/Leavitt/FullIdempotentNormalGeneration.lean` | 4060 |
 | `5563234074de9d9a0d06d3317aaab7d92681ea5b` | `GroupApproximation/Leavitt/OneSidedCompressorStabilized.lean` | 4062 |
+| `3f69392c93f894d012ea05f5f2a2ab544d241ba0` | `GroupApproximation/Leavitt/FullDefectRingAtFixedRing.lean` | 4263 |
 
 ### `OneSidedInverse.lean` — namespace `GroupApproximation.OneSidedCompressor`
 
@@ -81,6 +82,15 @@ closed endpoint `PrintedFullDefectSaturation` proved by
 `manuscriptPrintedFullDefectSaturation`, whose `#audit_closed_axioms` report
 is `[propext, Classical.choice, Quot.sound]`.
 
+### `FullDefectRingAtFixedRing.lean` — namespace `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`
+
+`theorem fullDefectAtFixedRing : FullDefectAtFixedRing`, the seam requested by
+lane `ring-b-end`.  Its proof joins `printedDefectOf_eq_top`,
+`coreOf_hasKazhdanPropertyT` and `FullDefectRing.countable_elementaryGroup`
+into the hypotheses of `FullDefectRing.manuscriptSaturatedPrintedDefectRadical`
+and takes its third clause.  `#audit_closed_axioms` reports
+`[propext, Classical.choice, Quot.sound]`.
+
 ## Interfaces for other lanes
 
 The fullness hypothesis is stated exactly as lane `ring-b-end` produces it in
@@ -92,8 +102,10 @@ with `x = P.e`, and `P.e` is definitionally `1 - P.s * P.t`.
 
 ## Open obligations
 
-None inside this lane's brief.  The two hypotheses the endpoint consumes are
-supplied elsewhere: fullness of `e` by `ring-b-end`
+None.  Every deliverable of the brief is landed, and the seam
+`FullDefectAtFixedRing` that lane `ring-b-end` was waiting on is discharged.
+The two hypotheses that remain inside `FullDefectAtFixedRing` itself are the
+printed ones and are supplied elsewhere: fullness of `e` by `ring-b-end`
 (`FullDefectRing.exists_sum_eq_one_of_isSimpleRing`, `leavittFamily_full`,
 `completeMatrixFamily_full`) and property `(T)` for `EL₃(R)` and `EL_n(R)` by
 `ejz-integral`.
