@@ -6,6 +6,7 @@ title: Rich 2-to-1 games are NP-hard to approximate between near-perfect and nea
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
   - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
+  - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
 ---
 
 **OPEN.**  The Rich 2-to-1 Games Conjecture of Braverman, Khot and Minzer:
@@ -31,6 +32,13 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
 
 ## Attempts
 
+* **Use the folded long-code noise test with only affine richness.**
+  **Dead as a uniform soundness argument:**
+  `affine-long-code-test-has-no-uniform-soundness` gives explicit source
+  games of value at most `2/sqrt(N)` whose transformed games have value
+  close to one. The published result's full-richness hypothesis is not
+  supplied by the affine direction distribution. This leaves open tests
+  or input families with additional structure.
 * **Glue the affine orientations analytically.** **Dead:**
   `affine-orientation-glue-lemma` is refuted, and its conditional hardness
   route is invalidated. The historical endgame proposal
