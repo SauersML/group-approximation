@@ -112,20 +112,33 @@ def lixHsqEps (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
   lixBaseEps dd (lixTrivSet hGc hGu) (isOpen_lixTrivSet hGc hGu)
     (lixZero_mem_lixTrivSet hGc hGu)
 
-/-- **The ball in chart coordinates**, of which `lixTrivBall` is the base chart's image. -/
+/-- The radius the square is compared at: the one `lixTrivBall` was cut at, capped at
+`1/2`.  The cap is what makes the two chart clamps — the sphere's `sphereClamp` and the
+circle's `circClamp` — inactive, so that the chart really reads the section rather than the
+section of a rescaled point. -/
+def lixHsqRad (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) : ℝ :=
+  min (lixHsqEps hGc hGu) (1 / 2)
+
+/-- **The ball in chart coordinates**, whose base chart image lies inside `lixTrivBall`. -/
 def lixHsqBall (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
     Set (ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → ℂ)) :=
-  Metric.ball 0 (lixHsqEps hGc hGu)
+  Metric.ball 0 (lixHsqRad hGc hGu)
 
-theorem lixTrivBall_eq_image (hGc : Continuous G)
+theorem lixHsqBall_subset_pre (hGc : Continuous G)
     (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
-    lixTrivBall hGc hGu = (lixBC dd) '' lixHsqBall hGc hGu := rfl
+    lixHsqBall hGc hGu ⊆ Metric.ball 0 (lixHsqEps hGc hGu) :=
+  Metric.ball_subset_ball (min_le_left _ _)
+
+theorem lixBC_image_lixHsqBall_subset (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
+    (lixBC dd) '' lixHsqBall hGc hGu ⊆ lixTrivBall hGc hGu :=
+  Set.image_mono (lixHsqBall_subset_pre hGc hGu)
 
 theorem lixHsqBall_subset_bc_source (hGc : Continuous G)
     (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
     lixHsqBall hGc hGu ⊆ (lixBC dd).source :=
   fun _ hw => (lixBaseBallPre_subset (lixTrivSet hGc hGu) (isOpen_lixTrivSet hGc hGu)
-    (lixZero_mem_lixTrivSet hGc hGu) hw).1
+    (lixZero_mem_lixTrivSet hGc hGu) (lixHsqBall_subset_pre hGc hGu hw)).1
 
 theorem lixHsqBall_subset_fc_source (hGc : Continuous G)
     (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
@@ -137,10 +150,57 @@ theorem lixHsqEps_pos (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m
     0 < lixHsqEps (dd := dd) hGc hGu :=
   lixBaseEps_pos _ _ _
 
+theorem lixHsqRad_pos (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
+    0 < lixHsqRad (dd := dd) hGc hGu :=
+  lt_min (lixHsqEps_pos hGc hGu) (by norm_num)
+
 theorem zero_mem_lixHsqBall (hGc : Continuous G)
     (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m)) :
     (0 : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → ℂ)) ∈ lixHsqBall hGc hGu :=
-  Metric.mem_ball_self (lixHsqEps_pos hGc hGu)
+  Metric.mem_ball_self (lixHsqRad_pos hGc hGu)
+
+/-! ### The cap, unpacked
+
+Every coordinate of a point of the ball is bounded by `1/2` in norm, which is what makes
+the sphere and circle clamps inactive. -/
+
+theorem norm_lt_half_of_mem_lixHsqBall (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    {q : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → ℂ)} (hq : q ∈ lixHsqBall hGc hGu) :
+    ‖q‖ < 1 / 2 := by
+  have h := mem_ball_zero_iff.mp hq
+  exact lt_of_lt_of_le h (min_le_right _ _)
+
+theorem sphereQ_le_one_of_mem_lixHsqBall (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    {q : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → ℂ)} (hq : q ∈ lixHsqBall hGc hGu) :
+    sphereQ q.1.1 ≤ 1 := by
+  have hn : ‖q‖ < 1 / 2 := norm_lt_half_of_mem_lixHsqBall hGc hGu hq
+  have h1 : ‖q.1.1‖ ≤ ‖q‖ := le_trans (norm_fst_le q.1) (norm_fst_le q)
+  have ha : ‖q.1.1.1‖ ≤ ‖q‖ := le_trans (norm_fst_le q.1.1) h1
+  have hb : ‖q.1.1.2.1‖ ≤ ‖q‖ :=
+    le_trans (le_trans (norm_fst_le q.1.1.2) (norm_snd_le q.1.1)) h1
+  have hc : |q.1.1.2.2| ≤ ‖q‖ := by
+    have := le_trans (le_trans (norm_snd_le q.1.1.2) (norm_snd_le q.1.1)) h1
+    rwa [Real.norm_eq_abs] at this
+  have hq0 : (0 : ℝ) ≤ ‖q‖ := norm_nonneg q
+  have h2 : ‖q.1.1.1‖ ^ 2 ≤ ‖q‖ ^ 2 := by nlinarith [norm_nonneg q.1.1.1]
+  have h3 : ‖q.1.1.2.1‖ ^ 2 ≤ ‖q‖ ^ 2 := by nlinarith [norm_nonneg q.1.1.2.1]
+  have h4 : q.1.1.2.2 ^ 2 ≤ ‖q‖ ^ 2 := by nlinarith [abs_nonneg q.1.1.2.2, sq_abs q.1.1.2.2]
+  have : ‖q‖ ^ 2 ≤ 1 / 4 := by nlinarith
+  rw [sphereQ]
+  linarith
+
+theorem circCoord_mem_Ioo_of_mem_lixHsqBall (hGc : Continuous G)
+    (hGu : ∀ m, IsCornerUnitary (Vmat m) (G m))
+    {q : ChartSrc × (∀ j : Fin ℓ, Fin (dd j) → ℂ)} (hq : q ∈ lixHsqBall hGc hGu) :
+    q.1.2 ∈ Set.Ioo (-1 : ℝ) 1 := by
+  have hn : ‖q‖ < 1 / 2 := norm_lt_half_of_mem_lixHsqBall hGc hGu hq
+  have hc : |q.1.2| ≤ ‖q‖ := by
+    have := le_trans (norm_snd_le q.1) (norm_fst_le q)
+    rwa [Real.norm_eq_abs] at this
+  have := abs_lt.mp (lt_of_le_of_lt hc (by linarith : ‖q‖ < (1 : ℝ)))
+  exact ⟨this.1, this.2⟩
 
 /-- **The ball is star-shaped about the origin.**  This is the only property of it the
 comparison homotopy uses, and it is available because `lixTrivBall` was cut as a metric
