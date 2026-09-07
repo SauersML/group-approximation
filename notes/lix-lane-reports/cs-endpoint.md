@@ -1193,3 +1193,69 @@ landed) and the `ProblemLIX.lean` patch are staged at
 `scratchpad/wire/LemmaTwoOfHsqHresHclass.0hyp.draft.lean` (now applied) and
 `scratchpad/wire/ProblemLIX.endpoint-patch.draft.txt` (still pending), ready
 the moment the lead confirms.
+
+### STW Problem LIX is answered — LANDED, `aa9ba0148`.  Unconditionally.
+
+Cleared for GO after the lead's forced fresh compile of `lixHsq` (not a
+replay: artifacts cleared first, `Built …LIXHsq (17s)`, `axiom lines seen: 9`,
+`sorryAx: none`) and independent verification of `LIXStepCOddHsq.lean` (the
+binder-level check, landed `db39e594e`) plus a clean-export root build (13822
+jobs, `sorryAx: none` over 2929 axiom lines, 0 dangling, 0 cycles, root wiring
+landed `bc9632ea0`).
+
+**One real build-cycle bug, caught by the probe, fixed before landing.**  The
+first attempt wired `ProblemLIX.lean` to import `CharClass.LemmaTwoOfHsqHresHclass`
+for `lemmaTwoHolds`, while that file *also* imported `ProblemLIX.lean` (kept
+from when it derived its own, now-redundant `CharClass.not_problemLIX` by
+applying `NinetyNineProblems.not_problemLIX_of_lemmaTwo`).  Direct cycle,
+`error: build cycle detected`, then `bad import`.  Fix is directional and
+matches the natural dependency order: dropped `CharClass.not_problemLIX` and
+the `ProblemLIX.lean` import from `LemmaTwoOfHsqHresHclass.lean` entirely — it
+now supplies only `LIX.LemmaTwoHolds` — and `ProblemLIX.lean` is the sole
+place `¬ ProblemLIX` is derived from it, which is where that combination
+belongs anyway (`not_problemLIX_of_lemmaTwo`'s own signature already implied
+the direction).  No other consumer of `CharClass.not_problemLIX` existed to
+break (checked before removing it) — it had landed minutes earlier and never
+had a downstream user.
+
+`ProblemLIX.lean` now states, bare, applying the existing untouched
+`not_problemLIX_of_lemmaTwo` / `exists_separable_simple_unital_not_k1Inj_of_lemmaTwo`
+to `CharClass.lemmaTwoHolds`:
+
+```lean
+theorem not_problemLIX : ¬ ProblemLIX
+theorem exists_separable_simple_unital_not_k1Inj :
+    ∃ (A : Type) (_inst : CStarAlgebra A),
+      TopologicalSpace.SeparableSpace A ∧ Nontrivial A ∧ IsSimpleCStar A ∧ ¬ K1Inj A
+```
+
+both `#audit_closed_axioms`.  All fifteen pre-existing `#audit_axioms` lines
+and every conditional theorem in the file are untouched.
+
+**Verified before landing, `PROBE GREEN`, 9346 jobs, `sorryAx: none`, `axiom
+lines seen: 91`.**  `lixprobe7.sh`'s own per-target axiom-line printer
+truncates at `head -40`, and `ProblemLIX.lean` alone carries seventeen
+audit lines that wrap across several output lines each — enough to push both
+new declarations past the cutoff, invisible in the tool's own echoed output
+even though `axiom lines seen` counted them correctly.  **Fourth instance of
+this exact defect shape today, this time in a `head` limit rather than a
+`grep` filter.**  Read the raw remote log by hand instead, over SSH, exactly
+as planned for this one irreversible claim:
+
+```
+info: .../ProblemLIX.lean:378:21: '...not_problemLIX' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+info: .../ProblemLIX.lean:379:21: '...exists_separable_simple_unital_not_k1Inj'
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9346 jobs).
+```
+
+Both exactly the classical allowlist, nothing else — confirmed by name, with
+my own eyes, not from any tool summary.  Landed with `ccland-ax.sh cs-stages`,
+whose own axiom gate independently confirmed both paths (`ok` for each) before
+delegating to `ccland2.sh`.
+
+**STW Problem LIX — "are all unital simple C⋆-algebras K₁-injective?" — is
+answered: no, unconditionally, in this repository.**  The separable form is
+the sharper statement STW's own citations make relevant.  This closes the
+`cs-endpoint`/`lix-wire` lane's part of the 2026-09-07 strike-team campaign.
