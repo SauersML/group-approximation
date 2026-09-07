@@ -242,9 +242,9 @@ the norm on the left taken in the operator algebra of this Hilbert space.
 The classes of these maps form a homomorphism of $G$ into the unitary
 group of the norm matrix corona with coordinate sizes $d_n^2$.  Let $U$
 be the class of $(\operatorname{Ad}(V_n(u)))$ and $P$ the image of the
-Kazhdan projection of $L$ in that corona.  Then $U^*PU\le P$, because $uLu^{-1}\le L$ has
-fewer constraints and more fixed vectors, and stable finiteness of that
-corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
+Kazhdan projection of $L$ in that corona.  Then $U^*PU$ projects onto the vectors fixed by $u^{-1}Lu$, a
+subgroup containing $L$ because $uLu^{-1}\le L$; so $U^*PU\le P$, and
+stable finiteness of that corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
 Hilbert--Schmidt asymptotic commutant of $L$, and the matrices assigned to an element of
 $\mathfrak D_G(L)$ tend to $1$ in Hilbert--Schmidt norm in every operator
 norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
@@ -344,10 +344,10 @@ $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.  The group
 $W$ is sofic because locally residually finite groups are sofic and
 soficity passes to extensions with amenable
 quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
-\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptWSoficFromLocallyRFExtension}
 Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
 Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
-amenable trace is quasidiagonal.  Tikuisis, White, and Winter proved
+amenable trace is quasidiagonal.
+\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptWSoficFromLocallyRFExtension}  Tikuisis, White, and Winter proved
 that faithful traces on separable nuclear $C^*$-algebras satisfying the
 universal coefficient theorem are quasidiagonal~\cite{TWW}; here
 $C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  The canonical
@@ -956,8 +956,10 @@ $e_{12}(vR)\le N$.  Put $f=1-vw$, an idempotent with $fv=0=wf$, and
 \[
  z=vf+fw+1-f-vfw .
 \]
-Expanding $z^2$ with $wv=1$ and $fv=wf=0$, every term cancels except
-$1$, so $z^2=1$; likewise $zf=vf$.  The factorization
+Put $x=vf$, $y=fw$, $q=vfw$, and $c=1-f-q$, so that $z=x+y+c$.  From
+$wv=1$ and $fv=wf=0$: $x^2=y^2=0$, $xy=q$, $yx=f$, the idempotents $f$
+and $q$ are orthogonal, and $c$ annihilates $x$ and $y$ on both sides;
+so $z^2=q+f+c=1$ and $zf=xf+yf+cf=vf$.  The factorization
 \[
  \operatorname{diag}(z,z^{-1})
  =e_{12}(z)e_{21}(-z^{-1})e_{12}(z)\,e_{12}(-1)e_{21}(1)e_{12}(-1)
@@ -975,7 +977,8 @@ conjugating by $e_{12}(1)e_{21}(-1)e_{12}(1)$ gives $e_{21}(R)\le N$.
 \emph{The group $B$.}  In $\mathcal C$ put $s=s_0$, $t=t_0$, and
 $e=1-st$.  Then $ts=1$, $e^2=e$, $es=te=0$, and $t_1es_1=1$.  Put
 $G=B=\EL_4(\mathcal C)$ and $L=\EL_3(\mathcal C)$ on coordinates
-$1,2,3$.  The ring $\mathcal C$ is finitely generated, so both groups
+$1,2,3$.  The ring $\mathcal C$ is nonzero, since it maps onto
+$L_{\F_2}(1,2)$, and finitely generated, so both groups
 have property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and $B$ is
 finitely generated~\cite[Theorem~1.3.1]{BHV}.
 
@@ -1203,9 +1206,11 @@ $e=f+g$ for orthogonal idempotents $f,g$ with $f$ equivalent to $e$ and
 $g\ne0$; and a simple ring is \emph{purely infinite} if every nonzero
 right ideal contains an infinite idempotent~\cite[Definitions~1.2]{AGP}.
 The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
-Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along
-$A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$
-for the canonical map.
+Let $\GL(R)$ and $\EL(R)$ be the direct limits of $\GL_n(R)$ and
+$\EL_n(R)$ along $A\mapsto\operatorname{diag}(A,1)$; the subgroup
+$\EL(R)$ is normal in $\GL(R)$ by Whitehead's lemma, and
+$K_1(R)=\GL(R)/\EL(R)$.  Write $\kappa\colon R^\times\to K_1(R)$ for the
+canonical map.
 
 \begin{theorem}[MF quotients of unit groups]\label{thm:mf-quotient-units}
 Let $R$ be a countable purely infinite simple ring and let $n\ge1$.
@@ -1240,21 +1245,31 @@ then
 since these units form the image of $\EL_m(eRe)$ under a homomorphism
 to $H$.
 
-Let $u\in\ker\kappa$.  Following the proof
-of~\cite[Theorem~2.4]{AGP}, choose orthogonal idempotents
-$e_1,\dots,e_m$ with sum $1$, $m\ge4$, such that $e_1,\dots,e_{m-1}$
-are pairwise equivalent and $e_m$ is equivalent to an idempotent
-$f\le e_1$.  Then $R$ is the ring of $m\times m$ matrices over
-$T=e_1Re_1$ whose last column has entries in $Tf$ and whose last row
-has entries in $fT$, and the argument of Menal and
-Moncasi~\cite[proof of Theorem~2.2 and the Remark after
-Corollary~2.3]{MenalMoncasi} transforms the matrix of $u$ by elementary
-row and column operations into one of the form
-$\operatorname{diag}(1,\ast)$.  So $u=PvQ$, where $P$ and $Q$ are
-products of elementary matrices $e_{ij}(x)$ of this matrix ring and
-$v=e_1+(1-e_1)v(1-e_1)$.  The elementary matrices with $i,j\le m-1$
-form $\EL_{m-1}(T)$ inside $(1-e_m)R(1-e_m)\cong M_{m-1}(T)$, so they
-lie in $N$ by~\eqref{eq:corner-units}; for distinct $i,j\le m-1$,
+We use two facts from the proof of~\cite[Theorem~2.4]{AGP}, which
+rest on~\cite[Proposition~1.5 and Corollary~1.7]{AGP} and on the
+elementary reduction of Menal and Moncasi~\cite[proof of Theorem~2.2,
+and the Remark after Corollary~2.3]{MenalMoncasi}.
+\begin{enumerate}
+\item[(a)] There are orthogonal idempotents $e_1,\dots,e_m$ with sum
+$1$, $m\ge4$, such that $e_1,\dots,e_{m-1}$ are pairwise equivalent and
+$e_m$ is equivalent to an idempotent $f\le e_1$.  Then $R$ is the ring
+of $m\times m$ matrices over $T=e_1Re_1$ whose last column has entries
+in $Tf$ and whose last row has entries in $fT$, and every unit $u$ of
+$R$ factors as $u=PvQ$ with $P$ and $Q$ products of elementary matrices
+$e_{ij}(x)$ of this matrix ring and $v=e_1+(1-e_1)v(1-e_1)$.
+\item[(b)] For a nonzero idempotent $e$ and $n\ge2$ there are an
+idempotent $f<e$ equivalent to $e$ and orthogonal idempotents
+$r_2,\dots,r_n\le e-f$, each equivalent to $1$, such that, with
+$r_1=1-e+f$ and $P=r_1+\dots+r_n$, some ring isomorphism
+$\theta\colon M_n(R)\to PRP$ sends $\operatorname{diag}(v,1,\dots,1)$
+to $(1-e)v(1-e)+f+r_2+\dots+r_n$ for every unit
+$v=e+(1-e)v(1-e)$.
+\end{enumerate}
+
+Let $u\in\ker\kappa$ and write $u=PvQ$ as in (a).  The elementary
+matrices with $i,j\le m-1$ form $\EL_{m-1}(T)$ inside
+$(1-e_m)R(1-e_m)\cong M_{m-1}(T)$, so they lie in $N$
+by~\eqref{eq:corner-units}; for distinct $i,j\le m-1$,
 \[
  e_{im}(x)=[e_{ij}(1),e_{jm}(x)],\qquad
  e_{mj}(x)=[e_{mi}(x),e_{ij}(1)]
@@ -1264,16 +1279,10 @@ inverse, so they lie in the normal subgroup $N$ as well.  Hence
 $u\equiv v$ modulo $N$, and $\kappa(v)=\kappa(u)=0$ because
 $N\le\ker\kappa$.
 
-Finally let $v=e+(1-e)v(1-e)$ with $e\ne0$ and $\kappa(v)=0$.  By the
+So let $v=e+(1-e)v(1-e)$ with $e\ne0$ and $\kappa(v)=0$.  By the
 definition of $K_1$, $\operatorname{diag}(v,1,\dots,1)\in\EL_n(R)$ for
-some $n\ge2$.  Following the proof of~\cite[Theorem~2.4]{AGP} again,
-choose an idempotent $f<e$ equivalent to $e$ and orthogonal
-idempotents $r_2,\dots,r_n\le e-f$, each equivalent to $1$, and put
-$r_1=1-e+f$ and $P=r_1+\dots+r_n$.  There is a ring isomorphism
-$\theta\colon M_n(R)\to PRP$ under which
-$\operatorname{diag}(v,1,\dots,1)$ corresponds to
-$(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.  So
-$v=1-P+\theta(\operatorname{diag}(v,1,\dots,1))\in N$
+some $n\ge2$.  With $\theta$ and $P$ as in (b),
+$v=1-P+\theta(\operatorname{diag}(v,1,\dots,1))$, which lies in $N$
 by~\eqref{eq:corner-units}.  Hence $\ker\kappa\le N$.
 \end{proof}
 
@@ -1508,11 +1517,11 @@ canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
 
 \begin{proof}
 Reassociating the semidirect products yields
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
 \[
  W\cong K\rtimes\mathbb Z,
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
 \]
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
 For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
 copy of $\Gamma$ in $T_\alpha$.  Since $[\Gamma:\alpha(\Gamma)]<\infty$,
 each $\Gamma_n$ has finite index in $\Gamma_{n+1}$; every element of
@@ -1589,8 +1598,9 @@ $\alpha$, and $a$.
 For an acylindrically hyperbolic group $G$, choose the generating set $A$
 provided by Hull~\cite[Theorem~3.12]{Hull}.  A subgroup is \emph{suitable}
 if it acts non-elementarily on the Cayley graph $\operatorname{Cay}(G,A)$ and normalizes no nontrivial
-finite subgroup~\cite[Definition~1.4]{Hull}.  Hull states his small cancellation theorem~\cite[Theorem~7.1]{Hull}
-with injectivity on a ball of $\operatorname{Cay}(G,A)$; since every finite subset
+finite subgroup~\cite[Definition~1.4]{Hull}.  Hull states his small cancellation
+theorem~\cite[Theorem~7.1(a), (b), (c), and (e)]{Hull} with injectivity on
+a ball of $\operatorname{Cay}(G,A)$; since every finite subset
 of $G$ lies in some ball, the theorem takes the following form.
 
 \begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}
