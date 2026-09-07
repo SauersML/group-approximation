@@ -42,18 +42,19 @@ noncomputable def includeContiguity (cut : RegionCutWithGCells Delta)
     (target : Option (Fin Delta.rCellCount))
     (arc : CyclicArc (targetDarts Delta target))
     (harc : targetBoundaryDarts Delta target arc =
-      (targetBoundaryDarts cut.diagram H.target H.targetArc).map Subtype.val) :
+      (targetBoundaryDarts cut.diagram H.target H.targetArc).map cut.inclusion.darts) :
     ContiguityGeometry D eps Delta (cut.inclusion.faceSet faces) where
   boundary := cut.includeBoundary H.boundary
   source := cut.cellInclusion H.source
   target := target
   sourceArc := H.sourceArc.mapTo cut.inclusion.darts (cut.cellDarts_eq H.source)
   targetArc := arc
-  rightSide := H.rightSide.map Subtype.val
-  leftSide := H.leftSide.map Subtype.val
+  rightSide := H.rightSide.map cut.inclusion.darts
+  leftSide := H.leftSide.map cut.inclusion.darts
   boundary_decomposition := by
-    rw [cut.includeBoundary_cycle, cut.inclusion.reverseDarts_mapTo, harc]
-    exact (congrArg (List.map Subtype.val) H.boundary_decomposition).trans
+    change H.boundary.cycle.map cut.inclusion.darts = _
+    rw [cut.inclusion.reverseDarts_mapTo, harc]
+    exact (congrArg (List.map cut.inclusion.darts) H.boundary_decomposition).trans
       (by simp only [List.map_append])
   rightSide_length_le := by simpa only [List.length_map] using H.rightSide_length_le
   leftSide_length_le := by simpa only [List.length_map] using H.leftSide_length_le
@@ -69,9 +70,9 @@ theorem includeContiguity_source_length (cut : RegionCutWithGCells Delta)
     (target : Option (Fin Delta.rCellCount))
     (arc : CyclicArc (targetDarts Delta target))
     (harc : targetBoundaryDarts Delta target arc =
-      (targetBoundaryDarts cut.diagram H.target H.targetArc).map Subtype.val) :
+      (targetBoundaryDarts cut.diagram H.target H.targetArc).map cut.inclusion.darts) :
     (cut.includeContiguity H target arc harc).sourceArc.length = H.sourceArc.length :=
-  H.sourceArc.mapTo_length _ _
+  H.sourceArc.mapTo_length cut.inclusion.darts (cut.cellDarts_eq H.source)
 
 theorem includeContiguity_target_length (cut : RegionCutWithGCells Delta)
     {faces : Finset cut.diagram.toCombMap.Face}
@@ -79,9 +80,10 @@ theorem includeContiguity_target_length (cut : RegionCutWithGCells Delta)
     (target : Option (Fin Delta.rCellCount))
     (arc : CyclicArc (targetDarts Delta target))
     (harc : targetBoundaryDarts Delta target arc =
-      (targetBoundaryDarts cut.diagram H.target H.targetArc).map Subtype.val) :
+      (targetBoundaryDarts cut.diagram H.target H.targetArc).map cut.inclusion.darts) :
     (cut.includeContiguity H target arc harc).targetArc.length = H.targetArc.length := by
   have h := congrArg List.length harc
+  change arc.length = H.targetArc.length
   simpa only [List.length_map, targetBoundaryDarts_length] using h
 
 /-- Transport retains the geometric contiguity degree with its original
@@ -92,7 +94,7 @@ theorem includeContiguity_degree (cut : RegionCutWithGCells Delta)
     (target : Option (Fin Delta.rCellCount))
     (arc : CyclicArc (targetDarts Delta target))
     (harc : targetBoundaryDarts Delta target arc =
-      (targetBoundaryDarts cut.diagram H.target H.targetArc).map Subtype.val) :
+      (targetBoundaryDarts cut.diagram H.target H.targetArc).map cut.inclusion.darts) :
     ((cut.includeContiguity H target arc harc).sourceArc.length : ℝ) /
         ((cell Delta (cut.includeContiguity H target arc harc).source).word.length : ℝ) =
       (H.sourceArc.length : ℝ) / ((cell cut.diagram H.source).word.length : ℝ) := by

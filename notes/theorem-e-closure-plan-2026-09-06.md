@@ -2,7 +2,9 @@
 
 Baseline: 2026-09-06, proof tip `02d72c87f78aca950507f38483f740e28908e0c2`,
 based on main `0767babffd2d32e5745a6bc49b3ba6ebddd21c8a`.
-Working draft: [PR #195](https://github.com/SauersML/group-approximation/pull/195).
+Working draft: [PR #211](https://github.com/SauersML/group-approximation/pull/211).
+Its predecessor [PR #195](https://github.com/SauersML/group-approximation/pull/195)
+merged on 2026-09-07. The four direct assembly admissions remain open.
 This plan covers the entire Theorem E dependency chain, called Theorem C in Lean.
 It does not claim that the formalization is complete.
 
@@ -699,6 +701,30 @@ The outstanding proofs are:
 A package accepting the missing partition or face-drop oracle as a hypothesis
 is an intermediate reduction only. The milestone is the actual producer and
 its audited geometric consumer.
+
+### Actual cut inclusion and the remaining ambient transport gap
+
+Issue [#210](https://github.com/SauersML/group-approximation/issues/210) records
+that `Lemma65CutData` forgets the source inclusion, while its ambient transport
+consumer quantifies over arbitrary O-equivalent replacements. The current
+record's cell-count and boundary-word data do not supply that gluing. This is
+an interface gap, not a closed refutation of the universal statement.
+
+`SurgeryGCellCutInclusion` constructs the actual dart and inner-face inclusion
+of `RegionCutWithGCells` into its source, and transports inner G-region
+boundaries and shellings. `SurgeryGCellCutIndices` constructs the order-preserving
+injection of retained relator positions, retaining exact cell words and cyclic
+carriers and accounting for the common change of basepoint in their values.
+`SurgeryGCellCutContiguity` uses these constructions to transport actual
+contiguity geometry, side bounds, arc lengths, and degree when the exact
+oriented ambient target arc is supplied. These three modules build and their
+audits use only the three permitted axioms.
+
+This removes the inclusion and cell-identification inputs for an actual cut.
+It does not construct the ambient target arc, the enclosing boundary used to
+select that cut, or the gluing after an arbitrary O-equivalent replacement.
+The Lemma 6.5 induction still needs those constructions; none of the four
+assembly admissions has been discharged by this checkpoint.
 
 ## Hull 4.4: discharge the additional geometry, not just the wrapper
 
