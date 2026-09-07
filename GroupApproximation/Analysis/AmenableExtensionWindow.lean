@@ -206,10 +206,16 @@ theorem stageH_le (hN : IsLocallyResiduallyFinite ↥N)
 
 /-- The finite matrix index set at stage `n`: Følner coordinate times quotient
 fibre. -/
-@[reducible] def extModel (hN : IsLocallyResiduallyFinite ↥N)
+def extModel (hN : IsLocallyResiduallyFinite ↥N)
     (hA : Amenability.IsAmenable (G ⧸ N)) (n : ℕ) : FiniteModel :=
   ⟨↥(folnerSet N hA n) × (cocyclePacket N hN hA n).quotientModel,
     inferInstance, Classical.decEq _⟩
+
+instance extModel_nonempty (hN : IsLocallyResiduallyFinite ↥N)
+    (hA : Amenability.IsAmenable (G ⧸ N)) (n : ℕ) :
+    Nonempty (extModel N hN hA n) := by
+  show Nonempty (↥(folnerSet N hA n) × (cocyclePacket N hN hA n).quotientModel)
+  infer_instance
 
 /-- The printed selected coset `σ(x) r_q H`. -/
 def extCoset (hN : IsLocallyResiduallyFinite ↥N)
