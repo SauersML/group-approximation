@@ -3,6 +3,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingStrictness
 import GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupRankDescent
 import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotient
 import GroupApproximation.PropertyT.IntegralColumnPlaneClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingRankTwoIsometry
+import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingCorollariesRankTwo
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -103,6 +105,30 @@ theorem manuscriptUnitGroupNotMFAllCharacteristics :
     FullDefectRankTwo.PrintedUnitGroupNotMF :=
   FullDefectRankTwo.manuscriptUnitGroupNotMFFromEJZ ejz
 
+/-- **`cor:one-sided-ring-maximal`, first sentence, at every rank `n ≥ 2`**,
+in every characteristic, with nothing assumed. -/
+theorem manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics :
+    FullDefectRankTwo.PrintedOneSidedRingMaximalIsometryRankTwo :=
+  FullDefectRankTwo.manuscriptOneSidedRingMaximalIsometryRankTwoFromEJZ ejz
+
+/-- **`cor:simple-infinite-ring`, first sentence, at every rank `n ≥ 2`**, in
+every characteristic, with nothing assumed. -/
+theorem manuscriptSimpleInfiniteRingRankTwoAllCharacteristics :
+    FullDefectRankTwo.PrintedSimpleInfiniteRingRankTwo :=
+  FullDefectRankTwo.manuscriptSimpleInfiniteRingRankTwoFromEJZ ejz
+
+/-- **`cor:simple-infinite-ring`, second sentence, at every rank `n ≥ 2`**, in
+every characteristic, with nothing assumed. -/
+theorem manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics :
+    FullDefectRankTwo.PrintedLeavittAlgebraFullDefectRankTwo :=
+  FullDefectRankTwo.manuscriptLeavittAlgebraFullDefectRankTwoFromEJZ ejz
+
+/-- **`cor:one-sided-ring-maximal`, second sentence, at every rank `n ≥ 2`**,
+in every characteristic, with nothing assumed. -/
+theorem manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics :
+    FullDefectRankTwo.PrintedOneSidedRingMaximalReducedCStarRankTwo :=
+  FullDefectRankTwo.manuscriptOneSidedRingMaximalReducedCStarRankTwoFromEJZ ejz
+
 /-! ## Theorem B at `d = 2` -/
 
 /-- **The binary Leavitt unit group at `d = 2`**, in every characteristic,
@@ -131,4 +157,10 @@ open GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditio
 #audit_closed_axioms
   manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
 #audit_closed_axioms manuscriptUnitGroupNotMFAllCharacteristics
+#audit_closed_axioms
+  manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics
+#audit_closed_axioms manuscriptSimpleInfiniteRingRankTwoAllCharacteristics
+#audit_closed_axioms manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics
+#audit_closed_axioms
+  manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics
 #audit_closed_axioms manuscriptLeavittMFQuotientTwoAllCharacteristics
