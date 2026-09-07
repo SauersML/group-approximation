@@ -28,7 +28,7 @@ end GroupApproximation.GGT.VanKampen.Embedded
 
 namespace GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.RegionCutWithGCells
 
-open Embedded
+open _root_.GroupApproximation.GGT.VanKampen.Embedded
 universe u w v
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
