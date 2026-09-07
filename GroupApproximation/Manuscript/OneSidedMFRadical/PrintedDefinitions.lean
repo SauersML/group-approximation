@@ -283,6 +283,36 @@ theorem isCDEOperatorMF_exists_coronaEmbedding (M : Type u) [Group M]
   obtain ⟨d, hd, -, rho, hrho⟩ := hM
   exact ⟨d, hd, rho, hrho⟩
 
+/-- A subgroup is killed by all MF-target homomorphisms exactly when it is
+killed by all matrix-corona homomorphisms.  This states the first assertion
+of Lemma `prop:mf-residual-calculus`, without the unrelated closure-calculus
+clauses of the earlier manuscript. -/
+theorem allMFTargetsKill_iff_allCoronasKill :
+    ∀ (G : Type) [Group G] [Countable G] (K : Subgroup G),
+    (∀ (M : Type) [Group M] [Countable M], IsCDEOperatorMF M →
+      ∀ f : G →* M, K ≤ f.ker) ↔
+    (∀ (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)],
+      (∀ n, 0 < Fintype.card (X n)) →
+      ∀ Theta : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+        K ≤ Theta.ker) := by
+  intro G _ _ K
+  constructor
+  · intro h X _ hX Theta
+    letI : Countable Theta.range := coronaImage_countable G X Theta
+    have hMF : IsCDEOperatorMF Theta.range :=
+      (isCDEOperatorMF_iff_isOperatorMF Theta.range).mpr
+        (coronaImage_isOperatorMF G X hX Theta)
+    intro g hg
+    have hkill := h Theta.range hMF Theta.rangeRestrict hg
+    exact congrArg Subtype.val hkill
+  · intro h M _ _ hMF f g hg
+    obtain ⟨d, hd, -, rho, hrho⟩ := hMF
+    letI : ∀ n, Nonempty (naturalFiniteModel (d n)) := fun n ↦
+      Fintype.card_pos_iff.mp (by simpa using hd n)
+    have hkill := h (fun n ↦ naturalFiniteModel (d n))
+      (by simpa using hd) (rho.comp f) hg
+    exact hrho (hkill.trans (map_one rho).symm)
+
 /-- Closed form of the Introduction's sentence on corona images and MF targets.
 
 The first clause is the printed "the image of a corona homomorphism from `G` is

@@ -26,9 +26,9 @@ REPO = Path(__file__).resolve().parent.parent
 # declaration is also printed in the environment.
 EXACT_TARGETS: dict[str, tuple[str, str]] = {
     "prop:mf-residual-calculus": (
-        "Manuscript/OneSidedMFRadical/LiteralMFClosure",
+        "Manuscript/OneSidedMFRadical/PrintedDefinitions",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptMFResidualCalculusLiteral"),
+        "allMFTargetsKill_iff_allCoronasKill"),
     "thm:compression-criterion": (
         "Manuscript/OneSidedMFRadical/PrintedCriterion",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -187,15 +187,16 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
 # Their declarations are recorded as collective, with no claim that one
 # declaration is a complete wrapper.
 COLLECTIVE_CLAIMS: set[str] = {
+    # Kernel equivalence and the faithful C-star/group embedding implication
+    # are separate exact statements. Neither alone is all of Lemma 2.1.
+    "prop:mf-residual-calculus",
     "prop:clifford-self-embedding",
     "thm:factorization-nonmf-trace",
-    # `thm:full-defect-ring` prints three badges: the n>=4 statement
-    # (manuscriptFullComplementaryIdempotentsAllCharacteristics), the
-    # n>=2 rank-two descent (manuscriptFullComplementaryIdempotentsRankTwoAll
-    # Characteristics), together covering the printed n>=2 conclusion, and
+    # `thm:full-defect-ring` prints two badges: the n>=2 rank-two descent
+    # (manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics), and
     # the "group B" sentence (UniversalGroupSigma.manuscriptFullComplementary
     # IdempotentsUniversal: property (T), MF-triviality, finite generation,
-    # normal generation by an element of order four, and the homomorphism to
+    # normal generation by an involution, and the homomorphism to
     # EL_n(R) with normally generating image, for every n>=2).
     "thm:full-defect-ring",
     # `prop:linear-collapse` prints one badge per direction of its "Then ...

@@ -632,8 +632,8 @@ jobs:
       # The non-MF paper has its own generated roster and numbered-claim
       # manifest.  Every visible badge is exact, and the two load-bearing
       # literal endpoints below are required explicitly: the unconditional
-      # eight-generator counterexample and the unconditional property-(T)
-      # theorem for its literal base presentation.
+      # unit-group headline (including the C-star conclusions) and the
+      # universal group B (including property (T) and its normal involution).
       - name: Non-MF counterpart contract [outcome masked -- read the verdict]
         id: non-mf-contract
         continue-on-error: true
@@ -650,11 +650,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
+              Manuscript/OneSidedMFRadical/UnitGroupHeadline \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
+              Manuscript/OneSidedMFRadical/UniversalGroupSigma \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
@@ -1149,11 +1149,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
+              Manuscript/OneSidedMFRadical/UnitGroupHeadline \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
+              Manuscript/OneSidedMFRadical/UniversalGroupSigma \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \

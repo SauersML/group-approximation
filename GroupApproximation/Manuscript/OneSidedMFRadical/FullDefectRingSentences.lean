@@ -377,38 +377,12 @@ theorem manuscriptSentence_homFromBTrivial (M : Type) [Group M]
     f x = 1 :=
   UniversalGroupB.hom_eq_one M hM f x
 
-/-- > The element `σ = e₁₂(1) e₂₁(-1) e₁₂(1)` of `B` has order four,
-
-`UniversalGroupSigma.sigma` is the printed word, as `ElementaryWeyl.weyl 0 1`;
-`UniversalGroupSigma.orderOf_sigma` is the printed order. -/
-theorem manuscriptSentence_sigmaOrderFour :
-    orderOf UniversalGroupSigma.sigma = 4 :=
-  UniversalGroupSigma.orderOf_sigma
-
-/-- > and `σ e₁₃(-r) σ⁻¹ = e₂₃(r)` for `r ∈ 𝒞`, so
-> `[e₁₃(r), σ] = e₁₃(r) e₂₃(r)`, `[e₁₂(1), [e₁₃(r), σ]] = e₁₃(r)`;
-
-**Partial.**  These three identities are steps inside the proof of
-`UniversalGroupSigma.elGen_mem_normalClosure` and have no separate names; the
-carrier below is that lemma's conclusion, which is what the printed chain is
-for.  The intermediate identities are not restated here, because restating
-them would duplicate content that lemma already owns. -/
-theorem manuscriptSentence_sigmaConjugation :
-    elGen (R := UniversalPair.UniversalPairRing) (0 : Fin 4) 2
-        UniversalGroupSigma.h02 1 ∈
-      Subgroup.normalClosure ({UniversalGroupSigma.sigma} : Set UniversalGroupB.B) :=
-  UniversalGroupSigma.elGen_mem_normalClosure
-
-/-- > with signed permutation matrices, `σ` normally generates `B`.
-
-`UniversalGroupSigma.normalClosure_sigma_eq_top`.  **Partial in route only**:
-the conclusion is exactly the printed one, but the formal proof finishes with
-`elementaryGroup_normal_eq_top_of_elGen_mem` rather than by conjugating with
-signed permutation matrices. -/
-theorem manuscriptSentence_sigmaNormallyGenerates :
-    Subgroup.normalClosure ({UniversalGroupSigma.sigma} : Set UniversalGroupB.B)
-      = ⊤ :=
-  UniversalGroupSigma.normalClosure_sigma_eq_top
+/-! The current manuscript uses the positive double transposition
+`w₀₁ w₂₃ w₀₂²`. Its matrix, order, two commutators, and normal generation
+are proved directly in `ElementaryDoubleSwap`. The sentence map names
+those reusable declarations. The old sentence aliases for the single
+order-four Weyl generator were removed because they did not state these
+involution claims. -/
 
 /-! ## Part two: rank two -/
 
@@ -691,9 +665,6 @@ open GroupApproximation.Manuscript.OneSidedMFRadical
 #audit_axioms FullDefectRingSentences.manuscriptSentence_steinbergSpreadsCoefficients
 #audit_axioms FullDefectRingSentences.manuscriptSentence_defectIsEverything
 #audit_axioms FullDefectRingSentences.manuscriptSentence_homFromBTrivial
-#audit_axioms FullDefectRingSentences.manuscriptSentence_sigmaOrderFour
-#audit_axioms FullDefectRingSentences.manuscriptSentence_sigmaConjugation
-#audit_axioms FullDefectRingSentences.manuscriptSentence_sigmaNormallyGenerates
 #audit_axioms FullDefectRingSentences.manuscriptSentence_twoCopies
 #audit_axioms FullDefectRingSentences.manuscriptSentence_universalProperty
 #audit_axioms FullDefectRingSentences.manuscriptSentence_imageOfB

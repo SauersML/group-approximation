@@ -8,6 +8,11 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 [`non_mf_groups_exist.pdf`](non_mf_groups_exist.pdf) at the repository root is the distribution PDF, rebuilt from the root TeX source by the draft PDF workflow. The obsolete duplicate under `output/pdf/` has been removed. A draft PDF build does not certify the manuscript's Lean coverage.
 
+The manuscript does not yet have complete sentence-level Lean coverage. The
+[current census](metadata/NON_MF_SENTENCE_CENSUS.md) records the gaps, and the
+[repair status](metadata/NON_MF_REPAIR_STATUS.md) distinguishes the corrected
+statements and tested proofs from the remaining verification work.
+
 ## Research notes
 
 [The Jacobson two-braid reduction](research/artifacts/jacobson-two-braid-reduction-2026-09-07.md)

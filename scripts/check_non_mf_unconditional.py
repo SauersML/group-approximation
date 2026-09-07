@@ -527,15 +527,16 @@ DECL_START = re.compile(
     rf"(?m)^{MODIFIERS}(?P<kw>{'|'.join(DECL_KEYWORDS)})\s+(?P<name>{IDENT})")
 VARIABLE_START = re.compile(r"(?m)^variable\b")
 SCOPE_LINE = re.compile(
-    rf"(?m)^(?P<kind>namespace|section|end)\b(?:\s+(?P<name>{IDENT}))?")
+    rf"(?m)^(?:noncomputable\s+)?(?P<kind>namespace|section|end)\b(?:\s+(?P<name>{IDENT}))?")
 
 
-def scan_module(path: Path) -> dict[str, Declaration]:
+def scan_module(path: Path, *, qualified: bool = False) -> dict[str, Declaration]:
     """Every declaration in `path`, with its header, statement, and open variables."""
     source = _strip_block_comments(path.read_text(encoding="utf-8"))
     # `variable` blocks open a scope level; `end` closes one and everything the
     # levels above it introduced.
     scopes: list[list[Binder]] = [[]]
+    namespaces: list[str | None] = [None]
     events: list[tuple[int, str, object]] = []
     for match in DECL_START.finditer(source):
         events.append((match.start(), "decl", match))
@@ -551,8 +552,11 @@ def scan_module(path: Path) -> dict[str, Declaration]:
             if match.group("kind") == "end":
                 if len(scopes) > 1:
                     scopes.pop()
+                    namespaces.pop()
             else:
                 scopes.append([])
+                namespaces.append(match.group("name")
+                                  if match.group("kind") == "namespace" else None)
             continue
         if kind == "variable":
             line_end = source.find("\n", position)
@@ -619,7 +623,13 @@ def scan_module(path: Path) -> dict[str, Declaration]:
 
         declaration.variables = [b for b in open_variables if mentioned(b, statement)]
         declaration.body_variables = [b for b in open_variables if mentioned(b, body)]
-        declarations[declaration.short_name] = declaration
+        if qualified:
+            prefix = ".".join(n for n in namespaces if n)
+            name = match.group("name")
+            key = f"{prefix}.{name}" if prefix else name
+        else:
+            key = declaration.short_name
+        declarations[key] = declaration
     return declarations
 
 

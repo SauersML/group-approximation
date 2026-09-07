@@ -57,12 +57,6 @@
         },
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsAllCharacteristics",
-          "covers": "one printed clause; the listed declarations are collective"
-        },
-        {
-          "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/UniversalGroupSigma",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal",
           "covers": "one printed clause; the listed declarations are collective"
@@ -84,42 +78,6 @@
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadlineRankFour",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/HeadlineTheoremRankFour",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadlineRankFour",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequenceRankFour",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarNotFiniteRankFour",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMFRankFour",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/RankFourSimplicity",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.manuscriptPropositionSimple",
-          "covers": "a printed conclusion of the proposition"
-        },
         {
           "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/UnitGroupHeadline",
@@ -192,9 +150,9 @@
       "id": "prop:mf-residual-calculus",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "9adc70ee9d5dd74f3e359e53db855d4bd5d1e4dd91b0069775eed254c2918cb2",
+      "statement_sha256": "ecb686f574393db8e4a8995dc9ebc6baf70bc501f116f63d80e7c92c530285c9",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -202,15 +160,15 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
-          "covers": "the complete printed proposition"
+          "module": "Analysis/MFAlgebra",
+          "declaration": "GroupApproximation.isCDEOperatorMF_of_faithful_corona_map",
+          "covers": "one printed clause; the listed declarations are collective"
         },
         {
           "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/PrintedDefinitions",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets",
-          "covers": "a printed conclusion of the proposition"
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.allMFTargetsKill_iff_allCoronasKill",
+          "covers": "one printed clause; the listed declarations are collective"
         }
       ]
     },
@@ -564,7 +522,7 @@
       "id": "thm:mf-quotient-units",
       "environment": "theorem",
       "title": "MF quotients of unit groups",
-      "statement_sha256": "c424b75ebb91b431a9bd3a1672e2e2c4ece543ef73d9612b36edf6cc47b8dde0",
+      "statement_sha256": "7aff136e09122dc832df600290614d7e111d7492cba7580582e7986ad109acf8",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
