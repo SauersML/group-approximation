@@ -89,10 +89,12 @@ this lane.
   computation is the fiddliest group-theoretic step of the whole proof and its
   tool is already available; a future lane should not re-derive it.
 * **Step 1 is open, and the name that looks like it is not it.**
-  `GGT.DGOTheorem614` is *not* DGO's Theorem 6.14.  It concludes
-  `PingPong.FreeRankTwo G` — that `G` contains a free subgroup of rank two —
-  which is one weak consequence; its own docstring says it records only what
-  Osin's Lemma 5.12 needs and is off the critical path.  Nothing inhabits it.
+  `GGT.FreeRankTwoAtNonDegenerate` — named `DGOTheorem614` until that name was
+  found to assert a theorem it does not state — concludes only
+  `PingPong.FreeRankTwo G`, that `G` contains a free subgroup of rank two.
+  That is one weak consequence of DGO 6.14; its own docstring says it records
+  only what Osin's Lemma 5.12 needs and is off the critical path, and nothing
+  inhabits it.
   Step 1 needs 6.14(a) (existence of `K(G)`) and 6.14(c) at `n = 1` (a
   hyperbolically embedded `H ≅ F₁ × K(G)`), neither of which is present.  Its own
   input, DGO's Corollary 6.12, *is* proved here.

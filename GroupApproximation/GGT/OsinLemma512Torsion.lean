@@ -7,7 +7,7 @@ import GroupApproximation.GGT.WPDDGOReduction
 `GGT.WPDDGOReduction` proves `RelativeCayleyNonElementary` --- Osin's Lemma 5.12
 in the form `GGT.WPDAcylindricalHyperbolicity` records it --- from
 `DGOCorollary612` **together with an infinite-order element of the peripheral
-subgroup**, and keeps `DGOTheorem614` for the case where there is none.  This
+subgroup**, and keeps `FreeRankTwoAtNonDegenerate` for the case where there is none.  This
 module removes that hypothesis: `relativeCayleyNonElementary_of_612` is Lemma
 5.12 from `DGOCorollary612` alone, for an infinite peripheral subgroup with no
 assumption on its torsion.
@@ -350,7 +350,7 @@ end Cayley
 
 /-- **Osin's Lemma 5.12 from `DGOCorollary612` alone.**
 
-`GGT.relativeCayleyNonElementary_of` needs `DGOTheorem614` as well, and
+`GGT.relativeCayleyNonElementary_of` needs `FreeRankTwoAtNonDegenerate` as well, and
 `GGT.relativeCayleyNonElementary_of_612_of_infiniteOrder` needs an infinite-order
 peripheral element.  Neither is needed: the acylindricity hypothesis that
 `RelativeCayleyNonElementary` carries supplies the element outside `E(g)` for an
