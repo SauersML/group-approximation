@@ -21,6 +21,7 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `a66cb4c87bb853d5e84e865c3530c0fd4ac9d0f6` | — | deletion of the duplicate `Leavitt/OneSidedCompressorStrict.lean` |
 | `9c4fcae31bf2c2b76111ac3de71bb089b2d2ac48` | 4470 | `UnitGroupHeadline.lean` |
 | `c7d010bf2409c0be9671ce23eaf86954dab2ac2b` | 4470 | `UnitGroupHeadline.lean`, identification inside the printed theorem |
+| `e3d919491628918ee39cd738706d519ccaa56afc` | 4552 | `UniversalGroupSigma.lean` |
 
 ## The printed clauses, and what each still assumes
 
@@ -168,6 +169,36 @@ probes and two facts worth keeping:
   must be wrapped in a closed `Prop` before it can be traced.
 
 Each ingredient was wrapped and audited alone; all thirteen were clean.
+
+## The order-four normal generator of `B`
+
+`UniversalGroupSigma.lean` carries the last two printed clauses about
+`B = EL₄(𝒞)`: finite generation, and normal generation by an element of order
+four.  `PrintedFullComplementaryIdempotentsUniversal` /
+`manuscriptFullComplementaryIdempotentsUniversal` (`#audit_closed_axioms`)
+conjoins those with `UniversalGroupB.PrintedUniversalGroupCore`.
+
+`σ` is the printed `e₁₂(1) e₂₁(-1) e₁₂(1)`, which is the tree's
+`ElementaryWeyl.weyl 0 1`; the Weyl API supplies the conjugation action.  The
+sign ambiguity of `weyl_conj_elGen` is handled by running the chain at an
+arbitrary coefficient: both branches deliver `e₀₂(±1)`, and each is the other's
+inverse, so one proof covers both.
+
+**What `2 ≠ 0` is used for, and what is not claimed.**  `σ² = diag(-1,-1,1,1)`,
+so `σ² ≠ 1` is exactly `2 ≠ 0` in `𝒞`.  Only that single consequence is proved
+(`two_ne_zero_universalPairRing`), by lifting to the binary Leavitt algebra over
+`ℚ`.  The module does **not** claim a characteristic for `𝒞`.
+
+### A probe failure in a peer's module proves nothing on its own
+
+Two probes here failed inside `FullDefectRingCorollariesRankTwo`, a peer module
+in this lane's import chain.  It looked exactly like a red `main`: the file was
+on origin, the local copy matched origin, and it did not compile.  It was not
+red — the peer was editing it in the shared checkout while the probe synced, so
+`ccprobe` captured a half-finished state.  The tell was that the reported error
+line numbers did not match the file on disk.  Before reporting a red `main` from
+a peer's module, check both: that the local blob still matches origin, and that
+the error line numbers match the file as it now stands.
 
 ## Coordination note
 
