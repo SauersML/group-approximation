@@ -59,9 +59,8 @@ conjunct here says that the pair is one.  Omitting a hypothesis makes a
 counterexample refute a weaker statement than the one that was asked, so this
 theorem on its own is strictly less than the problem.
 
-`Analysis/STW22ProblemXXIIFactorialEndpoint` carries the stronger form: every
-conjunct here, verbatim and with universe `v` carried through, preceded by
-`IsFactorialTraciallyCompletePair antipodalDesignatedTraces` -- a theorem here
+`Analysis/STW22ProblemXXIIFactorialEndpoint` carries the stronger form: it adds
+`IsFactorialTraciallyCompletePair antipodalDesignatedTraces` -- a theorem there
 rather than an assumption -- together with CCEGSTW Proposition 3.15 for this
 pair and both forms of the negative answer.  The added conjuncts are about the
 *completion* `M` and its designated traces `X`; the conjuncts here are about the
