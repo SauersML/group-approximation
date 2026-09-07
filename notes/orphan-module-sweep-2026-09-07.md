@@ -274,11 +274,46 @@ literally named `*ModelTest` but is the same genre, explicitly the
 
 ## WIRE (14)
 
-## TOP PRIORITY — changes what the repository proves, not hygiene
+**Caveat, added after the fact and load-bearing — read before wiring anything
+below.** WIRE in this report means *recommended from static analysis*:
+sorry-free, axiom-clean by lexical/audit-line scan, dependencies confirmed
+present in the closure by BFS. **It does not mean "compiles."** I was not
+permitted to build, and did not. On 2026-09-07 the lead wired the four
+STW22 factorial-pair files below to test one of these recommendations, and
+they failed a clean-export root build (`origin/main` was red from `6111d2d08`
+to `091795e61` as a result — not this lane's commit, a peer's snapshot picked
+up the lead's uncommitted root edit and pushed it, but the lesson is the
+report's, not the peer's). The other seven WIRE files below (CompactnessRoute,
+FibreEvaluation, the 5 GGT files) were separately wired at `20e64a97c` on the
+same static basis; a build to confirm them is in progress as of this edit and
+the result is not yet known. Treat every "Recommended import" line below as
+*unbuilt* until someone reports a green build against it specifically.
+
+## TOP PRIORITY, NEEDS-BUILD — changes what the repository proves, not hygiene, but does not compile as landed
 
 ### Analysis/STW22FactorialCore.lean → STW22TraciallyCompletePair.lean → STW22AntipodalGaugeFactorial.lean → STW22AntipodalFactorialPair.lean
 
-**Team lead independently verified this one.** `STW22AntipodalFactorialPair.lean:56`
+**Status: does NOT compile as landed. Wired and reverted 2026-09-07.** The
+lead's clean-export root build failed with:
+
+```
+STW22TraciallyCompletePair.lean:80:58: Variable name `σ` is not explicitly
+  referenced        (fatal: the lib sets warningAsError=true)
+STW22TraciallyCompletePair.lean:268:4: Type mismatch
+```
+
+The first is `uniformTwoNormOn_le (designatedTraces_nonempty hr) (fun σ hσ ↦
+hσ x)` (line 80) — `σ` bound but not referenced, promoted to a build error by
+`moreLeanArgs = ["-DwarningAsError=true"]`. Both are real compile failures,
+not classification errors: the file's *content* is exactly what I read it as
+(zero sorry, zero axiom, the missing-conjunct claim below is still true as
+mathematics), but it does not currently typecheck against this repository's
+Mathlib pin / surrounding API as landed. Unwired again at `091795e61`. **The
+gap this section describes is real and still open** — the fix is fixing these
+two errors in the landed file, then re-wiring, not a new proof.
+
+**Team lead independently verified the mathematical content** (the missing
+conjunct itself, not the compile status) before building. `STW22AntipodalFactorialPair.lean:56`
 proves `antipodal_isFactorialTraciallyCompletePair : IsFactorialTraciallyCompletePair
 antipodalDesignatedTraces`. The wired endpoint
 `antipodal_stw22_trace_problem_counterexample` (`STW22UnconditionalCore.lean:49`)
@@ -317,17 +352,29 @@ unreachable. All four files' own dependencies
 `Meta.AxiomGuard`) are already inside the closure (confirmed by BFS, not
 assumed), so this is a pure addition, no other file needs to change.
 
-**Recommended import**: only the head of the chain needs adding —
-`import GroupApproximation.Analysis.STW22AntipodalFactorialPair` — it pulls the
-other three transitively. **Position**: root already imports
+**Import and position below are unchanged from the original recommendation and
+still correct once the file compiles — they are not what failed.** Only the
+head of the chain needs adding — `import GroupApproximation.Analysis.STW22AntipodalFactorialPair`
+— it pulls the other three transitively. **Position**: root already imports
 `STW22NegativeSolution` (line 3416) and `STW22DesignatedTraces` (line 3417)
 back to back; insert directly after line 3417, before
 `CStarMatrixBlockInclusion`. Every other dependency
 (`STW22UnconditionalCore` via `STW22NegativeSolution`,
 `STW22AntipodalNormComparison` via `STW22ConditionalNegativeSolution`,
 `Meta.AxiomGuard` via the Manuscript block) is already reachable by that point.
+**Do not act on this until `STW22TraciallyCompletePair.lean:80` and `:268` are
+fixed and the chain has a green build.**
 
-### Analysis/STW22CounterexampleCompactnessRoute.lean
+### Analysis/STW22CounterexampleCompactnessRoute.lean, Analysis/STW22FibreEvaluation.lean, and the 5 GGT files below
+
+**Status as of this edit: wired at `20e64a97c` on the same static basis as the
+four factorial-pair files above, which failed to compile. A clean-export root
+build to confirm these seven specifically is in progress; result not yet
+known.** Given what happened to the factorial-pair chain, treat "WIRE" for
+these seven as *recommended, unconfirmed* until that build reports back — the
+static evidence below (sorry-free, dependencies present, no duplicate names)
+is the same kind of evidence that was right about content and wrong about
+compiling for the other four.
 
 417 lines, committed 2026-08-31 01:44–02:01 ("Land compactness-route module:
 T(A) proper-subset T(M) is a THEOREM"). Proves `T(A) ⊊ T(M)` two independent
@@ -437,6 +484,19 @@ redundant; that's part of what the probe should settle.
 
 ---
 
+## Build status of the WIRE bucket (added after the lead's build)
+
+| Files | Wired at | Compiles? |
+|---|---|---|
+| STW22FactorialCore/TraciallyCompletePair/AntipodalGaugeFactorial/AntipodalFactorialPair (4) | `6111d2d08` (accidental), unwired `091795e61` | **NO** — `STW22TraciallyCompletePair.lean:80` unreferenced `σ`, `:268` type mismatch |
+| STW22CounterexampleCompactnessRoute, STW22FibreEvaluation, GGT×5 (7) | `20e64a97c` | build in progress, unconfirmed |
+| KTheory/{Basic,Functorial,Spaces} (3) | not wired | NEEDS-PROBE, not recommended |
+
+**WIRE = recommended from static analysis, not "confirmed to compile."** That
+distinction cost `origin/main` a red period (`6111d2d08`–`091795e61`) on
+2026-09-07; see the caveat at the top of the WIRE section below for what
+changed in this report as a result.
+
 ## Summary table
 
 | Bucket | Count | Files |
@@ -445,4 +505,7 @@ redundant; that's part of what the probe should settle.
 | INTENTIONAL | 6 | FLT vendor pair (2), FiniteDimensionalFactorialTraceCore (1), ModelTest/MatrixTest trio (3) |
 | WIRE | 14 | STW22 factorial-pair chain (4), STW22CounterexampleCompactnessRoute + STW22FibreEvaluation (2), GGT/* (5), KTheory/* (3, pending probe) |
 
-No file was deleted or edited. `GroupApproximation.lean` was not touched.
+No file was deleted or edited by this lane. `GroupApproximation.lean` was not
+touched by this lane at any point — the lead wired and partially unwired it
+directly (`6111d2d08`, `20e64a97c`, `091795e61`) to test WIRE recommendations
+against a real build, per the "Build status" note above.
