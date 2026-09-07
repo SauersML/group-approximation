@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `unassigned` | 295 |
-| `formalized` | 97 |
-| `definition` | 31 |
+| `unassigned` | 291 |
+| `formalized` | 99 |
+| `definition` | 33 |
 | `provenance` | 19 |
 | `structural` | 18 |
 | `attribution` | 14 |
 | `partial` | 3 |
 | **total** | **477** |
 
-Completely formalized or definitional: **128/477** (26.8%).
+Completely formalized or definitional: **132/477** (27.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -181,10 +181,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1089 --- So $\rho$ is trivial, and the image of $B$ in $\EL_2(R)$ contains $\Psi(e_{12}(1))$, so it normally generates $\EL_2(R)$.
 * **`unassigned`**, line 1099 --- \emph{All ranks.} For $n\ge3$, signed permutation matrices conjugate $e_{12}(r)$ to $e_{ij}(\pm r)$ for all $i\ne j$, so the copy of $\EL_2(R)$ on coordinates $1,2$ normally generates $\EL_n(R)$.
 * **`unassigned`**, line 1099 --- A homomorphism from $\EL_n(R)$ to an MF group is trivial on that copy, hence trivial, and the image of $B$ in that copy normally generates $\EL_n(R)$.
-* **`partial`**, line 1108 --- If $R$ is a countable simple unital ring that is not directly finite, then every homomorphism from $\EL_n(R)$ to an MF group is trivial for every $n\ge2$.
-  * cor:simple-infinite-ring, first sentence. Printed at n>=2 ("...trivial for every n>=2"); both carriers are literally at `4 <= n` (checked the def PrintedSimpleInfiniteRing/PrintedSimpleInfiniteRingPrimeChar, not just the docstring). n>=4 is proved -- conditionally on EJZ in general characteristic (manuscriptSimpleInfiniteRingFromEJZ), unconditionally in prime characteristic (manuscriptSimpleInfiniteRingPrimeCharUnconditional) -- n=2,3 via the margin's "embedding of EL_4 into EL_2" is not (see 80a5af83d5f8's note; same missing carrier). UPDATE 2026-09-07: PropertyT/IntegralColumnPlaneClosure.lean's finitelyGeneratedRingGeneralRankElementaryPropertyT (commit 343a1c4a4) is a hypothesis-free proof of the EJZ premise this row's FromEJZ carrier takes -- if it holds up under #audit_closed_axioms this row's clause is fully unconditional, not just prime-char; not independently audited by this lane, flagged to the lead.
-* **`partial`**, line 1108 --- The same conclusion holds for $R=L_k(1,m)$, for every countable field $k$ and every $m\ge2$.
-  * cor:simple-infinite-ring, second sentence ("The same conclusion holds for R=L_k(1,m)..."), inheriting the first sentence's n>=2. Same n>=4-vs-n>=2 gap as 97fcf1f9add1; both carriers are at `4 <= n`. UPDATE 2026-09-07: PropertyT/IntegralColumnPlaneClosure.lean's finitelyGeneratedRingGeneralRankElementaryPropertyT (commit 343a1c4a4) is a hypothesis-free proof of the EJZ premise this row's FromEJZ carrier takes -- if it holds up under #audit_closed_axioms this row's clause is fully unconditional, not just prime-char; not independently audited by this lane, flagged to the lead.
 * **`unassigned`**, line 1118 --- In the first case choose $ts=1\ne st$; then $1-st$ is a nonzero idempotent, and since $R$ is simple it generates $R$ as a two-sided ideal. In the second case, with generators $s_1,\dots,s_m,t_1,\dots,t_m$ subject to $t_is_j=\delta_{ij}$ and $\sum_is_it_i=1$, take $s=s_1$ and $t=t_1$; then $1-s_1t_1=\sum_{i\ge2}s_it_i$ and
 * **`unassigned`**, line 1126 --- Theorem~\ref{thm:full-defect-ring} applies in both cases.
 * **`unassigned`**, line 1144 --- Choose $s,t\in R$ with $ts=1\ne st$, and let $S$ be the unital subring they generate.
@@ -212,8 +208,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1219 --- Two idempotents $e,f$ of a ring are \emph{equivalent} if $e=xy$ and $f=yx$ for some $x,y$; an idempotent $e$ is \emph{infinite} if $e=f+g$ for orthogonal idempotents $f,g$ with $f$ equivalent to $e$ and $g\ne0$; and a simple ring is \emph{purely infinite} if every nonzero right ideal contains an infinite idempotent~\cite[Definitions~1.2]{AGP}.
 * **`unassigned`**, line 1219 --- The algebras $L_k(1,d)$ are purely infinite simple~\cite{AbramsAranda}.
 * **`unassigned`**, line 1219 --- Write $K_1(R)=\varinjlim_n\GL_n(R)/\EL_n(R)$, the limit along $A\mapsto\operatorname{diag}(A,1)$, and $\kappa\colon R^\times\to K_1(R)$ for the canonical map.
-* **`unassigned`**, line 1230 --- Let $R$ be a countable purely infinite simple ring, let $n\ge1$, and let $N_n$ be the intersection of the kernels of all homomorphisms from $\GL_n(R)$ to MF groups.
-* **`unassigned`**, line 1230 --- Then $N_n=[\GL_n(R),\GL_n(R)]$ and $\GL_n(R)/N_n\cong K_1(R)$, a countable abelian group, which is MF\@.
+* **`partial`**, line 1230 --- Then $N_n=[\GL_n(R),\GL_n(R)]$ and $\GL_n(R)/N_n\cong K_1(R)$, a countable abelian group, which is MF\@.
+  * First conjunct (N_n = [GL_n(R),GL_n(R)]) and the existence of some countable abelian MF quotient are proved, conditional on the four named Ara-Goodearl-Pardo Props (AGPMatrixReduction, AGPUnitK1, AGPMenalMoncasiReduction, AGPStepOne) and on thm:full-defect-ring's own rank-two form (FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo), which is itself unconditionally closed. Partial, not formalized: the printed identification of the quotient with K_1(R) specifically is not carried -- only "some countable abelian group" with an isomorphism onto it (the module's own docstring says so explicitly: naming it K_1(R) needs the colimit lim GL_n/EL_n and Morita invariance, neither built).
 * **`unassigned`**, line 1237 --- The ring $M_n(R)$ is again countable, purely infinite, and simple~\cite[Corollary~1.7]{AGP}, and $K_1(M_n(R))\cong K_1(R)$ by Morita invariance, so it suffices to treat $n=1$.
 * **`unassigned`**, line 1237 --- Write $H=R^\times$ and $N=N_1$.
 * **`unassigned`**, line 1237 --- Ara, Goodearl, and Pardo show that $\kappa$ is surjective with kernel $[H,H]$~\cite[Theorem~2.4]{AGP}.
@@ -235,13 +231,13 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1286 --- There is a ring isomorphism $\theta\colon M_n(R)\to PRP$ under which $\operatorname{diag}(v,1,\dots,1)$ corresponds to $(1-e)v(1-e)+f+r_2+\dots+r_n=v-(1-P)$.
 * **`unassigned`**, line 1286 --- So $v=1-P+\theta(\operatorname{diag}(v,1,\dots,1))\in N$ by~\eqref{eq:corner-units}.
 * **`unassigned`**, line 1286 --- Hence $\ker\kappa\le N$.
-* **`unassigned`**, line 1300 --- Let $k$ be a countable field, let $d\ge2$, let $R=L_k(1,d)$, and let $H=R^\times$.
 * **`unassigned`**, line 1300 --- Then $H\cong\GL_d(R)$, the intersection of the kernels of all homomorphisms from $H$ to MF groups is $[H,H]=\EL_d(R)$, and
 * **`unassigned`**, line 1309 --- The maps $x\mapsto(t_1x,\dots,t_dx)$ and $(y_1,\dots,y_d)\mapsto\sum_is_iy_i$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R^d$, so $R\cong M_d(R)$ and $H\cong\GL_d(R)$.
 * **`unassigned`**, line 1309 --- Theorem~\ref{thm:mf-quotient-units} identifies the intersection with $[H,H]$ and the quotient with $K_1(R)$.
 * **`unassigned`**, line 1309 --- Khanh--Thanh show that $\GL_d(R)=\EL_d(R)D_d(k)$, where $D_d(k)$ is the abelian group of diagonal matrices with entries in $k^\times$, which normalizes $\EL_d(R)$, and that $K_1(R)\cong k^\times/(k^\times)^{d-1}$~\cite[proof of Theorem~7.2]{KhanhThanh}.
 * **`unassigned`**, line 1309 --- So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every homomorphism from $\EL_d(R)$ to an MF group is trivial (Theorem~\ref{thm:full-defect-ring}).
-* **`unassigned`**, line 1322 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
+* **`partial`**, line 1322 --- For $d=2$ the quotient is trivial for every countable field $k$, so every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
+  * First clause (d=2, every countable field k, quotient trivial so every hom to MF group is trivial) is proved hypothesis-free, every characteristic, via LeavittMFQuotient.manuscriptLeavittMFQuotientTwoFromEJZ wrapped with the closed EJZ instance. Second clause (k=F_q, quotient cyclic of order gcd(q-1,d-1), general d) is not covered -- the general-d form of thm:mf-quotient-units/cor:leavitt-mf-quotient is in flight (rank-four lane, per the lead), not yet landed.
 * **`unassigned`**, line 1329 --- For a separable unital $C^*$-algebra $A$ we use the sequential form of his definitions.
 * **`unassigned`**, line 1329 --- A tracial state $\tau$ on $A$ is \emph{amenable} if there are u.c.p.
 * **`unassigned`**, line 1329 --- maps $\phi_n\colon A\to M_{d_n}(\C)$ such that
@@ -363,7 +359,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
 | A finite certificate | 19 | 19 |
 | One-sided inverses and elementary groups | 75 | 70 |
-| The binary example | 46 | 44 |
+| The binary example | 46 | 40 |
 | An amenable nonquasidiagonal trace | 90 | 79 |
 | A torsion-free finitely presented example | 35 | 16 |
 | Acknowledgments | 2 | 1 |
