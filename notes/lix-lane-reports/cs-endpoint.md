@@ -1067,3 +1067,56 @@ false reached the repo.  The two-hypothesis form is now pre-drafted at
 moment `LIXResFibre` (or whatever module ends up carrying `injective_lixRes`)
 actually lands on `origin/main`.  **Rule: local working-tree visibility is not
 a landing signal in a shared tree — only an `origin/main` commit is.**
+
+### `hres` discharged — LANDED, `3db1b5580`
+
+`origin/main` landing, verified independently (both by my own path-based
+watcher and by re-checking `git show --stat`/`git cat-file -e`): commit
+`59796080e`, `LIX lix-hres: hres, by the fibre over the zero and not by the
+ball`, adding `LIXResFibre.lean`, `ThomChartSquare.lean`, `ThomJmNatural.lean`.
+`injective_lixRes (hGc) (hGu) : Function.Injective (lixRes hGc hGu (2 *
+lixRank dd)).hom` matches the `hres` binder exactly (implicit `{ℓ dd G}`, no
+`hGe`/`hdd` — a producer strictly more general than the consumer's binder,
+which is a fit, not a mismatch).  Deployed the pre-drafted two-hypothesis
+form (`hsq`+`hclass` remain), fixing one bug caught before probing: the draft
+had wrongly qualified the call as `ThomChernDeg.injective_lixRes` —
+`injective_lixRes` is declared directly in `GroupApproximation.CharClass`,
+not nested inside `ThomChernDeg` (only its *proof* calls into
+`ThomChernDeg.injective_lixRes_of_ne_zero`).
+
+Verified with `lixprobe6.sh` before landing, to the full standard: `PROBE
+GREEN`, 9330 jobs, genuine build (`Built ThomJmNatural (41s)`, `Built
+LIXResFibre (26s)`, `Built LemmaTwoOfHsqHresHclass (16s)` — not replays),
+`sorryAx: none`, `axiom lines seen: 78` (non-vacuous), both new declarations
+(`lemmaTwoHolds_of_hsq_hclass`, `not_problemLIX_of_hsq_hclass`) shown **by
+name** in the tool's own output — `lixprobe6.sh`'s fix worked, no manual SSH
+needed this round.
+
+### `hclass` discharged — LANDED, `33113bdd9`
+
+Landed within minutes of `hres`, same session: `origin/main` commit
+`1a75df323`, `lix: hclass discharged — the Thom class restricts to the top
+Chern class`, adding `LIXHclass.lean`, `ThomBridgeRelToAbs.lean`,
+`ThomChartTautZero.lean`.  `lixHclass`'s landed statement matches exactly the
+local preview the lead had relayed before landing — no drift.  Discharged as
+its own separate step from `hres`, one hypothesis at a time as instructed,
+even though both obligations arrived close together: went 3-hyp → 2-hyp
+(`hres` out) → 1-hyp (`hclass` out, `hsq` the only one left), rather than
+combining both discharges into one edit, so that a mismatch in either would
+have named the right hypothesis.
+
+`hsq` (via `lixHclass`'s pinned proof-argument generalisation) plugged in the
+same way `hres` did — direct, no adjustment.  Verified with `lixprobe6.sh`:
+`PROBE GREEN`, 9337 jobs, genuine build (`Built LIXHclass (21s)`, `Built
+ThomBridgeRelToAbs (17s)`, `Built ThomChartTautZero (17s)`, `Built
+LemmaTwoOfHsqHresHclass (19s)`), `sorryAx: none`, `axiom lines seen: 83`, both
+declarations (`lemmaTwoHolds_of_hsq`, `not_problemLIX_of_hsq`) shown by name
+with exactly `[propext, Classical.choice, Quot.sound]`.
+
+**`hsq` is now the only open hypothesis anywhere in this chain.**  When it
+lands, the plan is `not_problemLIX`/`exists_separable_simple_unital_not_k1Inj`
+stated bare in `ProblemLIX.lean`, proved by applying `not_problemLIX_of_hsq`
+(or whatever this file's final 0-hypothesis form is named) to `lix-hsq`'s
+theorem, with `#audit_closed_axioms` on those two lines only — and the axiom
+line for `not_problemLIX` read by hand off the raw log, not trusted from any
+summary, per the lead's standing instruction for that one irreversible step.
