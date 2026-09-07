@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.LIXThomClassTerm
 import GroupApproximation.CharClass.LerayHirschGammaIso
 import GroupApproximation.CharClass.ChernGammaComponent
 import GroupApproximation.CharClass.LIXChernValue
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The endgame's top Chern class, as a coefficient of this lane's instance
@@ -72,9 +73,10 @@ theorem lixChern_top_eq_gamma (hGc : Continuous G)
     (lerayHirschGraded_compact (lixBundle G hGc hGu) (lixRank dd)
       (rank_lixBundle G hGc hGu) (one_le_lixRank_dd dd)) (lixRank dd)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixChern_top_eq_gamma
+#audit_axioms lixChern_top_eq_gamma
 
 end
 

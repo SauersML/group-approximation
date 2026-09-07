@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXHsq
 import GroupApproximation.CharClass.LIXStepCOddThom
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C's odd side with the compatibility square discharged
@@ -60,8 +61,9 @@ theorem lix_topClass_ne_zero_of_hsq (hdd : ∀ j, 0 < dd j)
   lix_topClass_ne_zero_of_thom hdd hGc hGu hGe j i hexact jE sAbs piStar hnat hsection
     (lixHsq hGc hGu hGe) hres hclass
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lix_topClass_ne_zero_of_hsq
+#audit_axioms lix_topClass_ne_zero_of_hsq
 
 end GroupApproximation.CharClass

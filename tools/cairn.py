@@ -2146,6 +2146,12 @@ def _tex_atoms(src):
                 continue
             if ch.isdigit():
                 m = re.match(r"[0-9]+(?:\.[0-9]+)?", src[i:])
+                if not m:
+                    # `str.isdigit()` is True for characters this ASCII pattern cannot
+                    # match -- superscripts outside SUP_DIGITS, Arabic-Indic and other
+                    # non-ASCII digit forms.  Stay verbatim, as the letter branch does,
+                    # rather than crashing the whole site build on one code span.
+                    return None
                 atoms.append(("num", m.group(0)))
                 i += m.end()
                 continue

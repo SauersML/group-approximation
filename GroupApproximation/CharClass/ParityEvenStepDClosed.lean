@@ -3,6 +3,7 @@ import GroupApproximation.CharClass.LIXSlicePoint
 import GroupApproximation.CharClass.CohomologyLIXHsliceSouth
 import GroupApproximation.CharClass.LIXChernSliceValueBridge
 import GroupApproximation.CharClass.LemmaTwoStaged
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step D's data over one hypothesis, and Lemma 2 over two
@@ -207,9 +208,9 @@ theorem lemmaTwoHolds_of_exists_chernSliceValue
 
 /-! ## 6. The axiom report -/
 
-#print axioms wuStepDLix_of_chernSliceValue
+#audit_axioms wuStepDLix_of_chernSliceValue
 
-#print axioms lemmaTwoHolds_of_exists_chernSliceValue
+#audit_axioms lemmaTwoHolds_of_exists_chernSliceValue
 
 end
 

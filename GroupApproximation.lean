@@ -3415,6 +3415,34 @@ import GroupApproximation.GGT.VanKampen.WordSegmentConnectors
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
 import GroupApproximation.Analysis.STW22NegativeSolution
 import GroupApproximation.Analysis.STW22DesignatedTraces
+import GroupApproximation.Analysis.STW22FactorialCore
+import GroupApproximation.Analysis.STW22TraciallyCompletePair
+import GroupApproximation.Analysis.STW22AntipodalGaugeFactorial
+import GroupApproximation.Analysis.STW22AntipodalFactorialPair
+import GroupApproximation.Analysis.STW22ProblemXXIIFactorialEndpoint
+-- wave 2026-09-07: K_1 (lane nonmf-formalize) and the compiling non-AlgTop
+-- orphans (lane lix-wire, notes/orphan-buildtest-rest-2026-09-07.md WIRE bucket).
+-- The five Topology.Tautological* modules are deliberately NOT wired: duplicated
+-- by CONTENT against the already-wired STW22 route, on their own docstrings.
+import GroupApproximation.Algebra.CountableMatrixUnits
+import GroupApproximation.KOne.StableWhitehead
+import GroupApproximation.KOne.AlgebraicKOne
+import GroupApproximation.KOne.AlgebraicKOneFunctor
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsUnconditional
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
+import GroupApproximation.Analysis.FiniteDimensionalFactorialTraceCore
+import GroupApproximation.Analysis.CuntzPedersenJordanModelTest
+import GroupApproximation.Analysis.CuntzPedersenJordanMatrixTest
+import GroupApproximation.Analysis.STW22CounterexampleAssemblyModelTest
+import GroupApproximation.KTheory.Basic
+import GroupApproximation.KTheory.Functorial
+import GroupApproximation.KTheory.Spaces
+-- STW/: repaired and moved under GroupApproximation/ by lane lix-meta (50b93fef7);
+-- the root-level copies were deleted in 7301acbec.  Wired so the tree is inside
+-- scripts/Audit.lean's classical-axioms guarantee, whose scope is exactly this
+-- import closure.
+import GroupApproximation.STW.Actual
+import GroupApproximation.STWProblems
 -- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
 -- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
 --  says "UNPROBED, do not import yet")

@@ -654,7 +654,15 @@ condition on the relator:
 The original half is not a relabelling and stays an input: the selected
 peripheral letters are not letters of the original family, so re-spelling them
 changes the length of every relator and therefore all three
-small-cancellation parameters.  It is named next. -/
+small-cancellation parameters.  It is named next.
+
+`GGT/HullSCLemma44OriginalExpansion` then goes further than this section
+records: it reduces the original half to `OriginalRelatorExpansion`, five metric
+clauses for a single word, discharging the symmetrization, strong boundedness
+and normal-closure bookkeeping.  And `GGT/HullSCLemma44RespellingWitness` shows
+`HullRelatorRespellingStatement` is too strong as printed: it admits an
+`original` with everything in the base and no peripheral family, over which no
+re-spelling exists at all.  Neither file was reachable from here. -/
 
 /-- **The joint half of `HullRelatorRespellingStatement`, as a statement.**
 

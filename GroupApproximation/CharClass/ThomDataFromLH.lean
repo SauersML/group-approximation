@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomHabs
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The degreewise Thom data, from the two Leray–Hirsch instances alone
@@ -76,9 +77,10 @@ theorem thomData_of_lerayHirsch (Z : Set P)
     (relToAbs_injective_of_graded Z π π' hπ ξ ξ' hξ hr L L')
     (range_thomJm_eq_ker_restrictMap Z π π' hπ ξ ξ' hξ L L')
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms thomData_of_lerayHirsch
+#audit_axioms thomData_of_lerayHirsch
 
 end ThomChernDeg
 

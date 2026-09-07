@@ -1,6 +1,5 @@
 import Mathlib
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXCVCompactKTheory
-import STW.Actual.FockPair
 
 /-!
 # STW Problems XXII, LV, and XCV
@@ -8,7 +7,8 @@ import STW.Actual.FockPair
 The `STW.Actual` import tree is the unconditional formalization of the actual
 operator-algebra objects used by Problems XXII, LV, and XCV.  No theorem in
 that tree may replace an operator-algebra bridge by an assumption, an axiom,
-`sorry`, `admit`, or a proposition engineered to encode the desired conclusion.
+an unproved hole of any kind, or a proposition engineered to encode the
+desired conclusion.
 
 The older endpoint lemmas below remain useful sublemmas while the actual
 objects are assembled above them.
