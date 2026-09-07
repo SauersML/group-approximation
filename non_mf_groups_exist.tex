@@ -218,10 +218,10 @@ $\mathfrak D_G(L)$ tend to $1$ in Hilbert--Schmidt norm in every operator
 norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
 Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
 A corona homomorphism nontrivial on $K$ compresses to a corner where the
-Kazhdan projection of $K$ vanishes.  On that corner, a group-algebra
-element within $\tfrac14$ of the Kazhdan projection has operator norm
-below $\tfrac14$, while Hilbert--Schmidt triviality sends its normalized
-traces to the sum of its coefficients, which exceeds $\tfrac34$
+Kazhdan projection of $K$ vanishes.  Hilbert--Schmidt triviality makes
+every ultralimit of the normalized corner traces restrict to the
+trivial character of $K$.  That character takes the Kazhdan projection
+to $1$, although the corner has killed it
 (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
@@ -529,86 +529,92 @@ representation of $G$.  Then
 \end{theorem}
 
 \begin{proof}
-For unitaries $A,B$,
+Put $H_n=(M_{d_n}(\C),\hsnorm{\,\cdot\,})$.  The estimate
 \[
- \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B},
+ \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}
+ \le2\opnorm{A-B}\qquad(A,B\in\U(d_n))
 \]
-where the norm on the left is the operator norm on the Hilbert space
-$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$, so the maps
-$\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative in
-operator norm and
+makes
 \[
  \widetilde\sigma(g)=[\operatorname{Ad}(V_n(g))]_n\in\U(\mathcal B),
  \qquad
- \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)),
+ \mathcal B=\prod_nB(H_n)\big/\bigoplus_nB(H_n),
 \]
-is a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the
-Hilbert--Schmidt Hilbert space.  The algebra $\mathcal B$ is a norm
-matrix corona with coordinate sizes $d_n^2$ after a choice of matrix
-units.  Let $P\in\mathcal B$ be the image of the Kazhdan projection of
-$L$~\cite{AkemannWalter} under $C^*_{\max}(L)\to\mathcal B$, and lift
-$P$ to orthogonal projections $P_n$ on
-$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$ by functional calculus.
-
-A Hilbert--Schmidt bounded sequence $(x_n)$ lies in $\mathcal C_2(V,L)$
-if and only if
+a homomorphism.  The algebra $\mathcal B$ is a norm matrix corona with
+coordinate sizes $d_n^2$.  Let $P\in\mathcal B$ be the image of $e_L$
+and put $U=\widetilde\sigma(u)$.  The compression relation and
+Lemmas~\ref{lem:kazhdan-projection-order} and~\ref{lem:stable-finite} give
 \[
- \hsnorm{P_nx_n-x_n}\longrightarrow0 .
-\]
-In one direction, fix $\varepsilon>0$ and,
-by density of the group algebra in $C^*_{\max}(L)$, a finite set
-$F\subseteq L$ and scalars $(a_\ell)_{\ell\in F}$ with
-\[
- \Bigl\|\sum_{\ell\in F}a_\ell u_\ell-e_L\Bigr\|<\varepsilon,
-\]
-where $u_\ell$ is the canonical unitary of $\ell$; the trivial
-character, which sends $e_L$ to $1$, gives
-$\bigl|\sum_{\ell\in F}a_\ell-1\bigr|<\varepsilon$.  The element
-$\sum_{\ell\in F}a_\ell\widetilde\sigma(\ell)$ of $\mathcal B$ is within
-$\varepsilon$ of $P$, so
-\[
- \limsup_n\opnorm{P_n-\sum_{\ell\in F}a_\ell\operatorname{Ad}(V_n(\ell))}
- \le\varepsilon .
-\]
-If $(x_n)\in\mathcal C_2(V,L)$ and $\sup_n\hsnorm{x_n}\le c$, then
-$\operatorname{Ad}(V_n(\ell))x_n=x_n+o(1)$ in $\hsnorm{\,\cdot\,}$ for
-each $\ell\in F$, so
-\[
- \limsup_n\hsnorm{P_nx_n-x_n}
- \le\varepsilon c+\Bigl|\sum_{\ell\in F}a_\ell-1\Bigr|c
- \le2\varepsilon c,
-\]
-and $\varepsilon$ was arbitrary.  In the other direction,
-$u_\ell e_L=e_L$ in $C^*_{\max}(L)$, so $\widetilde\sigma(\ell)P=P$ and
-$\opnorm{\operatorname{Ad}(V_n(\ell))P_n-P_n}\to0$; if
-$\hsnorm{P_nx_n-x_n}\to0$, then
-\[
-\begin{aligned}
- \hsnorm{\operatorname{Ad}(V_n(\ell))x_n-x_n}
- &\le2\hsnorm{x_n-P_nx_n}\\
- &\quad+\opnorm{\operatorname{Ad}(V_n(\ell))P_n-P_n}\,\hsnorm{x_n}
- \longrightarrow0 .
-\end{aligned}
+ U^*PU\le P,\qquad U^*PU=P,\qquad UP=PU.
 \]
 
-Put $U=\widetilde\sigma(u)$.  Since $uLu^{-1}\le L$,
-$U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L)$, so $U^*PU\le P$
-by Lemma~\ref{lem:kazhdan-projection-order}, and $U^*PU=P$ by
-Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
-equivalent.  So $[U,P]=0$ and
-$\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.  For
-$(x_n)\in\mathcal C_2(V,L)$,
+To read this identity on matrix sequences, fix a free ultrafilter
+$\omega$ on $\mathbb N$.  The Hilbert ultraproduct $\mathcal H_\omega$
+consists of sequences with $\sup_n\hsnorm{x_n}<\infty$, modulo those
+with $\lim_\omega\hsnorm{x_n}=0$, and has inner product
 \[
-\begin{aligned}
- \hsnorm{P_n\operatorname{Ad}(V_n(u))^{\pm1}x_n
- -\operatorname{Ad}(V_n(u))^{\pm1}x_n}
- &\le\opnorm{[P_n,\operatorname{Ad}(V_n(u))^{\pm1}]}\,\hsnorm{x_n}\\
- &\quad+\hsnorm{P_nx_n-x_n}\longrightarrow0,
-\end{aligned}
+ \langle[x_n]_\omega,[y_n]_\omega\rangle
+ =\lim_\omega\tr_{d_n}(y_n^*x_n).
 \]
-so $\operatorname{Ad}(V(u))^{\pm1}x\in\mathcal C_2(V,L)$ by the
-displayed equivalence.
+The corona $\mathcal B$ acts on $\mathcal H_\omega$ by
+$[T_n]_n[x_n]_\omega=[T_nx_n]_\omega$.  In this representation, $P$
+is the orthogonal projection onto the $L$-fixed vectors.  If
+$(x_n)\in\mathcal C_2(V,L)$, then $[x_n]_\omega$ is $L$-fixed.
+Since $U$ commutes with $P$, so are $U[x_n]_\omega$ and
+$U^*[x_n]_\omega$.  Thus both sequences
+$\operatorname{Ad}(V_n(u))^{\pm1}x_n$ commute asymptotically with
+$V_n(\ell)$ in Hilbert--Schmidt norm along $\omega$, for every
+$\ell\in L$.  This holds for every free ultrafilter, hence along the
+ordinary sequence: a bounded nonnegative sequence with a nonzero
+limsup has a nonzero limit along some free ultrafilter.  Both
+$\operatorname{Ad}(V(u))$ and its inverse therefore preserve
+$\mathcal C_2(V,L)$.
 \end{proof}
+
+% Written extension of the transport argument; no Lean marker is claimed.
+\begin{corollary}[transport of asymptotic intertwiners]
+\label{cor:intertwiner-transport}
+Let $L\le G$ have property~\textup{(T)}, let $uLu^{-1}\le L$, and let
+$V_n\colon G\to\U(d_n)$ and $W_n\colon G\to\U(e_n)$ be operator norm
+asymptotic representations.  On $M_{d_n,e_n}(\C)$ use
+\[
+ \|X\|_{2,n}^2=(d_ne_n)^{-1/2}\operatorname{Tr}(X^*X).
+\]
+Let $\mathcal I_2(V,W;L)$ consist of the sequences $(X_n)$ with
+$\sup_n\|X_n\|_{2,n}<\infty$ and
+\[
+ \|V_n(\ell)X_n-X_nW_n(\ell)\|_{2,n}\longrightarrow0
+ \qquad(\ell\in L).
+\]
+Then $\mathcal T_u(X)_n=V_n(u)X_nW_n(u)^*$ satisfies
+\[
+ \mathcal T_u\bigl(\mathcal I_2(V,W;L)\bigr)
+ =\mathcal I_2(V,W;L).
+\]
+Equivalently, restriction to the compressed subgroup creates no new
+asymptotic intertwiners:
+\[
+ \mathcal I_2(V,W;uLu^{-1})=\mathcal I_2(V,W;L).
+\]
+\end{corollary}
+
+\begin{proof}
+On the rectangular Hilbert spaces define
+$S_n(g)X=V_n(g)XW_n(g)^*$.  These are unitaries, with
+\[
+ \|S_n(gh)-S_n(g)S_n(h)\|
+ \le\|V_n(gh)-V_n(g)V_n(h)\|
+   +\|W_n(gh)-W_n(g)W_n(h)\|\longrightarrow0.
+\]
+Their classes give a homomorphism into the norm matrix corona with
+coordinate sizes $d_ne_n$.  Apply the proof of
+Theorem~\ref{thm:transport} to this homomorphism: its Kazhdan projection
+commutes with $[S_n(u)]_n$, and its fixed vectors are exactly the
+asymptotic intertwiners along each free ultrafilter.  Asymptotic
+multiplicativity identifies $\mathcal T_u(\mathcal I_2(V,W;L))$
+with $\mathcal I_2(V,W;uLu^{-1})$, giving the equivalent formulation.
+\end{proof}
+
 
 \begin{corollary}\label{cor:defect-hs}
 Let $L\le G$ have property~\textup{(T)} and let $(V_n)$ be an operator
@@ -681,60 +687,35 @@ then every corona homomorphism from \(G\) is trivial on \(K\).
 \end{theorem}
 
 \begin{proof}
-Suppose that a corona homomorphism
-\(\Theta\colon G\to\U(\mathcal Q_{\mathbf d})\) is nontrivial on \(K\).
-Let \(e_K\in C^*_{\max}(K)\) be the Kazhdan projection of \(K\), and let
-\(p\in\mathcal Q_{\mathbf d}\) be its image under the homomorphism
-\(C^*_{\max}(K)\to\mathcal Q_{\mathbf d}\) induced by \(\Theta|_K\).  In
-any faithful representation of the corona, \(p\) is the projection onto
-the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\), the range of
-\(\Theta(g)p\Theta(g)^*\) is
-\(\Theta(g)\operatorname{Fix}\Theta(K)
-=\operatorname{Fix}\Theta(gKg^{-1})=\operatorname{Fix}\Theta(K)\), so
+Let $\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ be a corona
+homomorphism, and let $p$ be the image of the Kazhdan projection $e_K$.
+Normality of $K$ makes its fixed-vector space $G$-invariant, so $p$
+commutes with $\Theta(G)$.  If $\Theta$ is nontrivial on $K$, then
+$q=1-p\ne0$.  Lemma~\ref{lem:central-corona-corner} gives an operator
+norm asymptotic representation $W_n\colon G\to\U(r_n)$ realizing
+$g\mapsto q\Theta(g)$ in a norm matrix corona.  The induced map
 \[
- \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
+ \pi\colon C^*_{\max}(K)\longrightarrow\mathcal Q_{\mathbf r}
 \]
-and \(q=1-p\) is nonzero because \(\Theta\) is nontrivial on \(K\).  By
-Lemma~\ref{lem:central-corona-corner} there is an operator norm
-asymptotic representation \(W_n\colon G\to\U(r_n)\) whose corona
-homomorphism \(\widehat\Theta\) is the coordinate restriction of
-\(g\mapsto q\Theta(g)\).  Let
-\(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism
-induced by \(\widehat\Theta|_K\).  Since \(q\) commutes with \(\Theta(K)\),
-the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\)
-agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate
-restriction of \(qp=0\).
+satisfies $\pi(e_K)=0$, since the corner kills $p$.
 
-The group algebra \(\C[K]\) is dense in \(C^*_{\max}(K)\), so there are
-a finite set \(F\subseteq K\) and scalars \((\alpha_k)_{k\in F}\) with
+Fix a free ultrafilter $\omega$.  The formula
 \[
- a=\sum_{k\in F}\alpha_k u_k,
- \qquad \opnorm{a-e_K}<\tfrac14,
+ \tau([a_n]_n)=\lim_\omega\tr_{r_n}(a_n)
 \]
-where \(u_k\) is the canonical unitary of \(k\).  The trivial character
-\(\chi\) of \(K\), the state of \(C^*_{\max}(K)\) with \(\chi(u_k)=1\)
-for every \(k\), has \(\chi(e_K)=1\), so
+defines a tracial state on $\mathcal Q_{\mathbf r}$.  The hypothesis
+applies to $(W_n)$, so
 \[
- \Bigl|\sum_{k\in F}\alpha_k-1\Bigr|=|\chi(a-e_K)|<\tfrac14.
+ |\tr_{r_n}(W_n(k))-1|
+ \le\hsnorm{W_n(k)-1}\longrightarrow0\qquad(k\in K).
 \]
-Since \(\pi(e_K)=0\),
+Thus $\tau\circ\pi$ agrees with the trivial character $\chi_K$ on
+every canonical unitary, hence on $C^*_{\max}(K)$ by linearity and
+continuity.  Evaluating at the Kazhdan projection gives
 \[
- \limsup_n\opnorm{\sum_{k\in F}\alpha_kW_n(k)}
- =\opnorm{\pi(a)}=\opnorm{\pi(a-e_K)}<\tfrac14.
+ 0=\tau(\pi(e_K))=\chi_K(e_K)=1,
 \]
-The hypothesis applies to \((W_n)\) itself, so
-\[
- |\tr_{r_n}(W_n(k))-1|\le\hsnorm{W_n(k)-I_{r_n}}\longrightarrow0
- \qquad(k\in K),
-\]
-with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and then
-\[
- \tr_{r_n}\Bigl(\sum_{k\in F}\alpha_kW_n(k)\Bigr)
- \longrightarrow\sum_{k\in F}\alpha_k.
-\]
-Since \(|\tr_{r_n}(x)|\le\opnorm{x}\), the limit has absolute value at
-most \(\tfrac14\), while \(|\sum_{k\in F}\alpha_k|>\tfrac34\), a
-contradiction.
+a contradiction.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -815,7 +796,8 @@ separation threshold into a linear bound.
 
 \begin{lemma}[tensor amplification]\label{lem:linear-tensor-amplification}
 If $A\in\U(d)$ and $t=\opnorm{A-1}>0$, there is an integer
-$1\le k\le6/t$ with $\opnorm{A^{\otimes k}-1}>1$.
+$1\le k\le2/t$ with $\opnorm{A^{\otimes k}-1}>1$.
+The universal constant $2$ is optimal.
 For any $A,B\in\U(d)$ and $k\ge1$,
 \[
  \opnorm{A^{\otimes k}-B^{\otimes k}}\le k\opnorm{A-B}.
@@ -823,17 +805,23 @@ For any $A,B\in\U(d)$ and $k\ge1$,
 \end{lemma}
 
 \begin{proof}
-Choose an eigenvalue $z$ of $A$ with $|z-1|=t$, and put
-$N=\lfloor4/t\rfloor+1$.  If $|z^j-1|\le1$ for every
-$1\le j\le N$, then $\operatorname{Re}(z^j)\ge\tfrac12$.
-Consequently $S=z+\cdots+z^N$ satisfies
+Choose an eigenvalue $z=e^{i\theta}$ of $A$ with $|z-1|=t$ and
+$0<|\theta|\le\pi$.  Write $\beta=|\theta|$.  If $t>1$, take $k=1$.
+Otherwise $0<\beta\le\pi/3$, and
 \[
- \frac N2\le\operatorname{Re}S\le|S|,
- \qquad t|S|=|(1-z)S|=|z-z^{N+1}|\le2,
+ k=\left\lfloor\frac{\pi}{3\beta}\right\rfloor+1
+ \quad\text{satisfies}\quad
+ \frac{\pi}{3}<k\beta\le\frac{2\pi}{3},
 \]
-contrary to $Nt>4$.  Thus some $1\le k\le N$ has $|z^k-1|>1$.
-Tensoring an eigenvector for $z$ shows that $z^k$ is an eigenvalue of
-$A^{\otimes k}$, and $kt\le Nt\le4+t\le6$.
+so $|z^k-1|>1$.  If $k=2$, then $kt\le2$; if $k\ge3$, then
+\[
+ kt=2k\sin(\beta/2)\le k\beta
+ \le\frac{k}{k-1}\frac{\pi}{3}\le\frac{\pi}{2}<2.
+\]
+Tensoring an eigenvector for $z$ proves the first assertion.
+The constant $2$ cannot be decreased, since for the scalar matrix
+$A=-1$ every successful exponent is odd and $kt=2k\ge2$.
+
 For the second assertion, telescope the tensor factors:
 \[
  A^{\otimes k}-B^{\otimes k}
@@ -862,7 +850,13 @@ $\mathcal R\subseteq N$ and $\eta>0$ satisfy
  \quad\Longrightarrow\quad \opnorm{w(U)-1}<1
 \end{equation}
 in every dimension, then the same $\mathcal R$ satisfies
-\eqref{eq:word-linear-certificate} with $C=6/\eta$.
+\eqref{eq:word-linear-certificate} with $C=2/\eta$.
+The threshold also gives, for every integer $N\ge1$,
+\begin{equation}\label{eq:word-sine-modulus}
+ N\delta_{\mathcal R}(U)<\eta
+ \quad\Longrightarrow\quad
+ \opnorm{w(U)-1}<2\sin\frac{\pi}{6N}.
+\end{equation}
 \end{theorem}
 
 \begin{proof}
@@ -878,7 +872,7 @@ Lemma~\ref{prop:mf-residual-calculus}.
 Fix a threshold $(\mathcal R,\eta)$ and a tuple $U$, and put
 $t=\opnorm{w(U)-1}$.  If $t=0$, the required inequality is immediate.
 Otherwise Lemma~\ref{lem:linear-tensor-amplification} supplies
-$1\le k\le6/t$ with $\opnorm{w(U)^{\otimes k}-1}>1$.
+$1\le k\le2/t$ with $\opnorm{w(U)^{\otimes k}-1}>1$.
 The map $A\mapsto A^{\otimes k}$ is a group homomorphism, so every
 word $r$ satisfies
 \[
@@ -890,9 +884,18 @@ $k\delta_{\mathcal R}(U)$.  It follows that
 \[
  \eta\le\delta_{\mathcal R}(U^{\otimes k})
  \le k\delta_{\mathcal R}(U)
- \le\frac6t\delta_{\mathcal R}(U),
+ \le\frac2t\delta_{\mathcal R}(U),
 \]
 which proves \eqref{eq:word-linear-certificate}.
+
+For \eqref{eq:word-sine-modulus}, apply the threshold to each tensor
+power $U^{\otimes j}$, $1\le j\le N$.  Every eigenvalue
+$z=e^{i\theta}$ of $w(U)$, with $-\pi<\theta\le\pi$, then satisfies
+$|z^j-1|<1$ for all such $j$.  In particular $|\theta|<\pi/3$.
+If $N|\theta|\ge\pi/3$, the first $j$ with $j|\theta|\ge\pi/3$
+satisfies $j\le N$ and $\pi/3\le j|\theta|<2\pi/3$, contradicting
+$|z^j-1|<1$.  Thus $|\theta|<\pi/(3N)$ for every eigenvalue, proving
+the bound.
 
 Conversely, lift the generator images of a corona homomorphism to
 unitary matrices, as in Lemma~\ref{lem:stable-finite}.  Their defects
@@ -901,6 +904,22 @@ on the finite set $\mathcal R$ tend to zero, so
 tend to zero.  The corona homomorphism kills $w$, and
 Lemma~\ref{prop:mf-residual-calculus} gives the assertion for MF targets.
 \end{proof}
+
+The sine bound also gives the asymptotic slope.  For every
+$\varepsilon>0$ there is $\delta_0>0$ such that, uniformly in the
+dimension,
+\[
+ 0<\delta_{\mathcal R}(U)<\delta_0
+ \quad\Longrightarrow\quad
+ \opnorm{w(U)-1}
+ \le\left(\frac{\pi}{3\eta}+\varepsilon\right)
+       \delta_{\mathcal R}(U).
+\]
+Indeed, take $N=\lceil\eta/\delta_{\mathcal R}(U)\rceil-1$ in
+\eqref{eq:word-sine-modulus}; then
+$N\delta_{\mathcal R}(U)\to\eta$ as the defect tends to zero.
+At zero defect the word is exactly $1$ by
+\eqref{eq:word-linear-certificate}.
 
 The same finite certificate kills $w$ in every group satisfying the
 relations in $\mathcal R$.  In particular, $w$ is killed by every MF
