@@ -39,6 +39,16 @@ none is constructed in this development -- indeed
 no `AuxiliaryPeripheralFamily` is constructed either.  Both gaps are real and
 neither is closed here.
 
+## A pointer the corpus does not otherwise carry
+
+`HullSCLemma44JointRelabel`'s "What is left" section says the original half
+"stays an input ... It is named next", and stops there.  It goes considerably
+further than that: `GGT/HullSCLemma44OriginalExpansion` reduces the original
+half to `OriginalRelatorExpansion`, five metric clauses for a single word, with
+the symmetrization, strong boundedness and normal-closure bookkeeping already
+discharged.  Nothing pointed from the statement to that file, so the open
+mathematics reads as larger than it is.
+
 The repair does not depend on that question.  Adding
 `original.alphabet.carrier ⊆ A.alphabet.carrier` to the statement kills this
 witness outright, because `HullGeneratingSet.nonElementary` needs two
@@ -225,11 +235,35 @@ theorem normalClosure_eq_bot_of_hullRelatorRespelling
   refine ⟨eps, rho, fun W hW => ?_⟩
   exact normalClosure_eq_bot_of_relatorRespellingAt_coneEverything (hres W hW).1
 
+/-- **The refutation, with its hypothesis written out.**  If one selected
+auxiliary family admits, at every pair of thresholds, a Lemma 4.4 input whose
+normal closure is nontrivial, then `HullRelatorRespellingStatement` is false.
+
+The hypothesis is exactly what this development does not supply, which is why
+the refutation is stated conditionally rather than asserted.  It is stated at
+all so that anyone who later builds such a family gets the refutation by
+application rather than by repeating the argument. -/
+theorem not_hullRelatorRespellingStatement_of_nontrivialInput
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G} (selected : AuxiliaryPeripheralFamily A N S)
+    (mu : ℝ) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 1000)
+    (hinput : ∀ eps rho : ℕ,
+      ∃ W : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k))),
+        RelWord.IsLemma44Input selected.rel W eps mu rho ∧
+          Subgroup.normalClosure (GGT.RelLetter.listVal '' W) ≠ ⊥) :
+    ¬ HullRelatorRespellingStatement.{u, 0} := by
+  intro h
+  obtain ⟨eps, rho, hcollapse⟩ :=
+    normalClosure_eq_bot_of_hullRelatorRespelling h selected mu hmu hmuUpper
+  obtain ⟨W, hW, hne⟩ := hinput eps rho
+  exact hne (hcollapse W hW)
+
 end Statement
 
 #audit_axioms isHyperbolicallyEmbedded_coneEverything
 #audit_axioms eq_empty_of_isLemma44Input_coneEverything
 #audit_axioms normalClosure_eq_bot_of_hullRelatorRespelling
+#audit_axioms not_hullRelatorRespellingStatement_of_nontrivialInput
 
 end HullSC
 end GroupApproximation
