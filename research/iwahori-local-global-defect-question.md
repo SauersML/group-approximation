@@ -14,8 +14,8 @@ distinct_from:
   iwahori-nielsen-hs-bilipschitz: that is a dimension-free bi-Lipschitz estimate for one fixed Nielsen involution on the coordinates of Z*C_2 representations; this is the existence of a global modulus relating local Iwahori defect to distance to the compatible subvariety, over the whole representation variety of the free product of two copies of SL_2(Z).
 ---
 
-**Dogon--Vigdorovich, arXiv:2506.20843v2, Question 1.2** (`problem!` in the
-source), stated in their notation.
+**Dogon--Vigdorovich, [arXiv:2506.20843v2](https://arxiv.org/html/2506.20843v2),
+Question 1.4**, using the printed version dated 23 June 2026.
 
 Let `Lambda = SL_2(Z) * SL_2(Z)` and let `X_FD(Lambda)` be the representation
 variety of all finite dimensional unitary representations, with
@@ -25,6 +25,13 @@ set.  Let `B_+`, `B_-` be the upper and lower Iwahori subgroups of `SL_2(Z)`
 index three), and let `sigma : B_+ -> B_-` be the isomorphism implemented by
 conjugation by `t = diag(sqrt 2, 1/sqrt 2)`, an element of the commensurator
 but not the normalizer of `SL_2(Z)` in `SL_2(R)`.
+
+Here `d_2` is the **generalized** metric: for `U in U(d)`, `V in U(D)`,
+pad the smaller matrix with zero blocks and divide their Frobenius distance
+by `sqrt(max(d,D))`. The compatible comparison below may have any positive
+dimension. Restricting it to dimension `d` would instead ask for strict
+repair. Choose the ambient generating set to include the displayed defect
+words; otherwise replace the constant `2` below by their word-length bound.
 
 Call `pi in X_FD(Lambda)` **compatible** if its two restrictions satisfy
 `pi_+|_(B_+) = pi_-|_(B_-) o sigma`; compatible representations form a
@@ -46,18 +53,28 @@ representations of `SL_2(Z)` that almost factor through a congruence quotient
 `SL_2(Z/n)` with `n` odd are close to ones that genuinely do.
 
 By `dv-s-arithmetic-hs-stable-nonhyperlinear-extension` and their
-Corollary 1.3, a positive answer yields a non-hyperlinear finite central
+Corollary 1.5, a positive answer yields a non-hyperlinear finite central
 extension of `SL_2(Z[1/2])`.
 
 ## Transcription note
 
-The source also asserts, in **commented-out** text, that this question is
-equivalent to Hilbert--Schmidt stability of `SL_2(Z[1/p])` and that `SL_2(Z)`
-is Hilbert--Schmidt stable.  Those sentences are not printed in v2 and are not
-used here.  Only the printed implication (positive answer implies a
-non-hyperlinear group, their Corollary 1.3) is consumed.
+An earlier ingestion used the labels Question 1.2 and Corollary 1.3 and
+discussed commented source text. The current printed v2 uses Question 1.4
+and Corollary 1.5. This node consumes the printed implication and its
+flexible dimension convention; commented source assertions are not proof
+dependencies. Definition 1.2 distinguishes flexible from strict stability.
 
 ## Attempts
+
+- **The cross-dimension metric step is now justified in both directions.**
+  `flexible-hs-metric-controls-words-and-padding` proves the word-defect
+  Lipschitz estimate using the actual generalized metric, correcting the
+  one-direction padding argument in the congruence-capture reduction.
+  It also proves `A<=A_up<=2A` for classes closed under trivial summands,
+  with a sharp factor two, and the automatic squared-distance dimension
+  charge. These facts reconcile the dimension conventions. They give no
+  close congruence comparison for an arbitrary small-defect input, so the
+  global capture prerequisite remains open.
 
 - **Full-rank outlier repair.**  This repository's line of attack, recorded at
   `iwahori-outlier-repair` and fed by `iwahori-outlier-localization` and
