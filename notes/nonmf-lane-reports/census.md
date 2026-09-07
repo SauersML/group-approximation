@@ -628,3 +628,53 @@ attribution 17, total 477.
 All groups the lead assigned me directly are now closed. Remaining
 unassigned sentences belong to groups dispatched to other lanes (thm-d,
 printed-route, ring-b-alg already delivered, ring-b-end sizing).
+
+## Round 10: thm-d's and printed-route's tables, 9 sentences left
+
+Landed: `a6eccd150` (both tables assigned, 31 census keys total).
+
+thm-d's `CliffordConstructionSentences.lean` (`bf343f3b9`) covers
+`prop:locally-rf-by-z-trace`'s combinatorial preamble, `prop:clifford-self-
+embedding`'s lamp-at-coset rows, and `prop:clifford-locally-rf`'s alpha
+formula -- the same "mathematics not in the tree in this form" gap flagged
+back in Round 6 turned out to have a direct wrapper for all but two
+sentences: `Sofic/CliffordLampGroup.lean` realizes the printed construction
+essentially verbatim. Matched the lane's 16-row table onto 17 census keys
+(one merge: `dc43ec6b23ed`+`3fb2eb77a578` share `manuscriptSentence_
+signedModelGroupLaw`). 15 keys assigned (4 definition, 10 formalized, 1
+partial for the order-`2^{|Y|+1}` sentence, split between an unconditional
+countable/locally-finite half via a different route and a genuine gap for
+the exact order). 2 keys stay unassigned exactly where the lane's own report
+says the gap is: injectivity of `CliffordLamp.toModel`, a self-contained but
+nontrivial normal-form theorem not attempted in that bounded task.
+
+printed-route's `CompressionCriterionSentences.lean` (`62a88a3d4`,
+`74b6532cd`) closed `thm:compression-criterion`'s dense 7-sentence intro
+outline (the other gap flagged in Round 6), the Kazhdan-transport setup, and
+`cor:defect-hs`'s proof, all keyed directly to census ids by the lane. Two
+Introduction roadmap sentences needed content-matching against a list of
+candidate carriers rather than a 1:1 mapping: the general-R compressor
+mechanism cites `FullDefectRingSentences.{compressorMatrix,intertwine,
+defectIsEverything}` (the same mechanism worked out concretely for `C`), and
+the ring `C` definition/normally-generating-map sentence cites
+`FullDefectRingSentences.{ringRelations,imageOfB}` and
+`UniversalGroupB.exists_hom_normallyGenerating`.
+
+Verify-decls 0 missing of 629 named. Verify-unconditional 0 new findings.
+Summary after this round: formalized 321, unassigned 9, definition 56,
+structural 33, provenance 19, partial 22, attribution 17, total 477.
+
+**The 9 remaining sentences, in full**: `thm:headline`'s two "K_1(R) is MF /
+unit-group quotient formula" sentences and "The binary example"'s K_1(R)
+definition -- all the one recorded K_1 gap (row `6d3ca647302e`'s note), no
+Lean counterpart for algebraic K-theory of a ring in this sense.
+`prop:locally-rf-by-z-trace`'s two `toModel`-injectivity sentences -- thm-d's
+flagged genuine gap. `prop:max-infinite`'s four-sentence converse remark (a
+concrete residually-finite MF group satisfying the hypothesis, illustrating
+it doesn't force non-MF) -- dispatched to ring-b-end, sizing first.
+
+This is very likely close to the floor for this manuscript: every remaining
+row is either the single acknowledged K_1 gap repeated across its mentions,
+a lane-flagged genuine mathematical gap with a clear description of what
+would be needed, or a converse/illustrative remark not yet sized by its
+assigned lane.
