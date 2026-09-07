@@ -17,6 +17,7 @@ import GroupApproximation.GGT.TreeWPDAxis
 import GroupApproximation.GGT.DGOTheorem442Proof
 import GroupApproximation.GGT.HullYiCyclicProductClosure
 import GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement
+import GroupApproximation.GGT.HullSCLemma44QuasiGeodesicBridge
 import GroupApproximation.GGT.RelHypProp23FromHullOsin24
 import GroupApproximation.GGT.DGOProposition435HullJoint
 import GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents
@@ -42,20 +43,66 @@ This module assembles the two printed statements of Theorem C.  Every theorem
 used by the assembly has its own declaration, and unfinished proofs remain
 ordinary explicit proof holes until their Lean implementations are complete.
 
-## The four `sorry`s must stay literal `sorry` tokens
+## The count went from four to five on purpose
+
+`hullLemma44FamilyInclusionJoint` used to be an admission of its own.  It is now
+a theorem, assembled from the two estimating admissions, two proved vk-side
+theorems, and two new admissions — Osin's Lemma 5.1 at its own boundary
+hypothesis (`relativeIsoperimetricBridgeQuasiGeodesic`) and Hull's §6 relator
+re-spelling (`hullRelatorRespelling`).  Four holes became five, and that is an
+improvement, for a reason worth stating so that nobody later "fixes" it back.
+
+The old leaf could not be closed by anyone.  Reading it through
+`hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls`, it
+bottomed out in `HullSC.RelativeGreendlingerStatement`, which asks for Osin's
+Lemma 4.4 **without the `(lambda,c)`-quasi-geodesic boundary hypothesis the
+source states**, at every reduced diagram.  The obligation had been filed
+against the wrong lemma: Osin discharges it inside Lemma 5.1, whose proof opens
+"Suppose first that `p` is not `(1/2,0)`-quasi-geodesic" and only afterwards
+applies Lemma 4.4.  Moving the case split back to Lemma 5.1 — which makes that
+statement *stronger*, not weaker, since its hypothesis narrows — puts every
+remaining hole on a statement that matches a citable source and that somebody
+could in principle prove.  Five named, source-matched admissions are a better
+artifact than four of which one — `hullLemma44FamilyInclusionJoint` itself — was
+unreachable by construction.  See the header of
+`GGT/HullSCLemma44QuasiGeodesicBridge.lean` for the full diagnosis, including
+what is **not** established: `RelativeGreendlingerStatement` is over-strong, but
+it is not refuted here or anywhere in this repository.
+
+**Counting `sorry`s says nothing about how far apart they are.**  Of the five,
+`kotowskiOllivier` is a citation of a published construction;
+`relativeIsoperimetricBridgeQuasiGeodesic` is a section of Osin's paper;
+`estimatingSelectionConstruction` and `estimatingUnboundOutput` are two
+propositions of his appendix, the second of them at the scale his argument
+supplies; and `hullRelatorRespelling` is combinatorial, with its joint half
+already the theorem `HullSC.jointRelatorRespellingStatement_proved`.  A count
+treats those as five of one thing.  They are not.
+
+## No admission here stands for a refuted statement any more
+
+Until `c685697b9` one of them did.  `estimatingUnboundOutput` was stated at the
+universal unbound-budget form, which
+`Estimating/UnboundSmallMuCounterexample.not_estimatingUnboundOutputStatement`
+and `Estimating/UnboundConjugateCounterexample`'s twin disprove independently at
+the same universes, so the environment contained
+`not_estimatingUnboundOutputStatement estimatingUnboundOutput : False` modulo
+`sorryAx` and the hole could never be filled at its type.  That form is now
+named `EstimatingUnboundOutputHistoricalStatement`, `EstimatingUnboundOutputStatement`
+denotes the repaired statement carrying `UnboundEstimate.OsinUnboundScale`, and
+the refutations follow the old name.  Every `¬ Estimating…` on `origin/main`
+names the historical form or `EstimatingUnboundRepairedStatement`, an
+intermediate; none names a statement admitted in this file.
+
+So all five admissions below are now ordinary open debt.  That is a real change
+in the state of Theorem C and it was not made here — it was made by the commit
+that gave the unbound estimate Osin's scale.  This header said otherwise until
+this commit, which rewrites these paragraphs and would have been restating a
+false claim.
+
+## The five `sorry`s must stay literal `sorry` tokens
 
 This is the only file in the corpus with `sorry`s, and they carry more weight
-than ordinary debt.  All four reach both printed endpoints, and one of them,
-`estimatingUnboundOutput`, stands for a statement **this repository disproves**:
-`Estimating/UnboundSmallMuCounterexample.not_estimatingUnboundOutputStatement`
-and `Estimating/UnboundConjugateCounterexample`'s twin both prove
-`¬ EstimatingUnboundOutputStatement.{0, 0, 0}`, independently, at the same
-universes, in files that are themselves in the root import closure and contain
-no `sorry` token.  So the environment already contains
-`not_estimatingUnboundOutputStatement estimatingUnboundOutput : False` modulo
-`sorryAx`.  Lean is not unsound and the corpus is not inconsistent — `sorryAx`
-is precisely what absorbs this — but that hole can never be filled at its
-present type, by anyone.
+than ordinary debt: all five reach both printed endpoints.
 
 **Do not convert any of these to an unsolved goal, and do not `set_option
 maxHeartbeats` or otherwise coax a tactic into "closing" one.**  An unsolved
@@ -64,23 +111,68 @@ both the landing gate's lexical scan and a `grep` for `sorry` are blind to; a
 refuted claim would then be held behind a gate that cannot see it.  The literal
 token is the only thing keeping this file honest.
 
-## What "the corpus has four `sorry`s and is otherwise clean" understates
+## A `sorry` is a type-change absorber, and that is why this header goes stale
+
+`:= by sorry` typechecks at **any** type.  So when someone edits the statement
+an admission is stated at, nothing here breaks: no error, no warning, a green
+build, and a docstring that now describes a statement that no longer exists.  A
+real proof would have failed loudly at exactly that edit; the `sorry` swallows
+it silently.
+
+This is not hypothetical and it is not rare.  `c685697b9` re-pointed **two** of
+this file's five admissions in one commit, and both descriptions here were
+wrong until they were fixed by hand:
+
+* `estimatingUnboundOutput` — the refuted statement was renamed to
+  `EstimatingUnboundOutputHistoricalStatement` and the vacated name given to the
+  repaired form, so three paragraphs asserting that this file admits something
+  refuted became false, including one that said the axiom line "can never read
+  otherwise";
+* `estimatingSelectionConstruction` — the statement grew `kappa`, `c1`, `c2` and
+  the `OsinUnboundScale` certificate, so this file understated what it owes.
+
+Neither change was wrong; both were repairs, and neither commit touched this
+file.  **Every gate in this repository runs downstream of a build that
+succeeds**, so no gate can see this class of drift — not the lexical `sorry`
+scan, not the per-name `sorryAx` check, not the axiom audits.  The only defence
+is to read the current statement.  **Before trusting any description of what an
+admission owes, including the ones in this header, open the `def` it names.**
+
+## What "the corpus has five `sorry`s and is otherwise clean" understates
 
 That sentence is true and its significance is not what it sounds like.  This
 module is reachable from the root (`GroupApproximation.lean`), and
 `MFRecognition.SeedFromTheoremC` defines the paper's group `E` by `.choose` from
-`manuscriptTorsionFreeFullMFRadical_openAdmissions`.  So the four holes are
-load-bearing for a second lane, and one of them is not debt awaiting a proof —
-it is a contradiction being held at arm's length.  Counting them alongside
-ordinary open lemmas misreports the state of the development.
+`manuscriptTorsionFreeFullMFRadical_openAdmissions`.  So the five holes are
+load-bearing for a second lane, and counting them alongside ordinary open lemmas
+misreports the state of the development — see the paragraph above on how far
+apart they are.
 
-Since 2026-09-07 the four admissions and both endpoints carry `#audit_axioms`
-lines of their own, so a probe of this file **reports `sorryAx` on them** instead
-of reporting nothing.  Before that the file emitted axiom lines only for four
+Since 2026-09-07 every admission and both endpoints carry `#print axioms` lines
+of their own, so a probe of this file **reports `sorryAx` on them** instead of
+reporting nothing.  Before that the file emitted axiom lines only for four
 clean leaves, so any per-file check saw those, found no `sorryAx`, and passed the
-file: a report on part of the evidence read as a report on all of it.  The lines
-are deliberately `#audit_axioms` and never `#audit_closed_axioms` — these
-declarations are not closed and must not be asserted to be.
+file: a report on part of the evidence read as a report on all of it.
+
+**And the number of reports is still not the number of declarations affected.**
+This module has far more declarations than it has `#print axioms` lines, and
+everything downstream of the five admissions carries `sorryAx` too —
+`hullLemma44FamilyInclusionJoint`, `hullLemma44FamilyInclusion`, `hullTheorem71`,
+`hullInputs`, `literatureInputs`, both endpoints, and more.  Those emit nothing,
+so no probe can see them.  Nothing is wrong: they are downstream of documented
+admissions and that is what downstream means.  But the eight names a probe
+prints are a fact about the reporters, not about the file.  The honest invariant
+is not a count: it is **exactly five literal `sorry` tokens, and every
+`sorryAx`-carrying declaration downstream of them.**
+
+The directive has to be `#print axioms` and not `#audit_axioms`.  Both
+`#audit_axioms` and `#audit_closed_axioms` are **gates, not reporters**: they
+reject any declaration whose axioms fall outside `propext`, `Classical.choice`
+and `Quot.sound`, so either one on a `sorry`-backed declaration is a build
+error, not a report.  `#print axioms` emits the same line as an informational
+message and lets the build proceed, which is what a file carrying deliberate
+debt needs.  Do not "upgrade" these to `#audit_axioms`: the file will stop
+building, and the honest report will be lost rather than strengthened.
 
 Three gates would flag this and none of them bites today:
 `scripts/TheoremCCompletionAudit.lean` applies `#audit_closed_axioms` to both
@@ -166,6 +258,19 @@ theorem, shared by the two lanes that stand on it.
   (`Manuscript.NonMF.HullInputsProved.exists_pair_suitable_of_torsionFree`),
   which is the only case `lem:saturation` uses.  So Hull's four cited results
   are two.
+* `relativeIsoperimetricBridgeQuasiGeodesic`, `hullRelatorRespelling` — the two
+  admissions that replaced `hullLemma44FamilyInclusionJoint`.  The first is
+  Osin's Lemma 5.1 keeping its own `(1/2,0)`-quasi-geodesic case split, so that
+  the certificate it consumes is the one Osin's Lemma 4.4 actually proves rather
+  than the boundary-free form this repository had been demanding;
+  `GGT/HullSCLemma44QuasiGeodesicBridge.lean` carries the diagnosis, the proof
+  that narrowing the hypothesis strengthens the statement, and two findings that
+  belong on the record — the `mu` range on which the certificate conclusion is
+  free, and what is **not** established about
+  `HullSC.RelativeGreendlingerStatement`.  The second is Hull's §6 re-spelling,
+  whose joint half is already the theorem
+  `HullSC.jointRelatorRespellingStatement_proved` and whose residue is
+  `HullSC.OriginalRelatorRespellingStatement`.
 -/
 
 set_option warningAsError false
@@ -252,22 +357,140 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
-/-- **Open exact geometric proof.**  Hull's Lemma 4.4 in its family form with
-the source joint family bound explicitly
-(`GGT/HullSCLemma44FamilyInclusionStatement.lean`); the previous unbound form
-was over-strong, since at the identity quotient with the empty relator family
-it produced the joint embedding for free
-(`HullSC.jointAuxiliaryPeripheralEmbedding_of_familyInclusion`).  It reduces to
-the relative Greendlinger statement, the relative isoperimetric bridge and the
-relator re-spelling statement
-(`HullSC.hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls`). -/
-theorem hullLemma44FamilyInclusionJoint :
-    HullSC.HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{0, 0} := by
+/-- **Open input.**  Osin's Lemma 6.5(a) selection: an `O`-equivalent
+reduced diagram with a finite Definition-`M` scaffold whose estimating graph
+satisfies the hereditary certificates (`GGT/VanKampen/Estimating/Assembly.lean`).
+
+**It owes more than the sentence above used to say.**  Since `c685697b9` the
+statement no longer merely chooses `eps` and `rho` against `mu`: it must produce
+`kappa`, `c1`, `c2` as well, together with
+`UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho` — five
+inequalities, not a bookkeeping side condition.  They are `c1 + 2*kappa < eps`
+(Osin's equation 36), `0 < rho`, `max (1000*eps) c2 < lambda*√rho/240 - c`,
+`eps < (lambda*√rho/240 - c)/1000 - 2*kappa`, and `1 ≤ 2*mu*√rho`.  The
+selection and the unbound estimate now share that certificate, which is the
+whole point of the repair: it is what makes the two halves agree on a scale, and
+what puts the refuting models out of range.
+
+This docstring described the pre-`c685697b9` statement until the present commit.
+See the note below on why nothing complained. -/
+theorem estimatingSelectionConstruction :
+    GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
 
 /-! Reports `sorryAx`, which is the truth about this declaration. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44FamilyInclusionJoint
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingSelectionConstruction
+
+/-- **Open input, and no longer a refuted one.**  Osin's unbound estimate at a
+scale his argument supplies: `EstimatingUnboundOutputStatement` carries
+`UnboundEstimate.OsinUnboundScale` as a hypothesis.
+
+Until `c685697b9` this name denoted the universal unbound-budget statement,
+which omits the scale assumptions and is refuted twice over.  That statement is
+now `EstimatingUnboundOutputHistoricalStatement`, and it is what
+`Estimating/UnboundSmallMuCounterexample.not_estimatingUnboundOutputStatement`
+and `Estimating/UnboundConjugateCounterexample`'s twin disprove;
+`EstimatingUnboundRepairedStatement`, an intermediate repair, is refuted there
+as well.  **Neither refutation reaches the statement this declaration admits.**
+Checked by enumerating every `¬ Estimating…` on `origin/main`: all three hits
+name the historical or the intermediate form, none names this one.  See issue
+#198. -/
+theorem estimatingUnboundOutput :
+    GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
+  sorry
+
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingUnboundOutput
+
+/-- **Open proof.**  Osin, *Small cancellations over relatively hyperbolic
+groups and embedding theorems*, arXiv:math/0411039v3, Lemma 5.1: the quotient
+by a small cancellation family is again relatively hyperbolic over the image
+peripheral family, in the two clauses the quotient consumer uses — a four-point
+constant for the image relative alphabet, and a uniform pullback bound making
+every quotient relative ball finite.
+
+**The certificate hypothesis is Osin's, not the repository's.**  Until now this
+input was stated with certificates demanded at *every* reduced diagram, which
+only `HullSC.RelativeGreendlingerStatement` can supply, and that statement drops
+the `(lambda,c)`-quasi-geodesic boundary its own source requires.  Osin does not
+need certificates there: the proof of Lemma 5.1 begins "Suppose first that `p`
+is not `(1/2,0)`-quasi-geodesic", decomposes the word in that branch, and only
+then applies Lemma 4.4.  That case split belongs to Lemma 5.1, so it is inside
+this statement now, and the certificate is asked only at diagrams with a
+quasi-geodesic spelling.  The narrowing makes the hypothesis weaker and the
+statement **stronger**, which
+`HullSC.relativeIsoperimetricBridgeStatement_of_quasiGeodesicBridge` proves by
+deriving the old form from this one; see the header of
+`GGT/HullSCLemma44QuasiGeodesicBridge.lean`.
+
+The neighbouring refutation does not reach it: `not_relativeLinearAreaTransferStatement`
+kills the unbounded area transfer with a grid quotient whose relators are short,
+and `RelWord.IsLemma44Input.long` excludes that family. -/
+theorem relativeIsoperimetricBridgeQuasiGeodesic :
+    HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement.{0, 0, 0} := by
+  sorry
+
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.relativeIsoperimetricBridgeQuasiGeodesic
+
+/-- **Open input.**  Hull's §6 relator family, presented over the selected
+auxiliary alphabet, re-spells over the original peripheral family and over the
+source joint family with the same normal closure and again a Lemma 4.4 input
+above the prescribed thresholds
+(`HullSC.HullRelatorRespellingStatement`).  It is combinatorial: no quotient, no
+diagram certificate and no isoperimetric inequality occurs in it.
+
+Half of it is already a theorem.  `HullSC.jointRelatorRespellingStatement_proved`
+discharges the joint half by index relabelling, at unchanged parameters, but
+under four structural hypotheses this statement does not carry — among them
+`joint.base ⊆ selected.rel.base`, which
+`HullSC.jointBase_subset_selectedBase_of_baseAdjoined` shows follows from the
+family form's own binder as soon as the adjoined letters are asked to be base
+letters rather than alphabet letters.  The residue proper is
+`HullSC.OriginalRelatorRespellingStatement`, and its uniformity is where a
+reader should look first: `eps` and `rho` are chosen before `W`, so it demands a
+re-spelling for every small-cancellation family over the selected alphabet, not
+for the one Hull constructs. -/
+theorem hullRelatorRespelling : HullSC.HullRelatorRespellingStatement.{0, 0} := by
+  sorry
+
+/-! Reports `sorryAx`, which is the truth about this declaration. -/
+
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullRelatorRespelling
+
+/-- **Hull's Lemma 4.4 in its family form with the source joint family bound
+explicitly** (`GGT/HullSCLemma44FamilyInclusionStatement.lean`); the previous
+unbound form was over-strong, since at the identity quotient with the empty
+relator family it produced the joint embedding for free
+(`HullSC.jointAuxiliaryPeripheralEmbedding_of_familyInclusion`).
+
+This is no longer an admission of its own.  It is assembled from the two
+estimating admissions above, the two proved vk-side theorems, Osin's Lemma 5.1
+at its own boundary hypothesis and the §6 re-spelling.  The relative
+Greendlinger input is
+`HullSC.RelativeGreendlingerQuasiGeodesicSpellingStatement`, which
+`HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components`
+proves; the unrestricted `HullSC.RelativeGreendlingerStatement`, which is
+stronger than Osin's Lemma 4.4 and which nothing in this repository can reach,
+no longer appears anywhere above this line. -/
+theorem hullLemma44FamilyInclusionJoint :
+    HullSC.HullLemma44CanonicalQuotientFamilyInclusionJointStatement.{0, 0} :=
+  HullSC.hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_quasiGeodesicControls
+    (HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components
+      estimatingSelectionConstruction
+      GGT.VanKampen.estimatingPieceConstructionStatement
+      estimatingUnboundOutput
+      HullSC.relativeDiscRealizationSpellingStatement
+      HullSC.relativeExteriorArcConversionAtWordRotatedStatement)
+    relativeIsoperimetricBridgeQuasiGeodesic
+    hullRelatorRespelling
+
+/-! Reports `sorryAx`, inherited from the four admissions it is assembled from. -/
+
+#print axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44FamilyInclusionJoint
 
 /-- **Open proof.**  Hull, Lemma 4.4, in the form Hull prints it: the natural
 quotient by a relator family satisfying the small cancellation condition is
@@ -290,32 +513,6 @@ theorem hullLemma44Canonical :
     HullSC.HullLemma44CanonicalQuotientStatement.{0} :=
   HullSC.hullLemma44CanonicalQuotientStatement_of_familyInclusion
     hullLemma44FamilyInclusion
-
-/-- **Open input.**  Osin's Lemma 6.5(a) selection: an `O`-equivalent
-reduced diagram with a finite Definition-`M` scaffold whose estimating graph
-satisfies the hereditary certificates, together with the choice of `rho`
-against `mu` (`GGT/VanKampen/Estimating/Assembly.lean`). -/
-theorem estimatingSelectionConstruction :
-    GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
-  sorry
-
-/-! Reports `sorryAx`, which is the truth about this declaration. -/
-
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingSelectionConstruction
-
-/-- **Refuted input; interface repair required.** The universal unbound-budget
-statement below omits Osin's geometric scale assumptions. Its closed
-refutation in `Estimating/UnboundSmallMuCounterexample.lean` persists under
-Cayley hyperbolicity and the source's strict parameter ranges. This placeholder
-cannot be filled at its current type; selection and unbound construction
-must share the source's parameter choice. See issue #198. -/
-theorem estimatingUnboundOutput :
-    GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} := by
-  sorry
-
-/-! Reports `sorryAx`.  This one stands for a REFUTED statement, so the line can never read otherwise. -/
-
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.estimatingUnboundOutput
 
 /-- Conversion of a planar exterior arc into the algebraic boundary
 contiguity at a supplied word, retaining the source relator rotation.  The
@@ -446,7 +643,7 @@ theorem kotowskiOllivier : KotowskiOllivierStatement := by
 
 /-! Reports `sorryAx`, which is the truth about this declaration. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
 
 /-- **Fournier-Facio et al., Proposition 2.3, no longer a citation of its
 own.**  Osin's Theorem 2.4 at the relatively hyperbolic pair `(U * H₀, U)` is
@@ -511,26 +708,30 @@ theorem literatureInputs : LiteratureInputs :=
     minasyanOsin := minasyanOsin
     hullCommonQuotient := hullCommonQuotient }
 
-/-! ## Theorem C, assembled over four open admissions -/
+/-! ## Theorem C, assembled over five open admissions -/
 
 /-- **Theorem C (`thm:torsion-free`), in radical form, assembled — NOT closed.**
 
 The suffix is `_openAdmissions` and not `_closed` because this declaration
-depends, through `literatureInputs` and `TorsionFree.hullInputs`, on all four of
-this file's `sorry`s: `hullLemma44FamilyInclusionJoint`,
-`estimatingSelectionConstruction`, `estimatingUnboundOutput` and
-`kotowskiOllivier`.  It was named `_closed` until 2026-09-07, and
+depends, through `literatureInputs` and `TorsionFree.hullInputs`, on all five of
+this file's `sorry`s: `estimatingSelectionConstruction`,
+`estimatingUnboundOutput`, `relativeIsoperimetricBridgeQuasiGeodesic`,
+`hullRelatorRespelling` and `kotowskiOllivier`.
+`hullLemma44FamilyInclusionJoint` is no longer among them — it is assembled from
+the first four — but it still reports `sorryAx`, because they do.  It was named
+`_closed` until 2026-09-07, and
 `MFRecognition.SeedFromTheoremC` reads it by name to define the paper's `E`, so
 the old name asserted to every reader and every by-name audit that Theorem C was
 proved when it is not.
 
-`estimatingUnboundOutput` in particular is **refuted**, so this declaration can
-never be closed on its present route; see this module's header. -/
+Since `c685697b9` no admission it rests on stands for a refuted statement, so
+unlike its earlier state this declaration is not closed off in principle — only
+open.  See this module's header. -/
 theorem manuscriptTorsionFreeFullMFRadical_openAdmissions : PrintedTorsionFreeFullMFRadical :=
   manuscriptTorsionFreeFullMFRadical literatureInputs TorsionFree.hullInputs
 
 /-- **Theorem C, in the simplified printed statement, assembled — NOT closed.**
-Same four open admissions as the radical form, reached by the same two input
+Same five open admissions as the radical form, reached by the same two input
 bundles. -/
 theorem manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimplified :=
   manuscriptTorsionFreeSimplified literatureInputs TorsionFree.hullInputs
@@ -539,8 +740,8 @@ theorem manuscriptTorsionFreeSimplified_openAdmissions : PrintedTorsionFreeSimpl
 header.  These lines exist so that the file reports on the declarations that
 matter rather than only on its four clean leaves. -/
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions
-#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_openAdmissions
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_openAdmissions
+#print axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_openAdmissions
 
 end TheoremC
 end NonMF

@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.EulerLocalAssembly
 import GroupApproximation.CharClass.ThomEulerNaturality
 import GroupApproximation.CharClass.RelativeLocalModel
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C with the local model and the naturality square discharged
@@ -144,8 +145,8 @@ theorem topChernClass_ne_zero_of_chain_line (hacyclic : PuncturedAcyclic N twoR 
 /-! The axiom list, printed on every build so the narrow claim above cannot drift
 into the wide one.  Both report `[propext, Classical.choice, Quot.sound]`. -/
 
-#print axioms topChernClass_ne_zero_of_local
-#print axioms topChernClass_ne_zero_of_local_line
+#audit_axioms topChernClass_ne_zero_of_local
+#audit_axioms topChernClass_ne_zero_of_local_line
 
 end
 

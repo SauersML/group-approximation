@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.CharClass.ThomChartSquare
 import GroupApproximation.CharClass.ThomBridgeTotal
 import GroupApproximation.CharClass.LIXThomClassTerm
@@ -174,9 +175,11 @@ theorem thomJmTotal_restrict [CompactSpace X] [T2Space X] (p : Bundle X ι)
       (fun z hz => projInclOn_range_mapsTo p U z hz)
       (ThomChernDeg.bridgeTotal p (2 * r) x))
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the axiom closure and
+**fails the build** if it leaves the classical allowlist, which `#print axioms`
+does not. -/
 
-#print axioms thomJmTotal_restrict
+#audit_axioms thomJmTotal_restrict
 
 end
 

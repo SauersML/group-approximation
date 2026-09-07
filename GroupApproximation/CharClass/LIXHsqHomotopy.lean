@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LIXHsqLinear
 import GroupApproximation.CharClass.LIXBundlePair
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The comparison homotopy of the compatibility square
@@ -271,8 +272,9 @@ theorem lixHomotopy_at_zero (hGc : Continuous G)
       lixProductChart_lixQ hGc hGu v, lixBaseChartFun_zero]
     rfl
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lixHomotopy_mapsTo
+#audit_axioms lixHomotopy_mapsTo
 
 end GroupApproximation.CharClass

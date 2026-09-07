@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LerayHirschTransport
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `LerayHirschGraded` transports along an isomorphism of total spaces
@@ -45,9 +46,10 @@ theorem lerayHirschGraded_of_iso (e : Q ≅ P)
       (by rw [hπ, Iso.refl_hom, Category.comp_id]) ξQ ξ hξ r n
       (bijective_lhSum_of_lhMap π ξ r n (L.bij n))
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms lerayHirschGraded_of_iso
+#audit_axioms lerayHirschGraded_of_iso
 
 end LH
 

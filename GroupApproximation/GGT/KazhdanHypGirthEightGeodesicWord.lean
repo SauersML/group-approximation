@@ -112,8 +112,9 @@ theorem cayleyPathWord_equal_model
       IsGeodesicWord D (Cayley.val x) (Cayley.val x) word ∧ word.length = 0 := by
   obtain ⟨word, hword⟩ := existsGeodesicWord D (Cayley.val x) (Cayley.val x)
   refine ⟨word, hword, ?_⟩
-  rw [wordDist_self] at hword
-  exact hword.2.2
+  have hlen := hword.2.2
+  rw [wordDist_self] at hlen
+  exact hlen
 
 end KazhdanHypGirthEightGeodesicWord
 end GGT
