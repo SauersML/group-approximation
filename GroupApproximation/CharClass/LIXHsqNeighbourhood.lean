@@ -64,7 +64,15 @@ namespace RelativeSupport
 /-- **Restricting a punctured pair to a smaller neighbourhood of the point is injective.**
 Both neighbourhoods carry the relative group of the ambient punctured pair by excision at
 the point, so the restriction between them is an isomorphism; only injectivity is used
-downstream, so only injectivity is stated. -/
+downstream, so only injectivity is stated.
+
+**The name is more general than the theorem, so read the hypotheses.**  This is *not* the
+statement that a relative pullback along an inclusion of subspaces is injective, which is
+false: it holds here only because `U` and `V` are both **open neighbourhoods of the marked
+point `z`** and the subspaces are both the **complement of `z`**.  Both sides are then the
+ambient punctured pair by excision, and the restriction is a map between two copies of one
+group.  Drop openness, or move the point out of either set, or take any other pair of
+subspaces, and nothing here applies. -/
 theorem injective_relPullback_subInclusion {X : TopCat.{0}} [T1Space X] (z : X)
     {U V : Set X} (hU : IsOpen U) (hV : IsOpen V) (hzU : z ∈ U) (hzV : z ∈ V)
     (hUV : U ⊆ V)
