@@ -6,8 +6,8 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 203 |
-| `unassigned` | 166 |
+| `formalized` | 204 |
+| `unassigned` | 165 |
 | `definition` | 43 |
 | `structural` | 23 |
 | `provenance` | 19 |
@@ -15,7 +15,7 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | `partial` | 7 |
 | **total** | **477** |
 
-Completely formalized or definitional: **246/477** (51.6%).
+Completely formalized or definitional: **247/477** (51.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -69,7 +69,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 644 --- Restricting a corona homomorphism $\rho$ to a corner requires a correction: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that commute only asymptotically with unitary lifts $U_n(g)$ of $\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the matrix corners.
 * **`partial`**, line 670 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
   * Same printed proof, sentence 2: q!=0 gives infinitely many nonzero q_n, retained as the corner coordinates -- proved. Partial per the lane's own report: "r_n=rank(q_n) is not claimed by either statement -- here r_n is the number of retained corner coordinates and only 0<r_n is proved", so the sentence's own notation r_n=rank(q_n) is not literally what the carrier establishes.
-* **`unassigned`**, line 782 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since $\operatorname{diag}(s,1,\ldots,1)$ is a nonunitary isometry in $M_k(A)$.
 * **`unassigned`**, line 818 --- A group can satisfy the hypothesis of Proposition~\ref{prop:max-infinite} and be MF\@.
 * **`unassigned`**, line 818 --- The ascending HNN extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along $(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the faithful matrix realization
 * **`unassigned`**, line 833 --- and reduction modulo odd integers separates its elements, so $V$ is residually finite and MF~\cite[Corollary~10]{Korchagin}.
@@ -231,7 +230,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
 | From Hilbert--Schmidt to operator norm | 31 | 1 |
-| The maximal group \texorpdfstring{$C^*$ | 19 | 5 |
+| The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
 | A finite certificate | 19 | 2 |
 | One-sided inverses and elementary groups | 75 | 51 |
 | The binary example | 46 | 21 |
