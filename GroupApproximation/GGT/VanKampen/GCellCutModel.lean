@@ -2,6 +2,7 @@ import GroupApproximation.GGT.VanKampen.GCellCutSourceModel
 import GroupApproximation.GGT.VanKampen.SurgeryGCellCutSections
 import GroupApproximation.GGT.VanKampen.SurgeryGCellCutContiguity
 import GroupApproximation.GGT.VanKampen.SurgeryReclosedPlanarity
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryEnumeration
 
 /-!
 # An actual cell-dropping cut that needs the repaired shelling
@@ -45,15 +46,25 @@ def actualBoundary : BoundaryCycle M outside where
   cycle_mem_iff := by intro d; rw [List.mem_singleton]; exact (boundary_iff d).symm
 
 theorem actualBoundary_follows : actualBoundary.FollowsBoundary := by
-  apply BoundaryCycle.followsBoundary_of_chain
-  · exact List.isChain_singleton _
-  · have h76 : Relation.ReflTransGen
-        (fun x y : M.Dart => InternalDart M outside x ∧ M.sigma x = y) 7 6 :=
-      .single ⟨(internal_iff 7).mpr (Or.inr rfl), rfl⟩
-    have h65 : Relation.ReflTransGen
-        (fun x y : M.Dart => InternalDart M outside x ∧ M.sigma x = y) 6 5 :=
-      .single ⟨(internal_iff 6).mpr (Or.inl rfl), rfl⟩
-    exact h76.trans h65
+  intro d
+  have heq : actualBoundary.boundaryPerm d = FaceSetCircuits.boundaryPerm M outside d := by
+    apply Subtype.ext
+    exact ((boundary_iff _).mp (actualBoundary.boundaryPerm d).2).trans
+      ((boundary_iff _).mp (FaceSetCircuits.boundaryPerm M outside d).2).symm
+  rw [heq]
+  exact FaceSetCircuits.boundaryPerm_walk M outside d
+
+/-- The general circuit producer constructs the region directly from its
+face set; its boundary walk is no longer a model-specific input. -/
+theorem exists_constructed_region : Nonempty (IsDiscRegion M outside) := by
+  let b : BoundaryDart M outside := ⟨5, (boundary_iff 5).mpr rfl⟩
+  let c : FaceSetCircuits.Component M outside := Quotient.mk'' b
+  have hall : ∀ d : BoundaryDart M outside,
+      (Quotient.mk'' d : FaceSetCircuits.Component M outside) = c := by
+    intro d
+    have hd : d = b := Subtype.ext ((boundary_iff _).mp d.2)
+    rw [hd]
+  exact ⟨FaceSetCircuits.toDiscRegion M outside c hall planar⟩
 
 noncomputable def region : IsDiscRegion M outside :=
   actualBoundary.toDiscRegion_of_followsBoundary M outside actualBoundary_follows planar
@@ -228,3 +239,4 @@ end GroupApproximation.GGT.VanKampen.GCellCutModel
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.retainedIndex_source
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_retained_carrier
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_exterior_arc_match
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.exists_constructed_region

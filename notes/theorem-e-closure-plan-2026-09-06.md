@@ -738,6 +738,33 @@ fails at precisely the four listed placeholders. The repository-wide source
 scan has additional existing findings outside this lane, so this checkpoint
 does not claim that the global root or its certification gates are green.
 
+### Boundary circuits constructed from a face set
+
+`FaceSetBoundaryCircuits` now constructs the actual boundary successor for
+every face set, without a supplied cyclic ordering. On selected face darts
+it crosses internal edges and advances around faces; the proved first-return
+construction returns to the boundary. Every intervening step is proved to
+cross an internal edge, so the result follows the source map's boundary walk.
+
+`FaceSetBoundaryEnumeration` constructs the finite family of nonempty,
+duplicate-free circuit lists. Each oriented boundary dart belongs to exactly
+one circuit; distinct circuits are disjoint, all follow and close along the
+actual boundary walk, and their total length equals the boundary-dart count.
+When all boundary darts lie in one orbit, it constructs `BoundaryCycle` and,
+for a planar source, `IsDiscRegion`, including the walk and topology proofs.
+The reduced cut model now consumes this general walk producer in place of
+its former explicit internal-edge path, and has a closed constructed-region
+witness. The general constructors and model audits use only the permitted
+three axioms.
+
+Thus boundary enumeration and walk correctness are proved constructions.
+The two-contiguity argument still has to select its enclosed face set, show
+that the relevant boundary is one circuit, identify the four source arcs,
+and provide the shelling and retained-cell data. The finite circuit partition
+also supplies perimeter accounting for complementary regions, but does not
+yet produce their cutting systems or the `53n` arc bound. All four assembly
+admissions remain open.
+
 ## Hull 4.4: discharge the additional geometry, not just the wrapper
 
 `HullSCLemma44FamilyAssembly` reduces the joint statement to three inputs:
