@@ -1,0 +1,203 @@
+import GroupApproximation.GGT.VanKampen.CellShellingWithGCells
+import GroupApproximation.GGT.VanKampen.SurgeryCutRecord
+
+/-!
+# Region cuts whose relator shelling permits G-cell moves
+
+This is the corrected cut record for the obstruction in issue #209. It retains
+all the historical geometry, ordered-cell, and basepoint requirements, and
+replaces only the recorded shelling by `CellShellingWithGCells`. The historical
+record is unchanged and maps into this one. In particular, this repair does
+not assert that an arbitrary geometric cut preserves the required cell infix.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.Surgery.MapCollapse
+
+open GroupApproximation.HullSC
+universe u w v
+
+/-- The data a producer supplies to cut out the subdiagram enclosed by a closed
+walk. -/
+structure RegionCutWithGCells {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) where
+  /-- The faces cut away, the outer face among them. -/
+  outside : Finset Delta.toCombMap.Face
+  /-- The old exterior is cut away, so the piece gets a new exterior. -/
+  outer_mem : Delta.outerFace ∈ outside
+  /-- The planar content: the cut-away faces are a disc region whose boundary
+  cycle is the enclosing walk, read with the cut-away side on the dart. -/
+  region : IsDiscRegion Delta.toCombMap outside
+  /-- The faces enclosed by the walk. -/
+  enclosed : Finset Delta.toCombMap.Face
+  /-- The value of the path from the source basepoint to the basepoint on the
+  walk. -/
+  basepoint : G
+  /-- The relator cells the cut keeps. -/
+  cells : List {C : RelatorCell Delta.toCombMap Delta.outerFace W //
+    C.face ∉ outside}
+  /-- The ordered cells before the kept block. -/
+  before : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  /-- The ordered cells after the kept block. -/
+  after : List (RelatorCell Delta.toCombMap Delta.outerFace W)
+  /-- The kept cells are an infix of the source's ordered cells. -/
+  cells_infix : Delta.relatorCells =
+    before ++ cells.map Subtype.val ++ after
+  /-- Every cell outside the kept block has a cut-away face. -/
+  cut_faces : ∀ C ∈ before ++ after, C.face ∈ outside
+  /-- Osin's clause (ii): the cut drops at least one relator cell. -/
+  dropped : before ++ after ≠ []
+  /-- The enclosing walk, cut into arcs in order. -/
+  arcs : List (List Delta.toCombMap.Dart)
+  /-- The arcs read the walk. -/
+  arcs_flatten : region.toBoundaryCycle.cycle = arcs.flatten
+  /-- The certificate that the walk bounds the enclosed faces: a shelling of
+  them along the walk whose recorded steps are the kept cells, rebased.
+  Certified null-G-face moves do not add recorded cells. -/
+  shelling : Embedded.CellShellingWithGCells Delta enclosed
+    (cells.map (fun C => basepoint⁻¹ * C.1.conjugator))
+    (cells.map (fun C =>
+      Embedded.orientedFaceDarts Delta C.1.face C.1.reversed))
+    (Embedded.invDarts Delta region.toBoundaryCycle.cycle)
+
+namespace RegionCutWithGCells
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (GGT.RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
+
+/-- Every kept cell is a cell of the source. -/
+theorem cells_mem (cut : RegionCutWithGCells Delta)
+    (C : {C : RelatorCell Delta.toCombMap Delta.outerFace W //
+      C.face ∉ cut.outside}) (hC : C ∈ cut.cells) :
+    C.1 ∈ Delta.relatorCells := by
+  rw [cut.cells_infix]
+  refine List.mem_append.2 (Or.inl (List.mem_append.2 (Or.inr ?_)))
+  exact List.mem_map.2 ⟨C, hC, rfl⟩
+
+/-- The kept cells have distinct faces. -/
+theorem cells_faces_nodup (cut : RegionCutWithGCells Delta) :
+    (cut.cells.map (fun C => C.1.face)).Nodup := by
+  have h := Delta.relatorCell_faces_nodup
+  rw [cut.cells_infix, List.map_append, List.map_append] at h
+  have h2 := h.of_append_left.of_append_right
+  rw [List.map_map] at h2
+  exact h2
+
+/-- The kept cells are pairwise distinct. -/
+theorem cells_nodup (cut : RegionCutWithGCells Delta) : cut.cells.Nodup :=
+  cut.cells_faces_nodup.of_map _
+
+/-- The rebased cells of the piece have distinct faces. -/
+theorem keptCells_faces_nodup (cut : RegionCutWithGCells Delta) :
+    ((cut.cells.map
+      (keptRelatorCell Delta cut.outside cut.region cut.basepoint)).map
+        RelatorCell.face).Nodup := by
+  rw [List.map_map]
+  refine List.Nodup.map_on ?_ cut.cells_nodup
+  intro x hx y hy hxy
+  have hface : x.1.face = y.1.face :=
+    keptFace_inj Delta.toCombMap cut.outside cut.region x.1.face y.1.face
+      x.2 y.2 hxy
+  exact List.inj_on_of_nodup_map cut.cells_faces_nodup hx hy hface
+
+/-- The cut keeps fewer relator cells than the source has. -/
+theorem rCellCount_lt (cut : RegionCutWithGCells Delta) :
+    cut.cells.length < Delta.rCellCount := by
+  have hlen := congrArg List.length cut.cells_infix
+  simp only [List.length_append, List.length_map] at hlen
+  have hpos : 0 < (cut.before ++ cut.after).length :=
+    List.length_pos_iff.2 cut.dropped
+  simp only [List.length_append] at hpos
+  rw [DiscDiagram.rCellCount]
+  omega
+
+/-! ## The words of the piece's faces -/
+
+/-- A kept face of the piece reads the old face's word. -/
+theorem keptFaceWord (cut : RegionCutWithGCells Delta) (g : Delta.toCombMap.Face)
+    (hg : g ∉ cut.outside) :
+    ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+        Delta.faceBoundary
+        (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
+      (fun d => Delta.label d.1) = Delta.faceWord g := by
+  have hmap := replaceGRegionFaceBoundary_keptFace_map_val Delta.toCombMap
+    cut.outside cut.region Delta.faceBoundary g hg
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+          Delta.faceBoundary
+          (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+            Delta.faceBoundary
+            (keptFace Delta.toCombMap cut.outside cut.region g hg)).darts).map
+          Subtype.val).map Delta.label := List.map_map.symm
+    _ = ((Delta.faceBoundary g).darts).map Delta.label :=
+        congrArg (fun l => l.map Delta.label) hmap
+    _ = Delta.faceWord g := rfl
+
+/-- The new face of the piece reads the enclosing walk. -/
+theorem newFaceWord (cut : RegionCutWithGCells Delta) :
+    ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+        Delta.faceBoundary
+        (newFace Delta.toCombMap cut.outside cut.region)).darts).map
+      (fun d => Delta.label d.1) =
+      Embedded.dartWord Delta cut.region.toBoundaryCycle.cycle := by
+  have hmap := replaceGRegionFaceBoundary_newFace_map_val Delta.toCombMap
+    cut.outside cut.region Delta.faceBoundary
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+          Delta.faceBoundary
+          (newFace Delta.toCombMap cut.outside cut.region)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+            Delta.faceBoundary
+            (newFace Delta.toCombMap cut.outside cut.region)).darts).map
+          Subtype.val).map Delta.label := List.map_map.symm
+    _ = (cut.region.toBoundaryCycle.cycle).map Delta.label :=
+        congrArg (fun l => l.map Delta.label) hmap
+    _ = Embedded.dartWord Delta cut.region.toBoundaryCycle.cycle := rfl
+
+/-- A kept cell's word is the word of its face in the piece. -/
+theorem keptCells_word (cut : RegionCutWithGCells Delta)
+    (C : {C : RelatorCell Delta.toCombMap Delta.outerFace W //
+      C.face ∉ cut.outside}) (hC : C ∈ cut.cells) :
+    (keptRelatorCell Delta cut.outside cut.region cut.basepoint C).word =
+      ((replaceGRegionFaceBoundary Delta.toCombMap cut.outside cut.region
+          Delta.faceBoundary
+          (keptRelatorCell Delta cut.outside cut.region cut.basepoint C).face
+        ).darts).map (fun d => Delta.label d.1) := by
+  have hword : C.1.word = Delta.faceWord C.1.face :=
+    Delta.relatorCell_word C.1 (cut.cells_mem C hC)
+  have hface := cut.keptFaceWord C.1.face C.2
+  exact hword.trans hface.symm
+
+/-- The source word of a kept cell is the word of its old face. -/
+theorem cells_word (cut : RegionCutWithGCells Delta)
+    (C : {C : RelatorCell Delta.toCombMap Delta.outerFace W //
+      C.face ∉ cut.outside}) (hC : C ∈ cut.cells) :
+    C.1.word = Delta.faceWord C.1.face :=
+  Delta.relatorCell_word C.1 (cut.cells_mem C hC)
+
+end RegionCutWithGCells
+
+/-- Historical cuts remain valid in the corrected interface. -/
+def RegionCutData.withGCells {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
+    (cut : RegionCutData Delta) : RegionCutWithGCells Delta where
+  outside := cut.outside
+  outer_mem := cut.outer_mem
+  region := cut.region
+  enclosed := cut.enclosed
+  basepoint := cut.basepoint
+  cells := cut.cells
+  before := cut.before
+  after := cut.after
+  cells_infix := cut.cells_infix
+  cut_faces := cut.cut_faces
+  dropped := cut.dropped
+  arcs := cut.arcs
+  arcs_flatten := cut.arcs_flatten
+  shelling := cut.shelling.withGCells
+
+end GroupApproximation.GGT.VanKampen.Surgery.MapCollapse
+
+#audit_axioms GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.RegionCutData.withGCells
+#audit_axioms GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.RegionCutWithGCells.rCellCount_lt
