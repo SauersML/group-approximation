@@ -38,11 +38,17 @@ and `||A^j - I|| <= j||A - I||`,
 ||I + A + ... + A^(m-1) - mI|| <= (m(m-1)/2) ||A - I||.
 ```
 
-For `m = 4` and `||A - I|| < 1/2` this is at most `6||A-I|| < 3 < 4`, so the
-second factor is invertible with inverse of norm at most `1`, and
-`||A - I|| <= ||A^m - I|| <= delta` because `x_1^m in R`.  The same holds for
-any `m` once the threshold is taken small enough that
-`(m(m-1)/2)||A-I|| < m`, which is what `delta_0` is chosen to give.
+For `m = 4` and `||A - I|| < 1/2` this is at most `6||A-I|| < 3 = m - 1`, so
+the second factor is invertible with inverse of norm at most `1`, and
+`||A - I|| <= ||A^m - I|| <= delta` because `x_1^m in R`.
+
+The threshold for general `m` is `||A - I|| <= 2/m`, not `2/(m-1)`: writing
+`M` for the second factor and `beta` for the displayed bound,
+`||M^(-1)|| <= 1/(m - beta)`, so an inverse of norm at most `1` needs
+`beta <= m - 1`, that is `(m(m-1)/2)||A-I|| <= m-1`.  At `m = 4` this is the
+`1/2` used above.  A weaker threshold `beta < m` still gives the linear
+conclusion, with `1/(m - beta)` in place of `1`; only the clean constant is
+lost.  Either way `delta_0` is chosen to deliver it.
 
 **Propagation.**  For each generator, its normal-generation relation lies in
 `R`, and conjugation is isometric, so

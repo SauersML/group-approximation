@@ -8,6 +8,7 @@ requires:
   - full-idempotent-ring-has-properly-infinite-unit
 artifacts:
   - research/artifacts/universal-seed-review-2026-09-07.md
+  - research/artifacts/universal-seed-model-test-2026-09-07.md
 ---
 
 ## Proof

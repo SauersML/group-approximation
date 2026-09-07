@@ -31,12 +31,11 @@ from `EL_n(R)` to an MF group is trivial.
 So one compression calculation, performed once over `C`, gives the whole ring
 family, and no passage to finitely generated subrings of `R` occurs.
 
-**Formalization cost, recorded before adoption.**  `C` has characteristic
-zero.  In this repository the Ershov--Jaikin-Zapirain input is unconditional
-only in prime characteristic; the general case is reduced in
-`PropertyT/EJZIntegralReduction.lean` to property (T) for
-`EL_n(FreeAlgebra Z X)`, which is open, and `C` is a quotient of that free
-algebra.  Routing the characteristic-two headline through `B` would make it
-conditional on that residue, whereas it is unconditional today.  For the
-manuscript the cost is nil, since Ershov--Jaikin-Zapirain is published for
-every finitely generated ring.
+**Formalization cost: none.**  `C` has characteristic zero, and the
+characteristic-zero Ershov--Jaikin-Zapirain input is a theorem on main —
+`IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT`
+(commit `343a1c4a4`), property (T) for `EL_n(A)` at every `n >= 3` over every
+finitely generated unital ring `A`, in every characteristic, with
+`#audit_closed_axioms` clean.  So routing the ring theorem through `B` is
+unconditional in the formalization as well as in the manuscript, where
+Ershov--Jaikin-Zapirain is published for every finitely generated ring.

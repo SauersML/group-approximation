@@ -9,6 +9,7 @@ distinct_from:
   universal-seed-group-collapses-elementary-groups: that is the MF conclusion; this is the quantitative marked-generation statement, which mentions no approximation property.
 artifacts:
   - research/artifacts/universal-seed-review-2026-09-07.md
+  - research/artifacts/universal-seed-model-test-2026-09-07.md
 ---
 
 Let `B = EL_4(C)` and let `a in B` be the signed swap on coordinates one and

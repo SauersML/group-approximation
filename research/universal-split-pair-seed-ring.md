@@ -8,6 +8,7 @@ distinct_from:
   full-complementary-idempotent-elementary-full-mf-radical: that is the analytic theorem over an arbitrary ring satisfying the criterion; this is the ring-theoretic observation that the criterion has an initial object.
 artifacts:
   - research/artifacts/universal-seed-review-2026-09-07.md
+  - research/artifacts/universal-seed-model-test-2026-09-07.md
 ---
 
 Let

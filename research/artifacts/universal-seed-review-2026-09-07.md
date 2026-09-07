@@ -58,12 +58,13 @@ The threshold `||A-I|| < 1/2` still costs one compactness argument, so the
 constant is existential exactly as in
 `full-mf-radical-linear-relator-inequality`.
 
-## The one cost the dossier could not see
+## The cost that was feared, and is not there
 
-`C` has characteristic zero.  In this repository the Ershov--Jaikin-Zapirain
-input is unconditional only in prime characteristic
-(`PropertyT/FinitelyGeneratedRing.lean`); the general coefficient case is
-reduced in `PropertyT/EJZIntegralReduction.lean` to
+`C` has characteristic zero, so the seed needs the Ershov--Jaikin-Zapirain
+theorem over `Z`-algebras rather than over `F_p`-algebras.  An earlier draft
+of this audit recorded that as a formalization cost, on the strength of the
+docstring of `PropertyT/EJZIntegralReduction.lean`, which reduces the general
+coefficient case to
 
 ```text
 FreeIntegralGeneralRankElementaryPropertyT :
@@ -71,18 +72,24 @@ FreeIntegralGeneralRankElementaryPropertyT :
     HasKazhdanPropertyT (elementaryGroup (Fin n) (FreeAlgebra Z X))
 ```
 
-which is the open residue.  `C` is a quotient of `FreeAlgebra Z` on four
-generators, so property (T) for `EL_3(C)` rests on exactly that statement and
-on nothing weaker.
+and called that residue open.  **It is not open.**  Commit `343a1c4a4` proves
 
-For the manuscript this costs nothing: Ershov--Jaikin-Zapirain is published
-for every finitely generated ring.  For the formalization it inverts the
-present position, where the characteristic-two headline is unconditional and
-only the general characteristic-zero statement is conditional.  So the
-recommendation recorded here is to use the seed for the **general ring
-theorem**, where characteristic zero is already the ambient case, and to
-leave the binary headline computing in characteristic two.  The node
-`universal-seed-group-collapses-elementary-groups` carries this note.
+```text
+IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT
+  : FinitelyGeneratedRingGeneralRankElementaryPropertyT
+```
+
+— property (T) for `EL_n(A)` at every `n >= 3` over every finitely generated
+unital ring `A`, in every characteristic — with `#audit_closed_axioms` clean,
+and it is an ancestor of `origin/main`.  So `EL_3(C)` and `EL_4(C)` have
+property (T) unconditionally in the formalization, and the seed route costs
+nothing there either.  Docstrings and census rows still calling the
+general-characteristic statement open are stale; the node
+`universal-seed-group-collapses-elementary-groups` records the closure.
+
+The general lesson is the one the earlier draft failed: a `Lean` docstring
+describing its own module as blocked is a claim about the tree at the time
+it was written, not a fact about the tree now.
 
 ## What §6 does and does not remove
 

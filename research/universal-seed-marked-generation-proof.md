@@ -10,6 +10,7 @@ requires:
   - properly-infinite-unit-rank-two-normal-generator
 artifacts:
   - research/artifacts/universal-seed-review-2026-09-07.md
+  - research/artifacts/universal-seed-model-test-2026-09-07.md
 ---
 
 ## Proof
