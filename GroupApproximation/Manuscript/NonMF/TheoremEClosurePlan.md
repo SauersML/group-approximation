@@ -317,7 +317,28 @@ endpoint-closed deletion theorem then gives the `10 * mu` interior bound.
 These helpers pass ordinary axiom audits (4,611-job build). The planar edge
 inequality is still an input, and exterior uniqueness, complementary-region
 construction and the unbound budget still need their geometric producers.
-No assembly admission has been discharged by this consumer migration.
+
+`GeometricWeightBound.lean` bounds the actual weight of every compatible
+family by the sum of relator perimeters and the outer perimeter, counting
+both ends of interior regions and both arcs of exterior regions. This bound
+is preserved by O-equivalence. `GeometricGlobalSelection.lean` uses it to
+construct an attained maximum over all reduced O-equivalent diagrams in the
+same dart universe, followed by an attained minimum family cardinality among
+all maximizers. Restriction to the selected diagram gives its actual finite
+distinguished family. Neither optimum is a supplied certificate.
+
+`GeometricExterior.lean` identifies the exterior count with the retained
+witness under exterior uniqueness. `GeometricGreendlinger.lean` combines the
+actual global selection, O52, endpoint-closed deletion and the same-scale
+unbound conversion to prove the original strict `1 - 13 * mu` conclusion.
+The three remaining geometric inputs on that selected diagram are the
+planar edge bound, exterior uniqueness and the Lemma 62 unbound estimate;
+their synchronized construction is still open. The six-dart model checks
+different exterior counts (one versus zero) and unbound counts (two versus
+three) for the formerly erased witnesses, and constructs a global optimum
+with weight between two and four. The model passes closed audits and the
+general helpers pass ordinary audits (4,621-job combined build). No assembly
+admission has been discharged by this consumer migration and global selection.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
