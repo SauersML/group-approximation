@@ -50,6 +50,12 @@ finite. This corollary concerns a full product of independently chosen
 certificate symbols indexed by X; it does not concern arbitrary
 constrained subshifts.
 
-Neither the wreath theorem nor (DWI1) constructs a strict inverse pair
-or resolves either universal headline conjecture. Internal twists,
-unrestricted wreath products, and nonsplit extensions are not covered.
+The lamp hypothesis extends to LEF in
+`lef-group-rings-over-stably-finite-rings-are-stably-finite`, using exact
+finite multiplication tables for the base coefficients. A separate
+strengthening, `residual-lamp-quotients-handle-monomial-actions`, permits
+internal automorphism twists when finite lamp quotients invariant under
+all twists separate A; this includes every finitely generated RF lamp.
+Neither result covers arbitrary twisted LEF lamps, unrestricted wreath
+products, or nonsplit extensions, and neither resolves a headline
+conjecture.

@@ -328,3 +328,14 @@ Building such a wreath library cannot create failure of stable finiteness
 over a stably finite base. The earlier finite-stabilizer theorem retains
 the stronger equivalence at each fixed matrix size; the arbitrary-action
 extension does not assert that extra conclusion.
+
+The library barrier now has two further extensions.
+`lef-group-rings-over-stably-finite-rings-are-stably-finite` replaces
+RF lamps by LEF lamps in the untwisted theorem: the finite support table
+of a putative defect transfers exactly into a finite group algebra.
+`residual-lamp-quotients-handle-monomial-actions` permits internal
+automorphism updates when invariant finite lamp quotients separate the
+lamp group, in particular for every finitely generated RF lamp. These
+are positive permanence results, not an inverse pair for Q. A program
+that escapes them needs an operation outside their precise construction
+classes; self-reference alone supplies no such operation.
