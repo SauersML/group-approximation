@@ -545,9 +545,23 @@ and Euler characteristic is unchanged. The proof handles the exceptional
 whole-edge components explicitly. `CombMapEdgeEuler` also supplies the exact
 Euler change for arbitrary-corner insertion: equality within one face and a
 drop of two between distinct faces. These actual construction and count
-theorems pass ordinary axiom audits. Connectedness of the edge-deleted map,
-iteration over the chosen region, and the general planar restriction argument
-still need proofs; the single-step inequality does not establish them.
+theorems pass ordinary axiom audits.
+
+`PermOrbitJoinReach` now proves that joining two face cycles preserves all
+old face paths. `CombMapEdgeDeletionConnected` uses those paths to detour
+around the removed edge and lift ambient dual connectedness to the actual
+deleted map when the edge sides are distinct faces. Its connectedness theorem
+also covers an empty remainder; combining it with the exact Euler count gives
+planarity when at least one dart remains. The construction and both topology
+theorems pass ordinary axiom audits with only the three permitted axioms.
+Iteration over the chosen region and the general planar restriction argument
+remain open; this single-edge result does not establish them.
+
+This is a self-contained checkpoint for the current topology work. The next
+proposed step is a general Euler upper bound for connected combinatorial maps,
+followed by a justified order of deletion and identification of the resulting
+map with the actual reclosed map. Neither step is yet proved. The assembly
+still has the same four admissions; no endpoint obligation closes in this batch.
 
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
