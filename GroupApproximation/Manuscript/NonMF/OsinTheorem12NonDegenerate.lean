@@ -60,7 +60,7 @@ embedded subgroup, and it is assembled below from four landed results.
   named Prop `OsinTheorem12Printed`, so that a census row citing "Osin,
   Theorem 1.2" has a closed endpoint to name.
 
-* `dgoTheorem235Printed_of_source` — the bridge that the docstring of
+* `dgoTheorem235Printed_of_hypEmbedded` — the bridge that the docstring of
   `DGOTheorem235Printed` previously asserted rather than proved.
 
 ## The universe
@@ -83,7 +83,7 @@ Two things are now different.
 
 * The vocabulary exists — `GGT.IsHypEmbedded` and `GGT.IsNonDegenerate` — and
   the step is *proved*, so the fold is no longer an assertion.
-  `dgoTheorem235Printed_of_source` derives the printed form from the form stated
+  `dgoTheorem235Printed_of_hypEmbedded` derives the printed form from the form stated
   at a non-degenerate hyperbolically embedded subgroup.
 * The fold is unnecessary for **Gerasimova--Osin**.  Their Theorem 1.1 reads,
   verbatim from arXiv:1910.14524v2:
@@ -98,22 +98,44 @@ Two things are now different.
   hyperbolically embedded subgroup appears in their statement, so Osin's
   Theorem 1.2 is not folded into that Prop and never was.
 
-## A correction to the *attribution* of `DGOTheorem235Printed`
+## Dahmani--Guirardel--Osin, Theorem 2.35, verbatim
 
-The printed proof, and the name of that Prop, attribute simplicity and
-uniqueness of the trace to Dahmani--Guirardel--Osin's Theorem 2.35 alone.  The
-source the manuscript is following states it as a chain of **two** citations
-(arXiv:1910.14524v2, p. 2):
+The citation is stated below at exactly the hypotheses of its source, which
+reads (arXiv:1111.7048v5; the memoir numbers it again as Theorem 8.14):
 
-> We note that the reduced `C*`-algebras of products of acylindrically
-> hyperbolic groups with trivial finite radical are always simple.  Indeed, this
-> is an easy consequence of [DGO, Theorem 2.35] and [BKKO, Theorem 1.4].
+> **Theorem 2.35 (Theorem 8.14).**  Suppose that a group `G` contains a
+> non-degenerate hyperbolically embedded subgroup.  Then the following
+> conditions are equivalent.
+> * (a) `G` has no nontrivial finite normal subgroups.
+> * (b) `G` is ICC.
+> * (c) `G` is not inner amenable.
+>
+> If, in addition, `G` is countable, the above conditions are also equivalent to
+> * (d) The reduced `C*`-algebra of `G` is simple.
+> * (e) The reduced `C*`-algebra of `G` has a unique normalized trace.
 
-`BKKO` is Breuillard--Kalantar--Kennedy--Ozawa, *`C*`-simplicity and the unique
-trace property for discrete groups*, and it appears nowhere in the manuscript's
-bibliography.  The Prop below is therefore named for the chain rather than for
-either half; `DGOTheorem235Printed` is left untouched, and derived from it, so
-that no consumer breaks.
+`SimpleUniqueTraceAtHypEmbedded` is `(a) ⇒ (d) ∧ (e)` for countable `G`, which
+is the implication the corollary consumes.  The hypothesis of the theorem is a
+non-degenerate hyperbolically embedded subgroup, **not** acylindrical
+hyperbolicity — which is precisely why the printed proof invokes Osin's
+Theorem 1.2 first, and why `dgoTheorem235Printed_of_hypEmbedded` is the bridge
+it describes rather than a restatement.
+
+A note against a false correction, because the repository twice recorded one.
+`research/artifacts/mf-radical-linear-certificate-2026-09-07.md` §4.1 claims
+that DGO 2.35 "identifies the amenable radical … with its finite radical" and
+that Breuillard--Kalantar--Kennedy--Ozawa's Theorem 1.4 is needed to reach the
+unique trace.  Both clauses are false: DGO 2.35 is the equivalence quoted
+above, and BKKO's Theorem 1.4 reads
+
+> **Theorem 1.4.**  Let `G` be a discrete group and let `N ≤ G` be a normal
+> subgroup.  Then `G` is `C*`-simple if and only if both `N` and `C_G(N)` are
+> `C*`-simple.  In particular, `C*`-simplicity is closed under extension.
+
+Gerasimova and Osin cite the two together because their own theorem is about
+*products* `G₁ × ⋯ × G_k`: DGO 2.35 handles each factor and BKKO 1.4 passes to
+the product.  The corollary here needs only `k = 1`, so BKKO is no part of its
+chain, and the manuscript's citation of DGO Theorem 2.35 alone is correct.
 -/
 
 namespace GroupApproximation
@@ -175,23 +197,21 @@ theorem osinTheorem12Printed_unconditional : OsinTheorem12Printed := by
 
 /-! ## The C⋆-side citation, stated at its source hypothesis -/
 
-/-- **Dahmani--Guirardel--Osin, Theorem 2.35, together with
-Breuillard--Kalantar--Kennedy--Ozawa, Theorem 1.4**, at the hypothesis the
-printed proof of `cor:regular-nonmf-algebra` supplies for it: a countable group
-with a non-degenerate hyperbolically embedded subgroup and no nontrivial finite
-normal subgroup has simple reduced C⋆-algebra with a unique tracial state.
+/-- **Dahmani--Guirardel--Osin, Theorem 2.35**, at its own hypotheses: a
+countable group with a non-degenerate hyperbolically embedded subgroup and no
+nontrivial finite normal subgroup has simple reduced C⋆-algebra with a unique
+tracial state.
 
-The name records **two** citations because the source states two.  The
-manuscript's proof, and the name `DGOTheorem235Printed`, attribute the
-conclusion to Dahmani--Guirardel--Osin alone; Gerasimova and Osin, whose
-sentence the manuscript is following, write "*this is an easy consequence of
-[DGO, Theorem 2.35] and [BKKO, Theorem 1.4]*".
+This is the implication `(a) ⇒ (d) ∧ (e)` of the equivalence quoted in the
+module header, and it is the whole of what `cor:regular-nonmf-algebra` consumes;
+DGO's conditions (b) ICC and (c) not inner amenable are not used and are not
+asked for here.
 
 The hypothesis is the hyperbolically embedded subgroup rather than acylindrical
-hyperbolicity because that is the shape the printed proof produces before
-quoting the theorem, and `exists_isNonDegenerate_isHypEmbedded` now supplies it.
-Stating it this way makes the Prop *weaker* than one asking only for
-acylindrical hyperbolicity, so the derivation below is the load-bearing
+hyperbolicity because that is what the source asks and what the printed proof
+produces before quoting the theorem — `exists_isNonDegenerate_isHypEmbedded` now
+supplies it.  Stating it this way makes the Prop *weaker* than one asking only
+for acylindrical hyperbolicity, so the derivation below is the load-bearing
 direction. -/
 def SimpleUniqueTraceAtHypEmbedded : Prop :=
   ∀ (G : Type) [Group G] [Countable G],
