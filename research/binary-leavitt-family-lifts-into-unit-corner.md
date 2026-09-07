@@ -2,6 +2,7 @@
 rg: 2
 id: binary-leavitt-family-lifts-into-unit-corner
 kind: claim
+refuted_by: finite-subgroup-corners-have-invariant-basis-number
 title: The Leavitt family itself lifts into the corner of the unit group algebra
 distinct_from:
   leavitt-corner-one-sided-lift-exists: that asks only for one pair with ab = e and a surviving defect; this asks for all four generators with all five relations, a strictly stronger and more rigid demand, and it is stated separately because a family is what a construction would naturally produce.
@@ -34,21 +35,26 @@ section, since the Leavitt algebra is presented by exactly those relations.
 corner and not anywhere more comfortable.  Its scalar half needs only a unital
 map to a domain, so it forbids such a family in `Z[G]`, in `F_2[G]`, and in
 `fAf` for every idempotent `f` of augmentation one.  The corner at `e` has
-`eps(e) = 0` and is not covered.  That is the entire reason to believe the
-question is open rather than closed — it is not evidence that a family exists.
+`eps(e) = 0` and is not covered. The earlier audit stopped at that point;
+the lifted-trace obstruction now settles this particular family question.
 
 ## Honest assessment
 
 Strictly stronger than `leavitt-corner-one-sided-lift-exists`, and stronger
 than the conjecture being false: a section of `pi_e` would make `R` a retract
 of a corner of a group algebra, which is a considerably more structured
-statement than the mere failure of direct finiteness.  It is listed because
-the only concrete way anyone has proposed to produce the pair `(a,b)` is to
-produce the family and read the pair off it, and because it fails or succeeds
-for reasons one can look for — a section is a rigid object with a Leavitt
-normal form on one side.
+statement than the mere failure of direct finiteness. Its refutation
+therefore leaves the single-pair target open. It is retained as a refuted
+claim so the graph cannot reuse the full-family construction.
 
 ## Attempts
+
+**Refuted 2026-09-07.** By
+`finite-subgroup-corners-have-invariant-basis-number`, the identity
+projective has lifted 2-adic trace 2/3, whereas the requested family
+would give [eS]=2[eS]. Modulo four, idempotent lifts already force 2=0.
+Thus no family exists at any support size, with or without the
+evaluation conditions. The following records the earlier attempt.
 
 **The only candidate anyone has is the compressed lift, and it satisfies the
 relations only after evaluation.**  The matrix identity behind
@@ -62,16 +68,13 @@ must be made to vanish simultaneously, which is strictly harder than the one
 equation `leavitt-corner-one-sided-lift-exists` needs.  That is why this node
 sits above that one rather than beside it.
 
-**Every no-go tool in this graph is inactive here, which is information but
-not progress.**  The augmentation argument needs `eps(f) = 1` and the corner
+**Earlier audit, superseded by the lifted trace.** The augmentation argument needs `eps(f) = 1` and the corner
 has `eps(e) = 0`; the finite-dimensional rank argument of
 `augmentation-blocks-leavitt-family-proof` needs a finite matrix size and
 `e A e` supplies none; `division-ring-hosts-no-binary-leavitt-family` needs a
-division ring.  So nothing refutes the claim — and equally, nothing narrows a
-search, which is the honest reason no search has been run.
+division ring. Those observations do not cover the lifted coefficient
+trace, which now refutes the claim.
 
-**Deferred, deliberately.**  The prerequisite work is a presentation, or at
-least a normal form, for `e A e`; until that exists neither a construction nor
-a refutation has anything to bite on.  Anyone picking this up should attack
-`leavitt-corner-one-sided-lift-exists` first, since it needs one equation
-rather than five and would already settle the conjecture.
+**Do not resume this family search.** A normal form of eAe cannot evade
+the invariant. `leavitt-corner-one-sided-lift-exists` still asks for a
+weaker single pair and is not refuted by this argument.

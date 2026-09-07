@@ -63,9 +63,8 @@ structural reasons rather than for want of effort — see
 `research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md`.  What is
 left is the two that ask for an explicit element:
 
-* Exhibit the pair inside the corner — `leavitt-corner-one-sided-lift-exists`,
-  reached through `binary-leavitt-family-lifts-into-unit-corner`, and padded
-  back up to `A` by the route
+* Exhibit a single pair inside the corner — `leavitt-corner-one-sided-lift-exists`,
+  and pad it back up to `A` by the route
   `leavitt-unit-algebra-not-directly-finite-by-corner-padding`.
 * A left-invertible lift of `s_0`
   (`left-invertible-lift-of-s0-in-leavitt-group-algebra`), which works in the
@@ -76,6 +75,12 @@ left is the two that ask for an explicit element:
 
 **Dead.**
 
+* *The full Leavitt-family lift, refuted 2026-09-07.*
+  `finite-subgroup-corners-have-invariant-basis-number` excludes
+  `binary-leavitt-family-lifts-into-unit-corner`: the family would force
+  [eS]=2[eS], whereas the lifted trace of [eS] is 2/3. This invalidates
+  `leavitt-corner-lift-from-lifted-family`, while the weaker single-pair
+  corner claim remains open without a live construction.
 * *The trace-balanced nested pair, refuted 2026-09-07.*
   `leavitt-balanced-corners-separated-modulo-four` excludes
   `leavitt-nested-idempotent-corner-module-equivalence` at all supports
@@ -101,7 +106,9 @@ left is the two that ask for an explicit element:
 finiteness at any matrix size compresses back to this scalar claim
 (`leavitt-direct-finiteness-failure-from-matrix-failure`).  So this claim and
 `leavitt-group-algebra-not-stably-finite` are interderivable, and Kaplansky
-for `F_2[R^x]` and Gottschalk for `R^x` are now the same problem.
+for `F_2[R^x]` are the same existence question. Such a witness refutes
+Gottschalk for `R^x`; no converse from an arbitrary nonlinear cellular
+automaton is asserted.
 
 **Two exact reformulations now isolate the live finite-support target.**
 
@@ -205,8 +212,7 @@ only 1,394 survive the trace filter and none solves the equation.  This is a
 bounded family result, not a global no-go.
 
 The current target is therefore precise: solve the two-packet equation
-subject to odd intersection, lift a full Leavitt family into the unit corner,
-or construct a one-sided inverse pair by a genuinely different finite-support
+subject to odd intersection, or construct a one-sided inverse pair by a different finite-support
 mechanism.  The tempting `e~f` branch is impossible and must not be reused.
 
 The newer pair of `leavitt-trace-balanced-nested-idempotents` also fails,
@@ -222,6 +228,12 @@ finite subgroup, or be a nonzero finite sum of induced finite-subgroup
 projectives. A computational construction using a finite-state boundary
 idempotent must check this restriction even when its transition operators
 generate the whole ambient group.
+
+`finite-subgroup-copy-circuits-have-no-recurrent-branching` extends that
+constraint to a finite network of different projective packets: exact
+decomposition into successor states permits only simple cycles in the
+recurrent part. This excludes branching copy circuits of finite-subgroup
+projectives, not arbitrary cyclic verification or nonlinear computation.
 
 ## Cross-atlas affine update (2026-09-07)
 

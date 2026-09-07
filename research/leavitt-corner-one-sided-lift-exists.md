@@ -52,22 +52,25 @@ algebra; transporting that floor into the corner is not done and is not
 routine, since the corner's identity `e` has support two and its elements are
 not free to have arbitrary support patterns.
 
-One strictly stronger target that would settle this is
+One strictly stronger target was
 `binary-leavitt-family-lifts-into-unit-corner` (lift the whole family,
-equivalently split `pi_e` by a unital ring section).  There used to be a
+equivalently split `pi_e` by a unital ring section). It is now refuted:
+`finite-subgroup-corners-have-invariant-basis-number` gives the identity
+projective lifted trace 2/3, incompatible with [eS]=2[eS]. Thus
+`leavitt-corner-lift-from-lifted-family` is invalidated. There used to be a
 second, bypassing this claim entirely via a different route into the same
 conclusion — `leavitt-corner-kernel-is-jacobson-radical` — and it is now
 refuted (`leavitt-corner-kernel-not-jacobson-radical`), so the corner lane
 runs through this claim alone.
 
-The formerly advertised sharper target
+The earlier advertised sharper target
 `leavitt-e-f-murray-von-neumann-equivalence` is **refuted**.  The canonical
 coefficient trace has `tau(e)=0` and `tau(f)=1`, whereas cyclicity would force
 `tau(e)=tau(xy)=tau(yx)=tau(f)` for an equivalence.  Thus the primitive
 idempotent from the recursive extension cannot be the reverse product of a
-corner witness.  This removes that route completely; the only surviving
-route currently recorded is to lift a full binary Leavitt family into the
-unit corner, or to construct an unrelated pair directly.
+corner witness. The full binary Leavitt family is now also excluded.
+A direct construction of a single pair remains open, with a nonzero
+zero-class defect that cannot come from a finite subgroup.
 
 ## Attempts
 

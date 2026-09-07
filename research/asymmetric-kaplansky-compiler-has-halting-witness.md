@@ -36,3 +36,9 @@ induced from a finite subgroup is excluded by
 `lifted-trace-detects-finite-subgroup-projectives`. Thus a finite-subgroup
 boundary projector cannot supply the defect, even with arbitrary ambient
 transitions.
+
+Replacing one finite packet by a finite closed family of such projective
+states does not provide recurrent amplification through direct-sum
+copying identities: `finite-subgroup-copy-circuits-have-no-recurrent-branching`
+forces every recurrent component to be a simple cycle. A compiler using
+different kinds of verification maps is not covered by that restriction.

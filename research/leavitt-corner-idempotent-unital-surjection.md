@@ -50,3 +50,10 @@ It is not a counterexample and does not become one by iteration:
 applies to `pi`.  The corner's role is to be the smallest object in which the
 missing lifting problem — `leavitt-corner-one-sided-lift-exists` — can be
 stated without an augmentation obstruction against it.
+
+**Update 2026-09-07.** The corner still maps unitally onto R, but that
+map has no unital ring section. By
+`finite-subgroup-corners-have-invariant-basis-number`, its identity has
+lifted trace 2/3 and the corner has invariant basis number. This forbids
+a full binary Leavitt family inside it. A single strict one-sided inverse
+is a weaker condition and remains open.
