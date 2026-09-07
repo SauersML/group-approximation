@@ -4099,6 +4099,7 @@ import GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsSentences
 import GroupApproximation.Sofic.CliffordWitnessSoficSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotientGeneral
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
