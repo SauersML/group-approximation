@@ -235,6 +235,12 @@ decomposition into successor states permits only simple cycles in the
 recurrent part. This excludes branching copy circuits of finite-subgroup
 projectives, not arbitrary cyclic verification or nonlinear computation.
 
+There is also an exact bound for recursion with a fixed identity:
+`lifted-trace-bounds-unital-matrix-parts` shows that the cubic corner
+can contain a unital binary matrix block of size two but not four.
+The existing arbitrarily large matrix embeddings use changing identities;
+they do not supply unbounded coherent matrix capacity at the fixed e.
+
 ## Cross-atlas affine update (2026-09-07)
 
 `binary-leavitt-unit-group-four-generated` replaces the twelve individual

@@ -26,6 +26,13 @@ whose image is contained in `E_N S E_N` for the idempotent
 
 In particular `e S e` contains a copy of `M_2(S)`.
 
+**Fixed-identity constraint (2026-09-07).**
+`lifted-trace-bounds-unital-matrix-parts` proves that eSe has no unital
+M_4(F_2), hence no unital M_4(S): its identity projective has lifted
+trace 2/3 of 2-adic valuation one. The identities E_(2^k) for k>=2
+therefore cannot equal e. Arbitrarily large supported copies are
+consistent with this theorem because their identities change.
+
 No assertion is made that the image equals all of `E_N S E_N`.  The
 construction proves an embedding supported by the corner, and that is exactly
 what its direct/stable-finiteness consumer needs.
