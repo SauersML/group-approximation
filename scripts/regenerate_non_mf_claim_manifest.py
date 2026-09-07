@@ -177,12 +177,14 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
 COLLECTIVE_CLAIMS: set[str] = {
     "prop:clifford-self-embedding",
     "thm:factorization-nonmf-trace",
-    # `thm:full-defect-ring` prints two badges: the n>=4 statement
-    # (manuscriptFullComplementaryIdempotentsAllCharacteristics) and the
+    # `thm:full-defect-ring` prints three badges: the n>=4 statement
+    # (manuscriptFullComplementaryIdempotentsAllCharacteristics), the
     # n>=2 rank-two descent (manuscriptFullComplementaryIdempotentsRankTwoAll
-    # Characteristics), together covering the printed n>=2 conclusion; the
-    # "group B" clauses added by the 2026-09-07 rewrite are not independently
-    # named by either badge alone.
+    # Characteristics), together covering the printed n>=2 conclusion, and
+    # the "group B" sentence (UniversalGroupSigma.manuscriptFullComplementary
+    # IdempotentsUniversal: property (T), MF-triviality, finite generation,
+    # normal generation by an element of order four, and the homomorphism to
+    # EL_n(R) with normally generating image, for every n>=2).
     "thm:full-defect-ring",
     # `prop:linear-collapse` prints one badge per direction of its "Then ...
     # Conversely ..." statement (manuscriptLinearCollapse /
