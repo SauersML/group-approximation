@@ -301,33 +301,37 @@ bucket's say-so broke `origin/main` as a result:
   `GGT/DGOProposition414SecondSeparationHalfWord`,
   `GGT/HullSCLemma44PrefixKernelCutConstruction`) built clean and stay wired.
 
-**On the `sorry`, since that is the more serious finding**: I re-ran a literal
-grep for `sorry`/`admit` against the source text of all 14 WIRE-bucket files,
-GenericProducers.lean included — zero hits in every one, table below. So the
-`declaration uses sorry` the build reported is not a hand-written admission
-sitting in this file's text (my original scan was checking for exactly that
-token and correctly found none). Its two named dependencies pulled in by this
-file (`VanKampen.CombMapReduction`, `VanKampen.CombMapGluing`,
-`KazhdanHypGirthEightTorsionExtraction`, `KazhdanHypGirthEightPrimitives2`) are
-also clean by the same grep. The likely mechanism, offered as a hypothesis for
-the lead to confirm against the actual build log rather than as a
-counter-claim to it: Lean's elaborator can synthesize a `sorryAx` term to
-recover from a genuine type error and keep checking the rest of a file, and
-`GenericProducers.lean:84,87` sit inside
-`cactusRelatorRetypingForPower_of_foldChainSource`, the same theorem whose
-neighbourhood (63, 78, 160 are all in or near it) is independently reported as
-type-mismatched — consistent with the `sorry` being elaborator-inserted
-error-recovery rather than an author's admission of unfinished mathematics.
-**This does not change what the lead needs to know**: wiring this file today
-would still make `#print axioms`-style tooling report two more declarations
-depending on `sorryAx`, silently, exactly as reported. It changes only what
-kind of bug is actually sitting in the file — a bit-rotted proof against a
-drifted dependency (this file is dated 2026-09-02; `VanKampen.CombMapReduction`
-and its neighbours are actively developed) rather than literal admitted debt —
-which matters for who fixes it and how, not for whether it should stay
-unwired right now. Recommend the lead's own build log be treated as
-authoritative on the diagnostic; this is a proposed explanation for it, not
-a re-check that overrides it.
+**On the `sorry`, since that is the more serious finding — CONFIRMED, not a
+hypothesis.** I re-ran a literal grep for `sorry`/`admit` against the source
+text of all 14 WIRE-bucket files, GenericProducers.lean included — zero hits
+in every one, table below. The lead checked this against the actual build
+log and confirms: `grep -c sorry` over the file's source is independently 0,
+matching a hand-read of all 217 lines; and the log's own line ordering settles
+the mechanism — the type errors at 63 and 78 come *before* the `declaration
+uses 'sorry'` diagnostics at 84 and 87 (with a further pair at 160), and all of
+63–87 sit inside the same two theorems
+(`cactusBaseCellDeletionForPower_of_foldStepSource`,
+`cactusRelatorRetypingForPower_of_foldChainSource`). Lean elaborated a failing
+term, inserted `sorryAx` to recover, and reported the declaration as using
+`sorry`. **Nobody wrote it.** This is API drift against
+`VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both actively
+developed, on a file dated 2026-09-02 — a repair with an owner, not two
+admissions someone wrote and walked away from, and that distinction is worth
+making because it changes what someone does about it next. **It does not
+change what the lead needs to know about wiring**: doing so today would still
+make `#print axioms`-style tooling report two more declarations depending on
+`sorryAx`, silently, exactly as first reported.
+
+**General rule, stated once here and repeated at its point of use below:
+`declaration uses 'sorry'` does not imply anyone wrote `sorry`.** Lean emits
+it whenever a proof term's kernel closure contains `sorryAx`, including the
+term the elaborator's own error-recovery synthesizes after a genuine type
+error. A `sorry` count taken purely from build output can therefore
+*overstate* admitted debt, exactly as a lexical `grep` for the token over
+source can *understate* it. Neither number is the answer alone: only the
+source grep, the build diagnostic, and the actual error list — which lines are
+type errors versus bare `sorry` reports, and their order — together tell you
+which kind of debt is actually present.
 
 **Literal `sorry`/`admit` count in each WIRE-bucket file's own source (grep,
 not a build):**
@@ -512,12 +516,31 @@ Prop 4.14, Hull SC Lemma 4.4, the girth-8 Kazhdan construction) — and it turns
 out three of the five don't even build against their own repo as landed,
 independent of manuscript fidelity.
 
-- `GGT/DGOLemma421FourGon.lean` — **BROKEN**, wired at `20e64a97c`, unwired at
-  `dcee3ff04` ("fails with them" in the lead's build log — reported alongside
-  the two Kazhdan failures below; I have not separately isolated whether its
-  failure is independent or a build-graph artifact of the other two). Imports
-  `DGOLemma421Proof`, root line 3125. Do not re-wire until it builds clean on
-  its own.
+- `GGT/DGOLemma421FourGon.lean` — **BROKEN as reported, but very likely a
+  build-graph artifact, not an independent failure — recommend an isolated
+  confirmation build before treating it as broken content.** Wired at
+  `20e64a97c`, unwired at `dcee3ff04` ("fails with them" in the lead's build
+  log, grouped with the two Kazhdan failures). Checked this directly: computed
+  this file's full transitive import closure (837 local files) and it
+  contains **none** of the modules the two real failures actually touch —
+  `VanKampen.CombMapReduction`, `VanKampen.CombMapGluing`,
+  `KazhdanHypGirthEightTorsionExtraction`, `KazhdanHypGirthEightPrimitives2`,
+  `KazhdanHypGirthEightVKInterface` are all absent from its closure. Its only
+  point of contact with the other broken file's dependencies is
+  `OsinGeodesicWord` (shared with `KazhdanHypGirthEightGeodesicWord.lean`),
+  which is itself an ordinary, already-landed, direct root import (line 2394)
+  that nobody has reported as broken. Grepped the entire 837-file closure for
+  `sorry`: zero hits. Its own direct import chain
+  (`DGOLemma421Proof.lean` and the 9 files it imports) is dated 2026-08-29
+  to 2026-09-06, nothing suspiciously fresh or unstable. All of this points to
+  the same conclusion the lead's build log implies for the `GenericProducers`
+  `sorry` diagnostic below: a Lake batch build reporting "some required
+  targets logged failures" can attribute failure to targets that never had a
+  chance to be individually checked, not only to the ones with actual content
+  errors. I cannot run the isolated build to close this out myself — that is
+  the one remaining check. Imports `DGOLemma421Proof`, root line 3125. Do not
+  re-wire without that confirmation, but treat it as the likely exception
+  among the three, not a fourth confirmed content bug.
 - `GGT/DGOProposition414SecondSeparationHalfWord.lean` — **built clean, stays
   wired.** Imports `DGOProposition414SecondSeparationTransport`, root line
   3305.
@@ -526,23 +549,51 @@ independent of manuscript fidelity.
   line 3318, and `HullSCLemma44PrefixKernelTransferInduction`, root line 3215.
 - `GGT/KazhdanHypGirthEightGenericProducers.lean` — **BROKEN**, wired at
   `20e64a97c`, unwired at `dcee3ff04`. Reported errors: type mismatches at
-  lines 63, 78, 160; `declaration uses sorry` at lines 84, 87. Literal grep of
-  this file's own source text finds zero `sorry`/`admit` tokens (table above)
-  — see the WIRE-section caveat for why the two are not in tension: the
-  `sorry` diagnostic likely comes from Lean's elaborator recovering from the
-  type-mismatch failures at 63/78/160 by synthesizing a `sorryAx` term, not
-  from an author-written token. Its own direct dependencies
-  (`KazhdanHypGirthEightTorsionExtraction`, `VanKampen.CombMapReduction`,
-  `VanKampen.CombMapGluing`) are also clean by the same grep. Imports
-  `KazhdanHypGirthEightTorsionExtraction`, root line 3168, and
-  `VanKampen.CombMapReduction`/`CombMapGluing`, both reachable but not direct
-  root imports.
+  lines 63, 78, 160; `declaration uses sorry` at lines 84, 87. **This is
+  confirmed bit-rot, not admitted debt — checked against the actual build
+  log, not left as a hypothesis.** Literal grep of this file's own source
+  text finds zero `sorry`/`admit` tokens (table above), and the lead's build
+  log confirms `grep -c sorry` over the file is also 0. Ordering in the log,
+  sorted by line, settles it: the type errors at 63 and 78 come **before**
+  the `declaration uses 'sorry'` diagnostics at 84 and 87 (with a further
+  pair at 160), and lines 63–87 all sit inside the same two theorems
+  (`cactusBaseCellDeletionForPower_of_foldStepSource`,
+  `cactusRelatorRetypingForPower_of_foldChainSource`) as the type errors.
+  Lean elaborated a failing term, inserted `sorryAx` to recover, and reported
+  the declaration as using `sorry` — nobody wrote it. This is API drift
+  against `VanKampen.CombMapReduction`/`VanKampen.CombMapGluing`, both
+  actively developed, on a file dated 2026-09-02. **This does not change the
+  practical bottom line**: wiring the file today would still make
+  `#print axioms`-style tooling report new `sorryAx`-dependent declarations
+  reachable from root, exactly as first reported — it changes only what kind
+  of bug it is (a repair against a moving dependency, with an owner) versus
+  what it first looked like (an admission someone wrote and walked away
+  from). Its own direct dependencies (`KazhdanHypGirthEightTorsionExtraction`,
+  `VanKampen.CombMapReduction`, `VanKampen.CombMapGluing`) are also clean by
+  the same grep. Imports `KazhdanHypGirthEightTorsionExtraction`, root line
+  3168, and `VanKampen.CombMapReduction`/`CombMapGluing`, both reachable but
+  not direct root imports.
 - `GGT/KazhdanHypGirthEightGeodesicWord.lean` — **BROKEN**, wired at
   `20e64a97c`, unwired at `dcee3ff04`. Reported error: a `rewrite` tactic at
   line 115 whose pattern is not found in the goal — most likely API drift
   against a dependency that has moved since this file was written
   (2026-09-02). Imports `KazhdanHypGirthEightVKInterface`, root line 3118, and
   `OsinGeodesicWord`, root line 2394.
+
+**General rule, worth stating for whoever reads this report next: `declaration
+uses 'sorry'` does not imply anyone wrote `sorry`.** Lean emits that diagnostic
+whenever a proof term's kernel closure contains `sorryAx`, and that includes
+the term the elaborator's own error-recovery synthesizes after a genuine type
+error — not only a hand-typed token. A `sorry` count taken purely from build
+output can therefore *overstate* admitted debt, exactly as a `grep` for the
+literal token over source text can *understate* it (a real `sorry` reached only
+through a macro, `Function.rfl`-style tactic combinator, or generated code
+would not show up lexically at all, though none of that applies to this
+repository's plain-tactic style). Neither number is the answer on its own: the
+source grep counts words, the build diagnostic counts recoveries, and only the
+two together with the actual error list — which of the flagged lines are type
+errors versus bare `sorry` diagnostics, and their relative order — tell you
+which kind of debt you are looking at.
 
 ### KTheory/Basic.lean → Functorial.lean → Spaces.lean — NEEDS-PROBE, not a WIRE recommendation
 
