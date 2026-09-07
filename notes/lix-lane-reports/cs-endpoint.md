@@ -720,6 +720,29 @@ plus two `#audit_closed_axioms` lines.
   `isForall`.  `¬ ProblemLIX` is stored as `Not ProblemLIX`, an application,
   not a `.forallE`, so it passes — `ProblemX.lean:287` is the precedent.  A
   statement written as `ProblemLIX → False` would *not* pass.
+* **A named binder inside a bare hypothesis type is `unusedVariables`-fragile,
+  and the fix is to state the property, not name it.**  Under this build's
+  `-DwarningAsError`, `unusedVariables` is an *error*.  It flags a named
+  binder that no later binder in the *same telescope* references — and a
+  telescope with no proof term (a hypothesis's own type, a record field, a
+  `Prop`-valued `def`) cannot "use" a binder except by another binder's type
+  mentioning it.  A **theorem's** own signature is safe even with the same
+  names, because the *proof term* after `:=` almost always references every
+  parameter.  So the rule is about where the binder sits, not what it is
+  named: naming `(hGc : Continuous G)` is free inside a theorem signature and
+  costs an error inside a hypothesis's own `∀`-type unless something *later
+  in that same type* mentions `hGc` by name.  Two ways this bit this lane:
+  `lemmaTwoHolds_of_oddNonvanishing`'s `h`'s type named `hGc`/`hGu` that its
+  conclusion never used (fixed by leaving them anonymous, matching how
+  `LemmaTwoInput` itself is written in `LemmaTwoGlue.lean`); building
+  `LemmaTwoOfHsqHresHclass.lean` a first draft would have hit the same trap on
+  `hclass`'s `hGe`, avoided by noticing `lix_topClass_ne_zero_of_three`'s own
+  `hclass` field doesn't depend on `hGe` either and dropping it from the
+  quantifier rather than naming it and leaving it unused — the tighter
+  statement and the lint-clean one were the same fix.  **Before naming a
+  binder inside a hypothesis's own `∀`-type, check whether anything later in
+  that same type will reference it by name; if not, either drop the binder
+  (if the property genuinely doesn't need it) or leave it anonymous.**
 
 ## 5. 2026-09-07: lane `lix-wire`, three-lane strike on Step C's odd side
 
@@ -791,3 +814,40 @@ named binders is fine as long as the proof *term* uses them (as
 `lixStepD_unconditional` in the same file does) — the linter is checking
 "referenced anywhere in this declaration", and a bare hypothesis type has no
 proof term to reference them in.
+
+### Task 3 prep — LANDED, `e3f60b5fb`, `GroupApproximation/CharClass/LemmaTwoOfHsqHresHclass.lean`
+
+Per the lead's direction: composed and probed the three-lane join *ahead* of
+`lix-hsq`/`lix-hres`/`lix-hclass` landing, rather than waiting to find a shape
+mismatch on the day they do.  `lemmaTwoHolds_of_hsq_hres_hclass` threads
+`lix_topClass_ne_zero_of_three` (Task 1) through `LemmaTwoTopClass.lean`'s
+`stepC_of_chain` into `lemmaTwoHolds_of_oddNonvanishing` (Task 2), taking
+exactly `hsq`, `hres`, `hclass` at every stage `j` and every Step A unitary
+`G`; `not_problemLIX_of_hsq_hres_hclass` adds `not_problemLIX_of_lemmaTwo`.
+Both kept at `#audit_axioms` — the three hypotheses are still open, so
+`#audit_closed_axioms` would be wrong here regardless of whether the build
+passed.
+
+Probe: `Built GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass (25s)`,
+`Build completed successfully (9317 jobs)`, `PROBE GREEN`.  The `Built`
+(not `Replayed`) line on the target itself, plus the job count rising from
+9214 (Task 2's probe) to 9317, is the evidence this is a real elaboration and
+not a stale replay.
+
+**What this settled, that a wait-and-see approach would not have caught
+until the three obligations actually land**: `lix_topClass_ne_zero_of_three`'s
+implicit `gamma : cohomologyZMod2 (lixN dd) (2 * lixRank dd)` unifies against
+`LixChernDeg`'s codomain `Hmod2 (lixN dd) n` with **no cast** — `Hmod2` is
+`abbrev`-equal to `cohomologyZMod2` (`CohomologyBasic.lean:48`), reducible
+transparency, so `hclass`'s RHS `(RelativeSupport.lixPiStar ...).hom
+(lixChern (LIX.lixDD j) (mappingTorus ...) ... (lixRank (LIX.lixDD j)))`
+instantiates `gamma` on the nose.  And `stepC_of_chain`'s raw per-`G`
+conclusion is *exactly*, term-for-term, the value
+`lix_topClass_ne_zero_of_three` proves `≠ 0` once `gamma` is fixed that way —
+confirming the lead's read of `stepC_of_chain` directly, with a real build
+rather than a re-derivation.  Also confirmed: `hres` and `hclass` genuinely
+do not depend on the Step A witness `hGe` (matching
+`lix_topClass_ne_zero_of_three`'s own binder list), so the composed
+theorem's `hsq`/`hres`/`hclass` are quantified over different binder sets per
+hypothesis rather than uniformly over `G, hGc, hGu, hGe` — the tighter
+statement, not a rounding-up to a common shape.
