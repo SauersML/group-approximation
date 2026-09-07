@@ -851,3 +851,63 @@ do not depend on the Step A witness `hGe` (matching
 theorem's `hsq`/`hres`/`hclass` are quantified over different binder sets per
 hypothesis rather than uniformly over `G, hGc, hGu, hGe` — the tighter
 statement, not a rounding-up to a common shape.
+
+### Model-testing `hsq`, `hres`, `hclass` — none refuted, all three well-evidenced
+
+Per the lead's standing order (model-test every hypothesis Prop) and explicit
+direction: not a formal proof at a toy index family (each of the three is the
+size of a lane's own remaining work), but a structural check against the
+exact type signatures plus every already-landed, unconditional, green
+theorem bearing directly on each.  **No refutation found for any of the
+three.**
+
+* **`hres` — strongest evidence.**  `ThomStepCOddLocal.lean:22-32`'s own
+  docstring works out the content: under the Thom isomorphism on each side,
+  `lixRes` becomes restriction of degree-0 cohomology from the base
+  `N = S¹×S⁵×∏ℂP^{dⱼ}` to the trivialising ball, injective *exactly when N is
+  connected*.  `LIXBaseConnected.lean:63`'s `instance pathConnectedSpace_lixN
+  (dd) : PathConnectedSpace ↥(lixN dd)` is landed, unconditional, for every
+  `dd`, and its own docstring (lines 11-18) says outright: "this is a
+  prerequisite for `hres`... the connectedness is not incidental to `hres`,
+  it is the whole of its content once the two Thom isomorphisms are in
+  place."  So the fact `hres` needs is already a theorem; what's left is
+  bookkeeping, not open mathematics.
+* **`hsq` — strong evidence.**  The one way this fails is the two routes
+  (excise-then-chart via `lixRelModelIso`, vs. restrict-then-trivialise via
+  `lixLocalPairIsoClosed`) going through incomparable neighbourhoods of the
+  zero.  `LIXBaseBall.lean:85-94` names exactly this worry ("`cc-thom`
+  observed the two sides go through **different** neighbourhoods...") and
+  resolves it: `lixBaseBall_subset_target`, landed and unconditional, proves
+  the smaller ball is nested *inside* the bigger excision chart's target —
+  exactly the ingredient a standard "excision commutes with shrinking to a
+  smaller open set" argument needs.
+* **`hclass` — strong evidence, deepest of the three.**  Two landed facts
+  converge on it.  `LIXChernTopGamma.lean:58-73`'s `lixChern_top_eq_gamma`
+  (unconditional, green) proves the exact `gamma` term `hclass` fixes equals
+  the top coefficient of the *same* Leray–Hirsch instance (`lixLHhyper`)
+  that `lixThomClassTerm` (`LIXThomClassTerm.lean:185`) is itself built
+  from — one instance read two ways, not two unrelated objects agreeing by
+  luck.  `ThomEulerNaturality.lean:1-33`'s docstring is a proof sketch of
+  exactly `hclass`'s shape, explaining why it holds in general: `piStar = π^*`
+  for a vector bundle projection is always an isomorphism (deformation
+  retraction onto the zero section), so `jE.hom u` has a unique
+  `piStar`-preimage, forced by the docstring's diagram chase to be the top
+  Chern class.  Caveat: this file's own theorems take `hclass`'s shape as an
+  *input* (`hu`) to derive something else, so it documents *why* the fact
+  holds rather than closing it at `RelativeSupport.lixJE`/`lixPiStar`
+  specifically — that pinning is lix-hclass's real remaining work.
+* **Joint check (not an argument that never uses the geometry).**
+  `injective_comp_of_square` (`ThomStepCOddLocal.lean:60-69`), what `hsq` and
+  `hres` actually feed, is a clean "composite through an injective map and an
+  iso is injective" fact that supplies injectivity of one morphism inside a
+  larger argument independently needing real exactness (`hexact`) and a
+  genuinely nonzero Thom class (`lixThomClassTerm_ne_zero`, landed).
+  `hclass` is structurally independent — it lives at the absolute/unlocalised
+  level on `E`/`N`, while `hsq`/`hres` live at the relative/ball-localised
+  level — so no single shared premise could make all three collapse together
+  for the wrong reason.
+
+Confidence ranking `hres > hsq > hclass`; the remaining risk in all three
+reads as formalization effort (Thom-isomorphism bookkeeping, an
+excision-naturality chase, pinning a general naturality argument to concrete
+terms), not soundness of the stated targets.
