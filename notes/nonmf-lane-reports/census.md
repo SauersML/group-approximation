@@ -719,3 +719,29 @@ for algebraic K-theory of a ring in this sense), and
 self-contained but nontrivial normal-form theorem thm-d flagged as not
 attempted). Nothing here is a bookkeeping gap; every remaining row has a
 clear, named piece of missing or absent mathematics.
+
+## Round 12: Clifford normal form closes rows 9 and 10, 3 sentences left
+
+Landed: `c92ce8660` (both sentences assigned).
+
+thm-d's normal-form theorem (`Sofic/CliffordLampNormalFormSplice.lean`
+`061ac3afc`, `Sofic/CliffordLampNormalForm.lean` `7de6eb784`) proves
+`toModel_bijective_printed`, and the re-landed `CliffordConstructionSentences.lean`
+(`f9487757d`) spends it as `manuscriptSentence_cliffordLampNormalForm` for
+the two sentences that used to need it: "The relations let us write every
+element of `Cl(X)` as `ε^a c_{x1}...c_{xr}`..." and "...this word maps to
+`(a,δ_{x1}+...+δ_{xr})`, so the expression is unique and the homomorphism is
+an isomorphism." Both unconditional. Row 11 (the order `2^{|Y|+1}` sentence)
+stays exactly as before, partial, pending a follow-on for the order formula
+specifically.
+
+Verify-decls 0 missing of 636 named. Verify-unconditional 0 new findings.
+Summary after this round: formalized 327, unassigned 3, definition 56,
+structural 33, provenance 19, partial 22, attribution 17, total 477.
+
+**Only 3 sentences remain unassigned in the whole manuscript**: `thm:headline`'s
+two K_1-is-MF/quotient-formula sentences and "The binary example"'s K_1(R)
+definition, all one recorded gap by the lead's explicit decision -- no
+stable K_1 object is being built for a definitional sentence and two clauses
+that rest on the cited Khanh-Thanh identification; the corollary is
+paper-proof with that citation, not a formalization target.
