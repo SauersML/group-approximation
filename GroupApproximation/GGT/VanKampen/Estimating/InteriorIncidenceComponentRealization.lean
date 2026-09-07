@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.EndpointClosedRealization
 import GroupApproximation.GGT.VanKampen.Estimating.EndpointClosedAssembly
+import GroupApproximation.GGT.VanKampen.Estimating.PhiRealization
+import GroupApproximation.GGT.VanKampen.Estimating.HereditaryPlanarRefutation
 
 /-!
 # The component realization of the interior incidence graph, named
@@ -64,8 +66,9 @@ take `edges = ∅` and one vertex, and `PhiVertexRotation` is asked for a
 and their edge-count lemmas remain reusable, but the *rotation hypothesis* as
 stated is not a route to anything; a corrected version must ask for
 `vertexCount ≤ vertices.card` componentwise, which is what the obligation above
-does.  (Not proved here.  The composition is one line, and this module is a
-reshape; it is left to whoever takes the route.)
+does.  **This one is checked, not asserted:** `not_phiVertexRotationBundle`
+below proves it, so dead end 4 stands on the same footing as dead end 1 rather
+than on a header claim.
 
 ## The bundle comparison, for the record
 
@@ -129,6 +132,35 @@ theorem hasEndpointClosedPlanarEdgeBound_of_interiorIncidenceComponents
       (Embedded.InteriorEdge.Incident (selected := selected)) :=
   hasEndpointClosedPlanarEdgeBound_of_componentMaps _ hrealization
 
+/-- **Dead end 4, checked rather than asserted.**  The premise of
+`Embedded.interiorIncidencePlanarRealization_of_vertexRotation` is false.
+
+That theorem concludes `InteriorIncidencePlanarRealization`, which
+`not_interiorIncidencePlanarRealization` refutes, so its unnamed hypothesis
+bundle cannot hold.  Stated here at universe `0` because the refutation is.
+
+This is a refutation, not a discharge: it closes no obligation.  It converts a
+recorded dead end into a checked one, so that the `PhiVertexRotation` route is
+known dead by the build rather than by this module's prose.  `phiMap`,
+`phiAlpha` and the edge-count lemmas are untouched and remain reusable — only
+the rotation hypothesis is dead. -/
+theorem not_phiVertexRotationBundle :
+    ¬ (∀ {G : Type} [Group G] {Lambda : Type}
+      {D : GGT.RelGenSet G Lambda}
+      {W : Set (List (GGT.RelLetter G Lambda))}
+      {eps : ℕ} {Delta : DiscDiagram.{0, 0, 0} W}
+      (selected : Finset (Embedded.Candidate D eps Delta))
+      (vertices : Finset (Fin Delta.rCellCount))
+      (edges : Finset (Embedded.InteriorEdge selected)),
+      EdgesCovered (Embedded.InteriorEdge.Incident (selected := selected))
+          vertices edges →
+        vertices.Nonempty →
+        Embedded.PhiVertexRotation {e : Embedded.InteriorEdge selected // e ∈ edges}
+          vertices.card) := by
+  intro hrotation
+  exact not_interiorIncidencePlanarRealization
+    (Embedded.interiorIncidencePlanarRealization_of_vertexRotation hrotation)
+
 /-! Checked on every build, and checked BY NAME by the landing gate.  `#print
 axioms` would report the same closure passively; `#audit_axioms` refuses the
 build if this declaration ever acquires a non-classical dependency, and it is
@@ -136,6 +168,7 @@ the form the landing gate can look for.  It certifies the *closure* only: this
 theorem is conditional on `hrealization`, which nothing produces. -/
 
 #audit_axioms GroupApproximation.GGT.VanKampen.hasEndpointClosedPlanarEdgeBound_of_interiorIncidenceComponents
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.not_phiVertexRotationBundle
 
 end VanKampen
 end GGT
