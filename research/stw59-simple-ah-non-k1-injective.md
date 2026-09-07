@@ -27,4 +27,8 @@ The later claim `stw59-exact-factorial-unitary-component-groups`
 computes that entire group as Z/2 for this same algebra.
 Internal mathematical review was completed on 5 September 2026.
 This does not assert external peer validation, formal verification,
-or publication priority.
+or publication priority. `stw59-lean-witness-simple-unital-not-k1-injective`
+is a related, formally verified claim (Lean 4 / Mathlib, 2026-09-07): it
+proves non-K1-injectivity of a nontrivial simple unital algebra by an
+independent mod-2 route, but not K1(A)=0 or the exact order-two component,
+so it does not formally verify this claim as stated.
