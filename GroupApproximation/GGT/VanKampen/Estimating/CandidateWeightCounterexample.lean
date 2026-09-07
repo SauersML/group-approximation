@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.ExteriorArcCounterexample
+import GroupApproximation.GGT.VanKampen.Estimating.GeometricCandidate
 
 /-!
 # A face-set candidate does not determine its contiguity-arc weight
@@ -71,8 +72,45 @@ theorem not_witness_weight :
   have hl : highCandidate.weight = 0 := h low
   omega
 
+noncomputable def geometricHigh : GeometricCandidate D 2 diagram := ⟨faces, high⟩
+noncomputable def geometricLow : GeometricCandidate D 2 diagram := ⟨faces, low⟩
+
+theorem retained_weights :
+    GeometricCandidate.weight geometricHigh = 2 ∧ GeometricCandidate.weight geometricLow = 0 :=
+  ⟨rfl, rfl⟩
+
+theorem distinct_geometric_candidates : geometricHigh ≠ geometricLow := by
+  intro h
+  have hweight := congrArg GeometricCandidate.weight h
+  change (2 : ℕ) = 0 at hweight
+  omega
+
+theorem selected_weight_ge_two
+    (S : EstimatingSelection.DistinguishedFamily
+      (GeometricCandidate.Compatible (D := D) (eps := 2) (Delta := diagram))
+      GeometricCandidate.weight) :
+    2 ≤ EstimatingSelection.familyWeight GeometricCandidate.weight S.family := by
+  classical
+  have hcompatible : EstimatingSelection.PairwiseCompatible
+      GeometricCandidate.Compatible ({geometricHigh} : Finset (GeometricCandidate D 2 diagram)) := by
+    intro a ha b hb hne
+    exact (hne ((Finset.mem_singleton.mp ha).trans (Finset.mem_singleton.mp hb).symm)).elim
+  have h := S.weight_maximal {geometricHigh} hcompatible
+  simpa only [EstimatingSelection.familyWeight, Finset.sum_singleton, retained_weights.1] using h
+
+/-- The repaired finite maximization has an actual model and cannot select only weight zero. -/
+theorem exists_selected_weight :
+    ∃ S : EstimatingSelection.DistinguishedFamily
+      (GeometricCandidate.Compatible (D := D) (eps := 2) (Delta := diagram))
+      GeometricCandidate.weight,
+      2 ≤ EstimatingSelection.familyWeight GeometricCandidate.weight S.family := by
+  obtain ⟨S⟩ := GeometricCandidate.exists_distinguishedFamily D 2 diagram
+  exact ⟨S, selected_weight_ge_two S⟩
+
 end GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample
 
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample.same_candidate
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample.distinct_weights
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample.not_witness_weight
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample.distinct_geometric_candidates
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.Estimating.CandidateWeightCounterexample.exists_selected_weight

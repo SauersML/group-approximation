@@ -249,9 +249,9 @@ strict target-prefix shortening. The original geodesic connector records
 are retained. `UnboundComponentNonemptyConnectors.unboundComponentNonemptyConnectors`
 constructs these words at the same uniform parameter choice and passes a
 closed axiom audit (4,853-job build). This resolves the zero-length obstacle
-for these metric connectors without changing constants. Transport of
-the full selected-contiguity records and general complementary-region surgery
-remain open. No further assembly admission has been discharged.
+for these metric connectors without changing constants. Full local contiguity
+and family transport are now proved below; general complementary-region
+surgery remains open. No further assembly admission has been discharged.
 
 `GEdgeWordRetention.lean` derives the actual single-dart expansion of every
 edge outside the subdivided edge, with exact label, reversal and face-step
@@ -288,11 +288,27 @@ and its weight uses an arbitrary `Classical.choice` of contiguity data.
 G-cell digon at epsilon two has witnesses of weights two and zero, which
 become the identical face-set candidate. The claimed recovery of every
 constructed witness's weight is therefore false; its refutation passes a
-closed axiom audit (4,599-job build). The corrected optimization domain must
-retain actual finite contiguity data, or select a proved maximum-weight
-witness on each face set. Preserve the historical definitions and repair the
-selection/incidence consumers explicitly. No assembly admission has been
-discharged by the local transport alone.
+closed axiom audit (4,599-job build).
+
+`Estimating/ContiguityFinite.lean` now proves that the full contiguity type is
+finite: an injective code retains the duplicate-free boundary and side lists,
+carrier indices, and arc starts and lengths; the remaining fields are proofs.
+`Estimating/GeometricCandidate.lean` retains the actual witness in each
+candidate and constructs a distinguished family maximizing all realizable
+arc weights, with minimal cardinality among maximizers. The historical
+face-only definitions and their refutation are preserved.
+`Estimating/GeometricCandidateTransport.lean` proves injectivity of full
+contiguity transport and transports every compatible geometric family away
+from the insertion face, preserving cardinality and exact total arc weight.
+`GFaceContiguityInsertion.exists_family_output` constructs the actual
+O-equivalent insertion supplying this family transport. The six-dart model
+also proves that the corrected candidates retain their distinct weights and
+that a corrected distinguished family exists with weight at least two.
+The model passes a closed audit; the construction helpers pass ordinary
+audits (combined 4,821-job build). The estimating partition, incidence and
+graph consumers still need explicit migration to the corrected geometric
+candidate data, alongside the complementary-region construction. No assembly
+admission has been discharged by the local transport alone.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a

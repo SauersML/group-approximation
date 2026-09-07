@@ -25,6 +25,11 @@ theorem map_darts (arc : CyclicArc cycle) (f : A → B) :
 def mapTo (arc : CyclicArc cycle) (f : A → B) {target : List B}
     (h : target = cycle.map f) : CyclicArc target := h.symm ▸ arc.map f
 
+theorem mapTo_start (arc : CyclicArc cycle) (f : A → B) {target : List B}
+    (h : target = cycle.map f) : (arc.mapTo f h).start.val = arc.start.val := by
+  subst target
+  rfl
+
 theorem mapTo_length (arc : CyclicArc cycle) (f : A → B) {target : List B}
     (h : target = cycle.map f) : (arc.mapTo f h).length = arc.length := by
   subst target
