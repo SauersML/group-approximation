@@ -169,9 +169,13 @@ Counts: 34 unconditional, 5 partial (19, 24, 25, 27, 28, 40 -- six rows, of whic
 25 and 40 are partial in route only), 5 definitional.  Two carriers are new
 content (10 and 18); everything else is a wrapper.
 
-One thing worth the lead's eye beyond the table: row 28 needed `[Countable R]`.
+Row 28 needed `[Countable R]`, because
 `FullDefectRing.PrintedFullComplementaryIdempotents` quantifies over countable
-rings, and the printed sentence at that point in the proof does not say so.
-The countability is harmless where the theorem is applied (`𝒞` is countable,
-and Theorem B's own hypothesis chain supplies it), but a reader following the
-printed proof line by line will not find it stated.
+rings.  I first recorded this as a gap in the printed proof; it is not.
+Theorem B's statement opens "Let `R` be a countable unital associative ring"
+(`non_mf_groups_exist.tex` line 275), so the countability the formal proof
+spends at the subring step is the theorem's own hypothesis, stated once at the
+top rather than repeated at the sentence that uses it.  No manuscript change is
+warranted, and the row is a faithful carrier as it stands.  The lesson for the
+next sentence pass: read the theorem statement before calling a hypothesis
+missing from its proof.
