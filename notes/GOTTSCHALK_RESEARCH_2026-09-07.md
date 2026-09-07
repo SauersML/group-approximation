@@ -110,3 +110,37 @@ closure theorem and qualitative XOR example were already present here.
 The quantitative refinement is a result derived in this session, not a
 certified claim of priority. These searches are not an exhaustive audit of
 all papers, appendices, or released code.
+
+## Second attack: local defects and generic decoder fibers
+
+On the renewed request, the checkout was advanced to
+`edf7df9de` before adding this work. The new
+[proof](../research/artifacts/gottschalk-decoder-fibers-2026-09-07.md)
+uses a different invariant from observable rank. A nonidentity retraction
+`R=tau sigma` changes a finite perturbation of a constant fixed point.
+That perturbation and its retract are a finite collision of the decoder.
+An explicit finite output guard then permits independent replacements
+inside preferred preimages, even on a noncommutative group.
+
+For any infinite group, a nonbijective decoder with a cellular section
+has fibers containing Cantor sets over a dense G_delta of outputs of full
+Bernoulli measure, and over every output with dense group orbit. Thus a
+single countable transitive fiber would settle that encoder's
+surjectivity. Cairn records the universal existence of such a fiber as an
+open prerequisite; it is not inferred from the packing theorem.
+
+The exact replay uses a nonlinear split pair from a binary full shift
+to a two-bit full shift on the infinite free group F_2. It checks 32
+split identities, 1,024 retraction identities, and 256 simultaneous
+replacement cases with five independent bits and eight outside contexts.
+It also detects failure when the output guard is omitted. This
+unequal-alphabet example exercises the lemma and is not a counterexample
+to Gottschalk. No finite quotient substitutes for F_2 in the computation.
+
+Three proposed closing steps remain unjustified: an upper bound that
+beats the independent preimage count; a positive conditional entropy
+conclusion for the section-supported measure; and a cellular, equivariant
+encoding of extra bits from the externally selected guarded sites. The
+second inference is explicitly false for rectangular projections. The
+proof and replay therefore sharpen a necessary condition without claiming
+the requested full proof or a certified new result in the literature.

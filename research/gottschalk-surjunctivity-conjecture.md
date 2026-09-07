@@ -40,3 +40,12 @@ Another invariant must distinguish defect growth from reversible growth.
 
 The fixed-test-group route below uses the existing reduction honestly:
 surjunctivity of the test group itself remains an open prerequisite.
+
+The second attack proves split-decoders-have-generic-cantor-fibers. A
+strict encoder forces every local decoder to erase a finite perturbation
+and have a Cantor subset in every transitive output fiber. The new route
+therefore asks for a decoder with just one countable transitive fiber.
+No such universal countability result has been proved. In particular,
+large topological fibers do not force positive conditional entropy for
+the measure supported on the chosen section; the artifact gives a
+rectangular counterexample to that inference.

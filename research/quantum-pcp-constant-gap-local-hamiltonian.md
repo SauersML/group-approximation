@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
+  - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
@@ -52,6 +53,12 @@ rules out singleton energy neighborhoods for that family's exact flags.
 These are limitations on proof routes, not a disproof of this conjecture.
 The source check in the linked artifact continues to find the conjecture
 open; the polynomial-time constant-gap hardness reduction is not supplied.
+
+The continued audit characterizes exact recovery by vanishing joint effects
+on infeasible fault sets. The same marginal energy bounds can coexist with
+different joint outcomes and opposite recovery verdicts. Thus the remaining
+construction must control one joint measurement, including its physical
+realization, rather than only its individual flag probabilities.
 
 ## Attempts
 

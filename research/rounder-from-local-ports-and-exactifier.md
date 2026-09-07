@@ -11,6 +11,13 @@ artifacts:
 
 ## Why sufficient
 
+**Witness compatibility.** The ports, isometry, and conditional exactifier
+in the prerequisites must belong to one construction on the same amplified
+Hamiltonian. Separate existential witnesses cannot be combined. The exact
+condition on the chosen joint measurement is given by
+`joint-syndrome-support-characterizes-exactifiability`; marginal estimates
+alone do not supply it.
+
 `local-syndrome-port-domination-at-each-gadget` supplies mutually commuting
 projectors `B_j` on the syndrome register, an isometry `W`, neighbourhoods
 `N(j)` with occurrence at most `R`, and the per-port inequality

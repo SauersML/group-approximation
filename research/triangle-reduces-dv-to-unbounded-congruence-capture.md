@@ -5,6 +5,7 @@ kind: route
 title: Combine mixed-congruence repair with the generalized-metric triangle inequality
 target: dv-distance-is-defect-plus-congruence-capture
 requires:
+  - flexible-hs-metric-controls-words-and-padding
   - mixed-crt-iwahori-repair-is-labeled-pure-dyadic-rounding
   - odd-label-stabilization-has-uniform-repair
   - finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence
@@ -60,20 +61,27 @@ dimensions, put
 \[
 \delta=d_2(\pi,\rho).
 \]
-Zero-pad the smaller matrices as in Dogon--Vigdorovich's generalized metric.
-A product of zero-padded matrices is the zero-padding of the product, and
-every factor has operator norm at most one. The usual telescoping sum
-therefore gives
+By **flexible-hs-metric-controls-words-and-padding**, telescoping the
+nonempty padded word products gives
 \[
 d_2(\pi_+(b),\rho_+(b))\le L_B\delta,\qquad
 d_2(\pi_-(\sigma b),\rho_-(\sigma b))\le L_B\delta.
 \]
-The middle term obtained by padding the two matrices of \(\pi\) can only
-decrease its normalized Hilbert--Schmidt norm. Hence
+Now apply the triangle inequality for the generalized metric itself to
+the three-step chain from \(\rho_+(b)\) through \(\pi_+(b)\) and
+\(\pi_-(\sigma b)\) to \(\rho_-(\sigma b)\). Its middle term is
+measured in \(\pi\)'s own dimension. This proves the estimate in either
+dimension ordering:
 \[
 \operatorname{def}(\rho)
  \le \operatorname{def}(\pi)+2L_B\delta.                \tag{3}
 \]
+
+The previous common-normalization justification covered only the ordering
+in which the comparison was larger. The corrected metric argument preserves
+(3) and its constant. A full proof, the smaller-comparison audit, and the
+sharp conversion to upward-only repairs are in
+`research/artifacts/flexible-hs-metric-and-padding.md`.
 
 ## 3. Triangle reduction
 

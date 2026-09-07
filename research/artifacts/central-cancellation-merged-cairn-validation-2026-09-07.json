@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "scope": "Combined committed research graph compilation and artifact/reference lint; duplicate checks on six cancellation-lane nodes. Generated frontier resolves concurrent main changes; no proof-assistant formalization.",
-  "merge_tree": "2d8ce161147d1ccdb1b9e3699a1f87f08fa97afe",
+  "scope": "Final combined graph compilation and artifact/reference lint including the classified seven-face example; targeted duplicate checks. No proof-assistant formalization.",
+  "merge_tree": "f877ca6d7d501d9f69cf046787122be705dca18f",
   "errors": [],
   "duplicates": [],
   "nodes": {
@@ -12,5 +12,5 @@
     "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
     "leavitt-unit-group-nonsurjunctive": "OPEN"
   },
-  "elapsed_seconds": 16.506
+  "elapsed_seconds": 17.901
 }

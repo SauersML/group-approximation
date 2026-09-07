@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
 import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientMatrices
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsPeirce
 
 /-!
 # Matrix reduction and the supported-unit step are closed
