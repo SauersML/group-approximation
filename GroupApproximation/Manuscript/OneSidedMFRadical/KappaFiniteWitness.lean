@@ -59,7 +59,10 @@ theorem exists_diagonal_mem_commutator (hR : IsPurelyInfiniteSimpleRing R)
   have hmem := hle ((kappa_eq_one_iff R u).mp hu)
   obtain ⟨n, hn⟩ := (Subgroup.mem_iSup_of_directed hmono.directed_le).mp hmem
   obtain ⟨v, hv, heq⟩ := hn
-  obtain ⟨m, hnm, h1m, hvm⟩ := Quotient.exact heq
+  have hrel : ∃ (m : ℕ) (hnm : n ≤ m) (h1m : 1 ≤ m),
+      glStab R n m hnm v = glStab R 1 m h1m (unitsToGLOne R u) :=
+    Quotient.exact heq
+  obtain ⟨m, hnm, h1m, hvm⟩ := hrel
   refine ⟨m, by omega, ?_⟩
   rw [← glStab_one_eq_diagAt m (by omega) h1m u, ← hvm]
   exact map_mem_commutator (glStab R n m hnm) hv

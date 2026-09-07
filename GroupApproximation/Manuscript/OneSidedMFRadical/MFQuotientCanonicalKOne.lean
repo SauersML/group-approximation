@@ -41,6 +41,52 @@ theorem matrixKappa_diagAt (n : ℕ) (hn : 0 < n) (u : Rˣ) :
 
 variable [Countable R]
 
+/-- The corner-unit subgroup itself has full MF radical: restrict a map
+from it to each of its defining elementary-group sources. -/
+theorem cornerUnitSubgroup_full_mf_radical :
+    mfHomKernel (cornerUnitSubgroup R) = ⊤ := by
+  apply mfHomKernel_eq_top_iff.mpr
+  intro M _ hM f x
+  have hle : cornerUnitSubgroup R ≤ f.ker.map (cornerUnitSubgroup R).subtype := by
+    refine iSup_le fun S => iSup_le fun _ => iSup_le fun _ =>
+      iSup_le fun s => iSup_le fun t => iSup_le fun hts =>
+      iSup_le fun hfull => iSup_le fun n => iSup_le fun hn => iSup_le fun φ => ?_
+    have hφ := le_cornerUnitSubgroup S s t hts hfull n hn φ
+    let ψ : elementaryGroup (Fin n) S →* cornerUnitSubgroup R :=
+      φ.codRestrict (cornerUnitSubgroup R) (fun z => hφ ⟨z, rfl⟩)
+    rintro y ⟨z, rfl⟩
+    refine ⟨ψ z, ?_, rfl⟩
+    exact Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
+      S s t hts hfull n hn M hM (f.comp ψ) z
+  obtain ⟨z, hz, heq⟩ := hle x.property
+  have hzx : z = x := Subtype.ext heq
+  exact hzx ▸ hz
+
+theorem cornerUnitSubgroup_eq_commutator (hR : IsPurelyInfiniteSimpleRing R) :
+    cornerUnitSubgroup R = commutator Rˣ := by
+  have hN := (manuscriptMFQuotientUnitsKOne R hR).2.2.1
+  have hC : cornerUnitSubgroup R ≤ commutator Rˣ :=
+    (cornerUnitSubgroup_le_mfHomKernel
+      Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
+      R).trans hN.le
+  apply le_antisymm hC
+  intro u hu
+  obtain ⟨v, e, hne, he, hvform, huv⟩ := unit_reduces_to_supported hR u
+  have hvcomm : v ∈ commutator Rˣ := by
+    have hm := (commutator Rˣ).mul_mem ((commutator Rˣ).inv_mem (hC huv)) hu
+    have hh : (u * v⁻¹)⁻¹ * u = v := by group
+    rwa [hh] at hm
+  have hvC := supported_commutator_mem_cornerUnitSubgroup hR v e hne he hvform hvcomm
+  have hm := (cornerUnitSubgroup R).mul_mem huv hvC
+  simpa only [mul_assoc, inv_mul_cancel, mul_one] using hm
+
+/-- The unit commutator subgroup is intrinsically MF-invisible, including
+rank one. This is stronger than lying in the ambient group's MF kernel. -/
+theorem unit_commutator_full_mf_radical (hR : IsPurelyInfiniteSimpleRing R) :
+    mfHomKernel (commutator Rˣ) = ⊤ := by
+  rw [← cornerUnitSubgroup_eq_commutator R hR]
+  exact cornerUnitSubgroup_full_mf_radical R
+
 theorem matrixKappa_surjective (hR : IsPurelyInfiniteSimpleRing R)
     (n : ℕ) (hn : 1 ≤ n) : Function.Surjective (matrixKappa R n) := by
   intro z
@@ -83,6 +129,15 @@ theorem mfHomKernel_eq_matrixKappa_ker (hR : IsPurelyInfiniteSimpleRing R)
     mfHomKernel (Matrix (Fin n) (Fin n) R)ˣ = (matrixKappa R n).ker := by
   rw [matrixKappa_ker R hR n hn]
   exact (manuscriptMFQuotientUnits R hR n hn).1
+
+/-- The kernel of the canonical map itself has full MF radical at every
+positive rank, rather than merely being killed by ambient representations. -/
+theorem matrixKappa_ker_full_mf_radical (hR : IsPurelyInfiniteSimpleRing R)
+    (n : ℕ) (hn : 1 ≤ n) : mfHomKernel (matrixKappa R n).ker = ⊤ := by
+  haveI := CountableMatrixUnits.countable_matrix (A := R) n
+  rw [matrixKappa_ker R hR n hn]
+  exact unit_commutator_full_mf_radical (Matrix (Fin n) (Fin n) R)
+    (agpMatrixReduction R hR n hn)
 
 /-- The canonical quotient isomorphism induced by finite-rank stabilization. -/
 noncomputable def matrixMFQuotientEquiv (hR : IsPurelyInfiniteSimpleRing R)
@@ -143,12 +198,14 @@ theorem canonicalKOne (hR : IsPurelyInfiniteSimpleRing R)
     Function.Surjective (matrixKappa R n) ∧
       (matrixKappa R n).ker = commutator (Matrix (Fin n) (Fin n) R)ˣ ∧
       mfHomKernel (Matrix (Fin n) (Fin n) R)ˣ = (matrixKappa R n).ker ∧
+      mfHomKernel (matrixKappa R n).ker = ⊤ ∧
       IsOperatorMF (AlgebraicKOne R) ∧
       (∀ (M : Type) [Group M], IsOperatorMF M →
         ∀ f : (Matrix (Fin n) (Fin n) R)ˣ →* M,
           ∃! g : AlgebraicKOne R →* M, g.comp (matrixKappa R n) = f) :=
   ⟨matrixKappa_surjective R hR n hn, matrixKappa_ker R hR n hn,
-    mfHomKernel_eq_matrixKappa_ker R hR n hn, countableAbelianMF _,
+    mfHomKernel_eq_matrixKappa_ker R hR n hn,
+    matrixKappa_ker_full_mf_radical R hR n hn, countableAbelianMF _,
     fun M _ hM f => factors_uniquely_through_matrixKappa R hR n hn M hM f⟩
 
 /-- The complete canonical classification as a closed manuscript statement. -/
@@ -158,6 +215,7 @@ def PrintedCanonicalKOne : Prop :=
       Function.Surjective (matrixKappa R n) ∧
         (matrixKappa R n).ker = commutator (Matrix (Fin n) (Fin n) R)ˣ ∧
         mfHomKernel (Matrix (Fin n) (Fin n) R)ˣ = (matrixKappa R n).ker ∧
+        mfHomKernel (matrixKappa R n).ker = ⊤ ∧
         IsOperatorMF (AlgebraicKOne R) ∧
         (∀ (M : Type) [Group M], IsOperatorMF M →
           ∀ f : (Matrix (Fin n) (Fin n) R)ˣ →* M,
