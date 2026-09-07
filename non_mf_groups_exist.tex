@@ -311,7 +311,10 @@ soficity passes to extensions with amenable
 quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
 Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
 Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
-amenable trace is quasidiagonal.  Since $K$ is a direct limit of
+amenable trace is quasidiagonal.  Tikuisis, White, and Winter proved
+that faithful traces on separable nuclear $C^*$-algebras satisfying the
+universal coefficient theorem are quasidiagonal~\cite{TWW}; here
+$C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  Since $K$ is a direct limit of
 residually finite groups, it is MF~\cite[Corollary~10 and
 Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
 products with $\mathbb Z$, which answers a question of
@@ -653,24 +656,36 @@ the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\)
 agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate
 restriction of \(qp=0\).
 
-Fix a free ultrafilter \(\omega\).  Since
-\(|\tr_{r_n}(a_n)|\le\opnorm{a_n}\), the formula
+The group algebra \(\C[K]\) is dense in \(C^*_{\max}(K)\), so there are
+a finite set \(F\subseteq K\) and scalars \((\alpha_k)_{k\in F}\) with
 \[
- T_\omega([a_n])=\lim_\omega\tr_{r_n}(a_n)
+ a=\sum_{k\in F}\alpha_k u_k,
+ \qquad \opnorm{a-e_K}<\tfrac14,
 \]
-defines a tracial state on \(\mathcal Q_{\mathbf r}\).  The hypothesis
-applies to \((W_n)\) itself, so
+where \(u_k\) is the canonical unitary of \(k\).  The trivial character
+\(\chi\) of \(K\), the state of \(C^*_{\max}(K)\) with \(\chi(u_k)=1\)
+for every \(k\), has \(\chi(e_K)=1\), so
+\[
+ \Bigl|\sum_{k\in F}\alpha_k-1\Bigr|=|\chi(a-e_K)|<\tfrac14.
+\]
+Since \(\pi(e_K)=0\),
+\[
+ \limsup_n\opnorm{\sum_{k\in F}\alpha_kW_n(k)}
+ =\opnorm{\pi(a)}=\opnorm{\pi(a-e_K)}<\tfrac14.
+\]
+The hypothesis applies to \((W_n)\) itself, so
 \[
  |\tr_{r_n}(W_n(k))-1|\le\hsnorm{W_n(k)-I_{r_n}}\longrightarrow0
  \qquad(k\in K),
 \]
-with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and
-therefore \(T_\omega(\pi(k))=1\) for every \(k\in K\).  Then the states
-\(T_\omega\circ\pi\) and the trivial character of \(K\) agree on the
-canonical unitaries, whose span is dense in \(C^*_{\max}(K)\), and
-therefore on all of \(C^*_{\max}(K)\).  The trivial character takes the
-value \(1\) at \(e_K\), while \(\pi(e_K)=0\).  So
-\(0=T_\omega(\pi(e_K))=1\), a contradiction.
+with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and then
+\[
+ \tr_{r_n}\Bigl(\sum_{k\in F}\alpha_kW_n(k)\Bigr)
+ \longrightarrow\sum_{k\in F}\alpha_k.
+\]
+Since \(|\tr_{r_n}(x)|\le\opnorm{x}\), the limit has absolute value at
+most \(\tfrac14\), while \(|\sum_{k\in F}\alpha_k|>\tfrac34\), a
+contradiction.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -736,6 +751,26 @@ a proper isometry, is not stably finite, and has no faithful tracial
 state.  MF algebras are stably finite, and a separable residually
 finite-dimensional $C^*$-algebra is MF~\cite{BK}.
 \end{proof}
+
+A group can satisfy the hypothesis of
+Proposition~\ref{prop:max-infinite} and be MF\@.  The ascending HNN
+extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along
+$(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the
+faithful matrix realization
+\[
+ V\cong
+ \left\{
+ \begin{pmatrix}
+ 2^kA&v\\0&1
+ \end{pmatrix}
+ :A\in\mathrm{SL}_3(\mathbb Z),\
+ v\in\mathbb Z[1/2]^3,\ k\in\mathbb Z
+ \right\},
+\]
+and reduction modulo odd integers separates its elements, so $V$ is
+residually finite and MF~\cite[Corollary~10]{Korchagin}.  So the lamps
+of Section~\ref{sec:amenable-nonqd} are necessary for the non-MF
+conclusion there.
 
 \section{One-sided inverses and elementary groups}
 \label{sec:one-sided-inverses}
@@ -1591,6 +1626,12 @@ C.~Schafhauser, A.~Tikuisis, and S.~White,
 \emph{Nuclear $C^*$-algebras: 99 problems},
 to appear in M\"unster J. Math.,
 \href{https://arxiv.org/abs/2506.10902}{arXiv:2506.10902}.
+
+\bibitem[TWW]{TWW}
+A.~Tikuisis, S.~White, and W.~Winter,
+\emph{Quasidiagonality of nuclear $C^*$-algebras},
+Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284,
+\doi{10.4007/annals.2017.185.1.4}.
 
 \end{thebibliography}
 \end{document}
