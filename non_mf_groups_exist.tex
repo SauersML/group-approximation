@@ -82,7 +82,10 @@ A finite-block construction gives a finitely presented, centerless,
 sofic group whose MF radical is exactly its perfect, residually finite
 lamp subgroup $\mathop{*}_{j\ge1}(A_5)^8$, with residually finite
 quotient.  Its proof extends Kazhdan transport to fixed points in
-finite-dimensional invariant $C^*$-subalgebras.  Finally, we construct
+finite-dimensional invariant $C^*$-subalgebras.  A single cyclic HNN
+extension then gives a finitely presented sofic group whose MF quotients
+are exactly its cyclic quotients, while its reduced $C^*$-algebra is
+simple with a unique trace and is not MF.  Finally, we construct
 a two-generated, finitely presented, torsion-free, acylindrically
 hyperbolic property-\textup{(T)} group with no nontrivial homomorphism
 to an MF group.
@@ -367,6 +370,42 @@ in a free product makes finite presentability possible.  The analytic
 step is Theorem~\ref{thm:finite-algebra-transport}: a finite-dimensional
 invariant algebra has the same fixed points under a Kazhdan subgroup
 and its conjugate compressed copy.
+
+The finite-block example also permits an exact calculation after one
+HNN extension.  In the next theorem, the radical has no nontrivial MF
+images even when considered as a group in its own right.
+
+\begin{mainthm}[a sofic group with exactly cyclic MF quotients]
+\label{thm:sofic-cyclic-mf}
+There is a finitely presented, sofic, acylindrically hyperbolic group $P$
+with a split epimorphism $\chi\colon P\to\mathbb Z$ and an explicit
+infinite-order element $d$ such that
+\[
+ N:=\ker\chi=\normal{d}_P
+   =\operatorname{Rad}_{\mathrm{MF}}(P)
+   =\bigcap_{\substack{R\trianglelefteq P\\{}[P:R]<\infty}}R,
+ \qquad \operatorname{Rad}_{\mathrm{MF}}(N)=N\ne1.
+\]
+The kernel $N$ is perfect and is not finitely generated.  For every
+normal subgroup $R\trianglelefteq P$,
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(P/R)=NR/R,
+ \qquad
+ P/R\text{ is MF}\ \Longleftrightarrow\ d\in R
+       \ \Longleftrightarrow\ P/R\text{ is cyclic}.
+\]
+Every homomorphism from $P$ to an MF group factors uniquely through
+$\chi$, and $\widehat P\cong\widehat{\mathbb Z}$.  The group $P$ is a
+Powers group; in particular, $C^*_{\mathrm r}(P)$ is simple, has a
+unique tracial state, and is not MF.
+\end{mainthm}
+
+Section~\ref{sec:cyclic-mf} constructs $P$ by adding one generator and
+one relator to the presentation of $E$.  The relation identifies a
+normal generator of the quotient $V$ with an infinite-order word in
+$B$.  It forces all MF maps to kill $E$, while soficity is preserved
+by the cyclic HNN extension theorem of Collins and
+Dykema~\cite[Corollary~3.6]{CollinsDykema}.
 
 \subsection*{Related work}
 
@@ -1986,6 +2025,174 @@ finitely presented group nevertheless annihilates it.  No central
 marked element or normal property-(T) subgroup is needed in this
 construction.
 
+\section{A sofic group with exactly cyclic MF quotients}
+\label{sec:cyclic-mf}
+
+The algebraic step is a general HNN construction.  For a countable
+group $G$, write $\operatorname{Res}_{\mathrm{fin}}(G)$ for the
+intersection of its finite-index normal subgroups.
+
+\begin{proposition}[cyclic HNN absorption]
+\label{prop:cyclic-hnn-absorption}
+Let $E$ be countable and let $B\trianglelefteq E$ be annihilated by
+every homomorphism from $E$ to an MF group.  Suppose $r\in E$ and
+$d\in B$ have infinite order, the image of $r$ normally generates
+$E/B$, and $\normal{d}_E=B$.  Put
+\[
+ P=\langle E,s\mid srs^{-1}=d\rangle,
+ \qquad \chi\colon P\longrightarrow\mathbb Z,
+ \quad \chi(E)=0,\quad\chi(s)=1.
+\]
+Then $N:=\ker\chi=\normal{d}_P$ satisfies
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(N)=N,
+ \qquad
+ \operatorname{Rad}_{\mathrm{MF}}(P)
+   =\operatorname{Res}_{\mathrm{fin}}(P)=N.
+\]
+For every $R\trianglelefteq P$, one has
+$\operatorname{Rad}_{\mathrm{MF}}(P/R)=NR/R$; moreover $P/R$ is MF
+if and only if $d\in R$, if and only if $P/R$ is cyclic.
+\end{proposition}
+
+\begin{proof}
+The infinite-order assumption makes $r^k\mapsto d^k$ an isomorphism
+of the two cyclic edge groups, so Britton's lemma embeds $E$ in $P$.
+The map $\chi$ is well defined and split by $k\mapsto s^k$.
+Writing a word of total $s$-exponent zero as a product of conjugates
+of elements of $E$ shows that
+\[
+ N=\langle E_i:i\in\mathbb Z\rangle,
+ \qquad E_i=s^iEs^{-i}.
+\]
+Use analogous notation for $B_i,r_i,d_i$.  The defining relation gives
+\begin{equation}\label{eq:cyclic-kernel-relations}
+ r_{i+1}=d_i\qquad(i\in\mathbb Z).
+\end{equation}
+Let $f\colon N\to M$ be a homomorphism to an MF group.  Its
+restriction to every $E_i\cong E$ kills $B_i$, and hence $d_i$.
+Equation~\eqref{eq:cyclic-kernel-relations} then kills $r_{i+1}$.
+Since $r$ normally generates $E/B$, the restriction to $E_{i+1}$
+is trivial.  This holds for every integer $i$, so $f=1$ and
+$\operatorname{Rad}_{\mathrm{MF}}(N)=N$.
+
+Every MF map out of $P$ consequently kills $N$ and factors uniquely
+through $\chi$.  Conversely, the quotient $\mathbb Z$ is MF and
+its finite cyclic quotients separate all elements outside $N$.
+Finite groups are MF, so the two asserted radicals of $P$ equal $N$.
+Killing $d$ kills $B$ inside $E$ and then kills $r$ by the HNN
+relation.  Normal generation of $E/B$ kills the rest of $E$.
+The resulting presentation has the single generator $s$ and no
+relators.  Thus $P/\normal{d}_P\cong\mathbb Z$ via $\chi$,
+and $\normal{d}_P=N$.
+
+For an arbitrary normal $R$, the image $NR/R$ of $N$ has no
+nontrivial MF image.  It is therefore contained in the MF radical
+of $P/R$.  The quotient $P/NR$ is cyclic and hence MF, giving
+the reverse inclusion.  Since $N=\normal{d}_P$, this radical is
+trivial precisely when $d\in R$.  In that case $P/R$ is cyclic;
+the converse holds because cyclic groups are MF.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sofic-cyclic-mf}]
+Use the concrete group $E=B\rtimes V$ from
+Theorem~\ref{thm:fp-sofic-radical}, with root coordinate
+$(A_5)_\Gamma$.  Choose
+\[
+ x=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}
+       \in\mathrm{SL}_3(\mathbb Z),
+ \qquad a=(12)(34),\quad b=(123)\in(A_5)_\Gamma,
+\]
+and set
+\begin{equation}\label{eq:sofic-cyclic-presentation}
+ r=tx^{-1},\qquad d=atbt^{-1},\qquad
+ P=\langle E,s\mid s(tx^{-1})s^{-1}=atbt^{-1}\rangle.
+\end{equation}
+Thus $P$ is given by the finite presentation of $E$ with one
+additional generator and one additional relator.
+
+We first prove that $r$ normally generates $V$.  In the quotient
+by $r$, one has $t=x$.  Since $t$ commutes with
+$\mathrm{SL}_3(\mathbb Z)$, the image of $x$ is central in the
+image of that linear group.  Writing $e_{ij}=I+E_{ij}$, conjugation
+by $x$ cycles $e_{12},e_{31},e_{23}$, so their images are equal.
+The elementary identity $[e_{12},e_{23}]=e_{13}$ kills $e_{13}$.
+Conjugating by determinant-one signed permutation matrices kills
+every elementary generator (inverting when necessary).
+Integral elementary row reduction shows that these generate
+$\mathrm{SL}_3(\mathbb Z)$, so the linear group dies.
+Then $t=x$ dies.  Each translation generator satisfies
+$tv_it^{-1}=v_i^2$; hence $v_i=v_i^2$ and it dies as well.
+These elements generate $V$, proving $\normal{r}_V=V$.
+
+Let $h\colon E\to\mathbb Z$ be the original height map, with
+$h(t)=1$ and $h(B)=h(\Gamma)=0$.  Since $h(r)=1$, the element
+$r$ has infinite order.  The two letters $a$ and $tbt^{-1}$ lie
+in different free-product blocks of $B$: the block labels
+$\Gamma^+$ and $t\Gamma^+$ have different heights.  Thus $d$
+is cyclically reduced of length two and $d^n$ has reduced length
+$2n$ for $n\ge1$.  In particular $d$ has infinite order.
+In the quotient $E/\normal{d}_E$, the images of $a$ and
+$tbt^{-1}$ are inverse, with orders dividing $2$ and $3$.
+Both are therefore trivial.  Since $a$ normally generates $B$
+by Theorem~\ref{thm:fp-sofic-radical}, this gives
+$\normal{d}_E=B$.
+
+Proposition~\ref{prop:cyclic-hnn-absorption} now gives all radical
+and quotient assertions, with $N\ne1$ because $E$ embeds in $P$.
+The kernel is perfect: its abelianization is MF, since characters
+separate points of a countable abelian group, whereas every MF
+image of $N$ is trivial.  Every finite quotient of $P$ factors
+through $\chi$, and every finite cyclic quotient of $\mathbb Z$
+occurs.  These identifications respect quotient maps, proving
+$\widehat P\cong\widehat{\mathbb Z}$.
+
+The base $E$ is sofic and the edge groups are infinite cyclic,
+so Collins--Dykema's HNN theorem~\cite[Corollary~3.6]{CollinsDykema}
+proves that $P$ is sofic.  Its hypothesis is monotileable amenability
+of the edge subgroup, supplied here by intervals tiling $\mathbb Z$.
+One can also read this permanence argument from the kernel.
+For $p\le q$, write $N_{[p,q]}=\langle E_i:p\le i\le q\rangle$.
+HNN normal form identifies $N_{[p,q]}$ with the iterated amalgam of
+these vertex groups along~\eqref{eq:cyclic-kernel-relations}.
+Each finite amalgam is sofic~\cite[Theorem~3.4]{CollinsDykema};
+their directed union is $N$, and $P=N\rtimes\mathbb Z$ is sofic
+by the sofic-by-amenable extension theorem~\cite[Theorem~1]{ElekSzabo}.
+The same normal form gives
+\[
+ N_{[p,q+1]}\cong
+ N_{[p,q]}*_{\langle d_q\rangle=\langle r_{q+1}\rangle}E_{q+1}.
+\]
+The edge subgroup is proper in $E_{q+1}$, which contains $A_5$.
+Thus every $N_{[p,q]}$ is a proper subgroup of $N$.  Every finite
+subset of $N$ lies in such an interval, proving that $N$ is not
+finitely generated.
+
+Finally, the two associated cyclic subgroups have trivial intersection
+inside $E$.  Indeed $r^k=d^\ell$ implies $k=0$ by height and
+then $\ell=0$ by the infinite order of $d$.  Both are proper in $E$.
+The kernel of the Bass--Serre tree action is contained in the
+intersection of these two edge stabilizers, and is therefore trivial.
+Bryder--Ivanov--Omland's criterion~\cite[Proposition~4.12]{BIO}
+for a nonascending HNN extension with finite intersection of the
+associated subgroups proves that $P$ is a Powers group and that
+$C^*_{\mathrm r}(P)$ is simple with a unique trace.
+Moreover $s\langle r\rangle s^{-1}=\langle d\rangle$ makes
+$\langle r\rangle$ weakly malnormal in $P$, so
+Minasyan--Osin's HNN criterion~\cite[Corollary~2.3]{MinasyanOsin}
+proves acylindrical hyperbolicity.  An MF embedding of
+$C^*_{\mathrm r}(P)$ would restrict to an MF embedding of $P$,
+contradicting $N\ne1$.  Thus this reduced algebra is not MF.
+\end{proof}
+
+The canonical faithful trace makes $C^*_{\mathrm r}(P)$ stably
+finite.  At the level of the maximal algebra, every unital
+$*$-homomorphism from $C^*_{\max}(P)$ to an MF $C^*$-algebra
+factors through the quotient $C^*(\mathbb Z)\cong C(\mathbb T)$:
+restrict to the generating group unitaries and apply
+Theorem~\ref{thm:sofic-cyclic-mf}.  Thus the same group has a
+simple reduced algebra and a cyclic universal MF quotient.
+
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
 
@@ -2241,11 +2448,24 @@ N.~P. Brown,
 Mem. Amer. Math. Soc. \textbf{184} (2006), no.~865, viii+105,
 \doi{10.1090/memo/0865}.
 
+\bibitem[BIO]{BIO}
+R.~S. Bryder, N.~A. Ivanov, and T.~Omland,
+\emph{$C^*$-simplicity of HNN extensions and groups acting on trees},
+Ann. Inst. Fourier \textbf{70} (2020), no.~4, 1497--1543,
+\doi{10.5802/aif.3378}.
+
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[CD]{CollinsDykema}
+B.~Collins and K.~J. Dykema,
+\emph{Free products of sofic groups with amalgamation over
+monotileably amenable groups},
+M\"unster J. Math. \textbf{4} (2011), 101--118,
+\href{https://arxiv.org/abs/1003.1675}{arXiv:1003.1675}.
 
 \bibitem[DGO]{DGO}
 F.~Dahmani, V.~Guirardel, and D.~Osin,
@@ -2355,6 +2575,12 @@ P.~Menal and J.~Moncasi,
 \emph{$K_1$ of von Neumann regular rings},
 J. Pure Appl. Algebra \textbf{33} (1984), no.~3, 295--312,
 \doi{10.1016/0022-4049(84)90064-1}.
+
+\bibitem[MO]{MinasyanOsin}
+A.~Minasyan and D.~Osin,
+\emph{Acylindrical hyperbolicity of groups acting on trees},
+Math. Ann. \textbf{362} (2015), nos.~3--4, 1055--1105,
+\doi{10.1007/s00208-014-1138-z}.
 
 \bibitem[OAI]{OAI}
 OpenAI,

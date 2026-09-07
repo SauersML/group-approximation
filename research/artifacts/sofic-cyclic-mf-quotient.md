@@ -223,6 +223,12 @@ because both associated subgroups are proper, and proves that P is
 acylindrically hyperbolic. Their erratum concerns commensurability and
 3-manifold consequences, not this HNN criterion.
 
+Since P is not MF, its reduced C*-algebra cannot be MF: an embedding
+of that algebra in a norm matrix corona would restrict to an MF embedding
+of its canonical group unitaries. Its faithful canonical trace makes it
+stably finite. These conclusions are also integrated into Theorem G and
+Section 6 of the manuscript.
+
 ## 8. Source and dependency audit
 
 * Theorem F and its exact finite-block model: `non_mf_groups_exist.tex`,

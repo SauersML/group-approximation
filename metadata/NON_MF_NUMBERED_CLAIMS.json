@@ -147,6 +147,29 @@
       "lean": []
     },
     {
+      "id": "thm:sofic-cyclic-mf",
+      "environment": "mainthm",
+      "title": "a sofic group with exactly cyclic MF quotients",
+      "statement_sha256": "023400bbb644247b90095bd7b22dd9bec8bd0c364a1c4a357835a2203bcb7e06",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:fp-sofic-radical",
+        "prop:cyclic-hnn-absorption"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Elementary generation of SL_3(Z); characters separate points of abelian groups",
+        "Amalgam normal form and Bass--Serre theory",
+        "Collins--Dykema, Theorem 3.4 and Corollary 3.6",
+        "Elek--Szabo, Theorem 1",
+        "Bryder--Ivanov--Omland, Proposition 4.12",
+        "Minasyan--Osin, Corollary 2.3"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "prop:mf-residual-calculus",
       "environment": "lemma",
       "title": "",
@@ -687,6 +710,23 @@
       "external_inputs": [
         "Free-product normal form, free tree actions, and residual finiteness of free groups",
         "Elek--Szabo, Theorem 1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "prop:cyclic-hnn-absorption",
+      "environment": "proposition",
+      "title": "cyclic HNN absorption",
+      "statement_sha256": "847780f74e2ea30ceb56c2ad936cecb0622f7086c05b20e0035270c0472d8a32",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma and the HNN normal form theorem"
       ],
       "coverage_gap": "",
       "lean": []

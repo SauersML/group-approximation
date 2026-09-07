@@ -9,6 +9,7 @@ requires:
   - cyclic-hnn-radical-absorption
 artifacts:
   - research/artifacts/sofic-cyclic-mf-quotient.md
+  - non_mf_groups_exist.tex
 ---
 
 Sections 2--3 prove that r=tx^-1 normally generates the affine quotient,
@@ -21,3 +22,5 @@ Minasyan--Osin Corollary 2.3, giving the Powers and acylindrical conclusions.
 
 These named classical inputs are cited exactly in the artifact; the new
 argument is a complete written proof relative to the two prerequisites.
+The argument is integrated as Theorem G and Proposition 6.1 of the
+manuscript, without adding a Lean verification badge.

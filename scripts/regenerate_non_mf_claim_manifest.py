@@ -134,6 +134,15 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
         "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
         "Simplicity and perfection of A_5; free-product center theorem"),
+    "prop:cyclic-hnn-absorption": (
+        "Britton's lemma and the HNN normal form theorem",),
+    "thm:sofic-cyclic-mf": (
+        "Elementary generation of SL_3(Z); characters separate points of abelian groups",
+        "Amalgam normal form and Bass--Serre theory",
+        "Collins--Dykema, Theorem 3.4 and Corollary 3.6",
+        "Elek--Szabo, Theorem 1",
+        "Bryder--Ivanov--Omland, Proposition 4.12",
+        "Minasyan--Osin, Corollary 2.3"),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -255,6 +264,9 @@ DEPENDENCIES: dict[str, list[str]] = {
         "thm:finite-algebra-transport", "prop:mf-residual-calculus",
         "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
     "thm:fp-sofic-radical": ["thm:perfect-block-radical"],
+    "prop:cyclic-hnn-absorption": ["prop:mf-residual-calculus"],
+    "thm:sofic-cyclic-mf": [
+        "thm:fp-sofic-radical", "prop:cyclic-hnn-absorption"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [
