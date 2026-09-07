@@ -494,3 +494,46 @@ Assigned ~146 sentences from the 171-sentence backlog using only already-landed 
 **What remains, 103 sentences, grouped by label** (full detail sent to the lead separately): `lem:rank-two`'s own 36-sentence proof (already on the lead's list for a dedicated lane), `prop:locally-rf-by-z-trace`'s 14-sentence Clifford-lamp-group combinatorial construction preamble (the Lean development reaches the same target via an abstract `Ambient`-type route instead of the literal generators-and-relations presentation), `thm:compression-criterion`'s dense 9-sentence analytic proof (asymptotic multiplicativity, Kazhdan projection corner compression -- no per-sentence table exists yet), and a long tail of smaller proof-detail pockets (`cor:defect-hs`, `lem:saturation`, `prop:linear-collapse`, `cor:leavitt-mf-quotient`, `thm:mf-quotient-units`, `prop:max-infinite`, `cor:simple-infinite-ring`, `thm:headline`) each needing either a dedicated sentence-wrapper lane or deeper individual verification than a direct pass affords.
 
 Verify-decls 0 missing of 513 named throughout. Verify-unconditional 0 new findings at every checkpoint. Final summary this round: formalized 249, unassigned 103, definition 51, structural 31, provenance 19, attribution 16, partial 8, total 477.
+
+## Round 7: Theorem B's full 42-row proof table
+
+Landed: `a654ce86d` (all 36 lem:rank-two census sentences assigned).
+
+Rank-four's `FullDefectRingSentences.lean` (`7d876ae10`) and its table in
+`notes/nonmf-lane-reports/rank-four.md` (`d379ff3ba`) cover the entire printed
+proof of `thm:full-defect-ring` (tex lines 989-1106), 42 printed sentences
+against 36 census keys (the census sentence-splitter merges several printed
+sentences onto one key in nine places: rows 6+7, 14's two halves, 22+23+24,
+27+28, 29+30, 32+33+34 with 34 continuing at its own key after an intervening
+display, 36+37, 38+39, 41+42). Matched by reading the raw tex line by line
+rather than trusting the census's own sentence order for same-line ties (BSD
+`sort -n -k1,1` does not preserve document order for tied line numbers --
+worth remembering for any future same-line matching).
+
+28 rows formalized outright, 2 structural (bare hypothesis-introductions with
+no table row of their own: "Now let R satisfy the hypothesis" and "Let rho be
+a homomorphism..."), 6 partial carrying the lead's own grading verbatim (rows
+19, 22-24's merge, 25, 27-28's merge, 40 -- every one a route difference, not
+an unproven clause: the conclusion is always carried, only the printed
+method -- Steinberg conjugation vs. signed permutation matrices, or the
+literal subring `S` vs. working at `R` itself -- differs from what the tex
+says). Caught and fixed my own bug before landing: a first draft cited the 41
+distinct `manuscriptSentence_*` names without their required prefix,
+verify-decls flagged 40 missing, fixed by regenerating with the corrected
+namespace path.
+
+Verify-decls 0 missing of 557 named after the fix. Verify-unconditional 0 new
+findings -- confirms nothing here needed a baseline register line, matching
+the lead's own note that the sigma and EJZ/BHV sentences cite hypothesis-free
+declarations by name. Summary: formalized 278 (was 249), unassigned 67 (was
+103), definition 51, structural 33, provenance 19, attribution 16, partial 13
+(was 8), total 477.
+
+This closes the last of the large proof-carrier gaps flagged in Round 6's
+grouped report except `prop:locally-rf-by-z-trace`'s 14-sentence combinatorial
+preamble (mathematics not in the tree in that literal form) and
+`thm:compression-criterion`'s 9-sentence dense analytic proof (still needs a
+lane table). `thm:factorization-nonmf-trace`'s 6-sentence polar-decomposition
+proof also has a fresh carrier as of this round
+(`FactorizationTraceSentences.lean`, `e60d09eb2`, landed independently while
+this round was in flight) -- next to assign.
