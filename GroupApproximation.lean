@@ -3443,6 +3443,12 @@ import GroupApproximation.KTheory.Spaces
 -- import closure.
 import GroupApproximation.STW.Actual
 import GroupApproximation.STWProblems
+-- wave 2026-09-07 (lane nonmf-formalize): AGP Corollary 1.7 for matrix rings,
+-- and the sandwich <-> idempotent purely-infinite-simple bridge.
+import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
+import GroupApproximation.Algebra.PurelyInfiniteBridge
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsMatrixReduction
+import GroupApproximation.Manuscript.OneSidedMFRadical.BinaryLeavittPurelyInfiniteIdempotent
 -- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
 -- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
 --  says "UNPROBED, do not import yet")
