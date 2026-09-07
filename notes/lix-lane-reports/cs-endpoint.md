@@ -861,17 +861,25 @@ exact type signatures plus every already-landed, unconditional, green
 theorem bearing directly on each.  **No refutation found for any of the
 three.**
 
-* **`hres` — strongest evidence.**  `ThomStepCOddLocal.lean:22-32`'s own
-  docstring works out the content: under the Thom isomorphism on each side,
-  `lixRes` becomes restriction of degree-0 cohomology from the base
-  `N = S¹×S⁵×∏ℂP^{dⱼ}` to the trivialising ball, injective *exactly when N is
-  connected*.  `LIXBaseConnected.lean:63`'s `instance pathConnectedSpace_lixN
-  (dd) : PathConnectedSpace ↥(lixN dd)` is landed, unconditional, for every
-  `dd`, and its own docstring (lines 11-18) says outright: "this is a
-  prerequisite for `hres`... the connectedness is not incidental to `hres`,
-  it is the whole of its content once the two Thom isomorphisms are in
-  place."  So the fact `hres` needs is already a theorem; what's left is
-  bookkeeping, not open mathematics.
+* **`hres` — RE-GRADED 2026-09-07, see correction below.**  Original entry
+  said "strongest evidence" and cited `ThomStepCOddLocal.lean:22-32`'s
+  docstring: "under the Thom isomorphism on each side, `lixRes` becomes
+  restriction of degree-0 cohomology from the base... connectedness is the
+  whole of its content."  **That route does not typecheck.**  `lix-hres`
+  found, while actually proving `hres`, that there is no Thom isomorphism
+  over the trivialising ball: `bridgeTotal` and `thomJmTotal` are both
+  declared `[CompactSpace X] [T2Space X]` (`ThomBridgeTotal.lean:74`,
+  `LIXThomClassTerm.lean:89`), and a ball is not compact.  The lead corrected
+  `LIXBaseConnected.lean`'s docstring on main at `e341f09e3`.  The grade
+  stands — `hres` IS satisfiable — but on the strength of `lix-hres`'s actual
+  route (`LIXThomResReduction.lean` + `LIXResFibre.lean`: connectedness makes
+  the source of `lixRes` a line, via `lixRelLine`, and the *real geometric
+  content* — that the Thom class survives the restriction — is discharged by
+  following the class one step further, to the fibre over `lixZero`, a
+  singleton and therefore compact Hausdorff for free), not on a
+  bookkeeping-only reduction.  "Bookkeeping, not open mathematics" was wrong;
+  the surviving nonvanishing is real geometry, which is exactly why that
+  lane needed a new route rather than an assembly.
 * **`hsq` — strong evidence.**  The one way this fails is the two routes
   (excise-then-chart via `lixRelModelIso`, vs. restrict-then-trivialise via
   `lixLocalPairIsoClosed`) going through incomparable neighbourhoods of the
@@ -907,10 +915,37 @@ three.**
   level — so no single shared premise could make all three collapse together
   for the wrong reason.
 
-Confidence ranking `hres > hsq > hclass`; the remaining risk in all three
-reads as formalization effort (Thom-isomorphism bookkeeping, an
-excision-naturality chase, pinning a general naturality argument to concrete
-terms), not soundness of the stated targets.
+Original confidence ranking `hres > hsq > hclass` is retracted along with the
+`hres` reasoning above; see the rule below for why, and for which of the
+three gradings this actually applies to.
+
+**RULE: a docstring is not evidence.**  The lead's correction, verbatim
+because it generalizes: a docstring records what an author believed, often
+before neighbouring code moved, and it is not checked by anything.  Before
+citing a claim from prose as model-test evidence, read the *declaration* it
+refers to and check its binders and instance arguments — the compactness
+requirement that sank the `hres` citation was visible in `bridgeTotal`'s and
+`thomJmTotal`'s own signatures the whole time, not hidden anywhere.
+
+Grading this pass's three citations against that rule, since the lead asked
+which rested on prose and which on signatures:
+
+* `hres`'s citation rested on prose (`ThomStepCOddLocal.lean`'s docstring)
+  and was **wrong** — see above.
+* `hsq`'s citation rested on a *declaration*: `lixBaseBall_subset_target`
+  (`LIXBaseBall.lean`) is a landed, unconditional **theorem**, not a
+  docstring claim about one — checked and holds.
+* `hclass`'s citation is mixed: `lixChern_top_eq_gamma`
+  (`LIXChernTopGamma.lean`) is a landed, unconditional theorem — checked and
+  holds.  `ThomEulerNaturality.lean`'s docstring is prose, and *was* cited as
+  such, but with the caveat stated plainly that its own theorems take
+  `hclass`'s shape as an input rather than deriving it — applying this same
+  discipline correctly rather than failing to apply it.  The lead confirmed
+  this citation holds as qualified.
+
+So: two of the three model-test citations were signature-based and checked
+out; the one that was prose-based and unqualified was wrong.  Read the
+declaration, not the comment above it.
 
 ### `π*` is an isomorphism, generically — LANDED, `534281c73`, `BundleTotalPiCohIso.lean`
 
@@ -954,11 +989,13 @@ Neither shows this failure mode, and the reason is structural rather than a
 case-by-case check: **both proof strategies are uniform across every `G`
 satisfying `hGc`/`hGu`, not tuned to the clutching construction.**
 
-* `hres`'s truth (per `ThomStepCOddLocal.lean`'s docstring) reduces to
-  connectedness of `N` alone, via the Thom isomorphism.  `pathConnectedSpace_lixN`
-  doesn't mention `G`, and the Thom-isomorphism reduction holds for *any*
-  vector bundle (mod-2-orientability is automatic) — so `hres` is the same
-  claim about `N` regardless of which `G` builds the bundle.
+* `hres`'s actual route (`LIXThomResReduction.lean` + `LIXResFibre.lean`, not
+  the docstring reduction retracted above) is also uniform in `G`.
+  Connectedness of `N` (`pathConnectedSpace_lixN`, no `G`) makes the source of
+  `lixRes` a line; the surviving nonvanishing is then checked at the single
+  fibre over `lixZero`, and nothing in that computation — `rank_lixBundle`,
+  the Leray–Hirsch coordinates, the top coefficient being the unit — singles
+  out the clutching `G` over any other continuous corner-unitary one.
 * `hsq`'s only failure mode would be the two neighbourhoods (excision-chart
   target vs. trivialising ball) failing to nest for some `G`.  The excision
   side, `lixRelModelIso`, takes no `G` parameter at all.  The nesting theorem,
@@ -970,3 +1007,63 @@ satisfying `hGc`/`hGu`, not tuned to the clutching construction.**
   corner-unitary `G`, trivial or not.
 
 So no evidence of a `G`-dependent gap in either statement.
+
+### Co-compile of all four new modules — GREEN, claim corrected; root wiring — VERIFIED and APPLIED
+
+Co-compiled `LIXStepCOddWired`, `LemmaTwoOddNonvanishing`, `LemmaTwoOfHsqHresHclass`
+and `BundleTotalPiCohIso` in one `lake build` call, per the lead's ask (each had
+only been probed alone before, against different states of a shared tree three
+other lanes write into).  `Build completed successfully (9318 jobs)`, `PROBE
+GREEN`, all four named in the `== lake build ...` line, all four `Replayed`
+(inputs unchanged since their last solo probe) — still a genuine check, since a
+replay revalidates every trace/hash across the shared graph for all four targets
+at once.
+
+**Overclaim, corrected.**  I said a namespace collision or duplicate-declaration
+conflict between the four "would have surfaced here and didn't."  That's only
+true for modules sharing a closure.  `LemmaTwoOfHsqHresHclass` imports
+`LIXStepCOddWired` and `LemmaTwoOddNonvanishing`, so a collision among those
+three would indeed have surfaced.  `BundleTotalPiCohIso` imports only
+`BundleHomotopy`/`CohomologyBridge` and is imported by none of the other three —
+nothing in that probe brought it into the same closure as the others, so a
+duplicate between it and any of them would have compiled green there and broken
+only at the root, invisibly to my build.  The lead ran the check mine couldn't
+(a full duplicate scan over the corpus): exactly one duplicate name exists
+repo-wide, `bridgeChartIncl_mapsTo`, between two *unlanded* lix-hres/lix-hclass
+files (already ruled on, not touching my four).  So the conclusion — no
+collision — was right, but my stated reason overclaimed what a co-compile
+probe alone can show.  Same discipline as the `hres` correction above: say what
+the evidence covers, not what it doesn't.  **Rule, generalized: a green
+co-compile only rules out a collision among modules that share an import
+closure; a module reachable by none of the others in the batch needs a
+corpus-wide duplicate scan, not a build, to clear.**
+
+Root wiring list (computed earlier this entry) verified line-by-line by the
+lead and applied: all four import lines inserted at the anchors given, 0
+dangling imports, 0 cycles across the graph post-insertion, all four reachable.
+Root build was running in the `lead` clone as of this writing.
+
+### Watcher fixed: path-based, not commit-message-based
+
+My integration-lane watcher originally filtered `origin/main` commits by
+message prefix (`LIX lix-hsq:` etc.).  **Wrong** — lanes share no commit-message
+convention (my own two landings read `CharClass: ...`; the lead's read `LIX
+lane report: ...`), so a discharge landed under an unmatching message would
+have been invisible and I'd have sat idle believing nothing happened, with no
+error to notice.  Replaced with `watch_lanes_v2.sh`: polls `git fetch` +
+`git log origin/main --name-only`, reacts to *any* new commit touching
+`GroupApproximation/CharClass/*.lean` regardless of message, at a 3-minute
+interval (the original 45s was too aggressive against a remote three other
+lanes are pushing to).  Old watcher stopped, new one running from
+`scratchpad/wire/watch_lanes_v2.sh`.
+
+**Near-miss caught before landing anything**: saw `LIXResFibre.lean` on local
+disk with a theorem matching `hres`'s exact type and started wiring it in,
+before checking that the file was actually on `origin/main` — it wasn't (a
+draft sitting in the shared working tree, whose own dependency `ThomJmNatural`
+was red at the time).  Reverted the edit before running `ccland.sh`; nothing
+false reached the repo.  The two-hypothesis form is now pre-drafted at
+`scratchpad/wire/LemmaTwoOfHsqHresHclass.2hyp.draft.lean`, ready to deploy the
+moment `LIXResFibre` (or whatever module ends up carrying `injective_lixRes`)
+actually lands on `origin/main`.  **Rule: local working-tree visibility is not
+a landing signal in a shared tree — only an `origin/main` commit is.**
