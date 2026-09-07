@@ -4077,6 +4077,10 @@ import GroupApproximation.PropertyT.IntegralGeneratorShearDescentMass
 import GroupApproximation.PropertyT.IntegralGeneratorShearMass
 import GroupApproximation.PropertyT.IntegralGeneratorShearSelector
 import GroupApproximation.Sofic.CliffordWitnessSoficPrinted
+import GroupApproximation.Algebra.PurelyInfiniteSimpleRing
+import GroupApproximation.Leavitt.UniversalOneSidedPairRing
+import GroupApproximation.Manuscript.OneSidedMFRadical.HilbertSchmidtAdMatrix
+import GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupB
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
