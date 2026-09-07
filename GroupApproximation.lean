@@ -3960,6 +3960,16 @@ import GroupApproximation.CharClass.ThomChernDegreewise
 import GroupApproximation.CharClass.CohomologyTotalNontrivial
 import GroupApproximation.CharClass.LIXBaseBall
 import GroupApproximation.CharClass.CohomologyLHRestrict
+import GroupApproximation.CharClass.ThomChartSquare
+import GroupApproximation.CharClass.ThomJmNatural
+import GroupApproximation.CharClass.LIXResFibre
+import GroupApproximation.CharClass.ThomChartTautZero
+import GroupApproximation.CharClass.ThomBridgeRelToAbs
+import GroupApproximation.CharClass.LIXHclass
+import GroupApproximation.CharClass.LIXHsqNeighbourhood
+import GroupApproximation.CharClass.LIXHsqEta
+import GroupApproximation.CharClass.LIXHsqLinear
+import GroupApproximation.CharClass.LIXHsqHomotopy
 import GroupApproximation.CharClass.CohomologyParitySlice
 import GroupApproximation.CharClass.CohomologyLIXSliceBridge
 import GroupApproximation.CharClass.CohomologyLIXHslice
