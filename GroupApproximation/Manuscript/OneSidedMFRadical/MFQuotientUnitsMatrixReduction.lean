@@ -2,7 +2,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
 import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientMatrices
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsStepOne
-import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsPeirce
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsReductionProof
 
 /-!
 # Matrix reduction and the supported-unit step are closed
@@ -77,6 +77,12 @@ theorem printedMFQuotientUnits_of_menalMoncasi
     (hMM : AGPMenalMoncasiReduction) : PrintedMFQuotientUnits :=
   printedMFQuotientUnits_of_agpThree abstractUnitAbelianization hMM agpStepOne
 
+/-- The all-rank MF quotient classification, with every algebraic and MF
+input discharged. The quotient is abstract abelianization; the canonical
+algebraic K₁ identification is a separate theorem. -/
+theorem manuscriptMFQuotientUnits : PrintedMFQuotientUnits :=
+  printedMFQuotientUnits_of_menalMoncasi agpMenalMoncasiReduction
+
 end MFQuotientUnits
 
 namespace MFQuotientUnitsKOne
@@ -106,6 +112,7 @@ end GroupApproximation
 
 #audit_closed_axioms GroupApproximation.MFQuotientUnits.agpMatrixReduction
 #audit_closed_axioms GroupApproximation.MFQuotientUnits.abstractUnitAbelianization
+#audit_closed_axioms GroupApproximation.MFQuotientUnits.manuscriptMFQuotientUnits
 #audit_axioms GroupApproximation.MFQuotientUnits.printedMFQuotientUnits_of_menalMoncasi
 #audit_axioms GroupApproximation.MFQuotientUnits.printedMFQuotientUnits_of_agpThree
 #audit_axioms
