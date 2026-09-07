@@ -612,13 +612,37 @@ of the conjugators. The reducedness and concrete obstruction pass closed axiom
 audits. This is an auxiliary-interface obstruction, not an instance of all
 Osin small-cancellation hypotheses or a constructed dropped-cell cut.
 
-The next repair must retain that historical predicate and refutation, add
-actual certified null-G-face homotopies and edge-pair cancellation to a richer
-recorded shelling, prove its ordered relator-product formula, and transport it
-through the cut consumers. That replacement is not yet implemented. The
-existing infix/rebasing restriction and construction of enclosing faces still
-need independent justification. This is a published stopping checkpoint, not
-another discharged assembly admission.
+`CellShellingWithGCells.lean` now implements the replacement. Recorded relator
+steps retain their exact conjugators and words; actual face-set word homotopies
+through certified null inner faces, including reverse-pair cancellation, leave
+that trace unchanged. The historical predicate embeds in the new one, and the
+ordered relator-product formula is proved with only the permitted axioms.
+`CellShellingWithGCellsModel` constructs the positive shelling on the same
+six-dart reduced planar diagram that refutes the old predicate. It rotates the
+relator, removes the bridge spur, inserts the actual G-cell digon, and cancels
+the remaining reverse pair to reach the original exterior dart.
+
+`SurgeryGCellCutRecord`, `SurgeryGCellCutProduct`, `SurgeryGCellCutDiagram`, and
+`SurgeryGCellCutSections` carry this repair through the actual cut constructor.
+The corrected `RegionCutWithGCells` retains the original topology, cell infix,
+and common rebasing requirements. The old record maps into it and remains
+unchanged. The new constructor derives the ordered boundary product,
+planarity, reducedness, strict cell-count drop, and the exact lifted boundary
+sections; its adapter supplies the current `Lemma65CutData`.
+
+`GCellCutSourceModel` and `GCellCutModel` exhibit an actual reduced two-to-one
+cut needing this replacement. The eight-dart source adds a relator monogon to
+the previous bridged-relator/G-cell example. Its two based relator values are
+distinct transpositions and do not cancel. The outside consists of the old
+exterior and the discarded monogon, with genuine boundary `[5]`; the general
+reclosure theorem produces its topology. The cut keeps the bridged relator
+and G-cell digon, has exterior `[4]`, and is reduced with exactly one cell.
+The corrected constructor supplies a positive `Lemma65CutData` instance and
+the historical shelling is refuted on this very cut. These concrete endpoints
+pass closed axiom audits. The model does not assert Osin small-cancellation
+hypotheses. Construction of enclosing faces, justification of the required
+cell ordering/rebasing, and the general graph induction remain open. This
+repair discharges no additional assembly admission.
 
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
