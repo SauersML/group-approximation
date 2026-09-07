@@ -2,6 +2,7 @@ import GroupApproximation.AlgTop.CochainLeibniz
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomologyHomotopyInvariance
 import Mathlib.Algebra.Homology.ConcreteCategory
 import Mathlib.Topology.Homotopy.Equiv
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Integral singular cohomology `Hⁿ(X; R)` and its element-level API
@@ -473,5 +474,21 @@ def cohIsoOfHomotopyEquiv (R : Type) [CommRing R] {X Y : TopCat.{0}}
     exact cohPullback_id R X n
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cocycleClass_surjective
+#audit_axioms cocycleClass_coboundary_zero
+#audit_axioms cocycleClass_smul
+#audit_axioms cohPullback_comp
+#audit_axioms cohPullback_eq_of_homotopy
 
 end GroupApproximation.AlgTop

@@ -1,5 +1,6 @@
 import Mathlib
 import GroupApproximation.Analysis.LIXProjectiveSpaceModel
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Entry calculus on the projection model of `ℂP^d`
@@ -182,6 +183,19 @@ theorem basePoint_entry (d : ℕ) (a b : Fin (d + 1)) :
 @[simp] theorem basePoint_entry_zero_zero (d : ℕ) : entry (basePoint d) 0 0 = 1 := by
   rw [basePoint_entry, baseVec_zero]
   simp
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms basePoint_entry_zero_zero
+
 
 end CPn
 

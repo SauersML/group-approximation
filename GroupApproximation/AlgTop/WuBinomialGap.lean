@@ -3,6 +3,7 @@ import Mathlib.Data.Nat.Choose.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The odd-binomial gap in the Wu-formula tower induction
@@ -288,6 +289,22 @@ computation.  Recorded separately because it is the one instance the geometric
 argument has so far had to route around by hand. -/
 theorem no_odd_choose_one : ∀ i : ℕ, 1 ≤ i → Even ((1 + 2 - i).choose i) :=
   no_odd_choose_two_pow_sub_three (m := 2) le_rfl
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms sparseChoose_iff
+#audit_axioms exists_odd_choose_iff
+#audit_axioms no_odd_choose_two_pow_sub_three
+#audit_axioms no_odd_choose_one
+
 
 end WuBinomial
 end AlgTop

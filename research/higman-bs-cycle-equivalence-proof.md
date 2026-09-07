@@ -4,7 +4,8 @@ id: higman-bs-cycle-equivalence-proof
 kind: route
 title: Exactify each BS edge and telescope the four occurrence seams
 target: higman-hs-microstates-are-near-glued-exact-bs-cycles
-requires: []
+requires:
+  - higman-hs-word-coefficient-exceeds-nine-fifths
 ---
 
 Levit--Vigdorovich, arXiv:2206.02268, Corollary D(3), prove normalized-HS
@@ -28,3 +29,8 @@ representations of Higman's group are trivial, closeness to an exact
 representation is exactly convergence of all four generators to the
 identity, proving `(HBS4)`.
 
+The quantitative obstruction recorded with the claim is supplied by the
+explicit rational-coefficient prerequisite: its single 2-by-2 tuple
+forces C>=2748800041/1512087866 in any global marked energy bound.
+This additional finite calculation does not close the vanishing-seam
+condition used in the equivalence.

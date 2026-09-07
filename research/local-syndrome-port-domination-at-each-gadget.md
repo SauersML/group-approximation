@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
   - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
+  - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
 distinct_from:
   bounded-overlap-syndrome-energy-accounting: that is the finite incidence-counting lemma which sums local charges once they are supplied, and it is used unchanged by this region; this is the supply problem -- constructing the commuting local projectors and proving the per-port operator inequality against the neighbouring Hamiltonian terms.
   common-higher-rank-context-projections-are-syndrome-cylinders: that identifies syndrome cylinders among the common projections of a higher-rank context in the normalized-HS microstate atlas; this asks for tensor-site fault projectors dominated by a state-weighted local Hamiltonian energy, in a fixed finite-dimensional tensor product.
@@ -18,9 +19,10 @@ rounder cost with a NO-side energy floor only after positive constant
 combinatorial gap has been supplied. That equivalence neither constructs
 these ports nor supplies the hardness reduction, the YES bound, or (EX).
 
-For the amplified Hamiltonian `H' = (1/m) sum_a h'_a`, construct an isometry
+For the relevant NO outputs `H' = (1/m) sum_a h'_a` of the proposed
+amplifier, construct an isometry
 `W : H -> H_syn tensor H_data` and **mutually commuting** projectors `B_j` on
-`H_syn`, one per amplification gadget, together with neighbourhoods
+`H_syn`, indexed by syndrome fault labels, together with neighbourhoods
 `N(j) subset [m]` such that
 
 ```text
@@ -31,6 +33,10 @@ and every term `h'_a` lies in at most `R = O(1)` of the `N(j)`.  The `B_j`
 must be **terminal local ports**: testable inside a bounded-radius region of
 the amplified instance, with the logical subsystem left in the commutant, so
 that measuring them reveals a fault pattern and not the encoded witness.
+When flags name Hamiltonian terms directly, `j=a`. A gadget-indexed
+construction must supply an explicit map from measured gadget faults to
+term faults, with a uniform bound on its multiplicity; a common index
+letter is not such a map.
 
 Given (LSP1) and bounded occurrence,
 `bounded-overlap-syndrome-energy-accounting` supplies the global (SD) with
@@ -45,6 +51,14 @@ depth and `C_0` is again not constant.
 
 ## Attempts
 
+- **Supply one compatible construction.** The open claim
+  `amplifier-has-compatible-local-syndrome-effects` binds these physical
+  ports and local bounds to the joint support condition for recovery.
+  `local-syndrome-synthesis-has-an-exact-sdp-test` gives an exact finite
+  feasibility criterion and weak dual certificates. It does not construct
+  local ports efficiently. On the paired-projector family, both-term
+  neighborhoods admit recovery, but the sharp local constant is
+  `(N^2+1)/4`, so this candidate still has no uniform bound.
 - **Commuting flags by an unrestricted dilation.** Every joint POVM has
   commuting one-bit flags on a larger space. This supplies no bound on the
   physical realization of `W`; see

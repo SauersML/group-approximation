@@ -23,6 +23,15 @@ The proof and [exact replay](scripts/check_unique_games_noisy_direction.py)
 are integrated with Cairn; UGC remains open. Reproduce with
 `python3 scripts/check_unique_games_noisy_direction.py --check`.
 
+[The affine test soundness obstruction](research/artifacts/unique-games-affine-test-soundness-2026-09-07.md)
+gives explicit 2-to-1 games of value at most `2/sqrt(N)` whose folded
+long-code test outputs have high value. The proof, dependencies, and
+[exact finite checks](scripts/check_unique_games_affine_soundness.py) are
+integrated with Cairn and the Unique Games replay workflow. This rules out
+that test's uniform soundness under only affine richness; it does not prove
+or disprove UGC. Reproduce with
+`python3 scripts/check_unique_games_affine_soundness.py --check`.
+
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
 gives an elementary obstruction to controlling a nontrivial word by relation
 errors on individual vectors, with linked research claims and proofs. It also
@@ -36,6 +45,14 @@ sharpen the nonhyperlinear research route in Cairn. The exact amplifier
 replay is `python3 experiments/hs_word_gap_amplification_check.py`.
 The group-specific matrix bound and nonhyperlinear existence remain open;
 these research proofs carry no new Lean verification claim.
+
+[Exact rational word-certificate checks](research/artifacts/hs-word-certificate-rational-search.md)
+now provide replayable counterexamples to proposed HS energy coefficients.
+The [Higman calculation](research/artifacts/higman-hs-word-coefficient-lower-bound.md)
+forces its marked-word coefficient above `9/5` using explicit rational
+2-by-2 unitaries. A bounded search at coefficient `2` is inconclusive;
+nonhyperlinear existence remains open. Replay the witness with
+`python3 experiments/hs_word_certificate.py verify research/artifacts/higman-hs-word-coefficient-witness.json`.
 
 [Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
 gives a rational qubit-projector family with combinatorial gap `1/2` and
@@ -54,13 +71,17 @@ radical. Complete written proofs and exact finite certificate replays are
 included; these results do not settle the non-MF research goals.
 
 [Gottschalk surjunctivity research](notes/GOTTSCHALK_RESEARCH_2026-09-07.md)
-records a complete proof of a conditional observable-growth criterion and
-an exact reversible example showing why its hypothesis is not universal.
+includes full written proofs of a conditional observable-growth criterion,
+[generic Cantor fibers for local decoders](research/artifacts/gottschalk-decoder-fibers-2026-09-07.md),
+and [sharp quantum compression obstructions](research/artifacts/gottschalk-quantum-compression-2026-09-07.md).
+The fiber and matrix-extension criteria each have an explicit unresolved premise.
 The [positive conjecture goal](research/gottschalk-surjunctivity-conjecture.md)
 remains open in Cairn. Replay the accompanying exact checks with:
 
 ```sh
 python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py
+python3 research/artifacts/check-gottschalk-decoder-fibers-2026-09-07.py
+python3 research/artifacts/check-gottschalk-quantum-compression-2026-09-07.py
 bin/cairn why gottschalk-surjunctivity-conjecture
 ```
 

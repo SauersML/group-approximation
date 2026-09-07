@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.UniversalCoefficients
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SphereOrientationPosFromMV
 
 /-!
@@ -120,5 +121,23 @@ theorem spherePairing_surjective (n : ℕ) (hn : 1 ≤ n) :
   exact ⟨_, h⟩
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, so a
+`sorryAx` arriving through the vendored Mayer–Vietoris suspension tower is a red
+build rather than a line of log output nobody reads. It also emits the
+per-declaration `depends on axioms` line that the landing gate checks by name;
+without a directive that check has nothing to look for and passes vacuously.
+
+`#audit_closed_axioms` is deliberately *not* used: it rejects any declaration
+whose type starts with a binder, and every statement here quantifies over the
+dimension `n` and its positivity hypothesis. Auditing the closure is the
+guarantee available; unconditionality is not being claimed. -/
+
+#audit_axioms spherePairing_sphereGen
+#audit_axioms sphereGen_ne_zero
+#audit_axioms spherePairing_surjective
 
 end GroupApproximation.AlgTop

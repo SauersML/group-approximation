@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
+  - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
 ---
 
 **OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an
@@ -47,6 +48,13 @@ is proved or refuted by that counterexample.
 
 ## Attempts
 
+* **Direct affine soundness of the published folded noise test.**
+  `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
+  source family with vanishing value and folded output labelings with
+  high acceptance. The complete proof includes all three noise layers,
+  a finite-field incidence bound, and the conversion to permutation
+  constraints. It closes this test under only `F_lin` richness; it is
+  neither a UGC proof nor a UGC counterexample.
 * **Structured 2-to-1 instances.**  Attack the equivalent Rich 2-to-1
   formulation on the `F_lin` instances whose fibers are affine pairs
   `{x, x+b}` -- the instances the presently known hardness machinery

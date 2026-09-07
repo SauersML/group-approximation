@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveBasic
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The affine chart of `ℂP^d`
@@ -261,6 +262,19 @@ theorem chartAt_zero (d : ℕ) : chartAt (0 : Fin d → ℂ) = basePoint d := by
       rfl
   rw [hv a, hv b]
   simp
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms chartAt_zero
+
 
 end CPn
 

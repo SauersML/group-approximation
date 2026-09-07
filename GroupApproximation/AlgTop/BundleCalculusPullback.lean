@@ -1,6 +1,7 @@
 import GroupApproximation.AlgTop.BundleCalculusTransport
 import GroupApproximation.KTheory.MatrixProjection
 import Mathlib.Topology.Homotopy.Basic
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus III: pullback, and homotopy invariance of the pullback
@@ -154,6 +155,21 @@ theorem murrayVonNeumannEquiv_pullback_of_homotopic {f₀ f₁ : C(X, Z)}
   exact murrayVonNeumannEquiv_pullback_of_homotopy H hP
 
 end HomotopyInvariance
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+base spaces and the index type. -/
+
+#audit_axioms murrayVonNeumannEquiv_pullback
+#audit_axioms unitaryConj_pullback_of_homotopy
+#audit_axioms murrayVonNeumannEquiv_pullback_of_homotopy
+#audit_axioms murrayVonNeumannEquiv_pullback_of_homotopic
 
 end BundleCalculus
 end GroupApproximation

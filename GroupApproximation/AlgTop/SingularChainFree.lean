@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.SingularCohomology
 import GroupApproximation.AlgTop.FreeSubmodulePID
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The singular chain groups are free, and the cycles are a direct summand
@@ -99,5 +100,19 @@ theorem isCocycle_iff (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
   rw [cochainCoboundary_eq_comp]
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms free_range_d
+#audit_axioms projective_quot_ker_d
+#audit_axioms exists_extend_off_ker_d
 
 end GroupApproximation.AlgTop

@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "scope": "One specified ordered cancellation template in F_3[C_3].",
+  "conjecture_proved": false,
+  "prime": 3,
+  "group": {
+    "name": "C_3",
+    "labels": "generator powers modulo 3"
+  },
+  "rows": [
+    0,
+    0,
+    1,
+    2,
+    2
+  ],
+  "columns": [
+    0,
+    1
+  ],
+  "pivot": [
+    0,
+    0
+  ],
+  "blocks": [
+    [
+      [
+        4,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        3,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        4,
+        0
+      ]
+    ]
+  ],
+  "phase_order": 9,
+  "row_phase_exponents": [
+    0,
+    6,
+    4,
+    2,
+    8
+  ],
+  "column_phase_exponents": [
+    0,
+    1
+  ],
+  "modular_forward_product": [
+    1,
+    0,
+    0
+  ],
+  "cyclotomic_relation": "z^6 + z^3 + 1 = 0",
+  "cyclotomic_forward_product": [
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cyclotomic_reverse_product": [
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cube_root_assignments_checked": 243,
+  "cube_root_solutions": []
+}

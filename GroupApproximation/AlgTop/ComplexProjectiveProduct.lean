@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveSphere
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Products of complex projective spaces
@@ -81,6 +82,19 @@ theorem subsingleton_CPProd_of_forall_zero {ι : Type} [Fintype ι] {dd : ι →
   refine ⟨fun y z => CPProd.ext fun j => ?_⟩
   haveI : Subsingleton (CP (dd j)) := by rw [h j]; infer_instance
   exact Subsingleton.elim (y j) (z j)
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms subsingleton_CPProd_of_forall_zero
+
 
 end CPn
 

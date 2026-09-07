@@ -49,3 +49,11 @@ No such universal countability result has been proved. In particular,
 large topological fibers do not force positive conditional entropy for
 the measure supported on the chosen section; the artifact gives a
 rectangular counterexample to that inference.
+
+The quantum extension attack now has exact obstruction bounds in
+split-ca-quantization-has-sharp-defect. Compression by the encoder's
+isometry is local and unital completely positive, but a strict encoder
+would give it a norm-one multiplicative defect and put its range
+projection at distance 1/2 from the quasilocal algebra. The universal
+extension to a unital homomorphism on full matrix observables remains
+an open prerequisite. Locality alone does not supply multiplicativity.

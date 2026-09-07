@@ -6,10 +6,12 @@ title: Conditioned on the measured syndrome set, a channel returns a state exact
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
+  - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
 ---
 
 Hypothesis (EX) of `commuting-syndrome-domination-gives-a-rounder`, for the
-amplified Hamiltonian.  After the joint measurement of the commuting ports
+relevant NO outputs of the same proposed amplifier. After the joint
+measurement of the commuting ports
 `B_j` of `local-syndrome-port-domination-at-each-gadget`, with
 `S = {a : B_a reads 1}`, there is a CPTP map returning a normalized state on
 the space where the `h'_a` act, satisfying
@@ -46,6 +48,12 @@ shows that even exactly matching marginal cost bounds cannot certify it.
 The criterion does not find the kernel vectors efficiently or preserve the
 logical witness; those stronger recovery demands require separate proofs
 if a proposed construction uses them.
+
+The shared-data claim `amplifier-has-compatible-local-syndrome-effects`
+requires this support condition and the local bounds on a single tuple.
+The extraction route applies the criterion to that tuple's actual joint
+effects. The finite SDP in `local-syndrome-synthesis-has-an-exact-sdp-test`
+can audit a candidate but does not supply the uniform compatible tuple.
 
 - **Knill--Laflamme recovery.**  For a correctable error family `{E_alpha}`
   with code projector `P`, the condition `P E_alpha^* E_beta P = c_(alpha beta) P`

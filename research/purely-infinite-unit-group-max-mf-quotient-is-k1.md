@@ -38,12 +38,14 @@ Consistency: `K_1(L_(F_2)(1,2)) = 0` recovers the total collapse recorded in
 MF kernel, its intrinsic full radical, and unique factorization through
 abelianization for every GL_n(R), n >= 2, without the AGP inputs. Its Lean
 endpoint is `MFQuotientMatrices.manuscriptMFQuotientMatrices`. This is a
-separate proof of that scope; the rank-one classification and identification
-with algebraic K1 in this claim still require their own arguments.
+separate proof of that scope, with the elementary-group identification and
+intrinsic full radical proved at every rank at least two.
 
 `supported-unit-commutators-lie-in-corner-units` supplies the supported-unit
 step as `MFQuotientUnits.agpStepOne`. Together with the abstract
-abelianization package, this leaves `AGPMenalMoncasiReduction` as the sole
-input of the all-rank group-theoretic endpoint
-`printedMFQuotientUnits_of_menalMoncasi`. This does not discharge
-`AGPUnitKappa`, which is about the constructed canonical algebraic K1.
+abelianization package and the explicit Peirce reduction in
+`purely-infinite-all-rank-mf-quotient`, it closes the all-rank group-theoretic
+endpoint `MFQuotientUnits.manuscriptMFQuotientUnits`, including rank one.
+There are no AGP input propositions in that endpoint. This does not
+discharge `AGPUnitKappa`, which identifies the constructed canonical
+algebraic K1, or the general `MoritaKOne` interface.

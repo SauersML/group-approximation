@@ -6,6 +6,7 @@ title: At every rank at least two a purely infinite matrix group's MF quotient i
 distinct_from:
   purely-infinite-unit-group-max-mf-quotient-is-k1: that includes rank one and identifies the canonical algebraic K1 quotient; this proves the elementary and commutator kernel classification directly at all matrix ranks at least two, with no K1 identification.
 artifacts:
+  - research/artifacts/mf-quotient-proof-validation.json
   - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientMatrices.lean
 ---
 

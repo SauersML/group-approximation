@@ -1,6 +1,8 @@
 """Mathematical and malformed-witness controls for the exact HS refuter."""
 
 from fractions import Fraction as Q
+import json
+from pathlib import Path
 import unittest
 
 from hs_word_certificate import (
@@ -61,6 +63,25 @@ class ExactWordCertificateTests(unittest.TestCase):
         expected = {(a, b) for a in range(-2, 3) for b in range(-2, 3)
                     if abs(a) + abs(b) <= 2}
         self.assertEqual(vectors, expected)
+        self.assertEqual(list(integer_vectors(1200, 0)), [(0,) * 1200])
+
+    def test_committed_higman_witness_and_independent_trace_formula(self):
+        path = Path(__file__).resolve().parents[1] / 'research/artifacts/higman-hs-word-coefficient-witness.json'
+        data = json.loads(path.read_text())
+        matrices = [decode_matrix(a) for a in data['matrices']]
+        result = check(data['candidate'], matrices)
+        x, y = Q(-60, 109), Q(12, 37)
+        total = 4 - 2*y - 2*x*(4*x*x - 3) - 8*x*(1-x*x)*y*y
+        self.assertEqual(Q(result['word_energy']), 2 - 2*x)
+        self.assertEqual(Q(result['relator_energy_sum']), total)
+        self.assertEqual(result['strict_margin'], '270418822/8864473505')
+        self.assertEqual(result, data['verification'])
+        padded = [tuple(tuple(a[i][j] if i < 2 and j < 2 else
+                             ONE if i == j else ZERO for j in range(3))
+                        for i in range(3)) for a in matrices]
+        diluted = check(data['candidate'], padded)
+        self.assertEqual(Q(diluted['strict_margin']), Q(2, 3) * Q(result['strict_margin']))
+        self.assertEqual(Q(diluted['word_energy']), Q(2, 3) * Q(result['word_energy']))
 
 
 if __name__ == "__main__":

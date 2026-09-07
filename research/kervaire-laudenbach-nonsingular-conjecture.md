@@ -44,11 +44,12 @@ proof and no counterexample, but its reductions and obstructions are worth
 keeping: they say what a counterexample must look like and they close five
 attacks, two of which were live against the Leavitt lane.
 
-Soficity, hyperlinearity and MF-ness are not evidence about this claim in
-either direction.  The one implication that does run between them is the one
-already recorded: hyperlinear coefficients satisfy it
-(`kervaire-laudenbach-holds-for-hyperlinear`), so a counterexample group is
-not hyperlinear.
+There are positive results for approximation classes: hyperlinear
+coefficients satisfy it (`kervaire-laudenbach-holds-for-hyperlinear`), and
+the direct norm-corona argument in `kervaire-laudenbach-holds-for-mf`
+proves it for MF coefficients as well. A counterexample must therefore be
+neither hyperlinear nor MF. Nonsoficity or non-MF-ness alone supplies no
+violating equation and does not decide the universal conjecture.
 
 ## What a certificate must contain
 
@@ -73,6 +74,22 @@ nontrivial `a in G`, and an explicit finite identity
 certificate: everything else in the reduction package follows from it.
 
 ## Attempts
+
+**2026-09-07: exact roots and the common approximation radical.**
+`nonsingular-equations-preserve-matrix-certificates` supplies a complete
+one-variable matrix-degree proof and proves exact conservation of all old
+coefficient certificate constants after adjoining the equation.
+`nonsingular-adjunction-preserves-approximation-radicals` then proves
+`ker(G->G_w) <= Rad_MF(G) intersect Rad_hyp(G)`, with equality of the
+radical pullbacks, and `kervaire-laudenbach-holds-for-mf` gives an MF
+solution overgroup for MF coefficients. The attempted final step was to
+separate every nontrivial coefficient by those representations. That step
+fails to address elements already in the common radical. No argument
+eliminating that possible kernel, and no nonsingular normal-closure
+counterexample identity, was obtained. The universal claim remains OPEN.
+
+The full proof and quantitative old-relator cost bound are in
+`research/artifacts/nonsingular-equations-and-approximation-radicals.md`.
 
 Six lanes were run against this repository's material on 2026-08-17 and all
 six died at an identified step; `research/artifacts/kervaire-laudenbach-audit-2026-08-17.md`

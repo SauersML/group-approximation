@@ -767,3 +767,53 @@ manuscript.** `thm:headline`'s two K_1-is-MF/quotient-formula sentences and
 "The binary example"'s K_1(R) definition -- recorded as one gap by the
 lead's decision, not a formalization target. Every other printed sentence
 in `non_mf_groups_exist.tex` now has a census row.
+
+## Round 14 (lane `lit-ring`): two stale notes corrected, Khanh--Thanh retired
+
+Landed: `5180552bf` (rank-`n` Gaussian elimination, block Whitehead, the
+Khanh--Thanh discharge).
+
+**Correction 1 --- "no stable K_1 object is being built" (Round 12) is no
+longer true, and neither is "no Lean counterpart for algebraic K-theory of a
+ring in this sense" (Round 11).** `KOne/AlgebraicKOne.lean` builds
+`AlgebraicKOne R = ClassicalGLColim R / elementaryColim R` for every unital
+ring, with `kappa : Rˣ →* AlgebraicKOne R`, the `CommGroup` and `Countable`
+instances, and `AlgebraicKOneFunctor.algebraicKOneCongr` /
+`moritaKOne_of_selfSimilar`. The consequence for the census is not cosmetic: it
+turns the one recorded K_1 gap from a **vocabulary** gap into a **statable
+target**, and a reader of Round 12 would have concluded the opposite.
+
+**Correction 2 --- `cor:leavitt-mf-quotient`'s group-theoretic content is no
+longer paper-proof-with-a-citation.**
+`Manuscript/OneSidedMFRadical/LeavittMFQuotientKhanhThanhFree.lean` discharges
+`LeavittMFQuotientGeneral.PrintedKhanhThanhCommutatorInElementary k d` at every
+`d >= 2` --- from `AryLeavitt.hasSingleSandwichDivision` alone, with nothing
+from Khanh--Thanh --- so `manuscriptLeavittMFQuotientGeneralUnconditional`
+carries the corollary's three inclusions with no hypothesis. The route is
+strong division to rank-`n` Gaussian elimination
+(`KOne/RankNElimination.lean`) to `EL_d` normal in `GL_d` to Whitehead's
+identity killing the commutators of the diagonal image
+(`KOne/UnstableKOneAbelian.commutator_le_elementaryGroup`).
+
+At `d = 2` the citation was already fully retired by the repository's own
+rose-graph input: `KOne/RefineLoopDischarge.narrowReduction` closes
+`ScalarReduction (BinaryLeavittAlgebra k)`, hence `GL_n = EL_n` at every rank.
+The new result is the `d >= 3` case.
+
+**What Khanh--Thanh is still cited for** is the other half of the same printed
+sentence, `K_1(L_k(1,d)) = k^x/(k^x)^{d-1}`. That half now has named targets
+rather than a description:
+`Manuscript/OneSidedMFRadical/LeavittKOneFormula.lean` proves `kappa`
+surjective for `L_k(1,d)` (the surjectivity clause of AGP Theorem 2.4, from
+elimination alone) and the exponent relation `alpha(c)^{d-1} = 1`, and reduces
+the printed isomorphism to exactly two propositions, `ScalarSurjective k d` and
+`ScalarKernel k d`.
+
+**Calibration warning for whoever takes them:** both are true but carry no
+information at `d = 2`, where `K_1 = 0` --- `ScalarSurjective` covers the
+trivial group and `ScalarKernel` reads `c = e^1`. Nothing should be validated
+against `d = 2`. The first non-vacuous case is `d = 3` over a field with a
+non-square unit, e.g. `k = F_5`, where the printed answer is `Z/2`.
+
+No census row content changed by this entry; it corrects two notes and names
+the two remaining propositions.

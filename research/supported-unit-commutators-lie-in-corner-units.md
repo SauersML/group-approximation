@@ -6,6 +6,7 @@ title: A unit commutator fixing a nonzero idempotent belongs to the corner-unit 
 distinct_from:
   unit-corner-embedding-normally-generates-commutators: that treats the whole unit commutator subgroup through normal generation; this proves the supported-unit step directly, for units fixing a nonzero idempotent.
 artifacts:
+  - research/artifacts/mf-quotient-proof-validation.json
   - GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsStepOne.lean
 ---
 

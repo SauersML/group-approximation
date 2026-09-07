@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.ComplexProjectiveCover
 import GroupApproximation.AlgTop.PuncturedNormedSphere
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The intersection of the Mayer–Vietoris cover is a sphere
@@ -47,6 +48,19 @@ def interHomotopyEquivSphere (d : ℕ) :
 space. -/
 theorem contractibleSpace_chartSet (d : ℕ) : ContractibleSpace ↥(chartSet d) :=
   (chartHomeo d).symm.contractibleSpace
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms contractibleSpace_chartSet
+
 
 end CPn
 

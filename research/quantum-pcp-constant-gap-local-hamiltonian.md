@@ -9,6 +9,8 @@ artifacts:
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
   - research/artifacts/qpcp-joint-syndrome-support-2026-09-07.md
+  - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
+  - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
@@ -59,6 +61,21 @@ on infeasible fault sets. The same marginal energy bounds can coexist with
 different joint outcomes and opposite recovery verdicts. Thus the remaining
 construction must control one joint measurement, including its physical
 realization, rather than only its individual flag probabilities.
+
+The finite primal/dual test now supplies exact certificates for local
+syndrome proposals. In the paired-projector example the enlarged
+neighborhood's optimal local constant is `(N^2+1)/4`, proved by matching
+certificates, so it still diverges. The rounder route now explicitly
+requires `amplifier-has-compatible-local-syndrome-effects`. That uniform
+construction, its physical realization, and the completeness-preserving
+constant-locality, constant-dimension amplifier remain open.
+
+The kernel-resolution continuation gives a separate sufficient route:
+feasible input supports must resolve `I`, and local neighborhood operators
+must have uniformly bounded nonzero spectra. A fixed finite term collection
+with bounded neighborhood size supplies the spectral part only. The
+resolution is not implied by spanning or generic normalization. No such
+uniform resolution and complete amplifier are constructed here.
 
 ## Attempts
 

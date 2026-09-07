@@ -1,4 +1,5 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.Degree
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # A self-homeomorphism of a sphere has odd degree
@@ -80,5 +81,18 @@ theorem not_even_degreeOfIso_of_homeomorph {n : ℕ}
   -- `(… x).ofLp i`.  `ContinuousMap.ext` stops at the level of points.
   refine ContinuousMap.ext (fun x => ?_)
   exact φ.symm_apply_apply x
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms not_even_degreeOfIso_of_homeomorph
+
 
 end GroupApproximation.AlgTop

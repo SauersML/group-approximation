@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectivePunctureRetract
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Mayer–Vietoris cover of `ℂP^{d+1}`, and the base case `ℂP^0`
@@ -136,6 +137,19 @@ theorem eq_basePoint_zero (x : CP 0) : x = basePoint 0 := by
 
 instance subsingleton_CP_zero : Subsingleton (CP 0) :=
   ⟨fun x y => by rw [eq_basePoint_zero x, eq_basePoint_zero y]⟩
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms eq_basePoint_zero
+
 
 end CPn
 

@@ -6,6 +6,7 @@ title: Produce the manuscript's explicit corona-invisible group element without 
 artifacts:
   - research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md
   - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
+  - research/artifacts/jacobson-two-braid-reduction-2026-09-07.md
 distinct_from:
   property-t-free-manuscript-results: that also demands binary-Leavitt full collapse, the full radical calculus, and a torsion-free finitely presented endpoint; this is exactly its first explicit-group obligation.
   perfect-lcs-gap-implies-weak-non-mf: that is a conditional theorem for a hypothetical perfect LCS gap; this asks for an unconditional explicitly specified group and element.
@@ -30,6 +31,14 @@ source-specific route through a central sign is isolated at
 `nonhyperlinear-bloop-central-sign-corner-route`.
 
 ## Attempts
+
+- The joint Jacobson candidate now has an explicit two-braid presentation
+  and an elementary three-ray proof that its head mark survives. The exact
+  finite-packet infimum in `jacobson-two-braid-gap-characterizes-mark-collapse`
+  is positive precisely when that mark is corona-invisible. Its positivity
+  for arbitrary mixed representation types remains open at
+  `jacobson-two-braid-mixed-packet-gap`; the proved separated-factor gap
+  does not supply that missing step.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map

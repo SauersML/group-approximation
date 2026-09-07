@@ -1,0 +1,113 @@
+{
+  "alphabet_sizes": {
+    "encoder_input": 2,
+    "encoder_output": 4
+  },
+  "basis_patterns": 8,
+  "compression_matrix": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "decoder": "sigma(a,b)(g)=a(gt^-1)",
+  "encoder": "tau(x)(g)=(x(gt),x(g) AND x(gs))",
+  "general_conjecture_proved": false,
+  "lean_verified": false,
+  "multiplicative_defect_diagonal": [
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1
+  ],
+  "multiplicative_defect_is_nonzero_projection": true,
+  "multiplicative_defect_norm": 1,
+  "not_a_gottschalk_counterexample": true,
+  "outside_contexts": 16,
+  "range_projection_distance": "1/2 by the infinite-group proof, not this finite replay",
+  "scope": "exact finite-support basis actions on the infinite free group F_2",
+  "split_and_first_track_compression_checks": 128,
+  "status": "passed",
+  "uniform_locality_bound_size_at_identity": 11,
+  "zero_second_track_compression_checks": 128
+}

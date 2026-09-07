@@ -6,60 +6,56 @@ title: Compression collapse for semisimple packets via self-normalized multiplic
 distinct_from:
   compression-torsion-collapse: That established claim needs the orbit images to commute pairwise, so its discrete invariant is a joint spectral rank; this one allows any packet whose finite windows generate finite-dimensional C-star algebras, replacing joint eigenspace ranks by irreducible-module multiplicity vectors — Clifford and Weyl packets included, where joint spectral projections do not exist.
 artifacts:
+  - research/artifacts/locally-finite-dimensional-compression-2026-09-07.md
   - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
   - notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
 ---
 
-Let `W` be countable, `pi` a norm-corona representation, `Lambda <= W`
-Kazhdan, `s` a one-sided compressor of `Lambda`, and `k` an element whose
-image has finite order, such that the images of every finite window of the
-`Lambda`-orbit of `k` generate a finite-dimensional C-star algebra (of
-dimension bounded in terms of the window alone), and which `pi` identifies
-with its `s Lambda s^{-1}`-conjugates.  **Claim (open):** `pi` identifies
-`k` with its entire `Lambda`-conjugation orbit.
+Let W be countable, let pi be a norm-corona representation, let
+Lambda <= W have property (T), and let s Lambda s^-1 <= Lambda.
+Suppose pi(k) has finite order, every finite window of its Lambda
+conjugacy orbit generates a finite-dimensional C-star algebra, and
+pi(k) commutes with pi(s Lambda s^-1). Then pi(k) commutes with
+pi(Lambda).
 
-**Proposed mechanism** — the reason to believe the theorem underneath the
-involution proof is *a discrete defect can normalize itself*:
+The route semisimple-packet-multiplicity-collapse-proof proves this
+statement for growing finite-dimensional orbit algebras. In fact its
+theorem applies to an arbitrary element of the corona: finite order
+and unitarity are unnecessary.
 
-1. operator-norm perturbations of a fixed finite-dimensional C-star algebra
-   correct to exact copies, so each window's packet algebra
-   `A = (+)_j M_(n_j)(C)` can be exactified coordinatewise;
-2. a failure of the desired identification then carries an integer
-   **multiplicity defect vector** `m_n in N^r` — multiplicities of the
-   irreducible `A`-modules on which the two sides disagree — which is `>= 1`
-   somewhere whenever the relation fails and cannot fade continuously;
-3. normalize at `‖m_n‖_1`: the defect supplies its own scale, and
-   `scaled-kazhdan-transport` is already proved for arbitrary weights.  The
-   open bookkeeping is exactification-covariance: the covariance errors must
-   have Hilbert mass `o(‖m_n‖_1)`.
+## Why growing windows work
 
-**What it would unify.**  Commuting lamps are the abelian case (`A`
-commutative: multiplicity = joint spectral rank); Clifford lamps are finite
-Clifford algebras; Weyl/Heisenberg packets `XY = zeta YX` are twisted finite
-group algebras; matrix-unit packets are full matrix summands.  One
-mechanism: *compression forces an impossible change in the
-finite-dimensional module type of a packet* — the commuting/anticommuting
-distinction stops being fundamental, and the central sign `u^2 = -1`
-becomes one small example.
+Lift each fixed finite-dimensional algebra on a tail, then diagonalize
+to homomorphic lifts on growing algebras. For each fixed pair h,g,
+average the conjugating unitary over C*(1,a,a_g) and take its polar
+part. This gives exact covariance of the displacement c_n(g)=a_g-a
+under a unitary W_n(h,g) with ||W_n(h,g)-V_n(h)|| -> 0.
 
-**Closed fixed-packet boundary.**  The special case in which every window is
-contained in one fixed finite subgroup is now the established claim
-`finite-noncommutative-packet-compression-collapse`.  There a single
-operator-norm tail exactification makes the packet exact, and the integer
-sum of generator displacement ranks is the self-normalizing multiplicity
-scale.  This claim remains open only for genuinely growing
-finite-dimensional orbit algebras, where one must synchronize a sequence of
-window exactifications and their covariance corrections.
+Normalize by the maximum Hilbert--Schmidt displacement k_n over a
+finite symmetric generating set. Exact local covariance gives the
+word bound ||c_n(g)||_HS <= |g| k_n, and the corrected unitary gives
 
-**K_0 reading and a trap.**  The multiplicity vector is a positive
-K_0-type invariant: a rank-one projection has normalized trace `1/d_n` but
-rank `1`, which is what dimension-normalized trace forgets.  It is NOT the
-naive compression index — notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
-shows `ind(PUP)` vanishes identically because `P` and `UPU^*` are already
-internally Murray--von Neumann equivalent.  A viable invariant must compare
-genuinely distinct module sectors, which the multiplicity vector does.
-`corner-renormalization-cost` is the reason ambient normalization cannot
-work here and the defect must self-normalize;
-`kazhdan-tensor-type-transport` supplies the transport of fixed tensors at
-every type and weight, but the exactification and integrality steps are the
-genuinely new analysis.
+    ||c_n(hg)-c_n(h)-Ad(V_n(h))c_n(g)||_HS / k_n
+        <= 2 ||W_n(h,g)-V_n(h)|| |g| -> 0.
+
+Thus the weighted Hilbert ultraproduct carries a nonzero cocycle
+vanishing on the compressed subgroup. Property (T) makes it a
+coboundary, while the Kazhdan projection identity in the finite
+adjoint corona identifies the two fixed spaces and forces it to vanish.
+
+Only convergence for each fixed pair is used. The corrections need
+not satisfy a multiplication law, and the dimensions of the orbit
+algebras may grow without a uniform bound.
+
+The fixed finite-packet theorem and commuting torsion collapse are
+special cases. Applying this theorem to the locally finite Jacobson
+ideal also proves the head-root endpoint through
+binary-jacobson-mf-collapse-proof.
+
+## Proof status
+
+The artifact contains a complete written proof and its scope audit.
+The new growing-window analytic assembly has not been formalized in
+Lean; existing fixed-packet and transport certificates are not
+certificates of this extension. Exact finite-dimensionality of each
+orbit window remains a hypothesis.

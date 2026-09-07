@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The transverse local model at the mapping-torus zero
@@ -164,5 +165,21 @@ def eulerLocalModelEquiv {v : E} (hv : ‖v‖ = 1) : (((ℝ ∙ v)ᗮ) × ℝ) 
 @[simp]
 theorem eulerLocalModelEquiv_apply {v : E} (hv : ‖v‖ = 1) (p : ((ℝ ∙ v)ᗮ) × ℝ) :
     eulerLocalModelEquiv hv p = (2 : ℝ)⁻¹ • (p.1 : E) - (2 * p.2) • v := rfl
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms eulerLocalModel_deriv_eq
+#audit_axioms eulerLocalModel_eq_zero
+#audit_axioms eulerLocalModel_surjective
+#audit_axioms eulerLocalModelEquiv_apply
+
 
 end GroupApproximation.AlgTop
