@@ -442,12 +442,30 @@ separate `O52Data` certificate is supplied. Boundary simplicity proves that
 the source and target cell arcs are disjoint even without distinct cells.
 These helper proofs pass ordinary axiom audits with only the standard three
 axioms. This checkpoint does not discharge an assembly admission or close
-#207. Next construct a positive-length self-contiguity model, extend actual
-selection and insertion transport to this pool, and prove the source's
-loop-cut induction. Cell-arc counting must use the union of both contributions
-when source and target coincide; the geometric disjointness theorem supplies
-the required additivity. Existing selection consumers still use the historical
-restricted type and have not been silently migrated.
+#207. `SelfContiguityModel.lean` now supplies a six-dart reduced planar diagram
+with two length-one arcs from the same relator cell to an actual G-cell digon.
+It proves that this witness is absent from the historical interface's image.
+This model makes no small-cancellation claim and passes closed axiom audits.
+
+`RegionCandidate`, `RegionPartition` and `RegionWeightBound` extend finite
+selection and the exact three-way perimeter partition to the larger pool.
+Cell-arc counting takes the union of both ends, using geometric disjointness
+to prove additivity even on a self-contiguity. The same uniform perimeter
+bound yields attained global and legal optima in `RegionGlobalSelection` and
+`RegionLegalSelection`, with an actual normalized eligible seed.
+`ContiguityGeometryTransport` preserves and reflects self-targets;
+`RegionCandidateTransport` retains complete witnesses and compatible family
+cardinality and weight. `GFaceCornerRegionSelection` constructs actual
+prescribed-word insertion at original corners and retains legal optimality
+over this enlarged pool. The checked `SelfContiguitySelectionModel` counts
+two interior darts and one unbound dart, and constructs a legal optimum of
+weight between two and four. Its model endpoints pass closed audits.
+
+The historical restricted interfaces remain available. The assembly's Osin
+producer is still open: the next missing construction is the source's
+loop-cut induction, alongside the complementary-region cutting systems and
+the distinct-cell piece argument at its proper use site. Neither the new
+selection existence proof nor its transport supplies those conclusions.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
@@ -494,6 +512,166 @@ audited. `SurgeryCutSections.lean` now constructs the actual cut's sections
 from an exact partition of its ambient enclosing walk, preserving the base
 position, each section word, and both quasi-geodesic constants. Producing
 the enclosing region and its at-most-four quasi-geodesic arcs remains open.
+
+`SurgeryReclosedFaces` now exposes the exact face classification and count
+before assuming `IsDiscRegion`. `SurgeryReclosedConnected` proves that
+reclosing along any supplied nonempty boundary cycle preserves ambient
+connectedness. It lifts ambient dual paths through the actual retained darts;
+the connectedness field of the cut's region is no longer an input oracle.
+`PermFirstReturnOrbits` now proves that an actual first-return permutation
+has precisely the old orbits meeting the retained set. `SurgeryReclosedVertices`
+derives that first-return property from the genuine map boundary walk:
+reclosed vertex rotation skips exactly the deleted internal darts. Its actual
+vertex equivalence identifies the new vertices with old vertices incident to
+at least one retained dart, and gives the exact vertex count.
+`FaceSetBoundaryReclosed` derives the required walk from the chain and closing
+step already stored in every embedded `FaceSetBoundary`, without an additional
+orbit or topology hypothesis. These proofs pass ordinary axiom audits.
+The general planar restriction argument below now supplies the additional
+Euler preservation proof; the vertex correspondence alone was insufficient.
+
+The single-edge step is now constructed in `CombMapEdgeDeletion`.
+`PermOrbitErasePoint` deletes a point by actual first return and proves the
+exact loss of a fixed-point cycle; `PermOrbitJoin` supplies the missing
+two-cycle joining case complementary to the existing split theorem.
+The deleted map retains precisely the other darts, restricts edge reversal,
+and deletes both edge darts from vertex rotation. Its face rotation is proved
+to be the corresponding deletion of the transposed old face permutation.
+The exact vertex/face count balance includes vertices that disappear entirely.
+`CombMapEdgeDeletionEuler` proves that, from a connected map with at least
+one retained dart, this operation cannot lower Euler characteristic. If the
+two sides of the deleted edge are different faces, every vertex survives
+and Euler characteristic is unchanged. The proof handles the exceptional
+whole-edge components explicitly. `CombMapEdgeEuler` also supplies the exact
+Euler change for arbitrary-corner insertion: equality within one face and a
+drop of two between distinct faces. These actual construction and count
+theorems pass ordinary axiom audits.
+
+`PermOrbitJoinReach` now proves that joining two face cycles preserves all
+old face paths. `CombMapEdgeDeletionConnected` uses those paths to detour
+around the removed edge and lift ambient dual connectedness to the actual
+deleted map when the edge sides are distinct faces. Its connectedness theorem
+also covers an empty remainder; combining it with the exact Euler count gives
+planarity when at least one dart remains. The construction and both topology
+theorems pass ordinary axiom audits with only the three permitted axioms.
+
+The general topology argument is now complete. `CombMapUnderlyingGraph`
+constructs the actual simple graph on map vertices, proves every simple edge
+comes from a map edge, and derives `V ≤ E + 1` from connectedness without
+planarity, looplessness or absence of parallel edges. `CombMapEulerUpperBound`
+then proves Euler characteristic at most two for every connected map. It
+deletes edges between distinct faces by induction on edge count; the exact
+deletion balances handle the exceptional empty remainder. This also proves
+that any edge deletion with a connected nonempty remainder preserves planarity.
+
+`PermFirstReturnComposition` proves uniqueness, composition and factorization
+of first-return permutations, and constructs first return on every embedded
+finite set by successive actual point erasures. `CombMapRestriction` builds
+the actual map on any edge-invariant retained dart subset, and proves that
+both single-edge deletion and genuine region reclosure are restrictions in
+this full cyclic-order sense. No topology field is part of that interface.
+
+`CombMapRestrictionPaths` proves that a proper nonempty restriction of a
+connected map has a missing dart immediately after a retained dart in vertex
+rotation. `CombMapRestrictionGrowth` adjoins its actual edge pair, preserves
+connectedness at the chosen vertex, and proves that deleting the new pair
+recovers the old core via an actual surjective dart embedding. The second
+endpoint may be a new vertex. The step adds exactly two darts and cannot
+increase Euler characteristic. `CombMapRestrictionPlanarity` iterates this
+constructed growth by the number of omitted darts, proving that every
+connected nonempty restriction of a planar map is planar. A connected
+deletion order is therefore no longer an unproved input.
+
+`SurgeryReclosedPlanarity` applies that theorem to the existing genuine
+boundary walk. It proves general reclosed planarity and Euler preservation,
+and constructs `BoundaryCycle.toDiscRegion_of_followsBoundary`.
+`Embedded.FaceSetBoundary.toDiscRegion` consumes the chain and closing walk
+already stored in the embedded boundary and the source diagram's planarity,
+producing both historical `IsDiscRegion` topology fields. All these proofs
+pass ordinary axiom audits with only the three permitted axioms. The bridge
+model now consumes this general constructor, while retaining its independent
+explicit count calculation and the original false-producer refutation.
+
+The remaining cut producer must construct the actual enclosing faces and
+boundary walk, ordered/rebased cell shelling, and at-most-four quasigeodesic
+sections. Once its genuine face-set boundary is available, reclosed topology
+is proved. The graph loop/multiple-edge induction, complementary regions with
+holes and minimal cutting systems, and the unbound budget remain open.
+The assembly still has the same four admissions; this batch removes the
+general topology input but closes no additional assembly admission.
+
+The next shelling audit exposed a distinct obstruction, filed immediately as
+[#209](https://github.com/SauersML/group-approximation/issues/209).
+`CellShellingSupportCounterexample.lean` proves that every dart exposed by the
+historical `CellShelling` occurs in a recorded face word. The cut record fixes
+those words to the kept relator cells, so it cannot traverse unrecorded G-cell
+edges or remove cancelling bridge pairs. On the existing reduced one-relator
+planar diagram, the actual outer walk is `[4]` while the recorded relator word
+uses only darts `[0, 2, 1]`; its historical shelling is impossible, independently
+of the conjugators. The reducedness and concrete obstruction pass closed axiom
+audits. This is an auxiliary-interface obstruction, not an instance of all
+Osin small-cancellation hypotheses or a constructed dropped-cell cut.
+
+`CellShellingWithGCells.lean` now implements the replacement. Recorded relator
+steps retain their exact conjugators and words; actual face-set word homotopies
+through certified null inner faces, including reverse-pair cancellation, leave
+that trace unchanged. The historical predicate embeds in the new one, and the
+ordered relator-product formula is proved with only the permitted axioms.
+`CellShellingWithGCellsModel` constructs the positive shelling on the same
+six-dart reduced planar diagram that refutes the old predicate. It rotates the
+relator, removes the bridge spur, inserts the actual G-cell digon, and cancels
+the remaining reverse pair to reach the original exterior dart.
+
+`SurgeryGCellCutRecord`, `SurgeryGCellCutProduct`, `SurgeryGCellCutDiagram`, and
+`SurgeryGCellCutSections` carry this repair through the actual cut constructor.
+The corrected `RegionCutWithGCells` retains the original topology, cell infix,
+and common rebasing requirements. The old record maps into it and remains
+unchanged. The new constructor derives the ordered boundary product,
+planarity, reducedness, strict cell-count drop, and the exact lifted boundary
+sections; its adapter supplies the current `Lemma65CutData`.
+
+`GCellCutSourceModel` and `GCellCutModel` exhibit an actual reduced two-to-one
+cut needing this replacement. The eight-dart source adds a relator monogon to
+the previous bridged-relator/G-cell example. Its two based relator values are
+distinct transpositions and do not cancel. The outside consists of the old
+exterior and the discarded monogon, with genuine boundary `[5]`; the general
+reclosure theorem produces its topology. The cut keeps the bridged relator
+and G-cell digon, has exterior `[4]`, and is reduced with exactly one cell.
+The corrected constructor supplies a positive `Lemma65CutData` instance and
+the historical shelling is refuted on this very cut. These concrete endpoints
+pass closed axiom audits. The model does not assert Osin small-cancellation
+hypotheses. Construction of enclosing faces, justification of the required
+cell ordering/rebasing, and the general graph induction remain open. This
+repair discharges no additional assembly admission.
+
+The singleton audit found another false auxiliary producer, reported in
+[#208](https://github.com/SauersML/group-approximation/issues/208).
+`RelatorFaceSingletonProducer` demands the complete stored face boundary even
+when that face contains both darts of a bridge; the region-boundary predicate
+excludes those internally paired darts. `SingletonCollapseCounterexample`
+refutes the original proposition on the existing six-dart planar diagram,
+with a closed axiom audit. `SingletonReclosed` proves the exact repair: on a
+connected map an exact singleton collapse exists if and only if the face has
+no internally paired dart. Its actual dart equivalence preserves both map
+permutations and every count, proving Euler preservation and constructing the
+historical `SingletonDiscRegionData` without either topological input.
+`SingletonCollapseModel` constructs a planar exact collapse of the triangle
+in the self-contiguity model and passes a closed audit. The false universal
+producer remains available with its refutation. These results do not assert
+that every relator face is unpinched or supply the general loop-cut region.
+
+`BridgeFaceReclosedModel` now constructs a valid collapse of the very bridge
+example that refutes the historical singleton producer. Its genuine region
+boundary is `[2]`, rather than the complete stored face boundary `[0, 2, 1]`.
+The first-return vertex theorem proves that removing the bridge also removes
+its isolated end vertex. The actual new map has one vertex, two edges and
+three faces; the constructed `IsDiscRegion` preserves Euler characteristic
+and is planar. The nontrivial rotation step skips the internal dart one.
+The boundary-walk, rotation and planar-collapse endpoints pass closed audits.
+This supplies a positive internally paired example while preserving the old
+refutation. The general enclosing-region producer remains open, and this
+batch removes no additional assembly admission.
+
 The outstanding proofs are:
 
 1. Construct the complementary-region boundary word polygons and their
