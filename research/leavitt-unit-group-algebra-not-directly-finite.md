@@ -58,6 +58,16 @@ that reason.
 
 ## The lanes
 
+The all-field positive result for the Kun--Thom wreath family now extends
+to a recursive hierarchy at
+`recursive-wreath-libraries-have-stably-finite-group-algebras`. It does
+not settle this Q target: `map-groups-cannot-enter-the-rf-wreath-hierarchy`
+shows that every homomorphism from Q into the finite hierarchy or its
+residual closure is trivial, using Q's minimal almost periodicity. Those
+groups cannot supply a family of homomorphisms separating elements of Q.
+This rules out that specific positive transfer; it supplies no inverse
+defect and leaves the present claim open.
+
 There were four.  **Two of them died on 2026-08-17**, and both died for
 structural reasons rather than for want of effort — see
 `research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md`.  What is

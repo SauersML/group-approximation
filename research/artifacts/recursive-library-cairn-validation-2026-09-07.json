@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on the nine touched nodes. This checks the research graph rather than a proof assistant formalization.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
+    "map-groups-cannot-enter-the-rf-wreath-hierarchy": "ESTABLISHED",
+    "map-wreath-hierarchy-projection-proof": "COMPLETE",
+    "product-class-wreath-tensor-induction-proof": "COMPLETE",
+    "recursive-quine-route-to-kaplansky-is-closed": "ESTABLISHED",
+    "recursive-wreath-libraries-have-stably-finite-group-algebras": "ESTABLISHED",
+    "recursive-wreath-library-separation-proof": "COMPLETE",
+    "rf-lamp-permutational-wreaths-satisfy-stable-finiteness": "ESTABLISHED",
+    "wreath-finiteness-transfers-from-product-closed-classes": "ESTABLISHED"
+  },
+  "elapsed_seconds": 14.423
+}

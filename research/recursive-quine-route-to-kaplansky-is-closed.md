@@ -46,3 +46,21 @@ identity coefficient by a fixed point.  That is the same conclusion
 conjugator, arrived at from the compiler side, and it is why
 `leavitt-cross-atlas-eleven-term-s0-lift` anchors its support on generators of
 the whole group rather than on a recursive family.
+
+## A larger precisely defined recursive class
+
+`recursive-wreath-libraries-have-stably-finite-group-algebras` now proves
+finiteness for arbitrary finite nesting of restricted permutational wreath
+products built from residually finite groups, including finite products,
+subgroups, and groups separated by homomorphisms into the resulting
+hierarchy. In particular, faithful infinite-depth tree recursion with
+finitely many active local permutations at each level remains stably
+finite when its local permutation groups are residually finite. This
+includes some nonsofic groups and is not just the earlier locally finite
+packet exclusion.
+
+Applying this to a proposed self-aware group requires actual separating
+homomorphisms into the hierarchy. Recursive syntax alone is insufficient.
+A kernel invisible at every finite truncation, or infinitely many active
+sections at one level, falls outside the theorem and needs separate
+algebraic analysis. The general compiler problem remains open.

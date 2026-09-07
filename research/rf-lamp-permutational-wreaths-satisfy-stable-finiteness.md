@@ -33,3 +33,9 @@ separation of the Phi_r without averaging or approximation.
 In particular this proves the all-field claim `kun-thom-wreath-stably-finite`
 for its residually finite-base family. It does not establish full
 surjunctivity of those groups or Kaplansky's conjecture for arbitrary groups.
+
+The exact induction hypotheses are isolated in
+`wreath-finiteness-transfers-from-product-closed-classes`. This permits
+iteration after the first wreath product has ceased to be residually
+finite; `recursive-wreath-libraries-have-stably-finite-group-algebras`
+records the resulting hierarchy and infinite-depth residual extension.
