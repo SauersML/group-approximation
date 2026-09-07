@@ -34,9 +34,9 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptOneSidedCompressionCriterion"),
     "thm:headline": (
-        "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
+        "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptPrintedHeadline"),
+        "manuscriptPrintedHeadlineRankFour"),
     "lem:stable-finite": (
         "Manuscript/OneSidedMFRadical/StableFiniteness",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -62,8 +62,8 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptNormalKazhdanRadical"),
     "prop:simple": (
-        "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",
-        "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
+        "Manuscript/OneSidedMFRadical/RankFourSimplicity",
+        "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint."
         "manuscriptPropositionSimple"),
     "lem:proper-isometry": (
         "Analysis/ProperIsometryStrictOrder",
@@ -92,10 +92,21 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    "thm:full-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
+    "thm:full-defect-ring": (
+        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime "
+        "characteristic, via FullDefectRing."
+        "manuscriptFullComplementaryIdempotentsPrimeCharUnconditional; open "
+        "in this repository at other characteristics, where the printed "
+        "theorem is FullDefectRing.manuscriptFullComplementaryIdempotentsFromEJZ, "
+        "conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)",),
     "cor:simple-infinite-ring": (),
     "cor:one-sided-ring-maximal": (
-        "Ershov--Jaikin-Zapirain, Theorem 1.1",),
+        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime "
+        "characteristic, via FullDefectRing."
+        "manuscriptOneSidedRingMaximalReducedCStarPrimeCharUnconditional; open "
+        "in this repository at other characteristics, where the printed "
+        "corollary is FullDefectRing.manuscriptOneSidedRingMaximalReducedCStarFromEJZ, "
+        "conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)",),
     "thm:amenable-trace": (),
     "prop:clifford-locally-rf": ("Elek--Szabo, Theorem 1",),
     # `cor:affine-clifford-trace` and `lem:commutator-in-defect` were

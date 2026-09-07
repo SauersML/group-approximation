@@ -45,7 +45,7 @@
       ],
       "extra_assumptions": [],
       "external_inputs": [
-        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime characteristic, via FullDefectRing.manuscriptFullComplementaryIdempotentsPrimeCharUnconditional; open in this repository at other characteristics, where the printed theorem is FullDefectRing.manuscriptFullComplementaryIdempotentsFromEJZ, conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)"
       ],
       "coverage_gap": "",
       "lean": []
@@ -68,26 +68,32 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadlineRankFour",
           "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/HeadlineTheorem",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline",
+          "module": "Manuscript/OneSidedMFRadical/HeadlineTheoremRankFour",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadlineRankFour",
           "covers": "a printed conclusion of the proposition"
         },
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequenceRankFour",
           "covers": "a printed conclusion of the proposition"
         },
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarNotFiniteRankFour",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequenceRankFour",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMFRankFour",
           "covers": "a printed conclusion of the proposition"
         }
       ]
@@ -377,7 +383,7 @@
       ],
       "extra_assumptions": [],
       "external_inputs": [
-        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+        "Ershov--Jaikin-Zapirain, Theorem 1.1 (unconditional in prime characteristic, via FullDefectRing.manuscriptOneSidedRingMaximalReducedCStarPrimeCharUnconditional; open in this repository at other characteristics, where the printed corollary is FullDefectRing.manuscriptOneSidedRingMaximalReducedCStarFromEJZ, conditional on FinitelyGeneratedRingGeneralRankElementaryPropertyT)"
       ],
       "coverage_gap": "",
       "lean": []
@@ -396,8 +402,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple",
+          "module": "Manuscript/OneSidedMFRadical/RankFourSimplicity",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.manuscriptPropositionSimple",
           "covers": "the complete printed proposition"
         }
       ]
