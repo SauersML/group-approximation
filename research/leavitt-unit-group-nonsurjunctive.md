@@ -107,3 +107,13 @@ growth under this closure process, but an explicit reversible two-track
 rule already has such growth, so growth by itself proves nothing. The
 remaining task is still to construct a strict full-shift embedding and
 prove injectivity on every configuration.
+
+The direct finite-difference extension of the certificate-linear route
+also fails: `boolean-secants-do-not-supply-operator-left-inverses` gives
+a reversible three-bit gate whose canonical telescoping secant is
+singular. Encoder-decoder inversion recovers the actual difference of
+two inputs, but it does not provide a matrix inverse on arbitrary data
+with those inputs held as certificates. Ordinary formal derivatives
+do not fix the gap, since they do not descend to the Boolean function
+algebra. These are restrictions on those specific linearization methods,
+not a proof against all nonlinear computation routes.

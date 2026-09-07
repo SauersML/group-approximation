@@ -53,3 +53,13 @@ The Fourier realization is standard; compare Ara--Claramunt,
 products*, Proposition 5.8, https://arxiv.org/abs/2005.12374. The route
 gives the finite-field construction explicitly for the group and alphabet
 needed here.
+
+## Attempts to extend the source class
+
+`boolean-secants-do-not-supply-operator-left-inverses` excludes the direct
+telescoping-difference extension to arbitrary Boolean automata. Comparing
+two executions yields a matrix that transports their particular
+disagreement. Even for a reversible gate that matrix can be singular on
+other vectors. The resulting certificate-linear family therefore need
+not satisfy the injectivity hypothesis used here. A different nonlinear
+compiler would have to establish that hypothesis separately.
