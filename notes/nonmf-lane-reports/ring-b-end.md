@@ -17,6 +17,7 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `aabd8e02b344687e0de71d79fe4c478d512d0700` | 4267 | `FullDefectRingProperIsometry.lean` |
 | `bdd935ede3ef52efd781cfc0deadbc4618020b42` | 4273 | `FullDefectRingUnconditional.lean` |
 | `c1bf110bff38c4ccf861f2f14641b643bd5cd3e3` | 4277 | `FullDefectRingStrictness.lean` |
+| `38e6a49c7aaf05385ce1c668813a655f8a22faf1` | 4273 | `FullDefectRingUnconditional.lean` (group-level non-MF) |
 
 ## The printed clauses, and what each still assumes
 
@@ -33,6 +34,7 @@ carries a single named hypothesis.
 | `cor:simple-infinite-ring`, 2nd | `PrintedLeavittAlgebraFullDefect` | over prime characteristic |
 | `cor:one-sided-ring-maximal`, 2nd | `PrintedOneSidedRingMaximalReducedCStar` | over prime characteristic |
 | `cor:one-sided-ring-maximal`, 1st | `PrintedOneSidedRingMaximalIsometry` | over prime characteristic |
+| the reading "`EL_n(R)` is not MF" | `PrintedElementaryGroupNotMF` | over prime characteristic |
 
 Outside prime characteristic each carries exactly one leading hypothesis,
 `FinitelyGeneratedRingGeneralRankElementaryPropertyT`, which is lane
@@ -126,7 +128,25 @@ The compression calculation (`FullDefectAtFixedRing`, discharged by
 
 ## Coordination note
 
-`ring-b-alg` and this lane both wrote the rank-four-to-rank-`n` extension and
-the seam that discharges `FullDefectAtFixedRing`.  Theirs landed; the copy
-written here was deleted unlanded rather than renamed, because a same-content
-declaration under a different name is what the duplicate scan cannot see.
+`ring-b-alg` and this lane collided three times, and the third collision is
+still on `origin/main`.
+
+1. **The rank-four-to-rank-`n` extension** and **the seam discharging
+   `FullDefectAtFixedRing`.**  Both lanes wrote both.  Theirs landed; the copies
+   written here were deleted unlanded rather than renamed, because a
+   same-content declaration under a different name is what the duplicate scan
+   cannot see.
+2. **The strictness of the compression.**  Both lanes landed it, two seconds
+   apart: `c1bf110bff38c4ccf861f2f14641b643bd5cd3e3` (here,
+   `manuscriptOneSidedCompressorStrictContainment`) and
+   `a94570768398f483b37c568d7102cdc62096a56d` (`ring-b-alg`,
+   `Leavitt/OneSidedCompressorStrict.lean`,
+   `oneSidedCompressorStrictContainment`).  Same closed `Prop`, same namespace,
+   two names, both audited closed, both green together at 4278 jobs.  Nothing
+   imports `ring-b-alg`'s.  The decision which to delete is with the lead; no
+   deletion has been made from this lane.
+
+The cause each time was the same: both lanes announced the work while both were
+already writing it.  An announcement in flight is not an interlock.  What would
+have prevented all three is claiming a file before writing a line of it, not
+after.
