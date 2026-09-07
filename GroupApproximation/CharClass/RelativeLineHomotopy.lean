@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.RelativeProdContractible
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Homotopy invariance of relative pullbacks, when the source pair is a line
@@ -141,9 +142,10 @@ theorem relPullback_eq_of_homotopy_of_line {X : Type} [TopologicalSpace X] {A : 
 
 end
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms RelativeSupport.relPullback_eq_of_homotopy_of_line
+#audit_axioms RelativeSupport.relPullback_eq_of_homotopy_of_line
 
 end RelativeSupport
 

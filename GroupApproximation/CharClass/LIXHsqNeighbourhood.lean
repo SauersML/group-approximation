@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.RelativeLineHomotopy
 import GroupApproximation.CharClass.LIXChartIso
 import GroupApproximation.CharClass.LIXLocalPairClosed
 import GroupApproximation.CharClass.MayerVietorisRestriction
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The neighbourhood the compatibility square is compared on
@@ -291,8 +292,9 @@ theorem injective_lixShrink (hGc : Continuous G)
     zero_mem_lixFC_target (lixU_subset_target hGc hGu) (lixShrink_mapsTo hGc hGu)
     (2 * lixRank dd)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms injective_lixShrink
+#audit_axioms injective_lixShrink
 
 end GroupApproximation.CharClass
