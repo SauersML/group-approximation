@@ -8,6 +8,7 @@ distinct_from:
   hyperlinear-radical-presentation-compactness: that is the normalized Hilbert--Schmidt statement in epsilon-delta form, with the finite window depending on the tolerance; this is an operator-norm statement whose finite relator set does not depend on any tolerance.
   depthwise-opnorm-collapse-implies-mf-radical: that is the sufficiency direction with a sequence of finite tests, vanishing offsets and unrestricted constants; this asserts one finite test and one constant, and adds the forward direction.
   full-mf-radical-uniform-asymptotic-collapse: that is the qualitative collapse, in threshold form, for unitary-valued maps on the group whose multiplicative defect is measured on a finite set of pairs, with the test set and the threshold depending on the tolerance; this is one global linear inequality for bare unitary tuples evaluated on a fixed finite relator set.
+  finitely-presented-full-radical-uniform-relator-gap: that is the qualitative gap for a group given with a finite presentation, quantified as an epsilon-delta implication over that given relator list; this produces its own finite relator list for a group with no assumed finite presentation, and the estimate is one global linear inequality with a single constant.
   effective-transport-modulus: that asks for explicit numbers on the displayed relators of the literal group; the finite list and the constant here exist by compactness and are not asserted computable.
 artifacts:
   - research/artifacts/mf-radical-linear-certificate-2026-09-07.md
