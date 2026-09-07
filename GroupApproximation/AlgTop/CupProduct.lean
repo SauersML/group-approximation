@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.SingularCohomology
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The cup product on `H^*(X; R)`
@@ -468,5 +469,20 @@ theorem cohPullback_cup {X Y : TopCat.{0}} (f : X ⟶ Y) (p q : ℕ)
   rw [cochainPullback_eval, cochainOne_eval, cochainOne_eval]
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cup_add_left
+#audit_axioms cup_smul_right
+#audit_axioms cup_one
+#audit_axioms cohPullback_cup
 
 end GroupApproximation.AlgTop
