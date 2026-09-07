@@ -660,9 +660,53 @@ small-cancellation parameters.  It is named next.
 records: it reduces the original half to `OriginalRelatorExpansion`, five metric
 clauses for a single word, discharging the symmetrization, strong boundedness
 and normal-closure bookkeeping.  And `GGT/HullSCLemma44RespellingWitness` shows
-`HullRelatorRespellingStatement` is too strong as printed: it admits an
-`original` with everything in the base and no peripheral family, over which no
-re-spelling exists at all.  Neither file was reachable from here. -/
+`HullRelatorRespellingStatement` was too strong as printed until the alphabet
+containment was threaded in: it admitted an `original` with everything in the
+base and no peripheral family, over which no re-spelling exists at all.  Neither
+file was reachable from here.
+
+## This route is not attached to anything (measured 2026-09-07)
+
+`OriginalRelatorRespellingStatement` and `relatorRespellings_of_original` below,
+and the whole of `GGT/HullSCLemma44OriginalExpansion`, are **unwired**.  Checked
+by asking who applies them, not by reading them:
+
+* `relatorRespellings_of_original` occurs only at its own declaration;
+* `OriginalRelatorRespellingStatement` occurs at its definition, as that
+  bridge's hypothesis, and in two docstrings;
+* `OriginalRelatorExpansion` occurs only inside its own file.
+
+The live path does not pass through any of it.  `TheoremCAssembly`'s
+`hullLemma44FamilyInclusionJoint` reaches
+`HullLemma44CanonicalQuotientFamilyInclusionJointStatement` through
+`hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_quasiGeodesicControls`,
+whose re-spelling input is the admission `hullRelatorRespelling`, stated at
+`HullRelatorRespellingStatement` directly.
+
+So the four hypotheses `relatorRespellings_of_original` demands are the frontier
+of a route nobody has taken, and aligning them buys nothing until the bridge is
+applied.  Their status, if it is:
+
+* `hA` -- carried by the statement since the containment was threaded in;
+* `hfamInl` -- derivable, via `fam_subset_alphabet`, `hA` and
+  `AuxiliaryPeripheralFamily.base_le`;
+* `halphabet` -- derivable from the joint statement's finite-enlargement clause
+  as written;
+* `hbaseSub` -- NOT derivable from that clause, which admits peripheral elements
+  into the enlargement.  `jointBase_subset_selectedBase_of_baseAdjoined` closes
+  it once the enlargement is asked to land in the base; three of the four
+  producers of `JointAuxiliaryPeripheralEmbedding` pay that for free with
+  `Set.empty_subset`, and the fourth,
+  `jointAuxiliaryPeripheralEmbedding_of_familyInclusion`, cannot, because
+  `QuotientJointPeripheralPreservation.base_subset` binds the enlargement only
+  to `selected.rel.alphabet.carrier`.
+
+The side condition on `W` is not in that list because it is discharged:
+`baseLetters_symmetrized_mem` proves it from the relator's base letters all
+being `t⁻¹`, membership of `t⁻¹` in the joint base, and inversion-closure of
+that base -- and the last of those is already a clause of the joint statement.
+What is left of it is `t⁻¹ ∈ joint.base`, which on this route means
+`t⁻¹ ∈ properBase original`, and the relator property itself. -/
 
 /-- **The joint half of `HullRelatorRespellingStatement`, as a statement.**
 
