@@ -398,6 +398,92 @@ theorem sqrt_measureReal_lowerDescentSource_le
   rw [iUnion_lowerDescentPart rho n] at hmain
   simpa using hmain
 
+/-- **The upper descent mass inequality**, the mirror of the lower one: the
+interior `C ∪ B` mass one stage up is dominated by the `A ∪ D` mass one stage
+down. -/
+theorem sqrt_measureReal_upperDescentSource_le
+    (z : E) (hz : ‖z‖ = 1) (n : ℕ) (delta : ℝ) (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (upperDescentSource rho n)) ≤
+      Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D)) +
+        Real.sqrt (Fintype.card X : ℝ) * delta := by
+  classical
+  set mu := columnPlaneSpectralMeasure rho z hz with hmu
+  set g : Fin (Fintype.card X) →
+      Equiv.Perm (characterSpace ℂ (representedColumnPlane rho).algebra) :=
+    fun i ↦ (upperCharacterMeasurableEquiv rho
+      (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))).toEquiv with hg
+  have hgapply : ∀ i chi, g i chi =
+      upperCharacterAction rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)) chi :=
+    fun _ _ ↦ rfl
+  have hmeasurable : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (upperDescentPart rho n i) :=
+    fun i ↦ (measurableSet_upperDescentSource rho n).inter
+      (measurableSet_descentPiece rho 0 (n + 1) i)
+  have himage : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (g i '' upperDescentPart rho n i) := by
+    intro i
+    exact (MeasurableEquiv.measurableSet_image
+      (upperCharacterMeasurableEquiv rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)))).mpr
+      (hmeasurable i)
+  have himagePiece : ∀ (i : Fin (Fintype.card X)) (chi),
+      chi ∈ upperDescentPart rho n i →
+        g i chi ∈ descentPiece rho 0 n i := by
+    intro i chi hchi
+    obtain ⟨-, -, hint, hvis⟩ := upperDescentSource_data rho n chi hchi.1
+    exact descentPiece_upperCharacterAction rho n i _ chi hvis hint hchi.2
+  have hdisjA : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (upperDescentPart rho n i) (upperDescentPart rho n j) := by
+    intro i _ j _ hij
+    exact Set.disjoint_of_subset (fun _ h ↦ h.2) (fun _ h ↦ h.2)
+      (disjoint_descentPiece rho 0 (n + 1) hij)
+  have hdisjImage : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (g i '' upperDescentPart rho n i)
+        (g j '' upperDescentPart rho n j) := by
+    intro i _ j _ hij
+    refine Set.disjoint_of_subset ?_ ?_ (disjoint_descentPiece rho 0 n hij)
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece i chi hchi
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece j chi hchi
+  have hsubset : (⋃ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      g i '' upperDescentPart rho n i) ⊆
+        wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D := by
+    rintro y hy
+    obtain ⟨i, -, chi, hchi, rfl⟩ := Set.mem_iUnion₂.mp hy
+    rw [hgapply]
+    exact upperCharacterAction_mem_regionAD rho n _ chi hchi.1
+      (descentPiece_subset rho 0 (n + 1) i hchi.2)
+  have hquasi : ∀ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale mu delta
+        (g i).symm := by
+    intro i _ A hA himageA
+    have hfun : ∀ chi, (g i).symm chi =
+        upperCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) chi := by
+      intro chi
+      exact upperCharacterMeasurableEquiv_symm_apply rho _ chi
+    have hset : (g i).symm '' A =
+        upperCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) '' A :=
+      Set.image_congr' hfun
+    rw [hset]
+    rw [hset] at himageA
+    exact upperShear_neg_control_measurableQuasiInvariantAtScale rho z hz delta
+      hdelta hnear (some ((letterIndex (X := X)).symm i)) A hA himageA
+  have hmain :=
+    KassabovBorelMeasureInequalities.sqrt_measureReal_biUnion_le_of_disjoint_transport
+      mu Finset.univ (upperDescentPart rho n)
+      (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D) g hdelta.le
+      (fun i _ ↦ hmeasurable i) (fun i _ ↦ himage i) hdisjA hdisjImage hsubset
+      hquasi
+  rw [iUnion_upperDescentPart rho n] at hmain
+  simpa using hmain
+
 end
 
 end IntegralGeneratorShearDescentMass
