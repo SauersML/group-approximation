@@ -50,9 +50,12 @@ these research proofs carry no new Lean verification claim.
 now provide replayable counterexamples to proposed HS energy coefficients.
 The [Higman calculation](research/artifacts/higman-hs-word-coefficient-lower-bound.md)
 forces its marked-word coefficient above `9/5` using explicit rational
-2-by-2 unitaries. A bounded search at coefficient `2` is inconclusive;
-nonhyperlinear existence remains open. Replay the witness with
+2-by-2 unitaries. The [three-dimensional continuation](research/artifacts/higman-qutrit-coefficient-bound.md)
+now refutes even coefficient `16` with exact rational matrices, including
+the proposed coefficient `2` missed by the earlier bounded search.
+Nonhyperlinear existence remains open. Replay the earlier witness with
 `python3 experiments/hs_word_certificate.py verify research/artifacts/higman-hs-word-coefficient-witness.json`.
+Replay the stronger witness with `python3 experiments/higman_qutrit_witness.py`.
 
 [Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
 gives a rational qubit-projector family with combinatorial gap `1/2` and

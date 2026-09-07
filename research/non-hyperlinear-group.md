@@ -6,6 +6,7 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/higman-qutrit-coefficient-bound.md
   - research/artifacts/hs-word-gap-linearization-2026-09-07.md
   - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
   - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
@@ -40,6 +41,12 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+The exact Higman coefficient attack now rules out even sixteen:
+a rational three-dimensional tuple has marked energy above 16/7 and
+total relator energy below 1/7. This refutes the proposed coefficient
+two that survived the earlier bounded search in dimensions at most two.
+It supplies no valid all-dimensions upper bound and leaves this root open.
 
 The September 7 scalar-sensitive amplification proves that a fixed
 distance-one HS word gap implies a global linear bound, with constant

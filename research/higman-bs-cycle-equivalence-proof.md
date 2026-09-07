@@ -6,6 +6,7 @@ title: Exactify each BS edge and telescope the four occurrence seams
 target: higman-hs-microstates-are-near-glued-exact-bs-cycles
 requires:
   - higman-hs-word-coefficient-exceeds-nine-fifths
+  - higman-hs-word-coefficient-exceeds-sixteen
 ---
 
 Levit--Vigdorovich, arXiv:2206.02268, Corollary D(3), prove normalized-HS
@@ -34,3 +35,9 @@ explicit rational-coefficient prerequisite: its single 2-by-2 tuple
 forces C>=2748800041/1512087866 in any global marked energy bound.
 This additional finite calculation does not close the vanishing-seam
 condition used in the equivalence.
+
+The three-dimensional prerequisite strengthens the coefficient diagnostic:
+its marked energy exceeds 16/7 while its total relator energy is below
+1/7. Hence a valid all-dimensions coefficient must exceed sixteen. This
+also refutes the proposed next coefficient two without claiming collapse
+or a noncollapsing seam sequence.

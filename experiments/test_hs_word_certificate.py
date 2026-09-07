@@ -83,6 +83,27 @@ class ExactWordCertificateTests(unittest.TestCase):
         self.assertEqual(Q(diluted['strict_margin']), Q(2, 3) * Q(result['strict_margin']))
         self.assertEqual(Q(diluted['word_energy']), Q(2, 3) * Q(result['word_energy']))
 
+    def test_qutrit_witness_reconstruction_trace_and_padding(self):
+        from higman_qutrit_witness import WITNESS, witness
+        data = json.loads(WITNESS.read_text())
+        self.assertEqual(data, witness())
+        matrices = [decode_matrix(a) for a in data['matrices']]
+        result = check(data['candidate'], matrices)
+        self.assertEqual(result, data['verification'])
+        self.assertGreater(Q(result['word_energy']), Q(16, 7))
+        self.assertLess(Q(result['relator_energy_sum']), Q(1, 7))
+        words = [data['candidate']['word']] + data['candidate']['relators']
+        energies = [result['word_energy']] + result['relator_energies']
+        for word, value in zip(words, energies):
+            v = evaluate(matrices, word)
+            self.assertEqual(Q(value), 2 - Q(2, 3) * sum(v[i][i].re for i in range(3)))
+        padded = [tuple(tuple(a[i][j] if i < 3 and j < 3 else
+                             ONE if i == j else ZERO for j in range(4))
+                        for i in range(4)) for a in matrices]
+        diluted = check(data['candidate'], padded)
+        for key in ('strict_margin', 'word_energy', 'relator_energy_sum'):
+            self.assertEqual(Q(diluted[key]), Q(3, 4) * Q(result[key]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,6 +6,7 @@ title: Higman HS microstates are exactly near-glued cycles of exact Baumslag--So
 artifacts:
   - research/artifacts/higman-cycle-bs-stability-gate-2026-08-21.md
   - research/artifacts/higman-hs-word-coefficient-lower-bound.md
+  - research/artifacts/higman-qutrit-coefficient-bound.md
 distinct_from:
   split-higman-cycle-has-haar-marginals-and-maximal-role-gap: that exhibits exact independent edge packets whose occurrence seams stay maximally large; this proves the quantitative equivalence after the seams tend to zero.
   one-product-holonomy-does-not-sew-four-bs-clocks: that refutes one scalar replacement for the four seams; this identifies the full four-seam problem with marked HS collapse for the actual Higman group.
@@ -92,3 +93,11 @@ bound `e_(g_0)<=C sum_i e_(r_i)` whenever
 This includes C=9/5. No valid larger coefficient is established. These
 are positive-defect tuples; identity padding makes their marked energy
 vanish too, so they do not solve either side of the seam problem.
+
+The three-dimensional continuation
+`higman-hs-word-coefficient-exceeds-sixteen` gives explicit rational
+matrices with `e_(g_0)>16/7` and `sum_i e_(r_i)<1/7`. Every valid
+all-dimensions coefficient must therefore exceed sixteen. In particular,
+the earlier finite search at coefficient two missed a counterexample
+in dimension three. These are still positive-defect tuples, with no
+separating zero-defect limit.
