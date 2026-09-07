@@ -264,10 +264,35 @@ shellings for every selected region avoiding the insertion face. It also
 preserves face-set cardinalities and disjointness. The concrete insertion
 supplies this embedding, and its `region_pasting` consumer transports the old
 region's pasting witness. These pass ordinary axiom audits (4,810-job build).
-This proves preservation of the region boundary and shelling; the full
-`Contiguity` transport still needs its cyclic carrier arcs and ordered O52
-certificate data. The weak ordered word/value transport alone does not expose
-the individual cell conjugators and orientations needed for that step.
+`SurgeryCellMap.lean` now constructs and composes an ordered old-to-new cell
+map retaining individual words, conjugators and orientations, without a
+bijection of all potential records. `GEdgeWordCellMap.lean` proves the actual
+arbitrary-word subdivision with these stronger data. The stronger
+`GFaceWordRetention.exists_cell_output` constructs them for G-face insertion;
+the historical weaker output propositions remain unchanged.
+`Estimating/CyclicArcMap.lean` retains the original arc start and length.
+`Estimating/ContiguityTransport.lean` now transports every field of an actual
+`Contiguity`, including both cyclic carriers, side words and bounds, the
+ordered O52 certificate and the pasting witness.
+`GFaceContiguityInsertion.exists_contiguity_output` supplies one actual
+insertion output retaining all old contiguities avoiding the insertion face,
+with exact arc lengths and side/boundary lists. These proofs pass ordinary
+axiom audits. The general complementary-region construction remains open.
+
+Connecting this transport to the selected-family optimization exposed another
+interface defect, reported immediately as
+[#206](https://github.com/SauersML/group-approximation/issues/206).
+The historical `Candidate` stores only a face set with `Nonempty Contiguity`,
+and its weight uses an arbitrary `Classical.choice` of contiguity data.
+`Estimating/CandidateWeightCounterexample.lean` proves that the same actual
+G-cell digon at epsilon two has witnesses of weights two and zero, which
+become the identical face-set candidate. The claimed recovery of every
+constructed witness's weight is therefore false; its refutation passes a
+closed axiom audit (4,599-job build). The corrected optimization domain must
+retain actual finite contiguity data, or select a proved maximum-weight
+witness on each face set. Preserve the historical definitions and repair the
+selection/incidence consumers explicitly. No assembly admission has been
+discharged by the local transport alone.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a

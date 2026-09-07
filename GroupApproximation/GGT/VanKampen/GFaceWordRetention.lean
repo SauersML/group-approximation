@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GFaceSimpleWordInsertion
 import GroupApproximation.GGT.VanKampen.GEdgeWordRetention
+import GroupApproximation.GGT.VanKampen.GEdgeWordCellMap
 import GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
 /-!
@@ -39,6 +40,16 @@ private theorem old_ne_negative (d : Delta.toCombMap.Dart) :
     embed Delta.toCombMap d ≠ (GFaceEdgeInsertion.map Delta f k).alpha (some none) := by
   intro h
   cases h
+
+noncomputable def initialCellMap :
+    Surgery.OrderedRCellMap Delta (GFaceEdgeInsertion.diagram Delta f k hf hcells letter hvalue)
+      (GFaceEdgeInsertion.keep Delta f k) where
+  cell := GFaceEdgeInsertion.cell Delta f k
+  face_eq _ := rfl
+  word_eq _ := rfl
+  conjugator_eq _ := rfl
+  reversed_eq _ := rfl
+  list_eq := rfl
 
 /-- Constructed from the actual one-edge insertion and its actual subdivision. -/
 noncomputable def retainedEmbedding : DiscEmbeddingAway Delta R.diagram f where
@@ -94,7 +105,12 @@ structure RetainedOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v}
     vertices (Delta.toCombMap.vertexOf d)
   path_disjoint : ∀ x ∈ darts, x ∉ Set.range embedding.darts
 
-theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+structure CellOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v} W)
+    (f : Delta.toCombMap.Face) (k : Fin (Delta.faceBoundary f).darts.length)
+    (word : List (RelLetter G Lambda)) extends RetainedOutput D Delta f k word where
+  cellMap : Surgery.OrderedRCellMap Delta diagram embedding.faces
+
+theorem exists_cell_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (Delta : DiscDiagram.{u, w, v} W) (hlabel : ∀ d, D.IsLetter (Delta.label d))
     (f : Delta.toCombMap.Face) (k : Fin (Delta.faceBoundary f).darts.length)
     (hf : f ≠ Delta.outerFace) (hcells : ∀ C ∈ Delta.relatorCells, C.face ≠ f)
@@ -102,14 +118,15 @@ theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.bas
     (hword : ∀ letter ∈ word, D.IsLetter letter)
     (hvalue : RelLetter.listVal word =
       RelLetter.listVal (((Delta.faceBoundary f).darts.take k.val).map Delta.label)) :
-    Nonempty (RetainedOutput D Delta f k word) := by
+    Nonempty (CellOutput D Delta f k word) := by
   let letter : RelLetter G Lambda := .base (RelLetter.listVal word)
   let Xi := GFaceEdgeInsertion.diagram Delta f k hf hcells letter hvalue
   let p : Xi.toCombMap.Dart := some none
-  obtain ⟨R⟩ := GEdgeWordSubdivision.exists_output D hsymm word hne hword Xi p
+  obtain ⟨rich⟩ := GEdgeWordSubdivision.exists_cell_output D hsymm word hne hword Xi p
     (GFaceEdgeInsertion.inserted_outer Delta f k hf)
     (GFaceEdgeInsertion.inserted_cells Delta f k hf hcells letter hvalue)
     (GFaceEdgeInsertion.label_away_inserted Delta f k hf hcells letter hvalue D hlabel) rfl
+  let R := rich.toOutput
   let E := R.expansion.toDartExpansion
   let V := GFaceEdgeInsertion.vertexEquiv Delta f k
   have hfirst : Xi.toCombMap.vertexOf p =
@@ -141,6 +158,7 @@ theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.bas
     internal_vertex_eq_iff := E.internal_vertex_eq_iff p
     edge_eq_iff := E.edge_eq_iff p
     embedding := retainedEmbedding Delta f k hf hcells letter hvalue R
+    cellMap := (initialCellMap Delta f k hf hcells letter hvalue).trans rich.cells
     vertex_darts := ?_
     path_disjoint := ?_ }⟩
   · intro i hi hv
@@ -159,6 +177,19 @@ theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.bas
     have heq := E.block_eq_of_mem hx hmem
     change (some none : EdgeInsertion.Dart Delta.toCombMap) = some (some d) at heq
     cases heq
+
+/-- The original retained-output interface follows from the stronger actual producer. -/
+theorem exists_retained_output (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    (Delta : DiscDiagram.{u, w, v} W) (hlabel : ∀ d, D.IsLetter (Delta.label d))
+    (f : Delta.toCombMap.Face) (k : Fin (Delta.faceBoundary f).darts.length)
+    (hf : f ≠ Delta.outerFace) (hcells : ∀ C ∈ Delta.relatorCells, C.face ≠ f)
+    (word : List (RelLetter G Lambda)) (hne : word ≠ [])
+    (hword : ∀ letter ∈ word, D.IsLetter letter)
+    (hvalue : RelLetter.listVal word =
+      RelLetter.listVal (((Delta.faceBoundary f).darts.take k.val).map Delta.label)) :
+    Nonempty (RetainedOutput D Delta f k word) := by
+  obtain ⟨R⟩ := exists_cell_output D hsymm Delta hlabel f k hf hcells word hne hword hvalue
+  exact ⟨R.toRetainedOutput⟩
 
 namespace RetainedOutput
 
@@ -193,6 +224,8 @@ end RetainedOutput
 end GroupApproximation.GGT.VanKampen.GFaceWordInsertion
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.retainedEmbedding
+#audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.initialCellMap
+#audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_cell_output
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_retained_output
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.RetainedOutput.path_edge_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.RetainedOutput.region_pasting
