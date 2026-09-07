@@ -120,6 +120,18 @@ that follows the printed *sentences*.  `CentralCoronaCorner.lean` and
 of retained corner coordinates and only `0 < r_n` is proved, exactly as the
 existing carrier does with `0 < Fintype.card (D.cornerModel k)`.
 
+### `Manuscript/OneSidedMFRadical/HilbertSchmidtAdMatrix.lean`
+
+Commit `0e482802ff6ae4ff2560df65537831ebdfeb6e42`, PROBE GREEN, 3294 jobs.
+The opening sentences of the rewritten `thm:transport` proof, in the
+sub-namespace `HilbertSchmidtAdMatrix`.
+
+| printed sentence | carrier |
+| --- | --- |
+| "The algebra `𝓑` is a norm matrix corona with coordinate sizes `d_n²` after a choice of matrix units." | `adMatrix` (the matrix of `x ↦ V x V*`, i.e. `V ⊗ V̄`), with `adMatrix_one`, `adMatrix_mul`, `adMatrix_conjTranspose`, `adMatrix_mem_unitary`; `unvec_adMatrix_mulVec` says its action is the printed `x ↦ V x V*` |
+| "For unitaries `A, B`, `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖`, where the norm on the left is the operator norm on the Hilbert space `(M_{d_n}(ℂ), ‖·‖₂)`" | `hsNormSq_conj_sub_conj_le` and `norm_adMatrix_sub_le` |
+| the printed normalization `tr_d = d⁻¹ Tr` | `norm_sq_eq_card_mul_hsNormSq`: the Euclidean norm of a vectorization is `(card Y)^{1/2}` times the printed `‖·‖₂`, so the normalization costs nothing |
+
 ## Not done, with the exact open obligations
 
 `thm:transport` is the only printed proof of the three still without a
@@ -140,19 +152,10 @@ by the same density-plus-trivial-character estimate this lane already
 formalizes for `thm:normal-kazhdan`.  The one-sided order and stable finiteness
 then give `U*PU = P`, hence `[U,P] = 0`.
 
-Missing: the identification of `B(M_{d_n}(ℂ))`, the operators on the
-Hilbert--Schmidt Hilbert space, with `M_{d_n²}(ℂ)` as a `FiniteModel`, i.e. a
-`⋆`-isomorphism
-
-```lean
-def hsMatrixUnitsEquiv (Y : FiniteModel) :
-    (HS Y →L[ℂ] HS Y) ≃⋆ₐ[ℂ] Matrix (Y × Y) (Y × Y) ℂ
-```
-carrying the operator norm of the Hilbert--Schmidt inner product to the
-`L2Operator` norm of `Matrix (Y × Y) (Y × Y) ℂ`.  Without it the printed `𝓑`
-is not a `NormMatrixCStarCorona` and no corona API applies.
-
-Two things make this smaller than it looks.
+The identification of `B(M_{d_n}(ℂ))` with `M_{d_n²}(ℂ)` is **done**, in
+`HilbertSchmidtAdMatrix.lean` above: `adMatrix` is the choice of matrix units
+and `norm_adMatrix_sub_le` is the printed estimate.  Two observations made it
+smaller than it looked, and they are worth keeping.
 
 * **The normalization is free.**  The printed norm is
   `‖a‖₂ = tr_d(a*a)^{1/2}`, the *normalized* Hilbert--Schmidt norm, which is
@@ -174,10 +177,13 @@ Two things make this smaller than it looks.
   EuclideanSpace ℂ (Y × Y)` and the conjugation it induces on the bounded
   operators.
 
-After that the printed proof needs, in order:
+What is left, in order:
 
-1. `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖` on the Hilbert--Schmidt space, hence
-   `σ̃(g) = [Ad(V_n(g))]` is a homomorphism into `U(𝓑)`;
+1. `σ̃(g) = [Ad(V_n(g))]` as a homomorphism into `U(𝓑)`, `𝓑` the corona over
+   the square models `sqModel (X n)`.  Both ingredients are landed:
+   `adMatrix_mem_unitary` puts the values in the unitary group, and
+   `norm_adMatrix_sub_le` turns the asymptotic multiplicativity of `(V_n)`
+   into that of `(Ad(V_n))`;
 2. the image `P` of the Kazhdan projection of `L` in `𝓑` and a projection lift
    `P_n` (`CollapseProjectionLift.exists_projection_lift`, as used above);
 3. `(x_n) ∈ 𝒞₂(V,L) ↔ ‖P_n x_n − x_n‖₂ → 0`.  The forward direction is
@@ -191,5 +197,7 @@ After that the printed proof needs, in order:
    `U*PU = P` from `manuscriptNormMatrixCoronaStableFinite`, hence `[U,P] = 0`;
 5. the closing two-line estimate.
 
-Steps 2, 4 and most of 3 are already in the corpus; steps 1 and the
-identification are the new work.
+Steps 2 and 4 and most of 3 are already in the corpus, and the matrix-unit
+identification is now landed.  What is genuinely new is the corona `𝓑` over
+the square models, the two directions of the `𝒞₂(V,L)` characterization, and
+the closing estimate.
