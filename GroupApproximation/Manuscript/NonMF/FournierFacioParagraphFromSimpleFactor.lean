@@ -70,12 +70,24 @@ the whole map injective and `J ≅ W` — which is what *"isomorphic to a finite
 presented infinite simple group"* asks for.  That is
 `injective_of_isSimpleGroup_of_map_ne_one`.
 
-## What this costs: one citation in, one citation out
+## What this costs: nothing that Section 2 does not already cite
 
 `fournierFacioParagraph_of_literatureInputs` proves the paragraph from
 `TheoremC.LiteratureInputs` together with `FinitelyPresentedInfiniteSimpleStatement`
-— the existence of a finitely presented torsion-free infinite simple group,
-which is Burger–Mozes.  So Fournier-Facio §2 is replaced by
+— the existence of a finitely presented torsion-free infinite simple group.
+
+**That is not a citation this module adds.  Section 2 makes it itself**, in
+these words:
+
+> A finitely presented simple torsion-free group `S`, e.g. a Burger–Mozes
+> [BM97] or Hyde–Lodha group [HL25]
+
+and it is an input Section 2 cites rather than a group Section 2 constructs.  So
+the reduction below *surfaces* an input of the source; it does not trade one
+citation for another, and an earlier version of this header said otherwise.  See
+"Provenance" at the end for exactly how well that sentence is attested.
+
+Section 2 is therefore replaced by
 
 * Chiodo — `TheoremC.chiodo`, from Higman's ω-closure.  **Closed**;
 * Kotowski–Kotowski and Ollivier–Wise, the density model — an admitted proof,
@@ -94,7 +106,9 @@ which is Burger–Mozes.  So Fournier-Facio §2 is replaced by
   `TorsionFree.hullOneStep` and a free-product geometry that is unconditional.
   Reduced to Hull's Theorem 7.1 for one relator, **not closed**: `hullOneStep`
   rests on the same four §5/§6 admissions;
-* Burger–Mozes — new, and stated here.
+* a finitely presented torsion-free infinite simple group — stated here as
+  `FinitelyPresentedInfiniteSimpleStatement`, and **cited by Section 2 too**,
+  so it is new to this development but not to the argument.
 
 So two of the five are closed and three are not, and supplying
 `TheoremC.literatureInputs` for `I` is a reduction rather than a discharge.  The
@@ -102,11 +116,44 @@ four §5/§6 admissions are the leaves of Hull's Theorem 7.1, so what
 `sec:torsion-free` is really waiting on, after this module, is Hull's Theorem 7.1
 and the density model.
 
-Whether that is an improvement over one citation of §2 is an editorial question
-and this module does not answer it.  What it establishes is that the paragraph
-is **not** an irreducible input: it is the earlier printed construction with a
-simple third factor, and every step of it that this repository had already
-proved for the earlier text still applies.
+What this establishes is that the paragraph is **not** an irreducible input: it
+is the earlier printed construction with a simple third factor, and every step
+of it that this repository had already proved for the earlier text still
+applies.  Whether the manuscript should say so is an editorial question and this
+module does not answer it — but the question is *not* "keep simplicity and pay a
+new citation, or drop simplicity and pay nothing".  It is "state Section 2's own
+input, or depart from Section 2 and cite the author's earlier construction
+instead", because the route that dispenses with the simple factor is the `F₂`
+one, which is this manuscript's earlier text and not Fournier-Facio's.
+
+## Two further readings of Section 2, recorded and not acted on
+
+* Section 2 uses **two** stable letters `t₁, t₂` with `tᵢΓtᵢ⁻¹ ⊆ Γ` where
+  `sec:torsion-free` prints one `t`.  Having one is weaker than having two, so
+  the print is a sound weakening of the source rather than a defect, and
+  `PrintedFournierFacioData` carrying a single `t` is right.
+* The docstring of `TheoremC.LiteratureInputs.smallCancellationQuotient`
+  attributes its content to "**Fournier-Facio et al., Proposition 2.3**".  The
+  plural *et al.* does not match `[FFF]`, which is single-author, so that
+  docstring is most likely naming a **different** Fournier-Facio paper; that
+  inference is from the text of the docstring itself.  A one-source enumeration
+  of `[FFF]`'s numbered statements returned only Theorem 1.1, Proposition 1.2
+  and Theorem 1.3, which would agree — but one source is not enough to assert
+  that `[FFF]` lacks a Proposition 2.3, and this module does not assert it.
+  The note belongs next to that docstring in
+  `Manuscript/NonMF/FournierFacioInput.lean`; it is here because that file is
+  not this lane's to edit.
+
+## Provenance of the Section 2 readings
+
+Everything this header says about `[FFF]` comes from **one source**: WebFetch
+over the arXiv HTML of `arXiv:2608.02025v1`, not from reading the PDF.  The
+quoted sentence introducing `S` is verbatim and is the load-bearing one; the
+surrounding argument of Section 2 was not read, and the two readings in the
+previous section are one-source too.  Nothing in the Lean below depends on any
+of it — `FinitelyPresentedInfiniteSimpleStatement` is a hypothesis either way,
+and these paragraphs change only what the reduction is worth, not what it
+proves.
 
 ## What is *not* claimed
 
@@ -287,7 +334,16 @@ theorem fournierFacioParagraph_of_configuration (C : Configuration)
 
 Burger–Mozes, *Lattices in product of trees*, Publ. Math. IHÉS 92 (2000): the
 irreducible cocompact lattices in a product of two trees include finitely
-presented torsion-free simple groups.  Infinitude is not a separate assertion —
+presented torsion-free simple groups.  Fournier-Facio's Section 2 cites this
+statement itself, naming Burger–Mozes **or a Hyde–Lodha group** as admissible
+witnesses, so this proposition is that paper's input and not an extra one.
+
+Hyde–Lodha is likely the cheaper road for anyone who attacks this statement —
+finitely presented simple groups of homeomorphisms of the line, left-orderable
+and so torsion-free, with no product-of-trees lattices and no Margulis-type
+normal subgroup theorem to build first.  **That is a recollection of what those
+groups are, not something read in either paper**, and it is recorded as a
+direction to survey rather than as a claim.  Infinitude is not a separate assertion —
 a simple group that is not infinite is finite — but it is stated because the
 printed paragraph states it, and because a *finite* simple group would satisfy
 every other clause vacuously in the wrong direction.
