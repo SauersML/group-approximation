@@ -58,9 +58,11 @@ theorem isInfiniteIdempotent_of_le {e p : R} (he : IsIdempotentElem e)
   have hsq := hzright s hsp
   have hqt := hzleft t hpt
   have htq := hzright t htp
+  have hff : f * f = f := hf
+  have hqq : q * q = q := hq
   refine ⟨f + q, g, ?_, hg, ?_, ?_, ?_, ?_, hgne⟩
   · show (f + q) * (f + q) = f + q
-    simp only [add_mul, mul_add, hf, hq, hfq, hqf, add_zero, zero_add]
+    simp only [add_mul, mul_add, hff, hqq, hfq, hqf, add_zero, zero_add]
   · rw [add_mul, hfg, hqg, add_zero]
   · rw [mul_add, hgf, hgq, add_zero]
   · dsimp [q]; rw [hsum]; abel
@@ -123,9 +125,9 @@ section SupportedUnits
 
 variable {R : Type} [Ring R] [Countable R]
 
+omit [Countable R] in
 /-- Whitehead sends the entire unit commutator subgroup into `EL₂`, already
 at rank two; no choice of a stabilization rank is necessary. -/
-omit [Countable R] in
 theorem diag_mem_elementary_of_mem_commutator {v : Rˣ}
     (hv : v ∈ commutator Rˣ) :
     RankNElimination.diagAt (0 : Fin 2) v ∈ elementaryGroup (Fin 2) R := by
@@ -142,6 +144,7 @@ theorem supported_commutator_mem_cornerUnitSubgroup
     (hne : e ≠ 0) (he : IsIdempotentElem e)
     (hvform : (v : R) = e + (1 - e) * (v : R) * (1 - e))
     (hvcomm : v ∈ commutator Rˣ) : v ∈ cornerUnitSubgroup R := by
+  have hee : e * e = e := he
   obtain ⟨f, g, hf, hg, hfg, hgf, hsum, hequiv, hgne⟩ :=
     isInfiniteIdempotent_of_ne_zero hR he hne
   have hef : e * f = f := by rw [hsum, add_mul, hf, hgf, add_zero]
@@ -166,7 +169,7 @@ theorem supported_commutator_mem_cornerUnitSubgroup
     fin_cases i
     · change (1 - e + b) * (1 - e + a) = 1
       simp only [add_mul, mul_add, sub_mul, mul_sub, one_mul, mul_one,
-        he, hea, hbe, hba]
+        hee, hea, hbe, hba]
       abel
     · change (x * g) * (g * y) = 1
       rw [mul_assoc x g, ← mul_assoc g g, hg, ← mul_assoc, hxy]
@@ -200,12 +203,12 @@ theorem supported_commutator_mem_cornerUnitSubgroup
   have hst0 : s 0 * t 0 = 1 - e + f := by
     change (1 - e + a) * (1 - e + b) = 1 - e + f
     simp only [add_mul, mul_add, sub_mul, mul_sub, one_mul, mul_one,
-      he, heb, hae, hab]
+      hee, heb, hae, hab]
     abel
   have hdiag0 : s 0 * (v : R) * t 0 = (v : R) - e + f := by
     change (1 - e + a) * (v : R) * (1 - e + b) = (v : R) - e + f
     simp only [add_mul, mul_add, sub_mul, mul_sub, one_mul, mul_one,
-      hev, hve, hav, hvb, he, heb, hae, hab]
+      hev, hve, hav, hvb, hee, heb, hae, hab]
     abel
   let φ := (matrixCornerUnitHom s t hts hcross).comp
     (elementaryGroup (Fin 2) R).subtype
@@ -216,8 +219,7 @@ theorem supported_commutator_mem_cornerUnitSubgroup
       matrixEmbed s t (RankNElimination.diagAt (0 : Fin 2) v).val = (v : R)
     simp only [matrixWitnessSum, matrixEmbed, Fin.sum_univ_two,
       RankNElimination.diagAt_val, Matrix.diagonal_apply]
-    simp only [ite_true, ite_false, Fin.zero_ne_one, Fin.one_ne_zero,
-      mul_zero, zero_mul, mul_one, add_zero, zero_add]
+    norm_num
     rw [hst0, hdiag0]
     abel
   exact elementaryRange_le_cornerUnitSubgroup hR (by decide : 2 ≤ 2) φ
