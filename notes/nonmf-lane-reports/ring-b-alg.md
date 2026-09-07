@@ -334,3 +334,51 @@ and the sentence carriers above.  What remains quoted is four
 Ara--Goodearl--Pardo propositions, each a named Prop with provenance, not an
 open formalization.  `cor:leavitt-mf-quotient` is rank-four's and is unblocked
 by this.
+
+
+## Task 5 — sentence carriers for `thm:factorization-nonmf-trace`
+
+`e60d09eb21f7062d6c8b35fd5dbffe95c5dafdec` —
+`GroupApproximation/Manuscript/OneSidedMFRadical/FactorizationTraceSentences.lean`,
+3942 jobs, namespace `GroupApproximation.FactorizationTraceSentences`, six
+carriers each with `#audit_axioms` reporting the classical closure.
+
+| printed sentence | carrier | status |
+| --- | --- | --- |
+| 1. "Suppose that `τ_G` is quasidiagonal, and let `φ_n` be u.c.p. maps as in the definition, with the first limit in operator norm." | `manuscriptSentence_quasidiagonalModel` | unconditional |
+| 2a. "`φ_n(u_g)^*φ_n(u_g)` and `φ_n(u_g)φ_n(u_g)^*` converge to `1` in operator norm" | `manuscriptSentence_nearIsometry` | partial — star-free form, see below |
+| 2b. "so for large `n` the unitary part `V_n(g)` of the polar decomposition of `φ_n(u_g)` satisfies `‖V_n(g) − φ_n(u_g)‖ → 0`" | none | **route-different** |
+| 2c. "and `V_n(1) = 1` because `φ_n` is unital" | `manuscriptSentence_unitalAtIdentity` | unconditional (unitality clause only) |
+| 3. "The maps `V_n : G → U(d_n)` are asymptotically multiplicative in operator norm." | none | **route-different** |
+| 4a. "If `g ≠ 1` and `‖V_n(g) − 1‖ → 0`, then `tr_{d_n}(φ_n(u_g)) → 1`" | none | **route-different** |
+| 4b. "contradicting `tr_{d_n}(φ_n(u_g)) → τ_G(u_g) = 0`" | `manuscriptSentence_traceTendsToZero` | unconditional |
+| 5a. "So `limsup_n ‖V_n(g) − 1‖ > 0` for every `g ≠ 1`" | none | **route-different** |
+| 5b. "and `G` is MF, contrary to the hypothesis." | `manuscriptSentence_quasidiagonalGivesMF` | unconditional |
+| 6. "The last assertion follows." | `manuscriptSentence_lastAssertion` | unconditional |
+
+### Why the four `V_n` clauses have no carrier
+
+The printed proof is constructive in the unitaries: polar-decompose `φ_n(u_g)`,
+keep the unitary part.  The tree proves the same theorem without ever forming
+`V_n` — `Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` then
+`ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal`, which restricts the
+maps to the canonical group unitaries and reads off one late index.  The two
+routes rejoin only at sentence 5b.
+
+Constructing `V_n` would mean constructing the polar decomposition first, and
+the tree already records that it is unavailable: `Analysis/CalkinSchauder.lean`
+states that "Mathlib has no polar decomposition of a bounded operator; neither
+`polarDecomposition` nor `polar_decomposition` occurs in the library".  So this
+is a **route difference**, not a formalization gap: the theorem is closed, and
+what is missing is a second proof of it along the printed lines.
+
+### The substitution in sentence 2a
+
+The printed adjoint is of the matrix `φ_n(u_g)`.  Identifying it with
+`φ_n(u_{g⁻¹})` needs `φ_n` to be `⋆`-preserving, which
+`Quasidiagonal.QuasidiagonalTraceModel` does not assert: its
+complete-positivity field is a form-positivity condition, and
+`Analysis/QuasidiagonalTrace.lean`'s own docstring says nothing in that file
+consumes it.  The carrier therefore proves the star-free
+`φ_n(u_{g⁻¹})φ_n(u_g) → 1` and `φ_n(u_g)φ_n(u_{g⁻¹}) → 1`, which is what the
+model gives and what the printed sentence means.
