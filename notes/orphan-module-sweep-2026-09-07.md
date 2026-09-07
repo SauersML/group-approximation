@@ -140,46 +140,85 @@ RPnTopClassTransferAssembly, RPnTopClassTransferNonzero}`;
 Branch4TransferNonvanishing, Branch4TransferNonvanishingUnconditional,
 Branch4TransferNonzero, Branch4TransferTopClass, Branch4TransferWitness}`.
 
-### Analysis/ChernCommonZeroBridge.lean + Topology/* — 6 files, the second flag item
+### Analysis/ChernCommonZeroBridge.lean + Topology/* — 6 files, content-verified DEAD
 
-This cluster proves the **XXII counterexample's Chern-class input** — the same
-territory the landed proof covers a different way. Chain (confirmed by reading
-each file, not just import lines):
+**Update, re-checked at the lead's request with content, not names, at
+origin/main `0927623bcfb7c5ebe7cbc1fe3e4917408dbc14d8`.** Original pass
+flagged this cluster as low-confidence DEAD; it is now DEAD with certainty,
+and the replacement is named precisely below.
 
-- `Topology/TautologicalCommonZero.lean` states `CommonZeroProperty` as a named
-  closed `Prop` — the exact statement `research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`
-  §2 calls **"the proof"**: sections of `L^{⊕s}` over `ℂP^{s²}` have a common
-  zero.
-- `Analysis/ChernCommonZeroBridge.lean` takes it as a **hypothesis**
-  (`hprop : CommonZeroProperty`) and derives the audit's inequality (A2)
-  conditionally on it.
-- `Topology/TautologicalAntipodal.lean`, `Topology/OddMapNormalization.lean`,
-  `Topology/TautologicalLineWinding.lean` build the Borsuk–Ulam bridge.
-- `Topology/AntipodalObstructionFromOddDegree.lean` **discharges
-  `CommonZeroProperty` unconditionally** (`commonZeroProperty_unconditional`),
-  feeding off the now-landed odd-degree theorem, and is itself audit-gated
-  (`#audit_closed_axioms` on both endpoints — commit message: *"topology: gate
-  both antipodal endpoints with #audit_closed_axioms"*, 2026-09-05 15:53).
+`CommonZeroProperty` (`Topology/TautologicalCommonZero.lean`), verbatim:
+`∀ (N : ℕ) (κ : Type) (_ : Finite κ), Nat.card κ ≤ N → ∀ f : TautSection N κ,
+∃ z : Fin (N+1) → ℂ, z ≠ 0 ∧ f.toFun z = 0` — sections of a rank-≤N sum of the
+tautological line bundle over `ℂPᴺ` have a zero, in homogeneous coordinates.
 
-So the closer and the user of the same named gap are both orphaned, and the
-closer never got imported into the user. **Why DEAD and not WIRE**: the
-closer's own docstring says *"Step 1's endpoint is the same theorem that
-`GroupApproximation.STW22.complexOddMapCommonZero_unconditional` ...
-consumes on the operator-algebraic side of the counterexample ... so the two
-routes now rest on one theorem"* — i.e. the actually-landed XXII refutation
-(`STW22UnconditionalCore`/`STW22NegativeSolution`, confirmed reachable) goes
-through the operator-algebraic route directly and never needed the Chern-class/
-tautological-bundle vocabulary at all. This is a complete, high-quality,
-audit-gated *alternative* proof of a fact the corpus already has by another
-road, not a hole in the landed proof.
+`Analysis/ChernCommonZeroBridge.lean` has `open TautologicalCommonZero` and
+passes its `hprop : CommonZeroProperty` directly to `hasCommonZero_of_property'
+hprop`, a theorem declared in `TautologicalCommonZero.lean` with exactly that
+argument type — this only type-checks against the identical constant, so the
+hypothesis is confirmed to be the *same* Prop, not a same-named one.
 
-**I flagged this to you before writing it up because I'm not fully confident
-DEAD is right** — unlike `STW22CounterexampleCompactnessRoute` (which
-self-declares "kept... not because anything depends on it"), this cluster's
-docstring reads as *converging* toward one shared theorem, not as a
-deliberately-preserved alternate. If the operator-algebraic route ever needs
-review, this is a second, independent, sorry-free proof of the same audit
-requirement sitting ready. Worth a second look before treating it as settled.
+`Topology/AntipodalObstructionFromOddDegree.lean` proves
+`commonZeroProperty_unconditional : CommonZeroProperty` with zero leading
+hypotheses. Checked this is a real gate, not a docstring claim: read
+`Meta/AxiomGuard.lean`'s implementation — `#audit_closed_axioms` calls Lean's
+own `collectAxioms` on the elaborated term and separately rejects any
+declaration whose type has a leading Pi-binder (`stripMData ci.type
+|>.isForall`), calibrated against a working/failing pair at the bottom of that
+file. Read the full 3-file proof chain (`TautologicalAntipodal.lean`,
+`OddMapNormalization.lean`, `AntipodalObstructionFromOddDegree.lean`)
+end to end: no sorry, no hidden hypothesis. Its Step 1 applies
+`@ThirdParty.HamSandwich.SphereOddDegree.complexOddMapCommonZero` directly —
+itself a **reachable, landed**, separately `#audit_closed_axioms`-gated theorem
+(`ComplexOddMapCommonZero.lean:80`, `complexOddMapCommonZero_closed`).
+
+**Why DEAD, verified rather than inferred**: the wired XXII endpoint does not
+need `CommonZeroProperty` — it gets its topological input a completely
+different way, confirmed by reading the actual dependency chain:
+
+* `Analysis/STW22AntipodalBlockData.lean` (landed) independently *defines its
+  own* copy of the topological input, `GroupApproximation.STW22.ComplexOddMapCommonZero`
+  (line 34) — same shape, stated directly for `C(Sphere d, κ → ℂ)`, no
+  tautological bundle, no `ℂPᴺ`.
+* `Analysis/STW22UnconditionalCore.lean` proves
+  `complexOddMapCommonZero_unconditional : ComplexOddMapCommonZero` (line ~30)
+  from the *same base theorem* `ThirdParty.HamSandwich.SphereOddDegree.complexOddMapCommonZero`,
+  then feeds it straight into `antipodalCoordinateStateBlockData hBU`
+  (`STW22AntipodalBlockData.lean:284`), which calls
+  `antipodalWitness_arbitrarilyLateCoordinateStateConstraints hBU` for the
+  "simultaneous zero" witness the block construction needs — via
+  `simultaneousOffDiagonalMap` (`AntipodalBlockOffDiagonal.lean:92`). Grepped
+  that file, `STW22AntipodalBlockData.lean`, and `STW22UnconditionalCore.lean`
+  for `TautSection`/`TautologicalCommonZero`/`CommonZeroProperty`: zero hits.
+  This route never touches the Chern-class/tautological-bundle vocabulary.
+* Corroborating: `ChernCompressionMatrix.norm_sub_sum_selfCommutator_ge_one`
+  (the finite-dim inequality `ChernCommonZeroBridge` specializes) has exactly
+  **one** consumer in the whole repo — `ChernCommonZeroBridge.lean` itself, the
+  orphan. It's wired at root (line 1114, direct import) but functionally
+  dead-ended: nothing reachable ever calls it. The landed route proves the
+  analogous fact (`trivialLineState_selfCommutator_eq_zero_of_offDiagonal`,
+  `STW22AntipodalBlockData.lean:44`) with completely different, block-specific
+  machinery, never routing through matrix compression at all.
+
+So two independent, complete, sorry-free derivations of the same underlying
+Borsuk–Ulam content exist in this tree, both bottoming out at the identical
+base theorem. One (bespoke, direct, block-specific) is wired and is the actual
+proof. The other (general Chern-class/tautological-bundle route — the
+*original* plan per the audit doc's §2, which derives (A2) via "the top Chern
+class of `L^{⊕k}`") was completed later and never connected, not because it's
+broken but because a more direct route got there first.
+
+**Replaced by, precisely**: `GroupApproximation.STW22.complexOddMapCommonZero_unconditional`
+(`Analysis/STW22UnconditionalCore.lean`) + `antipodalCoordinateStateBlockData`
+/ `antipodalWitness_arbitrarilyLateCoordinateStateConstraints`
+(`Analysis/STW22AntipodalBlockData.lean`), both landed, both feeding the wired
+`antipodal_stw22_trace_problem_counterexample`.
+
+**Separate, smaller flag**: `Analysis/ChernCompressionMatrix.lean` is wired at
+root (line 1114) but — per the point above — functionally unused: its only
+consumer anywhere in the repo is the orphaned `ChernCommonZeroBridge.lean`.
+Not an orphan by the closure definition, but dead weight sitting inside the
+closure itself. Your call whether that's worth a separate cleanup pass.
 
 Files: `Analysis/ChernCommonZeroBridge.lean`,
 `Topology/{AntipodalObstructionFromOddDegree, OddMapNormalization,
@@ -235,7 +274,25 @@ literally named `*ModelTest` but is the same genre, explicitly the
 
 ## WIRE (14)
 
-### Analysis/STW22FactorialCore.lean → STW22TraciallyCompletePair.lean → STW22AntipodalGaugeFactorial.lean → STW22AntipodalFactorialPair.lean — the first flag item
+## TOP PRIORITY — changes what the repository proves, not hygiene
+
+### Analysis/STW22FactorialCore.lean → STW22TraciallyCompletePair.lean → STW22AntipodalGaugeFactorial.lean → STW22AntipodalFactorialPair.lean
+
+**Team lead independently verified this one.** `STW22AntipodalFactorialPair.lean:56`
+proves `antipodal_isFactorialTraciallyCompletePair : IsFactorialTraciallyCompletePair
+antipodalDesignatedTraces`. The wired endpoint
+`antipodal_stw22_trace_problem_counterexample` (`STW22UnconditionalCore.lean:49`)
+asserts a seven-clause conjunction and `IsFactorialTraciallyCompletePair` is not
+among them. **The repository's current answer to STW Problem XXII refutes
+something weaker than the printed problem, and the fix is already proved,
+sorry-free, audit-gated, landed on origin/main, and unreachable.** Four files,
+zero sorry/admit tokens, seven `#audit` lines between them, dependency chain
+`STW22FactorialCore → STW22TraciallyCompletePair → STW22AntipodalGaugeFactorial
+→ STW22AntipodalFactorialPair`, with `STW22AntipodalFactorialPair` already
+importing `STW22UnconditionalCore` — written to be joined to the endpoint and
+never was. This is the one action item in this report that changes a proved
+result, not just corpus hygiene; treat it as a priority separate from the
+other 10 WIRE items below.
 
 Internal chain (FactorialCore ← TraciallyCompletePair ← AntipodalGaugeFactorial
 ← AntipodalFactorialPair), all four committed 2026-09-05 16:12–16:44
@@ -351,7 +408,9 @@ Recommend at least a spot-check before wiring blind.
   `KazhdanHypGirthEightVKInterface`, root line 3118, and `OsinGeodesicWord`,
   root line 2394) — insert after 3118.
 
-### KTheory/Basic.lean → Functorial.lean → Spaces.lean — needs a build probe, not a confident WIRE
+### KTheory/Basic.lean → Functorial.lean → Spaces.lean — NEEDS-PROBE, not a WIRE recommendation
+
+**Per the lead: leave as NEEDS-PROBE, do not recommend wiring; the lead will build it.**
 
 Chain: `Basic.lean` (imports the reachable `KTheory/BlockMoves.lean`, root
 line 3426) builds `K₀` of a `*`-ring in the projection picture;
