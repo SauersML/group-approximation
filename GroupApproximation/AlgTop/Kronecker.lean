@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.SingularChainFree
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Kronecker map `Hⁿ(X; R) → Hom(Hₙ(X; R), R)`
@@ -193,5 +194,19 @@ theorem kronecker_cocycleClass (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ
     (kronOfCocycle_congr R X n (iCycles_cyclesMk' R X n φ hφ) _ hφ)
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms homologyπ_kronOfCocycle
+#audit_axioms kronOfCocycle_coboundary
+#audit_axioms kronecker_cocycleClass
 
 end GroupApproximation.AlgTop

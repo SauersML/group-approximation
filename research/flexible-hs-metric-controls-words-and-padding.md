@@ -8,6 +8,9 @@ distinct_from:
   sl2-half-explicit-strict-flexible-separation: that gives an arithmetic strict-repair obstruction fixed by one added dimension; this proves general metric estimates and sharpness for the class of trivial representations of C2.
 artifacts:
   - research/artifacts/flexible-hs-metric-and-padding.md
+  - experiments/flexible_hs_metric_audit.py
+  - experiments/test_flexible_hs_metric_audit.py
+  - research/artifacts/flexible-hs-metric-replay.json
 ---
 
 For positive-dimensional unitaries, the zero-padding distance

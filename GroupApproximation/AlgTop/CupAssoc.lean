@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.CupProduct
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Strict associativity and left unitality of the cup product
@@ -294,5 +295,17 @@ theorem one_cup' {X : TopCat.{0}} {q : ℕ} (b : cohomology R X q) :
   exact cohCast_self_apply R X _ _
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cup_assoc
 
 end GroupApproximation.AlgTop
