@@ -275,13 +275,76 @@ Lean content is on the order of the `FreeRootPlaneMass` file it mirrors.
   conversion is itself a direct-integral argument with no Mathlib support.  Strictly harder
   than the direct route.
 
-## 5. Status of this lane's landings
+## 5. RESOLVED, 2026-09-07
 
-* `notes/nonmf-lane-reports/ejz-integral.md` (this file).
+The residue is closed.  `GroupApproximation/PropertyT/IntegralColumnPlaneClosure.lean`
+proves
 
-## 6. If the lane closes nothing further
+```lean
+theorem IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT :
+    FinitelyGeneratedRingGeneralRankElementaryPropertyT
+```
 
-The residue to leave standing is exactly `FinitelyGeneratedRingGeneralRankElementaryPropertyT`
-in `GroupApproximation/PropertyT/EJZIntegralReduction.lean`, with
-`printedEJZColumnPlaneReduction` recording that it follows from the single analytic family
-`IntegralFreeColumnPlaneMassBounds`.
+with `#audit_closed_axioms` clean, and with it the analytic family
+
+```lean
+theorem IntegralColumnPlaneClosure.integralFreeColumnPlaneMassBounds :
+    IntegralFreeColumnPlaneMassBounds
+```
+
+`ColumnPlaneMassBound` over `ℤ⟨X⟩` holds with the explicit constant
+`2 * 13 * (√|X| + 7)`.  Sections 3 and 4 above describe the route as it was planned;
+what follows records how it actually went, including the one place the plan was wrong.
+
+### 5.1 Modules landed
+
+| commit | module | content |
+| --- | --- | --- |
+| `e5012e7c5`, `e3c19b1b0` | `PropertyT/IntegralGeneratorShearDescent.lean` | the generator-shear valuation descent, and the unit-shear folds `A → B`, `C → B`; region `D` identified with `unitRootNontrivialSet` |
+| `b85053713` | `PropertyT/IntegralGeneratorShearSelector.lean` | the descent set of one letter is Borel; the disjoint measurable letter cut; a shear preserves the descent set of the coordinate it does not touch |
+| `94ad945e4`, `9b4438724`, `bab0c19a1` | `PropertyT/IntegralGeneratorShearDescentMass.lean` | the two descent mass inequalities |
+| `a7cb3c521` | `PropertyT/IntegralColumnPlaneSpanning.lean` | word monomials span a degree stage for a character |
+| `e8ff16e7e`, `343a1c4a4` | `PropertyT/IntegralColumnPlaneClosure.lean` | the closed system, the uniform moving-mass bound, and the printed theorem |
+
+Import order: Descent, Selector, Mass, DescentMass, Spanning, Closure.
+`PropertyT/IntegralGeneratorShearMass.lean` (`bedd6c3e8`) sits between Selector and
+DescentMass.
+
+### 5.2 The closed system
+
+For the column-plane spectral measure `mu` of a unit vector moved by less than `delta`
+by the integral control set, at any degree stage `n`, with `K = √|X| · delta`:
+
+```
+sqrt (mu A + mu B) ≤ sqrt (mu C + mu D) + K      sqrt_measureReal_regionAB_le
+sqrt (mu C + mu B) ≤ sqrt (mu A + mu D) + K      sqrt_measureReal_regionCB_le
+sqrt (mu A) ≤ sqrt (mu B) + delta                sqrt_measureReal_regionA_le_regionB
+sqrt (mu C) ≤ sqrt (mu B) + delta                sqrt_measureReal_regionC_le_regionB
+mu D ≤ (2 + √10)² delta²                         scalarTorusMeasure_punctured_mass_le
+```
+
+Adding the first two cancels `A` and `C` and bounds `B`; the unit inequalities bound `A`
+and `C` back.  `total_le_of_closed_system` carries the arithmetic and gives
+
+```lean
+measureReal_regionUnion_le :
+  mu.real (regionUnion rho n) ≤ 42 * ((√(Fintype.card X) + 7) * delta) ^ 2
+```
+
+uniformly in `n`.  Uniformity in the degree is exactly what the tree recorded as missing.
+
+### 5.3 Where section 4 was wrong
+
+Section 4 planned to drop the degree stage by one at each descent, and therefore to carry
+boundary masses and a limit, as the characteristic-`p` route does.  That is unnecessary
+over `ℤ`.  In `F_q⟨X⟩` the dual functionals live on one finite degree stage and the shear
+genuinely lowers it; over `ℤ` a character lives on the whole plane and the stage is only a
+cutoff for the valuation.  Inside `A ∪ B` the second-coordinate valuation is already at
+most `n` (`regionAB_data`), so the image is classified at the same stage `n`.  Every
+boundary term and the whole limiting argument disappear.
+
+### 5.4 What the constants are
+
+`ColumnPlaneMassBound` holds with `2 · 13 · (√|X| + 7)`; the displacement of a unit vector
+by any column root is at most `13 (√|X| + 7) delta`.  The degradation in the number of ring
+generators is `√|X|`, as expected.
