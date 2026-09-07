@@ -37,6 +37,14 @@ replay is `python3 experiments/hs_word_gap_amplification_check.py`.
 The group-specific matrix bound and nonhyperlinear existence remain open;
 these research proofs carry no new Lean verification claim.
 
+[Exact rational word-certificate checks](research/artifacts/hs-word-certificate-rational-search.md)
+now provide replayable counterexamples to proposed HS energy coefficients.
+The [Higman calculation](research/artifacts/higman-hs-word-coefficient-lower-bound.md)
+forces its marked-word coefficient above `9/5` using explicit rational
+2-by-2 unitaries. A bounded search at coefficient `2` is inconclusive;
+nonhyperlinear existence remains open. Replay the witness with
+`python3 experiments/hs_word_certificate.py verify research/artifacts/higman-hs-word-coefficient-witness.json`.
+
 [Exact rounder obstructions for quantum PCP](research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md)
 gives a rational qubit-projector family with combinatorial gap `1/2` and
 unbounded optimal rounder cost, plus an obstruction to flags charged only

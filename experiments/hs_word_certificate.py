@@ -190,11 +190,30 @@ def integer_vectors(length, budget):
     if not length:
         yield ()
         return
-    for magnitude in range(budget + 1):
-        signs = (0,) if magnitude == 0 else (magnitude, -magnitude)
-        for value in signs:
-            for tail in integer_vectors(length - 1, budget - magnitude):
-                yield (value,) + tail
+
+    def signed_values(remaining):
+        yield 0
+        for magnitude in range(1, remaining + 1):
+            yield magnitude
+            yield -magnitude
+
+    # An explicit stack avoids an artificial Python recursion-depth bound
+    # on the matrix dimensions covered by the mathematical enumeration.
+    values = [0] * length
+    stack = [(0, budget, signed_values(budget))]
+    while stack:
+        index, remaining, choices = stack[-1]
+        try:
+            value = next(choices)
+        except StopIteration:
+            stack.pop()
+            continue
+        values[index] = value
+        if index + 1 == length:
+            yield tuple(values)
+        else:
+            next_budget = remaining - abs(value)
+            stack.append((index + 1, next_budget, signed_values(next_budget)))
 
 
 def rational_tuples(generator_count, max_dimension=None, max_height=None):
