@@ -580,7 +580,7 @@ finite-index subgroup. Their Theorem 3.1, Proposition 7.3, Corollary 7.8, and
 Proposition 7.15 supply the relevant geometry, angle criterion, and finite
 matrix representation. See the [primary paper](https://arxiv.org/abs/2011.09276).
 
-The accompanying [exact Python experiment](../../GGT/Experiments/theorem_e_triangle_seed.py)
+The accompanying [exact Python experiment](../experiments/theorem_e_triangle_seed.py)
 checks all 11 defining relators in four-by-four matrices over F₇ and computes
 the three pair-image orders as 343, 2401, and 2401. This is reproducible
 exploration, **not a Lean certificate or a proof of a torsion-free kernel**.

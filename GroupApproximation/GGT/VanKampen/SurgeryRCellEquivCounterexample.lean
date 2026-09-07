@@ -63,7 +63,7 @@ noncomputable def correctedReplacement : OrderedGRegionReplacement oldDiagram :=
   ⟨newDiagram, boundaryWord_eq, OrderedRCellTransport.of_no_rCells rfl rfl⟩
 
 /-- A closed counterexample: genuine reduced O-equivalent discs with empty
-actual relator lists need not admit the historical full-type equivalence. -/
+actual relator lists need not carry the historical full-type equivalence. -/
 theorem ordered_replacement_without_full_equivalence :
     ∃ (W : Set (List (RelLetter Trivial Trivial))) (Delta Xi : DiscDiagram.{0, 0, 0} W),
       Delta.relatorCells = [] ∧ Xi.relatorCells = [] ∧ Delta.Reduced ∧ Xi.Reduced ∧

@@ -252,7 +252,7 @@ theorem estimatingSelectionConstruction :
 /-- **Refuted input; interface repair required.** The universal unbound-budget
 statement below omits Osin's geometric scale assumptions. Its closed
 refutation in `Estimating/UnboundSmallMuCounterexample.lean` persists under
-Cayley hyperbolicity and the source's strict parameter ranges. This `sorry`
+Cayley hyperbolicity and the source's strict parameter ranges. This placeholder
 cannot be filled at its current type; selection and unbound construction
 must share the source's parameter choice. See issue #198. -/
 theorem estimatingUnboundOutput :
