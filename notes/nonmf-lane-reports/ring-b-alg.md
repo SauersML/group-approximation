@@ -199,3 +199,64 @@ escape estimate are `QuasiRegularCompression`.  No existing module was edited.
 ### Open obligations
 
 None.
+
+
+## Task 3 — `thm:mf-quotient-units`, MF quotients of unit groups
+
+Namespace for everything new: `GroupApproximation.MFQuotientUnits`.
+
+| commit | module | jobs |
+|---|---|---|
+| `2e991ef50eb121433c3fa42093205485fc57e22a` | `GroupApproximation/Algebra/PurelyInfiniteSimpleRing.lean` | 968 |
+| `4ad72a2780398b46331a74d9fd90f119c55b2a44` | `GroupApproximation/Manuscript/OneSidedMFRadical/MFHomKernel.lean` | 4280 |
+| `b4c2533508b665e1ff026a76e041552e284c9e9f` | `GroupApproximation/Algebra/CornerRing.lean` | 975 |
+| `6a9aaf05fcd2b441b3ab83e56efd6b1f28702d1e` | `GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnits.lean` | 4282 |
+
+The printed theorem is `PrintedMFQuotientUnits`, proved by
+`printedMFQuotientUnits_of_inputs` from five named hypotheses:
+`AGPMatrixReduction`, `AGPUnitK1`, `AGPMenalMoncasiReduction`, `AGPStepOne`,
+`CountableAbelianMF`.  `eq:corner-units` is
+`cornerUnitSubgroup_le_mfHomKernel`, which is where
+`thm:full-defect-ring` enters, through its rank-two form.
+
+### Two places this is weaker than the print, both recorded in docstrings
+
+* The quotient is "some countable abelian MF group" rather than `K_1(R)` on the
+  nose.  Naming it needs the colimit `lim GL_n/EL_n`, which is not built and is
+  used nowhere else in the printed proof.  The rank reduction needs no Morita
+  step: `M_n(R)` is again purely infinite simple and its unit group *is*
+  `GL_n(R)`, so the `n = 1` argument applies to it directly.
+* `IsPurelyInfiniteSimpleUnitalRing` (PartialClosureAnalysis) names the same
+  class of rings by a different, equivalent definition.  Neither predicate is
+  stated in terms of the other and no bridge is assumed, because the printed
+  proof needs none.
+
+### THE ONE OPEN OBLIGATION
+
+    def CountableAbelianMF : Prop :=
+      ∀ (A : Type) [CommGroup A] [Countable A], IsOperatorMF A
+
+Provable, not a literature input.  rank-four confirmed they have not started it
+and handed it over.  The route, so it need not be re-derived:
+
+1. `isOperatorMF_of_isLEF` (Algebra/AmenableMFProof) reduces it to LEF.
+2. `isLEF_of_forall_finset_residuallyFinite` (Sofic/LEFSofic) reduces LEF to:
+   every finite subset lies in a residually finite subgroup.  Take
+   `Subgroup.closure ↑s`, which is finitely generated abelian.
+3. So the whole content is: **a finitely generated abelian group is residually
+   finite**, which is NOT in Mathlib at the pin.  Mathlib has only
+   `Finite ⇒ ResiduallyFinite`, `ResiduallyFinite` for subgroups, for binary
+   products, and `residuallyFinite_of_forall_exists_finite_monoidHom`.
+4. It has to go through the structure theorem
+   `AddCommGroup.equiv_free_prod_directSum_zmod` (Mathlib
+   `GroupTheory/FiniteAbelian/Basic.lean`): transport along the additive
+   equivalence, note the torsion factor is finite hence residually finite, and
+   get the free factor `Fin n →₀ ℤ` by induction on `n` from residual
+   finiteness of `ℤ` (via `ZMod (|g|+1)`) and the binary product instance.
+   Additive-to-multiplicative transport goes through `Multiplicative` and the
+   repository's `residuallyFinite_of_mulEquiv`.
+
+Estimated at 120--200 lines with several Mathlib names to pin down
+(`DirectSum` finiteness over a `Fintype`, `Finsupp.equivFunOnFinite`, the
+additive form of the transport).  Isolated as a hypothesis so that nothing else
+waits on it.
