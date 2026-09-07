@@ -62,13 +62,17 @@ radical. Complete written proofs and exact finite certificate replays are
 included; these results do not settle the non-MF research goals.
 
 [Gottschalk surjunctivity research](notes/GOTTSCHALK_RESEARCH_2026-09-07.md)
-records a complete proof of a conditional observable-growth criterion and
-an exact reversible example showing why its hypothesis is not universal.
+includes full written proofs of a conditional observable-growth criterion,
+[generic Cantor fibers for local decoders](research/artifacts/gottschalk-decoder-fibers-2026-09-07.md),
+and [sharp quantum compression obstructions](research/artifacts/gottschalk-quantum-compression-2026-09-07.md).
+The fiber and matrix-extension criteria each have an explicit unresolved premise.
 The [positive conjecture goal](research/gottschalk-surjunctivity-conjecture.md)
 remains open in Cairn. Replay the accompanying exact checks with:
 
 ```sh
 python3 research/artifacts/check-gottschalk-observable-growth-2026-09-07.py
+python3 research/artifacts/check-gottschalk-decoder-fibers-2026-09-07.py
+python3 research/artifacts/check-gottschalk-quantum-compression-2026-09-07.py
 bin/cairn why gottschalk-surjunctivity-conjecture
 ```
 
