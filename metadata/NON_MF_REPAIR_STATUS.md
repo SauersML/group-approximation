@@ -48,6 +48,13 @@ pass the manifest consistency check. Lean reports only `propext`,
 `Classical.choice`, and `Quot.sound` for the four new principal lemmas;
 no `sorryAx` or additional axiom appears.
 
+The generated non-propositional Lean sentence records have also been
+refreshed. `scripts/sentence_records.py --check` reports zero integrity
+failures across both papers (40 non-MF and 15 recognition records), and
+`lake build GroupApproximation.Manuscript.Meta.NonMFSentenceRecords` succeeds.
+The [draft PDF workflow for the repair commit](https://github.com/SauersML/group-approximation/actions/runs/34170022266)
+also completed successfully; this is a draft build, not an attestation.
+
 ## Remaining verification work
 
 The regenerated census has **636 sentences: 192 unassigned and 30 partial**.
