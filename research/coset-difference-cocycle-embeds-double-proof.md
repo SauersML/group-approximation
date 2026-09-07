@@ -6,7 +6,7 @@ title: Embed the fold kernel as the free difference-lamp subgroup
 target: sofic-coset-action-makes-amalgam-double-sofic
 requires:
   - gkp-free-generalized-wreath-soficity
-  - kt-q2-double-hyperlinear-iff-relative-embeddable
+  - binary-free-and-ordinary-coset-wreaths-share-hyperlinearity
 ---
 
 Let `X=H/Gamma`, `o=Gamma`, and
@@ -104,14 +104,8 @@ L(H) *_(L(Gamma)) L(H),
 
 is Connes embeddable.
 
-Finally suppose `a^k notin Gamma` for every `k!=0`.  For
-`u=lambda(a) in L(H)`,
-
-```text
-E_(L(Gamma))(u^k)=0       for every k!=0.
-```
-
-Gao--Junge--Gao, arXiv:2012.07940v3, Appendix Theorem 7.1, identifies Connes
-embeddability of the symmetric amalgam with `RE/C` for the vertex inclusion
-under exactly this Haar-relative-unitary hypothesis.  This proves the final
-assertion.
+Finally the general tensor-swap equivalence identifies hyperlinearity of
+this group double with scalar relative embeddability of its vertex
+inclusion. It applies to every countable subgroup pair, so the former
+relative-Haar hypothesis is unnecessary. This proves the strengthened
+final assertion without the printed plain-double commuting square.

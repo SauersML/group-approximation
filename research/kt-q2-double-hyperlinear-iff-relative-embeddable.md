@@ -9,6 +9,7 @@ distinct_from:
   kt-double-mixed-word-trace-selection: that gives an elementary group-microstate formulation of the same hyperlinearity question; this identifies the equivalent operator-algebraic property of the one vertex inclusion.
 artifacts:
   - research/artifacts/kt-double-mf-trace-literature-audit-2026-08-30.md
+  - research/artifacts/tensor-swap-expectation-repair-2026-09-07.md
 ---
 
 For the binary Kun--Thom pair, put
@@ -27,6 +28,11 @@ Then the following are equivalent.
 Thus the fixed Kun--Thom candidate is not merely an unspecified instance of
 the open nonamenable-amalgamation problem: its hyperlinearity is exactly one
 concrete relative-embeddability question.
+
+The current proof is the general tensor-swap theorem for countable group
+pairs. It replaces the former appeal to the relative-Haar specialization
+of Gao's printed plain-double converse. The ordinary binary coset wreath
+and centralizer HNN group share the same status by that general theorem.
 
 DERIVATION
 kt-q2-double-gao-relative-embedding-proof

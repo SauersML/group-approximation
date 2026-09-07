@@ -35,8 +35,9 @@ witness.
 
 Position among the goal's leaves: the only open input is
 `sl3-outliers-carry-no-balanced-free-involution`, which is implied by
-`sl3-z-weakly-ucp-stable` (the leaf of the two earlier reductions) and
-not conversely.  This is therefore the weakest leaf currently wired to
-the goal, and the first that asks nothing about repairing approximate
-representations -- only that one moment pattern cannot occur on the
-sector that repair cannot reach.
+`sl3-z-weakly-ucp-stable` (the leaf of the two earlier reductions).
+No converse or strict separation from stability is proved. The general
+tensor-swap theorem identifies the hyperlinearity status of this binary
+swap group with that of the ordinary binary coset wreath and centralizer
+HNN group for the same prime. These are equivalent candidate-group
+targets, expressed using different microstate data.

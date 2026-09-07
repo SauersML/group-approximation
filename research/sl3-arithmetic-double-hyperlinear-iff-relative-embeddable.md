@@ -5,6 +5,7 @@ kind: claim
 title: The SL3 arithmetic double is hyperlinear exactly when the lattice factor inclusion is relatively embeddable over the lattice factor
 artifacts:
   - research/artifacts/gao-relative-embeddability-appendix-sl3-audit-2026-08-21.md
+  - research/artifacts/tensor-swap-expectation-repair-2026-09-07.md
 distinct_from:
   relatively-embeddable-pair-makes-the-hnn-group-hyperlinear: that uses Gao's unconditional enlarged amalgam and an HNN embedding for arbitrary pairs; this verifies the appendix's extra Haar-relative-unitary hypothesis and obtains an equivalence for the plain SL3 double.
   sl3-arithmetic-double-finite-representations-fold: that is an exact finite-dimensional folding theorem; this is a trace-preserving embeddability equivalence for the full tracial amalgamated free product.
@@ -25,15 +26,13 @@ Then the following are equivalent.
 3. The inclusion `N subset M` is relatively embeddable with respect to `N`
    (`RE/N`) in the sense of Gao, arXiv:2012.07940, Definition 2.2.
 
-This is Gao's Appendix Theorem 7.1, including rather than suppressing its two
-extra hypotheses for the plain double:
+The current proof applies the general group tensor-swap equivalence to
+obtain `RE/scalars`, and then removes or adjoins the CE lattice coefficient
+using `sl3-re-over-lattice-iff-re-over-scalars`. It needs no relative-Haar
+element and applies to arbitrary countable subgroup pairs at the scalar
+stage. The earlier source-only replay of Gao's plain-double converse has
+been replaced because its printed square lacked a commutation argument.
 
-```text
-N_1=N must be a finite factor;
-there is u in U(M) with E_N(u^n)=0 for every n!=0.            (GRE1)
-```
-
-Both hold for the arithmetic inclusion.  Therefore the simultaneous
-two-vertex-outlier problem is exactly non-relative-embeddability of one
-explicit inclusion; no enlargement by an `L(Z)` tensor factor is needed in
-rank three.
+Thus the simultaneous two-vertex-outlier problem is exactly
+non-relative-embeddability of this inclusion. The ordinary binary coset
+wreath and centralizer HNN group have this same hyperlinearity status.

@@ -1,90 +1,64 @@
-# Gao Appendix Theorem 7.1 applied to the SL3 arithmetic inclusion
+# Relative embeddability of the SL3 double: corrected proof boundary
 
-Date: 2026-08-21
+Initial audit: 2026-08-21. Corrected: 2026-09-07.
 
-Primary source: Weichen Gao, with appendix by Marius Junge and David Gao,
-*Relative Embeddability of von Neumann Algebras and Amalgamated Free
-Products*, arXiv:2012.07940v3, Appendix Theorem 7.1 and Lemmas 7.1--7.2:
-<https://arxiv.org/html/2012.07940#S7>.
+The original audit checked the stated hypotheses of Gao's Appendix Theorem
+7.1 but missed an inclusion required by its proof diagram. The group
+conclusion remains established by a new tensor proof, described below.
 
-## Exact source statement
+## What the primary source states
 
-For finite von Neumann algebras `N subset M` and a finite FACTOR `N_1`, Gao
-proves equivalence of:
+[Gao, with appendix by Marius Junge and David Gao,
+arXiv:2012.07940v3](https://arxiv.org/html/2012.07940v3#S7), Theorem 7.1,
+identifies RE/N1 with embeddability of the enlarged amalgam
 
-1. `N subset M` is `RE/N_1`;
-2. `(M tensor L^infinity(S^1)) *_N M` embeds trace-preservingly into
-   `(R tensor N_1)^omega`.
+    (M tensor L-infinity(S1)) *_N M
 
-If, in addition, there is a unitary `u in M` satisfying
+into (R tensor N1)^omega, for a finite-factor coefficient N1. It also
+states the same equivalence for the plain double when M has a unitary u
+whose nonzero powers all have zero N-expectation.
 
-```text
-E_N(u^n)=0       for every nonzero integer n,                   (GA1)
-```
+## The missing arrow in the former arithmetic replay
 
-these are also equivalent to:
+For C=SL_3(Z), A=SL_3(Z[1/2]), the unitary of
+h=diag(2,1,1/2) does satisfy E_L(C)(u^k)=0 for every k != 0. However,
+printed page 35 uses the further inclusion
 
-3. the PLAIN double `M *_N M` embeds trace-preservingly into
-   `(R tensor N_1)^omega`.
+    L(C) subset {u}' intersect (L(A) *_L(C) L(A)).
 
-The factor hypothesis on `N_1` is used in Lemma 7.1 to put equal-trace
-spectral projections into a matrix subalgebra of the target ultrapower.  The
-unitary hypothesis `(GA1)` is used in the proof of `3=>1`: powers of `u` in
-the first free component make the conditional expectation onto its
-commutant vanish on `M minus N` in the second component.  Neither hypothesis
-may be omitted when citing the theorem.
+This inclusion fails: h (I+E12) h^(-1)=I+2E12 is different from I+E12.
+The source's vanishing-average calculation on L(A) minus L(C) does not
+show that its conditional expectation fixes L(C). The previous audit
+therefore did not verify this argument. This is a gap in that proof,
+not a counterexample to the theorem's statement. See the complete
+[commuting-square audit](centralizer-hnn-relative-embedding-audit-2026-09-07.md).
 
-## The SL3 group-factor inclusion meets both hypotheses
+## The replacement group proof
 
-Set
+The independently proved
+[tensor-swap theorem](tensor-swap-expectation-repair-2026-09-07.md) works
+for every countable C <= A. Hyperlinearity of D=A *_C A passes to its
+index-two factor-swap extension E=A *_C(C x C2), using an explicit
+block matrix construction. Its canonical involution s satisfies
 
-```text
-C=SL_3(Z),   A=SL_3(Z[1/2]),   N=L(C),   M=L(A).
-```
+    tau(u_g^* s u_g s)=1_C(g).
 
-The group `C` is ICC with trivial center, so `N` is a II_1 factor.  It is CE
-because `C` is residually finite.  Thus `N_1=N` is an allowed finite factor
-and `R tensor N` is CE.
+Averaging over s gives squared conditional-expectation norm one on C and
+one half outside C. Tensoring k copies raises these norms to the kth
+power. A countable diagonalization produces finite matrix subalgebras
+whose expectations fix the subgroup and kill every off-subgroup group
+unitary. This is scalar relative embeddability, with every inclusion
+and expectation identity verified. It needs no relative-Haar element.
 
-Let `h=diag(2,1,1/2)` and `u=lambda_A(h)`.  Every nonzero power `h^n` has a
-nonintegral diagonal entry, so it lies outside `C`.  The group conditional
-expectation kills precisely Fourier coefficients outside `C`, giving
-`E_N(u^n)=0` for every `n!=0`.  This is exactly `(GA1)`.
+The valid forward relative-amalgam theorem proves the reverse direction.
+For the arithmetic pair, residual finiteness of SL_3(Z) makes its group
+factor Connes embeddable. Gao Proposition 2.2 then identifies scalar
+relative embeddability with relative embeddability over L(C), as recorded
+in `sl3-re-over-lattice-iff-re-over-scalars`. Thus
 
-Therefore
+    D hyperlinear iff L(C) subset L(A) is RE/scalars
+                  iff L(C) subset L(A) is RE/L(C).
 
-```text
-L(A) *_L(C) L(A) is CE
-    <=> L(C) subset L(A) is RE/L(C).                           (GA2)
-```
-
-The forward direction uses the canonical embedding `R^omega ->
-(R tensor L(C))^omega`, `x |-> x tensor 1`.  The reverse direction uses
-Gao's theorem and CE of `R tensor L(C)`.
-
-Finally, the tracial group-factor identity
-
-```text
-L(A *_C A)=L(A) *_L(C) L(A)
-```
-
-turns `(GA2)` into the group statement: the plain arithmetic double is
-hyperlinear iff the inclusion is `RE/L(C)`.
-
-## Correction to the previous Cairn boundary
-
-The enlarged amalgam
-
-```text
-(L(A) tensor L(Z)) *_L(C) L(A)
-```
-
-is the unconditional converse object in Gao's theorem.  Previous Cairn text
-correctly used that object but left open whether the appendix's extra
-hypothesis applies to the plain double.  It does apply in rank three, via
-the dyadic diagonal `h`.  Hence no `L(Z)` enlargement is needed for the SL3
-inclusion.
-
-This does not prove non-relative-embeddability.  It identifies the precise
-remaining statement and proves it is equivalent, not merely related, to the
-plain-double hyperlinearity problem.
+This is the current proof behind
+`sl3-arithmetic-double-gao-equivalence-proof`. The equivalence does not
+establish either positive or negative embeddability of the chosen pair.

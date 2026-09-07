@@ -2,7 +2,7 @@
 rg: 2
 id: nonhyperlinear-from-sl3-non-relative-embeddability
 kind: route
-title: Gao's plain-double converse turns SL3 non-relative-embeddability into the witness
+title: The tensor-swap equivalence turns SL3 non-relative-embeddability into a nonhyperlinear double
 target: non-hyperlinear-group
 requires:
   - sl3-arithmetic-inclusion-is-not-re-over-lattice

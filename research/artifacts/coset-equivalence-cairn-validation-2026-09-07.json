@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-07",
+  "scope": "Cairn source-graph validation and independently reviewed mathematical prose; not Lean kernel certification",
+  "check": {
+    "status": "ok",
+    "findings": [],
+    "claims": 7135,
+    "routes": 7279
+  },
+  "preview": {
+    "status": "ok",
+    "dup_warnings": [],
+    "status_changed": []
+  },
+  "claims": {
+    "binary-coset-lamp-coefficient-forces-relative-embedding": "ESTABLISHED",
+    "binary-free-and-ordinary-coset-wreaths-share-hyperlinearity": "ESTABLISHED",
+    "sl3-arithmetic-double-hyperlinear-iff-relative-embeddable": "ESTABLISHED",
+    "kt-q2-double-hyperlinear-iff-relative-embeddable": "ESTABLISHED",
+    "non-hyperlinear-group": "OPEN"
+  },
+  "source_sha256": {
+    "research/arithmetic-pair-is-not-relatively-embeddable.md": "d78abf739d92f5d0c026fe86da81a70099825368b5db0f572de7ced0cf6abb04",
+    "research/artifacts/gao-relative-embeddability-appendix-sl3-audit-2026-08-21.md": "6d80644b3243b471ea716c17b3fdc204b75216450242a9e98db041e899b3ffaf",
+    "research/artifacts/kt-double-mf-trace-literature-audit-2026-08-30.md": "4b5769fe354227aef0c70ceed4dae98caa266154eb10b947dbe72a8f6cb9f8fa",
+    "research/artifacts/coset-hyperlinearity-equivalence-literature-2026-09-07.md": "e54845f426a224a9872ef20a97b7f3b79e8b3d08c7ca1b915621a2a220fb21e2",
+    "research/artifacts/tensor-swap-expectation-repair-2026-09-07.md": "7207ce4d7aac8f74c562da55e8e251767e270c0c80ac23e10658b0d613d89ddb",
+    "research/binary-coset-lamp-coefficient-forces-relative-embedding.md": "af31bc60ef6aa9769d698e9d56923d97fa726f8cbf89dbd296c666e2e947448a",
+    "research/binary-free-and-ordinary-coset-wreaths-share-hyperlinearity.md": "4260ae967f026430cd8257d71bc3ac95f215736f537e94a1ce578e10058f3d21",
+    "research/coset-difference-cocycle-embeds-double-proof.md": "d958c0e8711be7c994ed978d664673adbe22d0e9ad5d4cc7f476ad77549bf6ee",
+    "research/hnn-hyperlinearity-is-amalgamated-free-haar-unitary.md": "7fb92a7e8baa26bbcda3d98714fee750cade0ac3c04e89884871698e1a5befc9",
+    "research/hnn-stable-letter-rounds-to-finite-order.md": "8ca3031e5f8f1d4632f4f1a6d0adcc84b477e24a6653e8266642c8f9838517d7",
+    "research/kt-q2-double-gao-relative-embedding-proof.md": "8795049f694de6b7491ac356d633afecc037f04d78f48e4941be3a364ae13945",
+    "research/kt-q2-double-hyperlinear-iff-relative-embeddable.md": "1303ec3b9f3a9c4c12d80ec5bda3900a7dba2544b6d7648dda016e49c2a1e25d",
+    "research/non-hyperlinear-from-sl3-double-swap.md": "fed28c52f400a0536f6a5b095f6ca26f48ccc344c10256dedb88dad67da2f25e",
+    "research/non-hyperlinear-group.md": "1db205f30bf11aa76c7cbd7a7cbe25b426d9d38745c403366874673ca263967f",
+    "research/nonhyperlinear-from-sl3-non-relative-embeddability.md": "3f6655e61387ec4c867756957578865969de584a9efb3c648d9c5d1b668b220b",
+    "research/sl3-arithmetic-double-gao-equivalence-proof.md": "3ec14c5b5aa26456bfed01492f0bc7fe4ef76b8831dd9c3e8ac54a2b87816c52",
+    "research/sl3-arithmetic-double-hyperlinear-iff-relative-embeddable.md": "a6abb9e77bf412fb77f1d732a238401a42bb4d076b589f68d38b4583fe358cc7",
+    "research/sl3-fold-collapse-from-non-relative-embeddability.md": "a2ccaf96ac0bfc7b4c06c248f28f72c49a2d44f16adefbd8bf93fefef6dc6274",
+    "research/sofic-coset-action-makes-amalgam-double-sofic.md": "2d63b22f9c26e4a64439fcccd1281a01771290eb293edcf78d936d48dfc68dde",
+    "research/swap-involution-enemy-is-never-abelian-carried.md": "01328869b1a06e8beb8a2e5eb1515b5c593ae78d8687bac3173c80396d01444a",
+    "research/tensor-gaussian-binary-wreath-equivalence-proof.md": "d152c4ccf26ec0edf449ce7a5ecec52e5f1549ee3d6ca76c1ab0afbd7a1de5a0",
+    "research/tensor-lamp-expectation-relative-embedding-proof.md": "cd5e4a9ccf6d0bb34df634bba8c222959fe1add7bd9cf9343c30fb08d9b20832"
+  },
+  "completion": "The general equivalence is established. Existence of a nonhyperlinear group remains unproved and the thread goal remains active."
+}

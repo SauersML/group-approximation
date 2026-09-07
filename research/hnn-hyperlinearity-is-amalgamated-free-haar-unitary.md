@@ -73,7 +73,7 @@ question whether amalgamated free products of Connes-embeddable algebras
 over non-amenable subalgebras are Connes embeddable is open (Gao--Junge,
 arXiv:2012.07940), and the lane is its first arithmetic instance.
 
-**The other consumer of the collapse has an incomparable minimal form.**
+**The ordinary coset wreath has a different fixed-model pattern.**
 The coset-Bernoulli wreath `W = (Z/2) wr_(A/C) A` of
 `coset-bernoulli-ce-refutes-relative-commutant-collapse` has
 `L(W) = L^infinity({+-1}^(A/C)) rtimes A`, so an embedding `iota` extends
@@ -83,10 +83,14 @@ to `L(W)` iff `M` contains commuting involutions `v_x`, `x in A/C`, with
 `v_C`, not a Haar unitary; in `L(W)` the `C`-centraliser of `L(C)` is
 `W^*(v_C) (x) L(Z(A))`, because `C` acts on the remaining cosets with
 infinite orbits and the generalised Bernoulli shift over them is ergodic,
-while in `L(G)` it is `L(<t> x Z(A))`.  So neither group's hyperlinearity
-is known to imply the other's; `(RCC)` forbids both leaks at once, which
-is why it implies non-hyperlinearity of both groups, but a proof aimed at
-the goal may target either minimal form separately.
+while in `L(G)` it is `L(<t> x Z(A))`. These fixed-model patterns differ,
+but existence of their matrix models is equivalent by
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity`. Tensor
+averaging gives an HNN model from the ordinary lamps; a Gaussian tensor
+limit gives ordinary lamps from the free binary model. The construction
+changes the embedding and ambient ultraproduct. It does not place a free
+Haar letter inside the original abelian carrier. The two candidate groups
+have the same hyperlinearity status for every countable subgroup pair.
 
 **1-bounded entropy cannot separate the two scenarios.**  If `k` as in
 `(2)` exists, then `k` and `u_h k u_h^*` are `*`-free Haar unitaries (an

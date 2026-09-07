@@ -4,7 +4,7 @@ id: swap-involution-enemy-is-never-abelian-carried
 kind: claim
 title: A balanced free central involution has squared commutator norm two with its twist, excluding abelian carriers
 distinct_from:
-  coset-bernoulli-ce-refutes-relative-commutant-collapse: that exhibits an abelian-carried leak (a Bernoulli coordinate unitary) whose Connes embeddability refutes the full commutant collapse; this proves that every such abelian-carried leak has commutator zero with its own twist and therefore can NEVER satisfy the amalgamated-freeness moment pattern of the double-swap enemy, so the swap route is immune to the construction that threatens the collapse routes.
+  coset-bernoulli-ce-refutes-relative-commutant-collapse: that exhibits an abelian-carried leak; this excludes that same involution and its twists from satisfying the free pattern in the fixed model. Tensor amplification can nevertheless construct a new free model from a CE binary coset wreath.
   homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse: that makes the homogeneous-quotient crossed product a refutation gate for the collapse, the K-orbit cells being the leak; this shows those cells, and any signed combination of them, live in an abelian algebra invariant under the h-twist and hence have four-letter moment one instead of the required zero.
   hecke-far-commutator-defect-formula: that computes the FAR double-coset limit of the commutator defect of a subgroup-central unitary in every finite tracial algebra; this is an exact identity at ONE finite word (the four-letter alternating word at h itself), separating the free pattern from every commuting pattern with no limit taken.
   sl3-outliers-carry-no-balanced-free-involution: that is the open exclusion of the enemy on lattice outliers; this is an established structural constraint on any candidate enemy -- squared additive commutator norm two with its twist -- which excludes abelian carriers without deciding the open claim.
@@ -29,24 +29,24 @@ infinite dihedral group freely in trace. Their squared commutator norm
 is `2`, separated from the commuting value `0`; the maximum for two
 involutions is `4`, attained by anticommuting Pauli matrices.
 
-**COROLLARY (the separation of routes).**  In any crossed product
+**COROLLARY (the fixed-model obstruction).** In any crossed product
 `L^infinity(X) rtimes A` (pmp action), any candidate `s` lying in the
 abelian core -- a Bernoulli coordinate sign, a signed combination of
 `K`-orbit cells of the homogeneous quotient, any function of `X` --
 commutes exactly with all its twists (`[s, s_a] = 0`), so `(AC1)` fails
 by a fixed amount: `tau((s s_a)^2) = 1`, not `0`.  Hence:
 
-- Connes embeddability of the coset-Bernoulli wreath or of the
-  homogeneous-quotient crossed product would refute the relative
-  commutant collapse `(RCC)` (as the graph records) but supplies NO
-  enemy for the double-swap route: the leaks those models produce are
-  abelian-carried, and the four-letter moment convicts them.
+- The abelian involution in that original model cannot itself be the
+  double-swap enemy. For the binary coset-Bernoulli wreath, however,
+  Connes embeddability does imply existence of a new double-swap model,
+  by `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity`.
+  Tensor amplification changes the actor embedding and the carrier.
 - Any refutation of `sl3-outliers-carry-no-balanced-free-involution`
   must construct outlier microstates with a genuinely noncommutative
   twist structure: `s_n` and `pi_n(h) s_n pi_n(h)^*` asymptotically free
-  involutions.  No dynamical model over an abelian carrier, and no
-  construction in which the involution and its twist land in a common
-  commutative corner, can do it.
+  involutions. The final involution and its twist cannot lie in a common
+  commutative corner. An abelian coset model may still be the input to a
+  construction of such a different model.
 
 The established implications are `(RCC) => projective transfer => no
 amalgamated-free Haar unitary`

@@ -6,6 +6,9 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/tensor-swap-expectation-repair-2026-09-07.md
+  - research/artifacts/centralizer-hnn-relative-embedding-audit-2026-09-07.md
+  - research/artifacts/coset-hyperlinearity-equivalence-literature-2026-09-07.md
   - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
   - research/artifacts/parallel-group-word-2026-09-04.md
   - research/artifacts/parallel-ui-iteration-audit-2026-09-04.md
@@ -38,6 +41,23 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+**September 7, coset-candidate equivalence.** For every countable pair
+`C<=A`, the ordinary binary coset wreath, free binary coset wreath,
+plain double `A*_C A`, centralizer HNN group, and enlarged double share
+the same hyperlinearity status, equivalent to scalar relative embeddability
+of `L(C)<=L(A)`. Tensor averaging of one binary lamp gives expectation
+norm squared `2^-k` off the subgroup; bounded tensor exponentials of
+free lamps give the classical Gaussian crossed product and its binary
+signs. All mixed actor traces and the scalar commuting square are proved
+in the linked artifacts and wired through
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity`.
+This repairs the group-level plain-double bridge independently of the
+missing commutant inclusion in the printed source. The constructions
+change the embedding, so the fixed-model abelian/free distinction does
+not imply different existence problems. Non-relative-embeddability for
+an actual candidate remains open; no nonhyperlinear group is established
+by the equivalence alone.
 
 The September 5 audits leave this target open. Hilbert `H^2` vanishing
 now gives uniform fixed-tolerance correction concentrating arbitrary

@@ -10,7 +10,7 @@ requires:
 ---
 
 If canonical-character microstates of the arithmetic double existed, the
-double would be hyperlinear.  Gao's equivalence would make the inclusion
+double would be hyperlinear. The tensor-swap equivalence would make the inclusion
 `RE/L(C)`, contradicting the first prerequisite.  Thus no such microstates
 exist, and the target fold-mark statement holds vacuously.  Conversely the
 fold-mark statement contradicts the canonical trace of its nontrivial mark
