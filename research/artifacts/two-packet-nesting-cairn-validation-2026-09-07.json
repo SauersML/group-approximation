@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "scope": "Full graph compilation and artifact/reference lint; duplicate checks on the four touched nodes.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "leavitt-corner-one-sided-lift-exists": "OPEN",
+    "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
+    "nested-two-finite-subgroup-idempotents-have-strict-rank": "ESTABLISHED",
+    "two-finite-subgroup-nesting-amalgam-proof": "COMPLETE"
+  },
+  "elapsed_seconds": 18.564
+}

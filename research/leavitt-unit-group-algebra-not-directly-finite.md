@@ -229,6 +229,12 @@ projectives. A computational construction using a finite-state boundary
 idempotent must check this restriction even when its transition operators
 generate the whole ambient group.
 
+`nested-two-finite-subgroup-idempotents-have-strict-rank` also excludes
+using two separate finite support packets as source and reverse-product
+idempotents, even when their combined subgroup is infinite. For the
+designated finite-supported corner identity e, a strict reverse product
+must itself have support generating an infinite subgroup.
+
 `finite-subgroup-copy-circuits-have-no-recurrent-branching` extends that
 constraint to a finite network of different projective packets: exact
 decomposition into successor states permits only simple cycles in the

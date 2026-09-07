@@ -74,6 +74,15 @@ zero-class defect that cannot come from a finite subgroup.
 
 ## Attempts
 
+**Two finite support packets cannot supply the source and reverse
+product (2026-09-07).** The corner identity e is supported in <g>.
+`nested-two-finite-subgroup-idempotents-have-strict-rank` shows that
+for any proposed ab=e, ba=f!=e, the idempotent f cannot be supported
+in any finite subgroup, even one whose union with <g> generates an
+infinite subgroup. This permits arbitrary supports for a and b and
+is stronger than requiring only the defect e-f to escape finite
+subgroups. The single-pair target itself remains open.
+
 **Compress the explicit rank-three lifts, and watch which half survives.**
 Take the support-three lifts of `leavitt-rank-three-unit-lift` and push them
 into the corner: `a = e t~ e`, `b = e s~ e`.  The *inequality* is then free
