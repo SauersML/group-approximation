@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 321 |
+| `formalized` | 325 |
 | `definition` | 56 |
 | `structural` | 33 |
 | `partial` | 22 |
 | `provenance` | 19 |
 | `attribution` | 17 |
-| `unassigned` | 9 |
+| `unassigned` | 5 |
 | **total** | **477** |
 
-Completely formalized or definitional: **377/477** (79.0%).
+Completely formalized or definitional: **381/477** (79.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -29,10 +29,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 325 --- For the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
 * **`partial`**, line 670 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
   * Same printed proof, sentence 2: q!=0 gives infinitely many nonzero q_n, retained as the corner coordinates -- proved. Partial per the lane's own report: "r_n=rank(q_n) is not claimed by either statement -- here r_n is the number of retained corner coordinates and only 0<r_n is proved", so the sentence's own notation r_n=rank(q_n) is not literally what the carrier establishes.
-* **`unassigned`**, line 818 --- A group can satisfy the hypothesis of Proposition~\ref{prop:max-infinite} and be MF\@.
-* **`unassigned`**, line 818 --- The ascending HNN extension $V$ of $\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ along $(v,A)\mapsto(2v,A)$, used in Section~\ref{sec:amenable-nonqd}, has the faithful matrix realization
-* **`unassigned`**, line 833 --- and reduction modulo odd integers separates its elements, so $V$ is residually finite and MF~\cite[Corollary~10]{Korchagin}.
-* **`unassigned`**, line 833 --- So the lamps of Section~\ref{sec:amenable-nonqd} are necessary for the non-MF conclusion there.
 * **`partial`**, line 863 --- A word $a$ of length $|a|$ has $\opnorm{a(U)-1}\le|a|\,D(U)$, and unitaries $A,B$ satisfy
   * Same printed proof: a word a of length |a| has ||a(U)-1||<=|a|D(U) (wordLengthBound), and the commutator estimate ||[A,B]-1||<=2||A-1||||B-1|| (commutatorEstimate). Partial per the lane's own docstring: wordLengthBound gives a constant from the free-group induction, not literally the length of a particular spelling, though it is all the printed argument uses.
 * **`partial`**, line 901 --- The set of $m$-marked groups satisfying $r_1=\cdots=r_s=1$ is open and closed in the space of marked groups, and every group in it has the property; so the property is open.
@@ -87,7 +83,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 0 |
 | From Hilbert--Schmidt to operator norm | 31 | 0 |
-| The maximal group \texorpdfstring{$C^*$ | 19 | 4 |
+| The maximal group \texorpdfstring{$C^*$ | 19 | 0 |
 | A finite certificate | 19 | 0 |
 | One-sided inverses and elementary groups | 75 | 0 |
 | The binary example | 46 | 1 |
