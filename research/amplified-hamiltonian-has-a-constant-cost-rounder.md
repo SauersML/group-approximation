@@ -13,13 +13,14 @@ Criterion (A) of the attack.  The output `H'` of the amplifier of
 `combinatorial-gap-and-rounder-give-energy-gap`.
 
 **This node is a pivot, not a reduction.**  By the converse half of
-`combinatorial-gap-and-rounder-give-energy-gap`, the bare existence of a
-constant-cost rounder for a fixed Hamiltonian is *logically equivalent* to
-its energy gap being constant.  So proving this claim by any route which only
-asserts that some instrument exists renames
-`quantum-pcp-constant-gap-local-hamiltonian` and proves nothing.  It is kept
-as a separate node only because it is the interface at which the structured
-statements meet the transfer theorem.
+`combinatorial-gap-and-rounder-give-energy-gap`, on NO-instance families
+with positive constant combinatorial gap, a uniform constant rounder cost
+is equivalent to a uniform positive normalized energy floor. On one fixed
+finite Hamiltonian some finite-cost rounder always exists, and the
+frustration-free case has cost zero. Establishing a uniform bound requires
+an argument; bare existence does not provide it. Nor does the equivalence
+establish the hardness reduction or its YES-side promise. This node is the
+interface where structured constructions meet the transfer theorem.
 
 The whole content therefore lives in the route
 `rounder-from-local-ports-and-exactifier`, whose prerequisites demand that
@@ -34,9 +35,8 @@ that outcome.
   `whole-time-slice-corruption-costs-inverse-depth`.
 - **Combinatorial soundness as the rounder.**  Recorded dead as
   `qpcp-rounder-from-combinatorial-soundness-alone`, killed by
-  `coherent-shear-is-combinatorially-invisible`: on an explicit 2-local chain
-  the exact fault count is `1` while the energy is `Theta(1/D)`, so no
-  argument converting energy into a violated-constraint count can produce a
-  constant-cost, endpoint-faithful instrument.
+  `qubit-pairs-have-half-gap-and-unbounded-rounder-cost`: bounded-occurrence
+  projector instances have combinatorial gap `1/2` but optimal unrestricted
+  rounder cost `(N^2+1)/2`.
 - **Bare existence.**  Excluded by the converse above; it is the
   restatement-dressed-as-reduction shape this graph is built to catch.

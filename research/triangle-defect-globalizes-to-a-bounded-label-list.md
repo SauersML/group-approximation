@@ -67,6 +67,8 @@ is needed after the analytic step has supplied such triples with high density
 under the product-uniform measure on `B x B`.
 
 **Scope.**  This closes only the conditional globalization implication.  It
-does not show that noisy heavy cosets have small defect; that remains
-`affine-orientation-triangle-defect-is-small`.  It also does not supply the
+does not show that noisy heavy cosets have small defect; the proposed input
+`affine-orientation-triangle-defect-is-small` was refuted on 2026-09-07 by
+`noisy-affine-selector-defeats-bounded-hitting`. This conditional averaging
+theorem remains valid. It also does not supply the
 unwritten soundness reduction in `glue-lemma-implies-rich-2to1-hardness`.

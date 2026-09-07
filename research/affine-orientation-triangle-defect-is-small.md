@@ -3,14 +3,24 @@ rg: 2
 id: affine-orientation-triangle-defect-is-small
 kind: claim
 title: Noise and boundedness force the product-uniform affine orientation defect to be small
+refuted_by:
+  - noisy-affine-selector-defeats-bounded-hitting
 distinct_from:
   affine-orientation-glue-lemma: that is the global conclusion the soundness decoder consumes, a bounded hitting set for heavy cosets; this is the purely local estimate on one random affine plane and asserts nothing about a global label list.
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
+  - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
 ---
 
-**OPEN.**  The analytic half of `affine-orientation-glue-lemma`.
+**REFUTED (2026-09-07).** The noisy direction decoder gives heavy cosets
+in all directions at fixed `rho=1/2,d=1,delta=1/16`, yet the density of
+intersecting product-uniform pairs is exactly `3/(N-1)`, tending to zero.
+Even a fixed positive star density is impossible under these hypotheses.
+The three-line star density for distinct directions is zero.
+See `noisy-affine-selector-defeats-bounded-hitting` for the counterexample.
+
+The original analytic proposal and attempts are retained below as history.
 
 Keep the notation of that node: `f : {-1,1}^Omega -> [-1,1]`, `g = T_rho f`,
 and for each `b` in a positive-density set `B subset Omega \ {0}` a
@@ -40,7 +50,7 @@ counted as defect, not silently identified with an affine triangle.  Also,
 conditioning on an irregular set of additive triples changes the marginal
 on `B` and is not sufficient for the uniform hitting conclusion.
 
-**Statement.**  For every fixed `rho, d, delta, alpha > 0`, the selected
+**Refuted statement.**  For every fixed `rho, d, delta, alpha > 0`, the selected
 heavy cosets on every `B` of density at least `alpha` admit star certificates
 on a `1-o(1)` fraction of product-uniform pairs in `B x B`, with the defect
 bounded by a function of the fixed parameters alone that tends to zero.

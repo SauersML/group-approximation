@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.ThomBridgeChartHom
 import GroupApproximation.CharClass.ThomBridgeTotalNatural
 import GroupApproximation.CharClass.RelativeSubspaceIso
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The bridge commutes with `relToAbs`
@@ -115,9 +116,10 @@ theorem relToAbs_bridgeTotal [CompactSpace X] [T2Space X] (p : Bundle X ι) (n :
   rw [pull_eq_absPull, bridgeTotal_apply]
   exact hnat1.symm
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms relToAbs_bridgeTotal
+#audit_axioms relToAbs_bridgeTotal
 
 end
 

@@ -14,13 +14,15 @@ artifacts:
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
   - research/artifacts/periodic-higman-cofinite-spectrum-2026-09-04.md
   - research/artifacts/periodic-higman-all-primes-2026-09-05.md
+  - notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md
 ---
 
 Produce a word-hyperbolic group that is not residually finite, or prove that
 none exists.
 
 This is the long-standing question usually attributed to Gromov.  It remains
-open as of 2026-08-24: Cui--Wan, arXiv:2604.04007 (5 April 2026), say in their
+open in the primary sources rechecked on 2026-09-07: Cui--Wan,
+arXiv:2604.04007 (5 April 2026), say in their
 §1.2 that residual finiteness of every hyperbolic group is still an open
 conjecture.  None of the constructions recorded below changes that status.
 
@@ -99,3 +101,13 @@ This root remains OPEN. The periodic-Higman missing-period premise is
 refuted. The finite quotients just constructed do not prove that these
 fillings are residually finite: separation of arbitrary nonidentity words
 is still unproved.
+
+The finite-kernel approach now has an exact scope:
+[[finite-kernel-nonrf-has-central-prime-reduction]] and
+[[finite-hyperbolic-residual-iff-persistent-class]] prove that it is
+equivalent to finding a hyperbolic group with finite nontrivial finite
+residual. The reduction isolates the invisible kernel before taking a
+prime quotient, and applies even when the original finite kernel is
+noncentral. This supplies no such group and no treatment of an arbitrary
+infinite residual. The full proof and the correction to the explanatory
+finite-index inclusion are recorded in the new artifact.

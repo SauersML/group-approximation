@@ -571,9 +571,17 @@ the right, to the point of the fibre over the section's zero with the given
 frame coordinate.
 
 The two are joined by a homotopy through maps of pairs, whose far end is the
-right leg precomposed with a linear automorphism, and the homotopy is cut at
-either end because the relative group in question is a line over $\F_2$; the
-automorphism's own pullback is the identity for the same reason.  That cut is
+right leg precomposed with a \emph{real}-linear automorphism of $\C^{r}$.  Real
+and not complex: it factors through a coordinate identification produced by the
+real dimension count $6 + 2m = 2r$, and its bijectivity follows from
+injectivity by finite-dimensionality over $\R$, so a reader who takes it for a
+complex-linear map will not be able to reconstruct that step.  The homotopy is
+then cut at either end because the relative cohomology of the small
+neighbourhood punctured at the origin is a line over $\F_2$, and separately the
+automorphism's own pullback is the identity because the relative cohomology of
+the local model $\C^{r}$ punctured at the origin is a line over $\F_2$ as well.
+Those are two different groups at two different stages of the argument, lines
+for the same reason but not the same fact used twice.  That cut is
 not a shortcut through relative homotopy invariance -- it is a substitute for
 it.  This development has no prism operator, so relative homotopy invariance is
 not available as a tool at all, and cutting a homotopy over a line is what
@@ -608,8 +616,16 @@ excision by composing it away instead.
 \label{sec:formal}
 
 Everything above is a theorem of Lean~4.  This section says which declaration
-carries which statement, and what was actually checked about them.  Line
-numbers refer to the repository at commit \textsf{7e8bc3221}.
+carries which statement, and what was actually checked about them.
+
+Two commits are named below and they answer different questions, so we keep
+them apart.  Every line number was verified against
+\textsf{da630c335}, and that is the commit to open if one wants to find a
+declaration.  The axiom readings reported at the end of this section were taken
+at \textsf{7e8bc3221}, an earlier commit at which the two endpoint statements
+stand at the same lines, and that is the commit to rebuild if one wants to
+reproduce them.  Declaration names are stable under both; line numbers are not
+stable under anything, and are given only to save a search.
 
 \subsection{The carriers}
 

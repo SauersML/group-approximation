@@ -45,7 +45,19 @@ The following are equivalent.
    q_chi(w) <= C sum_(r in R) q_chi(r).                 (FS1)
    ```
 
-The two quantitative formulations meet through the same statement:
+4. There is a positive integer N, independent of dimension, such that
+   every unitary tuple satisfies the scalar-sensitive inequality
+
+   ```text
+   ||w(U)-I||_2^2 <= N sum_(r in R)||r(U)-I||_2^2.     (FS1-HS)
+   ```
+
+Condition 4 follows from
+`hyperlinear-radical-has-linear-word-certificate`. It retains the scalar
+phase and is an ordinary HS energy bound, rather than a direct comparison
+of the projective defects in condition 3.
+
+These formulations meet through the same statement:
 `wbar` belongs to the hyperlinear radical of `G`.  They are not a
 term-by-term comparison of their defects.  In particular, `q_chi(r)=0` can
 hold when the matrix assigned to `r` is a nontrivial scalar, so `(FS1)` does

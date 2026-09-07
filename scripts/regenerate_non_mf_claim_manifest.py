@@ -61,9 +61,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute"),
-    "lem:proper-isometry": (
-        "Analysis/ProperIsometryStrictOrder",
-        "GroupApproximation.manuscriptProperIsometryStrictOrder"),
     "prop:max-infinite": (
         "Analysis/StrictCompressionFromPrinted",
         "GroupApproximation.MaximalCStarPrintedHypotheses."
@@ -122,6 +119,10 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
+    # The spectral tensor argument and the wordwise compactness theorem
+    # have complete written proofs, without new Lean verification badges.
+    "lem:linear-tensor-amplification": (),
+    "thm:word-linear-certificate": (),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -226,9 +227,9 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:rank-two": [],
     "thm:mf-quotient-units": ["thm:full-defect-ring"],
     "cor:leavitt-mf-quotient": ["thm:mf-quotient-units"],
-    "lem:proper-isometry": [],
-    "prop:max-infinite": [
-        "lem:kazhdan-projection-order", "lem:proper-isometry"],
+    # The proper-isometry construction is now inside this proposition's
+    # proof, not a separate numbered lemma in the manuscript.
+    "prop:max-infinite": ["lem:kazhdan-projection-order"],
     "thm:factorization-nonmf-trace": [],
     "prop:locally-rf-by-z-trace": [],
     "prop:clifford-self-embedding": ["thm:compression-criterion"],
@@ -240,7 +241,11 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [
         "thm:compression-criterion", "lem:saturation"],
-    "prop:linear-collapse": ["prop:mf-residual-calculus"],
+    "lem:linear-tensor-amplification": [],
+    "thm:word-linear-certificate": [
+        "lem:linear-tensor-amplification", "prop:mf-residual-calculus",
+        "lem:stable-finite"],
+    "prop:linear-collapse": ["thm:word-linear-certificate"],
     "cor:relative-quotient": ["thm:torsion-free", "thm:hull"],
     "cor:regular-nonmf-algebra": ["thm:torsion-free"],
 }

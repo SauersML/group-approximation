@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.LerayHirschGradedIso
 import GroupApproximation.CharClass.ThomBridgeTotal
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Leray–Hirsch on the hyperplane, and the Thom data over one class restriction
@@ -110,9 +111,10 @@ theorem thomData_total_of_taut [CompactSpace X] [T2Space X] [Nonempty X]
     (lerayHirschGraded_compact p.plusOne (r + 1) hs' (Nat.succ_le_succ (Nat.zero_le _)))
     (hyperLH p r hs hs1)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms thomData_total_of_taut
+#audit_axioms thomData_total_of_taut
 
 end ThomChernDeg
 

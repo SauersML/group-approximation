@@ -7,13 +7,15 @@ title: Constant-locality local Hamiltonian is QMA-hard at a constant relative pr
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
+  - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
 ---
 
-Fix a constant `k` and a constant local dimension.  For a `k`-local
-Hamiltonian on `n` qudits,
+There exist a constant `k` and a constant local dimension such that, for
+explicitly described `k`-local Hamiltonians on `n` qudits with polynomially
+many terms and polynomial-bit descriptions,
 
 ```text
 H = (1/m) sum_(a=1)^m h_a,        0 <= h_a <= I,               (QPCP1)
@@ -36,9 +38,20 @@ The region below records one specific attack: obtain a **combinatorial** gap
 from a locality-preserving amplifier, and convert it into an ordinary energy
 gap by exactifying soft violations into commuting local fault syndromes at
 linear cost.  The conversion step is
-`combinatorial-gap-and-rounder-give-energy-gap`; the only prerequisite of
-that step which is not already equivalent to this conjecture is
-`local-syndrome-port-domination-at-each-gadget`.
+`combinatorial-gap-and-rounder-give-energy-gap`. Its converse concerns the
+NO-side energy floor, under a positive constant combinatorial-gap
+hypothesis; it is not an equivalence to the full QMA-hardness claim.
+The amplifier, YES-side energy bound, local syndrome ports, and conditional
+exactifier remain separate open obligations.
+
+**2026-09-07 audit.** The exact family
+`qubit-pairs-have-half-gap-and-unbounded-rounder-cost` rules out an inference
+from combinatorial gap alone even for norm-one, bounded-occurrence qubit
+projectors. `nonorthogonal-pair-forbids-single-term-syndrome-ports` also
+rules out singleton energy neighborhoods for that family's exact flags.
+These are limitations on proof routes, not a disproof of this conjecture.
+The source check in the linked artifact continues to find the conjecture
+open; the polynomial-time constant-gap hardness reduction is not supplied.
 
 ## Attempts
 
@@ -58,5 +71,7 @@ that step which is not already equivalent to this conjecture is
   terms, so a constant-density adversary can erase one outright, and no
   per-timestep guarantee tolerating `o(N)` corruptions survives that.
 - **Bare rounder existence.**  Not an attack at all: by the converse half of
-  `combinatorial-gap-and-rounder-give-energy-gap`, "a constant-cost rounder
-  exists" is logically equivalent to this claim's conclusion.
+  `combinatorial-gap-and-rounder-give-energy-gap`, a uniform constant-cost
+  rounder on a positive-combinatorial-gap family is equivalent to its
+  uniform NO-side energy floor. Proving that bound and a complete hardness
+  reduction is still required.

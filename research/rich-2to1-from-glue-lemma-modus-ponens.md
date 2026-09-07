@@ -7,6 +7,11 @@ target: rich-2to1-games-conjecture
 requires: [affine-orientation-glue-lemma, glue-lemma-implies-rich-2to1-hardness]
 ---
 
+**Invalidated by a refuted premise (2026-09-07).**
+`affine-orientation-glue-lemma` is false. This historical conditional route
+therefore cannot establish Rich 2-to-1 hardness. The logical modus-ponens
+rule is unaffected; a usable analytic premise and reduction are missing.
+
 Modus ponens, and deliberately nothing more.
 
 The tempting shape for this region is a single-premise route

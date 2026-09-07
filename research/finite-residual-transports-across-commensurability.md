@@ -39,8 +39,10 @@ commensurability reduces to distinguishing the residuals up to isomorphism —
 with the finite-index step already discharged, and with no need to track how a
 hypothetical isomorphism between finite-index subgroups was built.
 
-The direction of the first fact is worth stating precisely because the weaker
-inclusion is the one that is obvious: `Res_fin(G) ∩ K <= Res_fin(K)` holds for
-any `K`, since a finite quotient of `K` need not extend to `G`.  It is the
-*reverse* inclusion that uses finite index, and it is what makes the residual
-survive passage to a finite-index subgroup rather than merely grow.
+For an arbitrary subgroup `K <= G`, the immediate inclusion is
+`Res_fin(K) <= Res_fin(G) ∩ K`: every finite homomorphism of `G` restricts
+to one of `K`. The converse uses finite index. Every finite-index subgroup
+of `K` then has finite index in `G`, so it contains `Res_fin(G)`; intersect
+these subgroups to obtain the equality. A finite homomorphism of an
+arbitrary subgroup need not extend to the ambient group, so this converse
+is not asserted without finite index.

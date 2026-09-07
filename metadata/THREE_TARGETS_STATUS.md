@@ -2466,3 +2466,81 @@ so that row is left blank rather than guessed.
 | target 3 open mathematics | **none** — `CharClass.lemmaTwoHolds`, zero hypotheses, `1c3237f2c` |
 | target 3 compiled | **yes** — clean-export root build, 13822 jobs, `sorryAx: none`, `bc9632ea0` |
 | `NinetyNineProblems.not_problemLIX` / `exists_separable_simple_unital_not_k1Inj` (`#audit_closed_axioms`) | **landed**, `aa9ba0148` |
+
+## Sweep 27, 2026-09-07 (lane `xxii-fix`, lead) — target 2's four blockers, closed and re-read
+
+Sweep 14 listed four things standing between Problem XXII and a verified
+target 2, and said none of them was mathematics.  That was right.  Three are
+now closed, and **the fourth was never open in the form it was written.**
+
+| Sweep 14 blocker | state | evidence |
+|---|---|---|
+| 1. the `private` keyword leaves the file uncompiled | **stale as written** | see below |
+| 2. no `#audit` line on the new endpoint | **closed** | `STW22AntipodalFactorialPair.lean:119-122`, four directives |
+| 3. no unconditional form | **closed** | `antipodalFactorialNegativeSolutionToProblemXXII` (`:109`), `#audit_closed_axioms` at `:122` |
+| 4. `negativeSolutionToProblemXXII` still holds the name | **closed by signpost**, `1ebcd719` | below |
+
+**Blocker 1 was a prediction, and it did not come true.**  It said sweep 10's
+"nine instance failures and four `sorryAx` poisonings" stand because
+`STW22AntipodalBaseCoordinateMeasures.lean:28` still reads `private theorem
+antipodalCounterexampleBlock_nonemptyTraceFamily`, and that "everything above
+has been written against a compiler that has not seen it."  The keyword is
+still there.  The consequence is not: that declaration is referenced **only
+inside its own file**, so `private` is correct, and the clean-export root build
+that wired the five modules compiled all of it — `Build completed successfully
+(13831 jobs)`, `LAKE_EXIT=0`, 2945 axiom lines, and the only `sorryAx` anywhere
+in the closure is the six pre-existing `Manuscript/NonMF/TheoremCAssembly`
+reporters.  A compiler has now seen it.  The row is recorded as **stale**
+rather than closed, because nobody fixed it — it was never broken, and the
+sweep that predicted the breakage did so without building.
+
+**Blocker 4 is closed by signpost rather than by rename** (`1ebcd719`).
+`negativeSolutionToProblemXXII` keeps its statement — a published signature
+does not move — and its docstring now says that it is not the whole of Problem
+XXII and names `STW22ProblemXXII.factorialNegativeSolutionToProblemXXII` as the
+refutation to cite.  The residue this leaves is deliberate and bounded: the
+citable name and the accurate content are still in different declarations, and
+only the docstring connects them.  **Nothing gates that link** — if the endpoint
+is ever renamed, the signpost goes stale silently, which is the same class of
+defect as the notes this sweep was written to correct.
+
+**Correction, same day, to the sentence that stood here.**  This entry originally
+said the lane had looked for a cross-reference check and *established that none
+exists*.  That was false, and it was asserted rather than searched.  A checker
+exists: `scripts/check_prose_decl_names.py` resolves declaration names quoted in
+Lean docstrings against the declarations that exist, and its header records that
+it was written on 2026-08-18 after both failure directions were found in
+quantity.  It is deliberately **not** wired into `scripts/check.py`'s verdict —
+its docstring explains that gating a corpus never checked this way would have
+turned an unknown number of pre-existing prose defects into a red build.  So
+"nothing GATES that link" was true and "no check exists" was false, and the
+false half is the one that would have stopped the next person looking.
+
+**The correction found something the wording fix would have missed.**  The
+checker reports a name only when some proper prefix is a namespace this
+development declares into, and those are fully qualified.
+`GroupApproximation.STW22ProblemXXII` is a known prefix; bare
+`STW22ProblemXXII` is not.  The signpost had been written in the short form, so
+**it was invisible to the checker anyway** — as were all five carrier names in
+the XXII docstrings, each tested.  Corrected to the qualified form in
+`41a077fca`; the corpus violation count is unchanged at 23 across 15 files, all
+pre-existing.
+
+So the operative question is not whether a check exists, but **whether the form
+you wrote is one the check can see**.  Here the names were precise, a checker
+existed, and the two never met.  And an asserted absence is worse than no claim
+at all, because it ends the search.
+
+The signpost also names the algebra split, beyond the brief: a reader sent from
+this docstring arrives at a conjunction mixing M-conjuncts and A-conjuncts, and
+the sentence that stops them carrying "separable" and "Type I" across to M
+belongs where they are redirected, not only where they land.
+
+**Root wiring:** `c4b92f9eb`, `GroupApproximation.lean` only, +5 lines.  All
+five XXII modules are root-reachable; root closure 5175 modules of 5269 on
+disk.  `1ebcd719` survived the wiring intact, checked rather than assumed.
+
+**Target 2's verdict:** the repository refutes STW Problem XXII **as posed** —
+for a factorial tracially complete pair, with factoriality a theorem rather
+than a hypothesis — under a citable name, root-reachable, axiom-gated, and
+compiled.

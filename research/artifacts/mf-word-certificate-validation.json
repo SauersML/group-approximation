@@ -1,0 +1,47 @@
+{
+  "scope": "Individual MF-radical word certificates and the non-MF manuscript revision",
+  "proof_commit": "6b77a32421289bbcf82e7683b71eaac29c0a34c5",
+  "manuscript_commit": "4ba5f5c6e0cbfc586c656e558528f1bc08349f61",
+  "mathematical_result": {
+    "claim": "mf-radical-words-have-linear-certificates",
+    "manuscript_labels": [
+      "lem:linear-tensor-amplification",
+      "thm:word-linear-certificate"
+    ],
+    "threshold_to_linear_constant": "6 / eta, with the same finite relator window",
+    "scope": "Any word in a finitely generated group, including a proper MF radical",
+    "proof_artifact": "research/artifacts/mf-word-linear-certificates.md",
+    "verification_kind": "complete written mathematical proof",
+    "new_lean_verification": false,
+    "literature_priority_asserted": false,
+    "effective_certificate_search_asserted": false
+  },
+  "checks_at_manuscript_commit": {
+    "cairn_check_changed": {"status": "ok", "findings": []},
+    "cairn_preview": {"status": "ok"},
+    "numbered_claim_manifest": {"validated": 30, "total": 30},
+    "declaration_references": {"resolved": 58, "total": 58},
+    "zero_input_declaration_check": {"closed": 58, "total": 58},
+    "git_diff_check": "pass"
+  },
+  "published_pdf": {
+    "path": "non_mf_groups_exist.pdf",
+    "commit": "da071571949d11f9cadcfc1e5f38c5ca6020766e",
+    "workflow_url": "https://github.com/SauersML/group-approximation/actions/runs/34164604857",
+    "workflow_conclusion": "success",
+    "build": "repository-pinned TeX Live workflow, including unresolved-reference check and normalization",
+    "pages": 25,
+    "new_theorem_page": 11,
+    "origins_and_authorship_page": 23,
+    "sha256": "db42c6211e8f49deec5f33a72c985be3a34295ca9af95fc6bf57d2cd9453f0ab",
+    "visual_review": "all-page contact sheet and full-size first page and theorem page; no clipping or overlapping content observed"
+  },
+  "formal_coverage_boundary": {
+    "new_numbered_claim_status": "paper-proof; no Lean badges added",
+    "complete_manuscript_lean_verification_asserted": false,
+    "sentence_census": "The separate sentence and display audits remain incomplete. No grading rule, baseline, or formalization requirement was relaxed.",
+    "sentence_census_before_revision": {"sentences": 474, "unassigned": 66, "partial": 15},
+    "sentence_census_after_revision": {"sentences": 510, "unassigned": 115, "partial": 14},
+    "interpretation": "Numbered-claim validation checks declared proof boundaries and references; it does not certify every sentence or prove the new theorem in Lean."
+  }
+}

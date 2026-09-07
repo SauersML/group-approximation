@@ -1,0 +1,78 @@
+{
+  "base_commit": "ad14563cf52f955afdac32fcf94ce83839fdec75",
+  "cairn_check_changed": {
+    "findings": [
+      {
+        "message": "research/glue-lemma-implies-rich-2to1-hardness.md: every route that needs glue-lemma-implies-rich-2to1-hardness is invalidated \u2014 the hole is no longer load-bearing; retarget it or let it stand as recorded dead space",
+        "rule": "dead-work",
+        "severity": "warning"
+      }
+    ],
+    "status": "ok"
+  },
+  "cairn_preview": {
+    "added": [
+      "noisy-affine-selector-counterexample-proof",
+      "noisy-affine-selector-defeats-bounded-hitting"
+    ],
+    "direct_proof_assertions": [
+      "noisy-affine-selector-counterexample-proof"
+    ],
+    "dup_warnings": [],
+    "frontier_added": [
+      "rich-2to1-games-conjecture"
+    ],
+    "frontier_removed": [
+      "affine-orientation-triangle-defect-is-small",
+      "glue-lemma-implies-rich-2to1-hardness"
+    ],
+    "removed": [],
+    "status": "ok",
+    "status_changed": [
+      {
+        "from": "OPEN",
+        "id": "affine-orientation-glue-lemma",
+        "to": "REFUTED"
+      },
+      {
+        "from": "OPEN",
+        "id": "affine-orientation-triangle-defect-is-small",
+        "to": "REFUTED"
+      },
+      {
+        "from": "OPEN",
+        "id": "glue-lemma-from-small-triangle-defect",
+        "to": "INVALIDATED"
+      },
+      {
+        "from": "OPEN",
+        "id": "rich-2to1-from-glue-lemma-modus-ponens",
+        "to": "INVALIDATED"
+      }
+    ]
+  },
+  "checked_on": "2026-09-07",
+  "derived_states": {
+    "affine-orientation-glue-lemma": "REFUTED",
+    "affine-orientation-triangle-defect-is-small": "REFUTED",
+    "glue-lemma-from-small-triangle-defect": "INVALIDATED",
+    "glue-lemma-holds-for-quadratic-functions": "ESTABLISHED",
+    "noisy-affine-selector-counterexample-proof": "COMPLETE",
+    "noisy-affine-selector-defeats-bounded-hitting": "ESTABLISHED",
+    "rich-2to1-conjecture-is-equivalent-to-ugc": "ESTABLISHED",
+    "rich-2to1-from-glue-lemma-modus-ponens": "INVALIDATED",
+    "rich-2to1-games-conjecture": "OPEN",
+    "triangle-defect-globalizes-to-a-bounded-label-list": "ESTABLISHED",
+    "unique-games-conjecture": "OPEN"
+  },
+  "exact_replay_with_graph": "passed",
+  "formal_lean_verification": false,
+  "schema": 1,
+  "scope": "A counterexample to repository analytic claims; no UGC proof or disproof.",
+  "source_sha256": {
+    ".github/workflows/unique-games-research.yml": "23f48ce0a15cb30844246898f5edf1a8861e51ed5943b261de31cff0bd9d74f3",
+    "research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md": "c23dc616059b50edaecab7e0c5e39ef3994906a83d510798ada6a22076cada1a",
+    "research/artifacts/unique-games-noisy-direction-replay-2026-09-07.json": "4823a5d1a19f63b2cecef56ac159ed9129af7c53999013fbc50fa284f2cb2672",
+    "scripts/check_unique_games_noisy_direction.py": "f48275c282c99dad8dddda931080b01367b4af689b6c27baf4c5212d1d33cf33"
+  }
+}

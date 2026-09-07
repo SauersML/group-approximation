@@ -87,7 +87,7 @@ theorem chernChar_div (W V : TotalChern A) (q : ℕ) :
 the parity chain states it, for every total Chern class over a
 `ℚ`-algebra — including a virtual one.  No splitting principle and no topology:
 it is the coefficientwise form of `c · N(c) = X c'`. -/
-theorem newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
+theorem newton_identity_range (c : TotalChern A) (q : ℕ) (_hq : 0 < q) :
     (∑ i ∈ Finset.range q,
         (-1 : A) ^ i * c.chernClass i * (((q - i)! : ℕ) : A) * c.chernChar (q - i))
       + (-1 : A) ^ q * (q : A) * c.chernClass q = 0 := by

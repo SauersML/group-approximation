@@ -86,10 +86,12 @@ def spherePairing (n : ℕ) (hn : 1 ≤ n) : cohomologyℤ (Sph n) n →ₗ[ℤ]
     rw [map_add]
     rfl
   map_smul' s a := by
-    show ((kronecker ℤ (Sph n) n).hom (s • a)) (sphereFundamentalClass n hn)
-      = s • ((kronecker ℤ (Sph n) n).hom a) (sphereFundamentalClass n hn)
-    rw [map_smul]
-    rfl
+    -- No `show` here: writing `s • _` out has instance search pick `ℤ`'s
+    -- `SubNegMonoid.toZSMul` action, while the field's own statement uses the
+    -- `Module ℤ` action carried by the `ModuleCat` object.  On a general
+    -- `Module ℤ M` those two are equal only propositionally, so the `show`
+    -- fails outright.  Leave the smul where the field's own statement put it.
+    simp
 
 @[simp] theorem spherePairing_apply (n : ℕ) (hn : 1 ≤ n) (a : cohomologyℤ (Sph n) n) :
     spherePairing n hn a = (kronecker ℤ (Sph n) n).hom a (sphereFundamentalClass n hn) := rfl
@@ -109,8 +111,13 @@ theorem sphereGen_ne_zero (n : ℕ) (hn : 1 ≤ n) : sphereGen n hn ≠ 0 := by
 theorem spherePairing_surjective (n : ℕ) (hn : 1 ≤ n) :
     Function.Surjective (spherePairing n hn) := by
   intro k
-  refine ⟨k • sphereGen n hn, ?_⟩
-  rw [map_smul, spherePairing_sphereGen, smul_eq_mul, mul_one]
+  -- The witness is read off `map_smul`'s own left-hand side rather than written
+  -- out, for the same reason as in `spherePairing`: a written `k • _` picks the
+  -- `ℤ`-action of the additive group, not the `Module ℤ` action, and then
+  -- `map_smul` does not rewrite it.
+  have h := (spherePairing n hn).map_smul k (sphereGen n hn)
+  rw [spherePairing_sphereGen, smul_eq_mul, mul_one] at h
+  exact ⟨_, h⟩
 
 end
 

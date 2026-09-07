@@ -123,14 +123,14 @@ theorem trace_unitaryInvariant :
 /-- **Rank is locally constant.** -/
 theorem isLocallyConstant_rankAt {P : C(X, CStarMatrix ι ι ℂ)}
     (hP : ∀ x, IsStarProjection (P x)) : IsLocallyConstant (rankAt P) :=
-  isLocallyConstant_of_unitaryInvariant Matrix.trace trace_unitaryInvariant
+  isLocallyConstant_of_unitaryInvariant (A := CStarMatrix ι ι ℂ) Matrix.trace trace_unitaryInvariant
     (map_continuous P) hP
 
 /-- **Rank is constant on a connected base.** -/
 theorem rankAt_eq_of_preconnectedSpace [PreconnectedSpace X]
     {P : C(X, CStarMatrix ι ι ℂ)} (hP : ∀ x, IsStarProjection (P x)) (x₀ x₁ : X) :
     rankAt P x₀ = rankAt P x₁ :=
-  eq_of_preconnected Matrix.trace trace_unitaryInvariant (map_continuous P) hP x₀ x₁
+  eq_of_preconnected (A := CStarMatrix ι ι ℂ) Matrix.trace trace_unitaryInvariant (map_continuous P) hP x₀ x₁
 
 end Rank
 

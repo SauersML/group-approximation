@@ -8,6 +8,7 @@ distinct_from:
   finite-central-extension-rf-iff-virtually-splits: that is the established criterion converting persistence into failure of residual finiteness; this is the cohomological existence statement the criterion consumes, and it is open
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
+  - notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md
 ---
 
 Produce a residually finite word-hyperbolic group `H`, a prime `p`, and a
@@ -24,6 +25,15 @@ By `finite-central-extension-rf-iff-virtually-splits` the associated central
 extension `E_α` is then not residually finite, and it is hyperbolic because a
 finite extension of a hyperbolic group is hyperbolic.  So this is a complete
 counterexample target, stated entirely in cohomology.
+
+[[finite-hyperbolic-residual-iff-persistent-class]] proves an exact
+equivalence: this approach succeeds if and only if some word-hyperbolic
+group has a finite nontrivial finite residual. More generally,
+[[finite-kernel-nonrf-has-central-prime-reduction]] shows that an arbitrary
+non-residually-finite finite-kernel extension of an RF hyperbolic base
+already supplies a prime central example over a finite-index subgroup of
+that base. These are conditional reductions; the existence question
+remains open. They do not cover a counterexample whose residual is infinite.
 
 ## Attempts
 
