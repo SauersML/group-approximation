@@ -2370,3 +2370,95 @@ has to re-run the build to learn what the builder already knew.
 | orphans (excl. untracked FLT) | 315 |
 | target 3 open mathematics | **one step**, on paper: step 6, transverse zero → nonzero top class |
 | target 3 compiled | none |
+
+## Sweep 26, 2026-09-07 (lane `lix-meta`) — target 3 (LIX) closes in Lean
+
+Written after sweep 25 sat as the file's last entry for two days. Every
+declaration, file and commit named below was read directly off
+`git show`/`git cat-file -e origin/main:<path>`, not relayed from a lane
+report or from the fleet lead's own summary of it — the same standard this
+file has applied to itself throughout. Full chain and verification-standard
+record: `notes/lix-lane-reports/lix-lemma-two-lean-closure-2026-09-07.md`;
+graph record: `research/stw59-lean-witness-simple-unital-not-k1-injective.md`
+and its `-proof` route node.
+
+**Every row of sweep 25's standing table has moved, and the design changed
+underneath two of them:**
+
+* **`ProblemLIX` — landed.** `Manuscript/NinetyNineProblems/ProblemLIX.lean`
+  states exactly `∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleCStar A
+  → K1Inj A`, over generic vocabulary as sweep 21–23 required. Its own
+  `not_problemLIX` (the audited, reader-facing form) was still unlanded as of
+  this writing — see "still open" below — but `GroupApproximation.CharClass.
+  not_problemLIX : ¬ NinetyNineProblems.ProblemLIX` (`CharClass/
+  LemmaTwoOfHsqHresHclass.lean`, commit `1c3237f2c`) already proves the
+  identical statement with **zero hypotheses**, wired into the root at
+  `GroupApproximation.lean:3888`.
+* **`IsSimpleCStar` / `isSimpleCStar_iff_isSimpleRing` — both landed**,
+  `Analysis/CStarSimple.lean:93,158`, exactly the closed-ideal notion sweep 24
+  asked for (not Mathlib's `IsSimpleRing`).
+* **`Topology/SphereModelBridge.lean` / `sphereFiveHomeoSphere` — never
+  landed, and now superseded rather than missing.** The architecture that
+  needed a bridge lemma was abandoned: the base sphere is built directly as
+  `STW59.sphereFive := unitVectors (Fin 3)` (`Analysis/LIXBlockProjections.lean`),
+  with no separate homeomorphism-to-a-standard-model step anywhere in the
+  landed chain. Carrying this row forward as "absent" would misreport a
+  closed design decision as an open deliverable; it is retired.
+* **"`Analysis/LIX*`/`KTheory/*` importing `SphereOddDegree`: 0, invariant
+  holds" — the invariant is retired by the same design pivot, not violated by
+  accident.** Sweep 21–23's concern was routing target 3 through Bott
+  periodicity / K-theory machinery that does not exist in Mathlib at the pin.
+  The landed route never does that: it works over singular cohomology mod 2,
+  and for that it deliberately imports the vendored tree at
+  `GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology`
+  — over a dozen `CharClass/LIX*.lean` modules do so now (`LIXResFibre.lean`,
+  `LIXHclass.lean`, `LIXHsq.lean` and its five support modules among them).
+  No `KTheory/*` module imports it; the invariant's actual purpose (no
+  smuggled Bott/K-theory dependency) still holds, but its literal statement
+  no longer matches the landed design and should not be re-checked as
+  written.
+* **Target 3's crux, sweep 25's "one open step" (step 6: one transverse zero
+  → nonzero top class) — closed.** The paper sketch (retraction off one top
+  cell ⇒ surjectivity ⇒ isomorphism between one-dimensional `F₂` spaces) and
+  the landed Lean proof are the same shape: excision to a chart around the
+  zero, a local-homeomorphism degree argument via the Thom class, and
+  `H^{2r}(N∖{pt}) = 0` giving the needed isomorphism by Mayer–Vietoris rather
+  than by a retraction argument stated as such. The three residues that
+  closed it: `hres` = `GroupApproximation.CharClass.injective_lixRes`
+  (`CharClass/LIXResFibre.lean`, `59796080e`); `hclass` =
+  `GroupApproximation.CharClass.lixHclass` (`CharClass/LIXHclass.lean`,
+  `1a75df323`); `hsq` = `GroupApproximation.CharClass.lixHsq`
+  (`CharClass/LIXHsq.lean`, `ef0b678cb`).
+* **Target 3 compiled — yes.** Root-wiring commits `6785a5dd2` and `bc9632ea0`
+  each report, in their own commit message, a full build from a clean `git
+  archive` export of `origin/main`: the second, `Build completed successfully
+  (13822 jobs)`, `LAKE_EXIT=0`, `sorryAx: none` over 2929 `depends on axioms`
+  lines. This is a compiled build against the committed bytes, meeting sweep
+  25's own "compiled" bar (an `#audit` macro reading oleans off a stale or
+  orphan module is not this).
+
+**Still open, honestly stated.** The reader-facing wrapper
+`GroupApproximation.NinetyNineProblems.not_problemLIX`, meant to carry
+`#audit_closed_axioms` for the STW-99-problems endpoint roster, was HELD as
+of this writing pending a from-clean-export fresh compile of `lixHsq` on the
+fleet lead's side (`notes/lix-lane-reports/cs-endpoint.md`); it is a one-line
+application of the already-unconditional `CharClass.not_problemLIX`, not open
+mathematics. `K1(A) = 0` for the counterexample algebra and the exact order
+of the witness unitary are not computed anywhere in the chain and are not
+part of the LIX answer (`notes/LIX_FULL_PROGRAM_2026-09-05.md` §0). The
+orphan count and the general import-hygiene sweep were not re-run for this
+entry — `lix-meta`'s brief was the metadata/graph record, not a fresh
+`check_import_regression.py` pass — so that row is left blank rather than
+guessed.
+
+### Updated standing rows
+
+| row | state |
+|---|---|
+| `ProblemLIX` | landed, `Manuscript/NinetyNineProblems/ProblemLIX.lean` |
+| `IsSimpleCStar` / `isSimpleCStar_iff_isSimpleRing` | landed, `Analysis/CStarSimple.lean` |
+| `Topology/SphereModelBridge.lean` / `sphereFiveHomeoSphere` | superseded — direct `unitVectors (Fin 3)` model, no bridge built or needed |
+| `Analysis/LIX*` importing `SphereOddDegree` | retired invariant — now deliberate (mod-2 cohomology route); 0 `KTheory/*` importers |
+| target 3 open mathematics | **none** — `CharClass.not_problemLIX`, zero hypotheses, `1c3237f2c` |
+| target 3 compiled | **yes** — clean-export root build, 13822 jobs, `sorryAx: none`, `bc9632ea0` |
+| reader-facing `NinetyNineProblems.not_problemLIX` (`#audit_closed_axioms`) | pending, lane `lix-wire` |
