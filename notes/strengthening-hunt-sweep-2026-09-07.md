@@ -11,48 +11,89 @@ compile" question below is explicitly left open where noted.
 
 ## Positive findings
 
-### `STW/` and root-level `STWProblems.lean` are in no lakefile target at all
+### `STW/` and root-level `STWProblems.lean`: never compiled, and does not compile -- corrected finding
+
+**Correction to the first version of this section.** It called the tree
+"genuine, sorry-free operator-algebra infrastructure" and flagged it as
+"worth a decision (superseded ... or a live parallel effort)." The lead built
+all three `STW/Actual/*.lean` files by hand and it is neither: it does not
+compile, in three different ways, and the mechanism is structural rather than
+incidental. `sorry`-free was never in question and was never the relevant
+property -- *compiling* is, and this tree has never had a compiler's opinion
+of it, because nothing has ever built it. Its content has only ever been
+checked by eye, by whoever wrote it and by this lane reading it afterward.
+Record the finding as: **never compiled, and when compiled, broken.**
+
+Build evidence, `lake env lean <file>` against the project environment, one
+file at a time:
+
+    STW/Actual/Flow.lean         EXIT=0, but 2 warnings:
+                                  Overlapping instance parameters in `instCoe`
+                                  (line 30) and `coe_mk` (line 32) --
+                                  `[Ring A]` and `[One A]` infer conflicting
+                                  `[One A]` -- an instance diamond, not lint noise
+    STW/Actual/FockPair.lean     2 real proof errors:
+                                  `simp` made no progress (line 135)
+                                  `change` tactic failed, pattern mismatch (161)
+    STW/Actual/CuntzCalkin.lean  error: unknown module prefix 'STW' (line 1)
+
+Three different kinds of broken, and the third names the exact mechanism
+this whole finding turns on. `CuntzCalkin.lean`'s first line is
+`import STW.Actual.FockPair` -- a **sibling** import, inside the same
+directory -- and it fails because `STW` resolves to nothing: with no
+`lean_lib` entry naming it in `lakefile.toml`, there is no module prefix for
+Lean to resolve `STW.*` against, even when compiling one file of the tree
+against another by hand. **A file outside every lakefile target is not
+merely unbuilt -- it is exempt from the lib's flags (which is why `Flow.lean`
+passes today: `-DwarningAsError=true` never reaches it), and it cannot even
+reference its own siblings by import.** That second half is the sharper
+statement of the original finding: this is not "orphaned, could be wired,"
+it is a tree that cannot resolve its own internal imports without a lakefile
+entry first, so nobody has ever been able to build more than one file of it
+in isolation, let alone the whole thing against the corpus.
+
+**Decision, made rather than left open:** not a live parallel effort to wire,
+and not a supersession in the `AlgTop`->`CharClass` sense lix-orphans found
+elsewhere in this same hunt -- a superseded route at least worked once. This
+is abandoned work that stopped being checked the moment it left the build,
+if it was ever checked at all. Nobody should wire it as landed; if Problem LV
+is attempted in Lean, this tree is a source of ideas (the Fock-space Cuntz
+model, the KMS uniqueness argument), not of theorems -- every claim in it
+needs reproving against a compiler, not merely re-reading.
+
+### Why no lakefile target found it, and why intent does not equal correctness
 
 `lakefile.toml`'s `lean_lib` entries are exactly `GroupApproximation`,
 `Audit`, `PalomarChallenge`, `PalomarSolution`. Neither `STW` nor
 `STWProblems` is one of them, and no file under `GroupApproximation/` imports
-`STW.*` (`git grep '^import STW'` over the tree: empty). This is a stronger
-defect than an ordinary orphan: `lix-orphans`' 101 orphans at least sit inside
-the `GroupApproximation` lib, which globs its whole directory, so `lake build`
-compiles them regardless of import wiring; `STW/Actual.lean`,
-`STW/Actual/{Flow,FockPair,CuntzCalkin}.lean` and `STWProblems.lean` (~600
-lines total) are outside every target `lake build` knows about, and outside
-the scope of a directory-walk sweep confined to `GroupApproximation/`.
+`STW.*` (`git grep '^import STW'` over the tree: empty). This is a different
+kind of defect from an ordinary orphan, not merely a bigger one:
+`lix-orphans`' 101 orphans at least sit inside the `GroupApproximation` lib,
+which globs its whole directory, so `lake build` compiles them regardless of
+import wiring, and a compiler has an opinion about every one of them. `STW/`
+and `STWProblems.lean` (~600 lines total) are outside every target `lake
+build` knows about, outside the scope of a directory-walk sweep confined to
+`GroupApproximation/`, and -- now confirmed -- outside the reach of a
+compiler altogether until built by hand.
 
-**The lead independently confirmed this is a live defect, not a hygiene
-footnote.** No `.olean` for any `STW*` module exists anywhere in the build
-clone -- this tree has never been compiled by any build in the repository's
-history. Compiled by hand (`lake env lean STW/Actual/Flow.lean`): passes,
-`EXIT=0`, but with two warnings (`STW/Actual/Flow.lean:30,32`, overlapping
-instance parameters on `instCoe`/`coe_mk`, a genuine instance-diamond risk).
-The `GroupApproximation` lib sets `moreLeanArgs =
-["-DwarningAsError=true"]`, so this file compiles today only *because* it
-sits outside that lib; wiring it into any warning-as-error target would turn
-both warnings into hard build failures. The tree has been drifting below the
-standard every other file in the corpus is held to, silently, because nothing
-has ever checked it against that standard.
-
-Content, read in full: genuine, sorry-free operator-algebra infrastructure,
-its own docstring explicit that it builds "the actual operator-algebra
-objects used by Problems XXII, LV, and XCV" rather than abstract stand-ins --
-concrete Fock-space prefix-shift isometries satisfying the Cuntz relations
-(`STW/Actual/FockPair.lean`, toward Problem LV's O2 model), KMS-equation
-uniqueness lemmas (`STW/Actual/Flow.lean`, also LV), and a re-export of the
-XCV compact-`K_0` obstruction (`STWProblems.lean`'s `ProblemXCV` namespace).
-**It does not itself complete an advertised endpoint**: Problem LV has no
-Lean endpoint anywhere in this repository (Cairn's
-`stw99-problem-lv-quasifree-flows-o2` is established by a paper route only),
-and Problem XXII's actual wired route (`Analysis/STW22*`) never imports or
-needs this tree. So this is not a second XXII; it is real, sizeable work that
-two independent sweeps today (`lix-orphans`' directory walk, this one) would
-each have missed for a different reason, and it is now below the corpus's own
-warning standard. The lead is building the remaining two files
-(`STW/Actual/{FockPair,CuntzCalkin}.lean`) to check the same thing.
+Read in full before the build result came back: superficially genuine
+operator-algebra content, its own docstring explicit that it builds "the
+actual operator-algebra objects used by Problems XXII, LV, and XCV" rather
+than abstract stand-ins -- concrete Fock-space prefix-shift isometries meant
+to satisfy the Cuntz relations (`STW/Actual/FockPair.lean`, toward Problem
+LV's O2 model), KMS-equation uniqueness lemmas (`STW/Actual/Flow.lean`, also
+LV), and a re-export of the XCV compact-`K_0` obstruction
+(`STWProblems.lean`'s `ProblemXCV` namespace). That reading was accurate
+about intent and wrong about status, which is exactly the lesson: a `sorry`-
+free lexical scan and a careful read are both blind to a failed tactic, and
+neither can see an import that cannot resolve. It does not complete an
+advertised endpoint either way -- Problem LV has no Lean endpoint anywhere in
+this repository (Cairn's `stw99-problem-lv-quasifree-flows-o2` is established
+by a paper route only), and Problem XXII's actual wired route
+(`Analysis/STW22*`) never imports or needs this tree -- so this was never a
+second XXII regardless of the build result. It is, now confirmed rather than
+inferred, abandoned and unverified work that two independent sweeps today
+(`lix-orphans`' directory walk, this one) each missed for a different reason.
 
 ### The public XXII endpoint is `negativeSolutionToProblemXXII`, not only `antipodal_stw22_trace_problem_counterexample`
 
