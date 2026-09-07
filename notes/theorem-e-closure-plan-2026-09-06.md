@@ -600,6 +600,26 @@ holes and minimal cutting systems, and the unbound budget remain open.
 The assembly still has the same four admissions; this batch removes the
 general topology input but closes no additional assembly admission.
 
+The next shelling audit exposed a distinct obstruction, filed immediately as
+[#209](https://github.com/SauersML/group-approximation/issues/209).
+`CellShellingSupportCounterexample.lean` proves that every dart exposed by the
+historical `CellShelling` occurs in a recorded face word. The cut record fixes
+those words to the kept relator cells, so it cannot traverse unrecorded G-cell
+edges or remove cancelling bridge pairs. On the existing reduced one-relator
+planar diagram, the actual outer walk is `[4]` while the recorded relator word
+uses only darts `[0, 2, 1]`; its historical shelling is impossible, independently
+of the conjugators. The reducedness and concrete obstruction pass closed axiom
+audits. This is an auxiliary-interface obstruction, not an instance of all
+Osin small-cancellation hypotheses or a constructed dropped-cell cut.
+
+The next repair must retain that historical predicate and refutation, add
+actual certified null-G-face homotopies and edge-pair cancellation to a richer
+recorded shelling, prove its ordered relator-product formula, and transport it
+through the cut consumers. That replacement is not yet implemented. The
+existing infix/rebasing restriction and construction of enclosing faces still
+need independent justification. This is a published stopping checkpoint, not
+another discharged assembly admission.
+
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
 `RelatorFaceSingletonProducer` demands the complete stored face boundary even
