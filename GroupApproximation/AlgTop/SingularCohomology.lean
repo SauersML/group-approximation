@@ -52,10 +52,16 @@ A type ascription does not repair this, in either position: `(s • e : _)` and
 `s • (e : _)` both still report
 `failed to synthesize HSMul R ↑((forget₂ (ModuleCat R) Ab).obj _) ?m`, because an
 ascription elaborates to the bare term and `•` then re-infers the `forget₂` type.
-Fixing the type in a *declaration header*, where it is checked once against the
-body, is what makes the module structure visible; that is all `cyclesMk'` is, and
-everything downstream of it is ordinary. Nothing is transported along the
+
+The general rule, which is the reusable half of this and will recur wherever
+`forget₂` does: an instance-search failure is fixed only from a position that is
+*checked against an expected type* — a declaration header, or a `show` — never
+from an ascription, which yields the bare term and leaves the next elaborator to
+re-infer that term's own type. `cyclesMk'` is nothing but such a header; every
+declaration below it is then ordinary. Nothing is transported along the
 forgetful functor, and no other declaration in this file changes shape.
+`AlgTop.UniversalCoefficients.toKerCycles` is the same move against the same
+drift, one layer down — the two are one idea, not two ad-hoc bridges.
 
 `Kronecker` uses `cyclesMk'` for a second, unrelated reason: it carries its own
 `ComplexShape.next` proof, and writing that proof out inline as

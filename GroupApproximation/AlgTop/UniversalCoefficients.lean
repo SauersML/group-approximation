@@ -70,7 +70,15 @@ appears only where `ShortComplex` forces it.
 The type is fixed in the *header*: an ascription would elaborate to the bare
 term, and `(chainSc R X n).moduleCatCyclesIso.hom.hom z` reports its type as
 `↑(chainSc R X n).moduleCatLeftHomologyData.K`, on which no `Submodule`
-coercion is found. -/
+coercion is found. Only a position checked against an expected type — a
+declaration header, or a `show` — repairs an instance or coercion failure.
+
+This is deliberately the *same* construction as
+`AlgTop.SingularCohomology.cyclesMk'`, which fixes the carrier of
+`HomologicalComplex.cyclesMk` one layer up, and it is there for the same reason.
+Do not read either as an ad-hoc patch and delete it: both are the one fix for
+this drift, which is that a type definitionally equal to the one you need is not
+thereby *syntactically* available to instance search. -/
 def toKerCycles (z : (chainCx R X).cycles n) :
     LinearMap.ker ((chainCx R X).d n ((ComplexShape.down ℕ).next n)).hom :=
   ((chainSc R X n).moduleCatCyclesIso.hom).hom z
