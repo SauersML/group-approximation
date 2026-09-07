@@ -5,17 +5,17 @@ kind: claim
 title: Kaplansky stable finiteness for the Kun--Thom nonsofic wreath products
 root: true
 distinct_from:
-  leavitt-group-algebra-not-stably-finite: that asks for an explicit one-sided inverse pair over F_2 for the Leavitt unit group; this asks for finiteness of the wreath family, now proved in characteristic two but open in odd positive characteristics.
-  exact-stably-finite-non-mf-reduced-group-algebra: that is a C-star statement about the reduced group C-star algebra of the sofic quotient witness, proved; this is algebraic stable finiteness of a group algebra over a field, open.
-  kun-thom-nonsofic-wreath: that is the imported nonsoficity theorem about the same groups, established from Kun--Thom's preprint; this is a ring-theoretic question about their group algebras that nonsoficity leaves open and in fact is the reason the usual proof is unavailable.
+  leavitt-group-algebra-not-stably-finite: that asks for an inverse defect for the Leavitt unit group; this proves stable finiteness for the residually finite-base wreath family over every field.
+  exact-stably-finite-non-mf-reduced-group-algebra: that concerns a reduced C-star algebra; this concerns ordinary group algebras over every field, including positive characteristic.
+  kun-thom-nonsofic-wreath: that supplies nonsoficity of the named groups; the finiteness proof here instead uses the general residually finite lamp and base theorem, independently of nonsoficity.
 artifacts:
   - research/artifacts/sofic-dividends-audit-2026-08-17.md
 ---
 
 Let `W = (directSum_(G/Gamma) Z/2Z) semidirect G` be a Kun--Thom nonsofic
 wreath product with G residually finite (`kun-thom-nonsofic-wreath`,
-including its explicit Theorem E family). Is `k[W]` stably finite for
-every field `k`?
+including its explicit Theorem E family). Then `k[W]` is stably finite for
+every field `k`.
 
 *Marked `root` because it is a top-level dividend question, not a step in this
 repository's programme: nothing else in this graph depends on it.  It is here
@@ -23,31 +23,34 @@ because `W` is one of the two families for which the sofic proof of stable
 finiteness is unavailable by construction, and because the graph should record
 which repairs have been tried.*
 
-## What is already settled, and what the question really is
+## All-field proof
 
-Characteristic zero is closed for **every** group
-(`stable-finiteness-reduces-to-prime-field`). Characteristic two is now
-closed by `kun-thom-binary-wreaths-stably-finite-in-characteristic-two`,
-for every characteristic-two field. The remaining content is stable
-finiteness of `F_p[W]` for odd primes p. Note the contrast with the
-Leavitt lane: there the interesting possibility is that stable finiteness
-*fails* (`leavitt-group-algebra-not-stably-finite`), and no failure is
-conjectured here — `W` is amenable-by-residually-finite, so the expected
-answer is yes; the remaining difficulty is in odd positive characteristics.
+`rf-lamp-permutational-wreaths-satisfy-stable-finiteness` proves that
+k[A wr_X G] is stably finite whenever A and G are residually finite,
+for any G-set X and any field k. Apply it with A=C_2 and X=G/Gamma.
+The route `kun-thom-all-fields-from-finite-particle-lamps` records this
+specialization. In particular the previously open odd-characteristic cases
+are now established by the same proof.
 
-`W` sits in the extension `1 -> N -> W -> G -> 1` with `N` locally finite
-(hence amenable) and `G` residually finite (hence sofic, hence `k[G]` stably
-finite).  The sofic closure theorem runs the other way — sofic-by-amenable is
-sofic — and `W` is the standing counterexample to any hope that the reverse
-orientation is automatic. In characteristic two, stable finiteness does
-lift here: N is residually a finite two-group, and
-`residually-p-kernels-preserve-modular-stable-finiteness` applies. This
-does not settle locally finite kernels in other coefficient characteristics.
+The proof detects a finite-support group-algebra element by a finite list
+of marked lamp sites. These tests take values in tensor powers of an
+auxiliary algebra with split quotient k[G] and a local-matrix ideal over
+stabilizer group algebras. The tensor powers are stably finite by a
+strengthened induction through split extensions. Their tests jointly
+separate every nonzero inverse defect. No finite approximation of the
+generalized Bernoulli action is used.
+
+The independent proof in
+`kun-thom-binary-wreaths-stably-finite-in-characteristic-two` remains valid:
+the modular lamp augmentation ideal has separated powers, which exclude
+nonzero idempotent inverse defects. The new proof removes the coefficient-
+characteristic restriction without claiming the nonmodular powers are
+separated.
 
 ## Attempts
 
-Three earlier approaches were audited. The first obstruction remains true
-but has now been bypassed by a different ring-theoretic argument.
+Three earlier approaches were audited. Their restricted obstructions remain
+valid, but none obstructs the all-field proof above.
 
 * **Modular radical.** The lamp augmentation ideal need not lie in the
   Jacobson radical (`modular-radical-does-not-lift-direct-finiteness`).
@@ -62,13 +65,6 @@ but has now been bypassed by a different ring-theoretic argument.
 * **Co-amenable transfer through the stabilizer,** the repair an external
   audit proposed on 2026-08-17, is blocked by property (T):
   `kun-thom-stabilizer-not-co-amenable`.
-
-A bare reduction is deliberately *not* recorded as a route: "reduce to the
-prime fields and prove it there" would be a restatement dressed as a
-reduction, because by `stable-finiteness-reduces-to-prime-field` the
-prime-field statement is *equivalent* to this one, so it renames the problem
-instead of reducing it.
-
 
 ## Citation firewall: the locally-finite-kernel shortcut is not established here
 
@@ -86,14 +82,13 @@ is locally finite but, in the Kun--Thom examples of interest, infinite and not
 finitely generated.  Thus the published theorem does not apply.  Until the
 withdrawn argument is independently reconstructed or another extension theorem
 is supplied, the general locally-finite-kernel route remains a gap rather
-than a closure. The established characteristic-two argument uses the
-specific residual-two property of N and makes no use of that preprint.
+than a closure in that generality. Both proofs here use the particular
+structure of the kernel or its permutation action, and make no use of
+that preprint. Stable finiteness is not being inferred from its stronger
+surjunctivity assertion.
 
-## What would count
+## Scope
 
-For odd primes, a proof must control inverse defects in the nonmodular lamp
-crossed product, or provide another finiteness mechanism. The modular
-separation argument does not apply: binary lamp idempotents in odd
-characteristic already make the augmentation powers nonseparated.
-An explicit one-sided inverse pair over F_p[W], p odd, would instead
-refute this all-field claim. Neither outcome is currently established.
+This settles the all-field group-algebra question for the stated family.
+It does not prove full nonlinear surjunctivity of W, direct finiteness
+for the Leavitt unit group, or Kaplansky's conjecture for arbitrary groups.

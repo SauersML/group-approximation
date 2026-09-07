@@ -5,7 +5,7 @@ kind: claim
 title: The lamp augmentation ideal need not lie in the Jacobson radical
 distinct_from:
   direct-finiteness-not-inherited-by-quotients: that is the general permanence failure; this shows that one sufficient radical-containment hypothesis fails for the lamp kernel, without excluding other lifting arguments.
-  kun-thom-wreath-stably-finite: that is the all-field question for the Kun--Thom groups; this excludes only the radical-containment proof, and the characteristic-two case is now proved by separated ideal powers.
+  kun-thom-wreath-stably-finite: that is now established over every field; this excludes only radical containment, which neither the modular nor the all-field finiteness proof requires.
 artifacts:
   - research/artifacts/sofic-dividends-audit-2026-08-17.md
 ---
@@ -68,4 +68,7 @@ The other standard route is blocked by a theorem already in this graph: for
 generalized Bernoulli action of `G` on `G/Gamma`, and Kun--Thom's Corollary D
 (`kun-thom-nonsofic-wreath`) says that action is not sofic.  Modular
 characteristic loses the radical, non-modular characteristic loses the
-approximation. The modular radical failure has now been bypassed as above.
+approximation. Both proof restrictions have now been bypassed:
+`rf-lamp-permutational-wreaths-satisfy-stable-finiteness` proves the
+residually finite-base wreath result over every field using finite
+marked-site tensors, independently of sofic approximation of the action.

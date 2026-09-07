@@ -7,9 +7,15 @@ permutational wreath products with residually finite base. The radical
 noncontainment calculation remains correct, but it does not prevent
 lifting through an ideal whose powers have zero intersection. The general
 proof is `residually-p-kernels-preserve-modular-stable-finiteness`.
-The all-field Kun--Thom question remains open in odd positive
-characteristics. Read the original unsettled-modular and bridge-exhaustion
-statements below with this correction; they are retained as audit history.
+**Further correction, 2026-09-07.**
+`rf-lamp-permutational-wreaths-satisfy-stable-finiteness` now proves stable
+finiteness for all permutational wreath products of residually finite
+lamp and base groups over every field. Its finite marked-site tensor
+construction closes the all-field Kun--Thom target, including odd
+characteristics. Read the original unsettled-finiteness and bridge-
+exhaustion statements below with these corrections; they are retained as
+audit history. Full Gottschalk surjunctivity is not established by either
+argument.
 
 Source: a user-supplied external audit, "Sofic dividends for the first
 explicit non-sofic groups: proof audit, rigorous partial settlement, and the

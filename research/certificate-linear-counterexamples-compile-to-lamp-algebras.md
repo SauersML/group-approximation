@@ -7,7 +7,7 @@ distinct_from:
   certificate-controlled-routing-is-surjunctive: that excludes pure routing; this compiles arbitrary certificate-controlled linear mixing and does not exclude it.
   certificate-linear-automata-have-local-linear-decoders: that constructs a decoder in a family of nonuniform operators; this realizes the entire family as matrices in an ordinary group algebra.
   stable-finiteness-failure-refutes-surjunctivity: that passes from group algebra to dynamics; this passes from a specified nonlinear full-shift class to group algebra after enlarging the group.
-  kun-thom-wreath-stably-finite: that is an open question for a specific permutational wreath product; this gives an explicit reduction using regular finite-abelian wreath products over an arbitrary base group.
+  kun-thom-wreath-stably-finite: that now proves finiteness for the residually finite-base permutational wreath family; this gives a conditional counterexample reduction using regular finite-abelian wreath products over an arbitrary base group.
 ---
 
 Let p be prime, B a nonempty finite certificate alphabet, and G any group.

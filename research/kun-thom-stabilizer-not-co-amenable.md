@@ -23,10 +23,9 @@ has no invariant mean on an infinite-index coset space
 
 ## What this closes
 
-Every dividend that is known for sofic groups — Lueck's determinant
-conjecture, the algebraic-eigenvalue conjecture, stable finiteness — is
-proved by an approximation that the nonsofic wreath product `W` does not
-have.  The standard repair is to find a *sofic* subgroup through which the
+The standard sofic-approximation proofs of several dividends do not apply
+to the nonsofic wreath product W. One proposed repair is to find a sofic
+subgroup through which the
 conclusion transfers, and the transfer theorems in that literature want the
 subgroup to be co-amenable.  Inside `W = N semidirect G` the natural
 candidate is the sofic base `G`, and the natural site-space transfer runs
@@ -39,6 +38,9 @@ own Proposition 7.1 is this graph's `no-invariant-mean-on-coset-space`, and
 its application step assumed the infinite index that
 `infranormal-nonnormal-has-infinite-compression-orbit` proves.
 
-This is one of two bridges out of `kun-thom-wreath-stably-finite`; the other,
-lifting through the modular radical, is dead for a different reason
-(`modular-radical-does-not-lift-direct-finiteness`).
+This excludes one proposed proof of `kun-thom-wreath-stably-finite`.
+The radical-containment proposal fails separately at
+`modular-radical-does-not-lift-direct-finiteness`. Neither restriction is
+exhaustive: `rf-lamp-permutational-wreaths-satisfy-stable-finiteness` now
+establishes the all-field result through finite marked-site tensors and
+split local-corner extensions, without a mean on the site space.

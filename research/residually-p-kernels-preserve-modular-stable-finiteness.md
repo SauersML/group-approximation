@@ -6,7 +6,7 @@ title: A residually finite p-group kernel preserves stable finiteness in charact
 distinct_from:
   modular-radical-does-not-lift-direct-finiteness: that excludes containment of the lamp augmentation ideal in the Jacobson radical; this uses separated powers of that ideal, which do not require radical containment.
   direct-finiteness-not-inherited-by-quotients: that forbids unrestricted quotient transfer; this supplies an explicit sufficient condition for lifting finiteness from a quotient.
-  kun-thom-wreath-stably-finite: that asks for all coefficient characteristics in one family; this proves a general extension theorem in the kernel's residual prime characteristic.
+  kun-thom-wreath-stably-finite: that now establishes all coefficient characteristics for one permutation-wreath family; this proves a general extension theorem, including nonsplit extensions, in the kernel's residual prime characteristic.
 ---
 
 Let 1->N->W->G->1 be a group extension, let k have characteristic p>0,
