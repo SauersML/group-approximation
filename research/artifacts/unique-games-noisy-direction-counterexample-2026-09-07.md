@@ -30,7 +30,9 @@ expectation of `f(Y)` when independently `Y_x=X_x Z_x` and
 containing the indicated coordinate, truncated to the stated degree, under
 the uniform measure on the quotient cube.
 
-In particular, fix `rho=1/2`, `d=1`, `delta=1/16`, and `alpha=1`. If the
+In particular, fix `rho=1/2`, `d=1`, `delta=1/16`, and `alpha=1/2`. The
+set of all nonzero directions has density at least `1/2`, whether density
+is measured relative to `Omega` or to `Omega` minus zero. If the
 glue lemma supplied constants `L` and `gamma>0`, take a sufficiently large
 power of four with `N-1>2L/gamma`. All its hypotheses hold, whereas every
 set of size at most `L` hits a fraction at most `2L/(N-1)<gamma`. This
@@ -234,6 +236,12 @@ Run from the repository root:
 ```sh
 python3 scripts/check_unique_games_noisy_direction.py --check
 ```
+
+The targeted `Unique Games research replay` workflow also compiles Cairn
+and passes `--graph .cairn/cache/graph.json` to verify the refutation links,
+disabled routes, preserved special cases, and open UGC endpoint. These
+expected statuses describe this contribution and must be revisited if
+subsequent mathematics changes the endpoint.
 
 The standard-library-only checker exhausts all ambient Boolean inputs for
 `N=4,16`, computes ambient noise with exact integer arithmetic, and then

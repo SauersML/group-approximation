@@ -17,6 +17,12 @@ Berlai's paper, and for a broader family with one-sided indexed support.
 The proofs and their dependencies are integrated into Cairn. The general
 one-relator question remains open here, and these results are not Lean-certified.
 
+[A noisy direction counterexample](research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md)
+refutes the proposed affine glue lemma in the Unique Games research track.
+The proof and [exact replay](scripts/check_unique_games_noisy_direction.py)
+are integrated with Cairn; UGC remains open. Reproduce with
+`python3 scripts/check_unique_games_noisy_direction.py --check`.
+
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
 gives an elementary obstruction to controlling a nontrivial word by relation
 errors on individual vectors, with linked research claims and proofs. It also

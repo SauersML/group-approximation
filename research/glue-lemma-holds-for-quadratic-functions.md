@@ -4,7 +4,7 @@ id: glue-lemma-holds-for-quadratic-functions
 kind: claim
 title: For ambient degree at most two the orientation-glue conclusion holds with L = 16/delta and gamma = 1
 distinct_from:
-  affine-orientation-glue-lemma: that is the general statement for arbitrary bounded f, which is open; this is the special case deg f <= 2, which is proved, and it holds in a strictly stronger form -- gamma = 1, no escape clause, and no dependence on rho, d, alpha or k.
+  affine-orientation-glue-lemma: that is the general statement for arbitrary bounded f, now refuted; this is the proved special case deg f <= 2, with gamma = 1, no escape clause, and no dependence on rho, d, alpha or k.
   restricted-influence-transfer-holds-below-degree-three: that is the inequality (T1) and the degree-three obstruction; this is the list-decoding conclusion drawn from it.
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md

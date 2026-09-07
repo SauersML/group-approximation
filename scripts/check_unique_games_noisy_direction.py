@@ -175,8 +175,33 @@ def report() -> dict:
     }
 
 
+def check_graph(path: Path) -> None:
+    """Pin this contribution's effect; later proofs must update this contract."""
+    nodes = json.loads(path.read_text(encoding="utf-8"))["nodes"]
+    expected = {
+        "noisy-affine-selector-defeats-bounded-hitting": "ESTABLISHED",
+        "noisy-affine-selector-counterexample-proof": "COMPLETE",
+        "affine-orientation-glue-lemma": "REFUTED",
+        "affine-orientation-triangle-defect-is-small": "REFUTED",
+        "glue-lemma-from-small-triangle-defect": "INVALIDATED",
+        "rich-2to1-from-glue-lemma-modus-ponens": "INVALIDATED",
+        "triangle-defect-globalizes-to-a-bounded-label-list": "ESTABLISHED",
+        "glue-lemma-holds-for-quadratic-functions": "ESTABLISHED",
+        "rich-2to1-conjecture-is-equivalent-to-ugc": "ESTABLISHED",
+        "rich-2to1-games-conjecture": "OPEN",
+        "unique-games-conjecture": "OPEN",
+    }
+    for name, status in expected.items():
+        require(nodes[name]["status"] == status, f"unexpected Cairn state for {name}")
+    for name in ("affine-orientation-glue-lemma", "affine-orientation-triangle-defect-is-small"):
+        require("noisy-affine-selector-defeats-bounded-hitting" in nodes[name]["meta"]["refuted_by"],
+                f"missing refutation link on {name}")
+    require(nodes["unique-games-conjecture"]["meta"]["goal"] is True, "UGC goal flag missing")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--graph", type=Path, help="also validate a freshly compiled Cairn graph")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--write", action="store_true", help="write deterministic exact replay report")
     mode.add_argument("--check", action="store_true", help="compare with committed replay report")
@@ -189,6 +214,9 @@ def main() -> None:
         require(REPORT.read_text(encoding="utf-8") == rendered, "replay report differs")
     else:
         print(rendered, end="")
+    if args.graph:
+        check_graph(args.graph)
+        print("PASS: Cairn refutations, disabled routes, preserved theorems, and open UGC goal")
     if args.write or args.check:
         print("PASS: exact ambient-noise replay, planted-law cross-check, incidence, folding, and threshold")
 
