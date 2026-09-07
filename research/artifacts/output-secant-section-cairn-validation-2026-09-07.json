@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on seven touched nodes. This checks the research graph rather than a proof assistant formalization.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "certificate-linear-counterexamples-compile-to-lamp-algebras": "ESTABLISHED",
+    "injective-automata-have-local-stable-secant-dilations": "ESTABLISHED",
+    "leavitt-unit-group-nonsurjunctive": "OPEN",
+    "nonlinear-local-sections-of-linear-families-linearize": "ESTABLISHED",
+    "output-collision-secant-section-compiler-proof": "COMPLETE",
+    "output-secants-with-local-sections-force-matrix-defects": "ESTABLISHED",
+    "single-coordinate-section-linearization-proof": "COMPLETE"
+  },
+  "elapsed_seconds": 14.814
+}

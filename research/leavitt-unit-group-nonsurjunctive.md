@@ -22,15 +22,14 @@ Since Gottschalk's conjecture asserts that every group is surjunctive, such a
 *Marked `root` because it heads a lane of its own, exactly as
 `leavitt-unit-group-algebra-not-directly-finite` does: it is a top-level
 external question, not a step toward `q3-4-resolved`, and no route should be
-built from it toward that goal.  It is recorded because this repository's
-object is the only concrete candidate the question currently has, and because
-the graph should say where the Leavitt code does and does not reach.*
+built from it toward that goal. It records the repository's Leavitt-group
+candidate so the graph says where that construction does and does not reach.*
 
 ## Why this group and not another
 
-Sofic groups are surjunctive (Gromov--Weiss), so any candidate must be
-nonsofic, and `G` is the one group for which nonsoficity has been announced
-(`openai-leavitt-unit-nonsofic`).  That is the **whole** of the connection.
+Sofic groups are surjunctive (Gromov--Weiss), so any counterexample must be
+nonsofic. The repository's proposed nonsoficity route for G is
+`openai-leavitt-unit-nonsofic`. That is the **whole** of the connection.
 Non-surjunctivity implies nonsoficity; the converse is not established. Every
 statement in the routes below is unconditional — none uses the announcement,
 and all would read the same if `G` turned out to be sofic.
@@ -129,3 +128,14 @@ difference. That condition is QP=I. Without it the ambient construction
 is reversible and has no missing configuration; with it a strict
 zero-auxiliary restriction requires the further reverse defect PQ!=I.
 No such pair is currently produced.
+
+`output-secants-with-local-sections-force-matrix-defects` now removes one
+of those two remaining conditions. Certify arbitrary decoder inputs a,b,
+rather than only encoder images. For any missing output b, take
+a=tau sigma(b). Their decoder values agree, so the decoder secant kills
+the nonzero vector b-a. A local right inverse of that secant family would
+therefore automatically have a strict reverse defect. The right inverse
+may be designed as a nonlinear local program: once it is valid on all
+data and all certificates, single-coordinate responses linearize it
+without increasing its memory. Constructing that right inverse is still
+open; the encoder tau itself does not automatically provide it.

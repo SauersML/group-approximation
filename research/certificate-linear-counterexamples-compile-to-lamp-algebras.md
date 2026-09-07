@@ -72,3 +72,13 @@ zero-auxiliary data subspace requires QP=I for every certificate, and
 a strict restriction additionally requires PQ!=I for some certificate.
 The construction only clears the auxiliary component on genuine
 execution differences, so it does not yet supply those hypotheses.
+
+`output-secants-with-local-sections-force-matrix-defects` removes the
+separate defect-preservation requirement by changing to arbitrary output
+pairs as certificates. A missing output b and its retraction tau sigma(b)
+are distinct but have the same decoder value, so their secant has an
+explicit nonzero kernel vector. A local right inverse of the entire
+secant family would then yield QP=I and PQ!=I. That right inverse may
+initially be nonlinear: `nonlinear-local-sections-of-linear-families-linearize`
+extracts a linear one with the same memory. Existence of such a local
+right inverse remains the unproved step.

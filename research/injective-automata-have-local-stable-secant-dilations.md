@@ -68,3 +68,11 @@ Reversible constructions using an extra track are classical; see Vlasov,
 https://arxiv.org/abs/1311.4297. The route proves the particular secant
 and sector identities above directly. No novelty claim is made for
 reversible simulation or the elementary block-matrix identity.
+
+`output-secants-with-local-sections-force-matrix-defects` gives a different
+orientation for the unfinished reduction. Use arbitrary pairs of decoder
+inputs as certificates, including points outside the encoder's image.
+Then the encoder's range defect forces a nonzero kernel vector for one
+decoder secant, so any local right inverse of the full secant family
+automatically has a nonzero reverse defect. This does not assert that
+the reversible dilation above supplies that right inverse.
