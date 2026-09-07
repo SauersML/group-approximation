@@ -139,3 +139,29 @@ conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscri
 # packaged as closed Props the manuscript cites.
 open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over the same Fournier-Facio construction (FournierFacioParagraph), Dahmani-Guirardel-Osin's Theorem 2.35 (DGOTheorem235Printed), and Gerasimova-Osin's Theorem 1.1 (GerasimovaOsinTheorem11Printed); literature citations, not reductions this repository is closing
 conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
+#
+# thm:mf-quotient-units, along the printed proof (Manuscript/OneSidedMFRadical/
+# MFQuotientUnits.lean), is conditional on four Props quoted from Ara-
+# Goodearl-Pardo's Theorem 2.4 and Corollary 1.7 (the corner-matrix reduction,
+# the K_1 surjection with kernel [H,H], the Menal-Moncasi elementary
+# reduction, and the first step of the AGP argument) -- literature citations,
+# not reductions this repository is closing.  A fifth finding under the same
+# detector, the generic hypothesis IsPurelyInfiniteSimpleRing R reached
+# through PrintedMFQuotientUnits, is the theorem's own quantifier and not an
+# additional external input; the one line below covers all five since
+# matching is by (detector, declaration) pair.  thm:full-defect-ring's own
+# rank-two premise this theorem also takes is NOT conditional -- it is
+# unconditionally closed and classify() does not flag it.
+open-predicate GroupApproximation.MFQuotientUnits.printedMFQuotientUnits_of_agp  -- thm:mf-quotient-units over four Props quoted from Ara-Goodearl-Pardo (AGPMatrixReduction: Corollary 1.7; AGPUnitK1, AGPMenalMoncasiReduction, AGPStepOne: Theorem 2.4); literature citations, not reductions this repository is closing
+#
+# The sentence-level carriers of thm:mf-quotient-units's printed proof
+# (Manuscript/OneSidedMFRadical/MFQuotientUnitsSentences.lean, ring-b-alg
+# lane) are conditional on the same four Ara-Goodearl-Pardo Props, one
+# sentence at a time; each also reaches IsPurelyInfiniteSimpleRing R through
+# PrintedMFQuotientUnits, the theorem's own quantifier and not an additional
+# input, same shape as printedMFQuotientUnits_of_agp above.
+open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_matrixRingAgainPurelyInfinite  -- sentence 1 of thm:mf-quotient-units's printed proof, over AGPMatrixReduction (Ara-Goodearl-Pardo Corollary 1.7); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_kappaSurjectiveKernelCommutator  -- sentence 2, over AGPUnitK1 (Ara-Goodearl-Pardo Theorem 2.4); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_menalMoncasiReduction  -- sentence 7, over AGPMenalMoncasiReduction (Ara-Goodearl-Pardo Theorem 2.4, Step 2, with Menal-Moncasi's elementary reduction); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_stepOneGivesKerKappaLeRadical  -- sentence 10, over AGPStepOne (Ara-Goodearl-Pardo Theorem 2.4, Step 1); a literature citation, not a reduction this repository is closing
+open-predicate GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_conclusion  -- the closing sentence of thm:mf-quotient-units's printed proof, which composes all four Ara-Goodearl-Pardo citations above

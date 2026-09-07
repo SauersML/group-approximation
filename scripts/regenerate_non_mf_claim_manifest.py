@@ -46,9 +46,9 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptLiteralMaximalCStarKazhdanProjectionOrder"),
     "thm:transport": (
-        "Manuscript/OneSidedMFRadical/TransportCommutantEquality",
+        "Manuscript/OneSidedMFRadical/TransportPrintedRoute",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptOneSidedKazhdanTransportCommutantEquality"),
+        "TransportPrintedRoute.manuscriptPrintedTransportHS"),
     "cor:defect-hs": (
         "Manuscript/OneSidedMFRadical/DefectHS",
         "GroupApproximation.Manuscript.OneSidedMFRadical."

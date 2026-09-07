@@ -97,6 +97,46 @@ theorem conjFactor_le_printedDefect {E : Type u} [Group E]
     _ ≤ OneSidedMFRadical.printedDefect F.core :=
         commutator_conjFactor_le_printedDefect F
 
+/-! ## "`S` is nontrivial" -/
+
+/-- **`S ≠ 1`.**  `J` is simple, so it is nontrivial, and `S = tJt⁻¹` is its
+image under conjugation by `t`.
+
+The printed proof of `thm:torsion-free` uses this as the reason its normal
+closure `N` is nontrivial: *"it is nontrivial because `S` is"*. -/
+theorem conjFactor_ne_bot {E : Type u} [Group E]
+    (F : PrintedFournierFacioData E) : F.conjFactor ≠ ⊥ := by
+  haveI := F.simple
+  obtain ⟨j, hjmem, hjne⟩ : ∃ j : E, j ∈ F.simpleFactor ∧ j ≠ 1 := by
+    obtain ⟨jj, hjj⟩ := exists_ne (1 : ↥F.simpleFactor)
+    exact ⟨(jj : E), jj.2, fun h => hjj (Subtype.ext (by simpa using h))⟩
+  have hmemS : F.t * j * F.t⁻¹ ∈ F.conjFactor := by
+    rw [F.conjFactor_def]
+    exact Subgroup.mem_map.mpr ⟨j, hjmem, by simp⟩
+  have hneS : F.t * j * F.t⁻¹ ≠ 1 := by
+    intro h
+    apply hjne
+    have hj : j = F.t⁻¹ * (F.t * j * F.t⁻¹) * F.t := by group
+    rw [hj, h]
+    group
+  intro hbot
+  rw [hbot, Subgroup.mem_bot] at hmemS
+  exact hneS hmemS
+
+/-- **"Let `N` be the normal closure of `S` in `G₀`; it is nontrivial because
+`S` is."**  A normal closure containing a nonidentity element is nontrivial. -/
+theorem normalClosure_conjFactor_ne_bot {E : Type u} [Group E]
+    (F : PrintedFournierFacioData E) :
+    Subgroup.normalClosure (F.conjFactor : Set E) ≠ ⊥ := by
+  intro hbot
+  refine conjFactor_ne_bot F ?_
+  refine le_bot_iff.mp ?_
+  intro x hx
+  have hmem : x ∈ Subgroup.normalClosure (F.conjFactor : Set E) :=
+    Subgroup.subset_normalClosure (SetLike.mem_coe.mpr hx)
+  rw [hbot] at hmem
+  exact hmem
+
 /-! ## The paragraph, as one closed proposition -/
 
 /-- **The displayed conclusion of the paragraph, with no declaration inputs.**
