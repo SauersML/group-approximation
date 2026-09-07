@@ -18,6 +18,8 @@ Sub-namespace: `GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing`.
 | `bdd935ede3ef52efd781cfc0deadbc4618020b42` | 4273 | `FullDefectRingUnconditional.lean` |
 | `c1bf110bff38c4ccf861f2f14641b643bd5cd3e3` | 4277 | `FullDefectRingStrictness.lean` |
 | `38e6a49c7aaf05385ce1c668813a655f8a22faf1` | 4273 | `FullDefectRingUnconditional.lean` (group-level non-MF) |
+| `a66cb4c87bb853d5e84e865c3530c0fd4ac9d0f6` | — | deletion of the duplicate `Leavitt/OneSidedCompressorStrict.lean` |
+| `9c4fcae31bf2c2b76111ac3de71bb089b2d2ac48` | 4470 | `UnitGroupHeadline.lean` |
 
 ## The printed clauses, and what each still assumes
 
@@ -125,6 +127,35 @@ The compression calculation (`FullDefectAtFixedRing`, discharged by
 `ring-b-alg`'s `fullDefectAtFixedRing`) and the strictness of the compression
 (`OneSidedCompressorStrictContainment`, discharged here by
 `manuscriptOneSidedCompressorStrictContainment`) are both closed.
+
+## `thm:headline` at the unit group
+
+`UnitGroupHeadline.lean` carries `thm:headline` with the headline group taken
+to be `R^× = L_{𝔽₂}(1,2)^×`.  `PrintedUnitGroupHeadline` /
+`manuscriptPrintedUnitGroupHeadline` (`#audit_closed_axioms`).
+
+**The identification needs no citation.**  `BinaryLeavitt.elementaryGroup_eq_top`
+proves `EL_n = GL_n` over every field in every rank `n ≥ 2`, hypothesis-free,
+and `LeavittFamily.prefixUnitsEquiv` at `leftCombCode 3` gives `GL₄(R) ≅ R^×`.
+So the Ara--Goodearl--Pardo `GE`-ring theorem and the vanishing of
+`K₁(L_{𝔽₂}(1,2))` are the literature route to something already proved here; a
+citation records priority, not a dependency.  No `PrintedGLEqualsELBinaryLeavitt`
+was written, and none should be.
+
+### Tracing an axiom closure under `ccprobe`
+
+The first probe of this module reported `sorryAx`.  It was **not** upstream:
+a failed tactic inserts `sorryAx` and elaboration continues, so the audit error
+was downstream of a compile error in the same file.  Localising it took three
+probes and two facts worth keeping:
+
+* `#print axioms` is invisible under `ccprobe` — the script filters `info`
+  lines and only fragments leak.  `#audit_closed_axioms` reports as an *error*
+  and survives the filter.
+* the guard refuses any statement with a leading binder, so an upstream lemma
+  must be wrapped in a closed `Prop` before it can be traced.
+
+Each ingredient was wrapped and audited alone; all thirteen were clean.
 
 ## Coordination note
 
