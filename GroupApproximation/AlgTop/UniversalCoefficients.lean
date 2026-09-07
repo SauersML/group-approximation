@@ -33,6 +33,32 @@ primitive.
 * `kronecker_surjective`
 * `exists_cocycle_pairing` — the same statement in cocycle form.
 * `kronecker_injective`
+
+## Two spellings of the cycles, and why every proof below is written as it is
+
+`LinearMap.ker (chainSc R X n).g.hom` is a `Submodule R ↑(chainSc R X n).X₂`;
+`LinearMap.ker ((chainCx R X).d n ((ComplexShape.down ℕ).next n)).hom` is a
+`Submodule R ↑((chainCx R X).X n)`. They are the same submodule — `chainSc_g` is
+`rfl` — but their ambient types do not unify at the transparency that coercion
+insertion and `SetLike` instance search run at. **This failure has no visible
+symptom.** A coercion is simply not found; `x ∈ p` elaborates to a `Membership`
+application that is not type-correct at `instances` transparency; and `rw`
+reports *did not find an occurrence of the pattern* against a target that prints
+**identically** to the pattern. Mixing the two spellings once produced twelve
+errors here from this one cause.
+
+The rule, and it is not a free choice: let whatever external lemma you must
+consume pick the spelling, then use only that one. Here `exists_extend_off_ker_d`
+fixes the second on `hF` and `hPsi`, so the second is used throughout and the
+first appears only where `ShortComplex` forces it.
+
+The practical corollary, which is why `kronecker_surjective` uses `let` and a
+chain of `show`/`exact`/`congrArg` where `set` and `rw` would read more
+naturally: **once `rw` has unfolded a `LinearMap.comp`, the `DFunLike` coercion
+keeps the implicit domain the composite was elaborated with** — the concrete
+kernel, forced by `g'`'s ascribed type — while the morphism inside is typed at
+`(chainSc R X n).moduleCatLeftHomologyData.K`. No later `rw` matches that, and
+again the two print the same. `exact` crosses the gap definitionally; `rw` cannot.
 -/
 
 open CategoryTheory Limits AlgebraicTopology
