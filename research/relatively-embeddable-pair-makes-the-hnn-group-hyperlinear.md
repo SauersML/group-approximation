@@ -2,7 +2,9 @@
 rg: 2
 id: relatively-embeddable-pair-makes-the-hnn-group-hyperlinear
 kind: claim
-title: If the subgroup factor sits relatively embeddably in the host factor, the HNN group centralising the subgroup is hyperlinear
+title: A centralizer HNN group is hyperlinear exactly when its group-factor inclusion is relatively embeddable over scalars
+artifacts:
+  - research/artifacts/centralizer-hnn-relative-embedding-audit-2026-09-07.md
 distinct_from:
   amenable-edge-hnn-preserves-hyperlinearity: that is permanence for AMENABLE associated subgroups through Brown--Dykema--Jung; this is permanence under Gao's relative-embeddability hypothesis on the inclusion of group factors, which makes no amenability assumption on the subgroup and is exactly what a microstate sequence of the host must violate for the HNN lane to survive.
   hnn-hyperlinearity-is-amalgamated-free-haar-unitary: that characterises hyperlinearity of the HNN group by an amalgamated-free Haar unitary in some model; this gives a concrete sufficient condition on the host's microstates, subgroup-faithfulness, that produces such a unitary through Gao's amalgamated-free-product theorem.
@@ -34,28 +36,34 @@ over `C`.  Then:
    `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`, some regular-trace
    matrix model of `L(A)` carries a Haar unitary in `L(C)'` free from
    `L(A)` with amalgamation over `L(C)`.
+4. Conversely, if `G` is hyperlinear then the inclusion is `RE/C`.
+   In `L(G)` its Haar stable letter `u` commutes with `B`. For `a in A-C`,
+   Britton normal form makes the conjugates `u^j lambda(a) u^(-j)`
+   orthonormal. Their first `n` Cesaro average has squared L2 norm `1/n`.
+   Therefore the expectation onto `{u}' cap L(G)` restricts to `E_B` on
+   `L(A)`. This is precisely the commuting square in Gao's Lemma 7.2;
+   apply it to the Connes embedding of `L(G)` with scalar coefficient.
 
 Since `RE/C` implies `RE/N_1` for every `N_1` (tensor with `1_(N_1)`), the
 chain of targets for a pair is
 
 ```text
-G non-hyperlinear  =>  not RE/N_1 for every CE N_1  =>  not RE/C  <=>  D^+ non-hyperlinear,
+G non-hyperlinear <=> not RE/C <=> D^+ non-hyperlinear
+                 <=> not RE/N_1 for every CE N_1.
 ```
 
-and `D^+ = (A x Z) *_C A` is itself an explicit finitely presented witness
-whenever `A` and `C` are finitely presented.  So the host-only statement
-"`L(C) subset L(A)` is not `RE/C`" is a STRICTLY WEAKER goal target than
-non-hyperlinearity of the HNN group, and it closes the goal through
-`non-hyperlinear-from-non-relative-embeddability`.
+Both `G` and `D^+` are finitely presented whenever `A` is finitely presented
+and `C` is finitely generated. The host-only statement and the HNN
+nonhyperlinearity statement are equivalent. The previous claim of a
+strictly weaker goal target was incorrect; the converse in part 4 repairs
+it. The negative statement still needs to be proved for the chosen pair.
 
-**Plain-double specialization at `SL_3`.**  Gao's Appendix Theorem 7.1 also
-has a converse for `M*_N M` itself when `N_1` is a factor and `M` contains a
-unitary whose every nonzero power has zero `N`-expectation.  The arithmetic
-pair satisfies this with `N_1=L(SL_3(Z))` and
-`u=lambda(diag(2,1,1/2))`; see
-`sl3-arithmetic-double-hyperlinear-iff-relative-embeddable`.  Thus in rank
-three the enlargement `D^+` is unnecessary: the plain double `A*_C A` is
-hyperlinear iff the inclusion is `RE/L(C)`.
+**Plain-double proof boundary.** The HNN converse uses a Haar unitary that
+actually centralizes the subgroup. The printed plain-double argument in
+Gao's Theorem 7.1 instead uses a relative Haar unitary from a vertex and
+does not justify that commutation. For the arithmetic diagonal it fails
+explicitly. The accompanying audit isolates that gap; neither the HNN
+criterion nor the enlarged-amalgam criterion above depends on it.
 
 **Microstate form (`N_1 = C`, `A_k = M_(d_k)`).**  Call a regular-trace
 microstate sequence `pi_k : A -> U(d_k)` **`C`-faithful** if there are

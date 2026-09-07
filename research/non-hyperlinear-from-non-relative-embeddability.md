@@ -2,7 +2,7 @@
 rg: 2
 id: non-hyperlinear-from-non-relative-embeddability
 kind: route
-title: Non-relative-embeddability of the lattice pair makes the explicit amalgam (A x Z) *_C A the witness
+title: Non-relative-embeddability of the lattice pair makes both its centralizer HNN group and enlarged double nonhyperlinear
 target: non-hyperlinear-group
 requires:
   - arithmetic-pair-is-not-relatively-embeddable
@@ -19,9 +19,11 @@ for `(A, C) = (SL_n(Z[1/2]), SL_n(Z))`, `n = 2` or `3`, so
 D^+ = (SL_n(Z[1/2]) x Z) *_(SL_n(Z)) SL_n(Z[1/2])
 ```
 
-is an explicit finitely presented non-hyperlinear group.  It contains the
-HNN witness `G_n = <SL_n(Z[1/2]), t | [t, SL_n(Z)] = 1>` as the
-sub-amalgam `(C x Z) *_C A`, so this route is the weakest member of the
-HNN family: it consumes a statement about microstates of the host alone
-(no stable letter, no relative commutant, no stability) and produces a
-witness one step larger than the HNN group.
+is an explicit finitely presented non-hyperlinear group. By the converse
+in part 4 of the same prerequisite, its subgroup
+`G_n = <SL_n(Z[1/2]), t | [t, SL_n(Z)] = 1>` is nonhyperlinear as well:
+hyperlinearity of that HNN group would give the forbidden relative
+embedding. This conclusion uses the equivalence, not inheritance of
+nonhyperlinearity by subgroups. For each fixed pair the two negative
+statements are equivalent; the route does not claim a strictly weaker
+existence target.

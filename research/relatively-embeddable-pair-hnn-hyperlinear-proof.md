@@ -2,9 +2,11 @@
 rg: 2
 id: relatively-embeddable-pair-hnn-hyperlinear-proof
 kind: route
-title: Gao's amalgamated-free-product theorem gives the star amalgam, and a Folner construction gives the shift extension
+title: Build the HNN model from a relative embedding and recover the commuting square from its central Haar letter
 target: relatively-embeddable-pair-makes-the-hnn-group-hyperlinear
 requires: []
+artifacts:
+  - research/artifacts/centralizer-hnn-relative-embedding-audit-2026-09-07.md
 ---
 
 **Step 1 (the HNN group is a star amalgam by the shift).**  Let
@@ -54,6 +56,31 @@ quotients replace `F` by a Folner set and `t^m` by a section.
 matrix ultraproduct; restricting to `L(A)` and applying
 `hnn-hyperlinearity-is-amalgamated-free-haar-unitary` gives the
 amalgamated-free Haar unitary in that model.
+
+**Step 5 (the converse for every countable pair).** Assume `G` hyperlinear
+and put `P=L(G)`. Its stable letter `u=lambda(t)` is Haar and centralizes
+`B=L(C)`. For `a in A-C`, Britton normal form makes
+`t^j a t^(-j)` pairwise distinct. Consequently
+
+```text
+||(1/n) sum_(j=0)^(n-1) u^j lambda(a) u^(-j)||_2^2 = 1/n.
+```
+
+The mean ergodic theorem shows that the trace-preserving expectation onto
+`Q={u}' cap P` kills each such group unitary. It fixes `B` pointwise, so
+by L2 density its restriction to `L(A)` is exactly `E_B`. The square
+`B subset L(A)`, `Q subset P` is therefore a commuting square. The Connes
+embedding of `P`, the Haar unitary `u`, and this square meet every
+hypothesis of Gao, arXiv:2012.07940v3, Lemma 7.2 with scalar coefficient.
+That lemma yields `L(C) subset L(A)` relatively embeddable over scalars.
+This proves the converse without the printed plain-double argument.
+
+The enlarged-double equivalence in part 1 of the claim is Theorem 7.1,
+items 1 and 2, with scalar coefficient. Its forward direction uses a
+central tensor-factor Haar unitary and has the same valid square. Part 2
+is the Britton-reduced subgroup inclusion described in the claim. The
+four equivalences and the scope of the plain-double issue are written out
+in the accompanying artifact.
 
 **Microstate form.**  Given `(CF1)`, the map `pi = prod_omega pi_k` is a
 trace-preserving embedding `L(A) -> prod_omega M_(d_k)` (regular trace),
