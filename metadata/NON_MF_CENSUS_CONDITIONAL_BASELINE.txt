@@ -85,7 +85,11 @@ carrier-data GroupApproximation.Manuscript.NonMF.TorsionFree.HullBallFormStateme
 # visibly a citation, and this one reads as settled -- so each line names the
 # debt it waits on.
 carrier-debt GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.HullQuotientNG  -- tex rows 0478b96dfcaf and c3246ffe1961; produced only through the TheoremCDebts sorries, and the rows also cite HullInputsCorrected and torsionFree_of_finiteOrder_lift
-carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeFullMFRadical  -- tex row 907cd2df4f8a; the statement Prop of Theorem C, produced only through manuscriptTorsionFreeFullMFRadical_closed over the three debts, which the row also cites.  (2026-09-07: tex row 0f22bdbc4184, which used to cite this too, was upgraded to TorsionFreePrinted.manuscriptTorsionFreeTheorem instead -- see below -- so this line now covers only 907cd2df4f8a.)
+# REMOVED 2026-09-07 (lead-authorized): `TheoremC.PrintedTorsionFreeFullMFRadical`
+# was registered here, cited only by tex row `907cd2df4f8a`.  That row is now
+# a stale overlay key (no live sentence matches it), so the line matches
+# nothing and is removed; see the `conditional-debt` section above for the
+# same row's other citation and the blind-spot note.
 #
 # ---------------------------------------------------------------------------
 # open-predicate: uncovered by the refutation fix.  `IsStronglyOperatorMF` used
@@ -127,3 +131,11 @@ open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscript
 conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem  -- thm:torsion-free over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs; a literature citation, not a reduction this repository is closing
 open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient  -- cor:relative-quotient over the same Fournier-Facio construction (FournierFacioParagraph) and over Hull's common quotient theorem (HullCommonQuotientPrinted, Hull Corollary 7.4); literature citations, not reductions this repository is closing
 conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient  -- cor:relative-quotient over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
+#
+# cor:regular-nonmf-algebra, along the printed proof
+# (Manuscript/NonMF/RegularNonMFAlgebra.lean), adds two more citations on top
+# of the FournierFacioParagraph/HullPrintedInputs pair above: Dahmani-
+# Guirardel-Osin's Theorem 2.35 and Gerasimova-Osin's Theorem 1.1, both
+# packaged as closed Props the manuscript cites.
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over the same Fournier-Facio construction (FournierFacioParagraph), Dahmani-Guirardel-Osin's Theorem 2.35 (DGOTheorem235Printed), and Gerasimova-Osin's Theorem 1.1 (GerasimovaOsinTheorem11Printed); literature citations, not reductions this repository is closing
+conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
