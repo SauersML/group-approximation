@@ -484,6 +484,338 @@ theorem sqrt_measureReal_upperDescentSource_le
   rw [iUnion_upperDescentPart rho n] at hmain
   simpa using hmain
 
+/-! ### The same-stage form of the descent
+
+The stage drop above is inherited from the finite-field route, where the dual
+functionals live on one finite degree stage and the shear genuinely lowers it.
+Over `ℤ` a character lives on the whole plane and the stage is only a cutoff
+for the valuation, so the descent does not need to drop it: inside `A ∪ B` the
+second-coordinate valuation is automatically at most `n`, and the image is
+classified at the same stage `n`.  That removes the interior restriction and
+with it every boundary term, so the same-stage inequalities below are the ones
+the endgame uses. -/
+
+/-- A region label at stage `n` already forces the relevant valuation to be
+interior. -/
+theorem regionAB_data (n : ℕ)
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hchi : chi ∈ wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) :
+    0 < leastRootWordDegreeWithin rho 1 n chi ∧
+      leastRootWordDegreeWithin rho 1 n chi ≤
+        leastRootWordDegreeWithin rho 0 n chi ∧
+      leastRootWordDegreeWithin rho 1 n chi ≤ n ∧
+      chi ∈ rootWordVisibleSet rho 1 n := by
+  have hale := leastRootWordDegreeWithin_le_succ rho 0 n chi
+  have hdata : 0 < leastRootWordDegreeWithin rho 1 n chi ∧
+      leastRootWordDegreeWithin rho 1 n chi ≤
+        leastRootWordDegreeWithin rho 0 n chi ∧
+      leastRootWordDegreeWithin rho 1 n chi ≤ n := by
+    rcases hchi with hA | hB
+    · obtain ⟨-, hb, hlt⟩ := wordPairRegionOfDegrees_A_data n _ _ hA
+      exact ⟨by omega, by omega, by omega⟩
+    · obtain ⟨hboth, ha, hb, heq⟩ := wordPairRegionOfDegrees_B_data n _ _ hB
+      have hane : leastRootWordDegreeWithin rho 0 n chi ≠ n + 1 := by
+        intro hcontra
+        exact hboth ⟨hcontra, by omega⟩
+      exact ⟨by omega, by omega, by omega⟩
+  refine ⟨hdata.1, hdata.2.1, hdata.2.2, ?_⟩
+  by_contra hnot
+  have hsentinel :=
+    leastRootWordDegreeWithin_eq_succ_of_not_mem rho 1 n chi hnot
+  omega
+
+/-- The mirror data for `C ∪ B`. -/
+theorem regionCB_data (n : ℕ)
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hchi : chi ∈ wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .B) :
+    0 < leastRootWordDegreeWithin rho 0 n chi ∧
+      leastRootWordDegreeWithin rho 0 n chi ≤
+        leastRootWordDegreeWithin rho 1 n chi ∧
+      leastRootWordDegreeWithin rho 0 n chi ≤ n ∧
+      chi ∈ rootWordVisibleSet rho 0 n := by
+  have hble := leastRootWordDegreeWithin_le_succ rho 1 n chi
+  have hdata : 0 < leastRootWordDegreeWithin rho 0 n chi ∧
+      leastRootWordDegreeWithin rho 0 n chi ≤
+        leastRootWordDegreeWithin rho 1 n chi ∧
+      leastRootWordDegreeWithin rho 0 n chi ≤ n := by
+    rcases hchi with hC | hB
+    · obtain ⟨ha, -, hlt⟩ := wordPairRegionOfDegrees_C_data n _ _ hC
+      exact ⟨by omega, by omega, by omega⟩
+    · obtain ⟨hboth, ha, hb, heq⟩ := wordPairRegionOfDegrees_B_data n _ _ hB
+      have hbne : leastRootWordDegreeWithin rho 1 n chi ≠ n + 1 := by
+        intro hcontra
+        exact hboth ⟨by omega, hcontra⟩
+      exact ⟨by omega, by omega, by omega⟩
+  refine ⟨hdata.1, hdata.2.1, hdata.2.2, ?_⟩
+  by_contra hnot
+  have hsentinel :=
+    leastRootWordDegreeWithin_eq_succ_of_not_mem rho 0 n chi hnot
+  omega
+
+/-- Same-stage placement of `A ∪ B` under the selected lower generator shear. -/
+theorem lowerCharacterAction_mem_regionCD_stage (n : ℕ) (x : X)
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hchi : chi ∈ wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B)
+    (hx : chi ∈ descentSet rho 1 n x) :
+    lowerCharacterAction rho (FreeAlgebra.ι ℤ x) chi ∈
+      wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .D := by
+  obtain ⟨hpos, hle, hint, hvis⟩ := regionAB_data rho n chi hchi
+  obtain ⟨w, hlen, hne⟩ := hx
+  have hzero := leastRootWordDegreeWithin_lowerGenerator_zero rho n n chi x
+    hlen hne hle (by omega)
+  have hone := leastRootWordDegreeWithin_lowerCharacterAction_one rho
+    (FreeAlgebra.ι ℤ x) n chi
+  rcases Nat.eq_zero_or_pos (leastRootWordDegreeWithin rho 1 n chi - 1) with
+    h0 | hp
+  · right
+    change wordPairRegionOfDegrees n _ _ = _
+    rw [hzero, hone]
+    exact wordPairRegionOfDegrees_eq_D_of_left_zero n _ _ h0
+  · left
+    change wordPairRegionOfDegrees n _ _ = _
+    rw [hzero, hone]
+    exact wordPairRegionOfDegrees_eq_C_of_pos_of_lt n _ _ (by omega) (by omega)
+
+/-- Same-stage placement of `C ∪ B` under the selected upper generator shear. -/
+theorem upperCharacterAction_mem_regionAD_stage (n : ℕ) (x : X)
+    (chi : characterSpace ℂ (representedColumnPlane rho).algebra)
+    (hchi : chi ∈ wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .B)
+    (hx : chi ∈ descentSet rho 0 n x) :
+    upperCharacterAction rho (FreeAlgebra.ι ℤ x) chi ∈
+      wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D := by
+  obtain ⟨hpos, hle, hint, hvis⟩ := regionCB_data rho n chi hchi
+  obtain ⟨w, hlen, hne⟩ := hx
+  have hone := leastRootWordDegreeWithin_upperGenerator_one rho n n chi x
+    hlen hne hle (by omega)
+  have hzero := leastRootWordDegreeWithin_upperCharacterAction_zero rho
+    (FreeAlgebra.ι ℤ x) n chi
+  rcases Nat.eq_zero_or_pos (leastRootWordDegreeWithin rho 0 n chi - 1) with
+    h0 | hp
+  · right
+    change wordPairRegionOfDegrees n _ _ = _
+    rw [hzero, hone]
+    exact wordPairRegionOfDegrees_eq_D_of_right_zero n _ _ h0
+  · left
+    change wordPairRegionOfDegrees n _ _ = _
+    rw [hzero, hone]
+    exact wordPairRegionOfDegrees_eq_A_of_pos_of_lt n _ _ (by omega) (by omega)
+
+/-- The same-stage letter pieces of `A ∪ B`. -/
+def regionABPart (n : ℕ) (i : Fin (Fintype.card X)) :
+    Set (characterSpace ℂ (representedColumnPlane rho).algebra) :=
+  (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∩
+    descentPiece rho 1 n i
+
+/-- The same-stage letter pieces of `C ∪ B`. -/
+def regionCBPart (n : ℕ) (i : Fin (Fintype.card X)) :
+    Set (characterSpace ℂ (representedColumnPlane rho).algebra) :=
+  (wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .B) ∩
+    descentPiece rho 0 n i
+
+theorem iUnion_regionABPart (n : ℕ) :
+    ⋃ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+        regionABPart rho n i =
+      wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B := by
+  ext chi
+  constructor
+  · intro hchi
+    obtain ⟨i, -, hmem⟩ := Set.mem_iUnion₂.mp hchi
+    exact hmem.1
+  · intro hchi
+    obtain ⟨hpos, -, -, hvis⟩ := regionAB_data rho n chi hchi
+    obtain ⟨i, hi⟩ := exists_mem_descentPiece rho 1 n chi hvis hpos
+    exact Set.mem_biUnion (Finset.mem_coe.mpr (Finset.mem_univ i)) ⟨hchi, hi⟩
+
+theorem iUnion_regionCBPart (n : ℕ) :
+    ⋃ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+        regionCBPart rho n i =
+      wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .B := by
+  ext chi
+  constructor
+  · intro hchi
+    obtain ⟨i, -, hmem⟩ := Set.mem_iUnion₂.mp hchi
+    exact hmem.1
+  · intro hchi
+    obtain ⟨hpos, -, -, hvis⟩ := regionCB_data rho n chi hchi
+    obtain ⟨i, hi⟩ := exists_mem_descentPiece rho 0 n chi hvis hpos
+    exact Set.mem_biUnion (Finset.mem_coe.mpr (Finset.mem_univ i)) ⟨hchi, hi⟩
+
+/-- **The same-stage lower descent inequality.** -/
+theorem sqrt_measureReal_regionAB_le
+    (z : E) (hz : ‖z‖ = 1) (n : ℕ) (delta : ℝ) (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B)) ≤
+      Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .D)) +
+        Real.sqrt (Fintype.card X : ℝ) * delta := by
+  classical
+  set mu := columnPlaneSpectralMeasure rho z hz with hmu
+  set g : Fin (Fintype.card X) →
+      Equiv.Perm (characterSpace ℂ (representedColumnPlane rho).algebra) :=
+    fun i ↦ (lowerCharacterMeasurableEquiv rho
+      (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))).toEquiv with hg
+  have hgapply : ∀ i chi, g i chi =
+      lowerCharacterAction rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)) chi :=
+    fun _ _ ↦ rfl
+  have hmeasurable : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (regionABPart rho n i) :=
+    fun i ↦ ((measurableSet_wordPairRegionSet rho n .A).union
+      (measurableSet_wordPairRegionSet rho n .B)).inter
+        (measurableSet_descentPiece rho 1 n i)
+  have himage : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (g i '' regionABPart rho n i) := by
+    intro i
+    exact (MeasurableEquiv.measurableSet_image
+      (lowerCharacterMeasurableEquiv rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)))).mpr
+      (hmeasurable i)
+  have himagePiece : ∀ (i : Fin (Fintype.card X)) (chi),
+      chi ∈ regionABPart rho n i → g i chi ∈ descentPiece rho 1 n i := by
+    intro i chi hchi
+    refine ⟨(descentSet_lowerCharacterAction rho _ n _ chi).mpr hchi.2.1, ?_⟩
+    intro hmem
+    obtain ⟨j, hj, hjmem⟩ := Set.mem_iUnion₂.mp hmem
+    exact hchi.2.2 (Set.mem_biUnion hj
+      ((descentSet_lowerCharacterAction rho _ n _ chi).mp hjmem))
+  have hdisjA : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (regionABPart rho n i) (regionABPart rho n j) := by
+    intro i _ j _ hij
+    exact Set.disjoint_of_subset (fun _ h ↦ h.2) (fun _ h ↦ h.2)
+      (disjoint_descentPiece rho 1 n hij)
+  have hdisjImage : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (g i '' regionABPart rho n i)
+        (g j '' regionABPart rho n j) := by
+    intro i _ j _ hij
+    refine Set.disjoint_of_subset ?_ ?_ (disjoint_descentPiece rho 1 n hij)
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece i chi hchi
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece j chi hchi
+  have hsubset : (⋃ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      g i '' regionABPart rho n i) ⊆
+        wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .D := by
+    rintro y hy
+    obtain ⟨i, -, chi, hchi, rfl⟩ := Set.mem_iUnion₂.mp hy
+    rw [hgapply]
+    exact lowerCharacterAction_mem_regionCD_stage rho n _ chi hchi.1
+      (descentPiece_subset rho 1 n i hchi.2)
+  have hquasi : ∀ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale mu delta
+        (g i).symm := by
+    intro i _ A hA himageA
+    have hfun : ∀ chi, (g i).symm chi =
+        lowerCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) chi := by
+      intro chi
+      exact lowerCharacterMeasurableEquiv_symm_apply rho _ chi
+    have hset : (g i).symm '' A =
+        lowerCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) '' A :=
+      Set.image_congr' hfun
+    rw [hset]
+    rw [hset] at himageA
+    exact lowerShear_neg_control_measurableQuasiInvariantAtScale rho z hz delta
+      hdelta hnear (some ((letterIndex (X := X)).symm i)) A hA himageA
+  have hmain :=
+    KassabovBorelMeasureInequalities.sqrt_measureReal_biUnion_le_of_disjoint_transport
+      mu Finset.univ (regionABPart rho n)
+      (wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .D) g hdelta.le
+      (fun i _ ↦ hmeasurable i) (fun i _ ↦ himage i) hdisjA hdisjImage hsubset
+      hquasi
+  rw [iUnion_regionABPart rho n] at hmain
+  simpa using hmain
+
+
+/-- **The same-stage upper descent inequality.** -/
+theorem sqrt_measureReal_regionCB_le
+    (z : E) (hz : ‖z‖ = 1) (n : ℕ) (delta : ℝ) (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .C ∪ wordPairRegionSet rho n .B)) ≤
+      Real.sqrt ((columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D)) +
+        Real.sqrt (Fintype.card X : ℝ) * delta := by
+  classical
+  set mu := columnPlaneSpectralMeasure rho z hz with hmu
+  set g : Fin (Fintype.card X) →
+      Equiv.Perm (characterSpace ℂ (representedColumnPlane rho).algebra) :=
+    fun i ↦ (upperCharacterMeasurableEquiv rho
+      (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))).toEquiv with hg
+  have hgapply : ∀ i chi, g i chi =
+      upperCharacterAction rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)) chi :=
+    fun _ _ ↦ rfl
+  have hmeasurable : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (regionCBPart rho n i) :=
+    fun i ↦ ((measurableSet_wordPairRegionSet rho n .C).union
+      (measurableSet_wordPairRegionSet rho n .B)).inter
+        (measurableSet_descentPiece rho 0 n i)
+  have himage : ∀ i : Fin (Fintype.card X),
+      MeasurableSet (g i '' regionCBPart rho n i) := by
+    intro i
+    exact (MeasurableEquiv.measurableSet_image
+      (upperCharacterMeasurableEquiv rho
+        (FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i)))).mpr
+      (hmeasurable i)
+  have himagePiece : ∀ (i : Fin (Fintype.card X)) (chi),
+      chi ∈ regionCBPart rho n i → g i chi ∈ descentPiece rho 0 n i := by
+    intro i chi hchi
+    refine ⟨(descentSet_upperCharacterAction rho _ n _ chi).mpr hchi.2.1, ?_⟩
+    intro hmem
+    obtain ⟨j, hj, hjmem⟩ := Set.mem_iUnion₂.mp hmem
+    exact hchi.2.2 (Set.mem_biUnion hj
+      ((descentSet_upperCharacterAction rho _ n _ chi).mp hjmem))
+  have hdisjA : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (regionCBPart rho n i) (regionCBPart rho n j) := by
+    intro i _ j _ hij
+    exact Set.disjoint_of_subset (fun _ h ↦ h.2) (fun _ h ↦ h.2)
+      (disjoint_descentPiece rho 0 n hij)
+  have hdisjImage : Set.Pairwise (↑(Finset.univ : Finset (Fin (Fintype.card X))))
+      fun i j ↦ Disjoint (g i '' regionCBPart rho n i)
+        (g j '' regionCBPart rho n j) := by
+    intro i _ j _ hij
+    refine Set.disjoint_of_subset ?_ ?_ (disjoint_descentPiece rho 0 n hij)
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece i chi hchi
+    · rintro _ ⟨chi, hchi, rfl⟩
+      exact himagePiece j chi hchi
+  have hsubset : (⋃ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      g i '' regionCBPart rho n i) ⊆
+        wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D := by
+    rintro y hy
+    obtain ⟨i, -, chi, hchi, rfl⟩ := Set.mem_iUnion₂.mp hy
+    rw [hgapply]
+    exact upperCharacterAction_mem_regionAD_stage rho n _ chi hchi.1
+      (descentPiece_subset rho 0 n i hchi.2)
+  have hquasi : ∀ i ∈ (Finset.univ : Finset (Fin (Fintype.card X))),
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale mu delta
+        (g i).symm := by
+    intro i _ A hA himageA
+    have hfun : ∀ chi, (g i).symm chi =
+        upperCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) chi := by
+      intro chi
+      exact upperCharacterMeasurableEquiv_symm_apply rho _ chi
+    have hset : (g i).symm '' A =
+        upperCharacterMeasurableEquiv rho
+          (-(FreeAlgebra.ι ℤ ((letterIndex (X := X)).symm i))) '' A :=
+      Set.image_congr' hfun
+    rw [hset]
+    rw [hset] at himageA
+    exact upperShear_neg_control_measurableQuasiInvariantAtScale rho z hz delta
+      hdelta hnear (some ((letterIndex (X := X)).symm i)) A hA himageA
+  have hmain :=
+    KassabovBorelMeasureInequalities.sqrt_measureReal_biUnion_le_of_disjoint_transport
+      mu Finset.univ (regionCBPart rho n)
+      (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .D) g hdelta.le
+      (fun i _ ↦ hmeasurable i) (fun i _ ↦ himage i) hdisjA hdisjImage hsubset
+      hquasi
+  rw [iUnion_regionCBPart rho n] at hmain
+  simpa using hmain
+
+
 end
 
 end IntegralGeneratorShearDescentMass
