@@ -518,8 +518,17 @@ before assuming `IsDiscRegion`. `SurgeryReclosedConnected` proves that
 reclosing along any supplied nonempty boundary cycle preserves ambient
 connectedness. It lifts ambient dual paths through the actual retained darts;
 the connectedness field of the cut's region is no longer an input oracle.
-Euler preservation for a general enclosing region still needs a proof using
-the genuine boundary walk.
+`PermFirstReturnOrbits` now proves that an actual first-return permutation
+has precisely the old orbits meeting the retained set. `SurgeryReclosedVertices`
+derives that first-return property from the genuine map boundary walk:
+reclosed vertex rotation skips exactly the deleted internal darts. Its actual
+vertex equivalence identifies the new vertices with old vertices incident to
+at least one retained dart, and gives the exact vertex count.
+`FaceSetBoundaryReclosed` derives the required walk from the chain and closing
+step already stored in every embedded `FaceSetBoundary`, without an additional
+orbit or topology hypothesis. These proofs pass ordinary axiom audits.
+Euler preservation for a general enclosing region still needs the planar
+deletion/counting argument; the vertex correspondence alone is not that proof.
 
 The singleton audit found another false auxiliary producer, reported in
 [#208](https://github.com/SauersML/group-approximation/issues/208).
@@ -536,6 +545,18 @@ historical `SingletonDiscRegionData` without either topological input.
 in the self-contiguity model and passes a closed audit. The false universal
 producer remains available with its refutation. These results do not assert
 that every relator face is unpinched or supply the general loop-cut region.
+
+`BridgeFaceReclosedModel` now constructs a valid collapse of the very bridge
+example that refutes the historical singleton producer. Its genuine region
+boundary is `[2]`, rather than the complete stored face boundary `[0, 2, 1]`.
+The first-return vertex theorem proves that removing the bridge also removes
+its isolated end vertex. The actual new map has one vertex, two edges and
+three faces; the constructed `IsDiscRegion` preserves Euler characteristic
+and is planar. The nontrivial rotation step skips the internal dart one.
+The boundary-walk, rotation and planar-collapse endpoints pass closed audits.
+This supplies a positive internally paired example while preserving the old
+refutation. The general enclosing-region producer remains open, and this
+batch removes no additional assembly admission.
 
 The outstanding proofs are:
 
