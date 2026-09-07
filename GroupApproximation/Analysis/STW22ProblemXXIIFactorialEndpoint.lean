@@ -88,7 +88,7 @@ tracially complete C-star algebra, `X` *is* exactly the set of
 `‖·‖_{2,X}`-continuous traces on `M`, and the trace problem nevertheless fails
 for it, in both of the forms CCEGSTW Question 1.1 is asked in.  The remaining
 conjuncts are the published endpoint
-`STW22NegativeSolution.negativeSolutionToProblemXXII` verbatim: the regularity
+`GroupApproximation.STW22NegativeSolution.negativeSolutionToProblemXXII` verbatim: the regularity
 of the base algebra, the structure of its trace simplex, the gauge identity, and
 the proper inclusion of trace spaces.
 
@@ -140,7 +140,7 @@ theorem factorialNegativeSolutionToProblemXXII :
 section AssemblyClauses
 
 /-! The clauses below are transcribed from
-`STW22.antipodal_stw22_trace_problem_counterexample`, so this section carries
+`GroupApproximation.STW22.antipodal_stw22_trace_problem_counterexample`, so this section carries
 that endpoint's own `open`s rather than the ones the printed statement above
 needs. -/
 
@@ -151,7 +151,7 @@ open CuntzPedersenCoronaObstruction CuntzPedersenTraceZero STW22Assembly
 /-- **The antipodal counterexample assembly, with the problem's hypothesis
 attached.**
 
-The second conjunct is `STW22.antipodal_stw22_trace_problem_counterexample`
+The second conjunct is `GroupApproximation.STW22.antipodal_stw22_trace_problem_counterexample`
 verbatim, with the block-data abbreviation `B` expanded: the identification of
 `ℂ1 + J` with the bounded uniform-two approximable sequences, the completion's
 C-star structure, the obstruction sequence's membership in the two-null ideal

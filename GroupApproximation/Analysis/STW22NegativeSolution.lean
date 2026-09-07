@@ -53,7 +53,7 @@ hypotheses; Type I is asserted for an independent arbitrary Hilbert-space
 universe `v`.
 
 **This is not the whole of Problem XXII.  To cite the refutation, cite
-`STW22ProblemXXII.factorialNegativeSolutionToProblemXXII`.**  The printed
+`GroupApproximation.STW22ProblemXXII.factorialNegativeSolutionToProblemXXII`.**  The printed
 problem is posed for a *factorial tracially complete* pair `(M, X)`, and no
 conjunct here says that the pair is one.  Omitting a hypothesis makes a
 counterexample refute a weaker statement than the one that was asked, so this

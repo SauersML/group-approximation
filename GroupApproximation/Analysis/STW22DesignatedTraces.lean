@@ -26,20 +26,33 @@ recorded four of the six fields as work "not yet in the repository":
 calling `M` a completion at all.  All four are now proved, and the Prop itself
 is a theorem for exactly the `X` this file names:
 
-* `STW22FactorialCore.isCompact_designatedTraces`,
-  `isConvexTraceSet_designatedTraces`, `isClosed_designatedTraces` and
-  `isFaceTraceSet_designatedTraces` -- compactness through weak-star compactness
-  of the trace space, and the face condition through CCEGSTW Proposition
-  3.23(iv) at `X = T(A)`;
-* `STW22TraciallyCompletePair.isFaithfulTraceSet_designatedTraces` and
-  `unitBallUniformTwoComplete_designatedTraces` -- faithfulness turned out to
-  need no extra hypothesis, because the coordinate norm comparison already
-  forces a gauge-null element to vanish coordinatewise;
-* `STW22AntipodalFactorialPair.antipodal_isFactorialTraciallyCompletePair` --
-  the assembled Prop, for `antipodalDesignatedTraces` as defined below.
+* `GroupApproximation.STW22FactorialCore.isCompact_designatedTraces`,
+  `GroupApproximation.STW22FactorialCore.isConvexTraceSet_designatedTraces`,
+  `GroupApproximation.STW22FactorialCore.isClosed_designatedTraces` and
+  `GroupApproximation.STW22FactorialCore.isFaceTraceSet_designatedTraces`, in
+  `Analysis/STW22FactorialCore` -- compactness through weak-star compactness of
+  the trace space, and the face condition through CCEGSTW Proposition 3.23(iv)
+  at `X = T(A)`;
+* `GroupApproximation.STW22FactorialCore.isFaithfulTraceSet_designatedTraces`
+  and
+  `GroupApproximation.STW22FactorialCore.unitBallUniformTwoComplete_designatedTraces`,
+  which live in `Analysis/STW22TraciallyCompletePair` -- the namespace is
+  `STW22FactorialCore` but the file is not.  Faithfulness turned out to need no
+  extra hypothesis, because the coordinate norm comparison already forces a
+  gauge-null element to vanish coordinatewise;
+* `GroupApproximation.STW22.antipodal_isFactorialTraciallyCompletePair`, in
+  `Analysis/STW22AntipodalFactorialPair` -- the assembled Prop, for
+  `antipodalDesignatedTraces` as defined below.
 
 So the Prop is absent from this file because it belongs upstream of it, not
 because it is open.  This file's job is to name `X`.
+
+Each carrier is written in full rather than short, so that
+`scripts/check_prose_decl_names.py` resolves it.  That script skips any name
+whose prefix is not a namespace this development declares into, and
+`STW22FactorialCore` is not one -- only `GroupApproximation.STW22FactorialCore`
+is -- so the short forms this list first carried were invisible to it.  Do not
+shorten them back.
 -/
 
 namespace GroupApproximation
