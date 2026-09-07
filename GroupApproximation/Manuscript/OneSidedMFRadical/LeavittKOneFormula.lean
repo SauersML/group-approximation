@@ -137,7 +137,20 @@ exponent relation, and the clause that needs an invariant of `K₁(R)`.  Open fo
 def ScalarKernel : Prop := (alpha k d).ker ≤ unitPowSubgroup k (d - 1)
 
 /-- **Every central unit of `L_k(1,d)` is a scalar.**  True for `d ≥ 2`,
-because the centre of `L_k(1,d)` is `k`; not proved on the tree. -/
+because the centre of `L_k(1,d)` is `k`; not proved on the tree.
+
+**What blocks it is a basis theorem, not the arity.**  `AryNormalForm` gives
+*spanning* by the monomials `s_α t_β`, and forcing a central element to be a
+scalar means killing coefficients, which needs *linear independence*.  The
+reduced basis is nowhere established: `Manuscript/MFRecognition/LeavittSeedPresentation.lean`
+carries it as a cited input ("Bergman, the diamond lemma for ring theory,
+together with the standard reduced basis of the Leavitt algebra.  Stated, never
+established here"), and a tree-wide search finds no `LinearIndependent` result
+about Leavitt monomials at any arity.  So this proposition is equally out of
+reach at `d = 2`; generalising the `d`-ary normal form would not move it, and
+establishing the reduced basis would give every arity at once.  (Reported by
+lane `nonmf-formalize`; verified here against the cited-input comment and the
+absent search hit.) -/
 def CentralUnitsAreScalars : Prop :=
   ∀ c : (AryLeavittAlgebra k d)ˣ,
     (∀ x : AryLeavittAlgebra k d,

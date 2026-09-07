@@ -1,4 +1,5 @@
 import GroupApproximation.KOne.RankNElimination
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Whitehead's identity in a two-index block of an arbitrary rank
@@ -349,5 +350,31 @@ theorem diagAt_commutatorElement_mem (l m : ι) (hlm : l ≠ m) (u v : Rˣ) :
   exact mul_mem (mul_mem (diagPairAt_self_inv_mem l m hlm _)
     (diagPairAt_self_inv_mem l m hlm _)) (diagPairAt_self_inv_mem l m hlm _)
 
+/-- **The diagonal embedding carries the whole commutator subgroup of `Rˣ` into
+`EL_ι(R)`.**  Whitehead's identity applied to the generators of `commutator Rˣ`,
+so this needs no hypothesis on `R` at all: not nontriviality, not a division
+property, not the elimination of `RankNElimination`.
+
+This is the form `AGPStepOne` consumes: `v ∈ commutator Rˣ` is exactly what
+`κ v = 1` supplies there, and the conclusion is `diag(v, 1, …, 1) ∈ EL_ι(R)`
+with no K-theory colimit in between.  `UnstableKOneAbelian.commutator_le_elementaryGroup`
+reaches the same conclusion but carries `Nontrivial R` and single-sandwich
+division, which this does not need. -/
+theorem diagAt_commutator_mem (l m : ι) (hlm : l ≠ m) {v : Rˣ}
+    (hv : v ∈ commutator Rˣ) :
+    (diagAt l v : (Matrix ι ι R)ˣ) ∈ elementaryGroup ι R := by
+  have hle : commutator Rˣ ≤ (elementaryGroup ι R).comap (diagAtHom l) := by
+    rw [commutator_def, Subgroup.commutator_le]
+    intro u _ w _
+    show (diagAtHom l) ⁅u, w⁆ ∈ elementaryGroup ι R
+    rw [diagAtHom_apply]
+    exact diagAt_commutatorElement_mem l m hlm u w
+  exact hle hv
+
 end RankNElimination
 end GroupApproximation
+
+/-! ### Axiom audit -/
+
+#audit_axioms GroupApproximation.RankNElimination.diagPairAt_self_inv_mem
+#audit_axioms GroupApproximation.RankNElimination.diagAt_commutator_mem
