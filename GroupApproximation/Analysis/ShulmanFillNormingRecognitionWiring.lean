@@ -173,7 +173,22 @@ route asks of the glued limit.
 
 The `∀ m, Nontrivial (DoubledModel EllTwoCoefficient m)` binder is the one
 `Analysis/ShulmanFillNormingEllTwoModels` carries throughout; it is true and a
-caller discharges it by `inferInstance`. -/
+caller discharges it by `inferInstance`.
+
+**VACUOUS: `Theorem4PrintedPairStatement` is refuted, twice and closed.**
+`ShulmanFillNormingPrintedPairRefuted.not_theorem4PrintedPair` refutes it at a
+one-dimensional `H`, and `ShulmanFillNormingPrintedPairCharacter`'s
+`not_theorem4PrintedPair_of_character` refutes it at every `H`; both are closed,
+with no binders to discharge.  So the `hT4` binder here can never be supplied,
+and neither this reduction nor `conjugateWordNorming_of_printedPair_of_compatible`
+below can fire.
+
+It is **not** a debt: proving `Theorem4PrintedPairStatement` discharges nothing,
+because it is false.  Both are retained as the record of what the printed pair
+package would have given.  The live successor is the legacy tail package
+`ShulmanFill.UnitalTailPairPackageStatement`
+(`Analysis/ShulmanFillNormingTailPrinted`), with the route on it in
+`Analysis/ShulmanFillNormingTailRoute`. -/
 theorem symmetricDoubleMF_of_printedPair
     [∀ m, Nontrivial (DoubledModel EllTwoCoefficient m)]
     (hT4 : Theorem4PrintedPairStatement)

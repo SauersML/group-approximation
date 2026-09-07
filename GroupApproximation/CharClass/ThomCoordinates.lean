@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LIXThomClassTerm
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Thom class in coordinates
@@ -85,9 +86,10 @@ theorem thomJmTotal_lixThomClassTerm (hGc : Continuous G)
       (one_le_lixRank_dd dd) (lixLHplus hGc hGu))
     (lixTopCoeff dd)
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms thomJmTotal_lixThomClassTerm
+#audit_axioms thomJmTotal_lixThomClassTerm
 
 end
 

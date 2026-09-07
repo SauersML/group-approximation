@@ -36,6 +36,33 @@ programme needs. Nothing here is `ZMod 2`-specific.
   pullback cochain.
 * `cohPullback_id`, `cohPullback_comp` — contravariant functoriality.
 * `cohPullback_eq_of_homotopy` — homotopy invariance.
+
+## Known open gap: `R`-linearity of `cyclesMk`/`cocycleClass`
+
+`cyclesMk_smul` and `cocycleClass_smul` — the `R`-linearity of `cyclesMk` and
+of taking a cohomology class — do not currently typecheck.
+`HomologicalComplex.cycles` surfaces its carrier at this Mathlib pin through
+`forget₂ (ModuleCat R) Ab`, which forgets the `R`-scalar action, so
+`s • (cochainCx R X).cyclesMk φ ...` has no `HSMul R _ _` instance: the
+statement itself does not elaborate, not merely its proof. Restoring the
+module structure across that forgetful functor (or restating the two lemmas
+directly over the `ModuleCat` hom rather than through the `Ab`-valued
+`cycles` object) is genuine category-theory work, not a rename, and nobody
+currently needs it enough to justify it: this is the one place in the file
+that is not additive-structure-only.
+
+This is load-bearing, not an isolated corner: `CupProduct.cup_smul_right`
+(the `R`-linearity of the cup product in its right argument) cites
+`cocycleClass_smul` directly, and `AlgTop.CrossProduct` and
+`AlgTop.EvenCohomologyRing` both use `cup_smul_right` directly, so the gap
+blocks that whole subtree (`CupProduct`, `CupAssoc`, `CrossProduct`,
+`EvenCohomologyRing`) and not just these two declarations. Every other
+declaration in this file uses only the additive/group structure and is
+unaffected; `SingularChainFree`, `UniversalCoefficients` and `Spheres`
+transit this file without touching `cyclesMk_smul`/`cocycleClass_smul` at
+all. Do not delete the two declarations to make the file compile: that
+trades a narrow, honest gap for a broken chain four modules wide. Recorded
+2026-09-07, lane `lix-meta`.
 -/
 
 open CategoryTheory Limits AlgebraicTopology

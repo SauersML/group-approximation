@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomBridgeChartHom
 import GroupApproximation.CharClass.ThomBridgeTotal
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The bridge is natural in the base
@@ -115,9 +116,10 @@ theorem bridgeTotal_natural [CompactSpace X] [T2Space X] (p : Bundle X ι) (U : 
   rw [hx, hy]
   rfl
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms bridgeTotal_natural
+#audit_axioms bridgeTotal_natural
 
 end
 

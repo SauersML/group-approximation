@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.ThomBridgeNaturalHyper
 import GroupApproximation.CharClass.BundleProjInclPairs
 import GroupApproximation.CharClass.ThomBridgeHyperplane
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The hyperplane square at the bundle's own objects
@@ -60,9 +61,10 @@ theorem hyperSquare (p : Bundle X ι) (U : Set X) (n : ℕ) :
     (fun z hz => range_projIncl_subset_notZero p
       (projInclOn_range_mapsTo p U z hz)) n
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms hyperSquare
+#audit_axioms hyperSquare
 
 end
 

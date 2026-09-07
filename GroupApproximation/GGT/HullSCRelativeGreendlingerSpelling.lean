@@ -327,16 +327,14 @@ def RelativeGreendlingerGeodesicLengthStatement : Prop :=
                 Z.HasGeodesicBoundaryLength →
                   Nonempty (RelativeDiagramCertificate D W eps mu Z)
 
-/-- **The main reduction, at the length-only boundary hypothesis.**  Its
-hypotheses are est's three construction propositions, the vk realization at a
-supplied spelling, and the supplied-word arc conversion. -/
-theorem relativeGreendlingerGeodesicLengthStatement_of_components
-    (hselection :
-      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
-    (hpieces :
-      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
-    (hunbound :
-      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
+/-- **The main reduction, at the length-only boundary hypothesis**, stated at
+the narrow waist.  The estimating inputs are used for one thing only — building
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement` — so that statement
+is the hypothesis here, and either route to it is admissible.  Pure refactor:
+`..._of_components` below keeps the old name and hypothesis list. -/
+theorem relativeGreendlingerGeodesicLengthStatement_of_greendlinger
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0})
     (hreal : RelativeDiscRealizationSpellingStatement.{u, w})
     (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w}) :
     RelativeGreendlingerGeodesicLengthStatement.{u, w} := by
@@ -345,8 +343,7 @@ theorem relativeGreendlingerGeodesicLengthStatement_of_components
       Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta :=
     GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hD
   obtain ⟨eps, rho, hrho, hgood⟩ :=
-    GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
-      hselection hpieces hunbound D hhyper (1 / 4) 1 mu
+    hgreendlinger D hhyper (1 / 4) 1 mu
       (by norm_num) (by norm_num) (by norm_num) hmu hmuUpper
   refine ⟨eps, rho, ?_⟩
   intro rho' hrho' W R hinput Z hgeo
@@ -404,6 +401,22 @@ theorem relativeGreendlingerGeodesicLengthStatement_of_components
     Nat.cast_le.mpr hC
   rw [hlengthEq]
   exact le_trans hstep (le_trans (le_of_lt hlarge) hCreal)
+
+/-- The historical route to the length-only reduction.  Unchanged in name,
+hypotheses and conclusion; it now factors through the waist. -/
+theorem relativeGreendlingerGeodesicLengthStatement_of_components
+    (hselection :
+      GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0})
+    (hpieces :
+      GGT.VanKampen.EstimatingPieceConstructionStatement.{u, w, 0})
+    (hunbound :
+      GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0})
+    (hreal : RelativeDiscRealizationSpellingStatement.{u, w})
+    (hconv : RelativeExteriorArcConversionAtWordRotatedStatement.{u, w}) :
+    RelativeGreendlingerGeodesicLengthStatement.{u, w} :=
+  relativeGreendlingerGeodesicLengthStatement_of_greendlinger
+    (GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components
+      hselection hpieces hunbound) hreal hconv
 
 /-! ## The length-only hypothesis is discharged at every Hull 4.4 diagram -/
 
