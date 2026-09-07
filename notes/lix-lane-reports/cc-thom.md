@@ -950,3 +950,122 @@ tautological class.
 Axiom lines checked by name at the green, all exactly
 `[propext, Classical.choice, Quot.sound]`: `bridgeTotalRestrict`,
 `thomJmTotal_restrict`, `injective_lixRes`.
+
+## 2026-09-07 — lane `lix-hclass`: `hclass` discharged
+
+`lix_topClass_ne_zero_of_thom`'s `hclass` is now a theorem.  Three new modules,
+all **PROBE GREEN on cs-endpoint (acn116)**; the third at 9203 jobs, `sorryAx`
+absent from the whole log.
+
+| module | contents |
+|---|---|
+| `CharClass/ThomChartTautZero.lean` | `eulerOfBundle_comap_const_eq_zero`, `eulerOfBundle_pushforward_eq_zero_of_trivIso`, `LH.pull_zeroSectionProj_tautEulerOf`, `chartInclMap`, `chartSymmMap`, `bridgeChartIncl_eq`, `LH.pull_chartInclMap_tautEulerOf`, **`LH.pull_bridgeChartIncl_tautEulerOf`**, `bridgeChartIncl_comp_projMapOf` — **`ξ` restricts to zero on the affine chart** |
+| `CharClass/ThomBridgeRelToAbs.lean` | `pull_eq_absPull`, **`relToAbs_bridgeTotal`** — the bridge commutes with `relToAbs`; the naturality `ThomBridgeTotal`'s own docstring flagged as missing |
+| `CharClass/LIXHclass.lean` | `gammaCoeff_eq_of_val`, `gamma_top_eq_chernCoeff`, `chernMul_top_unit`, `lhTerm_zero_class`, `lhTerm_at_index_zero`, `pull_bridgeChartIncl_lhSum`, **`lixHclass`** |
+
+### The proof, and where the geometry actually is
+
+`jE(u) = π^*(γ_r)` comes out of four steps and only the first is topology.
+
+1. **`ξ` dies on the affine chart.**  Classically this is the nowhere-zero
+   section `v ↦ (v,1)` of the tautological line over `E ⊆ P(E⊕1)`.  No section is
+   built here: `cc-bundle` had already proved that the chart's homotopy inverse
+   **is** the zero section (`chartOpensHomotopyEquivBase_invFun_apply`) and that
+   on the zero section the tautological line is the *constant* line `infPoint`
+   (`tautLineZeroSectionIso`).  A constant line is pulled back from a point and a
+   point has no `H^2`, so the whole statement is homotopy invariance plus
+   `cohomology_unit_isZero`.  Two lemmas of cc-bundle's that had no consumer
+   until now turned the one piece of real geometry into bookkeeping.
+2. **The bridge commutes with `relToAbs`.**  `bridgeChart_hom_eq` says the first
+   two bridge steps are one `relPullback`, and the third is a `relPullback` along
+   the **identity**; `relToAbs_naturality` applies to both, and the second
+   square's ambient pullback is `absPull (𝟙 _) = 𝟙`.  So `jE(u)` is the
+   restriction to the chart of `relToAbs` of `u`'s partner upstairs.
+3. **The coordinates.**  `thomJmTotal` is by definition `lhTopEquiv⁻¹ ∘ relToAbs`
+   across the bridge, so `relToAbs (bridgeTotal u)` **is** the Leray–Hirsch
+   combination of `u`'s coordinates, and `thomJmTotal_lixThomClassTerm` says
+   those are `thomLift` of the unit.  Restricting to the chart sends column `i`
+   to `lhTerm π' 0 (2r) i`, which vanishes for `i ≥ 1` because `cupPowE 0 (j+1) = 0`,
+   and the `i = 0` column is `π^*` of the coefficient.
+4. **The coefficient is `γ_r`.**  `thomLift`'s zeroth entry is `-γ_r ⌣ 1`; the
+   sign is invisible over `F₂` (`neg_eq_self_two`) and the cup with the unit is
+   three degree transports collapsing.  `lixChern_top_eq_gamma` then closes.
+
+### What these files do NOT do
+
+* Nothing about `hsq`, and nothing about the **section**: the class compared here
+  is the one the *projection* pulls back.  `gamma ≠ 0` is still the consumer's
+  conclusion from `hres` **and** this equation, not from this equation alone.
+* `pull_bridgeChartIncl_tautEulerOf` says nothing about `ξ` off the zero section,
+  where it does not vanish and where the Gysin sequence lives.  And it is about
+  the **class**, not the line: the tautological line is not trivial over the
+  chart on the nose, only up to the homotopy that contracts the chart.
+* `relToAbs_bridgeTotal` relates the two `relToAbs` and nothing else — not
+  `absToSub`, not `δ`, not naturality in the base (that is `bridgeTotal_natural`,
+  a different square).
+
+### The join with the consumer, checked before probing
+
+`CharClass/LemmaTwoOfHsqHresHclass.lean` (already on origin/main) states `hclass`
+as its second hypothesis.  `lixHclass hGc hGu (continuous_mappingTorus_lix hGc)
+(isStarProjection_mappingTorus_lix hGu)` is that statement character for
+character.  `hcont`/`hproj` are arguments here exactly as in
+`lixChern_top_eq_gamma`, so a caller with different proofs of them still fits.
+**`hdd` is not needed**, and no input was added.
+
+### Traps
+
+* **`absPull` lives in `RelativeSupport`, not `CharClass`.**  Without
+  `open RelativeSupport` the error is `Function expected at absPull … this term
+  has type ?m.1`, i.e. autoImplicit reports a missing `open` as a type error at
+  the *use* site.  Same shape as the `cohomologyZMod2` trap already in this file.
+* **Rewrite the hypothesis, not the goal, when a `relPullback` proof is in the
+  way.**  `rw [← hnat2]` in the goal failed with *"the target expression is not
+  type-correct under the `instances` transparency level"*, with a nested
+  *"function expected: `range_projIncl_subset_notZero p`"*.  The abstraction has
+  to pass through `relPullback`'s map-of-pairs argument.  `rw [hnat2] at hnat1`
+  and then `exact hnat1.symm` touches no dependent argument and works.
+* **`calc` cannot cross two spellings of one object; `Eq.trans` can.**  The chain
+  starts in `↥(lixHE …)` and ends in `↥(Hmod2 (TopCat.of (Bundle.Total …)) …)`.
+  These are defeq, but `calc` needs `Trans Eq Eq ?r` and instance search runs at
+  reducible transparency, where `lixTotalPair` (a plain `def`) does not unfold.
+  The error is the unhelpful `failed to synthesize Trans Eq Eq ?m`, reported at
+  the *last* step.  `refine h.trans ?_` unifies instead of searching, and works.
+* **`congrArg (fun f : _ ⟶ _ => f.hom u) h` does not elaborate**; the ascription
+  leaves the category a metavariable and the field projection then fails.  Bind
+  the equation to a `have` first and write `congrArg (fun t => t.hom u) h`, which
+  is the spelling already green in `RelativeProdContractible`.
+* **`rw`'s closing `rfl` is weaker than the `rfl` tactic.**  Three goals of the
+  form `cohCast ⋯ a = a` and one `lhTopEquiv⁻¹ (…) = thomJmTotal …` survived a
+  `rw` chain and needed an explicit `exact cohCast_self _ _` / an explicit
+  `thomJmTotal_apply, thomJm_apply` step.  `GysinFromGraded.lhTerm_index_zero`
+  already ends in `exact cohCast_self _ _` for exactly this reason.
+* **Name the coefficient family before feeding it to `lhTerm`.**  Writing
+  `ThomDeg.thomLift (fun i => chernMul …) x i` inline inside a `lhTerm` argument
+  makes `M` a metavariable — the trap `LIXThomClassTerm` records — and the error
+  is an application type mismatch naming `?m.192 i`.  `set a := thomJmTotal … u`
+  once and use `a i` everywhere; it also spares the `(M := …)` pin.
+* **`warningAsError=true` is on for the `GroupApproximation` lib** (`lakefile.toml`),
+  so the `unusedSectionVars` linter is a hard build failure, not a warning.
+
+### Duplicate-name coordination
+
+Lane `lix-hres`'s in-flight `CharClass/ThomChartSquare.lean` declares
+`bridgeChartIncl_mapsTo` with the identical statement.  My copy was deleted and
+is now a `have` inside `relToAbs_bridgeTotal`, so the duplicate baseline stays 0
+whichever of the two lands first.  `lhTerm_index_zero` was likewise renamed to
+`lhTerm_at_index_zero`: `LH.lhTerm_index_zero` already exists in
+`GysinFromGraded.lean`, at the degrees `n + 2` only, and with `open LH` the bare
+name would have been ambiguous.
+
+### Probe log
+
+| date | targets | result |
+|---|---|---|
+| 2026-09-07 | `ThomChartTautZero` | red: `rw [← eulerOfBundle_comap]` cannot see through the `tautEulerOf` def; two `unusedSectionVars` errors |
+| 2026-09-07 | **`ThomChartTautZero`** | **green** (built 9186/9203, 41s) |
+| 2026-09-07 | `ThomBridgeRelToAbs` + `LIXHclass` | red: `absPull` unknown (namespace `RelativeSupport`), and the `_ ⟶ _` ascription in `congrArg` |
+| 2026-09-07 | `ThomBridgeRelToAbs` + `LIXHclass` | red: `rw [← hnat2]` motive not type-correct at `instances` transparency |
+| 2026-09-07 | **`ThomBridgeRelToAbs`** green; `LIXHclass` red | `chernMul_top_unit` left `cohCast ⋯ a = a`; `thomLift` inline left `M` a metavariable |
+| 2026-09-07 | `LIXHclass` | red: `Trans Eq Eq ?m` at the last `calc` step |
+| 2026-09-07 | **`LIXHclass`** | **green, 9203 jobs, `PROBE GREEN`, no `sorryAx` in the log** |
