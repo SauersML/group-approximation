@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.LIXHsqEta
 import GroupApproximation.CharClass.LIXPhiSquare
 import GroupApproximation.CharClass.RelativeLineHomotopy
 import GroupApproximation.CharClass.BundleFrame
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The far end of the comparison homotopy is a linear isomorphism
@@ -320,8 +321,9 @@ theorem relPullback_lixKHomeo_eq_id (hGc : Continuous G)
       (lixKHomeo_mapsTo hGc hGu) (lixKHomeo_symm_mapsTo hGc hGu) (2 * lixRank dd)) x
   rw [← key a, ← key b, hab]
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms relPullback_lixKHomeo_eq_id
+#audit_axioms relPullback_lixKHomeo_eq_id
 
 end GroupApproximation.CharClass
