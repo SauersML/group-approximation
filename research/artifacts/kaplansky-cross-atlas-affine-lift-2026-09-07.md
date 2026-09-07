@@ -129,3 +129,40 @@ syndrome decoder with:
 The rank-three lift, locally finite recursive packets, symmetric compressor
 sums, and the elementary two-compressor core should not be searched again;
 their failures are structural.
+
+## 6. Mathematical pivot: a trace-perfect nested corner
+
+The bounded searches above are reconnaissance, not the proposed proof method.
+`leavitt-trace-balanced-nested-idempotents` replaces them with a canonical
+projective-module problem.
+
+Using `R~=M_2(R)`, take the constant cubic unit
+
+```text
+G=[[0,1],[1,1]],
+```
+
+a proper scalar-diagonal idempotent `P=diag(q,q)`, and the localized cubic
+unit `H=PG+(1-P)`.  Then `G+G^(-1)=1` and `H+H^(-1)=P`.  Their images `g,h`
+in `Q` commute and generate `C_3 x C_3`.  In `F_2[Q]` set
+
+```text
+e=[g]+[g^(-1)],   c=[h]+[h^(-1)],   f=ec.
+```
+
+This gives a proper nesting `0!=f<e`; evaluation sends the pair to equivalent
+idempotents `p<1` in `R`.  A single involution simultaneously conjugates
+`g,h` to their inverses, so both `e` and `f` vanish in the full group-algebra
+cocenter.  Thus augmentation and every conjugacy-class trace agree, removing
+the obstruction that killed the earlier proposed corner pair.
+
+The high-impact target is now one equation in projective-module language:
+
+```text
+e F_2[Q] ~= f F_2[Q].
+```
+
+An isomorphism supplies `xy=e`, `yx=f`; padding by `1-e` gives a literal
+Kaplansky counterexample.  This equivalence remains open, but it is a
+trace-compatible Hilbert-hotel mechanism and is the conceptual route to
+pursue instead of larger word balls.

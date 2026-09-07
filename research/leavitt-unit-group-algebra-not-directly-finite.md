@@ -73,6 +73,13 @@ left is the two that ask for an explicit element:
   the corner lane — in particular
   `leavitt-rank-three-lift-inverse-support-thirteen` constrains the
   whole-algebra form and is not known to transfer into the corner.
+* **Added 2026-09-07, and the one to work.**  Absorb a proper sub-corner:
+  `leavitt-nested-idempotent-corner-module-equivalence`, padded up by
+  `nested-idempotent-padding-refutes-direct-finiteness`.  It differs from the
+  other two in kind — no lift is corrected and no element is searched for.
+  The two idempotents are canonical and every degree-zero obstruction has
+  been checked to vanish on them, so what is left is one projective-module
+  isomorphism.
 
 **Dead.**
 
@@ -201,6 +208,17 @@ subject to odd intersection, lift a full Leavitt family into the unit corner,
 or construct a one-sided inverse pair by a genuinely different finite-support
 mechanism.  The tempting `e~f` branch is impossible and must not be reused.
 
+The prohibition in the preceding sentence concerns the old trace-mismatched
+pair only.  `leavitt-trace-balanced-nested-idempotents` constructs a different
+proper nested pair `f<e` for which augmentation and the full universal
+conjugacy-class trace both vanish, so
+`group-algebra-coefficient-trace-separates-leavitt-corners` cannot run against
+it.  For that pair the single equivalence `eF_2[Q] ~= fF_2[Q]` is a live,
+trace-compatible Hilbert-hotel target — carried as
+`leavitt-nested-idempotent-corner-module-equivalence` — and proving it gives
+the one-sided inverse by explicit corner padding, through the route
+`nested-idempotent-padding-refutes-direct-finiteness`.
+
 ## Cross-atlas affine update (2026-09-07)
 
 `binary-leavitt-unit-group-four-generated` replaces the twelve individual
@@ -234,9 +252,11 @@ is a scheduler here, not an algebraic amplifier.
 
 **Do not search these again.**  The support-three lift and its corner
 compression (virtually free support), the locally finite recursive packets,
-symmetric compressor sums, the `e ~ f` Murray--von Neumann branch, and blind
-growth of the partner universe by word radius have all failed structurally
-rather than for want of compute.  The next exact gate should vary both affine
+symmetric compressor sums, the *original* `e ~ f` Murray--von Neumann branch,
+and blind growth of the partner universe by word radius have all failed
+structurally rather than for want of compute.  The nested pair of
+`leavitt-trace-balanced-nested-idempotents` is not on that list and is the
+lane to work.  The next exact gate should vary both affine
 factors while keeping a literal cross-atlas relation, certify the support
 subgroup of the `t_0` lift to be `Q` rather than merely mixed-chart, grow the
 `A`-support universe by multiplication-collision class instead of word radius,
