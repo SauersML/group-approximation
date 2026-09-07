@@ -570,3 +570,11 @@ d58164ffa5a6	formalized	GroupApproximation.AmenableTraceTheorem.manuscriptShiftK
 cd3ea932e46a	formalized	GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect	Second remark, docstring quotes this sentence verbatim: MF not closed under semidirect product with Z. New row (2026-09-07).
 ea9a8e9d32e8	structural		Pure setup, no independent claim. New row (2026-09-07).
 01d34ed18b0a	formalized	GroupApproximation.NinetyNineProblems.manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF	thm:factorization-nonmf-trace statement: not-MF implies canonical trace not quasidiagonal, in particular an amenable-but-not-quasidiagonal trace when tau_G is amenable. New row (2026-09-07).
+ec81a8c16b64	definition		Standard group commutator convention [g,h]=ghg^-1h^-1, Mathlib commutatorElement notation. New row (2026-09-07).
+66a83c7244ff	definition	GroupApproximation.compressionSet	Comp_G(L) := compressionSet L = {s : forall l in L, s l s^-1 in L}. New row (2026-09-07).
+e81cdb6308a6	structural		Connector before the display quantifying over homomorphisms f:G->H. New row (2026-09-07).
+aeb8b3963aea	definition		Standard ring-theoretic definition of directly finite (ts=1 implies st=1); matches IsDedekindFiniteMonoid used throughout the tree. New row (2026-09-07).
+f99c7bd72154	definition		Defines the two-sided ideal R(1-st)R and the term full for the idempotent 1-st. New row (2026-09-07).
+a49cb6f6511a	structural		Roadmap remark: R need not be finitely generated, and the following example has EL_n(R) simple too; no independent claim of its own. New row (2026-09-07).
+99c332e36a37	formalized	GroupApproximation.RankDescent.manuscriptProperlyInfiniteReformulation	Equivalently, R contains two disjoint copies of itself (lem:two-copies cross-reference) -- full one-sided inverse pair iff properly infinite unit, exactly. New row (2026-09-07).
+f78ed06567cf	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptSimpleInfiniteRingAllCharacteristics GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptLeavittAlgebraFullDefectAllCharacteristics	Cross-reference to cor:simple-infinite-ring: the hypothesis holds in every countable simple unital ring not directly finite, and in every Leavitt algebra L_k(1,m). New row (2026-09-07).
