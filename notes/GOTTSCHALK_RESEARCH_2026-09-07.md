@@ -144,3 +144,36 @@ encoding of extra bits from the externally selected guarded sites. The
 second inference is explicitly false for rectangular projections. The
 proof and replay therefore sharpen a necessary condition without claiming
 the requested full proof or a certified new result in the literature.
+
+The fiber theorem and replay were published on main in
+`d172a111ab52487ad5b751fc5e79a3ce32356f7a` before continuing the attack.
+
+## Third attack: quantization and full matrix observables
+
+The [quantum compression proof](../research/artifacts/gottschalk-quantum-compression-2026-09-07.md)
+shows that an injective encoder and its decoder always give a local
+unital completely positive map on full quantum spin observables. Its
+ordered memory is bounded by `M^(-1) N^(-1) N`. This construction was
+tested as a possible entry into a finite-algebra argument.
+
+The missing step can be quantified exactly. Under a strict encoder,
+the isometry's range projection is at norm distance `1/2` from the
+quasilocal algebra, and a local unitary has multiplicative defect `1`
+under compression. More generally, a unital homomorphism extending the
+diagonal pullback would kill a missing cylinder projection and hence,
+by finite matrix-unit identities, kill the identity. Such an extension
+exists exactly when the encoder is onto. Its universal existence is
+therefore an open criterion, not something supplied by quantum locality.
+
+The separate replay uses a nonlinear binary-to-two-bit encoder on F_2
+and computes its compressed bit flip exactly: it is an input flip
+conditioned on two neighboring zeros. Squaring yields a nonzero
+projection defect of norm one. This verifies the claimed distinction
+between local compression and multiplicativity on a nonvacuous example.
+
+The 2009 Arrighi-Nesme lattice quantization theorem does not remove this
+obstruction for arbitrary groups. Its setting is Z^d; the proof's use of
+nonreversibility to rule out a local inverse detector cannot be imported
+as an all-group fact. The artifact includes the primary reference and
+the exact scope of the comparison. The general positive goal is still
+open after this attack.
