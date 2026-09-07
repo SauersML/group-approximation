@@ -11,13 +11,25 @@ Lane `cc-thom` of the STW Problem LIX program
 
 This is a prerequisite for `hres`, the injectivity of `cc-lix-odd`'s `lixRes`.
 
-Under the Thom isomorphism on each side, `lixRes` becomes the restriction of
-degree-zero cohomology from the base to the trivialising neighbourhood.  The
-neighbourhood is contractible, so its `H^0` is a line; the restriction is
-therefore injective exactly when the base's `H^0` is a line too, which is to say
-exactly when the base is **connected**.  So the connectedness below is not
-incidental to `hres`, it is the whole of its content once the two Thom
-isomorphisms are in place.
+Connectedness makes the SOURCE of `lixRes` a line, which is what
+`LIXThomResReduction.injective_lixRes_of_ne_zero` needs: a linear map out of a
+line is injective exactly when it spares the generator.
+
+**Correction (2026-09-07, lane lix-hres).**  An earlier version of this docstring
+said that "under the Thom isomorphism on each side" `lixRes` becomes restriction
+of degree-zero cohomology from the base to the trivialising neighbourhood, and
+concluded that connectedness is "the whole of its content".  **That route does
+not exist in Lean, and the conclusion was too strong.**  There is no Thom
+isomorphism over the ball: the Thom isomorphism is `thomJmTotal`, which is built
+from `bridgeTotal`, and both are declared `[CompactSpace X] [T2Space X]`
+(`LIXThomClassTerm.lean:89`, `ThomBridgeTotal.lean:74`) — a ball is not compact.
+`LerayHirschContractible`'s postscript says the same from the other side: over a
+contractible neighbourhood only the top column survives, but applying that to a
+restricted class needs a Leray--Hirsch presentation over the neighbourhood, and a
+ball has none.  So connectedness is a genuine prerequisite for `hres` and not the
+whole of it; the surviving nonvanishing is real geometry, discharged in
+`LIXResFibre` by restricting further, to the fibre over `lixZero`, which is a
+singleton and therefore compact Hausdorff for free.
 
 Every factor is already path-connected in the repository and only the assembly is
 new: the circle and the five-sphere by `CohomologySphere.sphere_pathConnectedSpace`,
