@@ -45,7 +45,18 @@ theorem exists_coordinates (hR : IsPurelyInfiniteSimpleRing R) (n : ℕ) :
 theorem matrixEmbed_single {n : ℕ} (s t : Fin n → R) (i j : Fin n) (c : R) :
     matrixEmbed s t (Matrix.single i j c) = s i * c * t j := by
   classical
-  simp [matrixEmbed, Matrix.single]
+  unfold matrixEmbed
+  rw [Finset.sum_eq_single i]
+  · rw [Finset.sum_eq_single j]
+    · simp [Matrix.single]
+    · intro k _ hkj
+      simp [Matrix.single, Ne.symm hkj]
+    · simp
+  · intro k _ hki
+    apply Finset.sum_eq_zero
+    intro l _
+    simp [Matrix.single, Ne.symm hki]
+  · simp
 
 /-- Only the distinguished diagonal entry changes in a corner insertion. -/
 theorem matrixCornerUnitHom_diagAt_val {n : ℕ} (s t : Fin n → R)
@@ -56,11 +67,16 @@ theorem matrixCornerUnitHom_diagAt_val {n : ℕ} (s t : Fin n → R)
       1 - s l * t l + s l * (v : R) * t l := by
   classical
   have hdiag : (diagAt l v).val = 1 + Matrix.single l l ((v : R) - 1) := by
+    rw [diagAt_val]
     ext i j
     by_cases hij : i = j
     · subst j
-      by_cases hil : i = l <;> simp [diagAt_val, Matrix.diagonal_apply, Matrix.single, hil]
-    · simp [diagAt_val, Matrix.diagonal_apply, Matrix.single, hij]
+      by_cases hil : i = l
+      · subst i; simp [Matrix.single]
+      · simp [Matrix.single, hil, Ne.symm hil]
+    · by_cases hil : i = l
+      · subst i; simp [Matrix.single, hij]
+      · simp [Matrix.single, hij, Ne.symm hil]
   rw [coe_matrixCornerUnitHom, hdiag, matrixEmbed_add, matrixEmbed_one,
     matrixEmbed_single]
   noncomm_ring
