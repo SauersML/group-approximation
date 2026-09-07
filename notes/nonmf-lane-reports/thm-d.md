@@ -32,6 +32,8 @@ sentence-to-lemma table.
 | `GroupApproximation/Sofic/CliffordLampNormalFormSplice.lean` | `061ac3afc53fc91e683e4626b95c6f7266bfd481` | 1194 |
 | `GroupApproximation/Sofic/CliffordLampNormalForm.lean` | `7de6eb784972efa781a7a45fc9f8473e8761c570` | 1195 |
 | `GroupApproximation/Sofic/CliffordConstructionSentences.lean` (update, spends the normal form) | `f9487757d200212b50764ab71fdf2f63225b91ef` | 2825 |
+| `GroupApproximation/Sofic/CliffordLampOrderFormula.lean` | `523920a5258ebf6bbd48fe367a722883b8f2acaf` | 1196 |
+| `GroupApproximation/Sofic/CliffordConstructionSentences.lean` (update, spends the order formula) | `8fef7d8244e8b856cab5c2c8674e870faeb5bab1` | 2826 |
 
 Note: a probe of `Sofic/CliffordWitnessSoficPrinted.lean` initially failed the audit macro
 (`#audit_closed_axioms` on a theorem whose *stated* type is a bare arrow `A → B` is rejected as
@@ -208,24 +210,25 @@ realizes the printed construction essentially verbatim.  Landed `bf343f3b92aae39
 | 8 | preamble | "So `ε↦(1,0)`, `c_x↦(0,δ_x)` defines a homomorphism `Cl(X)→𝔽₂×E`." | `manuscriptSentence_toModelHomomorphism` | **unconditional**: `toModel`, `toModel_sign`, `toModel_lamp` |
 | 9 | preamble | "The relations let us write every element of `Cl(X)` as `ε^a c_{x1}...c_{xr}`..." | `manuscriptSentence_cliffordLampNormalForm` | **unconditional**: `CliffordLampNormalForm.toModel_bijective_printed`'s `RightInverse section' (toModel X)` half (`section'` builds exactly this word, `1` or `ε` times the ascending word over the support) |
 | 10 | preamble | "...and this word maps to `(a,δ_{x1}+...+δ_{xr})`, so the expression is unique and the homomorphism is an isomorphism." | `manuscriptSentence_cliffordLampNormalForm` | **unconditional** (closed the gap this round): `CliffordLampNormalForm.toModel_bijective_printed` --- `toModel X : CliffordLamp X →* SignedModel X` is bijective, with explicit two-sided inverse `section'`; uniqueness is `Injective (toModel X)`, "isomorphism" is the bijection itself. See §6 for the proof. |
-| 11 | preamble | "In particular,... order `2^{|Y|+1}`, so `Cl(X)` is countable and locally finite." | `manuscriptSentence_cliffordLampCountableLocallyFinite` (countable+locally-finite half only) | **split**: countability/local finiteness unconditional, via `Countable (CliffordLamp X)` and `isLocallyFiniteGroup_cliffordLamp` (`Sofic/CentralInvolutionFinite.lean`'s unrelated central-involution route). The exact order `2^{|Y|+1}` is still a **gap**: the normal-form bijection (row 10) makes the order computation possible, but the finite-subgroup-order corollary itself has not yet been drawn from it. |
+| 11 | preamble | "In particular,... order `2^{|Y|+1}`, so `Cl(X)` is countable and locally finite." | `manuscriptSentence_cliffordLampCountableLocallyFinite` | **unconditional** (closed this round): the order formula is `CliffordLampOrderFormula.nat_card_closure`, pushed through the normal-form isomorphism (row 10) rather than characterized inside `CliffordLamp X` directly; countability/local finiteness unchanged, via `Countable (CliffordLamp X)` and `isLocallyFiniteGroup_cliffordLamp` (`Sofic/CentralInvolutionFinite.lean`'s unrelated central-involution route). |
 | 12 | preamble | "The relations are invariant under permutations of `X`, so every permutation... induces an automorphism... fixes `ε`." | `manuscriptSentence_permutationAutomorphism` | **unconditional**: `permHom`, `permHom_apply_sign`, `permHom_apply_lamp` |
 | 13 | preamble | "In this way `V` acts on `Cl(X)` through its action on `X`, and we put `W=Cl(X)⋊V`." | `manuscriptSentence_verticalActsOnLamp` | **unconditional**: `lampAction`, `lampAction_apply_lamp`, `lampAction_apply_sign`; `W` is `MarkedCompression.Ambient`, definitionally |
 | 14 | `prop:clifford-self-embedding` | "Then `tct^{-1}` is the lamp at `tΓ` and `a(tct^{-1})a^{-1}` is the lamp at `atΓ`." | `manuscriptSentence_conjugatedLampsAtCosets` | **unconditional**: `conj_inl_lamp` (applied twice); `c`=`cAmbient`=the lamp at `rootCoset` |
 | 15 | `prop:clifford-self-embedding` | "These cosets are distinct, because `tΓ=atΓ` would mean `a∈tΓt^{-1}=α(Γ)`." | `manuscriptSentence_movedCosetsDistinct` | **unconditional**: `moved_cosets_ne`, whose own proof runs exactly this contradiction |
 | 16 | `prop:clifford-locally-rf` | "so that `α(v,A)=(2v,A)`." | `manuscriptSentence_alphaDoublesTranslation` | **unconditional**, but in a *different* (mathematically equivalent) concrete model: `Monsters/AffineSL3Doubling.lean`'s `Gamma = (Fin 3 → ℤ) ⋊ SL(3,ℤ)`, independent of `ExplicitLinearModel`/`gammaBar`'s six-generator presentation but already used by the *same* proof for the index-eight computation (`LiteralAffineRangeIndexEight.lean`'s `latticeDouble := AffineSL3Doubling.doubleMul`).  `alpha_left`/`alpha_right` are literally "`α(v,A)=(2v,A)`" (the module's own docstring quotes this). |
 
-**One gap remains, row 11's order-formula half.**  Rows 9 and 10 (the normal-form/isomorphism
-sentence) closed this round: `Sofic/CliffordLampNormalForm.lean` proves
-`Function.Injective (toModel X)` (jointly with the already-known surjectivity, `Bijective`), via
-an explicit inverse `section' : SignedModel X → CliffordLamp X` built from the finite-support
-decomposition of `f : X →₀ ZMod 2` in ascending order --- see §6 for the construction and §6's
-closing note for the landed result.  What is left for row 11: drawing the finite-subgroup-order
-corollary `Nat.card (Subgroup.closure ({sign X} ∪ lamp X '' Y)) = 2 ^ (Y.card + 1))` from the now-
-proved bijectivity, for finite `Y ⊆ X`, by transporting
-`Fintype.card (ZMod 2 × {f : X →₀ ZMod 2 // f.support ⊆ Y})`.
+**No gaps remain in this pocket.**  Rows 9 and 10 (the normal-form/isomorphism sentence) closed
+first: `Sofic/CliffordLampNormalForm.lean` proves `Function.Injective (toModel X)` (jointly with
+the already-known surjectivity, `Bijective`), via an explicit inverse
+`section' : SignedModel X → CliffordLamp X` built from the finite-support decomposition of
+`f : X →₀ ZMod 2` in ascending order.  Row 11's remaining order-formula half then closed:
+`Sofic/CliffordLampOrderFormula.lean` proves
+`Nat.card (Subgroup.closure ({sign X} ∪ lamp X '' Y)) = 2 ^ (Y.card + 1)` for finite `Y ⊆ X`, by
+pushing the computation through the now-proved isomorphism `toModel X` rather than characterizing
+the closure inside `CliffordLamp X` directly --- see §6 for both constructions and §6's closing
+notes for the landed results.
 
-## 6. Third reopened task: the normal-form proof (`toModel` injective) --- scoped, then built and landed
+## 6. Third reopened task: the normal-form proof and order formula --- scoped, then built and landed
 
 The lead asked for the normal-form theorem itself, following a specific route (an explicit
 section `SignedModel X → CliffordLamp X`, a key lemma for right-multiplication by a generator,
@@ -311,8 +314,34 @@ row 11 above.  `Sofic/CliffordConstructionSentences.lean` was then updated
 (`f9487757d200212b50764ab71fdf2f63225b91ef`) to spend the theorem as
 `manuscriptSentence_cliffordLampNormalForm`, closing rows 9 and 10.
 
-The order formula (`2^{|Y|+1}`, row 11's remaining half) is not built: an early attempt at
-characterizing `Subgroup.closure ({sign X} ∪ lamp X '' Y)` set-theoretically stalled, and rather
-than force it past the point of diminishing returns, the incomplete draft was cut from the module
-before landing --- nothing unproved was ever committed --- and it stands as the one open item,
-per §5's gap paragraph above.
+The order formula (`2^{|Y|+1}`, row 11's remaining half) was deferred at that point: an early
+attempt at characterizing `Subgroup.closure ({sign X} ∪ lamp X '' Y)` set-theoretically inside
+`CliffordLamp X` stalled, and rather than force it, the incomplete draft was cut before landing
+--- nothing unproved was ever committed.
+
+**Follow-on, closed.**  The lead's next message gave the fix: push the computation through the
+isomorphism instead of characterizing the closure directly.  `Sofic/CliffordLampOrderFormula.lean`
+(`523920a5258ebf6bbd48fe367a722883b8f2acaf`, PROBE GREEN, 1196 jobs) defines `supportedModel Y`,
+the subgroup of `SignedModel X` of pairs supported in `Y`, and its preimage
+`generatedSubgroup Y := (supportedModel Y).comap (toModel X)`; shows
+`Subgroup.closure ({sign X} ∪ lamp X '' Y) = generatedSubgroup Y` (`≤` from the generators'
+images; `≥` from `section'_toModel` plus an induction on the support via `wordOfSupport_insert`,
+exactly the "every such element is the product of `sign` and lamps over its support" argument the
+lead described); and computes `Nat.card` on both sides equal via `toModel X`'s bijectivity
+(`Subgroup.map_comap_eq_self_of_surjective`, `Subgroup.equivMapOfInjective`) and a direct
+cardinality computation on `supportedModel Y` (splitting off the sign coordinate, restricting the
+`Finsupp` to its support via `Finsupp.restrictSupportEquiv`/`Finsupp.equivFunOnFinite`, and
+`Nat.card_fun`), giving `nat_card_closure : Nat.card (Subgroup.closure (...)) = 2 ^ (Y.card + 1)`.
+Size ~145 lines, well within the ~200-line budget.  Two API traps along the way, both
+pin-specific: `Subgroup.mul_mem`/`Subgroup.one_mem`/`Subgroup.pow_mem` take their `Subgroup` as an
+*explicit* first argument at this pin (`variable (H K : Subgroup G)` governs the whole file), so
+`refine Subgroup.mul_mem ?_ ?_` mis-parses (a placeholder consumes the subgroup slot); `apply
+Subgroup.mul_mem` (letting unification against the goal fill every slot) sidesteps it.  Second,
+`grep`ing lemma names against the local mathlib4 clone is unreliable here --- its `HEAD`
+(`8eb5ccdfe1d3d2bd602e40b76f0ad62ab5a1f40f`) postdates the pin
+(`81a5d257c8e410db227a6665ed08f64fea08e997`) --- so every name in this module was confirmed via
+`git show <pin>:<path>` against the pinned commit specifically before use.
+`Sofic/CliffordConstructionSentences.lean` was updated again
+(`8fef7d8244e8b856cab5c2c8674e870faeb5bab1`) to fold the order formula into
+`manuscriptSentence_cliffordLampCountableLocallyFinite`, closing row 11 and leaving no gaps in
+this pocket.
