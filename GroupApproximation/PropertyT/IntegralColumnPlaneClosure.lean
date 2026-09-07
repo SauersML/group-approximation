@@ -109,7 +109,14 @@ theorem total_le_of_polynomial_system {p q r s K delta : ℝ}
   linarith
 
 /-- **The closed system.**  Four masses obeying the two descent inequalities
-and the two fold inequalities have total size at most `42 (sqrt d + K + delta)²`. -/
+and the two fold inequalities have total size at most `42 (sqrt d + K + delta)²`.
+
+The `42` is not free to move upward.  It is coupled to the `13` in
+`norm_columnRoot_displacement_le_of_unit`, because the passage from the mass
+bound to a displacement bound squares and pays a factor four:
+`4 * 42 = 168 ≤ 169 = 13 ^ 2`, a margin of one.  Loosening the `42` to `43`
+gives `4 * 43 = 172 > 169` and breaks the `13`, which would have to become
+`14`.  Tightening it is harmless. -/
 theorem total_le_of_closed_system {a b c d K delta : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (hd : 0 ≤ d)
     (hK : 0 ≤ K) (hdelta : 0 ≤ delta)
@@ -333,7 +340,12 @@ theorem norm_columnRoot_displacement_sq_le
   rw [← integral_columnRoot_displacement_sq rho z hz q]
   exact hmono
 
-/-- **The displacement bound for a unit vector.** -/
+/-- **The displacement bound for a unit vector.**
+
+The `13` is `⌈√168⌉` and is tight against the mass constant.
+`norm_columnRoot_displacement_sq_le` pays a factor four on the `42` of
+`measureReal_regionUnion_le`, and `4 * 42 = 168 ≤ 169 = 13 ^ 2` with a margin
+of one, so any increase of that `42` forces this constant up as well. -/
 theorem norm_columnRoot_displacement_le_of_unit
     (z : E) (hz : ‖z‖ = 1) (b : Fin 2) (a : FreeAlgebra ℤ X)
     (delta : ℝ) (hdelta : 0 < delta)

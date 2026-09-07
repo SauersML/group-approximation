@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingUnconditional
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingStrictness
 import GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupRankDescent
+import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittMFQuotient
 import GroupApproximation.PropertyT.IntegralColumnPlaneClosure
 import GroupApproximation.Meta.AxiomGuard
 
@@ -8,7 +9,8 @@ import GroupApproximation.Meta.AxiomGuard
 # The printed clauses in every characteristic, with nothing assumed
 
 `FullDefectRingUnconditional`, `FullDefectRingStrictness`,
-`FullDefectRingRankTwo` and `UnitGroupRankDescent` each state their printed
+`FullDefectRingRankTwo`, `UnitGroupRankDescent` and `LeavittMFQuotient` each
+state their printed
 clause twice: once over a coefficient ring of prime characteristic, where the
 repository's own Ershov--Jaikin-Zapirain theorem applies and nothing is
 assumed, and once in general characteristic with the coefficient-general
@@ -101,6 +103,14 @@ theorem manuscriptUnitGroupNotMFAllCharacteristics :
     FullDefectRankTwo.PrintedUnitGroupNotMF :=
   FullDefectRankTwo.manuscriptUnitGroupNotMFFromEJZ ejz
 
+/-! ## Theorem B at `d = 2` -/
+
+/-- **The binary Leavitt unit group at `d = 2`**, in every characteristic,
+with nothing assumed. -/
+theorem manuscriptLeavittMFQuotientTwoAllCharacteristics :
+    LeavittMFQuotient.PrintedLeavittMFQuotientTwo :=
+  LeavittMFQuotient.manuscriptLeavittMFQuotientTwoFromEJZ ejz
+
 end FullDefectRingEJZUnconditional
 end OneSidedMFRadical
 end Manuscript
@@ -121,3 +131,4 @@ open GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditio
 #audit_closed_axioms
   manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
 #audit_closed_axioms manuscriptUnitGroupNotMFAllCharacteristics
+#audit_closed_axioms manuscriptLeavittMFQuotientTwoAllCharacteristics
