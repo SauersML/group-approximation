@@ -9,6 +9,8 @@ artifacts:
   - non_mf_groups_exist.tex
   - research/proposed-property-t-free-whitehead-proof-safe-prefix-audit.md
   - research/proposed-property-t-free-whitehead-proof-safe-prefix-route.md
+  - research/finite-order-central-compression-defect-survives-mf-proof.md
+  - research/polar-corner-descent-retains-relator-error-proof.md
 ---
 
 **OPEN.**  Produce a replacement proof of the results advertised by
@@ -60,3 +62,23 @@ binary-Leavitt MF collapse recorded at
 `property-t-free-leavitt-full-mf-radical`, together with the independent
 torsion-free input above.  Writing a theorem package whose new premises are
 these open collapses would be conditional and would not settle this goal.
+
+Two further Property-`(T)`-removal attempts are now fenced by explicit
+finite-matrix calculations.
+
+* `finite-order-central-compression-defect-survives-mf` constructs a
+  three-generated MF norm-corona subgroup with a properly compressed infinite
+  cyclic subgroup, an involution centralizing that subgroup, and a nontrivial
+  central involutive compression defect represented by `-I`. Hence proper
+  compression plus torsion, centrality, or macroscopic visibility does not
+  replace the rigidity input.
+* `polar-corner-descent-retains-relator-error` proves that polar correction on
+  an `eta`-invariant corner changes a length-`ell` relator by at most
+  `delta+ell(ell+1)eta^2/2`. A two-dimensional exact model realizes a
+  quadratic leakage term. Thus a minimal-dimension descent needs a
+  group-specific reconstruction which cancels inherited errors; generic
+  compression and polar correction do not close the target.
+
+Neither fence establishes that Property `(T)` is necessary for non-MF
+existence. They locate two mechanisms which cannot by themselves provide the
+requested proof.
