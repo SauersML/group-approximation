@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.CliffordWitnessLocallyRFByInt
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXGroups
+import GroupApproximation.Analysis.LocallyRFQuasidiagonalTrace
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -13,13 +14,13 @@ As of `origin/main` commit `e51f655d2`, `prop:locally-rf-by-z-trace` was
 generalized from a `⋊ ℤ` extension to an arbitrary amenable extension
 `1 → N → G → A → 1`, and gained a first clause: the canonical trace of
 `C*_max(N)` is quasidiagonal.  `prop:clifford-locally-rf` inherited a matching
-clause for its shift kernel `K`.  That clause is still open in this
-repository: lane `ring-b-alg` is proving it in general as
-`PrintedLocallyRFCanonicalTraceQuasidiagonal` in
-`Analysis/LocallyRFQuasidiagonalTrace.lean`.  This file states the *shape* of
-that fact as its own Prop and reduces the full printed proposition to it, so
-that landing `ring-b-alg`'s module discharges `manuscriptCliffordLocallyRF`
-in one line (see the docstring on the reduction theorem below).
+clause for its shift kernel `K`.  Lane `ring-b-alg` proved that clause in
+general as `AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`
+in `Analysis/LocallyRFQuasidiagonalTrace.lean` (`origin/main` commit
+`d4e4c824a`).  This file states the *shape* of that fact as its own Prop,
+reduces the full printed proposition to it, and then discharges the
+reduction against `ring-b-alg`'s theorem, so `manuscriptCliffordLocallyRF`
+below is unconditional and closed.
 
 Every other clause was already proved elsewhere before this reduction:
 
@@ -108,15 +109,7 @@ def PrintedCliffordLocallyRFFromLocallyRFTraceQuasidiagonal : Prop :=
 `prop:locally-rf-by-z-trace`.**  This is a closed, unconditional theorem: the
 open mathematical content is entirely inside the hypothesis
 `PrintedLocallyRFCanonicalTraceQuasidiagonal`, which this file does not
-assert.  Once `ring-b-alg` lands a proof `hQD` of that Prop (or of the
-equivalent statement in `Analysis/LocallyRFQuasidiagonalTrace.lean`),
-
-```
-theorem manuscriptCliffordLocallyRF : PrintedCliffordLocallyRF :=
-  manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal hQD
-```
-
-closes `prop:clifford-locally-rf` unconditionally in one line. -/
+assert on its own. -/
 theorem manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal :
     PrintedCliffordLocallyRFFromLocallyRFTraceQuasidiagonal := by
   intro hQD Γ _ _ _ α hα _ a ha hT
@@ -133,6 +126,15 @@ theorem manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal :
       NinetyNineProblems.canonicalMaximalTrace_not_isQuasidiagonalTrace_of_not_isOperatorMF
         (Ambient α hα) hNotMF
 
+/-- **`prop:clifford-locally-rf`, discharged.**  `ring-b-alg` landed the
+still-open half of `prop:locally-rf-by-z-trace`
+(`AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`,
+`origin/main` commit `d4e4c824a`), so the reduction above closes the full
+printed proposition unconditionally. -/
+theorem manuscriptCliffordLocallyRF : PrintedCliffordLocallyRF :=
+  manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal
+    AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
+
 end
 
 end AmenableTraceTheorem
@@ -142,3 +144,4 @@ open GroupApproximation
 open GroupApproximation.AmenableTraceTheorem
 
 #audit_closed_axioms manuscriptCliffordLocallyRFFromLocallyRFTraceQuasidiagonal
+#audit_closed_axioms manuscriptCliffordLocallyRF
