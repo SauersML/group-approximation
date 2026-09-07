@@ -10,6 +10,7 @@ distinct_from:
   fixed-hs-word-gap-is-linear-domination: that linearizes an assumed fixed gap for arbitrary word lists; this identifies its hypothesis with actual radical membership via presentation compactness.
 artifacts:
   - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
+  - research/artifacts/hs-word-certificate-rational-search.md
 ---
 
 Let Gamma=<S|r_1,r_2,...> have finitely many generators and a finite or
@@ -29,3 +30,10 @@ If wbar!=1, any actual certificate supplies the finitely presented
 nonhyperlinear witness <S|R_0>. For an infinite simple finitely presented
 group and a fixed nontrivial word, this certificate exists if and only
 if the group is nonhyperlinear.
+
+For a specified finite R_0, word w and rational coefficient, failure of
+the proposed inequality is uniformly semidecidable, by
+`failed-hs-word-bounds-have-rational-witnesses`. Its strict counterexamples
+can be replayed on exactly unitary Q(i) matrices. Thus validity of a fixed
+coefficient is a Pi-zero-one condition. A bounded search with no
+counterexample does not establish that condition or radical membership.

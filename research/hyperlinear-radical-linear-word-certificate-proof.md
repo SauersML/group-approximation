@@ -7,6 +7,7 @@ target: hyperlinear-radical-has-linear-word-certificate
 requires:
   - hyperlinear-radical-presentation-compactness
   - fixed-hs-word-gap-is-linear-domination
+  - failed-hs-word-bounds-have-rational-witnesses
 artifacts:
   - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
 ---
@@ -35,3 +36,8 @@ The artifact also evaluates the proposed energy polynomial at the left
 regular tuple: its trace is -2. This excludes universal tracial SOS
 proofs of a nontrivial instance and leaves a matrix-specific proof as
 the unresolved input.
+
+For the effectiveness clause, the rational-witness prerequisite converts
+failure of any specified coefficient to a finite exact counterexample.
+Its fair enumeration semidecides failure, giving the stated Pi-zero-one
+validity predicate. It does not establish existence of a valid coefficient.
