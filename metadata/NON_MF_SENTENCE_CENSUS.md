@@ -6,8 +6,8 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 247 |
-| `unassigned` | 105 |
+| `formalized` | 249 |
+| `unassigned` | 103 |
 | `definition` | 51 |
 | `structural` | 31 |
 | `provenance` | 19 |
@@ -15,7 +15,7 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | `partial` | 8 |
 | **total** | **477** |
 
-Completely formalized or definitional: **298/477** (62.5%).
+Completely formalized or definitional: **300/477** (62.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,10 +23,7 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`unassigned`**, line 66 --- We construct groups for which every homomorphism to an MF group is trivial; the obstruction is a property-\textup{(T)} subgroup conjugated into a proper subgroup of itself.
-  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 148 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
-* **`unassigned`**, line 192 --- The groups here fail to be MF because they contain a property-\textup{(T)} subgroup that is conjugated into a proper subgroup of itself, together with an element that commutes with the subgroup while its conjugate does not.
 * **`unassigned`**, line 216 --- since compressors, centralizing elements, and commutators of $L$ map to compressors, centralizing elements, and commutators of $f(L)$, and conjugates map to conjugates.
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 234 --- Asymptotic multiplicativity in operator norm makes the conjugation maps $\operatorname{Ad}(V_n(g))\colon x\mapsto V_n(g)xV_n(g)^*$ an asymptotically multiplicative family of unitaries on $M_{d_n}(\C)$ with its normalized Hilbert--Schmidt inner product.
@@ -153,8 +150,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 7 | 1 |
-| Introduction | 84 | 15 |
+| (front matter) | 7 | 0 |
+| Introduction | 84 | 14 |
 | Related work | 13 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 52 | 6 |
