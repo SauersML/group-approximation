@@ -346,3 +346,37 @@ There are consequently two distinct missing outcomes: a general reason
 that this possible coefficient kernel vanishes, or an explicit nonsingular
 identity (11) together with proof that its old word is nontrivial. Neither
 has been obtained. The universal Kervaire--Laudenbach root remains OPEN.
+
+## 8. Exact finite replay and its scope
+
+`experiments/nonsingular_equation_audit.py` uses rational arithmetic only.
+For dimensions 1 through 4 and powers -4 through -1 and 1 through 4,
+it enumerates the diagonal inverse images of a target with distinct
+eigenvalues using phases in `Q/Z`. It checks their multiplicities, the
+nonvanishing geometric-sum conditions, and the negative-power orientation
+sign. The general degree theorem still follows from Section 1, not from
+this finite enumeration.
+
+It also checks explicit rational orthogonal examples in dimensions 2 and 3
+of `A T B T^(-1) C T^m D=I`, with `m` from -3 through 3 excluding zero.
+The coefficient `D` is constructed from the chosen root. These packets
+check noncommutative word order and unchanged old involution relations;
+they are not a root-finding algorithm for arbitrary coefficients.
+
+Two negative controls check the exact limitations used above: the singular
+equation `t a t^(-1)=1` can kill an old coefficient of `C_2`, and a chosen
+root of `t^2=1` need not detect the new generator. The committed JSON
+records the exact examples and source hashes. The six regression tests
+exercise these cases and reject zero exponent sum.
+
+From the repository root:
+
+```sh
+python -m unittest discover -s experiments -p 'test_nonsingular_equation_audit.py' -v
+python experiments/nonsingular_equation_audit.py --compare-report research/artifacts/nonsingular-equation-replay.json
+```
+
+The replay provides no Lean verification, no arbitrary-group approximation,
+and no resolution of the universal conjecture. The Wolfram connector was
+retried for this attempt but returned HTTP 404 before any computation;
+the exact local replay does not depend on it.

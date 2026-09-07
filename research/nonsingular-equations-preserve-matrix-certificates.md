@@ -9,6 +9,9 @@ distinct_from:
   window-controlled-finite-dimensional-root-theorem: that seeks suitable approximations for arbitrary coefficient groups; this solves the root equation exactly after a unitary coefficient tuple is already given, without asserting such approximations exist for every group.
 artifacts:
   - research/artifacts/nonsingular-equations-and-approximation-radicals.md
+  - experiments/nonsingular_equation_audit.py
+  - experiments/test_nonsingular_equation_audit.py
+  - research/artifacts/nonsingular-equation-replay.json
 ---
 
 For every `d>=1`, every unitary word map with one variable of nonzero

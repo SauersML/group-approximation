@@ -8,6 +8,7 @@ requires:
   - nonsingular-adjunction-preserves-approximation-radicals
 artifacts:
   - research/artifacts/nonsingular-equations-and-approximation-radicals.md
+  - research/artifacts/nonsingular-equation-replay.json
 ---
 
 Start with a faithful norm-corona embedding of the coefficient group.
@@ -21,3 +22,8 @@ the current countable subgroup, then repeat over the larger countable
 subgroup. Their union is still countable and MF. Every finite coefficient
 list occurs at one stage and receives a root at the next, proving the
 equation-solving closure assertion.
+
+The exact replay checks the elementary `G=1, w=t^2` control: two valid
+root choices can differ in whether they detect the new generator. This
+tests the stated limitation on a chosen solution map, without asserting
+that the universal relative group of the example is non-MF.

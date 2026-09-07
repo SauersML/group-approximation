@@ -7,6 +7,8 @@ target: nonsingular-equations-preserve-matrix-certificates
 requires: []
 artifacts:
   - research/artifacts/nonsingular-equations-and-approximation-radicals.md
+  - experiments/nonsingular_equation_audit.py
+  - research/artifacts/nonsingular-equation-replay.json
 ---
 
 Sections 1--2 give the complete argument. Deform the coefficient matrices
@@ -21,3 +23,8 @@ without changing any coefficient. This proves equality of the admissible
 constant sets, including their infinite-infimum case. Section 6 then
 evaluates an arbitrary finite normal-closure identity at the root and
 telescopes only its old-relator factors to prove the quantitative cost bound.
+
+Section 8 documents the exact finite replay. It checks degree signs and
+noncommutative examples and rejects a singular negative control. The
+all-dimensions theorem is proved in Sections 1--2, independently of the
+finite replay.

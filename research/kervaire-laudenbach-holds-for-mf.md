@@ -8,6 +8,7 @@ distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that asks for every coefficient group; this proves the MF case and does not eliminate a kernel inside an arbitrary group's common approximation radical.
 artifacts:
   - research/artifacts/nonsingular-equations-and-approximation-radicals.md
+  - research/artifacts/nonsingular-equation-replay.json
 ---
 
 Let `G` be a countable MF group in the norm-corona convention and let

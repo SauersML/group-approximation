@@ -1,0 +1,661 @@
+{
+  "arithmetic": "fractions.Fraction; exact rational matrices and phases in Q/Z",
+  "checks": {
+    "distinct_power_roots": 988,
+    "false_commutative_simplifications_detected": 12,
+    "new_variable_solution_maps_compared": 2,
+    "noncommuting_root_packets": 12,
+    "power_degree_cases": 32,
+    "regular_off_diagonal_planes": 4908,
+    "singular_equation_trial_roots_rejected": 4
+  },
+  "chosen_solution_map_control": {
+    "equation": "t^2=1 over the trivial coefficient group",
+    "root_I_kills_new_generator": true,
+    "root_minus_I_detects_new_generator": true,
+    "scope": "Limits faithfulness of a chosen map; does not assert C2 is non-MF.",
+    "universal_relative_group": "C2"
+  },
+  "degree_cases": [
+    {
+      "dimension": 1,
+      "distinct_roots": 4,
+      "orientation_per_root": -1,
+      "power": -4,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": -4,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 3,
+      "orientation_per_root": -1,
+      "power": -3,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": -3,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 2,
+      "orientation_per_root": -1,
+      "power": -2,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": -2,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 1,
+      "orientation_per_root": -1,
+      "power": -1,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": -1,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": 1,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": 1,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 2,
+      "orientation_per_root": 1,
+      "power": 2,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": 2,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 3,
+      "orientation_per_root": 1,
+      "power": 3,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": 3,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 1,
+      "distinct_roots": 4,
+      "orientation_per_root": 1,
+      "power": 4,
+      "regular_off_diagonal_planes": 0,
+      "signed_count": 4,
+      "target_phases": [
+        "1/2"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 16,
+      "orientation_per_root": 1,
+      "power": -4,
+      "regular_off_diagonal_planes": 16,
+      "signed_count": 16,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 9,
+      "orientation_per_root": 1,
+      "power": -3,
+      "regular_off_diagonal_planes": 9,
+      "signed_count": 9,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 4,
+      "orientation_per_root": 1,
+      "power": -2,
+      "regular_off_diagonal_planes": 4,
+      "signed_count": 4,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": -1,
+      "regular_off_diagonal_planes": 1,
+      "signed_count": 1,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": 1,
+      "regular_off_diagonal_planes": 1,
+      "signed_count": 1,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 4,
+      "orientation_per_root": 1,
+      "power": 2,
+      "regular_off_diagonal_planes": 4,
+      "signed_count": 4,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 9,
+      "orientation_per_root": 1,
+      "power": 3,
+      "regular_off_diagonal_planes": 9,
+      "signed_count": 9,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 2,
+      "distinct_roots": 16,
+      "orientation_per_root": 1,
+      "power": 4,
+      "regular_off_diagonal_planes": 16,
+      "signed_count": 16,
+      "target_phases": [
+        "1/3",
+        "2/3"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 64,
+      "orientation_per_root": -1,
+      "power": -4,
+      "regular_off_diagonal_planes": 192,
+      "signed_count": -64,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 27,
+      "orientation_per_root": -1,
+      "power": -3,
+      "regular_off_diagonal_planes": 81,
+      "signed_count": -27,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 8,
+      "orientation_per_root": -1,
+      "power": -2,
+      "regular_off_diagonal_planes": 24,
+      "signed_count": -8,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 1,
+      "orientation_per_root": -1,
+      "power": -1,
+      "regular_off_diagonal_planes": 3,
+      "signed_count": -1,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": 1,
+      "regular_off_diagonal_planes": 3,
+      "signed_count": 1,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 8,
+      "orientation_per_root": 1,
+      "power": 2,
+      "regular_off_diagonal_planes": 24,
+      "signed_count": 8,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 27,
+      "orientation_per_root": 1,
+      "power": 3,
+      "regular_off_diagonal_planes": 81,
+      "signed_count": 27,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 3,
+      "distinct_roots": 64,
+      "orientation_per_root": 1,
+      "power": 4,
+      "regular_off_diagonal_planes": 192,
+      "signed_count": 64,
+      "target_phases": [
+        "1/4",
+        "1/2",
+        "3/4"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 256,
+      "orientation_per_root": 1,
+      "power": -4,
+      "regular_off_diagonal_planes": 1536,
+      "signed_count": 256,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 81,
+      "orientation_per_root": 1,
+      "power": -3,
+      "regular_off_diagonal_planes": 486,
+      "signed_count": 81,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 16,
+      "orientation_per_root": 1,
+      "power": -2,
+      "regular_off_diagonal_planes": 96,
+      "signed_count": 16,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": -1,
+      "regular_off_diagonal_planes": 6,
+      "signed_count": 1,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 1,
+      "orientation_per_root": 1,
+      "power": 1,
+      "regular_off_diagonal_planes": 6,
+      "signed_count": 1,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 16,
+      "orientation_per_root": 1,
+      "power": 2,
+      "regular_off_diagonal_planes": 96,
+      "signed_count": 16,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 81,
+      "orientation_per_root": 1,
+      "power": 3,
+      "regular_off_diagonal_planes": 486,
+      "signed_count": 81,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    },
+    {
+      "dimension": 4,
+      "distinct_roots": 256,
+      "orientation_per_root": 1,
+      "power": 4,
+      "regular_off_diagonal_planes": 1536,
+      "signed_count": 256,
+      "target_phases": [
+        "1/5",
+        "2/5",
+        "3/5",
+        "4/5"
+      ]
+    }
+  ],
+  "packet_scope": "The last coefficient is chosen from the displayed root; these are reproducible exact examples, not arbitrary-coefficient existence proofs.",
+  "root_packets": [
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": -3,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        -5,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": -2,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": -1,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": 1,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        4
+      ]
+    },
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": 2,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        5,
+        4
+      ]
+    },
+    {
+      "dimension": 2,
+      "exact_equation_energy": "0",
+      "exponent_sum": 3,
+      "falsely_commuted_word_energy": "64/25",
+      "marked_old_coefficient_energy": "2",
+      "old_coefficient_root_commutator_energy": "64/25",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        5,
+        5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": -3,
+      "falsely_commuted_word_energy": "251136/105625",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        -5,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": -2,
+      "falsely_commuted_word_energy": "128/75",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": -1,
+      "falsely_commuted_word_energy": "5376/4225",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        -5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": 1,
+      "falsely_commuted_word_energy": "251136/105625",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": 2,
+      "falsely_commuted_word_energy": "20782208/7921875",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        5,
+        4
+      ]
+    },
+    {
+      "dimension": 3,
+      "exact_equation_energy": "0",
+      "exponent_sum": 3,
+      "falsely_commuted_word_energy": "171760896/66015625",
+      "marked_old_coefficient_energy": "8/3",
+      "old_coefficient_root_commutator_energy": "128/75",
+      "word": [
+        1,
+        5,
+        2,
+        -5,
+        3,
+        5,
+        5,
+        5,
+        4
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Finite checks supporting the written proof; neither a general numerical root solver nor formal verification.",
+  "singular_control": {
+    "coefficient_a_energy": "4",
+    "exponent_sum": 0,
+    "free_group_identity": "a = t^(-1) w t",
+    "old_relator_occurrences": 0,
+    "reason_no_root_exists": "a=-I is central, so t a t^(-1)=-I for every unitary t",
+    "word": [
+      2,
+      1,
+      -2
+    ]
+  },
+  "source_sha256": {
+    "experiments/flexible_hs_metric_audit.py": "1676cb0309e5ecd78815dc83c8baf7bf8d7f47cc2b6be283fa44e1a75dc332ee",
+    "experiments/nonsingular_equation_audit.py": "f85b51f4ba3c959a061aa61e3eb56ef077601df6f130c8b02be50e364889e017",
+    "research/artifacts/nonsingular-equations-and-approximation-radicals.md": "3c23ee11dec7c6d5d314d8332a8fc93814c8f44fe88ae3314b57c8dcbed46e8e"
+  },
+  "status": "pass",
+  "universal_kervaire_laudenbach_status": "OPEN"
+}
