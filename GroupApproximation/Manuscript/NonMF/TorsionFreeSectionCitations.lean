@@ -28,15 +28,23 @@ one declaration naming **every** literature input it still rests on, with no
 ## The inputs that remain, and what each costs
 
 `TheoremC.LiteratureInputs` has five fields, and this repository's own
-`TheoremCAssembly` supplies four of them:
+`TheoremCAssembly` supplies all five — but only two of the five are closed, and
+the table says which, because "supplied" and "closed" are not the same thing
+here:
 
 | field | state on `origin/main` |
 | --- | --- |
-| `chiodo` | **proved**, `TheoremC.chiodo`, from Higman's ω-closure |
-| `kotowskiOllivier` | **open** — the density model at a parameter in `(1/3,1/2)` |
-| `smallCancellationQuotient` | **proved**, from Hull's one-step small cancellation over the free product |
-| `minasyanOsin` | **proved**, down to Osin's Theorem 1.2, which is unconditional here |
-| `hullCommonQuotient` | **proved**, down to Hull's Theorem 7.1 for one relator |
+| `chiodo` | **closed** — `TheoremC.chiodo`, from Higman's ω-closure |
+| `kotowskiOllivier` | an admitted proof — the density model at a parameter in `(1/3,1/2)` |
+| `smallCancellationQuotient` | reduced to Hull's Lemma 4.4 in its family form, Lemma 4.9 and the Yi pair; **reports `sorryAx`** through `hullLemma44FamilyInclusionJoint` |
+| `minasyanOsin` | **closed** — down to Osin's Theorem 1.2, `GGT.Elementary.osinTheorem12_unconditional` |
+| `hullCommonQuotient` | reduced to Hull's Theorem 7.1 for one relator; **reports `sorryAx`**, because `TorsionFree.hullOneStep` rests on the same four §5/§6 admissions |
+
+So supplying `TheoremC.literatureInputs` for `I` below is a reduction and not a
+discharge.  Three of the five open obligations are the §5/§6 leaves of Hull's
+Theorem 7.1 — the same theorem `hHull` and `hOne` name — so what
+`sec:torsion-free` is waiting on, after this module, is Hull's Theorem 7.1, the
+density model, Burger–Mozes, and the two C⋆-algebraic citations.
 
 `FinitelyPresentedInfiniteSimpleStatement` is Burger–Mozes and is new.
 `HullPrintedInputs` is Hull's Theorem 7.1 and Osin's Lemma 7.1.

@@ -77,17 +77,30 @@ presented infinite simple group"* asks for.  That is
 — the existence of a finitely presented torsion-free infinite simple group,
 which is Burger–Mozes.  So Fournier-Facio §2 is replaced by
 
-* Chiodo — **proved** in this repository, `TheoremC.chiodo` from Higman's
-  ω-closure;
-* Kotowski–Kotowski and Ollivier–Wise, the density model — open;
-* Fournier-Facio et al., Proposition 2.3 with Osin's Theorem 2.4(5) — **proved**,
+* Chiodo — `TheoremC.chiodo`, from Higman's ω-closure.  **Closed**;
+* Kotowski–Kotowski and Ollivier–Wise, the density model — an admitted proof,
+  `TheoremC.kotowskiOllivier`, one of the five open admissions of
+  `TheoremCAssembly`;
+* Fournier-Facio et al., Proposition 2.3 with Osin's Theorem 2.4(5) —
   `TheoremC.smallCancellationQuotient`, from Hull's one-step small cancellation
-  over the free product;
-* Minasyan–Osin at `E` — **proved**, `TheoremC.minasyanOsin`, down to Osin's
-  Theorem 1.2, which is unconditional here;
-* Hull, Corollary 7.4 — **proved**, `TheoremC.hullCommonQuotient`, down to
-  Hull's Theorem 7.1 for one relator;
+  over the free product.  Reduced, **not closed**: it consumes
+  `TorsionFree.hullLemma44FamilyInclusion`, which routes through
+  `hullLemma44FamilyInclusionJoint`, of which `TheoremCAssembly` says in so many
+  words *"Reports `sorryAx`, inherited from the four admissions it is assembled
+  from"*;
+* Minasyan–Osin at `E` — `TheoremC.minasyanOsin`, down to Osin's Theorem 1.2,
+  which is `GGT.Elementary.osinTheorem12_unconditional`.  **Closed**;
+* Hull, Corollary 7.4 — `TheoremC.hullCommonQuotient`, from
+  `TorsionFree.hullOneStep` and a free-product geometry that is unconditional.
+  Reduced to Hull's Theorem 7.1 for one relator, **not closed**: `hullOneStep`
+  rests on the same four §5/§6 admissions;
 * Burger–Mozes — new, and stated here.
+
+So two of the five are closed and three are not, and supplying
+`TheoremC.literatureInputs` for `I` is a reduction rather than a discharge.  The
+four §5/§6 admissions are the leaves of Hull's Theorem 7.1, so what
+`sec:torsion-free` is really waiting on, after this module, is Hull's Theorem 7.1
+and the density model.
 
 Whether that is an improvement over one citation of §2 is an editorial question
 and this module does not answer it.  What it establishes is that the paragraph
