@@ -4098,6 +4098,7 @@ import GroupApproximation.Analysis.AmenableExtensionSentences
 import GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsSentences
 import GroupApproximation.Sofic.CliffordWitnessSoficSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
