@@ -16,10 +16,19 @@ terms outside `S`, so combinatorial soundness applies **pointwise** and gives
 beta m <= E|S| <= C sum_a Tr(h_a rho) = C m Tr(H rho).
 ```
 
-Divide by `C m`.  Since `rho` was arbitrary, `lambda_min(H) >= beta/C`, which
+Since `beta m > 0`, this excludes `C = 0`. Divide by `C m`.
+Since `rho` was arbitrary, `lambda_min(H) >= beta/C`, which
 is (CR2).
 
-**Converse.**  The minimum in (CR3) is attained and `s* <= m`, because
+**Zero-energy case.** In finite dimension there is a normalized ground state
+`sigma_0`. If `lambda_min(H) = 0`, the nonnegative numbers
+`Tr(h_a sigma_0)` sum to zero, so each is zero and `s* = 0`.
+Conversely, `s* = 0` supplies a state of zero energy, so positivity gives
+`lambda_min(H) = 0`. The constant instrument preparing `sigma_0` with
+`S = empty` has cost zero on every input, proving the first branch of (CR4).
+
+**Positive-energy case.** Now assume `lambda_min(H) > 0`.
+The minimum in (CR3) is attained and `s* <= m`, because
 `S = [m]` makes the exactness condition vacuous.  Let `sigma*` attain it.
 The instrument
 
@@ -40,3 +49,6 @@ any `C`-rounder, applied to a ground state, has some outcome with
 `s* <= E|S| <= C m lambda_min(H)`.  The two inequalities give (CR4).
 
 The forward direction is (CR4)'s `>=` half specialized to `s* >= beta m`.
+For a family with `s*/m >= beta > 0`, the identity gives
+`beta/lambda_min(H) <= C_min <= 1/lambda_min(H)`, proving the stated
+equivalence of uniform bounds. It does not construct a hardness reduction.
