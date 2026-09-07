@@ -2,6 +2,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.Deletion
 import GroupApproximation.GGT.VanKampen.Estimating.Incidence
 import GroupApproximation.GGT.VanKampen.Estimating.Partition
 import GroupApproximation.GGT.VanKampen.Estimating.Unbound
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundParameters
 import GroupApproximation.GGT.VanKampen.RelativeGreendlinger
 import GroupApproximation.GGT.VanKampen.Surgery
 
@@ -405,8 +406,8 @@ def EstimatingSelectionConstructionStatement : Prop :=
       ∀ lambda c mu : ℝ,
         0 < lambda → lambda ≤ 1 → 0 ≤ c →
         0 < mu → mu ≤ 1 / 16 →
-          ∃ eps rho : ℕ, 0 < rho ∧
-            1 ≤ 2 * mu * Real.sqrt (rho : ℝ) ∧
+          ∃ (eps rho : ℕ) (kappa c1 c2 : ℝ),
+            UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               OsinCCondition D W eps mu lambda c rho →
                 ∀ Delta : DiscDiagram.{u, w, v} W,
@@ -599,16 +600,16 @@ theorem estimatingSelectionConstruction_of_faceDropOracles
         ∀ lambda c mu : ℝ,
           0 < lambda → lambda ≤ 1 → 0 ≤ c →
           0 < mu → mu ≤ 1 / 16 →
-          ∃ eps rho : ℕ, 0 < rho ∧
-            1 ≤ 2 * mu * Real.sqrt (rho : ℝ) ∧
+          ∃ (eps rho : ℕ) (kappa c1 c2 : ℝ),
+            UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho ∧
             ∀ (W : Set (List (GGT.RelLetter G Lambda))),
               ∀ hcondition : OsinCCondition D W eps mu lambda c rho,
                 SelectionFaceDropOracle.{u, w, v} D eps rho mu lambda c hcondition) :
     EstimatingSelectionConstructionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  obtain ⟨eps, rho, hrho, hthreshold, horacle⟩ := hparameter D hhyper lambda c mu
+  obtain ⟨eps, rho, kappa, c1, c2, hscale, horacle⟩ := hparameter D hhyper lambda c mu
     hlambda hlambdaUpper hc hmu hmuUpper
-  refine ⟨eps, rho, hrho, hthreshold, ?_⟩
+  refine ⟨eps, rho, kappa, c1, c2, hscale, ?_⟩
   intro W hcondition Delta hred hcells hboundary
   exact selection_output_of_faceDropOracle D eps rho mu lambda c hcondition
     (horacle W hcondition) Delta hred hcells hboundary
@@ -747,11 +748,87 @@ output violates the strict square-root budget. See issue #198.
 A corrected producer must synchronize epsilon and rho with the geometric
 constants and selection construction. `Estimating.UnboundParameters` proves
 the simultaneous numerical choice, not the missing geometric producer.
-The still earlier form is refuted in `Estimating.UnboundEmptyDisc`. -/
-def EstimatingUnboundOutputStatement : Prop :=
+The still earlier form is refuted in `Estimating.UnboundEmptyDisc`.
+
+**This statement is REFUTED and is retained only so that its refutations have
+something to refute.**  `UnboundSmallMuCounterexample.not_estimatingUnboundOutputStatement`
+and `UnboundConjugateCounterexample.not_estimatingUnboundOutputStatement` both
+prove its negation at `.{0, 0, 0}`, independently.  Until 2026-09-07 it was
+called `EstimatingUnboundOutputStatement`; that name now denotes the repaired
+form below, so issue #198 and any commit message calling
+`EstimatingUnboundOutputStatement` false is talking about **this** declaration.
+Nothing consumes it. -/
+def EstimatingUnboundOutputHistoricalStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c : ℝ)
     (_hthreshold : 1 ≤ 2 * mu * Real.sqrt (rho : ℝ))
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    (_hcondition : OsinCCondition D W eps mu lambda c rho)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (_hred : Delta.Reduced)
+    (_hcells : 0 < Delta.rCellCount)
+    (scaffold : EstimatingScaffold D eps Delta)
+    (_graph : EstimatingGraphData D eps Delta scaffold),
+    IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+      ∃ Delta' : DiscDiagram.{u, w, v} W,
+        Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+          Delta'.Reduced ∧
+          ∃ scaffold' : EstimatingScaffold D eps Delta',
+            Nonempty (EstimatingGraphData D eps Delta' scaffold') ∧
+              Nonempty (Lemma62Data D eps mu rho Delta' scaffold')
+
+/-- **The unbound estimate, at a scale Osin's argument actually supplies.**
+
+This is the statement the assembly consumes; the refuted form it replaced is
+`EstimatingUnboundOutputHistoricalStatement` directly above.  The conclusion is
+verbatim that one's.  The hypotheses gain hyperbolicity of the Cayley graph and,
+in place of the lone threshold `1 <= 2 * mu * sqrt rho`, the full
+`UnboundEstimate.OsinUnboundScale` certificate: equation (36)'s
+`c1 + 2 * kappa < eps`, positivity of `rho`, the density inequality, and the
+strict shortening margin.
+
+**If you arrived here from issue #198, or from a commit message saying that
+`EstimatingUnboundOutputStatement` is false, that is about
+`EstimatingUnboundOutputHistoricalStatement` above and not about this
+declaration.**  This name denoted the refuted form until 2026-09-07; the
+refutations were repointed at the historical one in the same commit, and both
+counterexample files carry a build-checked `example` proving they refute the
+historical statement rather than this one.
+
+**Why this is a repair and not merely a weakening.**  Adding hyperbolicity and
+Osin's parameter ranges would NOT have sufficed: the stronger counterexample
+already satisfies Cayley hyperbolicity with a proved four-point constant `1`,
+already has `0 < mu < 1/16` at `mu = 1/32`, and already has `rho > mu^{-2}` at
+`rho = 1089`.  Hyperbolicity excludes neither model, and a future reader must not
+try to simplify it away on the assumption that it is what does the work.
+
+What excludes both models is `density_large`,
+`max (1000 * eps) c2 < lambda * sqrt rho / 240 - c`, and it does so for a reason
+independent of the geometric constants.  Its left side is at least
+`1000 * eps >= 0` because `eps : ℕ`, while the density quantity is negative at
+both refuting parameter tuples:
+
+* small-mu, at `lambda = 1`, `rho = 1089`, `c = 1089`: `33 / 240 - 1089 < 0`;
+* conjugate, at `lambda = 1`, `rho = 1`, `c = 1`: `1 / 240 - 1 < 0`.
+
+So no choice of `kappa`, `c1`, `c2` satisfies the certificate at either model.
+The refutations exploit parameter tuples for which Osin's density estimate never
+holds, and this hypothesis is exactly what rules them out.
+
+**Still open, and not addressed here.**  The geometric producer: the
+complementary-region decomposition with its incidence and cutting bounds, G-cell
+padding and embedded surgery, general insertion planarity, and the contradiction
+to maximal contiguity or minimal cutting-path length (issue #198).  Also
+untouched is a second, independent defect recorded there: Osin's condition (*)
+ranges over *every* distinguished system on the diagram, whereas the stored
+`EstimatingGraphData` certificate concerns only the supplied scaffold.  Carrying
+the scale does nothing about that quantifier. -/
+def EstimatingUnboundOutputStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda) (eps rho : ℕ) (mu lambda c kappa c1 c2 : ℝ)
+    (_hhyper : ∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta)
+    (_hscale : UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho)
     {W : Set (List (GGT.RelLetter G Lambda))}
     (_hcondition : OsinCCondition D W eps mu lambda c rho)
     (Delta : DiscDiagram.{u, w, v} W)
@@ -775,9 +852,9 @@ theorem estimatingDataConstruction_of_components
     (hunbound : EstimatingUnboundOutputStatement.{u, w, v}) :
     EstimatingDataConstructionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambdaUpper hc hmu hmuUpper
-  obtain ⟨eps, rho, hrho, hthreshold, hselect⟩ := hselection D hhyper lambda c mu
+  obtain ⟨eps, rho, kappa, c1, c2, hscale, hselect⟩ := hselection D hhyper lambda c mu
     hlambda hlambdaUpper hc hmu hmuUpper
-  refine ⟨eps, rho, hrho, ?_⟩
+  refine ⟨eps, rho, hscale.rho_pos, ?_⟩
   intro W hcondition Delta hred hcells hboundary
   obtain ⟨Delta', hequiv, hred', scaffold, graph⟩ := hselect W hcondition Delta
     hred hcells hboundary
@@ -789,8 +866,8 @@ theorem estimatingDataConstruction_of_components
     have hcount : Delta'.rCellCount = Delta.rCellCount := equiv.rCellCount_eq
     omega
   obtain ⟨Delta'', hequiv', hred'', scaffold', graph', unbound⟩ :=
-    hunbound D eps rho mu lambda c hthreshold hcondition Delta' hred' hcells'
-      scaffold graph hboundary'
+    hunbound D eps rho mu lambda c kappa c1 c2 hhyper hscale hcondition Delta'
+      hred' hcells' scaffold graph hboundary'
   obtain ⟨equiv'⟩ := hequiv'
   obtain ⟨graph'⟩ := graph'
   obtain ⟨unbound⟩ := unbound
