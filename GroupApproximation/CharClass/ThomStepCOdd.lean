@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.ThomSectionDetect
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Step C's odd side over one field
@@ -72,9 +73,10 @@ theorem topChernClass_ne_zero_odd (hacyclic : PuncturedAcyclic N twoR z)
     sRel t hinj hu
     (topClass_eq_of_naturality' jE j sRel sAbs piStar hnat hsection hclass).symm
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_odd
+#audit_axioms topChernClass_ne_zero_odd
 
 end
 

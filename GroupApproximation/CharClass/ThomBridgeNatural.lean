@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.BundleProjInclPairs
 import GroupApproximation.CharClass.BundleChartTotal
 import GroupApproximation.CharClass.BundleTotalOver
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The chart identification is natural in the base
@@ -79,9 +80,10 @@ theorem bridgeChartIncl_natural (p : Bundle X ι) (U : Set X)
   rw [h, (Bundle.chartOpensHomeoTotal p).symm_apply_apply]
   rfl
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms bridgeChartIncl_natural
+#audit_axioms bridgeChartIncl_natural
 
 end
 

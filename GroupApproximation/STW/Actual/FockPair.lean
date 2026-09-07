@@ -132,7 +132,7 @@ theorem inner_prefixFun_of_ne {b c : Bool} (hbc : b ≠ c) (f g : FockSpace) :
     · rw [prefixFun_apply_off _ _ hb]
       simp
   rw [hz]
-  simp
+  exact tsum_zero
 
 /-- The prefix shift as a linear isometry. -/
 def prefixIsometry (b : Bool) : FockSpace →ₗᵢ[ℂ] FockSpace :=
@@ -156,12 +156,13 @@ theorem prefixOp_star_mul_self (b : Bool) :
 theorem prefixOp_star_mul_of_ne {b c : Bool} (hbc : b ≠ c) :
     star (prefixOp b) * prefixOp c = 0 := by
   rw [ContinuousLinearMap.star_eq_adjoint]
-  ext f
+  apply ContinuousLinearMap.ext
+  intro f
   let z : FockSpace := ContinuousLinearMap.adjoint (prefixOp b) (prefixOp c f)
   change z = 0
-  apply inner_self_eq_zero.mp
-  have hadj : ⟪z, z⟫_ℂ = ⟪prefixOp c f, prefixOp b z⟫_ℂ := by
-    exact (ContinuousLinearMap.adjoint_inner_left (prefixOp b) z (prefixOp c f)).symm
+  apply (inner_self_eq_zero (𝕜 := ℂ)).mp
+  have hadj : ⟪z, z⟫_ℂ = ⟪prefixOp c f, prefixOp b z⟫_ℂ :=
+    ContinuousLinearMap.adjoint_inner_left (prefixOp b) z (prefixOp c f)
   rw [hadj]
   exact inner_prefixFun_of_ne hbc.symm f z
 

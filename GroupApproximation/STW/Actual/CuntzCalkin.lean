@@ -1,4 +1,4 @@
-import STW.Actual.FockPair
+import GroupApproximation.STW.Actual.FockPair
 import GroupApproximation.Analysis.CStarQuotientHom
 import GroupApproximation.Analysis.VoiculescuUnitStrongLimit
 
@@ -16,6 +16,7 @@ namespace STW.Actual
 noncomputable section
 
 open GroupApproximation
+open scoped InnerProductSpace
 
 abbrev FockCalkin := CalkinAlgebra.CalkinQuotient FockSpace
 
@@ -33,6 +34,7 @@ def calkinPrefix (b : Bool) : FockCalkin := essentialStar (prefixOp b)
 /-- Each Calkin prefix generator is an isometry. -/
 theorem calkinPrefix_star_mul_self (b : Bool) :
     star (calkinPrefix b) * calkinPrefix b = 1 := by
+  unfold calkinPrefix
   rw [← map_star (essentialStar) (prefixOp b), ← map_mul]
   rw [prefixOp_star_mul_self]
   exact map_one essentialStar
@@ -40,6 +42,7 @@ theorem calkinPrefix_star_mul_self (b : Bool) :
 /-- Distinct Calkin prefix generators have orthogonal ranges. -/
 theorem calkinPrefix_star_mul_of_ne {b c : Bool} (hbc : b ≠ c) :
     star (calkinPrefix b) * calkinPrefix c = 0 := by
+  unfold calkinPrefix
   rw [← map_star (essentialStar) (prefixOp b), ← map_mul]
   rw [prefixOp_star_mul_of_ne hbc]
   exact map_zero essentialStar
@@ -108,9 +111,7 @@ def fockDefect : FockSpace →L[ℂ] FockSpace :=
 
 /-- The range defect is exactly the rank-one vacuum projection. -/
 theorem fockDefect_eq_vacuumProjection : fockDefect = vacuumProjection := by
-  ext f
-  apply lp.ext
-  funext y
+  ext f y
   cases y with
   | nil =>
       have hfalse : ¬ ∃ w, prefixMap false w = ([] : FockIndex) := by simp [prefixMap]
@@ -128,7 +129,8 @@ theorem fockDefect_eq_vacuumProjection : fockDefect = vacuumProjection := by
             simp [prefixMap] at hz
           change f (false :: w) - prefixRangeProjection false f (false :: w) -
               prefixRangeProjection true f (false :: w) = vacuumProjection f (false :: w)
-          rw [prefixRangeProjection_apply_prefix false f w,
+          rw [show prefixRangeProjection false f (false :: w) = f (false :: w) from
+              prefixRangeProjection_apply_prefix false f w,
             prefixRangeProjection_apply_off true f hoff, vacuumProjection_apply_cons]
           simp
       | true =>
@@ -138,7 +140,9 @@ theorem fockDefect_eq_vacuumProjection : fockDefect = vacuumProjection := by
           change f (true :: w) - prefixRangeProjection false f (true :: w) -
               prefixRangeProjection true f (true :: w) = vacuumProjection f (true :: w)
           rw [prefixRangeProjection_apply_off false f hoff,
-            prefixRangeProjection_apply_prefix true f w, vacuumProjection_apply_cons]
+            show prefixRangeProjection true f (true :: w) = f (true :: w) from
+              prefixRangeProjection_apply_prefix true f w,
+            vacuumProjection_apply_cons]
           simp
 
 /-- Consequently the defect is compact. -/
@@ -157,10 +161,15 @@ Calkin algebra. -/
 theorem calkinPrefix_range_sum :
     calkinPrefix false * star (calkinPrefix false) +
       calkinPrefix true * star (calkinPrefix true) = 1 := by
+  have hb : ∀ b, calkinPrefix b * star (calkinPrefix b) = essentialStar (prefixRangeProjection b) := by
+    intro b
+    unfold calkinPrefix prefixRangeProjection
+    rw [map_mul, map_star]
   have hzero :
       1 - calkinPrefix false * star (calkinPrefix false) -
         calkinPrefix true * star (calkinPrefix true) = 0 := by
-    simpa [fockDefect, prefixRangeProjection, calkinPrefix] using essentialStar_fockDefect
+    rw [hb false, hb true, ← map_one essentialStar, ← map_sub, ← map_sub]
+    exact essentialStar_fockDefect
   calc
     calkinPrefix false * star (calkinPrefix false) +
         calkinPrefix true * star (calkinPrefix true)
