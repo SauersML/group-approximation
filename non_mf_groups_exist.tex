@@ -339,9 +339,9 @@ commuting with $L$ whose conjugate $ucu^{-1}$ does not.  There, soficity
 and the rigidity theorems of Kun~\cite{Kun16} and Kun--Thom~\cite{KT19}
 force the centralizing subgroup to be locally embeddable into finite
 groups, and a copy of Thompson's group $V$ gives the contradiction.  Here
-the rigidity is the Kazhdan projection of $L$ in a norm matrix corona,
-which stable finiteness of the corona forces to commute with the
-compressor, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$
+the rigidity comes from the Kazhdan projection of $L$ in a norm matrix
+corona, which commutes with the compressor because the corona is stably
+finite, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$
 that every operator norm asymptotic representation sends to $1$ in
 Hilbert--Schmidt norm.  The group $H$ is isomorphic to the unit group of the
 binary Leavitt algebra, the group of~\cite{OAI}, and
@@ -492,13 +492,13 @@ in operator norm, and
  \sigma(g)=\lim_\omega\operatorname{Ad}(V_n(g))
 \]
 is a unitary representation of $G$ on $\mathcal K_\omega$ with
-$\xi=[x_n]_\omega\in\operatorname{Fix}\sigma(L)$.  The same estimate makes
+$\xi=[x_n]_\omega\in\operatorname{Fix}\sigma(L)$.  By the same estimate,
 \[
  \widetilde\sigma(g)=[\operatorname{Ad}(V_n(g))]_n\in\U(\mathcal B),
  \qquad
  \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)),
 \]
-a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the
+is a homomorphism, where $B(M_{d_n}(\C))$ denotes the operators on the
 Hilbert--Schmidt Hilbert space.  Coordinatewise action induces a
 representation $\pi_\omega\colon\mathcal B\to B(\mathcal K_\omega)$, which
 we suppress from the notation.  Moreover, $\mathcal B$ is a norm matrix
@@ -567,11 +567,11 @@ uses property~\textup{(T)} and stable finiteness in its place.}
 
 \subsection{From Hilbert--Schmidt to operator norm}
 
-A corona homomorphism $\rho$ cannot simply be restricted to a corner: a
-projection $q$ commuting with $\rho(G)$ has lifts $q_n$ that only
-asymptotically commute with chosen unitary lifts $U_n(g)$ of $\rho(g)$,
-so the compressions $q_nU_n(g)q_n$ are only approximately unitary in the
-matrix corners.
+Restricting a corona homomorphism $\rho$ to a corner requires a
+correction: a projection $q$ commuting with $\rho(G)$ has lifts $q_n$
+that commute only asymptotically with unitary lifts $U_n(g)$ of
+$\rho(g)$, so the compressions $q_nU_n(g)q_n$ are only approximately
+unitary in the matrix corners.
 
 \begin{lemma}[central corona corners]\label{lem:central-corona-corner}
 Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
@@ -592,8 +592,8 @@ unit \(q\).
 \end{lemma}
 
 \begin{proof}
-Lift \(q\) to projections \(q_n\) by spectral rounding, and lift each
-\(\rho(g)\) to unitaries \(U_n(g)\) by polar correction, with
+Lift \(q\) to projections \(q_n\) by functional calculus, and lift each
+\(\rho(g)\) to unitaries \(U_n(g)\) by polar decomposition, with
 \(U_n(1)=I_{d_n}\).  Since \(q\ne0\), infinitely many \(q_n\) are nonzero.
 Retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).  Since
 \(q\) commutes with \(\rho(G)\), \(\opnorm{q_nU_n(g)-U_n(g)q_n}\to0\)
@@ -605,9 +605,9 @@ of \(G\) by unitaries of the corner \(q_nM_{d_n}(\C)q_n\) with
 \(J_n\colon\C^{r_n}\to q_n\C^{d_n}\) and put
 \(W_n(g)=J_n^*\widetilde W_n(g)J_n\).  Conjugation by \(J_n\) preserves
 operator norms and multiplicative defects, so \((W_n)\) is an operator
-norm asymptotic representation with \(W_n(1)=I_{r_n}\), and
-\(\opnorm{J_nW_n(g)J_n^*-q_nU_n(g)q_n}\to0\) identifies the class of
-\((J_nW_n(g)J_n^*)\) with the coordinate restriction of \(q\rho(g)\).
+norm asymptotic representation with \(W_n(1)=I_{r_n}\), and since
+\(\opnorm{J_nW_n(g)J_n^*-q_nU_n(g)q_n}\to0\), the class of
+\((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
 \end{proof}
 
 \begin{theorem}[normal Kazhdan subgroups]\label{thm:normal-kazhdan}
@@ -632,9 +632,9 @@ the \(K\)-fixed vectors.  Since \(gKg^{-1}=K\), the range of
 \[
  \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
 \]
-and \(q=1-p\) is nonzero, because \(p=1\) would make every element of \(K\)
-act trivially.  Lemma~\ref{lem:central-corona-corner} gives an operator
-norm asymptotic representation \(W_n\colon G\to\U(r_n)\) whose corona
+and \(q=1-p\) is nonzero because \(\Theta\) is nontrivial on \(K\).  By
+Lemma~\ref{lem:central-corona-corner} there is an operator norm
+asymptotic representation \(W_n\colon G\to\U(r_n)\) whose corona
 homomorphism \(\widehat\Theta\) is the coordinate restriction of
 \(g\mapsto q\Theta(g)\).  Let
 \(\pi\colon C^*_{\max}(K)\to\mathcal Q_{\mathbf r}\) be the homomorphism
@@ -736,7 +736,7 @@ finite-dimensional $C^*$-algebra is MF~\cite{BK}.
 The proof of Theorem~\ref{thm:full-defect-ring} uses four coordinates:
 three for the property-\textup{(T)} subgroup $\EL_3(R)$ and one for its
 centralizer.  The compressor needs only $ts=1$; the ideal condition on
-$1-st$ enters in the final normal-generation step.  Indices run over
+$1-st$ is used only in the last step of the proof.  Indices run over
 $1,\ldots,n$ throughout this section.
 
 % Complete paper proof.  The binary-family comb compressor is in
@@ -819,7 +819,7 @@ For distinct $i,j,k$ and every $r\in R$,
 \[
  [e_{ij}(1),e_{jk}(r)]=e_{ik}(r)\in N.
 \]
-Hence $N=G$, and therefore $\mathfrak D_G(L)=G$.  By
+So $N=G$, and $\mathfrak D_G(L)=G$.  By
 Theorem~\ref{thm:compression-criterion} with $K=G$, every homomorphism
 from $G$ to an MF group is trivial.
 
@@ -830,10 +830,11 @@ the $a_j,b_j$.  The hypotheses hold in $S$, so a homomorphism from
 $\EL_n(R)$ to an MF group is trivial on each such $\EL_n(S)$, and these
 subgroups cover $\EL_n(R)$.\footnote{The same argument applies when
 finitely many pairs $t_\nu s_\nu=1$ have complementary idempotents
-$1-s_\nu t_\nu$ that together generate the unit ideal: each pair gives a
-compressor and a centralizer for the same $L$, so each
-$e_{13}(1-s_\nu t_\nu)$ lies in $\mathfrak D_G(L)$, and the two Steinberg
-relations above put $e_{42}(1)$ in their normal closure.}
+$1-s_\nu t_\nu$ that together generate the unit ideal: the construction
+above, applied to each pair, shows that
+$e_{13}(1-s_\nu t_\nu)\in\mathfrak D_G(L)$, and by the two Steinberg
+relations above $e_{42}(1)$ lies in the normal closure of these
+elements.}
 \end{proof}
 
 \begin{corollary}\label{cor:simple-infinite-ring}
@@ -981,10 +982,11 @@ polar decomposition of $\phi_n(u_g)$ satisfies
 \]
 and $V_n(1)=1$ because $\phi_n$ is unital.  The maps
 $V_n\colon G\to\U(d_n)$ are asymptotically multiplicative in operator
-norm.  If $g\ne1$, then $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$, so
-$V_n(g)$ does not converge to $1$ in operator norm, which would force
-$\tr_{d_n}(\phi_n(u_g))\to1$.  So $G$ is MF, contrary to the
-hypothesis.  The last assertion follows.
+norm.  If $g\ne1$ and $\opnorm{V_n(g)-1}\to0$, then
+$\tr_{d_n}(\phi_n(u_g))\to1$, contradicting
+$\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)=0$.  So
+$\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$, and $G$ is MF, contrary
+to the hypothesis.  The last assertion follows.
 \end{proof}
 
 A group $N$ is \emph{locally residually finite} if each of its finitely
@@ -1032,7 +1034,8 @@ $P_{F,L}$ be the projection onto $\ell^2(S_{F,L})$.  Put
  \phi_{F,L}(b)=P_{F,L}\lambda_{F,L}(b)P_{F,L}\big|_{\ell^2(S_{F,L})}
  \qquad(b\in C^*_{\max}(G)).
 \]
-This map is u.c.p., being the compression of a unitary representation.
+This map is u.c.p., since it is the compression of a unitary
+representation.
 For $g\in F$ and $j+k_g\in I_L$, the action satisfies
 \[
  g(t^jr_qH_{F,L})
@@ -1136,7 +1139,7 @@ $\operatorname{Cl}(X)$ as
 and this word maps to $(a,\delta_{x_1}+\cdots+\delta_{x_r})$, so the
 expression is unique and the homomorphism is an isomorphism.  In
 particular, for a finite subset $Y\subseteq X$, the subgroup generated
-by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$; so
+by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$, so
 $\operatorname{Cl}(X)$ is countable and locally finite.  The relations
 are invariant under permutations of $X$, so every permutation of $X$
 induces an automorphism of $\operatorname{Cl}(X)$ that permutes the
@@ -1209,11 +1212,11 @@ Reassociating the semidirect products yields
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
 \]
 For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
-copy of $\Gamma$ in $T_\alpha$.  Successive telescope copies have finite
-relative index because $[\Gamma:\alpha(\Gamma)]<\infty$, so all the
-$\Gamma_n$ are commensurable.  In fact $\Gamma$ is commensurated by $V$:
-every element of $T_\alpha$ lies in some telescope copy, and conjugation by
-$t$ shifts the copies.  Hence the stabilizer in $\Gamma_n$ of every point
+copy of $\Gamma$ in $T_\alpha$.  Since $[\Gamma:\alpha(\Gamma)]<\infty$,
+each $\Gamma_n$ has finite index in $\Gamma_{n+1}$, so all the $\Gamma_n$
+are commensurable.  In fact $\Gamma$ is commensurated by $V$: every
+element of $T_\alpha$ lies in some $\Gamma_m$, and conjugation by $t$
+maps $\Gamma_{m+1}$ onto $\Gamma_m$.  Hence the stabilizer in $\Gamma_n$ of every point
 $v\Gamma\in V/\Gamma$ has finite index, and every $\Gamma_n$-orbit in $X$
 is finite.
 
@@ -1230,8 +1233,8 @@ residually finite.  Indeed, an element with nontrivial $\Gamma_n$-component
 survives in a finite quotient of $\Gamma_n$.  For a nontrivial element of
 $C_Y$, let $J$ be the kernel of the action
 $\Gamma_n\to\operatorname{Aut}(C_Y)$.  The quotient $\Gamma_n/J$ is finite,
-and the finite semidirect product $C_Y\rtimes(\Gamma_n/J)$ retains that
-element.  Therefore every finitely generated subgroup of $K$ is residually
+and the element has nontrivial image in the finite group
+$C_Y\rtimes(\Gamma_n/J)$.  Therefore every finitely generated subgroup of $K$ is residually
 finite.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}
 
@@ -1378,7 +1381,7 @@ $S$ is.  By Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and
 $\Omega=\varnothing$, there is a surjective homomorphism
 $\varphi\colon G_0\to Q$ with $Q$ two-generated, finitely presented,
 torsion-free, and acylindrically hyperbolic, and $\varphi(N)=Q$.  The
-group $Q$ is infinite, being acylindrically hyperbolic, and it has
+group $Q$ is infinite because it is acylindrically hyperbolic, and it has
 property~\textup{(T)} as a quotient of $G_0$.
 
 By Lemma~\ref{lem:commutator-in-defect} applied to $\varphi$,
@@ -1391,8 +1394,8 @@ closure of $\varphi(S)$ is $\varphi(N)=Q$, so
 Both $Q$ and $\varphi(\Gamma)$ have property~\textup{(T)}, as quotients of
 $G_0$ and $\Gamma$, respectively.  By the last assertion of
 Theorem~\ref{thm:compression-criterion}, every homomorphism from $Q$ to
-an MF group is trivial.  A homomorphism from a quotient of $Q$
-composes to one from $Q$, so no nontrivial quotient of $Q$ is MF\@.
+an MF group is trivial.  If a quotient $\bar Q$ of $Q$ is MF, then the
+quotient map $Q\to\bar Q$ is trivial, so $\bar Q=1$.
 \end{proof}
 
 \section*{Acknowledgments}
