@@ -319,7 +319,22 @@ theorem hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer
     hgeom htransfer
 
 /-- Form using the proved linear-area induction and the relative-presentation
-transfer. -/
+transfer.
+
+**VACUOUS: `RelativeLinearAreaTransferStatement` is refuted.**
+`HullSCLemma44AreaTransferRefutation.not_relativeLinearAreaTransferStatement`
+proves `¬ RelativeLinearAreaTransferStatement.{0, 0, 0}` unconditionally and
+closed (`#audit_closed_axioms`), at exactly the universes this file
+instantiates.  So the `htransfer` binder can never be supplied, and neither this
+reduction nor `..._zero_of_linearAreaTransfer` below can ever fire.
+
+It is **not** a debt: proving `RelativeLinearAreaTransferStatement` discharges
+nothing, because it is false.  Both are retained as the record of which transfer
+was tried and of what it would have given, and because the refutation is stated
+against this shape.  A reader looking for the live route to
+`HullLemma44CanonicalQuotientStatement` wants
+`..._of_greendlinger_of_dehnTransfer`, which these two call and which takes the
+Dehn-transfer statement directly. -/
 theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer
     (hgeom : RelativeGreendlingerStatement.{u, 0})
     (htransfer : RelativeLinearAreaTransferStatement.{u, u, 0}) :
