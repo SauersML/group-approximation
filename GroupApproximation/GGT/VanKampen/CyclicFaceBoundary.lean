@@ -14,10 +14,10 @@ namespace GroupApproximation.GGT.VanKampen.FaceBoundary
 open Equiv
 universe u
 
-theorem cyclic_get_rotate {D : Type u} (p : Perm D) (l : List D) (hne : l ≠ [])
-    (hchain : l.IsChain (fun d e => p d = e))
-    (hclose : p (l.getLast hne) = l.head hne) (i : Fin l.length) :
-    p (l.get i) = l.get (finRotate l.length i) := by
+theorem cyclic_relation_get_rotate {D : Type u} (R : D → D → Prop)
+    (l : List D) (hne : l ≠ []) (hchain : l.IsChain R)
+    (hclose : R (l.getLast hne) (l.head hne)) (i : Fin l.length) :
+    R (l.get i) (l.get (finRotate l.length i)) := by
   have hpos : 0 < l.length := List.length_pos_iff.mpr hne
   have hi := i.isLt
   by_cases hlast : i.val + 1 = l.length
@@ -32,6 +32,12 @@ theorem cyclic_get_rotate {D : Type u} (p : Perm D) (l : List D) (hne : l ≠ []
       rw [FiniteCycleSplit.rotate_val, if_neg hlast]
     rw [hnext]
     exact (List.isChain_iff_getElem.mp hchain) i.val (by omega)
+
+theorem cyclic_get_rotate {D : Type u} (p : Perm D) (l : List D) (hne : l ≠ [])
+    (hchain : l.IsChain (fun d e => p d = e))
+    (hclose : p (l.getLast hne) = l.head hne) (i : Fin l.length) :
+    p (l.get i) = l.get (finRotate l.length i) :=
+  cyclic_relation_get_rotate (fun d e => p d = e) l hne hchain hclose i
 
 theorem cyclic_mem_iff_sameCycle {D : Type u} [Finite D] (p : Perm D)
     (l : List D) (hne : l ≠ []) (hchain : l.IsChain (fun d e => p d = e))
