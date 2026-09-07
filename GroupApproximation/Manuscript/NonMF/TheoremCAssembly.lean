@@ -111,6 +111,33 @@ both the landing gate's lexical scan and a `grep` for `sorry` are blind to; a
 refuted claim would then be held behind a gate that cannot see it.  The literal
 token is the only thing keeping this file honest.
 
+## A `sorry` is a type-change absorber, and that is why this header goes stale
+
+`:= by sorry` typechecks at **any** type.  So when someone edits the statement
+an admission is stated at, nothing here breaks: no error, no warning, a green
+build, and a docstring that now describes a statement that no longer exists.  A
+real proof would have failed loudly at exactly that edit; the `sorry` swallows
+it silently.
+
+This is not hypothetical and it is not rare.  `c685697b9` re-pointed **two** of
+this file's five admissions in one commit, and both descriptions here were
+wrong until they were fixed by hand:
+
+* `estimatingUnboundOutput` — the refuted statement was renamed to
+  `EstimatingUnboundOutputHistoricalStatement` and the vacated name given to the
+  repaired form, so three paragraphs asserting that this file admits something
+  refuted became false, including one that said the axiom line "can never read
+  otherwise";
+* `estimatingSelectionConstruction` — the statement grew `kappa`, `c1`, `c2` and
+  the `OsinUnboundScale` certificate, so this file understated what it owes.
+
+Neither change was wrong; both were repairs, and neither commit touched this
+file.  **Every gate in this repository runs downstream of a build that
+succeeds**, so no gate can see this class of drift — not the lexical `sorry`
+scan, not the per-name `sorryAx` check, not the axiom audits.  The only defence
+is to read the current statement.  **Before trusting any description of what an
+admission owes, including the ones in this header, open the `def` it names.**
+
 ## What "the corpus has five `sorry`s and is otherwise clean" understates
 
 That sentence is true and its significance is not what it sounds like.  This
@@ -332,8 +359,21 @@ theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
 
 /-- **Open input.**  Osin's Lemma 6.5(a) selection: an `O`-equivalent
 reduced diagram with a finite Definition-`M` scaffold whose estimating graph
-satisfies the hereditary certificates, together with the choice of `rho`
-against `mu` (`GGT/VanKampen/Estimating/Assembly.lean`). -/
+satisfies the hereditary certificates (`GGT/VanKampen/Estimating/Assembly.lean`).
+
+**It owes more than the sentence above used to say.**  Since `c685697b9` the
+statement no longer merely chooses `eps` and `rho` against `mu`: it must produce
+`kappa`, `c1`, `c2` as well, together with
+`UnboundEstimate.OsinUnboundScale lambda c mu kappa c1 c2 eps rho` — five
+inequalities, not a bookkeeping side condition.  They are `c1 + 2*kappa < eps`
+(Osin's equation 36), `0 < rho`, `max (1000*eps) c2 < lambda*√rho/240 - c`,
+`eps < (lambda*√rho/240 - c)/1000 - 2*kappa`, and `1 ≤ 2*mu*√rho`.  The
+selection and the unbound estimate now share that certificate, which is the
+whole point of the repair: it is what makes the two halves agree on a scale, and
+what puts the refuting models out of range.
+
+This docstring described the pre-`c685697b9` statement until the present commit.
+See the note below on why nothing complained. -/
 theorem estimatingSelectionConstruction :
     GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} := by
   sorry
