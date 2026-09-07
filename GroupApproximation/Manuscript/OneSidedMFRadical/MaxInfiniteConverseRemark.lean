@@ -97,6 +97,17 @@ def zsubEquiv : ℤ ≃+* Zsub :=
 def redRing : Zsub →+* ZMod m :=
   (Int.castRingHom (ZMod m)).comp (zsubEquiv.symm : Zsub →+* ℤ)
 
+theorem redRing_intCast (a : ℤ) (h : ((a : ℚ)) ∈ Zsub) :
+    redRing m ⟨(a : ℚ), h⟩ = (a : ZMod m) := by
+  have hz : zsubEquiv a = ⟨(a : ℚ), h⟩ := Subtype.ext rfl
+  rw [redRing, RingHom.comp_apply, ← hz]
+  simp
+
+theorem redRing_val (a : ℤ) (q : ℚ) (h : q ∈ Zsub) (hq : q = (a : ℚ)) :
+    redRing m ⟨q, h⟩ = (a : ZMod m) := by
+  subst hq
+  exact redRing_intCast m a h
+
 /-- The `Zsub`-valued matrix underlying an integral rational matrix. -/
 def toZsub (M : Mat) (h : IsIntegral M) : Matrix (Fin 4) (Fin 4) Zsub :=
   fun i j ↦ ⟨M i j, h i j⟩
@@ -133,6 +144,11 @@ theorem redMat_mul (M N : Mat) (hM : IsIntegral M) (hN : IsIntegral N)
     (hMN : IsIntegral (M * N)) :
     redMat m (M * N) hMN = redMat m M hM * redMat m N hN := by
   rw [redMat, redMat, redMat, toZsub_mul M N hM hN hMN, map_mul]
+
+theorem redMat_apply (M : Mat) (h : IsIntegral M) (i j : Fin 4) (a : ℤ)
+    (ha : ((a : ℚ)) = M i j) : redMat m M h i j = (a : ZMod m) := by
+  rw [redMat, RingHom.mapMatrix_apply, Matrix.map_apply]
+  exact redRing_val m a (M i j) (h i j) ha.symm
 
 /-- An integral unit reduces to a unit of the finite matrix ring. -/
 def redUnit (u : Matˣ) (h : IsIntegralUnit u) :
@@ -239,33 +255,20 @@ theorem dM_isIntegral : IsIntegral dM := by
   · rw [Matrix.diagonal_apply_ne _ hij]
     exact ⟨0, by simp⟩
 
-theorem redRing_intCast (m : ℕ) (a : ℤ) (h : ((a : ℚ)) ∈ Zsub) :
-    redRing m ⟨(a : ℚ), h⟩ = (a : ZMod m) := by
-  have hz : zsubEquiv a = ⟨(a : ℚ), h⟩ := Subtype.ext rfl
-  rw [redRing, RingHom.comp_apply, ← hz]
-  simp
-
-theorem redRing_val (m : ℕ) (a : ℤ) (q : ℚ) (h : q ∈ Zsub) (hq : q = (a : ℚ)) :
-    redRing m ⟨q, h⟩ = (a : ZMod m) := by
-  subst hq
-  exact redRing_intCast m a h
-
 theorem redMat_dM (m : ℕ) :
     redMat m dM dM_isIntegral =
       Matrix.diagonal fun i ↦ if i = 3 then 1 else (2 : ZMod m) := by
   ext i j
-  rw [redMat, RingHom.mapMatrix_apply, Matrix.map_apply]
-  show redRing m ⟨dM i j, dM_isIntegral i j⟩ = _
   by_cases hij : i = j
   · subst hij
     rw [Matrix.diagonal_apply_eq]
     by_cases hi : i = 3
-    · rw [redRing_val m 1 _ _ (by rw [dM_eq_diagonal]; simp [hi])]
+    · rw [redMat_apply m dM dM_isIntegral i i 1 (by rw [dM_eq_diagonal]; simp [hi])]
       simp [hi]
-    · rw [redRing_val m 2 _ _ (by rw [dM_eq_diagonal]; simp [hi])]
+    · rw [redMat_apply m dM dM_isIntegral i i 2 (by rw [dM_eq_diagonal]; simp [hi])]
       simp [hi]
   · rw [Matrix.diagonal_apply_ne _ hij,
-      redRing_val m 0 _ _ (by rw [dM_eq_diagonal]; simp [hij])]
+      redMat_apply m dM dM_isIntegral i j 0 (by rw [dM_eq_diagonal]; simp [hij])]
     simp
 
 /-- The conjugating element in the finite quotient: the reduction of `D`,
@@ -327,9 +330,162 @@ def congruence (m : ℕ) (hm : Nat.Coprime 2 m) :
     V →* (Matrix (Fin 4) (Fin 4) (ZMod m))ˣ :=
   verticalLift conjD conjD_injective (redHom m) (dRed m hm) (redHom_conjD m hm)
 
+/-! ## Separation -/
+
+/-- Reduction separates a nontrivial element of the affine base at some odd
+modulus: two distinct integer entries stay distinct modulo any prime larger
+than their difference. -/
+theorem exists_redHom_ne_one (x : gammaBar) (hx : x ≠ 1) :
+    ∃ m : ℕ, Nat.Coprime 2 m ∧ redHom m x ≠ 1 := by
+  have hxint := gammaBar_isIntegralUnit x.2
+  have hmat : ((x : Matˣ) : Mat) ≠ ((1 : Matˣ) : Mat) := by
+    intro h
+    exact hx (Subtype.ext (Units.ext h))
+  obtain ⟨i, j, hij⟩ : ∃ i j, ((x : Matˣ) : Mat) i j ≠ (1 : Mat) i j := by
+    by_contra hcon
+    push Not at hcon
+    exact hmat (by ext i j; exact hcon i j)
+  obtain ⟨a, ha⟩ := hxint.1 i j
+  obtain ⟨b, hb⟩ := ExplicitLinearModel.isIntegral_one i j
+  have hab : a ≠ b := by
+    intro h
+    exact hij (by rw [← ha, ← hb, h])
+  obtain ⟨p, hple, hp⟩ := Nat.exists_infinite_primes (max 3 ((a - b).natAbs + 1))
+  have hp3 : 3 ≤ p := le_trans (le_max_left _ _) hple
+  have hcop : Nat.Coprime 2 p := by
+    have hne : (2 : ℕ) ≠ p := by omega
+    exact (Nat.coprime_primes Nat.prime_two hp).mpr hne
+  refine ⟨p, hcop, ?_⟩
+  intro hone
+  have h1 : redMat p ((x : Matˣ) : Mat) hxint.1 = 1 := by
+    have := congrArg (fun u : (Matrix (Fin 4) (Fin 4) (ZMod p))ˣ ↦
+      (u : Matrix (Fin 4) (Fin 4) (ZMod p))) hone
+    rwa [redHom_val, Units.val_one] at this
+  have hentry : (a : ZMod p) = (b : ZMod p) := by
+    rw [← redMat_apply p _ hxint.1 i j a ha,
+      ← redMat_apply p (1 : Mat) ExplicitLinearModel.isIntegral_one i j b hb,
+      h1, redMat_one]
+  have hdvd : ((p : ℤ)) ∣ b - a :=
+    (ZMod.intCast_eq_intCast_iff_dvd_sub a b p).mp hentry
+  have hne0 : b - a ≠ 0 := sub_ne_zero_of_ne (Ne.symm hab)
+  have hle : (p : ℤ) ≤ |b - a| := Int.le_of_dvd (abs_pos.mpr hne0)
+    ((dvd_abs _ _).mpr hdvd)
+  have hlt : ((a - b).natAbs : ℤ) < (p : ℤ) := by
+    have hh : (a - b).natAbs + 1 ≤ p := le_trans (le_max_right _ _) hple
+    exact_mod_cast Nat.lt_of_succ_le hh
+  have habs : |b - a| = ((a - b).natAbs : ℤ) := by
+    rw [Int.abs_eq_natAbs, ← Int.natAbs_neg, neg_sub]
+  omega
+
+/-! ## Residual finiteness, and MF -/
+
+/-- **`V` is residually finite.**  The stable-letter exponent is caught by the
+height homomorphism to `ℤ`; a nontrivial telescope element is `level n x` with
+`x ≠ 1`, and its congruence quotient survives at a suitable odd modulus. -/
+theorem residuallyFinite : Group.ResiduallyFinite V := by
+  refine Group.residuallyFinite_of_forall_exists_finite_monoidHom.{0} ?_
+  intro v hv
+  by_cases hheight : (SemidirectProduct.rightHom v : Multiplicative ℤ) = 1
+  · -- the telescope part is nontrivial
+    have hleft : v = SemidirectProduct.inl v.left := by
+      have := SemidirectProduct.inl_left_mul_inr_right v
+      rw [show v.right = 1 from hheight] at this
+      simpa using this.symm
+    obtain ⟨⟨n, x⟩, hnx⟩ := MappingTelescope.mk_surjective conjD conjD_injective v.left
+    dsimp only at hnx
+    have hx : x ≠ 1 := by
+      intro hx1
+      apply hv
+      rw [hleft, ← hnx, hx1, ← MappingTelescope.one_eq_mk, map_one]
+    obtain ⟨m, hcop, hne⟩ := exists_redHom_ne_one x hx
+    refine ⟨(Matrix (Fin 4) (Fin 4) (ZMod m))ˣ, inferInstance, ?_,
+      congruence m hcop, ?_⟩
+    · haveI : NeZero m := ⟨by
+        rintro rfl
+        simp [Nat.Coprime] at hcop⟩
+      infer_instance
+    · rw [hleft, ← hnx]
+      have hlevel : (MappingTelescope.mk conjD conjD_injective n x) =
+          MappingTelescope.level conjD conjD_injective n x := rfl
+      rw [hlevel, congruence,
+        verticalLift_inl_level conjD conjD_injective (redHom m) (dRed m hcop)
+          (redHom_conjD m hcop) n x]
+      intro hcon
+      refine hne ?_
+      have h2 : redHom m x =
+          ((dRed m hcop) ^ n) *
+            (((dRed m hcop) ^ n)⁻¹ * redHom m x * ((dRed m hcop) ^ n)) *
+            ((dRed m hcop) ^ n)⁻¹ := by group
+      rw [hcon] at h2
+      simpa using h2
+  · -- the stable-letter exponent is nonzero
+    obtain ⟨N, hN⟩ : ∃ N : ℕ, 0 < N ∧
+        ((Multiplicative.toAdd (SemidirectProduct.rightHom v) : ℤ) : ZMod N) ≠ 0 := by
+      refine ⟨(Multiplicative.toAdd
+        (SemidirectProduct.rightHom v)).natAbs + 1, by omega, ?_⟩
+      intro hcon
+      rw [ZMod.intCast_zmod_eq_zero_iff_dvd] at hcon
+      have hz : Multiplicative.toAdd (SemidirectProduct.rightHom v) ≠ 0 := by
+        intro h0
+        exact hheight (by
+          have : SemidirectProduct.rightHom v = Multiplicative.ofAdd (0 : ℤ) := by
+            rw [← h0]; rfl
+          simpa using this)
+      have := Int.le_of_dvd (abs_pos.mpr hz) ((dvd_abs _ _).mpr hcon)
+      rw [Int.abs_eq_natAbs] at this
+      omega
+    obtain ⟨hNpos, hNne⟩ := hN
+    haveI : NeZero N := ⟨by omega⟩
+    refine ⟨Multiplicative (ZMod N), inferInstance, inferInstance,
+      (AddMonoidHom.toMultiplicative (Int.castAddHom (ZMod N))).comp
+        SemidirectProduct.rightHom, ?_⟩
+    intro hcon
+    exact hNne (by simpa using congrArg Multiplicative.toAdd hcon)
+
+/-- **`V` is MF.**  Residual finiteness plus countability, through the
+manuscript's `lem:rfmf`. -/
+theorem isOperatorMF : IsOperatorMF V := by
+  haveI := residuallyFinite
+  exact isOperatorMF_of_residuallyFinite
+
+/-! ## The printed remark -/
+
+/-- **The concrete content at `V`.** -/
+def PrintedAscendingHNNIsMF : Prop :=
+  Countable V ∧
+    HasKazhdanPropertyT.{0, 0} ↥baseCopy ∧
+    baseCopy.map (MulAut.conj stable).toMonoidHom < baseCopy ∧
+    Group.ResiduallyFinite V ∧
+    IsOperatorMF V
+
+theorem manuscriptAscendingHNNIsMF : PrintedAscendingHNNIsMF :=
+  ⟨inferInstance, baseCopy_hasKazhdanPropertyT, baseCopy_conj_lt,
+    residuallyFinite, isOperatorMF⟩
+
+/-- **The printed remark: a group can satisfy the hypothesis of
+`prop:max-infinite` and be MF.** -/
+def PrintedMaxInfiniteConverseRemark : Prop :=
+  ∃ (G : Type) (_ : Group G) (_ : Countable G),
+    (∃ (Γ : Subgroup G) (t : G),
+        HasKazhdanPropertyT.{0, 0} ↥Γ ∧
+          Γ.map (MulAut.conj t).toMonoidHom < Γ) ∧
+      IsOperatorMF G
+
+theorem manuscriptMaxInfiniteConverseRemark : PrintedMaxInfiniteConverseRemark :=
+  ⟨V, inferInstance, inferInstance,
+    ⟨baseCopy, stable, baseCopy_hasKazhdanPropertyT, baseCopy_conj_lt⟩,
+    isOperatorMF⟩
+
 end
 
 end MaxInfiniteConverse
 end OneSidedMFRadical
 end Manuscript
 end GroupApproximation
+
+open GroupApproximation
+open GroupApproximation.Manuscript.OneSidedMFRadical
+
+#audit_closed_axioms
+  MaxInfiniteConverse.manuscriptMaxInfiniteConverseRemark
+#audit_closed_axioms MaxInfiniteConverse.manuscriptAscendingHNNIsMF
