@@ -305,10 +305,19 @@ O-equivalent insertion supplying this family transport. The six-dart model
 also proves that the corrected candidates retain their distinct weights and
 that a corrected distinguished family exists with weight at least two.
 The model passes a closed audit; the construction helpers pass ordinary
-audits (combined 4,821-job build). The estimating partition, incidence and
-graph consumers still need explicit migration to the corrected geometric
-candidate data, alongside the complementary-region construction. No assembly
-admission has been discharged by the local transport alone.
+audits (combined 4,821-job build).
+
+`Estimating/GeometricPartition.lean` now counts the retained witnesses' actual
+cell-arc darts. It proves the exact exterior/interior/unbound perimeter
+partition and identifies the total interior count with the sum of the actual
+selected interior weights. `Estimating/GeometricIncidence.lean` constructs the
+corresponding edge type and derives O52 charges from the same witnesses and
+reducedness, without a separate piece-construction input. The existing
+endpoint-closed deletion theorem then gives the `10 * mu` interior bound.
+These helpers pass ordinary axiom audits (4,611-job build). The planar edge
+inequality is still an input, and exterior uniqueness, complementary-region
+construction and the unbound budget still need their geometric producers.
+No assembly admission has been discharged by this consumer migration.
 
 The graph audit found two further proved obstructions. The historical
 `InteriorIncidencePlanarRealization` cannot represent an isolated cell in a
