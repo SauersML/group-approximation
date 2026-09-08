@@ -28,6 +28,7 @@ on:
       - 'research/relative-automorphism-*.md'
       - 'research/regular-cyclic-twisted-*.md'
       - 'research/bffhz-*.md'
+      - 'research/cantor-prefix-*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -125,6 +126,7 @@ jobs:
           bin/cairn why bffhz-computable-core-fp-upgrade-is-false --json > bh-automorphism-obstruction.json
           bin/cairn why bffhz-action-image-is-finitely-presented --json > bh-automorphism-refuted-premise.json
           bin/cairn why boone-higman-via-bffhz-action-image --json > bh-automorphism-disabled-route.json
+          bin/cairn why cantor-prefix-subgroup-detects-every-normal-kernel --json > bh-cantor-normal-kernel.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -141,3 +143,4 @@ jobs:
             bh-projective-*.json
             bh-shift-*.json
             bh-automorphism-*.json
+            bh-cantor-*.json

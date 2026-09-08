@@ -30,3 +30,10 @@ the resulting simple quotient is equivalent to finite presentation of the
 specified action image. The universal computable-core assertion is now
 refuted by `bffhz-computable-core-fp-upgrade-is-false`; this conditional
 equivalence neither supplies it nor assumes that it holds universally.
+
+The abstract setting matters: `cantor-prefix-subgroup-detects-every-normal-kernel`
+shows that a homomorphism from a faithful Cantor homeomorphism group
+containing V_m cannot kill a nonidentity homeomorphism while preserving
+V_m faithfully. The canonical abstract quotient here should not be
+replaced by an unsupported coefficient-forgetting map between faithful
+full groups.

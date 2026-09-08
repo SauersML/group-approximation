@@ -25,6 +25,7 @@ artifacts:
   - research/artifacts/boone-higman-zigzag-shift-compiler-2026-09-08.md
   - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
   - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
+  - research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -306,3 +307,24 @@ The published BFFHZ Question 3.2 assumes a finitely presented core and is
 not answered by this counterexample. Selecting special non-MIF cores or
 using other actions is not excluded. No proof or disproof of Boone--Higman
 follows from this obstruction.
+
+## September 8: a new wreath-product source needs a projection repair
+
+The source audit in
+`research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md`
+examines arXiv:2609.01868v1. Its proposed finite-presentation proof appeals
+to a coefficient-forgetting projection toward another Cantor full group.
+`cantor-prefix-subgroup-detects-every-normal-kernel` rules out a map
+which both kills a nonidentity localized coefficient and preserves the
+prefix subgroup faithfully. The coefficient projection of an ordinary
+wreath product does not supply such a full-group map.
+
+If the intended projection is only on a localized coefficient subgroup,
+it exists but cannot detect the exponents of the lamps it kills. The audit
+separates these interpretations explicitly.
+
+This is a proof-step obstruction, not a counterexample to Theorem D of
+that source. Its finite-presentation conclusion has not been imported as
+an established premise. A repair would need to derive cancellation of all
+lamp coordinates from the finite relations directly. No such repair has
+been supplied here.

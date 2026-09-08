@@ -99,3 +99,9 @@ precise applicability to our remaining constructions have not been audited,
 so this source is a follow-up candidate, not a new established Cairn
 premise or a universal embedding theorem. In particular, its own
 Question 1.1 leaves a specified wreath product over PSL_2(Z[1/2]) open.
+
+Follow-up: the Section 5.2.1 projection step was subsequently checked
+against the PDF and audited in
+`research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md`.
+That audit rules out the required coefficient-forgetting full-group map;
+Theorem D remains unimported rather than being marked false.
