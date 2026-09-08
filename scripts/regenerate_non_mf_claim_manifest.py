@@ -92,17 +92,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "FullDefectRingEJZUnconditional."
         "manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics"),
-    "thm:amenable-trace": (
-        "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
-        "GroupApproximation.AmenableTraceTheorem."
-        "manuscriptAmenableNonquasidiagonalTrace"),
-    "prop:clifford-locally-rf": (
-        "Sofic/CliffordWitnessSoficPrinted",
-        "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
-    "prop:linear-collapse": (
-        "Manuscript/OneSidedMFRadical/QuantitativeCollapse",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "QuantitativeCollapse.manuscriptLinearCollapse"),
     "lem:two-copies": (
         "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
@@ -119,14 +108,18 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    # The spectral tensor argument and the wordwise compactness theorem
-    # have complete written proofs, without new Lean verification badges.
-    "lem:linear-tensor-amplification": (),
-    "thm:word-linear-certificate": (),
-    # The finite-block theorem has a full written proof. Its new analytic
-    # step is not yet a compiled Lean endpoint; do not inherit older badges.
+    # Two steps extracted from longer proofs; both are complete in the
+    # manuscript and carry no badge.
+    "lem:ring-compression-cell": (),
+    "lem:block-structure": (
+        "Bass--Serre theory: the tree of an HNN extension, and a graph of "
+        "groups with trivial edge groups over a tree",),
+    # The finite-block theorem has a full written proof. Its analytic step
+    # is not a compiled Lean endpoint; do not inherit older badges.  The
+    # covariance correction was replaced by a rank bound on 2026-09-08.
     "thm:finite-algebra-transport": (
-        "Finite-dimensional C*-algebra structure and compact Haar integration",),
+        "Finite-dimensional C*-algebra structure and rank bounds for the "
+        "normalized Hilbert--Schmidt norm",),
     "thm:perfect-block-radical": (
         "Free-product normal form, free tree actions, and residual finiteness of free groups",
         "Elek--Szabo, Theorem 1"),
@@ -152,11 +145,13 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # now unconditional.  `cor:simple-infinite-ring` and
     # `cor:one-sided-ring-maximal` moved to EXACT_TARGETS the same day, once
     # badge batch 3 gave both hypothesis-free n>=2 carriers.
-    # `thm:amenable-trace` and `prop:clifford-locally-rf` moved to
-    # EXACT_TARGETS 2026-09-07 (badges landed:
-    # AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace,
-    # AmenableTraceTheorem.manuscriptCliffordLocallyRF in
-    # Sofic/CliffordWitnessSoficPrinted.lean).
+    # `thm:amenable-trace`, `prop:clifford-locally-rf`,
+    # `prop:linear-collapse`, `lem:linear-tensor-amplification` and
+    # `thm:word-linear-certificate` were removed as printed environments on
+    # 2026-09-08: the trace statement was folded into
+    # `thm:fp-sofic-radical`, whose witness is finitely presented, and the
+    # quantitative subsection was cut.  Their Lean declarations still exist
+    # and are simply no longer cited by the manuscript.
     # `cor:affine-clifford-trace` and `lem:commutator-in-defect` were
     # removed as separate numbered environments in the 2026-09-07 rewrite:
     # the trace corollary's content moved into `thm:amenable-trace`'s own
@@ -208,11 +203,6 @@ COLLECTIVE_CLAIMS: set[str] = {
     # normal generation by an involution, and the homomorphism to
     # EL_n(R) with normally generating image, for every n>=2).
     "thm:full-defect-ring",
-    # `prop:linear-collapse` prints one badge per direction of its "Then ...
-    # Conversely ..." statement (manuscriptLinearCollapse /
-    # manuscriptLinearCollapseConverse); neither alone is the whole
-    # proposition.
-    "prop:linear-collapse",
     # `cor:simple-infinite-ring` prints one badge per sentence
     # (manuscriptSimpleInfiniteRingRankTwoAllCharacteristics /
     # manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics).
@@ -254,13 +244,11 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:factorization-nonmf-trace": [],
     "prop:locally-rf-by-z-trace": [],
     "prop:clifford-self-embedding": ["thm:compression-criterion"],
-    "prop:clifford-locally-rf": [
-        "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
-        "thm:factorization-nonmf-trace"],
-    "thm:amenable-trace": ["prop:clifford-locally-rf"],
     "thm:finite-algebra-transport": [
         "thm:transport", "prop:mf-residual-calculus"],
+    "lem:block-structure": [],
     "thm:perfect-block-radical": [
+        "lem:block-structure",
         "thm:finite-algebra-transport", "prop:mf-residual-calculus",
         "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
     "thm:fp-sofic-radical": ["thm:perfect-block-radical"],
@@ -271,11 +259,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [
         "thm:compression-criterion", "lem:saturation"],
-    "lem:linear-tensor-amplification": [],
-    "thm:word-linear-certificate": [
-        "lem:linear-tensor-amplification", "prop:mf-residual-calculus",
-        "lem:stable-finite"],
-    "prop:linear-collapse": ["thm:word-linear-certificate"],
+    "lem:ring-compression-cell": [],
     "cor:relative-quotient": ["thm:torsion-free", "thm:hull"],
     "cor:regular-nonmf-algebra": ["thm:torsion-free"],
 }
