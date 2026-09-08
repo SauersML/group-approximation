@@ -1102,25 +1102,29 @@ $e_{12}(r)=e_{12}(vwr)\,e_{12}(fr)\in N$ for every $r\in R$, and
 conjugating by $e_{12}(1)e_{21}(-1)e_{12}(1)$ gives $e_{21}(R)\le N$.
 \end{proof}
 
-% The full-defect theorem and its rank-two descent have the selected
-% Lean counterparts listed at Theorem~\ref{thm:full-defect-ring}.
-% Sentence-level coverage is recorded separately in the sentence census.
-\begin{proof}[Proof of Theorem~\ref{thm:full-defect-ring}]
-\emph{The group $B$.}  In $\mathcal C$ put $s=s_0$, $t=t_0$, and
-$e=1-st$.  Then $ts=1$, $e^2=e$, $es=te=0$, and $t_1es_1=1$.  Put
-$G=B=\EL_4(\mathcal C)$ and $L=\EL_3(\mathcal C)$ on coordinates
-$1,2,3$.  The ring $\mathcal C$ is nonzero, since it maps onto
-$L_{\F_2}(1,2)$, and finitely generated, so both groups
-have property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and $B$ is
-finitely generated~\cite[Theorem~1.3.1]{BHV}.
+\begin{lemma}[a rank-four compression cell]
+\label{lem:ring-compression-cell}
+Let $R$ be a unital ring, let $s,t\in R$ satisfy $ts=1$, and put
+$e=1-st$.  In $G=\EL_4(R)$ let $L=\EL_3(R)$ occupy coordinates
+$1,2,3$.  There are $u\in\operatorname{Comp}_G(L)$ and $c\in C_G(L)$
+with
+\[
+ ucu^{-1}=e_{12}(e),
+ \qquad
+ [ucu^{-1},e_{23}(1)]=e_{13}(e).
+\]
+Every off-diagonal entry of a matrix in $uLu^{-1}$ has the form $sat$
+with $a\in R$.
+\end{lemma}
 
-For $i=1,2,3$, set
+\begin{proof}
+Here $e^2=e$ and $es=te=0$.  For $i=1,2,3$, set
 \[
  u_i=e_{4i}(t-1)e_{i4}(1)e_{4i}(s-1)e_{i4}(-t).
 \]
 Its block on coordinates $(i,4)$ is
 $\begin{psmallmatrix}s&e\\0&t\end{psmallmatrix}$, so
-$u=u_3u_2u_1\in\EL_4(\mathcal C)$ is the matrix
+$u=u_3u_2u_1\in\EL_4(R)$ is the matrix
 \[
  u=
  \begin{pmatrix}
@@ -1131,14 +1135,15 @@ $u=u_3u_2u_1\in\EL_4(\mathcal C)$ is the matrix
  \end{pmatrix},
 \]
 invertible as a product of elementary matrices.  For $1\le i\ne j\le3$
-and $a\in\mathcal C$,
+and $a\in R$,
 \begin{equation}\label{eq:intertwine}
  u\,e_{ij}(a)=e_{ij}(sat)\,u:
 \end{equation}
 both sides differ from $u$ by one entry, $sa$ in position $(i,j)$, since
 on the right the increment $sat\cdot(s,\ldots,et^{j-1})$ from row $j$ of
 $u$ contributes $sa\,ts=sa$ in position $(i,j)$ and
-$sa\,te\,t^{j-1}=0$ in position $(i,4)$.  So $uLu^{-1}\le L$.
+$sa\,te\,t^{j-1}=0$ in position $(i,4)$.  So $uLu^{-1}\le L$, and
+\eqref{eq:intertwine} gives the last assertion.
 
 The element
 \[
@@ -1151,13 +1156,26 @@ $\operatorname{diag}(A,1)$, so $c\in C_G(L)$.  Both $uc$ and
 $e_{12}(e)u$ equal $u+et\,E_{14}$: the last column of $uc$ is
 $(e,et,et^2,t^3)^{\mathsf T}(1+et)$ and $e^2=e$, $te=0$, while
 $e_{12}(e)u=u+e\,(0,s,0,et)E_{1\ast}$ and $es=0$.  So
+$ucu^{-1}=e_{12}(e)$, and the Steinberg relation
+$[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives the second identity.
+\end{proof}
+
+% The full-defect theorem and its rank-two descent have the selected
+% Lean counterparts listed at Theorem~\ref{thm:full-defect-ring}.
+% Sentence-level coverage is recorded separately in the sentence census.
+\begin{proof}[Proof of Theorem~\ref{thm:full-defect-ring}]
+\emph{The group $B$.}  In $\mathcal C$ put $s=s_0$, $t=t_0$, and
+$e=1-st$.  Then $ts=1$, $e^2=e$, $es=te=0$, and $t_1es_1=1$.  Put
+$G=B=\EL_4(\mathcal C)$ and $L=\EL_3(\mathcal C)$ on coordinates
+$1,2,3$.  The ring $\mathcal C$ is nonzero, since it maps onto
+$L_{\F_2}(1,2)$, and finitely generated, so both groups
+have property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and $B$ is
+finitely generated~\cite[Theorem~1.3.1]{BHV}.
+
+By Lemma~\ref{lem:ring-compression-cell} there are
+$u\in\operatorname{Comp}_G(L)$ and $c\in C_G(L)$ with
 \[
- ucu^{-1}=e_{12}(e).
-\]
-For $\ell=e_{23}(1)$ the Steinberg relation
-$[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives
-\[
- d=[ucu^{-1},\ell]=e_{13}(e)\in\mathfrak D_G(L).
+ d=[ucu^{-1},e_{23}(1)]=e_{13}(e)\in\mathfrak D_G(L).
 \]
 
 Let $N$ be the normal closure of $d$ in $G$.  For arbitrary $a,b\in\mathcal C$,
@@ -1262,19 +1280,18 @@ and the unit group $R^\times$ is not MF\@.
 
 \begin{proof}
 Choose $s,t\in R$ with $ts=1\ne st$, and let $S$ be the unital subring
-they generate.  The compressor $u$ from the proof of
-Theorem~\ref{thm:full-defect-ring} lies in $\EL_4(S)$ and conjugates
-$L=\EL_3(S)$ into itself, and $L$ has
-property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.  The compression is
-strict: every off-diagonal entry of a matrix in $uLu^{-1}$ has the form
-$sat$, and $e(sat)=0$ while $e\cdot1=e\ne0$, so
-$e_{12}(1)\in L\setminus uLu^{-1}$.  By
+they generate.  Let $u$ and $L=\EL_3(S)$ be as in
+Lemma~\ref{lem:ring-compression-cell} for $S$; then $L$ has
+property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and the compression is
+strict, since $e(sat)=0$ while $e\cdot1=e\ne0$ puts
+$e_{12}(1)$ in $L\setminus uLu^{-1}$.  By
 Proposition~\ref{prop:max-infinite} applied to $L\le\EL_n(R)$ and $u$,
 $C^*_{\max}(\EL_n(R))$ contains a proper isometry.  If $R\ne0$
 satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, take
-instead $S=\varphi(\mathcal C)$ and the map $\Psi$ from the rank-two
-part of its proof, with $L=\EL_3(S)$ and $u$ the image in $\EL_4(S)$ of the compressor of
-$B$; here $v_0w_0\ne1$, since $w_1v_0=0$ and $w_1v_1=1$.  Then $\Psi$
+instead $S=\varphi(\mathcal C)$, the map $\Psi$ from the rank-two part
+of its proof, and $u$, $L=\EL_3(S)$ from
+Lemma~\ref{lem:ring-compression-cell} for $S$; here $v_0w_0\ne1$, since
+$w_1v_0=0$ and $w_1v_1=1$.  Then $\Psi$
 is injective, since $T_i\jmath(A)S_j=A_{ij}$, so
 $\Psi(L)\le\EL_2(R)\le\EL_n(R)$ has property~\textup{(T)}, as $S$ is
 finitely generated, and is compressed strictly by $\Psi(u)$, and
