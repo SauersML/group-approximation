@@ -20,6 +20,9 @@ on:
       - 'research/normalizing-subgroups-*.md'
       - 'research/fg-central-extension-*.md'
       - 'research/projective-elementary-*.md'
+      - 'research/zigzag-cyclic-shift-*.md'
+      - 'research/shift-envelope-*.md'
+      - 'research/cyclic-shift-finite-prefix-*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -77,7 +80,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check pilot source syntax
-        run: python3 -m py_compile experiments/bh_civo_pilot.py experiments/bh_gpu_pilot.py experiments/bh_gpu_verify.py
+        run: python3 -m py_compile experiments/bh_civo_pilot.py experiments/bh_gpu_pilot.py experiments/bh_gpu_verify.py experiments/bh_shift_cyclic_check.py
       - name: Check the exact finite counterexample
         run: |
           python3 - <<'PY'
@@ -88,6 +91,8 @@ jobs:
           from bh_gpu_verify import false_control_witness
           Path('bh-false-control.json').write_text(json.dumps(false_control_witness(), indent=2) + '\n')
           PY
+      - name: Check the exact cyclic shift germ index
+        run: python3 experiments/bh_shift_cyclic_check.py > bh-shift-cyclic-arithmetic.json
       - name: Validate Cairn and export the current goal
         run: |
           bin/cairn check
@@ -104,6 +109,10 @@ jobs:
           bin/cairn why fg-central-extension-of-fp-group-is-fp --json > bh-projective-central-extension.json
           bin/cairn why projective-elementary-fp-kernel-criterion --json > bh-projective-finiteness.json
           bin/cairn why projective-elementary-simplicity-forces-simple-ring --json > bh-projective-simple-ring.json
+          bin/cairn why zigzag-cyclic-shift-envelope-is-finitely-presented --json > bh-shift-cyclic.json
+          bin/cairn why shift-envelope-fp-enumerations-are-countable --json > bh-shift-countability.json
+          bin/cairn why cyclic-shift-finite-prefix-cannot-decide-fp --json > bh-shift-finite-prefix.json
+          bin/cairn why infinite-shift-higman-compiler --json > bh-shift-open-compiler.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -118,3 +127,4 @@ jobs:
             bh-cover-kernel-dichotomy.json
             bh-normalizer-separation.json
             bh-projective-*.json
+            bh-shift-*.json

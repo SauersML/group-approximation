@@ -22,6 +22,7 @@ artifacts:
   - research/artifacts/boone-higman-cover-kernel-dichotomy-2026-09-08.md
   - research/artifacts/boone-higman-lean-preflight-2026-09-08.md
   - research/artifacts/boone-higman-projective-finiteness-gate-2026-09-08.md
+  - research/artifacts/boone-higman-zigzag-shift-compiler-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -262,3 +263,16 @@ presentation. The ring-host route now uses the equivalent generating-data
 formulation. Projective simplicity also forces the ring itself to be
 simple. Neither the required generating data nor a universal host has
 been constructed.
+
+## September 8: an explicit positive cyclic shift compiler
+
+`zigzag-cyclic-shift-envelope-is-finitely-presented` identifies a concrete
+E_nu(Z) as an index-12 subgroup of E_4. Its finite presentation follows
+from the four-ray Houghton group's finiteness theorem. The universal
+infinite-input compiler remains open.
+
+The same analysis shows a limit on testing enumerations by finite point
+values: for Z every finite prescription extends to both a finitely
+presented envelope and a non-finitely-presented one. The positive example
+works because a global four-ray rule controls the relations. No analogous
+global rule has been supplied for arbitrary decidable inputs.

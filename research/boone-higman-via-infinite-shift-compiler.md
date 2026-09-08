@@ -37,3 +37,7 @@ Therefore the infinite-input compiler implies the Boone--Higman conjecture.
 
 The `x Z` padding is load-bearing only for cardinality and costs neither
 finite presentation nor decidability.
+
+The explicit zigzag compiler for P=Z is now established in
+[[zigzag-cyclic-shift-envelope-is-finitely-presented]]. It is a positive
+case of step 3, not a proof of that step for arbitrary P_0 x Z.
