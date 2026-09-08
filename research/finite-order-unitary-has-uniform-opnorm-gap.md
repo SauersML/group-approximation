@@ -23,10 +23,26 @@ Then
 ||u - 1|| >= delta_N := 2 sin(pi/N).                             (TG2)
 ```
 
-So in **every** unital C*-algebra -- in particular in each `M_d(C)` and in a
-norm matrix corona `Q = (prod_n M_(d_n)) / (oplus_n M_(d_n))` -- the
-exponent-`N` elements form a **uniformly discrete** subset of the unitary
-group, with a separation constant depending on `N` alone.
+Consequently every **subgroup of exponent `N`** in the unitary group of
+a unital C*-algebra is uniformly discrete with separation constant
+`delta_N`: for distinct subgroup elements `u,v`, the element `u^*v`
+is nonidentity and satisfies `(u^*v)^N=1`, so
+`||u-v||=||u^*v-1||>=delta_N`. This applies in every `M_d(C)` and
+every norm matrix corona.
+
+The set of all exponent-`N` unitaries need not be uniformly discrete.
+Already for `N=2`, let
+
+```text
+D=diag(1,-1),
+R_theta=[[cos(theta),-sin(theta)],[sin(theta),cos(theta)]],
+D_theta=R_theta D R_theta^*.
+```
+
+Both `D` and `D_theta` are involutions, while
+`||D_theta-D||=2|sin(theta)|` tends to zero through nonzero values.
+Their quotient need not be an involution, so this example does not
+contradict the subgroup assertion or the identity-distance bound `(TG2)`.
 
 ## Why this is the invariant the exclusion tests ask for
 
