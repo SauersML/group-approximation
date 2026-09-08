@@ -86,8 +86,16 @@ MINIMUM_TOOLCHAIN = (4, 28, 0)
 STANDARD_AXIOMS = {"propext", "Quot.sound", "Classical.choice"}
 COMPARATOR_REQUIRED_KEYS = {
     "challenge_module", "solution_module", "theorem_names", "permitted_axioms"}
+# `external_kernels` is the current spelling for replaying the export through
+# an additional kernel; `enable_nanoda` is the backwards-compatible shorthand
+# for the one that calls `nanoda_bin` (Comparator README, "Checking with
+# Additional Kernels").  Neither appears in the committed configuration --
+# `.github/workflows/palomar-comparator.yml` writes `enable_nanoda` into a
+# throwaway copy from its own dispatch input, so the cost of the second replay
+# stays a per-run decision -- but a config carrying either is legitimate and
+# must not read as an unknown key here.
 COMPARATOR_ALLOWED_KEYS = COMPARATOR_REQUIRED_KEYS | {
-    "definition_names", "enable_nanoda"}
+    "definition_names", "enable_nanoda", "external_kernels"}
 TOOLCHAIN_RE = re.compile(
     r"^leanprover/lean4:v(?P<major>[0-9]+)\.(?P<minor>[0-9]+)\.(?P<patch>[0-9]+)"
     r"(?:-rc(?P<rc>[0-9]+))?$")
@@ -222,6 +230,33 @@ def check_files(root: Path, f: Findings) -> None:
     names = cfg.get("theorem_names") or []
     if not names:
         f.add("comparator.json theorem_names is empty")
+
+    # Shape checks for the optional keys.  They were allowed but unvalidated,
+    # so `"enable_nanoda": "true"` -- a string, which is truthy in JSON-loading
+    # code and false to Comparator's boolean field -- passed this gate while
+    # silently turning the second kernel off.  Each check is guarded on the key
+    # being present, so a configuration omitting them is unaffected.
+    if "enable_nanoda" in cfg and not isinstance(cfg["enable_nanoda"], bool):
+        f.add(f"comparator.json enable_nanoda is {cfg['enable_nanoda']!r}; "
+              "Comparator reads a JSON boolean, and a string here disables the "
+              "second kernel without failing anything")
+    if "external_kernels" in cfg:
+        ext = cfg["external_kernels"]
+        if not isinstance(ext, dict) or not ext:
+            f.add(f"comparator.json external_kernels is {ext!r}; it must be a "
+                  "nonempty object mapping a kernel name to its argv array")
+        else:
+            for kernel, argv in ext.items():
+                if not (isinstance(argv, list) and argv
+                        and all(isinstance(a, str) for a in argv)):
+                    f.add(f"comparator.json external_kernels[{kernel!r}] is "
+                          f"{argv!r}; it must be a nonempty array of strings")
+    if "definition_names" in cfg:
+        holes = cfg["definition_names"]
+        if not (isinstance(holes, list)
+                and all(isinstance(h, str) for h in holes)):
+            f.add(f"comparator.json definition_names is {holes!r}; it must be "
+                  "an array of declaration names")
 
     for key in ("challenge_module", "solution_module"):
         module = cfg.get(key, "")
