@@ -5,7 +5,7 @@ kind: claim
 title: Every countable group is the conjugation image of a torsion-free MF group on a normal free abelian subgroup
 distinct_from:
   perfect-torsion-free-mf-group-has-no-fd-representations: that is a countable torsion-free MF group with total collapse of exact finite-dimensional representations and is not finitely generated; this is finitely generated whenever the input is, with only partial collapse, so the two calibrations are complementary rather than nested.
-  abelianized-cover-kernel-is-self-centralizing: that identifies the structural feature this construction lacks, namely that the relation cover's abelian kernel is its own centralizer; this construction has a free group inside the centralizer, which is exactly why it does not reach the transfer implication.
+  abelianized-cover-kernel-is-self-centralizing: that identifies the structural feature this construction lacks for non-MF inputs, namely that the dummy-generator relation cover's abelian kernel is its own centralizer; for those inputs this construction has a nontrivial free group inside the centralizer, so it does not reach the transfer implication.
   mf-extension-nonclosure: that shows MF is not closed under extensions; this is a sharper failure of a different principle, since here the extension itself is MF and it is the conjugation image that is unconstrained.
   integral-group-ring-congruence-groups-are-torsion-free-mf: that rules out a family of constructions by proving their outputs MF for every input; this rules out a permanence principle, by realizing every input as an invariant of a torsion-free MF group.
 artifacts:
@@ -39,7 +39,7 @@ is false: take any non-MF `G`.  So the conjugation action of a torsion-free MF
 group on a normal free abelian subgroup places no restriction whatever on the
 image.
 
-**A second calibration.**  If `g = q(f)` lies in the finite residual of `G`
+**A second calibration.**  If `g = q(f) != 1` lies in the finite residual of `G`
 then
 
 ```text
@@ -51,8 +51,9 @@ MF group with `Rad_fd != 1`.  This complements
 `perfect-torsion-free-mf-group-has-no-fd-representations`, which reaches total
 collapse but is not finitely generated.
 
-**Why it does not reach the transfer.**  `C_H(A) = A x R` is strictly larger
-than `A`, whereas the relation cover's abelian kernel is its own centralizer
+**Why it does not reach the transfer.**  For a non-MF input, `R != 1`, so
+`C_H(A) = A x R` is strictly larger than `A`, whereas the dummy-generator
+relation cover's abelian kernel is its own centralizer
 by `abelianized-cover-kernel-is-self-centralizing`.  So this is a
 counterexample to the permanence principle and **not** to
 `free-abelianized-cover-reflects-mf`, which is untouched.

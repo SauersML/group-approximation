@@ -29,3 +29,16 @@ by norm density; a map into a quotient does not. No strict bound
 of this kind is currently constructed. Any successful host would
 already be nonhyperlinear, by its positive canonical corner trace.
 The known finite-window wreath host cannot meet this requirement.
+
+## Attempts
+
+2026-09-08: The [strict-energy artifact](artifacts/strict-bcs-energy-in-full-augmentation-corner-2026-09-08.md)
+derives the contraction gap by spectral rounding and proves that a bound
+`E_B(a)<=c q` with `c<beta` in the actual full corner would kill the finite
+subgroup in every matrix corona. It gives finite-support sums-of-squares
+identities as a sufficient certificate and shows that an exact map into
+the full corner would yield a strict bound by maximal-norm approximation.
+Neither construction has been supplied. A map into a quotient does not
+provide the required full-corner elements, and the positive canonical
+corner trace excludes every hyperlinear host. The missing step remains
+an explicit host and a certified strict inequality inside its full corner.

@@ -21,3 +21,17 @@ CA into this class, as proved in the linked artifacts. Even the
 special coefficients +1 and -1 suffice for that reduction.
 Bijectivity in each own track with the others fixed is not a
 proved substitute for a known bijective invariant fiber.
+
+## Attempts
+
+2026-09-08: The [normal-form artifact](artifacts/gottschalk-recipient-affine-normal-form-and-fiber-obstruction-2026-09-08.md)
+constructs `H(x,u)=(x+u,F(x)-x-u)` by reversible local changes, preserving
+injectivity, surjectivity, and the three-factor bound. Its own-track
+coefficients are `+1,-1`, but the zero-`x` axis is not invariant. After
+isolating a preserved certificate, the zero-certificate fiber is a copy
+of the original unknown map; the affine elimination formula gives
+`u -> F(-u)`. The artifact also rules out the specified constant linear
+two-track normalization over finite fields for non-affine `F`. This
+normalization obstruction does not cover arbitrary nonlinear changes or
+additional tracks. A proof that injectivity forces surjectivity in this universal
+recipient-affine class remains missing.

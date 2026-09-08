@@ -49,7 +49,7 @@ Phi_n(a,f) = (a|_(B_n) mod m_n, sigma_n(f), tau_n(f)),
   since the intended inputs are not residually finite.
 
 * **A second calibration, from the report's own Theorem N section.**  For
-  `g = q(f)` in the finite residual of `G`,
+  `g = q(f) != 1` in the finite residual of `G`,
 
 ```text
 [(0,f),(e_1,1)] = (e_g - e_1, 1) != 1,                              (N2)
@@ -66,8 +66,9 @@ Phi_n(a,f) = (a|_(B_n) mod m_n, sigma_n(f), tau_n(f)),
 
 ## Why it does not reach (D), made precise
 
-The report says the limitation is that `C_H(A) = A x R` is larger than `A`,
-whereas the relation cover's kernel is self-centralizing.  That second half is
+For non-MF inputs, `R != 1`, so `C_H(A) = A x R` is larger than `A`,
+whereas the dummy-generator relation cover's kernel is self-centralizing.
+That second half is
 asserted there; it is **provable from what is already in the graph**, and the
 proof is worth landing because it is exactly the structural line between the
 two objects.
@@ -95,12 +96,12 @@ dependency for a clause you can reprove inline.
 
 `(N4)` is what Theorem N does not have, and it is not a cosmetic difference:
 the whole force of the relation cover is that `G` acts faithfully on its
-abelian kernel, so recovering `G` costs nothing extra, whereas in `(N1)` the
-free group `R` sits inside the centralizer and absorbs everything.
+abelian kernel, so recovering `G` costs nothing extra, whereas for non-MF
+inputs in `(N1)` the nontrivial free group `R` sits inside the centralizer.
 
 ## Scope
 
 Theorem N refutes a **permanence principle**, not the transfer: MF plus
 torsion-freeness plus a normal free abelian subgroup does not constrain the
-conjugation image at all.  `(D)` is untouched, and the self-centralizing case
-is exactly what remains.  No Lean certification is asserted.
+conjugation image at all. `(D)` is untouched, including the dummy-generator
+cover case whose kernel is self-centralizing. No Lean certification is asserted.

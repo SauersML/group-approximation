@@ -22,3 +22,17 @@ and N; it does not prove the claim. A bound on the number of unary
 factors is not an ordinary polynomial degree bound over Z/qZ.
 The reduction imposes no bipartite operand graph, preserved auxiliary
 tracks, or known bijective fiber for block elimination.
+
+## Attempts
+
+2026-09-08: The [stable-reduction artifact](artifacts/gottschalk-stable-three-factor-reduction-2026-09-08.md)
+expresses every local rule using unary lookup functions and cancels each
+term with at least four factors by adding two identity tracks and applying
+reversible local shears. A decreasing integer potential proves finite
+termination while both injectivity and surjectivity are preserved. This
+establishes the reduction to the stated class, not its surjunctivity.
+The transformed auxiliary outputs depend on the old inputs; setting them
+to zero recovers the original rule rather than a known bijective fiber.
+The existing homogeneous block and quadratic elimination results do not
+cover the resulting unrestricted cubic interactions. A surjectivity
+argument for injective maps in this full class remains missing.

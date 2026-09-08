@@ -112,19 +112,21 @@ input.  That is `torsion-free-countable-non-mf-from-abelianized-cover`.
   enlarging the cover's abelian kernel to a rational vector space gives every
   finite-order element of the base a lift of the same order, so that repair
   destroys torsion-freeness.
-- **Recovering the base from a conjugation action is unconstrained, and the
-  cover escapes that only by faithfulness (2026-09-08).**  One might hope that
+- **Recovering the base from a conjugation action is unconstrained; the
+  dummy-generator cover has a faithful action (2026-09-08).** One might hope that
   MF of a torsion-free group with a normal free abelian subgroup restricts the
   conjugation image.  It does not:
   `conjugation-image-of-a-torsion-free-mf-group-is-arbitrary` realizes **every**
   countable group as `H/C_H(A)` with `H = A x| F` torsion-free and LEF, finitely
   generated whenever the input is.  The reason this is not a counterexample to
-  `(D)` is exactly one structural difference, and it is now proved rather than
-  asserted: there `C_H(A) = A x R` contains a free group, whereas the cover's
-  kernel is its own centralizer
+  `(D)` includes a proved structural difference for the dummy-generator
+  cover: for non-MF inputs, `C_H(A) = A x R` contains a nontrivial free group,
+  whereas the dummy-generator cover's kernel is its own centralizer
   (`abelianized-cover-kernel-is-self-centralizing`), so `G` acts faithfully on
-  it.  Any future counterexample to `(D)` must therefore have a faithful action
-  of the base on an abelian kernel, which is the case this construction leaves
+  it. A counterexample to `(D)` using this dummy-generator presentation
+  would therefore have a faithful action of the base on its abelian kernel.
+  No reduction preserving MF from an arbitrary cover to this presentation
+  is asserted here; this construction leaves the dummy-generator case
   untouched.
 - **Deferred:** no attempt at a proof or a counterexample is made here.  A
   counterexample would be as informative as a proof: it would be the first
