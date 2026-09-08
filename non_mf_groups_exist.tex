@@ -66,9 +66,12 @@
 \addtolength{\leftskip}{1.5pc}\addtolength{\rightskip}{1.5pc}
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Some groups are not MF.  We construct groups for which every homomorphism
-to an MF group is trivial; the obstruction is a property-\textup{(T)}
+to an MF group is trivial.  The obstruction is a property-\textup{(T)}
 subgroup conjugated into a proper subgroup of itself, together with an
-element that commutes with the subgroup while its conjugate does not.
+element that commutes with the subgroup while its conjugate does not:
+such elements have asymptotic matrix images that vanish in
+Hilbert--Schmidt norm, and property~\textup{(T)} of a normal subgroup
+they generate upgrades that to vanishing in operator norm.
 If a countable unital ring $R$
 contains $s,t$ with $ts=1$ and $R(1-st)R=R$, then every homomorphism
 from $\EL_n(R)$ to an MF group is trivial for all $n\ge2$.  In
@@ -240,11 +243,11 @@ Hilbert--Schmidt asymptotic commutant of $L$, and the matrices assigned to an el
 $\mathfrak D_G(L)$ tend to $1$ in Hilbert--Schmidt norm in every operator
 norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
 Property~\textup{(T)} of $K$ turns this into triviality in operator norm.
-A corona homomorphism nontrivial on $K$ compresses to a corner where the
-Kazhdan projection of $K$ vanishes.  On that corner, a group-algebra
-element within $\tfrac14$ of the Kazhdan projection has operator norm
-below $\tfrac14$, while Hilbert--Schmidt triviality sends its normalized
-traces to the sum of its coefficients, whose absolute value exceeds $\tfrac34$
+A corona homomorphism nontrivial on $K$ compresses to a corner where
+the Kazhdan projection of $K$ vanishes.  A limit of the normalized traces
+of that corner is a tracial state taking the value $1$ on every element
+of $K$, hence is the trivial character; but the trivial character takes
+the value $1$ on the Kazhdan projection, which is $0$ there
 (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
@@ -847,36 +850,27 @@ the map \(a\mapsto q\Theta(a)\) is a homomorphism on \(C^*_{\max}(K)\)
 agreeing with \(\pi\) on \(K\), so \(\pi(e_K)\) is the coordinate
 restriction of \(qp=0\).
 
-The group algebra \(\C[K]\) is dense in \(C^*_{\max}(K)\), so there are
-a finite set \(F\subseteq K\) and scalars \((\alpha_k)_{k\in F}\) with
-\[
- a=\sum_{k\in F}\alpha_k u_k,
- \qquad \opnorm{a-e_K}<\tfrac14,
-\]
-where \(u_k\) is the canonical unitary of \(k\).  The trivial character
-\(\chi\) of \(K\), the state of \(C^*_{\max}(K)\) with \(\chi(u_k)=1\)
-for every \(k\), has \(\chi(e_K)=1\), so
-\[
- \Bigl|\sum_{k\in F}\alpha_k-1\Bigr|=|\chi(a-e_K)|<\tfrac14.
-\]
-Since \(\pi(e_K)=0\),
-\[
- \limsup_n\opnorm{\sum_{k\in F}\alpha_kW_n(k)}
- =\opnorm{\pi(a)}=\opnorm{\pi(a-e_K)}<\tfrac14.
-\]
-The hypothesis applies to \((W_n)\) itself, so
+Fix a free ultrafilter \(\omega\) and let \(\tau\) be the limit along
+\(\omega\) of the normalized traces of the coordinates \(M_{r_n}(\C)\).
+A norm-null sequence has vanishing traces, since
+\(|\tr_{r_n}(x)|\le\opnorm x\), so \(\tau\) is a well defined tracial
+state on \(\mathcal Q_{\mathbf r}\).  The hypothesis applies to
+\((W_n)\) itself, so
 \[
  |\tr_{r_n}(W_n(k))-1|\le\hsnorm{W_n(k)-I_{r_n}}\longrightarrow0
- \qquad(k\in K),
+ \qquad(k\in K)
 \]
-with the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and then
+in the normalized Hilbert--Schmidt norm of \(M_{r_n}(\C)\), and
+therefore \(\tau(\pi(u_k))=1\) for every \(k\in K\), where \(u_k\) is
+the canonical unitary of \(k\).  The trivial character \(\chi\) of
+\(K\) is the state of \(C^*_{\max}(K)\) with \(\chi(u_k)=1\) for every
+\(k\), and it has \(\chi(e_K)=1\).  The two states \(\tau\circ\pi\) and
+\(\chi\) agree on every \(u_k\), hence by linearity on the dense
+subalgebra \(\C[K]\), hence on \(C^*_{\max}(K)\).  So
 \[
- \tr_{r_n}\Bigl(\sum_{k\in F}\alpha_kW_n(k)\Bigr)
- \longrightarrow\sum_{k\in F}\alpha_k.
+ 1=\chi(e_K)=\tau(\pi(e_K))=\tau(0)=0,
 \]
-Since \(|\tr_{r_n}(x)|\le\opnorm{x}\), the limit has absolute value at
-most \(\tfrac14\), while \(|\sum_{k\in F}\alpha_k|>\tfrac34\), a
-contradiction.
+a contradiction.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -1685,7 +1679,11 @@ and this word maps to $(a,\delta_{x_1}+\cdots+\delta_{x_r})$, so the
 expression is unique and the homomorphism is an isomorphism.  In
 particular, for a finite subset $Y\subseteq X$, the subgroup generated
 by $\varepsilon$ and the $c_y$ with $y\in Y$ has order $2^{|Y|+1}$, so
-$\operatorname{Cl}(X)$ is countable and locally finite.  The relations
+$\operatorname{Cl}(X)$ is countable and locally finite.  Killing
+$\varepsilon$ leaves $E\cong\bigoplus_XC_2$, so
+$\operatorname{Cl}(X)$ is a central extension of $\bigoplus_XC_2$ by
+$C_2$, and $W$ below is a central extension of the permutational wreath
+product $C_2\wr_XV$ by $\langle\varepsilon\rangle$.  The relations
 are invariant under permutations of $X$, so every permutation of $X$
 induces an automorphism of $\operatorname{Cl}(X)$ that permutes the
 $c_x$ accordingly and fixes $\varepsilon$.  In this way $V$ acts on
@@ -2624,25 +2622,25 @@ quotient map $Q\to\bar Q$ is trivial, so $\bar Q=1$.
 Let $G$ be finitely presented, torsion-free, and acylindrically
 hyperbolic, and let $\Omega\subseteq G$ be finite.  Then $G$ has a
 two-generated, finitely presented, torsion-free, acylindrically
-hyperbolic quotient $P$ with property~\textup{(T)} such that the
-quotient map is injective on $\Omega$ and every homomorphism from $P$
-to an MF group is trivial.
+hyperbolic quotient $\widetilde G$ with property~\textup{(T)} such that
+the quotient map is injective on $\Omega$ and every homomorphism from
+$\widetilde G$ to an MF group is trivial.
 \end{corollary}
 
 \begin{proof}
 Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, applied to
 $G$ and to the group $Q$ of Theorem~\ref{thm:torsion-free}, gives a
-common quotient $P$ that is acylindrically hyperbolic, with the map
-from $G$ injective on a prescribed finite subset, since a torsion-free
-acylindrically hyperbolic group has no nontrivial finite normal
-subgroup.  For finitely generated inputs, the proof of that corollary
-applies Theorem~\ref{thm:hull} to the free product $G*Q$ and then to
-the resulting quotient, each time with finitely many elements $g_i$, so
-$P$ is torsion-free and finitely presented, as in the remark after
-Theorem~\ref{thm:hull}.  As a quotient of $Q$, the group
-$P$ is two-generated and has property~\textup{(T)}, and every
-homomorphism from $P$ to an MF group pulls back to one from $Q$, so it
-is trivial.
+common quotient $\widetilde G$ that is acylindrically hyperbolic, with
+the map from $G$ injective on a prescribed finite subset, since a
+torsion-free acylindrically hyperbolic group has no nontrivial finite
+normal subgroup.  For finitely generated inputs, the proof of that
+corollary applies Theorem~\ref{thm:hull} to the free product $G*Q$ and
+then to the resulting quotient, each time with finitely many elements
+$g_i$, so $\widetilde G$ is torsion-free and finitely presented, as in
+the remark after Theorem~\ref{thm:hull}.  As a quotient of $Q$, the
+group $\widetilde G$ is two-generated and has property~\textup{(T)}, and
+every homomorphism from $\widetilde G$ to an MF group pulls back to one
+from $Q$, so it is trivial.
 \end{proof}
 
 \begin{corollary}\label{cor:regular-nonmf-algebra}
