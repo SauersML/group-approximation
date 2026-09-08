@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/compression-locally-finite-centralizer-criterion-2026-09-08.md
   - research/artifacts/affine-perfect-lamp-wreath-recheck-2026-09-08.md
+  - research/artifacts/dyadic-finite-perturbation-sofic-non-mf-2026-09-08.md
 ---
 
 Let `G` be countable and suppose
@@ -35,6 +36,21 @@ dimension. It is a written proof with independent mathematical
 review, not a new Lean endpoint. It is explicitly not a proof
 avoiding property `(T)`, nor the unrestricted locally finite
 normal-subgroup upgrade.
+
+**Independent recheck, 2026-09-08.** A separately forwarded dossier
+derived this same criterion, with the same four hypotheses and the same
+conclusion, and its derivation was re-verified against this statement in
+`research/artifacts/dyadic-finite-perturbation-sofic-non-mf-2026-09-08.md`.
+Three load-bearing points agree. The normalization is by the support rank
+`r_n=rank(p_n)`, so the estimate carries no `sqrt(d_n/r_n)` factor. The
+finite-dimensional reversal `||(I-P)UP||=||(I-P)U*P||`, from `B*B` and
+`BB*` having equal eigenvalue lists for a square `B=PUP`, is what
+transports the Kazhdan spectral projection through the compressor in the
+direction actually needed. And the exact correction of an approximate
+representation of a fixed finite group is dimension-independent, so it
+applies inside each finite `F<=C` separately. The recheck adds no
+hypothesis and weakens none. A second instance of the criterion is
+`dyadic-perturbation-group-mf-radical-is-finitary-alternating`.
 
 DERIVATION
 locally-finite-centralizer-support-rank-proof
