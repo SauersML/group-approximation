@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
   - research/artifacts/conservative-syndrome-update-audit-2026-09-07.md
   - research/artifacts/conservative-ca-literature-and-trace-scope-2026-09-07.md
+  - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -56,6 +57,16 @@ dynamical twin of `direct-finiteness-not-inherited-by-quotients`, and both
 kill the same shortcut.
 
 ## Attempts: a computer that preserves its malformed certificates
+
+The direct nonlinear seed check of 2026-09-08 excludes two proposed
+memory pairs for every finite alphabet. Their two composition product
+tables agree respectively with tables in A8*A8 and (A8*A8)*V4, so the
+same local rules and reverse defect would transfer to a surjunctive
+virtually free group. This remains true for the second seed despite its
+displayed mixed identity AB=C: the table does not authenticate the
+internal commutator words defining those addresses. No truth-table search
+was run on either excluded window. The attached two-shear artifact gives
+the precise memories and links the exact product-partition records.
 
 The user's proposed totalization uses certificate and syndrome tracks to
 avoid losing malformed computational histories. A precise subclass is

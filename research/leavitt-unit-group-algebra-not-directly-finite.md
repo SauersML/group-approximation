@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
   - research/artifacts/kaplansky-cross-atlas-affine-lift-2026-09-07.md
   - notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md
+  - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its
@@ -156,6 +157,17 @@ contradiction.  A direct construction of such a pair in `A`, owing nothing to
 the corner, remains admissible and would be a third lane; nobody has one.
 
 ## Attempts
+
+**2026-09-08 direct construction attempt.** A fixed evaluation-kernel
+shear followed by an unknown square-zero shear reduces a literal strict
+inverse pair to one linear equation. The fixed inverse corner has 220
+terms; a surviving common-context certificate shows that its normalized
+support generates all of Q. Strictness follows from a nonzero right
+annihilator of its fixed Leavitt evaluation, without constraining the
+unknown shear's evaluation. The completed 109-column parameter solve has
+no solution. This finite result and the exact criterion are recorded in
+the two-shear artifact; the target remains open. The initial incomplete
+run was replaced by a completed solve after a prefix-reduction speed fix.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**
