@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
+  - research/artifacts/boone-higman-gpu-pilot-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -189,3 +190,10 @@ This refutes `ck-quotient-coset-repair` and disables
 `boone-higman-via-ck-quotient-cosets`. Other embeddings and infinite
 stabilizer enlargements remain candidates. The maximal-simple-quotient
 route does not require finite bi-index and remains open.
+
+The GPU pilot is an operational experiment attached to this goal, not a
+mathematical prerequisite or a proof of any route. Its artifact records the
+$20 spending cap, the provider's GPU-quota rejection, the prepared neural
+proposal/checker pipeline, and the unfinished positive Lean preflight.
+The dedicated research workflow checks source syntax, the exact `S3`
+counterexample used as a negative control, and Cairn's graph structure.

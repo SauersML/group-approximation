@@ -1,0 +1,53 @@
+name: Boone-Higman research checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/bh_*.py'
+      - 'research/boone-higman-*.md'
+      - 'research/ck-quotient-*.md'
+      - 'research/elementary-root-kernel-*.md'
+      - '.github/workflows/boone-higman-research.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: boone-higman-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          fetch-depth: 0
+      - name: Check pilot source syntax
+        run: python3 -m py_compile experiments/bh_civo_pilot.py experiments/bh_gpu_pilot.py experiments/bh_gpu_verify.py
+      - name: Check the exact finite counterexample
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'experiments')
+          from bh_gpu_verify import false_control_witness
+          Path('bh-false-control.json').write_text(json.dumps(false_control_witness(), indent=2) + '\n')
+          PY
+      - name: Validate Cairn and export the current goal
+        run: |
+          bin/cairn check
+          bin/cairn why boone-higman-conjecture --json > bh-goal.json
+          bin/cairn why ck-quotient-corner-has-infinite-bi-index --json > bh-quotient-obstruction.json
+      - name: Retain structural validation and exact finite witness
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
+        with:
+          name: boone-higman-research-checks
+          path: |
+            bh-false-control.json
+            bh-goal.json
+            bh-quotient-obstruction.json

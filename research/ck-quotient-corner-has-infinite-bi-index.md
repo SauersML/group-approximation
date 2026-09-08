@@ -8,6 +8,7 @@ distinct_from:
   ck-envelope-simple-core-has-finite-bi-index: that remains an existential question over other envelopes and embeddings; this excludes the entire family retaining the canonical corner through the specified quotient and cover maps.
 artifacts:
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
+  - research/artifacts/ck-quotient-bi-index-cairn-validation-2026-09-08.json
 ---
 
 Let `S` be infinite simple, `Z[S]` a unital subring of `U`, and

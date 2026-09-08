@@ -164,3 +164,8 @@ or unproved finite-generation premise occurs.
 Cairn claim and route sources carry both results and the excluded repair.
 Graph compilation is structural validation, not independent verification
 of the mathematical proof. No Lean kernel check is claimed for this result.
+
+The existing remote workflow's `Validate the research graph` step passed
+on commit `ba4dd3b4b42e211a251822c1d5e3f92746e01330`; the
+[recorded check](ck-quotient-bi-index-cairn-validation-2026-09-08.json)
+identifies its exact scope, run, and timestamps.
