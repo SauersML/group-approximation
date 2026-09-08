@@ -104,6 +104,12 @@ restored before further remote verification.
 
 ## Required next step
 
+The [subsequent provisioning diagnosis and prepared quota request](boone-higman-civo-unblock-2026-09-08.md)
+confirm that the key authenticates, neither accessible GPU region currently
+offers a verified provisioning path within the account limits, and no
+additional creation attempts or spending occurred. The precise account-GPU
+restriction versus regional-capacity cause requires Civo confirmation.
+
 Enable a quota permitting **one A100 40 GB in Civo London (`lon1`)**. No
 support message or quota request was sent on the user's behalf. Preserve
 the $20 session cap. Before retrying provisioning, finish the short Lean
