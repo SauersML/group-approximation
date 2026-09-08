@@ -602,3 +602,41 @@ At each level F adds Q of that level and of the next. Therefore both
 x and x' have output alternating 000,100. This is an exact periodic
 collision in a family satisfying the new 3-color criterion, rather
 than evidence for an injective nonsurjective rule.
+
+## Single-subgroup masks force both cross-ratio inclusions
+
+For the disjoint-pair rule (14), set A=<a,b> and B=<c,d>. Injectivity
+requires both
+
+    a^-1 b in B,   c^-1 d in A.                           (17)
+
+Indeed, on the configuration 1_A the first quadratic term is exactly
+1_A and cancels the linear term. If c^-1d is outside A, there is no g
+for which both gc and gd belong to A, so the second quadratic term is
+zero. Thus F(1_A)=0=F(0), an exact collision. Interchanging the pairs
+proves the other inclusion. No finiteness of A or B is needed: subgroup
+indicators are valid full-shift configurations.
+
+This completely classifies the natural pair of order-three orbit terms.
+If s,t have order three, consider
+
+    F(x)=x+(R_s x)(R_(s^2) x)+(R_t x)(R_(t^2) x).
+
+When <s>=<t>, the quadratic terms coincide and cancel, giving identity.
+Otherwise the two order-three subgroups intersect trivially, and
+F(1_<s>)=0=F(0) is a three-particle collision. The four operands are
+then pairwise distinct. Such a rule cannot be rescued by adding mixed
+relations between the actors while keeping their order-three subgroups
+distinct. In the general case, satisfying (17) remains only a necessary
+condition and supplies no injectivity claim.
+
+## Guard extensions beyond cyclic subgroups
+
+The [finite coset stratification proof](gottschalk-virtually-abelian-guard-stratification-2026-09-08.md)
+extends support-preserving guard arguments to every abelian subgroup,
+using finite memory to reduce to a finitely generated guard. Its
+[Hirsch-length extension](gottschalk-polycyclic-guard-rank-extension-2026-09-08.md)
+covers every locally virtually polycyclic guard. Both proofs explicitly
+retain a uniform local inverse radius during coefficient limits and
+cancellation; they do not assume arbitrary injective nonuniform maps
+over amenable coordinate sets are surjective.
