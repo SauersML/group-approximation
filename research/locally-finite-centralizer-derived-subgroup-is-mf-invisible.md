@@ -9,6 +9,7 @@ distinct_from:
   finite-noncommutative-packet-compression-collapse: that assumes a finite packet normalized by the Kazhdan subgroup; this uses two commuting conjugates of a centralizing packet which need not be normalized after compression.
 artifacts:
   - research/artifacts/compression-locally-finite-centralizer-criterion-2026-09-08.md
+  - research/artifacts/affine-perfect-lamp-wreath-recheck-2026-09-08.md
 ---
 
 Let `G` be countable and suppose
