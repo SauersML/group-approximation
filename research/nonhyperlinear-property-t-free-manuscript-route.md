@@ -30,5 +30,8 @@ used by `property-t-free-manuscript-from-leavitt-collapse`.
 This route makes the logical boundary explicit: the authenticated BCS corner
 can replace Property `(T)` for endpoint 1, but it does not by itself imply
 the binary-Leavitt or torsion-free endpoint.  Therefore the single live gate
-on the BCS branch is `nonhyperlinear-bloop-central-sign-corner`, while the two
-unrelated obligations remain visible rather than being hidden as assumptions.
+on the general BCS branch is
+`nonhyperlinear-bloop-finite-augmentation-corner`, which does not require
+its finite subgroup to be normal. The central-sign gate is an optional
+special case. The two unrelated manuscript obligations remain visible
+rather than being hidden as assumptions.

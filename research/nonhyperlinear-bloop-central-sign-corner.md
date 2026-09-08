@@ -39,6 +39,12 @@ killed by every norm-matrix-corona homomorphism, without Property `(T)`.
 
 ## Attempts
 
+- This is a sufficient special case of the less restrictive target
+  `nonhyperlinear-bloop-finite-augmentation-corner`. The existing
+  noncentral torsion-corner theorem and the general finite-subgroup
+  augmentation endgame do not require centrality or normality.
+  The central quotient obstructions recorded for this node apply
+  only when choosing to impose that extra structure.
 - `B_loop` already supplies all source data: it has a perfect commuting
   tracial state and a strict finite-dimensional gap, hence no CE tracial
   state.  The missing datum is only `(BCS1)`.

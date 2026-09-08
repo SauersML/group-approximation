@@ -27,8 +27,9 @@ theorem whose proof depends on a Kazhdan hypothesis.  Equivalently,
 ```
 
 This is endpoint 1 of `property-t-free-manuscript-results`.  The exact
-source-specific route through a central sign is isolated at
-`nonhyperlinear-bloop-central-sign-corner-route`.
+source-specific route through a full finite-subgroup augmentation
+corner is `nonhyperlinear-bloop-finite-augmentation-route`.
+The older central-sign route is a sufficient special case.
 
 ## Attempts
 
@@ -73,9 +74,16 @@ source-specific route through a central sign is isolated at
   by `jacobson-full-boundary-forces-six-coordinate-packet`; neither
   finite reconstruction settles the unrestricted matrix gap.
 
-- The fixed no-CE BCS and the operator-norm endgame are established.  The
-  remaining input on this route is the exact central-sign corner map
-  `nonhyperlinear-bloop-central-sign-corner`.
+- The fixed no-CE BCS and the operator-norm endgame are established.
+  The general remaining construction is
+  `nonhyperlinear-bloop-finite-augmentation-corner`: an exact map
+  into the full augmentation corner of an embedded nontrivial finite
+  subgroup. That subgroup need not be normal. The prior central-sign
+  gate adds an optional restriction. The existing noncentral torsion
+  endgame and its general finite-subgroup extension justify removing
+  it. Affine-field packets supply full matrix corners of arbitrary
+  desired unital matrix width, but do not establish the shared BCS
+  identities across different contexts.
 - Conditional perfect-LCS and selected signed-Hecke corners do not establish
   this claim: the first lacks an instance, while the second does not
   authenticate its chosen finite-subgroup type in every corona map.

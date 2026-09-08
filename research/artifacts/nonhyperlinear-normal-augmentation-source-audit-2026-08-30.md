@@ -2,6 +2,26 @@
 
 Date: 2026-08-30
 
+## 2026-09-08 scope correction
+
+The audit below concerns the finite-normal version and its central-sign
+specialization. Normality is not needed by the operator-norm endgame.
+The already established
+`agent-leavitt-not-torsion-corner-noce-forces-mf-radical` covers every
+noncentral finite-order mark; the general extension
+`nonhyperlinear-finite-augmentation-corner-kills-mf` covers any finite
+subgroup. One compresses the algebra images in the surviving corner,
+not the whole group representation.
+
+Accordingly the general live construction gate is now
+`nonhyperlinear-bloop-finite-augmentation-corner`. Centrality of `J`
+remains an optional sufficient specialization. Larger finite subgroups
+can help with the local algebra: finite involution corners have
+only power-of-two full matrix widths, whereas full augmentation corners
+of finite affine translation groups allow arbitrary desired matrix width.
+Their explicit local matrix units still supply no global BCS corner map.
+The source and the non-MF existence goal have not changed.
+
 ## Question audited
 
 The operator-norm argument in
@@ -26,7 +46,7 @@ either source.
 
 ## The smallest authenticated corner
 
-There is no benefit in taking a large finite subgroup.  Take
+The smallest detecting subgroup is obtained by taking
 
 ```text
 K=<J> ~= C_2,     J central,     q_K=(1-J)/2.              (AUG2)
@@ -34,7 +54,7 @@ K=<J> ~= C_2,     J central,     q_K=(1-J)/2.              (AUG2)
 
 The augmentation complement is then the sole nontrivial irreducible type.
 Consequently it cannot be omitted while some other nontrivial `K`-type is
-retained.  This is the smallest exact map gate:
+retained. This gives the central-sign specialization:
 
 ```text
 A(B_loop) -> ((1-J)/2) C[G] ((1-J)/2),                    (AUG3)
