@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-gpu-pilot-2026-09-08.md
+  - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -119,7 +120,10 @@ carries the arguments.
    at `one-sided-sandwich-leaves-an-ideal-missing-the-core`, by an explicit
    Toeplitz counterexample; recorded as
    `boone-higman-via-sandwich-ring-simplicity`.  The serious form survives as
-   the open route `boone-higman-via-finitely-presented-simple-ring-quotient`.
+   the open route `boone-higman-via-projective-ring-host`. Its predecessor
+   `boone-higman-via-finitely-presented-simple-ring-quotient` is invalidated:
+   its universal ring premise fails in composite characteristic, and its
+   unquotiented elementary group has a nontrivial central involution.
 5. **Use this repository's finitely presented strongly simple Leavitt algebra
    as a universal host.**  *Dies* at
    `weyl-algebra-blocks-a-universal-leavitt-host`: Bilich--Hazrat--Nam prove
@@ -197,3 +201,17 @@ $20 spending cap, the provider's GPU-quota rejection, the prepared neural
 proposal/checker pipeline, and the unfinished positive Lean preflight.
 The dedicated research workflow checks source syntax, the exact `S3`
 counterexample used as a negative control, and Cairn's graph structure.
+
+## September 8: the ring route needs a projective target
+
+`ring-simple-envelope-characteristic-obstruction` refutes the unrestricted
+finite-fullness premise using `Z/6Z` and characterizes which coefficient
+rings admit abstract simple unital envelopes. Integral group rings pass
+that test, but the construction supplies no finite presentation.
+
+`rank-four-elementary-center-obstructs-simplicity` shows that `EL_4(L)`
+cannot be the proposed simple group whenever `L` contains `Z`: it contains
+the proper central subgroup `{I_4,-I_4}`. The repaired conditional route
+`boone-higman-via-projective-ring-host` proves the simple core survives
+projectivization. Its missing hypothesis explicitly asks for a finitely
+presented, simple projective target. That existence problem remains open.

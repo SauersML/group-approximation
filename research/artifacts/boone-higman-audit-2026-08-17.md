@@ -497,7 +497,11 @@ Two distinct temptations, both closed:
    `finite-fullness-simulation-theorem-for-rings`: compile an effective
    sequence of fullness requirements into one finitely presented extension
    while proving the original coefficient ring stays embedded.  Nothing here
-   proves it and nothing here refutes it.
+   proves it and nothing here refutes it. **September 8 correction:** the
+   unrestricted claim was subsequently refuted by `Z/6Z`, and the proposed
+   elementary group target also has a nontrivial center. See
+   [the ring-route repair](boone-higman-ring-route-repair-2026-09-08.md)
+   for the exact obstruction and the narrower projective successor.
 
 ### D.4 Clapham removes the effectivity excuse
 

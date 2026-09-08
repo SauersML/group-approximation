@@ -2,6 +2,7 @@
 rg: 2
 id: finite-fullness-simulation-theorem-for-rings
 kind: claim
+refuted_by: [ring-simple-envelope-characteristic-obstruction]
 title: An effective sequence of fullness requirements can be compiled into one finitely presented extension keeping the coefficient ring embedded
 distinct_from:
   universal-sandwich-ring-is-finitely-presented-and-injective: that handles ONE prescribed element with one relation and is proved; this asks for an effectively enumerated sequence of elements, in rings that keep changing as the construction proceeds, to be handled by finitely many relations in total, and it is open.
@@ -23,14 +24,23 @@ and makes each one full can be compiled into **one** finitely presented
 extension of `R_0`, with the original coefficient ring provably still
 embedded.
 
-Open.  This is the ring-side analogue of Higman's embedding theorem, and no
-such theorem is known to this audit.
+**REFUTED as stated.** The finite decidable ring `Z/6Z` cannot embed
+unitally in any nonzero simple ring, by
+[[ring-simple-envelope-characteristic-obstruction]]. The discussion below
+records the former attempted approach, not a surviving universal claim.
+The group-ring-specific successor is
+[[decidable-group-ring-has-fp-projective-simple-host]], which also states
+the missing projective-group requirements explicitly.
 
 ## Why the two halves of the statement are the same problem
 
 Each sandwich adjunction is cheap on its own — that is
 `universal-sandwich-ring-is-finitely-presented-and-injective`, one relation
-per element.  The difficulty is that the requirements are not a fixed list.
+per element **when its embedding-witness hypothesis holds**. That hypothesis
+is not automatic for arbitrary rings and elements; in `Z/6Z`, even the
+first adjunction making `2` full cannot preserve the coefficient embedding.
+For the torsion-free coefficient setting, a further difficulty is that the
+requirements are not a fixed list.
 Adjoining `p, q` with `p r_i q = 1` enlarges the ring, and the enlarged ring
 has nonzero elements that were not in the original enumeration; simplicity
 demands those be made full too.  So the process is a genuine recursion, not a

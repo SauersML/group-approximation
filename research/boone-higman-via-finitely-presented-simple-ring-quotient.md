@@ -9,8 +9,13 @@ artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
 
-Avoid the normal-lattice problem entirely by solving the corresponding
-problem one category down, where the objects are explicit.
+**INVALIDATED.** The generic ring-extension premise is false by
+`ring-simple-envelope-characteristic-obstruction`, and the proposed final
+group has a proper central involution by
+`rank-four-elementary-center-obstructs-simplicity`. The argument below is
+the recorded failed attempt. Its replacement is
+`boone-higman-via-projective-ring-host`, with the necessary projective
+conclusions explicitly left open.
 
 Let `G` be finitely generated with solvable word problem.  Run the
 Chatterji--Kassabov chain to a finitely presented group `G~` containing `G`
@@ -50,10 +55,10 @@ is dead, and this route deliberately does not cite a fixed simple host.  It
 asks for a bespoke extension of the specific coefficient ring, which is the
 form that `weyl-algebra-blocks-a-universal-leavitt-host` leaves open.
 
-**Simplicity of `L` is not by itself enough for the final group, and the
-route uses more.**  The last step needs `EL_4(L)` finitely presented, which
-comes from `L` being finitely presented, not from `L` being simple; and it
-needs the elementary group of a simple ring to be simple, which is the part
-supplied by the Steinberg/normal-generation computation rather than by ring
-simplicity alone.  Both are inside the open prerequisite's conclusion or the
-imported theorem, and neither is free.
+**The claimed simplicity step is false.** Neither the open premise nor
+the imported normal-generator theorem removes `-I_4`. The final group
+`EL_4(L)` is not simple for any ring containing `Z[G~]`. Passing to its
+projective quotient requires additional simplicity and finite-presentation
+arguments, as recorded in the replacement route. Also, Clapham establishes
+decidable equality for `Z[G~]`, not automatically for its universal
+sandwich extension `U`.
