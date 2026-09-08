@@ -8,6 +8,16 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 [`non_mf_groups_exist.pdf`](non_mf_groups_exist.pdf) at the repository root is the distribution PDF, rebuilt from the root TeX source by the draft PDF workflow. The obsolete duplicate under `output/pdf/` has been removed. A draft PDF build does not certify the manuscript's Lean coverage.
 
+[A direct rational-certificate proof](research/artifacts/affine-clifford-direct-non-mf-proof-2026-09-08.md)
+constructs an explicit nine-generated non-MF group and proves that every norm
+matrix corona representation kills its nontrivial central sign. Its two
+appendices derive the needed uniform spectral estimate from an integer
+certificate, without invoking a property-(T) theorem. The independent
+standard-library checker passed on MSI in 0.45 seconds. The
+[Cairn claim](research/affine-clifford-non-mf-from-rational-certificate.md)
+records the proof and its scope; this written argument has no new Lean
+formalization claim.
+
 ## Research notes
 
 [A finite-ball limit on relation-energy proofs](notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md)
