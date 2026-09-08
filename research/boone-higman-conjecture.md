@@ -26,6 +26,7 @@ artifacts:
   - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
   - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md
+  - research/artifacts/boone-higman-boundary-wreath-germ-construction-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -56,6 +57,15 @@ theorem nobody has.
 
 Soficity, hyperlinearity and MF-ness are not evidence about this claim in
 either direction, and no node here pretends otherwise.
+
+The September 8 construction
+`boundary-orbit-cyclic-wreath-has-fp-simple-envelope` handles cyclic
+lamps on constant-ray orbits of contracting self-similar groups. Its
+proof uses `contracting-srn-rational-stabilizers-are-fp` and a finite
+germ extension. It supplies an additional positive family, not a
+universal route: no reduction from arbitrary solvable-word-problem
+inputs to that construction has been established. The attached
+artifact explains the residual-finiteness limit on its input family.
 
 ## What a certificate must contain
 

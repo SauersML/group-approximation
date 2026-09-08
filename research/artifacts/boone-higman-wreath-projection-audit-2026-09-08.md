@@ -95,6 +95,13 @@ possibly nonfaithful setting. It is not a license to forget nonidentity
 homeomorphisms inside a faithful full group while fixing all prefix maps.
 No change is made to that imported theorem.
 
+An independent positive construction for constant-ray boundary orbits
+is now recorded in `boundary-orbit-cyclic-wreath-germ-proof` and
+`research/artifacts/boone-higman-boundary-wreath-germ-construction-2026-09-08.md`.
+It uses relative isotropy germ quotients and the finite-germ theorem;
+it does not use the audited projection or establish the full generality
+of Theorem D. The projection obstruction above remains applicable.
+
 There is no assertion here that the paper's target groups fail finite
 presentation or fail Boone--Higman. No author or provider was contacted.
 The new kernel lemma is a written proof; no GPU or local computation was
