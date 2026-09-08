@@ -15,6 +15,8 @@ artifacts:
   - research/artifacts/kaplansky-cross-atlas-affine-lift-2026-09-07.md
   - notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md
   - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
+  - research/artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md
+  - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its
@@ -391,3 +393,16 @@ extends strictly beyond all scalar phase assignments.
 These are unrestricted-support necessary conditions for construction,
 not a new inverse pair in Q. Surviving the tests still requires proving
 a literal nonzero reverse defect in the ordinary group algebra.
+
+The [half-corner construction](artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md)
+now supplies a different explicit comparison. A six-dimensional
+representation excludes every primitive split in the original S_3 block.
+A stable-image split instead solves the first shear equation exactly:
+its corner element satisfies T^4=T^2, with h=T^2 and Drazin inverse T^3.
+After conjugating the source, the remaining projectors f_+ and P have
+supports 30 and 70 in one group of order 180, both regular rank 40 and
+lifted trace 2/9. Their natural evaluations differ, so an explicit split
+embedding f_+S into PS would have a nonzero reverse defect. The
+[exact finite certificate](artifacts/kaplansky-finite-drazin-seed-2026-09-08.json)
+constructs the projectors and checks their identities; it does not
+construct that embedding. This headline target remains open.
