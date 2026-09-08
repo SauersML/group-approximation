@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md
   - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
   - research/artifacts/jacobson-two-braid-reduction-2026-09-07.md
+  - research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md
 distinct_from:
   property-t-free-manuscript-results: that also demands binary-Leavitt full collapse, the full radical calculus, and a torsion-free finitely presented endpoint; this is exactly its first explicit-group obligation.
   perfect-lcs-gap-implies-weak-non-mf: that is a conditional theorem for a hypothetical perfect LCS gap; this asks for an unconditional explicitly specified group and element.
@@ -73,6 +74,17 @@ The older central-sign route is a sufficient special case.
   separate candidate `Theta` has an embedded `GL_6(F_2) x GL_3(F_2)`
   by `jacobson-full-boundary-forces-six-coordinate-packet`; neither
   finite reconstruction settles the unrestricted matrix gap.
+
+  The separate finitely presented candidate `Theta_shift` adjoins
+  seven stable-letter equations. Its explicit bilateral action retains
+  the head, and `jacobson-stable-letter-closes-boundary-recursion`
+  proves the entire finite boundary recurs under that conjugation.
+  The new remaining premise is `jacobson-shift-mixed-gap`: finite
+  correction makes all stable-letter relations on the original finite
+  packet exact, leaving three mixed norm errors. Its exact infimum
+  and the original nine-test infimum differ by at most the explicit
+  factor 1337. This establishes a dimension-independent reduction,
+  not the required positive lower bound.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.
   The general remaining construction is
