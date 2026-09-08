@@ -8,6 +8,7 @@ distinct_from:
   jacobson-two-braid-infimum-is-zero: that constructs the amenable seven-ray quotient retaining the full packet; this computes the TS word as a nontrivial finite transvection in that quotient.
 artifacts:
   - research/artifacts/jacobson-ts-cell-after-seven-ray-countermodel-2026-09-08.md
+  - research/artifacts/jacobson-gamma2-universal-pair-structure-2026-09-08.md
 ---
 
 In the two-braid presentation `Gamma`, put

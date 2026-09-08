@@ -198,6 +198,15 @@ constructed from these additional relations. This explicit finite
 presentation records a testable next relation without treating its
 independence as the missing non-MF theorem.
 
+The subsequent [universal coupled-pair analysis](jacobson-gamma2-universal-pair-structure-2026-09-08.md)
+derives additional tail centralizers, finite dihedral pairs, and the
+dimension-independent estimate
+`||[h c h,x_21,P]-I||<=6 eps_W+3 eps_R` from this presentation.
+It also gives a finite counterexample to discarding the cross commutators
+of the three coupled pairs. These are consequences for arbitrary packet
+matrices; they do not close the remaining finite-dimensional coherence
+problem.
+
 ## 5. Exact replay
 
 The independent [stdlib verifier](../../experiments/verify_jacobson_seven_ray_countermodel.py)

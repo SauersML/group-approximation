@@ -38,6 +38,13 @@ source-specific route through a central sign is isolated at
   zero, even after imposing the tail braid exactly. A Jacobson proof must
   use additional mixed relations beyond that presentation; the full
   Jacobson group and the independent existence goal are not refuted.
+  The added TS word gives the stronger marked presentation `Gamma_2`:
+  `jacobson-ts-cell-is-independent-after-first-raw-commutation` proves
+  its literal head survives and excludes the seven-ray quotient, while
+  `jacobson-ts-cell-excludes-monomial-natural-head-models` excludes
+  the whole monomial natural-head family in characteristic two.
+  Neither statement supplies a complex-unitary matrix obstruction;
+  the MF status of `Gamma_2` remains open.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map

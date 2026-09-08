@@ -9,6 +9,7 @@ requires:
   - binary-jacobson-first-alternating-ts-closure-relation
 artifacts:
   - research/artifacts/jacobson-ts-cell-after-seven-ray-countermodel-2026-09-08.md
+  - research/artifacts/jacobson-gamma2-universal-pair-structure-2026-09-08.md
   - experiments/verify_jacobson_seven_ray_countermodel.py
   - research/artifacts/jacobson-seven-ray-exact-check-2026-09-08.json
 ---
