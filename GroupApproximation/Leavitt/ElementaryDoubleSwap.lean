@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.ElementaryWeylMonomial
 import GroupApproximation.Leavitt.ElementaryNormalGeneration
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # An involution normally generating the rank-four elementary group
@@ -17,6 +18,7 @@ which normally generates the elementary group.
 namespace GroupApproximation.ElementaryDoubleSwap
 
 open ElementaryWeyl
+open scoped commutatorElement
 
 variable {R : Type*} [Ring R]
 
@@ -109,6 +111,14 @@ theorem root_commutator_pair (r : R) :
     simp [Matrix.mul_apply, Fin.sum_univ_four, Matrix.single_apply,
       Matrix.one_apply, Matrix.sub_apply, Matrix.add_apply]
 
+/-- The nested commutator in the manuscript, before substituting the first identity. -/
+theorem double_commutator_doubleSwap (r : R) :
+    ⁅elGen (0 : Fin 4) 1 (by decide) (1 : R),
+      ⁅elGen (0 : Fin 4) 2 (by decide) r, doubleSwap⁆⁆ =
+      elGen (0 : Fin 4) 3 (by decide) (-r) := by
+  simp only [commutatorElement_def, root_commutator_doubleSwap]
+  exact root_commutator_pair r
+
 /-- Every normal subgroup containing the double swap contains a unit root. -/
 theorem root_mem_of_doubleSwap_mem
     (N : Subgroup (elementaryGroup (Fin 4) R)) [hN : N.Normal]
@@ -137,3 +147,8 @@ theorem normalClosure_doubleSwap_eq_top :
     ⟨1, 1, by simp⟩
 
 end GroupApproximation.ElementaryDoubleSwap
+
+#audit_axioms GroupApproximation.ElementaryDoubleSwap.orderOf_doubleSwap
+#audit_axioms GroupApproximation.ElementaryDoubleSwap.root_commutator_doubleSwap
+#audit_axioms GroupApproximation.ElementaryDoubleSwap.double_commutator_doubleSwap
+#audit_axioms GroupApproximation.ElementaryDoubleSwap.normalClosure_doubleSwap_eq_top

@@ -49,7 +49,8 @@ actually states -- the layer of the correspondence that name resolution \
 alone cannot check.\n"
 
 /-- Elaborate one generated declaration roster and write its signature file. -/
-def writeSignatures (env : Environment) (declsPath outPath : System.FilePath) :
+def writeSignatures (env : Environment) (declsPath outPath : System.FilePath)
+    (expandWrappers : Bool := false) :
     CommandElabM Nat := do
   let input ← IO.FS.readFile declsPath
   let names := input.splitOn "\n" |>.map (fun s => s.trimAscii.toString)
@@ -58,12 +59,23 @@ def writeSignatures (env : Environment) (declsPath outPath : System.FilePath) :
     throwError "{declsPath}: no declarations listed; \
 run `python3 scripts/claim_map.py --write` first"
   let mut sections : Array String := #[header declsPath]
+  if expandWrappers then
+    let digest ← IO.Process.output {
+      cmd := "sha256sum", args := #["non_mf_groups_exist.tex"] }
+    if digest.exitCode != 0 then
+      throwError "could not hash the current manuscript: {digest.stderr}"
+    let hash := digest.stdout.splitOn " " |>.head!
+    sections := sections.push s!"\nManuscript SHA-256: `{hash}`.\n\n\
+Outer proposition wrappers are unfolded before printing; remaining named \
+definitions retain their Lean names.\n"
   for s in names do
     let n := s.toName
     let some info := env.find? n
       | throwError "mapped declaration `{s}` is not in the environment; \
 the lexical index and the elaborated library disagree"
-    let fmt ← liftTermElabM <| Lean.Meta.ppExpr info.type
+    let fmt ← liftTermElabM do
+      let type ← if expandWrappers then Lean.Meta.whnf info.type else pure info.type
+      Lean.Meta.ppExpr type
     sections := sections.push
       s!"\n## `{s}`\n\n```lean\n{fmt.pretty 96}\n```\n"
   IO.FS.writeFile outPath (String.join sections.toList)
@@ -71,11 +83,11 @@ the lexical index and the elaborated library disagree"
 
 run_cmd do
   let env ← getEnv
-  let jobs : List (System.FilePath × System.FilePath) :=
-    [("metadata" / "CLAIM_DECLS.txt", "metadata" / "CLAIM_SIGNATURES.md"),
-     ("metadata" / "NON_MF_CLAIM_DECLS.txt", "metadata" / "NON_MF_CLAIM_SIGNATURES.md")]
-  for (declsPath, outPath) in jobs do
-    let count ← writeSignatures env declsPath outPath
+  let jobs : List (System.FilePath × System.FilePath × Bool) :=
+    [("metadata" / "CLAIM_DECLS.txt", "metadata" / "CLAIM_SIGNATURES.md", false),
+     ("metadata" / "NON_MF_CLAIM_DECLS.txt", "metadata" / "NON_MF_CLAIM_SIGNATURES.md", true)]
+  for (declsPath, outPath, expandWrappers) in jobs do
+    let count ← writeSignatures env declsPath outPath expandWrappers
     logInfo m!"wrote {outPath} ({count} declarations)"
 
 end GroupApproximation.Signatures

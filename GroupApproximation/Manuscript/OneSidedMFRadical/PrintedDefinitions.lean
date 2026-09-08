@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.NormMatrixCorona
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 import GroupApproximation.Sofic.CDEOperatorMF
@@ -353,3 +354,5 @@ end
 end OneSidedMFRadical
 end Manuscript
 end GroupApproximation
+
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.allMFTargetsKill_iff_allCoronasKill

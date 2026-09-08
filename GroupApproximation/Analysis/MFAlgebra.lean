@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.CDEOperatorMF
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Analysis.CStarAlgebra.Hom
 import Mathlib.Topology.Bases
 
@@ -262,3 +263,5 @@ theorem hasMFAlgebraUnitaryEmbedding_iff_isOperatorMF
     IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding⟩
 
 end GroupApproximation
+
+#audit_axioms GroupApproximation.isCDEOperatorMF_of_faithful_corona_map
