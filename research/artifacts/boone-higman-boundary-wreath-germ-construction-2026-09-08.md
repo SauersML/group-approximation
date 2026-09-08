@@ -114,4 +114,21 @@ finite controls, not these infinite-group arguments.
 
 ## Validation
 
-Remote Cairn validation will be recorded after the changes reach main.
+The principal construction is commit `fce60d763`, and the integer
+character is commit `3ca0811f7`. Both reached main. The initial remote
+checks were stopped by two existing central-three-cycle node IDs
+exceeding the schema limit, followed by a filename/ID mismatch during
+repair. Commits `7048ec1d0` and `2056c4989` repaired those identifiers
+and their references; their mathematical contents were unchanged.
+
+[Research run 34291167326](https://github.com/SauersML/group-approximation/actions/runs/34291167326)
+completed successfully on main integration
+`de914a9f379150474847384537608679110559bc`. The downloaded evidence is
+retained in `.cairn/bh-boundary-wreath-check-20260908/`.
+
+Inspection of the exported `node_status` fields gives ESTABLISHED for
+the rational-stabilizer claim, the boundary-wreath embedding claim,
+and the integer-character claim. The universal
+`boone-higman-conjecture` remains OPEN. The run also passed the existing
+source-syntax checks and exact finite controls. These are graph and
+control checks, not machine verification of the new mathematical proofs.
