@@ -91,8 +91,59 @@ permutation envelope on N; no equivalence is asserted. The input's
 decidable word problem has not yet been converted into finite
 presentations for these three groups. The conjecture remains OPEN.
 
+## Next necessary presentation test
+
+The one-singularity subgroup A_1 maps onto the entire isotropy germ
+group Q=(E_nu)_p. Its kernel K consists of maps equal to the identity
+near p. Because A_1 is locally V away from p, such a kernel element
+is locally V everywhere and hence belongs to V. Therefore
+
+    K = union_(n>=1) Fix_V(0^n*C).
+
+Each group in this nested union is isomorphic to the simple group V:
+its complementary clopen set is a finite union of binary cones and
+admits a finite prefix identification with the full binary Cantor
+set. A nested union of nontrivial simple groups is simple. Indeed
+a nontrivial normal subgroup meets some stage nontrivially, and
+then contains every larger stage by simplicity. Thus K is simple.
+
+In particular any nonidentity k in K normally generates K inside
+A_1. If A_1 is finitely presented, its quotient Q is finitely
+presented by adding the single relator k=1. This is an instance of
+`fp-quotient-iff-kernel-finitely-normally-generated`.
+
+Hence a candidate enumeration must first yield a finitely presented
+near-permutation group Q. This is only a necessary test: finite
+presentation of Q does not, by itself, provide a finite presentation
+of A_1 or either of the two-point subgroups. In particular the
+non-finitely-generated neighborhood kernel cannot be ignored when
+trying to lift relations back from germs. The earlier commuting
+boundary lamps act on the interiors of shells; they are not the
+suffix-preserving shell permutations used in the near-index
+obstruction, so that obstruction does not contradict their proof.
+
 ## Verification boundary
 
 These are written mathematical arguments and source imports in Cairn.
-No GPU computation or new Lean formalization establishes them. Remote
-graph validation will be recorded after integration.
+No GPU computation or new Lean formalization establishes them.
+
+The complexity proof is commit `383d99e42` and the universal shell
+route is commit `87b76b59a`. The first remote attempt was stopped
+by a pre-existing overlong exterior-injection proof ID. Commit
+`b58263c36` shortened that ID and its filename without changing its
+mathematical contents.
+
+[Research run 34292617383](https://github.com/SauersML/group-approximation/actions/runs/34292617383)
+completed successfully at main integration
+`0c5fcc81ef748a420cf6e819c9b05332fd00569d`. Downloaded evidence is
+retained in `.cairn/bh-shell-germ-check-20260908/`.
+
+The inspected `node_status` fields are ESTABLISHED for the rational
+word-problem bound, the resulting nonembedding claim, the universal
+shell realization, and the prefix-germ obstruction. They are OPEN
+for `decidable-inputs-have-fp-shell-stabilizers`, its Boone--Higman
+route, and `boone-higman-conjecture`. Existing source-syntax checks
+and finite controls also passed. This validates dependency wiring
+and finite controls, not the infinite-group proofs. The necessary
+presentation test above is additional proof text in this artifact;
+it has not been promoted to a separately checked theorem.
