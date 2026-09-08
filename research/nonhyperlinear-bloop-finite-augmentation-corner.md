@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/nonnormal-finite-augmentation-corner-endgame-2026-09-08.md
   - research/artifacts/noncentral-frobenius-negative-rational-matrix-corner-2026-09-08.md
   - research/artifacts/finite-augmentation-outside-normalizer-two-context-cell-2026-09-08.md
+  - research/artifacts/finite-character-partial-rotation-cycle-algebra-2026-09-08.md
 ---
 
 For the fixed finite BCS `B_loop` supplied by
@@ -69,5 +70,14 @@ the specified corner unit.
   is `nonhyperlinear-bloop-strict-augmentation-energy`. That variant
   also excludes hyperlinear hosts; no inequality below its threshold
   has been constructed.
+- `finite-character-rotation-cycles-have-exact-loop-algebra` handles
+  additive rotations on finitely many orthogonal finite-character
+  atoms. Their complete algebra is a matrix algebra over a twisted
+  return-subgroup algebra, with an exact coset coefficient test for
+  cycle closure. Closing all fundamental returns to scalars removes
+  its infinite complexity; a successful infinite return algebra would
+  already require a nonhyperlinear return subgroup. This does not
+  supply the full BCS map. Overlapping noncommuting cuts remain
+  outside the theorem and require additional exact identities.
 
 No map of the displayed form for `B_loop` is currently supplied.
