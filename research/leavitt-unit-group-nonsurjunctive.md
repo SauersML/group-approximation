@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/conservative-syndrome-update-audit-2026-09-07.md
   - research/artifacts/conservative-ca-literature-and-trace-scope-2026-09-07.md
   - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
+  - research/artifacts/gottschalk-four-track-finite-chart-collision-2026-09-08.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -216,3 +217,13 @@ on finite input. This requirement does not itself yield a strict CA:
 reversible rules can also grow finite particle supports. Unrestricted
 data-dependent computation and arbitrary full-shift injective rules
 remain outside the proved positive class. This root remains open.
+
+The explicit four-track parallel rule built from the two atlas chart
+pairs is now proved noninjective: the indicator of the first finite
+GL_4(F_2) subgroup, placed on every track, maps to zero. An exact
+chart-separation calculation proves the second bilinear summand
+vanishes on that mask; see
+[the finite-chart collision artifact](artifacts/gottschalk-four-track-finite-chart-collision-2026-09-08.md).
+This excludes that concrete encoder, including every cyclic track
+count using its same bilinear operation. It does not decide this
+headline target or unrestricted nonlinear feedback architectures.

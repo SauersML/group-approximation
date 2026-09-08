@@ -1,8 +1,11 @@
-# A concrete two-track nonlinear feedback seed for Gottschalk
+# Nonlinear feedback attempts and exact exclusions
 
-Date: 2026-09-08. This is an explicit candidate encoder and its exact
-remaining decoder equations. Injectivity is not established, and no
-missing output pattern is known. It is not a counterexample.
+Date: 2026-09-08. The two-track encoder below is now excluded by the
+factorization proof at the end of this note. Its exact equations are
+retained to document the construction attempt. The subsequent four-track
+encoder has an explicit finite-support collision. Its alternating
+bilinear replacement is also excluded under injectivity, by the
+factorization below. No counterexample is constructed.
 
 ## Native encoder
 
@@ -143,9 +146,135 @@ lifts to a surjunctive source cannot be strict. Prefix addresses must
 authenticate any purported mixed relation; naming a complicated
 Leavitt word as one fresh address does not suffice.
 
-The present unsolved task is therefore exact and constructive:
-find finite supports for d_1,d_2 solving (1), and exhibit a nonzero
-reverse polynomial (3), or prove this particular encoder has an
-explicit collision. Neither outcome has been established.
-No computation of (1) has been run in this pass.
+No computation of (1) has been run in this pass. The pure mathematical
+argument below now proves that a solution of (1) cannot have a strict
+reverse defect; searching this two-track architecture is unnecessary.
 
+## Why the two-track architecture cannot be strict
+
+More generally suppose F(X,Y)=(L_Y X,V(X,Y)), where L_Y is linear
+in X for fixed Y, and F fixes both coordinate axes. If F is injective,
+each L_Y is injective: L_Y X=0 would give F(X,Y)=(0,Y'), which
+also equals F(0,Y'). Thus E(X,Y)=(L_Y X,Y) is an injective CA.
+Its Y=0 fiber is the identity. The established certificate-fiber
+theorem therefore makes E bijective with a local inverse.
+
+Now F composed with E^-1 preserves its first track. Its fiber at
+first track zero is again the identity. The same certificate-fiber
+theorem makes this injective composition surjective. Hence F itself
+is surjective whenever it is injective.
+
+Pure three-track cyclic bilinear feedback also reduces to this case.
+For F=(X+P(Y,Z),Y+Q(Z,X),Z+R(X,Y)), make the reversible input
+substitution X_old=X+P(Y,Z). The first output is X. Its X=0 fiber
+is
+
+    (Y+Q(Z,P(Y,Z)), Z+R(P(Y,Z),Y)).
+
+This fixes both axes and is homogeneous linear in Y in its first
+coordinate for each fixed Z. The preceding argument makes that fiber
+bijective under injectivity. The preserved-X fiber theorem then
+makes the entire map bijective. This independently checks the root
+agent's elimination argument.
+
+## Four-track cyclic feedback with repeated dependence
+
+Define one native bilinear operation
+
+    B(U,V)(g)=U(ga_1)V(gb_1)+U(ga_2)V(gb_2).
+
+On alphabet F_2^4 take the explicit encoder
+
+    F_i=X_i+B(X_(i+1),X_(i+2)),       indices modulo four.
+
+All constants and coordinate axes are fixed. A pair of particles on
+the two control tracks creates a particle on a third track. Every
+track is updated on some configuration.
+
+Eliminate the first two output coordinates using reversible input
+shears. At their zero fiber write the two remaining inputs as z,w.
+The old inputs are then
+
+    X_2=B(z,w),       X_1=B(B(z,w),z),
+
+and the remaining output map is
+
+    H(z,w)=(z+B(w,B(B(z,w),z)),
+            w+B(B(B(z,w),z),B(z,w))).
+
+The two nonlinear terms have bidegrees (2,2) and (3,2) in (z,w)
+before Boolean reduction. Both variables repeat. Thus the two-track
+conditional-linearity proof above does not apply to this residual
+map. This is an identified limitation of that proof, not evidence
+that the encoder is injective or strict.
+
+For chosen finite decoder memories, literal Boolean composition
+still supplies exact coefficient equations. A quadratic decoder
+for a fixed quadratic encoder can be solved for linearly in its
+coefficients; a higher-degree decoder has the same linearity in
+its unknown coefficients, with larger observable monomials. A
+nonzero reverse residual is still required for a counterexample.
+
+This encoder is now proved noninjective. With K_1 the first finite
+GL_4(F_2) chart subgroup and Z=1_(K_1), one has B(Z,Z)=Z and hence
+F(Z,Z,Z,Z)=0=F(0,0,0,0). The first summand of B gives Z, while
+the second vanishes because a_2^-1 b_2 is outside K_1. The independent
+chart-separation calculation and exact finite collision are recorded
+in `research/artifacts/gottschalk-four-track-finite-chart-collision-2026-09-08.md`.
+No decoder search for this encoder is warranted.
+
+## Alternating bilinear replacement: injectivity forces bijectivity
+
+The tempting repair is to alternate B so B(U,U)=0 identically. This
+eliminates the preceding all-track mask collision. For example use
+
+    B(U,V)=U_a1 V_b1+U_b1 V_a1+U_a2 V_b2+U_b2 V_a2.
+
+Nevertheless every alternating bilinear B on binary configurations
+gives a four-cycle F_i=X_i+B(X_(i+1),X_(i+2)) which is surjective
+whenever it is injective. This statement concerns the same B in all
+four coordinates; it makes no claim about arbitrary nonlinear rules
+or different bilinear operations in different coordinates.
+
+Here is a direct proof. Alternation implies B(U,V)=B(V,U). If
+B(U,W)=U with U nonzero, then
+
+    F(U+W,W,U,U)=F(W,W,0,0)=(W,W,0,0).
+
+Consequently injectivity of F forces L_W(U)=U+B(U,W) to be injective
+for every W. The CA E(U,W)=(L_W(U),W) is then injective and has the
+identity fiber at W=0. Apply
+`nonlinear-certificate-fibers-are-all-surjective-or-all-strict`:
+E is bijective and its inverse is a CA. In particular the assignment
+(Y,W) to L_W^-1(Y) is local.
+
+Use invertible track coordinates
+
+    r=X_1+X_2+X_3+X_4,       p=X_1+X_3,
+    z=X_1+X_2,               x=X_1.
+
+The first output coordinate is
+
+    r'=r+B(p,r)=L_p(r).
+
+The reversible input change r_old=L_p^-1(r) makes r the preserved
+output coordinate. On its zero fiber r_old=0 and the remaining
+output coordinates, before a further input change, are
+
+    p'=p+B(p,z)=L_z(p),
+    z'=z+B(x,p),
+    x'=x+B(x,p)+B(z,p)+B(x,z).
+
+Now make the reversible input change p_old=L_z^-1(p) within this
+fiber. The output preserves p. On p=0 the last two coordinates are
+
+    (z',x')=(z,x+B(x,z)),
+
+which is bijective by the already established inverse of E. The
+certificate-fiber theorem first makes the entire r=0 fiber
+bijective, then makes the full r-preserving map bijective. Undoing
+the reversible coordinate changes proves F is bijective.
+
+Both exceptional repairs considered here are therefore resolved:
+the native two-chart B has an explicit collision; alternating B
+throughout this four-cycle cannot give a strict injective map.
