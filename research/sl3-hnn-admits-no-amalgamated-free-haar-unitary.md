@@ -4,8 +4,8 @@ id: sl3-hnn-admits-no-amalgamated-free-haar-unitary
 kind: claim
 title: No regular-trace matrix model of SL3(Z[1/2]) carries a Haar unitary in the SL3(Z)-centraliser that is free from the lattice factor with amalgamation over L(SL3(Z))
 distinct_from:
-  sl3-pair-relative-commutant-route: that asks for the full relative-commutant collapse, forbidding every subgroup-central unitary that fails to be ambient-central; this forbids only the ones with the amalgamated-free joint distribution that an embedding of the HNN factor would supply, and is implied by the collapse.
-  projective-trace-square-transfer-for-sl3-pair: that forbids every subgroup-central unitary whose commutator with the ambient generator is non-scalar; this is weaker still, since an amalgamated-free unitary has commutator of trace zero, and is implied by the transfer.
+  sl3-pair-relative-commutant-route: that quantifies over every commutant element; this names the canonical HNN distribution. Arithmetic maximality and tensor extraction prove the two global exclusions equivalent, while changing the embedding.
+  projective-trace-square-transfer-for-sl3-pair: that is a finite-matrix inequality for arbitrary assignments; the arithmetic maximality and regular-RCC transfer theorems make it equivalent to this canonical HNN exclusion.
   hnn-hyperlinearity-is-amalgamated-free-haar-unitary: that is the equivalence, for any pair, between hyperlinearity of the HNN group and the existence of such a unitary in some model; this is the OPEN instance of its negative side for the rank-two arithmetic pair.
 ---
 
@@ -17,14 +17,16 @@ all `n != 0` such that `N` and `W^*(B, k)` are free with amalgamation over
 
 By `hnn-hyperlinearity-is-amalgamated-free-haar-unitary` this is exactly
 non-hyperlinearity of the finitely presented group
-`G_3 = <SL_3(Z[1/2]), t | [t, SL_3(Z)] = 1>`, and it is the weakest
-operator-algebraic statement in the rank-two collapse lane: the full
-collapse `(RC3)` of `sl3-pair-relative-commutant-route` implies it
-(`sl3-amalgamated-free-exclusion-from-collapse`), the projective
-trace-square transfer implies it
-(`sl3-amalgamated-free-exclusion-from-projective-transfer`), and it feeds
-the goal through `non-hyperlinear-from-sl3-amalgamated-free-exclusion`.
-Nothing weaker than this statement makes `G_3` the witness.
+`G_3 = <SL_3(Z[1/2]), t | [t, SL_3(Z)] = 1>`. By
+`arithmetic-hnn-nonhyperlinearity-equals-global-collapse`, it is
+equivalent to full collapse `(RC3)`, scalar non-relative-embeddability,
+plain-double nonhyperlinearity, and the full projective trace-square
+transfer inequality. A single projection leak has stabilizer exactly
+`C` by Smith maximality; tensor extraction then constructs the HNN
+distribution in a new model. Thus the stronger distribution imposed
+on a witness in one model does not make this global exclusion weaker.
+The claim feeds the goal through
+`non-hyperlinear-from-sl3-amalgamated-free-exclusion` and remains OPEN.
 
 ## Attempts
 
@@ -32,15 +34,15 @@ Nothing weaker than this statement makes `G_3` the witness.
   leak of any kind exists there
   (`arithmetic-pair-group-factor-ultrapower-has-no-leak`); every candidate
   lives in `L^2(M) (-) L^2(L(A))`.
-- **Coordinatewise form.**  Since `SL_3(Z)` has property (T), Peterson's
-  interchange formula lets `k` be represented by unitaries commuting
-  exactly with the microstate image `pi_n(SL_3(Z))` in every coordinate;
-  the amalgamated-free joint distribution is not coordinatewise, because
-  `L(C)` is strictly smaller than the ultraproduct of the coordinate
-  algebras `pi_n(C)''`, so the `B`-valued conditional expectation is not
-  computable coordinate by coordinate.  This is where the congruence
-  models, in which `pi_n(A) subseteq pi_n(C)''`, are automatically
-  excluded (co-density), and where exotic models are not.
+- **Coordinatewise boundary.** Property (T) controls the conjugation
+  representation after an exact subgroup representation is available.
+  It does not, by itself, replace an arbitrary approximate subgroup
+  tuple by an exact representation or make its commutant coordinatewise.
+  The representation-lift and subgroup-exactification nodes record their
+  missing hypotheses explicitly. Even on an exact face, amalgamated
+  freeness is a joint limiting distribution over `L(C)`, not a
+  coordinatewise expectation over the larger matrix algebras generated
+  by the subgroup images.
 - **The ambient-extendable sector is closed.**
   `sl3-amalgamated-free-enemies-are-ambient-extension-outliers` combines
   the exact subgroup-indicator moment forced by amalgamated freeness with
@@ -78,12 +80,12 @@ Nothing weaker than this statement makes `G_3` the witness.
   relative 1-bounded entropy finite there, so no entropy count separates
   this scenario from the standard model (recorded in
   `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`).
-- **Where a proof must act.**  Any proof must use the `B`-valued
-  distribution of `k` against the Hecke structure of the pair, for
-  example the far-defect formula `hecke-far-commutator-defect-formula`,
-  which for such a `k` says the conjugates `pi(g) k pi(g)^*` along far
-  double cosets become asymptotically orthogonal to `k` — consistent
-  with freeness, hence not yet a contradiction.
+- **Hecke information remains consistent with the candidate.** The
+  far-defect formula `hecke-far-commutator-defect-formula` gives the
+  expected orthogonality of distant conjugates of a free letter.
+  This supplies no contradiction. Maximality now also permits a proof
+  through ordinary commutant collapse without retaining those free
+  moments at every step.
 - **Symmetric-double MF firewall.**
   `sl3-hnn-sits-in-shulman-symmetric-double` embeds the entire HNN group
   in
@@ -110,6 +112,6 @@ Nothing weaker than this statement makes `G_3` the witness.
   representation of `D` factors through the fold `D->A`.  The open
   `sl3-regular-arithmetic-double-fold-mark-collapse` asks only to promote
   that fact for one fold-kernel word along full canonical-character
-  microstates of `D`.  This discards the stable letter's Haar moments and
-  all higher amalgamated-free conditions, and is therefore a narrower
-  sufficient target than the present exact-equivalence formulation.
+  microstates of `D`. This removes the stable letter from the presentation;
+  the general coset equivalence proves that the resulting negative
+  group statement is equivalent to the present one.

@@ -4,8 +4,8 @@ id: no-exact-quasi-regular-leak
 kind: claim
 title: No matrix ultraproduct carries an exactly quasi-regular leak over the arithmetic pair
 distinct_from:
-  no-spherical-leak-in-matrix-ultraproducts: that excludes every leak (all values of the commutant mass s, equivalent to the full collapse); this excludes only the single extreme profile s = 0 with EXACT quasi-regular coefficients, which is all the goal consumes.
-  relative-commutant-collapse-for-sl2-pair: that is the full relative-commutant identity quantified over every element; this is one forbidden configuration, strictly weaker to refute, and it reaches the goal directly without the collapse as middleman.
+  no-spherical-leak-in-matrix-ultraproducts: that excludes every leak; this specifies the exact quasi-regular coefficients in a witness model. Arithmetic maximality and tensor extraction make these global exclusions equivalent.
+  relative-commutant-collapse-for-sl2-pair: that quantifies over every commutant element; this forbids one coefficient configuration. The arithmetic maximality theorem proves both global exclusions equivalent while changing the embedding.
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that shows Connes embeddability of the coset Bernoulli action would PRODUCE this configuration; this asserts the configuration cannot occur in regular-trace matrix models, and is therefore exactly the negation gate of that construction.
 ---
 
@@ -33,13 +33,16 @@ intervenes.
 
 ## Attempts
 
-- **This is the extreme point, not the generic leak.**  The far-defect
+- **The extreme profile is sufficient, and now equivalent globally.** The far-defect
   formula splits every leak as `psi_k = s + (1-s) phi` with `phi` a
   `c_0` spherical coefficient; refuting only `s = 0` with `phi` the
   exact quasi-regular spherical function already suffices for the
   goal, because the enemy manufactured from a hyperlinear `G_2` has
-  profile exactly `1_Lambda`.  All prior routes demanded the full
-  collapse (`every` `k`); this hole quantifies over one configuration.
+  profile exactly `1_Lambda`. The theorem
+  `arithmetic-hnn-nonhyperlinearity-equals-global-collapse` supplies
+  the converse: any commutant leak yields another CE model with the
+  full canonical HNN distribution and this exact profile. The initial
+  witness need not already have the extreme coefficient.
 - **The enemy is a uniform representation outlier — unconditionally.**
   Suppose `(EQL1)` holds along microstates `U_m` whose `Gamma`-part is
   within `eta` (on generators, normalized HS) of an exact

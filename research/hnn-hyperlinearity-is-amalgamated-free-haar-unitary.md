@@ -4,9 +4,9 @@ id: hnn-hyperlinearity-is-amalgamated-free-haar-unitary
 kind: claim
 title: The co-dense HNN group is hyperlinear iff some matrix model of the base carries a Haar unitary in the subgroup centraliser that is free from the base with amalgamation over the subgroup factor
 distinct_from:
-  hnn-route-is-relative-commutant-collapse: that reduces non-hyperlinearity of the HNN group to the relative-commutant collapse, a SUFFICIENT condition; this records the exact EQUIVALENT condition, amalgamated free independence of one Haar unitary, and shows the collapse and the projective transfer both overshoot it.
+  hnn-route-is-relative-commutant-collapse: that proves commutant collapse sufficient for HNN nonhyperlinearity; this characterizes extension of a supplied actor embedding by an amalgamated-free Haar unitary. For maximal subgroups the two global exclusions are equivalent, although the constructions change the embedding.
   sl2-half-stability-excludes-hnn-hyperlinearity: that records the amalgam form of the HNN group and its dichotomy with flexible stability; this isolates the operator-algebraic content of its hyperlinearity inside the base's matrix model and positions it against Popa's relative free-independence theorem.
-  projective-trace-square-transfer-for-sl3-pair: that weakens the collapse to scalar commutators of every subgroup-central unitary; this weakens further, to the single amalgamated-free Haar unitary that an embedding of the HNN factor would supply.
+  projective-trace-square-transfer-for-sl3-pair: that is a finite-matrix estimate for arbitrary arithmetic assignments; this specifies the full HNN distribution in one actor model. Arithmetic maximality and the perfect-pair transfer theorem make their global exclusions equivalent.
   amenable-edge-hnn-preserves-hyperlinearity: that is the Brown--Dykema--Jung permanence for amenable edge groups; this explains the same permanence through Popa's theorem on centralisers of amenable subalgebras and locates the non-amenable edge as the whole content of the lane.
 ---
 
@@ -48,10 +48,23 @@ These implications follow from the required moment pattern: a `k` as in `(2)` is
 its commutator has trace `0` rather than modulus `1`, so projective
 transfer forbids it; but `(2)` asks only for leaks with the full
 amalgamated-free joint distribution. This does not prove that either
-implication is strict for the arithmetic pair. The minimal statement the HNN lane
+implication is strict for the arithmetic pair. The exact statement the HNN lane
 must prove is therefore: **no regular-trace matrix model of `A` carries a
 Haar unitary in the `C`-centraliser that is free from `L(A)` with
 amalgamation over `L(C)`.**
+
+The fixed-embedding distinction does not imply a distinction between
+the global exclusions. If `C` is a maximal proper subgroup of `A`,
+`maximal-subgroup-hnn-equals-commutant-collapse` proves that HNN
+nonhyperlinearity is equivalent to collapse in every canonical actor
+embedding: a subgroup-central projection leak has stabilizer exactly
+`C`, and tensor extraction produces a new canonical HNN model. This
+applies to every `SL_n(Z)<=SL_n(Z[1/p])`, `n>=2`, by
+`arithmetic-hnn-nonhyperlinearity-equals-global-collapse`. For an
+arbitrary nonmaximal subgroup, a leak instead produces a relatively
+embeddable proper overgroup of `C`; its stabilizer need not equal `C`.
+The general statement is the commutant-separation closure in
+`relative-embedding-is-commutant-separation`.
 
 **Position against Popa's theorem.**  Popa (arXiv:1308.3982, *Independence
 properties in subalgebras of ultraproduct II_1 factors*, main theorem)
@@ -73,20 +86,25 @@ question whether amalgamated free products of Connes-embeddable algebras
 over non-amenable subalgebras are Connes embeddable is open (Gao--Junge,
 arXiv:2012.07940), and the lane is its first arithmetic instance.
 
-**The other consumer of the collapse has an incomparable minimal form.**
+**The ordinary coset wreath has a different fixed-model pattern.**
 The coset-Bernoulli wreath `W = (Z/2) wr_(A/C) A` of
 `coset-bernoulli-ce-refutes-relative-commutant-collapse` has
 `L(W) = L^infinity({+-1}^(A/C)) rtimes A`, so an embedding `iota` extends
 to `L(W)` iff `M` contains commuting involutions `v_x`, `x in A/C`, with
 `u_a v_x u_a^* = v_(ax)`, jointly Bernoulli (independent, trace `0`), and
-`tau(f(v) u_a) = 0` for `a != e`.  The leak there is the single involution
-`v_C`, not a Haar unitary; in `L(W)` the `C`-centraliser of `L(C)` is
-`W^*(v_C) (x) L(Z(A))`, because `C` acts on the remaining cosets with
-infinite orbits and the generalised Bernoulli shift over them is ergodic,
-while in `L(G)` it is `L(<t> x Z(A))`.  So neither group's hyperlinearity
-is known to imply the other's; `(RCC)` forbids both leaks at once, which
-is why it implies non-hyperlinearity of both groups, but a proof aimed at
-the goal may target either minimal form separately.
+`tau(f(v) u_a) = 0` for `a != e`. The distinguished leak is the
+involution `v_C`, whereas the HNN construction supplies a Haar stable
+letter. No description of the entire relative commutant follows from
+these distinguished elements. In particular, for commensurated
+arithmetic `C`, its orbits on `A/C` are finite, so an infinite-orbit
+ergodicity argument cannot supply such a description. These fixed-model patterns differ,
+but existence of their matrix models is equivalent by
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity`. Tensor
+averaging gives an HNN model from the ordinary lamps; a Gaussian tensor
+limit gives ordinary lamps from the free binary model. The construction
+changes the embedding and ambient ultraproduct. It does not place a free
+Haar letter inside the original abelian carrier. The two candidate groups
+have the same hyperlinearity status for every countable subgroup pair.
 
 **1-bounded entropy cannot separate the two scenarios.**  If `k` as in
 `(2)` exists, then `k` and `u_h k u_h^*` are `*`-free Haar unitaries (an
@@ -101,20 +119,24 @@ normaliser gives `h(L(C_0) (x) L(F_2) : M_0) <= h(L(C_0) : M_0) < infinity`
 algebra carries no entropy relative to the ambient algebra, exactly as
 `L(F_2) subset L(C_0 x F_2)` does.  The entropy count listed among the
 attempts of `relative-commutant-collapse-for-sl2-pair` therefore cannot
-close `(2)`; whatever separates the hyperlinear scenario from the
-standard model must see the `B`-valued distribution of `k`, not its
-entropy.
+close `(2)`. Further information about the joint actor and auxiliary
+element is required. For maximal subgroups this can also be supplied
+through the equivalent global commutant-collapse formulation, without
+keeping the same auxiliary distribution in intermediate models.
 
-**Coordinatewise form for Kazhdan subgroups.**  When `C` has property
-(T) (the `SL_n(Z)`, `n >= 3`, pairs), Peterson's interchange formula
-`pi(C)' cap prod_U M_(d_n) = prod_U (pi_n(C)' cap M_(d_n))` (arXiv:2605.16669,
-proof of Prop. 7.8, as recorded in `kt-centralizer-normalization-hs`)
-lets the unitary `k` of `(2)` be represented by unitaries `k_n` that
-commute EXACTLY with the microstate image `pi_n(C)` in every coordinate.
-So for the higher-rank pairs the minimal statement reads: there is no
-sequence of unitaries `k_n in pi_n(SL_n(Z))' cap M_(d_n)` with
-`tr(k_n^j) -> 0` for `j != 0` and asymptotic freeness from `pi_n(A)` with
-amalgamation over `pi_n(SL_n(Z))''`, along any regular-trace microstate
-sequence `pi_n` of `A`.  The exact commutation is the only simplification
-property (T) buys at this level; the amalgamated-free joint distribution
-is untouched, and for `n = 2` even the exact commutation is unavailable.
+**Coordinatewise scope for Kazhdan subgroups.** When `C` has property
+(T), conjugation by its genuine ultraproduct representation has a
+spectral gap relative to its fixed vectors. This does not replace an
+arbitrary approximate coordinate tuple for `C` by an exact
+representation. Consequently it does not lift a subgroup-central
+unitary to unitaries commuting exactly with those arbitrary tuples.
+
+If exact coordinate representations `pi_n:C->U(d_n)` are separately
+available, their uniform Kazhdan gap does let an asymptotically central
+unitary be approximated by unitaries in the coordinate commutants:
+project onto each commutant and take a polar unitary there. This
+conditional coordinate conclusion concerns commutation only. The
+required `B`-valued freeness remains the full limiting moment condition
+in (2); it is not established by coordinate centralizer normalization.
+The theorem above therefore uses neither arbitrary coordinate
+exactification nor a finite-coordinate amalgamated-freeness assertion.

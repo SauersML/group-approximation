@@ -41,7 +41,7 @@ embeds the abstract group double there.  It does not prove that the full
 group algebra `C*(G *_Gamma G)` is MF, and it does not select the canonical
 group trace.
 
-## 3. Gao gives the exact Hilbert--Schmidt boundary
+## 3. Relative embeddability is the exact Hilbert--Schmidt boundary
 
 Primary source:
 
@@ -52,13 +52,13 @@ Primary source:
 
 For finite von Neumann algebras `N subset M` and a finite factor `N_1`, the
 appendix proves that `RE/N_1` implies embeddability of `M *_N M` into
-`(R tensor N_1)^omega`; the converse holds when `M` contains a unitary `u`
-with `E_N(u^k)=0` for every nonzero integer `k`.
+`(R tensor N_1)^omega`. Its printed converse uses a relative-Haar unitary,
+but page 35 also needs an unproved commutant inclusion; see the
+[September 7 audit](centralizer-hnn-relative-embedding-audit-2026-09-07.md).
 
-For the Kun--Thom inclusion `N=L(Gamma) subset M=L(G)`, choose an
-infinite-order `A in SL_d(Z)` and `u=lambda((1,A))`.  The projection
-`G->SL_d(Z)` is trivial on `Gamma`, so `(1,A)^k` is outside `Gamma` for every
-`k!=0`, and therefore `E_N(u^k)=0`.  Taking `N_1=C` yields
+The current group proof replaces that step with the direct
+[tensor-swap argument](tensor-swap-expectation-repair-2026-09-07.md).
+It gives, for the Kun--Thom pair as for every countable subgroup pair,
 
 ```text
 G *_Gamma G is hyperlinear

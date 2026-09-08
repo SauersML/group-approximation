@@ -23,15 +23,14 @@ Def. 1.1 with `N_1 = C`).  Three equivalent forms:
    `D^+ = (A x Z) *_C A` is not hyperlinear;
 3. (factor form) `(L(A) (x) L(Z)) *_(L(C)) L(A)` is not Connes embeddable.
 
-This is the WEAKEST statement in the HNN lane and it closes the goal
-directly with witness `D^+` (`non-hyperlinear-from-non-relative-embeddability`):
-non-hyperlinearity of the HNN group `G_2` (resp. `G_3`) implies it, since
-`G subset D^+`, through `non-relative-embeddability-from-sl2-exclusion`
-(resp. `-sl3-`), while nothing weaker than it makes `D^+` a witness.  Its
-other value is as the lane's cheapest falsification target: a
-`C`-faithful microstate sequence of the host is a construction on the
-host alone, with no stable letter, and would make `D^+`, hence every
-group in this lane, hyperlinear.
+For each fixed pair this is equivalent to nonhyperlinearity of its
+centralizer HNN group, enlarged double, plain double, and ordinary binary
+coset wreath. The general theorem
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` identifies
+these candidate-group targets; it does not prove their common negative
+statement. A subgroup-faithful microstate sequence of the host would make
+all these groups hyperlinear, whereas a proof of this open negative
+statement would give each of them as a witness.
 
 ## Attempts
 
@@ -112,18 +111,14 @@ group in this lane, hyperlinear.
   `E_(W^*(pi_k(C)) (x) 1)(pi_k(a) (x) 1) = E(pi_k(a)) (x) 1` unchanged, and
   tensoring with a finite-quotient representation keeps co-density.  A
   faithful sequence needs genuinely new microstates of the host.
-- **Gao's converse is now checked for the rank-three plain double.**
-  Appendix Theorem 7.1 requires the coefficient `N_1` to be a finite factor
-  and, for the plain double, a unitary `u in L(A)` with
-  `E_(L(C))(u^n)=0` for all `n!=0`.  For `SL_3`, `L(C)` is a CE II_1 factor
-  and `u=lambda(diag(2,1,1/2))` satisfies the power condition.  Therefore
-  `sl3-arithmetic-double-hyperlinear-iff-relative-embeddable` proves that
-  CE of `L(A)*_(L(C))L(A)` is EQUIVALENT to `RE/L(C)`.  The exact weakest
-  rank-three hole is now split out as
-  `sl3-arithmetic-inclusion-is-not-re-over-lattice`.  The same literal
-  specialization with `N_1=L(SL_2(Z))` is unavailable because that group
-  factor is not a factor (the center contains `+-I`); no rank-two conclusion
-  is asserted here.
+- **The plain-double converse now has a direct group proof.** The
+  binary swap coefficient followed by tensor averaging gives scalar
+  relative embeddability for every countable subgroup pair. The earlier
+  appeal to a relative-Haar diagonal left a commutant inclusion in the
+  printed proof unjustified. The new argument works in ranks two and
+  three without a factor hypothesis on the subgroup algebra. In rank
+  three, `sl3-re-over-lattice-iff-re-over-scalars` additionally identifies
+  this with the formulation over the CE lattice coefficient.
 - **Amalgam picture for `n = 2` (Serre): three exclusions.**  Since
   `A = C *_(C_0) C'` with `C' = hCh^-1`, `C_0 = C cap C'` of index three,
   a microstate of `A` is a pair of representations `sigma` (of `C`) and

@@ -48,10 +48,19 @@ s in L(C)' cap M,   tau(s) = 0,   E_(L(C))(s) = 0,
 (L(A), W*(L(C), s)) free with amalgamation over L(C),          (IL1)
 ```
 
-equivalently one projection `q = (1+s)/2` of trace `1/2` commuting with
-the subgroup image whose `A`-translates are trace-independent:
-`tau(q a_1 q a_2 ... q a_j) = 2^(-j) tau(a_1 ... a_j)` on words with
-letters `a_i in A - C`.
+Equivalently use a trace-one-half projection `q=(1+s)/2` commuting with
+the subgroup image, with `W*(L(C),q)` free from `L(A)` over `L(C)`.
+The full alternating centered-word condition is required. The former
+universal formula `tau(q a_1 ... q a_j)=2^(-j)tau(a_1...a_j)` was too
+strong: repeated translates can return and contribute additional terms.
+For two distinct free binary lamps, for example,
+`tau(q_x q_y q_x q_y)=3/16`, rather than `1/16`.
+
+At the level of existence of models the converse for `m=2` is now proved:
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` gives
+`E_2 hyperlinear iff G hyperlinear`. The tensor proof may change the
+embedding and does not express a Haar letter as a function of one
+involution in its original two-dimensional abelian algebra.
 
 ## Attempts
 
@@ -71,11 +80,10 @@ letters `a_i in A - C`.
   Weyl relation that closes the coprime exact face is the same one that
   blocks the naive regeneration of enemies one congruence floor down.
 
-- **Why not amplify to two mutually free involutions instead?**
-  Producing a second involution free from the first over the
-  NON-amenable `L(C)` is exactly the relative free-independence
-  statement that Popa's theorem (arXiv:1308.3982) provides over amenable
-  cores and that is open beyond them, as recorded in
-  `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`.  The descent
-  bullet above is the substitute: it extracts the second free involution
-  from the `h`-translate that the group structure already provides.
+- **Tensor amplification now constructs a new Haar model.** The exact
+  binary coset coefficient makes the squared expectation onto the lamp
+  commutant equal to one half off the subgroup. Tensoring raises this
+  to `2^-k`, yielding scalar relative embeddability and then an HNN
+  model. This resolves existence of a new Haar model from a binary one;
+  it makes no claim about adjoining an arbitrary free variable over a
+  nonamenable subalgebra while preserving a prescribed embedding.

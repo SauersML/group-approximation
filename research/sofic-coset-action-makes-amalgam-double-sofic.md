@@ -47,26 +47,20 @@ i_1(h)=z_o^(-1) z_(h o) h.                                   (SCD2)
 The maps agree on `Gamma`.  The GKP free-wreath theorem makes `W` sofic,
 so its subgroup `D` is sofic.
 
-If, in addition, there is `a in H` such that
-
-```text
-a^k notin Gamma       for every nonzero integer k,             (SCD3)
-```
-
-then `L(Gamma) subset L(H)` is relatively embeddable over the scalars
-(`RE/C`).  Indeed, (SCD3) is Gao's Haar-relative-unitary hypothesis, and
-the soficity above makes
+The inclusion `L(Gamma) subset L(H)` is also relatively embeddable over
+the scalars (`RE/C`), with no additional group-element hypothesis. The
+soficity above makes
 
 ```text
 L(H) *_(L(Gamma)) L(H)=L(D)
 ```
 
-Connes embeddable.
+Connes embeddable. The general group tensor-swap equivalence therefore
+gives scalar relative embeddability.
 
 For the Kun--Thom pair this gives an exact firewall.  Every compressor slice
 whose restricted coset action is proved sofic has a sofic double and an
-`RE/C` vertex inclusion as soon as it contains one infinite-height
-compressor.  The full action `G action G/Gamma` is known to be nonsofic, so
+`RE/C` vertex inclusion. The full action `G action G/Gamma` is known to be nonsofic, so
 this sufficient theorem stops precisely at the multi-compressor action gate;
 it asserts no converse.
 
