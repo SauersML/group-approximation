@@ -3,11 +3,9 @@ rg: 2
 id: affine-clifford-non-mf-from-rational-certificate
 kind: claim
 title: An explicit nine-generated affine Clifford group is non-MF by a direct rational-certificate proof
-root: true
-goal: true
 distinct_from:
   kazhdan-clifford-non-mf-construction: that is a general finite-presentation theorem assuming a qualitative property of the compression source; this is a fixed nine-generated semidirect product whose proof starts from integer coefficients and derives every needed estimate directly.
-  property-t-free-manuscript-results: that requires replacement proofs of all retained manuscript endpoints; this is the clarified existence-only request, with an explicit spectral estimate derived in the proof.
+  property-t-free-manuscript-results: that requires proofs independent of property T; this certificate argument reproves and uses property T for its affine subgroup, so it does not satisfy that requirement, even for existence alone.
   property-t-free-leavitt-full-mf-radical: that concerns full radical collapse for the binary-Leavitt Steinberg group; the present witness is a different explicit group and no such collapse is asserted.
 artifacts:
   - research/artifacts/affine-clifford-direct-non-mf-proof-2026-09-08.md
@@ -40,16 +38,14 @@ z=-1=[tct^(-1), a(tct^(-1))a^(-1)] != 1
 is killed by every homomorphism from `W` to the unitary group of every norm
 matrix corona. In particular, `W` is not MF.
 
-**Proof scope.** The complete mathematical proof and its two appendices
-invoke no property-(T) theorem or hypothesis. They derive an explicit
-uniform spectral estimate from a fixed rational matrix certificate. This
-is not a claim that spectral rigidity is absent, nor a solution of the
-separate Leavitt and whole-manuscript goals. The new argument is a written
-Cairn proof with an independently checked finite certificate; no new
-Lean endpoint verification is claimed.
+**This does not satisfy the requested proof without property T.** The
+uniform all-representations estimate derived from the rational certificate
+is a quantitative formulation of property T for `B`. The argument reproves
+that property and then uses it. Omitting its name or replacing a citation
+with its proof does not remove the dependency. The earlier description of
+this route as satisfying the user's request was incorrect.
 
-The all-representations estimate implies property (T) for `B`. Thus this
-proof explicitly derives that rigidity; independence from it remains
-unproved. It satisfies the requirement that the proof can be written
-without mentioning the property, rather than the stronger requirement
-that no equivalent spectral estimate be used.
+The non-MF theorem above remains a written mathematical result, with an
+independently checked finite certificate. It is retained as a property-T
+argument, not as a completed independent-proof goal. No new Lean endpoint
+verification is claimed. The requested independent proof remains open.

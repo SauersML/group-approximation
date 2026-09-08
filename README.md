@@ -16,8 +16,10 @@ statements and tested proofs from the remaining verification work.
 [A direct rational-certificate proof](research/artifacts/affine-clifford-direct-non-mf-proof-2026-09-08.md)
 constructs an explicit nine-generated non-MF group and proves that every norm
 matrix corona representation kills its nontrivial central sign. Its two
-appendices derive the needed uniform spectral estimate from an integer
-certificate, without invoking a property-(T) theorem. The independent
+appendices derive a uniform spectral estimate equivalent to property T for
+the affine subgroup from an integer certificate. This reproves and uses
+property T, so it does not satisfy the requested proof without property T.
+The independent
 standard-library checker passed on MSI in 0.45 seconds. The
 [Cairn claim](research/affine-clifford-non-mf-from-rational-certificate.md)
 records the proof and its scope; this written argument has no new Lean

@@ -1,5 +1,11 @@
 # An explicit non-MF group from a rational matrix certificate
 
+**Scope correction (2026-09-08).** This is a property-T argument: the
+certificate proves a uniform representation estimate equivalent to property
+T for the affine subgroup, and the construction uses that estimate.
+Reproving the property explicitly does not avoid using it. This proof does
+not fulfill the requested proof without property T.
+
 ## Statement
 
 There is an explicit nine-generated countable group \(W\), with a specified
