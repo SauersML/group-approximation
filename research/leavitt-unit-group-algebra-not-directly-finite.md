@@ -16,6 +16,7 @@ artifacts:
   - notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md
   - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
   - research/artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md
+  - research/artifacts/kaplansky-single-macro-prefix-transporter-obstruction-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
@@ -170,6 +171,17 @@ unknown shear's evaluation. The completed 109-column parameter solve has
 no solution. This finite result and the exact criterion are recorded in
 the two-shear artifact; the target remains open. The initial incomplete
 run was replaced by a completed solve after a prefix-reduction speed fix.
+
+**Single prefix transporter obstruction.** The reduced finite-chart
+comparison still has no split `LZ=f_0`. Every candidate `Z=P_0[g]f_0`
+with one prefix permutation on the chosen `F_4` coordinates is now
+excluded: two conjugate charts have a finite dihedral boundary orbit
+whose exterior powers give an incompatible source and target rank.
+An explicit order-six transporter passes the entire exterior-square
+source test and fails in degree three. This rules out the specified
+single-transporter class; sums, general linear units, and prefix
+permutations that mix the binary coordinates encoding `F_4` remain
+outside the theorem. The unrestricted Kaplansky target remains open.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

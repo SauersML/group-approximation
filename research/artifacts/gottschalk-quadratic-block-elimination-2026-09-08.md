@@ -630,6 +630,61 @@ relations between the actors while keeping their order-three subgroups
 distinct. In the general case, satisfying (17) remains only a necessary
 condition and supplies no injectivity claim.
 
+## Complete tests for zero and one subgroup-mask collisions
+
+The subgroup restriction also gives an exact classification for the
+two input forms 1_H versus 0, and 1+1_H versus 1. This does not classify
+arbitrary coset masks or arbitrary collisions.
+
+On right-H-invariant inputs, two shifted coordinates R_s x and R_t x
+agree whenever sH=tH. In particular R_s 1_H is the indicator of
+H s^-1; two such right cosets are equal or disjoint. It follows that
+F(1_H)=0 holds exactly when one quadratic pair has both addresses in H
+and the other pair has distinct H-cosets. Existence of a collision of
+this zero-mask form is therefore detected completely by failure of
+one of the two cross-inclusion tests (17).
+
+For the complemented mask, expand
+
+    F(1+1_H)+1=1_H+(R_a+R_b+R_c+R_d)1_H
+                    +(R_a 1_H)(R_b 1_H)
+                    +(R_c 1_H)(R_d 1_H).
+
+Within each operand pair, the three terms contribute one coset if
+the two addresses have the same H-coset, and two cosets otherwise.
+Cancellation with 1_H is possible exactly when one operand belongs
+to H and the other three occupy one common coset different from H.
+Writing the two surviving values as X=x and Y=R_t x, the restricted
+rule is X+XY+Y, Boolean OR. The inputs 1 and 1+1_H then collide.
+
+There are exactly four minimal subgroup tests for this OR pattern:
+
+    b in <a,b^-1c,b^-1d>,
+    a in <b,a^-1c,a^-1d>,
+    d in <c,d^-1a,d^-1b>,
+    c in <d,c^-1a,c^-1b>.                               (18)
+
+Injectivity requires all four memberships. For example, failure of
+the first uses H=<a,b^-1c,b^-1d>: the sole operand a lies in H and
+bH=cH=dH differs from H. Conversely, any H producing that OR pattern
+contains this minimal subgroup while excluding b, so the first test
+must fail. The other choices of the sole operand give the remaining
+three tests. Together, (17) and (18) completely detect the two specified
+subgroup-mask collision forms, and do not assert injectivity when they
+all pass.
+
+For an explicit residual family, consider
+
+    F(x)=x+(R_a x)(R_b x)+(R_(ab) x)(R_(ab^2) x).
+
+Both pair-generated subgroups equal <a,b>, so (17) supplies no
+obstruction. Nevertheless H=<b> makes the rule on right-H-invariant
+data equal to x+(R_a x)x+R_a x, which is OR. If a is outside <b>,
+the inputs 1 and 1+1_<b> collide. If a belongs to <b>, all memory
+addresses lie in the cyclic subgroup <b>, and the cyclic guard theorem
+gives injectivity implies surjectivity. This settles that family for
+every order of b, including the odd-order residual cases.
+
 ## Guard extensions beyond cyclic subgroups
 
 The [finite coset stratification proof](gottschalk-virtually-abelian-guard-stratification-2026-09-08.md)
