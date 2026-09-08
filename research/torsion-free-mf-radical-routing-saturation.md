@@ -35,5 +35,15 @@ operator-to-Hilbert--Schmidt conversion.  The remaining obligations are to
 produce an intrinsically torsion-free marked seed `(E,d)` satisfying actual
 MF-radical membership and to construct the routing quotient internally.
 
+**Why the torsion-free `Q` has to be supplied and cannot be manufactured
+(2026-09-08).**  `(TFR1)` takes the routing quotient as data, and that is not a
+presentational convenience.  By
+`full-mf-radical-seed-has-no-torsion-free-quotient` there is a finitely
+presented full-MF-radical group whose only torsion-free quotient is trivial, so
+no procedure valid on every full-MF-radical input can produce the `Q` of
+`(TFR1)` as a quotient of the input.  The recorded obligation to construct the
+routing quotient internally is therefore an obligation about this construction
+specifically, not an instance of a general principle waiting to be found.
+
 DERIVATION
 torsion-free-mf-routing-saturation-proof
