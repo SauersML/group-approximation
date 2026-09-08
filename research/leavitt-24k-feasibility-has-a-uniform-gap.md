@@ -41,6 +41,21 @@ nonhyperlinear group.
   argument recorded in `leavitt-24k-feasibility-vanishes` gives, for each `k`,
   an `m(k)` with a positive minimum; a uniform statement needs one `m` working
   for all `k` at once, which is precisely the missing content.
-- **Deferred:** no candidate relation set and no lower-bound mechanism is
-  proposed here.  A mechanism would have to survive amplification, since the
-  criterion's models are closed under tensoring with the identity.
+- **A concrete four-word packet is now available.** The claim
+  `leavitt-24k-kernel-packet-excludes-scalar-field-models` supplies
+  `r_*`, `R_v`, `R_0`, and `R_sum` in the marked kernel. Two new rows
+  reject the first-relation F8 model at normalized-HS distance `sqrt(2)`.
+  The exact first-relation control now has an algebraic construction in
+  dimension `4608=24*192`, recorded in
+  `leavitt-first-relation-has-a-4608-dimensional-seed`.
+- **The coefficient class has a quantitative obstruction.** The claim
+  `leavitt-kernel-packet-has-a-finite-coefficient-rank-gap` proves a
+  normalized-rank gap of `1/15` for three packet words in literal
+  elementary matrices over finite-dimensional characteristic-two
+  coefficients. It does not yield a normalized-HS gap for arbitrary
+  complex relative unitaries. Constructing an appropriate additive
+  coefficient receiver inside such models remains missing.
+- **The unrestricted lower bound remains open.** A mechanism must survive
+  amplification, since the criterion's models are closed under tensoring
+  with the identity. The packet is a finite test set, not a claimed
+  presentation or a proved witness for this claim.

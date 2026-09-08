@@ -13,11 +13,17 @@ artifacts:
 
 **ESTABLISHED.**  Let `q : P = C_3 * C_2^3 -> H` be the surjection of
 `binary-leavitt-units-generated-by-c3-and-c2-cubed`, `N = ker q`, and let
-`T_1 subset T_2 subset ...` be the computable finite sets of words exhausting
-`N` described in the artifact (a word lies in `T_m` when each of the nine
-entries of its expanded matrix minus `I` has an ideal certificate of length
-at most `m` over the five defining polynomials of `R`, with factor monomials
-of length at most `m`).  On
+`r_*` be the fixed kernel word displayed in
+`leavitt-24k-first-relation-has-exact-finite-model`. For `m>=1`, let
+`T_m` consist of `r_*` together with every reduced free-product word of
+length at most `m` for which each of the nine entries of its expanded
+matrix minus `I` has an ideal certificate with at most `m` summands over
+the five defining polynomials of `R`, each left and right factor being a
+monomial of length at most `m`. Free-product length counts nonidentity
+factor syllables. These are computable finite sets with
+`T_1 subset T_2 subset ...` and union `N`; the artifact proves these facts.
+The explicit word-length bound is essential: zero polynomial entries
+alone impose no bound on the length of their group words. On
 
 ```text
 Hilbert space  C^3 (x) C^8 (x) C^k,     dimension 24k,

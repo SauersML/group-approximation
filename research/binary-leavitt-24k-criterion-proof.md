@@ -18,6 +18,27 @@ of length `l` in unitaries changes by at most `l epsilon` when each letter
 moves by `epsilon` (telescoping; unitary factors do not change the norm of a
 summand).
 
+**A finite computable exhaustion.** For `m>=1`, use exactly the bounded
+word-and-certificate definition of `T_m` in the target, with the fixed
+kernel word `r_*` explicitly adjoined. There are finitely many reduced
+free-product words of at most `m` syllables, since both factors are finite.
+There are also finitely many certificates consisting of at most `m`
+terms `a p_i b`, with `p_i` one of the five defining ring polynomials and
+`a,b` monomials of length at most `m`. Equality of two free noncommutative
+polynomials over `F_2` is decidable by collecting monomials. Thus membership
+in this bounded set is computable. The sets are nested, and every kernel
+word eventually belongs, since every one of its nine entries has some
+finite ideal certificate. The constant-root calculation in the generation
+proof gives `q(r_*)=1`, so the explicitly adjoined word is also in `N`.
+
+The word-length bound repairs an actual defect in the previous formulation.
+The words `(b_1 c b_1 c^(-1))^(4j)`, `j>=1`, are distinct in the free
+product, but their matrices are already identity over the free
+characteristic-two coefficient algebra: `(x_12(s_0)x_23(s_0))^4=I`.
+All their entries therefore have zero certificates, regardless of word
+length. Certificate bounds alone would give infinite sets. This correction
+changes no step of the equivalence below.
+
 **Feasibility implies hyperlinear.**  Choose `k_m, U_m` with error below
 `1/m` on `T_m` and set `pi_m = pi_(k_m,U_m)`.  Each `pi_m` is an exact
 representation of `P`, and by the exhaustion every fixed element of `N` is

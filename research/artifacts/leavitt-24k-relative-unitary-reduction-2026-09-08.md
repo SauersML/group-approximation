@@ -55,6 +55,61 @@ subgroups whose orders fix the model dimension.
 
 ## 3. The criterion and its separation half
 
+Here is the precise finite exhaustion used by the criterion. Work in the
+free polynomial algebra `F_2<s_0,s_1,t_0,t_1>` with the five defining
+polynomials `t_i s_j-delta_(ij)` and `s_0 t_0+s_1 t_1-1`.
+For `m>=1`, let `E_m` contain every reduced word in `C_3*C_2^3` of
+free-product syllable length at most `m` for which all nine entries of
+its expanded matrix minus `I` admit certificates
+
+```text
+entry=sum_(nu=1)^q a_nu p_(i_nu) b_nu,
+q<=m,     length(a_nu)<=m,     length(b_nu)<=m,
+```
+
+where the `p_i` are the five polynomials and the factors `a_nu,b_nu`
+are monomials. The empty sum certifies zero. Define
+
+```text
+T_m={r_*} union E_m,
+```
+
+with the fixed kernel word `r_*` of Section 4. For clarity, its full
+definition is
+
+```text
+d=[b_2,c b_1 c^(-1)],       a=[d,c^2 d c^(-2)],
+b=c d c^(-1),              z=a b a^(-1),
+r_*=z c z c.
+```
+
+The elementary-root calculation gives `q(d)=x_13(1)`,
+`q(a)=x_12(1)`, `q(b)=x_21(1)`, and `q(z)=(12)`; hence
+`q(r_*)=((12)c)^2=1`. In particular `r_*` belongs to every `T_m`
+by the explicit adjoin convention, independently of its certificate length.
+
+Both the bounded words and the bounded certificates range over finite
+computable sets. Free polynomial equality is decidable by collecting
+monomials, so each `T_m` is a computable finite set. They are nested,
+and their union is the whole kernel: any fixed kernel word has finite
+length and finite ideal certificates for its nine entries. This uses
+no finite-presentation assertion for the unit group.
+
+The word-length condition corrects a material omission in the earlier
+certificate-only definition. Put `u=b_1 c b_1 c^(-1)`. Its powers
+are distinct reduced words in the free product, whereas
+
+```text
+q_free(u)=x_12(s_0)x_23(s_0),       q_free(u)^4=I
+```
+
+already over the free characteristic-two polynomial algebra. Indeed
+`q_free(u)=I+M` with `M` strictly upper triangular, so `M^3=0`
+and `(I+M)^4=I`. Every `u^(4j)` consequently has zero certificates
+in all nine entries. A certificate bound alone therefore includes
+infinitely many words at each stage. The reduced word-length bound
+removes that defect while preserving the exhaustive criterion.
+
 Landed as `binary-leavitt-hyperlinear-iff-24k-feasible`.  The direction worth
 naming is right-to-left, because that is where a criterion usually leaks: a
 feasible sequence gives a homomorphism into a tracial matrix ultraproduct that
