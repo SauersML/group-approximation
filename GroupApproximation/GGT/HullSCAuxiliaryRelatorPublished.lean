@@ -598,19 +598,28 @@ theorem exists_auxiliaryRelatorOfBaseLetterPublished_exact
     ∃ u ∈ N,
       ∃ R : List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)),
         GGT.RelLetter.listVal R = t⁻¹ * u ∧
-          RelWord.IsLemma49Input D.rel (RelWord.symmetrized R) eps mu rho := by
+          RelWord.IsLemma49Input D.rel (RelWord.symmetrized R) eps mu rho ∧
+            ∀ x : G, GGT.RelLetter.base x ∈ R → x = t⁻¹ := by
   let E := D.focusNCore
   have htE : t⁻¹ ∈ E.rel.base := Or.inl ht
   obtain ⟨u, hu, R, hval, hsc, hbase⟩ :=
     exists_hullRelatorWord₂OfBaseLetterPublished_exact E hN t htE
       eps rho mu hmu
-  refine ⟨u, hu, R.map D.embedNLetter, ?_, ?_⟩
+  refine ⟨u, hu, R.map D.embedNLetter, ?_, ?_, ?_⟩
   · rw [D.listVal_map_embedNLetter, hval]
   · apply D.isLemma49Input_map_embedNLetter
     · intro x hx
       rw [hbase x hx]
       exact ht
     · exact hsc
+  · intro x hx
+    obtain ⟨a, ha, hax⟩ := List.mem_map.mp hx
+    cases a with
+    | base y =>
+        have hy : y = x := by simpa [embedNLetter] using hax
+        subst hy
+        exact hbase y ha
+    | comp b h => simp [embedNLetter] at hax
 
 /-- The torsion-free one-step theorem from the canonical quotient and the
 full-family §6 relator.  The target is adjoined before the quotient constants
@@ -621,7 +630,7 @@ theorem hullOneStep_of_canonicalQuotient
   intro G _ hG A N hN k S hS t R
   obtain ⟨D, eps, rho, mu, ht, hmu, hgood⟩ :=
     hquot hG A N hN S hS t R
-  obtain ⟨u, hu, v, hval, hsc⟩ :=
+  obtain ⟨u, hu, v, hval, hsc, -⟩ :=
     exists_auxiliaryRelatorOfBaseLetterPublished_exact D hN t ht
       eps rho mu hmu
   obtain ⟨Q⟩ := hgood (RelWord.symmetrized v) v

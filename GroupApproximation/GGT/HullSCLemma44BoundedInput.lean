@@ -83,7 +83,7 @@ theorem AuxiliaryPeripheralFamily.exists_stronglyBoundedRelatorPublished_exact
       GGT.RelLetter.listVal R = t⁻¹ * u ∧
         RelWord.IsLemma49Input D.rel (RelWord.symmetrized R) eps mu rho ∧
         RelWord.IsBoundedLemma44Input D.rel (RelWord.symmetrized R) eps mu rho := by
-  obtain ⟨u, hu, R, hval, hsc⟩ :=
+  obtain ⟨u, hu, R, hval, hsc, -⟩ :=
     D.exists_auxiliaryRelatorOfBaseLetterPublished_exact hN t ht eps rho mu hmu
   exact ⟨u, hu, R, hval, hsc, hsc.toIsLemma44Input.bounded_symmetrized⟩
 

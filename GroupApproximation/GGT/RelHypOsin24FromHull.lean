@@ -83,7 +83,7 @@ theorem hullOneStepStatement_of_lemma44family_of_lemma49_of_yi
   intro G _ hG A N hN k S hS t R
   obtain ⟨D, eps, rho, mu, ht, hmu, hgood⟩ :=
     hquot hG A N hN S hS t R
-  obtain ⟨u, hu, v, hval, hsc⟩ :=
+  obtain ⟨u, hu, v, hval, hsc, -⟩ :=
     HullSC.AuxiliaryPeripheralFamily.exists_auxiliaryRelatorOfBaseLetterPublished_exact
       D hN t ht eps rho mu hmu
   obtain ⟨Q⟩ := hgood (HullSC.RelWord.symmetrized v) v
@@ -152,7 +152,7 @@ theorem osin24HullStep_of_data
   let rho := max rho₄₄ rho₄₉
   let mu := min mu₄₄ mu₄₉
   have hmu : 0 < mu := lt_min hmu₄₄ hmu₄₉
-  obtain ⟨u, hu, v, hval, hsc⟩ :=
+  obtain ⟨u, hu, v, hval, hsc, -⟩ :=
     HullSC.AuxiliaryPeripheralFamily.exists_auxiliaryRelatorOfBaseLetterPublished_exact
       D B.suitable t htBase eps rho mu hmu
   let W := HullSC.RelWord.symmetrized v
