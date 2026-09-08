@@ -36,4 +36,6 @@ claim.
 - `jacobson-single-rank-one-root-orbit-cannot-extend` excludes the
   smallest nontrivial root orbit even with arbitrary root-trivial
   summands. It gives a positive gap on dimensions at most 97 by
-  compactness. It does not control the remaining unbounded dimensions.
+  compactness. Coherent correction of both root packets strengthens
+  this to the explicit bound `1/(8192*2,228,976)` on that dimension
+  range. It does not control the remaining unbounded dimensions.

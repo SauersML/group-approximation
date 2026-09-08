@@ -8,9 +8,11 @@ requires:
   - jacobson-mixed-cells-reconstruct-full-first-level-root-packet
   - jacobson-boundary-cell-reconstructs-finite-root-packet
   - binary-jacobson-gl3-k-branching-has-regular-counterprofile
+  - jacobson-first-root-packet-admits-coherent-relative-correction
 artifacts:
   - research/artifacts/jacobson-single-rank-one-orbit-obstruction-2026-09-08.md
   - research/artifacts/jacobson-first-root-packet-dimension-audit-2026-09-08.md
+  - research/artifacts/jacobson-first-root-packet-coherent-rounding-2026-09-08.md
 ---
 
 A multiplicity-one rank-one `N` orbit has dimension 49 and root
@@ -37,3 +39,14 @@ For each smaller dimension, exact compatible finite-factor tables with
 marked distance two form a compact set. The mixed error is continuous
 and has no zero there. Taking the minimum over the finitely many
 dimensions gives the claimed bounded-dimension gap.
+
+For the explicit constant, suppose both errors are at most
+`1/(8192*2,228,976)`. The coherent correction prerequisite gives
+`delta<=1/4096`, so it preserves the dimension and head mark and
+leaves first-braid error below two. The involutions `H'bH'` and
+`bH'b` are then at distance less than two, hence have the same
+negative rank. They are respectively conjugate to `b` and `H'`,
+so the trace equality used in the exclusion holds exactly. All other
+steps use only the corrected exact packets and their shared root.
+The exclusion therefore still applies, contradicting dimension at
+most 97 and proving the explicit lower bound.
