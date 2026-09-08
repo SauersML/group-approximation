@@ -10,6 +10,9 @@ artifacts:
   - research/artifacts/modular-vertex-admissible-charts-2026-09-08.md
   - research/artifacts/iwahori-dilution-moment-obstruction-2026-09-08.md
   - research/artifacts/modular-stratum-coordinate-coverage-2026-09-08.md
+  - research/artifacts/modular-multiplicity-rank-reconciliation-2026-09-08.md
+  - research/artifacts/strict-iwahori-stratum-neighborhood-obstruction-2026-09-08.md
+  - research/artifacts/iwahori-mixed-surgery-and-polynomial-step-2026-09-08.md
 distinct_from:
   iwahori-outlier-repair: that is this repository's proposed sufficient condition -- a full-rank repair theorem in the one sector its own analysis leaves open; this is the published question in Dogon-Vigdorovich's own local-defect/global-defect form, which the repair theorem is an attack on.
   iwahori-fractional-transport-integralization: that is one intermediate step of the attack, converting a fractional transport plan into orthogonal blocks; this is the whole question the attack is aimed at.
@@ -87,7 +90,33 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   `pi(1+pi)/sqrt(3)` times its HS distance. Spectral truncation gives an
   exact intermediate vertex pair with small operator movement from one
   endpoint and small rank difference from the other. This does not find
-  the compatible endpoint or reconcile different multiplicities.
+  the compatible endpoint. The exact central surgery in
+  `modular-multiplicities-reconcile-at-quadratic-rank-cost` now removes
+  the matching-multiplicity hypothesis for supplied endpoints: it costs
+  `O(delta^2 d)` generator rank and `O(delta)` HS movement at endpoint
+  distance `delta`. This settles the qualitative bookkeeping in
+  `iwahori-torsion-multiplicity-stratum-reconciliation`, while the
+  defect-controlled endpoint construction remains open.
+- **Even a same-stratum HS neighborhood cannot supply strict repair.**
+  `strict-iwahori-repair-has-no-uniform-hs-neighborhood` combines a
+  bounded-dimensional compression with an inequivalent irreducible
+  summand. Property `(T;FD)` locks in two incompatible dimension demands.
+  No strict repair modulus holds on any dimension-uniform HS tube around
+  supplied compatible points in the same stratum. A sequence approaching
+  that locus violates every positive-power strict error bound. Restoring
+  at most twelve dimensions repairs these examples, so the flexible
+  question here remains open. The examples do not establish that an
+  unrestricted nearest compatible point has the same multiplicities.
+- **A polynomial step contracts under explicit residual conditions.**
+  `iwahori-spectral-residual-gate-has-polynomial-step` uses finitely many
+  Landweber terms in the exact modular charts. A small operator residual
+  and a bound on its low-singular component give half-contraction at
+  linear HS cost, without a bounded operator-norm pseudoinverse or
+  moment flatness. Admissible high/low splitting and selected
+  positive-central block surgery are also explicit. Those operations
+  have not been shown to produce the two residual conditions from small
+  HS defect or preserve them under iteration; that is the remaining
+  sufficient construction, not a consequence of the polynomial formula.
 - **The cross-dimension metric step is now justified in both directions.**
   `flexible-hs-metric-controls-words-and-padding` proves the word-defect
   Lipschitz estimate using the actual generalized metric, correcting the
@@ -510,6 +539,8 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   fourth-moment form of the remainder estimate whose failure killed
   `iwahori-newton-closes-near-sector-proof`. It gives a sufficient
   effective-rank budget for controlling that upper bound. The actual
-  representation-preserving chart and its uniform derivatives are
-  additional open requirements; flat generator increments alone do not
-  supply them.
+  representation-preserving chart and its mixed derivatives are now
+  supplied by `modular-vertex-charts-have-uniform-schatten-control`.
+  Universally available flat directions with the required cancellation
+  are not supplied by that chart, and the dilution obstruction rules
+  out the stated universally sixth-flat square-root repair scheme.

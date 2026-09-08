@@ -195,10 +195,9 @@ itself provide an eligible encoder actor. Extra addresses that the
 local rule never reads do not fix this defect: the effective memory
 is the one relevant to the localization argument.
 
-## 6. A bounded feedback candidate and its unfulfilled obligations
+## 6. The bounded feedback candidate has an explicit collision
 
-The following is an explicit design interface, not a new theorem or
-a purported strict encoder. It keeps the original four full-actor
+The following rejected candidate keeps the original four full-actor
 generators a1,b1,a2,b2, includes all six primitive letters of (7) in
 the effective nonlinear memory, and exposes (7) in the decoder table.
 
@@ -231,30 +230,23 @@ and the finite-subgroup encoder obstruction of Section 5 is avoided
 because the effective encoder memory retains all four generators of
 Q. Other surjunctive-cover obstructions have not been excluded.
 
-One falsifiable first obligation is a quadratic decoder D. Because
-F fixes every coordinate axis, any left inverse D must fix those
-axes. Its constant and linear terms are therefore forced, and its
-quadratic terms can involve only different tracks:
+The exact boundary calculation in
+[the native second-marginal collision proof](gottschalk-native-second-marginal-collision-2026-09-08.md)
+now supplies a binary configuration U with
 
-    D_i(Y)(g)=Y_i(g)
-       +sum_(r<t, s,t' in S) d_i(r,t;s,t')
-                       Y_r(gs)Y_t(gt').             (10)
+    U(1)=1,       J(1,U)=U.
 
-For this fixed F, the equations D F=id are linear over F_2 in the
-unknown coefficients d_i. Expand the compositions through degree
-four, identify positions by the exact SM table, reduce Boolean
-squares, and require every residual coefficient to vanish. A
-failure excludes only the quadratic decoder on these memories.
-A positive solution still needs F D!=id, checked independently by
-the exact MS table. If that residual is nonzero, a finite Boolean
-assignment witnessing it gives an actual output omitted by F,
-because D F=id would force F D to fix every output in F's image.
+Set V=1+J(U,1). Bilinearity gives the full collision
 
-No coefficients solving (10), missing output, or collision of (9)
-have been found in this pass. Enlarging the memory alone is not
-evidence for either injectivity or nonsurjectivity. The earlier
-four-track design file is actively maintained separately and was
-not edited here.
+    F(U,1,U,1)=(0,V,0,V)=F(0,V,0,V).                 (10)
+
+The inputs differ because U(1)=1. Thus no left inverse exists, of any
+degree or memory. The candidate no longer has an unresolved decoder
+search obligation. The proof gives all five prefix identities defining
+the boundary mask, and applies to every even feedback cycle with this
+second-argument marginal on the odd outputs, even if first-argument
+addresses and even-output operations change. A new candidate must escape
+that shared marginal obstruction, as well as the cover tests above.
 
 ## 7. Prior-work and endpoint boundary
 
@@ -276,6 +268,7 @@ finite-witness method is made here.
 The present proof gives a sharper rejection condition and an exact
 necessary finite presentation for a strict pair. Its prefix-chain
 application identifies a concrete mixed relation that a new memory
-window can force. The local inverse and reverse-defect obligations
-remain unresolved, so the unrestricted Gottschalk and Leavitt
+window can force. The specific rule (9) is now noninjective. A new
+eligible encoder and its local inverse and reverse-defect witnesses
+remain to be constructed; the unrestricted Gottschalk and Leavitt
 nonsurjunctivity roots remain open.

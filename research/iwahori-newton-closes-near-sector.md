@@ -5,6 +5,7 @@ kind: claim
 title: Uniform infinitesimal rigidity gives a linear error bound inside each fixed torsion-multiplicity stratum
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/strict-iwahori-stratum-neighborhood-obstruction-2026-09-08.md
 distinct_from:
   iwahori-uniform-infinitesimal-rigidity: that is the first-order cocycle gap; this integrates it on one smooth multiplicity stratum and records why the union of strata is not yet covered.
 ---
@@ -14,7 +15,8 @@ representations and let `C=F^(-1)(0)` be the compatible locus.  Fix the
 multiplicities of every order-two and order-three eigenvalue in both modular
 vertices.  This defines a smooth product of compact flag manifolds.
 
-**ESTABLISHED on this stratum.**  If `sigma_0` is the dimension-free lower
+**OPEN as stated; the proposed Taylor argument below is invalid.**
+If `sigma_0` is the dimension-free lower
 singular-value constant from `iwahori-uniform-infinitesimal-rigidity`, there
 are dimension-free `L,r_0>0` such that every pair `pi` whose nearest
 compatible point `pi~` lies in the same stratum and whose stratum distance
@@ -24,16 +26,18 @@ is below `r_0` satisfies
 D(pi) <= (2/sigma_0) def(pi).                            (NR1)
 ```
 
-Indeed, a minimizing geodesic from `pi~` to `pi` is normal to `C` inside
+The proposed argument takes a minimizing geodesic from `pi~` to `pi`
+normal to `C` inside
 the stratum.  The differential `DF(pi~)` is bounded below by `sigma_0` on
-that normal space.  Since `F` is made of fixed unitary words, its second
-derivative has a dimension-free bound `L`.  Taylor's formula gives
+that normal space. It then assumes that, because `F` is made of fixed
+unitary words, its second derivative has a dimension-free HS bound `L`.
+That assumption is false. If it were available, Taylor's formula would give
 
 ```text
 def(pi) >= sigma_0 D(pi)-(L/2)D(pi)^2,
 ```
 
-and `(NR1)` follows when `D(pi)<=sigma_0/L`.  This uses a lower bound on the
+and `(NR1)` would follow when `D(pi)<=sigma_0/L`. This uses a lower bound on the
 normal derivative; it does not incorrectly assume that the overdetermined
 mismatch derivative is surjective.
 
@@ -47,6 +51,18 @@ padding).  The far outlier sector remains separate as well.
 
 ## Attempts
 
+- **A supplied same-stratum comparison does not give a strict tube.**
+  `strict-iwahori-repair-has-no-uniform-hs-neighborhood` constructs exact
+  vertex pairs near explicit compatible points with identical torsion
+  multiplicities, but excludes every dimension-uniform strict repair
+  modulus on any positive-radius HS neighborhood. Along another sequence
+  the same-stratum distance tends to zero and every positive-power strict
+  error bound fails. Bounded flexible padding repairs the examples.
+  This rules out replacing the present nearest-point hypothesis by merely
+  supplying a nearby compatible point in the stratum. The construction
+  does not show that an unrestricted nearest compatible point also has
+  the same multiplicities, so it is not a literal refutation of that
+  extra nearest-point hypothesis.
 - **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The sentence "its
   second derivative has a dimension-free bound `L`" in normalized
   Hilbert--Schmidt norm is false:
@@ -61,4 +77,3 @@ padding).  The far outlier sector remains separate as well.
   inside a fixed torsion-multiplicity stratum, so the stratum restriction
   does not avoid it; the stratum-reconciliation issue recorded above is a
   second, independent gap.  `(NR1)` in the HS metric is therefore OPEN.
-
