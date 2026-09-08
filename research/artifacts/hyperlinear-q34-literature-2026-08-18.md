@@ -38,6 +38,13 @@ downstream:
   group homomorphism `φ : G → Sym(A)`, and, for each `a ∈ A`, a graph
   embedding `π_a : (W, E|_{W×W}) ↪ Θ` s.t.
   `π_{φ(g)a}(v) = π_a(α(g^{-1})v)`" for the specified conditions.
+* *Theorem 1.1* (added 2026-09-08, second body-read of the same v1).  "Let
+  `G` be a finitely generated residually finite amenable group and `L` be an
+  exact MF/PMF/PFF group.  Then `G ⋊ L` is MF/PMF/PFF."  Checked against the
+  binary Jacobson symbol sequence and found not to apply — the kernel there is
+  amenable but neither finitely generated nor residually finite, both forced by
+  its being infinite simple locally finite; see
+  `binary-jacobson-gkm-semidirect-hypotheses-fail`.
 * *Theorem 1.2.*  Generalized wreath products `G ≀_I L` with `G` residually
   finite abelian and `L` exact PMF/PFF are PMF/PFF, for any transitive
   `L ↷ I` **with separable stabilizers**.

@@ -8,6 +8,7 @@ distinct_from:
   finite-block-perfect-lamps-have-exact-mf-radical: that constructs free products of finite blocks and proves finite presentability; this concerns the ordinary restricted direct-sum lamp group and makes no finite-presentability assertion.
 artifacts:
   - research/artifacts/compression-locally-finite-centralizer-criterion-2026-09-08.md
+  - research/artifacts/affine-perfect-lamp-wreath-recheck-2026-09-08.md
 ---
 
 Suppose `Lambda` is countable, residually finite, and has property
