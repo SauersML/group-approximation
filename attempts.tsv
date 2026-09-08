@@ -300,3 +300,4 @@
 34188102180	2026-09-08T04:45:57Z	GroupApproximation/Analysis/AmenableExtensionSentences.lean	manuscriptSentence_stagePacketSeparates
 34208480022	2026-09-08T09:10:47Z	GroupApproximation/Analysis/LocallyRFQuasidiagonalTrace.lean	manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
 34233404151	2026-09-08T13:40:59Z	GroupApproximation/Analysis/STW22ProblemXXIIFactorialEndpoint.lean	factorialNegativeSolutionToProblemXXII
+34257815123	2026-09-08T17:34:47Z	GroupApproximation/Sofic/CliffordLampNormalForm.lean	zmod2_eq_zero_or_one
