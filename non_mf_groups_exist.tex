@@ -1886,22 +1886,54 @@ and suppose the ascending HNN extension
  V=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)
                          \ (\gamma\in\Gamma)\rangle
 \]
-is residually finite.  Define
+is residually finite.  For a finite group $K$ put
 \[
- \Gamma^+=t^{-1}\Gamma t,\qquad X=V/\Gamma,
- \qquad Y=V/\Gamma^+,\qquad
- p\colon X\to Y,\quad v\Gamma\mapsto v\Gamma^+.
+ \Omega=\Gamma/\alpha(\Gamma),\qquad
+ F=K^{\Omega},\qquad
+ \Lambda=F\rtimes\Gamma,
 \]
-Each fiber of $p$ has $m$ points.  For a finite group $K$, let $K_x$
-be a labeled copy of $K$ at $x\in X$ and put
+where $\Gamma$ permutes the $m$ coordinates of $F$ through its left
+action on $\Omega$, and define
 \begin{equation}\label{eq:finite-block-group}
- B_K=\mathop{*}_{y\in Y}
-          \left(\prod_{x\in p^{-1}(y)}K_x\right),
- \qquad E_K=B_K\rtimes V,
+ E_K=\langle\Lambda,t\mid t\gamma t^{-1}=\alpha(\gamma)
+        \ (\gamma\in\Gamma)\rangle .
 \end{equation}
-where $V$ acts by permuting the labeled coordinates.  This is an
-ordinary free product of the finite block groups.  Its normal form
-embeds every coordinate and every block.
+This is an HNN extension of $\Lambda$ with associated subgroups
+$\Gamma$ and $\alpha(\Gamma)$, both proper in $\Lambda$.  Killing $F$
+leaves $V$, and $\langle\Gamma,t\rangle$ is a copy of $V$ by Britton's
+lemma, so the quotient map splits.  Write $B_K$ for its kernel, the
+normal closure of $F$.
+
+\begin{lemma}[block structure]\label{lem:block-structure}
+$B_K$ is the free product of the conjugates of $F$, one for each coset
+in $V/\Gamma$:
+\[
+ B_K\cong\mathop{*}_{v\Gamma\in V/\Gamma}F_{v},
+ \qquad F_v\cong K^m .
+\]
+\end{lemma}
+
+\begin{proof}
+Let $T$ be the Bass--Serre tree of~\eqref{eq:finite-block-group}, with
+vertices $E_K/\Lambda$ and edges $E_K/\alpha(\Gamma)$, the edge
+$g\alpha(\Gamma)$ joining $g\Lambda$ to $gt\Lambda$.  Since $B_K$ is
+normal with quotient $V$, its orbits on vertices and on edges are
+$V/\Gamma$ and $V/\alpha(\Gamma)$, and its stabilizers are
+$g(B_K\cap\Lambda)g^{-1}=gFg^{-1}$ at a vertex and
+$g(B_K\cap\alpha(\Gamma))g^{-1}=1$ at an edge, because $\Gamma$ meets
+$B_K$ trivially.  In the quotient graph the edge $\bar v\alpha(\Gamma)$
+runs from $\bar v\Gamma$ to $\bar vt\Gamma$.  The cosets of
+$\alpha(\Gamma)$ inside $w\Gamma t^{-1}=wt^{-1}\alpha(\Gamma)$ form a
+single one, so every vertex has exactly one incoming edge, while
+$\bar v\Gamma$ has the $m$ outgoing edges $\bar v\gamma\alpha(\Gamma)$.
+A cycle with $k$ edges would have $k$ distinct heads among its $k$
+vertices, hence would be consistently oriented, and would give
+$wt^{-k}\Gamma=w\Gamma$ for some $k\ge1$; the homomorphism
+$V\to\mathbb Z$ killing $\Gamma$ and sending $t$ to $1$ forbids that.
+The quotient graph is therefore a tree, and a graph of groups with
+trivial edge groups over a tree has the displayed free product as its
+fundamental group, with no free factor.
+\end{proof}
 
 \begin{theorem}[perfect finite-block radical]
 \label{thm:perfect-block-radical}
@@ -1916,108 +1948,75 @@ The subgroup $B_K$ is perfect and residually finite, and
 $E_K/B_K\cong V$.  Also $E_K=J_K\rtimes\mathbb Z$ with $J_K$
 locally residually finite, and the canonical trace on
 $C^*_{\max}(E_K)$ is amenable and not quasidiagonal.  If $K$ is
-nonabelian simple, any nonidentity element of a coordinate $K_x$
-normally generates $B_K$ in $E_K$.
+nonabelian simple, any nonidentity element of a single coordinate of
+$F$ normally generates $B_K$ in $E_K$.
 \end{theorem}
 
 \begin{proof}
-We first verify finite presentability directly.  Choose finite
-presentations $\Gamma=\langle S\mid R\rangle$ and
-$K=\langle Z\mid T\rangle$, and representatives
-$b_1\Gamma=\Gamma,b_2\Gamma,\ldots,b_m\Gamma$ for
-$\Gamma^+/\Gamma$.  Regard $b_i$ and $\alpha(s)$ as words in
-$S,t$.  A finite presentation for $E_K$ has generators $S,t,Z$
-and relations
-\begin{equation}\label{eq:finite-block-presentation}
-\begin{gathered}
- R,\quad T,\quad
- t s t^{-1}=\alpha(s)\quad(s\in S),\qquad
- [z,s]=1\quad(z\in Z,\ s\in S),\\
- [z,b_i z'b_i^{-1}]=1
- \quad(z,z'\in Z,\ 2\le i\le m).
-\end{gathered}
-\end{equation}
-Before the last family is imposed, the group is
-$V*_{\Gamma}(\Gamma\times K)$.  Its retraction to $V$ has kernel
-$\mathop{*}_{x\in X}K_x$: conjugating the root copy of $K$ gives
-the coordinate $K_{v\Gamma}$, well defined because the root copy
-commutes with $\Gamma$.  These assignments and the map in the
-opposite direction between the two presentations are inverse.
-The last family makes the root coordinate commute with every other
-coordinate in its $p$-fiber.  Its $V$-conjugates impose exactly
-commutation within each fiber: any pair of distinct points of one
-fiber has the form $v\Gamma,vb_i\Gamma$ for some $v$ and $i>1$.
-The resulting presentation is precisely
-\eqref{eq:finite-block-group}.
+The group $\Lambda$ is finitely presented, since $F$ is finite and
+$\Gamma$ is finitely presented, and~\eqref{eq:finite-block-group} adds
+one generator and finitely many relations; so $E_K$ is finitely
+presented.
 
-Now let $\rho$ be a corona homomorphism from $E_K$.  The block
-above $t\Gamma^+\in Y$ consists of
-$\{\gamma t\Gamma:\gamma\in\Gamma\}$ and is
-$\Gamma$-invariant.  Its finite group $F\cong K^m$ is normalized
-by $\Gamma$.  For $k\in K$, the element $k_{t\Gamma}$ is fixed
-by $t\Gamma t^{-1}$.  Theorem~\ref{thm:finite-algebra-transport}
-therefore gives
+Let $\rho$ be a corona homomorphism from $E_K$.  The finite subgroup
+$F$ is normalized by $\Gamma$, and the coordinate of $F$ at the point
+$\alpha(\Gamma)\in\Omega$ is centralized by the stabilizer of that
+point, which is $\alpha(\Gamma)=t\Gamma t^{-1}$.  By the last assertion
+of Theorem~\ref{thm:finite-algebra-transport}, applied with $L=\Gamma$,
+the image of that coordinate centralizes $\rho(\Gamma)$.  For $k\in K$
+and $\gamma\in\Gamma$ the conjugate $\gamma k\gamma^{-1}$ is the copy
+of $k$ at $\gamma\alpha(\Gamma)$, so
 \[
- \rho(k_{\gamma t\Gamma})=\rho(k_{t\Gamma})
- \qquad(\gamma\in\Gamma).
+ \rho(k_{\omega})=\rho(k_{\alpha(\Gamma)})
+ \qquad(\omega\in\Omega).
 \]
-Conjugation by $V$ identifies the images of the copies of $k$
-throughout any fiber of $p$.  Since $m>1$, two distinct coordinates
-in that fiber commute.  Their identified image is therefore an
-abelian image of $K$, hence trivial by perfection.  Thus $\rho$
-kills every coordinate and consequently $B_K$.  All MF
-homomorphisms kill $B_K$ by Lemma~\ref{prop:mf-residual-calculus}.
-Conversely, the residually finite quotient $V$ is MF and separates
-every element outside $B_K$.  This proves
-$\operatorname{Rad}_{\mathrm{MF}}(E_K)=B_K$.  Finite groups are MF,
-and the finite quotients of $V$ give the same two containments for
-the intersection of finite-index normal subgroups.
+Since $m>1$, two distinct coordinates of $F$ commute, so this common
+image is an abelian image of $K$ and is trivial by perfection.  Thus
+$\rho$ kills $F$ and hence $B_K$, and all MF homomorphisms kill $B_K$
+by Lemma~\ref{prop:mf-residual-calculus}.  Conversely the residually
+finite quotient $V$ is MF and separates every element outside $B_K$,
+which proves $\operatorname{Rad}_{\mathrm{MF}}(E_K)=B_K$.  Finite
+groups are MF, and the finite quotients of $V$ give the same two
+containments for the intersection of finite-index normal subgroups.
 
-A finite free product of finite groups is residually finite.  One
-way to see this is to map it to the direct product of the factors.
-The kernel has finite index and meets each conjugate factor
-trivially; its action on the free-product tree is free, so it is a
-free group.  Free groups are residually finite, and so are their
-finite-index overgroups.  For the latter assertion, separate an
-element in a finite-index normal subgroup, then intersect the
-finitely many conjugates of the separating finite-index normal
-subgroup.  Every nontrivial element of $B_K$ survives the
-retraction onto a finite sub-free-product, proving that $B_K$ is
-residually finite.  It is perfect because all its factors $K^m$
-are perfect and they generate it.
+By Lemma~\ref{lem:block-structure}, $B_K$ is a free product of copies
+of $K^m$, so it is perfect, and every nontrivial element survives the
+retraction onto a free product of finitely many factors.  A free
+product of finitely many finite groups is residually finite: mapping
+it onto the direct product of the factors gives a finite-index kernel
+meeting every conjugate factor trivially, which therefore acts freely
+on the free-product tree and is free; free groups are residually
+finite, and a group with a residually finite normal subgroup of finite
+index is residually finite.  So $B_K$ is residually finite.
 
 Write $\Gamma_n=t^{-n}\Gamma t^n$ and
-$T_\alpha=\bigcup_{n\ge0}\Gamma_n$.  Then
+$T_\alpha=\bigcup_{n\ge0}\Gamma_n$, so that
 \[
  V=T_\alpha\rtimes\mathbb Z,
  \qquad E_K=J_K\rtimes\mathbb Z,
- \qquad J_K=B_K\rtimes T_\alpha.
+ \qquad J_K=B_K\rtimes T_\alpha .
 \]
-As in Proposition~\ref{prop:clifford-locally-rf}, finite index of
-$\alpha(\Gamma)$ makes $\Gamma$ commensurated by $V$, so every
-$\Gamma_n$-orbit in $X$ and in $Y$ is finite.  A finite subset of
-$J_K$ uses finitely many blocks and actor coordinates in one
-$\Gamma_n$.  Saturating those blocks under $\Gamma_n$ gives a
-finite invariant set $I\subseteq Y$.  The finite subset lies in
-\[
- M_I\rtimes\Gamma_n,
- \qquad M_I=\mathop{*}_{y\in I}K^m.
-\]
-The action of $\Gamma_n$ on $M_I$ factors through its permutations
-of the $m|I|$ labeled sites.  Its kernel $\Lambda$ has finite
-index and centralizes $M_I$.  Thus $M_I\times\Lambda$ is a
-residually finite subgroup of finite index in
-$M_I\rtimes\Gamma_n$, proving that $J_K$ is locally residually
-finite.  Soficity now follows from the directed-union and
-amenable-extension permanence theorems~\cite[Theorem~1]{ElekSzabo}.
-Proposition~\ref{prop:locally-rf-by-z-trace} makes the canonical
-trace amenable, and Theorem~\ref{thm:factorization-nonmf-trace}
-makes it nonquasidiagonal, since $B_K\ne1$ and $E_K$ is not MF.
+Finite index of $\alpha(\Gamma)$ makes $\Gamma$ commensurated by $V$,
+as in Proposition~\ref{prop:clifford-locally-rf}, so every
+$\Gamma_n$-orbit in $V/\Gamma$ is finite.  A finite subset of $J_K$
+uses finitely many blocks and lies in one $\Gamma_n$; saturating those
+blocks gives a finite $\Gamma_n$-invariant set $I\subseteq V/\Gamma$
+and puts the subset in $M_I\rtimes\Gamma_n$ with
+$M_I=\mathop{*}_{v\Gamma\in I}K^m$ finite in the sense of finitely
+many factors.  The action of $\Gamma_n$ on $M_I$ permutes the $m|I|$
+labeled coordinates, so its kernel has finite index and centralizes
+$M_I$; the product of $M_I$ with that kernel is a residually finite
+subgroup of finite index.  So $J_K$ is locally residually finite, and
+soficity follows from the directed-union and amenable-extension
+permanence theorems~\cite[Theorem~1]{ElekSzabo}.
+Proposition~\ref{prop:locally-rf-by-z-trace} makes the canonical trace
+amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it
+nonquasidiagonal, since $B_K\ne1$ and $E_K$ is not MF.
 
-Finally, for nonabelian simple $K$, the normal closure of a
-nonidentity $k\in K_x$ contains $K_x$, then all its $V$-conjugates
-$K_{vx}$, and hence $B_K$.  The reverse containment follows from
-normality of $B_K$.
+Finally, for nonabelian simple $K$ the normal closure of a nonidentity
+$k$ in one coordinate contains that coordinate, then all its
+$V$-conjugates, and hence $B_K$; the reverse containment is normality
+of $B_K$.
 \end{proof}
 
 \subsection{The centerless affine example}
@@ -2036,7 +2035,7 @@ the repository at
 Here $m=8$, and the faithful matrix model for $V$ displayed after
 Proposition~\ref{prop:max-infinite} is residually finite by reduction
 modulo odd integers.  The height map $V\to\mathbb Z$ vanishes on
-$\Gamma^+$, so $Y=V/\Gamma^+$ is countably infinite.  Hence
+$\Gamma$, so $V/\Gamma$ is countably infinite.  Hence
 $B_{A_5}\cong\mathop{*}_{j\ge1}(A_5)^8$, and all the claimed
 properties except centerlessness follow from the theorem.
 
@@ -2126,12 +2125,12 @@ the converse holds because cyclic groups are MF.
 
 \begin{proof}[Proof of Theorem~\ref{thm:sofic-cyclic-mf}]
 Use the concrete group $E=B\rtimes V$ from
-Theorem~\ref{thm:fp-sofic-radical}, with root coordinate
-$(A_5)_\Gamma$.  Choose
+Theorem~\ref{thm:fp-sofic-radical}, and write $(A_5)_0$ for one
+coordinate of its base block $F$.  Choose
 \[
  x=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}
        \in\mathrm{SL}_3(\mathbb Z),
- \qquad a=(12)(34),\quad b=(123)\in(A_5)_\Gamma,
+ \qquad a=(12)(34),\quad b=(123)\in(A_5)_0,
 \]
 and set
 \begin{equation}\label{eq:sofic-cyclic-presentation}
@@ -2159,7 +2158,7 @@ Let $h\colon E\to\mathbb Z$ be the original height map, with
 $h(t)=1$ and $h(B)=h(\Gamma)=0$.  Since $h(r)=1$, the element
 $r$ has infinite order.  The two letters $a$ and $tbt^{-1}$ lie
 in different free-product blocks of $B$: the block labels
-$\Gamma^+$ and $t\Gamma^+$ have different heights.  Thus $d$
+$\Gamma$ and $t\Gamma$ have different heights.  Thus $d$
 is cyclically reduced of length two and $d^n$ has reduced length
 $2n$ for $n\ge1$.  In particular $d$ has infinite order.
 In the quotient $E/\normal{d}_E$, the images of $a$ and
