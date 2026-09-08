@@ -116,16 +116,18 @@ related_formalizations: []
 status:
   # Scope note.  This repository is a large development with open work in it;
   # the single result offered for mechanical verification is the Palomar
-  # challenge theorem, and that is what `main_results` describes.  The axiom
-  # closure of that theorem is decided by `leanprover/comparator` against
-  # `Palomar/comparator.json`, which permits only propext, Quot.sound and
-  # Classical.choice; it is recorded by the `Palomar Comparator` workflow run
-  # that precedes a submission and is deliberately not asserted here, because
-  # nothing in this file is in a position to have checked it.  `sorry_count`
-  # is omitted from the entry for the same reason: Palomar/Solution.lean
-  # contains no `sorry` lexically, but the field asks about the closure of the
-  # proved declaration, which reaches into the development and is settled by
-  # the same Comparator run rather than by reading one file.
+  # challenge theorem, and that is what `main_results` describes.
+  #
+  # The axiom list below is not asserted from reading a file.  It is the
+  # closure `Lean.collectAxioms` reports for the declaration, computed by
+  # `scripts/PalomarAxioms.lean` under `lake env lean` and gated on every push
+  # to the Palomar surface by `.github/workflows/palomar-check.yml`, which
+  # fails if the closure leaves the set `Palomar/comparator.json` permits.
+  # First green at run 34285122501 on af75d7783.  `sorry_count` is 0 for the
+  # same reason and not because Palomar/Solution.lean has no `sorry` lexically:
+  # the field asks about the closure of the proved declaration, which reaches
+  # into the development, and a closure containing no `sorryAx` is what settles
+  # it.  `leanprover/comparator` checks the same thing at submission.
   scope: >-
     A Lean 4 development over Mathlib of the one-sided Kazhdan compression
     criterion and its MF-radical consequences, together with a self-contained
@@ -139,6 +141,8 @@ status:
   main_results:
     - declaration: ExplicitNonMF.explicit_sofic_not_MF
       file: Palomar/Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator.json
 
 fidelity:
