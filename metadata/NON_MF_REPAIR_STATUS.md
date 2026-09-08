@@ -55,9 +55,28 @@ failures across both papers (40 non-MF and 15 recognition records), and
 The [draft PDF workflow for the repair commit](https://github.com/SauersML/group-approximation/actions/runs/34170022266)
 also completed successfully; this is a draft build, not an attestation.
 
+## Additional audit checks
+
+The current repair also adds in-module axiom guards for both parts of
+Lemma 2.1, the involution's order and normal generation, and both printed
+commutators. The nested second commutator now has its own literal statement,
+`ElementaryDoubleSwap.double_commutator_doubleSwap`. These six guards pass
+under Lean 4.32.0 with warnings treated as errors.
+
+The sentence and display exports now identify the exact manuscript source
+by SHA-256. Stale display assignments and dangling derivation links were
+removed, and the commutator display points to the current involution proofs.
+The primary signature roster was regenerated from all 49 current references;
+the signature exporter now unfolds outer proposition wrappers. The old
+rank-twelve signature snapshot is explicitly marked historical pending its
+complete regeneration. The signature comparison gate remains enabled.
+
+The Gerasimova--Osin bibliography entry now records its 2020 publication in
+Journal of Functional Analysis, volume 279, article 108689, and its DOI.
+
 ## Remaining verification work
 
-The regenerated census has **636 sentences: 192 unassigned and 30 partial**.
+The regenerated census has **717 sentences: 273 unassigned and 30 partial**.
 These are coverage classifications, not a count of false mathematical claims.
 The strict completeness gate correctly fails. Much of the newly unassigned
 material belongs to Theorem F and the finite-dimensional fixed-point and

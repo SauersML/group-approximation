@@ -23,10 +23,10 @@ namespace OneSidedMFRadical
 The three printed clauses that involve the MF radical, in the printed order:
 membership of a normal Kazhdan subgroup of the defect in the radical; a
 nontrivial such subgroup obstructing MF-ness; and the saturated case
-`𝔇_G(L) = G` forcing a full radical.  The fourth printed clause — that every
-finite-dimensional linear representation over every field kills `𝔇_G(L)` — is
-`manuscriptPrintedDefectFiniteDimensionalSterility`, stated separately because
-it carries neither a countability nor a property-`(T)` hypothesis. -/
+`𝔇_G(L) = G` forcing a full radical.  Finite-dimensional sterility is now
+stated separately in the manuscript and formalized by
+`manuscriptPrintedDefectFiniteDimensionalSterility`; it carries neither a
+countability nor a property-`(T)` hypothesis. -/
 def OneSidedCompressionCriterion : Prop :=
   ∀ (G : Type) [Group G] [Countable G] (L : Subgroup G),
     HasKazhdanPropertyT.{0, 0} ↥L →
