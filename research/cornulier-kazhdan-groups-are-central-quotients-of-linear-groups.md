@@ -6,7 +6,7 @@ title: The finitely presented non-Hopfian Kazhdan groups are central quotients o
 distinct_from:
   cornulier-non-hopfian-kazhdan-groups-are-mf: that is the analytic conclusion drawn from this structure; this is only the structural identification imported from the literature, with no approximation statement in it.
   affine-congruence-source-is-kazhdan: that is a level-three affine congruence group used as a compression source, with a proper self-embedding of its translation factor; this is a different published family, non-Hopfian and finitely presented, and is imported rather than constructed.
-  defect-forces-proper-self-embedding: that is the structural demand for a core that embeds properly in itself; this identifies the standard published family satisfying that demand, so that it can be tested.
+  defect-forces-proper-self-embedding: that requires an injective nonsurjective endomorphism of the core; this imports a published non-Hopfian family, whose surjective noninjective endomorphisms do not by themselves meet that demand.
 artifacts:
   - research/artifacts/central-quotient-rf-exclusion-2026-09-08.md
 ---

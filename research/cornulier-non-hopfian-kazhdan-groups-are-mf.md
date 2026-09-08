@@ -5,7 +5,7 @@ kind: claim
 title: The finitely presented non-Hopfian Kazhdan groups are MF with trivial Kazhdan defects
 distinct_from:
   cornulier-kazhdan-groups-are-central-quotients-of-linear-groups: that is the imported structural identification of the family; this is the analytic conclusion, that they are MF and carry no Kazhdan compression defect.
-  central-quotients-of-residually-finite-groups-are-mf: that is the general theorem; this is its application to one published family, which is the family the proper-self-embedding constraint makes the natural candidate source.
+  central-quotients-of-residually-finite-groups-are-mf: that is the general theorem; this is its application to one published non-Hopfian Kazhdan family, without assuming that non-Hopficity supplies a proper self-embedding.
   kazhdan-defects-vanish-in-central-quotients-of-rf-groups: that is the general defect statement; this names the family it removes from consideration.
   affine-perfect-lamp-wreath-has-locally-finite-mf-radical: that is a construction of a sofic non-MF group from a Kazhdan self-embedding; this is the negative result that the published non-Hopfian Kazhdan family cannot play that role directly, because those groups are themselves MF.
 artifacts:
@@ -21,10 +21,11 @@ D_G(L) = {1}.                                                     (CN2)
 ```
 
 So this family is **excluded** as a direct source of compression-defect
-examples, even though it satisfies the algebraic demand of
-`defect-forces-proper-self-embedding` — its members are non-Hopfian, hence
-admit proper self-surjections, and they are Kazhdan and finitely
-presented.
+examples. Its members are non-Hopfian, meaning they admit surjective
+noninjective endomorphisms. The demand in
+`defect-forces-proper-self-embedding` is an injective nonsurjective
+endomorphism, which does not follow from non-Hopficity. The MF exclusion
+does not require resolving that separate condition for this family.
 
 The exclusion is of a candidate source, not a non-MF construction.  It
 does not say that a group built **over** such a family is MF: the

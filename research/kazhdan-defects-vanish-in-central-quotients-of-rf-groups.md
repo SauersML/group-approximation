@@ -7,7 +7,7 @@ distinct_from:
   central-quotients-of-residually-finite-groups-are-mf: that is the construction of the approximate models and the MF conclusion, and consumes no analytic input; this feeds those models to the Kazhdan transport collapse and concludes about the defect subgroup.
   mf-group-with-finite-central-compression-defect: that exhibits an MF group whose compression defect retains a finite central subgroup, with the compressed subgroup infinite cyclic and NOT Kazhdan; this shows that under the property-(T) hypothesis the same cannot happen in a central quotient of a residually finite group, so the two are complementary and the (T) hypothesis is exactly what separates them.
   finite-order-central-compression-defect-survives-mf: that is the second such witness, again with an infinite cyclic compressed subgroup; the same complementarity applies.
-  defect-forces-proper-self-embedding: that is the algebraic constraint saying a nontrivial defect forces a proper self-embedding of the core; this removes an entire supply of cores that satisfy that constraint, namely those arising as central quotients of residually finite groups.
+  defect-forces-proper-self-embedding: that says a nontrivial defect forces a proper self-embedding of the core; this excludes central quotients of residually finite groups independently of whether they admit such embeddings.
 artifacts:
   - research/artifacts/central-quotient-rf-exclusion-2026-09-08.md
 ---
@@ -22,7 +22,7 @@ D_G(L) = {1},                                                     (CQ3)
 where `D_G(-)` is the intrinsic compression-centralizer defect of
 `intrinsic-compression-defect-functoriality-and-saturation`.
 
-**The property-(T) hypothesis is exactly the dividing line.**  Without it
+**The property-(T) hypothesis cannot be omitted.**  Without it
 the conclusion is false even for a central defect of order two:
 `mf-group-with-finite-central-compression-defect` and
 `finite-order-central-compression-defect-survives-mf` both exhibit an MF
@@ -31,9 +31,10 @@ subgroup, with the compressed subgroup infinite cyclic.
 
 **What this excludes.**  `defect-forces-proper-self-embedding` shows a
 nontrivial defect needs a core that embeds properly in itself, and that
-co-Hopfian cores are useless; non-Hopfian Kazhdan groups are therefore the
-natural supply.  `(CQ3)` removes every such group that is a central
-quotient of a residually finite group — in particular the standard
+co-Hopfian cores are excluded. Non-Hopficity instead asserts a surjective
+noninjective endomorphism and does not supply that proper embedding.
+`(CQ3)` excludes every central quotient of a residually finite group
+as a direct source of Kazhdan compression defects, including the
 finitely presented family, by
 `cornulier-non-hopfian-kazhdan-groups-are-mf`.
 
