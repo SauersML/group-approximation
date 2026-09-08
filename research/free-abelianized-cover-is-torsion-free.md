@@ -38,3 +38,12 @@ transferred.  For P = "not MF" that lifting statement is
 `free-abelianized-cover-reflects-mf`, which is open; see
 `torsion-free-countable-non-mf-from-abelianized-cover` for the route it
 would complete.  Nothing about MF is asserted here.
+
+**A free choice worth making (2026-09-08).**  Nothing above constrains the
+generating set, so one may always adjoin a dummy generator `z` mapping to the
+identity of `G`.  This costs one unit of rank and buys a presentation-free
+detector inside the cover: `[fbar, zbar] != 1` whenever `q(f) != 1`.  The
+representation-theoretic consequences are
+`free-abelianized-cover-has-nontrivial-fd-radical` and
+`free-abelianized-cover-fd-radical-is-commutator`; both are about exact
+finite-dimensional representations and neither decides MF.

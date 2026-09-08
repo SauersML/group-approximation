@@ -70,6 +70,25 @@ input.  That is `torsion-free-countable-non-mf-from-abelianized-cover`.
   downstairs.  Assuming instead that every homomorphism from `F/R` to an MF
   group is trivial does not supply it: that hypothesis constrains maps AFTER
   they factor through `F/R`, and does not make a map of the cover factor.
+- **Computing the cover's exact finite-dimensional radical does not do it
+  either (2026-09-08).**  The natural attempt to bypass `(D)` altogether is to
+  show the cover has no finite-dimensional theory and call it non-MF.  That
+  computation succeeds and the conclusion does not follow.  Adjoining one
+  dummy generator `z` with `q(z) = 1` makes `[fbar,zbar]` nontrivial in the
+  cover whenever `q(f) != 1`, and it is killed by every exact
+  finite-dimensional unitary representation as soon as `q(f)` lies in the
+  finite residual, so `Rad_fd(Ecover) != 1` for every non-residually-finite
+  base (`free-abelianized-cover-has-nontrivial-fd-radical`).  If the base has
+  a full MF radical the collapse is total:
+  `Rad_fd(Ecover) = [Ecover,Ecover] != 1`, i.e. every exact finite-dimensional
+  representation of the cover is abelian
+  (`free-abelianized-cover-fd-radical-is-commutator`).  But `Rad_fd` is the
+  larger radical, and the rational Heisenberg group `UT_3(Q)` is torsion-free,
+  operator MF, and satisfies that same total collapse
+  (`rational-heisenberg-fd-radical-is-commutator-and-mf`).  So the inference
+  from the collapse to non-MF is refuted, inside the torsion-free class and in
+  exactly the shape the cover produces.  Everything in this attempt is exact;
+  the missing operation is still one on matrix models.
 - **Deferred:** no attempt at a proof or a counterexample is made here.  A
   counterexample would be as informative as a proof: it would be the first
   quotient-nonclosure witness with abelian kernel.
