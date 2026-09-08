@@ -195,6 +195,14 @@ The explicit two-transporter pair passing the mod-three test has
 a five-vector wedge kernel. The hypothesis does not cover conjugate
 charts spread across several outside coordinates.
 
+A second explicit pair, `g_0:3<->10` and
+`g_1:30<->1,31<->20`, also passes the mod-three test but has a
+three-vector wedge killed by both transporters, even with arbitrary
+finite-chart coefficients and an added finite-chart correction.
+Section 10 of the focused note gives the common kernel directly.
+This excludes that pair without proving the general two-transporter
+case or providing a one-sided inverse.
+
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**
 

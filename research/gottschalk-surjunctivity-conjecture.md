@@ -21,6 +21,8 @@ artifacts:
   - research/artifacts/gottschalk-surjunctive-guard-finite-intersection-proof-2026-09-08.md
   - research/artifacts/gottschalk-off-guard-quadratic-elimination-2026-09-08.md
   - research/artifacts/gottschalk-tarski-common-factor-residual-controls-2026-09-08.md
+  - research/artifacts/gottschalk-common-factor-coset-collisions-2026-09-08.md
+  - research/artifacts/gottschalk-stable-three-factor-reduction-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -135,3 +137,22 @@ coset collision unless the memory subgroup is abelian. The Tarski
 instance passes the earlier mask and coloring controls and still
 has a finite collision. This closes that specified nonlinear family,
 without asserting surjunctivity of the Tarski group or arbitrary CA.
+
+The common-factor result extends to every outer actor `u` in `<t>`
+for `F=x+(1+R_u)R_s(x R_t x)`. In the finite odd-order case,
+injectivity forces either `u in <s>` or the memory subgroup `<s,t>`
+to be finite abelian. For arbitrary `u`, a five-exclusion coset
+witness gives further explicit collisions; it does not prove the
+remaining rules injective. This family theorem is recorded in
+`common-factor-power-actor-ca-are-surjunctive`.
+
+A universal reduction is now recorded in
+`stable-three-factor-reduction-proves-gottschalk`: add identity tracks
+and compose with reversible local shears to reduce every finite-alphabet
+CA to sums of products of at most three unary lookup factors over
+`Z/qZ`. This preserves both injectivity and surjectivity in both
+directions. Over finite fields there is also an ordinary cubic
+polynomial version. The prerequisite
+`three-factor-finite-alphabet-ca-are-surjunctive` is still open;
+the existing block elimination theorems do not cover this universal
+class. The reduction therefore does not close the headline goal.
