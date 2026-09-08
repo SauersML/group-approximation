@@ -4,6 +4,7 @@ id: boone-higman-conjecture
 kind: claim
 title: Every finitely generated group with solvable word problem embeds in a finitely presented simple group
 root: true
+goal: true
 distinct_from:
   boone-final-group-finitely-presented: that is one established fact about one constructed group -- the Boone tower's final group has a finite presentation; this is a universal embedding conjecture over all finitely generated groups with solvable word problem, and it requires the target to be SIMPLE, which that tower's final group is not.
   countable-group-embeds-in-two-generator-simple-group: that is Schupp's classical theorem, which is true and imposes no finiteness on the presentation of the envelope; this asks for the envelope to be finitely PRESENTED, which is exactly the part Schupp does not give and which fifty years of work have not supplied.
@@ -14,6 +15,7 @@ artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
+  - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -29,9 +31,9 @@ separately as `simple-envelope-forces-solvable-word-problem`.
 
 ## Why it is a root of this graph
 
-It is not this program's goal and nothing here implies it.  It is a root
-because an external resolution attempt was audited against this repository on
-2026-08-17 and turned out to land squarely on machinery this repository
+It is an explicit program goal, and remains open. Its existing embedding
+routes originated when an external resolution attempt was audited against
+this repository on 2026-08-17 and turned out to land squarely on machinery this repository
 already owns: the missing hypothesis of its near-solution is finite normal
 generation of a maximal kernel, which by
 `fp-quotient-iff-kernel-finitely-normally-generated` is
@@ -173,3 +175,17 @@ nontrivial quotient of `P` preserves the input.  Thus the simple-core survival
 part is a theorem in a property-`(T)`-free form.  The remaining obstruction is
 unchanged and exact: a maximal kernel supplied by Zorn need not be finitely
 normally generated, so its simple quotient need not be finitely presented.
+
+## September 8: the canonical coset repair fails for every quotient
+
+`ck-quotient-corner-has-infinite-bi-index` strengthens the direct-corner
+obstruction: every nontrivial quotient retains a root subgroup isomorphic
+to the additive group of the infinite quotient ring at its elementary
+level, and that subgroup supplies distinct simple-core double cosets.
+Marked covers inherit infinite bi-index by the surjection of double-coset
+sets. Finite-index enlargements of the stabilizer cannot repair it either.
+
+This refutes `ck-quotient-coset-repair` and disables
+`boone-higman-via-ck-quotient-cosets`. Other embeddings and infinite
+stabilizer enlargements remain candidates. The maximal-simple-quotient
+route does not require finite bi-index and remains open.

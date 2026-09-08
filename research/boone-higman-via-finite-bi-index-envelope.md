@@ -8,6 +8,7 @@ requires: [boone-higman-thompson-simple-envelope, chatterji-kassabov-normal-gene
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/boone-higman-direct-ck-double-coset-no-go-2026-08-31.md
+  - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
 ---
 
 Let `G` be finitely generated with solvable word problem.  Build
@@ -62,3 +63,10 @@ canonical corner copy of `S` in the direct envelope `EL_4(U)` has at least
 Therefore this route cannot use that direct envelope unchanged.  The open
 claim remains existential over other arrangements, other envelopes and
 other faithful actions.
+
+The stronger `ck-quotient-corner-has-infinite-bi-index` now excludes every
+nontrivial quotient with the inherited corner, every marked cover mapping
+onto one of those quotients, and every finite-index enlargement of the
+corresponding stabilizer. The repair must therefore change the embedding
+or action more substantially. This does not refute the present route's
+existential premise over other arrangements.

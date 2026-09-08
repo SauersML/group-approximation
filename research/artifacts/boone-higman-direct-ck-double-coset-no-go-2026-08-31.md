@@ -125,11 +125,17 @@ Four possible leaks were checked.
   embedding that genuinely occupies all spare roots, not a coordinate
   relabeling of the corner embedding.
 
-The original CK finitely presented *cover* is not covered by this theorem:
-its kernel and chosen lifts can destroy the literal commuting root subgroup.
-Likewise, a quotient of `Gamma` can collapse the `x_a`.  Neither is a
-countermodel to the statement, which concerns the direct elementary
-envelope before taking a quotient.
+The literal commuting root subgroup need not lift to the original CK
+finitely presented cover. Nevertheless the cover's marked double-coset
+space surjects onto that of the elementary quotient, so the infinite
+bi-index conclusion also holds upstairs. No commuting lift is required.
+
+The [September 8 strengthening](ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md)
+also handles every nontrivial quotient of the direct envelope. Individual
+`x_a` can collapse, but their surviving parameter group is the additive
+group of `U/lev(N)`, which remains infinite because its units contain the
+simple core. Thus neither an inherited quotient nor a marked cover of one
+repairs this coset action.
 
 ## Exact remaining gate
 
@@ -142,8 +148,10 @@ it must produce at least one of:
    corner;
 2. a different faithful type-(A) action of the direct envelope, not the
    coset action on `Gamma/S`; or
-3. a quotient/cover with controlled kernel that kills the spare-root
-   orbital invariant while preserving the core and finite presentation.
+3. a more substantial change, such as an infinite enlargement of the
+   stabilizer or a quotient of a cover whose map no longer factors through
+   the inherited elementary quotient. The quotient/cover repair originally
+   suggested here is excluded when that marked factorization is retained.
 
 No such construction is supplied here.  The independent maximal-kernel,
 BFFHZ action-image, fiber-product, and shift-compiler routes remain open.

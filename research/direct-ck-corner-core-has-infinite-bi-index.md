@@ -52,3 +52,10 @@ DERIVATION
 This does not refute the existential claim that a *different* envelope or a
 different embedding might have finite bi-index, and it does not touch the
 maximal-kernel or action-image routes.
+
+The stronger `ck-quotient-corner-has-infinite-bi-index` extends the
+obstruction to every nontrivial quotient and marked cover, using
+`U/lev(N)` as the surviving root parameter group. The original literal
+matrix-entry proof remains useful for arbitrary corner subgroups before
+quotienting; the stronger theorem uses the infinite simple-core and
+fullness hypotheses.

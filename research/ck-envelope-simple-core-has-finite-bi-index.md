@@ -9,6 +9,7 @@ distinct_from:
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
 ---
 
 The embedding of `chatterji-kassabov-normal-generator-embedding` can be
@@ -17,7 +18,8 @@ satisfies
 
     | S \ Gamma / S |  <  infinity .
 
-Open.  Nothing in the known construction bears on double cosets at all.
+Open over other envelopes and embeddings. The canonical corner and its
+nontrivial quotients are excluded by explicit double-coset obstructions.
 
 ## Why it would finish
 
@@ -68,3 +70,11 @@ tools.
    merely the first candidate because faithfulness is free there by the
    near-solution.  Searching the other faithful actions of `EL_4(U)` is
    untried.
+5. **Quotient or cover the canonical corner arrangement.** Refuted by
+   `ck-quotient-corner-has-infinite-bi-index`. In every nontrivial
+   quotient the root image is the additive group of the infinite ring
+   `U/lev(N)` and still separates corner double cosets. Marked covers
+   map onto this infinite double-coset set, whether or not the roots lift
+   as commuting subgroups. Finite-index enlargement of the stabilizer
+   also preserves infinite bi-index. An infinite enlargement or a
+   genuinely different marking is necessary for this kind of repair.
