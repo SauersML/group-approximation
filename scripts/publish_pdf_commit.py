@@ -4,7 +4,7 @@
 For the attested ``publish`` command, the source revision has already passed
 the full Prover workflow.  ``main`` may have acquired later human-facing
 commits while a PDF was building, so that command accepts only descendants
-that pass ``advance_verified_branch.py compare``.  Both publishing modes
+that pass ``advance_verified_tag.py compare``.  Both publishing modes
 construct a new commit from the current remote tree with a temporary Git index,
 replacing exactly one tracked PDF.  No branch, checkout, worktree, reset, force
 push, or merge operation is involved.
@@ -41,7 +41,7 @@ ALLOWED_DRAFT_SOURCES = frozenset(
         "non_mf_groups_exist.tex",
     }
 )
-CLASSIFIER = Path(__file__).with_name("advance_verified_branch.py")
+CLASSIFIER = Path(__file__).with_name("advance_verified_tag.py")
 REMOTE = "origin"
 REMOTE_MAIN = "refs/remotes/origin/main"
 PUSH_ATTEMPTS = 3

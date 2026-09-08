@@ -30,7 +30,7 @@ on:
       - 'scripts/leanstral_ledger.py'
 
 # Every actual model run reserves a unique (file, declaration) before inference, so
-# failed/no-change runs and unmerged/closed PRs still consume their target. The
+# failed/no-change runs and rejected publications still consume their target. The
 # ledger lives at the git ref refs/leanstral/ledger: real objects in this repo,
 # permanent, but outside refs/heads and refs/tags, so it is neither a branch nor a
 # tag. This concurrency group serialises appends; see scripts/leanstral_ledger.py.
@@ -336,7 +336,7 @@ jobs:
           set -euo pipefail
           recent="$(tail -n 200 "$HISTORY" || true)"
           ledger_note="$(python scripts/leanstral_novelty.py --ledger-note "$ANCHOR" 2>/dev/null || true)"
-          prompt="You are Leanstral 1.5 in SauersML/group-approximation. Close as much of the assigned proof-ledger debt as you can in one compiling change. You MAY create ONE new module under GroupApproximation/ and wire it by adding its import line to GroupApproximation.lean -- that pair is how a real result lands here, and it is preferred over editing an existing proof in place. Several new lemmas in that module are welcome; a complete brick beats a cosmetic edit, and a pure refactor of a working proof is worth nothing. Never write sorry, admit, unsafe, native_decide, or an axiom. Conventions that cost real build cycles here: equalities crossing the Matrix/CStarMatrix synonym must be produced as TERMS and chained with calc, never rw; omit and set_option go BEFORE a docstring, not after; rw'"'"'s trailing rfl runs at reducible transparency and will not close a goal whose last step unfolds a plain def, so append an explicit rfl; every foo_apply proved by rfl needs @[simp] or the kernel audit rejects it; lambda is a reserved token so an identifier like hlambda-with-the-greek-letter does not parse. Prefer paper/Cairn research progress. NOVELTY IS HARD: every run reserves a different declaration before inference, even failed/no-change runs and unmerged PRs. Edit EXACTLY the assigned file; do not switch to another theorem. Do not semantically duplicate concepts in the reservation history. Never use sorry, admit, a new axiom, unsafe, or native_decide; do not weaken statements; do not use git commit/push/branch/PR. Use lean-lsp-mcp and Lean compilation aggressively. If this target has no worthwhile improvement, leave the tree unchanged; the next run will move elsewhere."
+          prompt="You are Leanstral 1.5 in SauersML/group-approximation. Close as much of the assigned proof-ledger debt as you can in one compiling change. You MAY create ONE new module under GroupApproximation/ and wire it by adding its import line to GroupApproximation.lean -- that pair is how a real result lands here, and it is preferred over editing an existing proof in place. Several new lemmas in that module are welcome; a complete brick beats a cosmetic edit, and a pure refactor of a working proof is worth nothing. Never write sorry, admit, unsafe, native_decide, or an axiom. Conventions that cost real build cycles here: equalities crossing the Matrix/CStarMatrix synonym must be produced as TERMS and chained with calc, never rw; omit and set_option go BEFORE a docstring, not after; the trailing rfl of rw runs at reducible transparency and will not close a goal whose last step unfolds a plain def, so append an explicit rfl; every foo_apply proved by rfl needs @[simp] or the kernel audit rejects it; lambda is a reserved token so an identifier like hlambda-with-the-greek-letter does not parse. Prefer paper/Cairn research progress. NOVELTY IS HARD: every run reserves a different declaration before inference, even failed/no-change runs and rejected publications. Edit EXACTLY the assigned file; do not switch to another theorem. Do not semantically duplicate concepts in the reservation history. Never use sorry, admit, a new axiom, unsafe, or native_decide; do not weaken statements; do not use git commit/push/branch/PR. Use lean-lsp-mcp and Lean compilation aggressively. If this target has no worthwhile improvement, leave the tree unchanged; the next run will move elsewhere."
           prompt="$prompt"$'\n\n'"Assigned file: $TARGET"$'\n'"Assigned declaration: $ANCHOR near line $LINE"$'\n'"Ledger debt for this declaration: ${ledger_note:-none recorded}"$'\n'"Human focus: ${FOCUS:-none}"$'\n\n'"Recent reservation avoid-list:"$'\n'"$recent"
           vibe -p "$prompt" --agent lean --output streaming --trust --workdir "$GITHUB_WORKSPACE" --max-turns 120
       - id: validate
@@ -465,7 +465,6 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -483,47 +482,23 @@ jobs:
           git apply --check "$RUNNER_TEMP/p/leanstral.patch"; git apply "$RUNNER_TEMP/p/leanstral.patch"; git diff --check
           mapfile -t c < <(git diff --name-only); (( ${#c[@]} == 1 )) && [[ "${c[0]}" == "$TARGET" ]] || exit 1
           git diff --unified=120 -- "$TARGET" | grep -F -- "$ANCHOR" >/dev/null
-      - id: b
+      - name: Commit the compiled change on its exact source revision
         env:
           TARGET: ${{ needs.select.outputs.target }}
           ANCHOR: ${{ needs.select.outputs.anchor }}
         run: |
-          branch="automation/leanstral-${GITHUB_RUN_ID}"; git switch -c "$branch"
+          set -euo pipefail
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- "$TARGET"; git commit -m "lean: Leanstral improvement near $ANCHOR"; echo "branch=$branch" >> "$GITHUB_OUTPUT"
-      - env:
+          git add -- "$TARGET"
+          git commit -m "lean: Leanstral improvement near $ANCHOR"
+      - name: Publish directly to main without overwriting concurrent work
+        env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ steps.b.outputs.branch }}
         run: |
+          set -euo pipefail
           gh auth setup-git
           git remote set-url --push origin "https://github.com/$GITHUB_REPOSITORY.git"
-          # The branch name embeds this run id, so this run is its only writer and
-          # forcing cannot lose anyone's work. Without it, re-running publish after a
-          # failure dies on a non-fast-forward: the re-run rebuilds the commit, so its
-          # sha differs from the head the first attempt already pushed.
-          git push --force origin "HEAD:refs/heads/$BRANCH"
-      - env:
-          GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ steps.b.outputs.branch }}
-          TARGET: ${{ needs.select.outputs.target }}
-          ANCHOR: ${{ needs.select.outputs.anchor }}
-          BASE: ${{ needs.generate.outputs.base_sha }}
-        run: |
-          cat > "$RUNNER_TEMP/body" <<EOF
-          Reserved target: \`$TARGET\` near \`$ANCHOR\`.
-
-          This target was persisted on the reservation ledger (\`refs/leanstral/ledger\`) before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
-
-          The model had read-only GitHub access; only the reserved file was accepted, proof shortcuts were rejected, and the module compiled before publication.
-
-          Base: \`$BASE\`  
-          Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-          EOF
-          if url="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open \
-              --json url --jq '.[0].url // empty')" && [[ -n "$url" ]]; then
-            gh pr edit "$url" --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
-            echo "updated existing $url"
-          else
-            gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft \
-              --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
-          fi
+          # Publish only the compiled tree. If main moved, its non-fast-forward
+          # rejection preserves the newer work and the uploaded patch artifact.
+          git push origin HEAD:refs/heads/main
+          echo "Published the compiled reserved-target change directly to main." >> "$GITHUB_STEP_SUMMARY"

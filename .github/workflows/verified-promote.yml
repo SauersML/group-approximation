@@ -22,13 +22,13 @@ on:
 # queued behind them, so a green certificate took twenty minutes or a hand on
 # the queue to reach `verified`, three times in one session.
 #
-# Serializing was never load-bearing.  `scripts/advance_verified_branch.py`
+# Serializing was never load-bearing.  `scripts/advance_verified_tag.py`
 # is race-safe by construction and says so: it checks ancestry, refuses a
-# non-fast-forward update, pushes WITHOUT `--force`, and treats a rejected push
+# non-fast-forward update, leases the exact previous tag object, and treats a rejected push
 # as a benign race when the new remote tip already contains what it was going
 # to write.  Two promotions racing therefore cannot corrupt `verified`; the
 # loser no-ops.  So the group buys tidiness and costs availability, which is
-# the wrong trade for the branch this pipeline exists to advance.
+# the wrong trade for the certification tag this pipeline exists to advance.
 #
 # Keying on the triggering run makes each promotion independent: nothing can
 # collect it and nothing can head-block it.  `github.run_id` is the fallback
@@ -119,15 +119,14 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin \
             '+refs/heads/main:refs/remotes/origin/main' \
-            '+refs/heads/verified:refs/remotes/origin/verified'
+            '+refs/tags/verified:refs/tags/verified'
 
       - name: Calibrate and advance
         shell: bash
         run: |
           set -euo pipefail
-          python3 scripts/advance_verified_branch.py self-test
-          python3 scripts/advance_verified_branch.py advance \
+          python3 scripts/advance_verified_tag.py self-test
+          python3 scripts/advance_verified_tag.py advance \
             --certified-ref '${{ github.event.workflow_run.head_sha }}' \
             --main-ref refs/remotes/origin/main \
-            --verified-ref refs/remotes/origin/verified \
             --remote origin

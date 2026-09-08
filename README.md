@@ -25,6 +25,10 @@ standard-library checker passed on MSI in 0.45 seconds. The
 records the proof and its scope; this written argument has no new Lean
 formalization claim.
 
+All work is integrated directly into `main`, the repository's only branch.
+The `verified` tag records the last certified revision; it advances only
+through the existing proof gates or across unchanged verification inputs.
+
 ## Research notes
 
 [The Jacobson two-braid reduction](research/artifacts/jacobson-two-braid-reduction-2026-09-07.md)

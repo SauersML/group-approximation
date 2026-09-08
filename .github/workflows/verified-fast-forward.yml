@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 # Collapse only redundant lightweight runs.  The full Prover promotion is not
-# in this group: both writers use non-force pushes and explicitly accept only
+# in this group: both writers use tag leases and explicitly accept only
 # an ancestry-safe race, while sharing a group could cancel a pending full-gate
 # promotion when a later documentation push arrives.
 concurrency:
@@ -38,7 +38,7 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin \
             '+refs/heads/main:refs/remotes/origin/main' \
-            '+refs/heads/verified:refs/remotes/origin/verified'
+            '+refs/tags/verified:refs/tags/verified'
 
       # Do not let a not-yet-certified edit to the classifier or this workflow
       # authorize its own promotion.  The next full green Prover run certifies
@@ -49,8 +49,8 @@ jobs:
         run: |
           set -euo pipefail
           if git diff --quiet \
-            refs/remotes/origin/verified refs/remotes/origin/main -- \
-            scripts/advance_verified_branch.py \
+            refs/tags/verified refs/remotes/origin/main -- \
+            scripts/advance_verified_tag.py \
             .github/workflows/verified-fast-forward.yml; then
             echo 'run=true' >> "$GITHUB_OUTPUT"
           else
@@ -60,13 +60,12 @@ jobs:
 
       - name: Calibrate the verified-tree classifier
         if: steps.trusted-promotion.outputs.run == 'true'
-        run: python3 scripts/advance_verified_branch.py self-test
+        run: python3 scripts/advance_verified_tag.py self-test
 
       - name: Advance only across byte-identical proof inputs
         if: steps.trusted-promotion.outputs.run == 'true'
         run: |
-          python3 scripts/advance_verified_branch.py advance \
-            --certified-ref refs/remotes/origin/verified \
+          python3 scripts/advance_verified_tag.py advance \
+            --certified-ref refs/tags/verified \
             --main-ref refs/remotes/origin/main \
-            --verified-ref refs/remotes/origin/verified \
             --remote origin

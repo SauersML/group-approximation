@@ -3,7 +3,7 @@
 #
 # A root import naming a module that is not in the tree stops `lake build`
 # before it compiles anything: every Lean Prover CI run fails at "bad imports",
-# no run reaches a verdict, and the `verified` branch cannot advance.  Three
+# no run reaches a verdict, and the `verified` tag cannot advance.  Three
 # such imports landed on main today, each from a session that pushed the import
 # line before the module.  Each cost a seven-minute build to discover.
 #

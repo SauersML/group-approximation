@@ -15,7 +15,7 @@ on:
     - cron: '43 * * * *'
   push:
     branches: [ "main" ]
-    # Fail closed like advance_verified_branch.py: every unknown path runs the
+    # Fail closed like advance_verified_tag.py: every unknown path runs the
     # prover.  Only the classifier's narrow publication-only surface is
     # excluded, with verification-sensitive Markdown files re-included last.
     paths:
@@ -165,11 +165,11 @@ jobs:
 
           git fetch --no-tags origin \
             '+refs/heads/main:refs/remotes/origin/main' \
-            '+refs/heads/verified:refs/remotes/origin/verified'
+            '+refs/tags/verified:refs/tags/verified'
 
           target='${{ github.sha }}'
           main=$(git rev-parse refs/remotes/origin/main)
-          verified=$(git rev-parse refs/remotes/origin/verified)
+          verified=$(git rev-parse refs/tags/verified)
 
           # Build mutex.  A prover run "holds the mutex" once its gate job
           # has concluded success while the run itself is still queued or in
@@ -185,7 +185,7 @@ jobs:
           # while nothing is building proceeds -- even if superseded -- and
           # every completed build promotes its own head_sha; promotion treats
           # an older certified SHA as a no-op, never a rewind
-          # (advance_verified_branch.choose_target), so building a superseded
+          # (advance_verified_tag.choose_target), so building a superseded
           # ancestor of main can only help.  Two gates racing an empty mutex
           # can both build; that wastes compute, not soundness.  API failures
           # count as zero builders: that direction at worst duplicates work,
@@ -368,7 +368,7 @@ jobs:
           # own commit can skip verification.  The first full green run
           # certifies the new control plane; later equivalent runs may use it.
           if ! git diff --quiet "$verified" "$target" -- \
-            scripts/advance_verified_branch.py \
+            scripts/advance_verified_tag.py \
             scripts/p13_build_shards.py \
             .github/workflows/prover.yml \
             .github/workflows/p13-sharded-build.yml \
@@ -378,7 +378,7 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          python3 scripts/advance_verified_branch.py self-test
+          python3 scripts/advance_verified_tag.py self-test
 
           if ! git merge-base --is-ancestor "$target" "$main"; then
             echo "Requested SHA $target is not an ancestor of main; verifying it explicitly."
@@ -388,7 +388,7 @@ jobs:
 
           if [ "$target" != "$main" ]; then
             set +e
-            python3 scripts/advance_verified_branch.py compare "$target" "$main"
+            python3 scripts/advance_verified_tag.py compare "$target" "$main"
             newer_delta=$?
             set -e
             case "$newer_delta" in
@@ -418,7 +418,7 @@ jobs:
           fi
 
           set +e
-          python3 scripts/advance_verified_branch.py compare "$verified" "$target"
+          python3 scripts/advance_verified_tag.py compare "$verified" "$target"
           verified_delta=$?
           set -e
           case "$verified_delta" in

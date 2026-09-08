@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Advance ``verified`` without weakening its proof boundary.
+"""Advance the lightweight ``verified`` tag without weakening its proof boundary.
 
 There are two legitimate sources of a certified base revision:
 
 * the commit whose complete Prover job has just succeeded; or
-* the current remote ``verified`` tip itself.
+* the current remote ``verified`` tag itself.
 
 From that base, this script may include later publication-only commits.  It
 does so only when every verification-relevant Git tree entry -- blob (or
@@ -14,9 +14,10 @@ intermediate commit onto ``verified``.  New or unknown paths are
 verification-relevant by default.  The deliberately small publication-only
 surface is defined once below and shared by both promotion workflows.
 
-The remote update is an ordinary non-force push.  An ancestry check precedes
-it, and a rejected push is accepted as a benign race only when the new remote
-tip already contains the candidate.
+Tag updates use an explicit object-id lease after an ancestry check. A
+rejected push is accepted as a benign race only when the refreshed remote
+tag is lightweight and already contains the candidate. The caller must fetch
+``refs/tags/verified`` before invoking the advancement command.
 """
 
 from __future__ import annotations
@@ -27,6 +28,9 @@ import sys
 from dataclasses import dataclass
 from pathlib import PurePosixPath
 from typing import Callable, Mapping, Sequence
+
+
+VERIFIED_TAG_REF = "refs/tags/verified"
 
 
 # These files can change the human-facing repository without changing a proof
@@ -120,6 +124,17 @@ def run_git(*args: str, check: bool = True) -> subprocess.CompletedProcess[bytes
 
 def resolve(ref: str) -> str:
     return run_git("rev-parse", "--verify", f"{ref}^{{commit}}").stdout.decode().strip()
+
+
+def resolve_verified_tag() -> str:
+    """Require a lightweight tag, retaining its exact object id for the lease."""
+    object_id = run_git("rev-parse", "--verify", VERIFIED_TAG_REF).stdout.decode().strip()
+    object_type = run_git("cat-file", "-t", object_id).stdout.decode().strip()
+    if object_type != "commit":
+        raise RuntimeError(
+            f"{VERIFIED_TAG_REF} must be a lightweight commit tag, got {object_type}"
+        )
+    return object_id
 
 
 def is_ancestor(ancestor: str, descendant: str) -> bool:
@@ -226,11 +241,11 @@ def compare_command(base_ref: str, target_ref: str) -> int:
 
 
 def advance_command(
-    *, certified_ref: str, main_ref: str, verified_ref: str, remote: str
+    *, certified_ref: str, main_ref: str, remote: str
 ) -> int:
     certified = resolve(certified_ref)
     main = resolve(main_ref)
-    current = resolve(verified_ref)
+    current = resolve_verified_tag()
     base = choose_certified_base(certified, current, main)
     comparison = compare_revisions(base, main)
     _report(comparison)
@@ -254,24 +269,28 @@ def advance_command(
         )
 
     push = run_git(
-        "push", remote, f"{candidate}:refs/heads/verified", check=False
+        "push",
+        f"--force-with-lease={VERIFIED_TAG_REF}:{current}",
+        remote,
+        f"{candidate}:{VERIFIED_TAG_REF}",
+        check=False,
     )
     if push.returncode == 0:
-        print(f"verified fast-forwarded from {current} to {candidate}")
+        print(f"verified tag advanced from {current} to {candidate}")
         return 0
 
-    # Another promotion job may have won the race.  Refresh only the tracking
-    # ref, then accept the rejection iff that remote tip already contains our
-    # candidate.  No force push is ever attempted.
+    # Another promotion job may have won the race. Refresh only the tag, then
+    # accept the rejection iff that lightweight tag already contains our
+    # candidate. Never retry a rejected update with a fresh lease.
     run_git(
         "fetch",
         "--no-tags",
         remote,
-        "+refs/heads/verified:refs/remotes/origin/verified",
+        f"+{VERIFIED_TAG_REF}:{VERIFIED_TAG_REF}",
     )
-    concurrent = resolve("refs/remotes/origin/verified")
+    concurrent = resolve_verified_tag()
     if is_ancestor(candidate, concurrent):
-        print(f"verified advanced concurrently to {concurrent}")
+        print(f"verified tag advanced concurrently to {concurrent}")
         return 0
     stderr = push.stderr.decode("utf-8", errors="replace").strip()
     raise RuntimeError(
@@ -291,7 +310,7 @@ def self_test() -> int:
     assert not is_publication_only("metadata/CLAIM_SIGNATURES.md")
     assert not is_publication_only("references/counterexample.tex")
     assert not is_publication_only("notes/new_proof.lean")
-    assert not is_publication_only("scripts/advance_verified_branch.py")
+    assert not is_publication_only("scripts/advance_verified_tag.py")
     assert not is_publication_only(".github/workflows/verified-promote.yml")
     assert not is_publication_only(".github/workflows/verified-fast-forward.yml")
     assert not is_publication_only("unknown/new-file.txt")
@@ -316,7 +335,7 @@ def self_test() -> int:
     assert not mode_change.equivalent
 
     # Endpoint equality is insufficient: every commit reachable from verified
-    # is part of the branch.  A proof edit followed by a revert must block the
+    # is in the certified history. A proof edit followed by a revert must block the
     # lightweight path even though the final proof tree matches the base.
     reverted_proof_edit = compare_tree_sequence(
         {"GroupApproximation.lean": blob_a},
@@ -339,7 +358,7 @@ def self_test() -> int:
     assert choose_certified_base("green", "old", "main", fake_ancestor) == "green"
     assert choose_certified_base("old", "green", "main", fake_ancestor) == "green"
 
-    print("self-test: verified-branch classifier and ancestry planner passed")
+    print("self-test: verified-tag classifier and ancestry planner passed")
     return 0
 
 
@@ -354,11 +373,10 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
     compare.add_argument("target_ref")
 
     advance = subparsers.add_parser(
-        "advance", help="safely advance refs/heads/verified"
+        "advance", help="safely advance the lightweight refs/tags/verified tag"
     )
     advance.add_argument("--certified-ref", required=True)
     advance.add_argument("--main-ref", required=True)
-    advance.add_argument("--verified-ref", required=True)
     advance.add_argument("--remote", default="origin")
 
     subparsers.add_parser("self-test", help="calibrate the classifier")
@@ -376,7 +394,6 @@ def main(argv: Sequence[str] | None = None) -> int:
             return advance_command(
                 certified_ref=args.certified_ref,
                 main_ref=args.main_ref,
-                verified_ref=args.verified_ref,
                 remote=args.remote,
             )
     except RuntimeError as error:
