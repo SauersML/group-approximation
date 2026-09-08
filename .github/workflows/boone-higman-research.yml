@@ -131,6 +131,7 @@ jobs:
           bin/cairn why cantor-prefix-subgroup-detects-every-normal-kernel --json > bh-cantor-normal-kernel.json
           bin/cairn why contracting-srn-rational-stabilizers-are-fp --json > bh-boundary-wreath-stabilizers.json
           bin/cairn why boundary-orbit-cyclic-wreath-has-fp-simple-envelope --json > bh-boundary-wreath-envelope.json
+          bin/cairn why boundary-orbit-wreath-actor-has-infinite-abelianization --json > bh-boundary-wreath-charge.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:

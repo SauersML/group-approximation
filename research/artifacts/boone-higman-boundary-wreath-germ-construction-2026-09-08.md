@@ -67,6 +67,25 @@ nontrivial lamp homeomorphisms while preserving every prefix map.
 No claim of publication novelty or resolution of a previously open
 family is made.
 
+## Why the final simple envelope uses the action criterion
+
+The unreplicated actor E has an explicit surjection to Z, proved in
+`boundary-orbit-wreath-section-charge-proof`: take total lamp exponent
+in each regular-table coefficient and sum over the table. The lamp
+recursion preserves this sum under leaf expansion, so it is a
+well-defined character of E. Thus E's commutator subgroup has infinite
+index; finite presentation of E alone does not settle its finiteness.
+The faithful action criterion avoids needing that extra assertion.
+
+This is not a disproof of the altered-representation argument in
+[arXiv:2609.01868v1, Section 5.2.2](https://arxiv.org/html/2609.01868v1#S5.SS2.SSS2).
+That section repeats every state r times and changes the alphabet.
+After repetition the lamp's sum of section charges is r instead of
+1, so the character above no longer extends by table summation.
+Finite presentation for our original actor does not automatically
+transfer to the actor defined by this altered tree action. The
+boundary proof here uses its original action throughout.
+
 ## Distance from the universal goal
 
 No embedding of every group with solvable word problem into these

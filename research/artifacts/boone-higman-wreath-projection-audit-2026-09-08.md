@@ -102,6 +102,14 @@ It uses relative isotropy germ quotients and the finite-germ theorem;
 it does not use the audited projection or establish the full generality
 of Theorem D. The projection obstruction above remains applicable.
 
+The associated unreplicated boundary actor also has infinite
+abelianization by `boundary-orbit-wreath-section-charge-proof`.
+This must be distinguished from the repeated-state representation in
+Section 5.2.2 of the source: repetition changes the section-sum
+relations and removes that particular integer character. Thus the
+new character does not refute the source's altered-representation
+finite-abelianization conclusion.
+
 There is no assertion here that the paper's target groups fail finite
 presentation or fail Boone--Higman. No author or provider was contacted.
 The new kernel lemma is a written proof; no GPU or local computation was
