@@ -82,3 +82,13 @@ frontier hole with no live routes.
   supply its extra commuting-conjugate relation, so this criterion
   leaves the present unrestricted claim open. Its conclusion is
   vacuous on an abelian centralizer.
+
+- `affine-perfect-lamp-wreath-has-locally-finite-mf-radical` is a
+  confirming instance of the present claim, and the first recorded
+  here in which `A` is infinite, locally finite, noncentral, and equal
+  to the whole defect: in
+  `W = A_5^(H/L) semidirect H` over the level-three affine congruence
+  compression, `Rad_MF(W) = D_W(L) = A_5^(H/L)`. It supplies the
+  commuting-conjugate relation by hand, from disjointness of lamp
+  supports, which is exactly what a proof of the general claim may not
+  assume.
