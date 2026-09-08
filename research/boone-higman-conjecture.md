@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-gpu-pilot-2026-09-08.md
   - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
+  - research/artifacts/boone-higman-steinberg-cover-correction-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -87,12 +88,13 @@ mechanism for the second half is known; see the diagonalization entry below.
 
 ## Attempts
 
-Seven lanes were run against this repository's material on 2026-08-17.  One
-produced a genuine improvement to the state of the art
-(`universal-sandwich-ring-is-finitely-presented-and-injective`), three are
-recorded as dead routes with named invalidators, and the rest are deferred at
-an identified step.  `research/artifacts/boone-higman-audit-2026-08-17.md`
-carries the arguments.
+Seven lanes were run against this repository's material on 2026-08-17.
+The universal-sandwich ring lemma is valid, but its claimed consequence
+that the elementary group is finitely presented was withdrawn on September
+8: the cited theorem applies to the Steinberg group. The corrected
+construction retains a marked cover. Several shortcuts are recorded as
+dead routes with named invalidators; the rest remain at identified gaps.
+The August audit and the September correction artifacts carry the arguments.
 
 1. **Take a maximal normal quotient of the finitely presented envelope.**
    *Dies* at `fp-quotient-iff-kernel-finitely-normally-generated`:
@@ -215,3 +217,20 @@ the proper central subgroup `{I_4,-I_4}`. The repaired conditional route
 `boone-higman-via-projective-ring-host` proves the simple core survives
 projectivization. Its missing hypothesis explicitly asks for a finitely
 presented, simple projective target. That existence problem remains open.
+
+## September 8: finite presentation belongs to the Steinberg cover
+
+`steinberg-finite-presentation-and-kazhdan-theorem` pins the imported
+finite-presentation result to `St_4(U)`. It does not make `EL_4(U)`
+finitely presented. `finite-marking-normal-generator-cover` proves that
+finitely many added relators preserve a finitely presented marking and
+force the prescribed normal generator while retaining a map to the matrix
+group. Applied to the Steinberg source, this gives
+`ck-steinberg-marked-cover`.
+
+The maximal-kernel route remains valid for this finitely presented cover.
+The matrix level-ideal screen cannot automatically be applied to its
+arbitrary maximal kernels. The quotient-and-cover double-coset obstruction
+still applies in its stated scope, independently of finite presentation
+of the matrix group. No finite normal generating set for a maximal kernel
+has been supplied.

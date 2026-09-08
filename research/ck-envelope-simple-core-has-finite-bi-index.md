@@ -46,9 +46,11 @@ tools.
    objects — a group ring, a ring extension, an elementary matrix group —
    carry no double-coset bookkeeping to inspect.  With
    `universal-sandwich-ring-is-finitely-presented-and-injective` the envelope
-   is now the explicit `EL_4(U)`, so the double cosets of `S` in a matrix
-   group over an explicit finitely presented ring are at least a concrete
-   object to compute with.  Nothing was computed here.
+   has an explicit matrix image `EL_4(U)`, so its double cosets are a
+   concrete object to compute with. Finite presentation of that matrix
+   image is not established; the finitely presented envelope is a marked
+   cover as in [[ck-steinberg-marked-cover]]. The later double-coset
+   obstruction applies to both the image and the marked cover.
 2. **Derive finiteness from the normal-generation property.**  *No
    implication found.*  Normal generation constrains the normal closure of
    one element; a bi-index bound constrains the whole double coset space.

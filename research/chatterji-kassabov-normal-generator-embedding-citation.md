@@ -15,9 +15,9 @@ and the proof of Lemma 4; the quotations are in
 `research/artifacts/boone-higman-audit-2026-08-17.md` §A.1.
 
 Not reproved here and no Lean counterpart exists.  This is the most recent
-and least settled input in the region — a January 2026 preprint — and it is
-the single citation on which all four live routes into
-`boone-higman-conjecture` depend.
+and least settled input in the region — a January 2026 preprint. It
+supports the CK routes into `boone-higman-conjecture`; the relative-action,
+compiler, and projective-host routes have other inputs.
 
 ## Trust surface
 
@@ -31,6 +31,8 @@ would have no envelope to work on.
 Two components could fail independently and are worth naming: the ring
 extension (their Lemma 4, whose proof this audit read in full and found
 sound) and the property-(T) plus finite-presentation packaging (Shalom,
-Krstić--McCool, neither re-read here).  Only the first is used by
-`universal-sandwich-ring-is-finitely-presented-and-injective`; the second is
-what that node makes unnecessary.
+Krstić--McCool). Only the ring part is used by
+`universal-sandwich-ring-is-finitely-presented-and-injective`; that lemma
+does not make group-cover packaging unnecessary. The September 8
+source check in [[steinberg-finiteness-kazhdan-citation]] confirms that
+the verified finite-presentation result is for the Steinberg group.

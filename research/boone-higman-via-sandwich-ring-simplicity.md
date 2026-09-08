@@ -30,11 +30,11 @@ that would have to be proved.
 
 **What survives the demolition.**  The finite-presentation half, entirely.
 `universal-sandwich-ring-is-finitely-presented-and-injective` remains true
-and remains the strongest new statement in this region — it removes the
-Shalom cover from the envelope construction and lets
-`ck-envelope-has-a-finitely-normally-generated-maximal-kernel` be posed about
-`EL_4(U)` for an explicit finitely presented `U`.  What dies is only the hope
-that the same relation delivers simplicity for free.
+as a ring statement. It does not prove finite presentation of `EL_4(U)`
+or remove every group cover. [[ck-steinberg-marked-cover]] gives the
+corrected finitely presented marked cover from the source `St_4(U)`.
+Neither ring simplicity nor group simplicity follows from one fullness
+relation.
 
 **Why the ideal-lattice version is no easier than the group version.**  Even
 granting a maximal two-sided ideal `I ⊂ U` with `I ∩ R = 0`, the quotient
@@ -42,6 +42,5 @@ granting a maximal two-sided ideal `I ⊂ U` with `I ∩ R = 0`, the quotient
 generation of `I` as a two-sided ideal — the exact ring analogue of
 `fp-quotient-iff-kernel-finitely-normally-generated`.  So
 this route does not sidestep the obstruction; it restates it one category
-over.  The live successor is
-`boone-higman-via-finitely-presented-simple-ring-quotient`, which asks for
-the missing finiteness directly.
+over. The current live successor is `boone-higman-via-projective-ring-host`,
+which explicitly asks for a finitely presented simple projective target.

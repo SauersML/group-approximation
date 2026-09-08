@@ -6,6 +6,13 @@ The explicit direct Chatterji--Kassabov envelope introduced by the
 universal-sandwich improvement cannot close Cairn's finite-bi-index route to
 Boone--Higman.
 
+**September 8 scope correction:** this matrix obstruction requires no
+finite presentation of `EL_4(U)`. The previously claimed finite
+presentation of that group was not established by the Steinberg theorem;
+see [the corrected marked cover](boone-higman-steinberg-cover-correction-2026-09-08.md).
+The obstruction also applies to that cover by its map onto the matrix
+double-coset space.
+
 More generally, let `U` be a unital ring, `n >= 3`, and let `H <= U^x` be a
 subgroup for which
 
