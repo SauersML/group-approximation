@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
   - research/artifacts/boone-higman-zigzag-shift-compiler-2026-09-08.md
+  - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
 ---
 
 Let `P` be an **infinite** finitely presented group with decidable word
@@ -40,7 +41,8 @@ Proposition 3.27, Theorem 3.28, and Example 3.31 (p. 194).  Source checked
 - **Choose an algorithmically periodic enumeration.**  Decidability lets one
   enumerate `P` without equality collisions, but no construction is known
   that makes the infinitely many germ relations consequences of finitely
-  many relations.
+  many relations. The finite-ray version is now excluded outside virtually
+  cyclic inputs by [[finite-ray-shift-envelopes-require-virtually-cyclic-input]].
 - **Drop infinitude.**  This is impossible rather than merely deferred: a
   finite group admits no bijection to `N`, as recorded by the established
   refuter of the original claim.
@@ -58,3 +60,10 @@ Proposition 3.27, Theorem 3.28, and Example 3.31 (p. 194).  Source checked
   [[cyclic-shift-finite-prefix-cannot-decide-fp]] gives both good and bad
   extensions of every finite prescription. These facts do not exclude
   an effective construction with a provable global enumeration rule.
+- **Extend the cyclic case to Z^2 by more rays or bounded jumps.**
+  The finite-ray classification excludes every such ray realization.
+  [[regular-enumeration-displacement-bounds-growth]] also forces maximum
+  generator displacement to grow at least linearly on Z^2 word balls.
+  A square-spiral two-dimensional attempt is recorded in the boundary
+  artifact; its slide does not have a finite cubical-orthant partition,
+  so the cubical piecewise-isometry finiteness results do not apply.

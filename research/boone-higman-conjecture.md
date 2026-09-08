@@ -23,6 +23,7 @@ artifacts:
   - research/artifacts/boone-higman-lean-preflight-2026-09-08.md
   - research/artifacts/boone-higman-projective-finiteness-gate-2026-09-08.md
   - research/artifacts/boone-higman-zigzag-shift-compiler-2026-09-08.md
+  - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -276,3 +277,11 @@ values: for Z every finite prescription extends to both a finitely
 presented envelope and a non-finitely-presented one. The positive example
 works because a global four-ray rule controls the relations. No analogous
 global rule has been supplied for arbitrary decidable inputs.
+
+The finite-ray generalization is now classified by
+`finite-ray-shift-envelopes-require-virtually-cyclic-input`: it is possible
+exactly for virtually cyclic inputs. In particular, Z^2 cannot be handled
+by merely increasing the number of periodic rays. Its regular enumeration
+also has unbounded generator displacement, as quantified by
+`regular-enumeration-displacement-bounds-growth`. The shift route remains
+open with these construction restrictions recorded explicitly.
