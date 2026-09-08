@@ -7,7 +7,7 @@ target: finite-block-coordinates-share-one-mf-image
 requires:
   - finite-dimensional-kazhdan-fixed-algebra-transport
 artifacts:
-  - non_mf_groups_exist.tex
+  - research/artifacts/finite-block-perfect-mf-radicals.md
 ---
 
 ## Proof
@@ -19,8 +19,9 @@ reduce to this case.
 the point `alpha(Gamma) in Omega` is centralized by the stabilizer of that
 point in `Gamma`, which is `alpha(Gamma) = t Gamma t^(-1)`.
 
-Apply the last assertion of the finite-dimensional transport theorem of
-`non_mf_groups_exist.tex` with `L = Gamma`: a finite subgroup normalized by
+Apply the last assertion of Theorem 1 in Section 2 of
+`research/artifacts/finite-block-perfect-mf-radicals.md` with
+`L = Gamma`: a finite subgroup normalized by
 `L`, one of whose elements centralizes `t L t^(-1)`, has that element sent
 to something centralizing `rho(L)`.  So `rho(k_(alpha(Gamma)))` commutes
 with `rho(Gamma)`.

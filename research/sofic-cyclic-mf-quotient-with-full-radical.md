@@ -9,7 +9,7 @@ distinct_from:
   finite-block-perfect-lamps-have-exact-mf-radical: That radical is itself residually finite; the HNN extension here has an intrinsic full MF radical and a cyclic visible quotient.
 artifacts:
   - research/artifacts/sofic-cyclic-mf-quotient.md
-  - non_mf_groups_exist.tex
+  - research/artifacts/finite-block-perfect-mf-radicals.md
 ---
 
 There is an explicit finitely presented sofic acylindrically hyperbolic
@@ -19,9 +19,11 @@ Rad_MF(N)=N. The kernel is nontrivial, perfect, and not finitely generated.
 For every normal R in P, Rad_MF(P/R)=NR/R and P/R is MF if and only
 if d belongs to R, equivalently P/R is cyclic. Its reduced C*-algebra is
 simple with a unique tracial state and is not MF; its profinite completion
-is Z-hat. This is Theorem G of the manuscript, proved in Section 6.
+is Z-hat. The complete proof is in
+`research/artifacts/sofic-cyclic-mf-quotient.md`.
 
 The explicit finite presentation adds s and s(tx^-1)s^-1=a t b t^-1
-to the affine A_5 finite-block group of Theorem F, with x the cyclic
+to the affine A_5 finite-block group in Section 4 of
+`research/artifacts/finite-block-perfect-mf-radicals.md`, with x the cyclic
 coordinate matrix, a=(12)(34), and b=(123) in the root lamp. The full
 written proof is in the artifact. No new Lean verification is asserted.

@@ -7,10 +7,31 @@ target: amalgamated-realization-preserves-completion
 requires:
   - sofic-cyclic-mf-quotient-with-full-radical
 artifacts:
-  - non_mf_groups_exist.tex
+  - research/artifacts/sofic-cyclic-mf-quotient.md
+  - research/artifacts/finite-block-perfect-mf-radicals.md
 ---
 
 ## Proof
+
+The cyclic seed and its HNN normal form are proved in
+`research/artifacts/sofic-cyclic-mf-quotient.md`; its affine quotient
+and finite-block kernel are constructed in Sections 3--4 of
+`research/artifacts/finite-block-perfect-mf-radicals.md`.
+The arguments for the new amalgam and for rational acyclicity are
+given below. The classical source names used below have the following
+precise references: Collins--Dykema, *Free products of sofic groups
+with amalgamation over monotileably amenable groups*,
+[Theorem 3.4](https://arxiv.org/html/1003.1675v4#S3);
+Soulé, *The cohomology of SL_3(Z)*,
+[Topology 17 (1978), 1--22](https://doi.org/10.1016/0040-9383(78)90009-5);
+Minasyan--Osin, *Acylindrical hyperbolicity of groups acting on trees*,
+[Corollary 2.2](https://arxiv.org/pdf/1310.6289);
+Dahmani--Guirardel--Osin, *Hyperbolically embedded subgroups and
+rotating families in groups acting on hyperbolic spaces*,
+[Theorem 2.35](https://doi.org/10.1090/memo/1156); and
+Gerasimova--Osin, *On invertible elements in reduced C*-algebras of
+acylindrically hyperbolic groups*,
+[Theorem 1.1](https://arxiv.org/abs/1910.14524).
 
 Normal form embeds `P` and `A`, the presentation is finite, and soficity
 follows from amalgamation over `Z` [Collins-Dykema, Theorem 3.4].  `q` is a

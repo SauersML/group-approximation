@@ -2,14 +2,19 @@
 
 Date: 2026-09-07.
 
-This is a complete written proof relative to Theorem F of
-`non_mf_groups_exist.tex` and the classical results cited below. The new
-arguments are not claimed to have been checked by Lean. Cairn checks the
+This is a complete written proof relative to the finite-block theorem
+proved in Sections 3--4 of
+`research/artifacts/finite-block-perfect-mf-radicals.md` and the
+classical results cited below. That input appeared as Theorem F in
+`non_mf_groups_exist.tex` at historical revision
+`5ba20cc934b4cdcf4acf5bfc6ae172111b0dd8e1`; the finite-block and cyclic
+sections are no longer in the current paper. The new arguments are not
+claimed to have been checked by Lean. Cairn checks the
 dependency graph, not the mathematics in this file. No priority claim is made.
 
 ## 1. Statement and construction
 
-Use the explicit group of Theorem F:
+Use the explicit group from Section 4 of the finite-block artifact:
 
     Gamma = Z^3 semidirect SL_3(Z),
     alpha(v,A) = (2v,A),
@@ -19,7 +24,7 @@ Use the explicit group of Theorem F:
     B = *_(y in Y) product_(x in p^-1(y)) (A_5)_x,
     E = B semidirect V,                         (1)
 
-where p(vGamma)=vGamma+. Theorem F proves that E is finitely presented
+where p(vGamma)=vGamma+. Sections 3--4 of that artifact prove that E is finitely presented
 and sofic, that B=Rad_MF(E)=Res_fin(E), and that any nonidentity element
 of a coordinate A_5 normally generates B in E. Each block is (A_5)^8.
 
@@ -226,13 +231,18 @@ acylindrically hyperbolic. Their erratum concerns commensurability and
 Since P is not MF, its reduced C*-algebra cannot be MF: an embedding
 of that algebra in a norm matrix corona would restrict to an MF embedding
 of its canonical group unitaries. Its faithful canonical trace makes it
-stably finite. These conclusions are also integrated into Theorem G and
-Section 6 of the manuscript.
+stably finite. These conclusions appeared as Theorem G and Section 6
+of the manuscript at historical revision
+`5ba20cc934b4cdcf4acf5bfc6ae172111b0dd8e1`. The complete cyclic-HNN
+argument is preserved in this artifact.
 
 ## 8. Source and dependency audit
 
-* Theorem F and its exact finite-block model: `non_mf_groups_exist.tex`,
-  Section 5; `research/artifacts/finite-block-perfect-mf-radicals.md`.
+* The finite-block theorem and its exact affine model:
+  `research/artifacts/finite-block-perfect-mf-radicals.md`, Sections 3--4.
+  Historical paper location: Theorem F and Section 5 of
+  `non_mf_groups_exist.tex` at revision
+  `5ba20cc934b4cdcf4acf5bfc6ae172111b0dd8e1`.
 * B. Collins and K. J. Dykema, *Free products of sofic groups with
   amalgamation over monotileably amenable groups*, Munster J. Math. 4
   (2011), 101--118, Theorem 3.4 and Corollary 3.6:

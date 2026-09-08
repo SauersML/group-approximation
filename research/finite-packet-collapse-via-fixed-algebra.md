@@ -8,7 +8,6 @@ requires:
   - finite-dimensional-kazhdan-fixed-algebra-transport
 artifacts:
   - research/artifacts/finite-block-perfect-mf-radicals.md
-  - non_mf_groups_exist.tex
 ---
 
 Given the finite subgroup F normalized by the Kazhdan group L, form the
@@ -18,5 +17,6 @@ belongs to A^(tLt^-1). The prerequisite identifies this algebra with A^L,
 so rho(f) commutes with rho(L), exactly the target's conclusion.
 
 This is a second proof of the finite packet result. The normalized
-Hilbert--Schmidt vector argument is in Theorem `thm:finite-algebra-transport`
-of the manuscript. It does not use the older weighted cocycle construction.
+Hilbert--Schmidt vector argument is Theorem 1 in Section 2 of
+`research/artifacts/finite-block-perfect-mf-radicals.md`.
+It does not use the older weighted cocycle construction.

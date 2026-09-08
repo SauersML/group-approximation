@@ -23,8 +23,13 @@ commutators. Its normal form is the free product of the finite block groups,
 semidirect V. Finite level-orbit windows are finite free products of finite
 groups extended by residually finite actor groups with finite permutation
 action; they are residually finite. The kernel of the height map is therefore
-locally residually finite. The manuscript's trace extension proof and the
-classical sofic extension theorem give the trace and sofic conclusions.
+locally residually finite. The retained manuscript results
+`prop:locally-rf-by-z-trace` and `thm:factorization-nonmf-trace`, together
+with the classical sofic extension theorem, give the trace and sofic
+conclusions. These retained trace results are the reason the current
+manuscript remains in this route's artifact list.
 
-Sections 3--4 prove these statements and the centerless A_5 specialization.
+Sections 3--4 of `research/artifacts/finite-block-perfect-mf-radicals.md`
+prove the finite-block statements and the centerless A_5 specialization;
+those sections are no longer being attributed to the current manuscript.
 The perfect-group argument uses no MF-amalgam permanence theorem.

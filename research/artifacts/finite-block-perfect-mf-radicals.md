@@ -2,9 +2,14 @@
 
 Date: 2026-09-07.
 
-This is a complete written proof relative to the manuscript's Kazhdan
-transport theorem and the explicitly identified classical inputs below. It
-does not claim a new Lean kernel check or literature priority.
+This artifact contains the finite-dimensional fixed-algebra and
+finite-block proofs. It imports the one-sided Kazhdan transport and
+trace results retained in `non_mf_groups_exist.tex`, together with the
+explicitly identified classical inputs below. The manuscript's former
+finite-block sections can be found historically at revision
+`5ba20cc934b4cdcf4acf5bfc6ae172111b0dd8e1`; they are not in the current
+paper. This artifact does not claim a new Lean kernel check or
+literature priority.
 
 The two additions are a fixed-point theorem for **finite-dimensional
 invariant C*-subalgebras**, and a construction with **finite blocks** of
@@ -104,8 +109,8 @@ E_n phi_n(a) are H-fixed. By (2),
 
     || Ad(U_n(h))x_n-x_n ||_2 -> 0   (h in H).             (3)
 
-Now apply the manuscript's HS-bounded transport theorem
-`thm:transport`. The sequence y_n=Ad(U_n(t))*x_n is asymptotically L-fixed
+Now apply the HS-bounded transport theorem `thm:transport`, retained in
+the current manuscript. The sequence y_n=Ad(U_n(t))*x_n is asymptotically L-fixed
 by (3) and the relation tLt^-1=H. Transporting y_n forward by t makes x_n
 asymptotically L-fixed. Equation (2) then implies
 
@@ -269,7 +274,7 @@ semidirect product, which is consequently residually finite. This proves
 that J_K is locally residually finite.
 
 Local residual finiteness and the amenable quotient Z make G_K sofic
-(Elek--Szabo, Theorem 1). The manuscript's
+(Elek--Szabo, Theorem 1). The current manuscript's retained
 `prop:locally-rf-by-z-trace` proves amenability of the canonical maximal
 trace, and `thm:factorization-nonmf-trace` proves its failure of
 quasidiagonality whenever K is nontrivial perfect.
@@ -285,8 +290,8 @@ Take
     Gamma = Z^3 semidirect SL_3(Z),
     alpha(v,A)=(2v,A),        K=A_5.
 
-The manuscript already uses the property-(T) assertion (BHV,
-Example 1.7.4(i)) and the faithful affine model
+Use the property-(T) assertion (BHV, Example 1.7.4(i)), also retained
+in the current manuscript, and the following faithful affine model:
 
     V = { [[2^h A, v],[0,1]] : h in Z, A in SL_3(Z),
                                 v in Z[1/2]^3 }.
@@ -319,10 +324,13 @@ trivial because it is a free product of at least two nontrivial groups.
 
 ## 5. What this adds, and the proof boundary
 
-The fixed-algebra theorem and perfect-lamp construction are printed, with
-proofs, in `non_mf_groups_exist.tex` at `thm:finite-algebra-transport`,
-`thm:perfect-block-radical`, and the main theorem `thm:fp-sofic-radical`.
-The arbitrary finite-lamp quotient (5)--(6) is proved in this artifact.
+The fixed-algebra theorem and perfect-lamp construction are proved in
+Sections 1--4 above. They were also printed in `non_mf_groups_exist.tex`
+at historical revision `5ba20cc934b4cdcf4acf5bfc6ae172111b0dd8e1`, under
+`thm:finite-algebra-transport`, `thm:perfect-block-radical`, and
+`thm:fp-sofic-radical`; those statements were subsequently removed
+from the paper. The arbitrary finite-lamp quotient (5)--(6) is proved
+in this artifact.
 
 * The finite-dimensional fixed-point theorem extends
   `finite-noncommutative-packet-compression-collapse` to an invariant
@@ -334,7 +342,8 @@ The arbitrary finite-lamp quotient (5)--(6) is proved in this artifact.
 * It differs from the older literal Clifford construction: for perfect K the
   entire free-product lamp kernel is the MF radical, the quotient is the
   explicit residually finite affine V, and the example is centerless.
-* The proof uses the manuscript's `thm:transport`, its trace propositions,
+* The proof uses the current manuscript's retained `thm:transport` and
+  trace propositions,
   finite-dimensional C*-algebra lifting as proved above, property (T) of the
   affine base, elementary free-product/tree theory, and sofic closure under
   locally residually finite-by-Z extensions. Only the optional arbitrary-K

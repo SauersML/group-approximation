@@ -7,7 +7,7 @@ distinct_from:
   hilbert-hotel-prescribed-mf-reflection: that realizes a prescribed MF quotient by a direct product; this is about the internal structure of one finite-block HNN extension and says nothing about prescribing a quotient.
   finite-block-mf-quotient-is-abelianized-amalgam: that computes the entire MF quotient under residual finiteness of V; the coordinate identification here needs no MF or residual-finiteness assumption on V.
 artifacts:
-  - non_mf_groups_exist.tex
+  - research/artifacts/finite-block-perfect-mf-radicals.md
 ---
 
 Let `Gamma` be finitely presented with property (T), let `alpha : Gamma ->
@@ -34,8 +34,9 @@ afterwards, to turn "the common image is abelian" into "it is trivial".
 abelian image of `K`, hence trivial. Thus every MF map kills the normal
 closure `B_K` of `F`. If `V` is additionally MF, the quotient `E_K/B_K=V`
 separates everything outside `B_K`, giving `Rad_MF(E_K)=B_K`.
-The manuscript assumes the stronger condition that `V` is residually
-finite. Without that extra input the general formula is
+The finite-block theorem in Sections 3--4 of the attached artifact
+assumes the stronger condition that `V` is residually finite.
+Without that extra input the general formula is
 `Rad_MF(E_K)=q^(-1)(Rad_MF(V))` for the quotient map `q:E_K->V`.
 
 **`K = C_2`.**  The identification survives but nothing kills it, and

@@ -9,6 +9,7 @@ distinct_from:
   binary-jacobson-steinberg-head-root-is-mf-invisible: that is one explicit group and one explicit root; this is the general analytic statement whose specialization would settle it.
 artifacts:
   - non_mf_groups_exist.tex
+  - research/artifacts/finite-block-perfect-mf-radicals.md
 ---
 
 **OPEN.**  Let `G` be countable, let `L <= G` have property (T), and let
@@ -38,8 +39,10 @@ Three upgrades are known and none covers this case.
 * Property (T) on the normal subgroup (Theorem 2.7 of the manuscript).
   An infinite locally finite group never has property (T).
 * A fixed finite-dimensional `rho(L)`-normalized subalgebra
-  (`thm:finite-algebra-transport`, the analytic step of the finite-block
-  theorem).  In the intended applications the orbit algebras grow: for the
+  (Theorem 1 in Section 2 of
+  `research/artifacts/finite-block-perfect-mf-radicals.md`, the analytic
+  step of the finite-block theorem). In the intended applications the orbit
+  algebras grow: for the
   elementary group of a ring with `ts=1`, conjugating `e_13(1-st)` by
   `EL_3` moves it into ever larger matrix-unit levels, so no single
   finite-dimensional algebra is normalized by the whole of `L`.

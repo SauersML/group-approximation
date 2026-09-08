@@ -7,7 +7,8 @@ distinct_from:
   hilbert-hotel-prescribed-mf-reflection: that gives a direct-product realization, including a finitely presented version; this uses a cyclic amalgam, preserves soficity, and identifies a rationally acyclic kernel and the resulting twisted rational cohomology.
   mf-camouflage-surgery: that already transplants the outgoing MF representation functor by a cyclic amalgam; this uses the concrete sofic cyclic seed and computes its kernel and additional analytic and homological properties.
 artifacts:
-  - non_mf_groups_exist.tex
+  - research/artifacts/sofic-cyclic-mf-quotient.md
+  - research/amalgamated-realization-preserves-completion-proof.md
 ---
 
 Let `P` be the specific affine `A_5` cyclic-HNN group of
@@ -44,6 +45,7 @@ non-MF group with largest MF quotient `Z^m`, profinite completion `Zhat^m`,
 and the rational cohomology ring of the `m`-torus.
 
 The attached proof route supplies the argument from that concrete seed.
-The manuscript supplies the seed's presentation and established properties;
-the additional amalgamation and rational-acyclicity arguments are in the
-route itself.
+`research/artifacts/sofic-cyclic-mf-quotient.md` supplies the seed's
+presentation and established properties; the additional amalgamation
+and rational-acyclicity arguments are in the route itself. Those
+additional arguments are not being attributed to the seed artifact.
