@@ -16,5 +16,7 @@ q_m=a_m w a_m^-1 w^-m
 is a product of at most `C` conjugates of one fixed finite relator list, then
 free abelianization gives `[q_m]_ab=(1-m)[w]_ab`.  The right-hand certificate
 family has uniformly bounded exponent vectors, while the left side grows
-linearly unless `[w]_ab=0`.  Hence every strongest-form UPR construction must
-choose a zero-exponent-sum cursor, preferably a commutator word.
+linearly unless `[w]_ab=0`. This is a necessary condition only.
+`power-return-certificates-have-linear-area` now excludes the
+bounded-certificate hypothesis for every nontrivial cursor,
+including commutator words with zero exponent vector.

@@ -18,19 +18,22 @@ dimension, unitary tuple and `m>=2`,
 ||a_m(U) w(U) a_m(U)^-1 - w(U)^m||_op <= C Def_R(U).
 ```
 
-This is OPEN.  Abstract identities such as those in `Aff(Q)` do not suffice:
-their derivation constants may grow with `m`, and amenable finite models show
-that some growth must occur there.  A successful construction must make the
-terminal return certificate a depth-independent self-hash, ideally a literal
-conjugate of one of finitely many root checks.  The cursor must have zero free
-abelianization; otherwise a uniformly bounded root certificate is obstructed
-by the exponent vector `(1-m)[w]_ab`.
+This analytic inequality target is OPEN. Abstract identities such as those
+in `Aff(Q)` do not suffice: their derivation constants may grow with `m`,
+and finite models show that some growth must occur there.
+A literal conjugate of one of finitely many fixed checks cannot
+certify the complete return for all exponents:
+`power-return-certificates-have-linear-area` proves a linear lower
+bound on total certificate area for every nontrivial free word,
+including zero-abelianization cursors. This rules out the bounded-area
+implementation, not the purely analytic inequality above.
 
 ## Attempts
 
 Exact affine and Baumslag--Solitar-style power conjugacies fail because their
 finite models force the derivation constants to grow with the exponent.
-Repeated squaring reduces execution depth but still leaves unbounded proof
-area.  The active route replaces replay by a proof-carrying terminal port;
-`proof-carrying-power-return-terminal-authentication` records the missing
-finite syntax theorem.
+Repeated squaring does not avoid the linear lower bound on ordinary
+relator area, regardless of circuit depth. A one-cell check on a named
+terminal word still requires uniform semantic authentication of that
+word as `w^m`. The terminal-port route now displays this separate
+norm estimate explicitly; it cannot be supplied by bounded total area.
