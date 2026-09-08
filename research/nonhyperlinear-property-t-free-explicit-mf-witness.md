@@ -45,6 +45,13 @@ source-specific route through a central sign is isolated at
   the whole monomial natural-head family in characteristic two.
   Neither statement supplies a complex-unitary matrix obstruction;
   the MF status of `Gamma_2` remains open.
+  The stronger candidate with a shifted finite packet and one boundary
+  cell has a reconstructed finite subgroup of order 64512:
+  `jacobson-boundary-cell-reconstructs-finite-root-packet` also proves
+  coherent correction in the original matrix dimension while fixing
+  the original packet. This reduces its approximation problem to two
+  mixed relators over a specified finite amalgam. A positive matrix
+  gap for those remaining relators has not been proved.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map

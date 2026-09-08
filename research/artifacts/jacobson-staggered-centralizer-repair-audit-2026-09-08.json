@@ -1,0 +1,416 @@
+{
+  "W_head3_survivors": [
+    {
+      "H_head2_bits": "0x3282",
+      "b_H_head2_bits": "0x3888",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        124,
+        25,
+        6,
+        117,
+        109,
+        34,
+        66
+      ],
+      "trivial_columns": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "H_head2_bits": "0xe82",
+      "b_H_head2_bits": "0xb88",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        4,
+        25,
+        126,
+        32,
+        64,
+        119,
+        111
+      ],
+      "trivial_columns": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "H_head2_bits": "0x3280",
+      "b_H_head2_bits": "0x3880",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        126,
+        25,
+        4,
+        119,
+        111,
+        32,
+        64
+      ],
+      "trivial_columns": [
+        2,
+        5,
+        4
+      ]
+    },
+    {
+      "H_head2_bits": "0xe80",
+      "b_H_head2_bits": "0xb80",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        6,
+        25,
+        124,
+        34,
+        66,
+        117,
+        109
+      ],
+      "trivial_columns": [
+        2,
+        5,
+        4
+      ]
+    },
+    {
+      "H_head2_bits": "0x3280",
+      "b_H_head2_bits": "0x3880",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        124,
+        27,
+        6,
+        117,
+        109,
+        34,
+        66
+      ],
+      "trivial_columns": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "H_head2_bits": "0xe80",
+      "b_H_head2_bits": "0xb80",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        4,
+        27,
+        126,
+        32,
+        64,
+        119,
+        111
+      ],
+      "trivial_columns": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "H_head2_bits": "0x3282",
+      "b_H_head2_bits": "0x3888",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        126,
+        27,
+        4,
+        119,
+        111,
+        32,
+        64
+      ],
+      "trivial_columns": [
+        3,
+        5,
+        4
+      ]
+    },
+    {
+      "H_head2_bits": "0xe82",
+      "b_H_head2_bits": "0xb88",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        6,
+        27,
+        124,
+        34,
+        66,
+        117,
+        109
+      ],
+      "trivial_columns": [
+        3,
+        5,
+        4
+      ]
+    },
+    {
+      "H_head2_bits": "0x3282",
+      "b_H_head2_bits": "0x3888",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        1,
+        100,
+        123,
+        8,
+        16,
+        95,
+        63
+      ],
+      "trivial_columns": [
+        4,
+        2,
+        3
+      ]
+    },
+    {
+      "H_head2_bits": "0xe82",
+      "b_H_head2_bits": "0xb88",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        121,
+        100,
+        3,
+        93,
+        61,
+        10,
+        18
+      ],
+      "trivial_columns": [
+        4,
+        2,
+        3
+      ]
+    },
+    {
+      "H_head2_bits": "0x3280",
+      "b_H_head2_bits": "0x3880",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        3,
+        100,
+        121,
+        10,
+        18,
+        93,
+        61
+      ],
+      "trivial_columns": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "H_head2_bits": "0xe80",
+      "b_H_head2_bits": "0xb80",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        123,
+        100,
+        1,
+        95,
+        63,
+        8,
+        16
+      ],
+      "trivial_columns": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "H_head2_bits": "0x3280",
+      "b_H_head2_bits": "0x3880",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        1,
+        102,
+        123,
+        8,
+        16,
+        95,
+        63
+      ],
+      "trivial_columns": [
+        5,
+        2,
+        3
+      ]
+    },
+    {
+      "H_head2_bits": "0xe80",
+      "b_H_head2_bits": "0xb80",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        121,
+        102,
+        3,
+        93,
+        61,
+        10,
+        18
+      ],
+      "trivial_columns": [
+        5,
+        2,
+        3
+      ]
+    },
+    {
+      "H_head2_bits": "0x3282",
+      "b_H_head2_bits": "0x3888",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        1,
+        2
+      ],
+      "standard_columns": [
+        3,
+        102,
+        121,
+        10,
+        18,
+        93,
+        61
+      ],
+      "trivial_columns": [
+        5,
+        3,
+        2
+      ]
+    },
+    {
+      "H_head2_bits": "0xe82",
+      "b_H_head2_bits": "0xb88",
+      "first_braid_failing_head_label": 2,
+      "natural_columns": [
+        2,
+        1
+      ],
+      "standard_columns": [
+        123,
+        102,
+        1,
+        95,
+        63,
+        8,
+        16
+      ],
+      "trivial_columns": [
+        5,
+        3,
+        2
+      ]
+    }
+  ],
+  "audit": "first staggered K_P-central finite-rank repairs of A7",
+  "counts": {
+    "W_fixes_head3": 16,
+    "W_fixes_head3_and_first_braid_fixes_head": 0,
+    "candidates": 1008
+  },
+  "execution": {
+    "cpu_limit": 1,
+    "cpu_seconds_cap": 18,
+    "location": "MSI",
+    "wall_seconds": 0.3091017729602754
+  },
+  "inverse_head2_histogram": {
+    "100": {
+      "W_fixes_head3": 0,
+      "count": 144
+    },
+    "102": {
+      "W_fixes_head3": 0,
+      "count": 144
+    },
+    "125": {
+      "W_fixes_head3": 16,
+      "count": 144
+    },
+    "127": {
+      "W_fixes_head3": 0,
+      "count": 144
+    },
+    "2": {
+      "W_fixes_head3": 0,
+      "count": 144
+    },
+    "25": {
+      "W_fixes_head3": 0,
+      "count": 144
+    },
+    "27": {
+      "W_fixes_head3": 0,
+      "count": 144
+    }
+  },
+  "scope": "1008 specified F2 linear boundary changes; no unrestricted conclusion",
+  "script_sha256": "11b8d65b8c77be2a9b4c9646ddfee5f2d8a97203db6ba9d93a4f304a015b6840"
+}
