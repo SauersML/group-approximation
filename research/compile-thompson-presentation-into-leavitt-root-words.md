@@ -9,6 +9,7 @@ requires:
   - thompson-v-has-no-nontrivial-fd-unitary-representation
 artifacts:
   - research/artifacts/leavitt-explicit-thompson-c-killing-certificate-2026-09-08.md
+  - research/artifacts/leavitt-nine-word-dag-verification-2026-09-08.json
 ---
 
 The artifact gives explicit words `A,B,D` in the marked free product.
@@ -21,7 +22,10 @@ The eight displayed words `rho_i(A,B,D)` are precisely the equations of
 [Bleak--Quick, Theorem 2.1, equation (2.3)](https://arxiv.org/html/1511.02123#S2),
 written as relators. They therefore vanish in the native Leavitt group.
 The root compiler and the length accounting are proved in the artifact;
-no finite-group enumeration or unspecified word search is used.
+the shorter compiler uses `q_0=[gamma^2(b_1),a]` and `p_1=[e,u]`,
+giving `|B|<=164` and a largest relator bound of `9880`. The accompanying
+exact prefix verifier evaluates shared subexpressions without expanding
+the words. No finite-group enumeration or unspecified word search is used.
 
 If a homomorphism `pi:P -> U(n)` kills these eight words, the presentation
 gives a homomorphism `V -> U(n)` sending its first generator to `pi(j)`.

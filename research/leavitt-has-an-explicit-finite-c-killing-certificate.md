@@ -9,6 +9,7 @@ distinct_from:
   thompson-v-has-no-nontrivial-fd-unitary-representation: That is the abstract representation theorem for V; this explicitly compiles its finite presentation into the fixed four Leavitt generators and links a killed swap to the coordinate cycle.
 artifacts:
   - research/artifacts/leavitt-explicit-thompson-c-killing-certificate-2026-09-08.md
+  - research/artifacts/leavitt-nine-word-dag-verification-2026-09-08.json
 ---
 
 Let `q:P=C_3*C_2^3 -> EL_3(L_(F_2)(1,2))` be the marked Leavitt
@@ -23,7 +24,7 @@ T_V={r_*,rho_1,rho_2,rho_3,rho_4,rho_5,rho_6,rho_7,rho_8}
 
 defined by the finite straight-line formulas in Sections 1 and 3 of the
 artifact, such that `T_V` is contained in `ker q` and every word has length
-at most `52920` in `c,c^(-1),b_1,b_2,b_3`. For every positive integer `n`
+at most `9880` in `c,c^(-1),b_1,b_2,b_3`. For every positive integer `n`
 and every homomorphism `pi:P -> U(n)`,
 
 ```text

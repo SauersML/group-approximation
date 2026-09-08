@@ -1,8 +1,9 @@
 # An explicit nine-word finite c-killing certificate in the Leavitt generators
 
-2026-09-08. Handwritten root calculations and a finite presentation import.
-No code, build, group enumeration, or numerical search is used. All word
-definitions below are finite straight-line substitutions in four fixed
+2026-09-08. Handwritten root calculations and a finite presentation import,
+with a shorter compiler and an accompanying exact prefix verifier. The
+proof does not depend on numerical search. All word definitions below
+are finite straight-line substitutions in four fixed
 generators, rather than new abstract generators or existential lifts.
 
 The result improves the existing nonconstructive finite-quotient witness
@@ -36,13 +37,15 @@ a=[d,h],                 e=gamma(d),
 j=a e a^(-1),            r_*=j c j c.                 (1)
 ```
 
-The new compiler is
+The shorter compiler reuses two more shared root words:
 
 ```text
-p_0=gamma(b_2),
-q_0=gamma(j b_1 j^(-1)),
+u=[b_2,gamma(b_3)],       w=[gamma^2(b_1),a],
 
-p_1=[j b_2 j^(-1), gamma^2(j b_3 j^(-1))],
+p_0=gamma(b_2),
+q_0=w,
+
+p_1=[e,u],
 q_1=[gamma^2(b_3), b_1],
 
 X_0=p_0 q_0 p_0,        X_1=p_1 q_1 p_1,
@@ -91,12 +94,14 @@ q(j)=x_12(1)x_21(1)x_12(1)=(12).                     (4)
 
 The use of the third factor `x_12(1)` here is justified by characteristic
 two, where each transvection is its own inverse. Hence `q(r_*)=1`.
-Conjugation by this literal coordinate swap now authenticates (2):
+Two additional three-index commutators give
+`q(u)=x_13(tv)` and `q(w)=[x_31(s),x_12(1)]=x_32(s)`.
+They authenticate (2):
 
 ```text
 q(p_0)=x_23(t),                    q(q_0)=x_32(s),
 
-q(p_1)=[x_21(t),x_13(v)]=x_23(tv)=x_23(t_1),
+q(p_1)=[x_21(1),x_13(tv)]=x_23(tv)=x_23(t_1),
 q(q_1)=[x_31(v),x_12(s)]=x_32(vs)=x_32(s_1).         (5)
 ```
 
@@ -257,34 +262,52 @@ No cancellation is needed for the bounds below.
 | `a` | 36 |
 | `j=A` | 82 |
 | `D` | 84 |
+| `u` | 8 |
+| `w` | 78 |
 | `p_0` | 3 |
-| `q_0` | 167 |
-| `p_1` | 664 |
+| `q_0` | 78 |
+| `p_1` | 36 |
 | `q_1` | 8 |
-| `X_0` | 173 |
-| `X_1` | 1336 |
-| `B` | 1509 |
+| `X_0` | 84 |
+| `X_1` | 80 |
+| `B` | 164 |
 
-For example, the two inputs defining `p_1` have length at most `165`
-and `167`, giving `2(165+167)=664`. Applying the same rules to (10)
+For example, `w` has length at most `2(3+36)=78`, and the two inputs
+defining `p_1` have lengths at most `10` and `8`, giving `2(10+8)=36`.
+Applying the same rules to (10)
 gives:
 
 | Relator | Length bound |
 |---|---:|
 | `r_*` | 166 |
 | `rho_1` | 164 |
-| `rho_2` | 4527 |
-| `rho_3` | 6364 |
+| `rho_2` | 492 |
+| `rho_3` | 984 |
 | `rho_4` | 498 |
-| `rho_5` | 20668 |
-| `rho_6,rho_7` | 39856 |
-| `rho_8` | 52920 |
+| `rho_5` | 4528 |
+| `rho_6,rho_7` | 7576 |
+| `rho_8` | 9880 |
 
 To make the largest entries directly checkable, the two exponents in
-`rho_5` have length at most `5105`, so its bound is
-`84+2(82+2*5105)=20668`. The two commutator inputs of `rho_6` and
-`rho_7` have bounds `3600` and `16328`. Those of `rho_8` have bounds
-`10132` and `16328`; hence `2(10132+16328)=52920`.
+`rho_5` have length at most `1070`, so its bound is
+`84+2(82+2*1070)=4528`. The two commutator inputs of `rho_6` and
+`rho_7` have bounds `910` and `2878`. Those of `rho_8` have bounds
+`2062` and `2878`; hence `2(2062+2878)=9880`.
+
+The original version used `q_0=gamma(j b_1 j^(-1))` and
+`p_1=[j b_2 j^(-1),gamma^2(j b_3 j^(-1))]`, giving `|B|<=1509`
+and a largest bound of `52920`. The new representatives have the same
+native images, so the proof above applies to the newly specified packet.
+This does not identify their defects on arbitrary approximate models;
+such a comparison would need controlled proofs of the replacement
+identities. The words `j`, `r_*`, and `rho_1=j^2` are unchanged.
+
+The companion `experiments/leavitt_nine_word_dag.py` compiles these
+formulas with shared subexpressions and verifies their native Leavitt
+operators by exact characteristic-two prefix arithmetic. It checks the
+displayed length table as well. An explicitly requested saved-input
+CPU forward/backward replay measures evaluation cost without optimizing
+the tuple or estimating a positive minimum.
 
 This bounds literal expanded words without printing tens of thousands
 of redundant letters. It does not give a degree bound for the separate
