@@ -894,164 +894,131 @@ conclusion there.
 \subsection{Finite certificates for individual words}
 \label{subsec:word-certificates}
 
-The obstruction admits a finite, quantitative form even when it kills
-only part of the group.  The finite relation set and threshold below
-are obtained by a contradiction argument; no explicit list of relators
-or numerical threshold for the examples is asserted.  The following
-tensor estimate turns a single separation threshold into a linear bound.
-
-\begin{lemma}[tensor amplification]\label{lem:linear-tensor-amplification}
-If $A\in\U(d)$ and $t=\opnorm{A-1}>0$, there is an integer
-$1\le k\le\pi/t$ with $\opnorm{A^{\otimes k}-1}\ge\sqrt2$.
-For any $A,B\in\U(d)$ and $k\ge1$,
+The obstruction has a finite, quantitative form even when it kills only
+part of the group.  For a finite set $\mathcal R$ of words in $F_m$ put
 \[
- \opnorm{A^{\otimes k}-B^{\otimes k}}\le k\opnorm{A-B}.
+ \delta_{\mathcal R}(U)=\max_{r\in\mathcal R}\opnorm{r(U)-1},
 \]
-\end{lemma}
+an empty maximum being zero.
+
+\begin{theorem}[linear certificates for MF-invisible words]
+\label{thm:word-linear-certificate}
+Let $G=F_m/N$ be a finitely generated group and let $w\in F_m$.  The
+image of $w$ lies in $\operatorname{Rad}_{\mathrm{MF}}(G)$ if and only
+if there are a finite set $\mathcal R\subseteq N$ and a constant $C$
+with
+\begin{equation}\label{eq:word-linear-certificate}
+ \opnorm{w(U)-1}\le C\,\delta_{\mathcal R}(U)
+\end{equation}
+for every unitary tuple $U=(U_1,\ldots,U_m)$ in every dimension.  If
+$G$ is finitely presented, $\mathcal R$ may be taken to be a set of
+defining relators.  No numerical value of $C$ is asserted.
+\end{theorem}
 
 \begin{proof}
+First a tensor estimate.  Let $A\in\U(d)$ with $t=\opnorm{A-1}>0$.
 Since $A-1$ is normal, some eigenvalue $e^{i\theta}$ of $A$, with
 $0<|\theta|\le\pi$, has $|e^{i\theta}-1|=t$.  Put
 $k=\lceil\pi/2|\theta|\rceil$.  Then $k|\theta|\ge\pi/2$, and
 $k|\theta|\le\pi$ as well: if $|\theta|>\pi/2$ then $k=1$, and
-otherwise $k|\theta|<\pi/2+|\theta|\le\pi$.  So
-$k\theta/2\in[\pi/4,\pi/2]$ up to sign and
-\[
- |e^{ik\theta}-1|=2\bigl|\sin(k\theta/2)\bigr|\ge\sqrt2 .
-\]
-Tensoring an eigenvector for $e^{i\theta}$ shows that $e^{ik\theta}$
-is an eigenvalue of $A^{\otimes k}$.  Finally
-$t=2|\sin(\theta/2)|\le|\theta|$, so $kt\le k|\theta|\le\pi$.
-For the second assertion, telescope the tensor factors:
-\[
- A^{\otimes k}-B^{\otimes k}
- =\sum_{j=0}^{k-1}
- A^{\otimes j}\otimes(A-B)\otimes B^{\otimes(k-1-j)}.
-\]
-Each summand has norm $\opnorm{A-B}$.
-\end{proof}
-
-\begin{theorem}[linear certificates for MF-invisible words]
-\label{thm:word-linear-certificate}
-Let $G=F_m/N$ be a finitely generated group and let $w\in F_m$.
-Every homomorphism from $G$ to an MF group kills the image of $w$
-if and only if there are a finite set $\mathcal R\subseteq N$ and
-$C>0$ such that, in every positive dimension and for every unitary
-tuple $U=(U_1,\ldots,U_m)$,
-\begin{equation}\label{eq:word-linear-certificate}
- \opnorm{w(U)-1}\le C\delta_{\mathcal R}(U),
- \qquad
- \delta_{\mathcal R}(U)=\max_{r\in\mathcal R}\opnorm{r(U)-1}.
+otherwise $k|\theta|<\pi/2+|\theta|\le\pi$.  So $k\theta/2$ lies in
+$[\pi/4,\pi/2]$ up to sign, and tensoring an eigenvector for
+$e^{i\theta}$ gives
+\begin{equation}\label{eq:tensor-amplification}
+ \opnorm{A^{\otimes k}-1}\ge\bigl|e^{ik\theta}-1\bigr|
+ =2\bigl|\sin(k\theta/2)\bigr|\ge\sqrt2,
+ \qquad kt\le k|\theta|\le\pi,
 \end{equation}
-Here an empty maximum is zero.  More precisely, if a finite set
-$\mathcal R\subseteq N$ and $\eta>0$ satisfy
-\begin{equation}\label{eq:word-threshold}
- \delta_{\mathcal R}(U)<\eta
- \quad\Longrightarrow\quad \opnorm{w(U)-1}<1
-\end{equation}
-in every dimension, then the same $\mathcal R$ satisfies
-\eqref{eq:word-linear-certificate} with $C=\pi/\eta$.
-\end{theorem}
+the last bound because $t=2|\sin(\theta/2)|\le|\theta|$.  Telescoping
+the tensor factors gives
+$\opnorm{A^{\otimes k}-B^{\otimes k}}\le k\opnorm{A-B}$ for unitaries
+$A,B$, and $A\mapsto A^{\otimes k}$ is a group homomorphism, so
+$r(U^{\otimes k})=r(U)^{\otimes k}$ for every word $r$.
 
-\begin{proof}
-Suppose every MF homomorphism kills $w$.  Exhaust $N$ by finite
-increasing sets $\mathcal R_n$.  If no threshold
-\eqref{eq:word-threshold} exists, choose unitary tuples $U^{(n)}$
-with $\delta_{\mathcal R_n}(U^{(n)})<1/n$ and
-$\opnorm{w(U^{(n)})-1}\ge1$.  Every fixed relation has defect tending
-to zero, so the generator classes define a corona homomorphism of
-$G$ whose value on $w$ is not the identity.  This contradicts
-Lemma~\ref{prop:mf-residual-calculus}.
-
-Fix a threshold $(\mathcal R,\eta)$ and a tuple $U$, and put
-$t=\opnorm{w(U)-1}$.  If $t=0$, the required inequality is immediate.
-Otherwise Lemma~\ref{lem:linear-tensor-amplification} supplies
-$1\le k\le\pi/t$ with $\opnorm{w(U)^{\otimes k}-1}>1$.
-The map $A\mapsto A^{\otimes k}$ is a group homomorphism, so every
-word $r$ satisfies
+Suppose no finite $\mathcal R\subseteq N$ and constant satisfy
+\eqref{eq:word-linear-certificate}.  Exhaust $N$ by finite increasing
+sets $\mathcal R_n$ and choose unitary tuples $U^{(n)}$ with
 \[
- r(U_1^{\otimes k},\ldots,U_m^{\otimes k})=r(U)^{\otimes k}.
+ t_n=\opnorm{w(U^{(n)})-1}>n\,\delta_{\mathcal R_n}(U^{(n)}).
 \]
-The amplified tuple therefore violates the conclusion of
-\eqref{eq:word-threshold}, while its relation defect is at most
-$k\delta_{\mathcal R}(U)$.  It follows that
+Amplify $U^{(n)}$ by the exponent $k_n\le\pi/t_n$ that
+\eqref{eq:tensor-amplification} supplies for $A=w(U^{(n)})$.  The
+amplified tuple displaces $w$ by at least $\sqrt2$, while
 \[
- \eta\le\delta_{\mathcal R}(U^{\otimes k})
- \le k\delta_{\mathcal R}(U)
- \le\frac\pi t\delta_{\mathcal R}(U),
+ \delta_{\mathcal R_n}\bigl((U^{(n)})^{\otimes k_n}\bigr)
+ \le k_n\,\delta_{\mathcal R_n}(U^{(n)})
+ <\frac{\pi}{t_n}\cdot\frac{t_n}{n}=\frac{\pi}{n}.
 \]
-which proves \eqref{eq:word-linear-certificate}.
+Each fixed element of $N$ lies in $\mathcal R_n$ for large $n$, so its
+defect along the amplified tuples tends to zero, and the generator
+classes define a corona homomorphism of $G$ that does not kill $w$.
+By Lemma~\ref{prop:mf-residual-calculus} the image of $w$ is outside
+the MF radical.
 
 Conversely, lift the generator images of a corona homomorphism to
-unitary matrices, as in Lemma~\ref{lem:stable-finite}.  Their defects
-on the finite set $\mathcal R$ tend to zero, so
-\eqref{eq:word-linear-certificate} makes the displacement of $w$
-tend to zero.  The corona homomorphism kills $w$, and
-Lemma~\ref{prop:mf-residual-calculus} gives the assertion for MF targets.
+unitary matrices as in Lemma~\ref{lem:stable-finite}.  Their defects
+on $\mathcal R$ tend to zero, so \eqref{eq:word-linear-certificate}
+sends the displacement of $w$ to zero, and the corona homomorphism
+kills $w$; Lemma~\ref{prop:mf-residual-calculus} gives the assertion
+for MF targets.  For the last sentence, write each $r\in\mathcal R$ as
+a product of $a_r$ conjugates of defining relators and their inverses;
+unitary conjugation preserves the norm, so telescoping bounds
+$\opnorm{r(U)-1}$ by $a_r$ times the defect of the defining relators.
 \end{proof}
 
-The same finite certificate kills $w$ in every group satisfying the
-relations in $\mathcal R$.  In particular, $w$ is killed by every MF
-homomorphism of the finitely presented group
-$\langle x_1,\ldots,x_m\mid\mathcal R\rangle$, which maps onto $G$.
-If $w\ne1$ in $G$, its image in this finitely presented group is
-also nontrivial, so that group is non-MF.  Thus the condition that a
-fixed word is killed by every MF homomorphism is open in the space of
-marked groups: each instance has an entire clopen relation cylinder
-on which it holds.
+Invisible relations are therefore quantitatively redundant: imposing
+them changes neither the matrix representations of a group nor, up to
+one constant, the defect that measures how far a tuple is from being
+one.
 
-If $G$ is given by a finite presentation with relator set
-$\mathcal S$, the inequality can use $\mathcal S$ itself.  Express
-each $r\in\mathcal R$ as a product of $a_r$ conjugates of elements
-of $\mathcal S$ and their inverses.  Unitary conjugation preserves
-the norm, so telescoping gives
-$\opnorm{r(U)-1}\le a_r\delta_{\mathcal S}(U)$.
-Hence \eqref{eq:word-linear-certificate} holds with
-$\mathcal S$ and constant $C\max(1,\max_{r\in\mathcal R}a_r)$.
-
-Taking the generator words gives the following consequence.
-
-\begin{proposition}[linear collapse]\label{prop:linear-collapse}
-Let $G=\langle g_1,\ldots,g_m\rangle$ be a finitely generated group
-such that every homomorphism from $G$ to an MF group is trivial.  Then
-there are finitely many words $r_1,\ldots,r_s$ in the free group $F_m$
-with $r_j(g_1,\ldots,g_m)=1$ in $G$, and a constant $C$, such that all
-unitaries $U_1,\ldots,U_m\in\U(d)$, for every $d\ge1$, satisfy
+\begin{corollary}[adding invisible relations]
+\label{cor:invisible-relations}
+Let $G=\langle x_1,\ldots,x_m\mid\mathcal R\rangle$ be finitely
+presented, let $\mathcal W$ be a finite set of words whose images lie
+in $\operatorname{Rad}_{\mathrm{MF}}(G)$, and put
+$A=\langle x_1,\ldots,x_m\mid\mathcal R,\mathcal W\rangle$.  Then
+there is a constant $C\ge1$ with
 \[
- \max_i\opnorm{U_i-1}\le C\max_j\opnorm{r_j(U_1,\ldots,U_m)-1}.
+ \delta_{\mathcal R}(U)\le\delta_{\mathcal R\cup\mathcal W}(U)
+ \le C\,\delta_{\mathcal R}(U)
 \]
-Conversely, if such words and such a constant exist, then every
-homomorphism from $G$ to an MF group is trivial.
-\leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapse}
-\leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapseConverse}
-\end{proposition}
+for every unitary tuple in every dimension, and $G$ and $A$ have the
+same homomorphisms into $\U(d)$ for every $d$.  So they have the same
+operator norm stability, up to rescaling the defect by $C$.
+\end{corollary}
 
 \begin{proof}
-Apply Theorem~\ref{thm:word-linear-certificate} to each generator word,
-take the union of the resulting finite relation sets, and take the
-maximum of their positive constants.  Conversely, the displayed
-inequality and the converse of that theorem kill every generator in
-every homomorphism to an MF group.
+The first inequality is a maximum over a larger set; the second is
+Theorem~\ref{thm:word-linear-certificate} applied to each of the
+finitely many words of $\mathcal W$.  A homomorphism $G\to\U(d)$ has
+finite-dimensional, hence MF, image, so it kills
+$\operatorname{Rad}_{\mathrm{MF}}(G)$ and factors through $A$; the
+quotient map gives the converse.  The distance from a tuple to that
+common set of representations is thus the same for both groups, while
+their defect functions differ by at most the factor $C$.
 \end{proof}
 
-With $r_1,\ldots,r_s$ as in Proposition~\ref{prop:linear-collapse},
-put $P=\langle x_1,\ldots,x_m\mid r_1,\ldots,r_s\rangle$.  The
-inequality holds verbatim for $P$, so every finitely generated group
-all of whose homomorphisms to MF groups are trivial is a quotient of a
-finitely presented group with the same property and the same number of
-generators.  The set of $m$-marked groups satisfying
-$r_1=\cdots=r_s=1$ is open and closed in the space of marked groups,
-and every group in it has the property; so the property is open.  For
-the two-generated group $Q$ of Theorem~\ref{thm:torsion-free}, the
-inequality bounds $\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects
-of finitely many words in two unitary matrices, uniformly over the
-matrix size, while the left regular representation solves the same
-equations exactly with $U,V\ne1$.  Applied to $\EL_4(\mathcal C)$ from
-Theorem~\ref{thm:full-defect-ring}, the same construction gives one
-finitely presented group with the property that maps into every
-$\EL_n(R)$ of that theorem with normally generating image.
-\leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapseMarkedGroups}
-\leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapseCover}
+Applied to the generator words, the theorem gives the linear collapse
+of a group with no nontrivial MF image: if every homomorphism from
+$G=\langle g_1,\ldots,g_m\rangle$ to an MF group is trivial, then
+there are finitely many relations $r_1,\ldots,r_s$ of $G$ and a
+constant $C$ with
+\[
+ \max_i\opnorm{U_i-1}
+ \le C\max_j\opnorm{r_j(U_1,\ldots,U_m)-1}
+\]
+for all $U_1,\ldots,U_m\in\U(d)$ and all $d\ge1$; conversely such an
+inequality forces every MF image of $G$ to be trivial.  The finitely
+presented group $\langle x_1,\ldots,x_m\mid r_1,\ldots,r_s\rangle$
+then has the same property and maps onto $G$, and the $m$-marked
+groups satisfying $r_1=\cdots=r_s=1$ form a clopen set all of whose
+members have it; so the property is open in the space of marked
+groups.  For the two-generated group $Q$ of
+Theorem~\ref{thm:torsion-free} the inequality bounds
+$\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many
+words in two unitary matrices, uniformly in the matrix size, while the
+left regular representation solves the same equations exactly with
+$U,V\ne1$.
 
 \section{One-sided inverses and elementary groups}
 \label{sec:one-sided-inverses}
