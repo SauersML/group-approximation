@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/nonnormal-finite-augmentation-corner-endgame-2026-09-08.md
   - research/artifacts/noncentral-frobenius-negative-rational-matrix-corner-2026-09-08.md
+  - research/artifacts/finite-augmentation-outside-normalizer-two-context-cell-2026-09-08.md
 ---
 
 For the fixed finite BCS `B_loop` supplied by
@@ -54,5 +55,19 @@ the specified corner unit.
   Independent finite amalgamations also leave the cross-context
   equalities unproved. Some finite-support algebraic expression
   outside these finite local models must enforce them exactly.
+- `finite-augmentation-corner-has-outside-normalizer-contexts`
+  constructs two noncommuting contexts with a shared proper atom and
+  the same full augmentation unit. Their finite-support transport
+  uses elements outside the subgroup normalizer and their supports
+  fit in no finite subgroup. This resolves that local transport
+  obstruction. The two contexts still generate a finite-dimensional
+  algebra, and their wreath-product host has exact finite-window
+  models, so it cannot realize the completed no-CE diagram.
+- `strict-bcs-energy-in-augmentation-corner-kills-mf` supplies a
+  separate sufficient endgame from one strict maximal-C-star energy
+  inequality, without requiring an exact map. Its construction gate
+  is `nonhyperlinear-bloop-strict-augmentation-energy`. That variant
+  also excludes hyperlinear hosts; no inequality below its threshold
+  has been constructed.
 
 No map of the displayed form for `B_loop` is currently supplied.
