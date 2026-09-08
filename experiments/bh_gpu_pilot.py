@@ -23,7 +23,7 @@ PROBES = {
     (ha : a ∈ H) (hb : b ∈ H) (heq : y = a * x * b) : x = y := by""",
     },
     "normalizer_extension": {
-        "role": "construction filter; expected true, not an open conjecture",
+        "role": "construction filter; independently Lean-checked, not an open conjecture",
         "statement": """theorem bh_probe {G : Type} [Group G] (H K : Subgroup G)
     (hdis : H ⊓ K = ⊥)
     (hnorm : ∀ k ∈ K, ∀ h ∈ H, k * h * k⁻¹ ∈ H)

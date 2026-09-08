@@ -47,7 +47,7 @@ that an elementary group lemma intrinsically requires GPU computation:
 
 1. A known true double-coset separation lemma for commuting subgroups with
    trivial intersection.
-2. Its expected-true extension replacing centralization by normalization.
+2. Its independently Lean-checked extension replacing centralization by normalization.
 3. A known false version dropping both hypotheses. In `S3`, the standard
    `C2` and `C3` subgroups have trivial intersection, but conjugation by the
    involution interchanges the two nonidentity `C3` elements. Their double
@@ -90,11 +90,13 @@ inference, transfer of model proposals, and deletion of a successfully
 provisioned instance have **not** been exercised. These remain operational
 limitations, not completed validation.
 
-The verifier preflight uses explicitly labeled assistant-authored inputs,
-not invented GPU results. Its initial full-library and narrower-library
-checks hit the 20-second deadline. Admissions were rejected by the source
-filter, and the exact `S3` witness passed. Successful positive Lean replay
-must be established before treating the prover pipeline as ready.
+The verifier preflight uses explicitly labeled assistant-authored inputs.
+Its initial MSI full-library and narrower-library checks hit the 20-second
+deadline. A subsequent cached GitHub CPU run successfully checked both
+positive proofs in about 1.2 seconds each and rejected four negative
+inputs. See the [successful preflight record](boone-higman-lean-preflight-2026-09-08.md).
+This calibrates the fixed-statement checker on that runner; GPU inference
+and the full operational pipeline remain untested.
 
 MSI's SSH master subsequently expired. The wrapper's automatic password/TOTP
 authentication failed, including its own retry, and it enabled its breaker.
@@ -112,8 +114,9 @@ restriction versus regional-capacity cause requires Civo confirmation.
 
 Enable a quota permitting **one A100 40 GB in Civo London (`lon1`)**. No
 support message or quota request was sent on the user's behalf. Preserve
-the $20 session cap. Before retrying provisioning, finish the short Lean
-preflight and recheck the current price and account availability.
+the $20 session cap. The short Lean preflight is now complete on GitHub.
+Before retrying provisioning, establish a working orchestration connection
+and recheck the current price and account availability.
 
 ## Integration with the continuing Cairn goal
 
@@ -121,7 +124,9 @@ This artifact is attached to `boone-higman-conjecture`, now explicitly
 marked `goal: true`. The dedicated `Boone-Higman research checks` workflow
 checks the three scripts' syntax, verifies the exact finite negative
 control, and exports Cairn's current goal and quotient-obstruction state.
-It does not run neural inference or claim a successful Lean preflight.
+It does not run neural inference. An optional `lean_preflight` dispatch now
+also replays the authored controls against exact existing build caches;
+its first run passed and retained the Lean source and diagnostics.
 
 Subsequent algebraic work established the stronger
 [quotient-and-cover obstruction](ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md)

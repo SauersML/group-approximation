@@ -20,6 +20,7 @@ artifacts:
   - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
   - research/artifacts/boone-higman-steinberg-cover-correction-2026-09-08.md
   - research/artifacts/boone-higman-cover-kernel-dichotomy-2026-09-08.md
+  - research/artifacts/boone-higman-lean-preflight-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -200,8 +201,10 @@ route does not require finite bi-index and remains open.
 
 The GPU pilot is an operational experiment attached to this goal, not a
 mathematical prerequisite or a proof of any route. Its artifact records the
-$20 spending cap, the provider's GPU-quota rejection, the prepared neural
-proposal/checker pipeline, and the unfinished positive Lean preflight.
+$20 spending cap, the provider's GPU-quota rejection, and the prepared neural
+proposal/checker pipeline. Positive Lean calibration subsequently passed
+on a cached remote CPU runner; the separate preflight artifact records
+the exact scope and connects its normalization lemma to the quotient proof.
 The dedicated research workflow checks source syntax, the exact `S3`
 counterexample used as a negative control, and Cairn's graph structure.
 

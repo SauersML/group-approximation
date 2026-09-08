@@ -64,5 +64,7 @@ The [remote research check](https://github.com/SauersML/group-approximation/acti
 passed source syntax, the exact finite negative-control witness, and Cairn
 graph validation for commit `db368800ac1bc5994913a7d7c6ed61689013e925`.
 These checks did not run CUDA or establish a successful Lean positive
-control. Provisioning and positive-control replay remain prerequisites for
-reporting the neural prover pipeline as working.
+control. A [subsequent cached CPU preflight](boone-higman-lean-preflight-2026-09-08.md)
+accepted both authored positive controls and rejected all four negative
+inputs. Provisioning and neural inference still have not run; the full
+neural prover pipeline cannot yet be reported as working.

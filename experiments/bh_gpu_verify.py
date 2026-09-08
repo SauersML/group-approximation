@@ -1,4 +1,4 @@
-"""Check GPU proposals on MSI against fixed statements and Lean's kernel.
+"""Check proposals against fixed statements and Lean's kernel on remote CPUs.
 
 At most two single-thread Lean processes, each with a 20-second wall limit.
 Model output cannot replace the theorem statement or add declarations.
@@ -93,7 +93,7 @@ def main():
                         help="Check authored positive/negative controls; no GPU proposals")
     args = parser.parse_args()
     if not str(args.run_dir.resolve()).startswith("/projects/standard/"):
-        raise ValueError("Verification must run on MSI shared storage")
+        raise ValueError("Verification requires run storage under /projects/standard/")
     checked = args.run_dir / "verification"
     checked.mkdir(exist_ok=True)
     libraries = [args.project / ".lake/build/lib/lean"]

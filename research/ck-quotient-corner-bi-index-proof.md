@@ -4,7 +4,7 @@ id: ck-quotient-corner-bi-index-proof
 kind: route
 title: Preserve an infinite root image at every proper level and separate its simple-core double cosets
 target: ck-quotient-corner-has-infinite-bi-index
-requires: [elementary-root-kernel-equals-level, ck-envelope-level-ideal-screen]
+requires: [elementary-root-kernel-equals-level, ck-envelope-level-ideal-screen, normalizing-subgroups-separate-double-cosets]
 artifacts:
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
 ---
@@ -25,10 +25,10 @@ Thus `D_N=q(D)` is an infinite simple group and has trivial center.
 
 Put `A=q({e_23(a):a in U})`. It centralizes `D_N`, since the original
 root group commutes with the original corner. Hence
-`A intersect D_N <= Z(D_N)=1`. If `a,b in A` and
-`D_N a D_N=D_N b D_N`, write `b=d_1 a d_2`. Commutation gives
-`a^-1 b=d_1d_2 in A intersect D_N`, so `a=b`. This embeds
-`A ~= (U/I,+)` as the asserted family of distinct double cosets.
+`A intersect D_N <= Z(D_N)=1`. Centralization implies normalization,
+so `normalizing-subgroups-separate-double-cosets`, applied with
+H=D_N and K=A, embeds `A ~= (U/I,+)` as the asserted family of
+distinct double cosets.
 
 Embedding `Q` in an overgroup cannot identify two of these double cosets:
 the multipliers still belong to the same `D_N`. For a surjection
