@@ -1809,136 +1809,14 @@ $a=\rho(f)$.  Homomorphisms to MF groups reduce to this case by
 Lemma~\ref{prop:mf-residual-calculus}.
 \end{proof}
 
-Finite dimensionality of $A$ cannot be relaxed, even to a commutative
-algebra with an eight-point spectrum of arcs.
-
-\begin{theorem}[the hypothesis is sharp]\label{thm:transport-sharp}
-Let $\bar\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$, let
-$\alpha(v,A)=(2v,A)$, and let $V$ be the ascending HNN extension of
-$\bar\Gamma$ along $\alpha$.  There is an injective homomorphism
-$\sigma$ of $V$ into the unitary group of a norm matrix corona for
-which the following hold.
-\begin{enumerate}
-\item There is a unital commutative subalgebra
-$\mathcal A\cong C(T)$, normalized by $\sigma(\bar\Gamma)$, where $T$
-is a wedge of eight arcs, with
-\[
- \mathcal A^{\alpha(\bar\Gamma)}\ne\mathcal A^{\bar\Gamma}.
-\]
-The failure already occurs on the nine-dimensional operator system
-spanned by the unit and the eight generators.
-\item There is a finitely generated sofic MF group $G$ containing $V$
-and an involution $c$ centralizing $\bar\Gamma$ such that
-$f=tct^{-1}$ centralizes $\alpha(\bar\Gamma)$, the $\bar\Gamma$-orbit
-of $f$ has eight elements and generates
-$\mathbb Z^7\rtimes C_2$, and
-$\opnorm{[f,u]-1}=2$ for the translation $u$ by the first basis vector.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-For odd $q$ let $X_q=(\mathbb Z/q)^3$ and let $\sigma_q$ be the
-permutation representation of $V$ on $\ell^2(X_q)$ in which
-$(v,A,k)$ acts by $x\mapsto2^kAx+v$; this is defined because $2$ is
-invertible modulo $q$.  A nonidentity element of $V$ acts nontrivially
-for all large odd $q$, and a nonidentity permutation matrix is at
-distance at least $\sqrt2$ from the identity, so the classes
-$\sigma(g)=[\sigma_q(g)]_q$ define an injective homomorphism into the
-corona.
-
-Let $S$ consist of the translations by $\pm e_i$ and the elementary
-matrices $I\pm E_{ij}$, a generating set of $\bar\Gamma$, and let
-$\ell_q$ be the distance from $0$ in the corresponding Schreier graph
-on $X_q$, so that $|\ell_q(sx)-\ell_q(x)|\le1$.  Put
-\[
- R_q=\Bigl\lfloor\tfrac14\log_2q\Bigr\rfloor,
- \qquad
- h_q(x)=\max\Bigl(1-\frac{\ell_q(x)}{R_q},0\Bigr),
-\]
-discarding the finitely many $q$ with $R_q=0$.  Then
-$\opnorm{h_q\circ s^{-1}-h_q}\le R_q^{-1}$ for $s\in S$, so the class
-$h$ of the multiplication operators by $h_q$ commutes with
-$\sigma(\bar\Gamma)$.  A word of length at most $R$ in $S$ carries $0$
-to the reduction of an integer vector of sup norm at most $2^R-1$,
-since a shear at most doubles that norm and a translation raises it by
-one; so $h_q$ is supported on reductions of integer vectors of sup norm
-at most $2^{R_q}-1$.
-
-For $b\in\{0,1\}^3$ put $h_{b,q}(x)=h_q(2^{-1}(x-b))$ and let $h_b$ be
-the corresponding class, so that $h_0=\sigma(t)h\sigma(t)^{-1}$ and
-$h_b$ is the conjugate of $h_0$ by the translation by $b$.  The eight
-supports are disjoint for large $q$: a common point gives
-$2(z-z')\equiv b'-b$ modulo $q$ with $z,z'$ integer vectors of sup norm
-at most $2^{R_q}-1$, and $4\cdot2^{R_q}+1<q$ eventually, so the
-congruence is an equality in $\mathbb Z^3$, whose left side is even and
-whose right side has entries in $\{-1,0,1\}$; hence $b=b'$.  The values
-of $h_q$ are the numbers $1-j/R_q$ for $0\le j\le R_q$, which become
-dense in $[0,1]$, so each $h_b$ has spectrum $[0,1]$.  Eight orthogonal
-positive elements with spectrum $[0,1]$ generate a commutative algebra
-whose spectrum is eight arcs joined at their common zero, which gives
-$\mathcal A\cong C(T)$.
-
-Since $h$ commutes with $\sigma(\bar\Gamma)$, its conjugate $h_0$
-commutes with $\sigma(t\bar\Gamma t^{-1})=\sigma(\alpha(\bar\Gamma))$.
-The translation by $e_1$ carries $h_0$ to $h_{e_1}$, and these are
-orthogonal and nonzero, so $h_0\notin\mathcal A^{\bar\Gamma}$.  This
-proves~(1), the relevant elements lying in the span of the unit and the
-eight generators.  The $\bar\Gamma$-action on the eight generators is the affine action on
-$\mathbb F_2^3$, through the reduction
-$\bar\Gamma\to\mathbb F_2^3\rtimes\mathrm{SL}_3(\mathbb F_2)$.  Note that
-$\alpha(\bar\Gamma)$ is not normal in $\bar\Gamma$: conjugating $(0,A)$
-by a translation $w$ has translation part $w-Aw$, which need not be
-even.  So $\bar\Gamma/\alpha(\bar\Gamma)$ is a coset space, not a
-quotient group.
-
-For~(2), double the dimensions, replace $\sigma_q$ by
-$\sigma_q\otimes I_2$, and set
-$C_q(x)=R(\pi h_q(x))$ with
-$R(\theta)=\begin{psmallmatrix}\cos\theta&\sin\theta\\
-\sin\theta&-\cos\theta\end{psmallmatrix}$,
-a reflection, so that $C_q^2=1$.  As
-$\opnorm{R(\theta)-R(\theta')}=2\lvert\sin\tfrac{\theta-\theta'}2\rvert
-\le\lvert\theta-\theta'\rvert$, the class $c$ of the $C_q$ is an
-involution commuting with $\sigma(\bar\Gamma)$, and $f=\sigma(t)c\sigma(t)^{-1}$
-has the eight conjugates $f_b$ given by $R(\pi h_{b,q})$.  At $x=0$ the
-blocks of $f_0$ and $f_{e_1}$ are $R(\pi)$ and $R(0)$, because
-$2^{-1}e_1$ lies outside the support of $h_q$; hence
-$\opnorm{f_0-f_{e_1}}=2$, which is $\opnorm{[f,u]-1}$ since $f_0$ is
-unitary and $u f u^{-1}=f_{e_1}$.  Products of two of these reflections
-are commuting rotations, and $f_0$ inverts each of them, so the seven
-elements $f_bf_0$ generate a copy of $\mathbb Z^7$ on which $f_0$ acts
-by inversion: a relation among them restricts on the arc indexed by $b$
-to a rotation by $\pi n_bs$ for every $s\in[0,1]$, forcing $n_b=0$, and
-no odd word in the reflections is trivial because its blocks are
-reflections.  Thus the orbit generates $\mathbb Z^7\rtimes C_2$.
-
-Finally let $G=\langle V,c\rangle$ and let $B_0$ be generated by the
-$V$-conjugates of $c$.  These are block-diagonal reflections, so every
-finitely generated subgroup of $B_0$ is virtually abelian, and
-$B_0\cap V=1$ because a permutation moving a fibre is at distance at
-least $\sqrt2$ from every block-diagonal unitary.  Writing
-$T_\alpha=\bigcup_n t^{-n}\bar\Gamma t^n$, the group $\bar\Gamma$ is
-commensurated by $V$, so each $t^{-n}\bar\Gamma t^n$ has finite orbits
-on the conjugates of $c$; a finite subset of $B_0\rtimes T_\alpha$
-therefore lies in $M\rtimes t^{-n}\bar\Gamma t^n$ with $M$ finitely
-generated virtually abelian and the action having finite image, and such
-a group is residually finite.  So $B_0\rtimes T_\alpha$ is locally
-residually finite, and $G=(B_0\rtimes T_\alpha)\rtimes\mathbb Z$ is
-sofic by the permanence theorems used above.  It is MF because it is
-given inside a norm matrix corona.
-\end{proof}
-
-So a finite subgroup cannot be replaced in
-Theorem~\ref{thm:finite-algebra-transport} by a finitely generated
-virtually abelian one, even when the element has order two and a finite
-orbit.
-
 The normalization in that proof is by the relative size $\mu_n$ of a
 single central orbit, and the rank bound~\eqref{eq:rank-normalized} is
 what keeps the covariance error small after dividing by
-$\sqrt{\mu_n}$.  The example above is the reason some such bound is
-needed: on a summand whose relative size tends to zero, equivalence of
-norms on a fixed finite-dimensional algebra gives nothing uniform.
+$\sqrt{\mu_n}$.  Some such bound is needed: a rank-one projection in
+$M_d(\mathbb C)$ has operator norm $1$ and normalized
+Hilbert--Schmidt norm $d^{-1/2}$, so on a summand whose relative size
+tends to zero, equivalence of norms on a fixed finite-dimensional
+algebra gives nothing uniform.
 
 \subsection{Perfect finite blocks}
 
@@ -2612,8 +2490,7 @@ finite-dimensional invariant subalgebra.
 \begin{enumerate}
 \item Is the upgrade available for a locally finite normal subgroup
 inside $\mathfrak D_G(L)$, with no property-\textup{(T)} hypothesis on
-it?  Theorem~\ref{thm:transport-sharp} shows that local finiteness
-cannot simply be weakened to virtual abelianness.
+it?
 
 \item Theorem~\ref{thm:full-defect-ring} assumes that the
 complementary idempotent $1-st$ is full.  Is $\EL_n(R)$ non-MF for
