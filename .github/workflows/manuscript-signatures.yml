@@ -9,8 +9,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/manuscript-signatures.yml'
-      - 'scripts/Signatures.lean'
-      - 'scripts/StatementClosure.lean'
+      - '**/*.lean'
+      - 'lean-toolchain'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
       - 'metadata/*CLAIM_DECLS.txt'
       - 'metadata/*CLAIM_SIGNATURES.md'
       - 'metadata/AUDIT_SURFACE.md'
@@ -19,8 +21,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/manuscript-signatures.yml'
-      - 'scripts/Signatures.lean'
-      - 'scripts/StatementClosure.lean'
+      - '**/*.lean'
+      - 'lean-toolchain'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
       - 'metadata/*CLAIM_DECLS.txt'
       - 'metadata/*CLAIM_SIGNATURES.md'
       - 'metadata/AUDIT_SURFACE.md'
