@@ -359,7 +359,24 @@ This is the form `AGPStepOne` consumes: `v ∈ commutator Rˣ` is exactly what
 `κ v = 1` supplies there, and the conclusion is `diag(v, 1, …, 1) ∈ EL_ι(R)`
 with no K-theory colimit in between.  `UnstableKOneAbelian.commutator_le_elementaryGroup`
 reaches the same conclusion but carries `Nontrivial R` and single-sandwich
-division, which this does not need. -/
+division, which this does not need.
+
+## Its neighbours in this namespace
+
+`KOne/DiagonalCommutatorElementary.lean` declares into the same namespace and
+holds two lemmas about the same embedding.  They are not interchangeable with
+this one and only one of them is superseded:
+
+* `diagAt_mem_commutator_of_mem` --- `v ∈ commutator Rˣ → diagAt l v ∈
+  commutator (Matrix ι ι R)ˣ`, hypothesis-free.  **Not** superseded: its
+  conclusion lands in the commutator subgroup of `GL_ι(R)`, which is a
+  different and sometimes more useful place than `EL_ι(R)`, and nothing here
+  provides it.
+* `diagAt_mem_elementaryGroup_of_mem_commutator` --- same conclusion as this
+  lemma but with `Nontrivial R` and `HasSingleSandwichDivision R`, because it
+  factors through `commutator_le_elementaryGroup`.  Prefer this one whenever
+  the ring has no division property to hand; the two agree whenever both
+  apply. -/
 theorem diagAt_commutator_mem (l m : ι) (hlm : l ≠ m) {v : Rˣ}
     (hv : v ∈ commutator Rˣ) :
     (diagAt l v : (Matrix ι ι R)ˣ) ∈ elementaryGroup ι R := by
