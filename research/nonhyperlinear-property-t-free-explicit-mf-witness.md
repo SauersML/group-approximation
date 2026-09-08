@@ -52,6 +52,19 @@ source-specific route through a central sign is isolated at
   the original packet. This reduces its approximation problem to two
   mixed relators over a specified finite amalgam. A positive matrix
   gap for those remaining relators has not been proved.
+  The precise remaining premise is now
+  `jacobson-boundary-amalgam-mixed-gap`: positivity would imply the
+  requested marked collapse by
+  `jacobson-boundary-amalgam-gap-characterizes-mark-collapse`.
+  Exact TS and braid relations additionally reconstruct the full
+  first-level matrix root group, as proved in
+  `jacobson-mixed-cells-reconstruct-full-first-level-root-packet`.
+  Its smallest nonzero character orbit cannot extend even after adding
+  arbitrary root-trivial summands:
+  `jacobson-single-rank-one-root-orbit-cannot-extend` proves that every
+  exact head-retaining representation has dimension at least 98. The
+  resulting gap in dimensions at most 97 does not establish the
+  unrestricted positivity premise.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map
