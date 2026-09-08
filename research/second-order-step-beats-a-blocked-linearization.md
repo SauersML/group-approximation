@@ -39,8 +39,9 @@ for all `e` below a threshold, with `C'` and the threshold depending only on
 `C, rho, q, M_2, M_3, r_0`.
 
 The direction does nothing at first order and everything at second order: it is
-the only mechanism available when part of the residual lies outside `ran L`, so
-that no linear correction can reach it.  A linearization that is surjective with
+a possible mechanism when part of the residual lies outside `ran L`, so
+that no linear correction at this point can reach it. Higher-order terms
+or changing the base point are other possibilities. A linearization that is surjective with
 a bounded right inverse does not need this and gets the classical quadratic rate
 instead.
 
@@ -49,8 +50,9 @@ analysis; every difficulty is in supplying `(SO1)` uniformly, and in supplying i
 again at the new point with the same constants, since only a hypothesis closed
 under its own output can be iterated.  In particular this claim asserts nothing
 about any group-approximation problem: see
-`iwahori-second-order-repair-space-is-empty` for a case where the supply
-provably fails, and `iwahori-admits-neutral-quadratic-directions` for the open
+`iwahori-second-order-repair-space-is-empty` for vanishing of the projected
+quadratic effect at exact compatible points, and
+`iwahori-admits-neutral-quadratic-directions` for the open
 supply question.
 
 **Where the derivative bounds are used.**  The proof evaluates `D^2F` only at

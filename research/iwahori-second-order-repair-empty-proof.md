@@ -13,22 +13,31 @@ artifacts:
 
 ## Proof
 
-**Chart and tangent space.**  `V_i` is an amalgam of finite groups, hence acts
-on a tree with finite stabilizers, hence has cohomological dimension one over
-`Q`; deformations of a unitary representation of `V_i` are therefore
-unobstructed and `Z^1(V_i, Ad rho)` is the tangent space at `rho|_(V_i)`.  The
-residual `F` is a fixed polynomial in the generator matrices, so it is smooth,
-and its differential in these coordinates is the Mayer-Vietoris mismatch map
-`(c_1, c_2) -> (c_1 - sigma^* c_2)|_(S_B)` whose norm is the linearized defect
-`def(c_1, c_2)` of the first prerequisite.
+**Chart and tangent space.** Each modular vertex is `C_4 *_(C_2) C_6`.
+In a unitary representation its common central involution splits the space
+into its two eigenspaces. On either eigenspace the generators of orders
+four and six have fixed allowed eigenvalues and locally fixed
+multiplicities; their eigenspaces vary in independent unitary flag
+manifolds. Allowing the central eigenspace decomposition to vary gives
+local smooth charts for the representation variety. Differentiating the
+representation relations gives exactly the anti-Hermitian cocycles.
+This argument supplies smooth charts in each fixed dimension, with no
+dimension-uniform derivative estimate asserted.
+
+The residual is smooth. At a compatible base point its derivative in the
+`b`-coordinate is `(c_1(b)-c_2(sigma b))rho(b)`. Right multiplication by
+the fixed unitary `rho(b)^*` is an isometry of the residual space and
+identifies this derivative with the Mayer-Vietoris mismatch map of the
+first prerequisite. This fixed change of residual coordinates also
+preserves the assertion that the quadratic term belongs to its range.
 
 **Kernel.**  Apply `(UIR)` to a pair with `def(c_1, c_2) = 0`: there is a common
 `x in M_d` with `max_i ||c_i - delta x||_2 <= sigma_0^(-1) * 0 = 0`, so
 `c_1 = c_2 = delta x`.  Conversely every diagonal coboundary is in the kernel.
 The pair being anti-Hermitian, `x` may be taken anti-Hermitian.  (The first
 prerequisite is available because `pi` is compatible, hence the restriction of a
-representation of `SL_2(Z[1/2])`, hence congruence by the congruence subgroup
-property.)
+representation of `SL_2(Z[1/2])`, hence finite-image and congruence by the
+superrigidity/CSP inputs explicitly recorded in that prerequisite.)
 
 **Integrability.**  For anti-Hermitian `x` the curve
 `u(t) = exp(t x) in U(d)` gives the pair

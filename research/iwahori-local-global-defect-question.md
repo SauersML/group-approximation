@@ -467,7 +467,7 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   cannot feed `odd-congruence-lambda-exact-sector-collapses` without a
   separate theorem closing the two-primary sector. Techniques may transfer
   between the rank-one and higher-rank problems; their statements do not.
-- **The second-order repair template is empty in the near sector
+- **The projected quadratic form vanishes at exact compatible points
   (2026-09-08).**  `iwahori-second-order-repair-space-is-empty` reads `(UIR)`
   at zero linearized defect: the kernel of the mismatch map at a compatible
   pair is the diagonal coboundaries, those integrate to curves of compatible
@@ -476,14 +476,18 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   second-order form vanishes identically on the whole neutral space -- and
   padding by representations of `SL_2(Z[1/2])` does not change it.  Hence a
   correction that uses quadratic interactions to reach the component of the
-  residual outside the range of the linearization, the mechanism of
-  `second-order-step-beats-a-blocked-linearization`, has an empty search space
-  at and near the compatible locus and must operate in the noncongruence far
-  sector.  What survives is `iwahori-admits-neutral-quadratic-directions` and
+  residual outside the range of the linearization has no such quadratic
+  effect at an exact base point. The residual there is already zero, and
+  the assertion gives no dimension-independent exclusion at nearby
+  inexact points. The open inputs are
+  `iwahori-admits-neutral-quadratic-directions` and
   `iwahori-uniform-quadratic-repair-step`, which reach this node through
   `iwahori-flexible-repair-from-quadratic-steps` and the completion budget
   `quadratic-repair-steps-complete-in-finite-dimension`.  The same wave landed
   `word-taylor-remainder-has-a-fourth-moment-bound`, which is the sharp
   fourth-moment form of the remainder estimate whose failure killed
-  `iwahori-newton-closes-near-sector-proof`, and which fixes the effective-rank
-  budget any such iteration must respect.
+  `iwahori-newton-closes-near-sector-proof`. It gives a sufficient
+  effective-rank budget for controlling that upper bound. The actual
+  representation-preserving chart and its uniform derivatives are
+  additional open requirements; flat generator increments alone do not
+  supply them.

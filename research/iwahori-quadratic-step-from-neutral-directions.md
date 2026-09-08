@@ -18,36 +18,36 @@ Let `pi` have defect `e <= eps`.  The first prerequisite supplies the padding
 blocked-component bound of `(NQ1)`, together with a `kappa`-flat linear
 correction `eta` of size `O(e)`.
 
-**The norms match.**  Apply the second prerequisite with `E` the tangent space
-in normalized Hilbert-Schmidt norm and `Y` the defect space in the same norm.
-Its proof needs `D^2F` only at `(xi, xi)`, `(xi, eta)`, `(eta, eta)` and
-`D^3F` only at `(v, v, v)` with `v = xi + eta`.  Every entry of `D^2F` is a
-product of generator matrices with two tangent factors inserted and every entry
-of `D^3F` has three, so the third prerequisite's Hoelder estimate gives
+**The norms and admissible map.** Use the map `Psi` and the composed
+residual `F` required by `(NQ2)`. The second prerequisite's proof needs
+`D^2F` only at `(xi, xi)`, `(xi, eta)`, `(eta, eta)` and `D^3F` only
+at `(v,v,v)` along `tv`, where `v=xi+eta`. The explicit chart bounds give
 
 ```text
-||D^2F[X, Y]||_(2,d) <= L^2 ||X||_(4,d) ||Y||_(4,d) <= L^2 kappa^2 ||X||_2 ||Y||_2,
-||D^3F[X, X, X]||_(2,d) <= L^3 ||X||_(6,d)^3 <= L^3 kappa^3 ||X||_2^3,
+||D^2F(0)[X,Y]||_2 <= C kappa^2 ||X||_2 ||Y||_2    (X,Y in {xi,eta}),
+||D^3F(tv)[v,v,v]||_2 <= C ||v||_6^3
+    <= C kappa^3 (||xi||_2+||eta||_2)^3 = O(e^(3/2)).
 ```
 
-on the flat cone, `L` a bound for the lengths of the defining words.  So the
-constants `M_2 = L^2 kappa^2` and `M_3 = L^3 kappa^3` are dimension-free, which
-is what the second prerequisite requires and what a naive appeal to a bound on
-the full differentials would not have: by
-`normalized-hs-taylor-remainder-is-not-dimension-free` no such bound exists.
-Flatness of `v = xi + eta` follows from flatness of the summands once `e` is
-small enough that `||eta||_2 <= ||xi||_2 / 2`.
+The same Taylor calculation as in the second prerequisite therefore
+applies. No relative-flatness assertion for `xi+eta` is needed: the
+displayed absolute sixth-norm bound suffices, even when the two parameters
+cancel. The word Hoelder estimate explains the moment budgets but does
+not by itself construct `Psi` or bound derivatives of its composition
+with the mismatch map. These are additional hypotheses of `(NQ2)`.
 
-**Output.**  The second prerequisite then gives `pi^+ = pi + xi + eta` with
-`def(pi^+) <= A e^(3/2)` and `||xi + eta||_(2,d) = O(sqrt e)`, the first two
-clauses of `(QS1)`; the movement bound transfers to the zero-padding metric
-because the padded and unpadded tuples differ only by the adjoined exact block,
-which the metric charges at most the padding ratio.  The constants depend only
-on `C, kappa, L` and the right-inverse bound, all of which the first
-prerequisite asserts uniformly, so they are the same at `pi^+` and the step may
-be iterated.
+**Output.** The Taylor calculation gives `pi^+=Psi(xi+eta)`, which is
+an exact pair of vertex representations by construction, with
+`def(pi^+)<=A e^(3/2)`. The movement clause of `(NQ2)` gives distance
+`O(sqrt e)` from the padded pair. Padding itself costs exactly
+`sqrt(r/(d+r)) <= sqrt(B e)` in the zero-padding metric. Triangle
+inequality gives `(QS1)` after enlarging its uniform constant. The
+initial bound `def(pi_tilde)<=C e` is essential: arbitrary inexact
+blocks of relative size `O(e)` could instead produce defect `O(sqrt e)`.
+The constants are uniform by the first prerequisite and hence apply
+again to the output pair.
 
 **What this route does not do.**  It does not produce `xi`; the whole content
-sits in its first prerequisite, and
-`iwahori-second-order-repair-space-is-empty` already proves that prerequisite
-fails at compatible pairs and near them.
+sits in its first prerequisite, including the admissible chart. The
+exact-point vanishing theorem supplies no nonzero projected effect at
+compatible pairs; it does not refute the prerequisite near those pairs.

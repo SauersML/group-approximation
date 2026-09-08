@@ -19,10 +19,11 @@ program, the transfer immediately meets an obstruction supplied by the
 archive's own established facts: at every compatible Iwahori pair the
 first-order-neutral directions are exactly the diagonal coboundaries, those
 integrate to curves of compatible pairs, and an integrable direction has zero
-projected second-order obstruction.  So the mechanism is empty on the near
-sector and can only be attempted where the cohomological description of the
-kernel fails.  That is a genuine narrowing of the proposal, not a refutation of
-it, and it is what the new nodes record.  The note's second-order step lemma and
+projected second-order obstruction. This computes the effect at exact
+compatible points, where no correction is needed. It does not exclude
+nearby inexact corrections uniformly in dimension. The new nodes record
+that exact-point screen and explicitly retain the admissible-chart and
+padding-defect estimates as open obligations. The note's second-order step lemma and
 its finite-dimensional completion budget are correct and were absent here; they
 are landed as established elementary claims.  Its fourth-moment word estimate is
 the sharp form of an estimate the archive already uses in a weaker interpolated
@@ -49,8 +50,9 @@ re-derived.
 - `word-taylor-remainder-has-a-fourth-moment-bound` -- the exact
   `(ell^2/2) max_s ||X_s||_(4,d)^2` remainder bound, the interpolation
   `||X||_4^2 <= ||X||_op ||X||_2` showing it refines the archive's `(NHT1)`,
-  and the effective-rank threshold `theta_eff >> e^2` that a correction must
-  meet for its nonlinear remainder to be lower order.
+  and the sufficient effective-rank threshold `theta_eff >> e^2` for an
+  `O(e)` correction's remainder bound to be lower order. This is not a
+  necessary condition for the actual remainder, which may cancel.
 - `second-order-step-beats-a-blocked-linearization` -- the conditional
   `e -> O(e^(3/2))` step: a neutral direction of size `O(sqrt e)` whose
   projected quadratic term cancels the blocked component, followed by an
@@ -65,7 +67,10 @@ re-derived.
 - `quadratic-repair-steps-complete-in-finite-dimension` -- the completion
   budget: `e -> A e^(3/2)`, movement `B sqrt e`, padding ratio `B e`, closed
   under its own output, imply the iteration stabilizes in one finite matrix
-  algebra and gives the modulus `f(x) = min(C sqrt x, 2)`.
+  algebra when the class is closed in each dimension, and give the
+  modulus `f(x) = min(C sqrt x, 2)` after `C` is enlarged to cover the
+  large-defect region. A uniform geometric contraction also suffices
+  with the same movement and padding budgets.
 - `iwahori-admits-neutral-quadratic-directions` (open) and
   `iwahori-uniform-quadratic-repair-step` (open) -- the two halves of the bet,
   with `iwahori-quadratic-step-from-neutral-directions` and
@@ -165,9 +170,10 @@ under active edit in the shared tree at the time of reading.
 
 ## 7. What would change the verdict
 
-A single admissible direction, at one pair with defect bounded away from the
-compatible locus, that is neutral for the linearization and whose projected
-quadratic term has size comparable to the blocked residual.  One such direction
-would make `iwahori-admits-neutral-quadratic-directions` a live target rather
-than a bet; none is known here, and section 2's Atlas screen is the one place
-this archive searched for one and found nothing.
+A controlled admissible direction at an inexact pair whose projected
+quadratic term cancels the blocked residual would be a first test of the
+proposal. One example would not establish the uniform claim: the chart
+derivative bounds, movement, padding defect, and closure under the next
+step must also be proved. The exact-point screen does not prescribe how
+far the pair must be from the compatible locus. No such construction is
+supplied here; section 2's Atlas screen concerns a different problem.

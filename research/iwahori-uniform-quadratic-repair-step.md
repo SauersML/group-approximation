@@ -38,7 +38,8 @@ central extension of `SL_2(Z[1/2])`.
   `iwahori-admits-neutral-quadratic-directions` and
   `second-order-step-beats-a-blocked-linearization`.  The whole difficulty is
   the first prerequisite; see its own attempts, in particular that the
-  directions cannot come from the compatible locus.
+  the projected quadratic effect vanishes at exact compatible points and
+  the required admissible chart remains part of the open input.
 - **Through the linear theory, in the near sector only.**  `(UIR)` plus an
   operator-norm proximity hypothesis gives a linear step there, by the true
   statement recorded at the end of
@@ -53,7 +54,8 @@ central extension of `SL_2(Z[1/2])`.
   repaired pair with the same constants, which is where padding by inexact
   blocks is dangerous: it can move the new pair into a stratum the hypothesis
   does not cover.
-- **The rate is not negotiable downward.**  A step with only a constant-factor
-  gain cannot be iterated to exactness; the accounting is the same as in
-  `quadratic-descent-loss-is-admissible-linear-is-not`, and the three-halves
-  rate is what makes the defects geometric and the padding summable.
+- **A fixed contraction would also suffice.** With the same movement and
+  padding bounds, `e^+<=theta e` for a uniform `theta<1` already makes
+  the defects, square-root movements, and padding summable. The
+  three-halves rate is the rate produced by the proposed Taylor step,
+  rather than a necessary threshold for the completion argument.

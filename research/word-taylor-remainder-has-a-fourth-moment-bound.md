@@ -30,9 +30,9 @@ The bound is dimension-free and needs no operator-norm smallness hypothesis.
 ```
 
 so `(WT1)` implies the estimate `(NHT1)` of
-`normalized-hs-taylor-remainder-is-not-dimension-free`, and is strictly
-stronger whenever the correction is not close to a scalar multiple of a
-projection of full normalized rank.
+`normalized-hs-taylor-remainder-is-not-dimension-free`. Equality in `(WT2)`
+holds exactly when all nonzero singular values of `X` are equal; in
+particular it holds for a scalar multiple of a projection of any rank.
 
 **Effective rank is the quantity that decides.**  For `X != 0` put
 
@@ -40,21 +40,27 @@ projection of full normalized rank.
 theta_eff(X) = ||X||_(2,d)^4 / ||X||_(4,d)^4  in  (0, 1],
 ```
 
-so that `||X||_(4,d)^2 = ||X||_(2,d)^2 / sqrt(theta_eff(X))` and `(WT1)` reads
+so that `||X||_(4,d)^2 = ||X||_(2,d)^2 / sqrt(theta_eff(X))`. For one
+correction matrix, `(WT1)` reads
 
 ```text
 remainder <= (ell^2 / 2) ||X||_(2,d)^2 / sqrt(theta_eff(X)).           (WT3)
 ```
 
 For `X = a P` with `P` a projection of normalized rank `mu = tr_d P` one gets
-`theta_eff = mu` exactly.  Hence a correction with `||X||_(2,d) = O(e)` has
-nonlinear remainder `o(e)` if and only if `theta_eff(X) >> e^2`: a correction
-that is small in normalized HS norm but concentrated on normalized rank `O(e^2)`
-sits exactly at the threshold where the step stops gaining.  The rank-one
+`theta_eff = mu` exactly. For several correction matrices, use the maximum
+of `||X_s||_2^2 / sqrt(theta_eff(X_s))` over nonzero entries.
+Hence `||X||_(2,d) = O(e)` and `theta_eff(X) >> e^2` are sufficient for
+the bound to give nonlinear remainder `o(e)`. If `||X||_2` is comparable
+to `e`, this is exactly the threshold for this upper bound to be `o(e)`.
+It is not a necessary condition for the actual remainder: word cancellations
+can make that remainder vanish. A normalized rank of order `e^2` therefore
+marks a loss of this guarantee, rather than a proof that repair fails.
+The rank-one
 counterexample of the cited node is the case `mu = 1/d`, and `(WT3)` reproduces
 its `sqrt(d)` growth.
 
 This is a bound on one Taylor step.  It does not by itself restore any
 Newton iteration; what it supplies is the exact budget such an iteration must
-respect, namely a lower bound on the effective rank of every correction it
-makes.
+respect when it relies on this estimate, namely sufficient effective rank
+relative to the size of the correction.

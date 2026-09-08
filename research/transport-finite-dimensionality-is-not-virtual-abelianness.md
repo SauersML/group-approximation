@@ -4,12 +4,14 @@ id: transport-finite-dimensionality-is-not-virtual-abelianness
 kind: claim
 title: The finite-dimensionality hypothesis in transport cannot be weakened to a virtually abelian orbit group
 distinct_from:
-  finite-block-coordinates-share-one-mf-image: that is a positive consequence of the finite-dimensional transport theorem for genuinely finite blocks; this is a counterexample showing the finiteness hypothesis in that theorem cannot be relaxed.
+  finite-block-coordinates-share-one-mf-image: that is a proved consequence of finite-dimensional transport; this records a proposed virtually abelian counterexample whose full construction is not present in the cited source.
 artifacts:
   - non_mf_groups_exist.tex
 ---
 
-Let `Gammabar = Z^3 x| SL_3(Z)`, let `alpha(v, A) = (2v, A)`, and let `V`
+**OPEN: construction missing from the current source.** The target is the
+following proposed counterexample. Let `Gammabar = Z^3 x| SL_3(Z)`,
+let `alpha(v, A) = (2v, A)`, and let `V`
 be the ascending HNN extension of `Gammabar` along `alpha`.  There is an
 injective homomorphism `sigma` of `V` into the unitary group of a norm
 matrix corona for which:
@@ -19,10 +21,13 @@ matrix corona for which:
 2. an element of `Acal` fixed by `sigma(t Gammabar t^(-1))` is **not** fixed
    by `sigma(Gammabar)`.
 
-So a finite subgroup cannot be replaced in the finite-dimensional transport
-theorem of `non_mf_groups_exist.tex` by a finitely generated virtually
-abelian one, even when the distinguished element has order two and a finite
-orbit.  The orbit group in the witness is `Z^7 x| C_2`.
+Such a construction would show that finite-dimensionality cannot simply
+be replaced by commutativity. A separate proposed strengthening uses an
+order-two element with finite orbit generating `Z^7 x| C_2`. It cannot
+be the same witness inside `C(T)`: this algebra is commutative, and its
+connected spectrum forces every order-two unitary to be the constant
+`1` or `-1`. The stronger virtually abelian witness therefore requires
+a different ambient algebra and a separate construction.
 
 ## The elementary half
 
@@ -42,6 +47,13 @@ which need not be even — take `A = e_12` and `w = (0,1,0)`, giving
 quotient group, and the action on the eight generators factors through the
 reduction `Gammabar -> F_2^3 x| SL_3(F_2)`.
 
-**Status.**  Proved and written out; removed from
-`non_mf_groups_exist.tex` on 2026-09-08 as settling a secondary optimality
-question that no retained construction uses.
+## Attempts and missing proof
+
+The previous write-up said the construction had been removed from the
+manuscript. The current cited manuscript contains the finite-dimensional
+transport theorem and the rank estimate above, but supplies neither
+the wedge-of-arcs corona realization nor the separate involution
+realization. Those elementary observations do not prove either
+counterexample. A complete construction must specify the algebra,
+the action, the corona map, its injectivity, and the element witnessing
+failure of fixed-point transport. No proof route is asserted here.

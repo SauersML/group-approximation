@@ -5,6 +5,7 @@ kind: claim
 title: Every coordinate of the finite block has one common image in every MF representation
 distinct_from:
   hilbert-hotel-prescribed-mf-reflection: that realizes a prescribed MF quotient by a direct product; this is about the internal structure of one finite-block HNN extension and says nothing about prescribing a quotient.
+  finite-block-mf-quotient-is-abelianized-amalgam: that computes the entire MF quotient under residual finiteness of V; the coordinate identification here needs no MF or residual-finiteness assumption on V.
 artifacts:
   - non_mf_groups_exist.tex
 ---
@@ -30,8 +31,12 @@ afterwards, to turn "the common image is abelian" into "it is trivial".
 ## Two corollaries in opposite directions
 
 **Perfect `K`.**  Distinct coordinates commute, so the common image is an
-abelian image of `K`, hence trivial.  This is the finite-block radical
-theorem of `non_mf_groups_exist.tex`: `Rad_MF(E_K) = B_K`.
+abelian image of `K`, hence trivial. Thus every MF map kills the normal
+closure `B_K` of `F`. If `V` is additionally MF, the quotient `E_K/B_K=V`
+separates everything outside `B_K`, giving `Rad_MF(E_K)=B_K`.
+The manuscript assumes the stronger condition that `V` is residually
+finite. Without that extra input the general formula is
+`Rad_MF(E_K)=q^(-1)(Rad_MF(V))` for the quotient map `q:E_K->V`.
 
 **`K = C_2`.**  The identification survives but nothing kills it, and
 `z_omega z_(omega')` is a nontrivial element of `C_2^Omega` for
@@ -53,9 +58,9 @@ a sharper radical theorem than the current one, because `G/<z>` is exactly
 `E_(C_2)`.
 
 The corollary above refutes that: `Rad_MF(E_(C_2)) != 1`, so the Clifford
-group's radical is strictly larger than `<z>` and no exact formula is
-available.  The swap would lose the exact radical with nothing in return.
+group's radical is strictly larger than `<z>`. This refutes that proposed
+formula; it does not rule out computing a different exact radical.
 
-**The finite-dimensional transport theorem is therefore load-bearing**: it
-is exactly what proves the identification above, and hence what rules out
-its own replacement.
+**The finite-dimensional transport theorem is used in this argument**:
+it proves the identification and excludes the proposed radical `<z>`.
+This does not prove that no alternative construction or proof is possible.

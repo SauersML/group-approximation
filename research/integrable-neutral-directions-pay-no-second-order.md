@@ -21,16 +21,18 @@ Pi D^2F(x)[xi, xi] = 0.                                                 (IN1)
 ```
 
 **Screen.**  If every direction in `ker L` is integrable at `x`, the projected
-quadratic form vanishes identically on `ker L`, and the hypothesis `(SO1)` of
-`second-order-step-beats-a-blocked-linearization` cannot be met at `x` by any
-kernel direction: the second-order mechanism has an empty search space there.
-Since `D^2F` is continuous, the same form is `o(1)` on kernel directions at
-points near such an `x`, so the mechanism is weak in a neighbourhood as well,
-and any use of it must be at points bounded away from the exact locus.  The
-quantitative version of that last sentence needs a description of how `ker DF`
-moves off the exact locus and is not asserted here.
+quadratic form vanishes identically on `ker L`: these directions cannot
+change the projected residual to second order at this base point. At an
+exact point `F(x)=0`, `(SO1)` is nevertheless satisfied trivially by
+`xi=0`; there is no nonzero residual to cancel.
+
+This is an assertion at the exact point. A useful nearby estimate needs
+control of the moving kernel, the cokernel projection, and the derivatives
+in the relevant norms. Continuity alone supplies no dimension-independent
+near-sector exclusion and does not force useful correction directions to
+remain a fixed distance from the exact locus.
 
 `(IN1)` is the reason a gauge symmetry supplies no corrective curvature: gauge
 directions integrate by construction.  It is also the cheap first test for any
-proposed quadratic-repair mechanism -- exhibit a neutral direction that does
-*not* integrate, or stop.
+proposed quadratic-repair mechanism: an integrable direction at an exact
+point cannot supply a nonzero projected quadratic effect there.

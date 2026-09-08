@@ -11,8 +11,9 @@ artifacts:
   - research/artifacts/pde-transfer-quadratic-repair-2026-09-08.md
 ---
 
-**ESTABLISHED.**  Let `C` be a class of unitary tuples closed under adding
-trivial summands, with defect `e(U) = max_(w in W) ||w(U) - I||_(2,d)` for a
+**ESTABLISHED.**  Let `C` be a class of unitary tuples closed in each fixed
+dimension and closed under adding trivial summands, with defect
+`e(U) = max_(w in W) ||w(U) - I||_(2,d)` for a
 finite set `W` of words of length at most `L` (or any defect that is
 `2L`-Lipschitz in the zero-padding metric `d_0`).  Suppose there are constants
 `A, B` and a threshold `eps > 0` such that for **every** tuple `U` in `C` of
@@ -42,11 +43,13 @@ max_s d_0( U_s^(0), U_s^(inf) ) <= (B / (1 - 2^(-1/2))) sqrt(e_0)
 Consequently the distance from `U^(0)` to the exact locus obeys the modulus
 
 ```text
-D(U) <= f(e(U)),    f(x) = min( 3.42 B sqrt x, 2 ),                     (RB3)
+D(U) <= f(e(U)),    f(x) = min( K sqrt x, 2 ),                          (RB3)
+K = max(3.42 B, 2 / sqrt(tau)),   tau = min(eps, 1/(4A^2)).
 ```
 
-for every input whenever the exact locus is nonempty, `f` being the metric
-diameter bound above the threshold and `lim_(x -> 0) f(x) = 0`.
+for every input whenever the exact locus is nonempty. The enlarged
+constant makes `f(x)=2` above the threshold `tau`, and
+`lim_(x -> 0) f(x) = 0`. Take `A,B>0` without loss of generality.
 
 **What is load-bearing.**  Hypothesis `(RB1)` must hold at every tuple of the
 class, in particular at the outputs of its own steps, with the *same* constants;

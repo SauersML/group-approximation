@@ -12,7 +12,8 @@ artifacts:
 ---
 
 The class is the pairs of finite-dimensional unitary representations of the two
-modular vertex groups, closed under adding trivial summands, and the defect is
+modular vertex groups, closed in each fixed dimension and closed under
+adding trivial summands, and the defect is
 `def` of the target node, which is `2L`-Lipschitz in the zero-padding metric by
 `flexible-hs-metric-controls-words-and-padding`.  The first prerequisite is
 exactly hypothesis `(RB1)` of the second for this class.
@@ -28,10 +29,12 @@ For `def(pi)` above the threshold the metric diameter bound `D(pi) <= 2` applies
 So the modulus
 
 ```text
-f(x) = min( 3.42 B sqrt x, 2 ),      lim_(x -> 0) f(x) = 0,
+tau = min(eps,1/(4A^2)),   K = max(3.42 B,2/sqrt(tau)),
+f(x) = min( K sqrt x, 2 ),      lim_(x -> 0) f(x) = 0,
 ```
 
-works for every `pi` in `X_FD(Lambda)`, which is the statement of the target.
+works for every `pi` in `X_FD(Lambda)`, since `f(x)=2` above `tau`.
+This is the statement of the target.
 
 The dimension convention matches: the target's `d_2` is the generalized metric
 that pads the smaller matrix with zero blocks, and the second prerequisite's

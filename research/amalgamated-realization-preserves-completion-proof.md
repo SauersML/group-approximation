@@ -5,7 +5,7 @@ kind: route
 title: Read the free-product kernel off the Bass-Serre star and collapse both spectral sequences
 target: amalgamated-realization-preserves-completion
 requires:
-  - finite-block-coordinates-share-one-mf-image
+  - sofic-cyclic-mf-quotient-with-full-radical
 artifacts:
   - non_mf_groups_exist.tex
 ---

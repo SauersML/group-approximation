@@ -4,7 +4,8 @@ id: finite-block-coordinates-share-one-mf-image-proof
 kind: route
 title: Centralize one coordinate with the compressed Kazhdan subgroup and move it by the transitive action
 target: finite-block-coordinates-share-one-mf-image
-requires: []
+requires:
+  - finite-dimensional-kazhdan-fixed-algebra-transport
 artifacts:
   - non_mf_groups_exist.tex
 ---
@@ -59,6 +60,7 @@ homomorphism in each variable into an abelian group, so it factors through
 every central extension**, and the defect the construction supplies is a
 product `c_0 c_1^(-1)` of elements of two distinct blocks lying in the block
 kernel `B_K` — a free product of finite groups, whose property-(T) subgroups
-are finite and which has no nontrivial finite normal subgroup.  So the
-criterion has no normal Kazhdan subgroup to act on, and the
-finite-dimensional route is the only one.
+are finite and which has no nontrivial finite normal subgroup. Thus this
+particular use of the criterion has no nontrivial normal Kazhdan subgroup
+inside the block kernel to act on. This explains the use of transport
+in the proof given here, without excluding other arguments.

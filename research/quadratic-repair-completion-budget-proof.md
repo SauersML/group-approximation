@@ -34,7 +34,8 @@ step adds nothing: `r_j = 0` and all later tuples live in `U(D)`.
 is the normalized Hilbert-Schmidt distance (first prerequisite), and
 `max_s d_0(U_s^(j+1), U_s^(j)) <= B sqrt(e_j) <= B sqrt(e_0) 2^(-j/2)` is
 summable, so each `U_s^(j)` is Cauchy in `U(D)` and converges to some
-`U_s^(inf)`.  The defect is `2L`-Lipschitz in that metric (first prerequisite),
+`U_s^(inf)`. Closedness of the fixed-dimensional class places this tuple
+in `C`. The defect is `2L`-Lipschitz in that metric (first prerequisite),
 so `e(U^(inf)) = lim e_j = 0`: every word in `W` is exactly the identity.
 
 **Movement.**  Summing over all steps, including those before `J` where the
@@ -60,4 +61,8 @@ d_0(U_s, W_s) = ||j(U_s) - j(W_s)||_F / sqrt(max(d, D'))
 
 so a single exact tuple anywhere in the class -- the exact locus is assumed
 nonempty, as it must be for `D` to be defined -- gives `D(U) <= 2` for every
-input.  Hence `(RB3)` holds with `f` as stated.
+input. Put `tau=min(eps,1/(4A^2))` and
+`K=max(3.42 B,2/sqrt(tau))`. Below `tau` the local bound and the
+diameter bound together give `D(U)<=min(K sqrt(e(U)),2)`; above `tau`
+this minimum is exactly `2`. This proves `(RB3)`. Using the unmodified
+coefficient `3.42 B` globally would not follow from the local estimate.
